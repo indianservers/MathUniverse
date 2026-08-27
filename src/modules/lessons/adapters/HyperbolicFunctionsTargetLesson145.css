@@ -1,0 +1,552 @@
+.hyp145-page {
+  position: relative;
+  top: -42px;
+  width: 100%;
+  height: 958px;
+  margin-bottom: -42px;
+  overflow: hidden;
+  border: 1px solid #27374c;
+  background: #07111d;
+  color: #edf1f7;
+  font-size: 11px;
+  letter-spacing: 0;
+}
+.hyp145-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.hyp145-page h1,
+.hyp145-page h2,
+.hyp145-page p {
+  margin: 0;
+}
+.hyp145-page button,
+.hyp145-page input {
+  color: inherit;
+  font: inherit;
+}
+.hyp145-page button {
+  cursor: pointer;
+}
+.hyp145-page.fullscreen {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  height: 100vh;
+  margin: 0;
+}
+.hyp145-header {
+  height: 164px;
+  padding: 10px 13px 0;
+  border-bottom: 1px solid #27364a;
+  background: #08121e;
+}
+.hyp145-header > nav {
+  display: flex;
+  height: 30px;
+  justify-content: space-between;
+  border-bottom: 1px solid #26364a;
+}
+.hyp145-header > nav small {
+  color: #c2cad6;
+}
+.hyp145-header > nav div {
+  display: flex;
+  gap: 8px;
+}
+.hyp145-header > nav button {
+  display: flex;
+  height: 27px;
+  align-items: center;
+  gap: 5px;
+  border: 0;
+  background: transparent;
+}
+.hyp145-header > nav svg {
+  width: 14px;
+}
+.hyp145-header h1 {
+  margin-top: 12px;
+  font-size: 29px;
+  line-height: 34px;
+}
+.hyp145-header > p {
+  color: #b8c1cf;
+  font-size: 12px;
+}
+.hyp145-tabs {
+  display: grid;
+  width: 700px;
+  height: 42px;
+  margin-top: 8px;
+  grid-template-columns: repeat(7, 1fr);
+}
+.hyp145-tabs button {
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+}
+.hyp145-tabs button.active {
+  border-color: #3499ff;
+}
+.hyp145-layout {
+  display: grid;
+  height: 793px;
+  padding: 0 10px 10px;
+  grid-template-columns: minmax(0, 1fr) 342px;
+  gap: 10px;
+}
+.hyp145-layout main {
+  min-width: 0;
+}
+.hyp145-upper {
+  display: grid;
+  height: 489px;
+  grid-template-columns: 315px minmax(0, 1fr);
+  gap: 10px;
+}
+.hyp145-upper article,
+.hyp145-lower article,
+.hyp145-rail section {
+  border: 1px solid #2a3b51;
+  border-radius: 8px;
+  background: #0a1522;
+}
+.hyp145-unit {
+  padding: 13px;
+}
+.hyp145-unit h2 {
+  font-size: 14px;
+}
+.hyp145-unit > strong {
+  display: block;
+  margin-top: 5px;
+  font-family: Georgia, serif;
+  font-size: 15px;
+}
+.hyp145-hyperbola {
+  display: block;
+  width: 100%;
+  height: 344px;
+  margin-top: -6px;
+  touch-action: none;
+}
+.hyp145-hyperbola .axis,
+.hyp145-graph .axis {
+  stroke: #dce5ef;
+  stroke-width: 1.2;
+}
+.hyp145-hyperbola .branch {
+  fill: none;
+  stroke: #45d8f0;
+  stroke-width: 2;
+}
+.hyp145-hyperbola text {
+  fill: #dce6f1;
+  font-size: 12px;
+}
+.hyp145-hyperbola .identity {
+  fill: #36dfca;
+}
+.hyp145-hyperbola .point-label {
+  fill: #f2ca23;
+  font-size: 15px;
+}
+.hyp145-hyperbola .sinh-guide {
+  stroke: #55c85c;
+  stroke-dasharray: 5 4;
+}
+.hyp145-hyperbola .cosh-guide {
+  stroke: #aab4c1;
+  stroke-dasharray: 5 4;
+}
+.hyp145-hyperbola .handle {
+  fill: #f1c21e;
+  stroke: #fff;
+  stroke-width: 1.5;
+  cursor: grab;
+}
+.hyp145-unit footer {
+  height: 89px;
+  padding: 9px;
+  border: 1px solid #2b3c51;
+  border-radius: 7px;
+}
+.hyp145-unit footer p {
+  display: flex;
+  height: 24px;
+  align-items: center;
+  gap: 9px;
+}
+.hyp145-unit footer i,
+.hyp145-decomposition i,
+.hyp145-values td i {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #f0c718;
+}
+.hyp145-unit footer p:nth-child(2) i {
+  height: 2px;
+  border-radius: 0;
+  background: #3998f5;
+}
+.hyp145-unit footer p:nth-child(3) i {
+  height: 2px;
+  border-radius: 0;
+  background: #53c657;
+}
+.hyp145-plot {
+  position: relative;
+}
+.hyp145-plot > nav {
+  display: grid;
+  height: 45px;
+  padding: 9px 12px;
+  border-bottom: 1px solid #2a394e;
+  grid-template-columns: repeat(5, 1fr);
+}
+.hyp145-plot > nav label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-family: Georgia, serif;
+  font-size: 13px;
+}
+.hyp145-plot > nav input {
+  accent-color: #3a9dfa;
+}
+.hyp145-plot > nav .cosh input {
+  accent-color: #a960e7;
+}
+.hyp145-plot > nav .tanh input {
+  accent-color: #59c457;
+}
+.hyp145-plot > nav .exp input {
+  accent-color: #f3bf13;
+}
+.hyp145-plot > nav .inverseExp input {
+  accent-color: #ff7a1b;
+}
+.hyp145-graph {
+  width: 100%;
+  height: 407px;
+  touch-action: none;
+}
+.hyp145-graph text {
+  fill: #dbe5f1;
+  font-size: 12px;
+}
+.hyp145-graph path {
+  fill: none;
+  stroke-width: 2.5;
+}
+.hyp145-graph .sinh {
+  stroke: #3499f8;
+}
+.hyp145-graph .cosh {
+  stroke: #aa60e9;
+}
+.hyp145-graph .tanh {
+  stroke: #58c550;
+}
+.hyp145-graph .exp {
+  stroke: #f5c313;
+}
+.hyp145-graph .inverse-exp {
+  stroke: #ff7919;
+}
+.hyp145-graph .probe-line {
+  stroke: #edf1f5;
+  stroke-dasharray: 6 5;
+}
+.hyp145-graph .tanh-guide {
+  stroke: #b6d63f;
+  stroke-dasharray: 7 5;
+}
+.hyp145-graph circle {
+  stroke: #fff;
+  stroke-width: 1;
+}
+.hyp145-graph .sinh-point {
+  fill: #3499f8;
+}
+.hyp145-graph .cosh-point {
+  fill: #a95ee6;
+}
+.hyp145-graph .tanh-point {
+  fill: #55bd4d;
+}
+.hyp145-graph .exp-point {
+  fill: #f5c313;
+}
+.hyp145-graph .inverse-exp-point {
+  fill: #ff7919;
+}
+.hyp145-graph .probe-label rect {
+  fill: #e8edf2;
+}
+.hyp145-graph .probe-label text {
+  fill: #1c2634;
+  font-family: Georgia, serif;
+  font-size: 14px;
+}
+.hyp145-graph .handle {
+  fill: #f2c21b;
+  cursor: grab;
+}
+.hyp145-plot > footer {
+  position: absolute;
+  bottom: 7px;
+  left: 10px;
+  display: flex;
+  gap: 6px;
+}
+.hyp145-plot > footer button {
+  display: grid;
+  width: 34px;
+  height: 31px;
+  place-items: center;
+  border: 1px solid #2d3e54;
+  border-radius: 5px;
+  background: #0c1827;
+}
+.hyp145-plot > footer svg {
+  width: 15px;
+}
+.hyp145-lower {
+  display: grid;
+  height: 294px;
+  margin-top: 10px;
+  grid-template-columns: 1.45fr 1fr;
+  gap: 10px;
+}
+.hyp145-lower article {
+  padding: 10px;
+}
+.hyp145-lower h2 {
+  font-size: 14px;
+}
+.hyp145-values table {
+  width: 100%;
+  margin-top: 10px;
+  border-collapse: collapse;
+  text-align: center;
+}
+.hyp145-values th,
+.hyp145-values td {
+  height: 37px;
+  border: 1px solid #2b3c52;
+}
+.hyp145-values td:first-child {
+  text-align: left;
+}
+.hyp145-values td i {
+  margin: 0 9px;
+}
+.hyp145-values td i.sinh {
+  background: #3499f8;
+}
+.hyp145-values td i.cosh {
+  background: #a95ee6;
+}
+.hyp145-values td i.tanh {
+  background: #55bd4d;
+}
+.hyp145-values td i.exp {
+  background: #f4c213;
+}
+.hyp145-values td i.inverseExp {
+  background: #ff7919;
+}
+.hyp145-challenge > p {
+  margin-top: 16px;
+  line-height: 19px;
+}
+.hyp145-challenge > strong {
+  display: block;
+  margin: 12px 0 4px;
+  font-family: Georgia, serif;
+  font-size: 19px;
+  text-align: center;
+}
+.hyp145-challenge > small {
+  display: block;
+  text-align: center;
+}
+.hyp145-challenge > input {
+  display: block;
+  width: 78%;
+  margin: 8px auto 0;
+  accent-color: #3b8ef3;
+}
+.hyp145-challenge > button {
+  height: 39px;
+  margin-top: 15px;
+  padding: 0 17px;
+  border: 1px solid #3477d4;
+  border-radius: 6px;
+  background: #16428b;
+}
+.hyp145-challenge > footer {
+  display: flex;
+  margin-top: 15px;
+  justify-content: space-between;
+}
+.hyp145-challenge > footer.correct {
+  color: #62d56b;
+}
+.hyp145-challenge > footer.wrong {
+  color: #ff9b65;
+}
+.hyp145-challenge > em {
+  display: block;
+  margin-top: 10px;
+  color: #99a8bb;
+}
+.hyp145-rail {
+  display: grid;
+  grid-template-rows: 111px 247px 180px 198px;
+  gap: 10px;
+}
+.hyp145-rail section {
+  padding: 13px;
+}
+.hyp145-rail h2 {
+  font-size: 14px;
+}
+.hyp145-parameter header {
+  display: flex;
+  justify-content: space-between;
+}
+.hyp145-parameter header b {
+  color: #48b8ff;
+  font-family: Georgia, serif;
+  font-size: 14px;
+}
+.hyp145-parameter label {
+  display: grid;
+  margin-top: 17px;
+  grid-template-columns: 20px 1fr 67px;
+  align-items: center;
+  gap: 10px;
+}
+.hyp145-parameter label i {
+  font-family: Georgia, serif;
+  font-size: 18px;
+}
+.hyp145-parameter input {
+  width: 100%;
+  accent-color: #3299f7;
+}
+.hyp145-parameter output {
+  padding: 10px;
+  border: 1px solid #2d3e52;
+  border-radius: 6px;
+  text-align: center;
+}
+.hyp145-decomposition p {
+  display: grid;
+  height: 39px;
+  grid-template-columns: 22px 1fr 66px;
+  align-items: center;
+  font-family: Georgia, serif;
+  font-size: 14px;
+}
+.hyp145-decomposition i.exp {
+  background: #f4c213;
+}
+.hyp145-decomposition i.inverseExp {
+  background: #ff7919;
+}
+.hyp145-decomposition i.sinh {
+  background: #a85ce7;
+}
+.hyp145-decomposition i.cosh {
+  background: #3499f8;
+}
+.hyp145-decomposition i.tanh {
+  background: #56be4c;
+}
+.hyp145-decomposition hr {
+  border: 0;
+  border-top: 1px solid #304157;
+}
+.hyp145-identities > div {
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px solid #3f9055;
+  border-radius: 7px;
+  text-align: center;
+}
+.hyp145-identities > div strong {
+  display: block;
+  font-family: Georgia, serif;
+  font-size: 17px;
+}
+.hyp145-identities > div span {
+  display: flex;
+  margin-top: 8px;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+}
+.hyp145-identities svg {
+  width: 15px;
+  color: #53dc63;
+}
+.hyp145-identities > p {
+  margin-top: 10px;
+  color: #4eb5ff;
+  font-size: 13px;
+}
+.hyp145-identities > em {
+  display: block;
+  margin-top: 12px;
+  color: #9a63ee;
+  font-size: 12px;
+}
+.hyp145-compare {
+  background: #19152d !important;
+}
+.hyp145-compare > div {
+  display: grid;
+  margin-top: 11px;
+  grid-template-columns: 1fr 130px;
+}
+.hyp145-compare table {
+  border-collapse: collapse;
+  text-align: center;
+}
+.hyp145-compare th,
+.hyp145-compare td {
+  height: 30px;
+  border: 1px solid #39334f;
+  font-family: Georgia, serif;
+}
+.hyp145-compare svg line {
+  stroke: #dce4ee;
+}
+.hyp145-compare svg path {
+  fill: none;
+  stroke: #4bd5ed;
+  stroke-width: 1.5;
+}
+.hyp145-compare svg circle {
+  fill: #fff;
+}
+@media (max-width: 1100px) {
+  .hyp145-layout {
+    grid-template-columns: minmax(0, 1fr) 290px;
+  }
+  .hyp145-upper {
+    grid-template-columns: 280px minmax(0, 1fr);
+  }
+  .hyp145-rail {
+    grid-template-rows: 111px 247px 180px 198px;
+  }
+  .hyp145-lower {
+    grid-template-columns: 1.3fr 1fr;
+  }
+}

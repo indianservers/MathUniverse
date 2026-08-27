@@ -1,0 +1,279 @@
+{
+  "mockup": "0202",
+  "lessonId": 145,
+  "route": "/lessons/graphs-and-functions/145-hyperbolic-functions",
+  "checks": {
+    "initial": {
+      "t": "1.2",
+      "exp": "3.3201169227365472",
+      "inverse-exp": "0.3011942119122021",
+      "sinh": "1.5094613554121725",
+      "cosh": "1.8106555673243747",
+      "tanh": "0.8336546070121552",
+      "identity": "1",
+      "challenge-t": "0.55",
+      "challenge-error": "0.0005202111902352646",
+      "challenge-correct": "true",
+      "span": "3.5",
+      "visible": "sinh,cosh,tanh,exp,inverseExp",
+      "actions": "0"
+    },
+    "parameterSlider": {
+      "t": "1.15",
+      "exp": "3.1581929096897676",
+      "inverse-exp": "0.3166367693790533",
+      "sinh": "1.4207780701553572",
+      "cosh": "1.7374148395344104",
+      "tanh": "0.8177540779702877",
+      "identity": "1.0000000000000004",
+      "challenge-t": "0.55",
+      "challenge-error": "0.0005202111902352646",
+      "challenge-correct": "false",
+      "span": "3.5",
+      "visible": "sinh,cosh,tanh,exp,inverseExp",
+      "actions": "10"
+    },
+    "hyperbolaDrag": {
+      "t": "0.55",
+      "exp": "1.7332530178673953",
+      "inverse-exp": "0.5769498103804866",
+      "sinh": "0.5781516037434543",
+      "cosh": "1.155101414123941",
+      "tanh": "0.5005202111902352",
+      "identity": "1",
+      "challenge-t": "0.55",
+      "challenge-error": "0.0005202111902352646",
+      "challenge-correct": "false",
+      "span": "3.5",
+      "visible": "sinh,cosh,tanh,exp,inverseExp",
+      "actions": "10"
+    },
+    "hyperbolaKeyboard": {
+      "t": "0.65",
+      "exp": "1.9155408290138962",
+      "inverse-exp": "0.522045776761016",
+      "sinh": "0.6967475261264401",
+      "cosh": "1.2187933028874562",
+      "tanh": "0.5716699660851172",
+      "identity": "1.0000000000000004",
+      "challenge-t": "0.55",
+      "challenge-error": "0.0005202111902352646",
+      "challenge-correct": "false",
+      "span": "3.5",
+      "visible": "sinh,cosh,tanh,exp,inverseExp",
+      "actions": "11"
+    },
+    "probeDrag": {
+      "t": "0.25",
+      "exp": "1.2840254166877414",
+      "inverse-exp": "0.7788007830714049",
+      "sinh": "0.25261231680816826",
+      "cosh": "1.0314130998795732",
+      "tanh": "0.24491866240370908",
+      "identity": "1",
+      "challenge-t": "0.55",
+      "challenge-error": "0.0005202111902352646",
+      "challenge-correct": "false",
+      "span": "3.5",
+      "visible": "sinh,cosh,tanh,exp,inverseExp",
+      "actions": "10"
+    },
+    "probeKeyboard": {
+      "t": "0.35",
+      "exp": "1.4190675485932571",
+      "inverse-exp": "0.7046880897187134",
+      "sinh": "0.35718972943727184",
+      "cosh": "1.0618778191559852",
+      "tanh": "0.3363755443363322",
+      "identity": "0.9999999999999998",
+      "challenge-t": "0.55",
+      "challenge-error": "0.0005202111902352646",
+      "challenge-correct": "false",
+      "span": "3.5",
+      "visible": "sinh,cosh,tanh,exp,inverseExp",
+      "actions": "11"
+    },
+    "allCurvesHidden": {
+      "state": {
+        "t": "0.35",
+        "exp": "1.4190675485932571",
+        "inverse-exp": "0.7046880897187134",
+        "sinh": "0.35718972943727184",
+        "cosh": "1.0618778191559852",
+        "tanh": "0.3363755443363322",
+        "identity": "0.9999999999999998",
+        "challenge-t": "0.55",
+        "challenge-error": "0.0005202111902352646",
+        "challenge-correct": "false",
+        "span": "3.5",
+        "visible": "",
+        "actions": "16"
+      },
+      "paths": 0
+    },
+    "curvesRestored": {
+      "t": "0.35",
+      "exp": "1.4190675485932571",
+      "inverse-exp": "0.7046880897187134",
+      "sinh": "0.35718972943727184",
+      "cosh": "1.0618778191559852",
+      "tanh": "0.3363755443363322",
+      "identity": "0.9999999999999998",
+      "challenge-t": "0.55",
+      "challenge-error": "0.0005202111902352646",
+      "challenge-correct": "false",
+      "span": "3.5",
+      "visible": "sinh,cosh,tanh,exp,inverseExp",
+      "actions": "21"
+    },
+    "zoomIn": {
+      "t": "0.35",
+      "exp": "1.4190675485932571",
+      "inverse-exp": "0.7046880897187134",
+      "sinh": "0.35718972943727184",
+      "cosh": "1.0618778191559852",
+      "tanh": "0.3363755443363322",
+      "identity": "0.9999999999999998",
+      "challenge-t": "0.55",
+      "challenge-error": "0.0005202111902352646",
+      "challenge-correct": "false",
+      "span": "3",
+      "visible": "sinh,cosh,tanh,exp,inverseExp",
+      "actions": "22"
+    },
+    "zoomOut": {
+      "t": "0.35",
+      "exp": "1.4190675485932571",
+      "inverse-exp": "0.7046880897187134",
+      "sinh": "0.35718972943727184",
+      "cosh": "1.0618778191559852",
+      "tanh": "0.3363755443363322",
+      "identity": "0.9999999999999998",
+      "challenge-t": "0.55",
+      "challenge-error": "0.0005202111902352646",
+      "challenge-correct": "false",
+      "span": "3.5",
+      "visible": "sinh,cosh,tanh,exp,inverseExp",
+      "actions": "23"
+    },
+    "challengeWrong": {
+      "t": "0.35",
+      "exp": "1.4190675485932571",
+      "inverse-exp": "0.7046880897187134",
+      "sinh": "0.35718972943727184",
+      "cosh": "1.0618778191559852",
+      "tanh": "0.3363755443363322",
+      "identity": "0.9999999999999998",
+      "challenge-t": "-0.85",
+      "challenge-error": "1.1910694698329305",
+      "challenge-correct": "false",
+      "span": "3.5",
+      "visible": "sinh,cosh,tanh,exp,inverseExp",
+      "actions": "34"
+    },
+    "challengeCorrect": {
+      "t": "0.35",
+      "exp": "1.4190675485932571",
+      "inverse-exp": "0.7046880897187134",
+      "sinh": "0.35718972943727184",
+      "cosh": "1.0618778191559852",
+      "tanh": "0.3363755443363322",
+      "identity": "0.9999999999999998",
+      "challenge-t": "0.55",
+      "challenge-error": "0.0005202111902352646",
+      "challenge-correct": "true",
+      "span": "3.5",
+      "visible": "sinh,cosh,tanh,exp,inverseExp",
+      "actions": "291"
+    },
+    "bookmarkVisible": true,
+    "fullscreen": true,
+    "examplesActive": "Examples",
+    "reset": {
+      "t": "1.2",
+      "exp": "3.3201169227365472",
+      "inverse-exp": "0.3011942119122021",
+      "sinh": "1.5094613554121725",
+      "cosh": "1.8106555673243747",
+      "tanh": "0.8336546070121552",
+      "identity": "1",
+      "challenge-t": "0.55",
+      "challenge-error": "0.0005202111902352646",
+      "challenge-correct": "true",
+      "span": "3.5",
+      "visible": "sinh,cosh,tanh,exp,inverseExp",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1536,
+      "height": 1024
+    },
+    "document": {
+      "width": 1536,
+      "height": 1260
+    },
+    "horizontalOverflow": false,
+    "regions": {
+      "page": {
+        "top": 65,
+        "bottom": 1023,
+        "left": 294,
+        "right": 1516,
+        "width": 1222,
+        "height": 958
+      },
+      "header": {
+        "top": 66,
+        "bottom": 230,
+        "left": 295,
+        "right": 1515,
+        "width": 1220,
+        "height": 164
+      },
+      "upper": {
+        "top": 230,
+        "bottom": 719,
+        "left": 305,
+        "right": 1153,
+        "width": 848,
+        "height": 489
+      },
+      "hyperbola": {
+        "top": 286.5,
+        "bottom": 630.5,
+        "left": 319,
+        "right": 606,
+        "width": 287,
+        "height": 344
+      },
+      "graph": {
+        "top": 276,
+        "bottom": 683,
+        "left": 631,
+        "right": 1152,
+        "width": 521,
+        "height": 407
+      },
+      "lower": {
+        "top": 729,
+        "bottom": 1023,
+        "left": 305,
+        "right": 1153,
+        "width": 848,
+        "height": 294
+      },
+      "rail": {
+        "top": 230,
+        "bottom": 1023,
+        "left": 1163,
+        "right": 1505,
+        "width": 342,
+        "height": 793
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

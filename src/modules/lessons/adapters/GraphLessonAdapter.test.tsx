@@ -4,6 +4,16 @@ import { lessonCatalog } from "../catalog/lessonCatalog";
 import GraphLessonAdapter from "./GraphLessonAdapter";
 
 describe("GraphLessonAdapter", () => {
+  it("routes lesson 145 to its dedicated unit-hyperbola decomposition model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 145)!;
+    const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="graph-mockup-0202"');
+    expect(html).toContain('data-dedicated-lesson="145"');
+    expect(html).toContain("linked-unit-hyperbola-exponential-decomposition-sinh-cosh-tanh-pointer-keyboard-draggable-hyperbola-point-and-graph-probe-generated-five-curves-table-identity-residual-real-challenge-curve-toggles-zoom-fullscreen");
+    expect(html).toContain('aria-label="Drag point on unit hyperbola"');
+    expect(html).toContain("HYPERBOLA_IDENTITY_REQUIRED");
+  });
+
   it("routes lesson 144 to its dedicated linked unit-circle model", () => {
     const lesson = lessonCatalog.find((item) => item.id === 144)!;
     const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
@@ -210,7 +220,6 @@ describe("GraphLessonAdapter", () => {
       140: "negative real inputs are allowed",
       141: "distance makes a V-shape",
       142: "equal x-steps multiply outputs",
-      145: "not periodic like cosine",
       146: "outputs step down to integers",
       147: "outputs step up to integers",
       148: "outputs are -1, 0, or 1",

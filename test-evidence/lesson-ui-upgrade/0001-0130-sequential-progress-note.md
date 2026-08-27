@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **127 of 200 lessons completed; 73 pending.**
+Dedicated rebuild target: **128 of 200 lessons completed; 72 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -113,6 +113,7 @@ Dedicated rebuild target: **127 of 200 lessons completed; 73 pending.**
 | 0199   |       142 Exponential Functions | Complete | Dedicated growth/decay ratio model with real base/initial/asymptote controls, pointer/keyboard initial, base-point, and asymptote drags, generated dual curves/samples/ratio proof/concepts, and exact 1387x1134 target framing |
 | 0200   |         143 Logarithmic Functions | Complete | Dedicated four-parameter logarithm/inverse model with real base/stretch/shift controls, pointer/keyboard asymptote/anchor/scale-point drags, generated domain/curves/table/diagnostics, exact parameter challenge, and exact 1536x1024 target framing |
 | 0201   |       144 Trigonometric Functions | Complete | Dedicated linked unit-circle/sine/cosine model with real amplitude/period/phase/midline controls, pointer/keyboard circle/trace/amplitude/period drags, generated curves/table/period/identities/challenge, animation, CSV export, custom galaxy asset, and exact 1536x1024 framing |
+| 0202   |          145 Hyperbolic Functions | Complete | Dedicated linked unit-hyperbola/exponential-decomposition model with real main/challenge parameters, pointer/keyboard hyperbola-point and graph-probe drags, five generated curves, values table, identity residual, curve toggles, zoom/fullscreen, and exact 1536x1024 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -1892,3 +1893,17 @@ Evidence:
 - `0201-desktop.png`
 - `0201-dedicated-target-validation.json`
 - `public/assets/lesson-surfaces/trigonometric-functions-galaxy.png`
+
+## Lesson 145 / Mockup 0202 - Hyperbolic Functions
+
+Reworked individually against the mathematics target mockup with a dedicated `linked-unit-hyperbola-exponential-decomposition-sinh-cosh-tanh-pointer-keyboard-draggable-hyperbola-point-and-graph-probe-generated-five-curves-table-identity-residual-real-challenge-curve-toggles-zoom-fullscreen`. The lesson-owned main parameter `t` derives `e^t`, `e^-t`, `sinh t`, `cosh t`, `tanh t`, all five graph paths, probe points, the unit-hyperbola point `(cosh t,sinh t)`, decomposition rail, table, and identity residual from one state. At target `t=1.20`, the real calculations are `e^t=3.3201`, `e^-t=0.3012`, `sinh t=1.5095`, `cosh t=1.8107`, and `tanh t=0.8337`, with `cosh^2 t-sinh^2 t=1`.
+
+The point on the unit hyperbola and vertical graph probe are genuine pointer- and keyboard-draggable controls that update every linked output. Five independent trace switches remove and restore their actual curve paths. Zoom in/out and home alter the graph span, Bookmark and Fullscreen have real states, tabs are selectable, and Reset restores the complete object model. The challenge owns a separate real `t` control, matching the mockup's simultaneous main `t=1.20` and challenge answer `t=0.55`; grading calculates `|tanh(t)-0.5|` against the stated `0.01` tolerance instead of accepting a fixed label.
+
+Final 1536x1024 browser validation physically changes the main parameter; drags and keyboard-moves the unit-hyperbola point and graph probe; verifies all exponential/hyperbolic calculations and the identity after every edit; removes and restores all five curves; exercises zoom, bookmark, fullscreen, and tabs; physically produces a wrong challenge value; keyboard-solves it at `0.55`; and resets. Exact framing passes surface y=65-1023, header y=66-230, upper lab y=230-719, hyperbola y=287-631, graph y=276-683, lower workspaces y=729-1023, and rail y=230-1023. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0202-reference.png`
+- `0202-desktop.png`
+- `0202-dedicated-target-validation.json`
