@@ -412,8 +412,20 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain("Analyze the sign of a polynomial");
   });
 
-  it("delegates phase 4 algebra lessons 126 through 128 to lesson-specific structure workspaces", () => {
-    for (let id = 126; id <= 128; id += 1) {
+  it("routes lesson 126 to its dedicated draggable coordinate half-plane model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 126)!;
+    const html = renderToStaticMarkup(
+      <AlgebraCasLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+    expect(html).toContain('data-testid="algebra-mockup-0183"');
+    expect(html).toContain('data-dedicated-lesson="126"');
+    expect(html).toContain("editable-two-variable-inequality-pointer-keyboard-draggable-boundary-intercept-slope-and-test-point-clipped-half-plane-live-substitution-dashed-solid-region-practice-model");
+    expect(html).toContain('aria-label="Drag inequality test point"');
+    expect(html).toContain("Coordinate-region model");
+  });
+
+  it("delegates phase 4 algebra lessons 127 through 128 to lesson-specific structure workspaces", () => {
+    for (let id = 127; id <= 128; id += 1) {
       const lesson = lessonCatalog.find((item) => item.id === id)!;
       const html = renderToStaticMarkup(
         <AlgebraCasLessonAdapter

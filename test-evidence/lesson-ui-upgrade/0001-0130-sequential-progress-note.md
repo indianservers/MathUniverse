@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **108 of 200 lessons completed; 92 pending.**
+Dedicated rebuild target: **109 of 200 lessons completed; 91 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -94,6 +94,7 @@ Dedicated rebuild target: **108 of 200 lessons completed; 92 pending.**
 | 0180   |             123 Compound Inequalities | Complete | Dedicated AND/intersection and OR/union interval model with two pointer-draggable boundaries, endpoint inclusion toggles, linked number lines, test points, empty-set handling, practice, and exact 911x1726 target framing |
 | 0181   |             124 Quadratic Inequalities | Complete | Dedicated quadratic sign-interval model with two pointer-draggable roots, leading-sign/comparator controls, linked factorization, substitutions, parabola regions, interval solution, practice, and exact 972x1617 target framing |
 | 0182   |             125 Polynomial Inequalities | Complete | Dedicated multiplicity-aware polynomial sign analyzer with three pointer-draggable roots, leading-sign/relation controls, linked graph, four interval tests, endpoint union logic, repeated-root practice, and exact 969x1623 target framing |
+| 0183   |             126 Two-Variable Inequalities | Complete | Dedicated coordinate half-plane model with pointer-draggable intercept, slope, and test point, clipped true-region shading, dashed/solid and above/below controls, live substitution, practice, and exact 995x1581 target framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -1606,3 +1607,17 @@ Evidence:
 - `0182-reference.png`
 - `0182-desktop.png`
 - `0182-dedicated-target-validation.json`
+
+## Lesson 126 / Mockup 0183 - Two-Variable Inequalities
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-two-variable-inequality-pointer-keyboard-draggable-boundary-intercept-slope-and-test-point-clipped-half-plane-live-substitution-dashed-solid-region-practice-model`. The lesson-owned slope, intercept, comparator, and test point generate the boundary equation, clipped half-plane polygon, dashed or solid line, labeled boundary points, substitution calculation, truth result, and answer. The target `y < 2x + 1` uses the dashed line through `(0,1)` and `(1,3)`; testing `(0,0)` gives `0 < 1`, so the region below the line is shaded.
+
+The y-intercept, slope point, and test point are all real pointer- and keyboard-draggable controls. Moving a boundary point recalculates the line and clipped region, while moving the test point updates both substitution lines, true/false state, and guidance. Boundary-style and region selectors change the actual comparator and inclusion rule, test-point presets update the model, and the practice card loads `y >= -x + 2` into the same workspace. Tabs, language, Share, Workspace, Reset, fullscreen, action status, warning, and practice feedback all update visible state.
+
+Final 995x1581 integrated browser validation physically steepens the slope from `2` to `3`, drags the intercept from `1` to `0`, drags the test point to `(0,2)` and verifies false, changes the line to solid, switches to the above region and verifies true, loads the practice inequality and verifies `(0,0)` is false, keyboard-moves the point to `(0,3)` and verifies true, then verifies Reset. Exact framing passes surface x=226-979 and y=107-1581, intro y=107-354, tabs y=364-421, lab y=434-1373, linked layout y=504-1360, graph x=255-657 and y=579-1009, rail x=686-965, navigation y=1383-1437, and footer y=1447-1572. It reports no horizontal or vertical overflow, an exact 995x1581 document, and zero console messages.
+
+Evidence:
+
+- `0183-reference.png`
+- `0183-desktop.png`
+- `0183-dedicated-target-validation.json`

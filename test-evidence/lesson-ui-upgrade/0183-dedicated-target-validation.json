@@ -1,0 +1,189 @@
+{
+  "mockup": "0183",
+  "lessonId": 126,
+  "route": "/lessons/algebra/126-two-variable-inequalities",
+  "checks": {
+    "initial": {
+      "equation": "2,1,<",
+      "point": "0,0",
+      "pass": "true",
+      "actions": "0"
+    },
+    "slopeDragged": {
+      "equation": "3,1,<",
+      "point": "0,0",
+      "pass": "true",
+      "actions": "7"
+    },
+    "interceptDragged": {
+      "equation": "3,0,<",
+      "point": "0,0",
+      "pass": "false",
+      "actions": "14"
+    },
+    "testDragged": {
+      "equation": "3,0,<",
+      "point": "0,2",
+      "pass": "false",
+      "actions": "21"
+    },
+    "solid": {
+      "equation": "3,0,<=",
+      "point": "0,2",
+      "pass": "false",
+      "actions": "22"
+    },
+    "above": {
+      "equation": "3,0,>=",
+      "point": "0,2",
+      "pass": "true",
+      "actions": "23"
+    },
+    "practice": {
+      "equation": "-1,2,>=",
+      "point": "0,0",
+      "pass": "false",
+      "actions": "24"
+    },
+    "keyboardTest": {
+      "equation": "-1,2,>=",
+      "point": "0,3",
+      "pass": "true",
+      "actions": "27"
+    },
+    "reset": {
+      "equation": "2,1,<",
+      "point": "0,0",
+      "pass": "true",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 995,
+      "height": 1581
+    },
+    "document": {
+      "width": 995,
+      "height": 1581
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "regions": {
+      "surface": {
+        "top": 107,
+        "bottom": 1581,
+        "height": 1474,
+        "left": 226,
+        "right": 979,
+        "width": 753
+      },
+      "intro": {
+        "top": 107,
+        "bottom": 354,
+        "height": 247,
+        "left": 226,
+        "right": 979,
+        "width": 753
+      },
+      "tabs": {
+        "top": 364,
+        "bottom": 421,
+        "height": 57,
+        "left": 226,
+        "right": 979,
+        "width": 753
+      },
+      "lab": {
+        "top": 434,
+        "bottom": 1373,
+        "height": 939,
+        "left": 226,
+        "right": 979,
+        "width": 753
+      },
+      "layout": {
+        "top": 504,
+        "bottom": 1360,
+        "height": 856,
+        "left": 240,
+        "right": 965,
+        "width": 725
+      },
+      "main": {
+        "top": 504,
+        "bottom": 1360,
+        "height": 856,
+        "left": 240,
+        "right": 672.171875,
+        "width": 432.171875
+      },
+      "rail": {
+        "top": 504,
+        "bottom": 1360,
+        "height": 856,
+        "left": 686.171875,
+        "right": 965,
+        "width": 278.828125
+      },
+      "graph": {
+        "top": 579,
+        "bottom": 1009,
+        "height": 430,
+        "left": 255,
+        "right": 657.171875,
+        "width": 402.171875
+      },
+      "controls": {
+        "top": 1017,
+        "bottom": 1086,
+        "height": 69,
+        "left": 255,
+        "right": 657.171875,
+        "width": 402.171875
+      },
+      "check": {
+        "top": 1095,
+        "bottom": 1337,
+        "height": 242,
+        "left": 255,
+        "right": 657.171875,
+        "width": 402.171875
+      },
+      "warning": {
+        "top": 908,
+        "bottom": 1034,
+        "height": 126,
+        "left": 686.171875,
+        "right": 965,
+        "width": 278.828125
+      },
+      "practice": {
+        "top": 1044,
+        "bottom": 1360,
+        "height": 316,
+        "left": 686.171875,
+        "right": 965,
+        "width": 278.828125
+      },
+      "navigation": {
+        "top": 1383,
+        "bottom": 1437,
+        "height": 54,
+        "left": 226,
+        "right": 979,
+        "width": 753
+      },
+      "footer": {
+        "top": 1447,
+        "bottom": 1572,
+        "height": 125,
+        "left": 226,
+        "right": 979,
+        "width": 753
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
