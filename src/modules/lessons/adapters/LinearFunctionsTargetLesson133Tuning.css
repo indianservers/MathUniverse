@@ -1,0 +1,54 @@
+.lin133-page {
+  top: -53px;
+}
+
+.lin133-tabs {
+  margin-top: 12px;
+}
+
+.lin133-lab {
+  margin-top: 10px;
+  padding-right: 8px;
+  padding-left: 8px;
+}
+
+.lin133-layout {
+  width: 682px;
+}
+
+.lin133-intro .lin133-mini {
+  width: 100%;
+  height: 175px;
+}
+
+.lin133-understand {
+  width: 682px;
+  margin-top: 13px;
+}
+
+.lin133-lower {
+  width: 682px;
+  margin-top: 16px;
+}
+
+.lin133-adjacent {
+  margin-top: 12px;
+}
+
+.lin133-warning aside {
+  height: 60px;
+  margin: 0 0 8px;
+  align-self: end;
+}
+
+.lin133-practice p svg {
+  width: 14px;
+  height: 14px;
+  flex: none;
+  color: #19984a;
+}
+
+.lin133-practice > svg {
+  width: 145px;
+  height: 120px;
+}

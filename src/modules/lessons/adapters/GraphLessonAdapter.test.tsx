@@ -4,6 +4,16 @@ import { lessonCatalog } from "../catalog/lessonCatalog";
 import GraphLessonAdapter from "./GraphLessonAdapter";
 
 describe("GraphLessonAdapter", () => {
+  it("routes lesson 133 to its dedicated linked linear-function model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 133)!;
+    const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="graph-mockup-0190"');
+    expect(html).toContain('data-dedicated-lesson="133"');
+    expect(html).toContain("editable-linear-slope-intercept-linked-hero-and-cartesian-graphs-pointer-keyboard-draggable-intercept-and-slope-point-generated-rise-run-triangle-equal-step-table-rate-proof-practice-model");
+    expect(html).toContain('aria-label="Drag linear intercept"');
+    expect(html).toContain("Slope–Intercept Explorer");
+  });
+
   it("routes lesson 132 to its dedicated vertical-line scanner model", () => {
     const lesson = lessonCatalog.find((item) => item.id === 132)!;
     const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
@@ -86,7 +96,6 @@ describe("GraphLessonAdapter", () => {
 
   it("renders function lessons 129 through 152 with lesson-specific graph guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      133: "equal x-steps make equal y-changes",
       134: "turns at a vertex",
       135: "origin symmetry",
       136: "degree limits roots",

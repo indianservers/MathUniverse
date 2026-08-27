@@ -1,0 +1,191 @@
+{
+  "mockup": "0190",
+  "lessonId": 133,
+  "route": "/lessons/graphs-and-functions/133-linear-functions",
+  "checks": {
+    "initial": {
+      "slope": "1.5",
+      "intercept": "1",
+      "formula": "y = 1.5x + 1",
+      "rise": "3",
+      "samples": "-2,-2;0,1;2,4",
+      "actions": "0"
+    },
+    "slopeSlider": {
+      "slope": "3.25",
+      "intercept": "1",
+      "formula": "y = 3.25x + 1",
+      "rise": "6.5",
+      "samples": "-2,-5.5;0,1;2,7.5",
+      "actions": "7"
+    },
+    "interceptSlider": {
+      "slope": "3.25",
+      "intercept": "2",
+      "formula": "y = 3.25x + 2",
+      "rise": "6.5",
+      "samples": "-2,-4.5;0,2;2,8.5",
+      "actions": "9"
+    },
+    "dragBaseline": {
+      "slope": "1.5",
+      "intercept": "1",
+      "formula": "y = 1.5x + 1",
+      "rise": "3",
+      "samples": "-2,-2;0,1;2,4",
+      "actions": "0"
+    },
+    "interceptDrag": {
+      "slope": "1.5",
+      "intercept": "2",
+      "formula": "y = 1.5x + 2",
+      "rise": "3",
+      "samples": "-2,-1;0,2;2,5",
+      "actions": "8"
+    },
+    "interceptKeyboard": {
+      "slope": "1.5",
+      "intercept": "1.5",
+      "formula": "y = 1.5x + 1.5",
+      "rise": "3",
+      "samples": "-2,-1.5;0,1.5;2,4.5",
+      "actions": "9"
+    },
+    "slopeDrag": {
+      "slope": "1.75",
+      "intercept": "1.5",
+      "formula": "y = 1.75x + 1.5",
+      "rise": "3.5",
+      "samples": "-2,-2;0,1.5;2,5",
+      "actions": "17"
+    },
+    "slopeKeyboard": {
+      "slope": "2",
+      "intercept": "1.5",
+      "formula": "y = 2x + 1.5",
+      "rise": "4",
+      "samples": "-2,-2.5;0,1.5;2,5.5",
+      "actions": "18"
+    },
+    "example": {
+      "slope": "-2",
+      "intercept": "3",
+      "formula": "y = -2x + 3",
+      "rise": "-4",
+      "samples": "-2,7;0,3;2,-1",
+      "actions": "19"
+    },
+    "reset": {
+      "slope": "1.5",
+      "intercept": "1",
+      "formula": "y = 1.5x + 1",
+      "rise": "3",
+      "samples": "-2,-2;0,1;2,4",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 937,
+      "height": 1678
+    },
+    "document": {
+      "width": 937,
+      "height": 1678
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "regions": {
+      "surface": {
+        "top": 95,
+        "bottom": 1678,
+        "height": 1583,
+        "left": 224,
+        "right": 925,
+        "width": 701
+      },
+      "intro": {
+        "top": 95,
+        "bottom": 376,
+        "height": 281,
+        "left": 224,
+        "right": 925,
+        "width": 701
+      },
+      "tabs": {
+        "top": 388,
+        "bottom": 441,
+        "height": 53,
+        "left": 224,
+        "right": 925,
+        "width": 701
+      },
+      "lab": {
+        "top": 451,
+        "bottom": 1465,
+        "height": 1014,
+        "left": 224,
+        "right": 925,
+        "width": 701
+      },
+      "layout": {
+        "top": 550,
+        "bottom": 1080,
+        "height": 530,
+        "left": 233,
+        "right": 915,
+        "width": 682
+      },
+      "graph": {
+        "top": 550,
+        "bottom": 1080,
+        "height": 530,
+        "left": 233,
+        "right": 660,
+        "width": 427
+      },
+      "rail": {
+        "top": 550,
+        "bottom": 1080,
+        "height": 530,
+        "left": 670,
+        "right": 915,
+        "width": 245
+      },
+      "understand": {
+        "top": 1093,
+        "bottom": 1291,
+        "height": 198,
+        "left": 233,
+        "right": 915,
+        "width": 682
+      },
+      "lower": {
+        "top": 1307,
+        "bottom": 1455,
+        "height": 148,
+        "left": 233,
+        "right": 915,
+        "width": 682
+      },
+      "navigation": {
+        "top": 1477,
+        "bottom": 1528,
+        "height": 51,
+        "left": 224,
+        "right": 925,
+        "width": 701
+      },
+      "footer": {
+        "top": 1543,
+        "bottom": 1668,
+        "height": 125,
+        "left": 224,
+        "right": 925,
+        "width": 701
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **115 of 200 lessons completed; 85 pending.**
+Dedicated rebuild target: **116 of 200 lessons completed; 84 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -101,6 +101,7 @@ Dedicated rebuild target: **115 of 200 lessons completed; 85 pending.**
 | 0187   |            130 Domain and Range | Complete | Dedicated shifted-square-root projector with real domain/range sliders, pointer/keyboard-draggable closed start, linked axis projections, generated interval notation/evaluations, grid, practice, and exact 985x1597 target framing |
 | 0188   |           131 Function Notation | Complete | Dedicated linked quadratic-notation decoder with coefficient/shift sliders, pointer/keyboard-draggable chosen input, synchronized substitution/output/graph/table, calculated practice, and exact 1024x1536 target framing |
 | 0189   |         132 Vertical-Line Test | Complete | Dedicated circle/parabola relation scanner with pointer/keyboard-draggable vertical line, generated intersections and hit counts, tangent/zero-hit states, global function classification, real comparison controls, and exact 984x1598 target framing |
+| 0190   |            133 Linear Functions | Complete | Dedicated linked slope-intercept model with real m/b sliders, pointer/keyboard-draggable intercept and slope handles, synchronized hero/full graphs, rise-run triangle, generated table/rate proof, practice, and exact 937x1678 target framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -1711,3 +1712,17 @@ Evidence:
 - `0189-reference.png`
 - `0189-desktop.png`
 - `0189-dedicated-target-validation.json`
+
+## Lesson 133 / Mockup 0190 - Linear Functions
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-linear-slope-intercept-linked-hero-and-cartesian-graphs-pointer-keyboard-draggable-intercept-and-slope-point-generated-rise-run-triangle-equal-step-table-rate-proof-practice-model`. The lesson-owned slope and intercept generate the displayed equation, hero preview, full coordinate line, intercept, three sample points, rise/run triangle, equal-step guides, table rows, delta proof, and concept cards. The target `y=1.5x+1` produces `(-2,-2)`, `(0,1)`, `(2,4)`, rise `3` over run `2`, and slope `1.5`.
+
+Both parameters are real range controls. The intercept and slope points are genuine pointer- and keyboard-draggable graph objects; every move recalculates both graphs, the equation, points, table, rise, triangle, and explanatory text from one model. The Examples tab loads `y=-2x+3`, the lower practice verifies its intercept and rate, and language, Share, Workspace, Reset, fullscreen, tabs, and action status all update visible state.
+
+Final 937x1678 integrated browser validation physically drags the slope and intercept sliders, resets, drags the intercept from `1` to `2`, keyboard-moves it to `1.5`, drags the slope from `1.5` to `1.75`, keyboard-moves it to `2`, verifies every generated sample and rise, loads `y=-2x+3` with samples `(-2,7)`, `(0,3)`, `(2,-1)`, and verifies Reset. Exact framing passes surface x=224-925 and y=95-1678, intro y=95-376, tabs y=388-441, lab y=451-1465, graph x=233-660 and y=550-1080, rail x=670-915, concept cards y=1093-1291, lower checks y=1307-1455, navigation y=1477-1528, and footer y=1543-1668. It reports no horizontal or vertical overflow, an exact 937x1678 document, and zero console messages.
+
+Evidence:
+
+- `0190-reference.png`
+- `0190-desktop.png`
+- `0190-dedicated-target-validation.json`
