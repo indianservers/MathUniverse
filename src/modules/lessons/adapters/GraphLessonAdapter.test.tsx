@@ -4,6 +4,16 @@ import { lessonCatalog } from "../catalog/lessonCatalog";
 import GraphLessonAdapter from "./GraphLessonAdapter";
 
 describe("GraphLessonAdapter", () => {
+  it("routes lesson 150 to its dedicated composition-order engine", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 150)!;
+    const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="graph-mockup-0207"');
+    expect(html).toContain('data-dedicated-lesson="150"');
+    expect(html).toContain("editable-composite-input-inner-shift-outer-scale-and-order-pointer-keyboard-draggable-graph-probe-generated-function-machine-three-curves-live-inside-first-evaluation-and-order-comparison");
+    expect(html).toContain('aria-label="Drag composite input probe"');
+    expect(html).toContain("Evaluate inside first");
+  });
+
   it("routes lesson 149 to its dedicated piecewise rule engine", () => {
     const lesson = lessonCatalog.find((item) => item.id === 149)!;
     const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
@@ -260,7 +270,6 @@ describe("GraphLessonAdapter", () => {
       140: "negative real inputs are allowed",
       141: "distance makes a V-shape",
       142: "equal x-steps multiply outputs",
-      150: "inner output becomes the outer input",
       151: "inputs and outputs reverse",
       152: "f(-x)=f(x)",
     };

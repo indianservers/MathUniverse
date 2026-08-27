@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **132 of 200 lessons completed; 68 pending.**
+Dedicated rebuild target: **133 of 200 lessons completed; 67 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -118,6 +118,7 @@ Dedicated rebuild target: **132 of 200 lessons completed; 68 pending.**
 | 0204   |               147 Ceiling Function | Complete | Dedicated transformed ceiling-function model with real input/shift ranges, snap mode, pointer/keyboard probe drag, generated upward staircase, open-left/closed-right endpoints, clickable evaluation table, negative/integer boundary correctness, floor comparison, jump diagram, and exact 1392x1130 framing |
 | 0205   |                  148 Sign Function | Complete | Dedicated three-region sign classifier with real graph-scale/threshold controls, pointer/keyboard input and threshold drags, generated negative/zero/positive rays, selectable cases/shortcuts, live classifier, piecewise definition, magnitude/direction proofs, and exact 1334x1179 framing |
 | 0206   |             149 Piecewise Functions | Complete | Dedicated three-rule engine with editable switches/vertical shift, pointer/keyboard probe and boundary drags, generated branches/regions/open-closed endpoints, exact boundary ownership, branch visibility, condition-first trace, working tabs/shell actions, and exact 1205x1306 framing |
+| 0207   |             150 Composite Functions | Complete | Dedicated composition-order engine with editable input/inner shift/outer scale, pointer/keyboard graph probe, generated function machine/three curves/live trace, true f o g/g o f calculations, order comparison, working shell actions, and exact 1205x1306 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -1967,3 +1968,17 @@ Evidence:
 - `0206-reference.png`
 - `0206-desktop.png`
 - `0206-dedicated-target-validation.json`
+
+## Lesson 150 / Mockup 0207 - Composite Functions
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-composite-input-inner-shift-outer-scale-and-order-pointer-keyboard-draggable-graph-probe-generated-function-machine-three-curves-live-inside-first-evaluation-and-order-comparison` model. The lesson-owned input `x`, inner shift `h`, outer scale `a`, and composition order generate `g(x)=x+h`, `f(u)=a*u^2`, `f(g(x))=a(x+h)^2`, `g(f(x))=a*x^2+h`, the four-stage function machine, all three graph curves, probe labels, live evaluation, and order-comparison cards from one state. At the target `x=2`, `h=1`, `a=1`, the model calculates `g(2)=3`, `f(g(2))=9`, and `g(f(2))=5`.
+
+The input, inner-shift, and outer-scale ranges are real controls. The graph probe is a genuine pointer- and keyboard-draggable SVG object connected to the same input state. Switching composition order changes the machine, active equation, trace, and final output using independent calculations rather than relabeling one value. Workspace, Share, and Reset all own observable state.
+
+Final 1205x1306 browser validation physically changes all three ranges; drags and keyboard-moves the graph probe; verifies target and transformed `f o g` and `g o f` values; switches orders and restores the target state; opens/closes Workspace; exercises Share; and resets. Exact framing passes page y=65-1306, breadcrumb y=65-112, header y=112-490, machine y=195-470, body y=506-1041, graph y=554-1004, and insights y=1055-1265. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0207-reference.png`
+- `0207-desktop.png`
+- `0207-dedicated-target-validation.json`

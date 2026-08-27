@@ -1,0 +1,202 @@
+{
+  "mockup": "0207",
+  "lessonId": 150,
+  "route": "/lessons/graphs-and-functions/150-composite-functions",
+  "checks": {
+    "initial": {
+      "x": "2",
+      "inner-shift": "1",
+      "outer-scale": "1",
+      "order": "fog",
+      "inner": "3",
+      "result": "9",
+      "fog": "9",
+      "gof": "5",
+      "workspace": "false"
+    },
+    "inputRange": {
+      "x": "-2.5",
+      "inner-shift": "1",
+      "outer-scale": "1",
+      "order": "fog",
+      "inner": "-1.5",
+      "result": "2.25",
+      "fog": "2.25",
+      "gof": "7.25",
+      "workspace": "false"
+    },
+    "shiftRange": {
+      "x": "-2.5",
+      "inner-shift": "2.25",
+      "outer-scale": "1",
+      "order": "fog",
+      "inner": "-0.25",
+      "result": "0.0625",
+      "fog": "0.0625",
+      "gof": "8.5",
+      "workspace": "false"
+    },
+    "scaleRange": {
+      "x": "-2.5",
+      "inner-shift": "2.25",
+      "outer-scale": "2.25",
+      "order": "fog",
+      "inner": "-0.25",
+      "result": "0.140625",
+      "fog": "0.140625",
+      "gof": "16.3125",
+      "workspace": "false"
+    },
+    "probeDrag": {
+      "x": "-0.5",
+      "inner-shift": "1",
+      "outer-scale": "1",
+      "order": "fog",
+      "inner": "0.5",
+      "result": "0.25",
+      "fog": "0.25",
+      "gof": "1.25",
+      "workspace": "false"
+    },
+    "probeKeyboard": {
+      "x": "-0.4",
+      "inner-shift": "1",
+      "outer-scale": "1",
+      "order": "fog",
+      "inner": "0.6",
+      "result": "0.36",
+      "fog": "0.36",
+      "gof": "1.1600000000000001",
+      "workspace": "false"
+    },
+    "gofTarget": {
+      "x": "2",
+      "inner-shift": "1",
+      "outer-scale": "1",
+      "order": "gof",
+      "inner": "4",
+      "result": "5",
+      "fog": "9",
+      "gof": "5",
+      "workspace": "false"
+    },
+    "fogRestored": {
+      "x": "2",
+      "inner-shift": "1",
+      "outer-scale": "1",
+      "order": "fog",
+      "inner": "3",
+      "result": "9",
+      "fog": "9",
+      "gof": "5",
+      "workspace": "false"
+    },
+    "transformedFog": {
+      "x": "2",
+      "inner-shift": "-2.25",
+      "outer-scale": "2.5",
+      "order": "fog",
+      "inner": "-0.25",
+      "result": "0.15625",
+      "fog": "0.15625",
+      "gof": "7.75",
+      "workspace": "false"
+    },
+    "transformedGof": {
+      "x": "2",
+      "inner-shift": "-2.25",
+      "outer-scale": "2.5",
+      "order": "gof",
+      "inner": "10",
+      "result": "7.75",
+      "fog": "0.15625",
+      "gof": "7.75",
+      "workspace": "false"
+    },
+    "workspaceOpen": true,
+    "workspaceClosed": true,
+    "shareNotice": true,
+    "reset": {
+      "x": "2",
+      "inner-shift": "1",
+      "outer-scale": "1",
+      "order": "fog",
+      "inner": "3",
+      "result": "9",
+      "fog": "9",
+      "gof": "5",
+      "workspace": "false"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1205,
+      "height": 1306
+    },
+    "document": {
+      "width": 1205,
+      "height": 1543
+    },
+    "horizontalOverflow": false,
+    "regions": {
+      "page": {
+        "top": 65,
+        "bottom": 1306,
+        "left": 236,
+        "right": 1185,
+        "width": 949,
+        "height": 1241
+      },
+      "breadcrumb": {
+        "top": 65,
+        "bottom": 112,
+        "left": 236,
+        "right": 1185,
+        "width": 949,
+        "height": 47
+      },
+      "header": {
+        "top": 112,
+        "bottom": 490,
+        "left": 236,
+        "right": 1185,
+        "width": 949,
+        "height": 378
+      },
+      "machine": {
+        "top": 195,
+        "bottom": 470,
+        "left": 256,
+        "right": 1165,
+        "width": 909,
+        "height": 275
+      },
+      "body": {
+        "top": 506,
+        "bottom": 1041,
+        "left": 236,
+        "right": 1185,
+        "width": 949,
+        "height": 535
+      },
+      "graph": {
+        "top": 554,
+        "bottom": 1004,
+        "left": 269,
+        "right": 783,
+        "width": 514,
+        "height": 450
+      },
+      "insights": {
+        "top": 1055,
+        "bottom": 1265,
+        "left": 236,
+        "right": 1185,
+        "width": 949,
+        "height": 210
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
