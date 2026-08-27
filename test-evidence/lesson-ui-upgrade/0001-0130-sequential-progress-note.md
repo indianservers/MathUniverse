@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **118 of 200 lessons completed; 82 pending.**
+Dedicated rebuild target: **119 of 200 lessons completed; 81 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -104,6 +104,7 @@ Dedicated rebuild target: **118 of 200 lessons completed; 82 pending.**
 | 0190   |            133 Linear Functions | Complete | Dedicated linked slope-intercept model with real m/b sliders, pointer/keyboard-draggable intercept and slope handles, synchronized hero/full graphs, rise-run triangle, generated table/rate proof, practice, and exact 937x1678 target framing |
 | 0191   |         134 Quadratic Functions | Complete | Dedicated vertex-form model with real a/h/k sliders, pointer/keyboard-draggable vertex and opening handle, linked parabola/symmetry/mirrored points/table/reasoning/practice, and exact 948x1659 target framing |
 | 0192   |             135 Cubic Functions | Complete | Dedicated inflection-form model with real signed bend/center/shift controls, pointer/keyboard-draggable inflection and bend handles, linked S-curve/end behavior/symmetry/table/reasoning/practice, and exact 969x1623 target framing |
+| 0193   | 136 Higher-Degree Polynomials | Complete | Dedicated factored quartic model with real moving-root/shift controls, pointer/keyboard root drag, numerical intercepts/turning points, multiplicity-aware sign chart, samples/practice, and exact 966x1629 target framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -1756,3 +1757,17 @@ Evidence:
 - `0192-reference.png`
 - `0192-desktop.png`
 - `0192-dedicated-target-validation.json`
+
+## Lesson 136 / Mockup 0193 - Higher-Degree Polynomials
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-factored-higher-degree-polynomial-moving-root-and-vertical-shift-pointer-keyboard-draggable-root-generated-curve-numerical-intercepts-turning-points-multiplicity-sign-intervals-samples-end-behavior-practice-model`. The lesson-owned factors, moving root, scale, and vertical shift generate the equation, curve, actual numerical x-intercepts, derivative turning points, grouped multiplicities, sign intervals, sample table, degree/root limits, and end behavior. The target quartic `0.08(x+2)(x-1)(x-3)(x-4)` produces roots `-2,1,3,4`, three turning points, signs `+,-,+,-,+`, samples `f(-2)=0`, `f(0)=-1.92`, `f(2)=0.64`, and both ends rising.
+
+The moving root and vertical shift are real range controls, and the fourth root is a genuine pointer- and keyboard-draggable graph object. Moving it regenerates every factor-dependent result. A nonzero vertical shift correctly recomputes the actual x-intercepts instead of retaining false root labels. Colliding the moving root with `x=3` creates multiplicity two and touch behavior; Open Practice loads the real cubic `(x-1)^2(x+2)` model with the even root at `1`, odd root at `-2`, and opposite end behavior.
+
+Final 966x1629 integrated browser validation changes the moving root from `4` to `5`, shifts the graph to produce actual intercepts `-1.87,0.55,3.61,4.70`, resets, physically drags the root to `4.5`, keyboard-moves through `4.25` to the double root `3`, verifies multiplicity `3:2`, opens and verifies the repeated-root practice, and resets. Exact framing passes surface x=223-946 and y=101-1629, intro y=101-347, tabs y=357-410, lab y=420-1423, graph x=239-704 and y=652-1082, rail x=717-929 and y=496-1355, navigation y=1436-1490, and footer y=1507-1629. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0193-reference.png`
+- `0193-desktop.png`
+- `0193-dedicated-target-validation.json`

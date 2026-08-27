@@ -1,0 +1,770 @@
+.poly136-page {
+  position: relative;
+  top: -49px;
+  width: 100%;
+  height: 1528px;
+  margin-bottom: -49px;
+  color: #14203d;
+  font-size: 10px;
+  letter-spacing: 0;
+}
+.poly136-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.poly136-page h1,
+.poly136-page h2,
+.poly136-page h3,
+.poly136-page p {
+  margin: 0;
+}
+.poly136-page button,
+.poly136-page select,
+.poly136-page input {
+  color: inherit;
+  font: inherit;
+}
+.poly136-page button {
+  cursor: pointer;
+}
+.poly136-page a {
+  color: inherit;
+  text-decoration: none;
+}
+.poly136-breadcrumb {
+  position: absolute;
+  top: -35px;
+  left: 0;
+  display: flex;
+  height: 27px;
+  align-items: center;
+  gap: 8px;
+  color: #58677d;
+}
+.poly136-breadcrumb a:first-child {
+  display: grid;
+  width: 22px;
+  height: 22px;
+  place-items: center;
+  border-radius: 50%;
+  background: #fff;
+}
+.poly136-breadcrumb b {
+  color: #07849d;
+}
+.poly136-intro {
+  display: grid;
+  height: 246px;
+  padding: 16px 18px;
+  border: 1px solid #dce5ec;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 5px 17px rgba(41, 75, 105, 0.07);
+  grid-template-columns: 1fr 210px;
+  gap: 18px;
+}
+.poly136-intro > div > small {
+  display: flex;
+  gap: 8px;
+}
+.poly136-intro > div > small b {
+  padding: 5px 10px;
+  border-radius: 12px;
+  background: #e6f7fa;
+  color: #087f98;
+  font-size: 8px;
+}
+.poly136-intro > div > small b + b {
+  background: #f1f3f7;
+  color: #536176;
+}
+.poly136-intro h1 {
+  margin-top: 8px;
+  font-size: 31px;
+  line-height: 36px;
+  font-weight: 900;
+}
+.poly136-intro > div > p {
+  margin-top: 3px;
+  color: #66758a;
+  font-size: 13px;
+}
+.poly136-intro > div > nav {
+  display: flex;
+  margin-top: 12px;
+  gap: 6px;
+}
+.poly136-intro > div > nav b {
+  padding: 7px 9px;
+  border: 1px solid #dce5ec;
+  border-radius: 14px;
+  font-size: 8px;
+}
+.poly136-intro > div > section {
+  display: flex;
+  margin-top: 11px;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.poly136-intro > div > section label,
+.poly136-intro > div > section button {
+  display: flex;
+  height: 39px;
+  padding: 0 12px;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid #dce5ec;
+  border-radius: 9px;
+  background: #fff;
+  font-weight: 800;
+}
+.poly136-intro > div > section label {
+  width: 195px;
+}
+.poly136-intro select {
+  min-width: 0;
+  flex: 1;
+  border: 0;
+  background: transparent;
+}
+.poly136-intro > div > section svg {
+  width: 14px;
+}
+.poly136-hero-visual {
+  position: relative;
+  height: 198px;
+  padding: 19px 12px 0 39px;
+  overflow: hidden;
+  border: 1px solid #d8e3eb;
+  border-radius: 12px;
+  background: linear-gradient(150deg, #fff 58%, #dff7f8);
+}
+.poly136-hero-visual > svg:first-child {
+  position: absolute;
+  top: 18px;
+  left: 13px;
+  width: 18px;
+  color: #079db6;
+}
+.poly136-hero-visual b {
+  display: block;
+  margin-bottom: 17px;
+  font-size: 11px;
+  line-height: 17px;
+}
+.poly136-hero-visual > svg:last-child {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 78px;
+}
+.poly136-hero-visual path {
+  fill: rgba(8, 163, 184, 0.08);
+  stroke: #24bbc8;
+  stroke-width: 3;
+}
+.poly136-tabs {
+  display: grid;
+  height: 53px;
+  margin-top: 10px;
+  padding: 6px;
+  border: 1px solid #dce5ec;
+  border-radius: 12px;
+  background: #fff;
+  grid-template-columns: 1.35fr repeat(4, 1fr);
+}
+.poly136-tabs button {
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  font-size: 10px;
+  font-weight: 800;
+}
+.poly136-tabs button.active {
+  background: #069bad;
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 147, 173, 0.25);
+}
+.poly136-lab {
+  height: 1003px;
+  margin-top: 10px;
+  padding: 9px 15px;
+  border: 1px solid #dce5ec;
+  border-radius: 12px;
+  background: #fff;
+}
+.poly136-lab > header {
+  display: flex;
+  height: 66px;
+  padding: 0 6px;
+}
+.poly136-lab > header > div {
+  flex: 1;
+}
+.poly136-lab > header small {
+  color: #078ba5;
+  font-size: 9px;
+  font-weight: 900;
+}
+.poly136-lab > header p {
+  margin-top: 13px !important;
+  font-size: 11px;
+}
+.poly136-lab > header nav {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+.poly136-lab > header nav > * {
+  display: flex;
+  height: 34px;
+  padding: 0 11px;
+  align-items: center;
+  border: 1px solid #dce5ec;
+  border-radius: 17px;
+  background: #fff;
+  font-weight: 800;
+}
+.poly136-lab > header nav b {
+  border-color: #efd89b;
+  background: #fffdf4;
+  color: #a66a08;
+}
+.poly136-lab > header nav b.updated {
+  border-color: #b7e1c6;
+  background: #f4fff7;
+  color: #168544;
+}
+.poly136-lab > header nav button {
+  width: 34px;
+  padding: 0;
+  justify-content: center;
+  border-radius: 9px;
+  color: #176acf;
+}
+.poly136-lab > header nav svg {
+  width: 15px;
+}
+.poly136-workspace {
+  display: grid;
+  height: 859px;
+  grid-template-columns: 465px 212px;
+  gap: 13px;
+}
+.poly136-workspace > main {
+  display: grid;
+  height: 859px;
+  grid-template-rows: 150px 430px 102px 159px;
+  gap: 6px;
+}
+.poly136-equation {
+  padding: 6px 8px;
+}
+.poly136-equation > strong {
+  display: block;
+  font-family: Georgia, serif;
+  font-size: 21px;
+  line-height: 30px;
+  white-space: nowrap;
+}
+.poly136-equation > p {
+  margin-top: 17px !important;
+  font-weight: 800;
+}
+.poly136-equation > div {
+  display: flex;
+  margin-top: 9px;
+  gap: 12px;
+}
+.poly136-equation button {
+  display: grid;
+  min-width: 62px;
+  height: 43px;
+  padding: 6px;
+  border: 1px solid #bde8e4;
+  border-radius: 9px;
+  background: #f0fcfa;
+  color: #07859a;
+}
+.poly136-equation button.moving {
+  border-color: #ddd2f4;
+  background: #f6f1ff;
+  color: #49259a;
+}
+.poly136-equation button b {
+  font-size: 13px;
+}
+.poly136-equation button small {
+  font-size: 7px;
+}
+.poly136-graph,
+.poly136-sign,
+.poly136-samples,
+.poly136-workspace > aside > section {
+  border: 1px solid #dce5ec;
+  border-radius: 10px;
+  background: #fff;
+}
+.poly136-graph {
+  display: block;
+  width: 100%;
+  height: 430px;
+  touch-action: none;
+}
+.poly136-graph .axis {
+  stroke: #26354b;
+  stroke-width: 1.2;
+}
+.poly136-graph text {
+  fill: #24334b;
+  font-size: 9px;
+  text-anchor: middle;
+}
+.poly136-graph .curve {
+  fill: none;
+  stroke: #008faf;
+  stroke-width: 2.5;
+}
+.poly136-graph .root circle {
+  fill: #079db6;
+}
+.poly136-graph .root text {
+  font-size: 10px;
+  font-weight: 700;
+}
+.poly136-graph .handle {
+  fill: transparent;
+  stroke: transparent;
+  cursor: ew-resize;
+}
+.poly136-graph .handle:focus-visible {
+  fill: rgba(245, 158, 11, 0.23);
+  stroke: #e38e0d;
+  stroke-width: 3;
+  outline: none;
+}
+.poly136-sign {
+  padding: 10px;
+}
+.poly136-sign h3,
+.poly136-samples h3,
+.poly136-workspace > aside h3 {
+  color: #078ba5;
+  font-size: 9px;
+}
+.poly136-sign .labels,
+.poly136-sign .signs {
+  display: grid;
+  margin-top: 11px;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  text-align: center;
+}
+.poly136-sign .labels span {
+  font-family: Georgia, serif;
+  font-weight: 700;
+}
+.poly136-sign .signs {
+  margin-top: 8px;
+  gap: 5px;
+}
+.poly136-sign .signs b {
+  display: grid;
+  height: 29px;
+  place-items: center;
+  border-radius: 5px;
+  font-size: 14px;
+}
+.poly136-sign .positive {
+  background: #dff8f1;
+  color: #168f67;
+}
+.poly136-sign .negative {
+  background: #ffe5e9;
+  color: #d73d59;
+}
+.poly136-samples {
+  padding: 10px;
+}
+.poly136-samples table {
+  width: 100%;
+  height: 78px;
+  margin-top: 9px;
+  border-collapse: collapse;
+  text-align: center;
+  font-family: Georgia, serif;
+  font-size: 13px;
+}
+.poly136-samples th,
+.poly136-samples td {
+  border: 1px solid #dce5ec;
+}
+.poly136-samples th {
+  width: 90px;
+  background: #f4f8fa;
+  font-style: italic;
+}
+.poly136-samples small {
+  display: block;
+  margin-top: 9px;
+  text-align: center;
+  color: #66758a;
+}
+.poly136-workspace > aside {
+  display: grid;
+  height: 859px;
+  grid-template-rows: 184px 365px 103px 189px;
+  gap: 6px;
+}
+.poly136-controls {
+  padding: 12px;
+}
+.poly136-controls label {
+  position: relative;
+  display: block;
+  height: 77px;
+  padding-top: 12px;
+  font-weight: 800;
+}
+.poly136-controls input {
+  width: calc(100% - 40px);
+  margin-top: 12px;
+  accent-color: #21baca;
+}
+.poly136-controls output {
+  position: absolute;
+  top: 6px;
+  right: 0;
+  display: grid;
+  width: 33px;
+  height: 30px;
+  place-items: center;
+  border: 1px solid #dce5ec;
+  border-radius: 7px;
+  font-weight: 900;
+}
+.poly136-controls small {
+  display: flex;
+  width: calc(100% - 40px);
+  justify-content: space-between;
+  color: #66758a;
+  font-weight: 400;
+}
+.poly136-reason {
+  padding: 12px;
+}
+.poly136-reason > article {
+  display: grid;
+  height: 77px;
+  margin-top: 7px;
+  padding: 9px;
+  grid-template-columns: 29px 1fr;
+  gap: 8px;
+  border: 1px solid #dce5ec;
+  border-radius: 9px;
+}
+.poly136-reason > article > svg,
+.poly136-reason > article > strong,
+.poly136-reason > article > span {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  padding: 6px;
+  place-items: center;
+  border-radius: 50%;
+  background: #e3f9ef;
+  color: #159f72;
+}
+.poly136-reason > article:nth-of-type(2) > strong {
+  background: #e7efff;
+  color: #3974d0;
+  font-size: 15px;
+}
+.poly136-reason > article:nth-of-type(3) > svg {
+  background: #f1eaff;
+  color: #7250cc;
+}
+.poly136-reason > article:nth-of-type(4) > span {
+  background: #e3f8f7;
+  color: #079caa;
+  font-size: 13px;
+}
+.poly136-reason article b {
+  font-size: 10px;
+}
+.poly136-reason article p {
+  margin-top: 4px !important;
+  line-height: 14px;
+}
+.poly136-warning {
+  display: flex;
+  padding: 12px;
+  gap: 8px;
+  border-color: #f0caca !important;
+  background: #fff6f6 !important;
+}
+.poly136-warning > svg {
+  width: 20px;
+  flex: none;
+  color: #e1262e;
+}
+.poly136-warning b {
+  color: #d6222a;
+}
+.poly136-warning p {
+  margin-top: 7px !important;
+  line-height: 15px;
+}
+.poly136-practice {
+  padding: 11px;
+}
+.poly136-practice > p {
+  margin-top: 7px !important;
+  line-height: 14px;
+}
+.poly136-practice button {
+  display: flex;
+  width: 100%;
+  height: 29px;
+  margin-top: 8px;
+  padding: 0 10px;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 7px;
+  border: 0;
+  border-radius: 15px;
+  background: #079db6;
+  color: #fff;
+  font-weight: 800;
+}
+.poly136-practice button svg {
+  width: 14px;
+}
+.poly136-lab > footer {
+  display: flex;
+  height: 49px;
+  margin-top: 8px;
+  padding: 8px 12px;
+  align-items: flex-start;
+  gap: 9px;
+  border: 1px solid #dce5ec;
+  border-radius: 9px;
+  background: #f8fcfd;
+}
+.poly136-lab > footer svg {
+  width: 18px;
+  color: #079db6;
+}
+.poly136-lab > footer b {
+  font-size: 9px;
+}
+.poly136-lab > footer p {
+  margin-top: 3px !important;
+  color: #56677c;
+  line-height: 13px;
+}
+.poly136-adjacent {
+  display: grid;
+  height: 54px;
+  margin-top: 13px;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.poly136-adjacent a {
+  display: flex;
+  padding: 8px 14px;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #dce5ec;
+  border-radius: 10px;
+  background: #fff;
+}
+.poly136-adjacent a:last-child {
+  justify-content: flex-end;
+  text-align: right;
+}
+.poly136-adjacent svg {
+  width: 15px;
+}
+.poly136-adjacent span {
+  display: grid;
+  gap: 3px;
+  font-weight: 800;
+}
+.poly136-adjacent small {
+  font-size: 7px;
+  color: #66758a;
+}
+.poly136-footer {
+  position: relative;
+  height: 122px;
+  margin-top: 17px;
+  padding: 13px;
+  border: 1px solid #dce5ec;
+  border-radius: 10px;
+  background: #fff;
+}
+.poly136-footer > b {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+.poly136-footer > b svg {
+  width: 15px;
+  color: #08a0b9;
+}
+.poly136-footer > span {
+  display: block;
+  width: 430px;
+  margin-top: 5px;
+  color: #66758a;
+  line-height: 14px;
+}
+.poly136-footer > nav {
+  position: absolute;
+  top: 17px;
+  right: 12px;
+  display: flex;
+  gap: 8px;
+}
+.poly136-footer > nav a {
+  display: flex;
+  height: 32px;
+  padding: 0 13px;
+  align-items: center;
+  border: 1px solid #dce5ec;
+  border-radius: 8px;
+  font-weight: 700;
+}
+.poly136-footer hr {
+  margin: 17px 0 8px;
+  border: 0;
+  border-top: 1px solid #e1e7ec;
+}
+.poly136-footer > small {
+  display: inline-block;
+  margin-right: 14px;
+  color: #66758a;
+  font-size: 7px;
+}
+.poly136-page.fullscreen {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  height: 100vh;
+  margin: 0;
+  padding: 15px;
+  overflow: auto;
+  background: #f4fafc;
+}
+.poly136-page.fullscreen .poly136-breadcrumb {
+  display: none;
+}
+body:has(.poly136-page)
+  #main-content
+  .flex.items-center.gap-2:has(> nav[aria-label="Breadcrumb"]) {
+  visibility: hidden;
+}
+body:has(.poly136-page) nav[aria-label="Adjacent lessons"],
+body:has(.poly136-page) footer[aria-label="Site footer"] {
+  display: none;
+}
+@media (min-width: 800px) {
+  body:has(.poly136-page) [data-testid="desktop-sidebar"] {
+    display: block !important;
+    position: sticky !important;
+    top: 0;
+    width: 207px;
+  }
+  body:has(.poly136-page) #main-content {
+    padding: 59px 20px 0 16px;
+    overflow: hidden;
+    background: linear-gradient(120deg, #f2fbfc, #faf7ff);
+  }
+  body:has(.poly136-page) header.sticky {
+    height: 57px;
+    padding: 6px 12px;
+  }
+  body:has(.poly136-page) header.sticky button[aria-label="Open navigation"],
+  body:has(.poly136-page) nav[class*="bottom-0"][class*="fixed"] {
+    display: none !important;
+  }
+  body:has(.poly136-page) [data-testid="desktop-sidebar"] > div {
+    padding: 10px;
+  }
+  body:has(.poly136-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type {
+    height: 62px;
+    min-height: 62px;
+    margin-bottom: 14px;
+    padding: 7px;
+  }
+  body:has(.poly136-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type
+    p:first-child {
+    white-space: nowrap;
+    font-size: 13px;
+  }
+  body:has(.poly136-page) [data-testid="desktop-sidebar"] > div > label {
+    height: 37px;
+    min-height: 37px;
+    margin-bottom: 10px;
+  }
+  body:has(.poly136-page) [data-testid="desktop-sidebar"] nav > div > button {
+    padding: 6px 8px;
+    font-size: 9px;
+  }
+  body:has(.poly136-page) [data-testid="desktop-sidebar"] nav > div > div a {
+    padding: 5px 8px;
+    font-size: 8px;
+  }
+  body:has(.poly136-page)
+    [data-testid="desktop-sidebar"]
+    nav
+    > div:nth-child(n + 7),
+  body:has(.poly136-page) [data-testid="desktop-sidebar-progress"],
+  body:has(.poly136-page) [data-testid="desktop-sidebar-compound-links"],
+  body:has(.poly136-page) [data-testid="desktop-sidebar-premium"],
+  body:has(.poly136-page) [data-testid="desktop-sidebar-footer"] {
+    display: none !important;
+  }
+}
+@media (max-width: 799px) {
+  .poly136-page {
+    position: static;
+    height: auto;
+    margin: 0;
+  }
+  .poly136-breadcrumb {
+    position: static;
+    margin-bottom: 8px;
+  }
+  .poly136-intro {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .poly136-hero-visual {
+    display: none;
+  }
+  .poly136-tabs,
+  .poly136-lab,
+  .poly136-workspace,
+  .poly136-workspace > main,
+  .poly136-workspace > aside,
+  .poly136-footer {
+    height: auto;
+  }
+  .poly136-tabs,
+  .poly136-workspace {
+    grid-template-columns: 1fr;
+  }
+  .poly136-adjacent {
+    height: auto;
+  }
+}

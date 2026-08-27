@@ -4,6 +4,16 @@ import { lessonCatalog } from "../catalog/lessonCatalog";
 import GraphLessonAdapter from "./GraphLessonAdapter";
 
 describe("GraphLessonAdapter", () => {
+  it("routes lesson 136 to its dedicated higher-degree polynomial model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 136)!;
+    const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="graph-mockup-0193"');
+    expect(html).toContain('data-dedicated-lesson="136"');
+    expect(html).toContain("editable-factored-higher-degree-polynomial-moving-root-and-vertical-shift-pointer-keyboard-draggable-root-generated-curve-numerical-intercepts-turning-points-multiplicity-sign-intervals-samples-end-behavior-practice-model");
+    expect(html).toContain('aria-label="Drag moving polynomial root"');
+    expect(html).toContain("ROOT AND TURNING POINT EXPLORER");
+  });
+
   it("routes lesson 135 to its dedicated cubic inflection model", () => {
     const lesson = lessonCatalog.find((item) => item.id === 135)!;
     const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
@@ -116,7 +126,6 @@ describe("GraphLessonAdapter", () => {
 
   it("renders function lessons 129 through 152 with lesson-specific graph guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      136: "degree limits roots",
       137: "x=0 is excluded",
       138: "denominator zeros are excluded",
       139: "real inputs need x &gt;= 0",
