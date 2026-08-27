@@ -4,6 +4,16 @@ import { lessonCatalog } from "../catalog/lessonCatalog";
 import GraphLessonAdapter from "./GraphLessonAdapter";
 
 describe("GraphLessonAdapter", () => {
+  it("routes lesson 134 to its dedicated quadratic vertex model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 134)!;
+    const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="graph-mockup-0191"');
+    expect(html).toContain('data-dedicated-lesson="134"');
+    expect(html).toContain("editable-quadratic-vertex-form-linked-parameters-pointer-keyboard-draggable-vertex-and-opening-point-generated-parabola-symmetry-axis-mirror-points-value-table-reasoning-practice-model");
+    expect(html).toContain('aria-label="Drag quadratic vertex"');
+    expect(html).toContain("Vertex and Symmetry Explorer");
+  });
+
   it("routes lesson 133 to its dedicated linked linear-function model", () => {
     const lesson = lessonCatalog.find((item) => item.id === 133)!;
     const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
@@ -96,7 +106,6 @@ describe("GraphLessonAdapter", () => {
 
   it("renders function lessons 129 through 152 with lesson-specific graph guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      134: "turns at a vertex",
       135: "origin symmetry",
       136: "degree limits roots",
       137: "x=0 is excluded",

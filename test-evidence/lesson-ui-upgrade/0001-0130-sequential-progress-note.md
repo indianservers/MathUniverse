@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **116 of 200 lessons completed; 84 pending.**
+Dedicated rebuild target: **117 of 200 lessons completed; 83 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -102,6 +102,7 @@ Dedicated rebuild target: **116 of 200 lessons completed; 84 pending.**
 | 0188   |           131 Function Notation | Complete | Dedicated linked quadratic-notation decoder with coefficient/shift sliders, pointer/keyboard-draggable chosen input, synchronized substitution/output/graph/table, calculated practice, and exact 1024x1536 target framing |
 | 0189   |         132 Vertical-Line Test | Complete | Dedicated circle/parabola relation scanner with pointer/keyboard-draggable vertical line, generated intersections and hit counts, tangent/zero-hit states, global function classification, real comparison controls, and exact 984x1598 target framing |
 | 0190   |            133 Linear Functions | Complete | Dedicated linked slope-intercept model with real m/b sliders, pointer/keyboard-draggable intercept and slope handles, synchronized hero/full graphs, rise-run triangle, generated table/rate proof, practice, and exact 937x1678 target framing |
+| 0191   |         134 Quadratic Functions | Complete | Dedicated vertex-form model with real a/h/k sliders, pointer/keyboard-draggable vertex and opening handle, linked parabola/symmetry/mirrored points/table/reasoning/practice, and exact 948x1659 target framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -1726,3 +1727,17 @@ Evidence:
 - `0190-reference.png`
 - `0190-desktop.png`
 - `0190-dedicated-target-validation.json`
+
+## Lesson 134 / Mockup 0191 - Quadratic Functions
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-quadratic-vertex-form-linked-parameters-pointer-keyboard-draggable-vertex-and-opening-point-generated-parabola-symmetry-axis-mirror-points-value-table-reasoning-practice-model`. The lesson-owned `a`, `h`, and `k` parameters generate the vertex-form equation, parabola, vertex, symmetry axis, mirrored points, four table rows, opening direction, reasoning checkpoints, warning, and practice result. The target `f(x)=0.75(x-1)^2-2` produces vertex `(1,-2)`, axis `x=1`, mirrored values `(0,-1.25)` and `(2,-1.25)`, and `f(-2)=4.75`.
+
+All three parameters are real range controls. The vertex is a genuine two-axis pointer- and keyboard-draggable object, while a second pointer/keyboard handle changes the opening scale directly on the graph. Every move recalculates the equation, curve, symmetry axis, points, table, direction, and reasoning from one model. The Examples tab loads `2(x+1)^2+3`, and language, Share, Workspace, Reset, fullscreen, tabs, and interaction status all update visible state.
+
+Final 948x1659 integrated browser validation physically drags each parameter slider, resets, drags the vertex from `(1,-2)` to `(2,-1)`, keyboard-moves it back to `(1,-2)`, drags opening scale from `0.75` to `1.75`, keyboard-reduces it to `1.5`, verifies every regenerated table value, loads the example with vertex `(-1,3)`, and verifies Reset. Exact framing passes surface x=227-932 and y=112-1659, intro y=112-348, tabs y=359-414, lab y=424-1443, graph x=237-681 and y=489-1017, rail x=688-922, reasoning y=1027-1386, tip y=1393-1432, navigation y=1453-1506, and footer y=1520-1649. It reports no horizontal or vertical overflow, an exact 948x1659 document, and zero console messages.
+
+Evidence:
+
+- `0191-reference.png`
+- `0191-desktop.png`
+- `0191-dedicated-target-validation.json`
