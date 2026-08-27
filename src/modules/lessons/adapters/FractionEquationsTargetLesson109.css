@@ -1,0 +1,304 @@
+.fraction109-page {
+  position: relative;
+  top: -33px;
+  width: 756px;
+  height: 1463px;
+  margin-bottom: -33px;
+  color: #17213e;
+  font-size: 9px;
+  letter-spacing: 0;
+}
+.fraction109-page * { box-sizing: border-box; letter-spacing: 0; }
+.fraction109-page h1,
+.fraction109-page h2,
+.fraction109-page h3,
+.fraction109-page p { margin: 0; }
+.fraction109-page button,
+.fraction109-page input,
+.fraction109-page select { color: inherit; font: inherit; }
+.fraction109-page button:focus-visible,
+.fraction109-page input:focus-visible,
+.fraction109-page select:focus-visible,
+.fraction109-page a:focus-visible { outline: 2px solid #07a4bf; outline-offset: 2px; }
+.fraction109-page button:disabled { cursor: not-allowed; opacity: .48; }
+.fraction109-page a { color: inherit; text-decoration: none; }
+.fraction109-breadcrumb {
+  position: absolute;
+  top: -46px;
+  left: 0;
+  display: flex;
+  height: 32px;
+  align-items: center;
+  gap: 8px;
+  color: #536177;
+}
+.fraction109-breadcrumb a:first-child:before {
+  display: inline-grid;
+  width: 21px;
+  height: 21px;
+  margin-right: 7px;
+  place-items: center;
+  border-radius: 50%;
+  background: #fff;
+  content: "←";
+}
+.fraction109-breadcrumb b { color: #00758f; }
+.fraction109-intro {
+  display: grid;
+  height: 126px;
+  padding: 13px 16px;
+  border: 1px solid #dfe8ef;
+  border-radius: 15px;
+  background: #fff;
+  grid-template-columns: 1fr 210px;
+  gap: 17px;
+  box-shadow: 0 7px 20px rgba(55, 91, 122, .08);
+}
+.fraction109-intro h1 { font-size: 25px; line-height: 29px; font-weight: 900; }
+.fraction109-intro section > p { margin-top: 3px; color: #44536c; font-size: 10px; }
+.fraction109-intro section nav { display: flex; margin-top: 15px; gap: 6px; }
+.fraction109-intro section nav b {
+  display: flex;
+  height: 23px;
+  padding: 0 8px;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid #dfe7ed;
+  border-radius: 12px;
+  white-space: nowrap;
+  font-size: 7px;
+}
+.fraction109-intro section nav svg { width: 10px; }
+.fraction109-intro aside {
+  position: relative;
+  padding: 9px 12px;
+  border: 1px solid #dedaf5;
+  border-radius: 9px;
+  background: #fbf9ff;
+}
+.fraction109-intro aside > svg { position: absolute; top: 12px; right: 10px; width: 20px; color: #f1a800; }
+.fraction109-intro aside small { color: #6942ce; font-weight: 900; }
+.fraction109-intro aside strong { display: block; margin-top: 8px; color: #5835c0; font-size: 10px; }
+.fraction109-intro aside p { width: 154px; margin-top: 8px; color: #4c5870; font-size: 8px; line-height: 12px; }
+.fraction109-tabs {
+  display: grid;
+  height: 38px;
+  margin-top: 10px;
+  padding: 3px;
+  border: 1px solid #e0e8ee;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, .92);
+  grid-template-columns: repeat(6, 1fr);
+}
+.fraction109-tabs button { border: 0; border-radius: 7px; background: transparent; font-weight: 800; }
+.fraction109-tabs button.active { background: #059cb5; color: #fff; box-shadow: 0 4px 10px rgba(0, 150, 176, .28); }
+.fraction109-lab {
+  height: 789px;
+  margin-top: 10px;
+  padding: 10px 12px;
+  border: 1px solid #dce7ed;
+  border-radius: 13px;
+  background: rgba(255, 255, 255, .96);
+  box-shadow: 0 6px 17px rgba(42, 73, 102, .06);
+}
+.fraction109-lab > header { display: flex; height: 50px; align-items: flex-start; justify-content: space-between; }
+.fraction109-lab > header small,
+.fraction109-practice header small,
+.fraction109-process > small { color: #007e9b; font-size: 7px; font-weight: 900; }
+.fraction109-lab > header h2 { display: flex; margin-top: 5px; align-items: center; gap: 5px; font-size: 16px; }
+.fraction109-lab > header label { display: flex; align-items: center; gap: 8px; color: #56647a; }
+.fraction109-lab > header select { width: 57px; height: 33px; padding: 0 9px; border: 1px solid #dce5ec; border-radius: 8px; background: #fff; font-weight: 900; }
+.fraction109-number { display: inline-grid; min-width: 18px; vertical-align: middle; grid-template-rows: 1fr 1fr; text-align: center; font-family: Georgia, serif; line-height: 13px; }
+.fraction109-number b { font-size: 15px; font-weight: 500; }
+.fraction109-number i { border-top: 1px solid currentColor; font-size: 13px; font-style: normal; }
+.fraction109-stage {
+  border: 1px solid #e0e7ed;
+  border-radius: 8px;
+  background: #fff;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+.fraction109-stage.current { border-color: #a8dcec; box-shadow: 0 0 0 1px rgba(0, 155, 181, .08); }
+.fraction109-stage > h3 { display: flex; align-items: center; gap: 8px; font-size: 9px; }
+.fraction109-stage > h3 > b {
+  display: inline-grid;
+  width: 18px;
+  height: 18px;
+  place-items: center;
+  border-radius: 50%;
+  background: #3d91ef;
+  color: #fff;
+}
+.fraction109-stage.original { position: relative; height: 280px; padding: 10px 12px; }
+.fraction109-original-row { display: grid; height: 105px; margin-top: 10px; align-items: center; grid-template-columns: 152px 38px 138px 48px 182px; justify-content: center; text-align: center; }
+.fraction109-original-row > strong { font-family: Georgia, serif; font-size: 27px; }
+.fraction109-original-row > article {
+  min-height: 83px;
+  padding: 6px;
+  border: 1px solid #c9d9ed;
+  border-radius: 7px;
+  background: #f5f9ff;
+  box-shadow: 0 4px 8px rgba(47, 76, 105, .08);
+}
+.fraction109-original-row > article.multiplied { border-color: #04a4bf; box-shadow: 0 0 0 2px rgba(4, 164, 191, .14); }
+.fraction109-original-row > article > strong { display: block; height: 33px; padding-top: 6px; color: #1266bb; font-family: Georgia, serif; font-size: 18px; }
+.fraction109-original-row > article > div { display: flex; height: 38px; }
+.fraction109-original-row > article > div > span { display: grid; flex: 1; place-items: center; border: 1px solid #bed4ef; background: #fff; }
+.fraction109-original-row > article.green { border-color: #c5dfca; background: #f4fbf4; }
+.fraction109-original-row > article.green > strong { color: #208f36; }
+.fraction109-original-row > article.purple { border-color: #d8c9f4; background: #faf7ff; }
+.fraction109-original-row > article.purple > strong { color: #7538d1; }
+.fraction109-original-row > article.green > div,
+.fraction109-original-row > article.purple > div { align-items: center; justify-content: center; gap: 5px; }
+.fraction109-original-row > article.green i,
+.fraction109-original-row > article.purple i { width: 26px; height: 25px; border: 1px solid #188f37; border-radius: 3px; background: #75d073; }
+.fraction109-original-row > article.purple i { border-color: #7444d1; background: #aa78eb; }
+.fraction109-multiply-path { position: relative; display: grid; height: 82px; align-items: start; grid-template-columns: 190px 185px 185px; justify-content: center; text-align: center; }
+.fraction109-multiply-path:before { position: absolute; top: 34px; left: 99px; width: 463px; border-top: 2px dashed #8c56e9; content: ""; }
+.fraction109-multiply-path span { position: relative; font-family: Georgia, serif; font-size: 12px; }
+.fraction109-multiply-path span:after { position: absolute; top: 18px; left: 50%; height: 17px; border-left: 2px solid #8c56e9; content: ""; }
+.fraction109-multiply-path button {
+  position: absolute;
+  top: 24px;
+  left: calc(50% - 28px);
+  z-index: 2;
+  width: 56px;
+  height: 56px;
+  border: 3px solid #834ce0;
+  border-radius: 50%;
+  background: #fff;
+  color: #6530c4;
+  font-size: 22px;
+  font-weight: 900;
+  cursor: grab;
+}
+.fraction109-stage.original > p { text-align: center; color: #52617a; }
+.fraction109-stage.original > em { position: absolute; right: 10px; bottom: 8px; color: #b94c35; font-style: normal; }
+.fraction109-stage.cleared { height: 114px; margin-top: 5px; padding: 9px 12px; }
+.fraction109-stage.cleared > div { display: grid; height: 47px; margin-top: 6px; align-items: center; grid-template-columns: 1fr 45px 1fr 45px 1fr; gap: 6px; }
+.fraction109-stage.cleared > div strong { display: grid; height: 36px; place-items: center; border: 1px solid #b9d3ef; border-radius: 5px; background: #f0f7ff; color: #1266b7; font-family: Georgia, serif; font-size: 18px; }
+.fraction109-stage.cleared > div strong:nth-of-type(2) { border-color: #bfdfc4; background: #f4fbf4; color: #218b34; }
+.fraction109-stage.cleared > div strong:nth-of-type(3) { border-color: #d5c5f1; background: #faf7ff; color: #7137cf; }
+.fraction109-stage.cleared > div i { text-align: center; font-family: Georgia, serif; font-size: 24px; font-style: normal; }
+.fraction109-stage.cleared > p { text-align: center; font-family: Georgia, serif; font-size: 17px; }
+.fraction109-stage.solve { height: 141px; margin-top: 5px; padding: 9px 12px; }
+.fraction109-stage.solve > div { display: grid; height: 95px; margin: 7px 20px 0; grid-template-columns: 1fr 1fr; gap: 16px; }
+.fraction109-stage.solve article { padding: 10px; border: 1px solid #e0e7ed; border-radius: 7px; }
+.fraction109-stage.solve article p { margin-top: 12px; text-align: center; color: #2268bd; font-family: Georgia, serif; font-size: 14px; }
+.fraction109-stage.solve article strong { display: block; margin-top: 8px; text-align: center; font-family: Georgia, serif; font-size: 15px; }
+.fraction109-stage.solve article:last-child strong { margin-top: 25px; color: #168339; font-size: 23px; }
+.fraction109-stage.verify { height: 126px; margin-top: 5px; padding: 9px 12px; }
+.fraction109-stage.verify > div { display: grid; height: 88px; margin-top: 6px; grid-template-columns: 1fr 288px; gap: 14px; }
+.fraction109-stage.verify article { padding: 8px 16px; }
+.fraction109-stage.verify article h2 { display: flex; margin-top: 15px; align-items: center; gap: 5px; font-family: Georgia, serif; font-size: 15px; font-weight: 500; }
+.fraction109-stage.verify article h2 svg { width: 14px; color: #24a546; }
+.fraction109-stage.verify aside { position: relative; padding: 9px 13px; border: 1px solid #a6d6ad; border-radius: 7px; background: #f2fbf2; }
+.fraction109-stage.verify aside svg { position: absolute; top: 12px; right: 10px; width: 27px; color: #eea800; }
+.fraction109-stage.verify aside small { color: #16833b; font-weight: 900; }
+.fraction109-stage.verify aside strong { display: block; margin-top: 8px; color: #16833b; font-family: Georgia, serif; font-size: 20px; }
+.fraction109-stage.verify aside p { margin-top: 6px; }
+.fraction109-lab > footer { display: flex; height: 42px; align-items: flex-end; justify-content: space-between; }
+.fraction109-lab > footer div { display: flex; gap: 8px; }
+.fraction109-lab > footer button { display: flex; height: 31px; min-width: 70px; padding: 0 11px; align-items: center; justify-content: center; gap: 6px; border: 1px solid #dce6ed; border-radius: 7px; background: #fff; font-weight: 800; }
+.fraction109-lab > footer > div:last-child button:last-child:not(:disabled) { border-color: #0495af; background: #0495af; color: #fff; }
+.fraction109-lab > footer svg { width: 11px; }
+.fraction109-practice {
+  position: relative;
+  height: 245px;
+  margin-top: 10px;
+  padding: 10px 12px;
+  border: 1px solid #dfe8ee;
+  border-radius: 13px;
+  background: rgba(255, 255, 255, .96);
+}
+.fraction109-practice > header { display: flex; height: 43px; justify-content: space-between; }
+.fraction109-practice > header h2 { display: flex; margin-top: 5px; align-items: center; gap: 6px; font-size: 15px; }
+.fraction109-practice > header > label { display: flex; align-items: center; gap: 7px; color: #647188; }
+.fraction109-practice > header input[type="checkbox"] { position: absolute; opacity: 0; }
+.fraction109-practice > header label span { position: relative; width: 31px; height: 18px; border-radius: 10px; background: #d3dce5; }
+.fraction109-practice > header label span:before { position: absolute; top: 3px; left: 3px; width: 12px; height: 12px; border-radius: 50%; background: #fff; content: ""; transition: left 160ms ease; }
+.fraction109-practice > header input:checked + span { background: #069bb5; }
+.fraction109-practice > header input:checked + span:before { left: 16px; }
+.fraction109-practice-grid { display: grid; height: 130px; grid-template-columns: 266px 218px 1fr; grid-template-rows: 94px 36px; gap: 8px 10px; }
+.fraction109-practice-grid > article,
+.fraction109-practice-grid > aside { padding: 10px 12px; border: 1px solid #dfe7ed; border-radius: 7px; background: #fff; }
+.fraction109-practice-grid h3 { font-size: 9px; }
+.fraction109-practice-grid p { margin-top: 6px; color: #59677b; font-size: 8px; }
+.fraction109-practice-grid > article:first-child div { display: flex; margin-top: 11px; gap: 8px; }
+.fraction109-practice-grid > article:first-child button { width: 37px; height: 31px; border: 1px solid #dce5ec; border-radius: 6px; background: #fff; font-weight: 800; }
+.fraction109-practice-grid > article:first-child button:last-child { width: 54px; }
+.fraction109-practice-grid > article:first-child button.active { border-color: #058fa9; background: #058fa9; color: #fff; }
+.fraction109-practice-grid > article:nth-child(2) label { display: flex; margin-top: 12px; align-items: center; gap: 7px; font-family: Georgia, serif; font-size: 14px; }
+.fraction109-practice-grid > article:nth-child(2) input { width: 150px; height: 32px; padding: 0 10px; border: 1px solid #dce5ec; border-radius: 6px; }
+.fraction109-practice-grid > aside { grid-column: 3; }
+.fraction109-practice-grid > aside:nth-of-type(1) { grid-row: 1; }
+.fraction109-practice-grid > aside:nth-of-type(2) { display: flex; grid-row: 2; align-items: center; justify-content: space-between; }
+.fraction109-practice-grid > aside button { height: 29px; margin-top: 7px; padding: 0 14px; border: 1px solid #dce5ec; border-radius: 6px; background: #058fa9; color: #fff; font-weight: 800; }
+.fraction109-practice-grid > aside:nth-of-type(2) button { display: flex; margin: 0; align-items: center; gap: 5px; background: #fff; color: #263654; }
+.fraction109-practice-grid > aside:nth-of-type(2) button svg { width: 11px; }
+.fraction109-practice-grid > aside strong { display: block; margin-top: 5px; }
+.fraction109-practice-grid > aside .correct { color: #16863e; }
+.fraction109-practice-grid > aside .wrong { color: #c43d4a; }
+.fraction109-practice-steps { position: absolute; bottom: 42px; left: 245px; color: #6b38c7; font-weight: 800; }
+.fraction109-practice > footer { position: absolute; right: 245px; bottom: 10px; left: 12px; display: flex; height: 31px; padding: 0 11px; align-items: center; gap: 7px; border: 1px solid #e1d3f6; border-radius: 6px; background: #f8f2ff; color: #6735c1; }
+.fraction109-practice > footer svg { width: 12px; }
+.fraction109-practice > footer button { margin-left: auto; border: 0; background: transparent; color: #6735c1; font-weight: 900; }
+.fraction109-process { height: 83px; margin-top: 10px; padding: 9px 12px; border: 1px solid #dfe7ed; border-radius: 12px; background: #fff; }
+.fraction109-process > div { display: flex; height: 48px; align-items: center; justify-content: space-around; }
+.fraction109-process > div > svg { width: 15px; color: #4789c8; }
+.fraction109-process article { display: flex; width: 135px; align-items: center; gap: 10px; }
+.fraction109-process article > svg { width: 23px; color: #2582d8; }
+.fraction109-process article:last-child > svg { color: #79bb3d; }
+.fraction109-process article span { display: flex; flex-direction: column; }
+.fraction109-process article small { margin-top: 4px; color: #59687d; }
+.fraction109-navigation { display: flex; height: 43px; margin-top: 9px; justify-content: space-between; }
+.fraction109-navigation a { display: flex; width: 351px; padding: 0 13px; align-items: center; gap: 10px; border: 1px solid #dfe7ed; border-radius: 10px; background: #fff; }
+.fraction109-navigation a:last-child { justify-content: flex-end; text-align: right; }
+.fraction109-navigation svg { width: 13px; }
+.fraction109-navigation span { display: flex; flex-direction: column; font-size: 6px; }
+.fraction109-navigation b { margin-top: 3px; font-size: 8px; }
+.fraction109-footer { position: relative; height: 80px; margin-top: 10px; padding: 9px 12px; border: 1px solid #dfe7ed; border-radius: 10px; background: #fff; }
+.fraction109-footer > div { display: flex; align-items: center; gap: 7px; }
+.fraction109-footer > div svg { width: 13px; color: #09a0b8; }
+.fraction109-footer > div span { display: flex; flex-direction: column; }
+.fraction109-footer > div small { margin-top: 3px; color: #667489; }
+.fraction109-footer nav { position: absolute; top: 12px; right: 12px; display: flex; gap: 8px; }
+.fraction109-footer nav a { padding: 6px 10px; border: 1px solid #dfe7ed; border-radius: 7px; }
+.fraction109-footer p { margin-top: 8px; padding-top: 6px; border-top: 1px solid #e6ecf0; color: #667489; font-size: 6px; }
+.fraction109-footer > small { color: #667489; font-size: 6px; }
+body:has(.fraction109-page) #main-content .flex.items-center.gap-2:has(> nav[aria-label="Breadcrumb"]) { visibility: hidden; }
+body:has(.fraction109-page) nav[aria-label="Adjacent lessons"],
+body:has(.fraction109-page) footer[aria-label="Site footer"] { display: none; }
+@media (min-width: 800px) {
+  body:has(.fraction109-page) [data-testid="desktop-sidebar"] { display: block !important; position: sticky !important; top: 0; width: 210px; }
+  body:has(.fraction109-page) #main-content { padding: 55px 14px 0 15px; overflow: hidden; background: linear-gradient(120deg, #f1fbfc, #faf7ff); }
+  body:has(.fraction109-page) header.sticky { height: 55px; padding: 6px 11px; }
+  body:has(.fraction109-page) header.sticky button[aria-label="Open navigation"],
+  body:has(.fraction109-page) nav[class*="bottom-0"][class*="fixed"] { display: none !important; }
+  body:has(.fraction109-page) [data-testid="desktop-sidebar"] > div { padding: 11px; }
+  body:has(.fraction109-page) [data-testid="desktop-sidebar"] > div > div:first-of-type { height: 63px; min-height: 63px; margin-bottom: 14px; padding: 7px; }
+  body:has(.fraction109-page) [data-testid="desktop-sidebar"] > div > div:first-of-type p:first-child { white-space: nowrap; font-size: 13px; }
+  body:has(.fraction109-page) [data-testid="desktop-sidebar"] > div > label { height: 35px; min-height: 35px; margin-bottom: 10px; }
+  body:has(.fraction109-page) [data-testid="desktop-sidebar"] nav > div > button { padding: 6px 8px; font-size: 9px; }
+  body:has(.fraction109-page) [data-testid="desktop-sidebar"] nav > div > div a { padding: 5px 8px; font-size: 8px; }
+  body:has(.fraction109-page) [data-testid="desktop-sidebar"] nav > div:nth-child(2),
+  body:has(.fraction109-page) [data-testid="desktop-sidebar"] nav > div:nth-child(n + 5) { display: none; }
+  body:has(.fraction109-page) [data-testid="desktop-sidebar-progress"],
+  body:has(.fraction109-page) [data-testid="desktop-sidebar-compound-links"],
+  body:has(.fraction109-page) [data-testid="desktop-sidebar-premium"],
+  body:has(.fraction109-page) [data-testid="desktop-sidebar-footer"] { display: none !important; }
+}
+@media (max-width: 799px) {
+  .fraction109-page { position: static; width: 100%; height: auto; margin: 0; }
+  .fraction109-breadcrumb { position: static; }
+  .fraction109-intro { height: auto; grid-template-columns: 1fr; }
+  .fraction109-tabs { overflow-x: auto; grid-template-columns: repeat(6, 100px); }
+  .fraction109-lab,
+  .fraction109-practice,
+  .fraction109-process,
+  .fraction109-footer { height: auto; }
+  .fraction109-practice-grid { height: auto; grid-template-columns: 1fr; grid-template-rows: auto; }
+  .fraction109-practice-grid > aside { grid-column: auto; grid-row: auto !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fraction109-page * { scroll-behavior: auto !important; transition: none !important; }
+}

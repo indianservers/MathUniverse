@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **91 of 200 lessons completed; 109 pending.**
+Dedicated rebuild target: **92 of 200 lessons completed; 108 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1356,3 +1356,17 @@ Evidence:
 - `0165-reference.png`
 - `0165-desktop.png`
 - `0165-dedicated-target-validation.json`
+
+## Lesson 109 / Mockup 0166 - Equations with Fractions
+
+Reworked individually against the mathematics target mockup with a dedicated `selectable-fraction-equation-lcd-three-term-native-drag-clearing-simplification-original-substitution-check-lcd-and-answer-graded-practice-model`. Four fraction-equation families calculate their LCD, cleared coefficient, cleared constant, cleared right side, exact solution, and original-equation substitution from lesson-owned numerator coefficients, denominators, constants, and right sides. The central fraction tiles, unit blocks, clearing path, simpler equation, and verification result all regenerate when the example changes.
+
+The LCD multiplier is a native draggable object and the fraction term, constant term, and right side are three independent real drop targets. Applying the LCD by click also performs the same complete mathematical operation. Six lesson modes, four stage controls, Previous/Next Step, Reset, New Example, practice LCD choices, editable solution grading, Show steps, Show Hint, and Try next all update visible state. Practice grades the LCD and answer independently and recalculates its choices for the next denominator. The algebra/CAS adapter dispatches Lesson 109 only to this dedicated component, and the shared algebra fallback now begins at Lesson 110.
+
+Final 995x1581 integrated browser validation solves `x/3 + 2 = 5`, `2x/5 - 1 = 3`, `y/4 - 1 = 2`, and `3z/2 + 4 = 10`; physically applies the LCD to all three terms; exercises clearing, solving, verification, six modes, and bidirectional stages; rejects a correct answer paired with the wrong LCD; accepts the complete first practice; solves the second practice; toggles steps and hints; and verifies Reset and reload. The visual loop exactly matches surface x=225-981 and y=111-1574, intro y=111-237, tabs y=247-285, lab y=295-1084, original tiles y=356-636, clearing y=641-755, solving y=760-901, verification y=906-1032, practice y=1094-1339, process y=1349-1432, navigation y=1441-1484, and footer y=1494-1574. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0166-reference.png`
+- `0166-desktop.png`
+- `0166-dedicated-target-validation.json`

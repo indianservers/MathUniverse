@@ -208,8 +208,20 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain("EXPLORE WITH THE BALANCE MODEL");
   });
 
-  it("delegates phase 4 algebra lessons 109 through 128 to lesson-specific structure workspaces", () => {
-    for (let id = 109; id <= 128; id += 1) {
+  it("routes lesson 109 to its dedicated fraction-equation object model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 109)!;
+    const html = renderToStaticMarkup(
+      <AlgebraCasLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+    expect(html).toContain('data-testid="algebra-mockup-0166"');
+    expect(html).toContain('data-dedicated-lesson="109"');
+    expect(html).toContain("selectable-fraction-equation-lcd-three-term-native-drag-clearing-simplification-original-substitution-check-lcd-and-answer-graded-practice-model");
+    expect(html).toContain('aria-label="Drag LCD multiplier 3"');
+    expect(html).toContain("INTERACT · LCD BALANCE MODEL");
+  });
+
+  it("delegates phase 4 algebra lessons 110 through 128 to lesson-specific structure workspaces", () => {
+    for (let id = 110; id <= 128; id += 1) {
       const lesson = lessonCatalog.find((item) => item.id === id)!;
       const html = renderToStaticMarkup(
         <AlgebraCasLessonAdapter
