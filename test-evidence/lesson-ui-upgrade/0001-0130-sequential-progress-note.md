@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **93 of 200 lessons completed; 107 pending.**
+Dedicated rebuild target: **94 of 200 lessons completed; 106 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1384,3 +1384,17 @@ Evidence:
 - `0167-reference.png`
 - `0167-desktop.png`
 - `0167-dedicated-target-validation.json`
+
+## Lesson 111 / Mockup 0168 - Linear Equations
+
+Reworked individually against the mathematics target mockup with a dedicated `selectable-first-degree-equation-inverse-operation-native-drag-balance-table-dynamic-line-target-intersection-pointer-probe-substitution-check-graded-practice-model`. Four coefficient models (`4x + 1 = 13`, `3x - 2 = 10`, `2x + 5 = 17`, and `-2x + 7 = 1`) derive the inverse operation, intermediate equation, exact solution, substitution check, line `y = ax + b`, target `y = c`, clipped graph segments, and intersection from lesson-owned coefficients.
+
+Subtract/add constant and divide by coefficient are native draggable actions with real ordered drop targets. The SVG graph is calculated rather than decorative: its line, target, intersection guides, and pointer/keyboard-adjustable probe all update from the selected equation. Algebra and graph visibility toggles, Check solution, six lesson modes, language, Share, Workspace, Reset, editable practice grading, and generated second practice all update visible state. The algebra/CAS adapter dispatches Lesson 111 only to this dedicated component, and the shared algebra fallback now begins at Lesson 112.
+
+Final 997x1577 integrated browser validation solves all four equation families, physically completes both algebra drops, toggles both workspace views, moves the graph probe by keyboard and pointer, snaps it to `(3, 13)`, rejects and accepts the first practice answer, solves the generated second practice, exercises all tabs and shell controls, and verifies Reset and reload. Final geometry exactly matches surface x=223-976 and y=102-1577, intro y=102-338, tabs y=349-394, workspace y=402-1043, algebra x=223-503, graph x=511-976, insights y=1050-1187, practice y=1194-1415, navigation y=1424-1471, and footer y=1480-1577. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0168-reference.png`
+- `0168-desktop.png`
+- `0168-dedicated-target-validation.json`

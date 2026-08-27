@@ -23,6 +23,7 @@ import OneStepEquationsTargetLesson107 from "./OneStepEquationsTargetLesson107";
 import MultiStepEquationsTargetLesson108 from "./MultiStepEquationsTargetLesson108";
 import FractionEquationsTargetLesson109 from "./FractionEquationsTargetLesson109";
 import LiteralEquationsTargetLesson110 from "./LiteralEquationsTargetLesson110";
+import LinearEquationsTargetLesson111 from "./LinearEquationsTargetLesson111";
 
 function run(title: string, coefficient: number): { input: string; output: SymbolicResult } {
   const name = title.toLowerCase();
@@ -159,7 +160,10 @@ export default function AlgebraCasLessonAdapter({ lesson, resetToken, onInteract
   if (lesson.id === 110) {
     return <LiteralEquationsTargetLesson110 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
-  if (lesson.categorySlug === "algebra" && lesson.id >= 111 && lesson.id <= 128) {
+  if (lesson.id === 111) {
+    return <LinearEquationsTargetLesson111 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
+  if (lesson.categorySlug === "algebra" && lesson.id >= 112 && lesson.id <= 128) {
     return <AlgebraConceptWorkspace lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
 

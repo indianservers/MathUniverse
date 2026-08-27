@@ -232,8 +232,20 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain("INTERACTION · FORMULA REARRANGER");
   });
 
-  it("delegates phase 4 algebra lessons 111 through 128 to lesson-specific structure workspaces", () => {
-    for (let id = 111; id <= 128; id += 1) {
+  it("routes lesson 111 to its dedicated linear-equation algebra and graph model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 111)!;
+    const html = renderToStaticMarkup(
+      <AlgebraCasLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+    expect(html).toContain('data-testid="algebra-mockup-0168"');
+    expect(html).toContain('data-dedicated-lesson="111"');
+    expect(html).toContain("selectable-first-degree-equation-inverse-operation-native-drag-balance-table-dynamic-line-target-intersection-pointer-probe-substitution-check-graded-practice-model");
+    expect(html).toContain('aria-label="Drag constant operation Subtract 1"');
+    expect(html).toContain("Graph: y = 4x + 1");
+  });
+
+  it("delegates phase 4 algebra lessons 112 through 128 to lesson-specific structure workspaces", () => {
+    for (let id = 112; id <= 128; id += 1) {
       const lesson = lessonCatalog.find((item) => item.id === id)!;
       const html = renderToStaticMarkup(
         <AlgebraCasLessonAdapter
