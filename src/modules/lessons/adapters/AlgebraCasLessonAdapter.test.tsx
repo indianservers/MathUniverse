@@ -340,8 +340,20 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain("Domain-gated solver");
   });
 
-  it("delegates phase 4 algebra lessons 120 through 128 to lesson-specific structure workspaces", () => {
-    for (let id = 120; id <= 128; id += 1) {
+  it("routes lesson 120 to its dedicated linked unit-circle and periodic-wave model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 120)!;
+    const html = renderToStaticMarkup(
+      <AlgebraCasLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+    expect(html).toContain('data-testid="algebra-mockup-0177"');
+    expect(html).toContain('data-dedicated-lesson="120"');
+    expect(html).toContain("editable-trigonometric-equation-preset-pointer-keyboard-draggable-unit-circle-angle-linked-periodic-wave-quadrant-reasoning-general-solution-family-angle-mode-quick-practice-model");
+    expect(html).toContain('aria-label="Drag reference angle on unit circle"');
+    expect(html).toContain("Solve using the unit circle");
+  });
+
+  it("delegates phase 4 algebra lessons 121 through 128 to lesson-specific structure workspaces", () => {
+    for (let id = 121; id <= 128; id += 1) {
       const lesson = lessonCatalog.find((item) => item.id === id)!;
       const html = renderToStaticMarkup(
         <AlgebraCasLessonAdapter

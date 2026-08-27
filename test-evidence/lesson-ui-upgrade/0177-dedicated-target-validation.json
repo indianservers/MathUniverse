@@ -1,0 +1,167 @@
+{
+  "mockup": "0177",
+  "lessonId": 120,
+  "route": "/lessons/algebra/120-trigonometric-equations",
+  "checks": {
+    "initial": {
+      "problem": "sin,30,1/2",
+      "solutions": "30,150",
+      "angle-mode": "degrees",
+      "custom": "false",
+      "practice-checked": "false",
+      "actions": "0"
+    },
+    "cosinePreset": {
+      "problem": "cos,60,1/2",
+      "solutions": "60,300",
+      "angle-mode": "degrees",
+      "custom": "false",
+      "practice-checked": "false",
+      "actions": "1"
+    },
+    "radians": {
+      "problem": "cos,60,1/2",
+      "solutions": "60,300",
+      "angle-mode": "radians",
+      "custom": "false",
+      "practice-checked": "false",
+      "actions": "2"
+    },
+    "draggedAngle": {
+      "problem": "sin,60,0.866",
+      "solutions": "60,120",
+      "angle-mode": "degrees",
+      "custom": "true",
+      "practice-checked": "false",
+      "actions": "10"
+    },
+    "practice": {
+      "problem": "sin,60,0.866",
+      "solutions": "60,120",
+      "angle-mode": "degrees",
+      "custom": "true",
+      "practice-checked": "true",
+      "actions": "11"
+    },
+    "example": {
+      "problem": "cos,60,1/2",
+      "solutions": "60,300",
+      "angle-mode": "degrees",
+      "custom": "false",
+      "practice-checked": "false",
+      "actions": "12"
+    },
+    "reset": {
+      "problem": "sin,30,1/2",
+      "solutions": "30,150",
+      "angle-mode": "degrees",
+      "custom": "false",
+      "practice-checked": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 864,
+      "height": 1821
+    },
+    "document": {
+      "width": 864,
+      "height": 1821
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "regions": {
+      "surface": {
+        "top": 108,
+        "bottom": 1821,
+        "height": 1713,
+        "left": 209,
+        "right": 846,
+        "width": 637
+      },
+      "intro": {
+        "top": 108,
+        "bottom": 373,
+        "height": 265,
+        "left": 209,
+        "right": 846,
+        "width": 637
+      },
+      "tabs": {
+        "top": 393,
+        "bottom": 446,
+        "height": 53,
+        "left": 209,
+        "right": 846,
+        "width": 637
+      },
+      "lab": {
+        "top": 466,
+        "bottom": 1596,
+        "height": 1130,
+        "left": 209,
+        "right": 846,
+        "width": 637
+      },
+      "body": {
+        "top": 568,
+        "bottom": 1406,
+        "height": 838,
+        "left": 226,
+        "right": 829,
+        "width": 603
+      },
+      "circle": {
+        "top": 568,
+        "bottom": 1109,
+        "height": 541,
+        "left": 226,
+        "right": 605.140625,
+        "width": 379.140625
+      },
+      "wave": {
+        "top": 1121,
+        "bottom": 1406,
+        "height": 285,
+        "left": 226,
+        "right": 605.140625,
+        "width": 379.140625
+      },
+      "worked": {
+        "top": 568,
+        "bottom": 1406,
+        "height": 838,
+        "left": 625.140625,
+        "right": 828.984375,
+        "width": 203.84375
+      },
+      "practice": {
+        "top": 1424,
+        "bottom": 1500,
+        "height": 76,
+        "left": 226,
+        "right": 829,
+        "width": 603
+      },
+      "navigation": {
+        "top": 1512,
+        "bottom": 1577,
+        "height": 65,
+        "left": 226,
+        "right": 829,
+        "width": 603
+      },
+      "footer": {
+        "top": 1613,
+        "bottom": 1821,
+        "height": 208,
+        "left": 0,
+        "right": 864,
+        "width": 864
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

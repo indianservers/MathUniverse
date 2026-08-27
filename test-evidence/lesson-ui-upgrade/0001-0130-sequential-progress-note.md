@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **102 of 200 lessons completed; 98 pending.**
+Dedicated rebuild target: **103 of 200 lessons completed; 97 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -88,6 +88,7 @@ Dedicated rebuild target: **102 of 200 lessons completed; 98 pending.**
 | 0174   |              117 Radical Equations | Complete | Dedicated radical-unwrapper model with draggable domain boundary, native square-both-sides drop, generated isolation/solve/check stages, extraneous-root warning, graded practice, and exact 911x1726 target framing |
 | 0175   |          118 Exponential Equations | Complete | Dedicated base/target power-ladder model with generated powers, native rung drag/drop, pointer-draggable graph exponent, common-base/log fallback, substitution checks, graded practice, and exact 941x1672 target framing |
 | 0176   |          119 Logarithmic Equations | Complete | Dedicated logarithm-candidate model with native range drag, domain rejection, exponential rewrite, generated ladder and value checks, quick practice, and exact 1024x1536 target framing |
+| 0177   |       120 Trigonometric Equations | Complete | Dedicated linked unit-circle/wave model with pointer-draggable reference angle, generated quadrant solutions and periodic families, degree/radian modes, practice, and exact 864x1821 target framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -1516,3 +1517,17 @@ Evidence:
 - `0176-reference.png`
 - `0176-desktop.png`
 - `0176-dedicated-target-validation.json`
+
+## Lesson 120 / Mockup 0177 - Trigonometric Equations
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-trigonometric-equation-preset-pointer-keyboard-draggable-unit-circle-angle-linked-periodic-wave-quadrant-reasoning-general-solution-family-angle-mode-quick-practice-model`. The lesson-owned trigonometric function and reference angle generate the equation value, companion quadrant angle, two unit-circle intersections, linked periodic-wave crossings, worked reasoning, interval solutions, and general solution families. The target `sin(theta) = 1/2` derives `30 degrees` and `150 degrees`, then generates both `theta = 30 degrees + 360 degrees k` and `theta = 150 degrees + 360 degrees k`.
+
+The first unit-circle solution is a real pointer- and keyboard-draggable handle. Moving it recomputes the exact trigonometric value, companion solution, both circle rays, wave level and crossings, worked steps, periodic families, and warning text. Equation presets switch between sine/cosine models, and degree/radian mode updates every angle label. Tabs, generated examples, language, Share, Workspace, Reset, fullscreen, action count, and quick-practice checking all update visible state.
+
+Final 864x1821 integrated browser validation switches to `cos(theta) = 1/2` and verifies `60,300`, changes the whole surface to radians, physically drags the sine reference handle from `30` to `60` and verifies value `0.866` with solutions `60,120`, checks practice, generates the cosine example, and verifies Reset. Exact framing passes surface x=209-846 and y=108-1821, intro y=108-373, tabs y=393-446, lab y=466-1596, linked body y=568-1406, unit circle y=568-1109, wave y=1121-1406, worked rail x=625-829, practice y=1424-1500, navigation y=1512-1577, and full-width footer x=0-864 and y=1613-1821. It reports no horizontal or vertical overflow, an exact 864x1821 document, and zero console messages.
+
+Evidence:
+
+- `0177-reference.png`
+- `0177-desktop.png`
+- `0177-dedicated-target-validation.json`
