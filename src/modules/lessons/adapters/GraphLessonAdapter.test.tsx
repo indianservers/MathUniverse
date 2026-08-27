@@ -4,6 +4,16 @@ import { lessonCatalog } from "../catalog/lessonCatalog";
 import GraphLessonAdapter from "./GraphLessonAdapter";
 
 describe("GraphLessonAdapter", () => {
+  it("routes lesson 141 to its dedicated absolute-value distance model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 141)!;
+    const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="graph-mockup-0198"');
+    expect(html).toContain('data-dedicated-lesson="141"');
+    expect(html).toContain("editable-absolute-value-scale-vertex-shift-reflection-pointer-keyboard-draggable-vertex-opening-and-distance-probe-generated-v-graph-parent-axis-piecewise-branches-distance-model-range-model");
+    expect(html).toContain('aria-label="Drag absolute-value vertex"');
+    expect(html).toContain("Distance model on the number line");
+  });
+
   it("routes lesson 140 to its dedicated cube-root center model", () => {
     const lesson = lessonCatalog.find((item) => item.id === 140)!;
     const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);

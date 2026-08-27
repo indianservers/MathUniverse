@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **123 of 200 lessons completed; 77 pending.**
+Dedicated rebuild target: **124 of 200 lessons completed; 76 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -109,6 +109,7 @@ Dedicated rebuild target: **123 of 200 lessons completed; 77 pending.**
 | 0195   |         138 Rational Functions | Complete | Dedicated equal-degree rational model with real numerator-scale/restriction controls, pointer/keyboard restriction and scale-point drags, asymptote-to-hole transition, linked samples/LRV/reasoning/practice, and exact 925x1700 target framing |
 | 0196   |      139 Square-Root Functions | Complete | Dedicated endpoint model with real vertical-scale/domain-start controls, pointer/keyboard endpoint and scale-point drags, restricted-domain graph, generated samples/table/range/reasoning/practice, and exact 910x1728 target framing |
 | 0197   |        140 Cube-Root Functions | Complete | Dedicated shifted cube-root model with real vertical-scale/center controls, pointer/keyboard center and scale-point drags, all-real S-curve, generated symmetric samples/table/inverse reasoning/practice, and exact 955x1647 target framing |
+| 0198   |    141 Absolute-Value Functions | Complete | Dedicated distance/reflection model with real scale/vertex/shift controls, pointer/keyboard vertex, opening, and number-line probe drags, generated V-graph/piecewise branches/range, and exact 1205x1305 target framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -1831,3 +1832,17 @@ Evidence:
 - `0197-reference.png`
 - `0197-desktop.png`
 - `0197-dedicated-target-validation.json`
+
+## Lesson 141 / Mockup 0198 - Absolute-Value Functions
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-absolute-value-scale-vertex-shift-reflection-pointer-keyboard-draggable-vertex-opening-and-distance-probe-generated-v-graph-parent-axis-piecewise-branches-distance-model-range-model`. The lesson-owned opening scale `a`, vertex `h,k`, and reflection mode generate the transformed absolute-value formula, V-graph arms, parent graph, vertex, symmetry axis, signed range, exact piecewise branches, transformation rail, and linked distance model. The target `1.25|x-1|-2` produces vertex `(1,-2)`, axis `x=1`, range `y>=-2`, branches `-1.25x-0.75` for `x<1` and `1.25x-3.25` for `x>=1`, and probe result `f(5)=3` from distance `4`.
+
+All three visible parameters are real range controls. The vertex and opening point are genuine pointer- and keyboard-draggable graph objects, and the number-line probe has its own pointer/keyboard drag model. Reflect over x-axis computes the true graph reflection `-1.25|x-1|+2`, vertex `(1,2)`, and range `y<=2`; reflect over y-axis computes `1.25|x+1|-2` with vertex `(-1,-2)`. Every edit regenerates the graph, formula, symmetry annotation, piecewise equations, distance, probe output, side explanations, and range. The Practice tab loads the working model `0.75|x-2|-1`.
+
+Final 1205x1305 integrated browser validation changes all three range controls, resets, physically drags the vertex from `(1,-2)` to `(2,-1)`, keyboard-moves it to `(1.75,-1.25)`, physically drags scale from `1.25` to `1.75`, keyboard-reduces it to `1.5`, physically drags the distance probe from `5` to `4`, keyboard-moves it to `4.25`, validates both reflection modes, loads practice, and resets. Exact framing passes surface x=259-1189 and y=112-1297, tabs y=245-296, graph/rail y=310-984, graph grid y=394-914, lower proof y=1001-1189, and concept footer y=1208-1277. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0198-reference.png`
+- `0198-desktop.png`
+- `0198-dedicated-target-validation.json`
