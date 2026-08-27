@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **126 of 200 lessons completed; 74 pending.**
+Dedicated rebuild target: **127 of 200 lessons completed; 73 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -112,6 +112,7 @@ Dedicated rebuild target: **126 of 200 lessons completed; 74 pending.**
 | 0198   |    141 Absolute-Value Functions | Complete | Dedicated distance/reflection model with real scale/vertex/shift controls, pointer/keyboard vertex, opening, and number-line probe drags, generated V-graph/piecewise branches/range, and exact 1205x1305 target framing |
 | 0199   |       142 Exponential Functions | Complete | Dedicated growth/decay ratio model with real base/initial/asymptote controls, pointer/keyboard initial, base-point, and asymptote drags, generated dual curves/samples/ratio proof/concepts, and exact 1387x1134 target framing |
 | 0200   |         143 Logarithmic Functions | Complete | Dedicated four-parameter logarithm/inverse model with real base/stretch/shift controls, pointer/keyboard asymptote/anchor/scale-point drags, generated domain/curves/table/diagnostics, exact parameter challenge, and exact 1536x1024 target framing |
+| 0201   |       144 Trigonometric Functions | Complete | Dedicated linked unit-circle/sine/cosine model with real amplitude/period/phase/midline controls, pointer/keyboard circle/trace/amplitude/period drags, generated curves/table/period/identities/challenge, animation, CSV export, custom galaxy asset, and exact 1536x1024 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -1876,3 +1877,18 @@ Evidence:
 - `0200-reference.png`
 - `0200-desktop.png`
 - `0200-dedicated-target-validation.json`
+
+## Lesson 144 / Mockup 0201 - Trigonometric Functions
+
+Reworked individually against the mathematics target mockup with a dedicated `linked-unit-circle-sine-cosine-amplitude-period-phase-midline-pointer-keyboard-draggable-circle-angle-graph-trace-amplitude-and-period-generated-curves-live-values-period-detection-identities-real-challenge-animation-export`. The lesson-owned unit-circle angle `theta`, amplitude, period, phase shift, and midline generate both transformed wave equations, angular frequency, sine/cosine paths, linked graph trace, live values, highlighted special-angle row, period preview and detector, identity check, and challenge state from one model. The target state uses `theta=pi/3`, amplitude `2`, period `2pi`, phase `pi/4`, and midline `0`, with exact circle values `sin(theta)=sqrt(3)/2` and `cos(theta)=1/2`.
+
+All five visible ranges are real controls. The unit-circle point, graph angle trace, sine crest, and cycle endpoint are genuine pointer- and keyboard-draggable objects. Period changes recompute angular frequency and both formulas rather than merely changing a label; phase and midline propagate through the curves and table. Sine/cosine trace checkboxes remove and restore their actual paths. Play/Pause advances the model angle, speed and auto-animation are functional, challenge grading supports wrong and correct paths, every table row selects its angle, and Export is a generated CSV download containing current transformed values. A generated project PNG supplies the target's dark galaxy header without embedding text in the asset.
+
+Final 1536x1024 browser validation physically changes all four transformation ranges; drags and keyboard-moves the unit-circle angle, graph trace, amplitude crest, and period endpoint; validates every linked trigonometric calculation; hides/restores cosine; grades `pi/3` incorrect and `pi/4` correct; runs and pauses animation; validates the CSV payload; and resets. Exact framing passes surface y=65-1023, hero y=66-192, tabs y=192-234, linked visuals y=243-684, lower workspaces y=693-980, rail y=243-980, and player y=980-1024. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0201-reference.png`
+- `0201-desktop.png`
+- `0201-dedicated-target-validation.json`
+- `public/assets/lesson-surfaces/trigonometric-functions-galaxy.png`

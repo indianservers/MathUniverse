@@ -4,6 +4,16 @@ import { lessonCatalog } from "../catalog/lessonCatalog";
 import GraphLessonAdapter from "./GraphLessonAdapter";
 
 describe("GraphLessonAdapter", () => {
+  it("routes lesson 144 to its dedicated linked unit-circle model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 144)!;
+    const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="graph-mockup-0201"');
+    expect(html).toContain('data-dedicated-lesson="144"');
+    expect(html).toContain("linked-unit-circle-sine-cosine-amplitude-period-phase-midline-pointer-keyboard-draggable-circle-angle-graph-trace-amplitude-and-period-generated-curves-live-values-period-detection-identities-real-challenge-animation-export");
+    expect(html).toContain('aria-label="Drag unit-circle angle"');
+    expect(html).toContain("PERIODICITY_VISIBLE_REQUIRED");
+  });
+
   it("routes lesson 143 to its dedicated logarithmic inverse model", () => {
     const lesson = lessonCatalog.find((item) => item.id === 143)!;
     const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
@@ -200,7 +210,6 @@ describe("GraphLessonAdapter", () => {
       140: "negative real inputs are allowed",
       141: "distance makes a V-shape",
       142: "equal x-steps multiply outputs",
-      144: "repeats with a period",
       145: "not periodic like cosine",
       146: "outputs step down to integers",
       147: "outputs step up to integers",

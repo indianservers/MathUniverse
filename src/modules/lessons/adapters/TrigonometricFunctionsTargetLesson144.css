@@ -1,0 +1,512 @@
+.trig144-page {
+  position: relative;
+  top: -42px;
+  width: 100%;
+  height: 958px;
+  margin-bottom: -42px;
+  overflow: hidden;
+  border: 1px solid #253349;
+  background: #07111e;
+  color: #e9edf7;
+  font-size: 11px;
+  letter-spacing: 0;
+}
+.trig144-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.trig144-page h1,
+.trig144-page h2,
+.trig144-page p {
+  margin: 0;
+}
+.trig144-page button,
+.trig144-page input {
+  color: inherit;
+  font: inherit;
+}
+.trig144-page button {
+  cursor: pointer;
+}
+.trig144-hero {
+  position: relative;
+  display: flex;
+  height: 126px;
+  padding: 14px 15px;
+  justify-content: space-between;
+  background: #081321
+    url("/assets/lesson-surfaces/trigonometric-functions-galaxy.png") right 42%
+    center/72% auto no-repeat;
+}
+.trig144-hero::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #081321 0%, #081321e8 45%, #08132122 100%);
+  content: "";
+}
+.trig144-hero > * {
+  position: relative;
+  z-index: 1;
+}
+.trig144-hero small {
+  color: #aab5c7;
+  font-size: 11px;
+}
+.trig144-hero small b {
+  color: #b87bff;
+}
+.trig144-hero h1 {
+  margin-top: 10px;
+  font-size: 35px;
+  line-height: 38px;
+}
+.trig144-hero p {
+  margin-top: 7px;
+  color: #c1c8d3;
+  font-size: 12px;
+}
+.trig144-hero nav {
+  display: flex;
+  gap: 8px;
+}
+.trig144-hero nav button,
+.trig144-hero nav a {
+  display: flex;
+  height: 36px;
+  padding: 0 13px;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid #33445c;
+  border-radius: 7px;
+  background: #0c1725dd;
+  color: inherit;
+  text-decoration: none;
+}
+.trig144-hero nav svg {
+  width: 15px;
+}
+.trig144-tabs {
+  display: grid;
+  height: 42px;
+  padding: 0 14px;
+  border-top: 1px solid #27364b;
+  border-bottom: 1px solid #27364b;
+  background: #0b1522;
+  grid-template-columns: repeat(6, 130px);
+}
+.trig144-tabs button {
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+}
+.trig144-tabs button.active {
+  border-color: #b45cff;
+  color: #c990ff;
+}
+.trig144-layout {
+  display: grid;
+  height: 746px;
+  padding: 9px 7px 0;
+  grid-template-columns: minmax(0, 1fr) 229px;
+  gap: 9px;
+}
+.trig144-layout main {
+  min-width: 0;
+}
+.trig144-visuals {
+  display: grid;
+  height: 441px;
+  grid-template-columns: 367px minmax(0, 1fr);
+  gap: 9px;
+}
+.trig144-visuals article,
+.trig144-lower article,
+.trig144-rail section {
+  border: 1px solid #25364c;
+  border-radius: 8px;
+  background: #0b1724;
+}
+.trig144-visuals h2,
+.trig144-lower h2,
+.trig144-rail h2 {
+  color: #56dce4;
+  font-size: 10px;
+}
+.trig144-unit {
+  padding: 10px;
+}
+.trig144-circle {
+  display: block;
+  width: 300px;
+  height: 292px;
+  margin: -5px auto -4px;
+  touch-action: none;
+}
+.trig144-circle .axis,
+.trig144-graph .axis {
+  stroke: #dce5ef;
+  stroke-width: 1.2;
+}
+.trig144-circle .ring {
+  fill: none;
+  stroke: #e2e7f1;
+  stroke-width: 1.7;
+}
+.trig144-circle .radius {
+  stroke: #ffd13a;
+  stroke-width: 2;
+}
+.trig144-circle .angle {
+  fill: none;
+  stroke: #ffd13a;
+}
+.trig144-circle .sin-guide {
+  stroke: #19c9e6;
+  stroke-dasharray: 5 4;
+}
+.trig144-circle .cos-guide {
+  stroke: #25d3df;
+  stroke-dasharray: 5 4;
+}
+.trig144-circle text {
+  fill: #e9edf4;
+  font-size: 12px;
+}
+.trig144-circle .theta {
+  fill: #ffd13a;
+  font-size: 18px;
+}
+.trig144-circle .point-label {
+  fill: #ad7bff;
+}
+.trig144-circle .handle {
+  fill: #ffc72e;
+  stroke: #fff;
+  stroke-width: 2;
+  cursor: grab;
+}
+.trig144-circle-values {
+  display: grid;
+  height: 56px;
+  margin: 0 11px;
+  grid-template-columns: 1fr 1.25fr;
+  align-items: center;
+  border: 1px solid #2a3a50;
+  border-radius: 7px;
+}
+.trig144-circle-values strong {
+  color: #ffd03c;
+  font-family: Georgia, serif;
+  font-size: 23px;
+  text-align: center;
+}
+.trig144-circle-values span {
+  display: grid;
+  height: 100%;
+  padding: 9px 12px;
+  border-left: 1px solid #2b3a4e;
+}
+.trig144-circle-values b {
+  color: #bb6eff;
+}
+.trig144-circle-values em {
+  color: #22d1eb;
+}
+.trig144-unit > label {
+  display: grid;
+  margin: 5px 10px 0;
+  grid-template-columns: 90px 1fr;
+  align-items: center;
+}
+.trig144-unit input {
+  accent-color: #f4c637;
+}
+.trig144-wave {
+  padding: 10px;
+}
+.trig144-graph {
+  width: 100%;
+  height: 395px;
+  touch-action: none;
+}
+.trig144-graph text {
+  fill: #dde7f3;
+  font-size: 12px;
+}
+.trig144-graph .sine {
+  fill: none;
+  stroke: #b458f3;
+  stroke-width: 3;
+}
+.trig144-graph .cosine {
+  fill: none;
+  stroke: #11cde9;
+  stroke-width: 3;
+}
+.trig144-graph .theta-line {
+  stroke: #f1c62e;
+  stroke-dasharray: 5 4;
+}
+.trig144-graph .sine-point {
+  fill: #b75df5;
+  stroke: #fff;
+}
+.trig144-graph .cosine-point {
+  fill: #12cfe8;
+  stroke: #fff;
+}
+.trig144-graph .sine-label {
+  fill: #c76dff;
+  font-size: 15px;
+}
+.trig144-graph .cosine-label {
+  fill: #22d9ef;
+  font-size: 15px;
+}
+.trig144-graph .handle {
+  stroke: #fff;
+  stroke-width: 2;
+  cursor: grab;
+}
+.trig144-graph .amplitude-handle {
+  fill: #af5df4;
+}
+.trig144-graph .period-handle {
+  fill: #64c8ff;
+}
+.trig144-graph .trace-handle {
+  fill: #f2bd25;
+}
+.trig144-lower {
+  display: grid;
+  height: 287px;
+  margin-top: 9px;
+  grid-template-columns: 1.5fr 0.86fr 0.94fr;
+  gap: 9px;
+}
+.trig144-lower article {
+  padding: 10px;
+}
+.trig144-values table {
+  width: 100%;
+  margin-top: 10px;
+  border-collapse: collapse;
+  text-align: center;
+}
+.trig144-values th,
+.trig144-values td {
+  height: 28px;
+  border: 1px solid #2a3b51;
+}
+.trig144-values tr.active {
+  background: #302132;
+  color: #ffd03e;
+}
+.trig144-values tbody tr {
+  cursor: pointer;
+}
+.trig144-period > p {
+  margin: 8px 0;
+}
+.trig144-period > div {
+  height: 125px;
+  padding: 5px;
+  border: 1px solid #2a3b51;
+  border-radius: 7px;
+  text-align: center;
+}
+.trig144-period > div span {
+  font-size: 24px;
+}
+.trig144-period > div b {
+  margin-left: 25px;
+  font-size: 15px;
+}
+.trig144-period svg {
+  display: block;
+  width: 100%;
+  height: 75px;
+}
+.trig144-period svg path {
+  fill: none;
+  stroke: #b35cf0;
+  stroke-width: 2;
+}
+.trig144-period svg path + path {
+  stroke: #19cee8;
+}
+.trig144-period > strong {
+  display: block;
+  margin: 11px 0;
+  font-size: 13px;
+}
+.trig144-period > strong b {
+  color: #7cdf4a;
+}
+.trig144-period > em {
+  display: block;
+  padding: 8px;
+  border: 1px solid #276c3e;
+  border-radius: 6px;
+  background: #123425;
+  color: #82e34e;
+}
+.trig144-challenge h2 {
+  color: #b86aff;
+  font-size: 13px;
+}
+.trig144-challenge > p {
+  margin: 17px 0;
+  font-size: 13px;
+  line-height: 23px;
+}
+.trig144-challenge > div {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 7px;
+}
+.trig144-challenge > div button {
+  height: 44px;
+  border: 1px solid #34445b;
+  border-radius: 6px;
+  background: #0c1725;
+  font-family: Georgia, serif;
+}
+.trig144-challenge > div button b {
+  margin-right: 9px;
+  font-family: sans-serif;
+}
+.trig144-challenge > div button.active {
+  border-color: #66ce38;
+  box-shadow: 0 0 10px #3ca82c55;
+}
+.trig144-challenge footer {
+  display: flex;
+  margin-top: 36px;
+  align-items: center;
+  gap: 15px;
+}
+.trig144-challenge footer button {
+  height: 38px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 6px;
+  background: #7940bf;
+}
+.trig144-challenge footer strong {
+  color: #81df4b;
+}
+.trig144-challenge footer .wrong {
+  color: #ff9e68;
+}
+.trig144-rail {
+  display: grid;
+  grid-template-rows: 365px 207px;
+  gap: 9px;
+}
+.trig144-rail section {
+  padding: 13px;
+}
+.trig144-rail section:first-child > label {
+  display: grid;
+  height: 65px;
+  grid-template-columns: 1fr 44px;
+  align-items: center;
+}
+.trig144-rail section:first-child > label input {
+  grid-column: 1;
+  width: 100%;
+  accent-color: #ac58ee;
+}
+.trig144-rail section:first-child > label output {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  padding: 8px 4px;
+  border: 1px solid #2c3c50;
+  border-radius: 5px;
+  text-align: center;
+}
+.trig144-traces {
+  margin: 6px -4px 0;
+  padding-top: 6px;
+  border-top: 1px solid #28394e;
+}
+.trig144-traces label {
+  display: flex;
+  height: 29px;
+  align-items: center;
+  gap: 8px;
+}
+.trig144-traces input {
+  accent-color: #a95bee;
+}
+.trig144-identities p {
+  margin-top: 8px;
+  color: #bdc5d3;
+  font-family: Georgia, serif;
+  font-size: 14px;
+}
+.trig144-identities strong {
+  display: block;
+  margin-top: 13px;
+  padding: 8px;
+  border: 1px solid #356944;
+  border-radius: 6px;
+  color: #7cdd4a;
+  text-align: center;
+}
+.trig144-player {
+  display: grid;
+  height: 44px;
+  padding: 5px 10px;
+  border-top: 1px solid #2b3b50;
+  background: #09121e;
+  grid-template-columns: 42px 390px 1fr 90px 75px;
+  align-items: center;
+  gap: 10px;
+}
+.trig144-player button {
+  display: flex;
+  height: 34px;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: 1px solid #2f4055;
+  border-radius: 6px;
+  background: #111b2b;
+}
+.trig144-player svg {
+  width: 16px;
+}
+.trig144-player label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.trig144-player label:first-of-type input {
+  width: 190px;
+  accent-color: #b35bf1;
+}
+.trig144-player label:nth-of-type(2) {
+  justify-self: center;
+}
+.trig144-player label:nth-of-type(2) input {
+  accent-color: #aa59ec;
+}
+@media (max-width: 1100px) {
+  .trig144-visuals {
+    grid-template-columns: 330px minmax(0, 1fr);
+  }
+  .trig144-layout {
+    grid-template-columns: minmax(0, 1fr) 210px;
+  }
+  .trig144-lower {
+    grid-template-columns: 1.4fr 1fr;
+  }
+  .trig144-challenge {
+    display: none;
+  }
+  .trig144-player {
+    grid-template-columns: 42px 310px 1fr 75px 65px;
+  }
+}

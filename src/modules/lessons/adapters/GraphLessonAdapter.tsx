@@ -16,6 +16,7 @@ import CubeRootFunctionsTargetLesson140 from "./CubeRootFunctionsTargetLesson140
 import AbsoluteValueFunctionsTargetLesson141 from "./AbsoluteValueFunctionsTargetLesson141";
 import ExponentialFunctionsTargetLesson142 from "./ExponentialFunctionsTargetLesson142";
 import LogarithmicFunctionsTargetLesson143 from "./LogarithmicFunctionsTargetLesson143";
+import TrigonometricFunctionsTargetLesson144 from "./TrigonometricFunctionsTargetLesson144";
 import { graphVisualPresetForLesson } from "../presets/graphVisualPresets";
 import type { LessonAdapterProps } from "../types";
 import { Eye, Grid3X3, Minus, Move, Plus, RotateCcw, Share2, ZoomIn } from "lucide-react";
@@ -95,6 +96,9 @@ export default function GraphLessonAdapter({ lesson, resetToken, onInteraction }
   }
   if (lesson.id === 143) {
     return <LogarithmicFunctionsTargetLesson143 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
+  if (lesson.id === 144) {
+    return <TrigonometricFunctionsTargetLesson144 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
 
   if (usesFunctionMockupWorkspace(lesson.id)) {
