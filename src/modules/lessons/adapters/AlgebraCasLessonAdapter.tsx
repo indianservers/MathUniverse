@@ -40,6 +40,7 @@ import QuadraticInequalitiesTargetLesson124 from "./QuadraticInequalitiesTargetL
 import PolynomialInequalitiesTargetLesson125 from "./PolynomialInequalitiesTargetLesson125";
 import TwoVariableInequalitiesTargetLesson126 from "./TwoVariableInequalitiesTargetLesson126";
 import SystemsInequalitiesTargetLesson127 from "./SystemsInequalitiesTargetLesson127";
+import NumericalSolverTargetLesson128 from "./NumericalSolverTargetLesson128";
 
 function run(title: string, coefficient: number): { input: string; output: SymbolicResult } {
   const name = title.toLowerCase();
@@ -227,8 +228,8 @@ export default function AlgebraCasLessonAdapter({ lesson, resetToken, onInteract
   if (lesson.id === 127) {
     return <SystemsInequalitiesTargetLesson127 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
-  if (lesson.categorySlug === "algebra" && lesson.id === 128) {
-    return <AlgebraConceptWorkspace lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  if (lesson.id === 128) {
+    return <NumericalSolverTargetLesson128 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
 
   return <LegacyAlgebraCasLessonAdapter lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;

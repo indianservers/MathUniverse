@@ -1,0 +1,225 @@
+{
+  "mockup": "0185",
+  "lessonId": 128,
+  "route": "/lessons/algebra/128-numerical-solver",
+  "checks": {
+    "initial": {
+      "mode": "cubic",
+      "coarse": "1,2",
+      "zoom": "1.324,1.325",
+      "root": "1.325",
+      "residual": "0.001203",
+      "sign-change": "true,true",
+      "actions": "0"
+    },
+    "coarseLower": {
+      "mode": "cubic",
+      "coarse": "1.1,2",
+      "zoom": "1.324,1.325",
+      "root": "1.325",
+      "residual": "0.001203",
+      "sign-change": "true,true",
+      "actions": "7"
+    },
+    "coarseUpper": {
+      "mode": "cubic",
+      "coarse": "1.1,1.4",
+      "zoom": "1.324,1.325",
+      "root": "1.325",
+      "residual": "0.001203",
+      "sign-change": "true,true",
+      "actions": "14"
+    },
+    "zoomUpper": {
+      "mode": "cubic",
+      "coarse": "1.1,1.4",
+      "zoom": "1.324,1.326",
+      "root": "1.325",
+      "residual": "0.001203",
+      "sign-change": "true,true",
+      "actions": "21"
+    },
+    "zoomKeyboard": {
+      "mode": "cubic",
+      "coarse": "1.1,1.4",
+      "zoom": "1.323,1.326",
+      "root": "1.325",
+      "residual": "0.001203",
+      "sign-change": "true,true",
+      "actions": "22"
+    },
+    "downloaded": {
+      "mode": "cubic",
+      "coarse": "1.1,1.4",
+      "zoom": "1.323,1.326",
+      "root": "1.325",
+      "residual": "0.001203",
+      "sign-change": "true,true",
+      "actions": "23"
+    },
+    "cosine": {
+      "mode": "cosine",
+      "coarse": "0,1",
+      "zoom": "0.738,0.74",
+      "root": "0.739",
+      "residual": "0.000142",
+      "sign-change": "true,true",
+      "actions": "24"
+    },
+    "cosineRefined": {
+      "mode": "cosine",
+      "coarse": "0,1",
+      "zoom": "0.738,0.739",
+      "root": "0.738",
+      "residual": "0.001816",
+      "sign-change": "true,false",
+      "actions": "25"
+    },
+    "reset": {
+      "mode": "cubic",
+      "coarse": "1,2",
+      "zoom": "1.324,1.325",
+      "root": "1.325",
+      "residual": "0.001203",
+      "sign-change": "true,true",
+      "actions": "0"
+    }
+  },
+  "downloadName": "numerical-solver-cubic.csv",
+  "metrics": {
+    "viewport": {
+      "width": 941,
+      "height": 1672
+    },
+    "document": {
+      "width": 941,
+      "height": 1672
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "regions": {
+      "surface": {
+        "top": 101,
+        "bottom": 1672,
+        "height": 1571,
+        "left": 216,
+        "right": 925,
+        "width": 709
+      },
+      "intro": {
+        "top": 101,
+        "bottom": 322,
+        "height": 221,
+        "left": 216,
+        "right": 925,
+        "width": 709
+      },
+      "tabs": {
+        "top": 333,
+        "bottom": 390,
+        "height": 57,
+        "left": 216,
+        "right": 925,
+        "width": 709
+      },
+      "layout": {
+        "top": 401,
+        "bottom": 1421,
+        "height": 1020,
+        "left": 216,
+        "right": 925,
+        "width": 709
+      },
+      "main": {
+        "top": 401,
+        "bottom": 1428,
+        "height": 1027,
+        "left": 216,
+        "right": 691.71875,
+        "width": 475.71875
+      },
+      "rail": {
+        "top": 401,
+        "bottom": 1421,
+        "height": 1020,
+        "left": 703.71875,
+        "right": 925,
+        "width": 221.28125
+      },
+      "table": {
+        "top": 468,
+        "bottom": 762,
+        "height": 294,
+        "left": 230,
+        "right": 677.71875,
+        "width": 447.71875
+      },
+      "coarse": {
+        "top": 772,
+        "bottom": 897,
+        "height": 125,
+        "left": 230,
+        "right": 677.71875,
+        "width": 447.71875
+      },
+      "zoom": {
+        "top": 907,
+        "bottom": 1034,
+        "height": 127,
+        "left": 230,
+        "right": 677.71875,
+        "width": 447.71875
+      },
+      "answer": {
+        "top": 1044,
+        "bottom": 1124,
+        "height": 80,
+        "left": 230,
+        "right": 677.71875,
+        "width": 447.71875
+      },
+      "residual": {
+        "top": 1134,
+        "bottom": 1298,
+        "height": 164,
+        "left": 230,
+        "right": 677.71875,
+        "width": 447.71875
+      },
+      "lower": {
+        "top": 1308,
+        "bottom": 1414,
+        "height": 106,
+        "left": 230,
+        "right": 677.71875,
+        "width": 447.71875
+      },
+      "tags": {
+        "top": 1431,
+        "bottom": 1459,
+        "height": 28,
+        "left": 216,
+        "right": 925,
+        "width": 709
+      },
+      "navigation": {
+        "top": 1470,
+        "bottom": 1517,
+        "height": 47,
+        "left": 216,
+        "right": 570.5,
+        "width": 354.5
+      },
+      "footer": {
+        "top": 1528,
+        "bottom": 1648,
+        "height": 120,
+        "left": 216,
+        "right": 925,
+        "width": 709
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **110 of 200 lessons completed; 90 pending.**
+Dedicated rebuild target: **111 of 200 lessons completed; 89 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -96,6 +96,7 @@ Dedicated rebuild target: **110 of 200 lessons completed; 90 pending.**
 | 0182   |             125 Polynomial Inequalities | Complete | Dedicated multiplicity-aware polynomial sign analyzer with three pointer-draggable roots, leading-sign/relation controls, linked graph, four interval tests, endpoint union logic, repeated-root practice, and exact 969x1623 target framing |
 | 0183   |             126 Two-Variable Inequalities | Complete | Dedicated coordinate half-plane model with pointer-draggable intercept, slope, and test point, clipped true-region shading, dashed/solid and above/below controls, live substitution, practice, and exact 995x1581 target framing |
 | 0184   |             127 Systems of Inequalities | Complete | Dedicated two-half-plane overlap model with pointer-draggable diagonal intercept/slope, horizontal limit and probe, clipped feasible-region intersection, boundary inclusion toggles, live dual checks, practice, and exact 994x1583 target framing |
+| 0185   |             128 Numerical Solver | Complete | Dedicated bisection root finder with pointer-draggable coarse/zoom brackets, live trial table, sign-change checks, rounded approximation, exact residual, CSV download, cosine practice, and exact 941x1672 target framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -1636,3 +1637,17 @@ Evidence:
 - `0184-reference.png`
 - `0184-desktop.png`
 - `0184-dedicated-target-validation.json`
+
+## Lesson 128 / Mockup 0185 - Numerical Solver
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-numerical-root-finder-pointer-keyboard-draggable-coarse-and-zoom-brackets-bisection-trial-table-sign-change-rounded-approximation-residual-check-cosine-practice-model`. The lesson-owned function mode, coarse interval, and zoom interval generate the trial table, endpoint signs, sign-change state, bisection root, rounded approximation, and substitution residual. The target `f(x) = x^3 - x - 1` uses coarse bracket `[1,2]`, zoom bracket `[1.324,1.325]`, approximation `x ≈ 1.325`, and the mathematically exact rounded residual `0.001203`.
+
+Both coarse endpoints and both zoom endpoints are real pointer- and keyboard-draggable controls. The zoom interval is visually expanded like the mockup while drag deltas retain the true numerical scale. Every move recomputes endpoint values, sign-change feedback, bisection output, approximation card, and residual check. The table download creates a real CSV, the cosine practice loads `cos(x) = x` with bracket `[0,1]`, and language, Share, Workspace, Reset, fullscreen, tabs, saved-download feedback, and practice controls update visible state.
+
+Final 941x1672 integrated browser validation physically moves the coarse bracket from `[1,2]` to `[1.1,1.4]`, expands the zoom bracket to `[1.324,1.326]`, keyboard-refines it to `[1.323,1.326]`, downloads `numerical-solver-cubic.csv`, loads the cosine model and verifies root `0.739`, tightens its interval to `[0.738,0.739]` and correctly detects that the true root is no longer bracketed, then verifies Reset. Exact framing passes surface x=216-925 and y=101-1672, intro y=101-322, tabs y=333-390, layout y=401-1421, table y=468-762, coarse bracket y=772-897, zoom y=907-1034, residual y=1134-1298, navigation y=1470-1517, and footer y=1528-1648. It reports no horizontal or vertical overflow, an exact 941x1672 document, and zero console messages.
+
+Evidence:
+
+- `0185-reference.png`
+- `0185-desktop.png`
+- `0185-dedicated-target-validation.json`

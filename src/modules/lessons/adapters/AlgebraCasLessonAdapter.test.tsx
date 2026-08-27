@@ -436,24 +436,16 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain("Coordinate overlap model");
   });
 
-  it("delegates phase 4 algebra lesson 128 to its lesson-specific structure workspace", () => {
-    for (let id = 128; id <= 128; id += 1) {
-      const lesson = lessonCatalog.find((item) => item.id === id)!;
-      const html = renderToStaticMarkup(
-        <AlgebraCasLessonAdapter
-          lesson={lesson}
-          resetToken={0}
-          onInteraction={vi.fn()}
-        />,
-      );
-
-      expect(html, lesson.title).toContain(lesson.title);
-      expect(html, lesson.title).toContain(`${lesson.title} structure lab`);
-      expect(html, lesson.title).toContain(`${lesson.title} concept trace`);
-      expect(html, lesson.title).toContain("This algebra page uses a lesson-specific symbolic workspace instead of a default line graph.");
-      expect(html, lesson.title).not.toContain("balance + CAS");
-      expect(html, lesson.title).not.toContain("Graph of y equals");
-    }
+  it("routes lesson 128 to its dedicated draggable numerical root finder", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 128)!;
+    const html = renderToStaticMarkup(
+      <AlgebraCasLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+    expect(html).toContain('data-testid="algebra-mockup-0185"');
+    expect(html).toContain('data-dedicated-lesson="128"');
+    expect(html).toContain("editable-numerical-root-finder-pointer-keyboard-draggable-coarse-and-zoom-brackets-bisection-trial-table-sign-change-rounded-approximation-residual-check-cosine-practice-model");
+    expect(html).toContain('aria-label="Drag coarse bracket lower endpoint"');
+    expect(html).toContain("Trial table near the root");
   });
 
   it("keeps Algebraic Fractions cancellation, restriction, and substitution rules in its dedicated surface", () => {
