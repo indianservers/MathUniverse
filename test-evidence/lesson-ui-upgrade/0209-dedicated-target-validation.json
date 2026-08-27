@@ -1,0 +1,195 @@
+{
+  "mockup": "0209",
+  "lessonId": 152,
+  "route": "/lessons/graphs-and-functions/152-even-and-odd-functions",
+  "checks": {
+    "initial": {
+      "family": "even",
+      "x": "2",
+      "fx": "4",
+      "negative-fx": "4",
+      "mirror": "true",
+      "rotate": "true",
+      "verdict": "even"
+    },
+    "xRange": {
+      "family": "even",
+      "x": "-2.7",
+      "fx": "7.290000000000001",
+      "negative-fx": "7.290000000000001",
+      "mirror": "true",
+      "rotate": "true",
+      "verdict": "even"
+    },
+    "probeDrag": {
+      "family": "even",
+      "x": "0.5",
+      "fx": "0.25",
+      "negative-fx": "0.25",
+      "mirror": "true",
+      "rotate": "true",
+      "verdict": "even"
+    },
+    "probeKeyboard": {
+      "family": "even",
+      "x": "0.6000000000000001",
+      "fx": "0.3600000000000001",
+      "negative-fx": "0.3600000000000001",
+      "mirror": "true",
+      "rotate": "true",
+      "verdict": "even"
+    },
+    "oddTab": {
+      "family": "odd",
+      "x": "2",
+      "fx": "8",
+      "negative-fx": "-8",
+      "mirror": "true",
+      "rotate": "true",
+      "verdict": "odd"
+    },
+    "oddRotationVisible": true,
+    "rotationOff": {
+      "state": {
+        "family": "odd",
+        "x": "2",
+        "fx": "8",
+        "negative-fx": "-8",
+        "mirror": "true",
+        "rotate": "false",
+        "verdict": "odd"
+      },
+      "count": 0
+    },
+    "rotationRestored": {
+      "state": {
+        "family": "odd",
+        "x": "2",
+        "fx": "8",
+        "negative-fx": "-8",
+        "mirror": "true",
+        "rotate": "true",
+        "verdict": "odd"
+      },
+      "visible": true
+    },
+    "neitherSelect": {
+      "family": "neither",
+      "x": "2",
+      "fx": "6",
+      "negative-fx": "2",
+      "mirror": "true",
+      "rotate": "true",
+      "verdict": "neither"
+    },
+    "mirrorOff": {
+      "state": {
+        "family": "neither",
+        "x": "2",
+        "fx": "6",
+        "negative-fx": "2",
+        "mirror": "false",
+        "rotate": "true",
+        "verdict": "neither"
+      },
+      "count": 0
+    },
+    "swapX": {
+      "family": "neither",
+      "x": "-2",
+      "fx": "2",
+      "negative-fx": "6",
+      "mirror": "false",
+      "rotate": "true",
+      "verdict": "neither"
+    },
+    "evenSummary": {
+      "family": "even",
+      "x": "-2",
+      "fx": "4",
+      "negative-fx": "4",
+      "mirror": "false",
+      "rotate": "true",
+      "verdict": "even"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1205,
+      "height": 1306
+    },
+    "document": {
+      "width": 1205,
+      "height": 1543
+    },
+    "horizontalOverflow": false,
+    "regions": {
+      "page": {
+        "top": 107,
+        "bottom": 1306,
+        "left": 236,
+        "right": 1185,
+        "width": 949,
+        "height": 1199
+      },
+      "surface": {
+        "top": 111,
+        "bottom": 1199,
+        "left": 254,
+        "right": 1185,
+        "width": 931,
+        "height": 1088
+      },
+      "header": {
+        "top": 139,
+        "bottom": 308,
+        "left": 272,
+        "right": 1167,
+        "width": 895,
+        "height": 169
+      },
+      "left": {
+        "top": 308,
+        "bottom": 1182,
+        "left": 272,
+        "right": 831.953125,
+        "width": 559.953125,
+        "height": 874
+      },
+      "graph": {
+        "top": 380,
+        "bottom": 910,
+        "left": 286,
+        "right": 817.953125,
+        "width": 531.953125,
+        "height": 530
+      },
+      "concepts": {
+        "top": 910,
+        "bottom": 1167,
+        "left": 286,
+        "right": 817.953125,
+        "width": 531.953125,
+        "height": 257
+      },
+      "rail": {
+        "top": 308,
+        "bottom": 1182,
+        "left": 847.953125,
+        "right": 1167,
+        "width": 319.046875,
+        "height": 874
+      },
+      "neighbors": {
+        "top": 1209,
+        "bottom": 1277,
+        "left": 254,
+        "right": 1185,
+        "width": 931,
+        "height": 68
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

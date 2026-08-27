@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **134 of 200 lessons completed; 66 pending.**
+Dedicated rebuild target: **135 of 200 lessons completed; 65 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -120,6 +120,7 @@ Dedicated rebuild target: **134 of 200 lessons completed; 66 pending.**
 | 0206   |             149 Piecewise Functions | Complete | Dedicated three-rule engine with editable switches/vertical shift, pointer/keyboard probe and boundary drags, generated branches/regions/open-closed endpoints, exact boundary ownership, branch visibility, condition-first trace, working tabs/shell actions, and exact 1205x1306 framing |
 | 0207   |             150 Composite Functions | Complete | Dedicated composition-order engine with editable input/inner shift/outer scale, pointer/keyboard graph probe, generated function machine/three curves/live trace, true f o g/g o f calculations, order comparison, working shell actions, and exact 1205x1306 framing |
 | 0208   |               151 Inverse Functions | Complete | Dedicated linear-inverse engine with editable slope/intercept/domain, pointer/keyboard source-point drag, generated reflected inverse/swapped mappings/live compositions, horizontal-line proof, working share/reset/navigation, and exact 1195x1316 framing |
+| 0209   |          152 Even and Odd Functions | Complete | Dedicated three-family symmetry engine with real function/x/overlay controls, pointer/keyboard x-probe drag, generated x/-x points and values, mirror/rotation tests, algebraic verdicts, interactive concept cards, and exact 1205x1306 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -1997,3 +1998,17 @@ Evidence:
 - `0208-reference.png`
 - `0208-desktop.png`
 - `0208-dedicated-target-validation.json`
+
+## Lesson 152 / Mockup 0209 - Even and Odd Functions
+
+Reworked individually against the mathematics target mockup with a dedicated `selectable-even-odd-neither-polynomial-family-pointer-keyboard-draggable-x-probe-generated-x-negative-x-points-mirror-and-rotation-overlays-live-algebraic-symmetry-verdict` model. The lesson-owned family, test input `x`, mirror overlay, and rotation overlay generate `x²`, `x³`, or `x²+x`, both `x` and `-x` points, graph projections, reflected/rotated comparisons, live values, concept diagrams, and the even/odd/neither verdict from one state. At the target `f(x)=x²`, `x=2`, the model produces `f(2)=4`, `f(-2)=4`, y-axis symmetry, and the even verdict.
+
+The function select, three function buttons, three family tabs, x range, two overlay switches, three concept cards, and summary actions are real controls. The graph point is a genuine pointer- and keyboard-draggable SVG object connected to the same x state. The odd family proves `f(-x)=-f(x)` with `f(2)=8` and `f(-2)=-8`; the neither family produces `6` and `2`, failing both tests. Overlay switches add/remove their actual generated SVG comparisons, and previous/next links navigate to the adjacent math lessons.
+
+Final 1205x1306 browser validation physically changes the x range; drags and keyboard-moves the graph point; selects odd through its tab and neither through the function selector; verifies all generated values and verdicts; removes/restores the rotation overlay; removes the mirror overlay; swaps x and -x; restores even from the summary; and reloads the exact target state. The final comparison loop places the surface at y=111-1199, header y=139-308, workspace y=308-1182, graph y=380-910, concept cards y=910-1167, rail y=308-1182, and navigation y=1209-1277. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0209-reference.png`
+- `0209-desktop.png`
+- `0209-dedicated-target-validation.json`

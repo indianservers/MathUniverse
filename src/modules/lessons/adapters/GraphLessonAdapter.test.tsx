@@ -4,6 +4,16 @@ import { lessonCatalog } from "../catalog/lessonCatalog";
 import GraphLessonAdapter from "./GraphLessonAdapter";
 
 describe("GraphLessonAdapter", () => {
+  it("routes lesson 152 to its dedicated symmetry-test engine", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 152)!;
+    const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="graph-mockup-0209"');
+    expect(html).toContain('data-dedicated-lesson="152"');
+    expect(html).toContain("selectable-even-odd-neither-polynomial-family-pointer-keyboard-draggable-x-probe-generated-x-negative-x-points-mirror-and-rotation-overlays-live-algebraic-symmetry-verdict");
+    expect(html).toContain('aria-label="Drag symmetry test point"');
+    expect(html).toContain("Verdict: even");
+  });
+
   it("routes lesson 151 to its dedicated inverse reflection engine", () => {
     const lesson = lessonCatalog.find((item) => item.id === 151)!;
     const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
@@ -280,7 +290,6 @@ describe("GraphLessonAdapter", () => {
       140: "negative real inputs are allowed",
       141: "distance makes a V-shape",
       142: "equal x-steps multiply outputs",
-      152: "f(-x)=f(x)",
     };
 
     for (const [idText, snippet] of Object.entries(expectedSnippets)) {
