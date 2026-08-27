@@ -400,8 +400,20 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain("SIGN CHART (NUMBER LINE)");
   });
 
-  it("delegates phase 4 algebra lessons 125 through 128 to lesson-specific structure workspaces", () => {
-    for (let id = 125; id <= 128; id += 1) {
+  it("routes lesson 125 to its dedicated draggable polynomial sign analyzer", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 125)!;
+    const html = renderToStaticMarkup(
+      <AlgebraCasLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+    expect(html).toContain('data-testid="algebra-mockup-0182"');
+    expect(html).toContain('data-dedicated-lesson="125"');
+    expect(html).toContain("editable-polynomial-inequality-three-pointer-keyboard-draggable-roots-multiplicity-aware-sign-chart-linked-graph-factorization-test-intervals-endpoint-inclusion-union-practice-model");
+    expect(html).toContain('aria-label="Drag polynomial root 1"');
+    expect(html).toContain("Analyze the sign of a polynomial");
+  });
+
+  it("delegates phase 4 algebra lessons 126 through 128 to lesson-specific structure workspaces", () => {
+    for (let id = 126; id <= 128; id += 1) {
       const lesson = lessonCatalog.find((item) => item.id === id)!;
       const html = renderToStaticMarkup(
         <AlgebraCasLessonAdapter

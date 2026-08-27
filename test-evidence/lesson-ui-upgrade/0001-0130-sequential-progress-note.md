@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **107 of 200 lessons completed; 93 pending.**
+Dedicated rebuild target: **108 of 200 lessons completed; 92 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -93,6 +93,7 @@ Dedicated rebuild target: **107 of 200 lessons completed; 93 pending.**
 | 0179   |             122 Linear Inequalities | Complete | Dedicated sign-aware coefficient model with pointer-draggable boundary, comparator reversal, linked endpoint/shading/interval notation, test points, practice, and exact 930x1691 target framing |
 | 0180   |             123 Compound Inequalities | Complete | Dedicated AND/intersection and OR/union interval model with two pointer-draggable boundaries, endpoint inclusion toggles, linked number lines, test points, empty-set handling, practice, and exact 911x1726 target framing |
 | 0181   |             124 Quadratic Inequalities | Complete | Dedicated quadratic sign-interval model with two pointer-draggable roots, leading-sign/comparator controls, linked factorization, substitutions, parabola regions, interval solution, practice, and exact 972x1617 target framing |
+| 0182   |             125 Polynomial Inequalities | Complete | Dedicated multiplicity-aware polynomial sign analyzer with three pointer-draggable roots, leading-sign/relation controls, linked graph, four interval tests, endpoint union logic, repeated-root practice, and exact 969x1623 target framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -1591,3 +1592,17 @@ Evidence:
 - `0181-reference.png`
 - `0181-desktop.png`
 - `0181-dedicated-target-validation.json`
+
+## Lesson 125 / Mockup 0182 - Polynomial Inequalities
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-polynomial-inequality-three-pointer-keyboard-draggable-roots-multiplicity-aware-sign-chart-linked-graph-factorization-test-intervals-endpoint-inclusion-union-practice-model`. The lesson-owned roots, multiplicities, leading coefficient sign, and comparator generate the factorization, degree, graph intercepts/touches, interval test values, sign decisions, endpoint inclusion, and solution union. The target `(x + 2)(x - 1)(x - 3) >= 0` derives roots `-2,1,3`, signs `-,+,-,+`, and solution `[-2,1] union [3,infinity)`.
+
+All three sign-line roots are real pointer- and keyboard-draggable controls with frozen gesture coordinates. Every move recalculates the graph, factors, test intervals, signs, condition results, summary, and union notation. The repeated-root control changes the middle factor from odd to even multiplicity and genuinely changes whether the sign crosses; comparator and leading-sign controls update endpoint inclusion and every interval. The practice rail loads `(y - 2)^2(y + 1) < 0` into the same analyzer, while language, Share, Workspace, Reset, fullscreen, tabs, and action status all update visible state.
+
+Final 969x1623 integrated browser validation physically drags the outer roots from `-2,3` to `-3,4`, makes the middle root double and verifies an isolated equality point, switches from `>=` to `>`, flips the leading coefficient and verifies the two interior open intervals, loads the repeated-root practice model with solution `(-infinity,-1)`, keyboard-moves its first root to `-2`, and verifies Reset. Exact framing passes surface x=241-955 and y=117-1623, intro y=117-349, tabs y=361-415, lab y=433-1401, linked layout y=503-1376, main x=256-745, rail x=755-940, sign chart y=773-1266, navigation y=1413-1465, and footer y=1477-1603. It reports no horizontal or vertical overflow, an exact 969x1623 document, and zero console messages.
+
+Evidence:
+
+- `0182-reference.png`
+- `0182-desktop.png`
+- `0182-dedicated-target-validation.json`
