@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **137 of 200 lessons completed; 63 pending.**
+Dedicated rebuild target: **138 of 200 lessons completed; 62 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -123,6 +123,7 @@ Dedicated rebuild target: **137 of 200 lessons completed; 63 pending.**
 | 0209   |          152 Even and Odd Functions | Complete | Dedicated three-family symmetry engine with real function/x/overlay controls, pointer/keyboard x-probe drag, generated x/-x points and values, mirror/rotation tests, algebraic verdicts, interactive concept cards, and exact 1205x1306 framing |
 | 0210   |       153 Increasing and Decreasing | Complete | Dedicated derivative-defined cubic with real strength/shift/x controls, pointer/keyboard cursor drag, generated extrema/regions/sign strips/intervals, exact live slope classification, reset, and exact 1334x1179 framing |
 | 0211   |              154 Periodic Functions | Complete | Dedicated sine-period engine with real amplitude/frequency/midline controls, pointer/keyboard phase drag, generated period ruler/cycle/matching points/live identity, functional tabs/actions/language/list, and exact 1315x1197 framing |
+| 0212   |             155 Recursive Functions | Complete | Dedicated affine-recurrence engine with real growth/seed/add-on/step controls, pointer/keyboard term probe, generated sequence table/graph/next preview/cobweb/fixed point, exact calculations, reset, and exact 1477x1065 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2042,3 +2043,17 @@ Evidence:
 - `0211-reference.png`
 - `0211-desktop.png`
 - `0211-dedicated-target-validation.json`
+
+## Lesson 155 / Mockup 0212 - Recursive Functions
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-affine-recurrence-growth-seed-add-on-steps-pointer-keyboard-draggable-term-probe-generated-sequence-table-graph-next-preview-cobweb-and-exact-fixed-point` model. The lesson-owned growth factor `m`, seed `a0`, add-on `b`, step count `N`, and selected term generate the recurrence `a(n+1)=m*a(n)+b`, every table row, the sequence graph, current-term highlight, next-term preview, cobweb construction, and fixed point from one state.
+
+All four parameter ranges are real controls. The graph term probe is a genuine pointer- and keyboard-draggable SVG object, each table row selects its corresponding generated term, and Reset restores the exact target state. The model intentionally uses mathematically correct values where the mockup arithmetic is inconsistent: for `a0=1`, `m=1.4`, and `b=0.5`, the sequence through `a6` is `1, 1.9, 3.16, 4.924, 7.3936, 10.85104, 15.691456`, the next term is `22.4680384`, and the exact fixed point is `b/(1-m)=-1.25` rather than `+1.25`.
+
+Final 1477x1065 browser validation physically changes growth, seed, add-on, and step count; drags and keyboard-moves the graph probe; selects a table row; verifies every generated sequence value, next term, and fixed point; and resets. The final comparison loop places the surface at x=282-1458 and y=123-1040, header y=140-234, pipeline y=234-359, sequence workspace y=369-774, controls x=1127-1443, and concept cards y=792-1026. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0212-reference.png`
+- `0212-desktop.png`
+- `0212-dedicated-target-validation.json`

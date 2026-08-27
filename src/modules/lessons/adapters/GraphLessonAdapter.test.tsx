@@ -4,6 +4,16 @@ import { lessonCatalog } from "../catalog/lessonCatalog";
 import GraphLessonAdapter from "./GraphLessonAdapter";
 
 describe("GraphLessonAdapter", () => {
+  it("routes lesson 155 to its dedicated recurrence engine", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 155)!;
+    const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="graph-mockup-0212"');
+    expect(html).toContain('data-dedicated-lesson="155"');
+    expect(html).toContain("editable-affine-recurrence-growth-seed-add-on-steps-pointer-keyboard-draggable-term-probe-generated-sequence-table-graph-next-preview-cobweb-and-exact-fixed-point");
+    expect(html).toContain('aria-label="Drag recursive term probe"');
+    expect(html).toContain("Next term preview");
+  });
+
   it("routes lesson 154 to its dedicated periodic-wave engine", () => {
     const lesson = lessonCatalog.find((item) => item.id === 154)!;
     const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
@@ -329,7 +339,6 @@ describe("GraphLessonAdapter", () => {
 
   it("renders function transformation lessons 153 through 166 with lesson-specific graph guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      155: "depends on an earlier value",
       156: "outside addition moves",
       157: "inside subtraction moves",
       158: "outside multiplication changes height",
