@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **96 of 200 lessons completed; 104 pending.**
+Dedicated rebuild target: **97 of 200 lessons completed; 103 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -82,6 +82,7 @@ Dedicated rebuild target: **96 of 200 lessons completed; 104 pending.**
 | 0150   |                       93 Like Terms | Complete | Dedicated draggable like-term model with coefficient grouping, cancellation pairs, live simplification, substitution equivalence proof, staged controls, expression presets, graded practice, and exact 1013x1553 target geometry |
 | 0151   |                     94 Substitution | Complete | Dedicated draggable substitution-slot model with live expression/value controls, stepwise evaluation, negative-bracket behavior, result checking, rotating practice, functional tabs/toggles, and exact 992x1586 target geometry |
 | 0152   |              95 Expanding Brackets | Complete | Dedicated draggable distributive-factor model with a dynamic two-region area partition, generated unit grid, symbolic expansion, substitution proof, visual switches, guided steps, graded practice, and exact 996x1579 target geometry |
+| 0171   |            114 Quadratic Equations | Complete | Dedicated editable coefficient/discriminant/factor-pair model with zero-product flow, pointer-draggable graph roots, synchronized verification, graded practice, functional controls, and exact 862x1824 target framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -1426,3 +1427,17 @@ Evidence:
 - `0170-reference.png`
 - `0170-desktop.png`
 - `0170-dedicated-target-validation.json`
+
+## Lesson 114 / Mockup 0171 - Quadratic Equations
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-quadratic-coefficients-discriminant-factor-pairs-zero-product-rule-pointer-draggable-root-graph-synchronized-verification-graded-practice-model`. Editable `a`, `b`, and `c` coefficients drive the discriminant, exact roots, factor cards, zero-product derivation, vertex, result statement, and complete SVG parabola. The initial model derives `(x - 2)(x - 3) = 0`, roots `2, 3`, and vertex `(2.5, -0.25)` directly from `x^2 - 5x + 6 = 0`.
+
+Both graph roots are real pointer- and keyboard-draggable controls; moving either root recomputes `b`, `c`, the factors, zero-product result, vertex, and graph. Coefficient inputs, three visibility switches, method selector, five lesson modes, Reset, New equation, step reveal, two editable practice roots, grading, and hint steps all update lesson-owned state. Non-integer or non-real roots switch to a mathematically appropriate method message instead of presenting false factors. The algebra/CAS adapter dispatches only Lesson 114 to this component, and the shared fallback now begins at Lesson 115.
+
+Final 862x1824 integrated browser validation edits the coefficients to derive roots `3,4`, hides and restores factors, physically drags root 1 from `2` to `1` and verifies the recalculated equation `x^2 - 4x + 3`, rejects and accepts practice answers, generates the second equation, and verifies Reset. Exact framing passes surface x=193-848 and y=82-1816, intro y=82-222, controls y=232-386, factor-to-roots lab y=396-1000, practice y=1010-1598, navigation y=1608-1675, and footer y=1685-1804. It reports no horizontal overflow, an exact 862x1824 document, and zero console messages.
+
+Evidence:
+
+- `0171-reference.png`
+- `0171-desktop.png`
+- `0171-dedicated-target-validation.json`

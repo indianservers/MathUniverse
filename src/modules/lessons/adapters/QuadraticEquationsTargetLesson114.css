@@ -1,0 +1,829 @@
+.quad114-page {
+  position: relative;
+  top: -47px;
+  width: 100%;
+  min-height: 1734px;
+  margin-bottom: -47px;
+  color: #17213e;
+  font-size: 9px;
+  letter-spacing: 0;
+}
+.quad114-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.quad114-page h1,
+.quad114-page h2,
+.quad114-page h3,
+.quad114-page p {
+  margin: 0;
+}
+.quad114-page button,
+.quad114-page input,
+.quad114-page select {
+  color: inherit;
+  font: inherit;
+}
+.quad114-page button {
+  cursor: pointer;
+}
+.quad114-page a {
+  color: inherit;
+  text-decoration: none;
+}
+.quad114-page button:focus-visible,
+.quad114-page input:focus-visible,
+.quad114-page select:focus-visible {
+  outline: 2px solid #08a3ba;
+  outline-offset: 2px;
+}
+.quad114-breadcrumb {
+  position: absolute;
+  top: -31px;
+  left: 0;
+  display: flex;
+  height: 28px;
+  align-items: center;
+  gap: 8px;
+  color: #53637a;
+}
+.quad114-breadcrumb a:first-child:before {
+  display: inline-grid;
+  width: 20px;
+  height: 20px;
+  margin-right: 7px;
+  place-items: center;
+  border-radius: 50%;
+  background: #fff;
+  content: "←";
+}
+.quad114-breadcrumb b {
+  color: #087f9c;
+}
+.quad114-intro {
+  height: 140px;
+  padding: 14px 15px;
+  border: 1px solid #dce5ec;
+  border-radius: 15px;
+  background: #fff;
+  box-shadow: 0 6px 18px rgba(41, 75, 105, 0.07);
+}
+.quad114-intro > small {
+  display: flex;
+  gap: 8px;
+}
+.quad114-intro > small b {
+  padding: 5px 9px;
+  border-radius: 12px;
+  background: #f1f3f7;
+  color: #5954c9;
+  font-size: 7px;
+}
+.quad114-intro > small b:last-child {
+  background: #e9f8fb;
+  color: #087e98;
+}
+.quad114-intro h1 {
+  margin-top: 7px;
+  font-size: 25px;
+  line-height: 27px;
+  font-weight: 900;
+}
+.quad114-intro > p {
+  margin-top: 3px;
+  color: #5d6c83;
+  font-size: 10px;
+}
+.quad114-intro nav {
+  display: flex;
+  margin-top: 11px;
+  gap: 7px;
+}
+.quad114-intro nav button {
+  height: 27px;
+  padding: 0 13px;
+  border: 1px solid #dce5ec;
+  border-radius: 15px;
+  background: #fff;
+  font-weight: 800;
+}
+.quad114-intro nav button.active {
+  border-color: #07a5bd;
+  background: #08a6be;
+  color: #fff;
+  box-shadow: 0 5px 12px rgba(0, 158, 184, 0.25);
+}
+.quad114-controls {
+  height: 154px;
+  margin-top: 10px;
+  padding: 12px;
+  border: 1px solid #dce5ec;
+  border-radius: 13px;
+  background: #fff;
+  box-shadow: 0 5px 16px rgba(38, 72, 101, 0.06);
+  display: grid;
+  grid-template-columns: 185px repeat(3, 95px) 1fr;
+  grid-template-rows: 63px 57px;
+}
+.quad114-controls > label {
+  min-width: 0;
+  display: flex;
+  padding: 8px 10px;
+  flex-direction: column;
+  border-right: 1px solid #e1e7ec;
+  gap: 8px;
+}
+.quad114-controls label span {
+  font-weight: 800;
+}
+.quad114-controls .equation strong {
+  font-family: Georgia, serif;
+  font-size: 19px;
+  font-weight: 500;
+}
+.quad114-controls input,
+.quad114-controls select {
+  width: 100%;
+  min-width: 0;
+  height: 32px;
+  padding: 0 10px;
+  border: 1px solid #dce5ec;
+  border-radius: 6px;
+  background: #fff;
+  font-weight: 700;
+}
+.quad114-controls .method {
+  border-right: 0;
+}
+.quad114-controls footer {
+  grid-column: 1/-1;
+  display: flex;
+  margin: 6px -12px -12px;
+  padding: 10px 10px;
+  align-items: center;
+  gap: 17px;
+  border-top: 1px solid #e1e7ec;
+}
+.quad114-controls footer > button {
+  display: flex;
+  height: 30px;
+  padding: 0 12px;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #dce5ec;
+  border-radius: 7px;
+  background: #fff;
+  font-weight: 800;
+}
+.quad114-controls footer > button:first-of-type {
+  margin-left: auto;
+}
+.quad114-controls footer > button.new {
+  border-color: #7253df;
+  background: #754de1;
+  color: #fff;
+}
+.quad114-controls footer svg {
+  width: 12px;
+}
+.quad114-toggle {
+  display: flex !important;
+  padding: 0 !important;
+  align-items: center;
+  flex-direction: row !important;
+  border: 0 !important;
+  gap: 7px !important;
+}
+.quad114-toggle input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+.quad114-toggle i {
+  position: relative;
+  width: 29px;
+  height: 17px;
+  border-radius: 10px;
+  background: #cbd7df;
+}
+.quad114-toggle i:after {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #fff;
+  content: "";
+  transition: 0.15s;
+}
+.quad114-toggle input:checked + i {
+  background: #079fb7;
+}
+.quad114-toggle input:checked + i:after {
+  transform: translateX(12px);
+}
+.quad114-lab {
+  min-height: 604px;
+  margin-top: 10px;
+  padding: 13px 10px 14px;
+  border: 1px solid #dce5ec;
+  border-radius: 13px;
+  background: #fff;
+  box-shadow: 0 5px 16px rgba(38, 72, 101, 0.06);
+}
+.quad114-lab > header {
+  height: 43px;
+}
+.quad114-lab h2 {
+  font-size: 14px;
+}
+.quad114-lab > header p {
+  margin-top: 4px;
+  color: #5c6d84;
+}
+.quad114-flow {
+  display: grid;
+  min-height: 405px;
+  grid-template-columns: 155px 160px 1fr;
+  gap: 9px;
+}
+.quad114-flow > article {
+  padding: 12px 10px;
+  border: 1px solid #dce5ec;
+  border-radius: 9px;
+  background: #fff;
+}
+.quad114-flow h3 {
+  font-size: 10px;
+}
+.quad114-flow > article > p {
+  margin-top: 8px;
+  color: #65758a;
+}
+.quad114-flow .zero h3 {
+  color: #7555e1;
+}
+.quad114-flow .graph-panel h3 {
+  color: #067f9c;
+  text-align: center;
+}
+.quad114-factors {
+}
+.factors section {
+  position: relative;
+  min-height: 141px;
+  margin-top: 23px;
+  padding: 15px 10px;
+  border: 1px solid #cfe0e9;
+  border-radius: 6px;
+  background: #fbfdfe;
+}
+.factors section + section {
+  margin-top: 15px;
+}
+.factors section strong {
+  font-family: Georgia, serif;
+  font-size: 17px;
+}
+.factors section p {
+  margin-top: 17px;
+  color: #56677e;
+}
+.factors section span {
+  display: block;
+  margin-top: 7px;
+  font-family: Georgia, serif;
+  font-size: 13px;
+}
+.factors section b {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 6px 11px;
+  border: 1px solid #53b886;
+  border-radius: 5px;
+  background: #eefaf3;
+  color: #07824d;
+  font-family: Georgia, serif;
+  font-size: 13px;
+}
+.factors section i {
+  position: absolute;
+  top: 70px;
+  right: -29px;
+  width: 29px;
+  border-top: 2px solid #734ade;
+}
+.factors section i:after {
+  position: absolute;
+  right: -1px;
+  top: -4px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #734ade;
+  content: "";
+}
+.factors .unfactorable {
+  min-height: 100px;
+}
+.zero > section {
+  display: flex;
+  min-height: 69px;
+  margin-top: 92px;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid #936fe9;
+  border-radius: 6px;
+  background: #fbf9ff;
+  color: #6041d0;
+  text-align: center;
+}
+.zero > section + section {
+  margin-top: 45px;
+  border-color: #55b983;
+  background: #f1faf5;
+  color: #087c49;
+}
+.zero section strong {
+  font-family: Georgia, serif;
+  font-size: 13px;
+}
+.zero section span {
+  margin-top: 8px;
+  color: #56677e;
+  font-family: Arial, sans-serif;
+  font-size: 8px;
+}
+.graph-panel > strong {
+  display: block;
+  margin-top: 8px;
+  text-align: center;
+  font-family: Georgia, serif;
+  font-size: 12px;
+}
+.quad114-graph {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 7px;
+  touch-action: none;
+}
+.quad114-graph .grid line {
+  stroke: #d9e1e7;
+  stroke-width: 0.6;
+  stroke-dasharray: 3 3;
+}
+.quad114-graph .axis {
+  stroke: #111827;
+  stroke-width: 1.2;
+}
+.quad114-graph text {
+  fill: #253047;
+  font-size: 9px;
+  text-anchor: middle;
+}
+.quad114-graph .curve {
+  fill: none;
+  stroke: #376be8;
+  stroke-width: 2;
+}
+.quad114-graph .root {
+  fill: #07924d;
+  stroke: #fff;
+  stroke-width: 1.3;
+}
+.quad114-graph .root.draggable {
+  cursor: ew-resize;
+}
+.quad114-graph .root-label {
+  fill: #111827;
+  font-family: Georgia, serif;
+  font-size: 11px;
+}
+.quad114-graph .vertex {
+  fill: #4268e5;
+}
+.quad114-graph .vertex-label {
+  fill: #315ce0;
+  font-size: 9px;
+}
+.quad114-lab > footer {
+  display: flex;
+  min-height: 80px;
+  margin-top: 13px;
+  padding: 13px;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid #dce5ec;
+  border-radius: 8px;
+  background: #fafcfd;
+}
+.quad114-lab > footer.verified {
+  border-color: #58b98a;
+  background: #f5fcf8;
+}
+.quad114-lab > footer > svg {
+  width: 22px;
+  height: 22px;
+  padding: 4px;
+  border: 1px solid #07924d;
+  border-radius: 50%;
+  color: #07924d;
+}
+.quad114-lab > footer span {
+  display: grid;
+  gap: 4px;
+}
+.quad114-lab > footer span b {
+  color: #078b50;
+}
+.quad114-lab > footer span strong {
+  font-family: Georgia, serif;
+  font-size: 13px;
+  font-weight: 500;
+}
+.quad114-lab > footer button {
+  display: flex;
+  height: 31px;
+  margin-left: auto;
+  padding: 0 10px;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #dce5ec;
+  border-radius: 7px;
+  background: #fff;
+  font-weight: 800;
+}
+.quad114-lab > footer button svg {
+  width: 12px;
+}
+.quad114-lab .steps {
+  margin-top: 8px;
+  padding: 8px;
+  border-left: 3px solid #7653df;
+  background: #f7f4ff;
+  color: #4f4771;
+}
+.quad114-practice {
+  min-height: 568px;
+  margin-top: 10px;
+  padding: 14px 10px;
+  border: 1px solid #dce5ec;
+  border-radius: 13px;
+  background: #fff;
+  box-shadow: 0 5px 16px rgba(38, 72, 101, 0.06);
+}
+.quad114-practice > header {
+  height: 50px;
+  padding-left: 3px;
+}
+.quad114-practice > header h2 {
+  font-size: 14px;
+}
+.quad114-practice > header p {
+  margin-top: 5px;
+  color: #5b6d84;
+}
+.quad114-practice > div {
+  display: grid;
+  min-height: 370px;
+  border: 1px solid #dce5ec;
+  border-radius: 8px;
+  grid-template-columns: 41% 59%;
+  overflow: hidden;
+}
+.quad114-practice > div > article {
+  padding: 13px;
+}
+.quad114-practice > div > article + article {
+  border-left: 1px solid #dce5ec;
+}
+.quad114-practice article > b {
+  display: block;
+}
+.quad114-practice article > strong {
+  display: block;
+  margin-top: 13px;
+  font-family: Georgia, serif;
+  font-size: 17px;
+  font-weight: 500;
+}
+.quad114-practice article > section {
+  margin-top: 14px;
+  padding: 11px;
+  border: 1px solid #e2e7ec;
+  border-radius: 8px;
+}
+.quad114-practice article > section p {
+  margin: 14px 0 7px;
+}
+.quad114-practice article > section label {
+  display: flex;
+  min-height: 34px;
+  padding: 6px 9px;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #d7e0e6;
+  border-radius: 6px;
+  background: #fff;
+  font-family: Georgia, serif;
+  font-size: 11px;
+}
+.quad114-practice article > section label + label {
+  margin-top: 8px;
+}
+.quad114-practice article > section label svg {
+  width: 12px;
+  color: #079454;
+}
+.quad114-practice article > section label svg:first-of-type {
+  margin-left: auto;
+  color: #243047;
+}
+.quad114-practice article > section input {
+  width: 62px;
+  height: 27px;
+  margin-left: auto;
+  padding: 0 9px;
+  border: 1px solid #7cc49d;
+  border-radius: 5px;
+  background: #effaf4;
+  color: #087d4a;
+}
+.practice-graph {
+  text-align: center;
+}
+.practice-graph .quad114-graph {
+  margin-top: 12px;
+}
+.quad114-practice > footer {
+  display: flex;
+  height: 48px;
+  align-items: center;
+}
+.quad114-practice > footer button {
+  display: flex;
+  height: 38px;
+  padding: 0 14px;
+  align-items: center;
+  gap: 6px;
+  border: 0;
+  border-radius: 7px;
+  background: #754ee0;
+  color: #fff;
+  font-weight: 800;
+  box-shadow: 0 6px 13px rgba(105, 70, 220, 0.25);
+}
+.quad114-practice > footer button svg {
+  width: 12px;
+}
+.quad114-practice > footer span {
+  height: 38px;
+  padding: 13px 16px;
+  flex: 1;
+}
+.quad114-practice > footer .correct {
+  background: #effaf4;
+  color: #07824d;
+}
+.quad114-practice > footer .pending {
+  background: #f7f4ff;
+  color: #6245c6;
+}
+.quad114-practice > aside {
+  display: flex;
+  min-height: 59px;
+  padding: 10px;
+  align-items: center;
+  gap: 11px;
+  border: 1px solid #8d6bea;
+  border-radius: 8px;
+}
+.quad114-practice > aside > svg {
+  width: 34px;
+  height: 34px;
+  padding: 8px;
+  border-radius: 50%;
+  background: #7952df;
+  color: #fff;
+}
+.quad114-practice > aside span {
+  flex: 1;
+}
+.quad114-practice > aside span b {
+  color: #6448cf;
+}
+.quad114-practice > aside span p {
+  margin-top: 3px;
+  color: #57687e;
+}
+.quad114-practice > aside button {
+  display: flex;
+  height: 30px;
+  padding: 0 10px;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #dce5ec;
+  border-radius: 7px;
+  background: #fff;
+  font-weight: 800;
+}
+.quad114-practice > aside button svg {
+  width: 12px;
+}
+.quad114-adjacent {
+  display: grid;
+  height: 67px;
+  margin-top: 10px;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.quad114-adjacent a {
+  display: flex;
+  padding: 12px;
+  align-items: center;
+  gap: 9px;
+  border: 1px solid #dce5ec;
+  border-radius: 9px;
+  background: #fff;
+}
+.quad114-adjacent a:last-child {
+  justify-content: flex-end;
+  text-align: right;
+}
+.quad114-adjacent svg {
+  width: 14px;
+}
+.quad114-adjacent span {
+  display: grid;
+  gap: 5px;
+  font-weight: 800;
+}
+.quad114-adjacent small {
+  color: #65758a;
+  font-size: 6px;
+}
+.quad114-footer {
+  position: relative;
+  min-height: 118px;
+  margin-top: 10px;
+  padding: 15px 13px;
+  border: 1px solid #dce5ec;
+  border-radius: 9px;
+  background: #fff;
+}
+.quad114-footer > b {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+}
+.quad114-footer > b svg {
+  width: 13px;
+  color: #08a0b9;
+}
+.quad114-footer > span {
+  display: block;
+  margin-top: 7px;
+  color: #66768c;
+}
+.quad114-footer > nav {
+  position: absolute;
+  top: 13px;
+  right: 12px;
+  display: flex;
+  gap: 7px;
+}
+.quad114-footer button {
+  height: 30px;
+  padding: 0 11px;
+  border: 1px solid #dce5ec;
+  border-radius: 7px;
+  background: #fff;
+  font-weight: 700;
+}
+.quad114-footer hr {
+  margin: 14px 0;
+  border: 0;
+  border-top: 1px solid #e1e7ec;
+}
+.quad114-footer small {
+  color: #66768c;
+  font-size: 6px;
+}
+body:has(.quad114-page)
+  #main-content
+  .flex.items-center.gap-2:has(> nav[aria-label="Breadcrumb"]) {
+  visibility: hidden;
+}
+body:has(.quad114-page) nav[aria-label="Adjacent lessons"],
+body:has(.quad114-page) footer[aria-label="Site footer"] {
+  display: none;
+}
+@media (min-width: 800px) {
+  body:has(.quad114-page) [data-testid="desktop-sidebar"] {
+    display: block !important;
+    position: sticky !important;
+    top: 0;
+    width: 178px;
+  }
+  body:has(.quad114-page) #main-content {
+    padding: 51px 14px 0 15px;
+    overflow: hidden;
+    background: linear-gradient(120deg, #f2fbfc, #faf7ff);
+  }
+  body:has(.quad114-page) header.sticky {
+    height: 44px;
+    padding: 4px 10px;
+  }
+  body:has(.quad114-page) header.sticky button[aria-label="Open navigation"],
+  body:has(.quad114-page) nav[class*="bottom-0"][class*="fixed"] {
+    display: none !important;
+  }
+  body:has(.quad114-page) [data-testid="desktop-sidebar"] > div {
+    padding: 9px;
+  }
+  body:has(.quad114-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type {
+    height: 53px;
+    min-height: 53px;
+    margin-bottom: 10px;
+    padding: 6px;
+  }
+  body:has(.quad114-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type
+    p:first-child {
+    white-space: nowrap;
+    font-size: 11px;
+  }
+  body:has(.quad114-page) [data-testid="desktop-sidebar"] > div > label {
+    height: 32px;
+    min-height: 32px;
+    margin-bottom: 8px;
+  }
+  body:has(.quad114-page) [data-testid="desktop-sidebar"] nav > div > button {
+    padding: 5px 7px;
+    font-size: 8px;
+  }
+  body:has(.quad114-page) [data-testid="desktop-sidebar"] nav > div > div a {
+    padding: 4px 7px;
+    font-size: 7px;
+  }
+  body:has(.quad114-page)
+    [data-testid="desktop-sidebar"]
+    nav
+    > div:nth-child(2),
+  body:has(.quad114-page)
+    [data-testid="desktop-sidebar"]
+    nav
+    > div:nth-child(n + 5),
+  body:has(.quad114-page) [data-testid="desktop-sidebar-progress"],
+  body:has(.quad114-page) [data-testid="desktop-sidebar-compound-links"],
+  body:has(.quad114-page) [data-testid="desktop-sidebar-premium"],
+  body:has(.quad114-page) [data-testid="desktop-sidebar-footer"] {
+    display: none !important;
+  }
+}
+@media (max-width: 799px) {
+  .quad114-page {
+    position: static;
+    width: 100%;
+    min-height: 0;
+    margin: 0;
+  }
+  .quad114-breadcrumb {
+    position: static;
+    margin-bottom: 8px;
+  }
+  .quad114-intro,
+  .quad114-controls,
+  .quad114-lab,
+  .quad114-practice,
+  .quad114-footer {
+    height: auto;
+  }
+  .quad114-flow,
+  .quad114-practice > div {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 760px) {
+  .quad114-controls {
+    grid-template-columns: 1.5fr repeat(3, 0.7fr) 1.1fr;
+  }
+  .quad114-flow {
+    grid-template-columns: 145px 150px 1fr;
+  }
+  .quad114-intro nav button {
+    padding: 0 10px;
+  }
+}

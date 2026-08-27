@@ -268,8 +268,20 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain("Three planes intersect at one point");
   });
 
-  it("delegates phase 4 algebra lessons 114 through 128 to lesson-specific structure workspaces", () => {
-    for (let id = 114; id <= 128; id += 1) {
+  it("routes lesson 114 to its dedicated factoring, roots, and parabola model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 114)!;
+    const html = renderToStaticMarkup(
+      <AlgebraCasLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+    expect(html).toContain('data-testid="algebra-mockup-0171"');
+    expect(html).toContain('data-dedicated-lesson="114"');
+    expect(html).toContain("editable-quadratic-coefficients-discriminant-factor-pairs-zero-product-rule-pointer-draggable-root-graph-synchronized-verification-graded-practice-model");
+    expect(html).toContain('aria-label="Drag root 1"');
+    expect(html).toContain("Factor-to-Roots Lab");
+  });
+
+  it("delegates phase 4 algebra lessons 115 through 128 to lesson-specific structure workspaces", () => {
+    for (let id = 115; id <= 128; id += 1) {
       const lesson = lessonCatalog.find((item) => item.id === id)!;
       const html = renderToStaticMarkup(
         <AlgebraCasLessonAdapter
