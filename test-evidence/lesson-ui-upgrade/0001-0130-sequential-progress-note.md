@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **105 of 200 lessons completed; 95 pending.**
+Dedicated rebuild target: **106 of 200 lessons completed; 94 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -91,6 +91,7 @@ Dedicated rebuild target: **105 of 200 lessons completed; 95 pending.**
 | 0177   |       120 Trigonometric Equations | Complete | Dedicated linked unit-circle/wave model with pointer-draggable reference angle, generated quadrant solutions and periodic families, degree/radian modes, practice, and exact 864x1821 target framing |
 | 0178   |       121 Absolute-Value Equations | Complete | Dedicated center/distance model with pointer-draggable linked number-line points, generated two-branch solves and checks, negative-distance rejection, practice, and exact 1003x1568 target framing |
 | 0179   |             122 Linear Inequalities | Complete | Dedicated sign-aware coefficient model with pointer-draggable boundary, comparator reversal, linked endpoint/shading/interval notation, test points, practice, and exact 930x1691 target framing |
+| 0180   |             123 Compound Inequalities | Complete | Dedicated AND/intersection and OR/union interval model with two pointer-draggable boundaries, endpoint inclusion toggles, linked number lines, test points, empty-set handling, practice, and exact 911x1726 target framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -1561,3 +1562,17 @@ Evidence:
 - `0179-reference.png`
 - `0179-desktop.png`
 - `0179-dedicated-target-validation.json`
+
+## Lesson 123 / Mockup 0180 - Compound Inequalities
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-compound-inequality-and-intersection-or-union-two-pointer-keyboard-draggable-boundaries-open-closed-endpoints-linked-number-lines-interval-notation-test-points-empty-set-practice-model`. The lesson-owned lower and upper boundaries, endpoint inclusion, and AND/OR mode generate both component inequalities, their linked number lines, the combined intersection or union, interval notation, test-point truth values, warning state, and practice result. The target `x > 2 AND x <= 6` derives the intersection `(2, 6]` with an open lower endpoint and closed upper endpoint.
+
+Both combined-line boundaries are real pointer- and keyboard-draggable controls. Moving either boundary recalculates every linked graph, inequality, interval, test point, and result; Enter or Space toggles that boundary between open and closed. Crossing the bounds in AND mode produces a genuine empty-set result, while the examples control loads the OR model `y < -1 OR y >= 3` and correctly renders the union `(-infinity, -1) union [3, infinity)`. Tabs, language, Share, Workspace, Reset, fullscreen, action status, endpoint controls, and practice all update visible state.
+
+Final 911x1726 integrated browser validation physically drags the lower boundary from `2` to `3`, drags the upper boundary from `6` to `7`, closes the lower endpoint to produce `[3, 7]`, moves the lower boundary past the upper boundary to verify the empty set, loads the OR example, opens its upper endpoint, and verifies Reset. Exact framing passes surface x=234-894 and y=107-1726, intro y=107-389, tabs y=401-460, lab y=472-1499, linked workspace y=578-1093, lower warning/practice/trace row y=1107-1411, navigation y=1510-1568, and footer y=1580-1726. It reports no horizontal or vertical overflow, an exact 911x1726 document, and zero console messages.
+
+Evidence:
+
+- `0180-reference.png`
+- `0180-desktop.png`
+- `0180-dedicated-target-validation.json`

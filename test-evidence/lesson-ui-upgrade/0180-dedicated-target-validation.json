@@ -1,0 +1,191 @@
+{
+  "mockup": "0180",
+  "lessonId": 123,
+  "route": "/lessons/algebra/123-compound-inequalities",
+  "checks": {
+    "initial": {
+      "problem": "AND,2,6,false,true",
+      "interval": "(2, 6]",
+      "empty": "false",
+      "actions": "0"
+    },
+    "draggedLower": {
+      "problem": "AND,3,6,false,true",
+      "interval": "(3, 6]",
+      "empty": "false",
+      "actions": "6"
+    },
+    "draggedUpper": {
+      "problem": "AND,3,7,false,true",
+      "interval": "(3, 7]",
+      "empty": "false",
+      "actions": "12"
+    },
+    "closedLower": {
+      "problem": "AND,3,7,true,true",
+      "interval": "[3, 7]",
+      "empty": "false",
+      "actions": "13"
+    },
+    "emptyIntersection": {
+      "problem": "AND,8,7,true,true",
+      "interval": "∅",
+      "empty": "true",
+      "actions": "18"
+    },
+    "unionExample": {
+      "problem": "OR,-1,3,false,true",
+      "interval": "(-∞, -1) ∪ [3, ∞)",
+      "empty": "false",
+      "actions": "1"
+    },
+    "openUnionEndpoint": {
+      "problem": "OR,-1,3,false,false",
+      "interval": "(-∞, -1) ∪ (3, ∞)",
+      "empty": "false",
+      "actions": "2"
+    },
+    "reset": {
+      "problem": "AND,2,6,false,true",
+      "interval": "(2, 6]",
+      "empty": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 911,
+      "height": 1726
+    },
+    "document": {
+      "width": 911,
+      "height": 1726
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "regions": {
+      "surface": {
+        "top": 107,
+        "bottom": 1726,
+        "height": 1619,
+        "left": 234,
+        "right": 894,
+        "width": 660
+      },
+      "intro": {
+        "top": 107,
+        "bottom": 389,
+        "height": 282,
+        "left": 234,
+        "right": 894,
+        "width": 660
+      },
+      "tabs": {
+        "top": 401,
+        "bottom": 460,
+        "height": 59,
+        "left": 234,
+        "right": 894,
+        "width": 660
+      },
+      "lab": {
+        "top": 472,
+        "bottom": 1499,
+        "height": 1027,
+        "left": 234,
+        "right": 894,
+        "width": 660
+      },
+      "top": {
+        "top": 578,
+        "bottom": 1093,
+        "height": 515,
+        "left": 247,
+        "right": 881,
+        "width": 634
+      },
+      "lines": {
+        "top": 578,
+        "bottom": 1093,
+        "height": 515,
+        "left": 247,
+        "right": 643.96875,
+        "width": 396.96875
+      },
+      "rail": {
+        "top": 578,
+        "bottom": 1093,
+        "height": 515,
+        "left": 657.96875,
+        "right": 881,
+        "width": 223.03125
+      },
+      "lower": {
+        "top": 1107,
+        "bottom": 1411,
+        "height": 304,
+        "left": 247,
+        "right": 881,
+        "width": 634
+      },
+      "warning": {
+        "top": 1107,
+        "bottom": 1411,
+        "height": 304,
+        "left": 247,
+        "right": 432.703125,
+        "width": 185.703125
+      },
+      "practice": {
+        "top": 1107,
+        "bottom": 1411,
+        "height": 304,
+        "left": 446.703125,
+        "right": 642.1875,
+        "width": 195.484375
+      },
+      "trace": {
+        "top": 1107,
+        "bottom": 1411,
+        "height": 304,
+        "left": 656.1875,
+        "right": 880.984375,
+        "width": 224.796875
+      },
+      "note": {
+        "top": 1423,
+        "bottom": 1458,
+        "height": 35,
+        "left": 235,
+        "right": 893,
+        "width": 658
+      },
+      "tags": {
+        "top": 1467,
+        "bottom": 1498,
+        "height": 31,
+        "left": 247,
+        "right": 881,
+        "width": 634
+      },
+      "navigation": {
+        "top": 1510,
+        "bottom": 1568,
+        "height": 58,
+        "left": 234,
+        "right": 894,
+        "width": 660
+      },
+      "footer": {
+        "top": 1580,
+        "bottom": 1726,
+        "height": 146,
+        "left": 234,
+        "right": 894,
+        "width": 660
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

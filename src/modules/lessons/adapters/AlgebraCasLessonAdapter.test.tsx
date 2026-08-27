@@ -376,8 +376,20 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain("Solve on the number line");
   });
 
-  it("delegates phase 4 algebra lessons 123 through 128 to lesson-specific structure workspaces", () => {
-    for (let id = 123; id <= 128; id += 1) {
+  it("routes lesson 123 to its dedicated draggable intersection and union model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 123)!;
+    const html = renderToStaticMarkup(
+      <AlgebraCasLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+    expect(html).toContain('data-testid="algebra-mockup-0180"');
+    expect(html).toContain('data-dedicated-lesson="123"');
+    expect(html).toContain("editable-compound-inequality-and-intersection-or-union-two-pointer-keyboard-draggable-boundaries-open-closed-endpoints-linked-number-lines-interval-notation-test-points-empty-set-practice-model");
+    expect(html).toContain('aria-label="Drag compound lower boundary"');
+    expect(html).toContain("Build the intersection on a number line");
+  });
+
+  it("delegates phase 4 algebra lessons 124 through 128 to lesson-specific structure workspaces", () => {
+    for (let id = 124; id <= 128; id += 1) {
       const lesson = lessonCatalog.find((item) => item.id === id)!;
       const html = renderToStaticMarkup(
         <AlgebraCasLessonAdapter
