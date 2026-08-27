@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **92 of 200 lessons completed; 108 pending.**
+Dedicated rebuild target: **93 of 200 lessons completed; 107 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1370,3 +1370,17 @@ Evidence:
 - `0166-reference.png`
 - `0166-desktop.png`
 - `0166-dedicated-target-validation.json`
+
+## Lesson 110 / Mockup 0167 - Literal Equations
+
+Reworked individually against the mathematics target mockup with a dedicated `selectable-literal-formula-target-subject-native-inverse-operation-drag-symbolic-isolation-restriction-tracking-numeric-substitution-generated-practice-model`. Rectangle area, distance-rate-time, simple interest, and circumference formulas own their allowed subjects, symbolic rearrangements, divisor restrictions, default values, numeric solutions, and original-formula evaluation. Formula and subject selection regenerates the spotlight, inverse operation, restriction, fraction result, value controls, and verification rail.
+
+The selected inverse-operation token is a native draggable object and the balance/rearrangement stage is a real drop target. Formula, subject, and numeric inputs calculate rather than swap static copy. Five lesson modes, language, Share, Workspace, expansion, Reset, Reset workspace, Check with values, Show hint, and New practice all update visible state. Subject choices with no division correctly remove the restriction. Circumference practice keeps pi symbolic, while the generated volume practice independently derives `h = V/(lw)` and its numeric value. The algebra/CAS adapter dispatches Lesson 110 only to this dedicated component, and the shared algebra fallback now begins at Lesson 111.
+
+Final 973x1617 integrated browser validation rearranges all four formula families, changes the area subject among `w`, `l`, and `A`, verifies each corresponding restriction, physically drops Divide by l, changes `A` and `l` to calculate `w = 6`, checks the original formula, exercises all five modes and shell controls, reveals and hides the first practice hint, generates the volume practice, and verifies Reset and reload. The screenshot loop also caught and removed a Step 2 overlap, duplicate subject spotlight, incorrectly styled equals sign, clipped practice denominator, and non-stacked division display. Final geometry exactly matches surface x=222-958 and y=94-1614, intro y=94-323, tabs y=332-380, lab y=389-1085, workspace y=468-1075, controls x=712-946, practice y=1094-1437, navigation y=1445-1488, and footer y=1504-1614. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0167-reference.png`
+- `0167-desktop.png`
+- `0167-dedicated-target-validation.json`

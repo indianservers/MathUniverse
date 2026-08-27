@@ -220,8 +220,20 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain("INTERACT · LCD BALANCE MODEL");
   });
 
-  it("delegates phase 4 algebra lessons 110 through 128 to lesson-specific structure workspaces", () => {
-    for (let id = 110; id <= 128; id += 1) {
+  it("routes lesson 110 to its dedicated literal-equation rearrangement model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 110)!;
+    const html = renderToStaticMarkup(
+      <AlgebraCasLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+    expect(html).toContain('data-testid="algebra-mockup-0167"');
+    expect(html).toContain('data-dedicated-lesson="110"');
+    expect(html).toContain("selectable-literal-formula-target-subject-native-inverse-operation-drag-symbolic-isolation-restriction-tracking-numeric-substitution-generated-practice-model");
+    expect(html).toContain('aria-label="Drag inverse operation Divide by l"');
+    expect(html).toContain("INTERACTION · FORMULA REARRANGER");
+  });
+
+  it("delegates phase 4 algebra lessons 111 through 128 to lesson-specific structure workspaces", () => {
+    for (let id = 111; id <= 128; id += 1) {
       const lesson = lessonCatalog.find((item) => item.id === id)!;
       const html = renderToStaticMarkup(
         <AlgebraCasLessonAdapter
