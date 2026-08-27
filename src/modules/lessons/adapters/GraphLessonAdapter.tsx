@@ -12,6 +12,7 @@ import HigherDegreePolynomialsTargetLesson136 from "./HigherDegreePolynomialsTar
 import ReciprocalFunctionsTargetLesson137 from "./ReciprocalFunctionsTargetLesson137";
 import RationalFunctionsTargetLesson138 from "./RationalFunctionsTargetLesson138";
 import SquareRootFunctionsTargetLesson139 from "./SquareRootFunctionsTargetLesson139";
+import CubeRootFunctionsTargetLesson140 from "./CubeRootFunctionsTargetLesson140";
 import { graphVisualPresetForLesson } from "../presets/graphVisualPresets";
 import type { LessonAdapterProps } from "../types";
 import { Eye, Grid3X3, Minus, Move, Plus, RotateCcw, Share2, ZoomIn } from "lucide-react";
@@ -79,6 +80,9 @@ export default function GraphLessonAdapter({ lesson, resetToken, onInteraction }
   }
   if (lesson.id === 139) {
     return <SquareRootFunctionsTargetLesson139 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
+  if (lesson.id === 140) {
+    return <CubeRootFunctionsTargetLesson140 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
 
   if (usesFunctionMockupWorkspace(lesson.id)) {
@@ -421,7 +425,6 @@ function graphSpecFor(lessonId: number): GraphSpec {
     136: graphSpec("Higher-Degree Polynomials", "Connect degree, roots, turns, and end behavior.", "Four possible roots", "y=0.08(x+2)(x-1)(x-3)(x-4)", "Degree limits roots", ["Root chips", "turning points", "End behavior", "Multiplicity"], ["Sign table", "Root count", "Turn count"], "Polynomial degree limits roots and controls how many turns can appear.", "degree limits roots", "data"),
     137: graphSpec("Reciprocal Functions", "Track excluded inputs and asymptotes.", "x = 1 excluded", "y=3/(x-1)", "x=0 is excluded in the parent graph", ["Vertical asymptote", "Horizontal asymptote", "Two branches", "Excluded input"], ["Domain restriction", "Branch behavior", "Asymptote check"], "For reciprocal functions, x=0 is excluded in the parent graph and shifted exclusions create asymptotes.", "x=0 is excluded", "trace"),
     138: graphSpec("Rational Functions", "Find restrictions before interpreting branches.", "Denominator zero x=1", "y=(x+2)/(x-1)", "Denominator zeros are excluded", ["Numerator", "Denominator", "Restriction", "Asymptotes"], ["Slant behavior", "Branch table", "Hole/asymptote check"], "For rational functions, denominator zeros are excluded and shape depends on numerator behavior.", "denominator zeros are excluded", "trace"),
-    140: graphSpec("Cube-Root Functions", "Allow negative inputs and read the center.", "Center (0,0)", "y=2cuberoot(x)", "Negative real inputs are allowed", ["Negative inputs", "Center point", "Slow middle", "S-shape"], ["Domain all real", "Range all real", "Flattened crossing"], "Cube-root functions allow negative real inputs and pass through a center point.", "negative real inputs are allowed", "trace"),
     141: graphSpec("Absolute-Value Functions", "Understand piecewise reflection.", "Vertex (1, -2)", "f(x)=1.25|x-1|-2", "Distance makes a V-shape", ["Axis of symmetry x = 1", "Distance from vertex", "Parent y = |x|", "Piecewise form"], ["Opening scale a", "Vertex h", "Vertical shift k", "Reflection toggle"], "Absolute-value distance makes a V-shape at the vertex.", "distance makes a V-shape", "functions"),
     142: graphSpec("Exponential Functions", "Model growth and decay.", "x step outputs x2", "f(x)=1.5·2^x", "Equal x-steps multiply outputs", ["0.375", "0.75", "1.5", "3", "6"], ["Growth", "Decay", "Horizontal asymptote y = 0", "Ratio table"], "Compare ratios, not differences; equal x-steps multiply outputs.", "equal x-steps multiply outputs", "functions"),
     143: graphSpec("Logarithmic Functions", "Read domain, asymptote, and inverse reflection.", "x > 1", "y = 2log_2(x - 1) + 1", "Inputs must be positive", ["Vertical asymptote x = 1", "Domain shading", "Inverse exponential", "Value table"], ["Transformation sliders", "Diagnostics", "Domain challenge"], "For logarithmic graphs, inputs must be positive before taking the log.", "inputs must be positive", "trace"),

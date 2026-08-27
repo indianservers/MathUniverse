@@ -4,6 +4,16 @@ import { lessonCatalog } from "../catalog/lessonCatalog";
 import GraphLessonAdapter from "./GraphLessonAdapter";
 
 describe("GraphLessonAdapter", () => {
+  it("routes lesson 140 to its dedicated cube-root center model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 140)!;
+    const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="graph-mockup-0197"');
+    expect(html).toContain('data-dedicated-lesson="140"');
+    expect(html).toContain("editable-shifted-cube-root-scale-center-and-vertical-shift-pointer-keyboard-draggable-center-and-scale-point-generated-all-real-s-curve-symmetric-samples-table-inverse-reasoning-warning-practice-model");
+    expect(html).toContain('aria-label="Drag cube-root center"');
+    expect(html).toContain("Explore the cube-root center");
+  });
+
   it("routes lesson 139 to its dedicated square-root endpoint model", () => {
     const lesson = lessonCatalog.find((item) => item.id === 139)!;
     const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);

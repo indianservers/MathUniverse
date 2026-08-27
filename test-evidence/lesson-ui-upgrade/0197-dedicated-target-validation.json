@@ -1,0 +1,227 @@
+{
+  "mockup": "0197",
+  "lessonId": 140,
+  "route": "/lessons/graphs-and-functions/140-cube-root-functions",
+  "checks": {
+    "initial": {
+      "a": "2",
+      "b": "0",
+      "k": "0",
+      "formula": "f(x) = 2∛(x)",
+      "center": "0,0",
+      "domain": "all-real",
+      "range": "all-real",
+      "samples": "-8,-4;-1,-2;0,0;1,2;2,2.52;8,4",
+      "practice": "false",
+      "actions": "0"
+    },
+    "scaleSlider": {
+      "a": "1.25",
+      "b": "0",
+      "k": "0",
+      "formula": "f(x) = 1.25∛(x)",
+      "center": "0,0",
+      "domain": "all-real",
+      "range": "all-real",
+      "samples": "-8,-2.5;-1,-1.25;0,0;1,1.25;2,1.57;8,2.5",
+      "practice": "false",
+      "actions": "3"
+    },
+    "centerSlider": {
+      "a": "1.25",
+      "b": "1",
+      "k": "0",
+      "formula": "f(x) = 1.25∛(x − 1)",
+      "center": "1,0",
+      "domain": "all-real",
+      "range": "all-real",
+      "samples": "-7,-2.5;0,-1.25;1,0;2,1.25;3,1.57;9,2.5",
+      "practice": "false",
+      "actions": "7"
+    },
+    "centerDrag": {
+      "a": "2",
+      "b": "1",
+      "k": "1",
+      "formula": "f(x) = 2∛(x − 1) + 1",
+      "center": "1,1",
+      "domain": "all-real",
+      "range": "all-real",
+      "samples": "-7,-3;0,-1;1,1;2,3;3,3.52;9,5",
+      "practice": "false",
+      "actions": "8"
+    },
+    "centerKeyboard": {
+      "a": "2",
+      "b": "0.75",
+      "k": "0.75",
+      "formula": "f(x) = 2∛(x − 0.75) + 0.75",
+      "center": "0.75,0.75",
+      "domain": "all-real",
+      "range": "all-real",
+      "samples": "-7.25,-3.25;-0.25,-1.25;0.75,0.75;1.75,2.75;2.75,3.27;8.75,4.75",
+      "practice": "false",
+      "actions": "10"
+    },
+    "scaleDrag": {
+      "a": "3",
+      "b": "0.75",
+      "k": "0.75",
+      "formula": "f(x) = 3∛(x − 0.75) + 0.75",
+      "center": "0.75,0.75",
+      "domain": "all-real",
+      "range": "all-real",
+      "samples": "-7.25,-5.25;-0.25,-2.25;0.75,0.75;1.75,3.75;2.75,4.53;8.75,6.75",
+      "practice": "false",
+      "actions": "18"
+    },
+    "scaleKeyboard": {
+      "a": "2.75",
+      "b": "0.75",
+      "k": "0.75",
+      "formula": "f(x) = 2.75∛(x − 0.75) + 0.75",
+      "center": "0.75,0.75",
+      "domain": "all-real",
+      "range": "all-real",
+      "samples": "-7.25,-4.75;-0.25,-2;0.75,0.75;1.75,3.5;2.75,4.21;8.75,6.25",
+      "practice": "false",
+      "actions": "19"
+    },
+    "practice": {
+      "a": "1",
+      "b": "3",
+      "k": "1",
+      "formula": "f(x) = ∛(x − 3) + 1",
+      "center": "3,1",
+      "domain": "all-real",
+      "range": "all-real",
+      "samples": "-5,-1;2,0;3,1;4,2;5,2.26;11,3",
+      "practice": "true",
+      "actions": "20"
+    },
+    "reset": {
+      "a": "2",
+      "b": "0",
+      "k": "0",
+      "formula": "f(x) = 2∛(x)",
+      "center": "0,0",
+      "domain": "all-real",
+      "range": "all-real",
+      "samples": "-8,-4;-1,-2;0,0;1,2;2,2.52;8,4",
+      "practice": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 955,
+      "height": 1647
+    },
+    "document": {
+      "width": 955,
+      "height": 1647
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "regions": {
+      "surface": {
+        "top": 98,
+        "bottom": 1643,
+        "height": 1545,
+        "left": 217,
+        "right": 944,
+        "width": 727
+      },
+      "intro": {
+        "top": 98,
+        "bottom": 341,
+        "height": 243,
+        "left": 217,
+        "right": 944,
+        "width": 727
+      },
+      "tabs": {
+        "top": 352,
+        "bottom": 398,
+        "height": 46,
+        "left": 217,
+        "right": 944,
+        "width": 727
+      },
+      "lab": {
+        "top": 410,
+        "bottom": 1473,
+        "height": 1063,
+        "left": 217,
+        "right": 944,
+        "width": 727
+      },
+      "layout": {
+        "top": 539,
+        "bottom": 1094,
+        "height": 555,
+        "left": 229,
+        "right": 932,
+        "width": 703
+      },
+      "graphPanel": {
+        "top": 539,
+        "bottom": 1051,
+        "height": 512,
+        "left": 229,
+        "right": 720,
+        "width": 491
+      },
+      "graph": {
+        "top": 540,
+        "bottom": 1052,
+        "height": 512,
+        "left": 230,
+        "right": 719,
+        "width": 489
+      },
+      "rail": {
+        "top": 539,
+        "bottom": 1094,
+        "height": 555,
+        "left": 731,
+        "right": 932,
+        "width": 201
+      },
+      "understand": {
+        "top": 1105,
+        "bottom": 1320,
+        "height": 215,
+        "left": 229,
+        "right": 932,
+        "width": 703
+      },
+      "bottom": {
+        "top": 1331,
+        "bottom": 1462,
+        "height": 131,
+        "left": 229,
+        "right": 932,
+        "width": 703
+      },
+      "navigation": {
+        "top": 1484,
+        "bottom": 1528,
+        "height": 44,
+        "left": 217,
+        "right": 944,
+        "width": 727
+      },
+      "footer": {
+        "top": 1539,
+        "bottom": 1644,
+        "height": 105,
+        "left": 217,
+        "right": 944,
+        "width": 727
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **122 of 200 lessons completed; 78 pending.**
+Dedicated rebuild target: **123 of 200 lessons completed; 77 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -108,6 +108,7 @@ Dedicated rebuild target: **122 of 200 lessons completed; 78 pending.**
 | 0194   |       137 Reciprocal Functions | Complete | Dedicated reciprocal model with real scale/excluded-input controls, pointer/keyboard asymptote and scale-point drags, working pan/zoom, linked branches/samples/domain/range/reasoning/practice, and exact 955x1647 target framing |
 | 0195   |         138 Rational Functions | Complete | Dedicated equal-degree rational model with real numerator-scale/restriction controls, pointer/keyboard restriction and scale-point drags, asymptote-to-hole transition, linked samples/LRV/reasoning/practice, and exact 925x1700 target framing |
 | 0196   |      139 Square-Root Functions | Complete | Dedicated endpoint model with real vertical-scale/domain-start controls, pointer/keyboard endpoint and scale-point drags, restricted-domain graph, generated samples/table/range/reasoning/practice, and exact 910x1728 target framing |
+| 0197   |        140 Cube-Root Functions | Complete | Dedicated shifted cube-root model with real vertical-scale/center controls, pointer/keyboard center and scale-point drags, all-real S-curve, generated symmetric samples/table/inverse reasoning/practice, and exact 955x1647 target framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -1816,3 +1817,17 @@ Evidence:
 - `0196-reference.png`
 - `0196-desktop.png`
 - `0196-dedicated-target-validation.json`
+
+## Lesson 140 / Mockup 0197 - Cube-Root Functions
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-shifted-cube-root-scale-center-and-vertical-shift-pointer-keyboard-draggable-center-and-scale-point-generated-all-real-s-curve-symmetric-samples-table-inverse-reasoning-warning-practice-model`. The lesson-owned scale `a`, center shift `b`, and vertical center `k` generate `f(x)=a∛(x-b)+k`, the S-curve, center `(b,k)`, all-real domain, mathematically correct range, six symmetric samples, key-values table, inverse/shape cards, square-root comparison warning, and practice. The target `2∛x` produces center `(0,0)` and samples `(-8,-4)`, `(-1,-2)`, `(0,0)`, `(1,2)`, `(2,2.52)`, and `(8,4)`.
+
+Both visible parameters have real range and numeric controls. The center and unit-offset scale point are genuine pointer- and keyboard-draggable graph objects. Center dragging edits both `b` and the otherwise direct-manipulation-only vertical center `k`; every change regenerates the formula, graph, center, labels, samples, table, and conceptual text. Scale `a=0` correctly changes the range from all real numbers to `y=k`. The practice card and its calculator button load the actual shifted model `g(x)=∛(x-3)+1`, center `(3,1)`, and regenerated values.
+
+Final 955x1647 integrated browser validation changes both range controls, resets, physically drags the center from `(0,0)` to `(1,1)`, keyboard-moves it to `(0.75,0.75)`, physically drags scale from `2` to `3`, keyboard-reduces it to `2.75`, loads and verifies practice, and resets. Exact framing passes surface x=217-944 and y=98-1643, intro y=98-341, tabs y=352-398, lab y=410-1473, graph/rail y=539-1094, concept band y=1105-1320, practice band y=1331-1462, navigation y=1484-1528, and footer y=1539-1644. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0197-reference.png`
+- `0197-desktop.png`
+- `0197-dedicated-target-validation.json`
