@@ -1,0 +1,267 @@
+{
+  "mockup": "0206",
+  "lessonId": 149,
+  "route": "/lessons/graphs-and-functions/149-piecewise-functions",
+  "checks": {
+    "initial": {
+      "x": "1.4",
+      "switch-one": "0",
+      "switch-two": "2",
+      "shift": "0",
+      "branch": "middle",
+      "result": "1.9599999999999997",
+      "visible": "left,middle,right",
+      "tab": "Interaction + visualization",
+      "workspace": "false"
+    },
+    "verticalShift": {
+      "x": "1.4",
+      "switch-one": "0",
+      "switch-two": "2",
+      "shift": "2.5",
+      "branch": "middle",
+      "result": "4.46",
+      "visible": "left,middle,right",
+      "tab": "Interaction + visualization",
+      "workspace": "false"
+    },
+    "firstInput": {
+      "x": "1.4",
+      "switch-one": "-1",
+      "switch-two": "2",
+      "shift": "2.5",
+      "branch": "middle",
+      "result": "4.46",
+      "visible": "left,middle,right",
+      "tab": "Interaction + visualization",
+      "workspace": "false"
+    },
+    "secondInput": {
+      "x": "1.4",
+      "switch-one": "-1",
+      "switch-two": "3",
+      "shift": "2.5",
+      "branch": "middle",
+      "result": "4.46",
+      "visible": "left,middle,right",
+      "tab": "Interaction + visualization",
+      "workspace": "false"
+    },
+    "probeDrag": {
+      "x": "-1.7000000000000002",
+      "switch-one": "0",
+      "switch-two": "2",
+      "shift": "0",
+      "branch": "left",
+      "result": "0.7000000000000002",
+      "visible": "left,middle,right",
+      "tab": "Interaction + visualization",
+      "workspace": "false"
+    },
+    "probeKeyboard": {
+      "x": "-1.6",
+      "switch-one": "0",
+      "switch-two": "2",
+      "shift": "0",
+      "branch": "left",
+      "result": "0.6000000000000001",
+      "visible": "left,middle,right",
+      "tab": "Interaction + visualization",
+      "workspace": "false"
+    },
+    "firstBoundaryDrag": {
+      "x": "1.4",
+      "switch-one": "1",
+      "switch-two": "2",
+      "shift": "0",
+      "branch": "middle",
+      "result": "1.9599999999999997",
+      "visible": "left,middle,right",
+      "tab": "Interaction + visualization",
+      "workspace": "false"
+    },
+    "firstBoundaryKeyboard": {
+      "x": "1.4",
+      "switch-one": "0.9",
+      "switch-two": "2",
+      "shift": "0",
+      "branch": "middle",
+      "result": "1.9599999999999997",
+      "visible": "left,middle,right",
+      "tab": "Interaction + visualization",
+      "workspace": "false"
+    },
+    "secondBoundaryDrag": {
+      "x": "1.4",
+      "switch-one": "0",
+      "switch-two": "3",
+      "shift": "0",
+      "branch": "middle",
+      "result": "1.9599999999999997",
+      "visible": "left,middle,right",
+      "tab": "Interaction + visualization",
+      "workspace": "false"
+    },
+    "secondBoundaryKeyboard": {
+      "x": "1.4",
+      "switch-one": "0",
+      "switch-two": "2.9000000000000004",
+      "shift": "0",
+      "branch": "middle",
+      "result": "1.9599999999999997",
+      "visible": "left,middle,right",
+      "tab": "Interaction + visualization",
+      "workspace": "false"
+    },
+    "firstBoundaryOwnership": {
+      "x": "0",
+      "switch-one": "0",
+      "switch-two": "2",
+      "shift": "0",
+      "branch": "middle",
+      "result": "0",
+      "visible": "left,middle,right",
+      "tab": "Interaction + visualization",
+      "workspace": "false"
+    },
+    "rightBoundaryOwnership": {
+      "x": "2",
+      "switch-one": "0",
+      "switch-two": "2",
+      "shift": "0",
+      "branch": "right",
+      "result": "3",
+      "visible": "left,middle,right",
+      "tab": "Interaction + visualization",
+      "workspace": "false"
+    },
+    "leftHidden": {
+      "x": "2",
+      "switch-one": "0",
+      "switch-two": "2",
+      "shift": "0",
+      "branch": "right",
+      "result": "3",
+      "visible": "middle,right",
+      "tab": "Interaction + visualization",
+      "workspace": "false"
+    },
+    "leftPathCount": 0,
+    "leftRestored": {
+      "x": "2",
+      "switch-one": "0",
+      "switch-two": "2",
+      "shift": "0",
+      "branch": "right",
+      "result": "3",
+      "visible": "left,middle,right",
+      "tab": "Interaction + visualization",
+      "workspace": "false"
+    },
+    "examplesTab": {
+      "x": "2",
+      "switch-one": "0",
+      "switch-two": "2",
+      "shift": "0",
+      "branch": "right",
+      "result": "3",
+      "visible": "left,middle,right",
+      "tab": "Examples",
+      "workspace": "false"
+    },
+    "languageChanged": true,
+    "workspaceOpen": true,
+    "workspaceClosed": true,
+    "shareNotice": true,
+    "reset": {
+      "x": "1.4",
+      "switch-one": "0",
+      "switch-two": "2",
+      "shift": "0",
+      "branch": "middle",
+      "result": "1.9599999999999997",
+      "visible": "left,middle,right",
+      "tab": "Interaction + visualization",
+      "workspace": "false"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1205,
+      "height": 1306
+    },
+    "document": {
+      "width": 1205,
+      "height": 1543
+    },
+    "horizontalOverflow": false,
+    "regions": {
+      "page": {
+        "top": 65,
+        "bottom": 1306,
+        "left": 236,
+        "right": 1185,
+        "width": 949,
+        "height": 1241
+      },
+      "breadcrumb": {
+        "top": 65,
+        "bottom": 112,
+        "left": 236,
+        "right": 1185,
+        "width": 949,
+        "height": 47
+      },
+      "header": {
+        "top": 112,
+        "bottom": 377,
+        "left": 236,
+        "right": 1185,
+        "width": 949,
+        "height": 265
+      },
+      "tabs": {
+        "top": 389,
+        "bottom": 453,
+        "left": 236,
+        "right": 1185,
+        "width": 949,
+        "height": 64
+      },
+      "lab": {
+        "top": 466,
+        "bottom": 1074,
+        "left": 236,
+        "right": 1185,
+        "width": 949,
+        "height": 608
+      },
+      "graph": {
+        "top": 510,
+        "bottom": 995,
+        "left": 252,
+        "right": 889,
+        "width": 637,
+        "height": 485
+      },
+      "insights": {
+        "top": 1084,
+        "bottom": 1198,
+        "left": 236,
+        "right": 1185,
+        "width": 949,
+        "height": 114
+      },
+      "adjacent": {
+        "top": 1210,
+        "bottom": 1275,
+        "left": 236,
+        "right": 1185,
+        "width": 949,
+        "height": 65
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

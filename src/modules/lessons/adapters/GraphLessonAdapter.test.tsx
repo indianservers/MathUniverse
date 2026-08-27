@@ -4,6 +4,16 @@ import { lessonCatalog } from "../catalog/lessonCatalog";
 import GraphLessonAdapter from "./GraphLessonAdapter";
 
 describe("GraphLessonAdapter", () => {
+  it("routes lesson 149 to its dedicated piecewise rule engine", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 149)!;
+    const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="graph-mockup-0206"');
+    expect(html).toContain('data-dedicated-lesson="149"');
+    expect(html).toContain("editable-piecewise-probe-switch-points-vertical-shift-and-branch-visibility-pointer-keyboard-draggable-probe-and-boundaries-generated-three-rule-graph-open-closed-endpoint-ownership-condition-first-evaluation-and-boundary-trace");
+    expect(html).toContain('aria-label="Drag piecewise x probe"');
+    expect(html).toContain("Boundary decides");
+  });
+
   it("routes lesson 148 to its dedicated three-region sign classifier", () => {
     const lesson = lessonCatalog.find((item) => item.id === 148)!;
     const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
@@ -250,7 +260,6 @@ describe("GraphLessonAdapter", () => {
       140: "negative real inputs are allowed",
       141: "distance makes a V-shape",
       142: "equal x-steps multiply outputs",
-      149: "choose only the rule",
       150: "inner output becomes the outer input",
       151: "inputs and outputs reverse",
       152: "f(-x)=f(x)",

@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **131 of 200 lessons completed; 69 pending.**
+Dedicated rebuild target: **132 of 200 lessons completed; 68 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -117,6 +117,7 @@ Dedicated rebuild target: **131 of 200 lessons completed; 69 pending.**
 | 0203   |                 146 Floor Function | Complete | Dedicated transformed floor-function model with real input/shift ranges, pointer/keyboard probe drag, generated staircase and number line, exact closed-left/open-right endpoints, interval table, negative-input correctness, challenge grading, discontinuity diagnostics, and exact 1536x1024 framing |
 | 0204   |               147 Ceiling Function | Complete | Dedicated transformed ceiling-function model with real input/shift ranges, snap mode, pointer/keyboard probe drag, generated upward staircase, open-left/closed-right endpoints, clickable evaluation table, negative/integer boundary correctness, floor comparison, jump diagram, and exact 1392x1130 framing |
 | 0205   |                  148 Sign Function | Complete | Dedicated three-region sign classifier with real graph-scale/threshold controls, pointer/keyboard input and threshold drags, generated negative/zero/positive rays, selectable cases/shortcuts, live classifier, piecewise definition, magnitude/direction proofs, and exact 1334x1179 framing |
+| 0206   |             149 Piecewise Functions | Complete | Dedicated three-rule engine with editable switches/vertical shift, pointer/keyboard probe and boundary drags, generated branches/regions/open-closed endpoints, exact boundary ownership, branch visibility, condition-first trace, working tabs/shell actions, and exact 1205x1306 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -1952,3 +1953,17 @@ Evidence:
 - `0205-reference.png`
 - `0205-desktop.png`
 - `0205-dedicated-target-validation.json`
+
+## Lesson 149 / Mockup 0206 - Piecewise Functions
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-piecewise-probe-switch-points-vertical-shift-and-branch-visibility-pointer-keyboard-draggable-probe-and-boundaries-generated-three-rule-graph-open-closed-endpoint-ownership-condition-first-evaluation-and-boundary-trace`. The lesson-owned probe `x`, switch points `s1,s2`, vertical shift, and three visibility states generate the left rule `-x-1+k`, middle rule `x^2+k`, right rule `3+k`, their domain bands, exact endpoints, active condition, output, chooser, control labels, legend, and reasoning cards from one state. The target `x=1.4`, `s1=0`, `s2=2`, `k=0` selects the middle rule and calculates `f(1.4)=1.96`.
+
+Both switch-point number editors and the vertical-shift range are real controls. The x probe and both switch boundaries are independent genuine pointer- and keyboard-draggable SVG objects, with a minimum gap guard between boundaries. Exact ownership is modeled rather than inferred visually: `x=s1` belongs to the middle rule and `x=s2` belongs to the right rule. Each branch visibility button removes/restores its actual SVG group. Rule cards move the probe into their own region; tabs, language, Workspace, Share, and Reset all own observable state.
+
+Final 1205x1306 browser validation physically changes the shift, edits both switch points, drags and keyboard-moves the probe and both boundaries, verifies every generated state against the three formulas, proves exact ownership at `x=0` and `x=2`, removes/restores the left branch, selects Examples, changes language, opens/closes Workspace, exercises Share, and resets. Exact framing passes breadcrumb y=65-112, header y=112-377, tabs y=389-453, lab y=466-1074, graph y=510-995, insights y=1084-1198, and navigation y=1210-1275. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0206-reference.png`
+- `0206-desktop.png`
+- `0206-dedicated-target-validation.json`
