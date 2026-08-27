@@ -328,8 +328,20 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain("Power ladder matcher");
   });
 
-  it("delegates phase 4 algebra lessons 119 through 128 to lesson-specific structure workspaces", () => {
-    for (let id = 119; id <= 128; id += 1) {
+  it("routes lesson 119 to its dedicated domain-gated logarithm model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 119)!;
+    const html = renderToStaticMarkup(
+      <AlgebraCasLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+    expect(html).toContain('data-testid="algebra-mockup-0176"');
+    expect(html).toContain('data-dedicated-lesson="119"');
+    expect(html).toContain("editable-logarithm-candidate-native-range-drag-domain-gate-exponential-rewrite-generated-power-ladder-value-substitution-check-invalid-input-rejection-quick-practice-model");
+    expect(html).toContain('aria-label="Logarithm candidate slider"');
+    expect(html).toContain("Domain-gated solver");
+  });
+
+  it("delegates phase 4 algebra lessons 120 through 128 to lesson-specific structure workspaces", () => {
+    for (let id = 120; id <= 128; id += 1) {
       const lesson = lessonCatalog.find((item) => item.id === id)!;
       const html = renderToStaticMarkup(
         <AlgebraCasLessonAdapter

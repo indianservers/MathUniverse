@@ -1,0 +1,213 @@
+{
+  "mockup": "0176",
+  "lessonId": 119,
+  "route": "/lessons/algebra/119-logarithmic-equations",
+  "checks": {
+    "initial": {
+      "problem": "2,5,32",
+      "domain-pass": "true",
+      "log-value": "5",
+      "verified": "true",
+      "ladder-match": "5",
+      "example-index": "0",
+      "practice-index": "0",
+      "practice-checked": "false",
+      "actions": "0"
+    },
+    "zeroRejected": {
+      "problem": "2,5,0",
+      "domain-pass": "false",
+      "log-value": "undefined",
+      "verified": "false",
+      "ladder-match": "none",
+      "example-index": "0",
+      "practice-index": "0",
+      "practice-checked": "false",
+      "actions": "1"
+    },
+    "negativeRejected": {
+      "problem": "2,5,-2",
+      "domain-pass": "false",
+      "log-value": "undefined",
+      "verified": "false",
+      "ladder-match": "none",
+      "example-index": "0",
+      "practice-index": "0",
+      "practice-checked": "false",
+      "actions": "2"
+    },
+    "draggedSlider": {
+      "problem": "2,5,16",
+      "domain-pass": "true",
+      "log-value": "4",
+      "verified": "false",
+      "ladder-match": "4",
+      "example-index": "0",
+      "practice-index": "0",
+      "practice-checked": "false",
+      "actions": "8"
+    },
+    "ladderSelected": {
+      "problem": "2,5,16",
+      "domain-pass": "true",
+      "log-value": "4",
+      "verified": "false",
+      "ladder-match": "4",
+      "example-index": "0",
+      "practice-index": "0",
+      "practice-checked": "false",
+      "actions": "9"
+    },
+    "incremented": {
+      "problem": "2,5,17",
+      "domain-pass": "true",
+      "log-value": "4.087463",
+      "verified": "false",
+      "ladder-match": "none",
+      "example-index": "0",
+      "practice-index": "0",
+      "practice-checked": "false",
+      "actions": "10"
+    },
+    "example": {
+      "problem": "10,3,1000",
+      "domain-pass": "true",
+      "log-value": "3",
+      "verified": "true",
+      "ladder-match": "3",
+      "example-index": "1",
+      "practice-index": "0",
+      "practice-checked": "false",
+      "actions": "11"
+    },
+    "newPractice": {
+      "problem": "10,3,1000",
+      "domain-pass": "true",
+      "log-value": "3",
+      "verified": "true",
+      "ladder-match": "3",
+      "example-index": "1",
+      "practice-index": "1",
+      "practice-checked": "false",
+      "actions": "12"
+    },
+    "practiceChecked": {
+      "problem": "10,3,1000",
+      "domain-pass": "true",
+      "log-value": "3",
+      "verified": "true",
+      "ladder-match": "3",
+      "example-index": "1",
+      "practice-index": "1",
+      "practice-checked": "true",
+      "actions": "13"
+    },
+    "reset": {
+      "problem": "2,5,32",
+      "domain-pass": "true",
+      "log-value": "5",
+      "verified": "true",
+      "ladder-match": "5",
+      "example-index": "0",
+      "practice-index": "0",
+      "practice-checked": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1024,
+      "height": 1536
+    },
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "regions": {
+      "surface": {
+        "top": 115,
+        "bottom": 1536,
+        "height": 1421,
+        "left": 245,
+        "right": 1008,
+        "width": 763
+      },
+      "intro": {
+        "top": 115,
+        "bottom": 372,
+        "height": 257,
+        "left": 245,
+        "right": 1008,
+        "width": 763
+      },
+      "tabs": {
+        "top": 391,
+        "bottom": 436,
+        "height": 45,
+        "left": 245,
+        "right": 1008,
+        "width": 763
+      },
+      "stage": {
+        "top": 463,
+        "bottom": 1296,
+        "height": 833,
+        "left": 245,
+        "right": 1008,
+        "width": 763
+      },
+      "solver": {
+        "top": 463,
+        "bottom": 1296,
+        "height": 833,
+        "left": 245,
+        "right": 760.171875,
+        "width": 515.171875
+      },
+      "reasoning": {
+        "top": 463,
+        "bottom": 979,
+        "height": 516,
+        "left": 773.171875,
+        "right": 1008,
+        "width": 234.828125
+      },
+      "warning": {
+        "top": 995,
+        "bottom": 1126,
+        "height": 131,
+        "left": 773.171875,
+        "right": 1008,
+        "width": 234.828125
+      },
+      "practice": {
+        "top": 1142,
+        "bottom": 1296,
+        "height": 154,
+        "left": 773.171875,
+        "right": 1008,
+        "width": 234.828125
+      },
+      "navigation": {
+        "top": 1307,
+        "bottom": 1366,
+        "height": 59,
+        "left": 245,
+        "right": 1008,
+        "width": 763
+      },
+      "footer": {
+        "top": 1384,
+        "bottom": 1522,
+        "height": 138,
+        "left": 245,
+        "right": 1008,
+        "width": 763
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **101 of 200 lessons completed; 99 pending.**
+Dedicated rebuild target: **102 of 200 lessons completed; 98 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -87,6 +87,7 @@ Dedicated rebuild target: **101 of 200 lessons completed; 99 pending.**
 | 0173   |             116 Rational Equations | Complete | Dedicated restriction-first rational model with exact fractions, draggable forbidden point, native LCD drag/drop, generated solve/check stages, extraneous-value guardrail, practice, and exact 995x1581 target framing |
 | 0174   |              117 Radical Equations | Complete | Dedicated radical-unwrapper model with draggable domain boundary, native square-both-sides drop, generated isolation/solve/check stages, extraneous-root warning, graded practice, and exact 911x1726 target framing |
 | 0175   |          118 Exponential Equations | Complete | Dedicated base/target power-ladder model with generated powers, native rung drag/drop, pointer-draggable graph exponent, common-base/log fallback, substitution checks, graded practice, and exact 941x1672 target framing |
+| 0176   |          119 Logarithmic Equations | Complete | Dedicated logarithm-candidate model with native range drag, domain rejection, exponential rewrite, generated ladder and value checks, quick practice, and exact 1024x1536 target framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -1501,3 +1502,17 @@ Evidence:
 - `0175-reference.png`
 - `0175-desktop.png`
 - `0175-dedicated-target-validation.json`
+
+## Lesson 119 / Mockup 0176 - Logarithmic Equations
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-logarithm-candidate-native-range-drag-domain-gate-exponential-rewrite-generated-power-ladder-value-substitution-check-invalid-input-rejection-quick-practice-model`. The lesson-owned base, exponent, and candidate generate the logarithmic equation, inverse exponential form, computed target, domain decision, logarithm value, verification result, ladder match, reasoning timeline, and practice answer. The target `log_2(x) = 5` derives `x = 2^5 = 32`, passes `x > 0`, and verifies `log_2(32) = 5`.
+
+The candidate is controlled by a real native range input, numeric input, decrement/increment buttons, and generated power-ladder buttons; every path recalculates the domain gate and substitution check. Zero and negative candidates visibly reject the solution and produce an undefined real logarithm. Tabs, generated examples, language, Share, Workspace, Reset, reasoning expansion, quick-practice generation, and solution checking all update visible state.
+
+Final 1024x1536 integrated browser validation rejects candidate `0`, rejects `-2`, physically drags the native range from `32` to `16`, selects the `2^4 = 16` ladder rung, increments to `17` and verifies the approximate log value, generates and verifies `log_10(x) = 3`, advances and checks quick practice, and verifies Reset. Exact framing passes surface x=245-1008 and y=115-1536, intro y=115-372, tabs y=391-436, workspace y=463-1296, solver x=245-760, reasoning y=463-979, warning y=995-1126, practice y=1142-1296, navigation y=1307-1366, and footer y=1384-1522. It reports no horizontal or vertical overflow, an exact 1024x1536 document, and zero console messages.
+
+Evidence:
+
+- `0176-reference.png`
+- `0176-desktop.png`
+- `0176-dedicated-target-validation.json`
