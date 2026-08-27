@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **113 of 200 lessons completed; 87 pending.**
+Dedicated rebuild target: **114 of 200 lessons completed; 86 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -99,6 +99,7 @@ Dedicated rebuild target: **113 of 200 lessons completed; 87 pending.**
 | 0185   |             128 Numerical Solver | Complete | Dedicated bisection root finder with pointer-draggable coarse/zoom brackets, live trial table, sign-change checks, rounded approximation, exact residual, CSV download, cosine practice, and exact 941x1672 target framing |
 | 0186   |             129 Function Concept | Complete | Dedicated linked function-machine model with real a/b sliders, pointer/keyboard-draggable sample inputs, generated mappings/table/graph/vertical slices, multiple-output counterexample, live practice, and exact 925x1701 target framing |
 | 0187   |            130 Domain and Range | Complete | Dedicated shifted-square-root projector with real domain/range sliders, pointer/keyboard-draggable closed start, linked axis projections, generated interval notation/evaluations, grid, practice, and exact 985x1597 target framing |
+| 0188   |           131 Function Notation | Complete | Dedicated linked quadratic-notation decoder with coefficient/shift sliders, pointer/keyboard-draggable chosen input, synchronized substitution/output/graph/table, calculated practice, and exact 1024x1536 target framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -1681,3 +1682,17 @@ Evidence:
 - `0187-reference.png`
 - `0187-desktop.png`
 - `0187-dedicated-target-validation.json`
+
+## Lesson 131 / Mockup 0188 - Function Notation
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-quadratic-function-notation-decoder-coefficient-shift-pointer-keyboard-draggable-chosen-input-linked-substitution-output-parabola-sample-table-ordered-pair-not-multiplication-practice-model`. The lesson-owned coefficient, vertical shift, and chosen input define the live rule, three-stage notation decoder, substitution arithmetic, output, ordered pair, parabola, sample table, reasoning trace, and misconception warning. The target `f(x)=x^2+1` evaluates `f(2)=5` and plots `(2,5)`.
+
+Both graph parameters are real range controls, and the selected graph point is a genuine pointer- and keyboard-draggable object. Every move recalculates the decoder, equation stages, point, graph, highlighted table row, reasoning, and output data from one model. The chosen-input steppers, editable `g(x)=3x-4` practice, Learn more note, `2x^2-1` example, language, Share, Workspace, Reset, fullscreen, tabs, and action status all update visible state.
+
+Final 1024x1536 integrated browser validation physically drags the coefficient from `1` to `5`, the vertical shift from `1` to `-2`, resets, drags the graph input from `2` to `3`, keyboard-moves it back to `2`, uses the stepper, calculates and checks `g(6)=14`, opens the warning, loads the example and verifies `f(3)=17`, then verifies Reset. Exact framing passes surface x=230-1006 and y=103-1535, intro y=103-379, tabs y=393-451, lab y=462-1369, decoder y=550-726, graph x=247-523 and y=742-1194, table x=540-739, rail x=765-983, lower checks y=1206-1354, navigation y=1375-1425, and footer y=1436-1529. It reports no horizontal or vertical overflow, an exact 1024x1536 document, and zero console messages.
+
+Evidence:
+
+- `0188-reference.png`
+- `0188-desktop.png`
+- `0188-dedicated-target-validation.json`

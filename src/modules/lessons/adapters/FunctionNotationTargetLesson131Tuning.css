@@ -1,0 +1,85 @@
+.note131-page {
+  top: -51px;
+  height: 1432px;
+}
+
+.note131-lab {
+  padding-right: 22px;
+  padding-left: 15px;
+  font-size: 11px;
+}
+
+.note131-lab > header {
+  height: 75px;
+}
+
+.note131-decoder {
+  grid-template-columns: 207px 35px 233px 35px 227px;
+}
+
+.note131-decoder h3 {
+  font-size: 13px;
+}
+
+.note131-plot h3,
+.note131-table h3,
+.note131-rail h3 {
+  font-size: 12px;
+}
+
+.note131-decoder article > strong {
+  font-size: 28px;
+}
+
+.note131-decoder article > p {
+  font-size: 13px;
+}
+
+.note131-lab > header h2 {
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.note131-middle {
+  margin-top: 15px;
+  grid-template-columns: 502px 218px;
+  gap: 17px;
+}
+
+.note131-visual {
+  grid-template-columns: 276px 199px;
+  gap: 17px;
+}
+
+.note131-graph {
+  width: calc(100% + 30px);
+  height: 372px;
+  margin-left: -10px;
+}
+
+.note131-table table {
+  height: 244px;
+  font-size: 12px;
+}
+
+.note131-lower {
+  height: 148px;
+  margin-top: 11px;
+  grid-template-columns: 251px 1fr;
+  gap: 24px;
+}
+
+.note131-rail > section + section p b {
+  font-size: 8px;
+}
+
+.note131-lower .warning p,
+.note131-lower .practice p {
+  font-size: 12px;
+}
+
+.note131-lower .warning h3,
+.note131-lower .practice h3,
+.note131-lower .practice strong {
+  font-size: 12px;
+}

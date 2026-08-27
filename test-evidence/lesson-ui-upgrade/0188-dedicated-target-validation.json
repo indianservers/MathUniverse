@@ -1,0 +1,218 @@
+{
+  "mockup": "0188",
+  "lessonId": 131,
+  "route": "/lessons/graphs-and-functions/131-function-notation",
+  "checks": {
+    "initial": {
+      "a": "1",
+      "k": "1",
+      "input": "2",
+      "output": "5",
+      "point": "2,5",
+      "practice": "5,11,true",
+      "actions": "0"
+    },
+    "coefficient": {
+      "a": "5",
+      "k": "1",
+      "input": "2",
+      "output": "21",
+      "point": "2,21",
+      "practice": "5,11,true",
+      "actions": "4"
+    },
+    "shift": {
+      "a": "5",
+      "k": "-2",
+      "input": "2",
+      "output": "18",
+      "point": "2,18",
+      "practice": "5,11,true",
+      "actions": "7"
+    },
+    "pointBaseline": {
+      "a": "1",
+      "k": "1",
+      "input": "2",
+      "output": "5",
+      "point": "2,5",
+      "practice": "5,11,true",
+      "actions": "0"
+    },
+    "pointDrag": {
+      "a": "1",
+      "k": "1",
+      "input": "3",
+      "output": "10",
+      "point": "3,10",
+      "practice": "5,11,true",
+      "actions": "8"
+    },
+    "pointKeyboard": {
+      "a": "1",
+      "k": "1",
+      "input": "2",
+      "output": "5",
+      "point": "2,5",
+      "practice": "5,11,true",
+      "actions": "9"
+    },
+    "stepper": {
+      "a": "1",
+      "k": "1",
+      "input": "3",
+      "output": "10",
+      "point": "3,10",
+      "practice": "5,11,true",
+      "actions": "10"
+    },
+    "practice": {
+      "a": "1",
+      "k": "1",
+      "input": "3",
+      "output": "10",
+      "point": "3,10",
+      "practice": "6,14,true",
+      "actions": "12"
+    },
+    "learn": {
+      "a": "1",
+      "k": "1",
+      "input": "3",
+      "output": "10",
+      "point": "3,10",
+      "practice": "6,14,true",
+      "actions": "13"
+    },
+    "example": {
+      "a": "2",
+      "k": "-1",
+      "input": "3",
+      "output": "17",
+      "point": "3,17",
+      "practice": "6,14,true",
+      "actions": "14"
+    },
+    "reset": {
+      "a": "1",
+      "k": "1",
+      "input": "2",
+      "output": "5",
+      "point": "2,5",
+      "practice": "5,11,true",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1024,
+      "height": 1536
+    },
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "regions": {
+      "surface": {
+        "top": 103,
+        "bottom": 1535,
+        "height": 1432,
+        "left": 230,
+        "right": 1006,
+        "width": 776
+      },
+      "intro": {
+        "top": 103,
+        "bottom": 379,
+        "height": 276,
+        "left": 230,
+        "right": 1006,
+        "width": 776
+      },
+      "tabs": {
+        "top": 393,
+        "bottom": 451,
+        "height": 58,
+        "left": 230,
+        "right": 1006,
+        "width": 776
+      },
+      "lab": {
+        "top": 462,
+        "bottom": 1369,
+        "height": 907,
+        "left": 230,
+        "right": 1006,
+        "width": 776
+      },
+      "decoder": {
+        "top": 550,
+        "bottom": 726,
+        "height": 176,
+        "left": 246,
+        "right": 983,
+        "width": 737
+      },
+      "middle": {
+        "top": 741,
+        "bottom": 1195,
+        "height": 454,
+        "left": 246,
+        "right": 983,
+        "width": 737
+      },
+      "graph": {
+        "top": 742,
+        "bottom": 1194,
+        "height": 452,
+        "left": 247,
+        "right": 523,
+        "width": 276
+      },
+      "table": {
+        "top": 742,
+        "bottom": 1194,
+        "height": 452,
+        "left": 540,
+        "right": 739,
+        "width": 199
+      },
+      "rail": {
+        "top": 741,
+        "bottom": 1195,
+        "height": 454,
+        "left": 765,
+        "right": 983,
+        "width": 218
+      },
+      "lower": {
+        "top": 1206,
+        "bottom": 1354,
+        "height": 148,
+        "left": 246,
+        "right": 983,
+        "width": 737
+      },
+      "navigation": {
+        "top": 1375,
+        "bottom": 1425,
+        "height": 50,
+        "left": 230,
+        "right": 1006,
+        "width": 776
+      },
+      "footer": {
+        "top": 1436,
+        "bottom": 1529,
+        "height": 93,
+        "left": 230,
+        "right": 1006,
+        "width": 776
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

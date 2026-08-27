@@ -4,6 +4,16 @@ import { lessonCatalog } from "../catalog/lessonCatalog";
 import GraphLessonAdapter from "./GraphLessonAdapter";
 
 describe("GraphLessonAdapter", () => {
+  it("routes lesson 131 to its dedicated function-notation decoder model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 131)!;
+    const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="graph-mockup-0188"');
+    expect(html).toContain('data-dedicated-lesson="131"');
+    expect(html).toContain("editable-quadratic-function-notation-decoder-coefficient-shift-pointer-keyboard-draggable-chosen-input-linked-substitution-output-parabola-sample-table-ordered-pair-not-multiplication-practice-model");
+    expect(html).toContain('aria-label="Drag chosen function input"');
+    expect(html).toContain("Notation decoder for");
+  });
+
   it("routes lesson 130 to its dedicated domain-range projector model", () => {
     const lesson = lessonCatalog.find((item) => item.id === 130)!;
     const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
@@ -66,7 +76,6 @@ describe("GraphLessonAdapter", () => {
 
   it("renders function lessons 129 through 152 with lesson-specific graph guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      131: "f(2) means use input 2",
       132: "Vertical-line test",
       133: "equal x-steps make equal y-changes",
       134: "turns at a vertex",
