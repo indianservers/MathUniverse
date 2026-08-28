@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **157 of 200 lessons completed; 43 pending.**
+Dedicated rebuild target: **158 of 200 lessons completed; 42 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -143,6 +143,7 @@ Dedicated rebuild target: **157 of 200 lessons completed; 43 pending.**
 | 0229   |                 172 Gradient / Slope | Complete | Dedicated two-point slope model with pointer/keyboard drag, rise/run, undefined-line guard, move/select/pan/zoom/fullscreen tools, independent draggable graded practice, and exact 1014x1551 framing |
 | 0230   |              173 Equation of a Line | Complete | Dedicated slope/intercept line model with pointer/keyboard manipulation, three generated equation forms, grid/select/pan/undo/redo, corrected graded practice, and exact 1024x1536 framing |
 | 0231   |                   174 Parallel Lines | Complete | Dedicated two-line equal-slope invariant with independent inputs and pointer/keyboard drag, angle/distance evidence, dynamic through-point construction, graded equation practice, and exact 982x1602 framing |
+| 0232   |              175 Perpendicular Lines | Complete | Dedicated two-angle negative-reciprocal model with lock/unlock, independent pointer/keyboard line drag, slope product, special cases, construction proof, independent graded practice, and exact 1003x1569 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2342,3 +2343,17 @@ Evidence:
 - `0231-reference.png`
 - `0231-desktop.png`
 - `0231-dedicated-target-validation.json`
+
+## Lesson 175 / Mockup 0232 - Perpendicular Lines
+
+Reworked individually against the target mockup with a dedicated `two-angle-pointer-keyboard-draggable-lines-negative-reciprocal-lock-product-right-angle-special-cases-construction-and-independent-graded-practice` model. Blue and purple line angles generate slopes, line equations, product, right-angle geometry, and perpendicular status. Lock mode continuously derives θ₂=θ₁+90°; unlocked mode gives line 2 its own real range, pointer drag, and keyboard control, and re-locking immediately restores the invariant.
+
+Both line ranges, both pointer/keyboard line drags, lock/unlock, zoom in/out, Fit, four tabs, language selector, Share, Reset, and the independent practice angle/drag/keyboard/check controls are real. Horizontal/vertical pairs use explicit undefined-slope handling rather than invalid arithmetic. Practice owns a fixed purple slope -2.75 and grades whether the student-controlled blue line makes the actual product approximately -1.
+
+Final 1003x1569 validation edits the locked angle, keyboard-moves and physically drags line 1, unlocks, edits and physically drags line 2, proves a non-perpendicular product, re-locks and restores -1, exercises zoom/Fit/tabs/language/share, rejects 10°, keyboard-moves practice, physically drags it, accepts 20°, resets, and verifies adjacent routes. It reports page x=209-1003 and y=108-1566, header y=108-212, tabs y=212-265, main lab y=279-852, graph x=380-755 and y=354-801, construction/rule y=852-1193, practice y=1193-1486, navigation y=1500-1561, no overflow, and zero console messages.
+
+Evidence:
+
+- `0232-reference.png`
+- `0232-desktop.png`
+- `0232-dedicated-target-validation.json`

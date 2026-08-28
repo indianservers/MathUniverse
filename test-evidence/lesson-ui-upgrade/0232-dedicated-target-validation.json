@@ -1,0 +1,302 @@
+{
+  "mockup": "0232",
+  "lessonId": 175,
+  "route": "/lessons/geometry/175-perpendicular-lines",
+  "checks": {
+    "initial": {
+      "theta1": "55.0",
+      "theta2": "145.0",
+      "m1": "1.43",
+      "m2": "-0.70",
+      "product": "-1.00",
+      "perpendicular": "true",
+      "locked": "true",
+      "zoom": "1.0",
+      "tab": "0",
+      "language": "English (English)",
+      "practice-angle": "10.0",
+      "practice-status": ""
+    },
+    "angle": {
+      "theta1": "70.0",
+      "theta2": "160.0",
+      "m1": "2.75",
+      "m2": "-0.36",
+      "product": "-1.00",
+      "perpendicular": "true",
+      "locked": "true",
+      "zoom": "1.0",
+      "tab": "0",
+      "language": "English (English)",
+      "practice-angle": "10.0",
+      "practice-status": ""
+    },
+    "keyboard": {
+      "theta1": "71.0",
+      "theta2": "161.0",
+      "m1": "2.90",
+      "m2": "-0.34",
+      "product": "-1.00",
+      "perpendicular": "true",
+      "locked": "true",
+      "zoom": "1.0",
+      "tab": "0",
+      "language": "English (English)",
+      "practice-angle": "10.0",
+      "practice-status": ""
+    },
+    "pointer": {
+      "theta1": "92.1",
+      "theta2": "2.1",
+      "m1": "-27.67",
+      "m2": "0.04",
+      "product": "-1.00",
+      "perpendicular": "true",
+      "locked": "true",
+      "zoom": "1.0",
+      "tab": "0",
+      "language": "English (English)",
+      "practice-angle": "10.0",
+      "practice-status": ""
+    },
+    "unlocked": {
+      "theta1": "92.1",
+      "theta2": "2.1",
+      "m1": "-27.67",
+      "m2": "0.04",
+      "product": "-1.00",
+      "perpendicular": "true",
+      "locked": "false",
+      "zoom": "1.0",
+      "tab": "0",
+      "language": "English (English)",
+      "practice-angle": "10.0",
+      "practice-status": ""
+    },
+    "independent": {
+      "theta1": "92.1",
+      "theta2": "110.0",
+      "m1": "-27.67",
+      "m2": "-2.75",
+      "product": "76.03",
+      "perpendicular": "false",
+      "locked": "false",
+      "zoom": "1.0",
+      "tab": "0",
+      "language": "English (English)",
+      "practice-angle": "10.0",
+      "practice-status": ""
+    },
+    "purplePointer": {
+      "theta1": "92.1",
+      "theta2": "103.6",
+      "m1": "-27.67",
+      "m2": "-4.14",
+      "product": "114.56",
+      "perpendicular": "false",
+      "locked": "false",
+      "zoom": "1.0",
+      "tab": "0",
+      "language": "English (English)",
+      "practice-angle": "10.0",
+      "practice-status": ""
+    },
+    "relocked": {
+      "theta1": "92.1",
+      "theta2": "2.1",
+      "m1": "-27.67",
+      "m2": "0.04",
+      "product": "-1.00",
+      "perpendicular": "true",
+      "locked": "true",
+      "zoom": "1.0",
+      "tab": "0",
+      "language": "English (English)",
+      "practice-angle": "10.0",
+      "practice-status": ""
+    },
+    "zoom": {
+      "theta1": "92.1",
+      "theta2": "2.1",
+      "m1": "-27.67",
+      "m2": "0.04",
+      "product": "-1.00",
+      "perpendicular": "true",
+      "locked": "true",
+      "zoom": "1.1",
+      "tab": "0",
+      "language": "English (English)",
+      "practice-angle": "10.0",
+      "practice-status": ""
+    },
+    "tabs": {
+      "theta1": "92.1",
+      "theta2": "2.1",
+      "m1": "-27.67",
+      "m2": "0.04",
+      "product": "-1.00",
+      "perpendicular": "true",
+      "locked": "true",
+      "zoom": "1.0",
+      "tab": "3",
+      "language": "English (English)",
+      "practice-angle": "10.0",
+      "practice-status": ""
+    },
+    "language": {
+      "theta1": "92.1",
+      "theta2": "2.1",
+      "m1": "-27.67",
+      "m2": "0.04",
+      "product": "-1.00",
+      "perpendicular": "true",
+      "locked": "true",
+      "zoom": "1.0",
+      "tab": "3",
+      "language": "Hindi (हिन्दी)",
+      "practice-angle": "10.0",
+      "practice-status": ""
+    },
+    "shared": true,
+    "practiceWrong": {
+      "theta1": "92.1",
+      "theta2": "2.1",
+      "m1": "-27.67",
+      "m2": "0.04",
+      "product": "-1.00",
+      "perpendicular": "true",
+      "locked": "true",
+      "zoom": "1.0",
+      "tab": "3",
+      "language": "Hindi (हिन्दी)",
+      "practice-angle": "10.0",
+      "practice-status": "Keep rotating the blue line"
+    },
+    "practiceKeyboard": {
+      "theta1": "92.1",
+      "theta2": "2.1",
+      "m1": "-27.67",
+      "m2": "0.04",
+      "product": "-1.00",
+      "perpendicular": "true",
+      "locked": "true",
+      "zoom": "1.0",
+      "tab": "3",
+      "language": "Hindi (हिन्दी)",
+      "practice-angle": "19.0",
+      "practice-status": ""
+    },
+    "practiceCorrect": {
+      "theta1": "92.1",
+      "theta2": "2.1",
+      "m1": "-27.67",
+      "m2": "0.04",
+      "product": "-1.00",
+      "perpendicular": "true",
+      "locked": "true",
+      "zoom": "1.0",
+      "tab": "3",
+      "language": "Hindi (हिन्दी)",
+      "practice-angle": "20.0",
+      "practice-status": "Correct perpendicular pair"
+    },
+    "reset": {
+      "theta1": "55.0",
+      "theta2": "145.0",
+      "m1": "1.43",
+      "m2": "-0.70",
+      "product": "-1.00",
+      "perpendicular": "true",
+      "locked": "true",
+      "zoom": "1.0",
+      "tab": "0",
+      "language": "English (English)",
+      "practice-angle": "10.0",
+      "practice-status": ""
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/geometry/174-parallel-lines",
+    "nextHref": "/lessons/geometry/176-angle-between-lines"
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1003,
+      "height": 1569
+    },
+    "document": {
+      "width": 1003,
+      "height": 1569
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "regions": {
+      "page": {
+        "top": 108,
+        "bottom": 1566,
+        "left": 209,
+        "right": 1003,
+        "width": 794,
+        "height": 1458
+      },
+      "header": {
+        "top": 108,
+        "bottom": 212,
+        "left": 228,
+        "right": 984,
+        "width": 756,
+        "height": 104
+      },
+      "tabs": {
+        "top": 212,
+        "bottom": 265,
+        "left": 228,
+        "right": 984,
+        "width": 756,
+        "height": 53
+      },
+      "main": {
+        "top": 279,
+        "bottom": 852,
+        "left": 228,
+        "right": 984,
+        "width": 756,
+        "height": 573
+      },
+      "graph": {
+        "top": 354,
+        "bottom": 801,
+        "left": 380,
+        "right": 755,
+        "width": 375,
+        "height": 447
+      },
+      "rule": {
+        "top": 852,
+        "bottom": 1193,
+        "left": 228,
+        "right": 984,
+        "width": 756,
+        "height": 341
+      },
+      "practice": {
+        "top": 1193,
+        "bottom": 1486,
+        "left": 228,
+        "right": 984,
+        "width": 756,
+        "height": 293
+      },
+      "navigation": {
+        "top": 1500,
+        "bottom": 1561,
+        "left": 228,
+        "right": 984,
+        "width": 756,
+        "height": 61
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
