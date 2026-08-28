@@ -43,6 +43,7 @@ import { geometry2DVisualPresetForLesson } from "../presets/geometry2DVisualPres
 import type { LessonAdapterProps } from "../types";
 import { remainingGeometryTargetForLesson } from "./GeometryTargetLessons206to235";
 import CartesianPlaneTargetLesson167 from "./CartesianPlaneTargetLesson167";
+import PlottingPointsTargetLesson168 from "./PlottingPointsTargetLesson168";
 import ReflectionLineTargetLesson237 from "./ReflectionLineTargetLesson237";
 import ReflectionPointTargetLesson238 from "./ReflectionPointTargetLesson238";
 import ReflectionCircleTargetLesson239 from "./ReflectionCircleTargetLesson239";
@@ -110,6 +111,9 @@ export default function Geometry2DLessonAdapter({
 }: LessonAdapterProps) {
   if (lesson.id === 167) {
     return <CartesianPlaneTargetLesson167 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
+  if (lesson.id === 168) {
+    return <PlottingPointsTargetLesson168 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
   if (lesson.id === 250) {
     return <EnvelopeLinesTargetLesson250 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;

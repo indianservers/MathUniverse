@@ -1,0 +1,174 @@
+{
+  "mockup": "0225",
+  "lessonId": 168,
+  "route": "/lessons/geometry/168-plotting-points",
+  "checks": {
+    "initial": {
+      "points": "3:2,-4:1,-2:-3,5:-2",
+      "mode": "point",
+      "snap": "true",
+      "pan": "0:0",
+      "stage": "2",
+      "treasure": "false"
+    },
+    "inputs": {
+      "points": "-3:4,-4:1,-2:-3,5:-2",
+      "mode": "point",
+      "snap": "true",
+      "pan": "0:0",
+      "stage": "2",
+      "treasure": "false"
+    },
+    "keyboard": {
+      "points": "-2:3,-4:1,-2:-3,5:-2",
+      "mode": "point",
+      "snap": "true",
+      "pan": "0:0",
+      "stage": "2",
+      "treasure": "false"
+    },
+    "pointerDrag": {
+      "points": "0:2,-4:1,-2:-3,5:-2",
+      "mode": "point",
+      "snap": "true",
+      "pan": "0:0",
+      "stage": "2",
+      "treasure": "false"
+    },
+    "halfStep": {
+      "points": "0.5:2,-4:1,-2:-3,5:-2",
+      "mode": "point",
+      "snap": "false",
+      "pan": "0:0",
+      "stage": "2",
+      "treasure": "false"
+    },
+    "pan": {
+      "points": "0.5:2,-4:1,-2:-3,5:-2",
+      "mode": "pan",
+      "snap": "false",
+      "pan": "35:20",
+      "stage": "2",
+      "treasure": "false"
+    },
+    "plot": {
+      "points": "-1:0.5,-4:1,-2:-3,5:-2",
+      "mode": "point",
+      "snap": "false",
+      "pan": "35:20",
+      "stage": "2",
+      "treasure": "false"
+    },
+    "delete": {
+      "points": ",-4:1,-2:-3,5:-2",
+      "mode": "point",
+      "snap": "false",
+      "pan": "35:20",
+      "stage": "2",
+      "treasure": "false"
+    },
+    "clear": {
+      "points": ",,,",
+      "mode": "point",
+      "snap": "false",
+      "pan": "35:20",
+      "stage": "2",
+      "treasure": "false"
+    },
+    "treasure": {
+      "points": ",,,",
+      "mode": "point",
+      "snap": "false",
+      "pan": "35:20",
+      "stage": "2",
+      "treasure": "true"
+    },
+    "bookmark": "Lesson bookmarked",
+    "share": "Lesson link copied",
+    "workspace": "Workspace opened",
+    "reset": {
+      "points": "3:2,-4:1,-2:-3,5:-2",
+      "mode": "point",
+      "snap": "true",
+      "pan": "0:0",
+      "stage": "2",
+      "treasure": "false"
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/geometry/167-cartesian-plane",
+    "nextHref": "/lessons/geometry/169-distance-between-points"
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1024,
+      "height": 1536
+    },
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "regions": {
+      "page": {
+        "top": 103,
+        "bottom": 1523,
+        "left": 215,
+        "right": 1024,
+        "width": 809,
+        "height": 1420
+      },
+      "header": {
+        "top": 103,
+        "bottom": 274,
+        "left": 231,
+        "right": 1008,
+        "width": 777,
+        "height": 171
+      },
+      "stages": {
+        "top": 287,
+        "bottom": 362,
+        "left": 231,
+        "right": 1008,
+        "width": 777,
+        "height": 75
+      },
+      "workspace": {
+        "top": 382,
+        "bottom": 1344,
+        "left": 231,
+        "right": 1008,
+        "width": 777,
+        "height": 962
+      },
+      "plot": {
+        "top": 453,
+        "bottom": 886,
+        "left": 250,
+        "right": 680,
+        "width": 430,
+        "height": 433
+      },
+      "challenge": {
+        "top": 1357,
+        "bottom": 1436,
+        "left": 231,
+        "right": 1008,
+        "width": 777,
+        "height": 79
+      },
+      "navigation": {
+        "top": 1449,
+        "bottom": 1516,
+        "left": 231,
+        "right": 1008,
+        "width": 777,
+        "height": 67
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

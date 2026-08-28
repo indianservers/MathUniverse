@@ -4,9 +4,8 @@ import { lessonCatalog } from "../catalog/lessonCatalog";
 import Geometry2DLessonAdapter from "./Geometry2DLessonAdapter";
 
 describe("Geometry2DLessonAdapter", () => {
-  it("renders coordinate geometry lessons 168 through 182 with lesson-specific guidance", () => {
+  it("renders coordinate geometry lessons 169 through 182 with lesson-specific guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      168: "Plotting rule",
       169: "Distance formula",
       170: "Midpoint formula",
       171: "Section formula",
@@ -42,6 +41,17 @@ describe("Geometry2DLessonAdapter", () => {
       expect(html, lesson.title).toContain("Avoid:");
       expect(html, lesson.title).not.toContain("Coordinate rule");
     }
+  });
+
+  it("renders plotting points as its own four-point construction surface", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 168)!;
+    const html = renderToStaticMarkup(<Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain("geometry-mockup-0225");
+    expect(html).toContain('data-dedicated-lesson="168"');
+    expect(html).toContain("Click to plot points or drag to move them");
+    expect(html).toContain("Snap to grid");
+    expect(html).toContain("Treasure Challenge");
+    expect(html).not.toContain("reusable 2D geometry engine");
   });
 
   it("renders Cartesian plane as its own draggable coordinate surface", () => {

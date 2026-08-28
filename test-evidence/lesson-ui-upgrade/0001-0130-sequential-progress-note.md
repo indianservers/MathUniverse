@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **150 of 200 lessons completed; 50 pending.**
+Dedicated rebuild target: **151 of 200 lessons completed; 49 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -136,6 +136,7 @@ Dedicated rebuild target: **150 of 200 lessons completed; 50 pending.**
 | 0222   |          165 Parent-Function Library | Complete | Six explicit parent-family models with generated curves/domain/range/patterns/rules/key points, real a/b/h/k controls, pointer/keyboard anchor drag, gallery/tabs, three graded questions, navigation, and exact 1208x1302 framing |
 | 0223   |                   166 Graph Matching | Complete | Six explicit quadratic equation/curve targets with native drag/drop and keyboard matching, generated vertices/directions/widths, scoring/progress, hints, stages, replay, reset, practice, navigation, and exact 1206x1304 framing |
 | 0224   |                  167 Cartesian Plane | Complete | Dedicated Cartesian model with editable coordinates, pointer/keyboard point drag, generated quadrants/signs, real visibility controls, four independent practice points, delete/clear/grading/solution, navigation, and exact 1014x1551 framing |
+| 0225   |                  168 Plotting Points | Complete | Dedicated four-point construction model with editable coordinates, pointer/keyboard drag, point/real pan modes, grid snapping, live quadrants/signs, delete/clear, worked example, XP challenge, and exact 1024x1536 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2237,3 +2238,17 @@ Evidence:
 - `0224-reference.png`
 - `0224-desktop.png`
 - `0224-dedicated-target-validation.json`
+
+## Lesson 168 / Mockup 0225 - Plotting Points
+
+Reworked individually against the mathematics target mockup with a dedicated `four-independent-editable-pointer-keyboard-draggable-points-live-quadrants-signs-plot-pan-snap-delete-clear-worked-example-and-xp-treasure-challenge` model. Points A, B, C, and D own independent coordinates that generate graph positions, ordered-pair labels, table inputs, quadrant classifications, sign pairs, and the observation panel. The plane also owns a real pan offset, snapping precision, selected point, tool mode, and treasure state.
+
+All eight coordinate inputs, direct graph plotting, four pointer/keyboard point drags, point and pan tools, actual plane panning, integer/half-step snapping, four task rows, per-point Delete, Clear All, five lesson stages, language, Bookmark, Share, Workspace, the Treasure Challenge, and adjacent navigation are real controls. Coordinate signs and quadrants update from the point state rather than fixed labels.
+
+Final 1024x1536 browser validation edits A to `(-3,4)`, keyboard-moves it to `(-2,3)`, physically drags it to `(0,2)`, disables snapping and moves it to `(0.5,2)`, physically pans the plane by `(35,20)`, plots from the graph, deletes A, clears all points, exercises all stages and actions, completes the 20 XP treasure challenge, reloads to the exact target state, and verifies both adjacent routes. The final comparison loop matches page x=215-1024 and y=103-1523, header x=231-1008 and y=103-274, stages y=287-362, workspace y=382-1344, graph x=250-680 and y=453-886, challenge y=1357-1436, and navigation y=1449-1516. It reports an exact 1024x1536 document, no overflow, and zero console warnings or errors.
+
+Evidence:
+
+- `0225-reference.png`
+- `0225-desktop.png`
+- `0225-dedicated-target-validation.json`
