@@ -1,0 +1,257 @@
+{
+  "mockup": "0229",
+  "lessonId": 172,
+  "route": "/lessons/geometry/172-gradient-slope",
+  "checks": {
+    "initial": {
+      "a": "-4:-1",
+      "b": "3:2",
+      "slope": "0.4286",
+      "tool": "move",
+      "zoom": "1",
+      "tab": "0",
+      "rise-run": "true",
+      "values": "true",
+      "attempts": "0",
+      "best": "false",
+      "status": ""
+    },
+    "inputs": {
+      "a": "-2:1",
+      "b": "3:2",
+      "slope": "0.2000",
+      "tool": "move",
+      "zoom": "1",
+      "tab": "0",
+      "rise-run": "true",
+      "values": "true",
+      "attempts": "0",
+      "best": "false",
+      "status": ""
+    },
+    "keyboard": {
+      "a": "-1:1",
+      "b": "3:2",
+      "slope": "0.2500",
+      "tool": "move",
+      "zoom": "1",
+      "tab": "0",
+      "rise-run": "true",
+      "values": "true",
+      "attempts": "0",
+      "best": "false",
+      "status": ""
+    },
+    "pointer": {
+      "a": "-1:1",
+      "b": "1:1",
+      "slope": "0.0000",
+      "tool": "move",
+      "zoom": "1",
+      "tab": "0",
+      "rise-run": "true",
+      "values": "true",
+      "attempts": "0",
+      "best": "false",
+      "status": ""
+    },
+    "visibility": {
+      "a": "-1:1",
+      "b": "1:1",
+      "slope": "0.0000",
+      "tool": "move",
+      "zoom": "1",
+      "tab": "0",
+      "rise-run": "false",
+      "values": "false",
+      "attempts": "0",
+      "best": "false",
+      "status": ""
+    },
+    "pan": {
+      "a": "-1:1",
+      "b": "1:1",
+      "slope": "0.0000",
+      "tool": "pan",
+      "zoom": "1",
+      "tab": "4",
+      "rise-run": "true",
+      "values": "true",
+      "attempts": "0",
+      "best": "false",
+      "status": ""
+    },
+    "zoom": {
+      "a": "-1:1",
+      "b": "1:1",
+      "slope": "0.0000",
+      "tool": "pan",
+      "zoom": "1",
+      "tab": "4",
+      "rise-run": "true",
+      "values": "true",
+      "attempts": "0",
+      "best": "false",
+      "status": ""
+    },
+    "vertical": {
+      "a": "-1:1",
+      "b": "-1:1",
+      "slope": "undefined",
+      "tool": "pan",
+      "zoom": "1",
+      "tab": "4",
+      "rise-run": "true",
+      "values": "true",
+      "attempts": "0",
+      "best": "false",
+      "status": ""
+    },
+    "fullscreen": true,
+    "shared": true,
+    "wrong": {
+      "a": "-1:1",
+      "b": "-1:1",
+      "slope": "undefined",
+      "tool": "pan",
+      "zoom": "1",
+      "tab": "4",
+      "rise-run": "true",
+      "values": "true",
+      "attempts": "1",
+      "best": "false",
+      "status": "Recheck rise over run"
+    },
+    "correct": {
+      "a": "-1:1",
+      "b": "-1:1",
+      "slope": "undefined",
+      "tool": "pan",
+      "zoom": "1",
+      "tab": "4",
+      "rise-run": "true",
+      "values": "true",
+      "attempts": "2",
+      "best": "true",
+      "status": "Correct slope"
+    },
+    "practiceDrag": {
+      "a": "-1:1",
+      "b": "-1:1",
+      "slope": "undefined",
+      "tool": "pan",
+      "zoom": "1",
+      "tab": "4",
+      "rise-run": "true",
+      "values": "true",
+      "attempts": "2",
+      "best": "true",
+      "status": "Correct slope"
+    },
+    "reset": {
+      "a": "-4:-1",
+      "b": "3:2",
+      "slope": "0.4286",
+      "tool": "move",
+      "zoom": "1",
+      "tab": "0",
+      "rise-run": "true",
+      "values": "true",
+      "attempts": "0",
+      "best": "false",
+      "status": ""
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/geometry/171-section-formula",
+    "nextHref": "/lessons/geometry/173-equation-of-a-line"
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1014,
+      "height": 1551
+    },
+    "document": {
+      "width": 1014,
+      "height": 1551
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "regions": {
+      "page": {
+        "top": 107,
+        "bottom": 1547,
+        "left": 209,
+        "right": 1014,
+        "width": 805,
+        "height": 1440
+      },
+      "header": {
+        "top": 107,
+        "bottom": 252,
+        "left": 231,
+        "right": 992,
+        "width": 761,
+        "height": 145
+      },
+      "stages": {
+        "top": 252,
+        "bottom": 313,
+        "left": 231,
+        "right": 992,
+        "width": 761,
+        "height": 61
+      },
+      "explore": {
+        "top": 331,
+        "bottom": 813,
+        "left": 231,
+        "right": 992,
+        "width": 761,
+        "height": 482
+      },
+      "graph": {
+        "top": 394,
+        "bottom": 742,
+        "left": 396,
+        "right": 795,
+        "width": 399,
+        "height": 348
+      },
+      "learning": {
+        "top": 825,
+        "bottom": 1061,
+        "left": 231,
+        "right": 992,
+        "width": 761,
+        "height": 236
+      },
+      "practice": {
+        "top": 1075,
+        "bottom": 1335,
+        "left": 231,
+        "right": 992,
+        "width": 761,
+        "height": 260
+      },
+      "navigation": {
+        "top": 1349,
+        "bottom": 1408,
+        "left": 231,
+        "right": 992,
+        "width": 761,
+        "height": 59
+      },
+      "footer": {
+        "top": 1422,
+        "bottom": 1541,
+        "left": 231,
+        "right": 992,
+        "width": 761,
+        "height": 119
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

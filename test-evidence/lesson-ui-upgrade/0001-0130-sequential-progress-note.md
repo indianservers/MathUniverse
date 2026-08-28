@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **154 of 200 lessons completed; 46 pending.**
+Dedicated rebuild target: **155 of 200 lessons completed; 45 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -140,6 +140,7 @@ Dedicated rebuild target: **154 of 200 lessons completed; 46 pending.**
 | 0226   |          169 Distance Between Points | Complete | Dedicated two-point Euclidean model with editable coordinates, pointer/keyboard drag, generated right triangle/deltas/distance, grid/snap/zoom, independent target-distance practice, and exact 1005x1566 framing |
 | 0227   |                         170 Midpoint | Complete | Dedicated two-endpoint midpoint model with editable coordinates, pointer/keyboard drag, generated midpoint/equal halves, grid/zoom/expand, independent draggable graded challenge, and exact 1024x1536 framing |
 | 0228   |                  171 Section Formula | Complete | Dedicated internal/external weighted-coordinate model with pointer/keyboard ratio drag, live calculations, real graph tools, comparison presets, graded practice, and exact 1447x1087 framing |
+| 0229   |                 172 Gradient / Slope | Complete | Dedicated two-point slope model with pointer/keyboard drag, rise/run, undefined-line guard, move/select/pan/zoom/fullscreen tools, independent draggable graded practice, and exact 1014x1551 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2297,3 +2298,17 @@ Evidence:
 - `0228-reference.png`
 - `0228-desktop.png`
 - `0228-dedicated-target-validation.json`
+
+## Lesson 172 / Mockup 0229 - Gradient / Slope
+
+Reworked individually against the target mockup with a dedicated `two-editable-pointer-keyboard-draggable-points-rise-run-slope-direction-vertical-guard-tools-and-independent-graded-practice` model. Points A and B generate the line, signed rise, signed run, slope, direction, worked example, and undefined vertical-line state from one source. Practice owns separate draggable points, calculated slope, attempts, best result, and feedback.
+
+Both point coordinate pairs, both pointer/keyboard point drags, Rise/Run and Values visibility, five stages, Move, Select, Pan, physical viewport panning, zoom in/out, fullscreen, Share, Reset, both independent practice drags, task actions, grading, practice reset, and adjacent navigation are real controls. The slope calculation guards x2=x1 rather than displaying an invalid quotient.
+
+Final 1014x1551 validation edits A, keyboard-moves A, physically drags B, hides/restores construction values, exercises all stages and tools, physically pans, zooms, creates an undefined vertical line, enters/exits fullscreen, shares, rejects 0, accepts 0.6667 for the initial practice line, physically drags practice A, resets, and verifies adjacent routes. It reports page x=209-1014, header y=107-252, stages y=252-313, exploration y=331-813, graph x=396-795 and y=394-742, learning y=825-1061, practice y=1075-1335, navigation y=1349-1408, footer y=1422-1541, no overflow, and zero console messages.
+
+Evidence:
+
+- `0229-reference.png`
+- `0229-desktop.png`
+- `0229-dedicated-target-validation.json`
