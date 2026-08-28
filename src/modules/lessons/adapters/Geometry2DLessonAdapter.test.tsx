@@ -4,9 +4,8 @@ import { lessonCatalog } from "../catalog/lessonCatalog";
 import Geometry2DLessonAdapter from "./Geometry2DLessonAdapter";
 
 describe("Geometry2DLessonAdapter", () => {
-  it("renders coordinate geometry lessons 169 through 182 with lesson-specific guidance", () => {
+  it("renders coordinate geometry lessons 170 through 182 with lesson-specific guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      169: "Distance formula",
       170: "Midpoint formula",
       171: "Section formula",
       172: "Slope formula",
@@ -41,6 +40,17 @@ describe("Geometry2DLessonAdapter", () => {
       expect(html, lesson.title).toContain("Avoid:");
       expect(html, lesson.title).not.toContain("Coordinate rule");
     }
+  });
+
+  it("renders distance between points as its own right-triangle surface", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 169)!;
+    const html = renderToStaticMarkup(<Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain("geometry-mockup-0226");
+    expect(html).toContain('data-dedicated-lesson="169"');
+    expect(html).toContain("Interactive Model");
+    expect(html).toContain("Live result");
+    expect(html).toContain("Try it yourself");
+    expect(html).not.toContain("reusable 2D geometry engine");
   });
 
   it("renders plotting points as its own four-point construction surface", () => {

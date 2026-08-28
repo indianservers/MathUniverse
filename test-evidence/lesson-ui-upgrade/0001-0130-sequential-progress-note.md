@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **151 of 200 lessons completed; 49 pending.**
+Dedicated rebuild target: **152 of 200 lessons completed; 48 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -137,6 +137,7 @@ Dedicated rebuild target: **151 of 200 lessons completed; 49 pending.**
 | 0223   |                   166 Graph Matching | Complete | Six explicit quadratic equation/curve targets with native drag/drop and keyboard matching, generated vertices/directions/widths, scoring/progress, hints, stages, replay, reset, practice, navigation, and exact 1206x1304 framing |
 | 0224   |                  167 Cartesian Plane | Complete | Dedicated Cartesian model with editable coordinates, pointer/keyboard point drag, generated quadrants/signs, real visibility controls, four independent practice points, delete/clear/grading/solution, navigation, and exact 1014x1551 framing |
 | 0225   |                  168 Plotting Points | Complete | Dedicated four-point construction model with editable coordinates, pointer/keyboard drag, point/real pan modes, grid snapping, live quadrants/signs, delete/clear, worked example, XP challenge, and exact 1024x1536 framing |
+| 0226   |          169 Distance Between Points | Complete | Dedicated two-point Euclidean model with editable coordinates, pointer/keyboard drag, generated right triangle/deltas/distance, grid/snap/zoom, independent target-distance practice, and exact 1005x1566 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2252,3 +2253,17 @@ Evidence:
 - `0225-reference.png`
 - `0225-desktop.png`
 - `0225-dedicated-target-validation.json`
+
+## Lesson 169 / Mockup 0226 - Distance Between Points
+
+Reworked individually against the mathematics target mockup with a dedicated `two-independent-editable-pointer-keyboard-draggable-points-generated-right-triangle-deltas-distance-grid-snap-zoom-and-independent-target-distance-practice` model. Points A and B generate the horizontal and vertical differences, right triangle, hypotenuse, graph annotations, live breakdown, and Euclidean distance from one coherent state. Practice owns a separate pair of coordinates, calculated distance, target difference, tolerance verdict, and point-swap state.
+
+All four main coordinate inputs, both pointer/keyboard point drags, Grid and Snap switches, zoom in/out, individual point resets, global Reset, four lesson tabs, four practice inputs, practice point resets, Swap, practice Reset, and adjacent navigation are real controls. The general calculation is `d = sqrt((x2-x1)^2 + (y2-y1)^2)` and every visual/readout is regenerated for arbitrary supported coordinates.
+
+Final 1005x1566 browser validation edits A to `(-3,4)`, keyboard-moves it to `(-2,3)`, physically drags it to `(0,2)`, physically drags B to `(5,1)`, disables snapping for a half-step move to `(0.5,2)`, toggles grid, exercises zoom and tabs, resets points, solves practice exactly with `(0,0)` and `(0,7)`, swaps and resets practice, restores the target state, and verifies both adjacent routes. The comparison loop matches page x=211-1005 and y=107-1566, header/tabs y=107-277, model y=289-832, plot x=240-728 and y=360-820, explanation y=842-957, rule/worked y=967-1165, practice y=1175-1365, navigation y=1377-1442, and footer y=1451-1564. It reports an exact 1005x1566 document, no overflow, and zero console warnings or errors.
+
+Evidence:
+
+- `0226-reference.png`
+- `0226-desktop.png`
+- `0226-dedicated-target-validation.json`

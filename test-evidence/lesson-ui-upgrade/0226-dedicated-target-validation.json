@@ -1,0 +1,239 @@
+{
+  "mockup": "0226",
+  "lessonId": 169,
+  "route": "/lessons/geometry/169-distance-between-points",
+  "checks": {
+    "initial": {
+      "a": "2:3",
+      "b": "6:-1",
+      "distance": "5.6569",
+      "grid": "true",
+      "snap": "true",
+      "zoom": "1",
+      "tab": "0",
+      "practice": "1:2,6:-3",
+      "practice-distance": "7.0711",
+      "within": "true"
+    },
+    "inputs": {
+      "a": "-3:4",
+      "b": "6:-1",
+      "distance": "10.2956",
+      "grid": "true",
+      "snap": "true",
+      "zoom": "1",
+      "tab": "0",
+      "practice": "1:2,6:-3",
+      "practice-distance": "7.0711",
+      "within": "true"
+    },
+    "keyboard": {
+      "a": "-2:3",
+      "b": "6:-1",
+      "distance": "8.9443",
+      "grid": "true",
+      "snap": "true",
+      "zoom": "1",
+      "tab": "0",
+      "practice": "1:2,6:-3",
+      "practice-distance": "7.0711",
+      "within": "true"
+    },
+    "pointerA": {
+      "a": "0:2",
+      "b": "6:-1",
+      "distance": "6.7082",
+      "grid": "true",
+      "snap": "true",
+      "zoom": "1",
+      "tab": "0",
+      "practice": "1:2,6:-3",
+      "practice-distance": "7.0711",
+      "within": "true"
+    },
+    "pointerB": {
+      "a": "0:2",
+      "b": "5:1",
+      "distance": "5.0990",
+      "grid": "true",
+      "snap": "true",
+      "zoom": "1",
+      "tab": "0",
+      "practice": "1:2,6:-3",
+      "practice-distance": "7.0711",
+      "within": "true"
+    },
+    "tools": {
+      "a": "0.5:2",
+      "b": "5:1",
+      "distance": "4.6098",
+      "grid": "false",
+      "snap": "false",
+      "zoom": "0.75",
+      "tab": "0",
+      "practice": "1:2,6:-3",
+      "practice-distance": "7.0711",
+      "within": "true"
+    },
+    "pointResets": {
+      "a": "2:3",
+      "b": "6:-1",
+      "distance": "5.6569",
+      "grid": "false",
+      "snap": "false",
+      "zoom": "0.75",
+      "tab": "0",
+      "practice": "1:2,6:-3",
+      "practice-distance": "7.0711",
+      "within": "true"
+    },
+    "practiceExact": {
+      "a": "2:3",
+      "b": "6:-1",
+      "distance": "5.6569",
+      "grid": "false",
+      "snap": "false",
+      "zoom": "0.75",
+      "tab": "0",
+      "practice": "0:0,0:7",
+      "practice-distance": "7.0000",
+      "within": "true"
+    },
+    "swap": {
+      "a": "2:3",
+      "b": "6:-1",
+      "distance": "5.6569",
+      "grid": "false",
+      "snap": "false",
+      "zoom": "0.75",
+      "tab": "0",
+      "practice": "0:7,0:0",
+      "practice-distance": "7.0000",
+      "within": "true"
+    },
+    "practiceReset": {
+      "a": "2:3",
+      "b": "6:-1",
+      "distance": "5.6569",
+      "grid": "false",
+      "snap": "false",
+      "zoom": "0.75",
+      "tab": "0",
+      "practice": "1:2,6:-3",
+      "practice-distance": "7.0711",
+      "within": "true"
+    },
+    "reset": {
+      "a": "2:3",
+      "b": "6:-1",
+      "distance": "5.6569",
+      "grid": "true",
+      "snap": "true",
+      "zoom": "1",
+      "tab": "0",
+      "practice": "1:2,6:-3",
+      "practice-distance": "7.0711",
+      "within": "true"
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/geometry/168-plotting-points",
+    "nextHref": "/lessons/geometry/170-midpoint"
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1005,
+      "height": 1566
+    },
+    "document": {
+      "width": 1005,
+      "height": 1566
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "regions": {
+      "page": {
+        "top": 107,
+        "bottom": 1566,
+        "left": 211,
+        "right": 1005,
+        "width": 794,
+        "height": 1459
+      },
+      "header": {
+        "top": 107,
+        "bottom": 229,
+        "left": 227,
+        "right": 989,
+        "width": 762,
+        "height": 122
+      },
+      "tabs": {
+        "top": 229,
+        "bottom": 277,
+        "left": 227,
+        "right": 989,
+        "width": 762,
+        "height": 48
+      },
+      "model": {
+        "top": 289,
+        "bottom": 832,
+        "left": 227,
+        "right": 989,
+        "width": 762,
+        "height": 543
+      },
+      "plot": {
+        "top": 360,
+        "bottom": 820,
+        "left": 240,
+        "right": 728,
+        "width": 488,
+        "height": 460
+      },
+      "how": {
+        "top": 842,
+        "bottom": 957,
+        "left": 227,
+        "right": 989,
+        "width": 762,
+        "height": 115
+      },
+      "learn": {
+        "top": 967,
+        "bottom": 1165,
+        "left": 227,
+        "right": 989,
+        "width": 762,
+        "height": 198
+      },
+      "practice": {
+        "top": 1175,
+        "bottom": 1365,
+        "left": 227,
+        "right": 989,
+        "width": 762,
+        "height": 190
+      },
+      "navigation": {
+        "top": 1377,
+        "bottom": 1442,
+        "left": 227,
+        "right": 989,
+        "width": 762,
+        "height": 65
+      },
+      "footer": {
+        "top": 1451,
+        "bottom": 1564,
+        "left": 227,
+        "right": 989,
+        "width": 762,
+        "height": 113
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

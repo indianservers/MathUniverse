@@ -1,0 +1,17 @@
+.dbp169-model button svg {
+  width: 13px;
+  height: 13px;
+}
+
+.dbp169-grid .measure.dy {
+  translate: -20px 0;
+}
+
+@media (min-width: 901px) {
+  .dbp169-model { margin-top: 12px; }
+  .dbp169-how,
+  .dbp169-learn,
+  .dbp169-practice { margin-top: 10px; }
+  .dbp169-nav { height: 65px; }
+  .dbp169-footer { height: 113px; margin-top: 9px; }
+}
