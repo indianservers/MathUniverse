@@ -36,6 +36,7 @@ import ReflectionXAxisTargetLesson160 from "./ReflectionXAxisTargetLesson160";
 import ReflectionYAxisTargetLesson161 from "./ReflectionYAxisTargetLesson161";
 import CombinedTransformationsTargetLesson162 from "./CombinedTransformationsTargetLesson162";
 import TransformationOrderTargetLesson163 from "./TransformationOrderTargetLesson163";
+import ParameterExplorerTargetLesson164 from "./ParameterExplorerTargetLesson164";
 import { graphVisualPresetForLesson } from "../presets/graphVisualPresets";
 import type { LessonAdapterProps } from "../types";
 import { Eye, Grid3X3, Minus, Move, Plus, RotateCcw, Share2, ZoomIn } from "lucide-react";
@@ -175,6 +176,9 @@ export default function GraphLessonAdapter({ lesson, resetToken, onInteraction }
   }
   if (lesson.id === 163) {
     return <TransformationOrderTargetLesson163 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
+  if (lesson.id === 164) {
+    return <ParameterExplorerTargetLesson164 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
 
   if (usesFunctionMockupWorkspace(lesson.id)) {

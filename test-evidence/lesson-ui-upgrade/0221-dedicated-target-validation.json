@@ -1,0 +1,167 @@
+{
+  "mockup": "0221",
+  "lessonId": 164,
+  "route": "/lessons/graphs-and-functions/164-parameter-explorer",
+  "checks": {
+    "initial": {
+      "a": "1.5",
+      "h": "1",
+      "k": "2",
+      "equation": "1.5(x - 1)² + 2",
+      "stage": "Explore"
+    },
+    "ranges": {
+      "a": "-2",
+      "h": "-3",
+      "k": "1",
+      "equation": "-2(x + 3)² + 1",
+      "stage": "Explore"
+    },
+    "pointer": {
+      "a": "-2",
+      "h": "-2",
+      "k": "2",
+      "equation": "-2(x + 2)² + 2",
+      "stage": "Explore"
+    },
+    "keyboard": {
+      "a": "-2",
+      "h": "-2.5",
+      "k": "1.5",
+      "equation": "-2(x + 2.5)² + 1.5",
+      "stage": "Explore"
+    },
+    "stages": {
+      "a": "-2",
+      "h": "-2.5",
+      "k": "1.5",
+      "equation": "-2(x + 2.5)² + 1.5",
+      "stage": "Explore"
+    },
+    "reset": {
+      "a": "1.5",
+      "h": "1",
+      "k": "2",
+      "equation": "1.5(x - 1)² + 2",
+      "stage": "Explore"
+    },
+    "practiceGeometry": {
+      "top": 1317.5,
+      "left": 432,
+      "width": 85,
+      "height": 12,
+      "display": "block",
+      "visibility": "visible"
+    },
+    "wrong": "Not yet - compare the vertex and opening.",
+    "correct": "Correct - the target graph is matched.",
+    "hint": true
+  },
+  "navigation": {
+    "previousHref": "/lessons/graphs-and-functions/163-transformation-order",
+    "nextHref": "/lessons/graphs-and-functions/165-parent-function-library"
+  },
+  "metrics": {
+    "viewport": {
+      "width": 999,
+      "height": 1575
+    },
+    "document": {
+      "width": 999,
+      "height": 1575
+    },
+    "horizontalOverflow": false,
+    "regions": {
+      "page": {
+        "top": 99,
+        "bottom": 1460,
+        "left": 226,
+        "right": 979,
+        "width": 753,
+        "height": 1361
+      },
+      "header": {
+        "top": 99,
+        "bottom": 236,
+        "left": 226,
+        "right": 979,
+        "width": 753,
+        "height": 137
+      },
+      "tabs": {
+        "top": 246,
+        "bottom": 286,
+        "left": 226,
+        "right": 979,
+        "width": 753,
+        "height": 40
+      },
+      "lab": {
+        "top": 300,
+        "bottom": 752,
+        "left": 226,
+        "right": 979,
+        "width": 753,
+        "height": 452
+      },
+      "graph": {
+        "top": 300,
+        "bottom": 752,
+        "left": 226,
+        "right": 689,
+        "width": 463,
+        "height": 452
+      },
+      "controls": {
+        "top": 300,
+        "bottom": 752,
+        "left": 699,
+        "right": 979,
+        "width": 280,
+        "height": 452
+      },
+      "observe": {
+        "top": 766,
+        "bottom": 1000,
+        "left": 226,
+        "right": 979,
+        "width": 753,
+        "height": 234
+      },
+      "rules": {
+        "top": 1012,
+        "bottom": 1205,
+        "left": 226,
+        "right": 979,
+        "width": 753,
+        "height": 193
+      },
+      "practice": {
+        "top": 1218,
+        "bottom": 1401,
+        "left": 226,
+        "right": 979,
+        "width": 753,
+        "height": 183
+      },
+      "navigation": {
+        "top": 1412,
+        "bottom": 1460,
+        "left": 226,
+        "right": 979,
+        "width": 753,
+        "height": 48
+      },
+      "footer": {
+        "top": 1479,
+        "bottom": 1557,
+        "left": 12,
+        "right": 987,
+        "width": 975,
+        "height": 78
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

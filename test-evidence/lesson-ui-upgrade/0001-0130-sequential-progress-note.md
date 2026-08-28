@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **146 of 200 lessons completed; 54 pending.**
+Dedicated rebuild target: **147 of 200 lessons completed; 53 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -132,6 +132,7 @@ Dedicated rebuild target: **146 of 200 lessons completed; 54 pending.**
 | 0218   |                161 Reflection in y-Axis | Complete | Dedicated y-axis cubic-reflection engine with real pre-shift/scale/y-level controls, two-axis pointer and keyboard same-output drag, generated curves/horizontal pairs/table, functional views/rule/navigation, and exact 1205x1306 framing |
 | 0219   |          162 Combined Transformations | Complete | Dedicated ordered h/a/k transformation engine with real ranges, pointer/keyboard vertex drag, native/keyboard pipeline reorder, generated parent/step/final curves and point trace, graph tools, tabs, graded practice, navigation, and exact 1034x1521 framing |
 | 0220   |              163 Transformation Order | Complete | Dedicated two-pipeline non-commutativity engine with real operation switches, pointer/keyboard vertex drag, generated parent/A/B curves and equations, stage tabs, custom pipeline controls, notes, practice, navigation, and exact 1023x1537 framing |
+| 0221   |                164 Parameter Explorer | Complete | Dedicated quadratic a/h/k transformation engine with real ranges and numeric inputs, pointer/keyboard vertex drag, generated parent/transformed curves, equation/effects, stage tabs, worked rule, graded practice, navigation, and exact 999x1575 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2177,3 +2178,17 @@ Evidence:
 - `0220-reference.png`
 - `0220-desktop.png`
 - `0220-dedicated-target-validation.json`
+
+## Lesson 164 / Mockup 0221 - Parameter Explorer
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-quadratic-a-h-k-parameters-pointer-keyboard-draggable-vertex-generated-parent-transformed-curves-equation-effects-worked-example-graded-practice-and-navigation` model. The lesson-owned vertical factor `a`, horizontal shift `h`, and vertical shift `k` generate `y=a(x-h)^2+k`, the transformed curve, vertex, equation readout, stretch/reflection verdict, shift cards, and turning-point classification from one state.
+
+All three main ranges and numeric fields, five stage tabs, Fit/reset and graph actions, independent practice ranges and numeric fields, Check, practice Reset, Need help, and adjacent navigation are real controls. The transformed vertex is genuinely pointer- and keyboard-draggable in two dimensions; horizontal movement updates `h`, vertical movement updates `k`, Shift constrains pointer movement horizontally, and arrow keys update both coordinates. Practice independently grades the target `a=1`, `h=-2`, `k=-1` and distinguishes incorrect from correct states.
+
+Final 999x1575 browser validation changes the main model to `a=-2`, `h=-3`, `k=1`; verifies `-2(x+3)^2+1`; physically drags the vertex to `(-2,2)`; keyboard-moves it to `(-2.5,1.5)`; exercises all five stages; resets; verifies incorrect and correct practice grading; reveals the calculated hint; and verifies both adjacent routes. The final comparison loop matches page x=226-979 and y=99-1460, header y=99-236, tabs y=246-286, lab y=300-752, graph/control split x=226-689/699-979, observations y=766-1000, rule row y=1012-1205, practice y=1218-1401, navigation y=1412-1460, and full-width footer x=12-987 and y=1479-1557. It reports an exact 999x1575 document, no horizontal overflow, and zero console messages.
+
+Evidence:
+
+- `0221-reference.png`
+- `0221-desktop.png`
+- `0221-dedicated-target-validation.json`
