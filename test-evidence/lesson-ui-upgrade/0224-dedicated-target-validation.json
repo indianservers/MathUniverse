@@ -1,0 +1,150 @@
+{
+  "mockup": "0224",
+  "lessonId": 167,
+  "route": "/lessons/geometry/167-cartesian-plane",
+  "checks": {
+    "initial": {
+      "x": "3",
+      "y": "2",
+      "quadrant": "I",
+      "stage": "1",
+      "practice": ",,,",
+      "correct": "false"
+    },
+    "keyboard": {
+      "x": "-3",
+      "y": "2",
+      "quadrant": "II",
+      "stage": "1",
+      "practice": ",,,",
+      "correct": "false"
+    },
+    "pointerDrag": {
+      "x": "-1",
+      "y": "4",
+      "quadrant": "II",
+      "stage": "1",
+      "practice": ",,,",
+      "correct": "false"
+    },
+    "visibility": [
+      false,
+      false,
+      false,
+      true
+    ],
+    "wrongText": "Not yet - compare each ordered pair.",
+    "allPlaced": {
+      "x": "3",
+      "y": "2",
+      "quadrant": "I",
+      "stage": "1",
+      "practice": "2:-3,-5:4,-2:-2,4:1",
+      "correct": "true"
+    },
+    "practiceDrag": {
+      "x": "3",
+      "y": "2",
+      "quadrant": "I",
+      "stage": "1",
+      "practice": "3:-3,-5:4,-2:-2,4:1",
+      "correct": "false"
+    },
+    "deleted": {
+      "x": "3",
+      "y": "2",
+      "quadrant": "I",
+      "stage": "1",
+      "practice": "2:-3,-5:4,-2:-2,",
+      "correct": "false"
+    },
+    "correct": {
+      "x": "3",
+      "y": "2",
+      "quadrant": "I",
+      "stage": "1",
+      "practice": "2:-3,-5:4,-2:-2,4:1",
+      "correct": "true"
+    },
+    "correctText": "Correct - all four points are plotted.",
+    "solutionCount": 4,
+    "share": "Lesson link copied",
+    "workspace": "Workspace opened"
+  },
+  "navigation": {
+    "previousHref": "/lessons/graphs-and-functions/166-graph-matching",
+    "nextHref": "/lessons/geometry/168-plotting-points"
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1014,
+      "height": 1551
+    },
+    "document": {
+      "width": 1014,
+      "height": 1551
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "regions": {
+      "page": {
+        "top": 105,
+        "bottom": 1541,
+        "left": 209,
+        "right": 1014,
+        "width": 805,
+        "height": 1436
+      },
+      "header": {
+        "top": 105,
+        "bottom": 263,
+        "left": 220,
+        "right": 1003,
+        "width": 783,
+        "height": 158
+      },
+      "stages": {
+        "top": 273,
+        "bottom": 312,
+        "left": 220,
+        "right": 1003,
+        "width": 783,
+        "height": 39
+      },
+      "explore": {
+        "top": 320,
+        "bottom": 864,
+        "left": 220,
+        "right": 1003,
+        "width": 783,
+        "height": 544
+      },
+      "learning": {
+        "top": 878,
+        "bottom": 1118,
+        "left": 220,
+        "right": 1003,
+        "width": 783,
+        "height": 240
+      },
+      "practice": {
+        "top": 1134,
+        "bottom": 1451,
+        "left": 220,
+        "right": 1003,
+        "width": 783,
+        "height": 317
+      },
+      "navigation": {
+        "top": 1465,
+        "bottom": 1525,
+        "left": 220,
+        "right": 1003,
+        "width": 783,
+        "height": 60
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

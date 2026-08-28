@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **149 of 200 lessons completed; 51 pending.**
+Dedicated rebuild target: **150 of 200 lessons completed; 50 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -135,6 +135,7 @@ Dedicated rebuild target: **149 of 200 lessons completed; 51 pending.**
 | 0221   |                164 Parameter Explorer | Complete | Dedicated quadratic a/h/k transformation engine with real ranges and numeric inputs, pointer/keyboard vertex drag, generated parent/transformed curves, equation/effects, stage tabs, worked rule, graded practice, navigation, and exact 999x1575 framing |
 | 0222   |          165 Parent-Function Library | Complete | Six explicit parent-family models with generated curves/domain/range/patterns/rules/key points, real a/b/h/k controls, pointer/keyboard anchor drag, gallery/tabs, three graded questions, navigation, and exact 1208x1302 framing |
 | 0223   |                   166 Graph Matching | Complete | Six explicit quadratic equation/curve targets with native drag/drop and keyboard matching, generated vertices/directions/widths, scoring/progress, hints, stages, replay, reset, practice, navigation, and exact 1206x1304 framing |
+| 0224   |                  167 Cartesian Plane | Complete | Dedicated Cartesian model with editable coordinates, pointer/keyboard point drag, generated quadrants/signs, real visibility controls, four independent practice points, delete/clear/grading/solution, navigation, and exact 1014x1551 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2222,3 +2223,17 @@ Evidence:
 - `0223-reference.png`
 - `0223-desktop.png`
 - `0223-dedicated-target-validation.json`
+
+## Lesson 167 / Mockup 0224 - Cartesian Plane
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-pointer-keyboard-draggable-cartesian-point-quadrant-sign-visibility-controls-four-independent-practice-points-delete-clear-grade-solution-and-navigation` model. Point `P(x,y)` owns its coordinates and generates guides, quadrant, coordinate signs, sign pattern, input values, and observation output from one state. The four practice points own independent coordinates and are checked against `A(2,-3)`, `B(-5,4)`, `C(-2,-2)`, and `D(4,1)`.
+
+Both coordinate inputs, direct pointer and keyboard point movement, grid/axes/quadrant/tick visibility, five lesson stages, Reset, four task selectors, point placement, independent practice-point drag, Delete, Clear All, Check, Show Solution, Share, Workspace, language selection, and adjacent navigation are real controls. Incorrect and correct practice states are distinct, and all point movement snaps to the lesson's integer coordinate grid.
+
+Final 1014x1551 browser validation changes `P` to `(-4,3)`, keyboard-moves it to `(-3,2)`, physically drags it from `(3,2)` to `(-1,4)`, exercises all visibility controls and stages, rejects an incomplete practice answer, places all four targets, physically drags and keyboard-corrects a practice point, deletes and restores `D`, verifies the correct result, reveals the solution, exercises actions, resets, and checks both adjacent routes. The final comparison loop matches page x=209-1014 and y=105-1541, header x=220-1003 and y=105-263, stages y=273-312, exploration y=320-864, learning cards y=878-1118, practice y=1134-1451, and navigation y=1465-1525. It reports an exact 1014x1551 document, no overflow, and zero console warnings or errors.
+
+Evidence:
+
+- `0224-reference.png`
+- `0224-desktop.png`
+- `0224-dedicated-target-validation.json`

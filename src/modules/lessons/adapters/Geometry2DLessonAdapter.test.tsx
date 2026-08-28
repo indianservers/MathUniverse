@@ -4,9 +4,8 @@ import { lessonCatalog } from "../catalog/lessonCatalog";
 import Geometry2DLessonAdapter from "./Geometry2DLessonAdapter";
 
 describe("Geometry2DLessonAdapter", () => {
-  it("renders coordinate geometry lessons 167 through 182 with lesson-specific guidance", () => {
+  it("renders coordinate geometry lessons 168 through 182 with lesson-specific guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      167: "Cartesian rule",
       168: "Plotting rule",
       169: "Distance formula",
       170: "Midpoint formula",
@@ -43,6 +42,22 @@ describe("Geometry2DLessonAdapter", () => {
       expect(html, lesson.title).toContain("Avoid:");
       expect(html, lesson.title).not.toContain("Coordinate rule");
     }
+  });
+
+  it("renders Cartesian plane as its own draggable coordinate surface", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 167)!;
+    const html = renderToStaticMarkup(
+      <Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+
+    expect(html).toContain("geometry-mockup-0224");
+    expect(html).toContain('data-dedicated-lesson="167"');
+    expect(html).toContain("Explore the Cartesian Plane");
+    expect(html).toContain("Point P (x, y)");
+    expect(html).toContain("Sign Pattern by Quadrant");
+    expect(html).toContain("Plot each point on the plane");
+    expect(html).toContain("Show Solution");
+    expect(html).not.toContain("reusable 2D geometry engine");
   });
 
   it("renders angle-between-lines with two lines and an angle marker", () => {
