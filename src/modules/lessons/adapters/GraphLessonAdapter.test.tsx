@@ -4,6 +4,16 @@ import { lessonCatalog } from "../catalog/lessonCatalog";
 import GraphLessonAdapter from "./GraphLessonAdapter";
 
 describe("GraphLessonAdapter", () => {
+  it("routes lesson 160 to its dedicated x-axis reflection engine", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 160)!;
+    const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="graph-mockup-0217"');
+    expect(html).toContain('data-dedicated-lesson="160"');
+    expect(html).toContain("editable-x-axis-reflection-scale-shift-and-sample-pointer-keyboard-draggable-reflected-point-generated-parent-and-reflected-parabolas-mirror-lines-point-mapping-rule-cards-and-navigation");
+    expect(html).toContain('aria-label="Drag reflected point"');
+    expect(html).toContain("Point Mapping");
+  });
+
   it("routes lesson 159 to its dedicated horizontal-scale engine", () => {
     const lesson = lessonCatalog.find((item) => item.id === 159)!;
     const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
@@ -379,7 +389,6 @@ describe("GraphLessonAdapter", () => {
 
   it("renders function transformation lessons 153 through 166 with lesson-specific graph guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      160: "changes y to -y",
       161: "changes x to -x",
       162: "inside changes affect x",
       163: "later transformations act",

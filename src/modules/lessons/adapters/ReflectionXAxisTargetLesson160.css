@@ -1,0 +1,499 @@
+.rx160-page {
+  --ink: #0c183f;
+  --cyan: #079eb4;
+  --orange: #ee9209;
+  width: calc(100% - 25px);
+  min-height: 1054px;
+  margin-left: 25px;
+  padding-top: 10px;
+  color: var(--ink);
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: 0;
+}
+.rx160-page * {
+  box-sizing: border-box;
+}
+.rx160-surface {
+  width: 100%;
+  height: 1043px;
+  border: 1px solid #e1e7ef;
+  border-radius: 19px;
+  background: rgba(255, 255, 255, 0.92);
+  padding: 17px 15px 15px;
+  box-shadow: 0 10px 30px rgba(35, 57, 99, 0.06);
+}
+.rx160-header {
+  height: 218px;
+}
+.rx160-kickers {
+  display: flex;
+  gap: 7px;
+}
+.rx160-kickers b {
+  height: 21px;
+  border-radius: 12px;
+  background: #edf9fb;
+  padding: 0 11px;
+  display: flex;
+  align-items: center;
+  color: #087f95;
+  font-size: 8px;
+}
+.rx160-kickers b:last-child {
+  background: #f2f4f7;
+  color: #5a6880;
+}
+.rx160-header h1 {
+  margin: 8px 0 1px;
+  font-size: 35px;
+  line-height: 1;
+  font-weight: 900;
+}
+.rx160-header > p {
+  margin: 0;
+  color: #60708c;
+  font-size: 14px;
+  font-weight: 650;
+}
+.rx160-header nav {
+  display: flex;
+  gap: 8px;
+  margin-top: 13px;
+}
+.rx160-header nav b {
+  height: 30px;
+  border: 1px solid #dce4ec;
+  border-radius: 17px;
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  color: #33445f;
+  font-size: 10px;
+  white-space: nowrap;
+}
+.rx160-header h2 {
+  margin: 16px 0 0;
+  color: #078ca1;
+  font-size: 20px;
+}
+.rx160-header h3 {
+  margin: 4px 0 0;
+  color: #4e607d;
+  font-size: 15px;
+  font-weight: 650;
+}
+.rx160-workspace {
+  height: 661px;
+  border: 1px solid #dce4ec;
+  border-radius: 14px;
+  padding: 14px 10px 11px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 294px;
+  gap: 17px;
+}
+.rx160-plot {
+  min-width: 0;
+  overflow: hidden;
+}
+.rx160-legend {
+  width: 390px;
+  height: 43px;
+  border: 1px solid #dde5ed;
+  border-radius: 10px;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  color: #35445f;
+  font-size: 10px;
+}
+.rx160-legend span {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  white-space: nowrap;
+}
+.rx160-legend i {
+  width: 30px;
+  border-top: 2px dashed #95a5b9;
+}
+.rx160-legend span:last-child i {
+  border-color: #079eb4;
+  border-top-style: solid;
+}
+.rx160-graph {
+  display: block;
+  width: 100%;
+  height: 500px;
+  margin: 28px 0 10px;
+  touch-action: none;
+}
+.rx160-graph text {
+  font-family: Inter, ui-sans-serif, sans-serif;
+  letter-spacing: 0;
+}
+.rx160-graph .axis {
+  stroke: #273650;
+  stroke-width: 1.15;
+}
+.rx160-graph .axis-label {
+  fill: #1d2b47;
+  font-family: Georgia, serif;
+  font-size: 14px;
+  font-style: italic;
+}
+.rx160-graph .tick {
+  fill: #31415c;
+  font-size: 11px;
+}
+.rx160-graph .parent-curve {
+  fill: none;
+  stroke: #8595ab;
+  stroke-width: 2;
+  stroke-dasharray: 7 5;
+}
+.rx160-graph .reflected-curve {
+  fill: none;
+  stroke: #079eb4;
+  stroke-width: 2.8;
+}
+.rx160-graph .mirror-line {
+  stroke: #ef980a;
+  stroke-width: 1.6;
+  stroke-dasharray: 6 4;
+}
+.rx160-graph .parent-point {
+  fill: #63748d;
+}
+.rx160-graph .reflected-point {
+  fill: #079eb4;
+}
+.rx160-graph .parent-label {
+  fill: #526078;
+  font-size: 12px;
+  font-weight: 800;
+}
+.rx160-graph .reflected-label {
+  fill: #078fa5;
+  font-size: 12px;
+  font-weight: 850;
+}
+.rx160-graph .drag-point {
+  fill: transparent;
+  stroke: transparent;
+  cursor: ns-resize;
+  outline: none;
+}
+.rx160-graph .drag-point:focus {
+  stroke: #7744d8;
+  stroke-width: 2;
+}
+.rx160-plot > footer {
+  height: 47px;
+  margin: 0 2px;
+  display: grid;
+  grid-template-columns: 0.9fr 1fr 1.2fr;
+  gap: 10px;
+}
+.rx160-plot > footer span {
+  height: 47px;
+  border: 1px solid #dce4ec;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  color: #34445e;
+  font-size: 9px;
+  white-space: nowrap;
+}
+.rx160-plot > footer i {
+  width: 28px;
+  border-top: 2px dashed #ef980a;
+}
+.rx160-plot > footer span:nth-child(2) i {
+  border-color: #95a5b9;
+}
+.rx160-plot > footer span:nth-child(3) i {
+  border-color: #079eb4;
+  border-top-style: solid;
+}
+.rx160-rail {
+  display: grid;
+  grid-template-rows: 304px 174px 122px;
+  gap: 15px;
+  margin-top: 5px;
+}
+.rx160-controls,
+.rx160-table,
+.rx160-rule {
+  border: 1px solid #e0e7ee;
+  border-radius: 12px;
+  background: #fff;
+  padding: 13px 14px;
+}
+.rx160-controls > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 24px;
+}
+.rx160-controls h2,
+.rx160-table h2,
+.rx160-rule h2 {
+  margin: 0;
+  font-size: 12px;
+}
+.rx160-controls > header button {
+  width: 25px;
+  height: 25px;
+  border: 0;
+  background: transparent;
+  color: #40516b;
+  cursor: pointer;
+}
+.rx160-controls > header svg {
+  width: 17px;
+}
+.rx160-controls > label {
+  height: 88px;
+  padding-top: 15px;
+  border-bottom: 1px solid #e6ebf0;
+  display: grid;
+  grid-template-columns: 1fr 42px;
+  grid-template-rows: 20px 26px 16px;
+  column-gap: 11px;
+}
+.rx160-controls > label > span {
+  grid-column: 1/3;
+  color: #41516d;
+  font-size: 11px;
+}
+.rx160-controls input {
+  width: 100%;
+  accent-color: #079eb4;
+}
+.rx160-controls output {
+  grid-column: 2;
+  grid-row: 2;
+  width: 42px;
+  height: 35px;
+  margin-top: -5px;
+  border: 1px solid #dce4ec;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  color: #34445d;
+  font-size: 12px;
+}
+.rx160-controls label small {
+  display: flex;
+  justify-content: space-between;
+  color: #6f7d91;
+  font-size: 9px;
+}
+.rx160-controls label small i {
+  font-style: normal;
+}
+.rx160-samples {
+  height: 78px;
+  padding-top: 14px;
+  display: grid;
+  grid-template-columns: 1fr 42px;
+  grid-template-rows: 22px 34px;
+  column-gap: 11px;
+}
+.rx160-samples > span {
+  grid-column: 1/3;
+  color: #34445e;
+  font-size: 11px;
+}
+.rx160-samples nav {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.rx160-samples button {
+  height: 28px;
+  border: 1px solid #dce4ec;
+  border-radius: 8px;
+  background: #f7f9fb;
+  color: #40516c;
+  font-size: 11px;
+  cursor: pointer;
+}
+.rx160-samples button.active {
+  border-color: #079eb4;
+  background: #079eb4;
+  color: #fff;
+  font-weight: 850;
+}
+.rx160-samples output {
+  grid-row: 2;
+}
+.rx160-table {
+  padding: 12px 11px;
+}
+.rx160-table table {
+  width: 100%;
+  margin-top: 11px;
+  border-collapse: collapse;
+  color: #34445e;
+  font-size: 9px;
+}
+.rx160-table th,
+.rx160-table td {
+  height: 36px;
+  border: 1px solid #dce4ec;
+  text-align: center;
+}
+.rx160-table th {
+  height: 35px;
+  background: #f5f7fa;
+  font-size: 8px;
+}
+.rx160-table tbody tr {
+  cursor: pointer;
+}
+.rx160-table tbody tr.selected {
+  background: #effafb;
+  color: #07859a;
+  font-weight: 850;
+}
+.rx160-rule {
+  padding: 13px 16px;
+}
+.rx160-rule h2 {
+  margin-bottom: 8px;
+}
+.rx160-rule p {
+  height: 23px;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  align-items: center;
+  color: #53627a;
+  font-size: 10px;
+}
+.rx160-rule p i {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #079eb4;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-style: normal;
+  font-size: 8px;
+}
+.rx160-rule p:nth-of-type(2) i {
+  background: #ef980a;
+}
+.rx160-rule p svg {
+  width: 9px;
+}
+.rx160-rule p span {
+  white-space: nowrap;
+}
+.rx160-concepts {
+  height: 109px;
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 285px 273px 1fr;
+  gap: 15px;
+}
+.rx160-concepts article {
+  height: 109px;
+  border: 1px solid #dce4ec;
+  border-radius: 12px;
+  background: #fff;
+  padding: 14px;
+  display: grid;
+  grid-template-columns: 58px 1fr;
+  align-items: center;
+  gap: 12px;
+}
+.rx160-concepts article > i {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: #e6f5ff;
+  display: grid;
+  place-items: center;
+  color: #0877aa;
+  font-style: normal;
+}
+.rx160-concepts article:nth-child(2) > i {
+  background: #dcf7f5;
+  color: #079ca7;
+}
+.rx160-concepts article:nth-child(3) > i {
+  background: #fff0d6;
+  color: #dc8200;
+}
+.rx160-concepts article > i svg {
+  width: 27px;
+}
+.rx160-concepts article p {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  color: #58677f;
+  font-size: 10px;
+  line-height: 1.45;
+}
+.rx160-concepts article p b {
+  color: #16447f;
+  font-size: 11px;
+}
+.rx160-concepts article:nth-child(2) p b {
+  color: #087f92;
+}
+.rx160-concepts article:nth-child(3) p b {
+  color: #ca7300;
+}
+.lesson-page-shell:has(.rx160-page) .lesson-adjacent-nav {
+  width: calc(100% - 25px);
+  height: 65px;
+  margin: 23px 0 0 25px;
+}
+.lesson-page-shell:has(.rx160-page) .lesson-adjacent-nav .action-secondary {
+  min-height: 65px;
+  border-radius: 12px;
+  background: #fff;
+}
+@media (max-width: 900px) {
+  .rx160-page {
+    width: 100%;
+    min-height: 0;
+    margin: 0;
+    padding: 8px;
+  }
+  .rx160-surface {
+    height: auto;
+  }
+  .rx160-header {
+    height: auto;
+    padding-bottom: 20px;
+  }
+  .rx160-header nav {
+    flex-wrap: wrap;
+  }
+  .rx160-workspace {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .rx160-rail {
+    grid-template-rows: auto auto auto;
+  }
+  .rx160-concepts {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .lesson-page-shell:has(.rx160-page) .lesson-adjacent-nav {
+    width: 100%;
+    height: auto;
+    margin: 15px 0 0;
+  }
+}

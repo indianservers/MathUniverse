@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **142 of 200 lessons completed; 58 pending.**
+Dedicated rebuild target: **143 of 200 lessons completed; 57 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -128,6 +128,7 @@ Dedicated rebuild target: **142 of 200 lessons completed; 58 pending.**
 | 0214   |         157 Horizontal Translation | Complete | Dedicated horizontal-shift engine with real h range/parent visibility/y-level controls, pointer/keyboard vertex and level drags, generated parabolas/arrows/input-remapping table/vertex proof, real navigation, and exact 1386x1135 framing |
 | 0215   | 158 Vertical Stretch and Compression | Complete | Dedicated vertical-scale engine with real a range/mode/sample controls, pointer/keyboard scale drag, generated parabolas/fixed-x arrows/value table/compression reference, functional tabs/actions/language/navigation, and exact 1322x1190 framing |
 | 0216   | 159 Horizontal Stretch and Compression | Complete | Dedicated inside-scale engine with real b range/mode/y-level controls, pointer/keyboard scale drag, generated parent/transformed parabolas/same-output bracket/reciprocal-width rulers/input table/compression preview, functional actions/navigation, and exact 1350x1165 framing |
+| 0217   |                160 Reflection in x-Axis | Complete | Dedicated x-axis reflection engine with real scale/shift/sample controls, pointer/keyboard reflected-point drag, generated parent/reflected parabolas/mirror lines/point mapping/key rules, functional reset/navigation, and exact 1205x1306 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2117,3 +2118,17 @@ Evidence:
 - `0216-reference.png`
 - `0216-desktop.png`
 - `0216-dedicated-target-validation.json`
+
+## Lesson 160 / Mockup 0217 - Reflection in x-Axis
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-x-axis-reflection-scale-shift-and-sample-pointer-keyboard-draggable-reflected-point-generated-parent-and-reflected-parabolas-mirror-lines-point-mapping-rule-cards-and-navigation` model. The lesson-owned reflection scale `a`, vertical shift `k`, and selected sample `x` generate `f(x)=x^2`, `g(x)=-a*x^2+k`, both curves, all mirrored point pairs, orange reflection lines, labels, the complete point-mapping table, rule rail, and concept cards from one state.
+
+The `0.25..3` scale range, `-5..5` shift range, three sample buttons, every point-mapping row, and local Reset are real controls. The selected reflected graph point is genuinely pointer- and keyboard-draggable: at nonzero x it changes the reflection scale, at x=0 it changes the vertical shift, and horizontal arrow keys move the sample probe. Every state preserves the x-coordinate and computes the reflected output exactly as `-a*x^2+k`. Previous and Next navigate to Lessons 159 and 161.
+
+Final 1205x1306 browser validation physically changes both ranges, pointer-drags the reflected point for scale, keyboard-adjusts it, switches to x=0 and pointer-drags the vertex for shift, uses sample buttons and a generated table row, resets, and verifies both adjacent routes. The final comparison loop places the surface at x=261-1185 and y=117-1160, workspace x=277-1169 and y=353-1014, graph x=288-847, controls x=864-1158 and y=373-677, point table y=692-866, rule card y=881-1003, concept cards y=1034-1143, and navigation y=1184-1249. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0217-reference.png`
+- `0217-desktop.png`
+- `0217-dedicated-target-validation.json`

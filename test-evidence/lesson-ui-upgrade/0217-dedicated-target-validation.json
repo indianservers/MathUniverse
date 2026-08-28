@@ -1,0 +1,178 @@
+{
+  "mockup": "0217",
+  "lessonId": 160,
+  "route": "/lessons/graphs-and-functions/160-reflection-in-x-axis",
+  "checks": {
+    "initial": {
+      "scale": "1",
+      "shift": "0",
+      "sample": "-2",
+      "parent-output": "4",
+      "reflected-output": "-4",
+      "x-unchanged": "true"
+    },
+    "scaleRange": {
+      "scale": "2.5",
+      "shift": "0",
+      "sample": "-2",
+      "parent-output": "4",
+      "reflected-output": "-10",
+      "x-unchanged": "true"
+    },
+    "shiftRange": {
+      "scale": "2.5",
+      "shift": "2",
+      "sample": "-2",
+      "parent-output": "4",
+      "reflected-output": "-8",
+      "x-unchanged": "true"
+    },
+    "scalePointDrag": {
+      "scale": "1.25",
+      "shift": "0",
+      "sample": "-2",
+      "parent-output": "4",
+      "reflected-output": "-5",
+      "x-unchanged": "true"
+    },
+    "pointKeyboard": {
+      "scale": "1",
+      "shift": "0",
+      "sample": "-2",
+      "parent-output": "4",
+      "reflected-output": "-4",
+      "x-unchanged": "true"
+    },
+    "zeroPointDrag": {
+      "scale": "1",
+      "shift": "1",
+      "sample": "0",
+      "parent-output": "0",
+      "reflected-output": "1",
+      "x-unchanged": "true"
+    },
+    "sampleButton": {
+      "scale": "1",
+      "shift": "1",
+      "sample": "2",
+      "parent-output": "4",
+      "reflected-output": "-3",
+      "x-unchanged": "true"
+    },
+    "tableRow": {
+      "scale": "1",
+      "shift": "1",
+      "sample": "-2",
+      "parent-output": "4",
+      "reflected-output": "-3",
+      "x-unchanged": "true"
+    },
+    "reset": {
+      "scale": "1",
+      "shift": "0",
+      "sample": "-2",
+      "parent-output": "4",
+      "reflected-output": "-4",
+      "x-unchanged": "true"
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/graphs-and-functions/159-horizontal-stretch-and-compression",
+    "nextHref": "/lessons/graphs-and-functions/161-reflection-in-y-axis"
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1205,
+      "height": 1306
+    },
+    "document": {
+      "width": 1205,
+      "height": 1404
+    },
+    "horizontalOverflow": false,
+    "regions": {
+      "page": {
+        "top": 107,
+        "bottom": 1161,
+        "left": 261,
+        "right": 1185,
+        "width": 924,
+        "height": 1054
+      },
+      "surface": {
+        "top": 117,
+        "bottom": 1160,
+        "left": 261,
+        "right": 1185,
+        "width": 924,
+        "height": 1043
+      },
+      "header": {
+        "top": 135,
+        "bottom": 353,
+        "left": 277,
+        "right": 1169,
+        "width": 892,
+        "height": 218
+      },
+      "workspace": {
+        "top": 353,
+        "bottom": 1014,
+        "left": 277,
+        "right": 1169,
+        "width": 892,
+        "height": 661
+      },
+      "plot": {
+        "top": 368,
+        "bottom": 1003,
+        "left": 288,
+        "right": 847,
+        "width": 559,
+        "height": 635
+      },
+      "controls": {
+        "top": 373,
+        "bottom": 677,
+        "left": 864,
+        "right": 1158,
+        "width": 294,
+        "height": 304
+      },
+      "table": {
+        "top": 692,
+        "bottom": 866,
+        "left": 864,
+        "right": 1158,
+        "width": 294,
+        "height": 174
+      },
+      "rule": {
+        "top": 881,
+        "bottom": 1003,
+        "left": 864,
+        "right": 1158,
+        "width": 294,
+        "height": 122
+      },
+      "concepts": {
+        "top": 1034,
+        "bottom": 1143,
+        "left": 277,
+        "right": 1169,
+        "width": 892,
+        "height": 109
+      },
+      "navigation": {
+        "top": 1184,
+        "bottom": 1249,
+        "left": 261,
+        "right": 1185,
+        "width": 924,
+        "height": 65
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
