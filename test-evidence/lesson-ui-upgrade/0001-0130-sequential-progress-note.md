@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **156 of 200 lessons completed; 44 pending.**
+Dedicated rebuild target: **157 of 200 lessons completed; 43 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -142,6 +142,7 @@ Dedicated rebuild target: **156 of 200 lessons completed; 44 pending.**
 | 0228   |                  171 Section Formula | Complete | Dedicated internal/external weighted-coordinate model with pointer/keyboard ratio drag, live calculations, real graph tools, comparison presets, graded practice, and exact 1447x1087 framing |
 | 0229   |                 172 Gradient / Slope | Complete | Dedicated two-point slope model with pointer/keyboard drag, rise/run, undefined-line guard, move/select/pan/zoom/fullscreen tools, independent draggable graded practice, and exact 1014x1551 framing |
 | 0230   |              173 Equation of a Line | Complete | Dedicated slope/intercept line model with pointer/keyboard manipulation, three generated equation forms, grid/select/pan/undo/redo, corrected graded practice, and exact 1024x1536 framing |
+| 0231   |                   174 Parallel Lines | Complete | Dedicated two-line equal-slope invariant with independent inputs and pointer/keyboard drag, angle/distance evidence, dynamic through-point construction, graded equation practice, and exact 982x1602 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2327,3 +2328,17 @@ Evidence:
 - `0230-reference.png`
 - `0230-desktop.png`
 - `0230-dedicated-target-validation.json`
+
+## Lesson 174 / Mockup 0231 - Parallel Lines
+
+Reworked individually against the target mockup with a dedicated `two-independent-pointer-keyboard-draggable-lines-equal-slope-parallel-invariant-corresponding-angles-distance-construction-and-graded-equation-practice` model. Two independent lines generate equations, slope comparison, parallel status, corresponding angles, and perpendicular distance from live m/b state.
+
+All four line parameters expose range and numeric inputs; both lines support pointer and keyboard manipulation. Angle visibility, Reset, five stages, dynamic parallel-through-P construction, practice slope/intercept inputs, grading, and adjacent navigation are real. The construction preserves the current first-line slope and derives b from P(1,-3), rather than replaying fixed target values.
+
+Final 982x1602 validation proves unequal/equal slope states, edits both lines, keyboard-moves line 1, physically drags line 2, toggles angles, exercises every stage, constructs a live parallel through P, rejects m=-2,b=6, accepts m=-3,b=6, resets, and verifies adjacent routes. It reports page x=204-982 and y=107-1599, header y=107-260, observation lab y=273-925, graph x=232-707 and y=342-829, evidence row y=839-921, cards y=938-1325, practice y=1338-1518, navigation y=1531-1591, no overflow, and zero console messages.
+
+Evidence:
+
+- `0231-reference.png`
+- `0231-desktop.png`
+- `0231-dedicated-target-validation.json`

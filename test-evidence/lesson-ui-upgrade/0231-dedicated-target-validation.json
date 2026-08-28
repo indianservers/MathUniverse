@@ -1,0 +1,212 @@
+{
+  "mockup": "0231",
+  "lessonId": 174,
+  "route": "/lessons/geometry/174-parallel-lines",
+  "checks": {
+    "initial": {
+      "m1": "2.00",
+      "b1": "2.00",
+      "m2": "2.00",
+      "b2": "-2.00",
+      "parallel": "true",
+      "angles": "true",
+      "tab": "0",
+      "construct": "false",
+      "status": ""
+    },
+    "unequal": {
+      "m1": "1.50",
+      "b1": "2.00",
+      "m2": "2.00",
+      "b2": "-2.00",
+      "parallel": "false",
+      "angles": "true",
+      "tab": "0",
+      "construct": "false",
+      "status": ""
+    },
+    "inputs": {
+      "m1": "1.50",
+      "b1": "2.00",
+      "m2": "1.50",
+      "b2": "-3.00",
+      "parallel": "true",
+      "angles": "true",
+      "tab": "0",
+      "construct": "false",
+      "status": ""
+    },
+    "keyboard": {
+      "m1": "1.75",
+      "b1": "2.00",
+      "m2": "1.50",
+      "b2": "-3.00",
+      "parallel": "false",
+      "angles": "true",
+      "tab": "0",
+      "construct": "false",
+      "status": ""
+    },
+    "pointer": {
+      "m1": "1.75",
+      "b1": "2.00",
+      "m2": "2.33",
+      "b2": "-3.00",
+      "parallel": "false",
+      "angles": "true",
+      "tab": "0",
+      "construct": "false",
+      "status": ""
+    },
+    "angles": {
+      "m1": "1.75",
+      "b1": "2.00",
+      "m2": "2.33",
+      "b2": "-3.00",
+      "parallel": "false",
+      "angles": "false",
+      "tab": "0",
+      "construct": "false",
+      "status": ""
+    },
+    "tabs": {
+      "m1": "1.75",
+      "b1": "2.00",
+      "m2": "2.33",
+      "b2": "-3.00",
+      "parallel": "false",
+      "angles": "true",
+      "tab": "4",
+      "construct": "false",
+      "status": ""
+    },
+    "construct": {
+      "m1": "1.75",
+      "b1": "2.00",
+      "m2": "1.75",
+      "b2": "-4.75",
+      "parallel": "true",
+      "angles": "true",
+      "tab": "4",
+      "construct": "true",
+      "status": ""
+    },
+    "wrong": {
+      "m1": "1.75",
+      "b1": "2.00",
+      "m2": "1.75",
+      "b2": "-4.75",
+      "parallel": "true",
+      "angles": "true",
+      "tab": "4",
+      "construct": "true",
+      "status": "Enter a valid equation and click Check"
+    },
+    "correct": {
+      "m1": "1.75",
+      "b1": "2.00",
+      "m2": "1.75",
+      "b2": "-4.75",
+      "parallel": "true",
+      "angles": "true",
+      "tab": "4",
+      "construct": "true",
+      "status": "Correct parallel equation"
+    },
+    "reset": {
+      "m1": "2.00",
+      "b1": "2.00",
+      "m2": "2.00",
+      "b2": "-2.00",
+      "parallel": "true",
+      "angles": "true",
+      "tab": "0",
+      "construct": "false",
+      "status": ""
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/geometry/173-equation-of-a-line",
+    "nextHref": "/lessons/geometry/175-perpendicular-lines"
+  },
+  "metrics": {
+    "viewport": {
+      "width": 982,
+      "height": 1602
+    },
+    "document": {
+      "width": 982,
+      "height": 1602
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "regions": {
+      "page": {
+        "top": 107,
+        "bottom": 1599,
+        "left": 204,
+        "right": 982,
+        "width": 778,
+        "height": 1492
+      },
+      "header": {
+        "top": 107,
+        "bottom": 260,
+        "left": 218,
+        "right": 968,
+        "width": 750,
+        "height": 153
+      },
+      "observe": {
+        "top": 273,
+        "bottom": 925,
+        "left": 218,
+        "right": 968,
+        "width": 750,
+        "height": 652
+      },
+      "graph": {
+        "top": 342,
+        "bottom": 829,
+        "left": 232,
+        "right": 707,
+        "width": 475,
+        "height": 487
+      },
+      "observations": {
+        "top": 839,
+        "bottom": 921,
+        "left": 232,
+        "right": 954,
+        "width": 722,
+        "height": 82
+      },
+      "cards": {
+        "top": 938,
+        "bottom": 1325,
+        "left": 224,
+        "right": 962,
+        "width": 738,
+        "height": 387
+      },
+      "practice": {
+        "top": 1338,
+        "bottom": 1518,
+        "left": 218,
+        "right": 968,
+        "width": 750,
+        "height": 180
+      },
+      "navigation": {
+        "top": 1531,
+        "bottom": 1591,
+        "left": 218,
+        "right": 968,
+        "width": 750,
+        "height": 60
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

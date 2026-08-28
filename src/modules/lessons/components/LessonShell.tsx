@@ -183,6 +183,7 @@ export default function LessonShell({ lesson }: { lesson: LessonDefinition }) {
     lesson.id === 171 ||
     lesson.id === 172 ||
     lesson.id === 173 ||
+    lesson.id === 174 ||
     (lesson.id >= 1 && lesson.id <= 38) ||
     (lesson.id >= 57 && lesson.id <= 142) ||
     lesson.id === 618 ||
