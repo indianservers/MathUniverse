@@ -1,0 +1,219 @@
+{
+  "mockup": "0233",
+  "lessonId": 176,
+  "route": "/lessons/geometry/176-angle-between-lines",
+  "checks": {
+    "initial": {
+      "m1": "1.43",
+      "m2": "0.50",
+      "angle": "28.47",
+      "classification": "Acute",
+      "axes": "true",
+      "grid": "true",
+      "expanded": "false",
+      "tab": "0",
+      "practice-status": ""
+    },
+    "perpendicular": {
+      "m1": "2.00",
+      "m2": "-0.50",
+      "angle": "90.00",
+      "classification": "Right",
+      "axes": "true",
+      "grid": "true",
+      "expanded": "false",
+      "tab": "0",
+      "practice-status": ""
+    },
+    "keyboard": {
+      "m1": "1.90",
+      "m2": "-0.50",
+      "angle": "88.81",
+      "classification": "Acute",
+      "axes": "true",
+      "grid": "true",
+      "expanded": "false",
+      "tab": "0",
+      "practice-status": ""
+    },
+    "pointer": {
+      "m1": "1.90",
+      "m2": "-0.11",
+      "angle": "68.38",
+      "classification": "Acute",
+      "axes": "true",
+      "grid": "true",
+      "expanded": "false",
+      "tab": "0",
+      "practice-status": ""
+    },
+    "visibility": {
+      "m1": "1.90",
+      "m2": "-0.11",
+      "angle": "68.38",
+      "classification": "Acute",
+      "axes": "false",
+      "grid": "false",
+      "expanded": "false",
+      "tab": "0",
+      "practice-status": ""
+    },
+    "tabs": {
+      "m1": "1.90",
+      "m2": "-0.11",
+      "angle": "68.38",
+      "classification": "Acute",
+      "axes": "true",
+      "grid": "true",
+      "expanded": "false",
+      "tab": "4",
+      "practice-status": ""
+    },
+    "expanded": {
+      "m1": "1.90",
+      "m2": "-0.11",
+      "angle": "68.38",
+      "classification": "Acute",
+      "axes": "true",
+      "grid": "true",
+      "expanded": "true",
+      "tab": "4",
+      "practice-status": ""
+    },
+    "answerVisible": true,
+    "wrong": {
+      "m1": "1.90",
+      "m2": "-0.11",
+      "angle": "68.38",
+      "classification": "Acute",
+      "axes": "true",
+      "grid": "true",
+      "expanded": "false",
+      "tab": "4",
+      "practice-status": "Recheck the perpendicular slopes"
+    },
+    "correct": {
+      "m1": "1.90",
+      "m2": "-0.11",
+      "angle": "68.38",
+      "classification": "Acute",
+      "axes": "true",
+      "grid": "true",
+      "expanded": "false",
+      "tab": "4",
+      "practice-status": "Correct angle"
+    },
+    "reset": {
+      "m1": "1.43",
+      "m2": "0.50",
+      "angle": "28.47",
+      "classification": "Acute",
+      "axes": "true",
+      "grid": "true",
+      "expanded": "false",
+      "tab": "0",
+      "practice-status": ""
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/geometry/175-perpendicular-lines",
+    "nextHref": "/lessons/geometry/177-point-to-line-distance"
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1036,
+      "height": 1518
+    },
+    "document": {
+      "width": 1036,
+      "height": 1518
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "regions": {
+      "page": {
+        "top": 99,
+        "bottom": 1505,
+        "left": 213,
+        "right": 1036,
+        "width": 823,
+        "height": 1406
+      },
+      "header": {
+        "top": 99,
+        "bottom": 235,
+        "left": 228,
+        "right": 1021,
+        "width": 793,
+        "height": 136
+      },
+      "tabs": {
+        "top": 248,
+        "bottom": 286,
+        "left": 228,
+        "right": 1021,
+        "width": 793,
+        "height": 38
+      },
+      "main": {
+        "top": 300,
+        "bottom": 742,
+        "left": 234,
+        "right": 1015,
+        "width": 781,
+        "height": 442
+      },
+      "graph": {
+        "top": 355,
+        "bottom": 715,
+        "left": 247,
+        "right": 717,
+        "width": 470,
+        "height": 360
+      },
+      "info": {
+        "top": 754,
+        "bottom": 968,
+        "left": 234,
+        "right": 1015,
+        "width": 781,
+        "height": 214
+      },
+      "insight": {
+        "top": 980,
+        "bottom": 1134,
+        "left": 234,
+        "right": 1015,
+        "width": 781,
+        "height": 154
+      },
+      "practice": {
+        "top": 1146,
+        "bottom": 1311,
+        "left": 234,
+        "right": 1015,
+        "width": 781,
+        "height": 165
+      },
+      "navigation": {
+        "top": 1323,
+        "bottom": 1375,
+        "left": 228,
+        "right": 1021,
+        "width": 793,
+        "height": 52
+      },
+      "footer": {
+        "top": 1387,
+        "bottom": 1492,
+        "left": 228,
+        "right": 1021,
+        "width": 793,
+        "height": 105
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true,
+  "mathNote": "Target calls the angle 55°, but slopes 1.43 and 0.50 have inclinations about 55.03° and 26.57°, so the correct acute angle is 28.47°. Implementation keeps graph and tan formula consistent."
+}

@@ -4,9 +4,8 @@ import { lessonCatalog } from "../catalog/lessonCatalog";
 import Geometry2DLessonAdapter from "./Geometry2DLessonAdapter";
 
 describe("Geometry2DLessonAdapter", () => {
-  it("renders coordinate geometry lessons 176 through 182 with lesson-specific guidance", () => {
+  it("renders coordinate geometry lessons 177 through 182 with lesson-specific guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      176: "Angle rule",
       177: "Shortest distance",
       178: "Locus rule",
       179: "Transformation rule",
@@ -34,6 +33,16 @@ describe("Geometry2DLessonAdapter", () => {
       expect(html, lesson.title).toContain("Avoid:");
       expect(html, lesson.title).not.toContain("Coordinate rule");
     }
+  });
+
+  it("renders angle between lines as its own tangent-formula surface", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 176)!;
+    const html = renderToStaticMarkup(<Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain("geometry-mockup-0233");
+    expect(html).toContain('data-dedicated-lesson="176"');
+    expect(html).toContain("How the angle is computed");
+    expect(html).toContain("tan θ");
+    expect(html).not.toContain("reusable 2D geometry engine");
   });
 
   it("renders perpendicular lines as its own negative-reciprocal surface", () => {
@@ -149,8 +158,8 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).toContain("Angle Between Lines");
     expect(html).toContain("line 1");
     expect(html).toContain("line 2");
-    expect(html).toContain("angle 55.0 deg");
-    expect(html).toContain("Angle offset");
+    expect(html).toContain("28.47°");
+    expect(html).toContain("How the angle is computed");
     expect(html).toContain('data-direct-interaction="true"');
   });
 

@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **158 of 200 lessons completed; 42 pending.**
+Dedicated rebuild target: **159 of 200 lessons completed; 41 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -144,6 +144,7 @@ Dedicated rebuild target: **158 of 200 lessons completed; 42 pending.**
 | 0230   |              173 Equation of a Line | Complete | Dedicated slope/intercept line model with pointer/keyboard manipulation, three generated equation forms, grid/select/pan/undo/redo, corrected graded practice, and exact 1024x1536 framing |
 | 0231   |                   174 Parallel Lines | Complete | Dedicated two-line equal-slope invariant with independent inputs and pointer/keyboard drag, angle/distance evidence, dynamic through-point construction, graded equation practice, and exact 982x1602 framing |
 | 0232   |              175 Perpendicular Lines | Complete | Dedicated two-angle negative-reciprocal model with lock/unlock, independent pointer/keyboard line drag, slope product, special cases, construction proof, independent graded practice, and exact 1003x1569 framing |
+| 0233   |             176 Angle Between Lines | Complete | Dedicated two-slope tangent-angle model with pointer/keyboard drag, correct classification/formula, axes/grid/expand, calculation panels, graded perpendicular practice, and exact 1036x1518 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2357,3 +2358,17 @@ Evidence:
 - `0232-reference.png`
 - `0232-desktop.png`
 - `0232-dedicated-target-validation.json`
+
+## Lesson 176 / Mockup 0233 - Angle Between Lines
+
+Reworked individually against the target mockup with a dedicated `two-slope-pointer-keyboard-draggable-lines-correct-tangent-angle-formula-classification-axes-grid-expand-and-graded-perpendicular-practice` model. Two slopes generate both graph lines, control points, shaded acute angle, slope difference/product, tangent substitution, angle classification, and every numeric readout from shared state.
+
+Both slope ranges and numeric fields, both pointer/keyboard line drags, Axes, Grid, Reset, expand/collapse, five lesson tabs, practice answer, Show answer, Check mine, practice Reset, Sitemap action, and adjacent navigation are real controls. The independent practice proves that slopes 2 and -1/2 are perpendicular and grade to 90°.
+
+The mockup labels the main angle 55°, but slopes 1.43 and 0.50 have inclinations about 55.03° and 26.57°, so their correct acute angle is 28.47°. The implementation intentionally keeps the graph and `tan θ=|(m₁-m₂)/(1+m₁m₂)|` result consistent. Final 1036x1518 validation edits both slopes into a right-angle pair, keyboard-moves line 1, physically drags line 2, toggles axes/grid, exercises all tabs and expand/collapse, reveals practice, rejects 45°, accepts 90°, resets, and verifies routes. It reports no overflow and zero console messages.
+
+Evidence:
+
+- `0233-reference.png`
+- `0233-desktop.png`
+- `0233-dedicated-target-validation.json`
