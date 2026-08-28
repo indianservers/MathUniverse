@@ -1,0 +1,234 @@
+{
+  "mockup": "0235",
+  "lessonId": 178,
+  "route": "/lessons/geometry/178-coordinate-loci",
+  "checks": {
+    "initial": {
+      "radius": "3.00",
+      "angle": "0.0000",
+      "point": "3.00:0.00",
+      "distance": "3.000",
+      "equation": "x² + y² = 9",
+      "trace-count": "1",
+      "grid": "true",
+      "axes": "true",
+      "zoom": "1.0",
+      "tab": "0",
+      "status": "Haven't started yet"
+    },
+    "radius": {
+      "radius": "4.00",
+      "angle": "0.0000",
+      "point": "4.00:0.00",
+      "distance": "4.000",
+      "equation": "x² + y² = 16",
+      "trace-count": "1",
+      "grid": "true",
+      "axes": "true",
+      "zoom": "1.0",
+      "tab": "0",
+      "status": "Haven't started yet"
+    },
+    "keyboard": {
+      "radius": "4.00",
+      "angle": "0.0873",
+      "point": "3.98:0.35",
+      "distance": "4.000",
+      "equation": "x² + y² = 16",
+      "trace-count": "2",
+      "grid": "true",
+      "axes": "true",
+      "zoom": "1.0",
+      "tab": "0",
+      "status": "Haven't started yet"
+    },
+    "drag": {
+      "radius": "4.00",
+      "angle": "1.5649",
+      "point": "0.02:4.00",
+      "distance": "4.000",
+      "equation": "x² + y² = 16",
+      "trace-count": "10",
+      "grid": "true",
+      "axes": "true",
+      "zoom": "1.0",
+      "tab": "0",
+      "status": "Haven't started yet"
+    },
+    "grid": {
+      "radius": "4.00",
+      "angle": "1.5649",
+      "point": "0.02:4.00",
+      "distance": "4.000",
+      "equation": "x² + y² = 16",
+      "trace-count": "10",
+      "grid": "false",
+      "axes": "true",
+      "zoom": "1.0",
+      "tab": "0",
+      "status": "Haven't started yet"
+    },
+    "tabs": {
+      "radius": "4.00",
+      "angle": "1.5649",
+      "point": "0.02:4.00",
+      "distance": "4.000",
+      "equation": "x² + y² = 16",
+      "trace-count": "10",
+      "grid": "false",
+      "axes": "true",
+      "zoom": "1.0",
+      "tab": "3",
+      "status": "Haven't started yet"
+    },
+    "zoom": {
+      "radius": "4.00",
+      "angle": "1.5649",
+      "point": "0.02:4.00",
+      "distance": "4.000",
+      "equation": "x² + y² = 16",
+      "trace-count": "10",
+      "grid": "false",
+      "axes": "true",
+      "zoom": "1.1",
+      "tab": "3",
+      "status": "Haven't started yet"
+    },
+    "wrong": {
+      "radius": "4.00",
+      "angle": "1.5649",
+      "point": "0.02:4.00",
+      "distance": "4.000",
+      "equation": "x² + y² = 16",
+      "trace-count": "10",
+      "grid": "false",
+      "axes": "true",
+      "zoom": "1.1",
+      "tab": "3",
+      "status": "Use centre (1, 1) and radius 4"
+    },
+    "correct": {
+      "radius": "4.00",
+      "angle": "1.5649",
+      "point": "0.02:4.00",
+      "distance": "4.000",
+      "equation": "x² + y² = 16",
+      "trace-count": "10",
+      "grid": "false",
+      "axes": "true",
+      "zoom": "1.1",
+      "tab": "3",
+      "status": "Correct locus equation"
+    },
+    "idea": {
+      "radius": "4.00",
+      "angle": "1.5649",
+      "point": "0.02:4.00",
+      "distance": "4.000",
+      "equation": "x² + y² = 16",
+      "trace-count": "10",
+      "grid": "false",
+      "axes": "true",
+      "zoom": "1.1",
+      "tab": "3",
+      "status": "The distance stays constant"
+    },
+    "reset": {
+      "radius": "3.00",
+      "angle": "0.0000",
+      "point": "3.00:0.00",
+      "distance": "3.000",
+      "equation": "x² + y² = 9",
+      "trace-count": "1",
+      "grid": "true",
+      "axes": "true",
+      "zoom": "1.0",
+      "tab": "0",
+      "status": "Haven't started yet"
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/geometry/177-point-to-line-distance",
+    "nextHref": "/lessons/geometry/179-coordinate-transformations"
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1060,
+      "height": 1484
+    },
+    "document": {
+      "width": 1060,
+      "height": 1484
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "regions": {
+      "page": {
+        "top": 103,
+        "bottom": 1479,
+        "left": 211,
+        "right": 1060,
+        "width": 849,
+        "height": 1376
+      },
+      "header": {
+        "top": 103,
+        "bottom": 329,
+        "left": 228,
+        "right": 1046,
+        "width": 818,
+        "height": 226
+      },
+      "tabs": {
+        "top": 342,
+        "bottom": 399,
+        "left": 228,
+        "right": 1046,
+        "width": 818,
+        "height": 57
+      },
+      "lab": {
+        "top": 412,
+        "bottom": 969,
+        "left": 228,
+        "right": 1046,
+        "width": 818,
+        "height": 557
+      },
+      "graph": {
+        "top": 479,
+        "bottom": 881,
+        "left": 243,
+        "right": 801,
+        "width": 558,
+        "height": 402
+      },
+      "learning": {
+        "top": 982,
+        "bottom": 1286,
+        "left": 228,
+        "right": 1046,
+        "width": 818,
+        "height": 304
+      },
+      "navigation": {
+        "top": 1299,
+        "bottom": 1363,
+        "left": 228,
+        "right": 1046,
+        "width": 818,
+        "height": 64
+      },
+      "footer": {
+        "top": 1376,
+        "bottom": 1471,
+        "left": 228,
+        "right": 1046,
+        "width": 818,
+        "height": 95
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

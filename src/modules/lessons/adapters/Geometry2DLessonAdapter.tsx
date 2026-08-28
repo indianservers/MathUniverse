@@ -53,6 +53,7 @@ import ParallelLinesTargetLesson174 from "./ParallelLinesTargetLesson174";
 import PerpendicularLinesTargetLesson175 from "./PerpendicularLinesTargetLesson175";
 import AngleBetweenLinesTargetLesson176 from "./AngleBetweenLinesTargetLesson176";
 import PointLineDistanceTargetLesson177 from "./PointLineDistanceTargetLesson177";
+import CoordinateLociTargetLesson178 from "./CoordinateLociTargetLesson178";
 import ReflectionLineTargetLesson237 from "./ReflectionLineTargetLesson237";
 import ReflectionPointTargetLesson238 from "./ReflectionPointTargetLesson238";
 import ReflectionCircleTargetLesson239 from "./ReflectionCircleTargetLesson239";
@@ -119,91 +120,274 @@ export default function Geometry2DLessonAdapter({
   onInteraction,
 }: LessonAdapterProps) {
   if (lesson.id === 167) {
-    return <CartesianPlaneTargetLesson167 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+    return (
+      <CartesianPlaneTargetLesson167
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
   }
   if (lesson.id === 168) {
-    return <PlottingPointsTargetLesson168 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+    return (
+      <PlottingPointsTargetLesson168
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
   }
   if (lesson.id === 169) {
-    return <DistanceBetweenPointsTargetLesson169 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+    return (
+      <DistanceBetweenPointsTargetLesson169
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
   }
   if (lesson.id === 170) {
-    return <MidpointTargetLesson170 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+    return (
+      <MidpointTargetLesson170
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
   }
   if (lesson.id === 171) {
-    return <SectionFormulaTargetLesson171 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+    return (
+      <SectionFormulaTargetLesson171
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
   }
   if (lesson.id === 172) {
-    return <GradientSlopeTargetLesson172 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+    return (
+      <GradientSlopeTargetLesson172
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
   }
   if (lesson.id === 173) {
-    return <EquationLineTargetLesson173 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+    return (
+      <EquationLineTargetLesson173
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
   }
   if (lesson.id === 174) {
-    return <ParallelLinesTargetLesson174 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+    return (
+      <ParallelLinesTargetLesson174
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
   }
   if (lesson.id === 175) {
-    return <PerpendicularLinesTargetLesson175 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+    return (
+      <PerpendicularLinesTargetLesson175
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
   }
   if (lesson.id === 176) {
-    return <AngleBetweenLinesTargetLesson176 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+    return (
+      <AngleBetweenLinesTargetLesson176
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
   }
   if (lesson.id === 177) {
-    return <PointLineDistanceTargetLesson177 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+    return (
+      <PointLineDistanceTargetLesson177
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
+  }
+  if (lesson.id === 178) {
+    return (
+      <CoordinateLociTargetLesson178
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
   }
   if (lesson.id === 250) {
-    return <EnvelopeLinesTargetLesson250 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+    return (
+      <EnvelopeLinesTargetLesson250
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
   }
   if (lesson.id === 251) {
-    return <DynamicTraceTargetLesson251 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+    return (
+      <DynamicTraceTargetLesson251
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
   }
   if (lesson.id === 252) {
-    return <ConjectureTestingTargetLesson252 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+    return (
+      <ConjectureTestingTargetLesson252
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
   }
   if (lesson.id === 253) {
-    return <ExactProofTargetLesson253 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+    return (
+      <ExactProofTargetLesson253
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
   }
   if (lesson.id === 254) {
-    return <CollinearityTestTargetLesson254 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+    return (
+      <CollinearityTestTargetLesson254
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
   }
   if (lesson.id === 255) {
-    return <ConcurrencyTestTargetLesson255 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+    return (
+      <ConcurrencyTestTargetLesson255
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
   }
   if (lesson.id === 256) {
-    return <ConcyclicityTestTargetLesson256 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+    return (
+      <ConcyclicityTestTargetLesson256
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
   }
   if (lesson.id === 249) {
-    return <MovingLinkageLociTargetLesson249 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+    return (
+      <MovingLinkageLociTargetLesson249
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
   }
   if (lesson.id === 248) {
-    return <EquidistantLociTargetLesson248 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+    return (
+      <EquidistantLociTargetLesson248
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
   }
   if (lesson.id === 247) {
-    return <LocusGeneratorTargetLesson247 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+    return (
+      <LocusGeneratorTargetLesson247
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
   }
   if (lesson.id === 246) {
-    return <SymmetryExplorerTargetLesson246 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+    return (
+      <SymmetryExplorerTargetLesson246
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
   }
   if (lesson.id === 245) {
-    return <InvariantsTargetLesson245 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+    return (
+      <InvariantsTargetLesson245
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
   }
   if (lesson.id === 244) {
-    return <TransformationMappingTargetLesson244 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+    return (
+      <TransformationMappingTargetLesson244
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
   }
   if (lesson.id === 243) {
-    return <CompositeTransformationsTargetLesson243 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+    return (
+      <CompositeTransformationsTargetLesson243
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
   }
   if (lesson.id === 242) {
-    return <MatrixTransformationTargetLesson242 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+    return (
+      <MatrixTransformationTargetLesson242
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
   }
   if (lesson.id === 241) {
-    return <DilationPointTargetLesson241 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+    return (
+      <DilationPointTargetLesson241
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
   }
   if (lesson.id === 240) {
-    return <RotationPointTargetLesson240 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+    return (
+      <RotationPointTargetLesson240
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
   }
   if (lesson.id === 239) {
-    return <ReflectionCircleTargetLesson239 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+    return (
+      <ReflectionCircleTargetLesson239
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
   }
   if (lesson.id === 238) {
     return (

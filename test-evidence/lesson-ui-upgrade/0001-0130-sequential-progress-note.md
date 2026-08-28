@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **160 of 200 lessons completed; 40 pending.**
+Dedicated rebuild target: **161 of 200 lessons completed; 39 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -146,6 +146,7 @@ Dedicated rebuild target: **160 of 200 lessons completed; 40 pending.**
 | 0232   |              175 Perpendicular Lines | Complete | Dedicated two-angle negative-reciprocal model with lock/unlock, independent pointer/keyboard line drag, slope product, special cases, construction proof, independent graded practice, and exact 1003x1569 framing |
 | 0233   |             176 Angle Between Lines | Complete | Dedicated two-slope tangent-angle model with pointer/keyboard drag, correct classification/formula, axes/grid/expand, calculation panels, graded perpendicular practice, and exact 1036x1518 framing |
 | 0234   |          177 Point-to-Line Distance | Complete | Dedicated orthogonal-projection model with pointer/keyboard draggable point and line, live foot/distance/formula/path comparison, expand, exact-value practice, and exact 984x1598 framing |
+| 0235   |                178 Coordinate Loci | Complete | Dedicated fixed-focus circle-locus model with constrained pointer/keyboard generator, editable radius, live trace/equation/distance, real graph controls, graded translated-circle practice, and exact 1060x1484 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2387,3 +2388,17 @@ Evidence:
 - `0234-reference.png`
 - `0234-desktop.png`
 - `0234-dedicated-target-validation.json`
+
+## Lesson 178 / Mockup 0235 - Coordinate Loci
+
+Reworked individually against the target mockup with a dedicated `fixed-focus-variable-radius-constrained-generator-circle-locus` model. Generator P remains exactly radius r from focus F(0,0), while its Cartesian coordinates, distance PF, traced path, circle geometry, and equation x²+y²=r² are generated from the same angle/radius state.
+
+Direct pointer and keyboard movement, the radius slider and numeric value, axes and grid toggles, trace clearing, zoom in/out/Fit, four learning tabs, checklist, Share, Reset, solution reveal, translated-circle grading, start exploration, and adjacent navigation are real controls. The independent practice accepts `(x-1)^2+(y-1)^2=16` for centre (1,1) and radius 4.
+
+Final 1060x1484 validation changes r from 3 to 4, verifies x²+y²=16 and PF=4, keyboard-moves then physically drags P to the top of the constrained circle, verifies trace growth, toggles the grid, exercises tabs and zoom, rejects x+y=4, accepts the translated-circle equation, completes the observation checklist, resets, and verifies both adjacent routes. The comparison loop matches page x=211-1060, header x=228-1046 and y=103-329, tabs y=342-399, lab y=412-969, graph x=243-801 and y=479-881, learning cards y=982-1286, navigation y=1299-1363, and footer y=1376-1471. It reports an exact 1060x1484 document, no overflow, and zero console warnings or errors.
+
+Evidence:
+
+- `0235-reference.png`
+- `0235-desktop.png`
+- `0235-dedicated-target-validation.json`
