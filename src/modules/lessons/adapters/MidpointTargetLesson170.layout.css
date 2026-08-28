@@ -1,0 +1,14 @@
+@media (min-width: 901px) {
+  .mp170-page { margin-top: -7px; }
+  .mp170-header,
+  .mp170-stages,
+  .mp170-model,
+  .mp170-learn,
+  .mp170-practice,
+  .mp170-nav,
+  .mp170-footer { margin-left: 19px; margin-right: 14px; }
+  .mp170-grid { height: 488px; margin-left: 1px; }
+  .mp170-model > article > header button svg { width: 13px; height: 13px; }
+  .mp170-practice { margin-top: 18px; }
+  .mp170-footer { margin-top: 19px; }
+}

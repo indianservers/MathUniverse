@@ -1,0 +1,242 @@
+{
+  "mockup": "0227",
+  "lessonId": 170,
+  "route": "/lessons/geometry/170-midpoint",
+  "checks": {
+    "initial": {
+      "a": "-4:1",
+      "b": "4:5",
+      "midpoint": "0:3",
+      "half": "4.47",
+      "stage": "2",
+      "grid": "true",
+      "zoom": "1",
+      "expanded": "false",
+      "practice": "-6:-2,6:4",
+      "practice-midpoint": "0:1",
+      "status": ""
+    },
+    "inputs": {
+      "a": "-2:3",
+      "b": "4:5",
+      "midpoint": "1:4",
+      "half": "3.16",
+      "stage": "2",
+      "grid": "true",
+      "zoom": "1",
+      "expanded": "false",
+      "practice": "-6:-2,6:4",
+      "practice-midpoint": "0:1",
+      "status": ""
+    },
+    "keyboard": {
+      "a": "-1:2",
+      "b": "4:5",
+      "midpoint": "1.5:3.5",
+      "half": "2.92",
+      "stage": "2",
+      "grid": "true",
+      "zoom": "1",
+      "expanded": "false",
+      "practice": "-6:-2,6:4",
+      "practice-midpoint": "0:1",
+      "status": ""
+    },
+    "pointerA": {
+      "a": "1:3",
+      "b": "4:5",
+      "midpoint": "2.5:4",
+      "half": "1.80",
+      "stage": "2",
+      "grid": "true",
+      "zoom": "1",
+      "expanded": "false",
+      "practice": "-6:-2,6:4",
+      "practice-midpoint": "0:1",
+      "status": ""
+    },
+    "pointerB": {
+      "a": "1:3",
+      "b": "3:3",
+      "midpoint": "2:3",
+      "half": "1.00",
+      "stage": "2",
+      "grid": "true",
+      "zoom": "1",
+      "expanded": "false",
+      "practice": "-6:-2,6:4",
+      "practice-midpoint": "0:1",
+      "status": ""
+    },
+    "tools": {
+      "a": "1:3",
+      "b": "3:3",
+      "midpoint": "2:3",
+      "half": "1.00",
+      "stage": "2",
+      "grid": "false",
+      "zoom": "0.75",
+      "expanded": "true",
+      "practice": "-6:-2,6:4",
+      "practice-midpoint": "0:1",
+      "status": ""
+    },
+    "practiceDrag": {
+      "a": "1:3",
+      "b": "3:3",
+      "midpoint": "2:3",
+      "half": "1.00",
+      "stage": "2",
+      "grid": "false",
+      "zoom": "0.75",
+      "expanded": "true",
+      "practice": "5:-2,6:4",
+      "practice-midpoint": "5.5:1",
+      "status": ""
+    },
+    "practiceKeyboard": {
+      "a": "1:3",
+      "b": "3:3",
+      "midpoint": "2:3",
+      "half": "1.00",
+      "stage": "2",
+      "grid": "false",
+      "zoom": "0.75",
+      "expanded": "true",
+      "practice": "4:-2,6:4",
+      "practice-midpoint": "5:1",
+      "status": ""
+    },
+    "wrong": {
+      "a": "1:3",
+      "b": "3:3",
+      "midpoint": "2:3",
+      "half": "1.00",
+      "stage": "2",
+      "grid": "false",
+      "zoom": "0.75",
+      "expanded": "true",
+      "practice": "4:-2,6:4",
+      "practice-midpoint": "5:1",
+      "status": "Check the coordinate averages"
+    },
+    "correct": {
+      "a": "1:3",
+      "b": "3:3",
+      "midpoint": "2:3",
+      "half": "1.00",
+      "stage": "2",
+      "grid": "false",
+      "zoom": "0.75",
+      "expanded": "true",
+      "practice": "4:-2,6:4",
+      "practice-midpoint": "5:1",
+      "status": "Correct midpoint"
+    },
+    "reset": {
+      "a": "-4:1",
+      "b": "4:5",
+      "midpoint": "0:3",
+      "half": "4.47",
+      "stage": "2",
+      "grid": "true",
+      "zoom": "1",
+      "expanded": "false",
+      "practice": "-6:-2,6:4",
+      "practice-midpoint": "0:1",
+      "status": ""
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/geometry/169-distance-between-points",
+    "nextHref": "/lessons/geometry/171-section-formula"
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1024,
+      "height": 1536
+    },
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "regions": {
+      "page": {
+        "top": 108,
+        "bottom": 1533,
+        "left": 220,
+        "right": 1024,
+        "width": 804,
+        "height": 1425
+      },
+      "header": {
+        "top": 108,
+        "bottom": 275,
+        "left": 239,
+        "right": 1010,
+        "width": 771,
+        "height": 167
+      },
+      "stages": {
+        "top": 289,
+        "bottom": 351,
+        "left": 239,
+        "right": 1010,
+        "width": 771,
+        "height": 62
+      },
+      "model": {
+        "top": 365,
+        "bottom": 914,
+        "left": 239,
+        "right": 1010,
+        "width": 771,
+        "height": 549
+      },
+      "plot": {
+        "top": 411,
+        "bottom": 886,
+        "left": 254,
+        "right": 714,
+        "width": 460,
+        "height": 475
+      },
+      "learn": {
+        "top": 927,
+        "bottom": 1160,
+        "left": 239,
+        "right": 1010,
+        "width": 771,
+        "height": 233
+      },
+      "practice": {
+        "top": 1178,
+        "bottom": 1333,
+        "left": 239,
+        "right": 1010,
+        "width": 771,
+        "height": 155
+      },
+      "navigation": {
+        "top": 1346,
+        "bottom": 1399,
+        "left": 239,
+        "right": 1010,
+        "width": 771,
+        "height": 53
+      },
+      "footer": {
+        "top": 1418,
+        "bottom": 1527,
+        "left": 239,
+        "right": 1010,
+        "width": 771,
+        "height": 109
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

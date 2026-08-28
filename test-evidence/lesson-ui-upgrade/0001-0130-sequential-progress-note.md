@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **152 of 200 lessons completed; 48 pending.**
+Dedicated rebuild target: **153 of 200 lessons completed; 47 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -138,6 +138,7 @@ Dedicated rebuild target: **152 of 200 lessons completed; 48 pending.**
 | 0224   |                  167 Cartesian Plane | Complete | Dedicated Cartesian model with editable coordinates, pointer/keyboard point drag, generated quadrants/signs, real visibility controls, four independent practice points, delete/clear/grading/solution, navigation, and exact 1014x1551 framing |
 | 0225   |                  168 Plotting Points | Complete | Dedicated four-point construction model with editable coordinates, pointer/keyboard drag, point/real pan modes, grid snapping, live quadrants/signs, delete/clear, worked example, XP challenge, and exact 1024x1536 framing |
 | 0226   |          169 Distance Between Points | Complete | Dedicated two-point Euclidean model with editable coordinates, pointer/keyboard drag, generated right triangle/deltas/distance, grid/snap/zoom, independent target-distance practice, and exact 1005x1566 framing |
+| 0227   |                         170 Midpoint | Complete | Dedicated two-endpoint midpoint model with editable coordinates, pointer/keyboard drag, generated midpoint/equal halves, grid/zoom/expand, independent draggable graded challenge, and exact 1024x1536 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2267,3 +2268,17 @@ Evidence:
 - `0226-reference.png`
 - `0226-desktop.png`
 - `0226-dedicated-target-validation.json`
+
+## Lesson 170 / Mockup 0227 - Midpoint
+
+Reworked individually against the mathematics target mockup with a dedicated `two-independent-editable-pointer-keyboard-draggable-endpoints-generated-midpoint-equal-halves-grid-zoom-expand-and-independent-draggable-graded-practice` model. Endpoints A and B generate the midpoint, segment halves, coordinate guide, labels, derived fields, and equality observation from one state. Practice owns separate draggable endpoints, midpoint, answer fields, and grading result.
+
+All four endpoint inputs, both pointer/keyboard endpoint drags, five lesson stages, Grid, zoom in/out, Expand, Reset, both practice endpoint drags, practice keyboard movement, two answer inputs, Check Answer, and adjacent navigation are real controls. The generated midpoint uses exact coordinate averages for arbitrary supported endpoints. For the target's A(−4,1), B(4,5), M(0,3), the implementation intentionally reports the mathematically correct half-length `sqrt(20)=4.47`; the mockup's `5.00` is inconsistent with those coordinates.
+
+Final 1024x1536 browser validation edits A to `(−2,3)`, keyboard-moves it to `(−1,2)`, physically drags it to `(1,3)`, physically drags B to `(3,3)`, toggles Grid, exercises zoom/Expand and all stages, physically drags and keyboard-corrects a practice endpoint, rejects `(0,1)` after the drag, accepts the generated `(5,1)`, reloads to the exact target state, and verifies both adjacent routes. The comparison loop matches page x=220-1024 and y=108-1533, header x=239-1010 and y=108-275, stages y=289-351, model y=365-914, graph x=254-714 and y=411-886, learning cards y=927-1160, practice y=1178-1333, navigation y=1346-1399, and footer y=1418-1527. It reports an exact 1024x1536 document, no overflow, and zero console warnings or errors.
+
+Evidence:
+
+- `0227-reference.png`
+- `0227-desktop.png`
+- `0227-dedicated-target-validation.json`
