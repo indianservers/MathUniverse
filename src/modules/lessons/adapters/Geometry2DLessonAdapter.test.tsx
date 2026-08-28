@@ -35,18 +35,10 @@ describe("Geometry2DLessonAdapter", () => {
 
   it("renders coordinate loci as its own constrained-circle surface", () => {
     const lesson = lessonCatalog.find((item) => item.id === 178)!;
-    const html = renderToStaticMarkup(
-      <Geometry2DLessonAdapter
-        lesson={lesson}
-        resetToken={0}
-        onInteraction={vi.fn()}
-      />,
-    );
+    const html = renderToStaticMarkup(<Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
     expect(html).toContain("geometry-mockup-0235");
     expect(html).toContain('data-dedicated-lesson="178"');
-    expect(html).toContain(
-      'data-object-model="fixed-focus-variable-radius-constrained-generator-circle-locus"',
-    );
+    expect(html).toContain('data-object-model="fixed-focus-variable-radius-constrained-generator-circle-locus"');
     expect(html).toContain('data-testid="coordinate-locus-point"');
     expect(html).toContain('aria-label="Locus radius value"');
     expect(html).toContain("Distance PF = 3.00");
@@ -56,13 +48,7 @@ describe("Geometry2DLessonAdapter", () => {
 
   it("renders point-to-line distance as its own orthogonal-projection surface", () => {
     const lesson = lessonCatalog.find((item) => item.id === 177)!;
-    const html = renderToStaticMarkup(
-      <Geometry2DLessonAdapter
-        lesson={lesson}
-        resetToken={0}
-        onInteraction={vi.fn()}
-      />,
-    );
+    const html = renderToStaticMarkup(<Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
     expect(html).toContain("geometry-mockup-0234");
     expect(html).toContain('data-dedicated-lesson="177"');
     expect(html).toContain("Foot of perpendicular");
@@ -72,13 +58,7 @@ describe("Geometry2DLessonAdapter", () => {
 
   it("renders angle between lines as its own tangent-formula surface", () => {
     const lesson = lessonCatalog.find((item) => item.id === 176)!;
-    const html = renderToStaticMarkup(
-      <Geometry2DLessonAdapter
-        lesson={lesson}
-        resetToken={0}
-        onInteraction={vi.fn()}
-      />,
-    );
+    const html = renderToStaticMarkup(<Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
     expect(html).toContain("geometry-mockup-0233");
     expect(html).toContain('data-dedicated-lesson="176"');
     expect(html).toContain("How the angle is computed");
@@ -88,13 +68,7 @@ describe("Geometry2DLessonAdapter", () => {
 
   it("renders perpendicular lines as its own negative-reciprocal surface", () => {
     const lesson = lessonCatalog.find((item) => item.id === 175)!;
-    const html = renderToStaticMarkup(
-      <Geometry2DLessonAdapter
-        lesson={lesson}
-        resetToken={0}
-        onInteraction={vi.fn()}
-      />,
-    );
+    const html = renderToStaticMarkup(<Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
     expect(html).toContain("geometry-mockup-0232");
     expect(html).toContain('data-dedicated-lesson="175"');
     expect(html).toContain("Product of slopes");
@@ -104,13 +78,7 @@ describe("Geometry2DLessonAdapter", () => {
 
   it("renders parallel lines as its own equal-slope invariant surface", () => {
     const lesson = lessonCatalog.find((item) => item.id === 174)!;
-    const html = renderToStaticMarkup(
-      <Geometry2DLessonAdapter
-        lesson={lesson}
-        resetToken={0}
-        onInteraction={vi.fn()}
-      />,
-    );
+    const html = renderToStaticMarkup(<Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
     expect(html).toContain("geometry-mockup-0231");
     expect(html).toContain('data-dedicated-lesson="174"');
     expect(html).toContain("Slopes are equal");
@@ -120,13 +88,7 @@ describe("Geometry2DLessonAdapter", () => {
 
   it("renders equation of a line as its own equivalent-forms surface", () => {
     const lesson = lessonCatalog.find((item) => item.id === 173)!;
-    const html = renderToStaticMarkup(
-      <Geometry2DLessonAdapter
-        lesson={lesson}
-        resetToken={0}
-        onInteraction={vi.fn()}
-      />,
-    );
+    const html = renderToStaticMarkup(<Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
     expect(html).toContain("geometry-mockup-0230");
     expect(html).toContain('data-dedicated-lesson="173"');
     expect(html).toContain("Slope-Intercept");
@@ -136,13 +98,7 @@ describe("Geometry2DLessonAdapter", () => {
 
   it("renders gradient slope as its own rise-over-run surface", () => {
     const lesson = lessonCatalog.find((item) => item.id === 172)!;
-    const html = renderToStaticMarkup(
-      <Geometry2DLessonAdapter
-        lesson={lesson}
-        resetToken={0}
-        onInteraction={vi.fn()}
-      />,
-    );
+    const html = renderToStaticMarkup(<Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
     expect(html).toContain("geometry-mockup-0229");
     expect(html).toContain('data-dedicated-lesson="172"');
     expect(html).toContain("Explore the line");
@@ -152,13 +108,7 @@ describe("Geometry2DLessonAdapter", () => {
 
   it("renders section formula as its own weighted-division surface", () => {
     const lesson = lessonCatalog.find((item) => item.id === 171)!;
-    const html = renderToStaticMarkup(
-      <Geometry2DLessonAdapter
-        lesson={lesson}
-        resetToken={0}
-        onInteraction={vi.fn()}
-      />,
-    );
+    const html = renderToStaticMarkup(<Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
     expect(html).toContain("geometry-mockup-0228");
     expect(html).toContain('data-dedicated-lesson="171"');
     expect(html).toContain("Internal division");
@@ -169,13 +119,7 @@ describe("Geometry2DLessonAdapter", () => {
 
   it("renders midpoint as its own equal-halves construction surface", () => {
     const lesson = lessonCatalog.find((item) => item.id === 170)!;
-    const html = renderToStaticMarkup(
-      <Geometry2DLessonAdapter
-        lesson={lesson}
-        resetToken={0}
-        onInteraction={vi.fn()}
-      />,
-    );
+    const html = renderToStaticMarkup(<Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
     expect(html).toContain("geometry-mockup-0227");
     expect(html).toContain('data-dedicated-lesson="170"');
     expect(html).toContain("Midpoint M");
@@ -186,13 +130,7 @@ describe("Geometry2DLessonAdapter", () => {
 
   it("renders distance between points as its own right-triangle surface", () => {
     const lesson = lessonCatalog.find((item) => item.id === 169)!;
-    const html = renderToStaticMarkup(
-      <Geometry2DLessonAdapter
-        lesson={lesson}
-        resetToken={0}
-        onInteraction={vi.fn()}
-      />,
-    );
+    const html = renderToStaticMarkup(<Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
     expect(html).toContain("geometry-mockup-0226");
     expect(html).toContain('data-dedicated-lesson="169"');
     expect(html).toContain("Interactive Model");
@@ -203,13 +141,7 @@ describe("Geometry2DLessonAdapter", () => {
 
   it("renders plotting points as its own four-point construction surface", () => {
     const lesson = lessonCatalog.find((item) => item.id === 168)!;
-    const html = renderToStaticMarkup(
-      <Geometry2DLessonAdapter
-        lesson={lesson}
-        resetToken={0}
-        onInteraction={vi.fn()}
-      />,
-    );
+    const html = renderToStaticMarkup(<Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
     expect(html).toContain("geometry-mockup-0225");
     expect(html).toContain('data-dedicated-lesson="168"');
     expect(html).toContain("Click to plot points or drag to move them");
@@ -221,11 +153,7 @@ describe("Geometry2DLessonAdapter", () => {
   it("renders Cartesian plane as its own draggable coordinate surface", () => {
     const lesson = lessonCatalog.find((item) => item.id === 167)!;
     const html = renderToStaticMarkup(
-      <Geometry2DLessonAdapter
-        lesson={lesson}
-        resetToken={0}
-        onInteraction={vi.fn()}
-      />,
+      <Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
     );
 
     expect(html).toContain("geometry-mockup-0224");
@@ -833,9 +761,7 @@ describe("Geometry2DLessonAdapter", () => {
       />,
     );
 
-    expect(html).toContain(
-      "Five draggable points and their solved general conic",
-    );
+    expect(html).toContain("Five draggable points and their solved general conic");
     expect(html).toContain('data-testid="five-point-conic-path"');
     expect(html).toContain('data-classification="ellipse"');
     expect(html).toContain('data-testid="conic-point-1"');
@@ -914,9 +840,7 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).toContain(
       "Interactive focus-directrix parabola with draggable focus directrix and trace point",
     );
-    expect(html).toContain(
-      'data-object-model="focus-directrix-equal-distance-parabola"',
-    );
+    expect(html).toContain('data-object-model="focus-directrix-equal-distance-parabola"');
     expect(html).toContain('data-testid="parabola-locus"');
     expect(html).toContain('data-p="2.000000"');
     expect(html).toContain('data-vertex-y="0.000000"');
@@ -943,9 +867,7 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).toContain(
       "Coordinate plane with draggable distance endpoints A and B",
     );
-    expect(html).toContain(
-      'data-object-model="two-endpoint-coordinate-distance"',
-    );
+    expect(html).toContain('data-object-model="two-endpoint-coordinate-distance"');
     expect(html).toContain('data-testid="distance-segment"');
     expect(html).toContain('data-distance="7.810250"');
     expect(html).toContain('data-testid="distance-point-a"');
@@ -985,7 +907,9 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).toContain('data-testid="area-triangulation-diagonal"');
     expect(html).toContain('data-testid="polygon-area-value">18.00');
     expect(html).toContain('data-testid="polygon-perimeter-value">17.43');
-    expect(html).toContain("Practice area-preserving draggable quadrilateral");
+    expect(html).toContain(
+      "Practice area-preserving draggable quadrilateral",
+    );
     expect(html).toContain("A = ½ |Σ(xᵢyᵢ₊₁ − xᵢ₊₁yᵢ)|");
     expect(html).not.toContain("Width");
     expect(html).not.toContain("Dedicated area objects");
@@ -1041,7 +965,9 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).toContain('data-testid="fixed-live-angle">55.0°');
     expect(html).toContain('aria-label="Target angle"');
     expect(html).toContain('aria-label="Lock main angle"');
-    expect(html).toContain("Practice fixed angle graph with draggable point P");
+    expect(html).toContain(
+      "Practice fixed angle graph with draggable point P",
+    );
     expect(html).toContain('aria-label="Practice target angle"');
     expect(html).toContain("Construct a ray making 30° with the base line.");
     expect(html).not.toContain('aria-label="Base rotation"');
@@ -1070,9 +996,7 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).toContain('data-valid="true"');
     expect(html).toContain("m<sub>ℓ</sub> · m<sub>m</sub> = −1");
     expect(html).toContain('aria-label="Auto-check relations"');
-    expect(html).toContain(
-      "Practice perpendicular lines with draggable line m",
-    );
+    expect(html).toContain("Practice perpendicular lines with draggable line m");
     expect(html).toContain("Check my relation");
     expect(html).not.toContain('aria-label="Line 1 angle"');
     expect(html).not.toContain('aria-label="Line 2 angle"');
@@ -1112,23 +1036,15 @@ describe("Geometry2DLessonAdapter", () => {
   it("renders Rigid Polygon with a triangle rigid-body motion model", () => {
     const lesson = lessonCatalog.find((item) => item.id === 216)!;
     const html = renderToStaticMarkup(
-      <Geometry2DLessonAdapter
-        lesson={lesson}
-        resetToken={0}
-        onInteraction={vi.fn()}
-      />,
+      <Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
     );
 
-    expect(html).toContain(
-      "Interactive rigid triangle plane with movable original and translated overlay",
-    );
+    expect(html).toContain("Interactive rigid triangle plane with movable original and translated overlay");
     expect(html).toContain('data-testid="rigid-original-polygon"');
     expect(html).toContain('data-testid="rigid-overlay-polygon"');
     expect(html).toContain('data-testid="rigid-vertex-a"');
     expect(html).toContain("Side lengths stay the same.");
-    expect(html).toContain(
-      "Rotate triangle ABC about point P(0, 0) by 90 degrees counterclockwise.",
-    );
+    expect(html).toContain("Rotate triangle ABC about point P(0, 0) by 90 degrees counterclockwise.");
     expect(html).toContain('aria-label="A rotated x"');
     expect(html).not.toContain('aria-label="Rotation"');
     expect(html).not.toContain('aria-label="Translate x"');
@@ -1137,19 +1053,13 @@ describe("Geometry2DLessonAdapter", () => {
   it("renders General Polygon with an editable measured vertex collection", () => {
     const lesson = lessonCatalog.find((item) => item.id === 217)!;
     const html = renderToStaticMarkup(
-      <Geometry2DLessonAdapter
-        lesson={lesson}
-        resetToken={0}
-        onInteraction={vi.fn()}
-      />,
+      <Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
     );
 
-    expect(html).toContain(
-      "Editable general polygon coordinate plane with add drag and remove vertices",
-    );
+    expect(html).toContain("Editable general polygon coordinate plane with add drag and remove vertices");
     expect(html).toContain('data-testid="general-polygon-body"');
     expect(html).toContain('data-testid="general-polygon-vertex-0"');
-    expect(html).toContain("data-area=");
+    expect(html).toContain('data-area=');
     expect(html).toContain("Interior Angles");
     expect(html).toContain("Self-intersecting");
     expect(html).toContain("Try It Independently");
@@ -1161,16 +1071,10 @@ describe("Geometry2DLessonAdapter", () => {
   it("renders Circle Centre and Point with a direct radius dependency", () => {
     const lesson = lessonCatalog.find((item) => item.id === 218)!;
     const html = renderToStaticMarkup(
-      <Geometry2DLessonAdapter
-        lesson={lesson}
-        resetToken={0}
-        onInteraction={vi.fn()}
-      />,
+      <Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
     );
 
-    expect(html).toContain(
-      "Interactive circle with draggable centre C and circumference point P",
-    );
+    expect(html).toContain("Interactive circle with draggable centre C and circumference point P");
     expect(html).toContain('data-testid="circle-centre-handle"');
     expect(html).toContain('data-testid="circle-point-handle"');
     expect(html).toContain('aria-label="Centre x coordinate"');
@@ -1184,16 +1088,10 @@ describe("Geometry2DLessonAdapter", () => {
   it("renders Circle Centre and Radius with an independent fixed radius", () => {
     const lesson = lessonCatalog.find((item) => item.id === 219)!;
     const html = renderToStaticMarkup(
-      <Geometry2DLessonAdapter
-        lesson={lesson}
-        resetToken={0}
-        onInteraction={vi.fn()}
-      />,
+      <Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
     );
 
-    expect(html).toContain(
-      "Interactive fixed-radius circle with draggable centre and compass handle",
-    );
+    expect(html).toContain("Interactive fixed-radius circle with draggable centre and compass handle");
     expect(html).toContain('data-testid="fixed-radius-circle"');
     expect(html).toContain('data-testid="fixed-radius-centre"');
     expect(html).toContain('data-testid="fixed-radius-handle"');
@@ -1208,16 +1106,10 @@ describe("Geometry2DLessonAdapter", () => {
   it("renders Circle Through Three Points with a circumcircle dependency", () => {
     const lesson = lessonCatalog.find((item) => item.id === 220)!;
     const html = renderToStaticMarkup(
-      <Geometry2DLessonAdapter
-        lesson={lesson}
-        resetToken={0}
-        onInteraction={vi.fn()}
-      />,
+      <Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
     );
 
-    expect(html).toContain(
-      "Interactive circumcircle through draggable points A B and C",
-    );
+    expect(html).toContain("Interactive circumcircle through draggable points A B and C");
     expect(html).toContain('data-testid="circumcircle-point-0"');
     expect(html).toContain('data-testid="three-point-circle"');
     expect(html).toContain('data-testid="circumcentre-o"');
@@ -1241,17 +1133,13 @@ describe("Geometry2DLessonAdapter", () => {
 
     expect(html).toContain('data-testid="dynamic-geometry-mockup-0293"');
     expect(html).toContain('data-object-model="rigid-vector-translation-pair"');
-    expect(html).toContain(
-      "Interactive translation graph with draggable source triangle and vector",
-    );
+    expect(html).toContain("Interactive translation graph with draggable source triangle and vector");
     expect(html).toContain('data-testid="translation-source-triangle"');
     expect(html).toContain('data-testid="translation-image-triangle"');
     expect(html).toContain('data-testid="translation-vector-handle"');
     expect(html).toContain('aria-label="Vector x component exact value"');
     expect(html).toContain("(x, y) + &lt; a, b &gt; = (x + a, y + b)");
-    expect(html).toContain(
-      "Practice translation graph with draggable triangle and vector",
-    );
+    expect(html).toContain("Practice translation graph with draggable triangle and vector");
     expect(html).toContain('aria-label="A&#x27; x coordinate"');
     expect(html).toContain("Show solution");
     expect(html).not.toContain("reusable 2D geometry engine");
@@ -1268,12 +1156,8 @@ describe("Geometry2DLessonAdapter", () => {
     );
 
     expect(html).toContain('data-testid="dynamic-geometry-mockup-0294"');
-    expect(html).toContain(
-      'data-object-model="point-line-orthogonal-reflection"',
-    );
-    expect(html).toContain(
-      "Interactive point and mirror line reflection graph",
-    );
+    expect(html).toContain('data-object-model="point-line-orthogonal-reflection"');
+    expect(html).toContain("Interactive point and mirror line reflection graph");
     expect(html).toContain('data-testid="reflection-source-point"');
     expect(html).toContain('data-testid="reflection-image-point"');
     expect(html).toContain('data-testid="reflection-mirror-line"');
@@ -1289,20 +1173,12 @@ describe("Geometry2DLessonAdapter", () => {
   it("renders Reflection in Point as a dedicated midpoint half-turn model", () => {
     const lesson = lessonCatalog.find((item) => item.id === 238)!;
     const html = renderToStaticMarkup(
-      <Geometry2DLessonAdapter
-        lesson={lesson}
-        resetToken={0}
-        onInteraction={vi.fn()}
-      />,
+      <Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
     );
 
     expect(html).toContain('data-testid="dynamic-geometry-mockup-0295"');
-    expect(html).toContain(
-      'data-object-model="centre-midpoint-half-turn-reflection"',
-    );
-    expect(html).toContain(
-      "Interactive central reflection graph with draggable centre P and point A",
-    );
+    expect(html).toContain('data-object-model="centre-midpoint-half-turn-reflection"');
+    expect(html).toContain("Interactive central reflection graph with draggable centre P and point A");
     expect(html).toContain('data-testid="point-reflection-centre"');
     expect(html).toContain('data-testid="point-reflection-source"');
     expect(html).toContain('data-testid="point-reflection-image"');
@@ -1318,18 +1194,12 @@ describe("Geometry2DLessonAdapter", () => {
   it("renders Reflection in Circle as a dedicated opposite-ray inversion model", () => {
     const lesson = lessonCatalog.find((item) => item.id === 239)!;
     const html = renderToStaticMarkup(
-      <Geometry2DLessonAdapter
-        lesson={lesson}
-        resetToken={0}
-        onInteraction={vi.fn()}
-      />,
+      <Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
     );
 
     expect(html).toContain('data-testid="dynamic-geometry-mockup-0296"');
     expect(html).toContain('data-object-model="opposite-ray-circle-inversion"');
-    expect(html).toContain(
-      "Interactive reflection in circle graph with draggable O, P, and radius",
-    );
+    expect(html).toContain("Interactive reflection in circle graph with draggable O, P, and radius");
     expect(html).toContain('data-testid="circle-reflection-centre"');
     expect(html).toContain('data-testid="circle-reflection-source"');
     expect(html).toContain('data-testid="circle-reflection-image"');
@@ -1344,20 +1214,12 @@ describe("Geometry2DLessonAdapter", () => {
   it("renders Rotation Around Point as a dedicated signed-angle rotation model", () => {
     const lesson = lessonCatalog.find((item) => item.id === 240)!;
     const html = renderToStaticMarkup(
-      <Geometry2DLessonAdapter
-        lesson={lesson}
-        resetToken={0}
-        onInteraction={vi.fn()}
-      />,
+      <Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
     );
 
     expect(html).toContain('data-testid="dynamic-geometry-mockup-0297"');
-    expect(html).toContain(
-      'data-object-model="fixed-centre-signed-angle-rotation"',
-    );
-    expect(html).toContain(
-      "Interactive graph rotating P around draggable centre O",
-    );
+    expect(html).toContain('data-object-model="fixed-centre-signed-angle-rotation"');
+    expect(html).toContain("Interactive graph rotating P around draggable centre O");
     expect(html).toContain('data-testid="rotation-centre"');
     expect(html).toContain('data-testid="rotation-source"');
     expect(html).toContain('data-testid="rotation-image"');
@@ -1370,20 +1232,10 @@ describe("Geometry2DLessonAdapter", () => {
 
   it("renders Dilation from Point as a dedicated triangle scale model", () => {
     const lesson = lessonCatalog.find((item) => item.id === 241)!;
-    const html = renderToStaticMarkup(
-      <Geometry2DLessonAdapter
-        lesson={lesson}
-        resetToken={0}
-        onInteraction={vi.fn()}
-      />,
-    );
+    const html = renderToStaticMarkup(<Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
     expect(html).toContain('data-testid="dynamic-geometry-mockup-0298"');
-    expect(html).toContain(
-      'data-object-model="centre-scale-triangle-dilation"',
-    );
-    expect(html).toContain(
-      "Interactive triangle dilation with draggable centre and vertices",
-    );
+    expect(html).toContain('data-object-model="centre-scale-triangle-dilation"');
+    expect(html).toContain("Interactive triangle dilation with draggable centre and vertices");
     expect(html).toContain('data-testid="dilation-centre"');
     expect(html).toContain('data-testid="dilation-source-a"');
     expect(html).toContain('data-testid="dilation-image-polygon"');
@@ -1395,20 +1247,10 @@ describe("Geometry2DLessonAdapter", () => {
 
   it("renders Matrix Transformation as a dedicated editable linear map", () => {
     const lesson = lessonCatalog.find((item) => item.id === 242)!;
-    const html = renderToStaticMarkup(
-      <Geometry2DLessonAdapter
-        lesson={lesson}
-        resetToken={0}
-        onInteraction={vi.fn()}
-      />,
-    );
+    const html = renderToStaticMarkup(<Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
     expect(html).toContain('data-testid="dynamic-geometry-mockup-0299"');
-    expect(html).toContain(
-      'data-object-model="editable-linear-map-basis-shape"',
-    );
-    expect(html).toContain(
-      "Interactive source shape and its matrix transformation",
-    );
+    expect(html).toContain('data-object-model="editable-linear-map-basis-shape"');
+    expect(html).toContain("Interactive source shape and its matrix transformation");
     expect(html).toContain('data-testid="matrix-source-a"');
     expect(html).toContain('data-testid="matrix-transformed-shape"');
     expect(html).toContain('aria-label="Matrix a"');
@@ -1419,20 +1261,10 @@ describe("Geometry2DLessonAdapter", () => {
 
   it("renders Composite Transformations as a dedicated ordered affine composer", () => {
     const lesson = lessonCatalog.find((item) => item.id === 243)!;
-    const html = renderToStaticMarkup(
-      <Geometry2DLessonAdapter
-        lesson={lesson}
-        resetToken={0}
-        onInteraction={vi.fn()}
-      />,
-    );
+    const html = renderToStaticMarkup(<Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
     expect(html).toContain('data-testid="dynamic-geometry-mockup-0300"');
-    expect(html).toContain(
-      'data-object-model="ordered-two-step-affine-composition"',
-    );
-    expect(html).toContain(
-      "Interactive two-step composite transformation graph",
-    );
+    expect(html).toContain('data-object-model="ordered-two-step-affine-composition"');
+    expect(html).toContain("Interactive two-step composite transformation graph");
     expect(html).toContain('data-testid="composite-source-a"');
     expect(html).toContain('data-testid="composite-intermediate-a"');
     expect(html).toContain('data-testid="composite-final-triangle"');
@@ -1443,20 +1275,10 @@ describe("Geometry2DLessonAdapter", () => {
 
   it("renders Transformation Mapping as a dedicated linked coordinate model", () => {
     const lesson = lessonCatalog.find((item) => item.id === 244)!;
-    const html = renderToStaticMarkup(
-      <Geometry2DLessonAdapter
-        lesson={lesson}
-        resetToken={0}
-        onInteraction={vi.fn()}
-      />,
-    );
+    const html = renderToStaticMarkup(<Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
     expect(html).toContain('data-testid="dynamic-geometry-mockup-0301"');
-    expect(html).toContain(
-      'data-object-model="linked-preimage-image-rule-inference"',
-    );
-    expect(html).toContain(
-      "Interactive linked pre-image and image coordinate mapping",
-    );
+    expect(html).toContain('data-object-model="linked-preimage-image-rule-inference"');
+    expect(html).toContain("Interactive linked pre-image and image coordinate mapping");
     expect(html).toContain('data-testid="mapping-source-a"');
     expect(html).toContain('data-testid="mapping-image-a"');
     expect(html).toContain('data-testid="mapping-image-triangle"');
@@ -1467,20 +1289,10 @@ describe("Geometry2DLessonAdapter", () => {
 
   it("renders Invariants as a dedicated measured transformation model", () => {
     const lesson = lessonCatalog.find((item) => item.id === 245)!;
-    const html = renderToStaticMarkup(
-      <Geometry2DLessonAdapter
-        lesson={lesson}
-        resetToken={0}
-        onInteraction={vi.fn()}
-      />,
-    );
+    const html = renderToStaticMarkup(<Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
     expect(html).toContain('data-testid="dynamic-geometry-mockup-0302"');
-    expect(html).toContain(
-      'data-object-model="measured-triangle-transformation-invariants"',
-    );
-    expect(html).toContain(
-      "Interactive measured triangle and transformed image",
-    );
+    expect(html).toContain('data-object-model="measured-triangle-transformation-invariants"');
+    expect(html).toContain("Interactive measured triangle and transformed image");
     expect(html).toContain('data-testid="invariants-source-a"');
     expect(html).toContain('data-testid="invariants-image-triangle"');
     expect(html).toContain('aria-label="Translation delta x"');
@@ -1491,20 +1303,10 @@ describe("Geometry2DLessonAdapter", () => {
 
   it("renders Symmetry Explorer as a dedicated exact symmetry model", () => {
     const lesson = lessonCatalog.find((item) => item.id === 246)!;
-    const html = renderToStaticMarkup(
-      <Geometry2DLessonAdapter
-        lesson={lesson}
-        resetToken={0}
-        onInteraction={vi.fn()}
-      />,
-    );
+    const html = renderToStaticMarkup(<Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
     expect(html).toContain('data-testid="dynamic-geometry-mockup-0303"');
-    expect(html).toContain(
-      'data-object-model="draggable-motif-exact-symmetry-tests"',
-    );
-    expect(html).toContain(
-      "Interactive symmetry motif with mirror and rotation previews",
-    );
+    expect(html).toContain('data-object-model="draggable-motif-exact-symmetry-tests"');
+    expect(html).toContain("Interactive symmetry motif with mirror and rotation previews");
     expect(html).toContain('data-testid="symmetry-point-a"');
     expect(html).toContain('data-testid="symmetry-mirror-image"');
     expect(html).toContain('aria-label="Symmetry mirror line"');
@@ -1515,17 +1317,9 @@ describe("Geometry2DLessonAdapter", () => {
 
   it("renders Locus Generator as a dedicated anchor-radius trace model", () => {
     const lesson = lessonCatalog.find((item) => item.id === 247)!;
-    const html = renderToStaticMarkup(
-      <Geometry2DLessonAdapter
-        lesson={lesson}
-        resetToken={0}
-        onInteraction={vi.fn()}
-      />,
-    );
+    const html = renderToStaticMarkup(<Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
     expect(html).toContain('data-testid="dynamic-geometry-mockup-0304"');
-    expect(html).toContain(
-      'data-object-model="anchor-radius-transformed-circle-locus"',
-    );
+    expect(html).toContain('data-object-model="anchor-radius-transformed-circle-locus"');
     expect(html).toContain("Interactive anchor and moving point circle locus");
     expect(html).toContain('data-testid="locus-anchor"');
     expect(html).toContain('data-testid="locus-moving-point"');
@@ -1537,20 +1331,10 @@ describe("Geometry2DLessonAdapter", () => {
 
   it("renders Equidistant Loci as a dedicated perpendicular-bisector model", () => {
     const lesson = lessonCatalog.find((item) => item.id === 248)!;
-    const html = renderToStaticMarkup(
-      <Geometry2DLessonAdapter
-        lesson={lesson}
-        resetToken={0}
-        onInteraction={vi.fn()}
-      />,
-    );
+    const html = renderToStaticMarkup(<Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
     expect(html).toContain('data-testid="dynamic-geometry-mockup-0305"');
-    expect(html).toContain(
-      'data-object-model="dependent-perpendicular-bisector-equal-distance"',
-    );
-    expect(html).toContain(
-      "Interactive equidistant points and perpendicular bisector locus",
-    );
+    expect(html).toContain('data-object-model="dependent-perpendicular-bisector-equal-distance"');
+    expect(html).toContain("Interactive equidistant points and perpendicular bisector locus");
     expect(html).toContain('data-testid="equidistant-point-a"');
     expect(html).toContain('data-testid="equidistant-anchor-p"');
     expect(html).toContain('aria-label="Locus anchor P x coordinate"');
@@ -1561,17 +1345,9 @@ describe("Geometry2DLessonAdapter", () => {
 
   it("renders Moving-Linkage Loci as a dedicated fixed-foci ellipse model", () => {
     const lesson = lessonCatalog.find((item) => item.id === 249)!;
-    const html = renderToStaticMarkup(
-      <Geometry2DLessonAdapter
-        lesson={lesson}
-        resetToken={0}
-        onInteraction={vi.fn()}
-      />,
-    );
+    const html = renderToStaticMarkup(<Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
     expect(html).toContain('data-testid="dynamic-geometry-mockup-0306"');
-    expect(html).toContain(
-      'data-object-model="fixed-foci-flexible-tether-ellipse"',
-    );
+    expect(html).toContain('data-object-model="fixed-foci-flexible-tether-ellipse"');
     expect(html).toContain("Interactive fixed-foci linkage tracing an ellipse");
     expect(html).toContain('data-testid="linkage-point-p"');
     expect(html).toContain('data-testid="linkage-locus"');
@@ -1583,20 +1359,10 @@ describe("Geometry2DLessonAdapter", () => {
 
   it("renders Envelope of Lines as a dedicated tangent-family model", () => {
     const lesson = lessonCatalog.find((item) => item.id === 250)!;
-    const html = renderToStaticMarkup(
-      <Geometry2DLessonAdapter
-        lesson={lesson}
-        resetToken={0}
-        onInteraction={vi.fn()}
-      />,
-    );
+    const html = renderToStaticMarkup(<Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
     expect(html).toContain('data-testid="dynamic-geometry-mockup-0307"');
-    expect(html).toContain(
-      'data-object-model="parameterized-tangent-family-parabola-envelope"',
-    );
-    expect(html).toContain(
-      "Interactive tangent line family and detected parabola envelope",
-    );
+    expect(html).toContain('data-object-model="parameterized-tangent-family-parabola-envelope"');
+    expect(html).toContain("Interactive tangent line family and detected parabola envelope");
     expect(html).toContain('data-testid="envelope-contact-point"');
     expect(html).toContain('data-testid="envelope-current-line"');
     expect(html).toContain('aria-label="m (slope)"');
@@ -1607,20 +1373,10 @@ describe("Geometry2DLessonAdapter", () => {
 
   it("renders Dynamic Trace as a dedicated dependent dilation model", () => {
     const lesson = lessonCatalog.find((item) => item.id === 251)!;
-    const html = renderToStaticMarkup(
-      <Geometry2DLessonAdapter
-        lesson={lesson}
-        resetToken={0}
-        onInteraction={vi.fn()}
-      />,
-    );
+    const html = renderToStaticMarkup(<Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
     expect(html).toContain('data-testid="dynamic-geometry-mockup-0308"');
-    expect(html).toContain(
-      'data-object-model="dependent-dilation-image-with-temporal-trace"',
-    );
-    expect(html).toContain(
-      "Interactive dilation with source point and dependent traced image",
-    );
+    expect(html).toContain('data-object-model="dependent-dilation-image-with-temporal-trace"');
+    expect(html).toContain("Interactive dilation with source point and dependent traced image");
     expect(html).toContain('data-testid="dynamic-trace-source-a"');
     expect(html).toContain('data-testid="dynamic-trace-image-b"');
     expect(html).toContain('aria-label="Trace enabled"');
@@ -1632,20 +1388,10 @@ describe("Geometry2DLessonAdapter", () => {
 
   it("renders Conjecture Testing as a dedicated measured trial model", () => {
     const lesson = lessonCatalog.find((item) => item.id === 252)!;
-    const html = renderToStaticMarkup(
-      <Geometry2DLessonAdapter
-        lesson={lesson}
-        resetToken={0}
-        onInteraction={vi.fn()}
-      />,
-    );
+    const html = renderToStaticMarkup(<Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
     expect(html).toContain('data-testid="dynamic-geometry-mockup-0309"');
-    expect(html).toContain(
-      'data-object-model="measured-translation-conjecture-trial-engine"',
-    );
-    expect(html).toContain(
-      "Draggable segment and its translated image for conjecture testing",
-    );
+    expect(html).toContain('data-object-model="measured-translation-conjecture-trial-engine"');
+    expect(html).toContain("Draggable segment and its translated image for conjecture testing");
     expect(html).toContain('data-testid="conjecture-point-a"');
     expect(html).toContain('data-testid="conjecture-point-b"');
     expect(html).toContain('data-testid="conjecture-vector-handle"');
@@ -1656,20 +1402,10 @@ describe("Geometry2DLessonAdapter", () => {
 
   it("renders Exact Proof as a dedicated symbolic proof-chain model", () => {
     const lesson = lessonCatalog.find((item) => item.id === 253)!;
-    const html = renderToStaticMarkup(
-      <Geometry2DLessonAdapter
-        lesson={lesson}
-        resetToken={0}
-        onInteraction={vi.fn()}
-      />,
-    );
+    const html = renderToStaticMarkup(<Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
     expect(html).toContain('data-testid="dynamic-geometry-mockup-0310"');
-    expect(html).toContain(
-      'data-object-model="exact-translation-isometry-proof-chain"',
-    );
-    expect(html).toContain(
-      "Exact translation proof construction with draggable premises",
-    );
+    expect(html).toContain('data-object-model="exact-translation-isometry-proof-chain"');
+    expect(html).toContain("Exact translation proof construction with draggable premises");
     expect(html).toContain('data-testid="exact-proof-point-a"');
     expect(html).toContain('data-testid="exact-proof-vector-handle"');
     expect(html).toContain('aria-label="Proof reason 6"');
@@ -1680,20 +1416,10 @@ describe("Geometry2DLessonAdapter", () => {
 
   it("renders Collinearity Test as synchronized exact geometric tests", () => {
     const lesson = lessonCatalog.find((item) => item.id === 254)!;
-    const html = renderToStaticMarkup(
-      <Geometry2DLessonAdapter
-        lesson={lesson}
-        resetToken={0}
-        onInteraction={vi.fn()}
-      />,
-    );
+    const html = renderToStaticMarkup(<Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
     expect(html).toContain('data-testid="dynamic-geometry-mockup-0311"');
-    expect(html).toContain(
-      'data-object-model="three-point-synchronized-exact-collinearity-tests"',
-    );
-    expect(html).toContain(
-      "Three draggable points with exact synchronized collinearity tests",
-    );
+    expect(html).toContain('data-object-model="three-point-synchronized-exact-collinearity-tests"');
+    expect(html).toContain("Three draggable points with exact synchronized collinearity tests");
     expect(html).toContain('data-testid="collinearity-point-a"');
     expect(html).toContain('data-testid="collinearity-line"');
     expect(html).toContain('aria-label="C y coordinate"');
@@ -1704,20 +1430,10 @@ describe("Geometry2DLessonAdapter", () => {
 
   it("renders Concurrency Test as an exact Ceva theorem model", () => {
     const lesson = lessonCatalog.find((item) => item.id === 255)!;
-    const html = renderToStaticMarkup(
-      <Geometry2DLessonAdapter
-        lesson={lesson}
-        resetToken={0}
-        onInteraction={vi.fn()}
-      />,
-    );
+    const html = renderToStaticMarkup(<Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
     expect(html).toContain('data-testid="dynamic-geometry-mockup-0312"');
-    expect(html).toContain(
-      'data-object-model="triangle-cevians-exact-ceva-concurrency"',
-    );
-    expect(html).toContain(
-      "Draggable triangle side points with exact Ceva concurrency test",
-    );
+    expect(html).toContain('data-object-model="triangle-cevians-exact-ceva-concurrency"');
+    expect(html).toContain("Draggable triangle side points with exact Ceva concurrency test");
     expect(html).toContain('data-testid="concurrency-point-f"');
     expect(html).toContain('data-testid="concurrency-common-point"');
     expect(html).toContain('aria-label="AF over FB"');
@@ -1727,20 +1443,10 @@ describe("Geometry2DLessonAdapter", () => {
 
   it("renders Concyclicity Test as an exact four-point circle model", () => {
     const lesson = lessonCatalog.find((item) => item.id === 256)!;
-    const html = renderToStaticMarkup(
-      <Geometry2DLessonAdapter
-        lesson={lesson}
-        resetToken={0}
-        onInteraction={vi.fn()}
-      />,
-    );
+    const html = renderToStaticMarkup(<Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
     expect(html).toContain('data-testid="dynamic-geometry-mockup-0313"');
-    expect(html).toContain(
-      'data-object-model="four-point-circumcircle-determinant-angle-residual"',
-    );
-    expect(html).toContain(
-      "Four draggable points with fitted circumcircle and exact concyclicity checks",
-    );
+    expect(html).toContain('data-object-model="four-point-circumcircle-determinant-angle-residual"');
+    expect(html).toContain("Four draggable points with fitted circumcircle and exact concyclicity checks");
     expect(html).toContain('data-testid="concyclicity-fitted-circle"');
     expect(html).toContain('data-testid="concyclicity-point-d"');
     expect(html).toContain('aria-label="D y coordinate"');
