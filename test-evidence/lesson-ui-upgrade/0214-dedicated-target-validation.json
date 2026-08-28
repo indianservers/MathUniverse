@@ -1,0 +1,180 @@
+{
+  "mockup": "0214",
+  "lessonId": 157,
+  "route": "/lessons/graphs-and-functions/157-horizontal-translation",
+  "checks": {
+    "initial": {
+      "h": "2",
+      "level": "2",
+      "parent-visible": "true",
+      "vertex-x": "2",
+      "parent-input": "1.4142135623730951",
+      "shifted-input": "3.414213562373095",
+      "output": "2"
+    },
+    "range": {
+      "h": "-3",
+      "level": "2",
+      "parent-visible": "true",
+      "vertex-x": "-3",
+      "parent-input": "1.4142135623730951",
+      "shifted-input": "-1.5857864376269049",
+      "output": "2"
+    },
+    "vertexDrag": {
+      "h": "0",
+      "level": "2",
+      "parent-visible": "true",
+      "vertex-x": "0",
+      "parent-input": "1.4142135623730951",
+      "shifted-input": "1.4142135623730951",
+      "output": "2"
+    },
+    "vertexKeyboard": {
+      "h": "1",
+      "level": "2",
+      "parent-visible": "true",
+      "vertex-x": "1",
+      "parent-input": "1.4142135623730951",
+      "shifted-input": "2.414213562373095",
+      "output": "2"
+    },
+    "levelDrag": {
+      "h": "2",
+      "level": "4",
+      "parent-visible": "true",
+      "vertex-x": "2",
+      "parent-input": "2",
+      "shifted-input": "4",
+      "output": "4"
+    },
+    "levelKeyboard": {
+      "h": "2",
+      "level": "2",
+      "parent-visible": "true",
+      "vertex-x": "2",
+      "parent-input": "1.4142135623730951",
+      "shifted-input": "3.414213562373095",
+      "output": "2"
+    },
+    "levelSelect": {
+      "h": "2",
+      "level": "1",
+      "parent-visible": "true",
+      "vertex-x": "2",
+      "parent-input": "1",
+      "shifted-input": "3",
+      "output": "1"
+    },
+    "tableRow": {
+      "h": "2",
+      "level": "4",
+      "parent-visible": "true",
+      "vertex-x": "2",
+      "parent-input": "2",
+      "shifted-input": "4",
+      "output": "4"
+    },
+    "parentToggle": {
+      "h": "2",
+      "level": "4",
+      "parent-visible": "false",
+      "vertex-x": "2",
+      "parent-input": "2",
+      "shifted-input": "4",
+      "output": "4"
+    },
+    "reset": {
+      "h": "2",
+      "level": "2",
+      "parent-visible": "true",
+      "vertex-x": "2",
+      "parent-input": "1.4142135623730951",
+      "shifted-input": "3.414213562373095",
+      "output": "2"
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/graphs-and-functions/156-vertical-translation",
+    "nextHref": "/lessons/graphs-and-functions/158-vertical-stretch-and-compression"
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1386,
+      "height": 1135
+    },
+    "document": {
+      "width": 1386,
+      "height": 1266
+    },
+    "horizontalOverflow": false,
+    "regions": {
+      "page": {
+        "top": 107,
+        "bottom": 1036,
+        "left": 287,
+        "right": 1369,
+        "width": 1082,
+        "height": 929
+      },
+      "header": {
+        "top": 125,
+        "bottom": 272,
+        "left": 287,
+        "right": 1369,
+        "width": 1082,
+        "height": 147
+      },
+      "workspace": {
+        "top": 284,
+        "bottom": 886,
+        "left": 289,
+        "right": 1369,
+        "width": 1080,
+        "height": 602
+      },
+      "graph": {
+        "top": 284,
+        "bottom": 886,
+        "left": 289,
+        "right": 899,
+        "width": 610,
+        "height": 602
+      },
+      "controls": {
+        "top": 284,
+        "bottom": 562,
+        "left": 911,
+        "right": 1369,
+        "width": 458,
+        "height": 278
+      },
+      "inputs": {
+        "top": 570,
+        "bottom": 886,
+        "left": 911,
+        "right": 1369,
+        "width": 458,
+        "height": 316
+      },
+      "concepts": {
+        "top": 896,
+        "bottom": 1035,
+        "left": 287,
+        "right": 1369,
+        "width": 1082,
+        "height": 139
+      },
+      "navigation": {
+        "top": 1048,
+        "bottom": 1111,
+        "left": 287,
+        "right": 1369,
+        "width": 1082,
+        "height": 63
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

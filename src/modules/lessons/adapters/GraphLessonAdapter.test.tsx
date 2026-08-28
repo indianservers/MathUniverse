@@ -4,6 +4,16 @@ import { lessonCatalog } from "../catalog/lessonCatalog";
 import GraphLessonAdapter from "./GraphLessonAdapter";
 
 describe("GraphLessonAdapter", () => {
+  it("routes lesson 157 to its dedicated horizontal-translation engine", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 157)!;
+    const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="graph-mockup-0214"');
+    expect(html).toContain('data-dedicated-lesson="157"');
+    expect(html).toContain("editable-horizontal-shift-parent-visibility-and-comparison-level-pointer-keyboard-draggable-vertex-and-level-probe-generated-parabolas-same-height-arrows-input-remapping-table-and-vertex-proof");
+    expect(html).toContain('aria-label="Drag horizontal translation vertex"');
+    expect(html).toContain("Input changes first");
+  });
+
   it("routes lesson 156 to its dedicated vertical-translation engine", () => {
     const lesson = lessonCatalog.find((item) => item.id === 156)!;
     const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
@@ -349,7 +359,6 @@ describe("GraphLessonAdapter", () => {
 
   it("renders function transformation lessons 153 through 166 with lesson-specific graph guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      157: "inside subtraction moves",
       158: "outside multiplication changes height",
       159: "inside multiplication changes width",
       160: "changes y to -y",

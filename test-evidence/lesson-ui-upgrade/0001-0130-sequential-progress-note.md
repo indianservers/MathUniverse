@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **139 of 200 lessons completed; 61 pending.**
+Dedicated rebuild target: **140 of 200 lessons completed; 60 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -125,6 +125,7 @@ Dedicated rebuild target: **139 of 200 lessons completed; 61 pending.**
 | 0211   |              154 Periodic Functions | Complete | Dedicated sine-period engine with real amplitude/frequency/midline controls, pointer/keyboard phase drag, generated period ruler/cycle/matching points/live identity, functional tabs/actions/language/list, and exact 1315x1197 framing |
 | 0212   |             155 Recursive Functions | Complete | Dedicated affine-recurrence engine with real growth/seed/add-on/step controls, pointer/keyboard term probe, generated sequence table/graph/next preview/cobweb/fixed point, exact calculations, reset, and exact 1477x1065 framing |
 | 0213   |           156 Vertical Translation | Complete | Dedicated vertical-shift engine with real k range, parent/transformed visibility, pointer/keyboard curve and sample drags, generated parabolas/arrows/vertex/table/output proof, share/reset, and exact 1205x1305 framing |
+| 0214   |         157 Horizontal Translation | Complete | Dedicated horizontal-shift engine with real h range/parent visibility/y-level controls, pointer/keyboard vertex and level drags, generated parabolas/arrows/input-remapping table/vertex proof, real navigation, and exact 1386x1135 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2072,3 +2073,17 @@ Evidence:
 - `0213-reference.png`
 - `0213-desktop.png`
 - `0213-dedicated-target-validation.json`
+
+## Lesson 157 / Mockup 0214 - Horizontal Translation
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-horizontal-shift-parent-visibility-and-comparison-level-pointer-keyboard-draggable-vertex-and-level-probe-generated-parabolas-same-height-arrows-input-remapping-table-and-vertex-proof` model. The lesson-owned horizontal shift `h`, comparison y-level, and parent visibility generate `f(x)=x^2`, `g(x)=(x-h)^2`, both graph curves, all same-height arrows and points, vertex mapping, parent roots, shifted inputs, table checks, and movement explanations from one state.
+
+The `-5..5` integer shift range, parent-function switch, four-level selector, and every generated table row are real controls. The translated vertex is genuinely pointer- and keyboard-draggable horizontally to change `h`; the comparison point is pointer- and keyboard-draggable vertically across y-levels `0,1,2,4`. Every state preserves the exact invariants `x_g=x_f+h`, `g(x_g)=f(x_f)`, unchanged output heights, and vertex movement `(0,0)` to `(h,0)`. Previous and Next navigate to Lessons 156 and 158.
+
+Final 1386x1135 browser validation physically changes the h range, pointer-drags and keyboard-moves the translated vertex, pointer-drags and keyboard-moves the y-level probe, uses the level selector and table, hides the parent, verifies both adjacent routes, and reloads the initial state. The final comparison loop places the header at x=287-1369 and y=125-272, graph card x=289-899 and y=284-886, controls x=911-1369 and y=284-562, input table y=570-886, concept cards y=896-1035, and navigation y=1048-1111. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0214-reference.png`
+- `0214-desktop.png`
+- `0214-dedicated-target-validation.json`
