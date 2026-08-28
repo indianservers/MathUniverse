@@ -4,9 +4,8 @@ import { lessonCatalog } from "../catalog/lessonCatalog";
 import Geometry2DLessonAdapter from "./Geometry2DLessonAdapter";
 
 describe("Geometry2DLessonAdapter", () => {
-  it("renders coordinate geometry lessons 177 through 182 with lesson-specific guidance", () => {
+  it("renders coordinate geometry lessons 178 through 182 with lesson-specific guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      177: "Shortest distance",
       178: "Locus rule",
       179: "Transformation rule",
       180: "Polar conversion",
@@ -33,6 +32,16 @@ describe("Geometry2DLessonAdapter", () => {
       expect(html, lesson.title).toContain("Avoid:");
       expect(html, lesson.title).not.toContain("Coordinate rule");
     }
+  });
+
+  it("renders point-to-line distance as its own orthogonal-projection surface", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 177)!;
+    const html = renderToStaticMarkup(<Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain("geometry-mockup-0234");
+    expect(html).toContain('data-dedicated-lesson="177"');
+    expect(html).toContain("Foot of perpendicular");
+    expect(html).toContain("Compare different paths");
+    expect(html).not.toContain("reusable 2D geometry engine");
   });
 
   it("renders angle between lines as its own tangent-formula surface", () => {

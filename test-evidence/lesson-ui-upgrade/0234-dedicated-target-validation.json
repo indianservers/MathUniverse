@@ -1,0 +1,237 @@
+{
+  "mockup": "0234",
+  "lessonId": 177,
+  "route": "/lessons/geometry/177-point-to-line-distance",
+  "checks": {
+    "initial": {
+      "point": "2:5",
+      "m": "1.00",
+      "c": "0.00",
+      "foot": "3.50:3.50",
+      "distance": "2.121",
+      "tab": "0",
+      "expanded": "false",
+      "status": ""
+    },
+    "inputs": {
+      "point": "3:4",
+      "m": "1.00",
+      "c": "0.00",
+      "foot": "3.50:3.50",
+      "distance": "0.707",
+      "tab": "0",
+      "expanded": "false",
+      "status": ""
+    },
+    "keyboard": {
+      "point": "3:4.5",
+      "m": "1.00",
+      "c": "0.00",
+      "foot": "3.75:3.75",
+      "distance": "1.061",
+      "tab": "0",
+      "expanded": "false",
+      "status": ""
+    },
+    "pointDrag": {
+      "point": "1.5:3.5",
+      "m": "1.00",
+      "c": "0.00",
+      "foot": "2.50:2.50",
+      "distance": "1.414",
+      "tab": "0",
+      "expanded": "false",
+      "status": ""
+    },
+    "lineInputs": {
+      "point": "1.5:3.5",
+      "m": "0.50",
+      "c": "-1.00",
+      "foot": "3.00:0.50",
+      "distance": "3.354",
+      "tab": "0",
+      "expanded": "false",
+      "status": ""
+    },
+    "lineDrag": {
+      "point": "1.5:3.5",
+      "m": "0.90",
+      "c": "-1.00",
+      "foot": "3.07:1.75",
+      "distance": "2.348",
+      "tab": "0",
+      "expanded": "false",
+      "status": ""
+    },
+    "lineKeyboard": {
+      "point": "1.5:3.5",
+      "m": "0.80",
+      "c": "-1.00",
+      "foot": "3.11:1.48",
+      "distance": "2.584",
+      "tab": "0",
+      "expanded": "false",
+      "status": ""
+    },
+    "tabs": {
+      "point": "1.5:3.5",
+      "m": "0.80",
+      "c": "-1.00",
+      "foot": "3.11:1.48",
+      "distance": "2.584",
+      "tab": "4",
+      "expanded": "false",
+      "status": ""
+    },
+    "expanded": {
+      "point": "1.5:3.5",
+      "m": "0.80",
+      "c": "-1.00",
+      "foot": "3.11:1.48",
+      "distance": "2.584",
+      "tab": "4",
+      "expanded": "true",
+      "status": ""
+    },
+    "wrong": {
+      "point": "1.5:3.5",
+      "m": "0.80",
+      "c": "-1.00",
+      "foot": "3.11:1.48",
+      "distance": "2.584",
+      "tab": "4",
+      "expanded": "false",
+      "status": "Recheck the distance formula"
+    },
+    "hint": true,
+    "correct": {
+      "point": "1.5:3.5",
+      "m": "0.80",
+      "c": "-1.00",
+      "foot": "3.11:1.48",
+      "distance": "2.584",
+      "tab": "4",
+      "expanded": "false",
+      "status": "Correct shortest distance"
+    },
+    "reset": {
+      "point": "2:5",
+      "m": "1.00",
+      "c": "0.00",
+      "foot": "3.50:3.50",
+      "distance": "2.121",
+      "tab": "0",
+      "expanded": "false",
+      "status": ""
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/geometry/176-angle-between-lines",
+    "nextHref": "/lessons/geometry/178-coordinate-loci"
+  },
+  "metrics": {
+    "viewport": {
+      "width": 984,
+      "height": 1598
+    },
+    "document": {
+      "width": 984,
+      "height": 1598
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "regions": {
+      "page": {
+        "top": 108,
+        "bottom": 1596,
+        "left": 211,
+        "right": 984,
+        "width": 773,
+        "height": 1488
+      },
+      "header": {
+        "top": 108,
+        "bottom": 273,
+        "left": 225,
+        "right": 970,
+        "width": 745,
+        "height": 165
+      },
+      "tabs": {
+        "top": 286,
+        "bottom": 330,
+        "left": 225,
+        "right": 970,
+        "width": 745,
+        "height": 44
+      },
+      "main": {
+        "top": 343,
+        "bottom": 732,
+        "left": 225,
+        "right": 970,
+        "width": 745,
+        "height": 389
+      },
+      "graph": {
+        "top": 397,
+        "bottom": 723,
+        "left": 237,
+        "right": 683,
+        "width": 446,
+        "height": 326
+      },
+      "observation": {
+        "top": 744,
+        "bottom": 835,
+        "left": 225,
+        "right": 970,
+        "width": 745,
+        "height": 91
+      },
+      "proof": {
+        "top": 847,
+        "bottom": 1026,
+        "left": 225,
+        "right": 970,
+        "width": 745,
+        "height": 179
+      },
+      "formula": {
+        "top": 1038,
+        "bottom": 1159,
+        "left": 225,
+        "right": 970,
+        "width": 745,
+        "height": 121
+      },
+      "compare": {
+        "top": 1171,
+        "bottom": 1313,
+        "left": 225,
+        "right": 970,
+        "width": 745,
+        "height": 142
+      },
+      "practice": {
+        "top": 1325,
+        "bottom": 1414,
+        "left": 225,
+        "right": 970,
+        "width": 745,
+        "height": 89
+      },
+      "navigation": {
+        "top": 1426,
+        "bottom": 1483,
+        "left": 225,
+        "right": 970,
+        "width": 745,
+        "height": 57
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true,
+  "mathNote": "For P(2,5) and y=x, the correct foot is F(3.5,3.5) and distance is 3/sqrt(2)=2.121. Target sections showing F(1,1) and sqrt(32)=5.657 are inconsistent; implementation uses the correct projection everywhere."
+}

@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **159 of 200 lessons completed; 41 pending.**
+Dedicated rebuild target: **160 of 200 lessons completed; 40 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -145,6 +145,7 @@ Dedicated rebuild target: **159 of 200 lessons completed; 41 pending.**
 | 0231   |                   174 Parallel Lines | Complete | Dedicated two-line equal-slope invariant with independent inputs and pointer/keyboard drag, angle/distance evidence, dynamic through-point construction, graded equation practice, and exact 982x1602 framing |
 | 0232   |              175 Perpendicular Lines | Complete | Dedicated two-angle negative-reciprocal model with lock/unlock, independent pointer/keyboard line drag, slope product, special cases, construction proof, independent graded practice, and exact 1003x1569 framing |
 | 0233   |             176 Angle Between Lines | Complete | Dedicated two-slope tangent-angle model with pointer/keyboard drag, correct classification/formula, axes/grid/expand, calculation panels, graded perpendicular practice, and exact 1036x1518 framing |
+| 0234   |          177 Point-to-Line Distance | Complete | Dedicated orthogonal-projection model with pointer/keyboard draggable point and line, live foot/distance/formula/path comparison, expand, exact-value practice, and exact 984x1598 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2372,3 +2373,17 @@ Evidence:
 - `0233-reference.png`
 - `0233-desktop.png`
 - `0233-dedicated-target-validation.json`
+
+## Lesson 177 / Mockup 0234 - Point-to-Line Distance
+
+Reworked individually against the target mockup with a dedicated `pointer-keyboard-draggable-point-and-line-exact-orthogonal-projection-distance-formula-path-comparison-and-graded-exact-practice` model. Point P and line y=mx+c generate the exact perpendicular foot, shortest segment, right-angle marker, line equation, formula substitution, distance, and alternative path lengths from shared state.
+
+Both point coordinates, line slope/intercept ranges and numeric inputs, direct pointer/keyboard point and line manipulation, Reset view, expand/collapse, five tabs, Share, exact/decimal practice grading, Hint, and adjacent navigation are real controls. The practice accepts √5, sqrt(5), or a matching decimal for line 2x-y+1=0 and P(3,2).
+
+The mockup is inconsistent for P(2,5), y=x: the correct foot is F(3.5,3.5) and distance is 3/√2≈2.121, not F(1,1) and √32≈5.657. Final 984x1598 validation edits and keyboard/pointer-drags P, edits and pointer/keyboard-drags the line, exercises tabs and expand, rejects 2, shows the hint, accepts sqrt(5), resets, and verifies routes. It reports no overflow and zero console messages.
+
+Evidence:
+
+- `0234-reference.png`
+- `0234-desktop.png`
+- `0234-dedicated-target-validation.json`
