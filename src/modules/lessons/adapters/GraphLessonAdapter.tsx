@@ -34,6 +34,7 @@ import VerticalStretchCompressionTargetLesson158 from "./VerticalStretchCompress
 import HorizontalStretchCompressionTargetLesson159 from "./HorizontalStretchCompressionTargetLesson159";
 import ReflectionXAxisTargetLesson160 from "./ReflectionXAxisTargetLesson160";
 import ReflectionYAxisTargetLesson161 from "./ReflectionYAxisTargetLesson161";
+import CombinedTransformationsTargetLesson162 from "./CombinedTransformationsTargetLesson162";
 import { graphVisualPresetForLesson } from "../presets/graphVisualPresets";
 import type { LessonAdapterProps } from "../types";
 import { Eye, Grid3X3, Minus, Move, Plus, RotateCcw, Share2, ZoomIn } from "lucide-react";
@@ -167,6 +168,9 @@ export default function GraphLessonAdapter({ lesson, resetToken, onInteraction }
   }
   if (lesson.id === 161) {
     return <ReflectionYAxisTargetLesson161 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
+  if (lesson.id === 162) {
+    return <CombinedTransformationsTargetLesson162 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
 
   if (usesFunctionMockupWorkspace(lesson.id)) {

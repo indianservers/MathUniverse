@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **144 of 200 lessons completed; 56 pending.**
+Dedicated rebuild target: **145 of 200 lessons completed; 55 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -130,6 +130,7 @@ Dedicated rebuild target: **144 of 200 lessons completed; 56 pending.**
 | 0216   | 159 Horizontal Stretch and Compression | Complete | Dedicated inside-scale engine with real b range/mode/y-level controls, pointer/keyboard scale drag, generated parent/transformed parabolas/same-output bracket/reciprocal-width rulers/input table/compression preview, functional actions/navigation, and exact 1350x1165 framing |
 | 0217   |                160 Reflection in x-Axis | Complete | Dedicated x-axis reflection engine with real scale/shift/sample controls, pointer/keyboard reflected-point drag, generated parent/reflected parabolas/mirror lines/point mapping/key rules, functional reset/navigation, and exact 1205x1306 framing |
 | 0218   |                161 Reflection in y-Axis | Complete | Dedicated y-axis cubic-reflection engine with real pre-shift/scale/y-level controls, two-axis pointer and keyboard same-output drag, generated curves/horizontal pairs/table, functional views/rule/navigation, and exact 1205x1306 framing |
+| 0219   |          162 Combined Transformations | Complete | Dedicated ordered h/a/k transformation engine with real ranges, pointer/keyboard vertex drag, native/keyboard pipeline reorder, generated parent/step/final curves and point trace, graph tools, tabs, graded practice, navigation, and exact 1034x1521 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2147,3 +2148,17 @@ Evidence:
 - `0218-reference.png`
 - `0218-desktop.png`
 - `0218-dedicated-target-validation.json`
+
+## Lesson 162 / Mockup 0219 - Combined Transformations
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-combined-horizontal-shift-vertical-scale-and-shift-reorderable-transformation-pipeline-pointer-keyboard-draggable-vertex-generated-parent-step-final-parabolas-point-trace-tabs-practice-and-navigation` model. The lesson-owned horizontal shift `h`, vertical scale `a`, vertical shift `k`, transformation order, tracked parent point, graph visibility, zoom, tab, and practice state generate the parent `y=x^2`, intermediate horizontal shift, final curve, vertex, equation, construction cards, ordered point pipeline, worked example, and graded challenge from explicit state.
+
+All three parameter ranges, both graph switches, zoom out/in/reset, five lesson tabs, tracked-point selector, equation input/checker, Hint, and adjacent navigation are real controls. The final vertex is genuinely pointer- and keyboard-draggable in two dimensions. The three transformation cards support native drag-and-drop and keyboard reordering. Order is computational rather than decorative: applying `k` before `a` scales the prior shift, so the target state changes from effective vertical shift `-2` under `h,a,k` to `-4` under `k,a,h`; every stage and final point update accordingly.
+
+Final 1034x1521 browser validation physically changes `h`, `a`, and `k`; pointer-drags and keyboard-moves the vertex; triggers a reordered preset; keyboard- and pointer-reorders the pipeline; toggles points/grid; exercises all zoom controls, tracked-point selection, all tabs, incorrect/correct practice grading, Hint, reload reset, and both adjacent routes. The target-relative layout uses an 800 px surface, 463/309 graph-builder columns, 177 px order/point band, 267 px worked/practice band, 58 px navigation, and 102 px footer. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0219-reference.png`
+- `0219-desktop.png`
+- `0219-dedicated-target-validation.json`

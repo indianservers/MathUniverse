@@ -1,0 +1,311 @@
+{
+  "mockup": "0219",
+  "lessonId": 162,
+  "route": "/lessons/graphs-and-functions/162-combined-transformations",
+  "checks": {
+    "initial": {
+      "h": "1",
+      "a": "2",
+      "k": "-2",
+      "effective-k": "-2",
+      "order": "h,a,k",
+      "point-x": "-1",
+      "final-point-x": "0",
+      "final-point-y": "0",
+      "tab": "Explore",
+      "zoom": "1"
+    },
+    "hRange": {
+      "h": "3",
+      "a": "2",
+      "k": "-2",
+      "effective-k": "-2",
+      "order": "h,a,k",
+      "point-x": "-1",
+      "final-point-x": "2",
+      "final-point-y": "0",
+      "tab": "Explore",
+      "zoom": "1"
+    },
+    "aRange": {
+      "h": "3",
+      "a": "1.5",
+      "k": "-2",
+      "effective-k": "-2",
+      "order": "h,a,k",
+      "point-x": "-1",
+      "final-point-x": "2",
+      "final-point-y": "-0.5",
+      "tab": "Explore",
+      "zoom": "1"
+    },
+    "kRange": {
+      "h": "3",
+      "a": "1.5",
+      "k": "3",
+      "effective-k": "3",
+      "order": "h,a,k",
+      "point-x": "-1",
+      "final-point-x": "2",
+      "final-point-y": "4.5",
+      "tab": "Explore",
+      "zoom": "1"
+    },
+    "vertexDrag": {
+      "h": "2",
+      "a": "2",
+      "k": "-1",
+      "effective-k": "-1",
+      "order": "h,a,k",
+      "point-x": "-1",
+      "final-point-x": "1",
+      "final-point-y": "1",
+      "tab": "Explore",
+      "zoom": "1"
+    },
+    "vertexKeyboardX": {
+      "h": "3",
+      "a": "2",
+      "k": "-1",
+      "effective-k": "-1",
+      "order": "h,a,k",
+      "point-x": "-1",
+      "final-point-x": "2",
+      "final-point-y": "1",
+      "tab": "Explore",
+      "zoom": "1"
+    },
+    "vertexKeyboardY": {
+      "h": "3",
+      "a": "2",
+      "k": "-2",
+      "effective-k": "-2",
+      "order": "h,a,k",
+      "point-x": "-1",
+      "final-point-x": "2",
+      "final-point-y": "0",
+      "tab": "Explore",
+      "zoom": "1"
+    },
+    "reorderPreset": {
+      "h": "3",
+      "a": "2",
+      "k": "-2",
+      "effective-k": "-4",
+      "order": "k,a,h",
+      "point-x": "-1",
+      "final-point-x": "2",
+      "final-point-y": "-2",
+      "tab": "Explore",
+      "zoom": "1"
+    },
+    "reorderKeyboard": {
+      "h": "3",
+      "a": "2",
+      "k": "-2",
+      "effective-k": "-2",
+      "order": "a,k,h",
+      "point-x": "-1",
+      "final-point-x": "2",
+      "final-point-y": "0",
+      "tab": "Explore",
+      "zoom": "1"
+    },
+    "reorderDrag": {
+      "h": "1",
+      "a": "2",
+      "k": "-2",
+      "effective-k": "-2",
+      "order": "a,h,k",
+      "point-x": "-1",
+      "final-point-x": "0",
+      "final-point-y": "0",
+      "tab": "Explore",
+      "zoom": "1"
+    },
+    "pointsHidden": false,
+    "gridHidden": false,
+    "zoomIn": {
+      "h": "1",
+      "a": "2",
+      "k": "-2",
+      "effective-k": "-2",
+      "order": "a,h,k",
+      "point-x": "-1",
+      "final-point-x": "0",
+      "final-point-y": "0",
+      "tab": "Explore",
+      "zoom": "1.1"
+    },
+    "zoomOut": {
+      "h": "1",
+      "a": "2",
+      "k": "-2",
+      "effective-k": "-2",
+      "order": "a,h,k",
+      "point-x": "-1",
+      "final-point-x": "0",
+      "final-point-y": "0",
+      "tab": "Explore",
+      "zoom": "1"
+    },
+    "zoomReset": {
+      "h": "1",
+      "a": "2",
+      "k": "-2",
+      "effective-k": "-2",
+      "order": "a,h,k",
+      "point-x": "-1",
+      "final-point-x": "0",
+      "final-point-y": "0",
+      "tab": "Explore",
+      "zoom": "1"
+    },
+    "pointSelect": {
+      "h": "1",
+      "a": "2",
+      "k": "-2",
+      "effective-k": "-2",
+      "order": "a,h,k",
+      "point-x": "1",
+      "final-point-x": "2",
+      "final-point-y": "0",
+      "tab": "Explore",
+      "zoom": "1"
+    },
+    "tabs": {
+      "h": "1",
+      "a": "2",
+      "k": "-2",
+      "effective-k": "-2",
+      "order": "a,h,k",
+      "point-x": "1",
+      "final-point-x": "2",
+      "final-point-y": "0",
+      "tab": "Explore",
+      "zoom": "1"
+    },
+    "incorrectFeedback": "Not yet: set h = 2, k = -1, and a ≠ 0.",
+    "correctFeedback": "Correct: vertex (2, -1).",
+    "hint": "Use h = 2 and k = -1; any nonzero a keeps that vertex.",
+    "reloadReset": {
+      "h": "1",
+      "a": "2",
+      "k": "-2",
+      "effective-k": "-2",
+      "order": "h,a,k",
+      "point-x": "-1",
+      "final-point-x": "0",
+      "final-point-y": "0",
+      "tab": "Explore",
+      "zoom": "1"
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/graphs-and-functions/161-reflection-in-y-axis",
+    "nextHref": "/lessons/graphs-and-functions/163-transformation-order"
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1034,
+      "height": 1521
+    },
+    "document": {
+      "width": 1034,
+      "height": 1682
+    },
+    "horizontalOverflow": false,
+    "regions": {
+      "page": {
+        "top": 99,
+        "bottom": 1527,
+        "left": 220,
+        "right": 1020,
+        "width": 800,
+        "height": 1428
+      },
+      "primary": {
+        "top": 109,
+        "bottom": 1072,
+        "left": 220,
+        "right": 1020,
+        "width": 800,
+        "height": 963
+      },
+      "header": {
+        "top": 119,
+        "bottom": 278,
+        "left": 230,
+        "right": 1010,
+        "width": 780,
+        "height": 159
+      },
+      "tabs": {
+        "top": 278,
+        "bottom": 325,
+        "left": 230,
+        "right": 1010,
+        "width": 780,
+        "height": 47
+      },
+      "workspace": {
+        "top": 342,
+        "bottom": 871,
+        "left": 230,
+        "right": 1010,
+        "width": 780,
+        "height": 529
+      },
+      "graph": {
+        "top": 342,
+        "bottom": 871,
+        "left": 230,
+        "right": 693,
+        "width": 463,
+        "height": 529
+      },
+      "builder": {
+        "top": 342,
+        "bottom": 871,
+        "left": 703,
+        "right": 1012,
+        "width": 309,
+        "height": 529
+      },
+      "lower": {
+        "top": 882,
+        "bottom": 1059,
+        "left": 230,
+        "right": 1010,
+        "width": 780,
+        "height": 177
+      },
+      "practice": {
+        "top": 1081,
+        "bottom": 1348,
+        "left": 220,
+        "right": 1020,
+        "width": 800,
+        "height": 267
+      },
+      "navigation": {
+        "top": 1357,
+        "bottom": 1415,
+        "left": 220,
+        "right": 1020,
+        "width": 800,
+        "height": 58
+      },
+      "footer": {
+        "top": 1425,
+        "bottom": 1527,
+        "left": 220,
+        "right": 1020,
+        "width": 800,
+        "height": 102
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
