@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **143 of 200 lessons completed; 57 pending.**
+Dedicated rebuild target: **144 of 200 lessons completed; 56 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -129,6 +129,7 @@ Dedicated rebuild target: **143 of 200 lessons completed; 57 pending.**
 | 0215   | 158 Vertical Stretch and Compression | Complete | Dedicated vertical-scale engine with real a range/mode/sample controls, pointer/keyboard scale drag, generated parabolas/fixed-x arrows/value table/compression reference, functional tabs/actions/language/navigation, and exact 1322x1190 framing |
 | 0216   | 159 Horizontal Stretch and Compression | Complete | Dedicated inside-scale engine with real b range/mode/y-level controls, pointer/keyboard scale drag, generated parent/transformed parabolas/same-output bracket/reciprocal-width rulers/input table/compression preview, functional actions/navigation, and exact 1350x1165 framing |
 | 0217   |                160 Reflection in x-Axis | Complete | Dedicated x-axis reflection engine with real scale/shift/sample controls, pointer/keyboard reflected-point drag, generated parent/reflected parabolas/mirror lines/point mapping/key rules, functional reset/navigation, and exact 1205x1306 framing |
+| 0218   |                161 Reflection in y-Axis | Complete | Dedicated y-axis cubic-reflection engine with real pre-shift/scale/y-level controls, two-axis pointer and keyboard same-output drag, generated curves/horizontal pairs/table, functional views/rule/navigation, and exact 1205x1306 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2132,3 +2133,17 @@ Evidence:
 - `0217-reference.png`
 - `0217-desktop.png`
 - `0217-dedicated-target-validation.json`
+
+## Lesson 161 / Mockup 0218 - Reflection in y-Axis
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-y-axis-reflection-pre-shift-horizontal-scale-and-y-level-pointer-keyboard-draggable-same-output-point-generated-cubic-curves-horizontal-pairs-table-step-views-concepts-and-rule` model. The lesson-owned vertical pre-shift `k`, horizontal reflection scale `a`, and sample y-level generate `f(x)=x^3+k`, `g(x)=f(-a*x)=(-a*x)^3+k`, both cubic curves, equal-height horizontal segments, all point labels, point-pair table, mirror-line proof, concept cards, and function-rule band from one state.
+
+The `-5..5` pre-shift range, `0.25..3` horizontal scale range, `-15..15` y-level range, generated table rows, and Graph/Table/Step view selector are real controls. The selected reflected point is genuinely draggable in two dimensions: vertical movement changes the sampled output, horizontal movement recalculates the reflection scale, and arrow keys control both dimensions. Every state computes `x_left=cuberoot(y-k)`, `x_right=-x_left/a`, and verifies both outputs equal the selected y-level. Hidden below the target viewport, the standard adjacent routes remain functional for Lessons 160 and 162.
+
+Final 1205x1306 browser validation physically changes all three ranges, pointer-drags the same-y point in both dimensions, keyboard-adjusts y and scale, selects a generated point-pair row, exercises all three views, reloads the initial state, and verifies both adjacent routes. The final comparison loop places the surface at x=258-1190 and y=115-1297, view bar x=277-1171 and y=280-366, graph/control workspace y=380-1005, graph x=277-851, controls x=865-1171, concept band y=1027-1159, and rule band y=1185-1280. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0218-reference.png`
+- `0218-desktop.png`
+- `0218-dedicated-target-validation.json`

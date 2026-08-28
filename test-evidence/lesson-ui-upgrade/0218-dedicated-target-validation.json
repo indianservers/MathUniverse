@@ -1,0 +1,218 @@
+{
+  "mockup": "0218",
+  "lessonId": 161,
+  "route": "/lessons/graphs-and-functions/161-reflection-in-y-axis",
+  "checks": {
+    "initial": {
+      "pre-shift": "0",
+      "scale": "1",
+      "y-level": "-8",
+      "left-x": "-2",
+      "right-x": "2",
+      "left-output": "-8",
+      "right-output": "-8",
+      "view": "Graph View"
+    },
+    "preShiftRange": {
+      "pre-shift": "2",
+      "scale": "1",
+      "y-level": "-8",
+      "left-x": "-2.154434690031884",
+      "right-x": "2.154434690031884",
+      "left-output": "-8.000000000000002",
+      "right-output": "-8.000000000000002",
+      "view": "Graph View"
+    },
+    "scaleRange": {
+      "pre-shift": "2",
+      "scale": "2.5",
+      "y-level": "-8",
+      "left-x": "-2.154434690031884",
+      "right-x": "0.8617738760127536",
+      "left-output": "-8.000000000000002",
+      "right-output": "-8.000000000000002",
+      "view": "Graph View"
+    },
+    "yRange": {
+      "pre-shift": "2",
+      "scale": "2.5",
+      "y-level": "7",
+      "left-x": "1.709975946676697",
+      "right-x": "-0.6839903786706788",
+      "left-output": "7.000000000000001",
+      "right-output": "7.000000000000001",
+      "view": "Graph View"
+    },
+    "pointDrag": {
+      "pre-shift": "0",
+      "scale": "0.75",
+      "y-level": "-6",
+      "left-x": "-1.8171205928321397",
+      "right-x": "2.4228274571095194",
+      "left-output": "-6",
+      "right-output": "-5.999999999999998",
+      "view": "Graph View"
+    },
+    "pointKeyboardY": {
+      "pre-shift": "0",
+      "scale": "0.75",
+      "y-level": "-5",
+      "left-x": "-1.709975946676697",
+      "right-x": "2.2799679289022627",
+      "left-output": "-5.000000000000001",
+      "right-output": "-5.000000000000001",
+      "view": "Graph View"
+    },
+    "pointKeyboardScale": {
+      "pre-shift": "0",
+      "scale": "1",
+      "y-level": "-5",
+      "left-x": "-1.709975946676697",
+      "right-x": "1.709975946676697",
+      "left-output": "-5.000000000000001",
+      "right-output": "-5.000000000000001",
+      "view": "Graph View"
+    },
+    "tableRow": {
+      "pre-shift": "0",
+      "scale": "1",
+      "y-level": "-1",
+      "left-x": "-1",
+      "right-x": "1",
+      "left-output": "-1",
+      "right-output": "-1",
+      "view": "Graph View"
+    },
+    "tableView": {
+      "pre-shift": "0",
+      "scale": "1",
+      "y-level": "-1",
+      "left-x": "-1",
+      "right-x": "1",
+      "left-output": "-1",
+      "right-output": "-1",
+      "view": "Table View"
+    },
+    "stepView": {
+      "pre-shift": "0",
+      "scale": "1",
+      "y-level": "-1",
+      "left-x": "-1",
+      "right-x": "1",
+      "left-output": "-1",
+      "right-output": "-1",
+      "view": "Step View"
+    },
+    "graphView": {
+      "pre-shift": "0",
+      "scale": "1",
+      "y-level": "-1",
+      "left-x": "-1",
+      "right-x": "1",
+      "left-output": "-1",
+      "right-output": "-1",
+      "view": "Graph View"
+    },
+    "reloadReset": {
+      "pre-shift": "0",
+      "scale": "1",
+      "y-level": "-8",
+      "left-x": "-2",
+      "right-x": "2",
+      "left-output": "-8",
+      "right-output": "-8",
+      "view": "Graph View"
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/graphs-and-functions/160-reflection-in-x-axis",
+    "nextHref": "/lessons/graphs-and-functions/162-combined-transformations"
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1205,
+      "height": 1306
+    },
+    "document": {
+      "width": 1205,
+      "height": 1452
+    },
+    "horizontalOverflow": false,
+    "regions": {
+      "page": {
+        "top": 107,
+        "bottom": 1297,
+        "left": 258,
+        "right": 1190,
+        "width": 932,
+        "height": 1190
+      },
+      "surface": {
+        "top": 115,
+        "bottom": 1297,
+        "left": 258,
+        "right": 1190,
+        "width": 932,
+        "height": 1182
+      },
+      "header": {
+        "top": 134,
+        "bottom": 280,
+        "left": 277,
+        "right": 1171,
+        "width": 894,
+        "height": 146
+      },
+      "views": {
+        "top": 280,
+        "bottom": 366,
+        "left": 277,
+        "right": 1171,
+        "width": 894,
+        "height": 86
+      },
+      "workspace": {
+        "top": 380,
+        "bottom": 1005,
+        "left": 277,
+        "right": 1171,
+        "width": 894,
+        "height": 625
+      },
+      "plot": {
+        "top": 380,
+        "bottom": 1005,
+        "left": 277,
+        "right": 851,
+        "width": 574,
+        "height": 625
+      },
+      "controls": {
+        "top": 380,
+        "bottom": 1005,
+        "left": 865,
+        "right": 1171,
+        "width": 306,
+        "height": 625
+      },
+      "concepts": {
+        "top": 1027,
+        "bottom": 1159,
+        "left": 277,
+        "right": 1171,
+        "width": 894,
+        "height": 132
+      },
+      "rule": {
+        "top": 1185,
+        "bottom": 1280,
+        "left": 277,
+        "right": 1171,
+        "width": 894,
+        "height": 95
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
