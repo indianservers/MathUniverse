@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **161 of 200 lessons completed; 39 pending.**
+Dedicated rebuild target: **162 of 200 lessons completed; 38 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -147,6 +147,7 @@ Dedicated rebuild target: **161 of 200 lessons completed; 39 pending.**
 | 0233   |             176 Angle Between Lines | Complete | Dedicated two-slope tangent-angle model with pointer/keyboard drag, correct classification/formula, axes/grid/expand, calculation panels, graded perpendicular practice, and exact 1036x1518 framing |
 | 0234   |          177 Point-to-Line Distance | Complete | Dedicated orthogonal-projection model with pointer/keyboard draggable point and line, live foot/distance/formula/path comparison, expand, exact-value practice, and exact 984x1598 framing |
 | 0235   |                178 Coordinate Loci | Complete | Dedicated fixed-focus circle-locus model with constrained pointer/keyboard generator, editable radius, live trace/equation/distance, real graph controls, graded translated-circle practice, and exact 1060x1484 framing |
+| 0236   |      179 Coordinate Transformations | Complete | Dedicated source/image polygon transformation engine with whole-shape and vertex drag, six coordinate mappings, vectors/snap/animation, live tables, graded three-vertex practice, and exact 1039x1513 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2402,3 +2403,17 @@ Evidence:
 - `0235-reference.png`
 - `0235-desktop.png`
 - `0235-dedicated-target-validation.json`
+
+## Lesson 179 / Mockup 0236 - Coordinate Transformations
+
+Reworked individually against the target mockup with a dedicated `draggable-polygon-coordinate-transformation-rule-engine`. The source triangle, mapped image, coordinate table, edge vectors, transformation summary, and algebraic rule are derived from shared vertex and transformation state for translation, reflections in both axes, 90-degree and 180-degree rotations, and scaling.
+
+Whole-shape pointer/keyboard movement, independent vertex editing, snap quantization, vector visibility, transformation selection, editable parameters, six quick vectors, staged learning tabs, real interpolated animation, Reset, Share, practice checking, answer reveal, task clearing, and adjacent navigation are working controls. The independent practice grades all six image coordinates for translating A(1,-2), B(4,1), C(2,-4) by <-2,3>.
+
+Final 1039x1513 validation edits the vector, keyboard-moves and physically drags the source triangle, switches to vertex mode and drags A independently, toggles vectors and snap, verifies reflection in the y-axis and a quick translation preset, exercises all stages and animation, rejects six wrong coordinates, accepts A'(-1,1), B'(2,4), C'(0,-1), reveals and clears the answer, resets, and verifies both adjacent routes. The comparison loop matches header x=228-1022 and y=98-251, stages y=267-325, workspace y=339-927, learning cards y=938-1095, practice y=1105-1337, navigation y=1347-1399, and footer y=1407-1504. It reports an exact 1039x1513 document, no overflow, and zero console warnings or errors.
+
+Evidence:
+
+- `0236-reference.png`
+- `0236-desktop.png`
+- `0236-dedicated-target-validation.json`

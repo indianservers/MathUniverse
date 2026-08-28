@@ -1,0 +1,307 @@
+{
+  "mockup": "0236",
+  "lessonId": 179,
+  "route": "/lessons/geometry/179-coordinate-transformations",
+  "checks": {
+    "initial": {
+      "kind": "translation",
+      "vector": "3:-2",
+      "source": "-3:4|1:4|-1:1",
+      "image": "0:2|4:2|2:-1",
+      "rule": "(x, y) → (x + 3, y − 2)",
+      "stage": "0",
+      "status": "",
+      "animation": "1.00",
+      "vectors": "true",
+      "snap": "false",
+      "tool": "select"
+    },
+    "inputs": {
+      "kind": "translation",
+      "vector": "2:1",
+      "source": "-3:4|1:4|-1:1",
+      "image": "-1:5|3:5|1:2",
+      "rule": "(x, y) → (x + 2, y + 1)",
+      "stage": "0",
+      "status": "",
+      "animation": "1.00",
+      "vectors": "true",
+      "snap": "false",
+      "tool": "select"
+    },
+    "keyboard": {
+      "kind": "translation",
+      "vector": "2:1",
+      "source": "-2:4|2:4|0:1",
+      "image": "0:5|4:5|2:2",
+      "rule": "(x, y) → (x + 2, y + 1)",
+      "stage": "0",
+      "status": "",
+      "animation": "1.00",
+      "vectors": "true",
+      "snap": "false",
+      "tool": "select"
+    },
+    "drag": {
+      "kind": "translation",
+      "vector": "2:1",
+      "source": "-0.25:4|3.75:4|1.75:1",
+      "image": "1.75:5|5.75:5|3.75:2",
+      "rule": "(x, y) → (x + 2, y + 1)",
+      "stage": "0",
+      "status": "",
+      "animation": "1.00",
+      "vectors": "true",
+      "snap": "false",
+      "tool": "select"
+    },
+    "toggles": {
+      "kind": "translation",
+      "vector": "2:1",
+      "source": "-0.25:4|3.75:4|1.75:1",
+      "image": "1.75:5|5.75:5|3.75:2",
+      "rule": "(x, y) → (x + 2, y + 1)",
+      "stage": "0",
+      "status": "",
+      "animation": "1.00",
+      "vectors": "false",
+      "snap": "true",
+      "tool": "select"
+    },
+    "vertexDrag": {
+      "kind": "translation",
+      "vector": "2:1",
+      "source": "-2:2|3.75:4|1.75:1",
+      "image": "0:3|5.75:5|3.75:2",
+      "rule": "(x, y) → (x + 2, y + 1)",
+      "stage": "0",
+      "status": "",
+      "animation": "1.00",
+      "vectors": "false",
+      "snap": "true",
+      "tool": "shape"
+    },
+    "reflect": {
+      "kind": "reflectY",
+      "vector": "2:1",
+      "source": "-2:2|3.75:4|1.75:1",
+      "image": "2:2|-3.75:4|-1.75:1",
+      "rule": "(x, y) → (−x, y)",
+      "stage": "0",
+      "status": "",
+      "animation": "1.00",
+      "vectors": "false",
+      "snap": "true",
+      "tool": "shape"
+    },
+    "preset": {
+      "kind": "translation",
+      "vector": "2:2",
+      "source": "-2:2|3.75:4|1.75:1",
+      "image": "0:4|5.75:6|3.75:3",
+      "rule": "(x, y) → (x + 2, y + 2)",
+      "stage": "0",
+      "status": "",
+      "animation": "1.00",
+      "vectors": "false",
+      "snap": "true",
+      "tool": "shape"
+    },
+    "stages": {
+      "kind": "translation",
+      "vector": "2:2",
+      "source": "-2:2|3.75:4|1.75:1",
+      "image": "0:4|5.75:6|3.75:3",
+      "rule": "(x, y) → (x + 2, y + 2)",
+      "stage": "4",
+      "status": "",
+      "animation": "1.00",
+      "vectors": "false",
+      "snap": "true",
+      "tool": "shape"
+    },
+    "playing": {
+      "kind": "translation",
+      "vector": "2:2",
+      "source": "-2:2|3.75:4|1.75:1",
+      "image": "0:4|5.75:6|3.75:3",
+      "rule": "(x, y) → (x + 2, y + 2)",
+      "stage": "4",
+      "status": "",
+      "animation": "0.35",
+      "vectors": "false",
+      "snap": "true",
+      "tool": "shape"
+    },
+    "paused": {
+      "kind": "translation",
+      "vector": "2:2",
+      "source": "-2:2|3.75:4|1.75:1",
+      "image": "0:4|5.75:6|3.75:3",
+      "rule": "(x, y) → (x + 2, y + 2)",
+      "stage": "4",
+      "status": "",
+      "animation": "1.00",
+      "vectors": "false",
+      "snap": "true",
+      "tool": "shape"
+    },
+    "wrong": {
+      "kind": "translation",
+      "vector": "2:2",
+      "source": "-2:2|3.75:4|1.75:1",
+      "image": "0:4|5.75:6|3.75:3",
+      "rule": "(x, y) → (x + 2, y + 2)",
+      "stage": "4",
+      "status": "Check every vertex",
+      "animation": "1.00",
+      "vectors": "false",
+      "snap": "true",
+      "tool": "shape"
+    },
+    "correct": {
+      "kind": "translation",
+      "vector": "2:2",
+      "source": "-2:2|3.75:4|1.75:1",
+      "image": "0:4|5.75:6|3.75:3",
+      "rule": "(x, y) → (x + 2, y + 2)",
+      "stage": "4",
+      "status": "Correct transformed triangle",
+      "animation": "1.00",
+      "vectors": "false",
+      "snap": "true",
+      "tool": "shape"
+    },
+    "answer": {
+      "kind": "translation",
+      "vector": "2:2",
+      "source": "-2:2|3.75:4|1.75:1",
+      "image": "0:4|5.75:6|3.75:3",
+      "rule": "(x, y) → (x + 2, y + 2)",
+      "stage": "4",
+      "status": "Answer shown",
+      "animation": "1.00",
+      "vectors": "false",
+      "snap": "true",
+      "tool": "shape"
+    },
+    "newTask": {
+      "kind": "translation",
+      "vector": "2:2",
+      "source": "-2:2|3.75:4|1.75:1",
+      "image": "0:4|5.75:6|3.75:3",
+      "rule": "(x, y) → (x + 2, y + 2)",
+      "stage": "4",
+      "status": "",
+      "animation": "1.00",
+      "vectors": "false",
+      "snap": "true",
+      "tool": "shape"
+    },
+    "reset": {
+      "kind": "translation",
+      "vector": "3:-2",
+      "source": "-3:4|1:4|-1:1",
+      "image": "0:2|4:2|2:-1",
+      "rule": "(x, y) → (x + 3, y − 2)",
+      "stage": "0",
+      "status": "",
+      "animation": "1.00",
+      "vectors": "true",
+      "snap": "false",
+      "tool": "select"
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/geometry/178-coordinate-loci",
+    "nextHref": "/lessons/geometry/180-polar-coordinates"
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1039,
+      "height": 1513
+    },
+    "document": {
+      "width": 1039,
+      "height": 1513
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "regions": {
+      "page": {
+        "top": 98,
+        "bottom": 1504,
+        "left": 211,
+        "right": 1039,
+        "width": 828,
+        "height": 1406
+      },
+      "header": {
+        "top": 98,
+        "bottom": 251,
+        "left": 228,
+        "right": 1022,
+        "width": 794,
+        "height": 153
+      },
+      "stages": {
+        "top": 267,
+        "bottom": 325,
+        "left": 228,
+        "right": 1022,
+        "width": 794,
+        "height": 58
+      },
+      "work": {
+        "top": 339,
+        "bottom": 927,
+        "left": 228,
+        "right": 1022,
+        "width": 794,
+        "height": 588
+      },
+      "graph": {
+        "top": 386,
+        "bottom": 772,
+        "left": 279,
+        "right": 696,
+        "width": 417,
+        "height": 386
+      },
+      "learn": {
+        "top": 938,
+        "bottom": 1095,
+        "left": 228,
+        "right": 1022,
+        "width": 794,
+        "height": 157
+      },
+      "practice": {
+        "top": 1105,
+        "bottom": 1337,
+        "left": 228,
+        "right": 1022,
+        "width": 794,
+        "height": 232
+      },
+      "navigation": {
+        "top": 1347,
+        "bottom": 1399,
+        "left": 228,
+        "right": 1022,
+        "width": 794,
+        "height": 52
+      },
+      "footer": {
+        "top": 1407,
+        "bottom": 1504,
+        "left": 228,
+        "right": 1022,
+        "width": 794,
+        "height": 97
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

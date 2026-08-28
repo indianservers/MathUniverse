@@ -54,6 +54,7 @@ import PerpendicularLinesTargetLesson175 from "./PerpendicularLinesTargetLesson1
 import AngleBetweenLinesTargetLesson176 from "./AngleBetweenLinesTargetLesson176";
 import PointLineDistanceTargetLesson177 from "./PointLineDistanceTargetLesson177";
 import CoordinateLociTargetLesson178 from "./CoordinateLociTargetLesson178";
+import CoordinateTransformationsTargetLesson179 from "./CoordinateTransformationsTargetLesson179";
 import ReflectionLineTargetLesson237 from "./ReflectionLineTargetLesson237";
 import ReflectionPointTargetLesson238 from "./ReflectionPointTargetLesson238";
 import ReflectionCircleTargetLesson239 from "./ReflectionCircleTargetLesson239";
@@ -154,6 +155,9 @@ export default function Geometry2DLessonAdapter({
   }
   if (lesson.id === 178) {
     return <CoordinateLociTargetLesson178 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
+  if (lesson.id === 179) {
+    return <CoordinateTransformationsTargetLesson179 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
   if (lesson.id === 250) {
     return <EnvelopeLinesTargetLesson250 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
