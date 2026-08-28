@@ -4,6 +4,16 @@ import { lessonCatalog } from "../catalog/lessonCatalog";
 import GraphLessonAdapter from "./GraphLessonAdapter";
 
 describe("GraphLessonAdapter", () => {
+  it("routes lesson 163 to its dedicated transformation-order engine", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 163)!;
+    const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="graph-mockup-0220"');
+    expect(html).toContain('data-dedicated-lesson="163"');
+    expect(html).toContain("editable-noncommutative-two-pipeline-input-substitution-steps-pointer-keyboard-draggable-linked-vertices-generated-curves-equations-observation-table-custom-order-practice-notes-and-navigation");
+    expect(html).toContain('aria-label="Drag Pipeline A vertex"');
+    expect(html).toContain("Compare two orders of the same transformations");
+  });
+
   it("routes lesson 162 to its dedicated combined-transformations engine", () => {
     const lesson = lessonCatalog.find((item) => item.id === 162)!;
     const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
@@ -409,7 +419,6 @@ describe("GraphLessonAdapter", () => {
 
   it("renders function transformation lessons 153 through 166 with lesson-specific graph guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      163: "later transformations act",
       164: "sliders change the graph family",
       165: "simplest rule shows",
       166: "shape plus more than one point",

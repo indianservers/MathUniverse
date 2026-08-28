@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **145 of 200 lessons completed; 55 pending.**
+Dedicated rebuild target: **146 of 200 lessons completed; 54 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -131,6 +131,7 @@ Dedicated rebuild target: **145 of 200 lessons completed; 55 pending.**
 | 0217   |                160 Reflection in x-Axis | Complete | Dedicated x-axis reflection engine with real scale/shift/sample controls, pointer/keyboard reflected-point drag, generated parent/reflected parabolas/mirror lines/point mapping/key rules, functional reset/navigation, and exact 1205x1306 framing |
 | 0218   |                161 Reflection in y-Axis | Complete | Dedicated y-axis cubic-reflection engine with real pre-shift/scale/y-level controls, two-axis pointer and keyboard same-output drag, generated curves/horizontal pairs/table, functional views/rule/navigation, and exact 1205x1306 framing |
 | 0219   |          162 Combined Transformations | Complete | Dedicated ordered h/a/k transformation engine with real ranges, pointer/keyboard vertex drag, native/keyboard pipeline reorder, generated parent/step/final curves and point trace, graph tools, tabs, graded practice, navigation, and exact 1034x1521 framing |
+| 0220   |              163 Transformation Order | Complete | Dedicated two-pipeline non-commutativity engine with real operation switches, pointer/keyboard vertex drag, generated parent/A/B curves and equations, stage tabs, custom pipeline controls, notes, practice, navigation, and exact 1023x1537 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2162,3 +2163,17 @@ Evidence:
 - `0219-reference.png`
 - `0219-desktop.png`
 - `0219-dedicated-target-validation.json`
+
+## Lesson 163 / Mockup 0220 - Transformation Order
+
+Reworked individually against the mathematics target mockup with a dedicated `two-order-input-transformation-pipeline-generated-equations-and-curves-pointer-keyboard-draggable-vertex-live-comparison-stage-tabs-custom-pipelines-notes-practice-and-navigation` model. Pipeline A applies reflection in the y-axis and then an input shift; Pipeline B applies the same operations in reverse. Their enabled steps generate each composed input, expanded equation, vertex, axis, curve, comparison table, and non-commutativity result from explicit state.
+
+All four operation switches, five lesson stages, both custom two-step pipeline selectors, Apply and Compare, Graph/Notes tabs, Notes textarea, Reset, and adjacent navigation are real controls. Pipeline A's graph vertex is genuinely pointer- and keyboard-draggable; changing its horizontal position updates the linked shift magnitudes, both equations, both vertices, axes, and comparison evidence. The implementation preserves the mathematically coherent base `f(x)=x^2-1`: reflect then shift gives `(x+s)^2-1`, while shift then reflect gives `(x-s)^2-1`.
+
+Final 1023x1537 browser validation toggles each pipeline operation, resets, physically drags the vertex from `-1` to `-2`, keyboard-moves it to `-1.5`, exercises all five stages, applies custom shift-2 and shift-3 pipelines, writes a note, switches Graph/Notes views, restores the target state, and verifies both adjacent routes. The final comparison loop matches the target at page x=216-1009 and y=98-1525, header y=98-211, stage bar y=225-265, comparison y=280-762, graph x=404-802, insights y=774-965, cards y=983-1299, practice y=1311-1459, and navigation y=1477-1525. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0220-reference.png`
+- `0220-desktop.png`
+- `0220-dedicated-target-validation.json`

@@ -1,0 +1,226 @@
+{
+  "mockup": "0220",
+  "lessonId": 163,
+  "route": "/lessons/graphs-and-functions/163-transformation-order",
+  "checks": {
+    "initial": {
+      "a-vertex": "-1",
+      "b-vertex": "1",
+      "a-equation": "y = x² + 2x",
+      "b-equation": "y = x² - 2x",
+      "a-enabled": "true,true",
+      "b-enabled": "true,true",
+      "stage": "Observe",
+      "work-tab": "Graph",
+      "different": "true"
+    },
+    "toggleAShift": {
+      "a-vertex": "0",
+      "b-vertex": "1",
+      "a-equation": "y = x² - 1",
+      "b-equation": "y = x² - 2x",
+      "a-enabled": "true,false",
+      "b-enabled": "true,true",
+      "stage": "Observe",
+      "work-tab": "Graph",
+      "different": "true"
+    },
+    "toggleBShift": {
+      "a-vertex": "0",
+      "b-vertex": "0",
+      "a-equation": "y = x² - 1",
+      "b-equation": "y = x² - 1",
+      "a-enabled": "true,false",
+      "b-enabled": "false,true",
+      "stage": "Observe",
+      "work-tab": "Graph",
+      "different": "false"
+    },
+    "vertexDrag": {
+      "a-vertex": "-2",
+      "b-vertex": "2",
+      "a-equation": "y = x² + 4x + 3",
+      "b-equation": "y = x² - 4x + 3",
+      "a-enabled": "true,true",
+      "b-enabled": "true,true",
+      "stage": "Observe",
+      "work-tab": "Graph",
+      "different": "true"
+    },
+    "vertexKeyboard": {
+      "a-vertex": "-1.5",
+      "b-vertex": "1.5",
+      "a-equation": "y = x² + 3x + 1.25",
+      "b-equation": "y = x² - 3x + 1.25",
+      "a-enabled": "true,true",
+      "b-enabled": "true,true",
+      "stage": "Observe",
+      "work-tab": "Graph",
+      "different": "true"
+    },
+    "stages": {
+      "a-vertex": "-1.5",
+      "b-vertex": "1.5",
+      "a-equation": "y = x² + 3x + 1.25",
+      "b-equation": "y = x² - 3x + 1.25",
+      "a-enabled": "true,true",
+      "b-enabled": "true,true",
+      "stage": "Observe",
+      "work-tab": "Graph",
+      "different": "true"
+    },
+    "customPipelines": {
+      "a-vertex": "-2",
+      "b-vertex": "3",
+      "a-equation": "y = x² + 4x + 3",
+      "b-equation": "y = x² - 6x + 8",
+      "a-enabled": "true,true",
+      "b-enabled": "true,true",
+      "stage": "Observe",
+      "work-tab": "Graph",
+      "different": "true"
+    },
+    "applyStatus": "Comparison applied",
+    "notes": "Reflect and shift do not commute because the input sign changes first.",
+    "notesTab": {
+      "a-vertex": "-2",
+      "b-vertex": "3",
+      "a-equation": "y = x² + 4x + 3",
+      "b-equation": "y = x² - 6x + 8",
+      "a-enabled": "true,true",
+      "b-enabled": "true,true",
+      "stage": "Observe",
+      "work-tab": "Notes",
+      "different": "true"
+    },
+    "graphTab": {
+      "a-vertex": "-2",
+      "b-vertex": "3",
+      "a-equation": "y = x² + 4x + 3",
+      "b-equation": "y = x² - 6x + 8",
+      "a-enabled": "true,true",
+      "b-enabled": "true,true",
+      "stage": "Observe",
+      "work-tab": "Graph",
+      "different": "true"
+    },
+    "reset": {
+      "a-vertex": "-1",
+      "b-vertex": "1",
+      "a-equation": "y = x² + 2x",
+      "b-equation": "y = x² - 2x",
+      "a-enabled": "true,true",
+      "b-enabled": "true,true",
+      "stage": "Observe",
+      "work-tab": "Graph",
+      "different": "true"
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/graphs-and-functions/162-combined-transformations",
+    "nextHref": "/lessons/graphs-and-functions/164-parameter-explorer"
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1023,
+      "height": 1537
+    },
+    "document": {
+      "width": 1023,
+      "height": 1680
+    },
+    "horizontalOverflow": false,
+    "regions": {
+      "page": {
+        "top": 98,
+        "bottom": 1525,
+        "left": 216,
+        "right": 1009,
+        "width": 793,
+        "height": 1427
+      },
+      "header": {
+        "top": 98,
+        "bottom": 211,
+        "left": 216,
+        "right": 1009,
+        "width": 793,
+        "height": 113
+      },
+      "stages": {
+        "top": 225,
+        "bottom": 265,
+        "left": 229,
+        "right": 996,
+        "width": 767,
+        "height": 40
+      },
+      "compare": {
+        "top": 280,
+        "bottom": 762,
+        "left": 229,
+        "right": 996,
+        "width": 767,
+        "height": 482
+      },
+      "pipelineA": {
+        "top": 330,
+        "bottom": 750,
+        "left": 240,
+        "right": 394,
+        "width": 154,
+        "height": 420
+      },
+      "graph": {
+        "top": 330,
+        "bottom": 750,
+        "left": 404,
+        "right": 802,
+        "width": 398,
+        "height": 420
+      },
+      "pipelineB": {
+        "top": 330,
+        "bottom": 750,
+        "left": 812,
+        "right": 990,
+        "width": 178,
+        "height": 420
+      },
+      "insights": {
+        "top": 774,
+        "bottom": 965,
+        "left": 229,
+        "right": 996,
+        "width": 767,
+        "height": 191
+      },
+      "cards": {
+        "top": 983,
+        "bottom": 1299,
+        "left": 229,
+        "right": 996,
+        "width": 767,
+        "height": 316
+      },
+      "practice": {
+        "top": 1311,
+        "bottom": 1459,
+        "left": 229,
+        "right": 996,
+        "width": 767,
+        "height": 148
+      },
+      "navigation": {
+        "top": 1477,
+        "bottom": 1525,
+        "left": 229,
+        "right": 996,
+        "width": 767,
+        "height": 48
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
