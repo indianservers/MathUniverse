@@ -1,0 +1,220 @@
+{
+  "mockup": "0230",
+  "lessonId": 173,
+  "route": "/lessons/geometry/173-equation-of-a-line",
+  "checks": {
+    "initial": {
+      "m": "2",
+      "b": "1",
+      "form": "slope",
+      "tool": "select",
+      "grid": "true",
+      "tab": "1",
+      "status": ""
+    },
+    "inputs": {
+      "m": "-1.5",
+      "b": "4",
+      "form": "slope",
+      "tool": "select",
+      "grid": "true",
+      "tab": "1",
+      "status": ""
+    },
+    "keyboard": {
+      "m": "-1.25",
+      "b": "4",
+      "form": "slope",
+      "tool": "select",
+      "grid": "true",
+      "tab": "1",
+      "status": ""
+    },
+    "pointer": {
+      "m": "0",
+      "b": "4",
+      "form": "slope",
+      "tool": "select",
+      "grid": "true",
+      "tab": "1",
+      "status": ""
+    },
+    "grid": {
+      "m": "0",
+      "b": "4",
+      "form": "slope",
+      "tool": "select",
+      "grid": "false",
+      "tab": "1",
+      "status": ""
+    },
+    "forms": {
+      "m": "0",
+      "b": "4",
+      "form": "slope",
+      "tool": "select",
+      "grid": "true",
+      "tab": "4",
+      "status": ""
+    },
+    "undo": {
+      "m": "-0.5",
+      "b": "4",
+      "form": "slope",
+      "tool": "select",
+      "grid": "true",
+      "tab": "4",
+      "status": ""
+    },
+    "redo": {
+      "m": "0",
+      "b": "4",
+      "form": "slope",
+      "tool": "select",
+      "grid": "true",
+      "tab": "4",
+      "status": ""
+    },
+    "pan": {
+      "m": "0",
+      "b": "4",
+      "form": "slope",
+      "tool": "pan",
+      "grid": "true",
+      "tab": "4",
+      "status": ""
+    },
+    "shared": true,
+    "menu": true,
+    "wrong": {
+      "m": "0",
+      "b": "4",
+      "form": "slope",
+      "tool": "select",
+      "grid": "true",
+      "tab": "4",
+      "status": "Recheck the slope"
+    },
+    "hint": true,
+    "correct": {
+      "m": "0",
+      "b": "4",
+      "form": "slope",
+      "tool": "select",
+      "grid": "true",
+      "tab": "4",
+      "status": "Correct line equations"
+    },
+    "taskReset": {
+      "m": "0",
+      "b": "4",
+      "form": "slope",
+      "tool": "select",
+      "grid": "true",
+      "tab": "4",
+      "status": ""
+    },
+    "reset": {
+      "m": "2",
+      "b": "1",
+      "form": "slope",
+      "tool": "select",
+      "grid": "true",
+      "tab": "1",
+      "status": ""
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/geometry/172-gradient-slope",
+    "nextHref": "/lessons/geometry/174-parallel-lines"
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1024,
+      "height": 1536
+    },
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "regions": {
+      "page": {
+        "top": 106,
+        "bottom": 1536,
+        "left": 205,
+        "right": 1024,
+        "width": 819,
+        "height": 1430
+      },
+      "header": {
+        "top": 106,
+        "bottom": 207,
+        "left": 224,
+        "right": 1005,
+        "width": 781,
+        "height": 101
+      },
+      "stages": {
+        "top": 207,
+        "bottom": 261,
+        "left": 224,
+        "right": 1005,
+        "width": 781,
+        "height": 54
+      },
+      "lab": {
+        "top": 276,
+        "bottom": 812,
+        "left": 224,
+        "right": 1005,
+        "width": 781,
+        "height": 536
+      },
+      "graph": {
+        "top": 342,
+        "bottom": 788,
+        "left": 239,
+        "right": 691,
+        "width": 452,
+        "height": 446
+      },
+      "learning": {
+        "top": 826,
+        "bottom": 1046,
+        "left": 224,
+        "right": 1005,
+        "width": 781,
+        "height": 220
+      },
+      "practice": {
+        "top": 1060,
+        "bottom": 1380,
+        "left": 224,
+        "right": 1005,
+        "width": 781,
+        "height": 320
+      },
+      "navigation": {
+        "top": 1394,
+        "bottom": 1455,
+        "left": 224,
+        "right": 1005,
+        "width": 781,
+        "height": 61
+      },
+      "footer": {
+        "top": 1469,
+        "bottom": 1536,
+        "left": 224,
+        "right": 1005,
+        "width": 781,
+        "height": 67
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true,
+  "mathNote": "Target labels are inconsistent: y=2x+1 gives (-2,-3), not (-2,0), and practice points (-2,-1),(4,5) define y=x+1, not y=3x/2+2. Implementation uses correct equations."
+}

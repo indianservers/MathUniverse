@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **155 of 200 lessons completed; 45 pending.**
+Dedicated rebuild target: **156 of 200 lessons completed; 44 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -141,6 +141,7 @@ Dedicated rebuild target: **155 of 200 lessons completed; 45 pending.**
 | 0227   |                         170 Midpoint | Complete | Dedicated two-endpoint midpoint model with editable coordinates, pointer/keyboard drag, generated midpoint/equal halves, grid/zoom/expand, independent draggable graded challenge, and exact 1024x1536 framing |
 | 0228   |                  171 Section Formula | Complete | Dedicated internal/external weighted-coordinate model with pointer/keyboard ratio drag, live calculations, real graph tools, comparison presets, graded practice, and exact 1447x1087 framing |
 | 0229   |                 172 Gradient / Slope | Complete | Dedicated two-point slope model with pointer/keyboard drag, rise/run, undefined-line guard, move/select/pan/zoom/fullscreen tools, independent draggable graded practice, and exact 1014x1551 framing |
+| 0230   |              173 Equation of a Line | Complete | Dedicated slope/intercept line model with pointer/keyboard manipulation, three generated equation forms, grid/select/pan/undo/redo, corrected graded practice, and exact 1024x1536 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2312,3 +2313,17 @@ Evidence:
 - `0229-reference.png`
 - `0229-desktop.png`
 - `0229-dedicated-target-validation.json`
+
+## Lesson 173 / Mockup 0230 - Equation of a Line
+
+Reworked individually against the target mockup with a dedicated `editable-slope-intercept-three-equivalent-line-forms-pointer-keyboard-line-drag-pan-undo-redo-and-graded-practice` model. Slope m and intercept b generate the line, draggable points, x/y intercepts, slope-intercept form, point-slope form, standard form, and live results from one coherent state.
+
+Both numeric inputs and ranges, direct pointer/keyboard line manipulation, all three form tabs, grid, Select, Pan, physical viewport panning, undo/redo, five stages, Reset, Share, More options, Hint, task grading/reset, and adjacent navigation are real controls. For y=2x+1, the implementation correctly plots (-2,-3), not the mockup's inconsistent (-2,0). Likewise, practice points (-2,-1) and (4,5) correctly produce slope 1 and y=x+1 rather than the mockup's displayed 3/2 and y=3x/2+2.
+
+Final 1024x1536 validation edits m and b, keyboard-moves and physically drags the line point, toggles the grid, exercises all stages/forms, undo/redo, physically pans, shares, opens More options, rejects 1.5, reveals the hint, accepts slope 1, resets the task and lesson, and verifies adjacent routes. It reports page x=205-1024 and y=106-1536, header y=106-207, stages y=207-261, lab y=276-812, graph x=239-691 and y=342-788, learning y=826-1046, practice y=1060-1380, navigation y=1394-1455, footer y=1469-1536, no overflow, and zero console messages.
+
+Evidence:
+
+- `0230-reference.png`
+- `0230-desktop.png`
+- `0230-dedicated-target-validation.json`

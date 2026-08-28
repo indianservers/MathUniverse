@@ -48,6 +48,7 @@ import DistanceBetweenPointsTargetLesson169 from "./DistanceBetweenPointsTargetL
 import MidpointTargetLesson170 from "./MidpointTargetLesson170";
 import SectionFormulaTargetLesson171 from "./SectionFormulaTargetLesson171";
 import GradientSlopeTargetLesson172 from "./GradientSlopeTargetLesson172";
+import EquationLineTargetLesson173 from "./EquationLineTargetLesson173";
 import ReflectionLineTargetLesson237 from "./ReflectionLineTargetLesson237";
 import ReflectionPointTargetLesson238 from "./ReflectionPointTargetLesson238";
 import ReflectionCircleTargetLesson239 from "./ReflectionCircleTargetLesson239";
@@ -130,6 +131,9 @@ export default function Geometry2DLessonAdapter({
   }
   if (lesson.id === 172) {
     return <GradientSlopeTargetLesson172 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
+  if (lesson.id === 173) {
+    return <EquationLineTargetLesson173 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
   if (lesson.id === 250) {
     return <EnvelopeLinesTargetLesson250 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;

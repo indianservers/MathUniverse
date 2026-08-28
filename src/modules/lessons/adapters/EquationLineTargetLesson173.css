@@ -1,0 +1,529 @@
+.el173-page {
+  --ink: #0b1838;
+  --blue: #0875d9;
+  --line: #dce5ee;
+  width: calc(100% + 40px);
+  min-height: 1428px;
+  margin: -9px 0 0 -20px;
+  color: var(--ink);
+  font:
+    9px/1.4 Inter,
+    system-ui,
+    sans-serif;
+  letter-spacing: 0;
+}
+.el173-page * {
+  box-sizing: border-box;
+}
+.el173-page button,
+.el173-page input {
+  font: inherit;
+  letter-spacing: 0;
+}
+.el173-page h1,
+.el173-page h2,
+.el173-page h3,
+.el173-page p {
+  margin: 0;
+}
+.el173-page button {
+  cursor: pointer;
+  color: inherit;
+}
+.el173-header {
+  position: relative;
+  height: 101px;
+  margin: 0 19px;
+  padding: 10px 5px;
+}
+.el173-header h1 {
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1;
+}
+.el173-header > p {
+  margin-top: 9px;
+  color: #52627a;
+  font-size: 11px;
+}
+.el173-header > div {
+  display: flex;
+  margin-top: 12px;
+  gap: 8px;
+}
+.el173-header > div b {
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: 99px;
+}
+.el173-header > aside {
+  position: absolute;
+  top: 45px;
+  right: 0;
+  display: flex;
+  gap: 8px;
+}
+.el173-header > aside button {
+  display: flex;
+  height: 34px;
+  padding: 0 14px;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+}
+.el173-header > aside svg {
+  width: 13px;
+}
+.el173-header output {
+  position: absolute;
+  top: 38px;
+  right: 0;
+  white-space: nowrap;
+  color: #16854c;
+}
+.el173-stages {
+  display: grid;
+  height: 54px;
+  margin: 0 19px 15px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  grid-template-columns: repeat(5, 1fr);
+  overflow: hidden;
+}
+.el173-stages button {
+  display: flex;
+  border: 0;
+  background: #fff;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-align: left;
+}
+.el173-stages button.active {
+  border-radius: 8px;
+  background: linear-gradient(120deg, #0872cb, #0661b4);
+  color: #fff;
+}
+.el173-stages i {
+  display: grid;
+  width: 25px;
+  height: 25px;
+  place-items: center;
+  border-radius: 7px;
+  background: #edf2f7;
+  font-style: normal;
+  font-weight: 900;
+}
+.el173-stages .active i {
+  background: #fff;
+  color: #176abb;
+}
+.el173-stages span {
+  display: grid;
+}
+.el173-stages small {
+  color: #64728a;
+}
+.el173-stages .active small {
+  color: #fff;
+}
+.el173-lab {
+  display: grid;
+  height: 536px;
+  margin: 0 19px;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  background: #fff;
+  grid-template-columns: 452px 1fr;
+  gap: 18px;
+}
+.el173-lab > article {
+  position: relative;
+}
+.el173-lab > article > header {
+  display: flex;
+  height: 55px;
+}
+.el173-lab h2,
+.el173-learning h2,
+.el173-practice h2 {
+  color: #075bb5;
+  font-size: 13px;
+}
+.el173-lab > article > header p {
+  margin-top: 5px;
+  color: #5f6d84;
+}
+.el173-lab > article > header label {
+  display: flex;
+  margin-left: auto;
+  align-items: start;
+  gap: 6px;
+  font-weight: 800;
+}
+.el173-lab > article > header button {
+  width: 24px;
+  height: 24px;
+  margin-left: 5px;
+  border: 0;
+  border-radius: 6px;
+  background: #eef2f6;
+}
+.el173-graph {
+  display: block;
+  width: 452px;
+  height: 446px;
+  border: 1px solid #e2e8ef;
+  touch-action: none;
+}
+.el173-graph .axis {
+  stroke: #101827;
+}
+.el173-graph .line {
+  stroke: #1680ef;
+  stroke-width: 2;
+}
+.el173-graph .point {
+  fill: #1680ef;
+}
+.el173-graph .practice-point {
+  fill: #7f57e8;
+}
+.el173-graph text {
+  fill: #0875d9;
+  font-size: 10px;
+}
+.el173-tools {
+  position: absolute;
+  right: 4px;
+  bottom: 18px;
+  display: grid;
+  width: 80px;
+  padding: 7px;
+  border: 1px solid #bcc8d4;
+  border-radius: 9px;
+  background: #fff;
+}
+.el173-tools button {
+  display: flex;
+  height: 38px;
+  align-items: center;
+  gap: 8px;
+  border: 0;
+  background: #fff;
+}
+.el173-tools svg {
+  width: 13px;
+}
+.el173-tools button.active {
+  color: #0875d9;
+}
+.el173-lab > aside {
+  padding-left: 2px;
+}
+.el173-lab > aside > nav {
+  display: grid;
+  margin-top: 10px;
+  grid-template-columns: 1.25fr 1fr 0.8fr;
+}
+.el173-lab > aside > nav button {
+  height: 31px;
+  border: 0;
+  background: #f5f7fa;
+}
+.el173-lab > aside > nav button.active {
+  border: 1px solid #1680ef;
+  border-radius: 6px;
+  background: #fff;
+  color: #0875d9;
+}
+.el173-lab > aside > label {
+  position: relative;
+  display: grid;
+  margin-top: 18px;
+  font-weight: 900;
+  grid-template-columns: 1fr 50px;
+  gap: 12px;
+}
+.el173-lab > aside > label input[type="range"] {
+  width: 100%;
+  margin-top: 10px;
+  accent-color: #0875d9;
+}
+.el173-lab > aside > label input[type="number"] {
+  width: 50px;
+  height: 34px;
+  grid-row: 1/3;
+  grid-column: 2;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  text-align: center;
+}
+.el173-lab > aside hr {
+  margin: 15px 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+}
+.el173-lab > aside h3 {
+  margin: 12px 0 7px;
+  color: #075bb5;
+  font-size: 10px;
+}
+.el173-lab > aside > p {
+  display: flex;
+  padding: 6px 8px;
+  justify-content: space-between;
+  border-bottom: 1px solid #edf1f5;
+  color: #506079;
+}
+.el173-lab > aside > p:nth-of-type(1) {
+  color: #0875d9;
+}
+.el173-lab > aside > p:nth-of-type(2) {
+  color: #7546db;
+}
+.el173-lab > aside > p:nth-of-type(3) {
+  color: #159153;
+}
+.el173-lab > aside > output {
+  display: block;
+  padding: 7px;
+  color: #0875d9;
+  font:
+    italic 12px Georgia,
+    serif;
+  text-align: right;
+}
+.el173-learning {
+  display: grid;
+  height: 220px;
+  margin: 14px 19px 0;
+  grid-template-columns: 190px 360px 1fr;
+}
+.el173-learning article {
+  padding: 14px;
+  border: 1px solid var(--line);
+  background: #fff;
+}
+.el173-learning article:first-child {
+  border-radius: 10px 0 0 10px;
+}
+.el173-learning article:last-child {
+  border-radius: 0 10px 10px 0;
+  background: #fcf8ff;
+}
+.el173-learning p {
+  margin-top: 16px;
+}
+.el173-learning ol {
+  margin-top: 15px;
+  line-height: 30px;
+}
+.el173-learning article:last-child strong {
+  display: block;
+  margin-top: 11px;
+  color: #6b3fd1;
+  font:
+    italic 12px Georgia,
+    serif;
+}
+.el173-practice {
+  position: relative;
+  display: grid;
+  height: 320px;
+  margin: 14px 19px 0;
+  padding: 54px 14px 12px;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  background: #fff;
+  grid-template-columns: 205px 1fr 252px;
+  gap: 14px;
+}
+.el173-practice > header {
+  position: absolute;
+  top: 12px;
+  left: 14px;
+}
+.el173-practice > header p {
+  margin-top: 4px;
+  color: #607087;
+}
+.el173-practice > aside {
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.el173-practice > aside p {
+  margin-top: 12px;
+}
+.el173-practice > aside input {
+  width: 100%;
+  height: 29px;
+  margin-top: 10px;
+  padding: 0 8px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+.el173-practice > aside button {
+  display: inline-flex;
+  height: 30px;
+  margin: 13px 7px 0 0;
+  padding: 0 14px;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+}
+.el173-practice > aside button:first-of-type {
+  border: 0;
+  background: #7444d6;
+  color: #fff;
+}
+.el173-practice > aside svg {
+  width: 12px;
+}
+.el173-practice > aside output {
+  display: block;
+  margin-top: 5px;
+  color: #16854c;
+}
+.el173-practice > article {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.el173-graph.practice {
+  width: 100%;
+  height: 245px;
+}
+.el173-practice > article button {
+  display: flex;
+  height: 28px;
+  margin-top: 5px;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+}
+.el173-practice > article svg {
+  width: 12px;
+}
+.el173-practice > section {
+  padding: 10px 14px;
+  border-left: 1px solid var(--line);
+}
+.el173-practice > section p {
+  display: flex;
+  margin-top: 16px;
+  justify-content: space-between;
+}
+.el173-practice > section > output {
+  display: block;
+  margin-top: 11px;
+  padding: 9px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #f2f7fc;
+  text-align: center;
+  font:
+    italic 12px Georgia,
+    serif;
+}
+.el173-practice > section footer {
+  margin-top: 18px;
+  color: #607087;
+}
+.el173-nav {
+  display: grid;
+  height: 61px;
+  margin: 14px 19px 0;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.el173-nav a {
+  display: flex;
+  padding: 0 15px;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: #fff;
+  color: inherit;
+  text-decoration: none;
+}
+.el173-nav a:last-child {
+  justify-content: flex-end;
+  text-align: right;
+}
+.el173-nav span {
+  display: grid;
+}
+.el173-nav svg {
+  width: 14px;
+}
+.el173-footer {
+  display: grid;
+  height: 67px;
+  margin: 14px 19px 0;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  grid-template-columns: 1fr repeat(3, 78px);
+}
+.el173-footer p {
+  margin-top: 6px;
+  color: #607087;
+}
+.el173-footer a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+  text-decoration: none;
+}
+.lesson-page-shell:has(.el173-page) .lesson-adjacent-nav {
+  display: none;
+}
+body:has(.el173-page) footer[aria-label="Site footer"] {
+  display: none;
+}
+@media (min-width: 901px) {
+  body:has(.el173-page) [data-testid="desktop-sidebar"] {
+    width: 205px;
+    flex-basis: 205px;
+  }
+}
+@media (max-width: 900px) {
+  .el173-page {
+    width: 100%;
+    margin: 0;
+  }
+  .el173-header,
+  .el173-lab,
+  .el173-learning,
+  .el173-practice {
+    height: auto;
+  }
+  .el173-header > aside {
+    position: static;
+    margin-top: 8px;
+  }
+  .el173-lab,
+  .el173-learning,
+  .el173-practice {
+    grid-template-columns: 1fr;
+  }
+  .el173-stages span {
+    display: none;
+  }
+  .el173-footer {
+    grid-template-columns: 1fr;
+  }
+}

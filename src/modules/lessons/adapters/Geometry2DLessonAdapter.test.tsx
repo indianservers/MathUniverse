@@ -4,9 +4,8 @@ import { lessonCatalog } from "../catalog/lessonCatalog";
 import Geometry2DLessonAdapter from "./Geometry2DLessonAdapter";
 
 describe("Geometry2DLessonAdapter", () => {
-  it("renders coordinate geometry lessons 173 through 182 with lesson-specific guidance", () => {
+  it("renders coordinate geometry lessons 174 through 182 with lesson-specific guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      173: "Line equation",
       174: "Parallel test",
       175: "Perpendicular test",
       176: "Angle rule",
@@ -37,6 +36,16 @@ describe("Geometry2DLessonAdapter", () => {
       expect(html, lesson.title).toContain("Avoid:");
       expect(html, lesson.title).not.toContain("Coordinate rule");
     }
+  });
+
+  it("renders equation of a line as its own equivalent-forms surface", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 173)!;
+    const html = renderToStaticMarkup(<Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain("geometry-mockup-0230");
+    expect(html).toContain('data-dedicated-lesson="173"');
+    expect(html).toContain("Slope-Intercept");
+    expect(html).toContain("Equations of the line");
+    expect(html).not.toContain("reusable 2D geometry engine");
   });
 
   it("renders gradient slope as its own rise-over-run surface", () => {
