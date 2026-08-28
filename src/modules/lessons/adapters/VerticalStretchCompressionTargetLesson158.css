@@ -1,0 +1,577 @@
+.vs158-page {
+  --ink: #0b173d;
+  --cyan: #079dac;
+  width: calc(100% + 13px);
+  height: 983px;
+  margin-left: -7px;
+  padding-top: 20px;
+  color: var(--ink);
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: 0;
+}
+.vs158-page * {
+  box-sizing: border-box;
+}
+.vs158-header {
+  width: 100%;
+  height: 195px;
+  border: 1px solid #dce5ec;
+  border-radius: 19px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 17px 18px;
+  box-shadow: 0 8px 28px rgba(35, 55, 95, 0.06);
+  position: relative;
+}
+.vs158-header h1 {
+  margin: 0 0 2px;
+  font-size: 32px;
+  line-height: 1.08;
+  font-weight: 900;
+}
+.vs158-header > p {
+  margin: 0;
+  color: #5e6d85;
+  font-size: 14px;
+  font-weight: 650;
+}
+.vs158-meta {
+  display: flex;
+  gap: 9px;
+  margin-top: 10px;
+}
+.vs158-meta b {
+  height: 31px;
+  border: 1px solid #dce4eb;
+  border-radius: 17px;
+  padding: 0 13px;
+  display: flex;
+  align-items: center;
+  color: #34445e;
+  font-size: 10px;
+  white-space: nowrap;
+}
+.vs158-header footer {
+  height: 46px;
+  margin-top: 13px;
+  display: flex;
+  gap: 9px;
+  position: relative;
+}
+.vs158-header footer label,
+.vs158-header footer button {
+  height: 46px;
+  border: 1px solid #dce4eb;
+  border-radius: 10px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #30425f;
+  font-size: 11px;
+  font-weight: 750;
+}
+.vs158-header footer label {
+  width: 240px;
+  padding: 0 14px;
+}
+.vs158-header footer label svg {
+  width: 16px;
+  color: #079dac;
+}
+.vs158-header footer select {
+  flex: 1;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font-size: 10px;
+  font-weight: 750;
+  outline: 0;
+}
+.vs158-header footer button {
+  min-width: 89px;
+  justify-content: center;
+  padding: 0 15px;
+  cursor: pointer;
+}
+.vs158-header footer button:last-of-type {
+  min-width: 121px;
+}
+.vs158-header footer button svg {
+  width: 15px;
+}
+.vs158-header footer output {
+  position: absolute;
+  top: 48px;
+  left: 250px;
+  color: #078899;
+  font-size: 9px;
+  font-weight: 800;
+}
+.vs158-tabs {
+  width: 100%;
+  height: 57px;
+  margin-top: 14px;
+  border: 1px solid #dce5ec;
+  border-radius: 14px;
+  background: #fff;
+  padding: 6px 8px;
+  display: grid;
+  grid-template-columns: 1.25fr repeat(4, 1fr);
+  gap: 7px;
+}
+.vs158-tabs button {
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: #30415f;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.vs158-tabs button.active {
+  background: linear-gradient(135deg, #04a7b5, #087f98);
+  color: #fff;
+}
+.vs158-workspace {
+  width: 100%;
+  height: 562px;
+  margin-top: 13px;
+  display: grid;
+  grid-template-columns: 635px 374px;
+  gap: 12px;
+}
+.vs158-main,
+.vs158-controls,
+.vs158-table,
+.vs158-concepts article {
+  border: 1px solid #dce5ec;
+  border-radius: 13px;
+  background: #fff;
+}
+.vs158-main {
+  height: 562px;
+  overflow: hidden;
+  padding: 13px 12px 0;
+  position: relative;
+}
+.vs158-main > h2 {
+  margin: 0;
+  font-size: 12px;
+}
+.vs158-main > strong {
+  display: inline-grid;
+  height: 31px;
+  margin-top: 7px;
+  border: 1px solid #74d3de;
+  border-radius: 7px;
+  background: #effbfc;
+  padding: 0 10px;
+  place-items: center;
+  color: #078a9c;
+  font-family: Georgia, serif;
+  font-size: 14px;
+}
+.vs158-legend {
+  position: absolute;
+  top: 126px;
+  left: 15px;
+  z-index: 1;
+  color: #3f4f68;
+  font-size: 10px;
+}
+.vs158-legend span {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 8px;
+}
+.vs158-legend i {
+  width: 27px;
+  border-top: 2px solid #079dac;
+}
+.vs158-legend span:nth-child(2) i {
+  border-color: #9cabbd;
+  border-top-style: dashed;
+}
+.vs158-graph {
+  display: block;
+  width: 100%;
+  height: 365px;
+  margin-top: -2px;
+  touch-action: none;
+}
+.vs158-graph .axis {
+  stroke: #263650;
+  stroke-width: 1.2;
+}
+.vs158-graph .axis-label {
+  fill: #263650;
+  font-family: Georgia, serif;
+  font-size: 12px;
+  font-style: italic;
+}
+.vs158-graph .tick {
+  fill: #3d4e68;
+  font-size: 9px;
+}
+.vs158-graph .parent-curve {
+  fill: none;
+  stroke: #99aabd;
+  stroke-width: 2;
+  stroke-dasharray: 7 5;
+}
+.vs158-graph .scaled-curve {
+  fill: none;
+  stroke: #079dac;
+  stroke-width: 2.5;
+}
+.vs158-graph .scale-arrow {
+  stroke: #f59e0b;
+  stroke-width: 2;
+}
+.vs158-graph .parent-dot {
+  fill: #6f8199;
+}
+.vs158-graph .scaled-dot {
+  fill: #078f9f;
+}
+.vs158-graph .output-label {
+  fill: #078f9f;
+  font-size: 10px;
+  font-weight: 800;
+}
+.vs158-graph .arrow-label {
+  fill: #df8700;
+  font-size: 9px;
+  font-weight: 800;
+}
+.vs158-graph .scale-handle {
+  fill: transparent;
+  stroke: transparent;
+  cursor: ns-resize;
+  outline: none;
+}
+.vs158-graph .scale-handle:focus {
+  stroke: #7c3aed;
+  stroke-width: 2;
+}
+.vs158-graph .fixed-chip {
+  fill: #effafb;
+  stroke: #8bd3dc;
+}
+.vs158-graph .fixed-label {
+  fill: #27445c;
+  font-size: 10px;
+  font-weight: 850;
+}
+.vs158-compression {
+  height: 128px;
+  margin: 0 -1px;
+  border: 1px solid #dce5ec;
+  border-radius: 11px 11px 0 0;
+  padding: 10px 12px;
+  position: relative;
+}
+.vs158-compression h3 {
+  margin: 0;
+  font-size: 12px;
+}
+.vs158-compression > b {
+  position: absolute;
+  top: 6px;
+  left: 267px;
+  height: 27px;
+  border: 1px solid #c59bee;
+  border-radius: 7px;
+  background: #f7f0fd;
+  padding: 5px 10px;
+  color: #7741cf;
+  font-family: Georgia, serif;
+  font-size: 12px;
+}
+.vs158-compression svg {
+  width: 100%;
+  height: 90px;
+  margin-top: 1px;
+}
+.vs158-compression .mini-axis {
+  stroke: #263650;
+  stroke-width: 1;
+}
+.vs158-compression .mini-parent {
+  fill: none;
+  stroke: #9aaabd;
+  stroke-width: 1.5;
+  stroke-dasharray: 5 4;
+}
+.vs158-compression .mini-compressed {
+  fill: none;
+  stroke: #7b42dd;
+  stroke-width: 2;
+}
+.vs158-compression text {
+  fill: #7541d0;
+  font-size: 11px;
+  font-weight: 800;
+}
+.vs158-rail {
+  display: grid;
+  grid-template-rows: 291px 261px;
+  gap: 10px;
+}
+.vs158-controls {
+  padding: 14px 16px;
+}
+.vs158-controls h2,
+.vs158-table h2 {
+  margin: 0;
+  font-size: 13px;
+}
+.vs158-controls > label {
+  display: block;
+  margin-top: 17px;
+  color: #34445e;
+  font-size: 10px;
+  font-weight: 750;
+}
+.vs158-controls > label > span {
+  display: block;
+}
+.vs158-controls > label > div {
+  display: grid;
+  grid-template-columns: 1fr 52px;
+  gap: 16px;
+  align-items: center;
+  margin-top: 8px;
+}
+.vs158-controls input[type="range"] {
+  width: 100%;
+  accent-color: #079dac;
+}
+.vs158-controls output {
+  height: 37px;
+  border: 1px solid #dce4eb;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  font-family: Georgia, serif;
+  font-size: 15px;
+}
+.vs158-controls > label > small {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 68px;
+  color: #68768c;
+  font-size: 8px;
+}
+.vs158-controls h3 {
+  margin: 14px 0 8px;
+  font-size: 10px;
+}
+.vs158-controls > nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.vs158-controls > nav button {
+  height: 31px;
+  border: 1px solid #dce4eb;
+  background: #fff;
+  color: #30415e;
+  font-size: 9px;
+  cursor: pointer;
+}
+.vs158-controls > nav button:first-child {
+  border-radius: 7px 0 0 7px;
+}
+.vs158-controls > nav button:last-child {
+  border-radius: 0 7px 7px 0;
+}
+.vs158-controls > nav button.active {
+  background: #078fa1;
+  border-color: #078fa1;
+  color: #fff;
+  font-weight: 850;
+}
+.vs158-controls > div {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.vs158-controls > div label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #34445e;
+  font-size: 10px;
+  cursor: pointer;
+}
+.vs158-controls > div input {
+  position: absolute;
+  opacity: 0;
+}
+.vs158-controls > div i {
+  width: 17px;
+  height: 17px;
+  border: 1px solid #a9b8c8;
+  border-radius: 3px;
+  display: grid;
+  place-items: center;
+  background: #fff;
+}
+.vs158-controls > div input:checked + i {
+  background: #078fa1;
+  border-color: #078fa1;
+}
+.vs158-controls > div input:checked + i::after {
+  content: "✓";
+  color: #fff;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 900;
+}
+.vs158-table {
+  padding: 14px 13px 10px;
+}
+.vs158-table table {
+  width: 100%;
+  margin-top: 11px;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid #dce4eb;
+  border-radius: 8px;
+  overflow: hidden;
+  color: #34445e;
+  font-size: 9px;
+}
+.vs158-table th,
+.vs158-table td {
+  height: 35px;
+  border-right: 1px solid #dce4eb;
+  border-bottom: 1px solid #dce4eb;
+  text-align: center;
+}
+.vs158-table th {
+  height: 31px;
+  background: #f5f7fa;
+  font-size: 8px;
+}
+.vs158-table th:last-child,
+.vs158-table td:last-child {
+  border-right: 0;
+}
+.vs158-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+.vs158-table tbody tr {
+  cursor: pointer;
+}
+.vs158-table tbody tr.selected {
+  background: #effafb;
+}
+.vs158-table td:nth-child(3) {
+  color: #078b99;
+  font-weight: 900;
+}
+.vs158-table td:nth-child(4) {
+  color: #d98300;
+  font-family: Georgia, serif;
+  font-size: 10px;
+  font-style: italic;
+}
+.vs158-concepts {
+  width: 100%;
+  height: 112px;
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.vs158-concepts article {
+  height: 112px;
+  padding: 13px;
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  align-items: start;
+  gap: 12px;
+}
+.vs158-concepts article > i {
+  width: 55px;
+  height: 64px;
+  border: 1px solid #78d2dc;
+  border-radius: 10px;
+  background: #effafb;
+  display: grid;
+  place-items: center;
+  color: #078fa1;
+}
+.vs158-concepts article > i svg {
+  width: 27px;
+  height: 27px;
+}
+.vs158-concepts p {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  color: #52617a;
+  font-size: 9px;
+  line-height: 1.45;
+}
+.vs158-concepts p b {
+  color: #243650;
+  font-size: 11px;
+}
+.lesson-page-shell:has(.vs158-page) .lesson-adjacent-nav {
+  width: calc(100% + 13px);
+  height: 65px;
+  margin-left: -7px;
+}
+.lesson-page-shell:has(.vs158-page) .lesson-adjacent-nav .action-secondary {
+  min-height: 65px;
+  border-radius: 10px;
+  background: #fff;
+}
+@media (max-width: 900px) {
+  .vs158-page {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 8px;
+  }
+  .vs158-header {
+    height: auto;
+  }
+  .vs158-header footer,
+  .vs158-meta {
+    flex-wrap: wrap;
+    height: auto;
+  }
+  .vs158-tabs {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .vs158-workspace {
+    width: 100%;
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .vs158-main {
+    width: 100%;
+  }
+  .vs158-rail {
+    grid-template-rows: auto auto;
+  }
+  .vs158-concepts {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .lesson-page-shell:has(.vs158-page) .lesson-adjacent-nav {
+    width: 100%;
+    height: auto;
+    margin-left: 0;
+  }
+}

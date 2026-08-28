@@ -1,0 +1,199 @@
+{
+  "mockup": "0215",
+  "lessonId": 158,
+  "route": "/lessons/graphs-and-functions/158-vertical-stretch-and-compression",
+  "checks": {
+    "initial": {
+      "a": "1.8",
+      "mode": "stretch",
+      "samples": "-2,-1,1,2",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "x-fixed": "true",
+      "output-x2": "7.2"
+    },
+    "range": {
+      "a": "0.6",
+      "mode": "compression",
+      "samples": "-2,-1,1,2",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "x-fixed": "true",
+      "output-x2": "2.4"
+    },
+    "pointDrag": {
+      "a": "1.4",
+      "mode": "stretch",
+      "samples": "-2,-1,1,2",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "x-fixed": "true",
+      "output-x2": "5.6"
+    },
+    "pointKeyboard": {
+      "a": "1.5",
+      "mode": "stretch",
+      "samples": "-2,-1,1,2",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "x-fixed": "true",
+      "output-x2": "6"
+    },
+    "compressionMode": {
+      "a": "0.5",
+      "mode": "compression",
+      "samples": "-2,-1,1,2",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "x-fixed": "true",
+      "output-x2": "2"
+    },
+    "stretchMode": {
+      "a": "1.8",
+      "mode": "stretch",
+      "samples": "-2,-1,1,2",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "x-fixed": "true",
+      "output-x2": "7.2"
+    },
+    "sampleToggle": {
+      "a": "1.8",
+      "mode": "stretch",
+      "samples": "-1,1,2",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "x-fixed": "true",
+      "output-x2": "7.2"
+    },
+    "tableToggle": {
+      "a": "1.8",
+      "mode": "stretch",
+      "samples": "1,2",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "x-fixed": "true",
+      "output-x2": "7.2"
+    },
+    "tab": {
+      "a": "1.8",
+      "mode": "stretch",
+      "samples": "1,2",
+      "tab": "Examples",
+      "language": "English (English)",
+      "x-fixed": "true",
+      "output-x2": "7.2"
+    },
+    "language": {
+      "a": "1.8",
+      "mode": "stretch",
+      "samples": "1,2",
+      "tab": "Examples",
+      "language": "Spanish (Español)",
+      "x-fixed": "true",
+      "output-x2": "7.2"
+    },
+    "shareStatus": "Scale state copied",
+    "workspaceStatus": "Workspace linked",
+    "reset": {
+      "a": "1.8",
+      "mode": "stretch",
+      "samples": "-2,-1,1,2",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "x-fixed": "true",
+      "output-x2": "7.2"
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/graphs-and-functions/157-horizontal-translation",
+    "nextHref": "/lessons/graphs-and-functions/159-horizontal-stretch-and-compression"
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1322,
+      "height": 1190
+    },
+    "document": {
+      "width": 1322,
+      "height": 1322
+    },
+    "horizontalOverflow": false,
+    "regions": {
+      "page": {
+        "top": 107,
+        "bottom": 1090,
+        "left": 287,
+        "right": 1308,
+        "width": 1021,
+        "height": 983
+      },
+      "header": {
+        "top": 127,
+        "bottom": 322,
+        "left": 287,
+        "right": 1308,
+        "width": 1021,
+        "height": 195
+      },
+      "tabs": {
+        "top": 336,
+        "bottom": 393,
+        "left": 287,
+        "right": 1308,
+        "width": 1021,
+        "height": 57
+      },
+      "workspace": {
+        "top": 406,
+        "bottom": 968,
+        "left": 287,
+        "right": 1308,
+        "width": 1021,
+        "height": 562
+      },
+      "graph": {
+        "top": 406,
+        "bottom": 968,
+        "left": 287,
+        "right": 922,
+        "width": 635,
+        "height": 562
+      },
+      "controls": {
+        "top": 406,
+        "bottom": 697,
+        "left": 934,
+        "right": 1308,
+        "width": 374,
+        "height": 291
+      },
+      "table": {
+        "top": 707,
+        "bottom": 968,
+        "left": 934,
+        "right": 1308,
+        "width": 374,
+        "height": 261
+      },
+      "concepts": {
+        "top": 978,
+        "bottom": 1090,
+        "left": 287,
+        "right": 1308,
+        "width": 1021,
+        "height": 112
+      },
+      "navigation": {
+        "top": 1102,
+        "bottom": 1167,
+        "left": 287,
+        "right": 1308,
+        "width": 1021,
+        "height": 65
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

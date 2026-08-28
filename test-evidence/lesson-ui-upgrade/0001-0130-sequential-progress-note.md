@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **140 of 200 lessons completed; 60 pending.**
+Dedicated rebuild target: **141 of 200 lessons completed; 59 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -126,6 +126,7 @@ Dedicated rebuild target: **140 of 200 lessons completed; 60 pending.**
 | 0212   |             155 Recursive Functions | Complete | Dedicated affine-recurrence engine with real growth/seed/add-on/step controls, pointer/keyboard term probe, generated sequence table/graph/next preview/cobweb/fixed point, exact calculations, reset, and exact 1477x1065 framing |
 | 0213   |           156 Vertical Translation | Complete | Dedicated vertical-shift engine with real k range, parent/transformed visibility, pointer/keyboard curve and sample drags, generated parabolas/arrows/vertex/table/output proof, share/reset, and exact 1205x1305 framing |
 | 0214   |         157 Horizontal Translation | Complete | Dedicated horizontal-shift engine with real h range/parent visibility/y-level controls, pointer/keyboard vertex and level drags, generated parabolas/arrows/input-remapping table/vertex proof, real navigation, and exact 1386x1135 framing |
+| 0215   | 158 Vertical Stretch and Compression | Complete | Dedicated vertical-scale engine with real a range/mode/sample controls, pointer/keyboard scale drag, generated parabolas/fixed-x arrows/value table/compression reference, functional tabs/actions/language/navigation, and exact 1322x1190 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2087,3 +2088,17 @@ Evidence:
 - `0214-reference.png`
 - `0214-desktop.png`
 - `0214-dedicated-target-validation.json`
+
+## Lesson 158 / Mockup 0215 - Vertical Stretch and Compression
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-vertical-scale-stretch-compression-mode-sample-visibility-pointer-keyboard-draggable-scaled-point-generated-parent-and-transformed-parabolas-fixed-x-arrows-value-table-compression-reference-tabs-language-share-and-workspace` model. The lesson-owned vertical factor `a`, stretch/compression mode, and selected x-samples generate `f(x)=x^2`, `g(x)=a*x^2`, both curves, fixed-x arrows, transformed points and labels, the complete comparison table, mode explanation, and concept cards from one state. A dedicated lower graph gives the target compression reference `g(x)=0.5f(x)`.
+
+The `0.1..3` scale range, stretch/compression segmented control, four sample checkboxes, and nonzero table rows are real controls. The transformed point at x=2 is genuinely pointer- and keyboard-draggable vertically to change `a`. Every state preserves x, computes `g(x)=a*f(x)`, classifies `a>1` as stretch and `0<a<=1` as compression, and regenerates the graph, arrows, values, table, and concept copy. All five tabs, English/Spanish, Share, Workspace, Reset, and previous/next navigation perform observable actions.
+
+Final 1322x1190 browser validation physically changes the scale range, pointer-drags and keyboard-moves the scale point, selects both transform modes, removes samples through a checkbox and table row, selects Examples, switches to Spanish, exercises Share/Workspace/Reset, and verifies both adjacent routes. The final comparison loop places the header at x=287-1308 and y=127-322, tabs y=336-393, graph x=287-922 and y=406-968, controls x=934-1308 and y=406-697, value table y=707-968, concept cards y=978-1090, and navigation y=1102-1167. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0215-reference.png`
+- `0215-desktop.png`
+- `0215-dedicated-target-validation.json`
