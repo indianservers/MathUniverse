@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **153 of 200 lessons completed; 47 pending.**
+Dedicated rebuild target: **154 of 200 lessons completed; 46 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -139,6 +139,7 @@ Dedicated rebuild target: **153 of 200 lessons completed; 47 pending.**
 | 0225   |                  168 Plotting Points | Complete | Dedicated four-point construction model with editable coordinates, pointer/keyboard drag, point/real pan modes, grid snapping, live quadrants/signs, delete/clear, worked example, XP challenge, and exact 1024x1536 framing |
 | 0226   |          169 Distance Between Points | Complete | Dedicated two-point Euclidean model with editable coordinates, pointer/keyboard drag, generated right triangle/deltas/distance, grid/snap/zoom, independent target-distance practice, and exact 1005x1566 framing |
 | 0227   |                         170 Midpoint | Complete | Dedicated two-endpoint midpoint model with editable coordinates, pointer/keyboard drag, generated midpoint/equal halves, grid/zoom/expand, independent draggable graded challenge, and exact 1024x1536 framing |
+| 0228   |                  171 Section Formula | Complete | Dedicated internal/external weighted-coordinate model with pointer/keyboard ratio drag, live calculations, real graph tools, comparison presets, graded practice, and exact 1447x1087 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2282,3 +2283,17 @@ Evidence:
 - `0227-reference.png`
 - `0227-desktop.png`
 - `0227-dedicated-target-validation.json`
+
+## Lesson 171 / Mockup 0228 - Section Formula
+
+Reworked individually against the mathematics target mockup with a dedicated `internal-external-section-point-correct-weighted-coordinate-calculation-pointer-keyboard-ratio-drag-visibility-snap-comparison-presets-and-graded-practice` model. Endpoints A and B, ratio m:n, and division mode generate P, AP, PB, their measured ratio, formulas, coordinate outputs, annotations, and worked steps from one state. The main point P moves directly along AB by pointer or keyboard and converts its location back into a valid ratio.
+
+Internal/external division, both ratio inputs, ratio slider, direct P drag, keyboard movement, Grid, Axes, Labels, Snap, graph Tools, Compare ratios, four ratio presets, five learning stages, Reset, Lesson Resources, both practice inputs, wrong/correct grading, and adjacent navigation are real controls. External division guards the undefined m=n denominator. For target A(-4,1), B(5,4), and m:n=3:4, the implementation intentionally reports the mathematically correct P=(-1/7,16/7)=(-0.14,2.29); the mockup incorrectly evaluates 3*5+4*(-4) as 1 instead of -1 and consequently labels P as (1,2).
+
+Final 1447x1087 browser validation edits both ratio terms, uses the range control, physically drags P, moves it by keyboard, exercises all four graph toggles and stages, validates external division at 3:1, enables comparison and a 1:2 preset, rejects (0,0), accepts the calculated practice answer (1.2,1.4), opens both real dropdown panels, resets, and verifies adjacent routes. The comparison loop matches page x=250-1447 and y=110-1087, header x=269-1428 and y=110-230, body y=244-959, stages y=244-304, lab x=277-1064 and y=312-801, graph x=289-771 and y=366-743, right rail x=1086-1428 and y=250-959, navigation y=971-1019, and footer y=1029-1087. It reports an exact native-size document, no overflow, and zero console warnings or errors.
+
+Evidence:
+
+- `0228-reference.png`
+- `0228-desktop.png`
+- `0228-dedicated-target-validation.json`

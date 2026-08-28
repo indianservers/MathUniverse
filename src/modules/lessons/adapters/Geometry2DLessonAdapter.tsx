@@ -46,6 +46,7 @@ import CartesianPlaneTargetLesson167 from "./CartesianPlaneTargetLesson167";
 import PlottingPointsTargetLesson168 from "./PlottingPointsTargetLesson168";
 import DistanceBetweenPointsTargetLesson169 from "./DistanceBetweenPointsTargetLesson169";
 import MidpointTargetLesson170 from "./MidpointTargetLesson170";
+import SectionFormulaTargetLesson171 from "./SectionFormulaTargetLesson171";
 import ReflectionLineTargetLesson237 from "./ReflectionLineTargetLesson237";
 import ReflectionPointTargetLesson238 from "./ReflectionPointTargetLesson238";
 import ReflectionCircleTargetLesson239 from "./ReflectionCircleTargetLesson239";
@@ -122,6 +123,9 @@ export default function Geometry2DLessonAdapter({
   }
   if (lesson.id === 170) {
     return <MidpointTargetLesson170 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
+  if (lesson.id === 171) {
+    return <SectionFormulaTargetLesson171 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
   if (lesson.id === 250) {
     return <EnvelopeLinesTargetLesson250 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;

@@ -1,0 +1,264 @@
+{
+  "mockup": "0228",
+  "lessonId": 171,
+  "route": "/lessons/geometry/171-section-formula",
+  "checks": {
+    "initial": {
+      "mode": "internal",
+      "m": "3",
+      "n": "4",
+      "point": "-0.14:2.29",
+      "ratio": "0.750",
+      "tab": "1",
+      "grid": "true",
+      "axes": "true",
+      "labels": "true",
+      "snap": "false",
+      "compare": "false",
+      "status": ""
+    },
+    "tools": true,
+    "inputs": {
+      "mode": "internal",
+      "m": "5",
+      "n": "4",
+      "point": "1:2.67",
+      "ratio": "1.250",
+      "tab": "1",
+      "grid": "true",
+      "axes": "true",
+      "labels": "true",
+      "snap": "false",
+      "compare": "false",
+      "status": ""
+    },
+    "slider": {
+      "mode": "internal",
+      "m": "6",
+      "n": "4",
+      "point": "1.40:2.80",
+      "ratio": "1.500",
+      "tab": "1",
+      "grid": "true",
+      "axes": "true",
+      "labels": "true",
+      "snap": "false",
+      "compare": "false",
+      "status": ""
+    },
+    "pointer": {
+      "mode": "internal",
+      "m": "6.5",
+      "n": "3.5",
+      "point": "1.85:2.95",
+      "ratio": "1.857",
+      "tab": "1",
+      "grid": "true",
+      "axes": "true",
+      "labels": "true",
+      "snap": "false",
+      "compare": "false",
+      "status": ""
+    },
+    "keyboard": {
+      "mode": "internal",
+      "m": "6",
+      "n": "4",
+      "point": "1.40:2.80",
+      "ratio": "1.500",
+      "tab": "1",
+      "grid": "true",
+      "axes": "true",
+      "labels": "true",
+      "snap": "false",
+      "compare": "false",
+      "status": ""
+    },
+    "visibility": {
+      "mode": "internal",
+      "m": "6",
+      "n": "4",
+      "point": "1.40:2.80",
+      "ratio": "1.500",
+      "tab": "1",
+      "grid": "false",
+      "axes": "false",
+      "labels": "false",
+      "snap": "true",
+      "compare": "false",
+      "status": ""
+    },
+    "external": {
+      "mode": "external",
+      "m": "3",
+      "n": "1",
+      "point": "9.50:5.50",
+      "ratio": "3.000",
+      "tab": "1",
+      "grid": "true",
+      "axes": "true",
+      "labels": "true",
+      "snap": "false",
+      "compare": "false",
+      "status": ""
+    },
+    "compare": {
+      "mode": "internal",
+      "m": "1",
+      "n": "2",
+      "point": "-1:2",
+      "ratio": "0.500",
+      "tab": "1",
+      "grid": "true",
+      "axes": "true",
+      "labels": "true",
+      "snap": "false",
+      "compare": "true",
+      "status": ""
+    },
+    "wrong": {
+      "mode": "internal",
+      "m": "1",
+      "n": "2",
+      "point": "-1:2",
+      "ratio": "0.500",
+      "tab": "1",
+      "grid": "true",
+      "axes": "true",
+      "labels": "true",
+      "snap": "false",
+      "compare": "true",
+      "status": "Recheck the weighted coordinates"
+    },
+    "correct": {
+      "mode": "internal",
+      "m": "1",
+      "n": "2",
+      "point": "-1:2",
+      "ratio": "0.500",
+      "tab": "1",
+      "grid": "true",
+      "axes": "true",
+      "labels": "true",
+      "snap": "false",
+      "compare": "true",
+      "status": "Correct section point"
+    },
+    "resources": true,
+    "reset": {
+      "mode": "internal",
+      "m": "3",
+      "n": "4",
+      "point": "-0.14:2.29",
+      "ratio": "0.750",
+      "tab": "1",
+      "grid": "true",
+      "axes": "true",
+      "labels": "true",
+      "snap": "false",
+      "compare": "false",
+      "status": ""
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/geometry/170-midpoint",
+    "nextHref": "/lessons/geometry/172-gradient-slope"
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1447,
+      "height": 1087
+    },
+    "document": {
+      "width": 1447,
+      "height": 1087
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "regions": {
+      "page": {
+        "top": 110,
+        "bottom": 1087,
+        "left": 250,
+        "right": 1447,
+        "width": 1197,
+        "height": 977
+      },
+      "header": {
+        "top": 110,
+        "bottom": 230,
+        "left": 269,
+        "right": 1428,
+        "width": 1159,
+        "height": 120
+      },
+      "body": {
+        "top": 244,
+        "bottom": 959,
+        "left": 269,
+        "right": 1428,
+        "width": 1159,
+        "height": 715
+      },
+      "stages": {
+        "top": 244,
+        "bottom": 304,
+        "left": 269,
+        "right": 1072,
+        "width": 803,
+        "height": 60
+      },
+      "lab": {
+        "top": 312,
+        "bottom": 801,
+        "left": 277,
+        "right": 1064,
+        "width": 787,
+        "height": 489
+      },
+      "graph": {
+        "top": 366,
+        "bottom": 743,
+        "left": 289,
+        "right": 771,
+        "width": 482,
+        "height": 377
+      },
+      "how": {
+        "top": 809,
+        "bottom": 952,
+        "left": 269,
+        "right": 1072,
+        "width": 803,
+        "height": 143
+      },
+      "side": {
+        "top": 250,
+        "bottom": 959,
+        "left": 1086,
+        "right": 1428,
+        "width": 342,
+        "height": 709
+      },
+      "navigation": {
+        "top": 971,
+        "bottom": 1019,
+        "left": 269,
+        "right": 1428,
+        "width": 1159,
+        "height": 48
+      },
+      "footer": {
+        "top": 1029,
+        "bottom": 1087,
+        "left": 269,
+        "right": 1428,
+        "width": 1159,
+        "height": 58
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true,
+  "mathNote": "Target mockup arithmetic is inconsistent: 3*5 + 4*(-4) = -1, not 1; implementation correctly gives P=(-1/7,16/7) for the displayed initial inputs."
+}
