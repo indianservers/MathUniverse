@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **141 of 200 lessons completed; 59 pending.**
+Dedicated rebuild target: **142 of 200 lessons completed; 58 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -127,6 +127,7 @@ Dedicated rebuild target: **141 of 200 lessons completed; 59 pending.**
 | 0213   |           156 Vertical Translation | Complete | Dedicated vertical-shift engine with real k range, parent/transformed visibility, pointer/keyboard curve and sample drags, generated parabolas/arrows/vertex/table/output proof, share/reset, and exact 1205x1305 framing |
 | 0214   |         157 Horizontal Translation | Complete | Dedicated horizontal-shift engine with real h range/parent visibility/y-level controls, pointer/keyboard vertex and level drags, generated parabolas/arrows/input-remapping table/vertex proof, real navigation, and exact 1386x1135 framing |
 | 0215   | 158 Vertical Stretch and Compression | Complete | Dedicated vertical-scale engine with real a range/mode/sample controls, pointer/keyboard scale drag, generated parabolas/fixed-x arrows/value table/compression reference, functional tabs/actions/language/navigation, and exact 1322x1190 framing |
+| 0216   | 159 Horizontal Stretch and Compression | Complete | Dedicated inside-scale engine with real b range/mode/y-level controls, pointer/keyboard scale drag, generated parent/transformed parabolas/same-output bracket/reciprocal-width rulers/input table/compression preview, functional actions/navigation, and exact 1350x1165 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2102,3 +2103,17 @@ Evidence:
 - `0215-reference.png`
 - `0215-desktop.png`
 - `0215-dedicated-target-validation.json`
+
+## Lesson 159 / Mockup 0216 - Horizontal Stretch and Compression
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-inside-horizontal-scale-stretch-compression-mode-and-y-levels-pointer-keyboard-draggable-same-output-point-generated-parent-and-transformed-parabolas-reciprocal-width-rulers-input-table-preview-actions-and-navigation` model. The lesson-owned inside factor `b` and selected y-levels generate `f(x)=x^2`, `g(x)=f(bx)=(bx)^2`, both parabolas, same-output points, comparison lines and bracket, reciprocal-width arrows, input table, transform explanation, and concept cards from one state. A dedicated preview reproduces the target compression example `g(x)=f(1.8x)`.
+
+The `0.2..3` scale range, stepper buttons, stretch/compression segmented control, four y-level buttons, and every table row are real controls. The transformed same-output point is genuinely pointer- and keyboard-draggable horizontally to change `b`. Every state preserves the exact invariants `x_g=x_f/b`, `g(x_g)=f(x_f)`, and `new width=old width/|b|`; it classifies `0<b<1` as stretch and `b>1` as compression. Share, Workspace, Reset, and previous/next navigation perform observable actions.
+
+Final 1350x1165 browser validation physically changes the b range, pointer-drags and keyboard-moves the scale point, selects both transform modes, exercises both steppers, changes y-levels through controls and the generated table, runs Share/Workspace/Reset, and verifies both adjacent routes. The final comparison loop places the header at x=285-1332 and y=117-225, graph card x=285-932 and y=243-900, controls x=944-1333 and y=243-513, table y=523-710, compression preview y=720-893, concept cards y=919-1052, and navigation y=1069-1132. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0216-reference.png`
+- `0216-desktop.png`
+- `0216-dedicated-target-validation.json`

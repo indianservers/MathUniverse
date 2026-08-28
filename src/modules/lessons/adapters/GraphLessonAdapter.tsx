@@ -31,6 +31,7 @@ import RecursiveFunctionsTargetLesson155 from "./RecursiveFunctionsTargetLesson1
 import VerticalTranslationTargetLesson156 from "./VerticalTranslationTargetLesson156";
 import HorizontalTranslationTargetLesson157 from "./HorizontalTranslationTargetLesson157";
 import VerticalStretchCompressionTargetLesson158 from "./VerticalStretchCompressionTargetLesson158";
+import HorizontalStretchCompressionTargetLesson159 from "./HorizontalStretchCompressionTargetLesson159";
 import { graphVisualPresetForLesson } from "../presets/graphVisualPresets";
 import type { LessonAdapterProps } from "../types";
 import { Eye, Grid3X3, Minus, Move, Plus, RotateCcw, Share2, ZoomIn } from "lucide-react";
@@ -155,6 +156,9 @@ export default function GraphLessonAdapter({ lesson, resetToken, onInteraction }
   }
   if (lesson.id === 158) {
     return <VerticalStretchCompressionTargetLesson158 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
+  if (lesson.id === 159) {
+    return <HorizontalStretchCompressionTargetLesson159 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
 
   if (usesFunctionMockupWorkspace(lesson.id)) {
