@@ -4,6 +4,26 @@ import { lessonCatalog } from "../catalog/lessonCatalog";
 import GraphLessonAdapter from "./GraphLessonAdapter";
 
 describe("GraphLessonAdapter", () => {
+  it("routes lesson 166 to its dedicated graph-matching engine", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 166)!;
+    const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="graph-mockup-0223"');
+    expect(html).toContain('data-dedicated-lesson="166"');
+    expect(html).toContain("six-quadratic-equation-cards-native-drag-keyboard-selection");
+    expect(html).toContain('draggable="true"');
+    expect(html).toContain("Graph target 2, 1, opens up");
+  });
+
+  it("routes lesson 165 to its dedicated parent-function library", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 165)!;
+    const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="graph-mockup-0222"');
+    expect(html).toContain('data-dedicated-lesson="165"');
+    expect(html).toContain("six-explicit-parent-function-definitions-selectable-generated-domain-range");
+    expect(html).toContain('aria-label="Drag transformed family anchor"');
+    expect(html).toContain("Reciprocal");
+  });
+
   it("routes lesson 164 to its dedicated parameter explorer", () => {
     const lesson = lessonCatalog.find((item) => item.id === 164)!;
     const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
@@ -429,8 +449,6 @@ describe("GraphLessonAdapter", () => {
 
   it("renders function transformation lessons 153 through 166 with lesson-specific graph guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      165: "simplest rule shows",
-      166: "shape plus more than one point",
     };
 
     for (const [idText, snippet] of Object.entries(expectedSnippets)) {

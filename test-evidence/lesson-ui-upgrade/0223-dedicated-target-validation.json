@@ -1,0 +1,182 @@
+{
+  "mockup": "0223",
+  "lessonId": 166,
+  "route": "/lessons/graphs-and-functions/166-graph-matching",
+  "checks": {
+    "initial": {
+      "score": "0",
+      "progress": "0",
+      "stage": "1",
+      "selected": "",
+      "matches": ",,,,,",
+      "checked": "false"
+    },
+    "nativeDrag": {
+      "score": "1",
+      "progress": "17",
+      "stage": "1",
+      "selected": "",
+      "matches": "rightUp,,,,,",
+      "checked": "false"
+    },
+    "wrong": {
+      "score": "1",
+      "progress": "17",
+      "stage": "1",
+      "selected": "",
+      "matches": "rightUp,,parent,,,",
+      "checked": "true"
+    },
+    "wrongText": "Score: 1/6. Recheck vertex, direction, and width.",
+    "allAssigned": {
+      "score": "6",
+      "progress": "100",
+      "stage": "1",
+      "selected": "",
+      "matches": "rightUp,parent,leftDown,reflect,stretch,rightReflect",
+      "checked": "false"
+    },
+    "correct": {
+      "score": "6",
+      "progress": "100",
+      "stage": "1",
+      "selected": "",
+      "matches": "rightUp,parent,leftDown,reflect,stretch,rightReflect",
+      "checked": "true"
+    },
+    "correctText": "All six matches are correct.",
+    "hintsHidden": true,
+    "stages": {
+      "score": "6",
+      "progress": "100",
+      "stage": "1",
+      "selected": "",
+      "matches": "rightUp,parent,leftDown,reflect,stretch,rightReflect",
+      "checked": "true"
+    },
+    "replay": true,
+    "reset": {
+      "score": "0",
+      "progress": "0",
+      "stage": "1",
+      "selected": "",
+      "matches": ",,,,,",
+      "checked": "false"
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/graphs-and-functions/165-parent-function-library",
+    "nextHref": "/lessons/graphs-and-functions/167-cartesian-plane"
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1206,
+      "height": 1304
+    },
+    "document": {
+      "width": 1206,
+      "height": 1304
+    },
+    "horizontalOverflow": false,
+    "regions": {
+      "page": {
+        "top": 101,
+        "bottom": 1288,
+        "left": 240,
+        "right": 1206,
+        "width": 966,
+        "height": 1187
+      },
+      "header": {
+        "top": 101,
+        "bottom": 264,
+        "left": 258,
+        "right": 1188,
+        "width": 930,
+        "height": 163
+      },
+      "stages": {
+        "top": 282,
+        "bottom": 337,
+        "left": 258,
+        "right": 1188,
+        "width": 930,
+        "height": 55
+      },
+      "lab": {
+        "top": 355,
+        "bottom": 1131,
+        "left": 258,
+        "right": 1188,
+        "width": 930,
+        "height": 776
+      },
+      "work": {
+        "top": 423,
+        "bottom": 893,
+        "left": 272,
+        "right": 1174,
+        "width": 902,
+        "height": 470
+      },
+      "cards": {
+        "top": 423,
+        "bottom": 893,
+        "left": 272,
+        "right": 432,
+        "width": 160,
+        "height": 470
+      },
+      "plot": {
+        "top": 423,
+        "bottom": 893,
+        "left": 445,
+        "right": 894,
+        "width": 449,
+        "height": 470
+      },
+      "hints": {
+        "top": 423,
+        "bottom": 893,
+        "left": 907,
+        "right": 1174,
+        "width": 267,
+        "height": 470
+      },
+      "worked": {
+        "top": 903,
+        "bottom": 1006,
+        "left": 272,
+        "right": 1174,
+        "width": 902,
+        "height": 103
+      },
+      "rule": {
+        "top": 1016,
+        "bottom": 1111,
+        "left": 272,
+        "right": 1174,
+        "width": 902,
+        "height": 95
+      },
+      "actions": {
+        "top": 1141,
+        "bottom": 1207,
+        "left": 258,
+        "right": 904,
+        "width": 646,
+        "height": 66
+      },
+      "navigation": {
+        "top": 1227,
+        "bottom": 1287,
+        "left": 258,
+        "right": 1188,
+        "width": 930,
+        "height": 60
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

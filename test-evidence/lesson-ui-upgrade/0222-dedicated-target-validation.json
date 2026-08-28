@@ -1,0 +1,268 @@
+{
+  "mockup": "0222",
+  "lessonId": 165,
+  "route": "/lessons/graphs-and-functions/165-parent-function-library",
+  "checks": {
+    "initial": {
+      "family": "linear",
+      "a": "1",
+      "b": "1",
+      "h": "0",
+      "k": "0",
+      "equation": "g(x) = 1 · f(1(x - 0)) + 0",
+      "tab": "Explore",
+      "gallery": "true",
+      "question": "1",
+      "answer": ""
+    },
+    "families": {
+      "Quadratic": {
+        "family": "quadratic",
+        "a": "1",
+        "b": "1",
+        "h": "0",
+        "k": "0",
+        "equation": "g(x) = 1 · f(1(x - 0)) + 0",
+        "tab": "Explore",
+        "gallery": "true",
+        "question": "1",
+        "answer": ""
+      },
+      "Absolute Value": {
+        "family": "absolute",
+        "a": "1",
+        "b": "1",
+        "h": "0",
+        "k": "0",
+        "equation": "g(x) = 1 · f(1(x - 0)) + 0",
+        "tab": "Explore",
+        "gallery": "true",
+        "question": "1",
+        "answer": ""
+      },
+      "Square Root": {
+        "family": "root",
+        "a": "1",
+        "b": "1",
+        "h": "0",
+        "k": "0",
+        "equation": "g(x) = 1 · f(1(x - 0)) + 0",
+        "tab": "Explore",
+        "gallery": "true",
+        "question": "1",
+        "answer": ""
+      },
+      "Cubic": {
+        "family": "cubic",
+        "a": "1",
+        "b": "1",
+        "h": "0",
+        "k": "0",
+        "equation": "g(x) = 1 · f(1(x - 0)) + 0",
+        "tab": "Explore",
+        "gallery": "true",
+        "question": "1",
+        "answer": ""
+      },
+      "Reciprocal": {
+        "family": "reciprocal",
+        "a": "1",
+        "b": "1",
+        "h": "0",
+        "k": "0",
+        "equation": "g(x) = 1 · f(1(x - 0)) + 0",
+        "tab": "Explore",
+        "gallery": "true",
+        "question": "1",
+        "answer": ""
+      },
+      "Linear": {
+        "family": "linear",
+        "a": "1",
+        "b": "1",
+        "h": "0",
+        "k": "0",
+        "equation": "g(x) = 1 · f(1(x - 0)) + 0",
+        "tab": "Explore",
+        "gallery": "true",
+        "question": "1",
+        "answer": ""
+      }
+    },
+    "transforms": {
+      "family": "quadratic",
+      "a": "-2",
+      "b": "0.5",
+      "h": "2",
+      "k": "-1",
+      "equation": "g(x) = -2 · f(0.5(x - 2)) - 1",
+      "tab": "Explore",
+      "gallery": "true",
+      "question": "1",
+      "answer": ""
+    },
+    "pointer": {
+      "family": "quadratic",
+      "a": "-2",
+      "b": "0.5",
+      "h": "3",
+      "k": "0",
+      "equation": "g(x) = -2 · f(0.5(x - 3)) + 0",
+      "tab": "Explore",
+      "gallery": "true",
+      "question": "1",
+      "answer": ""
+    },
+    "keyboard": {
+      "family": "quadratic",
+      "a": "-2",
+      "b": "0.5",
+      "h": "2.5",
+      "k": "-0.5",
+      "equation": "g(x) = -2 · f(0.5(x - 2.5)) - 0.5",
+      "tab": "Explore",
+      "gallery": "true",
+      "question": "1",
+      "answer": ""
+    },
+    "galleryHidden": {
+      "family": "quadratic",
+      "a": "-2",
+      "b": "0.5",
+      "h": "2.5",
+      "k": "-0.5",
+      "equation": "g(x) = -2 · f(0.5(x - 2.5)) - 0.5",
+      "tab": "Explore",
+      "gallery": "false",
+      "question": "1",
+      "answer": ""
+    },
+    "tabs": {
+      "family": "quadratic",
+      "a": "-2",
+      "b": "0.5",
+      "h": "2.5",
+      "k": "-0.5",
+      "equation": "g(x) = -2 · f(0.5(x - 2.5)) - 0.5",
+      "tab": "Explore",
+      "gallery": "true",
+      "question": "1",
+      "answer": ""
+    },
+    "reset": {
+      "family": "quadratic",
+      "a": "1",
+      "b": "1",
+      "h": "0",
+      "k": "0",
+      "equation": "g(x) = 1 · f(1(x - 0)) + 0",
+      "tab": "Explore",
+      "gallery": "true",
+      "question": "1",
+      "answer": ""
+    },
+    "wrong": "Try again - inspect the defining shape.",
+    "q1": "Correct - this is the Quadratic parent.",
+    "q2": "Correct - this is the Absolute Value parent.",
+    "q3": "Correct - this is the Reciprocal parent."
+  },
+  "navigation": {
+    "previousHref": "/lessons/graphs-and-functions/164-parameter-explorer",
+    "nextHref": "/lessons/graphs-and-functions/166-graph-matching"
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1208,
+      "height": 1302
+    },
+    "document": {
+      "width": 1208,
+      "height": 1302
+    },
+    "horizontalOverflow": false,
+    "regions": {
+      "page": {
+        "top": 99,
+        "bottom": 1274,
+        "left": 240,
+        "right": 1208,
+        "width": 968,
+        "height": 1175
+      },
+      "header": {
+        "top": 99,
+        "bottom": 299,
+        "left": 240,
+        "right": 1208,
+        "width": 968,
+        "height": 200
+      },
+      "tabs": {
+        "top": 299,
+        "bottom": 343,
+        "left": 240,
+        "right": 1208,
+        "width": 968,
+        "height": 44
+      },
+      "main": {
+        "top": 366,
+        "bottom": 809,
+        "left": 258,
+        "right": 1190,
+        "width": 932,
+        "height": 443
+      },
+      "gallery": {
+        "top": 366,
+        "bottom": 809,
+        "left": 258,
+        "right": 491,
+        "width": 233,
+        "height": 443
+      },
+      "plot": {
+        "top": 366,
+        "bottom": 809,
+        "left": 501,
+        "right": 889,
+        "width": 388,
+        "height": 443
+      },
+      "rail": {
+        "top": 366,
+        "bottom": 809,
+        "left": 899,
+        "right": 1190,
+        "width": 291,
+        "height": 443
+      },
+      "insight": {
+        "top": 821,
+        "bottom": 967,
+        "left": 258,
+        "right": 1190,
+        "width": 932,
+        "height": 146
+      },
+      "practice": {
+        "top": 980,
+        "bottom": 1175,
+        "left": 258,
+        "right": 1190,
+        "width": 932,
+        "height": 195
+      },
+      "navigation": {
+        "top": 1196,
+        "bottom": 1274,
+        "left": 258,
+        "right": 1190,
+        "width": 932,
+        "height": 78
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

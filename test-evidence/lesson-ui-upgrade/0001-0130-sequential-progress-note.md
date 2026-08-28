@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **147 of 200 lessons completed; 53 pending.**
+Dedicated rebuild target: **149 of 200 lessons completed; 51 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -133,6 +133,8 @@ Dedicated rebuild target: **147 of 200 lessons completed; 53 pending.**
 | 0219   |          162 Combined Transformations | Complete | Dedicated ordered h/a/k transformation engine with real ranges, pointer/keyboard vertex drag, native/keyboard pipeline reorder, generated parent/step/final curves and point trace, graph tools, tabs, graded practice, navigation, and exact 1034x1521 framing |
 | 0220   |              163 Transformation Order | Complete | Dedicated two-pipeline non-commutativity engine with real operation switches, pointer/keyboard vertex drag, generated parent/A/B curves and equations, stage tabs, custom pipeline controls, notes, practice, navigation, and exact 1023x1537 framing |
 | 0221   |                164 Parameter Explorer | Complete | Dedicated quadratic a/h/k transformation engine with real ranges and numeric inputs, pointer/keyboard vertex drag, generated parent/transformed curves, equation/effects, stage tabs, worked rule, graded practice, navigation, and exact 999x1575 framing |
+| 0222   |          165 Parent-Function Library | Complete | Six explicit parent-family models with generated curves/domain/range/patterns/rules/key points, real a/b/h/k controls, pointer/keyboard anchor drag, gallery/tabs, three graded questions, navigation, and exact 1208x1302 framing |
+| 0223   |                   166 Graph Matching | Complete | Six explicit quadratic equation/curve targets with native drag/drop and keyboard matching, generated vertices/directions/widths, scoring/progress, hints, stages, replay, reset, practice, navigation, and exact 1206x1304 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2192,3 +2194,31 @@ Evidence:
 - `0221-reference.png`
 - `0221-desktop.png`
 - `0221-dedicated-target-validation.json`
+
+## Lesson 165 / Mockup 0222 - Parent-Function Library
+
+Reworked individually against the mathematics target mockup with a dedicated `six-explicit-parent-function-definitions-selectable-generated-domain-range-pattern-rules-key-points-transform-controls-pointer-keyboard-draggable-anchor-and-graded-practice` model. Linear, Quadratic, Absolute Value, Square Root, Cubic, and Reciprocal are separate definitions with their own evaluator, formula, color, domain, range, key inputs, pattern observations, family rule, gallery icon, and continuous curve generator.
+
+The six family cards, Hide/Show gallery, four transformation ranges and numeric inputs, Reset graph, five tabs, three practice questions, six answer choices, Check answer, and adjacent navigation are real controls. Every selected family is transformed by the shared mathematical composition `g(x)=a*f(b(x-h))+k`. The transformed anchor is genuinely pointer- and keyboard-draggable in two dimensions, updating `h`, `k`, the curve, samples, equation trace, and anchor readout. Practice independently grades Quadratic, Absolute Value, and Reciprocal targets and distinguishes incorrect from correct selections.
+
+Final 1208x1302 browser validation selects all six families; transforms Quadratic to `a=-2`, `b=0.5`, `h=2`, `k=-1`; physically drags the anchor to `(3,0)`; keyboard-moves it to `(2.5,-0.5)`; toggles the gallery; exercises all five tabs; resets; verifies one incorrect and all three correct practice results; restores the exact Linear/Question 1 target state; and verifies both adjacent routes. The final comparison loop matches the target at page x=240-1208 and y=99-1274, header y=99-299, tabs y=299-343, main library y=366-809, gallery x=258-491, plot x=501-889, controls x=899-1190, insight band y=821-967, practice y=980-1175, and navigation y=1196-1274. It reports an exact 1208x1302 document, no horizontal overflow, and zero console messages.
+
+Evidence:
+
+- `0222-reference.png`
+- `0222-desktop.png`
+- `0222-dedicated-target-validation.json`
+
+## Lesson 166 / Mockup 0223 - Graph Matching
+
+Reworked individually against the mathematics target mockup with a dedicated `six-quadratic-equation-cards-native-drag-keyboard-selection-generated-target-curves-drop-zones-scoring-progress-hints-replay-and-navigation` model. The six lesson-owned cards encode equation, vertex `(h,k)`, direction from the sign of `a`, width from `|a|`, color, hint, graph function, and drop-target location for `(x-2)^2+1`, `x^2`, `(x+2)^2-2`, `-x^2`, `2x^2`, and `-(x-2)^2`.
+
+All cards support native HTML drag/drop as well as click/Enter selection followed by click/Enter on an SVG graph target. Assignments are unique, movable, and drive the graph labels, correctness state, score, percentage ring, progress fraction, and result feedback. Show hints, five lesson stages, Check Answers, Reset, How to drag, Replay, Start Practice, next-up action, and adjacent navigation are real controls. Incorrect placements remain visible and receive computed feedback; a complete correct assignment reaches 6/6 and 100%.
+
+Final 1206x1304 browser validation physically drags the first equation to its correct graph; intentionally places the parent on the wrong graph and verifies 1/6 feedback; resets; matches all six through keyboard selection/target activation; verifies 6/6 and 100%; toggles hints; exercises all five stages; replays the worked example; resets to the exact target state; and verifies both adjacent routes. The final comparison loop matches page x=240-1206 and y=101-1288, header x=258-1188 and y=101-264, stages y=282-337, lab y=355-1131, equation/graph/hint workspace y=423-893, worked row y=903-1006, rule y=1016-1111, actions y=1141-1207, and navigation y=1227-1287. It reports an exact 1206x1304 document, no horizontal overflow, and zero console messages.
+
+Evidence:
+
+- `0223-reference.png`
+- `0223-desktop.png`
+- `0223-dedicated-target-validation.json`
