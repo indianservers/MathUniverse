@@ -1,0 +1,142 @@
+{
+  "mockup": "0352",
+  "lessonId": 446,
+  "checks": {
+    "initial": {
+      "expression": "2*x+3*x-x+4-2",
+      "coefficient": "4",
+      "constant": "2",
+      "result": "2+4*x",
+      "assumptions": "real,notMinus2,notZero",
+      "feedback": "",
+      "actions": "0"
+    },
+    "edited": {
+      "expression": "5*x-2*x+7-3",
+      "coefficient": "3",
+      "constant": "4",
+      "result": "4+3*x",
+      "assumptions": "real,notMinus2,notZero",
+      "feedback": "",
+      "actions": "1"
+    },
+    "editedSteps": [
+      "15*x -2*x → combine x terms → 3*x",
+      "27 -3 → combine constants → 4",
+      "33*x + 4 → canonical form → 4+3*x"
+    ],
+    "assumptions": {
+      "expression": "5*x-2*x+7-3",
+      "coefficient": "3",
+      "constant": "4",
+      "result": "4+3*x",
+      "assumptions": "real,notMinus2,notZero,negative,integer",
+      "feedback": "",
+      "actions": "4"
+    },
+    "stepsCollapsed": true,
+    "rejected": {
+      "expression": "5*x-2*x+7-3",
+      "coefficient": "3",
+      "constant": "4",
+      "result": "4+3*x",
+      "assumptions": "real,notMinus2,notZero,negative,integer",
+      "feedback": "incorrect",
+      "actions": "6"
+    },
+    "optionalAccepted": {
+      "expression": "5*x-2*x+7-3",
+      "coefficient": "3",
+      "constant": "4",
+      "result": "4+3*x",
+      "assumptions": "real,notMinus2,notZero,negative,integer",
+      "feedback": "correct",
+      "actions": "7"
+    },
+    "badCondition": {
+      "expression": "5*x-2*x+7-3",
+      "coefficient": "3",
+      "constant": "4",
+      "result": "4+3*x",
+      "assumptions": "real,notMinus2,notZero,negative,integer",
+      "feedback": "incorrect",
+      "actions": "8"
+    },
+    "accepted": {
+      "expression": "5*x-2*x+7-3",
+      "coefficient": "3",
+      "constant": "4",
+      "result": "4+3*x",
+      "assumptions": "real,notMinus2,notZero,negative,integer",
+      "feedback": "correct",
+      "actions": "9"
+    },
+    "reset": {
+      "expression": "2*x+3*x-x+4-2",
+      "coefficient": "4",
+      "constant": "2",
+      "result": "2+4*x",
+      "assumptions": "real,notMinus2,notZero",
+      "feedback": "",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1205,
+      "height": 1305
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 239,
+      "height": 1305,
+      "bottom": 1305
+    },
+    "shellHeader": {
+      "top": 0,
+      "left": 0,
+      "width": 0,
+      "height": 0,
+      "bottom": 0
+    },
+    "hero": {
+      "top": 103,
+      "left": 256,
+      "width": 932,
+      "height": 216,
+      "bottom": 319
+    },
+    "workspace": {
+      "top": 331,
+      "left": 256,
+      "width": 932,
+      "height": 727,
+      "bottom": 1058
+    },
+    "practice": {
+      "top": 1070,
+      "left": 256,
+      "width": 932,
+      "height": 225,
+      "bottom": 1295
+    },
+    "adjacent": {
+      "top": 0,
+      "left": 0,
+      "width": 0,
+      "height": 0,
+      "bottom": 0
+    },
+    "footer": {
+      "top": 0,
+      "left": 0,
+      "width": 0,
+      "height": 0,
+      "bottom": 0
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

@@ -1,6 +1,6 @@
 # Symbolic Mathematics / CAS Workspace target batch 0334-0355
 
-Dedicated rebuild target: **18 of 22 lessons completed; 4 pending.**
+Dedicated rebuild target: **19 of 22 lessons completed; 3 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
@@ -22,6 +22,7 @@ Dedicated rebuild target: **18 of 22 lessons completed; 4 pending.**
 | 0349 | 443 Differential Equations | `ode-slope-field-exact-solution-euler-draggable-initial-condition-animation-error` | Reworked individually and browser-validated |
 | 0350 | 444 Matrix Operations | `editable-2x2-matrix-row-rules-unit-square-transformation-vertices-determinant-practice` | Reworked individually and browser-validated |
 | 0351 | 445 Complex Calculations | `complex-rectangular-polar-operation-argand-vectors-modulus-argument-practice` | Reworked individually and browser-validated |
+| 0352 | 446 Assumptions | `linear-expression-assumption-domain-conditional-evaluation-cancellation-practice` | Reworked individually and browser-validated |
 
 ## Lesson 428 / Mockup 0334 - Symbolic Evaluation
 
@@ -274,3 +275,17 @@ Evidence:
 - `0351-reference.png`
 - `0351-desktop.png`
 - `0351-dedicated-target-validation.json`
+
+## Lesson 446 / Mockup 0352 - Assumptions
+
+Reworked individually around a dedicated domain-aware linear-expression model. The editable expression parser derives x-term coefficients, constants, canonical simplified form, conditional evaluation at `x=-2`, and expression-specific derivation rows. Real, excluded-value, sign, and integer assumption controls hold real state; positive and negative domains are mutually consistent. Expression editing, assumption toggles, Add assumption, derivation collapse, Reset, Share, independent cancellation practice, optional excluded-value checking, and shell Reset are functional.
+
+Browser validation starts from `2*x+3*x-x+4-2`, deriving `2+4*x`, coefficient `4`, and constant `2`. It edits the expression to `5*x-2*x+7-3`, derives `4+3*x`, and verifies the regenerated canonical-form steps. It selects positive then negative and confirms the contradictory positive assumption is removed, adds the integer domain, and collapses the derivation. Practice rejects `x+3`, accepts `x+2` when the optional condition is blank, rejects an entered value `2` at the excluded point, and accepts `undefined`. Shell Reset restores the target expression, assumptions, result, expanded steps, and action state.
+
+Final exact 1205x1305 validation matches the target custom composition: sidebar width 239, dedicated lesson header y=103-319, two-column workspace y=331-1058, and practice y=1070-1295. The target omits the shared lesson shell, tab bar, adjacent navigation, and site footer, and this route does likewise. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0352-reference.png`
+- `0352-desktop.png`
+- `0352-dedicated-target-validation.json`
