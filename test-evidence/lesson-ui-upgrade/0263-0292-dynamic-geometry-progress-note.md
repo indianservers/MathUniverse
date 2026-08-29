@@ -73,7 +73,7 @@ Reworked individually against the target mockup. The surface owns a given line `
 
 ### Lesson 210 / Mockup 0267 - Perpendicular Bisector
 
-Reworked individually against the target mockup. Removed the generic Segment angle and Half length stand-ins. The surface now owns draggable and editable endpoints A and B, computes midpoint M and the perpendicular direction, and derives construction intersections P and Q from two equal-radius circles. Auto and custom radius modes, arc and annotation visibility, zoom, fullscreen, reset, sharing, live equidistance measurements, and the five-stage navigation are functional. The practice point C is directly draggable and its answer is checked from the perpendicular-bisector dot-product invariant. Final exact-viewport check at 1024x1536 physically drags A, exercises both radius modes and every visibility control, and verifies the practice result with no overflow or console errors.
+Reworked individually against the target mockup. Draggable/editable endpoints A and B derive midpoint M, perpendicular direction, compass intersections P/Q, and equal-distance measurements. Auto/custom radius, construction visibility, fullscreen, reset, sharing, and five stages are functional. Practice C is directly draggable and graded from the perpendicular-bisector dot-product invariant, including a proven reject/accept path. Final 1024x1536 geometry matches the target header, stages, construction, teaching/practice cards, navigation, and footer with no overflow or console errors.
 
 ### Lesson 211 / Mockup 0268 - Angle Bisector
 

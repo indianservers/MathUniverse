@@ -1,0 +1,70 @@
+.bisector210-page,
+.bisector210-page * {
+  letter-spacing: 0;
+}
+
+@media (min-width: 960px) and (max-width: 1100px) {
+  body:has(.bisector210-page) {
+    overflow: hidden;
+  }
+
+  body:has(.bisector210-page) [data-testid="desktop-sidebar"] {
+    width: 208px;
+  }
+
+  body:has(.bisector210-page) header.sticky {
+    height: 56px;
+    min-height: 56px;
+  }
+
+  body:has(.bisector210-page) #main-content {
+    padding: 0 15px;
+  }
+
+  body:has(.bisector210-page) #main-content > .flex.items-center.gap-2 {
+    height: 50px;
+  }
+
+  .bisector210-page {
+    transform: translateY(9px);
+  }
+
+  .bisector210-page > header {
+    height: 201px;
+  }
+
+  .bisector210-page > nav:first-of-type {
+    height: 62px;
+    margin-top: 14px !important;
+  }
+
+  .bisector210-page > nav:first-of-type > button {
+    height: 60px;
+  }
+
+  .bisector210-page > nav:first-of-type + section {
+    height: 568px;
+    margin-top: 14px !important;
+  }
+
+  .bisector210-page > #bisector-insight {
+    height: 332px;
+    min-height: 332px;
+    margin-top: 12px !important;
+  }
+
+  .bisector210-page > #bisector-insight + nav {
+    height: 57px;
+    margin-top: 21px !important;
+  }
+
+  .bisector210-page > .sr-only,
+  .bisector210-page ~ .lesson-adjacent-nav {
+    display: none;
+  }
+
+  body:has(.bisector210-page) footer[aria-label="Site footer"] {
+    height: 115px;
+    transform: translateY(-20px);
+  }
+}

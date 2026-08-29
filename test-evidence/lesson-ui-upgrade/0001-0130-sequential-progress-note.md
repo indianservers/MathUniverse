@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **192 of 200 lessons completed; 8 pending.**
+Dedicated rebuild target: **193 of 200 lessons completed; 7 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -178,6 +178,7 @@ Dedicated rebuild target: **192 of 200 lessons completed; 8 pending.**
 | 0264   | 207 Polyline | Complete | Dedicated ordered-vertex polyline with physical vertex drag/add, open/closed topology, topology-aware undo, clear/restore, exact segment totals, real zoom/stages/share, from-empty five-point practice, and exact 1024x1536 framing |
 | 0265   | 208 Perpendicular Line | Complete | Dedicated given-line/point/dependent-perpendicular model with physical P drag, editable slope and coordinates, point-aware construction tolerance, far-click rejection, exact negative-reciprocal calculation, and exact 998x1576 framing |
 | 0266   | 209 Parallel Line | Complete | Dedicated shared-slope/two-intercept model with physical P drag, derived parallel intercept, editable line and point, real visibility/snap/zoom/reset/stages, gated invariant checklist, and exact 1024x1536 framing |
+| 0267   | 210 Perpendicular Bisector | Complete | Dedicated endpoint/midpoint/compass-intersection model with physical A/B and practice-C drags, auto/custom radius, construction visibility, exact locus grading, and exact 1024x1536 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2721,3 +2722,11 @@ Reworked and audited the dedicated `shared-slope-independent-intercepts-parallel
 Automated validation drags P and proves only the derived intercept changes, edits slope and given intercept, toggles both overlays and snap, zooms, traverses stages, resets, loads the `m=-3`, `P=(-1,3)` practice state, rejects an unchecked submission, and accepts the completed three-invariant checklist. The exact 1024x1536 frame matches the mockup: header y=97-194, stages y=204-250, workspace y=257-950, graph y=344.5-760.5, result y=769.5-950, rule cards y=959-1209, practice y=1218-1388, and footer y=1466-1523. There is no horizontal overflow and there are no console warnings or errors.
 
 Evidence: `0266-reference.png`, `0266-desktop.png`, `0266-dedicated-target-validation.json`.
+
+## Lesson 210 / Mockup 0267 - Perpendicular Bisector
+
+Audited the dedicated `endpoint-midpoint-compass-intersection-bisector` model against target 0267. Physical A/B drags recompute midpoint, compass radius, arc intersections P/Q, equal distances, and the perpendicular locus. Auto/custom radius, all five construction visibility controls, exact endpoint inputs, stages, language, Share, Reset, fullscreen, hint, routes, and the independently draggable C practice model are functional. Validation moves C off the locus and confirms rejection, then restores the exact locus and confirms acceptance.
+
+The exact 1024x1536 frame matches the target: header y=99-300, stages y=314-376, construction y=390-958, teaching/practice cards y=970-1302, and footer y=1401-1516. There is no horizontal overflow and there are no console warnings or errors.
+
+Evidence: `0267-reference.png`, `0267-desktop.png`, `0267-dedicated-target-validation.json`.

@@ -1,15 +1,162 @@
-[
-  {
-    "id": 210,
-    "mockup": 267,
-    "route": "/lessons/geometry/210-perpendicular-bisector",
-    "width": 1024,
-    "height": 1536,
-    "status": "Correct: C lies on the perpendicular bisector.",
-    "consoleErrors": [],
-    "scrollHeight": 1536,
-    "surfaceBottom": 1377.5,
-    "objectModel": "perpendicular-bisector",
-    "overflowing": 0
-  }
-]
+{
+  "mockup": "0267",
+  "lessonId": 210,
+  "checks": {
+    "initial": {
+      "a": "-4:0",
+      "b": "4:0",
+      "midpoint": "0:0",
+      "radius": "6.0000",
+      "mode": "auto",
+      "visibility": "1:1:1:1:1",
+      "stage": "0",
+      "practice-point": "0:3",
+      "practice": "idle"
+    },
+    "aDrag": {
+      "a": "-3.2:0.6",
+      "b": "4:0",
+      "midpoint": "0.3999999999999999:0.3",
+      "radius": "5.4187",
+      "mode": "auto",
+      "visibility": "1:1:1:1:1",
+      "stage": "0",
+      "practice-point": "0:3",
+      "practice": "idle"
+    },
+    "bDrag": {
+      "a": "-3.2:0.6",
+      "b": "3.5:-0.7",
+      "midpoint": "0.1499999999999999:-0.04999999999999999",
+      "radius": "5.1187",
+      "mode": "auto",
+      "visibility": "1:1:1:1:1",
+      "stage": "0",
+      "practice-point": "0:3",
+      "practice": "idle"
+    },
+    "custom": {
+      "a": "-3.2:0.6",
+      "b": "3.5:-0.7",
+      "midpoint": "0.1499999999999999:-0.04999999999999999",
+      "radius": "7.0000",
+      "mode": "custom",
+      "visibility": "1:1:1:1:1",
+      "stage": "0",
+      "practice-point": "0:3",
+      "practice": "idle"
+    },
+    "visibility": {
+      "a": "-3.2:0.6",
+      "b": "3.5:-0.7",
+      "midpoint": "0.1499999999999999:-0.04999999999999999",
+      "radius": "7.0000",
+      "mode": "custom",
+      "visibility": "0:1:1:1:1",
+      "stage": "0",
+      "practice-point": "0:3",
+      "practice": "idle"
+    },
+    "stages": {
+      "a": "-3.2:0.6",
+      "b": "3.5:-0.7",
+      "midpoint": "0.1499999999999999:-0.04999999999999999",
+      "radius": "7.0000",
+      "mode": "custom",
+      "visibility": "0:1:1:1:1",
+      "stage": "0",
+      "practice-point": "0:3",
+      "practice": "idle"
+    },
+    "share": "Perpendicular bisector of A(-3.2,0.6) B(3.5,-0.7); midpoint M(0.15,-0.05)",
+    "practiceMoved": {
+      "a": "-3.2:0.6",
+      "b": "3.5:-0.7",
+      "midpoint": "0.1499999999999999:-0.04999999999999999",
+      "radius": "7.0000",
+      "mode": "custom",
+      "visibility": "0:1:1:1:1",
+      "stage": "0",
+      "practice-point": "2.6535087719298245:2.9660937353245047",
+      "practice": "idle"
+    },
+    "rejected": {
+      "a": "-3.2:0.6",
+      "b": "3.5:-0.7",
+      "midpoint": "0.1499999999999999:-0.04999999999999999",
+      "radius": "7.0000",
+      "mode": "custom",
+      "visibility": "0:1:1:1:1",
+      "stage": "0",
+      "practice-point": "2.6535087719298245:2.9660937353245047",
+      "practice": "incorrect"
+    },
+    "accepted": {
+      "a": "-4:0",
+      "b": "4:0",
+      "midpoint": "0:0",
+      "radius": "6.0000",
+      "mode": "auto",
+      "visibility": "1:1:1:1:1",
+      "stage": "0",
+      "practice-point": "0:3",
+      "practice": "correct"
+    },
+    "hint": "C must form equal distances CA and CB."
+  },
+  "navigation": {
+    "previousHref": "/lessons/geometry/209-parallel-line",
+    "nextHref": "/lessons/geometry/211-angle-bisector"
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 208,
+      "height": 1536,
+      "bottom": 1536
+    },
+    "header": {
+      "top": 99,
+      "left": 223,
+      "width": 786,
+      "height": 201,
+      "bottom": 300
+    },
+    "stages": {
+      "top": 314,
+      "left": 223,
+      "width": 786,
+      "height": 62,
+      "bottom": 376
+    },
+    "workspace": {
+      "top": 390,
+      "left": 223,
+      "width": 786,
+      "height": 568,
+      "bottom": 958
+    },
+    "cards": {
+      "top": 970,
+      "left": 223,
+      "width": 786,
+      "height": 332,
+      "bottom": 1302
+    },
+    "footer": {
+      "top": 1401,
+      "left": 208,
+      "width": 816,
+      "height": 115,
+      "bottom": 1516
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

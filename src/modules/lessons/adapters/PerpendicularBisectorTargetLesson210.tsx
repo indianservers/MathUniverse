@@ -1,7 +1,6 @@
 import {
   ArrowLeft,
   ArrowRight,
-  CheckCircle2,
   Maximize2,
   RotateCcw,
   Share2,
@@ -15,6 +14,7 @@ import {
   type ReactNode,
 } from "react";
 import type { LessonAdapterProps } from "../types";
+import "./PerpendicularBisectorTargetLesson210.css";
 
 type Point = { x: number; y: number };
 type Visibility = {
@@ -79,7 +79,8 @@ export default function PerpendicularBisectorTargetLesson210({
   }, [resetToken]);
   const update = (name: "a" | "b", p: Point) => {
     const next = { x: clamp(p.x), y: clamp(p.y) };
-    name === "a" ? setA(next) : setB(next);
+    if (name === "a") setA(next);
+    else setB(next);
     setFeedback("idle");
     onInteraction();
   };
@@ -109,11 +110,20 @@ export default function PerpendicularBisectorTargetLesson210({
   return (
     <section
       ref={surfaceRef}
-      className="space-y-3"
+      className="bisector210-page space-y-3"
       data-testid="dynamic-geometry-mockup-0267"
       data-dedicated-lesson="210"
       data-object-model="perpendicular-bisector"
       data-direct-interaction="true"
+      data-a={`${a.x}:${a.y}`}
+      data-b={`${b.x}:${b.y}`}
+      data-midpoint={`${geometry.mid.x}:${geometry.mid.y}`}
+      data-radius={geometry.radius.toFixed(4)}
+      data-mode={mode}
+      data-visibility={Object.values(visibility).map(Number).join(":")}
+      data-stage={String(stage)}
+      data-practice-point={`${practiceC.x}:${practiceC.y}`}
+      data-practice={feedback}
       aria-label="Perpendicular bisector dedicated interactive geometry model"
     >
       <header className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
