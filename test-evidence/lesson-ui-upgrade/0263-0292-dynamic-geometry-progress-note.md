@@ -61,7 +61,7 @@ Reworked individually against the target mockup. Removed the placeholder Directi
 
 ### Lesson 207 / Mockup 0264 - Polyline
 
-Reworked individually against the target mockup. Removed the placeholder Vertices and Spread sliders. The surface now owns an ordered vertex collection with direct point creation and dragging, real open/closed topology, snapshot undo, clear, zoom, fullscreen, closure tolerance, segment-by-segment Euclidean lengths, computed total length, loadable worked example, and coordinate-validated practice construction. Final exact-viewport check at 1024x1536: no overflow or console errors; automated verification confirms that dragging changes the underlying SVG point coordinate.
+Reworked individually against the target mockup. The surface owns an ordered vertex collection with direct point creation and dragging, real open/closed topology, topology-aware snapshot undo, clear and restore, zoom, fullscreen, closure tolerance, segment-by-segment Euclidean lengths, computed total length, and a loadable worked example. Practice was corrected so Start constructing clears the model and activates point creation instead of injecting the finished answer; automated validation physically places all five target vertices and verifies their order. Final 1024x1536 geometry matches the mockup's sidebar, header, stages, workspace, cards, practice, navigation, and footer coordinates with no overflow or console errors. The lesson intentionally reports the mathematically correct 16.56 and 24.40 totals because the mockup's 16.47 and 24.92 labels do not match its own coordinates.
 
 ### Lesson 208 / Mockup 0265 - Perpendicular Line
 

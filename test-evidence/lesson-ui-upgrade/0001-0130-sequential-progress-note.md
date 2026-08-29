@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **189 of 200 lessons completed; 11 pending.**
+Dedicated rebuild target: **190 of 200 lessons completed; 10 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -175,6 +175,7 @@ Dedicated rebuild target: **189 of 200 lessons completed; 11 pending.**
 | 0261   | 204 Segment | Complete | Dedicated finite-endpoint segment model with snapped/decimal drags, transactional undo/redo, distance and midpoint calculations, line/ray comparison, real tools/stages, graded challenge, solution, and exact 1024x1536 framing |
 | 0262   | 205 Segment with Given Length | Complete | Dedicated start-length-angle endpoint model with independent A/handle drags, fixed-distance invariant, live coordinate rule, real dial/pan/zoom/grid/stages/share, generated practice, compass steps, and exact 1024x1536 framing |
 | 0263   | 206 Ray | Complete | Audited dedicated endpoint-direction ray model with physical A/B drags, one-way extension, exact slope/angle/length, editable objects, grid/zoom/fullscreen/stages/share, graded PQ task, and 1031x1535 capture |
+| 0264   | 207 Polyline | Complete | Dedicated ordered-vertex polyline with physical vertex drag/add, open/closed topology, topology-aware undo, clear/restore, exact segment totals, real zoom/stages/share, from-empty five-point practice, and exact 1024x1536 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2694,3 +2695,11 @@ Evidence: `0262-reference.png`, `0262-desktop.png`, `0262-dedicated-target-valid
 Audited the existing dedicated `ray` object model one lesson at a time against target 0263. Physical A and B drags, direct endpoint/direction coordinates, one-way infinite extension, live length/slope/angle, grid, zoom, fullscreen action, five stages, Share, Reset, editable object rows, exact PQ practice grading, routes, overflow, and console output are validated. Explicit state telemetry was added so the evidence proves direction and coordinate changes rather than relying on static screenshots.
 
 Evidence: `0263-reference.png`, `0263-desktop.png`, `0263-dedicated-target-validation.json`.
+
+## Lesson 207 / Mockup 0264 - Polyline
+
+Reworked and audited the dedicated `ordered-vertex-open-closed-polyline` model one lesson at a time against target 0264. Physical vertex dragging and point creation update the ordered geometry and every Euclidean segment length. Open/closed topology, topology-aware snapshot undo, Clear and restore, tolerance, zoom, fullscreen, five stage routes, Share, Reset, worked example loading, and adjacent lesson routes are functional. Practice now begins with an empty plane and requires five real point placements in A-to-E order; it no longer loads a completed answer.
+
+The exact 1024x1536 validation matches the target frame: sidebar x=0-222, lesson header x=240-1007 and y=104-244, stages y=260-305, workspace y=321-862, insight cards y=877-1144, practice y=1159-1370, and footer y=1451-1520. The mockup's displayed totals are inconsistent with its displayed coordinates: the model correctly calculates 16.56 units for the initial points and 24.40 units for the practice points instead of the mockup labels 16.47 and 24.92. There is no horizontal overflow and there are no console warnings or errors.
+
+Evidence: `0264-reference.png`, `0264-desktop.png`, `0264-dedicated-target-validation.json`.

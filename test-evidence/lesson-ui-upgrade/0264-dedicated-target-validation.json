@@ -1,15 +1,188 @@
-[
-  {
-    "id": 207,
-    "mockup": 264,
-    "route": "/lessons/geometry/207-polyline",
-    "width": 1024,
-    "height": 1536,
-    "status": "Correct construction and order.",
-    "consoleErrors": [],
-    "scrollHeight": 1536,
-    "surfaceBottom": 1426.0625,
-    "objectModel": "polyline",
-    "overflowing": 0
-  }
-]
+{
+  "mockup": "0264",
+  "lessonId": 207,
+  "checks": {
+    "initial": {
+      "points": "-4:1|-1:4|2:2|5:-1|1:-3",
+      "closed": "false",
+      "tool": "select",
+      "zoom": "1.0",
+      "stage": "1",
+      "history": "0",
+      "total": "16.562969",
+      "practice": "idle"
+    },
+    "drag": {
+      "points": "-2.8:1.8|-1:4|2:2|5:-1|1:-3",
+      "closed": "false",
+      "tool": "select",
+      "zoom": "1.0",
+      "stage": "1",
+      "history": "1",
+      "total": "15.162862",
+      "practice": "idle"
+    },
+    "closed": {
+      "points": "-2.8:1.8|-1:4|2:2|5:-1|1:-3",
+      "closed": "true",
+      "tool": "select",
+      "zoom": "1.0",
+      "stage": "1",
+      "history": "2",
+      "total": "21.284953",
+      "practice": "idle"
+    },
+    "topologyUndo": {
+      "points": "-2.8:1.8|-1:4|2:2|5:-1|1:-3",
+      "closed": "false",
+      "tool": "select",
+      "zoom": "1.0",
+      "stage": "1",
+      "history": "1",
+      "total": "15.162862",
+      "practice": "idle"
+    },
+    "clear": {
+      "points": "",
+      "closed": "false",
+      "tool": "select",
+      "zoom": "1.0",
+      "stage": "1",
+      "history": "2",
+      "total": "0.000000",
+      "practice": "idle"
+    },
+    "clearUndo": {
+      "points": "-2.8:1.8|-1:4|2:2|5:-1|1:-3",
+      "closed": "false",
+      "tool": "select",
+      "zoom": "1.0",
+      "stage": "1",
+      "history": "1",
+      "total": "15.162862",
+      "practice": "idle"
+    },
+    "zoom": {
+      "points": "-2.8:1.8|-1:4|2:2|5:-1|1:-3",
+      "closed": "false",
+      "tool": "select",
+      "zoom": "1.1",
+      "stage": "1",
+      "history": "1",
+      "total": "15.162862",
+      "practice": "idle"
+    },
+    "stages": {
+      "points": "-2.8:1.8|-1:4|2:2|5:-1|1:-3",
+      "closed": "false",
+      "tool": "select",
+      "zoom": "1.1",
+      "stage": "1",
+      "history": "1",
+      "total": "15.162862",
+      "practice": "idle"
+    },
+    "share": "Polyline: A(-2.8,1.8) -> B(-1,4) -> C(2,2) -> D(5,-1) -> E(1,-3); total 15.16 units",
+    "practiceStart": {
+      "points": "",
+      "closed": "false",
+      "tool": "point",
+      "zoom": "1.0",
+      "stage": "1",
+      "history": "1",
+      "total": "0.000000",
+      "practice": "idle"
+    },
+    "practiceBuilt": {
+      "points": "-6:-2|-2:3|3:2|6:-3|-1:-4",
+      "closed": "false",
+      "tool": "point",
+      "zoom": "1.0",
+      "stage": "1",
+      "history": "6",
+      "total": "24.404163",
+      "practice": "idle"
+    },
+    "practiceChecked": {
+      "points": "-6:-2|-2:3|3:2|6:-3|-1:-4",
+      "closed": "false",
+      "tool": "point",
+      "zoom": "1.0",
+      "stage": "1",
+      "history": "6",
+      "total": "24.404163",
+      "practice": "correct"
+    },
+    "practiceMessage": "Correct construction and order."
+  },
+  "navigation": {
+    "previousHref": "/lessons/geometry/206-ray",
+    "nextHref": "/lessons/geometry/208-perpendicular-line"
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 222,
+      "height": 1536,
+      "bottom": 1536
+    },
+    "header": {
+      "top": 104,
+      "left": 240,
+      "width": 767,
+      "height": 140,
+      "bottom": 244
+    },
+    "stages": {
+      "top": 260,
+      "left": 240,
+      "width": 767,
+      "height": 45,
+      "bottom": 305
+    },
+    "workspace": {
+      "top": 321,
+      "left": 240,
+      "width": 767,
+      "height": 541,
+      "bottom": 862
+    },
+    "plane": {
+      "top": 406,
+      "left": 319,
+      "width": 370,
+      "height": 386,
+      "bottom": 792
+    },
+    "insight": {
+      "top": 877,
+      "left": 240,
+      "width": 767,
+      "height": 267,
+      "bottom": 1144
+    },
+    "practice": {
+      "top": 1159,
+      "left": 240,
+      "width": 767,
+      "height": 211,
+      "bottom": 1370
+    },
+    "footer": {
+      "top": 1451,
+      "left": 222,
+      "width": 802,
+      "height": 69,
+      "bottom": 1520
+    }
+  },
+  "consoleMessages": [],
+  "note": "The mockup total-length labels are arithmetically inconsistent with its displayed coordinates; the lesson reports Euclidean totals from the actual vertex model.",
+  "passed": true
+}

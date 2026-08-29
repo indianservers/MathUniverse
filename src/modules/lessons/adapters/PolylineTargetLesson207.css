@@ -1,0 +1,88 @@
+.poly207-page {
+  color: #0f2142;
+  letter-spacing: 0;
+}
+
+.poly207-page *,
+.poly207-page button,
+.poly207-page input,
+.poly207-page select {
+  letter-spacing: 0;
+}
+
+@media (min-width: 960px) and (max-width: 1100px) {
+  body:has(.poly207-page) [data-testid="desktop-sidebar"] {
+    width: 222px;
+  }
+
+  body:has(.poly207-page) header.sticky {
+    height: 56px;
+    min-height: 56px;
+  }
+
+  body:has(.poly207-page) #main-content {
+    padding: 16px 17px 0 18px;
+  }
+
+  body:has(.poly207-page) #main-content > .flex.items-center.gap-2 {
+    height: 32px;
+    margin: 0 0 0;
+  }
+
+  .poly207-page > header {
+    min-height: 140px;
+  }
+
+  .poly207-page {
+    margin-top: -2px;
+  }
+
+  .poly207-page > nav[aria-label="Polyline lesson stages"] {
+    height: 45px;
+    margin-top: 16px !important;
+  }
+
+  .poly207-page > nav[aria-label="Polyline lesson stages"] > button {
+    height: 43px;
+  }
+
+  .poly207-page > nav[aria-label="Polyline lesson stages"] + section {
+    height: 541px;
+    min-height: 541px;
+    margin-top: 16px !important;
+    padding-bottom: 17px;
+    padding-right: 14px;
+    padding-left: 14px;
+  }
+
+  .poly207-page > nav[aria-label="Polyline lesson stages"] + section > div:nth-child(2) {
+    grid-template-columns: minmax(0, 1fr) 287px;
+    column-gap: 16px;
+    margin-top: 22px;
+  }
+
+  .poly207-page > nav[aria-label="Polyline lesson stages"] + section > div:nth-child(2) > div {
+    grid-template-columns: 50px minmax(0, 1fr);
+    column-gap: 14px;
+    padding-top: 3px;
+  }
+
+  .poly207-page > #polyline-insight {
+    min-height: 267px;
+    margin-top: 15px !important;
+  }
+
+  .poly207-page > #polyline-practice {
+    margin-top: 15px !important;
+  }
+
+  .poly207-page > #polyline-practice + nav {
+    height: 45px;
+    margin-top: 15px !important;
+  }
+
+  body:has(.poly207-page) footer[aria-label="Site footer"] {
+    height: 69px;
+    transform: translateY(-16px);
+  }
+}

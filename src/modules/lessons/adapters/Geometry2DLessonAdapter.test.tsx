@@ -445,7 +445,7 @@ describe("Geometry2DLessonAdapter", () => {
 
     expect(html).toContain("Interactive polyline coordinate plane");
     expect(html).toContain('data-testid="polyline-point-0"');
-    expect(html).toContain("Undo last action");
+    expect(html).toContain("Undo last point");
     expect(html).toContain("Polyline summary");
     expect(html).toContain("Segment lengths");
     expect(html).toContain('aria-label="Closure tolerance"');

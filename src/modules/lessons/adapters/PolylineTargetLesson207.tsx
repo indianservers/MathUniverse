@@ -3,7 +3,10 @@ import {
   ArrowRight,
   Check,
   CheckCircle2,
+  ClipboardCheck,
   Circle,
+  Eye,
+  GitBranch,
   List,
   Maximize2,
   Minus,
@@ -12,6 +15,8 @@ import {
   Plus,
   RotateCcw,
   Share2,
+  Sparkles,
+  Sigma,
   Trash2,
   Undo2,
 } from "lucide-react";
@@ -24,9 +29,11 @@ import {
   type ReactNode,
 } from "react";
 import type { LessonAdapterProps } from "../types";
+import "./PolylineTargetLesson207.css";
 
 type Point = { x: number; y: number };
 type Tool = "select" | "point";
+type Snapshot = { points: Point[]; closed: boolean };
 
 const initialPoints: Point[] = [
   { x: -4, y: 1 },
@@ -57,7 +64,7 @@ export default function PolylineTargetLesson207({
   const [closed, setClosed] = useState(false);
   const [tool, setTool] = useState<Tool>("select");
   const [dragging, setDragging] = useState<number | null>(null);
-  const [history, setHistory] = useState<Point[][]>([]);
+  const [history, setHistory] = useState<Snapshot[]>([]);
   const [zoom, setZoom] = useState(1);
   const [tolerance, setTolerance] = useState(0.25);
   const [stage, setStage] = useState(1);
@@ -101,7 +108,7 @@ export default function PolylineTargetLesson207({
   const remember = () =>
     setHistory((current) => [
       ...current.slice(-19),
-      points.map((point) => ({ ...point })),
+      { points: points.map((point) => ({ ...point })), closed },
     ]);
   const replacePoints = (next: Point[]) => {
     remember();
@@ -112,7 +119,8 @@ export default function PolylineTargetLesson207({
   const undo = () => {
     const previous = history.at(-1);
     if (!previous) return;
-    setPoints(previous);
+    setPoints(previous.points);
+    setClosed(previous.closed);
     setHistory((current) => current.slice(0, -1));
     setPracticeStatus("idle");
     onInteraction();
@@ -129,8 +137,9 @@ export default function PolylineTargetLesson207({
   };
   const startPractice = () => {
     remember();
-    setPoints(practicePoints.map((point) => ({ ...point })));
+    setPoints([]);
     setClosed(false);
+    setTool("point");
     setPracticeActive(true);
     setPracticeStatus("idle");
     document
@@ -151,11 +160,19 @@ export default function PolylineTargetLesson207({
   return (
     <section
       ref={surfaceRef}
-      className="space-y-3"
+      className="poly207-page space-y-3"
       data-testid="dynamic-geometry-mockup-0264"
       data-dedicated-lesson="207"
       data-object-model="polyline"
       data-direct-interaction="true"
+      data-points={points.map((point) => `${point.x}:${point.y}`).join("|")}
+      data-closed={String(closed)}
+      data-tool={tool}
+      data-zoom={zoom.toFixed(1)}
+      data-stage={String(stage)}
+      data-history={String(history.length)}
+      data-total={total.toFixed(6)}
+      data-practice={practiceStatus}
       aria-label="Polyline dedicated interactive geometry model"
     >
       <header className="rounded-lg border border-slate-200 bg-white p-3 shadow-sm">
@@ -227,15 +244,15 @@ export default function PolylineTargetLesson207({
         aria-label="Polyline lesson stages"
       >
         {[
-          ["Observe", "See the path"],
-          ["Manipulate", "Build and drag"],
-          ["Pattern", "Notice lengths"],
-          ["Rule", "Sum segments"],
-          ["Practice", "Build a path"],
-        ].map(([title, subtitle], index) => (
+          ["Observe", "See the path", Eye],
+          ["Manipulate", "Build and drag", GitBranch],
+          ["Pattern", "Notice lengths", Sparkles],
+          ["Rule", "Sum segments", Sigma],
+          ["Practice", "Build a path", ClipboardCheck],
+        ].map(([title, subtitle, StageIcon], index) => (
           <button
             type="button"
-            key={title}
+            key={String(title)}
             onClick={() => {
               setStage(index);
               document
@@ -249,10 +266,13 @@ export default function PolylineTargetLesson207({
                 ?.scrollIntoView({ behavior: "smooth", block: "start" });
               onInteraction();
             }}
-            className={`h-[45px] text-[8px] font-bold ${stage === index ? "border-b-2 border-blue-600 text-blue-700" : "text-slate-700"}`}
+            className={`flex h-[45px] items-center justify-center gap-2 text-[8px] font-bold [&_svg]:h-3.5 [&_svg]:w-3.5 ${stage === index ? "border-b-2 border-blue-600 text-blue-700" : "text-slate-700"}`}
           >
-            <strong className="text-[9px]">{title}</strong>
-            <small className="block text-[7px]">{subtitle}</small>
+            <StageIcon />
+            <span className="text-left">
+              <strong className="text-[9px]">{title}</strong>
+              <small className="block text-[7px]">{subtitle}</small>
+            </span>
           </button>
         ))}
       </nav>
@@ -271,6 +291,7 @@ export default function PolylineTargetLesson207({
               <button
                 type="button"
                 onClick={() => {
+                  if (closed) remember();
                   setClosed(false);
                   onInteraction();
                 }}
@@ -281,6 +302,7 @@ export default function PolylineTargetLesson207({
               <button
                 type="button"
                 onClick={() => {
+                  if (!closed) remember();
                   setClosed(true);
                   onInteraction();
                 }}
@@ -295,7 +317,7 @@ export default function PolylineTargetLesson207({
               onClick={undo}
               className="target-geometry-action disabled:opacity-40"
             >
-              <Undo2 /> Undo last action
+              <Undo2 /> Undo last point
             </button>
           </div>
         </div>
@@ -506,9 +528,7 @@ export default function PolylineTargetLesson207({
               onClick={startPractice}
               className="mt-3 rounded-md bg-blue-600 px-4 py-2 text-[9px] font-black text-white"
             >
-              {practiceActive
-                ? "Reload target construction"
-                : "Start constructing"}
+              {practiceActive ? "Restart construction" : "Start constructing"}
             </button>
             <button
               type="button"
@@ -539,7 +559,7 @@ export default function PolylineTargetLesson207({
             <hr className="my-4" />
             <p className="text-[9px] font-black">Your total length</p>
             <strong className="mt-2 block text-sm">
-              {practiceActive ? `${total.toFixed(2)} units` : "—"}
+              {practiceActive ? `${total.toFixed(2)} units` : "-"}
             </strong>
           </div>
         </div>
@@ -713,7 +733,7 @@ function PolylinePlane({
               fontSize="10"
               fontWeight="800"
             >
-              {letter(index)}({point.x}, {point.y})
+              {letter(index)}({formatCoordinate(point.x)}, {formatCoordinate(point.y)})
             </text>
           </g>
         ))}
@@ -861,6 +881,9 @@ function distance(a: Point, b: Point) {
 }
 function clamp(value: number) {
   return Math.max(-6, Math.min(6, Number(value.toFixed(1))));
+}
+function formatCoordinate(value: number) {
+  return Number.isInteger(value) ? String(value) : value.toFixed(1);
 }
 function letter(index: number) {
   return String.fromCharCode(65 + index);
