@@ -176,9 +176,19 @@ describe("VectorLessonAdapter", () => {
     expect(html).toContain("Define the plane");
   });
 
-  it("renders vector lessons 196 through 197 with lesson-specific guidance", () => {
+  it("renders relative motion as its own navigation surface", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 196)!;
+    const html = renderToStaticMarkup(
+      <VectorLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+    expect(html).toContain("vector-mockup-0253");
+    expect(html).toContain('data-dedicated-lesson="196"');
+    expect(html).toContain("Navigation workbench");
+    expect(html).toContain("Relative motion navigation map");
+  });
+
+  it("renders vector lesson 197 with lesson-specific guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      196: "Relative motion",
       197: "Force vectors",
     };
 

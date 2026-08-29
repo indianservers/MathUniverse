@@ -24,6 +24,7 @@ import VectorProjectionTargetLesson192 from "./VectorProjectionTargetLesson192";
 import LinearCombinationsTargetLesson193 from "./LinearCombinationsTargetLesson193";
 import VectorLineTargetLesson194 from "./VectorLineTargetLesson194";
 import VectorPlaneTargetLesson195 from "./VectorPlaneTargetLesson195";
+import RelativeMotionTargetLesson196 from "./RelativeMotionTargetLesson196";
 
 function guidanceFor(title: string) {
   const name = title.toLowerCase();
@@ -241,6 +242,14 @@ export default function VectorLessonAdapter({
   if (lesson.id === 195)
     return (
       <VectorPlaneTargetLesson195
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
+  if (lesson.id === 196)
+    return (
+      <RelativeMotionTargetLesson196
         lesson={lesson}
         resetToken={resetToken}
         onInteraction={onInteraction}

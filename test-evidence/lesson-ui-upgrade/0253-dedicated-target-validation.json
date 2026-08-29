@@ -1,0 +1,170 @@
+{
+  "mockup": "0253",
+  "lessonId": 196,
+  "checks": {
+    "initial": {
+      "a": "6:4",
+      "b": "2:1",
+      "relative": "4:3",
+      "time": "2",
+      "trails": "true",
+      "show-relative": "true",
+      "locked": "true",
+      "reverse": "false",
+      "tab": "0",
+      "language": "English (English)",
+      "shared": "false",
+      "speed": "5.00",
+      "bearing": "36.9"
+    },
+    "mapBytes": 33968,
+    "dragA": {
+      "a": "6:6",
+      "b": "2:1",
+      "relative": "4:5",
+      "time": "2",
+      "trails": "true",
+      "show-relative": "true",
+      "locked": "true",
+      "reverse": "false",
+      "tab": "0",
+      "language": "English (English)",
+      "shared": "false",
+      "speed": "6.40",
+      "bearing": "51.3"
+    },
+    "fields": {
+      "a": "6:4",
+      "b": "2:1",
+      "relative": "4:3",
+      "time": "3",
+      "trails": "true",
+      "show-relative": "true",
+      "locked": "true",
+      "reverse": "false",
+      "tab": "0",
+      "language": "English (English)",
+      "shared": "false",
+      "speed": "5.00",
+      "bearing": "36.9"
+    },
+    "dragB": {
+      "a": "6:4",
+      "b": "3:1",
+      "relative": "3:3",
+      "time": "3",
+      "trails": "false",
+      "show-relative": "false",
+      "locked": "false",
+      "reverse": "false",
+      "tab": "0",
+      "language": "English (English)",
+      "shared": "false",
+      "speed": "4.24",
+      "bearing": "45.0"
+    },
+    "reverse": {
+      "a": "6:4",
+      "b": "3:1",
+      "relative": "-3:-3",
+      "time": "3",
+      "trails": "false",
+      "show-relative": "false",
+      "locked": "false",
+      "reverse": "true",
+      "tab": "0",
+      "language": "English (English)",
+      "shared": "false",
+      "speed": "4.24",
+      "bearing": "225.0"
+    },
+    "actions": {
+      "a": "6:4",
+      "b": "3:1",
+      "relative": "-3:-3",
+      "time": "3",
+      "trails": "false",
+      "show-relative": "false",
+      "locked": "false",
+      "reverse": "true",
+      "tab": "0",
+      "language": "हिन्दी (Hindi)",
+      "shared": "true",
+      "speed": "4.24",
+      "bearing": "225.0"
+    },
+    "challenge": {
+      "a": "6:4",
+      "b": "3:1",
+      "relative": "3:3",
+      "time": "3",
+      "trails": "false",
+      "show-relative": "false",
+      "locked": "false",
+      "reverse": "false",
+      "tab": "0",
+      "language": "हिन्दी (Hindi)",
+      "shared": "true",
+      "speed": "4.24",
+      "bearing": "45.0"
+    },
+    "reset": {
+      "a": "6:4",
+      "b": "2:1",
+      "relative": "4:3",
+      "time": "2",
+      "trails": "true",
+      "show-relative": "true",
+      "locked": "true",
+      "reverse": "false",
+      "tab": "0",
+      "language": "हिन्दी (Hindi)",
+      "shared": "true",
+      "speed": "5.00",
+      "bearing": "36.9"
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/geometry/195-vector-equation-of-a-plane",
+    "nextHref": "/lessons/geometry/197-force-vectors"
+  },
+  "metrics": {
+    "document": {
+      "width": 1148,
+      "height": 1370
+    },
+    "overflow": false,
+    "regions": {
+      "header": {
+        "top": 105,
+        "height": 250
+      },
+      "tabs": {
+        "top": 369,
+        "height": 59
+      },
+      "main": {
+        "top": 440,
+        "height": 468
+      },
+      "lower": {
+        "top": 918,
+        "height": 239
+      },
+      "note": {
+        "top": 1157,
+        "height": 33
+      },
+      "nav": {
+        "top": 1198,
+        "height": 55
+      },
+      "footer": {
+        "top": 1261,
+        "height": 91
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

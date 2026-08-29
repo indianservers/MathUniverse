@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **178 of 200 lessons completed; 22 pending.**
+Dedicated rebuild target: **179 of 200 lessons completed; 21 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -164,6 +164,7 @@ Dedicated rebuild target: **178 of 200 lessons completed; 22 pending.**
 | 0250   |         193 Linear Combinations | Complete | Dedicated coefficient-span model with live a/b scaling, editable basis vectors, draggable/solvable target, scaled/parallelogram/span controls, determinant independence status, and exact 1148x1370 framing |
 | 0251   | 194 Vector Equation of a Line | Complete | Dedicated parametric-line model with draggable R(t), live parameter, editable point/direction steppers, trail/direction/table controls, generated table, slope/ratio result, challenge solve, and exact 1148x1370 framing |
 | 0252   | 195 Vector Equation of a Plane | Complete | Dedicated Three.js parametric-plane model with draggable R(s,t), editable anchor/spanning vectors, live normal/equation, parameter/grid/normal controls, independence status, challenge solve, and exact 1148x1370 framing |
+| 0253   | 196 Relative Motion | Complete | Dedicated navigation simulator with draggable A/B velocities, observer lock/perspective reversal, time-scaled trails, relative-vector proof, live speed/bearing/status, velocity controls, and exact 1148x1370 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2615,3 +2616,9 @@ Evidence: `0251-reference.png`, `0251-desktop.png`, `0251-dedicated-target-valid
 Reworked individually with a dedicated `three-dimensional-parametric-plane-anchor-span-parameters-normal-equation-challenge` model. The Three.js plane patch, labeled axes, anchor, directions, draggable R handle, parameters, normal, plane equation, independence state, and challenge all share one mathematical state. WebGL pixels, physical drag, fields, ranges, toggles, tabs, language/share/reset/view, challenge `s=1,t=2`, routes, overflow, console output, and exact 1148x1370 framing are validated.
 
 Evidence: `0252-reference.png`, `0252-desktop.png`, `0252-dedicated-target-validation.json`.
+
+## Lesson 196 / Mockup 0253 - Relative Motion
+
+Reworked individually with a dedicated `relative-motion-moving-observer-velocity-subtraction-bearing-navigation` model. Physical A/B endpoint dragging, observer locking, time scaling, ground trails, relative vector, perspective order, velocity fields/ranges, tail-to-tail proof, speed, bearing, status, tabs, language/share/reset, reverse challenge, routes, overflow, console output, and exact 1148x1370 framing are validated.
+
+Evidence: `0253-reference.png`, `0253-desktop.png`, `0253-dedicated-target-validation.json`.
