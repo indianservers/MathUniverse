@@ -2,20 +2,25 @@ import {
   ArrowLeft,
   ArrowRight,
   CheckCircle2,
+  CircleDot,
+  Eye,
   Maximize2,
   Minus,
   Plus,
   RotateCcw,
+  Scale,
+  Waypoints,
+  Wrench,
 } from "lucide-react";
 import {
   useEffect,
-  useMemo,
   useRef,
   useState,
   type MouseEvent as ReactMouseEvent,
   type ReactNode,
 } from "react";
 import type { LessonAdapterProps } from "../types";
+import "./ParallelLineTargetLesson209.css";
 
 type Point = { x: number; y: number };
 const initialP = { x: 0, y: -2.5 };
@@ -93,11 +98,24 @@ export default function ParallelLineTargetLesson209({
   return (
     <section
       ref={surfaceRef}
-      className="space-y-3"
+      className="parallel209-page space-y-3"
       data-testid="dynamic-geometry-mockup-0266"
       data-dedicated-lesson="209"
       data-object-model="parallel-line"
       data-direct-interaction="true"
+      data-slope={slope.toFixed(4)}
+      data-intercept={intercept.toFixed(4)}
+      data-parallel-intercept={parallelIntercept.toFixed(4)}
+      data-point={`${p.x}:${p.y}`}
+      data-angle={angle.toFixed(4)}
+      data-angle-visible={String(showAngle)}
+      data-slope-visible={String(showSlope)}
+      data-snap={String(snap)}
+      data-zoom={zoom.toFixed(1)}
+      data-stage={String(stage)}
+      data-practice={feedback}
+      data-practice-active={String(practice)}
+      data-checks={checks.map(Number).join(":")}
       aria-label="Parallel line dedicated interactive geometry model"
     >
       <header className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
@@ -120,15 +138,15 @@ export default function ParallelLineTargetLesson209({
       </header>
       <nav className="grid grid-cols-5 overflow-hidden rounded-lg border border-slate-200 bg-white">
         {[
-          ["Observe", "See equality"],
-          ["Manipulate", "Drag and edit"],
-          ["Pattern", "Compare slopes"],
-          ["Rule", "Prove parallel"],
-          ["Try", "Practice"],
-        ].map(([title, sub], i) => (
+          ["Observe", "See equality", Eye],
+          ["Manipulate", "Drag and edit", Wrench],
+          ["Pattern", "Compare slopes", Waypoints],
+          ["Rule", "Prove parallel", Scale],
+          ["Try", "Practice", CircleDot],
+        ].map(([title, sub, StageIcon], i) => (
           <button
             type="button"
-            key={title}
+            key={String(title)}
             onClick={() => {
               setStage(i);
               document
@@ -142,10 +160,13 @@ export default function ParallelLineTargetLesson209({
                 ?.scrollIntoView({ behavior: "smooth", block: "start" });
               onInteraction();
             }}
-            className={`h-[45px] text-[8px] font-bold ${stage === i ? "border-b-2 border-blue-500 text-blue-700" : "text-slate-600"}`}
+            className={`flex h-[45px] items-center justify-center gap-2 text-[8px] font-bold [&_svg]:h-3.5 [&_svg]:w-3.5 ${stage === i ? "border-b-2 border-blue-500 text-blue-700" : "text-slate-600"}`}
           >
-            <strong className="text-[9px]">{title}</strong>
-            <small className="block">{sub}</small>
+            <StageIcon />
+            <span className="text-left">
+              <strong className="text-[9px]">{title}</strong>
+              <small className="block">{sub}</small>
+            </span>
           </button>
         ))}
       </nav>

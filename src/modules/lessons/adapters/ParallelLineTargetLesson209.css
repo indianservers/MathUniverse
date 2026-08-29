@@ -1,0 +1,107 @@
+.parallel209-page,
+.parallel209-page * {
+  letter-spacing: 0;
+}
+
+@media (min-width: 960px) and (max-width: 1100px) {
+  body:has(.parallel209-page) [data-testid="desktop-sidebar"] {
+    width: 208px;
+  }
+
+  body:has(.parallel209-page) header.sticky {
+    height: 56px;
+    min-height: 56px;
+  }
+
+  body:has(.parallel209-page) #main-content {
+    padding: 0 15px;
+  }
+
+  body:has(.parallel209-page) #main-content > .flex.items-center.gap-2 {
+    height: 50px;
+  }
+
+  .parallel209-page {
+    transform: translateY(7px);
+  }
+
+  .parallel209-page > header {
+    height: 97px;
+  }
+
+  .parallel209-page > nav:first-of-type {
+    height: 46px;
+    margin-top: 10px !important;
+  }
+
+  .parallel209-page > nav:first-of-type > button {
+    height: 44px;
+  }
+
+  .parallel209-page > nav:first-of-type + section {
+    height: 693px;
+    margin-top: 7px !important;
+    padding: 9px;
+  }
+
+  .parallel209-page > nav:first-of-type + section > div:nth-child(2) {
+    grid-template-columns: minmax(0, 1fr) 201px;
+    column-gap: 11px;
+    margin-top: 40px;
+  }
+
+  .parallel209-page > nav:first-of-type + section > section {
+    margin-top: 9px;
+  }
+
+  .parallel209-page > #parallel-rule {
+    height: 250px;
+    min-height: 250px;
+    margin-top: 9px !important;
+  }
+
+  .parallel209-page > #parallel-practice {
+    height: 170px;
+    margin-top: 9px !important;
+    overflow: hidden;
+  }
+
+  .parallel209-page > #parallel-practice > div {
+    margin-top: 7px;
+  }
+
+  .parallel209-page > #parallel-practice > div > section {
+    height: 106px;
+    overflow: hidden;
+    padding: 9px;
+  }
+
+  .parallel209-page > #parallel-practice > div > section > div {
+    margin-top: 4px;
+  }
+
+  .parallel209-page > #parallel-practice > div > section:last-child label {
+    margin-top: 3px;
+  }
+
+  .parallel209-page > #parallel-practice > div > section:last-child button {
+    margin-top: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  .parallel209-page > #parallel-practice + nav {
+    height: 49px;
+    margin-top: 10px !important;
+  }
+
+  .parallel209-page > .sr-only,
+  .parallel209-page ~ .lesson-adjacent-nav {
+    display: none;
+  }
+
+  body:has(.parallel209-page) footer[aria-label="Site footer"] {
+    height: 57px;
+    transform: translateY(-13px);
+  }
+}

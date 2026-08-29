@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **191 of 200 lessons completed; 9 pending.**
+Dedicated rebuild target: **192 of 200 lessons completed; 8 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -177,6 +177,7 @@ Dedicated rebuild target: **191 of 200 lessons completed; 9 pending.**
 | 0263   | 206 Ray | Complete | Audited dedicated endpoint-direction ray model with physical A/B drags, one-way extension, exact slope/angle/length, editable objects, grid/zoom/fullscreen/stages/share, graded PQ task, and 1031x1535 capture |
 | 0264   | 207 Polyline | Complete | Dedicated ordered-vertex polyline with physical vertex drag/add, open/closed topology, topology-aware undo, clear/restore, exact segment totals, real zoom/stages/share, from-empty five-point practice, and exact 1024x1536 framing |
 | 0265   | 208 Perpendicular Line | Complete | Dedicated given-line/point/dependent-perpendicular model with physical P drag, editable slope and coordinates, point-aware construction tolerance, far-click rejection, exact negative-reciprocal calculation, and exact 998x1576 framing |
+| 0266   | 209 Parallel Line | Complete | Dedicated shared-slope/two-intercept model with physical P drag, derived parallel intercept, editable line and point, real visibility/snap/zoom/reset/stages, gated invariant checklist, and exact 1024x1536 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2712,3 +2713,11 @@ Reworked and audited the dedicated `given-line-point-dependent-perpendicular` mo
 The exact 998x1576 validation matches the target frame: sidebar x=0-209, lesson header x=221-984 and y=96-280, stages y=280-319, workspace y=330-850, construction steps y=865-1040, rule panels y=1052-1213, and practice y=1231-1476. The graph intentionally draws the mathematically correct slope -2 for a given slope 1/2; the mockup's vertical dashed line conflicts with its own displayed expected slope -2. There is no horizontal overflow and there are no console warnings or errors.
 
 Evidence: `0265-reference.png`, `0265-desktop.png`, `0265-dedicated-target-validation.json`.
+
+## Lesson 209 / Mockup 0266 - Parallel Line
+
+Reworked and audited the dedicated `shared-slope-independent-intercepts-parallel-line` model against target 0266. The given line owns slope and intercept, point P is physically draggable and directly editable, and the dependent parallel line derives its intercept as `P.y - m*P.x` while sharing the given slope. The two angles are calculated from that slope. Angle and slope visibility, snap mode, zoom, fullscreen, Reset, New practice, exact range inputs, coordinate steppers, all five stages, and adjacent routes are functional.
+
+Automated validation drags P and proves only the derived intercept changes, edits slope and given intercept, toggles both overlays and snap, zooms, traverses stages, resets, loads the `m=-3`, `P=(-1,3)` practice state, rejects an unchecked submission, and accepts the completed three-invariant checklist. The exact 1024x1536 frame matches the mockup: header y=97-194, stages y=204-250, workspace y=257-950, graph y=344.5-760.5, result y=769.5-950, rule cards y=959-1209, practice y=1218-1388, and footer y=1466-1523. There is no horizontal overflow and there are no console warnings or errors.
+
+Evidence: `0266-reference.png`, `0266-desktop.png`, `0266-dedicated-target-validation.json`.

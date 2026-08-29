@@ -69,7 +69,7 @@ Reworked individually against the target mockup. The given-line slope, draggable
 
 ### Lesson 209 / Mockup 0266 - Parallel Line
 
-Reworked individually against the target mockup. The surface now owns a given line `y = sx + c`, an independently draggable/editable point P, and a dependent parallel line whose intercept is calculated as `P.y - s*P.x`. Slope edits rotate both lines while preserving equality; moving P translates only the constructed line. Angle/slope overlays, snap mode, zoom, fullscreen, reset, exact inputs, steppers, live invariant cards, worked construction, and checkbox-validated practice are functional. Final exact-viewport check at 1024x1536 physically drags P and verifies successful target practice with no overflow or console errors.
+Reworked individually against the target mockup. The surface owns a given line `y = sx + c`, an independently draggable/editable point P, and a dependent parallel line whose intercept is calculated as `P.y - s*P.x`. Slope edits rotate both lines while preserving equality; moving P changes only the dependent intercept. Angle/slope overlays, snap, zoom, fullscreen, reset, exact inputs, steppers, live invariants, worked construction, and the gated three-invariant practice checklist are functional. Final 1024x1536 geometry matches the target's header, stages, 693px workspace, graph, result strip, rule cards, compact practice, navigation, and footer; physical P dragging and reject/accept practice paths pass with no overflow or console errors.
 
 ### Lesson 210 / Mockup 0267 - Perpendicular Bisector
 
