@@ -1,6 +1,6 @@
 # Symbolic Mathematics / CAS Workspace target batch 0334-0355
 
-Dedicated rebuild target: **12 of 22 lessons completed; 10 pending.**
+Dedicated rebuild target: **13 of 22 lessons completed; 9 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
@@ -16,6 +16,7 @@ Dedicated rebuild target: **12 of 22 lessons completed; 10 pending.**
 | 0343 | 437 Partial Fractions | `distinct-linear-factor-residue-coefficients-drag-recombine-practice` | Reworked individually and browser-validated |
 | 0344 | 438 Polynomial Division | `linked-polynomial-long-synthetic-division-identity-practice` | Reworked individually and browser-validated |
 | 0345 | 439 Derivatives | `quotient-product-chain-symbolic-derivative-domain-tangent-practice` | Reworked individually and browser-validated |
+| 0346 | 440 Integrals | `parsed-polynomial-exact-power-rule-antiderivative-derivative-verification-challenge` | Reworked individually and browser-validated |
 
 ## Lesson 428 / Mockup 0334 - Symbolic Evaluation
 
@@ -184,3 +185,17 @@ Evidence:
 - `0345-reference.png`
 - `0345-desktop.png`
 - `0345-dedicated-target-validation.json`
+
+## Lesson 440 / Mockup 0346 - Integrals
+
+Reworked individually around a dedicated polynomial integration model. The parser accepts signed polynomial terms, decimal coefficients, and exact rational coefficients; the power-rule engine generates the antiderivative family, differentiates it back to the input, and compares coefficient maps rather than display strings. Integrand editing, invalid-input handling, Integrate, auto-check toggle, lesson views, independent challenge entry, decimal or fraction checking, generated answers, challenge cycling, shell Reset, and Previous/Next navigation are functional.
+
+Browser validation starts from `3*x^2+2` and derives the mathematically correct `x^3 + 2x + C`, with derivative verification `3x^2+2`. It edits to `4*x^3-2*x`, derives `x^4-x^2+C`, rejects `sin(x)` as outside this polynomial workspace, toggles auto-check, and resets. The challenge accepts both `x^5-1.5*x^2+7*x+C` and exact `x^5-3/2*x^2+7*x+C`, rejects a wrong coefficient, validates its generated answer, and cycles to `4*x^3+6*x-5`. The mockup incorrectly integrates `3x^2` as `2x^3`; the implementation preserves the target layout while using the correct power rule.
+
+Final exact 983x1601 validation matches the target stack: sidebar width 201, header y=91-311, tabs y=316-365, four-step flow y=376-505, CAS workspace y=516-905, learning cards y=918-1225, challenge y=1237-1504, and adjacent navigation y=1516-1565. The target omits the site footer and this route does likewise. Validation reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0346-reference.png`
+- `0346-desktop.png`
+- `0346-dedicated-target-validation.json`

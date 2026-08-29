@@ -1,0 +1,162 @@
+{
+  "mockup": "0346",
+  "lessonId": 440,
+  "checks": {
+    "initial": {
+      "input": "3*x^2+2",
+      "valid": "true",
+      "antiderivative": "x^3 +2x + C",
+      "auto": "true",
+      "challenge": "5*x^4-3*x+7",
+      "feedback": "idle"
+    },
+    "edited": {
+      "input": "4*x^3-2*x",
+      "valid": "true",
+      "antiderivative": "x^4 -x^2 + C",
+      "auto": "true",
+      "challenge": "5*x^4-3*x+7",
+      "feedback": "idle"
+    },
+    "invalid": {
+      "input": "sin(x)",
+      "valid": "false",
+      "antiderivative": "invalid",
+      "auto": "true",
+      "challenge": "5*x^4-3*x+7",
+      "feedback": "idle"
+    },
+    "autoOff": {
+      "input": "sin(x)",
+      "valid": "false",
+      "antiderivative": "invalid",
+      "auto": "false",
+      "challenge": "5*x^4-3*x+7",
+      "feedback": "idle"
+    },
+    "reset": {
+      "input": "3*x^2+2",
+      "valid": "true",
+      "antiderivative": "x^3 +2x + C",
+      "auto": "true",
+      "challenge": "5*x^4-3*x+7",
+      "feedback": "idle"
+    },
+    "acceptedDecimal": {
+      "input": "3*x^2+2",
+      "valid": "true",
+      "antiderivative": "x^3 +2x + C",
+      "auto": "true",
+      "challenge": "5*x^4-3*x+7",
+      "feedback": "correct"
+    },
+    "acceptedFraction": {
+      "input": "3*x^2+2",
+      "valid": "true",
+      "antiderivative": "x^3 +2x + C",
+      "auto": "true",
+      "challenge": "5*x^4-3*x+7",
+      "feedback": "correct"
+    },
+    "rejected": {
+      "input": "3*x^2+2",
+      "valid": "true",
+      "antiderivative": "x^3 +2x + C",
+      "auto": "true",
+      "challenge": "5*x^4-3*x+7",
+      "feedback": "incorrect"
+    },
+    "generated": {
+      "input": "3*x^2+2",
+      "valid": "true",
+      "antiderivative": "x^3 +2x + C",
+      "auto": "true",
+      "challenge": "5*x^4-3*x+7",
+      "feedback": "correct"
+    },
+    "nextChallenge": {
+      "input": "3*x^2+2",
+      "valid": "true",
+      "antiderivative": "x^3 +2x + C",
+      "auto": "true",
+      "challenge": "4*x^3+6*x-5",
+      "feedback": "idle"
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/symbolic-mathematics/439-derivatives",
+    "nextHref": "/lessons/symbolic-mathematics/441-limits"
+  },
+  "metrics": {
+    "document": {
+      "width": 983,
+      "height": 1601
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 201,
+      "height": 1601,
+      "bottom": 1601
+    },
+    "header": {
+      "top": 91,
+      "left": 222,
+      "width": 743,
+      "height": 220,
+      "bottom": 311
+    },
+    "tabs": {
+      "top": 316,
+      "left": 222,
+      "width": 743,
+      "height": 49,
+      "bottom": 365
+    },
+    "flow": {
+      "top": 376,
+      "left": 222,
+      "width": 743,
+      "height": 129,
+      "bottom": 505
+    },
+    "workspace": {
+      "top": 516,
+      "left": 222,
+      "width": 743,
+      "height": 389,
+      "bottom": 905
+    },
+    "cards": {
+      "top": 918,
+      "left": 222,
+      "width": 743,
+      "height": 307,
+      "bottom": 1225
+    },
+    "practice": {
+      "top": 1237,
+      "left": 222,
+      "width": 743,
+      "height": 267,
+      "bottom": 1504
+    },
+    "adjacent": {
+      "top": 1516,
+      "left": 222,
+      "width": 743,
+      "height": 49,
+      "bottom": 1565
+    },
+    "footer": {
+      "top": 0,
+      "left": 0,
+      "width": 0,
+      "height": 0,
+      "bottom": 0
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
