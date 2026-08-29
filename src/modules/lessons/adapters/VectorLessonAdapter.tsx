@@ -20,6 +20,7 @@ import ScalarMultiplicationTargetLesson188 from "./ScalarMultiplicationTargetLes
 import MagnitudeUnitVectorsTargetLesson189 from "./MagnitudeUnitVectorsTargetLesson189";
 import DotProductTargetLesson190 from "./DotProductTargetLesson190";
 import CrossProductTargetLesson191 from "./CrossProductTargetLesson191";
+import VectorProjectionTargetLesson192 from "./VectorProjectionTargetLesson192";
 
 function guidanceFor(title: string) {
   const name = title.toLowerCase();
@@ -205,6 +206,14 @@ export default function VectorLessonAdapter({
   if (lesson.id === 191)
     return (
       <CrossProductTargetLesson191
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
+  if (lesson.id === 192)
+    return (
+      <VectorProjectionTargetLesson192
         lesson={lesson}
         resetToken={resetToken}
         onInteraction={onInteraction}

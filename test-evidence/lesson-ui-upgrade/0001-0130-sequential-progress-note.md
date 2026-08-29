@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **174 of 200 lessons completed; 26 pending.**
+Dedicated rebuild target: **175 of 200 lessons completed; 25 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -160,6 +160,7 @@ Dedicated rebuild target: **174 of 200 lessons completed; 26 pending.**
 | 0246   | 189 Magnitude and Unit Vectors | Complete | Dedicated vector-normalization model with pointer/keyboard drag, linked component controls, Pythagorean triangle, live magnitude gauge, normalized unit-circle vector, graded practice, and exact 1536x1024 framing |
 | 0247   |                 190 Dot Product | Complete | Dedicated two-vector dot/angle/projection model with pointer/keyboard drag, linked component controls, snap/axis-lock modes, component and cosine proofs, orthogonality practice, and exact 1149x1369 framing |
 | 0248   |               191 Cross Product | Complete | Dedicated Three.js z-up cross-product model with draggable 3D vector tips, six linked components, oriented-area plane, orientation reversal, camera/overlay/expand controls, determinant, live normal and magnitude, practice grading, and exact 1148x1370 framing |
+| 0249   |           192 Vector Projection | Complete | Dedicated two-vector scalar/vector projection model with pointer/keyboard tips, angle rotation, selectable tools, exact components, projection/residual decomposition, live diagram, three graded practices, and exact 1148x1370 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2579,3 +2580,17 @@ Evidence:
 - `0248-reference.png`
 - `0248-desktop.png`
 - `0248-dedicated-target-validation.json`
+
+## Lesson 192 / Mockup 0249 - Vector Projection
+
+Reworked individually against the target mockup with a dedicated `two-vector-scalar-vector-projection-perpendicular-residual-practice` model. Vectors u and v, dot product, included angle, scalar component, vector projection, perpendicular residual, projection length, graph foot, reconstruction diagram, and practice solutions all derive from one shared two-vector state.
+
+Physical and keyboard movement for both vector tips, four exact component fields, direct angle rotation, Select/Move v/Move u/Angle tools, grid and tips toggles, five lesson stages, bookmark, Share, Reset, three practice problems, previous/next, hint, and wrong/correct grading are working controls. Final 1148x1370 validation verifies initial `u=(5,2)`, `v=(-2,4)`, `u dot v=-2`, angle `94.8 degrees`, projection `(-0.34,-0.14)`, physical/keyboard updates, angle recalculation, practice projection `(0.8,0.4)`, reset/reload, routes, exact region geometry, overflow, and console output.
+
+The target image shows `u dot v=5`, angle `74.7 degrees`, and projection `(0.86,0.34)` beside `u=(5,2)` and `v=(-2,4)`, which are mutually inconsistent. The dedicated surface retains the target object model and layout but derives every displayed result from the visible vectors.
+
+Evidence:
+
+- `0249-reference.png`
+- `0249-desktop.png`
+- `0249-dedicated-target-validation.json`

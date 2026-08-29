@@ -1,0 +1,272 @@
+{
+  "mockup": "0249",
+  "lessonId": 192,
+  "route": "/lessons/geometry/192-vector-projection",
+  "checks": {
+    "initial": {
+      "u": "5:2",
+      "v": "-2:4",
+      "projection": "-0.34:-0.14",
+      "dot": "-2.00",
+      "angle": "94.8",
+      "tool": "select",
+      "grid": "true",
+      "stage": "0",
+      "problem": "0",
+      "answer": ":",
+      "correct": "false",
+      "feedback": "",
+      "bookmarked": "false",
+      "shared": "false",
+      "tips": "false"
+    },
+    "graph": {
+      "pngBytes": 13274,
+      "box": {
+        "x": 358,
+        "y": 416,
+        "width": 423.5,
+        "height": 390
+      }
+    },
+    "drag": {
+      "u": "3.5:3",
+      "v": "-2:4",
+      "projection": "0.82:0.71",
+      "dot": "5.00",
+      "angle": "76.0",
+      "tool": "select",
+      "grid": "true",
+      "stage": "0",
+      "problem": "0",
+      "answer": ":",
+      "correct": "false",
+      "feedback": "",
+      "bookmarked": "false",
+      "shared": "false",
+      "tips": "false"
+    },
+    "keyboard": {
+      "u": "3.5:3",
+      "v": "-1.5:4",
+      "projection": "1.11:0.95",
+      "dot": "6.75",
+      "angle": "70.0",
+      "tool": "select",
+      "grid": "true",
+      "stage": "0",
+      "problem": "0",
+      "answer": ":",
+      "correct": "false",
+      "feedback": "",
+      "bookmarked": "false",
+      "shared": "false",
+      "tips": "false"
+    },
+    "components": {
+      "u": "5:2",
+      "v": "-2:4",
+      "projection": "-0.34:-0.14",
+      "dot": "-2.00",
+      "angle": "94.8",
+      "tool": "select",
+      "grid": "true",
+      "stage": "0",
+      "problem": "0",
+      "answer": ":",
+      "correct": "false",
+      "feedback": "",
+      "bookmarked": "false",
+      "shared": "false",
+      "tips": "false"
+    },
+    "tools": {
+      "u": "5:2",
+      "v": "0.5:4.5",
+      "projection": "1.98:0.79",
+      "dot": "11.50",
+      "angle": "61.9",
+      "tool": "select",
+      "grid": "false",
+      "stage": "0",
+      "problem": "0",
+      "answer": ":",
+      "correct": "false",
+      "feedback": "",
+      "bookmarked": "false",
+      "shared": "false",
+      "tips": "true"
+    },
+    "actions": {
+      "u": "5:2",
+      "v": "0.5:4.5",
+      "projection": "1.98:0.79",
+      "dot": "11.50",
+      "angle": "61.9",
+      "tool": "select",
+      "grid": "false",
+      "stage": "0",
+      "problem": "0",
+      "answer": ":",
+      "correct": "false",
+      "feedback": "",
+      "bookmarked": "true",
+      "shared": "true",
+      "tips": "true"
+    },
+    "wrong": {
+      "u": "5:2",
+      "v": "0.5:4.5",
+      "projection": "1.98:0.79",
+      "dot": "11.50",
+      "angle": "61.9",
+      "tool": "select",
+      "grid": "false",
+      "stage": "0",
+      "problem": "0",
+      "answer": "1:1",
+      "correct": "false",
+      "feedback": "Not yet. Use the dot-product scale first.",
+      "bookmarked": "true",
+      "shared": "true",
+      "tips": "true"
+    },
+    "correct": {
+      "u": "5:2",
+      "v": "0.5:4.5",
+      "projection": "1.98:0.79",
+      "dot": "11.50",
+      "angle": "61.9",
+      "tool": "select",
+      "grid": "false",
+      "stage": "0",
+      "problem": "0",
+      "answer": "0.8:0.4",
+      "correct": "true",
+      "feedback": "Correct projection.",
+      "bookmarked": "true",
+      "shared": "true",
+      "tips": "true"
+    },
+    "next": {
+      "u": "5:2",
+      "v": "0.5:4.5",
+      "projection": "1.98:0.79",
+      "dot": "11.50",
+      "angle": "61.9",
+      "tool": "select",
+      "grid": "false",
+      "stage": "0",
+      "problem": "1",
+      "answer": ":",
+      "correct": "false",
+      "feedback": "",
+      "bookmarked": "true",
+      "shared": "true",
+      "tips": "true"
+    },
+    "reset": {
+      "u": "5:2",
+      "v": "-2:4",
+      "projection": "-0.34:-0.14",
+      "dot": "-2.00",
+      "angle": "94.8",
+      "tool": "select",
+      "grid": "true",
+      "stage": "0",
+      "problem": "0",
+      "answer": ":",
+      "correct": "false",
+      "feedback": "",
+      "bookmarked": "true",
+      "shared": "true",
+      "tips": "true"
+    },
+    "reload": {
+      "u": "5:2",
+      "v": "-2:4",
+      "projection": "-0.34:-0.14",
+      "dot": "-2.00",
+      "angle": "94.8",
+      "tool": "select",
+      "grid": "true",
+      "stage": "0",
+      "problem": "0",
+      "answer": ":",
+      "correct": "false",
+      "feedback": "",
+      "bookmarked": "false",
+      "shared": "false",
+      "tips": "false"
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/geometry/191-cross-product",
+    "nextHref": "/lessons/geometry/193-linear-combinations"
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1148,
+      "height": 1370
+    },
+    "document": {
+      "width": 1148,
+      "height": 1370
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "regions": {
+      "header": {
+        "top": 105,
+        "left": 241,
+        "width": 889,
+        "height": 163,
+        "bottom": 268
+      },
+      "stages": {
+        "top": 283,
+        "left": 241,
+        "width": 889,
+        "height": 53,
+        "bottom": 336
+      },
+      "model": {
+        "top": 349,
+        "left": 241,
+        "width": 889,
+        "height": 536,
+        "bottom": 885
+      },
+      "concepts": {
+        "top": 898,
+        "left": 241,
+        "width": 889,
+        "height": 190,
+        "bottom": 1088
+      },
+      "practice": {
+        "top": 1100,
+        "left": 241,
+        "width": 889,
+        "height": 142,
+        "bottom": 1242
+      },
+      "navigation": {
+        "top": 1252,
+        "left": 241,
+        "width": 889,
+        "height": 64,
+        "bottom": 1316
+      },
+      "footer": {
+        "top": 1316,
+        "left": 241,
+        "width": 889,
+        "height": 52,
+        "bottom": 1368
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

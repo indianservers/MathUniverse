@@ -132,9 +132,19 @@ describe("VectorLessonAdapter", () => {
     expect(html).toContain("Components &amp; Determinant");
   });
 
-  it("renders vector lessons 192 through 197 with lesson-specific guidance", () => {
+  it("renders vector projection as its own two-vector surface", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 192)!;
+    const html = renderToStaticMarkup(
+      <VectorLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+    expect(html).toContain("vector-mockup-0249");
+    expect(html).toContain('data-dedicated-lesson="192"');
+    expect(html).toContain("Components &amp; Projection");
+    expect(html).toContain("Vector projection coordinate plane");
+  });
+
+  it("renders vector lessons 193 through 197 with lesson-specific guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      192: "Projection",
       193: "Linear combination",
       194: "Vector line",
       195: "Vector plane",
