@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **166 of 200 lessons completed; 34 pending.**
+Dedicated rebuild target: **167 of 200 lessons completed; 33 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -152,6 +152,7 @@ Dedicated rebuild target: **166 of 200 lessons completed; 34 pending.**
 | 0238   |         181 Parametric Coordinates | Complete | Dedicated shared-parameter motion model with pointer/keyboard constrained point, playback/step/speed/loop controls, synchronized coordinate graphs, exact elimination, graded ellipse practice, and exact 1037x1516 framing |
 | 0239   |       182 Barycentric Coordinates | Complete | Dedicated normalized triangle-weight model with pointer/keyboard point drag, linked weight sliders, real area/median/grid controls, exact coordinate reconstruction, independent target practice, and exact 981x1604 framing |
 | 0240   |          183 Vector Introduction | Complete | Dedicated two-point vector model with pointer/keyboard A/B drag, applyable point drafts, linked components, magnitude/direction, equivalent translation, graded draggable practice, and exact 1149x1369 framing |
+| 0241   |              184 Component Form | Complete | Dedicated signed-axis projection model with pointer/keyboard tip drag, exact component controls, live ordered pair, magnitude/direction, reconstruction, target grading/hint, and exact 1149x1369 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2475,3 +2476,15 @@ Evidence:
 - `0240-reference.png`
 - `0240-desktop.png`
 - `0240-dedicated-target-validation.json`
+
+## Lesson 184 / Mockup 0241 - Component Form
+
+Reworked individually against the target mockup with a dedicated `signed-axis-projection-component-reconstruction-magnitude-direction-practice` model. A single origin-based vector drives signed horizontal and vertical projection legs, ordered-pair component form, signed lengths, magnitude, direction, proximity stars, and practice grading.
+
+Pointer and keyboard tip movement, x/y ranges, exact component fields, five stages, Reset View, target-sensitive stars, wrong/correct Check Answer feedback, independent Hint visibility, three working in-page resource links, and adjacent navigation are real controls. Final 1149x1369 validation verifies initial `(3,2)` with `sqrt(13)` and `33.69 degrees`, keyboard/physical drag, range/exact edits, all stages, wrong/correct target `(-4,1)`, hint, reset, links/routes, exact section geometry, overflow, and console output.
+
+Evidence:
+
+- `0241-reference.png`
+- `0241-desktop.png`
+- `0241-dedicated-target-validation.json`

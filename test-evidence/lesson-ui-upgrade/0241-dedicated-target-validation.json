@@ -1,0 +1,171 @@
+{
+  "mockup": "0241",
+  "lessonId": 184,
+  "route": "/lessons/geometry/184-component-form",
+  "checks": {
+    "initial": {
+      "vector": "3:2",
+      "magnitude": "3.6056",
+      "angle": "33.690",
+      "stage": "0",
+      "hint": "false",
+      "feedback": "",
+      "correct": "false"
+    },
+    "keyboard": {
+      "vector": "2:2",
+      "magnitude": "2.8284",
+      "angle": "45.000",
+      "stage": "0",
+      "hint": "false",
+      "feedback": "",
+      "correct": "false"
+    },
+    "drag": {
+      "vector": "3:1",
+      "magnitude": "3.1623",
+      "angle": "18.435",
+      "stage": "0",
+      "hint": "false",
+      "feedback": "",
+      "correct": "false"
+    },
+    "controls": {
+      "vector": "5:0",
+      "magnitude": "5.0000",
+      "angle": "0.000",
+      "stage": "0",
+      "hint": "false",
+      "feedback": "",
+      "correct": "false"
+    },
+    "stages": {
+      "vector": "5:0",
+      "magnitude": "5.0000",
+      "angle": "0.000",
+      "stage": "4",
+      "hint": "false",
+      "feedback": "",
+      "correct": "false"
+    },
+    "wrong": {
+      "vector": "5:0",
+      "magnitude": "5.0000",
+      "angle": "0.000",
+      "stage": "4",
+      "hint": "false",
+      "feedback": "Not yet. Match both signed components.",
+      "correct": "false"
+    },
+    "hint": {
+      "vector": "5:0",
+      "magnitude": "5.0000",
+      "angle": "0.000",
+      "stage": "4",
+      "hint": "true",
+      "feedback": "Not yet. Match both signed components.",
+      "correct": "false"
+    },
+    "correct": {
+      "vector": "-4:1",
+      "magnitude": "4.1231",
+      "angle": "165.964",
+      "stage": "4",
+      "hint": "true",
+      "feedback": "Correct: w = (-4, 1).",
+      "correct": "true"
+    },
+    "reset": {
+      "vector": "3:2",
+      "magnitude": "3.6056",
+      "angle": "33.690",
+      "stage": "0",
+      "hint": "false",
+      "feedback": "",
+      "correct": "false"
+    }
+  },
+  "hintVisible": true,
+  "correctVisible": true,
+  "navigation": {
+    "previousHref": "/lessons/geometry/183-vector-introduction",
+    "nextHref": "/lessons/geometry/185-position-vectors",
+    "resourceHrefs": [
+      "#component-example",
+      "#component-formula",
+      "#component-practice"
+    ]
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1149,
+      "height": 1369
+    },
+    "document": {
+      "width": 1149,
+      "height": 1369
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "regions": {
+      "page": {
+        "top": 106,
+        "bottom": 1369,
+        "left": 211,
+        "right": 1149,
+        "width": 938,
+        "height": 1263
+      },
+      "header": {
+        "top": 106,
+        "bottom": 265,
+        "left": 247,
+        "right": 1130,
+        "width": 883,
+        "height": 159
+      },
+      "stages": {
+        "top": 280,
+        "bottom": 336,
+        "left": 247,
+        "right": 1130,
+        "width": 883,
+        "height": 56
+      },
+      "work": {
+        "top": 352,
+        "bottom": 920,
+        "left": 247,
+        "right": 1130,
+        "width": 883,
+        "height": 568
+      },
+      "learn": {
+        "top": 929,
+        "bottom": 1137,
+        "left": 247,
+        "right": 1130,
+        "width": 883,
+        "height": 208
+      },
+      "navigation": {
+        "top": 1146,
+        "bottom": 1209,
+        "left": 247,
+        "right": 1130,
+        "width": 883,
+        "height": 63
+      },
+      "footer": {
+        "top": 1218,
+        "bottom": 1369,
+        "left": 247,
+        "right": 1130,
+        "width": 883,
+        "height": 151
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

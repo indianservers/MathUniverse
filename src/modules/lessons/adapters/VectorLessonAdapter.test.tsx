@@ -14,9 +14,17 @@ describe("VectorLessonAdapter", () => {
     expect(html).toContain('data-testid="vector-practice-tip"');
   });
 
-  it("renders vector lessons 184 through 197 with lesson-specific guidance", () => {
+  it("renders component form as its own signed-projection surface", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 184)!;
+    const html = renderToStaticMarkup(<VectorLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain("vector-mockup-0241");
+    expect(html).toContain('data-dedicated-lesson="184"');
+    expect(html).toContain('data-testid="component-vector-tip"');
+    expect(html).toContain("Target: w = (-4, 1)");
+  });
+
+  it("renders vector lessons 185 through 197 with lesson-specific guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      184: "Component form",
       185: "Position vector",
       186: "Vector addition",
       187: "Vector subtraction",

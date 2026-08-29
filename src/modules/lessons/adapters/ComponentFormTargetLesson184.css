@@ -1,0 +1,532 @@
+.cf184-page {
+  --ink: #0b1b3d;
+  --blue: #0878d1;
+  --line: #dbe5ed;
+  width: calc(100% + 45px);
+  min-height: 1263px;
+  margin: -1px 0 0 -25px;
+  color: var(--ink);
+  font:
+    9px/1.42 Inter,
+    system-ui,
+    sans-serif;
+  letter-spacing: 0;
+}
+.cf184-page * {
+  box-sizing: border-box;
+}
+.cf184-page h1,
+.cf184-page h2,
+.cf184-page h3,
+.cf184-page p {
+  margin: 0;
+}
+.cf184-page button,
+.cf184-page input {
+  font: inherit;
+  letter-spacing: 0;
+  color: inherit;
+}
+.cf184-page button {
+  cursor: pointer;
+}
+.cf184-page ~ .lesson-adjacent-nav,
+body:has(.cf184-page) footer[aria-label="Site footer"] {
+  display: none;
+}
+.cf184-header,
+.cf184-stages,
+.cf184-work,
+.cf184-learn,
+.cf184-nav,
+.cf184-footer {
+  margin-left: 36px;
+  margin-right: 19px;
+}
+.cf184-header {
+  display: flex;
+  height: 159px;
+  padding: 17px;
+  justify-content: space-between;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+}
+.cf184-header span {
+  display: inline-block;
+  margin-right: 6px;
+  padding: 4px 9px;
+  border-radius: 99px;
+  background: #edf8fa;
+  color: #0873b8;
+  font-size: 7px;
+  font-weight: 900;
+}
+.cf184-header h1 {
+  margin-top: 10px;
+  font-size: 29px;
+  font-weight: 900;
+  line-height: 1;
+}
+.cf184-header > div > p {
+  margin-top: 8px;
+  color: #53617a;
+  font-size: 11px;
+}
+.cf184-header > div > section {
+  display: flex;
+  margin-top: 17px;
+  gap: 17px;
+}
+.cf184-header > div > section b {
+  font-size: 9px;
+}
+.cf184-header aside {
+  width: 285px;
+  height: 110px;
+  padding: 13px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.cf184-header aside h2 {
+  color: #0873b8;
+  font-size: 10px;
+}
+.cf184-header aside p {
+  margin-top: 10px;
+}
+.cf184-stages {
+  display: grid;
+  height: 56px;
+  margin-top: 15px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: #fff;
+  grid-template-columns: repeat(5, 1fr);
+  overflow: hidden;
+}
+.cf184-stages button {
+  display: grid;
+  padding: 8px 10px 8px 48px;
+  position: relative;
+  border: 0;
+  border-right: 1px solid var(--line);
+  background: #fff;
+  text-align: left;
+}
+.cf184-stages button i {
+  position: absolute;
+  left: 20px;
+  top: 13px;
+  display: grid;
+  width: 27px;
+  height: 27px;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  font-style: normal;
+}
+.cf184-stages small {
+  color: #68778c;
+}
+.cf184-stages .active {
+  color: #fff;
+  background: #076eaa;
+}
+.cf184-stages .active small {
+  color: #fff;
+}
+.cf184-work {
+  display: grid;
+  height: 568px;
+  margin-top: 16px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: #fff;
+  grid-template-columns: 1.68fr 1fr;
+  overflow: hidden;
+}
+.cf184-work > article {
+  position: relative;
+  padding: 10px;
+}
+.cf184-work h2 {
+  font-size: 11px;
+}
+.cf184-graph {
+  display: block;
+  width: 100%;
+  height: 475px;
+}
+.cf184-graph .axis {
+  stroke: #27364b;
+  stroke-width: 1.4;
+}
+.cf184-graph .vector {
+  stroke: #0494be;
+  stroke-width: 3;
+}
+.cf184-graph .horizontal {
+  stroke: #16a34a;
+  stroke-width: 2;
+  stroke-dasharray: 6 4;
+}
+.cf184-graph .vertical {
+  stroke: #7c3aed;
+  stroke-width: 2;
+  stroke-dasharray: 6 4;
+}
+.cf184-graph .projection {
+  stroke: #4b79a3;
+  stroke-dasharray: 4 3;
+}
+.cf184-graph circle {
+  fill: #0494be;
+}
+.cf184-graph text {
+  font-size: 10px;
+}
+.cf184-graph .tip-label {
+  fill: #048da9;
+  font-size: 13px;
+  font-weight: 900;
+}
+.cf184-graph .x-label {
+  fill: #16a34a;
+  font-size: 14px;
+  font-weight: 900;
+}
+.cf184-graph .y-label {
+  fill: #7c3aed;
+  font-size: 14px;
+  font-weight: 900;
+}
+.cf184-legend rect,
+.cf184-help rect {
+  fill: #fff;
+  stroke: #cbd9e4;
+}
+.cf184-graph .title {
+  fill: #0873b8;
+  font-weight: 900;
+}
+.cf184-reset-view {
+  position: absolute;
+  left: 16px;
+  bottom: 12px;
+  display: flex;
+  height: 31px;
+  padding: 0 12px;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: #fff;
+}
+.cf184-reset-view svg {
+  width: 12px;
+}
+.cf184-work > aside {
+  padding: 10px;
+  border-left: 1px solid var(--line);
+}
+.cf184-work > aside > section {
+  margin-bottom: 10px;
+  padding: 9px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.cf184-work > aside > section:nth-child(1) {
+  height: 150px;
+}
+.cf184-work > aside > section:nth-child(2) {
+  height: 104px;
+}
+.cf184-work > aside > section:nth-child(3) {
+  height: 80px;
+}
+.cf184-work > aside > section:nth-child(4) {
+  height: 103px;
+}
+.cf184-work > aside > section:nth-child(5) {
+  height: 68px;
+}
+.cf184-control {
+  display: grid;
+  margin-top: 7px;
+  grid-template-columns: 1fr 18px 1fr 18px 54px;
+  align-items: center;
+  gap: 7px;
+}
+.cf184-control b {
+  grid-column: 1/6;
+}
+.cf184-control input[type="range"] {
+  width: 100%;
+  accent-color: #08a7c9;
+}
+.cf184-control input[type="number"] {
+  width: 54px;
+  height: 32px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  text-align: center;
+}
+.cf184-work > aside > section:nth-child(2) > p {
+  margin-top: 8px;
+}
+.cf184-work > aside > section:nth-child(2) > output {
+  display: block;
+  margin-top: 8px;
+  padding: 10px;
+  border: 1px solid #78c7ec;
+  border-radius: 6px;
+  background: #effaff;
+  text-align: center;
+  font-size: 17px;
+}
+.cf184-work > aside > section:nth-child(2) > output b:first-child {
+  color: #16a34a;
+}
+.cf184-work > aside > section:nth-child(2) > output b:last-child {
+  color: #7c3aed;
+}
+.cf184-work > aside > section:nth-child(3) > div {
+  display: grid;
+  margin-top: 8px;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.cf184-work > aside > section:nth-child(3) output {
+  display: flex;
+  padding: 9px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  justify-content: space-between;
+}
+.cf184-work > aside > section:nth-child(4) p {
+  display: grid;
+  margin-top: 9px;
+  grid-template-columns: 1fr 90px;
+  align-items: center;
+}
+.cf184-work > aside > section:nth-child(4) output {
+  padding: 7px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  text-align: center;
+  font-weight: 900;
+}
+.cf184-observation {
+  display: flex !important;
+  gap: 8px;
+  border-color: #8fcceb !important;
+  background: #eff9ff;
+}
+.cf184-observation svg {
+  width: 20px;
+  color: #0873b8;
+}
+.cf184-learn {
+  display: grid;
+  height: 208px;
+  margin-top: 9px;
+  grid-template-columns: 1fr 1fr 1.08fr;
+  gap: 10px;
+}
+.cf184-learn > article {
+  position: relative;
+  padding: 13px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: #fff;
+}
+.cf184-learn h2 {
+  color: #0873b8;
+  font-size: 10px;
+}
+.cf184-learn h3 {
+  margin-top: 8px;
+  font-size: 10px;
+}
+.cf184-learn p {
+  margin-top: 8px;
+}
+.cf184-learn ol {
+  padding-left: 18px;
+}
+.cf184-learn li {
+  margin: 6px;
+}
+.cf184-learn > article:first-child svg {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  width: 145px;
+  height: 120px;
+  stroke: #7c3aed;
+  stroke-width: 3;
+}
+.cf184-learn > article:nth-child(2) > output {
+  display: block;
+  margin: 8px 0;
+  padding: 8px;
+  border: 1px solid #d9c7f5;
+  border-radius: 6px;
+  background: #faf6ff;
+  text-align: center;
+  font-size: 14px;
+}
+.cf184-learn > article:last-child header {
+  display: flex;
+  justify-content: space-between;
+}
+.cf184-learn > article:last-child header b {
+  padding: 3px 9px;
+  border-radius: 99px;
+  background: #f4eaff;
+  color: #7c3aed;
+}
+.cf184-stars {
+  margin-top: 13px;
+  padding-top: 8px;
+  border-top: 1px solid var(--line);
+  font-size: 20px;
+}
+.cf184-stars .on {
+  color: #f4b000;
+}
+.cf184-learn footer {
+  display: flex;
+  margin-top: 7px;
+  gap: 8px;
+}
+.cf184-learn footer button {
+  display: flex;
+  height: 32px;
+  padding: 0 14px;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid #0878d1;
+  border-radius: 6px;
+  background: #fff;
+}
+.cf184-learn footer button:first-child {
+  color: #fff;
+  background: #0878d1;
+}
+.cf184-learn footer svg {
+  width: 13px;
+}
+.cf184-learn > article:last-child > output {
+  display: block;
+  margin-top: 5px;
+  color: #087b4d;
+  font-weight: 800;
+}
+.cf184-hint {
+  color: #7c3aed;
+  font-weight: 800;
+}
+.cf184-nav {
+  display: grid;
+  height: 63px;
+  margin-top: 9px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: #fff;
+  grid-template-columns: 1fr 1.35fr 1fr;
+}
+.cf184-nav > a {
+  display: flex;
+  padding: 0 15px;
+  align-items: center;
+  gap: 8px;
+  color: inherit;
+  text-decoration: none;
+}
+.cf184-nav > a:last-child {
+  justify-content: flex-end;
+  text-align: right;
+}
+.cf184-nav span {
+  display: grid;
+}
+.cf184-nav small {
+  color: #0878d1;
+}
+.cf184-nav svg {
+  width: 14px;
+}
+.cf184-nav > div {
+  display: grid;
+  padding: 7px;
+  border-left: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+  place-items: center;
+}
+.cf184-nav > div section {
+  display: flex;
+  gap: 7px;
+}
+.cf184-nav > div a {
+  padding: 5px 13px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  color: inherit;
+  text-decoration: none;
+}
+.cf184-footer {
+  display: grid;
+  height: 151px;
+  margin-top: 9px;
+  padding: 16px;
+  grid-template-columns: 1.7fr repeat(4, 1fr);
+  border-top: 1px solid var(--line);
+  background: #fff;
+}
+.cf184-footer section {
+  display: grid;
+  align-content: start;
+  gap: 6px;
+}
+.cf184-footer a {
+  color: #516179;
+}
+.cf184-footer small {
+  grid-column: 1/6;
+  margin-top: 14px;
+  padding-top: 8px;
+  border-top: 1px solid var(--line);
+}
+@media (max-width: 800px) {
+  .cf184-page {
+    width: 100%;
+    margin: 0;
+    min-height: auto;
+  }
+  .cf184-header {
+    height: auto;
+  }
+  .cf184-header aside {
+    display: none;
+  }
+  .cf184-work,
+  .cf184-learn {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .cf184-work > aside {
+    border: 0;
+  }
+  .cf184-stages button {
+    padding: 10px;
+  }
+  .cf184-stages button i,
+  .cf184-stages small {
+    display: none;
+  }
+  .cf184-footer {
+    display: none;
+  }
+}
