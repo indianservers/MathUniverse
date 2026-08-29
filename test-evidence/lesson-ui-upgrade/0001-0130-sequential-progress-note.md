@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **187 of 200 lessons completed; 13 pending.**
+Dedicated rebuild target: **188 of 200 lessons completed; 12 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -173,6 +173,7 @@ Dedicated rebuild target: **187 of 200 lessons completed; 13 pending.**
 | 0259   | 202 Attach / Detach Point | Complete | Dedicated circle-parent constraint model with projected attach, preserved detach, constrained/free point drags, movable parent following, pan/zoom/fit/grid, and exact 1536x1024 framing |
 | 0260   | 203 Line Through Two Points | Complete | Dedicated unique-infinite-line model with decimal endpoint drags, vertical/coincident handling, exact rational slope, live equations, pan/zoom/fit/display controls, editable challenge, construction log, and exact 1478x1064 framing |
 | 0261   | 204 Segment | Complete | Dedicated finite-endpoint segment model with snapped/decimal drags, transactional undo/redo, distance and midpoint calculations, line/ray comparison, real tools/stages, graded challenge, solution, and exact 1024x1536 framing |
+| 0262   | 205 Segment with Given Length | Complete | Dedicated start-length-angle endpoint model with independent A/handle drags, fixed-distance invariant, live coordinate rule, real dial/pan/zoom/grid/stages/share, generated practice, compass steps, and exact 1024x1536 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2680,3 +2681,9 @@ Reworked individually with a dedicated `finite-two-endpoint-distance-midpoint-co
 The target image labels the initial distance from A(-3,1) to B(4,2) as 7.28, but the displayed formula evaluates to `sqrt(50) = 7.071...`; the dedicated lesson keeps the object model mathematically correct and reports 7.07.
 
 Evidence: `0261-reference.png`, `0261-desktop.png`, `0261-dedicated-target-validation.json`.
+
+## Lesson 205 / Mockup 0262 - Segment with Given Length
+
+Reworked individually with a dedicated `start-length-angle-derived-endpoint-compass-invariant` model. Physical A translation and B direction-handle drags preserve the chosen segment length; direct start, distance, and angle inputs derive B from the coordinate rule. The angle dial, grid, pan, zoom, Fit, five lesson stages, language, Share, Reset, two generated practice states, compass-and-straightedge sequence, routes, overflow, console output, and exact 1024x1536 framing are validated.
+
+Evidence: `0262-reference.png`, `0262-desktop.png`, `0262-dedicated-target-validation.json`.

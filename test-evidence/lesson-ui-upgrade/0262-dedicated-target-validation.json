@@ -1,0 +1,202 @@
+{
+  "mockup": "0262",
+  "lessonId": 205,
+  "checks": {
+    "initial": {
+      "model": "start-length-angle-derived-endpoint-compass-invariant",
+      "a": "0:0",
+      "b": "3.54:3.54",
+      "length": "5",
+      "angle": "45",
+      "grid": "true",
+      "pan": "0:0",
+      "zoom": "1",
+      "stage": "Observe",
+      "shared": "false",
+      "task": "0"
+    },
+    "startDrag": {
+      "model": "start-length-angle-derived-endpoint-compass-invariant",
+      "a": "2.35:1.05",
+      "b": "5.89:4.59",
+      "length": "5",
+      "angle": "45",
+      "grid": "true",
+      "pan": "0:0",
+      "zoom": "1",
+      "stage": "Observe",
+      "shared": "false",
+      "task": "0"
+    },
+    "handleDrag": {
+      "model": "start-length-angle-derived-endpoint-compass-invariant",
+      "a": "2.35:1.05",
+      "b": "7.13:-0.41",
+      "length": "5",
+      "angle": "343",
+      "grid": "true",
+      "pan": "0:0",
+      "zoom": "1",
+      "stage": "Observe",
+      "shared": "false",
+      "task": "0"
+    },
+    "direct": {
+      "model": "start-length-angle-derived-endpoint-compass-invariant",
+      "a": "-2:1",
+      "b": "4.06:4.5",
+      "length": "7",
+      "angle": "30",
+      "grid": "true",
+      "pan": "0:0",
+      "zoom": "1",
+      "stage": "Observe",
+      "shared": "false",
+      "task": "0"
+    },
+    "dial": {
+      "model": "start-length-angle-derived-endpoint-compass-invariant",
+      "a": "-2:1",
+      "b": "-9:1",
+      "length": "7",
+      "angle": "180",
+      "grid": "true",
+      "pan": "0:0",
+      "zoom": "1",
+      "stage": "Observe",
+      "shared": "false",
+      "task": "0"
+    },
+    "view": {
+      "model": "start-length-angle-derived-endpoint-compass-invariant",
+      "a": "-2:1",
+      "b": "-9:1",
+      "length": "7",
+      "angle": "180",
+      "grid": "false",
+      "pan": "25:20",
+      "zoom": "1.2",
+      "stage": "Observe",
+      "shared": "false",
+      "task": "0"
+    },
+    "fit": {
+      "model": "start-length-angle-derived-endpoint-compass-invariant",
+      "a": "-2:1",
+      "b": "-9:1",
+      "length": "7",
+      "angle": "180",
+      "grid": "false",
+      "pan": "0:0",
+      "zoom": "1",
+      "stage": "Observe",
+      "shared": "false",
+      "task": "0"
+    },
+    "stages": {
+      "model": "start-length-angle-derived-endpoint-compass-invariant",
+      "a": "-2:1",
+      "b": "-9:1",
+      "length": "7",
+      "angle": "180",
+      "grid": "false",
+      "pan": "0:0",
+      "zoom": "1",
+      "stage": "Observe",
+      "shared": "false",
+      "task": "0"
+    },
+    "shared": {
+      "model": "start-length-angle-derived-endpoint-compass-invariant",
+      "a": "-2:1",
+      "b": "-9:1",
+      "length": "7",
+      "angle": "180",
+      "grid": "false",
+      "pan": "0:0",
+      "zoom": "1",
+      "stage": "Observe",
+      "shared": "true",
+      "task": "0"
+    },
+    "taskResult": "Correct construction inputs.",
+    "newTask": {
+      "model": "start-length-angle-derived-endpoint-compass-invariant",
+      "a": "-2:1",
+      "b": "-9:1",
+      "length": "7",
+      "angle": "180",
+      "grid": "false",
+      "pan": "0:0",
+      "zoom": "1",
+      "stage": "Observe",
+      "shared": "true",
+      "task": "1"
+    },
+    "newResult": "Correct construction inputs."
+  },
+  "navigation": {
+    "previousHref": "/lessons/geometry/204-segment",
+    "nextHref": "/lessons/geometry/206-ray"
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "overflow": false,
+    "regions": {
+      "header": {
+        "top": 106,
+        "left": 214,
+        "width": 794,
+        "height": 137,
+        "bottom": 243
+      },
+      "stages": {
+        "top": 257,
+        "left": 214,
+        "width": 794,
+        "height": 62,
+        "bottom": 319
+      },
+      "model": {
+        "top": 333,
+        "left": 214,
+        "width": 794,
+        "height": 579,
+        "bottom": 912
+      },
+      "cards": {
+        "top": 926,
+        "left": 214,
+        "width": 794,
+        "height": 291,
+        "bottom": 1217
+      },
+      "steps": {
+        "top": 1229,
+        "left": 214,
+        "width": 794,
+        "height": 169,
+        "bottom": 1398
+      },
+      "nav": {
+        "top": 1411,
+        "left": 214,
+        "width": 794,
+        "height": 51,
+        "bottom": 1462
+      },
+      "footer": {
+        "top": 1475,
+        "left": 214,
+        "width": 794,
+        "height": 61,
+        "bottom": 1536
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

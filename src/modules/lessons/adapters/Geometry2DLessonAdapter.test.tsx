@@ -277,7 +277,7 @@ describe("Geometry2DLessonAdapter", () => {
 
     expect(html).toContain("dynamic-geometry-mockup-0262");
     expect(html).toContain(
-      "Fixed-length segment from A to constructed point B",
+      "Fixed-length segment from draggable start A to draggable direction handle B",
     );
     expect(html).toContain("Construction Controls");
     expect(html).toContain("Live Verification");
