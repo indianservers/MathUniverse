@@ -1,0 +1,207 @@
+{
+  "mockup": "0337",
+  "lessonId": 431,
+  "checks": {
+    "initial": {
+      "expression": "x^2-x-6",
+      "valid": "true",
+      "coefficients": "1,-1,-6",
+      "factor-pair": "2,-3",
+      "roots": "-2,3",
+      "factors": "(x + 2)(x - 3)",
+      "factored": "true",
+      "roots-visible": "true",
+      "arranged": "0,1,2,3",
+      "feedback": "idle",
+      "actions": "0"
+    },
+    "edited": {
+      "expression": "x^2+7x+12",
+      "valid": "true",
+      "coefficients": "1,7,12",
+      "factor-pair": "4,3",
+      "roots": "-4,-3",
+      "factors": "(x + 4)(x + 3)",
+      "factored": "false",
+      "roots-visible": "false",
+      "arranged": "",
+      "feedback": "idle",
+      "actions": "1"
+    },
+    "dragged": {
+      "expression": "x^2-x-6",
+      "valid": "true",
+      "coefficients": "1,-1,-6",
+      "factor-pair": "2,-3",
+      "roots": "-2,3",
+      "factors": "(x + 2)(x - 3)",
+      "factored": "false",
+      "roots-visible": "false",
+      "arranged": "0",
+      "feedback": "idle",
+      "actions": "3"
+    },
+    "arranged": {
+      "expression": "x^2-x-6",
+      "valid": "true",
+      "coefficients": "1,-1,-6",
+      "factor-pair": "2,-3",
+      "roots": "-2,3",
+      "factors": "(x + 2)(x - 3)",
+      "factored": "false",
+      "roots-visible": "false",
+      "arranged": "0,1,2,3",
+      "feedback": "idle",
+      "actions": "6"
+    },
+    "factored": {
+      "expression": "x^2-x-6",
+      "valid": "true",
+      "coefficients": "1,-1,-6",
+      "factor-pair": "2,-3",
+      "roots": "-2,3",
+      "factors": "(x + 2)(x - 3)",
+      "factored": "true",
+      "roots-visible": "true",
+      "arranged": "0,1,2,3",
+      "feedback": "idle",
+      "actions": "7"
+    },
+    "cleared": {
+      "expression": "",
+      "valid": "false",
+      "coefficients": "1,0,0",
+      "factor-pair": "0,0",
+      "roots": "0,0",
+      "factors": "Invalid expression",
+      "factored": "false",
+      "roots-visible": "false",
+      "arranged": "",
+      "feedback": "idle",
+      "actions": "8"
+    },
+    "random": {
+      "expression": "x^2-9",
+      "valid": "true",
+      "coefficients": "1,0,-9",
+      "factor-pair": "3,-3",
+      "roots": "-3,3",
+      "factors": "(x + 3)(x - 3)",
+      "factored": "true",
+      "roots-visible": "true",
+      "arranged": "0,1,2,3",
+      "feedback": "idle",
+      "actions": "9"
+    },
+    "fullscreenOpen": true,
+    "rejected": {
+      "expression": "x^2-9",
+      "valid": "true",
+      "coefficients": "1,0,-9",
+      "factor-pair": "3,-3",
+      "roots": "-3,3",
+      "factors": "(x + 3)(x - 3)",
+      "factored": "true",
+      "roots-visible": "true",
+      "arranged": "0,1,2,3",
+      "feedback": "incorrect",
+      "actions": "12"
+    },
+    "accepted": {
+      "expression": "x^2-9",
+      "valid": "true",
+      "coefficients": "1,0,-9",
+      "factor-pair": "3,-3",
+      "roots": "-3,3",
+      "factors": "(x + 3)(x - 3)",
+      "factored": "true",
+      "roots-visible": "true",
+      "arranged": "0,1,2,3",
+      "feedback": "correct",
+      "actions": "13"
+    },
+    "solutionVisible": true,
+    "reset": {
+      "expression": "x^2-x-6",
+      "valid": "true",
+      "coefficients": "1,-1,-6",
+      "factor-pair": "2,-3",
+      "roots": "-2,3",
+      "factors": "(x + 2)(x - 3)",
+      "factored": "true",
+      "roots-visible": "true",
+      "arranged": "0,1,2,3",
+      "feedback": "idle",
+      "actions": "0"
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/symbolic-mathematics/430-expand",
+    "nextHref": "/lessons/symbolic-mathematics/432-substitute"
+  },
+  "metrics": {
+    "document": {
+      "width": 1014,
+      "height": 1551
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 207,
+      "height": 1551,
+      "bottom": 1551
+    },
+    "header": {
+      "top": 107,
+      "left": 220,
+      "width": 779,
+      "height": 198,
+      "bottom": 305
+    },
+    "tabs": {
+      "top": 318,
+      "left": 220,
+      "width": 779,
+      "height": 44,
+      "bottom": 362
+    },
+    "flow": {
+      "top": 389,
+      "left": 220,
+      "width": 779,
+      "height": 114,
+      "bottom": 503
+    },
+    "work": {
+      "top": 520,
+      "left": 220,
+      "width": 779,
+      "height": 600,
+      "bottom": 1120
+    },
+    "practice": {
+      "top": 1150,
+      "left": 220,
+      "width": 779,
+      "height": 177,
+      "bottom": 1327
+    },
+    "adjacent": {
+      "top": 1339,
+      "left": 220,
+      "width": 779,
+      "height": 57,
+      "bottom": 1396
+    },
+    "footer": {
+      "top": 1410,
+      "left": 207,
+      "width": 807,
+      "height": 130,
+      "bottom": 1540
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

@@ -1,12 +1,13 @@
 # Symbolic Mathematics / CAS Workspace target batch 0334-0355
 
-Dedicated rebuild target: **3 of 22 lessons completed; 19 pending.**
+Dedicated rebuild target: **4 of 22 lessons completed; 18 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
 | 0334 | 428 Symbolic Evaluation | `editable-linear-expression-parse-transform-substitution-practice` | Reworked individually and browser-validated |
 | 0335 | 429 Simplify | `factor-multiset-cancellation-preserved-domain-equivalence-practice` | Reworked individually and browser-validated |
 | 0336 | 430 Expand | `parsed-binomial-four-products-area-tiles-combine-practice` | Reworked individually and browser-validated |
+| 0337 | 431 Factor | `monic-quadratic-factor-pair-roots-area-tiles-challenge` | Reworked individually and browser-validated |
 
 ## Lesson 428 / Mockup 0334 - Symbolic Evaluation
 
@@ -49,3 +50,17 @@ Evidence:
 - `0336-reference.png`
 - `0336-desktop.png`
 - `0336-dedicated-target-validation.json`
+
+## Lesson 431 / Mockup 0337 - Factor
+
+Reworked individually around a dedicated monic-quadratic factor model. The lesson parses editable `x^2 + bx + c` expressions, searches integer pairs satisfying both `m+n=b` and `mn=c`, derives the ordered roots, generates canonical binomial factors, and rebuilds a mathematically coherent four-cell area model. Expression editing, Factor, Find roots, Clear, Random example, fullscreen, real tile drag/drop and keyboard placement, unordered two-factor challenge checking, solution reveal, shell Reset, and Previous/Next navigation are functional.
+
+Browser validation starts from `x^2-x-6`, derives pair `2, -3`, roots `-2, 3`, and factors `(x + 2)(x - 3)`. It edits to `x^2+7x+12` and derives pair `4, 3`, clears the model, generates and factors `x^2-9`, opens/closes fullscreen, drags the `x^2` tile into the factor zone, places the remaining tiles, rejects challenge constants `1, 6`, accepts `3, 2`, and reveals `(x + 2)(x + 3)`. The target image's area labels do not multiply or sum to its stated polynomial; the implementation intentionally uses the correct cells `x^2`, `-3x`, `+2x`, and `-6` so the model remains real and internally consistent.
+
+Final exact 1014x1551 validation matches the target stack: sidebar width 207, header y=107-305, tabs y=318-362, four-step flow y=389-503, dedicated factor workspace y=520-1120, challenge y=1150-1327, adjacent navigation y=1339-1396, and footer y=1410-1540. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0337-reference.png`
+- `0337-desktop.png`
+- `0337-dedicated-target-validation.json`
