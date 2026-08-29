@@ -1,0 +1,156 @@
+{
+  "mockup": "0338",
+  "lessonId": 432,
+  "checks": {
+    "initial": {
+      "slots": "3,3",
+      "value": "3",
+      "result": "21",
+      "practice-slots": "empty,empty",
+      "practice-result": "incomplete",
+      "feedback": "idle",
+      "actions": "0"
+    },
+    "mixed": {
+      "slots": "4,3",
+      "value": "mixed",
+      "result": "28",
+      "practice-slots": "empty,empty",
+      "practice-result": "incomplete",
+      "feedback": "idle",
+      "actions": "1"
+    },
+    "applied": {
+      "slots": "-2,-2",
+      "value": "-2",
+      "result": "-4",
+      "practice-slots": "empty,empty",
+      "practice-result": "incomplete",
+      "feedback": "idle",
+      "actions": "2"
+    },
+    "mainReset": {
+      "slots": "3,3",
+      "value": "3",
+      "result": "21",
+      "practice-slots": "empty,empty",
+      "practice-result": "incomplete",
+      "feedback": "idle",
+      "actions": "0"
+    },
+    "practiceFirst": {
+      "slots": "3,3",
+      "value": "3",
+      "result": "21",
+      "practice-slots": "-2,empty",
+      "practice-result": "incomplete",
+      "feedback": "idle",
+      "actions": "1"
+    },
+    "practiceComplete": {
+      "slots": "3,3",
+      "value": "3",
+      "result": "21",
+      "practice-slots": "-2,-2",
+      "practice-result": "-4",
+      "feedback": "idle",
+      "actions": "2"
+    },
+    "rejected": {
+      "slots": "3,3",
+      "value": "3",
+      "result": "21",
+      "practice-slots": "-2,-2",
+      "practice-result": "-4",
+      "feedback": "incorrect",
+      "actions": "3"
+    },
+    "accepted": {
+      "slots": "3,3",
+      "value": "3",
+      "result": "21",
+      "practice-slots": "-2,-2",
+      "practice-result": "-4",
+      "feedback": "correct",
+      "actions": "4"
+    },
+    "reset": {
+      "slots": "3,3",
+      "value": "3",
+      "result": "21",
+      "practice-slots": "empty,empty",
+      "practice-result": "incomplete",
+      "feedback": "idle",
+      "actions": "0"
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/symbolic-mathematics/431-factor",
+    "nextHref": "/lessons/symbolic-mathematics/433-solve"
+  },
+  "metrics": {
+    "document": {
+      "width": 996,
+      "height": 1579
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 220,
+      "height": 1579,
+      "bottom": 1579
+    },
+    "header": {
+      "top": 89,
+      "left": 239,
+      "width": 737,
+      "height": 237,
+      "bottom": 326
+    },
+    "tabs": {
+      "top": 337,
+      "left": 239,
+      "width": 737,
+      "height": 46,
+      "bottom": 383
+    },
+    "flow": {
+      "top": 394,
+      "left": 239,
+      "width": 737,
+      "height": 92,
+      "bottom": 486
+    },
+    "work": {
+      "top": 497,
+      "left": 239,
+      "width": 737,
+      "height": 469,
+      "bottom": 966
+    },
+    "learning": {
+      "top": 978,
+      "left": 239,
+      "width": 737,
+      "height": 232,
+      "bottom": 1210
+    },
+    "practice": {
+      "top": 1222,
+      "left": 239,
+      "width": 737,
+      "height": 255,
+      "bottom": 1477
+    },
+    "adjacent": {
+      "top": 1493,
+      "left": 239,
+      "width": 737,
+      "height": 55,
+      "bottom": 1548
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

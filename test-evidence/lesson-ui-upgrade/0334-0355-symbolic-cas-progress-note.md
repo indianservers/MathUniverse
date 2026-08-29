@@ -1,6 +1,6 @@
 # Symbolic Mathematics / CAS Workspace target batch 0334-0355
 
-Dedicated rebuild target: **4 of 22 lessons completed; 18 pending.**
+Dedicated rebuild target: **5 of 22 lessons completed; 17 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
@@ -8,6 +8,7 @@ Dedicated rebuild target: **4 of 22 lessons completed; 18 pending.**
 | 0335 | 429 Simplify | `factor-multiset-cancellation-preserved-domain-equivalence-practice` | Reworked individually and browser-validated |
 | 0336 | 430 Expand | `parsed-binomial-four-products-area-tiles-combine-practice` | Reworked individually and browser-validated |
 | 0337 | 431 Factor | `monic-quadratic-factor-pair-roots-area-tiles-challenge` | Reworked individually and browser-validated |
+| 0338 | 432 Substitute | `dual-occurrence-substitution-tree-order-of-operations-practice` | Reworked individually and browser-validated |
 
 ## Lesson 428 / Mockup 0334 - Symbolic Evaluation
 
@@ -64,3 +65,17 @@ Evidence:
 - `0337-reference.png`
 - `0337-desktop.png`
 - `0337-dedicated-target-validation.json`
+
+## Lesson 432 / Mockup 0338 - Substitute
+
+Reworked individually around a dedicated two-occurrence substitution tree. Each variable occurrence is an independent drop target; draggable and keyboard-accessible value chips update the slots, while every power, multiplication, addition, status, and exact-result row is calculated from current state. Main-value application, mixed occurrence values, independent practice slots, exact-answer checking, shell Reset, and Previous/Next navigation are functional.
+
+Browser validation begins with x=3 in both occurrences of `x^2 + 2^2x` and derives the mathematically correct result 21. It drags y=4 onto one occurrence to derive the mixed-slot result 28, applies -2 to both occurrences to derive -4, resets, then drags -2 separately into both practice targets. The checker rejects the mockup's incorrect -28 and accepts -4. The target image incorrectly squares the already evaluated `2^2` a second time to produce 96 and repeats that error in practice; the implementation intentionally preserves the displayed expression and correct order-of-operations arithmetic.
+
+Final exact 996x1579 validation matches the target stack: sidebar width 220, header y=89-326, tabs y=337-383, four-step flow y=394-486, dedicated substitution workspace y=497-966, learning cards y=978-1210, practice y=1222-1477, and adjacent navigation y=1493-1548. The target omits the site footer at this viewport; the dedicated route does the same. Validation reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0338-reference.png`
+- `0338-desktop.png`
+- `0338-dedicated-target-validation.json`
