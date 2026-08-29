@@ -1,0 +1,25 @@
+.rigid216-page,
+.rigid216-page * {
+  letter-spacing: 0;
+}
+
+@media (min-width: 960px) and (max-width: 1120px) {
+  body:has(.rigid216-page) {
+    overflow: hidden;
+  }
+
+  body:has(.rigid216-page) [data-testid="desktop-sidebar"] {
+    width: 211px;
+    transition: none;
+  }
+
+  body:has(.rigid216-page) #main-content {
+    padding-left: 14px;
+    padding-right: 18px;
+  }
+
+  .rigid216-page > .sr-only,
+  .rigid216-page ~ .lesson-adjacent-nav {
+    display: none;
+  }
+}

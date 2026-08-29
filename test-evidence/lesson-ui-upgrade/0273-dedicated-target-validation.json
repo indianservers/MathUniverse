@@ -1,15 +1,273 @@
-[
-  {
-    "id": 216,
-    "mockup": 273,
-    "route": "/lessons/geometry/216-rigid-polygon",
-    "width": 1027,
-    "height": 1531,
-    "status": "Correct rigid rotation.",
-    "consoleErrors": [],
-    "scrollHeight": 1531,
-    "surfaceBottom": 1410.6875,
-    "objectModel": "rigid-triangle-motion",
-    "overflowing": 0
-  }
-]
+{
+  "mockup": "0273",
+  "lessonId": 216,
+  "checks": {
+    "initial": {
+      "position": "0:0",
+      "rotation": "0",
+      "mode": "move",
+      "points": "-3:1|1:5|4:1",
+      "overlay": "3:-1|7:3|10:-1",
+      "lengths": "5.6569:5.0000:7.0000",
+      "angles": "45.0000:81.8699:53.1301",
+      "visibility": "labels:true|lengths:true|angles:true|overlay:true",
+      "stage": "0",
+      "language": "English (English)",
+      "notation": "Soglish",
+      "share-count": "0",
+      "feedback": "idle"
+    },
+    "moved": {
+      "position": "0.9894179894179889:-0.7857153756277899",
+      "rotation": "0",
+      "mode": "move",
+      "points": "-2.010582010582011:0.21428462437221008|1.9894179894179889:4.21428462437221|4.989417989417989:0.21428462437221008",
+      "overlay": "3.989417989417989:-1.78571537562779|7.989417989417989:2.21428462437221|10.989417989417989:-1.78571537562779",
+      "lengths": "5.6569:5.0000:7.0000",
+      "angles": "45.0000:81.8699:53.1301",
+      "visibility": "labels:true|lengths:true|angles:true|overlay:true",
+      "stage": "0",
+      "language": "English (English)",
+      "notation": "Soglish",
+      "share-count": "0",
+      "feedback": "idle"
+    },
+    "rotated": {
+      "position": "0.9894179894179889:-0.7857153756277899",
+      "rotation": "-11.562004135285726",
+      "mode": "rotate",
+      "points": "-2.2034170941790645:0.9762437703873699|2.517129499344607:4.093364213740828|4.654541563088424:-0.42675411101156735",
+      "overlay": "3.7965829058209355:-1.0237562296126301|8.517129499344607:2.093364213740828|10.654541563088424:-2.4267541110115673",
+      "lengths": "5.6569:5.0000:7.0000",
+      "angles": "45.0000:81.8699:53.1301",
+      "visibility": "labels:true|lengths:true|angles:true|overlay:true",
+      "stage": "0",
+      "language": "English (English)",
+      "notation": "Soglish",
+      "share-count": "0",
+      "feedback": "idle"
+    },
+    "hidden": {
+      "position": "0.9894179894179889:-0.7857153756277899",
+      "rotation": "-11.562004135285726",
+      "mode": "rotate",
+      "points": "-2.2034170941790645:0.9762437703873699|2.517129499344607:4.093364213740828|4.654541563088424:-0.42675411101156735",
+      "overlay": "3.7965829058209355:-1.0237562296126301|8.517129499344607:2.093364213740828|10.654541563088424:-2.4267541110115673",
+      "lengths": "5.6569:5.0000:7.0000",
+      "angles": "45.0000:81.8699:53.1301",
+      "visibility": "labels:false|lengths:false|angles:false|overlay:false",
+      "stage": "0",
+      "language": "English (English)",
+      "notation": "Soglish",
+      "share-count": "0",
+      "feedback": "idle"
+    },
+    "overlayRestored": {
+      "position": "0.9894179894179889:-0.7857153756277899",
+      "rotation": "-11.562004135285726",
+      "mode": "rotate",
+      "points": "-2.2034170941790645:0.9762437703873699|2.517129499344607:4.093364213740828|4.654541563088424:-0.42675411101156735",
+      "overlay": "3.7965829058209355:-1.0237562296126301|8.517129499344607:2.093364213740828|10.654541563088424:-2.4267541110115673",
+      "lengths": "5.6569:5.0000:7.0000",
+      "angles": "45.0000:81.8699:53.1301",
+      "visibility": "labels:false|lengths:false|angles:false|overlay:true",
+      "stage": "0",
+      "language": "English (English)",
+      "notation": "Soglish",
+      "share-count": "0",
+      "feedback": "idle"
+    },
+    "stages": [
+      {
+        "expected": "1",
+        "actual": "1"
+      },
+      {
+        "expected": "2",
+        "actual": "2"
+      },
+      {
+        "expected": "3",
+        "actual": "3"
+      },
+      {
+        "expected": "0",
+        "actual": "0"
+      }
+    ],
+    "languages": {
+      "position": "0.9894179894179889:-0.7857153756277899",
+      "rotation": "-11.562004135285726",
+      "mode": "rotate",
+      "points": "-2.2034170941790645:0.9762437703873699|2.517129499344607:4.093364213740828|4.654541563088424:-0.42675411101156735",
+      "overlay": "3.7965829058209355:-1.0237562296126301|8.517129499344607:2.093364213740828|10.654541563088424:-2.4267541110115673",
+      "lengths": "5.6569:5.0000:7.0000",
+      "angles": "45.0000:81.8699:53.1301",
+      "visibility": "labels:false|lengths:false|angles:false|overlay:true",
+      "stage": "0",
+      "language": "Hindi (हिन्दी)",
+      "notation": "Symbolic",
+      "share-count": "0",
+      "feedback": "idle"
+    },
+    "shared": {
+      "position": "0.9894179894179889:-0.7857153756277899",
+      "rotation": "-11.562004135285726",
+      "mode": "rotate",
+      "points": "-2.2034170941790645:0.9762437703873699|2.517129499344607:4.093364213740828|4.654541563088424:-0.42675411101156735",
+      "overlay": "3.7965829058209355:-1.0237562296126301|8.517129499344607:2.093364213740828|10.654541563088424:-2.4267541110115673",
+      "lengths": "5.6569:5.0000:7.0000",
+      "angles": "45.0000:81.8699:53.1301",
+      "visibility": "labels:false|lengths:false|angles:false|overlay:true",
+      "stage": "0",
+      "language": "Hindi (हिन्दी)",
+      "notation": "Symbolic",
+      "share-count": "1",
+      "feedback": "idle"
+    },
+    "rejected": {
+      "position": "0.9894179894179889:-0.7857153756277899",
+      "rotation": "-11.562004135285726",
+      "mode": "rotate",
+      "points": "-2.2034170941790645:0.9762437703873699|2.517129499344607:4.093364213740828|4.654541563088424:-0.42675411101156735",
+      "overlay": "3.7965829058209355:-1.0237562296126301|8.517129499344607:2.093364213740828|10.654541563088424:-2.4267541110115673",
+      "lengths": "5.6569:5.0000:7.0000",
+      "angles": "45.0000:81.8699:53.1301",
+      "visibility": "labels:false|lengths:false|angles:false|overlay:true",
+      "stage": "0",
+      "language": "Hindi (हिन्दी)",
+      "notation": "Symbolic",
+      "share-count": "1",
+      "feedback": "incorrect"
+    },
+    "accepted": {
+      "position": "0.9894179894179889:-0.7857153756277899",
+      "rotation": "-11.562004135285726",
+      "mode": "rotate",
+      "points": "-2.2034170941790645:0.9762437703873699|2.517129499344607:4.093364213740828|4.654541563088424:-0.42675411101156735",
+      "overlay": "3.7965829058209355:-1.0237562296126301|8.517129499344607:2.093364213740828|10.654541563088424:-2.4267541110115673",
+      "lengths": "5.6569:5.0000:7.0000",
+      "angles": "45.0000:81.8699:53.1301",
+      "visibility": "labels:false|lengths:false|angles:false|overlay:true",
+      "stage": "0",
+      "language": "Hindi (हिन्दी)",
+      "notation": "Symbolic",
+      "share-count": "1",
+      "feedback": "correct"
+    },
+    "practiceReset": {
+      "position": "0.9894179894179889:-0.7857153756277899",
+      "rotation": "-11.562004135285726",
+      "mode": "rotate",
+      "points": "-2.2034170941790645:0.9762437703873699|2.517129499344607:4.093364213740828|4.654541563088424:-0.42675411101156735",
+      "overlay": "3.7965829058209355:-1.0237562296126301|8.517129499344607:2.093364213740828|10.654541563088424:-2.4267541110115673",
+      "lengths": "5.6569:5.0000:7.0000",
+      "angles": "45.0000:81.8699:53.1301",
+      "visibility": "labels:false|lengths:false|angles:false|overlay:true",
+      "stage": "0",
+      "language": "Hindi (हिन्दी)",
+      "notation": "Symbolic",
+      "share-count": "1",
+      "feedback": "idle"
+    },
+    "reset": {
+      "position": "0:0",
+      "rotation": "0",
+      "mode": "move",
+      "points": "-3:1|1:5|4:1",
+      "overlay": "3:-1|7:3|10:-1",
+      "lengths": "5.6569:5.0000:7.0000",
+      "angles": "45.0000:81.8699:53.1301",
+      "visibility": "labels:true|lengths:true|angles:true|overlay:true",
+      "stage": "0",
+      "language": "Hindi (हिन्दी)",
+      "notation": "Symbolic",
+      "share-count": "0",
+      "feedback": "idle"
+    }
+  },
+  "navigation": {
+    "workspaceHref": "/workspace/geometry",
+    "previousHref": "/lessons/geometry/215-regular-polygon",
+    "nextHref": "/lessons/geometry/217-general-polygon"
+  },
+  "metrics": {
+    "document": {
+      "width": 1027,
+      "height": 1531
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 211,
+      "height": 1531,
+      "bottom": 1531
+    },
+    "header": {
+      "top": 96,
+      "left": 225,
+      "width": 784,
+      "height": 147,
+      "bottom": 243
+    },
+    "tabs": {
+      "top": 261,
+      "left": 225,
+      "width": 784,
+      "height": 55,
+      "bottom": 316
+    },
+    "workspace": {
+      "top": 328,
+      "left": 225,
+      "width": 784,
+      "height": 580,
+      "bottom": 908
+    },
+    "cards": {
+      "x": 225,
+      "y": 918,
+      "width": 784,
+      "height": 341.1875,
+      "top": 918,
+      "right": 1009,
+      "bottom": 1259.1875,
+      "left": 225
+    },
+    "practice": {
+      "top": 918,
+      "left": 722.203125,
+      "width": 286.78125,
+      "height": 341.1875,
+      "bottom": 1259.1875
+    },
+    "motions": {
+      "x": 225,
+      "y": 1269.1875,
+      "width": 784,
+      "height": 77.5,
+      "top": 1269.1875,
+      "right": 1009,
+      "bottom": 1346.6875,
+      "left": 225
+    },
+    "adjacent": {
+      "top": 1356.6875,
+      "left": 225,
+      "width": 784,
+      "height": 54,
+      "bottom": 1410.6875
+    },
+    "footer": {
+      "top": 1411,
+      "left": 211,
+      "width": 816,
+      "height": 120,
+      "bottom": 1531
+    }
+  },
+  "consoleMessages": [],
+  "note": "The mockup's 4.47 side labels contradict A(-3,1), B(1,5), C(4,1). The lesson reports the correct coordinate-derived lengths sqrt(32), 5, and 7.",
+  "passed": true
+}

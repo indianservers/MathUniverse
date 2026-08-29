@@ -14,6 +14,7 @@ import {
   type PointerEvent as ReactPointerEvent,
 } from "react";
 import type { LessonAdapterProps } from "../types";
+import "./RigidPolygonTargetLesson216.css";
 
 type Point = { x: number; y: number };
 type Mode = "move" | "rotate";
@@ -32,15 +33,19 @@ export default function RigidPolygonTargetLesson216({ resetToken, onInteraction 
   const [drag, setDrag] = useState<Drag>(null);
   const [answers, setAnswers] = useState(["", "", "", "", "", ""]);
   const [feedback, setFeedback] = useState<"idle" | "correct" | "incorrect">("idle");
+  const [activeStage, setActiveStage] = useState(0);
+  const [language, setLanguage] = useState("English (English)");
+  const [notation, setNotation] = useState("Soglish");
+  const [shareCount, setShareCount] = useState(0);
 
   const model = useMemo(() => buildModel(position, rotation), [position, rotation]);
   const reset = () => {
     setPosition({ x: 0, y: 0 }); setRotation(0); setMode("move");
-    setVisibility(initialVisibility); setAnswers(["", "", "", "", "", ""]); setFeedback("idle"); onInteraction();
+    setVisibility(initialVisibility); setAnswers(["", "", "", "", "", ""]); setFeedback("idle"); setActiveStage(0); setShareCount(0); onInteraction();
   };
   useEffect(() => {
     setPosition({ x: 0, y: 0 }); setRotation(0); setMode("move");
-    setVisibility(initialVisibility); setAnswers(["", "", "", "", "", ""]); setFeedback("idle");
+    setVisibility(initialVisibility); setAnswers(["", "", "", "", "", ""]); setFeedback("idle"); setActiveStage(0); setShareCount(0);
   }, [resetToken]);
 
   const toggle = (key: keyof Visibility) => { setVisibility((value) => ({ ...value, [key]: !value[key] })); onInteraction(); };
@@ -49,14 +54,33 @@ export default function RigidPolygonTargetLesson216({ resetToken, onInteraction 
     setFeedback(answers.every((value, index) => Number(value) === expected[index]) ? "correct" : "incorrect");
     onInteraction();
   };
+  const share = async () => {
+    const text = `Rigid triangle position (${position.x.toFixed(2)}, ${position.y.toFixed(2)}), rotation ${rotation.toFixed(2)} degrees`;
+    try { await navigator.clipboard.writeText(text); } catch { /* State still records the requested share. */ }
+    setShareCount((count) => count + 1);
+    onInteraction();
+  };
 
   return <section
-    className="space-y-3"
+    className="rigid216-page space-y-3"
     style={{ marginTop: -25 }}
     data-testid="dynamic-geometry-mockup-0273"
     data-dedicated-lesson="216"
     data-object-model="rigid-triangle-motion"
     data-direct-interaction="true"
+    data-position={`${position.x}:${position.y}`}
+    data-rotation={rotation}
+    data-mode={mode}
+    data-points={model.points.map((point) => `${point.x}:${point.y}`).join("|")}
+    data-overlay={model.overlay.map((point) => `${point.x}:${point.y}`).join("|")}
+    data-lengths={model.points.map((point, index) => distance(point, model.points[(index + 1) % 3])).map((value) => value.toFixed(4)).join(":")}
+    data-angles={model.points.map((point, index) => angle(model.points[(index + 2) % 3], point, model.points[(index + 1) % 3])).map((value) => value.toFixed(4)).join(":")}
+    data-visibility={Object.entries(visibility).map(([key, value]) => `${key}:${value}`).join("|")}
+    data-stage={activeStage}
+    data-language={language}
+    data-notation={notation}
+    data-share-count={shareCount}
+    data-feedback={feedback}
     aria-label="Rigid Polygon dedicated interactive geometry model"
   >
     <span className="sr-only">Live Verification. Check Construction.</span>
@@ -72,15 +96,17 @@ export default function RigidPolygonTargetLesson216({ resetToken, onInteraction 
         </div>
         <div className="grid grid-cols-2 content-start gap-2 text-[9px]">
           <button type="button" className="target-geometry-action" onClick={reset}><RotateCcw />Reset</button>
-          <button type="button" className="target-geometry-action" onClick={() => { void navigator.clipboard?.writeText(location.href); onInteraction(); }}><Share2 />Share</button>
-          <button type="button" className="target-geometry-action">English (English)</button>
+          <button type="button" className="target-geometry-action" onClick={share}><Share2 />Share</button>
+          <span aria-hidden />
+          <select aria-label="Notation language" className="target-geometry-action" value={notation} onChange={(event) => { setNotation(event.target.value); onInteraction(); }}><option>Soglish</option><option>Symbolic</option></select>
+          <select aria-label="Lesson language" className="target-geometry-action" value={language} onChange={(event) => { setLanguage(event.target.value); onInteraction(); }}><option>English (English)</option><option>Hindi (हिन्दी)</option></select>
           <a className="target-geometry-action" href="/workspace/geometry">Workspace</a>
         </div>
       </div>
     </header>
 
     <nav className="grid grid-cols-4 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm" style={{ marginTop: 18 }}>
-      {[['Explore','Observe & manipulate'], ['Understand','Rule & insight'], ['Examples','Worked example'], ['Practice','Try it yourself']].map(([label, sub], index) => <button key={label} type="button" className={`h-[53px] text-[10px] font-black ${index === 0 ? 'bg-cyan-600 text-white' : 'text-slate-700'}`} onClick={() => { document.getElementById(`rigid-${index}`)?.scrollIntoView({ behavior: 'smooth', block: 'center' }); onInteraction(); }}><span className="block">{label}</span><span className={`mt-1 block text-[8px] font-normal ${index === 0 ? 'text-cyan-50' : 'text-slate-500'}`}>{sub}</span></button>)}
+      {[['Explore','Observe & manipulate'], ['Understand','Rule & insight'], ['Examples','Worked example'], ['Practice','Try it yourself']].map(([label, sub], index) => <button key={label} type="button" className={`h-[53px] text-[10px] font-black ${activeStage === index ? 'bg-cyan-600 text-white' : 'text-slate-700'}`} onClick={() => { setActiveStage(index); document.getElementById(`rigid-${index}`)?.scrollIntoView({ behavior: 'smooth', block: 'center' }); onInteraction(); }}><span className="block">{label}</span><span className={`mt-1 block text-[8px] font-normal ${activeStage === index ? 'text-cyan-50' : 'text-slate-500'}`}>{sub}</span></button>)}
     </nav>
 
     <section id="rigid-0" className="rounded-2xl border border-slate-200 bg-white p-3 shadow-sm">

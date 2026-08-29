@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **198 of 200 lessons completed; 2 pending.**
+Dedicated rebuild target: **199 of 200 lessons completed; 1 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -184,6 +184,7 @@ Dedicated rebuild target: **198 of 200 lessons completed; 2 pending.**
 | 0270   | 213 Best Fit Line | Complete | Dedicated eight-point least-squares model with physical point/line drags, real m/b controls, residual/SSE/R-squared calculations, reject/accept grading, generated datasets, stateful stages, and exact 1534x1025 framing |
 | 0271   | 214 Triangle Constructor | Complete | Dedicated SSS/SAS/ASA construction model with physical vertex drag, live side/angle/area/perimeter/classification calculations, infeasible-state handling, real pan/stages/fullscreen, graded SAS practice, and exact 1029x1528 framing |
 | 0272   | 215 Regular Polygon | Complete | Dedicated generated-vertex regular-polygon model with physical center/vertex drags, live angle/side/perimeter/area/symmetry calculations, real n/r/placement/rotation/visibility controls, numerical grading, and exact 1027x1532 framing |
+| 0273   | 216 Rigid Polygon | Complete | Dedicated rigid-triangle model with physical translation/rotation drags, invariant side/angle calculations, exact dependent overlay, real visibility/stage/language/share controls, six-field grading, and exact 1027x1531 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2775,3 +2776,11 @@ Audited and strengthened the dedicated `generated-equal-radius-equal-angle-verte
 The exact 1027x1532 frame matches the target: sidebar width 210, content x=223-1014, header y=108-286, workspace y=287-804, concept strip y=815-943, construction/formula/practice row y=954-1311, navigation y=1322-1390, and footer y=1390-1532. There is no horizontal overflow and there are no console warnings or errors.
 
 Evidence: `0272-reference.png`, `0272-desktop.png`, `0272-dedicated-target-validation.json`.
+
+## Lesson 216 / Mockup 0273 - Rigid Polygon
+
+Audited and strengthened the dedicated `rigid-triangle-motion` model against target 0273. Physical whole-polygon dragging translates every vertex equally; dragging vertex B in Rotate mode turns the complete triangle around its centroid. Both operations preserve all three computed side lengths and interior angles byte-for-byte. The translated overlay remains exactly vector (6, -2) from every corresponding source point. Labels, lengths, angles, overlay, Move, Rotate, Reset view, four stateful lesson tabs, notation, language, Share, Reset, Workspace, and adjacent routes are functional. The six-field 90-degree counterclockwise practice independently exercises reject, accept, and reset paths.
+
+The exact 1027x1531 frame matches the target: sidebar width 211, content x=225-1009, header y=96-243, tabs y=261-316, workspace y=328-908, teaching/practice row y=918-1259.19, motion strip y=1269.19-1346.69, navigation y=1356.69-1410.69, and footer y=1411-1531. There is no horizontal overflow and there are no console warnings or errors. The mockup's two 4.47 side labels contradict its stated A(-3,1), B(1,5), C(4,1) coordinates; the lesson intentionally reports the correct coordinate-derived lengths sqrt(32), 5, and 7.
+
+Evidence: `0273-reference.png`, `0273-desktop.png`, `0273-dedicated-target-validation.json`.
