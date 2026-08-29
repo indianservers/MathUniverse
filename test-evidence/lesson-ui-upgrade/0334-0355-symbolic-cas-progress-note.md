@@ -1,6 +1,6 @@
 # Symbolic Mathematics / CAS Workspace target batch 0334-0355
 
-Dedicated rebuild target: **13 of 22 lessons completed; 9 pending.**
+Dedicated rebuild target: **14 of 22 lessons completed; 8 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
@@ -17,6 +17,7 @@ Dedicated rebuild target: **13 of 22 lessons completed; 9 pending.**
 | 0344 | 438 Polynomial Division | `linked-polynomial-long-synthetic-division-identity-practice` | Reworked individually and browser-validated |
 | 0345 | 439 Derivatives | `quotient-product-chain-symbolic-derivative-domain-tangent-practice` | Reworked individually and browser-validated |
 | 0346 | 440 Integrals | `parsed-polynomial-exact-power-rule-antiderivative-derivative-verification-challenge` | Reworked individually and browser-validated |
+| 0347 | 441 Limits | `editable-rational-one-sided-table-draggable-hole-limit-practice` | Reworked individually and browser-validated |
 
 ## Lesson 428 / Mockup 0334 - Symbolic Evaluation
 
@@ -199,3 +200,17 @@ Evidence:
 - `0346-reference.png`
 - `0346-desktop.png`
 - `0346-dedicated-target-validation.json`
+
+## Lesson 441 / Mockup 0347 - Limits
+
+Reworked individually around a dedicated removable-discontinuity model. The editable rational expression and limit point drive the two-sided table, one-sided filtering, graph function, draggable hole, limit result, precision, and explanatory state. Expression/point editing, left/right/both modes, table step, decimal precision, Update, random examples, true pointer dragging, fullscreen invocation, independent practice checking, challenge reset, shell Reset, and Previous/Next navigation are functional.
+
+Browser validation starts from `(x^2-4)/(x-2)` at `a=2`, derives both one-sided limits as `4`, and builds the linked table and graph. It switches to left-only data with `h=.01` and three decimals, shows `DNE` for a deliberately mismatched point, then accepts `(x^2-9)/(x-3)` at `a=3` and derives `6`. Random example produces `(x^2-16)/(x-4)` with limit `8`. A real pointer drag moves the plotted hole from `a=2` to `a=3`, rewrites the expression, and updates the result to `6`. Practice rejects `5`, accepts `6`, resets independently, and shell Reset restores all target defaults.
+
+Final exact 1042x1509 validation matches the target stack: sidebar width 209, header y=92-312, tabs y=316-366, dedicated table/graph workspace y=375-1009, feedback/rule row y=1019-1199, practice y=1209-1437, and adjacent navigation y=1447-1496. The target omits the site footer and this route does likewise. Validation reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0347-reference.png`
+- `0347-desktop.png`
+- `0347-dedicated-target-validation.json`

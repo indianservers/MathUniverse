@@ -1,0 +1,175 @@
+{
+  "mockup": "0347",
+  "lessonId": 441,
+  "checks": {
+    "initial": {
+      "point": "2",
+      "expression": "(x^2-4)/(x-2)",
+      "limit": "4",
+      "direction": "both",
+      "step": "0.1",
+      "places": "6",
+      "actions": "0",
+      "feedback": "idle"
+    },
+    "controls": {
+      "point": "2",
+      "expression": "(x^2-4)/(x-2)",
+      "limit": "4",
+      "direction": "left",
+      "step": "0.01",
+      "places": "3",
+      "actions": "3",
+      "feedback": "idle"
+    },
+    "mismatch": {
+      "point": "3",
+      "expression": "(x^2-4)/(x-2)",
+      "limit": "DNE",
+      "direction": "left",
+      "step": "0.01",
+      "places": "3",
+      "actions": "3",
+      "feedback": "idle"
+    },
+    "edited": {
+      "point": "3",
+      "expression": "(x^2-9)/(x-3)",
+      "limit": "6",
+      "direction": "left",
+      "step": "0.01",
+      "places": "3",
+      "actions": "3",
+      "feedback": "idle"
+    },
+    "random": {
+      "point": "4",
+      "expression": "(x^2-16)/(x-4)",
+      "limit": "8",
+      "direction": "left",
+      "step": "0.01",
+      "places": "3",
+      "actions": "4",
+      "feedback": "idle"
+    },
+    "reset": {
+      "point": "2",
+      "expression": "(x^2-4)/(x-2)",
+      "limit": "4",
+      "direction": "both",
+      "step": "0.1",
+      "places": "6",
+      "actions": "0",
+      "feedback": "idle"
+    },
+    "dragged": {
+      "point": "3",
+      "expression": "(x^2-9)/(x-3)",
+      "limit": "6",
+      "direction": "both",
+      "step": "0.1",
+      "places": "6",
+      "actions": "2",
+      "feedback": "idle"
+    },
+    "rejected": {
+      "point": "2",
+      "expression": "(x^2-4)/(x-2)",
+      "limit": "4",
+      "direction": "both",
+      "step": "0.1",
+      "places": "6",
+      "actions": "1",
+      "feedback": "incorrect"
+    },
+    "accepted": {
+      "point": "2",
+      "expression": "(x^2-4)/(x-2)",
+      "limit": "4",
+      "direction": "both",
+      "step": "0.1",
+      "places": "6",
+      "actions": "2",
+      "feedback": "correct"
+    },
+    "challengeReset": {
+      "point": "2",
+      "expression": "(x^2-4)/(x-2)",
+      "limit": "4",
+      "direction": "both",
+      "step": "0.1",
+      "places": "6",
+      "actions": "3",
+      "feedback": "idle"
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/symbolic-mathematics/440-integrals",
+    "nextHref": "/lessons/symbolic-mathematics/442-series-expansions"
+  },
+  "metrics": {
+    "document": {
+      "width": 1042,
+      "height": 1509
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 209,
+      "height": 1509,
+      "bottom": 1509
+    },
+    "header": {
+      "top": 92,
+      "left": 223,
+      "width": 809,
+      "height": 220,
+      "bottom": 312
+    },
+    "tabs": {
+      "top": 316,
+      "left": 223,
+      "width": 809,
+      "height": 50,
+      "bottom": 366
+    },
+    "workspace": {
+      "top": 375,
+      "left": 223,
+      "width": 809,
+      "height": 634,
+      "bottom": 1009
+    },
+    "info": {
+      "top": 1019,
+      "left": 223,
+      "width": 809,
+      "height": 180,
+      "bottom": 1199
+    },
+    "practice": {
+      "top": 1209,
+      "left": 223,
+      "width": 809,
+      "height": 228,
+      "bottom": 1437
+    },
+    "adjacent": {
+      "top": 1447,
+      "left": 223,
+      "width": 809,
+      "height": 49,
+      "bottom": 1496
+    },
+    "footer": {
+      "top": 0,
+      "left": 0,
+      "width": 0,
+      "height": 0,
+      "bottom": 0
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
