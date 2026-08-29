@@ -1,6 +1,6 @@
 # Symbolic Mathematics / CAS Workspace target batch 0334-0355
 
-Dedicated rebuild target: **15 of 22 lessons completed; 7 pending.**
+Dedicated rebuild target: **16 of 22 lessons completed; 6 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
@@ -19,6 +19,7 @@ Dedicated rebuild target: **15 of 22 lessons completed; 7 pending.**
 | 0346 | 440 Integrals | `parsed-polynomial-exact-power-rule-antiderivative-derivative-verification-challenge` | Reworked individually and browser-validated |
 | 0347 | 441 Limits | `editable-rational-one-sided-table-draggable-hole-limit-practice` | Reworked individually and browser-validated |
 | 0348 | 442 Series Expansions | `taylor-derivative-cycle-center-degree-approximation-error-graph-practice` | Reworked individually and browser-validated |
+| 0349 | 443 Differential Equations | `ode-slope-field-exact-solution-euler-draggable-initial-condition-animation-error` | Reworked individually and browser-validated |
 
 ## Lesson 428 / Mockup 0334 - Symbolic Evaluation
 
@@ -229,3 +230,17 @@ Evidence:
 - `0348-reference.png`
 - `0348-desktop.png`
 - `0348-dedicated-target-validation.json`
+
+## Lesson 443 / Mockup 0349 - Differential Equations
+
+Reworked individually around a dedicated first-order ODE model. The selected slope rule and editable initial condition drive every slope-field segment, the exact solution family, a stepped Euler approximation, next-point calculation, local slope, comparison values, and absolute/relative error. Equation selection, initial-value editing, step-size control, true pointer dragging, Euler clearing and animation, fullscreen, Reset view, shell Reset, and Previous/Next navigation are functional.
+
+Browser validation starts from `y'=x-y`, `(x0,y0)=(0,1)`, and `h=.2`, deriving exact solution `y=x-1+2e^-x`, next Euler point `(0.2,0.8)`, and a live comparison at `x=1.8`. It switches to `y'=x+y`, edits the initial condition to `(1,2)`, changes the step to `.25`, and recalculates every dependent value. A real pointer drag moves the initial condition to approximately `(0.4,1.9)`; Clear removes the Euler path, Animate rebuilds it incrementally, and shell Reset restores all defaults. The target's next Euler value `1.0000` conflicts with its displayed slope `-1` and `h=.2`; the implementation correctly reports `0.8000` while preserving the target control layout.
+
+Final exact 1496x1051 validation matches the target landscape composition: sidebar width 287, target tabs y=111-165, dedicated graph/control workspace y=177-917, graph y=244-902, controls x=1206-1476, and adjacent navigation y=929-1005. The target omits the shared lesson shell and site footer and this route does likewise. Validation reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0349-reference.png`
+- `0349-desktop.png`
+- `0349-dedicated-target-validation.json`

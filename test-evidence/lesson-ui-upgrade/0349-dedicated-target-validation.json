@@ -1,0 +1,129 @@
+{
+  "mockup": "0349",
+  "lessonId": 443,
+  "checks": {
+    "initial": {
+      "equation": "x-y",
+      "x0": "0",
+      "y0": "1",
+      "step": "0.2",
+      "visible": "16",
+      "error": "0.06216232044317316",
+      "actions": "0"
+    },
+    "edited": {
+      "equation": "x+y",
+      "x0": "1",
+      "y0": "2",
+      "step": "0.25",
+      "visible": "16",
+      "error": "8.148620957738792",
+      "actions": "4"
+    },
+    "dragged": {
+      "equation": "x-y",
+      "x0": "0.4",
+      "y0": "1.9000000000000001",
+      "step": "0.2",
+      "visible": "16",
+      "error": "0.07770290055396623",
+      "actions": "0"
+    },
+    "cleared": {
+      "equation": "x-y",
+      "x0": "0.4",
+      "y0": "1.9000000000000001",
+      "step": "0.2",
+      "visible": "0",
+      "error": "0.07770290055396623",
+      "actions": "1"
+    },
+    "animated": {
+      "equation": "x-y",
+      "x0": "0.4",
+      "y0": "1.9000000000000001",
+      "step": "0.2",
+      "visible": "5",
+      "error": "0.07770290055396623",
+      "actions": "2"
+    },
+    "reset": {
+      "equation": "x-y",
+      "x0": "0",
+      "y0": "1",
+      "step": "0.2",
+      "visible": "16",
+      "error": "0.06216232044317316",
+      "actions": "0"
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/symbolic-mathematics/442-series-expansions",
+    "nextHref": "/lessons/symbolic-mathematics/444-matrix-operations"
+  },
+  "metrics": {
+    "document": {
+      "width": 1496,
+      "height": 1051
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 287,
+      "height": 1051,
+      "bottom": 1051
+    },
+    "shellHeader": {
+      "top": 0,
+      "left": 0,
+      "width": 0,
+      "height": 0,
+      "bottom": 0
+    },
+    "tabs": {
+      "top": 111,
+      "left": 303,
+      "width": 1173,
+      "height": 54,
+      "bottom": 165
+    },
+    "layout": {
+      "top": 177,
+      "left": 303,
+      "width": 1173,
+      "height": 740,
+      "bottom": 917
+    },
+    "graph": {
+      "top": 244,
+      "left": 318,
+      "width": 863,
+      "height": 658,
+      "bottom": 902
+    },
+    "controls": {
+      "top": 177,
+      "left": 1206,
+      "width": 270,
+      "height": 740,
+      "bottom": 917
+    },
+    "adjacent": {
+      "top": 929,
+      "left": 303,
+      "width": 1173,
+      "height": 76,
+      "bottom": 1005
+    },
+    "footer": {
+      "top": 0,
+      "left": 0,
+      "width": 0,
+      "height": 0,
+      "bottom": 0
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

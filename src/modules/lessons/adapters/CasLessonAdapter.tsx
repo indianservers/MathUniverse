@@ -19,6 +19,7 @@ import DerivativesTargetLesson439 from "./cas/DerivativesTargetLesson439";
 import IntegralsTargetLesson440 from "./cas/IntegralsTargetLesson440";
 import LimitsTargetLesson441 from "./cas/LimitsTargetLesson441";
 import SeriesExpansionsTargetLesson442 from "./cas/SeriesExpansionsTargetLesson442";
+import DifferentialEquationsTargetLesson443 from "./cas/DifferentialEquationsTargetLesson443";
 import { DifferentialEquationActivity } from "./p0/PriorityConceptActivities";
 
 export default function CasLessonAdapter(props: LessonAdapterProps) {
@@ -66,6 +67,9 @@ export default function CasLessonAdapter(props: LessonAdapterProps) {
   }
   if (props.lesson.id === 442) {
     return <SeriesExpansionsTargetLesson442 {...props} />;
+  }
+  if (props.lesson.id === 443) {
+    return <DifferentialEquationsTargetLesson443 {...props} />;
   }
   if (props.lesson.id >= 428 && props.lesson.id <= 449) {
     return <SymbolicCasMockupLesson {...props} />;
