@@ -1,0 +1,150 @@
+{
+  "mockup": "0341",
+  "lessonId": 435,
+  "checks": {
+    "initial": {
+      "kind": "unique",
+      "solution": "3.2,2.2",
+      "equations": "2,3,13;1,-1,1",
+      "zoom": "1",
+      "actions": "0",
+      "practice-feedback": "idle"
+    },
+    "edited": {
+      "kind": "unique",
+      "solution": "3.4,2.4",
+      "equations": "2,3,14;1,-1,1",
+      "zoom": "1",
+      "actions": "2",
+      "practice-feedback": "idle"
+    },
+    "dragged": {
+      "kind": "unique",
+      "solution": "3.5929833127741233,2.2000009964923475",
+      "equations": "2,3,13.785969615025289;1,-1,1.3929823162817758",
+      "zoom": "1",
+      "actions": "6",
+      "practice-feedback": "idle"
+    },
+    "zoomed": {
+      "kind": "unique",
+      "solution": "3.5929833127741233,2.2000009964923475",
+      "equations": "2,3,13.785969615025289;1,-1,1.3929823162817758",
+      "zoom": "1.2",
+      "actions": "7",
+      "practice-feedback": "idle"
+    },
+    "none": {
+      "kind": "none",
+      "solution": "0,0",
+      "equations": "2,3,13;4,6,20",
+      "zoom": "1",
+      "actions": "9",
+      "practice-feedback": "idle"
+    },
+    "infinite": {
+      "kind": "infinite",
+      "solution": "0,0",
+      "equations": "2,3,13;4,6,26",
+      "zoom": "1",
+      "actions": "10",
+      "practice-feedback": "idle"
+    },
+    "method": "Substitution",
+    "rejected": {
+      "kind": "unique",
+      "solution": "3.2,2.2",
+      "equations": "2,3,13;1,-1,1",
+      "zoom": "1",
+      "actions": "13",
+      "practice-feedback": "incorrect"
+    },
+    "accepted": {
+      "kind": "unique",
+      "solution": "3.2,2.2",
+      "equations": "2,3,13;1,-1,1",
+      "zoom": "1",
+      "actions": "14",
+      "practice-feedback": "correct"
+    },
+    "hint": true,
+    "fullscreenOpen": true,
+    "reset": {
+      "kind": "unique",
+      "solution": "3.2,2.2",
+      "equations": "2,3,13;1,-1,1",
+      "zoom": "1",
+      "actions": "0",
+      "practice-feedback": "idle"
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/symbolic-mathematics/434-numerical-solve",
+    "nextHref": "/lessons/symbolic-mathematics/436-eliminate-variables"
+  },
+  "metrics": {
+    "document": {
+      "width": 1011,
+      "height": 1556
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 209,
+      "height": 1556,
+      "bottom": 1556
+    },
+    "header": {
+      "top": 100,
+      "left": 224,
+      "width": 770,
+      "height": 173,
+      "bottom": 273
+    },
+    "how": {
+      "top": 284,
+      "left": 224,
+      "width": 770,
+      "height": 124,
+      "bottom": 408
+    },
+    "workspace": {
+      "top": 416,
+      "left": 224,
+      "width": 770,
+      "height": 667,
+      "bottom": 1083
+    },
+    "learning": {
+      "top": 1091,
+      "left": 224,
+      "width": 770,
+      "height": 236,
+      "bottom": 1327
+    },
+    "insight": {
+      "top": 1335,
+      "left": 224,
+      "width": 770,
+      "height": 47,
+      "bottom": 1382
+    },
+    "adjacent": {
+      "top": 1392,
+      "left": 224,
+      "width": 770,
+      "height": 52,
+      "bottom": 1444
+    },
+    "footer": {
+      "top": 1455,
+      "left": 209,
+      "width": 802,
+      "height": 94,
+      "bottom": 1549
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

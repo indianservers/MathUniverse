@@ -1,6 +1,6 @@
 # Symbolic Mathematics / CAS Workspace target batch 0334-0355
 
-Dedicated rebuild target: **7 of 22 lessons completed; 15 pending.**
+Dedicated rebuild target: **8 of 22 lessons completed; 14 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
@@ -11,6 +11,7 @@ Dedicated rebuild target: **7 of 22 lessons completed; 15 pending.**
 | 0338 | 432 Substitute | `dual-occurrence-substitution-tree-order-of-operations-practice` | Reworked individually and browser-validated |
 | 0339 | 433 Solve | `balanced-quadratic-inverse-operations-factor-roots-verification` | Reworked individually and browser-validated |
 | 0340 | 434 Numerical Solve | `adaptive-bisection-newton-iteration-graph-residual-practice` | Reworked individually and browser-validated |
+| 0341 | 435 Solve Systems | `two-equation-determinant-elimination-intersection-drag-classification-practice` | Reworked individually and browser-validated |
 
 ## Lesson 428 / Mockup 0334 - Symbolic Evaluation
 
@@ -109,3 +110,17 @@ Evidence:
 - `0340-reference.png`
 - `0340-desktop.png`
 - `0340-dedicated-target-validation.json`
+
+## Lesson 435 / Mockup 0341 - Solve Systems
+
+Reworked individually around a dedicated two-equation linear-system model. Editable coefficients and constants drive determinant classification, exact intersection coordinates, both plotted lines, a five-step elimination derivation, solution formatting, and the system-type state. Method selection, equation editing, graph zoom, fullscreen, unique/no-solution/infinite example controls, keyboard movement, true pointer dragging of the intersection, independent practice checking, hint, shell Reset, and Previous/Next navigation are functional.
+
+Browser validation starts from `2x+3y=13` and `x-y=1`, deriving the unique solution `(3.2,2.2)`. Editing the first constant to 14 updates the solution to `(3.4,2.4)`. A real pointer drag moves the intersection to approximately `(3.59,2.2)` and recalculates both constants so the dragged point remains on both lines. Validation also exercises zoom, switches to mathematically valid parallel and coincident examples, selects Substitution, rejects practice `(2.5,2)`, accepts `(2.5,2.25)`, reveals the hint, opens/closes fullscreen, and resets cleanly. The target graph labels the initial intersection `(2,3)`, which contradicts both its equations and its own elimination card; the implementation consistently uses the correct `(3.2,2.2)` everywhere.
+
+Final exact 1011x1556 validation matches the target stack: sidebar width 209, compact header y=100-273 with actions y=229-263, custom instruction strip y=284-408, dedicated system workspace y=416-1083, worked-example/misconception/practice row y=1091-1327, insight y=1335-1382, adjacent navigation y=1392-1444, and site footer y=1455-1549. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0341-reference.png`
+- `0341-desktop.png`
+- `0341-dedicated-target-validation.json`
