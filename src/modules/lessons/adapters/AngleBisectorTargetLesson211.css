@@ -1,0 +1,18 @@
+.angle211-page,
+.angle211-page *{letter-spacing:0}
+@media(min-width:960px) and (max-width:1120px){
+body:has(.angle211-page){overflow:hidden}
+body:has(.angle211-page) [data-testid="desktop-sidebar"]{width:208px}
+body:has(.angle211-page) header.sticky{height:54px;min-height:54px}
+body:has(.angle211-page) #main-content{padding:0 15px 0 24px}
+body:has(.angle211-page) #main-content>.flex.items-center.gap-2{height:48px}
+.angle211-page{transform:translateY(14px)}
+.angle211-page>header{height:156px}
+.angle211-page>nav:first-of-type{box-sizing:border-box;height:39px;min-height:0;margin-top:9px!important}
+.angle211-page>nav:first-of-type+div{height:463px;margin-top:14px!important}
+.angle211-page>#angle-construct{height:269px;margin-top:14px!important}
+.angle211-page>#angle-practice{height:225px;margin-top:17px!important}
+.angle211-page>#angle-practice+nav{box-sizing:border-box;height:54px;margin-top:12px!important}
+.angle211-page>.sr-only,.angle211-page~.lesson-adjacent-nav{display:none}
+body:has(.angle211-page) footer[aria-label="Site footer"]{height:84px;transform:translateY(-7px)}
+}

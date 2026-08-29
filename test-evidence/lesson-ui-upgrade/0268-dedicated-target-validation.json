@@ -1,15 +1,163 @@
-[
-  {
-    "id": 211,
-    "mockup": 268,
-    "route": "/lessons/geometry/211-angle-bisector",
-    "width": 1059,
-    "height": 1485,
-    "status": "Correct: The two angles are equal.\nLine l is the angle bisector.",
-    "consoleErrors": [],
-    "scrollHeight": 1485,
-    "surfaceBottom": 1381,
-    "objectModel": "angle-bisector",
-    "overflowing": 0
-  }
-]
+{
+  "mockup": "0268",
+  "lessonId": 211,
+  "checks": {
+    "initial": {
+      "a": "105:205",
+      "b": "480:45",
+      "c": "435:300",
+      "full-angle": "39.1663",
+      "half-angle": "19.5832",
+      "tool": "select",
+      "arcs": "true",
+      "steps": "false",
+      "pan": "0:0",
+      "practice-angle": "78",
+      "practice-count": "0"
+    },
+    "bDrag": {
+      "a": "105:205",
+      "b": "430.64587550607285:88.18485516676307",
+      "c": "435:300",
+      "full-angle": "35.7938",
+      "half-angle": "17.8969",
+      "tool": "select",
+      "arcs": "true",
+      "steps": "false",
+      "pan": "0:0",
+      "practice-angle": "78",
+      "practice-count": "0"
+    },
+    "cDrag": {
+      "a": "105:205",
+      "b": "430.64587550607285:88.18485516676307",
+      "c": "465.84633157412765:262.9843840370156",
+      "full-angle": "28.8627",
+      "half-angle": "14.4313",
+      "tool": "select",
+      "arcs": "true",
+      "steps": "false",
+      "pan": "0:0",
+      "practice-angle": "78",
+      "practice-count": "0"
+    },
+    "arcs": {
+      "a": "105:205",
+      "b": "430.64587550607285:88.18485516676307",
+      "c": "465.84633157412765:262.9843840370156",
+      "full-angle": "28.8627",
+      "half-angle": "14.4313",
+      "tool": "select",
+      "arcs": "false",
+      "steps": "false",
+      "pan": "0:0",
+      "practice-angle": "78",
+      "practice-count": "0"
+    },
+    "pan": {
+      "a": "105:205",
+      "b": "430.64587550607285:88.18485516676307",
+      "c": "465.84633157412765:262.9843840370156",
+      "full-angle": "28.8627",
+      "half-angle": "14.4313",
+      "tool": "pan",
+      "arcs": "false",
+      "steps": "false",
+      "pan": "30:20",
+      "practice-angle": "78",
+      "practice-count": "0"
+    },
+    "compass": {
+      "a": "105:205",
+      "b": "430.64587550607285:88.18485516676307",
+      "c": "465.84633157412765:262.9843840370156",
+      "full-angle": "28.8627",
+      "half-angle": "14.4313",
+      "tool": "compass",
+      "arcs": "false",
+      "steps": "true",
+      "pan": "30:20",
+      "practice-angle": "78",
+      "practice-count": "0"
+    },
+    "share": "The two angles are equal.Line l is the angle bisector.",
+    "practiceBefore": "Practice angle 78.0 degrees",
+    "practiceAfter": "Practice angle 54.9 degrees",
+    "newAngle": {
+      "a": "105:205",
+      "b": "430.64587550607285:88.18485516676307",
+      "c": "465.84633157412765:262.9843840370156",
+      "full-angle": "28.8627",
+      "half-angle": "14.4313",
+      "tool": "compass",
+      "arcs": "false",
+      "steps": "true",
+      "pan": "30:20",
+      "practice-angle": "64",
+      "practice-count": "1"
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/geometry/210-perpendicular-bisector",
+    "nextHref": "/lessons/geometry/212-tangent"
+  },
+  "metrics": {
+    "document": {
+      "width": 1059,
+      "height": 1485
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 208,
+      "height": 1485,
+      "bottom": 1485
+    },
+    "header": {
+      "top": 102,
+      "left": 232,
+      "width": 812,
+      "height": 156,
+      "bottom": 258
+    },
+    "tabs": {
+      "top": 267,
+      "left": 232,
+      "width": 812,
+      "height": 39,
+      "bottom": 306
+    },
+    "explore": {
+      "top": 320,
+      "left": 232,
+      "width": 812,
+      "height": 463,
+      "bottom": 783
+    },
+    "construct": {
+      "top": 797,
+      "left": 232,
+      "width": 812,
+      "height": 269,
+      "bottom": 1066
+    },
+    "practice": {
+      "top": 1083,
+      "left": 232,
+      "width": 812,
+      "height": 225,
+      "bottom": 1308
+    },
+    "footer": {
+      "top": 1394,
+      "left": 208,
+      "width": 851,
+      "height": 84,
+      "bottom": 1478
+    }
+  },
+  "consoleMessages": [],
+  "note": "The rendered half-angle is derived from draggable arm coordinates; the mockup's 55-degree labels do not match its drawn arm directions.",
+  "passed": true
+}

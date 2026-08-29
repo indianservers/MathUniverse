@@ -21,6 +21,7 @@ import {
   type PointerEvent as ReactPointerEvent,
 } from "react";
 import type { LessonAdapterProps } from "../types";
+import "./AngleBisectorTargetLesson211.css";
 
 type Point = { x: number; y: number };
 type DragPoint = "a" | "b" | "c" | null;
@@ -29,7 +30,7 @@ type Tool = "select" | "pan" | "compass";
 const initialPoints = {
   a: { x: 105, y: 205 },
   b: { x: 480, y: 45 },
-  c: { x: 435, y: 335 },
+  c: { x: 435, y: 300 },
 };
 
 export default function AngleBisectorTargetLesson211({
@@ -141,11 +142,22 @@ export default function AngleBisectorTargetLesson211({
   return (
     <section
       ref={surfaceRef}
-      className="space-y-3"
+      className="angle211-page space-y-3"
       data-testid="dynamic-geometry-mockup-0268"
       data-dedicated-lesson="211"
       data-object-model="angle-bisector"
       data-direct-interaction="true"
+      data-a={`${points.a.x}:${points.a.y}`}
+      data-b={`${points.b.x}:${points.b.y}`}
+      data-c={`${points.c.x}:${points.c.y}`}
+      data-full-angle={model.full.toFixed(4)}
+      data-half-angle={model.half.toFixed(4)}
+      data-tool={tool}
+      data-arcs={String(showArcs)}
+      data-steps={String(showSteps)}
+      data-pan={`${pan.x}:${pan.y}`}
+      data-practice-angle={String(practiceAngle)}
+      data-practice-count={String(practiceCount)}
       aria-label="Angle bisector dedicated interactive geometry model"
     >
       <header className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
@@ -747,6 +759,8 @@ function ConstructionDiagram() {
   );
 }
 
+const PRACTICE_VERTEX = { x: 35, y: 90 };
+
 function PracticePanel({
   angle,
   onNewAngle,
@@ -760,12 +774,12 @@ function PracticePanel({
   const [b, setB] = useState(initial.b);
   const [c, setC] = useState(initial.c);
   const [dragging, setDragging] = useState<"b" | "c" | null>(null);
-  const a = { x: 35, y: 90 };
+  const a = PRACTICE_VERTEX;
   useEffect(() => {
     setB(initial.b);
     setC(initial.c);
   }, [initial]);
-  const model = useMemo(() => deriveAngle(a, b, c), [b, c]);
+  const model = useMemo(() => deriveAngle(a, b, c), [a, b, c]);
   const move = (event: ReactPointerEvent<SVGSVGElement>) => {
     if (!dragging) return;
     const rect = event.currentTarget.getBoundingClientRect();
@@ -773,7 +787,8 @@ function PracticePanel({
       x: clamp(((event.clientX - rect.left) / rect.width) * 220, 20, 210),
       y: clamp(((event.clientY - rect.top) / rect.height) * 180, 10, 170),
     };
-    dragging === "b" ? setB(point) : setC(point);
+    if (dragging === "b") setB(point);
+    else setC(point);
     onInteraction();
   };
   return (

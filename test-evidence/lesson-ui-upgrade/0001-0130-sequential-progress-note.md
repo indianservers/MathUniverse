@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **193 of 200 lessons completed; 7 pending.**
+Dedicated rebuild target: **194 of 200 lessons completed; 6 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -179,6 +179,7 @@ Dedicated rebuild target: **193 of 200 lessons completed; 7 pending.**
 | 0265   | 208 Perpendicular Line | Complete | Dedicated given-line/point/dependent-perpendicular model with physical P drag, editable slope and coordinates, point-aware construction tolerance, far-click rejection, exact negative-reciprocal calculation, and exact 998x1576 framing |
 | 0266   | 209 Parallel Line | Complete | Dedicated shared-slope/two-intercept model with physical P drag, derived parallel intercept, editable line and point, real visibility/snap/zoom/reset/stages, gated invariant checklist, and exact 1024x1536 framing |
 | 0267   | 210 Perpendicular Bisector | Complete | Dedicated endpoint/midpoint/compass-intersection model with physical A/B and practice-C drags, auto/custom radius, construction visibility, exact locus grading, and exact 1024x1536 framing |
+| 0268   | 211 Angle Bisector | Complete | Dedicated three-point angle model with physical B/C and practice-arm drags, live normalized bisector, derived half angles, real Select/Pan/Compass tools, construction overlays, generated practice, and exact 1059x1485 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2730,3 +2731,11 @@ Audited the dedicated `endpoint-midpoint-compass-intersection-bisector` model ag
 The exact 1024x1536 frame matches the target: header y=99-300, stages y=314-376, construction y=390-958, teaching/practice cards y=970-1302, and footer y=1401-1516. There is no horizontal overflow and there are no console warnings or errors.
 
 Evidence: `0267-reference.png`, `0267-desktop.png`, `0267-dedicated-target-validation.json`.
+
+## Lesson 211 / Mockup 0268 - Angle Bisector
+
+Audited the dedicated `three-point-derived-angle-bisector` model against target 0268. Physical B/C drags recompute the interior angle, normalized bisector ray, both half-angle measurements, arcs, and construction status. Select, Pan, Compass, arc visibility, construction steps, fullscreen, language, Share, Reset, all lesson tabs, routes, and the independent practice construction are functional. Validation physically moves both main arm points, pans the SVG, changes tools and overlays, drags the practice arm, and generates a new 64-degree practice angle.
+
+The exact 1059x1485 frame matches the target: header y=102-258, tabs y=267-306, exploration y=320-783, construction y=797-1066, practice y=1083-1308, and footer y=1394-1478. There is no horizontal overflow and there are no console warnings or errors. The mockup prints two 55-degree halves although its drawn arm directions do not form a 110-degree angle; the implementation intentionally reports the mathematically correct angle derived from the draggable coordinates.
+
+Evidence: `0268-reference.png`, `0268-desktop.png`, `0268-dedicated-target-validation.json`.
