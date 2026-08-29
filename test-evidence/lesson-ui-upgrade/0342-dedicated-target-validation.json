@@ -1,0 +1,146 @@
+{
+  "mockup": "0342",
+  "lessonId": 436,
+  "checks": {
+    "initial": {
+      "multipliers": "1,-2",
+      "result": "0,5,-10",
+      "solution": "2,-2",
+      "eliminated": "x",
+      "actions": "0",
+      "practice-result": "0,16,28",
+      "practice-feedback": "idle"
+    },
+    "notEliminated": {
+      "multipliers": "1,-1",
+      "result": "1,4,-6",
+      "solution": "NaN,NaN",
+      "eliminated": "none",
+      "actions": "1",
+      "practice-result": "0,16,28",
+      "practice-feedback": "idle"
+    },
+    "restored": {
+      "multipliers": "1,-2",
+      "result": "0,5,-10",
+      "solution": "2,-2",
+      "eliminated": "x",
+      "actions": "2",
+      "practice-result": "0,16,28",
+      "practice-feedback": "idle"
+    },
+    "autoCheckOff": false,
+    "practiceChanged": {
+      "multipliers": "1,-2",
+      "result": "0,5,-10",
+      "solution": "2,-2",
+      "eliminated": "x",
+      "actions": "4",
+      "practice-result": "5,14,27",
+      "practice-feedback": "idle"
+    },
+    "rejected": {
+      "multipliers": "1,-2",
+      "result": "0,5,-10",
+      "solution": "2,-2",
+      "eliminated": "x",
+      "actions": "6",
+      "practice-result": "0,16,28",
+      "practice-feedback": "incorrect"
+    },
+    "accepted": {
+      "multipliers": "1,-2",
+      "result": "0,5,-10",
+      "solution": "2,-2",
+      "eliminated": "x",
+      "actions": "7",
+      "practice-result": "0,16,28",
+      "practice-feedback": "correct"
+    },
+    "reset": {
+      "multipliers": "1,-2",
+      "result": "0,5,-10",
+      "solution": "2,-2",
+      "eliminated": "x",
+      "actions": "0",
+      "practice-result": "0,16,28",
+      "practice-feedback": "idle"
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/symbolic-mathematics/435-solve-systems",
+    "nextHref": "/lessons/symbolic-mathematics/437-partial-fractions"
+  },
+  "metrics": {
+    "document": {
+      "width": 1012,
+      "height": 1554
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 221,
+      "height": 1554,
+      "bottom": 1554
+    },
+    "header": {
+      "top": 94,
+      "left": 239,
+      "width": 754,
+      "height": 190,
+      "bottom": 284
+    },
+    "tabs": {
+      "top": 291,
+      "left": 239,
+      "width": 754,
+      "height": 50,
+      "bottom": 341
+    },
+    "flow": {
+      "top": 364,
+      "left": 239,
+      "width": 754,
+      "height": 115,
+      "bottom": 479
+    },
+    "workspace": {
+      "top": 503,
+      "left": 239,
+      "width": 754,
+      "height": 416,
+      "bottom": 919
+    },
+    "explain": {
+      "top": 928,
+      "left": 239,
+      "width": 754,
+      "height": 172,
+      "bottom": 1100
+    },
+    "worked": {
+      "top": 1107,
+      "left": 239,
+      "width": 754,
+      "height": 134,
+      "bottom": 1241
+    },
+    "practice": {
+      "top": 1248,
+      "left": 239,
+      "width": 754,
+      "height": 230,
+      "bottom": 1478
+    },
+    "adjacent": {
+      "top": 1487,
+      "left": 239,
+      "width": 754,
+      "height": 57,
+      "bottom": 1544
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

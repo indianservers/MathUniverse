@@ -1,6 +1,6 @@
 # Symbolic Mathematics / CAS Workspace target batch 0334-0355
 
-Dedicated rebuild target: **8 of 22 lessons completed; 14 pending.**
+Dedicated rebuild target: **9 of 22 lessons completed; 13 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
@@ -12,6 +12,7 @@ Dedicated rebuild target: **8 of 22 lessons completed; 14 pending.**
 | 0339 | 433 Solve | `balanced-quadratic-inverse-operations-factor-roots-verification` | Reworked individually and browser-validated |
 | 0340 | 434 Numerical Solve | `adaptive-bisection-newton-iteration-graph-residual-practice` | Reworked individually and browser-validated |
 | 0341 | 435 Solve Systems | `two-equation-determinant-elimination-intersection-drag-classification-practice` | Reworked individually and browser-validated |
+| 0342 | 436 Eliminate Variables | `row-multiplier-matrix-addition-reduction-back-substitution-practice` | Reworked individually and browser-validated |
 
 ## Lesson 428 / Mockup 0334 - Symbolic Evaluation
 
@@ -124,3 +125,17 @@ Evidence:
 - `0341-reference.png`
 - `0341-desktop.png`
 - `0341-dedicated-target-validation.json`
+
+## Lesson 436 / Mockup 0342 - Eliminate Variables
+
+Reworked individually around a dedicated row-operation model. Two source equations and independently editable row multipliers drive the scaled elimination matrix, row-addition coefficients, eliminated-variable detection, reduced equation, back-substitution, final solution, verification, and worked example. Auto-check, main multipliers, independent practice multipliers, exact answer checking, back-substitution verification, shell Reset, and Previous/Next navigation are functional.
+
+Browser validation starts from the coherent system `2x+3y=-2`, `x-y=4` with multipliers `1,-2`, producing `0x+5y=-10`, `y=-2`, and `x=2`. Changing the second multiplier to `-1` correctly yields `x+4y=-6` and reports that no variable has yet been eliminated; restoring `-2` restores the solution. The separate challenge scales `3x+2y=5` and `5x-2y=-1` by `5,-3`, derives `16y=28`, rejects `y=2`, and accepts `y=1.75`. The target image combines incompatible equations, matrix coefficients, row sums, and verification values; the implementation preserves its layout while keeping every displayed calculation internally consistent.
+
+Final exact 1012x1554 validation matches the target stack: sidebar width 221, compact header y=94-284, tabs y=291-341, four-step flow y=364-479, elimination workspace y=503-919, rule/misconception y=928-1100, worked example y=1107-1241, practice y=1248-1478, and adjacent navigation y=1487-1544. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0342-reference.png`
+- `0342-desktop.png`
+- `0342-dedicated-target-validation.json`
