@@ -1,6 +1,6 @@
 # Symbolic Mathematics / CAS Workspace target batch 0334-0355
 
-Dedicated rebuild target: **6 of 22 lessons completed; 16 pending.**
+Dedicated rebuild target: **7 of 22 lessons completed; 15 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
@@ -10,6 +10,7 @@ Dedicated rebuild target: **6 of 22 lessons completed; 16 pending.**
 | 0337 | 431 Factor | `monic-quadratic-factor-pair-roots-area-tiles-challenge` | Reworked individually and browser-validated |
 | 0338 | 432 Substitute | `dual-occurrence-substitution-tree-order-of-operations-practice` | Reworked individually and browser-validated |
 | 0339 | 433 Solve | `balanced-quadratic-inverse-operations-factor-roots-verification` | Reworked individually and browser-validated |
+| 0340 | 434 Numerical Solve | `adaptive-bisection-newton-iteration-graph-residual-practice` | Reworked individually and browser-validated |
 
 ## Lesson 428 / Mockup 0334 - Symbolic Evaluation
 
@@ -94,3 +95,17 @@ Evidence:
 - `0339-reference.png`
 - `0339-desktop.png`
 - `0339-dedicated-target-validation.json`
+
+## Lesson 434 / Mockup 0340 - Numerical Solve
+
+Reworked individually around a dedicated graph-linked numerical root model. The editable monic-quadratic parser drives the function graph, endpoint values, interval shading, adaptive bisection table, safeguarded Newton iterations, root estimate, residual, convergence status, and worked example. Method switching, interval/function/tolerance/max-iteration editing, Start Solve, Reset All, fullscreen, shell Reset, independent `cos(x)-x` bracket practice, hint, and Previous/Next navigation are functional.
+
+Browser validation starts from `x^2-5x+6` on `[1,4]` and converges to the first root near 2 with residual below `1e-6`. It switches to safeguarded Newton and converges in five iterations without dividing by the zero derivative at the mockup's midpoint, then edits the function to `x^2+2x-8` and again derives root 2. The challenge rejects `[0,0.5]`, accepts `[0,1]`, reveals its mathematically verified hint, and resets cleanly. The target incorrectly labels `f(4)=-2` for `x^2-5x+6`; the implementation correctly reports `f(4)=2` and performs a midpoint isolation step before bisection rather than claiming a nonexistent initial sign change.
+
+Final exact 1024x1536 validation matches the target stack: sidebar width 208, header y=103-299, tabs y=310-358, dedicated numerical workspace y=368-970, four-step flow y=981-1097, learning panels y=1106-1317, misconception/practice y=1326-1471, and adjacent navigation y=1480-1536. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0340-reference.png`
+- `0340-desktop.png`
+- `0340-dedicated-target-validation.json`

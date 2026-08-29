@@ -1,0 +1,27 @@
+import { chromium } from "playwright";
+import { copyFile, writeFile } from "node:fs/promises";
+import path from "node:path";
+
+const root = process.cwd(), evidence = path.join(root, "test-evidence", "lesson-ui-upgrade");
+const reference = "D:\\Math App Screenshots for UI Update\\Updated UI\\0340-interactive-intermediate-advanced-cas-workspace-numerical-solve-redesigned.png";
+const url = process.env.LESSON_URL ?? "http://127.0.0.1:2255/lessons/symbolic-mathematics/434-numerical-solve";
+const browser = await chromium.launch({ headless: true }), page = await browser.newPage({ viewport: { width: 1024, height: 1536 } }), consoleMessages = [];
+page.on("console", (message) => { if (["error", "warning"].includes(message.type())) consoleMessages.push(`${message.type()}: ${message.text()}`); });
+await page.goto(url, { waitUntil: "domcontentloaded", timeout: 180000 });
+const lesson = page.getByTestId("symbolic-cas-mockup-0340"); await lesson.waitFor({ timeout: 600000 });
+const state = () => lesson.evaluate((node) => Object.fromEntries(["method", "root", "residual", "iterations", "converged", "actions", "practice-feedback"].map((key) => [key, node.getAttribute(`data-${key}`)])));
+const checks = { initial: await state() };
+await lesson.locator('[data-lesson-control="numerical-newton"]').click(); checks.newton = await state();
+await lesson.locator('[data-lesson-control="numerical-bisection"]').click();
+await lesson.getByLabel("Function expression").fill("x^2+2x-8"); await lesson.getByLabel("Interval start", { exact: true }).fill("1"); await lesson.getByLabel("Interval end", { exact: true }).fill("4"); await lesson.locator('[data-lesson-control="numerical-start"]').click(); checks.edited = await state();
+await lesson.locator('[data-lesson-control="numerical-fullscreen"]').click(); checks.fullscreenOpen = await lesson.evaluate((node) => node.classList.contains("fullscreen")); await lesson.locator('[data-lesson-control="numerical-fullscreen"]').click();
+await lesson.getByLabel("Practice interval end").fill("0.5"); await lesson.locator('[data-lesson-control="numerical-practice-check"]').click(); checks.rejected = await state();
+await lesson.getByLabel("Practice interval end").fill("1"); await lesson.locator('[data-lesson-control="numerical-practice-check"]').click(); checks.accepted = await state();
+await lesson.locator('[data-lesson-control="numerical-practice-hint"]').click(); checks.hint = await lesson.getByText(/brackets a root/).isVisible();
+await page.getByTitle("Reset lesson progress").click(); await page.waitForFunction(() => globalThis.document.querySelector('[data-testid="symbolic-cas-mockup-0340"]')?.getAttribute("data-actions") === "0"); checks.reset = await state();
+const navigation = { previousHref: await lesson.getByRole("link", { name: /Previous/ }).getAttribute("href"), nextHref: await lesson.getByRole("link", { name: /Next/ }).getAttribute("href") };
+const metrics = await page.evaluate(() => { const rect = (selector) => { const element = globalThis.document.querySelector(selector); if (!element) return null; const box = element.getBoundingClientRect(); return { top: Math.round(box.top), left: Math.round(box.left), width: Math.round(box.width), height: Math.round(box.height), bottom: Math.round(box.bottom) }; }; return { document: { width: globalThis.document.documentElement.scrollWidth, height: globalThis.document.documentElement.scrollHeight }, overflow: globalThis.document.documentElement.scrollWidth > globalThis.innerWidth, sidebar: rect('[data-testid="desktop-sidebar"]'), header: rect(".lesson-shell-header"), tabs: rect('nav[role="tablist"]'), lab: rect(".num434-lab"), flow: rect(".num434-flow"), learning: rect(".num434-learn"), practice: rect(".num434-bottom"), adjacent: rect(".num434-nav") }; });
+const near = (value, expected, tolerance = 2e-5) => Math.abs(Number(value) - expected) <= tolerance;
+const passed = checks.initial.method === "bisection" && near(checks.initial.root, 2) && Number(checks.initial.residual) < 1e-6 && checks.initial.converged === "true" && checks.newton.method === "newton" && near(checks.newton.root, 2) && checks.newton.converged === "true" && near(checks.edited.root, 2) && checks.edited.converged === "true" && checks.fullscreenOpen && checks.rejected["practice-feedback"] === "incorrect" && checks.accepted["practice-feedback"] === "correct" && checks.hint && checks.reset.method === "bisection" && near(checks.reset.root, 2) && checks.reset.actions === "0" && navigation.previousHref === "/lessons/symbolic-mathematics/433-solve" && navigation.nextHref === "/lessons/symbolic-mathematics/435-solve-systems" && metrics.document.width === 1024 && metrics.document.height === 1536 && metrics.sidebar?.width === 208 && metrics.header?.top === 103 && metrics.tabs?.top === 310 && metrics.lab?.top === 368 && metrics.flow?.top === 981 && metrics.learning?.top === 1106 && metrics.practice?.top === 1326 && metrics.adjacent?.bottom === 1536 && !metrics.overflow && consoleMessages.length === 0;
+const report = { mockup: "0340", lessonId: 434, checks, navigation, metrics, consoleMessages, passed };
+await page.screenshot({ path: path.join(evidence, "0340-desktop.png"), fullPage: true }); await copyFile(reference, path.join(evidence, "0340-reference.png")); await writeFile(path.join(evidence, "0340-dedicated-target-validation.json"), `${JSON.stringify(report, null, 2)}\n`); await browser.close(); console.log(JSON.stringify(report, null, 2)); if (!passed) process.exitCode = 1;

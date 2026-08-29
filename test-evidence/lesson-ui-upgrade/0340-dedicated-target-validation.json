@@ -1,0 +1,131 @@
+{
+  "mockup": "0340",
+  "lessonId": 434,
+  "checks": {
+    "initial": {
+      "method": "bisection",
+      "root": "1.999999",
+      "residual": "9.54e-7",
+      "iterations": "20",
+      "converged": "true",
+      "actions": "0",
+      "practice-feedback": "idle"
+    },
+    "newton": {
+      "method": "newton",
+      "root": "2.000000",
+      "residual": "2.33e-10",
+      "iterations": "5",
+      "converged": "true",
+      "actions": "1",
+      "practice-feedback": "idle"
+    },
+    "edited": {
+      "method": "bisection",
+      "root": "2.000000",
+      "residual": "7.15e-7",
+      "iterations": "23",
+      "converged": "true",
+      "actions": "4",
+      "practice-feedback": "idle"
+    },
+    "fullscreenOpen": true,
+    "rejected": {
+      "method": "bisection",
+      "root": "2.000000",
+      "residual": "7.15e-7",
+      "iterations": "23",
+      "converged": "true",
+      "actions": "7",
+      "practice-feedback": "incorrect"
+    },
+    "accepted": {
+      "method": "bisection",
+      "root": "2.000000",
+      "residual": "7.15e-7",
+      "iterations": "23",
+      "converged": "true",
+      "actions": "8",
+      "practice-feedback": "correct"
+    },
+    "hint": true,
+    "reset": {
+      "method": "bisection",
+      "root": "1.999999",
+      "residual": "9.54e-7",
+      "iterations": "20",
+      "converged": "true",
+      "actions": "0",
+      "practice-feedback": "idle"
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/symbolic-mathematics/433-solve",
+    "nextHref": "/lessons/symbolic-mathematics/435-solve-systems"
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 208,
+      "height": 1536,
+      "bottom": 1536
+    },
+    "header": {
+      "top": 103,
+      "left": 223,
+      "width": 786,
+      "height": 196,
+      "bottom": 299
+    },
+    "tabs": {
+      "top": 310,
+      "left": 223,
+      "width": 786,
+      "height": 48,
+      "bottom": 358
+    },
+    "lab": {
+      "top": 368,
+      "left": 223,
+      "width": 786,
+      "height": 602,
+      "bottom": 970
+    },
+    "flow": {
+      "top": 981,
+      "left": 223,
+      "width": 786,
+      "height": 116,
+      "bottom": 1097
+    },
+    "learning": {
+      "top": 1106,
+      "left": 223,
+      "width": 786,
+      "height": 211,
+      "bottom": 1317
+    },
+    "practice": {
+      "top": 1326,
+      "left": 223,
+      "width": 786,
+      "height": 145,
+      "bottom": 1471
+    },
+    "adjacent": {
+      "top": 1480,
+      "left": 223,
+      "width": 786,
+      "height": 56,
+      "bottom": 1536
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

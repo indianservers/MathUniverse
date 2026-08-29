@@ -10,6 +10,7 @@ import ExpandTargetLesson430 from "./cas/ExpandTargetLesson430";
 import FactorTargetLesson431 from "./cas/FactorTargetLesson431";
 import SubstituteTargetLesson432 from "./cas/SubstituteTargetLesson432";
 import SolveTargetLesson433 from "./cas/SolveTargetLesson433";
+import NumericalSolveTargetLesson434 from "./cas/NumericalSolveTargetLesson434";
 import { DifferentialEquationActivity } from "./p0/PriorityConceptActivities";
 
 export default function CasLessonAdapter(props: LessonAdapterProps) {
@@ -30,6 +31,9 @@ export default function CasLessonAdapter(props: LessonAdapterProps) {
   }
   if (props.lesson.id === 433) {
     return <SolveTargetLesson433 {...props} />;
+  }
+  if (props.lesson.id === 434) {
+    return <NumericalSolveTargetLesson434 {...props} />;
   }
   if (props.lesson.id >= 428 && props.lesson.id <= 449) {
     return <SymbolicCasMockupLesson {...props} />;
