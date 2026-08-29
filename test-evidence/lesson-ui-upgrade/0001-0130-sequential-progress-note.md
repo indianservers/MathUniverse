@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **176 of 200 lessons completed; 24 pending.**
+Dedicated rebuild target: **177 of 200 lessons completed; 23 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -162,6 +162,7 @@ Dedicated rebuild target: **176 of 200 lessons completed; 24 pending.**
 | 0248   |               191 Cross Product | Complete | Dedicated Three.js z-up cross-product model with draggable 3D vector tips, six linked components, oriented-area plane, orientation reversal, camera/overlay/expand controls, determinant, live normal and magnitude, practice grading, and exact 1148x1370 framing |
 | 0249   |           192 Vector Projection | Complete | Dedicated two-vector scalar/vector projection model with pointer/keyboard tips, angle rotation, selectable tools, exact components, projection/residual decomposition, live diagram, three graded practices, and exact 1148x1370 framing |
 | 0250   |         193 Linear Combinations | Complete | Dedicated coefficient-span model with live a/b scaling, editable basis vectors, draggable/solvable target, scaled/parallelogram/span controls, determinant independence status, and exact 1148x1370 framing |
+| 0251   | 194 Vector Equation of a Line | Complete | Dedicated parametric-line model with draggable R(t), live parameter, editable point/direction steppers, trail/direction/table controls, generated table, slope/ratio result, challenge solve, and exact 1148x1370 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2601,3 +2602,9 @@ Evidence:
 Reworked individually with a dedicated `linear-combination-coefficients-span-determinant-target-solver` model. Coefficients, basis vectors, scaled vectors, resultant, determinant, independence, span, and magnitude share one state. Real coefficient/vector/result edits, target solving, scaled-tip/parallelogram/span toggles, tabs, language, share, reset, workspace, and navigation are validated at 1148x1370.
 
 Evidence: `0250-reference.png`, `0250-desktop.png`, `0250-dedicated-target-validation.json`.
+
+## Lesson 194 / Mockup 0251 - Vector Equation of a Line
+
+Reworked individually with a dedicated `parametric-vector-line-point-direction-parameter-trail-table-challenge` model. Point a, direction v, parameter t, moving point R(t), trail, direction steps, table rows, direction ratio, slope, and challenge all derive from shared state. Physical R-point drag, parameter and component edits, steppers, display toggles, tabs, language/share/reset, challenge `t=2`, routes, overflow, console output, and exact 1148x1370 framing are validated.
+
+Evidence: `0251-reference.png`, `0251-desktop.png`, `0251-dedicated-target-validation.json`.

@@ -1,0 +1,172 @@
+{
+  "mockup": "0251",
+  "lessonId": 194,
+  "checks": {
+    "initial": {
+      "a": "1:2",
+      "v": "3:1",
+      "t": "1.5",
+      "r": "5.5:3.5",
+      "trail": "true",
+      "steps": "true",
+      "table": "true",
+      "tab": "0",
+      "language": "English (English)",
+      "shared": "false",
+      "challenge": "false"
+    },
+    "graphBytes": 13416,
+    "drag": {
+      "a": "1:2",
+      "v": "3:1",
+      "t": "2",
+      "r": "7:4",
+      "trail": "true",
+      "steps": "true",
+      "table": "true",
+      "tab": "0",
+      "language": "English (English)",
+      "shared": "false",
+      "challenge": "false"
+    },
+    "parameter": {
+      "a": "1:2",
+      "v": "3:1",
+      "t": "-1",
+      "r": "-2:1",
+      "trail": "true",
+      "steps": "true",
+      "table": "true",
+      "tab": "0",
+      "language": "English (English)",
+      "shared": "false",
+      "challenge": "false"
+    },
+    "components": {
+      "a": "2:2",
+      "v": "3:2",
+      "t": "-1",
+      "r": "-1:0",
+      "trail": "true",
+      "steps": "true",
+      "table": "true",
+      "tab": "0",
+      "language": "English (English)",
+      "shared": "false",
+      "challenge": "false"
+    },
+    "actions": {
+      "a": "2:2",
+      "v": "3:2",
+      "t": "-1",
+      "r": "-1:0",
+      "trail": "false",
+      "steps": "false",
+      "table": "false",
+      "tab": "0",
+      "language": "हिन्दी (Hindi)",
+      "shared": "true",
+      "challenge": "false"
+    },
+    "challenge": {
+      "a": "2:2",
+      "v": "3:2",
+      "t": "2",
+      "r": "8:6",
+      "trail": "false",
+      "steps": "false",
+      "table": "false",
+      "tab": "0",
+      "language": "हिन्दी (Hindi)",
+      "shared": "true",
+      "challenge": "true"
+    },
+    "reset": {
+      "a": "1:2",
+      "v": "3:1",
+      "t": "1.5",
+      "r": "5.5:3.5",
+      "trail": "true",
+      "steps": "true",
+      "table": "true",
+      "tab": "0",
+      "language": "हिन्दी (Hindi)",
+      "shared": "true",
+      "challenge": "false"
+    },
+    "reload": {
+      "a": "1:2",
+      "v": "3:1",
+      "t": "1.5",
+      "r": "5.5:3.5",
+      "trail": "true",
+      "steps": "true",
+      "table": "true",
+      "tab": "0",
+      "language": "English (English)",
+      "shared": "false",
+      "challenge": "false"
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/geometry/193-linear-combinations",
+    "nextHref": "/lessons/geometry/195-vector-equation-of-a-plane"
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1148,
+      "height": 1370
+    },
+    "document": {
+      "width": 1148,
+      "height": 1370
+    },
+    "overflow": false,
+    "regions": {
+      "header": {
+        "top": 105,
+        "height": 230,
+        "left": 246,
+        "width": 884
+      },
+      "tabs": {
+        "top": 349,
+        "height": 47,
+        "left": 246,
+        "width": 884
+      },
+      "main": {
+        "top": 410,
+        "height": 470,
+        "left": 246,
+        "width": 884
+      },
+      "lower": {
+        "top": 892,
+        "height": 222,
+        "left": 246,
+        "width": 884
+      },
+      "tip": {
+        "top": 1126,
+        "height": 47,
+        "left": 246,
+        "width": 884
+      },
+      "nav": {
+        "top": 1185,
+        "height": 55,
+        "left": 246,
+        "width": 884
+      },
+      "footer": {
+        "top": 1252,
+        "height": 93,
+        "left": 246,
+        "width": 884
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

@@ -154,9 +154,19 @@ describe("VectorLessonAdapter", () => {
     expect(html).toContain("Linear combination span plane");
   });
 
-  it("renders vector lessons 194 through 197 with lesson-specific guidance", () => {
+  it("renders vector equation of a line as its own parametric surface", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 194)!;
+    const html = renderToStaticMarkup(
+      <VectorLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+    expect(html).toContain("vector-mockup-0251");
+    expect(html).toContain('data-dedicated-lesson="194"');
+    expect(html).toContain("PARAMETRIC LINE WORKBENCH");
+    expect(html).toContain("Parametric vector line graph");
+  });
+
+  it("renders vector lessons 195 through 197 with lesson-specific guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      194: "Vector line",
       195: "Vector plane",
       196: "Relative motion",
       197: "Force vectors",
