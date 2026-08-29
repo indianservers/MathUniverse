@@ -121,9 +121,19 @@ describe("VectorLessonAdapter", () => {
     expect(html).toContain('data-testid="dot-v-tip"');
   });
 
-  it("renders vector lessons 191 through 197 with lesson-specific guidance", () => {
+  it("renders cross product as its own oriented 3D surface", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 191)!;
+    const html = renderToStaticMarkup(
+      <VectorLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+    expect(html).toContain("vector-mockup-0248");
+    expect(html).toContain('data-dedicated-lesson="191"');
+    expect(html).toContain("3D Vector Explorer");
+    expect(html).toContain("Components &amp; Determinant");
+  });
+
+  it("renders vector lessons 192 through 197 with lesson-specific guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      191: "Cross product",
       192: "Projection",
       193: "Linear combination",
       194: "Vector line",

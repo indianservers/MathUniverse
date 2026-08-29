@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **173 of 200 lessons completed; 27 pending.**
+Dedicated rebuild target: **174 of 200 lessons completed; 26 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -159,6 +159,7 @@ Dedicated rebuild target: **173 of 200 lessons completed; 27 pending.**
 | 0245   |       188 Scalar Multiplication | Complete | Dedicated source-vector/scalar/result model with pointer/keyboard drag, auto-fit vector plane, exact/range/preset scalar controls, live sign cases, worked derivation, graded practice, and exact 1149x1369 framing |
 | 0246   | 189 Magnitude and Unit Vectors | Complete | Dedicated vector-normalization model with pointer/keyboard drag, linked component controls, Pythagorean triangle, live magnitude gauge, normalized unit-circle vector, graded practice, and exact 1536x1024 framing |
 | 0247   |                 190 Dot Product | Complete | Dedicated two-vector dot/angle/projection model with pointer/keyboard drag, linked component controls, snap/axis-lock modes, component and cosine proofs, orthogonality practice, and exact 1149x1369 framing |
+| 0248   |               191 Cross Product | Complete | Dedicated Three.js z-up cross-product model with draggable 3D vector tips, six linked components, oriented-area plane, orientation reversal, camera/overlay/expand controls, determinant, live normal and magnitude, practice grading, and exact 1148x1370 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2566,3 +2567,15 @@ Evidence:
 - `0247-reference.png`
 - `0247-desktop.png`
 - `0247-dedicated-target-validation.json`
+
+## Lesson 191 / Mockup 0248 - Cross Product
+
+Reworked individually against the target mockup with a dedicated `three-dimensional-cross-product-oriented-area-normal-determinant-practice` model. Vectors u and v, both product orientations, magnitude, unit normal, determinant components, oriented-area parallelogram, projection guides, and practice answers all derive from shared three-dimensional vector state.
+
+Physical 3D tip dragging, six linked range/exact component controls, u x v / v x u orientation reversal, Rotate/Pan/Zoom camera modes, speed, parallelogram/projection toggles, camera reset, real expanded explorer mode, all five lesson stages, and wrong/correct/revealed practice are working controls. Final 1148x1370 validation reads the WebGL pixels to reject a blank canvas and verifies initial `u=(3,2,1)`, `v=(-1,3,2)`, `u x v=(1,-7,11)`, magnitude `sqrt(171)=13.0767`, unit normal `(0.076,-0.535,0.841)`, physical drag recalculation, reversed product, practice `(0,7,7)`, reset, routes, exact target region geometry, overflow, and console output.
+
+Evidence:
+
+- `0248-reference.png`
+- `0248-desktop.png`
+- `0248-dedicated-target-validation.json`

@@ -19,6 +19,7 @@ import VectorSubtractionTargetLesson187 from "./VectorSubtractionTargetLesson187
 import ScalarMultiplicationTargetLesson188 from "./ScalarMultiplicationTargetLesson188";
 import MagnitudeUnitVectorsTargetLesson189 from "./MagnitudeUnitVectorsTargetLesson189";
 import DotProductTargetLesson190 from "./DotProductTargetLesson190";
+import CrossProductTargetLesson191 from "./CrossProductTargetLesson191";
 
 function guidanceFor(title: string) {
   const name = title.toLowerCase();
@@ -196,6 +197,14 @@ export default function VectorLessonAdapter({
   if (lesson.id === 190)
     return (
       <DotProductTargetLesson190
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
+  if (lesson.id === 191)
+    return (
+      <CrossProductTargetLesson191
         lesson={lesson}
         resetToken={resetToken}
         onInteraction={onInteraction}
