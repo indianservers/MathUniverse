@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **185 of 200 lessons completed; 15 pending.**
+Dedicated rebuild target: **186 of 200 lessons completed; 14 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -171,6 +171,7 @@ Dedicated rebuild target: **185 of 200 lessons completed; 15 pending.**
 | 0257   | 200 Intersection Point | Complete | Dedicated two-line solver with four draggable endpoints, editable equations, exact intersecting/parallel/coincident classification, real pan/zoom, derived practice, and exact 1024x1536 framing |
 | 0258   | 201 Midpoint or Centre | Complete | Dedicated endpoint-midpoint invariant model with physical A/B drags, editable coordinates, reverse proof, equal-distance validation, navigable lesson tabs, generated practice, and exact 1024x1536 framing |
 | 0259   | 202 Attach / Detach Point | Complete | Dedicated circle-parent constraint model with projected attach, preserved detach, constrained/free point drags, movable parent following, pan/zoom/fit/grid, and exact 1536x1024 framing |
+| 0260   | 203 Line Through Two Points | Complete | Dedicated unique-infinite-line model with decimal endpoint drags, vertical/coincident handling, exact rational slope, live equations, pan/zoom/fit/display controls, editable challenge, construction log, and exact 1478x1064 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2664,3 +2665,9 @@ Evidence: `0258-reference.png`, `0258-desktop.png`, `0258-dedicated-target-valid
 Reworked individually with a dedicated `circle-parent-attach-project-detach-free-drag-follow` model. Physical constrained and free point drags, selected-point attach/detach, exact radial projection, movable circle centre, attached-point following, detached-point independence, live coordinates/distances, pan, zoom, Fit view, grid, tabs, Reset, routes, overflow, console output, and exact 1536x1024 framing are validated.
 
 Evidence: `0259-reference.png`, `0259-desktop.png`, `0259-dedicated-target-validation.json`.
+
+## Lesson 203 / Mockup 0260 - Line Through Two Points
+
+Reworked individually with a dedicated `two-distinct-points-unique-infinite-line` model. Physical decimal endpoint drags, direct coordinate edits, exact reduced slope, live slope-intercept equation, vertical and coincident-point guardrails, pan, zoom, Center, Fit, four display controls, five lesson tabs, removable/restorable construction steps, a calculated slope/intercept challenge, routes, overflow, console output, and exact 1478x1064 framing are validated.
+
+Evidence: `0260-reference.png`, `0260-desktop.png`, `0260-dedicated-target-validation.json`.

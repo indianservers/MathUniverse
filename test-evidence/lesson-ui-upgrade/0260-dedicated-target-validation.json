@@ -1,0 +1,154 @@
+{
+  "mockup": "0260",
+  "lessonId": 203,
+  "checks": {
+    "initial": {
+      "model": "two-distinct-points-unique-infinite-line",
+      "a": "-3:-1",
+      "b": "4:3",
+      "slope": "0.5714285714285714",
+      "equation": "y = 0.571429x + 0.714286",
+      "zoom": "1",
+      "pan": "0:0",
+      "tab": "Explore",
+      "steps": "4"
+    },
+    "dragged": {
+      "model": "two-distinct-points-unique-infinite-line",
+      "a": "-0.56:0.21",
+      "b": "4:3",
+      "slope": "0.6118421052631579",
+      "equation": "y = 0.611842x + 0.552632",
+      "zoom": "1",
+      "pan": "0:0",
+      "tab": "Explore",
+      "steps": "4"
+    },
+    "vertical": {
+      "model": "two-distinct-points-unique-infinite-line",
+      "a": "-0.56:0.21",
+      "b": "-0.56:3",
+      "slope": "undefined",
+      "equation": "x = -0.56",
+      "zoom": "1",
+      "pan": "0:0",
+      "tab": "Explore",
+      "steps": "4"
+    },
+    "viewChanged": {
+      "model": "two-distinct-points-unique-infinite-line",
+      "a": "-3:-1",
+      "b": "4:3",
+      "slope": "0.5714285714285714",
+      "equation": "y = 0.571429x + 0.714286",
+      "zoom": "1.2",
+      "pan": "20:25",
+      "tab": "Explore",
+      "steps": "4"
+    },
+    "fit": {
+      "model": "two-distinct-points-unique-infinite-line",
+      "a": "-3:-1",
+      "b": "4:3",
+      "slope": "0.5714285714285714",
+      "equation": "y = 0.571429x + 0.714286",
+      "zoom": "1",
+      "pan": "0:0",
+      "tab": "Explore",
+      "steps": "4"
+    },
+    "coordinatesHidden": true,
+    "challenge": "Correct. C and D determine y = -x + 2.",
+    "removedStep": {
+      "model": "two-distinct-points-unique-infinite-line",
+      "a": "-3:-1",
+      "b": "4:3",
+      "slope": "0.5714285714285714",
+      "equation": "y = 0.571429x + 0.714286",
+      "zoom": "1",
+      "pan": "0:0",
+      "tab": "Explore",
+      "steps": "3"
+    },
+    "cleared": {
+      "model": "two-distinct-points-unique-infinite-line",
+      "a": "-3:-1",
+      "b": "4:3",
+      "slope": "0.5714285714285714",
+      "equation": "y = 0.571429x + 0.714286",
+      "zoom": "1",
+      "pan": "0:0",
+      "tab": "Explore",
+      "steps": "0"
+    },
+    "restored": {
+      "model": "two-distinct-points-unique-infinite-line",
+      "a": "-3:-1",
+      "b": "4:3",
+      "slope": "0.5714285714285714",
+      "equation": "y = 0.571429x + 0.714286",
+      "zoom": "1",
+      "pan": "0:0",
+      "tab": "Explore",
+      "steps": "4"
+    },
+    "tabs": {
+      "model": "two-distinct-points-unique-infinite-line",
+      "a": "-3:-1",
+      "b": "4:3",
+      "slope": "0.5714285714285714",
+      "equation": "y = 0.571429x + 0.714286",
+      "zoom": "1",
+      "pan": "0:0",
+      "tab": "Explore",
+      "steps": "4"
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/geometry/202-attach-detach-point",
+    "nextHref": "/lessons/geometry/204-segment"
+  },
+  "metrics": {
+    "document": {
+      "width": 1478,
+      "height": 1064
+    },
+    "viewport": {
+      "width": 1478,
+      "height": 1064
+    },
+    "horizontalOverflow": false,
+    "regions": {
+      "header": {
+        "top": 111,
+        "left": 285,
+        "width": 1173,
+        "height": 147,
+        "bottom": 258
+      },
+      "tabs": {
+        "top": 271,
+        "left": 285,
+        "width": 1173,
+        "height": 36,
+        "bottom": 307
+      },
+      "main": {
+        "top": 318,
+        "left": 285,
+        "width": 1173,
+        "height": 640,
+        "bottom": 958
+      },
+      "nav": {
+        "top": 978,
+        "left": 285,
+        "width": 1173,
+        "height": 69,
+        "bottom": 1047
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
