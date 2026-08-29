@@ -23,6 +23,7 @@ import DifferentialEquationsTargetLesson443 from "./cas/DifferentialEquationsTar
 import MatrixOperationsTargetLesson444 from "./cas/MatrixOperationsTargetLesson444";
 import ComplexCalculationsTargetLesson445 from "./cas/ComplexCalculationsTargetLesson445";
 import AssumptionsTargetLesson446 from "./cas/AssumptionsTargetLesson446";
+import ExactNumericTargetLesson447 from "./cas/ExactNumericTargetLesson447";
 import { DifferentialEquationActivity } from "./p0/PriorityConceptActivities";
 
 export default function CasLessonAdapter(props: LessonAdapterProps) {
@@ -82,6 +83,9 @@ export default function CasLessonAdapter(props: LessonAdapterProps) {
   }
   if (props.lesson.id === 446) {
     return <AssumptionsTargetLesson446 {...props} />;
+  }
+  if (props.lesson.id === 447) {
+    return <ExactNumericTargetLesson447 {...props} />;
   }
   if (props.lesson.id >= 428 && props.lesson.id <= 449) {
     return <SymbolicCasMockupLesson {...props} />;

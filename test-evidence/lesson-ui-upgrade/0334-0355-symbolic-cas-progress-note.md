@@ -1,6 +1,6 @@
 # Symbolic Mathematics / CAS Workspace target batch 0334-0355
 
-Dedicated rebuild target: **19 of 22 lessons completed; 3 pending.**
+Dedicated rebuild target: **20 of 22 lessons completed; 2 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
@@ -23,6 +23,7 @@ Dedicated rebuild target: **19 of 22 lessons completed; 3 pending.**
 | 0350 | 444 Matrix Operations | `editable-2x2-matrix-row-rules-unit-square-transformation-vertices-determinant-practice` | Reworked individually and browser-validated |
 | 0351 | 445 Complex Calculations | `complex-rectangular-polar-operation-argand-vectors-modulus-argument-practice` | Reworked individually and browser-validated |
 | 0352 | 446 Assumptions | `linear-expression-assumption-domain-conditional-evaluation-cancellation-practice` | Reworked individually and browser-validated |
+| 0353 | 447 Exact / Numeric Toggle | `exact-symbolic-numeric-precision-rounding-error-place-value-practice` | Reworked individually and browser-validated |
 
 ## Lesson 428 / Mockup 0334 - Symbolic Evaluation
 
@@ -289,3 +290,17 @@ Evidence:
 - `0352-reference.png`
 - `0352-desktop.png`
 - `0352-dedicated-target-validation.json`
+
+## Lesson 447 / Mockup 0353 - Exact / Numeric Toggle
+
+Reworked individually around a dedicated exact-versus-decimal comparison model. The selected expression and precision drive the preserved symbolic form, rounded numeric result, absolute rounding error, derivation, place-value table, mode state, and comparison panels. Exact/Numeric toggles, precision decrement/increment, five live example presets, editable expression, copy/share actions, Reset, three-field practice checking, shell Reset, and Previous/Next navigation are functional.
+
+Browser validation starts from `2*3^2*5-7/4+sqrt(2)`, derives exact `353/4 + sqrt(2)`, numeric `89.66421356`, and rounding error about `2.37e-9`. It switches to Numeric mode, reduces precision to six digits and obtains `89.664214`, then verifies the `sqrt(2)` and `1/3` presets. Practice rejects a zero decimal/error submission and accepts exact `4*pi-sqrt(3)+2/7`, numeric `11.12003409`, and error `2.50e-9`. Shell Reset restores the target expression, exact mode, eight-digit precision, result, and action state. The mockup's `88.60355339` contradicts its own exact form; the implementation uses the mathematically correct `89.66421356`.
+
+Final exact 995x1580 validation matches the target stack: sidebar width 208, dedicated header y=101-287, four-step flow y=297-385, exact/numeric workspace y=397-953, rule y=965-1052, misconception y=1064-1159, worked example y=1171-1366, practice y=1378-1512, and adjacent navigation y=1524-1568. The target omits the shared lesson shell and site footer, and this route does likewise. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0353-reference.png`
+- `0353-desktop.png`
+- `0353-dedicated-target-validation.json`

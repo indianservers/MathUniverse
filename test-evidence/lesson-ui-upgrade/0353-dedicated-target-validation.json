@@ -1,0 +1,178 @@
+{
+  "mockup": "0353",
+  "lessonId": 447,
+  "checks": {
+    "initial": {
+      "expression": "2 × 3² × 5 − 7/4 + √2",
+      "exact": "353/4 + √2",
+      "numeric": "89.66421356",
+      "error": "2.37e-9",
+      "mode": "exact",
+      "precision": "8",
+      "feedback": "",
+      "actions": "0"
+    },
+    "numericSix": {
+      "expression": "2 × 3² × 5 − 7/4 + √2",
+      "exact": "353/4 + √2",
+      "numeric": "89.664214",
+      "error": "4.38e-7",
+      "mode": "numeric",
+      "precision": "6",
+      "feedback": "",
+      "actions": "3"
+    },
+    "sqrt": {
+      "expression": "sqrt(2)",
+      "exact": "√2",
+      "numeric": "1.414214",
+      "error": "4.38e-7",
+      "mode": "numeric",
+      "precision": "6",
+      "feedback": "",
+      "actions": "4"
+    },
+    "third": {
+      "expression": "1/3",
+      "exact": "1/3",
+      "numeric": "0.333333",
+      "error": "3.33e-7",
+      "mode": "numeric",
+      "precision": "6",
+      "feedback": "",
+      "actions": "5"
+    },
+    "rejected": {
+      "expression": "1/3",
+      "exact": "1/3",
+      "numeric": "0.333333",
+      "error": "3.33e-7",
+      "mode": "numeric",
+      "precision": "6",
+      "feedback": "incorrect",
+      "actions": "6"
+    },
+    "accepted": {
+      "expression": "1/3",
+      "exact": "1/3",
+      "numeric": "0.333333",
+      "error": "3.33e-7",
+      "mode": "numeric",
+      "precision": "6",
+      "feedback": "correct",
+      "actions": "7"
+    },
+    "reset": {
+      "expression": "2 × 3² × 5 − 7/4 + √2",
+      "exact": "353/4 + √2",
+      "numeric": "89.66421356",
+      "error": "2.37e-9",
+      "mode": "exact",
+      "precision": "8",
+      "feedback": "",
+      "actions": "0"
+    }
+  },
+  "challenge": {
+    "value": 11.120034092504582,
+    "rounded": "11.12003409",
+    "error": "2.50e-9"
+  },
+  "navigation": {
+    "previousHref": "/lessons/symbolic-mathematics/446-assumptions",
+    "nextHref": "/lessons/symbolic-mathematics/448-step-by-step-algebra"
+  },
+  "metrics": {
+    "document": {
+      "width": 995,
+      "height": 1580
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 208,
+      "height": 1580,
+      "bottom": 1580
+    },
+    "shellHeader": {
+      "top": 0,
+      "left": 0,
+      "width": 0,
+      "height": 0,
+      "bottom": 0
+    },
+    "hero": {
+      "top": 101,
+      "left": 223,
+      "width": 760,
+      "height": 186,
+      "bottom": 287
+    },
+    "flow": {
+      "top": 297,
+      "left": 223,
+      "width": 760,
+      "height": 88,
+      "bottom": 385
+    },
+    "workspace": {
+      "top": 397,
+      "left": 223,
+      "width": 760,
+      "height": 556,
+      "bottom": 953
+    },
+    "results": {
+      "top": 704,
+      "left": 236,
+      "width": 734,
+      "height": 240,
+      "bottom": 944
+    },
+    "rule": {
+      "top": 965,
+      "left": 223,
+      "width": 760,
+      "height": 87,
+      "bottom": 1052
+    },
+    "misconception": {
+      "top": 1064,
+      "left": 223,
+      "width": 760,
+      "height": 95,
+      "bottom": 1159
+    },
+    "worked": {
+      "top": 1171,
+      "left": 223,
+      "width": 760,
+      "height": 195,
+      "bottom": 1366
+    },
+    "practice": {
+      "top": 1378,
+      "left": 223,
+      "width": 760,
+      "height": 134,
+      "bottom": 1512
+    },
+    "adjacent": {
+      "top": 1524,
+      "left": 223,
+      "width": 760,
+      "height": 44,
+      "bottom": 1568
+    },
+    "footer": {
+      "top": 0,
+      "left": 0,
+      "width": 0,
+      "height": 0,
+      "bottom": 0
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
