@@ -1,6 +1,6 @@
 # Symbolic Mathematics / CAS Workspace target batch 0334-0355
 
-Dedicated rebuild target: **9 of 22 lessons completed; 13 pending.**
+Dedicated rebuild target: **10 of 22 lessons completed; 12 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
@@ -13,6 +13,7 @@ Dedicated rebuild target: **9 of 22 lessons completed; 13 pending.**
 | 0340 | 434 Numerical Solve | `adaptive-bisection-newton-iteration-graph-residual-practice` | Reworked individually and browser-validated |
 | 0341 | 435 Solve Systems | `two-equation-determinant-elimination-intersection-drag-classification-practice` | Reworked individually and browser-validated |
 | 0342 | 436 Eliminate Variables | `row-multiplier-matrix-addition-reduction-back-substitution-practice` | Reworked individually and browser-validated |
+| 0343 | 437 Partial Fractions | `distinct-linear-factor-residue-coefficients-drag-recombine-practice` | Reworked individually and browser-validated |
 
 ## Lesson 428 / Mockup 0334 - Symbolic Evaluation
 
@@ -139,3 +140,17 @@ Evidence:
 - `0342-reference.png`
 - `0342-desktop.png`
 - `0342-dedicated-target-validation.json`
+
+## Lesson 437 / Mockup 0343 - Partial Fractions
+
+Reworked individually around a dedicated distinct-linear-factor residue model. The factor list drives each denominator slot, cover-up denominator, coefficient, decomposition term, and a true polynomial recombination of `Ai * product(x+kj)` terms. Custom workspace tabs, real factor-slot drag/reordering, keyboard reordering, adding a third distinct factor, quick-check toggle, independent practice inputs, hint, practice reset, shell Reset, and Previous/Next navigation are functional.
+
+Browser validation starts from `1/((x+1)(x+2))`, derives coefficients `1,-1`, and reconstructs numerator `1`. Dragging the factor chips into the opposite order changes the ordered coefficients to `-1,1` while preserving the same rational expression. Adding `(x+3)` derives the three residues `1/2,-1,1/2`, and coefficient-by-coefficient polynomial recombination again proves numerator `1`. The practice rejects `A=1/4,B=1/4`, accepts `A=1/4,B=-1/4`, reveals the root-substitution hint, resets independently, and then shell-resets cleanly.
+
+Final exact 1023x1537 validation matches the target stack: sidebar width 208, compact header y=97-326, custom tabs y=336-375, dedicated decomposition workspace y=381-989, misconception/practice y=1003-1260, takeaways y=1277-1370, adjacent navigation y=1388-1431, and site footer y=1447-1537. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0343-reference.png`
+- `0343-desktop.png`
+- `0343-dedicated-target-validation.json`

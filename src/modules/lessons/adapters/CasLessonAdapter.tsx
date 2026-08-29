@@ -13,6 +13,7 @@ import SolveTargetLesson433 from "./cas/SolveTargetLesson433";
 import NumericalSolveTargetLesson434 from "./cas/NumericalSolveTargetLesson434";
 import SolveSystemsTargetLesson435 from "./cas/SolveSystemsTargetLesson435";
 import EliminateVariablesTargetLesson436 from "./cas/EliminateVariablesTargetLesson436";
+import PartialFractionsTargetLesson437 from "./cas/PartialFractionsTargetLesson437";
 import { DifferentialEquationActivity } from "./p0/PriorityConceptActivities";
 
 export default function CasLessonAdapter(props: LessonAdapterProps) {
@@ -42,6 +43,9 @@ export default function CasLessonAdapter(props: LessonAdapterProps) {
   }
   if (props.lesson.id === 436) {
     return <EliminateVariablesTargetLesson436 {...props} />;
+  }
+  if (props.lesson.id === 437) {
+    return <PartialFractionsTargetLesson437 {...props} />;
   }
   if (props.lesson.id >= 428 && props.lesson.id <= 449) {
     return <SymbolicCasMockupLesson {...props} />;

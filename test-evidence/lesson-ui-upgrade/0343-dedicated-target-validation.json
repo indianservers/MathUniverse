@@ -1,0 +1,141 @@
+{
+  "mockup": "0343",
+  "lessonId": 437,
+  "checks": {
+    "initial": {
+      "factors": "1,2",
+      "coefficients": "1,-1",
+      "recombined": "1",
+      "active-tab": "Overview",
+      "actions": "0",
+      "practice-feedback": "idle"
+    },
+    "swapped": {
+      "factors": "2,1",
+      "coefficients": "-1,1",
+      "recombined": "1",
+      "active-tab": "Overview",
+      "actions": "1",
+      "practice-feedback": "idle"
+    },
+    "threeFactors": {
+      "factors": "1,2,3",
+      "coefficients": "0.5,-1,0.5",
+      "recombined": "1",
+      "active-tab": "Overview",
+      "actions": "1",
+      "practice-feedback": "idle"
+    },
+    "tab": {
+      "factors": "1,2,3",
+      "coefficients": "0.5,-1,0.5",
+      "recombined": "1",
+      "active-tab": "Solve Coefficients",
+      "actions": "2",
+      "practice-feedback": "idle"
+    },
+    "quickCheckOff": false,
+    "rejected": {
+      "factors": "1,2,3",
+      "coefficients": "0.5,-1,0.5",
+      "recombined": "1",
+      "active-tab": "Solve Coefficients",
+      "actions": "4",
+      "practice-feedback": "incorrect"
+    },
+    "accepted": {
+      "factors": "1,2,3",
+      "coefficients": "0.5,-1,0.5",
+      "recombined": "1",
+      "active-tab": "Solve Coefficients",
+      "actions": "5",
+      "practice-feedback": "correct"
+    },
+    "hint": true,
+    "practiceReset": {
+      "factors": "1,2,3",
+      "coefficients": "0.5,-1,0.5",
+      "recombined": "1",
+      "active-tab": "Solve Coefficients",
+      "actions": "7",
+      "practice-feedback": "idle"
+    },
+    "reset": {
+      "factors": "1,2",
+      "coefficients": "1,-1",
+      "recombined": "1",
+      "active-tab": "Overview",
+      "actions": "0",
+      "practice-feedback": "idle"
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/symbolic-mathematics/436-eliminate-variables",
+    "nextHref": "/lessons/symbolic-mathematics/438-polynomial-division"
+  },
+  "metrics": {
+    "document": {
+      "width": 1023,
+      "height": 1537
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 208,
+      "height": 1537,
+      "bottom": 1537
+    },
+    "header": {
+      "top": 97,
+      "left": 221,
+      "width": 784,
+      "height": 229,
+      "bottom": 326
+    },
+    "tabs": {
+      "top": 336,
+      "left": 221,
+      "width": 784,
+      "height": 39,
+      "bottom": 375
+    },
+    "workspace": {
+      "top": 381,
+      "left": 221,
+      "width": 784,
+      "height": 608,
+      "bottom": 989
+    },
+    "challenge": {
+      "top": 1003,
+      "left": 221,
+      "width": 784,
+      "height": 257,
+      "bottom": 1260
+    },
+    "takeaways": {
+      "top": 1277,
+      "left": 221,
+      "width": 784,
+      "height": 93,
+      "bottom": 1370
+    },
+    "adjacent": {
+      "top": 1388,
+      "left": 221,
+      "width": 784,
+      "height": 43,
+      "bottom": 1431
+    },
+    "footer": {
+      "top": 1447,
+      "left": 208,
+      "width": 815,
+      "height": 90,
+      "bottom": 1537
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
