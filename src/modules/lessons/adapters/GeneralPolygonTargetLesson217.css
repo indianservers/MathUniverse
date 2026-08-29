@@ -1,0 +1,76 @@
+.general217-page,
+.general217-page * {
+  letter-spacing: 0;
+}
+
+.general217-page nav:first-of-type button[aria-pressed="true"] {
+  background: #f7fbff;
+  box-shadow: 0 1px 2px rgb(15 23 42 / 0.05);
+}
+
+@media (min-width: 960px) and (max-width: 1120px) {
+  body:has(.general217-page) {
+    overflow: hidden;
+  }
+
+  body:has(.general217-page) [data-testid="desktop-sidebar"] {
+    width: 216px;
+    transition: none;
+  }
+
+  .general217-page {
+    margin-top: -11px !important;
+  }
+
+  .general217-page > header:first-of-type {
+    height: 184px;
+  }
+
+  .general217-page > nav:first-of-type {
+    height: 52px;
+  }
+
+  .general217-page > #general-0 {
+    margin-top: 14px;
+  }
+
+  .general217-page #general-0 svg[aria-label^="Editable general polygon"] {
+    height: 490px;
+  }
+
+  .general217-page > section:nth-of-type(2) {
+    height: 198px;
+    margin-top: 12px !important;
+  }
+
+  .general217-page > section:nth-of-type(2) > article {
+    height: 198px;
+    min-height: 0;
+  }
+
+  .general217-page > .sr-only,
+  .general217-page ~ .lesson-adjacent-nav {
+    display: none;
+  }
+
+  .general217-page #general-practice {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .general217-page #general-practice > div > h2 {
+    padding-top: 4px;
+  }
+
+  .general217-page #general-practice > div > .mt-3 {
+    margin-top: 8px;
+  }
+
+  .general217-page #general-practice .space-y-3 {
+    gap: 8px;
+  }
+
+  .general217-page #general-practice button {
+    transform: translateY(-2px);
+  }
+}

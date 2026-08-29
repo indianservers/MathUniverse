@@ -1,7 +1,6 @@
 import {
   ArrowLeft,
   ArrowRight,
-  Check,
   CircleDot,
   Copy,
   Eraser,
@@ -17,6 +16,7 @@ import {
   type PointerEvent as ReactPointerEvent,
 } from "react";
 import type { LessonAdapterProps } from "../types";
+import "./GeneralPolygonTargetLesson217.css";
 
 type Point = { x: number; y: number };
 type Tool = "point" | "polygon" | "move" | "measure";
@@ -34,21 +34,34 @@ export default function GeneralPolygonTargetLesson217({ resetToken, onInteractio
   const [grid, setGrid] = useState(true);
   const [drag, setDrag] = useState<Drag>(null);
   const [selectedSide, setSelectedSide] = useState<number | null>(null);
+  const [activeStage, setActiveStage] = useState(0);
+  const [copyCount, setCopyCount] = useState(0);
   const [answers, setAnswers] = useState(["", ""]);
   const [feedback, setFeedback] = useState<"idle" | "correct" | "incorrect">("idle");
   const model = useMemo(() => polygonModel(points), [points]);
 
-  const reset = () => { setPoints(initialPoints); setTool("point"); setSnap(true); setGrid(true); setSelectedSide(null); setAnswers(["",""]); setFeedback("idle"); onInteraction(); };
-  useEffect(() => { setPoints(initialPoints); setTool("point"); setSnap(true); setGrid(true); setSelectedSide(null); setAnswers(["",""]); setFeedback("idle"); }, [resetToken]);
+  const reset = () => { setPoints(initialPoints); setTool("point"); setSnap(true); setGrid(true); setSelectedSide(null); setActiveStage(0); setCopyCount(0); setAnswers(["",""]); setFeedback("idle"); onInteraction(); };
+  useEffect(() => { setPoints(initialPoints); setTool("point"); setSnap(true); setGrid(true); setSelectedSide(null); setActiveStage(0); setCopyCount(0); setAnswers(["",""]); setFeedback("idle"); }, [resetToken]);
   const check = () => { setFeedback(Number(answers[0]) === 720 && Number(answers[1]) === 360 ? "correct" : "incorrect"); onInteraction(); };
 
   return <section
-    className="space-y-3"
+    className="general217-page space-y-3"
     style={{ marginTop: -7 }}
     data-testid="dynamic-geometry-mockup-0274"
     data-dedicated-lesson="217"
     data-object-model="editable-general-polygon"
     data-direct-interaction="true"
+    data-points={points.map((point) => `${point.x}:${point.y}`).join("|")}
+    data-area={model.area.toFixed(4)}
+    data-perimeter={model.perimeter.toFixed(4)}
+    data-angle-sum={model.angleSum.toFixed(4)}
+    data-tool={tool}
+    data-snap={snap}
+    data-grid={grid}
+    data-selected-side={selectedSide ?? "none"}
+    data-stage={activeStage}
+    data-copy-count={copyCount}
+    data-feedback={feedback}
     aria-label="General Polygon dedicated interactive geometry model"
   >
     <span className="sr-only">Live Verification. Check Construction.</span>
@@ -59,18 +72,18 @@ export default function GeneralPolygonTargetLesson217({ resetToken, onInteractio
       </div>
     </header>
 
-    <nav className="grid grid-cols-5 overflow-hidden rounded-xl border border-slate-200 bg-white p-1 shadow-sm">{[['Explore','Build & investigate'],['Explain',"What's happening"],['Examples','See it in action'],['Formulas','Rules & definitions'],['Practice','Try it yourself']].map(([label,sub],index)=><button type="button" key={label} className={`h-11 rounded-lg text-[9px] font-black ${index===0?'border border-blue-300 text-blue-700':'text-slate-700'}`} onClick={()=>{document.getElementById(index===4?'general-practice':`general-${index}`)?.scrollIntoView({behavior:'smooth',block:'center'});onInteraction()}}>{label}<span className="block text-[7px] font-normal">{sub}</span></button>)}</nav>
+    <nav className="grid grid-cols-5 overflow-hidden rounded-xl border border-slate-200 bg-white p-1 shadow-sm">{[['Explore','Build & investigate'],['Explain',"What's happening"],['Examples','See it in action'],['Formulas','Rules & definitions'],['Practice','Try it yourself']].map(([label,sub],index)=><button type="button" key={label} aria-pressed={activeStage===index} className={`h-11 rounded-lg text-[9px] font-black ${activeStage===index?'border border-blue-300 text-blue-700':'text-slate-700'}`} onClick={()=>{setActiveStage(index);document.getElementById(index===4?'general-practice':`general-${index}`)?.scrollIntoView({behavior:'smooth',block:'center'});onInteraction()}}>{label}<span className="block text-[7px] font-normal">{sub}</span></button>)}</nav>
 
     <section id="general-0" className="grid gap-3 md:grid-cols-[minmax(0,2.5fr)_minmax(190px,1fr)]">
       <div className="rounded-2xl border border-slate-200 bg-white p-3 shadow-sm">
         <div className="flex items-start justify-between gap-3"><div><h2 className="text-[12px] font-black">Build &amp; Explore</h2><p className="mt-1 text-[8px] text-slate-600">Click to add vertices. Drag vertices to reshape. Double-click a vertex to remove.</p></div><div className="flex gap-2"><button type="button" className="target-geometry-action" onClick={reset}><RotateCcw />Reset</button><button type="button" className="target-general-clear" onClick={()=>{setPoints([]);setTool('point');setSelectedSide(null);onInteraction()}}><Eraser />Clear All</button></div></div>
         <div className="relative mt-3 overflow-hidden rounded-xl border border-slate-200">
-          <div className="absolute left-2 top-3 z-10 grid w-[78px] gap-1 rounded-lg border border-slate-200 bg-white/95 p-2 text-[8px] shadow-sm"><ToolButton active={tool==='point'} icon={<CircleDot/>} label="Point" onClick={()=>setTool('point')}/><ToolButton active={tool==='polygon'} icon={<Pentagon/>} label="Polygon" onClick={()=>setTool('polygon')}/><ToolButton active={tool==='move'} icon={<Move/>} label="Move" onClick={()=>setTool('move')}/><ToolButton active={tool==='measure'} icon={<Ruler/>} label="Measure" onClick={()=>setTool('measure')}/><hr/><Toggle label="Snap" checked={snap} onChange={setSnap}/><Toggle label="Grid" checked={grid} onChange={setGrid}/></div>
+          <div className="absolute left-2 top-3 z-10 grid w-[78px] gap-1 rounded-lg border border-slate-200 bg-white/95 p-2 text-[8px] shadow-sm"><ToolButton active={tool==='point'} icon={<CircleDot/>} label="Point" onClick={()=>{setTool('point');onInteraction()}}/><ToolButton active={tool==='polygon'} icon={<Pentagon/>} label="Polygon" onClick={()=>{setTool('polygon');onInteraction()}}/><ToolButton active={tool==='move'} icon={<Move/>} label="Move" onClick={()=>{setTool('move');onInteraction()}}/><ToolButton active={tool==='measure'} icon={<Ruler/>} label="Measure" onClick={()=>{setTool('measure');onInteraction()}}/><hr/><Toggle label="Snap" checked={snap} onChange={(value)=>{setSnap(value);onInteraction()}}/><Toggle label="Grid" checked={grid} onChange={(value)=>{setGrid(value);onInteraction()}}/></div>
           <PolygonCanvas points={points} model={model} tool={tool} snap={snap} grid={grid} drag={drag} selectedSide={selectedSide} onDrag={setDrag} onPoints={(next)=>{setPoints(next);setFeedback('idle');onInteraction()}} onSelectSide={setSelectedSide}/>
         </div>
         <p className="mt-2 text-[8px] text-slate-500">Tip: Try dragging vertices to change the shape. Watch the measurements update in real time.</p>
       </div>
-      <Properties points={points} model={model} onCopy={(text)=>{void navigator.clipboard?.writeText(text);onInteraction()}} />
+      <Properties points={points} model={model} onCopy={async(text)=>{try{await navigator.clipboard?.writeText(text)}finally{setCopyCount((count)=>count+1);onInteraction()}}} />
     </section>
 
     <section className="grid gap-3 md:grid-cols-3" style={{marginTop:10}}>

@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **199 of 200 lessons completed; 1 pending.**
+Dedicated rebuild target: **200 of 200 lessons completed; 0 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -185,6 +185,7 @@ Dedicated rebuild target: **199 of 200 lessons completed; 1 pending.**
 | 0271   | 214 Triangle Constructor | Complete | Dedicated SSS/SAS/ASA construction model with physical vertex drag, live side/angle/area/perimeter/classification calculations, infeasible-state handling, real pan/stages/fullscreen, graded SAS practice, and exact 1029x1528 framing |
 | 0272   | 215 Regular Polygon | Complete | Dedicated generated-vertex regular-polygon model with physical center/vertex drags, live angle/side/perimeter/area/symmetry calculations, real n/r/placement/rotation/visibility controls, numerical grading, and exact 1027x1532 framing |
 | 0273   | 216 Rigid Polygon | Complete | Dedicated rigid-triangle model with physical translation/rotation drags, invariant side/angle calculations, exact dependent overlay, real visibility/stage/language/share controls, six-field grading, and exact 1027x1531 framing |
+| 0274   | 217 General Polygon | Complete | Dedicated ordered-vertex polygon model with physical reshape/add/remove/translation, topology-aware measurements, real tool/display/stage/copy controls, numerical grading, and exact 1022x1538 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2784,3 +2785,11 @@ Audited and strengthened the dedicated `rigid-triangle-motion` model against tar
 The exact 1027x1531 frame matches the target: sidebar width 211, content x=225-1009, header y=96-243, tabs y=261-316, workspace y=328-908, teaching/practice row y=918-1259.19, motion strip y=1269.19-1346.69, navigation y=1356.69-1410.69, and footer y=1411-1531. There is no horizontal overflow and there are no console warnings or errors. The mockup's two 4.47 side labels contradict its stated A(-3,1), B(1,5), C(4,1) coordinates; the lesson intentionally reports the correct coordinate-derived lengths sqrt(32), 5, and 7.
 
 Evidence: `0273-reference.png`, `0273-desktop.png`, `0273-dedicated-target-validation.json`.
+
+## Lesson 217 / Mockup 0274 - General Polygon
+
+Audited and strengthened the dedicated `editable-general-polygon` model against target 0274. Every vertex is physically draggable; Point and Polygon add vertices up to ten, double-click removes a vertex, Move translates the complete polygon, and Measure selects a real edge. Side lengths, perimeter, shoelace area, oriented interior angles, angle sum, expected angle sum, convexity, and non-adjacent edge intersection all derive from the same ordered point collection. Clear All supports rebuilding from an empty canvas. Snap, Grid, four tools, five stateful tabs, property copy actions, Reset, reject/accept hexagon grading, and adjacent routes are functional.
+
+The exact 1022x1538 frame matches the target: sidebar width 216, content x=232-1006, header y=110-294, tabs y=306-358, workspace y=372-956, teaching cards y=968-1166, practice y=1176-1387, navigation y=1397-1439, and footer y=1445-1538. The Check action is fully contained, with no horizontal overflow and no console warnings or errors. The mockup's displayed individual interior angles sum to 519.9 degrees while its summary correctly claims 540 degrees; the lesson intentionally derives a consistent 540-degree total from its live pentagon vertices.
+
+Evidence: `0274-reference.png`, `0274-desktop.png`, `0274-dedicated-target-validation.json`.

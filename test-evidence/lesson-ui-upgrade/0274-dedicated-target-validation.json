@@ -1,15 +1,280 @@
-[
-  {
-    "id": 217,
-    "mockup": 274,
-    "route": "/lessons/geometry/217-general-polygon",
-    "width": 1022,
-    "height": 1538,
-    "status": "Correct polygon sums.",
-    "consoleErrors": [],
-    "scrollHeight": 1538,
-    "surfaceBottom": 1434.609375,
-    "objectModel": "editable-general-polygon",
-    "overflowing": 0
-  }
-]
+{
+  "mockup": "0274",
+  "lessonId": 217,
+  "checks": {
+    "initial": {
+      "points": "0:3.2|-3.1:1.1|-2.1:-2.1|2.8:-1.6|3.4:1.6",
+      "area": "24.3900",
+      "perimeter": "19.0358",
+      "angle-sum": "540.0000",
+      "tool": "point",
+      "snap": "true",
+      "grid": "true",
+      "selected-side": "none",
+      "stage": "0",
+      "copy-count": "0",
+      "feedback": "idle"
+    },
+    "vertexDragged": {
+      "points": "0.9:2.3|-3.1:1.1|-2.1:-2.1|2.8:-1.6|3.4:1.6",
+      "area": "21.2400",
+      "perimeter": "18.3061",
+      "angle-sum": "540.0000",
+      "tool": "point",
+      "snap": "true",
+      "grid": "true",
+      "selected-side": "none",
+      "stage": "0",
+      "copy-count": "0",
+      "feedback": "idle"
+    },
+    "vertexAdded": {
+      "points": "0.9:2.3|-3.1:1.1|-2.1:-2.1|2.8:-1.6|3.4:1.6|4.5:-2.6",
+      "area": "16.3750",
+      "perimeter": "26.1319",
+      "angle-sum": "1080.0000",
+      "tool": "polygon",
+      "snap": "true",
+      "grid": "true",
+      "selected-side": "none",
+      "stage": "0",
+      "copy-count": "0",
+      "feedback": "idle"
+    },
+    "vertexRemoved": {
+      "points": "0.9:2.3|-3.1:1.1|-2.1:-2.1|2.8:-1.6|3.4:1.6",
+      "area": "21.2400",
+      "perimeter": "18.3061",
+      "angle-sum": "540.0000",
+      "tool": "polygon",
+      "snap": "true",
+      "grid": "true",
+      "selected-side": "none",
+      "stage": "0",
+      "copy-count": "0",
+      "feedback": "idle"
+    },
+    "polygonMoved": {
+      "points": "1.755999679385328:2.8133006816007655|-2.244000320614672:1.6133006816007658|-1.244000320614672:-1.5866993183992344|3.655999679385328:-1.0866993183992344|4.255999679385328:2.113300681600766",
+      "area": "21.2400",
+      "perimeter": "18.3061",
+      "angle-sum": "540.0000",
+      "tool": "move",
+      "snap": "true",
+      "grid": "true",
+      "selected-side": "none",
+      "stage": "0",
+      "copy-count": "0",
+      "feedback": "idle"
+    },
+    "measured": {
+      "points": "1.755999679385328:2.8133006816007655|-2.244000320614672:1.6133006816007658|-1.244000320614672:-1.5866993183992344|3.655999679385328:-1.0866993183992344|4.255999679385328:2.113300681600766",
+      "area": "21.2400",
+      "perimeter": "18.3061",
+      "angle-sum": "540.0000",
+      "tool": "measure",
+      "snap": "true",
+      "grid": "true",
+      "selected-side": "0",
+      "stage": "0",
+      "copy-count": "0",
+      "feedback": "idle"
+    },
+    "displayOff": {
+      "points": "1.755999679385328:2.8133006816007655|-2.244000320614672:1.6133006816007658|-1.244000320614672:-1.5866993183992344|3.655999679385328:-1.0866993183992344|4.255999679385328:2.113300681600766",
+      "area": "21.2400",
+      "perimeter": "18.3061",
+      "angle-sum": "540.0000",
+      "tool": "measure",
+      "snap": "false",
+      "grid": "false",
+      "selected-side": "0",
+      "stage": "0",
+      "copy-count": "0",
+      "feedback": "idle"
+    },
+    "copied": {
+      "points": "1.755999679385328:2.8133006816007655|-2.244000320614672:1.6133006816007658|-1.244000320614672:-1.5866993183992344|3.655999679385328:-1.0866993183992344|4.255999679385328:2.113300681600766",
+      "area": "21.2400",
+      "perimeter": "18.3061",
+      "angle-sum": "540.0000",
+      "tool": "measure",
+      "snap": "true",
+      "grid": "true",
+      "selected-side": "0",
+      "stage": "0",
+      "copy-count": "1",
+      "feedback": "idle"
+    },
+    "stages": [
+      {
+        "expected": "0",
+        "actual": "0"
+      },
+      {
+        "expected": "1",
+        "actual": "1"
+      },
+      {
+        "expected": "2",
+        "actual": "2"
+      },
+      {
+        "expected": "3",
+        "actual": "3"
+      },
+      {
+        "expected": "4",
+        "actual": "4"
+      }
+    ],
+    "cleared": {
+      "points": "",
+      "area": "0.0000",
+      "perimeter": "0.0000",
+      "angle-sum": "0.0000",
+      "tool": "point",
+      "snap": "true",
+      "grid": "true",
+      "selected-side": "none",
+      "stage": "4",
+      "copy-count": "1",
+      "feedback": "idle"
+    },
+    "rebuilt": {
+      "points": "-2.8:3|-0.3:4.2|1.7:2",
+      "area": "3.9500",
+      "perimeter": "10.3561",
+      "angle-sum": "180.0000",
+      "tool": "point",
+      "snap": "true",
+      "grid": "true",
+      "selected-side": "none",
+      "stage": "4",
+      "copy-count": "1",
+      "feedback": "idle"
+    },
+    "rejected": {
+      "points": "-2.8:3|-0.3:4.2|1.7:2",
+      "area": "3.9500",
+      "perimeter": "10.3561",
+      "angle-sum": "180.0000",
+      "tool": "point",
+      "snap": "true",
+      "grid": "true",
+      "selected-side": "none",
+      "stage": "4",
+      "copy-count": "1",
+      "feedback": "incorrect"
+    },
+    "accepted": {
+      "points": "-2.8:3|-0.3:4.2|1.7:2",
+      "area": "3.9500",
+      "perimeter": "10.3561",
+      "angle-sum": "180.0000",
+      "tool": "point",
+      "snap": "true",
+      "grid": "true",
+      "selected-side": "none",
+      "stage": "4",
+      "copy-count": "1",
+      "feedback": "correct"
+    },
+    "reset": {
+      "points": "0:3.2|-3.1:1.1|-2.1:-2.1|2.8:-1.6|3.4:1.6",
+      "area": "24.3900",
+      "perimeter": "19.0358",
+      "angle-sum": "540.0000",
+      "tool": "point",
+      "snap": "true",
+      "grid": "true",
+      "selected-side": "none",
+      "stage": "0",
+      "copy-count": "0",
+      "feedback": "idle"
+    }
+  },
+  "invariants": {
+    "translationPreservedAreaAndPerimeter": true
+  },
+  "navigation": {
+    "previousHref": "/lessons/geometry/216-rigid-polygon",
+    "nextHref": "/lessons/geometry/218-circle-centre-and-point"
+  },
+  "metrics": {
+    "document": {
+      "width": 1022,
+      "height": 1538
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 216,
+      "height": 1538,
+      "bottom": 1538
+    },
+    "header": {
+      "top": 110,
+      "left": 232,
+      "width": 774,
+      "height": 184,
+      "bottom": 294
+    },
+    "tabs": {
+      "top": 306,
+      "left": 232,
+      "width": 774,
+      "height": 52,
+      "bottom": 358
+    },
+    "workspace": {
+      "top": 372,
+      "left": 232,
+      "width": 774,
+      "height": 584,
+      "bottom": 956
+    },
+    "cards": {
+      "top": 968,
+      "left": 232,
+      "width": 774,
+      "height": 198,
+      "bottom": 1166
+    },
+    "practice": {
+      "top": 1176,
+      "left": 232,
+      "width": 774,
+      "height": 211,
+      "bottom": 1387
+    },
+    "adjacent": {
+      "top": 1397,
+      "left": 232,
+      "width": 774,
+      "height": 42,
+      "bottom": 1439
+    },
+    "footer": {
+      "top": 1445,
+      "left": 216,
+      "width": 806,
+      "height": 93,
+      "bottom": 1538
+    },
+    "practiceButton": {
+      "top": 1357.5,
+      "left": 737.828125,
+      "width": 63.171875,
+      "height": 28,
+      "bottom": 1385.5
+    },
+    "surface": {
+      "bottom": 1439
+    }
+  },
+  "consoleMessages": [],
+  "note": "The mockup's listed individual interior angles sum to 519.9 degrees while also claiming the correct pentagon total of 540 degrees. The lesson derives every angle and the total from the live vertices.",
+  "passed": true
+}
