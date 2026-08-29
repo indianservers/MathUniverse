@@ -4,9 +4,18 @@ import { lessonCatalog } from "../catalog/lessonCatalog";
 import VectorLessonAdapter from "./VectorLessonAdapter";
 
 describe("VectorLessonAdapter", () => {
-  it("renders vector lessons 183 through 197 with lesson-specific guidance", () => {
+  it("renders vector introduction as its own two-point vector surface", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 183)!;
+    const html = renderToStaticMarkup(<VectorLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain("vector-mockup-0240");
+    expect(html).toContain('data-dedicated-lesson="183"');
+    expect(html).toContain('data-testid="vector-point-a"');
+    expect(html).toContain('data-testid="vector-point-b"');
+    expect(html).toContain('data-testid="vector-practice-tip"');
+  });
+
+  it("renders vector lessons 184 through 197 with lesson-specific guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      183: "A vector has size and direction",
       184: "Component form",
       185: "Position vector",
       186: "Vector addition",

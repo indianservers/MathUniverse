@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **165 of 200 lessons completed; 35 pending.**
+Dedicated rebuild target: **166 of 200 lessons completed; 34 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -151,6 +151,7 @@ Dedicated rebuild target: **165 of 200 lessons completed; 35 pending.**
 | 0237   |              180 Polar Coordinates | Complete | Dedicated bidirectional Cartesian-polar model with two pointer/keyboard draggable points, editable radius/angle, live conversion/quadrants, quick angles, graded round-trip practice, and exact 997x1577 framing |
 | 0238   |         181 Parametric Coordinates | Complete | Dedicated shared-parameter motion model with pointer/keyboard constrained point, playback/step/speed/loop controls, synchronized coordinate graphs, exact elimination, graded ellipse practice, and exact 1037x1516 framing |
 | 0239   |       182 Barycentric Coordinates | Complete | Dedicated normalized triangle-weight model with pointer/keyboard point drag, linked weight sliders, real area/median/grid controls, exact coordinate reconstruction, independent target practice, and exact 981x1604 framing |
+| 0240   |          183 Vector Introduction | Complete | Dedicated two-point vector model with pointer/keyboard A/B drag, applyable point drafts, linked components, magnitude/direction, equivalent translation, graded draggable practice, and exact 1149x1369 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2462,3 +2463,15 @@ Evidence:
 - `0239-reference.png`
 - `0239-desktop.png`
 - `0239-dedicated-target-validation.json`
+
+## Lesson 183 / Mockup 0240 - Vector Introduction
+
+Reworked individually against the target mockup with a dedicated `two-point-vector-component-magnitude-direction-equivalent-translation-practice` model. Independent points A and B determine `u=B-A`; component controls preserve A while moving B, and magnitude/direction are recalculated with `hypot` and `atan2` for every state.
+
+Pointer and keyboard movement for both endpoints, four draft point inputs with a real apply action, both component sliders and exact fields, component visibility, equivalent translated vector, five stages, language, Share, Reset, independent draggable/keyboard practice, two-component grading, progress, and adjacent navigation are working controls. Final 1149x1369 validation checks the initial `<3,2>` vector, keyboard and physical endpoint drag, draft isolation/application, component edits, visibility, all stages, language, wrong/correct `<2,-3>` practice, Share, Reset, routes, geometry, overflow, and console output.
+
+Evidence:
+
+- `0240-reference.png`
+- `0240-desktop.png`
+- `0240-dedicated-target-validation.json`
