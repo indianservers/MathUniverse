@@ -1,0 +1,113 @@
+{
+  "mockup": "0255",
+  "lessonId": 198,
+  "checks": {
+    "initial": {
+      "point": "2:1",
+      "tool": "point",
+      "snap": "true",
+      "exists": "true",
+      "practice": "idle",
+      "tab": "Construction"
+    },
+    "drag": {
+      "point": "4:4",
+      "tool": "point",
+      "snap": "true",
+      "exists": "true",
+      "practice": "idle",
+      "tab": "Construction"
+    },
+    "coordinates": {
+      "point": "-3:4",
+      "tool": "point",
+      "snap": "true",
+      "exists": "true",
+      "practice": "idle",
+      "tab": "Construction"
+    },
+    "deleted": {
+      "point": "-3:4",
+      "tool": "delete",
+      "snap": "true",
+      "exists": "false",
+      "practice": "idle",
+      "tab": "Construction"
+    },
+    "recreated": {
+      "point": "2:1",
+      "tool": "point",
+      "snap": "true",
+      "exists": "true",
+      "practice": "idle",
+      "tab": "Construction"
+    },
+    "practice": {
+      "point": "2:1",
+      "tool": "point",
+      "snap": "true",
+      "exists": "true",
+      "practice": "correct",
+      "tab": "Construction"
+    },
+    "actions": {
+      "point": "2:1",
+      "tool": "point",
+      "snap": "true",
+      "exists": "true",
+      "practice": "correct",
+      "tab": "Construction"
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/geometry/197-force-vectors",
+    "nextHref": "/lessons/geometry/199-point-on-object"
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "horizontalOverflow": false,
+    "regions": {
+      "header": {
+        "top": 107,
+        "height": 195,
+        "left": 233,
+        "width": 775
+      },
+      "tabs": {
+        "top": 327,
+        "height": 48,
+        "left": 233,
+        "width": 775
+      },
+      "main": {
+        "top": 388,
+        "height": 600,
+        "left": 233,
+        "width": 775
+      },
+      "cards": {
+        "top": 1004,
+        "height": 315,
+        "left": 233,
+        "width": 775
+      },
+      "nav": {
+        "top": 1332,
+        "height": 57,
+        "left": 233,
+        "width": 775
+      },
+      "footer": {
+        "top": 1409,
+        "height": 118,
+        "left": 233,
+        "width": 775
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

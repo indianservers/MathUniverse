@@ -58,6 +58,7 @@ import CoordinateTransformationsTargetLesson179 from "./CoordinateTransformation
 import PolarCoordinatesTargetLesson180 from "./PolarCoordinatesTargetLesson180";
 import ParametricCoordinatesTargetLesson181 from "./ParametricCoordinatesTargetLesson181";
 import BarycentricCoordinatesTargetLesson182 from "./BarycentricCoordinatesTargetLesson182";
+import FreePointTargetLesson198 from "./FreePointTargetLesson198";
 import ReflectionLineTargetLesson237 from "./ReflectionLineTargetLesson237";
 import ReflectionPointTargetLesson238 from "./ReflectionPointTargetLesson238";
 import ReflectionCircleTargetLesson239 from "./ReflectionCircleTargetLesson239";
@@ -123,6 +124,9 @@ export default function Geometry2DLessonAdapter({
   resetToken,
   onInteraction,
 }: LessonAdapterProps) {
+  if (lesson.id === 198) {
+    return <FreePointTargetLesson198 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
   if (lesson.id === 167) {
     return <CartesianPlaneTargetLesson167 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }

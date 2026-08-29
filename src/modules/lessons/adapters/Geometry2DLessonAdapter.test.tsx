@@ -294,6 +294,10 @@ describe("Geometry2DLessonAdapter", () => {
     );
 
     expect(html).toContain("dynamic-geometry-mockup-0255");
+    expect(html).toContain('data-dedicated-lesson="198"');
+    expect(html).toContain('data-object-model="independent-free-point-coordinate-construction"');
+    expect(html).toContain('data-testid="free-point-handle"');
+    expect(html).toContain('aria-label="Practice Q x coordinate"');
     expect(html).toContain("Free point P coordinate plane");
     expect(html).toContain("Point Properties");
     expect(html).toContain("Independent coordinates");
@@ -301,6 +305,7 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).toContain("Understand the Rule");
     expect(html).toContain("Try It: Your Turn");
     expect(html).not.toContain("Construction steps (Compass-style)");
+    expect(html).not.toContain("reusable 2D geometry engine");
   });
 
   it("renders point on object as its own constrained-line surface", () => {
