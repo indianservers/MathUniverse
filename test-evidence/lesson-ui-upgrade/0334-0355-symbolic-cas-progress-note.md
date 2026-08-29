@@ -1,6 +1,6 @@
 # Symbolic Mathematics / CAS Workspace target batch 0334-0355
 
-Dedicated rebuild target: **5 of 22 lessons completed; 17 pending.**
+Dedicated rebuild target: **6 of 22 lessons completed; 16 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
@@ -9,6 +9,7 @@ Dedicated rebuild target: **5 of 22 lessons completed; 17 pending.**
 | 0336 | 430 Expand | `parsed-binomial-four-products-area-tiles-combine-practice` | Reworked individually and browser-validated |
 | 0337 | 431 Factor | `monic-quadratic-factor-pair-roots-area-tiles-challenge` | Reworked individually and browser-validated |
 | 0338 | 432 Substitute | `dual-occurrence-substitution-tree-order-of-operations-practice` | Reworked individually and browser-validated |
+| 0339 | 433 Solve | `balanced-quadratic-inverse-operations-factor-roots-verification` | Reworked individually and browser-validated |
 
 ## Lesson 428 / Mockup 0334 - Symbolic Evaluation
 
@@ -79,3 +80,17 @@ Evidence:
 - `0338-reference.png`
 - `0338-desktop.png`
 - `0338-dedicated-target-validation.json`
+
+## Lesson 433 / Mockup 0339 - Solve
+
+Reworked individually around a dedicated monic-quadratic balance model. The editable equation parser derives `b`, `c`, the integer factor pair, both roots, canonical factors, substitution checks, algebra tiles, cancellation state, and every displayed balance row from one coherent model. The inverse-operation chips support real click, keyboard, and drag/drop progression; equation editing, model-view selection, fullscreen, independent two-root practice checking, solution reveal, shell Reset, and Previous/Next navigation are functional.
+
+Browser validation starts from `x^2-5x+6=0`, derives factor pair `-2, -3`, factors `(x - 2)(x - 3)`, and roots `2, 3`. It edits the equation to `x^2+2x-8=0` and derives factors `(x + 4)(x - 2)` with roots `-4, 2`; then restores the target equation, drags the add-linear operation, applies subtraction and factoring, opens and closes fullscreen, rejects practice roots `-4, 3`, accepts `-4, 2`, reveals the solution, and resets cleanly.
+
+Final exact 1012x1555 validation matches the target stack: sidebar width 205, header y=110-353, tabs y=369-415, four-step flow y=505-598, dedicated balance workspace y=615-1258, misconception/practice y=1274-1419, lab y=426-1476, and adjacent navigation y=1485-1546. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0339-reference.png`
+- `0339-desktop.png`
+- `0339-dedicated-target-validation.json`

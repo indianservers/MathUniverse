@@ -1,0 +1,166 @@
+{
+  "mockup": "0339",
+  "lessonId": 433,
+  "checks": {
+    "initial": {
+      "equation": "x^2-5x+6=0",
+      "valid": "true",
+      "coefficients": "1,-5,6",
+      "pair": "-2,-3",
+      "roots": "2,3",
+      "factors": "(x - 2)(x - 3)",
+      "stage": "3",
+      "actions": "0",
+      "practice-feedback": "idle"
+    },
+    "edited": {
+      "equation": "x^2+2x-8=0",
+      "valid": "true",
+      "coefficients": "1,2,-8",
+      "pair": "4,-2",
+      "roots": "-4,2",
+      "factors": "(x + 4)(x - 2)",
+      "stage": "0",
+      "actions": "1",
+      "practice-feedback": "idle"
+    },
+    "addedLinear": {
+      "equation": "x^2-5x+6=0",
+      "valid": "true",
+      "coefficients": "1,-5,6",
+      "pair": "-2,-3",
+      "roots": "2,3",
+      "factors": "(x - 2)(x - 3)",
+      "stage": "1",
+      "actions": "3",
+      "practice-feedback": "idle"
+    },
+    "subtractedConstant": {
+      "equation": "x^2-5x+6=0",
+      "valid": "true",
+      "coefficients": "1,-5,6",
+      "pair": "-2,-3",
+      "roots": "2,3",
+      "factors": "(x - 2)(x - 3)",
+      "stage": "2",
+      "actions": "4",
+      "practice-feedback": "idle"
+    },
+    "factored": {
+      "equation": "x^2-5x+6=0",
+      "valid": "true",
+      "coefficients": "1,-5,6",
+      "pair": "-2,-3",
+      "roots": "2,3",
+      "factors": "(x - 2)(x - 3)",
+      "stage": "3",
+      "actions": "5",
+      "practice-feedback": "idle"
+    },
+    "fullscreenOpen": true,
+    "fullscreenClosed": true,
+    "rejected": {
+      "equation": "x^2-5x+6=0",
+      "valid": "true",
+      "coefficients": "1,-5,6",
+      "pair": "-2,-3",
+      "roots": "2,3",
+      "factors": "(x - 2)(x - 3)",
+      "stage": "3",
+      "actions": "9",
+      "practice-feedback": "incorrect"
+    },
+    "accepted": {
+      "equation": "x^2-5x+6=0",
+      "valid": "true",
+      "coefficients": "1,-5,6",
+      "pair": "-2,-3",
+      "roots": "2,3",
+      "factors": "(x - 2)(x - 3)",
+      "stage": "3",
+      "actions": "10",
+      "practice-feedback": "correct"
+    },
+    "solutionShown": "x = -4, 2",
+    "reset": {
+      "equation": "x^2-5x+6=0",
+      "valid": "true",
+      "coefficients": "1,-5,6",
+      "pair": "-2,-3",
+      "roots": "2,3",
+      "factors": "(x - 2)(x - 3)",
+      "stage": "3",
+      "actions": "0",
+      "practice-feedback": "idle"
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/symbolic-mathematics/432-substitute",
+    "nextHref": "/lessons/symbolic-mathematics/434-numerical-solve"
+  },
+  "metrics": {
+    "document": {
+      "width": 1012,
+      "height": 1555
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 205,
+      "height": 1555,
+      "bottom": 1555
+    },
+    "header": {
+      "top": 110,
+      "left": 218,
+      "width": 780,
+      "height": 243,
+      "bottom": 353
+    },
+    "tabs": {
+      "top": 369,
+      "left": 218,
+      "width": 780,
+      "height": 46,
+      "bottom": 415
+    },
+    "lab": {
+      "top": 426,
+      "left": 218,
+      "width": 780,
+      "height": 1050,
+      "bottom": 1476
+    },
+    "flow": {
+      "top": 505,
+      "left": 232,
+      "width": 752,
+      "height": 93,
+      "bottom": 598
+    },
+    "body": {
+      "top": 615,
+      "left": 232,
+      "width": 752,
+      "height": 643,
+      "bottom": 1258
+    },
+    "practice": {
+      "top": 1274,
+      "left": 232,
+      "width": 752,
+      "height": 145,
+      "bottom": 1419
+    },
+    "adjacent": {
+      "top": 1485,
+      "left": 218,
+      "width": 780,
+      "height": 61,
+      "bottom": 1546
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
