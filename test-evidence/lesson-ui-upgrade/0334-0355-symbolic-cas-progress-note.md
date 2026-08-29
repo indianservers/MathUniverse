@@ -1,6 +1,6 @@
 # Symbolic Mathematics / CAS Workspace target batch 0334-0355
 
-Dedicated rebuild target: **20 of 22 lessons completed; 2 pending.**
+Dedicated rebuild target: **21 of 22 lessons completed; 1 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
@@ -24,6 +24,7 @@ Dedicated rebuild target: **20 of 22 lessons completed; 2 pending.**
 | 0351 | 445 Complex Calculations | `complex-rectangular-polar-operation-argand-vectors-modulus-argument-practice` | Reworked individually and browser-validated |
 | 0352 | 446 Assumptions | `linear-expression-assumption-domain-conditional-evaluation-cancellation-practice` | Reworked individually and browser-validated |
 | 0353 | 447 Exact / Numeric Toggle | `exact-symbolic-numeric-precision-rounding-error-place-value-practice` | Reworked individually and browser-validated |
+| 0354 | 448 Step-by-Step Algebra | `ordered-algebra-transformations-rule-validation-change-tracking-practice` | Reworked individually and browser-validated |
 
 ## Lesson 428 / Mockup 0334 - Symbolic Evaluation
 
@@ -304,3 +305,17 @@ Evidence:
 - `0353-reference.png`
 - `0353-desktop.png`
 - `0353-dedicated-target-validation.json`
+
+## Lesson 448 / Mockup 0354 - Step-by-Step Algebra
+
+Reworked individually around a dedicated ordered-transformation model. The current expression, expected move, generated next expression, applied rule, changed terms, completed-step counter, and final form all advance from the same three-step state machine. Distribute, combine variable terms, combine constants, invalid-order rejection, Undo step, lesson tabs, Reset, Share, independent next-move practice, shell Reset, and Previous/Next navigation are functional.
+
+Browser validation starts from `2(x+3)+x-x+4-2`. It rejects simplifying constants before distribution, derives `(2x+6)+x-x+4-2`, combines the variable terms to `2x+6+4-2`, then simplifies the constants to the coherent final result `2x+8`. Undo returns from step two to step one and permits the correct move again. Practice rejects combining terms before removing parentheses and accepts distributing 4 across `(x+1)`. Shell Reset restores the initial expression, first expected move, empty feedback, selected interaction tab, and zero action count. The mockup's stated quadratic final form does not follow from its displayed linear expression; the implementation preserves the target procedure layout while using the mathematically correct `2x+8`.
+
+Final exact 1003x1568 validation matches the target stack: sidebar width 208, dedicated header y=112-360, tabs y=370-414, guided CAS workspace y=424-1390, worked/practice row y=1120-1378, adjacent navigation y=1402-1452, and site footer y=1464-1568. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0354-reference.png`
+- `0354-desktop.png`
+- `0354-dedicated-target-validation.json`

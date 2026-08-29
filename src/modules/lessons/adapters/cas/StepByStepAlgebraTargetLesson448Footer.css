@@ -1,0 +1,42 @@
+body:has(.sa448-page) footer[aria-label="Site footer"] {
+  height: 104px !important;
+  margin-top: 12px !important;
+  padding: 0 14px !important;
+}
+
+body:has(.sa448-page) footer[aria-label="Site footer"] > div {
+  height: 92px !important;
+  padding: 7px 12px !important;
+  font-size: 8px !important;
+}
+
+body:has(.sa448-page)
+  footer[aria-label="Site footer"]
+  > div
+  > div:first-child
+  p:first-child {
+  font-size: 11px !important;
+}
+
+body:has(.sa448-page)
+  footer[aria-label="Site footer"]
+  > div
+  > div:first-child
+  p:nth-child(2) {
+  max-width: 480px !important;
+  font-size: 8px !important;
+  line-height: 11px !important;
+}
+
+body:has(.sa448-page)
+  footer[aria-label="Site footer"]
+  > div
+  > div:last-child {
+  margin-top: 4px !important;
+  padding-top: 4px !important;
+}
+
+body:has(.sa448-page) footer[aria-label="Site footer"] > div > p:last-child {
+  margin-top: 2px !important;
+  font-size: 7px !important;
+}

@@ -1,0 +1,154 @@
+{
+  "mockup": "0354",
+  "lessonId": 448,
+  "checks": {
+    "initial": {
+      "step": "0",
+      "expression": "2(x + 3) + x - x + 4 - 2",
+      "expected-move": "distribute",
+      "feedback": "",
+      "practice-feedback": "",
+      "actions": "0"
+    },
+    "invalidFirst": {
+      "step": "0",
+      "expression": "2(x + 3) + x - x + 4 - 2",
+      "expected-move": "distribute",
+      "feedback": "incorrect",
+      "practice-feedback": "",
+      "actions": "1"
+    },
+    "distributed": {
+      "step": "1",
+      "expression": "(2x + 6) + x - x + 4 - 2",
+      "expected-move": "combine",
+      "feedback": "correct",
+      "practice-feedback": "",
+      "actions": "2"
+    },
+    "combined": {
+      "step": "2",
+      "expression": "2x + 6 + 4 - 2",
+      "expected-move": "constants",
+      "feedback": "correct",
+      "practice-feedback": "",
+      "actions": "3"
+    },
+    "undo": {
+      "step": "1",
+      "expression": "(2x + 6) + x - x + 4 - 2",
+      "expected-move": "combine",
+      "feedback": "",
+      "practice-feedback": "",
+      "actions": "4"
+    },
+    "complete": {
+      "step": "3",
+      "expression": "2x + 8",
+      "expected-move": "complete",
+      "feedback": "correct",
+      "practice-feedback": "",
+      "actions": "6"
+    },
+    "practiceRejected": {
+      "step": "3",
+      "expression": "2x + 8",
+      "expected-move": "complete",
+      "feedback": "correct",
+      "practice-feedback": "incorrect",
+      "actions": "7"
+    },
+    "practiceAccepted": {
+      "step": "3",
+      "expression": "2x + 8",
+      "expected-move": "complete",
+      "feedback": "correct",
+      "practice-feedback": "correct",
+      "actions": "8"
+    },
+    "reset": {
+      "step": "0",
+      "expression": "2(x + 3) + x - x + 4 - 2",
+      "expected-move": "distribute",
+      "feedback": "",
+      "practice-feedback": "",
+      "actions": "0"
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/symbolic-mathematics/447-exact-numeric-toggle",
+    "nextHref": "/lessons/symbolic-mathematics/449-cas-to-graph-link"
+  },
+  "metrics": {
+    "document": {
+      "width": 1003,
+      "height": 1568
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 208,
+      "height": 1568,
+      "bottom": 1568
+    },
+    "shellHeader": {
+      "top": 0,
+      "left": 0,
+      "width": 0,
+      "height": 0,
+      "bottom": 0
+    },
+    "hero": {
+      "top": 112,
+      "left": 222,
+      "width": 767,
+      "height": 248,
+      "bottom": 360
+    },
+    "tabs": {
+      "top": 370,
+      "left": 222,
+      "width": 767,
+      "height": 44,
+      "bottom": 414
+    },
+    "workspace": {
+      "top": 424,
+      "left": 222,
+      "width": 767,
+      "height": 966,
+      "bottom": 1390
+    },
+    "grid": {
+      "top": 514,
+      "left": 233,
+      "width": 745,
+      "height": 596,
+      "bottom": 1110
+    },
+    "bottom": {
+      "top": 1120,
+      "left": 233,
+      "width": 745,
+      "height": 258,
+      "bottom": 1378
+    },
+    "adjacent": {
+      "top": 1402,
+      "left": 222,
+      "width": 767,
+      "height": 50,
+      "bottom": 1452
+    },
+    "footer": {
+      "top": 1464,
+      "left": 208,
+      "width": 795,
+      "height": 104,
+      "bottom": 1568
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
