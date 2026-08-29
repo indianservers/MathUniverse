@@ -1,6 +1,6 @@
 # Symbolic Mathematics / CAS Workspace target batch 0334-0355
 
-Dedicated rebuild target: **10 of 22 lessons completed; 12 pending.**
+Dedicated rebuild target: **11 of 22 lessons completed; 11 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
@@ -14,6 +14,7 @@ Dedicated rebuild target: **10 of 22 lessons completed; 12 pending.**
 | 0341 | 435 Solve Systems | `two-equation-determinant-elimination-intersection-drag-classification-practice` | Reworked individually and browser-validated |
 | 0342 | 436 Eliminate Variables | `row-multiplier-matrix-addition-reduction-back-substitution-practice` | Reworked individually and browser-validated |
 | 0343 | 437 Partial Fractions | `distinct-linear-factor-residue-coefficients-drag-recombine-practice` | Reworked individually and browser-validated |
+| 0344 | 438 Polynomial Division | `linked-polynomial-long-synthetic-division-identity-practice` | Reworked individually and browser-validated |
 
 ## Lesson 428 / Mockup 0334 - Symbolic Evaluation
 
@@ -154,3 +155,17 @@ Evidence:
 - `0343-reference.png`
 - `0343-desktop.png`
 - `0343-dedicated-target-validation.json`
+
+## Lesson 438 / Mockup 0344 - Polynomial Division
+
+Reworked individually around a dedicated linked polynomial-division model. Editable dividend and divisor coefficient arrays drive the quotient, every long-division subtraction row, the remainder, the synthetic products and accumulated row, and a coefficient-by-coefficient reconstruction of `P(x) = D(x)Q(x) + R(x)`. Long/synthetic mode switching, invalid-divisor handling, Clear all, shell Reset, independent practice inputs, answer checking, solution reveal, lesson tabs, and Previous/Next navigation are functional.
+
+Browser validation starts from `(2x^4 + 3x^3 - x^2 + 4x - 2) / (2x - 4)`, derives the mathematically correct quotient `x^3 + 3.5x^2 + 6.5x + 15` and remainder `58`, and reconstructs the original dividend exactly. Editing the leading dividend coefficient to `3` recalculates the quotient to `1.5x^3 + 4.5x^2 + 8.5x + 19`, remainder `74`, and a matching identity. Validation also switches to the live synthetic view, rejects a zero leading divisor, rejects an incorrect practice constant, accepts `Q(x)=3x^2+8x+11, R=23`, reveals the answer, and resets to a clean initial state. The mockup's result panel shows coefficients unrelated to its own long-division rows; the implementation keeps the visual layout while using the coherent result proved by those rows and the identity check.
+
+Final exact 1016x1548 validation matches the target stack: sidebar width 203, header y=91-317, tabs y=325-367, four-step flow y=377-463, dedicated workspace y=473-1169, learning row y=1179-1321, practice y=1331-1395, adjacent navigation y=1405-1453, and site footer y=1463-1548. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0344-reference.png`
+- `0344-desktop.png`
+- `0344-dedicated-target-validation.json`
