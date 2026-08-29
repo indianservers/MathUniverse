@@ -65,7 +65,7 @@ Reworked individually against the target mockup. The surface owns an ordered ver
 
 ### Lesson 208 / Mockup 0265 - Perpendicular Line
 
-Reworked individually against the target mockup. Replaced the Base angle and Point offset stand-ins with a given-line slope, draggable/editable point P, computed perpendicular slope, right-angle invariant, real Select/Point/Line/Perpendicular/Clear tools, random examples, zoom, fullscreen, compass-style construction sequence, and a gated practice construction. Fixed the 90-degree annotation so it no longer intercepts pointer input. Final exact-viewport check at 998x1576: no overflow or console errors; automated verification physically drags P and confirms its SVG coordinate changes before completing the practice construction.
+Reworked individually against the target mockup. The given-line slope, draggable/editable point P, dependent negative-reciprocal slope, right-angle invariant, Select/Point/Line/Perpendicular/Clear tools, random examples, zoom, fullscreen, compass-style construction sequence, and stage navigation are linked to the same object model. Practice was corrected so selecting the Perpendicular tool does not auto-complete the answer: a far plane click is rejected and clicking P constructs the required dependent line. Final 998x1576 geometry matches the mockup's sidebar, header, stages, workspace, steps, rules, practice, and navigation with no overflow or console errors. The graph preserves the mathematically correct slope -2 for m=1/2 because the mockup's vertical dashed rendering contradicts its own expected-slope label.
 
 ### Lesson 209 / Mockup 0266 - Parallel Line
 

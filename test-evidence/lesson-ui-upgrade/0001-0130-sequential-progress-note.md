@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **190 of 200 lessons completed; 10 pending.**
+Dedicated rebuild target: **191 of 200 lessons completed; 9 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -176,6 +176,7 @@ Dedicated rebuild target: **190 of 200 lessons completed; 10 pending.**
 | 0262   | 205 Segment with Given Length | Complete | Dedicated start-length-angle endpoint model with independent A/handle drags, fixed-distance invariant, live coordinate rule, real dial/pan/zoom/grid/stages/share, generated practice, compass steps, and exact 1024x1536 framing |
 | 0263   | 206 Ray | Complete | Audited dedicated endpoint-direction ray model with physical A/B drags, one-way extension, exact slope/angle/length, editable objects, grid/zoom/fullscreen/stages/share, graded PQ task, and 1031x1535 capture |
 | 0264   | 207 Polyline | Complete | Dedicated ordered-vertex polyline with physical vertex drag/add, open/closed topology, topology-aware undo, clear/restore, exact segment totals, real zoom/stages/share, from-empty five-point practice, and exact 1024x1536 framing |
+| 0265   | 208 Perpendicular Line | Complete | Dedicated given-line/point/dependent-perpendicular model with physical P drag, editable slope and coordinates, point-aware construction tolerance, far-click rejection, exact negative-reciprocal calculation, and exact 998x1576 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2703,3 +2704,11 @@ Reworked and audited the dedicated `ordered-vertex-open-closed-polyline` model o
 The exact 1024x1536 validation matches the target frame: sidebar x=0-222, lesson header x=240-1007 and y=104-244, stages y=260-305, workspace y=321-862, insight cards y=877-1144, practice y=1159-1370, and footer y=1451-1520. The mockup's displayed totals are inconsistent with its displayed coordinates: the model correctly calculates 16.56 units for the initial points and 24.40 units for the practice points instead of the mockup labels 16.47 and 24.92. There is no horizontal overflow and there are no console warnings or errors.
 
 Evidence: `0264-reference.png`, `0264-desktop.png`, `0264-dedicated-target-validation.json`.
+
+## Lesson 208 / Mockup 0265 - Perpendicular Line
+
+Reworked and audited the dedicated `given-line-point-dependent-perpendicular` model against target 0265. Point P is physically draggable and directly editable, the given slope is a real input, and the dependent slope is always calculated with `m_perpendicular = -1/m`. Select, Point, Line, Perpendicular, Clear, New example, zoom, fullscreen, five lesson stages, construction steps, and navigation are functional. The false practice shortcut was removed: selecting Perpendicular no longer completes the task; a far click is rejected, and the construction is created only by placing it within tolerance of P. The grader proves both rejection and acceptance paths.
+
+The exact 998x1576 validation matches the target frame: sidebar x=0-209, lesson header x=221-984 and y=96-280, stages y=280-319, workspace y=330-850, construction steps y=865-1040, rule panels y=1052-1213, and practice y=1231-1476. The graph intentionally draws the mathematically correct slope -2 for a given slope 1/2; the mockup's vertical dashed line conflicts with its own displayed expected slope -2. There is no horizontal overflow and there are no console warnings or errors.
+
+Evidence: `0265-reference.png`, `0265-desktop.png`, `0265-dedicated-target-validation.json`.

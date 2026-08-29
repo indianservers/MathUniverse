@@ -1,18 +1,20 @@
 import {
   ArrowLeft,
   ArrowRight,
-  Check,
+  BookOpenCheck,
   Circle,
+  Compass,
   Eraser,
-  List,
+  Eye,
   Maximize2,
   Minus,
   MousePointer2,
   Plus,
-  RotateCcw,
   Shuffle,
   Slash,
+  SquarePen,
   Target,
+  Waypoints,
 } from "lucide-react";
 import {
   useEffect,
@@ -23,6 +25,7 @@ import {
   type ReactNode,
 } from "react";
 import type { LessonAdapterProps } from "../types";
+import "./PerpendicularLineTargetLesson208.css";
 
 type Point = { x: number; y: number };
 type Tool = "select" | "point" | "line" | "perpendicular";
@@ -45,16 +48,6 @@ export default function PerpendicularLineTargetLesson208({
   const [stage, setStage] = useState(0);
   const surfaceRef = useRef<HTMLElement>(null);
 
-  const reset = () => {
-    setM(0.5);
-    setP(initialP);
-    setTool("select");
-    setShowPerpendicular(true);
-    setZoom(1);
-    setPractice(false);
-    setFeedback("idle");
-    onInteraction();
-  };
   useEffect(() => {
     setM(0.5);
     setP(initialP);
@@ -103,11 +96,21 @@ export default function PerpendicularLineTargetLesson208({
   return (
     <section
       ref={surfaceRef}
-      className="space-y-3"
+      className="perp208-page space-y-3"
       data-testid="dynamic-geometry-mockup-0265"
       data-dedicated-lesson="208"
       data-object-model="perpendicular-line"
       data-direct-interaction="true"
+      data-slope={m.toFixed(4)}
+      data-perpendicular-slope={
+        perpendicularSlope === null ? "vertical" : perpendicularSlope.toFixed(4)
+      }
+      data-point={`${p.x}:${p.y}`}
+      data-tool={tool}
+      data-visible={String(showPerpendicular)}
+      data-zoom={zoom.toFixed(1)}
+      data-stage={String(stage)}
+      data-practice={feedback}
       aria-label="Perpendicular line dedicated interactive geometry model"
     >
       <header className="rounded-lg border border-slate-200 bg-white shadow-sm">
@@ -136,15 +139,15 @@ export default function PerpendicularLineTargetLesson208({
       </header>
       <nav className="grid grid-cols-5 overflow-hidden rounded-lg border border-slate-200 bg-white">
         {[
-          ["Explore", "Manipulate"],
-          ["Construct", "Use tools"],
-          ["Pattern", "Compare slopes"],
-          ["Rule", "Prove it"],
-          ["Practice", "Build alone"],
-        ].map(([title, sub], index) => (
+          ["Explore", "Manipulate", Eye],
+          ["Construct", "Use tools", Compass],
+          ["Pattern", "Compare slopes", Waypoints],
+          ["Rule", "Prove it", BookOpenCheck],
+          ["Practice", "Build alone", SquarePen],
+        ].map(([title, sub, StageIcon], index) => (
           <button
             type="button"
-            key={title}
+            key={String(title)}
             onClick={() => {
               setStage(index);
               document
@@ -158,10 +161,13 @@ export default function PerpendicularLineTargetLesson208({
                 ?.scrollIntoView({ behavior: "smooth", block: "start" });
               onInteraction();
             }}
-            className={`h-[45px] text-[8px] font-bold ${stage === index ? "border-b-2 border-cyan-500 text-cyan-700" : "text-slate-600"}`}
+            className={`flex h-[45px] items-center justify-center gap-2 text-[8px] font-bold [&_svg]:h-3.5 [&_svg]:w-3.5 ${stage === index ? "border-b-2 border-cyan-500 text-cyan-700" : "text-slate-600"}`}
           >
-            <strong className="text-[9px]">{title}</strong>
-            <small className="block">{sub}</small>
+            <StageIcon />
+            <span className="text-left">
+              <strong className="text-[9px]">{title}</strong>
+              <small className="block">{sub}</small>
+            </span>
           </button>
         ))}
       </nav>
@@ -198,10 +204,7 @@ export default function PerpendicularLineTargetLesson208({
                 <Tool
                   active={tool === "perpendicular"}
                   label="Perpendicular"
-                  onClick={() => {
-                    setToolState("perpendicular");
-                    setShowPerpendicular(true);
-                  }}
+                  onClick={() => setToolState("perpendicular")}
                 >
                   <Target />
                 </Tool>
@@ -229,6 +232,13 @@ export default function PerpendicularLineTargetLesson208({
                 onLineSlope={(next) => {
                   setM(Math.max(-3, Math.min(3, next)));
                   setFeedback("idle");
+                  onInteraction();
+                }}
+                onConstruct={(at) => {
+                  if (distance(at, p) <= 0.6) {
+                    setShowPerpendicular(true);
+                    setFeedback("idle");
+                  }
                   onInteraction();
                 }}
                 onZoom={(delta) => {
@@ -441,20 +451,26 @@ export default function PerpendicularLineTargetLesson208({
       </section>
       <nav className="grid grid-cols-3 gap-2 text-[9px] font-bold">
         <a
-          href="/lessons/geometry/207-polyline"
+          href="/lessons/geometry/209-parallel-line"
           className="flex items-center gap-2 rounded-lg border border-slate-200 bg-white p-3"
         >
           <ArrowLeft className="h-4 w-4" />
-          Polyline
+          <span>
+            <small className="block uppercase text-slate-500">Previous</small>
+            Parallel Line
+          </span>
         </a>
         <span className="grid place-items-center rounded-lg border border-slate-200 bg-white p-3">
           Lesson progress 3 / 5
         </span>
         <a
-          href="/lessons/geometry/209-parallel-line"
+          href="/lessons/geometry/176-angle-between-lines"
           className="flex items-center justify-end gap-2 rounded-lg border border-violet-200 bg-violet-50 p-3"
         >
-          Parallel Line
+          <span>
+            <small className="block uppercase text-slate-500">Next</small>
+            Angle Between Lines
+          </span>
           <ArrowRight className="h-4 w-4" />
         </a>
       </nav>
@@ -479,6 +495,7 @@ function PerpendicularPlane({
   onDragging,
   onPoint,
   onLineSlope,
+  onConstruct,
   onZoom,
   onFullscreen,
 }: {
@@ -492,6 +509,7 @@ function PerpendicularPlane({
   onDragging: (value: boolean) => void;
   onPoint: (point: Point) => void;
   onLineSlope: (m: number) => void;
+  onConstruct: (point: Point) => void;
   onZoom: (d: number) => void;
   onFullscreen: () => void;
 }) {
@@ -541,6 +559,7 @@ function PerpendicularPlane({
             const q = from(e);
             onLineSlope(q.y / (q.x || 0.1));
           }
+          if (tool === "perpendicular") onConstruct(from(e));
         }}
         onPointerMove={move}
         onMouseMove={mouseMove}
@@ -589,11 +608,17 @@ function PerpendicularPlane({
           className="cursor-grab"
           onPointerDown={(e) => {
             e.stopPropagation();
+            if (tool === "perpendicular") {
+              onConstruct(p);
+              return;
+            }
+            if (tool !== "select") return;
             e.currentTarget.setPointerCapture(e.pointerId);
             draggingRef.current = true;
             onDragging(true);
           }}
           onMouseDown={() => {
+            if (tool !== "select") return;
             draggingRef.current = true;
             onDragging(true);
           }}
@@ -828,4 +853,7 @@ function fraction(value: number) {
 }
 function clamp(v: number) {
   return Math.max(-6, Math.min(6, Number(v.toFixed(1))));
+}
+function distance(a: Point, b: Point) {
+  return Math.hypot(a.x - b.x, a.y - b.y);
 }

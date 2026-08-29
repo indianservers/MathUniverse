@@ -1,0 +1,119 @@
+.perp208-page,
+.perp208-page * {
+  letter-spacing: 0;
+}
+
+@media (min-width: 960px) and (max-width: 1100px) {
+  body:has(.perp208-page) [data-testid="desktop-sidebar"] {
+    width: 209px;
+  }
+
+  body:has(.perp208-page) header.sticky {
+    height: 56px;
+    min-height: 56px;
+  }
+
+  body:has(.perp208-page) #main-content {
+    padding: 0 14px 0 12px;
+  }
+
+  body:has(.perp208-page) #main-content > .flex.items-center.gap-2 {
+    height: 40px;
+  }
+
+  body:has(.perp208-page) footer[aria-label="Site footer"],
+  .perp208-page ~ .lesson-adjacent-nav {
+    display: none;
+  }
+
+  .perp208-page {
+    width: 100%;
+    height: 1480px;
+    transform: translateY(6px);
+  }
+
+  .perp208-page > .sr-only {
+    display: none;
+  }
+
+  .perp208-page > header {
+    height: 184px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .perp208-page > header > div:first-child {
+    height: 124px;
+    padding: 14px;
+    gap: 24px;
+  }
+
+  .perp208-page > header > div:first-child > span {
+    width: 96px;
+    height: 96px;
+  }
+
+  .perp208-page > header > div:last-child {
+    height: 60px;
+  }
+
+  .perp208-page > nav:first-of-type {
+    height: 39px;
+    margin-top: 0 !important;
+    border-top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  .perp208-page > nav:first-of-type > button {
+    height: 38px;
+  }
+
+  .perp208-page > nav:first-of-type + section {
+    height: 520px;
+    margin-top: 11px !important;
+  }
+
+  .perp208-page > nav:first-of-type + section > div {
+    grid-template-columns: minmax(0, 1fr) 259px;
+    column-gap: 30px;
+  }
+
+  .perp208-page > nav:first-of-type + section > div > div:first-child {
+    padding-top: 6px;
+  }
+
+  .perp208-page #perpendicular-plane {
+    height: 452px;
+  }
+
+  .perp208-page #perpendicular-plane > svg {
+    height: 100%;
+  }
+
+  .perp208-page > nav:first-of-type + section aside {
+    height: 503px;
+    margin-top: 4px;
+  }
+
+  .perp208-page > nav:first-of-type + section + section {
+    height: 175px;
+    margin-top: 15px !important;
+  }
+
+  .perp208-page > #perpendicular-rule {
+    height: 161px;
+    margin-top: 12px !important;
+  }
+
+  .perp208-page > #perpendicular-practice {
+    height: 245px;
+    min-height: 245px;
+    margin-top: 18px !important;
+  }
+
+  .perp208-page > #perpendicular-practice + nav {
+    height: 68px;
+    margin-top: 20px !important;
+  }
+}

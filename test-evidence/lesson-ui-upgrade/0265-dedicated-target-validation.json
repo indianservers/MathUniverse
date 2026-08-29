@@ -1,15 +1,207 @@
-[
-  {
-    "id": 208,
-    "mockup": 265,
-    "route": "/lessons/geometry/208-perpendicular-line",
-    "width": 998,
-    "height": 1576,
-    "status": "Correct perpendicular construction.",
-    "consoleErrors": [],
-    "scrollHeight": 1607,
-    "surfaceBottom": 1542.015625,
-    "objectModel": "perpendicular-line",
-    "overflowing": 0
-  }
-]
+{
+  "mockup": "0265",
+  "lessonId": 208,
+  "checks": {
+    "initial": {
+      "slope": "0.5000",
+      "perpendicular-slope": "-2.0000",
+      "point": "2:1",
+      "tool": "select",
+      "visible": "true",
+      "zoom": "1.0",
+      "stage": "0",
+      "practice": "idle"
+    },
+    "drag": {
+      "slope": "0.5000",
+      "perpendicular-slope": "-2.0000",
+      "point": "3:2",
+      "tool": "select",
+      "visible": "true",
+      "zoom": "1.0",
+      "stage": "0",
+      "practice": "idle"
+    },
+    "slope": {
+      "slope": "1.0000",
+      "perpendicular-slope": "-1.0000",
+      "point": "3:2",
+      "tool": "select",
+      "visible": "true",
+      "zoom": "1.0",
+      "stage": "0",
+      "practice": "idle"
+    },
+    "clear": {
+      "slope": "1.0000",
+      "perpendicular-slope": "-1.0000",
+      "point": "3:2",
+      "tool": "select",
+      "visible": "false",
+      "zoom": "1.0",
+      "stage": "0",
+      "practice": "idle"
+    },
+    "selectOnly": {
+      "slope": "1.0000",
+      "perpendicular-slope": "-1.0000",
+      "point": "3:2",
+      "tool": "perpendicular",
+      "visible": "false",
+      "zoom": "1.0",
+      "stage": "0",
+      "practice": "idle"
+    },
+    "construct": {
+      "slope": "1.0000",
+      "perpendicular-slope": "-1.0000",
+      "point": "3:2",
+      "tool": "perpendicular",
+      "visible": "true",
+      "zoom": "1.0",
+      "stage": "0",
+      "practice": "idle"
+    },
+    "zoom": {
+      "slope": "1.0000",
+      "perpendicular-slope": "-1.0000",
+      "point": "3:2",
+      "tool": "perpendicular",
+      "visible": "true",
+      "zoom": "1.1",
+      "stage": "0",
+      "practice": "idle"
+    },
+    "stages": {
+      "slope": "1.0000",
+      "perpendicular-slope": "-1.0000",
+      "point": "3:2",
+      "tool": "perpendicular",
+      "visible": "true",
+      "zoom": "1.1",
+      "stage": "0",
+      "practice": "idle"
+    },
+    "practiceStart": {
+      "slope": "-0.6667",
+      "perpendicular-slope": "1.5000",
+      "point": "3:-2",
+      "tool": "perpendicular",
+      "visible": "false",
+      "zoom": "1.1",
+      "stage": "0",
+      "practice": "idle"
+    },
+    "farClick": {
+      "slope": "-0.6667",
+      "perpendicular-slope": "1.5000",
+      "point": "3:-2",
+      "tool": "perpendicular",
+      "visible": "false",
+      "zoom": "1.1",
+      "stage": "0",
+      "practice": "idle"
+    },
+    "rejected": {
+      "slope": "-0.6667",
+      "perpendicular-slope": "1.5000",
+      "point": "3:-2",
+      "tool": "perpendicular",
+      "visible": "false",
+      "zoom": "1.1",
+      "stage": "0",
+      "practice": "incorrect"
+    },
+    "practiceConstruct": {
+      "slope": "-0.6667",
+      "perpendicular-slope": "1.5000",
+      "point": "3:-2",
+      "tool": "perpendicular",
+      "visible": "true",
+      "zoom": "1.1",
+      "stage": "0",
+      "practice": "idle"
+    },
+    "accepted": {
+      "slope": "-0.6667",
+      "perpendicular-slope": "1.5000",
+      "point": "3:-2",
+      "tool": "perpendicular",
+      "visible": "true",
+      "zoom": "1.1",
+      "stage": "0",
+      "practice": "correct"
+    },
+    "practiceMessage": "Correct perpendicular construction."
+  },
+  "navigation": {
+    "previousHref": "/lessons/geometry/209-parallel-line",
+    "nextHref": "/lessons/geometry/176-angle-between-lines"
+  },
+  "metrics": {
+    "document": {
+      "width": 998,
+      "height": 1576
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 209,
+      "height": 1576,
+      "bottom": 1576
+    },
+    "header": {
+      "top": 96,
+      "left": 221,
+      "width": 763,
+      "height": 184,
+      "bottom": 280
+    },
+    "stages": {
+      "top": 280,
+      "left": 221,
+      "width": 763,
+      "height": 39,
+      "bottom": 319
+    },
+    "workspace": {
+      "top": 330,
+      "left": 221,
+      "width": 763,
+      "height": 520,
+      "bottom": 850
+    },
+    "plane": {
+      "top": 377,
+      "left": 234,
+      "width": 448,
+      "height": 452,
+      "bottom": 829
+    },
+    "steps": {
+      "top": 865,
+      "left": 221,
+      "width": 763,
+      "height": 175,
+      "bottom": 1040
+    },
+    "rule": {
+      "top": 1052,
+      "left": 221,
+      "width": 763,
+      "height": 161,
+      "bottom": 1213
+    },
+    "practice": {
+      "top": 1231,
+      "left": 221,
+      "width": 763,
+      "height": 245,
+      "bottom": 1476
+    }
+  },
+  "consoleMessages": [],
+  "note": "The graph follows m_perpendicular = -1/m exactly; the mockup's vertical dashed line for m = 1/2 conflicts with its own displayed expected slope -2.",
+  "passed": true
+}
