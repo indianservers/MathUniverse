@@ -1,0 +1,129 @@
+{
+  "mockup": "0348",
+  "lessonId": 442,
+  "checks": {
+    "initial": {
+      "function": "exp",
+      "center": "0",
+      "degree": "6",
+      "value": "2.7180555555555554",
+      "error": "0.0002262729034896438",
+      "actions": "0",
+      "feedback": "idle"
+    },
+    "edited": {
+      "function": "sin",
+      "center": "1",
+      "degree": "4",
+      "value": "0.8414709848078965",
+      "error": "0",
+      "actions": "4",
+      "feedback": "idle"
+    },
+    "tabActions": "5",
+    "rejected": {
+      "function": "sin",
+      "center": "1",
+      "degree": "4",
+      "value": "0.8414709848078965",
+      "error": "0",
+      "actions": "6",
+      "feedback": "incorrect"
+    },
+    "accepted": {
+      "function": "sin",
+      "center": "1",
+      "degree": "4",
+      "value": "0.8414709848078965",
+      "error": "0",
+      "actions": "7",
+      "feedback": "correct"
+    },
+    "solutionVisible": true,
+    "reset": {
+      "function": "exp",
+      "center": "0",
+      "degree": "6",
+      "value": "2.7180555555555554",
+      "error": "0.0002262729034896438",
+      "actions": "0",
+      "feedback": "idle"
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/symbolic-mathematics/441-limits",
+    "nextHref": "/lessons/symbolic-mathematics/443-differential-equations"
+  },
+  "metrics": {
+    "document": {
+      "width": 1017,
+      "height": 1546
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 207,
+      "height": 1546,
+      "bottom": 1546
+    },
+    "header": {
+      "top": 92,
+      "left": 229,
+      "width": 775,
+      "height": 205,
+      "bottom": 297
+    },
+    "flow": {
+      "top": 283,
+      "left": 229,
+      "width": 775,
+      "height": 82,
+      "bottom": 365
+    },
+    "tabs": {
+      "top": 384,
+      "left": 229,
+      "width": 775,
+      "height": 48,
+      "bottom": 432
+    },
+    "builder": {
+      "top": 442,
+      "left": 229,
+      "width": 775,
+      "height": 654,
+      "bottom": 1096
+    },
+    "learn": {
+      "top": 1106,
+      "left": 229,
+      "width": 775,
+      "height": 190,
+      "bottom": 1296
+    },
+    "practice": {
+      "top": 1306,
+      "left": 229,
+      "width": 775,
+      "height": 160,
+      "bottom": 1466
+    },
+    "adjacent": {
+      "top": 1476,
+      "left": 229,
+      "width": 775,
+      "height": 50,
+      "bottom": 1526
+    },
+    "footer": {
+      "top": 0,
+      "left": 0,
+      "width": 0,
+      "height": 0,
+      "bottom": 0
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

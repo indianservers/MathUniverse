@@ -1,6 +1,6 @@
 # Symbolic Mathematics / CAS Workspace target batch 0334-0355
 
-Dedicated rebuild target: **14 of 22 lessons completed; 8 pending.**
+Dedicated rebuild target: **15 of 22 lessons completed; 7 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
@@ -18,6 +18,7 @@ Dedicated rebuild target: **14 of 22 lessons completed; 8 pending.**
 | 0345 | 439 Derivatives | `quotient-product-chain-symbolic-derivative-domain-tangent-practice` | Reworked individually and browser-validated |
 | 0346 | 440 Integrals | `parsed-polynomial-exact-power-rule-antiderivative-derivative-verification-challenge` | Reworked individually and browser-validated |
 | 0347 | 441 Limits | `editable-rational-one-sided-table-draggable-hole-limit-practice` | Reworked individually and browser-validated |
+| 0348 | 442 Series Expansions | `taylor-derivative-cycle-center-degree-approximation-error-graph-practice` | Reworked individually and browser-validated |
 
 ## Lesson 428 / Mockup 0334 - Symbolic Evaluation
 
@@ -214,3 +215,17 @@ Evidence:
 - `0347-reference.png`
 - `0347-desktop.png`
 - `0347-dedicated-target-validation.json`
+
+## Lesson 442 / Mockup 0348 - Series Expansions
+
+Reworked individually around a dedicated Taylor-series model. Function-specific derivative cycles for `e^x`, `sin(x)`, and `cos(x)` generate every coefficient at the selected center; the degree slider rebuilds terms, polynomial evaluation, exact/approximate values, errors, maximum window error, and both plotted curves. Function selection, center editing, keyboard/pointer degree control, lesson tabs, independent numerical practice checking, solution reveal, shell Reset, and Previous/Next navigation are functional.
+
+Browser validation starts with the degree-6 Maclaurin expansion of `e^x`, deriving `T6(1)=2.7180555556` and error about `0.000226273`. It switches to `sin(x)` centered at `1`, moves the real range control to degree `4`, and verifies the expansion evaluates exactly to `sin(1)` at its center. Practice rejects `2`, accepts `2.0135714` for `T5(0.7)`, reveals the computed solution, and resets all controls and action state.
+
+Final exact 1017x1546 validation matches the target stack: sidebar width 207, header y=92-297, learning flow y=283-365, tabs y=384-432, Taylor builder y=442-1096, worked/misconception row y=1106-1296, practice y=1306-1466, and adjacent navigation y=1476-1526. The target omits the site footer and this route does likewise. Validation reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0348-reference.png`
+- `0348-desktop.png`
+- `0348-dedicated-target-validation.json`
