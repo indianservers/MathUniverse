@@ -1,0 +1,241 @@
+{
+  "mockup": "0334",
+  "lessonId": 428,
+  "checks": {
+    "initial": {
+      "expression": "2*x+3*x-x+4-2",
+      "coefficient": "4",
+      "constant": "2",
+      "result": "4x + 2",
+      "valid": "true",
+      "evaluated": "false",
+      "substitution": "3",
+      "substitution-value": "14",
+      "substitution-checked": "false",
+      "domain": "R (all real numbers)",
+      "practice-result": "idle",
+      "solution": "false",
+      "copy-count": "0"
+    },
+    "evaluated": {
+      "expression": "2*x+3*x-x+4-2",
+      "coefficient": "4",
+      "constant": "2",
+      "result": "4x + 2",
+      "valid": "true",
+      "evaluated": "true",
+      "substitution": "3",
+      "substitution-value": "14",
+      "substitution-checked": "false",
+      "domain": "R (all real numbers)",
+      "practice-result": "idle",
+      "solution": "false",
+      "copy-count": "0"
+    },
+    "edited": {
+      "expression": "7*x-2*x+9-4",
+      "coefficient": "5",
+      "constant": "5",
+      "result": "5x + 5",
+      "valid": "true",
+      "evaluated": "false",
+      "substitution": "3",
+      "substitution-value": "20",
+      "substitution-checked": "false",
+      "domain": "R (all real numbers)",
+      "practice-result": "idle",
+      "solution": "false",
+      "copy-count": "0"
+    },
+    "substituted": {
+      "expression": "7*x-2*x+9-4",
+      "coefficient": "5",
+      "constant": "5",
+      "result": "5x + 5",
+      "valid": "true",
+      "evaluated": "true",
+      "substitution": "2",
+      "substitution-value": "15",
+      "substitution-checked": "true",
+      "domain": "R (all real numbers)",
+      "practice-result": "idle",
+      "solution": "false",
+      "copy-count": "0"
+    },
+    "assumption": {
+      "expression": "7*x-2*x+9-4",
+      "coefficient": "5",
+      "constant": "5",
+      "result": "5x + 5",
+      "valid": "true",
+      "evaluated": "true",
+      "substitution": "2",
+      "substitution-value": "15",
+      "substitution-checked": "true",
+      "domain": "Z (integers)",
+      "practice-result": "idle",
+      "solution": "false",
+      "copy-count": "0"
+    },
+    "cleared": {
+      "expression": "",
+      "coefficient": "0",
+      "constant": "0",
+      "result": "Invalid expression",
+      "valid": "false",
+      "evaluated": "false",
+      "substitution": "2",
+      "substitution-value": "invalid",
+      "substitution-checked": "false",
+      "domain": "Z (integers)",
+      "practice-result": "idle",
+      "solution": "false",
+      "copy-count": "0"
+    },
+    "explainVisible": true,
+    "practiceRejected": {
+      "expression": "2*x+3*x-x+4-2",
+      "coefficient": "4",
+      "constant": "2",
+      "result": "4x + 2",
+      "valid": "true",
+      "evaluated": "false",
+      "substitution": "3",
+      "substitution-value": "14",
+      "substitution-checked": "false",
+      "domain": "R (all real numbers)",
+      "practice-result": "incorrect",
+      "solution": "false",
+      "copy-count": "0"
+    },
+    "practiceAccepted": {
+      "expression": "2*x+3*x-x+4-2",
+      "coefficient": "4",
+      "constant": "2",
+      "result": "4x + 2",
+      "valid": "true",
+      "evaluated": "false",
+      "substitution": "3",
+      "substitution-value": "14",
+      "substitution-checked": "false",
+      "domain": "R (all real numbers)",
+      "practice-result": "correct",
+      "solution": "false",
+      "copy-count": "0"
+    },
+    "solution": {
+      "expression": "2*x+3*x-x+4-2",
+      "coefficient": "4",
+      "constant": "2",
+      "result": "4x + 2",
+      "valid": "true",
+      "evaluated": "false",
+      "substitution": "3",
+      "substitution-value": "14",
+      "substitution-checked": "false",
+      "domain": "R (all real numbers)",
+      "practice-result": "correct",
+      "solution": "true",
+      "copy-count": "0"
+    },
+    "copied": {
+      "expression": "2*x+3*x-x+4-2",
+      "coefficient": "4",
+      "constant": "2",
+      "result": "4x + 2",
+      "valid": "true",
+      "evaluated": "false",
+      "substitution": "3",
+      "substitution-value": "14",
+      "substitution-checked": "false",
+      "domain": "R (all real numbers)",
+      "practice-result": "correct",
+      "solution": "true",
+      "copy-count": "1"
+    },
+    "reset": {
+      "expression": "2*x+3*x-x+4-2",
+      "coefficient": "4",
+      "constant": "2",
+      "result": "4x + 2",
+      "valid": "true",
+      "evaluated": "false",
+      "substitution": "3",
+      "substitution-value": "14",
+      "substitution-checked": "false",
+      "domain": "R (all real numbers)",
+      "practice-result": "idle",
+      "solution": "false",
+      "copy-count": "0"
+    }
+  },
+  "navigation": {
+    "nextHref": "/lessons/symbolic-mathematics/429-simplify"
+  },
+  "metrics": {
+    "document": {
+      "width": 995,
+      "height": 1581
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 212,
+      "height": 1581,
+      "bottom": 1581
+    },
+    "header": {
+      "top": 89,
+      "left": 226,
+      "width": 753,
+      "height": 228,
+      "bottom": 317
+    },
+    "tabs": {
+      "top": 324,
+      "left": 226,
+      "width": 753,
+      "height": 41,
+      "bottom": 365
+    },
+    "flow": {
+      "top": 372,
+      "left": 226,
+      "width": 753,
+      "height": 112,
+      "bottom": 484
+    },
+    "lab": {
+      "top": 490,
+      "left": 226,
+      "width": 753,
+      "height": 917,
+      "bottom": 1407
+    },
+    "tags": {
+      "top": 1414,
+      "left": 226,
+      "width": 753,
+      "height": 26,
+      "bottom": 1440
+    },
+    "adjacent": {
+      "top": 1444,
+      "left": 226,
+      "width": 753,
+      "height": 47,
+      "bottom": 1491
+    },
+    "footer": {
+      "top": 1495,
+      "left": 212,
+      "width": 783,
+      "height": 79,
+      "bottom": 1574
+    }
+  },
+  "consoleMessages": [],
+  "note": "The mockup incorrectly simplifies 2x+3x-x+4-2 to 5x+2. The dedicated parser correctly derives 4x+2 and verifies it numerically.",
+  "passed": true
+}
