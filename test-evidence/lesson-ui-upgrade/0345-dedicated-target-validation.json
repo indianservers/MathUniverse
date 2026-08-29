@@ -1,0 +1,110 @@
+{
+  "mockup": "0345",
+  "lessonId": 439,
+  "checks": {
+    "initial": {
+      "k": "2",
+      "point": "1",
+      "numerator": "3,-10,1,-6,2,4",
+      "slope": "6",
+      "actions": "0",
+      "feedback": "idle"
+    },
+    "edited": {
+      "k": "3",
+      "point": "0",
+      "numerator": "3,-10,2,-12,3,6",
+      "slope": "-0.75",
+      "actions": "2",
+      "feedback": "idle"
+    },
+    "tabActions": "3",
+    "rejected": {
+      "k": "3",
+      "point": "0",
+      "numerator": "3,-10,2,-12,3,6",
+      "slope": "-0.75",
+      "actions": "4",
+      "feedback": "incorrect"
+    },
+    "accepted": {
+      "k": "3",
+      "point": "0",
+      "numerator": "3,-10,2,-12,3,6",
+      "slope": "-0.75",
+      "actions": "5",
+      "feedback": "correct"
+    },
+    "solutionVisible": true,
+    "reset": {
+      "k": "2",
+      "point": "1",
+      "numerator": "3,-10,1,-6,2,4",
+      "slope": "6",
+      "actions": "0",
+      "feedback": "idle"
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/symbolic-mathematics/438-polynomial-division",
+    "nextHref": "/lessons/symbolic-mathematics/440-integrals"
+  },
+  "metrics": {
+    "document": {
+      "width": 978,
+      "height": 1608
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 207,
+      "height": 1608,
+      "bottom": 1608
+    },
+    "header": {
+      "top": 92,
+      "left": 217,
+      "width": 751,
+      "height": 226,
+      "bottom": 318
+    },
+    "tabs": {
+      "top": 327,
+      "left": 217,
+      "width": 751,
+      "height": 43,
+      "bottom": 370
+    },
+    "grid": {
+      "top": 380,
+      "left": 217,
+      "width": 751,
+      "height": 780,
+      "bottom": 1160
+    },
+    "bottom": {
+      "top": 1170,
+      "left": 217,
+      "width": 751,
+      "height": 222,
+      "bottom": 1392
+    },
+    "adjacent": {
+      "top": 1402,
+      "left": 217,
+      "width": 751,
+      "height": 50,
+      "bottom": 1452
+    },
+    "footer": {
+      "top": 1486,
+      "left": 207,
+      "width": 771,
+      "height": 122,
+      "bottom": 1608
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

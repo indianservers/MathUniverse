@@ -15,6 +15,7 @@ import SolveSystemsTargetLesson435 from "./cas/SolveSystemsTargetLesson435";
 import EliminateVariablesTargetLesson436 from "./cas/EliminateVariablesTargetLesson436";
 import PartialFractionsTargetLesson437 from "./cas/PartialFractionsTargetLesson437";
 import PolynomialDivisionTargetLesson438 from "./cas/PolynomialDivisionTargetLesson438";
+import DerivativesTargetLesson439 from "./cas/DerivativesTargetLesson439";
 import { DifferentialEquationActivity } from "./p0/PriorityConceptActivities";
 
 export default function CasLessonAdapter(props: LessonAdapterProps) {
@@ -50,6 +51,9 @@ export default function CasLessonAdapter(props: LessonAdapterProps) {
   }
   if (props.lesson.id === 438) {
     return <PolynomialDivisionTargetLesson438 {...props} />;
+  }
+  if (props.lesson.id === 439) {
+    return <DerivativesTargetLesson439 {...props} />;
   }
   if (props.lesson.id >= 428 && props.lesson.id <= 449) {
     return <SymbolicCasMockupLesson {...props} />;
