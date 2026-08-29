@@ -1,0 +1,199 @@
+{
+  "mockup": "0252",
+  "lessonId": 195,
+  "checks": {
+    "initial": {
+      "a": "1:1:1",
+      "u": "2:0:1",
+      "v": "0:2:1",
+      "s": "1.5",
+      "t": "1",
+      "r": "4:3:3.5",
+      "normal": "-1:-1:2",
+      "independent": "true",
+      "grid": "true",
+      "show-normal": "true",
+      "equation": "true",
+      "tab": "0",
+      "language": "English (English)",
+      "shared": "false",
+      "view": "2",
+      "challenge": "false"
+    },
+    "canvas": {
+      "pixels": 10952,
+      "bytes": 50113
+    },
+    "drag": {
+      "a": "1:1:1",
+      "u": "2:0:1",
+      "v": "0:2:1",
+      "s": "2",
+      "t": "2.5",
+      "r": "5:6:5.5",
+      "normal": "-1:-1:2",
+      "independent": "true",
+      "grid": "true",
+      "show-normal": "true",
+      "equation": "true",
+      "tab": "0",
+      "language": "English (English)",
+      "shared": "false",
+      "view": "2",
+      "challenge": "false"
+    },
+    "fields": {
+      "a": "2:1:1",
+      "u": "2:1:1",
+      "v": "0:2:1",
+      "s": "2",
+      "t": "2.5",
+      "r": "6:8:5.5",
+      "normal": "-1:-2:4",
+      "independent": "true",
+      "grid": "true",
+      "show-normal": "true",
+      "equation": "true",
+      "tab": "0",
+      "language": "English (English)",
+      "shared": "false",
+      "view": "2",
+      "challenge": "false"
+    },
+    "params": {
+      "a": "2:1:1",
+      "u": "2:1:1",
+      "v": "0:2:1",
+      "s": "-1",
+      "t": "2",
+      "r": "0:4:2",
+      "normal": "-1:-2:4",
+      "independent": "true",
+      "grid": "true",
+      "show-normal": "true",
+      "equation": "true",
+      "tab": "0",
+      "language": "English (English)",
+      "shared": "false",
+      "view": "2",
+      "challenge": "false"
+    },
+    "actions": {
+      "a": "2:1:1",
+      "u": "2:1:1",
+      "v": "0:2:1",
+      "s": "-1",
+      "t": "2",
+      "r": "0:4:2",
+      "normal": "-1:-2:4",
+      "independent": "true",
+      "grid": "false",
+      "show-normal": "false",
+      "equation": "false",
+      "tab": "0",
+      "language": "हिन्दी (Hindi)",
+      "shared": "true",
+      "view": "3",
+      "challenge": "false"
+    },
+    "challenge": {
+      "a": "2:1:1",
+      "u": "2:1:1",
+      "v": "0:2:1",
+      "s": "1",
+      "t": "2",
+      "r": "4:6:4",
+      "normal": "-1:-2:4",
+      "independent": "true",
+      "grid": "false",
+      "show-normal": "false",
+      "equation": "false",
+      "tab": "0",
+      "language": "हिन्दी (Hindi)",
+      "shared": "true",
+      "view": "3",
+      "challenge": "true"
+    },
+    "reset": {
+      "a": "1:1:1",
+      "u": "2:0:1",
+      "v": "0:2:1",
+      "s": "1.5",
+      "t": "1",
+      "r": "4:3:3.5",
+      "normal": "-1:-1:2",
+      "independent": "true",
+      "grid": "true",
+      "show-normal": "true",
+      "equation": "true",
+      "tab": "0",
+      "language": "हिन्दी (Hindi)",
+      "shared": "true",
+      "view": "4",
+      "challenge": "false"
+    },
+    "reload": {
+      "a": "1:1:1",
+      "u": "2:0:1",
+      "v": "0:2:1",
+      "s": "1.5",
+      "t": "1",
+      "r": "4:3:3.5",
+      "normal": "-1:-1:2",
+      "independent": "true",
+      "grid": "true",
+      "show-normal": "true",
+      "equation": "true",
+      "tab": "0",
+      "language": "English (English)",
+      "shared": "false",
+      "view": "2",
+      "challenge": "false"
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/geometry/194-vector-equation-of-a-line",
+    "nextHref": "/lessons/geometry/196-relative-motion"
+  },
+  "metrics": {
+    "document": {
+      "width": 1148,
+      "height": 1370
+    },
+    "overflow": false,
+    "regions": {
+      "header": {
+        "top": 105,
+        "height": 147,
+        "left": 227,
+        "width": 903
+      },
+      "tabs": {
+        "top": 263,
+        "height": 43,
+        "left": 227,
+        "width": 903
+      },
+      "main": {
+        "top": 317,
+        "height": 849,
+        "left": 227,
+        "width": 903
+      },
+      "nav": {
+        "top": 1176,
+        "height": 45,
+        "left": 227,
+        "width": 903
+      },
+      "footer": {
+        "top": 1231,
+        "height": 110,
+        "left": 227,
+        "width": 903
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

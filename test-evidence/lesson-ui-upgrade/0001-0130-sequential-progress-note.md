@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **177 of 200 lessons completed; 23 pending.**
+Dedicated rebuild target: **178 of 200 lessons completed; 22 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -163,6 +163,7 @@ Dedicated rebuild target: **177 of 200 lessons completed; 23 pending.**
 | 0249   |           192 Vector Projection | Complete | Dedicated two-vector scalar/vector projection model with pointer/keyboard tips, angle rotation, selectable tools, exact components, projection/residual decomposition, live diagram, three graded practices, and exact 1148x1370 framing |
 | 0250   |         193 Linear Combinations | Complete | Dedicated coefficient-span model with live a/b scaling, editable basis vectors, draggable/solvable target, scaled/parallelogram/span controls, determinant independence status, and exact 1148x1370 framing |
 | 0251   | 194 Vector Equation of a Line | Complete | Dedicated parametric-line model with draggable R(t), live parameter, editable point/direction steppers, trail/direction/table controls, generated table, slope/ratio result, challenge solve, and exact 1148x1370 framing |
+| 0252   | 195 Vector Equation of a Plane | Complete | Dedicated Three.js parametric-plane model with draggable R(s,t), editable anchor/spanning vectors, live normal/equation, parameter/grid/normal controls, independence status, challenge solve, and exact 1148x1370 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2608,3 +2609,9 @@ Evidence: `0250-reference.png`, `0250-desktop.png`, `0250-dedicated-target-valid
 Reworked individually with a dedicated `parametric-vector-line-point-direction-parameter-trail-table-challenge` model. Point a, direction v, parameter t, moving point R(t), trail, direction steps, table rows, direction ratio, slope, and challenge all derive from shared state. Physical R-point drag, parameter and component edits, steppers, display toggles, tabs, language/share/reset, challenge `t=2`, routes, overflow, console output, and exact 1148x1370 framing are validated.
 
 Evidence: `0251-reference.png`, `0251-desktop.png`, `0251-dedicated-target-validation.json`.
+
+## Lesson 195 / Mockup 0252 - Vector Equation of a Plane
+
+Reworked individually with a dedicated `three-dimensional-parametric-plane-anchor-span-parameters-normal-equation-challenge` model. The Three.js plane patch, labeled axes, anchor, directions, draggable R handle, parameters, normal, plane equation, independence state, and challenge all share one mathematical state. WebGL pixels, physical drag, fields, ranges, toggles, tabs, language/share/reset/view, challenge `s=1,t=2`, routes, overflow, console output, and exact 1148x1370 framing are validated.
+
+Evidence: `0252-reference.png`, `0252-desktop.png`, `0252-dedicated-target-validation.json`.

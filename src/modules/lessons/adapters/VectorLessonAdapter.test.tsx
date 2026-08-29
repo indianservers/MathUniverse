@@ -165,9 +165,19 @@ describe("VectorLessonAdapter", () => {
     expect(html).toContain("Parametric vector line graph");
   });
 
-  it("renders vector lessons 195 through 197 with lesson-specific guidance", () => {
+  it("renders vector equation of a plane as its own 3D parametric surface", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 195)!;
+    const html = renderToStaticMarkup(
+      <VectorLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+    expect(html).toContain("vector-mockup-0252");
+    expect(html).toContain('data-dedicated-lesson="195"');
+    expect(html).toContain("3D PARAMETRIC PLANE WORKBENCH");
+    expect(html).toContain("Define the plane");
+  });
+
+  it("renders vector lessons 196 through 197 with lesson-specific guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      195: "Vector plane",
       196: "Relative motion",
       197: "Force vectors",
     };
