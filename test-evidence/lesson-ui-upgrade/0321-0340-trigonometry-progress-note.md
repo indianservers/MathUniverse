@@ -1,6 +1,6 @@
 # Trigonometry target batch 0321-0340
 
-Expanded dedicated rebuild target: **70 of 730 lessons completed; 660 pending.**
+Expanded dedicated rebuild target: **71 of 730 lessons completed; 659 pending.**
 
 | Mockup |                              Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                                        |
 | ------ | ----------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -16,6 +16,7 @@ Expanded dedicated rebuild target: **70 of 730 lessons completed; 660 pending.**
 | 0330   |                        273 Bearings | Complete | Draggable north-grid route with clockwise bearing, reverse bearing, quadrant, and distance model; two physical endpoint drags; coordinate fields, six direction presets, units, lesson views, practice grading, and reset checks; exact 990x1589 target composition                   |
 | 0331   |        274 Elevation and Depression | Complete | Draggable observer-target sightline and right-triangle model; two physical endpoint drags; elevation/depression modes, linked angle/height/distance controls, live identities, lesson views, numerical grading, solution toggle, and reset checks; exact 1023x1537 target composition |
 | 0332   |                 275 Harmonic Motion | Complete | Draggable unit-circle projection, displacement, and velocity model; physical point drag; linked wave markers, angle controls, animation, lesson views, independent challenge grading, and reset checks; exact 991x1587 target composition                                             |
+| 0333   |             276 Polar Trigonometry | Complete | Linked polar/Cartesian/curve-trace model; physical point drag; signed-radius conversion, three views and curve families, trace controls, stages, language/share, grading, reset, and exact 1024x1536 target framing                                                                      |
 
 ## Lesson 264 / Mockup 0321 - Reciprocal Trig Functions
 
@@ -184,3 +185,17 @@ Evidence:
 - `0332-reference.png`
 - `0332-desktop.png`
 - `0332-dedicated-target-validation.json`
+
+## Lesson 276 / Mockup 0333 - Polar Trigonometry
+
+Reworked individually against the target mockup with a dedicated `linked-polar-cartesian-curve-trace` model. One signed radius and oriented angle drive the physical polar point, Cartesian coordinates, radial segment, angle arc, projection layers, trace history, numerical conversion, and current-value derivation. The point is physically draggable and recovers both radius magnitude and signed angle. Negative radii are supported mathematically: `(-2, 30 degrees)` produces `(-sqrt(3), -1)` and therefore points opposite the positive-radius ray.
+
+Polar Grid, Cartesian Grid, and Trace Curve views update real SVG layers. Radius and angle sliders plus exact fields, three polar curve families, Clear Trace, five lesson stages, language, Reset, Share, Workspace, fullscreen invocation, independent two-coordinate practice grading, and adjacent navigation are functional. The initial target state derives `r=sqrt(3)`, `theta=30 degrees`, `x=1.5`, and `y=sqrt(3)/2`; the challenge rejects an incorrect pair and accepts `(1.5, -2.598)` for `(3, -60 degrees)`.
+
+Final exact 1024x1536 browser validation physically drags the polar point, verifies trace accumulation, checks the negative-radius rule, exercises all views and curve families, clears trace, changes all lesson stages, changes language, shares the live state, follows incorrect and correct grading paths, and resets the complete lesson. The screenshot loop matches the target frame: sidebar width 207, surface x=220-1013, header y=98-278, stages y=288-340, linked lab y=350-859, learning flow y=869-1006, formula/example/misconception row y=1016-1235, practice y=1245-1384, navigation y=1394-1443, and footer y=1457-1536. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0333-reference.png`
+- `0333-desktop.png`
+- `0333-dedicated-target-validation.json`

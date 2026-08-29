@@ -46,6 +46,7 @@ import TriangleAreaTargetLesson272 from "./TriangleAreaTargetLesson272";
 import BearingsTargetLesson273 from "./BearingsTargetLesson273";
 import ElevationDepressionTargetLesson274 from "./ElevationDepressionTargetLesson274";
 import HarmonicMotionTargetLesson275 from "./HarmonicMotionTargetLesson275";
+import PolarTrigonometryTargetLesson276 from "./PolarTrigonometryTargetLesson276";
 
 type TrigKind =
   "circle" | "graph" | "triangle" | "equation" | "application" | "polar";
@@ -661,6 +662,15 @@ export default function TrigonometryLessonAdapter({
   if (lesson.id === 275) {
     return (
       <HarmonicMotionTargetLesson275
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
+  }
+  if (lesson.id === 276) {
+    return (
+      <PolarTrigonometryTargetLesson276
         lesson={lesson}
         resetToken={resetToken}
         onInteraction={onInteraction}

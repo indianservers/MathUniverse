@@ -1,0 +1,255 @@
+{
+  "mockup": "0333",
+  "lessonId": 276,
+  "checks": {
+    "initial": {
+      "radius": "1.7321",
+      "theta": "30.0000",
+      "x": "1.5000",
+      "y": "0.8660",
+      "view": "polar",
+      "curve": "cos",
+      "stage": "0",
+      "trace-count": "0",
+      "feedback": "idle",
+      "language": "English (English)",
+      "share-count": "0"
+    },
+    "dragged": {
+      "radius": "1.9982",
+      "theta": "89.5266",
+      "x": "0.0165",
+      "y": "1.9981",
+      "view": "polar",
+      "curve": "cos",
+      "stage": "0",
+      "trace-count": "9",
+      "feedback": "idle",
+      "language": "English (English)",
+      "share-count": "0"
+    },
+    "negativeRadius": {
+      "radius": "-2.0000",
+      "theta": "30.0000",
+      "x": "-1.7321",
+      "y": "-1.0000",
+      "view": "polar",
+      "curve": "cos",
+      "stage": "0",
+      "trace-count": "11",
+      "feedback": "idle",
+      "language": "English (English)",
+      "share-count": "0"
+    },
+    "views": {
+      "radius": "-2.0000",
+      "theta": "30.0000",
+      "x": "-1.7321",
+      "y": "-1.0000",
+      "view": "polar",
+      "curve": "cos",
+      "stage": "0",
+      "trace-count": "11",
+      "feedback": "idle",
+      "language": "English (English)",
+      "share-count": "0"
+    },
+    "sineCurve": {
+      "radius": "-2.0000",
+      "theta": "30.0000",
+      "x": "-1.7321",
+      "y": "-1.0000",
+      "view": "polar",
+      "curve": "sin",
+      "stage": "0",
+      "trace-count": "11",
+      "feedback": "idle",
+      "language": "English (English)",
+      "share-count": "0"
+    },
+    "doubleCurve": {
+      "radius": "-2.0000",
+      "theta": "30.0000",
+      "x": "-1.7321",
+      "y": "-1.0000",
+      "view": "polar",
+      "curve": "double",
+      "stage": "0",
+      "trace-count": "11",
+      "feedback": "idle",
+      "language": "English (English)",
+      "share-count": "0"
+    },
+    "traceCleared": {
+      "radius": "-2.0000",
+      "theta": "30.0000",
+      "x": "-1.7321",
+      "y": "-1.0000",
+      "view": "polar",
+      "curve": "double",
+      "stage": "0",
+      "trace-count": "0",
+      "feedback": "idle",
+      "language": "English (English)",
+      "share-count": "0"
+    },
+    "stages": [
+      {
+        "expected": "0",
+        "actual": "0"
+      },
+      {
+        "expected": "1",
+        "actual": "1"
+      },
+      {
+        "expected": "2",
+        "actual": "2"
+      },
+      {
+        "expected": "3",
+        "actual": "3"
+      },
+      {
+        "expected": "4",
+        "actual": "4"
+      }
+    ],
+    "languageAndShare": {
+      "radius": "-2.0000",
+      "theta": "30.0000",
+      "x": "-1.7321",
+      "y": "-1.0000",
+      "view": "polar",
+      "curve": "double",
+      "stage": "4",
+      "trace-count": "0",
+      "feedback": "idle",
+      "language": "Hindi (Hindi)",
+      "share-count": "1"
+    },
+    "rejected": {
+      "radius": "-2.0000",
+      "theta": "30.0000",
+      "x": "-1.7321",
+      "y": "-1.0000",
+      "view": "polar",
+      "curve": "double",
+      "stage": "4",
+      "trace-count": "0",
+      "feedback": "incorrect",
+      "language": "Hindi (Hindi)",
+      "share-count": "1"
+    },
+    "accepted": {
+      "radius": "-2.0000",
+      "theta": "30.0000",
+      "x": "-1.7321",
+      "y": "-1.0000",
+      "view": "polar",
+      "curve": "double",
+      "stage": "4",
+      "trace-count": "0",
+      "feedback": "correct",
+      "language": "Hindi (Hindi)",
+      "share-count": "1"
+    },
+    "reset": {
+      "radius": "1.7321",
+      "theta": "30.0000",
+      "x": "1.5000",
+      "y": "0.8660",
+      "view": "polar",
+      "curve": "cos",
+      "stage": "0",
+      "trace-count": "0",
+      "feedback": "idle",
+      "language": "Hindi (Hindi)",
+      "share-count": "0"
+    }
+  },
+  "navigation": {
+    "workspaceHref": "/workspace/trigonometry",
+    "previousHref": "/lessons/trigonometry/275-harmonic-motion",
+    "nextHref": "/lessons/trigonometry/277-trigonometric-identities"
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 207,
+      "height": 1536,
+      "bottom": 1536
+    },
+    "surface": {
+      "top": 98,
+      "left": 220,
+      "width": 793,
+      "height": 1345,
+      "bottom": 1443
+    },
+    "header": {
+      "top": 98,
+      "left": 220,
+      "width": 793,
+      "height": 180,
+      "bottom": 278
+    },
+    "stages": {
+      "top": 288,
+      "left": 220,
+      "width": 793,
+      "height": 52,
+      "bottom": 340
+    },
+    "lab": {
+      "top": 350,
+      "left": 220,
+      "width": 793,
+      "height": 509,
+      "bottom": 859
+    },
+    "flow": {
+      "top": 869,
+      "left": 220,
+      "width": 793,
+      "height": 137,
+      "bottom": 1006
+    },
+    "learning": {
+      "top": 1016,
+      "left": 220,
+      "width": 793,
+      "height": 219,
+      "bottom": 1235
+    },
+    "practice": {
+      "top": 1245,
+      "left": 220,
+      "width": 793,
+      "height": 139,
+      "bottom": 1384
+    },
+    "adjacent": {
+      "top": 1394,
+      "left": 220,
+      "width": 793,
+      "height": 49,
+      "bottom": 1443
+    },
+    "footer": {
+      "top": 1457,
+      "left": 207,
+      "width": 817,
+      "height": 79,
+      "bottom": 1536
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

@@ -233,7 +233,8 @@ export default function LessonShell({ lesson }: { lesson: LessonDefinition }) {
     lesson.id === 272 ||
     lesson.id === 273 ||
     lesson.id === 274 ||
-    lesson.id === 275;
+    lesson.id === 275 ||
+    lesson.id === 276;
   const usesTargetGraphingWorkspace = lesson.id >= 39 && lesson.id <= 56;
   const usesImmersiveDynamicGeometryWorkspace =
     lesson.id >= 198 && lesson.id <= 256;
@@ -280,7 +281,8 @@ export default function LessonShell({ lesson }: { lesson: LessonDefinition }) {
         lesson.id === 272 ||
         lesson.id === 273 ||
         lesson.id === 274 ||
-        lesson.id === 275 ? null : (
+        lesson.id === 275 ||
+        lesson.id === 276 ? null : (
           <nav
             className="lesson-adjacent-nav grid gap-3 sm:grid-cols-2"
             aria-label="Adjacent lessons"
