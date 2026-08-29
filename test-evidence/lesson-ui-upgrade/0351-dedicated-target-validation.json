@@ -1,0 +1,148 @@
+{
+  "mockup": "0351",
+  "lessonId": 445,
+  "checks": {
+    "initial": {
+      "z": "2,3",
+      "w": "-1,4",
+      "result": "-14,5",
+      "operation": "multiply",
+      "feedback": "",
+      "actions": "0"
+    },
+    "multiplied": {
+      "z": "1,-2",
+      "w": "3,4",
+      "result": "11,-2",
+      "operation": "multiply",
+      "feedback": "",
+      "actions": "3"
+    },
+    "gridVisible": true,
+    "added": {
+      "z": "1,-2",
+      "w": "3,4",
+      "result": "4,2",
+      "operation": "add",
+      "feedback": "",
+      "actions": "5"
+    },
+    "divided": {
+      "z": "1,-2",
+      "w": "3,4",
+      "result": "-0.2,-0.4",
+      "operation": "divide",
+      "feedback": "",
+      "actions": "6"
+    },
+    "cleared": {
+      "z": "0,0",
+      "w": "0,0",
+      "result": "0,0",
+      "operation": "divide",
+      "feedback": "",
+      "actions": "7"
+    },
+    "rejected": {
+      "z": "0,0",
+      "w": "0,0",
+      "result": "0,0",
+      "operation": "divide",
+      "feedback": "incorrect",
+      "actions": "8"
+    },
+    "accepted": {
+      "z": "0,0",
+      "w": "0,0",
+      "result": "0,0",
+      "operation": "divide",
+      "feedback": "correct",
+      "actions": "9"
+    },
+    "hintVisible": true,
+    "reset": {
+      "z": "2,3",
+      "w": "-1,4",
+      "result": "-14,5",
+      "operation": "multiply",
+      "feedback": "",
+      "actions": "0"
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/symbolic-mathematics/444-matrix-operations",
+    "nextHref": "/lessons/symbolic-mathematics/446-assumptions"
+  },
+  "metrics": {
+    "document": {
+      "width": 1023,
+      "height": 1537
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 208,
+      "height": 1537,
+      "bottom": 1537
+    },
+    "header": {
+      "top": 94,
+      "left": 222,
+      "width": 786,
+      "height": 180,
+      "bottom": 274
+    },
+    "tabs": {
+      "top": 282,
+      "left": 222,
+      "width": 786,
+      "height": 45,
+      "bottom": 327
+    },
+    "workspace": {
+      "top": 335,
+      "left": 222,
+      "width": 786,
+      "height": 466,
+      "bottom": 801
+    },
+    "flow": {
+      "top": 811,
+      "left": 222,
+      "width": 786,
+      "height": 92,
+      "bottom": 903
+    },
+    "learning": {
+      "top": 913,
+      "left": 222,
+      "width": 786,
+      "height": 350,
+      "bottom": 1263
+    },
+    "practice": {
+      "top": 1273,
+      "left": 222,
+      "width": 786,
+      "height": 100,
+      "bottom": 1373
+    },
+    "adjacent": {
+      "top": 1383,
+      "left": 222,
+      "width": 786,
+      "height": 45,
+      "bottom": 1428
+    },
+    "footer": {
+      "top": 1441,
+      "left": 208,
+      "width": 815,
+      "height": 96,
+      "bottom": 1537
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

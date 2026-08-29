@@ -21,6 +21,7 @@ import LimitsTargetLesson441 from "./cas/LimitsTargetLesson441";
 import SeriesExpansionsTargetLesson442 from "./cas/SeriesExpansionsTargetLesson442";
 import DifferentialEquationsTargetLesson443 from "./cas/DifferentialEquationsTargetLesson443";
 import MatrixOperationsTargetLesson444 from "./cas/MatrixOperationsTargetLesson444";
+import ComplexCalculationsTargetLesson445 from "./cas/ComplexCalculationsTargetLesson445";
 import { DifferentialEquationActivity } from "./p0/PriorityConceptActivities";
 
 export default function CasLessonAdapter(props: LessonAdapterProps) {
@@ -74,6 +75,9 @@ export default function CasLessonAdapter(props: LessonAdapterProps) {
   }
   if (props.lesson.id === 444) {
     return <MatrixOperationsTargetLesson444 {...props} />;
+  }
+  if (props.lesson.id === 445) {
+    return <ComplexCalculationsTargetLesson445 {...props} />;
   }
   if (props.lesson.id >= 428 && props.lesson.id <= 449) {
     return <SymbolicCasMockupLesson {...props} />;

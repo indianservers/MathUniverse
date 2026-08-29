@@ -1,6 +1,6 @@
 # Symbolic Mathematics / CAS Workspace target batch 0334-0355
 
-Dedicated rebuild target: **17 of 22 lessons completed; 5 pending.**
+Dedicated rebuild target: **18 of 22 lessons completed; 4 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
@@ -21,6 +21,7 @@ Dedicated rebuild target: **17 of 22 lessons completed; 5 pending.**
 | 0348 | 442 Series Expansions | `taylor-derivative-cycle-center-degree-approximation-error-graph-practice` | Reworked individually and browser-validated |
 | 0349 | 443 Differential Equations | `ode-slope-field-exact-solution-euler-draggable-initial-condition-animation-error` | Reworked individually and browser-validated |
 | 0350 | 444 Matrix Operations | `editable-2x2-matrix-row-rules-unit-square-transformation-vertices-determinant-practice` | Reworked individually and browser-validated |
+| 0351 | 445 Complex Calculations | `complex-rectangular-polar-operation-argand-vectors-modulus-argument-practice` | Reworked individually and browser-validated |
 
 ## Lesson 428 / Mockup 0334 - Symbolic Evaluation
 
@@ -259,3 +260,17 @@ Evidence:
 - `0350-reference.png`
 - `0350-desktop.png`
 - `0350-dedicated-target-validation.json`
+
+## Lesson 445 / Mockup 0351 - Complex Calculations
+
+Reworked individually around a dedicated rectangular/polar complex-number model. Two editable complex values and the selected operation drive the rectangular result, all three Argand vectors, modulus, exact squared modulus, principal argument, polar conversion, worked derivation, and live result legend. Real/imaginary editing, multiply/add/subtract/divide operations, grid toggle, Clear all, independent practice checking, hint toggle, shell Reset, and Previous/Next navigation are functional.
+
+Browser validation starts from `z=2+3i`, `w=-1+4i`, deriving `zw=-14+5i`, `|zw|=sqrt(221)`, and argument about `160.35 degrees`. It edits to `z=1-2i`, `w=3+4i` and derives product `11-2i`, enables the real graph grid, switches to addition for `4+2i`, and verifies division as `-0.2-0.4i`. Clear all zeroes both inputs. The practice independently rejects `0+5i`, accepts `1+5i` for `(1-i)(-2+3i)`, exposes the multiplication hint, and shell Reset restores every target default.
+
+Final exact 1023x1537 validation matches the target stack: sidebar width 208, compact header y=94-274, shared tabs y=282-327, dedicated complex workspace y=335-801, learning flow y=811-903, rules/worked/misconception row y=913-1263, practice y=1273-1373, adjacent navigation y=1383-1428, and footer y=1441-1537. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0351-reference.png`
+- `0351-desktop.png`
+- `0351-dedicated-target-validation.json`
