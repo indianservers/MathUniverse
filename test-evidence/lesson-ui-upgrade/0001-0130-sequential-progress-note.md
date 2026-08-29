@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **167 of 200 lessons completed; 33 pending.**
+Dedicated rebuild target: **168 of 200 lessons completed; 32 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -153,6 +153,7 @@ Dedicated rebuild target: **167 of 200 lessons completed; 33 pending.**
 | 0239   |       182 Barycentric Coordinates | Complete | Dedicated normalized triangle-weight model with pointer/keyboard point drag, linked weight sliders, real area/median/grid controls, exact coordinate reconstruction, independent target practice, and exact 981x1604 framing |
 | 0240   |          183 Vector Introduction | Complete | Dedicated two-point vector model with pointer/keyboard A/B drag, applyable point drafts, linked components, magnitude/direction, equivalent translation, graded draggable practice, and exact 1149x1369 framing |
 | 0241   |              184 Component Form | Complete | Dedicated signed-axis projection model with pointer/keyboard tip drag, exact component controls, live ordered pair, magnitude/direction, reconstruction, target grading/hint, and exact 1149x1369 framing |
+| 0242   |            185 Position Vectors | Complete | Dedicated three-vector origin model with independent pointer/keyboard endpoints, numeric cards, grid/snap, magnitude/direction, independent draggable practice, grading, and exact 1024x1536 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2488,3 +2489,15 @@ Evidence:
 - `0241-reference.png`
 - `0241-desktop.png`
 - `0241-dedicated-target-validation.json`
+
+## Lesson 185 / Mockup 0242 - Position Vectors
+
+Reworked individually against the target mockup with a dedicated `origin-anchored-multiple-position-vectors-coordinate-magnitude-direction-practice` model. Three independent points A, B, and C generate origin-anchored vectors, coordinate cards, magnitudes, and atan2 directions; the practice point P has a separate state and calculation path.
+
+Pointer and keyboard movement for all three lesson points and practice P, six exact coordinate fields, grid visibility, integer/half-unit snap behavior, active-point cycling, five stages, workspace link, Share, Reset, practice reset, wrong/correct grading, and adjacent navigation are working controls. Final 1024x1536 validation verifies every initial vector, independent A/B/C changes, grid/snap states, stage progression, practice movement and exact `(2,-3)` match, reset, links/routes, exact geometry, overflow, and console output.
+
+Evidence:
+
+- `0242-reference.png`
+- `0242-desktop.png`
+- `0242-dedicated-target-validation.json`

@@ -1,0 +1,505 @@
+.pv185-page {
+  --ink: #0c1b3d;
+  --blue: #1685f8;
+  --line: #dbe4ed;
+  width: calc(100% + 45px);
+  min-height: 1427px;
+  margin: -6px 0 0 -25px;
+  color: var(--ink);
+  font:
+    9px/1.4 Inter,
+    system-ui,
+    sans-serif;
+  letter-spacing: 0;
+}
+.pv185-page * {
+  box-sizing: border-box;
+}
+.pv185-page h1,
+.pv185-page h2,
+.pv185-page h3,
+.pv185-page p {
+  margin: 0;
+}
+.pv185-page button,
+.pv185-page input {
+  font: inherit;
+  letter-spacing: 0;
+  color: inherit;
+}
+.pv185-page button {
+  cursor: pointer;
+}
+.pv185-page ~ .lesson-adjacent-nav,
+body:has(.pv185-page) footer[aria-label="Site footer"] {
+  display: none;
+}
+.pv185-header,
+.pv185-stages,
+.pv185-work,
+.pv185-learn,
+.pv185-practice,
+.pv185-nav {
+  margin-left: 21px;
+  margin-right: 16px;
+}
+.pv185-header {
+  display: flex;
+  height: 145px;
+  padding: 18px;
+  justify-content: space-between;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+}
+.pv185-header span {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 99px;
+  background: #f0f3f7;
+  font-size: 7px;
+  font-weight: 900;
+}
+.pv185-header h1 {
+  margin-top: 13px;
+  font-size: 28px;
+  font-weight: 900;
+  line-height: 1;
+}
+.pv185-header > div > p {
+  margin-top: 8px;
+  color: #52617a;
+  font-size: 10px;
+}
+.pv185-header section {
+  display: flex;
+  margin-top: 17px;
+  gap: 8px;
+}
+.pv185-header section b {
+  padding: 7px 10px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+}
+.pv185-header aside {
+  display: grid;
+  height: 40px;
+  grid-template-columns: 95px 72px 72px;
+  gap: 8px;
+}
+.pv185-header aside a,
+.pv185-header aside button {
+  display: flex;
+  height: 37px;
+  padding: 0 10px;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: #fff;
+  color: inherit;
+  text-decoration: none;
+}
+.pv185-header svg {
+  width: 13px;
+}
+.pv185-header aside output {
+  grid-column: 1/4;
+  color: #07824d;
+  text-align: right;
+}
+.pv185-stages {
+  display: grid;
+  height: 37px;
+  margin-top: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  grid-template-columns: repeat(5, 1fr);
+  overflow: hidden;
+}
+.pv185-stages button {
+  border: 0;
+  background: #fff;
+  font-weight: 800;
+}
+.pv185-stages .active {
+  color: #fff;
+  background: #4c4cf1;
+}
+.pv185-work {
+  height: 662px;
+  margin-top: 13px;
+  padding: 13px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: #fff;
+}
+.pv185-work > header {
+  display: flex;
+  height: 48px;
+  align-items: flex-start;
+}
+.pv185-work > header div {
+  margin-right: auto;
+}
+.pv185-work > header h2 {
+  font-size: 14px;
+}
+.pv185-work > header p {
+  margin-top: 6px;
+  color: #52617a;
+}
+.pv185-work > header button {
+  height: 34px;
+  padding: 0 13px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+}
+.pv185-work > header label {
+  display: flex;
+  margin-left: 55px;
+  align-items: center;
+  gap: 9px;
+}
+.pv185-work > header input {
+  width: 36px;
+  height: 20px;
+  accent-color: #4c4cf1;
+}
+.pv185-work > div {
+  display: grid;
+  height: 588px;
+  grid-template-columns: 2.35fr 1fr;
+  gap: 13px;
+}
+.pv185-work > div > article {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.pv185-work > div > article > nav {
+  position: absolute;
+  z-index: 2;
+  left: 12px;
+  top: 10px;
+  display: grid;
+  width: 92px;
+}
+.pv185-work > div > article > nav button {
+  height: 36px;
+  border: 1px solid var(--line);
+  background: #fff;
+}
+.pv185-work > div > article > nav .active {
+  color: #4c4cf1;
+}
+.pv185-graph {
+  display: block;
+  width: 100%;
+  height: 515px;
+}
+.pv185-graph .grid-fill {
+  fill: #fff;
+}
+.pv185-graph.grid .grid-fill {
+  fill: url(#pv185Grid);
+}
+.pv185-graph .axis {
+  stroke: #29384f;
+  stroke-width: 1.3;
+}
+.pv185-graph text {
+  font-size: 10px;
+}
+.pv185-graph .point-label {
+  font-size: 13px;
+  font-weight: 900;
+}
+.pv185-work > div > article > footer {
+  height: 65px;
+  padding: 10px;
+  border: 1px solid #87c9ec;
+  background: #eff9ff;
+}
+.pv185-work > div > article > footer b {
+  color: #0875cb;
+  font-size: 12px;
+}
+.pv185-work > div > article > footer p {
+  margin: 7px 0 0 28px;
+}
+.pv185-work > div > aside {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+}
+.pv185-work > div > aside > h2 {
+  font-size: 13px;
+}
+.pv185-work > div > aside > p {
+  color: #52617a;
+}
+.pv185-card {
+  height: 132px;
+  padding: 9px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: #fff;
+}
+.pv185-card header {
+  display: flex;
+  justify-content: space-between;
+}
+.pv185-card header span {
+  font-size: 8px;
+}
+.pv185-card.a header {
+  color: #1685f8;
+}
+.pv185-card.b header {
+  color: #7c3aed;
+}
+.pv185-card.c header {
+  color: #0aa9a5;
+}
+.pv185-card > div {
+  display: flex;
+  margin-top: 7px;
+  gap: 9px;
+}
+.pv185-card label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.pv185-card input {
+  width: 67px;
+  height: 29px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  text-align: center;
+}
+.pv185-card > output {
+  display: block;
+  margin-top: 7px;
+  font-size: 14px;
+}
+.pv185-card footer {
+  margin-top: 5px;
+  font-weight: 800;
+}
+.pv185-card footer span {
+  float: right;
+}
+.pv185-work > div > aside > section {
+  height: 61px;
+  padding: 8px;
+  border: 1px solid #dacff3;
+  border-radius: 7px;
+  background: #faf7ff;
+}
+.pv185-learn {
+  display: grid;
+  height: 253px;
+  margin-top: 13px;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 10px;
+}
+.pv185-learn > article {
+  padding: 13px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+}
+.pv185-learn h2 {
+  font-size: 13px;
+}
+.pv185-learn > article:first-child > p {
+  margin-top: 8px;
+}
+.pv185-learn > article:first-child > div {
+  display: grid;
+  margin-top: 10px;
+  grid-template-columns: 1fr 1fr;
+}
+.pv185-learn svg {
+  width: 100%;
+  height: 175px;
+  stroke: #1685f8;
+  stroke-width: 2;
+}
+.pv185-learn svg text {
+  stroke: none;
+  fill: #1685f8;
+}
+.pv185-learn > article:first-child section {
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+}
+.pv185-learn section p,
+.pv185-learn section output {
+  display: block;
+  margin-top: 10px;
+}
+.pv185-learn > article:last-child p {
+  margin: 13px 25px;
+}
+.pv185-learn > article:last-child output {
+  display: block;
+  margin: 15px 25px;
+  padding: 12px;
+  border: 1px solid #d9c7f7;
+  border-radius: 7px;
+  background: #faf6ff;
+  text-align: center;
+  font-size: 15px;
+}
+.pv185-practice {
+  height: 190px;
+  margin-top: 13px;
+  padding: 10px;
+  border: 1px solid #b9a3f0;
+  border-radius: 8px;
+  background: #fff;
+}
+.pv185-practice > header {
+  display: flex;
+  height: 30px;
+  align-items: center;
+  gap: 10px;
+}
+.pv185-practice > header p {
+  margin-right: auto;
+}
+.pv185-practice > header button {
+  height: 30px;
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+}
+.pv185-practice > header button:first-of-type {
+  color: #fff;
+  background: #4c4cf1;
+}
+.pv185-practice > header svg {
+  width: 12px;
+}
+.pv185-practice > div {
+  display: grid;
+  height: 140px;
+  grid-template-columns: 145px 190px 135px 1fr;
+  gap: 10px;
+}
+.pv185-practice article {
+  padding: 9px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+}
+.pv185-practice h3 {
+  margin-top: 9px;
+  color: #7c3aed;
+  font-size: 15px;
+}
+.pv185-practice article p {
+  margin-top: 15px;
+}
+.pv185-practice-graph {
+  width: 190px;
+  height: 140px;
+}
+.pv185-practice-graph line {
+  stroke: #354359;
+}
+.pv185-practice-graph circle {
+  fill: #7c3aed;
+}
+.pv185-practice article label {
+  display: flex;
+  margin-top: 12px;
+  align-items: center;
+  justify-content: space-between;
+}
+.pv185-practice article input {
+  width: 70px;
+  height: 31px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  text-align: center;
+}
+.pv185-practice article output {
+  display: block;
+  margin: 10px 0;
+  font-size: 14px;
+}
+.pv185-practice article strong {
+  display: block;
+  padding: 8px;
+  border-radius: 6px;
+}
+.pv185-practice article strong.correct {
+  color: #087b4d;
+  background: #ecf9ef;
+}
+.pv185-nav {
+  display: flex;
+  height: 54px;
+  margin-top: 13px;
+  padding: 0 15px;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+}
+.pv185-nav a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: inherit;
+  text-decoration: none;
+}
+.pv185-nav a:last-child {
+  text-align: right;
+}
+.pv185-nav span {
+  display: grid;
+}
+.pv185-nav small {
+  color: #52617a;
+}
+.pv185-nav svg {
+  width: 13px;
+}
+@media (max-width: 800px) {
+  .pv185-page {
+    width: 100%;
+    margin: 0;
+    min-height: auto;
+  }
+  .pv185-header {
+    height: auto;
+  }
+  .pv185-header aside {
+    display: none;
+  }
+  .pv185-work,
+  .pv185-learn,
+  .pv185-practice {
+    height: auto;
+  }
+  .pv185-work > div,
+  .pv185-learn,
+  .pv185-practice > div {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .pv185-work > header label {
+    margin-left: 8px;
+  }
+}

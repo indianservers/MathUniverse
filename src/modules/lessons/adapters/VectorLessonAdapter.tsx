@@ -5,6 +5,7 @@ import AdapterFrame from "../components/AdapterFrame";
 import type { LessonAdapterProps } from "../types";
 import VectorIntroductionTargetLesson183 from "./VectorIntroductionTargetLesson183";
 import ComponentFormTargetLesson184 from "./ComponentFormTargetLesson184";
+import PositionVectorsTargetLesson185 from "./PositionVectorsTargetLesson185";
 
 function guidanceFor(title: string) {
   const name = title.toLowerCase();
@@ -29,6 +30,7 @@ function guidanceFor(title: string) {
 export default function VectorLessonAdapter({ lesson, resetToken, onInteraction }: LessonAdapterProps) {
   if (lesson.id === 183) return <VectorIntroductionTargetLesson183 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   if (lesson.id === 184) return <ComponentFormTargetLesson184 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  if (lesson.id === 185) return <PositionVectorsTargetLesson185 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   const [ux, setUx] = useState(3);
   const [uy, setUy] = useState(2);
   const [vx, setVx] = useState(-1);

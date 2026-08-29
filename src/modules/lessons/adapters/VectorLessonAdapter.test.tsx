@@ -23,9 +23,19 @@ describe("VectorLessonAdapter", () => {
     expect(html).toContain("Target: w = (-4, 1)");
   });
 
-  it("renders vector lessons 185 through 197 with lesson-specific guidance", () => {
+  it("renders position vectors as its own origin-anchored multi-vector surface", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 185)!;
+    const html = renderToStaticMarkup(<VectorLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain("vector-mockup-0242");
+    expect(html).toContain('data-dedicated-lesson="185"');
+    expect(html).toContain('data-testid="position-vector-a"');
+    expect(html).toContain('data-testid="position-vector-b"');
+    expect(html).toContain('data-testid="position-vector-c"');
+    expect(html).toContain('data-testid="position-practice-point"');
+  });
+
+  it("renders vector lessons 186 through 197 with lesson-specific guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      185: "Position vector",
       186: "Vector addition",
       187: "Vector subtraction",
       188: "Scalar multiplication",

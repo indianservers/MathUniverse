@@ -1,0 +1,215 @@
+{
+  "mockup": "0242",
+  "lessonId": 185,
+  "route": "/lessons/geometry/185-position-vectors",
+  "checks": {
+    "initial": {
+      "a": "3:2",
+      "b": "4:-1",
+      "c": "-2:4",
+      "active": "a",
+      "grid": "true",
+      "snap": "true",
+      "stage": "0",
+      "practice": "2:-3",
+      "correct": "true",
+      "feedback": "",
+      "shared": "false"
+    },
+    "keyboardA": {
+      "a": "4:2",
+      "b": "4:-1",
+      "c": "-2:4",
+      "active": "a",
+      "grid": "true",
+      "snap": "true",
+      "stage": "0",
+      "practice": "2:-3",
+      "correct": "true",
+      "feedback": "",
+      "shared": "false"
+    },
+    "dragB": {
+      "a": "4:2",
+      "b": "3:0",
+      "c": "-2:4",
+      "active": "b",
+      "grid": "true",
+      "snap": "true",
+      "stage": "0",
+      "practice": "2:-3",
+      "correct": "true",
+      "feedback": "",
+      "shared": "false"
+    },
+    "inputC": {
+      "a": "4:2",
+      "b": "3:0",
+      "c": "-3.5:2.5",
+      "active": "c",
+      "grid": "true",
+      "snap": "true",
+      "stage": "0",
+      "practice": "2:-3",
+      "correct": "true",
+      "feedback": "",
+      "shared": "false"
+    },
+    "tools": {
+      "a": "4:2",
+      "b": "3:0",
+      "c": "-3.5:2.5",
+      "active": "a",
+      "grid": "false",
+      "snap": "false",
+      "stage": "0",
+      "practice": "2:-3",
+      "correct": "true",
+      "feedback": "",
+      "shared": "false"
+    },
+    "stages": {
+      "a": "4:2",
+      "b": "3:0",
+      "c": "-3.5:2.5",
+      "active": "a",
+      "grid": "false",
+      "snap": "false",
+      "stage": "4",
+      "practice": "2:-3",
+      "correct": "true",
+      "feedback": "",
+      "shared": "false"
+    },
+    "practiceMove": {
+      "a": "4:2",
+      "b": "3:0",
+      "c": "-3.5:2.5",
+      "active": "a",
+      "grid": "false",
+      "snap": "false",
+      "stage": "4",
+      "practice": "1:0",
+      "correct": "false",
+      "feedback": "",
+      "shared": "false"
+    },
+    "practiceCorrect": {
+      "a": "4:2",
+      "b": "3:0",
+      "c": "-3.5:2.5",
+      "active": "a",
+      "grid": "false",
+      "snap": "false",
+      "stage": "4",
+      "practice": "2:-3",
+      "correct": "true",
+      "feedback": "Correct!",
+      "shared": "false"
+    },
+    "share": {
+      "a": "4:2",
+      "b": "3:0",
+      "c": "-3.5:2.5",
+      "active": "a",
+      "grid": "false",
+      "snap": "false",
+      "stage": "4",
+      "practice": "2:-3",
+      "correct": "true",
+      "feedback": "Correct!",
+      "shared": "true"
+    },
+    "reset": {
+      "a": "3:2",
+      "b": "4:-1",
+      "c": "-2:4",
+      "active": "a",
+      "grid": "true",
+      "snap": "true",
+      "stage": "0",
+      "practice": "2:-3",
+      "correct": "true",
+      "feedback": "",
+      "shared": "false"
+    }
+  },
+  "correctVisible": true,
+  "navigation": {
+    "workspaceHref": "/workspace/geometry",
+    "previousHref": "/lessons/geometry/184-component-form",
+    "nextHref": "/lessons/geometry/186-vector-addition"
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1024,
+      "height": 1536
+    },
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "regions": {
+      "page": {
+        "top": 109,
+        "bottom": 1536,
+        "left": 211,
+        "right": 1024,
+        "width": 813,
+        "height": 1427
+      },
+      "header": {
+        "top": 109,
+        "bottom": 254,
+        "left": 232,
+        "right": 1008,
+        "width": 776,
+        "height": 145
+      },
+      "stages": {
+        "top": 270,
+        "bottom": 307,
+        "left": 232,
+        "right": 1008,
+        "width": 776,
+        "height": 37
+      },
+      "work": {
+        "top": 320,
+        "bottom": 982,
+        "left": 232,
+        "right": 1008,
+        "width": 776,
+        "height": 662
+      },
+      "learn": {
+        "top": 995,
+        "bottom": 1248,
+        "left": 232,
+        "right": 1008,
+        "width": 776,
+        "height": 253
+      },
+      "practice": {
+        "top": 1261,
+        "bottom": 1451,
+        "left": 232,
+        "right": 1008,
+        "width": 776,
+        "height": 190
+      },
+      "navigation": {
+        "top": 1464,
+        "bottom": 1518,
+        "left": 232,
+        "right": 1008,
+        "width": 776,
+        "height": 54
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
