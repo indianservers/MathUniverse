@@ -1,0 +1,126 @@
+{
+  "mockup": "0254",
+  "lessonId": 197,
+  "checks": {
+    "initial": {
+      "f1": "40:0",
+      "f2": "30:90",
+      "f3": "50:216.9",
+      "result": "40.0:30.0",
+      "net": "0.0:-0.0",
+      "balanced": "false",
+      "checked": "false",
+      "components": "true",
+      "show-resultant": "true",
+      "equilibrant": "true",
+      "tab": "0",
+      "shared": "false"
+    },
+    "boardBytes": 34211,
+    "drag": {
+      "f1": "40:0",
+      "f2": "30:90",
+      "f3": "41.1:214.7",
+      "result": "40.0:30.0",
+      "net": "6.2:6.6",
+      "balanced": "false",
+      "checked": "false",
+      "components": "true",
+      "show-resultant": "true",
+      "equilibrant": "true",
+      "tab": "0",
+      "shared": "false"
+    },
+    "balanced": {
+      "f1": "40:0",
+      "f2": "30:90",
+      "f3": "50:216.9",
+      "result": "40.0:30.0",
+      "net": "0.0:-0.0",
+      "balanced": "true",
+      "checked": "true",
+      "components": "true",
+      "show-resultant": "true",
+      "equilibrant": "true",
+      "tab": "0",
+      "shared": "false"
+    },
+    "unbalanced": {
+      "f1": "30:0",
+      "f2": "30:90",
+      "f3": "50:216.9",
+      "result": "30.0:30.0",
+      "net": "-10.0:-0.0",
+      "balanced": "false",
+      "checked": "true",
+      "components": "true",
+      "show-resultant": "true",
+      "equilibrant": "true",
+      "tab": "0",
+      "shared": "false"
+    },
+    "actions": {
+      "f1": "30:0",
+      "f2": "30:90",
+      "f3": "50:216.9",
+      "result": "30.0:30.0",
+      "net": "-10.0:-0.0",
+      "balanced": "false",
+      "checked": "true",
+      "components": "false",
+      "show-resultant": "false",
+      "equilibrant": "false",
+      "tab": "0",
+      "shared": "true"
+    },
+    "reset": {
+      "f1": "40:0",
+      "f2": "30:90",
+      "f3": "50:216.9",
+      "result": "40.0:30.0",
+      "net": "0.0:-0.0",
+      "balanced": "false",
+      "checked": "false",
+      "components": "true",
+      "show-resultant": "true",
+      "equilibrant": "true",
+      "tab": "0",
+      "shared": "true"
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/geometry/196-relative-motion",
+    "nextHref": "/lessons/geometry/617-vector-addition-polygon-method"
+  },
+  "metrics": {
+    "document": {
+      "width": 1148,
+      "height": 1370
+    },
+    "overflow": false,
+    "regions": {
+      "header": {
+        "top": 105,
+        "height": 235
+      },
+      "mode": {
+        "top": 352,
+        "height": 54
+      },
+      "main": {
+        "top": 415,
+        "height": 770
+      },
+      "nav": {
+        "top": 1195,
+        "height": 57
+      },
+      "footer": {
+        "top": 1262,
+        "height": 108
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

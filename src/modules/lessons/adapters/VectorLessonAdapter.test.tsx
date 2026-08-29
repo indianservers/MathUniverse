@@ -187,29 +187,14 @@ describe("VectorLessonAdapter", () => {
     expect(html).toContain("Relative motion navigation map");
   });
 
-  it("renders vector lesson 197 with lesson-specific guidance", () => {
-    const expectedSnippets: Record<number, string> = {
-      197: "Force vectors",
-    };
-
-    for (const [idText, snippet] of Object.entries(expectedSnippets)) {
-      const id = Number(idText);
-      const lesson = lessonCatalog.find((item) => item.id === id)!;
-      const html = renderToStaticMarkup(
-        <VectorLessonAdapter
-          lesson={lesson}
-          resetToken={0}
-          onInteraction={vi.fn()}
-        />,
-      );
-
-      expect(html, lesson.title).toContain(lesson.title);
-      expect(html, lesson.title).toContain(snippet);
-      expect(html, lesson.title).toContain('data-direct-interaction="true"');
-      expect(html, lesson.title).toContain("Drag vector tips");
-      expect(html, lesson.title).toContain(
-        "Drag vector tips directly on the plane",
-      );
-    }
+  it("renders force vectors as its own balance surface", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 197)!;
+    const html = renderToStaticMarkup(
+      <VectorLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+    expect(html).toContain("vector-mockup-0254");
+    expect(html).toContain('data-dedicated-lesson="197"');
+    expect(html).toContain("Force board: combine and balance forces");
+    expect(html).toContain("Force vector balance protractor");
   });
 });
