@@ -110,9 +110,19 @@ describe("VectorLessonAdapter", () => {
     expect(html).toContain("Pythagorean triangle");
   });
 
-  it("renders vector lessons 190 through 197 with lesson-specific guidance", () => {
+  it("renders dot product as its own angle-and-projection surface", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 190)!;
+    const html = renderToStaticMarkup(
+      <VectorLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+    expect(html).toContain("vector-mockup-0247");
+    expect(html).toContain('data-dedicated-lesson="190"');
+    expect(html).toContain('data-testid="dot-u-tip"');
+    expect(html).toContain('data-testid="dot-v-tip"');
+  });
+
+  it("renders vector lessons 191 through 197 with lesson-specific guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      190: "Dot product",
       191: "Cross product",
       192: "Projection",
       193: "Linear combination",

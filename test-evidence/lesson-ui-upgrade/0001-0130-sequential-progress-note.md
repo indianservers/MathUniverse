@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **172 of 200 lessons completed; 28 pending.**
+Dedicated rebuild target: **173 of 200 lessons completed; 27 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -158,6 +158,7 @@ Dedicated rebuild target: **172 of 200 lessons completed; 28 pending.**
 | 0244   |          187 Vector Subtraction | Complete | Dedicated ordered component-subtraction and opposite-vector model with draggable a/b tips, linked exact/range controls, construction/zoom/fullscreen modes, displacement proof, graded practice, and exact 1148x1371 framing |
 | 0245   |       188 Scalar Multiplication | Complete | Dedicated source-vector/scalar/result model with pointer/keyboard drag, auto-fit vector plane, exact/range/preset scalar controls, live sign cases, worked derivation, graded practice, and exact 1149x1369 framing |
 | 0246   | 189 Magnitude and Unit Vectors | Complete | Dedicated vector-normalization model with pointer/keyboard drag, linked component controls, Pythagorean triangle, live magnitude gauge, normalized unit-circle vector, graded practice, and exact 1536x1024 framing |
+| 0247   |                 190 Dot Product | Complete | Dedicated two-vector dot/angle/projection model with pointer/keyboard drag, linked component controls, snap/axis-lock modes, component and cosine proofs, orthogonality practice, and exact 1149x1369 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2553,3 +2554,15 @@ Evidence:
 - `0246-reference.png`
 - `0246-desktop.png`
 - `0246-dedicated-target-validation.json`
+
+## Lesson 190 / Mockup 0247 - Dot Product
+
+Reworked individually against the target mockup with a dedicated `two-vector-dot-angle-cosine-projection-component-proof-practice` model. Vectors u and v, dot product, included angle, cosine, scalar/vector projection, projection foot, sign classification, and component/cosine proofs all derive from one shared two-vector state.
+
+Pointer and keyboard movement for both vector tips, four linked range/exact components, integer/half-unit snap, axis-lock drag constraint, five tabs, bookmark, language, Share, Reset, live projection readout, and non-empty wrong/correct orthogonality practice are working controls. Final 1149x1369 validation verifies initial `u=(3,2)`, `v=(-1,3)`, `u·v=3`, angle `74.745°`, projection `(0.692,0.462)`, independent drag/keyboard edits, snap/axis lock, all actions, practice `u·v=0`, reset, routes, exact target geometry, overflow, and console output.
+
+Evidence:
+
+- `0247-reference.png`
+- `0247-desktop.png`
+- `0247-dedicated-target-validation.json`
