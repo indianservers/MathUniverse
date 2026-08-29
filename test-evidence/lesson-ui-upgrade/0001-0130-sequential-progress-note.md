@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **168 of 200 lessons completed; 32 pending.**
+Dedicated rebuild target: **169 of 200 lessons completed; 31 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -154,6 +154,7 @@ Dedicated rebuild target: **168 of 200 lessons completed; 32 pending.**
 | 0240   |          183 Vector Introduction | Complete | Dedicated two-point vector model with pointer/keyboard A/B drag, applyable point drafts, linked components, magnitude/direction, equivalent translation, graded draggable practice, and exact 1149x1369 framing |
 | 0241   |              184 Component Form | Complete | Dedicated signed-axis projection model with pointer/keyboard tip drag, exact component controls, live ordered pair, magnitude/direction, reconstruction, target grading/hint, and exact 1149x1369 framing |
 | 0242   |            185 Position Vectors | Complete | Dedicated three-vector origin model with independent pointer/keyboard endpoints, numeric cards, grid/snap, magnitude/direction, independent draggable practice, grading, and exact 1024x1536 framing |
+| 0243   |             186 Vector Addition | Complete | Dedicated head-to-tail/parallelogram sum model with draggable u/v/origin, component controls, resultant metrics, view/scale modes, generated draggable practice, and exact 1024x1536 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2501,3 +2502,15 @@ Evidence:
 - `0242-reference.png`
 - `0242-desktop.png`
 - `0242-dedicated-target-validation.json`
+
+## Lesson 186 / Mockup 0243 - Vector Addition
+
+Reworked individually against the target mockup with a dedicated `head-to-tail-parallelogram-component-sum-resultant-practice` model. Vectors u and v, their translated head-to-tail placement, parallelogram copies, resultant, component sums, magnitudes, included angle, and construction text all derive from one consistent addition state.
+
+Pointer and keyboard movement for u, v, the movable origin, and the independent practice resultant; four component ranges and exact inputs; head-to-tail, parallelogram, grid, origin reset, graph scale, five tabs, five learning stages, language, Share, Reset, answer grading, and rotating practice problems are working controls. Final 1024x1536 validation verifies initial `u=(3,2)`, `v=(-1,3)`, `u+v=(2,5)`, independent drag and origin invariance, view/scale modes, component edits, every tab/stage, wrong/correct practice, new-problem state, reset, routes, exact geometry, overflow, and console output.
+
+Evidence:
+
+- `0243-reference.png`
+- `0243-desktop.png`
+- `0243-dedicated-target-validation.json`

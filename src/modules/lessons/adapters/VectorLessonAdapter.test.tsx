@@ -34,9 +34,18 @@ describe("VectorLessonAdapter", () => {
     expect(html).toContain('data-testid="position-practice-point"');
   });
 
-  it("renders vector lessons 186 through 197 with lesson-specific guidance", () => {
+  it("renders vector addition as its own resultant-construction surface", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 186)!;
+    const html = renderToStaticMarkup(<VectorLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain("vector-mockup-0243");
+    expect(html).toContain('data-dedicated-lesson="186"');
+    expect(html).toContain('data-testid="addition-u-tip"');
+    expect(html).toContain('data-testid="addition-v-tip"');
+    expect(html).toContain('data-testid="addition-practice-tip"');
+  });
+
+  it("renders vector lessons 187 through 197 with lesson-specific guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      186: "Vector addition",
       187: "Vector subtraction",
       188: "Scalar multiplication",
       189: "Magnitude",
