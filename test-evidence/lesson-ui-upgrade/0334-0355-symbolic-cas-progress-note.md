@@ -1,6 +1,6 @@
 # Symbolic Mathematics / CAS Workspace target batch 0334-0355
 
-Dedicated rebuild target: **21 of 22 lessons completed; 1 pending.**
+Dedicated rebuild target: **22 of 22 lessons completed; 0 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
@@ -25,6 +25,7 @@ Dedicated rebuild target: **21 of 22 lessons completed; 1 pending.**
 | 0352 | 446 Assumptions | `linear-expression-assumption-domain-conditional-evaluation-cancellation-practice` | Reworked individually and browser-validated |
 | 0353 | 447 Exact / Numeric Toggle | `exact-symbolic-numeric-precision-rounding-error-place-value-practice` | Reworked individually and browser-validated |
 | 0354 | 448 Step-by-Step Algebra | `ordered-algebra-transformations-rule-validation-change-tracking-practice` | Reworked individually and browser-validated |
+| 0355 | 449 CAS-to-Graph Link | `parsed-symbolic-linear-quadratic-live-cartesian-series-style-practice` | Reworked individually and browser-validated |
 
 ## Lesson 428 / Mockup 0334 - Symbolic Evaluation
 
@@ -319,3 +320,17 @@ Evidence:
 - `0354-reference.png`
 - `0354-desktop.png`
 - `0354-dedicated-target-validation.json`
+
+## Lesson 449 / Mockup 0355 - CAS-to-Graph Link
+
+Reworked individually around a dedicated symbolic-to-Cartesian graph model. Each editable expression is parsed as a linear or quadratic function and drives its own sampled SVG path, y-intercept or vertex marker, live legend, color, and solid/dashed style. Expression editing, invalid-expression feedback, add/remove series, color cycling, line-style toggling, graph coordinate tracking, fullscreen, Reset, Share, independent slope/intercept steppers, exact practice checking, shell Reset, and Previous/Next navigation are functional.
+
+Browser validation starts with `2x+4`, `3x-2`, and `x^2-4`, producing three independent generated paths. It edits the first function to `-x+1`, changes its color and line style, removes the quadratic, adds a new live expression, and confirms the series model and plot remain linked. Practice changes the target slope from `-2` to `-1` and rejects it, restores `-2` and accepts it with intercept `3`, then shell Reset restores all three target expressions, styles, practice values, correct state, coordinate readout, and zero action count.
+
+Final exact 1023x1538 validation matches the target stack: sidebar width 215, dedicated header y=112-302, four-stage flow y=302-388, linked CAS/graph workspace y=408-956, learning cards y=974-1159, practice y=1177-1355, adjacent navigation y=1365-1427, and site footer y=1442-1538. The live graph contains three generated function paths, reports no horizontal overflow, and emits zero console messages.
+
+Evidence:
+
+- `0355-reference.png`
+- `0355-desktop.png`
+- `0355-dedicated-target-validation.json`

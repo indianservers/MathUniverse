@@ -1,0 +1,26 @@
+.cg449-practice > .target,
+.cg449-practice > .practice-controls,
+.cg449-practice > .result,
+.cg449-practice > .mini {
+  height: 112px;
+  min-height: 0;
+  align-self: start;
+  overflow: hidden;
+}
+
+.cg449-practice > .target {
+  font-size: 9px;
+}
+
+.cg449-practice > .result {
+  font-size: 8px;
+  line-height: 1.3;
+}
+
+.cg449-practice > .result p {
+  margin-top: 4px;
+}
+
+.cg449-practice > .mini line:last-of-type {
+  stroke: #8a2be2;
+}

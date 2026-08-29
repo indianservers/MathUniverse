@@ -25,6 +25,7 @@ import ComplexCalculationsTargetLesson445 from "./cas/ComplexCalculationsTargetL
 import AssumptionsTargetLesson446 from "./cas/AssumptionsTargetLesson446";
 import ExactNumericTargetLesson447 from "./cas/ExactNumericTargetLesson447";
 import StepByStepAlgebraTargetLesson448 from "./cas/StepByStepAlgebraTargetLesson448";
+import CasToGraphTargetLesson449 from "./cas/CasToGraphTargetLesson449";
 import { DifferentialEquationActivity } from "./p0/PriorityConceptActivities";
 
 export default function CasLessonAdapter(props: LessonAdapterProps) {
@@ -90,6 +91,9 @@ export default function CasLessonAdapter(props: LessonAdapterProps) {
   }
   if (props.lesson.id === 448) {
     return <StepByStepAlgebraTargetLesson448 {...props} />;
+  }
+  if (props.lesson.id === 449) {
+    return <CasToGraphTargetLesson449 {...props} />;
   }
   if (props.lesson.id >= 428 && props.lesson.id <= 449) {
     return <SymbolicCasMockupLesson {...props} />;

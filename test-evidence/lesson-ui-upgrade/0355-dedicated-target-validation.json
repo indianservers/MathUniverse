@@ -1,0 +1,154 @@
+{
+  "mockup": "0355",
+  "lessonId": 449,
+  "checks": {
+    "initial": {
+      "series": "3",
+      "expressions": "2x + 4|3x - 2|x^2 - 4",
+      "practice-a": "-2",
+      "practice-b": "3",
+      "feedback": "correct",
+      "actions": "0"
+    },
+    "edited": {
+      "series": "3",
+      "expressions": "-x + 1|3x - 2|x^2 - 4",
+      "practice-a": "-2",
+      "practice-b": "3",
+      "feedback": "correct",
+      "actions": "1"
+    },
+    "styled": {
+      "series": "3",
+      "expressions": "-x + 1|3x - 2|x^2 - 4",
+      "practice-a": "-2",
+      "practice-b": "3",
+      "feedback": "correct",
+      "actions": "3"
+    },
+    "removed": {
+      "series": "2",
+      "expressions": "-x + 1|3x - 2",
+      "practice-a": "-2",
+      "practice-b": "3",
+      "feedback": "correct",
+      "actions": "4"
+    },
+    "added": {
+      "series": "3",
+      "expressions": "-x + 1|3x - 2|-x + 1",
+      "practice-a": "-2",
+      "practice-b": "3",
+      "feedback": "correct",
+      "actions": "5"
+    },
+    "rejected": {
+      "series": "3",
+      "expressions": "-x + 1|3x - 2|-x + 1",
+      "practice-a": "-1",
+      "practice-b": "3",
+      "feedback": "incorrect",
+      "actions": "6"
+    },
+    "accepted": {
+      "series": "3",
+      "expressions": "-x + 1|3x - 2|-x + 1",
+      "practice-a": "-2",
+      "practice-b": "3",
+      "feedback": "correct",
+      "actions": "7"
+    },
+    "reset": {
+      "series": "3",
+      "expressions": "2x + 4|3x - 2|x^2 - 4",
+      "practice-a": "-2",
+      "practice-b": "3",
+      "feedback": "correct",
+      "actions": "0"
+    }
+  },
+  "paths": 3,
+  "navigation": {
+    "previousHref": "/lessons/symbolic-mathematics/448-step-by-step-algebra",
+    "nextHref": "/lessons/symbolic-mathematics/450-next-symbolic-step"
+  },
+  "metrics": {
+    "document": {
+      "width": 1023,
+      "height": 1538
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 215,
+      "height": 1538,
+      "bottom": 1538
+    },
+    "shellHeader": {
+      "top": 0,
+      "left": 0,
+      "width": 0,
+      "height": 0,
+      "bottom": 0
+    },
+    "hero": {
+      "top": 112,
+      "left": 232,
+      "width": 772,
+      "height": 190,
+      "bottom": 302
+    },
+    "flow": {
+      "top": 302,
+      "left": 232,
+      "width": 772,
+      "height": 86,
+      "bottom": 388
+    },
+    "workspace": {
+      "top": 408,
+      "left": 232,
+      "width": 772,
+      "height": 548,
+      "bottom": 956
+    },
+    "graph": {
+      "top": 485,
+      "left": 519,
+      "width": 472,
+      "height": 420,
+      "bottom": 905
+    },
+    "learning": {
+      "top": 974,
+      "left": 232,
+      "width": 772,
+      "height": 185,
+      "bottom": 1159
+    },
+    "practice": {
+      "top": 1177,
+      "left": 232,
+      "width": 772,
+      "height": 178,
+      "bottom": 1355
+    },
+    "adjacent": {
+      "top": 1365,
+      "left": 232,
+      "width": 772,
+      "height": 62,
+      "bottom": 1427
+    },
+    "footer": {
+      "top": 1442,
+      "left": 215,
+      "width": 808,
+      "height": 96,
+      "bottom": 1538
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
