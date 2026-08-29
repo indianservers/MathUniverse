@@ -1,7 +1,6 @@
 import {
   ArrowLeft,
   ArrowRight,
-  CheckCircle2,
   Crosshair,
   Grid3X3,
   Lightbulb,
@@ -18,6 +17,7 @@ import {
   type PointerEvent as ReactPointerEvent,
 } from "react";
 import type { LessonAdapterProps } from "../types";
+import "./RegularPolygonTargetLesson215.css";
 
 type Point = { x: number; y: number };
 type Visibility = {
@@ -56,6 +56,8 @@ export default function RegularPolygonTargetLesson215({
     "idle",
   );
   const [hint, setHint] = useState(false);
+  const [activeStage, setActiveStage] = useState(0);
+  const [fullscreenCount, setFullscreenCount] = useState(0);
   const surfaceRef = useRef<HTMLElement>(null);
   const model = useMemo(
     () => regularPolygonModel(n, radius, rotation, center),
@@ -66,18 +68,6 @@ export default function RegularPolygonTargetLesson215({
     [],
   );
 
-  const reset = () => {
-    setN(6);
-    setRadius(6);
-    setRotation(90);
-    setCenter(initialCenter);
-    setVisibility(initialVisibility);
-    setTool("select");
-    setAnswers({ side: "", perimeter: "", area: "" });
-    setFeedback("idle");
-    setHint(false);
-    onInteraction();
-  };
   useEffect(() => {
     setN(6);
     setRadius(6);
@@ -88,6 +78,8 @@ export default function RegularPolygonTargetLesson215({
     setAnswers({ side: "", perimeter: "", area: "" });
     setFeedback("idle");
     setHint(false);
+    setActiveStage(0);
+    setFullscreenCount(0);
   }, [resetToken]);
 
   const pointerToDomain = (event: ReactPointerEvent<SVGSVGElement>): Point => {
@@ -141,6 +133,7 @@ export default function RegularPolygonTargetLesson215({
     onInteraction();
   };
   const fullscreen = () => {
+    setFullscreenCount((count) => count + 1);
     void surfaceRef.current?.requestFullscreen?.();
     onInteraction();
   };
@@ -148,12 +141,31 @@ export default function RegularPolygonTargetLesson215({
   return (
     <section
       ref={surfaceRef}
-      className="space-y-3"
+      className="regular215-page space-y-3"
       style={{ marginTop: -7 }}
       data-testid="dynamic-geometry-mockup-0272"
       data-dedicated-lesson="215"
       data-object-model="regular-polygon"
       data-direct-interaction="true"
+      data-n={n}
+      data-radius={radius}
+      data-rotation={rotation}
+      data-center={`${center.x}:${center.y}`}
+      data-vertices={model.vertices
+        .map((vertex) => `${vertex.x}:${vertex.y}`)
+        .join("|")}
+      data-central-angle={model.centralAngle.toFixed(4)}
+      data-side={model.side.toFixed(4)}
+      data-perimeter={model.perimeter.toFixed(4)}
+      data-area={model.area.toFixed(4)}
+      data-tool={tool}
+      data-visibility={Object.entries(visibility)
+        .map(([key, value]) => `${key}:${value}`)
+        .join("|")}
+      data-stage={activeStage}
+      data-fullscreen-count={fullscreenCount}
+      data-feedback={feedback}
+      data-hint={hint}
       aria-label="Regular Polygon dedicated interactive geometry model"
     >
       <header className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
@@ -179,8 +191,9 @@ export default function RegularPolygonTargetLesson215({
               <button
                 type="button"
                 key={label}
-                className={`py-[10px] ${index === 0 ? "bg-blue-600 text-white" : "bg-white text-slate-700"}`}
+                className={`py-[10px] ${activeStage === index ? "bg-blue-600 text-white" : "bg-white text-slate-700"}`}
                 onClick={() => {
+                  setActiveStage(index);
                   document
                     .getElementById(`polygon-${index}`)
                     ?.scrollIntoView({ behavior: "smooth", block: "center" });

@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **197 of 200 lessons completed; 3 pending.**
+Dedicated rebuild target: **198 of 200 lessons completed; 2 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -183,6 +183,7 @@ Dedicated rebuild target: **197 of 200 lessons completed; 3 pending.**
 | 0269   | 212 Tangent | Complete | Dedicated circle/contact/tangent model with physical O/T drags, constrained and free states, live distance/power invariants, real secant/grid/zoom/stage/fullscreen controls, generated positions, and exact 1024x1536 framing |
 | 0270   | 213 Best Fit Line | Complete | Dedicated eight-point least-squares model with physical point/line drags, real m/b controls, residual/SSE/R-squared calculations, reject/accept grading, generated datasets, stateful stages, and exact 1534x1025 framing |
 | 0271   | 214 Triangle Constructor | Complete | Dedicated SSS/SAS/ASA construction model with physical vertex drag, live side/angle/area/perimeter/classification calculations, infeasible-state handling, real pan/stages/fullscreen, graded SAS practice, and exact 1029x1528 framing |
+| 0272   | 215 Regular Polygon | Complete | Dedicated generated-vertex regular-polygon model with physical center/vertex drags, live angle/side/perimeter/area/symmetry calculations, real n/r/placement/rotation/visibility controls, numerical grading, and exact 1027x1532 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2766,3 +2767,11 @@ Audited and strengthened the dedicated `sss-sas-asa-triangle-construction` model
 The exact 1029x1528 frame matches the target: sidebar width 219, content x=239-1013, header y=106-274.5, stages y=282.5-326.5, interactive construction y=338.5-1053, worked example y=1054-1221, practice y=1233-1323, navigation y=1335-1391, and footer y=1402-1528. There is no horizontal overflow and there are no console warnings or errors. Two mockup defects are intentionally not reproduced: its H1 leaks `function Object() { [native code] }`, and its SAS `AB=6`, `AC=5`, `A=60 degrees` model combines correct area 12.99 with incompatible `BC=5`, perimeter 16, and `C=(0,4)` labels. The lesson uses the correct derived `BC=sqrt(31)` and perimeter about 16.57.
 
 Evidence: `0271-reference.png`, `0271-desktop.png`, `0271-dedicated-target-validation.json`.
+
+## Lesson 215 / Mockup 0272 - Regular Polygon
+
+Audited and strengthened the dedicated `generated-equal-radius-equal-angle-vertex-ring` model against target 0272. Dragging center O translates every generated vertex without changing side length, radius, perimeter, or area. Dragging any vertex preserves the center while updating radius and orientation. Side-count and radius sliders regenerate the vertex ring and all derived values; center placement, 15-degree rotation, radii/grid/vertices/circumcircle/symmetry/label visibility, fullscreen invocation, five stateful tabs, routes, and hint are functional. The octagon practice independently validates side length 3.8268, perimeter 30.6147, and area 70.7107, including reject and accept paths.
+
+The exact 1027x1532 frame matches the target: sidebar width 210, content x=223-1014, header y=108-286, workspace y=287-804, concept strip y=815-943, construction/formula/practice row y=954-1311, navigation y=1322-1390, and footer y=1390-1532. There is no horizontal overflow and there are no console warnings or errors.
+
+Evidence: `0272-reference.png`, `0272-desktop.png`, `0272-dedicated-target-validation.json`.

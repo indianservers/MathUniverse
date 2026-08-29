@@ -1,0 +1,36 @@
+.regular215-page,
+.regular215-page * {
+  letter-spacing: 0;
+}
+
+@media (min-width: 960px) and (max-width: 1120px) {
+  body:has(.regular215-page) {
+    overflow: hidden;
+  }
+
+  body:has(.regular215-page) [data-testid="desktop-sidebar"] {
+    width: 210px;
+  }
+
+  body:has(.regular215-page) #main-content {
+    padding-left: 13px;
+    padding-right: 13px;
+  }
+
+  .regular215-page #polygon-0 .absolute.left-2.top-2 > button:first-child.is-active {
+    border-color: #1687d9;
+    background: #1687d9;
+    color: white;
+  }
+
+  .regular215-page #polygon-0 .absolute.left-2.top-2 > button:not(:first-child).is-active {
+    border-color: #e2e8f0;
+    background: white;
+    color: #334155;
+  }
+
+  .regular215-page > .sr-only,
+  .regular215-page ~ .lesson-adjacent-nav {
+    display: none;
+  }
+}

@@ -1,15 +1,284 @@
-[
-  {
-    "id": 215,
-    "mockup": 272,
-    "route": "/lessons/geometry/215-regular-polygon",
-    "width": 1027,
-    "height": 1532,
-    "status": "Correct: octagon measurements verified.",
-    "consoleErrors": [],
-    "scrollHeight": 1532,
-    "surfaceBottom": 1390,
-    "objectModel": "regular-polygon",
-    "overflowing": 0
-  }
-]
+{
+  "mockup": "0272",
+  "lessonId": 215,
+  "checks": {
+    "initial": {
+      "n": "6",
+      "radius": "6",
+      "rotation": "90",
+      "center": "0:0",
+      "vertices": "3.6739403974420594e-16:6|5.196152422706632:2.9999999999999996|5.196152422706632:-2.9999999999999996|3.6739403974420594e-16:-6|-5.196152422706632:-2.9999999999999996|-5.196152422706632:3.000000000000001",
+      "central-angle": "60.0000",
+      "side": "6.0000",
+      "perimeter": "36.0000",
+      "area": "93.5307",
+      "tool": "select",
+      "visibility": "vertices:true|circle:true|symmetry:true|labels:true|radii:true|grid:true",
+      "stage": "0",
+      "fullscreen-count": "0",
+      "feedback": "idle",
+      "hint": "false"
+    },
+    "centerDrag": {
+      "n": "6",
+      "radius": "6",
+      "rotation": "90",
+      "center": "1.0167135528710904:-0.8089961421653129",
+      "vertices": "1.0167135528710909:5.191003857834687|6.2128659755777225:2.1910038578346867|6.2128659755777225:-3.8089961421653125|1.0167135528710909:-6.808996142165313|-4.179438869835542:-3.8089961421653125|-4.179438869835542:2.191003857834688",
+      "central-angle": "60.0000",
+      "side": "6.0000",
+      "perimeter": "36.0000",
+      "area": "93.5307",
+      "tool": "select",
+      "visibility": "vertices:true|circle:true|symmetry:true|labels:true|radii:true|grid:true",
+      "stage": "0",
+      "fullscreen-count": "0",
+      "feedback": "idle",
+      "hint": "false"
+    },
+    "vertexDrag": {
+      "n": "6",
+      "radius": "7.080479260431843",
+      "rotation": "81.22561793003774",
+      "center": "1.0167135528710904:-0.8089961421653129",
+      "vertices": "2.096797948039052:6.188618041020276|7.616867398976085:1.7544304249808755|6.536783003808123:-5.2431837582047125|-0.06337084229687062:-7.806610325350902|-5.583440293233905:-3.3724227093115005|-4.503355898065946:3.625191473874083",
+      "central-angle": "60.0000",
+      "side": "7.0805",
+      "perimeter": "42.4829",
+      "area": "130.2498",
+      "tool": "select",
+      "visibility": "vertices:true|circle:true|symmetry:true|labels:true|radii:true|grid:true",
+      "stage": "0",
+      "fullscreen-count": "0",
+      "feedback": "idle",
+      "hint": "false"
+    },
+    "ranges": {
+      "n": "8",
+      "radius": "5",
+      "rotation": "81.22561793003774",
+      "center": "1.0167135528710904:-0.8089961421653129",
+      "vertices": "1.779433388238624:4.132487284169023|5.050194360486905:2.1458359299827614|5.958196979205426:-1.5717159775328464|3.9715456250191647:-4.842476949781127|0.2539937175035576:-5.750479568499649|-3.0167672547447237:-3.7638282143133868|-3.9247698734632452:-0.04627630679777939|-1.9381185192769839:3.2244846654505013",
+      "central-angle": "45.0000",
+      "side": "3.8268",
+      "perimeter": "30.6147",
+      "area": "70.7107",
+      "tool": "select",
+      "visibility": "vertices:true|circle:true|symmetry:true|labels:true|radii:true|grid:true",
+      "stage": "0",
+      "fullscreen-count": "0",
+      "feedback": "idle",
+      "hint": "false"
+    },
+    "rotated": {
+      "n": "8",
+      "radius": "5",
+      "rotation": "96.22561793003774",
+      "center": "1.0167135528710904:-0.8089961421653129",
+      "vertices": "0.4744943182817525:4.1615167389809935|4.147990019436827:3.0890941197362243|5.987226434017397:-0.2667769075759745|4.914803814772627:-3.940272608731049|1.5589327874604288:-5.779509023311619|-2.1145629136946456:-4.7070864040668505|-3.953799328275216:-1.3512153767546518|-2.881376709030449:2.322280324400421",
+      "central-angle": "45.0000",
+      "side": "3.8268",
+      "perimeter": "30.6147",
+      "area": "70.7107",
+      "tool": "select",
+      "visibility": "vertices:true|circle:true|symmetry:true|labels:true|radii:true|grid:true",
+      "stage": "0",
+      "fullscreen-count": "0",
+      "feedback": "idle",
+      "hint": "false"
+    },
+    "placedCenter": {
+      "n": "8",
+      "radius": "5",
+      "rotation": "96.22561793003774",
+      "center": "1.2520933311269236:-0.6854633505704664",
+      "vertices": "0.7098740965375856:4.28504953057584|4.38336979769266:3.212626911331071|6.22260621227323:-0.14324411598112796|5.15018359302846:-3.8167398171362024|1.794312565716262:-5.655976231716773|-1.8791831354388124:-4.583553612472004|-3.718419550019383:-1.2276825851598052|-2.645996930774616:2.4458131159952674",
+      "central-angle": "45.0000",
+      "side": "3.8268",
+      "perimeter": "30.6147",
+      "area": "70.7107",
+      "tool": "select",
+      "visibility": "vertices:true|circle:true|symmetry:true|labels:true|radii:true|grid:true",
+      "stage": "0",
+      "fullscreen-count": "0",
+      "feedback": "idle",
+      "hint": "false"
+    },
+    "hidden": {
+      "n": "8",
+      "radius": "5",
+      "rotation": "96.22561793003774",
+      "center": "1.2520933311269236:-0.6854633505704664",
+      "vertices": "0.7098740965375856:4.28504953057584|4.38336979769266:3.212626911331071|6.22260621227323:-0.14324411598112796|5.15018359302846:-3.8167398171362024|1.794312565716262:-5.655976231716773|-1.8791831354388124:-4.583553612472004|-3.718419550019383:-1.2276825851598052|-2.645996930774616:2.4458131159952674",
+      "central-angle": "45.0000",
+      "side": "3.8268",
+      "perimeter": "30.6147",
+      "area": "70.7107",
+      "tool": "select",
+      "visibility": "vertices:false|circle:false|symmetry:false|labels:false|radii:false|grid:false",
+      "stage": "0",
+      "fullscreen-count": "0",
+      "feedback": "idle",
+      "hint": "false"
+    },
+    "fullscreen": {
+      "n": "8",
+      "radius": "5",
+      "rotation": "96.22561793003774",
+      "center": "1.2520933311269236:-0.6854633505704664",
+      "vertices": "0.7098740965375856:4.28504953057584|4.38336979769266:3.212626911331071|6.22260621227323:-0.14324411598112796|5.15018359302846:-3.8167398171362024|1.794312565716262:-5.655976231716773|-1.8791831354388124:-4.583553612472004|-3.718419550019383:-1.2276825851598052|-2.645996930774616:2.4458131159952674",
+      "central-angle": "45.0000",
+      "side": "3.8268",
+      "perimeter": "30.6147",
+      "area": "70.7107",
+      "tool": "select",
+      "visibility": "vertices:false|circle:false|symmetry:false|labels:false|radii:false|grid:false",
+      "stage": "0",
+      "fullscreen-count": "1",
+      "feedback": "idle",
+      "hint": "false"
+    },
+    "stages": [
+      {
+        "expected": "1",
+        "actual": "1"
+      },
+      {
+        "expected": "2",
+        "actual": "2"
+      },
+      {
+        "expected": "3",
+        "actual": "3"
+      },
+      {
+        "expected": "4",
+        "actual": "4"
+      },
+      {
+        "expected": "0",
+        "actual": "0"
+      }
+    ],
+    "rejected": {
+      "n": "8",
+      "radius": "5",
+      "rotation": "96.22561793003774",
+      "center": "1.2520933311269236:-0.6854633505704664",
+      "vertices": "0.7098740965375856:4.28504953057584|4.38336979769266:3.212626911331071|6.22260621227323:-0.14324411598112796|5.15018359302846:-3.8167398171362024|1.794312565716262:-5.655976231716773|-1.8791831354388124:-4.583553612472004|-3.718419550019383:-1.2276825851598052|-2.645996930774616:2.4458131159952674",
+      "central-angle": "45.0000",
+      "side": "3.8268",
+      "perimeter": "30.6147",
+      "area": "70.7107",
+      "tool": "select",
+      "visibility": "vertices:false|circle:false|symmetry:false|labels:false|radii:false|grid:false",
+      "stage": "0",
+      "fullscreen-count": "1",
+      "feedback": "incorrect",
+      "hint": "false"
+    },
+    "accepted": {
+      "n": "8",
+      "radius": "5",
+      "rotation": "96.22561793003774",
+      "center": "1.2520933311269236:-0.6854633505704664",
+      "vertices": "0.7098740965375856:4.28504953057584|4.38336979769266:3.212626911331071|6.22260621227323:-0.14324411598112796|5.15018359302846:-3.8167398171362024|1.794312565716262:-5.655976231716773|-1.8791831354388124:-4.583553612472004|-3.718419550019383:-1.2276825851598052|-2.645996930774616:2.4458131159952674",
+      "central-angle": "45.0000",
+      "side": "3.8268",
+      "perimeter": "30.6147",
+      "area": "70.7107",
+      "tool": "select",
+      "visibility": "vertices:false|circle:false|symmetry:false|labels:false|radii:false|grid:false",
+      "stage": "0",
+      "fullscreen-count": "1",
+      "feedback": "correct",
+      "hint": "false"
+    },
+    "hint": {
+      "n": "8",
+      "radius": "5",
+      "rotation": "96.22561793003774",
+      "center": "1.2520933311269236:-0.6854633505704664",
+      "vertices": "0.7098740965375856:4.28504953057584|4.38336979769266:3.212626911331071|6.22260621227323:-0.14324411598112796|5.15018359302846:-3.8167398171362024|1.794312565716262:-5.655976231716773|-1.8791831354388124:-4.583553612472004|-3.718419550019383:-1.2276825851598052|-2.645996930774616:2.4458131159952674",
+      "central-angle": "45.0000",
+      "side": "3.8268",
+      "perimeter": "30.6147",
+      "area": "70.7107",
+      "tool": "select",
+      "visibility": "vertices:false|circle:false|symmetry:false|labels:false|radii:false|grid:false",
+      "stage": "0",
+      "fullscreen-count": "1",
+      "feedback": "correct",
+      "hint": "true"
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/geometry/214-triangle-constructor",
+    "nextHref": "/lessons/geometry/216-rigid-polygon"
+  },
+  "metrics": {
+    "document": {
+      "width": 1027,
+      "height": 1532
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 210,
+      "height": 1532,
+      "bottom": 1532
+    },
+    "header": {
+      "top": 108,
+      "left": 223,
+      "width": 791,
+      "height": 178,
+      "bottom": 286
+    },
+    "workspace": {
+      "top": 287,
+      "left": 223,
+      "width": 791,
+      "height": 517,
+      "bottom": 804
+    },
+    "bands": {
+      "top": 815,
+      "left": 223,
+      "width": 791,
+      "height": 128,
+      "bottom": 943
+    },
+    "lower": {
+      "top": 954,
+      "left": 223,
+      "width": 791,
+      "height": 357,
+      "bottom": 1311
+    },
+    "practice": {
+      "top": 954,
+      "left": 713.40625,
+      "width": 300.59375,
+      "height": 357,
+      "bottom": 1311
+    },
+    "adjacent": {
+      "top": 1322,
+      "left": 223,
+      "width": 791,
+      "height": 68,
+      "bottom": 1390
+    },
+    "footer": {
+      "top": 1390,
+      "left": 210,
+      "width": 817,
+      "height": 142,
+      "bottom": 1532
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
