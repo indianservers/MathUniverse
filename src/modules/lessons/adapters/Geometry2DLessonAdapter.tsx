@@ -32,7 +32,7 @@ import {
   Unlink,
   ZoomIn,
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { PointerEvent, ReactNode } from "react";
 import AdapterFrame from "../components/AdapterFrame";
 import ReusableLessonEngine, {
@@ -3744,6 +3744,11 @@ function IntersectionPointTargetLesson({
     "idle" | "correct" | "incorrect"
   >("idle");
   const [activeTab, setActiveTab] = useState("1 Observe & Manipulate");
+  const [graphTool, setGraphTool] = useState<"select" | "pan">("select");
+  const [graphZoom, setGraphZoom] = useState(1);
+  const [graphPan, setGraphPan] = useState({ x: 0, y: 0 });
+  const [practiceLines, setPracticeLines] = useState<[number, number, number, number]>([2, -1, -3, 5]);
+  const [showSteps, setShowSteps] = useState(false);
 
   useEffect(() => {
     setM1(1);
@@ -3754,6 +3759,11 @@ function IntersectionPointTargetLesson({
     setAnswerY("");
     setAnswerState("idle");
     setActiveTab("1 Observe & Manipulate");
+    setGraphTool("select");
+    setGraphZoom(1);
+    setGraphPan({ x: 0, y: 0 });
+    setPracticeLines([2, -1, -3, 5]);
+    setShowSteps(false);
   }, [resetToken]);
 
   const denominator = m1 - m2;
@@ -3776,9 +3786,16 @@ function IntersectionPointTargetLesson({
     setC2(2);
     onInteraction();
   };
+  const [pm1, pc1, pm2, pc2] = practiceLines;
+  const practiceX = (pc2 - pc1) / (pm1 - pm2);
+  const practiceY = pm1 * practiceX + pc1;
+  const activityCount = [m1 !== 1 || c1 !== 2 || m2 !== -1 || c2 !== 2, relation !== "Intersecting", activeTab !== "1 Observe & Manipulate", answerState !== "idle", showSteps].filter(Boolean).length;
   const check = () => {
     setAnswerState(
-      Number(answerX) === 1 && Number(answerY) === 1 ? "correct" : "incorrect",
+      Math.abs(Number(answerX) - practiceX) < 0.01 &&
+        Math.abs(Number(answerY) - practiceY) < 0.01
+        ? "correct"
+        : "incorrect",
     );
     onInteraction();
   };
@@ -3788,6 +3805,14 @@ function IntersectionPointTargetLesson({
       className="-mt-[7px] space-y-[10px]"
       data-testid="dynamic-geometry-mockup-0257"
       data-direct-interaction="true"
+      data-dedicated-lesson="200"
+      data-object-model="two-line-endpoints-exact-intersection-classification"
+      data-relation={relation}
+      data-intersection={`${ix.toFixed(2)}:${iy.toFixed(2)}`}
+      data-graph-tool={graphTool}
+      data-graph-zoom={graphZoom}
+      data-answer={answerState}
+      data-activities={activityCount}
     >
       <header className="h-[149px] overflow-hidden rounded-xl border border-[#dbe6fb] bg-white p-3 shadow-sm">
         <div className="grid items-center gap-4 lg:grid-cols-[1fr_140px]">
@@ -3822,9 +3847,9 @@ function IntersectionPointTargetLesson({
             </div>
           </div>
           <div className="rounded-xl border border-[#dbe6fb] p-3 text-[10px] text-[#52627e]">
-            <p>0% complete</p>
-            <span className="my-2 block h-2 rounded-full bg-slate-200" />
-            <p>0 / 5 activities</p>
+            <p>{activityCount * 20}% complete</p>
+            <span className="my-2 block h-2 rounded-full bg-slate-200"><i className="block h-2 rounded-full bg-cyan-600" style={{ width: `${activityCount * 20}%` }} /></span>
+            <p>{activityCount} / 5 activities</p>
           </div>
         </div>
       </header>
@@ -3880,13 +3905,25 @@ function IntersectionPointTargetLesson({
         </aside>
         <div className="relative">
           <div className="absolute left-3 top-3 z-10 flex gap-1">
-            <button className="grid h-8 w-8 place-items-center rounded-lg bg-cyan-600 text-white">
+            <button
+              aria-label="Select line endpoints"
+              onClick={() => { setGraphTool("select"); onInteraction(); }}
+              className={`grid h-8 w-8 place-items-center rounded-lg ${graphTool === "select" ? "bg-cyan-600 text-white" : "border bg-white"}`}
+            >
               <MousePointer2 className="h-4 w-4" />
             </button>
-            <button className="grid h-8 w-8 place-items-center rounded-lg border bg-white">
+            <button
+              aria-label="Pan intersection graph"
+              onClick={() => { setGraphTool("pan"); onInteraction(); }}
+              className={`grid h-8 w-8 place-items-center rounded-lg ${graphTool === "pan" ? "bg-cyan-600 text-white" : "border bg-white"}`}
+            >
               <Hand className="h-4 w-4" />
             </button>
-            <button className="grid h-8 w-8 place-items-center rounded-lg border bg-white">
+            <button
+              aria-label="Zoom intersection graph"
+              onClick={() => { setGraphZoom((value) => value >= 1.5 ? 0.75 : Number((value + 0.25).toFixed(2))); onInteraction(); }}
+              className="grid h-8 w-8 place-items-center rounded-lg border bg-white"
+            >
               <ZoomIn className="h-4 w-4" />
             </button>
           </div>
@@ -3898,6 +3935,12 @@ function IntersectionPointTargetLesson({
             ix={ix}
             iy={iy}
             relation={relation}
+            tool={graphTool}
+            zoom={graphZoom}
+            pan={graphPan}
+            onPan={(next) => { setGraphPan(next); onInteraction(); }}
+            onLine1={(m, c) => { setM1(m); setC1(c); onInteraction(); }}
+            onLine2={(m, c) => { setM2(m); setC2(c); onInteraction(); }}
           />
         </div>
         <aside className="m-3 rounded-xl border border-[#dbe6fb] p-3">
@@ -4082,9 +4125,12 @@ function IntersectionPointTargetLesson({
         </div>
         <div className="rounded-lg border border-[#dbe6fb] p-3 text-[10px]">
           <p className="font-black text-cyan-700">Your lines</p>
-          <p className="mt-2">Line 1: y = 2x - 1</p>
-          <p className="mt-2 text-violet-700">Line 2: y = -3x + 5</p>
-          <button className="mt-2 rounded-lg border px-3 py-1">
+          <p className="mt-2">Line 1: y = {pm1}x {pc1 < 0 ? "−" : "+"} {Math.abs(pc1)}</p>
+          <p className="mt-2 text-violet-700">Line 2: y = {pm2}x {pc2 < 0 ? "−" : "+"} {Math.abs(pc2)}</p>
+          <button
+            onClick={() => { setPracticeLines((lines) => lines[0] === 2 ? [1, 2, -1, 4] : [2, -1, -3, 5]); setAnswerX(""); setAnswerY(""); setAnswerState("idle"); setShowSteps(false); onInteraction(); }}
+            className="mt-2 rounded-lg border px-3 py-1"
+          >
             Change lines
           </button>
         </div>
@@ -4121,28 +4167,25 @@ function IntersectionPointTargetLesson({
         <div className="rounded-lg border border-violet-200 bg-violet-50 p-3 text-[10px]">
           <p className="font-black text-violet-700">Hint</p>
           <p className="mt-2">Set equations equal and solve.</p>
-          <p className="mt-3 font-black">
-            Answer
-            <br />
-            <span className="text-base">(1, 1)</span>
-          </p>
+          {showSteps ? <p className="mt-3 font-black">Answer<br /><span className="text-base">({practiceX.toFixed(2)}, {practiceY.toFixed(2)})</span><br /><small>{pm1}x + {pc1} = {pm2}x + {pc2}</small></p> : null}
+          <button onClick={() => { setShowSteps((value) => !value); onInteraction(); }} className="mt-2 rounded border bg-white px-2 py-1">{showSteps ? "Hide steps" : "Show steps"}</button>
         </div>
       </section>
       <footer className="grid h-[53px] rounded-xl border border-[#dbe6fb] bg-white p-2 md:grid-cols-2">
-        <button className="text-left text-xs font-black text-[#142044]">
+        <a href="/lessons/geometry/199-point-on-object" className="text-left text-xs font-black text-[#142044]">
           <ArrowLeft className="mr-2 inline h-4 w-4" />
           Previous
           <span className="block pl-6 text-[10px] font-medium text-[#52627e]">
             Point on Object
           </span>
-        </button>
-        <button className="text-right text-xs font-black text-[#142044]">
+        </a>
+        <a href="/lessons/geometry/201-midpoint-or-centre" className="text-right text-xs font-black text-[#142044]">
           Next
           <ArrowRight className="ml-2 inline h-4 w-4" />
           <span className="block pr-6 text-[10px] font-medium text-[#52627e]">
             Midpoint or Centre
           </span>
-        </button>
+        </a>
       </footer>
     </section>
   );
@@ -4218,6 +4261,12 @@ function IntersectionGraph({
   ix,
   iy,
   relation,
+  tool,
+  zoom,
+  pan,
+  onPan,
+  onLine1,
+  onLine2,
 }: {
   m1: number;
   c1: number;
@@ -4226,18 +4275,43 @@ function IntersectionGraph({
   ix: number;
   iy: number;
   relation: string;
+  tool: "select" | "pan";
+  zoom: number;
+  pan: { x: number; y: number };
+  onPan: (point: { x: number; y: number }) => void;
+  onLine1: (m: number, c: number) => void;
+  onLine2: (m: number, c: number) => void;
 }) {
-  const ox = 250,
-    oy = 185,
-    s = 16,
+  const graphRef = useRef<SVGSVGElement>(null);
+  const drag = useRef<"l1a" | "l1b" | "l2a" | "l2b" | "pan" | null>(null);
+  const last = useRef({ x: 0, y: 0 });
+  const ox = 250 + pan.x,
+    oy = 185 + pan.y,
+    s = 16 * zoom,
     sx = (x: number) => ox + x * s,
     sy = (y: number) => oy - y * s;
+  const coordinate = (event: PointerEvent<SVGSVGElement>) => {
+    const box = graphRef.current!.getBoundingClientRect();
+    return { x: (((event.clientX - box.left) / box.width) * 500 - ox) / s, y: (oy - ((event.clientY - box.top) / box.height) * 370) / s };
+  };
+  const moveEndpoint = (which: Exclude<typeof drag.current, "pan" | null>, point: { x: number; y: number }) => {
+    const first = which.endsWith("a"), line1 = which.startsWith("l1"), oldM = line1 ? m1 : m2, oldC = line1 ? c1 : c2, fixedX = first ? 8 : -8, fixedY = oldM * fixedX + oldC;
+    if (Math.abs(fixedX - point.x) < 0.2) return;
+    const nextM = Math.max(-10, Math.min(10, Math.round(((fixedY - point.y) / (fixedX - point.x)) * 4) / 4));
+    const nextC = Math.max(-10, Math.min(10, Math.round((point.y - nextM * point.x) * 4) / 4));
+    (line1 ? onLine1 : onLine2)(nextM, nextC);
+  };
   return (
     <svg
+      ref={graphRef}
       viewBox="0 0 500 370"
       className="block h-[357px] w-full bg-white"
       role="img"
       aria-label="Two lines and their intersection on a coordinate plane"
+      onPointerDown={(event) => { if (tool === "pan") { drag.current = "pan"; last.current = { x: event.clientX, y: event.clientY }; event.currentTarget.setPointerCapture(event.pointerId); } }}
+      onPointerMove={(event) => { if (drag.current === "pan") { onPan({ x: pan.x + event.clientX - last.current.x, y: pan.y + event.clientY - last.current.y }); last.current = { x: event.clientX, y: event.clientY }; } else if (drag.current) moveEndpoint(drag.current, coordinate(event)); }}
+      onPointerUp={() => { drag.current = null; }}
+      onPointerCancel={() => { drag.current = null; }}
     >
       <defs>
         <pattern
@@ -4282,6 +4356,9 @@ function IntersectionGraph({
         stroke="#06b6d4"
         strokeWidth="2.5"
       />
+      {[[-8, m1 * -8 + c1, "l1a", "#06b6d4"], [8, m1 * 8 + c1, "l1b", "#06b6d4"], [-8, m2 * -8 + c2, "l2a", "#a855f7"], [8, m2 * 8 + c2, "l2b", "#a855f7"]].map(([x, y, id, color]) => (
+        <circle key={String(id)} data-testid={`intersection-endpoint-${id}`} cx={sx(Number(x))} cy={sy(Number(y))} r="6" fill={String(color)} stroke="white" strokeWidth="2" onPointerDown={(event) => { if (tool !== "select") return; event.stopPropagation(); drag.current = id as "l1a" | "l1b" | "l2a" | "l2b"; event.currentTarget.setPointerCapture(event.pointerId); }} />
+      ))}
       <line
         x1={sx(-10)}
         y1={sy(m2 * -10 + c2)}

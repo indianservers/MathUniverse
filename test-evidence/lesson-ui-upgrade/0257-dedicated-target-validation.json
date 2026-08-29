@@ -1,0 +1,134 @@
+{
+  "mockup": "0257",
+  "lessonId": 200,
+  "checks": {
+    "initial": {
+      "relation": "Intersecting",
+      "intersection": "0.00:2.00",
+      "graph-tool": "select",
+      "graph-zoom": "1",
+      "answer": "idle",
+      "activities": "0"
+    },
+    "endpointDrag": {
+      "relation": "Intersecting",
+      "intersection": "-2.13:4.13",
+      "graph-tool": "select",
+      "graph-zoom": "1",
+      "answer": "idle",
+      "activities": "1"
+    },
+    "parallel": {
+      "relation": "Parallel",
+      "intersection": "0.00:0.00",
+      "graph-tool": "select",
+      "graph-zoom": "1",
+      "answer": "idle",
+      "activities": "2"
+    },
+    "coincident": {
+      "relation": "Coincident",
+      "intersection": "0.00:0.00",
+      "graph-tool": "select",
+      "graph-zoom": "1",
+      "answer": "idle",
+      "activities": "2"
+    },
+    "restored": {
+      "relation": "Intersecting",
+      "intersection": "0.00:2.00",
+      "graph-tool": "select",
+      "graph-zoom": "1",
+      "answer": "idle",
+      "activities": "0"
+    },
+    "view": {
+      "relation": "Intersecting",
+      "intersection": "0.00:2.00",
+      "graph-tool": "pan",
+      "graph-zoom": "1.25",
+      "answer": "idle",
+      "activities": "0"
+    },
+    "practice": {
+      "relation": "Intersecting",
+      "intersection": "0.00:2.00",
+      "graph-tool": "pan",
+      "graph-zoom": "1.25",
+      "answer": "correct",
+      "activities": "1"
+    },
+    "actions": {
+      "relation": "Intersecting",
+      "intersection": "0.00:2.00",
+      "graph-tool": "pan",
+      "graph-zoom": "1.25",
+      "answer": "correct",
+      "activities": "2"
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/geometry/199-point-on-object",
+    "nextHref": "/lessons/geometry/201-midpoint-or-centre"
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "horizontalOverflow": false,
+    "children": [
+      {
+        "tag": "HEADER",
+        "top": 108,
+        "height": 149,
+        "left": 236,
+        "width": 768
+      },
+      {
+        "tag": "NAV",
+        "top": 267,
+        "height": 43,
+        "left": 236,
+        "width": 768
+      },
+      {
+        "tag": "SECTION",
+        "top": 320,
+        "height": 408,
+        "left": 236,
+        "width": 768
+      },
+      {
+        "tag": "DIV",
+        "top": 738,
+        "height": 299,
+        "left": 236,
+        "width": 768
+      },
+      {
+        "tag": "DIV",
+        "top": 1047,
+        "height": 256,
+        "left": 236,
+        "width": 768
+      },
+      {
+        "tag": "SECTION",
+        "top": 1313,
+        "height": 150,
+        "left": 236,
+        "width": 768
+      },
+      {
+        "tag": "FOOTER",
+        "top": 1473,
+        "height": 53,
+        "left": 236,
+        "width": 768
+      }
+    ]
+  },
+  "consoleMessages": [],
+  "passed": true
+}

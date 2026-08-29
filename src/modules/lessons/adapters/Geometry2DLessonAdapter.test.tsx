@@ -345,6 +345,10 @@ describe("Geometry2DLessonAdapter", () => {
     );
 
     expect(html).toContain("dynamic-geometry-mockup-0257");
+    expect(html).toContain('data-dedicated-lesson="200"');
+    expect(html).toContain('data-object-model="two-line-endpoints-exact-intersection-classification"');
+    expect(html).toContain('data-testid="intersection-endpoint-l1a"');
+    expect(html).toContain('aria-label="Pan intersection graph"');
     expect(html).toContain(
       "Two lines and their intersection on a coordinate plane",
     );
