@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **169 of 200 lessons completed; 31 pending.**
+Dedicated rebuild target: **170 of 200 lessons completed; 30 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -155,6 +155,7 @@ Dedicated rebuild target: **169 of 200 lessons completed; 31 pending.**
 | 0241   |              184 Component Form | Complete | Dedicated signed-axis projection model with pointer/keyboard tip drag, exact component controls, live ordered pair, magnitude/direction, reconstruction, target grading/hint, and exact 1149x1369 framing |
 | 0242   |            185 Position Vectors | Complete | Dedicated three-vector origin model with independent pointer/keyboard endpoints, numeric cards, grid/snap, magnitude/direction, independent draggable practice, grading, and exact 1024x1536 framing |
 | 0243   |             186 Vector Addition | Complete | Dedicated head-to-tail/parallelogram sum model with draggable u/v/origin, component controls, resultant metrics, view/scale modes, generated draggable practice, and exact 1024x1536 framing |
+| 0244   |          187 Vector Subtraction | Complete | Dedicated ordered component-subtraction and opposite-vector model with draggable a/b tips, linked exact/range controls, construction/zoom/fullscreen modes, displacement proof, graded practice, and exact 1148x1371 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2514,3 +2515,15 @@ Evidence:
 - `0243-reference.png`
 - `0243-desktop.png`
 - `0243-dedicated-target-validation.json`
+
+## Lesson 187 / Mockup 0244 - Vector Subtraction
+
+Reworked individually against the target mockup with a dedicated `ordered-component-subtraction-opposite-vector-displacement-construction-practice` model. Vectors a and b, the opposite vector -b, the componentwise result a-b, magnitudes, included angle, parallelogram construction, and displacement view all derive from one consistent vector state.
+
+Pointer and keyboard movement for both vector tips, four linked range/exact component controls, construction visibility, graph zoom, fullscreen, five lesson tabs, bookmark, Share, Reset, hint/reveal, ordered-component grading, and adjacent/workspace navigation are working controls. Final 1148x1371 validation verifies initial `a=(3,2)`, `b=(-1,3)`, `-b=(1,-3)`, `a-b=(4,-1)`, independent drag updates, exact field restoration, view controls, every tab, wrong/correct `(-2,3)` practice, hint/reveal/reset state, routes, target section geometry, overflow, and console output.
+
+Evidence:
+
+- `0244-reference.png`
+- `0244-desktop.png`
+- `0244-dedicated-target-validation.json`

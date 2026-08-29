@@ -6,7 +6,13 @@ import VectorLessonAdapter from "./VectorLessonAdapter";
 describe("VectorLessonAdapter", () => {
   it("renders vector introduction as its own two-point vector surface", () => {
     const lesson = lessonCatalog.find((item) => item.id === 183)!;
-    const html = renderToStaticMarkup(<VectorLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    const html = renderToStaticMarkup(
+      <VectorLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
     expect(html).toContain("vector-mockup-0240");
     expect(html).toContain('data-dedicated-lesson="183"');
     expect(html).toContain('data-testid="vector-point-a"');
@@ -16,7 +22,13 @@ describe("VectorLessonAdapter", () => {
 
   it("renders component form as its own signed-projection surface", () => {
     const lesson = lessonCatalog.find((item) => item.id === 184)!;
-    const html = renderToStaticMarkup(<VectorLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    const html = renderToStaticMarkup(
+      <VectorLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
     expect(html).toContain("vector-mockup-0241");
     expect(html).toContain('data-dedicated-lesson="184"');
     expect(html).toContain('data-testid="component-vector-tip"');
@@ -25,7 +37,13 @@ describe("VectorLessonAdapter", () => {
 
   it("renders position vectors as its own origin-anchored multi-vector surface", () => {
     const lesson = lessonCatalog.find((item) => item.id === 185)!;
-    const html = renderToStaticMarkup(<VectorLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    const html = renderToStaticMarkup(
+      <VectorLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
     expect(html).toContain("vector-mockup-0242");
     expect(html).toContain('data-dedicated-lesson="185"');
     expect(html).toContain('data-testid="position-vector-a"');
@@ -36,7 +54,13 @@ describe("VectorLessonAdapter", () => {
 
   it("renders vector addition as its own resultant-construction surface", () => {
     const lesson = lessonCatalog.find((item) => item.id === 186)!;
-    const html = renderToStaticMarkup(<VectorLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    const html = renderToStaticMarkup(
+      <VectorLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
     expect(html).toContain("vector-mockup-0243");
     expect(html).toContain('data-dedicated-lesson="186"');
     expect(html).toContain('data-testid="addition-u-tip"');
@@ -44,9 +68,24 @@ describe("VectorLessonAdapter", () => {
     expect(html).toContain('data-testid="addition-practice-tip"');
   });
 
-  it("renders vector lessons 187 through 197 with lesson-specific guidance", () => {
+  it("renders vector subtraction as its own opposite-vector surface", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 187)!;
+    const html = renderToStaticMarkup(
+      <VectorLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain("vector-mockup-0244");
+    expect(html).toContain('data-dedicated-lesson="187"');
+    expect(html).toContain('data-testid="subtraction-a-tip"');
+    expect(html).toContain('data-testid="subtraction-b-tip"');
+    expect(html).toContain("a - b = a + (-b)");
+  });
+
+  it("renders vector lessons 188 through 197 with lesson-specific guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      187: "Vector subtraction",
       188: "Scalar multiplication",
       189: "Magnitude",
       190: "Dot product",
@@ -63,14 +102,20 @@ describe("VectorLessonAdapter", () => {
       const id = Number(idText);
       const lesson = lessonCatalog.find((item) => item.id === id)!;
       const html = renderToStaticMarkup(
-        <VectorLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+        <VectorLessonAdapter
+          lesson={lesson}
+          resetToken={0}
+          onInteraction={vi.fn()}
+        />,
       );
 
       expect(html, lesson.title).toContain(lesson.title);
       expect(html, lesson.title).toContain(snippet);
-      expect(html, lesson.title).toContain("data-direct-interaction=\"true\"");
+      expect(html, lesson.title).toContain('data-direct-interaction="true"');
       expect(html, lesson.title).toContain("Drag vector tips");
-      expect(html, lesson.title).toContain("Drag vector tips directly on the plane");
+      expect(html, lesson.title).toContain(
+        "Drag vector tips directly on the plane",
+      );
     }
   });
 });

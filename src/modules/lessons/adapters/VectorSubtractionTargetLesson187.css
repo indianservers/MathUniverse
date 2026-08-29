@@ -1,0 +1,630 @@
+.vs187-page {
+  --ink: #0d1c3d;
+  --line: #dbe5ed;
+  width: calc(100% + 45px);
+  min-height: 1264px;
+  margin: 0 0 0 -25px;
+  color: var(--ink);
+  font:
+    9px/1.42 Inter,
+    system-ui,
+    sans-serif;
+  letter-spacing: 0;
+}
+.vs187-page * {
+  box-sizing: border-box;
+}
+.vs187-page h1,
+.vs187-page h2,
+.vs187-page h3,
+.vs187-page p {
+  margin: 0;
+}
+.vs187-page button,
+.vs187-page input {
+  font: inherit;
+  letter-spacing: 0;
+  color: inherit;
+}
+.vs187-page button {
+  cursor: pointer;
+}
+.vs187-page ~ .lesson-adjacent-nav,
+body:has(.vs187-page) footer[aria-label="Site footer"] {
+  display: none;
+}
+.vs187-header,
+.vs187-tabs,
+.vs187-work,
+.vs187-learn,
+.vs187-practice,
+.vs187-nav {
+  margin-left: 39px;
+  margin-right: 16px;
+}
+.vs187-header {
+  display: flex;
+  height: 129px;
+  padding: 13px 15px;
+  justify-content: space-between;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+}
+.vs187-header span {
+  display: inline-block;
+  margin-right: 7px;
+  padding: 4px 9px;
+  border-radius: 99px;
+  background: #eef7fa;
+  color: #087b9f;
+  font-size: 7px;
+  font-weight: 900;
+}
+.vs187-header h1 {
+  display: flex;
+  margin-top: 11px;
+  align-items: center;
+  gap: 9px;
+  font-size: 29px;
+  font-weight: 900;
+  line-height: 1;
+}
+.vs187-header h1 button {
+  display: grid;
+  width: 27px;
+  height: 27px;
+  place-items: center;
+  border: 0;
+  background: none;
+}
+.vs187-header h1 button.active {
+  color: #f59e0b;
+}
+.vs187-header h1 svg {
+  width: 18px;
+}
+.vs187-header h2 {
+  margin-top: 12px;
+  color: #52617a;
+  font-size: 11px;
+}
+.vs187-header aside > section {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+.vs187-header aside > section b {
+  padding: 7px 11px;
+  border: 1px solid var(--line);
+  border-radius: 99px;
+}
+.vs187-header nav {
+  display: flex;
+  margin-top: 10px;
+  gap: 8px;
+}
+.vs187-header nav button,
+.vs187-header nav a {
+  display: flex;
+  height: 35px;
+  padding: 0 13px;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: #fff;
+  color: inherit;
+  text-decoration: none;
+}
+.vs187-header svg {
+  width: 13px;
+}
+.vs187-header output {
+  display: block;
+  color: #087b4d;
+  text-align: right;
+}
+.vs187-tabs {
+  display: grid;
+  height: 41px;
+  margin-top: 12px;
+  border-bottom: 1px solid var(--line);
+  grid-template-columns: repeat(5, 1fr);
+}
+.vs187-tabs button {
+  border: 0;
+  border-bottom: 3px solid transparent;
+  background: #fff;
+  font-weight: 800;
+}
+.vs187-tabs .active {
+  color: #078eb4;
+  border-bottom-color: #078eb4;
+}
+.vs187-work {
+  display: grid;
+  height: 543px;
+  margin-top: 12px;
+  margin-right: 30px;
+  grid-template-columns: 444px 188px 1fr;
+  gap: 11px;
+}
+.vs187-work > article,
+.vs187-work > section,
+.vs187-work > aside {
+  padding: 11px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+}
+.vs187-work h2 {
+  font-size: 11px;
+}
+.vs187-graph {
+  display: block;
+  width: 100%;
+  height: 443px;
+  margin-top: 14px;
+}
+.vs187-graph .axis {
+  stroke: #3b4b62;
+}
+.vs187-graph .a {
+  stroke: #0798ae;
+  stroke-width: 3;
+}
+.vs187-graph .b {
+  stroke: #7c28d8;
+  stroke-width: 3;
+}
+.vs187-graph .neg {
+  stroke: #f08b00;
+  stroke-width: 3;
+}
+.vs187-graph .result {
+  stroke: #159447;
+  stroke-width: 3;
+}
+.vs187-graph .copy {
+  stroke: #7890aa;
+  stroke-width: 2;
+  stroke-dasharray: 6 4;
+}
+.vs187-graph .a-tip {
+  fill: #0798ae;
+}
+.vs187-graph .b-tip {
+  fill: #7c28d8;
+}
+.vs187-graph text {
+  font-size: 12px;
+  font-weight: 800;
+}
+.vs187-graph .a-label {
+  fill: #0798ae;
+}
+.vs187-graph .b-label {
+  fill: #7c28d8;
+}
+.vs187-graph .neg-label {
+  fill: #f08b00;
+}
+.vs187-graph .result-label {
+  fill: #159447;
+}
+.vs187-legend rect {
+  fill: #fff;
+  stroke: #ccd9e3;
+}
+.vs187-result-tag rect {
+  fill: #e9faf6;
+  stroke: #bde7dd;
+}
+.vs187-work > article > footer {
+  display: flex;
+  height: 42px;
+  align-items: center;
+  justify-content: space-between;
+}
+.vs187-work > article > footer label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.vs187-work > article > footer input {
+  position: relative;
+  width: 31px;
+  height: 17px;
+  margin: 0;
+  appearance: none;
+  border-radius: 99px;
+  background: #bfd0dc;
+  accent-color: #0798ae;
+}
+.vs187-work > article > footer input::after {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #fff;
+  content: "";
+  transition: transform 120ms ease;
+}
+.vs187-work > article > footer input:checked {
+  background: #0798ae;
+}
+.vs187-work > article > footer input:checked::after {
+  transform: translateX(14px);
+}
+.vs187-work > article > footer nav {
+  display: flex;
+  gap: 7px;
+}
+.vs187-work > article > footer button {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+}
+.vs187-work > article > footer svg {
+  width: 14px;
+}
+.vs187-work > section {
+  display: grid;
+  align-content: start;
+  gap: 9px;
+}
+.vs187-control {
+  height: 177px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+}
+.vs187-control h2 {
+  color: var(--tone);
+  font-size: 15px;
+}
+.vs187-control label {
+  display: grid;
+  margin-top: 13px;
+  grid-template-columns: 28px 20px 1fr 20px 38px;
+  align-items: center;
+  gap: 5px;
+}
+.vs187-control input[type="range"] {
+  width: 100%;
+  accent-color: var(--tone);
+}
+.vs187-control input[type="number"] {
+  width: 38px;
+  height: 28px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  text-align: center;
+}
+.vs187-derived {
+  height: 132px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+}
+.vs187-derived p {
+  margin-top: 12px;
+  padding: 8px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+.vs187-derived p:first-of-type {
+  color: #f08b00;
+}
+.vs187-derived p:last-of-type {
+  color: #159447;
+}
+.vs187-work > aside {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+}
+.vs187-observation {
+  height: 160px;
+  padding: 12px;
+  border: 1px solid #bde5d5;
+  border-radius: 7px;
+  background: #f1fbf6;
+}
+.vs187-observation h2 {
+  color: #159447;
+}
+.vs187-observation output {
+  display: block;
+  margin: 16px 0;
+  font-size: 14px;
+}
+.vs187-observation p {
+  margin-top: 11px;
+}
+.vs187-metrics {
+  display: grid;
+  height: 59px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 7px;
+}
+.vs187-metrics b {
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+.vs187-metrics span {
+  display: block;
+}
+.vs187-angle {
+  height: 61px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+}
+.vs187-angle b {
+  display: block;
+  margin-top: 8px;
+}
+.vs187-displacement {
+  height: 202px;
+  padding: 11px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+}
+.vs187-displacement p {
+  margin-top: 11px;
+}
+.vs187-displacement svg {
+  width: 100%;
+  height: 120px;
+}
+.vs187-displacement .a {
+  stroke: #0798ae;
+  stroke-width: 3;
+}
+.vs187-displacement .neg {
+  stroke: #f08b00;
+  stroke-width: 3;
+}
+.vs187-displacement .result {
+  stroke: #159447;
+  stroke-width: 3;
+}
+.vs187-displacement text {
+  font-size: 10px;
+  font-weight: 900;
+}
+.vs187-displacement .a-label {
+  fill: #0798ae;
+}
+.vs187-displacement .neg-label {
+  fill: #f08b00;
+}
+.vs187-displacement .result-label {
+  fill: #159447;
+}
+.vs187-learn {
+  display: grid;
+  height: 168px;
+  margin-top: 14px;
+  grid-template-columns: 1fr 1.9fr;
+  gap: 11px;
+}
+.vs187-learn article {
+  padding: 13px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+}
+.vs187-learn h2 {
+  font-size: 11px;
+}
+.vs187-learn h2 small {
+  font-weight: 400;
+}
+.vs187-learn ol {
+  counter-reset: step;
+  list-style: none;
+  padding-left: 20px;
+}
+.vs187-learn li {
+  position: relative;
+  counter-increment: step;
+  margin: 8px;
+}
+.vs187-learn li::before {
+  position: absolute;
+  left: -24px;
+  display: grid;
+  width: 15px;
+  height: 15px;
+  place-items: center;
+  border: 1px solid #0798ae;
+  border-radius: 50%;
+  color: #0798ae;
+  content: counter(step);
+  font-size: 8px;
+  font-weight: 900;
+}
+.vs187-learn article:last-child p {
+  margin-top: 12px;
+}
+.vs187-learn article:last-child output {
+  display: block;
+  width: 180px;
+  margin: 12px auto;
+  padding: 10px;
+  border: 1px solid #bde8f0;
+  border-radius: 7px;
+  background: #effbfc;
+  text-align: center;
+  color: #087b9f;
+  font-size: 15px;
+  font-weight: 900;
+}
+.vs187-practice {
+  height: 237px;
+  margin-top: 14px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+}
+.vs187-practice > div {
+  display: grid;
+  height: 185px;
+  margin-top: 8px;
+  grid-template-columns: 1fr 1.15fr 1.2fr;
+}
+.vs187-practice > div > article {
+  padding: 12px;
+  border: 1px solid var(--line);
+}
+.vs187-practice > div > article section {
+  margin-top: 12px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+.vs187-practice > div > article p {
+  margin-top: 9px;
+}
+.vs187-practice > div > article:nth-child(2) > label {
+  display: flex;
+  margin-top: 15px;
+  align-items: center;
+  gap: 8px;
+}
+.vs187-practice input[type="number"] {
+  width: 45px;
+  height: 31px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  text-align: center;
+}
+.vs187-practice > div > article footer {
+  display: flex;
+  margin-top: 14px;
+  gap: 9px;
+}
+.vs187-practice > div > article footer button {
+  height: 32px;
+  padding: 0 14px;
+  border: 1px solid #078eb4;
+  border-radius: 6px;
+  background: #fff;
+}
+.vs187-practice > div > article footer button:first-child {
+  color: #fff;
+  background: #078eb4;
+}
+.vs187-practice > div > article:last-child label {
+  display: block;
+  margin-top: 11px;
+}
+.vs187-hint {
+  margin-top: 12px;
+  padding: 7px 8px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+.vs187-practice > div > article:last-child .vs187-hint button {
+  display: flex;
+  width: 100%;
+  height: 21px;
+  margin: 0;
+  align-items: center;
+  gap: 6px;
+  border: 0;
+  background: #fff;
+  text-align: left;
+}
+.vs187-hint button svg {
+  width: 12px;
+  color: #e0a000;
+}
+.vs187-hint p {
+  margin: 3px 0 0 18px !important;
+}
+.vs187-practice > output {
+  display: block;
+  color: #087b4d;
+  font-weight: 800;
+}
+.vs187-nav {
+  display: flex;
+  height: 61px;
+  margin-top: 17px;
+  padding: 0 15px;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+}
+.vs187-nav a {
+  display: flex;
+  height: 45px;
+  padding: 0 10px;
+  align-items: center;
+  gap: 8px;
+  color: inherit;
+  text-decoration: none;
+}
+.vs187-nav a:last-child {
+  min-width: 145px;
+  justify-content: flex-end;
+  border-radius: 8px;
+  color: #fff;
+  background: linear-gradient(90deg, #1685d8, #7c28d8);
+  text-align: right;
+}
+.vs187-nav span {
+  display: grid;
+}
+.vs187-nav small {
+  color: inherit;
+}
+.vs187-nav svg {
+  width: 14px;
+}
+.vs187-page.expanded .vs187-work {
+  position: relative;
+  z-index: 10;
+  grid-template-columns: 1fr;
+}
+.vs187-page.expanded .vs187-work > section,
+.vs187-page.expanded .vs187-work > aside {
+  display: none;
+}
+@media (max-width: 800px) {
+  .vs187-page {
+    width: 100%;
+    margin: 0;
+    min-height: auto;
+  }
+  .vs187-work,
+  .vs187-learn {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .vs187-practice {
+    height: auto;
+  }
+  .vs187-practice > div {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .vs187-header aside {
+    display: none;
+  }
+}
