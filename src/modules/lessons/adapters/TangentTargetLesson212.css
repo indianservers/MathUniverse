@@ -1,0 +1,69 @@
+.tangent212-page,
+.tangent212-page * {
+  letter-spacing: 0;
+}
+
+@media (min-width: 960px) and (max-width: 1120px) {
+  body:has(.tangent212-page) {
+    overflow: hidden;
+  }
+
+  body:has(.tangent212-page) [data-testid="desktop-sidebar"] {
+    width: 212px;
+  }
+
+  body:has(.tangent212-page) header.sticky {
+    height: 61px;
+    min-height: 61px;
+  }
+
+  body:has(.tangent212-page) #main-content {
+    padding: 0 16px;
+  }
+
+  body:has(.tangent212-page) #main-content > .flex.items-center.gap-2 {
+    height: 49px;
+  }
+
+  .tangent212-page > header {
+    height: 169px;
+  }
+
+  .tangent212-page {
+    transform: translateY(15px);
+  }
+
+  .tangent212-page > nav:first-of-type {
+    box-sizing: border-box;
+    height: 44px;
+    min-height: 0;
+  }
+
+  .tangent212-page > #tangent-observe {
+    height: 570px;
+  }
+
+  .tangent212-page > #tangent-understand {
+    height: 211px;
+  }
+
+  .tangent212-page > #tangent-try {
+    height: 195px;
+  }
+
+  .tangent212-page > #tangent-try + nav {
+    box-sizing: border-box;
+    height: 52px;
+    min-height: 0;
+  }
+
+  .tangent212-page > .sr-only,
+  .tangent212-page ~ .lesson-adjacent-nav {
+    display: none;
+  }
+
+  body:has(.tangent212-page) footer[aria-label="Site footer"] {
+    height: 103px;
+    transform: translateY(-8px);
+  }
+}

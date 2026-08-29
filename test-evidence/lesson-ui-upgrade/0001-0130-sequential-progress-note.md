@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **194 of 200 lessons completed; 6 pending.**
+Dedicated rebuild target: **195 of 200 lessons completed; 5 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -180,6 +180,7 @@ Dedicated rebuild target: **194 of 200 lessons completed; 6 pending.**
 | 0266   | 209 Parallel Line | Complete | Dedicated shared-slope/two-intercept model with physical P drag, derived parallel intercept, editable line and point, real visibility/snap/zoom/reset/stages, gated invariant checklist, and exact 1024x1536 framing |
 | 0267   | 210 Perpendicular Bisector | Complete | Dedicated endpoint/midpoint/compass-intersection model with physical A/B and practice-C drags, auto/custom radius, construction visibility, exact locus grading, and exact 1024x1536 framing |
 | 0268   | 211 Angle Bisector | Complete | Dedicated three-point angle model with physical B/C and practice-arm drags, live normalized bisector, derived half angles, real Select/Pan/Compass tools, construction overlays, generated practice, and exact 1059x1485 framing |
+| 0269   | 212 Tangent | Complete | Dedicated circle/contact/tangent model with physical O/T drags, constrained and free states, live distance/power invariants, real secant/grid/zoom/stage/fullscreen controls, generated positions, and exact 1024x1536 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2739,3 +2740,11 @@ Audited the dedicated `three-point-derived-angle-bisector` model against target 
 The exact 1059x1485 frame matches the target: header y=102-258, tabs y=267-306, exploration y=320-783, construction y=797-1066, practice y=1083-1308, and footer y=1394-1478. There is no horizontal overflow and there are no console warnings or errors. The mockup prints two 55-degree halves although its drawn arm directions do not form a 110-degree angle; the implementation intentionally reports the mathematically correct angle derived from the draggable coordinates.
 
 Evidence: `0268-reference.png`, `0268-desktop.png`, `0268-dedicated-target-validation.json`.
+
+## Lesson 212 / Mockup 0269 - Tangent
+
+Audited and strengthened the dedicated `circle-contact-derived-tangent` model against target 0269. Physical O drag translates the circle and contact point while preserving OT; snapped T drag projects to the circle and preserves radius 5, perpendicularity, and zero power. Disabling snap creates a real off-circle state with recalculated distance and nonzero power. The secant and grid switches, zoom/reset-view tools, all five stateful stages, language, Share, both fullscreen commands, Reset, routes, and generated practice positions are functional.
+
+The exact 1024x1536 frame matches the target: sidebar width 212, lesson header y=110-279, stages y=291-335, observation workspace y=347-917, construction/insight y=929-1140, practice y=1152-1347, navigation y=1359-1411, and footer y=1425-1528. Automated validation exercises constrained and free physical drags and every control family with no horizontal overflow or console warnings or errors. Headless Chromium declines display-mode entry, so validation also records the real fullscreen-handler invocation through lesson state.
+
+Evidence: `0269-reference.png`, `0269-desktop.png`, `0269-dedicated-target-validation.json`.

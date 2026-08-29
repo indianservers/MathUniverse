@@ -81,7 +81,7 @@ Reworked and audited individually against the target mockup. Removed the generic
 
 ### Lesson 212 / Mockup 0269 - Tangent
 
-Reworked individually against the target mockup. Removed the generic Contact angle and Radius sliders. The surface now owns a draggable circle center O and contact point T, projects T onto the circle while snap is active, and derives the radial unit vector, perpendicular tangent, right-angle marker, OT length, center-to-line distance, and power value. Disabling snap creates a real off-circle state; secant visibility, grid visibility, zoom, reset view, fullscreen, reset, sharing, language, and generated practice positions are functional. Final exact-viewport check at 1024x1536 physically tests constrained and free T dragging, secant and grid switches, every viewport tool, and New Position with no overflow or console errors.
+Reworked and audited individually against the target mockup. Removed the generic Contact angle and Radius sliders. The surface owns a draggable circle center O and contact point T, projects T onto the circle while snap is active, and derives the radial unit vector, perpendicular tangent, right-angle marker, OT length, center-to-line distance, and power value. Physical O drag preserves the circle/contact relationship; snapped T drag preserves radius 5 and zero power, while free T drag creates a measured off-circle state. Secant, grid, zoom/reset view, five stateful stages, fullscreen, reset, sharing, language, and generated practice positions are functional. Final exact 1024x1536 validation matches all shell and section boundaries and exercises every control family with no overflow or console errors.
 
 ### Lesson 213 / Mockup 0270 - Best Fit Line
 

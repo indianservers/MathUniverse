@@ -1,7 +1,6 @@
 import {
   ArrowLeft,
   ArrowRight,
-  Check,
   CheckCircle2,
   Crosshair,
   Languages,
@@ -20,11 +19,14 @@ import {
   type PointerEvent as ReactPointerEvent,
 } from "react";
 import type { LessonAdapterProps } from "../types";
+import "./TangentTargetLesson212.css";
 
 type Point = { x: number; y: number };
+type Stage = "Observe" | "Manipulate" | "Notice" | "Understand" | "Try";
 const initialCenter = { x: 300, y: 315 };
 const initialContact = { x: 300, y: 155 };
 const radius = 160;
+const practicePositions = [-90, -30, 25, 82, 145, 205];
 
 export default function TangentTargetLesson212({
   resetToken,
@@ -40,6 +42,8 @@ export default function TangentTargetLesson212({
   const [language, setLanguage] = useState("English (English)");
   const [shareStatus, setShareStatus] = useState("");
   const [positionIndex, setPositionIndex] = useState(0);
+  const [activeStage, setActiveStage] = useState<Stage>("Observe");
+  const [fullscreenCount, setFullscreenCount] = useState(0);
   const surfaceRef = useRef<HTMLElement>(null);
   const model = useMemo(
     () => deriveTangent(center, contact, radius),
@@ -54,6 +58,8 @@ export default function TangentTargetLesson212({
     setShowSecant(false);
     setZoom(1);
     setPositionIndex(0);
+    setActiveStage("Observe");
+    setFullscreenCount(0);
     setShareStatus("");
     onInteraction();
   };
@@ -65,6 +71,8 @@ export default function TangentTargetLesson212({
     setShowSecant(false);
     setZoom(1);
     setPositionIndex(0);
+    setActiveStage("Observe");
+    setFullscreenCount(0);
   }, [resetToken]);
 
   const pointerPoint = (event: ReactPointerEvent<SVGSVGElement>) => {
@@ -104,11 +112,12 @@ export default function TangentTargetLesson212({
     setDragging(point);
   };
   const newPosition = () => {
-    const angles = [-90, -30, 25, 82, 145, 205];
     const next = positionIndex + 1;
     setPositionIndex(next);
     setSnap(true);
-    setContact(polar(center, radius, angles[next % angles.length]));
+    setContact(
+      polar(center, radius, practicePositions[next % practicePositions.length]),
+    );
     onInteraction();
   };
   const share = async () => {
@@ -122,6 +131,7 @@ export default function TangentTargetLesson212({
     onInteraction();
   };
   const fullscreen = () => {
+    setFullscreenCount((count) => count + 1);
     void surfaceRef.current?.requestFullscreen?.();
     onInteraction();
   };
@@ -129,11 +139,26 @@ export default function TangentTargetLesson212({
   return (
     <section
       ref={surfaceRef}
-      className="space-y-3"
+      className="tangent212-page space-y-3"
       data-testid="dynamic-geometry-mockup-0269"
       data-dedicated-lesson="212"
       data-object-model="circle-tangent"
       data-direct-interaction="true"
+      data-center={`${center.x}:${center.y}`}
+      data-contact={`${contact.x}:${contact.y}`}
+      data-snap={snap}
+      data-grid={showGrid}
+      data-secant={showSecant}
+      data-zoom={zoom}
+      data-stage={activeStage.toLowerCase()}
+      data-position-index={positionIndex}
+      data-fullscreen-count={fullscreenCount}
+      data-practice-angle={
+        practicePositions[positionIndex % practicePositions.length]
+      }
+      data-ot={model.otUnits.toFixed(4)}
+      data-distance={model.lineDistanceUnits.toFixed(4)}
+      data-power={model.powerUnits.toFixed(4)}
       aria-label="Tangent dedicated interactive geometry model"
     >
       <header className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
@@ -207,23 +232,34 @@ export default function TangentTargetLesson212({
       </header>
 
       <nav className="grid min-h-11 grid-cols-5 overflow-hidden rounded-lg border border-slate-200 bg-white text-[10px] font-black">
-        {["Observe", "Manipulate", "Notice", "Understand", "Try"].map(
-          (stage, index) => (
-            <button
-              key={stage}
-              type="button"
-              className={`border-r last:border-0 ${index === 0 ? "bg-blue-600 text-white" : "text-slate-700"}`}
-              onClick={() => {
-                document
-                  .getElementById(`tangent-${stage.toLowerCase()}`)
-                  ?.scrollIntoView({ behavior: "smooth", block: "center" });
-                onInteraction();
-              }}
-            >
-              {stage}
-            </button>
-          ),
-        )}
+        {(
+          ["Observe", "Manipulate", "Notice", "Understand", "Try"] as Stage[]
+        ).map((stage) => (
+          <button
+            key={stage}
+            type="button"
+            className={`border-r last:border-0 ${activeStage === stage ? "bg-blue-600 text-white" : "text-slate-700"}`}
+            onClick={() => {
+              setActiveStage(stage);
+              document
+                .getElementById(
+                  stage === "Observe"
+                    ? "tangent-observe"
+                    : stage === "Manipulate"
+                      ? "tangent-manipulate"
+                      : stage === "Notice"
+                        ? "tangent-notice"
+                        : stage === "Understand"
+                          ? "tangent-understand"
+                          : "tangent-try",
+                )
+                ?.scrollIntoView({ behavior: "smooth", block: "center" });
+              onInteraction();
+            }}
+          >
+            {stage}
+          </button>
+        ))}
       </nav>
 
       <div
@@ -555,7 +591,9 @@ export default function TangentTargetLesson212({
           </div>
           <div className="flex items-center justify-center gap-4">
             <PracticeTangent
-              angle={[-90, -30, 25, 82, 145, 205][positionIndex % 6]}
+              angle={
+                practicePositions[positionIndex % practicePositions.length]
+              }
             />
             <button
               type="button"

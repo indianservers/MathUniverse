@@ -1,15 +1,235 @@
-[
-  {
-    "id": 212,
-    "mockup": 269,
-    "route": "/lessons/geometry/212-tangent",
-    "width": 1024,
-    "height": 1536,
-    "status": "Correct: Observation\n\nThe tangent is perpendicular to the radius at the point of contact.",
-    "consoleErrors": [],
-    "scrollHeight": 1536,
-    "surfaceBottom": 1398,
-    "objectModel": "circle-tangent",
-    "overflowing": 0
-  }
-]
+{
+  "mockup": "0269",
+  "lessonId": 212,
+  "checks": {
+    "initial": {
+      "center": "300:315",
+      "contact": "300:155",
+      "snap": "true",
+      "grid": "true",
+      "secant": "false",
+      "zoom": "1",
+      "stage": "observe",
+      "position-index": "0",
+      "fullscreen-count": "0",
+      "practice-angle": "-90",
+      "ot": "5.0000",
+      "distance": "5.0000",
+      "power": "0.0000"
+    },
+    "centerDrag": {
+      "center": "338.55283445085877:339.56954209909145",
+      "contact": "338.55283445085877:179.56954209909145",
+      "snap": "true",
+      "grid": "true",
+      "secant": "false",
+      "zoom": "1",
+      "stage": "observe",
+      "position-index": "0",
+      "fullscreen-count": "0",
+      "practice-angle": "-90",
+      "ot": "5.0000",
+      "distance": "5.0000",
+      "power": "0.0000"
+    },
+    "snappedDrag": {
+      "center": "338.55283445085877:339.56954209909145",
+      "contact": "446.5500063364815:221.51611832533018",
+      "snap": "true",
+      "grid": "true",
+      "secant": "false",
+      "zoom": "1",
+      "stage": "observe",
+      "position-index": "0",
+      "fullscreen-count": "0",
+      "practice-angle": "-90",
+      "ot": "5.0000",
+      "distance": "5.0000",
+      "power": "0.0000"
+    },
+    "freeDrag": {
+      "center": "338.55283445085877:339.56954209909145",
+      "contact": "398.35900803184046:317.7780887594179",
+      "snap": "false",
+      "grid": "true",
+      "secant": "false",
+      "zoom": "1",
+      "stage": "observe",
+      "position-index": "0",
+      "fullscreen-count": "0",
+      "practice-angle": "-90",
+      "ot": "1.9891",
+      "distance": "1.9891",
+      "power": "-21.0433"
+    },
+    "overlays": {
+      "center": "338.55283445085877:339.56954209909145",
+      "contact": "398.35900803184046:317.7780887594179",
+      "snap": "false",
+      "grid": "false",
+      "secant": "true",
+      "zoom": "1",
+      "stage": "observe",
+      "position-index": "0",
+      "fullscreen-count": "0",
+      "practice-angle": "-90",
+      "ot": "1.9891",
+      "distance": "1.9891",
+      "power": "-21.0433"
+    },
+    "zoomed": {
+      "center": "338.55283445085877:339.56954209909145",
+      "contact": "398.35900803184046:317.7780887594179",
+      "snap": "false",
+      "grid": "false",
+      "secant": "true",
+      "zoom": "1.15",
+      "stage": "observe",
+      "position-index": "0",
+      "fullscreen-count": "0",
+      "practice-angle": "-90",
+      "ot": "1.9891",
+      "distance": "1.9891",
+      "power": "-21.0433"
+    },
+    "viewReset": {
+      "center": "338.55283445085877:339.56954209909145",
+      "contact": "398.35900803184046:317.7780887594179",
+      "snap": "false",
+      "grid": "false",
+      "secant": "true",
+      "zoom": "1",
+      "stage": "observe",
+      "position-index": "0",
+      "fullscreen-count": "0",
+      "practice-angle": "-90",
+      "ot": "1.9891",
+      "distance": "1.9891",
+      "power": "-21.0433"
+    },
+    "stages": [
+      "manipulate",
+      "notice",
+      "understand",
+      "try",
+      "observe"
+    ],
+    "language": "Hindi (हिन्दी)",
+    "share": "Circle O(10.58,10.61), T(12.45,9.93), OT=63.65, distance(O,l)=63.65, power=-21548.35",
+    "fullscreen": null,
+    "fullscreenState": {
+      "center": "338.55283445085877:339.56954209909145",
+      "contact": "398.35900803184046:317.7780887594179",
+      "snap": "false",
+      "grid": "false",
+      "secant": "true",
+      "zoom": "1",
+      "stage": "observe",
+      "position-index": "0",
+      "fullscreen-count": "1",
+      "practice-angle": "-90",
+      "ot": "1.9891",
+      "distance": "1.9891",
+      "power": "-21.0433"
+    },
+    "newPosition": {
+      "center": "338.55283445085877:339.56954209909145",
+      "contact": "477.116899056369:259.56954209909145",
+      "snap": "true",
+      "grid": "false",
+      "secant": "true",
+      "zoom": "1",
+      "stage": "observe",
+      "position-index": "1",
+      "fullscreen-count": "1",
+      "practice-angle": "-30",
+      "ot": "5.0000",
+      "distance": "5.0000",
+      "power": "0.0000"
+    },
+    "reset": {
+      "center": "300:315",
+      "contact": "300:155",
+      "snap": "true",
+      "grid": "true",
+      "secant": "false",
+      "zoom": "1",
+      "stage": "observe",
+      "position-index": "0",
+      "fullscreen-count": "0",
+      "practice-angle": "-90",
+      "ot": "5.0000",
+      "distance": "5.0000",
+      "power": "0.0000"
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/geometry/211-angle-bisector",
+    "nextHref": "/lessons/geometry/213-best-fit-line"
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 212,
+      "height": 1536,
+      "bottom": 1536
+    },
+    "header": {
+      "top": 110,
+      "left": 228,
+      "width": 780,
+      "height": 169,
+      "bottom": 279
+    },
+    "stages": {
+      "top": 291,
+      "left": 228,
+      "width": 780,
+      "height": 44,
+      "bottom": 335
+    },
+    "observe": {
+      "top": 347,
+      "left": 228,
+      "width": 780,
+      "height": 570,
+      "bottom": 917
+    },
+    "understand": {
+      "top": 929,
+      "left": 228,
+      "width": 780,
+      "height": 211,
+      "bottom": 1140
+    },
+    "practice": {
+      "top": 1152,
+      "left": 228,
+      "width": 780,
+      "height": 195,
+      "bottom": 1347
+    },
+    "adjacent": {
+      "top": 1359,
+      "left": 228,
+      "width": 780,
+      "height": 52,
+      "bottom": 1411
+    },
+    "footer": {
+      "top": 1425,
+      "left": 212,
+      "width": 812,
+      "height": 103,
+      "bottom": 1528
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
