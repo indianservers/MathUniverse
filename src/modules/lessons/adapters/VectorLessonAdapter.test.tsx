@@ -84,9 +84,23 @@ describe("VectorLessonAdapter", () => {
     expect(html).toContain("a - b = a + (-b)");
   });
 
-  it("renders vector lessons 188 through 197 with lesson-specific guidance", () => {
+  it("renders scalar multiplication as its own scale-and-reverse surface", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 188)!;
+    const html = renderToStaticMarkup(
+      <VectorLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain("vector-mockup-0245");
+    expect(html).toContain('data-dedicated-lesson="188"');
+    expect(html).toContain('data-testid="scalar-source-tip"');
+    expect(html).toContain("v = k u");
+  });
+
+  it("renders vector lessons 189 through 197 with lesson-specific guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      188: "Scalar multiplication",
       189: "Magnitude",
       190: "Dot product",
       191: "Cross product",

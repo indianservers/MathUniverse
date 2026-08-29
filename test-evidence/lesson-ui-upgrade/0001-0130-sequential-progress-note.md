@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **170 of 200 lessons completed; 30 pending.**
+Dedicated rebuild target: **171 of 200 lessons completed; 29 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -156,6 +156,7 @@ Dedicated rebuild target: **170 of 200 lessons completed; 30 pending.**
 | 0242   |            185 Position Vectors | Complete | Dedicated three-vector origin model with independent pointer/keyboard endpoints, numeric cards, grid/snap, magnitude/direction, independent draggable practice, grading, and exact 1024x1536 framing |
 | 0243   |             186 Vector Addition | Complete | Dedicated head-to-tail/parallelogram sum model with draggable u/v/origin, component controls, resultant metrics, view/scale modes, generated draggable practice, and exact 1024x1536 framing |
 | 0244   |          187 Vector Subtraction | Complete | Dedicated ordered component-subtraction and opposite-vector model with draggable a/b tips, linked exact/range controls, construction/zoom/fullscreen modes, displacement proof, graded practice, and exact 1148x1371 framing |
+| 0245   |       188 Scalar Multiplication | Complete | Dedicated source-vector/scalar/result model with pointer/keyboard drag, auto-fit vector plane, exact/range/preset scalar controls, live sign cases, worked derivation, graded practice, and exact 1149x1369 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2527,3 +2528,15 @@ Evidence:
 - `0244-reference.png`
 - `0244-desktop.png`
 - `0244-dedicated-target-validation.json`
+
+## Lesson 188 / Mockup 0245 - Scalar Multiplication
+
+Reworked individually against the target mockup with a dedicated `source-vector-scalar-derived-vector-sign-cases-worked-example-practice` model. The source vector u, scalar k, result v=ku, component cards, magnitudes, directions, sign-case diagrams, worked derivation, and practice answer all derive from explicit vector/scalar state. A shared auto-fit graph scale keeps large negative results visible without breaking collinearity or the true length ratio.
+
+Pointer and keyboard movement for u, exact source components, continuous scalar range, seven scalar presets, grid, expand mode, five lesson stages, language, Share, Reset, live positive/zero/negative cases, hint, and numerical practice grading are working controls. Final 1149x1369 validation verifies initial `u=(3,2)`, `k=-3`, `v=(-9,-6)`, drag/component updates, positive and negative decimal scaling, preset values, every view/action, wrong/correct `(5,-2.5)` practice, reset, adjacent routes, exact section geometry, overflow, and console output.
+
+Evidence:
+
+- `0245-reference.png`
+- `0245-desktop.png`
+- `0245-dedicated-target-validation.json`

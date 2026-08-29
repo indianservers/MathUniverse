@@ -16,6 +16,7 @@ import ComponentFormTargetLesson184 from "./ComponentFormTargetLesson184";
 import PositionVectorsTargetLesson185 from "./PositionVectorsTargetLesson185";
 import VectorAdditionTargetLesson186 from "./VectorAdditionTargetLesson186";
 import VectorSubtractionTargetLesson187 from "./VectorSubtractionTargetLesson187";
+import ScalarMultiplicationTargetLesson188 from "./ScalarMultiplicationTargetLesson188";
 
 function guidanceFor(title: string) {
   const name = title.toLowerCase();
@@ -169,6 +170,14 @@ export default function VectorLessonAdapter({
   if (lesson.id === 187)
     return (
       <VectorSubtractionTargetLesson187
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
+  if (lesson.id === 188)
+    return (
+      <ScalarMultiplicationTargetLesson188
         lesson={lesson}
         resetToken={resetToken}
         onInteraction={onInteraction}

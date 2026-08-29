@@ -1,0 +1,301 @@
+{
+  "mockup": "0245",
+  "lessonId": 188,
+  "route": "/lessons/geometry/188-scalar-multiplication",
+  "checks": {
+    "initial": {
+      "vector": "3:2",
+      "scalar": "-3.000",
+      "result": "-9:-6",
+      "grid": "true",
+      "expanded": "false",
+      "stage": "1",
+      "language": "English (English)",
+      "shared": "false",
+      "answers": ":",
+      "hint": "false",
+      "correct": "false",
+      "feedback": ""
+    },
+    "keyboard": {
+      "vector": "4:2",
+      "scalar": "-3.000",
+      "result": "-12:-6",
+      "grid": "true",
+      "expanded": "false",
+      "stage": "1",
+      "language": "English (English)",
+      "shared": "false",
+      "answers": ":",
+      "hint": "false",
+      "correct": "false",
+      "feedback": ""
+    },
+    "drag": {
+      "vector": "1:0",
+      "scalar": "-3.000",
+      "result": "-3:0",
+      "grid": "true",
+      "expanded": "false",
+      "stage": "1",
+      "language": "English (English)",
+      "shared": "false",
+      "answers": ":",
+      "hint": "false",
+      "correct": "false",
+      "feedback": ""
+    },
+    "components": {
+      "vector": "3:2",
+      "scalar": "-3.000",
+      "result": "-9:-6",
+      "grid": "true",
+      "expanded": "false",
+      "stage": "1",
+      "language": "English (English)",
+      "shared": "false",
+      "answers": ":",
+      "hint": "false",
+      "correct": "false",
+      "feedback": ""
+    },
+    "positive": {
+      "vector": "3:2",
+      "scalar": "2.000",
+      "result": "6:4",
+      "grid": "true",
+      "expanded": "false",
+      "stage": "1",
+      "language": "English (English)",
+      "shared": "false",
+      "answers": ":",
+      "hint": "false",
+      "correct": "false",
+      "feedback": ""
+    },
+    "range": {
+      "vector": "3:2",
+      "scalar": "-2.500",
+      "result": "-7.5:-5",
+      "grid": "true",
+      "expanded": "false",
+      "stage": "1",
+      "language": "English (English)",
+      "shared": "false",
+      "answers": ":",
+      "hint": "false",
+      "correct": "false",
+      "feedback": ""
+    },
+    "preset": {
+      "vector": "3:2",
+      "scalar": "-5.000",
+      "result": "-15:-10",
+      "grid": "true",
+      "expanded": "false",
+      "stage": "1",
+      "language": "English (English)",
+      "shared": "false",
+      "answers": ":",
+      "hint": "false",
+      "correct": "false",
+      "feedback": ""
+    },
+    "gridOff": {
+      "vector": "3:2",
+      "scalar": "-3.000",
+      "result": "-9:-6",
+      "grid": "false",
+      "expanded": "false",
+      "stage": "1",
+      "language": "English (English)",
+      "shared": "false",
+      "answers": ":",
+      "hint": "false",
+      "correct": "false",
+      "feedback": ""
+    },
+    "expanded": {
+      "vector": "3:2",
+      "scalar": "-3.000",
+      "result": "-9:-6",
+      "grid": "true",
+      "expanded": "true",
+      "stage": "1",
+      "language": "English (English)",
+      "shared": "false",
+      "answers": ":",
+      "hint": "false",
+      "correct": "false",
+      "feedback": ""
+    },
+    "stages": {
+      "vector": "3:2",
+      "scalar": "-3.000",
+      "result": "-9:-6",
+      "grid": "true",
+      "expanded": "false",
+      "stage": "1",
+      "language": "English (English)",
+      "shared": "false",
+      "answers": ":",
+      "hint": "false",
+      "correct": "false",
+      "feedback": ""
+    },
+    "actions": {
+      "vector": "3:2",
+      "scalar": "-3.000",
+      "result": "-9:-6",
+      "grid": "true",
+      "expanded": "false",
+      "stage": "1",
+      "language": "हिन्दी (Hindi)",
+      "shared": "true",
+      "answers": ":",
+      "hint": "false",
+      "correct": "false",
+      "feedback": ""
+    },
+    "practiceWrong": {
+      "vector": "3:2",
+      "scalar": "-3.000",
+      "result": "-9:-6",
+      "grid": "true",
+      "expanded": "false",
+      "stage": "1",
+      "language": "हिन्दी (Hindi)",
+      "shared": "true",
+      "answers": "4:-2",
+      "hint": "false",
+      "correct": "false",
+      "feedback": "Not yet. Multiply both components by 2.5."
+    },
+    "practiceCorrect": {
+      "vector": "3:2",
+      "scalar": "-3.000",
+      "result": "-9:-6",
+      "grid": "true",
+      "expanded": "false",
+      "stage": "1",
+      "language": "हिन्दी (Hindi)",
+      "shared": "true",
+      "answers": "5:-2.5",
+      "hint": "false",
+      "correct": "true",
+      "feedback": "Correct: v = (5, -2.5)."
+    },
+    "hint": {
+      "vector": "3:2",
+      "scalar": "-3.000",
+      "result": "-9:-6",
+      "grid": "true",
+      "expanded": "false",
+      "stage": "1",
+      "language": "हिन्दी (Hindi)",
+      "shared": "true",
+      "answers": "5:-2.5",
+      "hint": "true",
+      "correct": "true",
+      "feedback": "Correct: v = (5, -2.5)."
+    },
+    "reset": {
+      "vector": "3:2",
+      "scalar": "-3.000",
+      "result": "-9:-6",
+      "grid": "true",
+      "expanded": "false",
+      "stage": "1",
+      "language": "English (English)",
+      "shared": "false",
+      "answers": ":",
+      "hint": "false",
+      "correct": "false",
+      "feedback": ""
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/geometry/187-vector-subtraction",
+    "nextHref": "/lessons/geometry/189-magnitude-and-unit-vectors"
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1149,
+      "height": 1369
+    },
+    "document": {
+      "width": 1149,
+      "height": 1369
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "regions": {
+      "page": {
+        "top": 99,
+        "bottom": 1362,
+        "left": 211,
+        "right": 1149,
+        "width": 938,
+        "height": 1263
+      },
+      "header": {
+        "top": 99,
+        "bottom": 286,
+        "left": 250,
+        "right": 1133,
+        "width": 883,
+        "height": 187
+      },
+      "stages": {
+        "top": 298,
+        "bottom": 366,
+        "left": 250,
+        "right": 1133,
+        "width": 883,
+        "height": 68
+      },
+      "work": {
+        "top": 378,
+        "bottom": 866,
+        "left": 250,
+        "right": 1133,
+        "width": 883,
+        "height": 488
+      },
+      "instruction": {
+        "top": 874,
+        "bottom": 905,
+        "left": 250,
+        "right": 1133,
+        "width": 883,
+        "height": 31
+      },
+      "learn": {
+        "top": 916,
+        "bottom": 1188,
+        "left": 250,
+        "right": 1133,
+        "width": 883,
+        "height": 272
+      },
+      "practice": {
+        "top": 1200,
+        "bottom": 1296,
+        "left": 250,
+        "right": 1133,
+        "width": 883,
+        "height": 96
+      },
+      "navigation": {
+        "top": 1307,
+        "bottom": 1362,
+        "left": 250,
+        "right": 1133,
+        "width": 883,
+        "height": 55
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
