@@ -1,0 +1,219 @@
+{
+  "mockup": "0261",
+  "lessonId": 204,
+  "checks": {
+    "initial": {
+      "model": "finite-two-endpoint-distance-midpoint-comparison",
+      "a": "-3:1",
+      "b": "4:2",
+      "length": "7.0710678118654755",
+      "midpoint": "0.5:1.5",
+      "snap": "true",
+      "stage": "Observe",
+      "compare": "none",
+      "tool": "select",
+      "history": "0:1",
+      "solution": "false",
+      "shared": "false"
+    },
+    "dragged": {
+      "model": "finite-two-endpoint-distance-midpoint-comparison",
+      "a": "-1:2",
+      "b": "4:2",
+      "length": "5",
+      "midpoint": "1.5:2",
+      "snap": "true",
+      "stage": "Observe",
+      "compare": "none",
+      "tool": "select",
+      "history": "1:2",
+      "solution": "false",
+      "shared": "false"
+    },
+    "undo": {
+      "model": "finite-two-endpoint-distance-midpoint-comparison",
+      "a": "-3:1",
+      "b": "4:2",
+      "length": "7.0710678118654755",
+      "midpoint": "0.5:1.5",
+      "snap": "true",
+      "stage": "Observe",
+      "compare": "none",
+      "tool": "select",
+      "history": "0:2",
+      "solution": "false",
+      "shared": "false"
+    },
+    "redo": {
+      "model": "finite-two-endpoint-distance-midpoint-comparison",
+      "a": "-1:2",
+      "b": "4:2",
+      "length": "5",
+      "midpoint": "1.5:2",
+      "snap": "true",
+      "stage": "Observe",
+      "compare": "none",
+      "tool": "select",
+      "history": "1:2",
+      "solution": "false",
+      "shared": "false"
+    },
+    "unsnapped": {
+      "model": "finite-two-endpoint-distance-midpoint-comparison",
+      "a": "-3:1",
+      "b": "3.1:1.4",
+      "length": "6.113100686231169",
+      "midpoint": "0.050000000000000044:1.2",
+      "snap": "false",
+      "stage": "Observe",
+      "compare": "none",
+      "tool": "select",
+      "history": "1:2",
+      "solution": "false",
+      "shared": "false"
+    },
+    "compare": {
+      "model": "finite-two-endpoint-distance-midpoint-comparison",
+      "a": "-3:1",
+      "b": "3.1:1.4",
+      "length": "6.113100686231169",
+      "midpoint": "0.050000000000000044:1.2",
+      "snap": "false",
+      "stage": "Observe",
+      "compare": "none",
+      "tool": "select",
+      "history": "1:2",
+      "solution": "false",
+      "shared": "false"
+    },
+    "tools": {
+      "model": "finite-two-endpoint-distance-midpoint-comparison",
+      "a": "-3:1",
+      "b": "3.1:1.4",
+      "length": "6.113100686231169",
+      "midpoint": "0.050000000000000044:1.2",
+      "snap": "true",
+      "stage": "Observe",
+      "compare": "ray",
+      "tool": "select",
+      "history": "1:2",
+      "solution": "false",
+      "shared": "false"
+    },
+    "stages": {
+      "model": "finite-two-endpoint-distance-midpoint-comparison",
+      "a": "-3:1",
+      "b": "3.1:1.4",
+      "length": "6.113100686231169",
+      "midpoint": "0.050000000000000044:1.2",
+      "snap": "true",
+      "stage": "Observe",
+      "compare": "ray",
+      "tool": "select",
+      "history": "1:2",
+      "solution": "false",
+      "shared": "false"
+    },
+    "shared": {
+      "model": "finite-two-endpoint-distance-midpoint-comparison",
+      "a": "-3:1",
+      "b": "3.1:1.4",
+      "length": "6.113100686231169",
+      "midpoint": "0.050000000000000044:1.2",
+      "snap": "true",
+      "stage": "Observe",
+      "compare": "ray",
+      "tool": "select",
+      "history": "1:2",
+      "solution": "false",
+      "shared": "true"
+    },
+    "workspaceOn": "true",
+    "taskPoints": {
+      "model": "finite-two-endpoint-distance-midpoint-comparison",
+      "a": "-2:-1",
+      "b": "3:4",
+      "length": "7.0710678118654755",
+      "midpoint": "0.5:1.5",
+      "snap": "true",
+      "stage": "Observe",
+      "compare": "ray",
+      "tool": "select",
+      "history": "3:4",
+      "solution": "false",
+      "shared": "true"
+    },
+    "answer": "Correct. AB = sqrt(50) = 7.07 units.",
+    "solution": {
+      "model": "finite-two-endpoint-distance-midpoint-comparison",
+      "a": "-2:-1",
+      "b": "3:4",
+      "length": "7.0710678118654755",
+      "midpoint": "0.5:1.5",
+      "snap": "true",
+      "stage": "Observe",
+      "compare": "ray",
+      "tool": "select",
+      "history": "3:4",
+      "solution": "true",
+      "shared": "true"
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/geometry/203-line-through-two-points",
+    "nextHref": "/lessons/geometry/205-segment-with-given-length"
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "overflow": false,
+    "regions": {
+      "header": {
+        "top": 114,
+        "left": 240,
+        "width": 768,
+        "height": 219,
+        "bottom": 333
+      },
+      "stages": {
+        "top": 339,
+        "left": 240,
+        "width": 768,
+        "height": 54,
+        "bottom": 393
+      },
+      "main": {
+        "top": 404,
+        "left": 240,
+        "width": 768,
+        "height": 662,
+        "bottom": 1066
+      },
+      "practice": {
+        "top": 1073,
+        "left": 240,
+        "width": 768,
+        "height": 271,
+        "bottom": 1344
+      },
+      "nav": {
+        "top": 1358,
+        "left": 240,
+        "width": 768,
+        "height": 49,
+        "bottom": 1407
+      },
+      "footer": {
+        "top": 1419,
+        "left": 240,
+        "width": 768,
+        "height": 109,
+        "bottom": 1528
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

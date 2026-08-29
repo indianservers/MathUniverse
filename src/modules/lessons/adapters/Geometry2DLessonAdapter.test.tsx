@@ -260,7 +260,7 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).toContain("Instant observation");
     expect(html).toContain("Construction steps");
     expect(html).toContain("Definition &amp; insight");
-    expect(html).toContain("Practice coordinate plane for segment");
+    expect(html).toContain("Challenge coordinate plane for segment");
     expect(html).toContain("Compare with");
     expect(html).not.toContain("Construction Workspace");
   });

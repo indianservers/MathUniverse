@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **186 of 200 lessons completed; 14 pending.**
+Dedicated rebuild target: **187 of 200 lessons completed; 13 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -172,6 +172,7 @@ Dedicated rebuild target: **186 of 200 lessons completed; 14 pending.**
 | 0258   | 201 Midpoint or Centre | Complete | Dedicated endpoint-midpoint invariant model with physical A/B drags, editable coordinates, reverse proof, equal-distance validation, navigable lesson tabs, generated practice, and exact 1024x1536 framing |
 | 0259   | 202 Attach / Detach Point | Complete | Dedicated circle-parent constraint model with projected attach, preserved detach, constrained/free point drags, movable parent following, pan/zoom/fit/grid, and exact 1536x1024 framing |
 | 0260   | 203 Line Through Two Points | Complete | Dedicated unique-infinite-line model with decimal endpoint drags, vertical/coincident handling, exact rational slope, live equations, pan/zoom/fit/display controls, editable challenge, construction log, and exact 1478x1064 framing |
+| 0261   | 204 Segment | Complete | Dedicated finite-endpoint segment model with snapped/decimal drags, transactional undo/redo, distance and midpoint calculations, line/ray comparison, real tools/stages, graded challenge, solution, and exact 1024x1536 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2671,3 +2672,11 @@ Evidence: `0259-reference.png`, `0259-desktop.png`, `0259-dedicated-target-valid
 Reworked individually with a dedicated `two-distinct-points-unique-infinite-line` model. Physical decimal endpoint drags, direct coordinate edits, exact reduced slope, live slope-intercept equation, vertical and coincident-point guardrails, pan, zoom, Center, Fit, four display controls, five lesson tabs, removable/restorable construction steps, a calculated slope/intercept challenge, routes, overflow, console output, and exact 1478x1064 framing are validated.
 
 Evidence: `0260-reference.png`, `0260-desktop.png`, `0260-dedicated-target-validation.json`.
+
+## Lesson 204 / Mockup 0261 - Segment
+
+Reworked individually with a dedicated `finite-two-endpoint-distance-midpoint-comparison` model. Physical snapped and decimal endpoint drags, direct coordinate edits, transaction-grouped Undo/Redo, live Euclidean length and midpoint, segment/line/ray comparison, five real tools, Snap, five lesson stages, language, Share, Workspace, Reset, calculated challenge grading, solution reveal, routes, overflow, console output, and exact 1024x1536 framing are validated.
+
+The target image labels the initial distance from A(-3,1) to B(4,2) as 7.28, but the displayed formula evaluates to `sqrt(50) = 7.071...`; the dedicated lesson keeps the object model mathematically correct and reports 7.07.
+
+Evidence: `0261-reference.png`, `0261-desktop.png`, `0261-dedicated-target-validation.json`.
