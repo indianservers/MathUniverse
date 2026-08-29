@@ -1,0 +1,239 @@
+{
+  "mockup": "0238",
+  "lessonId": 181,
+  "route": "/lessons/geometry/181-parametric-coordinates",
+  "checks": {
+    "initial": {
+      "t": "1.000",
+      "x": "2.540",
+      "y": "1.841",
+      "playing": "false",
+      "animate": "true",
+      "speed": "1.0",
+      "stage": "0",
+      "status": ""
+    },
+    "keyboard": {
+      "t": "1.100",
+      "x": "2.454",
+      "y": "1.891",
+      "playing": "false",
+      "animate": "true",
+      "speed": "1.0",
+      "stage": "0",
+      "status": ""
+    },
+    "drag": {
+      "t": "3.118",
+      "x": "1.000",
+      "y": "1.023",
+      "playing": "false",
+      "animate": "true",
+      "speed": "1.0",
+      "stage": "0",
+      "status": ""
+    },
+    "start": {
+      "t": "-6.283",
+      "x": "3.000",
+      "y": "1.000",
+      "playing": "false",
+      "animate": "true",
+      "speed": "1.0",
+      "stage": "0",
+      "status": ""
+    },
+    "step": {
+      "t": "-6.183",
+      "x": "2.995",
+      "y": "1.100",
+      "playing": "false",
+      "animate": "true",
+      "speed": "1.0",
+      "stage": "0",
+      "status": ""
+    },
+    "speed": {
+      "t": "-6.183",
+      "x": "2.995",
+      "y": "1.100",
+      "playing": "false",
+      "animate": "true",
+      "speed": "1.5",
+      "stage": "0",
+      "status": ""
+    },
+    "playing": {
+      "t": "-5.921",
+      "x": "2.935",
+      "y": "1.355",
+      "playing": "true",
+      "animate": "true",
+      "speed": "1.5",
+      "stage": "0",
+      "status": ""
+    },
+    "paused": {
+      "t": "-5.883",
+      "x": "2.921",
+      "y": "1.389",
+      "playing": "false",
+      "animate": "true",
+      "speed": "1.5",
+      "stage": "0",
+      "status": ""
+    },
+    "noLoop": {
+      "t": "6.283",
+      "x": "3.000",
+      "y": "1.000",
+      "playing": "false",
+      "animate": "false",
+      "speed": "1.5",
+      "stage": "0",
+      "status": ""
+    },
+    "stages": {
+      "t": "6.283",
+      "x": "3.000",
+      "y": "1.000",
+      "playing": "false",
+      "animate": "false",
+      "speed": "1.5",
+      "stage": "4",
+      "status": ""
+    },
+    "wrong": {
+      "t": "6.283",
+      "x": "3.000",
+      "y": "1.000",
+      "playing": "false",
+      "animate": "false",
+      "speed": "1.5",
+      "stage": "4",
+      "status": "Check the curve and eliminate t"
+    },
+    "correct": {
+      "t": "6.283",
+      "x": "3.000",
+      "y": "1.000",
+      "playing": "false",
+      "animate": "false",
+      "speed": "1.5",
+      "stage": "4",
+      "status": "Correct ellipse equation"
+    },
+    "solution": true,
+    "reset": {
+      "t": "1.000",
+      "x": "2.540",
+      "y": "1.841",
+      "playing": "false",
+      "animate": "true",
+      "speed": "1.0",
+      "stage": "0",
+      "status": ""
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/geometry/180-polar-coordinates",
+    "nextHref": "/lessons/geometry/182-barycentric-coordinates"
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1037,
+      "height": 1516
+    },
+    "document": {
+      "width": 1037,
+      "height": 1516
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "regions": {
+      "page": {
+        "top": 102,
+        "bottom": 1516,
+        "left": 211,
+        "right": 1037,
+        "width": 826,
+        "height": 1414
+      },
+      "header": {
+        "top": 102,
+        "bottom": 250,
+        "left": 221,
+        "right": 1023,
+        "width": 802,
+        "height": 148
+      },
+      "stages": {
+        "top": 257,
+        "bottom": 306,
+        "left": 221,
+        "right": 1023,
+        "width": 802,
+        "height": 49
+      },
+      "work": {
+        "top": 316,
+        "bottom": 899,
+        "left": 221,
+        "right": 1023,
+        "width": 802,
+        "height": 583
+      },
+      "graph": {
+        "top": 364,
+        "bottom": 719,
+        "left": 231,
+        "right": 701,
+        "width": 470,
+        "height": 355
+      },
+      "note": {
+        "top": 908,
+        "bottom": 983,
+        "left": 221,
+        "right": 1023,
+        "width": 802,
+        "height": 75
+      },
+      "learn": {
+        "top": 993,
+        "bottom": 1173,
+        "left": 221,
+        "right": 1023,
+        "width": 802,
+        "height": 180
+      },
+      "practice": {
+        "top": 1183,
+        "bottom": 1345,
+        "left": 221,
+        "right": 1023,
+        "width": 802,
+        "height": 162
+      },
+      "navigation": {
+        "top": 1369,
+        "bottom": 1409,
+        "left": 221,
+        "right": 1023,
+        "width": 802,
+        "height": 40
+      },
+      "footer": {
+        "top": 1420,
+        "bottom": 1504,
+        "left": 221,
+        "right": 1023,
+        "width": 802,
+        "height": 84
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true,
+  "mathNote": "The target labels x=cos(t)+2 and y=sin(t)+1 but also shows incompatible point/equation values. The implementation consistently uses the stated equations, yielding (x-2)^2+(y-1)^2=1."
+}

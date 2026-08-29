@@ -4,9 +4,8 @@ import { lessonCatalog } from "../catalog/lessonCatalog";
 import Geometry2DLessonAdapter from "./Geometry2DLessonAdapter";
 
 describe("Geometry2DLessonAdapter", () => {
-  it("renders coordinate geometry lessons 181 through 182 with lesson-specific guidance", () => {
+  it("renders coordinate geometry lesson 182 with lesson-specific guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      181: "Parametric rule",
       182: "Barycentric rule",
     };
 
@@ -29,6 +28,16 @@ describe("Geometry2DLessonAdapter", () => {
       expect(html, lesson.title).toContain("Avoid:");
       expect(html, lesson.title).not.toContain("Coordinate rule");
     }
+  });
+
+  it("renders parametric coordinates as its own synchronized motion surface", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 181)!;
+    const html = renderToStaticMarkup(<Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain("geometry-mockup-0238");
+    expect(html).toContain('data-dedicated-lesson="181"');
+    expect(html).toContain('data-testid="parametric-motion-point"');
+    expect(html).toContain("(x - 2)² + (y - 1)² = 1");
+    expect(html).toContain("x²/4 + y² = 1");
   });
 
   it("renders polar coordinates as its own bidirectional conversion surface", () => {

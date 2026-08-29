@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **163 of 200 lessons completed; 37 pending.**
+Dedicated rebuild target: **164 of 200 lessons completed; 36 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -149,6 +149,7 @@ Dedicated rebuild target: **163 of 200 lessons completed; 37 pending.**
 | 0235   |                178 Coordinate Loci | Complete | Dedicated fixed-focus circle-locus model with constrained pointer/keyboard generator, editable radius, live trace/equation/distance, real graph controls, graded translated-circle practice, and exact 1060x1484 framing |
 | 0236   |      179 Coordinate Transformations | Complete | Dedicated source/image polygon transformation engine with whole-shape and vertex drag, six coordinate mappings, vectors/snap/animation, live tables, graded three-vertex practice, and exact 1039x1513 framing |
 | 0237   |              180 Polar Coordinates | Complete | Dedicated bidirectional Cartesian-polar model with two pointer/keyboard draggable points, editable radius/angle, live conversion/quadrants, quick angles, graded round-trip practice, and exact 997x1577 framing |
+| 0238   |         181 Parametric Coordinates | Complete | Dedicated shared-parameter motion model with pointer/keyboard constrained point, playback/step/speed/loop controls, synchronized coordinate graphs, exact elimination, graded ellipse practice, and exact 1037x1516 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2432,3 +2433,17 @@ Evidence:
 - `0237-reference.png`
 - `0237-desktop.png`
 - `0237-dedicated-target-validation.json`
+
+## Lesson 181 / Mockup 0238 - Parametric Coordinates
+
+Reworked individually against the target mockup with a dedicated `shared-parameter-synchronized-motion-coordinate-functions-and-elimination` model. One parameter t drives the constrained point P, the main path, both coordinate-versus-parameter graphs, current values, and the eliminated Cartesian equation for `x=cos(t)+2`, `y=sin(t)+1`.
+
+Pointer and keyboard point movement, the full -2pi to 2pi parameter slider, start/step/end controls, Play/Pause, loop-animation preference, speed, five learning stages, Reset, Share, bookmark-to-practice, curve selection, equation grading, solution reveal, and adjacent navigation are working controls. The independent practice recognizes `x=2 cos(t), y=sin(t)` as the ellipse `x²/4+y²=1`.
+
+The target labels `x=cos(t)+2`, `y=sin(t)+1` but also shows incompatible point and `x²+(y-1)²=10` values. The implementation consistently uses the stated functions, yielding `(x-2)²+(y-1)²=1`. Final 1037x1516 validation keyboard-moves and physically drags P, starts and steps t, changes speed, plays/pauses, verifies non-loop completion, exercises all stages, rejects a circle/wrong equation, accepts the ellipse equation, reveals the solution, resets, and verifies routes. It reports exact document geometry, no overflow, and zero console warnings or errors.
+
+Evidence:
+
+- `0238-reference.png`
+- `0238-desktop.png`
+- `0238-dedicated-target-validation.json`
