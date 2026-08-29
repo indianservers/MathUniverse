@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **164 of 200 lessons completed; 36 pending.**
+Dedicated rebuild target: **165 of 200 lessons completed; 35 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -150,6 +150,7 @@ Dedicated rebuild target: **164 of 200 lessons completed; 36 pending.**
 | 0236   |      179 Coordinate Transformations | Complete | Dedicated source/image polygon transformation engine with whole-shape and vertex drag, six coordinate mappings, vectors/snap/animation, live tables, graded three-vertex practice, and exact 1039x1513 framing |
 | 0237   |              180 Polar Coordinates | Complete | Dedicated bidirectional Cartesian-polar model with two pointer/keyboard draggable points, editable radius/angle, live conversion/quadrants, quick angles, graded round-trip practice, and exact 997x1577 framing |
 | 0238   |         181 Parametric Coordinates | Complete | Dedicated shared-parameter motion model with pointer/keyboard constrained point, playback/step/speed/loop controls, synchronized coordinate graphs, exact elimination, graded ellipse practice, and exact 1037x1516 framing |
+| 0239   |       182 Barycentric Coordinates | Complete | Dedicated normalized triangle-weight model with pointer/keyboard point drag, linked weight sliders, real area/median/grid controls, exact coordinate reconstruction, independent target practice, and exact 981x1604 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2447,3 +2448,17 @@ Evidence:
 - `0238-reference.png`
 - `0238-desktop.png`
 - `0238-dedicated-target-validation.json`
+
+## Lesson 182 / Mockup 0239 - Barycentric Coordinates
+
+Reworked individually against the target mockup with a dedicated `triangle-area-normalized-barycentric-weight-reconstruction` model. The point P is reconstructed from three normalized vertex weights, the three sub-triangle areas update with P, and direct weight changes preserve the invariant `alpha + beta + gamma = 1`.
+
+Pointer and keyboard point movement, all three linked weight sliders, true triangle medians, area visibility, grid visibility, five learning stages, language state, Reset, Share, rotating practice targets, independent practice pointer/keyboard movement, match feedback, and adjacent navigation are working controls. No lesson-surface control is decorative.
+
+The target shows weights `(0.5, 0.2, 0.3)` for `A(0,6)`, `B(-6,-2)`, `C(6,-2)` but labels P as `(1.2,1.8)`. Those values are incompatible; the implementation consistently calculates the correct weighted point `(0.6,2.0)`. Final 981x1604 validation verifies keyboard and physical point drag, normalized slider updates, medians/areas/grid, all stages, language, practice mismatch and exact rematch, target rotation, Share, Reset, catalog navigation, geometry, overflow, and console output. The supplied next label says Area Coordinates, while repository lesson 183 is Vector Introduction, so navigation follows the actual catalog route.
+
+Evidence:
+
+- `0239-reference.png`
+- `0239-desktop.png`
+- `0239-dedicated-target-validation.json`

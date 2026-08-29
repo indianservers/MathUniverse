@@ -4,30 +4,15 @@ import { lessonCatalog } from "../catalog/lessonCatalog";
 import Geometry2DLessonAdapter from "./Geometry2DLessonAdapter";
 
 describe("Geometry2DLessonAdapter", () => {
-  it("renders coordinate geometry lesson 182 with lesson-specific guidance", () => {
-    const expectedSnippets: Record<number, string> = {
-      182: "Barycentric rule",
-    };
-
-    for (const [idText, snippet] of Object.entries(expectedSnippets)) {
-      const id = Number(idText);
-      const lesson = lessonCatalog.find((item) => item.id === id)!;
-      const html = renderToStaticMarkup(
-        <Geometry2DLessonAdapter
-          lesson={lesson}
-          resetToken={0}
-          onInteraction={vi.fn()}
-        />,
-      );
-
-      expect(html, lesson.title).toContain(lesson.title);
-      expect(html, lesson.title).toContain(snippet);
-      expect(html, lesson.title).toContain('data-direct-interaction="true"');
-      expect(html, lesson.title).toContain("Drag points");
-      expect(html, lesson.title).toContain("Worked:");
-      expect(html, lesson.title).toContain("Avoid:");
-      expect(html, lesson.title).not.toContain("Coordinate rule");
-    }
+  it("renders barycentric coordinates as its own weighted-triangle surface", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 182)!;
+    const html = renderToStaticMarkup(<Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain("geometry-mockup-0239");
+    expect(html).toContain('data-dedicated-lesson="182"');
+    expect(html).toContain('data-testid="barycentric-main-point"');
+    expect(html).toContain('data-testid="barycentric-practice-point"');
+    expect(html).toContain("P=αA+βB+γC");
+    expect(html).toContain("TARGET WEIGHTS");
   });
 
   it("renders parametric coordinates as its own synchronized motion surface", () => {

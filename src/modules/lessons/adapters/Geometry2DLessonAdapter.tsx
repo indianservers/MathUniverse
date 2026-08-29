@@ -57,6 +57,7 @@ import CoordinateLociTargetLesson178 from "./CoordinateLociTargetLesson178";
 import CoordinateTransformationsTargetLesson179 from "./CoordinateTransformationsTargetLesson179";
 import PolarCoordinatesTargetLesson180 from "./PolarCoordinatesTargetLesson180";
 import ParametricCoordinatesTargetLesson181 from "./ParametricCoordinatesTargetLesson181";
+import BarycentricCoordinatesTargetLesson182 from "./BarycentricCoordinatesTargetLesson182";
 import ReflectionLineTargetLesson237 from "./ReflectionLineTargetLesson237";
 import ReflectionPointTargetLesson238 from "./ReflectionPointTargetLesson238";
 import ReflectionCircleTargetLesson239 from "./ReflectionCircleTargetLesson239";
@@ -166,6 +167,9 @@ export default function Geometry2DLessonAdapter({
   }
   if (lesson.id === 181) {
     return <ParametricCoordinatesTargetLesson181 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
+  if (lesson.id === 182) {
+    return <BarycentricCoordinatesTargetLesson182 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
   if (lesson.id === 250) {
     return <EnvelopeLinesTargetLesson250 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
