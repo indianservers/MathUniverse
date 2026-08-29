@@ -1,0 +1,165 @@
+{
+  "mockup": "0335",
+  "lessonId": 429,
+  "checks": {
+    "initial": {
+      "expression": "2*(x+3)*(x-2)/(x*(x+3))",
+      "valid": "true",
+      "simplified": "2(x-2)/x",
+      "cancelled": "(x+3)",
+      "restrictions": "-3,0",
+      "test-value": "1",
+      "checked-values": "1,2",
+      "feedback": "idle"
+    },
+    "edited": {
+      "expression": "3*(x-4)*(x+2)/(x*(x+2))",
+      "valid": "true",
+      "simplified": "3(x-4)/x",
+      "cancelled": "(x+2)",
+      "restrictions": "-2,0",
+      "test-value": "1",
+      "checked-values": "",
+      "feedback": "idle"
+    },
+    "simplified": {
+      "expression": "3*(x-4)*(x+2)/(x*(x+2))",
+      "valid": "true",
+      "simplified": "3(x-4)/x",
+      "cancelled": "(x+2)",
+      "restrictions": "-2,0",
+      "test-value": "1",
+      "checked-values": "",
+      "feedback": "idle"
+    },
+    "validTest": {
+      "expression": "3*(x-4)*(x+2)/(x*(x+2))",
+      "valid": "true",
+      "simplified": "3(x-4)/x",
+      "cancelled": "(x+2)",
+      "restrictions": "-2,0",
+      "test-value": "3",
+      "checked-values": "3",
+      "feedback": "idle"
+    },
+    "excludedTest": {
+      "expression": "3*(x-4)*(x+2)/(x*(x+2))",
+      "valid": "true",
+      "simplified": "3(x-4)/x",
+      "cancelled": "(x+2)",
+      "restrictions": "-2,0",
+      "test-value": "-2",
+      "checked-values": "3",
+      "feedback": "idle"
+    },
+    "rejected": {
+      "expression": "3*(x-4)*(x+2)/(x*(x+2))",
+      "valid": "true",
+      "simplified": "3(x-4)/x",
+      "cancelled": "(x+2)",
+      "restrictions": "-2,0",
+      "test-value": "-2",
+      "checked-values": "3",
+      "feedback": "incorrect"
+    },
+    "accepted": {
+      "expression": "3*(x-4)*(x+2)/(x*(x+2))",
+      "valid": "true",
+      "simplified": "3(x-4)/x",
+      "cancelled": "(x+2)",
+      "restrictions": "-2,0",
+      "test-value": "-2",
+      "checked-values": "3",
+      "feedback": "correct"
+    },
+    "practiceReset": {
+      "expression": "3*(x-4)*(x+2)/(x*(x+2))",
+      "valid": "true",
+      "simplified": "3(x-4)/x",
+      "cancelled": "(x+2)",
+      "restrictions": "-2,0",
+      "test-value": "-2",
+      "checked-values": "3",
+      "feedback": "idle"
+    },
+    "reset": {
+      "expression": "2*(x+3)*(x-2)/(x*(x+3))",
+      "valid": "true",
+      "simplified": "2(x-2)/x",
+      "cancelled": "(x+3)",
+      "restrictions": "-3,0",
+      "test-value": "1",
+      "checked-values": "1,2",
+      "feedback": "idle"
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/symbolic-mathematics/428-symbolic-evaluation",
+    "nextHref": "/lessons/symbolic-mathematics/430-expand"
+  },
+  "metrics": {
+    "document": {
+      "width": 1011,
+      "height": 1555
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 212,
+      "height": 1555,
+      "bottom": 1555
+    },
+    "header": {
+      "top": 89,
+      "left": 233,
+      "width": 766,
+      "height": 214,
+      "bottom": 303
+    },
+    "tabs": {
+      "top": 306,
+      "left": 233,
+      "width": 766,
+      "height": 42,
+      "bottom": 348
+    },
+    "flow": {
+      "top": 361,
+      "left": 233,
+      "width": 766,
+      "height": 118,
+      "bottom": 479
+    },
+    "workspace": {
+      "top": 495,
+      "left": 233,
+      "width": 766,
+      "height": 494,
+      "bottom": 989
+    },
+    "learning": {
+      "top": 1003,
+      "left": 233,
+      "width": 766,
+      "height": 270,
+      "bottom": 1273
+    },
+    "practice": {
+      "top": 1289,
+      "left": 233,
+      "width": 766,
+      "height": 180,
+      "bottom": 1469
+    },
+    "adjacent": {
+      "top": 1485,
+      "left": 233,
+      "width": 766,
+      "height": 50,
+      "bottom": 1535
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

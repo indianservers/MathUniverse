@@ -5,11 +5,15 @@ import ReusableLessonEngine, {
 import type { LessonAdapterProps } from "../types";
 import SymbolicCasMockupLesson from "./cas/SymbolicCasMockupLesson";
 import SymbolicEvaluationTargetLesson428 from "./cas/SymbolicEvaluationTargetLesson428";
+import SimplifyTargetLesson429 from "./cas/SimplifyTargetLesson429";
 import { DifferentialEquationActivity } from "./p0/PriorityConceptActivities";
 
 export default function CasLessonAdapter(props: LessonAdapterProps) {
   if (props.lesson.id === 428) {
     return <SymbolicEvaluationTargetLesson428 {...props} />;
+  }
+  if (props.lesson.id === 429) {
+    return <SimplifyTargetLesson429 {...props} />;
   }
   if (props.lesson.id >= 428 && props.lesson.id <= 449) {
     return <SymbolicCasMockupLesson {...props} />;
