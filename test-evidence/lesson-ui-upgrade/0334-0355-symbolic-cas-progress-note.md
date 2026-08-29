@@ -1,11 +1,12 @@
 # Symbolic Mathematics / CAS Workspace target batch 0334-0355
 
-Dedicated rebuild target: **2 of 22 lessons completed; 20 pending.**
+Dedicated rebuild target: **3 of 22 lessons completed; 19 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
 | 0334 | 428 Symbolic Evaluation | `editable-linear-expression-parse-transform-substitution-practice` | Reworked individually and browser-validated |
 | 0335 | 429 Simplify | `factor-multiset-cancellation-preserved-domain-equivalence-practice` | Reworked individually and browser-validated |
+| 0336 | 430 Expand | `parsed-binomial-four-products-area-tiles-combine-practice` | Reworked individually and browser-validated |
 
 ## Lesson 428 / Mockup 0334 - Symbolic Evaluation
 
@@ -34,3 +35,17 @@ Evidence:
 - `0335-reference.png`
 - `0335-desktop.png`
 - `0335-dedicated-target-validation.json`
+
+## Lesson 430 / Mockup 0336 - Expand
+
+Reworked individually around a dedicated binomial-expansion object model. The lesson parses editable pairs `(ax+b)(cx+d)`, computes all four distribution products, combines the two middle coefficients, and drives the expression tree, FOIL area model, algebra tiles, staged symbolic view, and final polynomial from those values. Expression editing/reset, tile/symbolic modes, reverse/restore, real product-tile drag and keyboard collection, algebra-step reveal, editable challenge, answer checking, hint, practice steps, shell Reset, and Previous/Next navigation are functional.
+
+Browser validation starts from `(x+2)*(x-3)`, derives products `1, -3, 2, -6` and coefficients `1, -1, -6`, then edits the model to `(3x+2)*(2x-5)` and derives `6x^2 - 11x - 10`. It switches display modes, reverses the collection stage, drags the `x^2` product into the live collection zone, collects the remaining products, and returns to the verified final stage. The independent challenge rejects `2x^2 + 8x - 4`, accepts `2x^2 + 7x - 4`, and exposes its hint and four-product steps.
+
+Final exact 1022x1539 validation matches the target stack: sidebar width 207, header y=107-371, four-step guide y=126-331, tabs y=380-428, dedicated workspace y=437-909, result y=918-999, learning cards y=1012-1192, practice y=1204-1328, adjacent navigation y=1340-1396, and footer y=1408-1532. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0336-reference.png`
+- `0336-desktop.png`
+- `0336-dedicated-target-validation.json`
