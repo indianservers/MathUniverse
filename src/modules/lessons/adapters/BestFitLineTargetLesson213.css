@@ -1,0 +1,28 @@
+.bestfit213-page,
+.bestfit213-page * {
+  letter-spacing: 0;
+}
+
+@media (min-width: 1450px) and (max-width: 1600px) {
+  body:has(.bestfit213-page) {
+    overflow: hidden;
+  }
+
+  body:has(.bestfit213-page) [data-testid="desktop-sidebar"] {
+    width: 270px;
+  }
+
+  body:has(.bestfit213-page) #main-content {
+    padding-left: 26px;
+    padding-right: 24px;
+  }
+
+  body:has(.bestfit213-page) footer[aria-label="Site footer"] {
+    display: none;
+  }
+
+  .bestfit213-page > .sr-only,
+  .bestfit213-page ~ .lesson-adjacent-nav {
+    display: none;
+  }
+}

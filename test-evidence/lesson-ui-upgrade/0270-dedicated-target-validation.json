@@ -1,15 +1,310 @@
-[
-  {
-    "id": 213,
-    "mockup": 270,
-    "route": "/lessons/geometry/213-best-fit-line",
-    "width": 1534,
-    "height": 1025,
-    "status": "Correct: least-squares minimum reached.",
-    "consoleErrors": [],
-    "scrollHeight": 1072,
-    "surfaceBottom": 1007,
-    "objectModel": "least-squares-regression",
-    "overflowing": 0
-  }
-]
+{
+  "mockup": "0270",
+  "lessonId": 213,
+  "checks": {
+    "initial": {
+      "points": "-4.7943:-2.14|-3.8354:-2.4826|-2.8766:-1.8979|-0.9589:0.1989|0.9589:1.3684|2.8766:1.6105|3.8354:2.1953|4.7943:3.7074",
+      "m": "0.82",
+      "b": "0.32",
+      "sse": "5.8625",
+      "r2": "0.9530",
+      "best-m": "0.6098",
+      "best-b": "0.3200",
+      "best-sse": "1.7200",
+      "line": "true",
+      "residuals": "true",
+      "equation": "true",
+      "challenge": "0",
+      "feedback": "idle",
+      "bookmarked": "false",
+      "stage": "observe"
+    },
+    "pointDrag": {
+      "points": "-3.94:-1.22|-3.8354:-2.4826|-2.8766:-1.8979|-0.9589:0.1989|0.9589:1.3684|2.8766:1.6105|3.8354:2.1953|4.7943:3.7074",
+      "m": "0.82",
+      "b": "0.32",
+      "sse": "6.5565",
+      "r2": "0.9326",
+      "best-m": "0.5957",
+      "best-b": "0.3714",
+      "best-sse": "2.2121",
+      "line": "true",
+      "residuals": "true",
+      "equation": "true",
+      "challenge": "0",
+      "feedback": "idle",
+      "bookmarked": "false",
+      "stage": "observe"
+    },
+    "lineDrag": {
+      "points": "-3.94:-1.22|-3.8354:-2.4826|-2.8766:-1.8979|-0.9589:0.1989|0.9589:1.3684|2.8766:1.6105|3.8354:2.1953|4.7943:3.7074",
+      "m": "0.82",
+      "b": "0.19",
+      "sse": "6.7487",
+      "r2": "0.9326",
+      "best-m": "0.5957",
+      "best-b": "0.3714",
+      "best-sse": "2.2121",
+      "line": "true",
+      "residuals": "true",
+      "equation": "true",
+      "challenge": "0",
+      "feedback": "idle",
+      "bookmarked": "false",
+      "stage": "observe"
+    },
+    "sliders": {
+      "points": "-3.94:-1.22|-3.8354:-2.4826|-2.8766:-1.8979|-0.9589:0.1989|0.9589:1.3684|2.8766:1.6105|3.8354:2.1953|4.7943:3.7074",
+      "m": "1.17",
+      "b": "-0.45",
+      "sse": "35.2736",
+      "r2": "0.9326",
+      "best-m": "0.5957",
+      "best-b": "0.3714",
+      "best-sse": "2.2121",
+      "line": "true",
+      "residuals": "true",
+      "equation": "true",
+      "challenge": "0",
+      "feedback": "idle",
+      "bookmarked": "false",
+      "stage": "observe"
+    },
+    "hidden": {
+      "points": "-3.94:-1.22|-3.8354:-2.4826|-2.8766:-1.8979|-0.9589:0.1989|0.9589:1.3684|2.8766:1.6105|3.8354:2.1953|4.7943:3.7074",
+      "m": "1.17",
+      "b": "-0.45",
+      "sse": "35.2736",
+      "r2": "0.9326",
+      "best-m": "0.5957",
+      "best-b": "0.3714",
+      "best-sse": "2.2121",
+      "line": "false",
+      "residuals": "false",
+      "equation": "false",
+      "challenge": "0",
+      "feedback": "idle",
+      "bookmarked": "false",
+      "stage": "observe"
+    },
+    "rejected": {
+      "points": "-3.94:-1.22|-3.8354:-2.4826|-2.8766:-1.8979|-0.9589:0.1989|0.9589:1.3684|2.8766:1.6105|3.8354:2.1953|4.7943:3.7074",
+      "m": "1.17",
+      "b": "-0.45",
+      "sse": "35.2736",
+      "r2": "0.9326",
+      "best-m": "0.5957",
+      "best-b": "0.3714",
+      "best-sse": "2.2121",
+      "line": "true",
+      "residuals": "true",
+      "equation": "true",
+      "challenge": "0",
+      "feedback": "improve",
+      "bookmarked": "false",
+      "stage": "observe"
+    },
+    "fitted": {
+      "points": "-3.94:-1.22|-3.8354:-2.4826|-2.8766:-1.8979|-0.9589:0.1989|0.9589:1.3684|2.8766:1.6105|3.8354:2.1953|4.7943:3.7074",
+      "m": "0.6",
+      "b": "0.37",
+      "sse": "2.2137",
+      "r2": "0.9326",
+      "best-m": "0.5957",
+      "best-b": "0.3714",
+      "best-sse": "2.2121",
+      "line": "true",
+      "residuals": "true",
+      "equation": "true",
+      "challenge": "0",
+      "feedback": "idle",
+      "bookmarked": "false",
+      "stage": "observe"
+    },
+    "accepted": {
+      "points": "-3.94:-1.22|-3.8354:-2.4826|-2.8766:-1.8979|-0.9589:0.1989|0.9589:1.3684|2.8766:1.6105|3.8354:2.1953|4.7943:3.7074",
+      "m": "0.6",
+      "b": "0.37",
+      "sse": "2.2137",
+      "r2": "0.9326",
+      "best-m": "0.5957",
+      "best-b": "0.3714",
+      "best-sse": "2.2121",
+      "line": "true",
+      "residuals": "true",
+      "equation": "true",
+      "challenge": "0",
+      "feedback": "correct",
+      "bookmarked": "false",
+      "stage": "observe"
+    },
+    "randomized": {
+      "points": "-5.5:4.5|-4:3.1|-2.2:3.4|-0.8:1.2|1.2:0.8|2.7:-1.2|4.1:-1.6|5.4:-3.5",
+      "m": "-0.48",
+      "b": "0.57",
+      "sse": "8.3434",
+      "r2": "0.9534",
+      "best-m": "-0.6967",
+      "best-b": "0.9159",
+      "best-sse": "2.5215",
+      "line": "true",
+      "residuals": "true",
+      "equation": "true",
+      "challenge": "1",
+      "feedback": "idle",
+      "bookmarked": "false",
+      "stage": "observe"
+    },
+    "newChallenge": {
+      "points": "-5.4:-4.1|-4:-2.1|-2.1:-2.7|-0.7:-0.1|1.1:1.8|2.4:1.1|4:4.2|5.5:4.7",
+      "m": "1.03",
+      "b": "-0.08",
+      "sse": "10.5241",
+      "r2": "0.9368",
+      "best-m": "0.8069",
+      "best-b": "0.2693",
+      "best-sse": "4.5311",
+      "line": "true",
+      "residuals": "true",
+      "equation": "true",
+      "challenge": "2",
+      "feedback": "idle",
+      "bookmarked": "false",
+      "stage": "observe"
+    },
+    "bookmark": {
+      "points": "-5.4:-4.1|-4:-2.1|-2.1:-2.7|-0.7:-0.1|1.1:1.8|2.4:1.1|4:4.2|5.5:4.7",
+      "m": "1.03",
+      "b": "-0.08",
+      "sse": "10.5241",
+      "r2": "0.9368",
+      "best-m": "0.8069",
+      "best-b": "0.2693",
+      "best-sse": "4.5311",
+      "line": "true",
+      "residuals": "true",
+      "equation": "true",
+      "challenge": "2",
+      "feedback": "idle",
+      "bookmarked": "true",
+      "stage": "observe"
+    },
+    "stages": [
+      {
+        "expected": "manipulate",
+        "actual": "manipulate"
+      },
+      {
+        "expected": "notice",
+        "actual": "notice"
+      },
+      {
+        "expected": "understand",
+        "actual": "understand"
+      },
+      {
+        "expected": "try",
+        "actual": "try"
+      },
+      {
+        "expected": "observe",
+        "actual": "observe"
+      }
+    ],
+    "share": "Best-fit line y=1.03x− 0.08; SSE=10.52; R²=0.937; n=8",
+    "reset": {
+      "points": "-4.7943:-2.14|-3.8354:-2.4826|-2.8766:-1.8979|-0.9589:0.1989|0.9589:1.3684|2.8766:1.6105|3.8354:2.1953|4.7943:3.7074",
+      "m": "0.82",
+      "b": "0.32",
+      "sse": "5.8625",
+      "r2": "0.9530",
+      "best-m": "0.6098",
+      "best-b": "0.3200",
+      "best-sse": "1.7200",
+      "line": "true",
+      "residuals": "true",
+      "equation": "true",
+      "challenge": "0",
+      "feedback": "idle",
+      "bookmarked": "true",
+      "stage": "observe"
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/geometry/212-tangent",
+    "nextHref": "/lessons/geometry/214-triangle-constructor"
+  },
+  "metrics": {
+    "document": {
+      "width": 1534,
+      "height": 1025
+    },
+    "overflow": false,
+    "breadcrumb": "Home>Lessons>Coordinate Geometry>Best Fit Line",
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 270,
+      "height": 1025,
+      "bottom": 1025
+    },
+    "header": {
+      "top": 107,
+      "left": 296,
+      "width": 1214,
+      "height": 58,
+      "bottom": 165
+    },
+    "stages": {
+      "top": 177,
+      "left": 296,
+      "width": 1214,
+      "height": 64,
+      "bottom": 241
+    },
+    "observe": {
+      "top": 259,
+      "left": 296,
+      "width": 1214,
+      "height": 467,
+      "bottom": 726
+    },
+    "explorer": {
+      "top": 259,
+      "left": 296,
+      "width": 839.390625,
+      "height": 467,
+      "bottom": 726
+    },
+    "results": {
+      "top": 259,
+      "left": 1167.390625,
+      "width": 342.609375,
+      "height": 467,
+      "bottom": 726
+    },
+    "understand": {
+      "top": 741,
+      "left": 296,
+      "width": 1214,
+      "height": 190,
+      "bottom": 931
+    },
+    "adjacent": {
+      "top": 946,
+      "left": 296,
+      "width": 1214,
+      "height": 61,
+      "bottom": 1007
+    },
+    "footer": {
+      "top": 0,
+      "left": 0,
+      "width": 0,
+      "height": 0,
+      "bottom": 0
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

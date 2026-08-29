@@ -23,9 +23,11 @@ import {
   type PointerEvent as ReactPointerEvent,
 } from "react";
 import type { LessonAdapterProps } from "../types";
+import "./BestFitLineTargetLesson213.css";
 
 type DataPoint = { x: number; y: number };
 type Visibility = { line: boolean; residuals: boolean; equation: boolean };
+type Stage = "Observe" | "Manipulate" | "Notice" | "Understand" | "Try";
 
 const initialPoints: DataPoint[] = [
   { x: -4.7943, y: -2.14 },
@@ -81,6 +83,7 @@ export default function BestFitLineTargetLesson213({
   );
   const [bookmarked, setBookmarked] = useState(false);
   const [shareStatus, setShareStatus] = useState("");
+  const [activeStage, setActiveStage] = useState<Stage>("Observe");
   const surfaceRef = useRef<HTMLElement>(null);
   const stats = useMemo(() => regressionStats(points, m, b), [points, m, b]);
 
@@ -91,6 +94,7 @@ export default function BestFitLineTargetLesson213({
     setVisibility({ line: true, residuals: true, equation: true });
     setChallenge(0);
     setFeedback("idle");
+    setActiveStage("Observe");
     onInteraction();
   };
   useEffect(() => {
@@ -100,6 +104,7 @@ export default function BestFitLineTargetLesson213({
     setVisibility({ line: true, residuals: true, equation: true });
     setChallenge(0);
     setFeedback("idle");
+    setActiveStage("Observe");
   }, [resetToken]);
   const changeLine = (nextM: number, nextB: number) => {
     setM(round(nextM, 2));
@@ -177,11 +182,26 @@ export default function BestFitLineTargetLesson213({
   return (
     <section
       ref={surfaceRef}
-      className="space-y-3"
+      className="bestfit213-page space-y-3"
       data-testid="dynamic-geometry-mockup-0270"
       data-dedicated-lesson="213"
       data-object-model="least-squares-regression"
       data-direct-interaction="true"
+      data-points={points.map((point) => `${point.x}:${point.y}`).join("|")}
+      data-m={m}
+      data-b={b}
+      data-sse={stats.sse.toFixed(4)}
+      data-r2={stats.r2.toFixed(4)}
+      data-best-m={stats.best.m.toFixed(4)}
+      data-best-b={stats.best.b.toFixed(4)}
+      data-best-sse={stats.bestSse.toFixed(4)}
+      data-line={visibility.line}
+      data-residuals={visibility.residuals}
+      data-equation={visibility.equation}
+      data-challenge={challenge}
+      data-feedback={feedback}
+      data-bookmarked={bookmarked}
+      data-stage={activeStage.toLowerCase()}
       aria-label="Best Fit Line dedicated interactive geometry model"
     >
       <header className="flex min-h-[58px] items-center justify-between gap-4 px-1">
@@ -248,12 +268,21 @@ export default function BestFitLineTargetLesson213({
             key={title}
             type="button"
             onClick={() => {
+              setActiveStage(title as Stage);
               document
-                .getElementById(`bestfit-${title.toLowerCase()}`)
+                .getElementById(
+                  title === "Observe" || title === "Manipulate"
+                    ? "bestfit-observe"
+                    : title === "Notice"
+                      ? "bestfit-notice"
+                      : title === "Understand"
+                        ? "bestfit-understand"
+                        : "bestfit-try",
+                )
                 ?.scrollIntoView({ behavior: "smooth", block: "center" });
               onInteraction();
             }}
-            className={`relative flex items-center gap-3 px-4 text-left ${index === 0 ? "text-blue-700 after:absolute after:inset-x-0 after:bottom-0 after:h-1 after:bg-blue-500" : "border-l text-slate-700"}`}
+            className={`relative flex items-center gap-3 px-4 text-left ${activeStage === title ? "text-blue-700 after:absolute after:inset-x-0 after:bottom-0 after:h-1 after:bg-blue-500" : "border-l text-slate-700"}`}
           >
             <span className="grid h-7 w-7 place-items-center text-blue-700">
               {index === 0 ? (

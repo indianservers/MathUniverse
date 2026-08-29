@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **195 of 200 lessons completed; 5 pending.**
+Dedicated rebuild target: **196 of 200 lessons completed; 4 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -181,6 +181,7 @@ Dedicated rebuild target: **195 of 200 lessons completed; 5 pending.**
 | 0267   | 210 Perpendicular Bisector | Complete | Dedicated endpoint/midpoint/compass-intersection model with physical A/B and practice-C drags, auto/custom radius, construction visibility, exact locus grading, and exact 1024x1536 framing |
 | 0268   | 211 Angle Bisector | Complete | Dedicated three-point angle model with physical B/C and practice-arm drags, live normalized bisector, derived half angles, real Select/Pan/Compass tools, construction overlays, generated practice, and exact 1059x1485 framing |
 | 0269   | 212 Tangent | Complete | Dedicated circle/contact/tangent model with physical O/T drags, constrained and free states, live distance/power invariants, real secant/grid/zoom/stage/fullscreen controls, generated positions, and exact 1024x1536 framing |
+| 0270   | 213 Best Fit Line | Complete | Dedicated eight-point least-squares model with physical point/line drags, real m/b controls, residual/SSE/R-squared calculations, reject/accept grading, generated datasets, stateful stages, and exact 1534x1025 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2748,3 +2749,11 @@ Audited and strengthened the dedicated `circle-contact-derived-tangent` model ag
 The exact 1024x1536 frame matches the target: sidebar width 212, lesson header y=110-279, stages y=291-335, observation workspace y=347-917, construction/insight y=929-1140, practice y=1152-1347, navigation y=1359-1411, and footer y=1425-1528. Automated validation exercises constrained and free physical drags and every control family with no horizontal overflow or console warnings or errors. Headless Chromium declines display-mode entry, so validation also records the real fullscreen-handler invocation through lesson state.
 
 Evidence: `0269-reference.png`, `0269-desktop.png`, `0269-dedicated-target-validation.json`.
+
+## Lesson 213 / Mockup 0270 - Best Fit Line
+
+Audited and strengthened the dedicated `eight-observation-least-squares-regression` model against target 0270. Every observation and the candidate line are physically draggable. The m/b sliders, residual segments, equation, SSE, least-squares coefficients, minimum SSE, and dataset R-squared are calculated from the same data. Visibility controls, Reset, Randomize, bookmark, Share, five stateful stages, Jump to section, fit-to-optimum, reject/accept challenge grading, New challenge, and adjacent routes are functional. The initial independent model reproduces target values SSE 5.86, R-squared 0.953, and best SSE 1.72.
+
+The exact 1534x1025 frame matches the target: sidebar width 270, content x=296-1510, header y=107-165, stages y=177-241, model/results y=259-726, teaching/challenge y=741-931, and navigation y=946-1007. The target-specific breadcrumb now reads `Home > Lessons > Coordinate Geometry > Best Fit Line`, and the site footer is absent as shown in the mockup. Automated validation covers point and line drags, both sliders, all visibility controls, grading paths, generated datasets, navigation controls, and sharing with no overflow or console warnings or errors.
+
+Evidence: `0270-reference.png`, `0270-desktop.png`, `0270-dedicated-target-validation.json`.
