@@ -1,0 +1,199 @@
+{
+  "mockup": "0246",
+  "lessonId": 189,
+  "route": "/lessons/geometry/189-magnitude-and-unit-vectors",
+  "checks": {
+    "initial": {
+      "vector": "3:2",
+      "magnitude": "3.606",
+      "unit": "0.832:0.555",
+      "drag": "true",
+      "tab": "0",
+      "shared": "false",
+      "answers": "::",
+      "hint": "false",
+      "correct": "false",
+      "feedback": ""
+    },
+    "keyboard": {
+      "vector": "4:2",
+      "magnitude": "4.472",
+      "unit": "0.894:0.447",
+      "drag": "true",
+      "tab": "0",
+      "shared": "false",
+      "answers": "::",
+      "hint": "false",
+      "correct": "false",
+      "feedback": ""
+    },
+    "drag": {
+      "vector": "3:1",
+      "magnitude": "3.162",
+      "unit": "0.949:0.316",
+      "drag": "true",
+      "tab": "0",
+      "shared": "false",
+      "answers": "::",
+      "hint": "false",
+      "correct": "false",
+      "feedback": ""
+    },
+    "components": {
+      "vector": "3:2",
+      "magnitude": "3.606",
+      "unit": "0.832:0.555",
+      "drag": "true",
+      "tab": "0",
+      "shared": "false",
+      "answers": "::",
+      "hint": "false",
+      "correct": "false",
+      "feedback": ""
+    },
+    "dragDisabled": {
+      "vector": "3:2",
+      "magnitude": "3.606",
+      "unit": "0.832:0.555",
+      "drag": "false",
+      "tab": "0",
+      "shared": "false",
+      "answers": "::",
+      "hint": "false",
+      "correct": "false",
+      "feedback": ""
+    },
+    "tabs": {
+      "vector": "3:2",
+      "magnitude": "3.606",
+      "unit": "0.832:0.555",
+      "drag": "true",
+      "tab": "0",
+      "shared": "false",
+      "answers": "::",
+      "hint": "false",
+      "correct": "false",
+      "feedback": ""
+    },
+    "share": {
+      "vector": "3:2",
+      "magnitude": "3.606",
+      "unit": "0.832:0.555",
+      "drag": "true",
+      "tab": "0",
+      "shared": "true",
+      "answers": "::",
+      "hint": "false",
+      "correct": "false",
+      "feedback": ""
+    },
+    "wrong": {
+      "vector": "3:2",
+      "magnitude": "3.606",
+      "unit": "0.832:0.555",
+      "drag": "true",
+      "tab": "0",
+      "shared": "true",
+      "answers": "5:0:0",
+      "hint": "false",
+      "correct": "false",
+      "feedback": "Not yet. Divide each component by √29."
+    },
+    "correct": {
+      "vector": "3:2",
+      "magnitude": "3.606",
+      "unit": "0.832:0.555",
+      "drag": "true",
+      "tab": "0",
+      "shared": "true",
+      "answers": "5.385:-0.371:0.928",
+      "hint": "false",
+      "correct": "true",
+      "feedback": "Correct: |v|=√29 and û≈(-0.371,0.928)."
+    },
+    "hint": {
+      "vector": "3:2",
+      "magnitude": "3.606",
+      "unit": "0.832:0.555",
+      "drag": "true",
+      "tab": "0",
+      "shared": "true",
+      "answers": "5.385:-0.371:0.928",
+      "hint": "true",
+      "correct": "true",
+      "feedback": "Correct: |v|=√29 and û≈(-0.371,0.928)."
+    },
+    "reset": {
+      "vector": "3:2",
+      "magnitude": "3.606",
+      "unit": "0.832:0.555",
+      "drag": "true",
+      "tab": "0",
+      "shared": "false",
+      "answers": "::",
+      "hint": "false",
+      "correct": "false",
+      "feedback": ""
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/geometry/188-scalar-multiplication",
+    "nextHref": "/lessons/geometry/190-dot-product"
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1536,
+      "height": 1024
+    },
+    "document": {
+      "width": 1536,
+      "height": 1024
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "regions": {
+      "page": {
+        "top": 114,
+        "bottom": 1012,
+        "left": 269,
+        "right": 1536,
+        "width": 1267,
+        "height": 898
+      },
+      "header": {
+        "top": 114,
+        "bottom": 273,
+        "left": 292,
+        "right": 1514,
+        "width": 1222,
+        "height": 159
+      },
+      "main": {
+        "top": 286,
+        "bottom": 707,
+        "left": 292,
+        "right": 1514,
+        "width": 1222,
+        "height": 421
+      },
+      "lower": {
+        "top": 719,
+        "bottom": 927,
+        "left": 292,
+        "right": 1514,
+        "width": 1222,
+        "height": 208
+      },
+      "navigation": {
+        "top": 937,
+        "bottom": 1012,
+        "left": 292,
+        "right": 1514,
+        "width": 1222,
+        "height": 75
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

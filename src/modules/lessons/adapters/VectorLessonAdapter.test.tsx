@@ -99,9 +99,19 @@ describe("VectorLessonAdapter", () => {
     expect(html).toContain("v = k u");
   });
 
-  it("renders vector lessons 189 through 197 with lesson-specific guidance", () => {
+  it("renders magnitude and unit vectors as its own normalization surface", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 189)!;
+    const html = renderToStaticMarkup(
+      <VectorLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+    expect(html).toContain("vector-mockup-0246");
+    expect(html).toContain('data-dedicated-lesson="189"');
+    expect(html).toContain('data-testid="magnitude-vector-tip"');
+    expect(html).toContain("Pythagorean triangle");
+  });
+
+  it("renders vector lessons 190 through 197 with lesson-specific guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      189: "Magnitude",
       190: "Dot product",
       191: "Cross product",
       192: "Projection",

@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **171 of 200 lessons completed; 29 pending.**
+Dedicated rebuild target: **172 of 200 lessons completed; 28 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -157,6 +157,7 @@ Dedicated rebuild target: **171 of 200 lessons completed; 29 pending.**
 | 0243   |             186 Vector Addition | Complete | Dedicated head-to-tail/parallelogram sum model with draggable u/v/origin, component controls, resultant metrics, view/scale modes, generated draggable practice, and exact 1024x1536 framing |
 | 0244   |          187 Vector Subtraction | Complete | Dedicated ordered component-subtraction and opposite-vector model with draggable a/b tips, linked exact/range controls, construction/zoom/fullscreen modes, displacement proof, graded practice, and exact 1148x1371 framing |
 | 0245   |       188 Scalar Multiplication | Complete | Dedicated source-vector/scalar/result model with pointer/keyboard drag, auto-fit vector plane, exact/range/preset scalar controls, live sign cases, worked derivation, graded practice, and exact 1149x1369 framing |
+| 0246   | 189 Magnitude and Unit Vectors | Complete | Dedicated vector-normalization model with pointer/keyboard drag, linked component controls, Pythagorean triangle, live magnitude gauge, normalized unit-circle vector, graded practice, and exact 1536x1024 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2540,3 +2541,15 @@ Evidence:
 - `0245-reference.png`
 - `0245-desktop.png`
 - `0245-dedicated-target-validation.json`
+
+## Lesson 189 / Mockup 0246 - Magnitude and Unit Vectors
+
+Reworked individually against the target mockup with a dedicated `vector-components-pythagorean-magnitude-normalization-unit-circle-practice` model. The vector plane, component triangle, magnitude gauge, direction, normalized coordinates, and unit-circle point all derive from one vector state, while the `(-2,5)` practice task has its own exact grading path.
+
+Pointer and keyboard movement, linked range/exact x/y controls, drag enable switch, five lesson tabs, Share, Reset, live magnitude/direction/unit-vector calculations, wrong/correct three-field practice, hint, and adjacent navigation are working controls. Final 1536x1024 validation verifies initial `v=(3,2)`, `|v|=sqrt(13)`, `unit(v)=(0.832,0.555)`, independent pointer/keyboard updates, drag disabling, tab/action state, practice `|v|≈5.385` and `unit(v)≈(-0.371,0.928)`, reset, routes, exact target geometry, overflow, and console output.
+
+Evidence:
+
+- `0246-reference.png`
+- `0246-desktop.png`
+- `0246-dedicated-target-validation.json`

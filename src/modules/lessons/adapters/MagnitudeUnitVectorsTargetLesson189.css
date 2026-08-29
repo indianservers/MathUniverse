@@ -1,0 +1,539 @@
+.muv189-page {
+  --ink: #0b1b3d;
+  --line: #dbe5ed;
+  width: calc(100% + 45px);
+  min-height: 898px;
+  margin: 13px 0 0 -25px;
+  color: var(--ink);
+  font:
+    11px/1.42 Inter,
+    system-ui,
+    sans-serif;
+  letter-spacing: 0;
+}
+.muv189-page * {
+  box-sizing: border-box;
+}
+.muv189-page h1,
+.muv189-page h2,
+.muv189-page h3,
+.muv189-page p {
+  margin: 0;
+}
+.muv189-page button,
+.muv189-page input {
+  font: inherit;
+  letter-spacing: 0;
+  color: inherit;
+}
+.muv189-page button {
+  cursor: pointer;
+}
+.muv189-page ~ .lesson-adjacent-nav,
+body:has(.muv189-page) footer[aria-label="Site footer"] {
+  display: none;
+}
+.muv189-header,
+.muv189-main,
+.muv189-lower,
+.muv189-nav {
+  margin-left: 23px;
+  margin-right: 22px;
+}
+.muv189-header {
+  height: 159px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #fff;
+  overflow: hidden;
+}
+.muv189-header > section {
+  display: flex;
+  height: 107px;
+  padding: 15px 22px;
+  align-items: center;
+  justify-content: space-between;
+}
+.muv189-header span {
+  display: inline-block;
+  margin-right: 7px;
+  padding: 4px 10px;
+  border-radius: 99px;
+  background: #edf8fa;
+  color: #087b9f;
+  font-size: 9px;
+  font-weight: 900;
+}
+.muv189-header h1 {
+  margin-top: 9px;
+  font-size: 28px;
+  line-height: 1;
+  font-weight: 900;
+}
+.muv189-header p {
+  margin-top: 8px;
+  color: #52617a;
+  font-size: 13px;
+}
+.muv189-header aside {
+  display: flex;
+  gap: 14px;
+}
+.muv189-header aside b {
+  height: 40px;
+  padding: 11px 15px;
+  border: 1px solid var(--line);
+  border-radius: 99px;
+}
+.muv189-header > nav {
+  display: flex;
+  height: 52px;
+  padding: 0 20px;
+  align-items: center;
+  border-top: 1px solid var(--line);
+}
+.muv189-header > nav > button {
+  display: flex;
+  height: 52px;
+  padding: 0 24px;
+  align-items: center;
+  gap: 8px;
+  border: 0;
+  border-bottom: 4px solid transparent;
+  background: #fff;
+  font-size: 13px;
+  font-weight: 800;
+}
+.muv189-header > nav > button.active {
+  color: #087bd6;
+  border-bottom-color: #087bd6;
+}
+.muv189-header > nav i {
+  font-style: normal;
+}
+.muv189-header > nav > div {
+  display: flex;
+  margin-left: auto;
+  gap: 10px;
+}
+.muv189-header > nav > div button {
+  display: flex;
+  height: 39px;
+  padding: 0 17px;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+}
+.muv189-header svg {
+  width: 15px;
+}
+.muv189-header nav output {
+  color: #087b4d;
+}
+.muv189-main {
+  display: grid;
+  height: 421px;
+  margin-top: 13px;
+  grid-template-columns: 2fr 1fr;
+  gap: 9px;
+}
+.muv189-model,
+.muv189-observe {
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+}
+.muv189-main h2 {
+  font-size: 13px;
+}
+.muv189-model > section {
+  display: grid;
+  height: 347px;
+  margin-top: 7px;
+  grid-template-columns: 1.85fr 1fr;
+  gap: 12px;
+}
+.muv189-graph {
+  display: block;
+  width: 100%;
+  height: 347px;
+}
+.muv189-graph .axis {
+  stroke: #40536a;
+}
+.muv189-graph .triangle {
+  fill: #7544da33;
+}
+.muv189-graph .vector {
+  stroke: #078cae;
+  stroke-width: 4;
+}
+.muv189-graph .x-component {
+  stroke: #1677e8;
+  stroke-width: 2;
+  stroke-dasharray: 7 5;
+}
+.muv189-graph .y-component {
+  stroke: #7c3aed;
+  stroke-width: 2;
+  stroke-dasharray: 7 5;
+}
+.muv189-graph .tip {
+  fill: #078cae;
+}
+.muv189-graph text {
+  font-size: 11px;
+}
+.muv189-graph .vector-label {
+  fill: #078cae;
+  font-size: 14px;
+  font-weight: 900;
+}
+.muv189-graph .x-label {
+  fill: #1677e8;
+  font-size: 16px;
+}
+.muv189-graph .y-label,
+.muv189-graph .angle-label {
+  fill: #7c3aed;
+  font-size: 16px;
+}
+.muv189-model > section > aside {
+  display: grid;
+  grid-template-rows: 210px 127px;
+  gap: 10px;
+}
+.muv189-controls,
+.muv189-pythagorean {
+  padding: 13px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+}
+.muv189-controls label {
+  display: grid;
+  margin-top: 15px;
+  grid-template-columns: 38px 22px 1fr 18px 55px;
+  align-items: center;
+  gap: 5px;
+}
+.muv189-controls input[type="range"] {
+  width: 100%;
+  accent-color: #4d65e8;
+}
+.muv189-controls input[type="number"] {
+  width: 55px;
+  height: 31px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  text-align: center;
+}
+.muv189-controls footer {
+  display: flex;
+  margin-top: 17px;
+  align-items: center;
+  justify-content: space-between;
+}
+.muv189-controls footer input {
+  width: 36px;
+  height: 19px;
+  accent-color: #0796b5;
+}
+.muv189-pythagorean p {
+  margin-top: 6px;
+}
+.muv189-triangle {
+  width: 100%;
+  height: 83px;
+}
+.muv189-triangle polygon {
+  fill: none;
+  stroke: #0796b5;
+  stroke-width: 3;
+}
+.muv189-triangle circle {
+  fill: #7544da;
+}
+.muv189-triangle text {
+  font-size: 11px;
+}
+.muv189-triangle .x {
+  fill: #1677e8;
+}
+.muv189-triangle .y {
+  fill: #7c3aed;
+}
+.muv189-triangle .v {
+  fill: #0796b5;
+  font-size: 15px;
+  font-weight: 900;
+}
+.muv189-model > footer {
+  display: flex;
+  height: 37px;
+  margin-top: 5px;
+  padding: 0 18px;
+  align-items: center;
+  justify-content: space-around;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.muv189-model > footer span::before {
+  display: inline-block;
+  width: 31px;
+  height: 3px;
+  margin-right: 8px;
+  background: #078cae;
+  vertical-align: middle;
+  content: "";
+}
+.muv189-model > footer span:nth-child(2)::before {
+  border-top: 3px dashed #1677e8;
+  background: none;
+}
+.muv189-model > footer span:last-child::before {
+  border-top: 3px dashed #7c3aed;
+  background: none;
+}
+.muv189-observe > h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.muv189-observe > h2 svg {
+  width: 15px;
+  color: #087bd6;
+}
+.muv189-observe > section {
+  display: grid;
+  height: 187px;
+  grid-template-columns: 1fr 1.15fr;
+}
+.muv189-observe > section > div h3 {
+  margin-top: 16px;
+}
+.muv189-gauge {
+  width: 100%;
+  height: 145px;
+}
+.muv189-gauge path {
+  fill: none;
+  stroke-width: 10;
+  stroke-linecap: round;
+}
+.muv189-gauge .track {
+  stroke: #e8edf2;
+}
+.muv189-gauge .value {
+  stroke: #0796b5;
+}
+.muv189-gauge text {
+  text-anchor: middle;
+  font-size: 15px;
+}
+.muv189-gauge .number {
+  font-size: 26px;
+  font-weight: 900;
+}
+.muv189-observe > section > article {
+  padding-top: 27px;
+}
+.muv189-observe > section > article p {
+  margin-top: 10px;
+  font-size: 15px;
+}
+.muv189-observe > section > article b {
+  display: block;
+  margin-top: 14px;
+}
+.muv189-observe > section > article output {
+  display: block;
+  margin-top: 6px;
+  color: #7c3aed;
+  font-size: 16px;
+}
+.muv189-observe > article {
+  display: grid;
+  height: 177px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  grid-template-columns: 1.15fr 1fr;
+}
+.muv189-observe > article h3 {
+  font-size: 13px;
+}
+.muv189-observe > article > div:first-child output {
+  display: block;
+  margin-top: 10px;
+  padding: 16px 8px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  text-align: center;
+  font-size: 14px;
+}
+.muv189-unit-circle {
+  width: 100%;
+  height: 130px;
+}
+.muv189-unit-circle > circle:first-child {
+  fill: none;
+  stroke: #8092aa;
+}
+.muv189-unit-circle line {
+  stroke: #8092aa;
+}
+.muv189-unit-circle .unit-vector {
+  stroke: #0796b5;
+  stroke-width: 3;
+}
+.muv189-unit-circle .unit-tip {
+  fill: #0796b5;
+}
+.muv189-unit-circle text {
+  fill: #7c3aed;
+  font-size: 10px;
+}
+.muv189-observe > article > div:last-child {
+  text-align: center;
+}
+.muv189-lower {
+  display: grid;
+  height: 208px;
+  margin-top: 12px;
+  grid-template-columns: 1fr 1fr 1.28fr;
+  gap: 9px;
+}
+.muv189-lower > article {
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+}
+.muv189-lower h2 {
+  font-size: 13px;
+}
+.muv189-lower p {
+  margin-top: 10px;
+}
+.muv189-lower > article > output {
+  display: block;
+  margin-top: 18px;
+  padding: 10px;
+  background: #f8fafc;
+  font-size: 14px;
+}
+.muv189-lower > article:nth-child(2) p {
+  margin-top: 15px;
+}
+.muv189-lower > article:nth-child(2) footer {
+  margin-top: 12px;
+  padding: 10px;
+  border-radius: 7px;
+  background: #f5efff;
+  color: #7c3aed;
+}
+.muv189-lower > article:last-child > section {
+  display: flex;
+  margin-top: 12px;
+  gap: 16px;
+}
+.muv189-lower > article:last-child label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.muv189-lower > article:last-child input {
+  width: 110px;
+  height: 36px;
+  padding: 0 9px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+}
+.muv189-lower > article:last-child label:last-child input {
+  width: 83px;
+}
+.muv189-lower > article:last-child > div {
+  display: flex;
+  margin-top: 13px;
+  justify-content: space-between;
+}
+.muv189-lower > article:last-child button {
+  display: flex;
+  height: 39px;
+  padding: 0 23px;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+}
+.muv189-lower > article:last-child button:first-child {
+  color: #fff;
+  border: 0;
+  background: #087bd6;
+}
+.muv189-lower > article:last-child button svg {
+  width: 14px;
+}
+.muv189-lower > article:last-child > output,
+.muv189-lower > article:last-child > strong {
+  display: block;
+  margin-top: 5px;
+  color: #087b4d;
+}
+.muv189-nav {
+  display: flex;
+  height: 75px;
+  margin-top: 10px;
+  padding: 0 25px;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+}
+.muv189-nav a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: inherit;
+  text-decoration: none;
+}
+.muv189-nav a:last-child {
+  text-align: right;
+}
+.muv189-nav span {
+  display: grid;
+}
+.muv189-nav svg {
+  width: 15px;
+}
+@media (max-width: 900px) {
+  .muv189-page {
+    width: 100%;
+    min-height: auto;
+    margin: 0;
+  }
+  .muv189-header,
+  .muv189-main,
+  .muv189-lower,
+  .muv189-nav {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .muv189-header aside {
+    display: none;
+  }
+  .muv189-main,
+  .muv189-lower {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .muv189-model > section {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+}
