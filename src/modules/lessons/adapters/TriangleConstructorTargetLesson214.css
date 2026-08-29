@@ -1,0 +1,28 @@
+.triangle214-page,
+.triangle214-page * {
+  letter-spacing: 0;
+}
+
+@media (min-width: 960px) and (max-width: 1120px) {
+  body:has(.triangle214-page) {
+    overflow: hidden;
+  }
+
+  body:has(.triangle214-page) [data-testid="desktop-sidebar"] {
+    width: 219px;
+  }
+
+  body:has(.triangle214-page) #main-content {
+    padding-left: 20px;
+    padding-right: 16px;
+  }
+
+  body:has(.triangle214-page) footer[aria-label="Site footer"] {
+    height: 126px;
+  }
+
+  .triangle214-page > .sr-only,
+  .triangle214-page ~ .lesson-adjacent-nav {
+    display: none;
+  }
+}

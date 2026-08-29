@@ -21,6 +21,7 @@ import {
   type PointerEvent as ReactPointerEvent,
 } from "react";
 import type { LessonAdapterProps } from "../types";
+import "./TriangleConstructorTargetLesson214.css";
 
 type Point = { x: number; y: number };
 type Vertices = { a: Point; b: Point; c: Point };
@@ -69,6 +70,8 @@ export default function TriangleConstructorTargetLesson214({
   const [practiceFeedback, setPracticeFeedback] = useState<
     "idle" | "correct" | "incorrect"
   >("idle");
+  const [activeStage, setActiveStage] = useState(0);
+  const [fullscreenCount, setFullscreenCount] = useState(0);
   const surfaceRef = useRef<HTMLElement>(null);
   const validity = constructionValidity(mode, inputs);
   const measures = useMemo(() => triangleMeasures(vertices), [vertices]);
@@ -82,6 +85,8 @@ export default function TriangleConstructorTargetLesson214({
     setPracticeIndex(0);
     setPracticeFeedback("idle");
     setShareStatus("");
+    setActiveStage(0);
+    setFullscreenCount(0);
     onInteraction();
   };
   useEffect(() => {
@@ -92,6 +97,8 @@ export default function TriangleConstructorTargetLesson214({
     setPan({ x: 0, y: 0 });
     setPracticeIndex(0);
     setPracticeFeedback("idle");
+    setActiveStage(0);
+    setFullscreenCount(0);
   }, [resetToken]);
 
   const setConstructionMode = (nextMode: Mode) => {
@@ -185,6 +192,7 @@ export default function TriangleConstructorTargetLesson214({
     onInteraction();
   };
   const fullscreen = () => {
+    setFullscreenCount((count) => count + 1);
     void surfaceRef.current?.requestFullscreen?.();
     onInteraction();
   };
@@ -210,12 +218,32 @@ export default function TriangleConstructorTargetLesson214({
   return (
     <section
       ref={surfaceRef}
-      className="space-y-3"
+      className="triangle214-page space-y-3"
       style={{ marginTop: -9 }}
       data-testid="dynamic-geometry-mockup-0271"
       data-dedicated-lesson="214"
       data-object-model="triangle-construction"
       data-direct-interaction="true"
+      data-vertices={Object.entries(vertices)
+        .map(([key, point]) => `${key}:${point.x}:${point.y}`)
+        .join("|")}
+      data-inputs={`${inputs.ab}:${inputs.ac}:${inputs.bc}:${inputs.angleA}:${inputs.angleB}`}
+      data-mode={mode}
+      data-feasible={validity.feasible}
+      data-ab={measures.ab.toFixed(4)}
+      data-ac={measures.ac.toFixed(4)}
+      data-bc={measures.bc.toFixed(4)}
+      data-angle-a={measures.angleA.toFixed(4)}
+      data-perimeter={measures.perimeter.toFixed(4)}
+      data-area={measures.area.toFixed(4)}
+      data-side-class={measures.sideClass}
+      data-angle-class={measures.angleClass}
+      data-tool={tool}
+      data-pan={`${pan.x}:${pan.y}`}
+      data-stage={activeStage}
+      data-fullscreen-count={fullscreenCount}
+      data-practice-index={practiceIndex}
+      data-practice-feedback={practiceFeedback}
       aria-label="Triangle Constructor dedicated interactive geometry model"
     >
       <header className="rounded-2xl border border-slate-200 bg-white px-5 py-[18px] shadow-sm">
@@ -297,13 +325,16 @@ export default function TriangleConstructorTargetLesson214({
               type="button"
               key={label}
               onClick={() => {
+                setActiveStage(index);
                 document
                   .getElementById(`triangle-${index}`)
                   ?.scrollIntoView({ behavior: "smooth", block: "center" });
                 onInteraction();
               }}
               className={
-                index === 0 ? "bg-cyan-600 text-white" : "text-slate-600"
+                activeStage === index
+                  ? "bg-cyan-600 text-white"
+                  : "text-slate-600"
               }
             >
               {label}

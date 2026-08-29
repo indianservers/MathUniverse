@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **196 of 200 lessons completed; 4 pending.**
+Dedicated rebuild target: **197 of 200 lessons completed; 3 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -182,6 +182,7 @@ Dedicated rebuild target: **196 of 200 lessons completed; 4 pending.**
 | 0268   | 211 Angle Bisector | Complete | Dedicated three-point angle model with physical B/C and practice-arm drags, live normalized bisector, derived half angles, real Select/Pan/Compass tools, construction overlays, generated practice, and exact 1059x1485 framing |
 | 0269   | 212 Tangent | Complete | Dedicated circle/contact/tangent model with physical O/T drags, constrained and free states, live distance/power invariants, real secant/grid/zoom/stage/fullscreen controls, generated positions, and exact 1024x1536 framing |
 | 0270   | 213 Best Fit Line | Complete | Dedicated eight-point least-squares model with physical point/line drags, real m/b controls, residual/SSE/R-squared calculations, reject/accept grading, generated datasets, stateful stages, and exact 1534x1025 framing |
+| 0271   | 214 Triangle Constructor | Complete | Dedicated SSS/SAS/ASA construction model with physical vertex drag, live side/angle/area/perimeter/classification calculations, infeasible-state handling, real pan/stages/fullscreen, graded SAS practice, and exact 1029x1528 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2757,3 +2758,11 @@ Audited and strengthened the dedicated `eight-observation-least-squares-regressi
 The exact 1534x1025 frame matches the target: sidebar width 270, content x=296-1510, header y=107-165, stages y=177-241, model/results y=259-726, teaching/challenge y=741-931, and navigation y=946-1007. The target-specific breadcrumb now reads `Home > Lessons > Coordinate Geometry > Best Fit Line`, and the site footer is absent as shown in the mockup. Automated validation covers point and line drags, both sliders, all visibility controls, grading paths, generated datasets, navigation controls, and sharing with no overflow or console warnings or errors.
 
 Evidence: `0270-reference.png`, `0270-desktop.png`, `0270-dedicated-target-validation.json`.
+
+## Lesson 214 / Mockup 0271 - Triangle Constructor
+
+Audited and strengthened the dedicated `sss-sas-asa-triangle-construction` model against target 0271. Physical vertex drag updates all sides, angles, area, perimeter, and side/angle classification. SSS, SAS, and ASA controls construct their own geometry; an impossible SSS `6, 5.69, 12` state is rejected without replacing the last valid triangle, while changing BC to 8 constructs a valid new triangle. Select, Pan, Fit view, fullscreen invocation, all five stateful stages, language, Share, Reset, construction help, New values, reject/accept SAS practice, and routes are functional.
+
+The exact 1029x1528 frame matches the target: sidebar width 219, content x=239-1013, header y=106-274.5, stages y=282.5-326.5, interactive construction y=338.5-1053, worked example y=1054-1221, practice y=1233-1323, navigation y=1335-1391, and footer y=1402-1528. There is no horizontal overflow and there are no console warnings or errors. Two mockup defects are intentionally not reproduced: its H1 leaks `function Object() { [native code] }`, and its SAS `AB=6`, `AC=5`, `A=60 degrees` model combines correct area 12.99 with incompatible `BC=5`, perimeter 16, and `C=(0,4)` labels. The lesson uses the correct derived `BC=sqrt(31)` and perimeter about 16.57.
+
+Evidence: `0271-reference.png`, `0271-desktop.png`, `0271-dedicated-target-validation.json`.

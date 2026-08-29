@@ -1,15 +1,320 @@
-[
-  {
-    "id": 214,
-    "mockup": 271,
-    "route": "/lessons/geometry/214-triangle-constructor",
-    "width": 1029,
-    "height": 1528,
-    "status": "Correct: target triangle constructed.",
-    "consoleErrors": [],
-    "scrollHeight": 1528,
-    "surfaceBottom": 1391,
-    "objectModel": "triangle-construction",
-    "overflowing": 0
-  }
-]
+{
+  "mockup": "0271",
+  "lessonId": 214,
+  "checks": {
+    "initial": {
+      "vertices": "a:-3:0|b:3:0|c:-0.5:4.3301",
+      "inputs": "6:5:5.5677643628300215:60:49.11",
+      "mode": "SAS",
+      "feasible": "true",
+      "ab": "6.0000",
+      "ac": "5.0000",
+      "bc": "5.5677",
+      "angle-a": "59.9998",
+      "perimeter": "16.5677",
+      "area": "12.9903",
+      "side-class": "Scalene",
+      "angle-class": "Acute",
+      "tool": "select",
+      "pan": "0:0",
+      "stage": "0",
+      "fullscreen-count": "0",
+      "practice-index": "0",
+      "practice-feedback": "idle"
+    },
+    "vertexDrag": {
+      "vertices": "a:-3:0|b:3:0|c:0.632817220711595:4.3765828535115645",
+      "inputs": "6:5.687867652534661:4.975744344739891:50.30536227975733:61.592167538735794",
+      "mode": "SAS",
+      "feasible": "true",
+      "ab": "6.0000",
+      "ac": "5.6879",
+      "bc": "4.9757",
+      "angle-a": "50.3054",
+      "perimeter": "16.6636",
+      "area": "13.1297",
+      "side-class": "Scalene",
+      "angle-class": "Acute",
+      "tool": "select",
+      "pan": "0:0",
+      "stage": "0",
+      "fullscreen-count": "0",
+      "practice-index": "0",
+      "practice-feedback": "idle"
+    },
+    "panned": {
+      "vertices": "a:-3:0|b:3:0|c:0.632817220711595:4.3765828535115645",
+      "inputs": "6:5.687867652534661:4.975744344739891:50.30536227975733:61.592167538735794",
+      "mode": "SAS",
+      "feasible": "true",
+      "ab": "6.0000",
+      "ac": "5.6879",
+      "bc": "4.9757",
+      "angle-a": "50.3054",
+      "perimeter": "16.6636",
+      "area": "13.1297",
+      "side-class": "Scalene",
+      "angle-class": "Acute",
+      "tool": "pan",
+      "pan": "38:24",
+      "stage": "0",
+      "fullscreen-count": "0",
+      "practice-index": "0",
+      "practice-feedback": "idle"
+    },
+    "fittedView": {
+      "vertices": "a:-3:0|b:3:0|c:0.632817220711595:4.3765828535115645",
+      "inputs": "6:5.687867652534661:4.975744344739891:50.30536227975733:61.592167538735794",
+      "mode": "SAS",
+      "feasible": "true",
+      "ab": "6.0000",
+      "ac": "5.6879",
+      "bc": "4.9757",
+      "angle-a": "50.3054",
+      "perimeter": "16.6636",
+      "area": "13.1297",
+      "side-class": "Scalene",
+      "angle-class": "Acute",
+      "tool": "pan",
+      "pan": "0:0",
+      "stage": "0",
+      "fullscreen-count": "0",
+      "practice-index": "0",
+      "practice-feedback": "idle"
+    },
+    "fullscreen": {
+      "vertices": "a:-3:0|b:3:0|c:0.632817220711595:4.3765828535115645",
+      "inputs": "6:5.687867652534661:4.975744344739891:50.30536227975733:61.592167538735794",
+      "mode": "SAS",
+      "feasible": "true",
+      "ab": "6.0000",
+      "ac": "5.6879",
+      "bc": "4.9757",
+      "angle-a": "50.3054",
+      "perimeter": "16.6636",
+      "area": "13.1297",
+      "side-class": "Scalene",
+      "angle-class": "Acute",
+      "tool": "pan",
+      "pan": "0:0",
+      "stage": "0",
+      "fullscreen-count": "1",
+      "practice-index": "0",
+      "practice-feedback": "idle"
+    },
+    "invalidSss": {
+      "vertices": "a:-3:0|b:3:0|c:0.632817220711595:4.3765828535115645",
+      "inputs": "6:5.687867652534661:12:50.30536227975733:61.592167538735794",
+      "mode": "SSS",
+      "feasible": "false",
+      "ab": "6.0000",
+      "ac": "5.6879",
+      "bc": "4.9757",
+      "angle-a": "50.3054",
+      "perimeter": "16.6636",
+      "area": "13.1297",
+      "side-class": "Scalene",
+      "angle-class": "Acute",
+      "tool": "pan",
+      "pan": "0:0",
+      "stage": "0",
+      "fullscreen-count": "1",
+      "practice-index": "0",
+      "practice-feedback": "idle"
+    },
+    "validSss": {
+      "vertices": "a:-3:0|b:3:0|c:-2.6373467972708204:5.6762946617754455",
+      "inputs": "6:5.687867652534661:8:50.30536227975733:61.592167538735794",
+      "mode": "SSS",
+      "feasible": "true",
+      "ab": "6.0000",
+      "ac": "5.6879",
+      "bc": "8.0000",
+      "angle-a": "86.3444",
+      "perimeter": "19.6879",
+      "area": "17.0289",
+      "side-class": "Scalene",
+      "angle-class": "Acute",
+      "tool": "pan",
+      "pan": "0:0",
+      "stage": "0",
+      "fullscreen-count": "1",
+      "practice-index": "0",
+      "practice-feedback": "idle"
+    },
+    "asa": {
+      "vertices": "a:-3:0|b:3:0|c:-2.6373467972708204:5.6762946617754455",
+      "inputs": "6:5.687867652534661:7.999999999999999:86.34439420453235:45.19724325273976",
+      "mode": "ASA",
+      "feasible": "true",
+      "ab": "6.0000",
+      "ac": "5.6879",
+      "bc": "8.0000",
+      "angle-a": "86.3444",
+      "perimeter": "19.6879",
+      "area": "17.0289",
+      "side-class": "Scalene",
+      "angle-class": "Acute",
+      "tool": "pan",
+      "pan": "0:0",
+      "stage": "0",
+      "fullscreen-count": "1",
+      "practice-index": "0",
+      "practice-feedback": "idle"
+    },
+    "rejected": {
+      "vertices": "a:-3:0|b:3:0|c:-0.5:4.3301",
+      "inputs": "6:5:5.5677643628300215:60:49.11",
+      "mode": "SAS",
+      "feasible": "true",
+      "ab": "6.0000",
+      "ac": "5.0000",
+      "bc": "5.5677",
+      "angle-a": "59.9998",
+      "perimeter": "16.5677",
+      "area": "12.9903",
+      "side-class": "Scalene",
+      "angle-class": "Acute",
+      "tool": "select",
+      "pan": "0:0",
+      "stage": "0",
+      "fullscreen-count": "0",
+      "practice-index": "0",
+      "practice-feedback": "incorrect"
+    },
+    "accepted": {
+      "vertices": "a:-4:0|b:4:0|c:0.9497474683058327:4.949747468305832",
+      "inputs": "8:7:5.5677643628300215:45:49.11",
+      "mode": "SAS",
+      "feasible": "true",
+      "ab": "8.0000",
+      "ac": "7.0000",
+      "bc": "5.8141",
+      "angle-a": "45.0000",
+      "perimeter": "20.8141",
+      "area": "19.7990",
+      "side-class": "Scalene",
+      "angle-class": "Acute",
+      "tool": "select",
+      "pan": "0:0",
+      "stage": "0",
+      "fullscreen-count": "0",
+      "practice-index": "0",
+      "practice-feedback": "correct"
+    },
+    "newValues": {
+      "vertices": "a:-4:0|b:4:0|c:0.9497474683058327:4.949747468305832",
+      "inputs": "8:7:5.5677643628300215:45:49.11",
+      "mode": "SAS",
+      "feasible": "true",
+      "ab": "8.0000",
+      "ac": "7.0000",
+      "bc": "5.8141",
+      "angle-a": "45.0000",
+      "perimeter": "20.8141",
+      "area": "19.7990",
+      "side-class": "Scalene",
+      "angle-class": "Acute",
+      "tool": "select",
+      "pan": "0:0",
+      "stage": "0",
+      "fullscreen-count": "0",
+      "practice-index": "1",
+      "practice-feedback": "idle"
+    },
+    "stages": [
+      {
+        "expected": "1",
+        "actual": "1"
+      },
+      {
+        "expected": "2",
+        "actual": "2"
+      },
+      {
+        "expected": "3",
+        "actual": "3"
+      },
+      {
+        "expected": "4",
+        "actual": "4"
+      },
+      {
+        "expected": "0",
+        "actual": "0"
+      }
+    ],
+    "language": "Hindi (हिन्दी)",
+    "share": "Triangle: AB=8.00, AC=7.00, BC=5.81, angles=45.00°, 58.36°, 76.64°, Scalene Acute"
+  },
+  "navigation": {
+    "previousHref": "/lessons/geometry/213-best-fit-line",
+    "nextHref": "/lessons/geometry/215-regular-polygon"
+  },
+  "metrics": {
+    "document": {
+      "width": 1029,
+      "height": 1528
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 219,
+      "height": 1528,
+      "bottom": 1528
+    },
+    "header": {
+      "top": 106,
+      "left": 239,
+      "width": 774,
+      "height": 168.5,
+      "bottom": 274.5
+    },
+    "stages": {
+      "top": 282.5,
+      "left": 239,
+      "width": 774,
+      "height": 44,
+      "bottom": 326.5
+    },
+    "interactive": {
+      "top": 338.5,
+      "left": 239,
+      "width": 774,
+      "height": 714.5,
+      "bottom": 1053
+    },
+    "worked": {
+      "top": 1054,
+      "left": 239,
+      "width": 774,
+      "height": 167,
+      "bottom": 1221
+    },
+    "practice": {
+      "top": 1233,
+      "left": 239,
+      "width": 774,
+      "height": 90,
+      "bottom": 1323
+    },
+    "adjacent": {
+      "top": 1335,
+      "left": 239,
+      "width": 774,
+      "height": 56,
+      "bottom": 1391
+    },
+    "footer": {
+      "top": 1402,
+      "left": 219,
+      "width": 810,
+      "height": 126,
+      "bottom": 1528
+    }
+  },
+  "consoleMessages": [],
+  "note": "The mockup mixes an SAS 6-5-60 model and area 12.99 with incompatible BC=5, perimeter=16, and C=(0,4) labels. The lesson reports the mathematically consistent derived values.",
+  "passed": true
+}
