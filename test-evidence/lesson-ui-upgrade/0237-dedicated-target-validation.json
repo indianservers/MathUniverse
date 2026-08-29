@@ -1,0 +1,217 @@
+{
+  "mockup": "0237",
+  "lessonId": 180,
+  "route": "/lessons/geometry/180-polar-coordinates",
+  "checks": {
+    "initial": {
+      "r": "5.000",
+      "theta": "53.130",
+      "x": "3.000",
+      "y": "4.000",
+      "quadrant": "I",
+      "stage": "0",
+      "tab": "0",
+      "status": ""
+    },
+    "inputs": {
+      "r": "4.000",
+      "theta": "135.000",
+      "x": "-2.828",
+      "y": "2.828",
+      "quadrant": "II",
+      "stage": "0",
+      "tab": "0",
+      "status": ""
+    },
+    "cartesianKeyboard": {
+      "r": "3.827",
+      "theta": "137.647",
+      "x": "-2.828",
+      "y": "2.578",
+      "quadrant": "II",
+      "stage": "0",
+      "tab": "0",
+      "status": ""
+    },
+    "cartesianDrag": {
+      "r": "1.414",
+      "theta": "135.000",
+      "x": "-1.000",
+      "y": "1.000",
+      "quadrant": "II",
+      "stage": "0",
+      "tab": "0",
+      "status": ""
+    },
+    "polarKeyboard": {
+      "r": "1.414",
+      "theta": "140.000",
+      "x": "-1.083",
+      "y": "0.909",
+      "quadrant": "II",
+      "stage": "0",
+      "tab": "0",
+      "status": ""
+    },
+    "polarDrag": {
+      "r": "3.500",
+      "theta": "-165.500",
+      "x": "-3.389",
+      "y": "-0.876",
+      "quadrant": "III",
+      "stage": "0",
+      "tab": "0",
+      "status": ""
+    },
+    "quick": {
+      "r": "3.500",
+      "theta": "-45.000",
+      "x": "2.475",
+      "y": "-2.475",
+      "quadrant": "IV",
+      "stage": "0",
+      "tab": "0",
+      "status": ""
+    },
+    "views": {
+      "r": "3.500",
+      "theta": "-45.000",
+      "x": "2.475",
+      "y": "-2.475",
+      "quadrant": "IV",
+      "stage": "4",
+      "tab": "4",
+      "status": ""
+    },
+    "wrong": {
+      "r": "3.500",
+      "theta": "-45.000",
+      "x": "2.475",
+      "y": "-2.475",
+      "quadrant": "IV",
+      "stage": "4",
+      "tab": "4",
+      "status": "Recheck the formulas and signs"
+    },
+    "correct": {
+      "r": "3.500",
+      "theta": "-45.000",
+      "x": "2.475",
+      "y": "-2.475",
+      "quadrant": "IV",
+      "stage": "4",
+      "tab": "4",
+      "status": "Correct polar conversion"
+    },
+    "reset": {
+      "r": "5.000",
+      "theta": "53.130",
+      "x": "3.000",
+      "y": "4.000",
+      "quadrant": "I",
+      "stage": "0",
+      "tab": "0",
+      "status": ""
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/geometry/179-coordinate-transformations",
+    "nextHref": "/lessons/geometry/181-parametric-coordinates"
+  },
+  "metrics": {
+    "viewport": {
+      "width": 997,
+      "height": 1577
+    },
+    "document": {
+      "width": 997,
+      "height": 1577
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "regions": {
+      "page": {
+        "top": 100,
+        "bottom": 1577,
+        "left": 211,
+        "right": 997,
+        "width": 786,
+        "height": 1477
+      },
+      "header": {
+        "top": 100,
+        "bottom": 251,
+        "left": 228,
+        "right": 983,
+        "width": 755,
+        "height": 151
+      },
+      "stages": {
+        "top": 265,
+        "bottom": 317,
+        "left": 228,
+        "right": 983,
+        "width": 755,
+        "height": 52
+      },
+      "tabs": {
+        "top": 328,
+        "bottom": 377,
+        "left": 228,
+        "right": 983,
+        "width": 755,
+        "height": 49
+      },
+      "explore": {
+        "top": 385,
+        "bottom": 958,
+        "left": 228,
+        "right": 983,
+        "width": 755,
+        "height": 573
+      },
+      "cartesian": {
+        "top": 489,
+        "bottom": 775,
+        "left": 252,
+        "right": 482.5,
+        "width": 230.5,
+        "height": 286
+      },
+      "polar": {
+        "top": 489,
+        "bottom": 775,
+        "left": 511.5,
+        "right": 742,
+        "width": 230.5,
+        "height": 286
+      },
+      "learn": {
+        "top": 970,
+        "bottom": 1314,
+        "left": 228,
+        "right": 983,
+        "width": 755,
+        "height": 344
+      },
+      "navigation": {
+        "top": 1326,
+        "bottom": 1392,
+        "left": 228,
+        "right": 983,
+        "width": 755,
+        "height": 66
+      },
+      "footer": {
+        "top": 1406,
+        "bottom": 1534,
+        "left": 228,
+        "right": 983,
+        "width": 755,
+        "height": 128
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

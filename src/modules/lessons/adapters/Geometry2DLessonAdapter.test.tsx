@@ -4,9 +4,8 @@ import { lessonCatalog } from "../catalog/lessonCatalog";
 import Geometry2DLessonAdapter from "./Geometry2DLessonAdapter";
 
 describe("Geometry2DLessonAdapter", () => {
-  it("renders coordinate geometry lessons 180 through 182 with lesson-specific guidance", () => {
+  it("renders coordinate geometry lessons 181 through 182 with lesson-specific guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      180: "Polar conversion",
       181: "Parametric rule",
       182: "Barycentric rule",
     };
@@ -30,6 +29,17 @@ describe("Geometry2DLessonAdapter", () => {
       expect(html, lesson.title).toContain("Avoid:");
       expect(html, lesson.title).not.toContain("Coordinate rule");
     }
+  });
+
+  it("renders polar coordinates as its own bidirectional conversion surface", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 180)!;
+    const html = renderToStaticMarkup(<Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain("geometry-mockup-0237");
+    expect(html).toContain('data-dedicated-lesson="180"');
+    expect(html).toContain('data-testid="polar-cartesian-point"');
+    expect(html).toContain('data-testid="polar-radius-point"');
+    expect(html).toContain("x = r cos θ");
+    expect(html).toContain("Use atan2");
   });
 
   it("renders coordinate transformations as its own polygon mapping surface", () => {

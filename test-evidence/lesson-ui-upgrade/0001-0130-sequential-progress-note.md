@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **162 of 200 lessons completed; 38 pending.**
+Dedicated rebuild target: **163 of 200 lessons completed; 37 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -148,6 +148,7 @@ Dedicated rebuild target: **162 of 200 lessons completed; 38 pending.**
 | 0234   |          177 Point-to-Line Distance | Complete | Dedicated orthogonal-projection model with pointer/keyboard draggable point and line, live foot/distance/formula/path comparison, expand, exact-value practice, and exact 984x1598 framing |
 | 0235   |                178 Coordinate Loci | Complete | Dedicated fixed-focus circle-locus model with constrained pointer/keyboard generator, editable radius, live trace/equation/distance, real graph controls, graded translated-circle practice, and exact 1060x1484 framing |
 | 0236   |      179 Coordinate Transformations | Complete | Dedicated source/image polygon transformation engine with whole-shape and vertex drag, six coordinate mappings, vectors/snap/animation, live tables, graded three-vertex practice, and exact 1039x1513 framing |
+| 0237   |              180 Polar Coordinates | Complete | Dedicated bidirectional Cartesian-polar model with two pointer/keyboard draggable points, editable radius/angle, live conversion/quadrants, quick angles, graded round-trip practice, and exact 997x1577 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2417,3 +2418,17 @@ Evidence:
 - `0236-reference.png`
 - `0236-desktop.png`
 - `0236-dedicated-target-validation.json`
+
+## Lesson 180 / Mockup 0237 - Polar Coordinates
+
+Reworked individually against the target mockup with a dedicated `bidirectional-cartesian-polar-coordinate-conversion` model. Cartesian point P and polar point P are two manipulators over one coordinate state: Cartesian movement recomputes r and theta with atan2, while polar movement recomputes x=r cos(theta) and y=r sin(theta). Both graphs, coordinate cards, formula substitutions, quadrant observation, and highlighted sign rules update together.
+
+Both pointer and keyboard drags, radius and angle sliders/numeric values, eight quick angles, five learning stages, five content tabs, Reset, Share, progress buttons, workspace return, four-field practice grading, and adjacent navigation are working controls. The independent practice verifies `(r,theta)=(7,-30 degrees)` as approximately `(6.062,-3.5)` and then back to `(7,-30 degrees)`.
+
+Final 997x1577 validation verifies the initial 3-4-5 state, edits to `(4,135 degrees)`, keyboard-moves and physically drags the Cartesian point, keyboard-moves and physically drags the polar point, enters Quadrant IV through 315 degrees, exercises all stages/tabs, rejects four zero answers, accepts the complete round trip, resets, and verifies adjacent routes. The comparison loop matches header x=228-983 and y=100-251, stages y=265-317, tabs y=328-377, explorer y=385-958, dual graphs y=489-775, learning cards y=970-1314, navigation y=1326-1392, and footer y=1406-1534. It reports an exact 997x1577 document, no overflow, and zero console warnings or errors.
+
+Evidence:
+
+- `0237-reference.png`
+- `0237-desktop.png`
+- `0237-dedicated-target-validation.json`
