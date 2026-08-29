@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **175 of 200 lessons completed; 25 pending.**
+Dedicated rebuild target: **176 of 200 lessons completed; 24 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -161,6 +161,7 @@ Dedicated rebuild target: **175 of 200 lessons completed; 25 pending.**
 | 0247   |                 190 Dot Product | Complete | Dedicated two-vector dot/angle/projection model with pointer/keyboard drag, linked component controls, snap/axis-lock modes, component and cosine proofs, orthogonality practice, and exact 1149x1369 framing |
 | 0248   |               191 Cross Product | Complete | Dedicated Three.js z-up cross-product model with draggable 3D vector tips, six linked components, oriented-area plane, orientation reversal, camera/overlay/expand controls, determinant, live normal and magnitude, practice grading, and exact 1148x1370 framing |
 | 0249   |           192 Vector Projection | Complete | Dedicated two-vector scalar/vector projection model with pointer/keyboard tips, angle rotation, selectable tools, exact components, projection/residual decomposition, live diagram, three graded practices, and exact 1148x1370 framing |
+| 0250   |         193 Linear Combinations | Complete | Dedicated coefficient-span model with live a/b scaling, editable basis vectors, draggable/solvable target, scaled/parallelogram/span controls, determinant independence status, and exact 1148x1370 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2594,3 +2595,9 @@ Evidence:
 - `0249-reference.png`
 - `0249-desktop.png`
 - `0249-dedicated-target-validation.json`
+
+## Lesson 193 / Mockup 0250 - Linear Combinations
+
+Reworked individually with a dedicated `linear-combination-coefficients-span-determinant-target-solver` model. Coefficients, basis vectors, scaled vectors, resultant, determinant, independence, span, and magnitude share one state. Real coefficient/vector/result edits, target solving, scaled-tip/parallelogram/span toggles, tabs, language, share, reset, workspace, and navigation are validated at 1148x1370.
+
+Evidence: `0250-reference.png`, `0250-desktop.png`, `0250-dedicated-target-validation.json`.

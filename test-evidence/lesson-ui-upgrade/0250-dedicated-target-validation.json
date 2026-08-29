@@ -1,0 +1,140 @@
+{
+  "mockup": "0250",
+  "lessonId": 193,
+  "checks": {
+    "initial": {
+      "u": "3:2",
+      "v": "-1:3",
+      "a": "1.5",
+      "b": "-0.5",
+      "w": "5:1.5",
+      "determinant": "11",
+      "independent": "true",
+      "scaled": "true",
+      "parallelogram": "true",
+      "span": "true",
+      "tab": "0",
+      "language": "English (English)",
+      "shared": "false"
+    },
+    "graphBytes": 25956,
+    "coefficients": {
+      "u": "3:2",
+      "v": "-1:3",
+      "a": "2",
+      "b": "1",
+      "w": "5:7",
+      "determinant": "11",
+      "independent": "true",
+      "scaled": "true",
+      "parallelogram": "true",
+      "span": "true",
+      "tab": "0",
+      "language": "English (English)",
+      "shared": "false"
+    },
+    "vectors": {
+      "u": "4:2",
+      "v": "-1:2",
+      "a": "2",
+      "b": "1",
+      "w": "7:6",
+      "determinant": "10",
+      "independent": "true",
+      "scaled": "true",
+      "parallelogram": "true",
+      "span": "true",
+      "tab": "0",
+      "language": "English (English)",
+      "shared": "false"
+    },
+    "actions": {
+      "u": "4:2",
+      "v": "-1:2",
+      "a": "2",
+      "b": "1",
+      "w": "7:6",
+      "determinant": "10",
+      "independent": "true",
+      "scaled": "false",
+      "parallelogram": "false",
+      "span": "false",
+      "tab": "0",
+      "language": "हिन्दी (Hindi)",
+      "shared": "true"
+    },
+    "target": {
+      "u": "4:2",
+      "v": "-1:2",
+      "a": "1.5",
+      "b": "2",
+      "w": "4:7",
+      "determinant": "10",
+      "independent": "true",
+      "scaled": "false",
+      "parallelogram": "false",
+      "span": "false",
+      "tab": "0",
+      "language": "हिन्दी (Hindi)",
+      "shared": "true"
+    },
+    "reset": {
+      "u": "3:2",
+      "v": "-1:3",
+      "a": "1.5",
+      "b": "-0.5",
+      "w": "5:1.5",
+      "determinant": "11",
+      "independent": "true",
+      "scaled": "false",
+      "parallelogram": "false",
+      "span": "false",
+      "tab": "0",
+      "language": "हिन्दी (Hindi)",
+      "shared": "true"
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/geometry/192-vector-projection",
+    "nextHref": "/lessons/geometry/194-vector-equation-of-a-line"
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1148,
+      "height": 1370
+    },
+    "document": {
+      "width": 1148,
+      "height": 1370
+    },
+    "overflow": false,
+    "regions": {
+      "header": {
+        "top": 105,
+        "height": 165
+      },
+      "tabs": {
+        "top": 286,
+        "height": 58
+      },
+      "main": {
+        "top": 360,
+        "height": 688
+      },
+      "status": {
+        "top": 1062,
+        "height": 103
+      },
+      "nav": {
+        "top": 1179,
+        "height": 61
+      },
+      "footer": {
+        "top": 1254,
+        "height": 86
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
