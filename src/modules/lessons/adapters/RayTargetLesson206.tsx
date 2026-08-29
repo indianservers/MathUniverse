@@ -120,6 +120,13 @@ export default function RayTargetLesson206({
       data-dedicated-lesson="206"
       data-object-model="ray"
       data-direct-interaction="true"
+      data-a={`${a.x}:${a.y}`}
+      data-b={`${b.x}:${b.y}`}
+      data-grid={grid}
+      data-zoom={zoom}
+      data-stage={stage}
+      data-slope={measures.slope ?? "undefined"}
+      data-angle={measures.angle}
       aria-label="Ray dedicated interactive geometry model"
     >
       <header className="rounded-lg border border-slate-200 bg-white p-3 shadow-sm">

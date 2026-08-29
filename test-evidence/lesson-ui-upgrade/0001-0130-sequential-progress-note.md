@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **188 of 200 lessons completed; 12 pending.**
+Dedicated rebuild target: **189 of 200 lessons completed; 11 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -174,6 +174,7 @@ Dedicated rebuild target: **188 of 200 lessons completed; 12 pending.**
 | 0260   | 203 Line Through Two Points | Complete | Dedicated unique-infinite-line model with decimal endpoint drags, vertical/coincident handling, exact rational slope, live equations, pan/zoom/fit/display controls, editable challenge, construction log, and exact 1478x1064 framing |
 | 0261   | 204 Segment | Complete | Dedicated finite-endpoint segment model with snapped/decimal drags, transactional undo/redo, distance and midpoint calculations, line/ray comparison, real tools/stages, graded challenge, solution, and exact 1024x1536 framing |
 | 0262   | 205 Segment with Given Length | Complete | Dedicated start-length-angle endpoint model with independent A/handle drags, fixed-distance invariant, live coordinate rule, real dial/pan/zoom/grid/stages/share, generated practice, compass steps, and exact 1024x1536 framing |
+| 0263   | 206 Ray | Complete | Audited dedicated endpoint-direction ray model with physical A/B drags, one-way extension, exact slope/angle/length, editable objects, grid/zoom/fullscreen/stages/share, graded PQ task, and 1031x1535 capture |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2687,3 +2688,9 @@ Evidence: `0261-reference.png`, `0261-desktop.png`, `0261-dedicated-target-valid
 Reworked individually with a dedicated `start-length-angle-derived-endpoint-compass-invariant` model. Physical A translation and B direction-handle drags preserve the chosen segment length; direct start, distance, and angle inputs derive B from the coordinate rule. The angle dial, grid, pan, zoom, Fit, five lesson stages, language, Share, Reset, two generated practice states, compass-and-straightedge sequence, routes, overflow, console output, and exact 1024x1536 framing are validated.
 
 Evidence: `0262-reference.png`, `0262-desktop.png`, `0262-dedicated-target-validation.json`.
+
+## Lesson 206 / Mockup 0263 - Ray
+
+Audited the existing dedicated `ray` object model one lesson at a time against target 0263. Physical A and B drags, direct endpoint/direction coordinates, one-way infinite extension, live length/slope/angle, grid, zoom, fullscreen action, five stages, Share, Reset, editable object rows, exact PQ practice grading, routes, overflow, and console output are validated. Explicit state telemetry was added so the evidence proves direction and coordinate changes rather than relying on static screenshots.
+
+Evidence: `0263-reference.png`, `0263-desktop.png`, `0263-dedicated-target-validation.json`.
