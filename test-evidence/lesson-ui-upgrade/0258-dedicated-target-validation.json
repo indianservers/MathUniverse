@@ -1,0 +1,171 @@
+{
+  "mockup": "0258",
+  "lessonId": 201,
+  "checks": {
+    "initial": {
+      "a": "-4:2",
+      "b": "4:-1",
+      "midpoint": "0:0.5",
+      "tab": "Observe",
+      "question": "0",
+      "answer": "idle",
+      "reverse": "false",
+      "solution": "false"
+    },
+    "drag": {
+      "a": "-2:4",
+      "b": "4:-1",
+      "midpoint": "1:1.5",
+      "tab": "Observe",
+      "question": "0",
+      "answer": "idle",
+      "reverse": "false",
+      "solution": "false"
+    },
+    "distances": {
+      "am": 3.905124837953328,
+      "mb": 3.905124837953328
+    },
+    "inputs": {
+      "a": "-2:5",
+      "b": "6:-3",
+      "midpoint": "2:1",
+      "tab": "Observe",
+      "question": "0",
+      "answer": "idle",
+      "reverse": "false",
+      "solution": "false"
+    },
+    "reverse": {
+      "a": "6:-3",
+      "b": "-2:5",
+      "midpoint": "2:1",
+      "tab": "Observe",
+      "question": "0",
+      "answer": "idle",
+      "reverse": "true",
+      "solution": "false"
+    },
+    "reset": {
+      "a": "-4:2",
+      "b": "4:-1",
+      "midpoint": "0:0.5",
+      "tab": "Observe",
+      "question": "0",
+      "answer": "idle",
+      "reverse": "false",
+      "solution": "false"
+    },
+    "wrong": {
+      "a": "-4:2",
+      "b": "4:-1",
+      "midpoint": "0:0.5",
+      "tab": "Observe",
+      "question": "0",
+      "answer": "incorrect",
+      "reverse": "false",
+      "solution": "false"
+    },
+    "correct": {
+      "a": "-4:2",
+      "b": "4:-1",
+      "midpoint": "0:0.5",
+      "tab": "Observe",
+      "question": "0",
+      "answer": "correct",
+      "reverse": "false",
+      "solution": "true"
+    },
+    "nextQuestion": {
+      "a": "-4:2",
+      "b": "4:-1",
+      "midpoint": "0:0.5",
+      "tab": "Observe",
+      "question": "1",
+      "answer": "correct",
+      "reverse": "false",
+      "solution": "false"
+    },
+    "tabs": {
+      "a": "-4:2",
+      "b": "4:-1",
+      "midpoint": "0:0.5",
+      "tab": "Observe",
+      "question": "1",
+      "answer": "correct",
+      "reverse": "false",
+      "solution": "false"
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/geometry/200-intersection-point",
+    "nextHref": "/lessons/geometry/202-attach-detach-point"
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "horizontalOverflow": false,
+    "children": [
+      {
+        "tag": "HEADER",
+        "class": "h-[150px] overflow-hidden rounded-xl border border-[#dbe6fb] bg-white shadow-sm",
+        "top": 110,
+        "height": 150,
+        "left": 223,
+        "width": 788
+      },
+      {
+        "tag": "SECTION",
+        "class": "grid h-[510px] overflow-hidden rounded-xl border border-[#dbe6fb] bg-white p-3 shadow-sm lg:grid-cols-[minmax(0,1fr)_275px]",
+        "top": 275,
+        "height": 510,
+        "left": 223,
+        "width": 788
+      },
+      {
+        "tag": "DIV",
+        "class": "grid h-[242px] gap-[14px] overflow-hidden lg:grid-cols-[0.7fr_1.3fr]",
+        "top": 800,
+        "height": 242,
+        "left": 223,
+        "width": 788
+      },
+      {
+        "tag": "SECTION",
+        "class": "grid h-[160px] overflow-hidden rounded-xl border border-[#dbe6fb] bg-white p-4 lg:grid-cols-[1.05fr_1fr_220px]",
+        "top": 1057,
+        "height": 160,
+        "left": 223,
+        "width": 788
+      },
+      {
+        "tag": "SECTION",
+        "class": "grid h-[142px] overflow-hidden rounded-xl border border-[#dbe6fb] bg-white p-4 lg:grid-cols-[1fr_240px]",
+        "top": 1232,
+        "height": 142,
+        "left": 223,
+        "width": 788
+      },
+      {
+        "tag": "FOOTER",
+        "class": "grid h-[48px] items-center rounded-xl border border-[#dbe6fb] bg-white px-3 md:grid-cols-[1fr_1fr_1fr]",
+        "top": 1389,
+        "height": 48,
+        "left": 223,
+        "width": 788
+      },
+      {
+        "tag": "FOOTER",
+        "class": "mid201-site-footer",
+        "top": 1452,
+        "height": 84,
+        "left": 223,
+        "width": 788
+      }
+    ]
+  },
+  "consoleMessages": [],
+  "passed": true
+}

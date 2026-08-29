@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **183 of 200 lessons completed; 17 pending.**
+Dedicated rebuild target: **184 of 200 lessons completed; 16 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -169,6 +169,7 @@ Dedicated rebuild target: **183 of 200 lessons completed; 17 pending.**
 | 0255   | 198 Free Point | Complete | Dedicated independent-point construction model with pointer/keyboard movement, point/select/pan/zoom/delete tools, snap, coordinates, appearance, replayable history, checked Q practice, and exact 1024x1536 framing |
 | 0256   | 199 Point on Object | Complete | Dedicated parent-object projection model with constrained line/circle drags, free-mode release, editable line, live invariant, graph-linked practice, tabs/share, and exact 1024x1536 framing |
 | 0257   | 200 Intersection Point | Complete | Dedicated two-line solver with four draggable endpoints, editable equations, exact intersecting/parallel/coincident classification, real pan/zoom, derived practice, and exact 1024x1536 framing |
+| 0258   | 201 Midpoint or Centre | Complete | Dedicated endpoint-midpoint invariant model with physical A/B drags, editable coordinates, reverse proof, equal-distance validation, navigable lesson tabs, generated practice, and exact 1024x1536 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2650,3 +2651,9 @@ Evidence: `0256-reference.png`, `0256-desktop.png`, `0256-dedicated-target-valid
 Reworked individually with a dedicated `two-line-endpoints-exact-intersection-classification` model. Four physical line-endpoint drags, slope/intercept controls, exact unique/parallel/coincident cases, live solved intersection, real pan/zoom tools, dynamic progress, equation-derived practice sets, steps, all lesson tabs, routes, overflow, console output, and exact 1024x1536 framing are validated.
 
 Evidence: `0257-reference.png`, `0257-desktop.png`, `0257-dedicated-target-validation.json`.
+
+## Lesson 201 / Mockup 0258 - Midpoint or Centre
+
+Reworked individually with a dedicated `two-endpoint-derived-midpoint-equal-distance-invariant` model. Physical A/B endpoint drags, direct coordinate controls, live midpoint derivation, exact equal-distance validation, reverse-endpoint invariance, Reset, navigable lesson tabs, three generated practices, wrong/correct grading, solution reveal, routes, overflow, console output, and exact 1024x1536 framing are validated.
+
+Evidence: `0258-reference.png`, `0258-desktop.png`, `0258-dedicated-target-validation.json`.

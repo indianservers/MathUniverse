@@ -60,6 +60,7 @@ import ParametricCoordinatesTargetLesson181 from "./ParametricCoordinatesTargetL
 import BarycentricCoordinatesTargetLesson182 from "./BarycentricCoordinatesTargetLesson182";
 import FreePointTargetLesson198 from "./FreePointTargetLesson198";
 import PointOnObjectTargetLesson199 from "./PointOnObjectTargetLesson199";
+import "./MidpointCentreTargetLesson201.css";
 import ReflectionLineTargetLesson237 from "./ReflectionLineTargetLesson237";
 import ReflectionPointTargetLesson238 from "./ReflectionPointTargetLesson238";
 import ReflectionCircleTargetLesson239 from "./ReflectionCircleTargetLesson239";
@@ -4497,6 +4498,16 @@ function MidpointCentreTargetLesson({
   const [answerState, setAnswerState] = useState<
     "idle" | "correct" | "incorrect"
   >("idle");
+  const [activeMidpointTab, setActiveMidpointTab] = useState("Observe");
+  const [showMidpointSolution, setShowMidpointSolution] = useState(false);
+  const [midpointQuestion, setMidpointQuestion] = useState(0);
+  const midpointQuestions = [
+    { a: { x: -5, y: 4 }, b: { x: 3, y: -2 } },
+    { a: { x: -6, y: -2 }, b: { x: 4, y: 6 } },
+    { a: { x: 1, y: -5 }, b: { x: 7, y: 3 } },
+  ];
+  const challenge = midpointQuestions[midpointQuestion];
+  const challengeMidpoint = { x: (challenge.a.x + challenge.b.x) / 2, y: (challenge.a.y + challenge.b.y) / 2 };
   const midpoint = { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 };
 
   useEffect(() => {
@@ -4507,6 +4518,9 @@ function MidpointCentreTargetLesson({
     setAnswerX("");
     setAnswerY("");
     setAnswerState("idle");
+    setActiveMidpointTab("Observe");
+    setShowMidpointSolution(false);
+    setMidpointQuestion(0);
   }, [resetToken]);
   const update = (point: "A" | "B", axis: "x" | "y", value: number) => {
     (point === "A" ? setA : setB)((old) => ({ ...old, [axis]: value }));
@@ -4523,6 +4537,7 @@ function MidpointCentreTargetLesson({
   const reset = () => {
     setA({ x: -4, y: 2 });
     setB({ x: 4, y: -1 });
+    setReverse(false);
     onInteraction();
   };
   const toggleReverse = () => {
@@ -4533,16 +4548,26 @@ function MidpointCentreTargetLesson({
   };
   const check = () => {
     setAnswerState(
-      Number(answerX) === -1 && Number(answerY) === 1 ? "correct" : "incorrect",
+      Number(answerX) === challengeMidpoint.x && Number(answerY) === challengeMidpoint.y ? "correct" : "incorrect",
     );
     onInteraction();
   };
 
   return (
     <section
-      className="mt-[3px] space-y-[14px]"
+      className="mid201-page space-y-[14px]"
       data-testid="dynamic-geometry-mockup-0258"
       data-direct-interaction="true"
+      data-dedicated-lesson="201"
+      data-object-model="two-endpoint-derived-midpoint-equal-distance-invariant"
+      data-midpoint={`${midpoint.x}:${midpoint.y}`}
+      data-tab={activeMidpointTab}
+      data-question={midpointQuestion}
+      data-answer={answerState}
+      data-a={`${a.x}:${a.y}`}
+      data-b={`${b.x}:${b.y}`}
+      data-reverse={reverse}
+      data-solution={showMidpointSolution}
     >
       <header className="h-[150px] overflow-hidden rounded-xl border border-[#dbe6fb] bg-white shadow-sm">
         <div className="flex h-[98px] items-center justify-between px-5">
@@ -4574,14 +4599,21 @@ function MidpointCentreTargetLesson({
             [Lightbulb, "Notice"],
             [BookOpen, "Understand"],
             [Pencil, "Try"],
-          ].map(([Icon, label], i) => (
+          ].map(([Icon, label]) => (
             <button
               key={String(label)}
               className={
-                i === 0
+                activeMidpointTab === label
                   ? "border-b-2 border-blue-500 text-xs font-black text-blue-700"
                   : "text-xs font-black text-[#52627e]"
               }
+              onClick={() => {
+                const name = String(label);
+                const target = name === "Notice" ? "mid201-notice" : name === "Understand" ? "mid201-rule" : name === "Try" ? "mid201-practice" : "mid201-model";
+                setActiveMidpointTab(name);
+                document.getElementById(target)?.scrollIntoView({ behavior: "smooth", block: "start" });
+                onInteraction();
+              }}
             >
               <Icon className="mr-2 inline h-4 w-4" />
               {label as string}
@@ -4590,7 +4622,7 @@ function MidpointCentreTargetLesson({
         </nav>
       </header>
 
-      <section className="grid h-[510px] overflow-hidden rounded-xl border border-[#dbe6fb] bg-white p-3 shadow-sm lg:grid-cols-[minmax(0,1fr)_275px]">
+      <section id="mid201-model" className="grid h-[510px] overflow-hidden rounded-xl border border-[#dbe6fb] bg-white p-3 shadow-sm lg:grid-cols-[minmax(0,1fr)_275px]">
         <div>
           <div className="flex items-center justify-between">
             <div>
@@ -4689,7 +4721,7 @@ function MidpointCentreTargetLesson({
         </aside>
       </section>
 
-      <div className="grid h-[242px] gap-[14px] overflow-hidden lg:grid-cols-[0.7fr_1.3fr]">
+      <div id="mid201-notice" className="grid h-[242px] gap-[14px] overflow-hidden lg:grid-cols-[0.7fr_1.3fr]">
         <section className="rounded-xl border border-[#dbe6fb] bg-white p-4">
           <h2 className="text-sm font-black text-violet-700">
             <Lightbulb className="mr-2 inline h-4 w-4" />
@@ -4735,7 +4767,7 @@ function MidpointCentreTargetLesson({
         </section>
       </div>
 
-      <section className="grid h-[160px] overflow-hidden rounded-xl border border-[#dbe6fb] bg-white p-4 lg:grid-cols-[1.05fr_1fr_220px]">
+      <section id="mid201-rule" className="grid h-[160px] overflow-hidden rounded-xl border border-[#dbe6fb] bg-white p-4 lg:grid-cols-[1.05fr_1fr_220px]">
         <div>
           <h2 className="text-sm font-black text-violet-700">
             Key Rule (Midpoint / Centre Formula)
@@ -4756,14 +4788,14 @@ function MidpointCentreTargetLesson({
         <MidpointRuleDiagram />
       </section>
 
-      <section className="grid h-[142px] overflow-hidden rounded-xl border border-[#dbe6fb] bg-white p-4 lg:grid-cols-[1fr_240px]">
+      <section id="mid201-practice" className="grid h-[142px] overflow-hidden rounded-xl border border-[#dbe6fb] bg-white p-4 lg:grid-cols-[1fr_240px]">
         <div>
           <h2 className="text-sm font-black text-emerald-700">
             <Pencil className="mr-2 inline h-4 w-4" />
             Try It Yourself
           </h2>
           <p className="mt-3 text-xs">
-            Find the midpoint of the segment joining A(-5, 4) and B(3, -2).
+            Find the midpoint of the segment joining A({challenge.a.x}, {challenge.a.y}) and B({challenge.b.x}, {challenge.b.y}).
           </p>
           <div className="mt-3 flex items-center gap-3 text-xs font-black">
             Your answer: ({" "}
@@ -4788,20 +4820,21 @@ function MidpointCentreTargetLesson({
             >
               Check Answer
             </button>
-            <button className="h-9 rounded-lg border border-emerald-300 px-4 text-emerald-700">
+            <button onClick={() => { setShowMidpointSolution((value) => !value); onInteraction(); }} className="h-9 rounded-lg border border-emerald-300 px-4 text-emerald-700">
               Show Solution
             </button>
-            <button className="text-blue-600">New Question</button>
+            <button onClick={() => { setMidpointQuestion((value) => (value + 1) % midpointQuestions.length); setAnswerX(""); setAnswerY(""); setAnswerState("idle"); setShowMidpointSolution(false); onInteraction(); }} className="text-blue-600">New Question</button>
           </div>
           {answerState !== "idle" ? (
             <p
               className={`mt-1 text-[10px] font-black ${answerState === "correct" ? "text-emerald-600" : "text-rose-600"}`}
             >
               {answerState === "correct"
-                ? "Correct. The midpoint is (-1, 1)."
+                ? `Correct. The midpoint is (${challengeMidpoint.x}, ${challengeMidpoint.y}).`
                 : "Average each coordinate pair."}
             </p>
           ) : null}
+          {showMidpointSolution ? <p className="mt-1 text-[10px] font-black text-emerald-700">Solution: (({challenge.a.x} + {challenge.b.x}) / 2, ({challenge.a.y} + {challenge.b.y}) / 2) = ({challengeMidpoint.x}, {challengeMidpoint.y})</p> : null}
         </div>
         <div className="rounded-lg border border-violet-200 bg-violet-50 p-3 text-[10px]">
           <h3 className="font-black text-violet-700">
@@ -4814,23 +4847,29 @@ function MidpointCentreTargetLesson({
         </div>
       </section>
       <footer className="grid h-[48px] items-center rounded-xl border border-[#dbe6fb] bg-white px-3 md:grid-cols-[1fr_1fr_1fr]">
-        <button className="text-left text-xs font-black">
+        <a href="/lessons/geometry/200-intersection-point" className="text-left text-xs font-black">
           <ArrowLeft className="mr-2 inline h-4 w-4" />
           Previous
           <span className="block pl-6 text-[9px] font-medium text-[#52627e]">
             Intersection Point
           </span>
-        </button>
+        </a>
         <div className="text-center text-[9px] text-[#52627e]">
           ● ○ ○ ○ ○ ○ ○ ○ ○<br />
           <b>Lesson 24 of 60</b>
         </div>
-        <button className="text-right text-xs font-black text-blue-700">
+        <a href="/lessons/geometry/202-attach-detach-point" className="text-right text-xs font-black text-blue-700">
           Next <ArrowRight className="ml-2 inline h-4 w-4" />
           <span className="block pr-6 text-[9px] font-medium">
             {lesson.id === 201 ? "Attach / Detach Point" : "Next lesson"}
           </span>
-        </button>
+        </a>
+      </footer>
+      <footer className="mid201-site-footer">
+        <b>⚙ &nbsp; Math Universe</b>
+        <span>Interactive math labs, visual proofs, NCERT explorations, graphing, CAS-style tools, and classroom-ready activities.</span>
+        <nav><a href="/sitemap">Sitemap</a><a href="/docs">Docs</a><a href="/about">About</a></nav>
+        <small>© 2026 INDIAN SERVERS PRIVATE LIMITED.</small>
       </footer>
     </section>
   );
@@ -4933,6 +4972,7 @@ function MidpointGraph({
         strokeWidth="2"
       />
       <g
+        data-testid="midpoint-endpoint-a"
         onPointerDown={(e) => {
           e.currentTarget.setPointerCapture(e.pointerId);
           setDragging("A");
@@ -4948,6 +4988,7 @@ function MidpointGraph({
         </text>
       </g>
       <g
+        data-testid="midpoint-endpoint-b"
         onPointerDown={(e) => {
           e.currentTarget.setPointerCapture(e.pointerId);
           setDragging("B");

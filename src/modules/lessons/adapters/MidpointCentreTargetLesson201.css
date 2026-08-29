@@ -1,0 +1,64 @@
+.mid201-page {
+  width: calc(100% + 20px);
+  margin: -5px 0 0 -13px;
+  letter-spacing: 0;
+}
+.mid201-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.mid201-page > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 15px;
+}
+.mid201-page a {
+  text-decoration: none;
+}
+.mid201-site-footer {
+  position: relative;
+  height: 84px !important;
+  padding: 13px 15px !important;
+  border: 1px solid #dbe6fb;
+  border-radius: 10px;
+  background: #fff;
+  color: #142044;
+  font:
+    9px/1.4 Inter,
+    system-ui,
+    sans-serif;
+}
+.mid201-site-footer > b,
+.mid201-site-footer > span,
+.mid201-site-footer > small {
+  display: block;
+}
+.mid201-site-footer > b {
+  font-size: 11px;
+}
+.mid201-site-footer > span {
+  width: 55%;
+  margin-top: 4px;
+  color: #52627e;
+  font-size: 7px;
+}
+.mid201-site-footer > small {
+  margin-top: 8px;
+  color: #607089;
+  font-size: 6px;
+}
+.mid201-site-footer nav {
+  position: absolute;
+  top: 18px;
+  right: 14px;
+  display: flex;
+  gap: 7px;
+}
+.mid201-site-footer nav a {
+  padding: 7px 12px;
+  border: 1px solid #dbe6fb;
+  border-radius: 7px;
+  color: #142044;
+}
+body:has(.mid201-page) footer[aria-label="Site footer"],
+.mid201-page ~ .lesson-adjacent-nav {
+  display: none;
+}

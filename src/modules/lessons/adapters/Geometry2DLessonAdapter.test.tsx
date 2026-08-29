@@ -371,6 +371,8 @@ describe("Geometry2DLessonAdapter", () => {
     );
 
     expect(html).toContain("dynamic-geometry-mockup-0258");
+    expect(html).toContain('data-dedicated-lesson="201"');
+    expect(html).toContain('data-object-model="two-endpoint-derived-midpoint-equal-distance-invariant"');
     expect(html).toContain("Draggable endpoints A and B with midpoint M");
     expect(html).toContain("Reverse endpoints challenge");
     expect(html).toContain("Midpoint / Centre Formula");
