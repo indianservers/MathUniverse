@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **181 of 200 lessons completed; 19 pending.**
+Dedicated rebuild target: **182 of 200 lessons completed; 18 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -167,6 +167,7 @@ Dedicated rebuild target: **181 of 200 lessons completed; 19 pending.**
 | 0253   | 196 Relative Motion | Complete | Dedicated navigation simulator with draggable A/B velocities, observer lock/perspective reversal, time-scaled trails, relative-vector proof, live speed/bearing/status, velocity controls, and exact 1148x1370 framing |
 | 0254   | 197 Force Vectors | Complete | Dedicated protractor force-balance model with draggable F3, live force angles/magnitudes, components/resultant/equilibrant views, gated balance check, results table/gauge, and exact 1148x1370 framing |
 | 0255   | 198 Free Point | Complete | Dedicated independent-point construction model with pointer/keyboard movement, point/select/pan/zoom/delete tools, snap, coordinates, appearance, replayable history, checked Q practice, and exact 1024x1536 framing |
+| 0256   | 199 Point on Object | Complete | Dedicated parent-object projection model with constrained line/circle drags, free-mode release, editable line, live invariant, graph-linked practice, tabs/share, and exact 1024x1536 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2636,3 +2637,9 @@ Evidence: `0254-reference.png`, `0254-desktop.png`, `0254-dedicated-target-valid
 Reworked individually with a dedicated `independent-free-point-coordinate-construction` model. Physical point drag, keyboard movement, point/select/pan/zoom/delete tools, snap mode, coordinate and appearance editing, replayable undo history, lesson tabs, worked-example visibility, checked Q practice, routes, overflow, console output, and exact 1024x1536 framing are validated.
 
 Evidence: `0255-reference.png`, `0255-desktop.png`, `0255-dedicated-target-validation.json`.
+
+## Lesson 199 / Mockup 0256 - Point on Object
+
+Reworked individually with a dedicated `parent-object-projected-constrained-point-line-circle` model. Physical and keyboard point movement, exact line and circle projection, editable slope/intercept, deliberate free-mode release, live relationship residual, graph-linked practice, all lesson tabs, Share, routes, overflow, console output, and exact 1024x1536 framing are validated.
+
+Evidence: `0256-reference.png`, `0256-desktop.png`, `0256-dedicated-target-validation.json`.

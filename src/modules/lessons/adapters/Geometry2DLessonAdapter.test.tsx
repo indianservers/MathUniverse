@@ -319,8 +319,13 @@ describe("Geometry2DLessonAdapter", () => {
     );
 
     expect(html).toContain("dynamic-geometry-mockup-0256");
+    expect(html).toContain('data-dedicated-lesson="199"');
+    expect(html).toContain('data-object-model="parent-object-projected-constrained-point-line-circle"');
+    expect(html).toContain('data-testid="point-on-object-handle"');
+    expect(html).toContain('aria-label="Practice constrained point"');
     expect(html).toContain("Point P constrained to line l coordinate plane");
     expect(html).toContain("Free point mode");
+    expect(html).not.toContain("reusable 2D geometry engine");
     expect(html).toContain("Slope (m)");
     expect(html).toContain("y-intercept (b)");
     expect(html).toContain("Point on a Circle");

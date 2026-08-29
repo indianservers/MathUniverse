@@ -1,0 +1,135 @@
+{
+  "mockup": "0256",
+  "lessonId": 199,
+  "checks": {
+    "initial": {
+      "object": "line",
+      "point": "2:1",
+      "free": "false",
+      "tab": "Explore",
+      "shared": "false",
+      "practice": "idle"
+    },
+    "lineDrag": {
+      "object": "line",
+      "point": "4:2",
+      "free": "false",
+      "tab": "Explore",
+      "shared": "false",
+      "practice": "idle"
+    },
+    "lineResidual": 0,
+    "slope": {
+      "object": "line",
+      "point": "4:4",
+      "free": "false",
+      "tab": "Explore",
+      "shared": "false",
+      "practice": "idle"
+    },
+    "circleInitial": {
+      "object": "circle",
+      "point": "2.83:2.83",
+      "free": "false",
+      "tab": "Explore",
+      "shared": "false",
+      "practice": "idle"
+    },
+    "circleDrag": {
+      "object": "circle",
+      "point": "0.74:3.93",
+      "free": "false",
+      "tab": "Explore",
+      "shared": "false",
+      "practice": "idle"
+    },
+    "circleResidual": -0.007500000000000284,
+    "free": {
+      "object": "circle",
+      "point": "2.95:2.47",
+      "free": "true",
+      "tab": "Explore",
+      "shared": "false",
+      "practice": "idle"
+    },
+    "practice": {
+      "object": "line",
+      "point": "2:2",
+      "free": "false",
+      "tab": "Explore",
+      "shared": "false",
+      "practice": "correct"
+    },
+    "actions": {
+      "object": "line",
+      "point": "2:2",
+      "free": "false",
+      "tab": "Explore",
+      "shared": "true",
+      "practice": "correct"
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/geometry/198-free-point",
+    "nextHref": "/lessons/geometry/200-intersection-point"
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "horizontalOverflow": false,
+    "regions": {
+      "header": {
+        "top": 107,
+        "height": 247,
+        "left": 233,
+        "width": 775
+      },
+      "tabs": {
+        "top": 354,
+        "height": 49,
+        "left": 233,
+        "width": 775
+      },
+      "explore": {
+        "top": 417,
+        "height": 457,
+        "left": 233,
+        "width": 775
+      },
+      "insights": {
+        "top": 884,
+        "height": 155,
+        "left": 233,
+        "width": 775
+      },
+      "examples": {
+        "top": 1049,
+        "height": 176,
+        "left": 233,
+        "width": 775
+      },
+      "practice": {
+        "top": 1235,
+        "height": 127,
+        "left": 233,
+        "width": 775
+      },
+      "nav": {
+        "top": 1372,
+        "height": 50,
+        "left": 233,
+        "width": 775
+      },
+      "footer": {
+        "top": 1432,
+        "height": 98,
+        "left": 233,
+        "width": 775
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
