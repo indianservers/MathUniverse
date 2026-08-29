@@ -208,6 +208,10 @@ describe("Geometry2DLessonAdapter", () => {
     );
 
     expect(html).toContain("dynamic-geometry-mockup-0259");
+    expect(html).toContain('data-dedicated-lesson="202"');
+    expect(html).toContain('data-object-model="circle-parent-attach-project-detach-free-drag-follow"');
+    expect(html).toContain('data-testid="attach-point-p"');
+    expect(html).toContain('aria-label="Model zoom"');
     expect(html).toContain("Circle with attached point P and detached point Q");
     expect(html).toContain("P attached");
     expect(html).toContain("Q detached");

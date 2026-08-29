@@ -60,6 +60,7 @@ import ParametricCoordinatesTargetLesson181 from "./ParametricCoordinatesTargetL
 import BarycentricCoordinatesTargetLesson182 from "./BarycentricCoordinatesTargetLesson182";
 import FreePointTargetLesson198 from "./FreePointTargetLesson198";
 import PointOnObjectTargetLesson199 from "./PointOnObjectTargetLesson199";
+import AttachDetachTargetLesson202 from "./AttachDetachTargetLesson202";
 import "./MidpointCentreTargetLesson201.css";
 import ReflectionLineTargetLesson237 from "./ReflectionLineTargetLesson237";
 import ReflectionPointTargetLesson238 from "./ReflectionPointTargetLesson238";
@@ -131,6 +132,9 @@ export default function Geometry2DLessonAdapter({
   }
   if (lesson.id === 199) {
     return <PointOnObjectTargetLesson199 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
+  if (lesson.id === 202) {
+    return <AttachDetachTargetLesson202 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
   if (lesson.id === 167) {
     return <CartesianPlaneTargetLesson167 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;

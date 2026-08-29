@@ -1,0 +1,164 @@
+{
+  "mockup": "0259",
+  "lessonId": 202,
+  "checks": {
+    "initial": {
+      "selected": "P",
+      "p": "2.83:2.83",
+      "q": "4.2:2.1",
+      "attached": "true:false",
+      "center": "0:0",
+      "grid": "true",
+      "zoom": "1",
+      "pan": "0:0",
+      "tab": "Interaction + visualization"
+    },
+    "attachedDrag": {
+      "selected": "P",
+      "p": "1.98:3.48",
+      "q": "4.2:2.1",
+      "attached": "true:false",
+      "center": "0:0",
+      "grid": "true",
+      "zoom": "1",
+      "pan": "0:0",
+      "tab": "Interaction + visualization"
+    },
+    "attachedDistance": 0.0038481489686894577,
+    "detachedDrag": {
+      "selected": "P",
+      "p": "3.84:2.19",
+      "q": "4.2:2.1",
+      "attached": "false:false",
+      "center": "0:0",
+      "grid": "true",
+      "zoom": "1",
+      "pan": "0:0",
+      "tab": "Interaction + visualization"
+    },
+    "detachedDistance": 0.42059950685424496,
+    "qAttached": {
+      "selected": "Q",
+      "p": "3.84:2.19",
+      "q": "3.58:1.79",
+      "attached": "false:true",
+      "center": "0:0",
+      "grid": "true",
+      "zoom": "1",
+      "pan": "0:0",
+      "tab": "Interaction + visualization"
+    },
+    "qDistance": 0.0025616797246241774,
+    "centerMove": {
+      "selected": "Q",
+      "p": "3.84:2.19",
+      "q": "4.54:2.8",
+      "attached": "false:true",
+      "center": "0.96:1.01",
+      "grid": "true",
+      "zoom": "1",
+      "pan": "0:0",
+      "tab": "Interaction + visualization"
+    },
+    "detachedPStayed": true,
+    "followDelta": {
+      "q": [
+        0.96,
+        1.0099999999999998
+      ],
+      "center": [
+        0.96,
+        1.01
+      ]
+    },
+    "viewChanged": {
+      "selected": "Q",
+      "p": "3.84:2.19",
+      "q": "4.54:2.8",
+      "attached": "false:true",
+      "center": "0.96:1.01",
+      "grid": "true",
+      "zoom": "1.2",
+      "pan": "30:20",
+      "tab": "Interaction + visualization"
+    },
+    "view": {
+      "selected": "Q",
+      "p": "3.84:2.19",
+      "q": "4.54:2.8",
+      "attached": "false:true",
+      "center": "0.96:1.01",
+      "grid": "false",
+      "zoom": "1",
+      "pan": "0:0",
+      "tab": "Interaction + visualization"
+    },
+    "tabs": {
+      "selected": "Q",
+      "p": "3.84:2.19",
+      "q": "4.54:2.8",
+      "attached": "false:true",
+      "center": "0.96:1.01",
+      "grid": "false",
+      "zoom": "1",
+      "pan": "0:0",
+      "tab": "Interaction + visualization"
+    },
+    "reset": {
+      "selected": "P",
+      "p": "2.83:2.83",
+      "q": "4.2:2.1",
+      "attached": "true:false",
+      "center": "0:0",
+      "grid": "true",
+      "zoom": "1",
+      "pan": "0:0",
+      "tab": "Interaction + visualization"
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/geometry/201-midpoint-or-centre",
+    "nextHref": "/lessons/geometry/203-line-through-two-points"
+  },
+  "metrics": {
+    "document": {
+      "width": 1536,
+      "height": 1024
+    },
+    "horizontalOverflow": false,
+    "regions": {
+      "header": {
+        "top": 106,
+        "height": 96,
+        "left": 291,
+        "width": 1229
+      },
+      "tabs": {
+        "top": 212,
+        "height": 46,
+        "left": 291,
+        "width": 1229
+      },
+      "main": {
+        "top": 269,
+        "height": 581,
+        "left": 291,
+        "width": 1229
+      },
+      "nav": {
+        "top": 864,
+        "height": 61,
+        "left": 291,
+        "width": 1229
+      },
+      "footer": {
+        "top": 936,
+        "height": 86,
+        "left": 291,
+        "width": 1229
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
