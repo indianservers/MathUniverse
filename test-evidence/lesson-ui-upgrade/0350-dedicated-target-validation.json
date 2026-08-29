@@ -1,0 +1,208 @@
+{
+  "mockup": "0350",
+  "lessonId": 444,
+  "checks": {
+    "initial": {
+      "matrix": "2,3,-1,4",
+      "determinant": "11",
+      "orientation": "orientation preserved",
+      "feedback": "correct",
+      "challenge": "1,2,-2,1",
+      "answer": "5,0",
+      "active-tab": "Interaction + visualization",
+      "view": "graph",
+      "actions": "0"
+    },
+    "edited": {
+      "matrix": "1,2,3,4",
+      "determinant": "-2",
+      "orientation": "orientation reversed",
+      "feedback": "correct",
+      "challenge": "1,2,-2,1",
+      "answer": "5,0",
+      "active-tab": "Interaction + visualization",
+      "view": "graph",
+      "actions": "3"
+    },
+    "editedVertices": [
+      "A′(0,0)",
+      "B′(1,3)",
+      "C′(3,7)",
+      "D′(2,4)",
+      "(0,0)",
+      "(1,0)",
+      "(1,1)",
+      "(0,1)",
+      "x",
+      "y"
+    ],
+    "table": {
+      "state": {
+        "matrix": "1,2,3,4",
+        "determinant": "-2",
+        "orientation": "orientation reversed",
+        "feedback": "correct",
+        "challenge": "1,2,-2,1",
+        "answer": "5,0",
+        "active-tab": "Interaction + visualization",
+        "view": "table",
+        "actions": "4"
+      },
+      "visible": true,
+      "transformed": true
+    },
+    "tab": {
+      "matrix": "1,2,3,4",
+      "determinant": "-2",
+      "orientation": "orientation reversed",
+      "feedback": "correct",
+      "challenge": "1,2,-2,1",
+      "answer": "5,0",
+      "active-tab": "Explain",
+      "view": "table",
+      "actions": "5"
+    },
+    "rejected": {
+      "matrix": "1,2,3,4",
+      "determinant": "-2",
+      "orientation": "orientation reversed",
+      "feedback": "incorrect",
+      "challenge": "1,2,-2,1",
+      "answer": "4,0",
+      "active-tab": "Explain",
+      "view": "table",
+      "actions": "6"
+    },
+    "accepted": {
+      "matrix": "1,2,3,4",
+      "determinant": "-2",
+      "orientation": "orientation reversed",
+      "feedback": "correct",
+      "challenge": "1,2,-2,1",
+      "answer": "5,0",
+      "active-tab": "Explain",
+      "view": "table",
+      "actions": "7"
+    },
+    "recalculatedReject": {
+      "matrix": "1,2,3,4",
+      "determinant": "-2",
+      "orientation": "orientation reversed",
+      "feedback": "incorrect",
+      "challenge": "2,2,-2,1",
+      "answer": "5,0",
+      "active-tab": "Explain",
+      "view": "table",
+      "actions": "9"
+    },
+    "recalculatedAccept": {
+      "matrix": "1,2,3,4",
+      "determinant": "-2",
+      "orientation": "orientation reversed",
+      "feedback": "correct",
+      "challenge": "2,2,-2,1",
+      "answer": "6,0",
+      "active-tab": "Explain",
+      "view": "table",
+      "actions": "10"
+    },
+    "newChallenge": {
+      "matrix": "1,2,3,4",
+      "determinant": "-2",
+      "orientation": "orientation reversed",
+      "feedback": "correct",
+      "challenge": "2,-1,1,3",
+      "answer": "0,7",
+      "active-tab": "Explain",
+      "view": "table",
+      "actions": "12"
+    },
+    "reset": {
+      "matrix": "2,3,-1,4",
+      "determinant": "11",
+      "orientation": "orientation preserved",
+      "feedback": "correct",
+      "challenge": "1,2,-2,1",
+      "answer": "5,0",
+      "active-tab": "Interaction + visualization",
+      "view": "graph",
+      "actions": "0"
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/symbolic-mathematics/443-differential-equations",
+    "nextHref": "/lessons/symbolic-mathematics/445-complex-calculations"
+  },
+  "metrics": {
+    "document": {
+      "width": 1014,
+      "height": 1553
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 203,
+      "height": 1551,
+      "bottom": 1551
+    },
+    "header": {
+      "top": 94,
+      "left": 218,
+      "width": 781,
+      "height": 224,
+      "bottom": 318
+    },
+    "tabs": {
+      "top": 326,
+      "left": 218,
+      "width": 781,
+      "height": 43,
+      "bottom": 369
+    },
+    "flow": {
+      "top": 379,
+      "left": 218,
+      "width": 781,
+      "height": 112,
+      "bottom": 491
+    },
+    "workspace": {
+      "top": 501,
+      "left": 218,
+      "width": 781,
+      "height": 547,
+      "bottom": 1048
+    },
+    "learning": {
+      "top": 1058,
+      "left": 218,
+      "width": 781,
+      "height": 186,
+      "bottom": 1244
+    },
+    "practice": {
+      "top": 1254,
+      "left": 218,
+      "width": 781,
+      "height": 130,
+      "bottom": 1384
+    },
+    "adjacent": {
+      "top": 1394,
+      "left": 218,
+      "width": 781,
+      "height": 48,
+      "bottom": 1442
+    },
+    "footer": {
+      "top": 1452,
+      "left": 203,
+      "width": 811,
+      "height": 101,
+      "bottom": 1553
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

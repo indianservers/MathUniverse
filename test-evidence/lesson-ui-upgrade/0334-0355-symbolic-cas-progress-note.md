@@ -1,6 +1,6 @@
 # Symbolic Mathematics / CAS Workspace target batch 0334-0355
 
-Dedicated rebuild target: **16 of 22 lessons completed; 6 pending.**
+Dedicated rebuild target: **17 of 22 lessons completed; 5 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
@@ -20,6 +20,7 @@ Dedicated rebuild target: **16 of 22 lessons completed; 6 pending.**
 | 0347 | 441 Limits | `editable-rational-one-sided-table-draggable-hole-limit-practice` | Reworked individually and browser-validated |
 | 0348 | 442 Series Expansions | `taylor-derivative-cycle-center-degree-approximation-error-graph-practice` | Reworked individually and browser-validated |
 | 0349 | 443 Differential Equations | `ode-slope-field-exact-solution-euler-draggable-initial-condition-animation-error` | Reworked individually and browser-validated |
+| 0350 | 444 Matrix Operations | `editable-2x2-matrix-row-rules-unit-square-transformation-vertices-determinant-practice` | Reworked individually and browser-validated |
 
 ## Lesson 428 / Mockup 0334 - Symbolic Evaluation
 
@@ -244,3 +245,17 @@ Evidence:
 - `0349-reference.png`
 - `0349-desktop.png`
 - `0349-dedicated-target-validation.json`
+
+## Lesson 444 / Mockup 0350 - Matrix Operations
+
+Reworked individually around a dedicated editable 2x2 matrix-transformation model. The four matrix entries drive both row rules, matrix-vector multiplication, determinant and orientation state, every transformed unit-square vertex, polygon geometry, vertex labels, mapping summary, and worked example. Matrix editing, graph/coordinate-table views, functional lesson tabs, independent practice-matrix editing, answer checking, challenge cycling, shell Reset, and Previous/Next navigation are functional.
+
+Browser validation starts from `A=[2 3; -1 4]`, deriving determinant `11` and mapped vertices `(0,0)`, `(2,-1)`, `(5,3)`, and `(3,4)`. It edits the matrix to `[1 2; 3 4]`, derives determinant `-2`, reports reversed orientation, and updates the plotted vertices to `(0,0)`, `(1,3)`, `(3,7)`, and `(2,4)`. The coordinate-table view exposes the same live values. Practice rejects `(4,0)`, accepts `(5,0)`, recalculates the answer to `(6,0)` after editing its own matrix, then cycles to `[2 -1; 1 3]` and verifies `(0,7)`. Shell Reset restores the matrix, graph view, selected interaction tab, practice, and action state.
+
+Final exact 1014x1551 validation matches the target stack within two device pixels: sidebar width 203, header y=94-318, tabs y=326-369, four-step flow y=379-491, dedicated matrix workspace y=501-1048, learning row y=1058-1244, practice y=1254-1384, adjacent navigation y=1394-1442, and footer y=1452-1553. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0350-reference.png`
+- `0350-desktop.png`
+- `0350-dedicated-target-validation.json`
