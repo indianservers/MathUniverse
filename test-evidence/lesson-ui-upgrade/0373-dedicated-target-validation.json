@@ -1,0 +1,148 @@
+{
+  "mockup": "0373",
+  "lessonId": 294,
+  "checks": {
+    "initial": {
+      "x": "0",
+      "y": "3",
+      "slope": "0",
+      "classification": "Horizontal",
+      "constraint": "9",
+      "result": "",
+      "actions": "0"
+    },
+    "xDriven": {
+      "x": "1",
+      "y": "2.828",
+      "slope": "-0.354",
+      "classification": "Falling",
+      "constraint": "9",
+      "result": "",
+      "actions": "1"
+    },
+    "yDriven": {
+      "x": "2.236",
+      "y": "2",
+      "slope": "-1.118",
+      "classification": "Falling",
+      "constraint": "9",
+      "result": "",
+      "actions": "3"
+    },
+    "dragged": {
+      "x": "1.15",
+      "y": "2.771",
+      "slope": "-0.415",
+      "classification": "Falling",
+      "constraint": "9",
+      "result": "",
+      "actions": "10"
+    },
+    "rejected": {
+      "x": "1.15",
+      "y": "2.771",
+      "slope": "-0.415",
+      "classification": "Falling",
+      "constraint": "9",
+      "result": "incorrect",
+      "actions": "11"
+    },
+    "accepted": {
+      "x": "1.15",
+      "y": "2.771",
+      "slope": "-0.415",
+      "classification": "Falling",
+      "constraint": "9",
+      "result": "correct",
+      "actions": "12"
+    },
+    "reset": {
+      "x": "0",
+      "y": "3",
+      "slope": "0",
+      "classification": "Horizontal",
+      "constraint": "9",
+      "result": "",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 205,
+      "height": 1536,
+      "bottom": 1536
+    },
+    "hero": {
+      "top": 109,
+      "left": 228,
+      "width": 776,
+      "height": 146,
+      "bottom": 255
+    },
+    "tabs": {
+      "top": 255,
+      "left": 228,
+      "width": 776,
+      "height": 39,
+      "bottom": 294
+    },
+    "flow": {
+      "top": 310,
+      "left": 228,
+      "width": 776,
+      "height": 104,
+      "bottom": 414
+    },
+    "lab": {
+      "top": 427,
+      "left": 228,
+      "width": 776,
+      "height": 539,
+      "bottom": 966
+    },
+    "feedback": {
+      "top": 978,
+      "left": 228,
+      "width": 776,
+      "height": 97,
+      "bottom": 1075
+    },
+    "info": {
+      "top": 1085,
+      "left": 228,
+      "width": 776,
+      "height": 160,
+      "bottom": 1245
+    },
+    "worked": {
+      "top": 1257,
+      "left": 228,
+      "width": 776,
+      "height": 126,
+      "bottom": 1383
+    },
+    "practice": {
+      "top": 1391,
+      "left": 228,
+      "width": 776,
+      "height": 76,
+      "bottom": 1467
+    },
+    "adjacent": {
+      "top": 1479,
+      "left": 228,
+      "width": 776,
+      "height": 50,
+      "bottom": 1529
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

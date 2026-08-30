@@ -1,6 +1,6 @@
 # Limits and Differential Calculus target batch 0356-0384
 
-Dedicated rebuild target: **17 of 29 lessons completed; 12 pending.**
+Dedicated rebuild target: **18 of 29 lessons completed; 11 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
@@ -21,7 +21,7 @@ Dedicated rebuild target: **17 of 29 lessons completed; 12 pending.**
 | 0370 | 291 Product Rule | `editable-factor-pair-independent-product-derivative-product-rule-decomposition-domain-step-display-practice` | Reworked individually and browser-validated |
 | 0371 | 292 Quotient Rule | `editable-numerator-denominator-automatic-poles-quotient-derivative-tangent-rule-comparison-practice` | Reworked individually and browser-validated |
 | 0372 | 293 Chain Rule | `input-sine-inner-square-outer-composition-linked-rates-invertible-output-drag-tangent-practice` | Reworked individually and browser-validated |
-| 0373 | 294 Implicit Differentiation | Pending audit | Pending |
+| 0373 | 294 Implicit Differentiation | `upper-semicircle-constrained-linked-x-y-direct-drag-implicit-slope-tangent-classification-practice` | Reworked individually and browser-validated |
 | 0374 | 295 Parametric Differentiation | Pending audit | Pending |
 | 0375 | 296 Critical Points | Pending audit | Pending |
 | 0376 | 297 Increasing and Decreasing | Pending audit | Pending |
@@ -279,3 +279,17 @@ Evidence:
 - `0372-reference.png`
 - `0372-desktop.png`
 - `0372-dedicated-target-validation.json`
+
+## Lesson 294 / Mockup 0373 - Implicit Differentiation
+
+Reworked individually around the constrained upper semicircle `x^2+y^2=9`, with `y=sqrt(9-x^2)` and implicit slope `dy/dx=-x/y`. One shared point state drives the graph handle, curve constraint, linked x/y controls, tangent line, point label, slope value and sign, horizontal/rising/falling/vertical classification, coordinates, feedback equation, and action count. The x range and captured SVG pointer dragging move the point directly. The y range is also real: it solves the curve constraint for x on the active left or right branch instead of acting as a decorative duplicate.
+
+Browser validation confirms the target start `P=(0,3)`, slope `0`, Horizontal classification, and exact constraint value `9`. Moving x to `1` derives `y=2.828` and slope `-0.354`; moving y to `2` derives `x=2.236` and slope `-1.118`; a real pointer drag moves the curve point and recomputes every dependent value while preserving the constraint. Practice rejects `1/2`, accepts the mathematically correct `-1/2` for `2xy+y^2=5` at `(1,1)`, and shell Reset restores the point, tangent, practice state, selected tab, and zero actions.
+
+Final exact 1024x1536 validation matches the target stack: sidebar width 205, hero y=109-255, tabs y=255-294, four-stage guide y=310-414, implicit-curve laboratory y=427-966, feedback y=978-1075, concept/rule/takeaway row y=1085-1245, worked example y=1257-1383, practice y=1391-1467, and adjacent navigation y=1479-1529. The dedicated content spans x=228-1004 exactly, with no horizontal overflow, no duplicate shared lesson chrome, no site footer, and zero console messages.
+
+Evidence:
+
+- `0373-reference.png`
+- `0373-desktop.png`
+- `0373-dedicated-target-validation.json`
