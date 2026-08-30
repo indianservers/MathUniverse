@@ -1,0 +1,143 @@
+{
+  "mockup": "0388",
+  "lessonId": 309,
+  "checks": {
+    "initial": {
+      "c": "0",
+      "tab": "Explore",
+      "compare": "false",
+      "result": "",
+      "hint": "false",
+      "actions": "0"
+    },
+    "slider": {
+      "c": "2",
+      "tab": "Explore",
+      "compare": "false",
+      "result": "",
+      "hint": "false",
+      "actions": "1"
+    },
+    "number": {
+      "c": "-1.5",
+      "tab": "Explore",
+      "compare": "false",
+      "result": "",
+      "hint": "false",
+      "actions": "2"
+    },
+    "graphDrag": {
+      "c": "0.25",
+      "tab": "Explore",
+      "compare": "false",
+      "result": "",
+      "hint": "false",
+      "actions": "8"
+    },
+    "explore": {
+      "c": "3",
+      "tab": "Formulas & rules",
+      "compare": "true",
+      "result": "",
+      "hint": "false",
+      "actions": "11"
+    },
+    "rejected": {
+      "c": "3",
+      "tab": "Formulas & rules",
+      "compare": "true",
+      "result": "incorrect",
+      "hint": "false",
+      "actions": "12"
+    },
+    "accepted": {
+      "c": "3",
+      "tab": "Formulas & rules",
+      "compare": "true",
+      "result": "correct",
+      "hint": "true",
+      "actions": "14"
+    },
+    "localReset": {
+      "c": "0",
+      "tab": "Explore",
+      "compare": "false",
+      "result": "",
+      "hint": "false",
+      "actions": "1"
+    },
+    "shellReset": {
+      "c": "0",
+      "tab": "Explore",
+      "compare": "false",
+      "result": "",
+      "hint": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1549
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 214,
+      "height": 1536,
+      "bottom": 1536
+    },
+    "hero": {
+      "top": 101,
+      "left": 234,
+      "width": 767,
+      "height": 248,
+      "bottom": 349
+    },
+    "tabs": {
+      "top": 349,
+      "left": 234,
+      "width": 767,
+      "height": 50,
+      "bottom": 399
+    },
+    "flow": {
+      "top": 415,
+      "left": 234,
+      "width": 767,
+      "height": 122,
+      "bottom": 537
+    },
+    "lab": {
+      "top": 551,
+      "left": 234,
+      "width": 767,
+      "height": 605,
+      "bottom": 1156
+    },
+    "cards": {
+      "top": 1170,
+      "left": 234,
+      "width": 767,
+      "height": 224,
+      "bottom": 1394
+    },
+    "adjacent": {
+      "top": 1410,
+      "left": 234,
+      "width": 767,
+      "height": 47,
+      "bottom": 1457
+    },
+    "footer": {
+      "top": 1470,
+      "left": 234,
+      "width": 767,
+      "height": 66,
+      "bottom": 1536
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

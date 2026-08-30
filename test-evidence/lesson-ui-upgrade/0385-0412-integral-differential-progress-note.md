@@ -1,13 +1,13 @@
 # Integral Calculus and Differential Equations target batch 0385-0412
 
-Dedicated rebuild target: **3 of 28 lessons completed; 25 pending.**
+Dedicated rebuild target: **4 of 28 lessons completed; 24 pending.**
 
 | Mockup | Lesson                           | Dedicated object model                                                                                                     | Status                                      |
 | ------ | -------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
 | 0385   | 306 Area by Rectangles           | `cubic-partition-dual-endpoint-drag-left-midpoint-right-rectangles-signed-positive-negative-sums-layer-toggles-practice`   | Reworked individually and browser-validated |
 | 0386   | 307 Riemann Sums                 | `cosine-plus-two-uniform-partition-draggable-boundary-and-sample-left-midpoint-right-sum-exact-error-convergence-practice` | Reworked individually and browser-validated |
 | 0387   | 308 Definite Integral            | `quadratic-oriented-area-dual-bound-drag-signed-region-decomposition-limit-swap-layer-visibility-zoom-practice`            | Reworked individually and browser-validated |
-| 0388   | 309 Indefinite Integral          | Pending audit                                                                                                              | Pending                                     |
+| 0388   | 309 Indefinite Integral          | `six-x-antiderivative-parabola-family-draggable-constant-linked-derivative-compare-symbolic-practice`                      | Reworked individually and browser-validated |
 | 0389   | 310 Fundamental Theorem          | Pending audit                                                                                                              | Pending                                     |
 | 0390   | 311 Area Between Curves          | Pending audit                                                                                                              | Pending                                     |
 | 0391   | 312 Substitution                 | Pending audit                                                                                                              | Pending                                     |
@@ -80,3 +80,17 @@ Evidence:
 - `0387-reference.png`
 - `0387-desktop.png`
 - `0387-dedicated-target-validation.json`
+
+## Lesson 309 / Mockup 0388 - Indefinite Integral
+
+Reworked individually around the target's derivative `f(x)=6x` and antiderivative family `F(x)=3x^2+C`. The native constant slider, numeric constant input, five quick picks, and captured vertical graph drag all drive the same real `C` state. That state moves the selected parabola and drag handle, updates the current antiderivative and derivative confirmation, and positions the optional comparison point while leaving the linked derivative graph unchanged. Seven lesson tabs, Reset, Share, Workspace, full-screen, compare/hide comparison, symbolic practice validation, Hint, shell Reset, adjacent lessons, action counting, and the target-specific compact footer are functional.
+
+Browser validation confirms the initial `C=0` family. The slider changes `C` to 2, the numeric input changes it to `-1.5`, and a real pointer drag changes it to `0.25`. Quick pick 3, point comparison, and the Formulas & rules tab produce their corresponding states. Practice rejects `x^2`, accepts `x^2+C`, and reveals the power-rule hint. Both local and shell Reset restore `C=0`, Explore, hidden comparison, empty practice, hidden hint, and zero shell actions.
+
+Final exact 1024x1536 capture matches the target stack: sidebar width 214, hero content y=101-349, seven tabs y=349-399, four-step concept flow y=415-537, antiderivative/derivative family lab y=551-1156, four learning cards y=1170-1394, adjacent lessons y=1410-1457, and compact footer y=1470-1536. Dedicated content spans x=234-1001, with no horizontal overflow, no duplicate shared lesson chrome or shared adjacent navigation, and zero console messages.
+
+Evidence:
+
+- `0388-reference.png`
+- `0388-desktop.png`
+- `0388-dedicated-target-validation.json`
