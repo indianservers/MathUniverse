@@ -1,6 +1,6 @@
 # Integral Calculus and Differential Equations target batch 0385-0412
 
-Dedicated rebuild target: **13 of 28 lessons completed; 15 pending.**
+Dedicated rebuild target: **14 of 28 lessons completed; 14 pending.**
 
 | Mockup | Lesson                           | Dedicated object model                                                                                                     | Status                                      |
 | ------ | -------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
@@ -17,7 +17,7 @@ Dedicated rebuild target: **13 of 28 lessons completed; 15 pending.**
 | 0395   | 316 Numerical Integration        | `three-method-quadrature-generated-midpoint-trapezoid-simpson-overlays-exact-errors-draggable-partition-practice`          | Reworked individually and browser-validated |
 | 0396   | 317 Volume by Slicing            | `sphere-cross-section-slice-position-thickness-area-parabola-draggable-band-differential-volume-exact-integral-practice`   | Reworked individually and browser-validated |
 | 0397   | 318 Disc and Washer Methods      | `washer-region-axis-piecewise-radii-slice-thickness-layer-controls-draggable-bound-accumulated-volume-symbolic-practice`    | Reworked individually and browser-validated |
-| 0398   | 319 Shell Method                 | Pending audit                                                                                                              | Pending                                     |
+| 0398   | 319 Shell Method                 | `cylindrical-shell-radius-height-thickness-area-draggable-strip-volume-accumulation-bounds-practice`                       | Reworked individually and browser-validated |
 | 0399   | 320 Arc Length                   | Pending audit                                                                                                              | Pending                                     |
 | 0400   | 321 Surface Area of Revolution   | Pending audit                                                                                                              | Pending                                     |
 | 0401   | 322 Accumulation Functions       | Pending audit                                                                                                              | Pending                                     |
@@ -234,3 +234,19 @@ Evidence:
 - `0397-reference.png`
 - `0397-desktop.png`
 - `0397-dedicated-target-validation.json`
+
+## Lesson 319 / Mockup 0398 - Shell Method
+
+Reworked individually as a cylindrical-shell construction and accumulation workspace. The target region `y=-x+4`, `x=0`, `y=0` on `[0,4]` revolves around the y-axis. The shell position and thickness drive the vertical strip, generated cylindrical shell, radius `r=x`, height `h=4-x`, lateral area `2pi x(4-x)`, differential volume, accumulated exact integral, progress, and purple solid preview. The graph handle is directly draggable. Six tabs, Reset, Share, Workspace/full-screen, complete worked solution, misconception comparison, checked bounds practice, Show solution, shell Reset, and action counting are functional.
+
+Browser validation confirms the initial `x=1.2`, `dx=0.1`, radius `1.2`, height `2.8`, shell area `21.11150263`, differential volume `2.11115026`, accumulated volume `14.47645895`, and full volume `64pi/3 = 67.02064328`. Native controls change to `x=2`, `dx=0.2`, producing height 2, area `8pi = 25.13274123`, differential volume `1.6pi = 5.02654825`, and accumulated volume `32pi/3 = 33.51032164`. A real pointer drag moves the visible shell to approximately `x=2.24851084` and recomputes every linked value. Practice rejects `[1,2]`, accepts `[0,3]`, scores 5/5, and reveals the exact setup; local and shell Reset restore the complete initial model.
+
+The reference displays accumulated volume `14.346` at `x=1.2`, but evaluating its own printed integral `integral[0,1.2] 2pi t(4-t) dt` gives `14.47645895`. The dedicated surface preserves the target model, controls, shell geometry, composition, and exact full volume while keeping the partial accumulation mathematically consistent.
+
+Final exact 941x1672 capture matches the target stack: sidebar width 202, hero y=98-334, tabs y=342-393, learning flow y=417-503, shell workspace y=518-1190, worked example y=1202-1407, misconception y=1419-1506, and practice y=1518-1655. Dedicated content spans x=217-922, with no horizontal overflow, no duplicate shared lesson chrome, no footer, and zero console messages.
+
+Evidence:
+
+- `0398-reference.png`
+- `0398-desktop.png`
+- `0398-dedicated-target-validation.json`

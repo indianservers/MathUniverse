@@ -1,0 +1,206 @@
+{
+  "mockup": "0398",
+  "lessonId": 319,
+  "checks": {
+    "initial": {
+      "x": "1.2",
+      "dx": "0.1",
+      "radius": "1.2",
+      "height": "2.8",
+      "area": "21.11150263",
+      "dv": "2.11115026",
+      "accumulated": "14.47645895",
+      "total": "67.02064328",
+      "progress": "30",
+      "tab": "Interact",
+      "result": "",
+      "solution": "false",
+      "actions": "0"
+    },
+    "controls": {
+      "x": "2",
+      "dx": "0.2",
+      "radius": "2",
+      "height": "2",
+      "area": "25.13274123",
+      "dv": "5.02654825",
+      "accumulated": "33.51032164",
+      "total": "67.02064328",
+      "progress": "50",
+      "tab": "Interact",
+      "result": "",
+      "solution": "false",
+      "actions": "2"
+    },
+    "tab": {
+      "x": "2",
+      "dx": "0.2",
+      "radius": "2",
+      "height": "2",
+      "area": "25.13274123",
+      "dv": "5.02654825",
+      "accumulated": "33.51032164",
+      "total": "67.02064328",
+      "progress": "50",
+      "tab": "Formula",
+      "result": "",
+      "solution": "false",
+      "actions": "3"
+    },
+    "localReset": {
+      "x": "1.2",
+      "dx": "0.1",
+      "radius": "1.2",
+      "height": "2.8",
+      "area": "21.11150263",
+      "dv": "2.11115026",
+      "accumulated": "14.47645895",
+      "total": "67.02064328",
+      "progress": "30",
+      "tab": "Formula",
+      "result": "",
+      "solution": "false",
+      "actions": "4"
+    },
+    "drag": {
+      "x": "2.24851084",
+      "dx": "0.1",
+      "radius": "2.24851084",
+      "height": "1.75148916",
+      "area": "24.74470654",
+      "dv": "2.47447065",
+      "accumulated": "39.72393669",
+      "total": "67.02064328",
+      "progress": "56.21277102",
+      "tab": "Formula",
+      "result": "",
+      "solution": "false",
+      "actions": "12"
+    },
+    "rejected": {
+      "x": "2.24851084",
+      "dx": "0.1",
+      "radius": "2.24851084",
+      "height": "1.75148916",
+      "area": "24.74470654",
+      "dv": "2.47447065",
+      "accumulated": "39.72393669",
+      "total": "67.02064328",
+      "progress": "56.21277102",
+      "tab": "Formula",
+      "result": "incorrect",
+      "solution": "false",
+      "actions": "13"
+    },
+    "accepted": {
+      "x": "2.24851084",
+      "dx": "0.1",
+      "radius": "2.24851084",
+      "height": "1.75148916",
+      "area": "24.74470654",
+      "dv": "2.47447065",
+      "accumulated": "39.72393669",
+      "total": "67.02064328",
+      "progress": "56.21277102",
+      "tab": "Formula",
+      "result": "correct",
+      "solution": "false",
+      "actions": "14"
+    },
+    "solution": {
+      "x": "2.24851084",
+      "dx": "0.1",
+      "radius": "2.24851084",
+      "height": "1.75148916",
+      "area": "24.74470654",
+      "dv": "2.47447065",
+      "accumulated": "39.72393669",
+      "total": "67.02064328",
+      "progress": "56.21277102",
+      "tab": "Formula",
+      "result": "correct",
+      "solution": "true",
+      "actions": "15"
+    },
+    "shellReset": {
+      "x": "1.2",
+      "dx": "0.1",
+      "radius": "1.2",
+      "height": "2.8",
+      "area": "21.11150263",
+      "dv": "2.11115026",
+      "accumulated": "14.47645895",
+      "total": "67.02064328",
+      "progress": "30",
+      "tab": "Interact",
+      "result": "",
+      "solution": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 941,
+      "height": 1672
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 202,
+      "height": 1672,
+      "bottom": 1672
+    },
+    "hero": {
+      "top": 98,
+      "left": 217,
+      "width": 705,
+      "height": 236,
+      "bottom": 334
+    },
+    "tabs": {
+      "top": 342,
+      "left": 217,
+      "width": 705,
+      "height": 51,
+      "bottom": 393
+    },
+    "flow": {
+      "top": 417,
+      "left": 217,
+      "width": 705,
+      "height": 86,
+      "bottom": 503
+    },
+    "model": {
+      "top": 518,
+      "left": 217,
+      "width": 705,
+      "height": 672,
+      "bottom": 1190
+    },
+    "worked": {
+      "top": 1202,
+      "left": 217,
+      "width": 705,
+      "height": 205,
+      "bottom": 1407
+    },
+    "warning": {
+      "top": 1419,
+      "left": 217,
+      "width": 705,
+      "height": 87,
+      "bottom": 1506
+    },
+    "practice": {
+      "top": 1518,
+      "left": 217,
+      "width": 705,
+      "height": 137,
+      "bottom": 1655
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
