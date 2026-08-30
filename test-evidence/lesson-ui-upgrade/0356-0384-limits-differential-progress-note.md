@@ -1,6 +1,6 @@
 # Limits and Differential Calculus target batch 0356-0384
 
-Dedicated rebuild target: **14 of 29 lessons completed; 15 pending.**
+Dedicated rebuild target: **15 of 29 lessons completed; 14 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
@@ -18,7 +18,7 @@ Dedicated rebuild target: **14 of 29 lessons completed; 15 pending.**
 | 0367 | 288 Normal Line | `concave-quadratic-draggable-point-tangent-negative-reciprocal-normal-right-angle-step-practice` | Reworked individually and browser-validated |
 | 0368 | 289 Derivative Graph | `integrated-cubic-linked-derivative-shared-draggable-cursor-tangent-sign-zeros-scales-challenge` | Reworked individually and browser-validated |
 | 0369 | 290 Higher Derivatives | `quartic-four-linked-derivative-levels-shared-drag-cursor-domain-visibility-sign-concavity-practice` | Reworked individually and browser-validated |
-| 0370 | 291 Product Rule | Pending audit | Pending |
+| 0370 | 291 Product Rule | `editable-factor-pair-independent-product-derivative-product-rule-decomposition-domain-step-display-practice` | Reworked individually and browser-validated |
 | 0371 | 292 Quotient Rule | Pending audit | Pending |
 | 0372 | 293 Chain Rule | Pending audit | Pending |
 | 0373 | 294 Implicit Differentiation | Pending audit | Pending |
@@ -233,3 +233,19 @@ Evidence:
 - `0369-reference.png`
 - `0369-desktop.png`
 - `0369-dedicated-target-validation.json`
+
+## Lesson 291 / Mockup 0370 - Product Rule
+
+Reworked individually around two editable factor expressions selected from a supported mathematical expression set. Each factor owns an actual value function and analytic derivative; their shared model drives four primary graph layers (`u`, `v`, `uv`, and `u'v+uv'`), five decomposition mini-graphs, the evaluation table, factor derivative labels, and action count. An independent central-difference derivative of the sampled product verifies the analytic product rule and reports a real error controlled by the step-size range. Domain inputs remap every graph, SVG pointer dragging changes the evaluation x, and axes/grid/legend toggles remove real layers.
+
+Browser validation confirms the target start `u=sin(x)`, `v=x^2-2`, x=`1.2`, giving `u=0.9320`, `v=-0.5600`, and `uv=-0.5219`. The sampled derivative is `2.0322`, the analytic rule gives `2.0340`, and the finite-step error is `0.0018`. Editing the factors to `u=x`, `v=exp(x)` with step `0.01` and domain `5` derives product `3.9841` and rule value `7.3043`; a real graph drag moves x to approximately `2.1` and recomputes every value. Practice rejects the incomplete `e^x`, accepts `(x+1)e^x`, and shell Reset restores factors, x, domain, step, toggles, selected tab, target challenge, and zero actions.
+
+The reference's initial derivative row states `1.2896`, which does not equal the derivative of its displayed product at x=`1.2`; direct product-rule evaluation gives approximately `2.0340`. This implementation keeps the graph, factor derivatives, decomposition, sampled model, analytic rule, and error mutually consistent.
+
+Final exact 1024x1536 validation matches the target stack: sidebar width 216, hero y=91-333, tabs y=347-389, four-stage flow y=403-475, factor/graph/decomposition lab y=485-1062, rule/worked/misconception row y=1072-1305, practice y=1315-1462, and adjacent navigation y=1472-1529. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0370-reference.png`
+- `0370-desktop.png`
+- `0370-dedicated-target-validation.json`
