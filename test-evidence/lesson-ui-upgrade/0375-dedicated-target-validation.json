@@ -1,0 +1,153 @@
+{
+  "mockup": "0375",
+  "lessonId": 296,
+  "checks": {
+    "initial": {
+      "x": "0",
+      "h": "0.05",
+      "f": "0",
+      "fp": "DNE",
+      "left": "-3.9",
+      "right": "-1.95",
+      "concavity": "Concave up",
+      "result": "",
+      "actions": "0"
+    },
+    "maximum": {
+      "x": "-1",
+      "h": "0.05",
+      "f": "2",
+      "fp": "0",
+      "left": "0.1",
+      "right": "-0.1",
+      "concavity": "Concave down",
+      "result": "",
+      "actions": "1"
+    },
+    "minimum": {
+      "x": "1",
+      "h": "0.05",
+      "f": "-1",
+      "fp": "0",
+      "left": "-0.05",
+      "right": "0.05",
+      "concavity": "Concave up",
+      "result": "",
+      "actions": "2"
+    },
+    "step": {
+      "x": "1",
+      "h": "0.1",
+      "f": "-1",
+      "fp": "0",
+      "left": "-0.1",
+      "right": "0.1",
+      "concavity": "Concave up",
+      "result": "",
+      "actions": "3"
+    },
+    "dragged": {
+      "x": "1.549",
+      "h": "0.1",
+      "f": "-0.699",
+      "fp": "1.098",
+      "left": "0.998",
+      "right": "1.198",
+      "concavity": "Concave up",
+      "result": "",
+      "actions": "10"
+    },
+    "rejected": {
+      "x": "1.549",
+      "h": "0.1",
+      "f": "-0.699",
+      "fp": "1.098",
+      "left": "0.998",
+      "right": "1.198",
+      "concavity": "Concave up",
+      "result": "incorrect",
+      "actions": "13"
+    },
+    "accepted": {
+      "x": "1.549",
+      "h": "0.1",
+      "f": "-0.699",
+      "fp": "1.098",
+      "left": "0.998",
+      "right": "1.198",
+      "concavity": "Concave up",
+      "result": "correct",
+      "actions": "14"
+    },
+    "reset": {
+      "x": "0",
+      "h": "0.05",
+      "f": "0",
+      "fp": "DNE",
+      "left": "-3.9",
+      "right": "-1.95",
+      "concavity": "Concave up",
+      "result": "",
+      "actions": "0"
+    }
+  },
+  "curveHidden": true,
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 216,
+      "height": 1536,
+      "bottom": 1536
+    },
+    "hero": {
+      "top": 105,
+      "left": 231,
+      "width": 778,
+      "height": 206,
+      "bottom": 311
+    },
+    "tabs": {
+      "top": 321,
+      "left": 231,
+      "width": 778,
+      "height": 47,
+      "bottom": 368
+    },
+    "flow": {
+      "top": 378,
+      "left": 231,
+      "width": 778,
+      "height": 138,
+      "bottom": 516
+    },
+    "model": {
+      "top": 526,
+      "left": 231,
+      "width": 778,
+      "height": 686,
+      "bottom": 1212
+    },
+    "bottom": {
+      "top": 1222,
+      "left": 231,
+      "width": 778,
+      "height": 244,
+      "bottom": 1466
+    },
+    "adjacent": {
+      "top": 1476,
+      "left": 231,
+      "width": 778,
+      "height": 48,
+      "bottom": 1524
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

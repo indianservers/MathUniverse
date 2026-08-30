@@ -1,6 +1,6 @@
 # Limits and Differential Calculus target batch 0356-0384
 
-Dedicated rebuild target: **19 of 29 lessons completed; 10 pending.**
+Dedicated rebuild target: **20 of 29 lessons completed; 9 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
@@ -23,7 +23,7 @@ Dedicated rebuild target: **19 of 29 lessons completed; 10 pending.**
 | 0372 | 293 Chain Rule | `input-sine-inner-square-outer-composition-linked-rates-invertible-output-drag-tangent-practice` | Reworked individually and browser-validated |
 | 0373 | 294 Implicit Differentiation | `upper-semicircle-constrained-linked-x-y-direct-drag-implicit-slope-tangent-classification-practice` | Reworked individually and browser-validated |
 | 0374 | 295 Parametric Differentiation | `parameter-driven-coordinate-curve-direct-drag-component-rates-quotient-tangent-vector-meters-choice-practice` | Reworked individually and browser-validated |
-| 0375 | 296 Critical Points | Pending audit | Pending |
+| 0375 | 296 Critical Points | `piecewise-corner-stationary-max-min-direct-drag-sign-chart-finite-step-layer-toggles-classification-challenge` | Reworked individually and browser-validated |
 | 0376 | 297 Increasing and Decreasing | Pending audit | Pending |
 | 0377 | 298 Local and Global Extrema | Pending audit | Pending |
 | 0378 | 299 Concavity | Pending audit | Pending |
@@ -309,3 +309,19 @@ Evidence:
 - `0374-reference.png`
 - `0374-desktop.png`
 - `0374-dedicated-target-validation.json`
+
+## Lesson 296 / Mockup 0375 - Critical Points
+
+Reworked individually around a continuous piecewise curve with a stationary local maximum at `(-1,2)`, a genuine nondifferentiable corner at `(0,0)`, and a stationary local minimum at `(1,-1)`. The left branch `2-2(x+1)^2` and right branch `(x-1)^2-1` meet at the origin but have different one-sided slopes. One shared x state drives the graph probe, function value, analytic derivative or DNE verdict, finite-step left/right slopes, concavity, sign-chart position, and action count. Native x and h controls and captured SVG pointer dragging are real; function, grid, and sign-chart toggles remove their actual SVG layers.
+
+Browser validation confirms the origin has left slope `-3.9`, right slope `-1.95`, and derivative DNE at h=`0.05`. Moving to x=`-1` derives f=`2`, f'=`0`, Concave down; moving to x=`1` derives f=`-1`, f'=`0`, Concave up. Changing h to `0.1` updates the finite-step evidence; a real pointer drag moves x to approximately `1.55` and updates every live value. The function toggle removes the real curve, practice rejects B, accepts A for the critical points `x=-1,1` of `x^3-3x`, and shell Reset restores x, h, all layers, selected choice, blank result, selected tab, and zero actions.
+
+The reference labels the origin nondifferentiable while also printing a smooth polynomial derivative that is defined there; that formula cannot produce the pictured corner or its stated classifications. This implementation preserves the target's graph shape, three candidate coordinates, classifications, and sign pattern with one mathematically valid model.
+
+Final exact 1024x1536 validation matches the target stack: sidebar width 216, hero y=105-311, tabs y=321-368, four-stage guide y=378-516, graph/sign-chart laboratory y=526-1212, worked/misconception/challenge row y=1222-1466, and adjacent navigation y=1476-1524. The dedicated content spans x=231-1009, with no horizontal overflow, no duplicate shared lesson chrome, no site footer, and zero console messages.
+
+Evidence:
+
+- `0375-reference.png`
+- `0375-desktop.png`
+- `0375-dedicated-target-validation.json`
