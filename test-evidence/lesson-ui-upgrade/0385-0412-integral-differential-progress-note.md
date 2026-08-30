@@ -1,6 +1,6 @@
 # Integral Calculus and Differential Equations target batch 0385-0412
 
-Dedicated rebuild target: **6 of 28 lessons completed; 22 pending.**
+Dedicated rebuild target: **7 of 28 lessons completed; 21 pending.**
 
 | Mockup | Lesson                           | Dedicated object model                                                                                                     | Status                                      |
 | ------ | -------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
@@ -10,7 +10,7 @@ Dedicated rebuild target: **6 of 28 lessons completed; 22 pending.**
 | 0388   | 309 Indefinite Integral          | `six-x-antiderivative-parabola-family-draggable-constant-linked-derivative-compare-symbolic-practice`                      | Reworked individually and browser-validated |
 | 0389   | 310 Fundamental Theorem          | `accumulation-function-dual-bound-drag-selectable-integrand-area-instant-rate-ftc-symbolic-practice`                       | Reworked individually and browser-validated |
 | 0390   | 311 Area Between Curves          | `selectable-top-bottom-curves-editable-domain-draggable-slice-generated-vertical-slices-area-integration-practice`         | Reworked individually and browser-validated |
-| 0391   | 312 Substitution                 | Pending audit                                                                                                              | Pending                                     |
+| 0391   | 312 Substitution                 | `branch-aware-x-to-u-substitution-du-scaling-dual-bound-drag-linked-graphs-transformed-integral-practice`                  | Reworked individually and browser-validated |
 | 0392   | 313 Integration by Parts         | Pending audit                                                                                                              | Pending                                     |
 | 0393   | 314 Partial Fractions            | Pending audit                                                                                                              | Pending                                     |
 | 0394   | 315 Improper Integrals           | Pending audit                                                                                                              | Pending                                     |
@@ -126,3 +126,19 @@ Evidence:
 - `0390-reference.png`
 - `0390-desktop.png`
 - `0390-dedicated-target-validation.json`
+
+## Lesson 312 / Mockup 0391 - Substitution
+
+Reworked individually as a bidirectional x-space/u-space substitution mapper. Selectable substitutions (`x^2`, `3x+1`, `sin(x)`), exact/half/double differential scaling, editable x-bounds, and captured direct graph-bound dragging drive the original integrand, mapped bounds, orientation status, transformed integrand, numerical integral, both linked SVG graphs, shaded x-region, and u-bound guides. The model detects the turning point of `u=x^2` and splits intervals that cross zero into two monotone oriented branches. Five tabs, Reset, Share, Workspace, Clear all, practice choices, solution feedback, shell Reset, adjacent lessons, action counting, and the target-specific footer are functional.
+
+Browser validation confirms the initial `u=x^2`, exact differential, `[-1,1]` state is split at zero and evaluates to 0. Editing the bounds to `[0.2,1.5]` maps to `[0.04,2.25]`, preserves orientation, and evaluates to `0.738085`. A real pointer drag moves the lower bound to approximately `0.752047`, producing mapped lower bound `0.565575` and integral `0.242172`. Switching to `u=3x+1` with half differential recomputes mapped bounds and integral `-0.295621`. Practice rejects `cos(x^2)+C`, accepts `-cos(x^2)+C`, and shows the matching `du=2x dx` solution. Local and shell Reset restore the complete initial mapper.
+
+The reference maps `u=x^2` across `[-1,1]` directly to `[1,1]` while also claiming a single reversed order. Since `x^2` is not one-to-one across that interval, a valid substitution must split at zero; treating `[1,1]` as one transformed interval would erase both oriented branches. The dedicated lesson preserves the target mapper UI while making the branch logic, transformed integral, and result mathematically valid.
+
+Final exact 1024x1536 capture matches the target stack: sidebar width 214, hero/core-rule y=98-303, tabs y=313-352, learning flow y=366-472, substitution mapper y=483-1110, worked/misconception/practice cards y=1118-1354, adjacent lessons y=1364-1412, and footer y=1422-1532. Dedicated content spans x=230-1008, with no horizontal overflow, no duplicate shared lesson chrome, no shared footer, and zero console messages.
+
+Evidence:
+
+- `0391-reference.png`
+- `0391-desktop.png`
+- `0391-dedicated-target-validation.json`

@@ -1,0 +1,183 @@
+{
+  "mockup": "0391",
+  "lessonId": 312,
+  "checks": {
+    "initial": {
+      "u": "square",
+      "scale": "exact",
+      "a": "-1",
+      "b": "1",
+      "ua": "1",
+      "ub": "1",
+      "orientation": "split at x=0",
+      "integral": "0",
+      "tab": "Interaction + visualization",
+      "answer": "",
+      "solution": "false",
+      "actions": "0"
+    },
+    "bounds": {
+      "u": "square",
+      "scale": "exact",
+      "a": "0.2",
+      "b": "1.5",
+      "ua": "0.04",
+      "ub": "2.25",
+      "orientation": "preserved",
+      "integral": "0.738085",
+      "tab": "Interaction + visualization",
+      "answer": "",
+      "solution": "false",
+      "actions": "2"
+    },
+    "drag": {
+      "u": "square",
+      "scale": "exact",
+      "a": "0.752047",
+      "b": "1.5",
+      "ua": "0.565575",
+      "ub": "2.25",
+      "orientation": "preserved",
+      "integral": "0.242172",
+      "tab": "Interaction + visualization",
+      "answer": "",
+      "solution": "false",
+      "actions": "8"
+    },
+    "transform": {
+      "u": "linear",
+      "scale": "half",
+      "a": "0.752047",
+      "b": "1.5",
+      "ua": "3.256141",
+      "ub": "5.5",
+      "orientation": "preserved",
+      "integral": "-0.295621",
+      "tab": "Formulas",
+      "answer": "",
+      "solution": "false",
+      "actions": "11"
+    },
+    "rejected": {
+      "u": "linear",
+      "scale": "half",
+      "a": "0.752047",
+      "b": "1.5",
+      "ua": "3.256141",
+      "ub": "5.5",
+      "orientation": "preserved",
+      "integral": "-0.295621",
+      "tab": "Formulas",
+      "answer": "B",
+      "solution": "true",
+      "actions": "13"
+    },
+    "accepted": {
+      "u": "linear",
+      "scale": "half",
+      "a": "0.752047",
+      "b": "1.5",
+      "ua": "3.256141",
+      "ub": "5.5",
+      "orientation": "preserved",
+      "integral": "-0.295621",
+      "tab": "Formulas",
+      "answer": "A",
+      "solution": "true",
+      "actions": "15"
+    },
+    "localReset": {
+      "u": "square",
+      "scale": "exact",
+      "a": "-1",
+      "b": "1",
+      "ua": "1",
+      "ub": "1",
+      "orientation": "split at x=0",
+      "integral": "0",
+      "tab": "Interaction + visualization",
+      "answer": "",
+      "solution": "false",
+      "actions": "1"
+    },
+    "shellReset": {
+      "u": "square",
+      "scale": "exact",
+      "a": "-1",
+      "b": "1",
+      "ua": "1",
+      "ub": "1",
+      "orientation": "split at x=0",
+      "integral": "0",
+      "tab": "Interaction + visualization",
+      "answer": "",
+      "solution": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1542
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 214,
+      "height": 1536,
+      "bottom": 1536
+    },
+    "hero": {
+      "top": 98,
+      "left": 230,
+      "width": 778,
+      "height": 205,
+      "bottom": 303
+    },
+    "tabs": {
+      "top": 313,
+      "left": 230,
+      "width": 778,
+      "height": 39,
+      "bottom": 352
+    },
+    "flow": {
+      "top": 366,
+      "left": 230,
+      "width": 778,
+      "height": 106,
+      "bottom": 472
+    },
+    "mapper": {
+      "top": 483,
+      "left": 230,
+      "width": 778,
+      "height": 627,
+      "bottom": 1110
+    },
+    "cards": {
+      "top": 1118,
+      "left": 230,
+      "width": 778,
+      "height": 236,
+      "bottom": 1354
+    },
+    "adjacent": {
+      "top": 1364,
+      "left": 230,
+      "width": 778,
+      "height": 48,
+      "bottom": 1412
+    },
+    "footer": {
+      "top": 1422,
+      "left": 230,
+      "width": 778,
+      "height": 110,
+      "bottom": 1532
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
