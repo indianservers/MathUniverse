@@ -1,0 +1,195 @@
+{
+  "mockup": "0520",
+  "lessonId": 335,
+  "checks": {
+    "initial": {
+      "first": "5",
+      "difference": "3",
+      "step": "6",
+      "playing": "false",
+      "terms": "5,8,11,14,17,20,23,26,29,32",
+      "differences": "3,3,3,3,3,3,3,3,3",
+      "tab": "Interaction + Visualisation",
+      "solver-mode": "term",
+      "solver-result": "",
+      "quick-result": "",
+      "actions": "0"
+    },
+    "controls": {
+      "first": "-2",
+      "difference": "4",
+      "step": "10",
+      "playing": "false",
+      "terms": "-2,2,6,10,14,18,22,26,30,34",
+      "differences": "4,4,4,4,4,4,4,4,4",
+      "tab": "Interaction + Visualisation",
+      "solver-mode": "term",
+      "solver-result": "",
+      "quick-result": "",
+      "actions": "3"
+    },
+    "autoplay": {
+      "first": "-2",
+      "difference": "4",
+      "step": "1",
+      "playing": "false",
+      "terms": "-2,2,6,10,14,18,22,26,30,34",
+      "differences": "4,4,4,4,4,4,4,4,4",
+      "tab": "Interaction + Visualisation",
+      "solver-mode": "term",
+      "solver-result": "",
+      "quick-result": "",
+      "actions": "5"
+    },
+    "drag": {
+      "first": "5",
+      "difference": "4.549675",
+      "step": "6",
+      "playing": "false",
+      "terms": "5,9.549675,14.09935,18.649025,23.1987,27.748375,32.29805,36.847725,41.3974,45.947075",
+      "differences": "4.549675,4.549675,4.549675,4.549675,4.549675,4.549675,4.549675,4.549675,4.549675",
+      "tab": "Interaction + Visualisation",
+      "solver-mode": "term",
+      "solver-result": "",
+      "quick-result": "",
+      "actions": "9"
+    },
+    "findTerm": {
+      "first": "5",
+      "difference": "3",
+      "step": "6",
+      "playing": "false",
+      "terms": "5,8,11,14,17,20,23,26,29,32",
+      "differences": "3,3,3,3,3,3,3,3,3",
+      "tab": "Interaction + Visualisation",
+      "solver-mode": "term",
+      "solver-result": "a25 = 77",
+      "quick-result": "",
+      "actions": "2"
+    },
+    "findIndex": {
+      "first": "5",
+      "difference": "3",
+      "step": "6",
+      "playing": "false",
+      "terms": "5,8,11,14,17,20,23,26,29,32",
+      "differences": "3,3,3,3,3,3,3,3,3",
+      "tab": "Interaction + Visualisation",
+      "solver-mode": "index",
+      "solver-result": "n = 5",
+      "quick-result": "",
+      "actions": "4"
+    },
+    "rejected": {
+      "first": "5",
+      "difference": "3",
+      "step": "6",
+      "playing": "false",
+      "terms": "5,8,11,14,17,20,23,26,29,32",
+      "differences": "3,3,3,3,3,3,3,3,3",
+      "tab": "Interaction + Visualisation",
+      "solver-mode": "index",
+      "solver-result": "n = 5",
+      "quick-result": "incorrect",
+      "actions": "5"
+    },
+    "accepted": {
+      "first": "5",
+      "difference": "3",
+      "step": "6",
+      "playing": "false",
+      "terms": "5,8,11,14,17,20,23,26,29,32",
+      "differences": "3,3,3,3,3,3,3,3,3",
+      "tab": "Formulas",
+      "solver-mode": "index",
+      "solver-result": "n = 5",
+      "quick-result": "correct",
+      "actions": "7"
+    },
+    "shellReset": {
+      "first": "5",
+      "difference": "3",
+      "step": "6",
+      "playing": "false",
+      "terms": "5,8,11,14,17,20,23,26,29,32",
+      "differences": "3,3,3,3,3,3,3,3,3",
+      "tab": "Interaction + Visualisation",
+      "solver-mode": "term",
+      "solver-result": "",
+      "quick-result": "",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 944,
+      "height": 1665
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 191,
+      "height": 1665,
+      "bottom": 1665
+    },
+    "hero": {
+      "top": 97,
+      "left": 206,
+      "width": 723,
+      "height": 204,
+      "bottom": 301
+    },
+    "tabs": {
+      "top": 301,
+      "left": 206,
+      "width": 723,
+      "height": 42,
+      "bottom": 343
+    },
+    "explorer": {
+      "top": 353,
+      "left": 206,
+      "width": 723,
+      "height": 391,
+      "bottom": 744
+    },
+    "terms": {
+      "top": 754,
+      "left": 206,
+      "width": 723,
+      "height": 283,
+      "bottom": 1037
+    },
+    "formulas": {
+      "top": 1047,
+      "left": 206,
+      "width": 723,
+      "height": 223,
+      "bottom": 1270
+    },
+    "practice": {
+      "top": 1280,
+      "left": 206,
+      "width": 723,
+      "height": 206,
+      "bottom": 1486
+    },
+    "adjacent": {
+      "top": 1495,
+      "left": 206,
+      "width": 723,
+      "height": 45,
+      "bottom": 1540
+    },
+    "footer": {
+      "top": 1549,
+      "left": 191,
+      "width": 753,
+      "height": 116,
+      "bottom": 1665
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

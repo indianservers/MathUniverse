@@ -5,7 +5,9 @@ import SequenceLessonAdapter from "./SequenceLessonAdapter";
 
 describe("SequenceLessonAdapter", () => {
   it("renders all 13 sequence routes with explicit controls and linked representations", () => {
-    const lessons = lessonCatalog.filter((lesson) => lesson.adapter === "sequence");
+    const lessons = lessonCatalog.filter(
+      (lesson) => lesson.adapter === "sequence",
+    );
     expect(lessons).toHaveLength(13);
     for (const lesson of lessons) {
       const html = renderToStaticMarkup(
@@ -16,6 +18,14 @@ describe("SequenceLessonAdapter", () => {
         />,
       );
       expect(html, String(lesson.id)).toContain(lesson.title);
+      if (lesson.id === 334 || lesson.id === 335) {
+        expect(html, String(lesson.id)).toContain(
+          `data-testid="sequence-mockup-0${lesson.id + 185}"`,
+        );
+        expect(html, String(lesson.id)).toContain("data-object-model=");
+        expect(html, String(lesson.id)).toContain("<table");
+        continue;
+      }
       expect(html, String(lesson.id)).toContain("sequence and series lab");
       expect(html, String(lesson.id)).toContain('id="sequence-result"');
       expect(html.match(/type="range"/g), String(lesson.id)).toHaveLength(3);
@@ -44,13 +54,13 @@ describe("SequenceLessonAdapter", () => {
     }
   });
 
-  it("renders strengthened sequence lessons 334 and 335 with their own presets", () => {
+  it("renders strengthened sequence lessons 334 and 335 with dedicated models", () => {
     const expected = new Map([
-      [334, "Sequence Generator"],
-      [335, "Arithmetic Sequences"],
+      [334, ["Sequence Generator", "sequence-mockup-0519"]],
+      [335, ["Arithmetic Sequences", "sequence-mockup-0520"]],
     ]);
 
-    for (const [lessonId, title] of expected) {
+    for (const [lessonId, [title, testId]] of expected) {
       const lesson = lessonCatalog.find((item) => item.id === lessonId)!;
       const html = renderToStaticMarkup(
         <SequenceLessonAdapter
@@ -61,8 +71,8 @@ describe("SequenceLessonAdapter", () => {
       ).replaceAll("Â·", "-");
 
       expect(html, String(lessonId)).toContain(title);
-      expect(html, String(lessonId)).toContain("sequence and series lab");
-      expect(html, String(lessonId)).toContain('id="sequence-result"');
+      expect(html, String(lessonId)).toContain(`data-testid="${testId}"`);
+      expect(html, String(lessonId)).toContain("data-object-model=");
     }
   });
 });
