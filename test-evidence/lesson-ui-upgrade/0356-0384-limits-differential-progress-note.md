@@ -1,6 +1,6 @@
 # Limits and Differential Calculus target batch 0356-0384
 
-Dedicated rebuild target: **9 of 29 lessons completed; 20 pending.**
+Dedicated rebuild target: **10 of 29 lessons completed; 19 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
@@ -13,7 +13,7 @@ Dedicated rebuild target: **9 of 29 lessons completed; 20 pending.**
 | 0362 | 283 Epsilon-Delta Visualiser | `linear-epsilon-delta-linked-input-output-bands-draggable-handles-proof-practice` | Reworked individually and browser-validated |
 | 0363 | 284 Average Rate of Change | `quadratic-two-draggable-secants-linked-rise-run-rate-independent-practice` | Reworked individually and browser-validated |
 | 0364 | 285 Instantaneous Rate of Change | `quadratic-fixed-base-movable-secant-h-limit-tangent-convergence-practice` | Reworked individually and browser-validated |
-| 0365 | 286 Derivative From First Principles | Pending audit | Pending |
+| 0365 | 286 Derivative From First Principles | `selectable-quadratic-base-point-h-secant-difference-quotient-symbolic-limit-practice` | Reworked individually and browser-validated |
 | 0366 | 287 Tangent Line | Pending audit | Pending |
 | 0367 | 288 Normal Line | Pending audit | Pending |
 | 0368 | 289 Derivative Graph | Pending audit | Pending |
@@ -159,3 +159,17 @@ Evidence:
 - `0364-reference.png`
 - `0364-desktop.png`
 - `0364-dedicated-target-validation.json`
+
+## Lesson 286 / Mockup 0365 - Derivative From First Principles
+
+Reworked individually around a selectable quadratic `f(x)=ax^2+bx+c`, a selectable base point `P=(x,f(x))`, and a movable secant point `P_h=(x+h,f(x+h))`. One shared state model drives the plotted curve, both points, secant and tangent lines, live difference quotient, current derivative, symbolic simplification chain, general quadratic rule, result rail, and action count. The function selector, base-point selector, native h range, captured SVG point dragging, five lesson tabs, Reset, Share, practice answer checking, alternate practice problem, shell Reset, and Previous/Next navigation are functional.
+
+Browser validation confirms the target initial model `f(x)=2x^2+2x`, `x=0`, and `h=0.25` gives difference quotient `2.5` and limiting derivative `2`. Moving h to `0.5` gives quotient `3`; moving x to `1` gives derivative `6`; changing the model to `f(x)=x^2` gives derivative `2`. A real pointer drag reaches `h=0.01` and recomputes the quotient as `2.01`. Practice rejects an invalid expression, accepts `2x+5`, and shell Reset restores the exact target function, base point, h value, correct practice state, selected interaction tab, and zero actions.
+
+Final exact 1024x1536 validation matches the target stack: sidebar width 208, hero y=91-317, tabs y=327-363, four-stage flow y=373-448, graph/algebra/result laboratory y=458-1140, worked/practice row y=1150-1378, adjacent navigation y=1387-1431, and site footer y=1440-1534. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0365-reference.png`
+- `0365-desktop.png`
+- `0365-dedicated-target-validation.json`

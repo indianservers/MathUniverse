@@ -1,0 +1,143 @@
+{
+  "mockup": "0365",
+  "lessonId": 286,
+  "checks": {
+    "initial": {
+      "function": "2x² + 2x",
+      "x": "0",
+      "h": "0.25",
+      "quotient": "2.5",
+      "derivative": "2",
+      "result": "correct",
+      "actions": "0"
+    },
+    "half": {
+      "function": "2x² + 2x",
+      "x": "0",
+      "h": "0.5",
+      "quotient": "3",
+      "derivative": "2",
+      "result": "correct",
+      "actions": "1"
+    },
+    "xOne": {
+      "function": "2x² + 2x",
+      "x": "1",
+      "h": "0.5",
+      "quotient": "7",
+      "derivative": "6",
+      "result": "correct",
+      "actions": "2"
+    },
+    "square": {
+      "function": "x²",
+      "x": "1",
+      "h": "0.5",
+      "quotient": "2.5",
+      "derivative": "2",
+      "result": "correct",
+      "actions": "3"
+    },
+    "dragged": {
+      "function": "x²",
+      "x": "1",
+      "h": "0.01",
+      "quotient": "2.01",
+      "derivative": "2",
+      "result": "correct",
+      "actions": "10"
+    },
+    "rejected": {
+      "function": "x²",
+      "x": "1",
+      "h": "0.01",
+      "quotient": "2.01",
+      "derivative": "2",
+      "result": "incorrect",
+      "actions": "11"
+    },
+    "accepted": {
+      "function": "x²",
+      "x": "1",
+      "h": "0.01",
+      "quotient": "2.01",
+      "derivative": "2",
+      "result": "correct",
+      "actions": "12"
+    },
+    "reset": {
+      "function": "2x² + 2x",
+      "x": "0",
+      "h": "0.25",
+      "quotient": "2.5",
+      "derivative": "2",
+      "result": "correct",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 208,
+      "height": 1536,
+      "bottom": 1536
+    },
+    "hero": {
+      "top": 91,
+      "left": 220,
+      "width": 788,
+      "height": 226,
+      "bottom": 317
+    },
+    "tabs": {
+      "top": 327,
+      "left": 220,
+      "width": 788,
+      "height": 36,
+      "bottom": 363
+    },
+    "flow": {
+      "top": 373,
+      "left": 220,
+      "width": 788,
+      "height": 75,
+      "bottom": 448
+    },
+    "lab": {
+      "top": 458,
+      "left": 220,
+      "width": 788,
+      "height": 682,
+      "bottom": 1140
+    },
+    "bottom": {
+      "top": 1150,
+      "left": 220,
+      "width": 788,
+      "height": 228,
+      "bottom": 1378
+    },
+    "adjacent": {
+      "top": 1387,
+      "left": 220,
+      "width": 788,
+      "height": 44,
+      "bottom": 1431
+    },
+    "footer": {
+      "top": 1440,
+      "left": 220,
+      "width": 788,
+      "height": 94,
+      "bottom": 1534
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
