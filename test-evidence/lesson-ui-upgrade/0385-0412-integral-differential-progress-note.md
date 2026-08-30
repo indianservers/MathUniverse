@@ -1,6 +1,6 @@
 # Integral Calculus and Differential Equations target batch 0385-0412
 
-Dedicated rebuild target: **15 of 28 lessons completed; 13 pending.**
+Dedicated rebuild target: **16 of 28 lessons completed; 12 pending.**
 
 | Mockup | Lesson                           | Dedicated object model                                                                                                     | Status                                      |
 | ------ | -------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
@@ -19,7 +19,7 @@ Dedicated rebuild target: **15 of 28 lessons completed; 13 pending.**
 | 0397   | 318 Disc and Washer Methods      | `washer-region-axis-piecewise-radii-slice-thickness-layer-controls-draggable-bound-accumulated-volume-symbolic-practice`    | Reworked individually and browser-validated |
 | 0398   | 319 Shell Method                 | `cylindrical-shell-radius-height-thickness-area-draggable-strip-volume-accumulation-bounds-practice`                       | Reworked individually and browser-validated |
 | 0399   | 320 Arc Length                   | `parabola-domain-polyline-segments-draggable-ds-triangle-exact-arc-integral-error-practice`                                | Reworked individually and browser-validated |
-| 0400   | 321 Surface Area of Revolution   | Pending audit                                                                                                              | Pending                                     |
+| 0400   | 321 Surface Area of Revolution   | `generating-curve-revolved-surface-mesh-axis-bounds-draggable-differential-ring-animation-surface-integral-practice`       | Reworked individually and browser-validated |
 | 0401   | 322 Accumulation Functions       | Pending audit                                                                                                              | Pending                                     |
 | 0402   | 323 Direction Fields             | Pending audit                                                                                                              | Pending                                     |
 | 0403   | 324 Euler's Method               | Pending audit                                                                                                              | Pending                                     |
@@ -266,3 +266,19 @@ Evidence:
 - `0399-reference.png`
 - `0399-desktop.png`
 - `0399-dedicated-target-validation.json`
+
+## Lesson 321 / Mockup 0400 - Surface Area of Revolution
+
+Reworked individually as a linked generating-curve and revolved-surface laboratory. The default `y=sqrt(x)` model on `[1,6]` generates the 2D graph, bound guides, tangent `ds`, translucent 3D mesh, circular differential ring, radius, slope, arc-length factor, differential surface element, exact surface integral, and progress. The orange ring is directly draggable in both graph views. The rotation axis is real, and the curve editor switches among `sqrt(x)`, `ln(x+1)`, and `x/2`; each axis/curve combination is recomputed numerically rather than changing labels. Dual numeric/range bounds, animation play/pause/reset, speed, five tabs, derivation cards, worked result, numerical practice, Hint, shell Reset, adjacent lessons, compact footer, and action counting are functional.
+
+Browser validation confirms the initial axis `x`, curve `sqrt`, interval `[1,6]`, ring position `x=3.7`, radius `1.92353841`, slope `0.25993762`, `ds/dx=1.03323161`, differential element `12.48758382`, and exact area `pi(125-5sqrt(5))/6 = 59.59583467`. Switching to the y-axis, selecting `ln(x+1)`, and changing the interval to `[2,5]` produces area `67.60397835`; speed 80 drives the live animation, Pause freezes it, and animation Reset returns the ring to `x=2`. A real pointer drag moves the 3D ring from approximately `x=3.96` to `x=4.94` and updates radius, slope, `ds`, element, and progress. Practice rejects 1, accepts `217.0319`, reveals the derivative hint, and shell Reset restores the complete initial model.
+
+The reference prints `y=sqrt(x)` on `[1,6]` but reports `80pi/3`, approximately `83.7758`. Its own surface formula evaluates to `pi/6[(4x+1)^(3/2)]_1^6 = pi(125-5sqrt(5))/6`, approximately `59.5958`. The dedicated surface preserves the target's two-view construction, controls, orange ring, derivation hierarchy, and exact composition while keeping the curve, derivative, mesh, differential element, integral, and checked practice result mathematically consistent.
+
+Final exact 1024x1536 capture matches the target stack: sidebar width 224, title y=109-208, two-view surface lab y=208-795, formula band y=804-955, how/worked band y=969-1247, practice y=1261-1365, adjacent lessons y=1379-1429, and compact footer y=1439-1536. Dedicated content spans x=243-1008, with no horizontal overflow, no duplicate shared lesson chrome, and zero console messages.
+
+Evidence:
+
+- `0400-reference.png`
+- `0400-desktop.png`
+- `0400-dedicated-target-validation.json`
