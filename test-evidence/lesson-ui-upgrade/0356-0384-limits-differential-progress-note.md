@@ -1,6 +1,6 @@
 # Limits and Differential Calculus target batch 0356-0384
 
-Dedicated rebuild target: **23 of 29 lessons completed; 6 pending.**
+Dedicated rebuild target: **24 of 29 lessons completed; 5 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
@@ -27,7 +27,7 @@ Dedicated rebuild target: **23 of 29 lessons completed; 6 pending.**
 | 0376 | 297 Increasing and Decreasing | `editable-shape-coefficients-symmetric-critical-roots-direct-root-drag-synchronized-function-derivative-sign-interval-practice` | Reworked individually and browser-validated |
 | 0377 | 298 Local and Global Extrema | `closed-interval-quadratic-two-draggable-endpoints-linked-sliders-candidate-comparison-local-global-range-practice` | Reworked individually and browser-validated |
 | 0378 | 299 Concavity | `selectable-analytic-functions-shared-x-direct-graph-drag-finite-step-second-derivative-synchronized-graphs-sign-regions-inflection-practice` | Reworked individually and browser-validated |
-| 0379 | 300 Inflection Points | Pending audit | Pending |
+| 0379 | 300 Inflection Points | `four-coefficient-cubic-analytic-second-derivative-direct-inflection-drag-concavity-sign-map-step-practice` | Reworked individually and browser-validated |
 | 0380 | 301 Optimisation | Pending audit | Pending |
 | 0381 | 302 Related Rates | Pending audit | Pending |
 | 0382 | 303 Motion Analysis | Pending audit | Pending |
@@ -373,3 +373,17 @@ Evidence:
 - `0378-reference.png`
 - `0378-desktop.png`
 - `0378-dedicated-target-validation.json`
+
+## Lesson 300 / Mockup 0379 - Inflection Points
+
+Reworked individually around the target cubic family `f(x)=cx^3+kx^2+mx+d`, initially `f(x)=x^3-3x^2+x+2`. The four coefficient states drive the curve, exact second derivative, candidate root, point coordinate, sign map, concavity-change verdict, summary, feedback, and action count. All four native coefficient controls are real. Captured SVG pointer dragging moves the inflection point by solving `k=-3cx`, so the handle edits the underlying polynomial rather than a decorative marker. Five lesson tabs, Reset, Share, four-step practice validation, shell Reset, and Previous/Next navigation are functional.
+
+Browser validation confirms the exact target start `c=1`, `k=-3`, `m=1`, `d=2`, inflection candidate `x=1`, point `(1,1)`, negative left second-derivative sign, positive right sign, and a true concavity change. Moving `c` to `2` derives `x=0.5`; changing `m` and `d` preserves x while changing y; a real pointer drag moves x to approximately `1.195` and solves `k=-7.171`. Setting `c=0` removes the cubic term and correctly reports no inflection point or sign change. Practice rejects incomplete work, accepts all four required derivative/sign-test steps, reveals `g''(x)=6x+2` and `IP=(-1/3,38/27)`, and shell Reset restores coefficients, point, practice state, selected tab, and zero actions.
+
+Final exact 1024x1536 validation matches the target stack: sidebar width 220, hero y=107-331, tabs y=349-386, two-column model y=399-1066, rule/worked/misconception row y=1075-1313, practice y=1325-1466, and adjacent navigation y=1474-1529. The dedicated content spans x=234-1010, with no horizontal overflow, no duplicate shared lesson chrome, no site footer, and zero console messages.
+
+Evidence:
+
+- `0379-reference.png`
+- `0379-desktop.png`
+- `0379-dedicated-target-validation.json`

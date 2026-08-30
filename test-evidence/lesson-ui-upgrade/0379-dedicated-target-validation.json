@@ -1,0 +1,190 @@
+{
+  "mockup": "0379",
+  "lessonId": 300,
+  "checks": {
+    "initial": {
+      "c": "1",
+      "k": "-3",
+      "m": "1",
+      "d": "2",
+      "x": "1",
+      "y": "1",
+      "left-sign": "-1",
+      "right-sign": "1",
+      "changes": "true",
+      "steps": "0",
+      "result": "",
+      "actions": "0"
+    },
+    "cDriven": {
+      "c": "2",
+      "k": "-3",
+      "m": "1",
+      "d": "2",
+      "x": "0.5",
+      "y": "2",
+      "left-sign": "-1",
+      "right-sign": "1",
+      "changes": "true",
+      "steps": "0",
+      "result": "",
+      "actions": "1"
+    },
+    "verticalDriven": {
+      "c": "2",
+      "k": "-3",
+      "m": "2",
+      "d": "1",
+      "x": "0.5",
+      "y": "1.5",
+      "left-sign": "-1",
+      "right-sign": "1",
+      "changes": "true",
+      "steps": "0",
+      "result": "",
+      "actions": "3"
+    },
+    "dragged": {
+      "c": "2",
+      "k": "-7.171",
+      "m": "2",
+      "d": "1",
+      "x": "1.195",
+      "y": "-3.438",
+      "left-sign": "-1",
+      "right-sign": "1",
+      "changes": "true",
+      "steps": "0",
+      "result": "",
+      "actions": "10"
+    },
+    "noInflection": {
+      "c": "0",
+      "k": "-7.171",
+      "m": "2",
+      "d": "1",
+      "x": "none",
+      "y": "none",
+      "left-sign": "-1",
+      "right-sign": "-1",
+      "changes": "false",
+      "steps": "0",
+      "result": "",
+      "actions": "11"
+    },
+    "localReset": {
+      "c": "1",
+      "k": "-3",
+      "m": "1",
+      "d": "2",
+      "x": "1",
+      "y": "1",
+      "left-sign": "-1",
+      "right-sign": "1",
+      "changes": "true",
+      "steps": "0",
+      "result": "",
+      "actions": "1"
+    },
+    "rejected": {
+      "c": "1",
+      "k": "-3",
+      "m": "1",
+      "d": "2",
+      "x": "1",
+      "y": "1",
+      "left-sign": "-1",
+      "right-sign": "1",
+      "changes": "true",
+      "steps": "0",
+      "result": "incorrect",
+      "actions": "2"
+    },
+    "accepted": {
+      "c": "1",
+      "k": "-3",
+      "m": "1",
+      "d": "2",
+      "x": "1",
+      "y": "1",
+      "left-sign": "-1",
+      "right-sign": "1",
+      "changes": "true",
+      "steps": "4",
+      "result": "correct",
+      "actions": "3"
+    },
+    "shellReset": {
+      "c": "1",
+      "k": "-3",
+      "m": "1",
+      "d": "2",
+      "x": "1",
+      "y": "1",
+      "left-sign": "-1",
+      "right-sign": "1",
+      "changes": "true",
+      "steps": "0",
+      "result": "",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 220,
+      "height": 1536,
+      "bottom": 1536
+    },
+    "hero": {
+      "top": 107,
+      "left": 234,
+      "width": 776,
+      "height": 224,
+      "bottom": 331
+    },
+    "tabs": {
+      "top": 349,
+      "left": 234,
+      "width": 776,
+      "height": 37,
+      "bottom": 386
+    },
+    "work": {
+      "top": 399,
+      "left": 234,
+      "width": 776,
+      "height": 667,
+      "bottom": 1066
+    },
+    "info": {
+      "top": 1075,
+      "left": 234,
+      "width": 776,
+      "height": 238,
+      "bottom": 1313
+    },
+    "practice": {
+      "top": 1325,
+      "left": 234,
+      "width": 776,
+      "height": 141,
+      "bottom": 1466
+    },
+    "adjacent": {
+      "top": 1474,
+      "left": 234,
+      "width": 776,
+      "height": 55,
+      "bottom": 1529
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
