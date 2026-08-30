@@ -1,6 +1,6 @@
 # Limits and Differential Calculus target batch 0356-0384
 
-Dedicated rebuild target: **7 of 29 lessons completed; 22 pending.**
+Dedicated rebuild target: **8 of 29 lessons completed; 21 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
@@ -11,7 +11,7 @@ Dedicated rebuild target: **7 of 29 lessons completed; 22 pending.**
 | 0360 | 281 Continuity at a Point | `parabola-removable-hole-editable-point-five-condition-continuity-drag-practice` | Reworked individually and browser-validated |
 | 0361 | 282 Types of Discontinuity | `three-break-graphs-six-draggable-approach-markers-derived-limits-classification` | Reworked individually and browser-validated |
 | 0362 | 283 Epsilon-Delta Visualiser | `linear-epsilon-delta-linked-input-output-bands-draggable-handles-proof-practice` | Reworked individually and browser-validated |
-| 0363 | 284 Average Rate of Change | Pending audit | Pending |
+| 0363 | 284 Average Rate of Change | `quadratic-two-draggable-secants-linked-rise-run-rate-independent-practice` | Reworked individually and browser-validated |
 | 0364 | 285 Instantaneous Rate of Change | Pending audit | Pending |
 | 0365 | 286 Derivative From First Principles | Pending audit | Pending |
 | 0366 | 287 Tangent Line | Pending audit | Pending |
@@ -131,3 +131,17 @@ Evidence:
 - `0362-reference.png`
 - `0362-desktop.png`
 - `0362-dedicated-target-validation.json`
+
+## Lesson 284 / Mockup 0363 - Average Rate of Change
+
+Reworked individually around a coherent upward quadratic that passes through the target's initial secant points `A=(-3,2)` and `B=(2,3)`. Both point inputs drive the graph handles, secant, rise/run guides, coordinates, delta values, exact average-rate fraction, linked sliders, and action count. Native range controls and captured SVG pointer dragging use the same model. The worked example and independent practice calculate their own `1+x^2/4` intervals instead of copying the mockup's inconsistent practice answer.
+
+Browser validation confirms the target initial `rise=1`, `run=5`, and rate `0.2`. Sliders move A to `-2` and B to `3`, deriving a rate of `0.8`; a real pointer drag then moves B to `1.08` and recalculates the rate to `0.224`. Practice rejects `0.400`, accepts the mathematically correct `0.500`, and shell Reset restores both graph points, target outputs, selected interaction tab, and zero actions.
+
+Final exact 1024x1536 validation matches the target stack: sidebar width 204, hero y=91-287, tabs y=298-341, secant laboratory y=352-872, four-stage learning flow y=883-1046, rule/worked/misconception row y=1061-1230, practice y=1240-1372, adjacent navigation y=1381-1432, and site footer y=1458-1536. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0363-reference.png`
+- `0363-desktop.png`
+- `0363-dedicated-target-validation.json`

@@ -1,0 +1,154 @@
+{
+  "mockup": "0363",
+  "lessonId": 284,
+  "checks": {
+    "initial": {
+      "x-a": "-3",
+      "x-b": "2",
+      "y-a": "2",
+      "y-b": "3",
+      "rise": "1",
+      "run": "5",
+      "rate": "0.2",
+      "practice": "0.500",
+      "practice-result": "correct",
+      "actions": "0"
+    },
+    "sliders": {
+      "x-a": "-2",
+      "x-b": "3",
+      "y-a": "1",
+      "y-b": "5",
+      "rise": "4",
+      "run": "5",
+      "rate": "0.8",
+      "practice": "0.500",
+      "practice-result": "correct",
+      "actions": "2"
+    },
+    "dragged": {
+      "x-a": "-2",
+      "x-b": "1.08",
+      "y-a": "1",
+      "y-b": "1.69",
+      "rise": "0.69",
+      "run": "3.08",
+      "rate": "0.224",
+      "practice": "0.500",
+      "practice-result": "correct",
+      "actions": "10"
+    },
+    "rejected": {
+      "x-a": "-2",
+      "x-b": "1.08",
+      "y-a": "1",
+      "y-b": "1.69",
+      "rise": "0.69",
+      "run": "3.08",
+      "rate": "0.224",
+      "practice": "0.400",
+      "practice-result": "incorrect",
+      "actions": "11"
+    },
+    "accepted": {
+      "x-a": "-2",
+      "x-b": "1.08",
+      "y-a": "1",
+      "y-b": "1.69",
+      "rise": "0.69",
+      "run": "3.08",
+      "rate": "0.224",
+      "practice": "0.500",
+      "practice-result": "correct",
+      "actions": "12"
+    },
+    "reset": {
+      "x-a": "-3",
+      "x-b": "2",
+      "y-a": "2",
+      "y-b": "3",
+      "rise": "1",
+      "run": "5",
+      "rate": "0.2",
+      "practice": "0.500",
+      "practice-result": "correct",
+      "actions": "0"
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/calculus/283-epsilondelta-visualiser",
+    "nextHref": "/lessons/calculus/285-instantaneous-rate-of-change"
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 204,
+      "height": 1536,
+      "bottom": 1536
+    },
+    "hero": {
+      "top": 91,
+      "left": 214,
+      "width": 800,
+      "height": 196,
+      "bottom": 287
+    },
+    "tabs": {
+      "top": 298,
+      "left": 214,
+      "width": 800,
+      "height": 43,
+      "bottom": 341
+    },
+    "lab": {
+      "top": 352,
+      "left": 214,
+      "width": 800,
+      "height": 520,
+      "bottom": 872
+    },
+    "flow": {
+      "top": 883,
+      "left": 214,
+      "width": 800,
+      "height": 163,
+      "bottom": 1046
+    },
+    "learning": {
+      "top": 1061,
+      "left": 214,
+      "width": 800,
+      "height": 169,
+      "bottom": 1230
+    },
+    "practice": {
+      "top": 1240,
+      "left": 214,
+      "width": 800,
+      "height": 132,
+      "bottom": 1372
+    },
+    "adjacent": {
+      "top": 1381,
+      "left": 214,
+      "width": 800,
+      "height": 51,
+      "bottom": 1432
+    },
+    "footer": {
+      "top": 1458,
+      "left": 204,
+      "width": 820,
+      "height": 78,
+      "bottom": 1536
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
