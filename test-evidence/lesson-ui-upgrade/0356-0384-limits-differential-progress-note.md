@@ -1,6 +1,6 @@
 # Limits and Differential Calculus target batch 0356-0384
 
-Dedicated rebuild target: **22 of 29 lessons completed; 7 pending.**
+Dedicated rebuild target: **23 of 29 lessons completed; 6 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
@@ -26,7 +26,7 @@ Dedicated rebuild target: **22 of 29 lessons completed; 7 pending.**
 | 0375 | 296 Critical Points | `piecewise-corner-stationary-max-min-direct-drag-sign-chart-finite-step-layer-toggles-classification-challenge` | Reworked individually and browser-validated |
 | 0376 | 297 Increasing and Decreasing | `editable-shape-coefficients-symmetric-critical-roots-direct-root-drag-synchronized-function-derivative-sign-interval-practice` | Reworked individually and browser-validated |
 | 0377 | 298 Local and Global Extrema | `closed-interval-quadratic-two-draggable-endpoints-linked-sliders-candidate-comparison-local-global-range-practice` | Reworked individually and browser-validated |
-| 0378 | 299 Concavity | Pending audit | Pending |
+| 0378 | 299 Concavity | `selectable-analytic-functions-shared-x-direct-graph-drag-finite-step-second-derivative-synchronized-graphs-sign-regions-inflection-practice` | Reworked individually and browser-validated |
 | 0379 | 300 Inflection Points | Pending audit | Pending |
 | 0380 | 301 Optimisation | Pending audit | Pending |
 | 0381 | 302 Related Rates | Pending audit | Pending |
@@ -357,3 +357,19 @@ Evidence:
 - `0377-reference.png`
 - `0377-desktop.png`
 - `0377-dedicated-target-validation.json`
+
+## Lesson 299 / Mockup 0378 - Concavity
+
+Reworked individually around three genuinely selectable analytic models, led by the target's printed `f(x)=-8x^4+4x^3`. Every model owns exact f, f', f'', and inflection candidates. One shared x state drives the function point, tangent, vertical cursor, second-derivative point, live values, sign, concavity verdict, and action count. The native x control and captured SVG pointer dragging are real. The h control independently computes the central finite-difference second derivative and reports its error from the analytic f'', so shrinking h produces measurable convergence rather than moving a decorative slider.
+
+Browser validation confirms the coherent target start x=`-1.2`, h=`0.2`, f=`-23.5008`, f'=`72.576`, f''=`-167.04`, finite f''=`-167.68`, Concave down, and roots `0,0.25`. Moving x to `0.1` derives f''=`1.44` and Concave up; reducing h to `0.1` improves the approximation from `0.8` to `1.28`; switching to `x^3-3x` changes the inflection set to `0`; a real graph drag moves x to approximately `0.576` and updates all values. Practice rejects A, accepts the mathematically correct C (down for x<0, up for x>0, inflection at 0), reveals the derivation, and shell Reset restores model, x, h, practice state, selected tab, and zero actions.
+
+The reference's initial value cards and colored f'' regions do not evaluate from its printed quartic, and its practice highlights an inflection boundary inconsistent with `x^3-3x`. This implementation preserves the target composition and printed primary function while keeping both graphs, tangent, exact values, finite approximation, sign regions, inflection roots, and checked answer mutually consistent.
+
+Final exact 967x1627 validation matches the target stack: sidebar width 217, hero y=93-302, tabs y=316-355, graph-and-learning surface y=367-1565, linked graph workspace y=428-1038, four learning cards y=1051-1242, rule/worked/misconception row y=1254-1415, practice y=1427-1564, and adjacent navigation y=1574-1621. The dedicated content spans x=228-952, with no horizontal overflow, no duplicate shared lesson chrome, no site footer, and zero console messages.
+
+Evidence:
+
+- `0378-reference.png`
+- `0378-desktop.png`
+- `0378-dedicated-target-validation.json`

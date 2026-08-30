@@ -1,0 +1,190 @@
+{
+  "mockup": "0378",
+  "lessonId": 299,
+  "checks": {
+    "initial": {
+      "model": "0",
+      "x": "-1.2",
+      "h": "0.2",
+      "f": "-23.5008",
+      "fp": "72.576",
+      "fpp": "-167.04",
+      "approx": "-167.68",
+      "concavity": "Concave down",
+      "roots": "0,0.25",
+      "result": "",
+      "solution": "false",
+      "actions": "0"
+    },
+    "xDriven": {
+      "model": "0",
+      "x": "0.1",
+      "h": "0.2",
+      "f": "0.0032",
+      "fp": "0.088",
+      "fpp": "1.44",
+      "approx": "0.8",
+      "concavity": "Concave up",
+      "roots": "0,0.25",
+      "result": "",
+      "solution": "false",
+      "actions": "1"
+    },
+    "step": {
+      "model": "0",
+      "x": "0.1",
+      "h": "0.1",
+      "f": "0.0032",
+      "fp": "0.088",
+      "fpp": "1.44",
+      "approx": "1.28",
+      "concavity": "Concave up",
+      "roots": "0,0.25",
+      "result": "",
+      "solution": "false",
+      "actions": "2"
+    },
+    "model": {
+      "model": "2",
+      "x": "0.1",
+      "h": "0.1",
+      "f": "-0.299",
+      "fp": "-2.97",
+      "fpp": "0.6",
+      "approx": "0.6",
+      "concavity": "Concave up",
+      "roots": "0",
+      "result": "",
+      "solution": "false",
+      "actions": "3"
+    },
+    "dragged": {
+      "model": "2",
+      "x": "0.576",
+      "h": "0.1",
+      "f": "-1.5369",
+      "fp": "-2.0047",
+      "fpp": "3.456",
+      "approx": "3.456",
+      "concavity": "Concave up",
+      "roots": "0",
+      "result": "",
+      "solution": "false",
+      "actions": "10"
+    },
+    "rejected": {
+      "model": "2",
+      "x": "0.576",
+      "h": "0.1",
+      "f": "-1.5369",
+      "fp": "-2.0047",
+      "fpp": "3.456",
+      "approx": "3.456",
+      "concavity": "Concave up",
+      "roots": "0",
+      "result": "incorrect",
+      "solution": "false",
+      "actions": "11"
+    },
+    "accepted": {
+      "model": "2",
+      "x": "0.576",
+      "h": "0.1",
+      "f": "-1.5369",
+      "fp": "-2.0047",
+      "fpp": "3.456",
+      "approx": "3.456",
+      "concavity": "Concave up",
+      "roots": "0",
+      "result": "correct",
+      "solution": "true",
+      "actions": "13"
+    },
+    "reset": {
+      "model": "0",
+      "x": "-1.2",
+      "h": "0.2",
+      "f": "-23.5008",
+      "fp": "72.576",
+      "fpp": "-167.04",
+      "approx": "-167.68",
+      "concavity": "Concave down",
+      "roots": "0,0.25",
+      "result": "",
+      "solution": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 967,
+      "height": 1627
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 217,
+      "height": 1627,
+      "bottom": 1627
+    },
+    "hero": {
+      "top": 93,
+      "left": 228,
+      "width": 724,
+      "height": 209,
+      "bottom": 302
+    },
+    "tabs": {
+      "top": 316,
+      "left": 228,
+      "width": 724,
+      "height": 39,
+      "bottom": 355
+    },
+    "main": {
+      "top": 367,
+      "left": 228,
+      "width": 724,
+      "height": 1198,
+      "bottom": 1565
+    },
+    "workspace": {
+      "top": 428,
+      "left": 239,
+      "width": 702,
+      "height": 610,
+      "bottom": 1038
+    },
+    "flow": {
+      "top": 1051,
+      "left": 239,
+      "width": 702,
+      "height": 191,
+      "bottom": 1242
+    },
+    "info": {
+      "top": 1254,
+      "left": 239,
+      "width": 702,
+      "height": 161,
+      "bottom": 1415
+    },
+    "practice": {
+      "top": 1427,
+      "left": 239,
+      "width": 702,
+      "height": 137,
+      "bottom": 1564
+    },
+    "adjacent": {
+      "top": 1574,
+      "left": 228,
+      "width": 724,
+      "height": 47,
+      "bottom": 1621
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
