@@ -1,0 +1,133 @@
+{
+  "mockup": "0404",
+  "lessonId": 325,
+  "checks": {
+    "initial": {
+      "x-placed": "true",
+      "y-placed": "true",
+      "separated": "true",
+      "integrated": "true",
+      "k": "2.00",
+      "tab": "Interact",
+      "hint": "false",
+      "practice": "0",
+      "actions": "0"
+    },
+    "misplaced": {
+      "x-placed": "false",
+      "y-placed": "true",
+      "separated": "false",
+      "integrated": "false",
+      "k": "2.00",
+      "tab": "Interact",
+      "hint": "false",
+      "practice": "0",
+      "actions": "1"
+    },
+    "reseparated": {
+      "x-placed": "true",
+      "y-placed": "true",
+      "separated": "true",
+      "integrated": "false",
+      "k": "2.00",
+      "tab": "Interact",
+      "hint": "false",
+      "practice": "0",
+      "actions": "2"
+    },
+    "controls": {
+      "x-placed": "true",
+      "y-placed": "true",
+      "separated": "true",
+      "integrated": "true",
+      "k": "-1.50",
+      "tab": "Formula",
+      "hint": "true",
+      "practice": "1",
+      "actions": "7"
+    },
+    "shellReset": {
+      "x-placed": "true",
+      "y-placed": "true",
+      "separated": "true",
+      "integrated": "true",
+      "k": "2.00",
+      "tab": "Interact",
+      "hint": "false",
+      "practice": "0",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 992,
+      "height": 1586
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 198,
+      "height": 1586,
+      "bottom": 1586
+    },
+    "hero": {
+      "top": 100,
+      "left": 212,
+      "width": 761,
+      "height": 162,
+      "bottom": 262
+    },
+    "tabs": {
+      "top": 272,
+      "left": 212,
+      "width": 761,
+      "height": 45,
+      "bottom": 317
+    },
+    "separate": {
+      "top": 327,
+      "left": 212,
+      "width": 761,
+      "height": 340,
+      "bottom": 667
+    },
+    "integrate": {
+      "top": 676,
+      "left": 212,
+      "width": 761,
+      "height": 248,
+      "bottom": 924
+    },
+    "family": {
+      "top": 933,
+      "left": 212,
+      "width": 761,
+      "height": 315,
+      "bottom": 1248
+    },
+    "practice": {
+      "top": 1258,
+      "left": 212,
+      "width": 761,
+      "height": 184,
+      "bottom": 1442
+    },
+    "adjacent": {
+      "top": 1451,
+      "left": 212,
+      "width": 761,
+      "height": 50,
+      "bottom": 1501
+    },
+    "footer": {
+      "top": 1509,
+      "left": 198,
+      "width": 794,
+      "height": 77,
+      "bottom": 1586
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

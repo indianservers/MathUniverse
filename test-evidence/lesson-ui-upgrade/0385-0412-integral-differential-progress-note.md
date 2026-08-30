@@ -1,6 +1,6 @@
 # Integral Calculus and Differential Equations target batch 0385-0412
 
-Dedicated rebuild target: **19 of 28 lessons completed; 9 pending.**
+Dedicated rebuild target: **20 of 28 lessons completed; 8 pending.**
 
 | Mockup | Lesson                           | Dedicated object model                                                                                                     | Status                                      |
 | ------ | -------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
@@ -23,7 +23,7 @@ Dedicated rebuild target: **19 of 28 lessons completed; 9 pending.**
 | 0401   | 322 Accumulation Functions       | `linked-integrand-accumulation-function-generated-midpoint-rectangles-draggable-x-animation-ftc-derivative-prediction`     | Reworked individually and browser-validated |
 | 0402   | 323 Direction Fields             | `direction-field-generated-local-slopes-exact-solution-family-draggable-seeds-slope-triangle-prediction`                   | Reworked individually and browser-validated |
 | 0403   | 324 Euler's Method               | `forward-euler-generated-steps-slope-field-exact-solution-draggable-initial-condition-live-table-errors-animation-practice` | Reworked individually and browser-validated |
-| 0404   | 325 Separable Equations          | Pending audit                                                                                                              | Pending                                     |
+| 0404   | 325 Separable Equations          | `draggable-variable-separation-dual-antiderivatives-combined-constant-solution-family-k-graph-practice`                    | Reworked individually and browser-validated |
 | 0405   | 326 First-Order Linear Equations | Pending audit                                                                                                              | Pending                                     |
 | 0406   | 327 Logistic Growth              | Pending audit                                                                                                              | Pending                                     |
 | 0407   | 328 Second-Order Equations       | Pending audit                                                                                                              | Pending                                     |
@@ -330,3 +330,17 @@ Evidence:
 - `0403-reference.png`
 - `0403-desktop.png`
 - `0403-dedicated-target-validation.json`
+
+## Lesson 325 / Mockup 0404 - Separable Equations
+
+Reworked individually as a staged separation, integration, and solution-family laboratory for `dy/dx=y/x`. The `dx/x` and `dy/y` terms are real draggable/clickable objects with independently validated x-side and y-side drop zones. Correct placement unlocks four linked integration stages, constant combination, and `y=Kx`; changing K through decrement, numeric input, or increment redraws the active family member and recomputes `ln|K|`. Five tabs, Share, local Reset, hint, misconception checklist, solved practice graph, Try another, shell Reset, adjacent lessons, and compact footer are functional.
+
+Browser validation deliberately drags `dx/x` to the wrong y-side, which sets `xPlaced=false`, `separated=false`, and clears the integrated state. Dragging it back to the x-side restores valid separation; Integrate both sides completes the derivation; entering `K=-1.5` updates the family graph; Formula, hint, and Try another update their dedicated states; and shell Reset restores both correctly placed terms, completed integration, `K=2`, Interact, and zero actions. Focused ESLint and the dedicated Playwright harness pass with zero console warnings or errors.
+
+Final exact 992x1586 capture matches the target stack: sidebar width 198, hero y=100-262, tabs y=272-317, separation workspace y=327-667, integration stages y=676-924, family graph/explanation y=933-1248, practice y=1258-1442, adjacent lessons y=1451-1501, and footer y=1509-1586. Dedicated content spans x=212-973 with no horizontal overflow and no duplicate shared lesson chrome.
+
+Evidence:
+
+- `0404-reference.png`
+- `0404-desktop.png`
+- `0404-dedicated-target-validation.json`
