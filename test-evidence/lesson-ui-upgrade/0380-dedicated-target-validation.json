@@ -1,0 +1,167 @@
+{
+  "mockup": "0380",
+  "lessonId": 301,
+  "checks": {
+    "initial": {
+      "x": "3",
+      "h": "0.05",
+      "f": "9",
+      "slope": "0",
+      "finite-slope": "0",
+      "best-x": "3",
+      "best-value": "9",
+      "result": "",
+      "solution": "false",
+      "actions": "0"
+    },
+    "xDriven": {
+      "x": "1",
+      "h": "0.05",
+      "f": "5",
+      "slope": "4",
+      "finite-slope": "4",
+      "best-x": "3",
+      "best-value": "9",
+      "result": "",
+      "solution": "false",
+      "actions": "1"
+    },
+    "hDriven": {
+      "x": "1",
+      "h": "0.2",
+      "f": "5",
+      "slope": "4",
+      "finite-slope": "4",
+      "best-x": "3",
+      "best-value": "9",
+      "result": "",
+      "solution": "false",
+      "actions": "2"
+    },
+    "dragged": {
+      "x": "2.005",
+      "h": "0.2",
+      "f": "8.011",
+      "slope": "1.989",
+      "finite-slope": "1.989",
+      "best-x": "3",
+      "best-value": "9",
+      "result": "",
+      "solution": "false",
+      "actions": "9"
+    },
+    "challenge": {
+      "x": "2.005",
+      "h": "0.2",
+      "f": "8.011",
+      "slope": "1.989",
+      "finite-slope": "1.989",
+      "best-x": "3",
+      "best-value": "9",
+      "result": "correct",
+      "solution": "false",
+      "actions": "10"
+    },
+    "solution": {
+      "x": "2.005",
+      "h": "0.2",
+      "f": "8.011",
+      "slope": "1.989",
+      "finite-slope": "1.989",
+      "best-x": "3",
+      "best-value": "9",
+      "result": "correct",
+      "solution": "true",
+      "actions": "11"
+    },
+    "localReset": {
+      "x": "3",
+      "h": "0.05",
+      "f": "9",
+      "slope": "0",
+      "finite-slope": "0",
+      "best-x": "3",
+      "best-value": "9",
+      "result": "",
+      "solution": "false",
+      "actions": "1"
+    },
+    "shellReset": {
+      "x": "3",
+      "h": "0.05",
+      "f": "9",
+      "slope": "0",
+      "finite-slope": "0",
+      "best-x": "3",
+      "best-value": "9",
+      "result": "",
+      "solution": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1015,
+      "height": 1549
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 210,
+      "height": 1549,
+      "bottom": 1549
+    },
+    "hero": {
+      "top": 100,
+      "left": 224,
+      "width": 776,
+      "height": 222,
+      "bottom": 322
+    },
+    "tabs": {
+      "top": 333,
+      "left": 224,
+      "width": 776,
+      "height": 43,
+      "bottom": 376
+    },
+    "flow": {
+      "top": 386,
+      "left": 224,
+      "width": 776,
+      "height": 92,
+      "bottom": 478
+    },
+    "lab": {
+      "top": 488,
+      "left": 224,
+      "width": 776,
+      "height": 685,
+      "bottom": 1173
+    },
+    "info": {
+      "top": 1184,
+      "left": 224,
+      "width": 776,
+      "height": 221,
+      "bottom": 1405
+    },
+    "adjacent": {
+      "top": 1418,
+      "left": 224,
+      "width": 776,
+      "height": 50,
+      "bottom": 1468
+    },
+    "footer": {
+      "top": 1479,
+      "left": 210,
+      "width": 805,
+      "height": 70,
+      "bottom": 1549
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

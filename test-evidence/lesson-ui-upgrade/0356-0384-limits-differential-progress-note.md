@@ -1,6 +1,6 @@
 # Limits and Differential Calculus target batch 0356-0384
 
-Dedicated rebuild target: **24 of 29 lessons completed; 5 pending.**
+Dedicated rebuild target: **25 of 29 lessons completed; 4 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
@@ -28,7 +28,7 @@ Dedicated rebuild target: **24 of 29 lessons completed; 5 pending.**
 | 0377 | 298 Local and Global Extrema | `closed-interval-quadratic-two-draggable-endpoints-linked-sliders-candidate-comparison-local-global-range-practice` | Reworked individually and browser-validated |
 | 0378 | 299 Concavity | `selectable-analytic-functions-shared-x-direct-graph-drag-finite-step-second-derivative-synchronized-graphs-sign-regions-inflection-practice` | Reworked individually and browser-validated |
 | 0379 | 300 Inflection Points | `four-coefficient-cubic-analytic-second-derivative-direct-inflection-drag-concavity-sign-map-step-practice` | Reworked individually and browser-validated |
-| 0380 | 301 Optimisation | Pending audit | Pending |
+| 0380 | 301 Optimisation | `fixed-concave-quadratic-domain-critical-endpoint-comparison-direct-x-drag-finite-derivative-cas-optimisation-practice` | Reworked individually and browser-validated |
 | 0381 | 302 Related Rates | Pending audit | Pending |
 | 0382 | 303 Motion Analysis | Pending audit | Pending |
 | 0383 | 304 Newton's Method | Pending audit | Pending |
@@ -387,3 +387,17 @@ Evidence:
 - `0379-reference.png`
 - `0379-desktop.png`
 - `0379-dedicated-target-validation.json`
+
+## Lesson 301 / Mockup 0380 - Optimisation
+
+Reworked individually around the target objective `f(x)=-x^2+6x` on the closed domain `[-1,7]`. One shared x state drives the curve handle, quantity, analytic slope, central finite-difference slope, derivative/CAS output, and action count. The exact derivative determines the interior candidate `x=3`; the model separately evaluates both endpoints and compares all three candidates to derive the global maximum `f(3)=9`. The native x and h controls and captured SVG pointer dragging are real. Five lesson tabs, Reset, Share, computed challenge disclosure, shell Reset, and Previous/Next navigation are functional.
+
+Browser validation confirms the target start `x=3`, `h=0.05`, `f(x)=9`, analytic slope `0`, finite slope `0`, best x `3`, and best value `9`. Moving x to `1` derives quantity `5` and slope `4`; moving h to `0.2` independently recomputes the finite derivative; a real pointer drag moves x to approximately `2.005` and derives quantity `8.011` and slope `1.989`. The challenge calculates the maximum of `-x^2+4x+1` on `[0,6]` as `5` at `x=2`, solution disclosure is functional, and shell Reset restores x, h, challenge state, selected tab, and zero actions.
+
+Final exact 1015x1549 validation matches the target stack: sidebar width 210, hero y=100-322, tabs y=333-376, four-stage guide y=386-478, optimisation graph/CAS lab y=488-1173, rule/worked/misconception/challenge row y=1184-1405, adjacent navigation y=1418-1468, and compact site footer y=1479-1549. The dedicated content spans x=224-1000, with no horizontal overflow, no duplicate shared lesson chrome, and zero console messages.
+
+Evidence:
+
+- `0380-reference.png`
+- `0380-desktop.png`
+- `0380-dedicated-target-validation.json`
