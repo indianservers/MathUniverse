@@ -1,6 +1,6 @@
 # Limits and Differential Calculus target batch 0356-0384
 
-Dedicated rebuild target: **4 of 29 lessons completed; 25 pending.**
+Dedicated rebuild target: **5 of 29 lessons completed; 24 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
@@ -8,7 +8,7 @@ Dedicated rebuild target: **4 of 29 lessons completed; 25 pending.**
 | 0357 | 278 One-Sided Limits | `piecewise-one-sided-approach-independent-sliders-trace-verdict` | Reworked individually and browser-validated |
 | 0358 | 279 Infinite Limits | `rational-vertical-asymptote-one-sided-infinite-approach-sign-domain-practice` | Reworked individually and browser-validated |
 | 0359 | 280 Limits at Infinity | `even-rational-end-behavior-horizontal-asymptote-linked-view-dominant-terms-practice` | Reworked individually and browser-validated |
-| 0360 | 281 Continuity at a Point | Pending audit | Pending |
+| 0360 | 281 Continuity at a Point | `parabola-removable-hole-editable-point-five-condition-continuity-drag-practice` | Reworked individually and browser-validated |
 | 0361 | 282 Types of Discontinuity | Pending audit | Pending |
 | 0362 | 283 Epsilon-Delta Visualiser | Pending audit | Pending |
 | 0363 | 284 Average Rate of Change | Pending audit | Pending |
@@ -89,3 +89,17 @@ Evidence:
 - `0359-reference.png`
 - `0359-desktop.png`
 - `0359-dedicated-target-validation.json`
+
+## Lesson 281 / Mockup 0360 - Continuity at a Point
+
+Reworked individually around the target's removable-point parabola model `f(x)=2x^2`. The continuity point `a` drives the open limit point, both one-sided limits, the common limit, five condition checks, coordinate labels, domain/range summary, and continuity verdict. The independent filled function-value point can be moved with a native range control or dragged directly in the SVG, so a learner can create or repair the discontinuity instead of operating a decorative control.
+
+Browser validation starts at `a=0`, limit `0`, and `f(0)=-1`, correctly classifying the function as not continuous. It moves `a` to `0.5`, derives the new limit `0.5`, sets `f(a)=0.5` to satisfy all continuity conditions, then performs a real upward pointer drag and confirms the function value changes to `1.5` while continuity becomes false again. Independent practice rejects `-1`, accepts `0`, and shell Reset restores the target's initial hole/filled-point state, selected tab, and zero action count.
+
+Final exact 1024x1536 validation matches the target stack: sidebar width 255, dedicated header y=101-340, tabs y=351-391, four-stage exploration flow y=403-511, continuity lab y=521-1017, concept rule y=1027-1131, worked/misconception/practice row y=1142-1388, adjacent navigation y=1399-1443, and site footer y=1453-1536. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0360-reference.png`
+- `0360-desktop.png`
+- `0360-dedicated-target-validation.json`

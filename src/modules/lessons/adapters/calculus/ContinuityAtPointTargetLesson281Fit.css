@@ -1,0 +1,190 @@
+.cap281-page {
+  font-size: 10px;
+  top: -10px;
+  margin-bottom: -10px;
+}
+
+.cap281-hero h1 {
+  font-weight: 800;
+}
+
+.cap281-hero .actions {
+  width: 400px;
+  margin-top: 5px;
+}
+
+.cap281-hero .actions button,
+.cap281-hero .actions a {
+  height: 32px;
+}
+
+.cap281-graph > svg {
+  height: 327px;
+}
+
+.cap281-graph .legend {
+  display: none;
+}
+
+.cap281-model .checks article {
+  height: 53px;
+  margin-bottom: 5px;
+}
+
+.cap281-graph .tick {
+  stroke: #1d2a42;
+  stroke-width: 1;
+}
+
+.cap281-graph .tick-label {
+  fill: #14213a;
+  font-size: 10px;
+  text-anchor: middle;
+}
+
+.cap281-graph .tick-label.y {
+  text-anchor: end;
+}
+
+.cap281-graph .equation-chip rect {
+  fill: #f1fbff;
+  stroke: #6dcdf0;
+}
+
+.cap281-graph .equation-chip text {
+  fill: #0789bd;
+  font: italic 15px Georgia, serif;
+}
+
+@media (min-width: 960px) and (max-width: 1120px) {
+  body:has(.cap281-page) .app-layout-rail > div > header {
+    height: 57px;
+  }
+
+  body:has(.cap281-page) [data-testid="desktop-sidebar"] > div {
+    padding: 10px 12px 40px !important;
+  }
+
+  body:has(.cap281-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type {
+    height: 55px;
+    min-height: 55px;
+    margin-bottom: 18px !important;
+    padding: 0 !important;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  body:has(.cap281-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type
+    > button:first-child {
+    padding: 10px !important;
+    border-radius: 11px;
+  }
+
+  body:has(.cap281-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type
+    p:first-child {
+    white-space: nowrap;
+    font-size: 17px !important;
+    line-height: 20px;
+  }
+
+  body:has(.cap281-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type
+    p:last-child {
+    font-size: 9px !important;
+  }
+
+  body:has(.cap281-page) [data-testid="desktop-sidebar"] > div > label {
+    height: 40px;
+    min-height: 40px !important;
+    margin-bottom: 10px !important;
+    padding: 0 10px !important;
+    font-size: 10px !important;
+  }
+
+  body:has(.cap281-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"] {
+    row-gap: 8px !important;
+  }
+
+  body:has(.cap281-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    > div:nth-of-type(2),
+  body:has(.cap281-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    > div:nth-of-type(n + 5) {
+    display: none;
+  }
+
+  body:has(.cap281-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    button {
+    min-height: 35px;
+    padding: 7px 9px !important;
+    font-size: 11px !important;
+  }
+
+  body:has(.cap281-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    a {
+    min-height: 35px;
+    padding: 7px 9px !important;
+    font-size: 10px !important;
+  }
+
+  body:has(.cap281-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    a:has(span span + span) {
+    height: 50px;
+    min-height: 50px;
+    padding-top: 4px !important;
+    padding-bottom: 4px !important;
+  }
+
+  body:has(.cap281-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    a
+    span
+    span
+    + span {
+    font-size: 7px !important;
+  }
+
+  body:has(.cap281-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    > div:nth-of-type(4)
+    a {
+    height: 34px;
+    min-height: 34px;
+    padding-top: 4px !important;
+    padding-bottom: 4px !important;
+  }
+
+  body:has(.cap281-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    > div:nth-of-type(4)
+    > div
+    > :nth-child(n + 2) {
+    display: none;
+  }
+}

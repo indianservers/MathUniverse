@@ -1,0 +1,145 @@
+{
+  "mockup": "0360",
+  "lessonId": 281,
+  "checks": {
+    "initial": {
+      "a": "0",
+      "limit": "0",
+      "point-value": "-1",
+      "continuous": "false",
+      "feedback": "correct",
+      "actions": "0"
+    },
+    "movedPoint": {
+      "a": "0.5",
+      "limit": "0.5",
+      "point-value": "-1",
+      "continuous": "false",
+      "feedback": "correct",
+      "actions": "1"
+    },
+    "repaired": {
+      "a": "0.5",
+      "limit": "0.5",
+      "point-value": "0.5",
+      "continuous": "true",
+      "feedback": "correct",
+      "actions": "2"
+    },
+    "dragged": {
+      "a": "0.5",
+      "limit": "0.5",
+      "point-value": "1.5",
+      "continuous": "false",
+      "feedback": "correct",
+      "actions": "7"
+    },
+    "rejected": {
+      "a": "0.5",
+      "limit": "0.5",
+      "point-value": "1.5",
+      "continuous": "false",
+      "feedback": "incorrect",
+      "actions": "8"
+    },
+    "accepted": {
+      "a": "0.5",
+      "limit": "0.5",
+      "point-value": "1.5",
+      "continuous": "false",
+      "feedback": "correct",
+      "actions": "9"
+    },
+    "reset": {
+      "a": "0",
+      "limit": "0",
+      "point-value": "-1",
+      "continuous": "false",
+      "feedback": "correct",
+      "actions": "0"
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/calculus/280-limits-at-infinity",
+    "nextHref": "/lessons/calculus/282-types-of-discontinuity"
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 255,
+      "height": 1536,
+      "bottom": 1536
+    },
+    "shellHeader": {
+      "top": 0,
+      "left": 0,
+      "width": 0,
+      "height": 0,
+      "bottom": 0
+    },
+    "hero": {
+      "top": 101,
+      "left": 271,
+      "width": 739,
+      "height": 239,
+      "bottom": 340
+    },
+    "tabs": {
+      "top": 351,
+      "left": 271,
+      "width": 739,
+      "height": 40,
+      "bottom": 391
+    },
+    "flow": {
+      "top": 403,
+      "left": 271,
+      "width": 739,
+      "height": 108,
+      "bottom": 511
+    },
+    "lab": {
+      "top": 521,
+      "left": 271,
+      "width": 739,
+      "height": 496,
+      "bottom": 1017
+    },
+    "concept": {
+      "top": 1027,
+      "left": 271,
+      "width": 739,
+      "height": 104,
+      "bottom": 1131
+    },
+    "learning": {
+      "top": 1142,
+      "left": 271,
+      "width": 739,
+      "height": 246,
+      "bottom": 1388
+    },
+    "adjacent": {
+      "top": 1399,
+      "left": 271,
+      "width": 739,
+      "height": 44,
+      "bottom": 1443
+    },
+    "footer": {
+      "top": 1453,
+      "left": 255,
+      "width": 769,
+      "height": 83,
+      "bottom": 1536
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
