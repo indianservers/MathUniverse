@@ -1,6 +1,6 @@
 # Integral Calculus and Differential Equations target batch 0385-0412
 
-Dedicated rebuild target: **12 of 28 lessons completed; 16 pending.**
+Dedicated rebuild target: **13 of 28 lessons completed; 15 pending.**
 
 | Mockup | Lesson                           | Dedicated object model                                                                                                     | Status                                      |
 | ------ | -------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
@@ -16,7 +16,7 @@ Dedicated rebuild target: **12 of 28 lessons completed; 16 pending.**
 | 0394   | 315 Improper Integrals           | `symmetric-improper-integral-truncation-tail-error-draggable-bounds-convergence-practice`                                  | Reworked individually and browser-validated |
 | 0395   | 316 Numerical Integration        | `three-method-quadrature-generated-midpoint-trapezoid-simpson-overlays-exact-errors-draggable-partition-practice`          | Reworked individually and browser-validated |
 | 0396   | 317 Volume by Slicing            | `sphere-cross-section-slice-position-thickness-area-parabola-draggable-band-differential-volume-exact-integral-practice`   | Reworked individually and browser-validated |
-| 0397   | 318 Disc and Washer Methods      | Pending audit                                                                                                              | Pending                                     |
+| 0397   | 318 Disc and Washer Methods      | `washer-region-axis-piecewise-radii-slice-thickness-layer-controls-draggable-bound-accumulated-volume-symbolic-practice`    | Reworked individually and browser-validated |
 | 0398   | 319 Shell Method                 | Pending audit                                                                                                              | Pending                                     |
 | 0399   | 320 Arc Length                   | Pending audit                                                                                                              | Pending                                     |
 | 0400   | 321 Surface Area of Revolution   | Pending audit                                                                                                              | Pending                                     |
@@ -218,3 +218,19 @@ Evidence:
 - `0396-reference.png`
 - `0396-desktop.png`
 - `0396-dedicated-target-validation.json`
+
+## Lesson 318 / Mockup 0397 - Disc and Washer Methods
+
+Reworked individually as a region-to-washer and volume-accumulation workspace. The default region `y=3sqrt(x)`, `y=0` on `[0,9]` revolves around the x-axis, giving outer radius `R(x)=3sqrt(x)`, inner radius 0, washer area `9pi x`, differential volume `A(x)dx`, accumulated volume `9pi x^2/2`, and full volume `729pi/2`. The slice position and thickness drive the region graph, orange slice, washer cross-section, radii cards, instant area, differential volume, accumulation slider, and progress. The captured graph handle is directly draggable. Outer radius, inner radius, washer, and bounds controls remove their actual SVG layers. The rotation-axis selector is real: choosing `y=1` computes the piecewise radii and numerically accumulates that washer model. Six tabs, Reset, Share, Workspace, formula/example/misconception cards, symbolic practice validation, Hint, shell Reset, adjacent lessons, and action counting are functional.
+
+Browser validation confirms the default `x=4`, `dx=0.1`, `R=6`, `r=0`, area `113.09733553`, differential volume `11.30973355`, accumulated volume `226.19467106`, total volume `1145.11052223`, and progress `44.44444444%`. With axis `y=1`, `x=0.05`, and `dx=0.2`, the model produces outer radius 1, inner radius `0.32917961`, area `2.80117214`, differential volume `0.56023443`, and accumulated volume `0.10515221`. Outer, washer, and bounds layers hide independently. A real pointer drag moves the default slice to approximately `x=5.94908944` and recomputes every radius, area, differential, and accumulated value. Practice rejects `32pi/15`, accepts `512pi/15`, and reveals the hint. Local and shell Reset restore the complete initial state.
+
+The reference labels the accumulated volume at `x=4` as `62.712`, but integrating its own area `A(x)=9pi x` from 0 to 4 gives `72pi`, approximately `226.195`. It labels the full volume as `81pi/2`, but integrating from 0 to 9 gives `729pi/2`. Its practice placeholder suggests `32pi/15`, while `pi integral[-2,2](4-x^2)^2 dx = 512pi/15`. The dedicated surface preserves the target region, washer visualization, controls, and hierarchy while keeping the formulas, radii, accumulation, worked result, and checked practice answer mathematically consistent.
+
+Final exact 1024x1536 capture matches the target stack: sidebar width 223, hero y=102-292, learning flow y=303-381, tabs y=393-432, washer lab y=442-1133, formula/example/misconception cards y=1143-1353, practice y=1362-1464, and adjacent lessons y=1473-1524. Dedicated content spans x=243-1006, with no horizontal overflow, no overlapping controls, no duplicate shared lesson chrome, and zero console messages.
+
+Evidence:
+
+- `0397-reference.png`
+- `0397-desktop.png`
+- `0397-dedicated-target-validation.json`
