@@ -28,6 +28,7 @@ import ImplicitDifferentiationTargetLesson294 from "./calculus/ImplicitDifferent
 import ParametricDifferentiationTargetLesson295 from "./calculus/ParametricDifferentiationTargetLesson295";
 import CriticalPointsTargetLesson296 from "./calculus/CriticalPointsTargetLesson296";
 import IncreasingDecreasingTargetLesson297 from "./calculus/IncreasingDecreasingTargetLesson297";
+import LocalGlobalExtremaTargetLesson298 from "./calculus/LocalGlobalExtremaTargetLesson298";
 
 const viewportSize = { width: 640, height: 360 };
 const fallbackViewport: GraphViewport = { xMin: -5, xMax: 5, yMin: -6, yMax: 10, ...viewportSize };
@@ -157,6 +158,7 @@ export default function CalculusLessonAdapter(props: LessonAdapterProps) {
   if (props.lesson.id === 295) return <ParametricDifferentiationTargetLesson295 {...props} />;
   if (props.lesson.id === 296) return <CriticalPointsTargetLesson296 {...props} />;
   if (props.lesson.id === 297) return <IncreasingDecreasingTargetLesson297 {...props} />;
+  if (props.lesson.id === 298) return <LocalGlobalExtremaTargetLesson298 {...props} />;
   if (props.lesson.id >= 277 && props.lesson.id <= 305) return <LimitsDifferentialMockupLesson {...props} />;
   if (props.lesson.id >= 306 && props.lesson.id <= 333) return <IntegralDifferentialMockupLesson {...props} />;
   return <LegacyCalculusLessonAdapter {...props} />;

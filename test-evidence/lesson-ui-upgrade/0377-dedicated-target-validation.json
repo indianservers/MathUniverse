@@ -1,0 +1,162 @@
+{
+  "mockup": "0377",
+  "lessonId": 298,
+  "checks": {
+    "initial": {
+      "left": "-5",
+      "right": "5",
+      "left-value": "-69",
+      "right-value": "-29",
+      "absolute-max": "1,3",
+      "absolute-min": "-5,-69",
+      "vertex": "true",
+      "range": "-69,3",
+      "result": "",
+      "solution": "false",
+      "actions": "0"
+    },
+    "vertexExcluded": {
+      "left": "2",
+      "right": "5",
+      "left-value": "1",
+      "right-value": "-29",
+      "absolute-max": "2,1",
+      "absolute-min": "5,-29",
+      "vertex": "false",
+      "range": "-29,1",
+      "result": "",
+      "solution": "false",
+      "actions": "1"
+    },
+    "sliders": {
+      "left": "-4",
+      "right": "4",
+      "left-value": "-47",
+      "right-value": "-15",
+      "absolute-max": "1,3",
+      "absolute-min": "-4,-47",
+      "vertex": "true",
+      "range": "-47,3",
+      "result": "",
+      "solution": "false",
+      "actions": "3"
+    },
+    "dragged": {
+      "left": "-4",
+      "right": "2.56",
+      "left-value": "-47",
+      "right-value": "-1.87",
+      "absolute-max": "1,3",
+      "absolute-min": "-4,-47",
+      "vertex": "true",
+      "range": "-47,3",
+      "result": "",
+      "solution": "false",
+      "actions": "10"
+    },
+    "rejected": {
+      "left": "-4",
+      "right": "2.56",
+      "left-value": "-47",
+      "right-value": "-1.87",
+      "absolute-max": "1,3",
+      "absolute-min": "-4,-47",
+      "vertex": "true",
+      "range": "-47,3",
+      "result": "incorrect",
+      "solution": "false",
+      "actions": "11"
+    },
+    "accepted": {
+      "left": "-4",
+      "right": "2.56",
+      "left-value": "-47",
+      "right-value": "-1.87",
+      "absolute-max": "1,3",
+      "absolute-min": "-4,-47",
+      "vertex": "true",
+      "range": "-47,3",
+      "result": "correct",
+      "solution": "true",
+      "actions": "13"
+    },
+    "reset": {
+      "left": "-5",
+      "right": "5",
+      "left-value": "-69",
+      "right-value": "-29",
+      "absolute-max": "1,3",
+      "absolute-min": "-5,-69",
+      "vertex": "true",
+      "range": "-69,3",
+      "result": "",
+      "solution": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 208,
+      "height": 1536,
+      "bottom": 1536
+    },
+    "hero": {
+      "top": 95,
+      "left": 220,
+      "width": 793,
+      "height": 190,
+      "bottom": 285
+    },
+    "tabs": {
+      "top": 296,
+      "left": 220,
+      "width": 793,
+      "height": 47,
+      "bottom": 343
+    },
+    "flow": {
+      "top": 354,
+      "left": 220,
+      "width": 793,
+      "height": 112,
+      "bottom": 466
+    },
+    "lab": {
+      "top": 478,
+      "left": 220,
+      "width": 793,
+      "height": 592,
+      "bottom": 1070
+    },
+    "info": {
+      "top": 1082,
+      "left": 220,
+      "width": 793,
+      "height": 287,
+      "bottom": 1369
+    },
+    "practice": {
+      "top": 1381,
+      "left": 220,
+      "width": 793,
+      "height": 88,
+      "bottom": 1469
+    },
+    "adjacent": {
+      "top": 1478,
+      "left": 220,
+      "width": 793,
+      "height": 51,
+      "bottom": 1529
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

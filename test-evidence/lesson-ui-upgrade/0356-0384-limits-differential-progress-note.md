@@ -1,6 +1,6 @@
 # Limits and Differential Calculus target batch 0356-0384
 
-Dedicated rebuild target: **21 of 29 lessons completed; 8 pending.**
+Dedicated rebuild target: **22 of 29 lessons completed; 7 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
@@ -25,7 +25,7 @@ Dedicated rebuild target: **21 of 29 lessons completed; 8 pending.**
 | 0374 | 295 Parametric Differentiation | `parameter-driven-coordinate-curve-direct-drag-component-rates-quotient-tangent-vector-meters-choice-practice` | Reworked individually and browser-validated |
 | 0375 | 296 Critical Points | `piecewise-corner-stationary-max-min-direct-drag-sign-chart-finite-step-layer-toggles-classification-challenge` | Reworked individually and browser-validated |
 | 0376 | 297 Increasing and Decreasing | `editable-shape-coefficients-symmetric-critical-roots-direct-root-drag-synchronized-function-derivative-sign-interval-practice` | Reworked individually and browser-validated |
-| 0377 | 298 Local and Global Extrema | Pending audit | Pending |
+| 0377 | 298 Local and Global Extrema | `closed-interval-quadratic-two-draggable-endpoints-linked-sliders-candidate-comparison-local-global-range-practice` | Reworked individually and browser-validated |
 | 0378 | 299 Concavity | Pending audit | Pending |
 | 0379 | 300 Inflection Points | Pending audit | Pending |
 | 0380 | 301 Optimisation | Pending audit | Pending |
@@ -341,3 +341,19 @@ Evidence:
 - `0376-reference.png`
 - `0376-desktop.png`
 - `0376-dedicated-target-validation.json`
+
+## Lesson 298 / Mockup 0377 - Local and Global Extrema
+
+Reworked individually around the printed quadratic `f(x)=-2x^2+4x+1` and a selectable closed interval `[a,b]`. The endpoint state drives the real function values, admissible candidate set, vertex inclusion, absolute maximum and minimum, local classification, domain, range, graph guides, interval bar, feedback, and action count. Native a/b controls and captured SVG interval-handle dragging are real. Moving the interval past x=`1` removes the vertex from the candidate set and immediately reclassifies the extrema. Five lesson tabs, Reset, Share, four-option practice checking, solution disclosure, shell Reset, and Previous/Next navigation are functional.
+
+Browser validation confirms the coherent target interval `[-5,5]` gives endpoint values `-69` and `-29`, absolute maximum `(1,3)`, absolute minimum `(-5,-69)`, and range `[-69,3]`. Moving a to `2` excludes the vertex and makes `(2,1)` the maximum; moving the sliders to `[-4,4]` restores the vertex and derives range `[-47,3]`; a real pointer drag moves b from `4` to approximately `2.56` and recomputes every dependent value. Practice rejects B, accepts A with all tied endpoint/critical extrema for `x^3-3x` on `[-2,2]`, reveals the candidate comparison, and shell Reset restores interval, extrema, practice state, selected tab, and zero actions.
+
+The reference prints `f(x)=-2x^2+4x+1` and vertex `(1,3)` but labels endpoint values `-34` and `-44`, which do not evaluate from that function. Its visual curve also uses normalized endpoint heights. This implementation preserves the target's normalized graph composition while every numeric card, classification, range, worked example, and checked practice answer uses exact mathematical values from the printed function.
+
+Final exact 1024x1536 validation matches the target stack: sidebar width 208, hero y=95-285, tabs y=296-343, four-stage guide y=354-466, closed-interval lab y=478-1070, formula/worked/misconception row y=1082-1369, practice y=1381-1469, and adjacent navigation y=1478-1529. The dedicated content spans x=220-1013, with no horizontal overflow, no duplicate shared lesson chrome, no site footer, and zero console messages.
+
+Evidence:
+
+- `0377-reference.png`
+- `0377-desktop.png`
+- `0377-dedicated-target-validation.json`
