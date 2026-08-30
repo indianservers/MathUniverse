@@ -1,0 +1,733 @@
+.tay305-page {
+  --ink: #102047;
+  --line: #d9e2ed;
+  color: var(--ink);
+  font:
+    8px/1.45 Inter,
+    system-ui,
+    sans-serif;
+  letter-spacing: 0;
+}
+.tay305-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.tay305-page h1,
+.tay305-page h2,
+.tay305-page h3,
+.tay305-page p {
+  margin: 0;
+}
+.tay305-page button,
+.tay305-page input {
+  color: inherit;
+  font: inherit;
+}
+.tay305-hero {
+  display: grid;
+  height: 207px;
+  grid-template-columns: 1.65fr 0.85fr;
+  gap: 20px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  padding: 14px;
+}
+.tay305-hero section > span {
+  display: flex;
+  gap: 8px;
+}
+.tay305-hero section > span b {
+  border-radius: 11px;
+  background: #e7f8fd;
+  padding: 4px 9px;
+  color: #087da5;
+  font-size: 7px;
+}
+.tay305-hero section > span b:last-child {
+  background: #f2f4f7;
+  color: #53617a;
+}
+.tay305-hero h1 {
+  margin-top: 7px;
+  font-size: 28px;
+  line-height: 31px;
+  font-weight: 850;
+}
+.tay305-hero section > p {
+  color: #52627b;
+  font-size: 11px;
+}
+.tay305-hero .meta,
+.tay305-hero .actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+.tay305-hero .meta i,
+.tay305-hero .actions > * {
+  display: flex;
+  height: 33px;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: #fff;
+  padding: 0 11px;
+  color: inherit;
+  font-style: normal;
+  font-weight: 700;
+  text-decoration: none;
+}
+.tay305-hero .actions {
+  flex-wrap: wrap;
+}
+.tay305-hero .actions > *:first-child {
+  width: 188px;
+  justify-content: space-between;
+}
+.tay305-hero .actions > a {
+  flex-basis: 95px;
+}
+.tay305-hero svg {
+  width: 13px;
+}
+.tay305-hero > aside {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fafcff;
+  padding: 12px;
+}
+.tay305-hero > aside h3 {
+  display: flex;
+  justify-content: space-between;
+}
+.tay305-hero > aside h3 svg {
+  width: 13px;
+}
+.tay305-hero > aside p {
+  margin-top: 6px;
+}
+.tay305-hero > aside div {
+  display: grid;
+  gap: 4px;
+  margin-top: 8px;
+  color: #405476;
+}
+.tay305-tabs {
+  display: grid;
+  height: 50px;
+  grid-template-columns: 1fr repeat(4, 1.35fr);
+  gap: 4px;
+  margin-top: 14px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: #fff;
+  padding: 6px;
+}
+.tay305-tabs button {
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  font-weight: 750;
+}
+.tay305-tabs button.active {
+  background: linear-gradient(90deg, #0694aa, #078697);
+  color: #fff;
+}
+.tay305-flow {
+  display: grid;
+  height: 82px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+  margin-top: 15px;
+}
+.tay305-flow article {
+  position: relative;
+  display: grid;
+  grid-template-columns: 25px 1fr;
+  gap: 7px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: #fff;
+  padding: 10px;
+}
+.tay305-flow article:not(:last-child):after {
+  content: "→";
+  position: absolute;
+  right: -20px;
+  top: 28px;
+  font-size: 18px;
+  color: #718099;
+}
+.tay305-flow svg {
+  width: 20px;
+  color: #14396e;
+}
+.tay305-flow h3 {
+  font-size: 9px;
+}
+.tay305-flow p {
+  margin-top: 5px;
+}
+.tay305-lab {
+  height: 572px;
+  margin-top: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  padding: 9px;
+}
+.tay305-lab > header {
+  position: relative;
+  height: 49px;
+}
+.tay305-lab > header small {
+  color: #0787a5;
+  font-weight: 700;
+}
+.tay305-lab > header h2 {
+  font-size: 15px;
+}
+.tay305-lab > header > b {
+  position: absolute;
+  right: 135px;
+  top: 3px;
+  border: 1px solid #b8dfcb;
+  border-radius: 13px;
+  background: #effdf5;
+  padding: 6px 10px;
+  color: #168350;
+}
+.tay305-lab > header > output {
+  position: absolute;
+  right: 53px;
+  top: 3px;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  padding: 6px 10px;
+}
+.tay305-lab > header > button {
+  position: absolute;
+  right: 4px;
+  top: 0;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+}
+.tay305-lab > header svg {
+  width: 13px;
+}
+.tay305-lab > main {
+  display: grid;
+  height: 428px;
+  grid-template-columns: minmax(0, 1fr) 230px;
+  gap: 9px;
+}
+.tay305-lab .graph-panel {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  overflow: hidden;
+}
+.tay305-lab .graph-panel > header {
+  display: flex;
+  height: 42px;
+  align-items: center;
+  padding: 7px;
+}
+.tay305-lab .graph-panel > header button {
+  height: 31px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+  padding: 0 10px;
+  font-weight: 700;
+}
+.tay305-lab .graph-panel > header b {
+  margin-left: auto;
+  margin-right: 100px;
+}
+.tay305-graph {
+  display: block !important;
+  width: 100% !important;
+  height: 337px !important;
+  touch-action: none;
+}
+.tay305-graph .band {
+  fill: #f9d3e2;
+  opacity: 0.75;
+}
+.tay305-graph .axis {
+  stroke: #24354d;
+}
+.tay305-graph .true {
+  fill: none;
+  stroke: #02a6c6;
+  stroke-width: 2.5;
+}
+.tay305-graph .poly {
+  fill: none;
+  stroke: #7543db;
+  stroke-width: 2;
+  stroke-dasharray: 6 4;
+}
+.tay305-graph circle {
+  fill: #fff;
+  stroke: #f27b13;
+  stroke-width: 3;
+  cursor: grab;
+}
+.tay305-graph text {
+  fill: #e96d0d;
+  font-weight: 700;
+}
+.tay305-lab .graph-panel > .legend {
+  position: absolute;
+  top: 49px;
+  right: 8px;
+  display: grid;
+  gap: 5px;
+  width: 145px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+  padding: 9px;
+}
+.tay305-lab .graph-panel > footer {
+  display: flex;
+  height: 49px;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--line);
+  padding: 0 8px;
+}
+.tay305-lab .graph-panel > footer span {
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: #f8faff;
+  padding: 6px;
+}
+.tay305-lab .controls {
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 11px;
+}
+.tay305-lab .controls > h3 {
+  font-size: 10px;
+}
+.tay305-lab .controls > label {
+  display: grid;
+  grid-template-columns: 1fr 42px;
+  margin-top: 14px;
+  font-weight: 700;
+}
+.tay305-lab .controls input {
+  grid-column: 1/3;
+  width: 100%;
+  accent-color: #7543d9;
+}
+.tay305-lab .controls label:nth-of-type(2) input {
+  accent-color: #f27b13;
+}
+.tay305-lab .controls small {
+  color: #65738b;
+}
+.tay305-lab .controls label output {
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  padding: 4px;
+  text-align: center;
+}
+.tay305-lab .controls label + h3 {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 17px;
+}
+.tay305-lab .controls > p {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 10px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 7px;
+}
+.tay305-lab .controls > p i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #078ad1;
+}
+.tay305-lab .controls > p:nth-of-type(2) i {
+  background: #7543d9;
+}
+.tay305-lab .controls > p:nth-of-type(3) i {
+  background: #f074a6;
+}
+.tay305-lab .controls > p b {
+  margin-left: auto;
+}
+.tay305-lab .controls > section {
+  margin-top: 15px;
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+}
+.tay305-lab .controls > section p {
+  margin-top: 8px;
+}
+.tay305-lab .remainder {
+  display: grid;
+  height: 77px;
+  grid-template-columns: 1.05fr 0.9fr 1.9fr 1.25fr;
+  gap: 8px;
+  margin-top: 8px;
+}
+.tay305-lab .remainder > * {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 8px;
+}
+.tay305-lab .remainder output {
+  background: #fff0f6;
+  color: #d33a7b;
+  text-align: center;
+}
+.tay305-lab .remainder output b {
+  display: block;
+  margin-top: 8px;
+  font-size: 13px;
+}
+.tay305-lab .remainder p {
+  margin-top: 5px;
+}
+.tay305-info {
+  display: grid;
+  height: 232px;
+  grid-template-columns: 1fr 1.08fr 1.08fr;
+  gap: 10px;
+  margin-top: 14px;
+}
+.tay305-info article {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  padding: 11px;
+  overflow: hidden;
+}
+.tay305-info h3 {
+  font-size: 10px;
+}
+.tay305-info p {
+  margin-top: 8px;
+}
+.tay305-info strong {
+  display: block;
+  margin: 12px 0;
+  text-align: center;
+  font:
+    italic 11px Georgia,
+    serif;
+}
+.tay305-info article:nth-child(2) > output {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #eafbf1;
+  padding: 8px;
+  color: #16834a;
+}
+.tay305-info article:last-child h3 {
+  color: #de3446;
+}
+.tay305-info article:last-child svg {
+  display: block;
+  width: 100%;
+  height: 82px;
+  margin-top: 9px;
+}
+.tay305-practice {
+  display: grid;
+  height: 158px;
+  grid-template-columns: 1fr 1.65fr 0.95fr;
+  margin-top: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  overflow: hidden;
+}
+.tay305-practice > * {
+  border-right: 1px solid var(--line);
+  padding: 11px;
+}
+.tay305-practice > *:last-child {
+  border: 0;
+}
+.tay305-practice h3 {
+  color: #087ea5;
+  font-size: 9px;
+}
+.tay305-practice p {
+  margin-top: 7px;
+}
+.tay305-practice section label {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  margin-top: 7px;
+  align-items: center;
+}
+.tay305-practice section input {
+  height: 26px;
+  border: 1px solid #9bd9c2;
+  border-radius: 5px;
+  background: #f4fff9;
+  padding: 0 7px;
+}
+.tay305-practice section button {
+  height: 25px;
+  margin-top: 6px;
+  border: 0;
+  border-radius: 5px;
+  background: #0786a5;
+  color: #fff;
+}
+.tay305-practice aside > b {
+  display: block;
+  margin-top: 12px;
+}
+.tay305-practice aside output {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 28px;
+  border-radius: 6px;
+  background: #eafbf1;
+  padding: 12px;
+  color: #16834a;
+}
+.tay305-practice aside output.incorrect {
+  background: #fff0f0;
+  color: #df3344;
+}
+.tay305-practice aside svg {
+  width: 14px;
+}
+.tay305-adjacent {
+  display: flex;
+  height: 36px;
+  gap: 8px;
+  margin-top: 14px;
+}
+.tay305-adjacent a {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: #fff;
+  padding: 0 14px;
+  color: inherit;
+  text-decoration: none;
+}
+.tay305-adjacent a:last-child {
+  justify-content: flex-end;
+  text-align: right;
+}
+.tay305-adjacent small {
+  display: block;
+  color: #63718a;
+  font-size: 7px;
+  text-transform: uppercase;
+}
+body:has(.tay305-page) [data-testid="desktop-sidebar"] {
+  width: 205px !important;
+  flex-basis: 205px !important;
+  transition: none;
+}
+body:has(.tay305-page) #main-content {
+  margin-left: 0 !important;
+  padding-left: 15px !important;
+  padding-right: 18px !important;
+}
+body:has(.tay305-page) .lesson-shell-header,
+body:has(.tay305-page) .lesson-page-shell > nav[role="tablist"],
+body:has(.tay305-page) .lesson-adjacent-nav {
+  display: none !important;
+}
+body:has(.tay305-page) .lesson-page-shell > div {
+  margin-top: 10px !important;
+}
+body:has(.tay305-page) .lesson-workbench.is-target-graphing-workbench {
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+body:has(.tay305-page) {
+  overflow: hidden;
+}
+body:has(.tay305-page) footer[aria-label="Site footer"] {
+  height: 46px !important;
+  margin-top: 11px !important;
+  padding: 3px 15px !important;
+  overflow: hidden;
+}
+body:has(.tay305-page) footer[aria-label="Site footer"] > div {
+  display: grid;
+  height: 40px;
+  grid-template-columns: 1fr auto;
+  padding: 3px 9px !important;
+}
+body:has(.tay305-page)
+  footer[aria-label="Site footer"]
+  > div
+  > div:first-child {
+  display: contents;
+}
+body:has(.tay305-page)
+  footer[aria-label="Site footer"]
+  > div
+  > div:first-child
+  > div:first-child {
+  align-self: center;
+}
+body:has(.tay305-page)
+  footer[aria-label="Site footer"]
+  > div
+  > div:first-child
+  > div:first-child
+  p:nth-child(2) {
+  white-space: nowrap;
+  font-size: 7px !important;
+}
+body:has(.tay305-page)
+  footer[aria-label="Site footer"]
+  > div
+  > div:first-child
+  > div:last-child {
+  grid-column: 2;
+  align-self: center;
+}
+body:has(.tay305-page)
+  footer[aria-label="Site footer"]
+  > div
+  > div:nth-child(2),
+body:has(.tay305-page) footer[aria-label="Site footer"] > div > p:last-child {
+  display: none;
+}
+@media (min-width: 960px) {
+  body:has(.tay305-page) .app-layout-rail > div > header {
+    height: 54px;
+  }
+  body:has(.tay305-page) [data-testid="desktop-sidebar"] > div {
+    padding: 10px 9px 40px !important;
+  }
+  body:has(.tay305-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type {
+    height: 61px;
+    min-height: 61px;
+    margin-bottom: 13px !important;
+    padding: 0 !important;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+  body:has(.tay305-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type
+    p:first-child {
+    white-space: nowrap;
+    font-size: 14px !important;
+  }
+  body:has(.tay305-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type
+    p:last-child {
+    font-size: 8px !important;
+  }
+  body:has(.tay305-page) [data-testid="desktop-sidebar"] > div > label {
+    height: 36px;
+    min-height: 36px !important;
+    margin-bottom: 10px !important;
+    padding: 0 9px !important;
+    font-size: 9px !important;
+  }
+  body:has(.tay305-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"] {
+    row-gap: 7px !important;
+  }
+  body:has(.tay305-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    > div:nth-of-type(2),
+  body:has(.tay305-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    > div:nth-of-type(n + 5) {
+    display: none;
+  }
+  body:has(.tay305-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    button {
+    min-height: 32px;
+    padding: 6px 8px !important;
+    font-size: 9px !important;
+  }
+  body:has(.tay305-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    a {
+    min-height: 29px;
+    padding: 5px 8px !important;
+    font-size: 8px !important;
+  }
+  body:has(.tay305-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    a:has(span span + span) {
+    height: 43px;
+    min-height: 43px;
+    padding: 3px 8px !important;
+  }
+  body:has(.tay305-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    a
+    span
+    span
+    + span {
+    font-size: 6px !important;
+  }
+  body:has(.tay305-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    > div:nth-of-type(4)
+    a {
+    height: 28px;
+    min-height: 28px;
+    padding: 3px 8px !important;
+  }
+  body:has(.tay305-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    > div:nth-of-type(4)
+    > div
+    > :nth-child(n + 2) {
+    display: none;
+  }
+}
+@media (max-width: 900px) {
+  .tay305-page {
+    min-width: 753px;
+  }
+}

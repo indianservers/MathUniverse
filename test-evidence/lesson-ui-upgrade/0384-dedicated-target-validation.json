@@ -1,0 +1,148 @@
+{
+  "mockup": "0384",
+  "lessonId": 305,
+  "checks": {
+    "initial": {
+      "degree": "3",
+      "center": "0",
+      "live-f": "1",
+      "live-t": "1",
+      "live-error": "0",
+      "max-error": "19.739209",
+      "result": "correct",
+      "actions": "0"
+    },
+    "controls": {
+      "degree": "4",
+      "center": "1.016815",
+      "live-f": "0.526078",
+      "live-t": "0.526078",
+      "live-error": "0",
+      "max-error": "25.315709",
+      "result": "correct",
+      "actions": "2"
+    },
+    "dragged": {
+      "degree": "4",
+      "center": "2.026352",
+      "live-f": "-0.439962",
+      "live-t": "-0.439962",
+      "live-error": "0",
+      "max-error": "152.062833",
+      "result": "correct",
+      "actions": "9"
+    },
+    "rejected": {
+      "degree": "4",
+      "center": "2.026352",
+      "live-f": "-0.439962",
+      "live-t": "-0.439962",
+      "live-error": "0",
+      "max-error": "152.062833",
+      "result": "incorrect",
+      "actions": "10"
+    },
+    "accepted": {
+      "degree": "4",
+      "center": "2.026352",
+      "live-f": "-0.439962",
+      "live-t": "-0.439962",
+      "live-error": "0",
+      "max-error": "152.062833",
+      "result": "correct",
+      "actions": "11"
+    },
+    "localReset": {
+      "degree": "3",
+      "center": "0",
+      "live-f": "1",
+      "live-t": "1",
+      "live-error": "0",
+      "max-error": "19.739209",
+      "result": "correct",
+      "actions": "1"
+    },
+    "shellReset": {
+      "degree": "3",
+      "center": "0",
+      "live-f": "1",
+      "live-t": "1",
+      "live-error": "0",
+      "max-error": "19.739209",
+      "result": "correct",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 991,
+      "height": 1588
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 205,
+      "height": 1588,
+      "bottom": 1588
+    },
+    "hero": {
+      "top": 108,
+      "left": 220,
+      "width": 753,
+      "height": 207,
+      "bottom": 315
+    },
+    "tabs": {
+      "top": 329,
+      "left": 220,
+      "width": 753,
+      "height": 50,
+      "bottom": 379
+    },
+    "flow": {
+      "top": 394,
+      "left": 220,
+      "width": 753,
+      "height": 82,
+      "bottom": 476
+    },
+    "lab": {
+      "top": 490,
+      "left": 220,
+      "width": 753,
+      "height": 572,
+      "bottom": 1062
+    },
+    "info": {
+      "top": 1076,
+      "left": 220,
+      "width": 753,
+      "height": 232,
+      "bottom": 1308
+    },
+    "practice": {
+      "top": 1322,
+      "left": 220,
+      "width": 753,
+      "height": 158,
+      "bottom": 1480
+    },
+    "adjacent": {
+      "top": 1494,
+      "left": 220,
+      "width": 753,
+      "height": 36,
+      "bottom": 1530
+    },
+    "footer": {
+      "top": 1542,
+      "left": 205,
+      "width": 786,
+      "height": 46,
+      "bottom": 1588
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

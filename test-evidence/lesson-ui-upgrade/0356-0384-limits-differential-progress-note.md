@@ -1,6 +1,6 @@
 # Limits and Differential Calculus target batch 0356-0384
 
-Dedicated rebuild target: **28 of 29 lessons completed; 1 pending.**
+Dedicated rebuild target: **29 of 29 lessons completed; 0 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
@@ -32,7 +32,7 @@ Dedicated rebuild target: **28 of 29 lessons completed; 1 pending.**
 | 0381 | 302 Related Rates | `quadratic-distance-time-linked-exact-and-finite-rate-direct-time-drag-tangent-animation-chain-rule-practice` | Reworked individually and browser-validated |
 | 0382 | 303 Motion Analysis | `cubic-position-linked-velocity-acceleration-three-synchronized-graphs-direct-time-drag-derivative-chain-practice` | Reworked individually and browser-validated |
 | 0383 | 304 Newton's Method | `cubic-newton-iteration-direct-initial-guess-drag-tangent-iterate-table-convergence-residual-three-step-practice` | Reworked individually and browser-validated |
-| 0384 | 305 Taylor Polynomial | Pending audit | Pending |
+| 0384 | 305 Taylor Polynomial | `cosine-taylor-derivative-cycle-variable-degree-and-center-direct-center-drag-remainder-error-band-three-field-practice` | Reworked individually and browser-validated |
 
 ## Lesson 277 / Mockup 0356 - Informal Limits
 
@@ -449,3 +449,19 @@ Evidence:
 - `0383-reference.png`
 - `0383-desktop.png`
 - `0383-dedicated-target-validation.json`
+
+## Lesson 305 / Mockup 0384 - Taylor Polynomial
+
+Reworked individually around the exact cosine derivative cycle, with a Taylor polynomial of selectable degree `0-6` and selectable center `a` on `[-2pi,2pi]`. The degree and center drive the actual coefficients, polynomial graph, sampled error band, interval maximum error, live function/polynomial/remainder values, remainder cards, and action count. The native controls and captured SVG center dragging are real. Five lesson tabs, Reset, Share, three-field polynomial/value/error practice checking, shell Reset, and Previous/Next navigation are functional.
+
+Browser validation confirms the target start degree `3`, center `0`, live `f(a)=1`, `T3(a)=1`, and zero live remainder. Moving to degree `4` and center approximately `1.016815` recomputes the Taylor coefficients while preserving the exact center match; a real pointer drag moves the center to approximately `2.026352` and changes the sampled maximum error from `25.315709` to `152.062833`. Practice rejects `T4(0.8)=0.7`, accepts the coherent polynomial `1-x^2/2+x^4/24`, value `0.697067`, and absolute error `0.000360`, and shell Reset restores degree, center, solved target practice state, selected tab, and zero actions.
+
+The reference's practice prints the correct degree-4 polynomial but labels its value and error inconsistently with both that polynomial and `cos(0.8)`. Its degree-3 full-interval graph and stated maximum error also cannot come from a degree-3 Taylor polynomial for cosine. This implementation preserves the target composition and control states while keeping the derivative coefficients, polynomial, graph, error band, remainder, worked example, and checked practice values mathematically consistent.
+
+Final exact 991x1588 validation matches the target stack: sidebar width 205, hero y=108-315, tabs y=329-379, four-stage guide y=394-476, Taylor graph/control lab y=490-1062, theory/worked/misconception row y=1076-1308, practice y=1322-1480, adjacent navigation y=1494-1530, and compact site footer y=1542-1588. The dedicated content spans x=220-973, with no horizontal overflow, no duplicate shared lesson chrome, and zero console messages.
+
+Evidence:
+
+- `0384-reference.png`
+- `0384-desktop.png`
+- `0384-dedicated-target-validation.json`
