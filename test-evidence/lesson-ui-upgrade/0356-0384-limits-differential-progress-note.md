@@ -1,6 +1,6 @@
 # Limits and Differential Calculus target batch 0356-0384
 
-Dedicated rebuild target: **8 of 29 lessons completed; 21 pending.**
+Dedicated rebuild target: **9 of 29 lessons completed; 20 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
@@ -12,7 +12,7 @@ Dedicated rebuild target: **8 of 29 lessons completed; 21 pending.**
 | 0361 | 282 Types of Discontinuity | `three-break-graphs-six-draggable-approach-markers-derived-limits-classification` | Reworked individually and browser-validated |
 | 0362 | 283 Epsilon-Delta Visualiser | `linear-epsilon-delta-linked-input-output-bands-draggable-handles-proof-practice` | Reworked individually and browser-validated |
 | 0363 | 284 Average Rate of Change | `quadratic-two-draggable-secants-linked-rise-run-rate-independent-practice` | Reworked individually and browser-validated |
-| 0364 | 285 Instantaneous Rate of Change | Pending audit | Pending |
+| 0364 | 285 Instantaneous Rate of Change | `quadratic-fixed-base-movable-secant-h-limit-tangent-convergence-practice` | Reworked individually and browser-validated |
 | 0365 | 286 Derivative From First Principles | Pending audit | Pending |
 | 0366 | 287 Tangent Line | Pending audit | Pending |
 | 0367 | 288 Normal Line | Pending audit | Pending |
@@ -145,3 +145,17 @@ Evidence:
 - `0363-reference.png`
 - `0363-desktop.png`
 - `0363-dedicated-target-validation.json`
+
+## Lesson 285 / Mockup 0364 - Instantaneous Rate of Change
+
+Reworked individually around `f(x)=x^2`, fixed base point `A=(1,1)`, and movable point `B=(1+h,(1+h)^2)`. The shared h state drives the graph handle, secant line, tangent comparison, B coordinates, exact secant slope `2+h`, error from the derivative, selected convergence-table row, feedback, and action count. Native range input and captured SVG dragging are both real. Practice uses the corrected coherent function `x^3-2x`, making the target B answer `10` mathematically valid.
+
+Browser validation confirms `h=0.5` gives slope `2.5`, `h=0.01` gives `2.01`, and a real pointer drag reaches `h=0.0001`, slope `2.0001`, and error `0.0001`. It toggles convergence feedback off, rejects answer `7`, accepts `10`, and shell Reset restores `h=0.05`, B `(1.05,1.1025)`, slope `2.05`, feedback, selected interaction tab, and zero actions.
+
+Final exact 1018x1544 validation matches the target stack: sidebar width 218, hero y=91-360, tabs y=374-424, four-stage flow y=448-512, graph/table model y=529-1099, derivative/example/misconception row y=1114-1321, and practice y=1338-1515. It reports no horizontal overflow, no site footer, and zero console messages.
+
+Evidence:
+
+- `0364-reference.png`
+- `0364-desktop.png`
+- `0364-dedicated-target-validation.json`

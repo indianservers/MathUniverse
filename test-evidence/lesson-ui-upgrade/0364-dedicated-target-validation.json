@@ -1,0 +1,159 @@
+{
+  "mockup": "0364",
+  "lessonId": 285,
+  "checks": {
+    "initial": {
+      "h": "0.05",
+      "x-b": "1.05",
+      "y-b": "1.1025",
+      "secant-slope": "2.05",
+      "error": "0.05",
+      "feedback": "true",
+      "choice": "10",
+      "result": "correct",
+      "actions": "0"
+    },
+    "wide": {
+      "h": "0.5",
+      "x-b": "1.5",
+      "y-b": "2.25",
+      "secant-slope": "2.5",
+      "error": "0.5",
+      "feedback": "true",
+      "choice": "10",
+      "result": "correct",
+      "actions": "1"
+    },
+    "close": {
+      "h": "0.01",
+      "x-b": "1.01",
+      "y-b": "1.0201",
+      "secant-slope": "2.01",
+      "error": "0.01",
+      "feedback": "true",
+      "choice": "10",
+      "result": "correct",
+      "actions": "2"
+    },
+    "dragged": {
+      "h": "0.0001",
+      "x-b": "1.0001",
+      "y-b": "1.0002",
+      "secant-slope": "2.0001",
+      "error": "0.0001",
+      "feedback": "true",
+      "choice": "10",
+      "result": "correct",
+      "actions": "11"
+    },
+    "feedbackOff": {
+      "h": "0.0001",
+      "x-b": "1.0001",
+      "y-b": "1.0002",
+      "secant-slope": "2.0001",
+      "error": "0.0001",
+      "feedback": "false",
+      "choice": "10",
+      "result": "correct",
+      "actions": "12"
+    },
+    "rejected": {
+      "h": "0.0001",
+      "x-b": "1.0001",
+      "y-b": "1.0002",
+      "secant-slope": "2.0001",
+      "error": "0.0001",
+      "feedback": "false",
+      "choice": "7",
+      "result": "incorrect",
+      "actions": "13"
+    },
+    "accepted": {
+      "h": "0.0001",
+      "x-b": "1.0001",
+      "y-b": "1.0002",
+      "secant-slope": "2.0001",
+      "error": "0.0001",
+      "feedback": "false",
+      "choice": "10",
+      "result": "correct",
+      "actions": "14"
+    },
+    "reset": {
+      "h": "0.05",
+      "x-b": "1.05",
+      "y-b": "1.1025",
+      "secant-slope": "2.05",
+      "error": "0.05",
+      "feedback": "true",
+      "choice": "10",
+      "result": "correct",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1018,
+      "height": 1544
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 218,
+      "height": 1544,
+      "bottom": 1544
+    },
+    "hero": {
+      "top": 91,
+      "left": 236,
+      "width": 762,
+      "height": 269,
+      "bottom": 360
+    },
+    "tabs": {
+      "top": 374,
+      "left": 236,
+      "width": 762,
+      "height": 50,
+      "bottom": 424
+    },
+    "flow": {
+      "top": 448,
+      "left": 236,
+      "width": 762,
+      "height": 64,
+      "bottom": 512
+    },
+    "model": {
+      "top": 529,
+      "left": 236,
+      "width": 762,
+      "height": 570,
+      "bottom": 1099
+    },
+    "learning": {
+      "top": 1114,
+      "left": 236,
+      "width": 762,
+      "height": 207,
+      "bottom": 1321
+    },
+    "practice": {
+      "top": 1338,
+      "left": 236,
+      "width": 762,
+      "height": 177,
+      "bottom": 1515
+    },
+    "footer": {
+      "top": 0,
+      "left": 0,
+      "width": 0,
+      "height": 0,
+      "bottom": 0
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
