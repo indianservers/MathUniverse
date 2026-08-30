@@ -1,6 +1,6 @@
 # Integral Calculus and Differential Equations target batch 0385-0412
 
-Dedicated rebuild target: **21 of 28 lessons completed; 7 pending.**
+Dedicated rebuild target: **22 of 28 lessons completed; 6 pending.**
 
 | Mockup | Lesson                           | Dedicated object model                                                                                                     | Status                                      |
 | ------ | -------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
@@ -25,7 +25,7 @@ Dedicated rebuild target: **21 of 28 lessons completed; 7 pending.**
 | 0403   | 324 Euler's Method               | `forward-euler-generated-steps-slope-field-exact-solution-draggable-initial-condition-live-table-errors-animation-practice` | Reworked individually and browser-validated |
 | 0404   | 325 Separable Equations          | `draggable-variable-separation-dual-antiderivatives-combined-constant-solution-family-k-graph-practice`                    | Reworked individually and browser-validated |
 | 0405   | 326 First-Order Linear Equations | `integrating-factor-pipeline-generated-slope-field-forcing-transient-solution-coefficient-controls-residual-verification-export` | Reworked individually and browser-validated |
-| 0406   | 327 Logistic Growth              | Pending audit                                                                                                              | Pending                                     |
+| 0406   | 327 Logistic Growth              | `logistic-population-closed-form-carrying-capacity-inflection-draggable-initial-condition-growth-rate-phases-practice`     | Reworked individually and browser-validated |
 | 0407   | 328 Second-Order Equations       | Pending audit                                                                                                              | Pending                                     |
 | 0408   | 329 Phase Plane                  | Pending audit                                                                                                              | Pending                                     |
 | 0409   | 330 Equilibrium and Stability    | Pending audit                                                                                                              | Pending                                     |
@@ -358,3 +358,19 @@ Evidence:
 - `0405-reference.png`
 - `0405-desktop.png`
 - `0405-dedicated-target-validation.json`
+
+## Lesson 327 / Mockup 0406 - Logistic Growth
+
+Reworked individually as a closed-form logistic population laboratory. The shared `K`, `r`, `P0`, and observation-time model drives the numeric axes, S-curve, carrying-capacity and half-capacity guides, inflection marker/time, phase bands, instantaneous growth, population/time metrics, exact formula, worked example, and practice checks. All three parameter sliders are real; clicking the graph moves observation time; the blue initial point is directly draggable and changes `P0`; five tabs, Reset, Share, Reveal, both answer checks, shell Reset, adjacent lessons, and compact footer are functional.
+
+Browser validation confirms the coherent default `K=2000`, `r=0.6`, `P0=400`, `A=4`, inflection time `2.3104906`, `P(2.4)=1026.84636701`, and instantaneous growth `299.78378177`. Real controls change the model to approximately `K=3300`, `r=1`, and `P0=600`; a real graph click moves time to 12; and a pointer drag raises the initial population to approximately `1450.25087554`, recomputing A, inflection, population, rate, curve, and guides. The practice rejects the reference's `2056.3` and `4.33`, then accepts the coherent values for `K=3000`, `r=0.4`, `P0=300`: `P(5)=1352.56` and half-capacity time `ln(9)/0.4=5.49`. Reveal and shell Reset work. Focused ESLint and the dedicated Playwright harness pass with zero console warnings or errors.
+
+The reference's default metric card shows population `858.1` and growth `259.2` at `t=2.40`, which do not satisfy its displayed `K=2000`, `r=0.60`, `P0=400` formula. Its practice answers are likewise inconsistent. The dedicated surface preserves the target's composition and controls while keeping every displayed number and checked answer tied to the governing logistic model.
+
+Final exact 935x1683 capture matches the target stack: sidebar width 207, hero y=95-208, tabs y=209-253, logistic lab y=264-786, theory y=803-989, worked/misconception band y=1000-1385, practice y=1398-1521, adjacent lessons y=1534-1581, and footer y=1591-1683. Dedicated content spans x=222-919 with no horizontal overflow and no duplicate shared lesson chrome.
+
+Evidence:
+
+- `0406-reference.png`
+- `0406-desktop.png`
+- `0406-dedicated-target-validation.json`

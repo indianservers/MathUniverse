@@ -1,0 +1,183 @@
+{
+  "mockup": "0406",
+  "lessonId": 327,
+  "checks": {
+    "initial": {
+      "k": "2000",
+      "r": "0.6",
+      "p0": "400",
+      "time": "2.4",
+      "population": "1026.84636701",
+      "rate": "299.78378177",
+      "a": "4",
+      "inflection": "2.3104906",
+      "tab": "Interact",
+      "result1": "",
+      "result2": "",
+      "reveal": "false",
+      "actions": "0"
+    },
+    "controls": {
+      "k": "3300",
+      "r": "1",
+      "p0": "600",
+      "time": "2.4",
+      "population": "2343.36589137",
+      "rate": "679.31628506",
+      "a": "4.5",
+      "inflection": "1.5040774",
+      "tab": "Formula",
+      "result1": "",
+      "result2": "",
+      "reveal": "false",
+      "actions": "4"
+    },
+    "time": {
+      "k": "3300",
+      "r": "1",
+      "p0": "600",
+      "time": "12.00000099",
+      "population": "3299.90876106",
+      "rate": "0.09123642",
+      "a": "4.5",
+      "inflection": "1.5040774",
+      "tab": "Formula",
+      "result1": "",
+      "result2": "",
+      "reveal": "false",
+      "actions": "5"
+    },
+    "drag": {
+      "k": "3300",
+      "r": "1",
+      "p0": "1450.25087554",
+      "time": "12.00000099",
+      "population": "3299.97413896",
+      "rate": "0.02586084",
+      "a": "1.27546837",
+      "inflection": "0.24331346",
+      "tab": "Formula",
+      "result1": "",
+      "result2": "",
+      "reveal": "false",
+      "actions": "13"
+    },
+    "rejected": {
+      "k": "3300",
+      "r": "1",
+      "p0": "1450.25087554",
+      "time": "12.00000099",
+      "population": "3299.97413896",
+      "rate": "0.02586084",
+      "a": "1.27546837",
+      "inflection": "0.24331346",
+      "tab": "Formula",
+      "result1": "incorrect",
+      "result2": "incorrect",
+      "reveal": "false",
+      "actions": "17"
+    },
+    "accepted": {
+      "k": "3300",
+      "r": "1",
+      "p0": "1450.25087554",
+      "time": "12.00000099",
+      "population": "3299.97413896",
+      "rate": "0.02586084",
+      "a": "1.27546837",
+      "inflection": "0.24331346",
+      "tab": "Formula",
+      "result1": "correct",
+      "result2": "correct",
+      "reveal": "true",
+      "actions": "22"
+    },
+    "shellReset": {
+      "k": "2000",
+      "r": "0.6",
+      "p0": "400",
+      "time": "2.4",
+      "population": "1026.84636701",
+      "rate": "299.78378177",
+      "a": "4",
+      "inflection": "2.3104906",
+      "tab": "Interact",
+      "result1": "",
+      "result2": "",
+      "reveal": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 935,
+      "height": 1683
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 207,
+      "height": 1683,
+      "bottom": 1683
+    },
+    "hero": {
+      "top": 95,
+      "left": 222,
+      "width": 697,
+      "height": 113,
+      "bottom": 208
+    },
+    "tabs": {
+      "top": 209,
+      "left": 222,
+      "width": 697,
+      "height": 44,
+      "bottom": 253
+    },
+    "lab": {
+      "top": 264,
+      "left": 222,
+      "width": 697,
+      "height": 522,
+      "bottom": 786
+    },
+    "theory": {
+      "top": 803,
+      "left": 222,
+      "width": 697,
+      "height": 186,
+      "bottom": 989
+    },
+    "worked": {
+      "top": 1000,
+      "left": 222,
+      "width": 697,
+      "height": 385,
+      "bottom": 1385
+    },
+    "practice": {
+      "top": 1398,
+      "left": 222,
+      "width": 697,
+      "height": 123,
+      "bottom": 1521
+    },
+    "adjacent": {
+      "top": 1534,
+      "left": 222,
+      "width": 697,
+      "height": 47,
+      "bottom": 1581
+    },
+    "footer": {
+      "top": 1591,
+      "left": 207,
+      "width": 728,
+      "height": 92,
+      "bottom": 1683
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
