@@ -324,7 +324,7 @@ export default function MotionAnalysisTargetLesson303({
             <small>Previous</small>Related Rates
           </span>
         </a>
-        <a href="/lessons/calculus/304-newtons-method">
+        <a href="/lessons/calculus/304-newton-s-method">
           <span>
             <small>Next</small>Newton's Method
           </span>{" "}

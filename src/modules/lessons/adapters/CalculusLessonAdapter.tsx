@@ -34,6 +34,7 @@ import InflectionPointsTargetLesson300 from "./calculus/InflectionPointsTargetLe
 import OptimisationTargetLesson301 from "./calculus/OptimisationTargetLesson301";
 import RelatedRatesTargetLesson302 from "./calculus/RelatedRatesTargetLesson302";
 import MotionAnalysisTargetLesson303 from "./calculus/MotionAnalysisTargetLesson303";
+import NewtonMethodTargetLesson304 from "./calculus/NewtonMethodTargetLesson304";
 
 const viewportSize = { width: 640, height: 360 };
 const fallbackViewport: GraphViewport = { xMin: -5, xMax: 5, yMin: -6, yMax: 10, ...viewportSize };
@@ -169,6 +170,7 @@ export default function CalculusLessonAdapter(props: LessonAdapterProps) {
   if (props.lesson.id === 301) return <OptimisationTargetLesson301 {...props} />;
   if (props.lesson.id === 302) return <RelatedRatesTargetLesson302 {...props} />;
   if (props.lesson.id === 303) return <MotionAnalysisTargetLesson303 {...props} />;
+  if (props.lesson.id === 304) return <NewtonMethodTargetLesson304 {...props} />;
   if (props.lesson.id >= 277 && props.lesson.id <= 305) return <LimitsDifferentialMockupLesson {...props} />;
   if (props.lesson.id >= 306 && props.lesson.id <= 333) return <IntegralDifferentialMockupLesson {...props} />;
   return <LegacyCalculusLessonAdapter {...props} />;

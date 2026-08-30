@@ -1,0 +1,188 @@
+{
+  "mockup": "0383",
+  "lessonId": 304,
+  "checks": {
+    "initial": {
+      "x0": "-0.7",
+      "count": "6",
+      "last": "1.52138",
+      "residual": "0",
+      "error": "0",
+      "converged": "true",
+      "tangent": "true",
+      "iterates": "true",
+      "result": "",
+      "solution": "false",
+      "actions": "0"
+    },
+    "controls": {
+      "x0": "1",
+      "count": "4",
+      "last": "1.521441",
+      "residual": "0.000367",
+      "error": "0.000062",
+      "converged": "false",
+      "tangent": "true",
+      "iterates": "true",
+      "result": "",
+      "solution": "false",
+      "actions": "2"
+    },
+    "dragged": {
+      "x0": "1.383322053077582",
+      "count": "4",
+      "last": "1.52138",
+      "residual": "0",
+      "error": "0",
+      "converged": "true",
+      "tangent": "true",
+      "iterates": "true",
+      "result": "",
+      "solution": "false",
+      "actions": "9"
+    },
+    "layersOff": {
+      "x0": "1.383322053077582",
+      "count": "4",
+      "last": "1.52138",
+      "residual": "0",
+      "error": "0",
+      "converged": "true",
+      "tangent": "false",
+      "iterates": "false",
+      "result": "",
+      "solution": "false",
+      "actions": "11"
+    },
+    "rejected": {
+      "x0": "1.383322053077582",
+      "count": "4",
+      "last": "1.52138",
+      "residual": "0",
+      "error": "0",
+      "converged": "true",
+      "tangent": "false",
+      "iterates": "false",
+      "result": "incorrect",
+      "solution": "false",
+      "actions": "12"
+    },
+    "accepted": {
+      "x0": "1.383322053077582",
+      "count": "4",
+      "last": "1.52138",
+      "residual": "0",
+      "error": "0",
+      "converged": "true",
+      "tangent": "false",
+      "iterates": "false",
+      "result": "correct",
+      "solution": "false",
+      "actions": "13"
+    },
+    "solution": {
+      "x0": "1.383322053077582",
+      "count": "4",
+      "last": "1.52138",
+      "residual": "0",
+      "error": "0",
+      "converged": "true",
+      "tangent": "false",
+      "iterates": "false",
+      "result": "correct",
+      "solution": "true",
+      "actions": "14"
+    },
+    "localReset": {
+      "x0": "-0.7",
+      "count": "6",
+      "last": "1.52138",
+      "residual": "0",
+      "error": "0",
+      "converged": "true",
+      "tangent": "true",
+      "iterates": "true",
+      "result": "",
+      "solution": "false",
+      "actions": "1"
+    },
+    "shellReset": {
+      "x0": "-0.7",
+      "count": "6",
+      "last": "1.52138",
+      "residual": "0",
+      "error": "0",
+      "converged": "true",
+      "tangent": "true",
+      "iterates": "true",
+      "result": "",
+      "solution": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1023,
+      "height": 1537
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 218,
+      "height": 1537,
+      "bottom": 1537
+    },
+    "hero": {
+      "top": 102,
+      "left": 232,
+      "width": 774,
+      "height": 214,
+      "bottom": 316
+    },
+    "tabs": {
+      "top": 327,
+      "left": 232,
+      "width": 774,
+      "height": 39,
+      "bottom": 366
+    },
+    "lab": {
+      "top": 375,
+      "left": 232,
+      "width": 774,
+      "height": 619,
+      "bottom": 994
+    },
+    "flow": {
+      "top": 1005,
+      "left": 232,
+      "width": 774,
+      "height": 138,
+      "bottom": 1143
+    },
+    "info": {
+      "top": 1155,
+      "left": 232,
+      "width": 774,
+      "height": 236,
+      "bottom": 1391
+    },
+    "adjacent": {
+      "top": 1400,
+      "left": 232,
+      "width": 774,
+      "height": 44,
+      "bottom": 1444
+    },
+    "footer": {
+      "top": 1455,
+      "left": 218,
+      "width": 805,
+      "height": 82,
+      "bottom": 1537
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

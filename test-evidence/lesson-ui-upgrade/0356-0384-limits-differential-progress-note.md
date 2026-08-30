@@ -1,6 +1,6 @@
 # Limits and Differential Calculus target batch 0356-0384
 
-Dedicated rebuild target: **27 of 29 lessons completed; 2 pending.**
+Dedicated rebuild target: **28 of 29 lessons completed; 1 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
@@ -31,7 +31,7 @@ Dedicated rebuild target: **27 of 29 lessons completed; 2 pending.**
 | 0380 | 301 Optimisation | `fixed-concave-quadratic-domain-critical-endpoint-comparison-direct-x-drag-finite-derivative-cas-optimisation-practice` | Reworked individually and browser-validated |
 | 0381 | 302 Related Rates | `quadratic-distance-time-linked-exact-and-finite-rate-direct-time-drag-tangent-animation-chain-rule-practice` | Reworked individually and browser-validated |
 | 0382 | 303 Motion Analysis | `cubic-position-linked-velocity-acceleration-three-synchronized-graphs-direct-time-drag-derivative-chain-practice` | Reworked individually and browser-validated |
-| 0383 | 304 Newton's Method | Pending audit | Pending |
+| 0383 | 304 Newton's Method | `cubic-newton-iteration-direct-initial-guess-drag-tangent-iterate-table-convergence-residual-three-step-practice` | Reworked individually and browser-validated |
 | 0384 | 305 Taylor Polynomial | Pending audit | Pending |
 
 ## Lesson 277 / Mockup 0356 - Informal Limits
@@ -433,3 +433,19 @@ Evidence:
 - `0382-reference.png`
 - `0382-desktop.png`
 - `0382-dedicated-target-validation.json`
+
+## Lesson 304 / Mockup 0383 - Newton's Method
+
+Reworked individually around the coherent cubic `f(x)=x^3-x-2`, whose root `1.5213797068` matches the target's dominant root marker and convergence result. The initial guess and iteration count drive the exact Newton sequence, graph handle, first tangent, next-intercept guide, iterate markers, table, residual, root error, convergence verdict, and action count. The native x0/count controls and captured SVG initial-guess dragging are real. Tangent and iterate toggles remove their actual graph layers. Six lesson tabs, Reset, Share, three-field numerical practice checking, solution disclosure, shell Reset, and Previous/Next navigation are functional.
+
+Browser validation confirms the target start `x0=-0.7`, six iterations, final estimate `1.521380`, effectively zero residual/error, and a true convergence verdict. Moving x0 to `1` and count to `4` derives estimate `1.521441`; a real pointer drag moves x0 to approximately `1.3833` and recomputes the entire sequence. Both graph layers toggle off. Practice for `x^3-x-1` rejects an incorrect first iterate, accepts `x1=1.347826`, `x2≈1.3252`, `x3=1.324718`, reveals the solution, and shell Reset restores the initial guess, count, graph layers, practice state, selected tab, and zero actions.
+
+The reference prints `2x^3-x-2` and derivative `6x^2-1`, but its displayed root `1.52138` is not a root of that function, and its shown iteration table does not result from either the printed function or stated initial guess. This implementation preserves the target composition, root and convergence narrative while keeping the function, derivative, graph, tangent, iterates, table, residual, worked example, and practice calculations mutually consistent.
+
+Final exact 1023x1537 validation matches the target stack: sidebar width 218, hero y=102-316, tabs y=327-366, Newton graph/control lab y=375-994, four-stage guide y=1005-1143, worked/warning/practice row y=1155-1391, adjacent navigation y=1400-1444, and compact site footer y=1455-1537. The dedicated content spans x=232-1006, with no horizontal overflow, no duplicate shared lesson chrome, and zero console messages.
+
+Evidence:
+
+- `0383-reference.png`
+- `0383-desktop.png`
+- `0383-dedicated-target-validation.json`
