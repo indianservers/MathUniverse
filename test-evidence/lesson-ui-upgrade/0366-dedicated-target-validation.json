@@ -1,0 +1,112 @@
+{
+  "mockup": "0366",
+  "lessonId": 287,
+  "checks": {
+    "initial": {
+      "x": "-1",
+      "y": "-1",
+      "slope": "-2",
+      "intercept": "-3",
+      "result": "correct",
+      "actions": "0"
+    },
+    "xTwo": {
+      "x": "2",
+      "y": "2",
+      "slope": "4",
+      "intercept": "-6",
+      "result": "correct",
+      "actions": "1"
+    },
+    "dragged": {
+      "x": "0.74",
+      "y": "-1.45",
+      "slope": "1.48",
+      "intercept": "-2.55",
+      "result": "correct",
+      "actions": "8"
+    },
+    "rejected": {
+      "x": "0.74",
+      "y": "-1.45",
+      "slope": "1.48",
+      "intercept": "-2.55",
+      "result": "incorrect",
+      "actions": "9"
+    },
+    "accepted": {
+      "x": "0.74",
+      "y": "-1.45",
+      "slope": "1.48",
+      "intercept": "-2.55",
+      "result": "correct",
+      "actions": "10"
+    },
+    "reset": {
+      "x": "-1",
+      "y": "-1",
+      "slope": "-2",
+      "intercept": "-3",
+      "result": "correct",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1029,
+      "height": 1528
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 219,
+      "height": 1528,
+      "bottom": 1528
+    },
+    "hero": {
+      "top": 89,
+      "left": 234,
+      "width": 777,
+      "height": 199,
+      "bottom": 288
+    },
+    "tabs": {
+      "top": 297,
+      "left": 234,
+      "width": 777,
+      "height": 43,
+      "bottom": 340
+    },
+    "work": {
+      "top": 350,
+      "left": 234,
+      "width": 777,
+      "height": 703,
+      "bottom": 1053
+    },
+    "learn": {
+      "top": 1063,
+      "left": 234,
+      "width": 777,
+      "height": 257,
+      "bottom": 1320
+    },
+    "practice": {
+      "top": 1330,
+      "left": 234,
+      "width": 777,
+      "height": 111,
+      "bottom": 1441
+    },
+    "adjacent": {
+      "top": 1451,
+      "left": 234,
+      "width": 777,
+      "height": 54,
+      "bottom": 1505
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

@@ -1,6 +1,6 @@
 # Limits and Differential Calculus target batch 0356-0384
 
-Dedicated rebuild target: **10 of 29 lessons completed; 19 pending.**
+Dedicated rebuild target: **11 of 29 lessons completed; 18 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
@@ -14,7 +14,7 @@ Dedicated rebuild target: **10 of 29 lessons completed; 19 pending.**
 | 0363 | 284 Average Rate of Change | `quadratic-two-draggable-secants-linked-rise-run-rate-independent-practice` | Reworked individually and browser-validated |
 | 0364 | 285 Instantaneous Rate of Change | `quadratic-fixed-base-movable-secant-h-limit-tangent-convergence-practice` | Reworked individually and browser-validated |
 | 0365 | 286 Derivative From First Principles | `selectable-quadratic-base-point-h-secant-difference-quotient-symbolic-limit-practice` | Reworked individually and browser-validated |
-| 0366 | 287 Tangent Line | Pending audit | Pending |
+| 0366 | 287 Tangent Line | `quadratic-draggable-point-derivative-tangent-slope-triangle-point-slope-practice` | Reworked individually and browser-validated |
 | 0367 | 288 Normal Line | Pending audit | Pending |
 | 0368 | 289 Derivative Graph | Pending audit | Pending |
 | 0369 | 290 Higher Derivatives | Pending audit | Pending |
@@ -173,3 +173,17 @@ Evidence:
 - `0365-reference.png`
 - `0365-desktop.png`
 - `0365-dedicated-target-validation.json`
+
+## Lesson 287 / Mockup 0366 - Tangent Line
+
+Reworked individually around the target function `f(x)=x^2-2` and a draggable point `P=(x,f(x))`. The shared point state drives the plotted point, derivative slope `2x`, tangent geometry, slope triangle, rise/run values, point-slope equation, simplified line, coordinate labels, and action count. Native range dragging and captured SVG pointer dragging are real. The six lesson tabs, Reset, Share, independent two-coefficient practice checking, shell Reset, and Previous/Next navigation are functional.
+
+Browser validation confirms the target initial point `P=(-1,-1)`, slope `-2`, and tangent `y=-2x-3`. Moving to `x=2` derives `P=(2,2)`, slope `4`, and intercept `-6`. A real pointer drag moves the point to approximately `x=0.74`, deriving `y=-1.45`, slope `1.48`, and intercept `-2.55`. Practice rejects slope `8`, accepts the coherent answer `y=9x-15` for `f(x)=x^3-3x+1` at `x=2`, and shell Reset restores the target point, equation, selected tab, correct practice state, and zero actions.
+
+Final exact 1029x1528 validation matches the target stack: sidebar width 219, hero y=89-288, tabs y=297-340, tangent model and learning flow y=350-1053, rule/worked/misconception row y=1063-1320, practice y=1330-1441, and adjacent navigation y=1451-1505. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0366-reference.png`
+- `0366-desktop.png`
+- `0366-dedicated-target-validation.json`
