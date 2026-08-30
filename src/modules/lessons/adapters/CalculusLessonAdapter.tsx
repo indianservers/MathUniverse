@@ -60,6 +60,7 @@ import FirstOrderLinearTargetLesson326 from "./calculus/FirstOrderLinearTargetLe
 import LogisticGrowthTargetLesson327 from "./calculus/LogisticGrowthTargetLesson327";
 import SecondOrderEquationsTargetLesson328 from "./calculus/SecondOrderEquationsTargetLesson328";
 import PhasePlaneTargetLesson329 from "./calculus/PhasePlaneTargetLesson329";
+import EquilibriumStabilityTargetLesson330 from "./calculus/EquilibriumStabilityTargetLesson330";
 
 const viewportSize = { width: 640, height: 360 };
 const fallbackViewport: GraphViewport = { xMin: -5, xMax: 5, yMin: -6, yMax: 10, ...viewportSize };
@@ -221,6 +222,7 @@ export default function CalculusLessonAdapter(props: LessonAdapterProps) {
   if (props.lesson.id === 327) return <LogisticGrowthTargetLesson327 {...props} />;
   if (props.lesson.id === 328) return <SecondOrderEquationsTargetLesson328 {...props} />;
   if (props.lesson.id === 329) return <PhasePlaneTargetLesson329 {...props} />;
+  if (props.lesson.id === 330) return <EquilibriumStabilityTargetLesson330 {...props} />;
   if (props.lesson.id >= 277 && props.lesson.id <= 305) return <LimitsDifferentialMockupLesson {...props} />;
   if (props.lesson.id >= 306 && props.lesson.id <= 333) return <IntegralDifferentialMockupLesson {...props} />;
   return <LegacyCalculusLessonAdapter {...props} />;

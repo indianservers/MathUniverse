@@ -1,0 +1,169 @@
+{
+  "mockup": "0409",
+  "lessonId": 330,
+  "checks": {
+    "initial": {
+      "x0": "-1.4",
+      "tmax": "10",
+      "dt": "0.02",
+      "limit": "-1",
+      "basin": "-1",
+      "trajectory": "true",
+      "direction": "false",
+      "tab": "Interact",
+      "checked": "false",
+      "hint": "false",
+      "actions": "0"
+    },
+    "controls": {
+      "x0": "0.5",
+      "tmax": "15",
+      "dt": "0.05",
+      "limit": "2",
+      "basin": "2",
+      "trajectory": "true",
+      "direction": "false",
+      "tab": "Formula",
+      "checked": "false",
+      "hint": "false",
+      "actions": "4"
+    },
+    "layers": {
+      "x0": "0.5",
+      "tmax": "15",
+      "dt": "0.05",
+      "limit": "2",
+      "basin": "2",
+      "trajectory": "false",
+      "direction": "true",
+      "tab": "Formula",
+      "checked": "false",
+      "hint": "false",
+      "actions": "6"
+    },
+    "drag": {
+      "x0": "-0.625",
+      "tmax": "15",
+      "dt": "0.05",
+      "limit": "-1",
+      "basin": "-1",
+      "trajectory": "false",
+      "direction": "true",
+      "tab": "Formula",
+      "checked": "false",
+      "hint": "false",
+      "actions": "15"
+    },
+    "random": {
+      "x0": "0.6",
+      "tmax": "15",
+      "dt": "0.05",
+      "limit": "2",
+      "basin": "2",
+      "trajectory": "false",
+      "direction": "true",
+      "tab": "Formula",
+      "checked": "false",
+      "hint": "false",
+      "actions": "16"
+    },
+    "practice": {
+      "x0": "0.6",
+      "tmax": "15",
+      "dt": "0.05",
+      "limit": "2",
+      "basin": "2",
+      "trajectory": "false",
+      "direction": "true",
+      "tab": "Formula",
+      "checked": "true",
+      "hint": "true",
+      "actions": "18"
+    },
+    "shellReset": {
+      "x0": "-1.4",
+      "tmax": "10",
+      "dt": "0.02",
+      "limit": "-1",
+      "basin": "-1",
+      "trajectory": "true",
+      "direction": "false",
+      "tab": "Interact",
+      "checked": "false",
+      "hint": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 211,
+      "height": 1536,
+      "bottom": 1536
+    },
+    "hero": {
+      "top": 102,
+      "left": 228,
+      "width": 782,
+      "height": 90,
+      "bottom": 192
+    },
+    "tabs": {
+      "top": 192,
+      "left": 228,
+      "width": 782,
+      "height": 56,
+      "bottom": 248
+    },
+    "lab": {
+      "top": 260,
+      "left": 228,
+      "width": 782,
+      "height": 567,
+      "bottom": 827
+    },
+    "classify": {
+      "top": 834,
+      "left": 228,
+      "width": 782,
+      "height": 136,
+      "bottom": 970
+    },
+    "theory": {
+      "top": 977,
+      "left": 228,
+      "width": 782,
+      "height": 265,
+      "bottom": 1242
+    },
+    "practice": {
+      "top": 1253,
+      "left": 228,
+      "width": 782,
+      "height": 108,
+      "bottom": 1361
+    },
+    "adjacent": {
+      "top": 1373,
+      "left": 228,
+      "width": 782,
+      "height": 50,
+      "bottom": 1423
+    },
+    "footer": {
+      "top": 1434,
+      "left": 211,
+      "width": 813,
+      "height": 89,
+      "bottom": 1523
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

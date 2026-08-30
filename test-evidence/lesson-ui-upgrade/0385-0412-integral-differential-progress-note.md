@@ -1,6 +1,6 @@
 # Integral Calculus and Differential Equations target batch 0385-0412
 
-Dedicated rebuild target: **24 of 28 lessons completed; 4 pending.**
+Dedicated rebuild target: **25 of 28 lessons completed; 3 pending.**
 
 | Mockup | Lesson                           | Dedicated object model                                                                                                     | Status                                      |
 | ------ | -------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
@@ -28,7 +28,7 @@ Dedicated rebuild target: **24 of 28 lessons completed; 4 pending.**
 | 0406   | 327 Logistic Growth              | `logistic-population-closed-form-carrying-capacity-inflection-draggable-initial-condition-growth-rate-phases-practice`     | Reworked individually and browser-validated |
 | 0407   | 328 Second-Order Equations       | `mass-spring-damper-regime-aware-closed-form-roots-displacement-velocity-acceleration-damping-overview-practice`           | Reworked individually and browser-validated |
 | 0408   | 329 Phase Plane                  | `center-system-generated-vector-field-nullclines-circular-trajectories-draggable-initial-state-linked-time-series-animation-classification-radius-practice` | Reworked individually and browser-validated |
-| 0409   | 330 Equilibrium and Stability    | Pending audit                                                                                                              | Pending                                     |
+| 0409   | 330 Equilibrium and Stability    | `coherent-three-equilibrium-autonomous-flow-potential-phase-line-rk4-trajectory-draggable-initial-state-stability-sign-test-practice` | Reworked individually and browser-validated |
 | 0410   | 331 Discrete Dynamical Systems   | Pending audit                                                                                                              | Pending                                     |
 | 0411   | 332 Cobweb Diagrams              | Pending audit                                                                                                              | Pending                                     |
 | 0412   | 333 Chaos and Bifurcation        | Pending audit                                                                                                              | Pending                                     |
@@ -404,3 +404,19 @@ Evidence:
 - `0408-reference.png`
 - `0408-desktop.png`
 - `0408-dedicated-target-validation.json`
+
+## Lesson 330 / Mockup 0409 - Equilibrium and Stability
+
+Reworked individually as a coherent one-dimensional autonomous-system laboratory. The implemented flow `x'=-x(x+1)(x-2)` has the three equilibria required throughout the target: stable `x=-1`, unstable `x=0`, and stable `x=2`. One shared model generates the quartic potential `V=x^4/4-x^3/3-x^2`, extrema, phase-line points and arrows, basin classification, RK4 trajectory, limiting equilibrium, and stability explanations. Initial state, time window, and step-size sliders are real; dragging the potential or trajectory graph changes the initial state. Trajectory and direction-point layers, random initial state, five tabs, Reset all, Share, self-check, hint, shell Reset, adjacent lessons, and compact footer are functional.
+
+Browser validation confirms the target initial `x0=-1.4`, `tmax=10`, `dt=0.02`, and numerical limit `-1`. Changing to `x0=0.5`, `tmax=15`, and `dt=0.05` converges to `2`; both display layers toggle independently. A physical pointer drag moves the initial state to approximately `-0.625` and changes the computed basin and limit to `-1`; New random x0 changes it to `0.6` and returns the limit to `2`. The self-check and root hint reveal correctly, and shell Reset restores the complete target model and zero actions. Focused ESLint and the dedicated Playwright harness pass with zero console warnings or errors.
+
+The reference prints `x'=-3x^2(x-2)`, which has equilibria only at `0` and `2`, while its potential graph, phase line, classification cards, trajectory limit, and teaching copy all require equilibria `-1`, `0`, and `2`. The dedicated surface uses the cubic with exactly those three roots and applies the mathematically valid one-dimensional sign rule: `+` to `-` is stable and `-` to `+` is unstable. This keeps the potential, phase line, RK4 trajectory, basins, classifications, and explanations internally consistent.
+
+Final exact 1024x1536 capture matches the target stack: sidebar width 211, hero y=102-192, five-view strip y=192-248, potential/phase-line/trajectory lab y=260-827, classification y=834-970, theory/rule/misconception band y=977-1242, practice y=1253-1361, adjacent lessons y=1373-1423, and footer y=1434-1523. Dedicated content spans x=228-1010 with no horizontal overflow and no duplicate shared lesson chrome.
+
+Evidence:
+
+- `0409-reference.png`
+- `0409-desktop.png`
+- `0409-dedicated-target-validation.json`
