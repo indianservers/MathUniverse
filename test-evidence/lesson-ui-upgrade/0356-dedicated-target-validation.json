@@ -1,0 +1,151 @@
+{
+  "mockup": "0356",
+  "lessonId": 277,
+  "checks": {
+    "initial": {
+      "left": "-0.5",
+      "right": "0.5",
+      "left-value": "0.2397127693021015",
+      "right-value": "0.2397127693021015",
+      "estimate": "0",
+      "feedback": "correct",
+      "actions": "0"
+    },
+    "edited": {
+      "left": "-0.25",
+      "right": "0.4",
+      "left-value": "0.061850989813630734",
+      "right-value": "0.15576733692346023",
+      "estimate": "0",
+      "feedback": "correct",
+      "actions": "2"
+    },
+    "dragged": {
+      "left": "-0.36",
+      "right": "0.4",
+      "left-value": "0.12681872397903238",
+      "right-value": "0.15576733692346023",
+      "estimate": "0",
+      "feedback": "correct",
+      "actions": "7"
+    },
+    "rejected": {
+      "left": "-0.36",
+      "right": "0.4",
+      "left-value": "0.12681872397903238",
+      "right-value": "0.15576733692346023",
+      "estimate": "0",
+      "feedback": "incorrect",
+      "actions": "8"
+    },
+    "accepted": {
+      "left": "-0.36",
+      "right": "0.4",
+      "left-value": "0.12681872397903238",
+      "right-value": "0.15576733692346023",
+      "estimate": "0",
+      "feedback": "correct",
+      "actions": "9"
+    },
+    "reset": {
+      "left": "-0.5",
+      "right": "0.5",
+      "left-value": "0.2397127693021015",
+      "right-value": "0.2397127693021015",
+      "estimate": "0",
+      "feedback": "correct",
+      "actions": "0"
+    }
+  },
+  "paths": 1,
+  "navigation": {
+    "previousHref": "/lessons/calculus/276-two-sided-limits",
+    "nextHref": "/lessons/calculus/278-one-sided-limits"
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 215,
+      "height": 1536,
+      "bottom": 1536
+    },
+    "shellHeader": {
+      "top": 0,
+      "left": 0,
+      "width": 0,
+      "height": 0,
+      "bottom": 0
+    },
+    "hero": {
+      "top": 101,
+      "left": 230,
+      "width": 779,
+      "height": 230,
+      "bottom": 331
+    },
+    "tabs": {
+      "top": 341,
+      "left": 230,
+      "width": 779,
+      "height": 43,
+      "bottom": 384
+    },
+    "flow": {
+      "top": 393,
+      "left": 230,
+      "width": 779,
+      "height": 81,
+      "bottom": 474
+    },
+    "lab": {
+      "top": 484,
+      "left": 230,
+      "width": 779,
+      "height": 906,
+      "bottom": 1390
+    },
+    "model": {
+      "top": 577,
+      "left": 241,
+      "width": 757,
+      "height": 468,
+      "bottom": 1045
+    },
+    "proof": {
+      "top": 1091,
+      "left": 241,
+      "width": 757,
+      "height": 70,
+      "bottom": 1161
+    },
+    "learning": {
+      "top": 1168,
+      "left": 241,
+      "width": 757,
+      "height": 215,
+      "bottom": 1383
+    },
+    "adjacent": {
+      "top": 1398,
+      "left": 230,
+      "width": 779,
+      "height": 38,
+      "bottom": 1436
+    },
+    "footer": {
+      "top": 1444,
+      "left": 215,
+      "width": 809,
+      "height": 92,
+      "bottom": 1536
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
