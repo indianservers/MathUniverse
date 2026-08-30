@@ -1,0 +1,197 @@
+{
+  "mockup": "0412",
+  "lessonId": 333,
+  "checks": {
+    "initial": {
+      "r": "3.65",
+      "x0": "0.2",
+      "latest": "0.83852126",
+      "period": "0",
+      "lambda": "0.25342144",
+      "sensitive": "0.05888073",
+      "playing": "false",
+      "compare": "true",
+      "preset": "Period-2 vs Chaos",
+      "tab": "Interact",
+      "result": "",
+      "actions": "0"
+    },
+    "periodic": {
+      "r": "3.2",
+      "x0": "0.21",
+      "latest": "0.79945549",
+      "period": "2",
+      "lambda": "-0.91629073",
+      "sensitive": "0",
+      "playing": "false",
+      "compare": "true",
+      "preset": "Period-2 vs Chaos",
+      "tab": "Formula",
+      "result": "",
+      "actions": "3"
+    },
+    "drag": {
+      "r": "3.85000004",
+      "x0": "0.21",
+      "latest": "0.50800574",
+      "period": "0",
+      "lambda": "0.00932612",
+      "sensitive": "0.00032294",
+      "playing": "false",
+      "compare": "true",
+      "preset": "Period-2 vs Chaos",
+      "tab": "Formula",
+      "result": "",
+      "actions": "12"
+    },
+    "playing": {
+      "r": "3.86500004",
+      "x0": "0.21",
+      "latest": "0.94237977",
+      "period": "0",
+      "lambda": "0.4190282",
+      "sensitive": "0.07115192",
+      "playing": "true",
+      "compare": "true",
+      "preset": "Period-2 vs Chaos",
+      "tab": "Formula",
+      "result": "",
+      "actions": "13"
+    },
+    "comparison": {
+      "r": "3.87500004",
+      "x0": "0.21",
+      "latest": "0.96868038",
+      "period": "0",
+      "lambda": "0.46057115",
+      "sensitive": "0.24193586",
+      "playing": "false",
+      "compare": "false",
+      "preset": "Fixed point vs Period-4",
+      "tab": "Formula",
+      "result": "",
+      "actions": "16"
+    },
+    "rejected": {
+      "r": "3.87500004",
+      "x0": "0.21",
+      "latest": "0.96868038",
+      "period": "0",
+      "lambda": "0.46057115",
+      "sensitive": "0.24193586",
+      "playing": "false",
+      "compare": "false",
+      "preset": "Fixed point vs Period-4",
+      "tab": "Formula",
+      "result": "incorrect",
+      "actions": "17"
+    },
+    "accepted": {
+      "r": "3.87500004",
+      "x0": "0.21",
+      "latest": "0.96868038",
+      "period": "0",
+      "lambda": "0.46057115",
+      "sensitive": "0.24193586",
+      "playing": "false",
+      "compare": "false",
+      "preset": "Fixed point vs Period-4",
+      "tab": "Formula",
+      "result": "correct",
+      "actions": "18"
+    },
+    "shellReset": {
+      "r": "3.65",
+      "x0": "0.2",
+      "latest": "0.83852126",
+      "period": "0",
+      "lambda": "0.25342144",
+      "sensitive": "0.05888073",
+      "playing": "false",
+      "compare": "true",
+      "preset": "Period-2 vs Chaos",
+      "tab": "Interact",
+      "result": "",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 208,
+      "height": 1536,
+      "bottom": 1536
+    },
+    "hero": {
+      "top": 99,
+      "left": 222,
+      "width": 797,
+      "height": 107,
+      "bottom": 206
+    },
+    "tabs": {
+      "top": 214,
+      "left": 222,
+      "width": 797,
+      "height": 44,
+      "bottom": 258
+    },
+    "controls": {
+      "top": 271,
+      "left": 232,
+      "width": 777,
+      "height": 83,
+      "bottom": 354
+    },
+    "top": {
+      "top": 363,
+      "left": 232,
+      "width": 777,
+      "height": 284,
+      "bottom": 647
+    },
+    "mini": {
+      "top": 655,
+      "left": 232,
+      "width": 777,
+      "height": 204,
+      "bottom": 859
+    },
+    "compare": {
+      "top": 870,
+      "left": 232,
+      "width": 777,
+      "height": 267,
+      "bottom": 1137
+    },
+    "bottom": {
+      "top": 1147,
+      "left": 232,
+      "width": 777,
+      "height": 222,
+      "bottom": 1369
+    },
+    "adjacent": {
+      "top": 1384,
+      "left": 222,
+      "width": 797,
+      "height": 47,
+      "bottom": 1431
+    },
+    "footer": {
+      "top": 1445,
+      "left": 208,
+      "width": 816,
+      "height": 91,
+      "bottom": 1536
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

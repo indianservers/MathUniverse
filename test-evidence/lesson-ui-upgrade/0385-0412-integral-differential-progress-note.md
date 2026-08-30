@@ -1,6 +1,6 @@
 # Integral Calculus and Differential Equations target batch 0385-0412
 
-Dedicated rebuild target: **27 of 28 lessons completed; 1 pending.**
+Dedicated rebuild target: **28 of 28 lessons completed; 0 pending.**
 
 | Mockup | Lesson                           | Dedicated object model                                                                                                     | Status                                      |
 | ------ | -------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
@@ -31,7 +31,7 @@ Dedicated rebuild target: **27 of 28 lessons completed; 1 pending.**
 | 0409   | 330 Equilibrium and Stability    | `coherent-three-equilibrium-autonomous-flow-potential-phase-line-rk4-trajectory-draggable-initial-state-stability-sign-test-practice` | Reworked individually and browser-validated |
 | 0410   | 331 Discrete Dynamical Systems   | `parameterized-iteration-engine-generated-cobweb-state-table-fixed-points-stability-draggable-seed-animation-practice`     | Reworked individually and browser-validated |
 | 0411   | 332 Cobweb Diagrams              | `function-aware-fixed-point-root-solver-derivative-stability-generated-cobweb-draggable-seed-step-animation-display-layers-affine-challenge` | Reworked individually and browser-validated |
-| 0412   | 333 Chaos and Bifurcation        | Pending audit                                                                                                              | Pending                                     |
+| 0412   | 333 Chaos and Bifurcation        | `logistic-map-bifurcation-cloud-orbit-cobweb-lyapunov-invariant-density-period-classifier-sensitive-dependence-comparison-period-three-challenge` | Reworked individually and browser-validated |
 
 ## Lesson 306 / Mockup 0385 - Area by Rectangles
 
@@ -452,3 +452,19 @@ Evidence:
 - `0411-reference.png`
 - `0411-desktop.png`
 - `0411-dedicated-target-validation.json`
+
+## Lesson 333 / Mockup 0412 - Chaos and Bifurcation
+
+Reworked individually as a full logistic-map analysis laboratory for `x[n+1]=r x[n](1-x[n])`. One numerical engine drives a generated 13,545-point bifurcation cloud, 100-step orbit, latest state, period search through period 16, current-r cobweb, 1,200-sample invariant-density histogram, 1,000-sample Lyapunov exponent, 50-step sensitive-dependence comparison, and independent periodic/chaotic comparison cards. Parameter r and initial x0 are real controls; dragging the bifurcation diagram changes r. Play sweeps the parameter, and five tabs, Reset, comparison toggle/presets, period-3 validation, shell Reset, adjacent navigation, and compact footer are functional.
+
+Browser validation confirms the target initial `r=3.65`, `x0=0.2`, `x100=0.83852126`, positive Lyapunov exponent `0.25342144`, and sensitivity difference `0.05888073`. Changing to `r=3.2`, `x0=0.21` detects period 2 and `lambda=-0.91629073`. A physical graph drag moves r to approximately `3.85`; Play advances it further and regenerates every plot and metric. The order/chaos comparison hides and its preset changes independently. Practice rejects `r=3.7`, then accepts `r=3.83` only after the numerical orbit settles into a detected period-3 cycle. Shell Reset restores the complete target state, comparison, selected tab, blank result, stopped animation, and zero actions. Focused ESLint and the dedicated Playwright harness pass with zero console warnings or errors.
+
+The reference labels the default `r=3.65` state Period-4 while also printing a positive Lyapunov exponent, and its latest value does not follow the shown initial state. A positive exponent at this parameter indicates chaos, while the dedicated period detector finds no stable period through 16. The implementation preserves the target composition while ensuring the orbit, state, bifurcation probe, cobweb, histogram, Lyapunov gauge, sensitivity pair, comparison cards, and checked period-3 challenge all derive from the same logistic map.
+
+Final exact 1024x1536 capture matches the target stack: sidebar width 208, objective header y=99-206, tabs y=214-258, controls y=271-354, bifurcation/orbit band y=363-647, cobweb/Lyapunov/density band y=655-859, comparison y=870-1137, learning/practice cards y=1147-1369, adjacent navigation y=1384-1431, and footer y=1445-1536. Dedicated content spans x=222-1019 with no horizontal overflow and no duplicate shared lesson chrome.
+
+Evidence:
+
+- `0412-reference.png`
+- `0412-desktop.png`
+- `0412-dedicated-target-validation.json`
