@@ -1,0 +1,502 @@
+.cob332-page {
+  --ink: #11234a;
+  --line: #dbe4ed;
+  position: relative;
+  top: -5px;
+  margin-bottom: -5px;
+  color: var(--ink);
+  font:
+    9px/1.45 Inter,
+    system-ui,
+    sans-serif;
+  letter-spacing: 0;
+}
+.cob332-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.cob332-page h1,
+.cob332-page h2,
+.cob332-page h3,
+.cob332-page p {
+  margin: 0;
+}
+.cob332-page button,
+.cob332-page input,
+.cob332-page select {
+  font: inherit;
+  color: inherit;
+}
+.cob332-hero {
+  position: relative;
+  height: 194px;
+  padding: 14px 20px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  transform: translateY(6px);
+}
+.cob332-hero > b {
+  padding: 4px 8px;
+  border-radius: 10px;
+  background: #e8f8ff;
+  color: #0879a6;
+  font-size: 7px;
+}
+.cob332-hero h1 {
+  margin-top: 8px;
+  font-size: 30px;
+  line-height: 34px;
+  font-weight: 800;
+}
+.cob332-hero > p {
+  font-size: 10px;
+}
+.cob332-hero > article {
+  width: 68%;
+  margin-top: 16px;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: #f8fbff;
+}
+.cob332-hero > aside {
+  position: absolute;
+  top: 25px;
+  right: 10px;
+  width: 30%;
+  height: 151px;
+  padding: 15px;
+  border-radius: 8px;
+  background: #f6f9fd;
+}
+.cob332-hero > aside h2 {
+  font-size: 11px;
+}
+.cob332-hero > aside p {
+  margin-top: 10px;
+}
+.cob332-hero > aside i {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #16a15a;
+}
+.cob332-hero > aside p:last-child {
+  color: #cf302e;
+}
+.cob332-hero > aside p:last-child i {
+  background: #d52f25;
+}
+.cob332-tabs {
+  display: grid;
+  height: 50px;
+  margin-top: 10px;
+  padding: 3px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: #fff;
+  grid-template-columns: repeat(5, 1fr);
+  transform: translateY(6px);
+}
+.cob332-tabs button {
+  border: 0;
+  border-radius: 8px;
+  background: #fff;
+  font-weight: 700;
+}
+.cob332-tabs button.active {
+  background: #087ccf;
+  color: #fff;
+}
+.cob332-explorer {
+  height: 891px;
+  margin-top: 10px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  transform: translateY(5px);
+}
+.cob332-explorer > header {
+  position: relative;
+  height: 70px;
+}
+.cob332-explorer > header h2 {
+  font-size: 13px;
+}
+.cob332-explorer > header > div {
+  display: flex;
+  margin-top: 16px;
+  gap: 17px;
+}
+.cob332-explorer > header span i {
+  display: inline-block;
+  width: 18px;
+  height: 2px;
+  margin-right: 5px;
+  background: #128ff2;
+  vertical-align: middle;
+}
+.cob332-explorer > header span:nth-child(2) i {
+  background: #687283;
+  border-top: 1px dashed #687283;
+}
+.cob332-explorer > header span:nth-child(3) i {
+  background: #8b35dc;
+}
+.cob332-explorer > header span:nth-child(4) i {
+  width: 10px;
+  height: 10px;
+  border: 2px solid #111;
+  border-radius: 50%;
+  background: #fff;
+}
+.cob332-explorer > header > label {
+  position: absolute;
+  top: 26px;
+  right: 0;
+  font-weight: 700;
+}
+.cob332-explorer select {
+  height: 32px;
+  margin-left: 8px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: #fff;
+}
+.cob332-grid {
+  display: grid;
+  height: 785px;
+  grid-template-columns: 1fr 227px;
+  gap: 12px;
+}
+.cob332-grid > main {
+  min-width: 0;
+}
+.cob332-graph {
+  display: block;
+  width: 100%;
+  height: 430px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  touch-action: none;
+}
+.cob332-graph > rect {
+  fill: #fff;
+}
+.cob332-graph .grid line {
+  stroke: #e5eaf0;
+  stroke-width: 1;
+}
+.cob332-graph .axis {
+  stroke: #26344d;
+  stroke-width: 1.2;
+}
+.cob332-graph .curve {
+  fill: none;
+  stroke: #138ef2;
+  stroke-width: 2;
+}
+.cob332-graph .diagonal {
+  stroke: #657181;
+  stroke-width: 1.5;
+  stroke-dasharray: 6 4;
+}
+.cob332-graph .cob {
+  fill: none;
+  stroke: #9136d8;
+  stroke-width: 2;
+}
+.cob332-graph .fixed {
+  fill: #fff;
+  stroke: #111;
+  stroke-width: 2;
+}
+.cob332-graph .seed {
+  fill: #168ce2;
+}
+.cob332-graph text {
+  font-size: 11px;
+  fill: #12305a;
+}
+.cob332-grid .controls {
+  display: grid;
+  height: 45px;
+  margin-top: 8px;
+  grid-template-columns: 70px 65px 65px 65px 1fr;
+  gap: 7px;
+}
+.cob332-grid .controls button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+}
+.cob332-grid .controls button:first-child {
+  background: #087ef0;
+  color: #fff;
+}
+.cob332-grid .controls svg {
+  width: 12px;
+}
+.cob332-grid .controls b {
+  padding-top: 15px;
+}
+.cob332-grid .controls input {
+  accent-color: #7730d7;
+}
+.cob332-table {
+  width: 100%;
+  margin-top: 7px;
+  border-collapse: collapse;
+  border: 1px solid var(--line);
+  font-size: 8px;
+}
+.cob332-table th,
+.cob332-table td {
+  height: 25px;
+  padding: 4px 10px;
+  border: 1px solid var(--line);
+  text-align: left;
+}
+.cob332-table th {
+  text-align: center;
+}
+.cob332-table tr:last-child {
+  background: #eee8ff;
+  color: #5f1ec5;
+}
+.cob332-grid > aside {
+  display: grid;
+  align-content: start;
+  gap: 9px;
+}
+.cob332-grid > aside > section {
+  padding: 11px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+}
+.cob332-grid > aside h3 {
+  font-size: 10px;
+}
+.cob332-grid > aside p {
+  margin-top: 7px;
+}
+.cob332-control {
+  display: flex;
+  margin-top: 9px;
+  align-items: center;
+  gap: 8px;
+}
+.cob332-control input {
+  width: calc(100% - 48px);
+  accent-color: #7a2bd4;
+}
+.cob332-control output {
+  width: 45px;
+  padding: 6px;
+  text-align: center;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+}
+.cob332-check {
+  display: block;
+  margin-top: 7px;
+}
+.cob332-check input {
+  margin-right: 7px;
+  accent-color: #087ef0;
+}
+.cob332-grid .status > b {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 5px 9px;
+  border-radius: 8px;
+  background: #e7f8ed;
+  color: #167c42;
+}
+.cob332-grid .guard {
+  background: #fff8f2;
+}
+.cob332-grid .guard h3 {
+  color: #d56520;
+}
+.cob332-grid .guard svg {
+  width: 12px;
+  vertical-align: middle;
+}
+.cob332-challenge {
+  position: relative;
+  display: grid;
+  height: 107px;
+  margin-top: 10px;
+  padding: 14px;
+  border: 1px solid #d8c5f2;
+  border-radius: 8px;
+  background: #fff;
+  grid-template-columns: 1.7fr 0.65fr 0.5fr 100px;
+  align-items: center;
+  gap: 12px;
+  transform: translateY(-2px);
+}
+.cob332-challenge h2 {
+  font-size: 11px;
+  color: #6d25ca;
+}
+.cob332-challenge p {
+  margin-top: 6px;
+}
+.cob332-challenge label {
+  font-weight: 700;
+}
+.cob332-challenge select,
+.cob332-challenge input {
+  display: block;
+  width: 100%;
+  margin: 5px 0 0;
+  padding: 7px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+}
+.cob332-challenge > button {
+  height: 35px;
+  border: 1px solid #7228d8;
+  border-radius: 6px;
+  background: #fff;
+  color: #6421c6;
+}
+.cob332-challenge output {
+  position: absolute;
+  right: 14px;
+  bottom: 4px;
+  color: #b62f3d;
+}
+body:has(.cob332-page) {
+  overflow: hidden;
+}
+body:has(.cob332-page) [data-testid="desktop-sidebar"] {
+  display: block !important;
+  width: 203px !important;
+  flex-basis: 203px !important;
+  transition: none;
+}
+body:has(.cob332-page) #main-content {
+  margin-left: 0 !important;
+  padding-left: 13px !important;
+  padding-right: 16px !important;
+}
+body:has(.cob332-page) .lesson-shell-header,
+body:has(.cob332-page) .lesson-page-shell > nav[role="tablist"] {
+  display: none !important;
+}
+body:has(.cob332-page) .lesson-page-shell > div {
+  margin-top: 0 !important;
+}
+body:has(.cob332-page) .lesson-workbench.is-target-graphing-workbench {
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+body:has(.cob332-page) .lesson-adjacent-nav {
+  height: 58px !important;
+  margin-top: 10px !important;
+  transform: translateY(-1px);
+}
+body:has(.cob332-page) footer[aria-label="Site footer"] {
+  height: 89px !important;
+  margin-top: 10px !important;
+  padding: 0 16px !important;
+}
+body:has(.cob332-page) footer[aria-label="Site footer"] > div {
+  height: 89px !important;
+  padding: 9px 12px !important;
+  font-size: 7px !important;
+}
+@media (min-width: 900px) {
+  body:has(.cob332-page) header.sticky button[aria-label="Open navigation"],
+  body:has(.cob332-page) nav[class*="bottom-0"][class*="fixed"] {
+    display: none !important;
+  }
+  body:has(.cob332-page) .app-layout-rail > div > header {
+    height: 52px;
+  }
+  body:has(.cob332-page) [data-testid="desktop-sidebar"] > div {
+    padding: 10px 9px 40px !important;
+  }
+  body:has(.cob332-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type {
+    height: 62px;
+    min-height: 62px;
+    margin-bottom: 11px !important;
+    padding: 0 !important;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+  body:has(.cob332-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type
+    p:first-child {
+    white-space: nowrap;
+    font-size: 13px !important;
+  }
+  body:has(.cob332-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type
+    p:last-child {
+    font-size: 8px !important;
+  }
+  body:has(.cob332-page) [data-testid="desktop-sidebar"] > div > label {
+    height: 34px;
+    min-height: 34px !important;
+    margin-bottom: 9px !important;
+    padding: 0 8px !important;
+    font-size: 9px !important;
+  }
+  body:has(.cob332-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"] {
+    row-gap: 6px !important;
+  }
+  body:has(.cob332-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    > div:nth-of-type(2),
+  body:has(.cob332-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    > div:nth-of-type(n + 5) {
+    display: none;
+  }
+  body:has(.cob332-page) [data-testid="desktop-sidebar"] nav button {
+    min-height: 31px;
+    padding: 5px 8px !important;
+    font-size: 9px !important;
+  }
+  body:has(.cob332-page) [data-testid="desktop-sidebar"] nav a {
+    min-height: 28px;
+    padding: 5px 8px !important;
+    font-size: 8px !important;
+  }
+  body:has(.cob332-page)
+    [data-testid="desktop-sidebar"]
+    nav
+    > div:nth-of-type(4)
+    > div
+    > :nth-child(n + 2) {
+    display: none;
+  }
+}

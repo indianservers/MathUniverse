@@ -1,6 +1,6 @@
 # Integral Calculus and Differential Equations target batch 0385-0412
 
-Dedicated rebuild target: **26 of 28 lessons completed; 2 pending.**
+Dedicated rebuild target: **27 of 28 lessons completed; 1 pending.**
 
 | Mockup | Lesson                           | Dedicated object model                                                                                                     | Status                                      |
 | ------ | -------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
@@ -30,7 +30,7 @@ Dedicated rebuild target: **26 of 28 lessons completed; 2 pending.**
 | 0408   | 329 Phase Plane                  | `center-system-generated-vector-field-nullclines-circular-trajectories-draggable-initial-state-linked-time-series-animation-classification-radius-practice` | Reworked individually and browser-validated |
 | 0409   | 330 Equilibrium and Stability    | `coherent-three-equilibrium-autonomous-flow-potential-phase-line-rk4-trajectory-draggable-initial-state-stability-sign-test-practice` | Reworked individually and browser-validated |
 | 0410   | 331 Discrete Dynamical Systems   | `parameterized-iteration-engine-generated-cobweb-state-table-fixed-points-stability-draggable-seed-animation-practice`     | Reworked individually and browser-validated |
-| 0411   | 332 Cobweb Diagrams              | Pending audit                                                                                                              | Pending                                     |
+| 0411   | 332 Cobweb Diagrams              | `function-aware-fixed-point-root-solver-derivative-stability-generated-cobweb-draggable-seed-step-animation-display-layers-affine-challenge` | Reworked individually and browser-validated |
 | 0412   | 333 Chaos and Bifurcation        | Pending audit                                                                                                              | Pending                                     |
 
 ## Lesson 306 / Mockup 0385 - Area by Rectangles
@@ -436,3 +436,19 @@ Evidence:
 - `0410-reference.png`
 - `0410-desktop.png`
 - `0410-dedicated-target-validation.json`
+
+## Lesson 332 / Mockup 0411 - Cobweb Diagrams
+
+Reworked individually as a function-aware fixed-point and cobweb laboratory. The cosine, affine, and logistic presets each provide a real function and derivative; a numerical sign-scan plus bisection solver finds every fixed point in the graph domain and classifies it with `|f'(x*)|`. One iteration array drives the generated function curve, diagonal, purple cobweb path, current depth, table, nearest fixed point, stability, and status. The initial state is directly draggable. Function selection, logistic parameter, initial-state slider, depth slider, Play/Pause, Step, Reset, animation speed, path/fixed-point/label layers, Animate, five tabs, the affine challenge, shell Reset, adjacent lessons, and compact footer are functional.
+
+Browser validation confirms `f(x)=cos(x)`, `x0=0.5`, six iterates, `x6=0.71916545`, the unique real fixed point `0.73908513`, `|f'(x*)|=0.673612`, and stable convergence. Selecting logistic `r=3.5` at `x0=0.2` finds fixed points `0` and `0.71428571`; all three visual layers switch off independently while Animate and speed 80 switch on. A physical pointer drag moves x0 to approximately `0.6`; Play advances the cobweb from depth zero to depth three. Starting the `2x-1` challenge at `x0=0.2` generates `x6=-50.2`, identifies fixed point `1`, derivative magnitude `2`, and divergent status. Shell Reset restores the complete cosine model and zero actions. Focused ESLint and the dedicated Playwright harness pass with zero console warnings or errors.
+
+The reference claims `cos(x)` has two fixed points near `+/-0.739085`, but `cos(-0.739085)=+0.739085`, not `-0.739085`; only the positive value solves `cos(x)=x`. The dedicated surface preserves the target composition while ensuring the plotted intersections, fixed-point list, derivative stability, cobweb steps, state table, status, and challenge result follow the selected function exactly.
+
+Final exact 1024x1536 capture matches the target stack: sidebar width 203, objective/fixed-point header y=103-297, tabs y=307-357, explorer y=366-1257, challenge y=1260-1367, adjacent lessons y=1378-1436, and footer y=1447-1536. Dedicated content spans x=216-1008 with no horizontal overflow and no duplicate shared lesson chrome.
+
+Evidence:
+
+- `0411-reference.png`
+- `0411-desktop.png`
+- `0411-dedicated-target-validation.json`
