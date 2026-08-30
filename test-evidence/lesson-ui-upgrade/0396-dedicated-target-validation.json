@@ -1,0 +1,198 @@
+{
+  "mockup": "0396",
+  "lessonId": 317,
+  "checks": {
+    "initial": {
+      "x": "0.8",
+      "dx": "0.1",
+      "area": "26.26371458",
+      "dv": "2.62637146",
+      "volume": "113.09733553",
+      "tab": "Interaction + visualization",
+      "actions-open": "false",
+      "answer": "",
+      "result": "",
+      "actions": "0"
+    },
+    "controls": {
+      "x": "-1.5",
+      "dx": "0.2",
+      "area": "21.20575041",
+      "dv": "4.24115008",
+      "volume": "113.09733553",
+      "tab": "Interaction + visualization",
+      "actions-open": "false",
+      "answer": "",
+      "result": "",
+      "actions": "2"
+    },
+    "menu": {
+      "x": "-1.5",
+      "dx": "0.2",
+      "area": "21.20575041",
+      "dv": "4.24115008",
+      "volume": "113.09733553",
+      "tab": "Interaction + visualization",
+      "actions-open": "true",
+      "answer": "",
+      "result": "",
+      "actions": "3"
+    },
+    "actions": {
+      "x": "0",
+      "dx": "0.2",
+      "area": "28.27433388",
+      "dv": "5.65486678",
+      "volume": "113.09733553",
+      "tab": "Interaction + visualization",
+      "actions-open": "true",
+      "answer": "",
+      "result": "",
+      "actions": "5"
+    },
+    "tab": {
+      "x": "0",
+      "dx": "0.2",
+      "area": "28.27433388",
+      "dv": "5.65486678",
+      "volume": "113.09733553",
+      "tab": "Formulas",
+      "actions-open": "true",
+      "answer": "",
+      "result": "",
+      "actions": "6"
+    },
+    "localReset": {
+      "x": "0.8",
+      "dx": "0.1",
+      "area": "26.26371458",
+      "dv": "2.62637146",
+      "volume": "113.09733553",
+      "tab": "Interaction + visualization",
+      "actions-open": "false",
+      "answer": "",
+      "result": "",
+      "actions": "0"
+    },
+    "drag": {
+      "x": "-0.72807018",
+      "dx": "0.1",
+      "area": "26.60901903",
+      "dv": "2.6609019",
+      "volume": "113.09733553",
+      "tab": "Interaction + visualization",
+      "actions-open": "false",
+      "answer": "",
+      "result": "",
+      "actions": "8"
+    },
+    "rejected": {
+      "x": "-0.72807018",
+      "dx": "0.1",
+      "area": "26.60901903",
+      "dv": "2.6609019",
+      "volume": "113.09733553",
+      "tab": "Interaction + visualization",
+      "actions-open": "false",
+      "answer": "B",
+      "result": "incorrect",
+      "actions": "9"
+    },
+    "accepted": {
+      "x": "-0.72807018",
+      "dx": "0.1",
+      "area": "26.60901903",
+      "dv": "2.6609019",
+      "volume": "113.09733553",
+      "tab": "Interaction + visualization",
+      "actions-open": "false",
+      "answer": "C",
+      "result": "correct",
+      "actions": "10"
+    },
+    "shellReset": {
+      "x": "0.8",
+      "dx": "0.1",
+      "area": "26.26371458",
+      "dv": "2.62637146",
+      "volume": "113.09733553",
+      "tab": "Interaction + visualization",
+      "actions-open": "false",
+      "answer": "",
+      "result": "",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 215,
+      "height": 1536,
+      "bottom": 1536
+    },
+    "hero": {
+      "top": 98,
+      "left": 231,
+      "width": 779,
+      "height": 196,
+      "bottom": 294
+    },
+    "tabs": {
+      "top": 301,
+      "left": 231,
+      "width": 779,
+      "height": 49,
+      "bottom": 350
+    },
+    "lab": {
+      "top": 356,
+      "left": 231,
+      "width": 779,
+      "height": 482,
+      "bottom": 838
+    },
+    "flow": {
+      "top": 845,
+      "left": 231,
+      "width": 779,
+      "height": 146,
+      "bottom": 991
+    },
+    "cards": {
+      "top": 998,
+      "left": 231,
+      "width": 779,
+      "height": 245,
+      "bottom": 1243
+    },
+    "practice": {
+      "top": 1249,
+      "left": 231,
+      "width": 779,
+      "height": 113,
+      "bottom": 1362
+    },
+    "adjacent": {
+      "top": 1368,
+      "left": 231,
+      "width": 779,
+      "height": 57,
+      "bottom": 1425
+    },
+    "footer": {
+      "top": 1435,
+      "left": 231,
+      "width": 779,
+      "height": 91,
+      "bottom": 1526
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

@@ -1,6 +1,6 @@
 # Integral Calculus and Differential Equations target batch 0385-0412
 
-Dedicated rebuild target: **11 of 28 lessons completed; 17 pending.**
+Dedicated rebuild target: **12 of 28 lessons completed; 16 pending.**
 
 | Mockup | Lesson                           | Dedicated object model                                                                                                     | Status                                      |
 | ------ | -------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
@@ -15,7 +15,7 @@ Dedicated rebuild target: **11 of 28 lessons completed; 17 pending.**
 | 0393   | 314 Partial Fractions            | `factored-rational-coefficient-solver-asymptotes-draggable-probe-component-overlay-recombination-antiderivative-practice`  | Reworked individually and browser-validated |
 | 0394   | 315 Improper Integrals           | `symmetric-improper-integral-truncation-tail-error-draggable-bounds-convergence-practice`                                  | Reworked individually and browser-validated |
 | 0395   | 316 Numerical Integration        | `three-method-quadrature-generated-midpoint-trapezoid-simpson-overlays-exact-errors-draggable-partition-practice`          | Reworked individually and browser-validated |
-| 0396   | 317 Volume by Slicing            | Pending audit                                                                                                              | Pending                                     |
+| 0396   | 317 Volume by Slicing            | `sphere-cross-section-slice-position-thickness-area-parabola-draggable-band-differential-volume-exact-integral-practice`   | Reworked individually and browser-validated |
 | 0397   | 318 Disc and Washer Methods      | Pending audit                                                                                                              | Pending                                     |
 | 0398   | 319 Shell Method                 | Pending audit                                                                                                              | Pending                                     |
 | 0399   | 320 Arc Length                   | Pending audit                                                                                                              | Pending                                     |
@@ -202,3 +202,19 @@ Evidence:
 - `0395-reference.png`
 - `0395-desktop.png`
 - `0395-dedicated-target-validation.json`
+
+## Lesson 317 / Mockup 0396 - Volume by Slicing
+
+Reworked individually as a sphere cross-section and differential-volume laboratory. The shared slice position x and thickness dx drive the generated solid preview, orange cross-section, area-parabola band, both primary sliders, both linked learning-card sliders, instant area `A(x)=pi(9-x^2)`, differential volume `dV=A(x)dx`, and the exact total `36pi`. The area band is directly draggable. A real Actions menu centers the slice, changes thickness, or restores the preview. Five tabs, Reset, Share, Workspace/full-screen, exact rule, worked example, misconception diagram, multiple-choice practice validation, shell Reset, adjacent lessons, compact footer, and action counting are functional.
+
+Browser validation confirms the initial `x=0.8`, `dx=0.1`, area `26.26371458`, differential volume `2.62637146`, and total volume `113.09733553`. Native controls change to `x=-1.5`, `dx=0.2`, producing area `21.20575041` and differential volume `4.24115008`. The action menu centers the slice and changes dx to 0.2, producing maximal area `9pi` and `dV=1.8pi`. A real pointer drag moves the visible graph band to approximately `x=-0.72807018` and recomputes area `26.60901903` and differential volume `2.6609019`. Practice rejects `16pi/3` and accepts the exact sphere volume `256pi/3`; local and shell Reset restore the complete initial state.
+
+The reference's initial instant values `A(0.8)=7.226` and `dV=0.7226` do not follow its displayed `A(x)=pi(9-x^2)`; the coherent values are approximately `26.2637` and `2.6264`. Its practice displays `A(x)=pi(16-x^2)` on `[-4,4]` but omits the actual integral `256pi/3` from the answer choices. The dedicated surface preserves the target model, controls, information hierarchy, and orange cross-section while keeping every formula, graph, instant value, worked result, and checked practice answer mathematically consistent.
+
+Final exact 1024x1536 capture matches the target stack: sidebar width 215, hero y=98-294, tabs y=301-350, slicing lab y=356-838, learning flow y=845-991, rule/worked/misconception cards y=998-1243, practice y=1249-1362, adjacent lessons y=1368-1425, and compact footer y=1435-1526. Dedicated content spans x=231-1010, with no horizontal overflow, no clipped mini diagrams, no duplicate shared lesson chrome, and zero console messages.
+
+Evidence:
+
+- `0396-reference.png`
+- `0396-desktop.png`
+- `0396-dedicated-target-validation.json`

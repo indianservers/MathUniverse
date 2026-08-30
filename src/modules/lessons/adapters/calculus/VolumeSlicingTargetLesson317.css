@@ -1,0 +1,738 @@
+.vs317-page {
+  --ink: #102047;
+  --line: #d9e3ed;
+  position: relative;
+  top: -10px;
+  color: var(--ink);
+  font:
+    8px/1.45 Inter,
+    system-ui,
+    sans-serif;
+  letter-spacing: 0;
+}
+.vs317-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.vs317-page h1,
+.vs317-page h2,
+.vs317-page h3,
+.vs317-page h4,
+.vs317-page p {
+  margin: 0;
+}
+.vs317-page h1,
+.vs317-page h2,
+.vs317-page h3 {
+  font-weight: 900;
+}
+.vs317-page button,
+.vs317-page input,
+.vs317-page select {
+  color: inherit;
+  font: inherit;
+}
+.vs317-hero {
+  height: 196px;
+  padding: 12px 15px;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  background: #fff;
+}
+.vs317-hero > span {
+  display: flex;
+  gap: 8px;
+}
+.vs317-hero > span b {
+  padding: 3px 7px;
+  border-radius: 9px;
+  background: #e7f7fb;
+  color: #0780a7;
+  font-size: 7px;
+}
+.vs317-hero > span b:last-child {
+  background: #f0f3f6;
+  color: #566479;
+}
+.vs317-hero h1 {
+  margin-top: 7px;
+  font-size: 28px;
+  line-height: 32px;
+}
+.vs317-hero > p {
+  font-size: 10px;
+}
+.vs317-hero .meta,
+.vs317-hero .actions {
+  display: flex;
+  margin-top: 10px;
+  gap: 8px;
+}
+.vs317-hero .meta > * {
+  display: flex;
+  height: 27px;
+  padding: 0 10px;
+  align-items: center;
+  border: 1px solid #d7e1ec;
+  border-radius: 14px;
+  background: #fff;
+  font-style: normal;
+  font-weight: 800;
+}
+.vs317-hero .actions > * {
+  display: flex;
+  height: 38px;
+  padding: 0 13px;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid #d7e1ec;
+  border-radius: 8px;
+  background: #fff;
+  font-weight: 800;
+}
+.vs317-hero .actions select {
+  width: 155px;
+}
+.vs317-hero svg {
+  width: 12px;
+}
+.vs317-tabs {
+  display: grid;
+  height: 49px;
+  margin-top: 7px;
+  padding: 4px;
+  grid-template-columns: 1.5fr repeat(4, 1fr);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+}
+.vs317-tabs button {
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  font-weight: 900;
+}
+.vs317-tabs button.active {
+  background: linear-gradient(90deg, #0588ca, #05a5cf);
+  color: #fff;
+}
+.vs317-lab {
+  position: relative;
+  height: 482px;
+  margin-top: 6px;
+  padding: 8px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+}
+.vs317-lab > header {
+  display: flex;
+  height: 58px;
+  align-items: center;
+}
+.vs317-lab > header > div b {
+  color: #0186ae;
+  font-size: 7px;
+}
+.vs317-lab > header h2 {
+  margin-top: 8px;
+  font-size: 14px;
+}
+.vs317-lab > header > span {
+  display: flex;
+  margin-left: auto;
+  padding: 7px 10px;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #b6e8cb;
+  border-radius: 17px;
+  background: #f2fcf6;
+  color: #168348;
+  font-weight: 900;
+}
+.vs317-lab > header > span svg {
+  width: 14px;
+}
+.vs317-lab > header > button {
+  height: 34px;
+  margin-left: 8px;
+  padding: 0 13px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  font-weight: 800;
+}
+.vs317-lab > header > button:last-child {
+  width: 35px;
+  padding: 0;
+  color: #4b4fe1;
+  font-size: 14px;
+}
+.vs317-menu {
+  position: absolute;
+  z-index: 5;
+  top: 50px;
+  right: 46px;
+  display: flex;
+  padding: 6px;
+  gap: 4px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: #fff;
+  box-shadow: 0 8px 20px #23395d22;
+}
+.vs317-menu button {
+  padding: 5px 8px;
+  border: 0;
+  border-radius: 5px;
+  background: #edf6ff;
+}
+.vs317-lab > main {
+  display: grid;
+  height: 406px;
+  grid-template-columns: 210px 1fr 184px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.vs317-lab > main > section,
+.vs317-lab > main > aside {
+  padding: 11px;
+}
+.vs317-lab h3 {
+  font-size: 10px;
+}
+.vs317-solid {
+  border-right: 1px solid var(--line);
+}
+.vs317-solid p {
+  margin-top: 10px;
+}
+.vs317-solid-svg {
+  width: 100%;
+  height: 270px;
+}
+.vs317-area {
+  border-right: 1px solid var(--line);
+}
+.vs317-area-graph {
+  width: 100%;
+  height: 280px;
+  touch-action: none;
+}
+.vs317-area-graph .axis {
+  stroke: #26344d;
+}
+.vs317-area-graph .curve {
+  fill: none;
+  stroke: #086be3;
+  stroke-width: 2;
+}
+.vs317-area-graph rect {
+  fill: #ff9c2433;
+  stroke: #f47b12;
+  stroke-width: 2;
+  cursor: ew-resize;
+}
+.vs317-area-graph text {
+  fill: #163052;
+  font-size: 9px;
+}
+.vs317-area > p {
+  height: 48px;
+  padding: 11px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #f8fbfe;
+  text-align: center;
+  font:
+    italic 11px Georgia,
+    serif;
+}
+.vs317-lab aside label {
+  display: block;
+  margin-top: 15px;
+}
+.vs317-lab aside label small {
+  display: block;
+}
+.vs317-lab aside input {
+  width: 130px;
+  margin-top: 8px;
+  accent-color: #0d8add;
+}
+.vs317-lab aside output {
+  float: right;
+  width: 45px;
+  padding: 6px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  text-align: center;
+}
+.vs317-lab aside article {
+  margin-top: 12px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: #f8fbfe;
+}
+.vs317-lab aside article p {
+  margin-top: 8px;
+}
+.vs317-lab aside article strong {
+  display: block;
+  text-align: center;
+  font:
+    italic 11px Georgia,
+    serif;
+}
+.vs317-lab aside article i {
+  display: inline-block;
+  width: 12px;
+  height: 4px;
+  margin-right: 6px;
+  background: #f47b12;
+}
+.vs317-lab aside article:last-child i {
+  background: #1888da;
+}
+.vs317-flow {
+  display: grid;
+  height: 146px;
+  margin-top: 7px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.vs317-flow article {
+  position: relative;
+  display: grid;
+  padding: 12px;
+  grid-template-columns: 24px 1fr;
+  gap: 7px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: #fff;
+}
+.vs317-flow svg {
+  width: 20px;
+  color: #0788c8;
+}
+.vs317-flow h3 {
+  color: #1266b3;
+  font-size: 9px;
+}
+.vs317-flow p {
+  margin-top: 8px;
+}
+.vs317-flow article > b {
+  position: absolute;
+  z-index: 2;
+  right: -13px;
+  top: 32px;
+  color: #7144d6;
+  font-size: 20px;
+}
+.vs317-flow input {
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+  accent-color: #358de0;
+}
+.vs317-flow strong {
+  display: block;
+  margin-top: 20px;
+  color: #087ad0;
+  text-align: center;
+  font:
+    italic 14px Georgia,
+    serif;
+}
+.vs317-flow .vs317-flow-mini {
+  width: 100%;
+  height: 48px;
+  margin-top: 8px;
+}
+.vs317-flow-mini path {
+  fill: none;
+  stroke: #0878d1;
+  stroke-width: 1.5;
+}
+.vs317-flow-mini line {
+  stroke: #203653;
+}
+.vs317-flow-mini .slice {
+  stroke: #f47b12;
+  stroke-width: 2;
+}
+.vs317-flow-mini path.fill {
+  fill: #3b9de433;
+  stroke: #167fca;
+}
+.vs317-flow-mini text {
+  fill: #263755;
+  font-size: 9px;
+}
+.vs317-cards {
+  display: grid;
+  height: 245px;
+  margin-top: 7px;
+  grid-template-columns: 1fr 1fr 1.08fr;
+  gap: 8px;
+}
+.vs317-cards > article {
+  padding: 13px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: #fff;
+}
+.vs317-cards h3 {
+  margin-bottom: 11px;
+  color: #0877bd;
+  font-size: 10px;
+}
+.vs317-cards > article:nth-child(2) h3 {
+  color: #159253;
+}
+.vs317-cards .mistake h3 {
+  color: #dc4a28;
+}
+.vs317-cards p {
+  margin-top: 11px;
+}
+.vs317-cards > article > strong {
+  display: block;
+  margin-top: 13px;
+  padding: 11px;
+  border: 1px solid #bce3ef;
+  border-radius: 6px;
+  background: #effbff;
+  color: #066db7;
+  text-align: center;
+  font:
+    italic 14px Georgia,
+    serif;
+}
+.vs317-cards ul {
+  padding-left: 18px;
+  line-height: 19px;
+}
+.vs317-cards > article:nth-child(2) > strong {
+  background: #edfaef;
+  color: #198148;
+}
+.vs317-cards .mistake > b {
+  display: block;
+  margin-top: 13px;
+  font:
+    italic 12px Georgia,
+    serif;
+}
+.vs317-wrong {
+  width: 100%;
+  height: 78px;
+  margin-top: 7px;
+}
+.vs317-wrong path {
+  fill: none;
+  stroke: #0872d5;
+  stroke-width: 2;
+}
+.vs317-wrong .slice {
+  stroke: #f47b12;
+}
+.vs317-wrong .cross {
+  stroke: #e02525;
+  stroke-width: 3;
+}
+.vs317-practice {
+  display: grid;
+  height: 113px;
+  margin-top: 6px;
+  grid-template-columns: 1.55fr 0.65fr 0.85fr;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: #fff;
+  overflow: hidden;
+}
+.vs317-practice > div {
+  padding: 10px;
+}
+.vs317-practice > div h3 {
+  color: #8a35c9;
+  font-size: 10px;
+}
+.vs317-practice > div > p {
+  margin-top: 7px;
+}
+.vs317-practice > div > div {
+  display: grid;
+  margin-top: 9px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 7px;
+}
+.vs317-practice label {
+  height: 34px;
+  padding: 8px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+.vs317-practice label.selected {
+  border-color: #8b43d4;
+  background: #faf4ff;
+}
+.vs317-practice label input {
+  display: none;
+}
+.vs317-practice label b {
+  margin-right: 17px;
+  color: #8a35c9;
+  font-size: 12px;
+}
+.vs317-practice > aside {
+  padding: 10px;
+  border-left: 1px solid var(--line);
+}
+.vs317-practice > aside > span {
+  display: flex;
+  margin-top: 9px;
+  gap: 7px;
+}
+.vs317-practice > aside > span button {
+  width: 31px;
+  height: 31px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: #fff;
+  font-weight: 900;
+}
+.vs317-practice > aside > span button.selected {
+  background: #7e3fcb;
+  color: #fff;
+}
+.vs317-practice > aside > button {
+  width: 125px;
+  height: 32px;
+  margin-top: 9px;
+  border: 0;
+  border-radius: 6px;
+  background: #8a35c9;
+  color: #fff;
+  font-weight: 900;
+}
+.vs317-practice output {
+  display: block;
+  margin-top: 5px;
+}
+.vs317-practice output.correct {
+  color: #16814a;
+}
+.vs317-practice output.incorrect {
+  color: #c83343;
+}
+.vs317-practice > article {
+  padding: 11px;
+  border-left: 1px solid #e7d8ed;
+  background: #fcf6ff;
+  color: #733b9f;
+}
+.vs317-practice > article p {
+  margin-top: 17px;
+  font:
+    italic 11px Georgia,
+    serif;
+}
+.vs317-adjacent {
+  display: flex;
+  height: 57px;
+  margin-top: 6px;
+  gap: 10px;
+}
+.vs317-adjacent a {
+  display: flex;
+  flex: 1;
+  padding: 0 14px;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  color: inherit;
+  text-decoration: none;
+}
+.vs317-adjacent a:last-child {
+  justify-content: flex-end;
+  text-align: right;
+}
+.vs317-adjacent small {
+  display: block;
+  color: #68758b;
+  font-size: 7px;
+}
+.vs317-footer {
+  position: relative;
+  height: 91px;
+  margin-top: 10px;
+  padding: 11px 14px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: #fff;
+}
+.vs317-footer b {
+  font-size: 10px;
+}
+.vs317-footer p {
+  margin-top: 5px;
+  color: #627087;
+}
+.vs317-footer nav {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  gap: 8px;
+}
+.vs317-footer a {
+  padding: 7px 12px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  color: inherit;
+  text-decoration: none;
+}
+.vs317-footer small,
+.vs317-footer > span {
+  position: absolute;
+  bottom: 11px;
+  color: #68758b;
+  font-size: 6px;
+}
+.vs317-footer > span {
+  right: 13px;
+}
+body:has(.vs317-page) [data-testid="desktop-sidebar"] {
+  width: 215px !important;
+  flex-basis: 215px !important;
+  transition: none;
+}
+body:has(.vs317-page) #main-content {
+  margin-left: 0 !important;
+  padding-left: 16px !important;
+  padding-right: 14px !important;
+}
+body:has(.vs317-page) .lesson-shell-header,
+body:has(.vs317-page) .lesson-page-shell > nav[role="tablist"],
+body:has(.vs317-page) .lesson-adjacent-nav,
+body:has(.vs317-page) footer[aria-label="Site footer"] {
+  display: none !important;
+}
+body:has(.vs317-page) .lesson-page-shell > div {
+  margin-top: 10px !important;
+}
+body:has(.vs317-page) .lesson-workbench.is-target-graphing-workbench {
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+body:has(.vs317-page) {
+  overflow: hidden;
+}
+@media (min-width: 960px) {
+  body:has(.vs317-page) .app-layout-rail > div > header {
+    height: 54px;
+  }
+  body:has(.vs317-page) [data-testid="desktop-sidebar"] > div {
+    padding: 10px 10px 40px !important;
+  }
+  body:has(.vs317-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type {
+    height: 61px;
+    min-height: 61px;
+    margin-bottom: 13px !important;
+    padding: 0 !important;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+  body:has(.vs317-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type
+    p:first-child {
+    white-space: nowrap;
+    font-size: 14px !important;
+  }
+  body:has(.vs317-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type
+    p:last-child {
+    font-size: 8px !important;
+  }
+  body:has(.vs317-page) [data-testid="desktop-sidebar"] > div > label {
+    height: 36px;
+    min-height: 36px !important;
+    margin-bottom: 10px !important;
+    padding: 0 9px !important;
+    font-size: 9px !important;
+  }
+  body:has(.vs317-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"] {
+    row-gap: 7px !important;
+  }
+  body:has(.vs317-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    > div:nth-of-type(2),
+  body:has(.vs317-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    > div:nth-of-type(n + 5) {
+    display: none;
+  }
+  body:has(.vs317-page) [data-testid="desktop-sidebar"] nav button {
+    min-height: 32px;
+    padding: 6px 8px !important;
+    font-size: 9px !important;
+  }
+  body:has(.vs317-page) [data-testid="desktop-sidebar"] nav a {
+    min-height: 29px;
+    padding: 5px 8px !important;
+    font-size: 8px !important;
+  }
+  body:has(.vs317-page)
+    [data-testid="desktop-sidebar"]
+    nav
+    a:has(span span + span) {
+    height: 43px;
+    min-height: 43px;
+    padding: 3px 8px !important;
+  }
+  body:has(.vs317-page) [data-testid="desktop-sidebar"] nav a span span + span {
+    font-size: 6px !important;
+  }
+  body:has(.vs317-page)
+    [data-testid="desktop-sidebar"]
+    nav
+    > div:nth-of-type(4)
+    a {
+    height: 28px;
+    min-height: 28px;
+    padding: 3px 8px !important;
+  }
+  body:has(.vs317-page)
+    [data-testid="desktop-sidebar"]
+    nav
+    > div:nth-of-type(4)
+    > div
+    > :nth-child(n + 2) {
+    display: none;
+  }
+}
+@media (max-width: 900px) {
+  .vs317-page {
+    min-width: 779px;
+  }
+}
