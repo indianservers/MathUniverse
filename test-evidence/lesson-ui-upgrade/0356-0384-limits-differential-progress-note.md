@@ -1,6 +1,6 @@
 # Limits and Differential Calculus target batch 0356-0384
 
-Dedicated rebuild target: **20 of 29 lessons completed; 9 pending.**
+Dedicated rebuild target: **21 of 29 lessons completed; 8 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
@@ -24,7 +24,7 @@ Dedicated rebuild target: **20 of 29 lessons completed; 9 pending.**
 | 0373 | 294 Implicit Differentiation | `upper-semicircle-constrained-linked-x-y-direct-drag-implicit-slope-tangent-classification-practice` | Reworked individually and browser-validated |
 | 0374 | 295 Parametric Differentiation | `parameter-driven-coordinate-curve-direct-drag-component-rates-quotient-tangent-vector-meters-choice-practice` | Reworked individually and browser-validated |
 | 0375 | 296 Critical Points | `piecewise-corner-stationary-max-min-direct-drag-sign-chart-finite-step-layer-toggles-classification-challenge` | Reworked individually and browser-validated |
-| 0376 | 297 Increasing and Decreasing | Pending audit | Pending |
+| 0376 | 297 Increasing and Decreasing | `editable-shape-coefficients-symmetric-critical-roots-direct-root-drag-synchronized-function-derivative-sign-interval-practice` | Reworked individually and browser-validated |
 | 0377 | 298 Local and Global Extrema | Pending audit | Pending |
 | 0378 | 299 Concavity | Pending audit | Pending |
 | 0379 | 300 Inflection Points | Pending audit | Pending |
@@ -325,3 +325,19 @@ Evidence:
 - `0375-reference.png`
 - `0375-desktop.png`
 - `0375-dedicated-target-validation.json`
+
+## Lesson 297 / Mockup 0376 - Increasing and Decreasing
+
+Reworked individually around the target graph's coherent shape family `f(x)=(-2a/3)x^3-(8b/3)x`. At the target controls `a=-3`, `b=1`, this gives `f(x)=2x^3-(8/3)x`, critical points `x=+-2/3`, values `f(-2/3)=1.185` and `f(2/3)=-1.185`, and the displayed Increasing / Decreasing / Increasing interval pattern. The shared coefficients drive the function graph, exact derivative parabola, critical roots, draggable critical markers, interval sign labels, sign-chart table, extrema values, feedback sentence, and action count. Two real domain controls remap both graphs. Dragging the positive critical marker solves `b=-3ar^2/4`, so it edits the actual model rather than moving a decorative point.
+
+Browser validation confirms the exact target start roots `-0.667,0.667` and interval classifications Increasing, Decreasing, Increasing. Moving `a` to `-2` and `b` to `2` derives roots `+-1.155`; changing the domain to `[-4,4]` remaps both plots; a real pointer drag moves the positive root to approximately `1.261` and solves `b=2.386`. Practice rejects an incorrect middle interval, accepts Increasing / Decreasing / Increasing for `g(x)=x^3-3x`, and shell Reset restores coefficients, domain, roots, classifications, practice state, selected tab, and zero actions.
+
+The reference's graph labels, extrema coordinates, and interval signs require this symmetric odd cubic, while its small printed formula `-3x^3+x^2` would instead have critical points `0` and `2/9` and the opposite outer sign pattern. Its derivative curve is also drawn with the opposite opening direction from its own sign labels. This implementation preserves the dominant graph, labeled extrema, sign table, feedback, and increasing/decreasing classification with one mathematically consistent model; the printed polynomial remains as a separate worked example.
+
+Final exact 965x1629 validation matches the target stack: sidebar width 224, hero y=98-319, tabs y=329-375, graph-and-CAS surface y=386-1557, four-stage guide y=456-528, synchronized graph lab y=542-1126, feedback y=1136-1180, rule/worked/misconception row y=1190-1350, practice y=1360-1532, and adjacent navigation y=1567-1620. The dedicated content spans x=239-951, with no horizontal overflow, no duplicate shared lesson chrome, no site footer, and zero console messages.
+
+Evidence:
+
+- `0376-reference.png`
+- `0376-desktop.png`
+- `0376-dedicated-target-validation.json`
