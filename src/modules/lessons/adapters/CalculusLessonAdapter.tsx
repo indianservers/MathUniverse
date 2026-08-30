@@ -56,6 +56,7 @@ import AccumulationFunctionsTargetLesson322 from "./calculus/AccumulationFunctio
 import DirectionFieldsTargetLesson323 from "./calculus/DirectionFieldsTargetLesson323";
 import EulerMethodTargetLesson324 from "./calculus/EulerMethodTargetLesson324";
 import SeparableEquationsTargetLesson325 from "./calculus/SeparableEquationsTargetLesson325";
+import FirstOrderLinearTargetLesson326 from "./calculus/FirstOrderLinearTargetLesson326";
 
 const viewportSize = { width: 640, height: 360 };
 const fallbackViewport: GraphViewport = { xMin: -5, xMax: 5, yMin: -6, yMax: 10, ...viewportSize };
@@ -213,6 +214,7 @@ export default function CalculusLessonAdapter(props: LessonAdapterProps) {
   if (props.lesson.id === 323) return <DirectionFieldsTargetLesson323 {...props} />;
   if (props.lesson.id === 324) return <EulerMethodTargetLesson324 {...props} />;
   if (props.lesson.id === 325) return <SeparableEquationsTargetLesson325 {...props} />;
+  if (props.lesson.id === 326) return <FirstOrderLinearTargetLesson326 {...props} />;
   if (props.lesson.id >= 277 && props.lesson.id <= 305) return <LimitsDifferentialMockupLesson {...props} />;
   if (props.lesson.id >= 306 && props.lesson.id <= 333) return <IntegralDifferentialMockupLesson {...props} />;
   return <LegacyCalculusLessonAdapter {...props} />;

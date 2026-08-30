@@ -1,0 +1,160 @@
+{
+  "mockup": "0405",
+  "lessonId": 326,
+  "checks": {
+    "initial": {
+      "p": "2",
+      "y0": "1",
+      "scale": "1",
+      "a": "0.33333333",
+      "c": "0.66666667",
+      "residual": "0",
+      "preset": "reference",
+      "solution-layer": "true",
+      "forcing-layer": "true",
+      "transient-layer": "true",
+      "verified": "true",
+      "tab": "Interaction + visualization",
+      "copied": "false",
+      "exported": "false",
+      "actions": "0"
+    },
+    "controls": {
+      "p": "1.5",
+      "y0": "-1",
+      "scale": "2",
+      "a": "0.8",
+      "c": "-1.8",
+      "residual": "0",
+      "preset": "reference",
+      "solution-layer": "true",
+      "forcing-layer": "false",
+      "transient-layer": "true",
+      "verified": "true",
+      "tab": "Examples",
+      "copied": "false",
+      "exported": "false",
+      "actions": "6"
+    },
+    "preset": {
+      "p": "1",
+      "y0": "2",
+      "scale": "0.75",
+      "a": "0.375",
+      "c": "1.625",
+      "residual": "0",
+      "preset": "gentle",
+      "solution-layer": "true",
+      "forcing-layer": "false",
+      "transient-layer": "true",
+      "verified": "false",
+      "tab": "Examples",
+      "copied": "false",
+      "exported": "false",
+      "actions": "7"
+    },
+    "copied": {
+      "p": "1",
+      "y0": "2",
+      "scale": "0.75",
+      "a": "0.375",
+      "c": "1.625",
+      "residual": "0",
+      "preset": "gentle",
+      "solution-layer": "true",
+      "forcing-layer": "false",
+      "transient-layer": "true",
+      "verified": "false",
+      "tab": "Examples",
+      "copied": "true",
+      "exported": "false",
+      "actions": "8"
+    },
+    "exported": {
+      "p": "1",
+      "y0": "2",
+      "scale": "0.75",
+      "a": "0.375",
+      "c": "1.625",
+      "residual": "0",
+      "preset": "gentle",
+      "solution-layer": "true",
+      "forcing-layer": "false",
+      "transient-layer": "true",
+      "verified": "false",
+      "tab": "Examples",
+      "copied": "true",
+      "exported": "true",
+      "actions": "9",
+      "filename": "first-order-linear-equation-derivation.txt"
+    },
+    "shellReset": {
+      "p": "2",
+      "y0": "1",
+      "scale": "1",
+      "a": "0.33333333",
+      "c": "0.66666667",
+      "residual": "0",
+      "preset": "reference",
+      "solution-layer": "true",
+      "forcing-layer": "true",
+      "transient-layer": "true",
+      "verified": "true",
+      "tab": "Interaction + visualization",
+      "copied": "false",
+      "exported": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1536,
+      "height": 1024
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 240,
+      "height": 1024,
+      "bottom": 1024
+    },
+    "hero": {
+      "top": 104,
+      "left": 252,
+      "width": 1264,
+      "height": 103,
+      "bottom": 207
+    },
+    "tabs": {
+      "top": 217,
+      "left": 252,
+      "width": 1264,
+      "height": 36,
+      "bottom": 253
+    },
+    "lab": {
+      "top": 261,
+      "left": 252,
+      "width": 1264,
+      "height": 595,
+      "bottom": 856
+    },
+    "adjacent": {
+      "top": 873,
+      "left": 252,
+      "width": 1264,
+      "height": 57,
+      "bottom": 930
+    },
+    "footer": {
+      "top": 942,
+      "left": 240,
+      "width": 1296,
+      "height": 82,
+      "bottom": 1024
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

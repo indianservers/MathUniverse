@@ -1,6 +1,6 @@
 # Integral Calculus and Differential Equations target batch 0385-0412
 
-Dedicated rebuild target: **20 of 28 lessons completed; 8 pending.**
+Dedicated rebuild target: **21 of 28 lessons completed; 7 pending.**
 
 | Mockup | Lesson                           | Dedicated object model                                                                                                     | Status                                      |
 | ------ | -------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
@@ -24,7 +24,7 @@ Dedicated rebuild target: **20 of 28 lessons completed; 8 pending.**
 | 0402   | 323 Direction Fields             | `direction-field-generated-local-slopes-exact-solution-family-draggable-seeds-slope-triangle-prediction`                   | Reworked individually and browser-validated |
 | 0403   | 324 Euler's Method               | `forward-euler-generated-steps-slope-field-exact-solution-draggable-initial-condition-live-table-errors-animation-practice` | Reworked individually and browser-validated |
 | 0404   | 325 Separable Equations          | `draggable-variable-separation-dual-antiderivatives-combined-constant-solution-family-k-graph-practice`                    | Reworked individually and browser-validated |
-| 0405   | 326 First-Order Linear Equations | Pending audit                                                                                                              | Pending                                     |
+| 0405   | 326 First-Order Linear Equations | `integrating-factor-pipeline-generated-slope-field-forcing-transient-solution-coefficient-controls-residual-verification-export` | Reworked individually and browser-validated |
 | 0406   | 327 Logistic Growth              | Pending audit                                                                                                              | Pending                                     |
 | 0407   | 328 Second-Order Equations       | Pending audit                                                                                                              | Pending                                     |
 | 0408   | 329 Phase Plane                  | Pending audit                                                                                                              | Pending                                     |
@@ -344,3 +344,17 @@ Evidence:
 - `0404-reference.png`
 - `0404-desktop.png`
 - `0404-dedicated-target-validation.json`
+
+## Lesson 326 / Mockup 0405 - First-Order Linear Equations
+
+Reworked individually as a landscape integrating-factor laboratory for `y'+py=s e^x`. The shared coefficient model drives the five-stage pipeline, eight-row CAS derivation, integrating factor, forcing coefficient, initial-condition constant, generated slope field, exact solution, forcing and transient layers, solution-structure card, and substitution residual. The `p`, `y(0)`, and forcing-strength sliders, three equation presets, three graph-layer toggles, five tabs, verification, shell Reset, Share, Copy steps, and downloadable derivation export are functional. The `p=-1` special case uses `(y0+sx)e^x` instead of dividing by zero.
+
+Browser validation confirms the reference model `p=2`, `y0=1`, `s=1`, forcing coefficient `1/3`, transient constant `2/3`, and residual zero. Real slider/input actions change the model to approximately `p=1.5`, `y0=-1`, `s=2`, yielding `A=0.8`, `C=-1.8`, and residual zero; the forcing layer hides, Examples activates, and substitution verifies. Selecting the gentle preset regenerates `p=1`, `y0=2`, `s=0.75`, `A=0.375`, and `C=1.625`. Copy steps updates the clipboard state; Export produces `first-order-linear-equation-derivation.txt`; and shell Reset restores every initial value and layer. Focused ESLint and the dedicated Playwright harness pass with zero console warnings or errors.
+
+Final exact 1536x1024 capture matches the target landscape stack: sidebar width 240, hero y=104-207, tab strip y=217-253, three-column integrating-factor lab y=261-856, dedicated target navigation y=873-930, and footer y=942-1024. Dedicated content spans x=252-1516 with no horizontal overflow and no duplicate shared lesson chrome. The lesson-specific navigation uses the mockup's visible “Exact Equations” next label rather than the catalog shell's generic next title.
+
+Evidence:
+
+- `0405-reference.png`
+- `0405-desktop.png`
+- `0405-dedicated-target-validation.json`
