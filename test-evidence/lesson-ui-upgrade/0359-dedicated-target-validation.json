@@ -1,0 +1,163 @@
+{
+  "mockup": "0359",
+  "lessonId": 280,
+  "checks": {
+    "initial": {
+      "window": "16",
+      "y-range": "12",
+      "height": "2",
+      "positive-limit": "2",
+      "negative-limit": "2",
+      "feedback": "",
+      "hint": "false",
+      "actions": "0"
+    },
+    "adjusted": {
+      "window": "12",
+      "y-range": "8",
+      "height": "3.5",
+      "positive-limit": "3.5",
+      "negative-limit": "3.5",
+      "feedback": "",
+      "hint": "false",
+      "actions": "3"
+    },
+    "rejected": {
+      "window": "12",
+      "y-range": "8",
+      "height": "3.5",
+      "positive-limit": "3.5",
+      "negative-limit": "3.5",
+      "feedback": "incorrect",
+      "hint": "false",
+      "actions": "4"
+    },
+    "accepted": {
+      "window": "12",
+      "y-range": "8",
+      "height": "3.5",
+      "positive-limit": "3.5",
+      "negative-limit": "3.5",
+      "feedback": "correct",
+      "hint": "false",
+      "actions": "5"
+    },
+    "hint": {
+      "window": "12",
+      "y-range": "8",
+      "height": "3.5",
+      "positive-limit": "3.5",
+      "negative-limit": "3.5",
+      "feedback": "correct",
+      "hint": "true",
+      "actions": "6"
+    },
+    "reset": {
+      "window": "16",
+      "y-range": "12",
+      "height": "2",
+      "positive-limit": "2",
+      "negative-limit": "2",
+      "feedback": "",
+      "hint": "false",
+      "actions": "0"
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/calculus/279-infinite-limits",
+    "nextHref": "/lessons/calculus/281-continuity-at-a-point"
+  },
+  "metrics": {
+    "document": {
+      "width": 1009,
+      "height": 1558
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 205,
+      "height": 1558,
+      "bottom": 1558
+    },
+    "shellHeader": {
+      "top": 0,
+      "left": 0,
+      "width": 0,
+      "height": 0,
+      "bottom": 0
+    },
+    "hero": {
+      "top": 98,
+      "left": 221,
+      "width": 772,
+      "height": 194,
+      "bottom": 292
+    },
+    "tabs": {
+      "top": 306,
+      "left": 221,
+      "width": 772,
+      "height": 42,
+      "bottom": 348
+    },
+    "lab": {
+      "top": 362,
+      "left": 221,
+      "width": 772,
+      "height": 1129,
+      "bottom": 1491
+    },
+    "model": {
+      "top": 407,
+      "left": 232,
+      "width": 750,
+      "height": 487,
+      "bottom": 894
+    },
+    "feedback": {
+      "top": 903,
+      "left": 232,
+      "width": 750,
+      "height": 34,
+      "bottom": 937
+    },
+    "insights": {
+      "top": 946,
+      "left": 232,
+      "width": 750,
+      "height": 250,
+      "bottom": 1196
+    },
+    "mistake": {
+      "top": 1205,
+      "left": 232,
+      "width": 750,
+      "height": 48,
+      "bottom": 1253
+    },
+    "practice": {
+      "top": 1262,
+      "left": 232,
+      "width": 750,
+      "height": 198,
+      "bottom": 1460
+    },
+    "adjacent": {
+      "top": 1501,
+      "left": 221,
+      "width": 772,
+      "height": 48,
+      "bottom": 1549
+    },
+    "footer": {
+      "top": 0,
+      "left": 0,
+      "width": 0,
+      "height": 0,
+      "bottom": 0
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

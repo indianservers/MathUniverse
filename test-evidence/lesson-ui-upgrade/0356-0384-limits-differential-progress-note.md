@@ -1,13 +1,13 @@
 # Limits and Differential Calculus target batch 0356-0384
 
-Dedicated rebuild target: **3 of 29 lessons completed; 26 pending.**
+Dedicated rebuild target: **4 of 29 lessons completed; 25 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
 | 0356 | 277 Informal Limits | `removable-hole-two-sided-approach-draggable-markers-linked-table-limit-practice` | Reworked individually and browser-validated |
 | 0357 | 278 One-Sided Limits | `piecewise-one-sided-approach-independent-sliders-trace-verdict` | Reworked individually and browser-validated |
 | 0358 | 279 Infinite Limits | `rational-vertical-asymptote-one-sided-infinite-approach-sign-domain-practice` | Reworked individually and browser-validated |
-| 0359 | 280 Limits at Infinity | Pending audit | Pending |
+| 0359 | 280 Limits at Infinity | `even-rational-end-behavior-horizontal-asymptote-linked-view-dominant-terms-practice` | Reworked individually and browser-validated |
 | 0360 | 281 Continuity at a Point | Pending audit | Pending |
 | 0361 | 282 Types of Discontinuity | Pending audit | Pending |
 | 0362 | 283 Epsilon-Delta Visualiser | Pending audit | Pending |
@@ -75,3 +75,17 @@ Evidence:
 - `0358-reference.png`
 - `0358-desktop.png`
 - `0358-dedicated-target-validation.json`
+
+## Lesson 280 / Mockup 0359 - Limits at Infinity
+
+Reworked individually around the coherent even rational family `f(x)=h*x^2/(1+x^2)`. The linked asymptote-height state drives the function, sampled SVG curve, dashed asymptote, both end limits, feedback, sample table, dominant-term ratio, and output cards. View-window, vertical-range, and asymptote-height dragging, six lesson tabs, fullscreen, Reset, Share, independent three-answer practice checking, hint toggle, shell Reset, and Previous/Next navigation are functional.
+
+Browser validation starts with view window `16`, vertical range `12`, and `h=2`, deriving both end limits and horizontal asymptote as `2`. It changes the real ranges to `12` and `8`, moves the asymptote to `3.5`, and confirms both limits and the plotted line update to `3.5`. Practice rejects an asymptote answer of `2`, accepts all three values as `3`, reveals the leading-coefficient hint, and shell Reset restores every target control, blank practice, hidden hint, selected interaction tab, and zero action count.
+
+Final exact 1009x1558 validation matches the target stack: sidebar width 205, dedicated header y=98-292, tabs y=306-348, full end-behavior lab y=362-1491, linked model y=407-894, feedback y=903-937, insight row y=946-1196, misconception y=1205-1253, practice y=1262-1460, adjacent navigation y=1501-1549, and no site footer. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0359-reference.png`
+- `0359-desktop.png`
+- `0359-dedicated-target-validation.json`
