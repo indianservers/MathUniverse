@@ -1,6 +1,6 @@
 # Integral Calculus and Differential Equations target batch 0385-0412
 
-Dedicated rebuild target: **5 of 28 lessons completed; 23 pending.**
+Dedicated rebuild target: **6 of 28 lessons completed; 22 pending.**
 
 | Mockup | Lesson                           | Dedicated object model                                                                                                     | Status                                      |
 | ------ | -------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
@@ -9,7 +9,7 @@ Dedicated rebuild target: **5 of 28 lessons completed; 23 pending.**
 | 0387   | 308 Definite Integral            | `quadratic-oriented-area-dual-bound-drag-signed-region-decomposition-limit-swap-layer-visibility-zoom-practice`            | Reworked individually and browser-validated |
 | 0388   | 309 Indefinite Integral          | `six-x-antiderivative-parabola-family-draggable-constant-linked-derivative-compare-symbolic-practice`                      | Reworked individually and browser-validated |
 | 0389   | 310 Fundamental Theorem          | `accumulation-function-dual-bound-drag-selectable-integrand-area-instant-rate-ftc-symbolic-practice`                       | Reworked individually and browser-validated |
-| 0390   | 311 Area Between Curves          | Pending audit                                                                                                              | Pending                                     |
+| 0390   | 311 Area Between Curves          | `selectable-top-bottom-curves-editable-domain-draggable-slice-generated-vertical-slices-area-integration-practice`         | Reworked individually and browser-validated |
 | 0391   | 312 Substitution                 | Pending audit                                                                                                              | Pending                                     |
 | 0392   | 313 Integration by Parts         | Pending audit                                                                                                              | Pending                                     |
 | 0393   | 314 Partial Fractions            | Pending audit                                                                                                              | Pending                                     |
@@ -110,3 +110,19 @@ Evidence:
 - `0389-reference.png`
 - `0389-desktop.png`
 - `0389-dedicated-target-validation.json`
+
+## Lesson 311 / Mockup 0390 - Area Between Curves
+
+Reworked individually as a bounded-region and vertical-slice explorer. Selectable top curves (parabola, semicircle, tent), bottom curves (zero, line, negative constant), editable interval endpoints, native inspection-slice and slice-count sliders, and a captured direct slice drag all drive the same object model. The model generates both curves, the region polygon, every visible vertical slice, the inspection segment, top/bottom/height readouts, midpoint area integration, selected-method formula, and conceptual panels. Six tabs, Reset, Share, Workspace, full-screen, two-expression practice validation, Hint, shell Reset, adjacent lessons, action counting, and the target-specific footer are functional.
+
+Browser validation confirms the coherent initial parabola/zero region on `[-sqrt(12),sqrt(12)]`, 100 slices, inspection at 0, height 4, and numerical area `18.476132`. Editing the interval to `[-3,3]`, moving the native inspection slider to 1, and selecting 40 slices gives area `18.00375`. A real pointer drag moves the inspection slice to approximately `2.068711` and updates its height. Switching to the tent over `x/4` produces area 15 and updated live slice values. Practice rejects the wrong sign, accepts `1-x^2/4` over `0`, and reveals the hint. Local and shell Reset restore the full initial model.
+
+The reference prints `f(x)=-(1/3)x^2+4` over its roots but labels the full symmetric region as `9.2376`, exactly half the actual area. The coherent result is `32sqrt(3)/3`, approximately `18.4752`; the generated graph, numerical sum, and worked answer use that full region. The target's teaching composition and controls remain intact without reproducing the arithmetic error.
+
+Final exact 959x1639 capture matches the target stack: sidebar width 208, hero y=105-300, tabs y=309-348, lesson flow y=357-444, bounded-region lab y=456-986, concept cards y=993-1191, worked example y=1198-1365, practice y=1375-1491, adjacent lessons y=1499-1549, and footer y=1560-1639. Dedicated content spans x=224-939, with no horizontal overflow, no shared mobile dock or menu trigger, no duplicate lesson chrome, and zero console messages.
+
+Evidence:
+
+- `0390-reference.png`
+- `0390-desktop.png`
+- `0390-dedicated-target-validation.json`

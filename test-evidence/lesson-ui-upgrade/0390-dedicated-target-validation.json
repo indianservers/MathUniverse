@@ -1,0 +1,197 @@
+{
+  "mockup": "0390",
+  "lessonId": 311,
+  "checks": {
+    "initial": {
+      "top": "parabola",
+      "bottom": "zero",
+      "a": "-3.464102",
+      "b": "3.464102",
+      "slice": "0",
+      "slices": "100",
+      "area": "18.476132",
+      "height": "4",
+      "tab": "Interaction + Visualization",
+      "result": "",
+      "hint": "false",
+      "actions": "0"
+    },
+    "controls": {
+      "top": "parabola",
+      "bottom": "zero",
+      "a": "-3",
+      "b": "3",
+      "slice": "1",
+      "slices": "40",
+      "area": "18.00375",
+      "height": "3.666667",
+      "tab": "Interaction + Visualization",
+      "result": "",
+      "hint": "false",
+      "actions": "4"
+    },
+    "drag": {
+      "top": "parabola",
+      "bottom": "zero",
+      "a": "-3",
+      "b": "3",
+      "slice": "2.068711",
+      "slices": "40",
+      "area": "18.00375",
+      "height": "2.573478",
+      "tab": "Interaction + Visualization",
+      "result": "",
+      "hint": "false",
+      "actions": "10"
+    },
+    "curves": {
+      "top": "tent",
+      "bottom": "line",
+      "a": "-3",
+      "b": "3",
+      "slice": "2.068711",
+      "slices": "40",
+      "area": "15",
+      "height": "1.414111",
+      "tab": "Key Formula",
+      "result": "",
+      "hint": "false",
+      "actions": "13"
+    },
+    "rejected": {
+      "top": "tent",
+      "bottom": "line",
+      "a": "-3",
+      "b": "3",
+      "slice": "2.068711",
+      "slices": "40",
+      "area": "15",
+      "height": "1.414111",
+      "tab": "Key Formula",
+      "result": "incorrect",
+      "hint": "false",
+      "actions": "14"
+    },
+    "accepted": {
+      "top": "tent",
+      "bottom": "line",
+      "a": "-3",
+      "b": "3",
+      "slice": "2.068711",
+      "slices": "40",
+      "area": "15",
+      "height": "1.414111",
+      "tab": "Key Formula",
+      "result": "correct",
+      "hint": "true",
+      "actions": "16"
+    },
+    "localReset": {
+      "top": "parabola",
+      "bottom": "zero",
+      "a": "-3.464102",
+      "b": "3.464102",
+      "slice": "0",
+      "slices": "100",
+      "area": "18.476132",
+      "height": "4",
+      "tab": "Interaction + Visualization",
+      "result": "",
+      "hint": "false",
+      "actions": "1"
+    },
+    "shellReset": {
+      "top": "parabola",
+      "bottom": "zero",
+      "a": "-3.464102",
+      "b": "3.464102",
+      "slice": "0",
+      "slices": "100",
+      "area": "18.476132",
+      "height": "4",
+      "tab": "Interaction + Visualization",
+      "result": "",
+      "hint": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 959,
+      "height": 1642
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 208,
+      "height": 1639,
+      "bottom": 1639
+    },
+    "hero": {
+      "top": 105,
+      "left": 224,
+      "width": 715,
+      "height": 195,
+      "bottom": 300
+    },
+    "tabs": {
+      "top": 309,
+      "left": 224,
+      "width": 715,
+      "height": 39,
+      "bottom": 348
+    },
+    "flow": {
+      "top": 357,
+      "left": 224,
+      "width": 715,
+      "height": 87,
+      "bottom": 444
+    },
+    "lab": {
+      "top": 456,
+      "left": 224,
+      "width": 715,
+      "height": 530,
+      "bottom": 986
+    },
+    "concepts": {
+      "top": 993,
+      "left": 224,
+      "width": 715,
+      "height": 198,
+      "bottom": 1191
+    },
+    "worked": {
+      "top": 1198,
+      "left": 224,
+      "width": 715,
+      "height": 167,
+      "bottom": 1365
+    },
+    "practice": {
+      "top": 1375,
+      "left": 224,
+      "width": 715,
+      "height": 116,
+      "bottom": 1491
+    },
+    "adjacent": {
+      "top": 1499,
+      "left": 224,
+      "width": 715,
+      "height": 50,
+      "bottom": 1549
+    },
+    "footer": {
+      "top": 1560,
+      "left": 224,
+      "width": 715,
+      "height": 79,
+      "bottom": 1639
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
