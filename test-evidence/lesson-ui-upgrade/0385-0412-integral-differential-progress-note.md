@@ -1,6 +1,6 @@
 # Integral Calculus and Differential Equations target batch 0385-0412
 
-Dedicated rebuild target: **7 of 28 lessons completed; 21 pending.**
+Dedicated rebuild target: **8 of 28 lessons completed; 20 pending.**
 
 | Mockup | Lesson                           | Dedicated object model                                                                                                     | Status                                      |
 | ------ | -------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
@@ -11,7 +11,7 @@ Dedicated rebuild target: **7 of 28 lessons completed; 21 pending.**
 | 0389   | 310 Fundamental Theorem          | `accumulation-function-dual-bound-drag-selectable-integrand-area-instant-rate-ftc-symbolic-practice`                       | Reworked individually and browser-validated |
 | 0390   | 311 Area Between Curves          | `selectable-top-bottom-curves-editable-domain-draggable-slice-generated-vertical-slices-area-integration-practice`         | Reworked individually and browser-validated |
 | 0391   | 312 Substitution                 | `branch-aware-x-to-u-substitution-du-scaling-dual-bound-drag-linked-graphs-transformed-integral-practice`                  | Reworked individually and browser-validated |
-| 0392   | 313 Integration by Parts         | Pending audit                                                                                                              | Pending                                     |
+| 0392   | 313 Integration by Parts         | `reverse-product-rule-selectable-u-dv-computed-du-v-draggable-evaluation-finite-difference-residual-symbolic-practice`     | Reworked individually and browser-validated |
 | 0393   | 314 Partial Fractions            | Pending audit                                                                                                              | Pending                                     |
 | 0394   | 315 Improper Integrals           | Pending audit                                                                                                              | Pending                                     |
 | 0395   | 316 Numerical Integration        | Pending audit                                                                                                              | Pending                                     |
@@ -142,3 +142,17 @@ Evidence:
 - `0391-reference.png`
 - `0391-desktop.png`
 - `0391-dedicated-target-validation.json`
+
+## Lesson 313 / Mockup 0392 - Integration by Parts
+
+Reworked individually as a reverse-product-rule verifier. Selectable `u` (`x`, `x^2`, `1`) and `dv` (`e^x dx`, `cos(x) dx`, `dx`) compute the corresponding `du` and `v`, product `F=uv`, analytic derivative terms `u'v` and `uv'`, reconstructed derivative, finite-difference derivative, and residual. The evaluation slider and captured direct graph-point drag drive both colored terms, the product-rule graph, output summary, and validation strip; the `h` slider changes the actual central-difference check. Five tabs, Reset, Share, Workspace, full-screen, symbolic practice validation, Show steps, shell Reset, adjacent lessons, action counting, and the target footer are functional.
+
+Browser validation confirms initial `u=x`, `dv=e^x dx`, `x=0`, `h=0.05`, analytic derivative 1, numerical derivative `1.00125026`, and residual `0.001250260438`. Selecting `u=x^2`, `x=1`, and `h=0.01` gives analytic derivative `3e=8.15484549`; a real pointer drag moves x to approximately `1.42387671` and recomputes both terms and residual. Switching `dv` to `cos(x) dx` gives analytic derivative `3.1138718` and numerical derivative `3.11374064`. Practice rejects the wrong sign, accepts `e^x(x^2-2x+2)+C`, and reveals the repeated-parts step. Local and shell Reset restore the full initial verifier.
+
+Final exact 970x1622 capture matches the target stack: sidebar width 197, hero y=89-301, tabs y=310-362, numbered flow y=373-437, reverse-product-rule lab y=447-1182, rule/worked/misconception cards y=1191-1351, practice y=1361-1452, adjacent lessons y=1463-1511, and footer y=1522-1615. Dedicated content spans x=208-960, with no horizontal overflow, no duplicate shared lesson chrome, no shared footer, and zero console messages.
+
+Evidence:
+
+- `0392-reference.png`
+- `0392-desktop.png`
+- `0392-dedicated-target-validation.json`

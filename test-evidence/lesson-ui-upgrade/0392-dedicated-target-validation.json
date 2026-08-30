@@ -1,0 +1,198 @@
+{
+  "mockup": "0392",
+  "lessonId": 313,
+  "checks": {
+    "initial": {
+      "u": "x",
+      "dv": "exp",
+      "x": "0",
+      "h": "0.05",
+      "terma": "1",
+      "termb": "0",
+      "analytic": "1",
+      "numeric": "1.00125026",
+      "residual": "0.001250260438",
+      "tab": "Interaction + visualization",
+      "result": "",
+      "steps": "false",
+      "actions": "0"
+    },
+    "controls": {
+      "u": "x2",
+      "dv": "exp",
+      "x": "1",
+      "h": "0.01",
+      "terma": "5.43656366",
+      "termb": "2.71828183",
+      "analytic": "8.15484549",
+      "numeric": "8.15543445",
+      "residual": "0.000588968085",
+      "tab": "Interaction + visualization",
+      "result": "",
+      "steps": "false",
+      "actions": "3"
+    },
+    "drag": {
+      "u": "x2",
+      "dv": "exp",
+      "x": "1.42387671",
+      "h": "0.01",
+      "terma": "11.82726101",
+      "termb": "8.42028076",
+      "analytic": "20.24754177",
+      "numeric": "20.2486888",
+      "residual": "0.001147032614",
+      "tab": "Interaction + visualization",
+      "result": "",
+      "steps": "false",
+      "actions": "9"
+    },
+    "choice": {
+      "u": "x2",
+      "dv": "cos",
+      "x": "1.42387671",
+      "h": "0.01",
+      "terma": "2.81707376",
+      "termb": "0.29679804",
+      "analytic": "3.1138718",
+      "numeric": "3.11374064",
+      "residual": "0.000131160204",
+      "tab": "Formulas",
+      "result": "",
+      "steps": "false",
+      "actions": "11"
+    },
+    "rejected": {
+      "u": "x2",
+      "dv": "cos",
+      "x": "1.42387671",
+      "h": "0.01",
+      "terma": "2.81707376",
+      "termb": "0.29679804",
+      "analytic": "3.1138718",
+      "numeric": "3.11374064",
+      "residual": "0.000131160204",
+      "tab": "Formulas",
+      "result": "incorrect",
+      "steps": "false",
+      "actions": "12"
+    },
+    "accepted": {
+      "u": "x2",
+      "dv": "cos",
+      "x": "1.42387671",
+      "h": "0.01",
+      "terma": "2.81707376",
+      "termb": "0.29679804",
+      "analytic": "3.1138718",
+      "numeric": "3.11374064",
+      "residual": "0.000131160204",
+      "tab": "Formulas",
+      "result": "correct",
+      "steps": "true",
+      "actions": "14"
+    },
+    "localReset": {
+      "u": "x",
+      "dv": "exp",
+      "x": "0",
+      "h": "0.05",
+      "terma": "1",
+      "termb": "0",
+      "analytic": "1",
+      "numeric": "1.00125026",
+      "residual": "0.001250260438",
+      "tab": "Interaction + visualization",
+      "result": "",
+      "steps": "false",
+      "actions": "1"
+    },
+    "shellReset": {
+      "u": "x",
+      "dv": "exp",
+      "x": "0",
+      "h": "0.05",
+      "terma": "1",
+      "termb": "0",
+      "analytic": "1",
+      "numeric": "1.00125026",
+      "residual": "0.001250260438",
+      "tab": "Interaction + visualization",
+      "result": "",
+      "steps": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 970,
+      "height": 1632
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 197,
+      "height": 1622,
+      "bottom": 1622
+    },
+    "hero": {
+      "top": 89,
+      "left": 208,
+      "width": 752,
+      "height": 212,
+      "bottom": 301
+    },
+    "tabs": {
+      "top": 310,
+      "left": 208,
+      "width": 752,
+      "height": 52,
+      "bottom": 362
+    },
+    "flow": {
+      "top": 373,
+      "left": 208,
+      "width": 752,
+      "height": 64,
+      "bottom": 437
+    },
+    "lab": {
+      "top": 447,
+      "left": 208,
+      "width": 752,
+      "height": 735,
+      "bottom": 1182
+    },
+    "cards": {
+      "top": 1191,
+      "left": 208,
+      "width": 752,
+      "height": 160,
+      "bottom": 1351
+    },
+    "practice": {
+      "top": 1361,
+      "left": 208,
+      "width": 752,
+      "height": 91,
+      "bottom": 1452
+    },
+    "adjacent": {
+      "top": 1463,
+      "left": 208,
+      "width": 752,
+      "height": 48,
+      "bottom": 1511
+    },
+    "footer": {
+      "top": 1522,
+      "left": 208,
+      "width": 752,
+      "height": 93,
+      "bottom": 1615
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
