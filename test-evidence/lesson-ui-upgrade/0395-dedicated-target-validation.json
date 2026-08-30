@@ -1,0 +1,238 @@
+{
+  "mockup": "0395",
+  "lessonId": 316,
+  "checks": {
+    "initial": {
+      "function": "wave",
+      "interval": "zero-pi",
+      "n": "8",
+      "dx": "0.3926990817",
+      "midpoint": "2.0129090856",
+      "trapezoid": "1.9742316019",
+      "simpson": "2.0002691699",
+      "exact": "2",
+      "midpoint-visible": "true",
+      "trapezoid-visible": "true",
+      "simpson-visible": "true",
+      "tab": "Interactive",
+      "checked": "false",
+      "score": "0",
+      "actions": "0"
+    },
+    "controls": {
+      "function": "quadratic",
+      "interval": "zero-one",
+      "n": "16",
+      "dx": "0.0625",
+      "midpoint": "0.3330078125",
+      "trapezoid": "0.333984375",
+      "simpson": "0.3333333333",
+      "exact": "0.3333333333",
+      "midpoint-visible": "true",
+      "trapezoid-visible": "true",
+      "simpson-visible": "true",
+      "tab": "Interactive",
+      "checked": "false",
+      "score": "0",
+      "actions": "3"
+    },
+    "layers": {
+      "function": "quadratic",
+      "interval": "zero-one",
+      "n": "16",
+      "dx": "0.0625",
+      "midpoint": "0.3330078125",
+      "trapezoid": "0.333984375",
+      "simpson": "0.3333333333",
+      "exact": "0.3333333333",
+      "midpoint-visible": "false",
+      "trapezoid-visible": "true",
+      "simpson-visible": "false",
+      "tab": "Interactive",
+      "checked": "false",
+      "score": "0",
+      "actions": "5"
+    },
+    "tab": {
+      "function": "quadratic",
+      "interval": "zero-one",
+      "n": "16",
+      "dx": "0.0625",
+      "midpoint": "0.3330078125",
+      "trapezoid": "0.333984375",
+      "simpson": "0.3333333333",
+      "exact": "0.3333333333",
+      "midpoint-visible": "false",
+      "trapezoid-visible": "true",
+      "simpson-visible": "false",
+      "tab": "Formulas",
+      "checked": "false",
+      "score": "0",
+      "actions": "6"
+    },
+    "localReset": {
+      "function": "wave",
+      "interval": "zero-pi",
+      "n": "8",
+      "dx": "0.3926990817",
+      "midpoint": "2.0129090856",
+      "trapezoid": "1.9742316019",
+      "simpson": "2.0002691699",
+      "exact": "2",
+      "midpoint-visible": "true",
+      "trapezoid-visible": "true",
+      "simpson-visible": "true",
+      "tab": "Interactive",
+      "checked": "false",
+      "score": "0",
+      "actions": "0"
+    },
+    "drag": {
+      "function": "wave",
+      "interval": "zero-pi",
+      "n": "4",
+      "dx": "0.7853981634",
+      "midpoint": "2.052344306",
+      "trapezoid": "1.8961188979",
+      "simpson": "2.004559755",
+      "exact": "2",
+      "midpoint-visible": "true",
+      "trapezoid-visible": "true",
+      "simpson-visible": "true",
+      "tab": "Interactive",
+      "checked": "false",
+      "score": "0",
+      "actions": "7"
+    },
+    "rejected": {
+      "function": "wave",
+      "interval": "zero-pi",
+      "n": "4",
+      "dx": "0.7853981634",
+      "midpoint": "2.052344306",
+      "trapezoid": "1.8961188979",
+      "simpson": "2.004559755",
+      "exact": "2",
+      "midpoint-visible": "true",
+      "trapezoid-visible": "true",
+      "simpson-visible": "true",
+      "tab": "Interactive",
+      "checked": "true",
+      "score": "0",
+      "actions": "8"
+    },
+    "accepted": {
+      "function": "wave",
+      "interval": "zero-pi",
+      "n": "4",
+      "dx": "0.7853981634",
+      "midpoint": "2.052344306",
+      "trapezoid": "1.8961188979",
+      "simpson": "2.004559755",
+      "exact": "2",
+      "midpoint-visible": "true",
+      "trapezoid-visible": "true",
+      "simpson-visible": "true",
+      "tab": "Interactive",
+      "checked": "true",
+      "score": "3",
+      "actions": "9"
+    },
+    "shellReset": {
+      "function": "wave",
+      "interval": "zero-pi",
+      "n": "8",
+      "dx": "0.3926990817",
+      "midpoint": "2.0129090856",
+      "trapezoid": "1.9742316019",
+      "simpson": "2.0002691699",
+      "exact": "2",
+      "midpoint-visible": "true",
+      "trapezoid-visible": "true",
+      "simpson-visible": "true",
+      "tab": "Interactive",
+      "checked": "false",
+      "score": "0",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1552
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 215,
+      "height": 1536,
+      "bottom": 1536
+    },
+    "hero": {
+      "top": 92,
+      "left": 228,
+      "width": 783,
+      "height": 178,
+      "bottom": 270
+    },
+    "tabs": {
+      "top": 277,
+      "left": 228,
+      "width": 783,
+      "height": 35,
+      "bottom": 312
+    },
+    "idea": {
+      "top": 319,
+      "left": 228,
+      "width": 783,
+      "height": 195,
+      "bottom": 514
+    },
+    "lab": {
+      "top": 521,
+      "left": 228,
+      "width": 783,
+      "height": 387,
+      "bottom": 908
+    },
+    "flow": {
+      "top": 915,
+      "left": 228,
+      "width": 783,
+      "height": 100,
+      "bottom": 1015
+    },
+    "formulas": {
+      "top": 1022,
+      "left": 228,
+      "width": 783,
+      "height": 154,
+      "bottom": 1176
+    },
+    "worked": {
+      "top": 1183,
+      "left": 228,
+      "width": 783,
+      "height": 178,
+      "bottom": 1361
+    },
+    "practice": {
+      "top": 1368,
+      "left": 228,
+      "width": 783,
+      "height": 125,
+      "bottom": 1493
+    },
+    "adjacent": {
+      "top": 1500,
+      "left": 228,
+      "width": 783,
+      "height": 36,
+      "bottom": 1536
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

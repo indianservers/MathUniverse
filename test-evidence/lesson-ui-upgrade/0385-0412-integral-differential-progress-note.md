@@ -1,6 +1,6 @@
 # Integral Calculus and Differential Equations target batch 0385-0412
 
-Dedicated rebuild target: **10 of 28 lessons completed; 18 pending.**
+Dedicated rebuild target: **11 of 28 lessons completed; 17 pending.**
 
 | Mockup | Lesson                           | Dedicated object model                                                                                                     | Status                                      |
 | ------ | -------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
@@ -14,7 +14,7 @@ Dedicated rebuild target: **10 of 28 lessons completed; 18 pending.**
 | 0392   | 313 Integration by Parts         | `reverse-product-rule-selectable-u-dv-computed-du-v-draggable-evaluation-finite-difference-residual-symbolic-practice`     | Reworked individually and browser-validated |
 | 0393   | 314 Partial Fractions            | `factored-rational-coefficient-solver-asymptotes-draggable-probe-component-overlay-recombination-antiderivative-practice`  | Reworked individually and browser-validated |
 | 0394   | 315 Improper Integrals           | `symmetric-improper-integral-truncation-tail-error-draggable-bounds-convergence-practice`                                  | Reworked individually and browser-validated |
-| 0395   | 316 Numerical Integration        | Pending audit                                                                                                              | Pending                                     |
+| 0395   | 316 Numerical Integration        | `three-method-quadrature-generated-midpoint-trapezoid-simpson-overlays-exact-errors-draggable-partition-practice`          | Reworked individually and browser-validated |
 | 0396   | 317 Volume by Slicing            | Pending audit                                                                                                              | Pending                                     |
 | 0397   | 318 Disc and Washer Methods      | Pending audit                                                                                                              | Pending                                     |
 | 0398   | 319 Shell Method                 | Pending audit                                                                                                              | Pending                                     |
@@ -186,3 +186,19 @@ Evidence:
 - `0394-reference.png`
 - `0394-desktop.png`
 - `0394-dedicated-target-validation.json`
+
+## Lesson 316 / Mockup 0395 - Numerical Integration
+
+Reworked individually as a simultaneous three-method quadrature comparison. Selectable wave, quadratic, and exponential-decay functions combine with three interval presets and an enforced-even subinterval count. One shared partition generates midpoint rectangles, trapezoids, Simpson parabolic arcs, sample points, step size, all three estimates, analytic reference value, absolute errors, and displayed convergence orders. The n slider and captured direct partition-boundary drag alter the actual partition and recompute every output. The three legend controls remove their corresponding SVG geometry rather than changing decorative state. Five tabs, Reset, Share, Workspace, worked example, formulas, three independently validated practice answers, shell Reset, adjacent lessons, and action counting are functional.
+
+Browser validation confirms the coherent initial model `f(x)=sin(x)+0.3cos(2x)` on `[0,pi]`, `n=8`, `dx=pi/8`, exact integral 2, midpoint estimate `2.0129090856`, trapezoidal estimate `1.9742316019`, and Simpson estimate `2.0002691699`. Selecting `f(x)=x^2` on `[0,1]` with `n=16` produces midpoint `0.3330078125`, trapezoidal `0.333984375`, and Simpson exactly `1/3`. Midpoint and Simpson layers hide independently. A real pointer drag changes n from 8 to 4 and recomputes all three estimates. Practice rejects three zero answers and accepts midpoint `1.0028615`, trapezoidal `0.9942819`, and Simpson `1.0000263` for `sin(x)` on `[0,pi/2]` with `n=6`, reaching 3/3. Local and shell Reset restore the complete initial state.
+
+The reference displays `f(x)=sin(x)+0.3cos(2x)` on `[0,pi]` but labels the exact integral `1.9543978640`; the displayed function integrates to exactly 2 because the cosine term contributes zero over that interval. The dedicated surface preserves the target's function, interval, method comparison, overlays, and information hierarchy while keeping the analytic reference, estimates, error table, and generated curve mathematically consistent.
+
+Final exact 1024x1536 capture matches the target stack: sidebar width 215, hero y=92-270, tabs y=277-312, one-view concept band y=319-514, comparison lab y=521-908, learning flow y=915-1015, formulas y=1022-1176, worked/misconception band y=1183-1361, practice y=1368-1493, and adjacent lessons y=1500-1536. Dedicated content spans x=228-1011, with no horizontal overflow, no overlapping practice controls, no duplicate shared lesson chrome, and zero console messages.
+
+Evidence:
+
+- `0395-reference.png`
+- `0395-desktop.png`
+- `0395-dedicated-target-validation.json`
