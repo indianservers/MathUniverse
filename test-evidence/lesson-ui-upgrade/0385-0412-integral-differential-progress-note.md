@@ -1,6 +1,6 @@
 # Integral Calculus and Differential Equations target batch 0385-0412
 
-Dedicated rebuild target: **23 of 28 lessons completed; 5 pending.**
+Dedicated rebuild target: **24 of 28 lessons completed; 4 pending.**
 
 | Mockup | Lesson                           | Dedicated object model                                                                                                     | Status                                      |
 | ------ | -------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
@@ -27,7 +27,7 @@ Dedicated rebuild target: **23 of 28 lessons completed; 5 pending.**
 | 0405   | 326 First-Order Linear Equations | `integrating-factor-pipeline-generated-slope-field-forcing-transient-solution-coefficient-controls-residual-verification-export` | Reworked individually and browser-validated |
 | 0406   | 327 Logistic Growth              | `logistic-population-closed-form-carrying-capacity-inflection-draggable-initial-condition-growth-rate-phases-practice`     | Reworked individually and browser-validated |
 | 0407   | 328 Second-Order Equations       | `mass-spring-damper-regime-aware-closed-form-roots-displacement-velocity-acceleration-damping-overview-practice`           | Reworked individually and browser-validated |
-| 0408   | 329 Phase Plane                  | Pending audit                                                                                                              | Pending                                     |
+| 0408   | 329 Phase Plane                  | `center-system-generated-vector-field-nullclines-circular-trajectories-draggable-initial-state-linked-time-series-animation-classification-radius-practice` | Reworked individually and browser-validated |
 | 0409   | 330 Equilibrium and Stability    | Pending audit                                                                                                              | Pending                                     |
 | 0410   | 331 Discrete Dynamical Systems   | Pending audit                                                                                                              | Pending                                     |
 | 0411   | 332 Cobweb Diagrams              | Pending audit                                                                                                              | Pending                                     |
@@ -388,3 +388,19 @@ Evidence:
 - `0407-reference.png`
 - `0407-desktop.png`
 - `0407-dedicated-target-validation.json`
+
+## Lesson 329 / Mockup 0408 - Phase Plane
+
+Reworked individually as a center-system phase-plane laboratory for `dx/dt=y`, `dy/dt=-x`. The shared initial state and time drive the exact analytic solution `x(t)=x0 cos(t)+y0 sin(t)`, `y(t)=-x0 sin(t)+y0 cos(t)`, the generated circular orbit, current position, invariant radius and speed, and both linked time-series plots. The initial-state point is directly draggable. Vector field, nullclines, and trajectories are real independent SVG layers; the time slider and Play animation move the solution state. Five tabs, Share, local Reset, equilibrium choices, numerical radius check, shell Reset, adjacent lessons, and compact footer are functional.
+
+Browser validation confirms the coherent default `(x0,y0)=(1.2,1.1)`, time zero, position `(1.2,1.1)`, and invariant radius/speed `sqrt(2.65)=1.62788206`. Changing to `(2,-1)` at `t=1.5` yields position `(-0.85602058,-2.06572717)` and radius/speed `sqrt(5)=2.23606798`. All three graph layers hide independently. A physical pointer drag moves the initial state to approximately `(1.6,2)`, regenerating the orbit and both time plots with invariant `2.56124969`; Play advances time and Pause stops it. Practice selects Saddle and rejects radius 3, then selects Center and accepts radius 2. Shell Reset restores the target initial state, visible layers, selected Center answer, stopped animation, and zero actions. Focused ESLint and the dedicated Playwright harness pass with zero console warnings or errors.
+
+The reference reports speed `1.43` for `(1.20,1.10)` while also reporting radius `1.63`. For this system, `|r'|=sqrt(y^2+(-x)^2)=sqrt(x^2+y^2)`, so speed and radius must both be `sqrt(2.65)=1.62788206`. The dedicated surface retains the target composition while keeping the trajectory, time plots, position, speed, radius, worked invariant, and practice calculation mathematically consistent.
+
+Final exact 992x1586 capture matches the target stack: sidebar width 208, hero y=102-216, tabs y=228-278, phase portrait/time-series lab y=290-856, insight/misconception band y=869-968, governing system y=981-1106, worked example y=1119-1285, practice y=1298-1418, adjacent lessons y=1430-1473, and footer y=1485-1574. Dedicated content spans x=223-979 with no horizontal overflow and no duplicate shared lesson chrome.
+
+Evidence:
+
+- `0408-reference.png`
+- `0408-desktop.png`
+- `0408-dedicated-target-validation.json`

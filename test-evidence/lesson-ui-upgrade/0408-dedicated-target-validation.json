@@ -1,0 +1,221 @@
+{
+  "mockup": "0408",
+  "lessonId": 329,
+  "checks": {
+    "initial": {
+      "x0": "1.2",
+      "y0": "1.1",
+      "time": "0",
+      "x": "1.2",
+      "y": "1.1",
+      "speed": "1.62788206",
+      "radius": "1.62788206",
+      "field": "true",
+      "nullclines": "true",
+      "trajectories": "true",
+      "playing": "false",
+      "tab": "Interact",
+      "classification": "Center",
+      "radius-result": "",
+      "actions": "0"
+    },
+    "controls": {
+      "x0": "2",
+      "y0": "-1",
+      "time": "1.5",
+      "x": "-0.85602058",
+      "y": "-2.06572717",
+      "speed": "2.23606798",
+      "radius": "2.23606798",
+      "field": "true",
+      "nullclines": "true",
+      "trajectories": "true",
+      "playing": "false",
+      "tab": "Formula",
+      "classification": "Center",
+      "radius-result": "",
+      "actions": "4"
+    },
+    "layers": {
+      "x0": "2",
+      "y0": "-1",
+      "time": "1.5",
+      "x": "-0.85602058",
+      "y": "-2.06572717",
+      "speed": "2.23606798",
+      "radius": "2.23606798",
+      "field": "false",
+      "nullclines": "false",
+      "trajectories": "false",
+      "playing": "false",
+      "tab": "Formula",
+      "classification": "Center",
+      "radius-result": "",
+      "actions": "7"
+    },
+    "drag": {
+      "x0": "1.6",
+      "y0": "2",
+      "time": "1.5",
+      "x": "2.1081695",
+      "y": "-1.45451758",
+      "speed": "2.56124969",
+      "radius": "2.56124969",
+      "field": "false",
+      "nullclines": "false",
+      "trajectories": "false",
+      "playing": "false",
+      "tab": "Formula",
+      "classification": "Center",
+      "radius-result": "",
+      "actions": "16"
+    },
+    "playing": {
+      "x0": "1.6",
+      "y0": "2",
+      "time": "1.65",
+      "x": "1.86713663",
+      "y": "-1.75322582",
+      "speed": "2.56124969",
+      "radius": "2.56124969",
+      "field": "false",
+      "nullclines": "false",
+      "trajectories": "false",
+      "playing": "true",
+      "tab": "Formula",
+      "classification": "Center",
+      "radius-result": "",
+      "actions": "17"
+    },
+    "rejected": {
+      "x0": "1.6",
+      "y0": "2",
+      "time": "1.7",
+      "x": "1.77717843",
+      "y": "-1.84435269",
+      "speed": "2.56124969",
+      "radius": "2.56124969",
+      "field": "false",
+      "nullclines": "false",
+      "trajectories": "false",
+      "playing": "false",
+      "tab": "Formula",
+      "classification": "Saddle",
+      "radius-result": "incorrect",
+      "actions": "20"
+    },
+    "accepted": {
+      "x0": "1.6",
+      "y0": "2",
+      "time": "1.7",
+      "x": "1.77717843",
+      "y": "-1.84435269",
+      "speed": "2.56124969",
+      "radius": "2.56124969",
+      "field": "false",
+      "nullclines": "false",
+      "trajectories": "false",
+      "playing": "false",
+      "tab": "Formula",
+      "classification": "Center",
+      "radius-result": "correct",
+      "actions": "22"
+    },
+    "shellReset": {
+      "x0": "1.2",
+      "y0": "1.1",
+      "time": "0",
+      "x": "1.2",
+      "y": "1.1",
+      "speed": "1.62788206",
+      "radius": "1.62788206",
+      "field": "true",
+      "nullclines": "true",
+      "trajectories": "true",
+      "playing": "false",
+      "tab": "Interact",
+      "classification": "Center",
+      "radius-result": "",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 992,
+      "height": 1586
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 208,
+      "height": 1586,
+      "bottom": 1586
+    },
+    "hero": {
+      "top": 102,
+      "left": 223,
+      "width": 756,
+      "height": 114,
+      "bottom": 216
+    },
+    "tabs": {
+      "top": 228,
+      "left": 223,
+      "width": 756,
+      "height": 50,
+      "bottom": 278
+    },
+    "lab": {
+      "top": 290,
+      "left": 223,
+      "width": 756,
+      "height": 566,
+      "bottom": 856
+    },
+    "insights": {
+      "top": 869,
+      "left": 223,
+      "width": 756,
+      "height": 99,
+      "bottom": 968
+    },
+    "system": {
+      "top": 981,
+      "left": 223,
+      "width": 756,
+      "height": 125,
+      "bottom": 1106
+    },
+    "worked": {
+      "top": 1119,
+      "left": 223,
+      "width": 756,
+      "height": 166,
+      "bottom": 1285
+    },
+    "practice": {
+      "top": 1298,
+      "left": 223,
+      "width": 756,
+      "height": 120,
+      "bottom": 1418
+    },
+    "adjacent": {
+      "top": 1430,
+      "left": 223,
+      "width": 756,
+      "height": 43,
+      "bottom": 1473
+    },
+    "footer": {
+      "top": 1485,
+      "left": 208,
+      "width": 784,
+      "height": 89,
+      "bottom": 1574
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
