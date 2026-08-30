@@ -1,0 +1,23 @@
+.os278-page {
+  top: -10px;
+  margin-bottom: -10px;
+}
+
+.os278-content > main,
+.os278-side {
+  height: 697px;
+  min-height: 0;
+}
+
+.os278-graph {
+  height: 270px;
+}
+
+.os278-content .trace {
+  height: 190px;
+}
+
+.os278-content th,
+.os278-content td {
+  height: 22px;
+}

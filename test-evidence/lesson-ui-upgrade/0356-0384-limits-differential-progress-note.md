@@ -1,11 +1,11 @@
 # Limits and Differential Calculus target batch 0356-0384
 
-Dedicated rebuild target: **1 of 29 lessons completed; 28 pending.**
+Dedicated rebuild target: **2 of 29 lessons completed; 27 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
 | 0356 | 277 Informal Limits | `removable-hole-two-sided-approach-draggable-markers-linked-table-limit-practice` | Reworked individually and browser-validated |
-| 0357 | 278 One-Sided Limits | Pending audit | Pending |
+| 0357 | 278 One-Sided Limits | `piecewise-one-sided-approach-independent-sliders-trace-verdict` | Reworked individually and browser-validated |
 | 0358 | 279 Infinite Limits | Pending audit | Pending |
 | 0359 | 280 Limits at Infinity | Pending audit | Pending |
 | 0360 | 281 Continuity at a Point | Pending audit | Pending |
@@ -47,3 +47,17 @@ Evidence:
 - `0356-reference.png`
 - `0356-desktop.png`
 - `0356-dedicated-target-validation.json`
+
+## Lesson 278 / Mockup 0357 - One-Sided Limits
+
+Reworked individually around a dedicated piecewise one-sided-limit model. The selected scenario drives both graph branches, open or filled break points, left/right formulas, function value at zero, five-row numeric trace, and two-sided verdict. Independent native range dragging, left/right trace visibility, jump/matching/removable scenario selection, five lesson tabs, Reset, Share, shell Reset, and Previous/Next navigation are functional.
+
+Browser validation starts with the jump `f(x)=-1` for `x<0` and `f(x)=1` for `x>0`, correctly deriving left limit `-1`, right limit `1`, and a nonexistent two-sided limit. It drags the approach distances to `-0.08` and `0.12`, hides the left trace, switches to matching sides and derives an existing limit of `1`, then switches to a removable hole while preserving the same two-sided limit but removing the function value. Shell Reset restores the jump, both traces, ±0.25 markers, selected interaction tab, and zero action count.
+
+Final exact 1507x1044 validation matches the target landscape stack: sidebar width 291, compact header y=101-175, tabs y=184-227, two-column graph and verdict workspace y=236-933, graph y=305-575, trace y=700-890, adjacent navigation y=951-1009, and no site footer. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0357-reference.png`
+- `0357-desktop.png`
+- `0357-dedicated-target-validation.json`

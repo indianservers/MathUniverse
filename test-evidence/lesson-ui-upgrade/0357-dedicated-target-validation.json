@@ -1,0 +1,162 @@
+{
+  "mockup": "0357",
+  "lessonId": 278,
+  "checks": {
+    "initial": {
+      "scenario": "jump",
+      "left-x": "-0.25",
+      "right-x": "0.25",
+      "left-limit": "-1",
+      "right-limit": "1",
+      "exists": "false",
+      "show-left": "true",
+      "show-right": "true",
+      "actions": "0"
+    },
+    "approached": {
+      "scenario": "jump",
+      "left-x": "-0.08",
+      "right-x": "0.12",
+      "left-limit": "-1",
+      "right-limit": "1",
+      "exists": "false",
+      "show-left": "true",
+      "show-right": "true",
+      "actions": "2"
+    },
+    "hidden": {
+      "scenario": "jump",
+      "left-x": "-0.08",
+      "right-x": "0.12",
+      "left-limit": "-1",
+      "right-limit": "1",
+      "exists": "false",
+      "show-left": "false",
+      "show-right": "true",
+      "actions": "3"
+    },
+    "match": {
+      "scenario": "match",
+      "left-x": "-0.08",
+      "right-x": "0.12",
+      "left-limit": "1",
+      "right-limit": "1",
+      "exists": "true",
+      "show-left": "false",
+      "show-right": "true",
+      "actions": "4"
+    },
+    "removable": {
+      "scenario": "removable",
+      "left-x": "-0.08",
+      "right-x": "0.12",
+      "left-limit": "1",
+      "right-limit": "1",
+      "exists": "true",
+      "show-left": "false",
+      "show-right": "true",
+      "actions": "5"
+    },
+    "reset": {
+      "scenario": "jump",
+      "left-x": "-0.25",
+      "right-x": "0.25",
+      "left-limit": "-1",
+      "right-limit": "1",
+      "exists": "false",
+      "show-left": "true",
+      "show-right": "true",
+      "actions": "0"
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/calculus/277-informal-limits",
+    "nextHref": "/lessons/calculus/279-infinite-limits"
+  },
+  "metrics": {
+    "document": {
+      "width": 1507,
+      "height": 1044
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 291,
+      "height": 1044,
+      "bottom": 1044
+    },
+    "shellHeader": {
+      "top": 0,
+      "left": 0,
+      "width": 0,
+      "height": 0,
+      "bottom": 0
+    },
+    "hero": {
+      "top": 101,
+      "left": 311,
+      "width": 1177,
+      "height": 74,
+      "bottom": 175
+    },
+    "tabs": {
+      "top": 184,
+      "left": 311,
+      "width": 1177,
+      "height": 43,
+      "bottom": 227
+    },
+    "content": {
+      "top": 236,
+      "left": 311,
+      "width": 1177,
+      "height": 697,
+      "bottom": 933
+    },
+    "main": {
+      "top": 236,
+      "left": 311,
+      "width": 897,
+      "height": 697,
+      "bottom": 933
+    },
+    "side": {
+      "top": 236,
+      "left": 1226,
+      "width": 262,
+      "height": 697,
+      "bottom": 933
+    },
+    "graph": {
+      "top": 305,
+      "left": 324,
+      "width": 871,
+      "height": 270,
+      "bottom": 575
+    },
+    "trace": {
+      "top": 700,
+      "left": 324,
+      "width": 871,
+      "height": 190,
+      "bottom": 890
+    },
+    "adjacent": {
+      "top": 951,
+      "left": 311,
+      "width": 1177,
+      "height": 58,
+      "bottom": 1009
+    },
+    "footer": {
+      "top": 0,
+      "left": 0,
+      "width": 0,
+      "height": 0,
+      "bottom": 0
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
