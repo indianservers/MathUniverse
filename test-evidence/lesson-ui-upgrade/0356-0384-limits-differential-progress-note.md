@@ -1,6 +1,6 @@
 # Limits and Differential Calculus target batch 0356-0384
 
-Dedicated rebuild target: **16 of 29 lessons completed; 13 pending.**
+Dedicated rebuild target: **17 of 29 lessons completed; 12 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
@@ -20,7 +20,7 @@ Dedicated rebuild target: **16 of 29 lessons completed; 13 pending.**
 | 0369 | 290 Higher Derivatives | `quartic-four-linked-derivative-levels-shared-drag-cursor-domain-visibility-sign-concavity-practice` | Reworked individually and browser-validated |
 | 0370 | 291 Product Rule | `editable-factor-pair-independent-product-derivative-product-rule-decomposition-domain-step-display-practice` | Reworked individually and browser-validated |
 | 0371 | 292 Quotient Rule | `editable-numerator-denominator-automatic-poles-quotient-derivative-tangent-rule-comparison-practice` | Reworked individually and browser-validated |
-| 0372 | 293 Chain Rule | Pending audit | Pending |
+| 0372 | 293 Chain Rule | `input-sine-inner-square-outer-composition-linked-rates-invertible-output-drag-tangent-practice` | Reworked individually and browser-validated |
 | 0373 | 294 Implicit Differentiation | Pending audit | Pending |
 | 0374 | 295 Parametric Differentiation | Pending audit | Pending |
 | 0375 | 296 Critical Points | Pending audit | Pending |
@@ -265,3 +265,17 @@ Evidence:
 - `0371-reference.png`
 - `0371-desktop.png`
 - `0371-dedicated-target-validation.json`
+
+## Lesson 293 / Mockup 0372 - Chain Rule
+
+Reworked individually around one shared composition pipeline `x -> g(x)=sin(x) -> f(g(x))=sin^2(x)`. The x state drives the inner value, output, inner rate `cos(x)`, outer rate `2sin(x)`, total chain rate `sin(2x)`, five visual-model cards, graph point/tangent, mini rate plots, worked numerical check, and action count. The input range and captured SVG graph dragging are real. The output range is also functional: it inverts `y=sin^2(x)` on the active principal branch to move x, rather than duplicating the input slider decoratively.
+
+Browser validation confirms the target start x=`0.05`, inner=`0.0500`, output=`0.0025`, inner rate=`0.9988`, outer rate=`0.1000`, and total rate=`0.0998`. Moving x to `1` derives inner `0.8415`, output `0.7081`, and total rate `0.9093`; moving the output to `0.25` inversely selects x near `0.52`; a real graph drag then moves x to approximately `1.38` and updates the entire pipeline. Hint and Steps disclosures independently toggle. Practice rejects `4(3x^2+1)^3`, accepts `24x(3x^2+1)^3`, and shell Reset restores x, pipeline values, selected tab, visible hint, hidden steps, target answer state, and zero actions.
+
+Final exact 1007x1562 validation matches the target stack: sidebar width 205, hero y=91-317, tabs y=327-372, four-stage guide y=387-475, visual pipeline y=488-730, graph/rates y=740-1033, worked/pitfall row y=1043-1331, practice y=1341-1496, and adjacent navigation y=1506-1561. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0372-reference.png`
+- `0372-desktop.png`
+- `0372-dedicated-target-validation.json`
