@@ -1,0 +1,185 @@
+{
+  "mockup": "0385",
+  "lessonId": 306,
+  "checks": {
+    "initial": {
+      "a": "-1",
+      "b": "6",
+      "n": "12",
+      "type": "right",
+      "dx": "0.583333",
+      "signed": "84.963108",
+      "positive": "84.963108",
+      "negative": "0",
+      "rectangles": "true",
+      "curve": "true",
+      "axes": "true",
+      "grid": "true",
+      "result": "correct",
+      "actions": "0"
+    },
+    "controls": {
+      "a": "-2",
+      "b": "3",
+      "n": "24",
+      "type": "midpoint",
+      "dx": "0.208333",
+      "signed": "6.555718",
+      "positive": "6.555718",
+      "negative": "0",
+      "rectangles": "true",
+      "curve": "true",
+      "axes": "true",
+      "grid": "true",
+      "result": "correct",
+      "actions": "4"
+    },
+    "dragged": {
+      "a": "-1.485806",
+      "b": "3",
+      "n": "24",
+      "type": "midpoint",
+      "dx": "0.186909",
+      "signed": "5.840102",
+      "positive": "5.840102",
+      "negative": "0",
+      "rectangles": "true",
+      "curve": "true",
+      "axes": "true",
+      "grid": "true",
+      "result": "correct",
+      "actions": "11"
+    },
+    "layersOff": {
+      "a": "-1.485806",
+      "b": "3",
+      "n": "24",
+      "type": "midpoint",
+      "dx": "0.186909",
+      "signed": "5.840102",
+      "positive": "5.840102",
+      "negative": "0",
+      "rectangles": "false",
+      "curve": "false",
+      "axes": "false",
+      "grid": "false",
+      "result": "correct",
+      "actions": "15"
+    },
+    "rejected": {
+      "a": "-1.485806",
+      "b": "3",
+      "n": "24",
+      "type": "midpoint",
+      "dx": "0.186909",
+      "signed": "5.840102",
+      "positive": "5.840102",
+      "negative": "0",
+      "rectangles": "false",
+      "curve": "false",
+      "axes": "false",
+      "grid": "false",
+      "result": "incorrect",
+      "actions": "16"
+    },
+    "accepted": {
+      "a": "-1.485806",
+      "b": "3",
+      "n": "24",
+      "type": "midpoint",
+      "dx": "0.186909",
+      "signed": "5.840102",
+      "positive": "5.840102",
+      "negative": "0",
+      "rectangles": "false",
+      "curve": "false",
+      "axes": "false",
+      "grid": "false",
+      "result": "correct",
+      "actions": "17"
+    },
+    "localReset": {
+      "a": "-1",
+      "b": "6",
+      "n": "12",
+      "type": "right",
+      "dx": "0.583333",
+      "signed": "84.963108",
+      "positive": "84.963108",
+      "negative": "0",
+      "rectangles": "true",
+      "curve": "true",
+      "axes": "true",
+      "grid": "true",
+      "result": "correct",
+      "actions": "1"
+    },
+    "shellReset": {
+      "a": "-1",
+      "b": "6",
+      "n": "12",
+      "type": "right",
+      "dx": "0.583333",
+      "signed": "84.963108",
+      "positive": "84.963108",
+      "negative": "0",
+      "rectangles": "true",
+      "curve": "true",
+      "axes": "true",
+      "grid": "true",
+      "result": "correct",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 211,
+      "height": 1536,
+      "bottom": 1536
+    },
+    "hero": {
+      "top": 101,
+      "left": 226,
+      "width": 782,
+      "height": 138,
+      "bottom": 239
+    },
+    "tabs": {
+      "top": 251,
+      "left": 226,
+      "width": 782,
+      "height": 35,
+      "bottom": 286
+    },
+    "lab": {
+      "top": 286,
+      "left": 226,
+      "width": 782,
+      "height": 710,
+      "bottom": 996
+    },
+    "flow": {
+      "top": 1012,
+      "left": 226,
+      "width": 782,
+      "height": 220,
+      "bottom": 1232
+    },
+    "info": {
+      "top": 1248,
+      "left": 226,
+      "width": 782,
+      "height": 260,
+      "bottom": 1508
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
