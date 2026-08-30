@@ -1,6 +1,6 @@
 # Integral Calculus and Differential Equations target batch 0385-0412
 
-Dedicated rebuild target: **17 of 28 lessons completed; 11 pending.**
+Dedicated rebuild target: **18 of 28 lessons completed; 10 pending.**
 
 | Mockup | Lesson                           | Dedicated object model                                                                                                     | Status                                      |
 | ------ | -------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
@@ -21,7 +21,7 @@ Dedicated rebuild target: **17 of 28 lessons completed; 11 pending.**
 | 0399   | 320 Arc Length                   | `parabola-domain-polyline-segments-draggable-ds-triangle-exact-arc-integral-error-practice`                                | Reworked individually and browser-validated |
 | 0400   | 321 Surface Area of Revolution   | `generating-curve-revolved-surface-mesh-axis-bounds-draggable-differential-ring-animation-surface-integral-practice`       | Reworked individually and browser-validated |
 | 0401   | 322 Accumulation Functions       | `linked-integrand-accumulation-function-generated-midpoint-rectangles-draggable-x-animation-ftc-derivative-prediction`     | Reworked individually and browser-validated |
-| 0402   | 323 Direction Fields             | Pending audit                                                                                                              | Pending                                     |
+| 0402   | 323 Direction Fields             | `direction-field-generated-local-slopes-exact-solution-family-draggable-seeds-slope-triangle-prediction`                   | Reworked individually and browser-validated |
 | 0403   | 324 Euler's Method               | Pending audit                                                                                                              | Pending                                     |
 | 0404   | 325 Separable Equations          | Pending audit                                                                                                              | Pending                                     |
 | 0405   | 326 First-Order Linear Equations | Pending audit                                                                                                              | Pending                                     |
@@ -298,3 +298,19 @@ Evidence:
 - `0401-reference.png`
 - `0401-desktop.png`
 - `0401-dedicated-target-validation.json`
+
+## Lesson 323 / Mockup 0402 - Direction Fields
+
+Reworked individually as a generated slope-field and exact solution-family laboratory for `dy/dx=x-y`. Density and x/y scaling regenerate every local direction segment; axes, solution curves, slope triangle, and grid are real display layers. Two initial seeds create exact curves from `y=x-1+Ce^-x`, remain independently selectable and directly draggable, and drive the selected-point coordinates, local slope calculation, slope triangle, curve legend, and action count. Add seed, Clear curves, five tabs, Share, worked example, shell Reset, and the place-seed prediction exercise all update the dedicated model rather than static labels.
+
+Browser validation confirms the initial 24-density field, seeds `(1,1)` and `(0,-1)`, and selected slope `1-1=0`. A real slider-coordinate interaction changes density to 28; display controls hide axes and reveal the grid; Add seed creates `(-1,2)` with slope `-3`; Clear curves removes all generated solutions; and shell Reset restores the complete initial field. A real pointer drag moves seed 1 to approximately `(2.081615,0.353986)` and recomputes its exact solution and local slope as `1.727629`. Practice rejects slope `3` with Rises, accepts slope `-3` with Falls, and reveals the computed hint. No console warnings or errors occur.
+
+Focused ESLint passes. The broader `CalculusLessonAdapter.test.tsx` remains red on two earlier case-sensitive snippet expectations in Lessons 286 and 307 (`First principles` and `Riemann sums`); neither failure reaches or implicates the Lesson 323 model.
+
+Final exact 1024x1536 capture matches the target stack: sidebar width 216, hero y=102-220, five-tab strip y=220-275, three-column direction-field laboratory y=291-847, learning/worked band y=863-1198, prediction practice y=1211-1341, adjacent lessons y=1353-1407, and compact footer y=1422-1536. Dedicated content spans x=231-1009 with no horizontal overflow and no duplicate shared lesson chrome.
+
+Evidence:
+
+- `0402-reference.png`
+- `0402-desktop.png`
+- `0402-dedicated-target-validation.json`
