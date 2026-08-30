@@ -1,0 +1,182 @@
+{
+  "mockup": "0371",
+  "lessonId": 292,
+  "checks": {
+    "initial": {
+      "f": "-(1+x^2)",
+      "g": "2+x",
+      "poles": "-2",
+      "x0": "0",
+      "y": "-0.5",
+      "model": "0.25",
+      "rule": "0.25",
+      "error": "0",
+      "derivative-visible": "true",
+      "result": "",
+      "actions": "0"
+    },
+    "xOne": {
+      "f": "-(1+x^2)",
+      "g": "2+x",
+      "poles": "-2",
+      "x0": "1",
+      "y": "-0.6667",
+      "model": "-0.4444",
+      "rule": "-0.4444",
+      "error": "0",
+      "derivative-visible": "true",
+      "result": "",
+      "actions": "1"
+    },
+    "hidden": {
+      "f": "-(1+x^2)",
+      "g": "2+x",
+      "poles": "-2",
+      "x0": "1",
+      "y": "-0.6667",
+      "model": "-0.4444",
+      "rule": "-0.4444",
+      "error": "0",
+      "derivative-visible": "false",
+      "result": "",
+      "actions": "2"
+    },
+    "dragged": {
+      "f": "-(1+x^2)",
+      "g": "2+x",
+      "poles": "-2",
+      "x0": "1.71",
+      "y": "-1.0577",
+      "model": "-0.6367",
+      "rule": "-0.6367",
+      "error": "0",
+      "derivative-visible": "false",
+      "result": "",
+      "actions": "9"
+    },
+    "noPole": {
+      "f": "-(1+x^2)",
+      "g": "x^2+1",
+      "poles": "",
+      "x0": "1.71",
+      "y": "-1",
+      "model": "0",
+      "rule": "0",
+      "error": "0",
+      "derivative-visible": "false",
+      "result": "",
+      "actions": "10"
+    },
+    "rejected": {
+      "f": "-(1+x^2)",
+      "g": "2+x",
+      "poles": "-2",
+      "x0": "1.71",
+      "y": "-1.0577",
+      "model": "-0.6367",
+      "rule": "-0.6367",
+      "error": "0",
+      "derivative-visible": "false",
+      "result": "incorrect",
+      "actions": "12"
+    },
+    "accepted": {
+      "f": "-(1+x^2)",
+      "g": "2+x",
+      "poles": "-2",
+      "x0": "1.71",
+      "y": "-1.0577",
+      "model": "-0.6367",
+      "rule": "-0.6367",
+      "error": "0",
+      "derivative-visible": "false",
+      "result": "correct",
+      "actions": "14"
+    },
+    "reset": {
+      "f": "-(1+x^2)",
+      "g": "2+x",
+      "poles": "-2",
+      "x0": "0",
+      "y": "-0.5",
+      "model": "0.25",
+      "rule": "0.25",
+      "error": "0",
+      "derivative-visible": "true",
+      "result": "",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1019,
+      "height": 1543
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 220,
+      "height": 1543,
+      "bottom": 1543
+    },
+    "hero": {
+      "top": 91,
+      "left": 236,
+      "width": 765,
+      "height": 167,
+      "bottom": 258
+    },
+    "tabs": {
+      "top": 268,
+      "left": 236,
+      "width": 765,
+      "height": 38,
+      "bottom": 306
+    },
+    "flow": {
+      "top": 316,
+      "left": 236,
+      "width": 765,
+      "height": 94,
+      "bottom": 410
+    },
+    "lab": {
+      "top": 420,
+      "left": 236,
+      "width": 765,
+      "height": 546,
+      "bottom": 966
+    },
+    "derivation": {
+      "top": 976,
+      "left": 236,
+      "width": 765,
+      "height": 201,
+      "bottom": 1177
+    },
+    "bottom": {
+      "top": 1187,
+      "left": 236,
+      "width": 765,
+      "height": 213,
+      "bottom": 1400
+    },
+    "adjacent": {
+      "top": 1410,
+      "left": 236,
+      "width": 765,
+      "height": 50,
+      "bottom": 1460
+    },
+    "footer": {
+      "top": 1469,
+      "left": 236,
+      "width": 765,
+      "height": 73,
+      "bottom": 1542
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

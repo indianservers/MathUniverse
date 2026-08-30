@@ -1,6 +1,6 @@
 # Limits and Differential Calculus target batch 0356-0384
 
-Dedicated rebuild target: **15 of 29 lessons completed; 14 pending.**
+Dedicated rebuild target: **16 of 29 lessons completed; 13 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
@@ -19,7 +19,7 @@ Dedicated rebuild target: **15 of 29 lessons completed; 14 pending.**
 | 0368 | 289 Derivative Graph | `integrated-cubic-linked-derivative-shared-draggable-cursor-tangent-sign-zeros-scales-challenge` | Reworked individually and browser-validated |
 | 0369 | 290 Higher Derivatives | `quartic-four-linked-derivative-levels-shared-drag-cursor-domain-visibility-sign-concavity-practice` | Reworked individually and browser-validated |
 | 0370 | 291 Product Rule | `editable-factor-pair-independent-product-derivative-product-rule-decomposition-domain-step-display-practice` | Reworked individually and browser-validated |
-| 0371 | 292 Quotient Rule | Pending audit | Pending |
+| 0371 | 292 Quotient Rule | `editable-numerator-denominator-automatic-poles-quotient-derivative-tangent-rule-comparison-practice` | Reworked individually and browser-validated |
 | 0372 | 293 Chain Rule | Pending audit | Pending |
 | 0373 | 294 Implicit Differentiation | Pending audit | Pending |
 | 0374 | 295 Parametric Differentiation | Pending audit | Pending |
@@ -249,3 +249,19 @@ Evidence:
 - `0370-reference.png`
 - `0370-desktop.png`
 - `0370-dedicated-target-validation.json`
+
+## Lesson 292 / Mockup 0371 - Quotient Rule
+
+Reworked individually around independently editable numerator and denominator expressions with analytic value/derivative models and denominator-zero metadata. The selected pair drives the quotient graph, optional derivative graph, vertical asymptotes, domain exclusions, movable evaluation point, tangent line, value cards, symbolic rule substitution, and action count. A central-difference slope computed from the quotient independently verifies the analytic quotient-rule slope. The x range and captured SVG pointer drag move the actual evaluation point while avoiding poles; changing to `x^2+1` removes the pole and updates the domain card in real time.
+
+Browser validation confirms the target start `f=-(1+x^2)`, `g=x+2`, exclusion `x=-2`, x0=`0`, and y=`-0.5`, with sampled and rule slopes both `0.25`. Moving x0 to `1` derives y=`-0.6667` and slope `-0.4444`; hiding y' removes the real derivative layer; a pointer drag moves x0 to approximately `1.71`; switching the denominator to `x^2+1` removes all real exclusions and makes the quotient constantly `-1`. Practice rejects `3/(x^2+1)`, accepts `(-3x^2+2x+3)/(x^2+1)^2`, reveals the derivation, and shell Reset restores expressions, pole, point, derivative visibility, selected tab, hidden solution, blank result, and zero actions.
+
+The reference alternates between `-0.250` and `+0.250` for the initial tangent and prints a simplified numerator with an incorrect leading sign. Direct differentiation of `-(1+x^2)/(x+2)` gives slope `+0.25` at x=0 and numerator `-x^2-4x+1`; this implementation keeps the function, graph, tangent, sampled slope, analytic rule, and evaluation cards coherent.
+
+Final exact 1019x1543 validation matches the target stack: sidebar width 220, hero y=91-258, tabs y=268-306, four-stage flow y=316-410, quotient laboratory y=420-966, rule derivation y=976-1177, worked/misconception/practice row y=1187-1400, adjacent navigation y=1410-1460, and footer y=1469-1542. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0371-reference.png`
+- `0371-desktop.png`
+- `0371-dedicated-target-validation.json`

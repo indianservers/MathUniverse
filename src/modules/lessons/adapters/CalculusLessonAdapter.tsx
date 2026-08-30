@@ -22,6 +22,7 @@ import NormalLineTargetLesson288 from "./calculus/NormalLineTargetLesson288";
 import DerivativeGraphTargetLesson289 from "./calculus/DerivativeGraphTargetLesson289";
 import HigherDerivativesTargetLesson290 from "./calculus/HigherDerivativesTargetLesson290";
 import ProductRuleTargetLesson291 from "./calculus/ProductRuleTargetLesson291";
+import QuotientRuleTargetLesson292 from "./calculus/QuotientRuleTargetLesson292";
 
 const viewportSize = { width: 640, height: 360 };
 const fallbackViewport: GraphViewport = { xMin: -5, xMax: 5, yMin: -6, yMax: 10, ...viewportSize };
@@ -145,6 +146,7 @@ export default function CalculusLessonAdapter(props: LessonAdapterProps) {
   if (props.lesson.id === 289) return <DerivativeGraphTargetLesson289 {...props} />;
   if (props.lesson.id === 290) return <HigherDerivativesTargetLesson290 {...props} />;
   if (props.lesson.id === 291) return <ProductRuleTargetLesson291 {...props} />;
+  if (props.lesson.id === 292) return <QuotientRuleTargetLesson292 {...props} />;
   if (props.lesson.id >= 277 && props.lesson.id <= 305) return <LimitsDifferentialMockupLesson {...props} />;
   if (props.lesson.id >= 306 && props.lesson.id <= 333) return <IntegralDifferentialMockupLesson {...props} />;
   return <LegacyCalculusLessonAdapter {...props} />;
