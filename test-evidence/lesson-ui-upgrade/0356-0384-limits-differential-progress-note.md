@@ -1,6 +1,6 @@
 # Limits and Differential Calculus target batch 0356-0384
 
-Dedicated rebuild target: **11 of 29 lessons completed; 18 pending.**
+Dedicated rebuild target: **12 of 29 lessons completed; 17 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
@@ -15,7 +15,7 @@ Dedicated rebuild target: **11 of 29 lessons completed; 18 pending.**
 | 0364 | 285 Instantaneous Rate of Change | `quadratic-fixed-base-movable-secant-h-limit-tangent-convergence-practice` | Reworked individually and browser-validated |
 | 0365 | 286 Derivative From First Principles | `selectable-quadratic-base-point-h-secant-difference-quotient-symbolic-limit-practice` | Reworked individually and browser-validated |
 | 0366 | 287 Tangent Line | `quadratic-draggable-point-derivative-tangent-slope-triangle-point-slope-practice` | Reworked individually and browser-validated |
-| 0367 | 288 Normal Line | Pending audit | Pending |
+| 0367 | 288 Normal Line | `concave-quadratic-draggable-point-tangent-negative-reciprocal-normal-right-angle-step-practice` | Reworked individually and browser-validated |
 | 0368 | 289 Derivative Graph | Pending audit | Pending |
 | 0369 | 290 Higher Derivatives | Pending audit | Pending |
 | 0370 | 291 Product Rule | Pending audit | Pending |
@@ -187,3 +187,19 @@ Evidence:
 - `0366-reference.png`
 - `0366-desktop.png`
 - `0366-dedicated-target-validation.json`
+
+## Lesson 288 / Mockup 0367 - Normal Line
+
+Reworked individually around the displayed concave quadratic `f(x)=-2x^2+x`, a draggable point `P=(x,f(x))`, its derivative tangent, and the perpendicular negative-reciprocal normal. The point state drives the curve coordinate, tangent slope/equation, normal classification/slope/equation, right-angle construction, CAS panel, perpendicularity proof, and action count. The step-size range changes the local construction scale, while native x dragging and captured SVG pointer dragging move the actual point. Five lesson tabs, Reset, Share, two-field practice checking, shell Reset, Previous/Next navigation, and footer controls are functional.
+
+Browser validation starts at `x=0.25`, deriving the coherent point `P=(0.25,0.125)`, horizontal tangent, and vertical normal. Moving to `x=1` derives `P=(1,-1)`, tangent slope `-3`, and normal slope `1/3`; changing h to `0.12` updates the construction step; a real pointer drag moves to approximately `x=0.4`, deriving tangent `-0.6` and normal `1.6667`. Practice rejects slope `-1`, accepts `m=1, b=-0.5`, and shell Reset restores x, h, equations, selected tab, blank result, and zero actions.
+
+The reference labels `f(x)=-2x^2+x` but prints `P(0.25,0.375)`; the visible function evaluates to `0.125`. This implementation keeps the graph, coordinate, tangent, and normal mutually consistent. At the horizontal-tangent start, the normal is classified truthfully as vertical while retaining the reference's `-2500` finite rendering approximation in the equation detail.
+
+Final exact 1024x1536 validation matches the target stack: sidebar width 218, hero y=91-276, tabs y=285-328, four-stage flow y=338-462, normal-line lab y=472-928, rule/misconception row y=938-1135, worked/practice row y=1145-1389, adjacent navigation y=1399-1442, and footer y=1451-1529. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0367-reference.png`
+- `0367-desktop.png`
+- `0367-dedicated-target-validation.json`
