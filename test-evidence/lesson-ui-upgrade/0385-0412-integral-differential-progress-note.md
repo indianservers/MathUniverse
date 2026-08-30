@@ -1,6 +1,6 @@
 # Integral Calculus and Differential Equations target batch 0385-0412
 
-Dedicated rebuild target: **22 of 28 lessons completed; 6 pending.**
+Dedicated rebuild target: **23 of 28 lessons completed; 5 pending.**
 
 | Mockup | Lesson                           | Dedicated object model                                                                                                     | Status                                      |
 | ------ | -------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
@@ -26,7 +26,7 @@ Dedicated rebuild target: **22 of 28 lessons completed; 6 pending.**
 | 0404   | 325 Separable Equations          | `draggable-variable-separation-dual-antiderivatives-combined-constant-solution-family-k-graph-practice`                    | Reworked individually and browser-validated |
 | 0405   | 326 First-Order Linear Equations | `integrating-factor-pipeline-generated-slope-field-forcing-transient-solution-coefficient-controls-residual-verification-export` | Reworked individually and browser-validated |
 | 0406   | 327 Logistic Growth              | `logistic-population-closed-form-carrying-capacity-inflection-draggable-initial-condition-growth-rate-phases-practice`     | Reworked individually and browser-validated |
-| 0407   | 328 Second-Order Equations       | Pending audit                                                                                                              | Pending                                     |
+| 0407   | 328 Second-Order Equations       | `mass-spring-damper-regime-aware-closed-form-roots-displacement-velocity-acceleration-damping-overview-practice`           | Reworked individually and browser-validated |
 | 0408   | 329 Phase Plane                  | Pending audit                                                                                                              | Pending                                     |
 | 0409   | 330 Equilibrium and Stability    | Pending audit                                                                                                              | Pending                                     |
 | 0410   | 331 Discrete Dynamical Systems   | Pending audit                                                                                                              | Pending                                     |
@@ -374,3 +374,17 @@ Evidence:
 - `0406-reference.png`
 - `0406-desktop.png`
 - `0406-dedicated-target-validation.json`
+
+## Lesson 328 / Mockup 0407 - Second-Order Equations
+
+Reworked individually as a mass-spring-damper oscillator laboratory for `mx''+cx'+kx=0`. The shared mass, damping, stiffness, initial displacement, initial velocity, time window, and time-step model determines the characteristic discriminant and roots, natural and damped frequencies, damping ratio and regime, analytic displacement/velocity/acceleration samples, three generated response plots, five peak/period/decrement metrics, system diagram, formula cards, and damping overview. Both damping controls are linked; all parameter controls, five tabs, lesson Reset, Share, challenge choices, shell Reset, adjacent lessons, and compact footer are functional.
+
+Browser validation confirms the coherent default `m=1`, `c=0.2`, `k=4`, `x(0)=1`, `v(0)=0`, `zeta=0.05`, `omega_n=2`, roots `-0.1 +/- 1.99749844i`, period `3.14552702`, and logarithmic decrement `0.3145527`. Setting `c=4` produces critical damping with `zeta=1`; the linked overview control at `c=6` produces the overdamped regime. Changing to `m=2`, `c=6`, `k=18`, `x(0)=0.5`, `v(0)=1`, and a 20-second window regenerates an underdamped response with `zeta=0.5`, `omega_n=3`, `omega_d=2.59807621`, roots `-1.5 +/- 2.59807621i`, and updated peak metrics. The challenge rejects `1.00`, accepts `0.50`, and shell Reset restores the complete initial model and zero actions. Focused ESLint and the dedicated Playwright harness pass with zero console warnings or errors.
+
+Final exact 945x1665 capture matches the target stack: sidebar width 194, hero y=91-230, tabs y=231-280, oscillator laboratory y=288-956, damping overview y=966-1115, insight/misconception band y=1124-1311, formula/challenge band y=1320-1510, adjacent lessons y=1522-1571, and footer y=1581-1665. Dedicated content spans x=207-932 with no horizontal overflow and no duplicate shared lesson chrome.
+
+Evidence:
+
+- `0407-reference.png`
+- `0407-desktop.png`
+- `0407-dedicated-target-validation.json`
