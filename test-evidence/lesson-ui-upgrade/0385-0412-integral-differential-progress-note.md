@@ -1,6 +1,6 @@
 # Integral Calculus and Differential Equations target batch 0385-0412
 
-Dedicated rebuild target: **25 of 28 lessons completed; 3 pending.**
+Dedicated rebuild target: **26 of 28 lessons completed; 2 pending.**
 
 | Mockup | Lesson                           | Dedicated object model                                                                                                     | Status                                      |
 | ------ | -------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
@@ -29,7 +29,7 @@ Dedicated rebuild target: **25 of 28 lessons completed; 3 pending.**
 | 0407   | 328 Second-Order Equations       | `mass-spring-damper-regime-aware-closed-form-roots-displacement-velocity-acceleration-damping-overview-practice`           | Reworked individually and browser-validated |
 | 0408   | 329 Phase Plane                  | `center-system-generated-vector-field-nullclines-circular-trajectories-draggable-initial-state-linked-time-series-animation-classification-radius-practice` | Reworked individually and browser-validated |
 | 0409   | 330 Equilibrium and Stability    | `coherent-three-equilibrium-autonomous-flow-potential-phase-line-rk4-trajectory-draggable-initial-state-stability-sign-test-practice` | Reworked individually and browser-validated |
-| 0410   | 331 Discrete Dynamical Systems   | Pending audit                                                                                                              | Pending                                     |
+| 0410   | 331 Discrete Dynamical Systems   | `parameterized-iteration-engine-generated-cobweb-state-table-fixed-points-stability-draggable-seed-animation-practice`     | Reworked individually and browser-validated |
 | 0411   | 332 Cobweb Diagrams              | Pending audit                                                                                                              | Pending                                     |
 | 0412   | 333 Chaos and Bifurcation        | Pending audit                                                                                                              | Pending                                     |
 
@@ -420,3 +420,19 @@ Evidence:
 - `0409-reference.png`
 - `0409-desktop.png`
 - `0409-dedicated-target-validation.json`
+
+## Lesson 331 / Mockup 0410 - Discrete Dynamical Systems
+
+Reworked individually as a parameterized iteration laboratory. The default `f(x)=x^2-r/4` makes the visible `r=2` control genuinely produce `x^2-0.5`; one iteration array drives the state table, orange cobweb, current animation step, long-term classification, and worked values. The quadratic fixed points and derivative stability update with r. The other real rule presets are logistic `rx(1-x)` and linear `0.5x+0.2`. Initial state, iteration count, and parameter controls are functional; the graph directly drags x0. Play/Pause and step controls alter the displayed cobweb depth, Trail removes the actual cobweb layer, Animate is tracked, and five tabs, Reset, Random, Share, checked numerical practice, hint, shell Reset, adjacent lessons, and compact footer work.
+
+Browser validation confirms the default `x0=0.2`, `N=20`, `r=2`, fixed points `(1+/-sqrt(3))/2 = -0.3660254, 1.3660254`, and twentieth iterate `-0.36576466`, correctly classified as converging to the stable negative fixed point. Changing to `x0=0.4`, `N=30`, and `r=3` recomputes roots `-0.5` and `1.5`; selecting the linear rule converges to `0.4`. Animate and Trail switch off independently. A physical pointer drag moves x0 to approximately `0.8`; Play advances from the terminal step to step zero. Practice rejects `x1=0.8`, then accepts `0.7000, 0.5500, 0.4000` and reveals the contraction hint. Shell Reset restores the complete default model and zero actions. Focused ESLint and the dedicated Playwright harness pass with zero console warnings or errors.
+
+The reference's displayed default table begins with the correct values `0.2, -0.46, -0.2884`, but labels the limiting fixed point near `-0.387298`; solving its printed equation `x=x^2-0.5` gives `(1-sqrt(3))/2=-0.3660254`. It also shows a parameter r that is disconnected from the printed rule. The dedicated model keeps the target composition while linking r through `x^2-r/4` and keeping every table row, cobweb segment, fixed point, derivative stability, behavior label, worked result, and practice answer mathematically consistent.
+
+Final exact 1024x1536 capture matches the target stack: sidebar width 205, title/action surface y=96-226, tabs y=226-266, iteration/cobweb/state-table lab y=278-876, theory band y=886-1106, worked/practice band y=1116-1373, adjacent lessons y=1386-1434, and footer y=1449-1535. Dedicated content spans x=218-1012 with no horizontal overflow and no duplicate shared lesson chrome.
+
+Evidence:
+
+- `0410-reference.png`
+- `0410-desktop.png`
+- `0410-dedicated-target-validation.json`
