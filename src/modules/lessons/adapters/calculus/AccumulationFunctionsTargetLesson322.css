@@ -1,0 +1,581 @@
+.acc322-page {
+  --ink: #122242;
+  --line: #dce5ef;
+  position: relative;
+  top: -13px;
+  margin-bottom: -9px;
+  color: var(--ink);
+  font:
+    9px/1.42 Inter,
+    system-ui,
+    sans-serif;
+  letter-spacing: 0;
+}
+.acc322-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.acc322-page h1,
+.acc322-page h2,
+.acc322-page h3,
+.acc322-page p {
+  margin: 0;
+}
+.acc322-page button,
+.acc322-page input,
+.acc322-page select {
+  font: inherit;
+  color: inherit;
+}
+.acc322-hero {
+  position: relative;
+  height: 161px;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: #fff;
+  padding: 16px;
+}
+.acc322-hero > span {
+  display: flex;
+  gap: 8px;
+}
+.acc322-hero > span b {
+  border-radius: 11px;
+  background: #e7f7ff;
+  padding: 5px 10px;
+  color: #0877ac;
+  font-size: 7px;
+}
+.acc322-hero > span b + b {
+  background: #f1f3f6;
+  color: #40506b;
+}
+.acc322-hero h1 {
+  margin-top: 11px;
+  font-size: 29px;
+  line-height: 33px;
+  font-weight: 800;
+}
+.acc322-hero > p {
+  font-size: 13px;
+  color: #596a84;
+}
+.acc322-hero > div {
+  display: flex;
+  gap: 7px;
+  margin-top: 12px;
+}
+.acc322-hero i {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 7px 11px;
+  font-style: normal;
+  font-weight: 700;
+}
+.acc322-hero > button {
+  position: absolute;
+  right: 16px;
+  bottom: 20px;
+  display: flex;
+  height: 36px;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  padding: 0 14px;
+}
+.acc322-hero > button svg {
+  width: 14px;
+}
+.acc322-tabs {
+  display: grid;
+  height: 42px;
+  grid-template-columns: repeat(5, 1fr);
+  margin-top: 1px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  padding: 2px 12px;
+}
+.acc322-tabs button {
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  font-weight: 700;
+  font-size: 11px;
+}
+.acc322-tabs button.active {
+  border-color: #0798b4;
+  color: #087da5;
+}
+.acc322-top {
+  height: 396px;
+  margin-top: 13px;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  background: #fff;
+  padding: 10px;
+}
+.acc322-top h2 {
+  color: #075ab6;
+  font-size: 11px;
+}
+.acc322-top > p {
+  margin-top: 11px;
+  font:
+    italic 11px Georgia,
+    serif;
+}
+.acc322-integrand {
+  display: block;
+  width: 100%;
+  height: 282px;
+  touch-action: none;
+}
+.acc322-integrand .grid {
+  stroke: #e6ebf2;
+}
+.acc322-integrand .axis,
+.acc322-accum .axis {
+  stroke: #18283e;
+  stroke-width: 1.1;
+}
+.acc322-integrand .area.positive {
+  fill: #3877e32d;
+}
+.acc322-integrand .area.negative {
+  fill: #ee67672d;
+}
+.acc322-integrand .rectangle {
+  fill: #4488e412;
+  stroke: #2372df55;
+}
+.acc322-integrand .curve {
+  fill: none;
+  stroke: #2869ef;
+  stroke-width: 2;
+}
+.acc322-integrand .probe,
+.acc322-accum .probe {
+  stroke: #f07a00;
+  stroke-dasharray: 4 3;
+}
+.acc322-integrand .drag {
+  fill: #ed7500;
+  cursor: ew-resize;
+}
+.acc322-integrand text {
+  fill: #29364a;
+  font-size: 9px;
+}
+.acc322-integrand .tick-label {
+  fill: #29364a;
+  font-size: 8px;
+  text-anchor: middle;
+}
+.acc322-integrand .tick-label.y {
+  text-anchor: end;
+}
+.acc322-integrand .formula {
+  fill: #1768de;
+  font:
+    bold 12px Georgia,
+    serif;
+}
+.acc322-integrand .area-label {
+  fill: #1768d5;
+  font:
+    italic 12px Georgia,
+    serif;
+}
+.acc322-integrand .x-label {
+  fill: #e56e00;
+  font:
+    bold 10px Georgia,
+    serif;
+  text-anchor: middle;
+}
+.acc322-controls {
+  display: grid;
+  height: 55px;
+  grid-template-columns: 78px 28px 1fr 28px 48px 38px 38px 38px 85px 85px;
+  align-items: center;
+  gap: 7px;
+  border-top: 1px solid var(--line);
+  padding-top: 7px;
+}
+.acc322-controls > strong {
+  color: #e46e00;
+  font:
+    italic 11px Georgia,
+    serif;
+}
+.acc322-controls > span {
+  text-align: center;
+  font-size: 7px;
+}
+.acc322-controls input {
+  width: 100%;
+  accent-color: #db7200;
+}
+.acc322-controls > output {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 7px;
+  text-align: center;
+}
+.acc322-controls > button {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: #fff;
+}
+.acc322-controls > button:first-of-type {
+  background: #0879a8;
+  color: #fff;
+}
+.acc322-controls button svg {
+  width: 14px;
+}
+.acc322-controls label {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2px;
+  border-left: 1px solid var(--line);
+  padding-left: 8px;
+}
+.acc322-controls select {
+  height: 29px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: #fff;
+}
+.acc322-bottom {
+  height: 317px;
+  margin-top: 3px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  padding: 10px;
+}
+.acc322-bottom h2 {
+  font:
+    italic 11px Georgia,
+    serif;
+}
+.acc322-accum {
+  display: block;
+  width: 100%;
+  height: 274px;
+  touch-action: none;
+}
+.acc322-accum .curve {
+  fill: none;
+  stroke: #079da8;
+  stroke-width: 2;
+}
+.acc322-accum .tick line {
+  stroke: #e6ebf2;
+}
+.acc322-accum .tick text {
+  fill: #29364a;
+  font-size: 8px;
+  text-anchor: middle;
+}
+.acc322-accum .probe {
+  stroke: #ee7800;
+}
+.acc322-accum .tangent {
+  stroke: #8d48dd;
+  stroke-width: 2;
+}
+.acc322-accum .drag {
+  fill: #098d99;
+  cursor: ew-resize;
+}
+.acc322-accum .slope-label {
+  fill: #8342cd;
+  font-size: 10px;
+}
+.acc322-accum .formula {
+  fill: #079da8;
+  font:
+    bold 13px Georgia,
+    serif;
+}
+.acc322-metrics {
+  display: grid;
+  height: 107px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+}
+.acc322-metrics article {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid #bdd5f2;
+  border-radius: 9px;
+  background: #f8fbff;
+  padding: 11px;
+}
+.acc322-metrics b {
+  color: #0867d3;
+}
+.acc322-metrics strong {
+  margin-top: 8px;
+  color: #1765d4;
+  font-size: 19px;
+}
+.acc322-metrics span {
+  margin-top: 8px;
+}
+.acc322-metrics article:nth-child(2) {
+  border-color: #b8e6e7;
+  background: #f6ffff;
+}
+.acc322-metrics article:nth-child(2)b,
+.acc322-metrics article:nth-child(2) strong {
+  color: #07929e;
+}
+.acc322-metrics article:nth-child(3) {
+  border-color: #dac8ef;
+  background: #fdfaff;
+}
+.acc322-metrics article:nth-child(3)b,
+.acc322-metrics article:nth-child(3) strong {
+  color: #7342ca;
+}
+.acc322-metrics article:nth-child(4) {
+  border-color: #f0d8af;
+  background: #fffbf2;
+}
+.acc322-metrics article:nth-child(4)b,
+.acc322-metrics article:nth-child(4) strong {
+  color: #d26a00;
+}
+.acc322-metrics article:nth-child(4) strong {
+  font:
+    italic 16px Georgia,
+    serif;
+}
+.acc322-learning {
+  display: grid;
+  height: 286px;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 10px;
+  margin-top: 18px;
+}
+.acc322-learning > article {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  padding: 15px;
+}
+.acc322-learning h3 {
+  color: #075ab6;
+  font-size: 11px;
+}
+.acc322-learning p {
+  margin-top: 11px;
+}
+.acc322-learning > article:first-child > b {
+  display: block;
+  margin-top: 18px;
+}
+.acc322-learning > article:first-child > strong {
+  display: block;
+  margin-top: 15px;
+  text-align: center;
+  font:
+    italic 14px/1.8 Georgia,
+    serif;
+}
+.acc322-learning > article:first-child > output {
+  display: flex;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  margin-top: 16px;
+  border: 1px solid #b9d7f7;
+  border-radius: 6px;
+  background: #f3f9ff;
+  color: #1766d1;
+}
+.acc322-learning > article:first-child output svg {
+  width: 16px;
+}
+.acc322-learning > article:nth-child(2) > label {
+  display: grid;
+  height: 35px;
+  grid-template-columns: 20px 22px 1fr;
+  align-items: center;
+  margin-top: 6px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 0 8px;
+}
+.acc322-learning > article:nth-child(2) > label.selected {
+  border-color: #80d9dc;
+  background: #f3ffff;
+}
+.acc322-learning input {
+  accent-color: #1477e5;
+}
+.acc322-learning > article:nth-child(2) > button {
+  margin-top: 7px;
+  border: 0;
+  background: transparent;
+  color: #1765cf;
+  font-weight: 700;
+}
+.acc322-learning > article:nth-child(2) > output {
+  display: block;
+  margin-top: 7px;
+  color: #1766d1;
+}
+.acc322-learning output.incorrect {
+  color: #c92d3c;
+}
+body:has(.acc322-page) [data-testid="desktop-sidebar"] {
+  display: block !important;
+  width: 197px !important;
+  flex-basis: 197px !important;
+  transition: none;
+}
+body:has(.acc322-page) #main-content {
+  margin-left: 0 !important;
+  padding-left: 13px !important;
+  padding-right: 13px !important;
+}
+body:has(.acc322-page) .lesson-shell-header,
+body:has(.acc322-page) .lesson-page-shell > nav[role="tablist"] {
+  display: none !important;
+}
+body:has(.acc322-page) .lesson-page-shell > div {
+  margin-top: 10px !important;
+}
+body:has(.acc322-page) .lesson-workbench.is-target-graphing-workbench {
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+body:has(.acc322-page) {
+  overflow: hidden;
+}
+body:has(.acc322-page) .lesson-adjacent-nav {
+  height: 51px !important;
+  margin-top: 18px !important;
+}
+body:has(.acc322-page) footer[aria-label="Site footer"] {
+  height: 131px !important;
+  margin-top: 3px !important;
+  padding: 0 13px !important;
+}
+body:has(.acc322-page) footer[aria-label="Site footer"] > div {
+  height: 121px !important;
+  padding: 9px 11px !important;
+  font-size: 8px !important;
+}
+@media (min-width: 900px) {
+  body:has(.acc322-page) header.sticky button[aria-label="Open navigation"],
+  body:has(.acc322-page) nav[class*="bottom-0"][class*="fixed"] {
+    display: none !important;
+  }
+  body:has(.acc322-page) .app-layout-rail > div > header {
+    height: 53px;
+  }
+  body:has(.acc322-page) [data-testid="desktop-sidebar"] > div {
+    padding: 10px 9px 40px !important;
+  }
+  body:has(.acc322-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type {
+    height: 61px;
+    min-height: 61px;
+    margin-bottom: 13px !important;
+    padding: 0 !important;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+  body:has(.acc322-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type
+    p:first-child {
+    white-space: nowrap;
+    font-size: 14px !important;
+  }
+  body:has(.acc322-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type
+    p:last-child {
+    font-size: 8px !important;
+  }
+  body:has(.acc322-page) [data-testid="desktop-sidebar"] > div > label {
+    height: 36px;
+    min-height: 36px !important;
+    margin-bottom: 10px !important;
+    padding: 0 9px !important;
+    font-size: 9px !important;
+  }
+  body:has(.acc322-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"] {
+    row-gap: 7px !important;
+  }
+  body:has(.acc322-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    > div:nth-of-type(2),
+  body:has(.acc322-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    > div:nth-of-type(n + 5) {
+    display: none;
+  }
+  body:has(.acc322-page) [data-testid="desktop-sidebar"] nav button {
+    min-height: 32px;
+    padding: 6px 8px !important;
+    font-size: 9px !important;
+  }
+  body:has(.acc322-page) [data-testid="desktop-sidebar"] nav a {
+    min-height: 29px;
+    padding: 5px 8px !important;
+    font-size: 8px !important;
+  }
+  body:has(.acc322-page)
+    [data-testid="desktop-sidebar"]
+    nav
+    a:has(span span + span) {
+    height: 43px;
+    min-height: 43px;
+    padding: 3px 8px !important;
+  }
+  body:has(.acc322-page)
+    [data-testid="desktop-sidebar"]
+    nav
+    a
+    span
+    span
+    + span {
+    font-size: 6px !important;
+  }
+  body:has(.acc322-page)
+    [data-testid="desktop-sidebar"]
+    nav
+    > div:nth-of-type(4)
+    > div
+    > :nth-child(n + 2) {
+    display: none;
+  }
+}

@@ -1,0 +1,243 @@
+{
+  "mockup": "0401",
+  "lessonId": 322,
+  "checks": {
+    "initial": {
+      "x": "3.6",
+      "n": "12",
+      "mode": "signed",
+      "f": "1.55747956",
+      "area": "9.09675842",
+      "approx": "9.10388998",
+      "error": "0.00713156",
+      "numerical": "1.55747963",
+      "playing": "false",
+      "tab": "Interact",
+      "selection": "",
+      "result": "",
+      "actions": "0"
+    },
+    "controls": {
+      "x": "1.49681469",
+      "n": "24",
+      "mode": "absolute",
+      "f": "2.99726461",
+      "area": "3.91971522",
+      "approx": "3.91986533",
+      "error": "0.00015011",
+      "numerical": "2.99726444",
+      "playing": "false",
+      "tab": "Interact",
+      "selection": "",
+      "result": "",
+      "actions": "3"
+    },
+    "tab": {
+      "x": "1.49681469",
+      "n": "24",
+      "mode": "absolute",
+      "f": "2.99726461",
+      "area": "3.91971522",
+      "approx": "3.91986533",
+      "error": "0.00015011",
+      "numerical": "2.99726444",
+      "playing": "false",
+      "tab": "Formula",
+      "selection": "",
+      "result": "",
+      "actions": "4"
+    },
+    "playing": {
+      "x": "1.89681469",
+      "n": "24",
+      "mode": "absolute",
+      "f": "2.94732506",
+      "area": "5.11390306",
+      "approx": "5.11424674",
+      "error": "0.00034368",
+      "numerical": "2.9473249",
+      "playing": "true",
+      "tab": "Formula",
+      "selection": "",
+      "result": "",
+      "actions": "5"
+    },
+    "paused": {
+      "x": "2.13681469",
+      "n": "24",
+      "mode": "absolute",
+      "f": "2.84404291",
+      "area": "5.80990502",
+      "approx": "5.81041256",
+      "error": "0.00050754",
+      "numerical": "2.84404277",
+      "playing": "false",
+      "tab": "Formula",
+      "selection": "",
+      "result": "",
+      "actions": "6"
+    },
+    "step": {
+      "x": "2.38681469",
+      "n": "24",
+      "mode": "absolute",
+      "f": "2.68512695",
+      "area": "6.50205307",
+      "approx": "6.50276556",
+      "error": "0.00071249",
+      "numerical": "2.68512683",
+      "playing": "false",
+      "tab": "Formula",
+      "selection": "",
+      "result": "",
+      "actions": "7"
+    },
+    "localReset": {
+      "x": "0",
+      "n": "24",
+      "mode": "absolute",
+      "f": "2",
+      "area": "0",
+      "approx": "0",
+      "error": "0",
+      "numerical": "2",
+      "playing": "false",
+      "tab": "Formula",
+      "selection": "",
+      "result": "",
+      "actions": "8"
+    },
+    "drag": {
+      "x": "1.88456188",
+      "n": "24",
+      "mode": "absolute",
+      "f": "2.95117811",
+      "area": "5.07776628",
+      "approx": "5.07810255",
+      "error": "0.00033627",
+      "numerical": "2.95117795",
+      "playing": "false",
+      "tab": "Formula",
+      "selection": "",
+      "result": "",
+      "actions": "16"
+    },
+    "rejected": {
+      "x": "1.88456188",
+      "n": "24",
+      "mode": "absolute",
+      "f": "2.95117811",
+      "area": "5.07776628",
+      "approx": "5.07810255",
+      "error": "0.00033627",
+      "numerical": "2.95117795",
+      "playing": "false",
+      "tab": "Formula",
+      "selection": "0",
+      "result": "incorrect",
+      "actions": "18"
+    },
+    "accepted": {
+      "x": "1.88456188",
+      "n": "24",
+      "mode": "absolute",
+      "f": "2.95117811",
+      "area": "5.07776628",
+      "approx": "5.07810255",
+      "error": "0.00033627",
+      "numerical": "2.95117795",
+      "playing": "false",
+      "tab": "Formula",
+      "selection": "4",
+      "result": "correct",
+      "actions": "21"
+    },
+    "shellReset": {
+      "x": "3.6",
+      "n": "12",
+      "mode": "signed",
+      "f": "1.55747956",
+      "area": "9.09675842",
+      "approx": "9.10388998",
+      "error": "0.00713156",
+      "numerical": "1.55747963",
+      "playing": "false",
+      "tab": "Interact",
+      "selection": "",
+      "result": "",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 943,
+      "height": 1667
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 197,
+      "height": 1667,
+      "bottom": 1667
+    },
+    "hero": {
+      "top": 94,
+      "left": 210,
+      "width": 720,
+      "height": 161,
+      "bottom": 255
+    },
+    "tabs": {
+      "top": 256,
+      "left": 210,
+      "width": 720,
+      "height": 42,
+      "bottom": 298
+    },
+    "top": {
+      "top": 311,
+      "left": 210,
+      "width": 720,
+      "height": 396,
+      "bottom": 707
+    },
+    "bottom": {
+      "top": 710,
+      "left": 210,
+      "width": 720,
+      "height": 317,
+      "bottom": 1027
+    },
+    "metrics": {
+      "top": 1037,
+      "left": 210,
+      "width": 720,
+      "height": 107,
+      "bottom": 1144
+    },
+    "learning": {
+      "top": 1162,
+      "left": 210,
+      "width": 720,
+      "height": 286,
+      "bottom": 1448
+    },
+    "adjacent": {
+      "top": 1470,
+      "left": 210,
+      "width": 720,
+      "height": 51,
+      "bottom": 1521
+    },
+    "footer": {
+      "top": 1536,
+      "left": 197,
+      "width": 746,
+      "height": 131,
+      "bottom": 1667
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

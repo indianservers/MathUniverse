@@ -1,6 +1,6 @@
 # Integral Calculus and Differential Equations target batch 0385-0412
 
-Dedicated rebuild target: **16 of 28 lessons completed; 12 pending.**
+Dedicated rebuild target: **17 of 28 lessons completed; 11 pending.**
 
 | Mockup | Lesson                           | Dedicated object model                                                                                                     | Status                                      |
 | ------ | -------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
@@ -20,7 +20,7 @@ Dedicated rebuild target: **16 of 28 lessons completed; 12 pending.**
 | 0398   | 319 Shell Method                 | `cylindrical-shell-radius-height-thickness-area-draggable-strip-volume-accumulation-bounds-practice`                       | Reworked individually and browser-validated |
 | 0399   | 320 Arc Length                   | `parabola-domain-polyline-segments-draggable-ds-triangle-exact-arc-integral-error-practice`                                | Reworked individually and browser-validated |
 | 0400   | 321 Surface Area of Revolution   | `generating-curve-revolved-surface-mesh-axis-bounds-draggable-differential-ring-animation-surface-integral-practice`       | Reworked individually and browser-validated |
-| 0401   | 322 Accumulation Functions       | Pending audit                                                                                                              | Pending                                     |
+| 0401   | 322 Accumulation Functions       | `linked-integrand-accumulation-function-generated-midpoint-rectangles-draggable-x-animation-ftc-derivative-prediction`     | Reworked individually and browser-validated |
 | 0402   | 323 Direction Fields             | Pending audit                                                                                                              | Pending                                     |
 | 0403   | 324 Euler's Method               | Pending audit                                                                                                              | Pending                                     |
 | 0404   | 325 Separable Equations          | Pending audit                                                                                                              | Pending                                     |
@@ -282,3 +282,19 @@ Evidence:
 - `0400-reference.png`
 - `0400-desktop.png`
 - `0400-dedicated-target-validation.json`
+
+## Lesson 322 / Mockup 0401 - Accumulation Functions
+
+Reworked individually as a linked integrand, quadrature, and accumulation-function laboratory. The shared endpoint x drives `f(t)=2+sin(t)`, the generated midpoint rectangles, signed/absolute integral mode, analytic accumulation `A(x)=2x-cos(x)+1`, bottom accumulation curve, tangent line, numerical derivative, all four metric cards, and action count. Both graph probes are directly draggable. Rectangle counts 12/24/48 regenerate the actual quadrature and error; Play, Pause, Step, local Reset, five tabs, Share, worked FTC derivation, five-option prediction validation, shell Reset, adjacent lessons, and compact footer are functional.
+
+Browser validation confirms the initial `x=3.6`, `n=12`, signed mode, `f(x)=1.55747956`, `A(x)=9.09675842`, midpoint estimate `9.10388998`, error `0.00713156`, and numerical derivative `1.55747963`. Moving to approximately `x=1.4968`, selecting 24 rectangles and absolute mode produces `f=2.99726461`, `A=3.91971522`, midpoint estimate `3.91986533`, and error `0.00015011`. Animation advances the shared endpoint, Pause freezes it, Step advances by 0.25, and local Reset returns x to 0. A real pointer drag moves the top endpoint from 0 to approximately `1.88456188`, recomputing both graphs and every metric. Prediction rejects `(0,pi)` alone and accepts only `A is always increasing`; shell Reset restores the complete initial model.
+
+The reference prints `f(t)=2+sin(t)` and `A(x)=integral[0,x] f(t)dt` but labels `f(3.60)=1.306` and `A(3.60)=2.016`; the coherent values are approximately `1.55748` and `9.09676`. It also marks only selected intervals as increasing even though `A'(x)=2+sin(x)` lies in `[1,3]`, so A is increasing everywhere. The dedicated surface preserves the target's dual graphs, rectangles, animation controls, metric hierarchy, and prediction layout while keeping the integrand, quadrature, accumulation, tangent slope, derivative check, and validated answer mathematically consistent.
+
+Final exact 943x1667 capture matches the target stack: sidebar width 197, hero y=94-255, tabs y=256-298, integrand/rectangle lab y=311-707, accumulation graph y=710-1027, metric cards y=1037-1144, worked/prediction band y=1162-1448, adjacent lessons y=1470-1521, and footer y=1536-1667. Dedicated content spans x=210-930, with no horizontal overflow, no duplicate shared lesson chrome, and zero console messages.
+
+Evidence:
+
+- `0401-reference.png`
+- `0401-desktop.png`
+- `0401-dedicated-target-validation.json`
