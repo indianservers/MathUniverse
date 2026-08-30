@@ -1,0 +1,178 @@
+{
+  "mockup": "0381",
+  "lessonId": 302,
+  "checks": {
+    "initial": {
+      "t": "2",
+      "h": "0.05",
+      "distance": "3",
+      "rate": "1.333",
+      "finite-rate": "1.333",
+      "playing": "false",
+      "checked": "true",
+      "actions": "0"
+    },
+    "cleared": {
+      "t": "2",
+      "h": "0.05",
+      "distance": "3",
+      "rate": "1.333",
+      "finite-rate": "1.333",
+      "playing": "false",
+      "checked": "false",
+      "actions": "1"
+    },
+    "timeDriven": {
+      "t": "-1",
+      "h": "0.05",
+      "distance": "3",
+      "rate": "-1.333",
+      "finite-rate": "-1.333",
+      "playing": "false",
+      "checked": "false",
+      "actions": "2"
+    },
+    "hDriven": {
+      "t": "-1",
+      "h": "0.2",
+      "distance": "3",
+      "rate": "-1.333",
+      "finite-rate": "-1.333",
+      "playing": "false",
+      "checked": "false",
+      "actions": "3"
+    },
+    "dragged": {
+      "t": "-0.07",
+      "h": "0.2",
+      "distance": "2.144",
+      "rate": "-0.507",
+      "finite-rate": "-0.507",
+      "playing": "false",
+      "checked": "false",
+      "actions": "10"
+    },
+    "playing": {
+      "t": "0.03",
+      "h": "0.2",
+      "distance": "2.098",
+      "rate": "-0.418",
+      "finite-rate": "-0.418",
+      "playing": "true",
+      "checked": "false",
+      "actions": "11"
+    },
+    "paused": {
+      "t": "0.08",
+      "h": "0.2",
+      "distance": "2.078",
+      "rate": "-0.373",
+      "finite-rate": "-0.373",
+      "playing": "false",
+      "checked": "false",
+      "actions": "12"
+    },
+    "checked": {
+      "t": "0.08",
+      "h": "0.2",
+      "distance": "2.078",
+      "rate": "-0.373",
+      "finite-rate": "-0.373",
+      "playing": "false",
+      "checked": "true",
+      "actions": "13"
+    },
+    "localReset": {
+      "t": "2",
+      "h": "0.05",
+      "distance": "3",
+      "rate": "1.333",
+      "finite-rate": "1.333",
+      "playing": "false",
+      "checked": "true",
+      "actions": "1"
+    },
+    "shellReset": {
+      "t": "2",
+      "h": "0.05",
+      "distance": "3",
+      "rate": "1.333",
+      "finite-rate": "1.333",
+      "playing": "false",
+      "checked": "true",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 211,
+      "height": 1536,
+      "bottom": 1536
+    },
+    "hero": {
+      "top": 100,
+      "left": 225,
+      "width": 785,
+      "height": 239,
+      "bottom": 339
+    },
+    "tabs": {
+      "top": 355,
+      "left": 225,
+      "width": 785,
+      "height": 40,
+      "bottom": 395
+    },
+    "flow": {
+      "top": 407,
+      "left": 225,
+      "width": 785,
+      "height": 94,
+      "bottom": 501
+    },
+    "lab": {
+      "top": 511,
+      "left": 225,
+      "width": 785,
+      "height": 560,
+      "bottom": 1071
+    },
+    "info": {
+      "top": 1082,
+      "left": 225,
+      "width": 785,
+      "height": 245,
+      "bottom": 1327
+    },
+    "result": {
+      "top": 1337,
+      "left": 225,
+      "width": 785,
+      "height": 87,
+      "bottom": 1424
+    },
+    "adjacent": {
+      "top": 1432,
+      "left": 225,
+      "width": 785,
+      "height": 35,
+      "bottom": 1467
+    },
+    "footer": {
+      "top": 1475,
+      "left": 211,
+      "width": 813,
+      "height": 61,
+      "bottom": 1536
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

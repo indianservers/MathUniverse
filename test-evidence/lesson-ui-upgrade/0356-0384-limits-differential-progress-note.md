@@ -1,6 +1,6 @@
 # Limits and Differential Calculus target batch 0356-0384
 
-Dedicated rebuild target: **25 of 29 lessons completed; 4 pending.**
+Dedicated rebuild target: **26 of 29 lessons completed; 3 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
@@ -29,7 +29,7 @@ Dedicated rebuild target: **25 of 29 lessons completed; 4 pending.**
 | 0378 | 299 Concavity | `selectable-analytic-functions-shared-x-direct-graph-drag-finite-step-second-derivative-synchronized-graphs-sign-regions-inflection-practice` | Reworked individually and browser-validated |
 | 0379 | 300 Inflection Points | `four-coefficient-cubic-analytic-second-derivative-direct-inflection-drag-concavity-sign-map-step-practice` | Reworked individually and browser-validated |
 | 0380 | 301 Optimisation | `fixed-concave-quadratic-domain-critical-endpoint-comparison-direct-x-drag-finite-derivative-cas-optimisation-practice` | Reworked individually and browser-validated |
-| 0381 | 302 Related Rates | Pending audit | Pending |
+| 0381 | 302 Related Rates | `quadratic-distance-time-linked-exact-and-finite-rate-direct-time-drag-tangent-animation-chain-rule-practice` | Reworked individually and browser-validated |
 | 0382 | 303 Motion Analysis | Pending audit | Pending |
 | 0383 | 304 Newton's Method | Pending audit | Pending |
 | 0384 | 305 Taylor Polynomial | Pending audit | Pending |
@@ -401,3 +401,19 @@ Evidence:
 - `0380-reference.png`
 - `0380-desktop.png`
 - `0380-dedicated-target-validation.json`
+
+## Lesson 302 / Mockup 0381 - Related Rates
+
+Reworked individually around the coherent distance model `d(t)=2+(4/9)(t-1/2)^2`, selected to preserve the target's dominant upward distance-time graph, vertex, and plotted point. One shared t state drives the curve marker, tangent, exact rate `d'(t)=(8/9)(t-1/2)`, finite-step rate, tooltip, output cards, sign analysis, and action count. The native t and h controls and captured SVG pointer dragging are real. Play/pause advances the actual model through time. Five lesson tabs, Reset, Share, reversible practice disclosure, shell Reset, and Previous/Next navigation are functional.
+
+Browser validation confirms the coherent target start `t=2`, `h=0.05`, distance `3`, exact rate `1.333`, and finite rate `1.333`. Moving t to `-1` derives distance `3` and rate `-1.333`; moving h to `0.2` independently recomputes the finite estimate; a real pointer drag moves t to approximately `-0.07` and updates every dependent value. The animation advances t and pauses correctly. Practice reveals `d(-1)=3`, `d'(-1)=-1.333`, and the correct decreasing-distance interpretation; Try another value hides the result, Check my answer restores it, and shell Reset restores t, h, animation, target result state, selected tab, and zero actions.
+
+The reference prints a reciprocal-square-root function while drawing an upward parabola, and its displayed distance, rate, derivative, worked arithmetic, sign claims, and practice result do not agree with either one another or that formula. This implementation preserves the target composition and curve while keeping the displayed distance rule, graph, tangent, exact rate, finite rate, signs, worked example, and practice result mathematically consistent.
+
+Final exact 1024x1536 validation matches the target stack: sidebar width 211, hero y=100-339, tabs y=355-395, four-stage guide y=407-501, distance/rate lab y=511-1071, rule/worked/misconception/practice row y=1082-1327, result strip y=1337-1424, adjacent navigation y=1432-1467, and compact site footer y=1475-1536. The dedicated content spans x=225-1010, with no horizontal overflow, no duplicate shared lesson chrome, and zero console messages.
+
+Evidence:
+
+- `0381-reference.png`
+- `0381-desktop.png`
+- `0381-dedicated-target-validation.json`
