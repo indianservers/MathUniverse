@@ -1,6 +1,6 @@
 # Limits and Differential Calculus target batch 0356-0384
 
-Dedicated rebuild target: **5 of 29 lessons completed; 24 pending.**
+Dedicated rebuild target: **6 of 29 lessons completed; 23 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
@@ -9,7 +9,7 @@ Dedicated rebuild target: **5 of 29 lessons completed; 24 pending.**
 | 0358 | 279 Infinite Limits | `rational-vertical-asymptote-one-sided-infinite-approach-sign-domain-practice` | Reworked individually and browser-validated |
 | 0359 | 280 Limits at Infinity | `even-rational-end-behavior-horizontal-asymptote-linked-view-dominant-terms-practice` | Reworked individually and browser-validated |
 | 0360 | 281 Continuity at a Point | `parabola-removable-hole-editable-point-five-condition-continuity-drag-practice` | Reworked individually and browser-validated |
-| 0361 | 282 Types of Discontinuity | Pending audit | Pending |
+| 0361 | 282 Types of Discontinuity | `three-break-graphs-six-draggable-approach-markers-derived-limits-classification` | Reworked individually and browser-validated |
 | 0362 | 283 Epsilon-Delta Visualiser | Pending audit | Pending |
 | 0363 | 284 Average Rate of Change | Pending audit | Pending |
 | 0364 | 285 Instantaneous Rate of Change | Pending audit | Pending |
@@ -103,3 +103,17 @@ Evidence:
 - `0360-reference.png`
 - `0360-desktop.png`
 - `0360-dedicated-target-validation.json`
+
+## Lesson 282 / Mockup 0361 - Types of Discontinuity
+
+Reworked individually around three simultaneous discontinuity models: a removable hole, a finite jump, and an infinite vertical-asymptote break. Each graph owns independent left/right approach state, giving six real SVG drag handles whose coordinates remain attached to the displayed curve equations. Selecting a graph updates the derived one-sided limits, function value, continuity explanation, highlighted type, and independent classification controls in the analysis panel.
+
+Browser validation starts on the removable model with left/right markers `-1.3` and `1.3`. A real pointer drag moves the removable left marker to `-1.18`; switching to Jump derives the jump-specific panel, an intentionally wrong Removable classification is rejected by state, and Jump restores a correct classification. Selecting Infinite updates the panel and its own marker pair without altering the other graph states. Shell Reset restores all six markers, the removable selection/classification, the interaction tab, and zero action count.
+
+Final exact 1536x1024 validation matches the target landscape stack: sidebar width 273, target breadcrumb top band, title y=72-152, tabs y=152-201, three-graph lab y=214-704, graph cards y=270-688, selected-type analysis y=214-775, comparison/rule row y=718-936, and progress navigation y=954-1012. It reports no horizontal overflow, no site footer, and zero console messages.
+
+Evidence:
+
+- `0361-reference.png`
+- `0361-desktop.png`
+- `0361-dedicated-target-validation.json`

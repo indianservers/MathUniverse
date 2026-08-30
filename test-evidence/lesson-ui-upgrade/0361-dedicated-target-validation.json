@@ -1,0 +1,138 @@
+{
+  "mockup": "0361",
+  "lessonId": 282,
+  "checks": {
+    "initial": {
+      "selected": "removable",
+      "classification": "removable",
+      "classification-correct": "true",
+      "left-marker": "-1.3",
+      "right-marker": "1.3",
+      "actions": "0"
+    },
+    "dragged": {
+      "selected": "removable",
+      "classification": "removable",
+      "classification-correct": "true",
+      "left-marker": "-1.18",
+      "right-marker": "1.3",
+      "actions": "3"
+    },
+    "jump": {
+      "selected": "jump",
+      "classification": "jump",
+      "classification-correct": "true",
+      "left-marker": "-1.35",
+      "right-marker": "1.35",
+      "actions": "4"
+    },
+    "misclassified": {
+      "selected": "jump",
+      "classification": "removable",
+      "classification-correct": "false",
+      "left-marker": "-1.35",
+      "right-marker": "1.35",
+      "actions": "5"
+    },
+    "classified": {
+      "selected": "jump",
+      "classification": "jump",
+      "classification-correct": "true",
+      "left-marker": "-1.35",
+      "right-marker": "1.35",
+      "actions": "6"
+    },
+    "infinite": {
+      "selected": "infinite",
+      "classification": "infinite",
+      "classification-correct": "true",
+      "left-marker": "-0.65",
+      "right-marker": "0.65",
+      "actions": "7"
+    },
+    "reset": {
+      "selected": "removable",
+      "classification": "removable",
+      "classification-correct": "true",
+      "left-marker": "-1.3",
+      "right-marker": "1.3",
+      "actions": "0"
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/calculus/281-continuity-at-a-point",
+    "nextHref": "/lessons/calculus/283-epsilon-delta-visualiser"
+  },
+  "metrics": {
+    "document": {
+      "width": 1536,
+      "height": 1024
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 273,
+      "height": 1024,
+      "bottom": 1024
+    },
+    "title": {
+      "top": 72,
+      "left": 295,
+      "width": 1219,
+      "height": 80,
+      "bottom": 152
+    },
+    "tabs": {
+      "top": 152,
+      "left": 295,
+      "width": 1219,
+      "height": 49,
+      "bottom": 201
+    },
+    "lab": {
+      "top": 214,
+      "left": 295,
+      "width": 1219,
+      "height": 490,
+      "bottom": 704
+    },
+    "graphs": {
+      "top": 270,
+      "left": 308,
+      "width": 918,
+      "height": 418,
+      "bottom": 688
+    },
+    "analysis": {
+      "top": 214,
+      "left": 1252,
+      "width": 262,
+      "height": 561,
+      "bottom": 775
+    },
+    "rules": {
+      "top": 718,
+      "left": 295,
+      "width": 1219,
+      "height": 218,
+      "bottom": 936
+    },
+    "adjacent": {
+      "top": 954,
+      "left": 295,
+      "width": 1219,
+      "height": 58,
+      "bottom": 1012
+    },
+    "footer": {
+      "top": 0,
+      "left": 0,
+      "width": 0,
+      "height": 0,
+      "bottom": 0
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
