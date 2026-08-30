@@ -1,6 +1,6 @@
 # Integral Calculus and Differential Equations target batch 0385-0412
 
-Dedicated rebuild target: **14 of 28 lessons completed; 14 pending.**
+Dedicated rebuild target: **15 of 28 lessons completed; 13 pending.**
 
 | Mockup | Lesson                           | Dedicated object model                                                                                                     | Status                                      |
 | ------ | -------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
@@ -18,7 +18,7 @@ Dedicated rebuild target: **14 of 28 lessons completed; 14 pending.**
 | 0396   | 317 Volume by Slicing            | `sphere-cross-section-slice-position-thickness-area-parabola-draggable-band-differential-volume-exact-integral-practice`   | Reworked individually and browser-validated |
 | 0397   | 318 Disc and Washer Methods      | `washer-region-axis-piecewise-radii-slice-thickness-layer-controls-draggable-bound-accumulated-volume-symbolic-practice`    | Reworked individually and browser-validated |
 | 0398   | 319 Shell Method                 | `cylindrical-shell-radius-height-thickness-area-draggable-strip-volume-accumulation-bounds-practice`                       | Reworked individually and browser-validated |
-| 0399   | 320 Arc Length                   | Pending audit                                                                                                              | Pending                                     |
+| 0399   | 320 Arc Length                   | `parabola-domain-polyline-segments-draggable-ds-triangle-exact-arc-integral-error-practice`                                | Reworked individually and browser-validated |
 | 0400   | 321 Surface Area of Revolution   | Pending audit                                                                                                              | Pending                                     |
 | 0401   | 322 Accumulation Functions       | Pending audit                                                                                                              | Pending                                     |
 | 0402   | 323 Direction Fields             | Pending audit                                                                                                              | Pending                                     |
@@ -250,3 +250,19 @@ Evidence:
 - `0398-reference.png`
 - `0398-desktop.png`
 - `0398-dedicated-target-validation.json`
+
+## Lesson 320 / Mockup 0399 - Arc Length
+
+Reworked individually as a generated polygonal arc-length approximation and convergence workspace. The coherent model uses `y=x^2/2`, editable endpoints, adjustable segment count, and a draggable local `ds` triangle. Every change regenerates the sample points and polyline, computes `dx`, `dy`, `ds`, the polygonal sum, exact integral `integral sqrt(1+x^2) dx`, absolute error, and convergence feedback. Six tabs, Reset, Share, Workspace/full-screen, four lesson-specific mini learning diagrams, formula, worked solution, area-versus-length misconception visual, checked numerical practice, Show hint, shell Reset, adjacent lessons, and action counting are functional.
+
+Browser validation confirms the initial domain `[-5,5]`, `N=20`, `x=1.2`, `dx=0.5`, `dy=0.725`, `ds=0.88069575`, polygonal length `27.78710689`, exact length `27.80753591`, and error `0.02042902`. Changing to `[-2,3]`, `N=40`, and `x=0.5` produces `dx=0.125`, `ds=0.14341844`, approximation `8.60932545`, exact length `8.61052543`, and error `0.00119998`. A real pointer drag moves the triangle to approximately `x=1.66225709` and recomputes `dy=0.21559464` and `ds=0.24921085`. Practice rejects 1, accepts `5.6526`, reveals the integral hint, and local/shell Reset restore the complete initial model.
+
+The reference prints `y=x^2/2` on `[-5,5]` but displays exact arc length `8.0216`, which is impossible because any curve spanning a horizontal interval of length 10 has arc length at least 10. Its plotted curve and initial `dx=0.25` also do not follow the printed function, domain, and `N=20`. The dedicated surface preserves the target's controls, segment construction, `ds` triangle, composition, and convergence narrative while keeping the generated graph, polygonal sum, exact integral, errors, and practice answer mathematically consistent.
+
+Final exact 1024x1536 capture matches the target stack: sidebar width 215, hero y=102-296, tabs y=307-346, arc-length lab y=358-1121, formula/worked/misconception cards y=1131-1376, practice y=1386-1463, and adjacent lessons y=1480-1536. Dedicated content spans x=235-1005, with no horizontal overflow, no duplicate shared lesson chrome, no site footer, and zero console messages.
+
+Evidence:
+
+- `0399-reference.png`
+- `0399-desktop.png`
+- `0399-dedicated-target-validation.json`

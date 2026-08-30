@@ -1,0 +1,662 @@
+.arc320-page {
+  --ink: #102047;
+  --line: #dce5f0;
+  position: relative;
+  top: -6px;
+  margin-bottom: -6px;
+  color: var(--ink);
+  font:
+    9px/1.4 Inter,
+    system-ui,
+    sans-serif;
+  letter-spacing: 0;
+}
+.arc320-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.arc320-page h1,
+.arc320-page h2,
+.arc320-page h3,
+.arc320-page p {
+  margin: 0;
+}
+.arc320-page button,
+.arc320-page input,
+.arc320-page select {
+  font: inherit;
+  color: inherit;
+}
+.arc320-hero {
+  position: relative;
+  height: 194px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  padding: 16px;
+}
+.arc320-hero > span {
+  display: flex;
+  gap: 8px;
+}
+.arc320-hero > span b {
+  border-radius: 10px;
+  background: #e7f7ff;
+  padding: 4px 9px;
+  color: #0877ac;
+  font-size: 7px;
+}
+.arc320-hero > span b + b {
+  background: #f1f3f6;
+  color: #40506b;
+}
+.arc320-hero h1 {
+  margin-top: 7px;
+  font-size: 31px;
+  line-height: 34px;
+}
+.arc320-hero > p {
+  font-size: 13px;
+  color: #576985;
+}
+.arc320-hero .meta {
+  display: flex;
+  gap: 8px;
+  margin-top: 9px;
+}
+.arc320-hero i {
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  padding: 6px 11px;
+  font-style: normal;
+  font-weight: 700;
+}
+.arc320-hero .actions {
+  display: flex;
+  gap: 9px;
+  margin-top: 11px;
+}
+.arc320-hero .actions select,
+.arc320-hero .actions button {
+  height: 38px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  padding: 0 14px;
+  font-weight: 700;
+}
+.arc320-hero .actions select {
+  width: 210px;
+}
+.arc320-hero .actions button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.arc320-hero .actions button:last-child {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+}
+.arc320-hero svg {
+  width: 13px;
+}
+.arc320-tabs {
+  display: grid;
+  height: 39px;
+  grid-template-columns: repeat(6, 1fr);
+  margin-top: 11px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  padding: 2px;
+}
+.arc320-tabs button {
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  font-weight: 700;
+}
+.arc320-tabs button.active {
+  background: linear-gradient(90deg, #079bc1, #4c67ff);
+  color: #fff;
+}
+.arc320-lab {
+  height: 763px;
+  margin-top: 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  padding: 10px 15px;
+}
+.arc320-lab > header {
+  display: flex;
+  height: 48px;
+  align-items: start;
+}
+.arc320-lab > header b {
+  color: #0874bd;
+}
+.arc320-lab > header h2 {
+  margin-top: 6px;
+  font-size: 14px;
+}
+.arc320-lab > header > span {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+  font-size: 10px;
+}
+.arc320-lab > header > span b {
+  border-radius: 14px;
+  background: #e8f8e4;
+  padding: 7px 12px;
+  color: #238448;
+}
+.arc320-lab > header > span i {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 7px 12px;
+  font-style: normal;
+}
+.arc320-work {
+  display: grid;
+  height: 513px;
+  grid-template-columns: 1fr 195px;
+  gap: 9px;
+}
+.arc320-plot {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 5px 9px;
+}
+.arc320-graph {
+  display: block;
+  width: 100%;
+  height: 288px;
+  touch-action: none;
+}
+.arc320-graph .grid line {
+  stroke: #e5ebf1;
+  stroke-dasharray: 3 3;
+}
+.arc320-graph .grid text {
+  fill: #26364c;
+  font-size: 8px;
+  text-anchor: middle;
+}
+.arc320-graph .axis {
+  stroke: #18283e;
+  stroke-width: 1.2;
+}
+.arc320-graph .curve {
+  fill: none;
+  stroke: #0aa3bd;
+  stroke-width: 2;
+}
+.arc320-graph .poly {
+  fill: none;
+  stroke: #0872d8;
+  stroke-width: 1.2;
+}
+.arc320-graph .sample {
+  fill: #fff;
+  stroke: #0872d8;
+}
+.arc320-graph .tri {
+  fill: none;
+  stroke: #f28a15;
+  stroke-width: 2;
+}
+.arc320-graph .drag {
+  fill: #f28a15;
+  cursor: ew-resize;
+}
+.arc320-graph .tri-label {
+  fill: #df7510;
+  font-size: 9px;
+}
+.arc320-graph .formula {
+  fill: #1a2540;
+  font:
+    italic 15px Georgia,
+    serif;
+}
+.arc320-plot .domain {
+  position: absolute;
+  top: 295px;
+  left: 43%;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fafcff;
+  padding: 5px 10px;
+}
+.arc320-results {
+  display: grid;
+  height: 74px;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 17px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+}
+.arc320-results article {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid var(--line);
+}
+.arc320-results article:last-child {
+  border: 0;
+}
+.arc320-results strong {
+  color: #0778cd;
+  font-size: 15px;
+}
+.arc320-results article:nth-child(2) strong,
+.arc320-results article:nth-child(2)b {
+  color: #168a46;
+}
+.arc320-plot .success {
+  display: flex;
+  height: 36px;
+  align-items: center;
+  gap: 5px;
+  margin-top: 9px;
+  border-radius: 7px;
+  background: #eef9f1;
+  padding: 0 10px;
+  color: #208245;
+}
+.arc320-plot .success svg {
+  width: 18px;
+  fill: #189a52;
+  color: #189a52;
+}
+.arc320-work > aside article {
+  margin-bottom: 7px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: #fbfdff;
+  padding: 9px;
+}
+.arc320-work > aside article > b {
+  display: block;
+  margin-bottom: 7px;
+}
+.arc320-work > aside article > strong {
+  display: block;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: #fff;
+  padding: 7px;
+  font:
+    italic 13px Georgia,
+    serif;
+}
+.arc320-work > aside article:nth-child(2) {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.arc320-work > aside article:nth-child(2) > b {
+  grid-column: 1/3;
+}
+.arc320-work > aside label input,
+.arc320-work > aside label output {
+  width: 55px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: #fff;
+  padding: 5px;
+}
+.arc320-work > aside article:nth-child(3) {
+  position: relative;
+  height: 74px;
+}
+.arc320-work > aside article:nth-child(3) output {
+  display: block;
+  width: 55px;
+  border: 1px solid var(--line);
+  padding: 5px;
+}
+.arc320-work > aside input[type="range"] {
+  width: 100%;
+  margin-top: 5px;
+  accent-color: #3d6ce3;
+}
+.arc320-work .triangle {
+  height: 180px;
+}
+.arc320-work .triangle label {
+  display: block;
+}
+.arc320-work .triangle label output {
+  display: inline-block;
+  margin-left: 7px;
+}
+.arc320-work .triangle p {
+  margin-top: 8px;
+}
+.arc320-work .triangle p strong {
+  color: #168e55;
+}
+.arc320-work .what {
+  height: 87px;
+  border-color: #b9dcf6 !important;
+  background: #f4fbff !important;
+  color: #315985;
+}
+.arc320-work .what b {
+  color: #0878cb;
+}
+.arc320-flow {
+  display: grid;
+  height: 174px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 9px;
+  margin-top: 10px;
+}
+.arc320-flow article {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px;
+}
+.arc320-flow h3 {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #0875c0;
+}
+.arc320-flow article:nth-child(2) h3 {
+  color: #178948;
+}
+.arc320-flow article:nth-child(3) h3,
+.arc320-flow article:nth-child(4) h3 {
+  color: #6b3cc3;
+}
+.arc320-flow svg {
+  width: 17px;
+}
+.arc320-flow p {
+  margin-top: 12px;
+  font:
+    10px/1.55 Georgia,
+    serif;
+}
+.arc320-mini {
+  display: block;
+  width: 100%;
+  height: 59px;
+  margin-top: 10px;
+}
+.arc320-mini path,
+.arc320-mini line {
+  fill: none;
+  stroke: #1166cf;
+  stroke-width: 1.8;
+}
+.arc320-mini circle {
+  fill: #1166cf;
+}
+.arc320-mini text {
+  fill: #24344d;
+  font-size: 7px;
+}
+.arc320-mini.mini-1 line:first-child {
+  stroke: #91a9dc;
+  stroke-width: 4;
+}
+.arc320-mini.mini-1 path {
+  stroke: #dc7411;
+}
+.arc320-flow-formula {
+  display: block;
+  margin-top: 27px;
+  text-align: center;
+  font:
+    italic 13px Georgia,
+    serif;
+}
+.arc320-cards {
+  display: grid;
+  height: 245px;
+  grid-template-columns: 0.9fr 1.25fr 1.05fr;
+  gap: 8px;
+  margin-top: 10px;
+}
+.arc320-cards > article {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  padding: 12px;
+}
+.arc320-cards h3 {
+  color: #0873be;
+  font-size: 11px;
+}
+.arc320-cards p {
+  margin-top: 12px;
+}
+.arc320-cards > article > strong {
+  display: block;
+  margin-top: 12px;
+  border: 1px solid #a9c8f8;
+  border-radius: 7px;
+  padding: 18px 8px;
+  text-align: center;
+  font:
+    italic 14px Georgia,
+    serif;
+}
+.arc320-cards > article:nth-child(2) > strong {
+  border: 0;
+  padding: 8px;
+}
+.arc320-cards > article:nth-child(2) > b {
+  display: block;
+  margin-top: 15px;
+}
+.arc320-cards .mistake {
+  border-color: #f0c6c6;
+  background: #fffafa;
+}
+.arc320-cards .mistake h3 {
+  color: #cf2937;
+}
+.arc320-cards .mistake svg {
+  width: 100%;
+  height: 75px;
+  margin-top: 6px;
+}
+.arc320-cards .mistake svg path {
+  fill: none;
+  stroke: #155dd0;
+  stroke-width: 2;
+}
+.arc320-cards .mistake svg .area {
+  fill: #f58c9266;
+  stroke: #e94c5a;
+}
+.arc320-cards .mistake svg line {
+  stroke: #ccd4df;
+}
+.arc320-cards .mistake svg text {
+  font-size: 8px;
+}
+.arc320-practice {
+  position: relative;
+  display: grid;
+  height: 77px;
+  grid-template-columns: 1.8fr 140px 35px 46px 115px;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  padding: 9px 13px;
+}
+.arc320-practice h3 {
+  color: #0873be;
+}
+.arc320-practice label {
+  font-size: 7px;
+}
+.arc320-practice input {
+  display: block;
+  width: 100%;
+  margin-top: 5px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  padding: 7px;
+}
+.arc320-practice button {
+  height: 32px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+}
+.arc320-practice button:nth-of-type(1) {
+  background: #3976e9;
+  color: #fff;
+}
+.arc320-practice output {
+  position: absolute;
+  right: 14px;
+  bottom: 2px;
+  color: #14884b;
+}
+.arc320-practice output.incorrect {
+  color: #cf2937;
+}
+body:has(.arc320-page) [data-testid="desktop-sidebar"] {
+  display: block !important;
+  width: 215px !important;
+  flex-basis: 215px !important;
+  transition: none;
+}
+body:has(.arc320-page) #main-content {
+  margin-left: 0 !important;
+  padding-left: 20px !important;
+  padding-right: 19px !important;
+}
+body:has(.arc320-page) .lesson-shell-header,
+body:has(.arc320-page) .lesson-page-shell > nav[role="tablist"],
+body:has(.arc320-page) footer[aria-label="Site footer"] {
+  display: none !important;
+}
+body:has(.arc320-page) .lesson-page-shell > div {
+  margin-top: 10px !important;
+}
+body:has(.arc320-page) .lesson-workbench.is-target-graphing-workbench {
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+body:has(.arc320-page) {
+  overflow: hidden;
+}
+body:has(.arc320-page) .lesson-adjacent-nav {
+  height: 56px !important;
+  margin-top: 17px !important;
+}
+@media (min-width: 900px) {
+  body:has(.arc320-page) header.sticky button[aria-label="Open navigation"],
+  body:has(.arc320-page) nav[class*="bottom-0"][class*="fixed"] {
+    display: none !important;
+  }
+  body:has(.arc320-page) .app-layout-rail > div > header {
+    height: 54px;
+  }
+  body:has(.arc320-page) [data-testid="desktop-sidebar"] > div {
+    padding: 10px 9px 40px !important;
+  }
+  body:has(.arc320-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type {
+    height: 61px;
+    min-height: 61px;
+    margin-bottom: 13px !important;
+    padding: 0 !important;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+  body:has(.arc320-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type
+    p:first-child {
+    white-space: nowrap;
+    font-size: 14px !important;
+  }
+  body:has(.arc320-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type
+    p:last-child {
+    font-size: 8px !important;
+  }
+  body:has(.arc320-page) [data-testid="desktop-sidebar"] > div > label {
+    height: 36px;
+    min-height: 36px !important;
+    margin-bottom: 10px !important;
+    padding: 0 9px !important;
+    font-size: 9px !important;
+  }
+  body:has(.arc320-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"] {
+    row-gap: 7px !important;
+  }
+  body:has(.arc320-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    > div:nth-of-type(2),
+  body:has(.arc320-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    > div:nth-of-type(n + 5) {
+    display: none;
+  }
+  body:has(.arc320-page) [data-testid="desktop-sidebar"] nav button {
+    min-height: 32px;
+    padding: 6px 8px !important;
+    font-size: 9px !important;
+  }
+  body:has(.arc320-page) [data-testid="desktop-sidebar"] nav a {
+    min-height: 29px;
+    padding: 5px 8px !important;
+    font-size: 8px !important;
+  }
+  body:has(.arc320-page)
+    [data-testid="desktop-sidebar"]
+    nav
+    a:has(span span + span) {
+    height: 43px;
+    min-height: 43px;
+    padding: 3px 8px !important;
+  }
+  body:has(.arc320-page)
+    [data-testid="desktop-sidebar"]
+    nav
+    a
+    span
+    span
+    + span {
+    font-size: 6px !important;
+  }
+  body:has(.arc320-page)
+    [data-testid="desktop-sidebar"]
+    nav
+    > div:nth-of-type(4)
+    > div
+    > :nth-child(n + 2) {
+    display: none;
+  }
+}
