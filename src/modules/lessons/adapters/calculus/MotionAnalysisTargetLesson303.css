@@ -1,0 +1,702 @@
+.mot303-page {
+  --ink: #102047;
+  --line: #d9e2ed;
+  position: relative;
+  top: -6px;
+  color: var(--ink);
+  font:
+    8px/1.45 Inter,
+    system-ui,
+    sans-serif;
+  letter-spacing: 0;
+}
+.mot303-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.mot303-page h1,
+.mot303-page h2,
+.mot303-page h3,
+.mot303-page p {
+  margin: 0;
+}
+.mot303-page button,
+.mot303-page input {
+  color: inherit;
+  font: inherit;
+}
+.mot303-hero {
+  height: 240px;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  background: #fff;
+  padding: 17px;
+}
+.mot303-hero > span {
+  display: flex;
+  gap: 8px;
+}
+.mot303-hero > span b {
+  border-radius: 11px;
+  background: #e7f8fd;
+  padding: 4px 9px;
+  color: #087da5;
+  font-size: 7px;
+}
+.mot303-hero > span b:last-child {
+  background: #f2f4f7;
+  color: #53617a;
+}
+.mot303-hero h1 {
+  margin-top: 9px;
+  font-size: 28px;
+  line-height: 32px;
+  font-weight: 850;
+}
+.mot303-hero > p {
+  color: #52627b;
+  font-size: 11px;
+}
+.mot303-hero .meta,
+.mot303-hero .actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 13px;
+}
+.mot303-hero .meta i,
+.mot303-hero .actions > * {
+  display: flex;
+  height: 36px;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  padding: 0 13px;
+  color: inherit;
+  font-style: normal;
+  font-weight: 700;
+  text-decoration: none;
+}
+.mot303-hero .actions {
+  flex-wrap: wrap;
+}
+.mot303-hero .actions > *:first-child {
+  width: 206px;
+  justify-content: space-between;
+}
+.mot303-hero .actions > a {
+  flex-basis: 100px;
+}
+.mot303-hero svg {
+  width: 13px;
+}
+.mot303-tabs {
+  display: grid;
+  height: 43px;
+  grid-template-columns: 1.25fr repeat(4, 1fr);
+  gap: 4px;
+  margin-top: 12px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: #fff;
+  padding: 3px;
+}
+.mot303-tabs button {
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  font-weight: 750;
+}
+.mot303-tabs button.active {
+  background: linear-gradient(90deg, #087fc4, #03a3bf);
+  color: #fff;
+}
+.mot303-main {
+  height: 983px;
+  margin-top: 9px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: #fff;
+  padding: 9px;
+  overflow: hidden;
+}
+.mot303-main > header {
+  position: relative;
+  height: 42px;
+}
+.mot303-main > header small {
+  color: #0785aa;
+  font-weight: 700;
+}
+.mot303-main > header h2 {
+  font-size: 15px;
+}
+.mot303-main > header > b {
+  position: absolute;
+  right: 0;
+  top: 2px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #b8dfcb;
+  border-radius: 7px;
+  background: #f0fff7;
+  padding: 8px 12px;
+  color: #168350;
+}
+.mot303-main > header svg {
+  width: 13px;
+}
+.mot303-main .model-select {
+  display: flex;
+  height: 42px;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 0 10px;
+}
+.mot303-main .model-select span {
+  margin-left: 15px;
+  color: #61708a;
+}
+.motion-work {
+  display: grid;
+  height: 509px;
+  grid-template-columns: 130px minmax(0, 1fr) 171px;
+  gap: 10px;
+  margin-top: 9px;
+}
+.motion-work .guide {
+  padding: 6px;
+}
+.motion-work .guide article {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 7px;
+  margin-bottom: 13px;
+}
+.motion-work .guide svg {
+  width: 18px;
+  color: #087be0;
+}
+.motion-work .guide article:nth-child(2) svg {
+  color: #6738dc;
+}
+.motion-work .guide article:nth-child(3) svg {
+  color: #f29b1c;
+}
+.motion-work .guide article:nth-child(4) svg {
+  color: #5636da;
+}
+.motion-work .guide h3 {
+  font-size: 9px;
+}
+.motion-work .guide p {
+  margin-top: 6px;
+}
+.motion-work .guide button {
+  height: 27px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #f7f9fc;
+  color: #075da8;
+}
+.motion-work .graphs {
+  overflow: hidden;
+}
+.motion-work .legend {
+  display: flex;
+  height: 37px;
+  align-items: center;
+  gap: 18px;
+}
+.motion-work .legend output {
+  border: 1px solid #8fd9ec;
+  border-radius: 5px;
+  padding: 6px 15px;
+  color: #0788ad;
+  font-weight: 700;
+}
+.motion-work .legend span:nth-of-type(1) {
+  color: #00a8cf;
+}
+.motion-work .legend span:nth-of-type(2) {
+  color: #6539e0;
+}
+.motion-work .legend span:nth-of-type(3) {
+  color: #ef4f98;
+}
+.motion-graph {
+  display: block !important;
+  width: 100% !important;
+  height: 148px !important;
+  touch-action: none;
+}
+.motion-graph .axis {
+  stroke: #31405a;
+}
+.motion-graph .cursor {
+  stroke: #869bb5;
+  stroke-dasharray: 4 3;
+}
+.motion-graph .curve {
+  fill: none;
+  stroke: #08abd2;
+  stroke-width: 3;
+}
+.motion-graph.v .curve {
+  stroke: #6b40e6;
+}
+.motion-graph.a .curve {
+  stroke: #ee4f9b;
+}
+.motion-graph circle {
+  fill: #08abd2;
+  stroke: #fff;
+  stroke-width: 2;
+  cursor: grab;
+}
+.motion-graph.v circle {
+  fill: #6b40e6;
+}
+.motion-graph.a circle {
+  fill: #ee4f9b;
+}
+.motion-graph text {
+  fill: #4d607e;
+  font-size: 9px;
+  font-weight: 700;
+}
+.motion-work .model {
+  border-left: 1px solid var(--line);
+  padding: 7px;
+}
+.motion-work .model h3 {
+  margin-bottom: 8px;
+  font-size: 10px;
+}
+.motion-work .model > output {
+  display: block;
+  border-radius: 6px;
+  background: #eaf9fd;
+  padding: 9px;
+  font:
+    italic 9px Georgia,
+    serif;
+}
+.motion-work .model label {
+  display: grid;
+  grid-template-columns: 1fr 40px;
+  margin-top: 18px;
+  font-weight: 700;
+}
+.motion-work .model input {
+  grid-column: 1/3;
+  width: 100%;
+  accent-color: #079ac0;
+}
+.motion-work .model small {
+  color: #65738b;
+}
+.motion-work .model label output {
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  padding: 5px;
+  text-align: center;
+}
+.motion-work .model label + h3 {
+  margin-top: 18px;
+}
+.motion-work .value {
+  margin-top: 8px;
+  border: 1px solid #7fd9ec;
+  border-radius: 6px;
+  background: #effbfe;
+  padding: 8px;
+  color: #0787ad;
+}
+.motion-work .value.v {
+  border-color: #b99af1;
+  background: #f6f1ff;
+  color: #6539d4;
+}
+.motion-work .value.a {
+  border-color: #f49bca;
+  background: #fff1f8;
+  color: #de347f;
+}
+.motion-work .value b {
+  display: block;
+  margin-top: 4px;
+}
+.motion-work .value.a + h3 {
+  margin-top: 18px;
+}
+.motion-work .model > p {
+  margin-top: 6px;
+}
+.connection {
+  height: 109px;
+  margin-top: 9px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 10px;
+}
+.connection > h3 {
+  font-size: 9px;
+}
+.connection > div {
+  display: grid;
+  height: 70px;
+  grid-template-columns: 1fr 68px 1fr 68px 1fr 1.15fr;
+  align-items: center;
+  gap: 5px;
+}
+.connection article,
+.connection aside {
+  height: 65px;
+  border: 1px solid #f0bb78;
+  border-radius: 6px;
+  padding: 8px;
+  text-align: center;
+}
+.connection article:nth-of-type(2) {
+  border-color: #72d2e9;
+  background: #f2fcff;
+}
+.connection article:nth-of-type(3) {
+  border-color: #b99aef;
+  background: #f9f5ff;
+}
+.connection article strong,
+.connection article small {
+  display: block;
+  margin-top: 3px;
+}
+.connection i {
+  text-align: center;
+}
+.connection aside {
+  border-color: var(--line);
+  background: #f8f9fc;
+  text-align: left;
+}
+.connection aside p {
+  margin-top: 5px;
+}
+.mot303-info {
+  display: grid;
+  height: 230px;
+  grid-template-columns: 1fr 1.05fr 1.1fr;
+  gap: 9px;
+  margin-top: 12px;
+}
+.mot303-info article {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  padding: 11px;
+  overflow: hidden;
+}
+.mot303-info h3 {
+  color: #087eb4;
+  font-size: 9px;
+}
+.mot303-info article:nth-child(2) h3 {
+  color: #df3344;
+}
+.mot303-info p {
+  margin-top: 7px;
+}
+.mot303-info article > output {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 8px;
+  background: #eafbf1;
+  color: #16834a;
+}
+.mot303-info article:nth-child(2) > output {
+  background: #fff0f0;
+  color: #e13a4c;
+}
+.mot303-info article:nth-child(2) > div {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+.mot303-info article:nth-child(2) > div b {
+  border-radius: 5px;
+  background: #f0ebff;
+  padding: 6px;
+  color: #5f3ed0;
+}
+.mot303-info article:nth-child(2) > div b:last-child {
+  background: #fff0f5;
+  color: #d82f74;
+}
+.mot303-info article:last-child h3 {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #4c35d3;
+}
+.mot303-info article:last-child h3 svg {
+  width: 14px;
+}
+.mot303-info article:last-child > label {
+  display: grid;
+  grid-template-columns: 38px 1fr 31px;
+  align-items: center;
+  margin-top: 9px;
+}
+.mot303-info article:last-child input {
+  height: 25px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  padding: 0 7px;
+}
+.mot303-info article:last-child button {
+  display: block;
+  width: 105px;
+  height: 30px;
+  margin: 12px auto 0;
+  border: 0;
+  border-radius: 6px;
+  background: #1269ed;
+  color: #fff;
+  font-weight: 700;
+}
+.mot303-info article:last-child output {
+  background: transparent;
+  color: #52617a;
+}
+.mot303-info article:last-child output.correct {
+  background: #eafbf1;
+  color: #16834a;
+}
+.mot303-info article:last-child output.incorrect {
+  background: #fff0f0;
+  color: #df3344;
+}
+.mot303-adjacent {
+  display: flex;
+  height: 48px;
+  gap: 8px;
+  margin-top: 8px;
+}
+.mot303-adjacent a {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  padding: 0 14px;
+  color: inherit;
+  text-decoration: none;
+}
+.mot303-adjacent a:last-child {
+  justify-content: flex-end;
+  text-align: right;
+}
+.mot303-adjacent small {
+  display: block;
+  color: #63718a;
+  font-size: 7px;
+  text-transform: uppercase;
+}
+body:has(.mot303-page) [data-testid="desktop-sidebar"] {
+  width: 214px !important;
+  flex-basis: 214px !important;
+  transition: none;
+}
+body:has(.mot303-page) #main-content {
+  margin-left: 0 !important;
+  padding-left: 11px !important;
+  padding-right: 12px !important;
+}
+body:has(.mot303-page) .lesson-shell-header,
+body:has(.mot303-page) .lesson-page-shell > nav[role="tablist"],
+body:has(.mot303-page) .lesson-adjacent-nav {
+  display: none !important;
+}
+body:has(.mot303-page) .lesson-page-shell > div {
+  margin-top: 10px !important;
+}
+body:has(.mot303-page) .lesson-workbench.is-target-graphing-workbench {
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+body:has(.mot303-page) {
+  overflow: hidden;
+}
+body:has(.mot303-page) footer[aria-label="Site footer"] {
+  height: 94px !important;
+  margin-top: 2px !important;
+  padding: 5px 11px !important;
+  overflow: hidden;
+}
+body:has(.mot303-page) footer[aria-label="Site footer"] > div {
+  display: grid;
+  height: 84px;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: 50px 17px 17px;
+  padding: 6px 10px !important;
+}
+body:has(.mot303-page)
+  footer[aria-label="Site footer"]
+  > div
+  > div:first-child {
+  display: contents;
+}
+body:has(.mot303-page)
+  footer[aria-label="Site footer"]
+  > div
+  > div:first-child
+  > div:first-child {
+  grid-row: 1;
+  align-self: center;
+}
+body:has(.mot303-page)
+  footer[aria-label="Site footer"]
+  > div
+  > div:first-child
+  > div:last-child {
+  grid-row: 1;
+  grid-column: 2;
+  align-self: center;
+}
+body:has(.mot303-page)
+  footer[aria-label="Site footer"]
+  > div
+  > div:nth-child(2) {
+  grid-row: 2;
+  grid-column: 1/3;
+  margin: 0 !important;
+  border: 0 !important;
+  padding: 0 !important;
+}
+body:has(.mot303-page) footer[aria-label="Site footer"] > div > p:last-child {
+  grid-row: 3;
+  grid-column: 1/3;
+  margin: 0 !important;
+}
+@media (min-width: 960px) {
+  body:has(.mot303-page) .app-layout-rail > div > header {
+    height: 54px;
+  }
+  body:has(.mot303-page) [data-testid="desktop-sidebar"] > div {
+    padding: 10px 9px 40px !important;
+  }
+  body:has(.mot303-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type {
+    height: 61px;
+    min-height: 61px;
+    margin-bottom: 13px !important;
+    padding: 0 !important;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+  body:has(.mot303-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type
+    p:first-child {
+    white-space: nowrap;
+    font-size: 14px !important;
+  }
+  body:has(.mot303-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type
+    p:last-child {
+    font-size: 8px !important;
+  }
+  body:has(.mot303-page) [data-testid="desktop-sidebar"] > div > label {
+    height: 36px;
+    min-height: 36px !important;
+    margin-bottom: 10px !important;
+    padding: 0 9px !important;
+    font-size: 9px !important;
+  }
+  body:has(.mot303-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"] {
+    row-gap: 7px !important;
+  }
+  body:has(.mot303-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    > div:nth-of-type(2),
+  body:has(.mot303-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    > div:nth-of-type(n + 5) {
+    display: none;
+  }
+  body:has(.mot303-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    button {
+    min-height: 32px;
+    padding: 6px 8px !important;
+    font-size: 9px !important;
+  }
+  body:has(.mot303-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    a {
+    min-height: 29px;
+    padding: 5px 8px !important;
+    font-size: 8px !important;
+  }
+  body:has(.mot303-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    a:has(span span + span) {
+    height: 43px;
+    min-height: 43px;
+    padding: 3px 8px !important;
+  }
+  body:has(.mot303-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    a
+    span
+    span
+    + span {
+    font-size: 6px !important;
+  }
+  body:has(.mot303-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    > div:nth-of-type(4)
+    a {
+    height: 28px;
+    min-height: 28px;
+    padding: 3px 8px !important;
+  }
+  body:has(.mot303-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    > div:nth-of-type(4)
+    > div
+    > :nth-child(n + 2) {
+    display: none;
+  }
+}
+@media (max-width: 900px) {
+  .mot303-page {
+    min-width: 779px;
+  }
+}

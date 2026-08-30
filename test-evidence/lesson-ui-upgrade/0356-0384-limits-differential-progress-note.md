@@ -1,6 +1,6 @@
 # Limits and Differential Calculus target batch 0356-0384
 
-Dedicated rebuild target: **26 of 29 lessons completed; 3 pending.**
+Dedicated rebuild target: **27 of 29 lessons completed; 2 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
@@ -30,7 +30,7 @@ Dedicated rebuild target: **26 of 29 lessons completed; 3 pending.**
 | 0379 | 300 Inflection Points | `four-coefficient-cubic-analytic-second-derivative-direct-inflection-drag-concavity-sign-map-step-practice` | Reworked individually and browser-validated |
 | 0380 | 301 Optimisation | `fixed-concave-quadratic-domain-critical-endpoint-comparison-direct-x-drag-finite-derivative-cas-optimisation-practice` | Reworked individually and browser-validated |
 | 0381 | 302 Related Rates | `quadratic-distance-time-linked-exact-and-finite-rate-direct-time-drag-tangent-animation-chain-rule-practice` | Reworked individually and browser-validated |
-| 0382 | 303 Motion Analysis | Pending audit | Pending |
+| 0382 | 303 Motion Analysis | `cubic-position-linked-velocity-acceleration-three-synchronized-graphs-direct-time-drag-derivative-chain-practice` | Reworked individually and browser-validated |
 | 0383 | 304 Newton's Method | Pending audit | Pending |
 | 0384 | 305 Taylor Polynomial | Pending audit | Pending |
 
@@ -417,3 +417,19 @@ Evidence:
 - `0381-reference.png`
 - `0381-desktop.png`
 - `0381-dedicated-target-validation.json`
+
+## Lesson 303 / Mockup 0382 - Motion Analysis
+
+Reworked individually around the target's printed position model `s(t)=-t^3+3t^2+2t+1`, with exact linked derivatives `v(t)=-3t^2+6t+2` and `a(t)=-6t+6`. One shared t state drives all three curves, vertical cursors, draggable graph markers, coordinate labels, position/velocity/acceleration cards, domain display, and action count. The native time control and captured SVG pointer dragging on every graph are real. Five lesson tabs, Reset, Share, guidance toggle, two-field numeric practice validation, shell Reset, and Previous/Next navigation are functional.
+
+Browser validation confirms the coherent start `t=2.5`, position `9.125`, velocity `-1.75`, and acceleration `-9`. Moving t to `2` derives the worked-example values position `9`, velocity `2`, and acceleration `-6`; a real drag on the velocity graph moves t to approximately `2.963` and recomputes all three functions and markers. Guidance toggles on, practice rejects `v(1)=4`, accepts `v(1)=5` with `a(1)=0`, and shell Reset restores time, all values, blank practice, hidden guidance, selected tab, and zero actions.
+
+The reference prints this cubic but labels its initial t=2.5 cards as position `4.38`, velocity `4.25`, and acceleration `-3`, none of which evaluate from the formula; its plotted points inherit the same conflict. This implementation preserves the target composition and displayed primary model while keeping all synchronized graphs, value cards, derivative chain, worked example, and challenge mathematically consistent.
+
+Final exact 1016x1548 validation matches the target stack: sidebar width 214, hero y=102-342, tabs y=354-397, full synchronized motion surface y=406-1389, graph workspace y=509-1018, derivative-chain row y=1027-1136, worked/misconception/challenge row y=1148-1378, adjacent navigation y=1397-1445, and site footer y=1454-1548. The dedicated content spans x=225-1004, with no horizontal overflow, no duplicate shared lesson chrome, and zero console messages.
+
+Evidence:
+
+- `0382-reference.png`
+- `0382-desktop.png`
+- `0382-dedicated-target-validation.json`

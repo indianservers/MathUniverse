@@ -1,0 +1,150 @@
+{
+  "mockup": "0382",
+  "lessonId": 303,
+  "checks": {
+    "initial": {
+      "t": "2.5",
+      "s": "9.125",
+      "v": "-1.75",
+      "a": "-9",
+      "result": "",
+      "guidance": "false",
+      "actions": "0"
+    },
+    "timeDriven": {
+      "t": "2",
+      "s": "9",
+      "v": "2",
+      "a": "-6",
+      "result": "",
+      "guidance": "false",
+      "actions": "1"
+    },
+    "dragged": {
+      "t": "2.963",
+      "s": "7.249",
+      "v": "-6.564",
+      "a": "-11.78",
+      "result": "",
+      "guidance": "false",
+      "actions": "8"
+    },
+    "guidance": {
+      "t": "2.963",
+      "s": "7.249",
+      "v": "-6.564",
+      "a": "-11.78",
+      "result": "",
+      "guidance": "true",
+      "actions": "9"
+    },
+    "rejected": {
+      "t": "2.963",
+      "s": "7.249",
+      "v": "-6.564",
+      "a": "-11.78",
+      "result": "incorrect",
+      "guidance": "true",
+      "actions": "10"
+    },
+    "accepted": {
+      "t": "2.963",
+      "s": "7.249",
+      "v": "-6.564",
+      "a": "-11.78",
+      "result": "correct",
+      "guidance": "true",
+      "actions": "11"
+    },
+    "localReset": {
+      "t": "2.5",
+      "s": "9.125",
+      "v": "-1.75",
+      "a": "-9",
+      "result": "",
+      "guidance": "false",
+      "actions": "1"
+    },
+    "shellReset": {
+      "t": "2.5",
+      "s": "9.125",
+      "v": "-1.75",
+      "a": "-9",
+      "result": "",
+      "guidance": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1016,
+      "height": 1548
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 214,
+      "height": 1548,
+      "bottom": 1548
+    },
+    "hero": {
+      "top": 102,
+      "left": 225,
+      "width": 779,
+      "height": 240,
+      "bottom": 342
+    },
+    "tabs": {
+      "top": 354,
+      "left": 225,
+      "width": 779,
+      "height": 43,
+      "bottom": 397
+    },
+    "main": {
+      "top": 406,
+      "left": 225,
+      "width": 779,
+      "height": 983,
+      "bottom": 1389
+    },
+    "work": {
+      "top": 509,
+      "left": 235,
+      "width": 759,
+      "height": 509,
+      "bottom": 1018
+    },
+    "connection": {
+      "top": 1027,
+      "left": 235,
+      "width": 759,
+      "height": 109,
+      "bottom": 1136
+    },
+    "info": {
+      "top": 1148,
+      "left": 235,
+      "width": 759,
+      "height": 230,
+      "bottom": 1378
+    },
+    "adjacent": {
+      "top": 1397,
+      "left": 225,
+      "width": 779,
+      "height": 48,
+      "bottom": 1445
+    },
+    "footer": {
+      "top": 1454,
+      "left": 214,
+      "width": 802,
+      "height": 94,
+      "bottom": 1548
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
