@@ -1,0 +1,141 @@
+{
+  "mockup": "0368",
+  "lessonId": 289,
+  "checks": {
+    "initial": {
+      "x": "-0.64",
+      "fx": "0.7",
+      "derivative": "-0.87",
+      "sign": "Negative",
+      "f-scale": "3",
+      "d-scale": "6",
+      "result": "correct",
+      "actions": "0"
+    },
+    "xOne": {
+      "x": "1",
+      "fx": "0.05",
+      "derivative": "0.71",
+      "sign": "Positive",
+      "f-scale": "3",
+      "d-scale": "6",
+      "result": "correct",
+      "actions": "1"
+    },
+    "scales": {
+      "x": "1",
+      "fx": "0.05",
+      "derivative": "0.71",
+      "sign": "Positive",
+      "f-scale": "5",
+      "d-scale": "8",
+      "result": "correct",
+      "actions": "3"
+    },
+    "dragged": {
+      "x": "-0.07",
+      "fx": "0.22",
+      "derivative": "-0.75",
+      "sign": "Negative",
+      "f-scale": "5",
+      "d-scale": "8",
+      "result": "correct",
+      "actions": "10"
+    },
+    "rejected": {
+      "x": "-0.07",
+      "fx": "0.22",
+      "derivative": "-0.75",
+      "sign": "Negative",
+      "f-scale": "5",
+      "d-scale": "8",
+      "result": "incorrect",
+      "actions": "11"
+    },
+    "accepted": {
+      "x": "-0.07",
+      "fx": "0.22",
+      "derivative": "-0.75",
+      "sign": "Negative",
+      "f-scale": "5",
+      "d-scale": "8",
+      "result": "correct",
+      "actions": "12"
+    },
+    "reset": {
+      "x": "-0.64",
+      "fx": "0.7",
+      "derivative": "-0.87",
+      "sign": "Negative",
+      "f-scale": "3",
+      "d-scale": "6",
+      "result": "correct",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1013,
+      "height": 1553
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 211,
+      "height": 1553,
+      "bottom": 1553
+    },
+    "hero": {
+      "top": 91,
+      "left": 223,
+      "width": 777,
+      "height": 181,
+      "bottom": 272
+    },
+    "flow": {
+      "top": 282,
+      "left": 223,
+      "width": 777,
+      "height": 101,
+      "bottom": 383
+    },
+    "tabs": {
+      "top": 393,
+      "left": 223,
+      "width": 777,
+      "height": 42,
+      "bottom": 435
+    },
+    "lab": {
+      "top": 445,
+      "left": 223,
+      "width": 777,
+      "height": 642,
+      "bottom": 1087
+    },
+    "learn": {
+      "top": 1097,
+      "left": 223,
+      "width": 777,
+      "height": 273,
+      "bottom": 1370
+    },
+    "adjacent": {
+      "top": 1380,
+      "left": 223,
+      "width": 777,
+      "height": 45,
+      "bottom": 1425
+    },
+    "footer": {
+      "top": 1435,
+      "left": 223,
+      "width": 777,
+      "height": 85,
+      "bottom": 1520
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

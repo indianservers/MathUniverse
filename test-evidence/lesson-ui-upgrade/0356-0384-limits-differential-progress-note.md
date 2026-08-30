@@ -1,6 +1,6 @@
 # Limits and Differential Calculus target batch 0356-0384
 
-Dedicated rebuild target: **12 of 29 lessons completed; 17 pending.**
+Dedicated rebuild target: **13 of 29 lessons completed; 16 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
@@ -16,7 +16,7 @@ Dedicated rebuild target: **12 of 29 lessons completed; 17 pending.**
 | 0365 | 286 Derivative From First Principles | `selectable-quadratic-base-point-h-secant-difference-quotient-symbolic-limit-practice` | Reworked individually and browser-validated |
 | 0366 | 287 Tangent Line | `quadratic-draggable-point-derivative-tangent-slope-triangle-point-slope-practice` | Reworked individually and browser-validated |
 | 0367 | 288 Normal Line | `concave-quadratic-draggable-point-tangent-negative-reciprocal-normal-right-angle-step-practice` | Reworked individually and browser-validated |
-| 0368 | 289 Derivative Graph | Pending audit | Pending |
+| 0368 | 289 Derivative Graph | `integrated-cubic-linked-derivative-shared-draggable-cursor-tangent-sign-zeros-scales-challenge` | Reworked individually and browser-validated |
 | 0369 | 290 Higher Derivatives | Pending audit | Pending |
 | 0370 | 291 Product Rule | Pending audit | Pending |
 | 0371 | 292 Quotient Rule | Pending audit | Pending |
@@ -203,3 +203,17 @@ Evidence:
 - `0367-reference.png`
 - `0367-desktop.png`
 - `0367-dedicated-target-validation.json`
+
+## Lesson 289 / Mockup 0368 - Derivative Graph
+
+Reworked individually around one integrated cubic and its exact analytic derivative. The derivative is `f'(x)=sqrt(1/2)(x^2+x-1)`, giving the reference's golden-ratio zeros near `-1.62` and `0.62`; the integration constant is chosen so the target cursor `x=-0.64` produces `f(x)=0.70` and `f'(x)=-0.87`. One shared cursor drives both graph points, the function tangent, vertical guides, coordinate labels, derivative sign, legend values, and action count. Native cursor/scale ranges and captured SVG pointer dragging on the function graph are real; the separate function and derivative scale controls change their respective coordinate mappings.
+
+Browser validation confirms the exact target start `x=-0.64`, `f(x)=0.70`, `f'(x)=-0.87`, and Negative sign. Moving to `x=1` derives a Positive derivative of approximately `0.71`; the independent vertical scales update from `3/6` to `5/8`; a real pointer drag moves the synchronized cursor to approximately `x=-0.07` and derives `f(x)=0.22`, `f'(x)=-0.75`. The challenge rejects interval A, accepts B (`x<-1.62` or `x>0.62`), and shell Reset restores both scales, cursor, target values, selected tab, correct challenge, and zero actions.
+
+Final exact 1013x1553 validation matches the target stack: sidebar width 211, hero y=91-272, four-stage guide y=282-383, tabs y=393-435, synchronized graph laboratory y=445-1087, key-rule/worked/misconception/challenge row y=1097-1370, adjacent navigation y=1380-1425, and footer y=1435-1520. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0368-reference.png`
+- `0368-desktop.png`
+- `0368-dedicated-target-validation.json`
