@@ -1,0 +1,167 @@
+{
+  "mockup": "0387",
+  "lessonId": 308,
+  "checks": {
+    "initial": {
+      "a": "-4",
+      "b": "4",
+      "total": "-18.666667",
+      "positive": "10.666667",
+      "negative": "-29.333333",
+      "zoom": "1",
+      "result": "",
+      "actions": "0",
+      "layers": "axes,grid,curve,areas,labels"
+    },
+    "bounds": {
+      "a": "-3",
+      "b": "2",
+      "total": "8.333333",
+      "positive": "10.666667",
+      "negative": "-2.333333",
+      "zoom": "1",
+      "result": "",
+      "actions": "2",
+      "layers": "axes,grid,curve,areas,labels"
+    },
+    "boundDrag": {
+      "a": "-1.998447",
+      "b": "2",
+      "total": "6.662005",
+      "positive": "8.995339",
+      "negative": "-2.333333",
+      "zoom": "1",
+      "result": "",
+      "actions": "8",
+      "layers": "axes,grid,curve,areas,labels"
+    },
+    "swapped": {
+      "a": "2",
+      "b": "-1.998447",
+      "total": "-6.662005",
+      "positive": "2.333333",
+      "negative": "-8.995339",
+      "zoom": "1",
+      "result": "",
+      "actions": "9",
+      "layers": "axes,grid,curve,areas,labels"
+    },
+    "hidden": {
+      "a": "2",
+      "b": "-1.998447",
+      "total": "-6.662005",
+      "positive": "2.333333",
+      "negative": "-8.995339",
+      "zoom": "1",
+      "result": "",
+      "actions": "11",
+      "layers": "axes,grid,labels"
+    },
+    "zoomed": {
+      "a": "2",
+      "b": "-1.998447",
+      "total": "-6.662005",
+      "positive": "2.333333",
+      "negative": "-8.995339",
+      "zoom": "1.1",
+      "result": "",
+      "actions": "12",
+      "layers": "axes,grid,labels"
+    },
+    "rejected": {
+      "a": "2",
+      "b": "-1.998447",
+      "total": "-6.662005",
+      "positive": "2.333333",
+      "negative": "-8.995339",
+      "zoom": "1",
+      "result": "incorrect",
+      "actions": "15",
+      "layers": "axes,grid,labels"
+    },
+    "accepted": {
+      "a": "2",
+      "b": "-1.998447",
+      "total": "-6.662005",
+      "positive": "2.333333",
+      "negative": "-8.995339",
+      "zoom": "1",
+      "result": "correct",
+      "actions": "17",
+      "layers": "axes,grid,labels"
+    },
+    "localReset": {
+      "a": "-4",
+      "b": "4",
+      "total": "-18.666667",
+      "positive": "10.666667",
+      "negative": "-29.333333",
+      "zoom": "1",
+      "result": "",
+      "actions": "1",
+      "layers": "axes,grid,curve,areas,labels"
+    },
+    "shellReset": {
+      "a": "-4",
+      "b": "4",
+      "total": "-18.666667",
+      "positive": "10.666667",
+      "negative": "-29.333333",
+      "zoom": "1",
+      "result": "",
+      "actions": "0",
+      "layers": "axes,grid,curve,areas,labels"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 999,
+      "height": 1575
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 218,
+      "height": 1575,
+      "bottom": 1575
+    },
+    "hero": {
+      "top": 104,
+      "left": 232,
+      "width": 753,
+      "height": 223,
+      "bottom": 327
+    },
+    "tabs": {
+      "top": 335,
+      "left": 232,
+      "width": 753,
+      "height": 43,
+      "bottom": 378
+    },
+    "lab": {
+      "top": 386,
+      "left": 232,
+      "width": 753,
+      "height": 674,
+      "bottom": 1060
+    },
+    "learning": {
+      "top": 1068,
+      "left": 232,
+      "width": 753,
+      "height": 325,
+      "bottom": 1393
+    },
+    "practice": {
+      "top": 1401,
+      "left": 232,
+      "width": 753,
+      "height": 137,
+      "bottom": 1538
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

@@ -1,12 +1,12 @@
 # Integral Calculus and Differential Equations target batch 0385-0412
 
-Dedicated rebuild target: **2 of 28 lessons completed; 26 pending.**
+Dedicated rebuild target: **3 of 28 lessons completed; 25 pending.**
 
 | Mockup | Lesson                           | Dedicated object model                                                                                                     | Status                                      |
 | ------ | -------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
 | 0385   | 306 Area by Rectangles           | `cubic-partition-dual-endpoint-drag-left-midpoint-right-rectangles-signed-positive-negative-sums-layer-toggles-practice`   | Reworked individually and browser-validated |
 | 0386   | 307 Riemann Sums                 | `cosine-plus-two-uniform-partition-draggable-boundary-and-sample-left-midpoint-right-sum-exact-error-convergence-practice` | Reworked individually and browser-validated |
-| 0387   | 308 Definite Integral            | Pending audit                                                                                                              | Pending                                     |
+| 0387   | 308 Definite Integral            | `quadratic-oriented-area-dual-bound-drag-signed-region-decomposition-limit-swap-layer-visibility-zoom-practice`            | Reworked individually and browser-validated |
 | 0388   | 309 Indefinite Integral          | Pending audit                                                                                                              | Pending                                     |
 | 0389   | 310 Fundamental Theorem          | Pending audit                                                                                                              | Pending                                     |
 | 0390   | 311 Area Between Curves          | Pending audit                                                                                                              | Pending                                     |
@@ -64,3 +64,19 @@ Evidence:
 - `0386-reference.png`
 - `0386-desktop.png`
 - `0386-dedicated-target-validation.json`
+
+## Lesson 308 / Mockup 0387 - Definite Integral
+
+Reworked individually around the target's printed quadratic `f(x)=-(x-1)(x+3)=-x^2-2x+3`. The lower and upper limits drive the analytic antiderivative, net oriented integral, root-aware positive/negative region split, generated SVG shading, draggable bound handles, result summary, and explanation card. Both native range controls and captured direct graph dragging are real. Swap limits reverses the orientation and signs. Axes, grid, curve, areas, and labels independently remove their actual SVG layers; zoom in/out and Fit change the graph domain. Five lesson tabs, Reset, Share, Workspace, full-screen, multiple-choice practice validation, shell Reset, and action counting are functional.
+
+Browser validation confirms the coherent initial values `a=-4`, `b=4`, positive contribution `32/3`, negative contribution `-88/3`, and total `-56/3=-18.666667`. Changing the bounds to `[-3,2]` gives `25/3`; a real pointer drag moves the lower bound to approximately `-1.998447` and recomputes every region. Swapping those limits changes the total from `6.662005` to `-6.662005` and reverses each oriented piece. Curve and area layers disappear, zoom changes to `1.1`, practice rejects `-2` and accepts `20/3`, and both local and shell Reset restore all initial state.
+
+The reference prints this quadratic but labels the initial integral `-0.50`, positive area `4.50`, and negative pieces `-0.50` and `-4.50`; those values do not evaluate from the displayed function and bounds. Its practice options also omit the actual value `20/3`. The dedicated surface preserves the target layout, graph shape, roots, controls, and signed-area teaching sequence while keeping the curve, regions, antiderivative, breakdown, worked example, and checked practice answer mathematically consistent.
+
+Final exact 999x1575 validation matches the target stack: sidebar width 218, hero y=104-327, tabs y=335-378, oriented-area lab y=386-1060, worked/misconception/tip section y=1068-1393, and practice y=1401-1538. Dedicated content spans x=232-985, with no horizontal overflow, no duplicate shared lesson chrome, no site footer, and zero console messages.
+
+Evidence:
+
+- `0387-reference.png`
+- `0387-desktop.png`
+- `0387-dedicated-target-validation.json`
