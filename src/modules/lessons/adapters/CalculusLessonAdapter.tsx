@@ -13,6 +13,7 @@ import InfiniteLimitsTargetLesson279 from "./calculus/InfiniteLimitsTargetLesson
 import LimitsAtInfinityTargetLesson280 from "./calculus/LimitsAtInfinityTargetLesson280";
 import ContinuityAtPointTargetLesson281 from "./calculus/ContinuityAtPointTargetLesson281";
 import TypesOfDiscontinuityTargetLesson282 from "./calculus/TypesOfDiscontinuityTargetLesson282";
+import EpsilonDeltaTargetLesson283 from "./calculus/EpsilonDeltaTargetLesson283";
 
 const viewportSize = { width: 640, height: 360 };
 const fallbackViewport: GraphViewport = { xMin: -5, xMax: 5, yMin: -6, yMax: 10, ...viewportSize };
@@ -127,6 +128,7 @@ export default function CalculusLessonAdapter(props: LessonAdapterProps) {
   if (props.lesson.id === 280) return <LimitsAtInfinityTargetLesson280 {...props} />;
   if (props.lesson.id === 281) return <ContinuityAtPointTargetLesson281 {...props} />;
   if (props.lesson.id === 282) return <TypesOfDiscontinuityTargetLesson282 {...props} />;
+  if (props.lesson.id === 283) return <EpsilonDeltaTargetLesson283 {...props} />;
   if (props.lesson.id >= 277 && props.lesson.id <= 305) return <LimitsDifferentialMockupLesson {...props} />;
   if (props.lesson.id >= 306 && props.lesson.id <= 333) return <IntegralDifferentialMockupLesson {...props} />;
   return <LegacyCalculusLessonAdapter {...props} />;

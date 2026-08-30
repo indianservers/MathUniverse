@@ -186,7 +186,7 @@ export default function TypesOfDiscontinuityTargetLesson282({
           </span>
           <b>40%</b>
         </div>
-        <a href="/lessons/calculus/283-epsilon-delta-visualiser">
+        <a href="/lessons/calculus/283-epsilondelta-visualiser">
           <span>
             <small>Next</small>Epsilon-Delta Visualiser
           </span>

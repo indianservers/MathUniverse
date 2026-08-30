@@ -1,6 +1,6 @@
 # Limits and Differential Calculus target batch 0356-0384
 
-Dedicated rebuild target: **6 of 29 lessons completed; 23 pending.**
+Dedicated rebuild target: **7 of 29 lessons completed; 22 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
@@ -10,7 +10,7 @@ Dedicated rebuild target: **6 of 29 lessons completed; 23 pending.**
 | 0359 | 280 Limits at Infinity | `even-rational-end-behavior-horizontal-asymptote-linked-view-dominant-terms-practice` | Reworked individually and browser-validated |
 | 0360 | 281 Continuity at a Point | `parabola-removable-hole-editable-point-five-condition-continuity-drag-practice` | Reworked individually and browser-validated |
 | 0361 | 282 Types of Discontinuity | `three-break-graphs-six-draggable-approach-markers-derived-limits-classification` | Reworked individually and browser-validated |
-| 0362 | 283 Epsilon-Delta Visualiser | Pending audit | Pending |
+| 0362 | 283 Epsilon-Delta Visualiser | `linear-epsilon-delta-linked-input-output-bands-draggable-handles-proof-practice` | Reworked individually and browser-validated |
 | 0363 | 284 Average Rate of Change | Pending audit | Pending |
 | 0364 | 285 Instantaneous Rate of Change | Pending audit | Pending |
 | 0365 | 286 Derivative From First Principles | Pending audit | Pending |
@@ -117,3 +117,17 @@ Evidence:
 - `0361-reference.png`
 - `0361-desktop.png`
 - `0361-dedicated-target-validation.json`
+
+## Lesson 283 / Mockup 0362 - Epsilon-Delta Visualiser
+
+Reworked individually around the coherent linear proof model `f(x)=2x`, with `L=2a` and containment passing exactly when `2*delta <= epsilon`. Epsilon, delta, and `a` drive the purple output band, orange input interval, graph point, interval guides, numeric outputs, containment verdict, formula labels, and action count. Native range controls, number steppers, and captured SVG pointer dragging all update the same model; the lesson-specific practice uses its own epsilon/delta pair and the same mathematical test.
+
+Browser validation starts at `epsilon=2`, `delta=1`, `a=1`, and `L=2` with PASS. Widening delta to `1.5` produces FAIL; widening epsilon to `3` restores PASS; moving `a` to `2` derives `L=4`. A real pointer drag changes delta from `1.5` to `1.32`. Practice rejects delta `1` for epsilon `1.6`, accepts `0.8`, and shell Reset restores both proof models, the selected interaction tab, and zero actions.
+
+Final exact 935x1683 validation matches the target portrait stack: desktop sidebar width 205, hero y=97-309, tabs y=320-364, proof laboratory y=376-1028, four-stage guide y=1038-1147, definition/worked/misconception row y=1158-1336, practice y=1346-1506, adjacent navigation y=1516-1567, and site footer y=1580-1683. It reports no horizontal overflow, no mobile dock, and zero console messages.
+
+Evidence:
+
+- `0362-reference.png`
+- `0362-desktop.png`
+- `0362-dedicated-target-validation.json`

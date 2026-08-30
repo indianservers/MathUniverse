@@ -1,0 +1,170 @@
+{
+  "mockup": "0362",
+  "lessonId": 283,
+  "checks": {
+    "initial": {
+      "epsilon": "2",
+      "delta": "1",
+      "a": "1",
+      "limit": "2",
+      "pass": "true",
+      "practice-epsilon": "1.6",
+      "practice-delta": "0.8",
+      "practice-pass": "true",
+      "actions": "0"
+    },
+    "failed": {
+      "epsilon": "2",
+      "delta": "1.5",
+      "a": "1",
+      "limit": "2",
+      "pass": "false",
+      "practice-epsilon": "1.6",
+      "practice-delta": "0.8",
+      "practice-pass": "true",
+      "actions": "1"
+    },
+    "recovered": {
+      "epsilon": "3",
+      "delta": "1.5",
+      "a": "1",
+      "limit": "2",
+      "pass": "true",
+      "practice-epsilon": "1.6",
+      "practice-delta": "0.8",
+      "practice-pass": "true",
+      "actions": "2"
+    },
+    "movedA": {
+      "epsilon": "3",
+      "delta": "1.5",
+      "a": "2",
+      "limit": "4",
+      "pass": "true",
+      "practice-epsilon": "1.6",
+      "practice-delta": "0.8",
+      "practice-pass": "true",
+      "actions": "3"
+    },
+    "dragged": {
+      "epsilon": "3",
+      "delta": "1.32",
+      "a": "2",
+      "limit": "4",
+      "pass": "true",
+      "practice-epsilon": "1.6",
+      "practice-delta": "0.8",
+      "practice-pass": "true",
+      "actions": "11"
+    },
+    "practiceFailed": {
+      "epsilon": "3",
+      "delta": "1.32",
+      "a": "2",
+      "limit": "4",
+      "pass": "true",
+      "practice-epsilon": "1.6",
+      "practice-delta": "1",
+      "practice-pass": "false",
+      "actions": "12"
+    },
+    "practicePassed": {
+      "epsilon": "3",
+      "delta": "1.32",
+      "a": "2",
+      "limit": "4",
+      "pass": "true",
+      "practice-epsilon": "1.6",
+      "practice-delta": "0.8",
+      "practice-pass": "true",
+      "actions": "13"
+    },
+    "reset": {
+      "epsilon": "2",
+      "delta": "1",
+      "a": "1",
+      "limit": "2",
+      "pass": "true",
+      "practice-epsilon": "1.6",
+      "practice-delta": "0.8",
+      "practice-pass": "true",
+      "actions": "0"
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/calculus/282-types-of-discontinuity",
+    "nextHref": "/lessons/calculus/284-average-rate-of-change"
+  },
+  "metrics": {
+    "document": {
+      "width": 935,
+      "height": 1683
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 205,
+      "height": 1683,
+      "bottom": 1683
+    },
+    "hero": {
+      "top": 97,
+      "left": 220,
+      "width": 701,
+      "height": 212,
+      "bottom": 309
+    },
+    "tabs": {
+      "top": 320,
+      "left": 220,
+      "width": 701,
+      "height": 44,
+      "bottom": 364
+    },
+    "lab": {
+      "top": 376,
+      "left": 220,
+      "width": 701,
+      "height": 652,
+      "bottom": 1028
+    },
+    "how": {
+      "top": 1038,
+      "left": 220,
+      "width": 701,
+      "height": 109,
+      "bottom": 1147
+    },
+    "learning": {
+      "top": 1158,
+      "left": 220,
+      "width": 701,
+      "height": 178,
+      "bottom": 1336
+    },
+    "practice": {
+      "top": 1346,
+      "left": 220,
+      "width": 701,
+      "height": 160,
+      "bottom": 1506
+    },
+    "adjacent": {
+      "top": 1516,
+      "left": 220,
+      "width": 701,
+      "height": 51,
+      "bottom": 1567
+    },
+    "footer": {
+      "top": 1580,
+      "left": 205,
+      "width": 730,
+      "height": 103,
+      "bottom": 1683
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
