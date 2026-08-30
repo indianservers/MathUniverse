@@ -1,0 +1,195 @@
+{
+  "mockup": "0386",
+  "lessonId": 307,
+  "checks": {
+    "initial": {
+      "n": "8",
+      "mode": "left",
+      "alpha": "0",
+      "sum": "12.566371",
+      "exact": "12.566371",
+      "error": "0",
+      "percent": "0",
+      "rectangles": "true",
+      "result": "",
+      "steps": "false",
+      "actions": "0"
+    },
+    "controls": {
+      "n": "12",
+      "mode": "midpoint",
+      "alpha": "0.5",
+      "sum": "12.566371",
+      "exact": "12.566371",
+      "error": "0",
+      "percent": "0",
+      "rectangles": "true",
+      "result": "",
+      "steps": "false",
+      "actions": "2"
+    },
+    "boundaryDrag": {
+      "n": "6",
+      "mode": "midpoint",
+      "alpha": "0.5",
+      "sum": "12.566371",
+      "exact": "12.566371",
+      "error": "0",
+      "percent": "0",
+      "rectangles": "true",
+      "result": "",
+      "steps": "false",
+      "actions": "8"
+    },
+    "sampleDrag": {
+      "n": "6",
+      "mode": "right",
+      "alpha": "1",
+      "sum": "12.566371",
+      "exact": "12.566371",
+      "error": "0",
+      "percent": "0",
+      "rectangles": "true",
+      "result": "",
+      "steps": "false",
+      "actions": "14"
+    },
+    "hidden": {
+      "n": "6",
+      "mode": "right",
+      "alpha": "1",
+      "sum": "12.566371",
+      "exact": "12.566371",
+      "error": "0",
+      "percent": "0",
+      "rectangles": "false",
+      "result": "",
+      "steps": "false",
+      "actions": "15"
+    },
+    "rejected": {
+      "n": "6",
+      "mode": "right",
+      "alpha": "1",
+      "sum": "12.566371",
+      "exact": "12.566371",
+      "error": "0",
+      "percent": "0",
+      "rectangles": "false",
+      "result": "incorrect",
+      "steps": "false",
+      "actions": "16"
+    },
+    "accepted": {
+      "n": "6",
+      "mode": "right",
+      "alpha": "1",
+      "sum": "12.566371",
+      "exact": "12.566371",
+      "error": "0",
+      "percent": "0",
+      "rectangles": "false",
+      "result": "correct",
+      "steps": "true",
+      "actions": "18"
+    },
+    "localReset": {
+      "n": "8",
+      "mode": "left",
+      "alpha": "0",
+      "sum": "12.566371",
+      "exact": "12.566371",
+      "error": "0",
+      "percent": "0",
+      "rectangles": "true",
+      "result": "",
+      "steps": "false",
+      "actions": "1"
+    },
+    "shellReset": {
+      "n": "8",
+      "mode": "left",
+      "alpha": "0",
+      "sum": "12.566371",
+      "exact": "12.566371",
+      "error": "0",
+      "percent": "0",
+      "rectangles": "true",
+      "result": "",
+      "steps": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1007,
+      "height": 1568
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 208,
+      "height": 1562,
+      "bottom": 1562
+    },
+    "hero": {
+      "top": 95,
+      "left": 233,
+      "width": 760,
+      "height": 227,
+      "bottom": 322
+    },
+    "tabs": {
+      "top": 329,
+      "left": 233,
+      "width": 760,
+      "height": 49,
+      "bottom": 378
+    },
+    "flow": {
+      "top": 385,
+      "left": 233,
+      "width": 760,
+      "height": 71,
+      "bottom": 456
+    },
+    "lab": {
+      "top": 464,
+      "left": 233,
+      "width": 760,
+      "height": 521,
+      "bottom": 985
+    },
+    "rule": {
+      "top": 990,
+      "left": 233,
+      "width": 760,
+      "height": 170,
+      "bottom": 1160
+    },
+    "worked": {
+      "top": 1161,
+      "left": 233,
+      "width": 760,
+      "height": 160,
+      "bottom": 1321
+    },
+    "practice": {
+      "top": 1327,
+      "left": 233,
+      "width": 760,
+      "height": 175,
+      "bottom": 1502
+    },
+    "adjacent": {
+      "top": 1510,
+      "left": 233,
+      "width": 760,
+      "height": 45,
+      "bottom": 1555
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

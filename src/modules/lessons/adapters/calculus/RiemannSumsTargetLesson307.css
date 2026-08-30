@@ -1,0 +1,600 @@
+.rie307-page {
+  --ink: #102047;
+  --line: #d9e2ed;
+  position: relative;
+  top: -13px;
+  color: var(--ink);
+  font:
+    8px/1.45 Inter,
+    system-ui,
+    sans-serif;
+  letter-spacing: 0;
+}
+.rie307-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.rie307-page h1,
+.rie307-page h2,
+.rie307-page h3,
+.rie307-page p {
+  margin: 0;
+}
+.rie307-page button,
+.rie307-page input,
+.rie307-page select {
+  color: inherit;
+  font: inherit;
+}
+.rie307-hero {
+  height: 227px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  padding: 16px;
+}
+.rie307-hero > span {
+  display: flex;
+  gap: 8px;
+}
+.rie307-hero > span b {
+  border-radius: 11px;
+  background: #e7f8fd;
+  padding: 4px 9px;
+  color: #087da5;
+  font-size: 7px;
+}
+.rie307-hero > span b:last-child {
+  background: #f2f4f7;
+  color: #53617a;
+}
+.rie307-hero h1 {
+  margin-top: 10px;
+  font-size: 27px;
+  line-height: 31px;
+  font-weight: 850;
+}
+.rie307-hero > p {
+  color: #52627b;
+  font-size: 10px;
+}
+.rie307-hero .meta,
+.rie307-hero .actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 13px;
+}
+.rie307-hero .meta i,
+.rie307-hero .actions > * {
+  display: flex;
+  height: 34px;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: #fff;
+  padding: 0 12px;
+  color: inherit;
+  font-style: normal;
+  font-weight: 700;
+  text-decoration: none;
+}
+.rie307-hero .actions {
+  flex-wrap: wrap;
+}
+.rie307-hero .actions > *:first-child {
+  width: 172px;
+  justify-content: space-between;
+}
+.rie307-hero .actions > a {
+  flex-basis: 92px;
+}
+.rie307-hero svg {
+  width: 13px;
+}
+.rie307-tabs {
+  display: grid;
+  height: 49px;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 5px;
+  margin-top: 7px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  padding: 4px;
+}
+.rie307-tabs button {
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+}
+.rie307-tabs button b,
+.rie307-tabs button small {
+  display: block;
+}
+.rie307-tabs button.active {
+  background: #087ec2;
+  color: #fff;
+}
+.rie307-flow {
+  display: grid;
+  height: 71px;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 7px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  padding: 9px;
+}
+.rie307-flow article {
+  display: grid;
+  grid-template-columns: 27px 1fr;
+  gap: 7px;
+  border-right: 1px solid var(--line);
+  padding: 0 11px;
+}
+.rie307-flow article:last-child {
+  border: 0;
+}
+.rie307-flow svg {
+  width: 22px;
+  color: #087ad8;
+}
+.rie307-flow h3 {
+  color: #075eb0;
+  font-size: 9px;
+}
+.rie307-flow p {
+  margin-top: 5px;
+}
+.rie307-lab {
+  height: 521px;
+  margin-top: 8px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  padding: 9px;
+}
+.rie307-lab > header {
+  display: flex;
+  height: 39px;
+  align-items: center;
+}
+.rie307-lab > header h2 {
+  font-size: 14px;
+}
+.rie307-lab > header > b {
+  margin-left: auto;
+  border: 1px solid #efd49a;
+  border-radius: 13px;
+  background: #fff8e8;
+  padding: 6px 10px;
+  color: #ad6607;
+}
+.rie307-lab > header > button {
+  height: 28px;
+  margin-left: 8px;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: #fff;
+  padding: 0 11px;
+}
+.rie307-lab > header > button:last-child {
+  width: 30px;
+  padding: 0;
+  border-radius: 6px;
+}
+.rie307-lab > header svg {
+  width: 13px;
+}
+.rie307-lab > main {
+  display: grid;
+  height: 395px;
+  grid-template-columns: minmax(0, 1fr) 239px;
+  gap: 8px;
+}
+.rie307-lab .graph-panel {
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  overflow: hidden;
+}
+.rie307-lab .graph-panel > header {
+  display: grid;
+  height: 62px;
+  grid-template-columns: 1.15fr 1fr 0.45fr 0.7fr;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  padding: 8px;
+}
+.rie307-lab .graph-panel > header span b {
+  display: block;
+  margin-top: 6px;
+  font:
+    italic 11px Georgia,
+    serif;
+}
+.rie307-graph {
+  display: block !important;
+  width: 100% !important;
+  height: 230px !important;
+  touch-action: none;
+}
+.rie307-graph .rectangle {
+  fill: #dbe7ff;
+  stroke: #6f72e8;
+}
+.rie307-graph .axis {
+  stroke: #26364c;
+}
+.rie307-graph .curve {
+  fill: none;
+  stroke: #049ed2;
+  stroke-width: 2.5;
+}
+.rie307-graph .sample {
+  fill: #1d43c9;
+  cursor: grab;
+}
+.rie307-graph .partition {
+  stroke: #7c8ca2;
+  stroke-dasharray: 4 4;
+}
+.rie307-graph .boundary {
+  fill: #fff;
+  stroke: #0b75c6;
+  stroke-width: 2;
+  cursor: ew-resize;
+}
+.rie307-lab .graph-panel > p {
+  height: 45px;
+  padding: 8px 14px;
+}
+.rie307-lab .graph-panel > footer {
+  display: grid;
+  height: 58px;
+  grid-template-columns: 1.1fr 0.8fr 0.8fr;
+  gap: 12px;
+  border-top: 1px solid var(--line);
+  padding: 8px 14px;
+}
+.rie307-lab .graph-panel > footer label {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  align-items: center;
+}
+.rie307-lab .graph-panel > footer input[type="range"] {
+  width: 100%;
+  accent-color: #314bd3;
+}
+.rie307-lab .graph-panel > footer select {
+  height: 27px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+}
+.rie307-lab > main > aside {
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 14px;
+}
+.rie307-lab > main > aside h3 {
+  margin-bottom: 12px;
+}
+.rie307-lab > main > aside strong,
+.rie307-lab > main > aside output {
+  display: block;
+  border-bottom: 1px solid var(--line);
+  padding: 12px 4px;
+  text-align: center;
+  font:
+    italic 13px Georgia,
+    serif;
+}
+.rie307-lab > main > aside output small {
+  display: block;
+  margin-top: 7px;
+}
+.rie307-lab .convergence {
+  display: grid;
+  height: 58px;
+  grid-template-columns: 150px 1fr 1fr;
+  align-items: center;
+  margin-top: 8px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: #fafcff;
+  padding: 8px;
+}
+.rie307-lab .convergence b {
+  color: #075eb0;
+}
+.rie307-rule {
+  display: grid;
+  height: 170px;
+  grid-template-columns: 1.3fr 0.75fr;
+  margin-top: 5px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  overflow: hidden;
+}
+.rie307-rule article {
+  padding: 14px;
+}
+.rie307-rule article:last-child {
+  border-left: 1px solid #f1cad6;
+  background: #fff3f7;
+}
+.rie307-rule h3 {
+  font-size: 10px;
+}
+.rie307-rule article:last-child h3 {
+  color: #df3344;
+}
+.rie307-rule p {
+  margin-top: 10px;
+}
+.rie307-rule strong {
+  display: block;
+  width: 230px;
+  margin: 18px 20px;
+  border: 1px solid #c9a8f5;
+  border-radius: 6px;
+  padding: 12px;
+  text-align: center;
+  font:
+    italic 13px Georgia,
+    serif;
+}
+.rie307-worked {
+  height: 160px;
+  margin-top: 1px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  padding: 12px;
+}
+.rie307-worked h3 {
+  color: #075eb0;
+  font-size: 10px;
+}
+.rie307-worked > p {
+  margin-top: 8px;
+}
+.rie307-worked > div {
+  display: grid;
+  grid-template-columns: 0.9fr 1.7fr 0.7fr;
+  margin-top: 10px;
+}
+.rie307-worked > div > * {
+  border-right: 1px solid var(--line);
+  padding: 10px;
+}
+.rie307-worked > div > *:last-child {
+  border: 0;
+}
+.rie307-practice {
+  height: 175px;
+  margin-top: 6px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  overflow: hidden;
+}
+.rie307-practice > header {
+  float: left;
+  width: 150px;
+  height: 140px;
+  border-right: 1px solid var(--line);
+  padding: 12px;
+}
+.rie307-practice > header h3 {
+  color: #075eb0;
+}
+.rie307-practice > main {
+  display: grid;
+  height: 140px;
+  grid-template-columns: 1.4fr 0.8fr 0.8fr 100px;
+  gap: 10px;
+  padding: 12px;
+}
+.rie307-practice > main > p {
+  grid-column: 1/5;
+}
+.rie307-practice label {
+  display: grid;
+  gap: 5px;
+}
+.rie307-practice input {
+  height: 29px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  padding: 0 7px;
+}
+.rie307-practice button {
+  height: 29px;
+  border: 0;
+  border-radius: 5px;
+  background: #7a36df;
+  color: #fff;
+}
+.rie307-practice button + button {
+  background: #fff;
+  color: #6340a9;
+  border: 1px solid #c8b8e7;
+}
+.rie307-practice output {
+  grid-column: 2/5;
+}
+.rie307-practice > footer {
+  height: 35px;
+  border-top: 1px solid var(--line);
+  padding: 9px 160px;
+}
+.rie307-adjacent {
+  display: flex;
+  height: 45px;
+  gap: 8px;
+  margin-top: 8px;
+}
+.rie307-adjacent a {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: #fff;
+  padding: 0 14px;
+  color: inherit;
+  text-decoration: none;
+}
+.rie307-adjacent a:last-child {
+  justify-content: flex-end;
+  text-align: right;
+}
+.rie307-adjacent small {
+  display: block;
+  color: #63718a;
+  font-size: 7px;
+  text-transform: uppercase;
+}
+body:has(.rie307-page) [data-testid="desktop-sidebar"] {
+  width: 208px !important;
+  flex-basis: 208px !important;
+  transition: none;
+}
+body:has(.rie307-page) #main-content {
+  margin-left: 0 !important;
+  padding-left: 25px !important;
+  padding-right: 14px !important;
+}
+body:has(.rie307-page) .lesson-shell-header,
+body:has(.rie307-page) .lesson-page-shell > nav[role="tablist"],
+body:has(.rie307-page) .lesson-adjacent-nav,
+body:has(.rie307-page) footer[aria-label="Site footer"] {
+  display: none !important;
+}
+body:has(.rie307-page) .lesson-page-shell > div {
+  margin-top: 10px !important;
+}
+body:has(.rie307-page) .lesson-workbench.is-target-graphing-workbench {
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+body:has(.rie307-page) {
+  overflow: hidden;
+}
+@media (min-width: 960px) {
+  body:has(.rie307-page) .app-layout-rail > div > header {
+    height: 54px;
+  }
+  body:has(.rie307-page) [data-testid="desktop-sidebar"] > div {
+    padding: 10px 9px 40px !important;
+  }
+  body:has(.rie307-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type {
+    height: 61px;
+    min-height: 61px;
+    margin-bottom: 13px !important;
+    padding: 0 !important;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+  body:has(.rie307-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type
+    p:first-child {
+    white-space: nowrap;
+    font-size: 14px !important;
+  }
+  body:has(.rie307-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type
+    p:last-child {
+    font-size: 8px !important;
+  }
+  body:has(.rie307-page) [data-testid="desktop-sidebar"] > div > label {
+    height: 36px;
+    min-height: 36px !important;
+    margin-bottom: 10px !important;
+    padding: 0 9px !important;
+    font-size: 9px !important;
+  }
+  body:has(.rie307-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"] {
+    row-gap: 7px !important;
+  }
+  body:has(.rie307-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    > div:nth-of-type(2),
+  body:has(.rie307-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    > div:nth-of-type(n + 5) {
+    display: none;
+  }
+  body:has(.rie307-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    button {
+    min-height: 32px;
+    padding: 6px 8px !important;
+    font-size: 9px !important;
+  }
+  body:has(.rie307-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    a {
+    min-height: 29px;
+    padding: 5px 8px !important;
+    font-size: 8px !important;
+  }
+  body:has(.rie307-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    a:has(span span + span) {
+    height: 43px;
+    min-height: 43px;
+    padding: 3px 8px !important;
+  }
+  body:has(.rie307-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    a
+    span
+    span
+    + span {
+    font-size: 6px !important;
+  }
+  body:has(.rie307-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    > div:nth-of-type(4)
+    a {
+    height: 28px;
+    min-height: 28px;
+    padding: 3px 8px !important;
+  }
+  body:has(.rie307-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    > div:nth-of-type(4)
+    > div
+    > :nth-child(n + 2) {
+    display: none;
+  }
+}
+@media (max-width: 900px) {
+  .rie307-page {
+    min-width: 760px;
+  }
+}
