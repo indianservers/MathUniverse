@@ -1,6 +1,6 @@
 # Integral Calculus and Differential Equations target batch 0385-0412
 
-Dedicated rebuild target: **18 of 28 lessons completed; 10 pending.**
+Dedicated rebuild target: **19 of 28 lessons completed; 9 pending.**
 
 | Mockup | Lesson                           | Dedicated object model                                                                                                     | Status                                      |
 | ------ | -------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
@@ -22,7 +22,7 @@ Dedicated rebuild target: **18 of 28 lessons completed; 10 pending.**
 | 0400   | 321 Surface Area of Revolution   | `generating-curve-revolved-surface-mesh-axis-bounds-draggable-differential-ring-animation-surface-integral-practice`       | Reworked individually and browser-validated |
 | 0401   | 322 Accumulation Functions       | `linked-integrand-accumulation-function-generated-midpoint-rectangles-draggable-x-animation-ftc-derivative-prediction`     | Reworked individually and browser-validated |
 | 0402   | 323 Direction Fields             | `direction-field-generated-local-slopes-exact-solution-family-draggable-seeds-slope-triangle-prediction`                   | Reworked individually and browser-validated |
-| 0403   | 324 Euler's Method               | Pending audit                                                                                                              | Pending                                     |
+| 0403   | 324 Euler's Method               | `forward-euler-generated-steps-slope-field-exact-solution-draggable-initial-condition-live-table-errors-animation-practice` | Reworked individually and browser-validated |
 | 0404   | 325 Separable Equations          | Pending audit                                                                                                              | Pending                                     |
 | 0405   | 326 First-Order Linear Equations | Pending audit                                                                                                              | Pending                                     |
 | 0406   | 327 Logistic Growth              | Pending audit                                                                                                              | Pending                                     |
@@ -314,3 +314,19 @@ Evidence:
 - `0402-reference.png`
 - `0402-desktop.png`
 - `0402-dedicated-target-validation.json`
+
+## Lesson 324 / Mockup 0403 - Euler's Method
+
+Reworked individually as a forward-Euler numerical laboratory. The selected differential equation, draggable/numeric initial condition, step size, and x-range generate one shared model for the slope field, purple Euler polygon and points, cyan exact curve, orange current tangent, current-step strip, construction formulas, comparison table, maximum error, RMS error, and step count. Three equations (`y'=y`, `y'=-0.5y`, and `y'=y-x`) have matching analytic solutions. Five display layers, animation/pause, local Reset, five lesson tabs, shell Reset, worked rule cards, and numerical practice are functional.
+
+Browser validation confirms the coherent default growth model `y'=y`, `(x0,y0)=(0,1)`, `h=0.2`, 10 steps, and step 3 values `x=0.6`, `yEuler=1.728`, `yExact=e^0.6=1.8221188`, error `0.0941188`, maximum error `1.19731968`, and RMS error `0.52868155`. A real slider-coordinate change sets `h=0.25`; selecting the forced equation regenerates eight rows and its exact solution; animation advances to step 2 and Pause freezes it; shell Reset restores the full initial model. A real pointer drag moves the initial condition to approximately `(0.38746439,1.83921587)` and regenerates the graph, row count, exact curve, and errors. Practice rejects the exact value `e`, then accepts the four-step Euler approximation `2.4414`.
+
+The reference dropdown shows `y'=y-x` while its exact comparison column is `e^x`, which solves `y'=y`, and its displayed Euler rows do not follow either recurrence. The dedicated surface preserves the target's layout and controls while using `y'=y` for the default so every graph point, table row, tangent, exact value, and error is mathematically consistent. Focused ESLint and the dedicated Playwright harness pass with zero console warnings or errors.
+
+Final exact 941x1672 capture matches the target stack: sidebar width 193, hero y=94-228, tabs y=229-278, three-column numerical lab y=297-1028, theory band y=1044-1313, practice y=1328-1458, adjacent lessons y=1474-1523, and footer y=1537-1672. Dedicated content spans x=204-927 with no horizontal overflow and no duplicate shared lesson chrome.
+
+Evidence:
+
+- `0403-reference.png`
+- `0403-desktop.png`
+- `0403-dedicated-target-validation.json`
