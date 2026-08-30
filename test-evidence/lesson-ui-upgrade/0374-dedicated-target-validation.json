@@ -1,0 +1,144 @@
+{
+  "mockup": "0374",
+  "lessonId": 295,
+  "checks": {
+    "initial": {
+      "t": "1.25",
+      "x": "0.5653",
+      "y": "0.88",
+      "dx": "-0.949",
+      "dy": "1.2615",
+      "slope": "-1.3293",
+      "result": "",
+      "solution": "false",
+      "actions": "0"
+    },
+    "tDriven": {
+      "t": "2",
+      "x": "-0.1661",
+      "y": "1.9161",
+      "dx": "-0.9093",
+      "dy": "1.4093",
+      "slope": "-1.5499",
+      "result": "",
+      "solution": "false",
+      "actions": "1"
+    },
+    "dragged": {
+      "t": "1.55",
+      "x": "0.2708",
+      "y": "1.2795",
+      "dx": "-0.9998",
+      "dy": "1.3873",
+      "slope": "-1.3876",
+      "result": "",
+      "solution": "false",
+      "actions": "8"
+    },
+    "rejected": {
+      "t": "1.55",
+      "x": "0.2708",
+      "y": "1.2795",
+      "dx": "-0.9998",
+      "dy": "1.3873",
+      "slope": "-1.3876",
+      "result": "incorrect",
+      "solution": "false",
+      "actions": "9"
+    },
+    "accepted": {
+      "t": "1.55",
+      "x": "0.2708",
+      "y": "1.2795",
+      "dx": "-0.9998",
+      "dy": "1.3873",
+      "slope": "-1.3876",
+      "result": "correct",
+      "solution": "true",
+      "actions": "11"
+    },
+    "reset": {
+      "t": "1.25",
+      "x": "0.5653",
+      "y": "0.88",
+      "dx": "-0.949",
+      "dy": "1.2615",
+      "slope": "-1.3293",
+      "result": "",
+      "solution": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 220,
+      "height": 1536,
+      "bottom": 1536
+    },
+    "hero": {
+      "top": 102,
+      "left": 234,
+      "width": 776,
+      "height": 238,
+      "bottom": 340
+    },
+    "tabs": {
+      "top": 350,
+      "left": 234,
+      "width": 776,
+      "height": 46,
+      "bottom": 396
+    },
+    "main": {
+      "top": 405,
+      "left": 234,
+      "width": 776,
+      "height": 1072,
+      "bottom": 1477
+    },
+    "flow": {
+      "top": 446,
+      "left": 245,
+      "width": 754,
+      "height": 77,
+      "bottom": 523
+    },
+    "lab": {
+      "top": 531,
+      "left": 245,
+      "width": 754,
+      "height": 545,
+      "bottom": 1076
+    },
+    "learning": {
+      "top": 1085,
+      "left": 245,
+      "width": 754,
+      "height": 228,
+      "bottom": 1313
+    },
+    "practice": {
+      "top": 1322,
+      "left": 245,
+      "width": 754,
+      "height": 147,
+      "bottom": 1469
+    },
+    "adjacent": {
+      "top": 1486,
+      "left": 234,
+      "width": 776,
+      "height": 49,
+      "bottom": 1535
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

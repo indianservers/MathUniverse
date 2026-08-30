@@ -1,6 +1,6 @@
 # Limits and Differential Calculus target batch 0356-0384
 
-Dedicated rebuild target: **18 of 29 lessons completed; 11 pending.**
+Dedicated rebuild target: **19 of 29 lessons completed; 10 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
@@ -22,7 +22,7 @@ Dedicated rebuild target: **18 of 29 lessons completed; 11 pending.**
 | 0371 | 292 Quotient Rule | `editable-numerator-denominator-automatic-poles-quotient-derivative-tangent-rule-comparison-practice` | Reworked individually and browser-validated |
 | 0372 | 293 Chain Rule | `input-sine-inner-square-outer-composition-linked-rates-invertible-output-drag-tangent-practice` | Reworked individually and browser-validated |
 | 0373 | 294 Implicit Differentiation | `upper-semicircle-constrained-linked-x-y-direct-drag-implicit-slope-tangent-classification-practice` | Reworked individually and browser-validated |
-| 0374 | 295 Parametric Differentiation | Pending audit | Pending |
+| 0374 | 295 Parametric Differentiation | `parameter-driven-coordinate-curve-direct-drag-component-rates-quotient-tangent-vector-meters-choice-practice` | Reworked individually and browser-validated |
 | 0375 | 296 Critical Points | Pending audit | Pending |
 | 0376 | 297 Increasing and Decreasing | Pending audit | Pending |
 | 0377 | 298 Local and Global Extrema | Pending audit | Pending |
@@ -293,3 +293,19 @@ Evidence:
 - `0373-reference.png`
 - `0373-desktop.png`
 - `0373-dedicated-target-validation.json`
+
+## Lesson 295 / Mockup 0374 - Parametric Differentiation
+
+Reworked individually around the displayed parameter equations `x(t)=1/4+cos(t)` and `y(t)=1/8 t^2-cos(t)+1`. One shared t state drives the actual coordinate curve, movable point, radius guide, tangent line, coordinates, `dx/dt=-sin(t)`, `dy/dt=t/4+sin(t)`, quotient slope, component-rate meters, and action count. The native t range and captured SVG pointer dragging are both real. Five lesson tabs, Reset, Share, independent multiple-choice selection, answer checking, solution disclosure, shell Reset, and Previous/Next navigation are functional.
+
+Browser validation confirms the coherent start t=`1.25`, x=`0.5653`, y=`0.8800`, dx/dt=`-0.9490`, dy/dt=`1.2615`, and dy/dx=`-1.3293`. Moving t to `2` derives x=`-0.1661`, y=`1.9161`, and slope `-1.5499`; a real graph drag moves t to approximately `1.55` and recomputes the full model. Practice rejects A, accepts B for `dy/dx=tan(pi/4)=1`, reveals the actual derivation, and shell Reset restores t, cards, selected choice, hidden solution, blank result, selected tab, and zero actions.
+
+The reference's initial rate `dx/dt=-0.9490` agrees with t=`1.25`, but its coordinate, `dy/dt`, and quotient cards do not agree with its printed equations or each other. Its plotted wide curve also cannot be the coordinate trace of the narrow-range displayed `x(t)=1/4+cos(t)`. This implementation keeps the printed equations, graph, coordinate, component rates, tangent, and quotient mathematically consistent.
+
+Final exact 1024x1536 validation matches the target stack: sidebar width 220, hero y=102-340, tabs y=350-396, bordered graph-and-CAS surface y=405-1477, four-stage guide y=446-523, curve/rate lab y=531-1076, rule/worked/misconception row y=1085-1313, practice y=1322-1469, and adjacent navigation y=1486-1535. The dedicated content spans x=234-1010, with no horizontal overflow, no duplicate shared lesson chrome, no site footer, and zero console messages.
+
+Evidence:
+
+- `0374-reference.png`
+- `0374-desktop.png`
+- `0374-dedicated-target-validation.json`

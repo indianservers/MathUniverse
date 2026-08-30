@@ -1,0 +1,704 @@
+.par295-page {
+  --ink: #102047;
+  --line: #d9e3ee;
+  position: relative;
+  top: -7px;
+  margin-bottom: -7px;
+  color: var(--ink);
+  font:
+    9px/1.45 Inter,
+    system-ui,
+    sans-serif;
+  letter-spacing: 0;
+}
+.par295-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.par295-page h1,
+.par295-page h2,
+.par295-page h3,
+.par295-page p {
+  margin: 0;
+}
+.par295-page button,
+.par295-page input {
+  color: inherit;
+  font: inherit;
+}
+.par295-hero {
+  height: 238px;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  background: #fff;
+  padding: 15px 17px;
+}
+.par295-hero > span {
+  display: flex;
+  gap: 7px;
+}
+.par295-hero > span b {
+  border-radius: 12px;
+  background: #e7f8fd;
+  padding: 4px 9px;
+  color: #087da5;
+  font-size: 7px;
+}
+.par295-hero > span b:last-child {
+  background: #f1f3f7;
+  color: #53617a;
+}
+.par295-hero h1 {
+  margin-top: 9px;
+  font-size: 27px;
+  line-height: 31px;
+  font-weight: 850;
+}
+.par295-hero > p {
+  color: #52627d;
+  font-size: 12px;
+}
+.par295-hero .meta,
+.par295-hero .actions {
+  display: flex;
+  gap: 7px;
+  margin-top: 12px;
+}
+.par295-hero .meta i,
+.par295-hero .actions > * {
+  display: flex;
+  height: 31px;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: #fff;
+  padding: 0 11px;
+  color: inherit;
+  font-style: normal;
+  font-weight: 700;
+  text-decoration: none;
+}
+.par295-hero .actions > *:first-child {
+  width: 205px;
+  justify-content: space-between;
+}
+.par295-hero .actions a {
+  width: 95px;
+}
+.par295-hero svg {
+  width: 13px;
+}
+.par295-tabs {
+  display: grid;
+  height: 46px;
+  grid-template-columns: 1.25fr repeat(4, 1fr);
+  gap: 4px;
+  margin-top: 10px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: #fff;
+  padding: 3px;
+}
+.par295-tabs button {
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  font-weight: 750;
+}
+.par295-tabs button.active {
+  background: linear-gradient(90deg, #087fc4, #0ab2c9);
+  color: #fff;
+  box-shadow: 0 5px 12px #0aa5c52f;
+}
+.par295-main {
+  height: 1072px;
+  margin-top: 9px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  padding: 0 10px;
+}
+.par295-main > h2 {
+  height: 40px;
+  padding: 12px 7px;
+  font-size: 12px;
+}
+.par295-flow {
+  display: grid;
+  height: 77px;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid #e1e8f0;
+  border-radius: 8px;
+  background: #fff;
+}
+.par295-flow article {
+  display: grid;
+  grid-template-columns: 43px 1fr;
+  gap: 7px;
+  align-items: center;
+  padding: 10px;
+}
+.par295-flow article > svg {
+  width: 42px;
+  height: 42px;
+  border: 1px solid #b7d2f9;
+  border-radius: 7px;
+  background: #eff6ff;
+  padding: 10px;
+  color: #0874df;
+}
+.par295-flow article:nth-child(2) > svg {
+  border-color: #d9c1fa;
+  background: #f7f0ff;
+  color: #7135de;
+}
+.par295-flow article:nth-child(3) > svg {
+  border-color: #aee4ef;
+  background: #effcff;
+  color: #069bb8;
+}
+.par295-flow article:nth-child(4) > svg {
+  border-color: #d7c7f4;
+  background: #f9f4ff;
+  color: #7234db;
+}
+.par295-flow h3 {
+  font-size: 10px;
+}
+.par295-flow p {
+  margin-top: 5px;
+  font-size: 8px;
+}
+.par295-lab {
+  display: grid;
+  height: 545px;
+  grid-template-columns: minmax(0, 1.15fr) minmax(310px, 0.9fr);
+  gap: 14px;
+  margin-top: 8px;
+}
+.par295-lab > main {
+  position: relative;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.par295-lab > main > svg {
+  display: block;
+  width: 100%;
+  height: 430px;
+  touch-action: none;
+}
+.par295-lab svg .axis {
+  stroke: #27374e;
+  stroke-width: 1.1;
+}
+.par295-lab svg .curve {
+  fill: none;
+  stroke: #08add0;
+  stroke-width: 3;
+}
+.par295-lab svg .tangent {
+  stroke: #7432df !important;
+  stroke-width: 2 !important;
+  stroke-dasharray: 7 6;
+}
+.par295-lab svg .radius {
+  stroke: #9caac0 !important;
+  stroke-width: 1.5 !important;
+  stroke-dasharray: 5 5;
+}
+.par295-lab svg circle {
+  fill: #ff7925;
+  stroke: #fb6d19;
+  stroke-width: 2;
+  cursor: grab;
+}
+.par295-lab svg text {
+  fill: #fa6515;
+  font-size: 10px;
+  font-weight: 700;
+}
+.par295-lab .t-control {
+  position: absolute;
+  z-index: 2;
+  top: 13px;
+  left: 13px;
+  width: 111px;
+  border: 1px solid #c8d7e9;
+  border-radius: 7px;
+  background: #fff;
+  padding: 9px;
+}
+.par295-lab .t-control input {
+  width: 100%;
+  margin-top: 8px;
+  accent-color: #228bea;
+}
+.par295-lab .graph-legend {
+  position: absolute;
+  right: 10px;
+  bottom: 105px;
+  width: 132px;
+  border: 1px solid #cbd8e7;
+  border-radius: 6px;
+  background: #fff;
+  padding: 9px;
+}
+.par295-lab .graph-legend p {
+  margin: 5px;
+  color: #45617c;
+}
+.par295-lab .graph-legend p:first-child {
+  color: #08a0c4;
+}
+.par295-lab .graph-legend p:nth-child(2) {
+  color: #f47321;
+}
+.par295-lab > main > footer {
+  height: 84px;
+  padding: 13px;
+  color: #324b6d;
+}
+.par295-lab > main > footer p {
+  margin-bottom: 7px;
+}
+.par295-lab > aside {
+  display: grid;
+  grid-template-rows: 91px 119px 78px 68px 153px;
+  gap: 8px;
+}
+.par295-lab > aside > article {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfdff;
+  padding: 9px;
+}
+.par295-lab > aside h3 {
+  color: #075dbb;
+  font-size: 9px;
+}
+.par295-lab aside article > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 7px;
+}
+.par295-lab aside output {
+  font:
+    italic 10px Georgia,
+    serif;
+}
+.par295-lab .equations {
+  background: #effcff;
+}
+.par295-lab .equations output,
+.par295-lab .rates output,
+.par295-lab .coordinate output {
+  display: grid;
+  min-height: 48px;
+  place-items: center;
+  border: 1px solid #cfe0ef;
+  border-radius: 6px;
+  background: #fff;
+  padding: 7px;
+  text-align: center;
+}
+.par295-lab .rates {
+  background: #f7f4ff;
+}
+.par295-lab .rates output span {
+  font-size: 11px;
+}
+.par295-lab .rates output b {
+  color: #3369d4;
+  font:
+    700 11px Inter,
+    sans-serif;
+}
+.par295-lab .rates output:last-child b {
+  color: #7436dc;
+}
+.par295-lab .slope div {
+  align-items: center;
+}
+.par295-lab .slope output {
+  padding: 8px;
+  font-size: 12px;
+}
+.par295-lab .slope strong {
+  border: 1px solid #b9dfc1;
+  border-radius: 6px;
+  background: #effbf2;
+  padding: 10px;
+  color: #118239;
+  text-align: center;
+  font-size: 15px;
+}
+.par295-lab .coordinate {
+  background: #fff6ef;
+}
+.par295-lab .coordinate h3 {
+  color: #e9541b;
+}
+.par295-lab .coordinate output {
+  min-height: 34px;
+  color: #ed5b24;
+  font-size: 12px;
+}
+.par295-lab .vectors label {
+  display: grid;
+  grid-template-columns: 125px 1fr 55px;
+  align-items: center;
+  gap: 7px;
+  margin-top: 10px;
+}
+.par295-lab .vectors meter {
+  width: 100%;
+  accent-color: #486eea;
+}
+.par295-lab .vectors label:nth-of-type(2) meter {
+  accent-color: #7a3ee4;
+}
+.par295-lab .vectors label output {
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: #fff;
+  padding: 6px;
+  text-align: right;
+  font-family: Inter, sans-serif;
+  font-style: normal;
+}
+.par295-lab .vectors p {
+  margin-top: 12px;
+  color: #50647f;
+}
+.par295-learning {
+  display: grid;
+  height: 228px;
+  grid-template-columns: 0.9fr 0.9fr 1.1fr;
+  gap: 10px;
+  margin-top: 9px;
+}
+.par295-learning > article {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  padding: 13px;
+  overflow: hidden;
+}
+.par295-learning h3 {
+  color: #12234b;
+  font-size: 9px;
+}
+.par295-learning article:nth-child(2) h3 {
+  color: #0876a0;
+}
+.par295-learning article:nth-child(3) {
+  background: #fff7f8;
+}
+.par295-learning article:nth-child(3) h3 {
+  color: #be2860;
+}
+.par295-learning p {
+  margin-top: 8px;
+  font-size: 8px;
+}
+.par295-learning > article > output {
+  display: block;
+  margin: 12px 25px;
+  border: 1px solid #ccd9ec;
+  border-radius: 6px;
+  background: #f0f4ff;
+  padding: 12px;
+  text-align: center;
+  font:
+    italic 15px Georgia,
+    serif;
+}
+.par295-learning article:nth-child(2) > output {
+  width: 70px;
+  margin: 8px 0 0 auto;
+  border-color: #bfe2c7;
+  background: #effaf2;
+  color: #14833d;
+}
+.par295-learning article:nth-child(3) > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 10px;
+}
+.par295-learning article:nth-child(3) section {
+  height: 100px;
+  border: 1px solid #d8e1ea;
+  border-radius: 7px;
+  background: #fff;
+  padding: 9px;
+}
+.par295-learning article:nth-child(3) section:first-child b {
+  color: #dc2433;
+}
+.par295-learning article:nth-child(3) section:last-child b {
+  color: #138644;
+}
+.par295-practice {
+  display: grid;
+  height: 147px;
+  grid-template-columns: 1.05fr 0.72fr 0.6fr 0.74fr;
+  gap: 12px;
+  margin-top: 9px;
+  border: 1px solid #d3b7fb;
+  border-radius: 8px;
+  background: #fff;
+  padding: 10px 13px;
+}
+.par295-practice main h3 {
+  color: #7232d8;
+}
+.par295-practice main p {
+  margin-top: 10px;
+  font:
+    italic 10px Georgia,
+    serif;
+}
+.par295-practice fieldset {
+  display: grid;
+  gap: 5px;
+  margin: 0;
+  border: 0;
+  padding: 0;
+}
+.par295-practice fieldset label {
+  display: grid;
+  height: 26px;
+  grid-template-columns: 25px 1fr;
+  align-items: center;
+  border: 1px solid #e2dcf7;
+  border-radius: 7px;
+  background: #fbfaff;
+  padding: 0 7px;
+}
+.par295-practice fieldset input {
+  display: none;
+}
+.par295-practice fieldset b {
+  display: grid;
+  width: 18px;
+  height: 18px;
+  place-items: center;
+  border-radius: 50%;
+  background: #fff;
+  color: #7132d8;
+}
+.par295-practice fieldset label.selected {
+  border-color: #8f5ae9;
+  background: #f5efff;
+}
+.par295-practice > section {
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+  padding: 0 10px;
+}
+.par295-practice button {
+  height: 29px;
+  margin-top: 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+  font-weight: 700;
+}
+.par295-practice > section button:nth-of-type(2) {
+  margin-top: auto;
+  border: 0;
+  background: #7132dc;
+  color: #fff;
+}
+.par295-practice > section p {
+  color: #159248;
+}
+.par295-practice aside p {
+  margin-top: 8px;
+  font:
+    italic 9px Georgia,
+    serif;
+}
+.par295-practice aside b {
+  display: inline-block;
+  margin-top: 6px;
+  border-radius: 4px;
+  background: #dff6e3;
+  padding: 4px;
+  color: #16823e;
+}
+.par295-adjacent {
+  display: flex;
+  height: 49px;
+  gap: 10px;
+  margin-top: 9px;
+}
+.par295-adjacent a {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  padding: 0 14px;
+  color: inherit;
+  text-decoration: none;
+}
+.par295-adjacent a:last-child {
+  justify-content: flex-end;
+  text-align: right;
+}
+.par295-adjacent small {
+  display: block;
+  color: #62718a;
+  font-size: 7px;
+  text-transform: uppercase;
+}
+body:has(.par295-page) [data-testid="desktop-sidebar"] {
+  width: 220px !important;
+  flex-basis: 220px !important;
+  transition: none;
+}
+body:has(.par295-page) #main-content {
+  margin-left: 0 !important;
+  padding-left: 14px !important;
+  padding-right: 14px !important;
+}
+body:has(.par295-page) .lesson-shell-header,
+body:has(.par295-page) .lesson-page-shell > nav[role="tablist"],
+body:has(.par295-page) .lesson-adjacent-nav,
+body:has(.par295-page) footer[aria-label="Site footer"] {
+  display: none !important;
+}
+body:has(.par295-page) .lesson-page-shell > div {
+  margin-top: 10px !important;
+}
+body:has(.par295-page) .lesson-workbench.is-target-graphing-workbench {
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+body:has(.par295-page) {
+  overflow: hidden;
+}
+@media (min-width: 960px) {
+  body:has(.par295-page) .app-layout-rail > div > header {
+    height: 55px;
+  }
+  body:has(.par295-page) [data-testid="desktop-sidebar"] > div {
+    padding: 10px 9px 40px !important;
+  }
+  body:has(.par295-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type {
+    height: 61px;
+    min-height: 61px;
+    margin-bottom: 13px !important;
+    padding: 0 !important;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+  body:has(.par295-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type
+    p:first-child {
+    white-space: nowrap;
+    font-size: 14px !important;
+  }
+  body:has(.par295-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type
+    p:last-child {
+    font-size: 8px !important;
+  }
+  body:has(.par295-page) [data-testid="desktop-sidebar"] > div > label {
+    height: 36px;
+    min-height: 36px !important;
+    margin-bottom: 10px !important;
+    padding: 0 9px !important;
+    font-size: 9px !important;
+  }
+  body:has(.par295-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"] {
+    row-gap: 7px !important;
+  }
+  body:has(.par295-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    > div:nth-of-type(2),
+  body:has(.par295-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    > div:nth-of-type(n + 5) {
+    display: none;
+  }
+  body:has(.par295-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    button {
+    min-height: 32px;
+    padding: 6px 8px !important;
+    font-size: 9px !important;
+  }
+  body:has(.par295-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    a {
+    min-height: 29px;
+    padding: 5px 8px !important;
+    font-size: 8px !important;
+  }
+  body:has(.par295-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    a:has(span span + span) {
+    height: 43px;
+    min-height: 43px;
+    padding: 3px 8px !important;
+  }
+  body:has(.par295-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    a
+    span
+    span
+    + span {
+    font-size: 6px !important;
+  }
+  body:has(.par295-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    > div:nth-of-type(4)
+    a {
+    height: 28px;
+    min-height: 28px;
+    padding: 3px 8px !important;
+  }
+  body:has(.par295-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    > div:nth-of-type(4)
+    > div
+    > :nth-child(n + 2) {
+    display: none;
+  }
+}
+@media (max-width: 900px) {
+  .par295-page {
+    min-width: 775px;
+  }
+}
