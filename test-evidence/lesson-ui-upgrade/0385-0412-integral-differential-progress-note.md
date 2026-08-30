@@ -1,6 +1,6 @@
 # Integral Calculus and Differential Equations target batch 0385-0412
 
-Dedicated rebuild target: **9 of 28 lessons completed; 19 pending.**
+Dedicated rebuild target: **10 of 28 lessons completed; 18 pending.**
 
 | Mockup | Lesson                           | Dedicated object model                                                                                                     | Status                                      |
 | ------ | -------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
@@ -13,7 +13,7 @@ Dedicated rebuild target: **9 of 28 lessons completed; 19 pending.**
 | 0391   | 312 Substitution                 | `branch-aware-x-to-u-substitution-du-scaling-dual-bound-drag-linked-graphs-transformed-integral-practice`                  | Reworked individually and browser-validated |
 | 0392   | 313 Integration by Parts         | `reverse-product-rule-selectable-u-dv-computed-du-v-draggable-evaluation-finite-difference-residual-symbolic-practice`     | Reworked individually and browser-validated |
 | 0393   | 314 Partial Fractions            | `factored-rational-coefficient-solver-asymptotes-draggable-probe-component-overlay-recombination-antiderivative-practice`  | Reworked individually and browser-validated |
-| 0394   | 315 Improper Integrals           | Pending audit                                                                                                              | Pending                                     |
+| 0394   | 315 Improper Integrals           | `symmetric-improper-integral-truncation-tail-error-draggable-bounds-convergence-practice`                                  | Reworked individually and browser-validated |
 | 0395   | 316 Numerical Integration        | Pending audit                                                                                                              | Pending                                     |
 | 0396   | 317 Volume by Slicing            | Pending audit                                                                                                              | Pending                                     |
 | 0397   | 318 Disc and Washer Methods      | Pending audit                                                                                                              | Pending                                     |
@@ -172,3 +172,17 @@ Evidence:
 - `0393-reference.png`
 - `0393-desktop.png`
 - `0393-dedicated-target-validation.json`
+
+## Lesson 315 / Mockup 0394 - Improper Integrals
+
+Reworked individually as a symmetric-tail truncation laboratory. The target Cauchy model `f(x)=1/(1+x^2)` uses a shared truncation parameter `c` across the two native sliders and the captured direct SVG-bound drag. Every change recomputes the shaded finite region, bound guides, accumulated area `2 arctan(c)`, finite total `pi`, and remainder outside `[-c,c]`. The tail-range control changes the actual graph domain. Selecting the Laplace or Gaussian model changes the plotted function, analytic or Simpson-computed truncated area, limiting total, remainder, formula, and convergence feedback. Five tabs, Reset, Share, Workspace, function selection, checked practice, Hint, shell Reset, adjacent lessons, action counting, and the target compact footer are functional.
+
+Browser validation confirms the target initial state `c=2`, tail range 8, accumulated area `2.21429744`, total `3.14159265`, and remainder `0.92729522`. Native controls change to `c=4`, range 12, and the Gaussian model, producing accumulated area `1.77245382`, total `1.77245385`, and remainder approximately `3e-8`. A real pointer drag moves the visible bound to approximately `c=3.49725328` and recomputes accumulated area `2.58457843` and remainder `0.55701422`. Practice rejects "converges to 0", accepts "converges to 1", and reveals the limiting antiderivative; local and shell Reset restore the complete reference-visible state.
+
+Final exact 998x1575 capture matches the target stack: sidebar width 196, hero y=94-277, tabs y=288-327, improper-integral lab y=338-918, rule/misconception y=929-1102, worked/practice y=1113-1415, adjacent lessons y=1426-1474, and compact footer y=1483-1574. Dedicated content spans x=211-983, with no horizontal overflow, no duplicate shared lesson chrome, and zero console messages.
+
+Evidence:
+
+- `0394-reference.png`
+- `0394-desktop.png`
+- `0394-dedicated-target-validation.json`

@@ -1,0 +1,197 @@
+{
+  "mockup": "0394",
+  "lessonId": 315,
+  "checks": {
+    "initial": {
+      "c": "2",
+      "range": "8",
+      "model": "cauchy",
+      "accumulated": "2.21429744",
+      "limit": "3.14159265",
+      "remainder": "0.92729522",
+      "converges": "true",
+      "tab": "Explore",
+      "answer": "1",
+      "result": "correct",
+      "hint": "false",
+      "actions": "0"
+    },
+    "controls": {
+      "c": "4",
+      "range": "12",
+      "model": "gaussian",
+      "accumulated": "1.77245382",
+      "limit": "1.77245385",
+      "remainder": "3e-8",
+      "converges": "true",
+      "tab": "Explore",
+      "answer": "1",
+      "result": "correct",
+      "hint": "false",
+      "actions": "3"
+    },
+    "tab": {
+      "c": "4",
+      "range": "12",
+      "model": "gaussian",
+      "accumulated": "1.77245382",
+      "limit": "1.77245385",
+      "remainder": "3e-8",
+      "converges": "true",
+      "tab": "Explain",
+      "answer": "1",
+      "result": "correct",
+      "hint": "false",
+      "actions": "4"
+    },
+    "localReset": {
+      "c": "2",
+      "range": "8",
+      "model": "cauchy",
+      "accumulated": "2.21429744",
+      "limit": "3.14159265",
+      "remainder": "0.92729522",
+      "converges": "true",
+      "tab": "Explore",
+      "answer": "1",
+      "result": "correct",
+      "hint": "false",
+      "actions": "0"
+    },
+    "drag": {
+      "c": "3.49725328",
+      "range": "8",
+      "model": "cauchy",
+      "accumulated": "2.58457843",
+      "limit": "3.14159265",
+      "remainder": "0.55701422",
+      "converges": "true",
+      "tab": "Explore",
+      "answer": "1",
+      "result": "correct",
+      "hint": "false",
+      "actions": "8"
+    },
+    "rejected": {
+      "c": "3.49725328",
+      "range": "8",
+      "model": "cauchy",
+      "accumulated": "2.58457843",
+      "limit": "3.14159265",
+      "remainder": "0.55701422",
+      "converges": "true",
+      "tab": "Explore",
+      "answer": "0",
+      "result": "incorrect",
+      "hint": "false",
+      "actions": "9"
+    },
+    "accepted": {
+      "c": "3.49725328",
+      "range": "8",
+      "model": "cauchy",
+      "accumulated": "2.58457843",
+      "limit": "3.14159265",
+      "remainder": "0.55701422",
+      "converges": "true",
+      "tab": "Explore",
+      "answer": "1",
+      "result": "correct",
+      "hint": "false",
+      "actions": "10"
+    },
+    "hint": {
+      "c": "3.49725328",
+      "range": "8",
+      "model": "cauchy",
+      "accumulated": "2.58457843",
+      "limit": "3.14159265",
+      "remainder": "0.55701422",
+      "converges": "true",
+      "tab": "Explore",
+      "answer": "1",
+      "result": "correct",
+      "hint": "true",
+      "actions": "11"
+    },
+    "shellReset": {
+      "c": "2",
+      "range": "8",
+      "model": "cauchy",
+      "accumulated": "2.21429744",
+      "limit": "3.14159265",
+      "remainder": "0.92729522",
+      "converges": "true",
+      "tab": "Explore",
+      "answer": "1",
+      "result": "correct",
+      "hint": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 998,
+      "height": 1585
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 196,
+      "height": 1575,
+      "bottom": 1575
+    },
+    "hero": {
+      "top": 94,
+      "left": 211,
+      "width": 772,
+      "height": 183,
+      "bottom": 277
+    },
+    "tabs": {
+      "top": 288,
+      "left": 211,
+      "width": 772,
+      "height": 39,
+      "bottom": 327
+    },
+    "lab": {
+      "top": 338,
+      "left": 211,
+      "width": 772,
+      "height": 580,
+      "bottom": 918
+    },
+    "rule": {
+      "top": 929,
+      "left": 211,
+      "width": 772,
+      "height": 173,
+      "bottom": 1102
+    },
+    "bottom": {
+      "top": 1113,
+      "left": 211,
+      "width": 772,
+      "height": 302,
+      "bottom": 1415
+    },
+    "adjacent": {
+      "top": 1426,
+      "left": 211,
+      "width": 772,
+      "height": 48,
+      "bottom": 1474
+    },
+    "footer": {
+      "top": 1483,
+      "left": 211,
+      "width": 772,
+      "height": 91,
+      "bottom": 1574
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

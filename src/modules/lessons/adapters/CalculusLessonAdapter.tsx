@@ -45,6 +45,7 @@ import AreaBetweenCurvesTargetLesson311 from "./calculus/AreaBetweenCurvesTarget
 import SubstitutionTargetLesson312 from "./calculus/SubstitutionTargetLesson312";
 import IntegrationByPartsTargetLesson313 from "./calculus/IntegrationByPartsTargetLesson313";
 import PartialFractionsTargetLesson314 from "./calculus/PartialFractionsTargetLesson314";
+import ImproperIntegralsTargetLesson315 from "./calculus/ImproperIntegralsTargetLesson315";
 
 const viewportSize = { width: 640, height: 360 };
 const fallbackViewport: GraphViewport = { xMin: -5, xMax: 5, yMin: -6, yMax: 10, ...viewportSize };
@@ -191,6 +192,7 @@ export default function CalculusLessonAdapter(props: LessonAdapterProps) {
   if (props.lesson.id === 312) return <SubstitutionTargetLesson312 {...props} />;
   if (props.lesson.id === 313) return <IntegrationByPartsTargetLesson313 {...props} />;
   if (props.lesson.id === 314) return <PartialFractionsTargetLesson314 {...props} />;
+  if (props.lesson.id === 315) return <ImproperIntegralsTargetLesson315 {...props} />;
   if (props.lesson.id >= 277 && props.lesson.id <= 305) return <LimitsDifferentialMockupLesson {...props} />;
   if (props.lesson.id >= 306 && props.lesson.id <= 333) return <IntegralDifferentialMockupLesson {...props} />;
   return <LegacyCalculusLessonAdapter {...props} />;
