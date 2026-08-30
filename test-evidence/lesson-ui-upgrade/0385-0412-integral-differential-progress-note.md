@@ -1,6 +1,6 @@
 # Integral Calculus and Differential Equations target batch 0385-0412
 
-Dedicated rebuild target: **8 of 28 lessons completed; 20 pending.**
+Dedicated rebuild target: **9 of 28 lessons completed; 19 pending.**
 
 | Mockup | Lesson                           | Dedicated object model                                                                                                     | Status                                      |
 | ------ | -------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
@@ -12,7 +12,7 @@ Dedicated rebuild target: **8 of 28 lessons completed; 20 pending.**
 | 0390   | 311 Area Between Curves          | `selectable-top-bottom-curves-editable-domain-draggable-slice-generated-vertical-slices-area-integration-practice`         | Reworked individually and browser-validated |
 | 0391   | 312 Substitution                 | `branch-aware-x-to-u-substitution-du-scaling-dual-bound-drag-linked-graphs-transformed-integral-practice`                  | Reworked individually and browser-validated |
 | 0392   | 313 Integration by Parts         | `reverse-product-rule-selectable-u-dv-computed-du-v-draggable-evaluation-finite-difference-residual-symbolic-practice`     | Reworked individually and browser-validated |
-| 0393   | 314 Partial Fractions            | Pending audit                                                                                                              | Pending                                     |
+| 0393   | 314 Partial Fractions            | `factored-rational-coefficient-solver-asymptotes-draggable-probe-component-overlay-recombination-antiderivative-practice`  | Reworked individually and browser-validated |
 | 0394   | 315 Improper Integrals           | Pending audit                                                                                                              | Pending                                     |
 | 0395   | 316 Numerical Integration        | Pending audit                                                                                                              | Pending                                     |
 | 0396   | 317 Volume by Slicing            | Pending audit                                                                                                              | Pending                                     |
@@ -156,3 +156,19 @@ Evidence:
 - `0392-reference.png`
 - `0392-desktop.png`
 - `0392-dedicated-target-validation.json`
+
+## Lesson 314 / Mockup 0393 - Partial Fractions
+
+Reworked individually as a rational-function decomposition and verification workspace. The canonical target factors define `f(x)=1/[(x+2)(x+4)]`, whose solved decomposition is `-1/[2(x+4)]+1/[2(x+2)]`. Clear coefficients and Solve coefficients alter the real solved state. The x slider and captured direct graph-probe drag evaluate the original and split forms; zoom changes the plotted domain, while the asymptote and decomposition-overlay checkboxes remove their actual SVG layers. The live panel reports domain validity, both evaluations, and recombination match. Six tabs, Reset, Share, coefficient workflow, termwise logarithmic antiderivative, three-field practice validation, shell Reset, adjacent lessons, and action counting are functional.
+
+Browser validation confirms the initial x=0 values `f(0)=0.125`, split value `0.125`, and exact match. Clearing removes solved coefficients; Solve coefficients restores them. At x=-3 and zoom 2, both forms evaluate to -1. A real pointer drag moves the probe to approximately `-2.35158462`, where both forms evaluate to `-1.72545436`. Asymptotes and overlay turn off, and the Formulas tab activates. Practice rejects swapped coefficients and accepts `A=2`, `B=1`, `2ln|x-1|+ln|x+2|`. Local and shell Reset restore the full initial workspace.
+
+The reference's coefficient cards show `A=-1/2`, `B=1/2`, which are correct for the preset function `1/[(x+2)(x+4)]`. Its displayed expanded numerator instead describes an improper rational function that would require polynomial division and different residual coefficients. The dedicated lesson preserves the intended factors, graph, coefficients, logarithmic antiderivative, and recombination as one mathematically consistent model.
+
+Final exact 1024x1536 capture matches the target stack: sidebar width 207, hero/learning flow y=104-341, tabs y=353-399, decomposition workspace y=410-1160, worked/misconception/practice cards y=1172-1447, and adjacent lessons y=1458-1517. Dedicated content spans x=223-1008, with no horizontal overflow, no duplicate shared lesson chrome, no site footer, and zero console messages.
+
+Evidence:
+
+- `0393-reference.png`
+- `0393-desktop.png`
+- `0393-dedicated-target-validation.json`

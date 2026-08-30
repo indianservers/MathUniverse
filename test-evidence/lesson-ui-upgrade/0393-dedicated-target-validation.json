@@ -1,0 +1,174 @@
+{
+  "mockup": "0393",
+  "lessonId": 314,
+  "checks": {
+    "initial": {
+      "x": "0",
+      "zoom": "1",
+      "asymptotes": "true",
+      "overlay": "true",
+      "solved": "true",
+      "original": "0.125",
+      "split": "0.125",
+      "match": "true",
+      "tab": "Interaction + Visualization",
+      "result": "",
+      "actions": "0"
+    },
+    "cleared": {
+      "x": "0",
+      "zoom": "1",
+      "asymptotes": "true",
+      "overlay": "true",
+      "solved": "false",
+      "original": "0.125",
+      "split": "0.125",
+      "match": "true",
+      "tab": "Interaction + Visualization",
+      "result": "",
+      "actions": "1"
+    },
+    "controls": {
+      "x": "-3",
+      "zoom": "2",
+      "asymptotes": "true",
+      "overlay": "true",
+      "solved": "true",
+      "original": "-1",
+      "split": "-1",
+      "match": "true",
+      "tab": "Interaction + Visualization",
+      "result": "",
+      "actions": "4"
+    },
+    "drag": {
+      "x": "-2.35158462",
+      "zoom": "2",
+      "asymptotes": "true",
+      "overlay": "true",
+      "solved": "true",
+      "original": "-1.72545436",
+      "split": "-1.72545436",
+      "match": "true",
+      "tab": "Interaction + Visualization",
+      "result": "",
+      "actions": "10"
+    },
+    "hidden": {
+      "x": "-2.35158462",
+      "zoom": "2",
+      "asymptotes": "false",
+      "overlay": "false",
+      "solved": "true",
+      "original": "-1.72545436",
+      "split": "-1.72545436",
+      "match": "true",
+      "tab": "Formulas",
+      "result": "",
+      "actions": "13"
+    },
+    "rejected": {
+      "x": "-2.35158462",
+      "zoom": "2",
+      "asymptotes": "false",
+      "overlay": "false",
+      "solved": "true",
+      "original": "-1.72545436",
+      "split": "-1.72545436",
+      "match": "true",
+      "tab": "Formulas",
+      "result": "incorrect",
+      "actions": "14"
+    },
+    "accepted": {
+      "x": "-2.35158462",
+      "zoom": "2",
+      "asymptotes": "false",
+      "overlay": "false",
+      "solved": "true",
+      "original": "-1.72545436",
+      "split": "-1.72545436",
+      "match": "true",
+      "tab": "Formulas",
+      "result": "correct",
+      "actions": "15"
+    },
+    "localReset": {
+      "x": "0",
+      "zoom": "1",
+      "asymptotes": "true",
+      "overlay": "true",
+      "solved": "true",
+      "original": "0.125",
+      "split": "0.125",
+      "match": "true",
+      "tab": "Interaction + Visualization",
+      "result": "",
+      "actions": "1"
+    },
+    "shellReset": {
+      "x": "0",
+      "zoom": "1",
+      "asymptotes": "true",
+      "overlay": "true",
+      "solved": "true",
+      "original": "0.125",
+      "split": "0.125",
+      "match": "true",
+      "tab": "Interaction + Visualization",
+      "result": "",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 207,
+      "height": 1536,
+      "bottom": 1536
+    },
+    "hero": {
+      "top": 104,
+      "left": 223,
+      "width": 785,
+      "height": 237,
+      "bottom": 341
+    },
+    "tabs": {
+      "top": 353,
+      "left": 223,
+      "width": 785,
+      "height": 46,
+      "bottom": 399
+    },
+    "workspace": {
+      "top": 410,
+      "left": 223,
+      "width": 785,
+      "height": 750,
+      "bottom": 1160
+    },
+    "cards": {
+      "top": 1172,
+      "left": 223,
+      "width": 785,
+      "height": 275,
+      "bottom": 1447
+    },
+    "adjacent": {
+      "top": 1458,
+      "left": 223,
+      "width": 785,
+      "height": 59,
+      "bottom": 1517
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

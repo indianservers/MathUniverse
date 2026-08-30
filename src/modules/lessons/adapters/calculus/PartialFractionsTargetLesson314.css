@@ -1,0 +1,611 @@
+.pf314-page {
+  --ink: #102047;
+  --line: #dce5ee;
+  position: relative;
+  top: -11px;
+  color: var(--ink);
+  font:
+    8px/1.45 Inter,
+    system-ui,
+    sans-serif;
+  letter-spacing: 0;
+}
+.pf314-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.pf314-page h1,
+.pf314-page h2,
+.pf314-page h3,
+.pf314-page p {
+  margin: 0;
+}
+.pf314-page h1,
+.pf314-page h2,
+.pf314-page h3 {
+  font-weight: 900;
+}
+.pf314-page button,
+.pf314-page input,
+.pf314-page select {
+  color: inherit;
+  font: inherit;
+}
+.pf314-hero {
+  position: relative;
+  height: 237px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  background: #fff;
+}
+.pf314-hero > span {
+  display: flex;
+  gap: 8px;
+}
+.pf314-hero > span b {
+  padding: 3px 7px;
+  border-radius: 8px;
+  background: #e8f7ff;
+  color: #0875ca;
+  font-size: 7px;
+}
+.pf314-hero > span b:last-child {
+  background: #f0f3f7;
+  color: #58667b;
+}
+.pf314-hero h1 {
+  margin-top: 7px;
+  font-size: 28px;
+  line-height: 31px;
+}
+.pf314-hero > p {
+  font-size: 11px;
+}
+.pf314-hero .meta,
+.pf314-hero .actions {
+  display: flex;
+  position: absolute;
+  top: 96px;
+  gap: 8px;
+}
+.pf314-hero .actions {
+  right: 48px;
+}
+.pf314-hero .meta > *,
+.pf314-hero .actions > * {
+  display: flex;
+  height: 30px;
+  padding: 0 10px;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid #d5dfeb;
+  border-radius: 7px;
+  background: #fff;
+  font-style: normal;
+  font-weight: 800;
+}
+.pf314-hero .actions select {
+  width: 140px;
+}
+.pf314-hero svg {
+  width: 12px;
+}
+.pf314-hero > section {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  left: 12px;
+  display: grid;
+  height: 75px;
+  padding: 8px;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.pf314-hero > section article {
+  position: relative;
+  padding: 7px 8px 4px 42px;
+  border-right: 1px solid var(--line);
+}
+.pf314-hero > section article:last-child {
+  border: 0;
+}
+.pf314-hero > section svg {
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  width: 23px;
+  color: #403fd1;
+}
+.pf314-hero > section b {
+  color: #2244c5;
+}
+.pf314-hero > section p {
+  margin-top: 7px;
+}
+.pf314-tabs {
+  display: grid;
+  height: 46px;
+  margin-top: 12px;
+  padding: 4px;
+  grid-template-columns: 185px repeat(5, 1fr);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+}
+.pf314-tabs button {
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  font-weight: 800;
+}
+.pf314-tabs button.active {
+  background: #175be8;
+  color: #fff;
+}
+.pf314-workspace {
+  height: 750px;
+  margin-top: 11px;
+  padding: 9px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+}
+.pf314-workspace > header {
+  display: flex;
+  height: 34px;
+  align-items: start;
+}
+.pf314-workspace > header h2 {
+  font-size: 15px;
+}
+.pf314-workspace > header span {
+  display: flex;
+  margin-left: auto;
+  padding: 5px 10px;
+  align-items: center;
+  gap: 5px;
+  border-radius: 15px;
+  background: #eaf9ee;
+  color: #178146;
+  font-weight: 800;
+}
+.pf314-workspace > header svg {
+  width: 12px;
+}
+.pf314-workspace > main {
+  display: grid;
+  height: 697px;
+  grid-template-columns: 240px 1fr 222px;
+  gap: 10px;
+}
+.pf314-given {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 94px 66px 1fr;
+  gap: 9px;
+}
+.pf314-given > article,
+.pf314-given > div {
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.pf314-given > article:nth-child(3),
+.pf314-given > div {
+  grid-column: 1/3;
+}
+.pf314-given article strong {
+  display: block;
+  margin-top: 15px;
+  font:
+    italic 13px Georgia,
+    serif;
+}
+.pf314-given > div {
+  padding: 10px;
+}
+.pf314-given > div h3 {
+  font-size: 10px;
+}
+.pf314-graph {
+  width: 100%;
+  height: 360px;
+  margin-top: 8px;
+  touch-action: none;
+}
+.pf314-graph .axis {
+  stroke: #17213d;
+}
+.pf314-graph .curve {
+  fill: none;
+  stroke: #145af0;
+  stroke-width: 2;
+}
+.pf314-graph .overlay {
+  fill: none;
+  stroke: #19a86b;
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+.pf314-graph .asym {
+  stroke-width: 1.5;
+  stroke-dasharray: 5 4;
+}
+.pf314-graph .asym.red {
+  stroke: #fa4b53;
+}
+.pf314-graph .asym.purple {
+  stroke: #7144e1;
+}
+.pf314-graph circle {
+  fill: #ff9400;
+  stroke: #fff;
+  cursor: ew-resize;
+}
+.pf314-given > div p {
+  margin-top: 10px;
+}
+.pf314-steps {
+  display: grid;
+  grid-template-rows: 220px 93px 113px 111px;
+  gap: 10px;
+}
+.pf314-steps article {
+  position: relative;
+  padding: 11px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.pf314-steps h3 {
+  font-size: 10px;
+}
+.pf314-steps article > p {
+  margin-top: 8px;
+}
+.pf314-steps article > strong {
+  display: block;
+  margin-top: 12px;
+  font:
+    italic 13px Georgia,
+    serif;
+}
+.pf314-steps article:first-child > div {
+  display: flex;
+  margin: 15px auto 0;
+  justify-content: center;
+  align-items: center;
+  gap: 13px;
+}
+.pf314-steps article:first-child > div b {
+  padding: 12px;
+  border: 1px solid #cbd9e8;
+  border-radius: 7px;
+  color: #533bd0;
+  font:
+    italic 13px Georgia,
+    serif;
+}
+.pf314-steps article:first-child button {
+  display: block;
+  width: 180px;
+  height: 30px;
+  margin: 14px auto 0;
+  border: 0;
+  border-radius: 6px;
+  background: #1260e8;
+  color: #fff;
+  font-weight: 900;
+}
+.pf314-steps article > span {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  padding: 5px 9px;
+  border-radius: 12px;
+  background: #ebf9ef;
+  color: #178247;
+}
+.pf314-workspace > main > aside {
+  display: grid;
+  grid-template-rows: 198px 142px 218px 128px;
+  gap: 10px;
+}
+.pf314-workspace > main > aside article {
+  padding: 11px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.pf314-workspace > main > aside h3 {
+  color: #1559df;
+  font-size: 10px;
+}
+.pf314-workspace > main > aside p {
+  margin-top: 11px;
+}
+.pf314-workspace > main > aside strong {
+  display: block;
+  margin-top: 13px;
+  font:
+    italic 11px/1.7 Georgia,
+    serif;
+}
+.pf314-workspace > main > aside label {
+  display: block;
+  margin-top: 10px;
+}
+.pf314-workspace > main > aside input[type="range"] {
+  width: 130px;
+  accent-color: #175fe2;
+}
+.pf314-workspace > main > aside output {
+  float: right;
+  width: 44px;
+  height: 26px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  text-align: center;
+  line-height: 26px;
+}
+.pf314-workspace > main > aside input[type="checkbox"] {
+  margin-right: 7px;
+}
+.pf314-workspace > main > aside button {
+  display: flex;
+  margin-top: 9px;
+  padding: 5px 8px;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+}
+.pf314-workspace > main > aside button svg {
+  width: 12px;
+}
+.pf314-cards {
+  display: grid;
+  height: 275px;
+  margin-top: 12px;
+  grid-template-columns: 1fr 1.1fr 1.2fr;
+  gap: 10px;
+}
+.pf314-cards > article {
+  position: relative;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: #fff;
+}
+.pf314-cards h3 {
+  color: #145ed6;
+  font-size: 10px;
+}
+.pf314-cards p {
+  margin-top: 12px;
+}
+.pf314-cards ol {
+  padding-left: 18px;
+  line-height: 28px;
+}
+.pf314-cards article:first-child > strong {
+  display: block;
+  padding: 9px;
+  border-radius: 6px;
+  background: #fff8e9;
+  font:
+    italic 10px Georgia,
+    serif;
+}
+.pf314-cards .mistake h3 {
+  color: #d22d3e;
+}
+.pf314-cards .mistake > b {
+  display: block;
+  margin-top: 13px;
+  color: #c72c3d;
+}
+.pf314-cards .mistake strong {
+  display: block;
+  margin-top: 18px;
+  padding: 9px;
+  border: 1px solid #efc5cb;
+  border-radius: 6px;
+  background: #fff1f2;
+  color: #c72b3d;
+}
+.pf314-cards .practice label {
+  display: block;
+  margin-top: 14px;
+  font:
+    italic 11px Georgia,
+    serif;
+}
+.pf314-cards .practice input {
+  width: 49px;
+  height: 28px;
+  margin: 0 8px;
+  border: 1px solid #b9cce0;
+  border-radius: 5px;
+}
+.pf314-cards .practice label:nth-of-type(2) input {
+  width: 173px;
+}
+.pf314-cards .practice button {
+  display: block;
+  width: 113px;
+  height: 30px;
+  margin: 15px auto 0;
+  border: 0;
+  border-radius: 6px;
+  background: #1260e8;
+  color: #fff;
+  font-weight: 900;
+}
+.pf314-cards .practice output {
+  display: block;
+  margin-top: 8px;
+  text-align: center;
+}
+.pf314-cards .practice output.correct {
+  color: #16824a;
+}
+.pf314-cards .practice output.incorrect {
+  color: #c52b3d;
+}
+.pf314-adjacent {
+  display: flex;
+  height: 59px;
+  margin-top: 11px;
+  gap: 15px;
+}
+.pf314-adjacent a {
+  display: flex;
+  flex: 1;
+  padding: 0 14px;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  color: inherit;
+  text-decoration: none;
+}
+.pf314-adjacent a:last-child {
+  justify-content: flex-end;
+  text-align: right;
+}
+.pf314-adjacent small {
+  display: block;
+  color: #68758b;
+  font-size: 7px;
+}
+body:has(.pf314-page) [data-testid="desktop-sidebar"] {
+  width: 207px !important;
+  flex-basis: 207px !important;
+  transition: none;
+}
+body:has(.pf314-page) #main-content {
+  margin-left: 0 !important;
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+}
+body:has(.pf314-page) .lesson-shell-header,
+body:has(.pf314-page) .lesson-page-shell > nav[role="tablist"],
+body:has(.pf314-page) .lesson-adjacent-nav,
+body:has(.pf314-page) footer[aria-label="Site footer"] {
+  display: none !important;
+}
+body:has(.pf314-page) .lesson-page-shell > div {
+  margin-top: 10px !important;
+}
+body:has(.pf314-page) .lesson-workbench.is-target-graphing-workbench {
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+body:has(.pf314-page) {
+  overflow: hidden;
+}
+@media (min-width: 960px) {
+  body:has(.pf314-page) .app-layout-rail > div > header {
+    height: 61px;
+  }
+  body:has(.pf314-page) [data-testid="desktop-sidebar"] > div {
+    padding: 10px 10px 40px !important;
+  }
+  body:has(.pf314-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type {
+    height: 61px;
+    min-height: 61px;
+    margin-bottom: 13px !important;
+    padding: 0 !important;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+  body:has(.pf314-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type
+    p:first-child {
+    white-space: nowrap;
+    font-size: 14px !important;
+  }
+  body:has(.pf314-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type
+    p:last-child {
+    font-size: 8px !important;
+  }
+  body:has(.pf314-page) [data-testid="desktop-sidebar"] > div > label {
+    height: 36px;
+    min-height: 36px !important;
+    margin-bottom: 10px !important;
+    padding: 0 9px !important;
+    font-size: 9px !important;
+  }
+  body:has(.pf314-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"] {
+    row-gap: 7px !important;
+  }
+  body:has(.pf314-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    > div:nth-of-type(2),
+  body:has(.pf314-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    > div:nth-of-type(n + 5) {
+    display: none;
+  }
+  body:has(.pf314-page) [data-testid="desktop-sidebar"] nav button {
+    min-height: 32px;
+    padding: 6px 8px !important;
+    font-size: 9px !important;
+  }
+  body:has(.pf314-page) [data-testid="desktop-sidebar"] nav a {
+    min-height: 29px;
+    padding: 5px 8px !important;
+    font-size: 8px !important;
+  }
+  body:has(.pf314-page)
+    [data-testid="desktop-sidebar"]
+    nav
+    a:has(span span + span) {
+    height: 43px;
+    min-height: 43px;
+    padding: 3px 8px !important;
+  }
+  body:has(.pf314-page) [data-testid="desktop-sidebar"] nav a span span + span {
+    font-size: 6px !important;
+  }
+  body:has(.pf314-page)
+    [data-testid="desktop-sidebar"]
+    nav
+    > div:nth-of-type(4)
+    a {
+    height: 28px;
+    min-height: 28px;
+    padding: 3px 8px !important;
+  }
+  body:has(.pf314-page)
+    [data-testid="desktop-sidebar"]
+    nav
+    > div:nth-of-type(4)
+    > div
+    > :nth-child(n + 2) {
+    display: none;
+  }
+}
+@media (max-width: 900px) {
+  .pf314-page {
+    min-width: 785px;
+  }
+}
