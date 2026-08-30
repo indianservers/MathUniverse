@@ -1,6 +1,6 @@
 # Integral Calculus and Differential Equations target batch 0385-0412
 
-Dedicated rebuild target: **4 of 28 lessons completed; 24 pending.**
+Dedicated rebuild target: **5 of 28 lessons completed; 23 pending.**
 
 | Mockup | Lesson                           | Dedicated object model                                                                                                     | Status                                      |
 | ------ | -------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
@@ -8,7 +8,7 @@ Dedicated rebuild target: **4 of 28 lessons completed; 24 pending.**
 | 0386   | 307 Riemann Sums                 | `cosine-plus-two-uniform-partition-draggable-boundary-and-sample-left-midpoint-right-sum-exact-error-convergence-practice` | Reworked individually and browser-validated |
 | 0387   | 308 Definite Integral            | `quadratic-oriented-area-dual-bound-drag-signed-region-decomposition-limit-swap-layer-visibility-zoom-practice`            | Reworked individually and browser-validated |
 | 0388   | 309 Indefinite Integral          | `six-x-antiderivative-parabola-family-draggable-constant-linked-derivative-compare-symbolic-practice`                      | Reworked individually and browser-validated |
-| 0389   | 310 Fundamental Theorem          | Pending audit                                                                                                              | Pending                                     |
+| 0389   | 310 Fundamental Theorem          | `accumulation-function-dual-bound-drag-selectable-integrand-area-instant-rate-ftc-symbolic-practice`                       | Reworked individually and browser-validated |
 | 0390   | 311 Area Between Curves          | Pending audit                                                                                                              | Pending                                     |
 | 0391   | 312 Substitution                 | Pending audit                                                                                                              | Pending                                     |
 | 0392   | 313 Integration by Parts         | Pending audit                                                                                                              | Pending                                     |
@@ -94,3 +94,19 @@ Evidence:
 - `0388-reference.png`
 - `0388-desktop.png`
 - `0388-dedicated-target-validation.json`
+
+## Lesson 310 / Mockup 0389 - Fundamental Theorem
+
+Reworked individually as an accumulation-function lab linking `A(x)=integral[a,x] f(t)dt` to `A'(x)=f(x)`. The upper and lower bound sliders, captured direct graph drag, and selectable cubic/quadratic/sine integrands drive the analytic antiderivative, signed accumulated area, instantaneous rate, generated SVG curve and shading, control readouts, process strip, and model verification. Six lesson tabs, Reset, Share, Workspace, full-screen, two-field symbolic practice, Hint, shell Reset, adjacent lessons, and action counting are functional.
+
+Browser validation confirms the coherent initial cubic state `x=2.5`, `a=-1`, `A(x)=0.546875`, and `f(x)=2.708333`. Slider changes to `x=4`, `a=0` give `A(x)=13.333333` and `f(x)=17.333333`; a real pointer drag from the visible `x=2.5` handle moves it to `1.75` and recomputes `A(x)=-0.749674`, `f(x)=0.036458`. Selecting `f(t)=t^2-2` updates the same state to `A(x)=-1.713542`, `f(x)=1.0625`. Practice rejects an incomplete antiderivative, accepts `2/3x^3-3/2x^2+x` with derivative `2x^2-3x+1`, and reveals the hint. Local and shell Reset restore the complete initial model.
+
+The reference prints `f(t)=(1/3)t^3-t`, `a=-1`, and `x=2.5` but labels `A(x)=1.6276` and `f(x)=3.8542`; those totals do not evaluate from the displayed function and bounds. The dedicated surface preserves the target accumulation/instant-rate composition and controls while keeping the antiderivative, shaded interval, worked derivation, model verification, and checked practice mathematically consistent.
+
+Final exact 1024x1536 validation matches the target stack: sidebar width 222, hero y=102-318, tabs y=329-368, accumulation lab y=376-969, theorem/intuition y=981-1121, worked/misconception y=1129-1321, quick check y=1331-1463, and adjacent lessons y=1472-1519. Dedicated content spans x=241-1007, with no horizontal overflow, no duplicate shared lesson chrome, no site footer, and zero console messages.
+
+Evidence:
+
+- `0389-reference.png`
+- `0389-desktop.png`
+- `0389-dedicated-target-validation.json`

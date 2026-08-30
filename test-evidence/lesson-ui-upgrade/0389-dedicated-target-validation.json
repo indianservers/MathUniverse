@@ -1,0 +1,159 @@
+{
+  "mockup": "0389",
+  "lessonId": 310,
+  "checks": {
+    "initial": {
+      "x": "2.5",
+      "a": "-1",
+      "function": "cubic",
+      "area": "0.546875",
+      "instant": "2.708333",
+      "tab": "Interaction + visualization",
+      "result": "",
+      "hint": "false",
+      "actions": "0"
+    },
+    "bounds": {
+      "x": "4",
+      "a": "0",
+      "function": "cubic",
+      "area": "13.333333",
+      "instant": "17.333333",
+      "tab": "Interaction + visualization",
+      "result": "",
+      "hint": "false",
+      "actions": "2"
+    },
+    "drag": {
+      "x": "1.75",
+      "a": "0",
+      "function": "cubic",
+      "area": "-0.749674",
+      "instant": "0.036458",
+      "tab": "Interaction + visualization",
+      "result": "",
+      "hint": "false",
+      "actions": "9"
+    },
+    "function": {
+      "x": "1.75",
+      "a": "0",
+      "function": "quadratic",
+      "area": "-1.713542",
+      "instant": "1.0625",
+      "tab": "Key ideas",
+      "result": "",
+      "hint": "false",
+      "actions": "11"
+    },
+    "rejected": {
+      "x": "1.75",
+      "a": "0",
+      "function": "quadratic",
+      "area": "-1.713542",
+      "instant": "1.0625",
+      "tab": "Key ideas",
+      "result": "incorrect",
+      "hint": "false",
+      "actions": "12"
+    },
+    "accepted": {
+      "x": "1.75",
+      "a": "0",
+      "function": "quadratic",
+      "area": "-1.713542",
+      "instant": "1.0625",
+      "tab": "Key ideas",
+      "result": "correct",
+      "hint": "true",
+      "actions": "14"
+    },
+    "localReset": {
+      "x": "2.5",
+      "a": "-1",
+      "function": "cubic",
+      "area": "0.546875",
+      "instant": "2.708333",
+      "tab": "Interaction + visualization",
+      "result": "",
+      "hint": "false",
+      "actions": "1"
+    },
+    "shellReset": {
+      "x": "2.5",
+      "a": "-1",
+      "function": "cubic",
+      "area": "0.546875",
+      "instant": "2.708333",
+      "tab": "Interaction + visualization",
+      "result": "",
+      "hint": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 222,
+      "height": 1536,
+      "bottom": 1536
+    },
+    "hero": {
+      "top": 102,
+      "left": 241,
+      "width": 766,
+      "height": 216,
+      "bottom": 318
+    },
+    "tabs": {
+      "top": 329,
+      "left": 241,
+      "width": 766,
+      "height": 39,
+      "bottom": 368
+    },
+    "lab": {
+      "top": 376,
+      "left": 241,
+      "width": 766,
+      "height": 593,
+      "bottom": 969
+    },
+    "theorem": {
+      "top": 981,
+      "left": 241,
+      "width": 766,
+      "height": 140,
+      "bottom": 1121
+    },
+    "worked": {
+      "top": 1129,
+      "left": 241,
+      "width": 766,
+      "height": 192,
+      "bottom": 1321
+    },
+    "practice": {
+      "top": 1331,
+      "left": 241,
+      "width": 766,
+      "height": 132,
+      "bottom": 1463
+    },
+    "adjacent": {
+      "top": 1472,
+      "left": 241,
+      "width": 766,
+      "height": 47,
+      "bottom": 1519
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
