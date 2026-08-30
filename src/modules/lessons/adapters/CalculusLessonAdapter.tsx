@@ -9,6 +9,7 @@ import IntegralDifferentialMockupLesson from "./calculus/IntegralDifferentialMoc
 import LimitsDifferentialMockupLesson from "./calculus/LimitsDifferentialMockupLesson";
 import InformalLimitsTargetLesson277 from "./calculus/InformalLimitsTargetLesson277";
 import OneSidedLimitsTargetLesson278 from "./calculus/OneSidedLimitsTargetLesson278";
+import InfiniteLimitsTargetLesson279 from "./calculus/InfiniteLimitsTargetLesson279";
 
 const viewportSize = { width: 640, height: 360 };
 const fallbackViewport: GraphViewport = { xMin: -5, xMax: 5, yMin: -6, yMax: 10, ...viewportSize };
@@ -119,6 +120,7 @@ function calculusGuidanceFor(title: string) {
 export default function CalculusLessonAdapter(props: LessonAdapterProps) {
   if (props.lesson.id === 277) return <InformalLimitsTargetLesson277 {...props} />;
   if (props.lesson.id === 278) return <OneSidedLimitsTargetLesson278 {...props} />;
+  if (props.lesson.id === 279) return <InfiniteLimitsTargetLesson279 {...props} />;
   if (props.lesson.id >= 277 && props.lesson.id <= 305) return <LimitsDifferentialMockupLesson {...props} />;
   if (props.lesson.id >= 306 && props.lesson.id <= 333) return <IntegralDifferentialMockupLesson {...props} />;
   return <LegacyCalculusLessonAdapter {...props} />;

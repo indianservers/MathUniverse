@@ -1,12 +1,12 @@
 # Limits and Differential Calculus target batch 0356-0384
 
-Dedicated rebuild target: **2 of 29 lessons completed; 27 pending.**
+Dedicated rebuild target: **3 of 29 lessons completed; 26 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
 | 0356 | 277 Informal Limits | `removable-hole-two-sided-approach-draggable-markers-linked-table-limit-practice` | Reworked individually and browser-validated |
 | 0357 | 278 One-Sided Limits | `piecewise-one-sided-approach-independent-sliders-trace-verdict` | Reworked individually and browser-validated |
-| 0358 | 279 Infinite Limits | Pending audit | Pending |
+| 0358 | 279 Infinite Limits | `rational-vertical-asymptote-one-sided-infinite-approach-sign-domain-practice` | Reworked individually and browser-validated |
 | 0359 | 280 Limits at Infinity | Pending audit | Pending |
 | 0360 | 281 Continuity at a Point | Pending audit | Pending |
 | 0361 | 282 Types of Discontinuity | Pending audit | Pending |
@@ -61,3 +61,17 @@ Evidence:
 - `0357-reference.png`
 - `0357-desktop.png`
 - `0357-dedicated-target-validation.json`
+
+## Lesson 279 / Mockup 0358 - Infinite Limits
+
+Reworked individually around the exact rational model `f(x)=-2/(x-1)^3`. The selected approach side and constrained range value drive the sampled graph marker, live function value, classification, sign behavior, domain, and vertical-asymptote evidence. Left/right switching, native range dragging, marker visibility, five lesson tabs, fullscreen, Reset, Share, six-field practice classification, exact checking, practice reset, shell Reset, and Previous/Next navigation are functional.
+
+Browser validation starts at `x=0.9`, deriving `f(x)=2000`, then moves to `x=0.98` and derives approximately `250000`. Switching to the right starts at `x=1.1` with `f(x)=-2000`; moving to `1.02` derives approximately `-250000`. It hides the approach markers, rejects an incorrect first-row left limit, accepts the restored `+infinity, -infinity, Yes` classification, and shell Reset restores the left side, `x=0.9`, visible markers, correct practice, selected interaction tab, and zero action count.
+
+Final exact 1024x1536 validation matches the target stack: sidebar width 228, dedicated header y=96-321, tabs y=328-377, full interactive lab y=384-1468, graph/control model y=486-933, four-stage flow y=942-1043, rule/worked/misconception row y=1052-1236, practice y=1245-1450, adjacent navigation y=1475-1526, and no site footer. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0358-reference.png`
+- `0358-desktop.png`
+- `0358-dedicated-target-validation.json`

@@ -1,0 +1,160 @@
+{
+  "mockup": "0358",
+  "lessonId": 279,
+  "checks": {
+    "initial": {
+      "side": "left",
+      "x": "0.9",
+      "value": "2000.0000000000014",
+      "show-markers": "true",
+      "practice-correct": "true",
+      "actions": "0"
+    },
+    "leftClose": {
+      "side": "left",
+      "x": "0.98",
+      "value": "249999.99999999933",
+      "show-markers": "true",
+      "practice-correct": "true",
+      "actions": "1"
+    },
+    "right": {
+      "side": "right",
+      "x": "1.1",
+      "value": "-1999.9999999999948",
+      "show-markers": "true",
+      "practice-correct": "true",
+      "actions": "2"
+    },
+    "rightClose": {
+      "side": "right",
+      "x": "1.02",
+      "value": "-249999.99999999933",
+      "show-markers": "true",
+      "practice-correct": "true",
+      "actions": "3"
+    },
+    "hidden": {
+      "side": "right",
+      "x": "1.02",
+      "value": "-249999.99999999933",
+      "show-markers": "false",
+      "practice-correct": "true",
+      "actions": "4"
+    },
+    "rejected": {
+      "side": "right",
+      "x": "1.02",
+      "value": "-249999.99999999933",
+      "show-markers": "false",
+      "practice-correct": "false",
+      "actions": "5"
+    },
+    "accepted": {
+      "side": "right",
+      "x": "1.02",
+      "value": "-249999.99999999933",
+      "show-markers": "false",
+      "practice-correct": "true",
+      "actions": "6"
+    },
+    "reset": {
+      "side": "left",
+      "x": "0.9",
+      "value": "2000.0000000000014",
+      "show-markers": "true",
+      "practice-correct": "true",
+      "actions": "0"
+    }
+  },
+  "navigation": {
+    "previousHref": "/lessons/calculus/278-one-sided-limits",
+    "nextHref": "/lessons/calculus/280-limits-at-infinity"
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 228,
+      "height": 1536,
+      "bottom": 1536
+    },
+    "shellHeader": {
+      "top": 0,
+      "left": 0,
+      "width": 0,
+      "height": 0,
+      "bottom": 0
+    },
+    "hero": {
+      "top": 96,
+      "left": 240,
+      "width": 771,
+      "height": 225,
+      "bottom": 321
+    },
+    "tabs": {
+      "top": 328,
+      "left": 240,
+      "width": 771,
+      "height": 49,
+      "bottom": 377
+    },
+    "lab": {
+      "top": 384,
+      "left": 240,
+      "width": 771,
+      "height": 1084,
+      "bottom": 1468
+    },
+    "model": {
+      "top": 486,
+      "left": 251,
+      "width": 749,
+      "height": 447,
+      "bottom": 933
+    },
+    "flow": {
+      "top": 942,
+      "left": 251,
+      "width": 749,
+      "height": 101,
+      "bottom": 1043
+    },
+    "learning": {
+      "top": 1052,
+      "left": 251,
+      "width": 749,
+      "height": 184,
+      "bottom": 1236
+    },
+    "practice": {
+      "top": 1245,
+      "left": 251,
+      "width": 749,
+      "height": 205,
+      "bottom": 1450
+    },
+    "adjacent": {
+      "top": 1475,
+      "left": 240,
+      "width": 771,
+      "height": 51,
+      "bottom": 1526
+    },
+    "footer": {
+      "top": 0,
+      "left": 0,
+      "width": 0,
+      "height": 0,
+      "bottom": 0
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
