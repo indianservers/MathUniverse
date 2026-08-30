@@ -1,6 +1,6 @@
 # Limits and Differential Calculus target batch 0356-0384
 
-Dedicated rebuild target: **13 of 29 lessons completed; 16 pending.**
+Dedicated rebuild target: **14 of 29 lessons completed; 15 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
@@ -17,7 +17,7 @@ Dedicated rebuild target: **13 of 29 lessons completed; 16 pending.**
 | 0366 | 287 Tangent Line | `quadratic-draggable-point-derivative-tangent-slope-triangle-point-slope-practice` | Reworked individually and browser-validated |
 | 0367 | 288 Normal Line | `concave-quadratic-draggable-point-tangent-negative-reciprocal-normal-right-angle-step-practice` | Reworked individually and browser-validated |
 | 0368 | 289 Derivative Graph | `integrated-cubic-linked-derivative-shared-draggable-cursor-tangent-sign-zeros-scales-challenge` | Reworked individually and browser-validated |
-| 0369 | 290 Higher Derivatives | Pending audit | Pending |
+| 0369 | 290 Higher Derivatives | `quartic-four-linked-derivative-levels-shared-drag-cursor-domain-visibility-sign-concavity-practice` | Reworked individually and browser-validated |
 | 0370 | 291 Product Rule | Pending audit | Pending |
 | 0371 | 292 Quotient Rule | Pending audit | Pending |
 | 0372 | 293 Chain Rule | Pending audit | Pending |
@@ -217,3 +217,19 @@ Evidence:
 - `0368-reference.png`
 - `0368-desktop.png`
 - `0368-dedicated-target-validation.json`
+
+## Lesson 290 / Mockup 0369 - Higher Derivatives
+
+Reworked individually around a selectable quartic and its exact first, second, and third analytic derivatives. One shared x state drives four graph points, four cursor guides, the function/derivative values, signs, concavity descriptions, inflection markers, worked table, and action count. Native cursor and domain inputs, three real visibility toggles, a model-changing Random example action, and captured SVG pointer dragging on every derivative level are functional. The practice has three independently editable values and checks the actual derivatives of `g(x)=2x^5-3x^4+x^2-7` at x=1.
+
+Browser validation confirms the coherent target start `f(x)=x^4-6x^2+3` at x=0 gives `f=3`, `f'=0`, `f''=-12`, and `f'''=0`. Moving to x=1 derives `-2,-8,0,24`; changing the domain from `3.5` to `4` remaps all plots; Random example switches to `0.5x^4-4x^2+2`; a real drag on the second-derivative graph moves the shared cursor to approximately `0.12` and updates all four values. The visibility toggles remove real graph layers, practice rejects `0,0,48`, accepts the correct `0,6,48`, and shell Reset restores the initial model, domain, cursor, toggles, selected tab, blank practice result, and zero actions.
+
+The reference mixes incompatible formulas, curves, and values: its printed quartic derivative chain gives `f'''(0)=0`, while a card states `24`, and its practice displays three zeroes as correct although direct differentiation gives `0,6,48`. This implementation keeps every graph, formula, value, interpretation, and checked answer mutually consistent.
+
+Final exact 986x1596 validation matches the target stack: sidebar width 210, hero y=91-268, tabs y=278-318, four-graph laboratory y=328-966, derivative-meaning strip y=976-1038, chain/rule/misconception row y=1048-1208, worked/practice row y=1218-1430, adjacent navigation y=1440-1483, and footer y=1493-1584. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0369-reference.png`
+- `0369-desktop.png`
+- `0369-dedicated-target-validation.json`

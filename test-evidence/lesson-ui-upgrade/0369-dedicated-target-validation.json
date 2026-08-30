@@ -1,0 +1,177 @@
+{
+  "mockup": "0369",
+  "lessonId": 290,
+  "checks": {
+    "initial": {
+      "x": "0",
+      "domain": "3.5",
+      "model": "x⁴ − 6x² + 3",
+      "f": "3",
+      "d1": "0",
+      "d2": "-12",
+      "d3": "0",
+      "result": "",
+      "actions": "0"
+    },
+    "xOne": {
+      "x": "1",
+      "domain": "3.5",
+      "model": "x⁴ − 6x² + 3",
+      "f": "-2",
+      "d1": "-8",
+      "d2": "0",
+      "d3": "24",
+      "result": "",
+      "actions": "1"
+    },
+    "domain": {
+      "x": "1",
+      "domain": "4",
+      "model": "x⁴ − 6x² + 3",
+      "f": "-2",
+      "d1": "-8",
+      "d2": "0",
+      "d3": "24",
+      "result": "",
+      "actions": "2"
+    },
+    "random": {
+      "x": "1",
+      "domain": "4",
+      "model": "½x⁴ − 4x² + 2",
+      "f": "-1.5",
+      "d1": "-6",
+      "d2": "-2",
+      "d3": "12",
+      "result": "",
+      "actions": "3"
+    },
+    "dragged": {
+      "x": "0.12",
+      "domain": "4",
+      "model": "½x⁴ − 4x² + 2",
+      "f": "1.943",
+      "d1": "-0.957",
+      "d2": "-7.914",
+      "d3": "1.44",
+      "result": "",
+      "actions": "10"
+    },
+    "toggles": {
+      "x": "0.12",
+      "domain": "4",
+      "model": "½x⁴ − 4x² + 2",
+      "f": "1.943",
+      "d1": "-0.957",
+      "d2": "-7.914",
+      "d3": "1.44",
+      "result": "",
+      "actions": "12"
+    },
+    "rejected": {
+      "x": "0.12",
+      "domain": "4",
+      "model": "½x⁴ − 4x² + 2",
+      "f": "1.943",
+      "d1": "-0.957",
+      "d2": "-7.914",
+      "d3": "1.44",
+      "result": "incorrect",
+      "actions": "13"
+    },
+    "accepted": {
+      "x": "0.12",
+      "domain": "4",
+      "model": "½x⁴ − 4x² + 2",
+      "f": "1.943",
+      "d1": "-0.957",
+      "d2": "-7.914",
+      "d3": "1.44",
+      "result": "correct",
+      "actions": "14"
+    },
+    "reset": {
+      "x": "0",
+      "domain": "3.5",
+      "model": "x⁴ − 6x² + 3",
+      "f": "3",
+      "d1": "0",
+      "d2": "-12",
+      "d3": "0",
+      "result": "",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 986,
+      "height": 1596
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 210,
+      "height": 1596,
+      "bottom": 1596
+    },
+    "hero": {
+      "top": 91,
+      "left": 220,
+      "width": 750,
+      "height": 177,
+      "bottom": 268
+    },
+    "tabs": {
+      "top": 278,
+      "left": 220,
+      "width": 750,
+      "height": 40,
+      "bottom": 318
+    },
+    "lab": {
+      "top": 328,
+      "left": 220,
+      "width": 750,
+      "height": 638,
+      "bottom": 966
+    },
+    "meaning": {
+      "top": 976,
+      "left": 220,
+      "width": 750,
+      "height": 62,
+      "bottom": 1038
+    },
+    "info": {
+      "top": 1048,
+      "left": 220,
+      "width": 750,
+      "height": 160,
+      "bottom": 1208
+    },
+    "bottom": {
+      "top": 1218,
+      "left": 220,
+      "width": 750,
+      "height": 212,
+      "bottom": 1430
+    },
+    "adjacent": {
+      "top": 1440,
+      "left": 220,
+      "width": 750,
+      "height": 43,
+      "bottom": 1483
+    },
+    "footer": {
+      "top": 1493,
+      "left": 220,
+      "width": 750,
+      "height": 91,
+      "bottom": 1584
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
