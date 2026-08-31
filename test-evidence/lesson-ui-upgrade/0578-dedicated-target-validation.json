@@ -1,0 +1,242 @@
+{
+  "mockup": "0578",
+  "lessonId": 393,
+  "checks": {
+    "initial": {
+      "shape": "Triangle",
+      "base": "6",
+      "height": "4",
+      "length": "5",
+      "base-area": "12",
+      "perimeter": "16",
+      "volume": "60",
+      "lateral": "80",
+      "surface": "104",
+      "layers": "[true,true,true]",
+      "expanded": "false",
+      "tab": "Interaction + visualization",
+      "shared": "false",
+      "actions": "0"
+    },
+    "rectangle": {
+      "shape": "Rectangle",
+      "base": "6",
+      "height": "4",
+      "length": "5",
+      "base-area": "24",
+      "perimeter": "20",
+      "volume": "120",
+      "lateral": "100",
+      "surface": "148",
+      "layers": "[true,true,true]",
+      "expanded": "false",
+      "tab": "Interaction + visualization",
+      "shared": "false",
+      "actions": "1"
+    },
+    "hexagon": {
+      "shape": "Hexagon",
+      "base": "6",
+      "height": "4",
+      "length": "5",
+      "base-area": "93.53",
+      "perimeter": "36",
+      "volume": "467.65",
+      "lateral": "180",
+      "surface": "367.06",
+      "layers": "[true,true,true]",
+      "expanded": "false",
+      "tab": "Interaction + visualization",
+      "shared": "false",
+      "actions": "2"
+    },
+    "edited": {
+      "shape": "Triangle",
+      "base": "8",
+      "height": "6",
+      "length": "7",
+      "base-area": "24",
+      "perimeter": "22.42",
+      "volume": "168",
+      "lateral": "156.96",
+      "surface": "204.96",
+      "layers": "[true,true,true]",
+      "expanded": "false",
+      "tab": "Interaction + visualization",
+      "shared": "false",
+      "actions": "6"
+    },
+    "layersOff": {
+      "shape": "Triangle",
+      "base": "8",
+      "height": "6",
+      "length": "7",
+      "base-area": "24",
+      "perimeter": "22.42",
+      "volume": "168",
+      "lateral": "156.96",
+      "surface": "204.96",
+      "layers": "[false,false,false]",
+      "expanded": "false",
+      "tab": "Interaction + visualization",
+      "shared": "false",
+      "actions": "9"
+    },
+    "layersOn": {
+      "shape": "Triangle",
+      "base": "8",
+      "height": "6",
+      "length": "7",
+      "base-area": "24",
+      "perimeter": "22.42",
+      "volume": "168",
+      "lateral": "156.96",
+      "surface": "204.96",
+      "layers": "[true,true,true]",
+      "expanded": "false",
+      "tab": "Interaction + visualization",
+      "shared": "false",
+      "actions": "12"
+    },
+    "shared": {
+      "shape": "Triangle",
+      "base": "8",
+      "height": "6",
+      "length": "7",
+      "base-area": "24",
+      "perimeter": "22.42",
+      "volume": "168",
+      "lateral": "156.96",
+      "surface": "204.96",
+      "layers": "[true,true,true]",
+      "expanded": "false",
+      "tab": "Interaction + visualization",
+      "shared": "true",
+      "actions": "13"
+    },
+    "orbitChanged": true,
+    "canvasPixels": {
+      "colored": 25573,
+      "unique": 931,
+      "width": 509,
+      "height": 526
+    },
+    "expanded": {
+      "shape": "Triangle",
+      "base": "6",
+      "height": "4",
+      "length": "5",
+      "base-area": "12",
+      "perimeter": "16",
+      "volume": "60",
+      "lateral": "80",
+      "surface": "104",
+      "layers": "[true,true,true]",
+      "expanded": "true",
+      "tab": "Interaction + visualization",
+      "shared": "false",
+      "actions": "2"
+    },
+    "tabbed": {
+      "shape": "Triangle",
+      "base": "6",
+      "height": "4",
+      "length": "5",
+      "base-area": "12",
+      "perimeter": "16",
+      "volume": "60",
+      "lateral": "80",
+      "surface": "104",
+      "layers": "[true,true,true]",
+      "expanded": "false",
+      "tab": "Formulas",
+      "shared": "false",
+      "actions": "4"
+    },
+    "reset": {
+      "shape": "Triangle",
+      "base": "6",
+      "height": "4",
+      "length": "5",
+      "base-area": "12",
+      "perimeter": "16",
+      "volume": "60",
+      "lateral": "80",
+      "surface": "104",
+      "layers": "[true,true,true]",
+      "expanded": "false",
+      "tab": "Interaction + visualization",
+      "shared": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1173,
+      "height": 1341
+    },
+    "overflow": false,
+    "hero": {
+      "top": 112,
+      "left": 252,
+      "width": 904,
+      "height": 258,
+      "bottom": 370
+    },
+    "tabs": {
+      "top": 380,
+      "left": 252,
+      "width": 904,
+      "height": 59,
+      "bottom": 439
+    },
+    "work": {
+      "top": 449,
+      "left": 252,
+      "width": 904,
+      "height": 620,
+      "bottom": 1069
+    },
+    "canvas": {
+      "top": 518,
+      "left": 277,
+      "width": 509,
+      "height": 526,
+      "bottom": 1044
+    },
+    "controls": {
+      "top": 521,
+      "left": 811,
+      "width": 333,
+      "height": 221,
+      "bottom": 742
+    },
+    "results": {
+      "top": 871,
+      "left": 811,
+      "width": 333,
+      "height": 194,
+      "bottom": 1065
+    },
+    "navigation": {
+      "top": 1114,
+      "left": 264,
+      "width": 880,
+      "height": 55,
+      "bottom": 1169
+    }
+  },
+  "mobileMetrics": {
+    "documentWidth": 390,
+    "overflow": false,
+    "canvas": {
+      "x": 42,
+      "y": 284,
+      "width": 306,
+      "height": 560
+    },
+    "nonblank": true
+  },
+  "consoleMessages": [],
+  "passed": true
+}

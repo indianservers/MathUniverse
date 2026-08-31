@@ -74,7 +74,7 @@ describe("Geometry3DLessonAdapter", () => {
       if (
         ![
           378, 379, 380, 381, 382, 383, 384, 385, 386, 387, 388, 389, 390, 391,
-          392,
+          392, 393,
         ].includes(lessonId) &&
         lesson.preset.id !== "geometry3d.solid-net"
       ) {
@@ -432,5 +432,30 @@ describe("Geometry3DLessonAdapter", () => {
     expect(html).toContain('data-face-diagonal="5.83"');
     expect(html).toContain('data-space-diagonal="6.16"');
     expect(html).toContain('data-layers="[true,true,false]"');
+  });
+
+  it("uses a dedicated editable prism extrusion model for lesson 393", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 393)!;
+    const html = renderToStaticMarkup(
+      <Geometry3DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="geometry3d-mockup-0578"');
+    expect(html).toContain(
+      "threejs-dedicated-editable-triangle-rectangle-hexagon-cross-section-extrusion-base-height-length-sliders-bases-lateral-net-layers-orbit-exact-area-volume",
+    );
+    expect(html).toContain('data-shape="Triangle"');
+    expect(html).toContain('data-base="6"');
+    expect(html).toContain('data-height="4"');
+    expect(html).toContain('data-length="5"');
+    expect(html).toContain('data-base-area="12"');
+    expect(html).toContain('data-perimeter="16"');
+    expect(html).toContain('data-volume="60"');
+    expect(html).toContain('data-lateral="80"');
+    expect(html).toContain('data-surface="104"');
+    expect(html).toContain('data-layers="[true,true,true]"');
   });
 });

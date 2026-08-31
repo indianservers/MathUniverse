@@ -21,8 +21,9 @@ Target references begin at `0563` in `D:\Math App Screenshots for UI Update\Upda
 | 0575 | 390 3D Vectors | `VectorsTargetLesson390` | React Three Fiber two-vector operations model with six working component steppers, directly draggable vector endpoints, exact sum/dot/cross/magnitude/cosine/angle calculations, Add/Dot/Cross modes, axes layer, orbit/zoom, fullscreen, result steps, tabs/reset/share, right-hand-rule guidance, and checked vector-addition practice | 992 x 1586 desktop plus 390 px mobile rendering; nonblank 467 x 697 WebGL canvas; no overflow or application console errors | Complete |
 | 0576 | 391 Cube | `CubeTargetLesson391` | React Three Fiber parametric cube model with synchronized side slider/numeric control, exact volume/surface/face-diagonal/space-diagonal calculations, independent diagonal layers, genuine six-face net, clickable face/net highlighting, orbit/zoom, reversible fullscreen, tabs/reset/share, Euler topology, and a computed a=5 experiment | 1009 x 1558 desktop plus 390 px mobile rendering; nonblank 425 x 619 WebGL canvas; no overflow or application console errors | Complete |
 | 0577 | 392 Cuboid | `CuboidTargetLesson392` | React Three Fiber parametric cuboid model with six working length/width/height steppers, exact volume/surface/base/face-diagonal/space-diagonal calculations, independent diagonal layers, genuine six-face rectangular net, orbit/zoom, tabs/reset/share, edge/face/right-angle structure, and a computed 4×2×3 practice model | 1173 x 1341 desktop plus 390 px mobile rendering; nonblank 536 x 477 WebGL canvas; no overflow or application console errors | Complete |
+| 0578 | 393 Prism | `PrismTargetLesson393` | React Three Fiber generated Triangle/Rectangle/Hexagon cross-sections extruded by editable length, synchronized base/height/length sliders and numeric controls, exact base/perimeter/volume/lateral/surface calculations, independent base/lateral/net layers, orbit/zoom, reversible fullscreen, tabs/reset/share, and practice guidance | 1173 x 1341 desktop plus 390 px mobile rendering; nonblank 509 x 526 WebGL canvas; no overflow or application console errors | Complete |
 
-Completed in this family: **15 / 50**. Pending in this family: **35 / 50**.
+Completed in this family: **16 / 50**. Pending in this family: **34 / 50**.
 
 ## Lesson 378 validation
 
@@ -157,3 +158,12 @@ Completed in this family: **15 / 50**. Pending in this family: **35 / 50**.
 - Canvas-only capture: `0577-canvas.png`
 - Machine-readable interaction and layout audit: `0577-dedicated-target-validation.json`
 - The capture harness verifies l=5, w=3, h=2, V=30, S=62, base area 15, face diagonal √34≈5.83, and space diagonal √38≈6.16; steps to (6,2,3) and proves V=36, S=72, base 12, face diagonal ≈6.32, and space diagonal 7; exercises both diagonal layers, the genuine six-face rectangular net, clipboard/share state, tabs, shell reset, and the (4,2,3) practice model with V=24 and S=52; verifies physical orbit pixel changes, exact 1173 x 1341 dimensions, a nonblank 536 x 477 canvas, an overflow-free nonblank 390 px mobile rendering, and absence of application console errors.
+
+## Lesson 393 validation
+
+- Reference: `0578-reference.png`
+- Current capture: `0578-desktop.png`
+- Mobile capture: `0578-mobile.png`
+- Canvas-only capture: `0578-canvas.png`
+- Machine-readable interaction and layout audit: `0578-dedicated-target-validation.json`
+- The capture harness verifies the default triangular prism b=6, h=4, L=5, base area 12, perimeter 16, volume 60, lateral area 80, and total area 104; switches to a rectangle and proves 24/20/120/100/148, switches to a regular hexagon and proves 93.53/36/467.65/180/367.06, then edits the triangle to b=8, h=6, L=7 and proves base area 24 and volume 168; exercises all three display/net layers, clipboard/share state, orbit, reversible fullscreen, tabs, and shell reset; confirms exact 1173 x 1341 dimensions, a nonblank 509 x 526 canvas, an overflow-free nonblank 390 px mobile rendering, and absence of application console errors.
