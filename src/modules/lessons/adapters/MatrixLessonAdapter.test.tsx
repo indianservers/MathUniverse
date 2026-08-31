@@ -16,7 +16,7 @@ describe("MatrixLessonAdapter", () => {
         />,
       );
       expect(html, String(lesson.id)).toContain(lesson.title);
-      if (lesson.id > 357)
+      if (lesson.id > 358)
         expect(html, String(lesson.id)).toMatch(
           /matrix and linear-algebra lab|eigendirection lab/,
         );
@@ -123,6 +123,15 @@ describe("MatrixLessonAdapter", () => {
     expect(html).toContain('data-augmented="[2,1,5,1,-1,1]"');
     expect(html).toContain('data-solution="[2,1]"');
     expect(html).toContain('data-status="one"');
+  });
+
+  it("uses a draggable basis transformation model for lesson 358", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 358)!;
+    const html = renderToStaticMarkup(<MatrixLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="matrix-mockup-0543"');
+    expect(html).toContain("editable-two-by-two-linear-transformation-draggable-basis-columns");
+    expect(html).toContain('data-det="3"');
+    expect(html).toContain('data-points="[[0,0],[2,1],[1,2],[3,3]]"');
   });
 
   it("does not show determinant as the primary result for unrelated concepts", () => {

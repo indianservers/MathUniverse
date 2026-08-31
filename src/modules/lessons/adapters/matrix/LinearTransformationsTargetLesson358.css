@@ -1,0 +1,309 @@
+.mat358-page,
+.mat358-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.mat358-page {
+  color: #10234b;
+  font-size: 8px;
+}
+.mat358-page button,
+.mat358-page input {
+  font: inherit;
+}
+.mat358-hero {
+  display: flex;
+  height: 160px;
+  padding: 19px;
+  border: 1px solid #dce5ee;
+  border-radius: 11px;
+  background: #fff;
+}
+.mat358-hero > div {
+  flex: 1;
+}
+.mat358-hero span {
+  display: flex;
+  gap: 8px;
+}
+.mat358-hero span b {
+  padding: 5px 9px;
+  border-radius: 10px;
+  background: #e9f7fb;
+  color: #087a99;
+  font-size: 6px;
+}
+.mat358-hero span b + b {
+  background: #f0f2f6;
+  color: #50617a;
+}
+.mat358-hero h1 {
+  margin: 10px 0 3px;
+  font-size: 25px;
+}
+.mat358-hero p {
+  margin: 0;
+  font-size: 11px;
+}
+.mat358-hero nav {
+  display: flex;
+  margin-top: 12px;
+  gap: 8px;
+}
+.mat358-hero nav b {
+  padding: 7px 10px;
+  border: 1px solid #dce5ee;
+  border-radius: 14px;
+}
+.mat358-hero aside {
+  display: flex;
+  width: 190px;
+  flex-wrap: wrap;
+  align-content: space-between;
+  justify-content: flex-end;
+  gap: 8px;
+}
+.mat358-hero aside button {
+  height: 34px;
+  padding: 0 12px;
+  border: 1px solid #dce5ee;
+  border-radius: 7px;
+  background: #fff;
+}
+.mat358-hero aside button:first-child {
+  width: 90px;
+  border-color: #29a6dc;
+}
+.mat358-hero svg {
+  width: 12px;
+}
+.mat358-tabs {
+  display: grid;
+  height: 46px;
+  margin-top: 11px;
+  border: 1px solid #dce5ee;
+  border-radius: 9px;
+  background: #fff;
+  grid-template-columns: repeat(5, 1fr);
+}
+.mat358-tabs button {
+  border: 0;
+  background: transparent;
+  font-weight: 800;
+}
+.mat358-tabs .active {
+  margin: 5px;
+  border-radius: 8px;
+  background: #0786ba;
+  color: #fff;
+}
+.mat358-lab {
+  display: grid;
+  height: 661px;
+  margin-top: 11px;
+  border: 1px solid #dce5ee;
+  border-radius: 10px;
+  background: #fff;
+  grid-template-columns: 1fr 185px;
+  overflow: hidden;
+}
+.mat358-plot {
+  position: relative;
+  padding: 15px;
+  background: #07152c;
+  color: #dfeafb;
+}
+.mat358-plot h3 {
+  position: absolute;
+  z-index: 2;
+  color: #6eabd1;
+}
+.mat358-plot svg {
+  width: 100%;
+  height: 590px;
+}
+.mat358-plot svg text {
+  fill: #e6eef8;
+  font-size: 11px;
+  font-weight: 700;
+}
+.mat358-plot > p {
+  position: absolute;
+  bottom: 18px;
+  left: 20px;
+}
+.mat358-plot > nav {
+  position: absolute;
+  right: 18px;
+  bottom: 13px;
+}
+.mat358-plot > nav button {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #526177;
+  background: #14243d;
+  color: #fff;
+}
+.mat358-panel {
+  padding: 16px;
+}
+.mat358-panel h3 {
+  margin: 0 0 15px;
+  color: #36528c;
+  font-size: 9px;
+}
+.mat358-panel > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.mat358-panel input {
+  width: 70px;
+  height: 39px;
+  border: 1px solid #dce5ee;
+  border-radius: 7px;
+  text-align: center;
+}
+.mat358-panel code {
+  display: block;
+  margin: 14px 0;
+  font-family: serif;
+  font-size: 13px;
+}
+.mat358-panel hr {
+  margin: 16px 0;
+  border: 0;
+  border-top: 1px solid #dce5ee;
+}
+.mat358-panel strong {
+  display: block;
+  color: #0586b8;
+  font-size: 17px;
+}
+.mat358-panel p {
+  line-height: 15px;
+}
+.mat358-panel em {
+  font-family: serif;
+  font-size: 13px;
+}
+.mat358-panel > button {
+  width: 100%;
+  height: 33px;
+  margin-top: 7px;
+  border: 1px solid #dce5ee;
+  border-radius: 7px;
+  background: #fff;
+}
+.mat358-panel > .primary {
+  border: 0;
+  background: #069dc2;
+  color: #fff;
+}
+.mat358-results {
+  display: grid;
+  height: 212px;
+  margin-top: 11px;
+  grid-template-columns: 0.7fr 1.3fr;
+  gap: 11px;
+}
+.mat358-results article {
+  padding: 16px;
+  border: 1px solid #dce5ee;
+  border-radius: 9px;
+  background: #fff;
+}
+.mat358-results h3 {
+  margin: 0 0 10px;
+  color: #36558a;
+}
+.mat358-results h3 b {
+  float: right;
+  color: #10234b;
+  font-family: serif;
+}
+.mat358-results p {
+  display: flex;
+  height: 34px;
+  margin: 0;
+  border-bottom: 1px solid #e2e8ef;
+  align-items: center;
+  justify-content: space-between;
+}
+.mat358-results article + article p {
+  justify-content: flex-start;
+  font-family: serif;
+  font-size: 11px;
+}
+.mat358-insight {
+  height: 47px;
+  margin-top: 11px;
+  padding: 14px;
+  border: 1px solid #bee0f0;
+  border-radius: 8px;
+  background: #eef9ff;
+  color: #17355c;
+}
+body:has(.mat358-page) {
+  overflow: hidden;
+}
+body:has(.mat358-page) [data-testid="desktop-sidebar"] {
+  display: block !important;
+  width: 215px !important;
+  flex-basis: 215px !important;
+}
+body:has(.mat358-page) #main-content {
+  margin-left: 0 !important;
+  padding: 0 16px !important;
+}
+body:has(.mat358-page) .lesson-shell-header,
+body:has(.mat358-page) .lesson-page-shell > nav[role="tablist"],
+body:has(.mat358-page) .lesson-workbench-heading,
+body:has(.mat358-page) .lesson-workbench > .mt-3.grid {
+  display: none !important;
+}
+body:has(.mat358-page) .lesson-page-shell > div {
+  margin-top: 0 !important;
+}
+body:has(.mat358-page) .lesson-workbench {
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+body:has(.mat358-page) .lesson-adjacent-nav {
+  height: 61px !important;
+  margin-top: 11px !important;
+}
+body:has(.mat358-page) footer[aria-label="Site footer"] {
+  height: 119px !important;
+  padding: 8px 0 0 !important;
+}
+body:has(.mat358-page) footer[aria-label="Site footer"] > div {
+  height: 111px !important;
+  padding: 9px 13px !important;
+}
+@media (min-width: 760px) {
+  body:has(.mat358-page) .app-layout-rail > div > header {
+    height: 58px;
+  }
+  body:has(.mat358-page) [data-testid="desktop-sidebar"] > div {
+    padding: 10px !important;
+  }
+  body:has(.mat358-page) [data-testid="desktop-sidebar"] nav a {
+    font-size: 7px !important;
+  }
+  body:has(.mat358-page) [data-testid="desktop-sidebar"] nav button {
+    font-size: 8px !important;
+  }
+  body:has(.mat358-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    > div:nth-of-type(2),
+  body:has(.mat358-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    > div:nth-of-type(n + 5) {
+    display: none;
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "mockup": "0543",
+  "lessonId": 358,
+  "checks": {
+    "initial": {
+      "matrix": "[2,1,1,2]",
+      "det": "3",
+      "trace": "4",
+      "points": "[[0,0],[2,1],[1,2],[3,3]]",
+      "tab": "Interaction + visualization",
+      "drag": "none",
+      "actions": "0"
+    },
+    "edited": {
+      "matrix": "[3,1,1,2]",
+      "det": "5",
+      "trace": "5",
+      "points": "[[0,0],[3,1],[1,2],[4,3]]",
+      "tab": "Interaction + visualization",
+      "drag": "none",
+      "actions": "1"
+    },
+    "dragged": {
+      "matrix": "[2,1,1.58,2]",
+      "det": "2.42",
+      "trace": "4",
+      "points": "[[0,0],[2,1.58],[1,2],[3,3.58]]",
+      "tab": "Interaction + visualization",
+      "drag": "0",
+      "actions": "3"
+    },
+    "tabbed": {
+      "matrix": "[2,1,1.58,2]",
+      "det": "2.42",
+      "trace": "4",
+      "points": "[[0,0],[2,1.58],[1,2],[3,3.58]]",
+      "tab": "Explain",
+      "drag": "none",
+      "actions": "4"
+    },
+    "reset": {
+      "matrix": "[2,1,1,2]",
+      "det": "3",
+      "trace": "4",
+      "points": "[[0,0],[2,1],[1,2],[3,3]]",
+      "tab": "Interaction + visualization",
+      "drag": "none",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1046,
+      "height": 1504
+    },
+    "overflow": false,
+    "hero": {
+      "top": 92,
+      "left": 231,
+      "width": 799,
+      "height": 160,
+      "bottom": 252
+    },
+    "tabs": {
+      "top": 263,
+      "left": 231,
+      "width": 799,
+      "height": 46,
+      "bottom": 309
+    },
+    "lab": {
+      "top": 320,
+      "left": 231,
+      "width": 799,
+      "height": 661,
+      "bottom": 981
+    },
+    "results": {
+      "top": 992,
+      "left": 231,
+      "width": 799,
+      "height": 212,
+      "bottom": 1204
+    },
+    "insight": {
+      "top": 1215,
+      "left": 231,
+      "width": 799,
+      "height": 47,
+      "bottom": 1262
+    },
+    "adjacent": {
+      "top": 1273,
+      "left": 231,
+      "width": 799,
+      "height": 61,
+      "bottom": 1334
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
