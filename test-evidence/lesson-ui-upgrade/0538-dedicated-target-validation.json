@@ -1,0 +1,160 @@
+{
+  "mockup": "0538",
+  "lessonId": 353,
+  "checks": {
+    "initial": {
+      "matrix": "3,1,2,4",
+      "ad": "12",
+      "bc": "2",
+      "det": "10",
+      "orientation": "Positive (counterclockwise)",
+      "singular": "false",
+      "view": "parallelogram",
+      "animating": "false",
+      "progress": "1",
+      "challenge": "3,1,2,4",
+      "challenge-det": "10",
+      "challenge-result": "",
+      "tab": "Interact",
+      "actions": "0"
+    },
+    "edit": {
+      "matrix": "4,1,2,4",
+      "ad": "16",
+      "bc": "2",
+      "det": "14",
+      "orientation": "Positive (counterclockwise)",
+      "singular": "false",
+      "view": "parallelogram",
+      "animating": "false",
+      "progress": "1",
+      "challenge": "3,1,2,4",
+      "challenge-det": "10",
+      "challenge-result": "",
+      "tab": "Interact",
+      "actions": "1"
+    },
+    "drag": {
+      "matrix": "5,1,2,4",
+      "ad": "20",
+      "bc": "2",
+      "det": "18",
+      "orientation": "Positive (counterclockwise)",
+      "singular": "false",
+      "view": "parallelogram",
+      "animating": "false",
+      "progress": "1",
+      "challenge": "3,1,2,4",
+      "challenge-det": "10",
+      "challenge-result": "",
+      "tab": "Interact",
+      "actions": "2"
+    },
+    "animated": {
+      "matrix": "5,1,2,4",
+      "ad": "20",
+      "bc": "2",
+      "det": "18",
+      "orientation": "Positive (counterclockwise)",
+      "singular": "false",
+      "view": "unit",
+      "animating": "true",
+      "progress": "0.08",
+      "challenge": "3,1,2,4",
+      "challenge-det": "10",
+      "challenge-result": "",
+      "tab": "Interact",
+      "actions": "4"
+    },
+    "challenge": {
+      "matrix": "5,1,2,4",
+      "ad": "20",
+      "bc": "2",
+      "det": "18",
+      "orientation": "Positive (counterclockwise)",
+      "singular": "false",
+      "view": "unit",
+      "animating": "false",
+      "progress": "0.08",
+      "challenge": "1,2,2,4",
+      "challenge-det": "0",
+      "challenge-result": "correct",
+      "tab": "Formula",
+      "actions": "9"
+    },
+    "shellReset": {
+      "matrix": "3,1,2,4",
+      "ad": "12",
+      "bc": "2",
+      "det": "10",
+      "orientation": "Positive (counterclockwise)",
+      "singular": "false",
+      "view": "parallelogram",
+      "animating": "false",
+      "progress": "1",
+      "challenge": "3,1,2,4",
+      "challenge-det": "10",
+      "challenge-result": "",
+      "tab": "Interact",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1146,
+      "height": 1373
+    },
+    "overflow": false,
+    "hero": {
+      "top": 110,
+      "left": 253,
+      "width": 874,
+      "height": 160,
+      "bottom": 270
+    },
+    "tabs": {
+      "top": 282,
+      "left": 253,
+      "width": 874,
+      "height": 58,
+      "bottom": 340
+    },
+    "main": {
+      "top": 352,
+      "left": 253,
+      "width": 874,
+      "height": 490,
+      "bottom": 842
+    },
+    "bottom": {
+      "top": 854,
+      "left": 253,
+      "width": 874,
+      "height": 258,
+      "bottom": 1112
+    },
+    "tip": {
+      "top": 1124,
+      "left": 253,
+      "width": 874,
+      "height": 38,
+      "bottom": 1162
+    },
+    "adjacent": {
+      "top": 1174,
+      "left": 253,
+      "width": 874,
+      "height": 60,
+      "bottom": 1234
+    },
+    "footer": {
+      "top": 1246,
+      "left": 239,
+      "width": 907,
+      "height": 127,
+      "bottom": 1373
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

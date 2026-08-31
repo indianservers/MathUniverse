@@ -1,0 +1,473 @@
+.mat353-page,
+.mat353-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.mat353-page {
+  color: #10234b;
+  font-size: 10px;
+}
+.mat353-page button,
+.mat353-page input {
+  font: inherit;
+}
+.mat353-page button {
+  cursor: pointer;
+}
+.mat353-hero {
+  display: flex;
+  height: 160px;
+  padding: 18px;
+  border: 1px solid #dce5ee;
+  border-radius: 11px;
+  background: #fff;
+}
+.mat353-hero > div {
+  flex: 1;
+}
+.mat353-hero h1 {
+  margin: 0;
+  font-size: 29px;
+}
+.mat353-hero p {
+  margin: 2px 0 12px;
+  font-size: 14px;
+}
+.mat353-hero span {
+  display: flex;
+  gap: 7px;
+}
+.mat353-hero span b {
+  padding: 5px 8px;
+  border-radius: 10px;
+  background: #eaf8fc;
+  color: #087d9f;
+  font-size: 7px;
+}
+.mat353-hero section {
+  display: flex;
+  margin-top: 10px;
+  gap: 8px;
+}
+.mat353-hero section b {
+  padding: 7px 10px;
+  border: 1px solid #dce5ee;
+  border-radius: 12px;
+}
+.mat353-hero nav {
+  display: flex;
+  align-items: end;
+  gap: 8px;
+}
+.mat353-hero nav button {
+  display: flex;
+  height: 38px;
+  padding: 0 15px;
+  border: 1px solid #dce5ee;
+  border-radius: 7px;
+  background: white;
+  align-items: center;
+  gap: 6px;
+}
+.mat353-hero svg {
+  width: 14px;
+}
+.mat353-tabs {
+  display: grid;
+  height: 58px;
+  margin-top: 12px;
+  border: 1px solid #dce5ee;
+  border-radius: 9px;
+  background: white;
+  grid-template-columns: repeat(5, 1fr);
+}
+.mat353-tabs button {
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  font-size: 14px;
+  font-weight: 700;
+}
+.mat353-tabs .active {
+  border-bottom-color: #08a0c5;
+  color: #0786a5;
+}
+.mat353-main {
+  display: grid;
+  height: 490px;
+  margin-top: 12px;
+  grid-template-columns: 285px 1fr;
+  gap: 12px;
+}
+.mat353-main > aside,
+.mat353-graph {
+  padding: 16px;
+  border: 1px solid #dce5ee;
+  border-radius: 9px;
+  background: white;
+}
+.mat353-main h3 {
+  margin: 0 0 12px;
+}
+.mat353-inputs {
+  display: grid;
+  grid-template-columns: 55px 1fr 1fr;
+  gap: 6px;
+  align-items: center;
+  text-align: center;
+}
+.mat353-inputs label {
+  display: flex;
+  height: 42px;
+  border: 1px solid #dce5ee;
+  border-radius: 6px;
+  align-items: center;
+}
+.mat353-inputs label:nth-of-type(odd) {
+  border-color: #29b2db;
+  background: #f2fdff;
+}
+.mat353-inputs label:nth-of-type(even) {
+  border-color: #aa6aef;
+  background: #fbf6ff;
+}
+.mat353-inputs label i {
+  width: 25px;
+  font-style: normal;
+}
+.mat353-inputs input {
+  min-width: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: transparent;
+  text-align: center;
+  font-weight: 700;
+}
+.mat353-products {
+  display: grid;
+  height: 56px;
+  margin-top: 12px;
+  border: 1px solid #dce5ee;
+  border-radius: 6px;
+  grid-template-columns: 1fr 1fr;
+  text-align: center;
+}
+.mat353-products span {
+  padding: 7px;
+}
+.mat353-products span:first-child {
+  background: #effcff;
+  color: #087c9f;
+}
+.mat353-products span:last-child {
+  background: #faf4ff;
+  color: #7b35d2;
+}
+.mat353-products code {
+  display: block;
+  margin-top: 5px;
+}
+.mat353-formula {
+  margin-top: 12px;
+  padding: 13px;
+  border: 1px solid #dce5ee;
+  border-radius: 7px;
+  text-align: center;
+  font-family: serif;
+  font-size: 18px;
+}
+.mat353-formula b {
+  color: #087fa8;
+}
+.mat353-main > aside h4 {
+  margin: 12px 0 5px;
+}
+.mat353-main > aside > strong {
+  display: block;
+  width: max-content;
+  padding: 7px 10px;
+  border: 1px solid #9ad7ae;
+  border-radius: 7px;
+  background: #f1fff5;
+  color: #19864c;
+}
+.mat353-graph {
+  position: relative;
+}
+.mat353-graph > svg {
+  width: 70%;
+  height: 380px;
+}
+.mat353-graph .grid {
+  stroke: #dbe5ed;
+  stroke-dasharray: 3 3;
+}
+.mat353-graph .axis {
+  stroke: #10234b;
+  stroke-width: 2;
+}
+.mat353-graph .area {
+  fill: #dff4fb;
+  stroke: #475569;
+  stroke-dasharray: 5 4;
+}
+.mat353-graph .unit {
+  fill: #f1f7fa;
+  stroke: #8796a5;
+}
+.mat353-graph .a {
+  stroke: #08a0cc;
+  stroke-width: 4;
+}
+.mat353-graph .b {
+  stroke: #7c2fe3;
+  stroke-width: 4;
+}
+.mat353-graph circle {
+  fill: #fff;
+  stroke: #16284c;
+  stroke-width: 2;
+  cursor: grab;
+}
+.mat353-legend {
+  position: absolute;
+  top: 65px;
+  right: 14px;
+  width: 175px;
+}
+.mat353-legend p {
+  margin: 0 0 15px;
+  font-family: serif;
+  font-size: 13px;
+}
+.mat353-legend i {
+  display: inline-block;
+  width: 30px;
+  height: 4px;
+  margin-right: 10px;
+  background: #08a0cc;
+}
+.mat353-legend p:nth-child(2) i {
+  background: #7c2fe3;
+}
+.mat353-legend > strong {
+  display: block;
+  margin-top: 20px;
+  padding: 16px;
+  border: 1px solid #7997e7;
+  border-radius: 8px;
+  font-size: 14px;
+}
+.mat353-legend > strong > b {
+  color: #0874d0;
+  font-size: 27px;
+}
+.mat353-legend small {
+  display: block;
+  margin-top: 8px;
+  line-height: 1.7;
+}
+.mat353-graph > footer {
+  position: absolute;
+  display: flex;
+  right: 14px;
+  bottom: 10px;
+  left: 16px;
+  height: 36px;
+}
+.mat353-graph > footer button {
+  padding: 0 18px;
+  border: 1px solid #dce5ee;
+  background: white;
+}
+.mat353-graph > footer .active {
+  background: #079ec3;
+  color: white;
+}
+.mat353-graph > footer button:last-child {
+  display: flex;
+  margin-left: auto;
+  border-radius: 7px;
+  align-items: center;
+  gap: 6px;
+}
+.mat353-graph > footer svg {
+  width: 13px;
+}
+.mat353-bottom {
+  display: grid;
+  height: 258px;
+  margin-top: 12px;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 12px;
+}
+.mat353-bottom > article {
+  padding: 16px;
+  border: 1px solid #dce5ee;
+  border-radius: 9px;
+  background: white;
+}
+.mat353-bottom h3 {
+  margin: 0 0 12px;
+}
+.mat353-bottom article:first-child code {
+  display: block;
+  margin: 9px 0;
+  font-family: serif;
+  font-size: 14px;
+}
+.mat353-bottom article:first-child > strong {
+  display: block;
+  width: 180px;
+  margin: auto;
+  padding: 11px;
+  border: 1px solid #91d7a9;
+  border-radius: 6px;
+  text-align: center;
+  font-family: serif;
+  font-size: 16px;
+}
+.mat353-bottom h2 {
+  margin: 0 0 5px;
+  font-size: 16px;
+}
+.mat353-bottom article:nth-child(2) > div {
+  display: grid;
+  margin-top: 10px;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 15px;
+}
+.mat353-bottom .mat353-inputs {
+  grid-template-columns: 50px 1fr 1fr;
+}
+.mat353-bottom article:nth-child(2) aside {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.mat353-bottom article:nth-child(2) aside code {
+  padding: 12px;
+  border: 1px solid #dce5ee;
+  border-radius: 7px;
+  text-align: center;
+  font-family: serif;
+}
+.mat353-bottom article:nth-child(2) aside button {
+  height: 35px;
+  border: 1px solid #b9e4ee;
+  border-radius: 7px;
+  background: white;
+  color: #087b9c;
+}
+.mat353-bottom output {
+  color: #148349;
+}
+.mat353-tip {
+  height: 38px;
+  margin: 12px 0 0;
+  padding: 10px;
+  border: 1px solid #94d0f1;
+  border-radius: 7px;
+  background: #eff9ff;
+  color: #0875b5;
+}
+body:has(.mat353-page) {
+  overflow: hidden;
+}
+body:has(.mat353-page) [data-testid="desktop-sidebar"] {
+  display: block !important;
+  width: 239px !important;
+  flex-basis: 239px !important;
+  transition: none;
+}
+body:has(.mat353-page) #main-content {
+  margin-left: 0 !important;
+  padding-right: 19px !important;
+  padding-left: 14px !important;
+}
+body:has(.mat353-page) .lesson-shell-header,
+body:has(.mat353-page) .lesson-page-shell > nav[role="tablist"],
+body:has(.mat353-page) .lesson-workbench-heading,
+body:has(.mat353-page) .lesson-workbench > .mt-3.grid {
+  display: none !important;
+}
+body:has(.mat353-page) .lesson-page-shell > div {
+  margin-top: 0 !important;
+}
+body:has(.mat353-page) .lesson-workbench {
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+body:has(.mat353-page) .lesson-adjacent-nav {
+  height: 60px !important;
+  margin-top: 12px !important;
+}
+body:has(.mat353-page) footer[aria-label="Site footer"] {
+  height: 127px !important;
+  margin-top: 12px !important;
+  padding: 0 !important;
+}
+body:has(.mat353-page) footer[aria-label="Site footer"] > div {
+  height: 127px !important;
+  padding: 14px !important;
+  font-size: 8px !important;
+}
+@media (min-width: 760px) {
+  body:has(.mat353-page) header.sticky button[aria-label="Open navigation"],
+  body:has(.mat353-page) nav[class*="bottom-0"][class*="fixed"] {
+    display: none !important;
+  }
+  body:has(.mat353-page) .app-layout-rail > div > header {
+    height: 60px;
+  }
+  body:has(.mat353-page) [data-testid="desktop-sidebar"] > div {
+    padding: 12px 14px !important;
+  }
+  body:has(.mat353-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type {
+    height: 62px;
+    min-height: 62px;
+    margin-bottom: 14px !important;
+    padding: 0 !important;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+  body:has(.mat353-page) [data-testid="desktop-sidebar"] > div > label {
+    height: 38px;
+    min-height: 38px !important;
+    margin-bottom: 10px !important;
+    padding: 0 10px !important;
+    font-size: 9px !important;
+  }
+  body:has(.mat353-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"] {
+    row-gap: 5px !important;
+  }
+  body:has(.mat353-page) [data-testid="desktop-sidebar"] nav button {
+    min-height: 32px;
+    padding: 5px 9px !important;
+    font-size: 9px !important;
+  }
+  body:has(.mat353-page) [data-testid="desktop-sidebar"] nav a {
+    min-height: 27px;
+    padding: 5px 9px !important;
+    font-size: 8px !important;
+  }
+  body:has(.mat353-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    > div:nth-of-type(2),
+  body:has(.mat353-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    > div:nth-of-type(n + 5) {
+    display: none;
+  }
+}

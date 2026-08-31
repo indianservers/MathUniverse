@@ -16,7 +16,7 @@ describe("MatrixLessonAdapter", () => {
         />,
       );
       expect(html, String(lesson.id)).toContain(lesson.title);
-      if (lesson.id > 352)
+      if (lesson.id > 353)
         expect(html, String(lesson.id)).toMatch(
           /matrix and linear-algebra lab|eigendirection lab/,
         );
@@ -78,6 +78,15 @@ describe("MatrixLessonAdapter", () => {
     expect(html).toContain('data-testid="matrix-mockup-0537"');
     expect(html).toContain("symbolic-numeric-two-by-three-matrix-derived-transpose-selectable-entry");
     expect(html).toContain('data-transposed="1,4,2,5,3,6"');
+  });
+
+  it("uses a draggable signed-area determinant model for lesson 353", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 353)!;
+    const html = renderToStaticMarkup(<MatrixLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="matrix-mockup-0538"');
+    expect(html).toContain("editable-two-by-two-matrix-determinant-products-draggable-column-vectors-signed-area");
+    expect(html).toContain('data-det="10"');
+    expect(html).toContain('data-singular="false"');
   });
 
   it("does not show determinant as the primary result for unrelated concepts", () => {
