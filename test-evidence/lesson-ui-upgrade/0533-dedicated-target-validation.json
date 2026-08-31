@@ -1,0 +1,155 @@
+{
+  "mockup": "0533",
+  "lessonId": 348,
+  "checks": {
+    "initial": {
+      "a": "1,-2,3,4,0,2",
+      "b": "3,5,-1,-2,1,4",
+      "result": "4,3,2,2,1,6",
+      "operation": "add",
+      "compatible": "true",
+      "animation": "true",
+      "step": "false",
+      "tab": "Interaction + visualization",
+      "quick": "correct",
+      "actions": "0"
+    },
+    "edit": {
+      "a": "5,-2,3,4,0,2",
+      "b": "3,5,-1,-2,1,4",
+      "result": "8,3,2,2,1,6",
+      "operation": "add",
+      "compatible": "true",
+      "animation": "true",
+      "step": "false",
+      "tab": "Interaction + visualization",
+      "quick": "correct",
+      "actions": "1"
+    },
+    "subtract": {
+      "a": "5,-2,3,4,0,2",
+      "b": "3,5,-1,-2,1,4",
+      "result": "2,-7,4,6,-1,-2",
+      "operation": "subtract",
+      "compatible": "true",
+      "animation": "true",
+      "step": "false",
+      "tab": "Interaction + visualization",
+      "quick": "correct",
+      "actions": "2"
+    },
+    "modes": {
+      "a": "5,-2,3,4,0,2",
+      "b": "3,5,-1,-2,1,4",
+      "result": "2,-7,4,6,-1,-2",
+      "operation": "subtract",
+      "compatible": "true",
+      "animation": "false",
+      "step": "true",
+      "tab": "Interaction + visualization",
+      "quick": "correct",
+      "actions": "4"
+    },
+    "rejected": {
+      "a": "5,-2,3,4,0,2",
+      "b": "3,5,-1,-2,1,4",
+      "result": "2,-7,4,6,-1,-2",
+      "operation": "subtract",
+      "compatible": "true",
+      "animation": "false",
+      "step": "true",
+      "tab": "Interaction + visualization",
+      "quick": "incorrect",
+      "actions": "5"
+    },
+    "accepted": {
+      "a": "5,-2,3,4,0,2",
+      "b": "3,5,-1,-2,1,4",
+      "result": "2,-7,4,6,-1,-2",
+      "operation": "subtract",
+      "compatible": "true",
+      "animation": "false",
+      "step": "true",
+      "tab": "Examples",
+      "quick": "correct",
+      "actions": "7"
+    },
+    "shellReset": {
+      "a": "1,-2,3,4,0,2",
+      "b": "3,5,-1,-2,1,4",
+      "result": "4,3,2,2,1,6",
+      "operation": "add",
+      "compatible": "true",
+      "animation": "true",
+      "step": "false",
+      "tab": "Interaction + visualization",
+      "quick": "correct",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 864,
+      "height": 1821
+    },
+    "overflow": false,
+    "hero": {
+      "top": 89,
+      "left": 177,
+      "width": 675,
+      "height": 198,
+      "bottom": 287
+    },
+    "tabs": {
+      "top": 297,
+      "left": 177,
+      "width": 675,
+      "height": 39,
+      "bottom": 336
+    },
+    "overview": {
+      "top": 346,
+      "left": 177,
+      "width": 675,
+      "height": 90,
+      "bottom": 436
+    },
+    "lab": {
+      "top": 446,
+      "left": 177,
+      "width": 675,
+      "height": 697,
+      "bottom": 1143
+    },
+    "notes": {
+      "top": 1153,
+      "left": 177,
+      "width": 675,
+      "height": 257,
+      "bottom": 1410
+    },
+    "check": {
+      "top": 1420,
+      "left": 177,
+      "width": 675,
+      "height": 252,
+      "bottom": 1672
+    },
+    "adjacent": {
+      "top": 1682,
+      "left": 177,
+      "width": 675,
+      "height": 44,
+      "bottom": 1726
+    },
+    "footer": {
+      "top": 1736,
+      "left": 165,
+      "width": 699,
+      "height": 85,
+      "bottom": 1821
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

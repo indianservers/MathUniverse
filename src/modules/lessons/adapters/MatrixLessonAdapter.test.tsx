@@ -16,9 +16,10 @@ describe("MatrixLessonAdapter", () => {
         />,
       );
       expect(html, String(lesson.id)).toContain(lesson.title);
-      expect(html, String(lesson.id)).toMatch(
-        /matrix and linear-algebra lab|eigendirection lab|Matrix Builder/,
-      );
+      if (lesson.id > 348)
+        expect(html, String(lesson.id)).toMatch(
+          /matrix and linear-algebra lab|eigendirection lab/,
+        );
       expect(html, String(lesson.id)).toContain('type="number"');
       expect(html, String(lesson.id)).not.toContain("Legacy");
     }
@@ -34,8 +35,18 @@ describe("MatrixLessonAdapter", () => {
     expect(html).toContain('data-matrix="[[2,-1,3],[4,0,5]]"');
   });
 
+  it("uses a separate element-wise model for lesson 348", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 348)!;
+    const html = renderToStaticMarkup(
+      <MatrixLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+    expect(html).toContain('data-testid="matrix-mockup-0533"');
+    expect(html).toContain("two-editable-compatible-matrices-elementwise-addition-subtraction");
+    expect(html).toContain('data-result="4,3,2,2,1,6"');
+  });
+
   it("does not show determinant as the primary result for unrelated concepts", () => {
-    for (const lessonId of [348, 350, 352, 356, 360, 363, 364]) {
+    for (const lessonId of [350, 352, 356, 360, 363, 364]) {
       const lesson = lessonCatalog.find((item) => item.id === lessonId)!;
       const html = renderToStaticMarkup(
         <MatrixLessonAdapter

@@ -7,7 +7,7 @@ Target references: `0532` through `0549` in `D:\Math App Screenshots for UI Upda
 | Mockup | Lesson | Dedicated surface | Real model and controls | Exact-size evidence | Status |
 | --- | ---: | --- | --- | --- | --- |
 | 0532 | 347 Matrix Builder | `MatrixBuilderTargetLesson347` | Editable/resizable matrix, cell drag, transpose, augmentation, rectangular identity, random/zero fill, validation, JSON export, tabs, reset, and graded checks | 864 x 1821; no overflow or console errors | Complete |
-| 0533 | 348 Matrix Addition and Subtraction | Pending | Pending | Pending | Pending |
+| 0533 | 348 Matrix Addition and Subtraction | `MatrixAdditionTargetLesson348` | Two editable operands, live add/subtract result, animation and step toggles, six cell traces, row-vector geometry, dimension validation, vectorization, tabs, reset, and graded subtraction check | 864 x 1821; no overflow or console errors | Complete |
 | 0534 | 349 Scalar Multiplication | Pending | Pending | Pending | Pending |
 | 0535 | 350 Matrix Multiplication | Pending | Pending | Pending | Pending |
 | 0536 | 351 Identity Matrix | Pending | Pending | Pending | Pending |
@@ -25,7 +25,7 @@ Target references: `0532` through `0549` in `D:\Math App Screenshots for UI Upda
 | 0548 | 363 Gram-Schmidt Process | Pending | Pending | Pending | Pending |
 | 0549 | 364 Least Squares | Pending | Pending | Pending | Pending |
 
-Completed in this family: **1 / 18**. Pending in this family: **17 / 18**.
+Completed in this family: **2 / 18**. Pending in this family: **16 / 18**.
 
 ## Lesson 347 validation
 
@@ -34,3 +34,10 @@ Completed in this family: **1 / 18**. Pending in this family: **17 / 18**.
 - Machine-readable interaction and layout audit: `0532-dedicated-target-validation.json`
 - Adapter tests exercise the dedicated route and object-model contract.
 - The capture harness verifies edit, transpose, augmentation, identity fill, resize, pointer drag, rejected/correct answers, tab switching, and shell reset.
+
+## Lesson 348 validation
+
+- Reference: `0533-reference.png`
+- Current capture: `0533-desktop.png`
+- Machine-readable interaction and layout audit: `0533-dedicated-target-validation.json`
+- The capture harness verifies operand editing, derived addition, subtraction switching, animation and step modes, rejected/correct answers, tab switching, and shell reset.

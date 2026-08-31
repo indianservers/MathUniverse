@@ -1,0 +1,496 @@
+.mat348-page,
+.mat348-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.mat348-page {
+  color: #10234b;
+  font-size: 8px;
+}
+.mat348-page button,
+.mat348-page input,
+.mat348-page select {
+  font: inherit;
+}
+.mat348-page button {
+  cursor: pointer;
+}
+.mat348-hero {
+  height: 198px;
+  padding: 15px;
+  border: 1px solid #dce5ee;
+  border-radius: 10px;
+  background: #fff;
+}
+.mat348-hero > span {
+  display: flex;
+  gap: 7px;
+}
+.mat348-hero > span b {
+  padding: 4px 7px;
+  border-radius: 10px;
+  background: #eaf8fc;
+  color: #087d9f;
+  font-size: 6px;
+}
+.mat348-hero h1 {
+  margin: 8px 0 2px;
+  font-size: 25px;
+}
+.mat348-hero p {
+  margin: 0;
+}
+.mat348-hero > div {
+  display: flex;
+  margin-top: 10px;
+  gap: 7px;
+}
+.mat348-hero > div b {
+  padding: 6px 9px;
+  border: 1px solid #dce5ee;
+  border-radius: 12px;
+}
+.mat348-hero nav {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 9px;
+  gap: 7px;
+}
+.mat348-hero select,
+.mat348-hero nav button {
+  height: 31px;
+  padding: 0 12px;
+  border: 1px solid #dce5ee;
+  border-radius: 7px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.mat348-hero select {
+  width: 165px;
+}
+.mat348-hero svg {
+  width: 12px;
+}
+.mat348-tabs {
+  display: grid;
+  height: 39px;
+  margin-top: 10px;
+  padding: 4px;
+  border: 1px solid #dce5ee;
+  border-radius: 9px;
+  background: #fff;
+  grid-template-columns: repeat(5, 1fr);
+}
+.mat348-tabs button {
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  font-weight: 700;
+}
+.mat348-tabs .active {
+  background: #0797b5;
+  color: #fff;
+}
+.mat348-overview {
+  display: grid;
+  height: 90px;
+  margin-top: 10px;
+  gap: 8px;
+  grid-template-columns: 1.2fr 1.1fr 1.1fr 1fr;
+}
+.mat348-overview article,
+.mat348-notes article {
+  padding: 10px;
+  border: 1px solid #dce5ee;
+  border-radius: 7px;
+  background: #fff;
+}
+.mat348-overview h3,
+.mat348-notes h3,
+.mat348-check h3 {
+  margin: 0 0 7px;
+}
+.mat348-overview p {
+  margin: 5px 0;
+  line-height: 1.5;
+}
+.mat348-overview i {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #823df2;
+}
+.mat348-overview i.cyan {
+  background: #0fb8d4;
+}
+.mat348-lab {
+  height: 697px;
+  margin-top: 10px;
+  padding: 12px;
+  border: 1px solid #dce5ee;
+  border-radius: 8px;
+  background: #fff;
+}
+.mat348-lab > header {
+  display: flex;
+  height: 62px;
+  border-bottom: 1px solid #dce5ee;
+  align-items: center;
+}
+.mat348-lab > header span {
+  flex: 1;
+}
+.mat348-lab > header b {
+  color: #0784a2;
+  font-size: 7px;
+}
+.mat348-lab h2 {
+  margin: 3px 0;
+  font-size: 16px;
+}
+.mat348-lab > header label {
+  display: flex;
+  margin-left: 14px;
+  align-items: center;
+  gap: 5px;
+}
+.mat348-lab > header input {
+  width: 29px;
+  height: 16px;
+  accent-color: #0bb5cf;
+}
+.mat348-compute {
+  display: grid;
+  height: 199px;
+  padding: 16px 6px 8px;
+  grid-template-columns: 1fr 18px 1fr 51px 20px 1fr;
+  align-items: center;
+  gap: 5px;
+}
+.mat348-symbol,
+.mat348-arrow {
+  font-size: 22px;
+  color: #6938f2;
+  text-align: center;
+}
+.mat348-matrix h3 {
+  margin: 0 0 8px;
+  font-size: 11px;
+  color: #0785a3;
+}
+.mat348-matrix.violet h3 {
+  color: #733df2;
+}
+.mat348-matrix > div {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.mat348-matrix input,
+.mat348-matrix.result div b {
+  display: grid;
+  width: 100%;
+  height: 46px;
+  border: 1px solid #dce5ee;
+  background: #fff;
+  text-align: center;
+  place-items: center;
+  font-weight: 700;
+}
+.mat348-matrix input {
+  min-width: 0;
+}
+.mat348-matrix.result div b:nth-child(3n + 1) {
+  background: #eefcf8;
+}
+.mat348-matrix.result div b:nth-child(3n + 2) {
+  background: #fffaf0;
+}
+.mat348-matrix.result div b:nth-child(3n) {
+  background: #fff1f5;
+}
+.mat348-matrix code {
+  display: block;
+  margin-top: 15px;
+  text-align: center;
+  color: #0684a5;
+  font-family: serif;
+  font-size: 10px;
+}
+.mat348-ops {
+  display: grid;
+  gap: 4px;
+}
+.mat348-ops button {
+  height: 31px;
+  border: 1px solid #dce5ee;
+  border-radius: 5px;
+  background: white;
+}
+.mat348-ops button.active {
+  background: #10adca;
+  color: white;
+}
+.mat348-ops b {
+  text-align: center;
+}
+.mat348-lab > h3 {
+  margin: 3px 0 7px;
+  font-size: 9px;
+  color: #087c9b;
+}
+.mat348-cells {
+  display: grid;
+  height: 43px;
+  gap: 6px;
+  grid-template-columns: repeat(6, 1fr);
+}
+.mat348-cells code {
+  display: grid;
+  border: 1px solid #dce5ee;
+  border-radius: 5px;
+  background: #fbfdff;
+  place-items: center;
+  color: #5750bd;
+}
+.mat348-analysis {
+  display: grid;
+  height: 314px;
+  margin-top: 8px;
+  gap: 8px;
+  grid-template-columns: 1fr 1.1fr;
+}
+.mat348-analysis article {
+  padding: 10px;
+  border: 1px solid #dce5ee;
+  border-radius: 7px;
+}
+.mat348-analysis h3 {
+  margin: 0 0 5px;
+  color: #087c9b;
+}
+.mat348-analysis svg {
+  width: 100%;
+  height: 226px;
+}
+.mat348-analysis svg line {
+  stroke-width: 2;
+}
+.mat348-analysis .va {
+  stroke: #7139ee;
+}
+.mat348-analysis .vb {
+  stroke: #7139ee;
+}
+.mat348-analysis .vr {
+  stroke: #08a7c0;
+}
+.mat348-analysis dl {
+  display: grid;
+  padding: 8px;
+  background: #f8fbff;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 6px;
+}
+.mat348-analysis dd {
+  text-align: right;
+  color: #148b67;
+}
+.mat348-analysis h4 {
+  margin: 12px 0 5px;
+  color: #087c9b;
+}
+.mat348-vectors {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.mat348-vectors code {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-family: serif;
+}
+.mat348-lab > output {
+  display: block;
+  color: #087c9b;
+  text-align: right;
+}
+.mat348-notes {
+  display: grid;
+  height: 257px;
+  margin-top: 10px;
+  gap: 8px;
+  grid-template-columns: 1fr 1.15fr;
+  grid-template-rows: 124px 125px;
+}
+.mat348-notes article {
+  line-height: 1.55;
+}
+.mat348-notes ol {
+  margin: 0;
+  padding-left: 17px;
+}
+.mat348-notes li {
+  margin: 5px 0;
+}
+.mat348-notes .misconception {
+  grid-column: 2;
+  grid-row: 2;
+  background: #fffafa;
+}
+.mat348-notes code {
+  display: block;
+  padding: 10px;
+  border: 1px solid #f2c5c5;
+  background: #fff5f5;
+}
+.mat348-check {
+  display: grid;
+  height: 252px;
+  margin-top: 10px;
+  padding: 12px;
+  border: 1px solid #dce5ee;
+  border-radius: 8px;
+  background: #fff;
+  grid-template-columns: 1fr 1.1fr;
+  grid-template-rows: 42px 1fr;
+  gap: 8px;
+}
+.mat348-check header {
+  grid-column: 1/3;
+}
+.mat348-check header h3,
+.mat348-check header p {
+  margin: 0 0 4px;
+}
+.mat348-check article,
+.mat348-check aside {
+  padding: 10px;
+  border: 1px solid #dce5ee;
+  border-radius: 6px;
+}
+.mat348-check article {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+}
+.mat348-check article p {
+  grid-column: 1/3;
+}
+.mat348-check article button {
+  border: 1px solid #dce5ee;
+  border-radius: 5px;
+  background: white;
+  text-align: left;
+}
+.mat348-check article button.correct {
+  border-color: #68d598;
+  background: #f0fff5;
+}
+.mat348-check article button.incorrect {
+  border-color: #ef8585;
+  background: #fff4f4;
+}
+.mat348-check aside {
+  background: #f4fffb;
+}
+.mat348-check aside button {
+  height: 28px;
+  border: 1px solid #bce7ee;
+  border-radius: 6px;
+  background: white;
+}
+body:has(.mat348-page) {
+  overflow: hidden;
+}
+body:has(.mat348-page) .lesson-page-shell {
+  margin-top: -9px;
+}
+body:has(.mat348-page) [data-testid="desktop-sidebar"] {
+  display: block !important;
+  width: 165px !important;
+  flex-basis: 165px !important;
+  transition: none;
+}
+body:has(.mat348-page) #main-content {
+  margin-left: 0 !important;
+  padding-right: 12px !important;
+  padding-left: 12px !important;
+}
+body:has(.mat348-page) .lesson-shell-header,
+body:has(.mat348-page) .lesson-page-shell > nav[role="tablist"],
+body:has(.mat348-page) .lesson-workbench-heading,
+body:has(.mat348-page) .lesson-workbench > .mt-3.grid {
+  display: none !important;
+}
+body:has(.mat348-page) .lesson-page-shell > div {
+  margin-top: 0 !important;
+}
+body:has(.mat348-page) .lesson-workbench {
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+body:has(.mat348-page) .lesson-adjacent-nav {
+  height: 44px !important;
+  margin-top: 10px !important;
+}
+body:has(.mat348-page) footer[aria-label="Site footer"] {
+  height: 85px !important;
+  margin-top: 10px !important;
+  padding: 0 !important;
+}
+body:has(.mat348-page) footer[aria-label="Site footer"] > div {
+  height: 85px !important;
+  padding: 10px !important;
+  font-size: 7px !important;
+}
+@media (min-width: 760px) {
+  body:has(.mat348-page) header.sticky button[aria-label="Open navigation"],
+  body:has(.mat348-page) nav[class*="bottom-0"][class*="fixed"] {
+    display: none !important;
+  }
+  body:has(.mat348-page) .app-layout-rail > div > header {
+    height: 39px;
+  }
+  body:has(.mat348-page) [data-testid="desktop-sidebar"] > div {
+    padding: 8px 7px 20px !important;
+  }
+  body:has(.mat348-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type {
+    height: 50px;
+    min-height: 50px;
+    margin-bottom: 7px !important;
+    padding: 0 !important;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+  body:has(.mat348-page) [data-testid="desktop-sidebar"] > div > label {
+    height: 31px;
+    min-height: 31px !important;
+    margin-bottom: 7px !important;
+    padding: 0 7px !important;
+    font-size: 7px !important;
+  }
+  body:has(.mat348-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"] {
+    row-gap: 3px !important;
+  }
+  body:has(.mat348-page) [data-testid="desktop-sidebar"] nav button {
+    min-height: 27px;
+    padding: 4px 6px !important;
+    font-size: 7px !important;
+  }
+  body:has(.mat348-page) [data-testid="desktop-sidebar"] nav a {
+    min-height: 22px;
+    padding: 3px 6px !important;
+    font-size: 6px !important;
+  }
+}

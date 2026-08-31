@@ -4,10 +4,13 @@ import type { LessonAdapterProps } from "../types";
 import { MatrixConceptActivity } from "./matrix/MatrixConceptActivity";
 import { EigenActivity } from "./p0/PriorityConceptActivities";
 import MatrixBuilderTargetLesson347 from "./matrix/MatrixBuilderTargetLesson347";
+import MatrixAdditionTargetLesson348 from "./matrix/MatrixAdditionTargetLesson348";
 
 export default function MatrixLessonAdapter(props: LessonAdapterProps) {
   if (props.lesson.id === 347)
     return <MatrixBuilderTargetLesson347 {...props} />;
+  if (props.lesson.id === 348)
+    return <MatrixAdditionTargetLesson348 {...props} />;
   const mode = matrixLessonPreset(props.lesson.id).mode;
   if (mode === "eigen-directions") {
     return (
