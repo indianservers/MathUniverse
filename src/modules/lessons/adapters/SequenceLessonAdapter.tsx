@@ -10,6 +10,7 @@ import ArithmeticSeriesTargetLesson340 from "./sequence/ArithmeticSeriesTargetLe
 import GeometricSeriesTargetLesson341 from "./sequence/GeometricSeriesTargetLesson341";
 import ConvergenceDivergenceTargetLesson342 from "./sequence/ConvergenceDivergenceTargetLesson342";
 import PowerSeriesTargetLesson343 from "./sequence/PowerSeriesTargetLesson343";
+import TaylorMaclaurinTargetLesson344 from "./sequence/TaylorMaclaurinTargetLesson344";
 import { SequenceConceptActivity } from "./sequence/SequenceConceptActivity";
 import SequenceGeneratorTargetLesson334 from "./sequence/SequenceGeneratorTargetLesson334";
 
@@ -33,6 +34,8 @@ export default function SequenceLessonAdapter(props: LessonAdapterProps) {
   if (props.lesson.id === 342)
     return <ConvergenceDivergenceTargetLesson342 {...props} />;
   if (props.lesson.id === 343) return <PowerSeriesTargetLesson343 {...props} />;
+  if (props.lesson.id === 344)
+    return <TaylorMaclaurinTargetLesson344 {...props} />;
   const mode = sequenceLessonPreset(props.lesson.id).mode;
   return (
     <AdapterFrame

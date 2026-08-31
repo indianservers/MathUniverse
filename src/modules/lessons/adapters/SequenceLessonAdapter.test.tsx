@@ -18,7 +18,7 @@ describe("SequenceLessonAdapter", () => {
         />,
       );
       expect(html, String(lesson.id)).toContain(lesson.title);
-      if (lesson.id >= 334 && lesson.id <= 343) {
+      if (lesson.id >= 334 && lesson.id <= 344) {
         expect(html, String(lesson.id)).toContain(
           `data-testid="sequence-mockup-0${lesson.id + 185}"`,
         );
@@ -36,7 +36,6 @@ describe("SequenceLessonAdapter", () => {
   it("renders concept language for advanced series rather than a generic S-n panel", () => {
     const expected = new Map([
       [339, "Σ"],
-      [344, "Taylor approximation"],
       [345, "Binomial-series approximation"],
       [346, "growth·Pₙ"],
     ]);
@@ -53,7 +52,7 @@ describe("SequenceLessonAdapter", () => {
     }
   });
 
-  it("renders strengthened sequence lessons 334 through 343 with dedicated models", () => {
+  it("renders strengthened sequence lessons 334 through 344 with dedicated models", () => {
     const expected = new Map([
       [334, ["Sequence Generator", "sequence-mockup-0519"]],
       [335, ["Arithmetic Sequences", "sequence-mockup-0520"]],
@@ -65,6 +64,7 @@ describe("SequenceLessonAdapter", () => {
       [341, ["Geometric Series", "sequence-mockup-0526"]],
       [342, ["Convergence and Divergence", "sequence-mockup-0527"]],
       [343, ["Power Series", "sequence-mockup-0528"]],
+      [344, ["Taylor and Maclaurin Series", "sequence-mockup-0529"]],
     ]);
 
     for (const [lessonId, [title, testId]] of expected) {

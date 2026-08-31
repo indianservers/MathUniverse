@@ -1,6 +1,6 @@
 # Sequences and Series target batch 0519-0531
 
-Dedicated rebuild target: **10 of 13 lessons completed; 3 pending.**
+Dedicated rebuild target: **11 of 13 lessons completed; 2 pending.**
 
 | Mockup | Lesson                          | Dedicated object model                                                                                                                                                                                                                                         | Status                                      |
 | ------ | ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
@@ -14,7 +14,7 @@ Dedicated rebuild target: **10 of 13 lessons completed; 3 pending.**
 | 0526   | 341 Geometric Series            | `geometric-first-ratio-count-finite-terms-partial-sums-infinite-convergence-draggable-term-bars-limit-line-formula-verification-multi-challenge-practice`                                                                                                      | Reworked individually and browser-validated |
 | 0527   | 342 Convergence and Divergence  | `five-series-models-generated-terms-partial-sums-draggable-analysis-point-tolerance-band-nth-term-test-ratio-test-classification-counterexample-comparison-worked-proof-multi-question-practice`                                                               | Reworked individually and browser-validated |
 | 0528   | 343 Power Series                | `centered-power-series-preset-taylor-coefficients-manual-coefficient-editor-target-function-partial-sum-graph-draggable-highest-coefficient-truncation-error-radius-estimator-convergence-interval-endpoint-tests-expanded-polynomial-multi-question-practice` | Reworked individually and browser-validated |
-| 0529   | 344 Taylor and Maclaurin Series | Pending                                                                                                                                                                                                                                                        | Pending                                     |
+| 0529   | 344 Taylor and Maclaurin Series | `five-function-taylor-coefficients-expansion-center-order-target-interval-function-polynomial-graph-draggable-center-animation-remainder-error-convergence-bars-derivative-table-expanded-form-multi-question-practice`                                        | Reworked individually and browser-validated |
 | 0530   | 345 Binomial Series             | Pending                                                                                                                                                                                                                                                        | Pending                                     |
 | 0531   | 346 Recurrence Modelling        | Pending                                                                                                                                                                                                                                                        | Pending                                     |
 
@@ -167,3 +167,17 @@ Evidence:
 - `0528-reference.png`
 - `0528-desktop.png`
 - `0528-dedicated-target-validation.json`
+
+## Lesson 344 / Mockup 0529 - Taylor and Maclaurin Series
+
+Reworked individually around a derivative-driven Taylor model for exponential, sine, cosine, logarithmic, and geometric functions. Function, expansion center, order, and target interval generate the derivative coefficients, displayed table, polynomial, target curve, expanded form, remainder, maximum error, and order-by-order convergence bars. Play, Pause, Step, and speed operate the actual displayed polynomial order. The center marker is pointer-captured and horizontally draggable, solving back to the expansion center and rebuilding every dependent result.
+
+Browser validation confirms the initial fourth-order exponential coefficients `1,1,0.5,0.1666667,0.0416667`. Shifted sine at `a=1`, order 6 and shifted cosine at `a=0.5`, order 8 produce their derivative cycles. For `ln(1+x)` about zero, order 5 produces `0,1,-0.5,0.3333333,-0.25,0.2`; extending its interval below -1 sets the model's domain-valid flag false without emitting non-finite graphics. A captured drag changes the center, autoplay advances the shown order, Pause stops it, Step advances once, both assessment questions grade correctly, Key Insights activates, and shell Reset restores the complete initial model and zero actions.
+
+Final exact 864x1821 validation matches the target stack: hero y=88-265, tabs through y=319, interactive lab through y=1197, insight cards through y=1357, assessment through y=1591, adjacent lessons through y=1663, and footer ending at y=1821. It reports no horizontal overflow and zero console warnings or errors.
+
+Evidence:
+
+- `0529-reference.png`
+- `0529-desktop.png`
+- `0529-dedicated-target-validation.json`
