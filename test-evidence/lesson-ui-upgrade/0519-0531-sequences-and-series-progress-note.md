@@ -1,6 +1,6 @@
 # Sequences and Series target batch 0519-0531
 
-Dedicated rebuild target: **7 of 13 lessons completed; 6 pending.**
+Dedicated rebuild target: **8 of 13 lessons completed; 5 pending.**
 
 | Mockup | Lesson                          | Dedicated object model                                                                                                                                                     | Status                                      |
 | ------ | ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
@@ -11,7 +11,7 @@ Dedicated rebuild target: **7 of 13 lessons completed; 6 pending.**
 | 0523   | 338 Fibonacci Sequence          | `two-positive-integer-seeds-pairwise-recurrence-auto-build-speed-generated-term-list-fibonacci-square-spiral-draggable-seed-ratio-phi-convergence-binet-practice`          | Reworked individually and browser-validated |
 | 0524   | 339 Sigma Notation              | `polynomial-summand-parser-editable-bounds-presets-finite-nested-sum-term-expansion-partial-accumulator-animation-draggable-index-stem-index-substitution-copy-practice`   | Reworked individually and browser-validated |
 | 0525   | 340 Arithmetic Series           | `arithmetic-progression-first-difference-count-generated-terms-partial-sums-paired-ends-draggable-line-endpoints-finite-sum-proof-trapezoid-area-practice`                 | Reworked individually and browser-validated |
-| 0526   | 341 Geometric Series            | Pending                                                                                                                                                                    | Pending                                     |
+| 0526   | 341 Geometric Series            | `geometric-first-ratio-count-finite-terms-partial-sums-infinite-convergence-draggable-term-bars-limit-line-formula-verification-multi-challenge-practice`                  | Reworked individually and browser-validated |
 | 0527   | 342 Convergence and Divergence  | Pending                                                                                                                                                                    | Pending                                     |
 | 0528   | 343 Power Series                | Pending                                                                                                                                                                    | Pending                                     |
 | 0529   | 344 Taylor and Maclaurin Series | Pending                                                                                                                                                                    | Pending                                     |
@@ -125,3 +125,17 @@ Evidence:
 - `0525-reference.png`
 - `0525-desktop.png`
 - `0525-dedicated-target-validation.json`
+
+## Lesson 341 / Mockup 0526 - Geometric Series
+
+Reworked individually around one geometric-series model. First term, common ratio, and term-count controls regenerate the term bars, partial-sum curve, convergence limit, value table, finite sum, infinite sum, worked verification, and all displayed formulas. The model handles positive, negative, zero, and divergent ratios coherently. The first plotted term is a pointer-captured vertical handle for a1; every later term solves back to r and immediately rebuilds all dependent representations.
+
+Browser validation confirms the initial `a=3`, `r=0.5`, `n=10` terms through `0.005859`, finite sum `5.994141`, and infinite limit 6. Changing to `a=4`, `r=-0.5`, `n=6` generates `4,-2,1,-0.5,0.25,-0.125`, finite sum `2.625`, and infinite sum `2.666667`. Setting `r=1.2` switches the model to divergent. Captured pointer drags independently change the first term and ratio, an out-of-domain numeric answer is rejected, both quick-check variants accept their mathematically correct values, Formulas activates, and shell Reset restores the initial model and zero actions.
+
+Final exact 863x1822 validation matches the target page stack: sidebar and application header, hero and actions, lesson tabs, geometric-series explorer with control rail and two linked plots, term/partial-sum table, explanation and insight cards, three formula cards, worked verification, quick check, adjacent lessons, and footer. It reports no horizontal overflow, zero console errors, and zero page errors.
+
+Evidence:
+
+- `0526-reference.png`
+- `0526-desktop.png`
+- `0526-dedicated-target-validation.json`

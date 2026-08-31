@@ -1,0 +1,225 @@
+{
+  "mockup": "0526",
+  "lessonId": 341,
+  "checks": {
+    "initial": {
+      "first": "3",
+      "ratio": "0.5",
+      "count": "10",
+      "terms": "3,1.5,0.75,0.375,0.1875,0.09375,0.046875,0.023438,0.011719,0.005859",
+      "partials": "3,4.5,5.25,5.625,5.8125,5.90625,5.953125,5.976563,5.988281,5.994141",
+      "finite": "5.994141",
+      "converges": "true",
+      "infinite": "6",
+      "tab": "Interaction + visualisation",
+      "challenge": "0",
+      "quick-result": "",
+      "actions": "0"
+    },
+    "controls": {
+      "first": "4",
+      "ratio": "-0.5",
+      "count": "6",
+      "terms": "4,-2,1,-0.5,0.25,-0.125",
+      "partials": "4,2,3,2.5,2.75,2.625",
+      "finite": "2.625",
+      "converges": "true",
+      "infinite": "2.666667",
+      "tab": "Interaction + visualisation",
+      "challenge": "0",
+      "quick-result": "",
+      "actions": "3"
+    },
+    "divergent": {
+      "first": "4",
+      "ratio": "1.2",
+      "count": "6",
+      "terms": "4,4.8,5.76,6.912,8.2944,9.95328",
+      "partials": "4,8.8,14.56,21.472,29.7664,39.71968",
+      "finite": "39.71968",
+      "converges": "false",
+      "infinite": "diverges",
+      "tab": "Interaction + visualisation",
+      "challenge": "0",
+      "quick-result": "",
+      "actions": "4"
+    },
+    "dragFirst": {
+      "first": "11.628846",
+      "ratio": "0.5",
+      "count": "10",
+      "terms": "11.628846,5.814423,2.907211,1.453606,0.726803,0.363401,0.181701,0.09085,0.045425,0.022713",
+      "partials": "11.628846,17.443269,20.35048,21.804086,22.530889,22.894291,23.075991,23.166842,23.212267,23.234979",
+      "finite": "23.234979",
+      "converges": "true",
+      "infinite": "23.257692",
+      "tab": "Interaction + visualisation",
+      "challenge": "0",
+      "quick-result": "",
+      "actions": "7"
+    },
+    "dragRatio": {
+      "first": "3",
+      "ratio": "1",
+      "count": "10",
+      "terms": "3,3,3,3,3,3,3,3,3,3",
+      "partials": "3,6,9,12,15,18,21,24,27,30",
+      "finite": "30",
+      "converges": "false",
+      "infinite": "diverges",
+      "tab": "Interaction + visualisation",
+      "challenge": "0",
+      "quick-result": "",
+      "actions": "7"
+    },
+    "rejected": {
+      "first": "3",
+      "ratio": "1",
+      "count": "10",
+      "terms": "3,3,3,3,3,3,3,3,3,3",
+      "partials": "3,6,9,12,15,18,21,24,27,30",
+      "finite": "30",
+      "converges": "false",
+      "infinite": "diverges",
+      "tab": "Interaction + visualisation",
+      "challenge": "0",
+      "quick-result": "incorrect",
+      "actions": "8"
+    },
+    "accepted": {
+      "first": "3",
+      "ratio": "1",
+      "count": "10",
+      "terms": "3,3,3,3,3,3,3,3,3,3",
+      "partials": "3,6,9,12,15,18,21,24,27,30",
+      "finite": "30",
+      "converges": "false",
+      "infinite": "diverges",
+      "tab": "Interaction + visualisation",
+      "challenge": "0",
+      "quick-result": "correct",
+      "actions": "9"
+    },
+    "next": {
+      "first": "3",
+      "ratio": "1",
+      "count": "10",
+      "terms": "3,3,3,3,3,3,3,3,3,3",
+      "partials": "3,6,9,12,15,18,21,24,27,30",
+      "finite": "30",
+      "converges": "false",
+      "infinite": "diverges",
+      "tab": "Interaction + visualisation",
+      "challenge": "1",
+      "quick-result": "",
+      "actions": "10"
+    },
+    "secondAccepted": {
+      "first": "3",
+      "ratio": "1",
+      "count": "10",
+      "terms": "3,3,3,3,3,3,3,3,3,3",
+      "partials": "3,6,9,12,15,18,21,24,27,30",
+      "finite": "30",
+      "converges": "false",
+      "infinite": "diverges",
+      "tab": "Formulas",
+      "challenge": "1",
+      "quick-result": "correct",
+      "actions": "12"
+    },
+    "shellReset": {
+      "first": "3",
+      "ratio": "0.5",
+      "count": "10",
+      "terms": "3,1.5,0.75,0.375,0.1875,0.09375,0.046875,0.023438,0.011719,0.005859",
+      "partials": "3,4.5,5.25,5.625,5.8125,5.90625,5.953125,5.976563,5.988281,5.994141",
+      "finite": "5.994141",
+      "converges": "true",
+      "infinite": "6",
+      "tab": "Interaction + visualisation",
+      "challenge": "0",
+      "quick-result": "",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 863,
+      "height": 1822
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 181,
+      "height": 1822,
+      "bottom": 1822
+    },
+    "hero": {
+      "top": 94,
+      "left": 195,
+      "width": 654,
+      "height": 194,
+      "bottom": 288
+    },
+    "tabs": {
+      "top": 298,
+      "left": 195,
+      "width": 654,
+      "height": 39,
+      "bottom": 337
+    },
+    "explorer": {
+      "top": 347,
+      "left": 195,
+      "width": 654,
+      "height": 571,
+      "bottom": 918
+    },
+    "guide": {
+      "top": 928,
+      "left": 195,
+      "width": 654,
+      "height": 236,
+      "bottom": 1164
+    },
+    "formulas": {
+      "top": 1174,
+      "left": 195,
+      "width": 654,
+      "height": 126,
+      "bottom": 1300
+    },
+    "worked": {
+      "top": 1310,
+      "left": 195,
+      "width": 654,
+      "height": 170,
+      "bottom": 1480
+    },
+    "check": {
+      "top": 1490,
+      "left": 195,
+      "width": 654,
+      "height": 155,
+      "bottom": 1645
+    },
+    "adjacent": {
+      "top": 1661,
+      "left": 195,
+      "width": 654,
+      "height": 58,
+      "bottom": 1719
+    },
+    "footer": {
+      "top": 1735,
+      "left": 181,
+      "width": 682,
+      "height": 87,
+      "bottom": 1822
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
