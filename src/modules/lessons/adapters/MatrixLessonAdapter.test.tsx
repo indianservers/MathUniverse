@@ -17,11 +17,21 @@ describe("MatrixLessonAdapter", () => {
       );
       expect(html, String(lesson.id)).toContain(lesson.title);
       expect(html, String(lesson.id)).toMatch(
-        /matrix and linear-algebra lab|eigendirection lab/,
+        /matrix and linear-algebra lab|eigendirection lab|Matrix Builder/,
       );
       expect(html, String(lesson.id)).toContain('type="number"');
       expect(html, String(lesson.id)).not.toContain("Legacy");
     }
+  });
+
+  it("uses the dedicated interactive matrix builder for lesson 347", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 347)!;
+    const html = renderToStaticMarkup(
+      <MatrixLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+    expect(html).toContain('data-testid="matrix-mockup-0532"');
+    expect(html).toContain("editable-resizable-matrix-transpose-augmentation-validation-export-cell-drag");
+    expect(html).toContain('data-matrix="[[2,-1,3],[4,0,5]]"');
   });
 
   it("does not show determinant as the primary result for unrelated concepts", () => {

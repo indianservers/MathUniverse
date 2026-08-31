@@ -1,0 +1,174 @@
+{
+  "mockup": "0532",
+  "lessonId": 347,
+  "checks": {
+    "initial": {
+      "matrix": "[[2,-1,3],[4,0,5]]",
+      "rows": "2",
+      "cols": "3",
+      "selected": "0-0",
+      "valid": "true",
+      "tab": "Matrix Builder",
+      "quick-order": "correct",
+      "quick-entry": "correct",
+      "actions": "0"
+    },
+    "edit": {
+      "matrix": "[[9,-1,3],[4,0,5]]",
+      "rows": "2",
+      "cols": "3",
+      "selected": "0-0",
+      "valid": "true",
+      "tab": "Matrix Builder",
+      "quick-order": "correct",
+      "quick-entry": "correct",
+      "actions": "1"
+    },
+    "transpose": {
+      "matrix": "[[9,4],[-1,0],[3,5]]",
+      "rows": "3",
+      "cols": "2",
+      "selected": "0-0",
+      "valid": "true",
+      "tab": "Matrix Builder",
+      "quick-order": "correct",
+      "quick-entry": "correct",
+      "actions": "2"
+    },
+    "augment": {
+      "matrix": "[[9,4,7],[-1,0,-2],[3,5,0]]",
+      "rows": "3",
+      "cols": "3",
+      "selected": "0-0",
+      "valid": "true",
+      "tab": "Matrix Builder",
+      "quick-order": "correct",
+      "quick-entry": "correct",
+      "actions": "3"
+    },
+    "identity": {
+      "matrix": "[[1,0,0],[0,1,0],[0,0,1]]",
+      "rows": "3",
+      "cols": "3",
+      "selected": "0-0",
+      "valid": "true",
+      "tab": "Matrix Builder",
+      "quick-order": "correct",
+      "quick-entry": "correct",
+      "actions": "4"
+    },
+    "resize": {
+      "matrix": "[[1,0,0],[0,1,0]]",
+      "rows": "2",
+      "cols": "3",
+      "selected": "0-0",
+      "valid": "true",
+      "tab": "Matrix Builder",
+      "quick-order": "correct",
+      "quick-entry": "correct",
+      "actions": "5"
+    },
+    "drag": {
+      "matrix": "[[4,-1,3],[4,0,5]]",
+      "rows": "2",
+      "cols": "3",
+      "selected": "0-0",
+      "valid": "true",
+      "tab": "Matrix Builder",
+      "quick-order": "correct",
+      "quick-entry": "correct",
+      "actions": "1"
+    },
+    "rejected": {
+      "matrix": "[[4,-1,3],[4,0,5]]",
+      "rows": "2",
+      "cols": "3",
+      "selected": "0-0",
+      "valid": "true",
+      "tab": "Matrix Builder",
+      "quick-order": "incorrect",
+      "quick-entry": "correct",
+      "actions": "2"
+    },
+    "accepted": {
+      "matrix": "[[4,-1,3],[4,0,5]]",
+      "rows": "2",
+      "cols": "3",
+      "selected": "0-0",
+      "valid": "true",
+      "tab": "Visualizations",
+      "quick-order": "correct",
+      "quick-entry": "correct",
+      "actions": "4"
+    },
+    "shellReset": {
+      "matrix": "[[2,-1,3],[4,0,5]]",
+      "rows": "2",
+      "cols": "3",
+      "selected": "0-0",
+      "valid": "true",
+      "tab": "Matrix Builder",
+      "quick-order": "correct",
+      "quick-entry": "correct",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 864,
+      "height": 1821
+    },
+    "overflow": false,
+    "hero": {
+      "top": 89,
+      "left": 198,
+      "width": 652,
+      "height": 188,
+      "bottom": 277
+    },
+    "tabs": {
+      "top": 287,
+      "left": 198,
+      "width": 652,
+      "height": 45,
+      "bottom": 332
+    },
+    "builder": {
+      "top": 342,
+      "left": 198,
+      "width": 652,
+      "height": 556,
+      "bottom": 898
+    },
+    "notes": {
+      "top": 908,
+      "left": 198,
+      "width": 652,
+      "height": 460,
+      "bottom": 1368
+    },
+    "check": {
+      "top": 1378,
+      "left": 198,
+      "width": 652,
+      "height": 255,
+      "bottom": 1633
+    },
+    "adjacent": {
+      "top": 1643,
+      "left": 198,
+      "width": 652,
+      "height": 58,
+      "bottom": 1701
+    },
+    "footer": {
+      "top": 1711,
+      "left": 184,
+      "width": 680,
+      "height": 110,
+      "bottom": 1821
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
