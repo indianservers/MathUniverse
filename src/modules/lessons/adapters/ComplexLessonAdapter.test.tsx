@@ -9,7 +9,7 @@ describe("ComplexLessonAdapter", () => {
       [365, "Complex plane"],
       [366, "Real and Imaginary Parts"],
       [367, "Complex Addition"],
-      [368, "Complex multiplication"],
+      [368, "Complex Multiplication"],
       [369, "Complex conjugate"],
       [370, "Modulus and argument"],
       [371, "Polar form"],
@@ -91,5 +91,25 @@ describe("ComplexLessonAdapter", () => {
     expect(html).toContain('data-z="[2,1]"');
     expect(html).toContain('data-w="[-1,3]"');
     expect(html).toContain('data-sum="[1,4]"');
+  });
+
+  it("uses a dedicated algebraic and polar multiplication model for lesson 368", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 368)!;
+    const html = renderToStaticMarkup(
+      <ComplexLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="complex-mockup-0553"');
+    expect(html).toContain(
+      "two-draggable-complex-factors-rectangular-expansion-modulus-product-argument-sum",
+    );
+    expect(html).toContain('data-z="[2,1]"');
+    expect(html).toContain('data-w="[1,1]"');
+    expect(html).toContain('data-product="[1,3]"');
+    expect(html).toContain('data-scale="1.4142"');
+    expect(html).toContain('data-rotation="45"');
   });
 });

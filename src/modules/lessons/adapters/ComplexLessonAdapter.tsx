@@ -13,6 +13,7 @@ import type { LessonAdapterProps } from "../types";
 import ComplexPlaneTargetLesson365 from "./complex/ComplexPlaneTargetLesson365";
 import RealImaginaryTargetLesson366 from "./complex/RealImaginaryTargetLesson366";
 import ComplexAdditionTargetLesson367 from "./complex/ComplexAdditionTargetLesson367";
+import ComplexMultiplicationTargetLesson368 from "./complex/ComplexMultiplicationTargetLesson368";
 
 const sx = (x: number) => 300 + x * 46;
 const sy = (y: number) => 180 - y * 46;
@@ -114,6 +115,8 @@ export default function ComplexLessonAdapter(props: LessonAdapterProps) {
     return <RealImaginaryTargetLesson366 {...props} />;
   if (props.lesson.id === 367)
     return <ComplexAdditionTargetLesson367 {...props} />;
+  if (props.lesson.id === 368)
+    return <ComplexMultiplicationTargetLesson368 {...props} />;
   return <GenericComplexLessonAdapter {...props} />;
 }
 
