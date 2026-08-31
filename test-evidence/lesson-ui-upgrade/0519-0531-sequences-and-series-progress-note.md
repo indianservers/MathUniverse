@@ -1,6 +1,6 @@
 # Sequences and Series target batch 0519-0531
 
-Dedicated rebuild target: **11 of 13 lessons completed; 2 pending.**
+Dedicated rebuild target: **12 of 13 lessons completed; 1 pending.**
 
 | Mockup | Lesson                          | Dedicated object model                                                                                                                                                                                                                                         | Status                                      |
 | ------ | ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
@@ -15,7 +15,7 @@ Dedicated rebuild target: **11 of 13 lessons completed; 2 pending.**
 | 0527   | 342 Convergence and Divergence  | `five-series-models-generated-terms-partial-sums-draggable-analysis-point-tolerance-band-nth-term-test-ratio-test-classification-counterexample-comparison-worked-proof-multi-question-practice`                                                               | Reworked individually and browser-validated |
 | 0528   | 343 Power Series                | `centered-power-series-preset-taylor-coefficients-manual-coefficient-editor-target-function-partial-sum-graph-draggable-highest-coefficient-truncation-error-radius-estimator-convergence-interval-endpoint-tests-expanded-polynomial-multi-question-practice` | Reworked individually and browser-validated |
 | 0529   | 344 Taylor and Maclaurin Series | `five-function-taylor-coefficients-expansion-center-order-target-interval-function-polynomial-graph-draggable-center-animation-remainder-error-convergence-bars-derivative-table-expanded-form-multi-question-practice`                                        | Reworked individually and browser-validated |
-| 0530   | 345 Binomial Series             | Pending                                                                                                                                                                                                                                                        | Pending                                     |
+| 0530   | 345 Binomial Series             | `generalized-binomial-exponent-evaluation-point-truncation-recursive-coefficients-target-partial-graph-draggable-evaluation-point-expansion-partial-table-error-by-order-endpoint-rules-multi-question-practice`                                               | Reworked individually and browser-validated |
 | 0531   | 346 Recurrence Modelling        | Pending                                                                                                                                                                                                                                                        | Pending                                     |
 
 ## Lesson 334 / Mockup 0519 - Sequence Generator
@@ -181,3 +181,19 @@ Evidence:
 - `0529-reference.png`
 - `0529-desktop.png`
 - `0529-dedicated-target-validation.json`
+
+## Lesson 345 / Mockup 0530 - Binomial Series
+
+Reworked individually around the generalized coefficient recurrence `C(alpha,k)=C(alpha,k-1)(alpha-k+1)/k`. Exponent, evaluation point, truncation count, and selected coefficient index drive the complete coefficient list, expansion, target value, partial sums, absolute errors, table, target/partial graph, and error-by-order plot. The highlighted graph point is pointer-captured and horizontally draggable, solving back to x and rebuilding every dependent result.
+
+Browser validation confirms the initial coefficients begin `1,0.75,-0.09375,0.0390625`. For `alpha=0.5`, the coefficients begin `1,0.5,-0.125,0.0625`, and the coherent target is `sqrt(1.4)=1.183215957`. Selecting k=4 updates the coefficient builder. For `alpha=-1`, coefficients alternate `1,-1,1,-1`, matching the geometric expansion. A captured drag changes x, increasing truncation to ten terms reduces the error, both assessment questions grade correctly, Formulas activates, and shell Reset restores the complete initial model and zero actions.
+
+The reference displays `(1.4)^0.75 = 1.314534`, but direct evaluation is approximately `1.287052`. The dedicated surface preserves the target composition while keeping the target curve, current value, partial sums, and errors numerically consistent.
+
+Final exact 864x1821 validation matches the target stack: hero y=82-266, tabs through y=319, binomial lab through y=1146, learning and assessment section through y=1646, adjacent lessons through y=1716, and footer ending at y=1821. It reports no horizontal overflow and zero console warnings or errors.
+
+Evidence:
+
+- `0530-reference.png`
+- `0530-desktop.png`
+- `0530-dedicated-target-validation.json`

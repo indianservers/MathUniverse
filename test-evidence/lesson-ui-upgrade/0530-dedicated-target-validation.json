@@ -1,0 +1,207 @@
+{
+  "mockup": "0530",
+  "lessonId": 345,
+  "checks": {
+    "initial": {
+      "alpha": "0.75",
+      "x": "0.4",
+      "count": "6",
+      "selected-k": "3",
+      "coefficients": "1,0.75,-0.09375,0.0390625,-0.021972656,0.014282227",
+      "partials": "1,1.3,1.285,1.2875,1.2869375,1.28708375",
+      "target": "1.287051801",
+      "partial": "1.28708375",
+      "error": "0.000031949",
+      "tab": "Interaction + visualization",
+      "question": "0",
+      "quick-result": "",
+      "actions": "0"
+    },
+    "squareRoot": {
+      "alpha": "0.5",
+      "x": "0.4",
+      "count": "6",
+      "selected-k": "3",
+      "coefficients": "1,0.5,-0.125,0.0625,-0.0390625,0.02734375",
+      "partials": "1,1.2,1.18,1.184,1.183,1.18328",
+      "target": "1.183215957",
+      "partial": "1.18328",
+      "error": "0.000064043",
+      "tab": "Interaction + visualization",
+      "question": "0",
+      "quick-result": "",
+      "actions": "1"
+    },
+    "coefficient": {
+      "alpha": "0.5",
+      "x": "0.4",
+      "count": "6",
+      "selected-k": "4",
+      "coefficients": "1,0.5,-0.125,0.0625,-0.0390625,0.02734375",
+      "partials": "1,1.2,1.18,1.184,1.183,1.18328",
+      "target": "1.183215957",
+      "partial": "1.18328",
+      "error": "0.000064043",
+      "tab": "Interaction + visualization",
+      "question": "0",
+      "quick-result": "",
+      "actions": "2"
+    },
+    "geometric": {
+      "alpha": "-1",
+      "x": "0.3",
+      "count": "6",
+      "selected-k": "4",
+      "coefficients": "1,-1,1,-1,1,-1",
+      "partials": "1,0.7,0.79,0.763,0.7711,0.76867",
+      "target": "0.769230769",
+      "partial": "0.76867",
+      "error": "0.000560769",
+      "tab": "Interaction + visualization",
+      "question": "0",
+      "quick-result": "",
+      "actions": "4"
+    },
+    "drag": {
+      "alpha": "0.75",
+      "x": "0.473329836",
+      "count": "6",
+      "selected-k": "3",
+      "coefficients": "1,0.75,-0.09375,0.0390625,-0.021972656,0.014282227",
+      "partials": "1,1.354997377,1.333993521,1.338135917,1.337033012,1.337372337",
+      "target": "1.337288124",
+      "partial": "1.337372337",
+      "error": "0.000084213",
+      "tab": "Interaction + visualization",
+      "question": "0",
+      "quick-result": "",
+      "actions": "6"
+    },
+    "count": {
+      "alpha": "0.75",
+      "x": "0.473329836",
+      "count": "10",
+      "selected-k": "3",
+      "coefficients": "1,0.75,-0.09375,0.0390625,-0.021972656,0.014282227,-0.010116577,0.007587433,-0.005927682,0.004775077",
+      "partials": "1,1.354997377,1.333993521,1.338135917,1.337033012,1.337372337,1.33725857,1.337298957,1.337284022,1.337289717",
+      "target": "1.337288124",
+      "partial": "1.337289717",
+      "error": "0.000001593",
+      "tab": "Interaction + visualization",
+      "question": "0",
+      "quick-result": "",
+      "actions": "7"
+    },
+    "rejected": {
+      "alpha": "0.75",
+      "x": "0.473329836",
+      "count": "10",
+      "selected-k": "3",
+      "coefficients": "1,0.75,-0.09375,0.0390625,-0.021972656,0.014282227,-0.010116577,0.007587433,-0.005927682,0.004775077",
+      "partials": "1,1.354997377,1.333993521,1.338135917,1.337033012,1.337372337,1.33725857,1.337298957,1.337284022,1.337289717",
+      "target": "1.337288124",
+      "partial": "1.337289717",
+      "error": "0.000001593",
+      "tab": "Interaction + visualization",
+      "question": "0",
+      "quick-result": "incorrect",
+      "actions": "8"
+    },
+    "accepted": {
+      "alpha": "0.75",
+      "x": "0.473329836",
+      "count": "10",
+      "selected-k": "3",
+      "coefficients": "1,0.75,-0.09375,0.0390625,-0.021972656,0.014282227,-0.010116577,0.007587433,-0.005927682,0.004775077",
+      "partials": "1,1.354997377,1.333993521,1.338135917,1.337033012,1.337372337,1.33725857,1.337298957,1.337284022,1.337289717",
+      "target": "1.337288124",
+      "partial": "1.337289717",
+      "error": "0.000001593",
+      "tab": "Interaction + visualization",
+      "question": "0",
+      "quick-result": "correct",
+      "actions": "9"
+    },
+    "secondAccepted": {
+      "alpha": "0.75",
+      "x": "0.473329836",
+      "count": "10",
+      "selected-k": "3",
+      "coefficients": "1,0.75,-0.09375,0.0390625,-0.021972656,0.014282227,-0.010116577,0.007587433,-0.005927682,0.004775077",
+      "partials": "1,1.354997377,1.333993521,1.338135917,1.337033012,1.337372337,1.33725857,1.337298957,1.337284022,1.337289717",
+      "target": "1.337288124",
+      "partial": "1.337289717",
+      "error": "0.000001593",
+      "tab": "Formulas",
+      "question": "1",
+      "quick-result": "correct",
+      "actions": "12"
+    },
+    "shellReset": {
+      "alpha": "0.75",
+      "x": "0.4",
+      "count": "6",
+      "selected-k": "3",
+      "coefficients": "1,0.75,-0.09375,0.0390625,-0.021972656,0.014282227",
+      "partials": "1,1.3,1.285,1.2875,1.2869375,1.28708375",
+      "target": "1.287051801",
+      "partial": "1.28708375",
+      "error": "0.000031949",
+      "tab": "Interaction + visualization",
+      "question": "0",
+      "quick-result": "",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 864,
+      "height": 1821
+    },
+    "overflow": false,
+    "hero": {
+      "top": 82,
+      "left": 179,
+      "width": 672,
+      "height": 184,
+      "bottom": 266
+    },
+    "tabs": {
+      "top": 276,
+      "left": 179,
+      "width": 672,
+      "height": 43,
+      "bottom": 319
+    },
+    "lab": {
+      "top": 329,
+      "left": 179,
+      "width": 672,
+      "height": 817,
+      "bottom": 1146
+    },
+    "learn": {
+      "top": 1156,
+      "left": 179,
+      "width": 672,
+      "height": 490,
+      "bottom": 1646
+    },
+    "adjacent": {
+      "top": 1658,
+      "left": 179,
+      "width": 672,
+      "height": 58,
+      "bottom": 1716
+    },
+    "footer": {
+      "top": 1726,
+      "left": 166,
+      "width": 698,
+      "height": 95,
+      "bottom": 1821
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
