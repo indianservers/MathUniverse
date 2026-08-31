@@ -9,6 +9,7 @@ import SigmaNotationTargetLesson339 from "./sequence/SigmaNotationTargetLesson33
 import ArithmeticSeriesTargetLesson340 from "./sequence/ArithmeticSeriesTargetLesson340";
 import GeometricSeriesTargetLesson341 from "./sequence/GeometricSeriesTargetLesson341";
 import ConvergenceDivergenceTargetLesson342 from "./sequence/ConvergenceDivergenceTargetLesson342";
+import PowerSeriesTargetLesson343 from "./sequence/PowerSeriesTargetLesson343";
 import { SequenceConceptActivity } from "./sequence/SequenceConceptActivity";
 import SequenceGeneratorTargetLesson334 from "./sequence/SequenceGeneratorTargetLesson334";
 
@@ -31,6 +32,7 @@ export default function SequenceLessonAdapter(props: LessonAdapterProps) {
     return <GeometricSeriesTargetLesson341 {...props} />;
   if (props.lesson.id === 342)
     return <ConvergenceDivergenceTargetLesson342 {...props} />;
+  if (props.lesson.id === 343) return <PowerSeriesTargetLesson343 {...props} />;
   const mode = sequenceLessonPreset(props.lesson.id).mode;
   return (
     <AdapterFrame
