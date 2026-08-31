@@ -1,0 +1,207 @@
+{
+  "mockup": "0521",
+  "lessonId": 336,
+  "checks": {
+    "initial": {
+      "first": "3",
+      "ratio": "2",
+      "terms": "3,6,12,24,48,96,192,384,768,1536",
+      "behavior": "Growth",
+      "plot": "linear",
+      "tab": "Explore & Simulate",
+      "solver": "n",
+      "answer": "",
+      "quick-result": "",
+      "actions": "0"
+    },
+    "controls": {
+      "first": "4",
+      "ratio": "0.5",
+      "terms": "4,2,1,0.5,0.25,0.125,0.0625,0.03125,0.015625,0.007813",
+      "behavior": "Decay",
+      "plot": "log",
+      "tab": "Explore & Simulate",
+      "solver": "n",
+      "answer": "",
+      "quick-result": "",
+      "actions": "3"
+    },
+    "drag": {
+      "first": "3",
+      "ratio": "3",
+      "terms": "3,9,27,81,243,729,2187,6561,19683,59049",
+      "behavior": "Growth",
+      "plot": "linear",
+      "tab": "Explore & Simulate",
+      "solver": "n",
+      "answer": "",
+      "quick-result": "",
+      "actions": "8"
+    },
+    "findN": {
+      "first": "3",
+      "ratio": "2",
+      "terms": "3,6,12,24,48,96,192,384,768,1536",
+      "behavior": "Growth",
+      "plot": "linear",
+      "tab": "Explore & Simulate",
+      "solver": "n",
+      "answer": "n = 7",
+      "quick-result": "",
+      "actions": "1"
+    },
+    "findFirst": {
+      "first": "3",
+      "ratio": "2",
+      "terms": "3,6,12,24,48,96,192,384,768,1536",
+      "behavior": "Growth",
+      "plot": "linear",
+      "tab": "Explore & Simulate",
+      "solver": "first",
+      "answer": "a₁ = 3",
+      "quick-result": "",
+      "actions": "3"
+    },
+    "findRatio": {
+      "first": "3",
+      "ratio": "2",
+      "terms": "3,6,12,24,48,96,192,384,768,1536",
+      "behavior": "Growth",
+      "plot": "linear",
+      "tab": "Explore & Simulate",
+      "solver": "ratio",
+      "answer": "r = 2",
+      "quick-result": "",
+      "actions": "5"
+    },
+    "rejected": {
+      "first": "3",
+      "ratio": "2",
+      "terms": "3,6,12,24,48,96,192,384,768,1536",
+      "behavior": "Growth",
+      "plot": "linear",
+      "tab": "Explore & Simulate",
+      "solver": "ratio",
+      "answer": "r = 2",
+      "quick-result": "incorrect",
+      "actions": "6"
+    },
+    "accepted": {
+      "first": "3",
+      "ratio": "2",
+      "terms": "3,6,12,24,48,96,192,384,768,1536",
+      "behavior": "Growth",
+      "plot": "linear",
+      "tab": "Key Insight",
+      "solver": "ratio",
+      "answer": "r = 2",
+      "quick-result": "correct",
+      "actions": "8"
+    },
+    "shellReset": {
+      "first": "3",
+      "ratio": "2",
+      "terms": "3,6,12,24,48,96,192,384,768,1536",
+      "behavior": "Growth",
+      "plot": "linear",
+      "tab": "Explore & Simulate",
+      "solver": "n",
+      "answer": "",
+      "quick-result": "",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 864,
+      "height": 1821
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 166,
+      "height": 1821,
+      "bottom": 1821
+    },
+    "hero": {
+      "top": 89,
+      "left": 181,
+      "width": 668,
+      "height": 140,
+      "bottom": 229
+    },
+    "tabs": {
+      "top": 239,
+      "left": 181,
+      "width": 668,
+      "height": 45,
+      "bottom": 284
+    },
+    "intro": {
+      "top": 294,
+      "left": 181,
+      "width": 668,
+      "height": 150,
+      "bottom": 444
+    },
+    "steps": {
+      "top": 454,
+      "left": 181,
+      "width": 668,
+      "height": 144,
+      "bottom": 598
+    },
+    "tableGraph": {
+      "top": 608,
+      "left": 181,
+      "width": 668,
+      "height": 342,
+      "bottom": 950
+    },
+    "forms": {
+      "top": 960,
+      "left": 181,
+      "width": 668,
+      "height": 182,
+      "bottom": 1142
+    },
+    "solver": {
+      "top": 1152,
+      "left": 181,
+      "width": 668,
+      "height": 255,
+      "bottom": 1407
+    },
+    "notes": {
+      "top": 1417,
+      "left": 181,
+      "width": 668,
+      "height": 132,
+      "bottom": 1549
+    },
+    "quick": {
+      "top": 1559,
+      "left": 181,
+      "width": 668,
+      "height": 104,
+      "bottom": 1663
+    },
+    "adjacent": {
+      "top": 1668,
+      "left": 181,
+      "width": 668,
+      "height": 44,
+      "bottom": 1712
+    },
+    "footer": {
+      "top": 1720,
+      "left": 166,
+      "width": 698,
+      "height": 101,
+      "bottom": 1821
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

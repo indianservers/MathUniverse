@@ -1,22 +1,22 @@
 # Sequences and Series target batch 0519-0531
 
-Dedicated rebuild target: **2 of 13 lessons completed; 11 pending.**
+Dedicated rebuild target: **3 of 13 lessons completed; 10 pending.**
 
-| Mockup | Lesson                        | Dedicated object model                                                                                                                                 | Status                                      |
-| ------ | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------- |
-| 0519   | 334 Sequence Generator        | `editable-polynomial-parser-explicit-recursive-range-generator-differences-ratios-cumulative-sums-pattern-detector-draggable-constant-export-practice` | Reworked individually and browser-validated |
-| 0520   | 335 Arithmetic Sequences      | `constant-difference-number-line-stepper-autoplay-term-table-draggable-index-graph-explicit-recursive-bidirectional-nth-term-solver-guided-practice`   | Reworked individually and browser-validated |
-| 0521   | 336 Geometric Sequences       | Pending                                                                                                                                                | Pending                                     |
-| 0522   | 337 Recursive Sequences       | Pending                                                                                                                                                | Pending                                     |
-| 0523   | 338 Sigma Notation            | Pending                                                                                                                                                | Pending                                     |
-| 0524   | 339 Arithmetic Series         | Pending                                                                                                                                                | Pending                                     |
-| 0525   | 340 Geometric Series          | Pending                                                                                                                                                | Pending                                     |
-| 0526   | 341 Infinite Geometric Series | Pending                                                                                                                                                | Pending                                     |
-| 0527   | 342 Convergence of Series     | Pending                                                                                                                                                | Pending                                     |
-| 0528   | 343 Power Series              | Pending                                                                                                                                                | Pending                                     |
-| 0529   | 344 Taylor Series             | Pending                                                                                                                                                | Pending                                     |
-| 0530   | 345 Fibonacci Sequence        | Pending                                                                                                                                                | Pending                                     |
-| 0531   | 346 Recurrence Relations      | Pending                                                                                                                                                | Pending                                     |
+| Mockup | Lesson                        | Dedicated object model                                                                                                                                        | Status                                      |
+| ------ | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
+| 0519   | 334 Sequence Generator        | `editable-polynomial-parser-explicit-recursive-range-generator-differences-ratios-cumulative-sums-pattern-detector-draggable-constant-export-practice`        | Reworked individually and browser-validated |
+| 0520   | 335 Arithmetic Sequences      | `constant-difference-number-line-stepper-autoplay-term-table-draggable-index-graph-explicit-recursive-bidirectional-nth-term-solver-guided-practice`          | Reworked individually and browser-validated |
+| 0521   | 336 Geometric Sequences       | `constant-ratio-multiplicative-step-chain-term-table-linear-log-plot-draggable-ratio-explicit-recursive-growth-classifier-three-mode-inverse-solver-practice` | Reworked individually and browser-validated |
+| 0522   | 337 Recursive Sequences       | Pending                                                                                                                                                       | Pending                                     |
+| 0523   | 338 Sigma Notation            | Pending                                                                                                                                                       | Pending                                     |
+| 0524   | 339 Arithmetic Series         | Pending                                                                                                                                                       | Pending                                     |
+| 0525   | 340 Geometric Series          | Pending                                                                                                                                                       | Pending                                     |
+| 0526   | 341 Infinite Geometric Series | Pending                                                                                                                                                       | Pending                                     |
+| 0527   | 342 Convergence of Series     | Pending                                                                                                                                                       | Pending                                     |
+| 0528   | 343 Power Series              | Pending                                                                                                                                                       | Pending                                     |
+| 0529   | 344 Taylor Series             | Pending                                                                                                                                                       | Pending                                     |
+| 0530   | 345 Fibonacci Sequence        | Pending                                                                                                                                                       | Pending                                     |
+| 0531   | 346 Recurrence Relations      | Pending                                                                                                                                                       | Pending                                     |
 
 ## Lesson 334 / Mockup 0519 - Sequence Generator
 
@@ -53,3 +53,17 @@ Evidence:
 - `0520-reference.png`
 - `0520-desktop.png`
 - `0520-dedicated-target-validation.json`
+
+## Lesson 336 / Mockup 0521 - Geometric Sequences
+
+Reworked individually around a constant-ratio model. First-term and ratio controls regenerate the multiplicative step chain, ten-row calculation table, graph, explicit and recursive forms, growth/constant/decay classification, worked example, and assessment. Linear and semi-log graph modes are real. Every graph point after the first is a pointer-captured vertical handle that solves back to `r`, clamped to the target parameter domain; negative and zero cases are guarded.
+
+The inverse solver has independent Find n, Find a1, and Find r modes with real logarithmic, division, and root calculations plus domain messages. Five lesson stages and four-option assessment grading are functional. Browser validation confirms the initial `3, 6, 12, 24, 48, 96, 192, 384, 768, 1536` growth sequence. Changing to `a1=4`, `r=0.5` produces the coherent decay sequence through `0.007813` and activates the semi-log plot. A captured graph drag changes `r` to 3. The solvers return `n=7`, `a1=3`, and `r=2`; assessment rejects 384 and accepts 1536; shell Reset restores the initial model and zero actions.
+
+Final exact 864x1821 validation matches the target stack: sidebar width 166, hero y=89-229, tabs y=239-284, objective/parameters y=294-444, step chain y=454-598, table/graph y=608-950, formulas/classifier y=960-1142, worked example/solver y=1152-1407, notes y=1417-1549, quick check y=1559-1663, adjacent lessons y=1668-1712, and footer y=1720-1821. Dedicated content spans x=181-849, with no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0521-reference.png`
+- `0521-desktop.png`
+- `0521-dedicated-target-validation.json`
