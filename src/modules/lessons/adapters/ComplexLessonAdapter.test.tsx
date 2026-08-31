@@ -10,7 +10,7 @@ describe("ComplexLessonAdapter", () => {
       [366, "Real and Imaginary Parts"],
       [367, "Complex Addition"],
       [368, "Complex Multiplication"],
-      [369, "Complex conjugate"],
+      [369, "Complex Conjugate"],
       [370, "Modulus and argument"],
       [371, "Polar form"],
       [372, "Euler form"],
@@ -111,5 +111,23 @@ describe("ComplexLessonAdapter", () => {
     expect(html).toContain('data-product="[1,3]"');
     expect(html).toContain('data-scale="1.4142"');
     expect(html).toContain('data-rotation="45"');
+  });
+
+  it("uses a dedicated real-axis conjugate reflection model for lesson 369", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 369)!;
+    const html = renderToStaticMarkup(
+      <ComplexLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="complex-mockup-0554"');
+    expect(html).toContain(
+      "draggable-complex-point-real-axis-reflection-conjugate-equal-modulus",
+    );
+    expect(html).toContain('data-z="[2,1]"');
+    expect(html).toContain('data-conjugate="[2,-1]"');
+    expect(html).toContain('data-product="5"');
   });
 });

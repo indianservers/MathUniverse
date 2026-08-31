@@ -1,0 +1,179 @@
+{
+  "mockup": "0554",
+  "lessonId": 369,
+  "checks": {
+    "initial": {
+      "z": "[2,1]",
+      "conjugate": "[2,-1]",
+      "product": "5",
+      "argument": "26.57",
+      "mirror": "true",
+      "distances": "true",
+      "product-check": "true",
+      "tab": "Interaction + visualization",
+      "verdict": "",
+      "actions": "0"
+    },
+    "stepped": {
+      "z": "[3,1]",
+      "conjugate": "[3,-1]",
+      "product": "10",
+      "argument": "18.43",
+      "mirror": "true",
+      "distances": "true",
+      "product-check": "true",
+      "tab": "Interaction + visualization",
+      "verdict": "",
+      "actions": "1"
+    },
+    "negative": {
+      "z": "[3,-2]",
+      "conjugate": "[3,2]",
+      "product": "13",
+      "argument": "-33.69",
+      "mirror": "true",
+      "distances": "true",
+      "product-check": "true",
+      "tab": "Interaction + visualization",
+      "verdict": "",
+      "actions": "2"
+    },
+    "hidden": {
+      "z": "[3,-2]",
+      "conjugate": "[3,2]",
+      "product": "13",
+      "argument": "-33.69",
+      "mirror": "true",
+      "distances": "true",
+      "product-check": "false",
+      "tab": "Interaction + visualization",
+      "verdict": "",
+      "actions": "3"
+    },
+    "dragged": {
+      "z": "[1.84,-1.06]",
+      "conjugate": "[1.84,1.06]",
+      "product": "4.51",
+      "argument": "-29.95",
+      "mirror": "true",
+      "distances": "true",
+      "product-check": "true",
+      "tab": "Interaction + visualization",
+      "verdict": "",
+      "actions": "5"
+    },
+    "rejected": {
+      "z": "[1.84,-1.06]",
+      "conjugate": "[1.84,1.06]",
+      "product": "4.51",
+      "argument": "-29.95",
+      "mirror": "true",
+      "distances": "true",
+      "product-check": "true",
+      "tab": "Interaction + visualization",
+      "verdict": "incorrect",
+      "actions": "6"
+    },
+    "accepted": {
+      "z": "[1.84,-1.06]",
+      "conjugate": "[1.84,1.06]",
+      "product": "4.51",
+      "argument": "-29.95",
+      "mirror": "true",
+      "distances": "true",
+      "product-check": "true",
+      "tab": "Interaction + visualization",
+      "verdict": "correct",
+      "actions": "7"
+    },
+    "tabbed": {
+      "z": "[1.84,-1.06]",
+      "conjugate": "[1.84,1.06]",
+      "product": "4.51",
+      "argument": "-29.95",
+      "mirror": "true",
+      "distances": "true",
+      "product-check": "true",
+      "tab": "Formulas",
+      "verdict": "correct",
+      "actions": "8"
+    },
+    "reset": {
+      "z": "[2,1]",
+      "conjugate": "[2,-1]",
+      "product": "5",
+      "argument": "26.57",
+      "mirror": "true",
+      "distances": "true",
+      "product-check": "true",
+      "tab": "Interaction + visualization",
+      "verdict": "",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1029,
+      "height": 1529
+    },
+    "overflow": false,
+    "hero": {
+      "top": 99,
+      "left": 230,
+      "width": 786,
+      "height": 231,
+      "bottom": 330
+    },
+    "tabs": {
+      "top": 340,
+      "left": 230,
+      "width": 786,
+      "height": 51,
+      "bottom": 391
+    },
+    "work": {
+      "top": 401,
+      "left": 230,
+      "width": 786,
+      "height": 693,
+      "bottom": 1094
+    },
+    "lab": {
+      "top": 401,
+      "left": 230,
+      "width": 538,
+      "height": 693,
+      "bottom": 1094
+    },
+    "controls": {
+      "top": 401,
+      "left": 776,
+      "width": 240,
+      "height": 693,
+      "bottom": 1094
+    },
+    "learning": {
+      "top": 1102,
+      "left": 230,
+      "width": 786,
+      "height": 161,
+      "bottom": 1263
+    },
+    "practice": {
+      "top": 1272,
+      "left": 230,
+      "width": 786,
+      "height": 102,
+      "bottom": 1374
+    },
+    "navigation": {
+      "top": 1381,
+      "left": 230,
+      "width": 786,
+      "height": 50,
+      "bottom": 1431
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

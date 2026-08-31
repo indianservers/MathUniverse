@@ -10,7 +10,7 @@ Target references: `0550` through `0562` in `D:\Math App Screenshots for UI Upda
 | 0551 | 366 Real and Imaginary Parts | `RealImaginaryTargetLesson366` | Draggable complex point, synchronized real/imaginary steppers and sliders, live horizontal/vertical projections, quadrant and sign classification, three real display toggles, decomposition warning, worked geometry, tabs/reset, and independently graded three-field practice | 982 x 1601; no overflow or console errors | Complete |
 | 0552 | 367 Complex Addition | `ComplexAdditionTargetLesson367` | Two independently editable/draggable complex addends, derived coordinate sum, tip-to-tail and origin-vector modes, parallelogram and component-sum toggles, synchronized numeric/range controls, live arithmetic, fullscreen, tabs/reset, and revealable practice sum | 1002 x 1569; no overflow or console errors | Complete |
 | 0553 | 368 Complex Multiplication | `ComplexMultiplicationTargetLesson368` | Two independently editable/draggable factors, exact rectangular expansion, modulus scaling and argument addition, product vector and trace, scale circles, algebra/rotation/scale/trace toggles, live polar results, tabs/reset, exploratory multiplier, and graded rotation-direction challenge | 1001 x 1570; no overflow or console errors | Complete |
-| 0554 | 369 Complex Conjugate | Pending | Pending | Pending | Pending |
+| 0554 | 369 Complex Conjugate | `ComplexConjugateTargetLesson369` | Draggable complex point with automatic real-axis reflection, synchronized stepper/range controls, invariant real and negated imaginary components, equal-distance/mirror/product toggles, exact `z·conjugate(z)=|z|²` check, opposite arguments, live decomposition, tabs/reset, and graded conjugate/reflected-point challenge | 1029 x 1529; no overflow or console errors | Complete |
 | 0555 | 370 Modulus and Argument | Pending | Pending | Pending | Pending |
 | 0556 | 371 Polar Form | Pending | Pending | Pending | Pending |
 | 0557 | 372 Euler Form | Pending | Pending | Pending | Pending |
@@ -20,7 +20,7 @@ Target references: `0550` through `0562` in `D:\Math App Screenshots for UI Upda
 | 0561 | 376 Mobius Transformations | Pending | Pending | Pending | Pending |
 | 0562 | 377 Complex Functions | Pending | Pending | Pending | Pending |
 
-Completed in this family: **4 / 13**. Pending in this family: **9 / 13**.
+Completed in this family: **5 / 13**. Pending in this family: **8 / 13**.
 
 ## Lesson 365 validation
 
@@ -50,3 +50,10 @@ Completed in this family: **4 / 13**. Pending in this family: **9 / 13**.
 - Machine-readable interaction and layout audit: `0553-dedicated-target-validation.json`
 - The capture harness verifies rectangular products, modulus and argument values, independent factor editing, a negative-angle multiplier, algebra visibility, physical multiplier drag with recomputed product, rejected and accepted clockwise-rotation answers, tabs, shell reset, exact 1001 x 1570 dimensions, and absence of overflow or console errors.
 - The challenge correctly treats multiplication by `2-i` as a clockwise rotation because `arg(2-i)<0`.
+
+## Lesson 369 validation
+
+- Reference: `0554-reference.png`
+- Current capture: `0554-desktop.png`
+- Machine-readable interaction and layout audit: `0554-dedicated-target-validation.json`
+- The capture harness verifies synchronized stepper and slider edits, exact sign reflection, squared-modulus product, negative arguments, product-check visibility, physical point drag with recomputed conjugate, rejected and accepted four-field challenge answers, tabs, shell reset, exact 1029 x 1529 dimensions, and absence of overflow or console errors.
