@@ -16,6 +16,7 @@ import RrefTargetLesson356 from "./matrix/RrefTargetLesson356";
 import AugmentedMatricesTargetLesson357 from "./matrix/AugmentedMatricesTargetLesson357";
 import LinearTransformationsTargetLesson358 from "./matrix/LinearTransformationsTargetLesson358";
 import EigenTargetLesson359 from "./matrix/EigenTargetLesson359";
+import BasisDimensionTargetLesson360 from "./matrix/BasisDimensionTargetLesson360";
 
 export default function MatrixLessonAdapter(props: LessonAdapterProps) {
   if (props.lesson.id === 347)
@@ -44,6 +45,8 @@ export default function MatrixLessonAdapter(props: LessonAdapterProps) {
     return <LinearTransformationsTargetLesson358 {...props} />;
   if (props.lesson.id === 359)
     return <EigenTargetLesson359 {...props} />;
+  if (props.lesson.id === 360)
+    return <BasisDimensionTargetLesson360 {...props} />;
   const mode = matrixLessonPreset(props.lesson.id).mode;
   if (mode === "eigen-directions") {
     return (

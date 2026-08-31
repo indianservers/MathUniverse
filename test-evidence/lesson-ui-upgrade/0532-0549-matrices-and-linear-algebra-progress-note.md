@@ -19,13 +19,13 @@ Target references: `0532` through `0549` in `D:\Math App Screenshots for UI Upda
 | 0542 | 357 Augmented Matrices | `AugmentedMatricesTargetLesson357` | Editable equation-system model deriving A, x, b, and [A|b], determinant classification, computed line intersection, selected-row highlighting, equation insertion, genuine third-variable/free-variable mode, worked derivation, details, tabs, reset, and graded six-entry challenge | 1024 x 1536; no overflow or console errors | Complete |
 | 0543 | 358 Linear Transformations | `LinearTransformationsTargetLesson358` | Editable 2x2 transformation matrix, draggable basis-column endpoint, derived unit-square parallelogram, four live point mappings, determinant/trace/area properties, eigendirection test, zoom controls, tabs, share/reset, and live multiplication table | 1046 x 1504; no overflow or console errors | Complete |
 | 0544 | 359 Eigenvalues and Eigenvectors | `EigenTargetLesson359` | Editable real 2x2 eigensystem, characteristic polynomial and eigenpair derivation, draggable test vector, live Av/projection lambda/parallel test, matrix-mapped grid, invariant eigenlines, zoom, random matrices, tabs, reset, and independently graded other-direction challenge | 1024 x 1536; no overflow or console errors | Complete |
-| 0545 | 360 Basis and Dimension | Pending | Pending | Pending | Pending |
+| 0545 | 360 Basis and Dimension | `BasisDimensionTargetLesson360` | Draggable/editable basis and target vectors, determinant independence and span/dimension states, solved coordinates and reconstruction parallelogram, randomized bases, worked derivation, tabs/reset, and selectable determinant-graded basis challenge | 1024 x 1536; no overflow or console errors | Complete |
 | 0546 | 361 Linear Independence | Pending | Pending | Pending | Pending |
 | 0547 | 362 Vector Spaces | Pending | Pending | Pending | Pending |
 | 0548 | 363 Gram-Schmidt Process | Pending | Pending | Pending | Pending |
 | 0549 | 364 Least Squares | Pending | Pending | Pending | Pending |
 
-Completed in this family: **13 / 18**. Pending in this family: **5 / 18**.
+Completed in this family: **14 / 18**. Pending in this family: **4 / 18**.
 
 ## Lesson 347 validation
 
@@ -120,3 +120,11 @@ Completed in this family: **13 / 18**. Pending in this family: **5 / 18**.
 - Current capture: `0544-desktop.png`
 - Machine-readable interaction and layout audit: `0544-dedicated-target-validation.json`
 - The capture harness verifies derived roots and eigenvectors, matrix editing and changed roots, pointer-dragged non-eigenvector rejection, preset eigenpair acceptance, rejection of the already-shown direction, acceptance of the other invariant direction, tabs, shell reset, exact 1024 x 1536 dimensions, and absence of overflow or console errors.
+
+## Lesson 360 validation
+
+- Reference: `0545-reference.png`
+- Current capture: `0545-desktop.png`
+- Machine-readable interaction and layout audit: `0545-dedicated-target-validation.json`
+- The capture harness verifies determinant, independence, span/dimension, exact coordinates `(3,1)`, dependent-vector collapse, pointer drag and recomputation, rejected/correct decompositions, rejected collinear and accepted independent challenge pairs, tabs, shell reset, and exact 1024 x 1536 layout.
+- The target mockup labels `v2=(1,-1)` and reconstructs `x=3v1+v2=(4,2)`, but draws its purple endpoint near `(-4,2)`. The lesson uses the stated and mathematically consistent `v2=(1,-1)` throughout the model and graph.

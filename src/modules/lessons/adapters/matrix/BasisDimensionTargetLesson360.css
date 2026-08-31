@@ -1,0 +1,435 @@
+.basis360-page,
+.basis360-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.basis360-page {
+  color: #10234b;
+  font-size: 8px;
+}
+.basis360-page button,
+.basis360-page input {
+  font: inherit;
+}
+.basis360-page > header {
+  position: relative;
+  height: 98px;
+  padding: 20px 4px;
+}
+.basis360-page > header h1 {
+  margin: 0;
+  font-size: 26px;
+}
+.basis360-page > header p {
+  margin: 8px 0;
+  font-size: 10px;
+}
+.basis360-page > header span {
+  position: absolute;
+  right: 0;
+  top: 25px;
+  padding: 9px;
+  border: 1px solid #dce5ee;
+  border-radius: 8px;
+}
+.basis360-tabs {
+  display: flex;
+  height: 40px;
+  border-bottom: 1px solid #dce5ee;
+  gap: 20px;
+}
+.basis360-tabs button {
+  padding: 0 13px;
+  border: 0;
+  background: transparent;
+}
+.basis360-tabs .active {
+  border-bottom: 2px solid #1464dd;
+  font-weight: 800;
+}
+.basis360-summary {
+  display: grid;
+  height: 150px;
+  margin-top: 12px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+.basis360-summary article {
+  position: relative;
+  padding: 18px;
+  border: 1px solid #dce5ee;
+  border-radius: 9px;
+  background: #fff;
+}
+.basis360-summary article > b {
+  display: grid;
+  float: left;
+  width: 32px;
+  height: 32px;
+  margin-right: 12px;
+  border-radius: 50%;
+  background: #eefaf4;
+  color: #10924e;
+  place-items: center;
+  font-size: 18px;
+}
+.basis360-summary svg {
+  width: 16px;
+}
+.basis360-summary h3 {
+  height: 29px;
+  margin: 5px 0;
+}
+.basis360-summary strong {
+  display: block;
+  margin: 12px 0;
+  color: #712ad9;
+  font-size: 17px;
+}
+.basis360-summary article:first-child strong {
+  color: #10924e;
+}
+.basis360-summary article:nth-child(3) strong {
+  color: #1264df;
+}
+.basis360-summary p {
+  line-height: 15px;
+}
+.basis360-lab {
+  height: 550px;
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px solid #dce5ee;
+  border-radius: 9px;
+  background: #fff;
+}
+.basis360-lab > header {
+  position: relative;
+  height: 61px;
+}
+.basis360-lab > header > b,
+.basis360-example h3 > b,
+.basis360-challenge h3 > b {
+  display: grid;
+  float: left;
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
+  border-radius: 50%;
+  background: #1464dc;
+  color: #fff;
+  place-items: center;
+}
+.basis360-lab h2 {
+  margin: 0;
+  font-size: 11px;
+}
+.basis360-lab > header p {
+  margin: 10px 0 0 28px;
+}
+.basis360-lab > header nav {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: flex;
+  gap: 8px;
+}
+.basis360-lab > header button {
+  display: flex;
+  height: 32px;
+  padding: 0 14px;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid #dce5ee;
+  border-radius: 7px;
+  background: #fff;
+}
+.basis360-lab svg {
+  width: 12px;
+}
+.basis360-work {
+  display: grid;
+  height: 463px;
+  grid-template-columns: 1fr 245px;
+  gap: 12px;
+}
+.basis360-work > svg {
+  width: 100%;
+  height: 430px;
+  border: 1px solid #dce5ee;
+  border-radius: 8px;
+  background: #fbf8ff;
+}
+.basis360-work > svg text {
+  fill: #6c2dd8;
+  font-size: 10px;
+  font-weight: 800;
+}
+.basis360-work > footer {
+  position: absolute;
+  display: flex;
+  width: 472px;
+  height: 38px;
+  margin: 389px 0 0 4px;
+  padding: 0 12px;
+  align-items: center;
+  gap: 9px;
+  border: 1px solid #dce5ee;
+  border-radius: 7px;
+  background: #fff;
+}
+.basis360-work > footer i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #0ab9cf;
+}
+.basis360-work > footer i:nth-of-type(2) {
+  background: #8735e7;
+}
+.basis360-work > footer i:nth-of-type(3) {
+  background: #f4770a;
+}
+.basis360-work > footer span {
+  width: 14px;
+  height: 10px;
+  background: #e9dafa;
+}
+.basis360-work > aside {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.basis360-work > aside > h3 {
+  margin: 0;
+}
+.basis360-work > aside > label {
+  display: grid;
+  height: 58px;
+  padding: 8px;
+  border: 1px solid #dce5ee;
+  border-radius: 8px;
+  background: #fff;
+  grid-template-columns: 30px 1fr 1fr;
+  align-items: center;
+}
+.basis360-work > aside input {
+  width: 52px;
+  height: 34px;
+  border: 0;
+  text-align: center;
+}
+.basis360-work > aside > section {
+  height: 188px;
+  padding: 12px;
+  border: 1px solid #dce5ee;
+  border-radius: 8px;
+}
+.basis360-work > aside > section h3 {
+  margin: 0;
+}
+.basis360-work > aside > section > div {
+  display: flex;
+  margin: 12px 0;
+  gap: 20px;
+}
+.basis360-work > aside > section input {
+  border: 1px solid #dce5ee;
+  border-radius: 6px;
+}
+.basis360-work > aside > section button {
+  width: 100%;
+  border: 0;
+  background: #1674dc;
+  color: #fff;
+}
+.basis360-work output {
+  display: block;
+  margin-top: 8px;
+  padding: 8px;
+  background: #effbf4;
+}
+.correct {
+  color: #07894a;
+}
+.incorrect {
+  color: #bd3041;
+}
+.basis360-info {
+  display: grid;
+  height: 123px;
+  margin-top: 11px;
+  grid-template-columns: 1fr 1.16fr;
+  gap: 11px;
+}
+.basis360-info article {
+  padding: 14px;
+  border: 1px solid #dce5ee;
+  border-radius: 9px;
+  background: #fff;
+}
+.basis360-info h3 {
+  display: flex;
+  margin: 0 0 10px;
+  align-items: center;
+  gap: 8px;
+}
+.basis360-info svg {
+  width: 14px;
+  color: #1463df;
+}
+.basis360-info p {
+  line-height: 16px;
+}
+.basis360-example {
+  height: 226px;
+  margin-top: 11px;
+  padding: 14px;
+  border: 1px solid #dce5ee;
+  border-radius: 9px;
+  background: #fff;
+}
+.basis360-example h3 {
+  margin: 0;
+}
+.basis360-example > p {
+  margin: 10px 0 12px 29px;
+}
+.basis360-example > div {
+  display: grid;
+  height: 154px;
+  grid-template-columns: 1.1fr 1fr 1.15fr 0.8fr;
+  gap: 10px;
+}
+.basis360-example article {
+  padding: 12px;
+  border: 1px solid #dce5ee;
+  border-radius: 7px;
+}
+.basis360-example article:last-child {
+  background: #f0fbf5;
+}
+.basis360-example code {
+  display: block;
+  margin-top: 17px;
+  font-family: serif;
+  font-size: 11px;
+  line-height: 23px;
+}
+.basis360-challenge {
+  height: 165px;
+  margin-top: 11px;
+  padding: 14px;
+  border: 1px solid #dce5ee;
+  border-radius: 9px;
+  background: #fff;
+}
+.basis360-challenge h3 {
+  margin: 0;
+}
+.basis360-challenge > p {
+  margin-left: 29px;
+}
+.basis360-challenge > div {
+  display: grid;
+  margin-top: 13px;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+}
+.basis360-challenge > div button {
+  position: relative;
+  height: 47px;
+  border: 1px solid #dce5ee;
+  border-radius: 7px;
+  background: #fff;
+  font-family: serif;
+}
+.basis360-challenge > div button i {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  width: 11px;
+  height: 11px;
+  border: 1px solid #bac7d7;
+}
+.basis360-challenge > div button.selected {
+  border-color: #1465dc;
+  background: #eef5ff;
+}
+.basis360-challenge > div button.selected i {
+  background: #1465dc;
+}
+.basis360-challenge footer {
+  display: flex;
+  margin-top: 13px;
+  align-items: center;
+  gap: 12px;
+}
+.basis360-challenge footer button {
+  margin-left: auto;
+  width: 125px;
+  height: 31px;
+  border: 0;
+  border-radius: 6px;
+  background: #1465dc;
+  color: #fff;
+}
+.basis360-challenge output {
+  padding: 8px;
+  background: #effbf4;
+}
+body:has(.basis360-page) {
+  overflow: hidden;
+}
+body:has(.basis360-page) [data-testid="desktop-sidebar"] {
+  display: block !important;
+  width: 213px !important;
+  flex-basis: 213px !important;
+}
+body:has(.basis360-page) #main-content {
+  margin-left: 0 !important;
+  padding: 0 22px !important;
+}
+body:has(.basis360-page) .lesson-shell-header,
+body:has(.basis360-page) .lesson-page-shell > nav[role="tablist"],
+body:has(.basis360-page) .lesson-workbench-heading,
+body:has(.basis360-page) .lesson-workbench > .mt-3.grid {
+  display: none !important;
+}
+body:has(.basis360-page) .lesson-page-shell > div {
+  margin-top: 0 !important;
+}
+body:has(.basis360-page) .lesson-workbench {
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+body:has(.basis360-page) .lesson-adjacent-nav,
+body:has(.basis360-page) footer[aria-label="Site footer"] {
+  display: none !important;
+}
+@media (min-width: 760px) {
+  body:has(.basis360-page) .app-layout-rail > div > header {
+    height: 55px;
+  }
+  body:has(.basis360-page) [data-testid="desktop-sidebar"] > div {
+    padding: 10px !important;
+  }
+  body:has(.basis360-page) [data-testid="desktop-sidebar"] nav a {
+    font-size: 7px !important;
+  }
+  body:has(.basis360-page) [data-testid="desktop-sidebar"] nav button {
+    font-size: 8px !important;
+  }
+  body:has(.basis360-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    > div:nth-of-type(2),
+  body:has(.basis360-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    > div:nth-of-type(n + 5) {
+    display: none;
+  }
+}

@@ -1,0 +1,161 @@
+{
+  "mockup": "0545",
+  "lessonId": 360,
+  "checks": {
+    "initial": {
+      "v1": "[1,1]",
+      "v2": "[1,-1]",
+      "target": "[4,2]",
+      "det": "-2",
+      "independent": "true",
+      "coordinates": "[3,1]",
+      "result": "correct",
+      "selected": "",
+      "basis-result": "",
+      "tab": "Explore",
+      "actions": "0"
+    },
+    "dependent": {
+      "v1": "[1,1]",
+      "v2": "[1,1]",
+      "target": "[4,2]",
+      "det": "0",
+      "independent": "false",
+      "coordinates": "null",
+      "result": "",
+      "selected": "",
+      "basis-result": "",
+      "tab": "Explore",
+      "actions": "1"
+    },
+    "dragged": {
+      "v1": "[1.7,1.44]",
+      "v2": "[1,-1]",
+      "target": "[4,2]",
+      "det": "-3.14",
+      "independent": "true",
+      "coordinates": "[1.91,0.75]",
+      "result": "",
+      "selected": "",
+      "basis-result": "",
+      "tab": "Explore",
+      "actions": "2"
+    },
+    "rejected": {
+      "v1": "[1,1]",
+      "v2": "[1,-1]",
+      "target": "[4,2]",
+      "det": "-2",
+      "independent": "true",
+      "coordinates": "[3,1]",
+      "result": "incorrect",
+      "selected": "",
+      "basis-result": "",
+      "tab": "Explore",
+      "actions": "3"
+    },
+    "accepted": {
+      "v1": "[1,1]",
+      "v2": "[1,-1]",
+      "target": "[4,2]",
+      "det": "-2",
+      "independent": "true",
+      "coordinates": "[3,1]",
+      "result": "correct",
+      "selected": "",
+      "basis-result": "",
+      "tab": "Explore",
+      "actions": "5"
+    },
+    "collinear": {
+      "v1": "[1,1]",
+      "v2": "[1,-1]",
+      "target": "[4,2]",
+      "det": "-2",
+      "independent": "true",
+      "coordinates": "[3,1]",
+      "result": "correct",
+      "selected": "2,3",
+      "basis-result": "incorrect",
+      "tab": "Explore",
+      "actions": "8"
+    },
+    "basis": {
+      "v1": "[1,1]",
+      "v2": "[1,-1]",
+      "target": "[4,2]",
+      "det": "-2",
+      "independent": "true",
+      "coordinates": "[3,1]",
+      "result": "correct",
+      "selected": "2,4",
+      "basis-result": "correct",
+      "tab": "Definition",
+      "actions": "12"
+    },
+    "reset": {
+      "v1": "[1,1]",
+      "v2": "[1,-1]",
+      "target": "[4,2]",
+      "det": "-2",
+      "independent": "true",
+      "coordinates": "[3,1]",
+      "result": "correct",
+      "selected": "",
+      "basis-result": "",
+      "tab": "Explore",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "overflow": false,
+    "header": {
+      "top": 89,
+      "left": 235,
+      "width": 767,
+      "height": 98,
+      "bottom": 187
+    },
+    "summary": {
+      "top": 239,
+      "left": 235,
+      "width": 767,
+      "height": 150,
+      "bottom": 389
+    },
+    "lab": {
+      "top": 401,
+      "left": 235,
+      "width": 767,
+      "height": 550,
+      "bottom": 951
+    },
+    "info": {
+      "top": 962,
+      "left": 235,
+      "width": 767,
+      "height": 123,
+      "bottom": 1085
+    },
+    "example": {
+      "top": 1096,
+      "left": 235,
+      "width": 767,
+      "height": 226,
+      "bottom": 1322
+    },
+    "challenge": {
+      "top": 1333,
+      "left": 235,
+      "width": 767,
+      "height": 165,
+      "bottom": 1498
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

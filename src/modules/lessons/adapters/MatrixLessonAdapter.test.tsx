@@ -16,7 +16,7 @@ describe("MatrixLessonAdapter", () => {
         />,
       );
       expect(html, String(lesson.id)).toContain(lesson.title);
-      if (lesson.id > 359)
+      if (lesson.id > 360)
         expect(html, String(lesson.id)).toMatch(
           /matrix and linear-algebra lab|eigendirection lab/,
         );
@@ -144,8 +144,17 @@ describe("MatrixLessonAdapter", () => {
     expect(html).toContain('data-eigen="true"');
   });
 
+  it("uses a determinant-based draggable basis model for lesson 360", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 360)!;
+    const html = renderToStaticMarkup(<MatrixLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="matrix-mockup-0545"');
+    expect(html).toContain("draggable-two-vector-basis-determinant-independence-span-dimension-coordinate-solve");
+    expect(html).toContain('data-det="-2"');
+    expect(html).toContain('data-coordinates="[3,1]"');
+  });
+
   it("does not show determinant as the primary result for unrelated concepts", () => {
-    for (const lessonId of [360, 363, 364]) {
+    for (const lessonId of [363, 364]) {
       const lesson = lessonCatalog.find((item) => item.id === lessonId)!;
       const html = renderToStaticMarkup(
         <MatrixLessonAdapter
