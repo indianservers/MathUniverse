@@ -16,11 +16,11 @@ Target references: `0550` through `0562` in `D:\Math App Screenshots for UI Upda
 | 0557 | 372 Euler Form | `EulerFormTargetLesson372` | Draggable polar point with immediate pointer tracking, synchronized radius/angle controls, degree/radian modes, exact rectangular/trigonometric/Euler bridge, unit-circle/trig-bridge/rectangular-check toggles, scale-factor misconception proof, tabs/reset, and a working multiple-choice challenge with wrong/correct/new-challenge states | 916 x 1717; no overflow or console errors | Complete |
 | 0558 | 373 Powers | `PowersTargetLesson373` | Draggable complex base point, synchronized real/imaginary/exponent controls, exact De Moivre power model using unrounded internal radius, live power vectors, radius-growth rings and multiplied-angle arcs, three display toggles, three-step derivation, tabs/reset, typed graded challenge with hint, and misconception reveal | 995 x 1581; no overflow or console errors | Complete |
 | 0559 | 374 Roots | `RootsTargetLesson374` | Draggable nth-root wheel with whole-wheel rotation, synchronized polar target and root-index controls, exact root radius/angle spacing/all-root coordinates, selectable roots with power-back verification, degree/radian modes, equal-spacing/power-check/all-roots toggles, tabs/reset, and working cube-root challenge | 1008 x 1561; no overflow or console errors | Complete |
-| 0560 | 375 Polynomial Roots | Pending | Pending | Pending | Pending |
+| 0560 | 375 Polynomial Roots | `PolynomialRootsTargetLesson375` | Exact quadratic solver with synchronized coefficient steppers/sliders, live parabola and complex-root planes, draggable root that regenerates real coefficients and its conjugate, discriminant classification across negative/zero/positive cases, mirror/discriminant/factor toggles, factor and intercept summaries, tabs/reset, and graded missing-conjugate challenge | 976 x 1612; no overflow or console errors | Complete |
 | 0561 | 376 Mobius Transformations | Pending | Pending | Pending | Pending |
 | 0562 | 377 Complex Functions | Pending | Pending | Pending | Pending |
 
-Completed in this family: **10 / 13**. Pending in this family: **3 / 13**.
+Completed in this family: **11 / 13**. Pending in this family: **2 / 13**.
 
 ## Lesson 365 validation
 
@@ -92,3 +92,10 @@ Completed in this family: **10 / 13**. Pending in this family: **3 / 13**.
 - Current capture: `0559-desktop.png`
 - Machine-readable interaction and layout audit: `0559-dedicated-target-validation.json`
 - The capture harness verifies the four fourth-roots of 16 and target-selected `2i`, conversion to the three cube-roots of 27, rotation by a nonzero target angle, degree/radian mode, all-root visibility, independent root selection, root drag with coherent wheel rotation and recomputed roots, challenge reveal, tabs, shell reset, exact 1008 x 1561 dimensions, and absence of overflow or console errors.
+
+## Lesson 375 validation
+
+- Reference: `0560-reference.png`
+- Current capture: `0560-desktop.png`
+- Machine-readable interaction and layout audit: `0560-dedicated-target-validation.json`
+- The capture harness verifies the target `x^2-2x+5` parabola, vertex `(1,4)`, discriminant `-16`, roots `1+2i` and `1-2i`, transitions to repeated and two-real-root cases, conjugate-mirror visibility, root drag with regenerated real coefficients and paired roots, rejected and accepted conjugate answers, tabs, shell reset, exact 976 x 1612 dimensions, and absence of overflow or console errors.

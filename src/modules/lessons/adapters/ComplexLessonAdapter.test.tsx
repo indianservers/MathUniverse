@@ -16,7 +16,7 @@ describe("ComplexLessonAdapter", () => {
       [372, "Euler Form"],
       [373, "Powers"],
       [374, "Roots"],
-      [375, "Polynomial roots"],
+      [375, "Polynomial Roots"],
       [376, "Mobius transformations"],
       [377, "Complex functions"],
     ]);
@@ -234,5 +234,25 @@ describe("ComplexLessonAdapter", () => {
     expect(html).toContain('data-angle-step="90"');
     expect(html).toContain('data-selected="1"');
     expect(html).toContain('data-roots="[[2,0],[0,2],[-2,0],[0,-2]]"');
+  });
+
+  it("uses a dedicated quadratic and conjugate-root model for lesson 375", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 375)!;
+    const html = renderToStaticMarkup(
+      <ComplexLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="complex-mockup-0560"');
+    expect(html).toContain(
+      "draggable-quadratic-conjugate-root-coefficients-parabola-discriminant-factor-form",
+    );
+    expect(html).toContain('data-coefficients="[1,-2,5]"');
+    expect(html).toContain('data-discriminant="-16"');
+    expect(html).toContain('data-roots="[[1,2],[1,-2]]"');
+    expect(html).toContain('data-vertex="[1,4]"');
+    expect(html).toContain('data-classification="Two non-real roots"');
   });
 });

@@ -1,0 +1,221 @@
+{
+  "mockup": "0560",
+  "lessonId": 375,
+  "checks": {
+    "initial": {
+      "coefficients": "[1,-2,5]",
+      "discriminant": "-16",
+      "roots": "[[1,2],[1,-2]]",
+      "vertex": "[1,4]",
+      "classification": "Two non-real roots",
+      "mirror": "true",
+      "show-discriminant": "true",
+      "show-factors": "true",
+      "answer": "",
+      "grade": "idle",
+      "dragging": "false",
+      "tab": "Interaction + visualization",
+      "actions": "0"
+    },
+    "repeated": {
+      "coefficients": "[1,-2,1]",
+      "discriminant": "0",
+      "roots": "[[1,0],[1,0]]",
+      "vertex": "[1,0]",
+      "classification": "One repeated real root",
+      "mirror": "true",
+      "show-discriminant": "true",
+      "show-factors": "true",
+      "answer": "",
+      "grade": "idle",
+      "dragging": "false",
+      "tab": "Interaction + visualization",
+      "actions": "1"
+    },
+    "real": {
+      "coefficients": "[1,0,-4]",
+      "discriminant": "16",
+      "roots": "[[2,0],[-2,0]]",
+      "vertex": "[0,-4]",
+      "classification": "Two real roots",
+      "mirror": "true",
+      "show-discriminant": "true",
+      "show-factors": "true",
+      "answer": "",
+      "grade": "idle",
+      "dragging": "false",
+      "tab": "Interaction + visualization",
+      "actions": "3"
+    },
+    "hidden": {
+      "coefficients": "[1,-2,5]",
+      "discriminant": "-16",
+      "roots": "[[1,2],[1,-2]]",
+      "vertex": "[1,4]",
+      "classification": "Two non-real roots",
+      "mirror": "false",
+      "show-discriminant": "true",
+      "show-factors": "true",
+      "answer": "",
+      "grade": "idle",
+      "dragging": "false",
+      "tab": "Interaction + visualization",
+      "actions": "2"
+    },
+    "pointerDown": {
+      "coefficients": "[1,-2,5]",
+      "discriminant": "-16",
+      "roots": "[[1,2],[1,-2]]",
+      "vertex": "[1,4]",
+      "classification": "Two non-real roots",
+      "mirror": "true",
+      "show-discriminant": "true",
+      "show-factors": "true",
+      "answer": "",
+      "grade": "idle",
+      "dragging": "true",
+      "tab": "Interaction + visualization",
+      "actions": "3"
+    },
+    "dragged": {
+      "coefficients": "[1,-3.8,12]",
+      "discriminant": "-33.56",
+      "roots": "[[1.9,2.9],[1.9,-2.9]]",
+      "vertex": "[1.9,8.39]",
+      "classification": "Two non-real roots",
+      "mirror": "true",
+      "show-discriminant": "true",
+      "show-factors": "true",
+      "answer": "",
+      "grade": "idle",
+      "dragging": "false",
+      "tab": "Interaction + visualization",
+      "actions": "4"
+    },
+    "incorrect": {
+      "coefficients": "[1,-3.8,12]",
+      "discriminant": "-33.56",
+      "roots": "[[1.9,2.9],[1.9,-2.9]]",
+      "vertex": "[1.9,8.39]",
+      "classification": "Two non-real roots",
+      "mirror": "true",
+      "show-discriminant": "true",
+      "show-factors": "true",
+      "answer": "B",
+      "grade": "incorrect",
+      "dragging": "false",
+      "tab": "Interaction + visualization",
+      "actions": "6"
+    },
+    "correct": {
+      "coefficients": "[1,-3.8,12]",
+      "discriminant": "-33.56",
+      "roots": "[[1.9,2.9],[1.9,-2.9]]",
+      "vertex": "[1.9,8.39]",
+      "classification": "Two non-real roots",
+      "mirror": "true",
+      "show-discriminant": "true",
+      "show-factors": "true",
+      "answer": "A",
+      "grade": "correct",
+      "dragging": "false",
+      "tab": "Interaction + visualization",
+      "actions": "8"
+    },
+    "tabbed": {
+      "coefficients": "[1,-3.8,12]",
+      "discriminant": "-33.56",
+      "roots": "[[1.9,2.9],[1.9,-2.9]]",
+      "vertex": "[1.9,8.39]",
+      "classification": "Two non-real roots",
+      "mirror": "true",
+      "show-discriminant": "true",
+      "show-factors": "true",
+      "answer": "A",
+      "grade": "correct",
+      "dragging": "false",
+      "tab": "Formulas",
+      "actions": "9"
+    },
+    "reset": {
+      "coefficients": "[1,-2,5]",
+      "discriminant": "-16",
+      "roots": "[[1,2],[1,-2]]",
+      "vertex": "[1,4]",
+      "classification": "Two non-real roots",
+      "mirror": "true",
+      "show-discriminant": "true",
+      "show-factors": "true",
+      "answer": "",
+      "grade": "idle",
+      "dragging": "false",
+      "tab": "Interaction + visualization",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 976,
+      "height": 1612
+    },
+    "overflow": false,
+    "hero": {
+      "top": 99,
+      "left": 225,
+      "width": 743,
+      "height": 232,
+      "bottom": 331
+    },
+    "tabs": {
+      "top": 341,
+      "left": 225,
+      "width": 743,
+      "height": 54,
+      "bottom": 395
+    },
+    "explorer": {
+      "top": 407,
+      "left": 225,
+      "width": 743,
+      "height": 608,
+      "bottom": 1015
+    },
+    "main": {
+      "top": 467,
+      "left": 236,
+      "width": 721,
+      "height": 385,
+      "bottom": 852
+    },
+    "results": {
+      "top": 852,
+      "left": 236,
+      "width": 721,
+      "height": 144,
+      "bottom": 996
+    },
+    "learning": {
+      "top": 1027,
+      "left": 225,
+      "width": 743,
+      "height": 263,
+      "bottom": 1290
+    },
+    "challenge": {
+      "top": 1303,
+      "left": 225,
+      "width": 743,
+      "height": 136,
+      "bottom": 1439
+    },
+    "navigation": {
+      "top": 1452,
+      "left": 225,
+      "width": 743,
+      "height": 53,
+      "bottom": 1505
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
