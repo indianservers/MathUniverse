@@ -1,0 +1,335 @@
+.pp383-page .cs378-hero {
+  height: 210px;
+}
+.pp383-page .cs378-actions {
+  display: grid;
+  width: 350px;
+  grid-template-columns: 194px 70px 70px;
+}
+.pp383-page .cs378-actions button:last-child {
+  grid-column: 1;
+}
+.pp383-page .cs378-tabs {
+  height: 39px;
+}
+.pp383-lab {
+  height: 626px;
+  margin-top: 8px;
+  padding: 10px 10px 2px;
+  border: 1px solid #dfe7ee;
+  border-radius: 12px;
+  background: #fff;
+}
+.pp383-lab > header {
+  display: flex;
+  height: 43px;
+  align-items: flex-start;
+  gap: 8px;
+}
+.pp383-lab > header > div {
+  margin-right: auto;
+}
+.pp383-lab > header small {
+  color: #087d9d;
+  font-size: 7px;
+  font-weight: 900;
+}
+.pp383-lab > header h2 {
+  font-size: 13px;
+}
+.pp383-lab > header > strong,
+.pp383-lab > header > span,
+.pp383-lab > header > button {
+  height: 29px;
+  padding: 6px 10px;
+  border: 1px solid #dce4ed;
+  border-radius: 15px;
+  background: #fff;
+}
+.pp383-lab > header > strong {
+  border: 0;
+  color: #148050;
+}
+.pp383-lab > header svg {
+  width: 13px;
+}
+.pp383-main {
+  display: grid;
+  height: 515px;
+  grid-template-columns: minmax(0, 472px) minmax(0, 274px);
+  gap: 10px;
+}
+.pp383-scene {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #dfe7ee;
+  border-radius: 9px;
+  background: #06172b;
+}
+.pp383-canvas {
+  height: 100%;
+}
+.pp383-canvas canvas {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+.pp383-drag {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  color: #fff;
+}
+.pp383-drag small {
+  font-weight: 500;
+}
+.pp383-cube {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  padding: 9px;
+  border: 1px solid #75879a;
+  color: #fff;
+  transform: skewY(-8deg);
+}
+.pp383-side {
+  overflow: hidden;
+}
+.pp383-side > h3 {
+  margin: 3px 0 7px;
+  font-size: 9px;
+}
+.pp383-plane {
+  height: 106px;
+  margin-bottom: 8px;
+  padding: 9px;
+  border: 1px solid #a9d8ee;
+  border-radius: 8px;
+  background: #f1fbff;
+}
+.pp383-plane.purple {
+  border-color: #d0bbed;
+  background: #faf7ff;
+}
+.pp383-plane > div {
+  display: grid;
+  margin-top: 6px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+.pp383-plane label {
+  font-size: 7px;
+}
+.pp383-plane input {
+  display: block;
+  width: 100%;
+  height: 30px;
+  margin-top: 3px;
+  border: 1px solid #dce4ed;
+  border-radius: 6px;
+  text-align: center;
+}
+.pp383-plane p {
+  margin-top: 8px;
+}
+.pp383-choices {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+.pp383-choices button {
+  height: 28px;
+  border: 1px solid #dce4ed;
+  border-radius: 6px;
+  background: #fff;
+}
+.pp383-choices .selected {
+  border-color: #159ab7;
+  background: #effbff;
+  color: #087d9d;
+}
+.pp383-choices .wrong {
+  border-color: #efb8bb;
+  background: #fff7f7;
+  color: #c62e3a;
+}
+.pp383-side > .cs378-toggle {
+  margin-top: 7px;
+}
+.pp383-results {
+  margin-top: 8px;
+  padding: 9px;
+  border: 1px solid #b9dec7;
+  border-radius: 8px;
+  background: #f3fff7;
+}
+.pp383-results h3 {
+  font-size: 9px;
+}
+.pp383-results p {
+  margin-top: 5px;
+}
+.pp383-results strong,
+.pp383-results small {
+  display: block;
+  margin-top: 5px;
+  color: #148050;
+}
+.pp383-summary {
+  display: grid;
+  height: 44px;
+  margin-top: 10px;
+  padding: 0 10px;
+  grid-template-columns: 110px 1fr 240px;
+  align-items: center;
+  border: 1px solid #96d1dd;
+  border-radius: 7px;
+  background: #f1fdff;
+}
+.pp383-summary strong {
+  color: #148050;
+}
+.pp383-learning {
+  display: grid;
+  height: 244px;
+  margin-top: 8px;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 9px;
+}
+.pp383-learning > article {
+  padding: 13px;
+  border: 1px solid #dfe7ee;
+  border-radius: 10px;
+  background: #fff;
+}
+.pp383-learning h2 {
+  color: #1768c8;
+  font-size: 10px;
+}
+.pp383-learning article:nth-child(3) h2 {
+  color: #d15d20;
+}
+.pp383-learning p {
+  margin-top: 9px;
+}
+.pp383-learning article > strong {
+  display: block;
+  margin-top: 8px;
+  padding: 8px;
+  border-radius: 7px;
+  background: #effcf4;
+  color: #148050;
+}
+.pp383-learning article:first-child > strong:nth-of-type(2) {
+  background: #faf7ff;
+  color: #8247df;
+}
+.pp383-learning small {
+  display: block;
+  margin-top: 8px;
+}
+.pp383-bottom {
+  display: grid;
+  height: 184px;
+  margin-top: 8px;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+}
+.pp383-bottom > article {
+  padding: 13px;
+  border: 1px solid #dfe7ee;
+  border-radius: 10px;
+  background: #fff;
+}
+.pp383-bottom h2 {
+  color: #8247df;
+  font-size: 10px;
+}
+.pp383-bottom h2 button {
+  float: right;
+  height: 27px;
+  border: 0;
+  border-radius: 14px;
+  background: #13213f;
+  color: #fff;
+}
+.pp383-bottom p {
+  margin-top: 10px;
+}
+.pp383-bottom article > strong {
+  display: block;
+  margin-top: 9px;
+  padding: 9px;
+  border: 1px solid #a8dec1;
+  border-radius: 7px;
+  background: #effcf4;
+  color: #148050;
+}
+.pp383-bottom article:nth-child(2) {
+  border-color: #efb8bb;
+  background: #fff9f9;
+}
+.pp383-bottom article:nth-child(2) h2 {
+  color: #c62e3a;
+}
+.pp383-bottom article:nth-child(2) p:nth-of-type(2) {
+  padding: 9px;
+  background: #fff0f0;
+}
+.pp383-page .cs378-nav {
+  height: 48px;
+  margin-top: 8px;
+}
+.pp383-page.expanded .pp383-scene {
+  position: fixed;
+  z-index: 100;
+  inset: 10px;
+}
+.pp383-page.expanded .pp383-canvas {
+  height: calc(100vh - 20px);
+}
+body:has(.pp383-page) [data-testid="desktop-sidebar"] {
+  width: 194px !important;
+  flex-basis: 194px !important;
+}
+body:has(.pp383-page) #main-content {
+  padding: 0 17px 0 11px !important;
+}
+body:has(.pp383-page) header.sticky.top-0 {
+  height: 51px !important;
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
+}
+body:has(.pp383-page) footer[aria-label="Site footer"] {
+  height: 74px !important;
+}
+body:has(.pp383-page) footer[aria-label="Site footer"] > div {
+  height: 74px !important;
+}
+@media (max-width: 799px) {
+  body:has(.pp383-page) [data-testid="desktop-sidebar"] {
+    display: none !important;
+  }
+  .pp383-main,
+  .pp383-learning,
+  .pp383-bottom {
+    grid-template-columns: 1fr;
+  }
+  .pp383-lab,
+  .pp383-main,
+  .pp383-learning,
+  .pp383-bottom {
+    height: auto;
+  }
+  .pp383-canvas {
+    height: 515px;
+  }
+  .pp383-summary {
+    grid-template-columns: 1fr;
+    height: auto;
+    padding: 8px;
+  }
+  .pp383-side {
+    overflow: visible;
+  }
+}

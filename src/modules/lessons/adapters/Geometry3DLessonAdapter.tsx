@@ -9,6 +9,7 @@ import PointsTargetLesson379 from "./geometry3d/PointsTargetLesson379";
 import DistanceTargetLesson380 from "./geometry3d/DistanceTargetLesson380";
 import LinesTargetLesson381 from "./geometry3d/LinesTargetLesson381";
 import PlanesTargetLesson382 from "./geometry3d/PlanesTargetLesson382";
+import ParallelPlanesTargetLesson383 from "./geometry3d/ParallelPlanesTargetLesson383";
 
 export default function Geometry3DLessonAdapter(props: LessonAdapterProps) {
   if (props.lesson.id === 378)
@@ -17,6 +18,8 @@ export default function Geometry3DLessonAdapter(props: LessonAdapterProps) {
   if (props.lesson.id === 380) return <DistanceTargetLesson380 {...props} />;
   if (props.lesson.id === 381) return <LinesTargetLesson381 {...props} />;
   if (props.lesson.id === 382) return <PlanesTargetLesson382 {...props} />;
+  if (props.lesson.id === 383)
+    return <ParallelPlanesTargetLesson383 {...props} />;
   if (props.lesson.preset.id === "geometry3d.solid-net") {
     return (
       <AdapterFrame

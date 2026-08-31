@@ -11,7 +11,7 @@ describe("Geometry3DLessonAdapter", () => {
       [380, "Distance in 3D"],
       [381, "Lines in 3D"],
       [382, "Planes"],
-      [383, "Parallel and perpendicular planes"],
+      [383, "Parallel and Perpendicular Planes"],
       [384, "Line-plane intersection"],
       [385, "Plane-plane intersection"],
       [386, "Angle between lines"],
@@ -72,7 +72,7 @@ describe("Geometry3DLessonAdapter", () => {
       );
       expect(html, String(lessonId)).toContain(snippet.replace(/'/g, "&#x27;"));
       if (
-        ![378, 379, 380, 381, 382].includes(lessonId) &&
+        ![378, 379, 380, 381, 382, 383].includes(lessonId) &&
         lesson.preset.id !== "geometry3d.solid-net"
       ) {
         expect(html, String(lessonId)).toContain(
@@ -200,5 +200,26 @@ describe("Geometry3DLessonAdapter", () => {
     expect(html).toContain('data-normal="[2,3,1]"');
     expect(html).toContain('data-test-value="6"');
     expect(html).toContain('data-passes="true"');
+  });
+
+  it("uses a dedicated two-plane relationship model for lesson 383", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 383)!;
+    const html = renderToStaticMarkup(
+      <Geometry3DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="geometry3d-mockup-0568"');
+    expect(html).toContain(
+      "threejs-two-editable-planes-normal-relation-cross-dot-scalar-multiple-separation-classification-orbit-challenge",
+    );
+    expect(html).toContain('data-plane-a="[1,2,2,6]"');
+    expect(html).toContain('data-plane-b="[2,4,4,10]"');
+    expect(html).toContain('data-dot="18"');
+    expect(html).toContain('data-relation="Parallel"');
+    expect(html).toContain('data-separation="0.33"');
+    expect(html).toContain('data-scalar="2"');
   });
 });

@@ -11,10 +11,10 @@ Target references begin at `0563` in `D:\Math App Screenshots for UI Update\Upda
 | 0565 | 380 Distance in 3D | `DistanceTargetLesson380` | React Three Fiber two-point distance model with independently editable and directly draggable A/B points, per-point reset, live Δx/Δy/Δz and squared-distance calculations, distance segment, rectangular component box, component-step arrows, three display toggles, orbit/zoom, camera reset/fullscreen, tabs/reset, and target formula/worked/practice derivations | 1003 x 1568 desktop plus 390 x 844 mobile viewport; nonblank 478 x 498 WebGL canvas; no overflow or application console errors | Complete |
 | 0566 | 381 Lines in 3D | `LinesTargetLesson381` | React Three Fiber parametric-line model with editable anchor and direction vectors, live t range/numeric control, calculated selected and t=-1 points, sample-point layer, direction-step layer, equation layer, orbit/zoom and camera reset/fullscreen, tabs/reset, and interactive challenge-solution disclosure | 1002 x 1569 desktop plus 390 x 844 mobile viewport; nonblank 467 x 544 WebGL canvas; no overflow or application console errors | Complete |
 | 0567 | 382 Planes | `PlanesTargetLesson382` | React Three Fiber plane-equation model with editable A/B/C/D coefficients, live intercept triangle, normal vector, test-point substitution and pass/fail state, equation/intercept construction modes, four display layers, orbit/zoom/pan and camera reset/fullscreen, tabs/reset, and graded normal-vector challenge with solution disclosure | 963 x 1633 desktop plus 390 x 844 mobile viewport; nonblank 459 x 476 WebGL canvas; no overflow or application console errors | Complete |
-| 0568 | 383 Parallel and Perpendicular Planes | Pending | Pending | Pending | Pending |
+| 0568 | 383 Parallel and Perpendicular Planes | `ParallelPlanesTargetLesson383` | React Three Fiber two-plane comparator with eight editable coefficients, automatic parallel/perpendicular/neither classification, scalar-multiple and dot-product calculations, exact parallel-plane separation, three classification controls with correctness state, normal/separation/dot visibility layers, comparison-spaced default scene, real nonparallel orientations, orbit/zoom, fullscreen/tabs/reset, and interactive challenge validation | 1006 x 1564 desktop plus 390 x 844 mobile viewport; nonblank 470 x 513 WebGL canvas; no overflow or application console errors | Complete |
 | 0569 | 384 Line-Plane Intersection | Pending | Pending | Pending | Pending |
 
-Completed in this family: **5 / 50**. Pending in this family: **45 / 50**.
+Completed in this family: **6 / 50**. Pending in this family: **44 / 50**.
 
 ## Lesson 378 validation
 
@@ -59,3 +59,12 @@ Completed in this family: **5 / 50**. Pending in this family: **45 / 50**.
 - Canvas-only capture: `0567-canvas.png`
 - Machine-readable interaction and layout audit: `0567-dedicated-target-validation.json`
 - The capture harness verifies 2x+3y+z=6, intercepts (3,0,0)/(0,2,0)/(0,0,6), normal (2,3,1), and the passing test point P=(1,1,1); mutates the model to x+2y+2z=8 and proves intercepts (8,0,0)/(0,4,0)/(0,0,4), normal (1,2,2), and a failing test-point substitution; exercises all four display layers, both construction modes, incorrect/correct challenge outcomes and solution disclosure; checks physical orbit pixel changes and a nonblank canvas; verifies fullscreen, tabs, shell reset, exact 963 x 1633 dimensions, an overflow-free mobile canvas, and absence of application console errors.
+
+## Lesson 383 validation
+
+- Reference: `0568-reference.png`
+- Current capture: `0568-desktop.png`
+- Mobile capture: `0568-mobile.png`
+- Canvas-only capture: `0568-canvas.png`
+- Machine-readable interaction and layout audit: `0568-dedicated-target-validation.json`
+- The capture harness verifies the default planes n₁=(1,2,2), n₂=(2,4,4), n₂=2n₁, dot product 18, parallel classification, and exact separation 0.33; mutates Plane B to (2,-1,0,1) and proves a perpendicular dot product of 0, then to (1,1,0,1) and proves the neither case; exercises correct classification choices, all three display layers, both challenge states, physical orbit pixel changes, fullscreen, tabs, and shell reset; verifies exact 1006 x 1564 dimensions, a nonblank overflow-free 390 px mobile rendering, and absence of application console errors.
