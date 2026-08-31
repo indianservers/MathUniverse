@@ -12,7 +12,7 @@ describe("ComplexLessonAdapter", () => {
       [368, "Complex Multiplication"],
       [369, "Complex Conjugate"],
       [370, "Modulus and Argument"],
-      [371, "Polar form"],
+      [371, "Polar Form"],
       [372, "Euler form"],
       [373, "Complex powers"],
       [374, "Complex roots"],
@@ -148,5 +148,26 @@ describe("ComplexLessonAdapter", () => {
     expect(html).toContain('data-modulus="5"');
     expect(html).toContain('data-argument="53.13"');
     expect(html).toContain('data-quadrant="Quadrant I"');
+  });
+
+  it("uses a dedicated rectangular-to-polar converter for lesson 371", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 371)!;
+    const html = renderToStaticMarkup(
+      <ComplexLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="complex-mockup-0556"');
+    expect(html).toContain(
+      "draggable-rectangular-point-live-polar-conversion-modulus-argument-degree-radian-pipeline",
+    );
+    expect(html).toContain('data-z="[3,4]"');
+    expect(html).toContain('data-radius="5"');
+    expect(html).toContain('data-degrees="53.13"');
+    expect(html).toContain('data-radians="0.927"');
+    expect(html).toContain('data-unit="degrees"');
+    expect(html).toContain('data-quadrant="I"');
   });
 });

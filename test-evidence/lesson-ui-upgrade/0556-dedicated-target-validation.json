@@ -1,0 +1,206 @@
+{
+  "mockup": "0556",
+  "lessonId": 371,
+  "checks": {
+    "initial": {
+      "z": "[3,4]",
+      "radius": "5",
+      "degrees": "53.13",
+      "radians": "0.927",
+      "unit": "degrees",
+      "quadrant": "I",
+      "triangle": "true",
+      "ring": "true",
+      "steps": "true",
+      "tab": "Interaction + visualization",
+      "challenge": "false",
+      "checks": "[true,false,true,true]",
+      "actions": "0"
+    },
+    "quadrant2": {
+      "z": "[-3,4]",
+      "radius": "5",
+      "degrees": "126.87",
+      "radians": "2.214",
+      "unit": "degrees",
+      "quadrant": "II",
+      "triangle": "true",
+      "ring": "true",
+      "steps": "true",
+      "tab": "Interaction + visualization",
+      "challenge": "false",
+      "checks": "[true,false,true,true]",
+      "actions": "1"
+    },
+    "radians": {
+      "z": "[-3,4]",
+      "radius": "5",
+      "degrees": "126.87",
+      "radians": "2.214",
+      "unit": "radians",
+      "quadrant": "II",
+      "triangle": "true",
+      "ring": "true",
+      "steps": "true",
+      "tab": "Interaction + visualization",
+      "challenge": "false",
+      "checks": "[true,false,true,true]",
+      "actions": "2"
+    },
+    "stepsHidden": {
+      "z": "[-3,4]",
+      "radius": "5",
+      "degrees": "126.87",
+      "radians": "2.214",
+      "unit": "radians",
+      "quadrant": "II",
+      "triangle": "true",
+      "ring": "true",
+      "steps": "false",
+      "tab": "Interaction + visualization",
+      "challenge": "false",
+      "checks": "[true,false,true,true]",
+      "actions": "3"
+    },
+    "dragged": {
+      "z": "[-0.9,4.9]",
+      "radius": "4.98",
+      "degrees": "100.41",
+      "radians": "1.752",
+      "unit": "radians",
+      "quadrant": "II",
+      "triangle": "true",
+      "ring": "true",
+      "steps": "true",
+      "tab": "Interaction + visualization",
+      "challenge": "false",
+      "checks": "[true,false,true,true]",
+      "actions": "5"
+    },
+    "challenge": {
+      "z": "[-0.9,4.9]",
+      "radius": "4.98",
+      "degrees": "100.41",
+      "radians": "1.752",
+      "unit": "radians",
+      "quadrant": "II",
+      "triangle": "true",
+      "ring": "true",
+      "steps": "true",
+      "tab": "Interaction + visualization",
+      "challenge": "true",
+      "checks": "[true,false,true,true]",
+      "actions": "6"
+    },
+    "understanding": {
+      "z": "[-0.9,4.9]",
+      "radius": "4.98",
+      "degrees": "100.41",
+      "radians": "1.752",
+      "unit": "radians",
+      "quadrant": "II",
+      "triangle": "true",
+      "ring": "true",
+      "steps": "true",
+      "tab": "Interaction + visualization",
+      "challenge": "true",
+      "checks": "[true,true,true,true]",
+      "actions": "7"
+    },
+    "tabbed": {
+      "z": "[-0.9,4.9]",
+      "radius": "4.98",
+      "degrees": "100.41",
+      "radians": "1.752",
+      "unit": "radians",
+      "quadrant": "II",
+      "triangle": "true",
+      "ring": "true",
+      "steps": "true",
+      "tab": "Formulas",
+      "challenge": "true",
+      "checks": "[true,true,true,true]",
+      "actions": "8"
+    },
+    "reset": {
+      "z": "[3,4]",
+      "radius": "5",
+      "degrees": "53.13",
+      "radians": "0.927",
+      "unit": "degrees",
+      "quadrant": "I",
+      "triangle": "true",
+      "ring": "true",
+      "steps": "true",
+      "tab": "Interaction + visualization",
+      "challenge": "false",
+      "checks": "[true,false,true,true]",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1003,
+      "height": 1568
+    },
+    "overflow": false,
+    "hero": {
+      "top": 99,
+      "left": 220,
+      "width": 774,
+      "height": 196,
+      "bottom": 295
+    },
+    "tabs": {
+      "top": 306,
+      "left": 220,
+      "width": 774,
+      "height": 52,
+      "bottom": 358
+    },
+    "work": {
+      "top": 367,
+      "left": 220,
+      "width": 774,
+      "height": 578,
+      "bottom": 945
+    },
+    "converter": {
+      "top": 367,
+      "left": 220,
+      "width": 526,
+      "height": 578,
+      "bottom": 945
+    },
+    "side": {
+      "top": 367,
+      "left": 757,
+      "width": 237,
+      "height": 578,
+      "bottom": 945
+    },
+    "learning": {
+      "top": 956,
+      "left": 220,
+      "width": 774,
+      "height": 239,
+      "bottom": 1195
+    },
+    "lower": {
+      "top": 1205,
+      "left": 220,
+      "width": 774,
+      "height": 206,
+      "bottom": 1411
+    },
+    "navigation": {
+      "top": 1421,
+      "left": 220,
+      "width": 774,
+      "height": 53,
+      "bottom": 1474
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
