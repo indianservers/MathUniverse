@@ -11,7 +11,7 @@ describe("ComplexLessonAdapter", () => {
       [367, "Complex Addition"],
       [368, "Complex Multiplication"],
       [369, "Complex Conjugate"],
-      [370, "Modulus and argument"],
+      [370, "Modulus and Argument"],
       [371, "Polar form"],
       [372, "Euler form"],
       [373, "Complex powers"],
@@ -129,5 +129,24 @@ describe("ComplexLessonAdapter", () => {
     expect(html).toContain('data-z="[2,1]"');
     expect(html).toContain('data-conjugate="[2,-1]"');
     expect(html).toContain('data-product="5"');
+  });
+
+  it("uses a dedicated polar measurement model for lesson 370", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 370)!;
+    const html = renderToStaticMarkup(
+      <ComplexLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="complex-mockup-0555"');
+    expect(html).toContain(
+      "draggable-complex-point-live-modulus-principal-argument-quadrant-radius-ring",
+    );
+    expect(html).toContain('data-z="[3,4]"');
+    expect(html).toContain('data-modulus="5"');
+    expect(html).toContain('data-argument="53.13"');
+    expect(html).toContain('data-quadrant="Quadrant I"');
   });
 });

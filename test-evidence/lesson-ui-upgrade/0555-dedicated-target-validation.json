@@ -1,0 +1,167 @@
+{
+  "mockup": "0555",
+  "lessonId": 370,
+  "checks": {
+    "initial": {
+      "z": "[3,4]",
+      "modulus": "5",
+      "argument": "53.13",
+      "quadrant": "Quadrant I",
+      "ring": "true",
+      "triangle": "true",
+      "principal": "true",
+      "tab": "Interaction + visualization",
+      "challenge": "false",
+      "actions": "0"
+    },
+    "quadrant2": {
+      "z": "[-3,4]",
+      "modulus": "5",
+      "argument": "126.87",
+      "quadrant": "Quadrant II",
+      "ring": "true",
+      "triangle": "true",
+      "principal": "true",
+      "tab": "Interaction + visualization",
+      "challenge": "false",
+      "actions": "1"
+    },
+    "quadrant3": {
+      "z": "[-3,-4]",
+      "modulus": "5",
+      "argument": "-126.87",
+      "quadrant": "Quadrant III",
+      "ring": "true",
+      "triangle": "true",
+      "principal": "true",
+      "tab": "Interaction + visualization",
+      "challenge": "false",
+      "actions": "2"
+    },
+    "hidden": {
+      "z": "[-3,-4]",
+      "modulus": "5",
+      "argument": "-126.87",
+      "quadrant": "Quadrant III",
+      "ring": "false",
+      "triangle": "true",
+      "principal": "true",
+      "tab": "Interaction + visualization",
+      "challenge": "false",
+      "actions": "3"
+    },
+    "dragged": {
+      "z": "[-1.42,-2.51]",
+      "modulus": "2.88",
+      "argument": "-119.5",
+      "quadrant": "Quadrant III",
+      "ring": "true",
+      "triangle": "true",
+      "principal": "true",
+      "tab": "Interaction + visualization",
+      "challenge": "false",
+      "actions": "5"
+    },
+    "challenge": {
+      "z": "[-1.42,-2.51]",
+      "modulus": "2.88",
+      "argument": "-119.5",
+      "quadrant": "Quadrant III",
+      "ring": "true",
+      "triangle": "true",
+      "principal": "true",
+      "tab": "Interaction + visualization",
+      "challenge": "true",
+      "actions": "6"
+    },
+    "tabbed": {
+      "z": "[-1.42,-2.51]",
+      "modulus": "2.88",
+      "argument": "-119.5",
+      "quadrant": "Quadrant III",
+      "ring": "true",
+      "triangle": "true",
+      "principal": "true",
+      "tab": "Formulas",
+      "challenge": "true",
+      "actions": "7"
+    },
+    "reset": {
+      "z": "[3,4]",
+      "modulus": "5",
+      "argument": "53.13",
+      "quadrant": "Quadrant I",
+      "ring": "true",
+      "triangle": "true",
+      "principal": "true",
+      "tab": "Interaction + visualization",
+      "challenge": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "overflow": false,
+    "hero": {
+      "top": 99,
+      "left": 236,
+      "width": 768,
+      "height": 244,
+      "bottom": 343
+    },
+    "tabs": {
+      "top": 343,
+      "left": 236,
+      "width": 768,
+      "height": 50,
+      "bottom": 393
+    },
+    "work": {
+      "top": 407,
+      "left": 236,
+      "width": 768,
+      "height": 631,
+      "bottom": 1038
+    },
+    "plane": {
+      "top": 407,
+      "left": 236,
+      "width": 506,
+      "height": 640,
+      "bottom": 1047
+    },
+    "side": {
+      "top": 407,
+      "left": 750,
+      "width": 254,
+      "height": 640,
+      "bottom": 1047
+    },
+    "learning": {
+      "top": 1055,
+      "left": 236,
+      "width": 768,
+      "height": 214,
+      "bottom": 1269
+    },
+    "practice": {
+      "top": 1280,
+      "left": 236,
+      "width": 768,
+      "height": 90,
+      "bottom": 1370
+    },
+    "navigation": {
+      "top": 1383,
+      "left": 236,
+      "width": 768,
+      "height": 53,
+      "bottom": 1436
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

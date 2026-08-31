@@ -15,6 +15,7 @@ import RealImaginaryTargetLesson366 from "./complex/RealImaginaryTargetLesson366
 import ComplexAdditionTargetLesson367 from "./complex/ComplexAdditionTargetLesson367";
 import ComplexMultiplicationTargetLesson368 from "./complex/ComplexMultiplicationTargetLesson368";
 import ComplexConjugateTargetLesson369 from "./complex/ComplexConjugateTargetLesson369";
+import ModulusArgumentTargetLesson370 from "./complex/ModulusArgumentTargetLesson370";
 
 const sx = (x: number) => 300 + x * 46;
 const sy = (y: number) => 180 - y * 46;
@@ -120,6 +121,8 @@ export default function ComplexLessonAdapter(props: LessonAdapterProps) {
     return <ComplexMultiplicationTargetLesson368 {...props} />;
   if (props.lesson.id === 369)
     return <ComplexConjugateTargetLesson369 {...props} />;
+  if (props.lesson.id === 370)
+    return <ModulusArgumentTargetLesson370 {...props} />;
   return <GenericComplexLessonAdapter {...props} />;
 }
 
