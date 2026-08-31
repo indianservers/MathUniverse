@@ -15,7 +15,7 @@ describe("ComplexLessonAdapter", () => {
       [371, "Polar Form"],
       [372, "Euler Form"],
       [373, "Powers"],
-      [374, "Complex roots"],
+      [374, "Roots"],
       [375, "Polynomial roots"],
       [376, "Mobius transformations"],
       [377, "Complex functions"],
@@ -212,5 +212,27 @@ describe("ComplexLessonAdapter", () => {
     expect(html).toContain('data-result-radius="2.828"');
     expect(html).toContain('data-result-theta="135"');
     expect(html).toContain('data-result="[-2,2]"');
+  });
+
+  it("uses a dedicated nth-root wheel model for lesson 374", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 374)!;
+    const html = renderToStaticMarkup(
+      <ComplexLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="complex-mockup-0559"');
+    expect(html).toContain(
+      "draggable-nth-root-wheel-polar-target-root-radius-equal-angle-spacing-selectable-power-check",
+    );
+    expect(html).toContain('data-target-radius="16"');
+    expect(html).toContain('data-target-angle="0"');
+    expect(html).toContain('data-index="4"');
+    expect(html).toContain('data-root-radius="2"');
+    expect(html).toContain('data-angle-step="90"');
+    expect(html).toContain('data-selected="1"');
+    expect(html).toContain('data-roots="[[2,0],[0,2],[-2,0],[0,-2]]"');
   });
 });

@@ -15,12 +15,12 @@ Target references: `0550` through `0562` in `D:\Math App Screenshots for UI Upda
 | 0556 | 371 Polar Form | `PolarFormTargetLesson371` | Draggable rectangular point, synchronized numeric/range controls, exact radius/argument/quadrant conversion, degree/radian modes, live rectangular-to-measure-to-polar pipeline, triangle/radius-ring/conversion-step toggles, tabs/reset, working challenge, and selectable understanding check | 1003 x 1568; no overflow or console errors | Complete |
 | 0557 | 372 Euler Form | `EulerFormTargetLesson372` | Draggable polar point with immediate pointer tracking, synchronized radius/angle controls, degree/radian modes, exact rectangular/trigonometric/Euler bridge, unit-circle/trig-bridge/rectangular-check toggles, scale-factor misconception proof, tabs/reset, and a working multiple-choice challenge with wrong/correct/new-challenge states | 916 x 1717; no overflow or console errors | Complete |
 | 0558 | 373 Powers | `PowersTargetLesson373` | Draggable complex base point, synchronized real/imaginary/exponent controls, exact De Moivre power model using unrounded internal radius, live power vectors, radius-growth rings and multiplied-angle arcs, three display toggles, three-step derivation, tabs/reset, typed graded challenge with hint, and misconception reveal | 995 x 1581; no overflow or console errors | Complete |
-| 0559 | 374 Roots | Pending | Pending | Pending | Pending |
+| 0559 | 374 Roots | `RootsTargetLesson374` | Draggable nth-root wheel with whole-wheel rotation, synchronized polar target and root-index controls, exact root radius/angle spacing/all-root coordinates, selectable roots with power-back verification, degree/radian modes, equal-spacing/power-check/all-roots toggles, tabs/reset, and working cube-root challenge | 1008 x 1561; no overflow or console errors | Complete |
 | 0560 | 375 Polynomial Roots | Pending | Pending | Pending | Pending |
 | 0561 | 376 Mobius Transformations | Pending | Pending | Pending | Pending |
 | 0562 | 377 Complex Functions | Pending | Pending | Pending | Pending |
 
-Completed in this family: **9 / 13**. Pending in this family: **4 / 13**.
+Completed in this family: **10 / 13**. Pending in this family: **3 / 13**.
 
 ## Lesson 365 validation
 
@@ -85,3 +85,10 @@ Completed in this family: **9 / 13**. Pending in this family: **4 / 13**.
 - Current capture: `0558-desktop.png`
 - Machine-readable interaction and layout audit: `0558-dedicated-target-validation.json`
 - The capture harness verifies the exact `(1+i)^3=-2+2i` initial result, unrounded `sqrt(2)^3=2sqrt(2)` radius calculation, edits to `(2+i)^2=3+4i`, radius-growth visibility, pointer drag with a recomputed power, rejected and accepted typed challenge answers, hint and misconception reveals, tabs, shell reset, exact 995 x 1581 dimensions, and absence of overflow or console errors.
+
+## Lesson 374 validation
+
+- Reference: `0559-reference.png`
+- Current capture: `0559-desktop.png`
+- Machine-readable interaction and layout audit: `0559-dedicated-target-validation.json`
+- The capture harness verifies the four fourth-roots of 16 and target-selected `2i`, conversion to the three cube-roots of 27, rotation by a nonzero target angle, degree/radian mode, all-root visibility, independent root selection, root drag with coherent wheel rotation and recomputed roots, challenge reveal, tabs, shell reset, exact 1008 x 1561 dimensions, and absence of overflow or console errors.
