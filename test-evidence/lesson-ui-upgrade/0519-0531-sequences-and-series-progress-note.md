@@ -1,22 +1,22 @@
 # Sequences and Series target batch 0519-0531
 
-Dedicated rebuild target: **8 of 13 lessons completed; 5 pending.**
+Dedicated rebuild target: **9 of 13 lessons completed; 4 pending.**
 
-| Mockup | Lesson                          | Dedicated object model                                                                                                                                                     | Status                                      |
-| ------ | ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
-| 0519   | 334 Sequence Generator          | `editable-polynomial-parser-explicit-recursive-range-generator-differences-ratios-cumulative-sums-pattern-detector-draggable-constant-export-practice`                     | Reworked individually and browser-validated |
-| 0520   | 335 Arithmetic Sequences        | `constant-difference-number-line-stepper-autoplay-term-table-draggable-index-graph-explicit-recursive-bidirectional-nth-term-solver-guided-practice`                       | Reworked individually and browser-validated |
-| 0521   | 336 Geometric Sequences         | `constant-ratio-multiplicative-step-chain-term-table-linear-log-plot-draggable-ratio-explicit-recursive-growth-classifier-three-mode-inverse-solver-practice`              | Reworked individually and browser-validated |
-| 0522   | 337 Recursive Sequences         | `editable-affine-logistic-recurrence-parser-presets-initial-condition-dependency-chain-memoized-table-cobweb-draggable-seed-time-series-fixed-point-error-export-practice` | Reworked individually and browser-validated |
-| 0523   | 338 Fibonacci Sequence          | `two-positive-integer-seeds-pairwise-recurrence-auto-build-speed-generated-term-list-fibonacci-square-spiral-draggable-seed-ratio-phi-convergence-binet-practice`          | Reworked individually and browser-validated |
-| 0524   | 339 Sigma Notation              | `polynomial-summand-parser-editable-bounds-presets-finite-nested-sum-term-expansion-partial-accumulator-animation-draggable-index-stem-index-substitution-copy-practice`   | Reworked individually and browser-validated |
-| 0525   | 340 Arithmetic Series           | `arithmetic-progression-first-difference-count-generated-terms-partial-sums-paired-ends-draggable-line-endpoints-finite-sum-proof-trapezoid-area-practice`                 | Reworked individually and browser-validated |
-| 0526   | 341 Geometric Series            | `geometric-first-ratio-count-finite-terms-partial-sums-infinite-convergence-draggable-term-bars-limit-line-formula-verification-multi-challenge-practice`                  | Reworked individually and browser-validated |
-| 0527   | 342 Convergence and Divergence  | Pending                                                                                                                                                                    | Pending                                     |
-| 0528   | 343 Power Series                | Pending                                                                                                                                                                    | Pending                                     |
-| 0529   | 344 Taylor and Maclaurin Series | Pending                                                                                                                                                                    | Pending                                     |
-| 0530   | 345 Binomial Series             | Pending                                                                                                                                                                    | Pending                                     |
-| 0531   | 346 Recurrence Modelling        | Pending                                                                                                                                                                    | Pending                                     |
+| Mockup | Lesson                          | Dedicated object model                                                                                                                                                                           | Status                                      |
+| ------ | ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------- |
+| 0519   | 334 Sequence Generator          | `editable-polynomial-parser-explicit-recursive-range-generator-differences-ratios-cumulative-sums-pattern-detector-draggable-constant-export-practice`                                           | Reworked individually and browser-validated |
+| 0520   | 335 Arithmetic Sequences        | `constant-difference-number-line-stepper-autoplay-term-table-draggable-index-graph-explicit-recursive-bidirectional-nth-term-solver-guided-practice`                                             | Reworked individually and browser-validated |
+| 0521   | 336 Geometric Sequences         | `constant-ratio-multiplicative-step-chain-term-table-linear-log-plot-draggable-ratio-explicit-recursive-growth-classifier-three-mode-inverse-solver-practice`                                    | Reworked individually and browser-validated |
+| 0522   | 337 Recursive Sequences         | `editable-affine-logistic-recurrence-parser-presets-initial-condition-dependency-chain-memoized-table-cobweb-draggable-seed-time-series-fixed-point-error-export-practice`                       | Reworked individually and browser-validated |
+| 0523   | 338 Fibonacci Sequence          | `two-positive-integer-seeds-pairwise-recurrence-auto-build-speed-generated-term-list-fibonacci-square-spiral-draggable-seed-ratio-phi-convergence-binet-practice`                                | Reworked individually and browser-validated |
+| 0524   | 339 Sigma Notation              | `polynomial-summand-parser-editable-bounds-presets-finite-nested-sum-term-expansion-partial-accumulator-animation-draggable-index-stem-index-substitution-copy-practice`                         | Reworked individually and browser-validated |
+| 0525   | 340 Arithmetic Series           | `arithmetic-progression-first-difference-count-generated-terms-partial-sums-paired-ends-draggable-line-endpoints-finite-sum-proof-trapezoid-area-practice`                                       | Reworked individually and browser-validated |
+| 0526   | 341 Geometric Series            | `geometric-first-ratio-count-finite-terms-partial-sums-infinite-convergence-draggable-term-bars-limit-line-formula-verification-multi-challenge-practice`                                        | Reworked individually and browser-validated |
+| 0527   | 342 Convergence and Divergence  | `five-series-models-generated-terms-partial-sums-draggable-analysis-point-tolerance-band-nth-term-test-ratio-test-classification-counterexample-comparison-worked-proof-multi-question-practice` | Reworked individually and browser-validated |
+| 0528   | 343 Power Series                | Pending                                                                                                                                                                                          | Pending                                     |
+| 0529   | 344 Taylor and Maclaurin Series | Pending                                                                                                                                                                                          | Pending                                     |
+| 0530   | 345 Binomial Series             | Pending                                                                                                                                                                                          | Pending                                     |
+| 0531   | 346 Recurrence Modelling        | Pending                                                                                                                                                                                          | Pending                                     |
 
 ## Lesson 334 / Mockup 0519 - Sequence Generator
 
@@ -139,3 +139,17 @@ Evidence:
 - `0526-reference.png`
 - `0526-desktop.png`
 - `0526-dedicated-target-validation.json`
+
+## Lesson 342 / Mockup 0527 - Convergence and Divergence
+
+Reworked individually as a five-model convergence-analysis surface. Geometric, p-series, alternating, factorial, and custom shifted-power modes each generate their own terms, partial sums, approximate or exact sum, nth-term limit, ratio-test limit, absolute/conditional status, and final classification. The tolerance slider controls the real limit band. The last partial-sum point is a pointer-captured handle that adjusts the active model parameter and recomputes the full analysis. The divergent comparison selector switches between growing and oscillating geometric counterexamples.
+
+Browser validation confirms the initial geometric series has sum 8 and converges absolutely. Setting `r=1.2` produces a divergent classification and ratio-test limit 1.2. The p-series converges for `p=2` and diverges for `p=0.8`; the alternating model with `p=0.8` converges conditionally; the factorial model reports ratio limit 0 and sum `e-1 = 1.718282`; and custom `2/(n+1)^2` converges. A captured plot drag changes the geometric ratio, tolerance changes to 0.1, the counterexample selector changes the comparison model, both quick-check questions reject and accept the appropriate answers, Formulas activates, and shell Reset restores the initial model and zero actions.
+
+Final exact 786x2001 validation matches the target stack: hero y=93-261, lesson tabs through y=311, objective through y=423, series definition through y=703, partial-sum analysis through y=1032, tests and classification through y=1377, worked proof through y=1689, assessment through y=1847, adjacent lessons through y=1913, and footer ending at y=2001. The dedicated surface has no horizontal overflow and emits no console warnings or errors.
+
+Evidence:
+
+- `0527-reference.png`
+- `0527-desktop.png`
+- `0527-dedicated-target-validation.json`

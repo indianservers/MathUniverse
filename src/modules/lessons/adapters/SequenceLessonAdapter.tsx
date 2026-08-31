@@ -8,6 +8,7 @@ import FibonacciSequenceTargetLesson338 from "./sequence/FibonacciSequenceTarget
 import SigmaNotationTargetLesson339 from "./sequence/SigmaNotationTargetLesson339";
 import ArithmeticSeriesTargetLesson340 from "./sequence/ArithmeticSeriesTargetLesson340";
 import GeometricSeriesTargetLesson341 from "./sequence/GeometricSeriesTargetLesson341";
+import ConvergenceDivergenceTargetLesson342 from "./sequence/ConvergenceDivergenceTargetLesson342";
 import { SequenceConceptActivity } from "./sequence/SequenceConceptActivity";
 import SequenceGeneratorTargetLesson334 from "./sequence/SequenceGeneratorTargetLesson334";
 
@@ -28,6 +29,8 @@ export default function SequenceLessonAdapter(props: LessonAdapterProps) {
     return <ArithmeticSeriesTargetLesson340 {...props} />;
   if (props.lesson.id === 341)
     return <GeometricSeriesTargetLesson341 {...props} />;
+  if (props.lesson.id === 342)
+    return <ConvergenceDivergenceTargetLesson342 {...props} />;
   const mode = sequenceLessonPreset(props.lesson.id).mode;
   return (
     <AdapterFrame

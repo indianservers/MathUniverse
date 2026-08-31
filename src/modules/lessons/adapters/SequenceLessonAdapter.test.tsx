@@ -18,7 +18,7 @@ describe("SequenceLessonAdapter", () => {
         />,
       );
       expect(html, String(lesson.id)).toContain(lesson.title);
-      if (lesson.id >= 334 && lesson.id <= 341) {
+      if (lesson.id >= 334 && lesson.id <= 342) {
         expect(html, String(lesson.id)).toContain(
           `data-testid="sequence-mockup-0${lesson.id + 185}"`,
         );
@@ -54,7 +54,7 @@ describe("SequenceLessonAdapter", () => {
     }
   });
 
-  it("renders strengthened sequence lessons 334 through 341 with dedicated models", () => {
+  it("renders strengthened sequence lessons 334 through 342 with dedicated models", () => {
     const expected = new Map([
       [334, ["Sequence Generator", "sequence-mockup-0519"]],
       [335, ["Arithmetic Sequences", "sequence-mockup-0520"]],
@@ -64,6 +64,7 @@ describe("SequenceLessonAdapter", () => {
       [339, ["Sigma Notation", "sequence-mockup-0524"]],
       [340, ["Arithmetic Series", "sequence-mockup-0525"]],
       [341, ["Geometric Series", "sequence-mockup-0526"]],
+      [342, ["Convergence and Divergence", "sequence-mockup-0527"]],
     ]);
 
     for (const [lessonId, [title, testId]] of expected) {
