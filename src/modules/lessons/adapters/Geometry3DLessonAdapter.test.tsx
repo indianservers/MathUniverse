@@ -16,7 +16,7 @@ describe("Geometry3DLessonAdapter", () => {
       [385, "Plane–Plane Intersection"],
       [386, "Angle Between Lines"],
       [387, "Angle Between Planes"],
-      [388, "Angle between line and plane"],
+      [388, "Angle Between Line and Plane"],
       [389, "Point-to-plane distance"],
       [390, "3D vectors"],
       [391, "Cube"],
@@ -72,7 +72,7 @@ describe("Geometry3DLessonAdapter", () => {
       );
       expect(html, String(lessonId)).toContain(snippet.replace(/'/g, "&#x27;"));
       if (
-        ![378, 379, 380, 381, 382, 383, 384, 385, 386, 387].includes(
+        ![378, 379, 380, 381, 382, 383, 384, 385, 386, 387, 388].includes(
           lessonId,
         ) &&
         lesson.preset.id !== "geometry3d.solid-net"
@@ -315,5 +315,30 @@ describe("Geometry3DLessonAdapter", () => {
     expect(html).toContain('data-cosine="0.7071"');
     expect(html).toContain('data-angle="45"');
     expect(html).toContain('data-hinge="[-1,0,0]"');
+  });
+
+  it("uses a dedicated angle-between-line-and-plane solver for lesson 388", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 388)!;
+    const html = renderToStaticMarkup(
+      <Geometry3DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="geometry3d-mockup-0573"');
+    expect(html).toContain(
+      "threejs-editable-directly-draggable-line-direction-and-plane-normal-projection-line-plane-angle-arcsin-complementary-normal-angle-coordinate-plane-selector-orbit-experiment",
+    );
+    expect(html).toContain('data-vector="[1,1,1]"');
+    expect(html).toContain('data-normal="[0,0,1]"');
+    expect(html).toContain('data-plane="z = 0"');
+    expect(html).toContain('data-dot="1"');
+    expect(html).toContain('data-magnitude-v="1.7321"');
+    expect(html).toContain('data-magnitude-n="1"');
+    expect(html).toContain('data-sine="0.5774"');
+    expect(html).toContain('data-angle="35.3"');
+    expect(html).toContain('data-normal-angle="54.7"');
+    expect(html).toContain('data-projection="[1,1,0]"');
   });
 });
