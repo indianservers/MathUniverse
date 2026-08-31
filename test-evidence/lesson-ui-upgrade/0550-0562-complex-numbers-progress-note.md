@@ -14,13 +14,13 @@ Target references: `0550` through `0562` in `D:\Math App Screenshots for UI Upda
 | 0555 | 370 Modulus and Argument | `ModulusArgumentTargetLesson370` | Draggable complex point, synchronized numeric/range controls, live modulus, principal argument and quadrant, derived radius ring/right triangle/component geometry, three display toggles, formulas and worked comparison, tabs/reset, and working `-4+3i` challenge result | 1024 x 1536; no overflow or console errors | Complete |
 | 0556 | 371 Polar Form | `PolarFormTargetLesson371` | Draggable rectangular point, synchronized numeric/range controls, exact radius/argument/quadrant conversion, degree/radian modes, live rectangular-to-measure-to-polar pipeline, triangle/radius-ring/conversion-step toggles, tabs/reset, working challenge, and selectable understanding check | 1003 x 1568; no overflow or console errors | Complete |
 | 0557 | 372 Euler Form | `EulerFormTargetLesson372` | Draggable polar point with immediate pointer tracking, synchronized radius/angle controls, degree/radian modes, exact rectangular/trigonometric/Euler bridge, unit-circle/trig-bridge/rectangular-check toggles, scale-factor misconception proof, tabs/reset, and a working multiple-choice challenge with wrong/correct/new-challenge states | 916 x 1717; no overflow or console errors | Complete |
-| 0558 | 373 Powers | Pending | Pending | Pending | Pending |
+| 0558 | 373 Powers | `PowersTargetLesson373` | Draggable complex base point, synchronized real/imaginary/exponent controls, exact De Moivre power model using unrounded internal radius, live power vectors, radius-growth rings and multiplied-angle arcs, three display toggles, three-step derivation, tabs/reset, typed graded challenge with hint, and misconception reveal | 995 x 1581; no overflow or console errors | Complete |
 | 0559 | 374 Roots | Pending | Pending | Pending | Pending |
 | 0560 | 375 Polynomial Roots | Pending | Pending | Pending | Pending |
 | 0561 | 376 Mobius Transformations | Pending | Pending | Pending | Pending |
 | 0562 | 377 Complex Functions | Pending | Pending | Pending | Pending |
 
-Completed in this family: **8 / 13**. Pending in this family: **5 / 13**.
+Completed in this family: **9 / 13**. Pending in this family: **4 / 13**.
 
 ## Lesson 365 validation
 
@@ -78,3 +78,10 @@ Completed in this family: **8 / 13**. Pending in this family: **5 / 13**.
 - Current capture: `0557-desktop.png`
 - Machine-readable interaction and layout audit: `0557-dedicated-target-validation.json`
 - The capture harness verifies the exact `3+4i = 5e^(i53.1 degrees)` initial bridge, synchronized radius and angle edits, degree/radian conversion, trig-bridge visibility, pointer drag with recomputed radius/angle/Cartesian point, rejected and accepted challenge choices, new-challenge state, tabs, shell reset, exact 916 x 1717 dimensions, and absence of overflow or console errors.
+
+## Lesson 373 validation
+
+- Reference: `0558-reference.png`
+- Current capture: `0558-desktop.png`
+- Machine-readable interaction and layout audit: `0558-dedicated-target-validation.json`
+- The capture harness verifies the exact `(1+i)^3=-2+2i` initial result, unrounded `sqrt(2)^3=2sqrt(2)` radius calculation, edits to `(2+i)^2=3+4i`, radius-growth visibility, pointer drag with a recomputed power, rejected and accepted typed challenge answers, hint and misconception reveals, tabs, shell reset, exact 995 x 1581 dimensions, and absence of overflow or console errors.

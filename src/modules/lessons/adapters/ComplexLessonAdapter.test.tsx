@@ -14,7 +14,7 @@ describe("ComplexLessonAdapter", () => {
       [370, "Modulus and Argument"],
       [371, "Polar Form"],
       [372, "Euler Form"],
-      [373, "Complex powers"],
+      [373, "Powers"],
       [374, "Complex roots"],
       [375, "Polynomial roots"],
       [376, "Mobius transformations"],
@@ -190,5 +190,27 @@ describe("ComplexLessonAdapter", () => {
     expect(html).toContain('data-point="[3,4]"');
     expect(html).toContain('data-answer="A"');
     expect(html).toContain('data-correct="true"');
+  });
+
+  it("uses a dedicated De Moivre power model for lesson 373", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 373)!;
+    const html = renderToStaticMarkup(
+      <ComplexLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="complex-mockup-0558"');
+    expect(html).toContain(
+      "draggable-complex-base-de-moivre-integer-power-radius-growth-angle-multiplication",
+    );
+    expect(html).toContain('data-z="[1,1]"');
+    expect(html).toContain('data-exponent="3"');
+    expect(html).toContain('data-radius="1.414"');
+    expect(html).toContain('data-theta="45"');
+    expect(html).toContain('data-result-radius="2.828"');
+    expect(html).toContain('data-result-theta="135"');
+    expect(html).toContain('data-result="[-2,2]"');
   });
 });
