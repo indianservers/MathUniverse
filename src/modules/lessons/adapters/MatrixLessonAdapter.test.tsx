@@ -16,7 +16,7 @@ describe("MatrixLessonAdapter", () => {
         />,
       );
       expect(html, String(lesson.id)).toContain(lesson.title);
-      if (lesson.id > 354)
+      if (lesson.id > 355)
         expect(html, String(lesson.id)).toMatch(
           /matrix and linear-algebra lab|eigendirection lab/,
         );
@@ -96,6 +96,14 @@ describe("MatrixLessonAdapter", () => {
     expect(html).toContain("editable-two-by-two-matrix-determinant-invertibility-gated-formula-inverse-real-gauss-jordan-states");
     expect(html).toContain('data-inverse="1,-1,-1,2"');
     expect(html).toContain('data-expected="1,1"');
+  });
+
+  it("uses a reversible row-operation state machine for lesson 355", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 355)!;
+    const html = renderToStaticMarkup(<MatrixLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="matrix-mockup-0540"');
+    expect(html).toContain("augmented-three-by-four-matrix-swap-nonzero-scale-row-replacement-preview-commit-draggable-row-reorder");
+    expect(html).toContain('data-preview="[[1,2,-2,0],[2,-1,3,4],[-1,1,1,5]]"');
   });
 
   it("does not show determinant as the primary result for unrelated concepts", () => {

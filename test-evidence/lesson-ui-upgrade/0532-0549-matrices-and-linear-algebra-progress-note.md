@@ -14,7 +14,7 @@ Target references: `0532` through `0549` in `D:\Math App Screenshots for UI Upda
 | 0537 | 352 Transpose | `TransposeTargetLesson352` | Symbolic/numeric 2x3 matrix, derived 3x2 transpose, selectable source/target entries, curved mapping paths, live inspector, animated mapping cycle, randomize, numeric fill, reset, and tabs | 1619 x 972; no overflow or console errors | Complete |
 | 0538 | 353 Determinant | `DeterminantTargetLesson353` | Editable 2x2 matrix, live ad/bc derivation, draggable column-vector endpoints, signed-area polygon, orientation and singularity states, unit/parallelogram views, animation, worked derivation, and independent zero-determinant challenge | 1146 x 1373; no overflow or console errors | Complete |
 | 0539 | 354 Matrix Inverse | `MatrixInverseTargetLesson354` | Editable 2x2 matrix, determinant gate, formula inverse, genuine Gauss-Jordan states with hints and autoplay, singular failure state, geometric transform/undo SVGs, random/example controls, and A^-1y challenge | 1024 x 1536; no overflow or console errors | Complete |
-| 0540 | 355 Row Operations | Pending | Pending | Pending | Pending |
+| 0540 | 355 Row Operations | `RowOperationsTargetLesson355` | Real swap/nonzero-scale/replacement preview and commit engine, draggable row reordering, linked equations, reversible history and undo, equation toggle, operation rules, zero-scale warning, and independent leading-one practice | 1024 x 1536; no overflow or console errors | Complete |
 | 0541 | 356 Reduced Row Echelon Form | Pending | Pending | Pending | Pending |
 | 0542 | 357 Augmented Matrices | Pending | Pending | Pending | Pending |
 | 0543 | 358 Linear Transformations | Pending | Pending | Pending | Pending |
@@ -25,7 +25,7 @@ Target references: `0532` through `0549` in `D:\Math App Screenshots for UI Upda
 | 0548 | 363 Gram-Schmidt Process | Pending | Pending | Pending | Pending |
 | 0549 | 364 Least Squares | Pending | Pending | Pending | Pending |
 
-Completed in this family: **8 / 18**. Pending in this family: **10 / 18**.
+Completed in this family: **9 / 18**. Pending in this family: **9 / 18**.
 
 ## Lesson 347 validation
 
@@ -84,3 +84,10 @@ Completed in this family: **8 / 18**. Pending in this family: **10 / 18**.
 - Current capture: `0539-desktop.png`
 - Machine-readable interaction and layout audit: `0539-dedicated-target-validation.json`
 - The capture harness verifies the formula inverse, determinant and expected challenge solution, transition to a singular matrix, inverse removal, example recovery, hint control, real Gauss-Jordan stepping and autoplay, rejected/correct challenge answers, solution reveal, tabs, and shell reset.
+
+## Lesson 355 validation
+
+- Reference: `0540-reference.png`
+- Current capture: `0540-desktop.png`
+- Machine-readable interaction and layout audit: `0540-dedicated-target-validation.json`
+- The capture harness verifies swap preview/commit, zero-scale rejection, valid scale, replacement preview/commit, history growth, undo, native drag reorder, equation hiding, a real practice scale, challenge acceptance, tabs, and shell reset.
