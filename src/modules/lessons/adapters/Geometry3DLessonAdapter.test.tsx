@@ -15,7 +15,7 @@ describe("Geometry3DLessonAdapter", () => {
       [384, "Line–Plane Intersection"],
       [385, "Plane–Plane Intersection"],
       [386, "Angle Between Lines"],
-      [387, "Angle between planes"],
+      [387, "Angle Between Planes"],
       [388, "Angle between line and plane"],
       [389, "Point-to-plane distance"],
       [390, "3D vectors"],
@@ -72,7 +72,9 @@ describe("Geometry3DLessonAdapter", () => {
       );
       expect(html, String(lessonId)).toContain(snippet.replace(/'/g, "&#x27;"));
       if (
-        ![378, 379, 380, 381, 382, 383, 384, 385, 386].includes(lessonId) &&
+        ![378, 379, 380, 381, 382, 383, 384, 385, 386, 387].includes(
+          lessonId,
+        ) &&
         lesson.preset.id !== "geometry3d.solid-net"
       ) {
         expect(html, String(lessonId)).toContain(
@@ -290,5 +292,28 @@ describe("Geometry3DLessonAdapter", () => {
     expect(html).toContain('data-cosine="0.7071"');
     expect(html).toContain('data-angle="45"');
     expect(html).toContain('data-mode="Acute"');
+  });
+
+  it("uses a dedicated angle-between-planes solver for lesson 387", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 387)!;
+    const html = renderToStaticMarkup(
+      <Geometry3DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="geometry3d-mockup-0572"');
+    expect(html).toContain(
+      "threejs-two-planes-editable-directly-draggable-normals-dihedral-angle-dot-magnitudes-hinge-line-wedge-acute-obtuse-orbit-graded-challenge",
+    );
+    expect(html).toContain('data-normal-a="[0,0,1]"');
+    expect(html).toContain('data-normal-b="[0,1,1]"');
+    expect(html).toContain('data-dot="1"');
+    expect(html).toContain('data-magnitude-a="1"');
+    expect(html).toContain('data-magnitude-b="1.4142"');
+    expect(html).toContain('data-cosine="0.7071"');
+    expect(html).toContain('data-angle="45"');
+    expect(html).toContain('data-hinge="[-1,0,0]"');
   });
 });

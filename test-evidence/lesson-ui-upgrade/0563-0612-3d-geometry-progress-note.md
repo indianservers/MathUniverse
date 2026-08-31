@@ -15,8 +15,9 @@ Target references begin at `0563` in `D:\Math App Screenshots for UI Update\Upda
 | 0569 | 384 Line-Plane Intersection | `LinePlaneTargetLesson384` | React Three Fiber parametric-line and plane model with editable line point/direction and plane coefficients, exact numerator/denominator solver for single/parallel/contained cases, live substitution and intersection calculations, orbit/zoom/pan, camera reset/fullscreen, tabs/reset, and graded challenge with solution disclosure | 1024 x 1536 desktop plus 390 px mobile rendering; nonblank 458 x 526 WebGL canvas; no overflow or application console errors | Complete |
 | 0570 | 385 Plane-Plane Intersection | `PlanePlaneTargetLesson385` | React Three Fiber two-plane model with eight editable coefficients, exact normal/cross-product/intersection-line solver, computed sample point and simplified direction, explicit intersecting/parallel/coincident classifications, four live scene layers, orbit/zoom/pan and camera reset/fullscreen, active tabs, clipboard result actions, and a genuinely graded challenge | 1024 x 1536 desktop plus 390 px mobile rendering; nonblank 488 x 471 WebGL canvas; no overflow or application console errors | Complete |
 | 0571 | 386 Angle Between Lines | `AngleLinesTargetLesson386` | React Three Fiber two-vector angle model with directly draggable arrowheads, six synchronized coefficient inputs, exact dot product/magnitude/cosine/angle calculations, acute and obtuse branches, zero-vector validation, normalized display arrows, angle arc and translated-line layers, orbit/zoom, fullscreen/tabs/reset/share, and live computed challenge cycling | 989 x 1589 desktop plus 390 px mobile rendering; nonblank 459 x 499 WebGL canvas; no overflow or application console errors | Complete |
+| 0572 | 387 Angle Between Planes | `AnglePlanesTargetLesson387` | React Three Fiber two-plane dihedral model with six editable coefficients and directly draggable normal endpoints, exact dot product/magnitude/cosine/angle calculations, computed cross-product hinge, acute/obtuse and zero/parallel branches, three live scene layers, orbit/zoom, fullscreen/tabs/reset/share, and a genuinely graded challenge | 975 x 1614 desktop plus 390 px mobile rendering; nonblank 481 x 565 WebGL canvas; no overflow or application console errors | Complete |
 
-Completed in this family: **9 / 50**. Pending in this family: **41 / 50**.
+Completed in this family: **10 / 50**. Pending in this family: **40 / 50**.
 
 ## Lesson 378 validation
 
@@ -97,3 +98,12 @@ Completed in this family: **9 / 50**. Pending in this family: **41 / 50**.
 - Canvas-only capture: `0571-canvas.png`
 - Machine-readable interaction and layout audit: `0571-dedicated-target-validation.json`
 - The capture harness verifies u=(1,0,0), v=(1,1,0), u·v=1, |u|=1, |v|=1.4142, cos θ=0.7071, and θ=45°; switches to the 135° obtuse result, proves 180° for opposite vectors, and proves the invalid state for a zero vector; exercises all three scene layers, translated-line mode, two additional computed challenges, clipboard/share state, fullscreen, tabs, and shell reset; physically drags the cyan vector endpoint and proves both the vector data and angle calculation change, verifies OrbitControls through changed canvas pixels, and confirms exact 989 x 1589 dimensions, target-aligned section coordinates, a nonblank 459 x 499 canvas, an overflow-free nonblank 390 px mobile rendering, and absence of application console errors.
+
+## Lesson 387 validation
+
+- Reference: `0572-reference.png`
+- Current capture: `0572-desktop.png`
+- Mobile capture: `0572-mobile.png`
+- Canvas-only capture: `0572-canvas.png`
+- Machine-readable interaction and layout audit: `0572-dedicated-target-validation.json`
+- The capture harness verifies n₁=(0,0,1), n₂=(0,1,1), n₁·n₂=1, |n₁|=1, |n₂|=1.4142, cos θ=0.7071, θ=45°, and hinge direction (-1,0,0); switches to the 135° obtuse result, proves 0° with no unique hinge for parallel normals, and proves the invalid state for a zero normal; exercises all three scene layers, incorrect/correct challenge grades, clipboard/share state, fullscreen, tabs, and shell reset; physically drags the cyan normal endpoint to (0.5815,-0.4301,1) and proves model/calculation changes, verifies OrbitControls through changed canvas pixels, and confirms exact 975 x 1614 dimensions with target-aligned section coordinates, a nonblank 481 x 565 canvas, an overflow-free nonblank 390 px mobile rendering, and absence of application console errors.
