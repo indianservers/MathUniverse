@@ -1,0 +1,118 @@
+{
+  "mockup": "0537",
+  "lessonId": 352,
+  "checks": {
+    "initial": {
+      "matrix": "1,2,3,4,5,6",
+      "transposed": "1,4,2,5,3,6",
+      "selected": "0,1",
+      "selected-value": "2",
+      "numeric": "false",
+      "animating": "false",
+      "tab": "Interaction + visualization",
+      "actions": "1"
+    },
+    "selected": {
+      "matrix": "1,2,3,4,5,6",
+      "transposed": "1,4,2,5,3,6",
+      "selected": "1,2",
+      "selected-value": "6",
+      "numeric": "false",
+      "animating": "false",
+      "tab": "Interaction + visualization",
+      "actions": "2"
+    },
+    "numeric": {
+      "matrix": "1,2,3,4,5,6",
+      "transposed": "1,4,2,5,3,6",
+      "selected": "1,2",
+      "selected-value": "6",
+      "numeric": "true",
+      "animating": "false",
+      "tab": "Interaction + visualization",
+      "actions": "3"
+    },
+    "random": {
+      "matrix": "-8,-1,-7,5,-9,-5",
+      "transposed": "-8,5,-1,-9,-7,-5",
+      "selected": "1,2",
+      "selected-value": "-5",
+      "numeric": "true",
+      "animating": "false",
+      "tab": "Interaction + visualization",
+      "actions": "4"
+    },
+    "reset": {
+      "matrix": "1,2,3,4,5,6",
+      "transposed": "1,4,2,5,3,6",
+      "selected": "0,1",
+      "selected-value": "2",
+      "numeric": "false",
+      "animating": "true",
+      "tab": "Formulas",
+      "actions": "1"
+    },
+    "shellReset": {
+      "matrix": "1,2,3,4,5,6",
+      "transposed": "1,4,2,5,3,6",
+      "selected": "0,1",
+      "selected-value": "2",
+      "numeric": "false",
+      "animating": "true",
+      "tab": "Interaction + visualization",
+      "actions": "0"
+    }
+  },
+  "transposeValid": true,
+  "metrics": {
+    "document": {
+      "width": 1619,
+      "height": 972
+    },
+    "overflow": false,
+    "title": {
+      "top": 115,
+      "left": 281,
+      "width": 1318,
+      "height": 46,
+      "bottom": 161
+    },
+    "tabs": {
+      "top": 171,
+      "left": 281,
+      "width": 1318,
+      "height": 46,
+      "bottom": 217
+    },
+    "layout": {
+      "top": 229,
+      "left": 281,
+      "width": 1318,
+      "height": 638,
+      "bottom": 867
+    },
+    "map": {
+      "top": 307,
+      "left": 298,
+      "width": 1015,
+      "height": 360,
+      "bottom": 667
+    },
+    "inspector": {
+      "top": 229,
+      "left": 1345,
+      "width": 254,
+      "height": 643,
+      "bottom": 872
+    },
+    "adjacent": {
+      "top": 879,
+      "left": 281,
+      "width": 1318,
+      "height": 68,
+      "bottom": 947
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

@@ -8,6 +8,7 @@ import MatrixAdditionTargetLesson348 from "./matrix/MatrixAdditionTargetLesson34
 import ScalarMultiplicationTargetLesson349 from "./matrix/ScalarMultiplicationTargetLesson349";
 import MatrixMultiplicationTargetLesson350 from "./matrix/MatrixMultiplicationTargetLesson350";
 import IdentityMatrixTargetLesson351 from "./matrix/IdentityMatrixTargetLesson351";
+import TransposeTargetLesson352 from "./matrix/TransposeTargetLesson352";
 
 export default function MatrixLessonAdapter(props: LessonAdapterProps) {
   if (props.lesson.id === 347)
@@ -20,6 +21,8 @@ export default function MatrixLessonAdapter(props: LessonAdapterProps) {
     return <MatrixMultiplicationTargetLesson350 {...props} />;
   if (props.lesson.id === 351)
     return <IdentityMatrixTargetLesson351 {...props} />;
+  if (props.lesson.id === 352)
+    return <TransposeTargetLesson352 {...props} />;
   const mode = matrixLessonPreset(props.lesson.id).mode;
   if (mode === "eigen-directions") {
     return (

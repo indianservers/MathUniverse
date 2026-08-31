@@ -16,11 +16,12 @@ describe("MatrixLessonAdapter", () => {
         />,
       );
       expect(html, String(lesson.id)).toContain(lesson.title);
-      if (lesson.id > 351)
+      if (lesson.id > 352)
         expect(html, String(lesson.id)).toMatch(
           /matrix and linear-algebra lab|eigendirection lab/,
         );
-      expect(html, String(lesson.id)).toContain('type="number"');
+      if (lesson.id !== 352)
+        expect(html, String(lesson.id)).toContain('type="number"');
       expect(html, String(lesson.id)).not.toContain("Legacy");
     }
   });
@@ -71,8 +72,16 @@ describe("MatrixLessonAdapter", () => {
     expect(html).toContain('data-unchanged="true"');
   });
 
+  it("uses a selectable symbolic and numeric transpose model for lesson 352", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 352)!;
+    const html = renderToStaticMarkup(<MatrixLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="matrix-mockup-0537"');
+    expect(html).toContain("symbolic-numeric-two-by-three-matrix-derived-transpose-selectable-entry");
+    expect(html).toContain('data-transposed="1,4,2,5,3,6"');
+  });
+
   it("does not show determinant as the primary result for unrelated concepts", () => {
-    for (const lessonId of [352, 356, 360, 363, 364]) {
+    for (const lessonId of [356, 360, 363, 364]) {
       const lesson = lessonCatalog.find((item) => item.id === lessonId)!;
       const html = renderToStaticMarkup(
         <MatrixLessonAdapter
