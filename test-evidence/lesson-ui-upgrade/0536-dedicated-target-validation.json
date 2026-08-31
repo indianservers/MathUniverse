@@ -1,0 +1,121 @@
+{
+  "mockup": "0536",
+  "lessonId": 351,
+  "checks": {
+    "initial": {
+      "matrix": "2,1,1,2",
+      "right": "2,1,1,2",
+      "left": "2,1,1,2",
+      "unchanged": "true",
+      "practice": ",,,,,,,,",
+      "check": "",
+      "tab": "Interact",
+      "actions": "0"
+    },
+    "edit": {
+      "matrix": "7,1,1,2",
+      "right": "7,1,1,2",
+      "left": "7,1,1,2",
+      "unchanged": "true",
+      "practice": ",,,,,,,,",
+      "check": "",
+      "tab": "Interact",
+      "actions": "1"
+    },
+    "incomplete": {
+      "matrix": "7,1,1,2",
+      "right": "7,1,1,2",
+      "left": "7,1,1,2",
+      "unchanged": "true",
+      "practice": "1,,,,,,,,",
+      "check": "incorrect",
+      "tab": "Interact",
+      "actions": "3"
+    },
+    "complete": {
+      "matrix": "7,1,1,2",
+      "right": "7,1,1,2",
+      "left": "7,1,1,2",
+      "unchanged": "true",
+      "practice": "1,0,0,0,1,0,0,0,1",
+      "check": "correct",
+      "tab": "Formula",
+      "actions": "13"
+    },
+    "shellReset": {
+      "matrix": "2,1,1,2",
+      "right": "2,1,1,2",
+      "left": "2,1,1,2",
+      "unchanged": "true",
+      "practice": ",,,,,,,,",
+      "check": "",
+      "tab": "Interact",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1021,
+      "height": 1540
+    },
+    "overflow": false,
+    "hero": {
+      "top": 109,
+      "left": 227,
+      "width": 777,
+      "height": 214,
+      "bottom": 323
+    },
+    "lab": {
+      "top": 335,
+      "left": 227,
+      "width": 777,
+      "height": 1035,
+      "bottom": 1370
+    },
+    "top": {
+      "top": 378,
+      "left": 244,
+      "width": 743,
+      "height": 202,
+      "bottom": 580
+    },
+    "steps": {
+      "top": 590,
+      "left": 244,
+      "width": 743,
+      "height": 263,
+      "bottom": 853
+    },
+    "geometry": {
+      "top": 863,
+      "left": 244,
+      "width": 743,
+      "height": 235,
+      "bottom": 1098
+    },
+    "bottom": {
+      "top": 1108,
+      "left": 244,
+      "width": 743,
+      "height": 262,
+      "bottom": 1370
+    },
+    "adjacent": {
+      "top": 1381,
+      "left": 227,
+      "width": 777,
+      "height": 58,
+      "bottom": 1439
+    },
+    "footer": {
+      "top": 1451,
+      "left": 210,
+      "width": 811,
+      "height": 89,
+      "bottom": 1540
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

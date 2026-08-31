@@ -1,0 +1,423 @@
+.mat351-page,
+.mat351-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.mat351-page {
+  color: #10234b;
+  font-size: 10px;
+}
+.mat351-page button,
+.mat351-page input {
+  font: inherit;
+}
+.mat351-page button {
+  cursor: pointer;
+}
+.mat351-hero {
+  display: grid;
+  height: 214px;
+  padding: 18px;
+  border: 1px solid #dce5ee;
+  border-radius: 12px;
+  background: #fff;
+  grid-template-columns: 1fr 250px;
+  gap: 25px;
+}
+.mat351-hero > div > b {
+  padding: 5px 8px;
+  border-radius: 10px;
+  background: #eaf8fc;
+  color: #087d9f;
+  font-size: 7px;
+}
+.mat351-hero h1 {
+  margin: 9px 0 3px;
+  font-size: 31px;
+}
+.mat351-hero p {
+  margin: 0;
+  font-size: 14px;
+}
+.mat351-hero code {
+  display: block;
+  margin-top: 8px;
+  color: #6942ed;
+  font-family: serif;
+  font-size: 23px;
+}
+.mat351-hero nav {
+  display: grid;
+  width: 420px;
+  height: 38px;
+  margin-top: 10px;
+  border: 1px solid #dce5ee;
+  border-radius: 7px;
+  grid-template-columns: repeat(5, 1fr);
+}
+.mat351-hero nav button {
+  border: 0;
+  border-right: 1px solid #dce5ee;
+  background: white;
+}
+.mat351-hero nav .active {
+  border-radius: 7px;
+  background: linear-gradient(90deg, #4169ec, #922ee9);
+  color: white;
+}
+.mat351-hero aside {
+  height: 112px;
+  margin-top: 30px;
+  padding: 13px;
+  border: 1px solid #dce5ee;
+  border-radius: 8px;
+  background: #f7fbff;
+}
+.mat351-hero aside h3 {
+  display: flex;
+  margin: 0 0 10px;
+  color: #5652d9;
+  align-items: center;
+  gap: 7px;
+}
+.mat351-hero aside svg {
+  width: 14px;
+}
+.mat351-hero aside p {
+  margin: 6px 0;
+  font-size: 10px;
+  line-height: 1.5;
+}
+.mat351-lab {
+  height: 1035px;
+  margin-top: 12px;
+  padding: 16px;
+  border: 1px solid #dce5ee;
+  border-radius: 11px;
+  background: #fff;
+}
+.mat351-lab > h2 {
+  height: 26px;
+  margin: 0;
+  font-size: 15px;
+}
+.mat351-top {
+  display: grid;
+  height: 202px;
+  grid-template-columns: 1fr 22px 1fr 22px 1fr 1fr;
+  gap: 10px;
+  align-items: center;
+}
+.mat351-top > b {
+  font-size: 18px;
+  text-align: center;
+}
+.mat351-matrix {
+  height: 190px;
+  padding: 12px;
+  border: 1px solid #dce5ee;
+  border-radius: 9px;
+  text-align: center;
+}
+.mat351-matrix header {
+  display: flex;
+  height: 29px;
+  align-items: start;
+}
+.mat351-matrix h3 {
+  flex: 1;
+  margin: 0;
+  text-align: left;
+  font-size: 12px;
+}
+.mat351-matrix header button {
+  width: 25px;
+  height: 25px;
+  border: 1px solid #dce5ee;
+  border-radius: 5px;
+  background: white;
+}
+.mat351-matrix svg {
+  width: 12px;
+}
+.mat351-matrix > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.mat351-matrix input,
+.mat351-matrix > div > b {
+  display: grid;
+  min-width: 0;
+  height: 42px;
+  border: 1px solid #dce5ee;
+  background: white;
+  text-align: center;
+  place-items: center;
+  font-size: 12px;
+}
+.mat351-matrix input:first-child {
+  border: 2px solid #0694c0;
+  background: #f3fdff;
+}
+.mat351-matrix code {
+  display: block;
+  margin-top: 12px;
+  font-family: serif;
+  font-size: 12px;
+}
+.mat351-top > .mat351-matrix:nth-of-type(n + 3) {
+  border: 2px solid #8b65ee;
+}
+.mat351-steps {
+  height: 263px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #dce5ee;
+}
+.mat351-steps > h3 {
+  height: 25px;
+  margin: 0;
+}
+.mat351-steps > div {
+  display: grid;
+  height: 217px;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.mat351-steps article {
+  padding: 12px;
+  border: 1px solid #dce5ee;
+  border-radius: 8px;
+}
+.mat351-steps h4 {
+  margin: 0 0 10px;
+  color: #6942ed;
+}
+.mat351-steps article > div {
+  height: 82px;
+}
+.mat351-steps p {
+  margin: 0 0 10px;
+  font-family: serif;
+}
+.mat351-steps span {
+  display: inline-block;
+  margin-right: 20px;
+  padding: 7px;
+  border: 1px solid #c9dcf4;
+  border-radius: 5px;
+  background: #f5f9ff;
+}
+.mat351-steps span:last-child {
+  border-color: #f0dcb5;
+  background: #fffaf0;
+}
+.mat351-geometry {
+  height: 235px;
+  margin-top: 10px;
+  padding: 12px;
+  border: 1px solid #dce5ee;
+  border-radius: 8px;
+}
+.mat351-geometry h3,
+.mat351-geometry p {
+  margin: 0 0 5px;
+}
+.mat351-geometry > div {
+  display: grid;
+  height: 175px;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+}
+.mat351-geometry article {
+  display: grid;
+  grid-template-columns: 1fr 115px;
+  align-items: center;
+}
+.mat351-geometry svg {
+  width: 100%;
+  height: 150px;
+}
+.mat351-geometry path {
+  fill: none;
+  stroke: #8a96a3;
+}
+.mat351-geometry line {
+  stroke-width: 4;
+}
+.mat351-geometry .before {
+  stroke: #0795c2;
+}
+.mat351-geometry .after {
+  stroke: #7938e8;
+  transform: translate(2px, -2px);
+}
+.mat351-geometry circle {
+  fill: #0795c2;
+}
+.mat351-geometry code {
+  padding: 10px;
+  border: 1px solid #dce5ee;
+  border-radius: 5px;
+  font-family: serif;
+  font-size: 11px;
+}
+.mat351-bottom {
+  display: grid;
+  height: 262px;
+  margin-top: 10px;
+  grid-template-columns: 1fr 1.05fr;
+  gap: 16px;
+}
+.mat351-bottom > article {
+  padding: 14px;
+  border: 1px solid #dce5ee;
+  border-radius: 9px;
+}
+.mat351-bottom h3 {
+  margin: 0 0 9px;
+  font-size: 15px;
+}
+.mat351-bottom code {
+  display: block;
+  margin: 10px 0;
+  padding: 11px;
+  border-radius: 6px;
+  background: #effcf4;
+  font-family: serif;
+  font-size: 11px;
+}
+.mat351-practice {
+  background: #fdf9ff;
+}
+.mat351-practice h4,
+.mat351-practice p {
+  margin: 5px 0;
+}
+.mat351-practice > div {
+  display: grid;
+  width: 165px;
+  margin: 12px 0;
+  grid-template-columns: repeat(3, 1fr);
+}
+.mat351-practice input {
+  width: 55px;
+  height: 40px;
+  border: 1px solid #dce5ee;
+  text-align: center;
+}
+.mat351-practice button {
+  float: right;
+  width: 125px;
+  height: 37px;
+  border: 2px solid #8b43ec;
+  border-radius: 6px;
+  background: white;
+  color: #7634dd;
+  font-weight: 700;
+}
+.mat351-practice output {
+  display: block;
+  clear: both;
+  padding-top: 8px;
+  color: #148149;
+}
+body:has(.mat351-page) {
+  overflow: hidden;
+}
+body:has(.mat351-page) [data-testid="desktop-sidebar"] {
+  display: block !important;
+  width: 210px !important;
+  flex-basis: 210px !important;
+  transition: none;
+}
+body:has(.mat351-page) #main-content {
+  margin-left: 0 !important;
+  padding-right: 17px !important;
+  padding-left: 17px !important;
+}
+body:has(.mat351-page) .lesson-shell-header,
+body:has(.mat351-page) .lesson-page-shell > nav[role="tablist"],
+body:has(.mat351-page) .lesson-workbench-heading,
+body:has(.mat351-page) .lesson-workbench > .mt-3.grid {
+  display: none !important;
+}
+body:has(.mat351-page) .lesson-page-shell > div {
+  margin-top: 0 !important;
+}
+body:has(.mat351-page) .lesson-workbench {
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+body:has(.mat351-page) .lesson-adjacent-nav {
+  height: 58px !important;
+  margin-top: 10px !important;
+}
+body:has(.mat351-page) footer[aria-label="Site footer"] {
+  height: 89px !important;
+  margin-top: 12px !important;
+  padding: 0 !important;
+}
+body:has(.mat351-page) footer[aria-label="Site footer"] > div {
+  height: 89px !important;
+  padding: 12px !important;
+  font-size: 8px !important;
+}
+@media (min-width: 760px) {
+  body:has(.mat351-page) header.sticky button[aria-label="Open navigation"],
+  body:has(.mat351-page) nav[class*="bottom-0"][class*="fixed"] {
+    display: none !important;
+  }
+  body:has(.mat351-page) .app-layout-rail > div > header {
+    height: 60px;
+  }
+  body:has(.mat351-page) [data-testid="desktop-sidebar"] > div {
+    padding: 12px 10px 24px !important;
+  }
+  body:has(.mat351-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type {
+    height: 58px;
+    min-height: 58px;
+    margin-bottom: 12px !important;
+    padding: 0 !important;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+  body:has(.mat351-page) [data-testid="desktop-sidebar"] > div > label {
+    height: 37px;
+    min-height: 37px !important;
+    margin-bottom: 10px !important;
+    padding: 0 8px !important;
+    font-size: 9px !important;
+  }
+  body:has(.mat351-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"] {
+    row-gap: 5px !important;
+  }
+  body:has(.mat351-page) [data-testid="desktop-sidebar"] nav button {
+    min-height: 31px;
+    padding: 5px 8px !important;
+    font-size: 9px !important;
+  }
+  body:has(.mat351-page) [data-testid="desktop-sidebar"] nav a {
+    min-height: 27px;
+    padding: 5px 8px !important;
+    font-size: 8px !important;
+  }
+  body:has(.mat351-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    > div:nth-of-type(2),
+  body:has(.mat351-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    > div:nth-of-type(n + 5) {
+    display: none;
+  }
+}

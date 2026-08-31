@@ -16,7 +16,7 @@ describe("MatrixLessonAdapter", () => {
         />,
       );
       expect(html, String(lesson.id)).toContain(lesson.title);
-      if (lesson.id > 350)
+      if (lesson.id > 351)
         expect(html, String(lesson.id)).toMatch(
           /matrix and linear-algebra lab|eigendirection lab/,
         );
@@ -60,6 +60,15 @@ describe("MatrixLessonAdapter", () => {
     expect(html).toContain('data-testid="matrix-mockup-0535"');
     expect(html).toContain("independently-resizable-editable-matrices-compatibility-row-column-dot-product");
     expect(html).toContain('data-result="[[9,7],[13,8]]"');
+  });
+
+  it("uses a left-and-right identity model for lesson 351", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 351)!;
+    const html = renderToStaticMarkup(<MatrixLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="matrix-mockup-0536"');
+    expect(html).toContain("editable-two-by-two-matrix-left-right-identity-products-expanded-row-column-proof");
+    expect(html).toContain('data-right="2,1,1,2"');
+    expect(html).toContain('data-unchanged="true"');
   });
 
   it("does not show determinant as the primary result for unrelated concepts", () => {

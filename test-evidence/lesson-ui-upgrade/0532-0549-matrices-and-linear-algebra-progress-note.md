@@ -10,7 +10,7 @@ Target references: `0532` through `0549` in `D:\Math App Screenshots for UI Upda
 | 0533 | 348 Matrix Addition and Subtraction | `MatrixAdditionTargetLesson348` | Two editable operands, live add/subtract result, animation and step toggles, six cell traces, row-vector geometry, dimension validation, vectorization, tabs, reset, and graded subtraction check | 864 x 1821; no overflow or console errors | Complete |
 | 0534 | 349 Scalar Multiplication | `ScalarMultiplicationTargetLesson349` | Editable 2x2 matrix, synchronized scalar number/range, cell products, vector and grid scaling SVGs, determinant derivation and verification, result flow, tabs, reset, and graded negative-scalar check | 864 x 1821; no overflow or console errors | Complete |
 | 0535 | 350 Matrix Multiplication | `MatrixMultiplicationTargetLesson350` | Independently resizable/editable operands, compatibility failure/recovery, highlighted row-column dot products, formula and step controls, playback, derived result grid/log, transformation composition, tabs, reset, and graded check | 864 x 1821; no overflow or console errors | Complete |
-| 0536 | 351 Identity Matrix | Pending | Pending | Pending | Pending |
+| 0536 | 351 Identity Matrix | `IdentityMatrixTargetLesson351` | Editable 2x2 matrix, independently derived left/right identity products, expanded row-column proof, unchanged basis-vector SVGs, tabs, reset, and fully validated nine-entry I3 challenge | 1021 x 1540; no overflow or console errors | Complete |
 | 0537 | 352 Matrix Transpose | Pending | Pending | Pending | Pending |
 | 0538 | 353 Determinant | Pending | Pending | Pending | Pending |
 | 0539 | 354 Matrix Inverse | Pending | Pending | Pending | Pending |
@@ -25,7 +25,7 @@ Target references: `0532` through `0549` in `D:\Math App Screenshots for UI Upda
 | 0548 | 363 Gram-Schmidt Process | Pending | Pending | Pending | Pending |
 | 0549 | 364 Least Squares | Pending | Pending | Pending | Pending |
 
-Completed in this family: **4 / 18**. Pending in this family: **14 / 18**.
+Completed in this family: **5 / 18**. Pending in this family: **13 / 18**.
 
 ## Lesson 347 validation
 
@@ -56,3 +56,10 @@ Completed in this family: **4 / 18**. Pending in this family: **14 / 18**.
 - Machine-readable interaction and layout audit: `0535-dedicated-target-validation.json`
 - The capture harness verifies operand editing, incompatible dimensions, resize recovery with zero-filled new entries, cell navigation, formula and step controls, composition equality, rejected/correct answers, tabs, and shell reset.
 - The target screenshot contains two arithmetic errors: its default product shows `C21 = 12` although `[0,-1,4] dot [2,-1,3] = 13`, and its quick check marks `10` although `[1,3,4] dot [2,-1,1] = 3`. The interactive lesson uses the mathematically correct derived values instead of hard-coding those errors.
+
+## Lesson 351 validation
+
+- Reference: `0536-reference.png`
+- Current capture: `0536-desktop.png`
+- Machine-readable interaction and layout audit: `0536-dedicated-target-validation.json`
+- The capture harness verifies matrix editing, both identity multiplication orders, the unchanged invariant, incomplete-practice rejection, all nine I3 entries, correct acceptance, tab switching, and shell reset.
