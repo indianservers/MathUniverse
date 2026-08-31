@@ -5,6 +5,7 @@ import ArithmeticSequencesTargetLesson335 from "./sequence/ArithmeticSequencesTa
 import GeometricSequencesTargetLesson336 from "./sequence/GeometricSequencesTargetLesson336";
 import RecursiveSequencesTargetLesson337 from "./sequence/RecursiveSequencesTargetLesson337";
 import FibonacciSequenceTargetLesson338 from "./sequence/FibonacciSequenceTargetLesson338";
+import SigmaNotationTargetLesson339 from "./sequence/SigmaNotationTargetLesson339";
 import { SequenceConceptActivity } from "./sequence/SequenceConceptActivity";
 import SequenceGeneratorTargetLesson334 from "./sequence/SequenceGeneratorTargetLesson334";
 
@@ -19,6 +20,8 @@ export default function SequenceLessonAdapter(props: LessonAdapterProps) {
     return <RecursiveSequencesTargetLesson337 {...props} />;
   if (props.lesson.id === 338)
     return <FibonacciSequenceTargetLesson338 {...props} />;
+  if (props.lesson.id === 339)
+    return <SigmaNotationTargetLesson339 {...props} />;
   const mode = sequenceLessonPreset(props.lesson.id).mode;
   return (
     <AdapterFrame

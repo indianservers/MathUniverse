@@ -1,6 +1,6 @@
 # Sequences and Series target batch 0519-0531
 
-Dedicated rebuild target: **5 of 13 lessons completed; 8 pending.**
+Dedicated rebuild target: **6 of 13 lessons completed; 7 pending.**
 
 | Mockup | Lesson                          | Dedicated object model                                                                                                                                                     | Status                                      |
 | ------ | ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
@@ -9,7 +9,7 @@ Dedicated rebuild target: **5 of 13 lessons completed; 8 pending.**
 | 0521   | 336 Geometric Sequences         | `constant-ratio-multiplicative-step-chain-term-table-linear-log-plot-draggable-ratio-explicit-recursive-growth-classifier-three-mode-inverse-solver-practice`              | Reworked individually and browser-validated |
 | 0522   | 337 Recursive Sequences         | `editable-affine-logistic-recurrence-parser-presets-initial-condition-dependency-chain-memoized-table-cobweb-draggable-seed-time-series-fixed-point-error-export-practice` | Reworked individually and browser-validated |
 | 0523   | 338 Fibonacci Sequence          | `two-positive-integer-seeds-pairwise-recurrence-auto-build-speed-generated-term-list-fibonacci-square-spiral-draggable-seed-ratio-phi-convergence-binet-practice`          | Reworked individually and browser-validated |
-| 0524   | 339 Sigma Notation              | Pending                                                                                                                                                                    | Pending                                     |
+| 0524   | 339 Sigma Notation              | `polynomial-summand-parser-editable-bounds-presets-finite-nested-sum-term-expansion-partial-accumulator-animation-draggable-index-stem-index-substitution-copy-practice`   | Reworked individually and browser-validated |
 | 0525   | 340 Arithmetic Series           | Pending                                                                                                                                                                    | Pending                                     |
 | 0526   | 341 Geometric Series            | Pending                                                                                                                                                                    | Pending                                     |
 | 0527   | 342 Convergence and Divergence  | Pending                                                                                                                                                                    | Pending                                     |
@@ -95,3 +95,17 @@ Evidence:
 - `0523-reference.png`
 - `0523-desktop.png`
 - `0523-dedicated-target-validation.json`
+
+## Lesson 339 / Mockup 0524 - Sigma Notation
+
+Reworked individually around a polynomial summand parser supporting i, j, squared terms, mixed ij terms, and constants. Editable inclusive bounds, steppers, presets, custom summands, and optional nested j=1..i summation generate the exact term expansion, partial accumulator, total, table, graph stems, growth classification, and equivalent shifted-index form. Animation speed mode, Animate, Play/Pause, Reset, Share, Workspace, Copy, and five lesson stages are functional. Every graph point is a pointer-captured handle that selects the active index and synchronizes the animated expansion.
+
+Browser validation confirms the target sum of `i^2+1` from 1 through 8 gives terms `2,5,10,17,26,37,50,65`, partial total 212. Custom `2i-1` from 0 through 5 gives `-1,1,3,5,7,9` and total 24. Nested `i+j` for i=1..3 gives `2,7,15` and total 24. Animation advances the index, dragging selects i=7, Copy records real state, Quick Check rejects 24 and accepts 25, Formulas activates, and shell Reset restores the initial model and zero actions.
+
+Final exact 826x1903 validation matches the target stack: sidebar width 191, hero y=98-271, tabs y=281-315, sigma lab y=325-1115, learning cards y=1125-1435, assessment/worked solution y=1445-1745, adjacent lessons through y=1811, and footer ending at y=1903. Dedicated content spans x=204-813, with no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0524-reference.png`
+- `0524-desktop.png`
+- `0524-dedicated-target-validation.json`
