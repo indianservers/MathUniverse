@@ -7,7 +7,7 @@ describe("Geometry3DLessonAdapter", () => {
   it("renders 3D lessons 378 through 427 with lesson-specific guidance", () => {
     const expected = new Map([
       [378, "3D Coordinate System"],
-      [379, "3D points"],
+      [379, "3D Points"],
       [380, "Distance in 3D"],
       [381, "Lines in 3D"],
       [382, "Planes"],
@@ -71,7 +71,10 @@ describe("Geometry3DLessonAdapter", () => {
         lesson.title.replace(/'/g, "&#x27;"),
       );
       expect(html, String(lessonId)).toContain(snippet.replace(/'/g, "&#x27;"));
-      if (lessonId !== 378 && lesson.preset.id !== "geometry3d.solid-net") {
+      if (
+        ![378, 379].includes(lessonId) &&
+        lesson.preset.id !== "geometry3d.solid-net"
+      ) {
         expect(html, String(lessonId)).toContain(
           'data-direct-interaction="true"',
         );
@@ -111,5 +114,28 @@ describe("Geometry3DLessonAdapter", () => {
     expect(html).toContain('data-planes="true"');
     expect(html).toContain('data-path="true"');
     expect(html).toContain('data-labels="true"');
+  });
+
+  it("uses a dedicated multi-point Three.js model for lesson 379", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 379)!;
+    const html = renderToStaticMarkup(
+      <Geometry3DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+
+    expect(html).toContain('data-testid="geometry3d-mockup-0564"');
+    expect(html).toContain(
+      "threejs-multi-point-selector-draggable-selected-point-add-snap-labels-drop-lines-shadow-step-path-table-height-octant-challenge",
+    );
+    expect(html).toContain('data-points="[[2,1,3],[-2,3,1],[3,-1,2]]"');
+    expect(html).toContain('data-selected="A"');
+    expect(html).toContain('data-highest="A"');
+    expect(html).toContain('data-labels="true"');
+    expect(html).toContain('data-drops="true"');
+    expect(html).toContain('data-shadow="true"');
+    expect(html).toContain('data-path="true"');
   });
 });

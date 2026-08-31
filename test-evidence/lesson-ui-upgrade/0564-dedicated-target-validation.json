@@ -1,0 +1,213 @@
+{
+  "mockup": "0564",
+  "lessonId": 379,
+  "checks": {
+    "initial": {
+      "points": "[[2,1,3],[-2,3,1],[3,-1,2]]",
+      "selected": "A",
+      "highest": "A",
+      "labels": "true",
+      "drops": "true",
+      "shadow": "true",
+      "path": "true",
+      "grade": "correct",
+      "expanded": "false",
+      "tab": "Interaction + visualization",
+      "actions": "0"
+    },
+    "edited": {
+      "points": "[[2,1,3],[-2,3,4],[3,-1,2]]",
+      "selected": "B",
+      "highest": "B",
+      "labels": "true",
+      "drops": "true",
+      "shadow": "true",
+      "path": "true",
+      "grade": "correct",
+      "expanded": "false",
+      "tab": "Interaction + visualization",
+      "actions": "2"
+    },
+    "hidden": {
+      "points": "[[2,1,3],[-2,3,4],[3,-1,2]]",
+      "selected": "B",
+      "highest": "B",
+      "labels": "false",
+      "drops": "false",
+      "shadow": "false",
+      "path": "false",
+      "grade": "correct",
+      "expanded": "false",
+      "tab": "Interaction + visualization",
+      "actions": "6"
+    },
+    "addedAndSnapped": {
+      "points": "[[2,1,3],[-2,3,4],[3,-1,2],[1,-3,2]]",
+      "selected": "D",
+      "highest": "B",
+      "labels": "true",
+      "drops": "true",
+      "shadow": "true",
+      "path": "true",
+      "grade": "correct",
+      "expanded": "false",
+      "tab": "Interaction + visualization",
+      "actions": "15"
+    },
+    "incorrect": {
+      "points": "[[2,1,3],[-2,3,1],[3,-1,2]]",
+      "selected": "A",
+      "highest": "A",
+      "labels": "true",
+      "drops": "true",
+      "shadow": "true",
+      "path": "true",
+      "grade": "incorrect",
+      "expanded": "false",
+      "tab": "Interaction + visualization",
+      "actions": "2"
+    },
+    "challenge": {
+      "points": "[[2,1,3],[-2,3,1],[3,-1,2]]",
+      "selected": "A",
+      "highest": "A",
+      "labels": "true",
+      "drops": "true",
+      "shadow": "true",
+      "path": "true",
+      "grade": "correct",
+      "expanded": "false",
+      "tab": "Interaction + visualization",
+      "actions": "3"
+    },
+    "orbitChanged": true,
+    "canvasPixels": {
+      "colored": 25598,
+      "unique": 833,
+      "width": 517,
+      "height": 459
+    },
+    "expanded": {
+      "points": "[[2,1,3],[-2,3,1],[3,-1,2]]",
+      "selected": "A",
+      "highest": "A",
+      "labels": "true",
+      "drops": "true",
+      "shadow": "true",
+      "path": "true",
+      "grade": "correct",
+      "expanded": "true",
+      "tab": "Interaction + visualization",
+      "actions": "4"
+    },
+    "tabbed": {
+      "points": "[[2,1,3],[-2,3,1],[3,-1,2]]",
+      "selected": "A",
+      "highest": "A",
+      "labels": "true",
+      "drops": "true",
+      "shadow": "true",
+      "path": "true",
+      "grade": "correct",
+      "expanded": "false",
+      "tab": "Formulas",
+      "actions": "6"
+    },
+    "reset": {
+      "points": "[[2,1,3],[-2,3,1],[3,-1,2]]",
+      "selected": "A",
+      "highest": "A",
+      "labels": "true",
+      "drops": "true",
+      "shadow": "true",
+      "path": "true",
+      "grade": "correct",
+      "expanded": "false",
+      "tab": "Interaction + visualization",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 987,
+      "height": 1593
+    },
+    "overflow": false,
+    "hero": {
+      "top": 99,
+      "left": 220,
+      "width": 758,
+      "height": 212,
+      "bottom": 311
+    },
+    "tabs": {
+      "top": 321,
+      "left": 220,
+      "width": 758,
+      "height": 43,
+      "bottom": 364
+    },
+    "lab": {
+      "top": 374,
+      "left": 220,
+      "width": 758,
+      "height": 686,
+      "bottom": 1060
+    },
+    "plot": {
+      "top": 374,
+      "left": 222,
+      "width": 519,
+      "height": 686,
+      "bottom": 1060
+    },
+    "canvas": {
+      "top": 453,
+      "left": 223,
+      "width": 517,
+      "height": 459,
+      "bottom": 912
+    },
+    "side": {
+      "top": 374,
+      "left": 751,
+      "width": 220,
+      "height": 686,
+      "bottom": 1060
+    },
+    "learning": {
+      "top": 1070,
+      "left": 220,
+      "width": 758,
+      "height": 252,
+      "bottom": 1322
+    },
+    "warning": {
+      "top": 1332,
+      "left": 220,
+      "width": 758,
+      "height": 70,
+      "bottom": 1402
+    },
+    "navigation": {
+      "top": 1412,
+      "left": 220,
+      "width": 758,
+      "height": 52,
+      "bottom": 1464
+    }
+  },
+  "mobileMetrics": {
+    "documentWidth": 390,
+    "overflow": false,
+    "canvas": {
+      "x": 15,
+      "y": 385,
+      "width": 363,
+      "height": 459
+    },
+    "nonblank": true
+  },
+  "consoleMessages": [],
+  "passed": true
+}
