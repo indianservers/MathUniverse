@@ -17,7 +17,7 @@ describe("ComplexLessonAdapter", () => {
       [373, "Powers"],
       [374, "Roots"],
       [375, "Polynomial Roots"],
-      [376, "Mobius transformations"],
+      [376, "Möbius Transformations"],
       [377, "Complex functions"],
     ]);
 
@@ -254,5 +254,26 @@ describe("ComplexLessonAdapter", () => {
     expect(html).toContain('data-roots="[[1,2],[1,-2]]"');
     expect(html).toContain('data-vertex="[1,4]"');
     expect(html).toContain('data-classification="Two non-real roots"');
+  });
+
+  it("uses a dedicated two-plane Mobius model for lesson 376", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 376)!;
+    const html = renderToStaticMarkup(
+      <ComplexLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="complex-mockup-0561"');
+    expect(html).toContain(
+      "draggable-two-plane-mobius-fractional-linear-complex-division-live-pole-line-circle-image",
+    );
+    expect(html).toContain('data-coefficients="[1,-1,1,1]"');
+    expect(html).toContain('data-z="[2,1]"');
+    expect(html).toContain('data-w="[0.4,0.2]"');
+    expect(html).toContain('data-pole="-1"');
+    expect(html).toContain('data-determinant="2"');
+    expect(html).toContain('data-defined="true"');
   });
 });

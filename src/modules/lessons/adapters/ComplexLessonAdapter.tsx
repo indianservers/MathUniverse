@@ -21,6 +21,7 @@ import EulerFormTargetLesson372 from "./complex/EulerFormTargetLesson372";
 import PowersTargetLesson373 from "./complex/PowersTargetLesson373";
 import RootsTargetLesson374 from "./complex/RootsTargetLesson374";
 import PolynomialRootsTargetLesson375 from "./complex/PolynomialRootsTargetLesson375";
+import MobiusTargetLesson376 from "./complex/MobiusTargetLesson376";
 
 const sx = (x: number) => 300 + x * 46;
 const sy = (y: number) => 180 - y * 46;
@@ -134,6 +135,7 @@ export default function ComplexLessonAdapter(props: LessonAdapterProps) {
   if (props.lesson.id === 374) return <RootsTargetLesson374 {...props} />;
   if (props.lesson.id === 375)
     return <PolynomialRootsTargetLesson375 {...props} />;
+  if (props.lesson.id === 376) return <MobiusTargetLesson376 {...props} />;
   return <GenericComplexLessonAdapter {...props} />;
 }
 
