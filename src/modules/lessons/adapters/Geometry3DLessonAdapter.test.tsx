@@ -18,7 +18,7 @@ describe("Geometry3DLessonAdapter", () => {
       [387, "Angle Between Planes"],
       [388, "Angle Between Line and Plane"],
       [389, "Point-to-Plane Distance"],
-      [390, "3D vectors"],
+      [390, "3D Vectors"],
       [391, "Cube"],
       [392, "Cuboid"],
       [393, "Prism"],
@@ -72,9 +72,9 @@ describe("Geometry3DLessonAdapter", () => {
       );
       expect(html, String(lessonId)).toContain(snippet.replace(/'/g, "&#x27;"));
       if (
-        ![378, 379, 380, 381, 382, 383, 384, 385, 386, 387, 388, 389].includes(
-          lessonId,
-        ) &&
+        ![
+          378, 379, 380, 381, 382, 383, 384, 385, 386, 387, 388, 389, 390,
+        ].includes(lessonId) &&
         lesson.preset.id !== "geometry3d.solid-net"
       ) {
         expect(html, String(lessonId)).toContain(
@@ -362,5 +362,28 @@ describe("Geometry3DLessonAdapter", () => {
     expect(html).toContain('data-distance="3.46"');
     expect(html).toContain('data-factor="2"');
     expect(html).toContain('data-foot="[2,2,2]"');
+  });
+
+  it("uses a dedicated 3D vector operations model for lesson 390", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 390)!;
+    const html = renderToStaticMarkup(
+      <Geometry3DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="geometry3d-mockup-0575"');
+    expect(html).toContain(
+      "threejs-dedicated-directly-draggable-two-vector-add-dot-cross-exact-magnitudes-angle-steppers-modes-axes-orbit-validated-practice",
+    );
+    expect(html).toContain('data-a="[3,2,1]"');
+    expect(html).toContain('data-b="[1,-1,2]"');
+    expect(html).toContain('data-sum="[4,1,3]"');
+    expect(html).toContain('data-dot="3"');
+    expect(html).toContain('data-cross="[5,-5,-5]"');
+    expect(html).toContain('data-magnitude-a="3.74"');
+    expect(html).toContain('data-magnitude-b="2.45"');
+    expect(html).toContain('data-angle="70.89"');
   });
 });

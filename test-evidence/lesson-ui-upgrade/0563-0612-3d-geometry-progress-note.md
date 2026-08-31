@@ -18,8 +18,9 @@ Target references begin at `0563` in `D:\Math App Screenshots for UI Update\Upda
 | 0572 | 387 Angle Between Planes | `AnglePlanesTargetLesson387` | React Three Fiber two-plane dihedral model with six editable coefficients and directly draggable normal endpoints, exact dot product/magnitude/cosine/angle calculations, computed cross-product hinge, acute/obtuse and zero/parallel branches, three live scene layers, orbit/zoom, fullscreen/tabs/reset/share, and a genuinely graded challenge | 975 x 1614 desktop plus 390 px mobile rendering; nonblank 481 x 565 WebGL canvas; no overflow or application console errors | Complete |
 | 0573 | 388 Angle Between Line and Plane | `AngleLinePlaneTargetLesson388` | React Three Fiber line/plane inclination model with six editable coefficients and directly draggable line/normal endpoints, exact projection, dot product, magnitudes, sine, line-plane angle and complementary normal angle, coordinate-plane selector with custom-normal state, projection/normal layers, orbit/zoom, fullscreen/tabs/reset/share, and a computed 45-degree experiment | 1586 x 992 landscape desktop plus 390 px mobile rendering; nonblank 873 x 417 WebGL canvas; no overflow or application console errors | Complete |
 | 0574 | 389 Point-to-Plane Distance | `PointPlaneDistanceTargetLesson389` | React Three Fiber point/plane distance model with seven editable coordinates and coefficients, directly draggable point, exact numerator/denominator/distance and perpendicular-foot calculations, valid/on-plane/zero-normal branches, perpendicular and foot layers, orbit/zoom, camera reset, tabs/reset/share, and a computed z=2 experiment | 963 x 1633 desktop plus 390 px mobile rendering; nonblank 403 x 737 WebGL canvas; no overflow or application console errors | Complete |
+| 0575 | 390 3D Vectors | `VectorsTargetLesson390` | React Three Fiber two-vector operations model with six working component steppers, directly draggable vector endpoints, exact sum/dot/cross/magnitude/cosine/angle calculations, Add/Dot/Cross modes, axes layer, orbit/zoom, fullscreen, result steps, tabs/reset/share, right-hand-rule guidance, and checked vector-addition practice | 992 x 1586 desktop plus 390 px mobile rendering; nonblank 467 x 697 WebGL canvas; no overflow or application console errors | Complete |
 
-Completed in this family: **12 / 50**. Pending in this family: **38 / 50**.
+Completed in this family: **13 / 50**. Pending in this family: **37 / 50**.
 
 ## Lesson 378 validation
 
@@ -127,3 +128,12 @@ Completed in this family: **12 / 50**. Pending in this family: **38 / 50**.
 - Canvas-only capture: `0574-canvas.png`
 - Machine-readable interaction and layout audit: `0574-dedicated-target-validation.json`
 - The capture harness verifies P=(4,4,4), plane x+y+z=6, numerator 6, denominator 1.73, exact distance 2√3≈3.46, factor 2, and foot H=(2,2,2); configures P=(1,1,5) and z=2 and proves distance 3 with H=(1,1,2), proves distance 0 for an on-plane point, and proves invalidity for a zero normal; exercises both scene layers, the computed experiment, clipboard/share state, tabs, camera and shell resets; physically drags P to (4.54,8.74,4), verifies OrbitControls through changed canvas pixels, and confirms exact 963 x 1633 dimensions, a nonblank 403 x 737 canvas, an overflow-free nonblank 390 px mobile rendering, and absence of application console errors.
+
+## Lesson 390 validation
+
+- Reference: `0575-reference.png`
+- Current capture: `0575-desktop.png`
+- Mobile capture: `0575-mobile.png`
+- Canvas-only capture: `0575-canvas.png`
+- Machine-readable interaction and layout audit: `0575-dedicated-target-validation.json`
+- The capture harness verifies a=(3,2,1), b=(1,-1,2), a+b=(4,1,3), a·b=3, a×b=(5,-5,-5), |a|≈3.74, |b|≈2.45, and θ≈70.89°; increments aₓ and proves a=(4,2,1), sum=(5,1,3), dot=4, and cross=(5,-7,-6); exercises Add/Dot/Cross modes, axes, result steps, practice validation, clipboard/share state, fullscreen, tabs, orbit, and shell reset; physically drags a to (3.51,2.22,1), confirms exact 992 x 1586 dimensions, a nonblank 467 x 697 canvas, an overflow-free nonblank 390 px mobile rendering, and absence of application console errors.

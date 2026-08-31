@@ -1,0 +1,416 @@
+.vec390-page {
+  font-size: 9px;
+  color: #102043;
+}
+.vec390-page .cs378-hero {
+  height: 238px;
+}
+.vec390-page .cs378-actions {
+  display: grid;
+  width: 380px;
+  grid-template-columns: 210px 75px 75px;
+}
+.vec390-page .cs378-actions button:last-child {
+  grid-column: 1;
+}
+.vec390-page .cs378-tabs {
+  height: 48px;
+}
+.vec390-layout {
+  display: grid;
+  height: 775px;
+  margin-top: 12px;
+  grid-template-columns: minmax(0, 493px) minmax(0, 255px);
+  gap: 10px;
+}
+.vec390-lab,
+.vec390-rail > section,
+.vec390-concept,
+.vec390-practice {
+  border: 1px solid #dfe7ee;
+  border-radius: 12px;
+  background: #fff;
+}
+.vec390-lab {
+  padding: 10px;
+}
+.vec390-lab > header {
+  height: 48px;
+}
+.vec390-lab > header small {
+  color: #008aa6;
+  font-weight: 900;
+}
+.vec390-lab > header p {
+  margin-top: 5px;
+  color: #476ea6;
+  font-size: 11px;
+}
+.vec390-scene {
+  position: relative;
+  height: 697px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #06172b;
+}
+.vec390-scene canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+.vec390-scene > label,
+.vec390-scene > button {
+  position: absolute;
+  z-index: 2;
+  top: 14px;
+  height: 31px;
+  border: 1px solid #47637e;
+  border-radius: 8px;
+  background: #0b2038;
+  color: #fff;
+}
+.vec390-scene > label {
+  left: 13px;
+  display: flex;
+  padding: 8px 10px;
+  align-items: center;
+  gap: 8px;
+}
+.vec390-scene > label input {
+  accent-color: #0ea5c6;
+}
+.vec390-scene > button {
+  right: 13px;
+  width: 31px;
+  padding: 7px;
+}
+.vec390-scene > button svg {
+  width: 15px;
+}
+.vec390-legend {
+  position: absolute;
+  right: 12px;
+  bottom: 72px;
+  left: 12px;
+  display: flex;
+  padding: 9px;
+  gap: 14px;
+  border: 1px solid #344c65;
+  border-radius: 8px;
+  background: #091b2f;
+  color: #fff;
+}
+.vec390-legend span {
+  white-space: nowrap;
+}
+.vec390-legend .a {
+  color: #17c4eb;
+}
+.vec390-legend .b {
+  color: #a68aff;
+}
+.vec390-legend .sum {
+  color: #54dc67;
+}
+.vec390-legend .cross {
+  color: #f6c638;
+}
+.vec390-help {
+  position: absolute;
+  bottom: 25px;
+  left: 28px;
+  color: #c8d3df;
+  font-size: 10px;
+}
+.vec390-lab.expanded {
+  position: fixed;
+  z-index: 50;
+  inset: 12px;
+  padding: 12px;
+}
+.vec390-lab.expanded .vec390-scene {
+  height: calc(100vh - 80px);
+}
+.vec390-rail {
+  display: grid;
+  grid-template-rows: 478px 287px;
+  gap: 10px;
+}
+.vec390-rail > section {
+  padding: 14px;
+}
+.vec390-rail h2 {
+  display: flex;
+  font-size: 13px;
+}
+.vec390-rail h2 span {
+  margin-left: auto;
+}
+.vec390-vector {
+  margin-top: 12px;
+  padding: 0 0 11px;
+  border: 0;
+  border-bottom: 1px solid #e2e8ef;
+}
+.vec390-vector legend {
+  font-size: 11px;
+}
+.vec390-vector legend i,
+.vec390-results i {
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  margin-right: 7px;
+  border-radius: 50%;
+}
+.vec390-vector i.a,
+.vec390-results i.a {
+  background: #19bce0;
+}
+.vec390-vector i.b {
+  background: #9b72ef;
+}
+.vec390-vector label {
+  display: grid;
+  height: 38px;
+  grid-template-columns: 1fr 28px 1fr 28px;
+  align-items: center;
+}
+.vec390-vector button {
+  height: 29px;
+  border: 0;
+  border-radius: 7px;
+  background: #f1f4f8;
+  font-size: 15px;
+}
+.vec390-vector output {
+  text-align: center;
+  font-size: 12px;
+}
+.vec390-components > b {
+  display: block;
+  margin-top: 10px;
+}
+.vec390-modes {
+  display: grid;
+  height: 34px;
+  margin-top: 8px;
+  grid-template-columns: repeat(3, 1fr);
+}
+.vec390-modes button {
+  border: 1px solid #dce4ed;
+  background: #f8fafc;
+}
+.vec390-modes button:first-child {
+  border-radius: 7px 0 0 7px;
+}
+.vec390-modes button:last-child {
+  border-radius: 0 7px 7px 0;
+}
+.vec390-modes button.active {
+  border-color: #139acf;
+  background: #eefaff;
+  color: #087fa4;
+}
+.vec390-hand {
+  position: relative;
+  height: 72px;
+  margin-top: 12px;
+  padding: 26px 12px;
+  border: 1px solid #dce4ed;
+  border-radius: 8px;
+}
+.vec390-hand span {
+  position: absolute;
+  left: 115px;
+  top: 12px;
+  font-size: 35px;
+}
+.vec390-hand i {
+  position: relative;
+  margin-left: 42px;
+  color: #ef4444;
+}
+.vec390-results p {
+  display: grid;
+  height: 36px;
+  padding: 9px;
+  border: 1px solid #dce4ed;
+  border-bottom: 0;
+  grid-template-columns: 14px 1fr 1fr;
+  font-size: 11px;
+}
+.vec390-results p:nth-of-type(n + 3) {
+  grid-template-columns: 1fr 1fr;
+}
+.vec390-results i.sum {
+  background: #45d267;
+}
+.vec390-results i.cross {
+  background: #f6c638;
+}
+.vec390-results > button {
+  width: 100%;
+  height: 34px;
+  margin-top: 10px;
+  border: 1px solid #dce4ed;
+  border-radius: 7px;
+  background: #fff;
+}
+.vec390-steps {
+  padding: 7px;
+  color: #5d3e98;
+}
+.vec390-concept {
+  display: grid;
+  height: 132px;
+  margin-top: 10px;
+  padding: 14px 20px;
+  grid-template-columns: 1.2fr repeat(3, 1fr) 170px;
+  gap: 8px;
+  align-items: center;
+}
+.vec390-concept > div {
+  grid-column: 1/5;
+}
+.vec390-concept > div h2 {
+  font-size: 13px;
+}
+.vec390-concept > div p {
+  margin-top: 6px;
+  font-size: 11px;
+}
+.vec390-concept article {
+  display: grid;
+  height: 48px;
+  padding: 8px;
+  border: 1px solid #dfe7ee;
+  border-radius: 8px;
+}
+.vec390-concept article b {
+  font-size: 12px;
+}
+.vec390-concept article b > span {
+  margin-left: 12px;
+  font-size: 10px;
+}
+.vec390-concept article small {
+  padding-left: 27px;
+}
+.vec390-concept article:first-of-type b {
+  color: #486de8;
+}
+.vec390-concept article:nth-of-type(2) b {
+  color: #18b95e;
+}
+.vec390-concept article:nth-of-type(3) b {
+  color: #5a7bea;
+}
+.vec390-concept aside {
+  grid-column: 5;
+  grid-row: 1/3;
+  font-size: 18px;
+  color: #139acf;
+  text-align: center;
+}
+.vec390-practice {
+  display: grid;
+  height: 82px;
+  margin-top: 10px;
+  padding: 12px 17px;
+  grid-template-columns: 42px 1fr 320px 100px;
+  gap: 10px;
+  align-items: center;
+  border-color: #cdb8f2;
+  background: #fcf9ff;
+}
+.vec390-practice > div {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border-radius: 50%;
+  background: #7235db;
+  color: #fff;
+  font-size: 20px;
+}
+.vec390-practice p b {
+  color: #7440d7;
+}
+.vec390-practice strong {
+  padding: 10px;
+  border: 1px solid #e0d6f5;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 14px;
+}
+.vec390-practice strong span {
+  color: #7440d7;
+}
+.vec390-practice strong i {
+  margin: 0 12px;
+  font-style: normal;
+}
+.vec390-practice button {
+  height: 40px;
+  border: 0;
+  border-radius: 8px;
+  background: #7136d5;
+  color: #fff;
+  font-weight: 800;
+}
+body:has(.vec390-page) [data-testid="desktop-sidebar"] {
+  width: 208px !important;
+  flex-basis: 208px !important;
+}
+body:has(.vec390-page) #main-content {
+  padding: 0 15px !important;
+}
+body:has(.vec390-page) header.sticky.top-0 {
+  height: 55px !important;
+}
+body:has(.vec390-page) nav[aria-label="Breadcrumb"] {
+  min-height: 47px;
+  margin-bottom: 0 !important;
+  align-items: center;
+}
+body:has(.vec390-page) footer[aria-label="Site footer"] {
+  height: 125px !important;
+}
+body:has(.vec390-page) footer[aria-label="Site footer"] > div {
+  height: 125px !important;
+}
+@media (max-width: 799px) {
+  body:has(.vec390-page) [data-testid="desktop-sidebar"] {
+    display: none !important;
+  }
+  .vec390-layout {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .vec390-scene {
+    height: 560px;
+  }
+  .vec390-rail {
+    grid-template-rows: auto;
+  }
+  .vec390-concept {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .vec390-concept > div,
+  .vec390-concept aside {
+    grid-column: 1;
+    grid-row: auto;
+  }
+  .vec390-practice {
+    height: auto;
+    grid-template-columns: 42px 1fr;
+  }
+  .vec390-practice strong,
+  .vec390-practice button {
+    grid-column: 1/-1;
+  }
+  .vec390-legend {
+    flex-wrap: wrap;
+  }
+}
