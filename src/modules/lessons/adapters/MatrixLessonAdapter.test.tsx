@@ -16,7 +16,7 @@ describe("MatrixLessonAdapter", () => {
         />,
       );
       expect(html, String(lesson.id)).toContain(lesson.title);
-      if (lesson.id > 348)
+      if (lesson.id > 349)
         expect(html, String(lesson.id)).toMatch(
           /matrix and linear-algebra lab|eigendirection lab/,
         );
@@ -43,6 +43,15 @@ describe("MatrixLessonAdapter", () => {
     expect(html).toContain('data-testid="matrix-mockup-0533"');
     expect(html).toContain("two-editable-compatible-matrices-elementwise-addition-subtraction");
     expect(html).toContain('data-result="4,3,2,2,1,6"');
+  });
+
+  it("uses a dedicated scalar and determinant model for lesson 349", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 349)!;
+    const html = renderToStaticMarkup(<MatrixLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="matrix-mockup-0534"');
+    expect(html).toContain("editable-two-by-two-matrix-scalar-range-cellwise-product");
+    expect(html).toContain('data-scaled="5,-2.5,7.5,10"');
+    expect(html).toContain('data-expected="68.75"');
   });
 
   it("does not show determinant as the primary result for unrelated concepts", () => {

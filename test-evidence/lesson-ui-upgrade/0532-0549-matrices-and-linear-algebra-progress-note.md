@@ -8,7 +8,7 @@ Target references: `0532` through `0549` in `D:\Math App Screenshots for UI Upda
 | --- | ---: | --- | --- | --- | --- |
 | 0532 | 347 Matrix Builder | `MatrixBuilderTargetLesson347` | Editable/resizable matrix, cell drag, transpose, augmentation, rectangular identity, random/zero fill, validation, JSON export, tabs, reset, and graded checks | 864 x 1821; no overflow or console errors | Complete |
 | 0533 | 348 Matrix Addition and Subtraction | `MatrixAdditionTargetLesson348` | Two editable operands, live add/subtract result, animation and step toggles, six cell traces, row-vector geometry, dimension validation, vectorization, tabs, reset, and graded subtraction check | 864 x 1821; no overflow or console errors | Complete |
-| 0534 | 349 Scalar Multiplication | Pending | Pending | Pending | Pending |
+| 0534 | 349 Scalar Multiplication | `ScalarMultiplicationTargetLesson349` | Editable 2x2 matrix, synchronized scalar number/range, cell products, vector and grid scaling SVGs, determinant derivation and verification, result flow, tabs, reset, and graded negative-scalar check | 864 x 1821; no overflow or console errors | Complete |
 | 0535 | 350 Matrix Multiplication | Pending | Pending | Pending | Pending |
 | 0536 | 351 Identity Matrix | Pending | Pending | Pending | Pending |
 | 0537 | 352 Matrix Transpose | Pending | Pending | Pending | Pending |
@@ -25,7 +25,7 @@ Target references: `0532` through `0549` in `D:\Math App Screenshots for UI Upda
 | 0548 | 363 Gram-Schmidt Process | Pending | Pending | Pending | Pending |
 | 0549 | 364 Least Squares | Pending | Pending | Pending | Pending |
 
-Completed in this family: **2 / 18**. Pending in this family: **16 / 18**.
+Completed in this family: **3 / 18**. Pending in this family: **15 / 18**.
 
 ## Lesson 347 validation
 
@@ -41,3 +41,10 @@ Completed in this family: **2 / 18**. Pending in this family: **16 / 18**.
 - Current capture: `0533-desktop.png`
 - Machine-readable interaction and layout audit: `0533-dedicated-target-validation.json`
 - The capture harness verifies operand editing, derived addition, subtraction switching, animation and step modes, rejected/correct answers, tab switching, and shell reset.
+
+## Lesson 349 validation
+
+- Reference: `0534-reference.png`
+- Current capture: `0534-desktop.png`
+- Machine-readable interaction and layout audit: `0534-dedicated-target-validation.json`
+- The capture harness verifies matrix editing, scalar number and range inputs, positive and negative scaling, determinant scaling, rejected/correct answers, tab switching, and shell reset.
