@@ -18,7 +18,7 @@ describe("ComplexLessonAdapter", () => {
       [374, "Roots"],
       [375, "Polynomial Roots"],
       [376, "Möbius Transformations"],
-      [377, "Complex functions"],
+      [377, "Complex Functions"],
     ]);
 
     for (const [lessonId, snippet] of expected) {
@@ -275,5 +275,27 @@ describe("ComplexLessonAdapter", () => {
     expect(html).toContain('data-pole="-1"');
     expect(html).toContain('data-determinant="2"');
     expect(html).toContain('data-defined="true"');
+  });
+
+  it("uses a dedicated selectable complex-function mapper for lesson 377", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 377)!;
+    const html = renderToStaticMarkup(
+      <ComplexLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="complex-mockup-0562"');
+    expect(html).toContain(
+      "draggable-complex-function-mapper-selectable-square-cube-reciprocal-conjugate-component-polar",
+    );
+    expect(html).toContain('data-function="square"');
+    expect(html).toContain('data-z="[2,1]"');
+    expect(html).toContain('data-output="[3,4]"');
+    expect(html).toContain('data-modulus="2.236"');
+    expect(html).toContain('data-argument="26.6"');
+    expect(html).toContain('data-output-modulus="5"');
+    expect(html).toContain('data-output-argument="53.1"');
   });
 });

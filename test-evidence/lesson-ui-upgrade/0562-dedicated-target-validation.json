@@ -1,0 +1,231 @@
+{
+  "mockup": "0562",
+  "lessonId": 377,
+  "checks": {
+    "initial": {
+      "function": "square",
+      "z": "[2,1]",
+      "output": "[3,4]",
+      "modulus": "2.236",
+      "argument": "26.6",
+      "output-modulus": "5",
+      "output-argument": "53.1",
+      "grid": "true",
+      "components": "true",
+      "polar": "true",
+      "challenge": "false",
+      "dragging": "false",
+      "tab": "Interaction + visualization",
+      "actions": "0"
+    },
+    "cube": {
+      "function": "cube",
+      "z": "[2,1]",
+      "output": "[2,11]",
+      "modulus": "2.236",
+      "argument": "26.6",
+      "output-modulus": "11.18",
+      "output-argument": "79.7",
+      "grid": "true",
+      "components": "true",
+      "polar": "true",
+      "challenge": "false",
+      "dragging": "false",
+      "tab": "Interaction + visualization",
+      "actions": "1"
+    },
+    "conjugate": {
+      "function": "conjugate",
+      "z": "[2,1]",
+      "output": "[2,-1]",
+      "modulus": "2.236",
+      "argument": "26.6",
+      "output-modulus": "2.236",
+      "output-argument": "-26.6",
+      "grid": "true",
+      "components": "true",
+      "polar": "true",
+      "challenge": "false",
+      "dragging": "false",
+      "tab": "Interaction + visualization",
+      "actions": "2"
+    },
+    "undefined": {
+      "function": "reciprocal",
+      "z": "[0,0]",
+      "output": "undefined",
+      "modulus": "0",
+      "argument": "0",
+      "output-modulus": "undefined",
+      "output-argument": "undefined",
+      "grid": "true",
+      "components": "true",
+      "polar": "true",
+      "challenge": "false",
+      "dragging": "false",
+      "tab": "Interaction + visualization",
+      "actions": "5"
+    },
+    "hidden": {
+      "function": "square",
+      "z": "[2,1]",
+      "output": "[3,4]",
+      "modulus": "2.236",
+      "argument": "26.6",
+      "output-modulus": "5",
+      "output-argument": "53.1",
+      "grid": "true",
+      "components": "false",
+      "polar": "true",
+      "challenge": "false",
+      "dragging": "false",
+      "tab": "Interaction + visualization",
+      "actions": "9"
+    },
+    "pointerDown": {
+      "function": "square",
+      "z": "[2,1]",
+      "output": "[3,4]",
+      "modulus": "2.236",
+      "argument": "26.6",
+      "output-modulus": "5",
+      "output-argument": "53.1",
+      "grid": "true",
+      "components": "true",
+      "polar": "true",
+      "challenge": "false",
+      "dragging": "true",
+      "tab": "Interaction + visualization",
+      "actions": "10"
+    },
+    "dragged": {
+      "function": "square",
+      "z": "[2.8,2]",
+      "output": "[3.84,11.2]",
+      "modulus": "3.441",
+      "argument": "35.5",
+      "output-modulus": "11.84",
+      "output-argument": "71.1",
+      "grid": "true",
+      "components": "true",
+      "polar": "true",
+      "challenge": "false",
+      "dragging": "false",
+      "tab": "Interaction + visualization",
+      "actions": "11"
+    },
+    "challenge": {
+      "function": "square",
+      "z": "[1,2]",
+      "output": "[-3,4]",
+      "modulus": "2.236",
+      "argument": "63.4",
+      "output-modulus": "5",
+      "output-argument": "126.9",
+      "grid": "true",
+      "components": "true",
+      "polar": "true",
+      "challenge": "true",
+      "dragging": "false",
+      "tab": "Interaction + visualization",
+      "actions": "12"
+    },
+    "tabbed": {
+      "function": "square",
+      "z": "[1,2]",
+      "output": "[-3,4]",
+      "modulus": "2.236",
+      "argument": "63.4",
+      "output-modulus": "5",
+      "output-argument": "126.9",
+      "grid": "true",
+      "components": "true",
+      "polar": "true",
+      "challenge": "true",
+      "dragging": "false",
+      "tab": "Formulas",
+      "actions": "13"
+    },
+    "reset": {
+      "function": "square",
+      "z": "[2,1]",
+      "output": "[3,4]",
+      "modulus": "2.236",
+      "argument": "26.6",
+      "output-modulus": "5",
+      "output-argument": "53.1",
+      "grid": "true",
+      "components": "true",
+      "polar": "true",
+      "challenge": "false",
+      "dragging": "false",
+      "tab": "Interaction + visualization",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1008,
+      "height": 1560
+    },
+    "overflow": false,
+    "hero": {
+      "top": 97,
+      "left": 220,
+      "width": 772,
+      "height": 188,
+      "bottom": 285
+    },
+    "tabs": {
+      "top": 295,
+      "left": 220,
+      "width": 772,
+      "height": 49,
+      "bottom": 344
+    },
+    "lab": {
+      "top": 354,
+      "left": 220,
+      "width": 772,
+      "height": 625,
+      "bottom": 979
+    },
+    "main": {
+      "top": 419,
+      "left": 231,
+      "width": 750,
+      "height": 465,
+      "bottom": 884
+    },
+    "learning": {
+      "top": 991,
+      "left": 220,
+      "width": 772,
+      "height": 218,
+      "bottom": 1209
+    },
+    "insights": {
+      "top": 1219,
+      "left": 220,
+      "width": 772,
+      "height": 132,
+      "bottom": 1351
+    },
+    "next": {
+      "top": 1361,
+      "left": 220,
+      "width": 772,
+      "height": 52,
+      "bottom": 1413
+    },
+    "navigation": {
+      "top": 1423,
+      "left": 220,
+      "width": 772,
+      "height": 41,
+      "bottom": 1464
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

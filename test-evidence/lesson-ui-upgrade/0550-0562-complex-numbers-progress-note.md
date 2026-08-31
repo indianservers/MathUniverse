@@ -18,9 +18,9 @@ Target references: `0550` through `0562` in `D:\Math App Screenshots for UI Upda
 | 0559 | 374 Roots | `RootsTargetLesson374` | Draggable nth-root wheel with whole-wheel rotation, synchronized polar target and root-index controls, exact root radius/angle spacing/all-root coordinates, selectable roots with power-back verification, degree/radian modes, equal-spacing/power-check/all-roots toggles, tabs/reset, and working cube-root challenge | 1008 x 1561; no overflow or console errors | Complete |
 | 0560 | 375 Polynomial Roots | `PolynomialRootsTargetLesson375` | Exact quadratic solver with synchronized coefficient steppers/sliders, live parabola and complex-root planes, draggable root that regenerates real coefficients and its conjugate, discriminant classification across negative/zero/positive cases, mirror/discriminant/factor toggles, factor and intercept summaries, tabs/reset, and graded missing-conjugate challenge | 976 x 1612; no overflow or console errors | Complete |
 | 0561 | 376 Mobius Transformations | `MobiusTargetLesson376` | Exact fractional-linear complex division with editable `a,b,c,d`, draggable input point and live output point, computed pole/determinant/undefined state, numerically sampled input line and circle with transformed image paths, four real visibility toggles, tabs/reset, and a working `w=1/z` pole challenge | 1024 x 1536; no overflow or console errors | Complete |
-| 0562 | 377 Complex Functions | Pending | Pending | Pending | Pending |
+| 0562 | 377 Complex Functions | `ComplexFunctionsTargetLesson377` | Draggable input with synchronized output, selectable square/cube/reciprocal/conjugate functions, exact complex arithmetic including reciprocal undefined-at-zero state, live modulus/argument effects, grid/component/polar toggles, dynamic source/image circles, tabs/reset, and working `(1+2i)^2` challenge | 1008 x 1560; no overflow or console errors | Complete |
 
-Completed in this family: **12 / 13**. Pending in this family: **1 / 13**.
+Completed in this family: **13 / 13**. Pending in this family: **0 / 13**.
 
 ## Lesson 365 validation
 
@@ -106,3 +106,10 @@ Completed in this family: **12 / 13**. Pending in this family: **1 / 13**.
 - Current capture: `0561-desktop.png`
 - Machine-readable interaction and layout audit: `0561-dedicated-target-validation.json`
 - The capture harness verifies the target `(z-1)/(z+1)` transformation, exact `z=2+i -> w=0.4+0.2i` division, pole `z=-1`, coefficient and point edits, circle-image visibility, point drag with recomputed image, switch to the `1/z` challenge, its pole at zero, the explicit undefined state at `z=0`, tabs, shell reset, exact 1024 x 1536 dimensions, and absence of overflow or console errors.
+
+## Lesson 377 validation
+
+- Reference: `0562-reference.png`
+- Current capture: `0562-desktop.png`
+- Machine-readable interaction and layout audit: `0562-dedicated-target-validation.json`
+- The capture harness verifies the target `z=2+i -> z^2=3+4i` mapping, exact modulus and doubled argument, selectable cube and conjugate outputs, reciprocal undefined at zero, component-calculation visibility, input drag with recomputed output, the `(1+2i)^2=-3+4i` challenge, tabs, shell reset, exact 1008 x 1560 dimensions, and absence of overflow or console errors.
