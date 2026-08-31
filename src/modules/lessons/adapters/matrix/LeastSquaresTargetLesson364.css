@@ -1,0 +1,434 @@
+.ls364-page,
+.ls364-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.ls364-page {
+  color: #10234b;
+  font-size: 9px;
+}
+.ls364-page button,
+.ls364-page input,
+.ls364-page select {
+  font: inherit;
+}
+.ls364-hero {
+  display: flex;
+  height: 143px;
+  padding: 18px;
+  border: 1px solid #dce5ee;
+  border-radius: 10px;
+  background: #fff;
+}
+.ls364-hero > div {
+  flex: 1;
+}
+.ls364-hero span {
+  display: flex;
+  gap: 8px;
+}
+.ls364-hero span b {
+  padding: 5px 8px;
+  border-radius: 10px;
+  background: #e8f8fc;
+  color: #0788a8;
+  font-size: 6px;
+}
+.ls364-hero span b + b {
+  background: #f0f2f6;
+  color: #4d5e79;
+}
+.ls364-hero h1 {
+  margin: 12px 0 3px;
+  font-size: 25px;
+}
+.ls364-hero p {
+  margin: 0;
+  font-size: 12px;
+}
+.ls364-hero nav {
+  margin-top: 13px;
+}
+.ls364-hero aside {
+  display: flex;
+  gap: 7px;
+}
+.ls364-hero aside select,
+.ls364-hero aside button {
+  display: flex;
+  height: 34px;
+  padding: 0 11px;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid #dce5ee;
+  border-radius: 7px;
+  background: #fff;
+}
+.ls364-hero svg {
+  width: 12px;
+}
+.ls364-tabs {
+  display: flex;
+  height: 45px;
+  margin-top: 11px;
+  border: 1px solid #dce5ee;
+  border-radius: 9px;
+  background: #fff;
+}
+.ls364-tabs button {
+  padding: 0 19px;
+  border: 0;
+  background: transparent;
+  font-weight: 800;
+}
+.ls364-tabs .active {
+  margin: 5px;
+  border-radius: 7px;
+  background: #078db0;
+  color: #fff;
+}
+.ls364-main {
+  display: grid;
+  height: 492px;
+  margin-top: 11px;
+  grid-template-columns: 1fr 250px;
+  gap: 11px;
+}
+.ls364-plot {
+  position: relative;
+  padding: 14px;
+  border: 1px solid #dce5ee;
+  border-radius: 9px;
+  background: #fff;
+}
+.ls364-plot h3 {
+  margin: 0;
+  color: #1262c7;
+}
+.ls364-plot > svg {
+  width: 100%;
+  height: 315px;
+}
+.ls364-plot > svg text {
+  fill: #263957;
+  font-size: 9px;
+}
+.ls364-plot > svg .ls364-legend text {
+  font-size: 9px;
+}
+.ls364-plot > section {
+  display: grid;
+  height: 67px;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.ls364-plot > section label {
+  display: grid;
+  grid-template-columns: 1fr 50px;
+}
+.ls364-plot > section input {
+  grid-column: 1/3;
+  width: 100%;
+}
+.ls364-plot > section output {
+  text-align: right;
+}
+.ls364-plot > button {
+  position: absolute;
+  bottom: 4px;
+  left: 15px;
+  border: 0;
+  background: transparent;
+  color: #1263ca;
+}
+.ls364-main > aside {
+  display: grid;
+  grid-template-rows: 193px 174px 103px;
+  gap: 11px;
+}
+.ls364-main > aside article {
+  padding: 13px;
+  border: 1px solid #dce5ee;
+  border-radius: 9px;
+  background: #fff;
+}
+.ls364-main > aside h2,
+.ls364-main > aside h3 {
+  margin: 0 0 8px;
+}
+.ls364-main > aside p {
+  margin: 7px 0;
+}
+.ls364-main > aside strong {
+  display: block;
+  color: #7e2ee3;
+  font-size: 20px;
+}
+.ls364-main meter {
+  width: 100%;
+  height: 18px;
+  margin: 12px 0;
+}
+.ls364-main > aside button {
+  display: flex;
+  width: 100%;
+  height: 33px;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: 0;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #2660dc, #8c2ce2);
+  color: #fff;
+}
+.ls364-main > aside svg {
+  width: 12px;
+}
+.ls364-main > aside code {
+  font-family: serif;
+  font-size: 11px;
+}
+.ls364-main > aside hr {
+  margin: 9px 0;
+  border: 0;
+  border-top: 1px solid #dce5ee;
+}
+.ls364-coefficients {
+  display: grid;
+  grid-template-columns: 18px 1fr 18px 1fr;
+  gap: 4px;
+  align-items: center;
+}
+.ls364-coefficients span {
+  padding: 5px;
+  border: 1px solid #dce5ee;
+  border-radius: 5px;
+  background: #fbfcff;
+  text-align: center;
+}
+.ls364-concepts {
+  display: grid;
+  height: 175px;
+  margin-top: 11px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 11px;
+}
+.ls364-concepts article {
+  padding: 14px;
+  border: 1px solid #dce5ee;
+  border-radius: 9px;
+  background: #fff;
+}
+.ls364-concepts h3 {
+  margin: 0 0 16px;
+  color: #1754b9;
+}
+.ls364-concepts code {
+  padding: 9px;
+  border: 1px solid #dde1f2;
+  border-radius: 6px;
+  background: #f7f6ff;
+  font-family: serif;
+  font-size: 13px;
+}
+.ls364-concepts p {
+  margin: 14px 0 8px;
+  line-height: 15px;
+}
+.ls364-concepts small {
+  display: block;
+  color: #334665;
+  line-height: 13px;
+}
+.ls364-lower {
+  display: grid;
+  height: 392px;
+  margin-top: 11px;
+  grid-template-columns: 1.05fr 1.12fr 1fr;
+  gap: 11px;
+}
+.ls364-lower article {
+  position: relative;
+  padding: 15px;
+  border: 1px solid #dce5ee;
+  border-radius: 9px;
+  background: #fff;
+}
+.ls364-lower h3 {
+  margin: 0 0 13px;
+  color: #1557bd;
+}
+.ls364-lower code {
+  display: block;
+  margin-top: 10px;
+  font-family: serif;
+  font-size: 10px;
+  line-height: 21px;
+}
+.ls364-data-table {
+  margin: 9px 0;
+  border-collapse: collapse;
+}
+.ls364-data-table th,
+.ls364-data-table td {
+  width: 27px;
+  height: 20px;
+  border: 1px solid #e2e8f2;
+  text-align: center;
+}
+.ls364-design-matrix {
+  display: grid;
+  grid-template-columns: 18px 1fr 18px 45px;
+  gap: 5px;
+  align-items: center;
+  margin-top: 8px;
+  font-family: serif;
+}
+.ls364-design-matrix span {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 3px 6px;
+  border-right: 1px solid #62708a;
+  border-left: 1px solid #62708a;
+}
+.ls364-design-matrix span:last-child {
+  grid-template-columns: 1fr;
+}
+.ls364-design-matrix i {
+  font-style: normal;
+  text-align: center;
+}
+.ls364-lower article:first-child strong {
+  position: absolute;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  padding: 12px;
+  border-radius: 7px;
+  background: #eaf9ef;
+  color: #078a48;
+}
+.ls364-lower table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.ls364-lower td {
+  height: 34px;
+  border-bottom: 1px solid #dce5ee;
+}
+.ls364-lower article:nth-child(2) > code {
+  margin-top: 28px;
+  text-align: center;
+}
+.ls364-lower article:last-child > strong {
+  display: block;
+  margin: 18px 0;
+}
+.ls364-lower article:last-child p {
+  line-height: 18px;
+}
+.ls364-lower article:last-child button {
+  width: 100%;
+  height: 35px;
+  margin-top: 16px;
+  border: 0;
+  border-radius: 6px;
+  background: #6d30db;
+  color: #fff;
+}
+.ls364-lower article:last-child button + button {
+  margin-top: 8px;
+  border: 1px solid #dce5ee;
+  background: #fff;
+  color: #30425e;
+}
+.ls364-lower output {
+  display: block;
+  margin-top: 10px;
+  padding: 8px;
+}
+.ls364-goal {
+  margin-top: 15px;
+  padding: 9px;
+  color: #7043bf;
+  line-height: 14px;
+}
+.ls364-hint {
+  display: block;
+  margin-top: 12px;
+  padding: 9px;
+  border: 1px solid #cce8ff;
+  border-radius: 6px;
+  background: #f5fbff;
+  color: #1764b4;
+  line-height: 13px;
+}
+.correct {
+  color: #078d49;
+}
+.incorrect {
+  color: #c43343;
+}
+body:has(.ls364-page) {
+  overflow: hidden;
+}
+body:has(.ls364-page) [data-testid="desktop-sidebar"] {
+  display: block !important;
+  width: 189px !important;
+  flex-basis: 189px !important;
+}
+body:has(.ls364-page) #main-content {
+  margin-left: 0 !important;
+  padding: 0 15px !important;
+}
+body:has(.ls364-page) .lesson-shell-header,
+body:has(.ls364-page) .lesson-page-shell > nav[role="tablist"],
+body:has(.ls364-page) .lesson-workbench-heading,
+body:has(.ls364-page) .lesson-workbench > .mt-3.grid {
+  display: none !important;
+}
+body:has(.ls364-page) .lesson-page-shell > div {
+  margin-top: 0 !important;
+}
+body:has(.ls364-page) .lesson-workbench {
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+body:has(.ls364-page) .lesson-adjacent-nav {
+  height: 58px !important;
+  margin-top: 10px !important;
+}
+body:has(.ls364-page) footer[aria-label="Site footer"] {
+  height: 75px !important;
+  padding: 6px 0 0 !important;
+}
+body:has(.ls364-page) footer[aria-label="Site footer"] > div {
+  height: 69px !important;
+  padding: 8px 12px !important;
+}
+@media (min-width: 760px) {
+  body:has(.ls364-page) .app-layout-rail > div > header {
+    height: 57px;
+  }
+  body:has(.ls364-page) [data-testid="desktop-sidebar"] > div {
+    padding: 10px !important;
+  }
+  body:has(.ls364-page) [data-testid="desktop-sidebar"] nav a {
+    font-size: 7px !important;
+  }
+  body:has(.ls364-page) [data-testid="desktop-sidebar"] nav button {
+    font-size: 8px !important;
+  }
+  body:has(.ls364-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    > div:nth-of-type(2),
+  body:has(.ls364-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    > div:nth-of-type(n + 5) {
+    display: none;
+  }
+}

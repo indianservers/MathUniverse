@@ -23,9 +23,9 @@ Target references: `0532` through `0549` in `D:\Math App Screenshots for UI Upda
 | 0546 | 361 Linear Independence | `LinearIndependenceTargetLesson361` | Draggable/editable vector pair, synchronized component and relation-coefficient sliders, determinant/area/rank classification, genuine homogeneous-relation residual and dependent-case coefficients, snapping, worked-step toggle, tabs/reset, and break-dependence challenge | 1024 x 1535; no overflow or console errors | Complete |
 | 0547 | 362 Vector Spaces | `VectorSpacesTargetLesson362` | Four candidate-specific membership rules, zero/addition/scalar closure engine, editable u/v coordinates and scalar sliders, derived au+bv membership, projected 3D set/vector view, live subspace verdict, tabs/reset, misconception and shifted-plane challenge | 1024 x 1536; no overflow or console errors | Complete |
 | 0548 | 363 Gram-Schmidt Process | `GramSchmidtTargetLesson363` | Editable/draggable input vectors, real projection/subtraction/normalization pipeline, dependent-basis detection, three selectable steps, autoplay and speed, live orthogonality, before/after basis, formula/current-value/dot panels, worked-step toggle, and remove-projection challenge | 1024 x 1536; no overflow or console errors | Complete |
-| 0549 | 364 Least Squares | Pending | Pending | Pending | Pending |
+| 0549 | 364 Least Squares | `LeastSquaresTargetLesson364` | Six editable/draggable observations, real best-fit derivation, current/best lines, residual geometry, SSE/RMSE/MAE, exact normal-equation orthogonality, synchronized slope/intercept controls, point/line modes, data summary, reveal, tabs/reset, and graded minimum challenge | 1024 x 1536; no overflow or console errors | Complete |
 
-Completed in this family: **17 / 18**. Pending in this family: **1 / 18**.
+Completed in this family: **18 / 18**. Pending in this family: **0 / 18**.
 
 ## Lesson 347 validation
 
@@ -150,3 +150,11 @@ Completed in this family: **17 / 18**. Pending in this family: **1 / 18**.
 - Current capture: `0548-desktop.png`
 - Machine-readable interaction and layout audit: `0548-dedicated-target-validation.json`
 - The capture harness verifies exact projection `(0.5,0.5)`, subtraction `(0.5,-0.5)`, normalized vectors, zero orthogonal dot product, dependent-input collapse, pointer drag and recomputation, normalize-step selection, removal of projection and resulting `0.7071` dot product, worked steps, tabs, shell reset, exact 1024 x 1536 dimensions, and absence of overflow or console errors.
+
+## Lesson 364 validation
+
+- Reference: `0549-reference.png`
+- Current capture: `0549-desktop.png`
+- Machine-readable interaction and layout audit: `0549-dedicated-target-validation.json`
+- The capture harness verifies the exact best-fit coefficients, minimum SSE, zero `A^T r`, synchronized slope control, rejected and accepted minimization attempts, reveal, point/line editing mode, a real pointer drag with recomputed regression, tabs, shell reset, exact 1024 x 1536 dimensions, and absence of overflow or console errors.
+- The target mockup's worked-data row lists `(-2,-1),(-1,1),(0,1),(1,2),(2,1),(3,4)` but displays `Sxy=11.667`, best line `y=0.6667x+0.5000`, and minimum SSE `1.8333`. For those stated points the exact values are `Sxy=13`, `m=0.742857...`, `b=0.961904...`, and minimum SSE `3.676190...`. The dedicated surface preserves the target composition while deriving the mathematically correct values live from the editable observations.

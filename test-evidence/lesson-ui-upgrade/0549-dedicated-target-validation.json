@@ -1,0 +1,153 @@
+{
+  "mockup": "0549",
+  "lessonId": 364,
+  "checks": {
+    "initial": {
+      "points": "[{\"x\":-2,\"y\":-1},{\"x\":-1,\"y\":1},{\"x\":0,\"y\":1},{\"x\":1,\"y\":2},{\"x\":2,\"y\":1},{\"x\":3,\"y\":4}]",
+      "current-line": "[0.688,0.1]",
+      "best-line": "[0.7429,0.9619]",
+      "current-sse": "8.4743",
+      "minimum-sse": "3.6762",
+      "atr": "[0,0]",
+      "mode": "points",
+      "tab": "Interact",
+      "challenge": "",
+      "actions": "0"
+    },
+    "adjusted": {
+      "points": "[{\"x\":-2,\"y\":-1},{\"x\":-1,\"y\":1},{\"x\":0,\"y\":1},{\"x\":1,\"y\":2},{\"x\":2,\"y\":1},{\"x\":3,\"y\":4}]",
+      "current-line": "[1,0.1]",
+      "best-line": "[0.7429,0.9619]",
+      "current-sse": "8.06",
+      "minimum-sse": "3.6762",
+      "atr": "[0,0]",
+      "mode": "points",
+      "tab": "Interact",
+      "challenge": "",
+      "actions": "1"
+    },
+    "rejected": {
+      "points": "[{\"x\":-2,\"y\":-1},{\"x\":-1,\"y\":1},{\"x\":0,\"y\":1},{\"x\":1,\"y\":2},{\"x\":2,\"y\":1},{\"x\":3,\"y\":4}]",
+      "current-line": "[1,0.1]",
+      "best-line": "[0.7429,0.9619]",
+      "current-sse": "8.06",
+      "minimum-sse": "3.6762",
+      "atr": "[0,0]",
+      "mode": "points",
+      "tab": "Interact",
+      "challenge": "incorrect",
+      "actions": "2"
+    },
+    "revealed": {
+      "points": "[{\"x\":-2,\"y\":-1},{\"x\":-1,\"y\":1},{\"x\":0,\"y\":1},{\"x\":1,\"y\":2},{\"x\":2,\"y\":1},{\"x\":3,\"y\":4}]",
+      "current-line": "[0.7429,0.9619]",
+      "best-line": "[0.7429,0.9619]",
+      "current-sse": "3.6762",
+      "minimum-sse": "3.6762",
+      "atr": "[0,0]",
+      "mode": "points",
+      "tab": "Interact",
+      "challenge": "correct",
+      "actions": "3"
+    },
+    "lineMode": {
+      "points": "[{\"x\":-2,\"y\":-1},{\"x\":-1,\"y\":1},{\"x\":0,\"y\":1},{\"x\":1,\"y\":2},{\"x\":2,\"y\":1},{\"x\":3,\"y\":4}]",
+      "current-line": "[0.7429,0.9619]",
+      "best-line": "[0.7429,0.9619]",
+      "current-sse": "3.6762",
+      "minimum-sse": "3.6762",
+      "atr": "[0,0]",
+      "mode": "line",
+      "tab": "Interact",
+      "challenge": "correct",
+      "actions": "4"
+    },
+    "dragged": {
+      "points": "[{\"x\":-2,\"y\":-1},{\"x\":-1,\"y\":2.3937},{\"x\":0,\"y\":1},{\"x\":1,\"y\":2},{\"x\":2,\"y\":1},{\"x\":3,\"y\":4}]",
+      "current-line": "[0.688,0.1]",
+      "best-line": "[0.6234,1.2539]",
+      "current-sse": "14.8431",
+      "minimum-sse": "7.2219",
+      "atr": "[0,0]",
+      "mode": "points",
+      "tab": "Interact",
+      "challenge": "",
+      "actions": "2"
+    },
+    "tabbed": {
+      "points": "[{\"x\":-2,\"y\":-1},{\"x\":-1,\"y\":2.3937},{\"x\":0,\"y\":1},{\"x\":1,\"y\":2},{\"x\":2,\"y\":1},{\"x\":3,\"y\":4}]",
+      "current-line": "[0.688,0.1]",
+      "best-line": "[0.6234,1.2539]",
+      "current-sse": "14.8431",
+      "minimum-sse": "7.2219",
+      "atr": "[0,0]",
+      "mode": "points",
+      "tab": "Normal Equations",
+      "challenge": "",
+      "actions": "3"
+    },
+    "reset": {
+      "points": "[{\"x\":-2,\"y\":-1},{\"x\":-1,\"y\":1},{\"x\":0,\"y\":1},{\"x\":1,\"y\":2},{\"x\":2,\"y\":1},{\"x\":3,\"y\":4}]",
+      "current-line": "[0.688,0.1]",
+      "best-line": "[0.7429,0.9619]",
+      "current-sse": "8.4743",
+      "minimum-sse": "3.6762",
+      "atr": "[0,0]",
+      "mode": "points",
+      "tab": "Interact",
+      "challenge": "",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "overflow": false,
+    "hero": {
+      "top": 91,
+      "left": 204,
+      "width": 805,
+      "height": 143,
+      "bottom": 234
+    },
+    "tabs": {
+      "top": 245,
+      "left": 204,
+      "width": 805,
+      "height": 45,
+      "bottom": 290
+    },
+    "main": {
+      "top": 301,
+      "left": 204,
+      "width": 805,
+      "height": 492,
+      "bottom": 793
+    },
+    "concepts": {
+      "top": 804,
+      "left": 204,
+      "width": 805,
+      "height": 175,
+      "bottom": 979
+    },
+    "lower": {
+      "top": 990,
+      "left": 204,
+      "width": 805,
+      "height": 392,
+      "bottom": 1382
+    },
+    "adjacent": {
+      "top": 1392,
+      "left": 204,
+      "width": 805,
+      "height": 58,
+      "bottom": 1450
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
