@@ -1,0 +1,256 @@
+{
+  "mockup": "0569",
+  "lessonId": 384,
+  "checks": {
+    "initial": {
+      "point": "[1,1,1]",
+      "vector": "[1,2,0]",
+      "plane": "[1,1,1,6]",
+      "numerator": "3",
+      "denominator": "3",
+      "status": "single intersection",
+      "t": "1",
+      "intersection": "[2,3,1]",
+      "answer": "2",
+      "grade": "correct",
+      "solution": "false",
+      "tab": "Interaction + visualization",
+      "expanded": "false",
+      "actions": "0"
+    },
+    "parallel": {
+      "point": "[1,1,1]",
+      "vector": "[1,-1,0]",
+      "plane": "[1,1,1,6]",
+      "numerator": "3",
+      "denominator": "0",
+      "status": "no intersection",
+      "t": "",
+      "intersection": "null",
+      "answer": "2",
+      "grade": "correct",
+      "solution": "false",
+      "tab": "Interaction + visualization",
+      "expanded": "false",
+      "actions": "1"
+    },
+    "contained": {
+      "point": "[2,3,1]",
+      "vector": "[1,-1,0]",
+      "plane": "[1,1,1,6]",
+      "numerator": "0",
+      "denominator": "0",
+      "status": "line in plane",
+      "t": "",
+      "intersection": "null",
+      "answer": "2",
+      "grade": "correct",
+      "solution": "false",
+      "tab": "Interaction + visualization",
+      "expanded": "false",
+      "actions": "3"
+    },
+    "challengeModel": {
+      "point": "[0,0,1]",
+      "vector": "[2,1,0]",
+      "plane": "[1,1,1,7]",
+      "numerator": "6",
+      "denominator": "3",
+      "status": "single intersection",
+      "t": "2",
+      "intersection": "[4,2,1]",
+      "answer": "2",
+      "grade": "correct",
+      "solution": "false",
+      "tab": "Interaction + visualization",
+      "expanded": "false",
+      "actions": "8"
+    },
+    "incorrect": {
+      "point": "[0,0,1]",
+      "vector": "[2,1,0]",
+      "plane": "[1,1,1,7]",
+      "numerator": "6",
+      "denominator": "3",
+      "status": "single intersection",
+      "t": "2",
+      "intersection": "[4,2,1]",
+      "answer": "1",
+      "grade": "incorrect",
+      "solution": "false",
+      "tab": "Interaction + visualization",
+      "expanded": "false",
+      "actions": "10"
+    },
+    "correct": {
+      "point": "[0,0,1]",
+      "vector": "[2,1,0]",
+      "plane": "[1,1,1,7]",
+      "numerator": "6",
+      "denominator": "3",
+      "status": "single intersection",
+      "t": "2",
+      "intersection": "[4,2,1]",
+      "answer": "2",
+      "grade": "correct",
+      "solution": "false",
+      "tab": "Interaction + visualization",
+      "expanded": "false",
+      "actions": "12"
+    },
+    "solution": {
+      "point": "[0,0,1]",
+      "vector": "[2,1,0]",
+      "plane": "[1,1,1,7]",
+      "numerator": "6",
+      "denominator": "3",
+      "status": "single intersection",
+      "t": "2",
+      "intersection": "[4,2,1]",
+      "answer": "2",
+      "grade": "correct",
+      "solution": "true",
+      "tab": "Interaction + visualization",
+      "expanded": "false",
+      "actions": "13"
+    },
+    "orbitChanged": true,
+    "canvasPixels": {
+      "colored": 25592,
+      "unique": 1258,
+      "width": 458,
+      "height": 526
+    },
+    "expanded": {
+      "point": "[1,1,1]",
+      "vector": "[1,2,0]",
+      "plane": "[1,1,1,6]",
+      "numerator": "3",
+      "denominator": "3",
+      "status": "single intersection",
+      "t": "1",
+      "intersection": "[2,3,1]",
+      "answer": "2",
+      "grade": "correct",
+      "solution": "false",
+      "tab": "Interaction + visualization",
+      "expanded": "true",
+      "actions": "2"
+    },
+    "tabbed": {
+      "point": "[1,1,1]",
+      "vector": "[1,2,0]",
+      "plane": "[1,1,1,6]",
+      "numerator": "3",
+      "denominator": "3",
+      "status": "single intersection",
+      "t": "1",
+      "intersection": "[2,3,1]",
+      "answer": "2",
+      "grade": "correct",
+      "solution": "false",
+      "tab": "Formulas",
+      "expanded": "false",
+      "actions": "4"
+    },
+    "reset": {
+      "point": "[1,1,1]",
+      "vector": "[1,2,0]",
+      "plane": "[1,1,1,6]",
+      "numerator": "3",
+      "denominator": "3",
+      "status": "single intersection",
+      "t": "1",
+      "intersection": "[2,3,1]",
+      "answer": "2",
+      "grade": "correct",
+      "solution": "false",
+      "tab": "Interaction + visualization",
+      "expanded": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "overflow": false,
+    "hero": {
+      "top": 94,
+      "left": 215,
+      "width": 793,
+      "height": 220,
+      "bottom": 314
+    },
+    "tabs": {
+      "top": 324,
+      "left": 215,
+      "width": 793,
+      "height": 50,
+      "bottom": 374
+    },
+    "lab": {
+      "top": 384,
+      "left": 215,
+      "width": 793,
+      "height": 653,
+      "bottom": 1037
+    },
+    "scene": {
+      "top": 462,
+      "left": 226,
+      "width": 460,
+      "height": 566,
+      "bottom": 1028
+    },
+    "canvas": {
+      "top": 463,
+      "left": 227,
+      "width": 458,
+      "height": 526,
+      "bottom": 989
+    },
+    "side": {
+      "top": 462,
+      "left": 696,
+      "width": 297,
+      "height": 566,
+      "bottom": 1028
+    },
+    "workflow": {
+      "top": 1058,
+      "left": 215,
+      "width": 793,
+      "height": 118,
+      "bottom": 1176
+    },
+    "bottom": {
+      "top": 1186,
+      "left": 215,
+      "width": 793,
+      "height": 166,
+      "bottom": 1352
+    },
+    "navigation": {
+      "top": 1362,
+      "left": 215,
+      "width": 793,
+      "height": 58,
+      "bottom": 1420
+    }
+  },
+  "mobileMetrics": {
+    "documentWidth": 390,
+    "overflow": false,
+    "canvas": {
+      "x": 26,
+      "y": 318,
+      "width": 336,
+      "height": 526
+    },
+    "nonblank": true
+  },
+  "consoleMessages": [],
+  "passed": true
+}

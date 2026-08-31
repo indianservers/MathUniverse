@@ -12,7 +12,7 @@ describe("Geometry3DLessonAdapter", () => {
       [381, "Lines in 3D"],
       [382, "Planes"],
       [383, "Parallel and Perpendicular Planes"],
-      [384, "Line-plane intersection"],
+      [384, "Line–Plane Intersection"],
       [385, "Plane-plane intersection"],
       [386, "Angle between lines"],
       [387, "Angle between planes"],
@@ -72,7 +72,7 @@ describe("Geometry3DLessonAdapter", () => {
       );
       expect(html, String(lessonId)).toContain(snippet.replace(/'/g, "&#x27;"));
       if (
-        ![378, 379, 380, 381, 382, 383].includes(lessonId) &&
+        ![378, 379, 380, 381, 382, 383, 384].includes(lessonId) &&
         lesson.preset.id !== "geometry3d.solid-net"
       ) {
         expect(html, String(lessonId)).toContain(
@@ -221,5 +221,28 @@ describe("Geometry3DLessonAdapter", () => {
     expect(html).toContain('data-relation="Parallel"');
     expect(html).toContain('data-separation="0.33"');
     expect(html).toContain('data-scalar="2"');
+  });
+
+  it("uses a dedicated line-plane solver for lesson 384", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 384)!;
+    const html = renderToStaticMarkup(
+      <Geometry3DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="geometry3d-mockup-0569"');
+    expect(html).toContain(
+      "threejs-editable-parametric-line-plane-equation-exact-intersection-solver-single-parallel-contained-orbit-graded-challenge",
+    );
+    expect(html).toContain('data-point="[1,1,1]"');
+    expect(html).toContain('data-vector="[1,2,0]"');
+    expect(html).toContain('data-plane="[1,1,1,6]"');
+    expect(html).toContain('data-numerator="3"');
+    expect(html).toContain('data-denominator="3"');
+    expect(html).toContain('data-status="single intersection"');
+    expect(html).toContain('data-t="1"');
+    expect(html).toContain('data-intersection="[2,3,1]"');
   });
 });

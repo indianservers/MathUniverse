@@ -394,7 +394,7 @@ export default function ParallelPlanesTargetLesson383({
             <small>PREVIOUS</small>Planes
           </span>
         </a>
-        <a href="/lessons/3d-mathematics/384-line-plane-intersection">
+        <a href="/lessons/3d-mathematics/384-lineplane-intersection">
           <span>
             <small>NEXT</small>Line–Plane Intersection
           </span>{" "}
