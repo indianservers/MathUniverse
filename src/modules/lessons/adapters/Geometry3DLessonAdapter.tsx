@@ -6,11 +6,13 @@ import type { LessonAdapterProps } from "../types";
 import { SolidNetActivity } from "./p0/PriorityConceptActivities";
 import CoordinateSystemTargetLesson378 from "./geometry3d/CoordinateSystemTargetLesson378";
 import PointsTargetLesson379 from "./geometry3d/PointsTargetLesson379";
+import DistanceTargetLesson380 from "./geometry3d/DistanceTargetLesson380";
 
 export default function Geometry3DLessonAdapter(props: LessonAdapterProps) {
   if (props.lesson.id === 378)
     return <CoordinateSystemTargetLesson378 {...props} />;
   if (props.lesson.id === 379) return <PointsTargetLesson379 {...props} />;
+  if (props.lesson.id === 380) return <DistanceTargetLesson380 {...props} />;
   if (props.lesson.preset.id === "geometry3d.solid-net") {
     return (
       <AdapterFrame

@@ -1,0 +1,187 @@
+{
+  "mockup": "0565",
+  "lessonId": 380,
+  "checks": {
+    "initial": {
+      "a": "[1,2,1]",
+      "b": "[4,6,3]",
+      "delta": "[3,4,2]",
+      "squared": "29",
+      "distance": "5.39",
+      "components": "true",
+      "segment": "true",
+      "box": "true",
+      "tab": "Interaction + visualization",
+      "expanded": "false",
+      "actions": "0"
+    },
+    "practicePair": {
+      "a": "[0,0,0]",
+      "b": "[2,-1,2]",
+      "delta": "[2,-1,2]",
+      "squared": "9",
+      "distance": "3",
+      "components": "true",
+      "segment": "true",
+      "box": "true",
+      "tab": "Interaction + visualization",
+      "expanded": "false",
+      "actions": "6"
+    },
+    "hidden": {
+      "a": "[0,0,0]",
+      "b": "[2,-1,2]",
+      "delta": "[2,-1,2]",
+      "squared": "9",
+      "distance": "3",
+      "components": "false",
+      "segment": "false",
+      "box": "false",
+      "tab": "Interaction + visualization",
+      "expanded": "false",
+      "actions": "9"
+    },
+    "pointReset": {
+      "a": "[1,2,1]",
+      "b": "[2,-1,2]",
+      "delta": "[1,-3,1]",
+      "squared": "11",
+      "distance": "3.32",
+      "components": "true",
+      "segment": "true",
+      "box": "true",
+      "tab": "Interaction + visualization",
+      "expanded": "false",
+      "actions": "13"
+    },
+    "orbitChanged": true,
+    "canvasPixels": {
+      "colored": 25478,
+      "unique": 1948,
+      "width": 478,
+      "height": 498
+    },
+    "expanded": {
+      "a": "[1,2,1]",
+      "b": "[4,6,3]",
+      "delta": "[3,4,2]",
+      "squared": "29",
+      "distance": "5.39",
+      "components": "true",
+      "segment": "true",
+      "box": "true",
+      "tab": "Interaction + visualization",
+      "expanded": "true",
+      "actions": "2"
+    },
+    "tabbed": {
+      "a": "[1,2,1]",
+      "b": "[4,6,3]",
+      "delta": "[3,4,2]",
+      "squared": "29",
+      "distance": "5.39",
+      "components": "true",
+      "segment": "true",
+      "box": "true",
+      "tab": "Formulas",
+      "expanded": "false",
+      "actions": "4"
+    },
+    "reset": {
+      "a": "[1,2,1]",
+      "b": "[4,6,3]",
+      "delta": "[3,4,2]",
+      "squared": "29",
+      "distance": "5.39",
+      "components": "true",
+      "segment": "true",
+      "box": "true",
+      "tab": "Interaction + visualization",
+      "expanded": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1003,
+      "height": 1568
+    },
+    "overflow": false,
+    "hero": {
+      "top": 99,
+      "left": 220,
+      "width": 774,
+      "height": 184,
+      "bottom": 283
+    },
+    "tabs": {
+      "top": 293,
+      "left": 220,
+      "width": 774,
+      "height": 50,
+      "bottom": 343
+    },
+    "lab": {
+      "top": 353,
+      "left": 220,
+      "width": 774,
+      "height": 570,
+      "bottom": 923
+    },
+    "scene": {
+      "top": 412,
+      "left": 231,
+      "width": 480,
+      "height": 500,
+      "bottom": 912
+    },
+    "canvas": {
+      "top": 413,
+      "left": 232,
+      "width": 478,
+      "height": 498,
+      "bottom": 911
+    },
+    "side": {
+      "top": 412,
+      "left": 721,
+      "width": 253,
+      "height": 500,
+      "bottom": 912
+    },
+    "learning": {
+      "top": 935,
+      "left": 220,
+      "width": 774,
+      "height": 314,
+      "bottom": 1249
+    },
+    "warning": {
+      "top": 1261,
+      "left": 220,
+      "width": 774,
+      "height": 91,
+      "bottom": 1352
+    },
+    "navigation": {
+      "top": 1364,
+      "left": 220,
+      "width": 774,
+      "height": 68,
+      "bottom": 1432
+    }
+  },
+  "mobileMetrics": {
+    "documentWidth": 390,
+    "overflow": false,
+    "canvas": {
+      "x": 24,
+      "y": 344,
+      "width": 345,
+      "height": 500
+    },
+    "nonblank": true
+  },
+  "consoleMessages": [],
+  "passed": true
+}

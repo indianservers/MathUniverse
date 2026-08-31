@@ -72,7 +72,7 @@ describe("Geometry3DLessonAdapter", () => {
       );
       expect(html, String(lessonId)).toContain(snippet.replace(/'/g, "&#x27;"));
       if (
-        ![378, 379].includes(lessonId) &&
+        ![378, 379, 380].includes(lessonId) &&
         lesson.preset.id !== "geometry3d.solid-net"
       ) {
         expect(html, String(lessonId)).toContain(
@@ -137,5 +137,28 @@ describe("Geometry3DLessonAdapter", () => {
     expect(html).toContain('data-drops="true"');
     expect(html).toContain('data-shadow="true"');
     expect(html).toContain('data-path="true"');
+  });
+
+  it("uses a dedicated two-point distance model for lesson 380", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 380)!;
+    const html = renderToStaticMarkup(
+      <Geometry3DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="geometry3d-mockup-0565"');
+    expect(html).toContain(
+      "threejs-two-draggable-points-component-differences-distance-segment-rectangular-box-orbit-live-formula",
+    );
+    expect(html).toContain('data-a="[1,2,1]"');
+    expect(html).toContain('data-b="[4,6,3]"');
+    expect(html).toContain('data-delta="[3,4,2]"');
+    expect(html).toContain('data-squared="29"');
+    expect(html).toContain('data-distance="5.39"');
+    expect(html).toContain('data-components="true"');
+    expect(html).toContain('data-segment="true"');
+    expect(html).toContain('data-box="true"');
   });
 });
