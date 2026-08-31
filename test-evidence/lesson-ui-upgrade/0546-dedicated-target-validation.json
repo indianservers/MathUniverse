@@ -1,0 +1,175 @@
+{
+  "mockup": "0546",
+  "lessonId": 361,
+  "checks": {
+    "initial": {
+      "v1": "[2,1]",
+      "v2": "[1,3]",
+      "det": "5",
+      "area": "5",
+      "rank": "2",
+      "independent": "true",
+      "relation": "null",
+      "combination": "[0,-5]",
+      "tab": "Explore",
+      "challenge": "",
+      "actions": "0"
+    },
+    "dependent": {
+      "v1": "[2,1]",
+      "v2": "[4,2]",
+      "det": "0",
+      "area": "0",
+      "rank": "1",
+      "independent": "false",
+      "relation": "[4,-2]",
+      "combination": "[-6,-3]",
+      "tab": "Explore",
+      "challenge": "",
+      "actions": "2"
+    },
+    "relation": {
+      "v1": "[2,1]",
+      "v2": "[4,2]",
+      "det": "0",
+      "area": "0",
+      "rank": "1",
+      "independent": "false",
+      "relation": "[4,-2]",
+      "combination": "[0,0]",
+      "tab": "Explore",
+      "challenge": "",
+      "actions": "3"
+    },
+    "failedChallenge": {
+      "v1": "[2,1]",
+      "v2": "[4,2]",
+      "det": "0",
+      "area": "0",
+      "rank": "1",
+      "independent": "false",
+      "relation": "[4,-2]",
+      "combination": "[0,0]",
+      "tab": "Explore",
+      "challenge": "incorrect",
+      "actions": "4"
+    },
+    "passedChallenge": {
+      "v1": "[2,1]",
+      "v2": "[4,3]",
+      "det": "2",
+      "area": "2",
+      "rank": "2",
+      "independent": "true",
+      "relation": "null",
+      "combination": "[0,-2]",
+      "tab": "Explore",
+      "challenge": "correct",
+      "actions": "6"
+    },
+    "dragged": {
+      "v1": "[2.551,1.722]",
+      "v2": "[1,3]",
+      "det": "5.931",
+      "area": "5.931",
+      "rank": "2",
+      "independent": "true",
+      "relation": "null",
+      "combination": "[0.551,-4.278]",
+      "tab": "Explore",
+      "challenge": "",
+      "actions": "2"
+    },
+    "tabbed": {
+      "v1": "[2.551,1.722]",
+      "v2": "[1,3]",
+      "det": "5.931",
+      "area": "5.931",
+      "rank": "2",
+      "independent": "true",
+      "relation": "null",
+      "combination": "[0.551,-4.278]",
+      "tab": "Concept",
+      "challenge": "",
+      "actions": "4"
+    },
+    "reset": {
+      "v1": "[2,1]",
+      "v2": "[1,3]",
+      "det": "5",
+      "area": "5",
+      "rank": "2",
+      "independent": "true",
+      "relation": "null",
+      "combination": "[0,-5]",
+      "tab": "Explore",
+      "challenge": "",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1535
+    },
+    "overflow": false,
+    "hero": {
+      "top": 92,
+      "left": 233,
+      "width": 771,
+      "height": 177,
+      "bottom": 269
+    },
+    "tabs": {
+      "top": 281,
+      "left": 233,
+      "width": 771,
+      "height": 49,
+      "bottom": 330
+    },
+    "lab": {
+      "top": 342,
+      "left": 233,
+      "width": 771,
+      "height": 455,
+      "bottom": 797
+    },
+    "metrics": {
+      "top": 797,
+      "left": 233,
+      "width": 771,
+      "height": 106,
+      "bottom": 903
+    },
+    "relation": {
+      "top": 965,
+      "left": 233,
+      "width": 771,
+      "height": 128,
+      "bottom": 1093
+    },
+    "examples": {
+      "top": 1105,
+      "left": 233,
+      "width": 771,
+      "height": 246,
+      "bottom": 1351
+    },
+    "challenge": {
+      "top": 1363,
+      "left": 233,
+      "width": 771,
+      "height": 87,
+      "bottom": 1450
+    },
+    "adjacent": {
+      "top": 1458,
+      "left": 233,
+      "width": 771,
+      "height": 53,
+      "bottom": 1511
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

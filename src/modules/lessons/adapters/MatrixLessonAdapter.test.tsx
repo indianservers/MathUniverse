@@ -16,11 +16,11 @@ describe("MatrixLessonAdapter", () => {
         />,
       );
       expect(html, String(lesson.id)).toContain(lesson.title);
-      if (lesson.id > 360)
+      if (lesson.id > 361)
         expect(html, String(lesson.id)).toMatch(
           /matrix and linear-algebra lab|eigendirection lab/,
         );
-      if (![352, 356].includes(lesson.id))
+      if (![352, 356, 361].includes(lesson.id))
         expect(html, String(lesson.id)).toContain('type="number"');
       expect(html, String(lesson.id)).not.toContain("Legacy");
     }
@@ -151,6 +151,16 @@ describe("MatrixLessonAdapter", () => {
     expect(html).toContain("draggable-two-vector-basis-determinant-independence-span-dimension-coordinate-solve");
     expect(html).toContain('data-det="-2"');
     expect(html).toContain('data-coordinates="[3,1]"');
+  });
+
+  it("uses a homogeneous-relation independence model for lesson 361", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 361)!;
+    const html = renderToStaticMarkup(<MatrixLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="matrix-mockup-0546"');
+    expect(html).toContain("draggable-editable-vector-pair-determinant-area-rank-independence-homogeneous-relation");
+    expect(html).toContain('data-det="5"');
+    expect(html).toContain('data-rank="2"');
+    expect(html).toContain('data-independent="true"');
   });
 
   it("does not show determinant as the primary result for unrelated concepts", () => {
