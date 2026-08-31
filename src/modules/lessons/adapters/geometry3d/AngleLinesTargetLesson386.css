@@ -1,0 +1,415 @@
+.al386-page {
+  font-size: 9px;
+  color: #102043;
+}
+.al386-page .cs378-hero {
+  height: 219px;
+}
+.al386-page .cs378-actions {
+  display: grid;
+  width: 340px;
+  grid-template-columns: 194px 66px 66px;
+}
+.al386-page .cs378-actions button:last-child {
+  grid-column: 1;
+}
+.al386-page .cs378-tabs {
+  height: 43px;
+}
+.al386-lab {
+  height: 617px;
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #dfe7ee;
+  border-radius: 12px;
+  background: #fff;
+}
+.al386-lab > header {
+  display: flex;
+  height: 49px;
+  align-items: flex-start;
+  gap: 8px;
+}
+.al386-lab > header > div {
+  margin-right: auto;
+}
+.al386-lab > header small {
+  color: #087d9d;
+  font-size: 7px;
+  font-weight: 900;
+}
+.al386-lab > header h2 {
+  font-size: 16px;
+}
+.al386-lab > header > strong,
+.al386-lab > header > span {
+  height: 28px;
+  padding: 7px 10px;
+  border: 1px solid #dce4ed;
+  border-radius: 15px;
+}
+.al386-lab > header > strong {
+  border-color: #b9dec7;
+  background: #f3fff7;
+  color: #148050;
+}
+.al386-main {
+  display: grid;
+  height: 499px;
+  grid-template-columns: minmax(0, 459px) minmax(0, 247px);
+  gap: 14px;
+}
+.al386-scene {
+  position: relative;
+  overflow: hidden;
+  border-radius: 9px;
+  background: #06172b;
+}
+.al386-canvas {
+  height: 499px;
+}
+.al386-canvas canvas {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+.al386-drag {
+  position: absolute;
+  top: 13px;
+  left: 13px;
+  padding: 7px 10px;
+  border: 1px solid #344a64;
+  border-radius: 14px;
+  background: #07162ddd;
+  color: #b8f6ff;
+  font-size: 8px;
+}
+.al386-expand {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: grid;
+  width: 31px;
+  height: 31px;
+  place-items: center;
+  border: 1px solid #5b6a7f;
+  border-radius: 50%;
+  background: #07162dcc;
+  color: #fff;
+}
+.al386-expand svg {
+  width: 14px;
+}
+.al386-translate {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  left: 12px;
+  display: flex;
+  height: 60px;
+  padding: 10px 13px;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #344a64;
+  border-radius: 8px;
+  background: #0c1d32e8;
+  color: #fff;
+}
+.al386-translate > span {
+  display: grid;
+}
+.al386-translate small {
+  color: #d3deea;
+}
+.al386-translate input,
+.al386-modes input {
+  width: 32px;
+  height: 18px;
+  margin-left: auto;
+  appearance: none;
+  border-radius: 10px;
+  background: #cbd5e1;
+}
+.al386-translate input:before,
+.al386-modes input:before {
+  display: block;
+  width: 14px;
+  height: 14px;
+  margin: 2px;
+  border-radius: 50%;
+  background: #fff;
+  content: "";
+}
+.al386-translate input:checked,
+.al386-modes input:checked {
+  background: #089ab5;
+}
+.al386-translate input:checked:before,
+.al386-modes input:checked:before {
+  transform: translateX(14px);
+}
+.al386-side {
+  overflow: hidden;
+  border: 1px solid #dfe7ee;
+  border-radius: 8px;
+}
+.al386-side > h3 {
+  padding: 13px 13px 5px;
+  font-size: 12px;
+}
+.al386-vector {
+  padding: 9px 13px;
+  border-bottom: 1px solid #e2e8ef;
+}
+.al386-vector > div {
+  display: grid;
+  margin-top: 8px;
+  grid-template-columns: repeat(3, 1fr) 30px;
+  gap: 6px;
+}
+.al386-vector input {
+  width: 100%;
+  height: 32px;
+  border: 1px solid #dce4ed;
+  border-radius: 6px;
+  text-align: center;
+}
+.al386-vector i {
+  width: 26px;
+  height: 26px;
+  margin: 3px;
+  border: 4px solid #e7f7fb;
+  border-radius: 4px;
+}
+.al386-modes {
+  padding: 10px 13px;
+  border-bottom: 1px solid #e2e8ef;
+}
+.al386-modes > div {
+  display: grid;
+  height: 29px;
+  margin: 8px 0 9px;
+  grid-template-columns: 1fr 1fr;
+}
+.al386-modes button {
+  border: 1px solid #dce4ed;
+  background: #f7f9fb;
+}
+.al386-modes button.active {
+  border-color: #0795ac;
+  background: #0795ac;
+  color: #fff;
+}
+.al386-modes label {
+  display: flex;
+  height: 31px;
+  align-items: center;
+}
+.al386-results {
+  padding: 11px 13px;
+}
+.al386-results h3 {
+  color: #087fbc;
+  font-size: 13px;
+}
+.al386-results p {
+  display: grid;
+  margin-top: 8px;
+  grid-template-columns: 42px 16px 1fr;
+  font:
+    12px Georgia,
+    serif;
+}
+.al386-results > strong {
+  display: block;
+  width: 126px;
+  margin-top: 10px;
+  padding: 8px;
+  border: 1px solid #f0c874;
+  border-radius: 6px;
+  color: #ec8c00;
+  font:
+    18px Georgia,
+    serif;
+  text-align: center;
+}
+.al386-lab > footer {
+  height: 38px;
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #bfe7ee;
+  border-radius: 8px;
+  background: #effbff;
+  color: #52657a;
+}
+.al386-learning {
+  display: grid;
+  height: 241px;
+  margin-top: 10px;
+  grid-template-columns: 1fr 1.12fr 1.12fr;
+  gap: 10px;
+}
+.al386-learning > article {
+  padding: 13px;
+  border: 1px solid #dfe7ee;
+  border-radius: 9px;
+  background: #fff;
+}
+.al386-learning h2 {
+  font-size: 12px;
+}
+.al386-learning article:first-child > div {
+  display: flex;
+  height: 81px;
+  margin-top: 12px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #069bb4;
+  border-radius: 7px;
+  font:
+    19px Georgia,
+    serif;
+}
+.al386-learning article:first-child > div span {
+  text-align: center;
+}
+.al386-learning article:first-child p {
+  margin-top: 14px;
+  line-height: 1.5;
+}
+.al386-learning article:nth-child(2) > p {
+  margin-top: 9px;
+}
+.al386-learning ol {
+  margin: 9px 0 0;
+  padding-left: 22px;
+  line-height: 1.8;
+}
+.al386-learning ol li::marker {
+  color: #8193aa;
+}
+.al386-challenge > p {
+  margin-top: 10px;
+}
+.al386-challenge > small {
+  display: block;
+  margin-top: 10px;
+}
+.al386-challenge > strong {
+  display: block;
+  margin-top: 20px;
+  padding: 18px 10px;
+  border: 1px solid #7fd098;
+  border-radius: 7px;
+  background: #effcf4;
+  color: #15934f;
+  font-size: 14px;
+}
+.al386-challenge > button {
+  display: flex;
+  width: 100%;
+  height: 39px;
+  margin-top: 10px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid #dce4ed;
+  border-radius: 7px;
+  background: #fff;
+}
+.al386-challenge svg {
+  width: 14px;
+}
+.al386-misconception {
+  display: grid;
+  height: 112px;
+  margin-top: 16px;
+  padding: 15px;
+  grid-template-columns: 24px 1.7fr 1fr 1fr;
+  gap: 12px;
+  align-items: center;
+  border: 1px solid #f1cccc;
+  border-radius: 9px;
+  background: #fffafa;
+}
+.al386-misconception > div:nth-child(2) {
+  align-self: start;
+}
+.al386-misconception h3 {
+  font-size: 9px;
+}
+.al386-misconception strong {
+  display: block;
+  margin-top: 8px;
+}
+.al386-misconception p {
+  margin-top: 7px;
+}
+.al386-good,
+.al386-bad {
+  display: grid;
+  height: 75px;
+  place-items: center;
+  font-size: 45px;
+}
+.al386-good small,
+.al386-bad small {
+  font-size: 8px;
+}
+.al386-page .cs378-nav {
+  height: 58px;
+  margin-top: 23px;
+}
+.al386-page.expanded .al386-scene {
+  position: fixed;
+  z-index: 100;
+  inset: 10px;
+}
+.al386-page.expanded .al386-canvas {
+  height: calc(100vh - 20px);
+}
+body:has(.al386-page) [data-testid="desktop-sidebar"] {
+  width: 204px !important;
+  flex-basis: 204px !important;
+}
+body:has(.al386-page) #main-content {
+  padding: 0 17px 0 16px !important;
+}
+body:has(.al386-page) header.sticky.top-0 {
+  height: 51px !important;
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
+}
+body:has(.al386-page) nav[aria-label="Breadcrumb"] {
+  min-height: 36px;
+  margin-bottom: 6px !important;
+  align-items: center;
+}
+body:has(.al386-page) footer[aria-label="Site footer"] {
+  height: 115px !important;
+}
+body:has(.al386-page) footer[aria-label="Site footer"] > div {
+  height: 115px !important;
+}
+@media (max-width: 799px) {
+  body:has(.al386-page) [data-testid="desktop-sidebar"] {
+    display: none !important;
+  }
+  .al386-main,
+  .al386-learning,
+  .al386-misconception {
+    grid-template-columns: 1fr;
+  }
+  .al386-lab,
+  .al386-main,
+  .al386-learning,
+  .al386-misconception {
+    height: auto;
+  }
+  .al386-canvas {
+    height: 499px;
+  }
+  .al386-side {
+    overflow: visible;
+  }
+}

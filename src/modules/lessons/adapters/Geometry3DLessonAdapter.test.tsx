@@ -14,7 +14,7 @@ describe("Geometry3DLessonAdapter", () => {
       [383, "Parallel and Perpendicular Planes"],
       [384, "Line–Plane Intersection"],
       [385, "Plane–Plane Intersection"],
-      [386, "Angle between lines"],
+      [386, "Angle Between Lines"],
       [387, "Angle between planes"],
       [388, "Angle between line and plane"],
       [389, "Point-to-plane distance"],
@@ -72,7 +72,7 @@ describe("Geometry3DLessonAdapter", () => {
       );
       expect(html, String(lessonId)).toContain(snippet.replace(/'/g, "&#x27;"));
       if (
-        ![378, 379, 380, 381, 382, 383, 384, 385].includes(lessonId) &&
+        ![378, 379, 380, 381, 382, 383, 384, 385, 386].includes(lessonId) &&
         lesson.preset.id !== "geometry3d.solid-net"
       ) {
         expect(html, String(lessonId)).toContain(
@@ -267,5 +267,28 @@ describe("Geometry3DLessonAdapter", () => {
     expect(html).toContain('data-direction="[1,0,-1]"');
     expect(html).toContain('data-point="[4,2,0]"');
     expect(html).toContain('data-status="Intersecting line"');
+  });
+
+  it("uses a dedicated angle-between-lines solver for lesson 386", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 386)!;
+    const html = renderToStaticMarkup(
+      <Geometry3DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="geometry3d-mockup-0571"');
+    expect(html).toContain(
+      "threejs-two-directly-draggable-direction-vectors-dot-magnitude-cosine-acute-obtuse-angle-arc-translated-line-orbit-live-challenges",
+    );
+    expect(html).toContain('data-u="[1,0,0]"');
+    expect(html).toContain('data-v="[1,1,0]"');
+    expect(html).toContain('data-dot="1"');
+    expect(html).toContain('data-magnitude-u="1"');
+    expect(html).toContain('data-magnitude-v="1.4142"');
+    expect(html).toContain('data-cosine="0.7071"');
+    expect(html).toContain('data-angle="45"');
+    expect(html).toContain('data-mode="Acute"');
   });
 });
