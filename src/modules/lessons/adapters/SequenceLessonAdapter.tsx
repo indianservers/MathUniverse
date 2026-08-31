@@ -3,6 +3,7 @@ import { sequenceLessonPreset } from "../presets/sequenceLessonPresets";
 import type { LessonAdapterProps } from "../types";
 import ArithmeticSequencesTargetLesson335 from "./sequence/ArithmeticSequencesTargetLesson335";
 import GeometricSequencesTargetLesson336 from "./sequence/GeometricSequencesTargetLesson336";
+import RecursiveSequencesTargetLesson337 from "./sequence/RecursiveSequencesTargetLesson337";
 import { SequenceConceptActivity } from "./sequence/SequenceConceptActivity";
 import SequenceGeneratorTargetLesson334 from "./sequence/SequenceGeneratorTargetLesson334";
 
@@ -13,6 +14,8 @@ export default function SequenceLessonAdapter(props: LessonAdapterProps) {
     return <ArithmeticSequencesTargetLesson335 {...props} />;
   if (props.lesson.id === 336)
     return <GeometricSequencesTargetLesson336 {...props} />;
+  if (props.lesson.id === 337)
+    return <RecursiveSequencesTargetLesson337 {...props} />;
   const mode = sequenceLessonPreset(props.lesson.id).mode;
   return (
     <AdapterFrame

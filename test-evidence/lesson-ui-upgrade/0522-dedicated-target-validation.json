@@ -1,0 +1,177 @@
+{
+  "mockup": "0522",
+  "lessonId": 337,
+  "checks": {
+    "initial": {
+      "preset": "Linear decay",
+      "custom": "true",
+      "rule": "0.6aₙ₋₁ + 4",
+      "initial": "2",
+      "terms": "2,5.2,7.12,8.272,8.9632,9.37792,9.626752,9.776051,9.865631,9.919378",
+      "fixed": "10",
+      "behavior": "Convergent",
+      "precision": "6",
+      "shown": "5",
+      "tab": "Define & Visualisation",
+      "quick-result": "",
+      "actions": "0"
+    },
+    "logistic": {
+      "preset": "Logistic",
+      "custom": "false",
+      "rule": "3.2aₙ₋₁(1−aₙ₋₁)",
+      "initial": "0.2",
+      "terms": "0.2,0.512,0.799539,0.512884,0.799469,0.513019,0.799458,0.51304,0.799456,0.513044",
+      "fixed": "none",
+      "behavior": "Nonlinear / divergent",
+      "precision": "6",
+      "shown": "5",
+      "tab": "Define & Visualisation",
+      "quick-result": "",
+      "actions": "1"
+    },
+    "custom": {
+      "preset": "Logistic",
+      "custom": "true",
+      "rule": "0.5aₙ₋₁ + 5",
+      "initial": "4",
+      "terms": "4,7,8.5,9.25,9.625,9.8125,9.9063,9.9531,9.9766,9.9883",
+      "fixed": "10",
+      "behavior": "Convergent",
+      "precision": "4",
+      "shown": "10",
+      "tab": "Define & Visualisation",
+      "quick-result": "",
+      "actions": "6"
+    },
+    "drag": {
+      "preset": "Logistic",
+      "custom": "true",
+      "rule": "0.5aₙ₋₁ + 5",
+      "initial": "7.10764",
+      "terms": "7.1076,8.5538,9.2769,9.6385,9.8192,9.9096,9.9548,9.9774,9.9887,9.9944",
+      "fixed": "10",
+      "behavior": "Convergent",
+      "precision": "4",
+      "shown": "10",
+      "tab": "Define & Visualisation",
+      "quick-result": "",
+      "actions": "14"
+    },
+    "download": "recursive-sequence.csv",
+    "rejected": {
+      "preset": "Logistic",
+      "custom": "true",
+      "rule": "0.5aₙ₋₁ + 5",
+      "initial": "7.10764",
+      "terms": "7.1076,8.5538,9.2769,9.6385,9.8192,9.9096,9.9548,9.9774,9.9887,9.9944",
+      "fixed": "10",
+      "behavior": "Convergent",
+      "precision": "4",
+      "shown": "10",
+      "tab": "Define & Visualisation",
+      "quick-result": "incorrect",
+      "actions": "16"
+    },
+    "accepted": {
+      "preset": "Logistic",
+      "custom": "true",
+      "rule": "0.5aₙ₋₁ + 5",
+      "initial": "7.10764",
+      "terms": "7.1076,8.5538,9.2769,9.6385,9.8192,9.9096,9.9548,9.9774,9.9887,9.9944",
+      "fixed": "10",
+      "behavior": "Convergent",
+      "precision": "4",
+      "shown": "10",
+      "tab": "Formulas",
+      "quick-result": "correct",
+      "actions": "18"
+    },
+    "shellReset": {
+      "preset": "Linear decay",
+      "custom": "true",
+      "rule": "0.6aₙ₋₁ + 4",
+      "initial": "2",
+      "terms": "2,5.2,7.12,8.272,8.9632,9.37792,9.626752,9.776051,9.865631,9.919378",
+      "fixed": "10",
+      "behavior": "Convergent",
+      "precision": "6",
+      "shown": "5",
+      "tab": "Define & Visualisation",
+      "quick-result": "",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 986,
+      "height": 1594
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 205,
+      "height": 1594,
+      "bottom": 1594
+    },
+    "tabs": {
+      "top": 101,
+      "left": 219,
+      "width": 753,
+      "height": 43,
+      "bottom": 144
+    },
+    "hero": {
+      "top": 154,
+      "left": 219,
+      "width": 753,
+      "height": 140,
+      "bottom": 294
+    },
+    "config": {
+      "top": 310,
+      "left": 219,
+      "width": 753,
+      "height": 240,
+      "bottom": 550
+    },
+    "three": {
+      "top": 562,
+      "left": 219,
+      "width": 753,
+      "height": 286,
+      "bottom": 848
+    },
+    "data": {
+      "top": 860,
+      "left": 219,
+      "width": 753,
+      "height": 438,
+      "bottom": 1298
+    },
+    "quick": {
+      "top": 1310,
+      "left": 219,
+      "width": 753,
+      "height": 116,
+      "bottom": 1426
+    },
+    "adjacent": {
+      "top": 1440,
+      "left": 219,
+      "width": 753,
+      "height": 57,
+      "bottom": 1497
+    },
+    "footer": {
+      "top": 1509,
+      "left": 205,
+      "width": 781,
+      "height": 85,
+      "bottom": 1594
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

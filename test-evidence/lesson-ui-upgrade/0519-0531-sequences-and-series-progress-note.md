@@ -1,22 +1,22 @@
 # Sequences and Series target batch 0519-0531
 
-Dedicated rebuild target: **3 of 13 lessons completed; 10 pending.**
+Dedicated rebuild target: **4 of 13 lessons completed; 9 pending.**
 
-| Mockup | Lesson                        | Dedicated object model                                                                                                                                        | Status                                      |
-| ------ | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
-| 0519   | 334 Sequence Generator        | `editable-polynomial-parser-explicit-recursive-range-generator-differences-ratios-cumulative-sums-pattern-detector-draggable-constant-export-practice`        | Reworked individually and browser-validated |
-| 0520   | 335 Arithmetic Sequences      | `constant-difference-number-line-stepper-autoplay-term-table-draggable-index-graph-explicit-recursive-bidirectional-nth-term-solver-guided-practice`          | Reworked individually and browser-validated |
-| 0521   | 336 Geometric Sequences       | `constant-ratio-multiplicative-step-chain-term-table-linear-log-plot-draggable-ratio-explicit-recursive-growth-classifier-three-mode-inverse-solver-practice` | Reworked individually and browser-validated |
-| 0522   | 337 Recursive Sequences       | Pending                                                                                                                                                       | Pending                                     |
-| 0523   | 338 Sigma Notation            | Pending                                                                                                                                                       | Pending                                     |
-| 0524   | 339 Arithmetic Series         | Pending                                                                                                                                                       | Pending                                     |
-| 0525   | 340 Geometric Series          | Pending                                                                                                                                                       | Pending                                     |
-| 0526   | 341 Infinite Geometric Series | Pending                                                                                                                                                       | Pending                                     |
-| 0527   | 342 Convergence of Series     | Pending                                                                                                                                                       | Pending                                     |
-| 0528   | 343 Power Series              | Pending                                                                                                                                                       | Pending                                     |
-| 0529   | 344 Taylor Series             | Pending                                                                                                                                                       | Pending                                     |
-| 0530   | 345 Fibonacci Sequence        | Pending                                                                                                                                                       | Pending                                     |
-| 0531   | 346 Recurrence Relations      | Pending                                                                                                                                                       | Pending                                     |
+| Mockup | Lesson                        | Dedicated object model                                                                                                                                                     | Status                                      |
+| ------ | ----------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
+| 0519   | 334 Sequence Generator        | `editable-polynomial-parser-explicit-recursive-range-generator-differences-ratios-cumulative-sums-pattern-detector-draggable-constant-export-practice`                     | Reworked individually and browser-validated |
+| 0520   | 335 Arithmetic Sequences      | `constant-difference-number-line-stepper-autoplay-term-table-draggable-index-graph-explicit-recursive-bidirectional-nth-term-solver-guided-practice`                       | Reworked individually and browser-validated |
+| 0521   | 336 Geometric Sequences       | `constant-ratio-multiplicative-step-chain-term-table-linear-log-plot-draggable-ratio-explicit-recursive-growth-classifier-three-mode-inverse-solver-practice`              | Reworked individually and browser-validated |
+| 0522   | 337 Recursive Sequences       | `editable-affine-logistic-recurrence-parser-presets-initial-condition-dependency-chain-memoized-table-cobweb-draggable-seed-time-series-fixed-point-error-export-practice` | Reworked individually and browser-validated |
+| 0523   | 338 Sigma Notation            | Pending                                                                                                                                                                    | Pending                                     |
+| 0524   | 339 Arithmetic Series         | Pending                                                                                                                                                                    | Pending                                     |
+| 0525   | 340 Geometric Series          | Pending                                                                                                                                                                    | Pending                                     |
+| 0526   | 341 Infinite Geometric Series | Pending                                                                                                                                                                    | Pending                                     |
+| 0527   | 342 Convergence of Series     | Pending                                                                                                                                                                    | Pending                                     |
+| 0528   | 343 Power Series              | Pending                                                                                                                                                                    | Pending                                     |
+| 0529   | 344 Taylor Series             | Pending                                                                                                                                                                    | Pending                                     |
+| 0530   | 345 Fibonacci Sequence        | Pending                                                                                                                                                                    | Pending                                     |
+| 0531   | 346 Recurrence Relations      | Pending                                                                                                                                                                    | Pending                                     |
 
 ## Lesson 334 / Mockup 0519 - Sequence Generator
 
@@ -67,3 +67,17 @@ Evidence:
 - `0521-reference.png`
 - `0521-desktop.png`
 - `0521-dedicated-target-validation.json`
+
+## Lesson 337 / Mockup 0522 - Recursive Sequences
+
+Reworked individually around an editable recurrence engine. The parser accepts affine rules such as `0.6a+4` and normalized logistic rules such as `3.2a(1-a)`. Custom mode owns the editable field; selecting Linear growth, Linear decay, Doubling, or Logistic switches to preset mode and updates the rule and a meaningful initial condition. The same recurrence generates the dependency chain, substitution steps, memoized table, absolute errors, cobweb, time series, fixed-point diagnostics, and assessment.
+
+Both cobweb and time-series seeds are pointer-captured vertical drag handles that update the initial condition and regenerate the full orbit. Precision controls actual displayed values, Compute sequence reveals all ten evaluation steps, Export downloads `recursive-sequence.csv`, and Reset, five lesson stages, incorrect/correct grading, and shell Reset are functional. Browser validation confirms the target affine orbit through `9.919378`, fixed point 10, and convergence factor 0.6. Logistic mode uses `a1=0.2` and produces a bounded orbit. Custom `0.5a+5`, `a1=4`, precision 4 generates terms through `9.9883`; dragging changes the seed to approximately `7.10764`; assessment rejects 9.2 and accepts 9.37792.
+
+Final exact 986x1594 validation matches the target stack: sidebar width 205, tabs y=101-144, header y=154-294, recurrence setup y=310-550, dependency/evaluation/cobweb y=562-848, memoized table/time series/insights y=860-1298, quick check y=1310-1426, adjacent lessons y=1440-1497, and footer y=1509-1594. Dedicated content spans x=219-972, with no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0522-reference.png`
+- `0522-desktop.png`
+- `0522-dedicated-target-validation.json`
