@@ -1,0 +1,162 @@
+{
+  "mockup": "0563",
+  "lessonId": 378,
+  "checks": {
+    "initial": {
+      "point": "[3,2,4]",
+      "distance": "5.39",
+      "planes": "true",
+      "path": "true",
+      "labels": "true",
+      "challenge": "C",
+      "grade": "idle",
+      "expanded": "false",
+      "tab": "Interaction + visualization",
+      "actions": "0"
+    },
+    "changed": {
+      "point": "[-2,3,1]",
+      "distance": "3.74",
+      "planes": "true",
+      "path": "true",
+      "labels": "true",
+      "challenge": "C",
+      "grade": "idle",
+      "expanded": "false",
+      "tab": "Interaction + visualization",
+      "actions": "3"
+    },
+    "hidden": {
+      "point": "[-2,3,1]",
+      "distance": "3.74",
+      "planes": "false",
+      "path": "true",
+      "labels": "true",
+      "challenge": "C",
+      "grade": "idle",
+      "expanded": "false",
+      "tab": "Interaction + visualization",
+      "actions": "4"
+    },
+    "orbitChanged": true,
+    "canvasPixels": {
+      "colored": 25594,
+      "unique": 1479,
+      "width": 498,
+      "height": 560
+    },
+    "challenge": {
+      "point": "[-2,3,1]",
+      "distance": "3.74",
+      "planes": "true",
+      "path": "true",
+      "labels": "true",
+      "challenge": "C",
+      "grade": "correct",
+      "expanded": "false",
+      "tab": "Interaction + visualization",
+      "actions": "6"
+    },
+    "expanded": {
+      "point": "[-2,3,1]",
+      "distance": "3.74",
+      "planes": "true",
+      "path": "true",
+      "labels": "true",
+      "challenge": "C",
+      "grade": "correct",
+      "expanded": "true",
+      "tab": "Interaction + visualization",
+      "actions": "7"
+    },
+    "tabbed": {
+      "point": "[-2,3,1]",
+      "distance": "3.74",
+      "planes": "true",
+      "path": "true",
+      "labels": "true",
+      "challenge": "C",
+      "grade": "correct",
+      "expanded": "false",
+      "tab": "Formulas",
+      "actions": "9"
+    },
+    "reset": {
+      "point": "[3,2,4]",
+      "distance": "5.39",
+      "planes": "true",
+      "path": "true",
+      "labels": "true",
+      "challenge": "C",
+      "grade": "idle",
+      "expanded": "false",
+      "tab": "Interaction + visualization",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1002,
+      "height": 1569
+    },
+    "overflow": false,
+    "hero": {
+      "top": 99,
+      "left": 220,
+      "width": 773,
+      "height": 178,
+      "bottom": 277
+    },
+    "tabs": {
+      "top": 287,
+      "left": 220,
+      "width": 773,
+      "height": 50,
+      "bottom": 337
+    },
+    "lab": {
+      "top": 347,
+      "left": 220,
+      "width": 773,
+      "height": 666,
+      "bottom": 1013
+    },
+    "scene": {
+      "top": 405,
+      "left": 231,
+      "width": 500,
+      "height": 599,
+      "bottom": 1004
+    },
+    "canvas": {
+      "top": 406,
+      "left": 232,
+      "width": 498,
+      "height": 560,
+      "bottom": 966
+    },
+    "learning": {
+      "top": 1025,
+      "left": 220,
+      "width": 773,
+      "height": 195,
+      "bottom": 1220
+    },
+    "warning": {
+      "top": 1232,
+      "left": 220,
+      "width": 773,
+      "height": 112,
+      "bottom": 1344
+    },
+    "navigation": {
+      "top": 1356,
+      "left": 220,
+      "width": 773,
+      "height": 53,
+      "bottom": 1409
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

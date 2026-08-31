@@ -1,0 +1,466 @@
+.cs378-page,
+.cs378-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.cs378-page {
+  color: #102043;
+  font:
+    9px/1.42 Inter,
+    system-ui,
+    sans-serif;
+}
+.cs378-page h1,
+.cs378-page h2,
+.cs378-page h3,
+.cs378-page p {
+  margin: 0;
+}
+.cs378-page button,
+.cs378-page input,
+.cs378-page select {
+  font: inherit;
+}
+.cs378-hero {
+  height: 178px;
+  padding: 13px;
+  border: 1px solid #dfe7ee;
+  border-radius: 13px;
+  background: #fff;
+}
+.cs378-pills {
+  display: flex;
+  gap: 7px;
+}
+.cs378-pills b {
+  padding: 5px 9px;
+  border-radius: 9px;
+  background: #e8f8fc;
+  color: #087998;
+  font-size: 7px;
+}
+.cs378-pills b + b {
+  background: #eef1f4;
+  color: #4e5870;
+}
+.cs378-hero h1 {
+  margin-top: 7px;
+  font-size: 28px;
+  line-height: 1.05;
+  font-weight: 900;
+}
+.cs378-hero > p {
+  font-size: 11px;
+  color: #53617b;
+}
+.cs378-hero nav {
+  display: flex;
+  gap: 7px;
+  margin-top: 9px;
+}
+.cs378-hero nav span {
+  padding: 5px 9px;
+  border: 1px solid #dce4ed;
+  border-radius: 12px;
+  font-weight: 800;
+}
+.cs378-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+.cs378-actions select,
+.cs378-actions button {
+  display: flex;
+  height: 34px;
+  padding: 0 13px;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #dce4ed;
+  border-radius: 8px;
+  background: #fff;
+  font-weight: 750;
+}
+.cs378-actions select {
+  width: 194px;
+}
+.cs378-actions svg {
+  width: 13px;
+}
+.cs378-tabs {
+  display: grid;
+  height: 50px;
+  margin-top: 10px;
+  padding: 5px;
+  grid-template-columns: 1.3fr repeat(4, 1fr);
+  border: 1px solid #dfe7ee;
+  border-radius: 12px;
+  background: #fff;
+}
+.cs378-tabs button {
+  border: 0;
+  background: transparent;
+  font-weight: 850;
+}
+.cs378-tabs .active {
+  border-radius: 9px;
+  background: linear-gradient(120deg, #0780a8, #0b9fba);
+  color: #fff;
+}
+.cs378-lab {
+  height: 666px;
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #dfe7ee;
+  border-radius: 12px;
+  background: #fff;
+}
+.cs378-lab > header {
+  display: flex;
+  height: 47px;
+  align-items: flex-start;
+  gap: 9px;
+}
+.cs378-lab > header > div {
+  margin-right: auto;
+}
+.cs378-lab > header small {
+  color: #087d9d;
+  font-size: 7px;
+  font-weight: 900;
+}
+.cs378-lab > header h2 {
+  font-size: 12px;
+}
+.cs378-lab > header > strong,
+.cs378-lab > header > span {
+  padding: 7px 10px;
+  border: 1px solid #dce5ed;
+  border-radius: 15px;
+}
+.cs378-lab > header > strong {
+  border-color: #e8c26d;
+  background: #fffaf0;
+  color: #a46000;
+}
+.cs378-main {
+  display: grid;
+  height: 599px;
+  grid-template-columns: 500px 233px;
+  gap: 10px;
+}
+.cs378-scene {
+  position: relative;
+  border: 1px solid #dfe7ee;
+  border-radius: 9px;
+  background: #07162d;
+  overflow: hidden;
+}
+.cs378-canvas {
+  height: 560px;
+}
+.cs378-canvas canvas {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+.cs378-path {
+  position: absolute;
+  z-index: 3;
+  top: 14px;
+  left: 14px;
+  width: 120px;
+  padding: 10px;
+  border: 1px solid #304765;
+  border-radius: 7px;
+  background: #07162ddd;
+  color: #fff;
+}
+.cs378-path p {
+  margin-top: 8px;
+}
+.cs378-path i {
+  display: inline-grid;
+  width: 16px;
+  height: 16px;
+  margin-right: 6px;
+  place-items: center;
+  border-radius: 50%;
+  background: #1e3351;
+  color: #28bcd8;
+  font-style: normal;
+}
+.cs378-tools {
+  position: absolute;
+  right: 12px;
+  bottom: 48px;
+  display: flex;
+  gap: 7px;
+}
+.cs378-tools button {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 1px solid #50607a;
+  border-radius: 7px;
+  background: #0b1930;
+  color: #fff;
+}
+.cs378-tools svg {
+  width: 16px;
+}
+.cs378-scene > footer {
+  height: 39px;
+  padding: 11px;
+  background: #fff;
+  color: #68758d;
+}
+.cs378-side {
+  display: grid;
+  grid-template-rows: 300px 96px 187px;
+  gap: 8px;
+}
+.cs378-side > section {
+  padding: 12px;
+  border: 1px solid #dfe7ee;
+  border-radius: 9px;
+  background: #fff;
+}
+.cs378-side h3 {
+  font-size: 10px;
+}
+.cs378-control {
+  display: block;
+  margin-top: 13px;
+}
+.cs378-control > div {
+  display: grid;
+  margin-top: 5px;
+  grid-template-columns: 1fr 45px;
+  gap: 8px;
+  align-items: center;
+}
+.cs378-control input[type="range"] {
+  width: 100%;
+}
+.cs378-control input[type="number"] {
+  height: 29px;
+  border: 1px solid #dce4ed;
+  border-radius: 6px;
+  text-align: center;
+}
+.cs378-control small {
+  display: flex;
+  width: 140px;
+  justify-content: space-between;
+}
+.cs378-toggle {
+  display: flex;
+  margin-top: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+.cs378-toggle input {
+  width: 27px;
+  height: 16px;
+  accent-color: #169ab7;
+}
+.cs378-current > div {
+  margin-top: 10px;
+  padding: 9px;
+  border: 1px solid #dce4ed;
+  border-radius: 7px;
+}
+.cs378-current small {
+  display: block;
+}
+.cs378-current strong {
+  font-size: 17px;
+}
+.cs378-current i:nth-of-type(1) {
+  color: #ed4e45;
+}
+.cs378-current i:nth-of-type(2) {
+  color: #55ad39;
+}
+.cs378-current i:nth-of-type(3) {
+  color: #16aac6;
+}
+.cs378-measure p {
+  display: flex;
+  margin-top: 10px;
+  justify-content: space-between;
+  border-bottom: 1px solid #e5eaf0;
+}
+.cs378-measure p:first-of-type {
+  display: block;
+}
+.cs378-measure b {
+  display: block;
+}
+.cs378-learning {
+  display: grid;
+  height: 195px;
+  margin-top: 12px;
+  grid-template-columns: 0.8fr 1.05fr 1.25fr;
+  gap: 10px;
+}
+.cs378-learning > article {
+  padding: 13px;
+  border: 1px solid #dfe7ee;
+  border-radius: 10px;
+  background: #fff;
+}
+.cs378-learning h2 {
+  color: #a36600;
+  font-size: 10px;
+}
+.cs378-learning article:nth-child(2) h2 {
+  color: #1768c8;
+}
+.cs378-learning article:nth-child(3) h2 {
+  color: #713cc9;
+}
+.cs378-learning p {
+  margin-top: 11px;
+}
+.cs378-challenge > div {
+  display: grid;
+  margin-top: 10px;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 5px;
+}
+.cs378-challenge button {
+  height: 31px;
+  border: 1px solid #dce4ed;
+  border-radius: 6px;
+  background: #fff;
+}
+.cs378-challenge .selected {
+  border-color: #8454d7;
+  background: #faf7ff;
+}
+.cs378-challenge > button {
+  margin-top: 8px;
+}
+.cs378-challenge strong {
+  display: block;
+  margin-top: 5px;
+}
+.cs378-challenge .correct {
+  color: #148050;
+}
+.cs378-warning {
+  display: grid;
+  height: 112px;
+  margin-top: 12px;
+  padding: 13px;
+  grid-template-columns: 1fr 1.5fr 1fr;
+  gap: 10px;
+  align-items: center;
+  border: 1px solid #efb8bb;
+  border-radius: 10px;
+  background: #fff7f7;
+}
+.cs378-warning h2 {
+  color: #c62e3a;
+  font-size: 10px;
+}
+.cs378-warning strong {
+  color: #1768c8;
+  font-size: 14px;
+}
+.cs378-nav {
+  display: grid;
+  height: 53px;
+  margin-top: 12px;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.cs378-nav a {
+  display: flex;
+  padding: 9px 13px;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #dfe7ee;
+  border-radius: 10px;
+  background: #fff;
+  color: inherit;
+  text-decoration: none;
+  font-weight: 800;
+}
+.cs378-nav a:last-child {
+  justify-content: flex-end;
+  text-align: right;
+}
+.cs378-nav small {
+  display: block;
+  color: #68758c;
+  font-size: 7px;
+}
+.cs378-page.expanded .cs378-scene {
+  position: fixed;
+  z-index: 100;
+  inset: 10px;
+}
+.cs378-page.expanded .cs378-canvas {
+  height: calc(100vh - 60px);
+}
+body:has(.cs378-page) {
+  overflow-x: hidden;
+}
+body:has(.cs378-page) [data-testid="desktop-sidebar"] {
+  display: block !important;
+  width: 208px !important;
+  flex-basis: 208px !important;
+}
+body:has(.cs378-page) #main-content {
+  margin-left: 0 !important;
+  padding: 0 9px 0 12px !important;
+}
+body:has(.cs378-page) .lesson-shell-header,
+body:has(.cs378-page) .lesson-page-shell > nav[role="tablist"],
+body:has(.cs378-page) .lesson-workbench-heading,
+body:has(.cs378-page) .lesson-workbench > .mt-3.grid,
+body:has(.cs378-page) .lesson-adjacent-nav {
+  display: none !important;
+}
+body:has(.cs378-page) .lesson-page-shell > div {
+  margin-top: 0 !important;
+}
+body:has(.cs378-page) .lesson-workbench {
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+body:has(.cs378-page) footer[aria-label="Site footer"] {
+  height: 96px !important;
+  margin-top: 12px !important;
+  padding: 0 !important;
+}
+body:has(.cs378-page) footer[aria-label="Site footer"] > div {
+  height: 96px !important;
+  padding: 8px 12px !important;
+  font-size: 8px !important;
+}
+body:has(.cs378-page) nav.fixed.inset-x-0.bottom-0,
+body:has(.cs378-page) button[aria-label="Open navigation"] {
+  display: none !important;
+}
+@media (min-width: 800px) {
+  body:has(.cs378-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    > div:nth-of-type(2),
+  body:has(.cs378-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    > div:nth-of-type(n + 5),
+  body:has(.cs378-page)
+    [data-testid="desktop-sidebar"]
+    button[data-tooltip="Practice & Assessment"] {
+    display: none !important;
+  }
+}
