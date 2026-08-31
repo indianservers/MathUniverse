@@ -19,6 +19,7 @@ import EigenTargetLesson359 from "./matrix/EigenTargetLesson359";
 import BasisDimensionTargetLesson360 from "./matrix/BasisDimensionTargetLesson360";
 import LinearIndependenceTargetLesson361 from "./matrix/LinearIndependenceTargetLesson361";
 import VectorSpacesTargetLesson362 from "./matrix/VectorSpacesTargetLesson362";
+import GramSchmidtTargetLesson363 from "./matrix/GramSchmidtTargetLesson363";
 
 export default function MatrixLessonAdapter(props: LessonAdapterProps) {
   if (props.lesson.id === 347)
@@ -53,6 +54,8 @@ export default function MatrixLessonAdapter(props: LessonAdapterProps) {
     return <LinearIndependenceTargetLesson361 {...props} />;
   if (props.lesson.id === 362)
     return <VectorSpacesTargetLesson362 {...props} />;
+  if (props.lesson.id === 363)
+    return <GramSchmidtTargetLesson363 {...props} />;
   const mode = matrixLessonPreset(props.lesson.id).mode;
   if (mode === "eigen-directions") {
     return (

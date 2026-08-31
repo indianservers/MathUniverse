@@ -1,0 +1,162 @@
+{
+  "mockup": "0548",
+  "lessonId": 363,
+  "checks": {
+    "initial": {
+      "v1": "[1,1]",
+      "v2": "[1,0]",
+      "projection": "[0.5,0.5]",
+      "u2": "[0.5,-0.5]",
+      "e1": "[0.7071,0.7071]",
+      "e2": "[0.7071,-0.7071]",
+      "dot": "0",
+      "independent": "true",
+      "step": "1",
+      "use-projection": "true",
+      "tab": "Interactive",
+      "actions": "0"
+    },
+    "dependent": {
+      "v1": "[1,1]",
+      "v2": "[2,2]",
+      "projection": "[2,2]",
+      "u2": "[0,0]",
+      "e1": "[0.7071,0.7071]",
+      "e2": "[0,0]",
+      "dot": "0",
+      "independent": "false",
+      "step": "1",
+      "use-projection": "true",
+      "tab": "Interactive",
+      "actions": "2"
+    },
+    "dragged": {
+      "v1": "[1,1]",
+      "v2": "[1.4792,0.5219]",
+      "projection": "[1.0006,1.0006]",
+      "u2": "[0.4786,-0.4787]",
+      "e1": "[0.7071,0.7071]",
+      "e2": "[0.707,-0.7072]",
+      "dot": "-0.0001",
+      "independent": "true",
+      "step": "1",
+      "use-projection": "true",
+      "tab": "Interactive",
+      "actions": "2"
+    },
+    "normalized": {
+      "v1": "[1,1]",
+      "v2": "[1,0]",
+      "projection": "[0.5,0.5]",
+      "u2": "[0.5,-0.5]",
+      "e1": "[0.7071,0.7071]",
+      "e2": "[0.7071,-0.7071]",
+      "dot": "0",
+      "independent": "true",
+      "step": "2",
+      "use-projection": "true",
+      "tab": "Interactive",
+      "actions": "2"
+    },
+    "noProjection": {
+      "v1": "[1,1]",
+      "v2": "[1,0]",
+      "projection": "[0,0]",
+      "u2": "[1,0]",
+      "e1": "[0.7071,0.7071]",
+      "e2": "[1,0]",
+      "dot": "0.7071",
+      "independent": "true",
+      "step": "2",
+      "use-projection": "false",
+      "tab": "Interactive",
+      "actions": "3"
+    },
+    "tabbed": {
+      "v1": "[1,1]",
+      "v2": "[1,0]",
+      "projection": "[0,0]",
+      "u2": "[1,0]",
+      "e1": "[0.7071,0.7071]",
+      "e2": "[1,0]",
+      "dot": "0.7071",
+      "independent": "true",
+      "step": "2",
+      "use-projection": "false",
+      "tab": "Formula Sequence",
+      "actions": "5"
+    },
+    "reset": {
+      "v1": "[1,1]",
+      "v2": "[1,0]",
+      "projection": "[0.5,0.5]",
+      "u2": "[0.5,-0.5]",
+      "e1": "[0.7071,0.7071]",
+      "e2": "[0.7071,-0.7071]",
+      "dot": "0",
+      "independent": "true",
+      "step": "1",
+      "use-projection": "true",
+      "tab": "Interactive",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "overflow": false,
+    "hero": {
+      "top": 92,
+      "left": 236,
+      "width": 770,
+      "height": 137,
+      "bottom": 229
+    },
+    "tabs": {
+      "top": 240,
+      "left": 236,
+      "width": 770,
+      "height": 51,
+      "bottom": 291
+    },
+    "intro": {
+      "top": 302,
+      "left": 236,
+      "width": 770,
+      "height": 49,
+      "bottom": 351
+    },
+    "lab": {
+      "top": 362,
+      "left": 236,
+      "width": 770,
+      "height": 680,
+      "bottom": 1042
+    },
+    "panels": {
+      "top": 1053,
+      "left": 236,
+      "width": 770,
+      "height": 206,
+      "bottom": 1259
+    },
+    "example": {
+      "top": 1270,
+      "left": 236,
+      "width": 770,
+      "height": 99,
+      "bottom": 1369
+    },
+    "challenge": {
+      "top": 1380,
+      "left": 236,
+      "width": 770,
+      "height": 83,
+      "bottom": 1463
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

@@ -16,7 +16,7 @@ describe("MatrixLessonAdapter", () => {
         />,
       );
       expect(html, String(lesson.id)).toContain(lesson.title);
-      if (lesson.id > 362)
+      if (lesson.id > 363)
         expect(html, String(lesson.id)).toMatch(
           /matrix and linear-algebra lab|eigendirection lab/,
         );
@@ -172,8 +172,18 @@ describe("MatrixLessonAdapter", () => {
     expect(html).toContain('data-subspace="true"');
   });
 
+  it("uses the real Gram-Schmidt projection pipeline for lesson 363", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 363)!;
+    const html = renderToStaticMarkup(<MatrixLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="matrix-mockup-0548"');
+    expect(html).toContain("editable-draggable-two-vector-real-gram-schmidt-projection-subtraction-normalization");
+    expect(html).toContain('data-projection="[0.5,0.5]"');
+    expect(html).toContain('data-u2="[0.5,-0.5]"');
+    expect(html).toContain('data-dot="0"');
+  });
+
   it("does not show determinant as the primary result for unrelated concepts", () => {
-    for (const lessonId of [363, 364]) {
+    for (const lessonId of [364]) {
       const lesson = lessonCatalog.find((item) => item.id === lessonId)!;
       const html = renderToStaticMarkup(
         <MatrixLessonAdapter

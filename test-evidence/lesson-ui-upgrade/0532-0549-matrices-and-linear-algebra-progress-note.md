@@ -22,10 +22,10 @@ Target references: `0532` through `0549` in `D:\Math App Screenshots for UI Upda
 | 0545 | 360 Basis and Dimension | `BasisDimensionTargetLesson360` | Draggable/editable basis and target vectors, determinant independence and span/dimension states, solved coordinates and reconstruction parallelogram, randomized bases, worked derivation, tabs/reset, and selectable determinant-graded basis challenge | 1024 x 1536; no overflow or console errors | Complete |
 | 0546 | 361 Linear Independence | `LinearIndependenceTargetLesson361` | Draggable/editable vector pair, synchronized component and relation-coefficient sliders, determinant/area/rank classification, genuine homogeneous-relation residual and dependent-case coefficients, snapping, worked-step toggle, tabs/reset, and break-dependence challenge | 1024 x 1535; no overflow or console errors | Complete |
 | 0547 | 362 Vector Spaces | `VectorSpacesTargetLesson362` | Four candidate-specific membership rules, zero/addition/scalar closure engine, editable u/v coordinates and scalar sliders, derived au+bv membership, projected 3D set/vector view, live subspace verdict, tabs/reset, misconception and shifted-plane challenge | 1024 x 1536; no overflow or console errors | Complete |
-| 0548 | 363 Gram-Schmidt Process | Pending | Pending | Pending | Pending |
+| 0548 | 363 Gram-Schmidt Process | `GramSchmidtTargetLesson363` | Editable/draggable input vectors, real projection/subtraction/normalization pipeline, dependent-basis detection, three selectable steps, autoplay and speed, live orthogonality, before/after basis, formula/current-value/dot panels, worked-step toggle, and remove-projection challenge | 1024 x 1536; no overflow or console errors | Complete |
 | 0549 | 364 Least Squares | Pending | Pending | Pending | Pending |
 
-Completed in this family: **16 / 18**. Pending in this family: **2 / 18**.
+Completed in this family: **17 / 18**. Pending in this family: **1 / 18**.
 
 ## Lesson 347 validation
 
@@ -143,3 +143,10 @@ Completed in this family: **16 / 18**. Pending in this family: **2 / 18**.
 - Current capture: `0547-desktop.png`
 - Machine-readable interaction and layout audit: `0547-dedicated-target-validation.json`
 - The capture harness verifies the default plane combination `(3,3,0)`, shifted-plane failure of all closure gates, origin-line subspace status with out-of-set sample vectors, curved-set zero containment but failed addition/scaling, edited vector and combination membership, shifted-plane challenge, tabs, shell reset, exact 1024 x 1536 dimensions, and absence of overflow or console errors.
+
+## Lesson 363 validation
+
+- Reference: `0548-reference.png`
+- Current capture: `0548-desktop.png`
+- Machine-readable interaction and layout audit: `0548-dedicated-target-validation.json`
+- The capture harness verifies exact projection `(0.5,0.5)`, subtraction `(0.5,-0.5)`, normalized vectors, zero orthogonal dot product, dependent-input collapse, pointer drag and recomputation, normalize-step selection, removal of projection and resulting `0.7071` dot product, worked steps, tabs, shell reset, exact 1024 x 1536 dimensions, and absence of overflow or console errors.
