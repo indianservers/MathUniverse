@@ -21,11 +21,11 @@ Target references: `0532` through `0549` in `D:\Math App Screenshots for UI Upda
 | 0544 | 359 Eigenvalues and Eigenvectors | `EigenTargetLesson359` | Editable real 2x2 eigensystem, characteristic polynomial and eigenpair derivation, draggable test vector, live Av/projection lambda/parallel test, matrix-mapped grid, invariant eigenlines, zoom, random matrices, tabs, reset, and independently graded other-direction challenge | 1024 x 1536; no overflow or console errors | Complete |
 | 0545 | 360 Basis and Dimension | `BasisDimensionTargetLesson360` | Draggable/editable basis and target vectors, determinant independence and span/dimension states, solved coordinates and reconstruction parallelogram, randomized bases, worked derivation, tabs/reset, and selectable determinant-graded basis challenge | 1024 x 1536; no overflow or console errors | Complete |
 | 0546 | 361 Linear Independence | `LinearIndependenceTargetLesson361` | Draggable/editable vector pair, synchronized component and relation-coefficient sliders, determinant/area/rank classification, genuine homogeneous-relation residual and dependent-case coefficients, snapping, worked-step toggle, tabs/reset, and break-dependence challenge | 1024 x 1535; no overflow or console errors | Complete |
-| 0547 | 362 Vector Spaces | Pending | Pending | Pending | Pending |
+| 0547 | 362 Vector Spaces | `VectorSpacesTargetLesson362` | Four candidate-specific membership rules, zero/addition/scalar closure engine, editable u/v coordinates and scalar sliders, derived au+bv membership, projected 3D set/vector view, live subspace verdict, tabs/reset, misconception and shifted-plane challenge | 1024 x 1536; no overflow or console errors | Complete |
 | 0548 | 363 Gram-Schmidt Process | Pending | Pending | Pending | Pending |
 | 0549 | 364 Least Squares | Pending | Pending | Pending | Pending |
 
-Completed in this family: **15 / 18**. Pending in this family: **3 / 18**.
+Completed in this family: **16 / 18**. Pending in this family: **2 / 18**.
 
 ## Lesson 347 validation
 
@@ -136,3 +136,10 @@ Completed in this family: **15 / 18**. Pending in this family: **3 / 18**.
 - Machine-readable interaction and layout audit: `0546-dedicated-target-validation.json`
 - The capture harness verifies default determinant/area/rank, a dependent collapse to `v2=(4,2)`, the resulting nontrivial relation `(4,-2)`, zero relation residual, failed and passed independence challenges, pointer drag, worked-step toggle, tabs, shell reset, exact 1024 x 1535 dimensions, and absence of overflow or console errors.
 - The target default coefficient sliders show `(1,-2)` beside a zero-relation message, but for `v1=(2,1)` and `v2=(1,3)` that combination is `(0,-5)`. The dedicated surface displays the actual residual and reserves zero-relation messaging for coefficients and vectors that truly satisfy it.
+
+## Lesson 362 validation
+
+- Reference: `0547-reference.png`
+- Current capture: `0547-desktop.png`
+- Machine-readable interaction and layout audit: `0547-dedicated-target-validation.json`
+- The capture harness verifies the default plane combination `(3,3,0)`, shifted-plane failure of all closure gates, origin-line subspace status with out-of-set sample vectors, curved-set zero containment but failed addition/scaling, edited vector and combination membership, shifted-plane challenge, tabs, shell reset, exact 1024 x 1536 dimensions, and absence of overflow or console errors.

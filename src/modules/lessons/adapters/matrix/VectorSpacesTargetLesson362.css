@@ -1,0 +1,383 @@
+.vs362-page,
+.vs362-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.vs362-page {
+  color: #10234b;
+  font-size: 8px;
+}
+.vs362-page button,
+.vs362-page input {
+  font: inherit;
+}
+.vs362-hero {
+  height: 160px;
+  padding: 17px;
+  border: 1px solid #dce5ee;
+  border-radius: 11px;
+  background: #fff;
+}
+.vs362-hero > b {
+  padding: 5px 9px;
+  border-radius: 10px;
+  background: #e8f7fc;
+  color: #0789a9;
+  font-size: 6px;
+}
+.vs362-hero h1 {
+  margin: 13px 0 3px;
+  font-size: 26px;
+}
+.vs362-hero p {
+  margin: 0;
+  font-size: 13px;
+}
+.vs362-hero code {
+  display: block;
+  width: 330px;
+  margin: 11px auto 0;
+  padding: 11px;
+  border: 1px solid #dce5ee;
+  border-radius: 20px;
+  text-align: center;
+  font-family: serif;
+  font-size: 12px;
+}
+.vs362-tabs {
+  display: flex;
+  height: 45px;
+  margin-top: 10px;
+  border: 1px solid #dce5ee;
+  border-radius: 8px;
+  background: #fff;
+  gap: 14px;
+}
+.vs362-tabs button {
+  padding: 0 18px;
+  border: 0;
+  background: transparent;
+  font-weight: 800;
+}
+.vs362-tabs .active {
+  margin: 5px;
+  border-radius: 6px;
+  background: #078fb1;
+  color: #fff;
+}
+.vs362-lab {
+  display: grid;
+  height: 454px;
+  margin-top: 11px;
+  border: 1px solid #dce5ee;
+  border-radius: 9px;
+  background: #fff;
+  grid-template-columns: 190px 1fr 220px;
+  overflow: hidden;
+}
+.vs362-lab > aside {
+  padding: 12px;
+  border-right: 1px solid #dce5ee;
+}
+.vs362-lab > aside:last-child {
+  border-right: 0;
+  border-left: 1px solid #dce5ee;
+}
+.vs362-lab h3 {
+  margin: 0 0 11px;
+}
+.vs362-lab h3 > b {
+  display: grid;
+  float: left;
+  width: 17px;
+  height: 17px;
+  margin-right: 7px;
+  border-radius: 5px;
+  background: #2170e4;
+  color: #fff;
+  place-items: center;
+}
+.vs362-lab > aside:first-child > button {
+  display: flex;
+  width: 100%;
+  height: 64px;
+  margin-bottom: 9px;
+  padding: 10px;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #dce5ee;
+  border-radius: 8px;
+  background: #fff;
+  text-align: left;
+}
+.vs362-lab > aside:first-child > button.active {
+  border: 2px solid #1c6ae1;
+  background: #f5f9ff;
+}
+.vs362-lab > aside:first-child button i {
+  width: 30px;
+  height: 20px;
+  background: #a8d2eb;
+  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+}
+.vs362-lab button span {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.vs362-lab > aside:first-child > p {
+  margin-top: 17px;
+  padding: 10px;
+  border: 1px solid #dce5ee;
+  border-radius: 7px;
+}
+.vs362-lab svg {
+  width: 12px;
+}
+.vs362-plot {
+  position: relative;
+}
+.vs362-plot > svg {
+  width: 100%;
+  height: 420px;
+}
+.vs362-plot text {
+  fill: #08789f;
+  font-size: 14px;
+  font-weight: 800;
+}
+.vs362-plot > button {
+  position: absolute;
+  bottom: 10px;
+  left: 20px;
+  display: flex;
+  width: 220px;
+  height: 31px;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border: 1px solid #dce5ee;
+  border-radius: 7px;
+  background: #fff;
+}
+.vs362-lab > aside:last-child > label {
+  display: grid;
+  height: 45px;
+  grid-template-columns: 30px repeat(3, 1fr);
+  gap: 5px;
+  align-items: center;
+}
+.vs362-lab > aside:last-child input[type="number"] {
+  width: 48px;
+  height: 31px;
+  border: 1px solid #8bd1e6;
+  border-radius: 6px;
+  text-align: center;
+}
+.vs362-lab > aside:last-child > label + label input {
+  border-color: #c5a0eb;
+}
+.vs362-lab > aside:last-child section {
+  margin-top: 6px;
+  padding: 11px;
+  border: 1px solid #dce5ee;
+  border-radius: 8px;
+}
+.vs362-lab > aside:last-child section label {
+  display: grid;
+  height: 42px;
+  grid-template-columns: 30px 1fr 30px;
+  align-items: center;
+}
+.vs362-lab > aside:last-child section input {
+  width: 100%;
+}
+.vs362-lab > aside:last-child output {
+  display: grid;
+  height: 30px;
+  border: 1px solid #dce5ee;
+  border-radius: 5px;
+  place-items: center;
+}
+.vs362-lab > aside:last-child code {
+  display: block;
+  padding: 10px;
+  border: 1px solid #b9def0;
+  border-radius: 7px;
+  background: #edf9ff;
+  text-align: center;
+  font-family: serif;
+  font-size: 12px;
+}
+.vs362-lab > aside:last-child section p {
+  text-align: center;
+}
+.correct {
+  color: #098f4a !important;
+}
+.incorrect {
+  color: #c43445 !important;
+}
+.vs362-verdict {
+  display: grid;
+  height: 249px;
+  margin-top: 11px;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 11px;
+}
+.vs362-verdict > article {
+  padding: 14px;
+  border: 1px solid #dce5ee;
+  border-radius: 9px;
+  background: #fff;
+}
+.vs362-verdict h2 {
+  margin: 0 0 9px;
+  color: #1a2681;
+}
+.vs362-verdict article:first-child > div {
+  display: grid;
+  height: 45px;
+  margin-top: 8px;
+  padding: 8px;
+  border: 1px solid #dce5ee;
+  border-radius: 7px;
+  grid-template-columns: 25px 1fr 30px;
+  align-items: center;
+}
+.vs362-verdict svg {
+  width: 16px;
+  color: #18a052;
+}
+.vs362-verdict article + article {
+  text-align: center;
+}
+.vs362-verdict article + article > svg {
+  width: 60px;
+  height: 60px;
+  margin: 20px;
+}
+.vs362-verdict article + article > strong {
+  display: block;
+  font-size: 17px;
+}
+.vs362-notes {
+  display: grid;
+  height: 226px;
+  margin-top: 11px;
+  grid-template-columns: 1fr 1.1fr 1.3fr;
+  gap: 11px;
+}
+.vs362-notes article {
+  padding: 14px;
+  border: 1px solid #dce5ee;
+  border-radius: 9px;
+  background: #fff;
+}
+.vs362-notes h3 {
+  margin: 0 0 15px;
+  color: #1653ba;
+}
+.vs362-notes p,
+.vs362-notes li {
+  line-height: 17px;
+}
+.vs362-bottom {
+  display: grid;
+  height: 179px;
+  margin-top: 11px;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 11px;
+}
+.vs362-bottom article {
+  position: relative;
+  padding: 15px;
+  border: 1px solid #f0bfc3;
+  border-radius: 9px;
+  background: #fff5f6;
+}
+.vs362-bottom article + article {
+  border-color: #c8daf2;
+  background: #f7fbff;
+}
+.vs362-bottom h3 {
+  margin: 0 0 13px;
+  color: #c32e3e;
+}
+.vs362-bottom article + article h3 {
+  color: #1755b8;
+}
+.vs362-bottom button {
+  position: absolute;
+  bottom: 17px;
+  left: 15px;
+  width: 135px;
+  height: 34px;
+  border: 0;
+  border-radius: 7px;
+  background: #079bb7;
+  color: #fff;
+}
+.vs362-bottom output {
+  position: absolute;
+  right: 15px;
+  bottom: 20px;
+}
+body:has(.vs362-page) {
+  overflow: hidden;
+}
+body:has(.vs362-page) [data-testid="desktop-sidebar"] {
+  display: block !important;
+  width: 217px !important;
+  flex-basis: 217px !important;
+}
+body:has(.vs362-page) #main-content {
+  margin-left: 0 !important;
+  padding: 0 17px !important;
+}
+body:has(.vs362-page) .lesson-shell-header,
+body:has(.vs362-page) .lesson-page-shell > nav[role="tablist"],
+body:has(.vs362-page) .lesson-workbench-heading,
+body:has(.vs362-page) .lesson-workbench > .mt-3.grid {
+  display: none !important;
+}
+body:has(.vs362-page) .lesson-page-shell > div {
+  margin-top: 0 !important;
+}
+body:has(.vs362-page) .lesson-workbench {
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+body:has(.vs362-page) .lesson-adjacent-nav {
+  height: 54px !important;
+  margin-top: 8px !important;
+}
+body:has(.vs362-page) footer[aria-label="Site footer"] {
+  display: none !important;
+}
+@media (min-width: 760px) {
+  body:has(.vs362-page) .app-layout-rail > div > header {
+    height: 57px;
+  }
+  body:has(.vs362-page) [data-testid="desktop-sidebar"] > div {
+    padding: 10px !important;
+  }
+  body:has(.vs362-page) [data-testid="desktop-sidebar"] nav a {
+    font-size: 7px !important;
+  }
+  body:has(.vs362-page) [data-testid="desktop-sidebar"] nav button {
+    font-size: 8px !important;
+  }
+  body:has(.vs362-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    > div:nth-of-type(2),
+  body:has(.vs362-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    > div:nth-of-type(n + 5) {
+    display: none;
+  }
+}

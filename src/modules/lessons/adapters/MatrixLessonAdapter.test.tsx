@@ -16,7 +16,7 @@ describe("MatrixLessonAdapter", () => {
         />,
       );
       expect(html, String(lesson.id)).toContain(lesson.title);
-      if (lesson.id > 361)
+      if (lesson.id > 362)
         expect(html, String(lesson.id)).toMatch(
           /matrix and linear-algebra lab|eigendirection lab/,
         );
@@ -161,6 +161,15 @@ describe("MatrixLessonAdapter", () => {
     expect(html).toContain('data-det="5"');
     expect(html).toContain('data-rank="2"');
     expect(html).toContain('data-independent="true"');
+  });
+
+  it("uses candidate-specific closure rules for lesson 362", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 362)!;
+    const html = renderToStaticMarkup(<MatrixLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="matrix-mockup-0547"');
+    expect(html).toContain("candidate-set-membership-rule-zero-addition-scalar-closure-editable-linear-combination");
+    expect(html).toContain('data-combination="[3,3,0]"');
+    expect(html).toContain('data-subspace="true"');
   });
 
   it("does not show determinant as the primary result for unrelated concepts", () => {

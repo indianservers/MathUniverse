@@ -1,0 +1,192 @@
+{
+  "mockup": "0547",
+  "lessonId": 362,
+  "checks": {
+    "initial": {
+      "candidate": "plane",
+      "u": "[1,2,0]",
+      "v": "[-1,1,0]",
+      "combination": "[3,3,0]",
+      "u-inside": "true",
+      "v-inside": "true",
+      "combination-inside": "true",
+      "zero": "true",
+      "addition": "true",
+      "scalar": "true",
+      "subspace": "true",
+      "tab": "Interactive Lab",
+      "challenge": "",
+      "actions": "0"
+    },
+    "shifted": {
+      "candidate": "shifted",
+      "u": "[1,2,0]",
+      "v": "[-1,1,0]",
+      "combination": "[3,3,0]",
+      "u-inside": "false",
+      "v-inside": "false",
+      "combination-inside": "false",
+      "zero": "false",
+      "addition": "false",
+      "scalar": "false",
+      "subspace": "false",
+      "tab": "Interactive Lab",
+      "challenge": "",
+      "actions": "1"
+    },
+    "line": {
+      "candidate": "line",
+      "u": "[1,2,0]",
+      "v": "[-1,1,0]",
+      "combination": "[3,3,0]",
+      "u-inside": "false",
+      "v-inside": "false",
+      "combination-inside": "false",
+      "zero": "true",
+      "addition": "true",
+      "scalar": "true",
+      "subspace": "true",
+      "tab": "Interactive Lab",
+      "challenge": "",
+      "actions": "2"
+    },
+    "curved": {
+      "candidate": "curved",
+      "u": "[1,2,0]",
+      "v": "[-1,1,0]",
+      "combination": "[3,3,0]",
+      "u-inside": "false",
+      "v-inside": "true",
+      "combination-inside": "true",
+      "zero": "true",
+      "addition": "false",
+      "scalar": "false",
+      "subspace": "false",
+      "tab": "Interactive Lab",
+      "challenge": "",
+      "actions": "3"
+    },
+    "outside": {
+      "candidate": "plane",
+      "u": "[1,2,1]",
+      "v": "[-1,1,0]",
+      "combination": "[3,3,2]",
+      "u-inside": "false",
+      "v-inside": "true",
+      "combination-inside": "false",
+      "zero": "true",
+      "addition": "true",
+      "scalar": "true",
+      "subspace": "true",
+      "tab": "Interactive Lab",
+      "challenge": "",
+      "actions": "5"
+    },
+    "challenge": {
+      "candidate": "shifted",
+      "u": "[1,2,1]",
+      "v": "[-1,1,0]",
+      "combination": "[3,3,2]",
+      "u-inside": "true",
+      "v-inside": "false",
+      "combination-inside": "false",
+      "zero": "false",
+      "addition": "false",
+      "scalar": "false",
+      "subspace": "false",
+      "tab": "Interactive Lab",
+      "challenge": "correct",
+      "actions": "6"
+    },
+    "tabbed": {
+      "candidate": "shifted",
+      "u": "[1,2,1]",
+      "v": "[-1,1,0]",
+      "combination": "[3,3,2]",
+      "u-inside": "true",
+      "v-inside": "false",
+      "combination-inside": "false",
+      "zero": "false",
+      "addition": "false",
+      "scalar": "false",
+      "subspace": "false",
+      "tab": "Axioms",
+      "challenge": "correct",
+      "actions": "7"
+    },
+    "reset": {
+      "candidate": "plane",
+      "u": "[1,2,0]",
+      "v": "[-1,1,0]",
+      "combination": "[3,3,0]",
+      "u-inside": "true",
+      "v-inside": "true",
+      "combination-inside": "true",
+      "zero": "true",
+      "addition": "true",
+      "scalar": "true",
+      "subspace": "true",
+      "tab": "Interactive Lab",
+      "challenge": "",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "overflow": false,
+    "hero": {
+      "top": 91,
+      "left": 234,
+      "width": 773,
+      "height": 160,
+      "bottom": 251
+    },
+    "tabs": {
+      "top": 261,
+      "left": 234,
+      "width": 773,
+      "height": 45,
+      "bottom": 306
+    },
+    "lab": {
+      "top": 317,
+      "left": 234,
+      "width": 773,
+      "height": 454,
+      "bottom": 771
+    },
+    "verdict": {
+      "top": 782,
+      "left": 234,
+      "width": 773,
+      "height": 249,
+      "bottom": 1031
+    },
+    "notes": {
+      "top": 1042,
+      "left": 234,
+      "width": 773,
+      "height": 226,
+      "bottom": 1268
+    },
+    "bottom": {
+      "top": 1279,
+      "left": 234,
+      "width": 773,
+      "height": 179,
+      "bottom": 1458
+    },
+    "adjacent": {
+      "top": 1466,
+      "left": 234,
+      "width": 773,
+      "height": 54,
+      "bottom": 1520
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
