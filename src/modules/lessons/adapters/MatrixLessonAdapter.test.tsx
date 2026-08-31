@@ -16,7 +16,7 @@ describe("MatrixLessonAdapter", () => {
         />,
       );
       expect(html, String(lesson.id)).toContain(lesson.title);
-      if (lesson.id > 356)
+      if (lesson.id > 357)
         expect(html, String(lesson.id)).toMatch(
           /matrix and linear-algebra lab|eigendirection lab/,
         );
@@ -113,6 +113,16 @@ describe("MatrixLessonAdapter", () => {
     expect(html).toContain("real-gauss-jordan-rref-operation-state-sequence-clickable-steps-pivot-detection-rank-nullity");
     expect(html).toContain('data-rref="[[1,0,0,1.5],[0,1,0,1],[0,0,1,0.5]]"');
     expect(html).toContain('data-rank="3"');
+  });
+
+  it("uses one live equation-system model for lesson 357", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 357)!;
+    const html = renderToStaticMarkup(<MatrixLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="matrix-mockup-0542"');
+    expect(html).toContain("editable-linear-system-derived-coefficient-variable-constant-augmented-matrices");
+    expect(html).toContain('data-augmented="[2,1,5,1,-1,1]"');
+    expect(html).toContain('data-solution="[2,1]"');
+    expect(html).toContain('data-status="one"');
   });
 
   it("does not show determinant as the primary result for unrelated concepts", () => {

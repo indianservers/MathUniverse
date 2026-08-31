@@ -1,0 +1,161 @@
+{
+  "mockup": "0542",
+  "lessonId": 357,
+  "checks": {
+    "initial": {
+      "rows": "[[2,1,5],[1,-1,1]]",
+      "augmented": "[2,1,5,1,-1,1]",
+      "determinant": "-3",
+      "status": "one",
+      "solution": "[2,1]",
+      "variable-count": "2",
+      "selected": "0",
+      "tab": "Explore",
+      "details": "false",
+      "challenge": "",
+      "actions": "0"
+    },
+    "infinite": {
+      "rows": "[[2,1,5],[2,1,5]]",
+      "augmented": "[2,1,5,2,1,5]",
+      "determinant": "0",
+      "status": "infinite",
+      "solution": "null",
+      "variable-count": "2",
+      "selected": "0",
+      "tab": "Explore",
+      "details": "false",
+      "challenge": "",
+      "actions": "3"
+    },
+    "none": {
+      "rows": "[[2,1,5],[2,1,6]]",
+      "augmented": "[2,1,5,2,1,6]",
+      "determinant": "0",
+      "status": "none",
+      "solution": "null",
+      "variable-count": "2",
+      "selected": "0",
+      "tab": "Explore",
+      "details": "false",
+      "challenge": "",
+      "actions": "4"
+    },
+    "added": {
+      "rows": "[[2,1,5],[2,1,6],[1,1,3]]",
+      "augmented": "[2,1,5,2,1,6,1,1,3]",
+      "determinant": "0",
+      "status": "none",
+      "solution": "null",
+      "variable-count": "2",
+      "selected": "0",
+      "tab": "Explore",
+      "details": "false",
+      "challenge": "",
+      "actions": "5"
+    },
+    "thirdVariable": {
+      "rows": "[[2,1,5],[1,-1,1]]",
+      "augmented": "[2,1,0,5,1,-1,0,1]",
+      "determinant": "-3",
+      "status": "infinite",
+      "solution": "null",
+      "variable-count": "3",
+      "selected": "0",
+      "tab": "Explore",
+      "details": "false",
+      "challenge": "",
+      "actions": "7"
+    },
+    "rejected": {
+      "rows": "[[2,1,5],[1,-1,1]]",
+      "augmented": "[2,1,5,1,-1,1]",
+      "determinant": "-3",
+      "status": "one",
+      "solution": "[2,1]",
+      "variable-count": "2",
+      "selected": "0",
+      "tab": "Explore",
+      "details": "false",
+      "challenge": "incorrect",
+      "actions": "2"
+    },
+    "accepted": {
+      "rows": "[[2,1,5],[1,-1,1]]",
+      "augmented": "[2,1,5,1,-1,1]",
+      "determinant": "-3",
+      "status": "one",
+      "solution": "[2,1]",
+      "variable-count": "2",
+      "selected": "0",
+      "tab": "Examples",
+      "details": "true",
+      "challenge": "correct",
+      "actions": "12"
+    },
+    "shellReset": {
+      "rows": "[[2,1,5],[1,-1,1]]",
+      "augmented": "[2,1,5,1,-1,1]",
+      "determinant": "-3",
+      "status": "one",
+      "solution": "[2,1]",
+      "variable-count": "2",
+      "selected": "0",
+      "tab": "Explore",
+      "details": "false",
+      "challenge": "",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "overflow": false,
+    "hero": {
+      "top": 108,
+      "left": 238,
+      "width": 771,
+      "height": 187,
+      "bottom": 295
+    },
+    "tabs": {
+      "top": 306,
+      "left": 238,
+      "width": 771,
+      "height": 39,
+      "bottom": 345
+    },
+    "workspace": {
+      "top": 356,
+      "left": 238,
+      "width": 771,
+      "height": 510,
+      "bottom": 866
+    },
+    "lower": {
+      "top": 877,
+      "left": 238,
+      "width": 771,
+      "height": 345,
+      "bottom": 1222
+    },
+    "tools": {
+      "top": 1234,
+      "left": 238,
+      "width": 771,
+      "height": 114,
+      "bottom": 1348
+    },
+    "adjacent": {
+      "top": 1359,
+      "left": 238,
+      "width": 771,
+      "height": 58,
+      "bottom": 1417
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

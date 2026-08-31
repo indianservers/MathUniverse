@@ -16,7 +16,7 @@ Target references: `0532` through `0549` in `D:\Math App Screenshots for UI Upda
 | 0539 | 354 Matrix Inverse | `MatrixInverseTargetLesson354` | Editable 2x2 matrix, determinant gate, formula inverse, genuine Gauss-Jordan states with hints and autoplay, singular failure state, geometric transform/undo SVGs, random/example controls, and A^-1y challenge | 1024 x 1536; no overflow or console errors | Complete |
 | 0540 | 355 Row Operations | `RowOperationsTargetLesson355` | Real swap/nonzero-scale/replacement preview and commit engine, draggable row reordering, linked equations, reversible history and undo, equation toggle, operation rules, zero-scale warning, and independent leading-one practice | 1024 x 1536; no overflow or console errors | Complete |
 | 0541 | 356 Reduced Row Echelon Form | `RrefTargetLesson356` | Real Gauss-Jordan state sequence, selectable operations, pivot/rank/nullity derivation, all four RREF condition checks, unique-solution interpretation, tabs, reset, and graded next-pivot challenge | 1024 x 1536; no overflow or console errors | Complete |
-| 0542 | 357 Augmented Matrices | Pending | Pending | Pending | Pending |
+| 0542 | 357 Augmented Matrices | `AugmentedMatricesTargetLesson357` | Editable equation-system model deriving A, x, b, and [A|b], determinant classification, computed line intersection, selected-row highlighting, equation insertion, genuine third-variable/free-variable mode, worked derivation, details, tabs, reset, and graded six-entry challenge | 1024 x 1536; no overflow or console errors | Complete |
 | 0543 | 358 Linear Transformations | Pending | Pending | Pending | Pending |
 | 0544 | 359 Eigenvalues and Eigenvectors | Pending | Pending | Pending | Pending |
 | 0545 | 360 Basis and Dimension | Pending | Pending | Pending | Pending |
@@ -25,7 +25,7 @@ Target references: `0532` through `0549` in `D:\Math App Screenshots for UI Upda
 | 0548 | 363 Gram-Schmidt Process | Pending | Pending | Pending | Pending |
 | 0549 | 364 Least Squares | Pending | Pending | Pending | Pending |
 
-Completed in this family: **10 / 18**. Pending in this family: **8 / 18**.
+Completed in this family: **11 / 18**. Pending in this family: **7 / 18**.
 
 ## Lesson 347 validation
 
@@ -99,3 +99,10 @@ Completed in this family: **10 / 18**. Pending in this family: **8 / 18**.
 - Machine-readable interaction and layout audit: `0541-dedicated-target-validation.json`
 - The capture harness verifies intermediate and final Gauss-Jordan states, exact pivots, rank and nullity, every RREF condition, rejected/correct pivot choices, interpretation-tab switching, and shell reset.
 - The target screenshot's displayed rank-2 goal is inconsistent with its initial matrix. The real RREF is `[[1,0,0,1.5],[0,1,0,1],[0,0,1,0.5]]`, with rank 3, nullity 0, and unique solution `(1.5, 1, 0.5)`; the lesson preserves the target composition while using these mathematically correct derived values.
+
+## Lesson 357 validation
+
+- Reference: `0542-reference.png`
+- Current capture: `0542-desktop.png`
+- Machine-readable interaction and layout audit: `0542-dedicated-target-validation.json`
+- The capture harness verifies all derived matrix forms, determinant and intersection solution, dependent and inconsistent systems, adding/removing an equation, introducing a real third free variable, rejected/correct challenge matrices, hint and detail controls, tab switching, shell reset, the compact target footer, and exact 1024 x 1536 layout.
