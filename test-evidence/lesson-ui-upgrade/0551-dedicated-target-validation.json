@@ -1,0 +1,174 @@
+{
+  "mockup": "0551",
+  "lessonId": 366,
+  "checks": {
+    "initial": {
+      "z": "[2,1]",
+      "quadrant": "Quadrant I",
+      "projections": "true",
+      "show-quadrant": "true",
+      "signs": "true",
+      "tab": "Interaction + visualization",
+      "verdict": "",
+      "solution": "false",
+      "actions": "0"
+    },
+    "stepped": {
+      "z": "[3,1]",
+      "quadrant": "Quadrant I",
+      "projections": "true",
+      "show-quadrant": "true",
+      "signs": "true",
+      "tab": "Interaction + visualization",
+      "verdict": "",
+      "solution": "false",
+      "actions": "1"
+    },
+    "slid": {
+      "z": "[3,-2]",
+      "quadrant": "Quadrant IV",
+      "projections": "true",
+      "show-quadrant": "true",
+      "signs": "true",
+      "tab": "Interaction + visualization",
+      "verdict": "",
+      "solution": "false",
+      "actions": "2"
+    },
+    "hidden": {
+      "z": "[3,-2]",
+      "quadrant": "Quadrant IV",
+      "projections": "false",
+      "show-quadrant": "true",
+      "signs": "true",
+      "tab": "Interaction + visualization",
+      "verdict": "",
+      "solution": "false",
+      "actions": "3"
+    },
+    "dragged": {
+      "z": "[0.89,0.16]",
+      "quadrant": "Quadrant I",
+      "projections": "true",
+      "show-quadrant": "true",
+      "signs": "true",
+      "tab": "Interaction + visualization",
+      "verdict": "",
+      "solution": "false",
+      "actions": "5"
+    },
+    "rejected": {
+      "z": "[0.89,0.16]",
+      "quadrant": "Quadrant I",
+      "projections": "true",
+      "show-quadrant": "true",
+      "signs": "true",
+      "tab": "Interaction + visualization",
+      "verdict": "incorrect",
+      "solution": "false",
+      "actions": "6"
+    },
+    "accepted": {
+      "z": "[0.89,0.16]",
+      "quadrant": "Quadrant I",
+      "projections": "true",
+      "show-quadrant": "true",
+      "signs": "true",
+      "tab": "Interaction + visualization",
+      "verdict": "correct",
+      "solution": "false",
+      "actions": "7"
+    },
+    "solution": {
+      "z": "[0.89,0.16]",
+      "quadrant": "Quadrant I",
+      "projections": "true",
+      "show-quadrant": "true",
+      "signs": "true",
+      "tab": "Interaction + visualization",
+      "verdict": "correct",
+      "solution": "true",
+      "actions": "8"
+    },
+    "tabbed": {
+      "z": "[0.89,0.16]",
+      "quadrant": "Quadrant I",
+      "projections": "true",
+      "show-quadrant": "true",
+      "signs": "true",
+      "tab": "Formulas",
+      "verdict": "correct",
+      "solution": "true",
+      "actions": "9"
+    },
+    "reset": {
+      "z": "[2,1]",
+      "quadrant": "Quadrant I",
+      "projections": "true",
+      "show-quadrant": "true",
+      "signs": "true",
+      "tab": "Interaction + visualization",
+      "verdict": "",
+      "solution": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 982,
+      "height": 1601
+    },
+    "overflow": false,
+    "hero": {
+      "top": 103,
+      "left": 212,
+      "width": 743,
+      "height": 208,
+      "bottom": 311
+    },
+    "tabs": {
+      "top": 319,
+      "left": 212,
+      "width": 743,
+      "height": 56,
+      "bottom": 375
+    },
+    "workspace": {
+      "top": 383,
+      "left": 212,
+      "width": 743,
+      "height": 756,
+      "bottom": 1139
+    },
+    "inspector": {
+      "top": 384,
+      "left": 213,
+      "width": 510,
+      "height": 756,
+      "bottom": 1140
+    },
+    "panel": {
+      "top": 384,
+      "left": 723,
+      "width": 232,
+      "height": 756,
+      "bottom": 1140
+    },
+    "learning": {
+      "top": 1147,
+      "left": 212,
+      "width": 743,
+      "height": 290,
+      "bottom": 1437
+    },
+    "navigation": {
+      "top": 1445,
+      "left": 212,
+      "width": 743,
+      "height": 54,
+      "bottom": 1499
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

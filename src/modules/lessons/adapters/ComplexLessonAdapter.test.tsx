@@ -7,7 +7,7 @@ describe("ComplexLessonAdapter", () => {
   it("renders complex lessons 365 through 377 with lesson-specific guidance", () => {
     const expected = new Map([
       [365, "Complex plane"],
-      [366, "Real and imaginary parts"],
+      [366, "Real and Imaginary Parts"],
       [367, "Complex addition"],
       [368, "Complex multiplication"],
       [369, "Complex conjugate"],
@@ -54,5 +54,24 @@ describe("ComplexLessonAdapter", () => {
     expect(html).toContain('data-rotated="[0.7071,2.1213]"');
     expect(html).toContain('data-modulus="2.2361"');
     expect(html).toContain('data-argument="26.5651"');
+  });
+
+  it("uses a dedicated component inspector for lesson 366", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 366)!;
+    const html = renderToStaticMarkup(
+      <ComplexLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="complex-mockup-0551"');
+    expect(html).toContain(
+      "draggable-complex-point-synchronized-real-imaginary-steppers-sliders-projections",
+    );
+    expect(html).toContain('data-z="[2,1]"');
+    expect(html).toContain('data-quadrant="Quadrant I"');
+    expect(html).toContain("Re(z) = 2");
+    expect(html).toContain("Im(z) = 1");
   });
 });

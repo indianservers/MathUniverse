@@ -11,6 +11,7 @@ import {
 import AdapterFrame from "../components/AdapterFrame";
 import type { LessonAdapterProps } from "../types";
 import ComplexPlaneTargetLesson365 from "./complex/ComplexPlaneTargetLesson365";
+import RealImaginaryTargetLesson366 from "./complex/RealImaginaryTargetLesson366";
 
 const sx = (x: number) => 300 + x * 46;
 const sy = (y: number) => 180 - y * 46;
@@ -108,6 +109,8 @@ function complexGuidanceFor(title: string) {
 export default function ComplexLessonAdapter(props: LessonAdapterProps) {
   if (props.lesson.id === 365)
     return <ComplexPlaneTargetLesson365 {...props} />;
+  if (props.lesson.id === 366)
+    return <RealImaginaryTargetLesson366 {...props} />;
   return <GenericComplexLessonAdapter {...props} />;
 }
 
