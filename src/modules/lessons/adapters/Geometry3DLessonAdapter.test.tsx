@@ -72,7 +72,7 @@ describe("Geometry3DLessonAdapter", () => {
       );
       expect(html, String(lessonId)).toContain(snippet.replace(/'/g, "&#x27;"));
       if (
-        ![378, 379, 380, 381].includes(lessonId) &&
+        ![378, 379, 380, 381, 382].includes(lessonId) &&
         lesson.preset.id !== "geometry3d.solid-net"
       ) {
         expect(html, String(lessonId)).toContain(
@@ -180,5 +180,25 @@ describe("Geometry3DLessonAdapter", () => {
     expect(html).toContain('data-t="1"');
     expect(html).toContain('data-selected="[3,3,4]"');
     expect(html).toContain('data-minus="[-1,1,-2]"');
+  });
+
+  it("uses a dedicated plane-equation model for lesson 382", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 382)!;
+    const html = renderToStaticMarkup(
+      <Geometry3DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="geometry3d-mockup-0567"');
+    expect(html).toContain(
+      "threejs-plane-equation-coefficients-intercepts-normal-vector-test-point-orbit-live-substitution-graded-normal-challenge",
+    );
+    expect(html).toContain('data-coefficients="[2,3,1,6]"');
+    expect(html).toContain('data-intercepts="[[3,0,0],[0,2,0],[0,0,6]]"');
+    expect(html).toContain('data-normal="[2,3,1]"');
+    expect(html).toContain('data-test-value="6"');
+    expect(html).toContain('data-passes="true"');
   });
 });
