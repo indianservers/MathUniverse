@@ -6,6 +6,7 @@ import { EigenActivity } from "./p0/PriorityConceptActivities";
 import MatrixBuilderTargetLesson347 from "./matrix/MatrixBuilderTargetLesson347";
 import MatrixAdditionTargetLesson348 from "./matrix/MatrixAdditionTargetLesson348";
 import ScalarMultiplicationTargetLesson349 from "./matrix/ScalarMultiplicationTargetLesson349";
+import MatrixMultiplicationTargetLesson350 from "./matrix/MatrixMultiplicationTargetLesson350";
 
 export default function MatrixLessonAdapter(props: LessonAdapterProps) {
   if (props.lesson.id === 347)
@@ -14,6 +15,8 @@ export default function MatrixLessonAdapter(props: LessonAdapterProps) {
     return <MatrixAdditionTargetLesson348 {...props} />;
   if (props.lesson.id === 349)
     return <ScalarMultiplicationTargetLesson349 {...props} />;
+  if (props.lesson.id === 350)
+    return <MatrixMultiplicationTargetLesson350 {...props} />;
   const mode = matrixLessonPreset(props.lesson.id).mode;
   if (mode === "eigen-directions") {
     return (

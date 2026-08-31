@@ -16,7 +16,7 @@ describe("MatrixLessonAdapter", () => {
         />,
       );
       expect(html, String(lesson.id)).toContain(lesson.title);
-      if (lesson.id > 349)
+      if (lesson.id > 350)
         expect(html, String(lesson.id)).toMatch(
           /matrix and linear-algebra lab|eigendirection lab/,
         );
@@ -54,8 +54,16 @@ describe("MatrixLessonAdapter", () => {
     expect(html).toContain('data-expected="68.75"');
   });
 
+  it("uses a compatibility-driven multiplication model for lesson 350", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 350)!;
+    const html = renderToStaticMarkup(<MatrixLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="matrix-mockup-0535"');
+    expect(html).toContain("independently-resizable-editable-matrices-compatibility-row-column-dot-product");
+    expect(html).toContain('data-result="[[9,7],[13,8]]"');
+  });
+
   it("does not show determinant as the primary result for unrelated concepts", () => {
-    for (const lessonId of [350, 352, 356, 360, 363, 364]) {
+    for (const lessonId of [352, 356, 360, 363, 364]) {
       const lesson = lessonCatalog.find((item) => item.id === lessonId)!;
       const html = renderToStaticMarkup(
         <MatrixLessonAdapter
