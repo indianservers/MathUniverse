@@ -13,14 +13,14 @@ Target references: `0550` through `0562` in `D:\Math App Screenshots for UI Upda
 | 0554 | 369 Complex Conjugate | `ComplexConjugateTargetLesson369` | Draggable complex point with automatic real-axis reflection, synchronized stepper/range controls, invariant real and negated imaginary components, equal-distance/mirror/product toggles, exact `z·conjugate(z)=|z|²` check, opposite arguments, live decomposition, tabs/reset, and graded conjugate/reflected-point challenge | 1029 x 1529; no overflow or console errors | Complete |
 | 0555 | 370 Modulus and Argument | `ModulusArgumentTargetLesson370` | Draggable complex point, synchronized numeric/range controls, live modulus, principal argument and quadrant, derived radius ring/right triangle/component geometry, three display toggles, formulas and worked comparison, tabs/reset, and working `-4+3i` challenge result | 1024 x 1536; no overflow or console errors | Complete |
 | 0556 | 371 Polar Form | `PolarFormTargetLesson371` | Draggable rectangular point, synchronized numeric/range controls, exact radius/argument/quadrant conversion, degree/radian modes, live rectangular-to-measure-to-polar pipeline, triangle/radius-ring/conversion-step toggles, tabs/reset, working challenge, and selectable understanding check | 1003 x 1568; no overflow or console errors | Complete |
-| 0557 | 372 Euler Form | Pending | Pending | Pending | Pending |
+| 0557 | 372 Euler Form | `EulerFormTargetLesson372` | Draggable polar point with immediate pointer tracking, synchronized radius/angle controls, degree/radian modes, exact rectangular/trigonometric/Euler bridge, unit-circle/trig-bridge/rectangular-check toggles, scale-factor misconception proof, tabs/reset, and a working multiple-choice challenge with wrong/correct/new-challenge states | 916 x 1717; no overflow or console errors | Complete |
 | 0558 | 373 Powers | Pending | Pending | Pending | Pending |
 | 0559 | 374 Roots | Pending | Pending | Pending | Pending |
 | 0560 | 375 Polynomial Roots | Pending | Pending | Pending | Pending |
 | 0561 | 376 Mobius Transformations | Pending | Pending | Pending | Pending |
 | 0562 | 377 Complex Functions | Pending | Pending | Pending | Pending |
 
-Completed in this family: **7 / 13**. Pending in this family: **6 / 13**.
+Completed in this family: **8 / 13**. Pending in this family: **5 / 13**.
 
 ## Lesson 365 validation
 
@@ -71,3 +71,10 @@ Completed in this family: **7 / 13**. Pending in this family: **6 / 13**.
 - Current capture: `0556-desktop.png`
 - Machine-readable interaction and layout audit: `0556-dedicated-target-validation.json`
 - The capture harness verifies the exact `3+4i` to `5(cos 53.13 degrees + i sin 53.13 degrees)` initial conversion, numeric editing into Quadrant II, degree/radian synchronization, conversion-step visibility, physical point drag with recomputed radius and argument, challenge state, understanding selections, tabs, shell reset, exact 1003 x 1568 dimensions, and absence of overflow or console errors.
+
+## Lesson 372 validation
+
+- Reference: `0557-reference.png`
+- Current capture: `0557-desktop.png`
+- Machine-readable interaction and layout audit: `0557-dedicated-target-validation.json`
+- The capture harness verifies the exact `3+4i = 5e^(i53.1 degrees)` initial bridge, synchronized radius and angle edits, degree/radian conversion, trig-bridge visibility, pointer drag with recomputed radius/angle/Cartesian point, rejected and accepted challenge choices, new-challenge state, tabs, shell reset, exact 916 x 1717 dimensions, and absence of overflow or console errors.

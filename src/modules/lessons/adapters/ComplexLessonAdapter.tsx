@@ -17,6 +17,7 @@ import ComplexMultiplicationTargetLesson368 from "./complex/ComplexMultiplicatio
 import ComplexConjugateTargetLesson369 from "./complex/ComplexConjugateTargetLesson369";
 import ModulusArgumentTargetLesson370 from "./complex/ModulusArgumentTargetLesson370";
 import PolarFormTargetLesson371 from "./complex/PolarFormTargetLesson371";
+import EulerFormTargetLesson372 from "./complex/EulerFormTargetLesson372";
 
 const sx = (x: number) => 300 + x * 46;
 const sy = (y: number) => 180 - y * 46;
@@ -125,6 +126,7 @@ export default function ComplexLessonAdapter(props: LessonAdapterProps) {
   if (props.lesson.id === 370)
     return <ModulusArgumentTargetLesson370 {...props} />;
   if (props.lesson.id === 371) return <PolarFormTargetLesson371 {...props} />;
+  if (props.lesson.id === 372) return <EulerFormTargetLesson372 {...props} />;
   return <GenericComplexLessonAdapter {...props} />;
 }
 

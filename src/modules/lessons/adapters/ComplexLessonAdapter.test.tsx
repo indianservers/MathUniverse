@@ -13,7 +13,7 @@ describe("ComplexLessonAdapter", () => {
       [369, "Complex Conjugate"],
       [370, "Modulus and Argument"],
       [371, "Polar Form"],
-      [372, "Euler form"],
+      [372, "Euler Form"],
       [373, "Complex powers"],
       [374, "Complex roots"],
       [375, "Polynomial roots"],
@@ -169,5 +169,26 @@ describe("ComplexLessonAdapter", () => {
     expect(html).toContain('data-radians="0.927"');
     expect(html).toContain('data-unit="degrees"');
     expect(html).toContain('data-quadrant="I"');
+  });
+
+  it("uses a dedicated Euler bridge model for lesson 372", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 372)!;
+    const html = renderToStaticMarkup(
+      <ComplexLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="complex-mockup-0557"');
+    expect(html).toContain(
+      "draggable-euler-bridge-radius-angle-rectangular-trigonometric-exponential-scale-factor",
+    );
+    expect(html).toContain('data-radius="5"');
+    expect(html).toContain('data-degrees="53.1"');
+    expect(html).toContain('data-radians="0.927"');
+    expect(html).toContain('data-point="[3,4]"');
+    expect(html).toContain('data-answer="A"');
+    expect(html).toContain('data-correct="true"');
   });
 });
