@@ -8,7 +8,7 @@ describe("ComplexLessonAdapter", () => {
     const expected = new Map([
       [365, "Complex plane"],
       [366, "Real and Imaginary Parts"],
-      [367, "Complex addition"],
+      [367, "Complex Addition"],
       [368, "Complex multiplication"],
       [369, "Complex conjugate"],
       [370, "Modulus and argument"],
@@ -73,5 +73,23 @@ describe("ComplexLessonAdapter", () => {
     expect(html).toContain('data-quadrant="Quadrant I"');
     expect(html).toContain("Re(z) = 2");
     expect(html).toContain("Im(z) = 1");
+  });
+
+  it("uses a dedicated two-vector addition model for lesson 367", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 367)!;
+    const html = renderToStaticMarkup(
+      <ComplexLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="complex-mockup-0552"');
+    expect(html).toContain(
+      "two-independent-draggable-complex-addends-tip-to-tail-parallelogram",
+    );
+    expect(html).toContain('data-z="[2,1]"');
+    expect(html).toContain('data-w="[-1,3]"');
+    expect(html).toContain('data-sum="[1,4]"');
   });
 });

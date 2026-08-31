@@ -1,0 +1,152 @@
+{
+  "mockup": "0552",
+  "lessonId": 367,
+  "checks": {
+    "initial": {
+      "z": "[2,1]",
+      "w": "[-1,3]",
+      "sum": "[1,4]",
+      "tip": "true",
+      "parallelogram": "true",
+      "components": "true",
+      "tab": "Interaction + visualization",
+      "revealed": "false",
+      "actions": "0"
+    },
+    "edited": {
+      "z": "[3,1]",
+      "w": "[-1,3]",
+      "sum": "[2,4]",
+      "tip": "true",
+      "parallelogram": "true",
+      "components": "true",
+      "tab": "Interaction + visualization",
+      "revealed": "false",
+      "actions": "1"
+    },
+    "slid": {
+      "z": "[3,1]",
+      "w": "[-1,-2]",
+      "sum": "[2,-1]",
+      "tip": "true",
+      "parallelogram": "true",
+      "components": "true",
+      "tab": "Interaction + visualization",
+      "revealed": "false",
+      "actions": "2"
+    },
+    "hidden": {
+      "z": "[3,1]",
+      "w": "[-1,-2]",
+      "sum": "[2,-1]",
+      "tip": "true",
+      "parallelogram": "false",
+      "components": "true",
+      "tab": "Interaction + visualization",
+      "revealed": "false",
+      "actions": "3"
+    },
+    "dragged": {
+      "z": "[1.76,1.94]",
+      "w": "[-1,-2]",
+      "sum": "[0.76,-0.06]",
+      "tip": "true",
+      "parallelogram": "true",
+      "components": "true",
+      "tab": "Interaction + visualization",
+      "revealed": "false",
+      "actions": "5"
+    },
+    "revealed": {
+      "z": "[1.76,1.94]",
+      "w": "[-1,-2]",
+      "sum": "[0.76,-0.06]",
+      "tip": "true",
+      "parallelogram": "true",
+      "components": "true",
+      "tab": "Interaction + visualization",
+      "revealed": "true",
+      "actions": "6"
+    },
+    "tabbed": {
+      "z": "[1.76,1.94]",
+      "w": "[-1,-2]",
+      "sum": "[0.76,-0.06]",
+      "tip": "true",
+      "parallelogram": "true",
+      "components": "true",
+      "tab": "Formulas",
+      "revealed": "true",
+      "actions": "7"
+    },
+    "reset": {
+      "z": "[2,1]",
+      "w": "[-1,3]",
+      "sum": "[1,4]",
+      "tip": "true",
+      "parallelogram": "true",
+      "components": "true",
+      "tab": "Interaction + visualization",
+      "revealed": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1002,
+      "height": 1569
+    },
+    "overflow": false,
+    "hero": {
+      "top": 99,
+      "left": 242,
+      "width": 744,
+      "height": 244,
+      "bottom": 343
+    },
+    "tabs": {
+      "top": 343,
+      "left": 242,
+      "width": 744,
+      "height": 55,
+      "bottom": 398
+    },
+    "work": {
+      "top": 409,
+      "left": 242,
+      "width": 744,
+      "height": 824,
+      "bottom": 1233
+    },
+    "lab": {
+      "top": 410,
+      "left": 243,
+      "width": 524,
+      "height": 824,
+      "bottom": 1234
+    },
+    "controls": {
+      "top": 410,
+      "left": 767,
+      "width": 220,
+      "height": 824,
+      "bottom": 1234
+    },
+    "learning": {
+      "top": 1241,
+      "left": 242,
+      "width": 744,
+      "height": 144,
+      "bottom": 1385
+    },
+    "navigation": {
+      "top": 1395,
+      "left": 242,
+      "width": 744,
+      "height": 52,
+      "bottom": 1447
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
