@@ -1,0 +1,222 @@
+{
+  "mockup": "0566",
+  "lessonId": 381,
+  "checks": {
+    "initial": {
+      "anchor": "[1,2,1]",
+      "vector": "[2,1,3]",
+      "t": "1",
+      "selected": "[3,3,4]",
+      "minus": "[-1,1,-2]",
+      "samples": "true",
+      "step": "true",
+      "equations": "true",
+      "solution": "true",
+      "tab": "Interaction + visualization",
+      "expanded": "false",
+      "actions": "0"
+    },
+    "minus": {
+      "anchor": "[1,2,1]",
+      "vector": "[2,1,3]",
+      "t": "-1",
+      "selected": "[-1,1,-2]",
+      "minus": "[-1,1,-2]",
+      "samples": "true",
+      "step": "true",
+      "equations": "true",
+      "solution": "true",
+      "tab": "Interaction + visualization",
+      "expanded": "false",
+      "actions": "1"
+    },
+    "challengeValues": {
+      "anchor": "[0,1,2]",
+      "vector": "[1,-2,1]",
+      "t": "3",
+      "selected": "[3,-5,5]",
+      "minus": "[-1,3,1]",
+      "samples": "true",
+      "step": "true",
+      "equations": "true",
+      "solution": "true",
+      "tab": "Interaction + visualization",
+      "expanded": "false",
+      "actions": "8"
+    },
+    "hidden": {
+      "anchor": "[0,1,2]",
+      "vector": "[1,-2,1]",
+      "t": "3",
+      "selected": "[3,-5,5]",
+      "minus": "[-1,3,1]",
+      "samples": "false",
+      "step": "false",
+      "equations": "false",
+      "solution": "true",
+      "tab": "Interaction + visualization",
+      "expanded": "false",
+      "actions": "11"
+    },
+    "hiddenSolution": {
+      "anchor": "[0,1,2]",
+      "vector": "[1,-2,1]",
+      "t": "3",
+      "selected": "[3,-5,5]",
+      "minus": "[-1,3,1]",
+      "samples": "false",
+      "step": "false",
+      "equations": "false",
+      "solution": "false",
+      "tab": "Interaction + visualization",
+      "expanded": "false",
+      "actions": "12"
+    },
+    "solution": {
+      "anchor": "[0,1,2]",
+      "vector": "[1,-2,1]",
+      "t": "3",
+      "selected": "[3,-5,5]",
+      "minus": "[-1,3,1]",
+      "samples": "false",
+      "step": "false",
+      "equations": "false",
+      "solution": "true",
+      "tab": "Interaction + visualization",
+      "expanded": "false",
+      "actions": "13"
+    },
+    "orbitChanged": true,
+    "canvasPixels": {
+      "colored": 25539,
+      "unique": 1192,
+      "width": 467,
+      "height": 544
+    },
+    "expanded": {
+      "anchor": "[1,2,1]",
+      "vector": "[2,1,3]",
+      "t": "1",
+      "selected": "[3,3,4]",
+      "minus": "[-1,1,-2]",
+      "samples": "true",
+      "step": "true",
+      "equations": "true",
+      "solution": "true",
+      "tab": "Interaction + visualization",
+      "expanded": "true",
+      "actions": "2"
+    },
+    "tabbed": {
+      "anchor": "[1,2,1]",
+      "vector": "[2,1,3]",
+      "t": "1",
+      "selected": "[3,3,4]",
+      "minus": "[-1,1,-2]",
+      "samples": "true",
+      "step": "true",
+      "equations": "true",
+      "solution": "true",
+      "tab": "Formulas",
+      "expanded": "false",
+      "actions": "4"
+    },
+    "reset": {
+      "anchor": "[1,2,1]",
+      "vector": "[2,1,3]",
+      "t": "1",
+      "selected": "[3,3,4]",
+      "minus": "[-1,1,-2]",
+      "samples": "true",
+      "step": "true",
+      "equations": "true",
+      "solution": "true",
+      "tab": "Interaction + visualization",
+      "expanded": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1002,
+      "height": 1569
+    },
+    "overflow": false,
+    "hero": {
+      "top": 99,
+      "left": 220,
+      "width": 773,
+      "height": 223,
+      "bottom": 322
+    },
+    "tabs": {
+      "top": 332,
+      "left": 220,
+      "width": 773,
+      "height": 51,
+      "bottom": 383
+    },
+    "lab": {
+      "top": 393,
+      "left": 220,
+      "width": 773,
+      "height": 615,
+      "bottom": 1008
+    },
+    "scene": {
+      "top": 453,
+      "left": 231,
+      "width": 469,
+      "height": 546,
+      "bottom": 999
+    },
+    "canvas": {
+      "top": 454,
+      "left": 232,
+      "width": 467,
+      "height": 544,
+      "bottom": 998
+    },
+    "side": {
+      "top": 453,
+      "left": 710,
+      "width": 263,
+      "height": 546,
+      "bottom": 999
+    },
+    "learning": {
+      "top": 1020,
+      "left": 220,
+      "width": 773,
+      "height": 234,
+      "bottom": 1254
+    },
+    "warning": {
+      "top": 1266,
+      "left": 220,
+      "width": 773,
+      "height": 85,
+      "bottom": 1351
+    },
+    "navigation": {
+      "top": 1363,
+      "left": 220,
+      "width": 773,
+      "height": 54,
+      "bottom": 1417
+    }
+  },
+  "mobileMetrics": {
+    "documentWidth": 390,
+    "overflow": false,
+    "canvas": {
+      "x": 24,
+      "y": 298,
+      "width": 345,
+      "height": 546
+    },
+    "nonblank": true
+  },
+  "consoleMessages": [],
+  "passed": true
+}

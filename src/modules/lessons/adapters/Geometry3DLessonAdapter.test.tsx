@@ -72,7 +72,7 @@ describe("Geometry3DLessonAdapter", () => {
       );
       expect(html, String(lessonId)).toContain(snippet.replace(/'/g, "&#x27;"));
       if (
-        ![378, 379, 380].includes(lessonId) &&
+        ![378, 379, 380, 381].includes(lessonId) &&
         lesson.preset.id !== "geometry3d.solid-net"
       ) {
         expect(html, String(lessonId)).toContain(
@@ -160,5 +160,25 @@ describe("Geometry3DLessonAdapter", () => {
     expect(html).toContain('data-components="true"');
     expect(html).toContain('data-segment="true"');
     expect(html).toContain('data-box="true"');
+  });
+
+  it("uses a dedicated parametric-line model for lesson 381", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 381)!;
+    const html = renderToStaticMarkup(
+      <Geometry3DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="geometry3d-mockup-0566"');
+    expect(html).toContain(
+      "threejs-parametric-line-anchor-direction-vector-live-t-sample-points-direction-step-equations-orbit-challenge",
+    );
+    expect(html).toContain('data-anchor="[1,2,1]"');
+    expect(html).toContain('data-vector="[2,1,3]"');
+    expect(html).toContain('data-t="1"');
+    expect(html).toContain('data-selected="[3,3,4]"');
+    expect(html).toContain('data-minus="[-1,1,-2]"');
   });
 });
