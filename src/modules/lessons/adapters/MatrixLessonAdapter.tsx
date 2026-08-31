@@ -10,6 +10,7 @@ import MatrixMultiplicationTargetLesson350 from "./matrix/MatrixMultiplicationTa
 import IdentityMatrixTargetLesson351 from "./matrix/IdentityMatrixTargetLesson351";
 import TransposeTargetLesson352 from "./matrix/TransposeTargetLesson352";
 import DeterminantTargetLesson353 from "./matrix/DeterminantTargetLesson353";
+import MatrixInverseTargetLesson354 from "./matrix/MatrixInverseTargetLesson354";
 
 export default function MatrixLessonAdapter(props: LessonAdapterProps) {
   if (props.lesson.id === 347)
@@ -26,6 +27,8 @@ export default function MatrixLessonAdapter(props: LessonAdapterProps) {
     return <TransposeTargetLesson352 {...props} />;
   if (props.lesson.id === 353)
     return <DeterminantTargetLesson353 {...props} />;
+  if (props.lesson.id === 354)
+    return <MatrixInverseTargetLesson354 {...props} />;
   const mode = matrixLessonPreset(props.lesson.id).mode;
   if (mode === "eigen-directions") {
     return (

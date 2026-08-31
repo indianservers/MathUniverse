@@ -1,0 +1,193 @@
+{
+  "mockup": "0539",
+  "lessonId": 354,
+  "checks": {
+    "initial": {
+      "matrix": "2,1,1,1",
+      "det": "1",
+      "invertible": "true",
+      "inverse": "1,-1,-1,2",
+      "step": "0",
+      "steps": "5",
+      "augmented": "2,1,1,0,1,1,0,1",
+      "playing": "false",
+      "hints": "true",
+      "expected": "1,1",
+      "answer": ",",
+      "check": "",
+      "solution": "false",
+      "tab": "Interact",
+      "actions": "0"
+    },
+    "singular": {
+      "matrix": "1,2,2,4",
+      "det": "0",
+      "invertible": "false",
+      "inverse": "none",
+      "step": "0",
+      "steps": "3",
+      "augmented": "1,2,1,0,2,4,0,1",
+      "playing": "false",
+      "hints": "true",
+      "expected": "NaN,NaN",
+      "answer": ",",
+      "check": "",
+      "solution": "false",
+      "tab": "Interact",
+      "actions": "4"
+    },
+    "recovered": {
+      "matrix": "2,1,1,1",
+      "det": "1",
+      "invertible": "true",
+      "inverse": "1,-1,-1,2",
+      "step": "0",
+      "steps": "5",
+      "augmented": "2,1,1,0,1,1,0,1",
+      "playing": "false",
+      "hints": "true",
+      "expected": "1,1",
+      "answer": ",",
+      "check": "",
+      "solution": "false",
+      "tab": "Interact",
+      "actions": "5"
+    },
+    "step": {
+      "matrix": "2,1,1,1",
+      "det": "1",
+      "invertible": "true",
+      "inverse": "1,-1,-1,2",
+      "step": "1",
+      "steps": "5",
+      "augmented": "1,0.5,0.5,0,1,1,0,1",
+      "playing": "false",
+      "hints": "false",
+      "expected": "1,1",
+      "answer": ",",
+      "check": "",
+      "solution": "false",
+      "tab": "Interact",
+      "actions": "7"
+    },
+    "autoplay": {
+      "matrix": "2,1,1,1",
+      "det": "1",
+      "invertible": "true",
+      "inverse": "1,-1,-1,2",
+      "step": "4",
+      "steps": "5",
+      "augmented": "1,0,1,-1,0,1,-1,2",
+      "playing": "true",
+      "hints": "false",
+      "expected": "1,1",
+      "answer": ",",
+      "check": "",
+      "solution": "false",
+      "tab": "Interact",
+      "actions": "8"
+    },
+    "rejected": {
+      "matrix": "2,1,1,1",
+      "det": "1",
+      "invertible": "true",
+      "inverse": "1,-1,-1,2",
+      "step": "4",
+      "steps": "5",
+      "augmented": "1,0,1,-1,0,1,-1,2",
+      "playing": "true",
+      "hints": "false",
+      "expected": "1,1",
+      "answer": "0,0",
+      "check": "incorrect",
+      "solution": "false",
+      "tab": "Interact",
+      "actions": "11"
+    },
+    "accepted": {
+      "matrix": "2,1,1,1",
+      "det": "1",
+      "invertible": "true",
+      "inverse": "1,-1,-1,2",
+      "step": "4",
+      "steps": "5",
+      "augmented": "1,0,1,-1,0,1,-1,2",
+      "playing": "true",
+      "hints": "false",
+      "expected": "1,1",
+      "answer": "1,1",
+      "check": "correct",
+      "solution": "true",
+      "tab": "Formula",
+      "actions": "16"
+    },
+    "shellReset": {
+      "matrix": "2,1,1,1",
+      "det": "1",
+      "invertible": "true",
+      "inverse": "1,-1,-1,2",
+      "step": "0",
+      "steps": "5",
+      "augmented": "2,1,1,0,1,1,0,1",
+      "playing": "false",
+      "hints": "true",
+      "expected": "1,1",
+      "answer": ",",
+      "check": "",
+      "solution": "false",
+      "tab": "Interact",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "overflow": false,
+    "hero": {
+      "top": 108,
+      "left": 239,
+      "width": 772,
+      "height": 184,
+      "bottom": 292
+    },
+    "tabs": {
+      "top": 303,
+      "left": 239,
+      "width": 772,
+      "height": 42,
+      "bottom": 345
+    },
+    "intro": {
+      "top": 358,
+      "left": 239,
+      "width": 772,
+      "height": 214,
+      "bottom": 572
+    },
+    "gauss": {
+      "top": 583,
+      "left": 239,
+      "width": 772,
+      "height": 305,
+      "bottom": 888
+    },
+    "geometry": {
+      "top": 898,
+      "left": 239,
+      "width": 772,
+      "height": 338,
+      "bottom": 1236
+    },
+    "bottom": {
+      "top": 1246,
+      "left": 239,
+      "width": 772,
+      "height": 272,
+      "bottom": 1518
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

@@ -16,7 +16,7 @@ describe("MatrixLessonAdapter", () => {
         />,
       );
       expect(html, String(lesson.id)).toContain(lesson.title);
-      if (lesson.id > 353)
+      if (lesson.id > 354)
         expect(html, String(lesson.id)).toMatch(
           /matrix and linear-algebra lab|eigendirection lab/,
         );
@@ -87,6 +87,15 @@ describe("MatrixLessonAdapter", () => {
     expect(html).toContain("editable-two-by-two-matrix-determinant-products-draggable-column-vectors-signed-area");
     expect(html).toContain('data-det="10"');
     expect(html).toContain('data-singular="false"');
+  });
+
+  it("uses a determinant-gated inverse and Gauss-Jordan model for lesson 354", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 354)!;
+    const html = renderToStaticMarkup(<MatrixLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="matrix-mockup-0539"');
+    expect(html).toContain("editable-two-by-two-matrix-determinant-invertibility-gated-formula-inverse-real-gauss-jordan-states");
+    expect(html).toContain('data-inverse="1,-1,-1,2"');
+    expect(html).toContain('data-expected="1,1"');
   });
 
   it("does not show determinant as the primary result for unrelated concepts", () => {
