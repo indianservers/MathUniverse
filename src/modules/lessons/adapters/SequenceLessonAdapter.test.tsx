@@ -18,7 +18,7 @@ describe("SequenceLessonAdapter", () => {
         />,
       );
       expect(html, String(lesson.id)).toContain(lesson.title);
-      if (lesson.id >= 334 && lesson.id <= 345) {
+      if (lesson.id >= 334 && lesson.id <= 346) {
         expect(html, String(lesson.id)).toContain(
           `data-testid="sequence-mockup-0${lesson.id + 185}"`,
         );
@@ -34,10 +34,7 @@ describe("SequenceLessonAdapter", () => {
   });
 
   it("renders concept language for advanced series rather than a generic S-n panel", () => {
-    const expected = new Map([
-      [339, "Σ"],
-      [346, "growth·Pₙ"],
-    ]);
+    const expected = new Map([[339, "Σ"]]);
     for (const [lessonId, text] of expected) {
       const lesson = lessonCatalog.find((item) => item.id === lessonId)!;
       const html = renderToStaticMarkup(
@@ -51,7 +48,7 @@ describe("SequenceLessonAdapter", () => {
     }
   });
 
-  it("renders strengthened sequence lessons 334 through 345 with dedicated models", () => {
+  it("renders strengthened sequence lessons 334 through 346 with dedicated models", () => {
     const expected = new Map([
       [334, ["Sequence Generator", "sequence-mockup-0519"]],
       [335, ["Arithmetic Sequences", "sequence-mockup-0520"]],
@@ -65,6 +62,7 @@ describe("SequenceLessonAdapter", () => {
       [343, ["Power Series", "sequence-mockup-0528"]],
       [344, ["Taylor and Maclaurin Series", "sequence-mockup-0529"]],
       [345, ["Binomial Series", "sequence-mockup-0530"]],
+      [346, ["Recurrence Modelling", "sequence-mockup-0531"]],
     ]);
 
     for (const [lessonId, [title, testId]] of expected) {

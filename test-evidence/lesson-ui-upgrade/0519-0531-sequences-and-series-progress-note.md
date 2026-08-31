@@ -1,6 +1,6 @@
 # Sequences and Series target batch 0519-0531
 
-Dedicated rebuild target: **12 of 13 lessons completed; 1 pending.**
+Dedicated rebuild target: **13 of 13 lessons completed; 0 pending.**
 
 | Mockup | Lesson                          | Dedicated object model                                                                                                                                                                                                                                         | Status                                      |
 | ------ | ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
@@ -16,7 +16,7 @@ Dedicated rebuild target: **12 of 13 lessons completed; 1 pending.**
 | 0528   | 343 Power Series                | `centered-power-series-preset-taylor-coefficients-manual-coefficient-editor-target-function-partial-sum-graph-draggable-highest-coefficient-truncation-error-radius-estimator-convergence-interval-endpoint-tests-expanded-polynomial-multi-question-practice` | Reworked individually and browser-validated |
 | 0529   | 344 Taylor and Maclaurin Series | `five-function-taylor-coefficients-expansion-center-order-target-interval-function-polynomial-graph-draggable-center-animation-remainder-error-convergence-bars-derivative-table-expanded-form-multi-question-practice`                                        | Reworked individually and browser-validated |
 | 0530   | 345 Binomial Series             | `generalized-binomial-exponent-evaluation-point-truncation-recursive-coefficients-target-partial-graph-draggable-evaluation-point-expansion-partial-table-error-by-order-endpoint-rules-multi-question-practice`                                               | Reworked individually and browser-validated |
-| 0531   | 346 Recurrence Modelling        | Pending                                                                                                                                                                                                                                                        | Pending                                     |
+| 0531   | 346 Recurrence Modelling        | `scenario-aware-geometric-affine-recurrence-growth-factor-additive-input-initial-value-units-generated-state-change-tables-draggable-time-series-closed-form-verification-equilibrium-stability-multi-question-practice`                                       | Reworked individually and browser-validated |
 
 ## Lesson 334 / Mockup 0519 - Sequence Generator
 
@@ -197,3 +197,19 @@ Evidence:
 - `0530-reference.png`
 - `0530-desktop.png`
 - `0530-dedicated-target-validation.json`
+
+## Lesson 346 / Mockup 0531 - Recurrence Modelling
+
+Reworked individually around a scenario-aware recurrence engine. City population, savings with deposits, bacteria culture, and medication decay presets configure geometric or affine rules `P(n+1)=rP(n)+k`. Growth factor, additive input, initial value, units, and comparison index generate the time series, timeline, state/change table, closed form, recursive comparison, equilibrium, stability result, and interpretation. Every graph point is pointer-captured: the initial point solves P0, while later points solve r for geometric scenarios or P0 for affine scenarios.
+
+Browser validation confirms the city sequence begins `50000,55000,60500` and reaches `129687.123005` at n=10 with zero recursive/closed-form difference. Savings begins `10000,11500,13075`. Medication has stable equilibrium `71.428571`. Manual `r=0.8`, `k=100`, `P0=500` produces stable equilibrium 500 and exact recursive/closed-form agreement at n=5. A captured graph drag changes r, both assessment questions grade correctly, Formulas activates, and shell Reset restores the initial model and zero actions.
+
+Final exact 921x1708 validation matches the target stack: hero y=89-287, tabs through y=342, model lab through y=1207, guided notes through y=1362, assessment through y=1517, adjacent navigation through y=1587, and footer ending at y=1708. It reports no horizontal overflow and zero console warnings or errors.
+
+The reference shows a next lesson named “Solving Linear Recurrence Relations.” No lesson with that title or route exists in the current catalog; ID 347 is Matrix Builder. The dedicated page therefore retains the working Previous link and does not add a dead or incorrectly routed control.
+
+Evidence:
+
+- `0531-reference.png`
+- `0531-desktop.png`
+- `0531-dedicated-target-validation.json`

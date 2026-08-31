@@ -12,6 +12,7 @@ import ConvergenceDivergenceTargetLesson342 from "./sequence/ConvergenceDivergen
 import PowerSeriesTargetLesson343 from "./sequence/PowerSeriesTargetLesson343";
 import TaylorMaclaurinTargetLesson344 from "./sequence/TaylorMaclaurinTargetLesson344";
 import BinomialSeriesTargetLesson345 from "./sequence/BinomialSeriesTargetLesson345";
+import RecurrenceModellingTargetLesson346 from "./sequence/RecurrenceModellingTargetLesson346";
 import { SequenceConceptActivity } from "./sequence/SequenceConceptActivity";
 import SequenceGeneratorTargetLesson334 from "./sequence/SequenceGeneratorTargetLesson334";
 
@@ -39,6 +40,8 @@ export default function SequenceLessonAdapter(props: LessonAdapterProps) {
     return <TaylorMaclaurinTargetLesson344 {...props} />;
   if (props.lesson.id === 345)
     return <BinomialSeriesTargetLesson345 {...props} />;
+  if (props.lesson.id === 346)
+    return <RecurrenceModellingTargetLesson346 {...props} />;
   const mode = sequenceLessonPreset(props.lesson.id).mode;
   return (
     <AdapterFrame
