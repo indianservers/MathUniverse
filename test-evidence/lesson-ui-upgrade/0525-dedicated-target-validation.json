@@ -1,0 +1,190 @@
+{
+  "mockup": "0525",
+  "lessonId": 340,
+  "checks": {
+    "initial": {
+      "first": "2",
+      "difference": "3",
+      "count": "10",
+      "terms": "2,5,8,11,14,17,20,23,26,29",
+      "partials": "2,7,15,26,40,57,77,100,126,155",
+      "last": "29",
+      "pair-sum": "31",
+      "total": "155",
+      "tab": "Interaction + Visualisation",
+      "interactive": "true",
+      "quick-result": "",
+      "actions": "0"
+    },
+    "controls": {
+      "first": "-1",
+      "difference": "2",
+      "count": "6",
+      "terms": "-1,1,3,5,7,9",
+      "partials": "-1,0,3,8,15,24",
+      "last": "9",
+      "pair-sum": "8",
+      "total": "24",
+      "tab": "Interaction + Visualisation",
+      "interactive": "true",
+      "quick-result": "",
+      "actions": "3"
+    },
+    "view": {
+      "first": "-1",
+      "difference": "2",
+      "count": "6",
+      "terms": "-1,1,3,5,7,9",
+      "partials": "-1,0,3,8,15,24",
+      "last": "9",
+      "pair-sum": "8",
+      "total": "24",
+      "tab": "Interaction + Visualisation",
+      "interactive": "false",
+      "quick-result": "",
+      "actions": "4"
+    },
+    "dragFirst": {
+      "first": "6.717422",
+      "difference": "2",
+      "count": "6",
+      "terms": "6.717422,8.717422,10.717422,12.717422,14.717422,16.717422",
+      "partials": "6.717422,15.434844,26.152266,38.869688,53.58711,70.304532",
+      "last": "16.717422",
+      "pair-sum": "23.434844",
+      "total": "70.304532",
+      "tab": "Interaction + Visualisation",
+      "interactive": "true",
+      "quick-result": "",
+      "actions": "12"
+    },
+    "dragDifference": {
+      "first": "2",
+      "difference": "3.219262",
+      "count": "10",
+      "terms": "2,5.219262,8.438524,11.657786,14.877048,18.09631,21.315572,24.534834,27.754096,30.973358",
+      "partials": "2,7.219262,15.657786,27.315572,42.19262,60.28893,81.604502,106.139336,133.893432,164.86679",
+      "last": "30.973358",
+      "pair-sum": "32.973358",
+      "total": "164.86679",
+      "tab": "Interaction + Visualisation",
+      "interactive": "true",
+      "quick-result": "",
+      "actions": "8"
+    },
+    "rejected": {
+      "first": "2",
+      "difference": "3.219262",
+      "count": "10",
+      "terms": "2,5.219262,8.438524,11.657786,14.877048,18.09631,21.315572,24.534834,27.754096,30.973358",
+      "partials": "2,7.219262,15.657786,27.315572,42.19262,60.28893,81.604502,106.139336,133.893432,164.86679",
+      "last": "30.973358",
+      "pair-sum": "32.973358",
+      "total": "164.86679",
+      "tab": "Interaction + Visualisation",
+      "interactive": "true",
+      "quick-result": "incorrect",
+      "actions": "9"
+    },
+    "accepted": {
+      "first": "2",
+      "difference": "3.219262",
+      "count": "10",
+      "terms": "2,5.219262,8.438524,11.657786,14.877048,18.09631,21.315572,24.534834,27.754096,30.973358",
+      "partials": "2,7.219262,15.657786,27.315572,42.19262,60.28893,81.604502,106.139336,133.893432,164.86679",
+      "last": "30.973358",
+      "pair-sum": "32.973358",
+      "total": "164.86679",
+      "tab": "Formulas",
+      "interactive": "true",
+      "quick-result": "correct",
+      "actions": "11"
+    },
+    "shellReset": {
+      "first": "2",
+      "difference": "3",
+      "count": "10",
+      "terms": "2,5,8,11,14,17,20,23,26,29",
+      "partials": "2,7,15,26,40,57,77,100,126,155",
+      "last": "29",
+      "pair-sum": "31",
+      "total": "155",
+      "tab": "Interaction + Visualisation",
+      "interactive": "true",
+      "quick-result": "",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 862,
+      "height": 1824
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 188,
+      "height": 1824,
+      "bottom": 1824
+    },
+    "hero": {
+      "top": 89,
+      "left": 200,
+      "width": 651,
+      "height": 205,
+      "bottom": 294
+    },
+    "tabs": {
+      "top": 304,
+      "left": 200,
+      "width": 651,
+      "height": 40,
+      "bottom": 344
+    },
+    "objective": {
+      "top": 352,
+      "left": 200,
+      "width": 651,
+      "height": 84,
+      "bottom": 436
+    },
+    "lab": {
+      "top": 445,
+      "left": 200,
+      "width": 651,
+      "height": 694,
+      "bottom": 1139
+    },
+    "derivation": {
+      "top": 1148,
+      "left": 200,
+      "width": 651,
+      "height": 342,
+      "bottom": 1490
+    },
+    "check": {
+      "top": 1499,
+      "left": 200,
+      "width": 651,
+      "height": 121,
+      "bottom": 1620
+    },
+    "adjacent": {
+      "top": 1637,
+      "left": 200,
+      "width": 651,
+      "height": 59,
+      "bottom": 1696
+    },
+    "footer": {
+      "top": 1708,
+      "left": 188,
+      "width": 674,
+      "height": 116,
+      "bottom": 1824
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

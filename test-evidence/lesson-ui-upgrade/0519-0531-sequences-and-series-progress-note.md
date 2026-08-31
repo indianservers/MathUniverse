@@ -1,6 +1,6 @@
 # Sequences and Series target batch 0519-0531
 
-Dedicated rebuild target: **6 of 13 lessons completed; 7 pending.**
+Dedicated rebuild target: **7 of 13 lessons completed; 6 pending.**
 
 | Mockup | Lesson                          | Dedicated object model                                                                                                                                                     | Status                                      |
 | ------ | ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
@@ -10,7 +10,7 @@ Dedicated rebuild target: **6 of 13 lessons completed; 7 pending.**
 | 0522   | 337 Recursive Sequences         | `editable-affine-logistic-recurrence-parser-presets-initial-condition-dependency-chain-memoized-table-cobweb-draggable-seed-time-series-fixed-point-error-export-practice` | Reworked individually and browser-validated |
 | 0523   | 338 Fibonacci Sequence          | `two-positive-integer-seeds-pairwise-recurrence-auto-build-speed-generated-term-list-fibonacci-square-spiral-draggable-seed-ratio-phi-convergence-binet-practice`          | Reworked individually and browser-validated |
 | 0524   | 339 Sigma Notation              | `polynomial-summand-parser-editable-bounds-presets-finite-nested-sum-term-expansion-partial-accumulator-animation-draggable-index-stem-index-substitution-copy-practice`   | Reworked individually and browser-validated |
-| 0525   | 340 Arithmetic Series           | Pending                                                                                                                                                                    | Pending                                     |
+| 0525   | 340 Arithmetic Series           | `arithmetic-progression-first-difference-count-generated-terms-partial-sums-paired-ends-draggable-line-endpoints-finite-sum-proof-trapezoid-area-practice`                 | Reworked individually and browser-validated |
 | 0526   | 341 Geometric Series            | Pending                                                                                                                                                                    | Pending                                     |
 | 0527   | 342 Convergence and Divergence  | Pending                                                                                                                                                                    | Pending                                     |
 | 0528   | 343 Power Series                | Pending                                                                                                                                                                    | Pending                                     |
@@ -109,3 +109,19 @@ Evidence:
 - `0524-reference.png`
 - `0524-desktop.png`
 - `0524-dedicated-target-validation.json`
+
+## Lesson 340 / Mockup 0525 - Arithmetic Series
+
+Reworked individually around one arithmetic-progression model. First term, common difference, and term-count controls generate every term, partial sum, first/last pair, common pair sum, formula-check row, linear graph, trapezoid, derivation, and final sum. Interactive/View mode genuinely enables or disables the parameters. The first and last graph points are pointer-captured vertical handles: the first solves back to a1, while every later point solves back to d. Reset, Share, Workspace, fullscreen, five lesson stages, and assessment grading are functional.
+
+Browser validation confirms `a1=2`, `d=3`, `n=10` gives terms through 29, pair sum 31, and total 155. Changing to `a1=-1`, `d=2`, `n=6` gives `-1,1,3,5,7,9` and total 24. View mode disables the parameters; both graph drag inversions change their respective model parameter. Quick Check rejects 270 and accepts the coherent value 348; Formulas activates; shell Reset restores the initial model and zero actions.
+
+The reference asks for `a1=7`, `d=4`, `n=12`, highlights 270, then prints `S12=6(14+44)=6x58=348`. The dedicated surface grades 348, the value consistent with its own displayed formula.
+
+Final exact 862x1824 validation matches the target stack: sidebar width 188, hero beginning at y=89, objective and tabs aligned above the lab, arithmetic lab through y=1139, derivation/insights through y=1490, assessment through y=1620, adjacent lessons through y=1693, and footer ending at y=1824. Dedicated content spans x=200-851, with no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0525-reference.png`
+- `0525-desktop.png`
+- `0525-dedicated-target-validation.json`
