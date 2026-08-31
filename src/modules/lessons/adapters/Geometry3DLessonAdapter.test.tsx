@@ -73,7 +73,7 @@ describe("Geometry3DLessonAdapter", () => {
       expect(html, String(lessonId)).toContain(snippet.replace(/'/g, "&#x27;"));
       if (
         ![
-          378, 379, 380, 381, 382, 383, 384, 385, 386, 387, 388, 389, 390,
+          378, 379, 380, 381, 382, 383, 384, 385, 386, 387, 388, 389, 390, 391,
         ].includes(lessonId) &&
         lesson.preset.id !== "geometry3d.solid-net"
       ) {
@@ -385,5 +385,29 @@ describe("Geometry3DLessonAdapter", () => {
     expect(html).toContain('data-magnitude-a="3.74"');
     expect(html).toContain('data-magnitude-b="2.45"');
     expect(html).toContain('data-angle="70.89"');
+  });
+
+  it("uses a dedicated parametric cube model for lesson 391", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 391)!;
+    const html = renderToStaticMarkup(
+      <Geometry3DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="geometry3d-mockup-0576"');
+    expect(html).toContain(
+      "threejs-dedicated-parametric-cube-side-slider-solid-net-face-space-diagonals-orbit-highlight-exact-volume-surface-euler-validated-experiment",
+    );
+    expect(html).toContain('data-side="4"');
+    expect(html).toContain('data-volume="64"');
+    expect(html).toContain('data-surface="96"');
+    expect(html).toContain('data-face-diagonal="5.66"');
+    expect(html).toContain('data-space-diagonal="6.93"');
+    expect(html).toContain('data-layers="[true,true]"');
+    expect(html).toContain("Vertices: 8");
+    expect(html).toContain("Edges: 12");
+    expect(html).toContain("Faces: 6");
   });
 });

@@ -17,6 +17,7 @@ import AnglePlanesTargetLesson387 from "./geometry3d/AnglePlanesTargetLesson387"
 import AngleLinePlaneTargetLesson388 from "./geometry3d/AngleLinePlaneTargetLesson388";
 import PointPlaneDistanceTargetLesson389 from "./geometry3d/PointPlaneDistanceTargetLesson389";
 import VectorsTargetLesson390 from "./geometry3d/VectorsTargetLesson390";
+import CubeTargetLesson391 from "./geometry3d/CubeTargetLesson391";
 
 export default function Geometry3DLessonAdapter(props: LessonAdapterProps) {
   if (props.lesson.id === 378)
@@ -36,6 +37,7 @@ export default function Geometry3DLessonAdapter(props: LessonAdapterProps) {
   if (props.lesson.id === 389)
     return <PointPlaneDistanceTargetLesson389 {...props} />;
   if (props.lesson.id === 390) return <VectorsTargetLesson390 {...props} />;
+  if (props.lesson.id === 391) return <CubeTargetLesson391 {...props} />;
   if (props.lesson.preset.id === "geometry3d.solid-net") {
     return (
       <AdapterFrame

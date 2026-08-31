@@ -1,0 +1,246 @@
+{
+  "mockup": "0576",
+  "lessonId": 391,
+  "checks": {
+    "initial": {
+      "side": "4",
+      "volume": "64",
+      "surface": "96",
+      "face-diagonal": "5.66",
+      "space-diagonal": "6.93",
+      "layers": "[true,true]",
+      "unfolded": "false",
+      "highlight": "none",
+      "expanded": "false",
+      "tab": "Interaction + visualization",
+      "shared": "false",
+      "experiment": "false",
+      "actions": "0"
+    },
+    "resized": {
+      "side": "2.5",
+      "volume": "15.63",
+      "surface": "37.5",
+      "face-diagonal": "3.54",
+      "space-diagonal": "4.33",
+      "layers": "[true,true]",
+      "unfolded": "false",
+      "highlight": "none",
+      "expanded": "false",
+      "tab": "Interaction + visualization",
+      "shared": "false",
+      "experiment": "false",
+      "actions": "1"
+    },
+    "layersOff": {
+      "side": "2.5",
+      "volume": "15.63",
+      "surface": "37.5",
+      "face-diagonal": "3.54",
+      "space-diagonal": "4.33",
+      "layers": "[false,false]",
+      "unfolded": "false",
+      "highlight": "none",
+      "expanded": "false",
+      "tab": "Interaction + visualization",
+      "shared": "false",
+      "experiment": "false",
+      "actions": "3"
+    },
+    "unfolded": {
+      "side": "2.5",
+      "volume": "15.63",
+      "surface": "37.5",
+      "face-diagonal": "3.54",
+      "space-diagonal": "4.33",
+      "layers": "[true,true]",
+      "unfolded": "true",
+      "highlight": "none",
+      "expanded": "false",
+      "tab": "Interaction + visualization",
+      "shared": "false",
+      "experiment": "false",
+      "actions": "6"
+    },
+    "experiment": {
+      "side": "5",
+      "volume": "125",
+      "surface": "150",
+      "face-diagonal": "7.07",
+      "space-diagonal": "8.66",
+      "layers": "[true,true]",
+      "unfolded": "false",
+      "highlight": "none",
+      "expanded": "false",
+      "tab": "Interaction + visualization",
+      "shared": "false",
+      "experiment": "true",
+      "actions": "8"
+    },
+    "shared": {
+      "side": "5",
+      "volume": "125",
+      "surface": "150",
+      "face-diagonal": "7.07",
+      "space-diagonal": "8.66",
+      "layers": "[true,true]",
+      "unfolded": "false",
+      "highlight": "none",
+      "expanded": "false",
+      "tab": "Interaction + visualization",
+      "shared": "true",
+      "experiment": "true",
+      "actions": "9"
+    },
+    "highlighted": {
+      "side": "4",
+      "volume": "64",
+      "surface": "96",
+      "face-diagonal": "5.66",
+      "space-diagonal": "6.93",
+      "layers": "[true,true]",
+      "unfolded": "false",
+      "highlight": "face",
+      "expanded": "false",
+      "tab": "Interaction + visualization",
+      "shared": "false",
+      "experiment": "false",
+      "actions": "2"
+    },
+    "orbitChanged": true,
+    "canvasPixels": {
+      "colored": 25564,
+      "unique": 1603,
+      "width": 425,
+      "height": 619
+    },
+    "expanded": {
+      "side": "4",
+      "volume": "64",
+      "surface": "96",
+      "face-diagonal": "5.66",
+      "space-diagonal": "6.93",
+      "layers": "[true,true]",
+      "unfolded": "false",
+      "highlight": "none",
+      "expanded": "true",
+      "tab": "Interaction + visualization",
+      "shared": "false",
+      "experiment": "false",
+      "actions": "4"
+    },
+    "tabbed": {
+      "side": "4",
+      "volume": "64",
+      "surface": "96",
+      "face-diagonal": "5.66",
+      "space-diagonal": "6.93",
+      "layers": "[true,true]",
+      "unfolded": "false",
+      "highlight": "none",
+      "expanded": "false",
+      "tab": "Formulas",
+      "shared": "false",
+      "experiment": "false",
+      "actions": "6"
+    },
+    "reset": {
+      "side": "4",
+      "volume": "64",
+      "surface": "96",
+      "face-diagonal": "5.66",
+      "space-diagonal": "6.93",
+      "layers": "[true,true]",
+      "unfolded": "false",
+      "highlight": "none",
+      "expanded": "false",
+      "tab": "Interaction + visualization",
+      "shared": "false",
+      "experiment": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1009,
+      "height": 1558
+    },
+    "overflow": false,
+    "hero": {
+      "top": 115,
+      "left": 235,
+      "width": 762,
+      "height": 249,
+      "bottom": 364
+    },
+    "tabs": {
+      "top": 374,
+      "left": 235,
+      "width": 762,
+      "height": 58,
+      "bottom": 432
+    },
+    "lab": {
+      "top": 443,
+      "left": 235,
+      "width": 762,
+      "height": 1006,
+      "bottom": 1449
+    },
+    "canvas": {
+      "top": 501,
+      "left": 247,
+      "width": 425,
+      "height": 619,
+      "bottom": 1120
+    },
+    "controls": {
+      "top": 501,
+      "left": 685,
+      "width": 300,
+      "height": 280,
+      "bottom": 781
+    },
+    "results": {
+      "top": 792,
+      "left": 685,
+      "width": 300,
+      "height": 328,
+      "bottom": 1120
+    },
+    "info": {
+      "top": 1134,
+      "left": 247,
+      "width": 738,
+      "height": 142,
+      "bottom": 1276
+    },
+    "practice": {
+      "top": 1288,
+      "left": 247,
+      "width": 738,
+      "height": 84,
+      "bottom": 1372
+    },
+    "navigation": {
+      "top": 1387,
+      "left": 247,
+      "width": 738,
+      "height": 62,
+      "bottom": 1449
+    }
+  },
+  "mobileMetrics": {
+    "documentWidth": 390,
+    "overflow": false,
+    "canvas": {
+      "x": 26,
+      "y": 284,
+      "width": 340,
+      "height": 560
+    },
+    "nonblank": true
+  },
+  "consoleMessages": [],
+  "passed": true
+}
