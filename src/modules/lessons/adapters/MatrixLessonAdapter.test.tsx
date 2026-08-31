@@ -16,11 +16,11 @@ describe("MatrixLessonAdapter", () => {
         />,
       );
       expect(html, String(lesson.id)).toContain(lesson.title);
-      if (lesson.id > 355)
+      if (lesson.id > 356)
         expect(html, String(lesson.id)).toMatch(
           /matrix and linear-algebra lab|eigendirection lab/,
         );
-      if (lesson.id !== 352)
+      if (![352, 356].includes(lesson.id))
         expect(html, String(lesson.id)).toContain('type="number"');
       expect(html, String(lesson.id)).not.toContain("Legacy");
     }
@@ -106,8 +106,17 @@ describe("MatrixLessonAdapter", () => {
     expect(html).toContain('data-preview="[[1,2,-2,0],[2,-1,3,4],[-1,1,1,5]]"');
   });
 
+  it("uses a real Gauss-Jordan RREF and pivot model for lesson 356", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 356)!;
+    const html = renderToStaticMarkup(<MatrixLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="matrix-mockup-0541"');
+    expect(html).toContain("real-gauss-jordan-rref-operation-state-sequence-clickable-steps-pivot-detection-rank-nullity");
+    expect(html).toContain('data-rref="[[1,0,0,1.5],[0,1,0,1],[0,0,1,0.5]]"');
+    expect(html).toContain('data-rank="3"');
+  });
+
   it("does not show determinant as the primary result for unrelated concepts", () => {
-    for (const lessonId of [356, 360, 363, 364]) {
+    for (const lessonId of [360, 363, 364]) {
       const lesson = lessonCatalog.find((item) => item.id === lessonId)!;
       const html = renderToStaticMarkup(
         <MatrixLessonAdapter

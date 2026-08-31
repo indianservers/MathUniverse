@@ -1,0 +1,159 @@
+{
+  "mockup": "0541",
+  "lessonId": 356,
+  "checks": {
+    "initial": {
+      "rref": "[[1,0,0,1.5],[0,1,0,1],[0,0,1,0.5]]",
+      "step": "8",
+      "steps": "9",
+      "current": "[[1,0,0,1.5],[0,1,0,1],[0,0,1,0.5]]",
+      "pivots": "0,1,2",
+      "rank": "3",
+      "nullity": "0",
+      "leading": "true",
+      "clear-columns": "true",
+      "ordered": "true",
+      "all": "true",
+      "pivot-choice": "none",
+      "challenge": "",
+      "tab": "Learn & Explore",
+      "actions": "0"
+    },
+    "start": {
+      "rref": "[[1,0,0,1.5],[0,1,0,1],[0,0,1,0.5]]",
+      "step": "0",
+      "steps": "9",
+      "current": "[[2,1,-2,3],[4,-1,2,6],[-2,3,0,0]]",
+      "pivots": "0,1,2",
+      "rank": "3",
+      "nullity": "0",
+      "leading": "true",
+      "clear-columns": "true",
+      "ordered": "true",
+      "all": "true",
+      "pivot-choice": "none",
+      "challenge": "",
+      "tab": "Learn & Explore",
+      "actions": "1"
+    },
+    "final": {
+      "rref": "[[1,0,0,1.5],[0,1,0,1],[0,0,1,0.5]]",
+      "step": "8",
+      "steps": "9",
+      "current": "[[1,0,0,1.5],[0,1,0,1],[0,0,1,0.5]]",
+      "pivots": "0,1,2",
+      "rank": "3",
+      "nullity": "0",
+      "leading": "true",
+      "clear-columns": "true",
+      "ordered": "true",
+      "all": "true",
+      "pivot-choice": "none",
+      "challenge": "",
+      "tab": "Learn & Explore",
+      "actions": "2"
+    },
+    "rejected": {
+      "rref": "[[1,0,0,1.5],[0,1,0,1],[0,0,1,0.5]]",
+      "step": "8",
+      "steps": "9",
+      "current": "[[1,0,0,1.5],[0,1,0,1],[0,0,1,0.5]]",
+      "pivots": "0,1,2",
+      "rank": "3",
+      "nullity": "0",
+      "leading": "true",
+      "clear-columns": "true",
+      "ordered": "true",
+      "all": "true",
+      "pivot-choice": "2,1",
+      "challenge": "incorrect",
+      "tab": "Learn & Explore",
+      "actions": "4"
+    },
+    "accepted": {
+      "rref": "[[1,0,0,1.5],[0,1,0,1],[0,0,1,0.5]]",
+      "step": "8",
+      "steps": "9",
+      "current": "[[1,0,0,1.5],[0,1,0,1],[0,0,1,0.5]]",
+      "pivots": "0,1,2",
+      "rank": "3",
+      "nullity": "0",
+      "leading": "true",
+      "clear-columns": "true",
+      "ordered": "true",
+      "all": "true",
+      "pivot-choice": "1,1",
+      "challenge": "correct",
+      "tab": "Interpretation",
+      "actions": "7"
+    },
+    "shellReset": {
+      "rref": "[[1,0,0,1.5],[0,1,0,1],[0,0,1,0.5]]",
+      "step": "8",
+      "steps": "9",
+      "current": "[[1,0,0,1.5],[0,1,0,1],[0,0,1,0.5]]",
+      "pivots": "0,1,2",
+      "rank": "3",
+      "nullity": "0",
+      "leading": "true",
+      "clear-columns": "true",
+      "ordered": "true",
+      "all": "true",
+      "pivot-choice": "none",
+      "challenge": "",
+      "tab": "Learn & Explore",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "overflow": false,
+    "hero": {
+      "top": 108,
+      "left": 238,
+      "width": 771,
+      "height": 230,
+      "bottom": 338
+    },
+    "tabs": {
+      "top": 349,
+      "left": 238,
+      "width": 771,
+      "height": 38,
+      "bottom": 387
+    },
+    "setup": {
+      "top": 398,
+      "left": 238,
+      "width": 771,
+      "height": 210,
+      "bottom": 608
+    },
+    "body": {
+      "top": 619,
+      "left": 238,
+      "width": 771,
+      "height": 701,
+      "bottom": 1320
+    },
+    "challenge": {
+      "top": 1331,
+      "left": 238,
+      "width": 771,
+      "height": 137,
+      "bottom": 1468
+    },
+    "adjacent": {
+      "top": 1478,
+      "left": 238,
+      "width": 771,
+      "height": 58,
+      "bottom": 1536
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
