@@ -74,6 +74,7 @@ describe("Geometry3DLessonAdapter", () => {
       if (
         ![
           378, 379, 380, 381, 382, 383, 384, 385, 386, 387, 388, 389, 390, 391,
+          392,
         ].includes(lessonId) &&
         lesson.preset.id !== "geometry3d.solid-net"
       ) {
@@ -409,5 +410,27 @@ describe("Geometry3DLessonAdapter", () => {
     expect(html).toContain("Vertices: 8");
     expect(html).toContain("Edges: 12");
     expect(html).toContain("Faces: 6");
+  });
+
+  it("uses a dedicated parametric cuboid model for lesson 392", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 392)!;
+    const html = renderToStaticMarkup(
+      <Geometry3DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="geometry3d-mockup-0577"');
+    expect(html).toContain(
+      "threejs-dedicated-parametric-cuboid-six-dimension-steppers-face-space-diagonals-six-face-net-orbit-exact-volume-surface-base-practice",
+    );
+    expect(html).toContain('data-dimensions="[5,3,2]"');
+    expect(html).toContain('data-volume="30"');
+    expect(html).toContain('data-surface="62"');
+    expect(html).toContain('data-base="15"');
+    expect(html).toContain('data-face-diagonal="5.83"');
+    expect(html).toContain('data-space-diagonal="6.16"');
+    expect(html).toContain('data-layers="[true,true,false]"');
   });
 });

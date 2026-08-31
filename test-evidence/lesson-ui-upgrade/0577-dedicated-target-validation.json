@@ -1,0 +1,185 @@
+{
+  "mockup": "0577",
+  "lessonId": 392,
+  "checks": {
+    "initial": {
+      "dimensions": "[5,3,2]",
+      "volume": "30",
+      "surface": "62",
+      "base": "15",
+      "face-diagonal": "5.83",
+      "space-diagonal": "6.16",
+      "layers": "[true,true,false]",
+      "tab": "Interaction + visualization",
+      "shared": "false",
+      "actions": "0"
+    },
+    "stepped": {
+      "dimensions": "[6,2,3]",
+      "volume": "36",
+      "surface": "72",
+      "base": "12",
+      "face-diagonal": "6.32",
+      "space-diagonal": "7",
+      "layers": "[true,true,false]",
+      "tab": "Interaction + visualization",
+      "shared": "false",
+      "actions": "3"
+    },
+    "diagonalsOff": {
+      "dimensions": "[6,2,3]",
+      "volume": "36",
+      "surface": "72",
+      "base": "12",
+      "face-diagonal": "6.32",
+      "space-diagonal": "7",
+      "layers": "[false,false,false]",
+      "tab": "Interaction + visualization",
+      "shared": "false",
+      "actions": "5"
+    },
+    "net": {
+      "dimensions": "[6,2,3]",
+      "volume": "36",
+      "surface": "72",
+      "base": "12",
+      "face-diagonal": "6.32",
+      "space-diagonal": "7",
+      "layers": "[true,true,true]",
+      "tab": "Interaction + visualization",
+      "shared": "false",
+      "actions": "8"
+    },
+    "practice": {
+      "dimensions": "[4,2,3]",
+      "volume": "24",
+      "surface": "52",
+      "base": "8",
+      "face-diagonal": "4.47",
+      "space-diagonal": "5.39",
+      "layers": "[true,true,false]",
+      "tab": "Interaction + visualization",
+      "shared": "false",
+      "actions": "10"
+    },
+    "shared": {
+      "dimensions": "[4,2,3]",
+      "volume": "24",
+      "surface": "52",
+      "base": "8",
+      "face-diagonal": "4.47",
+      "space-diagonal": "5.39",
+      "layers": "[true,true,false]",
+      "tab": "Interaction + visualization",
+      "shared": "true",
+      "actions": "11"
+    },
+    "orbitChanged": true,
+    "canvasPixels": {
+      "colored": 22325,
+      "unique": 828,
+      "width": 536,
+      "height": 477
+    },
+    "tabbed": {
+      "dimensions": "[5,3,2]",
+      "volume": "30",
+      "surface": "62",
+      "base": "15",
+      "face-diagonal": "5.83",
+      "space-diagonal": "6.16",
+      "layers": "[true,true,false]",
+      "tab": "Formulas",
+      "shared": "false",
+      "actions": "2"
+    },
+    "reset": {
+      "dimensions": "[5,3,2]",
+      "volume": "30",
+      "surface": "62",
+      "base": "15",
+      "face-diagonal": "5.83",
+      "space-diagonal": "6.16",
+      "layers": "[true,true,false]",
+      "tab": "Interaction + visualization",
+      "shared": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1173,
+      "height": 1341
+    },
+    "overflow": false,
+    "hero": {
+      "top": 112,
+      "left": 252,
+      "width": 904,
+      "height": 253,
+      "bottom": 365
+    },
+    "tabs": {
+      "top": 375,
+      "left": 252,
+      "width": 904,
+      "height": 59,
+      "bottom": 434
+    },
+    "work": {
+      "top": 444,
+      "left": 252,
+      "width": 904,
+      "height": 577,
+      "bottom": 1021
+    },
+    "canvas": {
+      "top": 531,
+      "left": 265,
+      "width": 536,
+      "height": 477,
+      "bottom": 1008
+    },
+    "dimensions": {
+      "top": 444,
+      "left": 823,
+      "width": 333,
+      "height": 183,
+      "bottom": 627
+    },
+    "results": {
+      "top": 777,
+      "left": 823,
+      "width": 333,
+      "height": 244,
+      "bottom": 1021
+    },
+    "bottom": {
+      "top": 1031,
+      "left": 252,
+      "width": 904,
+      "height": 70,
+      "bottom": 1101
+    },
+    "navigation": {
+      "top": 1111,
+      "left": 252,
+      "width": 904,
+      "height": 66,
+      "bottom": 1177
+    }
+  },
+  "mobileMetrics": {
+    "documentWidth": 390,
+    "overflow": false,
+    "canvas": {
+      "x": 30,
+      "y": 284,
+      "width": 330,
+      "height": 560
+    },
+    "nonblank": true
+  },
+  "consoleMessages": [],
+  "passed": true
+}

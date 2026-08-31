@@ -20,8 +20,9 @@ Target references begin at `0563` in `D:\Math App Screenshots for UI Update\Upda
 | 0574 | 389 Point-to-Plane Distance | `PointPlaneDistanceTargetLesson389` | React Three Fiber point/plane distance model with seven editable coordinates and coefficients, directly draggable point, exact numerator/denominator/distance and perpendicular-foot calculations, valid/on-plane/zero-normal branches, perpendicular and foot layers, orbit/zoom, camera reset, tabs/reset/share, and a computed z=2 experiment | 963 x 1633 desktop plus 390 px mobile rendering; nonblank 403 x 737 WebGL canvas; no overflow or application console errors | Complete |
 | 0575 | 390 3D Vectors | `VectorsTargetLesson390` | React Three Fiber two-vector operations model with six working component steppers, directly draggable vector endpoints, exact sum/dot/cross/magnitude/cosine/angle calculations, Add/Dot/Cross modes, axes layer, orbit/zoom, fullscreen, result steps, tabs/reset/share, right-hand-rule guidance, and checked vector-addition practice | 992 x 1586 desktop plus 390 px mobile rendering; nonblank 467 x 697 WebGL canvas; no overflow or application console errors | Complete |
 | 0576 | 391 Cube | `CubeTargetLesson391` | React Three Fiber parametric cube model with synchronized side slider/numeric control, exact volume/surface/face-diagonal/space-diagonal calculations, independent diagonal layers, genuine six-face net, clickable face/net highlighting, orbit/zoom, reversible fullscreen, tabs/reset/share, Euler topology, and a computed a=5 experiment | 1009 x 1558 desktop plus 390 px mobile rendering; nonblank 425 x 619 WebGL canvas; no overflow or application console errors | Complete |
+| 0577 | 392 Cuboid | `CuboidTargetLesson392` | React Three Fiber parametric cuboid model with six working length/width/height steppers, exact volume/surface/base/face-diagonal/space-diagonal calculations, independent diagonal layers, genuine six-face rectangular net, orbit/zoom, tabs/reset/share, edge/face/right-angle structure, and a computed 4×2×3 practice model | 1173 x 1341 desktop plus 390 px mobile rendering; nonblank 536 x 477 WebGL canvas; no overflow or application console errors | Complete |
 
-Completed in this family: **14 / 50**. Pending in this family: **36 / 50**.
+Completed in this family: **15 / 50**. Pending in this family: **35 / 50**.
 
 ## Lesson 378 validation
 
@@ -147,3 +148,12 @@ Completed in this family: **14 / 50**. Pending in this family: **36 / 50**.
 - Canvas-only capture: `0576-canvas.png`
 - Machine-readable interaction and layout audit: `0576-dedicated-target-validation.json`
 - The capture harness verifies side a=4, V=64, S=96, face diagonal 4√2≈5.66, space diagonal 4√3≈6.93, and topology 8/12/6; resizes to a=2.5 and proves V=15.63, S=37.5, dᶠ≈3.54, and d≈4.33; exercises both diagonal layers, the genuine six-face net, clickable face highlight, clipboard/share state, orbit, reversible fullscreen, tabs, shell reset, and the a=5 experiment with V=125 and S=150; confirms exact 1009 x 1558 dimensions, a nonblank 425 x 619 canvas, an overflow-free nonblank 390 px mobile rendering, and absence of application console errors.
+
+## Lesson 392 validation
+
+- Reference: `0577-reference.png`
+- Current capture: `0577-desktop.png`
+- Mobile capture: `0577-mobile.png`
+- Canvas-only capture: `0577-canvas.png`
+- Machine-readable interaction and layout audit: `0577-dedicated-target-validation.json`
+- The capture harness verifies l=5, w=3, h=2, V=30, S=62, base area 15, face diagonal √34≈5.83, and space diagonal √38≈6.16; steps to (6,2,3) and proves V=36, S=72, base 12, face diagonal ≈6.32, and space diagonal 7; exercises both diagonal layers, the genuine six-face rectangular net, clipboard/share state, tabs, shell reset, and the (4,2,3) practice model with V=24 and S=52; verifies physical orbit pixel changes, exact 1173 x 1341 dimensions, a nonblank 536 x 477 canvas, an overflow-free nonblank 390 px mobile rendering, and absence of application console errors.
