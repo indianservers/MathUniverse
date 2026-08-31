@@ -13,8 +13,9 @@ Target references begin at `0563` in `D:\Math App Screenshots for UI Update\Upda
 | 0567 | 382 Planes | `PlanesTargetLesson382` | React Three Fiber plane-equation model with editable A/B/C/D coefficients, live intercept triangle, normal vector, test-point substitution and pass/fail state, equation/intercept construction modes, four display layers, orbit/zoom/pan and camera reset/fullscreen, tabs/reset, and graded normal-vector challenge with solution disclosure | 963 x 1633 desktop plus 390 x 844 mobile viewport; nonblank 459 x 476 WebGL canvas; no overflow or application console errors | Complete |
 | 0568 | 383 Parallel and Perpendicular Planes | `ParallelPlanesTargetLesson383` | React Three Fiber two-plane comparator with eight editable coefficients, automatic parallel/perpendicular/neither classification, scalar-multiple and dot-product calculations, exact parallel-plane separation, three classification controls with correctness state, normal/separation/dot visibility layers, comparison-spaced default scene, real nonparallel orientations, orbit/zoom, fullscreen/tabs/reset, and interactive challenge validation | 1006 x 1564 desktop plus 390 x 844 mobile viewport; nonblank 470 x 513 WebGL canvas; no overflow or application console errors | Complete |
 | 0569 | 384 Line-Plane Intersection | `LinePlaneTargetLesson384` | React Three Fiber parametric-line and plane model with editable line point/direction and plane coefficients, exact numerator/denominator solver for single/parallel/contained cases, live substitution and intersection calculations, orbit/zoom/pan, camera reset/fullscreen, tabs/reset, and graded challenge with solution disclosure | 1024 x 1536 desktop plus 390 px mobile rendering; nonblank 458 x 526 WebGL canvas; no overflow or application console errors | Complete |
+| 0570 | 385 Plane-Plane Intersection | `PlanePlaneTargetLesson385` | React Three Fiber two-plane model with eight editable coefficients, exact normal/cross-product/intersection-line solver, computed sample point and simplified direction, explicit intersecting/parallel/coincident classifications, four live scene layers, orbit/zoom/pan and camera reset/fullscreen, active tabs, clipboard result actions, and a genuinely graded challenge | 1024 x 1536 desktop plus 390 px mobile rendering; nonblank 488 x 471 WebGL canvas; no overflow or application console errors | Complete |
 
-Completed in this family: **7 / 50**. Pending in this family: **43 / 50**.
+Completed in this family: **8 / 50**. Pending in this family: **42 / 50**.
 
 ## Lesson 378 validation
 
@@ -77,3 +78,12 @@ Completed in this family: **7 / 50**. Pending in this family: **43 / 50**.
 - Canvas-only capture: `0569-canvas.png`
 - Machine-readable interaction and layout audit: `0569-dedicated-target-validation.json`
 - The capture harness verifies P₀=(1,1,1), v=(1,2,0), plane x+y+z=6, numerator 3, denominator 3, t=1, and I=(2,3,1); mutates the direction to (1,-1,0) and proves the no-intersection case, then moves P₀ to (2,3,1) and proves the line-contained-in-plane case; configures the challenge model and proves t=2 and I=(4,2,1); exercises incorrect/correct grading, solution disclosure, physical orbit pixel changes, fullscreen, tabs, and shell reset; verifies exact 1024 x 1536 dimensions, a nonblank 458 x 526 canvas, an overflow-free nonblank 390 px mobile rendering, and absence of application console errors.
+
+## Lesson 385 validation
+
+- Reference: `0570-reference.png`
+- Current capture: `0570-desktop.png`
+- Mobile capture: `0570-mobile.png`
+- Canvas-only capture: `0570-canvas.png`
+- Machine-readable interaction and layout audit: `0570-dedicated-target-validation.json`
+- The capture harness verifies Plane A x+y+z=6, Plane B x-y+z=2, normals n₁=(1,1,1) and n₂=(1,-1,1), cross product (2,0,-2), simplified direction (1,0,-1), sample point P=(4,2,0), and the resulting intersection line; changes Plane B to 2x+2y+2z=10 and proves the parallel/no-intersection branch, then to 2x+2y+2z=12 and proves the coincident branch; exercises all four scene layers, incorrect/correct challenge grades, clipboard result state, physical orbit pixel changes, fullscreen, tabs, and shell reset; verifies exact 1024 x 1536 dimensions with target-aligned section coordinates, a nonblank 488 x 471 canvas, an overflow-free nonblank 390 px mobile rendering, and absence of application console errors.

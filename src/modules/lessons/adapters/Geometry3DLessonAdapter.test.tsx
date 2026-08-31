@@ -13,7 +13,7 @@ describe("Geometry3DLessonAdapter", () => {
       [382, "Planes"],
       [383, "Parallel and Perpendicular Planes"],
       [384, "Line–Plane Intersection"],
-      [385, "Plane-plane intersection"],
+      [385, "Plane–Plane Intersection"],
       [386, "Angle between lines"],
       [387, "Angle between planes"],
       [388, "Angle between line and plane"],
@@ -72,7 +72,7 @@ describe("Geometry3DLessonAdapter", () => {
       );
       expect(html, String(lessonId)).toContain(snippet.replace(/'/g, "&#x27;"));
       if (
-        ![378, 379, 380, 381, 382, 383, 384].includes(lessonId) &&
+        ![378, 379, 380, 381, 382, 383, 384, 385].includes(lessonId) &&
         lesson.preset.id !== "geometry3d.solid-net"
       ) {
         expect(html, String(lessonId)).toContain(
@@ -244,5 +244,28 @@ describe("Geometry3DLessonAdapter", () => {
     expect(html).toContain('data-status="single intersection"');
     expect(html).toContain('data-t="1"');
     expect(html).toContain('data-intersection="[2,3,1]"');
+  });
+
+  it("uses a dedicated plane-plane intersection solver for lesson 385", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 385)!;
+    const html = renderToStaticMarkup(
+      <Geometry3DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="geometry3d-mockup-0570"');
+    expect(html).toContain(
+      "threejs-two-editable-plane-equations-cross-product-intersection-line-parallel-coincident-solver-layers-orbit-graded-challenge",
+    );
+    expect(html).toContain('data-plane-a="[1,1,1,6]"');
+    expect(html).toContain('data-plane-b="[1,-1,1,2]"');
+    expect(html).toContain('data-normal-a="[1,1,1]"');
+    expect(html).toContain('data-normal-b="[1,-1,1]"');
+    expect(html).toContain('data-cross="[2,0,-2]"');
+    expect(html).toContain('data-direction="[1,0,-1]"');
+    expect(html).toContain('data-point="[4,2,0]"');
+    expect(html).toContain('data-status="Intersecting line"');
   });
 });

@@ -1,0 +1,266 @@
+{
+  "mockup": "0570",
+  "lessonId": 385,
+  "checks": {
+    "initial": {
+      "plane-a": "[1,1,1,6]",
+      "plane-b": "[1,-1,1,2]",
+      "normal-a": "[1,1,1]",
+      "normal-b": "[1,-1,1]",
+      "cross": "[2,0,-2]",
+      "direction": "[1,0,-1]",
+      "point": "[4,2,0]",
+      "status": "Intersecting line",
+      "layers": "[true,true,true,true]",
+      "answer": "1",
+      "grade": "correct",
+      "tab": "Interaction + visualization",
+      "expanded": "false",
+      "copied": "false",
+      "actions": "0"
+    },
+    "parallel": {
+      "plane-a": "[1,1,1,6]",
+      "plane-b": "[2,2,2,10]",
+      "normal-a": "[1,1,1]",
+      "normal-b": "[2,2,2]",
+      "cross": "[0,0,0]",
+      "direction": "null",
+      "point": "null",
+      "status": "Parallel, no intersection",
+      "layers": "[true,true,true,true]",
+      "answer": "1",
+      "grade": "correct",
+      "tab": "Interaction + visualization",
+      "expanded": "false",
+      "copied": "false",
+      "actions": "4"
+    },
+    "coincident": {
+      "plane-a": "[1,1,1,6]",
+      "plane-b": "[2,2,2,12]",
+      "normal-a": "[1,1,1]",
+      "normal-b": "[2,2,2]",
+      "cross": "[0,0,0]",
+      "direction": "null",
+      "point": "null",
+      "status": "Coincident planes",
+      "layers": "[true,true,true,true]",
+      "answer": "1",
+      "grade": "correct",
+      "tab": "Interaction + visualization",
+      "expanded": "false",
+      "copied": "false",
+      "actions": "5"
+    },
+    "layersOff": {
+      "plane-a": "[1,1,1,6]",
+      "plane-b": "[1,-1,1,2]",
+      "normal-a": "[1,1,1]",
+      "normal-b": "[1,-1,1]",
+      "cross": "[2,0,-2]",
+      "direction": "[1,0,-1]",
+      "point": "[4,2,0]",
+      "status": "Intersecting line",
+      "layers": "[false,false,true,true]",
+      "answer": "1",
+      "grade": "correct",
+      "tab": "Interaction + visualization",
+      "expanded": "false",
+      "copied": "false",
+      "actions": "3"
+    },
+    "incorrect": {
+      "plane-a": "[1,1,1,6]",
+      "plane-b": "[1,-1,1,2]",
+      "normal-a": "[1,1,1]",
+      "normal-b": "[1,-1,1]",
+      "cross": "[2,0,-2]",
+      "direction": "[1,0,-1]",
+      "point": "[4,2,0]",
+      "status": "Intersecting line",
+      "layers": "[true,true,true,true]",
+      "answer": "2",
+      "grade": "incorrect",
+      "tab": "Interaction + visualization",
+      "expanded": "false",
+      "copied": "false",
+      "actions": "7"
+    },
+    "correct": {
+      "plane-a": "[1,1,1,6]",
+      "plane-b": "[1,-1,1,2]",
+      "normal-a": "[1,1,1]",
+      "normal-b": "[1,-1,1]",
+      "cross": "[2,0,-2]",
+      "direction": "[1,0,-1]",
+      "point": "[4,2,0]",
+      "status": "Intersecting line",
+      "layers": "[true,true,true,true]",
+      "answer": "1",
+      "grade": "correct",
+      "tab": "Interaction + visualization",
+      "expanded": "false",
+      "copied": "false",
+      "actions": "9"
+    },
+    "copied": {
+      "plane-a": "[1,1,1,6]",
+      "plane-b": "[1,-1,1,2]",
+      "normal-a": "[1,1,1]",
+      "normal-b": "[1,-1,1]",
+      "cross": "[2,0,-2]",
+      "direction": "[1,0,-1]",
+      "point": "[4,2,0]",
+      "status": "Intersecting line",
+      "layers": "[true,true,true,true]",
+      "answer": "1",
+      "grade": "correct",
+      "tab": "Interaction + visualization",
+      "expanded": "false",
+      "copied": "true",
+      "actions": "10"
+    },
+    "orbitChanged": true,
+    "canvasPixels": {
+      "colored": 25568,
+      "unique": 2053,
+      "width": 488,
+      "height": 471
+    },
+    "expanded": {
+      "plane-a": "[1,1,1,6]",
+      "plane-b": "[1,-1,1,2]",
+      "normal-a": "[1,1,1]",
+      "normal-b": "[1,-1,1]",
+      "cross": "[2,0,-2]",
+      "direction": "[1,0,-1]",
+      "point": "[4,2,0]",
+      "status": "Intersecting line",
+      "layers": "[true,true,true,true]",
+      "answer": "1",
+      "grade": "correct",
+      "tab": "Interaction + visualization",
+      "expanded": "true",
+      "copied": "true",
+      "actions": "11"
+    },
+    "tabbed": {
+      "plane-a": "[1,1,1,6]",
+      "plane-b": "[1,-1,1,2]",
+      "normal-a": "[1,1,1]",
+      "normal-b": "[1,-1,1]",
+      "cross": "[2,0,-2]",
+      "direction": "[1,0,-1]",
+      "point": "[4,2,0]",
+      "status": "Intersecting line",
+      "layers": "[true,true,true,true]",
+      "answer": "1",
+      "grade": "correct",
+      "tab": "Formulas",
+      "expanded": "false",
+      "copied": "true",
+      "actions": "13"
+    },
+    "reset": {
+      "plane-a": "[1,1,1,6]",
+      "plane-b": "[1,-1,1,2]",
+      "normal-a": "[1,1,1]",
+      "normal-b": "[1,-1,1]",
+      "cross": "[2,0,-2]",
+      "direction": "[1,0,-1]",
+      "point": "[4,2,0]",
+      "status": "Intersecting line",
+      "layers": "[true,true,true,true]",
+      "answer": "1",
+      "grade": "correct",
+      "tab": "Interaction + visualization",
+      "expanded": "false",
+      "copied": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "overflow": false,
+    "hero": {
+      "top": 98,
+      "left": 220,
+      "width": 790,
+      "height": 231,
+      "bottom": 329
+    },
+    "tabs": {
+      "top": 339,
+      "left": 220,
+      "width": 790,
+      "height": 53,
+      "bottom": 392
+    },
+    "lab": {
+      "top": 402,
+      "left": 220,
+      "width": 790,
+      "height": 576,
+      "bottom": 978
+    },
+    "scene": {
+      "top": 459,
+      "left": 231,
+      "width": 490,
+      "height": 508,
+      "bottom": 967
+    },
+    "canvas": {
+      "top": 460,
+      "left": 232,
+      "width": 488,
+      "height": 471,
+      "bottom": 931
+    },
+    "side": {
+      "top": 459,
+      "left": 731,
+      "width": 266,
+      "height": 508,
+      "bottom": 967
+    },
+    "learning": {
+      "top": 988,
+      "left": 220,
+      "width": 790,
+      "height": 285,
+      "bottom": 1273
+    },
+    "key": {
+      "top": 1283,
+      "left": 220,
+      "width": 790,
+      "height": 55,
+      "bottom": 1338
+    },
+    "navigation": {
+      "top": 1350,
+      "left": 220,
+      "width": 790,
+      "height": 58,
+      "bottom": 1408
+    }
+  },
+  "mobileMetrics": {
+    "documentWidth": 390,
+    "overflow": false,
+    "canvas": {
+      "x": 28,
+      "y": 373,
+      "width": 336,
+      "height": 471
+    },
+    "nonblank": true
+  },
+  "consoleMessages": [],
+  "passed": true
+}
