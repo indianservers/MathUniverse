@@ -1,0 +1,199 @@
+{
+  "mockup": "0550",
+  "lessonId": 365,
+  "checks": {
+    "initial": {
+      "z": "[2,1]",
+      "rotated": "[0.7071,2.1213]",
+      "modulus": "2.2361",
+      "argument": "26.5651",
+      "theta": "45",
+      "zoom": "1",
+      "tab": "Interaction + visualization",
+      "components": "true",
+      "trace": "true",
+      "grid": "true",
+      "values": "true",
+      "challenge": "false",
+      "verdict": "",
+      "actions": "0"
+    },
+    "calculated": {
+      "z": "[3,1]",
+      "rotated": "[-1,3]",
+      "modulus": "3.1623",
+      "argument": "18.4349",
+      "theta": "90",
+      "zoom": "1",
+      "tab": "Interaction + visualization",
+      "components": "true",
+      "trace": "true",
+      "grid": "true",
+      "values": "true",
+      "challenge": "false",
+      "verdict": "",
+      "actions": "2"
+    },
+    "hiddenComponents": {
+      "z": "[3,1]",
+      "rotated": "[-1,3]",
+      "modulus": "3.1623",
+      "argument": "18.4349",
+      "theta": "90",
+      "zoom": "1",
+      "tab": "Interaction + visualization",
+      "components": "false",
+      "trace": "true",
+      "grid": "true",
+      "values": "true",
+      "challenge": "false",
+      "verdict": "",
+      "actions": "3"
+    },
+    "dragged": {
+      "z": "[1.7452,1.9966]",
+      "rotated": "[-1.9966,1.7452]",
+      "modulus": "2.6518",
+      "argument": "48.8437",
+      "theta": "90",
+      "zoom": "1",
+      "tab": "Interaction + visualization",
+      "components": "true",
+      "trace": "true",
+      "grid": "true",
+      "values": "true",
+      "challenge": "false",
+      "verdict": "",
+      "actions": "5"
+    },
+    "zoomed": {
+      "z": "[1.7452,1.9966]",
+      "rotated": "[-1.9966,1.7452]",
+      "modulus": "2.6518",
+      "argument": "48.8437",
+      "theta": "90",
+      "zoom": "1.12",
+      "tab": "Interaction + visualization",
+      "components": "true",
+      "trace": "true",
+      "grid": "true",
+      "values": "true",
+      "challenge": "false",
+      "verdict": "",
+      "actions": "6"
+    },
+    "challenge": {
+      "z": "[1.7452,1.9966]",
+      "rotated": "[-1.9966,1.7452]",
+      "modulus": "2.6518",
+      "argument": "48.8437",
+      "theta": "90",
+      "zoom": "1.12",
+      "tab": "Interaction + visualization",
+      "components": "true",
+      "trace": "true",
+      "grid": "true",
+      "values": "true",
+      "challenge": "true",
+      "verdict": "correct",
+      "actions": "8"
+    },
+    "tabbed": {
+      "z": "[1.7452,1.9966]",
+      "rotated": "[-1.9966,1.7452]",
+      "modulus": "2.6518",
+      "argument": "48.8437",
+      "theta": "90",
+      "zoom": "1.12",
+      "tab": "Formulas",
+      "components": "true",
+      "trace": "true",
+      "grid": "true",
+      "values": "true",
+      "challenge": "true",
+      "verdict": "correct",
+      "actions": "9"
+    },
+    "reset": {
+      "z": "[2,1]",
+      "rotated": "[0.7071,2.1213]",
+      "modulus": "2.2361",
+      "argument": "26.5651",
+      "theta": "45",
+      "zoom": "1",
+      "tab": "Interaction + visualization",
+      "components": "true",
+      "trace": "true",
+      "grid": "true",
+      "values": "true",
+      "challenge": "false",
+      "verdict": "",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1536,
+      "height": 1024
+    },
+    "overflow": false,
+    "hero": {
+      "top": 91,
+      "left": 300,
+      "width": 1212,
+      "height": 132,
+      "bottom": 223
+    },
+    "tabs": {
+      "top": 223,
+      "left": 300,
+      "width": 1212,
+      "height": 42,
+      "bottom": 265
+    },
+    "workspace": {
+      "top": 277,
+      "left": 300,
+      "width": 1212,
+      "height": 540,
+      "bottom": 817
+    },
+    "plane": {
+      "top": 277,
+      "left": 300,
+      "width": 630,
+      "height": 540,
+      "bottom": 817
+    },
+    "controls": {
+      "top": 277,
+      "left": 950,
+      "width": 258,
+      "height": 540,
+      "bottom": 817
+    },
+    "notes": {
+      "top": 277,
+      "left": 1228,
+      "width": 284,
+      "height": 540,
+      "bottom": 817
+    },
+    "practice": {
+      "top": 831,
+      "left": 300,
+      "width": 1212,
+      "height": 58,
+      "bottom": 889
+    },
+    "navigation": {
+      "top": 900,
+      "left": 300,
+      "width": 1212,
+      "height": 53,
+      "bottom": 953
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

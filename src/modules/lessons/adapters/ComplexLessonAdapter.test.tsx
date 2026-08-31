@@ -24,12 +24,35 @@ describe("ComplexLessonAdapter", () => {
     for (const [lessonId, snippet] of expected) {
       const lesson = lessonCatalog.find((item) => item.id === lessonId)!;
       const html = renderToStaticMarkup(
-        <ComplexLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+        <ComplexLessonAdapter
+          lesson={lesson}
+          resetToken={0}
+          onInteraction={vi.fn()}
+        />,
       );
 
       expect(html, String(lessonId)).toContain(lesson.title);
       expect(html, String(lessonId)).toContain(snippet);
       expect(html, String(lessonId)).not.toContain("Complex numbers");
     }
+  });
+
+  it("uses a dedicated draggable Argand and rotation model for lesson 365", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 365)!;
+    const html = renderToStaticMarkup(
+      <ComplexLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="complex-mockup-0550"');
+    expect(html).toContain(
+      "draggable-argand-point-real-imaginary-components-live-euler-rotation",
+    );
+    expect(html).toContain('data-z="[2,1]"');
+    expect(html).toContain('data-rotated="[0.7071,2.1213]"');
+    expect(html).toContain('data-modulus="2.2361"');
+    expect(html).toContain('data-argument="26.5651"');
   });
 });

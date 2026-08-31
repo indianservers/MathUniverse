@@ -1,0 +1,448 @@
+.cp365-page,
+.cp365-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.cp365-page {
+  color: #10214a;
+  background: #f8fbff;
+  font:
+    11px/1.35 Inter,
+    system-ui,
+    sans-serif;
+}
+.cp365-page h1,
+.cp365-page h2,
+.cp365-page p {
+  margin: 0;
+}
+.cp365-page button,
+.cp365-page input {
+  font: inherit;
+}
+.cp365-hero {
+  height: 132px;
+  padding: 15px 4px;
+}
+.cp365-pills {
+  display: flex;
+  gap: 8px;
+}
+.cp365-pills b {
+  padding: 5px 12px;
+  border: 1px solid #81d3ec;
+  border-radius: 15px;
+  color: #0784aa;
+}
+.cp365-pills b + b {
+  border: 0;
+  background: #eef1f5;
+  color: #4b5871;
+}
+.cp365-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.cp365-title h1 {
+  font-size: 34px;
+  line-height: 38px;
+}
+.cp365-title p {
+  color: #536484;
+  font-size: 15px;
+}
+.cp365-title nav {
+  display: flex;
+  gap: 25px;
+  font-weight: 700;
+}
+.cp365-tabs {
+  display: grid;
+  height: 42px;
+  grid-template-columns: repeat(5, 1fr);
+  border: 1px solid #dce5ee;
+  border-radius: 10px;
+  background: #fff;
+}
+.cp365-tabs button {
+  border: 0;
+  background: transparent;
+  color: #536484;
+  font-weight: 800;
+}
+.cp365-tabs button.active {
+  border-bottom: 3px solid #07a7ce;
+  color: #0787ad;
+}
+.cp365-workspace {
+  display: grid;
+  height: 540px;
+  margin-top: 12px;
+  grid-template-columns: 630px 258px minmax(0, 1fr);
+  gap: 20px;
+}
+.cp365-plane,
+.cp365-controls article,
+.cp365-notes article {
+  border: 1px solid #dce5ee;
+  border-radius: 10px;
+  background: #fff;
+}
+.cp365-plane {
+  position: relative;
+  padding: 12px;
+}
+.cp365-plane header {
+  display: flex;
+  height: 27px;
+  align-items: center;
+  justify-content: space-between;
+}
+.cp365-plane h2,
+.cp365-controls h2,
+.cp365-notes h2 {
+  font-size: 13px;
+}
+.cp365-plane header div {
+  display: flex;
+  gap: 8px;
+}
+.cp365-plane header button {
+  display: grid;
+  width: 31px;
+  height: 31px;
+  place-items: center;
+  border: 1px solid #dce5ee;
+  border-radius: 7px;
+  background: #fff;
+}
+.cp365-plane header svg {
+  width: 14px;
+}
+.cp365-plane > svg {
+  display: block;
+  width: 100%;
+  height: 454px;
+  touch-action: none;
+}
+.cp365-plane svg text,
+.cp365-notes svg text {
+  fill: #142447;
+  font-size: 11px;
+}
+.cp365-plane .axis,
+.cp365-notes .axis {
+  fill: none;
+  stroke: #25334a;
+  stroke-width: 1.4;
+}
+.cp365-plane .component {
+  stroke: #08a8cf;
+  stroke-width: 1.5;
+  stroke-dasharray: 6 4;
+}
+.cp365-plane .zline,
+.cp365-notes .zline {
+  stroke: #08a8cf;
+  stroke-width: 4;
+}
+.cp365-plane .rotated,
+.cp365-notes .rotated {
+  stroke: #7d38e8;
+  stroke-width: 4;
+}
+.cp365-plane .zpoint {
+  fill: #08a8cf;
+  cursor: grab;
+}
+.cp365-plane .rotated-point {
+  fill: #7d38e8;
+}
+.cp365-plane .trace {
+  fill: none;
+  stroke: #7d38e8;
+  stroke-width: 2;
+  stroke-dasharray: 5 4;
+}
+.cp365-plane .angle {
+  fill: none;
+  stroke: #f59e0b;
+  stroke-width: 2;
+}
+.cp365-plane .cyan {
+  fill: #0799bc;
+  font-size: 13px;
+}
+.cp365-plane .purple,
+.cp365-notes .purple {
+  fill: #7137db;
+  font-size: 13px;
+}
+.cp365-plane .orange {
+  fill: #e78a00;
+  font-size: 12px;
+}
+.cp365-legend {
+  position: absolute;
+  bottom: 26px;
+  left: 14px;
+  display: grid;
+  width: 174px;
+  gap: 10px;
+  padding: 11px;
+  border: 1px solid #dce5ee;
+  border-radius: 8px;
+  background: #fff;
+}
+.cp365-legend span:before {
+  display: inline-block;
+  width: 22px;
+  height: 3px;
+  margin-right: 10px;
+  background: #08a8cf;
+  content: "";
+  vertical-align: middle;
+}
+.cp365-legend span:nth-child(2):before {
+  background: #7d38e8;
+}
+.cp365-legend span:nth-child(3):before {
+  background: #f59e0b;
+}
+.cp365-controls {
+  display: grid;
+  grid-template-rows: 372px 156px;
+  gap: 12px;
+}
+.cp365-controls article,
+.cp365-notes article {
+  padding: 14px;
+}
+.cp365-control {
+  display: block;
+  margin-top: 14px;
+  font-weight: 800;
+}
+.cp365-control span {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.cp365-control output {
+  display: grid;
+  width: 54px;
+  height: 28px;
+  place-items: center;
+  border: 1px solid #d7e0ea;
+  border-radius: 6px;
+  font-size: 14px;
+}
+.cp365-control input {
+  width: 100%;
+  accent-color: #1689e5;
+}
+.cp365-control small {
+  display: flex;
+  justify-content: space-between;
+}
+.cp365-control i {
+  font-style: normal;
+}
+.cp365-toggle {
+  display: flex;
+  margin-top: 9px;
+  align-items: center;
+  justify-content: space-between;
+}
+.cp365-toggle input {
+  width: 27px;
+  height: 15px;
+  accent-color: #078dc9;
+}
+.cp365-results h2 {
+  margin-bottom: 6px;
+}
+.cp365-results p {
+  display: flex;
+  min-height: 38px;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #dce5ee;
+}
+.cp365-results p:last-child {
+  border: 0;
+}
+.cp365-results b {
+  font:
+    15px Georgia,
+    serif;
+  text-align: right;
+}
+.cp365-results small {
+  display: block;
+  font-size: 10px;
+}
+.cp365-notes {
+  display: grid;
+  grid-template-rows: 286px 242px;
+  gap: 12px;
+}
+.cp365-notes code {
+  display: block;
+  margin-top: 12px;
+  font:
+    16px/1.7 Georgia,
+    serif;
+}
+.cp365-notes p {
+  margin-top: 8px;
+}
+.cp365-notes svg {
+  width: 100%;
+  height: 100px;
+}
+.cp365-notes ul {
+  padding-left: 18px;
+  line-height: 1.9;
+}
+.cp365-notes strong {
+  display: block;
+  text-align: center;
+  font:
+    16px Georgia,
+    serif;
+}
+.cp365-practice {
+  display: flex;
+  height: 58px;
+  margin-top: 14px;
+  padding: 8px 18px;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #dce5ee;
+  border-radius: 10px;
+  background: #fff;
+}
+.cp365-practice > div:first-child {
+  display: grid;
+}
+.cp365-practice b {
+  color: #6331df;
+  font-size: 13px;
+}
+.cp365-practice button {
+  height: 35px;
+  padding: 0 18px;
+  border: 1px solid #dce5ee;
+  border-radius: 7px;
+  background: #fff;
+  color: #1e3a77;
+  font-weight: 800;
+}
+.cp365-answer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.cp365-answer input {
+  width: 100px;
+  height: 34px;
+  padding: 7px;
+  border: 1px solid #dce5ee;
+  border-radius: 6px;
+}
+.cp365-answer output.correct {
+  color: #087d4f;
+}
+.cp365-answer output.incorrect {
+  color: #c42d3f;
+}
+.cp365-nav {
+  display: grid;
+  height: 53px;
+  margin-top: 11px;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid #dce5ee;
+  border-radius: 10px;
+  background: #fff;
+}
+.cp365-nav a {
+  display: flex;
+  padding: 8px 17px;
+  align-items: center;
+  gap: 10px;
+  color: inherit;
+  text-decoration: none;
+  font-weight: 700;
+}
+.cp365-nav a:last-child {
+  justify-content: flex-end;
+  text-align: right;
+}
+.cp365-nav small {
+  display: block;
+  color: #66758f;
+  font-size: 8px;
+  text-transform: uppercase;
+}
+.cp365-page.expanded {
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+  padding: 20px;
+  background: #f6f8ff;
+  overflow: auto;
+}
+.cp365-page.expanded .cp365-plane {
+  position: fixed;
+  z-index: 101;
+  inset: 20px;
+}
+.cp365-page.expanded .cp365-plane > svg {
+  height: calc(100vh - 90px);
+}
+body:has(.cp365-page) {
+  overflow-x: hidden;
+}
+body:has(.cp365-page) [data-testid="desktop-sidebar"] {
+  display: block !important;
+  width: 276px !important;
+  flex-basis: 276px !important;
+}
+body:has(.cp365-page) #main-content {
+  margin-left: 0 !important;
+  padding: 0 24px !important;
+}
+body:has(.cp365-page) .lesson-shell-header,
+body:has(.cp365-page) .lesson-page-shell > nav[role="tablist"],
+body:has(.cp365-page) .lesson-workbench-heading,
+body:has(.cp365-page) .lesson-workbench > .mt-3.grid,
+body:has(.cp365-page) .lesson-adjacent-nav {
+  display: none !important;
+}
+body:has(.cp365-page) .lesson-page-shell > div {
+  margin-top: 0 !important;
+}
+body:has(.cp365-page) .lesson-workbench {
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+body:has(.cp365-page) footer[aria-label="Site footer"] {
+  height: 47px !important;
+  margin-top: 11px !important;
+  padding: 0 !important;
+}
+body:has(.cp365-page) footer[aria-label="Site footer"] > div {
+  height: 47px !important;
+  padding: 6px 12px !important;
+  font-size: 9px !important;
+}
+@media (max-width: 1100px) {
+  .cp365-page {
+    min-width: 1180px;
+  }
+}
