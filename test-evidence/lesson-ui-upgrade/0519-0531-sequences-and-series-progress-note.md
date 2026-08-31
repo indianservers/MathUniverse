@@ -1,6 +1,6 @@
 # Sequences and Series target batch 0519-0531
 
-Dedicated rebuild target: **4 of 13 lessons completed; 9 pending.**
+Dedicated rebuild target: **5 of 13 lessons completed; 8 pending.**
 
 | Mockup | Lesson                          | Dedicated object model                                                                                                                                                     | Status                                      |
 | ------ | ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
@@ -8,7 +8,7 @@ Dedicated rebuild target: **4 of 13 lessons completed; 9 pending.**
 | 0520   | 335 Arithmetic Sequences        | `constant-difference-number-line-stepper-autoplay-term-table-draggable-index-graph-explicit-recursive-bidirectional-nth-term-solver-guided-practice`                       | Reworked individually and browser-validated |
 | 0521   | 336 Geometric Sequences         | `constant-ratio-multiplicative-step-chain-term-table-linear-log-plot-draggable-ratio-explicit-recursive-growth-classifier-three-mode-inverse-solver-practice`              | Reworked individually and browser-validated |
 | 0522   | 337 Recursive Sequences         | `editable-affine-logistic-recurrence-parser-presets-initial-condition-dependency-chain-memoized-table-cobweb-draggable-seed-time-series-fixed-point-error-export-practice` | Reworked individually and browser-validated |
-| 0523   | 338 Fibonacci Sequence          | Pending                                                                                                                                                                    | Pending                                     |
+| 0523   | 338 Fibonacci Sequence          | `two-positive-integer-seeds-pairwise-recurrence-auto-build-speed-generated-term-list-fibonacci-square-spiral-draggable-seed-ratio-phi-convergence-binet-practice`          | Reworked individually and browser-validated |
 | 0524   | 339 Sigma Notation              | Pending                                                                                                                                                                    | Pending                                     |
 | 0525   | 340 Arithmetic Series           | Pending                                                                                                                                                                    | Pending                                     |
 | 0526   | 341 Geometric Series            | Pending                                                                                                                                                                    | Pending                                     |
@@ -81,3 +81,17 @@ Evidence:
 - `0522-reference.png`
 - `0522-desktop.png`
 - `0522-dedicated-target-validation.json`
+
+## Lesson 338 / Mockup 0523 - Fibonacci Sequence
+
+Reworked individually around two positive integer seeds. Seed steppers regenerate twelve terms, the pairwise-addition chain, term list, Fibonacci-square spiral, ratio table, φ errors, and current state. Auto Build, speed, Play/Pause, Reset Seeds, Save, Reset, Share, Workspace, and five lesson stages are functional. The smallest generated spiral square is a pointer-captured horizontal drag handle that changes F2 and rebuilds every dependent representation.
+
+Browser validation confirms the standard `1,1,2,3,5,8,13,21,34,55,89,144` sequence and ratios converging to φ. Changing the seeds to 2 and 3 produces `2,3,5,8,13,21,34,55,89,144,233,377`. Auto Build advances at speed 7; dragging changes F2 from 3 to 8 and regenerates the sequence through 822; Save toggles real state. Quick Check rejects 34 and accepts 55, Formulas activates, and shell Reset restores the complete initial model and zero actions.
+
+Final exact 864x1821 validation matches the target stack: sidebar width 166, hero y=90-295, tabs y=305-344, build lab y=352-667, spiral/ratio row y=676-1110, theory row y=1119-1392, guided explanation/check y=1401-1627, adjacent lessons y=1640-1690, and footer y=1705-1821. Dedicated content spans x=180-854, with no horizontal or internal grid overflow and zero console messages.
+
+Evidence:
+
+- `0523-reference.png`
+- `0523-desktop.png`
+- `0523-dedicated-target-validation.json`

@@ -1,0 +1,190 @@
+{
+  "mockup": "0523",
+  "lessonId": 338,
+  "checks": {
+    "initial": {
+      "first": "1",
+      "second": "1",
+      "built": "6",
+      "auto": "true",
+      "playing": "false",
+      "speed": "5",
+      "terms": "1,1,2,3,5,8,13,21,34,55,89,144",
+      "ratios": "1,2,1.5,1.666667,1.6,1.625,1.615385,1.619048,1.617647,1.618182,1.617978",
+      "tab": "Interaction + visualisation",
+      "saved": "true",
+      "quick-result": "",
+      "actions": "0"
+    },
+    "seeds": {
+      "first": "2",
+      "second": "3",
+      "built": "6",
+      "auto": "true",
+      "playing": "false",
+      "speed": "5",
+      "terms": "2,3,5,8,13,21,34,55,89,144,233,377",
+      "ratios": "1.5,1.666667,1.6,1.625,1.615385,1.619048,1.617647,1.618182,1.617978,1.618056,1.618026",
+      "tab": "Interaction + visualisation",
+      "saved": "true",
+      "quick-result": "",
+      "actions": "3"
+    },
+    "autoplay": {
+      "first": "2",
+      "second": "3",
+      "built": "8",
+      "auto": "true",
+      "playing": "false",
+      "speed": "7",
+      "terms": "2,3,5,8,13,21,34,55,89,144,233,377",
+      "ratios": "1.5,1.666667,1.6,1.625,1.615385,1.619048,1.617647,1.618182,1.617978,1.618056,1.618026",
+      "tab": "Interaction + visualisation",
+      "saved": "true",
+      "quick-result": "",
+      "actions": "8"
+    },
+    "drag": {
+      "first": "2",
+      "second": "8",
+      "built": "12",
+      "auto": "true",
+      "playing": "false",
+      "speed": "7",
+      "terms": "2,8,10,18,28,46,74,120,194,314,508,822",
+      "ratios": "4,1.25,1.8,1.555556,1.642857,1.608696,1.621622,1.616667,1.618557,1.617834,1.61811",
+      "tab": "Interaction + visualisation",
+      "saved": "true",
+      "quick-result": "",
+      "actions": "16"
+    },
+    "unsaved": {
+      "first": "2",
+      "second": "8",
+      "built": "12",
+      "auto": "true",
+      "playing": "false",
+      "speed": "7",
+      "terms": "2,8,10,18,28,46,74,120,194,314,508,822",
+      "ratios": "4,1.25,1.8,1.555556,1.642857,1.608696,1.621622,1.616667,1.618557,1.617834,1.61811",
+      "tab": "Interaction + visualisation",
+      "saved": "false",
+      "quick-result": "",
+      "actions": "17"
+    },
+    "rejected": {
+      "first": "1",
+      "second": "1",
+      "built": "6",
+      "auto": "true",
+      "playing": "false",
+      "speed": "5",
+      "terms": "1,1,2,3,5,8,13,21,34,55,89,144",
+      "ratios": "1,2,1.5,1.666667,1.6,1.625,1.615385,1.619048,1.617647,1.618182,1.617978",
+      "tab": "Interaction + visualisation",
+      "saved": "true",
+      "quick-result": "incorrect",
+      "actions": "1"
+    },
+    "accepted": {
+      "first": "1",
+      "second": "1",
+      "built": "6",
+      "auto": "true",
+      "playing": "false",
+      "speed": "5",
+      "terms": "1,1,2,3,5,8,13,21,34,55,89,144",
+      "ratios": "1,2,1.5,1.666667,1.6,1.625,1.615385,1.619048,1.617647,1.618182,1.617978",
+      "tab": "Formulas",
+      "saved": "true",
+      "quick-result": "correct",
+      "actions": "3"
+    },
+    "shellReset": {
+      "first": "1",
+      "second": "1",
+      "built": "6",
+      "auto": "true",
+      "playing": "false",
+      "speed": "5",
+      "terms": "1,1,2,3,5,8,13,21,34,55,89,144",
+      "ratios": "1,2,1.5,1.666667,1.6,1.625,1.615385,1.619048,1.617647,1.618182,1.617978",
+      "tab": "Interaction + visualisation",
+      "saved": "true",
+      "quick-result": "",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 864,
+      "height": 1821
+    },
+    "overflow": false,
+    "sidebar": {
+      "top": 0,
+      "left": 0,
+      "width": 166,
+      "height": 1821,
+      "bottom": 1821
+    },
+    "hero": {
+      "top": 90,
+      "left": 180,
+      "width": 674,
+      "height": 205,
+      "bottom": 295
+    },
+    "tabs": {
+      "top": 305,
+      "left": 180,
+      "width": 674,
+      "height": 39,
+      "bottom": 344
+    },
+    "build": {
+      "top": 352,
+      "left": 180,
+      "width": 674,
+      "height": 315,
+      "bottom": 667
+    },
+    "pair": {
+      "top": 676,
+      "left": 180,
+      "width": 674,
+      "height": 434,
+      "bottom": 1110
+    },
+    "theory": {
+      "top": 1119,
+      "left": 180,
+      "width": 674,
+      "height": 273,
+      "bottom": 1392
+    },
+    "bottom": {
+      "top": 1401,
+      "left": 180,
+      "width": 674,
+      "height": 226,
+      "bottom": 1627
+    },
+    "adjacent": {
+      "top": 1640,
+      "left": 180,
+      "width": 674,
+      "height": 50,
+      "bottom": 1690
+    },
+    "footer": {
+      "top": 1705,
+      "left": 166,
+      "width": 698,
+      "height": 116,
+      "bottom": 1821
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

@@ -1,0 +1,548 @@
+.seq338-page {
+  --ink: #13264b;
+  --line: #dce6ee;
+  position: relative;
+  top: -4px;
+  color: var(--ink);
+  font:
+    8px/1.45 Inter,
+    system-ui,
+    sans-serif;
+  letter-spacing: 0;
+  min-width: 0;
+  overflow: hidden;
+}
+.seq338-page article,
+.seq338-page main,
+.seq338-page section {
+  min-width: 0;
+}
+.seq338-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.seq338-page h1,
+.seq338-page h2,
+.seq338-page h3,
+.seq338-page p {
+  margin: 0;
+}
+.seq338-page button,
+.seq338-page input {
+  color: inherit;
+  font: inherit;
+}
+.seq338-page button {
+  cursor: pointer;
+}
+.seq338-hero {
+  height: 205px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+}
+.seq338-hero > span {
+  display: flex;
+  gap: 7px;
+}
+.seq338-hero > span b {
+  padding: 4px 9px;
+  border-radius: 11px;
+  background: #e4f5fa;
+  color: #087da1;
+  font-size: 6px;
+}
+.seq338-hero > span b + b {
+  background: #f0f2f4;
+  color: #516075;
+}
+.seq338-hero h1 {
+  margin-top: 8px;
+  font-size: 27px;
+  line-height: 31px;
+}
+.seq338-hero > p {
+  font-size: 10px;
+}
+.seq338-hero > div {
+  display: flex;
+  margin-top: 12px;
+  gap: 7px;
+}
+.seq338-hero > div b {
+  padding: 5px 10px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  font-size: 7px;
+}
+.seq338-hero nav {
+  display: flex;
+  margin-top: 13px;
+  gap: 8px;
+}
+.seq338-hero nav button {
+  display: flex;
+  height: 34px;
+  padding: 0 14px;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: #fff;
+  font-weight: 650;
+}
+.seq338-hero nav button:first-child {
+  width: 155px;
+}
+.seq338-hero svg {
+  width: 12px;
+}
+.seq338-tabs {
+  display: grid;
+  height: 39px;
+  margin-top: 10px;
+  padding: 2px;
+  grid-template-columns: 1.2fr repeat(4, 1fr);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: #fff;
+}
+.seq338-tabs button {
+  border: 0;
+  border-radius: 7px;
+  background: #fff;
+  font-weight: 700;
+}
+.seq338-tabs button.active {
+  background: linear-gradient(90deg, #078eb3, #02a4be);
+  color: #fff;
+}
+.seq338-build {
+  height: 315px;
+  margin-top: 8px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: #fff;
+}
+.seq338-build > header {
+  display: flex;
+  height: 48px;
+  justify-content: space-between;
+}
+.seq338-build h2,
+.seq338-pair h2,
+.seq338-theory h2,
+.seq338-bottom h2 {
+  font-size: 11px;
+}
+.seq338-build > header button {
+  display: flex;
+  height: 26px;
+  padding: 0 11px;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid #8bd7ad;
+  border-radius: 6px;
+  background: #f2fcf6;
+  color: #217348;
+}
+.seq338-build > header svg {
+  width: 11px;
+}
+.seq338-build > main {
+  display: grid;
+  height: 245px;
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.75fr) minmax(0, 0.62fr);
+  gap: 9px;
+}
+.seq338-build > main > article {
+  padding: 11px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.seq338-page h3 {
+  font-size: 9px;
+}
+.seq338-page h3 i,
+.seq338-page h2 i,
+.seq338-bottom i {
+  display: inline-grid;
+  width: 17px;
+  height: 17px;
+  margin-right: 8px;
+  place-items: center;
+  border-radius: 50%;
+  background: #3863ed;
+  color: #fff;
+  font-style: normal;
+  font-size: 7px;
+}
+.seeds > p,
+.chain > p,
+.term-list > p {
+  margin-top: 8px;
+  color: #607087;
+}
+.seq338-build .chain {
+  display: block;
+}
+.seeds label {
+  display: grid;
+  margin-top: 15px;
+  gap: 6px;
+}
+.seeds label span {
+  display: grid;
+  height: 30px;
+  grid-template-columns: 30px 1fr 30px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+}
+.seeds label button {
+  border: 0;
+  background: #f5f7f9;
+}
+.seeds label output {
+  padding-top: 8px;
+  text-align: center;
+}
+.seeds > button {
+  display: flex;
+  margin-top: 16px;
+  padding: 7px 10px;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: #fff;
+}
+.seeds svg {
+  width: 11px;
+}
+.chain > div {
+  display: flex;
+  height: 72px;
+  margin-top: 15px;
+  align-items: center;
+  gap: 6px;
+  overflow: hidden;
+}
+.chain > div span {
+  padding: 11px 7px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: #f3f6fa;
+  white-space: nowrap;
+  font:
+    10px Georgia,
+    serif;
+}
+.chain ol {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  justify-content: space-around;
+  list-style: none;
+}
+.chain footer {
+  display: grid;
+  margin-top: 46px;
+  align-items: center;
+  grid-template-columns: 65px minmax(0, 1fr) 28px;
+  gap: 8px;
+}
+.chain footer label {
+  display: grid;
+  min-width: 0;
+  gap: 5px;
+}
+.chain footer label input[type="range"] {
+  width: 100%;
+}
+.chain footer input {
+  accent-color: #04a1b5;
+}
+.chain footer button {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: #fff;
+}
+.chain footer svg {
+  width: 12px;
+}
+.term-list ol {
+  height: 185px;
+  margin: 8px 0;
+  padding-left: 20px;
+  overflow: auto;
+  font:
+    10px/1.55 Georgia,
+    serif;
+}
+.seq338-pair {
+  display: grid;
+  height: 434px;
+  margin-top: 9px;
+  grid-template-columns: 0.98fr 1.02fr;
+  gap: 9px;
+}
+.seq338-pair > article,
+.seq338-theory > article,
+.seq338-theory > aside > article,
+.seq338-bottom > article {
+  padding: 13px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: #fff;
+}
+.spiral > p,
+.ratios > p {
+  margin-top: 8px;
+}
+.spiral svg {
+  width: 100%;
+  height: 318px;
+  margin-top: 8px;
+  touch-action: none;
+}
+.spiral svg rect {
+  stroke: #7251d3;
+  stroke-width: 1;
+}
+.spiral svg path {
+  fill: none;
+  stroke: #6f31cd;
+  stroke-width: 3;
+}
+.spiral svg text {
+  text-anchor: middle;
+  font:
+    11px Georgia,
+    serif;
+}
+.ratios table {
+  width: 100%;
+  height: 300px;
+  margin-top: 15px;
+  border-collapse: collapse;
+  text-align: center;
+}
+.ratios th,
+.ratios td {
+  border: 1px solid var(--line);
+}
+.ratios th {
+  background: #f2f5f9;
+}
+.ratios output {
+  display: block;
+  margin-top: 12px;
+  padding: 10px;
+  border: 1px solid #b8dff4;
+  border-radius: 5px;
+  background: #f2faff;
+  font:
+    11px Georgia,
+    serif;
+}
+.seq338-theory {
+  display: grid;
+  height: 273px;
+  margin-top: 9px;
+  grid-template-columns: 0.85fr 0.72fr 1fr;
+  gap: 9px;
+}
+.seq338-theory > article,
+.seq338-theory > aside > article {
+  padding: 13px;
+}
+.seq338-theory > article > p {
+  margin-top: 12px;
+}
+.seq338-theory > article > strong {
+  display: block;
+  margin: 22px 0;
+  text-align: center;
+  font:
+    15px Georgia,
+    serif;
+}
+.seq338-theory output {
+  display: block;
+  margin-top: 14px;
+  padding: 9px;
+  border: 1px solid #cce4f4;
+  border-radius: 5px;
+}
+.insight svg {
+  width: 100%;
+  height: 150px;
+}
+.insight svg path {
+  fill: none;
+  stroke: #243664;
+  stroke-width: 8;
+  stroke-linecap: round;
+}
+.seq338-theory > aside {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: 9px;
+}
+.seq338-theory > aside article:first-child {
+  background: #fff7f0;
+}
+.seq338-theory > aside article:last-child {
+  background: #eefaff;
+}
+.seq338-theory > aside p {
+  margin-top: 12px;
+}
+.seq338-bottom {
+  display: grid;
+  height: 226px;
+  margin-top: 9px;
+  grid-template-columns: 0.92fr 1.08fr;
+  gap: 9px;
+}
+.seq338-bottom p {
+  margin-top: 10px;
+}
+.seq338-bottom article:first-child p {
+  display: flex;
+  align-items: center;
+}
+.quick button {
+  display: block;
+  width: 100%;
+  height: 27px;
+  margin-top: 5px;
+  text-align: left;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: #fff;
+}
+.quick button.correct {
+  border-color: #53c87b;
+  background: #effbf3;
+}
+.quick output {
+  display: block;
+  margin-top: 9px;
+  padding: 11px;
+  border-radius: 6px;
+}
+.quick output.correct {
+  background: #effbf3;
+  color: #237143;
+}
+.quick output.incorrect {
+  background: #fff1f1;
+  color: #9c3030;
+}
+body:has(.seq338-page) {
+  overflow: hidden;
+}
+body:has(.seq338-page) [data-testid="desktop-sidebar"] {
+  display: block !important;
+  width: 166px !important;
+  flex-basis: 166px !important;
+  transition: none;
+}
+body:has(.seq338-page) #main-content {
+  margin-left: 0 !important;
+  padding-right: 10px !important;
+  padding-left: 14px !important;
+}
+body:has(.seq338-page) .lesson-shell-header,
+body:has(.seq338-page) .lesson-page-shell > nav[role="tablist"],
+body:has(.seq338-page) .lesson-workbench-heading,
+body:has(.seq338-page) .lesson-workbench > .mt-3.grid {
+  display: none !important;
+}
+body:has(.seq338-page) .lesson-page-shell > div {
+  margin-top: 0 !important;
+}
+body:has(.seq338-page) .lesson-workbench {
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+body:has(.seq338-page) .lesson-adjacent-nav {
+  height: 50px !important;
+  margin-top: 9px !important;
+}
+body:has(.seq338-page) footer[aria-label="Site footer"] {
+  height: 116px !important;
+  margin-top: 9px !important;
+  padding: 0 !important;
+}
+body:has(.seq338-page) footer[aria-label="Site footer"] > div {
+  height: 116px !important;
+  padding: 12px !important;
+  font-size: 7px !important;
+}
+@media (min-width: 800px) {
+  body:has(.seq338-page) header.sticky button[aria-label="Open navigation"],
+  body:has(.seq338-page) nav[class*="bottom-0"][class*="fixed"] {
+    display: none !important;
+  }
+  body:has(.seq338-page) .app-layout-rail > div > header {
+    height: 44px;
+  }
+  body:has(.seq338-page) [data-testid="desktop-sidebar"] > div {
+    padding: 10px 9px 30px !important;
+  }
+  body:has(.seq338-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type {
+    height: 50px;
+    min-height: 50px;
+    margin-bottom: 9px !important;
+    padding: 0 !important;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+  body:has(.seq338-page) [data-testid="desktop-sidebar"] > div > label {
+    height: 31px;
+    min-height: 31px !important;
+    margin-bottom: 8px !important;
+    padding: 0 7px !important;
+    font-size: 8px !important;
+  }
+  body:has(.seq338-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"] {
+    row-gap: 5px !important;
+  }
+  body:has(.seq338-page) [data-testid="desktop-sidebar"] nav button {
+    min-height: 28px;
+    padding: 4px 7px !important;
+    font-size: 8px !important;
+  }
+  body:has(.seq338-page) [data-testid="desktop-sidebar"] nav a {
+    min-height: 25px;
+    padding: 4px 7px !important;
+    font-size: 7px !important;
+  }
+  body:has(.seq338-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    > div:nth-of-type(2),
+  body:has(.seq338-page)
+    [data-testid="desktop-sidebar"]
+    nav[aria-label="Primary navigation"]
+    > div:nth-of-type(n + 5) {
+    display: none;
+  }
+}
