@@ -1,0 +1,289 @@
+{
+  "mockup": "0574",
+  "lessonId": 389,
+  "checks": {
+    "initial": {
+      "point": "[4,4,4]",
+      "plane": "[1,1,1,6]",
+      "numerator": "6",
+      "denominator": "1.73",
+      "distance": "3.46",
+      "factor": "2",
+      "foot": "[2,2,2]",
+      "valid": "true",
+      "layers": "[true,true]",
+      "tab": "Interaction + visualization",
+      "checked": "false",
+      "shared": "false",
+      "actions": "0"
+    },
+    "axisAligned": {
+      "point": "[1,1,5]",
+      "plane": "[0,0,1,2]",
+      "numerator": "3",
+      "denominator": "1",
+      "distance": "3",
+      "factor": "3",
+      "foot": "[1,1,2]",
+      "valid": "true",
+      "layers": "[true,true]",
+      "tab": "Interaction + visualization",
+      "checked": "false",
+      "shared": "false",
+      "actions": "6"
+    },
+    "onPlane": {
+      "point": "[1,1,2]",
+      "plane": "[0,0,1,2]",
+      "numerator": "0",
+      "denominator": "1",
+      "distance": "0",
+      "factor": "0",
+      "foot": "[1,1,2]",
+      "valid": "true",
+      "layers": "[true,true]",
+      "tab": "Interaction + visualization",
+      "checked": "false",
+      "shared": "false",
+      "actions": "7"
+    },
+    "invalid": {
+      "point": "[1,1,2]",
+      "plane": "[0,0,0,2]",
+      "numerator": "2",
+      "denominator": "0",
+      "distance": "",
+      "factor": "",
+      "foot": "null",
+      "valid": "false",
+      "layers": "[true,true]",
+      "tab": "Interaction + visualization",
+      "checked": "false",
+      "shared": "false",
+      "actions": "8"
+    },
+    "layersOff": {
+      "point": "[4,4,4]",
+      "plane": "[1,1,1,6]",
+      "numerator": "6",
+      "denominator": "1.73",
+      "distance": "3.46",
+      "factor": "2",
+      "foot": "[2,2,2]",
+      "valid": "true",
+      "layers": "[false,false]",
+      "tab": "Interaction + visualization",
+      "checked": "false",
+      "shared": "false",
+      "actions": "3"
+    },
+    "experiment": {
+      "point": "[1,1,5]",
+      "plane": "[0,0,1,2]",
+      "numerator": "3",
+      "denominator": "1",
+      "distance": "3",
+      "factor": "3",
+      "foot": "[1,1,2]",
+      "valid": "true",
+      "layers": "[true,true]",
+      "tab": "Interaction + visualization",
+      "checked": "true",
+      "shared": "false",
+      "actions": "6"
+    },
+    "shared": {
+      "point": "[1,1,5]",
+      "plane": "[0,0,1,2]",
+      "numerator": "3",
+      "denominator": "1",
+      "distance": "3",
+      "factor": "3",
+      "foot": "[1,1,2]",
+      "valid": "true",
+      "layers": "[true,true]",
+      "tab": "Interaction + visualization",
+      "checked": "true",
+      "shared": "true",
+      "actions": "7"
+    },
+    "afterDrag": {
+      "point": "[4.54,8.74,4]",
+      "plane": "[1,1,1,6]",
+      "numerator": "11.28",
+      "denominator": "1.73",
+      "distance": "6.51",
+      "factor": "3.76",
+      "foot": "[0.78,4.98,0.24]",
+      "valid": "true",
+      "layers": "[true,true]",
+      "tab": "Interaction + visualization",
+      "checked": "false",
+      "shared": "false",
+      "actions": "9"
+    },
+    "yellowCandidates": [
+      {
+        "x": 325.47340425531917,
+        "y": 261.25,
+        "size": 188
+      },
+      {
+        "x": 353.1,
+        "y": 249.55,
+        "size": 20
+      },
+      {
+        "x": 370.3157894736842,
+        "y": 249.52631578947367,
+        "size": 19
+      },
+      {
+        "x": 319.6666666666667,
+        "y": 247.66666666666666,
+        "size": 15
+      },
+      {
+        "x": 386.5,
+        "y": 251,
+        "size": 8
+      }
+    ],
+    "dragChanged": true,
+    "orbitChanged": true,
+    "canvasPixels": {
+      "colored": 25546,
+      "unique": 1021,
+      "width": 403,
+      "height": 737
+    },
+    "tabbed": {
+      "point": "[4,4,4]",
+      "plane": "[1,1,1,6]",
+      "numerator": "6",
+      "denominator": "1.73",
+      "distance": "3.46",
+      "factor": "2",
+      "foot": "[2,2,2]",
+      "valid": "true",
+      "layers": "[true,true]",
+      "tab": "Formulas",
+      "checked": "false",
+      "shared": "false",
+      "actions": "2"
+    },
+    "viewReset": {
+      "point": "[4,4,4]",
+      "plane": "[1,1,1,6]",
+      "numerator": "6",
+      "denominator": "1.73",
+      "distance": "3.46",
+      "factor": "2",
+      "foot": "[2,2,2]",
+      "valid": "true",
+      "layers": "[true,true]",
+      "tab": "Formulas",
+      "checked": "false",
+      "shared": "false",
+      "actions": "3"
+    },
+    "reset": {
+      "point": "[4,4,4]",
+      "plane": "[1,1,1,6]",
+      "numerator": "6",
+      "denominator": "1.73",
+      "distance": "3.46",
+      "factor": "2",
+      "foot": "[2,2,2]",
+      "valid": "true",
+      "layers": "[true,true]",
+      "tab": "Interaction + visualization",
+      "checked": "false",
+      "shared": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 963,
+      "height": 1633
+    },
+    "overflow": false,
+    "hero": {
+      "top": 108,
+      "left": 215,
+      "width": 738,
+      "height": 243,
+      "bottom": 351
+    },
+    "tabs": {
+      "top": 361,
+      "left": 215,
+      "width": 738,
+      "height": 44,
+      "bottom": 405
+    },
+    "lab": {
+      "top": 423,
+      "left": 215,
+      "width": 738,
+      "height": 1112,
+      "bottom": 1535
+    },
+    "canvas": {
+      "top": 485,
+      "left": 224,
+      "width": 403,
+      "height": 737,
+      "bottom": 1222
+    },
+    "controls": {
+      "top": 485,
+      "left": 640,
+      "width": 300,
+      "height": 737,
+      "bottom": 1222
+    },
+    "calculation": {
+      "top": 904,
+      "left": 648,
+      "width": 284,
+      "height": 200,
+      "bottom": 1104
+    },
+    "key": {
+      "top": 1235,
+      "left": 224,
+      "width": 720,
+      "height": 126,
+      "bottom": 1361
+    },
+    "experiment": {
+      "top": 1374,
+      "left": 224,
+      "width": 720,
+      "height": 53,
+      "bottom": 1427
+    },
+    "navigation": {
+      "top": 1475,
+      "left": 224,
+      "width": 720,
+      "height": 58,
+      "bottom": 1533
+    }
+  },
+  "mobileMetrics": {
+    "documentWidth": 390,
+    "overflow": false,
+    "canvas": {
+      "x": 23,
+      "y": 284,
+      "width": 348,
+      "height": 560
+    },
+    "nonblank": true
+  },
+  "consoleMessages": [],
+  "passed": true
+}

@@ -17,8 +17,9 @@ Target references begin at `0563` in `D:\Math App Screenshots for UI Update\Upda
 | 0571 | 386 Angle Between Lines | `AngleLinesTargetLesson386` | React Three Fiber two-vector angle model with directly draggable arrowheads, six synchronized coefficient inputs, exact dot product/magnitude/cosine/angle calculations, acute and obtuse branches, zero-vector validation, normalized display arrows, angle arc and translated-line layers, orbit/zoom, fullscreen/tabs/reset/share, and live computed challenge cycling | 989 x 1589 desktop plus 390 px mobile rendering; nonblank 459 x 499 WebGL canvas; no overflow or application console errors | Complete |
 | 0572 | 387 Angle Between Planes | `AnglePlanesTargetLesson387` | React Three Fiber two-plane dihedral model with six editable coefficients and directly draggable normal endpoints, exact dot product/magnitude/cosine/angle calculations, computed cross-product hinge, acute/obtuse and zero/parallel branches, three live scene layers, orbit/zoom, fullscreen/tabs/reset/share, and a genuinely graded challenge | 975 x 1614 desktop plus 390 px mobile rendering; nonblank 481 x 565 WebGL canvas; no overflow or application console errors | Complete |
 | 0573 | 388 Angle Between Line and Plane | `AngleLinePlaneTargetLesson388` | React Three Fiber line/plane inclination model with six editable coefficients and directly draggable line/normal endpoints, exact projection, dot product, magnitudes, sine, line-plane angle and complementary normal angle, coordinate-plane selector with custom-normal state, projection/normal layers, orbit/zoom, fullscreen/tabs/reset/share, and a computed 45-degree experiment | 1586 x 992 landscape desktop plus 390 px mobile rendering; nonblank 873 x 417 WebGL canvas; no overflow or application console errors | Complete |
+| 0574 | 389 Point-to-Plane Distance | `PointPlaneDistanceTargetLesson389` | React Three Fiber point/plane distance model with seven editable coordinates and coefficients, directly draggable point, exact numerator/denominator/distance and perpendicular-foot calculations, valid/on-plane/zero-normal branches, perpendicular and foot layers, orbit/zoom, camera reset, tabs/reset/share, and a computed z=2 experiment | 963 x 1633 desktop plus 390 px mobile rendering; nonblank 403 x 737 WebGL canvas; no overflow or application console errors | Complete |
 
-Completed in this family: **11 / 50**. Pending in this family: **39 / 50**.
+Completed in this family: **12 / 50**. Pending in this family: **38 / 50**.
 
 ## Lesson 378 validation
 
@@ -117,3 +118,12 @@ Completed in this family: **11 / 50**. Pending in this family: **39 / 50**.
 - Canvas-only capture: `0573-canvas.png`
 - Machine-readable interaction and layout audit: `0573-dedicated-target-validation.json`
 - The capture harness verifies v=(1,1,1), n=(0,0,1), v·n=1, |v|=1.7321, |n|=1, sin θ=0.5774, θ=35.3°, complementary normal angle 54.7°, and projection (1,1,0); selects x=0 and proves projection (0,1,1), edits a custom normal, proves 90° for a perpendicular line, 0° for a parallel line, and invalidity for a zero direction; exercises both scene layers, the computed v=(0,1,1)/θ=45° experiment, clipboard/share state, fullscreen, tabs, and shell reset; physically drags the green line endpoint to update v=(1.2364,1.006,1), verifies OrbitControls through changed canvas pixels, and confirms exact 1586 x 992 target-aligned landscape dimensions, a nonblank 873 x 417 canvas, an overflow-free nonblank 390 px mobile rendering, and absence of application console errors.
+
+## Lesson 389 validation
+
+- Reference: `0574-reference.png`
+- Current capture: `0574-desktop.png`
+- Mobile capture: `0574-mobile.png`
+- Canvas-only capture: `0574-canvas.png`
+- Machine-readable interaction and layout audit: `0574-dedicated-target-validation.json`
+- The capture harness verifies P=(4,4,4), plane x+y+z=6, numerator 6, denominator 1.73, exact distance 2√3≈3.46, factor 2, and foot H=(2,2,2); configures P=(1,1,5) and z=2 and proves distance 3 with H=(1,1,2), proves distance 0 for an on-plane point, and proves invalidity for a zero normal; exercises both scene layers, the computed experiment, clipboard/share state, tabs, camera and shell resets; physically drags P to (4.54,8.74,4), verifies OrbitControls through changed canvas pixels, and confirms exact 963 x 1633 dimensions, a nonblank 403 x 737 canvas, an overflow-free nonblank 390 px mobile rendering, and absence of application console errors.

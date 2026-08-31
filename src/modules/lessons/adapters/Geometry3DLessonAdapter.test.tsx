@@ -17,7 +17,7 @@ describe("Geometry3DLessonAdapter", () => {
       [386, "Angle Between Lines"],
       [387, "Angle Between Planes"],
       [388, "Angle Between Line and Plane"],
-      [389, "Point-to-plane distance"],
+      [389, "Point-to-Plane Distance"],
       [390, "3D vectors"],
       [391, "Cube"],
       [392, "Cuboid"],
@@ -72,7 +72,7 @@ describe("Geometry3DLessonAdapter", () => {
       );
       expect(html, String(lessonId)).toContain(snippet.replace(/'/g, "&#x27;"));
       if (
-        ![378, 379, 380, 381, 382, 383, 384, 385, 386, 387, 388].includes(
+        ![378, 379, 380, 381, 382, 383, 384, 385, 386, 387, 388, 389].includes(
           lessonId,
         ) &&
         lesson.preset.id !== "geometry3d.solid-net"
@@ -340,5 +340,27 @@ describe("Geometry3DLessonAdapter", () => {
     expect(html).toContain('data-angle="35.3"');
     expect(html).toContain('data-normal-angle="54.7"');
     expect(html).toContain('data-projection="[1,1,0]"');
+  });
+
+  it("uses a dedicated point-to-plane distance solver for lesson 389", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 389)!;
+    const html = renderToStaticMarkup(
+      <Geometry3DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="geometry3d-mockup-0574"');
+    expect(html).toContain(
+      "threejs-editable-directly-draggable-point-and-plane-equation-exact-point-plane-distance-perpendicular-foot-normal-layers-orbit-validated-experiment",
+    );
+    expect(html).toContain('data-point="[4,4,4]"');
+    expect(html).toContain('data-plane="[1,1,1,6]"');
+    expect(html).toContain('data-numerator="6"');
+    expect(html).toContain('data-denominator="1.73"');
+    expect(html).toContain('data-distance="3.46"');
+    expect(html).toContain('data-factor="2"');
+    expect(html).toContain('data-foot="[2,2,2]"');
   });
 });

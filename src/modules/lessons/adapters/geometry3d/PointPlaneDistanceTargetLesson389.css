@@ -1,0 +1,324 @@
+.ppd389-page {
+  font-size: 9px;
+  color: #102043;
+}
+.ppd389-page .cs378-hero {
+  height: 243px;
+}
+.ppd389-page .cs378-actions {
+  display: grid;
+  width: 360px;
+  grid-template-columns: 210px 70px 70px;
+}
+.ppd389-page .cs378-actions button:last-child {
+  grid-column: 1;
+}
+.ppd389-page .cs378-tabs {
+  height: 44px;
+}
+.ppd389-lab {
+  height: 1112px;
+  margin-top: 18px;
+  padding: 8px;
+  border: 1px solid #dfe7ee;
+  border-radius: 12px;
+  background: #fff;
+}
+.ppd389-lab > header {
+  display: flex;
+  height: 53px;
+  align-items: flex-start;
+  gap: 8px;
+}
+.ppd389-lab > header > div {
+  margin-right: auto;
+}
+.ppd389-lab > header small {
+  color: #087d9d;
+  font-size: 7px;
+  font-weight: 900;
+}
+.ppd389-lab > header h2 {
+  font-size: 16px;
+}
+.ppd389-lab > header > strong,
+.ppd389-lab > header > span,
+.ppd389-lab > header > button {
+  height: 30px;
+  padding: 7px 10px;
+  border: 1px solid #dce4ed;
+  border-radius: 8px;
+  background: #fff;
+}
+.ppd389-lab > header > strong {
+  border-color: #b9dec7;
+  background: #f3fff7;
+  color: #148050;
+}
+.ppd389-lab > header button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.ppd389-lab > header svg {
+  width: 13px;
+}
+.ppd389-main {
+  display: grid;
+  height: 737px;
+  grid-template-columns: minmax(0, 403px) minmax(0, 300px);
+  gap: 13px;
+}
+.ppd389-scene {
+  overflow: hidden;
+  border-radius: 9px;
+  background: #06172b;
+}
+.ppd389-canvas {
+  height: 737px;
+}
+.ppd389-canvas canvas {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+.ppd389-side {
+  overflow: hidden;
+  border: 1px solid #dfe7ee;
+  border-radius: 8px;
+}
+.ppd389-inputs {
+  border-bottom: 1px solid #e2e8ef;
+}
+.ppd389-inputs h3 {
+  display: flex;
+  height: 39px;
+  padding: 11px;
+  font:
+    14px Georgia,
+    serif;
+}
+.ppd389-inputs h3 span {
+  margin-left: auto;
+}
+.ppd389-inputs label {
+  display: grid;
+  height: 36px;
+  padding: 0 11px;
+  grid-template-columns: 45px 1fr;
+  align-items: center;
+  font:
+    13px Georgia,
+    serif;
+}
+.ppd389-inputs input {
+  height: 29px;
+  border: 1px solid #dce4ed;
+  border-radius: 5px;
+  padding: 0 10px;
+}
+.ppd389-layers {
+  padding: 5px 11px;
+  border-bottom: 1px solid #e2e8ef;
+}
+.ppd389-layers label {
+  display: flex;
+  height: 34px;
+  align-items: center;
+  font-weight: 700;
+}
+.ppd389-layers input {
+  width: 29px;
+  height: 16px;
+  margin-left: auto;
+  appearance: none;
+  border-radius: 9px;
+  background: #cbd5e1;
+}
+.ppd389-layers input:before {
+  display: block;
+  width: 12px;
+  height: 12px;
+  margin: 2px;
+  border-radius: 50%;
+  background: #fff;
+  content: "";
+}
+.ppd389-layers input:checked {
+  background: #0b98b1;
+}
+.ppd389-layers input:checked:before {
+  transform: translateX(13px);
+}
+.ppd389-calc {
+  margin: 7px;
+  padding: 10px;
+  border: 1px solid #b787ed;
+  border-radius: 7px;
+  background: #fcfaff;
+}
+.ppd389-calc h3 {
+  color: #8844dd;
+  font-size: 12px;
+}
+.ppd389-calc > div,
+.ppd389-calc > p {
+  margin-top: 10px;
+  font:
+    11px Georgia,
+    serif;
+}
+.ppd389-formula {
+  text-align: center;
+  font-size: 13px !important;
+}
+.ppd389-calc > strong {
+  display: block;
+  margin-top: 10px;
+  padding: 8px;
+  border: 1px solid #b787ed;
+  border-radius: 6px;
+  font:
+    17px Georgia,
+    serif;
+  text-align: center;
+}
+.ppd389-foot {
+  margin: 7px;
+  padding: 8px;
+  border: 1px solid #d6c4ec;
+  border-radius: 7px;
+  background: #fcfaff;
+  font:
+    13px Georgia,
+    serif;
+}
+.ppd389-key {
+  display: grid;
+  height: 126px;
+  margin-top: 13px;
+  padding: 12px;
+  grid-template-columns: 48px 1fr 180px;
+  gap: 12px;
+  align-items: center;
+  border: 1px solid #57b9e0;
+  border-radius: 8px;
+  background: #f1fbff;
+}
+.ppd389-key > div {
+  display: grid;
+  width: 45px;
+  height: 45px;
+  place-items: center;
+  border-radius: 50%;
+  background: #45a9d5;
+  font-size: 22px;
+}
+.ppd389-key h3 {
+  color: #12659c;
+}
+.ppd389-key strong {
+  display: block;
+  margin-top: 6px;
+  font-size: 12px;
+}
+.ppd389-key p {
+  margin-top: 8px;
+  line-height: 1.45;
+}
+.ppd389-key aside {
+  text-align: center;
+  font-size: 18px;
+}
+.ppd389-try {
+  display: grid;
+  height: 53px;
+  margin-top: 13px;
+  padding: 7px 12px;
+  grid-template-columns: 42px 1fr 70px;
+  align-items: center;
+  border: 1px solid #64cfba;
+  border-radius: 8px;
+  background: #f3fffb;
+}
+.ppd389-try > div {
+  font-size: 22px;
+}
+.ppd389-try b {
+  color: #15936d;
+}
+.ppd389-try button {
+  height: 30px;
+  border: 0;
+  border-radius: 7px;
+  background: #07849d;
+  color: #fff;
+  font-weight: 800;
+}
+.ppd389-chips {
+  display: flex;
+  height: 27px;
+  margin-top: 10px;
+  gap: 7px;
+}
+.ppd389-chips span {
+  padding: 6px 10px;
+  border-radius: 12px;
+  background: #f0f2f6;
+  font-size: 7px;
+}
+.ppd389-page .cs378-nav {
+  height: 58px;
+  margin-top: 11px;
+}
+body:has(.ppd389-page) [data-testid="desktop-sidebar"] {
+  width: 201px !important;
+  flex-basis: 201px !important;
+}
+body:has(.ppd389-page) #main-content {
+  padding: 0 10px 0 14px !important;
+}
+body:has(.ppd389-page) header.sticky.top-0 {
+  height: 53px !important;
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
+}
+body:has(.ppd389-page) nav[aria-label="Breadcrumb"] {
+  min-height: 49px;
+  margin-bottom: 0 !important;
+  align-items: center;
+}
+body:has(.ppd389-page) footer[aria-label="Site footer"] {
+  position: relative;
+  top: -9px;
+  height: 95px !important;
+  margin-bottom: -9px;
+}
+body:has(.ppd389-page) footer[aria-label="Site footer"] > div {
+  height: 95px !important;
+}
+@media (max-width: 799px) {
+  body:has(.ppd389-page) [data-testid="desktop-sidebar"] {
+    display: none !important;
+  }
+  .ppd389-main {
+    grid-template-columns: 1fr;
+  }
+  .ppd389-lab,
+  .ppd389-main {
+    height: auto;
+  }
+  .ppd389-canvas {
+    height: 560px;
+  }
+  .ppd389-side {
+    overflow: visible;
+  }
+  .ppd389-key {
+    height: auto;
+    grid-template-columns: 48px 1fr;
+  }
+  .ppd389-key aside {
+    grid-column: 1/-1;
+  }
+}
