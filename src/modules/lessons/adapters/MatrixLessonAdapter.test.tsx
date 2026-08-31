@@ -16,7 +16,7 @@ describe("MatrixLessonAdapter", () => {
         />,
       );
       expect(html, String(lesson.id)).toContain(lesson.title);
-      if (lesson.id > 358)
+      if (lesson.id > 359)
         expect(html, String(lesson.id)).toMatch(
           /matrix and linear-algebra lab|eigendirection lab/,
         );
@@ -132,6 +132,16 @@ describe("MatrixLessonAdapter", () => {
     expect(html).toContain("editable-two-by-two-linear-transformation-draggable-basis-columns");
     expect(html).toContain('data-det="3"');
     expect(html).toContain('data-points="[[0,0],[2,1],[1,2],[3,3]]"');
+  });
+
+  it("uses a derived eigensystem and draggable vector model for lesson 359", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 359)!;
+    const html = renderToStaticMarkup(<MatrixLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="matrix-mockup-0544"');
+    expect(html).toContain("editable-real-two-by-two-eigensystem-characteristic-polynomial-derived-eigenpairs");
+    expect(html).toContain('data-roots="[3,1]"');
+    expect(html).toContain('data-vectors="[[1,1],[1,-1]]"');
+    expect(html).toContain('data-eigen="true"');
   });
 
   it("does not show determinant as the primary result for unrelated concepts", () => {

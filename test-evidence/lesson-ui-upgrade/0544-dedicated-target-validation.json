@@ -1,0 +1,153 @@
+{
+  "mockup": "0544",
+  "lessonId": 359,
+  "checks": {
+    "initial": {
+      "matrix": "[2,1,1,2]",
+      "roots": "[3,1]",
+      "vectors": "[[1,1],[1,-1]]",
+      "vector": "[1,1]",
+      "av": "[3,3]",
+      "lambda": "3",
+      "eigen": "true",
+      "tab": "Interactive Lab",
+      "challenge": "",
+      "actions": "0"
+    },
+    "edited": {
+      "matrix": "[3,1,1,2]",
+      "roots": "[3.618,1.382]",
+      "vectors": "[[1,0.618],[0.618,-1]]",
+      "vector": "[1,1]",
+      "av": "[4,3]",
+      "lambda": "3.5",
+      "eigen": "false",
+      "tab": "Interactive Lab",
+      "challenge": "",
+      "actions": "1"
+    },
+    "dragged": {
+      "matrix": "[2,1,1,2]",
+      "roots": "[3,1]",
+      "vectors": "[[1,1],[1,-1]]",
+      "vector": "[1.395,0.231]",
+      "av": "[3.021,1.857]",
+      "lambda": "2.322",
+      "eigen": "false",
+      "tab": "Interactive Lab",
+      "challenge": "",
+      "actions": "2"
+    },
+    "rejectedPair": {
+      "matrix": "[2,1,1,2]",
+      "roots": "[3,1]",
+      "vectors": "[[1,1],[1,-1]]",
+      "vector": "[1.395,0.231]",
+      "av": "[3.021,1.857]",
+      "lambda": "2.322",
+      "eigen": "false",
+      "tab": "Interactive Lab",
+      "challenge": "",
+      "actions": "3"
+    },
+    "acceptedPair": {
+      "matrix": "[2,1,1,2]",
+      "roots": "[3,1]",
+      "vectors": "[[1,1],[1,-1]]",
+      "vector": "[1,1]",
+      "av": "[3,3]",
+      "lambda": "3",
+      "eigen": "true",
+      "tab": "Interactive Lab",
+      "challenge": "",
+      "actions": "5"
+    },
+    "rejectedChallenge": {
+      "matrix": "[2,1,1,2]",
+      "roots": "[3,1]",
+      "vectors": "[[1,1],[1,-1]]",
+      "vector": "[1,1]",
+      "av": "[3,3]",
+      "lambda": "3",
+      "eigen": "true",
+      "tab": "Interactive Lab",
+      "challenge": "incorrect",
+      "actions": "8"
+    },
+    "acceptedChallenge": {
+      "matrix": "[2,1,1,2]",
+      "roots": "[3,1]",
+      "vectors": "[[1,1],[1,-1]]",
+      "vector": "[1,1]",
+      "av": "[3,3]",
+      "lambda": "3",
+      "eigen": "true",
+      "tab": "Theory",
+      "challenge": "correct",
+      "actions": "11"
+    },
+    "reset": {
+      "matrix": "[2,1,1,2]",
+      "roots": "[3,1]",
+      "vectors": "[[1,1],[1,-1]]",
+      "vector": "[1,1]",
+      "av": "[3,3]",
+      "lambda": "3",
+      "eigen": "true",
+      "tab": "Interactive Lab",
+      "challenge": "",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "overflow": false,
+    "hero": {
+      "top": 89,
+      "left": 216,
+      "width": 790,
+      "height": 118,
+      "bottom": 207
+    },
+    "setup": {
+      "top": 259,
+      "left": 216,
+      "width": 790,
+      "height": 247,
+      "bottom": 506
+    },
+    "graph": {
+      "top": 517,
+      "left": 216,
+      "width": 790,
+      "height": 493,
+      "bottom": 1010
+    },
+    "analysis": {
+      "top": 1021,
+      "left": 216,
+      "width": 790,
+      "height": 272,
+      "bottom": 1293
+    },
+    "challenge": {
+      "top": 1304,
+      "left": 216,
+      "width": 790,
+      "height": 140,
+      "bottom": 1444
+    },
+    "adjacent": {
+      "top": 1455,
+      "left": 216,
+      "width": 790,
+      "height": 58,
+      "bottom": 1513
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
