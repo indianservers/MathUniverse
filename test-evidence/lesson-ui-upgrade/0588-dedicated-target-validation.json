@@ -1,0 +1,260 @@
+{
+  "mockup": "0588",
+  "lessonId": 403,
+  "checks": {
+    "initial": {
+      "profile": "triangle",
+      "depth": "8",
+      "path": "straight",
+      "invariant": "true",
+      "profile-area": "6",
+      "profile-perimeter": "6",
+      "volume": "48",
+      "lateral-area": "48",
+      "checked": "false",
+      "correct": "false",
+      "fullscreen": "false",
+      "tool": "profile",
+      "actions": "0"
+    },
+    "targetDepth": {
+      "profile": "triangle",
+      "depth": "10",
+      "path": "straight",
+      "invariant": "true",
+      "profile-area": "6",
+      "profile-perimeter": "6",
+      "volume": "60",
+      "lateral-area": "60",
+      "checked": "false",
+      "correct": "false",
+      "fullscreen": "false",
+      "tool": "profile",
+      "actions": "1"
+    },
+    "correctChallenge": {
+      "profile": "triangle",
+      "depth": "10",
+      "path": "straight",
+      "invariant": "true",
+      "profile-area": "6",
+      "profile-perimeter": "6",
+      "volume": "60",
+      "lateral-area": "60",
+      "checked": "true",
+      "correct": "true",
+      "fullscreen": "false",
+      "tool": "profile",
+      "actions": "1"
+    },
+    "undo": {
+      "profile": "triangle",
+      "depth": "8",
+      "path": "straight",
+      "invariant": "true",
+      "profile-area": "6",
+      "profile-perimeter": "6",
+      "volume": "48",
+      "lateral-area": "48",
+      "checked": "false",
+      "correct": "false",
+      "fullscreen": "false",
+      "tool": "profile",
+      "actions": "2"
+    },
+    "redo": {
+      "profile": "triangle",
+      "depth": "10",
+      "path": "straight",
+      "invariant": "true",
+      "profile-area": "6",
+      "profile-perimeter": "6",
+      "volume": "60",
+      "lateral-area": "60",
+      "checked": "false",
+      "correct": "false",
+      "fullscreen": "false",
+      "tool": "profile",
+      "actions": "3"
+    },
+    "obliqueTapered": {
+      "profile": "triangle",
+      "depth": "10",
+      "path": "oblique",
+      "invariant": "false",
+      "profile-area": "6",
+      "profile-perimeter": "6",
+      "volume": "41.45",
+      "lateral-area": "49.5",
+      "checked": "false",
+      "correct": "false",
+      "fullscreen": "false",
+      "tool": "profile",
+      "actions": "5"
+    },
+    "circle": {
+      "profile": "circle",
+      "depth": "10",
+      "path": "oblique",
+      "invariant": "false",
+      "profile-area": "12.5664",
+      "profile-perimeter": "12.5664",
+      "volume": "86.8127",
+      "lateral-area": "103.6726",
+      "checked": "false",
+      "correct": "false",
+      "fullscreen": "false",
+      "tool": "profile",
+      "actions": "6"
+    },
+    "selectTool": {
+      "profile": "circle",
+      "depth": "10",
+      "path": "oblique",
+      "invariant": "false",
+      "profile-area": "12.5664",
+      "profile-perimeter": "12.5664",
+      "volume": "86.8127",
+      "lateral-area": "103.6726",
+      "checked": "false",
+      "correct": "false",
+      "fullscreen": "false",
+      "tool": "select",
+      "actions": "7"
+    },
+    "fullscreen": {
+      "profile": "circle",
+      "depth": "10",
+      "path": "oblique",
+      "invariant": "false",
+      "profile-area": "12.5664",
+      "profile-perimeter": "12.5664",
+      "volume": "86.8127",
+      "lateral-area": "103.6726",
+      "checked": "false",
+      "correct": "false",
+      "fullscreen": "true",
+      "tool": "select",
+      "actions": "8"
+    },
+    "fullscreenExit": {
+      "profile": "circle",
+      "depth": "10",
+      "path": "oblique",
+      "invariant": "false",
+      "profile-area": "12.5664",
+      "profile-perimeter": "12.5664",
+      "volume": "86.8127",
+      "lateral-area": "103.6726",
+      "checked": "false",
+      "correct": "false",
+      "fullscreen": "false",
+      "tool": "select",
+      "actions": "9"
+    },
+    "orbitChanged": true,
+    "canvas": {
+      "width": 245,
+      "height": 310,
+      "nonblank": true
+    },
+    "reset": {
+      "profile": "triangle",
+      "depth": "8",
+      "path": "straight",
+      "invariant": "true",
+      "profile-area": "6",
+      "profile-perimeter": "6",
+      "volume": "48",
+      "lateral-area": "48",
+      "checked": "false",
+      "correct": "false",
+      "fullscreen": "false",
+      "tool": "profile",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1553
+    },
+    "overflow": false,
+    "hero": {
+      "top": 99,
+      "left": 220,
+      "width": 795,
+      "height": 194,
+      "bottom": 293
+    },
+    "tabs": {
+      "top": 293,
+      "left": 233,
+      "width": 769,
+      "height": 44,
+      "bottom": 337
+    },
+    "builder": {
+      "top": 355,
+      "left": 233,
+      "width": 769,
+      "height": 448,
+      "bottom": 803
+    },
+    "stages": {
+      "top": 423,
+      "left": 234,
+      "width": 767,
+      "height": 379,
+      "bottom": 802
+    },
+    "scene": {
+      "top": 492,
+      "left": 756,
+      "width": 245,
+      "height": 310,
+      "bottom": 802
+    },
+    "formulas": {
+      "top": 813,
+      "left": 233,
+      "width": 769,
+      "height": 183,
+      "bottom": 996
+    },
+    "practice": {
+      "top": 1006,
+      "left": 233,
+      "width": 769,
+      "height": 229,
+      "bottom": 1235
+    },
+    "footerInfo": {
+      "top": 1245,
+      "left": 233,
+      "width": 769,
+      "height": 143,
+      "bottom": 1389
+    },
+    "navigation": {
+      "top": 1399,
+      "left": 233,
+      "width": 769,
+      "height": 46,
+      "bottom": 1445
+    }
+  },
+  "mobileMetrics": {
+    "documentWidth": 390,
+    "overflow": false,
+    "canvas": {
+      "x": 234,
+      "y": 266.546875,
+      "width": 133,
+      "height": 310
+    },
+    "nonblank": true
+  },
+  "consoleMessages": [],
+  "passed": true
+}

@@ -670,4 +670,27 @@ describe("Geometry3DLessonAdapter", () => {
     expect(html).toContain('data-volume-coefficient="8"');
     expect(html).toContain('data-expected="horn"');
   });
+
+  it("uses a dedicated extrusion lab for lesson 403", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 403)!;
+    const html = renderToStaticMarkup(
+      <Geometry3DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="geometry3d-mockup-0588"');
+    expect(html).toContain(
+      "threejs-dedicated-extrusion-profile-sweep-depth-oblique-straight-cross-section-volume-lateral-area-orbit-zoom-graded-target",
+    );
+    expect(html).toContain('data-profile="triangle"');
+    expect(html).toContain('data-depth="8"');
+    expect(html).toContain('data-path="straight"');
+    expect(html).toContain('data-invariant="true"');
+    expect(html).toContain('data-profile-area="6"');
+    expect(html).toContain('data-profile-perimeter="6"');
+    expect(html).toContain('data-volume="48"');
+    expect(html).toContain('data-lateral-area="48"');
+  });
 });
