@@ -28,6 +28,7 @@ import ConeTargetLesson398 from "./geometry3d/ConeTargetLesson398";
 import SphereTargetLesson399 from "./geometry3d/SphereTargetLesson399";
 import HemisphereTargetLesson400 from "./geometry3d/HemisphereTargetLesson400";
 import FrustumTargetLesson401 from "./geometry3d/FrustumTargetLesson401";
+import SurfaceRevolutionTargetLesson402 from "./geometry3d/SurfaceRevolutionTargetLesson402";
 
 export default function Geometry3DLessonAdapter(props: LessonAdapterProps) {
   if (props.lesson.id === 378)
@@ -59,6 +60,8 @@ export default function Geometry3DLessonAdapter(props: LessonAdapterProps) {
   if (props.lesson.id === 399) return <SphereTargetLesson399 {...props} />;
   if (props.lesson.id === 400) return <HemisphereTargetLesson400 {...props} />;
   if (props.lesson.id === 401) return <FrustumTargetLesson401 {...props} />;
+  if (props.lesson.id === 402)
+    return <SurfaceRevolutionTargetLesson402 {...props} />;
   if (props.lesson.preset.id === "geometry3d.solid-net") {
     return (
       <AdapterFrame

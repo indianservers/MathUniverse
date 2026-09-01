@@ -74,7 +74,7 @@ describe("Geometry3DLessonAdapter", () => {
       if (
         ![
           378, 379, 380, 381, 382, 383, 384, 385, 386, 387, 388, 389, 390, 391,
-          392, 393, 394, 395, 396, 397, 398, 399, 400, 401,
+          392, 393, 394, 395, 396, 397, 398, 399, 400, 401, 402,
         ].includes(lessonId) &&
         lesson.preset.id !== "geometry3d.solid-net"
       ) {
@@ -645,5 +645,29 @@ describe("Geometry3DLessonAdapter", () => {
     expect(html).toContain('data-original-height="6.6667"');
     expect(html).toContain('data-original-volume-coefficient="55.5556"');
     expect(html).toContain('data-net-angle="216"');
+  });
+
+  it("uses a dedicated surface-of-revolution lab for lesson 402", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 402)!;
+    const html = renderToStaticMarkup(
+      <Geometry3DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="geometry3d-mockup-0587"');
+    expect(html).toContain(
+      "threejs-dedicated-generating-curve-draggable-domain-endpoint-x-y-axis-partial-complete-lathe-washer-shell-animated-cross-section-exact-numerical-volume-surface-area-prediction-challenge",
+    );
+    expect(html).toContain('data-curve="sqrt"');
+    expect(html).toContain('data-a="0"');
+    expect(html).toContain('data-b="4"');
+    expect(html).toContain('data-axis="x"');
+    expect(html).toContain('data-angle="360"');
+    expect(html).toContain('data-method="Washer"');
+    expect(html).toContain('data-complete="true"');
+    expect(html).toContain('data-volume-coefficient="8"');
+    expect(html).toContain('data-expected="horn"');
   });
 });
