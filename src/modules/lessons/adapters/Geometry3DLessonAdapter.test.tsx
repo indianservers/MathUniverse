@@ -758,4 +758,25 @@ describe("Geometry3DLessonAdapter", () => {
     expect(html).toContain('data-pyramid-volume="20"');
     expect(html).toContain('data-sphere-volume="50.2655"');
   });
+
+  it("uses a dedicated linked surface-area lab for lesson 407", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 407)!;
+    const html = renderToStaticMarkup(
+      <Geometry3DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="geometry3d-mockup-0592"');
+    expect(html).toContain(
+      "threejs-dedicated-linked-solid-face-net-paint-surface-area-packing-challenge",
+    );
+    expect(html).toContain('data-solid="cuboid"');
+    expect(html).toContain('data-length="4"');
+    expect(html).toContain('data-breadth="3"');
+    expect(html).toContain('data-height="2"');
+    expect(html).toContain('data-selected-faces="6"');
+    expect(html).toContain('data-total-area="52"');
+  });
 });
