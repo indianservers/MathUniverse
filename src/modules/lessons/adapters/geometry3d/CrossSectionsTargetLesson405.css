@@ -1,0 +1,623 @@
+.cross405-page {
+  color: #13204a;
+  background: #f7faff;
+  font-family: Inter, Arial, sans-serif;
+}
+.cross405-page * {
+  box-sizing: border-box;
+}
+.cross405-page button,
+.cross405-page input {
+  font: inherit;
+}
+.cross405-page button {
+  cursor: pointer;
+}
+.cross405-page h1,
+.cross405-page h2 {
+  font-weight: 800;
+}
+.cross405-hero {
+  display: grid;
+  height: 191px;
+  padding: 14px;
+  grid-template-columns: 1fr 245px;
+  gap: 14px;
+  background: #fff;
+}
+.cross405-hero small {
+  display: inline-block;
+  margin-right: 6px;
+  padding: 5px 9px;
+  border-radius: 12px;
+  color: #0789a2;
+  background: #e5f8fb;
+  font-size: 8px;
+  font-weight: 800;
+}
+.cross405-hero small + small {
+  color: #394765;
+  background: #eaf0f6;
+}
+.cross405-hero h1 {
+  margin: 12px 0 5px;
+  font-size: 26px;
+  line-height: 1;
+}
+.cross405-hero p {
+  margin: 0;
+  font-size: 10px;
+}
+.cross405-hero nav {
+  display: flex;
+  margin-top: 12px;
+  gap: 7px;
+}
+.cross405-hero nav span {
+  padding: 6px 11px;
+  border: 1px solid #dae3ed;
+  border-radius: 15px;
+  font-size: 8px;
+  font-weight: 700;
+}
+.cross405-hero aside {
+  display: flex;
+  margin-top: 10px;
+  gap: 8px;
+}
+.cross405-hero aside button,
+.cross405-hero > article button {
+  display: flex;
+  height: 34px;
+  padding: 0 13px;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #dce4ed;
+  border-radius: 7px;
+  background: #fff;
+  color: #15234c;
+  font-size: 8px;
+  font-weight: 700;
+}
+.cross405-hero aside button:first-child {
+  width: 165px;
+  justify-content: space-between;
+}
+.cross405-hero > article {
+  position: relative;
+  height: 86px;
+  margin-top: 78px;
+  padding: 12px;
+  border: 1px solid #dce4ed;
+  border-radius: 9px;
+}
+.cross405-hero > article h2 {
+  margin: 0 0 10px;
+  font-size: 10px;
+}
+.cross405-hero > article p {
+  font-size: 8px;
+}
+.cross405-hero > article div {
+  display: grid;
+  margin-top: 12px;
+  grid-template-columns: 1fr 30px;
+  align-items: center;
+  gap: 8px;
+}
+.cross405-hero > article div:before {
+  content: "";
+  height: 8px;
+  border-radius: 5px;
+  background: #e7ecf2;
+}
+.cross405-hero > article i {
+  position: absolute;
+  bottom: 17px;
+  left: 13px;
+  height: 8px;
+  border-radius: 5px;
+  background: #21aa6d;
+}
+.cross405-hero > article b {
+  font-size: 8px;
+}
+.cross405-hero > article button {
+  position: absolute;
+  right: 10px;
+  bottom: 9px;
+  height: 28px;
+}
+.cross405-tabs {
+  display: grid;
+  height: 42px;
+  margin: 10px 0;
+  grid-template-columns: repeat(5, 1fr);
+  background: #fff;
+}
+.cross405-tabs button {
+  border: 0;
+  background: #fff;
+  color: #33415f;
+  font-size: 9px;
+  font-weight: 700;
+}
+.cross405-tabs button.active {
+  width: 110px;
+  margin: 7px auto;
+  border-radius: 16px;
+  color: #fff;
+  background: #174b75;
+}
+.cross405-lab {
+  display: grid;
+  height: 617px;
+  grid-template-columns: 70% 30%;
+  gap: 10px;
+}
+.cross405-lab > article {
+  position: relative;
+  border: 1px solid #dce4ed;
+  border-radius: 10px;
+  background: #fff;
+  overflow: hidden;
+}
+.cross405-stage > header {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 95px;
+  padding: 14px;
+}
+.cross405-stage > header small {
+  color: #078aa1;
+  font-size: 7px;
+  font-weight: 800;
+}
+.cross405-stage > header h2 {
+  margin: 8px 0;
+  font-size: 14px;
+}
+.cross405-stage > header > button {
+  display: flex;
+  height: 32px;
+  padding: 0 10px;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #dbe3ed;
+  border-radius: 6px;
+  background: #fff;
+  font-size: 8px;
+  font-weight: 700;
+}
+.cross405-stage > header nav {
+  display: flex;
+  position: absolute;
+  top: 35px;
+  right: 12px;
+  gap: 5px;
+}
+.cross405-stage > header nav button {
+  display: flex;
+  width: 34px;
+  height: 34px;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 7px;
+  background: #fff;
+  color: #687790;
+  box-shadow: 0 3px 8px #23355d1a;
+}
+.cross405-stage > header nav button.active {
+  color: #5f62ec;
+}
+.cross405-scene {
+  height: 465px;
+}
+.cross405-scene canvas {
+  width: 100% !important;
+  height: 465px !important;
+}
+.cross405-scene.expanded {
+  position: fixed;
+  z-index: 1000;
+  inset: 16px;
+  height: auto;
+  border-radius: 9px;
+}
+.cross405-scene.expanded canvas {
+  height: 100% !important;
+}
+.cross405-exit {
+  display: flex;
+  position: absolute;
+  z-index: 4;
+  top: 12px;
+  right: 12px;
+  width: 38px;
+  height: 38px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #d6e1eb;
+  border-radius: 7px;
+  background: #fff;
+  color: #314360;
+}
+.cross405-stage > footer {
+  display: grid;
+  height: 152px;
+  padding: 8px;
+  grid-template-columns: 1fr 2fr;
+  gap: 7px;
+  background: #fff;
+}
+.cross405-stage > footer label {
+  display: grid;
+  position: relative;
+  padding: 10px;
+  grid-template-columns: 24px 1fr;
+  align-items: start;
+  border: 1px solid #dce4ed;
+  border-radius: 9px;
+  font-size: 7px;
+}
+.cross405-stage > footer label > svg {
+  color: #4969e2;
+}
+.cross405-stage > footer label span {
+  display: grid;
+}
+.cross405-stage > footer label b {
+  margin-bottom: 5px;
+  font-size: 9px;
+}
+.cross405-stage > footer label > input[type="range"] {
+  grid-column: 1/-1;
+  width: 100%;
+  margin-top: 8px;
+  accent-color: #6b39df;
+}
+.cross405-stage > footer label output {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
+.cross405-stage > footer label:nth-child(3) {
+  grid-column: 1/-1;
+  grid-template-columns: 25px 140px 1fr 35px;
+  align-items: center;
+}
+.cross405-stage > footer label:nth-child(3) > input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  accent-color: #2d69dc;
+}
+.cross405-stage > footer label:nth-child(3) > input[type="range"] {
+  grid-column: auto;
+  margin: 0;
+}
+.cross405-stage > footer label:nth-child(3) > button {
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 50%;
+  color: #4a64e8;
+  background: #eef3ff;
+}
+.cross405-result {
+  padding: 18px 12px;
+}
+.cross405-result h2 {
+  margin: 0;
+  font-size: 13px;
+}
+.cross405-result > svg {
+  display: block;
+  width: 160px;
+  height: 135px;
+  margin: 5px auto;
+}
+.cross405-result h3 {
+  margin: 0 0 12px;
+  text-align: center;
+  font-size: 10px;
+}
+.cross405-result h3:before {
+  content: "";
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  margin-right: 7px;
+  border-radius: 50%;
+  background: #a52de6;
+}
+.cross405-result > div {
+  border: 1px solid #dce4ed;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.cross405-result > div header,
+.cross405-result > div p {
+  display: grid;
+  height: 35px;
+  margin: 0;
+  padding: 0 10px;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  border-bottom: 1px solid #e3e9f0;
+  font-size: 8px;
+}
+.cross405-result > div header {
+  background: #f7f9fc;
+}
+.cross405-result > div p b,
+.cross405-result > div header span:last-child {
+  text-align: right;
+}
+.cross405-result > strong {
+  display: grid;
+  height: 45px;
+  margin-top: 8px;
+  padding: 0 10px;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  border: 1px solid #dfe6ee;
+  border-radius: 7px;
+  font-size: 12px;
+}
+.cross405-result > strong span {
+  font-size: 9px;
+}
+.cross405-result > strong small {
+  grid-column: 1/-1;
+  text-align: right;
+  font-size: 6px;
+}
+.cross405-result > button {
+  display: block;
+  height: 34px;
+  margin: 14px auto 0;
+  padding: 0 13px;
+  border: 1px solid #dce4ed;
+  border-radius: 7px;
+  background: #fff;
+  font-size: 8px;
+}
+.cross405-calc {
+  font-size: 7px;
+  line-height: 1.5;
+}
+.cross405-predict {
+  position: relative;
+  min-height: 169px;
+  margin-top: 10px;
+  padding: 15px;
+  border: 1px solid #dce4ed;
+  border-radius: 9px;
+  background: #fff;
+}
+.cross405-predict h2,
+.cross405-examples h2 {
+  margin: 0 0 5px;
+  font-size: 11px;
+}
+.cross405-predict > p,
+.cross405-examples > p {
+  margin: 0;
+  font-size: 8px;
+}
+.cross405-predict > div {
+  display: grid;
+  margin-top: 12px;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 9px;
+}
+.cross405-predict > div button {
+  display: flex;
+  height: 53px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid #dbe3ed;
+  border-radius: 7px;
+  background: #fff;
+  color: #273555;
+  font-size: 8px;
+}
+.cross405-predict > div button.active {
+  border-color: #4c7cdf;
+  background: #f4f8ff;
+}
+.cross405-predict > div button > span {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #71809a;
+}
+.cross405-predict > div button:nth-child(4) > svg,
+.cross405-predict > div button:nth-child(5) > svg {
+  fill: none;
+}
+.cross405-check {
+  position: absolute;
+  right: 15px;
+  bottom: 8px;
+  height: 27px;
+  border: 0;
+  border-radius: 5px;
+  color: #fff;
+  background: #1558ba;
+  font-size: 7px;
+}
+.cross405-predict > strong {
+  display: block;
+  height: 39px;
+  margin-top: 10px;
+  padding: 12px;
+  border: 1px solid;
+  border-radius: 7px;
+  font-size: 8px;
+}
+.cross405-predict > .correct {
+  color: #17894b;
+  background: #effbf4;
+}
+.cross405-predict > .wrong {
+  color: #c24343;
+  background: #fff2f2;
+}
+.cross405-examples {
+  min-height: 299px;
+  margin-top: 10px;
+  padding: 15px 44px;
+  border: 1px solid #dce4ed;
+  border-radius: 9px;
+  background: #fff;
+}
+.cross405-examples > div {
+  display: grid;
+  height: 232px;
+  margin-top: 12px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.cross405-examples > div > button {
+  display: grid;
+  position: relative;
+  padding: 8px;
+  text-align: left;
+  border: 1px solid #dce4ed;
+  border-radius: 8px;
+  background: #fff;
+  grid-template-rows: 160px 20px 18px;
+}
+.cross405-examples button b {
+  font-size: 9px;
+}
+.cross405-examples button span {
+  font-size: 7px;
+}
+.cross405-examples button em {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  padding: 5px 14px;
+  border-radius: 12px;
+  color: #198949;
+  background: #edf9f1;
+  font-style: normal;
+  font-size: 7px;
+}
+.cross405-example-art {
+  position: relative;
+  overflow: hidden;
+  border-radius: 7px;
+  background: #172b3d;
+}
+.cross405-example-art i {
+  position: absolute;
+  display: block;
+}
+.cross405-example-art i:first-child {
+  top: 20px;
+  left: 50%;
+  width: 80px;
+  height: 125px;
+  border: 1px solid #9bb7c8;
+  transform: translateX(-50%);
+  opacity: 0.7;
+}
+.cross405-example-art.cone i:first-child {
+  border-width: 0 40px 125px;
+  border-style: solid;
+  border-color: transparent transparent #8aa1ad;
+}
+.cross405-example-art i:nth-child(2) {
+  top: 72px;
+  left: 20%;
+  width: 60%;
+  height: 40px;
+  border: 2px solid #54d97e;
+  border-radius: 50%;
+}
+.cross405-example-art.cylinder i:first-child {
+  border-radius: 50%;
+}
+.cross405-example-art.cylinder i:nth-child(2) {
+  border-color: #f48a42;
+  transform: rotate(-18deg);
+}
+.cross405-example-art.cube i:first-child {
+  top: 24px;
+  height: 112px;
+}
+.cross405-example-art.cube i:nth-child(2) {
+  border-color: #d65ff2;
+  transform: rotate(18deg);
+}
+.cross405-tip {
+  display: flex;
+  height: 44px;
+  margin-top: 10px;
+  padding: 0 15px;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #d7e5ef;
+  border-radius: 9px;
+  background: #edf7ff;
+  font-size: 8px;
+}
+.cross405-next {
+  display: flex;
+  height: 52px;
+  justify-content: space-between;
+  align-items: center;
+}
+.cross405-next a {
+  color: #17244c;
+  text-decoration: none;
+  font-size: 8px;
+}
+@media (max-width: 650px) {
+  .cross405-hero {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .cross405-hero > article {
+    margin-top: 0;
+  }
+  .cross405-tabs {
+    overflow: auto;
+  }
+  .cross405-lab {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .cross405-stage {
+    min-height: 617px;
+  }
+  .cross405-result {
+    min-height: 570px;
+  }
+  .cross405-predict > div {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .cross405-examples {
+    padding: 15px;
+  }
+  .cross405-examples > div {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .cross405-examples > div > button {
+    min-height: 220px;
+  }
+  .cross405-page {
+    overflow-x: hidden;
+  }
+  .cross405-next a {
+    max-width: 45%;
+  }
+}

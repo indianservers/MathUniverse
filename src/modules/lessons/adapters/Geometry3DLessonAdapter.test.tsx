@@ -713,4 +713,26 @@ describe("Geometry3DLessonAdapter", () => {
     expect(html).toContain('data-face-count="6"');
     expect(html).toContain('data-surface-area="6"');
   });
+
+  it("uses a dedicated cross-sections lab for lesson 405", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 405)!;
+    const html = renderToStaticMarkup(
+      <Geometry3DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="geometry3d-mockup-0590"');
+    expect(html).toContain(
+      "threejs-dedicated-plane-solid-intersection-exact-cube-polygon-drag-tilt-trace-prediction",
+    );
+    expect(html).toContain('data-solid="cube"');
+    expect(html).toContain('data-tilt="-45"');
+    expect(html).toContain('data-position="0"');
+    expect(html).toContain('data-shape="Hexagon"');
+    expect(html).toContain('data-vertices="6"');
+    expect(html).toContain('data-perimeter="24"');
+    expect(html).toContain('data-area="41.5692"');
+  });
 });

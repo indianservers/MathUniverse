@@ -31,6 +31,7 @@ import FrustumTargetLesson401 from "./geometry3d/FrustumTargetLesson401";
 import SurfaceRevolutionTargetLesson402 from "./geometry3d/SurfaceRevolutionTargetLesson402";
 import ExtrusionTargetLesson403 from "./geometry3d/ExtrusionTargetLesson403";
 import NetsSolidsTargetLesson404 from "./geometry3d/NetsSolidsTargetLesson404";
+import CrossSectionsTargetLesson405 from "./geometry3d/CrossSectionsTargetLesson405";
 
 export default function Geometry3DLessonAdapter(props: LessonAdapterProps) {
   if (props.lesson.id === 378)
@@ -66,6 +67,8 @@ export default function Geometry3DLessonAdapter(props: LessonAdapterProps) {
     return <SurfaceRevolutionTargetLesson402 {...props} />;
   if (props.lesson.id === 403) return <ExtrusionTargetLesson403 {...props} />;
   if (props.lesson.id === 404) return <NetsSolidsTargetLesson404 {...props} />;
+  if (props.lesson.id === 405)
+    return <CrossSectionsTargetLesson405 {...props} />;
   if (props.lesson.preset.id === "geometry3d.solid-net") {
     return (
       <AdapterFrame
