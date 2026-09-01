@@ -24,7 +24,7 @@ describe("Geometry3DLessonAdapter", () => {
       [393, "Prism"],
       [394, "Pyramid"],
       [395, "Tetrahedron"],
-      [396, "Regular polyhedra"],
+      [396, "Regular Polyhedra"],
       [397, "Cylinder"],
       [398, "Cone"],
       [399, "Sphere"],
@@ -74,7 +74,7 @@ describe("Geometry3DLessonAdapter", () => {
       if (
         ![
           378, 379, 380, 381, 382, 383, 384, 385, 386, 387, 388, 389, 390, 391,
-          392, 393, 394, 395,
+          392, 393, 394, 395, 396,
         ].includes(lessonId) &&
         lesson.preset.id !== "geometry3d.solid-net"
       ) {
@@ -505,5 +505,27 @@ describe("Geometry3DLessonAdapter", () => {
     expect(html).toContain('data-height="5"');
     expect(html).toContain('data-volume="20"');
     expect(html).toContain('data-centroid="[2,1.333,1.25]"');
+  });
+
+  it("uses a dedicated five-solid Platonic explorer for lesson 396", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 396)!;
+    const html = renderToStaticMarkup(
+      <Geometry3DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="geometry3d-mockup-0581"');
+    expect(html).toContain(
+      "threejs-dedicated-five-platonic-solids-real-geometries-selector-dual-mapping-orbit-pan-zoom-hover-exact-faces-edges-vertices-euler-schlafli-graded-challenge",
+    );
+    expect(html).toContain('data-solid="Tetrahedron"');
+    expect(html).toContain('data-faces="4"');
+    expect(html).toContain('data-edges="6"');
+    expect(html).toContain('data-vertices="4"');
+    expect(html).toContain('data-euler="2"');
+    expect(html).toContain('data-symbol="{3, 3}"');
+    expect(html).toContain('data-dual="Tetrahedron"');
   });
 });

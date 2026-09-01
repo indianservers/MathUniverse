@@ -24,8 +24,9 @@ Target references begin at `0563` in `D:\Math App Screenshots for UI Update\Upda
 | 0578 | 393 Prism | `PrismTargetLesson393` | React Three Fiber generated Triangle/Rectangle/Hexagon cross-sections extruded by editable length, synchronized base/height/length sliders and numeric controls, exact base/perimeter/volume/lateral/surface calculations, independent base/lateral/net layers, orbit/zoom, reversible fullscreen, tabs/reset/share, and practice guidance | 1173 x 1341 desktop plus 390 px mobile rendering; nonblank 509 x 526 WebGL canvas; no overflow or application console errors | Complete |
 | 0579 | 394 Pyramid | `PyramidTargetLesson394` | React Three Fiber generated regular Square/Triangle/Pentagon pyramids with editable side/height controls, exact apothem/radius/base/volume/slant/lateral/surface calculations, independent height/slant/net layers, orbit/zoom, reversible fullscreen, tabs/reset/share, action count, and validated practice | 1173 x 1341 desktop plus 390 px mobile rendering; nonblank 507 x 578 WebGL canvas; no overflow or application console errors | Complete |
 | 0580 | 395 Tetrahedron | `TetrahedronTargetLesson395` | React Three Fiber four-vertex tetrahedron with directly draggable A/B/C/D points, four selectable base faces, exact face normals/areas/perpendicular heights/determinant volume/centroid/edge measurements, live selected-base height mutation, slice plane, Select/Move/Measure/Slice/Explode tools, net and auto-rotation, tabs/reset/share, and computed volume challenge | 864 x 1821 desktop plus 390 px mobile rendering; nonblank 452 x 635 WebGL canvas; no overflow or application console errors | Complete |
+| 0581 | 396 Regular Polyhedra | `RegularPolyhedraTargetLesson396` | Six React Three Fiber canvases: a dedicated selectable main model and real rendered previews for all five Platonic solids; exact face/edge/vertex/Euler/Schläfli data, actual dual-geometry replacement, orbit/pan/zoom/reset, face hover state, tabs, exact comparison table, and graded octahedron challenge with hint and solution | Exact 1024 x 1536 desktop plus 390 px mobile rendering; nonblank 397 x 369 main WebGL canvas and five solid preview canvases; no overflow or application console errors | Complete |
 
-Completed in this family: **18 / 50**. Pending in this family: **32 / 50**.
+Completed in this family: **19 / 50**. Pending in this family: **31 / 50**.
 
 ## Lesson 378 validation
 
@@ -187,3 +188,12 @@ Completed in this family: **18 / 50**. Pending in this family: **32 / 50**.
 - Canvas-only capture: `0580-canvas.png`
 - Machine-readable interaction and layout audit: `0580-dedicated-target-validation.json`
 - The capture harness verifies A=(0,0,0), B=(6,0,0), C=(0,4,0), D=(2,4/3,5), base ABC area 12, perpendicular height 5, centroid (2,1.333,1.25), and volume 20; selects bases ABD/ACD/BCD and proves each independently computed area/height still yields invariant volume 20; changes the ABC height to 7 and proves volume 28, changes slice position, exercises Move/Measure/Slice/Explode, net, auto-rotation, challenge grading, clipboard/share, tabs, and shell reset; physically drags A to (1.086,0.459,0), verifies orbit pixel changes, and confirms exact 864 x 1821 dimensions, a nonblank 452 x 635 canvas, an overflow-free nonblank 390 px mobile rendering, and absence of application console errors.
+
+## Lesson 396 validation
+
+- Reference: `0581-reference.png`
+- Current capture: `0581-desktop.png`
+- Mobile capture: `0581-mobile.png`
+- Canvas-only capture: `0581-canvas.png`
+- Machine-readable interaction and layout audit: `0581-dedicated-target-validation.json`
+- The capture harness selects every Platonic solid and verifies Tetrahedron 4/6/4 {3,3}, Cube 6/12/8 {4,3}, Octahedron 8/12/6 {3,4}, Dodecahedron 12/30/20 {5,3}, and Icosahedron 20/30/12 {3,5}; proves the Cube dual command replaces the actual model with Octahedron; exercises orbit, pan, zoom, camera reset, tabs, back-to-lesson, wrong and correct grading, hint, solution, and shell reset; confirms physical orbit pixel changes, exact 1024 x 1536 dimensions, a nonblank 397 x 369 main canvas plus five rendered solid previews, an overflow-free nonblank 390 px mobile rendering, and absence of application console errors.
