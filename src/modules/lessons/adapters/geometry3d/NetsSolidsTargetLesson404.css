@@ -1,0 +1,603 @@
+.net404-page {
+  color: #13204a;
+  background: #f7faff;
+  font-family: Inter, Arial, sans-serif;
+}
+.net404-page * {
+  box-sizing: border-box;
+}
+.net404-page button,
+.net404-page input {
+  font: inherit;
+}
+.net404-page button {
+  cursor: pointer;
+}
+.net404-page h1,
+.net404-page h2 {
+  font-weight: 800;
+}
+.net404-hero {
+  display: flex;
+  height: 139px;
+  padding: 14px;
+  align-items: flex-start;
+  justify-content: space-between;
+  background: #fff;
+}
+.net404-hero h1 {
+  margin: 0 0 4px;
+  font-size: 27px;
+  line-height: 1;
+}
+.net404-hero p {
+  margin: 0 0 12px;
+  font-size: 10px;
+}
+.net404-hero small {
+  display: inline-block;
+  margin-right: 6px;
+  padding: 5px 10px;
+  border-radius: 13px;
+  color: #0787a3;
+  background: #e1f8fb;
+  font-size: 8px;
+  font-weight: 800;
+}
+.net404-hero small + small {
+  color: #344263;
+  background: #e9eef5;
+}
+.net404-hero nav {
+  display: flex;
+  margin-top: 10px;
+  gap: 8px;
+}
+.net404-hero nav span {
+  padding: 7px 12px;
+  border: 1px solid #dbe3ee;
+  border-radius: 15px;
+  font-size: 8px;
+  font-weight: 700;
+}
+.net404-hero > button {
+  display: flex;
+  height: 34px;
+  margin-top: 92px;
+  padding: 0 14px;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid #dbe3ee;
+  border-radius: 8px;
+  background: #fff;
+  color: #17244b;
+  font-size: 9px;
+  font-weight: 700;
+}
+.net404-picker {
+  height: 158px;
+  padding: 18px 14px;
+  background: #fff;
+}
+.net404-picker h2 {
+  margin: 0 0 12px;
+  font-size: 10px;
+}
+.net404-picker > div {
+  display: grid;
+  height: 92px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.net404-picker button {
+  display: grid;
+  position: relative;
+  place-items: center;
+  border: 1px solid #dfe5ed;
+  border-radius: 9px;
+  background: #fff;
+  color: #202b53;
+}
+.net404-picker button.active {
+  border: 2px solid #2685ee;
+  background: #f6fbff;
+}
+.net404-picker button > svg {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  color: #1683ed;
+}
+.net404-picker button b {
+  font-size: 10px;
+}
+.net404-choice-icon {
+  font-size: 36px;
+  line-height: 1;
+  color: #2a72ce;
+}
+.net404-choice-icon.prism {
+  color: #7951c9;
+}
+.net404-choice-icon.pyramid {
+  color: #f0803a;
+}
+.net404-builder {
+  display: grid;
+  height: 602px;
+  grid-template-columns: 48% 52%;
+  border-top: 1px solid #dce3ed;
+  border-bottom: 1px solid #dce3ed;
+  background: #fff;
+}
+.net404-builder > article {
+  position: relative;
+  overflow: hidden;
+}
+.net404-builder > article + article {
+  border-left: 1px solid #dfe5ed;
+}
+.net404-builder > article > header {
+  display: flex;
+  height: 62px;
+  padding: 14px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.net404-builder h2,
+.net404-middle h2,
+.net404-challenge h2 {
+  margin: 0 0 5px;
+  font-size: 12px;
+}
+.net404-builder header p,
+.net404-middle p,
+.net404-challenge p {
+  margin: 0;
+  font-size: 8px;
+}
+.net404-builder > article:nth-child(2) > header nav {
+  display: flex;
+  gap: 7px;
+}
+.net404-builder header button,
+.net404-random {
+  display: flex;
+  height: 34px;
+  padding: 0 12px;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #dbe3ef;
+  border-radius: 7px;
+  background: #fff;
+  color: #1164cd;
+  font-size: 8px;
+  font-weight: 700;
+}
+.net404-legend {
+  display: grid;
+  height: 35px;
+  margin: 0 14px;
+  grid-template-columns: 1fr 1fr 1fr;
+  border: 1px solid #dfe5ed;
+  border-radius: 7px;
+}
+.net404-legend > * {
+  display: flex;
+  padding: 0 10px;
+  align-items: center;
+  border-right: 1px solid #e1e6ee;
+  font-size: 7px;
+}
+.net404-legend label {
+  justify-content: space-between;
+  border: 0;
+}
+.net404-legend input {
+  width: 34px;
+  height: 20px;
+  accent-color: #176bd1;
+}
+.net404-net {
+  display: block;
+  width: 100%;
+  height: 397px;
+  touch-action: none;
+}
+.net404-net g[role="button"] {
+  cursor: grab;
+  outline: none;
+}
+.net404-net g[role="button"]:active {
+  cursor: grabbing;
+}
+.net404-builder article:first-child > footer {
+  display: flex;
+  position: absolute;
+  right: 14px;
+  bottom: 12px;
+  left: 14px;
+  align-items: flex-end;
+  gap: 6px;
+}
+.net404-builder article:first-child > footer > span {
+  display: flex;
+  height: 29px;
+  padding: 0 9px;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid #dbe4ed;
+  border-radius: 6px;
+  color: #3c4b68;
+  background: #fff;
+  font-size: 7px;
+}
+.net404-builder article:first-child > footer > span:first-child {
+  color: #16884a;
+  background: #ecfbf4;
+}
+.net404-builder article:first-child > footer > span.invalid,
+.net404-builder article:nth-child(2) > footer > span.invalid {
+  color: #c9434d;
+  border-color: #f0cbd0;
+  background: #fff1f3;
+}
+.net404-builder article:first-child > footer strong {
+  display: grid;
+  position: absolute;
+  bottom: 38px;
+  left: 0;
+  width: 155px;
+  height: 52px;
+  padding: 8px;
+  border: 1px solid #dce4ee;
+  border-radius: 7px;
+  background: #fff;
+  font-size: 7px;
+}
+.net404-builder article:first-child > footer strong b {
+  margin-top: 5px;
+  font-size: 10px;
+}
+.net404-scene {
+  position: relative;
+  height: 445px;
+  margin: 0 9px;
+  border-radius: 9px;
+  overflow: hidden;
+  background: #17214b;
+}
+.net404-scene canvas {
+  width: 100% !important;
+  height: 445px !important;
+}
+.net404-scene > label {
+  display: grid;
+  position: absolute;
+  right: 16px;
+  bottom: 15px;
+  left: 16px;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 9px;
+  color: #fff;
+  font-size: 8px;
+  font-weight: 700;
+}
+.net404-scene label input {
+  width: 100%;
+  accent-color: #57a7ed;
+}
+.net404-scene label output {
+  position: absolute;
+  right: 0;
+  bottom: -17px;
+  font-size: 12px;
+}
+.net404-builder article:nth-child(2) > footer {
+  display: flex;
+  height: 60px;
+  padding: 14px;
+  align-items: center;
+  justify-content: space-between;
+}
+.net404-builder article:nth-child(2) > footer b {
+  font-size: 9px;
+}
+.net404-builder article:nth-child(2) > footer p {
+  display: flex;
+  margin-top: 8px;
+  gap: 7px;
+}
+.net404-builder article:nth-child(2) > footer i {
+  display: block;
+  width: 19px;
+  height: 19px;
+  border-radius: 50%;
+}
+.net404-builder article:nth-child(2) > footer > span {
+  display: flex;
+  height: 37px;
+  padding: 0 12px;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid #cdece0;
+  border-radius: 7px;
+  color: #168a4a;
+  background: #effbf6;
+  font-size: 9px;
+  font-weight: 800;
+}
+.net404-middle {
+  display: grid;
+  height: 285px;
+  grid-template-columns: 48% 52%;
+  background: #fff;
+  border-bottom: 1px solid #dce4ee;
+}
+.net404-middle > article {
+  padding: 15px;
+}
+.net404-middle > article + article {
+  border-left: 1px solid #dce4ee;
+}
+.net404-gallery {
+  display: grid;
+  height: 166px;
+  margin-top: 12px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.net404-gallery button {
+  border: 1px solid #dce4ee;
+  border-radius: 7px;
+  background: #fff;
+}
+.net404-gallery button.active {
+  border: 2px solid #2786eb;
+  background: #f7fbff;
+}
+.net404-gallery svg {
+  width: 100%;
+  height: 70px;
+}
+.net404-random {
+  margin-top: 10px;
+}
+.net404-example {
+  display: grid;
+  height: 160px;
+  grid-template-columns: 1fr 30px 1fr;
+  align-items: center;
+}
+.net404-example > svg {
+  width: 100%;
+  height: 130px;
+}
+.net404-example > b {
+  text-align: center;
+  color: #4586de;
+  font-size: 29px;
+}
+.net404-preview-cube {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin: auto;
+  transform: rotate(-8deg) skewY(5deg);
+}
+.net404-preview-cube i {
+  display: block;
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  border: 1px solid #263660;
+}
+.net404-preview-cube i:first-child {
+  left: 0;
+  top: 25px;
+  background: #f7c22b;
+}
+.net404-preview-cube i:nth-child(2) {
+  left: 35px;
+  top: 0;
+  background: #397edf;
+  transform: skewY(-25deg);
+}
+.net404-preview-cube i:last-child {
+  left: -35px;
+  top: 0;
+  background: #57c778;
+  transform: skewY(25deg);
+}
+.net404-middle article:last-child > strong {
+  color: #0b9baf;
+  font-size: 9px;
+}
+.net404-challenge {
+  min-height: 230px;
+  padding: 15px 14px 0;
+  background: #fff;
+}
+.net404-challenge > header {
+  display: grid;
+  height: 48px;
+  grid-template-columns: 1fr 75px 90px;
+  align-items: start;
+}
+.net404-challenge header > span {
+  padding: 8px;
+  border-radius: 7px;
+  background: #e9f8f6;
+  text-align: center;
+  font-size: 8px;
+  font-weight: 800;
+}
+.net404-challenge header > button {
+  height: 33px;
+  margin-left: 7px;
+  border: 0;
+  border-radius: 7px;
+  color: #fff;
+  background: #114eb6;
+  font-size: 8px;
+  font-weight: 700;
+}
+.net404-challenge > div {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+}
+.net404-challenge > div > button {
+  display: grid;
+  position: relative;
+  height: 125px;
+  padding: 8px;
+  border: 1px solid #dce4ec;
+  border-radius: 7px;
+  background: #fff;
+}
+.net404-challenge > div > button.selected {
+  border-color: #42bd78;
+  background: #f6fff9;
+}
+.net404-challenge > div > button.invalid {
+  border-color: #ef7474;
+  background: #fff9f9;
+}
+.net404-challenge button > b {
+  position: absolute;
+  top: 7px;
+  left: 7px;
+  display: flex;
+  width: 20px;
+  height: 20px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #dff1e8;
+  font-size: 8px;
+}
+.net404-challenge button > svg.lucide {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 17px;
+  height: 17px;
+  margin: 0;
+}
+.net404-challenge button > svg:not(.lucide) {
+  width: 100%;
+  height: 84px;
+  margin-top: 14px;
+}
+.net404-challenge > div > button.valid {
+  border-color: #42bd78;
+  background: #f6fff9;
+}
+.net404-challenge button > small {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  left: 5px;
+  padding: 4px;
+  border-radius: 5px;
+  color: #de4050;
+  background: #fde7ec;
+  font-size: 6px;
+}
+.net404-challenge > .correct,
+.net404-challenge > .wrong {
+  display: block;
+  margin-top: 6px;
+  font-size: 8px;
+}
+.net404-challenge > .correct {
+  color: #17884b;
+}
+.net404-challenge > .wrong {
+  color: #c44242;
+}
+.net404-challenge > footer {
+  height: 37px;
+  margin: 10px -14px 0;
+  padding: 12px 20px;
+  background: #f1f5fa;
+  font-size: 7px;
+}
+.net404-next {
+  display: flex;
+  height: 61px;
+  padding: 11px 14px;
+  justify-content: space-between;
+  background: #fff;
+}
+.net404-next a {
+  display: flex;
+  width: 180px;
+  align-items: center;
+  gap: 9px;
+  color: #17234b;
+  text-decoration: none;
+  font-size: 7px;
+}
+.net404-next a:last-child {
+  justify-content: flex-end;
+  text-align: right;
+}
+.net404-next small {
+  display: block;
+  margin-top: 4px;
+  font-size: 9px;
+}
+@media (max-width: 650px) {
+  .net404-hero {
+    height: auto;
+    min-height: 180px;
+  }
+  .net404-hero > button {
+    margin-top: 110px;
+  }
+  .net404-picker {
+    height: auto;
+  }
+  .net404-picker > div {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .net404-picker button {
+    height: 92px;
+  }
+  .net404-builder,
+  .net404-middle {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .net404-builder > article {
+    min-height: 602px;
+  }
+  .net404-builder > article + article,
+  .net404-middle > article + article {
+    border-left: 0;
+    border-top: 1px solid #dfe5ed;
+  }
+  .net404-challenge > div {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .net404-challenge > div > button {
+    height: 130px;
+  }
+  .net404-page {
+    overflow-x: hidden;
+  }
+  .net404-hero nav {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .net404-middle > article {
+    min-height: 285px;
+  }
+  .net404-next a {
+    width: 45%;
+  }
+}

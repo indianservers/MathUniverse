@@ -1,0 +1,268 @@
+{
+  "mockup": "0589",
+  "lessonId": 404,
+  "checks": {
+    "initial": {
+      "solid": "cube",
+      "fold": "100",
+      "gallery": "0",
+      "tabs": "true",
+      "valid": "true",
+      "face-count": "6",
+      "surface-area": "6",
+      "selected": "A,C",
+      "checked": "true",
+      "correct": "false",
+      "playing": "false",
+      "shared": "false",
+      "actions": "0"
+    },
+    "dragInvalid": {
+      "solid": "cube",
+      "fold": "100",
+      "gallery": "0",
+      "tabs": "true",
+      "valid": "false",
+      "face-count": "6",
+      "surface-area": "6",
+      "selected": "A,C",
+      "checked": "false",
+      "correct": "false",
+      "playing": "false",
+      "shared": "false",
+      "actions": "5"
+    },
+    "reconnected": {
+      "solid": "cube",
+      "fold": "100",
+      "gallery": "0",
+      "tabs": "true",
+      "valid": "true",
+      "face-count": "6",
+      "surface-area": "6",
+      "selected": "A,C",
+      "checked": "false",
+      "correct": "false",
+      "playing": "false",
+      "shared": "false",
+      "actions": "6"
+    },
+    "tabsOff": {
+      "solid": "cube",
+      "fold": "100",
+      "gallery": "0",
+      "tabs": "false",
+      "valid": "true",
+      "face-count": "6",
+      "surface-area": "6",
+      "selected": "A,C",
+      "checked": "false",
+      "correct": "false",
+      "playing": "false",
+      "shared": "false",
+      "actions": "7"
+    },
+    "unfolded": {
+      "solid": "cube",
+      "fold": "0",
+      "gallery": "0",
+      "tabs": "false",
+      "valid": "true",
+      "face-count": "6",
+      "surface-area": "6",
+      "selected": "A,C",
+      "checked": "false",
+      "correct": "false",
+      "playing": "false",
+      "shared": "false",
+      "actions": "8"
+    },
+    "animationStart": {
+      "solid": "cube",
+      "fold": "0",
+      "gallery": "0",
+      "tabs": "false",
+      "valid": "true",
+      "face-count": "6",
+      "surface-area": "6",
+      "selected": "A,C",
+      "checked": "false",
+      "correct": "false",
+      "playing": "true",
+      "shared": "false",
+      "actions": "9"
+    },
+    "animationAdvanced": {
+      "solid": "cube",
+      "fold": "48",
+      "gallery": "0",
+      "tabs": "false",
+      "valid": "true",
+      "face-count": "6",
+      "surface-area": "6",
+      "selected": "A,C",
+      "checked": "false",
+      "correct": "false",
+      "playing": "true",
+      "shared": "false",
+      "actions": "9"
+    },
+    "prism": {
+      "solid": "prism",
+      "fold": "100",
+      "gallery": "0",
+      "tabs": "false",
+      "valid": "true",
+      "face-count": "5",
+      "surface-area": "8",
+      "selected": "A,C",
+      "checked": "false",
+      "correct": "false",
+      "playing": "false",
+      "shared": "false",
+      "actions": "10"
+    },
+    "pyramid": {
+      "solid": "pyramid",
+      "fold": "100",
+      "gallery": "0",
+      "tabs": "false",
+      "valid": "true",
+      "face-count": "5",
+      "surface-area": "9",
+      "selected": "A,C",
+      "checked": "false",
+      "correct": "false",
+      "playing": "false",
+      "shared": "false",
+      "actions": "11"
+    },
+    "gallery": {
+      "solid": "cube",
+      "fold": "0",
+      "gallery": "2",
+      "tabs": "false",
+      "valid": "true",
+      "face-count": "6",
+      "surface-area": "6",
+      "selected": "A,C",
+      "checked": "false",
+      "correct": "false",
+      "playing": "false",
+      "shared": "false",
+      "actions": "12"
+    },
+    "challenge": {
+      "solid": "cube",
+      "fold": "0",
+      "gallery": "2",
+      "tabs": "false",
+      "valid": "true",
+      "face-count": "6",
+      "surface-area": "6",
+      "selected": "A,C,D,F",
+      "checked": "true",
+      "correct": "true",
+      "playing": "false",
+      "shared": "false",
+      "actions": "14"
+    },
+    "orbitChanged": true,
+    "canvas": {
+      "width": 375,
+      "height": 445,
+      "nonblank": true
+    },
+    "shared": {
+      "solid": "cube",
+      "fold": "0",
+      "gallery": "2",
+      "tabs": "false",
+      "valid": "true",
+      "face-count": "6",
+      "surface-area": "6",
+      "selected": "A,C,D,F",
+      "checked": "false",
+      "correct": "false",
+      "playing": "false",
+      "shared": "true",
+      "actions": "15"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 987,
+      "height": 1687
+    },
+    "overflow": false,
+    "hero": {
+      "top": 99,
+      "left": 220,
+      "width": 758,
+      "height": 139,
+      "bottom": 238
+    },
+    "picker": {
+      "top": 238,
+      "left": 220,
+      "width": 758,
+      "height": 158,
+      "bottom": 396
+    },
+    "builder": {
+      "top": 396,
+      "left": 220,
+      "width": 758,
+      "height": 602,
+      "bottom": 998
+    },
+    "net": {
+      "top": 494,
+      "left": 220,
+      "width": 364,
+      "height": 397,
+      "bottom": 891
+    },
+    "scene": {
+      "top": 459,
+      "left": 594,
+      "width": 375,
+      "height": 445,
+      "bottom": 904
+    },
+    "middle": {
+      "top": 998,
+      "left": 220,
+      "width": 758,
+      "height": 285,
+      "bottom": 1283
+    },
+    "challenge": {
+      "top": 1283,
+      "left": 220,
+      "width": 758,
+      "height": 235,
+      "bottom": 1518
+    },
+    "navigation": {
+      "top": 1518,
+      "left": 220,
+      "width": 758,
+      "height": 61,
+      "bottom": 1579
+    }
+  },
+  "mobileMetrics": {
+    "documentWidth": 390,
+    "overflow": false,
+    "canvas": {
+      "x": 229,
+      "y": 199.4375,
+      "width": 143,
+      "height": 445
+    },
+    "nonblank": true
+  },
+  "consoleMessages": [],
+  "passed": true
+}

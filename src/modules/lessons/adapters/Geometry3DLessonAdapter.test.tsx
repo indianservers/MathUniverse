@@ -693,4 +693,24 @@ describe("Geometry3DLessonAdapter", () => {
     expect(html).toContain('data-volume="48"');
     expect(html).toContain('data-lateral-area="48"');
   });
+
+  it("uses a dedicated nets-of-solids lab for lesson 404", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 404)!;
+    const html = renderToStaticMarkup(
+      <Geometry3DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="geometry3d-mockup-0589"');
+    expect(html).toContain(
+      "threejs-dedicated-foldable-solid-net-linked-faces-hinges-tabs-gallery-validity-challenge",
+    );
+    expect(html).toContain('data-solid="cube"');
+    expect(html).toContain('data-fold="100"');
+    expect(html).toContain('data-valid="true"');
+    expect(html).toContain('data-face-count="6"');
+    expect(html).toContain('data-surface-area="6"');
+  });
 });
