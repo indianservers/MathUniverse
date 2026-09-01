@@ -74,7 +74,7 @@ describe("Geometry3DLessonAdapter", () => {
       if (
         ![
           378, 379, 380, 381, 382, 383, 384, 385, 386, 387, 388, 389, 390, 391,
-          392, 393, 394, 395, 396, 397, 398, 399,
+          392, 393, 394, 395, 396, 397, 398, 399, 400,
         ].includes(lessonId) &&
         lesson.preset.id !== "geometry3d.solid-net"
       ) {
@@ -596,5 +596,29 @@ describe("Geometry3DLessonAdapter", () => {
     expect(html).toContain('data-projection="Perspective"');
     expect(html).toContain('data-area-coefficient="100"');
     expect(html).toContain('data-volume-coefficient="166.6667"');
+  });
+
+  it("uses a dedicated cut-hemisphere lab for lesson 400", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 400)!;
+    const html = renderToStaticMarkup(
+      <Geometry3DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="geometry3d-mockup-0585"');
+    expect(html).toContain(
+      "threejs-dedicated-dynamic-spherical-cap-cut-plane-top-bottom-solid-open-bowl-radius-opacity-orbit-zoom-undo-redo-fullscreen-exact-hemisphere-area-volume-comparison-graded-challenge",
+    );
+    expect(html).toContain('data-radius="4"');
+    expect(html).toContain('data-cut="0"');
+    expect(html).toContain('data-cut-radius="4"');
+    expect(html).toContain('data-half="Top half"');
+    expect(html).toContain('data-display="Solid"');
+    expect(html).toContain('data-opacity="70"');
+    expect(html).toContain('data-volume-coefficient="42.6667"');
+    expect(html).toContain('data-curved-coefficient="32"');
+    expect(html).toContain('data-total-coefficient="48"');
   });
 });
