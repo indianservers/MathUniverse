@@ -74,7 +74,7 @@ describe("Geometry3DLessonAdapter", () => {
       if (
         ![
           378, 379, 380, 381, 382, 383, 384, 385, 386, 387, 388, 389, 390, 391,
-          392, 393, 394, 395, 396, 397, 398,
+          392, 393, 394, 395, 396, 397, 398, 399,
         ].includes(lessonId) &&
         lesson.preset.id !== "geometry3d.solid-net"
       ) {
@@ -572,5 +572,29 @@ describe("Geometry3DLessonAdapter", () => {
     expect(html).toContain('data-curved-coefficient="15"');
     expect(html).toContain('data-total-coefficient="24"');
     expect(html).toContain('data-sector-angle="216"');
+  });
+
+  it("uses a dedicated sliced-sphere lab for lesson 399", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 399)!;
+    const html = renderToStaticMarkup(
+      <Geometry3DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="geometry3d-mockup-0584"');
+    expect(html).toContain(
+      "threejs-dedicated-parametric-sphere-radius-slice-great-circle-meridian-axes-orthographic-perspective-animation-exact-area-volume-scaling-graded-challenge-save-export",
+    );
+    expect(html).toContain('data-radius="5"');
+    expect(html).toContain('data-slice-height="2"');
+    expect(html).toContain('data-slice-radius="4.5826"');
+    expect(html).toContain('data-longitude="45"');
+    expect(html).toContain('data-great-circle="true"');
+    expect(html).toContain('data-layers="true"');
+    expect(html).toContain('data-projection="Perspective"');
+    expect(html).toContain('data-area-coefficient="100"');
+    expect(html).toContain('data-volume-coefficient="166.6667"');
   });
 });
