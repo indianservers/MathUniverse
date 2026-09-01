@@ -23,8 +23,9 @@ Target references begin at `0563` in `D:\Math App Screenshots for UI Update\Upda
 | 0577 | 392 Cuboid | `CuboidTargetLesson392` | React Three Fiber parametric cuboid model with six working length/width/height steppers, exact volume/surface/base/face-diagonal/space-diagonal calculations, independent diagonal layers, genuine six-face rectangular net, orbit/zoom, tabs/reset/share, edge/face/right-angle structure, and a computed 4×2×3 practice model | 1173 x 1341 desktop plus 390 px mobile rendering; nonblank 536 x 477 WebGL canvas; no overflow or application console errors | Complete |
 | 0578 | 393 Prism | `PrismTargetLesson393` | React Three Fiber generated Triangle/Rectangle/Hexagon cross-sections extruded by editable length, synchronized base/height/length sliders and numeric controls, exact base/perimeter/volume/lateral/surface calculations, independent base/lateral/net layers, orbit/zoom, reversible fullscreen, tabs/reset/share, and practice guidance | 1173 x 1341 desktop plus 390 px mobile rendering; nonblank 509 x 526 WebGL canvas; no overflow or application console errors | Complete |
 | 0579 | 394 Pyramid | `PyramidTargetLesson394` | React Three Fiber generated regular Square/Triangle/Pentagon pyramids with editable side/height controls, exact apothem/radius/base/volume/slant/lateral/surface calculations, independent height/slant/net layers, orbit/zoom, reversible fullscreen, tabs/reset/share, action count, and validated practice | 1173 x 1341 desktop plus 390 px mobile rendering; nonblank 507 x 578 WebGL canvas; no overflow or application console errors | Complete |
+| 0580 | 395 Tetrahedron | `TetrahedronTargetLesson395` | React Three Fiber four-vertex tetrahedron with directly draggable A/B/C/D points, four selectable base faces, exact face normals/areas/perpendicular heights/determinant volume/centroid/edge measurements, live selected-base height mutation, slice plane, Select/Move/Measure/Slice/Explode tools, net and auto-rotation, tabs/reset/share, and computed volume challenge | 864 x 1821 desktop plus 390 px mobile rendering; nonblank 452 x 635 WebGL canvas; no overflow or application console errors | Complete |
 
-Completed in this family: **17 / 50**. Pending in this family: **33 / 50**.
+Completed in this family: **18 / 50**. Pending in this family: **32 / 50**.
 
 ## Lesson 378 validation
 
@@ -177,3 +178,12 @@ Completed in this family: **17 / 50**. Pending in this family: **33 / 50**.
 - Canvas-only capture: `0579-canvas.png`
 - Machine-readable interaction and layout audit: `0579-dedicated-target-validation.json`
 - The capture harness verifies the default square pyramid s=4, h=6, base area 16, volume 32, slant height ≈6.32, lateral area ≈50.60, and total area ≈66.60; switches to an equilateral-triangle base and proves 6.93/13.86/6.11/36.66/43.59, switches to a regular pentagon and proves 27.53/55.06/6.60/66.01/93.54, then edits the square to s=6, h=8 and proves base area 36, volume 96, and slant height ≈8.54; exercises all three height/slant/net layers, practice, clipboard/share state, orbit, reversible fullscreen, tabs, and shell reset; confirms exact 1173 x 1341 dimensions, a nonblank 507 x 578 canvas, an overflow-free nonblank 390 px mobile rendering, and absence of application console errors.
+
+## Lesson 395 validation
+
+- Reference: `0580-reference.png`
+- Current capture: `0580-desktop.png`
+- Mobile capture: `0580-mobile.png`
+- Canvas-only capture: `0580-canvas.png`
+- Machine-readable interaction and layout audit: `0580-dedicated-target-validation.json`
+- The capture harness verifies A=(0,0,0), B=(6,0,0), C=(0,4,0), D=(2,4/3,5), base ABC area 12, perpendicular height 5, centroid (2,1.333,1.25), and volume 20; selects bases ABD/ACD/BCD and proves each independently computed area/height still yields invariant volume 20; changes the ABC height to 7 and proves volume 28, changes slice position, exercises Move/Measure/Slice/Explode, net, auto-rotation, challenge grading, clipboard/share, tabs, and shell reset; physically drags A to (1.086,0.459,0), verifies orbit pixel changes, and confirms exact 864 x 1821 dimensions, a nonblank 452 x 635 canvas, an overflow-free nonblank 390 px mobile rendering, and absence of application console errors.

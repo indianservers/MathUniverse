@@ -74,7 +74,7 @@ describe("Geometry3DLessonAdapter", () => {
       if (
         ![
           378, 379, 380, 381, 382, 383, 384, 385, 386, 387, 388, 389, 390, 391,
-          392, 393, 394,
+          392, 393, 394, 395,
         ].includes(lessonId) &&
         lesson.preset.id !== "geometry3d.solid-net"
       ) {
@@ -482,5 +482,28 @@ describe("Geometry3DLessonAdapter", () => {
     expect(html).toContain('data-lateral="50.6"');
     expect(html).toContain('data-surface="66.6"');
     expect(html).toContain('data-layers="[true,true,true]"');
+  });
+
+  it("uses a dedicated four-vertex tetrahedron model for lesson 395", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 395)!;
+    const html = renderToStaticMarkup(
+      <Geometry3DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="geometry3d-mockup-0580"');
+    expect(html).toContain(
+      "threejs-dedicated-four-directly-draggable-vertices-selectable-base-exact-face-area-perpendicular-height-determinant-volume-centroid-edges-slice-net-tools-explode-challenge",
+    );
+    expect(html).toContain(
+      'data-points="[[0,0,0],[6,0,0],[0,4,0],[2,1.3333333333333333,5]]"',
+    );
+    expect(html).toContain('data-base="ABC"');
+    expect(html).toContain('data-base-area="12"');
+    expect(html).toContain('data-height="5"');
+    expect(html).toContain('data-volume="20"');
+    expect(html).toContain('data-centroid="[2,1.333,1.25]"');
   });
 });
