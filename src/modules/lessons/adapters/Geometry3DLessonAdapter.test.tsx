@@ -779,4 +779,25 @@ describe("Geometry3DLessonAdapter", () => {
     expect(html).toContain('data-selected-faces="6"');
     expect(html).toContain('data-total-area="52"');
   });
+
+  it("uses a dedicated Euler topology counter for lesson 408", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 408)!;
+    const html = renderToStaticMarkup(
+      <Geometry3DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="geometry3d-mockup-0593"');
+    expect(html).toContain(
+      "threejs-dedicated-countable-polyhedron-topology-euler-dual-hole-challenge",
+    );
+    expect(html).toContain('data-solid="cube"');
+    expect(html).toContain('data-vertices="8"');
+    expect(html).toContain('data-edges="12"');
+    expect(html).toContain('data-faces="6"');
+    expect(html).toContain('data-euler="2"');
+    expect(html).toContain('data-verified="true"');
+  });
 });
