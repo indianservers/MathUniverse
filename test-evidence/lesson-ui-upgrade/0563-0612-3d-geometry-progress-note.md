@@ -26,8 +26,9 @@ Target references begin at `0563` in `D:\Math App Screenshots for UI Update\Upda
 | 0580 | 395 Tetrahedron | `TetrahedronTargetLesson395` | React Three Fiber four-vertex tetrahedron with directly draggable A/B/C/D points, four selectable base faces, exact face normals/areas/perpendicular heights/determinant volume/centroid/edge measurements, live selected-base height mutation, slice plane, Select/Move/Measure/Slice/Explode tools, net and auto-rotation, tabs/reset/share, and computed volume challenge | 864 x 1821 desktop plus 390 px mobile rendering; nonblank 452 x 635 WebGL canvas; no overflow or application console errors | Complete |
 | 0581 | 396 Regular Polyhedra | `RegularPolyhedraTargetLesson396` | Six React Three Fiber canvases: a dedicated selectable main model and real rendered previews for all five Platonic solids; exact face/edge/vertex/Euler/Schläfli data, actual dual-geometry replacement, orbit/pan/zoom/reset, face hover state, tabs, exact comparison table, and graded octahedron challenge with hint and solution | Exact 1024 x 1536 desktop plus 390 px mobile rendering; nonblank 397 x 369 main WebGL canvas and five solid preview canvases; no overflow or application console errors | Complete |
 | 0582 | 397 Cylinder | `CylinderTargetLesson397` | React Three Fiber parametric outer cylinder and independent liquid mesh driven by editable radius, height, and fill; Fill/Unfold/Cross-section modes, four real camera presets, orbit/zoom/reset, animated and restartable fill, generated dimension-aware net, three calculated cross-sections, exact volume/curved-area/total-area formulas, tabs/reset/share, worked example, and graded target-volume challenge | Exact 1024 x 1536 desktop plus 390 px mobile rendering; nonblank 340 x 455 WebGL canvas; no overflow or application console errors | Complete |
+| 0583 | 398 Cone | `ConeTargetLesson398` | React Three Fiber parametric cone driven by editable radius and height with computed locked slant length, real orbit/reset, dynamically generated sector net and base circle, exact arc length and sector angle, live same-dimension cylinder comparison, exact volume/curved-area/total-area formulas, tabs/reset/share, worked example, and four-step computed 3–4–5 cone challenge | Exact 1024 x 1536 desktop plus 390 px mobile rendering; nonblank 276 x 286 WebGL canvas inside the target dark stage; no overflow or application console errors | Complete |
 
-Completed in this family: **20 / 50**. Pending in this family: **30 / 50**.
+Completed in this family: **21 / 50**. Pending in this family: **29 / 50**.
 
 ## Lesson 378 validation
 
@@ -207,3 +208,12 @@ Completed in this family: **20 / 50**. Pending in this family: **30 / 50**.
 - Canvas-only capture: `0582-canvas.png`
 - Machine-readable interaction and layout audit: `0582-dedicated-target-validation.json`
 - The capture harness verifies the target r=3, h=5, fill=72%, V≈141.372, curved area≈94.248, total area≈150.796, and horizontal area≈28.274; edits to r=4, h=6, fill=55% and proves V≈301.593, curved area≈150.796, and total area≈251.327; exercises Fill/Unfold/Cross-section modes, Top/Front/Right/Rotate cameras, physical orbit pixel change, animated fill and restart, axial and half-axial section calculations, wrong/correct challenge grading, new challenge, clipboard/share, tabs, and shell reset; confirms exact 1024 x 1536 dimensions, a nonblank 340 x 455 WebGL canvas, an overflow-free nonblank 390 px mobile rendering, and absence of application console errors.
+
+## Lesson 398 validation
+
+- Reference: `0583-reference.png`
+- Current capture: `0583-desktop.png`
+- Mobile capture: `0583-mobile.png`
+- Canvas-only capture: `0583-canvas.png`
+- Machine-readable interaction and layout audit: `0583-dedicated-target-validation.json`
+- The capture harness verifies the target 3–4–5 cone with slant 5, cone volume 12π, comparison-cylinder volume 36π, curved area 15π, total area 24π, and sector angle 216°; scales to a similar 6–8–10 cone and proves 96π/288π/60π/96π with the invariant 216° sector; changes to a non-similar 5–12–13 cone and proves 100π/300π/65π/90π and θ≈138.462°; exercises physical orbit, camera reset, tabs, clipboard/share, local reset, all four computed challenge steps and invalidation after changing radius, plus shell reset; confirms exact 1024 x 1536 dimensions, a nonblank 276 x 286 WebGL canvas, an overflow-free nonblank 390 px mobile rendering, and absence of application console errors.

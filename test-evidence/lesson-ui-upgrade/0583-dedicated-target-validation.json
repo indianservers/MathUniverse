@@ -1,0 +1,224 @@
+{
+  "mockup": "0583",
+  "lessonId": 398,
+  "checks": {
+    "initial": {
+      "radius": "3",
+      "height": "4",
+      "slant": "5",
+      "volume-coefficient": "12",
+      "cylinder-coefficient": "36",
+      "curved-coefficient": "15",
+      "total-coefficient": "24",
+      "sector-angle": "216",
+      "tab": "Interaction",
+      "shared": "false",
+      "steps": "[false,false,false,false]",
+      "complete": "false",
+      "actions": "0"
+    },
+    "scaled345": {
+      "radius": "6",
+      "height": "8",
+      "slant": "10",
+      "volume-coefficient": "96",
+      "cylinder-coefficient": "288",
+      "curved-coefficient": "60",
+      "total-coefficient": "96",
+      "sector-angle": "216",
+      "tab": "Interaction",
+      "shared": "false",
+      "steps": "[false,false,false,false]",
+      "complete": "false",
+      "actions": "2"
+    },
+    "fiveTwelve": {
+      "radius": "5",
+      "height": "12",
+      "slant": "13",
+      "volume-coefficient": "100",
+      "cylinder-coefficient": "300",
+      "curved-coefficient": "65",
+      "total-coefficient": "90",
+      "sector-angle": "138.462",
+      "tab": "Interaction",
+      "shared": "false",
+      "steps": "[false,false,false,false]",
+      "complete": "false",
+      "actions": "4"
+    },
+    "orbitChanged": true,
+    "canvasPixels": {
+      "colored": 24967,
+      "unique": 955,
+      "width": 270,
+      "height": 286
+    },
+    "tabbed": {
+      "radius": "5",
+      "height": "12",
+      "slant": "13",
+      "volume-coefficient": "100",
+      "cylinder-coefficient": "300",
+      "curved-coefficient": "65",
+      "total-coefficient": "90",
+      "sector-angle": "138.462",
+      "tab": "Formulas",
+      "shared": "false",
+      "steps": "[false,false,false,false]",
+      "complete": "false",
+      "actions": "6"
+    },
+    "shared": {
+      "radius": "5",
+      "height": "12",
+      "slant": "13",
+      "volume-coefficient": "100",
+      "cylinder-coefficient": "300",
+      "curved-coefficient": "65",
+      "total-coefficient": "90",
+      "sector-angle": "138.462",
+      "tab": "Formulas",
+      "shared": "true",
+      "steps": "[false,false,false,false]",
+      "complete": "false",
+      "actions": "7"
+    },
+    "localReset": {
+      "radius": "3",
+      "height": "4",
+      "slant": "5",
+      "volume-coefficient": "12",
+      "cylinder-coefficient": "36",
+      "curved-coefficient": "15",
+      "total-coefficient": "24",
+      "sector-angle": "216",
+      "tab": "Interaction",
+      "shared": "false",
+      "steps": "[false,false,false,false]",
+      "complete": "false",
+      "actions": "0"
+    },
+    "challengeComplete": {
+      "radius": "3",
+      "height": "4",
+      "slant": "5",
+      "volume-coefficient": "12",
+      "cylinder-coefficient": "36",
+      "curved-coefficient": "15",
+      "total-coefficient": "24",
+      "sector-angle": "216",
+      "tab": "Interaction",
+      "shared": "false",
+      "steps": "[true,true,true,true]",
+      "complete": "true",
+      "actions": "4"
+    },
+    "challengeInvalidated": {
+      "radius": "4",
+      "height": "4",
+      "slant": "5.657",
+      "volume-coefficient": "21.333",
+      "cylinder-coefficient": "64",
+      "curved-coefficient": "22.627",
+      "total-coefficient": "38.627",
+      "sector-angle": "254.558",
+      "tab": "Interaction",
+      "shared": "false",
+      "steps": "[true,true,true,true]",
+      "complete": "false",
+      "actions": "5"
+    },
+    "reset": {
+      "radius": "3",
+      "height": "4",
+      "slant": "5",
+      "volume-coefficient": "12",
+      "cylinder-coefficient": "36",
+      "curved-coefficient": "15",
+      "total-coefficient": "24",
+      "sector-angle": "216",
+      "tab": "Interaction",
+      "shared": "false",
+      "steps": "[false,false,false,false]",
+      "complete": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "overflow": false,
+    "hero": {
+      "top": 99,
+      "left": 220,
+      "width": 792,
+      "height": 228,
+      "bottom": 327
+    },
+    "tabs": {
+      "top": 339,
+      "left": 220,
+      "width": 792,
+      "height": 49,
+      "bottom": 388
+    },
+    "work": {
+      "top": 400,
+      "left": 220,
+      "width": 792,
+      "height": 527,
+      "bottom": 927
+    },
+    "canvas": {
+      "top": 437,
+      "left": 233,
+      "width": 282,
+      "height": 419,
+      "bottom": 856
+    },
+    "formulas": {
+      "top": 937,
+      "left": 220,
+      "width": 792,
+      "height": 149,
+      "bottom": 1086
+    },
+    "bottom": {
+      "top": 1096,
+      "left": 220,
+      "width": 792,
+      "height": 299,
+      "bottom": 1395
+    },
+    "navigation": {
+      "top": 1405,
+      "left": 220,
+      "width": 792,
+      "height": 44,
+      "bottom": 1449
+    },
+    "footer": {
+      "top": 1457,
+      "left": 220,
+      "width": 792,
+      "height": 78,
+      "bottom": 1535
+    }
+  },
+  "mobileMetrics": {
+    "documentWidth": 390,
+    "overflow": false,
+    "canvas": {
+      "x": 31,
+      "y": 557.765625,
+      "width": 328,
+      "height": 286
+    },
+    "nonblank": true
+  },
+  "consoleMessages": [],
+  "passed": true
+}

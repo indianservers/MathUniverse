@@ -74,7 +74,7 @@ describe("Geometry3DLessonAdapter", () => {
       if (
         ![
           378, 379, 380, 381, 382, 383, 384, 385, 386, 387, 388, 389, 390, 391,
-          392, 393, 394, 395, 396, 397,
+          392, 393, 394, 395, 396, 397, 398,
         ].includes(lessonId) &&
         lesson.preset.id !== "geometry3d.solid-net"
       ) {
@@ -549,5 +549,28 @@ describe("Geometry3DLessonAdapter", () => {
     expect(html).toContain('data-curved="94.248"');
     expect(html).toContain('data-surface="150.796"');
     expect(html).toContain('data-section-area="28.274"');
+  });
+
+  it("uses a dedicated parametric cone lab for lesson 398", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 398)!;
+    const html = renderToStaticMarkup(
+      <Geometry3DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="geometry3d-mockup-0583"');
+    expect(html).toContain(
+      "threejs-dedicated-parametric-cone-radius-height-computed-slant-orbit-sector-net-arc-angle-cylinder-comparison-exact-volume-curved-total-area-345-challenge",
+    );
+    expect(html).toContain('data-radius="3"');
+    expect(html).toContain('data-height="4"');
+    expect(html).toContain('data-slant="5"');
+    expect(html).toContain('data-volume-coefficient="12"');
+    expect(html).toContain('data-cylinder-coefficient="36"');
+    expect(html).toContain('data-curved-coefficient="15"');
+    expect(html).toContain('data-total-coefficient="24"');
+    expect(html).toContain('data-sector-angle="216"');
   });
 });
