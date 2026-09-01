@@ -74,7 +74,7 @@ describe("Geometry3DLessonAdapter", () => {
       if (
         ![
           378, 379, 380, 381, 382, 383, 384, 385, 386, 387, 388, 389, 390, 391,
-          392, 393, 394, 395, 396,
+          392, 393, 394, 395, 396, 397,
         ].includes(lessonId) &&
         lesson.preset.id !== "geometry3d.solid-net"
       ) {
@@ -527,5 +527,27 @@ describe("Geometry3DLessonAdapter", () => {
     expect(html).toContain('data-euler="2"');
     expect(html).toContain('data-symbol="{3, 3}"');
     expect(html).toContain('data-dual="Tetrahedron"');
+  });
+
+  it("uses a dedicated parametric cylinder lab for lesson 397", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 397)!;
+    const html = renderToStaticMarkup(
+      <Geometry3DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="geometry3d-mockup-0582"');
+    expect(html).toContain(
+      "threejs-dedicated-parametric-cylinder-liquid-fill-radius-height-net-cross-sections-camera-presets-orbit-zoom-exact-volume-curved-total-surface-graded-challenge",
+    );
+    expect(html).toContain('data-radius="3"');
+    expect(html).toContain('data-height="5"');
+    expect(html).toContain('data-fill="72"');
+    expect(html).toContain('data-volume="141.372"');
+    expect(html).toContain('data-curved="94.248"');
+    expect(html).toContain('data-surface="150.796"');
+    expect(html).toContain('data-section-area="28.274"');
   });
 });

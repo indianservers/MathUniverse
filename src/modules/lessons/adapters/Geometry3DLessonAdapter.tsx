@@ -23,6 +23,7 @@ import PrismTargetLesson393 from "./geometry3d/PrismTargetLesson393";
 import PyramidTargetLesson394 from "./geometry3d/PyramidTargetLesson394";
 import TetrahedronTargetLesson395 from "./geometry3d/TetrahedronTargetLesson395";
 import RegularPolyhedraTargetLesson396 from "./geometry3d/RegularPolyhedraTargetLesson396";
+import CylinderTargetLesson397 from "./geometry3d/CylinderTargetLesson397";
 
 export default function Geometry3DLessonAdapter(props: LessonAdapterProps) {
   if (props.lesson.id === 378)
@@ -49,6 +50,7 @@ export default function Geometry3DLessonAdapter(props: LessonAdapterProps) {
   if (props.lesson.id === 395) return <TetrahedronTargetLesson395 {...props} />;
   if (props.lesson.id === 396)
     return <RegularPolyhedraTargetLesson396 {...props} />;
+  if (props.lesson.id === 397) return <CylinderTargetLesson397 {...props} />;
   if (props.lesson.preset.id === "geometry3d.solid-net") {
     return (
       <AdapterFrame
