@@ -20,6 +20,7 @@ import VectorsTargetLesson390 from "./geometry3d/VectorsTargetLesson390";
 import CubeTargetLesson391 from "./geometry3d/CubeTargetLesson391";
 import CuboidTargetLesson392 from "./geometry3d/CuboidTargetLesson392";
 import PrismTargetLesson393 from "./geometry3d/PrismTargetLesson393";
+import PyramidTargetLesson394 from "./geometry3d/PyramidTargetLesson394";
 
 export default function Geometry3DLessonAdapter(props: LessonAdapterProps) {
   if (props.lesson.id === 378)
@@ -42,6 +43,7 @@ export default function Geometry3DLessonAdapter(props: LessonAdapterProps) {
   if (props.lesson.id === 391) return <CubeTargetLesson391 {...props} />;
   if (props.lesson.id === 392) return <CuboidTargetLesson392 {...props} />;
   if (props.lesson.id === 393) return <PrismTargetLesson393 {...props} />;
+  if (props.lesson.id === 394) return <PyramidTargetLesson394 {...props} />;
   if (props.lesson.preset.id === "geometry3d.solid-net") {
     return (
       <AdapterFrame

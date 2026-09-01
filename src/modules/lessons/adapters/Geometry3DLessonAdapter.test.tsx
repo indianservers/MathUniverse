@@ -74,7 +74,7 @@ describe("Geometry3DLessonAdapter", () => {
       if (
         ![
           378, 379, 380, 381, 382, 383, 384, 385, 386, 387, 388, 389, 390, 391,
-          392, 393,
+          392, 393, 394,
         ].includes(lessonId) &&
         lesson.preset.id !== "geometry3d.solid-net"
       ) {
@@ -456,6 +456,31 @@ describe("Geometry3DLessonAdapter", () => {
     expect(html).toContain('data-volume="60"');
     expect(html).toContain('data-lateral="80"');
     expect(html).toContain('data-surface="104"');
+    expect(html).toContain('data-layers="[true,true,true]"');
+  });
+
+  it("uses a dedicated regular-pyramid model for lesson 394", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 394)!;
+    const html = renderToStaticMarkup(
+      <Geometry3DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="geometry3d-mockup-0579"');
+    expect(html).toContain(
+      "threejs-dedicated-regular-square-triangle-pentagon-pyramid-side-height-apothem-slant-volume-lateral-surface-height-slant-net-layers-orbit-practice",
+    );
+    expect(html).toContain('data-shape="Square"');
+    expect(html).toContain('data-side="4"');
+    expect(html).toContain('data-height="6"');
+    expect(html).toContain('data-n="4"');
+    expect(html).toContain('data-base-area="16"');
+    expect(html).toContain('data-volume="32"');
+    expect(html).toContain('data-slant="6.32"');
+    expect(html).toContain('data-lateral="50.6"');
+    expect(html).toContain('data-surface="66.6"');
     expect(html).toContain('data-layers="[true,true,true]"');
   });
 });

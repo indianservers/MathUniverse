@@ -22,8 +22,9 @@ Target references begin at `0563` in `D:\Math App Screenshots for UI Update\Upda
 | 0576 | 391 Cube | `CubeTargetLesson391` | React Three Fiber parametric cube model with synchronized side slider/numeric control, exact volume/surface/face-diagonal/space-diagonal calculations, independent diagonal layers, genuine six-face net, clickable face/net highlighting, orbit/zoom, reversible fullscreen, tabs/reset/share, Euler topology, and a computed a=5 experiment | 1009 x 1558 desktop plus 390 px mobile rendering; nonblank 425 x 619 WebGL canvas; no overflow or application console errors | Complete |
 | 0577 | 392 Cuboid | `CuboidTargetLesson392` | React Three Fiber parametric cuboid model with six working length/width/height steppers, exact volume/surface/base/face-diagonal/space-diagonal calculations, independent diagonal layers, genuine six-face rectangular net, orbit/zoom, tabs/reset/share, edge/face/right-angle structure, and a computed 4×2×3 practice model | 1173 x 1341 desktop plus 390 px mobile rendering; nonblank 536 x 477 WebGL canvas; no overflow or application console errors | Complete |
 | 0578 | 393 Prism | `PrismTargetLesson393` | React Three Fiber generated Triangle/Rectangle/Hexagon cross-sections extruded by editable length, synchronized base/height/length sliders and numeric controls, exact base/perimeter/volume/lateral/surface calculations, independent base/lateral/net layers, orbit/zoom, reversible fullscreen, tabs/reset/share, and practice guidance | 1173 x 1341 desktop plus 390 px mobile rendering; nonblank 509 x 526 WebGL canvas; no overflow or application console errors | Complete |
+| 0579 | 394 Pyramid | `PyramidTargetLesson394` | React Three Fiber generated regular Square/Triangle/Pentagon pyramids with editable side/height controls, exact apothem/radius/base/volume/slant/lateral/surface calculations, independent height/slant/net layers, orbit/zoom, reversible fullscreen, tabs/reset/share, action count, and validated practice | 1173 x 1341 desktop plus 390 px mobile rendering; nonblank 507 x 578 WebGL canvas; no overflow or application console errors | Complete |
 
-Completed in this family: **16 / 50**. Pending in this family: **34 / 50**.
+Completed in this family: **17 / 50**. Pending in this family: **33 / 50**.
 
 ## Lesson 378 validation
 
@@ -167,3 +168,12 @@ Completed in this family: **16 / 50**. Pending in this family: **34 / 50**.
 - Canvas-only capture: `0578-canvas.png`
 - Machine-readable interaction and layout audit: `0578-dedicated-target-validation.json`
 - The capture harness verifies the default triangular prism b=6, h=4, L=5, base area 12, perimeter 16, volume 60, lateral area 80, and total area 104; switches to a rectangle and proves 24/20/120/100/148, switches to a regular hexagon and proves 93.53/36/467.65/180/367.06, then edits the triangle to b=8, h=6, L=7 and proves base area 24 and volume 168; exercises all three display/net layers, clipboard/share state, orbit, reversible fullscreen, tabs, and shell reset; confirms exact 1173 x 1341 dimensions, a nonblank 509 x 526 canvas, an overflow-free nonblank 390 px mobile rendering, and absence of application console errors.
+
+## Lesson 394 validation
+
+- Reference: `0579-reference.png`
+- Current capture: `0579-desktop.png`
+- Mobile capture: `0579-mobile.png`
+- Canvas-only capture: `0579-canvas.png`
+- Machine-readable interaction and layout audit: `0579-dedicated-target-validation.json`
+- The capture harness verifies the default square pyramid s=4, h=6, base area 16, volume 32, slant height ≈6.32, lateral area ≈50.60, and total area ≈66.60; switches to an equilateral-triangle base and proves 6.93/13.86/6.11/36.66/43.59, switches to a regular pentagon and proves 27.53/55.06/6.60/66.01/93.54, then edits the square to s=6, h=8 and proves base area 36, volume 96, and slant height ≈8.54; exercises all three height/slant/net layers, practice, clipboard/share state, orbit, reversible fullscreen, tabs, and shell reset; confirms exact 1173 x 1341 dimensions, a nonblank 507 x 578 canvas, an overflow-free nonblank 390 px mobile rendering, and absence of application console errors.
