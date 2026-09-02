@@ -347,6 +347,22 @@ describe("discrete lesson adapter", () => {
     expect(html).toContain('data-selected-count="0"');
     expect(html).toContain('data-algorithm="kruskal"');
   });
+  it("uses the dedicated Dijkstra shortest-path surface for lesson 575", () => {
+    const lesson = lessonCatalog.find((candidate) => candidate.id === 575)!;
+    const html = renderToStaticMarkup(
+      <DiscreteLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="discrete-mockup-0632"');
+    expect(html).toContain("dedicated-dijkstra-relaxation-state-model");
+    expect(html).toContain('data-source="A"');
+    expect(html).toContain('data-target="E"');
+    expect(html).toContain('data-current="A"');
+    expect(html).toContain('data-target-distance="Infinity"');
+  });
   it("renders strengthened discrete lessons 556 through 585 with lesson-specific guidance", () => {
     const expected = new Map([
       [556, "Fundamental Counting Principle"],
