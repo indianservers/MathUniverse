@@ -82,11 +82,13 @@ describe("Geometry3DLessonAdapter", () => {
           'data-direct-interaction="true"',
         );
         expect(html, String(lessonId)).toContain(
-          /contour|gradient|tangent plane|partial derivative|multivariable|level curve|level surface|z=f\(x,y\)|implicit surface|parametric surface|space curve|quadric|cylindrical coordinates|spherical coordinates|normal vector/i.test(
-            lesson.title,
-          )
-            ? "Drag surface"
-            : "Drag solid",
+          lessonId === 409
+            ? "Drag opaque model to rotate"
+            : /contour|gradient|tangent plane|partial derivative|multivariable|level curve|level surface|z=f\(x,y\)|implicit surface|parametric surface|space curve|quadric|cylindrical coordinates|spherical coordinates|normal vector/i.test(
+                  lesson.title,
+                )
+              ? "Drag surface"
+              : "Drag solid",
         );
       }
       if (lessonId === 395) {
@@ -799,5 +801,26 @@ describe("Geometry3DLessonAdapter", () => {
     expect(html).toContain('data-faces="6"');
     expect(html).toContain('data-euler="2"');
     expect(html).toContain('data-verified="true"');
+  });
+
+  it("uses a dedicated transparent and x-ray lab for lesson 409", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 409)!;
+    const html = renderToStaticMarkup(
+      <Geometry3DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="geometry3d-mockup-0594"');
+    expect(html).toContain(
+      "threejs-dedicated-synchronized-composite-solid-opacity-depth-xray-layers-measurements-challenge",
+    );
+    expect(html).toContain('data-opacity="100"');
+    expect(html).toContain('data-layers="7"');
+    expect(html).toContain('data-hidden="show"');
+    expect(html).toContain('data-space-diagonal="11.18"');
+    expect(html).toContain('data-body-diagonal="7.81"');
+    expect(html).toContain('data-face-diagonal="9.43"');
   });
 });
