@@ -1,0 +1,430 @@
+.pig564-page {
+  color: #172749;
+  display: grid;
+  gap: 12px;
+  padding: 12px 7px 0;
+  background: #f7fafc;
+  font-family: Inter, Arial, sans-serif;
+}
+.pig564-page * {
+  box-sizing: border-box;
+}
+.pig564-page button,
+.pig564-page input {
+  font: inherit;
+}
+.pig564-page button {
+  cursor: pointer;
+}
+.pig564-hero,
+.pig564-tabs,
+.pig564-lab,
+.pig564-theory > article,
+.pig564-bottom > article,
+.pig564-adjacent button {
+  background: #fff;
+  border: 1px solid #dce5ef;
+  border-radius: 8px;
+}
+.pig564-hero {
+  height: 138px;
+  padding: 14px;
+  display: grid;
+  grid-template-columns: 1fr 360px;
+}
+.pig564-hero small {
+  display: inline-block;
+  background: #eaf7fb;
+  padding: 5px 8px;
+  border-radius: 12px;
+  color: #087f9c;
+  font-size: 8px;
+  font-weight: 800;
+  margin-right: 5px;
+}
+.pig564-hero h1 {
+  font-size: 31px;
+  margin: 17px 0 3px;
+  letter-spacing: 0;
+}
+.pig564-hero p {
+  font-size: 12px;
+}
+.pig564-hero > aside {
+  display: grid;
+  grid-template-columns: 1fr 1fr 60px;
+  gap: 6px;
+  font-size: 9px;
+}
+.pig564-hero > aside > span,
+.pig564-hero > aside > button {
+  border: 1px solid #dce5ef;
+  background: #fff;
+  border-radius: 6px;
+  padding: 7px;
+}
+.pig564-hero > aside > section {
+  grid-column: 1/-1;
+  background: #f5f8fb;
+  padding: 8px;
+}
+.pig564-hero > aside > section p {
+  font-size: 9px;
+}
+.pig564-tabs {
+  height: 49px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+.pig564-tabs button {
+  border: 0;
+  background: #fff;
+  font-weight: 800;
+}
+.pig564-tabs button.active {
+  background: #079eb2;
+  color: #fff;
+  border-radius: 7px;
+}
+.pig564-lab {
+  height: 548px;
+  padding: 13px;
+}
+.pig564-page h2 {
+  font-size: 13px;
+  color: #087f9c;
+  margin: 0;
+}
+.pig564-page h3 {
+  font-size: 10px;
+}
+.pig564-page p {
+  font-size: 9px;
+  line-height: 1.45;
+}
+.pig564-lab > div {
+  display: grid;
+  grid-template-columns: 1fr 240px;
+  gap: 12px;
+  height: 455px;
+}
+.pig564-lab > div > main,
+.pig564-lab > div > aside {
+  border: 1px solid #dce5ef;
+  border-radius: 8px;
+  padding: 12px;
+}
+.pig564-lab main > header {
+  display: flex;
+}
+.pig564-lab main > header p {
+  margin-right: auto;
+}
+.pig564-lab main > header button {
+  border: 1px solid #b8dcec;
+  background: #fff;
+  border-radius: 13px;
+  color: #176fc3;
+}
+.pig564-pigeons {
+  display: flex;
+  justify-content: center;
+  gap: 13px;
+  height: 75px;
+}
+.pig564-pigeons button {
+  border: 0;
+  background: transparent;
+  width: 48px;
+  padding: 0;
+}
+.pig564-pigeons img {
+  width: 48px;
+  height: 60px;
+  object-fit: contain;
+}
+.pig564-lab main > b {
+  display: block;
+  text-align: center;
+  font-size: 10px;
+}
+.pig564-holes {
+  display: flex;
+  justify-content: center;
+  gap: 9px;
+  margin: 24px 0 8px;
+}
+.pig564-holes > div {
+  width: 70px;
+  height: 78px;
+  border: 1px solid #d8cabb;
+  background: #faf7f2;
+  border-radius: 6px;
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+.pig564-holes > div > img {
+  width: 55px;
+}
+.pig564-holes > div.busy {
+  background: #f0ecff;
+}
+.pig564-holes > div > span {
+  position: absolute;
+  display: flex;
+  bottom: 3px;
+}
+.pig564-holes > div > span img {
+  width: 21px;
+  height: 27px;
+  object-fit: contain;
+  margin-left: -7px;
+}
+.pig564-distribution {
+  margin-top: 35px;
+}
+.pig564-distribution > div {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 5px;
+}
+.pig564-distribution span {
+  border: 1px solid #dce5ef;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+}
+.pig564-distribution img {
+  width: 28px;
+  height: 35px;
+  object-fit: contain;
+}
+.pig564-lab > div > aside > p strong {
+  display: block;
+  font:
+    19px Georgia,
+    serif;
+}
+.pig564-lab > div > aside > section {
+  background: #e3f9ec;
+  border: 1px solid #9ee0ba;
+  color: #18814f;
+  padding: 10px;
+  border-radius: 7px;
+}
+.pig564-lab > div > aside svg {
+  width: 15px;
+}
+.pig564-lab > div > aside label {
+  display: grid;
+  grid-template-columns: 75px 1fr 38px;
+  align-items: center;
+  margin: 15px 0;
+  font-size: 8px;
+}
+.pig564-lab > div > aside input {
+  accent-color: #11b8ce;
+}
+.pig564-lab > div > aside output {
+  border: 1px solid #dce5ef;
+  padding: 7px;
+  text-align: center;
+}
+.pig564-lab > div > aside > button {
+  float: right;
+  border: 1px solid #dce5ef;
+  background: #fff;
+  padding: 8px;
+}
+.pig564-lab > footer {
+  background: #effaff;
+  border: 1px solid #b9e3ef;
+  color: #18769c;
+  border-radius: 6px;
+  padding: 9px;
+  margin-top: 8px;
+  font-size: 9px;
+}
+.pig564-theory {
+  height: 255px;
+  display: grid;
+  grid-template-columns: 1fr 1.05fr 1.1fr;
+  gap: 10px;
+}
+.pig564-theory > article {
+  padding: 12px;
+}
+.pig564-theory article:last-child {
+  background: #fff5f5;
+}
+.pig564-theory table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 7px;
+}
+.pig564-theory th,
+.pig564-theory td {
+  border: 1px solid #dce5ef;
+  padding: 5px;
+}
+.pig564-theory article:last-child > div {
+  display: flex;
+}
+.pig564-theory article:last-child span {
+  display: grid;
+  text-align: center;
+}
+.pig564-theory article:last-child img {
+  width: 38px;
+}
+.pig564-bottom {
+  height: 249px;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 10px;
+}
+.pig564-bottom > article {
+  padding: 13px;
+}
+.pig564-bottom article:first-child > div {
+  display: flex;
+  gap: 10px;
+  margin: 18px 0;
+}
+.pig564-bottom article:first-child span {
+  border: 1px solid #dce5ef;
+  padding: 8px;
+  display: flex;
+  align-items: end;
+}
+.pig564-bottom article:first-child img {
+  width: 55px;
+}
+.pig564-bottom article:first-child > strong {
+  display: block;
+  background: #e3f9ec;
+  color: #18814f;
+  padding: 10px;
+}
+.pig564-bottom article:nth-child(2) > label {
+  display: grid;
+  grid-template-columns: 90px 1fr 40px;
+  align-items: center;
+  margin: 14px 0;
+}
+.pig564-bottom input[type="range"] {
+  accent-color: #12b8c7;
+}
+.pig564-bottom output {
+  border: 1px solid #dce5ef;
+  padding: 8px;
+}
+.pig564-bottom article:nth-child(2) > div {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.pig564-bottom article:nth-child(2) > div label {
+  font-size: 9px;
+}
+.pig564-bottom input[type="number"] {
+  width: 65px;
+  padding: 7px;
+  border: 1px solid #dce5ef;
+}
+.pig564-bottom button {
+  border: 1px solid #dce5ef;
+  background: #fff;
+  border-radius: 6px;
+  padding: 8px;
+}
+.pig564-bottom button:nth-child(2) {
+  background: #693fd8;
+  color: #fff;
+}
+.pig564-bottom svg {
+  width: 13px;
+}
+.pig564-bottom .correct {
+  color: #178353;
+}
+.pig564-bottom .wrong {
+  color: #c33;
+}
+.pig564-adjacent {
+  height: 55px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.pig564-adjacent button {
+  text-align: left;
+  padding: 8px 16px;
+}
+.pig564-adjacent button:last-child {
+  text-align: right;
+}
+body:has(.pig564-page) [data-testid="desktop-sidebar"] {
+  width: 205px !important;
+  flex-basis: 205px !important;
+}
+body:has(.pig564-page) #main-content {
+  padding: 0 8px !important;
+}
+body:has(.pig564-page) .app-layout-rail > div > header {
+  height: 53px !important;
+  min-height: 53px !important;
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
+  overflow: hidden;
+}
+body:has(.pig564-page) footer[aria-label="Site footer"],
+body:has(.pig564-page) footer[aria-label="Site footer"] > div {
+  height: 78px !important;
+}
+@media (max-width: 700px) {
+  body:has(.pig564-page) [data-testid="desktop-sidebar"] {
+    display: none !important;
+    width: 0 !important;
+    flex-basis: 0 !important;
+  }
+  .pig564-page {
+    padding: 8px;
+  }
+  .pig564-hero {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .pig564-hero > aside {
+    grid-template-columns: 1fr 1fr;
+  }
+  .pig564-tabs {
+    overflow-x: auto;
+  }
+  .pig564-lab {
+    height: auto;
+  }
+  .pig564-lab > div {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .pig564-pigeons {
+    overflow-x: auto;
+    justify-content: flex-start;
+  }
+  .pig564-holes {
+    overflow-x: auto;
+    justify-content: flex-start;
+  }
+  .pig564-theory,
+  .pig564-bottom {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .pig564-adjacent {
+    height: auto;
+  }
+}

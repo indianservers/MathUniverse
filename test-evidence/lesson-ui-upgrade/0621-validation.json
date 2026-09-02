@@ -1,0 +1,188 @@
+{
+  "passed": true,
+  "url": "http://127.0.0.1:2256/lessons/discrete-and-applied-mathematics/564-pigeonhole-principle",
+  "checks": {
+    "initial": {
+      "n": "7",
+      "k": "5",
+      "distribution": "0,1,2,3,4,0,3",
+      "counts": "2,1,1,2,1",
+      "least": "1",
+      "most": "2",
+      "guarantee": "2",
+      "holds": "true",
+      "challengeTotal": "3",
+      "graded": "false",
+      "correct": "false",
+      "actions": "0"
+    },
+    "moved": {
+      "n": "7",
+      "k": "5",
+      "distribution": "0,0,2,3,4,0,3",
+      "counts": "3,0,1,2,1",
+      "least": "0",
+      "most": "3",
+      "guarantee": "2",
+      "holds": "true",
+      "challengeTotal": "3",
+      "graded": "false",
+      "correct": "false",
+      "actions": "1"
+    },
+    "tenThree": {
+      "n": "10",
+      "k": "3",
+      "distribution": "0,1,2,0,1,2,0,1,2,0",
+      "counts": "4,3,3",
+      "least": "3",
+      "most": "4",
+      "guarantee": "4",
+      "holds": "true",
+      "challengeTotal": "3",
+      "graded": "false",
+      "correct": "false",
+      "actions": "3"
+    },
+    "random": {
+      "n": "10",
+      "k": "3",
+      "distribution": "0,1,2,2,1,1,2,2,1,0",
+      "counts": "2,4,4",
+      "least": "2",
+      "most": "4",
+      "guarantee": "4",
+      "holds": "true",
+      "challengeTotal": "3",
+      "graded": "false",
+      "correct": "false",
+      "actions": "4"
+    },
+    "formulaClass": "active",
+    "challengeFour": {
+      "n": "10",
+      "k": "3",
+      "distribution": "0,1,2,2,1,1,2,2,1,0",
+      "counts": "2,4,4",
+      "least": "2",
+      "most": "4",
+      "guarantee": "4",
+      "holds": "true",
+      "challengeTotal": "4",
+      "graded": "false",
+      "correct": "false",
+      "actions": "6"
+    },
+    "wrong": {
+      "n": "10",
+      "k": "3",
+      "distribution": "0,1,2,2,1,1,2,2,1,0",
+      "counts": "2,4,4",
+      "least": "2",
+      "most": "4",
+      "guarantee": "4",
+      "holds": "true",
+      "challengeTotal": "4",
+      "graded": "true",
+      "correct": "false",
+      "actions": "8"
+    },
+    "correct": {
+      "n": "10",
+      "k": "3",
+      "distribution": "0,1,2,2,1,1,2,2,1,0",
+      "counts": "2,4,4",
+      "least": "2",
+      "most": "4",
+      "guarantee": "4",
+      "holds": "true",
+      "challengeTotal": "4",
+      "graded": "true",
+      "correct": "true",
+      "actions": "10"
+    },
+    "shown": true,
+    "reset": {
+      "n": "7",
+      "k": "5",
+      "distribution": "0,1,2,3,4,0,3",
+      "counts": "2,1,1,2,1",
+      "least": "1",
+      "most": "2",
+      "guarantee": "2",
+      "holds": "true",
+      "challengeTotal": "3",
+      "graded": "false",
+      "correct": "false",
+      "actions": "1"
+    },
+    "final": {
+      "n": "7",
+      "k": "5",
+      "distribution": "0,1,2,3,4,0,3",
+      "counts": "2,1,1,2,1",
+      "least": "1",
+      "most": "2",
+      "guarantee": "2",
+      "holds": "true",
+      "challengeTotal": "3",
+      "graded": "false",
+      "correct": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1019,
+      "height": 1543
+    },
+    "overflow": false,
+    "hero": {
+      "top": 99,
+      "left": 220,
+      "width": 784,
+      "height": 138,
+      "bottom": 237
+    },
+    "tabs": {
+      "top": 249,
+      "left": 220,
+      "width": 784,
+      "height": 49,
+      "bottom": 298
+    },
+    "lab": {
+      "top": 310,
+      "left": 220,
+      "width": 784,
+      "height": 548,
+      "bottom": 858
+    },
+    "theory": {
+      "top": 870,
+      "left": 220,
+      "width": 784,
+      "height": 255,
+      "bottom": 1125
+    },
+    "bottom": {
+      "top": 1137,
+      "left": 220,
+      "width": 784,
+      "height": 249,
+      "bottom": 1386
+    },
+    "adjacent": {
+      "top": 1398,
+      "left": 220,
+      "width": 784,
+      "height": 55,
+      "bottom": 1453
+    }
+  },
+  "mobileMetrics": {
+    "documentWidth": 390,
+    "overflow": false
+  },
+  "consoleMessages": []
+}

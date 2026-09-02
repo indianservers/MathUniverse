@@ -172,6 +172,24 @@ describe("discrete lesson adapter", () => {
     expect(html).toContain('data-overlap="2"');
     expect(html).toContain('data-union="6"');
   });
+  it("uses the dedicated pigeon-to-hole lab for lesson 564", () => {
+    const lesson = lessonCatalog.find((candidate) => candidate.id === 564)!;
+    const html = renderToStaticMarkup(
+      <DiscreteLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="discrete-mockup-0621"');
+    expect(html).toContain(
+      "dedicated-pigeon-to-hole-drag-distribution-ceiling-guarantee",
+    );
+    expect(html).toContain('data-n="7"');
+    expect(html).toContain('data-k="5"');
+    expect(html).toContain('data-guarantee="2"');
+    expect(html).toContain('data-challenge-total="3"');
+  });
   it("renders strengthened discrete lessons 556 through 585 with lesson-specific guidance", () => {
     const expected = new Map([
       [556, "Fundamental Counting Principle"],
