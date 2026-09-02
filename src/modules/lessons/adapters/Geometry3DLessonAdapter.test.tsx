@@ -914,10 +914,16 @@ describe("Geometry3DLessonAdapter", () => {
   it("uses a dedicated implicit level-set lab for lesson 414", () => {
     const lesson = lessonCatalog.find((item) => item.id === 414)!;
     const html = renderToStaticMarkup(
-      <Geometry3DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+      <Geometry3DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
     );
     expect(html).toContain('data-testid="geometry3d-mockup-0599"');
-    expect(html).toContain("threejs-dedicated-implicit-level-set-presets-iso-value-slice-planes-domain-point-classification-hyperboloid-challenge");
+    expect(html).toContain(
+      "threejs-dedicated-implicit-level-set-presets-iso-value-slice-planes-domain-point-classification-hyperboloid-challenge",
+    );
     expect(html).toContain('data-preset="sphere"');
     expect(html).toContain('data-iso="9"');
     expect(html).toContain('data-classification="outside"');
@@ -927,9 +933,17 @@ describe("Geometry3DLessonAdapter", () => {
 
   it("uses a dedicated two-parameter surface lab for lesson 415", () => {
     const lesson = lessonCatalog.find((item) => item.id === 415)!;
-    const html = renderToStaticMarkup(<Geometry3DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    const html = renderToStaticMarkup(
+      <Geometry3DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
     expect(html).toContain('data-testid="geometry3d-mockup-0600"');
-    expect(html).toContain("threejs-dedicated-two-parameter-paraboloid-domain-sweep-selected-point-cross-section-solid-wireframe-quarter-slice-challenge");
+    expect(html).toContain(
+      "threejs-dedicated-two-parameter-paraboloid-domain-sweep-selected-point-cross-section-solid-wireframe-quarter-slice-challenge",
+    );
     expect(html).toContain('data-u="1.6"');
     expect(html).toContain('data-v="1.2"');
     expect(html).toContain('data-z="0.896"');
@@ -938,9 +952,17 @@ describe("Geometry3DLessonAdapter", () => {
 
   it("uses a dedicated space-curve helix lab for lesson 416", () => {
     const lesson = lessonCatalog.find((item) => item.id === 416)!;
-    const html = renderToStaticMarkup(<Geometry3DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    const html = renderToStaticMarkup(
+      <Geometry3DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
     expect(html).toContain('data-testid="geometry3d-mockup-0601"');
-    expect(html).toContain("threejs-dedicated-parametric-helix-live-point-tangent-component-plots-speed-curvature-pitch-challenge");
+    expect(html).toContain(
+      "threejs-dedicated-parametric-helix-live-point-tangent-component-plots-speed-curvature-pitch-challenge",
+    );
     expect(html).toContain('data-t="2.5"');
     expect(html).toContain('data-z="0.625"');
     expect(html).toContain('data-grid="true"');
@@ -949,12 +971,36 @@ describe("Geometry3DLessonAdapter", () => {
 
   it("uses a dedicated coefficient quadric classifier for lesson 417", () => {
     const lesson = lessonCatalog.find((item) => item.id === 417)!;
-    const html = renderToStaticMarkup(<Geometry3DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    const html = renderToStaticMarkup(
+      <Geometry3DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
     expect(html).toContain('data-testid="geometry3d-mockup-0602"');
-    expect(html).toContain("threejs-dedicated-quadratic-coefficient-classifier-completing-square-quadric-presets-coordinate-traces-layers-graded-challenge");
+    expect(html).toContain(
+      "threejs-dedicated-quadratic-coefficient-classifier-completing-square-quadric-presets-coordinate-traces-layers-graded-challenge",
+    );
     expect(html).toContain('data-kind="Ellipsoid"');
     expect(html).toContain('data-center="0,0,0"');
     expect(html).toContain('data-bounded="true"');
     expect(html).toContain("Equation Coefficients");
+  });
+
+  it("uses a dedicated cylindrical-coordinate converter for lesson 418", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 418)!;
+    const html = renderToStaticMarkup(
+      <Geometry3DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="geometry3d-mockup-0603"');
+    expect(html).toContain("threejs-dedicated-draggable-cylindrical-point");
+    expect(html).toContain('data-r="3.61"');
+    expect(html).toContain('data-x="2.77"');
+    expect(html).toContain("Cylindrical Coordinates");
   });
 });

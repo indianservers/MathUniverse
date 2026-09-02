@@ -44,6 +44,7 @@ import ImplicitSurfacesTargetLesson414 from "./geometry3d/ImplicitSurfacesTarget
 import ParametricSurfacesTargetLesson415 from "./geometry3d/ParametricSurfacesTargetLesson415";
 import SpaceCurvesTargetLesson416 from "./geometry3d/SpaceCurvesTargetLesson416";
 import QuadricSurfacesTargetLesson417 from "./geometry3d/QuadricSurfacesTargetLesson417";
+import CylindricalCoordinatesTargetLesson418 from "./geometry3d/CylindricalCoordinatesTargetLesson418";
 
 export default function Geometry3DLessonAdapter(props: LessonAdapterProps) {
   if (props.lesson.id === 378)
@@ -97,10 +98,11 @@ export default function Geometry3DLessonAdapter(props: LessonAdapterProps) {
     return <ImplicitSurfacesTargetLesson414 {...props} />;
   if (props.lesson.id === 415)
     return <ParametricSurfacesTargetLesson415 {...props} />;
-  if (props.lesson.id === 416)
-    return <SpaceCurvesTargetLesson416 {...props} />;
+  if (props.lesson.id === 416) return <SpaceCurvesTargetLesson416 {...props} />;
   if (props.lesson.id === 417)
     return <QuadricSurfacesTargetLesson417 {...props} />;
+  if (props.lesson.id === 418)
+    return <CylindricalCoordinatesTargetLesson418 {...props} />;
   if (props.lesson.preset.id === "geometry3d.solid-net") {
     return (
       <AdapterFrame

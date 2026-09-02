@@ -1,0 +1,183 @@
+{
+  "passed": true,
+  "url": "http://127.0.0.1:2256/lessons/3d-mathematics/418-cylindrical-coordinates",
+  "checks": {
+    "initial": {
+      "r": "3.61",
+      "theta": "40",
+      "z": "2",
+      "x": "2.77",
+      "y": "2.32",
+      "mode": "cylindrical",
+      "graded": "false",
+      "correct": "false",
+      "actions": "0"
+    },
+    "orbitPixelsChanged": true,
+    "canvas": {
+      "width": 450,
+      "height": 448,
+      "nonblank": true
+    },
+    "pointDrag": {
+      "before": {
+        "r": "3.61",
+        "theta": "40",
+        "z": "2",
+        "x": "2.77",
+        "y": "2.32",
+        "mode": "cylindrical",
+        "graded": "false",
+        "correct": "false",
+        "actions": "1"
+      },
+      "after": {
+        "r": "2.39",
+        "theta": "3.13",
+        "z": "2",
+        "x": "2.38",
+        "y": "0.13",
+        "mode": "cylindrical",
+        "graded": "false",
+        "correct": "false",
+        "actions": "7"
+      }
+    },
+    "adjusted": {
+      "r": "5",
+      "theta": "90",
+      "z": "-2",
+      "x": "0",
+      "y": "5",
+      "mode": "cylindrical",
+      "graded": "false",
+      "correct": "false",
+      "actions": "10"
+    },
+    "cartesianMode": {
+      "r": "5",
+      "theta": "90",
+      "z": "-2",
+      "x": "0",
+      "y": "5",
+      "mode": "cartesian",
+      "graded": "false",
+      "correct": "false",
+      "actions": "11"
+    },
+    "formulaClass": "active",
+    "wrong": {
+      "r": "5",
+      "theta": "90",
+      "z": "-2",
+      "x": "0",
+      "y": "5",
+      "mode": "cartesian",
+      "graded": "true",
+      "correct": "false",
+      "actions": "16"
+    },
+    "correct": {
+      "r": "5",
+      "theta": "90",
+      "z": "-2",
+      "x": "0",
+      "y": "5",
+      "mode": "cartesian",
+      "graded": "true",
+      "correct": "true",
+      "actions": "19"
+    },
+    "plotted": {
+      "r": "5",
+      "theta": "126.87",
+      "z": "2",
+      "x": "-3",
+      "y": "4",
+      "mode": "cartesian",
+      "graded": "true",
+      "correct": "true",
+      "actions": "20"
+    },
+    "final": {
+      "r": "3.61",
+      "theta": "40",
+      "z": "2",
+      "x": "2.77",
+      "y": "2.32",
+      "mode": "cylindrical",
+      "graded": "false",
+      "correct": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 986,
+      "height": 1595
+    },
+    "overflow": false,
+    "hero": {
+      "top": 93,
+      "left": 214,
+      "width": 763,
+      "height": 162,
+      "bottom": 255
+    },
+    "tabs": {
+      "top": 267,
+      "left": 214,
+      "width": 763,
+      "height": 45,
+      "bottom": 312
+    },
+    "lab": {
+      "top": 322,
+      "left": 214,
+      "width": 763,
+      "height": 531,
+      "bottom": 853
+    },
+    "canvas": {
+      "top": 393,
+      "left": 229,
+      "width": 450,
+      "height": 448,
+      "bottom": 841
+    },
+    "steps": {
+      "top": 863,
+      "left": 214,
+      "width": 763,
+      "height": 63,
+      "bottom": 926
+    },
+    "middle": {
+      "top": 936,
+      "left": 214,
+      "width": 763,
+      "height": 267,
+      "bottom": 1203
+    },
+    "bottom": {
+      "top": 1213,
+      "left": 214,
+      "width": 763,
+      "height": 240,
+      "bottom": 1453
+    },
+    "adjacent": {
+      "top": 1463,
+      "left": 214,
+      "width": 763,
+      "height": 58,
+      "bottom": 1521
+    }
+  },
+  "mobileMetrics": {
+    "documentWidth": 390,
+    "overflow": false,
+    "nonblank": true
+  },
+  "consoleMessages": []
+}
