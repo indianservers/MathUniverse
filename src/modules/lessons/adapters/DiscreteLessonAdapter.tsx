@@ -40,6 +40,7 @@ import MinimumSpanningTreeTargetLesson574 from "./discrete/MinimumSpanningTreeTa
 import ShortestPathTargetLesson575 from "./discrete/ShortestPathTargetLesson575";
 import GraphColouringTargetLesson576 from "./discrete/GraphColouringTargetLesson576";
 import BipartiteGraphsTargetLesson577 from "./discrete/BipartiteGraphsTargetLesson577";
+import PlanarGraphsTargetLesson578 from "./discrete/PlanarGraphsTargetLesson578";
 
 const countingModes = new Set<DiscreteLessonMode>([
   "product",
@@ -263,6 +264,8 @@ export default function DiscreteLessonAdapter(props: LessonAdapterProps) {
     return <GraphColouringTargetLesson576 {...props} />;
   if (props.lesson.id === 577)
     return <BipartiteGraphsTargetLesson577 {...props} />;
+  if (props.lesson.id === 578)
+    return <PlanarGraphsTargetLesson578 {...props} />;
   const mode = discreteLessonPreset(props.lesson.id).mode;
   const guidance = discreteGuidanceFor(mode);
   let activity = specialActivity(props.lesson.preset.id, props);

@@ -1,0 +1,228 @@
+{
+  "passed": true,
+  "url": "http://127.0.0.1:2256/lessons/discrete-and-applied-mathematics/578-planar-graphs",
+  "checks": {
+    "initial": {
+      "kind": "k5",
+      "vertexCount": "5",
+      "edgeCount": "10",
+      "crossingCount": "5",
+      "planar": "false",
+      "faces": "6",
+      "euler": "1",
+      "reason": "E = 10 exceeds 3V − 6 = 9",
+      "positions": "A:70,100;B:285,35;C:500,100;D:145,300;E:425,300",
+      "history": "0",
+      "graded": "true",
+      "actions": "0"
+    },
+    "k33": {
+      "kind": "k33",
+      "vertexCount": "6",
+      "edgeCount": "9",
+      "crossingCount": "9",
+      "planar": "false",
+      "faces": "4",
+      "euler": "1",
+      "reason": "Bipartite bound: E = 9 exceeds 2V − 4 = 8",
+      "positions": "A:120,65;B:120,175;C:120,285;D:460,65;E:460,175;F:460,285",
+      "history": "0",
+      "graded": "true",
+      "actions": "1"
+    },
+    "k4": {
+      "kind": "k4",
+      "vertexCount": "4",
+      "edgeCount": "6",
+      "crossingCount": "0",
+      "planar": "true",
+      "faces": "4",
+      "euler": "2",
+      "reason": "",
+      "positions": "A:110,70;B:460,70;C:460,300;D:285,175",
+      "history": "0",
+      "graded": "true",
+      "actions": "2"
+    },
+    "dragged": {
+      "kind": "k4",
+      "vertexCount": "4",
+      "edgeCount": "6",
+      "crossingCount": "1",
+      "planar": "false",
+      "faces": "3",
+      "euler": "1",
+      "reason": "",
+      "positions": "A:110,70;B:460,70;C:460,300;D:134,254",
+      "history": "2",
+      "graded": "true",
+      "actions": "3"
+    },
+    "dragChanged": true,
+    "undo": {
+      "kind": "k4",
+      "vertexCount": "4",
+      "edgeCount": "6",
+      "crossingCount": "0",
+      "planar": "true",
+      "faces": "4",
+      "euler": "2",
+      "reason": "",
+      "positions": "A:110,70;B:460,70;C:460,300;D:285,175",
+      "history": "1",
+      "graded": "true",
+      "actions": "4"
+    },
+    "redo": {
+      "kind": "k4",
+      "vertexCount": "4",
+      "edgeCount": "6",
+      "crossingCount": "1",
+      "planar": "false",
+      "faces": "3",
+      "euler": "1",
+      "reason": "",
+      "positions": "A:110,70;B:460,70;C:460,300;D:134,254",
+      "history": "2",
+      "graded": "true",
+      "actions": "5"
+    },
+    "added": {
+      "kind": "k4",
+      "vertexCount": "5",
+      "edgeCount": "6",
+      "crossingCount": "1",
+      "planar": "false",
+      "faces": "2",
+      "euler": "1",
+      "reason": "",
+      "positions": "A:110,70;B:460,70;C:460,300;D:134,254;E:285,180",
+      "history": "3",
+      "graded": "true",
+      "actions": "6"
+    },
+    "addUndo": {
+      "kind": "k4",
+      "vertexCount": "4",
+      "edgeCount": "6",
+      "crossingCount": "1",
+      "planar": "false",
+      "faces": "3",
+      "euler": "1",
+      "reason": "",
+      "positions": "A:110,70;B:460,70;C:460,300;D:134,254",
+      "history": "2",
+      "graded": "true",
+      "actions": "7"
+    },
+    "toggles": {
+      "crossings": false,
+      "faces": false,
+      "labels": true
+    },
+    "formulaVisible": true,
+    "wrong": {
+      "kind": "k4",
+      "vertexCount": "4",
+      "edgeCount": "6",
+      "crossingCount": "1",
+      "planar": "false",
+      "faces": "3",
+      "euler": "1",
+      "reason": "",
+      "positions": "A:110,70;B:460,70;C:460,300;D:134,254",
+      "history": "2",
+      "graded": "false",
+      "actions": "13"
+    },
+    "correct": {
+      "kind": "k4",
+      "vertexCount": "4",
+      "edgeCount": "6",
+      "crossingCount": "1",
+      "planar": "false",
+      "faces": "3",
+      "euler": "1",
+      "reason": "",
+      "positions": "A:110,70;B:460,70;C:460,300;D:134,254",
+      "history": "2",
+      "graded": "true",
+      "actions": "14"
+    },
+    "final": {
+      "kind": "k5",
+      "vertexCount": "5",
+      "edgeCount": "10",
+      "crossingCount": "5",
+      "planar": "false",
+      "faces": "6",
+      "euler": "1",
+      "reason": "E = 10 exceeds 3V − 6 = 9",
+      "positions": "A:70,100;B:285,35;C:500,100;D:145,300;E:425,300",
+      "history": "0",
+      "graded": "true",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 977,
+      "height": 1684
+    },
+    "overflow": false,
+    "surface": {
+      "top": 99,
+      "left": 220,
+      "width": 750,
+      "height": 1467,
+      "bottom": 1566
+    },
+    "hero": {
+      "top": 99,
+      "left": 230,
+      "width": 730,
+      "height": 116,
+      "bottom": 215
+    },
+    "tabs": {
+      "top": 227,
+      "left": 230,
+      "width": 730,
+      "height": 38,
+      "bottom": 265
+    },
+    "lab": {
+      "top": 278,
+      "left": 230,
+      "width": 730,
+      "height": 628,
+      "bottom": 906
+    },
+    "theory": {
+      "top": 930,
+      "left": 230,
+      "width": 730,
+      "height": 348,
+      "bottom": 1278
+    },
+    "bottom": {
+      "top": 1294,
+      "left": 230,
+      "width": 730,
+      "height": 190,
+      "bottom": 1484
+    },
+    "adjacent": {
+      "top": 1497,
+      "left": 230,
+      "width": 730,
+      "height": 69,
+      "bottom": 1566
+    }
+  },
+  "mobileMetrics": {
+    "documentWidth": 390,
+    "overflow": false
+  },
+  "consoleMessages": []
+}

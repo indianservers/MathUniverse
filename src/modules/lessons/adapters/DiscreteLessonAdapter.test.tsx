@@ -399,6 +399,24 @@ describe("discrete lesson adapter", () => {
     expect(html).toContain('data-edge-count="4"');
     expect(html).toContain('data-bipartite="true"');
   });
+  it("uses the dedicated planar-graph surface for lesson 578", () => {
+    const lesson = lessonCatalog.find((candidate) => candidate.id === 578)!;
+    const html = renderToStaticMarkup(
+      <DiscreteLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="discrete-mockup-0635"');
+    expect(html).toContain(
+      "dedicated-segment-crossing-planarity-euler-history-model",
+    );
+    expect(html).toContain('data-kind="k5"');
+    expect(html).toContain('data-vertex-count="5"');
+    expect(html).toContain('data-edge-count="10"');
+    expect(html).toContain('data-planar="false"');
+  });
   it("renders strengthened discrete lessons 556 through 585 with lesson-specific guidance", () => {
     const expected = new Map([
       [556, "Fundamental Counting Principle"],
