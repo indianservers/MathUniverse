@@ -40,6 +40,7 @@ import CameraControlsTargetLesson410 from "./geometry3d/CameraControlsTargetLess
 import OrthographicViewsTargetLesson411 from "./geometry3d/OrthographicViewsTargetLesson411";
 import ARPlacementTargetLesson412 from "./geometry3d/ARPlacementTargetLesson412";
 import SurfaceFunctionTargetLesson413 from "./geometry3d/SurfaceFunctionTargetLesson413";
+import ImplicitSurfacesTargetLesson414 from "./geometry3d/ImplicitSurfacesTargetLesson414";
 
 export default function Geometry3DLessonAdapter(props: LessonAdapterProps) {
   if (props.lesson.id === 378)
@@ -89,6 +90,8 @@ export default function Geometry3DLessonAdapter(props: LessonAdapterProps) {
   if (props.lesson.id === 412) return <ARPlacementTargetLesson412 {...props} />;
   if (props.lesson.id === 413)
     return <SurfaceFunctionTargetLesson413 {...props} />;
+  if (props.lesson.id === 414)
+    return <ImplicitSurfacesTargetLesson414 {...props} />;
   if (props.lesson.preset.id === "geometry3d.solid-net") {
     return (
       <AdapterFrame

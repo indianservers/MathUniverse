@@ -910,4 +910,18 @@ describe("Geometry3DLessonAdapter", () => {
     expect(html).toContain('data-range="-9,9"');
     expect(html).toContain('data-challenge="correct"');
   });
+
+  it("uses a dedicated implicit level-set lab for lesson 414", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 414)!;
+    const html = renderToStaticMarkup(
+      <Geometry3DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+    expect(html).toContain('data-testid="geometry3d-mockup-0599"');
+    expect(html).toContain("threejs-dedicated-implicit-level-set-presets-iso-value-slice-planes-domain-point-classification-hyperboloid-challenge");
+    expect(html).toContain('data-preset="sphere"');
+    expect(html).toContain('data-iso="9"');
+    expect(html).toContain('data-classification="outside"');
+    expect(html).toContain("Sphere");
+    expect(html).toContain("Gyroid");
+  });
 });

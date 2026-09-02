@@ -1,0 +1,186 @@
+{
+  "passed": true,
+  "url": "http://127.0.0.1:2256/lessons/3d-mathematics/414-implicit-surfaces",
+  "checks": {
+    "initial": {
+      "preset": "sphere",
+      "iso": "9",
+      "f-value": "10.5025",
+      "difference": "1.5025",
+      "classification": "outside",
+      "challenge": "false",
+      "actions": "0"
+    },
+    "orbitPixelsChanged": true,
+    "canvas": {
+      "width": 465,
+      "height": 520,
+      "nonblank": true
+    },
+    "ellipsoid": {
+      "preset": "ellipsoid",
+      "iso": "9",
+      "f-value": "6.815",
+      "difference": "-2.185",
+      "classification": "inside",
+      "challenge": "false",
+      "actions": "1"
+    },
+    "hyperboloid": {
+      "preset": "hyperboloid",
+      "iso": "9",
+      "f-value": "-1.5025",
+      "difference": "-10.5025",
+      "classification": "inside",
+      "challenge": "true",
+      "actions": "2"
+    },
+    "torus": {
+      "preset": "torus",
+      "iso": "1",
+      "f-value": "6.7746",
+      "difference": "5.7746",
+      "classification": "outside",
+      "challenge": "false",
+      "actions": "3"
+    },
+    "gyroid": {
+      "preset": "gyroid",
+      "iso": "0",
+      "f-value": "-0.6526",
+      "difference": "-0.6526",
+      "classification": "inside",
+      "challenge": "false",
+      "actions": "4"
+    },
+    "sphere": {
+      "preset": "sphere",
+      "iso": "9",
+      "f-value": "10.5025",
+      "difference": "1.5025",
+      "classification": "outside",
+      "challenge": "false",
+      "actions": "5"
+    },
+    "iso": {
+      "preset": "sphere",
+      "iso": "4",
+      "f-value": "10.5025",
+      "difference": "6.5025",
+      "classification": "outside",
+      "challenge": "false",
+      "actions": "6"
+    },
+    "slices": {
+      "state": {
+        "preset": "sphere",
+        "iso": "4",
+        "f-value": "10.5025",
+        "difference": "6.5025",
+        "classification": "outside",
+        "challenge": "false",
+        "actions": "8"
+      },
+      "z": "1.5",
+      "xz": false
+    },
+    "domain": {
+      "xMax": "7",
+      "clipping": false
+    },
+    "challenge": {
+      "preset": "hyperboloid",
+      "iso": "9",
+      "f-value": "-1.5025",
+      "difference": "-10.5025",
+      "classification": "inside",
+      "challenge": "true",
+      "actions": "11"
+    },
+    "reset": {
+      "preset": "sphere",
+      "iso": "9",
+      "f-value": "10.5025",
+      "difference": "1.5025",
+      "classification": "outside",
+      "challenge": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "overflow": false,
+    "hero": {
+      "top": 98,
+      "left": 220,
+      "width": 795,
+      "height": 244,
+      "bottom": 342
+    },
+    "tabs": {
+      "top": 354,
+      "left": 220,
+      "width": 795,
+      "height": 49,
+      "bottom": 403
+    },
+    "main": {
+      "top": 415,
+      "left": 220,
+      "width": 795,
+      "height": 727,
+      "bottom": 1142
+    },
+    "aside": {
+      "top": 415,
+      "left": 220,
+      "width": 300,
+      "height": 727,
+      "bottom": 1142
+    },
+    "view": {
+      "top": 415,
+      "left": 528,
+      "width": 487,
+      "height": 577,
+      "bottom": 992
+    },
+    "slices": {
+      "top": 1000,
+      "left": 528,
+      "width": 487,
+      "height": 142,
+      "bottom": 1142
+    },
+    "bottom": {
+      "top": 1150,
+      "left": 220,
+      "width": 795,
+      "height": 211,
+      "bottom": 1361
+    },
+    "adjacent": {
+      "top": 1371,
+      "left": 220,
+      "width": 795,
+      "height": 52,
+      "bottom": 1423
+    },
+    "footer": {
+      "top": 1433,
+      "left": 220,
+      "width": 795,
+      "height": 95,
+      "bottom": 1528
+    }
+  },
+  "mobileMetrics": {
+    "documentWidth": 390,
+    "overflow": false,
+    "nonblank": true
+  },
+  "consoleMessages": []
+}
