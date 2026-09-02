@@ -45,6 +45,7 @@ import NetworkFlowTargetLesson579 from "./discrete/NetworkFlowTargetLesson579";
 import TravellingSalespersonTargetLesson580 from "./discrete/TravellingSalespersonTargetLesson580";
 import AdjacencyMatrixTargetLesson581 from "./discrete/AdjacencyMatrixTargetLesson581";
 import SetBuilderTargetLesson582 from "./discrete/SetBuilderTargetLesson582";
+import SetOperationsTargetLesson583 from "./discrete/SetOperationsTargetLesson583";
 
 const countingModes = new Set<DiscreteLessonMode>([
   "product",
@@ -276,6 +277,8 @@ export default function DiscreteLessonAdapter(props: LessonAdapterProps) {
   if (props.lesson.id === 581)
     return <AdjacencyMatrixTargetLesson581 {...props} />;
   if (props.lesson.id === 582) return <SetBuilderTargetLesson582 {...props} />;
+  if (props.lesson.id === 583)
+    return <SetOperationsTargetLesson583 {...props} />;
   const mode = discreteLessonPreset(props.lesson.id).mode;
   const guidance = discreteGuidanceFor(mode);
   let activity = specialActivity(props.lesson.preset.id, props);

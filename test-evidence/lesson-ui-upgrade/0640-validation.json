@@ -1,0 +1,205 @@
+{
+  "passed": true,
+  "url": "http://127.0.0.1:2256/lessons/discrete-and-applied-mathematics/583-union-intersection-and-difference",
+  "checks": {
+    "initial": {
+      "a": "1,2,5,6",
+      "b": "3,4,5,6",
+      "union": "1,2,3,4,5,6",
+      "intersection": "5,6",
+      "difference": "1,2",
+      "expression": "union",
+      "seed": "0",
+      "challengeA": "2,4,6,8",
+      "challengeB": "1,3,5,6,7",
+      "graded": "",
+      "actions": "0"
+    },
+    "edited": {
+      "a": "1,2,7",
+      "b": "2,7,8",
+      "union": "1,2,7,8",
+      "intersection": "2,7",
+      "difference": "1",
+      "expression": "union",
+      "seed": "0",
+      "challengeA": "2,4,6,8",
+      "challengeB": "1,3,5,6,7",
+      "graded": "",
+      "actions": "0"
+    },
+    "expression": {
+      "a": "1,2,7",
+      "b": "2,7,8",
+      "union": "1,2,7,8",
+      "intersection": "2,7",
+      "difference": "1",
+      "expression": "intersection",
+      "seed": "0",
+      "challengeA": "2,4,6,8",
+      "challengeB": "1,3,5,6,7",
+      "graded": "",
+      "actions": "1"
+    },
+    "dragged": {
+      "a": "1,2,7,9",
+      "b": "2,7,8",
+      "union": "1,2,7,8,9",
+      "intersection": "2,7",
+      "difference": "1,9",
+      "expression": "intersection",
+      "seed": "0",
+      "challengeA": "2,4,6,8",
+      "challengeB": "1,3,5,6,7",
+      "graded": "",
+      "actions": "2"
+    },
+    "shuffled": {
+      "a": "1,3,4,6,7,9,10,12",
+      "b": "2,4,6,8,10,12",
+      "union": "1,2,3,4,6,7,8,9,10,12",
+      "intersection": "4,6,10,12",
+      "difference": "1,3,7,9",
+      "expression": "intersection",
+      "seed": "1",
+      "challengeA": "2,4,6,8",
+      "challengeB": "1,3,5,6,7",
+      "graded": "",
+      "actions": "3"
+    },
+    "reset": {
+      "a": "1,2,5,6",
+      "b": "3,4,5,6",
+      "union": "1,2,3,4,5,6",
+      "intersection": "5,6",
+      "difference": "1,2",
+      "expression": "union",
+      "seed": "0",
+      "challengeA": "2,4,6,8",
+      "challengeB": "1,3,5,6,7",
+      "graded": "",
+      "actions": "1"
+    },
+    "formulaVisible": true,
+    "wrong": {
+      "a": "1,2,5,6",
+      "b": "3,4,5,6",
+      "union": "1,2,3,4,5,6",
+      "intersection": "5,6",
+      "difference": "1,2",
+      "expression": "union",
+      "seed": "0",
+      "challengeA": "2,4,6,8",
+      "challengeB": "1,3,5,6,7",
+      "graded": "false",
+      "actions": "4"
+    },
+    "correct": {
+      "a": "1,2,5,6",
+      "b": "3,4,5,6",
+      "union": "1,2,3,4,5,6",
+      "intersection": "5,6",
+      "difference": "1,2",
+      "expression": "union",
+      "seed": "0",
+      "challengeA": "2,4,6,8",
+      "challengeB": "1,3,5,6,7",
+      "graded": "true",
+      "actions": "5"
+    },
+    "newChallenge": {
+      "a": "1,2,5,6",
+      "b": "3,4,5,6",
+      "union": "1,2,3,4,5,6",
+      "intersection": "5,6",
+      "difference": "1,2",
+      "expression": "union",
+      "seed": "0",
+      "challengeA": "1,3,5,7",
+      "challengeB": "2,3,6,7",
+      "graded": "",
+      "actions": "6"
+    },
+    "final": {
+      "a": "1,2,5,6",
+      "b": "3,4,5,6",
+      "union": "1,2,3,4,5,6",
+      "intersection": "5,6",
+      "difference": "1,2",
+      "expression": "union",
+      "seed": "0",
+      "challengeA": "2,4,6,8",
+      "challengeB": "1,3,5,6,7",
+      "graded": "",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1588
+    },
+    "overflow": false,
+    "surface": {
+      "top": 106,
+      "left": 220,
+      "width": 803,
+      "height": 1364,
+      "bottom": 1470
+    },
+    "hero": {
+      "top": 106,
+      "left": 229,
+      "width": 785,
+      "height": 108,
+      "bottom": 214
+    },
+    "tabs": {
+      "top": 222,
+      "left": 229,
+      "width": 785,
+      "height": 48,
+      "bottom": 270
+    },
+    "lab": {
+      "top": 280,
+      "left": 229,
+      "width": 785,
+      "height": 508,
+      "bottom": 788
+    },
+    "theory": {
+      "top": 798,
+      "left": 229,
+      "width": 785,
+      "height": 218,
+      "bottom": 1016
+    },
+    "rules": {
+      "top": 1026,
+      "left": 229,
+      "width": 785,
+      "height": 196,
+      "bottom": 1222
+    },
+    "practice": {
+      "top": 1232,
+      "left": 229,
+      "width": 785,
+      "height": 178,
+      "bottom": 1410
+    },
+    "adjacent": {
+      "top": 1420,
+      "left": 229,
+      "width": 785,
+      "height": 50,
+      "bottom": 1470
+    }
+  },
+  "mobileMetrics": {
+    "documentWidth": 390,
+    "overflow": false
+  },
+  "consoleMessages": []
+}

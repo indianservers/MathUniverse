@@ -484,6 +484,21 @@ describe("discrete lesson adapter", () => {
     expect(html).toContain('data-result-count="5"');
     expect(html).toContain('data-domain="-5,5"');
   });
+  it("uses the dedicated set-operations surface for lesson 583", () => {
+    const lesson = lessonCatalog.find((candidate) => candidate.id === 583)!;
+    const html = renderToStaticMarkup(
+      <DiscreteLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="discrete-mockup-0640"');
+    expect(html).toContain("dedicated-two-set-venn-operation-model");
+    expect(html).toContain('data-union="1,2,3,4,5,6"');
+    expect(html).toContain('data-intersection="5,6"');
+    expect(html).toContain('data-difference="1,2"');
+  });
   it("renders strengthened discrete lessons 556 through 585 with lesson-specific guidance", () => {
     const expected = new Map([
       [556, "Fundamental Counting Principle"],
