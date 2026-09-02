@@ -469,6 +469,21 @@ describe("discrete lesson adapter", () => {
     expect(html).toContain('data-degrees="2,4,2,3,3"');
     expect(html).toContain('data-degree-sum="14"');
   });
+  it("uses the dedicated set-builder surface for lesson 582", () => {
+    const lesson = lessonCatalog.find((candidate) => candidate.id === 582)!;
+    const html = renderToStaticMarkup(
+      <DiscreteLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="discrete-mockup-0639"');
+    expect(html).toContain("dedicated-integer-domain-predicate-filter-model");
+    expect(html).toContain('data-result="-4,-2,0,2,4"');
+    expect(html).toContain('data-result-count="5"');
+    expect(html).toContain('data-domain="-5,5"');
+  });
   it("renders strengthened discrete lessons 556 through 585 with lesson-specific guidance", () => {
     const expected = new Map([
       [556, "Fundamental Counting Principle"],
