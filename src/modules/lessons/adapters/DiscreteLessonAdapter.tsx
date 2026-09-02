@@ -24,6 +24,7 @@ import PermutationsTargetLesson558 from "./discrete/PermutationsTargetLesson558"
 import RepeatedPermutationsTargetLesson559 from "./discrete/RepeatedPermutationsTargetLesson559";
 import CircularPermutationsTargetLesson560 from "./discrete/CircularPermutationsTargetLesson560";
 import CombinationsTargetLesson561 from "./discrete/CombinationsTargetLesson561";
+import PascalTriangleTargetLesson562 from "./discrete/PascalTriangleTargetLesson562";
 
 const countingModes = new Set<DiscreteLessonMode>([
   "product",
@@ -219,6 +220,8 @@ export default function DiscreteLessonAdapter(props: LessonAdapterProps) {
     return <CircularPermutationsTargetLesson560 {...props} />;
   if (props.lesson.id === 561)
     return <CombinationsTargetLesson561 {...props} />;
+  if (props.lesson.id === 562)
+    return <PascalTriangleTargetLesson562 {...props} />;
   const mode = discreteLessonPreset(props.lesson.id).mode;
   const guidance = discreteGuidanceFor(mode);
   let activity = specialActivity(props.lesson.preset.id, props);

@@ -137,6 +137,23 @@ describe("discrete lesson adapter", () => {
     expect(html).toContain('data-selected="BD"');
     expect(html).toContain('data-challenge-total="35"');
   });
+  it("uses the dedicated binomial triangle lab for lesson 562", () => {
+    const lesson = lessonCatalog.find((candidate) => candidate.id === 562)!;
+    const html = renderToStaticMarkup(
+      <DiscreteLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="discrete-mockup-0619"');
+    expect(html).toContain(
+      "dedicated-binomial-coefficient-selectable-pascal-triangle",
+    );
+    expect(html).toContain('data-rows="7"');
+    expect(html).toContain('data-selected="4,2"');
+    expect(html).toContain('data-value="6"');
+  });
   it("renders strengthened discrete lessons 556 through 585 with lesson-specific guidance", () => {
     const expected = new Map([
       [556, "Fundamental Counting Principle"],

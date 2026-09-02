@@ -12,8 +12,9 @@ Target references begin at `0613` in `D:\Math App Screenshots for UI Update\Upda
 | 0616 | 559 Permutations with Repetition | `RepeatedPermutationsTargetLesson559` | Dedicated multiset model with repeated-count steppers, native drag-and-drop/click source tiles, multiplicity enforcement, live multinomial formula, true deduplicated arrangement enumeration, grid/list modes, random arrangement, independent repeated-letter challenge, five working tabs, shell reset, and navigation | Exact 981 x 1604 target viewport plus coherent full-width 390 px mobile rendering; target-aligned hero/tabs/multiset builder/arrangement grid/rule/example/practice/navigation bands; no overlap, horizontal overflow, or console errors | Complete |
 | 0617 | 560 Circular Permutations | `CircularPermutationsTargetLesson560` | Dedicated circular seating model with generated light-oak PNG tabletop, native person-to-seat drag swapping, click swapping, n selector, anchored-person and rotation-equivalence switches, canonical/rotated arrangements, working undo/redo, live (n-1)! calculation, rotation carousel, independent seven-person challenge, genuine wrong/correct grading and solution reveal, five tabs, reset, and navigation | Exact 1201 x 1309 target viewport plus coherent full-width 390 px mobile rendering; target-aligned 240 px sidebar and hero/tabs/seating lab/live summaries/rule/example/practice/navigation bands; no overlap, horizontal overflow, or console errors | Complete |
 | 0618 | 561 Combinations | `CombinationsTargetLesson561` | Dedicated unordered-selection basket with pool and selection-size steppers, capped toggleable object selection, canonical set comparison, live nPr/r!/nCr relationship, symmetry table, independent editable committee challenge, genuine wrong/correct grading and hint, five tabs, reset, and navigation | Exact 1210 x 1300 target viewport plus coherent full-width 390 px mobile rendering; target-aligned 240 px sidebar and hero/tabs/basket/relation/pattern/rule/challenge/example/navigation bands; no overlap, horizontal overflow, or console errors | Complete |
+| 0619 | 562 Pascal's Triangle | `PascalTriangleTargetLesson562` | Dedicated binomial-coefficient model with dynamically generated selectable rows, parent highlighting, row sums and labels, row expansion slider/stepper, (n,r) jump controls, independent overlay toggles, exact Pascal-rule derivation, three live practice questions, hint, five tabs, reset, and navigation | Exact 854 x 1840 target viewport plus coherent full-width 390 px mobile rendering; target-aligned 172 px sidebar and hero/tabs/triangle/selection details/pattern/rule/example/practice/navigation/footer bands; no overlap, horizontal overflow, or console errors | Complete |
 
-Completed in this family: **6 / 35**. Pending in this family: **29 / 35**.
+Completed in this family: **7 / 35**. Pending in this family: **28 / 35**.
 
 ## Lesson 556 validation
 
@@ -63,3 +64,11 @@ Completed in this family: **6 / 35**. Pending in this family: **29 / 35**.
 - Mobile capture: `0618-mobile.png`
 - Machine-readable interaction and layout audit: `0618-validation.json`
 - The capture harness starts with the unordered basket {B,D} and proves 5C2 = 10 and 5P2 = 20; proves a third selection is rejected at r=2; removes B and adds A, verifying the canonical set becomes AD regardless of click order; clears the basket; changes the model to 6C3 = 20 and selects ABC; exercises the Formula tab; changes the independent challenge from 7C3 = 35 to 8C3 = 56; rejects 35, accepts 56, reveals the real hint, and reloads exact defaults. It confirms exact 1210 x 1300 dimensions, an overflow-free full-width 390 px mobile rendering, and absence of console errors.
+
+## Lesson 562 validation
+
+- Reference: `0619-reference.png`
+- Current capture: `0619-desktop.png`
+- Mobile capture: `0619-mobile.png`
+- Machine-readable interaction and layout audit: `0619-validation.json`
+- The capture harness begins at C(4,2)=6 with parents 3 and 3; selects C(6,3) and proves 20 with parents 10 and 10; expands through row 8; uses the jump controls to select C(8,3)=56 with parents 21 and 35; independently disables parent, row-sum, and label overlays; expands to row 9; exercises the Formula tab; changes one practice answer to reduce the score from 3/3 to 2/3 and restores it; reveals the real hint and reloads exact defaults. It confirms exact 854 x 1840 dimensions, an overflow-free full-width 390 px mobile rendering, and absence of console errors.

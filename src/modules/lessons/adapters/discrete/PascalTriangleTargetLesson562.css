@@ -1,0 +1,475 @@
+.pas562-page {
+  color: #172749;
+  display: grid;
+  gap: 12px;
+  padding: 7px 7px 0;
+  background: #f7fafc;
+  font-family: Inter, Arial, sans-serif;
+}
+.pas562-page * {
+  box-sizing: border-box;
+}
+.pas562-page button,
+.pas562-page input,
+.pas562-page select {
+  font: inherit;
+}
+.pas562-page button {
+  cursor: pointer;
+}
+.pas562-hero,
+.pas562-tabs,
+.pas562-observe,
+.pas562-pattern,
+.pas562-rules > article,
+.pas562-practice,
+.pas562-adjacent button {
+  background: #fff;
+  border: 1px solid #dce5ef;
+  border-radius: 8px;
+}
+.pas562-hero {
+  height: 138px;
+  padding: 15px;
+}
+.pas562-hero small {
+  display: inline-block;
+  background: #eaf7fb;
+  padding: 5px 8px;
+  border-radius: 12px;
+  color: #087f9c;
+  font-size: 8px;
+  font-weight: 800;
+  margin-right: 5px;
+}
+.pas562-hero h1 {
+  font-size: 28px;
+  margin: 10px 0 5px;
+  letter-spacing: 0;
+}
+.pas562-hero p {
+  font-size: 9px;
+}
+.pas562-hero aside {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+.pas562-hero aside span {
+  border: 1px solid #dce5ef;
+  border-radius: 7px;
+  padding: 8px;
+  font-size: 8px;
+}
+.pas562-tabs {
+  height: 51px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  padding: 6px;
+}
+.pas562-tabs button {
+  border: 0;
+  background: #fff;
+  font-weight: 800;
+  color: #30466b;
+}
+.pas562-tabs button.active {
+  background: #089eb1;
+  color: #fff;
+  border-radius: 7px;
+}
+.pas562-page h2 {
+  font-size: 14px;
+  margin: 0 0 7px;
+}
+.pas562-page h3 {
+  font-size: 11px;
+}
+.pas562-page p {
+  font-size: 8px;
+  line-height: 1.45;
+}
+.pas562-observe {
+  height: 612px;
+  padding: 13px;
+}
+.pas562-main {
+  display: grid;
+  grid-template-columns: 1fr 150px;
+  gap: 10px;
+  height: 488px;
+}
+.pas562-main > main,
+.pas562-main > aside {
+  border: 1px solid #dce5ef;
+  border-radius: 7px;
+  padding: 10px;
+}
+.pas562-main > main > header label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 9px;
+}
+.pas562-main input[type="range"] {
+  width: 105px;
+  accent-color: #11a8ac;
+}
+.pas562-main header output {
+  border: 1px solid #dce5ef;
+  border-radius: 5px;
+  padding: 8px;
+}
+.pas562-triangle {
+  height: 372px;
+  padding-top: 4px;
+}
+.pas562-triangle > div {
+  height: 43px;
+  display: flex;
+  align-items: center;
+}
+.pas562-triangle > div > b {
+  width: 55px;
+  text-align: right;
+  font-size: 8px;
+  font-weight: 500;
+}
+.pas562-triangle section {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  flex: 1;
+}
+.pas562-triangle button {
+  width: 37px;
+  height: 37px;
+  border: 1px solid #d7e1ec;
+  background: #fff;
+  border-radius: 6px;
+}
+.pas562-triangle button.selected {
+  background: #4f5ff0;
+  color: #fff;
+}
+.pas562-triangle button.parent {
+  background: #dff8f4;
+  border-color: #66d2c7;
+}
+.pas562-sums {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  color: #3f56e8;
+  font-size: 8px;
+}
+.pas562-sums b {
+  color: #172749;
+}
+.pas562-main > aside > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.pas562-main > aside label {
+  font-size: 8px;
+}
+.pas562-main > aside label output {
+  display: block;
+  border: 1px solid #dce5ef;
+  padding: 9px;
+  text-align: center;
+}
+.pas562-main > aside hr {
+  border: 0;
+  border-top: 1px solid #dce5ef;
+  margin: 14px 0;
+}
+.pas562-main > aside > strong {
+  display: block;
+  font:
+    26px Georgia,
+    serif;
+  margin: 12px;
+}
+.pas562-main > aside > output {
+  display: block;
+  background: #dcf8f5;
+  border: 1px solid #80d9d2;
+  border-radius: 5px;
+  padding: 8px;
+  text-align: center;
+}
+.pas562-observe > footer {
+  height: 72px;
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1.4fr 0.75fr;
+  gap: 10px;
+}
+.pas562-observe > footer > section {
+  border: 1px solid #dce5ef;
+  border-radius: 7px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 8px;
+}
+.pas562-observe footer section b {
+  display: block;
+  margin-right: auto;
+}
+.pas562-observe footer select,
+.pas562-observe footer button {
+  border: 1px solid #dce5ef;
+  background: #fff;
+  padding: 7px;
+  border-radius: 5px;
+}
+.pas562-observe footer section:first-child button {
+  background: #079db0;
+  color: #fff;
+}
+.pas562-observe footer label {
+  display: flex;
+  align-items: center;
+}
+.pas562-pattern {
+  height: 234px;
+  padding: 13px;
+}
+.pas562-pattern > div {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  height: 190px;
+}
+.pas562-pattern article {
+  border: 1px solid #dce5ef;
+  border-radius: 7px;
+  padding: 13px;
+}
+.pas562-pattern article > b {
+  color: #4662e8;
+  font-size: 9px;
+}
+.pas562-pattern pre {
+  text-align: center;
+  color: #415cef;
+  font-size: 14px;
+}
+.pas562-symmetry {
+  text-align: center;
+  border-right: 1px dashed #394b71;
+  padding: 10px;
+  font-size: 17px;
+}
+.pas562-rules {
+  height: 315px;
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 10px;
+}
+.pas562-rules > article {
+  padding: 13px;
+}
+.pas562-rules aside {
+  border: 1px solid #dce5ef;
+  border-radius: 7px;
+  padding: 10px;
+}
+.pas562-rules output {
+  display: block;
+  font:
+    15px Georgia,
+    serif;
+  line-height: 2;
+  text-align: center;
+  background: #f2f5f9;
+  padding: 8px;
+}
+.pas562-rules article:first-child > div {
+  background: #fff7e8;
+  border: 1px solid #efd8a8;
+  border-radius: 7px;
+  padding: 9px;
+  margin-top: 9px;
+}
+.pas562-rules article:nth-child(2) > output {
+  background: #fff;
+  text-align: left;
+  font-size: 16px;
+  line-height: 2.3;
+}
+.pas562-rules article:nth-child(2) > strong {
+  display: flex;
+  gap: 8px;
+  background: #e5f8ec;
+  color: #188450;
+  border: 1px solid #a9e3c1;
+  padding: 10px;
+  border-radius: 7px;
+  font-size: 9px;
+}
+.pas562-rules svg {
+  width: 13px;
+}
+.pas562-practice {
+  height: 185px;
+  padding: 13px;
+}
+.pas562-practice > header {
+  display: flex;
+}
+.pas562-practice > header > div {
+  margin-right: auto;
+}
+.pas562-practice header button {
+  border: 1px solid #dce5ef;
+  background: #fff;
+  border-radius: 12px;
+  padding: 7px;
+}
+.pas562-practice > div {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.pas562-practice article {
+  padding: 6px 13px;
+  border-right: 1px solid #dce5ef;
+  font-size: 8px;
+}
+.pas562-practice label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 12px 0;
+}
+.pas562-practice input {
+  width: 85px;
+  border: 1px solid #b9e6d1;
+  background: #f2fcf7;
+  padding: 7px;
+}
+.pas562-practice svg {
+  width: 13px;
+  color: #169051;
+}
+.pas562-practice article button {
+  border: 1px solid #dce5ef;
+  background: #fff;
+  padding: 7px;
+  border-radius: 5px;
+}
+.pas562-practice > footer {
+  border-top: 1px solid #dce5ef;
+  margin-top: 6px;
+  padding-top: 8px;
+  display: flex;
+  align-items: center;
+  color: #168350;
+  font-size: 8px;
+}
+.pas562-practice footer b {
+  margin-left: auto;
+}
+.pas562-practice progress {
+  width: 80px;
+  margin-left: 10px;
+  accent-color: #1cac54;
+}
+.pas562-adjacent {
+  height: 58px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.pas562-adjacent button {
+  text-align: left;
+  padding: 8px 16px;
+}
+.pas562-adjacent button:last-child {
+  text-align: right;
+}
+body:has(.pas562-page) [data-testid="desktop-sidebar"] {
+  width: 172px !important;
+  flex-basis: 172px !important;
+}
+body:has(.pas562-page) #main-content {
+  padding: 0 8px !important;
+}
+body:has(.pas562-page) .app-layout-rail > div > header {
+  height: 44px !important;
+  min-height: 44px !important;
+  padding-top: 3px !important;
+  padding-bottom: 3px !important;
+  overflow: hidden;
+}
+body:has(.pas562-page) footer[aria-label="Site footer"],
+body:has(.pas562-page) footer[aria-label="Site footer"] > div {
+  height: 78px !important;
+}
+@media (max-width: 700px) {
+  body:has(.pas562-page) [data-testid="desktop-sidebar"] {
+    display: none !important;
+    width: 0 !important;
+    flex-basis: 0 !important;
+  }
+  .pas562-page {
+    padding: 8px;
+  }
+  .pas562-hero {
+    height: auto;
+  }
+  .pas562-hero aside {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .pas562-tabs {
+    overflow-x: auto;
+  }
+  .pas562-observe {
+    height: auto;
+  }
+  .pas562-main {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .pas562-triangle {
+    overflow-x: auto;
+  }
+  .pas562-observe > footer {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .pas562-observe > footer > section {
+    flex-wrap: wrap;
+  }
+  .pas562-pattern {
+    height: auto;
+  }
+  .pas562-pattern > div {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .pas562-rules {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .pas562-practice {
+    height: auto;
+  }
+  .pas562-practice > div {
+    grid-template-columns: 1fr;
+  }
+  .pas562-practice article {
+    border-bottom: 1px solid #dce5ef;
+  }
+  .pas562-sums {
+    gap: 12px;
+  }
+  .pas562-adjacent {
+    height: auto;
+  }
+}
