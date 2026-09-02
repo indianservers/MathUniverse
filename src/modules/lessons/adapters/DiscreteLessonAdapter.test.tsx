@@ -316,6 +316,22 @@ describe("discrete lesson adapter", () => {
     expect(html).toContain('data-visited-count="3"');
     expect(html).toContain('data-can-complete="true"');
   });
+  it("uses the dedicated mutable tree surface for lesson 573", () => {
+    const lesson = lessonCatalog.find((candidate) => candidate.id === 573)!;
+    const html = renderToStaticMarkup(
+      <DiscreteLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="discrete-mockup-0630"');
+    expect(html).toContain("dedicated-rooted-tree-invariant-builder-model");
+    expect(html).toContain('data-vertex-count="8"');
+    expect(html).toContain('data-edge-count="7"');
+    expect(html).toContain('data-height="3"');
+    expect(html).toContain('data-leaves="D,F,G,H"');
+  });
   it("renders strengthened discrete lessons 556 through 585 with lesson-specific guidance", () => {
     const expected = new Map([
       [556, "Fundamental Counting Principle"],

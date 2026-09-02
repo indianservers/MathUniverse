@@ -1,0 +1,640 @@
+.tr573-page {
+  --ink: #14213c;
+  --muted: #5d6d84;
+  --line: #dce5ee;
+  color: var(--ink);
+  font-size: 9px;
+  letter-spacing: 0;
+}
+.tr573-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.tr573-page button,
+.tr573-page input,
+.tr573-page select {
+  font: inherit;
+}
+.tr573-page h1,
+.tr573-page h3,
+.tr573-page h4,
+.tr573-page p {
+  margin: 0;
+}
+.tr573-hero,
+.tr573-tabs,
+.tr573-lab main,
+.tr573-lab > aside,
+.tr573-middle > article,
+.tr573-lower > article,
+.tr573-adjacent {
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: #fff;
+}
+.tr573-hero {
+  display: grid;
+  height: 163px;
+  margin: 17px 8px 0;
+  padding: 15px;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 30px;
+}
+.tr573-hero > div > small {
+  display: inline-block;
+  margin-right: 8px;
+  padding: 5px 9px;
+  border-radius: 12px;
+  background: #e9f8fb;
+  color: #087b96;
+  font-size: 7px;
+  font-weight: 900;
+}
+.tr573-hero > div > small + small {
+  background: #f1f3f6;
+  color: #536176;
+}
+.tr573-hero h1 {
+  margin-top: 13px;
+  font-size: 26px;
+}
+.tr573-hero > div > p:first-of-type {
+  margin-top: 5px;
+  color: #516078;
+  font-size: 13px;
+}
+.tr573-hero > div > b {
+  display: block;
+  margin-top: 15px;
+}
+.tr573-hero > div > p:last-child {
+  margin-top: 6px;
+  color: #52617a;
+  line-height: 1.45;
+}
+.tr573-hero dl {
+  display: grid;
+  margin: 0;
+  grid-template-columns: 1fr 1fr;
+}
+.tr573-hero dl span {
+  display: grid;
+  grid-template-columns: 25px 1fr;
+  align-content: center;
+}
+.tr573-hero dl b {
+  grid-column: 2;
+}
+.tr573-hero dl small {
+  grid-column: 2;
+  margin-top: 4px;
+  font-weight: 700;
+}
+.tr573-tabs {
+  display: grid;
+  height: 47px;
+  margin: 10px 8px 0;
+  grid-template-columns: repeat(5, 1fr);
+}
+.tr573-tabs button {
+  border: 0;
+  background: #fff;
+  color: #35425c;
+  font-size: 11px;
+  font-weight: 800;
+}
+.tr573-tabs button.active {
+  border-bottom: 3px solid #078fb0;
+  color: #087c9a;
+}
+.tr573-tab-note {
+  position: absolute;
+  z-index: 2;
+  top: 260px;
+  left: 230px;
+  padding: 5px 9px;
+  border: 1px solid #b9dde4;
+  border-radius: 6px;
+  background: #effbfc;
+}
+.tr573-lab {
+  display: grid;
+  height: 428px;
+  margin: 12px 8px 0;
+  grid-template-columns: minmax(0, 1fr) 225px;
+  gap: 12px;
+}
+.tr573-lab main,
+.tr573-lab > aside {
+  padding: 14px;
+}
+.tr573-lab main > header {
+  display: flex;
+  height: 49px;
+  align-items: start;
+}
+.tr573-page h3 {
+  color: #0875a4;
+  font-size: 10px;
+}
+.tr573-lab main > header p {
+  margin-top: 8px;
+  color: #52617a;
+}
+.tr573-lab main > header button {
+  display: flex;
+  height: 30px;
+  margin-left: 8px;
+  align-items: center;
+  gap: 6px;
+  padding: 0 11px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+}
+.tr573-lab main > header > div {
+  margin-right: auto;
+}
+.tr573-lab main svg {
+  width: 13px;
+}
+.tr573-tree {
+  display: block !important;
+  width: 100% !important;
+  height: 285px !important;
+  border-radius: 7px;
+  background: radial-gradient(circle at 50% 45%, #10203c, #03091a 74%);
+  touch-action: none;
+}
+.tr573-tree > line {
+  stroke: #d2d9e2;
+  stroke-width: 3;
+}
+.tr573-tree > line.cycle {
+  stroke: #ee4258;
+  stroke-width: 5;
+}
+.tr573-tree .level line {
+  stroke: #61718a;
+  stroke-dasharray: 4 4;
+}
+.tr573-tree .level text {
+  fill: #d4dbe5;
+  font-size: 13px;
+}
+.tr573-tree g[data-testid^="tree-node"] {
+  cursor: pointer;
+}
+.tr573-tree circle {
+  fill: #1596ad;
+  stroke: #fff;
+  stroke-width: 3;
+}
+.tr573-tree g.root circle {
+  fill: #ef9418;
+}
+.tr573-tree g.selected circle {
+  stroke: #ffe263;
+  stroke-width: 6;
+}
+.tr573-tree g[data-testid^="tree-node"] text {
+  fill: #fff;
+  font-size: 14px;
+  font-weight: 900;
+  text-anchor: middle;
+}
+.tr573-tools {
+  display: flex;
+  height: 35px;
+  margin-top: 8px;
+  align-items: center;
+  gap: 7px;
+}
+.tr573-tools button,
+.tr573-tools select {
+  height: 30px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: #fff;
+  padding: 0 9px;
+}
+.tr573-tools button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.tr573-tools button:first-child {
+  border-radius: 5px 0 0 5px;
+  background: #159bd2;
+  color: #fff;
+  font-weight: 800;
+}
+.tr573-tools select {
+  width: 88px;
+  margin-left: -8px;
+  border-radius: 0 5px 5px 0;
+  color: #52617a;
+}
+.tr573-tools svg {
+  width: 13px !important;
+}
+.tr573-tools label {
+  display: flex;
+  margin-left: auto;
+  align-items: center;
+  gap: 7px;
+}
+.tr573-tools input {
+  accent-color: #159bd2;
+}
+.tr573-lab main > p[role="status"] {
+  height: 17px;
+  color: #596a81;
+  font-size: 8px;
+}
+.tr573-lab > aside h3 {
+  margin-bottom: 12px;
+}
+.tr573-lab > aside dl {
+  margin: 0;
+}
+.tr573-lab > aside dl span {
+  display: flex;
+  height: 36px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-bottom: 0;
+  font-size: 10px;
+}
+.tr573-lab > aside dl span:last-child {
+  border-bottom: 1px solid var(--line);
+}
+.tr573-lab > aside output {
+  display: grid;
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px solid #bce8c9;
+  border-radius: 7px;
+  background: #effbf3;
+  color: #168047;
+}
+.tr573-lab > aside output.bad {
+  border-color: #f3c8cc;
+  background: #fff2f3;
+  color: #c5374b;
+}
+.tr573-lab > aside output + output {
+  position: relative;
+  border-color: #b9dcef;
+  background: #eff8ff;
+  color: #1674b9;
+}
+.tr573-lab > aside output + output svg {
+  position: absolute;
+  top: 13px;
+  left: 11px;
+  width: 15px;
+}
+.tr573-lab > aside output + output b,
+.tr573-lab > aside output + output small {
+  padding-left: 23px;
+}
+.tr573-lab > aside output small {
+  margin-top: 5px;
+}
+.tr573-middle {
+  display: grid;
+  height: 281px;
+  margin: 11px 8px 0;
+  grid-template-columns: 0.9fr 1.35fr;
+  gap: 10px;
+}
+.tr573-middle > article {
+  padding: 14px;
+}
+.tr573-middle > article > p {
+  margin-top: 9px;
+  color: #52617a;
+}
+.tr573-middle table {
+  width: 100%;
+  margin-top: 10px;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  text-align: center;
+}
+.tr573-middle th,
+.tr573-middle td {
+  height: 27px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.tr573-middle th:last-child,
+.tr573-middle td:last-child {
+  border-right: 0;
+}
+.tr573-middle tbody tr:last-child td {
+  border-bottom: 0;
+}
+.tr573-middle td:last-child {
+  color: #16934f;
+  font-weight: 900;
+}
+.tr573-middle > article:nth-child(2) > div {
+  display: grid;
+  height: 207px;
+  margin-top: 8px;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+.tr573-small-tree {
+  display: block;
+  width: 100%;
+  height: 180px;
+}
+.tr573-small-tree line {
+  stroke: #53627b;
+  stroke-width: 3;
+}
+.tr573-small-tree circle {
+  fill: #8154da;
+  stroke: #ded2f9;
+  stroke-width: 3;
+}
+.tr573-small-tree text {
+  fill: #fff;
+  font-size: 13px;
+  font-weight: 900;
+  text-anchor: middle;
+}
+.tr573-middle ul {
+  margin: 20px 0 0;
+  padding-left: 18px;
+  line-height: 2;
+}
+.tr573-middle li:last-child b {
+  padding: 7px;
+  border-radius: 6px;
+  background: #e9f9ef;
+  color: #168047;
+}
+.tr573-lower {
+  display: grid;
+  height: 374px;
+  margin: 11px 8px 0;
+  grid-template-columns: 0.85fr 1.5fr;
+  gap: 10px;
+}
+.tr573-lower > article {
+  padding: 14px;
+}
+.tr573-lower > article:first-child > strong {
+  display: grid;
+  margin-top: 12px;
+  padding: 13px;
+  border: 1px solid #b8ddef;
+  border-radius: 7px;
+  background: #eefaff;
+  line-height: 1.6;
+}
+.tr573-lower > article:first-child > strong > b {
+  color: #0878a6;
+}
+.tr573-lower h4 {
+  margin-top: 15px;
+}
+.tr573-lower > article:first-child ul {
+  padding-left: 18px;
+  line-height: 2;
+}
+.tr573-lower > article:first-child aside {
+  margin-top: 16px;
+  padding: 13px;
+  border: 1px solid #f1c7cb;
+  border-radius: 7px;
+  background: #fff3f4;
+  color: #bd3447;
+}
+.tr573-lower > article:first-child aside p {
+  margin-top: 9px;
+  color: #4e5d74;
+}
+.tr573-lower > article:nth-child(2) > p {
+  margin-top: 7px;
+}
+.tr573-lower > article:nth-child(2) > div {
+  display: grid;
+  height: 315px;
+  margin-top: 9px;
+  grid-template-columns: 1.35fr 0.8fr;
+  gap: 10px;
+}
+.tr573-lower section {
+  min-width: 0;
+}
+.tr573-lower section h4 {
+  margin: 0;
+  color: #0878b0;
+}
+.tr573-lower section > p {
+  margin-top: 6px;
+}
+.tr573-lower section .tr573-small-tree {
+  height: 220px;
+  margin-top: 5px;
+  border-radius: 7px;
+  background: radial-gradient(circle at 50% 45%, #10203c, #03091a 74%);
+}
+.tr573-lower section .tr573-small-tree line {
+  stroke: #bbc5d0;
+}
+.tr573-lower section nav {
+  display: flex;
+  height: 32px;
+  margin-top: 6px;
+  gap: 6px;
+}
+.tr573-lower section nav button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0 9px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: #fff;
+}
+.tr573-lower section nav button:first-child {
+  background: #159bd2;
+  color: #fff;
+}
+.tr573-lower section nav svg {
+  width: 13px;
+}
+.tr573-lower form {
+  padding: 13px;
+  border-radius: 7px;
+  background: #f3faf9;
+}
+.tr573-lower form h4 {
+  margin: 0;
+  color: #187b58;
+}
+.tr573-lower form label {
+  display: grid;
+  margin-top: 10px;
+  gap: 5px;
+}
+.tr573-lower form input {
+  height: 31px;
+  padding: 0 8px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  text-align: right;
+}
+.tr573-lower form output {
+  display: grid;
+  margin-top: 15px;
+  padding: 13px;
+  border: 1px solid #bce8c9;
+  border-radius: 7px;
+  background: #effbf3;
+  color: #168047;
+}
+.tr573-lower form output.bad {
+  border-color: #f2c7cb;
+  background: #fff2f3;
+  color: #c5374b;
+}
+.tr573-lower form output small {
+  margin-top: 5px;
+}
+.tr573-lower form > p {
+  margin-top: 8px;
+  color: #1674b0;
+}
+.tr573-adjacent {
+  display: grid;
+  height: 61px;
+  margin: 11px 8px 0;
+  grid-template-columns: 1fr 1fr;
+}
+.tr573-adjacent a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 13px;
+  color: inherit;
+  text-decoration: none;
+}
+.tr573-adjacent a:last-child {
+  justify-content: flex-end;
+  text-align: right;
+}
+.tr573-adjacent span {
+  color: #66758a;
+  font-size: 7px;
+}
+.tr573-adjacent span b {
+  display: block;
+  margin-top: 4px;
+  color: #14213c;
+  font-size: 9px;
+}
+@media (min-width: 701px) {
+  .tr573-page {
+    position: relative;
+    top: -22px;
+    margin-bottom: -22px;
+  }
+  body:has(.tr573-page) footer[aria-label="Site footer"] {
+    display: none !important;
+  }
+}
+@media (max-width: 700px) {
+  body:has(.tr573-page) [data-testid="desktop-sidebar"] {
+    display: none !important;
+  }
+  body:has(.tr573-page) #main-content {
+    width: 100% !important;
+    min-width: 0 !important;
+    padding: 0 !important;
+  }
+  .tr573-hero {
+    display: block;
+    height: auto;
+    min-height: 230px;
+    margin: 12px;
+  }
+  .tr573-hero dl {
+    margin-top: 10px;
+  }
+  .tr573-tabs {
+    margin: 8px 12px;
+  }
+  .tr573-tab-note {
+    position: static;
+    margin: 5px 12px;
+  }
+  .tr573-lab {
+    display: block;
+    height: auto;
+    margin: 10px 12px;
+  }
+  .tr573-lab main,
+  .tr573-lab > aside {
+    margin-top: 8px;
+  }
+  .tr573-lab main > header {
+    height: 75px;
+  }
+  .tr573-tree {
+    height: auto !important;
+    aspect-ratio: 580/370;
+  }
+  .tr573-tools {
+    height: auto;
+    flex-wrap: wrap;
+  }
+  .tr573-tools label {
+    margin-left: 0;
+  }
+  .tr573-middle {
+    display: block;
+    height: auto;
+    margin: 8px 12px;
+  }
+  .tr573-middle > article {
+    margin-top: 8px;
+    min-height: 280px;
+  }
+  .tr573-middle > article:nth-child(2) > div {
+    height: auto;
+  }
+  .tr573-lower {
+    display: block;
+    height: auto;
+    margin: 8px 12px;
+  }
+  .tr573-lower > article {
+    margin-top: 8px;
+    min-height: 360px;
+  }
+  .tr573-lower > article:nth-child(2) > div {
+    display: block;
+    height: auto;
+  }
+  .tr573-lower section .tr573-small-tree {
+    height: auto;
+    aspect-ratio: 560/320;
+  }
+  .tr573-lower form {
+    margin-top: 8px;
+  }
+  .tr573-adjacent {
+    margin: 8px 12px;
+  }
+}

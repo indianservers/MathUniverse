@@ -35,6 +35,7 @@ import PathsCyclesTargetLesson569 from "./discrete/PathsCyclesTargetLesson569";
 import ConnectedComponentsTargetLesson570 from "./discrete/ConnectedComponentsTargetLesson570";
 import EulerPathsTargetLesson571 from "./discrete/EulerPathsTargetLesson571";
 import HamiltonianPathsTargetLesson572 from "./discrete/HamiltonianPathsTargetLesson572";
+import TreesTargetLesson573 from "./discrete/TreesTargetLesson573";
 
 const countingModes = new Set<DiscreteLessonMode>([
   "product",
@@ -249,6 +250,7 @@ export default function DiscreteLessonAdapter(props: LessonAdapterProps) {
   if (props.lesson.id === 571) return <EulerPathsTargetLesson571 {...props} />;
   if (props.lesson.id === 572)
     return <HamiltonianPathsTargetLesson572 {...props} />;
+  if (props.lesson.id === 573) return <TreesTargetLesson573 {...props} />;
   const mode = discreteLessonPreset(props.lesson.id).mode;
   const guidance = discreteGuidanceFor(mode);
   let activity = specialActivity(props.lesson.preset.id, props);
