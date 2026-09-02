@@ -1123,4 +1123,21 @@ describe("Geometry3DLessonAdapter", () => {
     expect(html).toContain('data-du="0"');
     expect(html).toContain('data-dv="0"');
   });
+
+  it("uses a dedicated linked double-integral model for lesson 426", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 426)!;
+    const html = renderToStaticMarkup(
+      <Geometry3DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="geometry3d-mockup-0611"');
+    expect(html).toContain("linked-svg-region-threejs-surface");
+    expect(html).toContain('data-volume="21"');
+    expect(html).toContain('data-area="6"');
+    expect(html).toContain('data-average="3.5"');
+    expect(html).toContain("Riemann columns");
+  });
 });
