@@ -1,0 +1,164 @@
+{
+  "passed": true,
+  "url": "http://127.0.0.1:2256/lessons/discrete-and-applied-mathematics/556-fundamental-counting-principle",
+  "checks": {
+    "initial": {
+      "tops": "3",
+      "pants": "2",
+      "shoes": "2",
+      "total": "12",
+      "selected": "0-0-0",
+      "meal": "2-3-2",
+      "mealTotal": "12",
+      "graded": "false",
+      "correct": "false",
+      "actions": "0"
+    },
+    "selected": {
+      "tops": "3",
+      "pants": "2",
+      "shoes": "2",
+      "total": "12",
+      "selected": "1-1-1",
+      "meal": "2-3-2",
+      "mealTotal": "12",
+      "graded": "false",
+      "correct": "false",
+      "actions": "1"
+    },
+    "fourTops": {
+      "tops": "4",
+      "pants": "2",
+      "shoes": "2",
+      "total": "16",
+      "selected": "1-1-1",
+      "meal": "2-3-2",
+      "mealTotal": "12",
+      "graded": "false",
+      "correct": "false",
+      "actions": "2"
+    },
+    "threePants": {
+      "tops": "4",
+      "pants": "3",
+      "shoes": "2",
+      "total": "24",
+      "selected": "1-1-1",
+      "meal": "2-3-2",
+      "mealTotal": "12",
+      "graded": "false",
+      "correct": "false",
+      "actions": "3"
+    },
+    "formula": "active",
+    "meal": {
+      "tops": "4",
+      "pants": "3",
+      "shoes": "2",
+      "total": "24",
+      "selected": "1-1-1",
+      "meal": "3-3-2",
+      "mealTotal": "18",
+      "graded": "false",
+      "correct": "false",
+      "actions": "5"
+    },
+    "wrong": {
+      "tops": "4",
+      "pants": "3",
+      "shoes": "2",
+      "total": "24",
+      "selected": "1-1-1",
+      "meal": "3-3-2",
+      "mealTotal": "18",
+      "graded": "true",
+      "correct": "false",
+      "actions": "7"
+    },
+    "correct": {
+      "tops": "4",
+      "pants": "3",
+      "shoes": "2",
+      "total": "24",
+      "selected": "1-1-1",
+      "meal": "3-3-2",
+      "mealTotal": "18",
+      "graded": "true",
+      "correct": "true",
+      "actions": "9"
+    },
+    "final": {
+      "tops": "3",
+      "pants": "2",
+      "shoes": "2",
+      "total": "12",
+      "selected": "0-0-0",
+      "meal": "2-3-2",
+      "mealTotal": "12",
+      "graded": "false",
+      "correct": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1208,
+      "height": 1302
+    },
+    "overflow": false,
+    "hero": {
+      "top": 97,
+      "left": 252,
+      "width": 947,
+      "height": 171,
+      "bottom": 268
+    },
+    "tabs": {
+      "top": 279,
+      "left": 252,
+      "width": 947,
+      "height": 45,
+      "bottom": 324
+    },
+    "lab": {
+      "top": 334,
+      "left": 252,
+      "width": 947,
+      "height": 470,
+      "bottom": 804
+    },
+    "tree": {
+      "top": 390,
+      "left": 266,
+      "width": 454,
+      "height": 288,
+      "bottom": 678
+    },
+    "theory": {
+      "top": 814,
+      "left": 252,
+      "width": 947,
+      "height": 230,
+      "bottom": 1044
+    },
+    "practice": {
+      "top": 1054,
+      "left": 252,
+      "width": 947,
+      "height": 127,
+      "bottom": 1181
+    },
+    "adjacent": {
+      "top": 1193,
+      "left": 252,
+      "width": 947,
+      "height": 64,
+      "bottom": 1257
+    }
+  },
+  "mobileMetrics": {
+    "documentWidth": 390,
+    "overflow": false
+  },
+  "consoleMessages": []
+}
