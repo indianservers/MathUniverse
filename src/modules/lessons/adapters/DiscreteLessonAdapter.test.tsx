@@ -452,6 +452,23 @@ describe("discrete lesson adapter", () => {
     expect(html).toContain('data-optimum="15"');
     expect(html).toContain('data-complete="true"');
   });
+  it("uses the dedicated adjacency-matrix surface for lesson 581", () => {
+    const lesson = lessonCatalog.find((candidate) => candidate.id === 581)!;
+    const html = renderToStaticMarkup(
+      <DiscreteLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="discrete-mockup-0638"');
+    expect(html).toContain(
+      "dedicated-synchronized-graph-adjacency-matrix-model",
+    );
+    expect(html).toContain('data-edge-count="7"');
+    expect(html).toContain('data-degrees="2,4,2,3,3"');
+    expect(html).toContain('data-degree-sum="14"');
+  });
   it("renders strengthened discrete lessons 556 through 585 with lesson-specific guidance", () => {
     const expected = new Map([
       [556, "Fundamental Counting Principle"],

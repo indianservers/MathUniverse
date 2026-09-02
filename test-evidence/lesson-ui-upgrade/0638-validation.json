@@ -1,0 +1,230 @@
+{
+  "passed": true,
+  "url": "http://127.0.0.1:2256/lessons/discrete-and-applied-mathematics/581-adjacency-matrix",
+  "checks": {
+    "initial": {
+      "edges": "AB,AD,BC,BD,BE,CE,DE",
+      "edgeCount": "7",
+      "degrees": "2,4,2,3,3",
+      "degreeSum": "14",
+      "symmetric": "true",
+      "matrix": "01010;10111;01001;11001;01110",
+      "selected": "",
+      "positions": "A:80,130;B:245,55;C:440,130;D:145,315;E:380,315",
+      "challengeEdges": "AB,AD,BC,BD,BE,CE,DE",
+      "graded": "",
+      "revealed": "false",
+      "actions": "0"
+    },
+    "added": {
+      "edges": "AB,AC,AD,BC,BD,BE,CE,DE",
+      "edgeCount": "8",
+      "degrees": "3,4,3,3,3",
+      "degreeSum": "16",
+      "symmetric": "true",
+      "matrix": "01110;10111;11001;11001;01110",
+      "selected": "A",
+      "positions": "A:80,130;B:245,55;C:440,130;D:145,315;E:380,315",
+      "challengeEdges": "AB,AD,BC,BD,BE,CE,DE",
+      "graded": "",
+      "revealed": "false",
+      "actions": "1"
+    },
+    "restored": {
+      "edges": "AB,AD,BC,BD,BE,CE,DE",
+      "edgeCount": "7",
+      "degrees": "2,4,2,3,3",
+      "degreeSum": "14",
+      "symmetric": "true",
+      "matrix": "01010;10111;01001;11001;01110",
+      "selected": "C",
+      "positions": "A:80,130;B:245,55;C:440,130;D:145,315;E:380,315",
+      "challengeEdges": "AB,AD,BC,BD,BE,CE,DE",
+      "graded": "",
+      "revealed": "false",
+      "actions": "2"
+    },
+    "selected": {
+      "edges": "AB,AD,BC,BD,BE,CE,DE",
+      "edgeCount": "7",
+      "degrees": "2,4,2,3,3",
+      "degreeSum": "14",
+      "symmetric": "true",
+      "matrix": "01010;10111;01001;11001;01110",
+      "selected": "B",
+      "positions": "A:80,130;B:245,55;C:440,130;D:145,315;E:380,315",
+      "challengeEdges": "AB,AD,BC,BD,BE,CE,DE",
+      "graded": "",
+      "revealed": "false",
+      "actions": "3"
+    },
+    "dragged": {
+      "edges": "AB,AD,BC,BD,BE,CE,DE",
+      "edgeCount": "7",
+      "degrees": "2,4,2,3,3",
+      "degreeSum": "14",
+      "symmetric": "true",
+      "matrix": "01010;10111;01001;11001;01110",
+      "selected": "B",
+      "positions": "A:80,130;B:336,134;C:440,130;D:145,315;E:380,315",
+      "challengeEdges": "AB,AD,BC,BD,BE,CE,DE",
+      "graded": "",
+      "revealed": "false",
+      "actions": "4"
+    },
+    "dragChanged": true,
+    "directed": {
+      "edges": "AB,AD,BC,BD,BE,CE,DE",
+      "edgeCount": "7",
+      "degrees": "2,3,1,1,0",
+      "degreeSum": "7",
+      "symmetric": "false",
+      "matrix": "01010;00111;00001;00001;00000",
+      "selected": "B",
+      "positions": "A:80,130;B:336,134;C:440,130;D:145,315;E:380,315",
+      "challengeEdges": "AB,AD,BC,BD,BE,CE,DE",
+      "graded": "",
+      "revealed": "false",
+      "actions": "5"
+    },
+    "symmetricAgain": {
+      "edges": "AB,AD,BC,BD,BE,CE,DE",
+      "edgeCount": "7",
+      "degrees": "2,4,2,3,3",
+      "degreeSum": "14",
+      "symmetric": "true",
+      "matrix": "01010;10111;01001;11001;01110",
+      "selected": "B",
+      "positions": "A:80,130;B:336,134;C:440,130;D:145,315;E:380,315",
+      "challengeEdges": "AB,AD,BC,BD,BE,CE,DE",
+      "graded": "",
+      "revealed": "false",
+      "actions": "6"
+    },
+    "formulaVisible": true,
+    "wrong": {
+      "edges": "AB,AD,BC,BD,BE,CE,DE",
+      "edgeCount": "7",
+      "degrees": "2,4,2,3,3",
+      "degreeSum": "14",
+      "symmetric": "true",
+      "matrix": "01010;10111;01001;11001;01110",
+      "selected": "B",
+      "positions": "A:80,130;B:336,134;C:440,130;D:145,315;E:380,315",
+      "challengeEdges": "AB,AD,AE,BC,BD,BE,CE,DE",
+      "graded": "false",
+      "revealed": "false",
+      "actions": "10"
+    },
+    "correct": {
+      "edges": "AB,AD,BC,BD,BE,CE,DE",
+      "edgeCount": "7",
+      "degrees": "2,4,2,3,3",
+      "degreeSum": "14",
+      "symmetric": "true",
+      "matrix": "01010;10111;01001;11001;01110",
+      "selected": "B",
+      "positions": "A:80,130;B:336,134;C:440,130;D:145,315;E:380,315",
+      "challengeEdges": "AB,AC,AD,BC,BD,BE,CE,DE",
+      "graded": "true",
+      "revealed": "false",
+      "actions": "13"
+    },
+    "revealed": {
+      "edges": "AB,AD,BC,BD,BE,CE,DE",
+      "edgeCount": "7",
+      "degrees": "2,4,2,3,3",
+      "degreeSum": "14",
+      "symmetric": "true",
+      "matrix": "01010;10111;01001;11001;01110",
+      "selected": "B",
+      "positions": "A:80,130;B:336,134;C:440,130;D:145,315;E:380,315",
+      "challengeEdges": "AB,AC,AD,BC,BD,BE,CE,DE",
+      "graded": "true",
+      "revealed": "true",
+      "actions": "14"
+    },
+    "final": {
+      "edges": "AB,AD,BC,BD,BE,CE,DE",
+      "edgeCount": "7",
+      "degrees": "2,4,2,3,3",
+      "degreeSum": "14",
+      "symmetric": "true",
+      "matrix": "01010;10111;01001;11001;01110",
+      "selected": "",
+      "positions": "A:80,130;B:245,55;C:440,130;D:145,315;E:380,315",
+      "challengeEdges": "AB,AD,BC,BD,BE,CE,DE",
+      "graded": "",
+      "revealed": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1622
+    },
+    "overflow": false,
+    "surface": {
+      "top": 106,
+      "left": 220,
+      "width": 803,
+      "height": 1398,
+      "bottom": 1504
+    },
+    "hero": {
+      "top": 106,
+      "left": 229,
+      "width": 785,
+      "height": 158,
+      "bottom": 264
+    },
+    "tabs": {
+      "top": 272,
+      "left": 229,
+      "width": 785,
+      "height": 54,
+      "bottom": 326
+    },
+    "lab": {
+      "top": 336,
+      "left": 229,
+      "width": 785,
+      "height": 400,
+      "bottom": 736
+    },
+    "stats": {
+      "top": 746,
+      "left": 229,
+      "width": 785,
+      "height": 58,
+      "bottom": 804
+    },
+    "theory": {
+      "top": 814,
+      "left": 229,
+      "width": 785,
+      "height": 290,
+      "bottom": 1104
+    },
+    "bottom": {
+      "top": 1114,
+      "left": 229,
+      "width": 785,
+      "height": 325,
+      "bottom": 1439
+    },
+    "adjacent": {
+      "top": 1449,
+      "left": 229,
+      "width": 785,
+      "height": 55,
+      "bottom": 1504
+    }
+  },
+  "mobileMetrics": {
+    "documentWidth": 390,
+    "overflow": false
+  },
+  "consoleMessages": []
+}

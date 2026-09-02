@@ -43,6 +43,7 @@ import BipartiteGraphsTargetLesson577 from "./discrete/BipartiteGraphsTargetLess
 import PlanarGraphsTargetLesson578 from "./discrete/PlanarGraphsTargetLesson578";
 import NetworkFlowTargetLesson579 from "./discrete/NetworkFlowTargetLesson579";
 import TravellingSalespersonTargetLesson580 from "./discrete/TravellingSalespersonTargetLesson580";
+import AdjacencyMatrixTargetLesson581 from "./discrete/AdjacencyMatrixTargetLesson581";
 
 const countingModes = new Set<DiscreteLessonMode>([
   "product",
@@ -271,6 +272,8 @@ export default function DiscreteLessonAdapter(props: LessonAdapterProps) {
   if (props.lesson.id === 579) return <NetworkFlowTargetLesson579 {...props} />;
   if (props.lesson.id === 580)
     return <TravellingSalespersonTargetLesson580 {...props} />;
+  if (props.lesson.id === 581)
+    return <AdjacencyMatrixTargetLesson581 {...props} />;
   const mode = discreteLessonPreset(props.lesson.id).mode;
   const guidance = discreteGuidanceFor(mode);
   let activity = specialActivity(props.lesson.preset.id, props);
