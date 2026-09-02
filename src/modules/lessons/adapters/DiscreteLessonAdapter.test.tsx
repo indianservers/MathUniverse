@@ -205,6 +205,23 @@ describe("discrete lesson adapter", () => {
     expect(html).toContain('data-edges="7"');
     expect(html).toContain('data-degree-sum="14"');
   });
+  it("uses the dedicated directed graph analysis surface for lesson 566", () => {
+    const lesson = lessonCatalog.find((candidate) => candidate.id === 566)!;
+    const html = renderToStaticMarkup(
+      <DiscreteLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="discrete-mockup-0623"');
+    expect(html).toContain(
+      "dedicated-directed-graph-degree-reachability-path-model",
+    );
+    expect(html).toContain('data-source="A"');
+    expect(html).toContain('data-sink="E"');
+    expect(html).toContain('data-edge-count="7"');
+  });
   it("renders strengthened discrete lessons 556 through 585 with lesson-specific guidance", () => {
     const expected = new Map([
       [556, "Fundamental Counting Principle"],

@@ -1,0 +1,165 @@
+{
+  "passed": true,
+  "url": "http://127.0.0.1:2256/lessons/discrete-and-applied-mathematics/566-directed-graphs",
+  "checks": {
+    "initial": {
+      "source": "A",
+      "sink": "E",
+      "edgeCount": "7",
+      "selected": "",
+      "mode": "select",
+      "path": "A,B,E",
+      "history": "0",
+      "actions": "0"
+    },
+    "added": {
+      "source": "A",
+      "sink": "E",
+      "edgeCount": "7",
+      "selected": "",
+      "mode": "select",
+      "path": "A,B,E",
+      "history": "1",
+      "actions": "1"
+    },
+    "undo": {
+      "source": "A",
+      "sink": "E",
+      "edgeCount": "7",
+      "selected": "",
+      "mode": "select",
+      "path": "A,B,E",
+      "history": "0",
+      "actions": "1"
+    },
+    "redo": {
+      "source": "A",
+      "sink": "E",
+      "edgeCount": "7",
+      "selected": "",
+      "mode": "select",
+      "path": "A,B,E",
+      "history": "1",
+      "actions": "1"
+    },
+    "edgeAdded": {
+      "source": "A",
+      "sink": "F",
+      "edgeCount": "8",
+      "selected": "",
+      "mode": "edge",
+      "path": "A,B,E",
+      "history": "2",
+      "actions": "2"
+    },
+    "selected": {
+      "source": "A",
+      "sink": "F",
+      "edgeCount": "8",
+      "selected": "C",
+      "mode": "select",
+      "path": "A,B,E",
+      "history": "2",
+      "actions": "3"
+    },
+    "noReversePath": {
+      "source": "A",
+      "sink": "F",
+      "edgeCount": "8",
+      "selected": "C",
+      "mode": "select",
+      "path": "",
+      "history": "2",
+      "actions": "4"
+    },
+    "challengeVisible": true,
+    "reset": {
+      "source": "A",
+      "sink": "E",
+      "edgeCount": "7",
+      "selected": "",
+      "mode": "select",
+      "path": "A,B,E",
+      "history": "0",
+      "actions": "0"
+    },
+    "final": {
+      "source": "A",
+      "sink": "E",
+      "edgeCount": "7",
+      "selected": "",
+      "mode": "select",
+      "path": "A,B,E",
+      "history": "0",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 966,
+      "height": 1628
+    },
+    "overflow": false,
+    "hero": {
+      "top": 95,
+      "left": 206,
+      "width": 746,
+      "height": 148,
+      "bottom": 243
+    },
+    "tabs": {
+      "top": 253,
+      "left": 206,
+      "width": 746,
+      "height": 36,
+      "bottom": 289
+    },
+    "lab": {
+      "top": 299,
+      "left": 206,
+      "width": 746,
+      "height": 422,
+      "bottom": 721
+    },
+    "analysis": {
+      "top": 731,
+      "left": 206,
+      "width": 746,
+      "height": 212,
+      "bottom": 943
+    },
+    "theory": {
+      "top": 953,
+      "left": 206,
+      "width": 746,
+      "height": 193,
+      "bottom": 1146
+    },
+    "worked": {
+      "top": 1156,
+      "left": 206,
+      "width": 746,
+      "height": 157,
+      "bottom": 1313
+    },
+    "challenge": {
+      "top": 1326,
+      "left": 206,
+      "width": 746,
+      "height": 202,
+      "bottom": 1528
+    },
+    "adjacent": {
+      "top": 1542,
+      "left": 206,
+      "width": 746,
+      "height": 59,
+      "bottom": 1601
+    }
+  },
+  "mobileMetrics": {
+    "documentWidth": 390,
+    "overflow": false
+  },
+  "consoleMessages": []
+}
