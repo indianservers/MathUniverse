@@ -286,6 +286,21 @@ describe("discrete lesson adapter", () => {
     expect(html).toContain('data-component-sizes="3,3,1"');
     expect(html).toContain('data-reachable="false"');
   });
+  it("uses the dedicated Euler trail surface for lesson 571", () => {
+    const lesson = lessonCatalog.find((candidate) => candidate.id === 571)!;
+    const html = renderToStaticMarkup(
+      <DiscreteLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="discrete-mockup-0628"');
+    expect(html).toContain("dedicated-euler-edge-consumption-degree-model");
+    expect(html).toContain('data-edge-count="5"');
+    expect(html).toContain('data-euler-kind="circuit"');
+    expect(html).toContain('data-used-count="0"');
+  });
   it("renders strengthened discrete lessons 556 through 585 with lesson-specific guidance", () => {
     const expected = new Map([
       [556, "Fundamental Counting Principle"],

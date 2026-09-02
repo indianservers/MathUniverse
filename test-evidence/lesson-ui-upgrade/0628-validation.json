@@ -1,0 +1,169 @@
+{
+  "passed": true,
+  "url": "http://127.0.0.1:2256/lessons/discrete-and-applied-mathematics/571-euler-paths-and-circuits",
+  "checks": {
+    "initial": {
+      "edgeCount": "5",
+      "usedCount": "0",
+      "walk": "A",
+      "eulerKind": "circuit",
+      "oddCount": "0",
+      "complete": "false",
+      "variant": "circuit",
+      "graded": "",
+      "actions": "0"
+    },
+    "circuit": {
+      "edgeCount": "5",
+      "usedCount": "5",
+      "walk": "A,B,C,E,D,A",
+      "eulerKind": "circuit",
+      "oddCount": "0",
+      "complete": "true",
+      "variant": "circuit",
+      "graded": "",
+      "actions": "5"
+    },
+    "reusedRejected": {
+      "edgeCount": "5",
+      "usedCount": "5",
+      "walk": "A,B,C,E,D,A",
+      "eulerKind": "circuit",
+      "oddCount": "0",
+      "complete": "true",
+      "variant": "circuit",
+      "graded": "",
+      "actions": "6"
+    },
+    "reusedMessage": true,
+    "resetPath": {
+      "edgeCount": "5",
+      "usedCount": "0",
+      "walk": "A",
+      "eulerKind": "circuit",
+      "oddCount": "0",
+      "complete": "false",
+      "variant": "circuit",
+      "graded": "",
+      "actions": "7"
+    },
+    "openGraph": {
+      "edgeCount": "6",
+      "usedCount": "0",
+      "walk": "A",
+      "eulerKind": "path",
+      "oddCount": "2",
+      "complete": "false",
+      "variant": "path",
+      "graded": "",
+      "actions": "8"
+    },
+    "openTrail": {
+      "edgeCount": "6",
+      "usedCount": "6",
+      "walk": "A,B,C,E,D,A,C",
+      "eulerKind": "path",
+      "oddCount": "2",
+      "complete": "true",
+      "variant": "path",
+      "graded": "",
+      "actions": "14"
+    },
+    "formulaVisible": true,
+    "wrong": {
+      "edgeCount": "6",
+      "usedCount": "6",
+      "walk": "A,B,C,E,D,A,C",
+      "eulerKind": "path",
+      "oddCount": "2",
+      "complete": "true",
+      "variant": "path",
+      "graded": "false",
+      "actions": "17"
+    },
+    "correct": {
+      "edgeCount": "6",
+      "usedCount": "6",
+      "walk": "A,B,C,E,D,A,C",
+      "eulerKind": "path",
+      "oddCount": "2",
+      "complete": "true",
+      "variant": "path",
+      "graded": "true",
+      "actions": "18"
+    },
+    "hintVisible": true,
+    "final": {
+      "edgeCount": "5",
+      "usedCount": "0",
+      "walk": "A",
+      "eulerKind": "circuit",
+      "oddCount": "0",
+      "complete": "false",
+      "variant": "circuit",
+      "graded": "",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 977,
+      "height": 1610
+    },
+    "overflow": false,
+    "hero": {
+      "top": 94,
+      "left": 228,
+      "width": 732,
+      "height": 132,
+      "bottom": 226
+    },
+    "tabs": {
+      "top": 233,
+      "left": 228,
+      "width": 732,
+      "height": 43,
+      "bottom": 276
+    },
+    "lab": {
+      "top": 288,
+      "left": 228,
+      "width": 732,
+      "height": 471,
+      "bottom": 759
+    },
+    "sequence": {
+      "top": 766,
+      "left": 228,
+      "width": 732,
+      "height": 159,
+      "bottom": 925
+    },
+    "theory": {
+      "top": 932,
+      "left": 228,
+      "width": 732,
+      "height": 337,
+      "bottom": 1269
+    },
+    "practice": {
+      "top": 1276,
+      "left": 228,
+      "width": 732,
+      "height": 183,
+      "bottom": 1459
+    },
+    "adjacent": {
+      "top": 1466,
+      "left": 228,
+      "width": 732,
+      "height": 57,
+      "bottom": 1523
+    }
+  },
+  "mobileMetrics": {
+    "documentWidth": 390,
+    "overflow": false
+  },
+  "consoleMessages": []
+}
