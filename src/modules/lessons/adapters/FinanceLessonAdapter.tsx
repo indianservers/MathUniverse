@@ -5,6 +5,7 @@ import {
 } from "../presets/financeLessonPresets";
 import type { LessonAdapterProps } from "../types";
 import { FinanceConceptActivity } from "./finance/FinanceConceptActivity";
+import CompoundInterestTargetLesson592 from "./finance/CompoundInterestTargetLesson592";
 import SimpleInterestTargetLesson591 from "./finance/SimpleInterestTargetLesson591";
 import { SimpleInterestActivity } from "./p0/PriorityConceptActivities";
 
@@ -154,6 +155,8 @@ export default function FinanceLessonAdapter(props: LessonAdapterProps) {
   const guidance = financeGuidanceFor(mode);
   if (props.lesson.id === 591)
     return <SimpleInterestTargetLesson591 {...props} />;
+  if (props.lesson.id === 592)
+    return <CompoundInterestTargetLesson592 {...props} />;
   if (mode === "simple-interest") {
     return (
       <AdapterFrame

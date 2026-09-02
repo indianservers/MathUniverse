@@ -1,0 +1,173 @@
+{
+  "passed": true,
+  "checks": {
+    "initial": {
+      "principal": "10000",
+      "rate": "8",
+      "frequency": "1",
+      "time": "5",
+      "year": "5",
+      "amount": "14693.28",
+      "simple": "14000.00",
+      "interest": "4693.28",
+      "graded": "",
+      "actions": "0",
+      "rows": 6
+    },
+    "principal": {
+      "principal": "20000",
+      "rate": "8",
+      "frequency": "1",
+      "time": "5",
+      "year": "5",
+      "amount": "29386.56",
+      "simple": "28000.00",
+      "interest": "9386.56",
+      "graded": "",
+      "actions": "1",
+      "rows": 6
+    },
+    "rate": {
+      "principal": "20000",
+      "rate": "10",
+      "frequency": "1",
+      "time": "5",
+      "year": "5",
+      "amount": "32210.20",
+      "simple": "30000.00",
+      "interest": "12210.20",
+      "graded": "",
+      "actions": "2",
+      "rows": 6
+    },
+    "frequency": {
+      "principal": "20000",
+      "rate": "10",
+      "frequency": "4",
+      "time": "5",
+      "year": "5",
+      "amount": "32772.33",
+      "simple": "30000.00",
+      "interest": "12772.33",
+      "graded": "",
+      "actions": "3",
+      "rows": 6
+    },
+    "time": {
+      "principal": "20000",
+      "rate": "10",
+      "frequency": "4",
+      "time": "3",
+      "year": "3",
+      "amount": "26897.78",
+      "simple": "26000.00",
+      "interest": "6897.78",
+      "graded": "",
+      "actions": "4",
+      "rows": 4
+    },
+    "displayYear": {
+      "principal": "20000",
+      "rate": "10",
+      "frequency": "4",
+      "time": "3",
+      "year": "2",
+      "amount": "24368.06",
+      "simple": "24000.00",
+      "interest": "4368.06",
+      "graded": "",
+      "actions": "5",
+      "rows": 4
+    },
+    "formula": true,
+    "wrong": {
+      "principal": "20000",
+      "rate": "10",
+      "frequency": "4",
+      "time": "3",
+      "year": "2",
+      "amount": "24368.06",
+      "simple": "24000.00",
+      "interest": "4368.06",
+      "graded": "false",
+      "actions": "9",
+      "rows": 4
+    },
+    "correct": {
+      "principal": "20000",
+      "rate": "10",
+      "frequency": "4",
+      "time": "3",
+      "year": "2",
+      "amount": "24368.06",
+      "simple": "24000.00",
+      "interest": "4368.06",
+      "graded": "true",
+      "actions": "11",
+      "rows": 4
+    },
+    "play": {
+      "principal": "20000",
+      "rate": "10",
+      "frequency": "4",
+      "time": "2",
+      "year": "2",
+      "amount": "24368.06",
+      "simple": "24000.00",
+      "interest": "4368.06",
+      "graded": "true",
+      "actions": "13",
+      "rows": 3
+    },
+    "final": {
+      "principal": "10000",
+      "rate": "8",
+      "frequency": "1",
+      "time": "5",
+      "year": "5",
+      "amount": "14693.28",
+      "simple": "14000.00",
+      "interest": "4693.28",
+      "graded": "",
+      "actions": "0",
+      "rows": 6
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "overflow": false,
+    "hero": {
+      "top": 102,
+      "height": 173,
+      "bottom": 275
+    },
+    "tabs": {
+      "top": 284,
+      "height": 47,
+      "bottom": 331
+    },
+    "lab": {
+      "top": 335,
+      "height": 765,
+      "bottom": 1100
+    },
+    "theory": {
+      "top": 1110,
+      "height": 260,
+      "bottom": 1370
+    },
+    "adjacent": {
+      "top": 1379,
+      "height": 50,
+      "bottom": 1429
+    }
+  },
+  "mobileMetrics": {
+    "width": 390,
+    "overflow": false
+  },
+  "logs": []
+}
