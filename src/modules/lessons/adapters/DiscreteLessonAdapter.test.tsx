@@ -435,6 +435,23 @@ describe("discrete lesson adapter", () => {
     expect(html).toContain('data-conserved="true"');
     expect(html).toContain('data-maximum="true"');
   });
+  it("uses the dedicated travelling-salesperson surface for lesson 580", () => {
+    const lesson = lessonCatalog.find((candidate) => candidate.id === 580)!;
+    const html = renderToStaticMarkup(
+      <DiscreteLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="discrete-mockup-0637"');
+    expect(html).toContain(
+      "dedicated-exhaustive-hamiltonian-weighted-tour-model",
+    );
+    expect(html).toContain('data-distance="15"');
+    expect(html).toContain('data-optimum="15"');
+    expect(html).toContain('data-complete="true"');
+  });
   it("renders strengthened discrete lessons 556 through 585 with lesson-specific guidance", () => {
     const expected = new Map([
       [556, "Fundamental Counting Principle"],

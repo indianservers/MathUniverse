@@ -1,0 +1,178 @@
+{
+  "passed": true,
+  "url": "http://127.0.0.1:2256/lessons/discrete-and-applied-mathematics/580-travelling-salesperson",
+  "checks": {
+    "initial": {
+      "route": "A,B,C,E,D",
+      "closed": "true",
+      "complete": "true",
+      "distance": "15",
+      "optimum": "15",
+      "suggestion": "A,D,B,C,E",
+      "suggestionDistance": "19",
+      "positions": "A:85,145;B:250,55;C:455,130;D:145,325;E:395,330",
+      "graded": "",
+      "actions": "0"
+    },
+    "cleared": {
+      "route": "",
+      "closed": "false",
+      "complete": "false",
+      "distance": "0",
+      "optimum": "15",
+      "suggestion": "A,D,B,C,E",
+      "suggestionDistance": "19",
+      "positions": "A:85,145;B:250,55;C:455,130;D:145,325;E:395,330",
+      "graded": "",
+      "actions": "1"
+    },
+    "open": {
+      "route": "A,B,C,E,D",
+      "closed": "false",
+      "complete": "true",
+      "distance": "14",
+      "optimum": "15",
+      "suggestion": "A,D,B,C,E",
+      "suggestionDistance": "19",
+      "positions": "A:85,145;B:250,55;C:455,130;D:145,325;E:395,330",
+      "graded": "",
+      "actions": "6"
+    },
+    "closed": {
+      "route": "A,B,C,E,D",
+      "closed": "true",
+      "complete": "true",
+      "distance": "15",
+      "optimum": "15",
+      "suggestion": "A,D,B,C,E",
+      "suggestionDistance": "19",
+      "positions": "A:85,145;B:250,55;C:455,130;D:145,325;E:395,330",
+      "graded": "",
+      "actions": "7"
+    },
+    "suggested": {
+      "route": "A,D,B,C,E",
+      "closed": "true",
+      "complete": "true",
+      "distance": "19",
+      "optimum": "15",
+      "suggestion": "A,D,B,C,E",
+      "suggestionDistance": "19",
+      "positions": "A:85,145;B:250,55;C:455,130;D:145,325;E:395,330",
+      "graded": "",
+      "actions": "8"
+    },
+    "dragged": {
+      "route": "A,D,B,C,E",
+      "closed": "true",
+      "complete": "true",
+      "distance": "19",
+      "optimum": "15",
+      "suggestion": "A,D,B,C,E",
+      "suggestionDistance": "19",
+      "positions": "A:85,145;B:250,55;C:390,206;D:145,325;E:395,330",
+      "graded": "",
+      "actions": "9"
+    },
+    "dragChanged": true,
+    "labelsOff": true,
+    "formulaVisible": true,
+    "wrong": {
+      "route": "A,D,B,C,E",
+      "closed": "true",
+      "complete": "true",
+      "distance": "19",
+      "optimum": "15",
+      "suggestion": "A,D,B,C,E",
+      "suggestionDistance": "19",
+      "positions": "A:85,145;B:250,55;C:390,206;D:145,325;E:395,330",
+      "graded": "false",
+      "actions": "13"
+    },
+    "correct": {
+      "route": "A,D,B,C,E",
+      "closed": "true",
+      "complete": "true",
+      "distance": "19",
+      "optimum": "15",
+      "suggestion": "A,D,B,C,E",
+      "suggestionDistance": "19",
+      "positions": "A:85,145;B:250,55;C:390,206;D:145,325;E:395,330",
+      "graded": "true",
+      "actions": "14"
+    },
+    "final": {
+      "route": "A,B,C,E,D",
+      "closed": "true",
+      "complete": "true",
+      "distance": "15",
+      "optimum": "15",
+      "suggestion": "A,D,B,C,E",
+      "suggestionDistance": "19",
+      "positions": "A:85,145;B:250,55;C:455,130;D:145,325;E:395,330",
+      "graded": "",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1591
+    },
+    "overflow": false,
+    "surface": {
+      "top": 106,
+      "left": 220,
+      "width": 803,
+      "height": 1369,
+      "bottom": 1475
+    },
+    "hero": {
+      "top": 106,
+      "left": 229,
+      "width": 785,
+      "height": 145,
+      "bottom": 251
+    },
+    "tabs": {
+      "top": 259,
+      "left": 229,
+      "width": 785,
+      "height": 43,
+      "bottom": 302
+    },
+    "lab": {
+      "top": 312,
+      "left": 229,
+      "width": 785,
+      "height": 487,
+      "bottom": 799
+    },
+    "theory": {
+      "top": 844,
+      "left": 229,
+      "width": 785,
+      "height": 315,
+      "bottom": 1159
+    },
+    "practice": {
+      "top": 1167,
+      "left": 229,
+      "width": 785,
+      "height": 250,
+      "bottom": 1417
+    },
+    "adjacent": {
+      "top": 1425,
+      "left": 229,
+      "width": 785,
+      "height": 50,
+      "bottom": 1475
+    }
+  },
+  "mobileMetrics": {
+    "documentWidth": 390,
+    "overflow": false
+  },
+  "consoleMessages": []
+}
