@@ -154,6 +154,24 @@ describe("discrete lesson adapter", () => {
     expect(html).toContain('data-selected="4,2"');
     expect(html).toContain('data-value="6"');
   });
+  it("uses the dedicated overlap counter lab for lesson 563", () => {
+    const lesson = lessonCatalog.find((candidate) => candidate.id === 563)!;
+    const html = renderToStaticMarkup(
+      <DiscreteLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="discrete-mockup-0620"');
+    expect(html).toContain(
+      "dedicated-draggable-counter-venn-region-assignment",
+    );
+    expect(html).toContain('data-a="4"');
+    expect(html).toContain('data-b="4"');
+    expect(html).toContain('data-overlap="2"');
+    expect(html).toContain('data-union="6"');
+  });
   it("renders strengthened discrete lessons 556 through 585 with lesson-specific guidance", () => {
     const expected = new Map([
       [556, "Fundamental Counting Principle"],

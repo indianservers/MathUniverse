@@ -1,0 +1,229 @@
+{
+  "passed": true,
+  "url": "http://127.0.0.1:2256/lessons/discrete-and-applied-mathematics/563-inclusionexclusion",
+  "checks": {
+    "initial": {
+      "a": "4",
+      "b": "4",
+      "overlap": "2",
+      "union": "6",
+      "formula": "6",
+      "third": "false",
+      "sequence": "1",
+      "practiceA": "5",
+      "practiceB": "4",
+      "practiceOverlap": "2",
+      "practiceUnion": "7",
+      "graded": "false",
+      "correct": "false",
+      "actions": "0"
+    },
+    "addedA": {
+      "a": "5",
+      "b": "4",
+      "overlap": "2",
+      "union": "7",
+      "formula": "7",
+      "third": "false",
+      "sequence": "1",
+      "practiceA": "5",
+      "practiceB": "4",
+      "practiceOverlap": "2",
+      "practiceUnion": "7",
+      "graded": "false",
+      "correct": "false",
+      "actions": "1"
+    },
+    "toOverlap": {
+      "a": "5",
+      "b": "5",
+      "overlap": "3",
+      "union": "7",
+      "formula": "7",
+      "third": "false",
+      "sequence": "1",
+      "practiceA": "5",
+      "practiceB": "4",
+      "practiceOverlap": "2",
+      "practiceUnion": "7",
+      "graded": "false",
+      "correct": "false",
+      "actions": "2"
+    },
+    "removedB": {
+      "a": "5",
+      "b": "4",
+      "overlap": "3",
+      "union": "6",
+      "formula": "6",
+      "third": "false",
+      "sequence": "1",
+      "practiceA": "5",
+      "practiceB": "4",
+      "practiceOverlap": "2",
+      "practiceUnion": "7",
+      "graded": "false",
+      "correct": "false",
+      "actions": "3"
+    },
+    "third": {
+      "a": "5",
+      "b": "4",
+      "overlap": "3",
+      "union": "6",
+      "formula": "6",
+      "third": "true",
+      "sequence": "1",
+      "practiceA": "5",
+      "practiceB": "4",
+      "practiceOverlap": "2",
+      "practiceUnion": "7",
+      "graded": "false",
+      "correct": "false",
+      "actions": "5"
+    },
+    "random": {
+      "a": "4",
+      "b": "4",
+      "overlap": "2",
+      "union": "6",
+      "formula": "6",
+      "third": "true",
+      "sequence": "1",
+      "practiceA": "5",
+      "practiceB": "4",
+      "practiceOverlap": "2",
+      "practiceUnion": "7",
+      "graded": "false",
+      "correct": "false",
+      "actions": "6"
+    },
+    "sequence": {
+      "a": "4",
+      "b": "4",
+      "overlap": "2",
+      "union": "6",
+      "formula": "6",
+      "third": "true",
+      "sequence": "4",
+      "practiceA": "5",
+      "practiceB": "4",
+      "practiceOverlap": "2",
+      "practiceUnion": "7",
+      "graded": "false",
+      "correct": "false",
+      "actions": "7"
+    },
+    "formulaClass": "active",
+    "wrong": {
+      "a": "4",
+      "b": "4",
+      "overlap": "2",
+      "union": "6",
+      "formula": "6",
+      "third": "true",
+      "sequence": "4",
+      "practiceA": "4",
+      "practiceB": "4",
+      "practiceOverlap": "2",
+      "practiceUnion": "6",
+      "graded": "true",
+      "correct": "false",
+      "actions": "10"
+    },
+    "correct": {
+      "a": "4",
+      "b": "4",
+      "overlap": "2",
+      "union": "6",
+      "formula": "6",
+      "third": "true",
+      "sequence": "4",
+      "practiceA": "5",
+      "practiceB": "4",
+      "practiceOverlap": "2",
+      "practiceUnion": "7",
+      "graded": "true",
+      "correct": "true",
+      "actions": "12"
+    },
+    "solution": true,
+    "final": {
+      "a": "4",
+      "b": "4",
+      "overlap": "2",
+      "union": "6",
+      "formula": "6",
+      "third": "false",
+      "sequence": "1",
+      "practiceA": "5",
+      "practiceB": "4",
+      "practiceOverlap": "2",
+      "practiceUnion": "7",
+      "graded": "false",
+      "correct": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1023,
+      "height": 1537
+    },
+    "overflow": false,
+    "hero": {
+      "top": 111,
+      "left": 225,
+      "width": 783,
+      "height": 228,
+      "bottom": 339
+    },
+    "tabs": {
+      "top": 351,
+      "left": 225,
+      "width": 783,
+      "height": 58,
+      "bottom": 409
+    },
+    "lab": {
+      "top": 421,
+      "left": 225,
+      "width": 783,
+      "height": 472,
+      "bottom": 893
+    },
+    "rule": {
+      "top": 905,
+      "left": 225,
+      "width": 783,
+      "height": 115,
+      "bottom": 1020
+    },
+    "example": {
+      "top": 1032,
+      "left": 225,
+      "width": 783,
+      "height": 180,
+      "bottom": 1212
+    },
+    "practice": {
+      "top": 1224,
+      "left": 225,
+      "width": 783,
+      "height": 180,
+      "bottom": 1404
+    },
+    "adjacent": {
+      "top": 1416,
+      "left": 225,
+      "width": 783,
+      "height": 55,
+      "bottom": 1471
+    }
+  },
+  "mobileMetrics": {
+    "documentWidth": 390,
+    "overflow": false
+  },
+  "consoleMessages": []
+}
