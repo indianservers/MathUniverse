@@ -1,0 +1,189 @@
+{
+  "passed": true,
+  "url": "http://127.0.0.1:2256/lessons/discrete-and-applied-mathematics/574-minimum-spanning-tree",
+  "checks": {
+    "initial": {
+      "algorithm": "kruskal",
+      "graph": "base",
+      "selectedCount": "0",
+      "selectedEdges": "",
+      "totalWeight": "0",
+      "optimalWeight": "6",
+      "complete": "false",
+      "difference": "0",
+      "rejected": "",
+      "positions": "A:80,95;B:285,40;C:500,95;D:145,310;E:430,310",
+      "actions": "0"
+    },
+    "kruskal": {
+      "algorithm": "kruskal",
+      "graph": "base",
+      "selectedCount": "4",
+      "selectedEdges": "AD,CE,AB,BE",
+      "totalWeight": "6",
+      "optimalWeight": "6",
+      "complete": "true",
+      "difference": "0",
+      "rejected": "",
+      "positions": "A:80,95;B:285,40;C:500,95;D:145,310;E:430,310",
+      "actions": "4"
+    },
+    "cycleRejected": {
+      "algorithm": "kruskal",
+      "graph": "base",
+      "selectedCount": "4",
+      "selectedEdges": "AD,CE,AB,BE",
+      "totalWeight": "6",
+      "optimalWeight": "6",
+      "complete": "true",
+      "difference": "0",
+      "rejected": "BC",
+      "positions": "A:80,95;B:285,40;C:500,95;D:145,310;E:430,310",
+      "actions": "5"
+    },
+    "cycleMessage": true,
+    "primRejected": {
+      "algorithm": "prim",
+      "graph": "base",
+      "selectedCount": "0",
+      "selectedEdges": "",
+      "totalWeight": "0",
+      "optimalWeight": "6",
+      "complete": "false",
+      "difference": "0",
+      "rejected": "CE",
+      "positions": "A:80,95;B:285,40;C:500,95;D:145,310;E:430,310",
+      "actions": "8"
+    },
+    "primMessage": true,
+    "prim": {
+      "algorithm": "prim",
+      "graph": "base",
+      "selectedCount": "4",
+      "selectedEdges": "AD,AB,BE,CE",
+      "totalWeight": "6",
+      "optimalWeight": "6",
+      "complete": "true",
+      "difference": "0",
+      "rejected": "",
+      "positions": "A:80,95;B:285,40;C:500,95;D:145,310;E:430,310",
+      "actions": "12"
+    },
+    "dragged": {
+      "algorithm": "prim",
+      "graph": "base",
+      "selectedCount": "4",
+      "selectedEdges": "AD,AB,BE,CE",
+      "totalWeight": "6",
+      "optimalWeight": "6",
+      "complete": "true",
+      "difference": "0",
+      "rejected": "",
+      "positions": "A:80,95;B:285,40;C:537,129;D:145,310;E:430,310",
+      "actions": "12"
+    },
+    "dragChanged": true,
+    "alternate": {
+      "algorithm": "prim",
+      "graph": "alternate",
+      "selectedCount": "0",
+      "selectedEdges": "",
+      "totalWeight": "0",
+      "optimalWeight": "6",
+      "complete": "false",
+      "difference": "0",
+      "rejected": "",
+      "positions": "A:80,95;B:285,40;C:500,95;D:145,310;E:430,310",
+      "actions": "13"
+    },
+    "orderHidden": true,
+    "challenge": {
+      "algorithm": "prim",
+      "graph": "challenge",
+      "selectedCount": "0",
+      "selectedEdges": "",
+      "totalWeight": "0",
+      "optimalWeight": "9",
+      "complete": "false",
+      "difference": "0",
+      "rejected": "",
+      "positions": "A:80,95;B:285,40;C:500,95;D:145,310;E:430,310",
+      "actions": "15"
+    },
+    "formulaVisible": true,
+    "final": {
+      "algorithm": "kruskal",
+      "graph": "base",
+      "selectedCount": "0",
+      "selectedEdges": "",
+      "totalWeight": "0",
+      "optimalWeight": "6",
+      "complete": "false",
+      "difference": "0",
+      "rejected": "",
+      "positions": "A:80,95;B:285,40;C:500,95;D:145,310;E:430,310",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1047,
+      "height": 1501
+    },
+    "overflow": false,
+    "hero": {
+      "top": 108,
+      "left": 228,
+      "width": 802,
+      "height": 131,
+      "bottom": 239
+    },
+    "tabs": {
+      "top": 249,
+      "left": 228,
+      "width": 802,
+      "height": 44,
+      "bottom": 293
+    },
+    "sequence": {
+      "top": 309,
+      "left": 228,
+      "width": 802,
+      "height": 77,
+      "bottom": 386
+    },
+    "builder": {
+      "top": 402,
+      "left": 228,
+      "width": 802,
+      "height": 537,
+      "bottom": 939
+    },
+    "theory": {
+      "top": 951,
+      "left": 228,
+      "width": 802,
+      "height": 280,
+      "bottom": 1231
+    },
+    "summary": {
+      "top": 1243,
+      "left": 228,
+      "width": 802,
+      "height": 87,
+      "bottom": 1330
+    },
+    "adjacent": {
+      "top": 1342,
+      "left": 228,
+      "width": 802,
+      "height": 55,
+      "bottom": 1397
+    }
+  },
+  "mobileMetrics": {
+    "documentWidth": 390,
+    "overflow": false
+  },
+  "consoleMessages": []
+}

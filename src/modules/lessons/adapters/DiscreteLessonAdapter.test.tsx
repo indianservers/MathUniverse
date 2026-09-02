@@ -332,6 +332,21 @@ describe("discrete lesson adapter", () => {
     expect(html).toContain('data-height="3"');
     expect(html).toContain('data-leaves="D,F,G,H"');
   });
+  it("uses the dedicated minimum-spanning-tree surface for lesson 574", () => {
+    const lesson = lessonCatalog.find((candidate) => candidate.id === 574)!;
+    const html = renderToStaticMarkup(
+      <DiscreteLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="discrete-mockup-0631"');
+    expect(html).toContain("dedicated-union-find-mst-selection-model");
+    expect(html).toContain('data-optimal-weight="6"');
+    expect(html).toContain('data-selected-count="0"');
+    expect(html).toContain('data-algorithm="kruskal"');
+  });
   it("renders strengthened discrete lessons 556 through 585 with lesson-specific guidance", () => {
     const expected = new Map([
       [556, "Fundamental Counting Principle"],
