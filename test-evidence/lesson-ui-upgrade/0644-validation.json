@@ -1,0 +1,120 @@
+{
+  "passed": true,
+  "checks": {
+    "initial": {
+      "op": "implies",
+      "results": "TFTT",
+      "classification": "Contingent",
+      "row": "1",
+      "graded": "",
+      "actions": "0"
+    },
+    "toggleQ": {
+      "op": "implies",
+      "results": "TFTT",
+      "classification": "Contingent",
+      "row": "0",
+      "graded": "",
+      "actions": "1"
+    },
+    "toggleP": {
+      "op": "implies",
+      "results": "TFTT",
+      "classification": "Contingent",
+      "row": "2",
+      "graded": "",
+      "actions": "2"
+    },
+    "and": {
+      "op": "and",
+      "results": "TFFF",
+      "classification": "Contingent",
+      "row": "2",
+      "graded": "",
+      "actions": "3"
+    },
+    "or": {
+      "op": "or",
+      "results": "TTTF",
+      "classification": "Contingent",
+      "row": "2",
+      "graded": "",
+      "actions": "4"
+    },
+    "iff": {
+      "op": "iff",
+      "results": "TFFT",
+      "classification": "Contingent",
+      "row": "2",
+      "graded": "",
+      "actions": "5"
+    },
+    "formula": true,
+    "wrong": {
+      "op": "implies",
+      "results": "TFTT",
+      "classification": "Contingent",
+      "row": "2",
+      "graded": "false",
+      "actions": "9"
+    },
+    "correct": {
+      "op": "implies",
+      "results": "TFTT",
+      "classification": "Contingent",
+      "row": "2",
+      "graded": "true",
+      "actions": "10"
+    },
+    "final": {
+      "op": "implies",
+      "results": "TFTT",
+      "classification": "Contingent",
+      "row": "1",
+      "graded": "",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1548
+    },
+    "overflow": false,
+    "hero": {
+      "top": 95,
+      "height": 145,
+      "bottom": 240
+    },
+    "lab": {
+      "top": 296,
+      "height": 390,
+      "bottom": 686
+    },
+    "theory": {
+      "top": 698,
+      "height": 277,
+      "bottom": 975
+    },
+    "example": {
+      "top": 987,
+      "height": 210,
+      "bottom": 1197
+    },
+    "practice": {
+      "top": 1209,
+      "height": 260,
+      "bottom": 1469
+    },
+    "adjacent": {
+      "top": 1481,
+      "height": 55,
+      "bottom": 1536
+    }
+  },
+  "mobileMetrics": {
+    "width": 390,
+    "overflow": false
+  },
+  "consoleMessages": []
+}

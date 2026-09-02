@@ -543,6 +543,20 @@ describe("discrete lesson adapter", () => {
     expect(html).toContain('data-source="1,2,3,4"');
     expect(html).toContain('data-power-count="16"');
   });
+  it("uses the dedicated truth-table surface for lesson 587", () => {
+    const lesson = lessonCatalog.find((candidate) => candidate.id === 587)!;
+    const html = renderToStaticMarkup(
+      <DiscreteLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="discrete-mockup-0644"');
+    expect(html).toContain("dedicated-propositional-truth-table-model");
+    expect(html).toContain('data-results="TFTT"');
+    expect(html).toContain('data-classification="Contingent"');
+  });
   it("renders strengthened discrete lessons 556 through 585 with lesson-specific guidance", () => {
     const expected = new Map([
       [556, "Fundamental Counting Principle"],
@@ -573,6 +587,7 @@ describe("discrete lesson adapter", () => {
       [584, "Complement"],
       [585, "Cartesian Product"],
       [586, "Subsets and Power Sets"],
+      [587, "Truth Tables"],
       [590, "Proof Methods"],
     ]);
     for (const [lessonId, snippet] of expected) {
