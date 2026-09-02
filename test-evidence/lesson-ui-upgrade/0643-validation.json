@@ -1,0 +1,100 @@
+{
+  "passed": true,
+  "checks": {
+    "initial": {
+      "source": "1,2,3,4",
+      "count": "16",
+      "subsets": "|1|2|3|4|12|13|14|23|24|34|123|124|134|234|1234",
+      "graded": "",
+      "actions": "0"
+    },
+    "remove4": {
+      "source": "1,2,3",
+      "count": "8",
+      "subsets": "|1|2|3|12|13|23|123",
+      "graded": "",
+      "actions": "1"
+    },
+    "remove2": {
+      "source": "1,3",
+      "count": "4",
+      "subsets": "|1|3|13",
+      "graded": "",
+      "actions": "2"
+    },
+    "restore4": {
+      "source": "1,3,4",
+      "count": "8",
+      "subsets": "|1|3|4|13|14|34|134",
+      "graded": "",
+      "actions": "3"
+    },
+    "reset": {
+      "source": "1,2,3,4",
+      "count": "16",
+      "subsets": "|1|2|3|4|12|13|14|23|24|34|123|124|134|234|1234",
+      "graded": "",
+      "actions": "0"
+    },
+    "formula": true,
+    "wrong": {
+      "source": "1,2,3,4",
+      "count": "16",
+      "subsets": "|1|2|3|4|12|13|14|23|24|34|123|124|134|234|1234",
+      "graded": "false,false,false",
+      "actions": "3"
+    },
+    "correct": {
+      "source": "1,2,3,4",
+      "count": "16",
+      "subsets": "|1|2|3|4|12|13|14|23|24|34|123|124|134|234|1234",
+      "graded": "true,true,true",
+      "actions": "4"
+    },
+    "answerVisible": true,
+    "final": {
+      "source": "1,2,3,4",
+      "count": "16",
+      "subsets": "|1|2|3|4|12|13|14|23|24|34|123|124|134|234|1234",
+      "graded": "",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "overflow": false,
+    "hero": {
+      "top": 122,
+      "height": 96,
+      "bottom": 218
+    },
+    "workspace": {
+      "top": 432,
+      "height": 554,
+      "bottom": 986
+    },
+    "theory": {
+      "top": 1001,
+      "height": 285,
+      "bottom": 1286
+    },
+    "practice": {
+      "top": 1301,
+      "height": 142,
+      "bottom": 1443
+    },
+    "adjacent": {
+      "top": 1461,
+      "height": 56,
+      "bottom": 1517
+    }
+  },
+  "mobileMetrics": {
+    "width": 390,
+    "overflow": false
+  },
+  "consoleMessages": []
+}
