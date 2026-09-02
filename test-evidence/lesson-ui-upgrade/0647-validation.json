@@ -1,0 +1,121 @@
+{
+  "passed": true,
+  "checks": {
+    "initial": {
+      "strategy": "direct",
+      "placed": "define,substitute,odd",
+      "correct": "2",
+      "complete": "false",
+      "challenge": "",
+      "actions": "0"
+    },
+    "removeWrong": {
+      "strategy": "direct",
+      "placed": "define,substitute",
+      "correct": "2",
+      "complete": "false",
+      "challenge": "",
+      "actions": "1"
+    },
+    "dragComplete": {
+      "strategy": "direct",
+      "placed": "define,substitute,factor,closure,conclude",
+      "correct": "5",
+      "complete": "true",
+      "challenge": "",
+      "actions": "4"
+    },
+    "clear": {
+      "strategy": "direct",
+      "placed": "",
+      "correct": "0",
+      "complete": "false",
+      "challenge": "",
+      "actions": "5"
+    },
+    "clickComplete": {
+      "strategy": "direct",
+      "placed": "define,substitute,factor,closure,conclude",
+      "correct": "5",
+      "complete": "true",
+      "challenge": "",
+      "actions": "10"
+    },
+    "Contrapositive": {
+      "strategy": "contrapositive",
+      "placed": "define,substitute,factor,closure,conclude",
+      "correct": "5",
+      "complete": "true",
+      "challenge": "",
+      "actions": "11"
+    },
+    "Contradiction": {
+      "strategy": "contradiction",
+      "placed": "define,substitute,factor,closure,conclude",
+      "correct": "5",
+      "complete": "true",
+      "challenge": "",
+      "actions": "12"
+    },
+    "Induction": {
+      "strategy": "induction",
+      "placed": "define,substitute,factor,closure,conclude",
+      "correct": "5",
+      "complete": "true",
+      "challenge": "",
+      "actions": "13"
+    },
+    "Direct proof": {
+      "strategy": "direct",
+      "placed": "define,substitute,factor,closure,conclude",
+      "correct": "5",
+      "complete": "true",
+      "challenge": "",
+      "actions": "14"
+    },
+    "formula": true,
+    "reset": {
+      "strategy": "direct",
+      "placed": "define,substitute,odd",
+      "correct": "2",
+      "complete": "false",
+      "challenge": "",
+      "actions": "1"
+    },
+    "wrong": {
+      "strategy": "direct",
+      "placed": "define,substitute,odd",
+      "correct": "2",
+      "complete": "false",
+      "challenge": "false",
+      "actions": "3"
+    },
+    "correct": {
+      "strategy": "direct",
+      "placed": "define,substitute,odd",
+      "correct": "2",
+      "complete": "false",
+      "challenge": "true",
+      "actions": "4"
+    },
+    "final": {
+      "strategy": "direct",
+      "placed": "define,substitute,odd",
+      "correct": "2",
+      "complete": "false",
+      "challenge": "",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "width": 1008,
+    "height": 1560,
+    "overflow": false,
+    "bottom": 1433
+  },
+  "mobileMetrics": {
+    "width": 390,
+    "overflow": false
+  },
+  "logs": []
+}

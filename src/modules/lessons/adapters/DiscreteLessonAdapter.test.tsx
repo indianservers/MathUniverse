@@ -585,6 +585,20 @@ describe("discrete lesson adapter", () => {
     expect(html).toContain('data-forall="false"');
     expect(html).toContain('data-exists="true"');
   });
+  it("uses the dedicated proof-methods surface for lesson 590", () => {
+    const lesson = lessonCatalog.find((candidate) => candidate.id === 590)!;
+    const html = renderToStaticMarkup(
+      <DiscreteLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="discrete-mockup-0647"');
+    expect(html).toContain("dedicated-ordered-proof-construction-model");
+    expect(html).toContain('data-placed="define,substitute,odd"');
+    expect(html).toContain('data-correct="2"');
+  });
   it("renders strengthened discrete lessons 556 through 585 with lesson-specific guidance", () => {
     const expected = new Map([
       [556, "Fundamental Counting Principle"],

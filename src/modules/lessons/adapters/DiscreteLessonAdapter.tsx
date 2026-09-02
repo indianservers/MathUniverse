@@ -52,6 +52,7 @@ import PowerSetsTargetLesson586 from "./discrete/PowerSetsTargetLesson586";
 import TruthTablesTargetLesson587 from "./discrete/TruthTablesTargetLesson587";
 import LogicalConnectivesTargetLesson588 from "./discrete/LogicalConnectivesTargetLesson588";
 import QuantifiersTargetLesson589 from "./discrete/QuantifiersTargetLesson589";
+import ProofMethodsTargetLesson590 from "./discrete/ProofMethodsTargetLesson590";
 
 const countingModes = new Set<DiscreteLessonMode>([
   "product",
@@ -293,6 +294,8 @@ export default function DiscreteLessonAdapter(props: LessonAdapterProps) {
   if (props.lesson.id === 588)
     return <LogicalConnectivesTargetLesson588 {...props} />;
   if (props.lesson.id === 589) return <QuantifiersTargetLesson589 {...props} />;
+  if (props.lesson.id === 590)
+    return <ProofMethodsTargetLesson590 {...props} />;
   const mode = discreteLessonPreset(props.lesson.id).mode;
   const guidance = discreteGuidanceFor(mode);
   let activity = specialActivity(props.lesson.preset.id, props);
