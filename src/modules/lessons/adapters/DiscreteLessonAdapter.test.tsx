@@ -120,6 +120,23 @@ describe("discrete lesson adapter", () => {
     expect(html).toContain('data-arrangement="ABCDE"');
     expect(html).toContain('data-challenge-total="720"');
   });
+  it("uses the dedicated unordered basket lab for lesson 561", () => {
+    const lesson = lessonCatalog.find((candidate) => candidate.id === 561)!;
+    const html = renderToStaticMarkup(
+      <DiscreteLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="discrete-mockup-0618"');
+    expect(html).toContain(
+      "dedicated-unordered-selection-basket-combination-permutation-relation",
+    );
+    expect(html).toContain('data-combinations="10"');
+    expect(html).toContain('data-selected="BD"');
+    expect(html).toContain('data-challenge-total="35"');
+  });
   it("renders strengthened discrete lessons 556 through 585 with lesson-specific guidance", () => {
     const expected = new Map([
       [556, "Fundamental Counting Principle"],

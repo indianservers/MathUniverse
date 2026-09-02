@@ -1,0 +1,168 @@
+{
+  "passed": true,
+  "url": "http://127.0.0.1:2256/lessons/discrete-and-applied-mathematics/561-combinations",
+  "checks": {
+    "initial": {
+      "n": "5",
+      "r": "2",
+      "permutations": "20",
+      "combinations": "10",
+      "selected": "BD",
+      "full": "true",
+      "challengeTotal": "35",
+      "graded": "true",
+      "correct": "true",
+      "actions": "0"
+    },
+    "capped": {
+      "n": "5",
+      "r": "2",
+      "permutations": "20",
+      "combinations": "10",
+      "selected": "BD",
+      "full": "true",
+      "challengeTotal": "35",
+      "graded": "true",
+      "correct": "true",
+      "actions": "1"
+    },
+    "reordered": {
+      "n": "5",
+      "r": "2",
+      "permutations": "20",
+      "combinations": "10",
+      "selected": "AD",
+      "full": "true",
+      "challengeTotal": "35",
+      "graded": "true",
+      "correct": "true",
+      "actions": "3"
+    },
+    "cleared": {
+      "n": "5",
+      "r": "2",
+      "permutations": "20",
+      "combinations": "10",
+      "selected": "",
+      "full": "false",
+      "challengeTotal": "35",
+      "graded": "true",
+      "correct": "true",
+      "actions": "4"
+    },
+    "sixThree": {
+      "n": "6",
+      "r": "3",
+      "permutations": "120",
+      "combinations": "20",
+      "selected": "",
+      "full": "false",
+      "challengeTotal": "35",
+      "graded": "true",
+      "correct": "true",
+      "actions": "6"
+    },
+    "selectedThree": {
+      "n": "6",
+      "r": "3",
+      "permutations": "120",
+      "combinations": "20",
+      "selected": "ABC",
+      "full": "true",
+      "challengeTotal": "35",
+      "graded": "true",
+      "correct": "true",
+      "actions": "9"
+    },
+    "formulaClass": "active",
+    "challengeEight": {
+      "n": "6",
+      "r": "3",
+      "permutations": "120",
+      "combinations": "20",
+      "selected": "ABC",
+      "full": "true",
+      "challengeTotal": "56",
+      "graded": "false",
+      "correct": "false",
+      "actions": "11"
+    },
+    "wrong": {
+      "n": "6",
+      "r": "3",
+      "permutations": "120",
+      "combinations": "20",
+      "selected": "ABC",
+      "full": "true",
+      "challengeTotal": "56",
+      "graded": "true",
+      "correct": "false",
+      "actions": "12"
+    },
+    "correct": {
+      "n": "6",
+      "r": "3",
+      "permutations": "120",
+      "combinations": "20",
+      "selected": "ABC",
+      "full": "true",
+      "challengeTotal": "56",
+      "graded": "true",
+      "correct": "true",
+      "actions": "14"
+    },
+    "hint": true,
+    "final": {
+      "n": "5",
+      "r": "2",
+      "permutations": "20",
+      "combinations": "10",
+      "selected": "BD",
+      "full": "true",
+      "challengeTotal": "35",
+      "graded": "true",
+      "correct": "true",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1210,
+      "height": 1300
+    },
+    "overflow": false,
+    "hero": {
+      "top": 103,
+      "left": 255,
+      "width": 940,
+      "height": 134,
+      "bottom": 237
+    },
+    "tabs": {
+      "top": 249,
+      "left": 255,
+      "width": 940,
+      "height": 50,
+      "bottom": 299
+    },
+    "layout": {
+      "top": 311,
+      "left": 255,
+      "width": 940,
+      "height": 905,
+      "bottom": 1216
+    },
+    "adjacent": {
+      "top": 1228,
+      "left": 255,
+      "width": 940,
+      "height": 55,
+      "bottom": 1283
+    }
+  },
+  "mobileMetrics": {
+    "documentWidth": 390,
+    "overflow": false
+  },
+  "consoleMessages": []
+}
