@@ -946,4 +946,15 @@ describe("Geometry3DLessonAdapter", () => {
     expect(html).toContain('data-grid="true"');
     expect(html).toContain("Component plots");
   });
+
+  it("uses a dedicated coefficient quadric classifier for lesson 417", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 417)!;
+    const html = renderToStaticMarkup(<Geometry3DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="geometry3d-mockup-0602"');
+    expect(html).toContain("threejs-dedicated-quadratic-coefficient-classifier-completing-square-quadric-presets-coordinate-traces-layers-graded-challenge");
+    expect(html).toContain('data-kind="Ellipsoid"');
+    expect(html).toContain('data-center="0,0,0"');
+    expect(html).toContain('data-bounded="true"');
+    expect(html).toContain("Equation Coefficients");
+  });
 });

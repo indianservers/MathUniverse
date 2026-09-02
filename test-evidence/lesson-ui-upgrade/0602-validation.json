@@ -1,0 +1,197 @@
+{
+  "passed": true,
+  "url": "http://127.0.0.1:2256/lessons/3d-mathematics/417-quadric-surfaces",
+  "checks": {
+    "initial": {
+      "kind": "Ellipsoid",
+      "center": "0,0,0",
+      "value": "-1",
+      "bounded": "true",
+      "choice": "B",
+      "graded": "true",
+      "actions": "0"
+    },
+    "orbitPixelsChanged": true,
+    "canvas": {
+      "width": 476,
+      "height": 420,
+      "nonblank": true
+    },
+    "one": {
+      "kind": "Hyperboloid (1-sheet)",
+      "center": "0,0,0",
+      "value": "4",
+      "bounded": "false",
+      "choice": "B",
+      "graded": "true",
+      "actions": "1"
+    },
+    "two": {
+      "kind": "Hyperboloid (2-sheet)",
+      "center": "0,0,0",
+      "value": "-1",
+      "bounded": "false",
+      "choice": "B",
+      "graded": "true",
+      "actions": "2"
+    },
+    "cone": {
+      "kind": "Elliptic Cone",
+      "center": "0,0,0",
+      "value": "0",
+      "bounded": "false",
+      "choice": "B",
+      "graded": "true",
+      "actions": "3"
+    },
+    "paraboloid": {
+      "kind": "Elliptic Paraboloid",
+      "center": "0,0,0",
+      "value": "0",
+      "bounded": "false",
+      "choice": "B",
+      "graded": "true",
+      "actions": "4"
+    },
+    "ellipsoid": {
+      "kind": "Ellipsoid",
+      "center": "0,0,0",
+      "value": "-1",
+      "bounded": "true",
+      "choice": "B",
+      "graded": "true",
+      "actions": "5"
+    },
+    "linear": {
+      "kind": "Ellipsoid",
+      "center": "-1,0,0",
+      "value": "-2",
+      "bounded": "true",
+      "choice": "B",
+      "graded": "true",
+      "actions": "6"
+    },
+    "mixed": {
+      "kind": "Hyperboloid (1-sheet)",
+      "center": "-1,0,0",
+      "value": "-2",
+      "bounded": "false",
+      "choice": "B",
+      "graded": "true",
+      "actions": "7"
+    },
+    "layers": {
+      "kind": "Hyperboloid (1-sheet)",
+      "center": "-1,0,0",
+      "value": "-2",
+      "bounded": "false",
+      "choice": "B",
+      "graded": "true",
+      "actions": "9"
+    },
+    "tabActive": "active",
+    "wrong": {
+      "kind": "Hyperboloid (1-sheet)",
+      "center": "-1,0,0",
+      "value": "-2",
+      "bounded": "false",
+      "choice": "A",
+      "graded": "true",
+      "actions": "12"
+    },
+    "correct": {
+      "kind": "Hyperboloid (1-sheet)",
+      "center": "-1,0,0",
+      "value": "-2",
+      "bounded": "false",
+      "choice": "B",
+      "graded": "true",
+      "actions": "14"
+    },
+    "final": {
+      "kind": "Ellipsoid",
+      "center": "0,0,0",
+      "value": "-1",
+      "bounded": "true",
+      "choice": "B",
+      "graded": "true",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 997,
+      "height": 1577
+    },
+    "overflow": false,
+    "hero": {
+      "top": 93,
+      "left": 213,
+      "width": 775,
+      "height": 125,
+      "bottom": 218
+    },
+    "tabs": {
+      "top": 230,
+      "left": 213,
+      "width": 775,
+      "height": 34,
+      "bottom": 264
+    },
+    "lab": {
+      "top": 276,
+      "left": 213,
+      "width": 775,
+      "height": 708,
+      "bottom": 984
+    },
+    "canvas": {
+      "top": 365,
+      "left": 224,
+      "width": 476,
+      "height": 420,
+      "bottom": 785
+    },
+    "coefficients": {
+      "top": 365,
+      "left": 710,
+      "width": 267,
+      "height": 295,
+      "bottom": 660
+    },
+    "traces": {
+      "top": 811,
+      "left": 224,
+      "width": 476,
+      "height": 154,
+      "bottom": 965
+    },
+    "middle": {
+      "top": 994,
+      "left": 213,
+      "width": 775,
+      "height": 232,
+      "bottom": 1226
+    },
+    "bottom": {
+      "top": 1236,
+      "left": 213,
+      "width": 775,
+      "height": 267,
+      "bottom": 1503
+    },
+    "adjacent": {
+      "top": 1513,
+      "left": 213,
+      "width": 775,
+      "height": 59,
+      "bottom": 1572
+    }
+  },
+  "mobileMetrics": {
+    "documentWidth": 390,
+    "overflow": false,
+    "nonblank": true
+  },
+  "consoleMessages": []
+}
