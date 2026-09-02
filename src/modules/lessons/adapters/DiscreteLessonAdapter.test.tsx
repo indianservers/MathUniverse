@@ -417,6 +417,24 @@ describe("discrete lesson adapter", () => {
     expect(html).toContain('data-edge-count="10"');
     expect(html).toContain('data-planar="false"');
   });
+  it("uses the dedicated network-flow surface for lesson 579", () => {
+    const lesson = lessonCatalog.find((candidate) => candidate.id === 579)!;
+    const html = renderToStaticMarkup(
+      <DiscreteLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="discrete-mockup-0636"');
+    expect(html).toContain(
+      "dedicated-residual-edmonds-karp-capacity-conservation-model",
+    );
+    expect(html).toContain('data-flow-value="5"');
+    expect(html).toContain('data-max-flow="5"');
+    expect(html).toContain('data-conserved="true"');
+    expect(html).toContain('data-maximum="true"');
+  });
   it("renders strengthened discrete lessons 556 through 585 with lesson-specific guidance", () => {
     const expected = new Map([
       [556, "Fundamental Counting Principle"],

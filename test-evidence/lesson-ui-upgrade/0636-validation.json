@@ -1,0 +1,227 @@
+{
+  "passed": true,
+  "url": "http://127.0.0.1:2256/lessons/discrete-and-applied-mathematics/579-network-flow",
+  "checks": {
+    "initial": {
+      "flowValue": "5",
+      "maxFlow": "5",
+      "valid": "true",
+      "conserved": "true",
+      "maximum": "true",
+      "selectedEdge": "ac",
+      "selectedFlow": "2",
+      "residualPath": "",
+      "highlightedPath": "",
+      "variant": "0",
+      "positions": "S:30,180;A:170,65;B:170,295;C:375,65;D:375,295;T:535,180",
+      "graded": "",
+      "actions": "0"
+    },
+    "unbalanced": {
+      "flowValue": "5",
+      "maxFlow": "5",
+      "valid": "false",
+      "conserved": "false",
+      "maximum": "false",
+      "selectedEdge": "ac",
+      "selectedFlow": "1",
+      "residualPath": "",
+      "highlightedPath": "",
+      "variant": "0",
+      "positions": "S:30,180;A:170,65;B:170,295;C:375,65;D:375,295;T:535,180",
+      "graded": "",
+      "actions": "2"
+    },
+    "zero": {
+      "flowValue": "0",
+      "maxFlow": "5",
+      "valid": "true",
+      "conserved": "true",
+      "maximum": "false",
+      "selectedEdge": "dt",
+      "selectedFlow": "0",
+      "residualPath": "S,A,C,T",
+      "highlightedPath": "",
+      "variant": "0",
+      "positions": "S:30,180;A:170,65;B:170,295;C:375,65;D:375,295;T:535,180",
+      "graded": "",
+      "actions": "17"
+    },
+    "found": {
+      "flowValue": "0",
+      "maxFlow": "5",
+      "valid": "true",
+      "conserved": "true",
+      "maximum": "false",
+      "selectedEdge": "dt",
+      "selectedFlow": "0",
+      "residualPath": "S,A,C,T",
+      "highlightedPath": "S,A,C,T",
+      "variant": "0",
+      "positions": "S:30,180;A:170,65;B:170,295;C:375,65;D:375,295;T:535,180",
+      "graded": "",
+      "actions": "18"
+    },
+    "auto": {
+      "flowValue": "5",
+      "maxFlow": "5",
+      "valid": "true",
+      "conserved": "true",
+      "maximum": "true",
+      "selectedEdge": "dt",
+      "selectedFlow": "3",
+      "residualPath": "",
+      "highlightedPath": "",
+      "variant": "0",
+      "positions": "S:30,180;A:170,65;B:170,295;C:375,65;D:375,295;T:535,180",
+      "graded": "",
+      "actions": "19"
+    },
+    "dragged": {
+      "flowValue": "5",
+      "maxFlow": "5",
+      "valid": "true",
+      "conserved": "true",
+      "maximum": "true",
+      "selectedEdge": "dt",
+      "selectedFlow": "3",
+      "residualPath": "",
+      "highlightedPath": "",
+      "variant": "0",
+      "positions": "S:30,180;A:170,65;B:170,295;C:297,157;D:375,295;T:535,180",
+      "graded": "",
+      "actions": "19"
+    },
+    "dragChanged": true,
+    "labelsOff": true,
+    "formulaVisible": true,
+    "wrong": {
+      "flowValue": "5",
+      "maxFlow": "5",
+      "valid": "true",
+      "conserved": "true",
+      "maximum": "true",
+      "selectedEdge": "dt",
+      "selectedFlow": "3",
+      "residualPath": "",
+      "highlightedPath": "",
+      "variant": "0",
+      "positions": "S:30,180;A:170,65;B:170,295;C:297,157;D:375,295;T:535,180",
+      "graded": "false",
+      "actions": "23"
+    },
+    "correct": {
+      "flowValue": "5",
+      "maxFlow": "5",
+      "valid": "true",
+      "conserved": "true",
+      "maximum": "true",
+      "selectedEdge": "dt",
+      "selectedFlow": "3",
+      "residualPath": "",
+      "highlightedPath": "",
+      "variant": "0",
+      "positions": "S:30,180;A:170,65;B:170,295;C:297,157;D:375,295;T:535,180",
+      "graded": "true",
+      "actions": "24"
+    },
+    "variant": {
+      "flowValue": "5",
+      "maxFlow": "5",
+      "valid": "true",
+      "conserved": "true",
+      "maximum": "true",
+      "selectedEdge": "dt",
+      "selectedFlow": "2",
+      "residualPath": "",
+      "highlightedPath": "",
+      "variant": "1",
+      "positions": "S:30,180;A:170,65;B:170,295;C:297,157;D:375,295;T:535,180",
+      "graded": "true",
+      "actions": "25"
+    },
+    "final": {
+      "flowValue": "5",
+      "maxFlow": "5",
+      "valid": "true",
+      "conserved": "true",
+      "maximum": "true",
+      "selectedEdge": "ac",
+      "selectedFlow": "2",
+      "residualPath": "",
+      "highlightedPath": "",
+      "variant": "0",
+      "positions": "S:30,180;A:170,65;B:170,295;C:375,65;D:375,295;T:535,180",
+      "graded": "",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1654
+    },
+    "overflow": false,
+    "surface": {
+      "top": 106,
+      "left": 220,
+      "width": 803,
+      "height": 1430,
+      "bottom": 1536
+    },
+    "hero": {
+      "top": 106,
+      "left": 229,
+      "width": 785,
+      "height": 151,
+      "bottom": 257
+    },
+    "tabs": {
+      "top": 265,
+      "left": 229,
+      "width": 785,
+      "height": 45,
+      "bottom": 310
+    },
+    "lab": {
+      "top": 323,
+      "left": 229,
+      "width": 785,
+      "height": 568,
+      "bottom": 891
+    },
+    "theory": {
+      "top": 900,
+      "left": 229,
+      "width": 785,
+      "height": 205,
+      "bottom": 1105
+    },
+    "worked": {
+      "top": 1113,
+      "left": 229,
+      "width": 785,
+      "height": 213,
+      "bottom": 1326
+    },
+    "practice": {
+      "top": 1334,
+      "left": 229,
+      "width": 785,
+      "height": 144,
+      "bottom": 1478
+    },
+    "adjacent": {
+      "top": 1486,
+      "left": 229,
+      "width": 785,
+      "height": 50,
+      "bottom": 1536
+    }
+  },
+  "mobileMetrics": {
+    "documentWidth": 390,
+    "overflow": false
+  },
+  "consoleMessages": []
+}
