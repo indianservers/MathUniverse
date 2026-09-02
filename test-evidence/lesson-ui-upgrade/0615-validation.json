@@ -1,0 +1,185 @@
+{
+  "passed": true,
+  "url": "http://127.0.0.1:2256/lessons/discrete-and-applied-mathematics/558-permutations",
+  "checks": {
+    "initial": {
+      "n": "5",
+      "r": "2",
+      "total": "20",
+      "slots": "__",
+      "unique": "3",
+      "practice": "__",
+      "practiceTotal": "12",
+      "checked": "false",
+      "correct": "false",
+      "shuffles": "0",
+      "actions": "0"
+    },
+    "completed": {
+      "n": "5",
+      "r": "2",
+      "total": "20",
+      "slots": "DE",
+      "unique": "4",
+      "practice": "__",
+      "practiceTotal": "12",
+      "checked": "false",
+      "correct": "false",
+      "shuffles": "0",
+      "actions": "2"
+    },
+    "reset": {
+      "n": "5",
+      "r": "2",
+      "total": "20",
+      "slots": "__",
+      "unique": "4",
+      "practice": "__",
+      "practiceTotal": "12",
+      "checked": "false",
+      "correct": "false",
+      "shuffles": "0",
+      "actions": "3"
+    },
+    "fourThree": {
+      "n": "4",
+      "r": "3",
+      "total": "24",
+      "slots": "___",
+      "unique": "0",
+      "practice": "__",
+      "practiceTotal": "12",
+      "checked": "false",
+      "correct": "false",
+      "shuffles": "0",
+      "actions": "5"
+    },
+    "shuffled": {
+      "n": "4",
+      "r": "3",
+      "total": "24",
+      "slots": "___",
+      "unique": "0",
+      "practice": "__",
+      "practiceTotal": "12",
+      "checked": "false",
+      "correct": "false",
+      "shuffles": "1",
+      "actions": "6"
+    },
+    "formulaClass": "active",
+    "incomplete": {
+      "n": "4",
+      "r": "3",
+      "total": "24",
+      "slots": "___",
+      "unique": "0",
+      "practice": "A_",
+      "practiceTotal": "12",
+      "checked": "true",
+      "correct": "false",
+      "shuffles": "1",
+      "actions": "9"
+    },
+    "practiceCorrect": {
+      "n": "4",
+      "r": "3",
+      "total": "24",
+      "slots": "___",
+      "unique": "0",
+      "practice": "AB",
+      "practiceTotal": "12",
+      "checked": "true",
+      "correct": "true",
+      "shuffles": "1",
+      "actions": "11"
+    },
+    "practiceReset": {
+      "n": "4",
+      "r": "3",
+      "total": "24",
+      "slots": "___",
+      "unique": "0",
+      "practice": "__",
+      "practiceTotal": "12",
+      "checked": "false",
+      "correct": "false",
+      "shuffles": "1",
+      "actions": "12"
+    },
+    "final": {
+      "n": "5",
+      "r": "2",
+      "total": "20",
+      "slots": "__",
+      "unique": "3",
+      "practice": "__",
+      "practiceTotal": "12",
+      "checked": "false",
+      "correct": "false",
+      "shuffles": "0",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 999,
+      "height": 1575
+    },
+    "overflow": false,
+    "hero": {
+      "top": 111,
+      "left": 228,
+      "width": 746,
+      "height": 178,
+      "bottom": 289
+    },
+    "tabs": {
+      "top": 301,
+      "left": 228,
+      "width": 746,
+      "height": 54,
+      "bottom": 355
+    },
+    "observe": {
+      "top": 367,
+      "left": 228,
+      "width": 746,
+      "height": 405,
+      "bottom": 772
+    },
+    "middle": {
+      "top": 784,
+      "left": 228,
+      "width": 746,
+      "height": 295,
+      "bottom": 1079
+    },
+    "bottom": {
+      "top": 1091,
+      "left": 228,
+      "width": 746,
+      "height": 218,
+      "bottom": 1309
+    },
+    "glance": {
+      "top": 1321,
+      "left": 228,
+      "width": 746,
+      "height": 82,
+      "bottom": 1403
+    },
+    "adjacent": {
+      "top": 1415,
+      "left": 228,
+      "width": 746,
+      "height": 52,
+      "bottom": 1467
+    }
+  },
+  "mobileMetrics": {
+    "documentWidth": 390,
+    "overflow": false
+  },
+  "consoleMessages": []
+}
