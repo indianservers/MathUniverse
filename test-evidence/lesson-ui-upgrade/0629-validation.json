@@ -1,0 +1,212 @@
+{
+  "passed": true,
+  "url": "http://127.0.0.1:2256/lessons/discrete-and-applied-mathematics/572-hamiltonian-paths-and-cycles",
+  "checks": {
+    "initial": {
+      "route": "A,B,C",
+      "visitedCount": "3",
+      "valid": "true",
+      "canComplete": "true",
+      "isPath": "false",
+      "isCycle": "false",
+      "edgeCount": "5",
+      "positions": "A:105,105;B:285,40;C:470,105;D:165,330;E:405,330",
+      "graded": "",
+      "actions": "0"
+    },
+    "path": {
+      "route": "A,B,C,E,D",
+      "visitedCount": "5",
+      "valid": "true",
+      "canComplete": "true",
+      "isPath": "true",
+      "isCycle": "false",
+      "edgeCount": "5",
+      "positions": "A:105,105;B:285,40;C:470,105;D:165,330;E:405,330",
+      "graded": "",
+      "actions": "2"
+    },
+    "cycle": {
+      "route": "A,B,C,E,D,A",
+      "visitedCount": "5",
+      "valid": "true",
+      "canComplete": "true",
+      "isPath": "false",
+      "isCycle": "true",
+      "edgeCount": "5",
+      "positions": "A:105,105;B:285,40;C:470,105;D:165,330;E:405,330",
+      "graded": "",
+      "actions": "3"
+    },
+    "undo": {
+      "route": "A,B,C,E,D",
+      "visitedCount": "5",
+      "valid": "true",
+      "canComplete": "true",
+      "isPath": "true",
+      "isCycle": "false",
+      "edgeCount": "5",
+      "positions": "A:105,105;B:285,40;C:470,105;D:165,330;E:405,330",
+      "graded": "",
+      "actions": "4"
+    },
+    "nonEdge": {
+      "route": "A",
+      "visitedCount": "1",
+      "valid": "true",
+      "canComplete": "true",
+      "isPath": "false",
+      "isCycle": "false",
+      "edgeCount": "5",
+      "positions": "A:105,105;B:285,40;C:470,105;D:165,330;E:405,330",
+      "graded": "",
+      "actions": "6"
+    },
+    "nonEdgeMessage": true,
+    "revisit": {
+      "route": "A,B",
+      "visitedCount": "2",
+      "valid": "true",
+      "canComplete": "true",
+      "isPath": "false",
+      "isCycle": "false",
+      "edgeCount": "5",
+      "positions": "A:105,105;B:285,40;C:470,105;D:165,330;E:405,330",
+      "graded": "",
+      "actions": "8"
+    },
+    "revisitMessage": true,
+    "dragged": {
+      "route": "A,B",
+      "visitedCount": "2",
+      "valid": "true",
+      "canComplete": "true",
+      "isPath": "false",
+      "isCycle": "false",
+      "edgeCount": "5",
+      "positions": "A:105,105;B:285,40;C:499,133;D:165,330;E:405,330",
+      "graded": "",
+      "actions": "8"
+    },
+    "dragChanged": true,
+    "random": {
+      "route": "A",
+      "visitedCount": "1",
+      "valid": "true",
+      "canComplete": "true",
+      "isPath": "false",
+      "isCycle": "false",
+      "edgeCount": "7",
+      "positions": "A:105,105;B:285,40;C:499,133;D:165,330;E:405,330",
+      "graded": "",
+      "actions": "9"
+    },
+    "stepsOff": true,
+    "formulaVisible": true,
+    "wrong": {
+      "route": "A",
+      "visitedCount": "1",
+      "valid": "true",
+      "canComplete": "true",
+      "isPath": "false",
+      "isCycle": "false",
+      "edgeCount": "7",
+      "positions": "A:105,105;B:285,40;C:499,133;D:165,330;E:405,330",
+      "graded": "false",
+      "actions": "13"
+    },
+    "correct": {
+      "route": "A",
+      "visitedCount": "1",
+      "valid": "true",
+      "canComplete": "true",
+      "isPath": "false",
+      "isCycle": "false",
+      "edgeCount": "7",
+      "positions": "A:105,105;B:285,40;C:499,133;D:165,330;E:405,330",
+      "graded": "true",
+      "actions": "14"
+    },
+    "answerVisible": true,
+    "final": {
+      "route": "A,B,C",
+      "visitedCount": "3",
+      "valid": "true",
+      "canComplete": "true",
+      "isPath": "false",
+      "isCycle": "false",
+      "edgeCount": "5",
+      "positions": "A:105,105;B:285,40;C:470,105;D:165,330;E:405,330",
+      "graded": "",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1006,
+      "height": 1564
+    },
+    "overflow": false,
+    "hero": {
+      "top": 94,
+      "left": 228,
+      "width": 761,
+      "height": 115,
+      "bottom": 209
+    },
+    "tabs": {
+      "top": 216,
+      "left": 228,
+      "width": 761,
+      "height": 42,
+      "bottom": 258
+    },
+    "sequence": {
+      "top": 265,
+      "left": 228,
+      "width": 761,
+      "height": 61,
+      "bottom": 326
+    },
+    "builder": {
+      "top": 338,
+      "left": 228,
+      "width": 761,
+      "height": 356,
+      "bottom": 694
+    },
+    "analysis": {
+      "top": 705,
+      "left": 228,
+      "width": 761,
+      "height": 316,
+      "bottom": 1021
+    },
+    "worked": {
+      "top": 1032,
+      "left": 228,
+      "width": 761,
+      "height": 247,
+      "bottom": 1279
+    },
+    "challenge": {
+      "top": 1290,
+      "left": 228,
+      "width": 761,
+      "height": 184,
+      "bottom": 1474
+    },
+    "adjacent": {
+      "top": 1484,
+      "left": 228,
+      "width": 761,
+      "height": 51,
+      "bottom": 1535
+    }
+  },
+  "mobileMetrics": {
+    "documentWidth": 390,
+    "overflow": false
+  },
+  "consoleMessages": []
+}

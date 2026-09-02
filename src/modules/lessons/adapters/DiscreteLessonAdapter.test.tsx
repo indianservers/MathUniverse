@@ -301,6 +301,21 @@ describe("discrete lesson adapter", () => {
     expect(html).toContain('data-euler-kind="circuit"');
     expect(html).toContain('data-used-count="0"');
   });
+  it("uses the dedicated Hamiltonian route surface for lesson 572", () => {
+    const lesson = lessonCatalog.find((candidate) => candidate.id === 572)!;
+    const html = renderToStaticMarkup(
+      <DiscreteLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="discrete-mockup-0629"');
+    expect(html).toContain("dedicated-hamiltonian-vertex-route-search-model");
+    expect(html).toContain('data-route="A,B,C"');
+    expect(html).toContain('data-visited-count="3"');
+    expect(html).toContain('data-can-complete="true"');
+  });
   it("renders strengthened discrete lessons 556 through 585 with lesson-specific guidance", () => {
     const expected = new Map([
       [556, "Fundamental Counting Principle"],
