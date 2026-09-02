@@ -42,6 +42,7 @@ import ARPlacementTargetLesson412 from "./geometry3d/ARPlacementTargetLesson412"
 import SurfaceFunctionTargetLesson413 from "./geometry3d/SurfaceFunctionTargetLesson413";
 import ImplicitSurfacesTargetLesson414 from "./geometry3d/ImplicitSurfacesTargetLesson414";
 import ParametricSurfacesTargetLesson415 from "./geometry3d/ParametricSurfacesTargetLesson415";
+import SpaceCurvesTargetLesson416 from "./geometry3d/SpaceCurvesTargetLesson416";
 
 export default function Geometry3DLessonAdapter(props: LessonAdapterProps) {
   if (props.lesson.id === 378)
@@ -95,6 +96,8 @@ export default function Geometry3DLessonAdapter(props: LessonAdapterProps) {
     return <ImplicitSurfacesTargetLesson414 {...props} />;
   if (props.lesson.id === 415)
     return <ParametricSurfacesTargetLesson415 {...props} />;
+  if (props.lesson.id === 416)
+    return <SpaceCurvesTargetLesson416 {...props} />;
   if (props.lesson.preset.id === "geometry3d.solid-net") {
     return (
       <AdapterFrame

@@ -1,0 +1,201 @@
+{
+  "passed": true,
+  "url": "http://127.0.0.1:2256/lessons/3d-mathematics/416-space-curves",
+  "checks": {
+    "initial": {
+      "t": "2.5",
+      "x": "-0.8011",
+      "y": "0.5985",
+      "z": "0.625",
+      "speed": "1.0308",
+      "curvature": "0.9412",
+      "radius": "1.0625",
+      "pitch": "1.5708",
+      "grid": "true",
+      "axes": "true",
+      "tab": "Interact",
+      "solved": "false",
+      "actions": "0"
+    },
+    "orbitPixelsChanged": true,
+    "canvas": {
+      "width": 399,
+      "height": 524,
+      "nonblank": true
+    },
+    "parameter": {
+      "t": "3.1416",
+      "x": "-1",
+      "y": "0",
+      "z": "0.7854",
+      "speed": "1.0308",
+      "curvature": "0.9412",
+      "radius": "1.0625",
+      "pitch": "1.5708",
+      "grid": "true",
+      "axes": "true",
+      "tab": "Interact",
+      "solved": "false",
+      "actions": "1"
+    },
+    "layers": {
+      "t": "3.1416",
+      "x": "-1",
+      "y": "0",
+      "z": "0.7854",
+      "speed": "1.0308",
+      "curvature": "0.9412",
+      "radius": "1.0625",
+      "pitch": "1.5708",
+      "grid": "false",
+      "axes": "false",
+      "tab": "Interact",
+      "solved": "false",
+      "actions": "3"
+    },
+    "tab": {
+      "t": "3.1416",
+      "x": "-1",
+      "y": "0",
+      "z": "0.7854",
+      "speed": "1.0308",
+      "curvature": "0.9412",
+      "radius": "1.0625",
+      "pitch": "1.5708",
+      "grid": "false",
+      "axes": "false",
+      "tab": "Formula",
+      "solved": "false",
+      "actions": "4"
+    },
+    "solved": {
+      "t": "3.1416",
+      "x": "-1",
+      "y": "0",
+      "z": "0.7854",
+      "speed": "1.0308",
+      "curvature": "0.9412",
+      "radius": "1.0625",
+      "pitch": "1.5708",
+      "grid": "false",
+      "axes": "false",
+      "tab": "Formula",
+      "solved": "true",
+      "actions": "5"
+    },
+    "solutionVisible": true,
+    "viewReset": {
+      "t": "3.1416",
+      "x": "-1",
+      "y": "0",
+      "z": "0.7854",
+      "speed": "1.0308",
+      "curvature": "0.9412",
+      "radius": "1.0625",
+      "pitch": "1.5708",
+      "grid": "false",
+      "axes": "false",
+      "tab": "Formula",
+      "solved": "true",
+      "actions": "6"
+    },
+    "final": {
+      "t": "2.5",
+      "x": "-0.8011",
+      "y": "0.5985",
+      "z": "0.625",
+      "speed": "1.0308",
+      "curvature": "0.9412",
+      "radius": "1.0625",
+      "pitch": "1.5708",
+      "grid": "true",
+      "axes": "true",
+      "tab": "Interact",
+      "solved": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 970,
+      "height": 1622
+    },
+    "overflow": false,
+    "hero": {
+      "top": 92,
+      "left": 223,
+      "width": 732,
+      "height": 134,
+      "bottom": 226
+    },
+    "tabs": {
+      "top": 236,
+      "left": 223,
+      "width": 732,
+      "height": 48,
+      "bottom": 284
+    },
+    "main": {
+      "top": 296,
+      "left": 223,
+      "width": 732,
+      "height": 642,
+      "bottom": 938
+    },
+    "stage": {
+      "top": 338,
+      "left": 234,
+      "width": 399,
+      "height": 524,
+      "bottom": 862
+    },
+    "rail": {
+      "top": 338,
+      "left": 645,
+      "width": 299,
+      "height": 524,
+      "bottom": 862
+    },
+    "pattern": {
+      "top": 948,
+      "left": 223,
+      "width": 732,
+      "height": 119,
+      "bottom": 1067
+    },
+    "rule": {
+      "top": 1077,
+      "left": 223,
+      "width": 732,
+      "height": 85,
+      "bottom": 1162
+    },
+    "bottom": {
+      "top": 1172,
+      "left": 223,
+      "width": 732,
+      "height": 261,
+      "bottom": 1433
+    },
+    "adjacent": {
+      "top": 1443,
+      "left": 223,
+      "width": 732,
+      "height": 53,
+      "bottom": 1496
+    },
+    "footer": {
+      "top": 1506,
+      "left": 223,
+      "width": 732,
+      "height": 106,
+      "bottom": 1612
+    }
+  },
+  "mobileMetrics": {
+    "documentWidth": 390,
+    "overflow": false,
+    "nonblank": true
+  },
+  "consoleMessages": []
+}

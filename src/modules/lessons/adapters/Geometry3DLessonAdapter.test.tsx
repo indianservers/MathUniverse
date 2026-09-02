@@ -935,4 +935,15 @@ describe("Geometry3DLessonAdapter", () => {
     expect(html).toContain('data-z="0.896"');
     expect(html).toContain('data-mode="solid"');
   });
+
+  it("uses a dedicated space-curve helix lab for lesson 416", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 416)!;
+    const html = renderToStaticMarkup(<Geometry3DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="geometry3d-mockup-0601"');
+    expect(html).toContain("threejs-dedicated-parametric-helix-live-point-tangent-component-plots-speed-curvature-pitch-challenge");
+    expect(html).toContain('data-t="2.5"');
+    expect(html).toContain('data-z="0.625"');
+    expect(html).toContain('data-grid="true"');
+    expect(html).toContain("Component plots");
+  });
 });

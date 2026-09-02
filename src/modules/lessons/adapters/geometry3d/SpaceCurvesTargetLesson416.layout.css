@@ -1,0 +1,36 @@
+.sc416-page {
+  left: 3px;
+  top: 6px;
+  width: calc(100% - 9px);
+}
+.sc416-workspace {
+  grid-template-columns: 399px 1fr;
+}
+.sc416-hero {
+  height: 134px;
+}
+.sc416-hero h1 {
+  margin-top: 6px;
+  font-size: 20px;
+}
+.sc416-hero section output {
+  font-size: 18px;
+}
+.sc416-hero section p {
+  margin: 3px 0 0;
+}
+.sc416-hero > aside {
+  gap: 5px;
+  padding: 9px 14px;
+}
+.sc416-slider > input[type="number"] {
+  position: absolute;
+  right: 8px;
+  top: 23px;
+  width: 58px;
+  height: 30px;
+  border: 1px solid #ccd8e3;
+  border-radius: 6px;
+  padding: 7px;
+  background: #fff;
+}
