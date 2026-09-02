@@ -56,6 +56,21 @@ describe("discrete lesson adapter", () => {
     expect(html).toContain('data-total="12"');
     expect(html).toContain('data-meal-total="12"');
   });
+  it("uses the dedicated distinct-arrangement tray for lesson 557", () => {
+    const lesson = lessonCatalog.find((candidate) => candidate.id === 557)!;
+    const html = renderToStaticMarkup(
+      <DiscreteLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="discrete-mockup-0614"');
+    expect(html).toContain("dedicated-distinct-object-drag-drop-arrangement");
+    expect(html).toContain('data-total="120"');
+    expect(html).toContain('data-slots="_____"');
+    expect(html).toContain('data-challenge-total="5040"');
+  });
   it("renders strengthened discrete lessons 556 through 585 with lesson-specific guidance", () => {
     const expected = new Map([
       [556, "Fundamental Counting Principle"],

@@ -1,0 +1,199 @@
+{
+  "passed": true,
+  "url": "http://127.0.0.1:2256/lessons/discrete-and-applied-mathematics/557-factorials",
+  "checks": {
+    "initial": {
+      "n": "5",
+      "total": "120",
+      "slots": "_____",
+      "remaining": "ABCDE",
+      "completed": "0",
+      "enumerated": "false",
+      "challengeN": "7",
+      "challengeTotal": "5040",
+      "graded": "false",
+      "correct": "false",
+      "actions": "0"
+    },
+    "dragged": {
+      "n": "5",
+      "total": "120",
+      "slots": "A____",
+      "remaining": "BCDE",
+      "completed": "0",
+      "enumerated": "false",
+      "challengeN": "7",
+      "challengeTotal": "5040",
+      "graded": "false",
+      "correct": "false",
+      "actions": "1"
+    },
+    "completed": {
+      "n": "5",
+      "total": "120",
+      "slots": "ABCDE",
+      "remaining": "",
+      "completed": "1",
+      "enumerated": "false",
+      "challengeN": "7",
+      "challengeTotal": "5040",
+      "graded": "false",
+      "correct": "false",
+      "actions": "5"
+    },
+    "trayReset": {
+      "n": "5",
+      "total": "120",
+      "slots": "_____",
+      "remaining": "ABCDE",
+      "completed": "1",
+      "enumerated": "false",
+      "challengeN": "7",
+      "challengeTotal": "5040",
+      "graded": "false",
+      "correct": "false",
+      "actions": "6"
+    },
+    "four": {
+      "n": "4",
+      "total": "24",
+      "slots": "____",
+      "remaining": "ABCD",
+      "completed": "0",
+      "enumerated": "false",
+      "challengeN": "7",
+      "challengeTotal": "5040",
+      "graded": "false",
+      "correct": "false",
+      "actions": "7"
+    },
+    "enumerated": {
+      "n": "4",
+      "total": "24",
+      "slots": "____",
+      "remaining": "ABCD",
+      "completed": "0",
+      "enumerated": "true",
+      "challengeN": "7",
+      "challengeTotal": "5040",
+      "graded": "false",
+      "correct": "false",
+      "actions": "8"
+    },
+    "enumerationVisible": true,
+    "formula": "active",
+    "challengeSix": {
+      "n": "4",
+      "total": "24",
+      "slots": "____",
+      "remaining": "ABCD",
+      "completed": "0",
+      "enumerated": "true",
+      "challengeN": "6",
+      "challengeTotal": "720",
+      "graded": "false",
+      "correct": "false",
+      "actions": "10"
+    },
+    "wrong": {
+      "n": "4",
+      "total": "24",
+      "slots": "____",
+      "remaining": "ABCD",
+      "completed": "0",
+      "enumerated": "true",
+      "challengeN": "6",
+      "challengeTotal": "720",
+      "graded": "true",
+      "correct": "false",
+      "actions": "12"
+    },
+    "correct": {
+      "n": "4",
+      "total": "24",
+      "slots": "____",
+      "remaining": "ABCD",
+      "completed": "0",
+      "enumerated": "true",
+      "challengeN": "6",
+      "challengeTotal": "720",
+      "graded": "true",
+      "correct": "true",
+      "actions": "14"
+    },
+    "final": {
+      "n": "5",
+      "total": "120",
+      "slots": "_____",
+      "remaining": "ABCDE",
+      "completed": "0",
+      "enumerated": "false",
+      "challengeN": "7",
+      "challengeTotal": "5040",
+      "graded": "false",
+      "correct": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "overflow": false,
+    "hero": {
+      "top": 99,
+      "left": 233,
+      "width": 782,
+      "height": 118,
+      "bottom": 217
+    },
+    "tabs": {
+      "top": 232,
+      "left": 233,
+      "width": 782,
+      "height": 54,
+      "bottom": 286
+    },
+    "observe": {
+      "top": 298,
+      "left": 233,
+      "width": 782,
+      "height": 182,
+      "bottom": 480
+    },
+    "build": {
+      "top": 492,
+      "left": 233,
+      "width": 782,
+      "height": 321,
+      "bottom": 813
+    },
+    "pattern": {
+      "top": 825,
+      "left": 233,
+      "width": 782,
+      "height": 290,
+      "bottom": 1115
+    },
+    "bottom": {
+      "top": 1127,
+      "left": 233,
+      "width": 782,
+      "height": 252,
+      "bottom": 1379
+    },
+    "adjacent": {
+      "top": 1391,
+      "left": 233,
+      "width": 782,
+      "height": 55,
+      "bottom": 1446
+    }
+  },
+  "mobileMetrics": {
+    "documentWidth": 390,
+    "overflow": false
+  },
+  "consoleMessages": []
+}

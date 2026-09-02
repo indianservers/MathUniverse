@@ -19,6 +19,7 @@ import {
   TruthTableActivity,
 } from "./discrete/DiscreteP0Activities";
 import FundamentalCountingTargetLesson556 from "./discrete/FundamentalCountingTargetLesson556";
+import FactorialsTargetLesson557 from "./discrete/FactorialsTargetLesson557";
 
 const countingModes = new Set<DiscreteLessonMode>([
   "product",
@@ -205,6 +206,7 @@ function discreteGuidanceFor(mode: DiscreteLessonMode) {
 export default function DiscreteLessonAdapter(props: LessonAdapterProps) {
   if (props.lesson.id === 556)
     return <FundamentalCountingTargetLesson556 {...props} />;
+  if (props.lesson.id === 557) return <FactorialsTargetLesson557 {...props} />;
   const mode = discreteLessonPreset(props.lesson.id).mode;
   const guidance = discreteGuidanceFor(mode);
   let activity = specialActivity(props.lesson.preset.id, props);
