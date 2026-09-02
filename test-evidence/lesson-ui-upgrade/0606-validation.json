@@ -1,0 +1,285 @@
+{
+  "passed": true,
+  "url": "http://127.0.0.1:2256/lessons/3d-mathematics/421-level-surfaces",
+  "checks": {
+    "initial": {
+      "c": "2",
+      "radius": "1.414",
+      "area": "25.133",
+      "volume": "11.848",
+      "style": "solid",
+      "axes": "true",
+      "points": "true",
+      "cross": "false",
+      "labels": "true",
+      "sampling": "true",
+      "checked": "true",
+      "actions": "0"
+    },
+    "orbitPixelsChanged": true,
+    "canvas": {
+      "width": 506,
+      "height": 408,
+      "nonblank": true
+    },
+    "c4": {
+      "c": "4",
+      "radius": "2",
+      "area": "50.265",
+      "volume": "33.51",
+      "style": "solid",
+      "axes": "true",
+      "points": "true",
+      "cross": "false",
+      "labels": "true",
+      "sampling": "true",
+      "checked": "true",
+      "actions": "1"
+    },
+    "wire": {
+      "c": "4",
+      "radius": "2",
+      "area": "50.265",
+      "volume": "33.51",
+      "style": "wire",
+      "axes": "true",
+      "points": "true",
+      "cross": "false",
+      "labels": "true",
+      "sampling": "true",
+      "checked": "true",
+      "actions": "2"
+    },
+    "points": {
+      "c": "4",
+      "radius": "2",
+      "area": "50.265",
+      "volume": "33.51",
+      "style": "points",
+      "axes": "true",
+      "points": "true",
+      "cross": "false",
+      "labels": "true",
+      "sampling": "true",
+      "checked": "true",
+      "actions": "3"
+    },
+    "dotted": {
+      "c": "4",
+      "radius": "2",
+      "area": "50.265",
+      "volume": "33.51",
+      "style": "dotted",
+      "axes": "true",
+      "points": "true",
+      "cross": "false",
+      "labels": "true",
+      "sampling": "true",
+      "checked": "true",
+      "actions": "4"
+    },
+    "solid": {
+      "c": "4",
+      "radius": "2",
+      "area": "50.265",
+      "volume": "33.51",
+      "style": "solid",
+      "axes": "true",
+      "points": "true",
+      "cross": "false",
+      "labels": "true",
+      "sampling": "true",
+      "checked": "true",
+      "actions": "5"
+    },
+    "Show axes": {
+      "c": "4",
+      "radius": "2",
+      "area": "50.265",
+      "volume": "33.51",
+      "style": "solid",
+      "axes": "false",
+      "points": "true",
+      "cross": "false",
+      "labels": "true",
+      "sampling": "true",
+      "checked": "true",
+      "actions": "6"
+    },
+    "Show sample points": {
+      "c": "4",
+      "radius": "2",
+      "area": "50.265",
+      "volume": "33.51",
+      "style": "solid",
+      "axes": "false",
+      "points": "false",
+      "cross": "false",
+      "labels": "true",
+      "sampling": "true",
+      "checked": "true",
+      "actions": "7"
+    },
+    "Show cross-sections": {
+      "c": "4",
+      "radius": "2",
+      "area": "50.265",
+      "volume": "33.51",
+      "style": "solid",
+      "axes": "false",
+      "points": "false",
+      "cross": "true",
+      "labels": "true",
+      "sampling": "true",
+      "checked": "true",
+      "actions": "8"
+    },
+    "Show numeric labels": {
+      "c": "4",
+      "radius": "2",
+      "area": "50.265",
+      "volume": "33.51",
+      "style": "solid",
+      "axes": "false",
+      "points": "false",
+      "cross": "true",
+      "labels": "false",
+      "sampling": "true",
+      "checked": "true",
+      "actions": "9"
+    },
+    "samplingOff": {
+      "c": "4",
+      "radius": "2",
+      "area": "50.265",
+      "volume": "33.51",
+      "style": "solid",
+      "axes": "false",
+      "points": "false",
+      "cross": "true",
+      "labels": "false",
+      "sampling": "false",
+      "checked": "true",
+      "actions": "10"
+    },
+    "preset": {
+      "c": "0.5",
+      "radius": "0.707",
+      "area": "6.283",
+      "volume": "1.481",
+      "style": "solid",
+      "axes": "false",
+      "points": "false",
+      "cross": "true",
+      "labels": "false",
+      "sampling": "false",
+      "checked": "true",
+      "actions": "11"
+    },
+    "formula": "active",
+    "challenge": {
+      "c": "3",
+      "radius": "1.732",
+      "area": "37.699",
+      "volume": "21.766",
+      "style": "solid",
+      "axes": "false",
+      "points": "false",
+      "cross": "true",
+      "labels": "false",
+      "sampling": "false",
+      "checked": "true",
+      "actions": "13"
+    },
+    "localReset": {
+      "c": "2",
+      "radius": "1.414",
+      "area": "25.133",
+      "volume": "11.848",
+      "style": "solid",
+      "axes": "true",
+      "points": "true",
+      "cross": "false",
+      "labels": "true",
+      "sampling": "false",
+      "checked": "false",
+      "actions": "14"
+    },
+    "final": {
+      "c": "2",
+      "radius": "1.414",
+      "area": "25.133",
+      "volume": "11.848",
+      "style": "solid",
+      "axes": "true",
+      "points": "true",
+      "cross": "false",
+      "labels": "true",
+      "sampling": "true",
+      "checked": "true",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 983,
+      "height": 1600
+    },
+    "overflow": false,
+    "hero": {
+      "top": 93,
+      "left": 211,
+      "width": 763,
+      "height": 137,
+      "bottom": 230
+    },
+    "tabs": {
+      "top": 240,
+      "left": 221,
+      "width": 590,
+      "height": 31,
+      "bottom": 271
+    },
+    "lab": {
+      "top": 281,
+      "left": 211,
+      "width": 763,
+      "height": 586,
+      "bottom": 867
+    },
+    "canvas": {
+      "top": 343,
+      "left": 224,
+      "width": 508,
+      "height": 410,
+      "bottom": 753
+    },
+    "info": {
+      "top": 877,
+      "left": 211,
+      "width": 763,
+      "height": 282,
+      "bottom": 1159
+    },
+    "bottom": {
+      "top": 1169,
+      "left": 211,
+      "width": 763,
+      "height": 226,
+      "bottom": 1395
+    },
+    "adjacent": {
+      "top": 1405,
+      "left": 211,
+      "width": 763,
+      "height": 58,
+      "bottom": 1463
+    }
+  },
+  "mobileMetrics": {
+    "documentWidth": 390,
+    "overflow": false,
+    "nonblank": true
+  },
+  "consoleMessages": []
+}

@@ -47,6 +47,7 @@ import QuadricSurfacesTargetLesson417 from "./geometry3d/QuadricSurfacesTargetLe
 import CylindricalCoordinatesTargetLesson418 from "./geometry3d/CylindricalCoordinatesTargetLesson418";
 import SphericalCoordinatesTargetLesson419 from "./geometry3d/SphericalCoordinatesTargetLesson419";
 import ContourCurvesTargetLesson420 from "./geometry3d/ContourCurvesTargetLesson420";
+import LevelSurfacesTargetLesson421 from "./geometry3d/LevelSurfacesTargetLesson421";
 
 export default function Geometry3DLessonAdapter(props: LessonAdapterProps) {
   if (props.lesson.id === 378)
@@ -109,6 +110,8 @@ export default function Geometry3DLessonAdapter(props: LessonAdapterProps) {
     return <SphericalCoordinatesTargetLesson419 {...props} />;
   if (props.lesson.id === 420)
     return <ContourCurvesTargetLesson420 {...props} />;
+  if (props.lesson.id === 421)
+    return <LevelSurfacesTargetLesson421 {...props} />;
   if (props.lesson.preset.id === "geometry3d.solid-net") {
     return (
       <AdapterFrame

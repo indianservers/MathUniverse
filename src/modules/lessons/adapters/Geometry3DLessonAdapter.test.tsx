@@ -1035,4 +1035,20 @@ describe("Geometry3DLessonAdapter", () => {
     expect(html).toContain('data-contour="Closed curve"');
     expect(html).toContain("sin(x)cos(y) = 0.3");
   });
+
+  it("uses a dedicated scalar-field level-surface model for lesson 421", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 421)!;
+    const html = renderToStaticMarkup(
+      <Geometry3DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="geometry3d-mockup-0606"');
+    expect(html).toContain("threejs-dedicated-scalar-field-isovalue-sphere");
+    expect(html).toContain('data-c="2"');
+    expect(html).toContain('data-radius="1.414"');
+    expect(html).toContain("Reusable 3D Graph Engine");
+  });
 });
