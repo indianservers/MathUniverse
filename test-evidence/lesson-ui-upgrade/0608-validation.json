@@ -1,0 +1,261 @@
+{
+  "passed": true,
+  "url": "http://127.0.0.1:2256/lessons/3d-mathematics/423-gradient-vector",
+  "checks": {
+    "initial": {
+      "x": "1",
+      "y": "0.5",
+      "z": "0.75",
+      "gx": "1.5",
+      "gy": "0",
+      "magnitude": "1.5",
+      "ux": "1",
+      "uy": "0",
+      "dot": "0",
+      "tool": "select",
+      "opacity": "0.7",
+      "graded": "false",
+      "correct": "false",
+      "actions": "0"
+    },
+    "orbitPixelsChanged": true,
+    "canvas": {
+      "width": 423,
+      "height": 323,
+      "nonblank": true
+    },
+    "pointDrag": {
+      "before": {
+        "x": "1",
+        "y": "0.5",
+        "z": "0.75",
+        "gx": "1.5",
+        "gy": "0",
+        "magnitude": "1.5",
+        "ux": "1",
+        "uy": "0",
+        "dot": "0",
+        "tool": "select",
+        "opacity": "0.7",
+        "graded": "false",
+        "correct": "false",
+        "actions": "0"
+      },
+      "after": {
+        "x": "1.051",
+        "y": "0.677",
+        "z": "0.851",
+        "gx": "1.424",
+        "gy": "0.304",
+        "magnitude": "1.456",
+        "ux": "0.978",
+        "uy": "0.209",
+        "dot": "0",
+        "tool": "select",
+        "opacity": "0.7",
+        "graded": "false",
+        "correct": "false",
+        "actions": "21"
+      }
+    },
+    "changed": {
+      "x": "2",
+      "y": "-1",
+      "z": "7",
+      "gx": "5",
+      "gy": "-4",
+      "magnitude": "6.403",
+      "ux": "0.781",
+      "uy": "-0.625",
+      "dot": "0",
+      "tool": "select",
+      "opacity": "0.7",
+      "graded": "false",
+      "correct": "false",
+      "actions": "23"
+    },
+    "opacity": {
+      "x": "2",
+      "y": "-1",
+      "z": "7",
+      "gx": "5",
+      "gy": "-4",
+      "magnitude": "6.403",
+      "ux": "0.781",
+      "uy": "-0.625",
+      "dot": "0",
+      "tool": "select",
+      "opacity": "0.45",
+      "graded": "false",
+      "correct": "false",
+      "actions": "24"
+    },
+    "pan": {
+      "x": "2",
+      "y": "-1",
+      "z": "7",
+      "gx": "5",
+      "gy": "-4",
+      "magnitude": "6.403",
+      "ux": "0.781",
+      "uy": "-0.625",
+      "dot": "0",
+      "tool": "pan",
+      "opacity": "0.45",
+      "graded": "false",
+      "correct": "false",
+      "actions": "25"
+    },
+    "target": {
+      "x": "2",
+      "y": "-1",
+      "z": "7",
+      "gx": "5",
+      "gy": "-4",
+      "magnitude": "6.403",
+      "ux": "0.781",
+      "uy": "-0.625",
+      "dot": "0",
+      "tool": "target",
+      "opacity": "0.45",
+      "graded": "false",
+      "correct": "false",
+      "actions": "26"
+    },
+    "select": {
+      "x": "2",
+      "y": "-1",
+      "z": "7",
+      "gx": "5",
+      "gy": "-4",
+      "magnitude": "6.403",
+      "ux": "0.781",
+      "uy": "-0.625",
+      "dot": "0",
+      "tool": "select",
+      "opacity": "0.45",
+      "graded": "false",
+      "correct": "false",
+      "actions": "27"
+    },
+    "formula": "active",
+    "wrong": {
+      "x": "2",
+      "y": "-1",
+      "z": "7",
+      "gx": "5",
+      "gy": "-4",
+      "magnitude": "6.403",
+      "ux": "0.781",
+      "uy": "-0.625",
+      "dot": "0",
+      "tool": "select",
+      "opacity": "0.45",
+      "graded": "true",
+      "correct": "false",
+      "actions": "34"
+    },
+    "correct": {
+      "x": "2",
+      "y": "-1",
+      "z": "7",
+      "gx": "5",
+      "gy": "-4",
+      "magnitude": "6.403",
+      "ux": "0.781",
+      "uy": "-0.625",
+      "dot": "0",
+      "tool": "select",
+      "opacity": "0.45",
+      "graded": "true",
+      "correct": "true",
+      "actions": "40"
+    },
+    "hintVisible": true,
+    "final": {
+      "x": "1",
+      "y": "0.5",
+      "z": "0.75",
+      "gx": "1.5",
+      "gy": "0",
+      "magnitude": "1.5",
+      "ux": "1",
+      "uy": "0",
+      "dot": "0",
+      "tool": "select",
+      "opacity": "0.7",
+      "graded": "false",
+      "correct": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 972,
+      "height": 1619
+    },
+    "overflow": false,
+    "hero": {
+      "top": 93,
+      "left": 210,
+      "width": 753,
+      "height": 112,
+      "bottom": 205
+    },
+    "tabs": {
+      "top": 205,
+      "left": 210,
+      "width": 753,
+      "height": 52,
+      "bottom": 257
+    },
+    "steps": {
+      "top": 267,
+      "left": 215,
+      "width": 743,
+      "height": 72,
+      "bottom": 339
+    },
+    "lab": {
+      "top": 349,
+      "left": 210,
+      "width": 753,
+      "height": 704,
+      "bottom": 1053
+    },
+    "canvas": {
+      "top": 416,
+      "left": 223,
+      "width": 423,
+      "height": 323,
+      "bottom": 739
+    },
+    "info": {
+      "top": 1063,
+      "left": 210,
+      "width": 753,
+      "height": 283,
+      "bottom": 1346
+    },
+    "challenge": {
+      "top": 1356,
+      "left": 210,
+      "width": 753,
+      "height": 162,
+      "bottom": 1518
+    },
+    "adjacent": {
+      "top": 1528,
+      "left": 210,
+      "width": 753,
+      "height": 59,
+      "bottom": 1587
+    }
+  },
+  "mobileMetrics": {
+    "documentWidth": 390,
+    "overflow": false,
+    "nonblank": true
+  },
+  "consoleMessages": []
+}

@@ -1067,4 +1067,22 @@ describe("Geometry3DLessonAdapter", () => {
     expect(html).toContain('data-dx="3"');
     expect(html).toContain('data-dy="-2"');
   });
+
+  it("uses a dedicated gradient-vector field model for lesson 423", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 423)!;
+    const html = renderToStaticMarkup(
+      <Geometry3DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="geometry3d-mockup-0608"');
+    expect(html).toContain(
+      "threejs-dedicated-draggable-quadratic-height-field",
+    );
+    expect(html).toContain('data-z="0.75"');
+    expect(html).toContain('data-gx="1.5"');
+    expect(html).toContain('data-gy="0"');
+  });
 });
