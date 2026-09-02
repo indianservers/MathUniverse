@@ -1,0 +1,560 @@
+.co584-page,
+.co584-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.co584-page {
+  --ink: #102044;
+  --line: #dbe5ef;
+  width: calc(100% + 8px);
+  color: var(--ink);
+  font-size: 9px;
+}
+.co584-page button {
+  font: inherit;
+}
+.co584-page h1,
+.co584-page h3,
+.co584-page p {
+  margin: 0;
+}
+.co584-hero,
+.co584-tabs,
+.co584-lab,
+.co584-theory > article,
+.co584-worked > article,
+.co584-practice,
+.co584-adjacent {
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: #fff;
+}
+.co584-hero {
+  display: grid;
+  height: 125px;
+  margin: 7px 9px 0;
+  padding: 14px 18px;
+  grid-template-columns: 1.35fr 1fr;
+}
+.co584-hero > div > span {
+  margin-right: 7px;
+  padding: 4px 8px;
+  border-radius: 12px;
+  background: #e9f8fa;
+  color: #087d96;
+  font-size: 7px;
+  font-weight: 900;
+}
+.co584-hero > div > span:nth-child(2) {
+  background: #f1f3f7;
+  color: #5d687b;
+}
+.co584-hero h1 {
+  margin-top: 9px;
+  font-size: 28px;
+  font-weight: 900;
+}
+.co584-hero > div > p {
+  margin-top: 3px;
+}
+.co584-hero > div > strong {
+  display: block;
+  margin-top: 10px;
+}
+.co584-hero > div > strong i {
+  font-style: normal;
+  font-weight: 500;
+}
+.co584-hero dl {
+  display: grid;
+  margin: 14px 0;
+  padding-left: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  grid-template-columns: repeat(3, 1fr);
+}
+.co584-hero dl span {
+  display: grid;
+  padding: 10px;
+  border-right: 1px solid var(--line);
+}
+.co584-tabs {
+  display: grid;
+  height: 48px;
+  margin: 8px 9px 0;
+  grid-template-columns: repeat(5, 1fr);
+}
+.co584-tabs button {
+  border: 0;
+  background: #fff;
+  font-weight: 900;
+}
+.co584-tabs button.active {
+  border-radius: 8px;
+  background: #0798ae;
+  color: #fff;
+}
+.co584-note {
+  position: absolute;
+  z-index: 3;
+  top: 235px;
+  left: 390px;
+  padding: 5px 9px;
+  border: 1px solid #a5dce7;
+  border-radius: 6px;
+  background: #effcff;
+}
+.co584-lab {
+  height: 430px;
+  margin: 10px 9px 0;
+  padding: 13px;
+}
+.co584-lab > header {
+  display: flex;
+  height: 48px;
+}
+.co584-lab > header p {
+  margin-top: 7px;
+}
+.co584-lab > header button {
+  display: flex;
+  width: 80px;
+  height: 31px;
+  margin-left: 8px;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+}
+.co584-lab > header button:first-of-type {
+  margin-left: auto;
+}
+.co584-lab > header svg {
+  width: 13px;
+}
+.co584-lab > div {
+  display: grid;
+  height: 355px;
+  grid-template-columns: 1.35fr 0.9fr;
+  gap: 12px;
+}
+.co584-lab main > svg {
+  display: block;
+  width: 100%;
+  height: 285px;
+}
+.co584-lab main svg > rect {
+  fill: #dbeeff;
+  stroke: #60748c;
+}
+.co584-lab main ellipse {
+  fill: #fff;
+  stroke: #68758a;
+}
+.co584-lab main svg text {
+  text-anchor: middle;
+  font-weight: 900;
+}
+.co584-lab main svg .u,
+.co584-lab main svg .set-label {
+  font-family: Georgia, serif;
+  font-size: 16px;
+  font-style: italic;
+}
+.co584-lab main svg circle {
+  fill: #fff;
+  stroke: #7f8da0;
+}
+.co584-lab main svg g.inside circle {
+  fill: #0798ae;
+  stroke: #08758a;
+}
+.co584-lab main svg g.inside text {
+  fill: #fff;
+}
+.co584-lab main > p {
+  height: 29px;
+  padding: 6px 14px;
+}
+.co584-lab main > p i {
+  display: inline-block;
+  width: 17px;
+  height: 17px;
+  margin: 0 7px;
+  border: 1px solid #7f8da0;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+.co584-lab main > p i:nth-child(2) {
+  border: 0;
+  border-radius: 3px;
+  background: #dbeeff;
+}
+.co584-lab main > footer {
+  display: flex;
+  height: 35px;
+  padding: 10px 15px;
+  align-items: center;
+  gap: 7px;
+  border-radius: 7px;
+  background: #f5f7fa;
+}
+.co584-lab main > footer svg {
+  width: 14px;
+  color: #d39b00;
+}
+.co584-lab > div > aside {
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.co584-lab > div > aside > p {
+  margin-top: 13px;
+  font-family: Georgia, serif;
+  font-size: 14px;
+}
+.co584-lab > div > aside > p b {
+  color: #078da5;
+}
+.co584-lab > div > aside > p strong {
+  color: #7134d4;
+}
+.co584-lab aside hr {
+  margin: 15px 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+}
+.co584-lab aside > div {
+  display: grid;
+  margin-top: 10px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.co584-lab aside > div span {
+  display: grid;
+  height: 65px;
+  padding: 10px;
+  place-items: center;
+  border-radius: 7px;
+  background: #f4f7fa;
+}
+.co584-lab aside > div span:nth-child(2) {
+  background: #e9f9fc;
+  color: #087e99;
+}
+.co584-lab aside > div span:nth-child(3) {
+  background: #f2eafa;
+  color: #7032ca;
+}
+.co584-lab aside > div span b {
+  font-size: 19px;
+}
+.co584-lab aside output {
+  display: block;
+  margin-top: 8px;
+  padding: 10px;
+  background: #f7f9fb;
+  color: #16834e;
+}
+.co584-lab aside output svg {
+  width: 14px;
+  vertical-align: middle;
+}
+.co584-theory {
+  display: grid;
+  height: 222px;
+  margin: 10px 9px 0;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 9px;
+}
+.co584-theory > article {
+  padding: 14px;
+}
+.co584-theory p {
+  margin-top: 12px;
+  line-height: 16px;
+}
+.co584-theory p svg {
+  width: 14px;
+  vertical-align: middle;
+  color: #0798ae;
+}
+.co584-theory article > strong {
+  display: block;
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 7px;
+  background: #f5f7fa;
+  font-family: Georgia, serif;
+}
+.co584-theory article > aside {
+  margin-top: 13px;
+  padding: 10px;
+  border: 1px solid #efd190;
+  border-radius: 7px;
+  background: #fffae9;
+}
+.co584-theory aside svg {
+  width: 14px;
+  color: #dc9800;
+  vertical-align: middle;
+}
+.co584-theory article.warning {
+  border-color: #f4c5c9;
+  background: #fffafa;
+}
+.co584-theory .warning h3 {
+  display: flex;
+  gap: 6px;
+  color: #c4263b;
+}
+.co584-theory .warning h3 svg {
+  width: 15px;
+}
+.co584-theory .warning hr {
+  margin: 16px 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+}
+.co584-worked {
+  display: grid;
+  height: 267px;
+  margin: 10px 9px 0;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 9px;
+}
+.co584-worked > article {
+  padding: 14px;
+}
+.co584-worked article > p {
+  margin-top: 10px;
+}
+.co584-worked table {
+  width: 100%;
+  margin-top: 10px;
+  border-collapse: collapse;
+}
+.co584-worked td,
+.co584-worked th {
+  height: 34px;
+  padding: 7px;
+  border: 1px solid var(--line);
+  text-align: left;
+}
+.co584-worked th {
+  width: 22px;
+  border-radius: 50%;
+  background: #e8f7fa;
+  color: #087e97;
+}
+.co584-worked article > footer {
+  display: flex;
+  margin-top: 10px;
+  padding: 9px;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid #a9dfc7;
+  border-radius: 6px;
+  background: #effbf5;
+  color: #168355;
+}
+.co584-worked footer svg {
+  width: 14px;
+}
+.co584-worked article:nth-child(2) > section {
+  display: grid;
+  height: 70px;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 7px;
+  background: #f7f9fb;
+  grid-template-columns: 130px 1fr 120px;
+  align-items: center;
+}
+.co584-worked section i {
+  display: block;
+  position: relative;
+  height: 60px;
+  background: #dbeeff;
+}
+.co584-worked section em {
+  display: block;
+  position: absolute;
+  top: 8px;
+  width: 45px;
+  height: 45px;
+  border: 1px solid #68758a;
+  border-radius: 50%;
+  background: #fff;
+}
+.co584-worked section em:first-child {
+  left: 23px;
+}
+.co584-worked section em:last-child {
+  left: 58px;
+}
+.co584-practice {
+  display: grid;
+  height: 130px;
+  margin: 10px 9px 0;
+  padding: 13px;
+  grid-template-columns: 1fr 170px;
+}
+.co584-practice p {
+  margin-top: 8px;
+}
+.co584-practice nav {
+  display: flex;
+  margin-top: 14px;
+  gap: 8px;
+}
+.co584-practice nav button {
+  display: flex;
+  min-width: 110px;
+  height: 37px;
+  padding: 0 8px;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+}
+.co584-practice nav button.active {
+  border-color: #0798ae;
+  background: #eaf9fc;
+}
+.co584-practice nav button b {
+  display: grid;
+  width: 20px;
+  height: 20px;
+  place-items: center;
+  border-radius: 50%;
+  background: #f0f3f7;
+}
+.co584-practice > aside > button {
+  width: 120px;
+  height: 32px;
+  border: 0;
+  border-radius: 6px;
+  background: #0798ae;
+  color: #fff;
+}
+.co584-practice output {
+  display: block;
+  margin-top: 12px;
+  padding: 9px;
+  border-radius: 6px;
+}
+.co584-practice output.correct {
+  background: #eafaf3;
+  color: #12805b;
+}
+.co584-practice output.wrong {
+  background: #fff1f2;
+  color: #bd253b;
+}
+.co584-adjacent {
+  display: grid;
+  height: 50px;
+  margin: 10px 9px;
+  grid-template-columns: 1fr 1fr;
+}
+.co584-adjacent a {
+  display: flex;
+  padding: 8px 13px;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink);
+  text-decoration: none;
+}
+.co584-adjacent a:last-child {
+  justify-content: flex-end;
+  text-align: right;
+}
+.co584-adjacent span {
+  display: grid;
+}
+.co584-adjacent b {
+  margin-top: 3px;
+}
+@media (max-width: 700px) {
+  body:has(.co584-page) [data-testid="desktop-sidebar"] {
+    display: none !important;
+  }
+  body:has(.co584-page) #main-content {
+    width: 100% !important;
+    min-width: 0 !important;
+    padding: 0 !important;
+  }
+  .co584-page {
+    width: 100%;
+  }
+  .co584-hero {
+    height: auto;
+    min-height: 260px;
+    margin: 6px 4px 0;
+    grid-template-columns: 1fr;
+  }
+  .co584-hero dl {
+    grid-template-columns: 1fr;
+  }
+  .co584-tabs {
+    margin: 7px 4px 0;
+    overflow: auto;
+  }
+  .co584-tabs button {
+    min-width: 80px;
+  }
+  .co584-lab {
+    height: auto;
+    min-height: 900px;
+    margin: 8px 4px 0;
+  }
+  .co584-lab > header {
+    height: 85px;
+  }
+  .co584-lab > header button {
+    width: 32px;
+    font-size: 0;
+  }
+  .co584-lab > div {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .co584-lab main > svg {
+    height: 315px;
+  }
+  .co584-lab > div > aside {
+    min-height: 340px;
+  }
+  .co584-theory,
+  .co584-worked {
+    height: auto;
+    margin: 8px 4px 0;
+    grid-template-columns: 1fr;
+  }
+  .co584-theory > article {
+    min-height: 220px;
+  }
+  .co584-worked > article {
+    min-height: 265px;
+  }
+  .co584-practice {
+    height: auto;
+    min-height: 410px;
+    margin: 8px 4px 0;
+    grid-template-columns: 1fr;
+  }
+  .co584-practice nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .co584-adjacent {
+    margin: 8px 4px;
+  }
+  .co584-note {
+    display: none;
+  }
+}
