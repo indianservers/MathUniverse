@@ -254,6 +254,21 @@ describe("discrete lesson adapter", () => {
     expect(html).toContain('data-edge-count="19"');
     expect(html).toContain('data-degree-sum="38"');
   });
+  it("uses the dedicated path and cycle tracing surface for lesson 569", () => {
+    const lesson = lessonCatalog.find((candidate) => candidate.id === 569)!;
+    const html = renderToStaticMarkup(
+      <DiscreteLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="discrete-mockup-0626"');
+    expect(html).toContain("dedicated-weighted-walk-trail-path-cycle-model");
+    expect(html).toContain('data-walk="A,B,C"');
+    expect(html).toContain('data-length="5"');
+    expect(html).toContain('data-shortest-cycle-length="8"');
+  });
   it("renders strengthened discrete lessons 556 through 585 with lesson-specific guidance", () => {
     const expected = new Map([
       [556, "Fundamental Counting Principle"],

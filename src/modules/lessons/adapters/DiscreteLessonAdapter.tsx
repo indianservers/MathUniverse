@@ -31,6 +31,7 @@ import VertexEdgeBuilderTargetLesson565 from "./discrete/VertexEdgeBuilderTarget
 import DirectedGraphsTargetLesson566 from "./discrete/DirectedGraphsTargetLesson566";
 import WeightedGraphsTargetLesson567 from "./discrete/WeightedGraphsTargetLesson567";
 import VertexDegreeTargetLesson568 from "./discrete/VertexDegreeTargetLesson568";
+import PathsCyclesTargetLesson569 from "./discrete/PathsCyclesTargetLesson569";
 
 const countingModes = new Set<DiscreteLessonMode>([
   "product",
@@ -239,6 +240,7 @@ export default function DiscreteLessonAdapter(props: LessonAdapterProps) {
     return <WeightedGraphsTargetLesson567 {...props} />;
   if (props.lesson.id === 568)
     return <VertexDegreeTargetLesson568 {...props} />;
+  if (props.lesson.id === 569) return <PathsCyclesTargetLesson569 {...props} />;
   const mode = discreteLessonPreset(props.lesson.id).mode;
   const guidance = discreteGuidanceFor(mode);
   let activity = specialActivity(props.lesson.preset.id, props);
