@@ -557,6 +557,20 @@ describe("discrete lesson adapter", () => {
     expect(html).toContain('data-results="TFTT"');
     expect(html).toContain('data-classification="Contingent"');
   });
+  it("uses the dedicated logical-connectives surface for lesson 588", () => {
+    const lesson = lessonCatalog.find((candidate) => candidate.id === 588)!;
+    const html = renderToStaticMarkup(
+      <DiscreteLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="discrete-mockup-0645"');
+    expect(html).toContain("dedicated-logic-gate-connective-model");
+    expect(html).toContain('data-op="and"');
+    expect(html).toContain('data-truth="TFFF"');
+  });
   it("renders strengthened discrete lessons 556 through 585 with lesson-specific guidance", () => {
     const expected = new Map([
       [556, "Fundamental Counting Principle"],
@@ -588,6 +602,7 @@ describe("discrete lesson adapter", () => {
       [585, "Cartesian Product"],
       [586, "Subsets and Power Sets"],
       [587, "Truth Tables"],
+      [588, "Logical Connectives"],
       [590, "Proof Methods"],
     ]);
     for (const [lessonId, snippet] of expected) {

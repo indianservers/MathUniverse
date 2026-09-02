@@ -1,0 +1,121 @@
+{
+  "passed": true,
+  "checks": {
+    "initial": {
+      "op": "and",
+      "p": "true",
+      "q": "true",
+      "result": "true",
+      "truth": "TFFF",
+      "graded": "",
+      "actions": "0"
+    },
+    "qFalse": {
+      "op": "and",
+      "p": "true",
+      "q": "false",
+      "result": "false",
+      "truth": "TFFF",
+      "graded": "",
+      "actions": "1"
+    },
+    "OR": {
+      "op": "or",
+      "p": "true",
+      "q": "false",
+      "result": "true",
+      "truth": "TTTF",
+      "graded": "",
+      "actions": "2",
+      "expected": "TTTF"
+    },
+    "XOR": {
+      "op": "xor",
+      "p": "true",
+      "q": "false",
+      "result": "true",
+      "truth": "FTTF",
+      "graded": "",
+      "actions": "3",
+      "expected": "FTTF"
+    },
+    "NOT": {
+      "op": "not",
+      "p": "true",
+      "q": "false",
+      "result": "false",
+      "truth": "FFTT",
+      "graded": "",
+      "actions": "4",
+      "expected": "FFTT"
+    },
+    "→": {
+      "op": "implies",
+      "p": "true",
+      "q": "false",
+      "result": "false",
+      "truth": "TFTT",
+      "graded": "",
+      "actions": "5",
+      "expected": "TFTT"
+    },
+    "↔": {
+      "op": "iff",
+      "p": "true",
+      "q": "false",
+      "result": "false",
+      "truth": "TFFT",
+      "graded": "",
+      "actions": "6",
+      "expected": "TFFT"
+    },
+    "pFalse": {
+      "op": "iff",
+      "p": "false",
+      "q": "false",
+      "result": "true",
+      "truth": "TFFT",
+      "graded": "",
+      "actions": "7"
+    },
+    "formula": true,
+    "wrong": {
+      "op": "iff",
+      "p": "false",
+      "q": "false",
+      "result": "true",
+      "truth": "TFFT",
+      "graded": "false",
+      "actions": "10"
+    },
+    "correct": {
+      "op": "iff",
+      "p": "false",
+      "q": "false",
+      "result": "true",
+      "truth": "TFFT",
+      "graded": "true",
+      "actions": "11"
+    },
+    "final": {
+      "op": "and",
+      "p": "true",
+      "q": "true",
+      "result": "true",
+      "truth": "TFFF",
+      "graded": "",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "width": 1246,
+    "height": 1263,
+    "overflow": false,
+    "bottom": 1216
+  },
+  "mobileMetrics": {
+    "width": 390,
+    "overflow": false
+  },
+  "logs": []
+}

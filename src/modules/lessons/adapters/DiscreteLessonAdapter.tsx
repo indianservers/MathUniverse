@@ -50,6 +50,7 @@ import ComplementTargetLesson584 from "./discrete/ComplementTargetLesson584";
 import CartesianProductTargetLesson585 from "./discrete/CartesianProductTargetLesson585";
 import PowerSetsTargetLesson586 from "./discrete/PowerSetsTargetLesson586";
 import TruthTablesTargetLesson587 from "./discrete/TruthTablesTargetLesson587";
+import LogicalConnectivesTargetLesson588 from "./discrete/LogicalConnectivesTargetLesson588";
 
 const countingModes = new Set<DiscreteLessonMode>([
   "product",
@@ -288,6 +289,8 @@ export default function DiscreteLessonAdapter(props: LessonAdapterProps) {
     return <CartesianProductTargetLesson585 {...props} />;
   if (props.lesson.id === 586) return <PowerSetsTargetLesson586 {...props} />;
   if (props.lesson.id === 587) return <TruthTablesTargetLesson587 {...props} />;
+  if (props.lesson.id === 588)
+    return <LogicalConnectivesTargetLesson588 {...props} />;
   const mode = discreteLessonPreset(props.lesson.id).mode;
   const guidance = discreteGuidanceFor(mode);
   let activity = specialActivity(props.lesson.preset.id, props);
