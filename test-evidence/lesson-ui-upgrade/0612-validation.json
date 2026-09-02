@@ -1,0 +1,236 @@
+{
+  "passed": true,
+  "url": "http://127.0.0.1:2256/lessons/3d-mathematics/427-multivariable-optimisation",
+  "checks": {
+    "initial": {
+      "x": "1.2",
+      "y": "-0.8",
+      "z": "4",
+      "gx": "4",
+      "gy": "-4",
+      "magnitude": "5.657",
+      "det": "0",
+      "classification": "Non-stationary",
+      "constraint": "false",
+      "graded": "false",
+      "correct": "false",
+      "solution": "false",
+      "complete": "false",
+      "actions": "0"
+    },
+    "orbitPixelsChanged": true,
+    "canvas": {
+      "width": 340,
+      "height": 310,
+      "nonblank": true
+    },
+    "pointDrag": {
+      "before": {
+        "x": "1.2",
+        "y": "-0.8",
+        "z": "4",
+        "gx": "4",
+        "gy": "-4",
+        "magnitude": "5.657",
+        "det": "0",
+        "classification": "Non-stationary",
+        "constraint": "false",
+        "graded": "false",
+        "correct": "false",
+        "solution": "false",
+        "complete": "false",
+        "actions": "1"
+      },
+      "after": {
+        "x": "1.25",
+        "y": "-0.68",
+        "z": "3.725",
+        "gx": "3.86",
+        "gy": "-3.86",
+        "magnitude": "5.459",
+        "det": "0",
+        "classification": "Non-stationary",
+        "constraint": "false",
+        "graded": "false",
+        "correct": "false",
+        "solution": "false",
+        "complete": "false",
+        "actions": "16"
+      }
+    },
+    "stationary": {
+      "x": "1",
+      "y": "1",
+      "z": "0",
+      "gx": "0",
+      "gy": "0",
+      "magnitude": "0",
+      "det": "0",
+      "classification": "Degenerate minimum trough",
+      "constraint": "false",
+      "graded": "false",
+      "correct": "false",
+      "solution": "false",
+      "complete": "false",
+      "actions": "18"
+    },
+    "constraint": {
+      "x": "1",
+      "y": "1",
+      "z": "0",
+      "gx": "0",
+      "gy": "0",
+      "magnitude": "0",
+      "det": "0",
+      "classification": "Degenerate minimum trough",
+      "constraint": "true",
+      "graded": "false",
+      "correct": "false",
+      "solution": "false",
+      "complete": "false",
+      "actions": "19"
+    },
+    "formula": "active",
+    "wrong": {
+      "x": "1",
+      "y": "1",
+      "z": "0",
+      "gx": "0",
+      "gy": "0",
+      "magnitude": "0",
+      "det": "0",
+      "classification": "Degenerate minimum trough",
+      "constraint": "true",
+      "graded": "true",
+      "correct": "false",
+      "solution": "false",
+      "complete": "false",
+      "actions": "23"
+    },
+    "correct": {
+      "x": "1",
+      "y": "1",
+      "z": "0",
+      "gx": "0",
+      "gy": "0",
+      "magnitude": "0",
+      "det": "0",
+      "classification": "Degenerate minimum trough",
+      "constraint": "true",
+      "graded": "true",
+      "correct": "true",
+      "solution": "false",
+      "complete": "false",
+      "actions": "26"
+    },
+    "solutionVisible": true,
+    "complete": {
+      "x": "1",
+      "y": "1",
+      "z": "0",
+      "gx": "0",
+      "gy": "0",
+      "magnitude": "0",
+      "det": "0",
+      "classification": "Degenerate minimum trough",
+      "constraint": "true",
+      "graded": "true",
+      "correct": "true",
+      "solution": "true",
+      "complete": "true",
+      "actions": "28"
+    },
+    "final": {
+      "x": "1.2",
+      "y": "-0.8",
+      "z": "4",
+      "gx": "4",
+      "gy": "-4",
+      "magnitude": "5.657",
+      "det": "0",
+      "classification": "Non-stationary",
+      "constraint": "false",
+      "graded": "false",
+      "correct": "false",
+      "solution": "false",
+      "complete": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1030,
+      "height": 1527
+    },
+    "overflow": false,
+    "hero": {
+      "top": 91,
+      "left": 226,
+      "width": 795,
+      "height": 154,
+      "bottom": 245
+    },
+    "tabs": {
+      "top": 257,
+      "left": 226,
+      "width": 795,
+      "height": 43,
+      "bottom": 300
+    },
+    "lab": {
+      "top": 312,
+      "left": 226,
+      "width": 795,
+      "height": 643,
+      "bottom": 955
+    },
+    "surface": {
+      "top": 377,
+      "left": 240,
+      "width": 362,
+      "height": 372,
+      "bottom": 749
+    },
+    "stationary": {
+      "top": 759,
+      "left": 240,
+      "width": 767,
+      "height": 143,
+      "bottom": 902
+    },
+    "pattern": {
+      "top": 966,
+      "left": 226,
+      "width": 795,
+      "height": 139,
+      "bottom": 1105
+    },
+    "rule": {
+      "top": 1116,
+      "left": 226,
+      "width": 795,
+      "height": 274,
+      "bottom": 1390
+    },
+    "challenge": {
+      "top": 1401,
+      "left": 226,
+      "width": 795,
+      "height": 69,
+      "bottom": 1470
+    },
+    "adjacent": {
+      "top": 1481,
+      "left": 226,
+      "width": 795,
+      "height": 50,
+      "bottom": 1531
+    }
+  },
+  "mobileMetrics": {
+    "documentWidth": 390,
+    "overflow": false,
+    "nonblank": true
+  },
+  "consoleMessages": []
+}

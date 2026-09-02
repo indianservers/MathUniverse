@@ -53,6 +53,7 @@ import GradientVectorTargetLesson423 from "./geometry3d/GradientVectorTargetLess
 import TangentPlaneTargetLesson424 from "./geometry3d/TangentPlaneTargetLesson424";
 import NormalVectorTargetLesson425 from "./geometry3d/NormalVectorTargetLesson425";
 import DoubleIntegralsTargetLesson426 from "./geometry3d/DoubleIntegralsTargetLesson426";
+import MultivariableOptimisationTargetLesson427 from "./geometry3d/MultivariableOptimisationTargetLesson427";
 
 export default function Geometry3DLessonAdapter(props: LessonAdapterProps) {
   if (props.lesson.id === 378)
@@ -127,6 +128,8 @@ export default function Geometry3DLessonAdapter(props: LessonAdapterProps) {
     return <NormalVectorTargetLesson425 {...props} />;
   if (props.lesson.id === 426)
     return <DoubleIntegralsTargetLesson426 {...props} />;
+  if (props.lesson.id === 427)
+    return <MultivariableOptimisationTargetLesson427 {...props} />;
   if (props.lesson.preset.id === "geometry3d.solid-net") {
     return (
       <AdapterFrame

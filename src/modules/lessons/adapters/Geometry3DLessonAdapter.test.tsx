@@ -1140,4 +1140,22 @@ describe("Geometry3DLessonAdapter", () => {
     expect(html).toContain('data-average="3.5"');
     expect(html).toContain("Riemann columns");
   });
+
+  it("uses a dedicated quadratic-form optimisation model for lesson 427", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 427)!;
+    const html = renderToStaticMarkup(
+      <Geometry3DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="geometry3d-mockup-0612"');
+    expect(html).toContain("threejs-dedicated-draggable-quadratic-form");
+    expect(html).toContain('data-z="4"');
+    expect(html).toContain('data-gx="4"');
+    expect(html).toContain('data-gy="-4"');
+    expect(html).toContain('data-det="0"');
+    expect(html).toContain("Minimum trough");
+  });
 });
