@@ -269,6 +269,23 @@ describe("discrete lesson adapter", () => {
     expect(html).toContain('data-length="5"');
     expect(html).toContain('data-shortest-cycle-length="8"');
   });
+  it("uses the dedicated connected-components surface for lesson 570", () => {
+    const lesson = lessonCatalog.find((candidate) => candidate.id === 570)!;
+    const html = renderToStaticMarkup(
+      <DiscreteLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="discrete-mockup-0627"');
+    expect(html).toContain(
+      "dedicated-component-partition-reachability-cluster-drag-model",
+    );
+    expect(html).toContain('data-component-count="3"');
+    expect(html).toContain('data-component-sizes="3,3,1"');
+    expect(html).toContain('data-reachable="false"');
+  });
   it("renders strengthened discrete lessons 556 through 585 with lesson-specific guidance", () => {
     const expected = new Map([
       [556, "Fundamental Counting Principle"],

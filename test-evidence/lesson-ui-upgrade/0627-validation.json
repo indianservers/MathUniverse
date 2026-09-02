@@ -1,0 +1,197 @@
+{
+  "passed": true,
+  "url": "http://127.0.0.1:2256/lessons/discrete-and-applied-mathematics/570-connected-components",
+  "checks": {
+    "initial": {
+      "componentCount": "3",
+      "componentSizes": "3,3,1",
+      "components": "ABC|DEF|G",
+      "reachable": "false",
+      "mode": "select",
+      "edgeCount": "6",
+      "positions": "A:75,145;B:205,75;C:205,265;D:390,110;E:535,110;F:465,265;G:345,360",
+      "graded": "true",
+      "actions": "0"
+    },
+    "reachableWithin": {
+      "componentCount": "3",
+      "componentSizes": "3,3,1",
+      "components": "ABC|DEF|G",
+      "reachable": "true",
+      "mode": "select",
+      "edgeCount": "6",
+      "positions": "A:75,145;B:205,75;C:205,265;D:390,110;E:535,110;F:465,265;G:345,360",
+      "graded": "true",
+      "actions": "1"
+    },
+    "merged": {
+      "componentCount": "2",
+      "componentSizes": "6,1",
+      "components": "ABCDEF|G",
+      "reachable": "true",
+      "mode": "add",
+      "edgeCount": "7",
+      "positions": "A:75,145;B:205,75;C:205,265;D:390,110;E:535,110;F:465,265;G:345,360",
+      "graded": "true",
+      "actions": "5"
+    },
+    "split": {
+      "componentCount": "3",
+      "componentSizes": "3,3,1",
+      "components": "ABC|DEF|G",
+      "reachable": "false",
+      "mode": "remove",
+      "edgeCount": "6",
+      "positions": "A:75,145;B:205,75;C:205,265;D:390,110;E:535,110;F:465,265;G:345,360",
+      "graded": "true",
+      "actions": "7"
+    },
+    "dragged": {
+      "componentCount": "3",
+      "componentSizes": "3,3,1",
+      "components": "ABC|DEF|G",
+      "reachable": "false",
+      "mode": "remove",
+      "edgeCount": "6",
+      "positions": "A:114,170;B:244,100;C:244,290;D:390,110;E:535,110;F:465,265;G:345,360",
+      "graded": "true",
+      "actions": "7"
+    },
+    "dragChanged": true,
+    "isolated": {
+      "componentCount": "4",
+      "componentSizes": "3,3,1,1",
+      "components": "ABC|DEF|G|H",
+      "reachable": "false",
+      "mode": "remove",
+      "edgeCount": "6",
+      "positions": "A:114,170;B:244,100;C:244,290;D:390,110;E:535,110;F:465,265;G:345,360;H:545,350",
+      "graded": "true",
+      "actions": "8"
+    },
+    "random": {
+      "componentCount": "4",
+      "componentSizes": "3,3,1,1",
+      "components": "ABD|CEF|G|H",
+      "reachable": "false",
+      "mode": "remove",
+      "edgeCount": "4",
+      "positions": "A:114,170;B:244,100;C:244,290;D:390,110;E:535,110;F:465,265;G:345,360;H:545,350",
+      "graded": "true",
+      "actions": "9"
+    },
+    "formulaVisible": true,
+    "wrong": {
+      "componentCount": "4",
+      "componentSizes": "3,3,1,1",
+      "components": "ABD|CEF|G|H",
+      "reachable": "false",
+      "mode": "remove",
+      "edgeCount": "4",
+      "positions": "A:114,170;B:244,100;C:244,290;D:390,110;E:535,110;F:465,265;G:345,360;H:545,350",
+      "graded": "false",
+      "actions": "13"
+    },
+    "correct": {
+      "componentCount": "4",
+      "componentSizes": "3,3,1,1",
+      "components": "ABD|CEF|G|H",
+      "reachable": "false",
+      "mode": "remove",
+      "edgeCount": "4",
+      "positions": "A:114,170;B:244,100;C:244,290;D:390,110;E:535,110;F:465,265;G:345,360;H:545,350",
+      "graded": "true",
+      "actions": "15"
+    },
+    "reset": {
+      "componentCount": "3",
+      "componentSizes": "3,3,1",
+      "components": "ABC|DEF|G",
+      "reachable": "false",
+      "mode": "select",
+      "edgeCount": "6",
+      "positions": "A:75,145;B:205,75;C:205,265;D:390,110;E:535,110;F:465,265;G:345,360",
+      "graded": "true",
+      "actions": "0"
+    },
+    "final": {
+      "componentCount": "3",
+      "componentSizes": "3,3,1",
+      "components": "ABC|DEF|G",
+      "reachable": "false",
+      "mode": "select",
+      "edgeCount": "6",
+      "positions": "A:75,145;B:205,75;C:205,265;D:390,110;E:535,110;F:465,265;G:345,360",
+      "graded": "true",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 977,
+      "height": 1610
+    },
+    "overflow": false,
+    "hero": {
+      "top": 107,
+      "left": 221,
+      "width": 740,
+      "height": 116,
+      "bottom": 223
+    },
+    "tabs": {
+      "top": 235,
+      "left": 221,
+      "width": 740,
+      "height": 43,
+      "bottom": 278
+    },
+    "lab": {
+      "top": 294,
+      "left": 221,
+      "width": 740,
+      "height": 428,
+      "bottom": 722
+    },
+    "quick": {
+      "top": 734,
+      "left": 221,
+      "width": 740,
+      "height": 91,
+      "bottom": 825
+    },
+    "theory": {
+      "top": 837,
+      "left": 221,
+      "width": 740,
+      "height": 274,
+      "bottom": 1111
+    },
+    "misconception": {
+      "top": 1123,
+      "left": 221,
+      "width": 740,
+      "height": 128,
+      "bottom": 1251
+    },
+    "challenge": {
+      "top": 1263,
+      "left": 221,
+      "width": 740,
+      "height": 189,
+      "bottom": 1452
+    },
+    "adjacent": {
+      "top": 1464,
+      "left": 221,
+      "width": 740,
+      "height": 62,
+      "bottom": 1526
+    }
+  },
+  "mobileMetrics": {
+    "documentWidth": 390,
+    "overflow": false
+  },
+  "consoleMessages": []
+}
