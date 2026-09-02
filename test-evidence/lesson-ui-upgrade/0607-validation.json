@@ -1,0 +1,165 @@
+{
+  "passed": true,
+  "url": "http://127.0.0.1:2256/lessons/3d-mathematics/422-partial-derivatives",
+  "checks": {
+    "initial": {
+      "x": "1.5",
+      "y": "-1",
+      "z": "3.25",
+      "dx": "3",
+      "dy": "-2",
+      "graded": "true",
+      "correct": "true",
+      "actions": "0"
+    },
+    "orbitPixelsChanged": true,
+    "canvas": {
+      "width": 466,
+      "height": 453,
+      "nonblank": true
+    },
+    "pointDrag": {
+      "before": {
+        "x": "1.5",
+        "y": "-1",
+        "z": "3.25",
+        "dx": "3",
+        "dy": "-2",
+        "graded": "true",
+        "correct": "true",
+        "actions": "1"
+      },
+      "after": {
+        "x": "1.56",
+        "y": "-0.9",
+        "z": "3.24",
+        "dx": "3.12",
+        "dy": "-1.8",
+        "graded": "true",
+        "correct": "true",
+        "actions": "13"
+      }
+    },
+    "positive": {
+      "x": "2",
+      "y": "1",
+      "z": "5",
+      "dx": "4",
+      "dy": "2",
+      "graded": "true",
+      "correct": "true",
+      "actions": "15"
+    },
+    "mixed": {
+      "x": "-2.5",
+      "y": "0.5",
+      "z": "6.5",
+      "dx": "-5",
+      "dy": "1",
+      "graded": "true",
+      "correct": "true",
+      "actions": "17"
+    },
+    "formula": "active",
+    "wrong": {
+      "x": "-2.5",
+      "y": "0.5",
+      "z": "6.5",
+      "dx": "-5",
+      "dy": "1",
+      "graded": "true",
+      "correct": "false",
+      "actions": "21"
+    },
+    "correct": {
+      "x": "-2.5",
+      "y": "0.5",
+      "z": "6.5",
+      "dx": "-5",
+      "dy": "1",
+      "graded": "true",
+      "correct": "true",
+      "actions": "24"
+    },
+    "hintVisible": true,
+    "final": {
+      "x": "1.5",
+      "y": "-1",
+      "z": "3.25",
+      "dx": "3",
+      "dy": "-2",
+      "graded": "true",
+      "correct": "true",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1003,
+      "height": 1568
+    },
+    "overflow": false,
+    "hero": {
+      "top": 93,
+      "left": 222,
+      "width": 772,
+      "height": 119,
+      "bottom": 212
+    },
+    "tabs": {
+      "top": 212,
+      "left": 222,
+      "width": 772,
+      "height": 40,
+      "bottom": 252
+    },
+    "lab": {
+      "top": 262,
+      "left": 222,
+      "width": 772,
+      "height": 718,
+      "bottom": 980
+    },
+    "canvas": {
+      "top": 327,
+      "left": 233,
+      "width": 466,
+      "height": 453,
+      "bottom": 780
+    },
+    "cross": {
+      "top": 785,
+      "left": 233,
+      "width": 750,
+      "height": 194,
+      "bottom": 979
+    },
+    "info": {
+      "top": 990,
+      "left": 222,
+      "width": 772,
+      "height": 219,
+      "bottom": 1209
+    },
+    "bottom": {
+      "top": 1219,
+      "left": 222,
+      "width": 772,
+      "height": 196,
+      "bottom": 1415
+    },
+    "adjacent": {
+      "top": 1425,
+      "left": 222,
+      "width": 772,
+      "height": 58,
+      "bottom": 1483
+    }
+  },
+  "mobileMetrics": {
+    "documentWidth": 390,
+    "overflow": false,
+    "nonblank": true
+  },
+  "consoleMessages": []
+}

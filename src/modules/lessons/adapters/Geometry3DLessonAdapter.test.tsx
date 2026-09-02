@@ -1051,4 +1051,20 @@ describe("Geometry3DLessonAdapter", () => {
     expect(html).toContain('data-radius="1.414"');
     expect(html).toContain("Reusable 3D Graph Engine");
   });
+
+  it("uses a dedicated partial-derivative surface model for lesson 422", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 422)!;
+    const html = renderToStaticMarkup(
+      <Geometry3DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="geometry3d-mockup-0607"');
+    expect(html).toContain("threejs-dedicated-draggable-paraboloid-point");
+    expect(html).toContain('data-z="3.25"');
+    expect(html).toContain('data-dx="3"');
+    expect(html).toContain('data-dy="-2"');
+  });
 });
