@@ -39,7 +39,7 @@ describe("Geometry3DLessonAdapter", () => {
       [409, "Transparent / X-Ray Mode"],
       [410, "3D Camera Controls"],
       [411, "Orthographic Views"],
-      [412, "AR placement"],
+      [412, "AR Placement"],
       [413, "Surface z=f(x,y)"],
       [414, "Implicit surfaces"],
       [415, "Parametric surfaces"],
@@ -88,11 +88,13 @@ describe("Geometry3DLessonAdapter", () => {
               ? "Drag to interact"
               : lessonId === 411
                 ? "3D Solid (Rotatable)"
-                : /contour|gradient|tangent plane|partial derivative|multivariable|level curve|level surface|z=f\(x,y\)|implicit surface|parametric surface|space curve|quadric|cylindrical coordinates|spherical coordinates|normal vector/i.test(
-                      lesson.title,
-                    )
-                  ? "Drag surface"
-                  : "Drag solid",
+                : lessonId === 412
+                  ? "AR lesson simulator"
+                  : /contour|gradient|tangent plane|partial derivative|multivariable|level curve|level surface|z=f\(x,y\)|implicit surface|parametric surface|space curve|quadric|cylindrical coordinates|spherical coordinates|normal vector/i.test(
+                        lesson.title,
+                      )
+                    ? "Drag surface"
+                    : "Drag solid",
         );
       }
       if (lessonId === 395) {
@@ -867,5 +869,24 @@ describe("Geometry3DLessonAdapter", () => {
     expect(html).toContain("Front orthographic projection");
     expect(html).toContain("Top orthographic projection");
     expect(html).toContain("Right orthographic projection");
+  });
+
+  it("uses a dedicated AR placement simulator for lesson 412", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 412)!;
+    const html = renderToStaticMarkup(
+      <Geometry3DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="geometry3d-mockup-0597"');
+    expect(html).toContain(
+      "threejs-dedicated-ar-room-plane-placement-pose-anchor-occlusion-lighting-scale-verification",
+    );
+    expect(html).toContain('data-placed="true"');
+    expect(html).toContain('data-scale="1"');
+    expect(html).toContain('data-locked="true"');
+    expect(html).toContain("/assets/lesson-412/ar-study-room.png");
   });
 });

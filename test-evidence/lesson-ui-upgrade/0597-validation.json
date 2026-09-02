@@ -1,0 +1,283 @@
+{
+  "passed": true,
+  "url": "http://127.0.0.1:2256/lessons/3d-mathematics/412-ar-placement",
+  "checks": {
+    "initial": {
+      "placed": "true",
+      "tool": "move",
+      "position": "0,0",
+      "rotation": "0",
+      "scale": "1",
+      "locked": "true",
+      "occlusion": "true",
+      "grid": "true",
+      "target": "1",
+      "feedback": "idle",
+      "shared": "false",
+      "actions": "0"
+    },
+    "placed": {
+      "placed": "true",
+      "tool": "move",
+      "position": "0,0",
+      "rotation": "0",
+      "scale": "1",
+      "locked": "true",
+      "occlusion": "true",
+      "grid": "true",
+      "target": "1",
+      "feedback": "idle",
+      "shared": "false",
+      "actions": "1"
+    },
+    "canvas": {
+      "width": 476,
+      "height": 515,
+      "nonblank": true
+    },
+    "moved": {
+      "placed": "true",
+      "tool": "move",
+      "position": "0.55,0.28",
+      "rotation": "0",
+      "scale": "1",
+      "locked": "false",
+      "occlusion": "true",
+      "grid": "true",
+      "target": "1",
+      "feedback": "idle",
+      "shared": "false",
+      "actions": "3"
+    },
+    "rotated": {
+      "placed": "true",
+      "tool": "rotate",
+      "position": "0.55,0.28",
+      "rotation": "1.03",
+      "scale": "1",
+      "locked": "false",
+      "occlusion": "true",
+      "grid": "true",
+      "target": "1",
+      "feedback": "idle",
+      "shared": "false",
+      "actions": "4"
+    },
+    "scaled": {
+      "placed": "true",
+      "tool": "scale",
+      "position": "0.55,0.28",
+      "rotation": "1.03",
+      "scale": "1.71",
+      "locked": "false",
+      "occlusion": "true",
+      "grid": "true",
+      "target": "1",
+      "feedback": "idle",
+      "shared": "false",
+      "actions": "5"
+    },
+    "incorrect": {
+      "placed": "true",
+      "tool": "scale",
+      "position": "0.55,0.28",
+      "rotation": "1.03",
+      "scale": "1.71",
+      "locked": "false",
+      "occlusion": "true",
+      "grid": "true",
+      "target": "1",
+      "feedback": "incorrect",
+      "shared": "false",
+      "actions": "6"
+    },
+    "relocked": {
+      "placed": "true",
+      "tool": "scale",
+      "position": "0.55,0.28",
+      "rotation": "1.03",
+      "scale": "1.71",
+      "locked": "true",
+      "occlusion": "true",
+      "grid": "true",
+      "target": "1",
+      "feedback": "incorrect",
+      "shared": "false",
+      "actions": "7"
+    },
+    "occlusionOff": {
+      "placed": "true",
+      "tool": "scale",
+      "position": "0.55,0.28",
+      "rotation": "1.03",
+      "scale": "1.71",
+      "locked": "true",
+      "occlusion": "false",
+      "grid": "true",
+      "target": "1",
+      "feedback": "incorrect",
+      "shared": "false",
+      "actions": "8"
+    },
+    "gridOff": {
+      "placed": "true",
+      "tool": "scale",
+      "position": "0.55,0.28",
+      "rotation": "1.03",
+      "scale": "1.71",
+      "locked": "true",
+      "occlusion": "false",
+      "grid": "false",
+      "target": "1",
+      "feedback": "incorrect",
+      "shared": "false",
+      "actions": "9"
+    },
+    "centered": {
+      "placed": "true",
+      "tool": "scale",
+      "position": "0,0",
+      "rotation": "1.03",
+      "scale": "1.71",
+      "locked": "true",
+      "occlusion": "false",
+      "grid": "false",
+      "target": "1",
+      "feedback": "incorrect",
+      "shared": "false",
+      "actions": "10"
+    },
+    "correct": {
+      "placed": "true",
+      "tool": "move",
+      "position": "0,0",
+      "rotation": "0",
+      "scale": "1",
+      "locked": "true",
+      "occlusion": "true",
+      "grid": "true",
+      "target": "1",
+      "feedback": "correct",
+      "shared": "false",
+      "actions": "2"
+    },
+    "another": {
+      "placed": "true",
+      "tool": "move",
+      "position": "0,0",
+      "rotation": "0",
+      "scale": "1",
+      "locked": "true",
+      "occlusion": "true",
+      "grid": "true",
+      "target": "0.5",
+      "feedback": "idle",
+      "shared": "false",
+      "actions": "3"
+    },
+    "shared": {
+      "placed": "true",
+      "tool": "move",
+      "position": "0,0",
+      "rotation": "0",
+      "scale": "1",
+      "locked": "true",
+      "occlusion": "true",
+      "grid": "true",
+      "target": "0.5",
+      "feedback": "idle",
+      "shared": "true",
+      "actions": "4"
+    },
+    "reset": {
+      "placed": "true",
+      "tool": "move",
+      "position": "0,0",
+      "rotation": "0",
+      "scale": "1",
+      "locked": "true",
+      "occlusion": "true",
+      "grid": "true",
+      "target": "1",
+      "feedback": "idle",
+      "shared": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 862,
+      "height": 1825
+    },
+    "overflow": false,
+    "hero": {
+      "top": 88,
+      "left": 198,
+      "width": 652,
+      "height": 210,
+      "bottom": 298
+    },
+    "tabs": {
+      "top": 308,
+      "left": 198,
+      "width": 652,
+      "height": 47,
+      "bottom": 355
+    },
+    "simulator": {
+      "top": 365,
+      "left": 198,
+      "width": 652,
+      "height": 599,
+      "bottom": 964
+    },
+    "tools": {
+      "top": 974,
+      "left": 198,
+      "width": 652,
+      "height": 100,
+      "bottom": 1074
+    },
+    "status": {
+      "top": 1083,
+      "left": 198,
+      "width": 652,
+      "height": 101,
+      "bottom": 1184
+    },
+    "challenge": {
+      "top": 1194,
+      "left": 198,
+      "width": 652,
+      "height": 287,
+      "bottom": 1481
+    },
+    "notes": {
+      "top": 1490,
+      "left": 198,
+      "width": 652,
+      "height": 110,
+      "bottom": 1600
+    },
+    "tags": {
+      "top": 1611,
+      "left": 198,
+      "width": 652,
+      "height": 31,
+      "bottom": 1642
+    },
+    "next": {
+      "top": 1652,
+      "left": 198,
+      "width": 652,
+      "height": 54,
+      "bottom": 1706
+    }
+  },
+  "mobileMetrics": {
+    "documentWidth": 390,
+    "overflow": false,
+    "nonblank": true
+  },
+  "consoleMessages": []
+}

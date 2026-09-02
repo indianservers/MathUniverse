@@ -38,6 +38,7 @@ import EulerFormulaTargetLesson408 from "./geometry3d/EulerFormulaTargetLesson40
 import XRayModeTargetLesson409 from "./geometry3d/XRayModeTargetLesson409";
 import CameraControlsTargetLesson410 from "./geometry3d/CameraControlsTargetLesson410";
 import OrthographicViewsTargetLesson411 from "./geometry3d/OrthographicViewsTargetLesson411";
+import ARPlacementTargetLesson412 from "./geometry3d/ARPlacementTargetLesson412";
 
 export default function Geometry3DLessonAdapter(props: LessonAdapterProps) {
   if (props.lesson.id === 378)
@@ -84,6 +85,7 @@ export default function Geometry3DLessonAdapter(props: LessonAdapterProps) {
     return <CameraControlsTargetLesson410 {...props} />;
   if (props.lesson.id === 411)
     return <OrthographicViewsTargetLesson411 {...props} />;
+  if (props.lesson.id === 412) return <ARPlacementTargetLesson412 {...props} />;
   if (props.lesson.preset.id === "geometry3d.solid-net") {
     return (
       <AdapterFrame
