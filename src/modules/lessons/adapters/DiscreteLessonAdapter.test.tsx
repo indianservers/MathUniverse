@@ -239,6 +239,21 @@ describe("discrete lesson adapter", () => {
     expect(html).toContain('data-cheapest-cost="4"');
     expect(html).toContain('data-edge-count="7"');
   });
+  it("uses the dedicated vertex-degree multigraph surface for lesson 568", () => {
+    const lesson = lessonCatalog.find((candidate) => candidate.id === 568)!;
+    const html = renderToStaticMarkup(
+      <DiscreteLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="discrete-mockup-0625"');
+    expect(html).toContain("dedicated-multigraph-degree-loop-handshake-model");
+    expect(html).toContain('data-selected-degree="13"');
+    expect(html).toContain('data-edge-count="19"');
+    expect(html).toContain('data-degree-sum="38"');
+  });
   it("renders strengthened discrete lessons 556 through 585 with lesson-specific guidance", () => {
     const expected = new Map([
       [556, "Fundamental Counting Principle"],

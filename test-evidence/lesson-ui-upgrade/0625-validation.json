@@ -1,0 +1,209 @@
+{
+  "passed": true,
+  "url": "http://127.0.0.1:2256/lessons/discrete-and-applied-mathematics/568-degree-of-a-vertex",
+  "checks": {
+    "initial": {
+      "selected": "B",
+      "selectedDegree": "13",
+      "edgeCount": "19",
+      "degreeSum": "38",
+      "loops": "1",
+      "verified": "true",
+      "showLoops": "true",
+      "positions": "A:75,110;B:285,75;C:500,110;D:145,340;E:420,340",
+      "graded": "",
+      "actions": "0"
+    },
+    "selectedC": {
+      "selected": "C",
+      "selectedDegree": "4",
+      "edgeCount": "19",
+      "degreeSum": "38",
+      "loops": "1",
+      "verified": "true",
+      "showLoops": "true",
+      "positions": "A:75,110;B:285,75;C:500,110;D:145,340;E:420,340",
+      "graded": "",
+      "actions": "1"
+    },
+    "hiddenLoops": {
+      "selected": "C",
+      "selectedDegree": "4",
+      "edgeCount": "19",
+      "degreeSum": "38",
+      "loops": "1",
+      "verified": "true",
+      "showLoops": "false",
+      "positions": "A:75,110;B:285,75;C:500,110;D:145,340;E:420,340",
+      "graded": "",
+      "actions": "2"
+    },
+    "loopAdded": {
+      "selected": "C",
+      "selectedDegree": "4",
+      "edgeCount": "20",
+      "degreeSum": "40",
+      "loops": "2",
+      "verified": "true",
+      "showLoops": "false",
+      "positions": "A:75,110;B:285,75;C:500,110;D:145,340;E:420,340",
+      "graded": "",
+      "actions": "4"
+    },
+    "edgeAdded": {
+      "selected": "C",
+      "selectedDegree": "5",
+      "edgeCount": "21",
+      "degreeSum": "42",
+      "loops": "2",
+      "verified": "true",
+      "showLoops": "false",
+      "positions": "A:75,110;B:285,75;C:500,110;D:145,340;E:420,340",
+      "graded": "",
+      "actions": "6"
+    },
+    "edgeRemoved": {
+      "selected": "C",
+      "selectedDegree": "4",
+      "edgeCount": "20",
+      "degreeSum": "40",
+      "loops": "2",
+      "verified": "true",
+      "showLoops": "false",
+      "positions": "A:75,110;B:285,75;C:500,110;D:145,340;E:420,340",
+      "graded": "",
+      "actions": "7"
+    },
+    "dragged": {
+      "selected": "D",
+      "selectedDegree": "10",
+      "edgeCount": "20",
+      "degreeSum": "40",
+      "loops": "2",
+      "verified": "true",
+      "showLoops": "false",
+      "positions": "A:75,110;B:285,75;C:500,110;D:214,303;E:420,340",
+      "graded": "",
+      "actions": "8"
+    },
+    "dragChanged": true,
+    "formulaVisible": true,
+    "wrong": {
+      "selected": "D",
+      "selectedDegree": "10",
+      "edgeCount": "20",
+      "degreeSum": "40",
+      "loops": "2",
+      "verified": "true",
+      "showLoops": "false",
+      "positions": "A:75,110;B:285,75;C:500,110;D:214,303;E:420,340",
+      "graded": "false",
+      "actions": "15"
+    },
+    "correct": {
+      "selected": "D",
+      "selectedDegree": "10",
+      "edgeCount": "20",
+      "degreeSum": "40",
+      "loops": "2",
+      "verified": "true",
+      "showLoops": "false",
+      "positions": "A:75,110;B:285,75;C:500,110;D:214,303;E:420,340",
+      "graded": "true",
+      "actions": "17"
+    },
+    "hintVisible": true,
+    "reset": {
+      "selected": "B",
+      "selectedDegree": "13",
+      "edgeCount": "19",
+      "degreeSum": "38",
+      "loops": "1",
+      "verified": "true",
+      "showLoops": "true",
+      "positions": "A:75,110;B:285,75;C:500,110;D:145,340;E:420,340",
+      "graded": "",
+      "actions": "0"
+    },
+    "final": {
+      "selected": "B",
+      "selectedDegree": "13",
+      "edgeCount": "19",
+      "degreeSum": "38",
+      "loops": "1",
+      "verified": "true",
+      "showLoops": "true",
+      "positions": "A:75,110;B:285,75;C:500,110;D:145,340;E:420,340",
+      "graded": "",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1031,
+      "height": 1526
+    },
+    "overflow": false,
+    "hero": {
+      "top": 96,
+      "left": 217,
+      "width": 799,
+      "height": 134,
+      "bottom": 230
+    },
+    "tabs": {
+      "top": 239,
+      "left": 217,
+      "width": 799,
+      "height": 38,
+      "bottom": 277
+    },
+    "lab": {
+      "top": 287,
+      "left": 217,
+      "width": 799,
+      "height": 378,
+      "bottom": 665
+    },
+    "summary": {
+      "top": 677,
+      "left": 217,
+      "width": 799,
+      "height": 135,
+      "bottom": 812
+    },
+    "pattern": {
+      "top": 824,
+      "left": 217,
+      "width": 799,
+      "height": 127,
+      "bottom": 951
+    },
+    "worked": {
+      "top": 963,
+      "left": 217,
+      "width": 799,
+      "height": 294,
+      "bottom": 1257
+    },
+    "challenge": {
+      "top": 1269,
+      "left": 217,
+      "width": 799,
+      "height": 177,
+      "bottom": 1446
+    },
+    "adjacent": {
+      "top": 1460,
+      "left": 217,
+      "width": 799,
+      "height": 52,
+      "bottom": 1512
+    }
+  },
+  "mobileMetrics": {
+    "documentWidth": 390,
+    "overflow": false
+  },
+  "consoleMessages": []
+}

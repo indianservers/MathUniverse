@@ -30,6 +30,7 @@ import PigeonholeTargetLesson564 from "./discrete/PigeonholeTargetLesson564";
 import VertexEdgeBuilderTargetLesson565 from "./discrete/VertexEdgeBuilderTargetLesson565";
 import DirectedGraphsTargetLesson566 from "./discrete/DirectedGraphsTargetLesson566";
 import WeightedGraphsTargetLesson567 from "./discrete/WeightedGraphsTargetLesson567";
+import VertexDegreeTargetLesson568 from "./discrete/VertexDegreeTargetLesson568";
 
 const countingModes = new Set<DiscreteLessonMode>([
   "product",
@@ -236,6 +237,8 @@ export default function DiscreteLessonAdapter(props: LessonAdapterProps) {
     return <DirectedGraphsTargetLesson566 {...props} />;
   if (props.lesson.id === 567)
     return <WeightedGraphsTargetLesson567 {...props} />;
+  if (props.lesson.id === 568)
+    return <VertexDegreeTargetLesson568 {...props} />;
   const mode = discreteLessonPreset(props.lesson.id).mode;
   const guidance = discreteGuidanceFor(mode);
   let activity = specialActivity(props.lesson.preset.id, props);
