@@ -1,0 +1,10 @@
+.ps415-mode {
+  bottom: 127px;
+}
+@media (min-width: 800px) {
+  body:has(.ps415-page) [data-testid="desktop-sidebar"] {
+    width: 235px;
+    min-width: 235px;
+    max-width: 235px;
+  }
+}

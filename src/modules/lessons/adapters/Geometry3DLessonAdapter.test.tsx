@@ -924,4 +924,15 @@ describe("Geometry3DLessonAdapter", () => {
     expect(html).toContain("Sphere");
     expect(html).toContain("Gyroid");
   });
+
+  it("uses a dedicated two-parameter surface lab for lesson 415", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 415)!;
+    const html = renderToStaticMarkup(<Geometry3DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="geometry3d-mockup-0600"');
+    expect(html).toContain("threejs-dedicated-two-parameter-paraboloid-domain-sweep-selected-point-cross-section-solid-wireframe-quarter-slice-challenge");
+    expect(html).toContain('data-u="1.6"');
+    expect(html).toContain('data-v="1.2"');
+    expect(html).toContain('data-z="0.896"');
+    expect(html).toContain('data-mode="solid"');
+  });
 });
