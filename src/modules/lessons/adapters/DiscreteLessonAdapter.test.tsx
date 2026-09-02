@@ -571,6 +571,20 @@ describe("discrete lesson adapter", () => {
     expect(html).toContain('data-op="and"');
     expect(html).toContain('data-truth="TFFF"');
   });
+  it("uses the dedicated quantifiers surface for lesson 589", () => {
+    const lesson = lessonCatalog.find((candidate) => candidate.id === 589)!;
+    const html = renderToStaticMarkup(
+      <DiscreteLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="discrete-mockup-0646"');
+    expect(html).toContain("dedicated-finite-domain-quantifier-model");
+    expect(html).toContain('data-forall="false"');
+    expect(html).toContain('data-exists="true"');
+  });
   it("renders strengthened discrete lessons 556 through 585 with lesson-specific guidance", () => {
     const expected = new Map([
       [556, "Fundamental Counting Principle"],
@@ -603,6 +617,7 @@ describe("discrete lesson adapter", () => {
       [586, "Subsets and Power Sets"],
       [587, "Truth Tables"],
       [588, "Logical Connectives"],
+      [589, "Quantifiers"],
       [590, "Proof Methods"],
     ]);
     for (const [lessonId, snippet] of expected) {

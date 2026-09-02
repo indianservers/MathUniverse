@@ -1,0 +1,127 @@
+{
+  "passed": true,
+  "checks": {
+    "initial": {
+      "domain": "-2,-1,0,1,2,3",
+      "predicate": "positive",
+      "forall": "false",
+      "exists": "true",
+      "witnesses": "1,2,3",
+      "counter": "-2,-1,0",
+      "graded": "",
+      "actions": "0"
+    },
+    "nonnegative": {
+      "domain": "-2,-1,0,1,2,3",
+      "predicate": "nonnegative",
+      "forall": "false",
+      "exists": "true",
+      "witnesses": "0,1,2,3",
+      "counter": "-2,-1",
+      "graded": "",
+      "actions": "1"
+    },
+    "negative": {
+      "domain": "-2,-1,0,1,2,3",
+      "predicate": "negative",
+      "forall": "false",
+      "exists": "true",
+      "witnesses": "-2,-1",
+      "counter": "0,1,2,3",
+      "graded": "",
+      "actions": "2"
+    },
+    "zero": {
+      "domain": "-2,-1,0,1,2,3",
+      "predicate": "zero",
+      "forall": "false",
+      "exists": "true",
+      "witnesses": "0",
+      "counter": "-2,-1,1,2,3",
+      "graded": "",
+      "actions": "3"
+    },
+    "square4": {
+      "domain": "-2,-1,0,1,2,3",
+      "predicate": "square4",
+      "forall": "false",
+      "exists": "true",
+      "witnesses": "-2,-1,0,1,2",
+      "counter": "3",
+      "graded": "",
+      "actions": "4"
+    },
+    "even": {
+      "domain": "-2,-1,0,1,2,3",
+      "predicate": "even",
+      "forall": "false",
+      "exists": "true",
+      "witnesses": "-2,0,2",
+      "counter": "-1,1,3",
+      "graded": "",
+      "actions": "5"
+    },
+    "preset": {
+      "domain": "0,1,2,3,4",
+      "predicate": "even",
+      "forall": "false",
+      "exists": "true",
+      "witnesses": "0,2,4",
+      "counter": "1,3",
+      "graded": "",
+      "actions": "6"
+    },
+    "custom": {
+      "domain": "-1,1",
+      "predicate": "even",
+      "forall": "false",
+      "exists": "false",
+      "witnesses": "",
+      "counter": "-1,1",
+      "graded": "",
+      "actions": "6"
+    },
+    "formula": true,
+    "wrong": {
+      "domain": "-1,1",
+      "predicate": "even",
+      "forall": "false",
+      "exists": "false",
+      "witnesses": "",
+      "counter": "-1,1",
+      "graded": "false",
+      "actions": "9"
+    },
+    "correct": {
+      "domain": "-1,1",
+      "predicate": "even",
+      "forall": "false",
+      "exists": "false",
+      "witnesses": "",
+      "counter": "-1,1",
+      "graded": "true",
+      "actions": "10"
+    },
+    "final": {
+      "domain": "-2,-1,0,1,2,3",
+      "predicate": "positive",
+      "forall": "false",
+      "exists": "true",
+      "witnesses": "1,2,3",
+      "counter": "-2,-1,0",
+      "graded": "",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "width": 1024,
+    "height": 1536,
+    "overflow": false,
+    "bottom": 1485
+  },
+  "mobileMetrics": {
+    "width": 390,
+    "overflow": false
+  },
+  "logs": []
+}
