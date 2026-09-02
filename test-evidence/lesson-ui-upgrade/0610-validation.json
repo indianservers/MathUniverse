@@ -1,0 +1,236 @@
+{
+  "passed": true,
+  "url": "http://127.0.0.1:2256/lessons/3d-mathematics/425-normal-vector",
+  "checks": {
+    "initial": {
+      "px": "1",
+      "py": "2",
+      "pz": "1",
+      "ux": "1",
+      "uy": "2",
+      "uz": "1",
+      "vx": "2",
+      "vy": "-1",
+      "vz": "2",
+      "nx": "5",
+      "ny": "0",
+      "nz": "-5",
+      "du": "0",
+      "dv": "0",
+      "graded": "false",
+      "correct": "false",
+      "actions": "0"
+    },
+    "orbitPixelsChanged": true,
+    "canvas": {
+      "width": 488,
+      "height": 440,
+      "nonblank": true
+    },
+    "pointDrag": {
+      "before": {
+        "px": "1",
+        "py": "2",
+        "pz": "1",
+        "ux": "1",
+        "uy": "2",
+        "uz": "1",
+        "vx": "2",
+        "vy": "-1",
+        "vz": "2",
+        "nx": "5",
+        "ny": "0",
+        "nz": "-5",
+        "du": "0",
+        "dv": "0",
+        "graded": "false",
+        "correct": "false",
+        "actions": "1"
+      },
+      "after": {
+        "px": "1.09",
+        "py": "2",
+        "pz": "1.11",
+        "ux": "1",
+        "uy": "2",
+        "uz": "1",
+        "vx": "2",
+        "vy": "-1",
+        "vz": "2",
+        "nx": "5",
+        "ny": "0",
+        "nz": "-5",
+        "du": "0",
+        "dv": "0",
+        "graded": "false",
+        "correct": "false",
+        "actions": "23"
+      }
+    },
+    "changed": {
+      "px": "-1",
+      "py": "1.5",
+      "pz": "2",
+      "ux": "1",
+      "uy": "0",
+      "uz": "0",
+      "vx": "0",
+      "vy": "1",
+      "vz": "0",
+      "nx": "0",
+      "ny": "0",
+      "nz": "1",
+      "du": "0",
+      "dv": "0",
+      "graded": "false",
+      "correct": "false",
+      "actions": "31"
+    },
+    "recomputed": {
+      "px": "-1",
+      "py": "1.5",
+      "pz": "2",
+      "ux": "1",
+      "uy": "0",
+      "uz": "0",
+      "vx": "0",
+      "vy": "1",
+      "vz": "0",
+      "nx": "0",
+      "ny": "0",
+      "nz": "1",
+      "du": "0",
+      "dv": "0",
+      "graded": "false",
+      "correct": "false",
+      "actions": "32"
+    },
+    "formula": "active",
+    "wrong": {
+      "px": "-1",
+      "py": "1.5",
+      "pz": "2",
+      "ux": "1",
+      "uy": "0",
+      "uz": "0",
+      "vx": "0",
+      "vy": "1",
+      "vz": "0",
+      "nx": "0",
+      "ny": "0",
+      "nz": "1",
+      "du": "0",
+      "dv": "0",
+      "graded": "true",
+      "correct": "false",
+      "actions": "37"
+    },
+    "correct": {
+      "px": "-1",
+      "py": "1.5",
+      "pz": "2",
+      "ux": "1",
+      "uy": "0",
+      "uz": "0",
+      "vx": "0",
+      "vy": "1",
+      "vz": "0",
+      "nx": "0",
+      "ny": "0",
+      "nz": "1",
+      "du": "0",
+      "dv": "0",
+      "graded": "true",
+      "correct": "true",
+      "actions": "41"
+    },
+    "final": {
+      "px": "1",
+      "py": "2",
+      "pz": "1",
+      "ux": "1",
+      "uy": "2",
+      "uz": "1",
+      "vx": "2",
+      "vy": "-1",
+      "vz": "2",
+      "nx": "5",
+      "ny": "0",
+      "nz": "-5",
+      "du": "0",
+      "dv": "0",
+      "graded": "false",
+      "correct": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 959,
+      "height": 1640
+    },
+    "overflow": false,
+    "hero": {
+      "top": 90,
+      "left": 206,
+      "width": 744,
+      "height": 137,
+      "bottom": 227
+    },
+    "tabs": {
+      "top": 236,
+      "left": 206,
+      "width": 744,
+      "height": 43,
+      "bottom": 279
+    },
+    "lab": {
+      "top": 293,
+      "left": 206,
+      "width": 744,
+      "height": 752,
+      "bottom": 1045
+    },
+    "canvas": {
+      "top": 381,
+      "left": 221,
+      "width": 488,
+      "height": 440,
+      "bottom": 821
+    },
+    "checks": {
+      "top": 835,
+      "left": 221,
+      "width": 714,
+      "height": 206,
+      "bottom": 1041
+    },
+    "middle": {
+      "top": 1058,
+      "left": 206,
+      "width": 744,
+      "height": 280,
+      "bottom": 1338
+    },
+    "bottom": {
+      "top": 1351,
+      "left": 206,
+      "width": 744,
+      "height": 168,
+      "bottom": 1519
+    },
+    "adjacent": {
+      "top": 1532,
+      "left": 206,
+      "width": 744,
+      "height": 61,
+      "bottom": 1593
+    }
+  },
+  "mobileMetrics": {
+    "documentWidth": 390,
+    "overflow": false,
+    "nonblank": true
+  },
+  "consoleMessages": []
+}

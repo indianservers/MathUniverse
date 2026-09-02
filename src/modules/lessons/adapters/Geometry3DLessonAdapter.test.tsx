@@ -1103,4 +1103,24 @@ describe("Geometry3DLessonAdapter", () => {
     expect(html).toContain('data-b="0.3"');
     expect(html).toContain("Local approximation error");
   });
+
+  it("uses a dedicated cross-product normal model for lesson 425", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 425)!;
+    const html = renderToStaticMarkup(
+      <Geometry3DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="geometry3d-mockup-0610"');
+    expect(html).toContain(
+      "threejs-dedicated-draggable-point-editable-spanning-vectors",
+    );
+    expect(html).toContain('data-nx="5"');
+    expect(html).toContain('data-ny="0"');
+    expect(html).toContain('data-nz="-5"');
+    expect(html).toContain('data-du="0"');
+    expect(html).toContain('data-dv="0"');
+  });
 });

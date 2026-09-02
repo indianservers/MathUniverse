@@ -51,6 +51,7 @@ import LevelSurfacesTargetLesson421 from "./geometry3d/LevelSurfacesTargetLesson
 import PartialDerivativesTargetLesson422 from "./geometry3d/PartialDerivativesTargetLesson422";
 import GradientVectorTargetLesson423 from "./geometry3d/GradientVectorTargetLesson423";
 import TangentPlaneTargetLesson424 from "./geometry3d/TangentPlaneTargetLesson424";
+import NormalVectorTargetLesson425 from "./geometry3d/NormalVectorTargetLesson425";
 
 export default function Geometry3DLessonAdapter(props: LessonAdapterProps) {
   if (props.lesson.id === 378)
@@ -121,6 +122,8 @@ export default function Geometry3DLessonAdapter(props: LessonAdapterProps) {
     return <GradientVectorTargetLesson423 {...props} />;
   if (props.lesson.id === 424)
     return <TangentPlaneTargetLesson424 {...props} />;
+  if (props.lesson.id === 425)
+    return <NormalVectorTargetLesson425 {...props} />;
   if (props.lesson.preset.id === "geometry3d.solid-net") {
     return (
       <AdapterFrame
