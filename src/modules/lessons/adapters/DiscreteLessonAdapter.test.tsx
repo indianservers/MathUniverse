@@ -381,6 +381,24 @@ describe("discrete lesson adapter", () => {
     expect(html).toContain('data-edge-count="7"');
     expect(html).toContain('data-chromatic-number="3"');
   });
+  it("uses the dedicated bipartite-graph surface for lesson 577", () => {
+    const lesson = lessonCatalog.find((candidate) => candidate.id === 577)!;
+    const html = renderToStaticMarkup(
+      <DiscreteLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="discrete-mockup-0634"');
+    expect(html).toContain(
+      "dedicated-bfs-two-colour-drag-partition-odd-cycle-model",
+    );
+    expect(html).toContain('data-set-a="2"');
+    expect(html).toContain('data-set-b="3"');
+    expect(html).toContain('data-edge-count="4"');
+    expect(html).toContain('data-bipartite="true"');
+  });
   it("renders strengthened discrete lessons 556 through 585 with lesson-specific guidance", () => {
     const expected = new Map([
       [556, "Fundamental Counting Principle"],

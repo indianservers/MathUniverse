@@ -1,0 +1,220 @@
+{
+  "passed": true,
+  "url": "http://127.0.0.1:2256/lessons/discrete-and-applied-mathematics/577-bipartite-graphs",
+  "checks": {
+    "initial": {
+      "variant": "base",
+      "setA": "2",
+      "setB": "3",
+      "edgeCount": "4",
+      "conflictCount": "0",
+      "bipartite": "true",
+      "step": "5",
+      "auto": "false",
+      "positions": "A:175,85;B:300,45;C:445,86;D:225,245;E:390,260",
+      "answer": "",
+      "graded": "",
+      "actions": "0"
+    },
+    "odd": {
+      "variant": "odd",
+      "setA": "2",
+      "setB": "3",
+      "edgeCount": "4",
+      "conflictCount": "1",
+      "bipartite": "false",
+      "step": "5",
+      "auto": "false",
+      "positions": "A:175,85;B:300,45;C:445,86;D:225,245;E:390,260",
+      "answer": "",
+      "graded": "",
+      "actions": "1"
+    },
+    "base": {
+      "variant": "base",
+      "setA": "3",
+      "setB": "2",
+      "edgeCount": "4",
+      "conflictCount": "0",
+      "bipartite": "true",
+      "step": "5",
+      "auto": "false",
+      "positions": "A:175,85;B:300,45;C:445,86;D:225,245;E:390,260",
+      "answer": "",
+      "graded": "",
+      "actions": "2"
+    },
+    "clear": {
+      "variant": "base",
+      "setA": "0",
+      "setB": "0",
+      "edgeCount": "4",
+      "conflictCount": "0",
+      "bipartite": "true",
+      "step": "0",
+      "auto": "false",
+      "positions": "A:175,85;B:300,45;C:445,86;D:225,245;E:390,260",
+      "answer": "",
+      "graded": "",
+      "actions": "3"
+    },
+    "step": {
+      "variant": "base",
+      "setA": "3",
+      "setB": "2",
+      "edgeCount": "4",
+      "conflictCount": "0",
+      "bipartite": "true",
+      "step": "1",
+      "auto": "false",
+      "positions": "A:175,85;B:300,45;C:445,86;D:225,245;E:390,260",
+      "answer": "",
+      "graded": "",
+      "actions": "4"
+    },
+    "auto": {
+      "variant": "base",
+      "setA": "3",
+      "setB": "2",
+      "edgeCount": "4",
+      "conflictCount": "0",
+      "bipartite": "true",
+      "step": "5",
+      "auto": "false",
+      "positions": "A:175,85;B:300,45;C:445,86;D:225,245;E:390,260",
+      "answer": "",
+      "graded": "",
+      "actions": "5"
+    },
+    "dragged": {
+      "variant": "base",
+      "setA": "2",
+      "setB": "3",
+      "edgeCount": "4",
+      "conflictCount": "2",
+      "bipartite": "false",
+      "step": "5",
+      "auto": "false",
+      "positions": "A:551,180;B:300,45;C:445,86;D:225,245;E:390,260",
+      "answer": "",
+      "graded": "",
+      "actions": "7"
+    },
+    "dragChanged": true,
+    "toggles": {
+      "labels": false,
+      "numbers": false
+    },
+    "formulaVisible": true,
+    "wrong": {
+      "variant": "base",
+      "setA": "2",
+      "setB": "3",
+      "edgeCount": "4",
+      "conflictCount": "2",
+      "bipartite": "false",
+      "step": "5",
+      "auto": "false",
+      "positions": "A:551,180;B:300,45;C:445,86;D:225,245;E:390,260",
+      "answer": "not",
+      "graded": "false",
+      "actions": "12"
+    },
+    "correct": {
+      "variant": "base",
+      "setA": "2",
+      "setB": "3",
+      "edgeCount": "4",
+      "conflictCount": "2",
+      "bipartite": "false",
+      "step": "5",
+      "auto": "false",
+      "positions": "A:551,180;B:300,45;C:445,86;D:225,245;E:390,260",
+      "answer": "bipartite",
+      "graded": "true",
+      "actions": "13"
+    },
+    "final": {
+      "variant": "base",
+      "setA": "2",
+      "setB": "3",
+      "edgeCount": "4",
+      "conflictCount": "0",
+      "bipartite": "true",
+      "step": "5",
+      "auto": "false",
+      "positions": "A:175,85;B:300,45;C:445,86;D:225,245;E:390,260",
+      "answer": "",
+      "graded": "",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1040,
+      "height": 1623
+    },
+    "overflow": false,
+    "surface": {
+      "top": 101,
+      "left": 220,
+      "width": 815,
+      "height": 1404,
+      "bottom": 1505
+    },
+    "hero": {
+      "top": 101,
+      "left": 228,
+      "width": 795,
+      "height": 122,
+      "bottom": 223
+    },
+    "tabs": {
+      "top": 225,
+      "left": 228,
+      "width": 554,
+      "height": 40,
+      "bottom": 265
+    },
+    "lab": {
+      "top": 281,
+      "left": 228,
+      "width": 795,
+      "height": 394,
+      "bottom": 675
+    },
+    "theory": {
+      "top": 699,
+      "left": 228,
+      "width": 795,
+      "height": 241,
+      "bottom": 940
+    },
+    "examples": {
+      "top": 965,
+      "left": 228,
+      "width": 795,
+      "height": 300,
+      "bottom": 1265
+    },
+    "practice": {
+      "top": 1279,
+      "left": 228,
+      "width": 795,
+      "height": 157,
+      "bottom": 1436
+    },
+    "adjacent": {
+      "top": 1450,
+      "left": 228,
+      "width": 795,
+      "height": 55,
+      "bottom": 1505
+    }
+  },
+  "mobileMetrics": {
+    "documentWidth": 390,
+    "overflow": false
+  },
+  "consoleMessages": []
+}
