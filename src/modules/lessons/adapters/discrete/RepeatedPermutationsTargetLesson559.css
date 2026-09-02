@@ -1,0 +1,336 @@
+.rep559-page {
+  gap: 12px;
+}
+.rep559-hero {
+  grid-template-columns: 1fr 250px;
+  height: 150px !important;
+  min-height: 150px !important;
+}
+.rep559-hero > section {
+  grid-column: 2;
+  grid-row: 1/3;
+  border: 1px solid #dce5ef;
+  border-radius: 7px;
+  padding: 12px;
+  display: grid;
+  grid-template-columns: 70px 1fr;
+  gap: 9px;
+  font-size: 10px;
+}
+.rep559-hero > section output {
+  font:
+    15px Georgia,
+    serif;
+}
+.rep559-hero aside {
+  grid-column: 1;
+  grid-row: 2;
+}
+.rep559-observe,
+.rep559-middle > article,
+.rep559-worked,
+.rep559-practice {
+  border: 1px solid #dce5ef;
+  background: #fff;
+  border-radius: 8px;
+}
+.rep559-observe {
+  height: 345px;
+  padding: 12px;
+}
+.rep559-observe > header,
+.rep559-middle article > header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.rep559-observe > header > div,
+.rep559-middle header > div {
+  margin-right: auto;
+}
+.rep559-observe header button,
+.rep559-middle header button {
+  border: 1px solid #dce5ef;
+  background: #fff;
+  border-radius: 6px;
+  padding: 8px;
+  display: flex;
+  gap: 5px;
+  font-size: 10px;
+}
+.rep559-builder {
+  display: grid;
+  grid-template-columns: 180px 1fr 240px;
+  border: 1px solid #dce5ef;
+  border-radius: 7px;
+  margin-top: 8px;
+  height: 275px;
+}
+.rep559-builder > aside,
+.rep559-builder > main,
+.rep559-builder > section {
+  padding: 12px;
+  border-right: 1px solid #e2e8f0;
+}
+.rep559-builder label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 12px 0;
+  font-size: 11px;
+}
+.rep559-builder label .rep559-source,
+.rep559-practice label span {
+  display: grid;
+  place-items: center;
+  width: 31px;
+  height: 31px;
+  border-radius: 4px;
+  font-weight: 800;
+  border: 0;
+}
+.rep559-builder label button {
+  width: 25px;
+  height: 25px;
+  border: 1px solid #dce5ef;
+  background: #fff;
+}
+.rep559-builder label output {
+  width: 20px;
+  text-align: center;
+}
+.rep559-builder > main {
+  text-align: center;
+}
+.rep559-builder > main > div {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: 26px 0;
+}
+.rep559-builder > main > div > span {
+  width: 43px;
+  height: 43px;
+  border: 2px dashed #d8e3ef;
+  border-radius: 5px;
+}
+.rep559-builder > main > div button {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 4px;
+  font-weight: 800;
+}
+.rep559-builder > main > button {
+  border: 1px solid #0aa1ac;
+  background: #08a5af;
+  color: #fff;
+  border-radius: 5px;
+  padding: 7px;
+}
+.rep559-builder > main > output {
+  display: block;
+  font:
+    24px Georgia,
+    serif;
+  margin-top: 8px;
+}
+.rep559-builder > section > output {
+  display: block;
+  font:
+    20px Georgia,
+    serif;
+  line-height: 2;
+  margin: 15px 0;
+}
+.rep559-builder > section strong {
+  font-size: 28px;
+  color: #0797ae;
+}
+.rep559-builder > section > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.rep559-builder > section span {
+  border: 1px solid #dce5ef;
+  border-radius: 6px;
+  padding: 9px;
+  font-size: 9px;
+}
+.rep559-middle {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 12px;
+  height: 410px !important;
+  min-height: 410px !important;
+}
+.rep559-middle > article {
+  padding: 12px;
+  overflow: hidden;
+}
+.rep559-middle button.active {
+  background: #099eb0;
+  color: #fff;
+}
+.rep559-arrangements {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 13px 8px;
+  margin-top: 12px;
+}
+.rep559-arrangements.list {
+  grid-template-columns: 1fr 1fr;
+}
+.rep559-arrangements > span {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 8px;
+}
+.rep559-arrangements b {
+  width: 15px;
+}
+.rep559-arrangements i {
+  font-style: normal;
+  width: 17px;
+  height: 19px;
+  display: grid;
+  place-items: center;
+  border-radius: 2px;
+}
+.rep559-middle article > aside {
+  border: 1px solid #dce5ef;
+  border-radius: 6px;
+  padding: 11px;
+  margin: 8px 0;
+  font-size: 10px;
+}
+.rep559-middle article > aside output {
+  display: block;
+  font:
+    16px Georgia,
+    serif;
+  text-align: center;
+  margin-top: 12px;
+}
+.rep559-worked {
+  height: 190px;
+  padding: 12px;
+}
+.rep559-worked > div {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+}
+.rep559-worked article {
+  padding: 10px;
+  border-right: 1px solid #e2e8f0;
+}
+.rep559-worked output {
+  display: block;
+  font:
+    17px Georgia,
+    serif;
+  margin: 20px 0;
+  text-align: center;
+}
+.rep559-worked article > div {
+  display: flex;
+  gap: 8px;
+  margin: 20px 0;
+}
+.rep559-worked article span {
+  border: 1px solid #dce5ef;
+  padding: 8px;
+  font:
+    11px Georgia,
+    serif;
+}
+.rep559-worked article strong {
+  display: block;
+  background: #e9f8ef;
+  color: #168351;
+  padding: 8px;
+}
+.rep559-practice {
+  height: 220px;
+  padding: 12px;
+}
+.rep559-practice > div {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr 1fr;
+}
+.rep559-practice article {
+  padding: 10px;
+  border-right: 1px solid #e2e8f0;
+}
+.rep559-practice label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px;
+}
+.rep559-practice label input {
+  width: 55px;
+  padding: 7px;
+  border: 1px solid #dce5ef;
+}
+.rep559-practice output {
+  display: block;
+  font:
+    25px Georgia,
+    serif;
+  margin: 17px 0;
+}
+.rep559-practice button {
+  border: 0;
+  border-radius: 5px;
+  background: #078fbd;
+  color: #fff;
+  padding: 10px;
+}
+.rep559-practice strong {
+  font-size: 17px;
+  color: #163d77;
+}
+.rep559-page .perm558-adjacent {
+  height: 52px;
+}
+body:has(.rep559-page) #main-content {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+body:has(.rep559-page) footer[aria-label="Site footer"] {
+  display: none !important;
+}
+@media (max-width: 700px) {
+  .rep559-hero {
+    grid-template-columns: 1fr;
+    height: auto !important;
+  }
+  .rep559-hero > section {
+    display: none;
+  }
+  .rep559-builder,
+  .rep559-middle,
+  .rep559-worked > div,
+  .rep559-practice > div {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+  .rep559-observe,
+  .rep559-middle,
+  .rep559-worked,
+  .rep559-practice {
+    height: auto !important;
+  }
+  .rep559-builder {
+    height: auto;
+  }
+  .rep559-arrangements {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .rep559-practice article {
+    border-bottom: 1px solid #e2e8f0;
+  }
+}

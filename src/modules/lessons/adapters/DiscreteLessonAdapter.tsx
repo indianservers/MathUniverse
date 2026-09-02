@@ -21,6 +21,7 @@ import {
 import FundamentalCountingTargetLesson556 from "./discrete/FundamentalCountingTargetLesson556";
 import FactorialsTargetLesson557 from "./discrete/FactorialsTargetLesson557";
 import PermutationsTargetLesson558 from "./discrete/PermutationsTargetLesson558";
+import RepeatedPermutationsTargetLesson559 from "./discrete/RepeatedPermutationsTargetLesson559";
 
 const countingModes = new Set<DiscreteLessonMode>([
   "product",
@@ -210,6 +211,8 @@ export default function DiscreteLessonAdapter(props: LessonAdapterProps) {
   if (props.lesson.id === 557) return <FactorialsTargetLesson557 {...props} />;
   if (props.lesson.id === 558)
     return <PermutationsTargetLesson558 {...props} />;
+  if (props.lesson.id === 559)
+    return <RepeatedPermutationsTargetLesson559 {...props} />;
   const mode = discreteLessonPreset(props.lesson.id).mode;
   const guidance = discreteGuidanceFor(mode);
   let activity = specialActivity(props.lesson.preset.id, props);

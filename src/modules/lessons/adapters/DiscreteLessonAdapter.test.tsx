@@ -88,6 +88,21 @@ describe("discrete lesson adapter", () => {
     expect(html).toContain('data-slots="__"');
     expect(html).toContain('data-practice-total="12"');
   });
+  it("uses the dedicated multiset arrangement lab for lesson 559", () => {
+    const lesson = lessonCatalog.find((candidate) => candidate.id === 559)!;
+    const html = renderToStaticMarkup(
+      <DiscreteLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="discrete-mockup-0616"');
+    expect(html).toContain("dedicated-multiset-repeated-item-drag-drop");
+    expect(html).toContain('data-total="30"');
+    expect(html).toContain('data-generated-count="30"');
+    expect(html).toContain('data-challenge-total="180"');
+  });
   it("renders strengthened discrete lessons 556 through 585 with lesson-specific guidance", () => {
     const expected = new Map([
       [556, "Fundamental Counting Principle"],

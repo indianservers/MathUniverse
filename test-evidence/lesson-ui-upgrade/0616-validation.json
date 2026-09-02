@@ -1,0 +1,167 @@
+{
+  "passed": true,
+  "url": "http://127.0.0.1:2256/lessons/discrete-and-applied-mathematics/559-permutations-with-repetition",
+  "checks": {
+    "initial": {
+      "counts": "2,2,1",
+      "total": "30",
+      "slots": "ABABC",
+      "generated": "true",
+      "generatedCount": "30",
+      "view": "grid",
+      "challengeTotal": "180",
+      "challengeGenerated": "false",
+      "actions": "0"
+    },
+    "addedC": {
+      "counts": "2,2,2",
+      "total": "90",
+      "slots": "______",
+      "generated": "false",
+      "generatedCount": "0",
+      "view": "grid",
+      "challengeTotal": "180",
+      "challengeGenerated": "false",
+      "actions": "1"
+    },
+    "dragged": {
+      "counts": "2,2,2",
+      "total": "90",
+      "slots": "A_____",
+      "generated": "false",
+      "generatedCount": "0",
+      "view": "grid",
+      "challengeTotal": "180",
+      "challengeGenerated": "false",
+      "actions": "2"
+    },
+    "generated": {
+      "counts": "2,2,2",
+      "total": "90",
+      "slots": "A_____",
+      "generated": "true",
+      "generatedCount": "90",
+      "view": "grid",
+      "challengeTotal": "180",
+      "challengeGenerated": "false",
+      "actions": "3"
+    },
+    "list": {
+      "counts": "2,2,2",
+      "total": "90",
+      "slots": "A_____",
+      "generated": "true",
+      "generatedCount": "90",
+      "view": "list",
+      "challengeTotal": "180",
+      "challengeGenerated": "false",
+      "actions": "4"
+    },
+    "random": {
+      "counts": "2,2,2",
+      "total": "90",
+      "slots": "ACACBB",
+      "generated": "true",
+      "generatedCount": "90",
+      "view": "list",
+      "challengeTotal": "180",
+      "challengeGenerated": "false",
+      "actions": "5"
+    },
+    "formulaClass": "active",
+    "challengeChanged": {
+      "counts": "2,2,2",
+      "total": "90",
+      "slots": "ACACBB",
+      "generated": "true",
+      "generatedCount": "90",
+      "view": "list",
+      "challengeTotal": "420",
+      "challengeGenerated": "false",
+      "actions": "7"
+    },
+    "challengeGenerated": {
+      "counts": "2,2,2",
+      "total": "90",
+      "slots": "ACACBB",
+      "generated": "true",
+      "generatedCount": "90",
+      "view": "list",
+      "challengeTotal": "420",
+      "challengeGenerated": "true",
+      "actions": "8"
+    },
+    "final": {
+      "counts": "2,2,1",
+      "total": "30",
+      "slots": "ABABC",
+      "generated": "true",
+      "generatedCount": "30",
+      "view": "grid",
+      "challengeTotal": "180",
+      "challengeGenerated": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 981,
+      "height": 1604
+    },
+    "overflow": false,
+    "hero": {
+      "top": 111,
+      "left": 216,
+      "width": 749,
+      "height": 150,
+      "bottom": 261
+    },
+    "tabs": {
+      "top": 273,
+      "left": 216,
+      "width": 749,
+      "height": 54,
+      "bottom": 327
+    },
+    "observe": {
+      "top": 339,
+      "left": 216,
+      "width": 749,
+      "height": 345,
+      "bottom": 684
+    },
+    "middle": {
+      "top": 696,
+      "left": 216,
+      "width": 749,
+      "height": 410,
+      "bottom": 1106
+    },
+    "worked": {
+      "top": 1118,
+      "left": 216,
+      "width": 749,
+      "height": 190,
+      "bottom": 1308
+    },
+    "practice": {
+      "top": 1320,
+      "left": 216,
+      "width": 749,
+      "height": 220,
+      "bottom": 1540
+    },
+    "adjacent": {
+      "top": 1552,
+      "left": 216,
+      "width": 749,
+      "height": 52,
+      "bottom": 1604
+    }
+  },
+  "mobileMetrics": {
+    "documentWidth": 390,
+    "overflow": false
+  },
+  "consoleMessages": []
+}
