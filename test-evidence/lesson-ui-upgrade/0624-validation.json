@@ -1,0 +1,188 @@
+{
+  "passed": true,
+  "url": "http://127.0.0.1:2256/lessons/discrete-and-applied-mathematics/567-weighted-graphs",
+  "checks": {
+    "initial": {
+      "edgeCount": "7",
+      "cheapestPath": "A,B,E",
+      "cheapestCost": "4",
+      "selectedEdge": "AB",
+      "selectedPath": "A,B,E",
+      "positions": "A:70,100;B:270,55;C:470,105;D:95,340;E:405,340",
+      "zoom": "100",
+      "graded": "",
+      "saved": "false",
+      "shared": "false",
+      "actions": "0"
+    },
+    "formulaVisible": true,
+    "dragged": {
+      "edgeCount": "7",
+      "cheapestPath": "A,B,E",
+      "cheapestCost": "4",
+      "selectedEdge": "AB",
+      "selectedPath": "A,B,E",
+      "positions": "A:70,100;B:320,110;C:470,105;D:95,340;E:405,340",
+      "zoom": "100",
+      "graded": "",
+      "saved": "false",
+      "shared": "false",
+      "actions": "2"
+    },
+    "dragChanged": true,
+    "edgeSelected": {
+      "edgeCount": "7",
+      "cheapestPath": "A,B,E",
+      "cheapestCost": "4",
+      "selectedEdge": "AB",
+      "selectedPath": "A,B,E",
+      "positions": "A:70,100;B:320,110;C:470,105;D:95,340;E:405,340",
+      "zoom": "100",
+      "graded": "",
+      "saved": "false",
+      "shared": "false",
+      "actions": "3"
+    },
+    "reweighted": {
+      "edgeCount": "7",
+      "cheapestPath": "A,D,E",
+      "cheapestCost": "6",
+      "selectedEdge": "AB",
+      "selectedPath": "A,D,E",
+      "positions": "A:70,100;B:320,110;C:470,105;D:95,340;E:405,340",
+      "zoom": "100",
+      "graded": "",
+      "saved": "false",
+      "shared": "false",
+      "actions": "4"
+    },
+    "changedEndpoints": {
+      "edgeCount": "7",
+      "cheapestPath": "D,E,C",
+      "cheapestCost": "6",
+      "selectedEdge": "AB",
+      "selectedPath": "D,E,C",
+      "positions": "A:70,100;B:320,110;C:470,105;D:95,340;E:405,340",
+      "zoom": "100",
+      "graded": "",
+      "saved": "false",
+      "shared": "false",
+      "actions": "7"
+    },
+    "zoomed": {
+      "edgeCount": "7",
+      "cheapestPath": "A,D,E",
+      "cheapestCost": "6",
+      "selectedEdge": "AB",
+      "selectedPath": "A,D,E",
+      "positions": "A:70,100;B:320,110;C:470,105;D:95,340;E:405,340",
+      "zoom": "110",
+      "graded": "",
+      "saved": "false",
+      "shared": "false",
+      "actions": "10"
+    },
+    "fullscreen": true,
+    "persisted": {
+      "edgeCount": "7",
+      "cheapestPath": "A,D,E",
+      "cheapestCost": "6",
+      "selectedEdge": "AB",
+      "selectedPath": "A,D,E",
+      "positions": "A:70,100;B:320,110;C:470,105;D:95,340;E:405,340",
+      "zoom": "110",
+      "graded": "",
+      "saved": "true",
+      "shared": "true",
+      "actions": "14"
+    },
+    "practice": {
+      "edgeCount": "7",
+      "cheapestPath": "A,D,E",
+      "cheapestCost": "6",
+      "selectedEdge": "AB",
+      "selectedPath": "A,D,E",
+      "positions": "A:70,100;B:320,110;C:470,105;D:95,340;E:405,340",
+      "zoom": "110",
+      "graded": "true",
+      "saved": "true",
+      "shared": "true",
+      "actions": "16"
+    },
+    "solution": true,
+    "final": {
+      "edgeCount": "7",
+      "cheapestPath": "A,B,E",
+      "cheapestCost": "4",
+      "selectedEdge": "AB",
+      "selectedPath": "A,B,E",
+      "positions": "A:70,100;B:270,55;C:470,105;D:95,340;E:405,340",
+      "zoom": "100",
+      "graded": "",
+      "saved": "false",
+      "shared": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1026,
+      "height": 1532
+    },
+    "overflow": false,
+    "hero": {
+      "top": 102,
+      "left": 225,
+      "width": 786,
+      "height": 151,
+      "bottom": 253
+    },
+    "tabs": {
+      "top": 262,
+      "left": 225,
+      "width": 786,
+      "height": 46,
+      "bottom": 308
+    },
+    "observe": {
+      "top": 318,
+      "left": 225,
+      "width": 786,
+      "height": 428,
+      "bottom": 746
+    },
+    "manipulate": {
+      "top": 756,
+      "left": 225,
+      "width": 786,
+      "height": 228,
+      "bottom": 984
+    },
+    "theory": {
+      "top": 1002,
+      "left": 225,
+      "width": 786,
+      "height": 217,
+      "bottom": 1219
+    },
+    "practice": {
+      "top": 1229,
+      "left": 225,
+      "width": 786,
+      "height": 219,
+      "bottom": 1448
+    },
+    "adjacent": {
+      "top": 1458,
+      "left": 225,
+      "width": 786,
+      "height": 54,
+      "bottom": 1512
+    }
+  },
+  "mobileMetrics": {
+    "documentWidth": 390,
+    "overflow": false
+  },
+  "consoleMessages": []
+}

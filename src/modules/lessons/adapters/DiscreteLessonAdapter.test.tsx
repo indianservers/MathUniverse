@@ -222,6 +222,23 @@ describe("discrete lesson adapter", () => {
     expect(html).toContain('data-sink="E"');
     expect(html).toContain('data-edge-count="7"');
   });
+  it("uses the dedicated weighted shortest-path surface for lesson 567", () => {
+    const lesson = lessonCatalog.find((candidate) => candidate.id === 567)!;
+    const html = renderToStaticMarkup(
+      <DiscreteLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="discrete-mockup-0624"');
+    expect(html).toContain(
+      "dedicated-weighted-drag-graph-dijkstra-route-model",
+    );
+    expect(html).toContain('data-cheapest-path="A,B,E"');
+    expect(html).toContain('data-cheapest-cost="4"');
+    expect(html).toContain('data-edge-count="7"');
+  });
   it("renders strengthened discrete lessons 556 through 585 with lesson-specific guidance", () => {
     const expected = new Map([
       [556, "Fundamental Counting Principle"],

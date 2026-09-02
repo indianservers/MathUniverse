@@ -1,0 +1,671 @@
+.wg567-page {
+  --ink: #13213d;
+  --muted: #61708a;
+  --line: #dce5ef;
+  --blue: #176bc4;
+  color: var(--ink);
+  letter-spacing: 0;
+}
+.wg567-page button,
+.wg567-page input,
+.wg567-page select {
+  font: inherit;
+}
+.wg567-hero {
+  box-sizing: border-box;
+  height: 151px;
+  margin: 16px 15px 0;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #fff;
+  position: relative;
+}
+.wg567-hero > aside {
+  position: absolute;
+  right: 14px;
+  top: 13px;
+  display: grid;
+  gap: 8px;
+}
+.wg567-hero > aside button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 80px;
+  padding: 7px 10px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: #fff;
+  font-size: 8px;
+}
+.wg567-hero svg {
+  width: 12px;
+  height: 12px;
+}
+.wg567-hero > small {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 12px;
+  background: #e6f4ff;
+  color: #1767a6;
+  font-size: 8px;
+  font-weight: 900;
+}
+.wg567-hero h1 {
+  margin: 9px 0 5px;
+  font-size: 28px;
+  line-height: 1;
+}
+.wg567-hero p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 10px;
+}
+.wg567-hero dl {
+  display: flex;
+  gap: 10px;
+  margin: 16px 0 0;
+}
+.wg567-hero dl span {
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  font-size: 7px;
+}
+.wg567-hero > output {
+  position: absolute;
+  right: 112px;
+  top: 56px;
+  color: #13804a;
+  font-size: 8px;
+}
+.wg567-tabs {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  height: 46px;
+  margin: 9px 15px 0;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+}
+.wg567-tabs button {
+  border: 0;
+  border-bottom: 3px solid transparent;
+  background: transparent;
+  color: #56647b;
+  font-size: 10px;
+  font-weight: 800;
+}
+.wg567-tabs button.active {
+  border-bottom-color: #1687df;
+  color: #1371c3;
+}
+.wg567-tab-note {
+  margin: 6px 15px 0;
+  padding: 7px 10px;
+  border: 1px solid #c9e1f4;
+  border-radius: 7px;
+  background: #eef7ff;
+  color: #49647e;
+  font-size: 9px;
+}
+.wg567-tab-note b {
+  color: #176ab7;
+  margin-right: 8px;
+}
+.wg567-observe {
+  display: grid;
+  grid-template-columns: 1fr 230px;
+  gap: 10px;
+  height: 428px;
+  margin: 10px 15px 0;
+}
+.wg567-observe > main,
+.wg567-observe > aside,
+.wg567-manipulate,
+.wg567-theory > article,
+.wg567-practice,
+.wg567-adjacent {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  box-sizing: border-box;
+}
+.wg567-observe > main {
+  display: grid;
+  grid-template-columns: 1fr 145px;
+  grid-template-rows: 35px 1fr;
+  gap: 0 8px;
+  padding: 8px;
+}
+.wg567-observe main > header {
+  grid-column: 1/-1;
+}
+.wg567-page h3 {
+  margin: 0;
+  font-size: 12px;
+}
+.wg567-page h3 i {
+  display: inline-grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  margin-right: 7px;
+  border-radius: 4px;
+  background: #2879d1;
+  color: #fff;
+  font-style: normal;
+  font-size: 9px;
+}
+.wg567-page h3 small {
+  margin-left: 12px;
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 400;
+}
+.wg567-stage {
+  min-width: 0;
+  position: relative;
+}
+.wg567-graph {
+  display: block;
+  width: 100%;
+  height: 336px;
+  border-radius: 7px;
+  background: radial-gradient(circle at 55% 45%, #12213c, #050b1b 70%);
+  touch-action: none;
+}
+.wg567-graph .edge {
+  cursor: pointer;
+}
+.wg567-graph line {
+  stroke: #8293aa;
+  stroke-width: 3;
+}
+.wg567-graph .edge.chosen line {
+  stroke: #57c5e6;
+  stroke-width: 5;
+}
+.wg567-graph .edge.selected line {
+  stroke: #f1a427;
+}
+.wg567-graph .edge text {
+  fill: #fff;
+  font-size: 15px;
+  font-weight: 900;
+  paint-order: stroke;
+  stroke: #071126;
+  stroke-width: 5;
+}
+.wg567-graph circle {
+  stroke: #fff;
+  stroke-width: 3;
+}
+.wg567-graph g[data-testid] {
+  cursor: grab;
+}
+.wg567-graph g.dragging {
+  cursor: grabbing;
+}
+.wg567-graph g[data-testid] text {
+  fill: #fff;
+  font-size: 15px;
+  font-weight: 900;
+  pointer-events: none;
+}
+.wg567-canvas-tools {
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.wg567-canvas-tools button {
+  height: 28px;
+  padding: 4px 8px;
+  border: 1px solid #536078;
+  border-radius: 5px;
+  background: #10182a;
+  color: #fff;
+  font-size: 8px;
+}
+.wg567-canvas-tools button:nth-last-child(2) {
+  margin-left: auto;
+}
+.wg567-canvas-tools svg {
+  width: 12px;
+  height: 12px;
+}
+.wg567-canvas-tools input {
+  width: 110px;
+  accent-color: #62cbe5;
+}
+.wg567-picker {
+  min-width: 0;
+}
+.wg567-picker nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid var(--line);
+}
+.wg567-picker nav button {
+  height: 32px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: none;
+  font-size: 9px;
+}
+.wg567-picker nav button.active {
+  border-bottom-color: #1585dc;
+  color: #1470bd;
+}
+.wg567-picker p,
+.wg567-picker > b {
+  display: block;
+  margin: 10px 0;
+  font-size: 9px;
+}
+.wg567-picker label {
+  display: block;
+  margin: 8px 0;
+  color: var(--muted);
+  font-size: 8px;
+}
+.wg567-picker select {
+  display: block;
+  width: 100%;
+  margin-top: 5px;
+  padding: 7px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+.wg567-picker > button {
+  display: block;
+  width: 100%;
+  margin: 6px 0;
+  padding: 7px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+  color: #506077;
+  font-size: 8px;
+}
+.wg567-picker > input {
+  width: 100%;
+  accent-color: #1e8bd5;
+}
+.wg567-observe > aside {
+  padding: 11px;
+}
+.wg567-observe > aside > p {
+  margin: 5px 0 10px;
+  color: var(--muted);
+  font-size: 8px;
+}
+.wg567-observe > aside > button {
+  display: grid;
+  grid-template-columns: 1fr 25px;
+  position: relative;
+  width: 100%;
+  min-height: 54px;
+  margin: 8px 0;
+  padding: 9px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: #fff;
+  text-align: left;
+}
+.wg567-observe > aside > button.active {
+  border-color: #58bde0;
+  background: #f1fbff;
+}
+.wg567-observe > aside > button span {
+  font-size: 10px;
+  font-weight: 800;
+}
+.wg567-observe > aside > button small {
+  grid-column: 1;
+  color: var(--muted);
+  font-size: 8px;
+}
+.wg567-observe > aside > button > b {
+  grid-column: 2;
+  grid-row: 1/3;
+  align-self: center;
+  color: #16814d;
+}
+.wg567-observe > aside > button em {
+  position: absolute;
+  right: 8px;
+  bottom: 4px;
+  color: #16814d;
+  font-size: 7px;
+}
+.wg567-observe > aside > section {
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px solid #79c999;
+  border-radius: 7px;
+  background: #f0fff5;
+}
+.wg567-observe > aside > section > * {
+  display: block;
+}
+.wg567-observe > aside > section b {
+  font-size: 9px;
+}
+.wg567-observe > aside > section strong {
+  margin: 7px 0;
+  font-size: 16px;
+}
+.wg567-observe > aside > section span {
+  font-size: 9px;
+  font-weight: 800;
+}
+.wg567-observe > aside > section output {
+  float: right;
+  font-size: 18px;
+  color: #158447;
+}
+.wg567-manipulate {
+  height: 228px;
+  margin: 10px 15px 0;
+  padding: 10px;
+}
+.wg567-manipulate > header {
+  height: 29px;
+}
+.wg567-manipulate > main {
+  display: grid;
+  grid-template-columns: 285px 1fr 215px;
+  gap: 18px;
+}
+.wg567-manipulate main > div label {
+  display: grid;
+  grid-template-columns: 55px 20px 1fr 28px;
+  align-items: center;
+  gap: 6px;
+  height: 27px;
+  font-size: 8px;
+}
+.wg567-manipulate input {
+  width: 100%;
+  accent-color: #3698df;
+}
+.wg567-manipulate output {
+  padding: 5px;
+  border-radius: 5px;
+  background: #eef5fd;
+  text-align: center;
+}
+.wg567-manipulate main > aside {
+  align-self: center;
+  padding: 14px;
+  border: 1px solid #c8ddf3;
+  border-radius: 7px;
+  color: #4c5f78;
+  font-size: 9px;
+}
+.wg567-manipulate main > aside svg {
+  width: 16px;
+  color: #e19a1b;
+}
+.wg567-manipulate main > aside p {
+  line-height: 1.5;
+}
+.wg567-manipulate main > section {
+  padding: 8px;
+  border-left: 1px solid var(--line);
+}
+.wg567-manipulate main > section p {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 8px;
+}
+.wg567-theory {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.08fr;
+  gap: 9px;
+  height: 217px;
+  margin: 18px 15px 0;
+}
+.wg567-theory > article {
+  padding: 14px;
+}
+.wg567-theory p,
+.wg567-theory > b {
+  font-size: 9px;
+  line-height: 1.65;
+  color: #506079;
+}
+.wg567-theory svg {
+  width: 13px;
+  vertical-align: -3px;
+  color: #e2a01d;
+}
+.wg567-theory output {
+  display: block;
+  margin-top: 12px;
+  padding: 15px;
+  border: 1px solid #d1deeb;
+  border-radius: 7px;
+  background: #f5f8fc;
+  text-align: center;
+  font-family: Georgia, serif;
+  font-size: 15px;
+}
+.wg567-practice {
+  display: grid;
+  grid-template-columns: 250px 1fr 235px;
+  grid-template-rows: 34px 1fr;
+  gap: 8px 14px;
+  height: 219px;
+  margin: 10px 15px 0;
+  padding: 10px;
+}
+.wg567-practice > h3 {
+  grid-column: 1/-1;
+}
+.wg567-mini {
+  display: block;
+  width: 100%;
+  height: 160px;
+  background: #081126;
+  border-radius: 7px;
+}
+.wg567-mini > .wg567-graph {
+  height: 100%;
+  background: transparent;
+}
+.wg567-practice > div {
+  padding: 10px;
+}
+.wg567-practice > div > b {
+  font-size: 9px;
+}
+.wg567-practice > div section {
+  display: flex;
+  gap: 5px;
+  margin: 12px 0;
+}
+.wg567-practice select {
+  width: 58px;
+  padding: 7px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+.wg567-practice > div > strong {
+  font-size: 9px;
+}
+.wg567-practice .correct {
+  color: #16834a;
+}
+.wg567-practice .wrong {
+  color: #c43f3f;
+}
+.wg567-practice > div p {
+  font-size: 9px;
+  font-weight: 800;
+}
+.wg567-practice > div output {
+  float: right;
+  padding: 6px 15px;
+  border-radius: 5px;
+  background: #ddf7e8;
+  color: #16834a;
+  font-size: 13px;
+}
+.wg567-practice > aside {
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+}
+.wg567-practice > aside p {
+  font-size: 8px;
+  color: #52627a;
+}
+.wg567-practice > aside button {
+  display: block;
+  width: 100%;
+  margin: 7px 0;
+  padding: 7px;
+  border: 1px solid #8ccaf1;
+  border-radius: 5px;
+  background: #fff;
+  color: #1474c6;
+  font-size: 8px;
+}
+.wg567-adjacent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 54px;
+  margin: 10px 15px 18px;
+  padding: 8px 14px;
+}
+.wg567-adjacent button {
+  border: 0;
+  background: none;
+  color: #596981;
+  text-align: left;
+  font-size: 7px;
+}
+.wg567-adjacent button:last-child {
+  text-align: right;
+}
+.wg567-adjacent b {
+  font-size: 9px;
+}
+.wg567-adjacent span {
+  font-size: 8px;
+}
+.wg567-adjacent progress {
+  width: 150px;
+  margin: 0 8px;
+  accent-color: #1a91d5;
+}
+.wg567-page.fullscreen .wg567-observe {
+  position: fixed;
+  z-index: 100;
+  inset: 10px;
+  margin: 0;
+  height: auto;
+  background: #eef5fb;
+  padding: 10px;
+}
+.wg567-page.fullscreen .wg567-observe > main {
+  grid-template-columns: 1fr 200px;
+}
+body:has(.wg567-page) [data-testid="desktop-sidebar"] {
+  width: 210px !important;
+  flex-basis: 210px !important;
+}
+body:has(.wg567-page) #main-content {
+  padding: 0 !important;
+}
+body:has(.wg567-page) .app-layout-rail > div > header {
+  height: 52px !important;
+  min-height: 52px !important;
+  padding-top: 4px !important;
+  padding-bottom: 4px !important;
+  overflow: hidden;
+}
+body:has(.wg567-page) footer[aria-label="Site footer"] {
+  display: none !important;
+}
+@media (max-width: 700px) {
+  body:has(.wg567-page) [data-testid="desktop-sidebar"] {
+    display: none !important;
+    width: 0 !important;
+    flex-basis: 0 !important;
+  }
+  .wg567-hero {
+    height: auto;
+    margin-top: 8px;
+  }
+  .wg567-hero > aside {
+    position: static;
+    display: flex;
+    float: right;
+  }
+  .wg567-hero dl {
+    flex-wrap: wrap;
+  }
+  .wg567-tabs {
+    display: flex;
+    overflow: auto;
+  }
+  .wg567-tabs button {
+    min-width: 90px;
+  }
+  .wg567-observe,
+  .wg567-manipulate > main,
+  .wg567-theory,
+  .wg567-practice {
+    display: block;
+    height: auto;
+  }
+  .wg567-observe {
+    height: auto;
+  }
+  .wg567-observe > main {
+    display: block;
+    margin-bottom: 10px;
+  }
+  .wg567-stage {
+    margin-top: 8px;
+  }
+  .wg567-picker {
+    padding: 8px;
+  }
+  .wg567-observe > aside {
+    margin-bottom: 10px;
+  }
+  .wg567-manipulate {
+    height: auto;
+  }
+  .wg567-manipulate > main > div,
+  .wg567-manipulate main > aside,
+  .wg567-manipulate main > section {
+    margin: 10px 0;
+  }
+  .wg567-theory > article {
+    min-height: 180px;
+    margin-bottom: 10px;
+  }
+  .wg567-practice > * {
+    margin-bottom: 10px;
+  }
+  .wg567-mini {
+    height: 190px;
+  }
+  .wg567-adjacent span {
+    display: none;
+  }
+}
