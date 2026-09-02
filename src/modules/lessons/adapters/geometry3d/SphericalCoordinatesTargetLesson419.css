@@ -1,0 +1,364 @@
+.sc419-page {
+  position: relative;
+  top: 8px;
+  color: #17244c;
+  font:
+    10px/1.45 Inter,
+    Arial,
+    sans-serif;
+}
+.sc419-page * {
+  box-sizing: border-box;
+}
+.sc419-page button,
+.sc419-page input {
+  font: inherit;
+}
+.sc419-page h1,
+.sc419-page h2,
+.sc419-page h3 {
+  font-weight: 800;
+}
+.sc419-hero {
+  display: grid;
+  height: 169px;
+  grid-template-columns: 1fr 430px;
+  padding: 18px;
+  border: 1px solid #dce5ef;
+  border-radius: 16px;
+  background: #fff;
+}
+.sc419-hero small {
+  color: #07859c;
+}
+.sc419-hero h1 {
+  margin: 8px 0 0;
+  font-size: 28px;
+}
+.sc419-hero p {
+  margin: 0;
+}
+.sc419-hero section > div {
+  display: flex;
+  gap: 36px;
+  margin-top: 15px;
+}
+.sc419-hero section > div b {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2px 9px;
+}
+.sc419-hero aside {
+  padding: 12px 16px;
+  border: 1px solid #dce5ef;
+  border-radius: 10px;
+}
+.sc419-tabs {
+  display: flex;
+  height: 58px;
+  margin-top: 10px;
+  border: 1px solid #dce5ef;
+  border-radius: 10px;
+  background: #fff;
+}
+.sc419-tabs button {
+  flex: 1;
+  display: grid;
+  align-content: center;
+  border: 0;
+  border-radius: 9px;
+  background: #fff;
+}
+.sc419-tabs button.active {
+  color: #fff;
+  background: #0879c5;
+}
+.sc419-tabs small {
+  color: inherit;
+}
+.sc419-lab {
+  display: grid;
+  height: 478px;
+  margin-top: 10px;
+  grid-template-columns: 1fr 322px;
+  gap: 8px;
+  padding: 10px;
+  border: 1px solid #dce5ef;
+  border-radius: 10px;
+  background: #fff;
+}
+.sc419-canvas {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+}
+.sc419-canvas canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+.sc419-canvas > aside {
+  position: absolute;
+  top: 18px;
+  left: 17px;
+  display: grid;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid #36516e;
+  border-radius: 9px;
+  color: #fff;
+  background: #18324ddd;
+}
+.sc419-canvas > aside b:first-child {
+  color: #21dbe1;
+}
+.sc419-canvas > aside b:nth-child(2) {
+  color: #ffd31a;
+}
+.sc419-canvas > aside b:nth-child(3) {
+  color: #ba61ed;
+}
+.sc419-canvas > p {
+  position: absolute;
+  left: 18px;
+  bottom: 12px;
+  color: #fff;
+}
+.sc419-canvas > button {
+  position: absolute;
+  right: 18px;
+  bottom: 14px;
+  padding: 10px;
+  border: 1px solid #42617c;
+  border-radius: 7px;
+  color: #fff;
+  background: #17334e;
+}
+.sc419-p {
+  color: #fff;
+  font-size: 15px;
+}
+.sc419-controls > h2 {
+  margin: 4px;
+  font:
+    italic 15px Georgia,
+    serif;
+}
+.sc419-controls > label {
+  display: grid;
+  margin: 12px 4px;
+}
+.sc419-controls label span {
+  display: grid;
+  grid-template-columns: 1fr 75px;
+  gap: 14px;
+  align-items: center;
+}
+.sc419-controls input[type="range"] {
+  width: 100%;
+  accent-color: #1aa7bd;
+}
+.sc419-controls output {
+  padding: 10px;
+  border: 1px solid #dce5ef;
+  border-radius: 6px;
+  text-align: center;
+}
+.sc419-controls > section {
+  padding: 12px;
+  border: 1px solid #dce5ef;
+  border-radius: 9px;
+}
+.sc419-controls section h3 {
+  margin: 0;
+}
+.sc419-controls section p {
+  display: grid;
+  grid-template-columns: 50px 1fr;
+}
+.sc419-guides {
+  display: grid;
+  height: 108px;
+  margin-top: 10px;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+}
+.sc419-guides article,
+.sc419-rule article {
+  padding: 13px;
+  border: 1px solid #dce5ef;
+  border-radius: 9px;
+  background: #fff;
+}
+.sc419-guides h3 {
+  margin: 0;
+}
+.sc419-guides article:nth-child(2) h3 {
+  color: #c47713;
+}
+.sc419-guides article:nth-child(3) h3 {
+  color: #d44e58;
+}
+.sc419-guides p {
+  margin: 6px 0;
+}
+.sc419-rule {
+  display: grid;
+  height: 199px;
+  margin-top: 10px;
+  grid-template-columns: 1.05fr 1.1fr;
+  gap: 8px;
+}
+.sc419-rule h3 {
+  margin: 0;
+  color: #087e9f;
+}
+.sc419-rule p {
+  margin: 7px 0;
+}
+.sc419-rule output {
+  display: block;
+  margin: 8px;
+  padding-left: 130px;
+  font:
+    italic 13px/1.7 Georgia,
+    serif;
+}
+.sc419-rule strong {
+  float: right;
+  padding: 8px;
+  border: 1px solid #6baee5;
+  border-radius: 6px;
+}
+.sc419-challenge {
+  display: grid;
+  height: 78px;
+  margin-top: 10px;
+  grid-template-columns: 1.7fr repeat(3, 0.45fr) 70px 70px;
+  gap: 14px;
+  align-items: center;
+  padding: 12px 16px;
+  border: 1px solid #dce5ef;
+  border-radius: 9px;
+  background: #fff;
+}
+.sc419-challenge h3,
+.sc419-challenge p {
+  margin: 0;
+}
+.sc419-challenge h3 {
+  color: #087e9f;
+}
+.sc419-challenge label {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+}
+.sc419-challenge input {
+  width: 100%;
+  height: 33px;
+  border: 1px solid #dce5ef;
+  border-radius: 5px;
+}
+.sc419-challenge button {
+  height: 34px;
+  border: 1px solid #78b9e3;
+  border-radius: 6px;
+  background: #fff;
+}
+.sc419-challenge button:first-of-type {
+  color: #fff;
+  background: #8039da;
+}
+.sc419-challenge strong {
+  position: absolute;
+  margin-top: 102px;
+}
+.sc419-challenge strong.correct {
+  color: #168753;
+}
+.sc419-challenge strong.wrong {
+  color: #ca3b3b;
+}
+.sc419-adjacent {
+  display: grid;
+  height: 63px;
+  margin-top: 10px;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid #dce5ef;
+  border-radius: 9px;
+  background: #fff;
+}
+.sc419-adjacent button {
+  display: grid;
+  align-content: center;
+  border: 0;
+  background: #fff;
+}
+.sc419-adjacent button:first-child {
+  text-align: left;
+  padding-left: 20px;
+}
+.sc419-adjacent button:last-child {
+  text-align: right;
+  padding-right: 20px;
+}
+.sc419-adjacent small {
+  color: #68768c;
+}
+body:has(.sc419-page) nav[aria-label="Adjacent lessons"],
+body:has(.sc419-page) footer[aria-label="Site footer"] {
+  display: none;
+}
+@media (min-width: 800px) {
+  body:has(.sc419-page) [data-testid="desktop-sidebar"] {
+    display: block !important;
+    position: sticky !important;
+    top: 0;
+    width: 236px;
+    min-width: 236px;
+    max-width: 236px;
+  }
+  body:has(.sc419-page) #main-content {
+    padding: 101px 15px 0;
+    background: linear-gradient(120deg, #f3fbfc, #faf7ff);
+  }
+  body:has(.sc419-page) header.sticky {
+    height: 57px;
+  }
+  body:has(.sc419-page) nav[class*="bottom-0"][class*="fixed"] {
+    display: none !important;
+  }
+}
+@media (max-width: 799px) {
+  .sc419-page {
+    top: 0;
+  }
+  .sc419-hero,
+  .sc419-tabs,
+  .sc419-lab,
+  .sc419-guides,
+  .sc419-rule,
+  .sc419-challenge,
+  .sc419-adjacent {
+    height: auto;
+  }
+  .sc419-hero,
+  .sc419-lab,
+  .sc419-guides,
+  .sc419-rule,
+  .sc419-challenge {
+    grid-template-columns: 1fr;
+  }
+  .sc419-canvas {
+    height: 480px;
+  }
+  .sc419-tabs {
+    overflow: auto;
+  }
+  .sc419-tabs button {
+    min-width: 120px;
+  }
+  .sc419-adjacent {
+    grid-template-columns: 1fr;
+  }
+}

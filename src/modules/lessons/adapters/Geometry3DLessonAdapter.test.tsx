@@ -1003,4 +1003,20 @@ describe("Geometry3DLessonAdapter", () => {
     expect(html).toContain('data-x="2.77"');
     expect(html).toContain("Cylindrical Coordinates");
   });
+
+  it("uses a dedicated spherical-coordinate converter for lesson 419", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 419)!;
+    const html = renderToStaticMarkup(
+      <Geometry3DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="geometry3d-mockup-0604"');
+    expect(html).toContain("threejs-dedicated-draggable-sphere-point");
+    expect(html).toContain('data-rho="3"');
+    expect(html).toContain('data-x="1.84"');
+    expect(html).toContain("Convention matters");
+  });
 });
