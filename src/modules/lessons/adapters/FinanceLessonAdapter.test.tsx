@@ -4,8 +4,25 @@ import { lessonCatalog } from "../catalog/lessonCatalog";
 import FinanceLessonAdapter from "./FinanceLessonAdapter";
 
 describe("FinanceLessonAdapter", () => {
+  it("uses the dedicated simple-interest surface for lesson 591", () => {
+    const lesson = lessonCatalog.find((candidate) => candidate.id === 591)!;
+    const html = renderToStaticMarkup(
+      <FinanceLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="finance-mockup-0648"');
+    expect(html).toContain("dedicated-linear-simple-interest-model");
+    expect(html).toContain('data-interest="3000"');
+    expect(html).toContain('data-amount="13000"');
+  });
+
   it("renders all 27 finance routes with explicit controls and no legacy fallback", () => {
-    const lessons = lessonCatalog.filter((lesson) => lesson.adapter === "finance");
+    const lessons = lessonCatalog.filter(
+      (lesson) => lesson.adapter === "finance",
+    );
     expect(lessons).toHaveLength(27);
     for (const lesson of lessons) {
       const html = renderToStaticMarkup(
@@ -17,7 +34,7 @@ describe("FinanceLessonAdapter", () => {
       );
       expect(html, String(lesson.id)).toContain(lesson.title);
       expect(html, String(lesson.id)).toMatch(
-        /finance and modelling lab|simple-interest model/,
+        /finance and modelling lab|simple-interest model|finance-mockup-0648/,
       );
       expect(html, String(lesson.id)).not.toContain("Legacy");
       expect(html, String(lesson.id)).toContain('type="range"');

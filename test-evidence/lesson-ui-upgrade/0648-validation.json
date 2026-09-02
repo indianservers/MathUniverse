@@ -1,0 +1,131 @@
+{
+  "passed": true,
+  "checks": {
+    "initial": {
+      "p": "10000",
+      "rate": "6",
+      "time": "5",
+      "interest": "3000",
+      "amount": "13000",
+      "annual": "600",
+      "graded": "",
+      "actions": "0",
+      "rows": 6
+    },
+    "p15000": {
+      "p": "15000",
+      "rate": "6",
+      "time": "5",
+      "interest": "4500",
+      "amount": "19500",
+      "annual": "900",
+      "graded": "",
+      "actions": "1",
+      "rows": 6
+    },
+    "r8": {
+      "p": "15000",
+      "rate": "8",
+      "time": "5",
+      "interest": "6000",
+      "amount": "21000",
+      "annual": "1200",
+      "graded": "",
+      "actions": "2",
+      "rows": 6
+    },
+    "t3": {
+      "p": "15000",
+      "rate": "8",
+      "time": "3",
+      "interest": "3600",
+      "amount": "18600",
+      "annual": "1200",
+      "graded": "",
+      "actions": "3",
+      "rows": 4
+    },
+    "sliders": {
+      "p": "25000",
+      "rate": "9",
+      "time": "4",
+      "interest": "9000",
+      "amount": "34000",
+      "annual": "2250",
+      "graded": "",
+      "actions": "6",
+      "rows": 5
+    },
+    "formula": true,
+    "wrong": {
+      "p": "25000",
+      "rate": "9",
+      "time": "4",
+      "interest": "9000",
+      "amount": "34000",
+      "annual": "2250",
+      "graded": "false",
+      "actions": "9",
+      "rows": 5
+    },
+    "correct": {
+      "p": "25000",
+      "rate": "9",
+      "time": "4",
+      "interest": "9000",
+      "amount": "34000",
+      "annual": "2250",
+      "graded": "true",
+      "actions": "10",
+      "rows": 5
+    },
+    "final": {
+      "p": "10000",
+      "rate": "6",
+      "time": "5",
+      "interest": "3000",
+      "amount": "13000",
+      "annual": "600",
+      "graded": "",
+      "actions": "0",
+      "rows": 6
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1028,
+      "height": 1530
+    },
+    "overflow": false,
+    "hero": {
+      "top": 91,
+      "height": 178,
+      "bottom": 269
+    },
+    "lab": {
+      "top": 331,
+      "height": 680,
+      "bottom": 1011
+    },
+    "theory": {
+      "top": 1025,
+      "height": 250,
+      "bottom": 1275
+    },
+    "practice": {
+      "top": 1289,
+      "height": 130,
+      "bottom": 1419
+    },
+    "adjacent": {
+      "top": 1433,
+      "height": 58,
+      "bottom": 1491
+    }
+  },
+  "mobileMetrics": {
+    "width": 390,
+    "overflow": false
+  },
+  "logs": []
+}

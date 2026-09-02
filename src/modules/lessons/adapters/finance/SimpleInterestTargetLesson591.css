@@ -1,0 +1,510 @@
+.si591-page,
+.si591-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.si591-page {
+  position: relative;
+  top: -8px;
+  width: 100%;
+  margin-bottom: -8px;
+  color: #102044;
+  font:
+    9px/1.45 Inter,
+    system-ui,
+    sans-serif;
+}
+.si591-page h1,
+.si591-page h2,
+.si591-page h3,
+.si591-page p {
+  margin: 0;
+}
+.si591-page button,
+.si591-page input {
+  font: inherit;
+  color: inherit;
+}
+.si591-hero,
+.si591-tabs,
+.si591-lab,
+.si591-theory > article,
+.si591-practice,
+.si591-adjacent {
+  border: 1px solid #dbe5ef;
+  border-radius: 10px;
+  background: #fff;
+}
+.si591-hero {
+  height: 178px;
+  padding: 16px;
+}
+.si591-hero > span {
+  display: flex;
+  gap: 8px;
+}
+.si591-hero > span b {
+  padding: 4px 9px;
+  border-radius: 12px;
+  background: #e9f8fb;
+  color: #087e98;
+  font-size: 8px;
+}
+.si591-hero > span b + b {
+  background: #eef1f5;
+  color: #536078;
+}
+.si591-hero h1 {
+  margin-top: 10px;
+  font-size: 28px;
+}
+.si591-hero > p {
+  margin-top: 4px;
+  font-size: 12px;
+}
+.si591-hero dl {
+  display: flex;
+  margin: 14px 0 0;
+  gap: 17px;
+}
+.si591-hero dl strong {
+  padding: 6px 0;
+}
+.si591-hero dl + p {
+  margin-top: 8px;
+  font-size: 10px;
+}
+.si591-tabs {
+  display: grid;
+  height: 36px;
+  margin-top: 12px;
+  grid-template-columns: repeat(5, 1fr);
+}
+.si591-tabs button {
+  border: 0;
+  background: #fff;
+  font-weight: 800;
+}
+.si591-tabs button.active {
+  border-radius: 8px;
+  background: #087bc6;
+  color: #fff;
+}
+.si591-note {
+  position: absolute;
+  z-index: 4;
+  top: 210px;
+  left: 390px;
+  padding: 5px;
+  background: #effaff;
+}
+.si591-lab {
+  height: 680px;
+  margin-top: 14px;
+  padding: 14px;
+}
+.si591-lab > header {
+  height: 43px;
+}
+.si591-lab > header p {
+  margin-top: 5px;
+}
+.si591-page h2 {
+  font-size: 14px;
+}
+.si591-lab > div {
+  display: grid;
+  height: 606px;
+  grid-template-columns: 2fr 1fr;
+  gap: 16px;
+}
+.si591-lab main,
+.si591-lab > div > aside {
+  padding: 13px;
+  border: 1px solid #dbe5ef;
+  border-radius: 9px;
+}
+.si591-lab main > p {
+  margin-top: 4px;
+}
+.si591-lab .legend {
+  display: flex;
+  margin-top: 11px;
+  gap: 24px;
+}
+.si591-lab .legend span:before {
+  display: inline-block;
+  width: 24px;
+  margin-right: 6px;
+  border-top: 2px solid #7229db;
+  content: "";
+}
+.si591-lab .legend span:nth-child(2):before {
+  border-color: #0ab6d4;
+  border-top-style: dashed;
+}
+.si591-lab .legend span:nth-child(3):before {
+  border-color: #188f4c;
+}
+.si591-lab svg {
+  display: block;
+  width: 100%;
+  height: 250px;
+}
+.si591-lab svg .grid line {
+  stroke: #e3e9ef;
+}
+.si591-lab svg .axis {
+  stroke: #344158;
+}
+.si591-lab svg .principal {
+  stroke: #0ab6d4;
+  stroke-dasharray: 6 4;
+}
+.si591-lab svg .amount {
+  fill: none;
+  stroke: #762ee0;
+  stroke-width: 2.5;
+}
+.si591-lab svg .interest {
+  fill: none;
+  stroke: #168d4d;
+  stroke-width: 2;
+}
+.si591-lab svg .amount-dot {
+  fill: #762ee0;
+}
+.si591-lab svg .interest-dot {
+  fill: #168d4d;
+}
+.si591-lab svg text {
+  font-size: 9px;
+  text-anchor: middle;
+}
+.si591-lab svg text.axis-title {
+  font-weight: 800;
+}
+.si591-lab svg .amount-label {
+  fill: #762ee0;
+  font-weight: 800;
+}
+.si591-lab svg .interest-label {
+  fill: #168d4d;
+  font-weight: 800;
+}
+.si591-lab main h3 {
+  margin-top: 2px;
+}
+.si591-page table {
+  width: 100%;
+  margin-top: 7px;
+  border-collapse: collapse;
+}
+.si591-page th,
+.si591-page td {
+  height: 25px;
+  border: 1px solid #dbe5ef;
+  text-align: center;
+}
+.si591-lab main > footer {
+  margin-top: 12px;
+  color: #178647;
+  font-weight: 800;
+}
+.si591-lab main > footer svg {
+  width: 14px;
+  vertical-align: middle;
+}
+.si591-lab > div > aside > p {
+  margin-top: 3px;
+}
+.si591-lab > div > aside label {
+  display: grid;
+  margin-top: 12px;
+  gap: 5px;
+  font-weight: 800;
+}
+.si591-lab aside label > span {
+  display: grid;
+  height: 30px;
+  border: 1px solid #dbe5ef;
+  border-radius: 6px;
+  grid-template-columns: 27px 1fr;
+  align-items: center;
+  text-align: center;
+}
+.si591-lab aside label > span input {
+  height: 28px;
+  border: 0;
+}
+.si591-lab aside input[type="range"] {
+  width: 100%;
+  height: 10px;
+  accent-color: #079fc5;
+}
+.si591-lab aside label small {
+  display: flex;
+  color: #66748a;
+}
+.si591-lab aside label small i {
+  flex: 1;
+}
+.si591-lab aside h3 {
+  margin-top: 14px;
+}
+.si591-lab aside output {
+  display: flex;
+  height: 52px;
+  margin-top: 9px;
+  padding: 9px;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #c3e5d2;
+  border-radius: 8px;
+  background: #effaf4;
+}
+.si591-lab aside output:nth-of-type(2) {
+  border-color: #decdf7;
+  background: #f7f1ff;
+  color: #6322c8;
+}
+.si591-lab aside output b {
+  font-size: 14px;
+}
+.si591-lab aside article {
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #b9def2;
+  border-radius: 8px;
+  background: #eff9ff;
+}
+.si591-lab aside article p {
+  margin-top: 6px;
+}
+.si591-theory {
+  display: grid;
+  height: 250px;
+  margin-top: 14px;
+  grid-template-columns: 1.25fr 0.8fr 0.9fr;
+  gap: 12px;
+}
+.si591-theory > article {
+  padding: 14px;
+}
+.si591-theory article > p {
+  margin-top: 13px;
+  line-height: 17px;
+}
+.si591-theory h2 span {
+  float: right;
+  padding: 5px 9px;
+  border: 1px solid #a9ddbd;
+  border-radius: 13px;
+  background: #effbf4;
+  color: #16864d;
+  font-size: 8px;
+}
+.si591-theory article > strong {
+  display: block;
+  margin-top: 15px;
+  padding: 9px;
+  border-radius: 6px;
+  background: #eaf9ef;
+  color: #147b42;
+}
+.si591-theory article:nth-child(2) > strong {
+  background: transparent;
+  color: #13204a;
+  font:
+    16px Georgia,
+    serif;
+}
+.si591-theory article:nth-child(2) > b {
+  display: block;
+  margin-top: 18px;
+  color: #6524ce;
+}
+.si591-theory .mistake {
+  background: #fffaf1;
+  color: #8d3f00;
+}
+.si591-theory .mistake svg {
+  width: 13px;
+  vertical-align: middle;
+}
+.si591-practice {
+  display: grid;
+  height: 130px;
+  margin-top: 14px;
+  padding: 13px;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 14px;
+}
+.si591-practice p {
+  margin-top: 5px;
+}
+.si591-practice article {
+  margin-top: 10px;
+  padding: 9px;
+  border: 1px solid #b9dff4;
+  border-radius: 6px;
+  background: #eff9ff;
+}
+.si591-practice form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  border-left: 2px dotted #2c9ad0;
+  padding-left: 14px;
+}
+.si591-practice form label {
+  display: grid;
+  gap: 5px;
+  font-weight: 700;
+}
+.si591-practice form input {
+  height: 31px;
+  padding: 8px;
+  border: 1px solid #dbe5ef;
+  border-radius: 6px;
+}
+.si591-practice form button {
+  display: flex;
+  width: 95px;
+  height: 30px;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border: 0;
+  border-radius: 6px;
+  background: #0878c9;
+  color: #fff;
+}
+.si591-practice form button svg {
+  width: 13px;
+  height: 13px;
+  vertical-align: middle;
+}
+.si591-practice form output {
+  padding: 7px;
+}
+.si591-practice form output.correct {
+  color: #16864d;
+}
+.si591-practice form output.wrong {
+  color: #c52a38;
+}
+.si591-adjacent {
+  display: grid;
+  height: 58px;
+  margin-top: 14px;
+  grid-template-columns: 1fr 1fr;
+}
+.si591-adjacent a {
+  display: flex;
+  padding: 8px 14px;
+  align-items: center;
+  gap: 8px;
+  color: inherit;
+  text-decoration: none;
+}
+.si591-adjacent a:last-child {
+  justify-content: flex-end;
+  text-align: right;
+}
+.si591-adjacent span {
+  display: grid;
+}
+body:has(.si591-page) [data-testid="desktop-sidebar"] {
+  width: 224px !important;
+  flex-basis: 224px !important;
+}
+body:has(.si591-page) #main-content {
+  padding: 0 12px 0 17px !important;
+}
+body:has(.si591-page) .lesson-shell-header,
+body:has(.si591-page) .lesson-page-shell > nav[role="tablist"],
+body:has(.si591-page) .lesson-workbench-heading,
+body:has(.si591-page) .lesson-workbench > .mt-3.grid,
+body:has(.si591-page) .lesson-adjacent-nav {
+  display: none !important;
+}
+body:has(.si591-page) .lesson-page-shell > div {
+  margin-top: 0 !important;
+}
+body:has(.si591-page) .lesson-workbench {
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+body:has(.si591-page) footer[aria-label="Site footer"] {
+  display: none !important;
+}
+@media (max-width: 700px) {
+  body:has(.si591-page) [data-testid="desktop-sidebar"] {
+    display: none !important;
+  }
+  body:has(.si591-page) #main-content {
+    width: 100% !important;
+    min-width: 0 !important;
+    padding: 0 !important;
+  }
+  .si591-page {
+    top: 0;
+    margin: 0;
+  }
+  .si591-hero {
+    height: auto;
+    min-height: 310px;
+    margin: 4px;
+  }
+  .si591-hero dl {
+    flex-wrap: wrap;
+  }
+  .si591-tabs {
+    margin: 4px;
+    overflow: auto;
+  }
+  .si591-tabs button {
+    min-width: 80px;
+  }
+  .si591-lab {
+    height: auto;
+    margin: 4px;
+  }
+  .si591-lab > div {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .si591-lab main {
+    min-height: 650px;
+  }
+  .si591-lab > div > aside {
+    min-height: 570px;
+  }
+  .si591-theory {
+    height: auto;
+    margin: 4px;
+    grid-template-columns: 1fr;
+  }
+  .si591-theory > article {
+    min-height: 230px;
+  }
+  .si591-practice {
+    height: auto;
+    min-height: 480px;
+    margin: 4px;
+    grid-template-columns: 1fr;
+  }
+  .si591-practice form {
+    grid-template-columns: 1fr;
+    border-left: 0;
+  }
+  .si591-adjacent {
+    margin: 4px;
+  }
+  .si591-note {
+    display: none;
+  }
+}
