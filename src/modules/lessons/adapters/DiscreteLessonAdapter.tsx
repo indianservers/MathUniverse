@@ -47,6 +47,7 @@ import AdjacencyMatrixTargetLesson581 from "./discrete/AdjacencyMatrixTargetLess
 import SetBuilderTargetLesson582 from "./discrete/SetBuilderTargetLesson582";
 import SetOperationsTargetLesson583 from "./discrete/SetOperationsTargetLesson583";
 import ComplementTargetLesson584 from "./discrete/ComplementTargetLesson584";
+import CartesianProductTargetLesson585 from "./discrete/CartesianProductTargetLesson585";
 
 const countingModes = new Set<DiscreteLessonMode>([
   "product",
@@ -281,6 +282,8 @@ export default function DiscreteLessonAdapter(props: LessonAdapterProps) {
   if (props.lesson.id === 583)
     return <SetOperationsTargetLesson583 {...props} />;
   if (props.lesson.id === 584) return <ComplementTargetLesson584 {...props} />;
+  if (props.lesson.id === 585)
+    return <CartesianProductTargetLesson585 {...props} />;
   const mode = discreteLessonPreset(props.lesson.id).mode;
   const guidance = discreteGuidanceFor(mode);
   let activity = specialActivity(props.lesson.preset.id, props);

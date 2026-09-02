@@ -1,0 +1,200 @@
+{
+  "passed": true,
+  "url": "http://127.0.0.1:2256/lessons/discrete-and-applied-mathematics/585-cartesian-product",
+  "checks": {
+    "initial": {
+      "a": "1,2,3",
+      "b": "1,2",
+      "pairs": "1:1|1:2|2:1|2:2|3:1|3:2",
+      "pairCount": "6",
+      "reverse": "false",
+      "reversePairs": "1:1|1:2|1:3|2:1|2:2|2:3",
+      "visible": "6",
+      "speed": "300",
+      "graded": "",
+      "actions": "0"
+    },
+    "removeA": {
+      "a": "1,2",
+      "b": "1,2",
+      "pairs": "1:1|1:2|2:1|2:2",
+      "pairCount": "4",
+      "reverse": "false",
+      "reversePairs": "1:1|1:2|2:1|2:2",
+      "visible": "99",
+      "speed": "300",
+      "graded": "",
+      "actions": "1"
+    },
+    "addA": {
+      "a": "1,2,4",
+      "b": "1,2",
+      "pairs": "1:1|1:2|2:1|2:2|4:1|4:2",
+      "pairCount": "6",
+      "reverse": "false",
+      "reversePairs": "1:1|1:2|1:4|2:1|2:2|2:4",
+      "visible": "99",
+      "speed": "300",
+      "graded": "",
+      "actions": "2"
+    },
+    "addB": {
+      "a": "1,2,4",
+      "b": "1,2,3",
+      "pairs": "1:1|1:2|1:3|2:1|2:2|2:3|4:1|4:2|4:3",
+      "pairCount": "9",
+      "reverse": "false",
+      "reversePairs": "1:1|1:2|1:4|2:1|2:2|2:4|3:1|3:2|3:4",
+      "visible": "99",
+      "speed": "300",
+      "graded": "",
+      "actions": "3"
+    },
+    "reverse": {
+      "a": "1,2,4",
+      "b": "1,2,3",
+      "pairs": "1:1|1:2|1:3|2:1|2:2|2:3|4:1|4:2|4:3",
+      "pairCount": "9",
+      "reverse": "true",
+      "reversePairs": "1:1|1:2|1:4|2:1|2:2|2:4|3:1|3:2|3:4",
+      "visible": "99",
+      "speed": "300",
+      "graded": "",
+      "actions": "4"
+    },
+    "animationStart": {
+      "a": "1,2,4",
+      "b": "1,2,3",
+      "pairs": "1:1|1:2|1:3|2:1|2:2|2:3|4:1|4:2|4:3",
+      "pairCount": "9",
+      "reverse": "true",
+      "reversePairs": "1:1|1:2|1:4|2:1|2:2|2:4|3:1|3:2|3:4",
+      "visible": "0",
+      "speed": "80",
+      "graded": "",
+      "actions": "5"
+    },
+    "animationEnd": {
+      "a": "1,2,4",
+      "b": "1,2,3",
+      "pairs": "1:1|1:2|1:3|2:1|2:2|2:3|4:1|4:2|4:3",
+      "pairCount": "9",
+      "reverse": "true",
+      "reversePairs": "1:1|1:2|1:4|2:1|2:2|2:4|3:1|3:2|3:4",
+      "visible": "9",
+      "speed": "80",
+      "graded": "",
+      "actions": "5"
+    },
+    "reset": {
+      "a": "1,2,3",
+      "b": "1,2",
+      "pairs": "1:1|1:2|2:1|2:2|3:1|3:2",
+      "pairCount": "6",
+      "reverse": "false",
+      "reversePairs": "1:1|1:2|1:3|2:1|2:2|2:3",
+      "visible": "6",
+      "speed": "300",
+      "graded": "",
+      "actions": "1"
+    },
+    "formulaVisible": true,
+    "wrong": {
+      "a": "1,2,3",
+      "b": "1,2",
+      "pairs": "1:1|1:2|2:1|2:2|3:1|3:2",
+      "pairCount": "6",
+      "reverse": "false",
+      "reversePairs": "1:1|1:2|1:3|2:1|2:2|2:3",
+      "visible": "6",
+      "speed": "300",
+      "graded": "false",
+      "actions": "4"
+    },
+    "correct": {
+      "a": "1,2,3",
+      "b": "1,2",
+      "pairs": "1:1|1:2|2:1|2:2|3:1|3:2",
+      "pairCount": "6",
+      "reverse": "false",
+      "reversePairs": "1:1|1:2|1:3|2:1|2:2|2:3",
+      "visible": "6",
+      "speed": "300",
+      "graded": "true",
+      "actions": "5"
+    },
+    "final": {
+      "a": "1,2,3",
+      "b": "1,2",
+      "pairs": "1:1|1:2|2:1|2:2|3:1|3:2",
+      "pairCount": "6",
+      "reverse": "false",
+      "reversePairs": "1:1|1:2|1:3|2:1|2:2|2:3",
+      "visible": "6",
+      "speed": "300",
+      "graded": "",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "overflow": false,
+    "surface": {
+      "top": 106,
+      "left": 220,
+      "width": 803,
+      "height": 1306,
+      "bottom": 1412
+    },
+    "hero": {
+      "top": 106,
+      "left": 229,
+      "width": 785,
+      "height": 165,
+      "bottom": 271
+    },
+    "tabs": {
+      "top": 279,
+      "left": 229,
+      "width": 785,
+      "height": 48,
+      "bottom": 327
+    },
+    "lab": {
+      "top": 337,
+      "left": 229,
+      "width": 785,
+      "height": 475,
+      "bottom": 812
+    },
+    "theory": {
+      "top": 822,
+      "left": 229,
+      "width": 785,
+      "height": 330,
+      "bottom": 1152
+    },
+    "practice": {
+      "top": 1162,
+      "left": 229,
+      "width": 785,
+      "height": 190,
+      "bottom": 1352
+    },
+    "adjacent": {
+      "top": 1362,
+      "left": 229,
+      "width": 785,
+      "height": 50,
+      "bottom": 1412
+    }
+  },
+  "mobileMetrics": {
+    "documentWidth": 390,
+    "overflow": false
+  },
+  "consoleMessages": []
+}

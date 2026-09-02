@@ -1,0 +1,501 @@
+.cp585-page,
+.cp585-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.cp585-page {
+  --ink: #102044;
+  --line: #dbe5ef;
+  width: calc(100% + 8px);
+  color: var(--ink);
+  font-size: 9px;
+}
+.cp585-page button,
+.cp585-page input,
+.cp585-page textarea {
+  font: inherit;
+}
+.cp585-page h1,
+.cp585-page h3,
+.cp585-page p {
+  margin: 0;
+}
+.cp585-hero,
+.cp585-tabs,
+.cp585-lab,
+.cp585-theory > article,
+.cp585-practice,
+.cp585-adjacent {
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: #fff;
+}
+.cp585-hero {
+  display: grid;
+  height: 165px;
+  margin: 7px 9px 0;
+  padding: 15px 18px;
+  grid-template-columns: 1.65fr 1fr;
+}
+.cp585-hero span {
+  padding: 4px 8px;
+  border-radius: 12px;
+  background: #e9f8fa;
+  color: #087e98;
+  font-size: 7px;
+  font-weight: 900;
+}
+.cp585-hero h1 {
+  margin-top: 14px;
+  font-size: 29px;
+  font-weight: 900;
+}
+.cp585-hero > div > p {
+  margin-top: 7px;
+}
+.cp585-hero dl {
+  display: flex;
+  margin: 22px 0 0;
+  gap: 7px;
+}
+.cp585-hero dl b {
+  padding: 7px 9px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+}
+.cp585-hero > aside {
+  height: 90px;
+  padding: 13px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.cp585-hero > aside > b {
+  color: #6743c7;
+}
+.cp585-hero > aside p {
+  margin-top: 8px;
+  line-height: 15px;
+}
+.cp585-tabs {
+  display: grid;
+  height: 48px;
+  margin: 8px 9px 0;
+  grid-template-columns: repeat(5, 1fr);
+}
+.cp585-tabs button {
+  border: 0;
+  background: #fff;
+  font-weight: 900;
+}
+.cp585-tabs button.active {
+  border-bottom: 3px solid #0798ae;
+  color: #087e98;
+}
+.cp585-note {
+  position: absolute;
+  z-index: 3;
+  top: 280px;
+  left: 390px;
+  padding: 5px 9px;
+  border: 1px solid #a5dce7;
+  border-radius: 6px;
+  background: #effcff;
+}
+.cp585-lab {
+  height: 475px;
+  margin: 10px 9px 0;
+  padding: 13px;
+}
+.cp585-lab > header {
+  height: 50px;
+}
+.cp585-page h3 {
+  font-size: 14px;
+}
+.cp585-page h3 > i {
+  display: inline-grid;
+  width: 19px;
+  height: 19px;
+  margin-right: 7px;
+  place-items: center;
+  border-radius: 50%;
+  background: #078ba5;
+  color: #fff;
+  font-size: 9px;
+  font-style: normal;
+}
+.cp585-lab > header p {
+  margin-top: 8px;
+}
+.cp585-lab > div {
+  display: grid;
+  height: 398px;
+  grid-template-columns: 150px 1fr 155px;
+  gap: 10px;
+}
+.cp585-lab > div > aside,
+.cp585-lab > div > main {
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.cp585-lab > div > aside > label {
+  display: grid;
+  margin-bottom: 18px;
+  gap: 7px;
+  font-weight: 900;
+}
+.cp585-lab > div > aside label span {
+  position: relative;
+  display: flex;
+  gap: 4px;
+}
+.cp585-lab > div > aside label span button {
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: #fff;
+}
+.cp585-lab > div > aside label:first-child span button.active {
+  background: #0798ae;
+  color: #fff;
+}
+.cp585-lab > div > aside label:nth-child(2) span button.active {
+  background: #8836da;
+  color: #fff;
+}
+.cp585-lab > div > aside label span .cp585-expand {
+  margin-left: auto;
+  border: 0;
+}
+.cp585-lab .cp585-expand svg {
+  width: 12px;
+}
+.cp585-options {
+  position: absolute !important;
+  z-index: 4;
+  top: 32px;
+  left: 0;
+  display: flex !important;
+  padding: 5px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 0 5px 14px #10204424;
+}
+.cp585-lab > div > aside > button {
+  display: flex;
+  height: 31px;
+  align-items: center;
+  gap: 7px;
+  border: 0;
+  background: #fff;
+}
+.cp585-lab > div > aside svg {
+  width: 14px;
+}
+.cp585-lab input[type="range"] {
+  width: 100%;
+  accent-color: #208dec;
+}
+.cp585-lab > div > aside > p {
+  display: flex;
+}
+.cp585-lab > div > aside > p span {
+  flex: 1;
+}
+.cp585-lab .check {
+  display: flex !important;
+  margin-top: 20px;
+  align-items: center;
+  gap: 6px;
+}
+.cp585-lab > div > main > p {
+  text-align: center;
+}
+.cp585-lab main svg {
+  display: block;
+  width: 100%;
+  height: 350px;
+}
+.cp585-lab main line {
+  stroke: #26354d;
+  stroke-width: 1.5;
+}
+.cp585-lab main line.grid {
+  stroke: #cad4df;
+  stroke-dasharray: 7 6;
+}
+.cp585-lab main svg text {
+  text-anchor: middle;
+}
+.cp585-lab main svg text.axis-label {
+  font-size: 15px;
+  font-weight: 900;
+}
+.cp585-lab main g.pair circle {
+  fill: #079bb3;
+}
+.cp585-lab main g.pair.y2 circle {
+  fill: #8c36dd;
+}
+.cp585-lab main circle.reverse {
+  fill: none;
+  stroke: #f0a000;
+  stroke-width: 2;
+}
+.cp585-roster > p i {
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  margin-right: 7px;
+  border-radius: 50%;
+  background: #079bb3;
+}
+.cp585-roster > p:nth-of-type(2) i {
+  background: #8c36dd;
+}
+.cp585-roster > p {
+  margin-top: 10px;
+}
+.cp585-roster > div {
+  display: grid;
+  margin-top: 12px;
+  gap: 6px;
+}
+.cp585-roster > div span {
+  padding: 5px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  text-align: center;
+}
+.cp585-roster footer {
+  display: grid;
+  margin-top: 40px;
+  gap: 8px;
+  font-size: 13px;
+}
+.cp585-roster footer b {
+  margin-left: auto;
+}
+.cp585-theory {
+  display: grid;
+  height: 330px;
+  margin: 10px 9px 0;
+  grid-template-columns: 0.85fr 1.1fr 1fr;
+  gap: 9px;
+}
+.cp585-theory > article {
+  padding: 14px;
+}
+.cp585-theory p {
+  margin-top: 13px;
+  line-height: 16px;
+}
+.cp585-theory article > strong {
+  display: block;
+  margin-top: 14px;
+  padding: 12px;
+  border: 1px solid #b9d7f5;
+  border-radius: 7px;
+  background: #f2f8ff;
+  font-family: Georgia, serif;
+  font-size: 14px;
+}
+.cp585-theory article > aside {
+  margin-top: 16px;
+  padding: 11px;
+  border: 1px solid #b9d7f5;
+  border-radius: 7px;
+  background: #f4f9ff;
+}
+.cp585-theory aside svg {
+  width: 14px;
+  color: #da9b00;
+  vertical-align: middle;
+}
+.cp585-theory article:nth-child(2) > aside {
+  border-color: #f3c0c5;
+  background: #fff5f5;
+}
+.cp585-theory article:nth-child(2) > aside svg {
+  color: #d52c41;
+}
+.cp585-theory table {
+  width: 100%;
+  margin-top: 17px;
+  border-collapse: collapse;
+}
+.cp585-theory th,
+.cp585-theory td {
+  padding: 8px;
+  border: 1px solid var(--line);
+  text-align: center;
+}
+.cp585-theory th {
+  background: #7f31d5;
+  color: #fff;
+}
+.cp585-practice {
+  display: grid;
+  height: 190px;
+  margin: 10px 9px 0;
+  padding: 13px;
+  grid-template-columns: 0.85fr 1fr 0.85fr;
+  gap: 10px;
+}
+.cp585-practice p {
+  margin-top: 10px;
+}
+.cp585-practice form {
+  display: grid;
+  gap: 7px;
+}
+.cp585-practice form label {
+  display: grid;
+  gap: 6px;
+  font-weight: 900;
+}
+.cp585-practice textarea {
+  height: 48px;
+  padding: 8px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  resize: none;
+}
+.cp585-practice form label:nth-child(2) {
+  display: flex;
+  align-items: center;
+}
+.cp585-practice form input {
+  width: 40px;
+  height: 30px;
+  margin-left: 8px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+}
+.cp585-practice form button {
+  width: 105px;
+  height: 31px;
+  border: 0;
+  border-radius: 6px;
+  background: #0798ae;
+  color: #fff;
+}
+.cp585-practice > aside {
+  padding: 5px 12px;
+  border-left: 1px solid var(--line);
+}
+.cp585-practice > aside output {
+  display: block;
+  margin-top: 6px;
+  padding: 8px;
+  border-radius: 6px;
+  background: #f5f7fa;
+}
+.cp585-practice > aside output.correct {
+  background: #eafaf3;
+  color: #13805b;
+}
+.cp585-practice > aside output.wrong {
+  background: #fff1f2;
+  color: #bd253b;
+}
+.cp585-adjacent {
+  display: grid;
+  height: 50px;
+  margin: 10px 9px;
+  grid-template-columns: 1fr 1fr;
+}
+.cp585-adjacent a {
+  display: flex;
+  padding: 8px 13px;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink);
+  text-decoration: none;
+}
+.cp585-adjacent a:last-child {
+  justify-content: flex-end;
+  text-align: right;
+}
+.cp585-adjacent span {
+  display: grid;
+}
+.cp585-adjacent b {
+  margin-top: 3px;
+}
+@media (max-width: 700px) {
+  body:has(.cp585-page) [data-testid="desktop-sidebar"] {
+    display: none !important;
+  }
+  body:has(.cp585-page) #main-content {
+    width: 100% !important;
+    min-width: 0 !important;
+    padding: 0 !important;
+  }
+  .cp585-page {
+    width: 100%;
+  }
+  .cp585-hero {
+    height: auto;
+    min-height: 300px;
+    margin: 6px 4px 0;
+    grid-template-columns: 1fr;
+  }
+  .cp585-hero dl {
+    flex-wrap: wrap;
+  }
+  .cp585-hero > aside {
+    margin-top: 15px;
+  }
+  .cp585-tabs {
+    margin: 7px 4px 0;
+    overflow: auto;
+  }
+  .cp585-tabs button {
+    min-width: 80px;
+  }
+  .cp585-lab {
+    height: auto;
+    min-height: 1250px;
+    margin: 8px 4px 0;
+  }
+  .cp585-lab > div {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .cp585-lab > div > aside {
+    min-height: 285px;
+  }
+  .cp585-lab > div > main {
+    min-height: 400px;
+  }
+  .cp585-roster {
+    min-height: 420px !important;
+  }
+  .cp585-theory {
+    height: auto;
+    margin: 8px 4px 0;
+    grid-template-columns: 1fr;
+  }
+  .cp585-theory > article {
+    min-height: 300px;
+  }
+  .cp585-practice {
+    height: auto;
+    min-height: 580px;
+    margin: 8px 4px 0;
+    grid-template-columns: 1fr;
+  }
+  .cp585-practice > aside {
+    border: 0;
+  }
+  .cp585-adjacent {
+    margin: 8px 4px;
+  }
+  .cp585-note {
+    display: none;
+  }
+}

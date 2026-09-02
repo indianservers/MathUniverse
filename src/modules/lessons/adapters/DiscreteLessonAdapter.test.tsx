@@ -514,6 +514,21 @@ describe("discrete lesson adapter", () => {
     expect(html).toContain('data-complement="1,3,5"');
     expect(html).toContain('data-cardinality="6,3,3"');
   });
+  it("uses the dedicated Cartesian-product surface for lesson 585", () => {
+    const lesson = lessonCatalog.find((candidate) => candidate.id === 585)!;
+    const html = renderToStaticMarkup(
+      <DiscreteLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="discrete-mockup-0642"');
+    expect(html).toContain("dedicated-ordered-pair-cartesian-product-model");
+    expect(html).toContain('data-a="1,2,3"');
+    expect(html).toContain('data-b="1,2"');
+    expect(html).toContain('data-pair-count="6"');
+  });
   it("renders strengthened discrete lessons 556 through 585 with lesson-specific guidance", () => {
     const expected = new Map([
       [556, "Fundamental Counting Principle"],
