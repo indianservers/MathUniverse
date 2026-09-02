@@ -1,0 +1,484 @@
+.circ560-page {
+  color: #172749;
+  display: grid;
+  gap: 12px;
+  padding: 12px 10px 0;
+  font-family: Inter, Arial, sans-serif;
+  background: #f7fafc;
+}
+.circ560-page * {
+  box-sizing: border-box;
+}
+.circ560-page button,
+.circ560-page input {
+  font: inherit;
+}
+.circ560-page button {
+  cursor: pointer;
+}
+.circ560-hero,
+.circ560-tabs,
+.circ560-lab > main,
+.circ560-lab > aside article,
+.circ560-theory > article,
+.circ560-bottom > article,
+.circ560-adjacent button {
+  background: #fff;
+  border: 1px solid #dce5ef;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px #17345a0a;
+}
+.circ560-hero {
+  height: 136px;
+  padding: 17px 20px;
+  display: grid;
+  grid-template-columns: 1fr 315px;
+  gap: 20px;
+}
+.circ560-hero h1 {
+  font-size: 32px;
+  line-height: 1;
+  margin: 0 0 12px;
+  letter-spacing: 0;
+}
+.circ560-hero p {
+  font-size: 13px;
+}
+.circ560-hero aside {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+.circ560-hero aside span {
+  padding: 8px;
+  border: 1px solid #dce5ef;
+  border-radius: 14px;
+  font-size: 10px;
+}
+.circ560-hero > section {
+  border: 1px solid #dce5ef;
+  border-radius: 7px;
+  padding: 11px;
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 12px;
+  font-size: 10px;
+}
+.circ560-tabs {
+  height: 50px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  padding: 7px 12px;
+}
+.circ560-tabs button {
+  border: 0;
+  background: #fff;
+  font-weight: 800;
+  color: #30486c;
+}
+.circ560-tabs button.active {
+  background: #059db2;
+  color: #fff;
+  border-radius: 7px;
+}
+.circ560-lab {
+  display: grid;
+  grid-template-columns: 1fr 285px;
+  gap: 10px;
+  height: 590px;
+}
+.circ560-lab > main {
+  padding: 14px;
+}
+.circ560-lab > main > header {
+  display: flex;
+  align-items: center;
+}
+.circ560-lab > main > header > div {
+  margin-right: auto;
+}
+.circ560-page small {
+  font-size: 9px;
+  color: #07809d;
+  font-weight: 800;
+}
+.circ560-page h2 {
+  margin: 4px 0;
+  font-size: 17px;
+}
+.circ560-page p {
+  font-size: 10px;
+  line-height: 1.4;
+}
+.circ560-lab main header button {
+  border: 0;
+  background: white;
+  color: #66758c;
+  display: grid;
+  place-items: center;
+  margin-left: 15px;
+}
+.circ560-lab main header button svg {
+  width: 19px;
+}
+.circ560-lab main header button:disabled {
+  opacity: 0.3;
+}
+.circ560-controls {
+  height: 60px;
+  border-top: 1px solid #e4eaf1;
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 1.4fr 0.8fr 0.8fr;
+  align-items: center;
+}
+.circ560-controls label {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 10px;
+  font-weight: 800;
+}
+.circ560-controls label > span {
+  display: flex;
+  gap: 5px;
+}
+.circ560-controls button {
+  border: 1px solid #dce5ef;
+  background: #fff;
+  border-radius: 6px;
+  padding: 8px 14px;
+}
+.circ560-controls button.active,
+.circ560-controls button[role="switch"] {
+  background: #079eb3;
+  color: #fff;
+}
+.circ560-stage {
+  height: 370px;
+  display: grid;
+  grid-template-columns: 88px 1fr;
+}
+.circ560-stage > aside {
+  border: 1px solid #dce5ef;
+  border-radius: 7px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.circ560-stage > aside > button {
+  border: 0;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 9px;
+}
+.circ560-stage i {
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-style: normal;
+  font-weight: 800;
+}
+.circ560-stage > aside small {
+  text-align: center;
+  margin-top: auto;
+}
+.circ560-table {
+  width: 310px;
+  height: 310px;
+  border-radius: 50%;
+  margin: 25px auto 0;
+  position: relative;
+  background: #d8a76b
+    url("/assets/lessons/560-circular-permutations/light-oak-tabletop.png")
+    center / cover;
+  border: 8px solid #263d59;
+  box-shadow:
+    inset 0 0 20px #71481b77,
+    0 8px 12px #17274933;
+}
+.circ560-table > strong {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  color: #ffffff77;
+}
+.circ560-table > span {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 54px;
+  height: 60px;
+  display: grid;
+  place-items: center;
+  z-index: 2;
+}
+.circ560-table > span i {
+  width: 39px;
+  height: 39px;
+  border: 4px solid #fff;
+  box-shadow: 0 2px 5px #1235;
+}
+.circ560-table > span b {
+  background: #fff;
+  border-radius: 5px;
+  padding: 3px 6px;
+  font-size: 8px;
+  box-shadow: 0 2px 5px #1233;
+}
+.circ560-table > span svg {
+  position: absolute;
+  top: -13px;
+  width: 13px;
+}
+.circ560-check {
+  display: flex;
+  margin: -1px auto 4px;
+  border: 1px solid #dce5ef;
+  background: #fff;
+  border-radius: 7px;
+  padding: 7px 12px;
+  gap: 5px;
+}
+.circ560-check svg {
+  width: 14px;
+}
+.circ560-check + output {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 380px;
+  margin: auto;
+  background: #e1f7ec;
+  color: #168152;
+  border-radius: 6px;
+  padding: 7px;
+  font-size: 9px;
+}
+.circ560-check + output svg {
+  width: 14px;
+}
+.circ560-lab > aside {
+  display: grid;
+  grid-template-rows: 130px 165px 135px 130px;
+  gap: 10px;
+}
+.circ560-lab > aside article {
+  padding: 13px;
+}
+.circ560-lab > aside article > output {
+  display: block;
+  text-align: center;
+  font:
+    36px Georgia,
+    serif;
+  color: #6740da;
+  margin: 7px;
+}
+.circ560-lab > aside article:nth-child(2) > div {
+  display: flex;
+  justify-content: space-between;
+  margin: 12px 0;
+}
+.circ560-lab > aside article:nth-child(2) span {
+  font-size: 8px;
+}
+.circ560-lab > aside article:nth-child(2) b {
+  font-size: 9px;
+}
+.circ560-dots {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 10px;
+}
+.circ560-dots button {
+  width: 9px;
+  height: 9px;
+  border: 0;
+  border-radius: 50%;
+  background: #d3d8df;
+  padding: 0;
+}
+.circ560-dots button.active {
+  background: #0596aa;
+}
+.circ560-lab > aside article:nth-child(3) > b {
+  display: block;
+  text-align: center;
+}
+.circ560-lab > aside article:nth-child(4) p {
+  display: flex;
+  justify-content: space-between;
+  margin: 7px;
+}
+.circ560-theory {
+  display: grid;
+  grid-template-columns: 1.2fr 1.2fr 1fr;
+  gap: 10px;
+  height: 190px;
+}
+.circ560-theory > article {
+  padding: 12px;
+}
+.circ560-theory table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 9px;
+  font-size: 9px;
+}
+.circ560-theory td,
+.circ560-theory th {
+  border: 1px solid #dce5ef;
+  padding: 5px;
+  text-align: left;
+}
+.circ560-theory output {
+  display: block;
+  text-align: center;
+  font:
+    23px Georgia,
+    serif;
+  margin: 14px;
+}
+.circ560-theory article:last-child {
+  background: #fff1f5;
+}
+.circ560-theory article:last-child small {
+  color: #e62f65;
+}
+.circ560-bottom {
+  height: 125px;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 10px;
+}
+.circ560-bottom > article {
+  padding: 12px;
+}
+.circ560-bottom label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 10px;
+}
+.circ560-bottom input {
+  width: 90px;
+  padding: 7px;
+  border: 1px solid #dce5ef;
+}
+.circ560-bottom button {
+  border: 0;
+  background: #079eb3;
+  color: #fff;
+  border-radius: 5px;
+  padding: 7px;
+}
+.circ560-bottom button svg {
+  width: 12px;
+}
+.circ560-bottom strong,
+.circ560-bottom output {
+  margin-left: 8px;
+  font-size: 10px;
+}
+.circ560-page .correct {
+  color: #168152;
+}
+.circ560-page .wrong {
+  color: #c33737;
+}
+.circ560-adjacent {
+  height: 55px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.circ560-adjacent button {
+  text-align: left;
+  padding: 8px 16px;
+}
+.circ560-adjacent button:last-child {
+  text-align: right;
+}
+body:has(.circ560-page) [data-testid="desktop-sidebar"] {
+  width: 240px !important;
+  flex-basis: 240px !important;
+}
+body:has(.circ560-page) #main-content {
+  padding: 0 8px !important;
+}
+body:has(.circ560-page) footer[aria-label="Site footer"] {
+  display: none !important;
+}
+@media (max-width: 700px) {
+  body:has(.circ560-page) [data-testid="desktop-sidebar"] {
+    display: none !important;
+    width: 0 !important;
+    flex-basis: 0 !important;
+  }
+  .circ560-page {
+    padding: 8px;
+  }
+  .circ560-hero {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .circ560-hero h1 {
+    font-size: 27px;
+  }
+  .circ560-hero aside {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .circ560-hero > section {
+    display: none;
+  }
+  .circ560-lab {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .circ560-controls {
+    height: auto;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 10px 0;
+  }
+  .circ560-stage {
+    grid-template-columns: 1fr;
+    height: 470px;
+  }
+  .circ560-stage > aside {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .circ560-stage > aside > b,
+  .circ560-stage > aside small {
+    grid-column: 1/-1;
+  }
+  .circ560-theory,
+  .circ560-bottom {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .circ560-bottom label {
+    flex-wrap: wrap;
+  }
+  .circ560-lab > aside {
+    grid-template-rows: auto;
+  }
+  .circ560-check + output {
+    width: 100%;
+  }
+  .circ560-tabs {
+    overflow-x: auto;
+  }
+}

@@ -103,6 +103,23 @@ describe("discrete lesson adapter", () => {
     expect(html).toContain('data-generated-count="30"');
     expect(html).toContain('data-challenge-total="180"');
   });
+  it("uses the dedicated circular seating lab for lesson 560", () => {
+    const lesson = lessonCatalog.find((candidate) => candidate.id === 560)!;
+    const html = renderToStaticMarkup(
+      <DiscreteLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="discrete-mockup-0617"');
+    expect(html).toContain(
+      "dedicated-circular-seat-drag-swap-rotation-equivalence",
+    );
+    expect(html).toContain('data-total="24"');
+    expect(html).toContain('data-arrangement="ABCDE"');
+    expect(html).toContain('data-challenge-total="720"');
+  });
   it("renders strengthened discrete lessons 556 through 585 with lesson-specific guidance", () => {
     const expected = new Map([
       [556, "Fundamental Counting Principle"],

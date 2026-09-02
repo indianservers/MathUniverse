@@ -1,0 +1,212 @@
+{
+  "passed": true,
+  "url": "http://127.0.0.1:2256/lessons/discrete-and-applied-mathematics/560-circular-permutations",
+  "checks": {
+    "initial": {
+      "n": "5",
+      "total": "24",
+      "arrangement": "ABCDE",
+      "visible": "ABCDE",
+      "anchor": "true",
+      "showRotations": "true",
+      "rotation": "0",
+      "canUndo": "false",
+      "canRedo": "false",
+      "challengeTotal": "720",
+      "graded": "false",
+      "correct": "false",
+      "actions": "0"
+    },
+    "swapped": {
+      "n": "5",
+      "total": "24",
+      "arrangement": "ACBDE",
+      "visible": "ACBDE",
+      "anchor": "true",
+      "showRotations": "true",
+      "rotation": "0",
+      "canUndo": "true",
+      "canRedo": "false",
+      "challengeTotal": "720",
+      "graded": "false",
+      "correct": "false",
+      "actions": "1"
+    },
+    "undone": {
+      "n": "5",
+      "total": "24",
+      "arrangement": "ABCDE",
+      "visible": "ABCDE",
+      "anchor": "true",
+      "showRotations": "true",
+      "rotation": "0",
+      "canUndo": "false",
+      "canRedo": "true",
+      "challengeTotal": "720",
+      "graded": "false",
+      "correct": "false",
+      "actions": "2"
+    },
+    "redone": {
+      "n": "5",
+      "total": "24",
+      "arrangement": "ACBDE",
+      "visible": "ACBDE",
+      "anchor": "true",
+      "showRotations": "true",
+      "rotation": "0",
+      "canUndo": "true",
+      "canRedo": "false",
+      "challengeTotal": "720",
+      "graded": "false",
+      "correct": "false",
+      "actions": "3"
+    },
+    "six": {
+      "n": "6",
+      "total": "120",
+      "arrangement": "ABCDEF",
+      "visible": "ABCDEF",
+      "anchor": "true",
+      "showRotations": "true",
+      "rotation": "0",
+      "canUndo": "false",
+      "canRedo": "false",
+      "challengeTotal": "720",
+      "graded": "false",
+      "correct": "false",
+      "actions": "4"
+    },
+    "toggles": {
+      "n": "6",
+      "total": "120",
+      "arrangement": "ABCDEF",
+      "visible": "ABCDEF",
+      "anchor": "false",
+      "showRotations": "false",
+      "rotation": "0",
+      "canUndo": "false",
+      "canRedo": "false",
+      "challengeTotal": "720",
+      "graded": "false",
+      "correct": "false",
+      "actions": "6"
+    },
+    "rotated": {
+      "n": "6",
+      "total": "120",
+      "arrangement": "ABCDEF",
+      "visible": "BCDEFA",
+      "anchor": "false",
+      "showRotations": "false",
+      "rotation": "1",
+      "canUndo": "false",
+      "canRedo": "false",
+      "challengeTotal": "720",
+      "graded": "false",
+      "correct": "false",
+      "actions": "7"
+    },
+    "formulaClass": "active",
+    "wrong": {
+      "n": "6",
+      "total": "120",
+      "arrangement": "ABCDEF",
+      "visible": "BCDEFA",
+      "anchor": "false",
+      "showRotations": "false",
+      "rotation": "1",
+      "canUndo": "false",
+      "canRedo": "false",
+      "challengeTotal": "720",
+      "graded": "true",
+      "correct": "false",
+      "actions": "10"
+    },
+    "correct": {
+      "n": "6",
+      "total": "120",
+      "arrangement": "ABCDEF",
+      "visible": "BCDEFA",
+      "anchor": "false",
+      "showRotations": "false",
+      "rotation": "1",
+      "canUndo": "false",
+      "canRedo": "false",
+      "challengeTotal": "720",
+      "graded": "true",
+      "correct": "true",
+      "actions": "12"
+    },
+    "solution": true,
+    "final": {
+      "n": "5",
+      "total": "24",
+      "arrangement": "ABCDE",
+      "visible": "ABCDE",
+      "anchor": "true",
+      "showRotations": "true",
+      "rotation": "0",
+      "canUndo": "false",
+      "canRedo": "false",
+      "challengeTotal": "720",
+      "graded": "false",
+      "correct": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1201,
+      "height": 1309
+    },
+    "overflow": false,
+    "hero": {
+      "top": 103,
+      "left": 258,
+      "width": 925,
+      "height": 136,
+      "bottom": 239
+    },
+    "tabs": {
+      "top": 251,
+      "left": 258,
+      "width": 925,
+      "height": 50,
+      "bottom": 301
+    },
+    "lab": {
+      "top": 313,
+      "left": 258,
+      "width": 925,
+      "height": 590,
+      "bottom": 903
+    },
+    "theory": {
+      "top": 915,
+      "left": 258,
+      "width": 925,
+      "height": 190,
+      "bottom": 1105
+    },
+    "bottom": {
+      "top": 1117,
+      "left": 258,
+      "width": 925,
+      "height": 125,
+      "bottom": 1242
+    },
+    "adjacent": {
+      "top": 1254,
+      "left": 258,
+      "width": 925,
+      "height": 55,
+      "bottom": 1309
+    }
+  },
+  "mobileMetrics": {
+    "documentWidth": 390,
+    "overflow": false
+  },
+  "consoleMessages": []
+}
