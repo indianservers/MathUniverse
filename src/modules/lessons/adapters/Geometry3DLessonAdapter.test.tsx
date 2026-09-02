@@ -37,7 +37,7 @@ describe("Geometry3DLessonAdapter", () => {
       [407, "Surface area"],
       [408, "Euler's polyhedron formula"],
       [409, "Transparent / X-Ray Mode"],
-      [410, "Camera controls"],
+      [410, "3D Camera Controls"],
       [411, "Orthographic views"],
       [412, "AR placement"],
       [413, "Surface z=f(x,y)"],
@@ -84,11 +84,13 @@ describe("Geometry3DLessonAdapter", () => {
         expect(html, String(lessonId)).toContain(
           lessonId === 409
             ? "Drag opaque model to rotate"
-            : /contour|gradient|tangent plane|partial derivative|multivariable|level curve|level surface|z=f\(x,y\)|implicit surface|parametric surface|space curve|quadric|cylindrical coordinates|spherical coordinates|normal vector/i.test(
-                  lesson.title,
-                )
-              ? "Drag surface"
-              : "Drag solid",
+            : lessonId === 410
+              ? "Drag to interact"
+              : /contour|gradient|tangent plane|partial derivative|multivariable|level curve|level surface|z=f\(x,y\)|implicit surface|parametric surface|space curve|quadric|cylindrical coordinates|spherical coordinates|normal vector/i.test(
+                    lesson.title,
+                  )
+                ? "Drag surface"
+                : "Drag solid",
         );
       }
       if (lessonId === 395) {
@@ -822,5 +824,24 @@ describe("Geometry3DLessonAdapter", () => {
     expect(html).toContain('data-space-diagonal="11.18"');
     expect(html).toContain('data-body-diagonal="7.81"');
     expect(html).toContain('data-face-diagonal="9.43"');
+  });
+
+  it("uses a dedicated camera-controls lab for lesson 410", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 410)!;
+    const html = renderToStaticMarkup(
+      <Geometry3DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="geometry3d-mockup-0595"');
+    expect(html).toContain(
+      "threejs-dedicated-camera-state-orbit-pan-zoom-projection-telemetry-guides-view-challenge",
+    );
+    expect(html).toContain('data-tool="orbit"');
+    expect(html).toContain('data-projection="perspective"');
+    expect(html).toContain('data-fov="45"');
+    expect(html).toContain('data-score="');
   });
 });

@@ -1,0 +1,707 @@
+.cam410-page {
+  color: #17244c;
+  background: #f6faff;
+  font-family: Inter, Arial, sans-serif;
+}
+.cam410-page * {
+  box-sizing: border-box;
+}
+.cam410-page button,
+.cam410-page input,
+.cam410-page select {
+  font: inherit;
+}
+.cam410-page button {
+  cursor: pointer;
+}
+.cam410-page h1,
+.cam410-page h2,
+.cam410-page h3 {
+  font-weight: 800;
+}
+.cam410-hero {
+  display: grid;
+  height: 166px;
+  padding: 13px;
+  grid-template-columns: 1fr 255px;
+  border-radius: 8px;
+  background: #fff;
+}
+.cam410-hero small {
+  display: inline-block;
+  margin-right: 5px;
+  padding: 4px 8px;
+  border-radius: 11px;
+  color: #078ba4;
+  background: #e8f9fb;
+  font-size: 6px;
+  font-weight: 800;
+}
+.cam410-hero small + small {
+  color: #49566e;
+  background: #edf2f7;
+}
+.cam410-hero h1 {
+  margin: 8px 0 2px;
+  font-size: 24px;
+}
+.cam410-hero > div > p {
+  margin: 0 0 8px;
+  font-size: 9px;
+}
+.cam410-badges {
+  display: flex;
+  gap: 5px;
+}
+.cam410-badges span {
+  padding: 5px 8px;
+  border: 1px solid #dce4ee;
+  border-radius: 12px;
+  font-size: 6px;
+  font-weight: 700;
+}
+.cam410-hero nav {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+}
+.cam410-hero nav > * {
+  display: flex;
+  height: 31px;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid #dce4ee;
+  border-radius: 6px;
+  padding: 0 10px;
+  color: inherit;
+  background: #fff;
+  text-decoration: none;
+  font-size: 7px;
+  font-weight: 700;
+}
+.cam410-hero nav select {
+  width: 132px;
+}
+.cam410-hero nav svg {
+  width: 11px;
+}
+.cam410-hero > aside {
+  height: 122px;
+  margin-top: 7px;
+  border: 1px solid #dce4ee;
+  border-radius: 8px;
+  padding: 12px;
+}
+.cam410-hero > aside h3 {
+  margin: 0 0 8px;
+  font-size: 9px;
+}
+.cam410-hero > aside p {
+  display: grid;
+  grid-template-columns: 14px 1fr;
+  gap: 6px;
+  margin: 7px 0;
+  font-size: 7px;
+  line-height: 1.45;
+}
+.cam410-hero > aside svg {
+  width: 12px;
+  color: #1184db;
+}
+.cam410-tabs {
+  display: grid;
+  height: 49px;
+  margin-top: 8px;
+  padding: 5px;
+  grid-template-columns: 1.55fr repeat(6, 1fr);
+  border: 1px solid #dce4ee;
+  border-radius: 8px;
+  background: #fff;
+}
+.cam410-tabs button {
+  border: 0;
+  border-radius: 7px;
+  color: #34415c;
+  background: #fff;
+  font-size: 7px;
+  font-weight: 700;
+}
+.cam410-tabs button.active {
+  color: #fff;
+  background: #08a6b7;
+}
+.cam410-lab {
+  display: grid;
+  height: 391px;
+  margin-top: 2px;
+  padding: 8px;
+  grid-template-columns: 1fr 154px;
+  gap: 8px;
+  border: 1px solid #dce4ee;
+  border-radius: 8px;
+  background: #fff;
+}
+.cam410-lab > article {
+  min-width: 0;
+}
+.cam410-stage {
+  position: relative;
+  height: 296px;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #061b31;
+}
+.cam410-stage > span {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 2;
+  display: flex;
+  height: 25px;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid #516478;
+  border-radius: 6px;
+  padding: 0 9px;
+  color: #fff;
+  background: #1b2a41;
+  font-size: 7px;
+}
+.cam410-stage > span svg {
+  width: 11px;
+}
+.cam410-stage canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+.cam410-tools {
+  position: absolute;
+  right: 9px;
+  top: 106px;
+  display: grid;
+  width: 66px;
+  border: 1px solid #455468;
+  border-radius: 7px;
+  overflow: hidden;
+}
+.cam410-tools button {
+  display: flex;
+  height: 34px;
+  align-items: center;
+  gap: 6px;
+  border: 0;
+  border-bottom: 1px solid #455468;
+  padding: 0 8px;
+  color: #fff;
+  background: #1a2c41;
+  font-size: 7px;
+}
+.cam410-tools button.active {
+  background: #079ce0;
+}
+.cam410-tools svg {
+  width: 12px;
+}
+.cam410-lab article > footer {
+  display: grid;
+  height: 56px;
+  margin-top: 8px;
+  grid-template-columns: 1.2fr repeat(3, 0.72fr) 1.25fr;
+  gap: 7px;
+}
+.cam410-lab article > footer > span {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  border: 1px solid #dce4ee;
+  border-radius: 7px;
+  background: #f8fbff;
+  font-size: 6px;
+}
+.cam410-lab article > footer span:first-child {
+  flex-wrap: wrap;
+  padding: 7px;
+  justify-content: flex-start;
+}
+.cam410-lab article > footer b {
+  padding: 5px;
+  background: #fff;
+}
+.cam410-lab article > footer strong {
+  color: #16a05e;
+  font-size: 11px;
+}
+.cam410-lab article > footer > span:nth-child(3) strong {
+  color: #147de0;
+}
+.cam410-lab article > footer > span:nth-child(4) strong {
+  color: #714cdf;
+}
+.cam410-lab article > footer button {
+  height: 26px;
+  border: 0;
+  border-radius: 6px;
+  padding: 0 7px;
+  background: transparent;
+}
+.cam410-lab article > footer button.active {
+  color: #087cbf;
+  background: #dff7fa;
+}
+.cam410-note {
+  margin: 5px 0;
+  text-align: center;
+  color: #68758c;
+  font-size: 6px;
+}
+.cam410-note b {
+  color: #087ed4;
+}
+.cam410-coach {
+  height: 375px;
+  border: 1px solid #dce4ee;
+  border-radius: 7px;
+  padding: 9px;
+}
+.cam410-coach h3 {
+  margin: 0 0 8px;
+  font-size: 8px;
+}
+.cam410-coach nav {
+  display: grid;
+  height: 27px;
+  grid-template-columns: 1fr 1fr;
+  border-radius: 6px;
+  background: #f0f4f8;
+}
+.cam410-coach nav button {
+  border: 0;
+  background: transparent;
+  font-size: 6px;
+}
+.cam410-coach nav button.active {
+  border: 1px solid #73ccf5;
+  border-radius: 6px;
+  color: #087ac9;
+  background: #e7f7ff;
+}
+.cam410-coach > p {
+  position: relative;
+  height: 49px;
+  margin: 0;
+  border-bottom: 1px solid #e3eaf1;
+  padding-top: 9px;
+  font-size: 6px;
+}
+.cam410-coach > p b {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 8px;
+}
+.cam410-coach > p svg,
+.cam410-coach > p kbd {
+  position: absolute;
+  right: 2px;
+  top: 14px;
+  width: 17px;
+}
+.cam410-coach > p kbd {
+  display: grid;
+  height: 17px;
+  place-items: center;
+  border: 1px solid #a8b6c6;
+  border-radius: 4px;
+}
+.cam410-coach footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding-top: 12px;
+  color: #087ac9;
+  font-size: 6px;
+}
+.cam410-coach footer svg {
+  width: 12px;
+}
+.cam410-guided {
+  height: 229px;
+  margin-top: 8px;
+  border: 1px solid #dce4ee;
+  border-radius: 8px;
+  padding: 8px;
+  background: #fff;
+}
+.cam410-guided h2,
+.cam410-before h2,
+.cam410-reference h2,
+.cam410-challenge h2 {
+  margin: 0;
+  font-size: 9px;
+}
+.cam410-guided h2 small,
+.cam410-before h2 small {
+  font-weight: 400;
+}
+.cam410-guided > div {
+  display: grid;
+  height: 190px;
+  margin-top: 8px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 9px;
+}
+.cam410-guided article {
+  position: relative;
+  border: 1px solid #dce4ee;
+  border-radius: 7px;
+  padding: 10px;
+}
+.cam410-guided article.active {
+  border-color: #159bd1;
+}
+.cam410-guided article > b {
+  position: absolute;
+  display: grid;
+  width: 20px;
+  height: 20px;
+  place-items: center;
+  border-radius: 50%;
+  color: #fff;
+  background: #1383cf;
+}
+.cam410-guided h3 {
+  height: 28px;
+  margin: 0 0 0 28px;
+  font-size: 8px;
+  line-height: 1.4;
+}
+.cam410-guided p {
+  height: 35px;
+  margin: 7px 0 0 28px;
+  font-size: 6px;
+  line-height: 1.5;
+}
+.cam410-guided .cam410-mini {
+  width: 100% !important;
+  height: 76px !important;
+}
+.cam410-guided button {
+  display: block;
+  width: 82px;
+  height: 24px;
+  margin: -1px auto 0;
+  border: 1px solid #79cbea;
+  border-radius: 5px;
+  color: #0785b5;
+  background: #fff;
+  font-size: 6px;
+}
+.cam410-before {
+  height: 143px;
+  margin-top: 8px;
+  border: 1px solid #dce4ee;
+  border-radius: 8px;
+  padding: 10px;
+  background: #fff;
+}
+.cam410-before > div {
+  display: grid;
+  height: 87px;
+  margin-top: 8px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.cam410-before > div button {
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.cam410-before .cam410-mini {
+  width: 100% !important;
+  height: 87px !important;
+}
+.cam410-before > p {
+  margin: 5px;
+  text-align: center;
+  color: #65748b;
+  font-size: 6px;
+}
+.cam410-before > p b {
+  color: #1684dd;
+}
+.cam410-reference {
+  display: grid;
+  height: 219px;
+  margin-top: 8px;
+  grid-template-columns: 0.92fr 0.98fr 1.08fr;
+  gap: 8px;
+}
+.cam410-reference > article {
+  border: 1px solid #dce4ee;
+  border-radius: 8px;
+  padding: 10px;
+  background: #fff;
+}
+.cam410-reference h2 {
+  color: #0874c7;
+}
+.cam410-reference table {
+  width: 100%;
+  margin-top: 8px;
+  border-collapse: collapse;
+  font-size: 6px;
+}
+.cam410-reference td,
+.cam410-reference th {
+  height: 19px;
+  border-bottom: 1px solid #e2e9f0;
+  text-align: left;
+}
+.cam410-reference th {
+  text-align: right;
+}
+.cam410-reference > article:nth-child(2) > p {
+  display: grid;
+  height: 26px;
+  margin: 0;
+  grid-template-columns: 85px 1fr;
+  align-items: center;
+  border-bottom: 1px solid #e2e9f0;
+  font-size: 6px;
+}
+.cam410-reference kbd {
+  width: max-content;
+  border: 1px solid #aab8c7;
+  border-radius: 4px;
+  padding: 3px;
+  background: #fff;
+}
+.cam410-reference label {
+  display: grid;
+  position: relative;
+  height: 86px;
+  margin-top: 8px;
+  grid-template-columns: 18px 1fr;
+  border: 1px solid #dce4ee;
+  border-radius: 7px;
+  padding: 9px;
+  background: #fff;
+}
+.cam410-reference label.active {
+  border-color: #8ecfee;
+  background: #eaf8ff;
+}
+.cam410-reference label input {
+  margin: 0;
+}
+.cam410-reference label b {
+  font-size: 8px;
+}
+.cam410-reference label span {
+  grid-column: 2;
+  margin-top: 5px;
+  font-size: 6px;
+  line-height: 1.45;
+}
+.cam410-challenge {
+  display: grid;
+  position: relative;
+  height: 159px;
+  margin-top: 8px;
+  padding: 10px;
+  grid-template-columns: 1fr 34px 1fr 218px;
+  grid-template-rows: 31px 83px 18px;
+  gap: 3px;
+  border: 1px solid #dce4ee;
+  border-radius: 8px;
+  background: #fff;
+}
+.cam410-challenge header {
+  grid-column: 1/-1;
+}
+.cam410-challenge header p {
+  margin: 4px 0;
+  font-size: 7px;
+}
+.cam410-challenge > article {
+  min-width: 0;
+}
+.cam410-challenge > article > b {
+  display: block;
+  height: 17px;
+  font-size: 7px;
+}
+.cam410-challenge > article .cam410-mini {
+  width: 100% !important;
+  height: 65px !important;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.cam410-challenge > strong {
+  display: grid;
+  place-items: center;
+  color: #1483df;
+  font-size: 35px;
+}
+.cam410-challenge > aside {
+  grid-row: 2/4;
+  grid-column: 4;
+  padding: 6px;
+  border: 1px solid #e8c877;
+  border-radius: 7px;
+}
+.cam410-challenge > aside h3 {
+  margin: 0 0 3px;
+  font-size: 7px;
+}
+.cam410-challenge > aside p {
+  display: flex;
+  justify-content: space-between;
+  height: 13px;
+  margin: 1px 0;
+  font-size: 6px;
+}
+.cam410-challenge > aside svg {
+  width: 10px;
+  color: #1585d5;
+}
+.cam410-challenge > aside hr {
+  border: 0;
+  border-top: 1px solid #dce4ee;
+}
+.cam410-challenge > button {
+  height: 24px;
+  border: 1px solid #7fd0ed;
+  border-radius: 12px;
+  color: #0786b8;
+  background: #fff;
+  font-size: 6px;
+}
+.cam410-challenge > button:nth-of-type(1) {
+  position: absolute;
+  z-index: 2;
+  left: 195px;
+  bottom: 22px;
+  width: 95px;
+  color: #fff;
+  background: #118ee6;
+}
+.cam410-challenge > button:nth-of-type(2) {
+  position: absolute;
+  right: 65px;
+  bottom: 3px;
+}
+.cam410-challenge > footer {
+  position: absolute;
+  bottom: 4px;
+  left: 10px;
+  font-size: 6px;
+}
+.cam410-next {
+  display: flex;
+  height: 39px;
+  margin-top: 8px;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #dce4ee;
+  border-radius: 8px;
+  padding: 0 12px;
+  background: #fff;
+}
+.cam410-next a {
+  display: flex;
+  width: 250px;
+  gap: 7px;
+  color: inherit;
+  text-decoration: none;
+  font-size: 6px;
+}
+.cam410-next a:last-child {
+  justify-content: flex-end;
+  text-align: right;
+}
+.cam410-next small {
+  display: block;
+  font-size: 7px;
+}
+@media (min-width: 960px) and (max-width: 1120px) {
+  body:has(.cam410-page) [data-testid="desktop-sidebar"] {
+    width: 190px !important;
+    flex-basis: 190px !important;
+  }
+  body:has(.cam410-page) .app-layout-rail > div > header {
+    height: 56px;
+  }
+  body:has(.cam410-page) #main-content {
+    padding-right: 18px !important;
+    padding-left: 12px !important;
+  }
+  body:has(.cam410-page) footer[aria-label="Site footer"] {
+    height: 95px !important;
+    margin-top: 9px !important;
+  }
+  body:has(.cam410-page) footer[aria-label="Site footer"] > div {
+    height: 95px !important;
+  }
+}
+@media (max-width: 650px) {
+  .cam410-hero,
+  .cam410-lab,
+  .cam410-reference {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .cam410-hero > aside {
+    height: auto;
+  }
+  .cam410-tabs {
+    height: auto;
+    grid-template-columns: 1fr 1fr;
+  }
+  .cam410-tabs button {
+    min-height: 34px;
+  }
+  .cam410-stage {
+    height: 430px;
+  }
+  .cam410-lab article > footer {
+    height: auto;
+    grid-template-columns: 1fr 1fr;
+  }
+  .cam410-coach {
+    height: auto;
+  }
+  .cam410-guided,
+  .cam410-before,
+  .cam410-challenge {
+    height: auto;
+  }
+  .cam410-guided > div,
+  .cam410-before > div {
+    height: auto;
+    grid-template-columns: 1fr 1fr;
+  }
+  .cam410-guided article {
+    min-height: 190px;
+  }
+  .cam410-reference > article {
+    min-height: 220px;
+  }
+  .cam410-challenge {
+    grid-template-columns: 1fr;
+  }
+  .cam410-challenge > * {
+    position: static !important;
+    grid-column: 1 !important;
+    grid-row: auto !important;
+  }
+  .cam410-challenge > article {
+    min-height: 150px;
+  }
+  .cam410-page {
+    overflow-x: hidden;
+  }
+}
