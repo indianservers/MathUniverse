@@ -1,0 +1,174 @@
+{
+  "passed": true,
+  "url": "http://127.0.0.1:2256/lessons/discrete-and-applied-mathematics/565-vertex-and-edge-builder",
+  "checks": {
+    "initial": {
+      "vertices": "5",
+      "edges": "7",
+      "degreeSum": "14",
+      "handshake": "true",
+      "mode": "edge",
+      "directed": "false",
+      "selected": "",
+      "positions": "A:105,150;B:275,50;C:485,150;D:225,365;E:440,365",
+      "challenge": "false",
+      "actions": "0"
+    },
+    "edgeAdded": {
+      "vertices": "5",
+      "edges": "8",
+      "degreeSum": "16",
+      "handshake": "true",
+      "mode": "edge",
+      "directed": "false",
+      "selected": "",
+      "positions": "A:105,150;B:275,50;C:485,150;D:225,365;E:440,365",
+      "challenge": "false",
+      "actions": "2"
+    },
+    "edgeRemoved": {
+      "vertices": "5",
+      "edges": "7",
+      "degreeSum": "14",
+      "handshake": "true",
+      "mode": "edge",
+      "directed": "false",
+      "selected": "",
+      "positions": "A:105,150;B:275,50;C:485,150;D:225,365;E:440,365",
+      "challenge": "false",
+      "actions": "3"
+    },
+    "vertexAdded": {
+      "vertices": "6",
+      "edges": "7",
+      "degreeSum": "14",
+      "handshake": "true",
+      "mode": "vertex",
+      "directed": "false",
+      "selected": "",
+      "positions": "A:105,150;B:275,50;C:485,150;D:225,365;E:440,365;F:528,254",
+      "challenge": "false",
+      "actions": "5"
+    },
+    "vertexConnected": {
+      "vertices": "6",
+      "edges": "8",
+      "degreeSum": "16",
+      "handshake": "true",
+      "mode": "edge",
+      "directed": "false",
+      "selected": "",
+      "positions": "A:105,150;B:275,50;C:485,150;D:225,365;E:440,365;F:528,254",
+      "challenge": "false",
+      "actions": "8"
+    },
+    "dragged": {
+      "vertices": "6",
+      "edges": "8",
+      "degreeSum": "16",
+      "handshake": "true",
+      "mode": "move",
+      "directed": "false",
+      "selected": "",
+      "positions": "A:133,165;B:275,50;C:485,150;D:225,365;E:440,365;F:528,254",
+      "challenge": "false",
+      "actions": "9"
+    },
+    "dragChangedPosition": true,
+    "directed": {
+      "vertices": "6",
+      "edges": "8",
+      "degreeSum": "16",
+      "handshake": "true",
+      "mode": "move",
+      "directed": "true",
+      "selected": "",
+      "positions": "A:133,165;B:275,50;C:485,150;D:225,365;E:440,365;F:528,254",
+      "challenge": "false",
+      "actions": "10"
+    },
+    "arrows": 8,
+    "zoomLabel": "110%",
+    "zoomTransformChanged": true,
+    "formulaVisible": true,
+    "challenge": {
+      "vertices": "6",
+      "edges": "8",
+      "degreeSum": "16",
+      "handshake": "true",
+      "mode": "move",
+      "directed": "true",
+      "selected": "",
+      "positions": "A:105,150;B:275,50;C:485,150;D:225,365;E:440,365;F:540,290",
+      "challenge": "true",
+      "actions": "13"
+    },
+    "hintVisible": true,
+    "final": {
+      "vertices": "5",
+      "edges": "7",
+      "degreeSum": "14",
+      "handshake": "true",
+      "mode": "edge",
+      "directed": "false",
+      "selected": "",
+      "positions": "A:105,150;B:275,50;C:485,150;D:225,365;E:440,365",
+      "challenge": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1028,
+      "height": 1530
+    },
+    "overflow": false,
+    "hero": {
+      "top": 113,
+      "left": 248,
+      "width": 761,
+      "height": 142,
+      "bottom": 255
+    },
+    "tabs": {
+      "top": 265,
+      "left": 248,
+      "width": 761,
+      "height": 36,
+      "bottom": 301
+    },
+    "workspace": {
+      "top": 313,
+      "left": 248,
+      "width": 761,
+      "height": 659,
+      "bottom": 972
+    },
+    "canvas": {
+      "top": 403,
+      "left": 260,
+      "width": 522,
+      "height": 425,
+      "bottom": 828
+    },
+    "bottom": {
+      "top": 985,
+      "left": 248,
+      "width": 761,
+      "height": 325,
+      "bottom": 1310
+    },
+    "adjacent": {
+      "top": 1320,
+      "left": 248,
+      "width": 761,
+      "height": 70,
+      "bottom": 1390
+    }
+  },
+  "mobileMetrics": {
+    "documentWidth": 390,
+    "overflow": false
+  },
+  "consoleMessages": []
+}

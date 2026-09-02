@@ -190,6 +190,21 @@ describe("discrete lesson adapter", () => {
     expect(html).toContain('data-guarantee="2"');
     expect(html).toContain('data-challenge-total="3"');
   });
+  it("uses the dedicated editable graph canvas for lesson 565", () => {
+    const lesson = lessonCatalog.find((candidate) => candidate.id === 565)!;
+    const html = renderToStaticMarkup(
+      <DiscreteLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="discrete-mockup-0622"');
+    expect(html).toContain("dedicated-editable-vertex-edge-svg-graph");
+    expect(html).toContain('data-vertices="5"');
+    expect(html).toContain('data-edges="7"');
+    expect(html).toContain('data-degree-sum="14"');
+  });
   it("renders strengthened discrete lessons 556 through 585 with lesson-specific guidance", () => {
     const expected = new Map([
       [556, "Fundamental Counting Principle"],

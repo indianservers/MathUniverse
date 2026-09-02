@@ -1,0 +1,620 @@
+.graph565-page {
+  --graph565-ink: #152235;
+  --graph565-muted: #617083;
+  --graph565-blue: #1f66cc;
+  --graph565-line: #dce4ec;
+  color: var(--graph565-ink);
+  letter-spacing: 0;
+}
+
+.graph565-page button {
+  font: inherit;
+}
+
+.graph565-hero {
+  align-items: center;
+  background: #f7f9fb;
+  border-bottom: 1px solid var(--graph565-line);
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid var(--graph565-line);
+  border-radius: 14px;
+  margin: 14px 10px 0;
+  box-sizing: border-box;
+  height: 142px;
+  padding: 18px;
+}
+
+.graph565-hero > div {
+  max-width: 710px;
+}
+
+.graph565-hero small {
+  color: #3269a4;
+  display: block;
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1.55;
+  text-transform: uppercase;
+}
+
+.graph565-hero h1 {
+  font-size: 34px;
+  line-height: 1.15;
+  margin: 7px 0 8px;
+}
+
+.graph565-hero p,
+.graph565-workspace main > p {
+  color: var(--graph565-muted);
+  font-size: 12px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.graph565-hero > aside {
+  display: flex;
+  gap: 32px;
+  min-width: 170px;
+}
+
+.graph565-hero > aside span {
+  color: var(--graph565-muted);
+  font-size: 10px;
+}
+
+.graph565-hero > aside b {
+  color: var(--graph565-ink);
+  display: block;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.graph565-tabs {
+  align-items: stretch;
+  border-bottom: 1px solid var(--graph565-line);
+  display: flex;
+  border: 1px solid var(--graph565-line);
+  border-radius: 8px;
+  height: 36px;
+  margin: 10px 10px 0;
+  padding: 0 8px;
+}
+
+.graph565-tabs button {
+  background: transparent;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  color: #657386;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 0 19px;
+}
+
+.graph565-tabs button.active {
+  border-bottom-color: var(--graph565-blue);
+  color: var(--graph565-blue);
+}
+
+.graph565-tab-panel {
+  align-items: center;
+  background: #eef6ff;
+  border-bottom: 1px solid #cfe1f3;
+  color: #41617e;
+  display: flex;
+  font-size: 11px;
+  gap: 16px;
+  min-height: 42px;
+  padding: 8px 38px;
+}
+
+.graph565-tab-panel b {
+  color: #175ba8;
+  flex: 0 0 auto;
+}
+
+.graph565-workspace {
+  background: white;
+  border: 1px solid var(--graph565-line);
+  border-radius: 8px;
+  display: grid;
+  box-sizing: border-box;
+  gap: 15px;
+  grid-template-columns: minmax(0, 1fr) 200px;
+  margin: 12px 10px 0;
+  height: 659px;
+  padding: 12px 11px 20px;
+}
+
+.graph565-workspace h2 {
+  font-size: 17px;
+  margin: 0 0 6px;
+}
+
+.graph565-canvas {
+  background: #101d2d;
+  border-radius: 6px;
+  height: 425px;
+  margin-top: 9px;
+  overflow: hidden;
+  position: relative;
+}
+
+.graph565-canvas::before {
+  background-image: radial-gradient(circle, #405067 1px, transparent 1px);
+  background-size: 18px 18px;
+  content: "";
+  inset: 0;
+  opacity: 0.36;
+  pointer-events: none;
+  position: absolute;
+}
+
+.graph565-canvas > aside {
+  background: #1d2b3d;
+  border: 1px solid #405169;
+  border-radius: 5px;
+  display: flex;
+  gap: 2px;
+  left: 14px;
+  padding: 3px;
+  position: absolute;
+  top: 14px;
+  z-index: 2;
+}
+
+.graph565-canvas > aside button,
+.graph565-zoom button {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  border-radius: 3px;
+  color: #cbd6e2;
+  cursor: pointer;
+  display: flex;
+  height: 30px;
+  justify-content: center;
+  width: 30px;
+}
+
+.graph565-canvas > aside button.active,
+.graph565-canvas > aside button:hover,
+.graph565-zoom button:hover {
+  background: #316bc1;
+  color: white;
+}
+
+.graph565-canvas svg {
+  display: block;
+  height: 100%;
+  position: relative;
+  touch-action: none;
+  width: 100%;
+  z-index: 1;
+}
+
+.graph565-edge {
+  cursor: pointer;
+}
+
+.graph565-edge line {
+  stroke: #a9b9c9;
+  stroke-width: 3;
+}
+
+.graph565-edge:hover line {
+  stroke: #ef7865;
+  stroke-width: 5;
+}
+
+.graph565-edge text {
+  fill: #d9e4ef;
+  font-size: 15px;
+  font-weight: 800;
+  paint-order: stroke;
+  stroke: #101d2d;
+  stroke-width: 5px;
+}
+
+.graph565-canvas svg > g[data-testid] {
+  cursor: pointer;
+}
+
+.graph565-canvas svg > g[data-testid] circle {
+  fill: #1d67c7;
+  stroke: #e8f3ff;
+  stroke-width: 3;
+}
+
+.graph565-canvas svg > g[data-testid].selected circle {
+  fill: #f1a239;
+  stroke: #fff4da;
+  stroke-width: 5;
+}
+
+.graph565-canvas svg > g[data-testid] text {
+  fill: white;
+  font-size: 16px;
+  font-weight: 900;
+  pointer-events: none;
+}
+
+.graph565-zoom {
+  align-items: center;
+  background: #1d2b3d;
+  border: 1px solid #405169;
+  border-radius: 5px;
+  bottom: 14px;
+  color: white;
+  display: flex;
+  position: absolute;
+  right: 14px;
+  z-index: 2;
+}
+
+.graph565-zoom output {
+  font-size: 10px;
+  min-width: 42px;
+  text-align: center;
+}
+
+.graph565-canvas svg,
+.graph565-canvas svg * {
+  transform-origin: center;
+}
+
+.graph565-controls {
+  border: 1px solid var(--graph565-line);
+  border-radius: 5px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 12px;
+}
+
+.graph565-controls > div {
+  align-items: center;
+  display: flex;
+  gap: 7px;
+  min-height: 79px;
+  padding: 9px 12px;
+}
+
+.graph565-controls > div + div {
+  border-left: 1px solid var(--graph565-line);
+}
+
+.graph565-controls b {
+  font-size: 10px;
+  margin-right: auto;
+  text-transform: uppercase;
+}
+
+.graph565-controls button,
+.graph565-bottom button {
+  align-items: center;
+  background: white;
+  border: 1px solid #cad5df;
+  border-radius: 4px;
+  color: #4c5b6d;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 10px;
+  font-weight: 700;
+  gap: 5px;
+  min-height: 30px;
+  padding: 5px 10px;
+}
+
+.graph565-controls button.active,
+.graph565-bottom button:first-of-type {
+  background: var(--graph565-blue);
+  border-color: var(--graph565-blue);
+  color: white;
+}
+
+.graph565-controls svg,
+.graph565-bottom button svg {
+  height: 13px;
+  width: 13px;
+}
+
+.graph565-workspace main > footer {
+  align-items: center;
+  background: #eef6ff;
+  border-radius: 4px;
+  color: #41617e;
+  display: flex;
+  font-size: 10px;
+  gap: 7px;
+  margin-top: 10px;
+  padding: 9px 11px;
+}
+
+.graph565-workspace main > footer svg {
+  color: #df942e;
+  height: 15px;
+  width: 15px;
+}
+
+.graph565-workspace main > p {
+  background: #eef7ff;
+  border: 1px solid #c9e2f4;
+  border-radius: 5px;
+  margin-top: 10px;
+  padding: 7px 9px;
+}
+
+.graph565-workspace > aside {
+  border-left: 1px solid var(--graph565-line);
+  padding-left: 10px;
+}
+
+.graph565-workspace > aside > article {
+  align-items: center;
+  border: 1px solid #dfe7ef;
+  border-radius: 6px;
+  color: var(--graph565-muted);
+  display: flex;
+  font-size: 10px;
+  justify-content: space-between;
+  margin-bottom: 9px;
+  min-height: 53px;
+  padding: 7px 10px;
+}
+
+.graph565-workspace > aside > article strong {
+  color: var(--graph565-ink);
+  font-size: 14px;
+}
+
+.graph565-workspace > aside > article:nth-of-type(4) {
+  align-items: flex-start;
+  background: #edf8f1;
+  border: 1px solid #cde9d6;
+  border-radius: 4px;
+  display: block;
+  margin-top: 0;
+  padding: 9px;
+}
+
+.graph565-workspace > aside > article:nth-of-type(4) strong {
+  color: #197843;
+  display: block;
+  font-size: 11px;
+  margin-top: 4px;
+}
+
+.graph565-workspace > aside section {
+  border-bottom: 1px solid var(--graph565-line);
+  padding: 10px 0;
+}
+
+.graph565-workspace > aside h3 {
+  font-size: 11px;
+  margin: 0 0 5px;
+}
+
+.graph565-workspace > aside section p {
+  color: #526174;
+  font-family: Consolas, monospace;
+  font-size: 9px;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.graph565-bottom {
+  background: #f7f9fb;
+  border-bottom: 1px solid var(--graph565-line);
+  border-top: 1px solid var(--graph565-line);
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 13px 10px 0;
+  padding: 0;
+}
+
+.graph565-bottom > article {
+  background: white;
+  border: 1px solid #dbe3eb;
+  border-radius: 6px;
+  box-sizing: border-box;
+  height: 323px;
+  padding: 15px;
+}
+
+.graph565-bottom h3 {
+  font-size: 13px;
+  margin: 0 0 10px;
+}
+
+.graph565-bottom p {
+  color: var(--graph565-muted);
+  font-size: 10px;
+  line-height: 1.55;
+}
+
+.graph565-bottom p svg {
+  color: #268152;
+  height: 11px;
+  vertical-align: -2px;
+  width: 11px;
+}
+
+.graph565-mini {
+  display: block;
+  height: 88px;
+  margin: 2px auto 8px;
+  width: 150px;
+}
+
+.graph565-mini path {
+  fill: none;
+  stroke: #99aabc;
+  stroke-width: 2;
+}
+
+.graph565-mini circle {
+  fill: #2c72ca;
+  stroke: white;
+  stroke-width: 2;
+}
+
+.graph565-bottom output {
+  background: #edf4fd;
+  border-radius: 4px;
+  color: #175ba8;
+  display: block;
+  font-family: Georgia, serif;
+  font-size: 18px;
+  padding: 10px;
+  text-align: center;
+}
+
+.graph565-bottom article > aside {
+  background: #fff5e8;
+  border-left: 3px solid #e59735;
+  margin-top: 10px;
+  padding: 8px 10px;
+}
+
+.graph565-bottom article > aside b,
+.graph565-bottom article > aside p {
+  font-size: 9px;
+  margin: 0;
+}
+
+.graph565-bottom button {
+  margin: 5px 5px 0 0;
+}
+
+.graph565-adjacent {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid var(--graph565-line);
+  border-radius: 8px;
+  margin: 10px;
+  min-height: 70px;
+  padding: 12px 14px;
+}
+
+.graph565-adjacent button {
+  background: transparent;
+  border: 0;
+  color: #6c7889;
+  cursor: pointer;
+  font-size: 9px;
+  text-align: left;
+}
+
+.graph565-adjacent button:last-child {
+  text-align: right;
+}
+
+.graph565-adjacent button b {
+  color: var(--graph565-ink);
+  font-size: 11px;
+}
+
+.graph565-adjacent span {
+  color: #b7c2ce;
+  font-size: 8px;
+  word-spacing: 3px;
+}
+
+body:has(.graph565-page) [data-testid="desktop-sidebar"] {
+  flex-basis: 226px !important;
+  width: 226px !important;
+}
+
+@media (max-width: 760px) {
+  body:has(.graph565-page) [data-testid="desktop-sidebar"] {
+    display: none !important;
+    flex-basis: 0 !important;
+    width: 0 !important;
+  }
+
+  body:has(.graph565-page) #main-content {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .graph565-hero {
+    align-items: flex-start;
+    display: block;
+    height: auto;
+    padding: 20px 16px;
+  }
+
+  .graph565-hero h1 {
+    font-size: 25px;
+  }
+
+  .graph565-hero > aside {
+    margin-top: 14px;
+  }
+
+  .graph565-tabs {
+    overflow-x: auto;
+    padding: 0 8px;
+  }
+
+  .graph565-tabs button {
+    flex: 0 0 auto;
+    padding: 0 12px;
+  }
+
+  .graph565-tab-panel {
+    align-items: flex-start;
+    padding: 9px 14px;
+  }
+
+  .graph565-workspace {
+    display: block;
+    height: auto;
+    padding: 18px 14px;
+  }
+
+  .graph565-canvas {
+    height: 310px;
+  }
+
+  .graph565-controls,
+  .graph565-bottom {
+    display: block;
+  }
+
+  .graph565-controls > div + div {
+    border-left: 0;
+    border-top: 1px solid var(--graph565-line);
+  }
+
+  .graph565-workspace > aside {
+    border-left: 0;
+    border-top: 1px solid var(--graph565-line);
+    margin-top: 20px;
+    padding: 18px 0 0;
+  }
+
+  .graph565-bottom {
+    padding: 16px 14px;
+  }
+
+  .graph565-bottom > article + article {
+    margin-top: 12px;
+  }
+
+  .graph565-bottom > article {
+    height: auto;
+    min-height: 250px;
+  }
+
+  .graph565-adjacent {
+    padding: 10px 14px;
+  }
+
+  .graph565-adjacent span {
+    display: none;
+  }
+}
