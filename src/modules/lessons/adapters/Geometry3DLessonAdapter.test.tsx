@@ -40,7 +40,7 @@ describe("Geometry3DLessonAdapter", () => {
       [410, "3D Camera Controls"],
       [411, "Orthographic Views"],
       [412, "AR Placement"],
-      [413, "Surface z=f(x,y)"],
+      [413, "Surfaces"],
       [414, "Implicit surfaces"],
       [415, "Parametric surfaces"],
       [416, "Space curves"],
@@ -90,11 +90,13 @@ describe("Geometry3DLessonAdapter", () => {
                 ? "3D Solid (Rotatable)"
                 : lessonId === 412
                   ? "AR lesson simulator"
-                  : /contour|gradient|tangent plane|partial derivative|multivariable|level curve|level surface|z=f\(x,y\)|implicit surface|parametric surface|space curve|quadric|cylindrical coordinates|spherical coordinates|normal vector/i.test(
-                        lesson.title,
-                      )
-                    ? "Drag surface"
-                    : "Drag solid",
+                  : lessonId === 413
+                    ? "Equation editor"
+                    : /contour|gradient|tangent plane|partial derivative|multivariable|level curve|level surface|z=f\(x,y\)|implicit surface|parametric surface|space curve|quadric|cylindrical coordinates|spherical coordinates|normal vector/i.test(
+                          lesson.title,
+                        )
+                      ? "Drag surface"
+                      : "Drag solid",
         );
       }
       if (lessonId === 395) {
@@ -888,5 +890,24 @@ describe("Geometry3DLessonAdapter", () => {
     expect(html).toContain('data-scale="1"');
     expect(html).toContain('data-locked="true"');
     expect(html).toContain("/assets/lesson-412/ar-study-room.png");
+  });
+
+  it("uses a dedicated synchronized height-surface lab for lesson 413", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 413)!;
+    const html = renderToStaticMarkup(
+      <Geometry3DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="geometry3d-mockup-0598"');
+    expect(html).toContain(
+      "threejs-dedicated-parametric-height-surface-contours-traces-gradient-tangent-plane-saddle-challenge",
+    );
+    expect(html).toContain('data-preset="saddle"');
+    expect(html).toContain('data-gradient="0,0"');
+    expect(html).toContain('data-range="-9,9"');
+    expect(html).toContain('data-challenge="correct"');
   });
 });
