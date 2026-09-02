@@ -1085,4 +1085,22 @@ describe("Geometry3DLessonAdapter", () => {
     expect(html).toContain('data-gx="1.5"');
     expect(html).toContain('data-gy="0"');
   });
+
+  it("uses a dedicated tangent-plane linearization model for lesson 424", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 424)!;
+    const html = renderToStaticMarkup(
+      <Geometry3DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="geometry3d-mockup-0609"');
+    expect(html).toContain(
+      "threejs-dedicated-draggable-sinx-cosy-contact-point",
+    );
+    expect(html).toContain('data-a="0.6"');
+    expect(html).toContain('data-b="0.3"');
+    expect(html).toContain("Local approximation error");
+  });
 });

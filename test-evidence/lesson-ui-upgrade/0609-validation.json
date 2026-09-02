@@ -1,0 +1,191 @@
+{
+  "passed": true,
+  "url": "http://127.0.0.1:2256/lessons/3d-mathematics/424-tangent-plane",
+  "checks": {
+    "initial": {
+      "a": "0.6",
+      "b": "0.3",
+      "z": "0.5394",
+      "fx": "0.7885",
+      "fy": "-0.1669",
+      "error": "0.1094",
+      "zoomed": "false",
+      "graded": "false",
+      "correct": "false",
+      "solution": "false",
+      "actions": "0"
+    },
+    "orbitPixelsChanged": true,
+    "canvas": {
+      "width": 430,
+      "height": 397,
+      "nonblank": true
+    },
+    "pointDrag": {
+      "before": {
+        "a": "0.6",
+        "b": "0.3",
+        "z": "0.5394",
+        "fx": "0.7885",
+        "fy": "-0.1669",
+        "error": "0.1094",
+        "zoomed": "false",
+        "graded": "false",
+        "correct": "false",
+        "solution": "false",
+        "actions": "1"
+      },
+      "after": {
+        "a": "0.6472",
+        "b": "0.387",
+        "z": "0.5584",
+        "fx": "0.7388",
+        "fy": "-0.2276",
+        "error": "0.1153",
+        "zoomed": "false",
+        "graded": "false",
+        "correct": "false",
+        "solution": "false",
+        "actions": "23"
+      }
+    },
+    "changed": {
+      "a": "0.9984",
+      "b": "-0.0016",
+      "z": "0.8406",
+      "fx": "0.5416",
+      "fy": "0.0013",
+      "error": "0.114",
+      "zoomed": "false",
+      "graded": "false",
+      "correct": "false",
+      "solution": "false",
+      "actions": "25"
+    },
+    "zoomed": {
+      "a": "0.9984",
+      "b": "-0.0016",
+      "z": "0.8406",
+      "fx": "0.5416",
+      "fy": "0.0013",
+      "error": "0.02",
+      "zoomed": "true",
+      "graded": "false",
+      "correct": "false",
+      "solution": "false",
+      "actions": "26"
+    },
+    "errorShrank": true,
+    "formula": "active",
+    "wrong": {
+      "a": "0.9984",
+      "b": "-0.0016",
+      "z": "0.8406",
+      "fx": "0.5416",
+      "fy": "0.0013",
+      "error": "0.02",
+      "zoomed": "true",
+      "graded": "true",
+      "correct": "false",
+      "solution": "false",
+      "actions": "33"
+    },
+    "correct": {
+      "a": "0.9984",
+      "b": "-0.0016",
+      "z": "0.8406",
+      "fx": "0.5416",
+      "fy": "0.0013",
+      "error": "0.02",
+      "zoomed": "true",
+      "graded": "true",
+      "correct": "true",
+      "solution": "false",
+      "actions": "36"
+    },
+    "hintVisible": true,
+    "solutionVisible": true,
+    "final": {
+      "a": "0.6",
+      "b": "0.3",
+      "z": "0.5394",
+      "fx": "0.7885",
+      "fy": "-0.1669",
+      "error": "0.1094",
+      "zoomed": "false",
+      "graded": "false",
+      "correct": "false",
+      "solution": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 956,
+      "height": 1645
+    },
+    "overflow": false,
+    "hero": {
+      "top": 93,
+      "left": 203,
+      "width": 744,
+      "height": 174,
+      "bottom": 267
+    },
+    "tabs": {
+      "top": 277,
+      "left": 203,
+      "width": 744,
+      "height": 43,
+      "bottom": 320
+    },
+    "lab": {
+      "top": 330,
+      "left": 203,
+      "width": 744,
+      "height": 657,
+      "bottom": 987
+    },
+    "canvas": {
+      "top": 386,
+      "left": 216,
+      "width": 430,
+      "height": 397,
+      "bottom": 783
+    },
+    "worked": {
+      "top": 997,
+      "left": 203,
+      "width": 744,
+      "height": 212,
+      "bottom": 1209
+    },
+    "info": {
+      "top": 1219,
+      "left": 203,
+      "width": 744,
+      "height": 181,
+      "bottom": 1400
+    },
+    "challenge": {
+      "top": 1410,
+      "left": 203,
+      "width": 744,
+      "height": 163,
+      "bottom": 1573
+    },
+    "adjacent": {
+      "top": 1583,
+      "left": 203,
+      "width": 744,
+      "height": 58,
+      "bottom": 1641
+    }
+  },
+  "mobileMetrics": {
+    "documentWidth": 390,
+    "overflow": false,
+    "nonblank": true
+  },
+  "consoleMessages": []
+}
