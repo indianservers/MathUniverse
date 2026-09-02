@@ -363,6 +363,24 @@ describe("discrete lesson adapter", () => {
     expect(html).toContain('data-current="A"');
     expect(html).toContain('data-target-distance="Infinity"');
   });
+  it("uses the dedicated graph-colouring surface for lesson 576", () => {
+    const lesson = lessonCatalog.find((candidate) => candidate.id === 576)!;
+    const html = renderToStaticMarkup(
+      <DiscreteLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="discrete-mockup-0633"');
+    expect(html).toContain(
+      "dedicated-greedy-vertex-colouring-conflict-chromatic-model",
+    );
+    expect(html).toContain('data-conflict-count="0"');
+    expect(html).toContain('data-colour-count="3"');
+    expect(html).toContain('data-edge-count="7"');
+    expect(html).toContain('data-chromatic-number="3"');
+  });
   it("renders strengthened discrete lessons 556 through 585 with lesson-specific guidance", () => {
     const expected = new Map([
       [556, "Fundamental Counting Principle"],

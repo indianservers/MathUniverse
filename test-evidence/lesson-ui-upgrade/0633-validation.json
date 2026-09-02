@@ -1,0 +1,190 @@
+{
+  "passed": true,
+  "url": "http://127.0.0.1:2256/lessons/discrete-and-applied-mathematics/576-graph-colouring",
+  "checks": {
+    "initial": {
+      "conflictCount": "0",
+      "colourCount": "3",
+      "valid": "true",
+      "order": "A,B,C,D,E",
+      "edgeCount": "7",
+      "edgeVariant": "base",
+      "positions": "A:110,120;B:300,55;C:480,120;D:175,315;E:410,315",
+      "chromaticNumber": "3",
+      "challengeValid": "true",
+      "actions": "0"
+    },
+    "compared": {
+      "conflictCount": "0",
+      "colourCount": "4",
+      "valid": "true",
+      "order": "B,A,C,E,D",
+      "edgeCount": "7",
+      "edgeVariant": "base",
+      "positions": "A:110,120;B:300,55;C:480,120;D:175,315;E:410,315",
+      "chromaticNumber": "3",
+      "challengeValid": "true",
+      "actions": "1"
+    },
+    "conflict": {
+      "conflictCount": "1",
+      "colourCount": "4",
+      "valid": "false",
+      "order": "B,A,C,E,D",
+      "edgeCount": "7",
+      "edgeVariant": "base",
+      "positions": "A:110,120;B:300,55;C:480,120;D:175,315;E:410,315",
+      "chromaticNumber": "3",
+      "challengeValid": "true",
+      "actions": "3"
+    },
+    "cleared": {
+      "conflictCount": "0",
+      "colourCount": "0",
+      "valid": "false",
+      "order": "B,A,C,E,D",
+      "edgeCount": "7",
+      "edgeVariant": "base",
+      "positions": "A:110,120;B:300,55;C:480,120;D:175,315;E:410,315",
+      "chromaticNumber": "3",
+      "challengeValid": "true",
+      "actions": "4"
+    },
+    "keyboard": {
+      "conflictCount": "0",
+      "colourCount": "1",
+      "valid": "false",
+      "order": "B,A,C,E,D",
+      "edgeCount": "7",
+      "edgeVariant": "base",
+      "positions": "A:110,120;B:300,55;C:480,120;D:175,315;E:410,315",
+      "chromaticNumber": "3",
+      "challengeValid": "true",
+      "actions": "6"
+    },
+    "alternate": {
+      "conflictCount": "0",
+      "colourCount": "3",
+      "valid": "true",
+      "order": "B,A,C,E,D",
+      "edgeCount": "7",
+      "edgeVariant": "alternate",
+      "positions": "A:110,120;B:300,55;C:480,120;D:175,315;E:410,315",
+      "chromaticNumber": "3",
+      "challengeValid": "true",
+      "actions": "7"
+    },
+    "unluckyOrder": {
+      "conflictCount": "0",
+      "colourCount": "3",
+      "valid": "true",
+      "order": "A,C,B,E,D",
+      "edgeCount": "7",
+      "edgeVariant": "alternate",
+      "positions": "A:110,120;B:300,55;C:480,120;D:175,315;E:410,315",
+      "chromaticNumber": "3",
+      "challengeValid": "true",
+      "actions": "8"
+    },
+    "dragged": {
+      "conflictCount": "0",
+      "colourCount": "3",
+      "valid": "true",
+      "order": "A,C,B,E,D",
+      "edgeCount": "7",
+      "edgeVariant": "alternate",
+      "positions": "A:162,159;B:300,55;C:480,120;D:175,315;E:410,315",
+      "chromaticNumber": "3",
+      "challengeValid": "true",
+      "actions": "8"
+    },
+    "dragChanged": true,
+    "formulaVisible": true,
+    "challenge": {
+      "conflictCount": "0",
+      "colourCount": "3",
+      "valid": "true",
+      "order": "A,C,B,E,D",
+      "edgeCount": "7",
+      "edgeVariant": "alternate",
+      "positions": "A:162,159;B:300,55;C:480,120;D:175,315;E:410,315",
+      "chromaticNumber": "3",
+      "challengeValid": "true",
+      "actions": "18"
+    },
+    "challengeOutput": "Correct: a triangle needs 3 colours.",
+    "final": {
+      "conflictCount": "0",
+      "colourCount": "3",
+      "valid": "true",
+      "order": "A,B,C,D,E",
+      "edgeCount": "7",
+      "edgeVariant": "base",
+      "positions": "A:110,120;B:300,55;C:480,120;D:175,315;E:410,315",
+      "chromaticNumber": "3",
+      "challengeValid": "true",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1648
+    },
+    "overflow": false,
+    "surface": {
+      "top": 106,
+      "left": 220,
+      "width": 805,
+      "height": 1422,
+      "bottom": 1528
+    },
+    "hero": {
+      "top": 106,
+      "left": 222,
+      "width": 789,
+      "height": 148,
+      "bottom": 254
+    },
+    "tabs": {
+      "top": 264,
+      "left": 222,
+      "width": 789,
+      "height": 46,
+      "bottom": 310
+    },
+    "lab": {
+      "top": 322,
+      "left": 222,
+      "width": 789,
+      "height": 527,
+      "bottom": 849
+    },
+    "learning": {
+      "top": 859,
+      "left": 222,
+      "width": 789,
+      "height": 354,
+      "bottom": 1213
+    },
+    "practice": {
+      "top": 1223,
+      "left": 222,
+      "width": 789,
+      "height": 227,
+      "bottom": 1450
+    },
+    "adjacent": {
+      "top": 1470,
+      "left": 222,
+      "width": 789,
+      "height": 58,
+      "bottom": 1528
+    }
+  },
+  "mobileMetrics": {
+    "documentWidth": 390,
+    "overflow": false
+  },
+  "consoleMessages": []
+}
