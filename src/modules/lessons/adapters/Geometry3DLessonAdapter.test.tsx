@@ -38,7 +38,7 @@ describe("Geometry3DLessonAdapter", () => {
       [408, "Euler's polyhedron formula"],
       [409, "Transparent / X-Ray Mode"],
       [410, "3D Camera Controls"],
-      [411, "Orthographic views"],
+      [411, "Orthographic Views"],
       [412, "AR placement"],
       [413, "Surface z=f(x,y)"],
       [414, "Implicit surfaces"],
@@ -86,11 +86,13 @@ describe("Geometry3DLessonAdapter", () => {
             ? "Drag opaque model to rotate"
             : lessonId === 410
               ? "Drag to interact"
-              : /contour|gradient|tangent plane|partial derivative|multivariable|level curve|level surface|z=f\(x,y\)|implicit surface|parametric surface|space curve|quadric|cylindrical coordinates|spherical coordinates|normal vector/i.test(
-                    lesson.title,
-                  )
-                ? "Drag surface"
-                : "Drag solid",
+              : lessonId === 411
+                ? "3D Solid (Rotatable)"
+                : /contour|gradient|tangent plane|partial derivative|multivariable|level curve|level surface|z=f\(x,y\)|implicit surface|parametric surface|space curve|quadric|cylindrical coordinates|spherical coordinates|normal vector/i.test(
+                      lesson.title,
+                    )
+                  ? "Drag surface"
+                  : "Drag solid",
         );
       }
       if (lessonId === 395) {
@@ -843,5 +845,27 @@ describe("Geometry3DLessonAdapter", () => {
     expect(html).toContain('data-projection="perspective"');
     expect(html).toContain('data-fov="45"');
     expect(html).toContain('data-score="');
+  });
+
+  it("uses a dedicated linked orthographic-views lab for lesson 411", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 411)!;
+    const html = renderToStaticMarkup(
+      <Geometry3DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="geometry3d-mockup-0596"');
+    expect(html).toContain(
+      "threejs-dedicated-stepped-block-solid-linked-front-top-right-orthographic-projections-scale-layout-builder",
+    );
+    expect(html).toContain('data-layout="first"');
+    expect(html).toContain('data-width="60"');
+    expect(html).toContain('data-height="40"');
+    expect(html).toContain('data-depth="40"');
+    expect(html).toContain("Front orthographic projection");
+    expect(html).toContain("Top orthographic projection");
+    expect(html).toContain("Right orthographic projection");
   });
 });
