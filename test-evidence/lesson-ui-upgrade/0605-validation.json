@@ -1,0 +1,172 @@
+{
+  "passed": true,
+  "url": "http://127.0.0.1:2256/lessons/3d-mathematics/420-contour-curves",
+  "checks": {
+    "initial": {
+      "level": "0.3",
+      "segments": "172",
+      "contour": "Closed curve",
+      "choice": "A",
+      "graded": "true",
+      "quick": "A",
+      "actions": "0"
+    },
+    "orbitPixelsChanged": true,
+    "canvas": {
+      "width": 378,
+      "height": 427,
+      "nonblank": true
+    },
+    "level06": {
+      "level": "0.6",
+      "segments": "124",
+      "contour": "Closed curve",
+      "choice": "A",
+      "graded": "true",
+      "quick": "A",
+      "actions": "1"
+    },
+    "level0": {
+      "level": "0",
+      "segments": "264",
+      "contour": "Intersecting lines",
+      "choice": "A",
+      "graded": "true",
+      "quick": "A",
+      "actions": "2"
+    },
+    "level1": {
+      "level": "1",
+      "segments": "0",
+      "contour": "Points",
+      "choice": "A",
+      "graded": "true",
+      "quick": "A",
+      "actions": "3"
+    },
+    "negative": {
+      "level": "-0.5",
+      "segments": "140",
+      "contour": "Closed curve",
+      "choice": "A",
+      "graded": "true",
+      "quick": "A",
+      "actions": "4"
+    },
+    "formula": "active",
+    "wrongChoice": {
+      "level": "-0.5",
+      "segments": "140",
+      "contour": "Closed curve",
+      "choice": "B",
+      "graded": "false",
+      "quick": "A",
+      "actions": "6"
+    },
+    "correct": {
+      "level": "0.6",
+      "segments": "124",
+      "contour": "Closed curve",
+      "choice": "A",
+      "graded": "true",
+      "quick": "A",
+      "actions": "8"
+    },
+    "quickWrong": {
+      "level": "0.6",
+      "segments": "124",
+      "contour": "Closed curve",
+      "choice": "A",
+      "graded": "true",
+      "quick": "C",
+      "actions": "9"
+    },
+    "quickCorrect": {
+      "level": "0.6",
+      "segments": "124",
+      "contour": "Closed curve",
+      "choice": "A",
+      "graded": "true",
+      "quick": "A",
+      "actions": "10"
+    },
+    "final": {
+      "level": "0.3",
+      "segments": "172",
+      "contour": "Closed curve",
+      "choice": "A",
+      "graded": "true",
+      "quick": "A",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 959,
+      "height": 1640
+    },
+    "overflow": false,
+    "hero": {
+      "top": 93,
+      "left": 218,
+      "width": 732,
+      "height": 128,
+      "bottom": 221
+    },
+    "tabs": {
+      "top": 221,
+      "left": 218,
+      "width": 732,
+      "height": 44,
+      "bottom": 265
+    },
+    "lab": {
+      "top": 276,
+      "left": 218,
+      "width": 732,
+      "height": 605,
+      "bottom": 881
+    },
+    "scene": {
+      "top": 348,
+      "left": 233,
+      "width": 404,
+      "height": 475,
+      "bottom": 823
+    },
+    "map": {
+      "top": 348,
+      "left": 657,
+      "width": 278,
+      "height": 475,
+      "bottom": 823
+    },
+    "info": {
+      "top": 891,
+      "left": 218,
+      "width": 732,
+      "height": 360,
+      "bottom": 1251
+    },
+    "practice": {
+      "top": 1261,
+      "left": 218,
+      "width": 732,
+      "height": 203,
+      "bottom": 1464
+    },
+    "adjacent": {
+      "top": 1474,
+      "left": 218,
+      "width": 732,
+      "height": 58,
+      "bottom": 1532
+    }
+  },
+  "mobileMetrics": {
+    "documentWidth": 390,
+    "overflow": false,
+    "nonblank": true
+  },
+  "consoleMessages": []
+}

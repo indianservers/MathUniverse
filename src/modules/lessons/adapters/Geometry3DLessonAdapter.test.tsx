@@ -1019,4 +1019,20 @@ describe("Geometry3DLessonAdapter", () => {
     expect(html).toContain('data-x="1.84"');
     expect(html).toContain("Convention matters");
   });
+
+  it("uses a dedicated linked contour-surface model for lesson 420", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 420)!;
+    const html = renderToStaticMarkup(
+      <Geometry3DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="geometry3d-mockup-0605"');
+    expect(html).toContain("threejs-dedicated-sinx-cosy-sampled-surface");
+    expect(html).toContain('data-level="0.3"');
+    expect(html).toContain('data-contour="Closed curve"');
+    expect(html).toContain("sin(x)cos(y) = 0.3");
+  });
 });
