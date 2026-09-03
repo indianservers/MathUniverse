@@ -1,0 +1,224 @@
+{
+  "passed": true,
+  "checks": {
+    "initial": {
+      "principal": "500000",
+      "rate": "9",
+      "years": "5",
+      "frequency": "Monthly",
+      "emi": "10379.18",
+      "extra": "0",
+      "payoff": "60",
+      "interest": "122750.66",
+      "month": "12",
+      "closing": "417084.99",
+      "chartRange": "Entire term",
+      "graded": "",
+      "actions": "0",
+      "rows": 5
+    },
+    "inputs": {
+      "principal": "750000",
+      "rate": "8.5",
+      "years": "6",
+      "frequency": "Monthly",
+      "emi": "13333.79",
+      "extra": "0",
+      "payoff": "72",
+      "interest": "210032.77",
+      "month": "12",
+      "closing": "649904.62",
+      "chartRange": "Entire term",
+      "graded": "",
+      "actions": "3",
+      "rows": 5
+    },
+    "sliders": {
+      "principal": "600000",
+      "rate": "10",
+      "years": "10",
+      "frequency": "Monthly",
+      "emi": "7929.04",
+      "extra": "0",
+      "payoff": "120",
+      "interest": "351485.31",
+      "month": "12",
+      "closing": "563194.90",
+      "chartRange": "Entire term",
+      "graded": "",
+      "actions": "6",
+      "rows": 5
+    },
+    "extra": {
+      "principal": "600000",
+      "rate": "10",
+      "years": "10",
+      "frequency": "Monthly",
+      "emi": "7929.04",
+      "extra": "1000",
+      "payoff": "99",
+      "interest": "283259.05",
+      "month": "12",
+      "closing": "550629.33",
+      "chartRange": "Entire term",
+      "graded": "",
+      "actions": "7",
+      "rows": 5
+    },
+    "scrubber": {
+      "principal": "600000",
+      "rate": "10",
+      "years": "10",
+      "frequency": "Monthly",
+      "emi": "7929.04",
+      "extra": "1000",
+      "payoff": "99",
+      "interest": "283259.05",
+      "month": "24",
+      "closing": "496088.90",
+      "chartRange": "Entire term",
+      "graded": "",
+      "actions": "8",
+      "rows": 5
+    },
+    "tableSelection": {
+      "principal": "600000",
+      "rate": "10",
+      "years": "10",
+      "frequency": "Monthly",
+      "emi": "7929.04",
+      "extra": "1000",
+      "payoff": "99",
+      "interest": "283259.05",
+      "month": "23",
+      "closing": "500844.24",
+      "chartRange": "Entire term",
+      "graded": "",
+      "actions": "9",
+      "rows": 5
+    },
+    "chart": {
+      "principal": "600000",
+      "rate": "10",
+      "years": "10",
+      "frequency": "Monthly",
+      "emi": "7929.04",
+      "extra": "1000",
+      "payoff": "99",
+      "interest": "283259.05",
+      "month": "23",
+      "closing": "500844.24",
+      "chartRange": "First year",
+      "graded": "",
+      "actions": "10",
+      "rows": 5
+    },
+    "frequency": {
+      "principal": "600000",
+      "rate": "10",
+      "years": "10",
+      "frequency": "Weekly",
+      "emi": "1826.38",
+      "extra": "1000",
+      "payoff": "274",
+      "interest": "171839.12",
+      "month": "1",
+      "closing": "598327.47",
+      "chartRange": "First year",
+      "graded": "",
+      "actions": "11",
+      "rows": 3
+    },
+    "formula": true,
+    "wrong": {
+      "principal": "500000",
+      "rate": "9",
+      "years": "5",
+      "frequency": "Monthly",
+      "emi": "10379.18",
+      "extra": "0",
+      "payoff": "60",
+      "interest": "122750.66",
+      "month": "12",
+      "closing": "417084.99",
+      "chartRange": "Entire term",
+      "graded": "false",
+      "actions": "3",
+      "rows": 5
+    },
+    "correct": {
+      "principal": "500000",
+      "rate": "9",
+      "years": "5",
+      "frequency": "Monthly",
+      "emi": "10379.18",
+      "extra": "0",
+      "payoff": "60",
+      "interest": "122750.66",
+      "month": "12",
+      "closing": "417084.99",
+      "chartRange": "Entire term",
+      "graded": "true",
+      "actions": "6",
+      "rows": 5
+    },
+    "reset": {
+      "principal": "500000",
+      "rate": "9",
+      "years": "5",
+      "frequency": "Monthly",
+      "emi": "10379.18",
+      "extra": "0",
+      "payoff": "60",
+      "interest": "122750.66",
+      "month": "12",
+      "closing": "417084.99",
+      "chartRange": "Entire term",
+      "graded": "",
+      "actions": "1",
+      "rows": 5
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 971,
+      "height": 1620
+    },
+    "overflow": false,
+    "hero": {
+      "top": 97,
+      "height": 240,
+      "bottom": 337
+    },
+    "tabs": {
+      "top": 350,
+      "height": 39,
+      "bottom": 389
+    },
+    "lab": {
+      "top": 400,
+      "height": 748,
+      "bottom": 1148
+    },
+    "theory": {
+      "top": 1158,
+      "height": 280,
+      "bottom": 1438
+    },
+    "challenge": {
+      "top": 1450,
+      "height": 102,
+      "bottom": 1552
+    },
+    "adjacent": {
+      "top": 1561,
+      "height": 49,
+      "bottom": 1610
+    }
+  },
+  "mobileMetrics": {
+    "width": 390,
+    "overflow": false
+  },
+  "logs": []
+}

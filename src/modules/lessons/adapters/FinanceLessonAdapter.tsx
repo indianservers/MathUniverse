@@ -5,6 +5,7 @@ import {
 } from "../presets/financeLessonPresets";
 import type { LessonAdapterProps } from "../types";
 import { FinanceConceptActivity } from "./finance/FinanceConceptActivity";
+import AmortisationTableTargetLesson598 from "./finance/AmortisationTableTargetLesson598";
 import AnnuitiesTargetLesson596 from "./finance/AnnuitiesTargetLesson596";
 import CompoundInterestTargetLesson592 from "./finance/CompoundInterestTargetLesson592";
 import EffectiveInterestRateTargetLesson593 from "./finance/EffectiveInterestRateTargetLesson593";
@@ -169,6 +170,8 @@ export default function FinanceLessonAdapter(props: LessonAdapterProps) {
   if (props.lesson.id === 595) return <FutureValueTargetLesson595 {...props} />;
   if (props.lesson.id === 596) return <AnnuitiesTargetLesson596 {...props} />;
   if (props.lesson.id === 597) return <LoansEmiTargetLesson597 {...props} />;
+  if (props.lesson.id === 598)
+    return <AmortisationTableTargetLesson598 {...props} />;
   if (mode === "simple-interest") {
     return (
       <AdapterFrame

@@ -105,6 +105,24 @@ describe("FinanceLessonAdapter", () => {
     expect(html).toContain('data-months="60"');
   });
 
+  it("uses the dedicated amortisation-table surface for lesson 598", () => {
+    const lesson = lessonCatalog.find((candidate) => candidate.id === 598)!;
+    const html = renderToStaticMarkup(
+      <FinanceLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="finance-mockup-0655"');
+    expect(html).toContain(
+      "dedicated-extra-payment-amortisation-schedule-model",
+    );
+    expect(html).toContain('data-emi="10379.18"');
+    expect(html).toContain('data-payoff="60"');
+    expect(html).toContain('data-month="12"');
+  });
+
   it("renders all 27 finance routes with explicit controls and no legacy fallback", () => {
     const lessons = lessonCatalog.filter(
       (lesson) => lesson.adapter === "finance",
@@ -120,7 +138,7 @@ describe("FinanceLessonAdapter", () => {
       );
       expect(html, String(lesson.id)).toContain(lesson.title);
       expect(html, String(lesson.id)).toMatch(
-        /finance and modelling lab|simple-interest model|finance-mockup-0648|finance-mockup-0649|finance-mockup-0650|finance-mockup-0651|finance-mockup-0652|finance-mockup-0653|finance-mockup-0654/,
+        /finance and modelling lab|simple-interest model|finance-mockup-0648|finance-mockup-0649|finance-mockup-0650|finance-mockup-0651|finance-mockup-0652|finance-mockup-0653|finance-mockup-0654|finance-mockup-0655/,
       );
       expect(html, String(lesson.id)).not.toContain("Legacy");
       expect(html, String(lesson.id)).toContain('type="range"');
@@ -183,7 +201,7 @@ describe("FinanceLessonAdapter", () => {
       );
       expect(html, `lesson ${lessonId}`).toContain(snippet);
       expect(html, `lesson ${lessonId}`).toMatch(
-        /finance-result|finance-mockup-0649|finance-mockup-0650|finance-mockup-0651|finance-mockup-0652|finance-mockup-0653|finance-mockup-0654/,
+        /finance-result|finance-mockup-0649|finance-mockup-0650|finance-mockup-0651|finance-mockup-0652|finance-mockup-0653|finance-mockup-0654|finance-mockup-0655/,
       );
     }
   });
