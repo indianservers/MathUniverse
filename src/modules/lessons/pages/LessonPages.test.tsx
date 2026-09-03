@@ -595,6 +595,32 @@ describe("lesson pages", () => {
     expect(html).toContain('data-simple="4:3"');
   });
 
+  it("renders the dedicated bills and tax target for lesson 10018", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-7/class-7-applied-arithmetic-bills-discounts-and-tax",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0692"');
+    expect(html).toContain(
+      "dedicated-shopping-bill-discount-then-tax-live-receipt-and-challenge",
+    );
+    expect(html).toContain('data-subtotal="5100"');
+    expect(html).toContain('data-saving="510.00"');
+    expect(html).toContain('data-tax-amount="367.20"');
+    expect(html).toContain('data-total="4957.20"');
+    expect(html).toContain('data-items="4"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

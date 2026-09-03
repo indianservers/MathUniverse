@@ -1,0 +1,33 @@
+{
+  "mockup": "0692",
+  "lessonNumericId": 10018,
+  "route": "/lessons/school/class-7/class-7-applied-arithmetic-bills-discounts-and-tax",
+  "objectModel": "dedicated-shopping-bill-discount-then-tax-live-receipt-and-challenge",
+  "viewport": { "desktop": [963, 1634], "mobile": [390, 844] },
+  "layout": {
+    "hero": { "x": 207, "y": 91, "width": 742, "height": 145 },
+    "tabs": { "x": 207, "y": 246, "width": 742, "height": 44 },
+    "simulator": { "x": 207, "y": 303, "width": 742, "height": 650 },
+    "rules": { "x": 207, "y": 969, "width": 742, "height": 204 },
+    "examples": { "x": 207, "y": 1185, "width": 742, "height": 253 },
+    "summary": { "x": 207, "y": 1452, "width": 742, "height": 91 },
+    "adjacentNavigation": { "x": 207, "y": 1561, "width": 742, "height": 56 }
+  },
+  "interactions": {
+    "initial": {
+      "subtotal": 5100,
+      "saving": 510,
+      "afterDiscount": 4590,
+      "tax": 367.2,
+      "total": 4957.2
+    },
+    "increaseTShirtQuantity": { "subtotal": 5700, "total": 5540.4 },
+    "removeSneakers": { "items": 3, "subtotal": 3300, "total": 3207.6 },
+    "addItem": { "items": 4, "subtotal": 3800, "total": 3693.6 },
+    "reset": { "items": 4, "subtotal": 5100, "total": 4957.2 },
+    "challengeAnswer": 2332.4,
+    "challengeToggleClosed": true
+  },
+  "mobileHorizontalOverflow": false,
+  "consoleWarningsOrErrors": []
+}
