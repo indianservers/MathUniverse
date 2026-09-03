@@ -20,6 +20,7 @@ import LoansEmiTargetLesson597 from "./finance/LoansEmiTargetLesson597";
 import ModelBuilderTargetLesson606 from "./finance/ModelBuilderTargetLesson606";
 import PresentValueTargetLesson594 from "./finance/PresentValueTargetLesson594";
 import ProfitLossTargetLesson602 from "./finance/ProfitLossTargetLesson602";
+import QuadraticModelsTargetLesson608 from "./finance/QuadraticModelsTargetLesson608";
 import SimpleInterestTargetLesson591 from "./finance/SimpleInterestTargetLesson591";
 import TaxDiscountTargetLesson604 from "./finance/TaxDiscountTargetLesson604";
 import { SimpleInterestActivity } from "./p0/PriorityConceptActivities";
@@ -195,6 +196,8 @@ export default function FinanceLessonAdapter(props: LessonAdapterProps) {
     return <ModelBuilderTargetLesson606 {...props} />;
   if (props.lesson.id === 607)
     return <LinearModelsTargetLesson607 {...props} />;
+  if (props.lesson.id === 608)
+    return <QuadraticModelsTargetLesson608 {...props} />;
   if (mode === "simple-interest") {
     return (
       <AdapterFrame

@@ -1,0 +1,147 @@
+{
+  "passed": true,
+  "checks": {
+    "initial": {
+      "a": "-2",
+      "b": "4",
+      "c": "-1",
+      "vertexX": "1.00",
+      "vertexY": "1.00",
+      "roots": "0.29,1.71",
+      "mode": "coefficients",
+      "dragging": "",
+      "graded": "",
+      "actions": "0"
+    },
+    "coefficients": {
+      "a": "-1",
+      "b": "2",
+      "c": "-3",
+      "vertexX": "1.00",
+      "vertexY": "-2.00",
+      "roots": "",
+      "mode": "coefficients",
+      "dragging": "",
+      "graded": "",
+      "actions": "3"
+    },
+    "pointsMode": {
+      "a": "-1",
+      "b": "4",
+      "c": "-6",
+      "vertexX": "2.00",
+      "vertexY": "-2.00",
+      "roots": "",
+      "mode": "points",
+      "dragging": "",
+      "graded": "",
+      "actions": "5"
+    },
+    "toggles": {
+      "roots": false,
+      "axis": false
+    },
+    "help": true,
+    "reset": {
+      "a": "-2",
+      "b": "4",
+      "c": "-1",
+      "vertexX": "1.00",
+      "vertexY": "1.00",
+      "roots": "0.29,1.71",
+      "mode": "coefficients",
+      "dragging": "",
+      "graded": "",
+      "actions": "1"
+    },
+    "drag": {
+      "a": "-2",
+      "b": "8",
+      "c": "-7",
+      "vertexX": "2.00",
+      "vertexY": "1.00",
+      "roots": "1.29,2.71",
+      "mode": "coefficients",
+      "dragging": "",
+      "graded": "",
+      "actions": "5"
+    },
+    "formula": true,
+    "wrong": {
+      "a": "-2",
+      "b": "8",
+      "c": "-7",
+      "vertexX": "2.00",
+      "vertexY": "1.00",
+      "roots": "1.29,2.71",
+      "mode": "coefficients",
+      "dragging": "",
+      "graded": "false",
+      "actions": "9"
+    },
+    "correct": {
+      "a": "-2",
+      "b": "8",
+      "c": "-7",
+      "vertexX": "2.00",
+      "vertexY": "1.00",
+      "roots": "1.29,2.71",
+      "mode": "coefficients",
+      "dragging": "",
+      "graded": "true",
+      "actions": "12"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 966,
+      "height": 1629
+    },
+    "overflow": false,
+    "hero": {
+      "top": 97,
+      "height": 153,
+      "bottom": 250
+    },
+    "tabs": {
+      "top": 250,
+      "height": 50,
+      "bottom": 300
+    },
+    "sequence": {
+      "top": 310,
+      "height": 95,
+      "bottom": 405
+    },
+    "lab": {
+      "top": 415,
+      "height": 579,
+      "bottom": 994
+    },
+    "strip": {
+      "top": 1004,
+      "height": 101,
+      "bottom": 1105
+    },
+    "theory": {
+      "top": 1115,
+      "height": 214,
+      "bottom": 1329
+    },
+    "challenge": {
+      "top": 1339,
+      "height": 118,
+      "bottom": 1457
+    },
+    "adjacent": {
+      "top": 1467,
+      "height": 59,
+      "bottom": 1526
+    }
+  },
+  "mobileMetrics": {
+    "width": 390,
+    "overflow": false
+  },
+  "logs": []
+}
