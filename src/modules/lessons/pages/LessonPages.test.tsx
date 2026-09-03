@@ -781,6 +781,33 @@ describe("lesson pages", () => {
     expect(html).toContain('data-right-angle="true"');
   });
 
+  it("renders the dedicated angle bisector target for lesson 10025", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-7/class-7-practical-geometry-angle-bisector-construction",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0699"');
+    expect(html).toContain(
+      "dedicated-equal-arc-intersection-angle-bisector-ray-construction",
+    );
+    expect(html).toContain('data-angle="72.0"');
+    expect(html).toContain('data-half-angle="36.0"');
+    expect(html).toContain('data-radius="4.0"');
+    expect(html).toContain('data-complete="true"');
+    expect(html).toContain('data-tool="Pointer"');
+    expect(html).toContain('data-arcs="true"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

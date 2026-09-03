@@ -1,0 +1,41 @@
+{
+  "mockup": "0699",
+  "lessonNumericId": 10025,
+  "route": "/lessons/school/class-7/class-7-practical-geometry-angle-bisector-construction",
+  "objectModel": "dedicated-equal-arc-intersection-angle-bisector-ray-construction",
+  "viewport": { "desktop": [924, 1703], "mobile": [390, 844] },
+  "layout": {
+    "hero": { "x": 202, "y": 95, "width": 708, "height": 137 },
+    "tabs": { "x": 202, "y": 251, "width": 708, "height": 35 },
+    "construction": { "x": 202, "y": 299, "width": 708, "height": 609 },
+    "instructions": { "x": 215, "y": 366, "width": 158 },
+    "board": { "x": 388, "y": 366, "width": 342 },
+    "measure": { "x": 741, "y": 366, "width": 158 },
+    "pattern": { "x": 202, "y": 923, "width": 708, "height": 200 },
+    "workedAndChallenge": { "x": 202, "y": 1138, "width": 708, "height": 335 },
+    "adjacentNavigation": { "x": 202, "y": 1495, "width": 708, "height": 49 }
+  },
+  "interactions": {
+    "initial": {
+      "angle": 72,
+      "halfAngle": 36,
+      "radius": 4,
+      "steps": 4,
+      "complete": true
+    },
+    "rayAdjustment": { "angle": 74, "halfAngle": 37 },
+    "radiusKeyboardAdjustment": { "from": 4, "to": 4.5 },
+    "constructionStepToggleWorking": true,
+    "arcsToggleWorking": true,
+    "measuresToggleWorking": true,
+    "labelsToggleWorking": true,
+    "toolSelected": "Compass",
+    "tabsWorking": true,
+    "challengeStartAndCheckWorking": true,
+    "sourceRayPointerDrag": true,
+    "resetRestoredDefaults": true
+  },
+  "desktopHorizontalOverflow": false,
+  "mobileHorizontalOverflow": false,
+  "consoleWarningsOrErrors": []
+}
