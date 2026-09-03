@@ -323,6 +323,33 @@ describe("lesson pages", () => {
     expect(html).toContain('data-challenge="0,0,0,0"');
   });
 
+  it("renders the dedicated bar graph builder target for lesson 10007", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-6/class-6-data-handling-bar-graph-builder",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0681"');
+    expect(html).toContain(
+      "dedicated-live-svg-bar-graph-scale-and-analysis-model",
+    );
+    expect(html).toContain('data-values="42,28,15,35"');
+    expect(html).toContain('data-scale="50"');
+    expect(html).toContain('data-highest="42"');
+    expect(html).toContain('data-lowest="15"');
+    expect(html).toContain('data-range="27"');
+    expect(html).toContain('data-total="120"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

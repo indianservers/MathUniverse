@@ -1,0 +1,363 @@
+.bg10007-page {
+  position: relative;
+  top: -18px;
+  width: 100%;
+  margin-bottom: -18px;
+  color: #17213d;
+  font:
+    9px/1.45 Inter,
+    Arial,
+    sans-serif;
+}
+.bg10007-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.bg10007-page h1,
+.bg10007-page h2,
+.bg10007-page h3,
+.bg10007-page p,
+.bg10007-page dl {
+  margin: 0;
+}
+.bg10007-page button,
+.bg10007-page input {
+  font: inherit;
+  color: inherit;
+}
+.bg10007-hero,
+.bg10007-tabs,
+.bg10007-lab article,
+.bg10007-lower article,
+.bg10007-adjacent {
+  border: 1px solid #dce5ee;
+  border-radius: 9px;
+  background: #fff;
+}
+.bg10007-hero {
+  position: relative;
+  height: 149px;
+  padding: 15px;
+}
+.bg10007-hero small,
+.bg10007-page h2 {
+  color: #0782a4;
+  font-weight: 900;
+}
+.bg10007-hero h1 {
+  margin-top: 8px;
+  font-size: 22px;
+}
+.bg10007-hero > p {
+  margin-top: 8px;
+}
+.bg10007-hero dl {
+  display: flex;
+  margin-top: 22px;
+  gap: 7px;
+}
+.bg10007-hero dl span {
+  padding: 5px 9px;
+  border-radius: 12px;
+  background: #f0f3f7;
+  font-weight: 800;
+}
+.bg10007-hero > aside {
+  position: absolute;
+  top: 31px;
+  right: 12px;
+  width: 370px;
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 18px;
+}
+.bg10007-hero > aside div {
+  height: 96px;
+  padding: 12px;
+  background: #fafbfe;
+}
+.bg10007-hero > aside p {
+  margin-top: 12px;
+  line-height: 2;
+}
+.bg10007-tabs {
+  height: 48px;
+  margin-top: 8px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+.bg10007-tabs button {
+  border: 0;
+  background: #fff;
+  font-weight: 900;
+}
+.bg10007-tabs button.active {
+  border-bottom: 2px solid #147de0;
+  color: #1470c5;
+}
+.bg10007-lab {
+  height: 850px;
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 192px 1fr 202px;
+  gap: 8px;
+}
+.bg10007-lab > aside:first-child {
+  display: grid;
+  grid-template-rows: 445px 397px;
+  gap: 8px;
+}
+.bg10007-lab article {
+  padding: 11px;
+}
+.bg10007-lab h2 {
+  font-size: 9px;
+}
+.bg10007-lab p {
+  margin-top: 9px;
+}
+.bg10007-lab > aside:first-child article:first-child label {
+  display: grid;
+  margin-top: 8px;
+  grid-template-columns: 1fr 55px 18px;
+  gap: 6px;
+}
+.bg10007-lab input {
+  height: 29px;
+  padding: 5px;
+  border: 1px solid #dce5ee;
+  border-radius: 5px;
+}
+.bg10007-lab label button {
+  border: 0;
+  background: none;
+}
+.bg10007-lab svg {
+  width: 12px;
+}
+.bg10007-lab article > button {
+  margin-top: 8px;
+  padding: 6px;
+  border: 1px solid #dce5ee;
+  border-radius: 5px;
+  background: #fff;
+}
+.bg10007-lab article > input {
+  width: 100%;
+  margin-top: 10px;
+}
+.bg10007-lab > aside:first-child article:nth-child(2) > label {
+  display: block;
+  margin-top: 10px;
+}
+.bg10007-lab .ok,
+.bg10007-lab .bad {
+  margin-top: 14px;
+  padding: 10px;
+  border: 1px solid #e9ca7d;
+  border-radius: 6px;
+  background: #fffaf0;
+}
+.bg10007-chart svg {
+  width: 100%;
+  height: 462px;
+  margin-top: 8px;
+}
+.bg10007-tools {
+  height: 38px;
+  margin-top: 12px;
+  display: flex;
+  gap: 6px;
+}
+.bg10007-tools button {
+  min-width: 31px;
+  padding: 6px;
+  border: 1px solid #dce5ee;
+  border-radius: 5px;
+  background: #fff;
+}
+.bg10007-tools svg,
+.bg10007-export svg {
+  width: 13px;
+  height: 13px;
+}
+.bg10007-export {
+  height: 53px;
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+.bg10007-export button {
+  display: grid;
+  place-items: center;
+  padding: 5px 2px;
+  border: 1px solid #dce5ee;
+  border-radius: 6px;
+  background: #fff;
+  font-size: 7px;
+}
+.bg10007-export button.active {
+  color: #087fa5;
+  background: #eefaff;
+}
+.bg10007-chart svg line {
+  stroke: #cad5df;
+}
+.bg10007-chart svg .axis {
+  stroke: #42516a;
+  stroke-width: 2;
+}
+.bg10007-chart svg text {
+  fill: #17213d;
+  font-size: 10px;
+  text-anchor: middle;
+}
+.bg10007-chart svg .title {
+  font-size: 14px;
+  font-weight: 900;
+}
+.bg10007-chart > footer,
+.bg10007-chart > aside {
+  margin-top: 10px;
+  padding: 12px;
+  border: 1px solid #dce5ee;
+  border-radius: 7px;
+}
+.bg10007-chart > aside {
+  background: #f4f7ff;
+}
+.bg10007-rules {
+  display: grid;
+  grid-template-rows: 352px 490px;
+  gap: 8px;
+}
+.bg10007-rules article p {
+  margin-top: 18px;
+  line-height: 1.8;
+}
+.bg10007-rules h3 {
+  margin-top: 18px;
+}
+.bg10007-rules strong {
+  display: block;
+  margin-top: 25px;
+  padding: 10px;
+  border: 1px solid #e7bd68;
+  background: #fffaf0;
+}
+.bg10007-lower {
+  height: 294px;
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr 0.94fr;
+  gap: 8px;
+}
+.bg10007-lower article {
+  padding: 12px;
+}
+.bg10007-lower h3,
+.bg10007-lower p,
+.bg10007-lower li {
+  margin-top: 10px;
+}
+.mini-bars {
+  height: 150px;
+  margin-top: 15px;
+  display: flex;
+  align-items: end;
+  justify-content: space-around;
+  border-bottom: 1px solid;
+}
+.mini-bars i {
+  width: 34px;
+  position: relative;
+}
+.mini-bars b {
+  position: absolute;
+  top: -15px;
+  width: 100%;
+  text-align: center;
+}
+.bg10007-lower button {
+  margin-top: 20px;
+  padding: 10px 18px;
+  border: 0;
+  border-radius: 6px;
+  background: #3767eb;
+  color: #fff;
+}
+.bg10007-adjacent {
+  height: 50px;
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.bg10007-adjacent a {
+  padding: 8px 14px;
+  color: inherit;
+  text-decoration: none;
+}
+.bg10007-adjacent a:last-child {
+  text-align: right;
+}
+.bg10007-adjacent b {
+  display: block;
+}
+body:has(.bg10007-page) [data-testid="desktop-sidebar"] {
+  width: 185px !important;
+  display: flex !important;
+}
+body:has(.bg10007-page) #main-content {
+  margin-left: 0 !important;
+  padding: 0 12px !important;
+}
+body:has(.bg10007-page) #main-content > div {
+  max-width: none !important;
+}
+body:has(.bg10007-page) nav[aria-label="Breadcrumb"] {
+  height: 28px !important;
+  min-height: 28px !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  font-size: 7px !important;
+}
+body:has(.bg10007-page) footer[aria-label="Site footer"] {
+  height: 100px !important;
+  padding: 7px 13px !important;
+}
+body:has(.bg10007-page) footer[aria-label="Site footer"] > div {
+  height: 88px !important;
+  padding: 8px !important;
+  font-size: 8px !important;
+}
+@media (max-width: 700px) {
+  body:has(.bg10007-page) [data-testid="desktop-sidebar"] {
+    display: none !important;
+  }
+  .bg10007-page {
+    top: 0;
+    margin: 0;
+  }
+  .bg10007-hero {
+    height: auto;
+  }
+  .bg10007-hero > aside {
+    position: static;
+    width: 100%;
+    margin-top: 10px;
+  }
+  .bg10007-lab,
+  .bg10007-lower {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .bg10007-lab > aside:first-child,
+  .bg10007-rules {
+    grid-template-rows: auto;
+  }
+  .bg10007-tabs {
+    grid-template-columns: repeat(5, 110px);
+    overflow: auto;
+  }
+}

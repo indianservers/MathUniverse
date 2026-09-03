@@ -1,0 +1,124 @@
+{
+  "passed": true,
+  "checks": {
+    "initial": {
+      "testid": "school-mockup-0681",
+      "objectModel": "dedicated-live-svg-bar-graph-scale-and-analysis-model",
+      "values": "42,28,15,35",
+      "scale": "50",
+      "validScale": "true",
+      "highest": "42",
+      "lowest": "15",
+      "range": "27",
+      "total": "120",
+      "zoom": "1",
+      "grid": "true",
+      "labels": "true",
+      "barWidth": "38",
+      "actions": "0"
+    },
+    "invalidScale": {
+      "testid": "school-mockup-0681",
+      "objectModel": "dedicated-live-svg-bar-graph-scale-and-analysis-model",
+      "values": "60,28,15,35",
+      "scale": "50",
+      "validScale": "false",
+      "highest": "60",
+      "lowest": "15",
+      "range": "45",
+      "total": "138",
+      "zoom": "1",
+      "grid": "true",
+      "labels": "true",
+      "barWidth": "38",
+      "actions": "1"
+    },
+    "autoFit": {
+      "testid": "school-mockup-0681",
+      "objectModel": "dedicated-live-svg-bar-graph-scale-and-analysis-model",
+      "values": "60,28,15,35",
+      "scale": "60",
+      "validScale": "true",
+      "highest": "60",
+      "lowest": "15",
+      "range": "45",
+      "total": "138",
+      "zoom": "1",
+      "grid": "true",
+      "labels": "true",
+      "barWidth": "38",
+      "actions": "2"
+    },
+    "tools": {
+      "testid": "school-mockup-0681",
+      "objectModel": "dedicated-live-svg-bar-graph-scale-and-analysis-model",
+      "values": "60,28,15,35",
+      "scale": "60",
+      "validScale": "true",
+      "highest": "60",
+      "lowest": "15",
+      "range": "45",
+      "total": "138",
+      "zoom": "1.1",
+      "grid": "false",
+      "labels": "false",
+      "barWidth": "28",
+      "actions": "7"
+    },
+    "reset": {
+      "testid": "school-mockup-0681",
+      "objectModel": "dedicated-live-svg-bar-graph-scale-and-analysis-model",
+      "values": "42,28,15,35",
+      "scale": "50",
+      "validScale": "true",
+      "highest": "42",
+      "lowest": "15",
+      "range": "27",
+      "total": "120",
+      "zoom": "1",
+      "grid": "true",
+      "labels": "true",
+      "barWidth": "38",
+      "actions": "8"
+    },
+    "download": true,
+    "challenge": true
+  },
+  "metrics": {
+    "document": {
+      "width": 968,
+      "height": 1636
+    },
+    "overflow": false,
+    "hero": {
+      "top": 89,
+      "height": 149,
+      "bottom": 238
+    },
+    "tabs": {
+      "top": 246,
+      "height": 48,
+      "bottom": 294
+    },
+    "lab": {
+      "top": 304,
+      "height": 850,
+      "bottom": 1154
+    },
+    "lower": {
+      "top": 1164,
+      "height": 294,
+      "bottom": 1458
+    },
+    "adjacent": {
+      "top": 1468,
+      "height": 50,
+      "bottom": 1518
+    }
+  },
+  "mobileMetrics": {
+    "width": 390,
+    "overflow": false
+  },
+  "logs": []
+}
