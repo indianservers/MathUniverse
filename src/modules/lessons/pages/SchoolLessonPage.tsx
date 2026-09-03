@@ -47,6 +47,7 @@ import TriangleSasTargetLesson10029 from "../schoolTargets/TriangleSasTargetLess
 import TriangleAsaTargetLesson10030 from "../schoolTargets/TriangleAsaTargetLesson10030";
 import RightTriangleRhsTargetLesson10031 from "../schoolTargets/RightTriangleRhsTargetLesson10031";
 import DoubleBarGraphTargetLesson10032 from "../schoolTargets/DoubleBarGraphTargetLesson10032";
+import MeanMedianModePathTargetLesson10033 from "../schoolTargets/MeanMedianModePathTargetLesson10033";
 import { getStrengthenedFoundationLesson } from "../strengthening/foundationNumberContent";
 import type { SchoolLessonContent } from "../syllabus/lessonSyllabusTypes";
 
@@ -123,6 +124,8 @@ export default function SchoolLessonPage() {
     return <RightTriangleRhsTargetLesson10031 lesson={lesson} />;
   if (lesson.numericId === 10032)
     return <DoubleBarGraphTargetLesson10032 lesson={lesson} />;
+  if (lesson.numericId === 10033)
+    return <MeanMedianModePathTargetLesson10033 lesson={lesson} />;
   const adjacent = adjacentSchoolLessons(lesson);
   const strengthened = getStrengthenedFoundationLesson(lesson.numericId);
   const content = strengthened

@@ -1,0 +1,38 @@
+{
+  "mockup": "0707",
+  "lessonNumericId": 10033,
+  "route": "/lessons/school/class-8/class-8-data-handling-mean-median-and-mode-practice-path",
+  "objectModel": "dedicated-ordering-central-tendency-practice-path",
+  "viewport": { "desktop": [958, 1641], "mobile": [390, 844] },
+  "layout": {
+    "hero": { "x": 211, "y": 88, "width": 728, "height": 132 },
+    "tabs": { "x": 211, "y": 220, "width": 728, "height": 46 },
+    "station": { "x": 211, "y": 278, "width": 728, "height": 567 },
+    "nextStep": { "x": 211, "y": 854, "width": 728, "height": 67 },
+    "theory": { "x": 211, "y": 931, "width": 728, "height": 225 },
+    "miniChallenge": { "x": 211, "y": 1166, "width": 728, "height": 268 },
+    "adjacentNavigation": { "x": 211, "y": 1443, "width": 728, "height": 48 }
+  },
+  "interactions": {
+    "initial": {
+      "order": [2, 3, 3, 5, 7],
+      "sum": 20,
+      "mean": 4,
+      "median": 3,
+      "mode": 3
+    },
+    "resetCreatesUnsortedTask": true,
+    "htmlDragDropReordering": true,
+    "keyboardReordering": true,
+    "computedVisualsStaySynchronized": true,
+    "stepAdvancementWorking": true,
+    "tabsWorking": true,
+    "stationOneGradingWorking": true,
+    "stationTwoGradingWorking": true,
+    "reasoningStationGradingWorking": true,
+    "schoolNavigationWorking": true
+  },
+  "desktopHorizontalOverflow": false,
+  "mobileHorizontalOverflow": false,
+  "consoleWarningsOrErrors": []
+}

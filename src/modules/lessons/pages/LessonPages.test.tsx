@@ -999,6 +999,31 @@ describe("lesson pages", () => {
     expect(html).toContain('data-girls-visible="true"');
   });
 
+  it("renders the dedicated mean median mode path target for lesson 10033", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-8/class-8-data-handling-mean-median-and-mode-practice-path",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0707"');
+    expect(html).toContain("dedicated-ordering-central-tendency-practice-path");
+    expect(html).toContain('data-order="2,3,3,5,7"');
+    expect(html).toContain('data-correct-order="true"');
+    expect(html).toContain('data-sum="20"');
+    expect(html).toContain('data-mean="4.00"');
+    expect(html).toContain('data-median="3"');
+    expect(html).toContain('data-mode="3"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
