@@ -18,6 +18,7 @@ import LoansEmiTargetLesson597 from "./finance/LoansEmiTargetLesson597";
 import PresentValueTargetLesson594 from "./finance/PresentValueTargetLesson594";
 import ProfitLossTargetLesson602 from "./finance/ProfitLossTargetLesson602";
 import SimpleInterestTargetLesson591 from "./finance/SimpleInterestTargetLesson591";
+import TaxDiscountTargetLesson604 from "./finance/TaxDiscountTargetLesson604";
 import { SimpleInterestActivity } from "./p0/PriorityConceptActivities";
 
 function financeGuidanceFor(mode: FinanceLessonMode) {
@@ -184,6 +185,7 @@ export default function FinanceLessonAdapter(props: LessonAdapterProps) {
     return <CurrencyConversionTargetLesson601 {...props} />;
   if (props.lesson.id === 602) return <ProfitLossTargetLesson602 {...props} />;
   if (props.lesson.id === 603) return <BreakEvenTargetLesson603 {...props} />;
+  if (props.lesson.id === 604) return <TaxDiscountTargetLesson604 {...props} />;
   if (mode === "simple-interest") {
     return (
       <AdapterFrame

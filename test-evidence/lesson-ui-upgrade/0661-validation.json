@@ -1,0 +1,146 @@
+{
+  "passed": true,
+  "checks": {
+    "initial": {
+      "subtotal": "3450.00",
+      "discounted": "2932.50",
+      "taxable": "2639.25",
+      "tax": "475.06",
+      "final": "3114.32",
+      "items": "4",
+      "graded": "",
+      "actions": "0"
+    },
+    "discount": {
+      "subtotal": "3450.00",
+      "discounted": "2760.00",
+      "taxable": "2484.00",
+      "tax": "447.12",
+      "final": "2931.12",
+      "items": "4",
+      "graded": "",
+      "actions": "1"
+    },
+    "coupon": {
+      "subtotal": "3450.00",
+      "discounted": "2760.00",
+      "taxable": "2622.00",
+      "tax": "471.96",
+      "final": "3093.96",
+      "items": "4",
+      "graded": "",
+      "actions": "2"
+    },
+    "tax": {
+      "subtotal": "3450.00",
+      "discounted": "2760.00",
+      "taxable": "2622.00",
+      "tax": "314.64",
+      "final": "2936.64",
+      "items": "4",
+      "graded": "",
+      "actions": "3"
+    },
+    "added": {
+      "subtotal": "4350.00",
+      "discounted": "3480.00",
+      "taxable": "3306.00",
+      "tax": "396.72",
+      "final": "3702.72",
+      "items": "5",
+      "graded": "",
+      "actions": "5"
+    },
+    "removed": {
+      "subtotal": "3450.00",
+      "discounted": "2760.00",
+      "taxable": "2622.00",
+      "tax": "314.64",
+      "final": "2936.64",
+      "items": "4",
+      "graded": "",
+      "actions": "6"
+    },
+    "compact": "td604-steps compact",
+    "formula": true,
+    "wrong": {
+      "subtotal": "3450.00",
+      "discounted": "2760.00",
+      "taxable": "2622.00",
+      "tax": "314.64",
+      "final": "2936.64",
+      "items": "4",
+      "graded": "false",
+      "actions": "10"
+    },
+    "correct": {
+      "subtotal": "3450.00",
+      "discounted": "2760.00",
+      "taxable": "2622.00",
+      "tax": "314.64",
+      "final": "2936.64",
+      "items": "4",
+      "graded": "true",
+      "actions": "12"
+    },
+    "hint": true,
+    "solution": true,
+    "reset": {
+      "subtotal": "3450.00",
+      "discounted": "2932.50",
+      "taxable": "2639.25",
+      "tax": "475.06",
+      "final": "3114.32",
+      "items": "4",
+      "graded": "",
+      "actions": "1"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1005,
+      "height": 1565
+    },
+    "overflow": false,
+    "hero": {
+      "top": 97,
+      "height": 185,
+      "bottom": 282
+    },
+    "tabs": {
+      "top": 292,
+      "height": 59,
+      "bottom": 351
+    },
+    "shop": {
+      "top": 361,
+      "height": 561,
+      "bottom": 922
+    },
+    "order": {
+      "top": 932,
+      "height": 57,
+      "bottom": 989
+    },
+    "theory": {
+      "top": 999,
+      "height": 203,
+      "bottom": 1202
+    },
+    "challenge": {
+      "top": 1212,
+      "height": 119,
+      "bottom": 1331
+    },
+    "adjacent": {
+      "top": 1341,
+      "height": 70,
+      "bottom": 1411
+    }
+  },
+  "mobileMetrics": {
+    "width": 390,
+    "overflow": false
+  },
+  "logs": []
+}
