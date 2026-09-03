@@ -971,6 +971,34 @@ describe("lesson pages", () => {
     expect(html).toContain('data-right-angle="true"');
   });
 
+  it("renders the dedicated double bar graph target for lesson 10032", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-8/class-8-data-handling-double-bar-graph-comparison",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0706"');
+    expect(html).toContain(
+      "dedicated-editable-paired-series-double-bar-comparison",
+    );
+    expect(html).toContain('data-boys-total="69"');
+    expect(html).toContain('data-girls-total="62"');
+    expect(html).toContain('data-selected="Wed"');
+    expect(html).toContain('data-difference="-4"');
+    expect(html).toContain('data-scale="20"');
+    expect(html).toContain('data-boys-visible="true"');
+    expect(html).toContain('data-girls-visible="true"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

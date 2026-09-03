@@ -1,0 +1,37 @@
+{
+  "mockup": "0706",
+  "lessonNumericId": 10032,
+  "route": "/lessons/school/class-8/class-8-data-handling-double-bar-graph-comparison",
+  "objectModel": "dedicated-editable-paired-series-double-bar-comparison",
+  "viewport": { "desktop": [963, 1633], "mobile": [390, 844] },
+  "layout": {
+    "hero": { "x": 213, "y": 89, "width": 738, "height": 102 },
+    "tabs": { "x": 213, "y": 198, "width": 738, "height": 46 },
+    "interactiveModel": { "x": 213, "y": 257, "width": 738, "height": 646 },
+    "whyItWorks": { "x": 213, "y": 914, "width": 738, "height": 114 },
+    "lowerCards": { "x": 213, "y": 1039, "width": 738, "height": 392 },
+    "adjacentNavigation": { "x": 213, "y": 1445, "width": 738, "height": 51 }
+  },
+  "interactions": {
+    "initial": {
+      "boysTotal": 69,
+      "girlsTotal": 62,
+      "selected": "Wed",
+      "difference": -4,
+      "scale": 20
+    },
+    "editedMonBoys": { "value": 20, "boysTotal": 77 },
+    "barSelectionWorking": true,
+    "commonScaleWorking": true,
+    "seriesVisibilityWorking": true,
+    "fullscreenWorking": true,
+    "challengeInvalidatesOnTableEdit": true,
+    "incorrectChallengeRejected": true,
+    "fridayTwentyChallengeAccepted": true,
+    "tabsWorking": true,
+    "fullResetWorking": true
+  },
+  "desktopHorizontalOverflow": false,
+  "mobileHorizontalOverflow": false,
+  "consoleWarningsOrErrors": []
+}

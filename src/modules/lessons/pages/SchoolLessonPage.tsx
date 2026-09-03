@@ -46,6 +46,7 @@ import TriangleSssTargetLesson10028 from "../schoolTargets/TriangleSssTargetLess
 import TriangleSasTargetLesson10029 from "../schoolTargets/TriangleSasTargetLesson10029";
 import TriangleAsaTargetLesson10030 from "../schoolTargets/TriangleAsaTargetLesson10030";
 import RightTriangleRhsTargetLesson10031 from "../schoolTargets/RightTriangleRhsTargetLesson10031";
+import DoubleBarGraphTargetLesson10032 from "../schoolTargets/DoubleBarGraphTargetLesson10032";
 import { getStrengthenedFoundationLesson } from "../strengthening/foundationNumberContent";
 import type { SchoolLessonContent } from "../syllabus/lessonSyllabusTypes";
 
@@ -120,6 +121,8 @@ export default function SchoolLessonPage() {
     return <TriangleAsaTargetLesson10030 lesson={lesson} />;
   if (lesson.numericId === 10031)
     return <RightTriangleRhsTargetLesson10031 lesson={lesson} />;
+  if (lesson.numericId === 10032)
+    return <DoubleBarGraphTargetLesson10032 lesson={lesson} />;
   const adjacent = adjacentSchoolLessons(lesson);
   const strengthened = getStrengthenedFoundationLesson(lesson.numericId);
   const content = strengthened
