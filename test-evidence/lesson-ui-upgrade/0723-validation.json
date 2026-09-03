@@ -1,0 +1,70 @@
+{
+  "mockup": "0723",
+  "lessonId": 10049,
+  "route": "/lessons/school/class-9/class-9-polynomials-factor-theorem",
+  "surface": "FactorTheoremTargetLesson10049",
+  "objectModel": "dedicated-factor-theorem-substitution-synthetic-division-engine",
+  "targetViewport": { "width": 919, "height": 1711 },
+  "desktop": {
+    "consoleWarningsOrErrors": 0,
+    "sections": {
+      "hero": { "x": 216, "y": 102, "width": 686, "height": 139 },
+      "tabs": { "x": 216, "y": 255, "width": 686, "height": 39 },
+      "workbench": { "x": 216, "y": 307, "width": 686, "height": 687 },
+      "synthetic": { "x": 230, "y": 836, "width": 658, "height": 151 },
+      "theory": { "x": 216, "y": 1007, "width": 686, "height": 295 },
+      "challenge": { "x": 216, "y": 1315, "width": 686, "height": 177 },
+      "navigation": { "x": 216, "y": 1507, "width": 686, "height": 52 }
+    }
+  },
+  "mobile": {
+    "width": 390,
+    "documentWidth": 375,
+    "pageWidth": 359,
+    "graphWidth": 332,
+    "graphHeight": 300,
+    "pageLevelHorizontalOverflow": false,
+    "consoleWarningsOrErrors": 0,
+    "candidateButtons": 7,
+    "theoryCards": 3,
+    "challengeCandidates": 3
+  },
+  "interactions": {
+    "initial": {
+      "polynomial": "x² − 5x + 6",
+      "candidate": 2,
+      "value": 0,
+      "quotient": "x − 3",
+      "remainder": 0,
+      "factor": true
+    },
+    "nonFactor": {
+      "candidate": 1,
+      "value": 2,
+      "quotient": "x − 4",
+      "remainder": 2,
+      "factor": false
+    },
+    "secondFactor": {
+      "candidate": 3,
+      "value": 0,
+      "quotient": "x − 2",
+      "remainder": 0,
+      "factor": true
+    },
+    "editedPolynomial": {
+      "polynomial": "x² − 5x + 7",
+      "candidate": 3,
+      "value": 1,
+      "factor": false
+    },
+    "challenge": {
+      "picturedCandidatesTested": [-1, 2, 3],
+      "factors": [1, 2, 3],
+      "factorisation": "(x−1)(x−2)(x−3)",
+      "complete": true
+    },
+    "challengeReset": true,
+    "tabs": true
+  }
+}

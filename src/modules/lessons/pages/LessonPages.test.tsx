@@ -1408,6 +1408,33 @@ describe("lesson pages", () => {
     expect(html).toContain('data-quick="idle"');
   });
 
+  it("renders the dedicated factor-theorem target for lesson 10049", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-9/class-9-polynomials-factor-theorem",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0723"');
+    expect(html).toContain(
+      "dedicated-factor-theorem-substitution-synthetic-division-engine",
+    );
+    expect(html).toContain('data-polynomial="x² − 5x + 6"');
+    expect(html).toContain('data-candidate="2"');
+    expect(html).toContain('data-value="0"');
+    expect(html).toContain('data-factor="true"');
+    expect(html).toContain('data-quotient="x − 3"');
+    expect(html).toContain('data-remainder="0"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
