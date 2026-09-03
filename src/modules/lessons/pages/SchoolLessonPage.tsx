@@ -24,6 +24,7 @@ import PictographTargetLesson10006 from "../schoolTargets/PictographTargetLesson
 import BarGraphTargetLesson10007 from "../schoolTargets/BarGraphTargetLesson10007";
 import SurveyFrequencyTargetLesson10008 from "../schoolTargets/SurveyFrequencyTargetLesson10008";
 import MisleadingGraphTargetLesson10009 from "../schoolTargets/MisleadingGraphTargetLesson10009";
+import NumberPatternTargetLesson10010 from "../schoolTargets/NumberPatternTargetLesson10010";
 import { getStrengthenedFoundationLesson } from "../strengthening/foundationNumberContent";
 import type { SchoolLessonContent } from "../syllabus/lessonSyllabusTypes";
 
@@ -54,6 +55,8 @@ export default function SchoolLessonPage() {
     return <SurveyFrequencyTargetLesson10008 lesson={lesson} />;
   if (lesson.numericId === 10009)
     return <MisleadingGraphTargetLesson10009 lesson={lesson} />;
+  if (lesson.numericId === 10010)
+    return <NumberPatternTargetLesson10010 lesson={lesson} />;
   const adjacent = adjacentSchoolLessons(lesson);
   const strengthened = getStrengthenedFoundationLesson(lesson.numericId);
   const content = strengthened

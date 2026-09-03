@@ -1,0 +1,180 @@
+{
+  "passed": true,
+  "checks": {
+    "initial": {
+      "testid": "school-mockup-0684",
+      "objectModel": "dedicated-arithmetic-geometric-sequence-rule-nth-term-and-practice-model",
+      "mode": "add",
+      "first": "4",
+      "change": "4",
+      "terms": "4,8,12,16,20,24,28,32,36,40",
+      "applied": "false",
+      "computed": "60",
+      "answerGraded": "",
+      "quickValue": "",
+      "actions": "0"
+    },
+    "changed": {
+      "testid": "school-mockup-0684",
+      "objectModel": "dedicated-arithmetic-geometric-sequence-rule-nth-term-and-practice-model",
+      "mode": "add",
+      "first": "4",
+      "change": "5",
+      "terms": "4,9,14,19,24,29,34,39,44,49",
+      "applied": "false",
+      "computed": "60",
+      "answerGraded": "",
+      "quickValue": "",
+      "actions": "1"
+    },
+    "applied": {
+      "testid": "school-mockup-0684",
+      "objectModel": "dedicated-arithmetic-geometric-sequence-rule-nth-term-and-practice-model",
+      "mode": "add",
+      "first": "4",
+      "change": "5",
+      "terms": "4,9,14,19,24,29,34,39,44,49",
+      "applied": "true",
+      "computed": "60",
+      "answerGraded": "",
+      "quickValue": "",
+      "actions": "2"
+    },
+    "multiply": {
+      "testid": "school-mockup-0684",
+      "objectModel": "dedicated-arithmetic-geometric-sequence-rule-nth-term-and-practice-model",
+      "mode": "multiply",
+      "first": "4",
+      "change": "2",
+      "terms": "4,8,16,32,64,128,256,512,1024,2048",
+      "applied": "false",
+      "computed": "60",
+      "answerGraded": "",
+      "quickValue": "",
+      "actions": "3"
+    },
+    "computed": {
+      "testid": "school-mockup-0684",
+      "objectModel": "dedicated-arithmetic-geometric-sequence-rule-nth-term-and-practice-model",
+      "mode": "multiply",
+      "first": "4",
+      "change": "2",
+      "terms": "4,8,16,32,64,128,256,512,1024,2048",
+      "applied": "false",
+      "computed": "128",
+      "answerGraded": "",
+      "quickValue": "",
+      "actions": "4"
+    },
+    "reset": {
+      "testid": "school-mockup-0684",
+      "objectModel": "dedicated-arithmetic-geometric-sequence-rule-nth-term-and-practice-model",
+      "mode": "add",
+      "first": "4",
+      "change": "4",
+      "terms": "4,8,12,16,20,24,28,32,36,40",
+      "applied": "false",
+      "computed": "60",
+      "answerGraded": "",
+      "quickValue": "",
+      "actions": "5"
+    },
+    "wrong": {
+      "testid": "school-mockup-0684",
+      "objectModel": "dedicated-arithmetic-geometric-sequence-rule-nth-term-and-practice-model",
+      "mode": "add",
+      "first": "4",
+      "change": "4",
+      "terms": "4,8,12,16,20,24,28,32,36,40",
+      "applied": "false",
+      "computed": "60",
+      "answerGraded": "false",
+      "quickValue": "",
+      "actions": "6"
+    },
+    "correct": {
+      "testid": "school-mockup-0684",
+      "objectModel": "dedicated-arithmetic-geometric-sequence-rule-nth-term-and-practice-model",
+      "mode": "add",
+      "first": "4",
+      "change": "4",
+      "terms": "4,8,12,16,20,24,28,32,36,40",
+      "applied": "false",
+      "computed": "60",
+      "answerGraded": "true",
+      "quickValue": "",
+      "actions": "7"
+    },
+    "quick": {
+      "testid": "school-mockup-0684",
+      "objectModel": "dedicated-arithmetic-geometric-sequence-rule-nth-term-and-practice-model",
+      "mode": "add",
+      "first": "4",
+      "change": "4",
+      "terms": "4,8,12,16,20,24,28,32,36,40",
+      "applied": "false",
+      "computed": "60",
+      "answerGraded": "true",
+      "quickValue": "34",
+      "actions": "8"
+    },
+    "solution": true
+  },
+  "metrics": {
+    "document": {
+      "width": 963,
+      "height": 1634
+    },
+    "overflow": false,
+    "hero": {
+      "top": 92,
+      "height": 151,
+      "bottom": 243
+    },
+    "tabs": {
+      "top": 253,
+      "height": 49,
+      "bottom": 302
+    },
+    "observe": {
+      "top": 302,
+      "height": 174,
+      "bottom": 476
+    },
+    "manip": {
+      "top": 484,
+      "height": 280,
+      "bottom": 764
+    },
+    "rule": {
+      "top": 772,
+      "height": 203,
+      "bottom": 975
+    },
+    "practice": {
+      "top": 983,
+      "height": 161,
+      "bottom": 1144
+    },
+    "cards": {
+      "top": 1152,
+      "height": 185,
+      "bottom": 1337
+    },
+    "summary": {
+      "top": 1345,
+      "height": 108,
+      "bottom": 1453
+    },
+    "adjacent": {
+      "top": 1461,
+      "height": 50,
+      "bottom": 1511
+    }
+  },
+  "mobileMetrics": {
+    "width": 390,
+    "overflow": false
+  },
+  "logs": []
+}

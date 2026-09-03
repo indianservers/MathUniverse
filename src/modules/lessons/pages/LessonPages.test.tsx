@@ -400,6 +400,31 @@ describe("lesson pages", () => {
     expect(html).toContain('data-three-d="false"');
   });
 
+  it("renders the dedicated number pattern target for lesson 10010", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-6/class-6-patterns-number-pattern-completion",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0684"');
+    expect(html).toContain(
+      "dedicated-arithmetic-geometric-sequence-rule-nth-term-and-practice-model",
+    );
+    expect(html).toContain('data-mode="add"');
+    expect(html).toContain('data-first="4"');
+    expect(html).toContain('data-change="4"');
+    expect(html).toContain('data-terms="4,8,12,16,20,24,28,32,36,40"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
