@@ -38,6 +38,7 @@ import CorrespondingAnglesTargetLesson10060 from "../schoolTargets/Corresponding
 import AlternateInteriorTargetLesson10061 from "../schoolTargets/AlternateInteriorTargetLesson10061";
 import SameSideInteriorTargetLesson10062 from "../schoolTargets/SameSideInteriorTargetLesson10062";
 import ParallelConverseTargetLesson10063 from "../schoolTargets/ParallelConverseTargetLesson10063";
+import TriangleAngleSumTargetLesson10064 from "../schoolTargets/TriangleAngleSumTargetLesson10064";
 import PlaceValueTargetLesson10001 from "../schoolTargets/PlaceValueTargetLesson10001";
 import NumberNamingTargetLesson10002 from "../schoolTargets/NumberNamingTargetLesson10002";
 import EstimationRoundingTargetLesson10003 from "../schoolTargets/EstimationRoundingTargetLesson10003";
@@ -135,6 +136,8 @@ export default function SchoolLessonPage() {
     return <SameSideInteriorTargetLesson10062 lesson={lesson} />;
   if (lesson.numericId === 10063)
     return <ParallelConverseTargetLesson10063 lesson={lesson} />;
+  if (lesson.numericId === 10064)
+    return <TriangleAngleSumTargetLesson10064 lesson={lesson} />;
   if (lesson.numericId === 10001)
     return <PlaceValueTargetLesson10001 lesson={lesson} />;
   if (lesson.numericId === 10002)

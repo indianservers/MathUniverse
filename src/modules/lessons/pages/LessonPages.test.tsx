@@ -1838,6 +1838,35 @@ describe("lesson pages", () => {
     );
   });
 
+  it("renders the dedicated triangle-angle-sum target for lesson 10064", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-9/class-9-euclidean-geometry-triangle-angle-sum-theorem",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0738"');
+    expect(html).toContain(
+      "dedicated-draggable-triangle-angle-sum-tear-rearrange-engine",
+    );
+    expect(html).toContain('data-points="70,320;450,320;328,35"');
+    expect(html).toContain('data-angles="48,67,65"');
+    expect(html).toContain('data-sum="180"');
+    expect(html).toContain('data-line="0,1,2"');
+    expect(html).toContain('data-challenge="0"');
+    expect(html).toContain(
+      'aria-label="Interactive triangle angle sum diagram"',
+    );
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

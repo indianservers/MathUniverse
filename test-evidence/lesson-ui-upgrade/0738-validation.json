@@ -1,0 +1,39 @@
+{
+  "mockup": "0738",
+  "lessonId": 10064,
+  "route": "/lessons/school/class-9/class-9-euclidean-geometry-triangle-angle-sum-theorem",
+  "objectModel": "dedicated-draggable-triangle-angle-sum-tear-rearrange-engine",
+  "desktop": {
+    "viewport": [899, 1843],
+    "hero": [91, 231],
+    "tabs": [245, 288],
+    "explorer": [302, 739],
+    "tearAndRearrange": [739, 929],
+    "theorem": [943, 1041],
+    "explanation": [1055, 1245],
+    "misconception": [1259, 1384],
+    "challenge": [1398, 1643],
+    "navigation": [1657, 1696],
+    "consoleErrorsOrWarnings": 0
+  },
+  "mobile": {
+    "viewport": [390, 844],
+    "documentScrollWidth": 375,
+    "pageWidth": 366.4,
+    "vertexHandles": 3,
+    "challengeCards": 3,
+    "misconceptionFigures": 3,
+    "consoleErrorsOrWarnings": 0
+  },
+  "interactions": {
+    "initialAngles": [48, 67, 65],
+    "movedPoints": "75,320;450,320;333,35",
+    "movedAngles": [48, 68, 64],
+    "sumAfterMove": 180,
+    "lineAfterClear": [],
+    "sourcePiecesAfterClear": 3,
+    "rebuiltLine": [0, 1, 2],
+    "challengeAfterCycle": 1
+  },
+  "status": "complete"
+}
