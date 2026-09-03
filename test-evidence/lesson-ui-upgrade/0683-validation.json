@@ -1,0 +1,134 @@
+{
+  "passed": true,
+  "checks": {
+    "initial": {
+      "testid": "school-mockup-0683",
+      "objectModel": "dedicated-live-axis-interval-3d-misleading-graph-and-evidence-model",
+      "truncated": "true",
+      "start": "100",
+      "end": "300",
+      "unequal": "false",
+      "threeD": "false",
+      "graded": "true",
+      "actions": "0"
+    },
+    "honestAxis": {
+      "testid": "school-mockup-0683",
+      "objectModel": "dedicated-live-axis-interval-3d-misleading-graph-and-evidence-model",
+      "truncated": "false",
+      "start": "0",
+      "end": "300",
+      "unequal": "false",
+      "threeD": "false",
+      "graded": "true",
+      "actions": "1"
+    },
+    "truncated": {
+      "testid": "school-mockup-0683",
+      "objectModel": "dedicated-live-axis-interval-3d-misleading-graph-and-evidence-model",
+      "truncated": "true",
+      "start": "150",
+      "end": "350",
+      "unequal": "false",
+      "threeD": "false",
+      "graded": "true",
+      "actions": "4"
+    },
+    "unequal": {
+      "testid": "school-mockup-0683",
+      "objectModel": "dedicated-live-axis-interval-3d-misleading-graph-and-evidence-model",
+      "truncated": "true",
+      "start": "150",
+      "end": "350",
+      "unequal": "true",
+      "threeD": "false",
+      "graded": "true",
+      "actions": "6"
+    },
+    "threeD": {
+      "testid": "school-mockup-0683",
+      "objectModel": "dedicated-live-axis-interval-3d-misleading-graph-and-evidence-model",
+      "truncated": "true",
+      "start": "150",
+      "end": "350",
+      "unequal": "true",
+      "threeD": "true",
+      "graded": "true",
+      "actions": "7"
+    },
+    "wrong": {
+      "testid": "school-mockup-0683",
+      "objectModel": "dedicated-live-axis-interval-3d-misleading-graph-and-evidence-model",
+      "truncated": "true",
+      "start": "150",
+      "end": "350",
+      "unequal": "true",
+      "threeD": "true",
+      "graded": "false",
+      "actions": "8"
+    },
+    "correct": {
+      "testid": "school-mockup-0683",
+      "objectModel": "dedicated-live-axis-interval-3d-misleading-graph-and-evidence-model",
+      "truncated": "true",
+      "start": "150",
+      "end": "350",
+      "unequal": "true",
+      "threeD": "true",
+      "graded": "true",
+      "actions": "9"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 963,
+      "height": 1638
+    },
+    "overflow": false,
+    "hero": {
+      "top": 91,
+      "height": 121,
+      "bottom": 212
+    },
+    "tabs": {
+      "top": 222,
+      "height": 44,
+      "bottom": 266
+    },
+    "compare": {
+      "top": 274,
+      "height": 348,
+      "bottom": 622
+    },
+    "manip": {
+      "top": 630,
+      "height": 300,
+      "bottom": 930
+    },
+    "pattern": {
+      "top": 938,
+      "height": 143,
+      "bottom": 1081
+    },
+    "rule": {
+      "top": 1089,
+      "height": 275,
+      "bottom": 1364
+    },
+    "practice": {
+      "top": 1372,
+      "height": 192,
+      "bottom": 1564
+    },
+    "adjacent": {
+      "top": 1572,
+      "height": 48,
+      "bottom": 1620
+    }
+  },
+  "mobileMetrics": {
+    "width": 390,
+    "overflow": false
+  },
+  "logs": []
+}

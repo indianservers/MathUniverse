@@ -374,6 +374,32 @@ describe("lesson pages", () => {
     expect(html).toContain('data-practice-counts="0,0,0,0,0"');
   });
 
+  it("renders the dedicated misleading graph target for lesson 10009", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-6/class-6-data-handling-misleading-graph-detection",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0683"');
+    expect(html).toContain(
+      "dedicated-live-axis-interval-3d-misleading-graph-and-evidence-model",
+    );
+    expect(html).toContain('data-truncated="true"');
+    expect(html).toContain('data-start="100"');
+    expect(html).toContain('data-end="300"');
+    expect(html).toContain('data-unequal="false"');
+    expect(html).toContain('data-three-d="false"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

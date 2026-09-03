@@ -1,0 +1,449 @@
+.mg10009-page {
+  position: relative;
+  top: -18px;
+  width: 100%;
+  margin-bottom: -28px;
+  color: #17213d;
+  font:
+    8px/1.45 Inter,
+    Arial,
+    sans-serif;
+}
+.mg10009-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.mg10009-page h1,
+.mg10009-page h2,
+.mg10009-page h3,
+.mg10009-page p,
+.mg10009-page dl {
+  margin: 0;
+}
+.mg10009-page button,
+.mg10009-page input,
+.mg10009-page select,
+.mg10009-page textarea {
+  font: inherit;
+  color: inherit;
+}
+.mg10009-hero,
+.mg10009-tabs,
+.mg10009-compare,
+.mg10009-manip,
+.mg10009-pattern,
+.mg10009-rule > article,
+.mg10009-practice,
+.mg10009-adjacent {
+  border: 1px solid #dce5ee;
+  border-radius: 9px;
+  background: #fff;
+}
+.mg10009-hero {
+  position: relative;
+  height: 121px;
+  padding: 15px;
+}
+.mg10009-hero > small,
+.mg10009-page h2,
+.mg10009-compare h3 {
+  color: #087fa5;
+  font-weight: 900;
+}
+.mg10009-hero h1 {
+  margin-top: 8px;
+  font-size: 22px;
+}
+.mg10009-hero > p {
+  margin-top: 7px;
+}
+.mg10009-hero dl {
+  display: flex;
+  margin-top: 10px;
+  gap: 7px;
+}
+.mg10009-hero dl span {
+  padding: 4px 9px;
+  border-radius: 11px;
+  background: #f0f3f7;
+  font-weight: 800;
+}
+.mg10009-hero > nav {
+  position: absolute;
+  top: 31px;
+  right: 14px;
+  display: flex;
+  gap: 8px;
+}
+.mg10009-hero a,
+.mg10009-adjacent a {
+  padding: 9px 14px;
+  border: 1px solid #dce5ee;
+  border-radius: 7px;
+  color: inherit;
+  text-decoration: none;
+}
+.mg10009-tabs {
+  height: 44px;
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+.mg10009-tabs button {
+  border: 0;
+  background: #fff;
+  font-weight: 800;
+}
+.mg10009-tabs button.active {
+  border-bottom: 2px solid #1686df;
+}
+.mg10009-compare {
+  height: 348px;
+  margin-top: 8px;
+  padding: 10px;
+}
+.mg10009-compare > header {
+  position: relative;
+  height: 68px;
+}
+.mg10009-compare > header p {
+  margin-top: 9px;
+}
+.mg10009-compare > header table {
+  position: absolute;
+  top: 2px;
+  right: 0;
+  width: 455px;
+  border-collapse: collapse;
+}
+.mg10009-page th,
+.mg10009-page td {
+  padding: 5px;
+  border: 1px solid #dce5ee;
+  text-align: center;
+}
+.mg10009-compare > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.mg10009-compare article {
+  height: 260px;
+  padding: 9px;
+  border: 1px solid #dce5ee;
+  border-radius: 7px;
+}
+.mg10009-compare article p {
+  margin-top: 7px;
+}
+.mg10009-page svg {
+  width: 100%;
+  height: 215px;
+}
+.mg10009-page svg .axis {
+  stroke: #536176;
+  stroke-width: 1.5;
+}
+.mg10009-page svg .grid {
+  stroke: #d9e1e9;
+  stroke-dasharray: 3;
+}
+.mg10009-page svg .line {
+  fill: none;
+  stroke: #17a5c3;
+  stroke-width: 2.5;
+}
+.mg10009-page svg .shadow {
+  fill: none;
+  stroke: #b38ee9;
+  stroke-width: 7;
+  opacity: 0.45;
+}
+.mg10009-page svg circle {
+  fill: #17a5c3;
+}
+.mg10009-page svg text {
+  font-size: 8px;
+  text-anchor: middle;
+}
+.mg10009-compare article + article .line {
+  stroke: #7542df;
+}
+.mg10009-compare article + article circle {
+  fill: #7542df;
+}
+.mg10009-manip {
+  height: 300px;
+  margin-top: 8px;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 12px;
+}
+.mg10009-manip > article:first-child > p {
+  margin-top: 8px;
+}
+.mg10009-manip > article > label {
+  height: 61px;
+  margin-top: 8px;
+  padding: 8px;
+  display: grid;
+  grid-template-columns: 1fr 30px 75px 75px;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #dce5ee;
+  border-radius: 7px;
+}
+.mg10009-manip label span {
+  display: grid;
+}
+.mg10009-manip label small {
+  margin-top: 6px;
+}
+.mg10009-manip input {
+  accent-color: #12a2b6;
+}
+.mg10009-manip select {
+  height: 28px;
+  border: 1px solid #dce5ee;
+  border-radius: 5px;
+}
+.mg10009-manip article:first-child footer {
+  margin-top: 10px;
+}
+.mg10009-manip article + article svg {
+  height: 230px;
+}
+.mg10009-manip article + article .line {
+  stroke: #7542df;
+}
+.mg10009-manip article + article circle {
+  fill: #7542df;
+}
+.mg10009-manip article + article aside {
+  margin-top: -3px;
+  padding: 8px;
+  border: 1px solid #d9c8f2;
+  border-radius: 6px;
+  background: #faf7ff;
+  color: #7040c4;
+  font-weight: 800;
+}
+.mg10009-pattern {
+  height: 143px;
+  margin-top: 8px;
+  padding: 10px;
+}
+.mg10009-pattern > div {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.mg10009-pattern article {
+  height: 96px;
+  padding: 11px;
+  border: 1px solid #bce1ec;
+  border-radius: 8px;
+  background: #f4fbfe;
+}
+.mg10009-pattern article:nth-child(2) {
+  border-color: #efd59b;
+  background: #fffaf1;
+}
+.mg10009-pattern article:nth-child(3) {
+  border-color: #bfe4d2;
+  background: #f2fbf7;
+}
+.mg10009-pattern p,
+.mg10009-pattern strong {
+  display: block;
+  margin-top: 7px;
+}
+.mg10009-rule {
+  height: 275px;
+  margin-top: 8px;
+  display: grid;
+  grid-template-columns: 245px 1fr;
+  gap: 8px;
+}
+.mg10009-rule > article {
+  padding: 12px;
+}
+.mg10009-rule h3,
+.mg10009-rule p {
+  margin-top: 9px;
+}
+.mg10009-rule article:first-child > aside {
+  margin-top: 12px;
+  padding: 10px;
+  border: 1px solid #efbcc3;
+  border-radius: 7px;
+  background: #fff4f5;
+}
+.mg10009-rule table {
+  width: 100%;
+  margin-top: 8px;
+  border-collapse: collapse;
+}
+.mg10009-rule article:nth-child(2) > div {
+  margin-top: 9px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.mg10009-rule article:nth-child(2) > div aside {
+  padding: 8px;
+  border: 1px solid #dce5ee;
+  border-radius: 6px;
+}
+.mg10009-rule strong {
+  display: block;
+  margin-top: 8px;
+  padding: 6px;
+  background: #eef9f3;
+  color: #08784f;
+}
+.mg10009-rule article:nth-child(2) > footer {
+  margin-top: 8px;
+  padding: 7px;
+  border: 1px solid #c5e0ed;
+  background: #f1f9fd;
+}
+.mg10009-practice {
+  height: 192px;
+  margin-top: 8px;
+  padding: 10px;
+}
+.mg10009-practice > p {
+  margin-top: 5px;
+}
+.mg10009-practice > div {
+  margin-top: 8px;
+  display: grid;
+  grid-template-columns: 180px 130px 140px 155px 1fr;
+  gap: 8px;
+}
+.mg10009-practice svg {
+  height: 138px;
+  border: 1px solid #dce5ee;
+  border-radius: 6px;
+}
+.mg10009-practice fieldset,
+.mg10009-practice > div > label,
+.mg10009-practice > div > aside {
+  margin: 0;
+  padding: 10px;
+  border: 1px solid #dce5ee;
+  border-radius: 6px;
+}
+.mg10009-practice fieldset label {
+  display: block;
+  margin-top: 12px;
+}
+.mg10009-practice textarea {
+  width: 100%;
+  height: 82px;
+  margin-top: 8px;
+  padding: 7px;
+  border: 1px solid #dce5ee;
+}
+.mg10009-practice button {
+  padding: 5px 8px;
+  border: 0;
+  border-radius: 4px;
+  background: #087fa5;
+  color: #fff;
+}
+.mg10009-practice > div > aside {
+  background: #f1fbf6;
+}
+.mg10009-practice aside svg {
+  width: 13px;
+  height: 13px;
+  color: #09875a;
+}
+.mg10009-adjacent {
+  height: 48px;
+  margin-top: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.mg10009-adjacent a {
+  border: 0;
+}
+body:has(.mg10009-page) [data-testid="desktop-sidebar"] {
+  width: 193px !important;
+  display: flex !important;
+}
+body:has(.mg10009-page) #main-content {
+  margin-left: 0 !important;
+  padding: 0 14px !important;
+}
+body:has(.mg10009-page) #main-content > div {
+  max-width: none !important;
+}
+body:has(.mg10009-page) nav[aria-label="Breadcrumb"] {
+  height: 30px !important;
+  min-height: 30px !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  font-size: 7px !important;
+}
+body:has(.mg10009-page) footer[aria-label="Site footer"] {
+  display: none !important;
+}
+@media (max-width: 700px) {
+  body:has(.mg10009-page) [data-testid="desktop-sidebar"] {
+    display: none !important;
+  }
+  .mg10009-page {
+    top: 0;
+    margin: 0;
+  }
+  .mg10009-hero {
+    height: auto;
+  }
+  .mg10009-hero > nav {
+    position: static;
+    margin-top: 10px;
+  }
+  .mg10009-tabs {
+    grid-template-columns: repeat(5, 110px);
+    overflow: auto;
+  }
+  .mg10009-compare,
+  .mg10009-manip,
+  .mg10009-pattern,
+  .mg10009-rule,
+  .mg10009-practice {
+    height: auto;
+  }
+  .mg10009-compare > header table {
+    position: static;
+    width: 100%;
+    margin-top: 8px;
+  }
+  .mg10009-compare > header {
+    height: auto;
+  }
+  .mg10009-compare > div,
+  .mg10009-manip,
+  .mg10009-pattern > div,
+  .mg10009-rule,
+  .mg10009-practice > div {
+    grid-template-columns: 1fr;
+  }
+  .mg10009-compare article,
+  .mg10009-pattern article {
+    height: auto;
+  }
+  .mg10009-manip > article > label {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .mg10009-practice > div {
+    grid-template-columns: 1fr;
+  }
+}
