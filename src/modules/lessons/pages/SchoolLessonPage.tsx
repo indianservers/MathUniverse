@@ -36,6 +36,7 @@ import VerticalAnglesTargetLesson10058 from "../schoolTargets/VerticalAnglesTarg
 import LinearPairTargetLesson10059 from "../schoolTargets/LinearPairTargetLesson10059";
 import CorrespondingAnglesTargetLesson10060 from "../schoolTargets/CorrespondingAnglesTargetLesson10060";
 import AlternateInteriorTargetLesson10061 from "../schoolTargets/AlternateInteriorTargetLesson10061";
+import SameSideInteriorTargetLesson10062 from "../schoolTargets/SameSideInteriorTargetLesson10062";
 import PlaceValueTargetLesson10001 from "../schoolTargets/PlaceValueTargetLesson10001";
 import NumberNamingTargetLesson10002 from "../schoolTargets/NumberNamingTargetLesson10002";
 import EstimationRoundingTargetLesson10003 from "../schoolTargets/EstimationRoundingTargetLesson10003";
@@ -129,6 +130,8 @@ export default function SchoolLessonPage() {
     return <CorrespondingAnglesTargetLesson10060 lesson={lesson} />;
   if (lesson.numericId === 10061)
     return <AlternateInteriorTargetLesson10061 lesson={lesson} />;
+  if (lesson.numericId === 10062)
+    return <SameSideInteriorTargetLesson10062 lesson={lesson} />;
   if (lesson.numericId === 10001)
     return <PlaceValueTargetLesson10001 lesson={lesson} />;
   if (lesson.numericId === 10002)

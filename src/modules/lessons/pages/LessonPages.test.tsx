@@ -1779,6 +1779,36 @@ describe("lesson pages", () => {
     );
   });
 
+  it("renders the dedicated same-side-interior target for lesson 10062", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-9/class-9-euclidean-geometry-interior-angles-on-the-same-side",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0736"');
+    expect(html).toContain(
+      "dedicated-same-side-interior-supplement-converse-engine",
+    );
+    expect(html).toContain('data-angles="62,118"');
+    expect(html).toContain('data-sum="180"');
+    expect(html).toContain('data-parallel="true"');
+    expect(html).toContain('data-pair="0"');
+    expect(html).toContain('data-tilt="14"');
+    expect(html).toContain('data-challenge-valid="true"');
+    expect(html).toContain(
+      'aria-label="Interactive same-side interior diagram"',
+    );
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

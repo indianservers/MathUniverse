@@ -1,0 +1,36 @@
+{
+  "mockup": "0736",
+  "lessonId": 10062,
+  "route": "/lessons/school/class-9/class-9-euclidean-geometry-interior-angles-on-the-same-side",
+  "objectModel": "dedicated-same-side-interior-supplement-converse-engine",
+  "desktop": {
+    "viewport": [899, 1870],
+    "hero": [89, 194],
+    "tabs": [194, 242],
+    "interactive": [258, 953],
+    "theory": [966, 1196],
+    "lower": [1211, 1549],
+    "navigation": [1565, 1620],
+    "consoleErrorsOrWarnings": 0
+  },
+  "mobile": {
+    "viewport": [390, 844],
+    "documentScrollWidth": 375,
+    "pageWidth": 366.4,
+    "interactiveDiagrams": 2,
+    "steppers": 2,
+    "ranges": 2,
+    "consoleErrorsOrWarnings": 0
+  },
+  "interactions": {
+    "linkedAngles": [63, 117],
+    "linkedSum": 180,
+    "unlinkedAngles": [63, 118],
+    "unlinkedSum": 181,
+    "selectedPair": 1,
+    "invalidChallengeTilt": 15,
+    "restoredChallengeTilt": 14,
+    "restoredChallengeValid": true
+  },
+  "status": "complete"
+}
