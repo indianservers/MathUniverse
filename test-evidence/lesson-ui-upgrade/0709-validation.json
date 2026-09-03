@@ -1,0 +1,38 @@
+{
+  "mockup": "0709",
+  "lessonNumericId": 10035,
+  "route": "/lessons/school/class-8/class-8-information-processing-flowchart-logic",
+  "objectModel": "dedicated-executable-draggable-branching-flowchart",
+  "viewport": {
+    "desktop": [968, 1633],
+    "mobile": [390, 844]
+  },
+  "layout": {
+    "hero": { "x": 200, "y": 89, "width": 750, "height": 148 },
+    "tabs": { "x": 200, "y": 243, "width": 750, "height": 38 },
+    "builder": { "x": 200, "y": 290, "width": 750, "height": 614 },
+    "theory": { "x": 200, "y": 922, "width": 750, "height": 159 },
+    "challenge": { "x": 200, "y": 1099, "width": 750, "height": 345 },
+    "adjacentNavigation": { "x": 200, "y": 1454, "width": 750, "height": 44 },
+    "footer": { "x": 201, "y": 1501, "width": 750, "height": 108 }
+  },
+  "interactions": {
+    "initial": { "input": 10, "output": "Even", "step": 2, "connected": true },
+    "oddRun": { "input": 7, "output": "Odd", "step": 4 },
+    "stepBackWorking": true,
+    "clearedBranchRejected": true,
+    "nodePointerAndKeyboardDrag": true,
+    "nodeKeyboardMove": { "startX": 265 },
+    "zoomWorking": true,
+    "toolSelectionWorking": true,
+    "challengeRejectsMissingBranch": true,
+    "challengeSolvedAfterConnection": true,
+    "hintWorking": true,
+    "tabsWorking": true,
+    "fullResetWorking": true
+  },
+  "desktopHorizontalOverflow": false,
+  "mobileHorizontalOverflow": false,
+  "mobileChallengeControlsOverlap": false,
+  "consoleWarningsOrErrors": []
+}

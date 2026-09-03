@@ -1052,6 +1052,34 @@ describe("lesson pages", () => {
     expect(html).toContain('data-challenge-range="8"');
   });
 
+  it("renders the dedicated flowchart logic target for lesson 10035", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-8/class-8-information-processing-flowchart-logic",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0709"');
+    expect(html).toContain(
+      "dedicated-executable-draggable-branching-flowchart",
+    );
+    expect(html).toContain('data-input="10"');
+    expect(html).toContain('data-output="Even"');
+    expect(html).toContain('data-step="2"');
+    expect(html).toContain('data-connected="true"');
+    expect(html).toContain('data-valid="true"');
+    expect(html).toContain('data-challenge-connected="false"');
+    expect(html).toContain('data-zoom="100"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
