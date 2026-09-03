@@ -1721,6 +1721,35 @@ describe("lesson pages", () => {
     expect(html).toContain('aria-label="Interactive linear pair construction"');
   });
 
+  it("renders the dedicated corresponding-angles target for lesson 10060", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-9/class-9-euclidean-geometry-corresponding-angles",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0734"');
+    expect(html).toContain(
+      "dedicated-two-line-transversal-correspondence-parallel-test-engine",
+    );
+    expect(html).toContain('data-angle="64"');
+    expect(html).toContain('data-values="64,116,64,116,64,116,64,116"');
+    expect(html).toContain('data-parallel="true"');
+    expect(html).toContain('data-selected-pairs="0,1,2,3"');
+    expect(html).toContain('data-valid="true"');
+    expect(html).toContain(
+      'aria-label="Interactive corresponding angles diagram"',
+    );
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

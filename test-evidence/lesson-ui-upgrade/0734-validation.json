@@ -1,0 +1,35 @@
+{
+  "mockup": "0734",
+  "lessonId": 10060,
+  "route": "/lessons/school/class-9/class-9-euclidean-geometry-corresponding-angles",
+  "objectModel": "dedicated-two-line-transversal-correspondence-parallel-test-engine",
+  "desktop": {
+    "viewport": [899, 1800],
+    "hero": [91, 201],
+    "tabs": [201, 241],
+    "explorer": [257, 1090],
+    "theory": [1106, 1444],
+    "challenge": [1460, 1608],
+    "navigation": [1624, 1663],
+    "angleWedges": 8,
+    "consoleErrorsOrWarnings": 0
+  },
+  "mobile": {
+    "viewport": [390, 844],
+    "documentScrollWidth": 375,
+    "pageWidth": 351.2,
+    "pairControls": 4,
+    "toggles": 3,
+    "consoleErrorsOrWarnings": 0
+  },
+  "interactions": {
+    "rotatedValues": [65, 115, 65, 115, 65, 115, 65, 115],
+    "movedLineParallel": false,
+    "movedLineValid": false,
+    "deselectedPairs": [1, 2, 3],
+    "resetAngle": 64,
+    "resetParallel": true,
+    "resetPairs": [0, 1, 2, 3]
+  },
+  "status": "complete"
+}
