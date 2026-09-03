@@ -1,0 +1,532 @@
+.loan597-page {
+  position: relative;
+  top: -8px;
+  width: 100%;
+  margin-bottom: -12px;
+  color: #102044;
+  font:
+    8px/1.4 Inter,
+    Arial,
+    sans-serif;
+  letter-spacing: 0;
+}
+.loan597-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.loan597-page h1,
+.loan597-page h2,
+.loan597-page h3,
+.loan597-page p {
+  margin: 0;
+}
+.loan597-page button,
+.loan597-page input,
+.loan597-page select {
+  font: inherit;
+  color: inherit;
+}
+.loan597-hero,
+.loan597-tabs,
+.loan597-top > *,
+.loan597-pattern,
+.loan597-lower > article,
+.loan597-explore,
+.loan597-adjacent {
+  border: 1px solid #dbe5ef;
+  border-radius: 9px;
+  background: white;
+}
+.loan597-hero {
+  height: 122px;
+  padding: 14px;
+  position: relative;
+}
+.loan597-hero > span {
+  display: flex;
+  gap: 7px;
+}
+.loan597-hero > span b {
+  padding: 4px 8px;
+  border-radius: 12px;
+  background: #eaf7fa;
+  color: #087e9d;
+  font-size: 7px;
+}
+.loan597-hero > span b + b {
+  background: #f1f3f5;
+  color: #55647a;
+}
+.loan597-hero h1 {
+  margin-top: 10px;
+  font-size: 29px;
+  line-height: 1;
+  font-weight: 800;
+}
+.loan597-hero > p {
+  width: 375px;
+  margin-top: 8px;
+  font-size: 8px;
+}
+.loan597-hero > aside {
+  position: absolute;
+  right: 14px;
+  top: 46px;
+  width: 355px;
+  height: 45px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid #dbe5ef;
+  border-radius: 16px;
+}
+.loan597-hero > aside > b {
+  padding: 7px 12px;
+  border-right: 1px solid #dbe5ef;
+  font-size: 7px;
+}
+.loan597-hero > aside > b:last-child {
+  border: 0;
+}
+.loan597-hero > aside strong {
+  font-size: 8px;
+}
+.loan597-tabs {
+  height: 43px;
+  margin-top: 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  border-radius: 0;
+}
+.loan597-tabs button {
+  border: 0;
+  border-right: 1px solid #e1e7ee;
+  background: white;
+  font-weight: 700;
+}
+.loan597-tabs button.active {
+  color: #087b9d;
+  border-bottom: 2px solid #079caf;
+}
+.loan597-note {
+  height: 28px;
+  padding: 7px 10px;
+  background: #effaff;
+  border: 1px solid #bde4ef;
+}
+.loan597-top {
+  height: 361px;
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 225px 1fr;
+  gap: 12px;
+}
+.loan597-top > aside {
+  padding: 13px;
+}
+.loan597-top h2,
+.loan597-pattern h2,
+.loan597-lower h3 {
+  font-size: 8px;
+  color: #52627a;
+}
+.loan597-control,
+.loan597-top > aside > label {
+  display: block;
+  margin-top: 10px;
+}
+.loan597-control > b,
+.loan597-top > aside > label > b {
+  display: block;
+  margin-bottom: 5px;
+}
+.loan597-control > span {
+  display: flex;
+  height: 28px;
+  padding: 0 8px;
+  align-items: center;
+  border: 1px solid #dbe5ef;
+  border-radius: 5px;
+}
+.loan597-control > span input {
+  width: 100%;
+  border: 0;
+  text-align: right;
+  background: transparent;
+}
+.loan597-control > input[type="range"] {
+  width: 100%;
+  accent-color: #597ee9;
+}
+.loan597-control small {
+  display: block;
+  color: #61718a;
+  font-size: 6px;
+}
+.loan597-control small i {
+  float: right;
+  font-style: normal;
+}
+.loan597-top select {
+  width: 100%;
+  height: 28px;
+  border: 1px solid #dbe5ef;
+  border-radius: 5px;
+  background: white;
+}
+.loan597-top > aside > p {
+  margin-top: 13px;
+  padding: 9px;
+  border-radius: 6px;
+  background: #eff9fb;
+}
+.loan597-top > main {
+  padding: 13px;
+}
+.loan597-gauge {
+  height: 286px;
+  margin-top: 12px;
+  padding: 15px;
+  color: white;
+  background: #061331;
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: 120px 1fr 155px;
+}
+.loan597-gauge section h3 {
+  margin: 6px 0 2px;
+  font-size: 8px;
+}
+.loan597-gauge section > strong {
+  font-size: 21px;
+}
+.loan597-gauge section > b {
+  font-size: 12px;
+}
+.loan597-gauge svg {
+  width: 100%;
+  height: 210px;
+  align-self: center;
+}
+.loan597-gauge svg path {
+  fill: none;
+  stroke: #8c42df;
+  stroke-width: 18;
+  stroke-linecap: round;
+}
+.loan597-gauge svg path.used {
+  stroke: #33d3e8;
+}
+.loan597-gauge svg line {
+  stroke: #9d43e7;
+  stroke-width: 4;
+}
+.loan597-gauge svg circle {
+  fill: #dce8ef;
+}
+.loan597-gauge svg text {
+  fill: white;
+  font-size: 10px;
+  text-anchor: middle;
+}
+.loan597-gauge > aside {
+  padding-left: 13px;
+  border-left: 1px solid #8993ab;
+}
+.loan597-gauge > aside h3 {
+  font-size: 9px;
+}
+.loan597-gauge > aside p {
+  margin: 11px 0;
+  font-size: 8px;
+}
+.loan597-gauge > aside p:nth-of-type(1) {
+  color: #2ed1e6;
+}
+.loan597-gauge > aside p:nth-of-type(2) {
+  color: #a54be7;
+}
+.loan597-gauge > aside b {
+  display: block;
+  color: white;
+  margin-top: 2px;
+}
+.loan597-pattern {
+  position: relative;
+  height: 267px;
+  margin-top: 9px;
+  padding: 12px;
+}
+.loan597-pattern header {
+  display: flex;
+  justify-content: space-between;
+}
+.loan597-pattern svg {
+  width: 100%;
+  height: 190px;
+}
+.loan597-pattern svg line {
+  stroke: #4f6078;
+}
+.loan597-pattern svg polygon.principal {
+  fill: #09aec1;
+}
+.loan597-pattern svg polygon.interest {
+  fill: #9b42dc;
+}
+.loan597-pattern svg text {
+  fill: #36465e;
+  font-size: 9px;
+  text-anchor: middle;
+}
+.loan597-pattern > div p {
+  position: absolute;
+  top: 85px;
+  padding: 8px;
+  background: #fff;
+  border-radius: 6px;
+}
+.loan597-pattern > div p:first-child {
+  left: 80px;
+}
+.loan597-pattern > div p:last-child {
+  right: 25px;
+}
+.loan597-pattern dl {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 10px;
+  height: 42px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid #dbe5ef;
+  border-radius: 6px;
+}
+.loan597-pattern dl span {
+  padding: 8px 20px;
+  border-right: 1px solid #dbe5ef;
+}
+.loan597-pattern dl span:last-child {
+  border: 0;
+}
+.loan597-pattern dl b {
+  display: block;
+}
+.loan597-lower {
+  height: 371px;
+  margin-top: 9px;
+  display: grid;
+  grid-template-columns: 0.9fr 1.25fr 1fr;
+  gap: 9px;
+}
+.loan597-lower > article {
+  padding: 11px;
+}
+.loan597-lower article > p {
+  margin: 10px 0;
+  line-height: 1.55;
+}
+.loan597-lower article > strong {
+  display: block;
+  padding: 14px;
+  text-align: center;
+  font:
+    15px Georgia,
+    serif;
+}
+.loan597-lower article > aside {
+  margin-top: 13px;
+  padding: 9px;
+  border: 1px solid #efd6a0;
+  background: #fff9ea;
+  border-radius: 6px;
+}
+.loan597-lower article:nth-child(2) > strong {
+  display: inline-block;
+  padding: 6px;
+  border: 1px solid #afd5f0;
+  background: #edf8ff;
+  color: #0871ca;
+  border-radius: 6px;
+  font:
+    12px Inter,
+    sans-serif;
+}
+.loan597-lower table {
+  width: 100%;
+  margin-top: 10px;
+  border-collapse: collapse;
+  font-size: 7px;
+  text-align: center;
+}
+.loan597-lower th,
+.loan597-lower td {
+  padding: 6px 3px;
+  border: 1px solid #dbe5ef;
+}
+.loan597-lower footer {
+  padding: 9px;
+  background: #f5f8fb;
+}
+.loan597-challenge label {
+  display: grid;
+  margin-top: 8px;
+  gap: 4px;
+}
+.loan597-challenge input {
+  height: 28px;
+  padding: 7px;
+  border: 1px solid #dbe5ef;
+  border-radius: 5px;
+}
+.loan597-challenge button {
+  width: 100%;
+  height: 29px;
+  margin-top: 10px;
+  border: 0;
+  border-radius: 5px;
+  background: #078ca7;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.loan597-challenge button svg {
+  width: 12px;
+}
+.loan597-challenge output {
+  display: block;
+  margin-top: 5px;
+}
+.loan597-challenge output.correct {
+  color: #168442;
+}
+.loan597-challenge output.wrong {
+  color: #c92c41;
+}
+.loan597-explore {
+  height: 36px;
+  margin-top: 9px;
+  padding: 10px;
+  color: #176cbf;
+  background: #eff8ff;
+}
+.loan597-adjacent {
+  height: 51px;
+  margin-top: 9px;
+  padding: 0 13px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.loan597-adjacent a {
+  display: flex;
+  gap: 8px;
+  color: inherit;
+  text-decoration: none;
+}
+.loan597-adjacent a:last-child {
+  text-align: right;
+}
+.loan597-adjacent span {
+  display: grid;
+}
+.loan597-adjacent b {
+  font-size: 9px;
+}
+.loan597-tags {
+  height: 28px;
+  padding: 8px;
+}
+.loan597-page ~ footer {
+  margin-top: 0;
+}
+body:has(.loan597-page) [data-testid="desktop-sidebar"] {
+  width: 213px !important;
+  flex-basis: 213px !important;
+}
+body:has(.loan597-page) #main-content {
+  padding: 0 16px !important;
+}
+body:has(.loan597-page) .lesson-shell-header,
+body:has(.loan597-page) .lesson-page-shell > nav[role="tablist"],
+body:has(.loan597-page) .lesson-workbench-heading,
+body:has(.loan597-page) .lesson-workbench > .mt-3.grid,
+body:has(.loan597-page) .lesson-adjacent-nav {
+  display: none !important;
+}
+body:has(.loan597-page) .lesson-page-shell > div {
+  margin-top: 0 !important;
+}
+body:has(.loan597-page) .lesson-workbench {
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+body:has(.loan597-page) footer[aria-label="Site footer"] {
+  height: 104px;
+  overflow: hidden;
+}
+@media (max-width: 700px) {
+  body:has(.loan597-page) [data-testid="desktop-sidebar"] {
+    display: none !important;
+  }
+  body:has(.loan597-page) #main-content {
+    width: 100% !important;
+    padding: 0 !important;
+  }
+  .loan597-page {
+    top: 0;
+    margin: 0;
+    padding: 6px;
+  }
+  .loan597-hero,
+  .loan597-top,
+  .loan597-pattern,
+  .loan597-lower {
+    height: auto;
+  }
+  .loan597-hero > aside {
+    position: static;
+    width: auto;
+    margin-top: 10px;
+  }
+  .loan597-hero > p {
+    width: auto;
+  }
+  .loan597-tabs {
+    overflow: auto;
+    grid-template-columns: repeat(5, minmax(90px, 1fr));
+  }
+  .loan597-top,
+  .loan597-lower {
+    grid-template-columns: 1fr;
+  }
+  .loan597-gauge {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .loan597-gauge > aside {
+    border-left: 0;
+    border-top: 1px solid #8993ab;
+  }
+  .loan597-pattern {
+    overflow-x: auto;
+  }
+  .loan597-pattern svg {
+    min-width: 650px;
+  }
+  .loan597-pattern dl {
+    position: static;
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .loan597-pattern > div {
+    display: none;
+  }
+  .loan597-tags {
+    height: auto;
+  }
+}

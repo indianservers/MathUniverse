@@ -1,0 +1,158 @@
+{
+  "passed": true,
+  "checks": {
+    "initial": {
+      "principal": "500000",
+      "rate": "9",
+      "years": "5",
+      "months": "60",
+      "emi": "10379.18",
+      "interest": "122750.66",
+      "firstPrincipal": "6629.18",
+      "graded": "",
+      "actions": "0",
+      "chartLabels": 21,
+      "tableRows": 4
+    },
+    "principal": {
+      "principal": "600000",
+      "rate": "9",
+      "years": "5",
+      "months": "60",
+      "emi": "12455.01",
+      "interest": "147300.79",
+      "firstPrincipal": "7955.01",
+      "graded": "",
+      "actions": "1",
+      "chartLabels": 21,
+      "tableRows": 4
+    },
+    "rate": {
+      "principal": "600000",
+      "rate": "10",
+      "years": "5",
+      "months": "60",
+      "emi": "12748.23",
+      "interest": "164893.61",
+      "firstPrincipal": "7748.23",
+      "graded": "",
+      "actions": "2",
+      "chartLabels": 21,
+      "tableRows": 4
+    },
+    "term": {
+      "principal": "600000",
+      "rate": "10",
+      "years": "10",
+      "months": "120",
+      "emi": "7929.04",
+      "interest": "351485.31",
+      "firstPrincipal": "2929.04",
+      "graded": "",
+      "actions": "3",
+      "chartLabels": 25,
+      "tableRows": 4
+    },
+    "currency": "US Dollar (USD)",
+    "sliders": {
+      "principal": "750000",
+      "rate": "8.5",
+      "years": "6",
+      "months": "72",
+      "emi": "13333.79",
+      "interest": "210032.77",
+      "firstPrincipal": "8021.29",
+      "graded": "",
+      "actions": "7",
+      "chartLabels": 25,
+      "tableRows": 4
+    },
+    "formula": true,
+    "wrong": {
+      "principal": "750000",
+      "rate": "8.5",
+      "years": "6",
+      "months": "72",
+      "emi": "13333.79",
+      "interest": "210032.77",
+      "firstPrincipal": "8021.29",
+      "graded": "false",
+      "actions": "13",
+      "chartLabels": 25,
+      "tableRows": 4
+    },
+    "correct": {
+      "principal": "750000",
+      "rate": "8.5",
+      "years": "6",
+      "months": "72",
+      "emi": "13333.79",
+      "interest": "210032.77",
+      "firstPrincipal": "8021.29",
+      "graded": "true",
+      "actions": "17",
+      "chartLabels": 25,
+      "tableRows": 4
+    },
+    "final": {
+      "principal": "500000",
+      "rate": "9",
+      "years": "5",
+      "months": "60",
+      "emi": "10379.18",
+      "interest": "122750.66",
+      "firstPrincipal": "6629.18",
+      "graded": "",
+      "actions": "0",
+      "chartLabels": 21,
+      "tableRows": 4
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1017,
+      "height": 1546
+    },
+    "overflow": false,
+    "hero": {
+      "top": 91,
+      "height": 122,
+      "bottom": 213
+    },
+    "tabs": {
+      "top": 213,
+      "height": 43,
+      "bottom": 256
+    },
+    "top": {
+      "top": 266,
+      "height": 361,
+      "bottom": 627
+    },
+    "pattern": {
+      "top": 636,
+      "height": 267,
+      "bottom": 903
+    },
+    "lower": {
+      "top": 912,
+      "height": 371,
+      "bottom": 1283
+    },
+    "explore": {
+      "top": 1283,
+      "height": 36,
+      "bottom": 1319
+    },
+    "adjacent": {
+      "top": 1328,
+      "height": 51,
+      "bottom": 1379
+    }
+  },
+  "mobileMetrics": {
+    "width": 390,
+    "overflow": false
+  },
+  "logs": []
+}
