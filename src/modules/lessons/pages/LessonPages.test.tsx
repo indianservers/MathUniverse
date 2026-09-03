@@ -1158,6 +1158,32 @@ describe("lesson pages", () => {
     expect(html).toContain('data-challenge-distance="0"');
   });
 
+  it("renders the dedicated tabular pattern target for lesson 10039", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-8/class-8-information-processing-tabular-pattern-completion",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0713"');
+    expect(html).toContain("dedicated-all-row-tabular-rule-inference-engine");
+    expect(html).toContain('data-rule="2a + b"');
+    expect(html).toContain('data-generated="4,10,17"');
+    expect(html).toContain('data-third-output="17"');
+    expect(html).toContain('data-matches="true,true,true"');
+    expect(html).toContain('data-all-match="true"');
+    expect(html).toContain('data-tested="true"');
+    expect(html).toContain('data-challenge-result="correct"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

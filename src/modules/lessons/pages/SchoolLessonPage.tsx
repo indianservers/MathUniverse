@@ -53,6 +53,7 @@ import FlowchartLogicTargetLesson10035 from "../schoolTargets/FlowchartLogicTarg
 import PatternEncodingTargetLesson10036 from "../schoolTargets/PatternEncodingTargetLesson10036";
 import MagicSquaresTargetLesson10037 from "../schoolTargets/MagicSquaresTargetLesson10037";
 import RouteMapTargetLesson10038 from "../schoolTargets/RouteMapTargetLesson10038";
+import TabularPatternTargetLesson10039 from "../schoolTargets/TabularPatternTargetLesson10039";
 import { getStrengthenedFoundationLesson } from "../strengthening/foundationNumberContent";
 import type { SchoolLessonContent } from "../syllabus/lessonSyllabusTypes";
 
@@ -141,6 +142,8 @@ export default function SchoolLessonPage() {
     return <MagicSquaresTargetLesson10037 lesson={lesson} />;
   if (lesson.numericId === 10038)
     return <RouteMapTargetLesson10038 lesson={lesson} />;
+  if (lesson.numericId === 10039)
+    return <TabularPatternTargetLesson10039 lesson={lesson} />;
   const adjacent = adjacentSchoolLessons(lesson);
   const strengthened = getStrengthenedFoundationLesson(lesson.numericId);
   const content = strengthened

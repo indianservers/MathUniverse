@@ -1,0 +1,568 @@
+.table10039-page {
+  position: relative;
+  left: -5px;
+  top: -54px;
+  width: min(750px, calc(100vw - 218px));
+  margin: 0 auto -35px;
+  color: #26384f;
+  font:
+    9px/1.5 Inter,
+    Arial,
+    sans-serif;
+}
+.table10039-page * {
+  box-sizing: border-box;
+}
+.table10039-page h1,
+.table10039-page h2,
+.table10039-page h3,
+.table10039-page p {
+  margin: 0;
+}
+.table10039-page button,
+.table10039-page input {
+  font: inherit;
+}
+.table10039-page button {
+  cursor: pointer;
+}
+.table10039-hero {
+  position: relative;
+  height: 130px;
+  padding: 17px;
+  border: 1px solid #dce6ed;
+  border-radius: 12px;
+  background: #fff;
+}
+.table10039-hero small,
+.table10039-page h2,
+.table10039-page h3 {
+  color: #0874b3;
+  font-weight: 900;
+}
+.table10039-hero small {
+  letter-spacing: 1px;
+}
+.table10039-hero h1 {
+  margin: 7px 0 5px;
+  color: #111827;
+  font-size: 22px;
+  letter-spacing: 0;
+}
+.table10039-hero > div {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+.table10039-hero span {
+  padding: 4px 8px;
+  border-radius: 8px;
+  background: #f2f6fa;
+}
+.table10039-hero > a {
+  position: absolute;
+  right: 17px;
+  top: 17px;
+  padding: 9px 14px;
+  border: 1px solid #cfe3ed;
+  border-radius: 8px;
+  color: inherit;
+  text-decoration: none;
+}
+.table10039-tabs {
+  height: 36px;
+  margin-top: 10px;
+  padding: 4px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  border: 1px solid #dce6ed;
+  border-radius: 9px;
+  background: #fff;
+}
+.table10039-tabs button {
+  border: 1px solid #dce6ed;
+  border-radius: 6px;
+  background: #fff;
+  font-weight: 800;
+}
+.table10039-tabs button.active {
+  border-color: #6aaee5;
+  color: #0874b3;
+}
+.table10039-lab {
+  position: relative;
+  height: 765px;
+  margin-top: 10px;
+  padding: 75px 10px 140px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  border: 1px solid #dce6ed;
+  border-radius: 9px;
+  background: #fff;
+}
+.table10039-lab > header {
+  position: absolute;
+  left: 16px;
+  top: 15px;
+}
+.table10039-lab > header b,
+.rule-builder header > b,
+.relationships header > b {
+  float: left;
+  margin-right: 10px;
+  padding: 4px 8px;
+  border-radius: 50%;
+  background: #347fd2;
+  color: #fff;
+}
+.table10039-lab > header h2 {
+  font-size: 15px;
+}
+.table10039-lab > header p {
+  margin-top: 10px;
+}
+.data-table,
+.rule-builder {
+  height: 280px;
+  padding: 14px;
+  border: 1px solid #dce6ed;
+  border-radius: 8px;
+}
+.data-table h3 {
+  text-align: center;
+}
+.data-table h3 span {
+  float: right;
+  margin-right: 45px;
+  color: #7c35d0;
+}
+.data-table table {
+  width: 100%;
+  margin-top: 10px;
+  border-collapse: collapse;
+}
+.data-table td,
+.data-table th {
+  height: 51px;
+  border: 1px solid #d7e2ea;
+  text-align: center;
+}
+.data-table thead th {
+  background: #edf7fd;
+}
+.data-table thead th:last-child {
+  background: #f1e8ff;
+  color: #7c35d0;
+}
+.data-table input {
+  width: 65px;
+  height: 35px;
+  padding: 5px;
+  border: 1px solid #3694dc;
+  border-radius: 5px;
+  text-align: center;
+}
+.data-table > p {
+  margin-top: 10px;
+}
+.rule-builder header h2 {
+  font-size: 14px;
+}
+.rule-builder header p {
+  margin: 8px 0 15px;
+}
+.rule-builder > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.rule-builder > div button {
+  min-width: 42px;
+  height: 36px;
+  padding: 0 12px;
+  border: 1px solid #d7e2ea;
+  border-radius: 6px;
+  background: #fff;
+  font-family: serif;
+  font-style: italic;
+}
+.rule-builder > div button.active {
+  border-color: #2888dd;
+  color: #6c2fc8;
+}
+.rule-builder label {
+  display: block;
+  margin-top: 20px;
+  font-weight: 800;
+}
+.rule-builder output {
+  height: 51px;
+  margin-top: 8px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #963fdf;
+  border-radius: 6px;
+  color: #4e237e;
+  font: italic 16px Georgia;
+}
+.relationships {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  top: 370px;
+  height: 185px;
+  padding: 49px 10px 10px;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1fr;
+  gap: 10px;
+  border: 1px solid #dce6ed;
+  border-radius: 8px;
+}
+.relationships > header {
+  position: absolute;
+  left: 14px;
+  top: 12px;
+}
+.relationships article {
+  padding: 10px;
+  border: 1px solid #dce6ed;
+  border-radius: 7px;
+}
+.relationships article > p {
+  margin-top: 8px;
+}
+.relationships article > div {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 15px;
+}
+.relationships article span,
+.relationships article strong {
+  padding: 8px;
+  border: 1px solid #55a4de;
+  border-radius: 6px;
+}
+.relationships article strong {
+  border-color: #a56ae4;
+}
+.relationships article > strong {
+  display: block;
+  margin-top: 18px;
+  color: #1677c0;
+}
+.table10039-lab > footer {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  top: 565px;
+  height: 48px;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid #dce6ed;
+  border-radius: 7px;
+}
+.table10039-lab > footer button {
+  height: 34px;
+  padding: 0 13px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid #dce6ed;
+  border-radius: 6px;
+  background: #fff;
+}
+.table10039-lab > footer button:first-child {
+  background: #1678c8;
+  color: #fff;
+}
+.table10039-lab > footer svg {
+  width: 13px;
+}
+.table10039-lab > footer span {
+  margin-left: auto;
+}
+.result {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  height: 105px;
+  padding: 13px;
+  display: grid;
+  grid-template-columns: 1fr 250px;
+  border: 1px solid #63c797;
+  border-radius: 8px;
+  background: #f1fbf6;
+}
+.result.bad {
+  border-color: #e8aa64;
+  background: #fff9ee;
+}
+.result svg {
+  float: left;
+  width: 20px;
+  margin-right: 8px;
+  color: #0c9d5b;
+}
+.result p {
+  margin: 8px 0 0 28px;
+}
+.result table {
+  border-collapse: collapse;
+}
+.result td,
+.result th {
+  padding: 6px;
+  border: 1px solid #d3e7dc;
+  text-align: center;
+}
+.table10039-theory {
+  height: 200px;
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.2fr;
+  gap: 10px;
+}
+.table10039-theory article {
+  padding: 15px;
+  border: 1px solid #dce6ed;
+  border-radius: 8px;
+  background: #fff;
+}
+.table10039-theory p {
+  margin-top: 12px;
+  line-height: 1.7;
+}
+.table10039-theory strong {
+  display: block;
+  margin-top: 25px;
+  text-align: center;
+  font-size: 16px;
+}
+.table10039-theory .warning {
+  color: #992b34;
+}
+.table10039-challenge {
+  position: relative;
+  height: 205px;
+  margin-top: 12px;
+  padding: 55px 255px 10px 290px;
+  border: 1px solid #dce6ed;
+  border-radius: 8px;
+  background: #fff;
+}
+.table10039-challenge > header {
+  position: absolute;
+  left: 15px;
+  top: 14px;
+}
+.mini-table {
+  position: absolute;
+  left: 15px;
+  top: 60px;
+  width: 260px;
+  border-collapse: collapse;
+}
+.mini-table td,
+.mini-table th {
+  padding: 7px;
+  border: 1px solid #dce6ed;
+  text-align: center;
+}
+.mini-table th:last-child,
+.mini-table td:last-child {
+  color: #7133c8;
+}
+.table10039-challenge > article label {
+  height: 34px;
+  margin-bottom: 7px;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #dce6ed;
+  border-radius: 4px;
+}
+.table10039-challenge > article label.selected {
+  border-color: #62c79a;
+  background: #f1fbf6;
+}
+.table10039-challenge > article svg {
+  width: 14px;
+  margin-left: auto;
+  color: #0a9c59;
+}
+.table10039-challenge > aside {
+  position: absolute;
+  right: 14px;
+  top: 60px;
+  width: 230px;
+  height: 130px;
+  padding: 14px;
+  border: 1px solid #7bcba2;
+  border-radius: 7px;
+  background: #f2fbf6;
+}
+.table10039-challenge > aside.retry {
+  border-color: #e5a468;
+  background: #fff9ef;
+}
+.table10039-challenge > aside p {
+  margin-top: 12px;
+}
+.table10039-challenge > aside button {
+  height: 30px;
+  margin-top: 13px;
+  padding: 0 10px;
+  border: 1px solid #8ecbe8;
+  border-radius: 5px;
+  background: #fff;
+  color: #0874b3;
+}
+.table10039-challenge > aside svg {
+  width: 12px;
+  vertical-align: middle;
+}
+.table10039-adjacent {
+  height: 48px;
+  margin-top: 12px;
+  display: flex;
+  justify-content: space-between;
+}
+.table10039-adjacent a {
+  height: 34px;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #c9dfea;
+  border-radius: 7px;
+  color: inherit;
+  text-decoration: none;
+}
+.table10039-adjacent svg {
+  width: 13px;
+}
+.table10039-adjacent .next {
+  background: #1b78c8;
+  color: #fff;
+}
+@media (min-width: 900px) {
+  body:has(.table10039-page) .app-layout-rail > aside {
+    width: 193px !important;
+  }
+  body:has(.table10039-page)
+    .app-layout-rail
+    > div
+    > header
+    > div
+    > button:first-child {
+    display: none;
+  }
+  body:has(.table10039-page) .app-layout-rail > div > footer:not(.hidden) {
+    width: 750px;
+    max-width: calc(100vw - 218px);
+    height: 80px;
+    padding: 10px 18px !important;
+    overflow: hidden;
+    transform: translate(0, -20px);
+  }
+}
+@media (max-width: 899px) {
+  .table10039-page {
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+  }
+  .table10039-hero {
+    height: auto;
+    min-height: 205px;
+  }
+  .table10039-hero h1 {
+    font-size: 19px;
+  }
+  .table10039-hero > div {
+    width: 70%;
+    flex-wrap: wrap;
+  }
+  .table10039-hero > a {
+    position: static;
+    display: inline-block;
+    margin-top: 9px;
+  }
+  .table10039-tabs {
+    overflow-x: auto;
+    grid-template-columns: repeat(5, minmax(90px, 1fr));
+  }
+  .table10039-lab {
+    height: 1320px;
+    padding: 75px 8px 145px;
+    grid-template-columns: 1fr;
+    grid-template-rows: 280px 280px;
+    align-content: start;
+  }
+  .data-table,
+  .rule-builder {
+    position: absolute;
+    left: 8px;
+    right: 8px;
+    height: 280px;
+  }
+  .data-table {
+    top: 75px;
+  }
+  .rule-builder {
+    top: 367px;
+  }
+  .relationships {
+    top: 655px;
+    height: 440px;
+    grid-template-columns: 1fr;
+  }
+  .table10039-lab > footer {
+    top: 1105px;
+    height: 80px;
+    flex-wrap: wrap;
+  }
+  .result {
+    height: 120px;
+    grid-template-columns: 1fr 150px;
+  }
+  .table10039-theory {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .table10039-theory article {
+    min-height: 230px;
+  }
+  .table10039-challenge {
+    height: 690px;
+    padding: 285px 8px 205px;
+  }
+  .mini-table {
+    left: 8px;
+    right: 8px;
+    width: auto;
+  }
+  .table10039-challenge > aside {
+    left: 8px;
+    right: 8px;
+    top: auto;
+    bottom: 8px;
+    width: auto;
+    height: 185px;
+  }
+  .table10039-adjacent {
+    height: 80px;
+    gap: 5px;
+  }
+  .table10039-adjacent a {
+    height: auto;
+  }
+}
