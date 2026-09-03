@@ -1,0 +1,39 @@
+{
+  "mockup": "0716",
+  "lessonId": 10042,
+  "route": "/lessons/school/class-9/class-9-real-numbers-rational-and-irrational-classification",
+  "surface": "RationalIrrationalTargetLesson10042",
+  "objectModel": "dedicated-rational-irrational-drag-evidence-engine",
+  "targetViewport": { "width": 958, "height": 1641 },
+  "desktop": {
+    "consoleWarningsOrErrors": 0,
+    "sections": {
+      "hero": { "x": 208, "y": 90, "width": 740, "height": 126 },
+      "tabs": { "x": 208, "y": 216, "width": 740, "height": 48 },
+      "classifier": { "x": 218, "y": 277, "width": 720, "height": 746 },
+      "theory": { "x": 218, "y": 1035, "width": 720, "height": 248 },
+      "challenge": { "x": 218, "y": 1295, "width": 720, "height": 218 },
+      "navigation": { "x": 208, "y": 1526, "width": 740, "height": 64 }
+    }
+  },
+  "mobile": {
+    "width": 390,
+    "documentWidth": 375,
+    "pageLevelHorizontalOverflow": false,
+    "consoleWarningsOrErrors": 0
+  },
+  "interactions": {
+    "zeroPointThreeSevenFive": {
+      "placement": "rational",
+      "evidence": "fraction",
+      "correctAfter": 1
+    },
+    "squareRootTwo": {
+      "placement": "irrational",
+      "evidence": "nonrepeating",
+      "correctAfter": 2
+    },
+    "challenge": { "allFourClassificationAndEvidencePairsCorrect": true },
+    "reset": { "correct": 0, "remaining": 8 }
+  }
+}

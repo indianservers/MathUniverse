@@ -1229,6 +1229,31 @@ describe("lesson pages", () => {
     expect(html).toContain('data-decimal="0.175"');
   });
 
+  it("renders the dedicated rational classification target for lesson 10042", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-9/class-9-real-numbers-rational-and-irrational-classification",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0716"');
+    expect(html).toContain(
+      "dedicated-rational-irrational-drag-evidence-engine",
+    );
+    expect(html).toContain('data-correct="0"');
+    expect(html).toContain('data-remaining="8"');
+    expect(html).toContain('draggable="true"');
+    expect(html).toContain('data-challenge="idle"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
