@@ -1,0 +1,645 @@
+.pp10026-page {
+  position: relative;
+  top: -57px;
+  left: -8px;
+  width: min(705px, calc(100vw - 219px));
+  margin: 0 auto -40px;
+  color: #18314e;
+  font:
+    8.5px/1.5 Inter,
+    Arial,
+    sans-serif;
+}
+.pp10026-page * {
+  box-sizing: border-box;
+}
+.pp10026-page button,
+.pp10026-page input {
+  font: inherit;
+}
+.pp10026-page button {
+  cursor: pointer;
+}
+.pp10026-page h1,
+.pp10026-page h2,
+.pp10026-page h3,
+.pp10026-page p {
+  margin: 0;
+}
+.pp10026-hero {
+  position: relative;
+  height: 140px;
+  padding: 16px 14px;
+  border: 1px solid #d8e5ed;
+  border-radius: 13px;
+  background: #fff;
+}
+.pp10026-hero small {
+  color: #0782ad;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+.pp10026-hero h1 {
+  margin: 8px 0 4px;
+  color: #101827;
+  font-size: 21px;
+  letter-spacing: 0;
+}
+.pp10026-hero p {
+  color: #52647a;
+}
+.pp10026-hero div {
+  display: flex;
+  gap: 7px;
+  margin-top: 13px;
+}
+.pp10026-hero span {
+  padding: 4px 9px;
+  border-radius: 12px;
+  background: #eef2f6;
+  font-size: 7px;
+  font-weight: 800;
+}
+.pp10026-hero > a {
+  position: absolute;
+  right: 13px;
+  top: 15px;
+  padding: 8px 12px;
+  border: 1px solid #d5e7ef;
+  border-radius: 9px;
+  color: #17324e;
+  text-decoration: none;
+}
+.pp10026-tabs {
+  height: 34px;
+  margin-top: 15px;
+  padding: 0 8px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  border: 1px solid #d9e4ec;
+  border-radius: 9px 9px 0 0;
+  background: #fff;
+}
+.pp10026-tabs button {
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: #fff;
+  text-transform: uppercase;
+  font-weight: 800;
+}
+.pp10026-tabs button.active {
+  border-bottom-color: #087bd1;
+  color: #0871bd;
+}
+.pp10026-lab {
+  height: 544px;
+  margin-top: 12px;
+  padding: 0 10px 10px;
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 12px;
+  border: 1px solid #d7e4ec;
+  border-radius: 9px;
+  background: #fff;
+}
+.pp10026-tools {
+  padding: 9px;
+  border: 1px solid #d8e3eb;
+  border-radius: 8px;
+}
+.pp10026-tools h2,
+.pp10026-concepts h2,
+.pp10026-theory h2,
+.pp10026-challenge h2 {
+  color: #087fbe;
+  font-size: 9px;
+}
+.pp10026-tools > p {
+  margin-top: 6px;
+}
+.pp10026-tools ol {
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: steps;
+}
+.pp10026-tools li {
+  position: relative;
+  min-height: 53px;
+  padding-left: 20px;
+  counter-increment: steps;
+}
+.pp10026-tools li:before {
+  content: counter(steps);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 14px;
+  height: 14px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #087fb9;
+  color: #fff;
+  font-size: 7px;
+  font-weight: 800;
+}
+.pp10026-tools li b {
+  display: block;
+}
+.pp10026-tools li div {
+  display: flex;
+  gap: 5px;
+  margin-top: 8px;
+}
+.pp10026-tools li button {
+  border: 0;
+  background: transparent;
+  color: #446078;
+}
+.pp10026-tools li div button {
+  height: 25px;
+  padding: 5px 12px;
+  border-radius: 6px;
+  background: #f3f6f9;
+}
+.pp10026-tools li div button.active {
+  background: #169bd0;
+  color: #fff;
+}
+.pp10026-tools li > button.selected {
+  margin-top: 7px;
+  padding: 4px 7px;
+  border-radius: 8px;
+  background: #eef2f6;
+}
+.pp10026-tools li p {
+  margin-top: 6px;
+}
+.pp10026-tools li label {
+  display: grid;
+  grid-template-columns: 1fr 24px 24px;
+  gap: 4px;
+  align-items: center;
+}
+.pp10026-tools li label button {
+  height: 23px;
+  border: 1px solid #d9e4ec;
+  border-radius: 5px;
+  background: #fff;
+}
+.pp10026-tools footer {
+  padding-top: 7px;
+  border-top: 1px solid #d8e3eb;
+}
+.pp10026-tools footer > div {
+  display: flex;
+  justify-content: space-between;
+}
+.pp10026-tools footer button {
+  width: 42px;
+  height: 39px;
+  border: 0;
+  background: #fff;
+  font-size: 7px;
+}
+.pp10026-tools footer button svg {
+  display: block;
+  width: 12px;
+  margin: auto;
+}
+.pp10026-tools footer label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.pp10026-tools footer input {
+  accent-color: #108bd0;
+}
+.pp10026-work {
+  padding: 8px;
+  border: 1px solid #dce6ed;
+  border-radius: 8px;
+  background: #fff;
+}
+.pp10026-work > header {
+  height: 25px;
+  display: flex;
+  justify-content: space-between;
+}
+.pp10026-work > header h2 {
+  font-size: 10px;
+}
+.pp10026-work > header label {
+  display: flex;
+  gap: 6px;
+}
+.pp10026-work > header input {
+  accent-color: #168bdd;
+}
+.pp10026-work > svg {
+  width: 100%;
+  height: 349px;
+  border: 1px solid #dfe9ef;
+  border-radius: 7px;
+}
+.pp10026-work svg .base {
+  stroke: #111827;
+  stroke-width: 1.5;
+}
+.pp10026-work svg .base.selected {
+  stroke: #0d1825;
+}
+.pp10026-work svg .arrows {
+  fill: none;
+  stroke: #111827;
+  stroke-width: 1.5;
+}
+.pp10026-work svg .purple {
+  stroke: #7c3fe1;
+}
+.pp10026-work svg .arc,
+.pp10026-concepts svg .arc,
+.pp10026-theory svg .arc {
+  fill: none;
+  stroke: #793ced;
+  stroke-width: 1.5;
+  stroke-dasharray: 5 4;
+}
+.pp10026-work svg .perpendicular,
+.pp10026-concepts svg .violet,
+.pp10026-theory svg .violet,
+.pp10026-challenge svg .violet {
+  stroke: #7039dd;
+  stroke-width: 1.5;
+}
+.pp10026-work svg .right,
+.pp10026-concepts svg .right,
+.pp10026-theory svg .right {
+  fill: none;
+  stroke: #078d58;
+  stroke-width: 1.5;
+}
+.pp10026-work svg circle,
+.pp10026-concepts svg circle,
+.pp10026-theory svg circle,
+.pp10026-challenge svg circle {
+  fill: #7b35df;
+}
+.pp10026-work svg .drag {
+  cursor: ns-resize;
+  stroke: #fff;
+  stroke-width: 2;
+}
+.pp10026-work svg text,
+.pp10026-concepts svg text,
+.pp10026-theory svg text,
+.pp10026-challenge svg text {
+  fill: #2052bf;
+  font-size: 12px;
+  font-style: italic;
+}
+.pp10026-work svg text.angle {
+  fill: #12834a;
+}
+.pp10026-work > aside {
+  height: 76px;
+  margin-top: 12px;
+  padding: 9px 12px;
+  display: grid;
+  grid-template-columns: 28px 1fr 110px 100px;
+  border: 1px solid #69a9ee;
+  border-radius: 7px;
+}
+.pp10026-work > aside > span {
+  width: 21px;
+  height: 21px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #0c9d51;
+  color: #fff;
+  font-size: 13px;
+}
+.pp10026-work > aside > div {
+  padding: 0 10px;
+  border-right: 1px solid #8fbbe8;
+}
+.pp10026-work > aside > div:last-child {
+  border: 0;
+}
+.pp10026-work > aside strong {
+  display: block;
+  margin-top: 8px;
+  color: #0c984c;
+  font-size: 13px;
+  text-align: center;
+}
+.pp10026-concepts {
+  height: 236px;
+  margin-top: 9px;
+  display: grid;
+  grid-template-columns: 1.12fr 0.8fr 1.26fr;
+  gap: 9px;
+}
+.pp10026-concepts > article {
+  position: relative;
+  padding: 15px;
+  border: 1px solid #d8e4ec;
+  border-radius: 10px;
+  background: #fff;
+}
+.pp10026-concepts h2 {
+  color: #7031c5;
+}
+.pp10026-concepts p {
+  margin-top: 12px;
+}
+.pp10026-concepts article:first-child svg {
+  width: 100%;
+  height: 125px;
+}
+.pp10026-concepts article:nth-child(2) p {
+  padding-left: 4px;
+  color: #35516c;
+}
+.pp10026-concepts article:nth-child(2) p::first-letter {
+  color: #12a66c;
+}
+.pp10026-concepts article:nth-child(3) {
+  padding: 10px;
+  background: #f6fbff;
+}
+.pp10026-concepts article:nth-child(3) > aside {
+  height: 162px;
+  margin-top: 9px;
+  padding: 12px;
+  border: 1px solid #68a9ec;
+  border-radius: 7px;
+  background: #fff;
+}
+.pp10026-concepts article:nth-child(3) aside b {
+  color: #1769c0;
+}
+.pp10026-concepts article:nth-child(3) aside p {
+  margin: 12px 0;
+}
+.pp10026-concepts article:nth-child(3) aside strong {
+  font-style: italic;
+}
+.pp10026-warning {
+  height: 84px;
+  margin-top: 13px;
+  padding: 10px 15px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid #ebca76;
+  border-radius: 10px;
+  background: #fffaf0;
+}
+.pp10026-warning section + section {
+  padding-left: 35px;
+  border-left: 1px solid #e3c270;
+}
+.pp10026-warning h2 {
+  font-size: 9px;
+  color: #713600;
+}
+.pp10026-warning p {
+  margin-top: 10px;
+}
+.pp10026-theory {
+  height: 263px;
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 12px;
+}
+.pp10026-theory > article {
+  position: relative;
+  padding: 14px;
+  border: 1px solid #d7e3ec;
+  border-radius: 9px;
+  background: #fff;
+}
+.pp10026-theory h2 {
+  color: #6338bd;
+}
+.pp10026-theory > article > p {
+  margin-top: 10px;
+}
+.pp10026-theory ol {
+  padding-left: 18px;
+}
+.pp10026-theory li {
+  margin: 7px 0;
+}
+.pp10026-theory article:first-child > svg {
+  position: absolute;
+  right: 15px;
+  top: 55px;
+  width: 205px;
+  height: 110px;
+}
+.pp10026-theory article:first-child > aside {
+  position: absolute;
+  left: 13px;
+  right: 13px;
+  bottom: 10px;
+  height: 66px;
+  padding: 9px 14px;
+  border: 1px solid #73ca99;
+  border-radius: 8px;
+  background: #effdf5;
+  color: #167441;
+}
+.pp10026-theory h3 {
+  margin: 13px 0 5px;
+  color: #0b66c1;
+  font-size: 9px;
+}
+.pp10026-theory article:nth-child(2) > strong {
+  font-size: 11px;
+  font-style: italic;
+}
+.pp10026-challenge {
+  position: relative;
+  height: 157px;
+  margin-top: 12px;
+  padding: 14px 25px;
+  border: 1px solid #a276e8;
+  border-radius: 11px;
+  background: #fcfaff;
+}
+.pp10026-challenge h2 {
+  color: #7440c7;
+}
+.pp10026-challenge > p {
+  margin-top: 7px;
+}
+.pp10026-challenge > svg {
+  width: 210px;
+  height: 85px;
+  margin-top: 5px;
+  border: 1px solid #d8e3eb;
+  border-radius: 7px;
+  background: #fff;
+}
+.pp10026-challenge svg line {
+  stroke: #40546d;
+  stroke-width: 1.5;
+}
+.pp10026-challenge > button {
+  position: absolute;
+  left: 275px;
+  top: 67px;
+  height: 33px;
+  padding: 7px 17px;
+  border: 0;
+  border-radius: 6px;
+  background: #713ddd;
+  color: #fff;
+  font-weight: 800;
+}
+.pp10026-challenge > aside {
+  position: absolute;
+  right: 36px;
+  top: 34px;
+  width: 190px;
+  height: 105px;
+  padding: 13px;
+  border: 1px solid #ad83ee;
+  border-radius: 10px;
+  background: #fff;
+}
+.pp10026-challenge aside b {
+  color: #6b3abc;
+}
+.pp10026-challenge aside p {
+  margin-top: 12px;
+}
+.pp10026-adjacent {
+  height: 50px;
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.pp10026-adjacent a {
+  padding: 8px 15px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid #d3e2eb;
+  border-radius: 10px;
+  background: #fff;
+  color: #1775bd;
+  text-decoration: none;
+}
+.pp10026-adjacent a:last-child {
+  justify-content: flex-end;
+  text-align: right;
+}
+.pp10026-adjacent span,
+.pp10026-adjacent b {
+  display: block;
+}
+.pp10026-adjacent b {
+  color: #30455b;
+  font-weight: 400;
+}
+@media (min-width: 900px) and (max-width: 959px) {
+  body:has(.pp10026-page) [data-testid="desktop-sidebar"] {
+    display: block;
+    width: 186px;
+    min-width: 186px;
+  }
+  body:has(.pp10026-page)
+    .app-layout-rail
+    > div
+    > header
+    > div
+    > button:first-child {
+    display: none;
+  }
+}
+@media (max-width: 899px) {
+  .pp10026-page {
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+  }
+  .pp10026-hero {
+    height: auto;
+    min-height: 175px;
+  }
+  .pp10026-hero h1 {
+    font-size: 18px;
+  }
+  .pp10026-hero > div {
+    width: 75%;
+    flex-wrap: wrap;
+  }
+  .pp10026-hero > a {
+    position: static;
+    display: inline-block;
+    margin-top: 10px;
+  }
+  .pp10026-tabs {
+    overflow-x: auto;
+    grid-template-columns: repeat(5, minmax(105px, 1fr));
+  }
+  .pp10026-lab {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .pp10026-tools {
+    grid-row: 2;
+  }
+  .pp10026-work > svg {
+    height: 430px;
+  }
+  .pp10026-concepts,
+  .pp10026-theory {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .pp10026-concepts > article {
+    min-height: 220px;
+  }
+  .pp10026-warning {
+    height: auto;
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  .pp10026-warning section + section {
+    padding: 15px 0 0;
+    border-left: 0;
+    border-top: 1px solid #e3c270;
+  }
+  .pp10026-theory > article {
+    min-height: 260px;
+  }
+  .pp10026-challenge {
+    height: 360px;
+  }
+  .pp10026-challenge > svg {
+    width: 100%;
+    height: 130px;
+  }
+  .pp10026-challenge > button {
+    position: static;
+    width: 100%;
+    margin-top: 12px;
+  }
+  .pp10026-challenge > aside {
+    position: static;
+    width: 100%;
+    margin-top: 12px;
+  }
+  .pp10026-adjacent {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+}

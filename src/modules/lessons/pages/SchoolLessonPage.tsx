@@ -40,6 +40,7 @@ import CopyLineSegmentTargetLesson10022 from "../schoolTargets/CopyLineSegmentTa
 import CopyAngleTargetLesson10023 from "../schoolTargets/CopyAngleTargetLesson10023";
 import PerpendicularBisectorTargetLesson10024 from "../schoolTargets/PerpendicularBisectorTargetLesson10024";
 import AngleBisectorTargetLesson10025 from "../schoolTargets/AngleBisectorTargetLesson10025";
+import PerpendicularPointTargetLesson10026 from "../schoolTargets/PerpendicularPointTargetLesson10026";
 import { getStrengthenedFoundationLesson } from "../strengthening/foundationNumberContent";
 import type { SchoolLessonContent } from "../syllabus/lessonSyllabusTypes";
 
@@ -102,6 +103,8 @@ export default function SchoolLessonPage() {
     return <PerpendicularBisectorTargetLesson10024 lesson={lesson} />;
   if (lesson.numericId === 10025)
     return <AngleBisectorTargetLesson10025 lesson={lesson} />;
+  if (lesson.numericId === 10026)
+    return <PerpendicularPointTargetLesson10026 lesson={lesson} />;
   const adjacent = adjacentSchoolLessons(lesson);
   const strengthened = getStrengthenedFoundationLesson(lesson.numericId);
   const content = strengthened

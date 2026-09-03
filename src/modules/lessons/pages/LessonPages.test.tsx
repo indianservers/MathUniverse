@@ -808,6 +808,33 @@ describe("lesson pages", () => {
     expect(html).toContain('data-arcs="true"');
   });
 
+  it("renders the dedicated perpendicular through point target for lesson 10026", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-7/class-7-practical-geometry-perpendicular-through-a-point",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0700"');
+    expect(html).toContain(
+      "dedicated-point-line-equal-arc-intersections-perpendicular-construction",
+    );
+    expect(html).toContain('data-mode="On-line"');
+    expect(html).toContain('data-radius="3.5"');
+    expect(html).toContain('data-offset="0.0"');
+    expect(html).toContain('data-line-selected="true"');
+    expect(html).toContain('data-correct="true"');
+    expect(html).toContain('data-steps="true"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

@@ -1,0 +1,41 @@
+{
+  "mockup": "0700",
+  "lessonNumericId": 10026,
+  "route": "/lessons/school/class-7/class-7-practical-geometry-perpendicular-through-a-point",
+  "objectModel": "dedicated-point-line-equal-arc-intersections-perpendicular-construction",
+  "viewport": { "desktop": [924, 1703], "mobile": [390, 844] },
+  "layout": {
+    "hero": { "x": 198, "y": 86, "width": 705, "height": 140 },
+    "tabs": { "x": 198, "y": 241, "width": 705, "height": 34 },
+    "construction": { "x": 198, "y": 287, "width": 705, "height": 544 },
+    "tools": { "x": 209, "y": 288, "width": 160, "height": 532 },
+    "workspace": { "x": 381, "y": 288, "width": 511, "height": 532 },
+    "concepts": { "x": 198, "y": 840, "width": 705, "height": 236 },
+    "warning": { "x": 198, "y": 1089, "width": 705, "height": 84 },
+    "theory": { "x": 198, "y": 1183, "width": 705, "height": 263 },
+    "challenge": { "x": 198, "y": 1458, "width": 705, "height": 157 },
+    "adjacentNavigation": { "x": 198, "y": 1627, "width": 705, "height": 50 }
+  },
+  "interactions": {
+    "initial": {
+      "mode": "On-line",
+      "radius": 3.5,
+      "offset": 0,
+      "lineSelected": true,
+      "correct": true
+    },
+    "offLineMode": { "mode": "Off-line", "offset": 3 },
+    "radiusChange": { "from": 3.5, "to": 4 },
+    "undoRedoWorking": true,
+    "lineDeselectionInvalidatesResult": true,
+    "labelsToggleWorking": true,
+    "stepsToggleWorking": true,
+    "tabsWorking": true,
+    "challengeStartAndResetWorking": true,
+    "pointPPointerAndKeyboardDrag": true,
+    "resetRestoredDefaults": true
+  },
+  "desktopHorizontalOverflow": false,
+  "mobileHorizontalOverflow": false,
+  "consoleWarningsOrErrors": []
+}
