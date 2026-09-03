@@ -1,0 +1,145 @@
+{
+  "passed": true,
+  "checks": {
+    "initial": {
+      "amplitude": "3000",
+      "period": "12",
+      "phase": "0",
+      "midline": "10000",
+      "peak": "13000",
+      "trough": "7000",
+      "locks": "0",
+      "dragging": "",
+      "graded": "",
+      "actions": "0"
+    },
+    "controls": {
+      "amplitude": "5000",
+      "period": "8",
+      "phase": "2",
+      "midline": "20000",
+      "peak": "25000",
+      "trough": "15000",
+      "locks": "0",
+      "dragging": "",
+      "graded": "",
+      "actions": "4"
+    },
+    "locked": {
+      "amplitude": "5000",
+      "period": "8",
+      "phase": "2",
+      "midline": "20000",
+      "peak": "25000",
+      "trough": "15000",
+      "locks": "1",
+      "dragging": "",
+      "graded": "",
+      "actions": "5"
+    },
+    "disabled": true,
+    "drag": {
+      "amplitude": "100",
+      "period": "8",
+      "phase": "5.2",
+      "midline": "20000",
+      "peak": "20100",
+      "trough": "19900",
+      "locks": "0",
+      "dragging": "",
+      "graded": "",
+      "actions": "10"
+    },
+    "formula": true,
+    "reset": {
+      "amplitude": "3000",
+      "period": "12",
+      "phase": "0",
+      "midline": "10000",
+      "peak": "13000",
+      "trough": "7000",
+      "locks": "0",
+      "dragging": "",
+      "graded": "",
+      "actions": "1"
+    },
+    "wrong": {
+      "amplitude": "3000",
+      "period": "12",
+      "phase": "0",
+      "midline": "10000",
+      "peak": "13000",
+      "trough": "7000",
+      "locks": "0",
+      "dragging": "",
+      "graded": "false",
+      "actions": "3"
+    },
+    "correct": {
+      "amplitude": "3000",
+      "period": "12",
+      "phase": "0",
+      "midline": "10000",
+      "peak": "13000",
+      "trough": "7000",
+      "locks": "0",
+      "dragging": "",
+      "graded": "true",
+      "actions": "5"
+    },
+    "newChallenge": {
+      "amplitude": "3000",
+      "period": "12",
+      "phase": "0",
+      "midline": "10000",
+      "peak": "13000",
+      "trough": "7000",
+      "locks": "0",
+      "dragging": "",
+      "graded": "true",
+      "actions": "7"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1013,
+      "height": 1642
+    },
+    "overflow": false,
+    "hero": {
+      "top": 97,
+      "height": 157,
+      "bottom": 254
+    },
+    "tabs": {
+      "top": 264,
+      "height": 49,
+      "bottom": 313
+    },
+    "lab": {
+      "top": 323,
+      "height": 726,
+      "bottom": 1049
+    },
+    "theory": {
+      "top": 1059,
+      "height": 288,
+      "bottom": 1347
+    },
+    "challenge": {
+      "top": 1357,
+      "height": 113,
+      "bottom": 1470
+    },
+    "adjacent": {
+      "top": 1480,
+      "height": 59,
+      "bottom": 1539
+    }
+  },
+  "mobileMetrics": {
+    "width": 390,
+    "overflow": false
+  },
+  "logs": []
+}

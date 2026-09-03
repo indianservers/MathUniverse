@@ -19,6 +19,7 @@ import InvestmentComparisonTargetLesson605 from "./finance/InvestmentComparisonT
 import LinearModelsTargetLesson607 from "./finance/LinearModelsTargetLesson607";
 import LoansEmiTargetLesson597 from "./finance/LoansEmiTargetLesson597";
 import ModelBuilderTargetLesson606 from "./finance/ModelBuilderTargetLesson606";
+import PeriodicModelsTargetLesson610 from "./finance/PeriodicModelsTargetLesson610";
 import PresentValueTargetLesson594 from "./finance/PresentValueTargetLesson594";
 import ProfitLossTargetLesson602 from "./finance/ProfitLossTargetLesson602";
 import QuadraticModelsTargetLesson608 from "./finance/QuadraticModelsTargetLesson608";
@@ -201,6 +202,8 @@ export default function FinanceLessonAdapter(props: LessonAdapterProps) {
     return <QuadraticModelsTargetLesson608 {...props} />;
   if (props.lesson.id === 609)
     return <ExponentialLogisticTargetLesson609 {...props} />;
+  if (props.lesson.id === 610)
+    return <PeriodicModelsTargetLesson610 {...props} />;
   if (mode === "simple-interest") {
     return (
       <AdapterFrame
