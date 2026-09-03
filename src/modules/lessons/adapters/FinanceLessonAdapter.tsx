@@ -29,6 +29,7 @@ import QuadraticModelsTargetLesson608 from "./finance/QuadraticModelsTargetLesso
 import ResidualErrorTargetLesson615 from "./finance/ResidualErrorTargetLesson615";
 import SimpleInterestTargetLesson591 from "./finance/SimpleInterestTargetLesson591";
 import SensitivityAnalysisTargetLesson614 from "./finance/SensitivityAnalysisTargetLesson614";
+import ScenarioComparisonTargetLesson616 from "./finance/ScenarioComparisonTargetLesson616";
 import TaxDiscountTargetLesson604 from "./finance/TaxDiscountTargetLesson604";
 import { SimpleInterestActivity } from "./p0/PriorityConceptActivities";
 
@@ -219,6 +220,8 @@ export default function FinanceLessonAdapter(props: LessonAdapterProps) {
     return <SensitivityAnalysisTargetLesson614 {...props} />;
   if (props.lesson.id === 615)
     return <ResidualErrorTargetLesson615 {...props} />;
+  if (props.lesson.id === 616)
+    return <ScenarioComparisonTargetLesson616 {...props} />;
   if (mode === "simple-interest") {
     return (
       <AdapterFrame

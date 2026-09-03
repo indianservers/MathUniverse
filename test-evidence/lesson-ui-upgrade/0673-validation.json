@@ -1,0 +1,136 @@
+{
+  "passed": true,
+  "checks": {
+    "initial": {
+      "principal": "25000",
+      "rate": "8",
+      "years": "10",
+      "worst": "-2",
+      "best": "2",
+      "base": "53973.12",
+      "worstOutput": "44771.19",
+      "bestOutput": "64843.56",
+      "graded": "",
+      "shared": "false",
+      "actions": "0"
+    },
+    "controls": {
+      "principal": "30000",
+      "rate": "9",
+      "years": "8",
+      "worst": "-3",
+      "best": "4",
+      "base": "59776.88",
+      "worstOutput": "47815.44",
+      "bestOutput": "79753.33",
+      "graded": "",
+      "shared": "false",
+      "actions": "5"
+    },
+    "slider": {
+      "principal": "40000",
+      "rate": "9",
+      "years": "8",
+      "worst": "-3",
+      "best": "4",
+      "base": "79702.51",
+      "worstOutput": "63753.92",
+      "bestOutput": "106337.77",
+      "graded": "",
+      "shared": "false",
+      "actions": "6"
+    },
+    "shared": {
+      "principal": "40000",
+      "rate": "9",
+      "years": "8",
+      "worst": "-3",
+      "best": "4",
+      "base": "79702.51",
+      "worstOutput": "63753.92",
+      "bestOutput": "106337.77",
+      "graded": "",
+      "shared": "true",
+      "actions": "7"
+    },
+    "help": true,
+    "formula": true,
+    "reset": {
+      "principal": "25000",
+      "rate": "8",
+      "years": "10",
+      "worst": "-2",
+      "best": "2",
+      "base": "53973.12",
+      "worstOutput": "44771.19",
+      "bestOutput": "64843.56",
+      "graded": "",
+      "shared": "false",
+      "actions": "1"
+    },
+    "wrong": {
+      "principal": "25000",
+      "rate": "8",
+      "years": "10",
+      "worst": "-2",
+      "best": "2",
+      "base": "53973.12",
+      "worstOutput": "44771.19",
+      "bestOutput": "64843.56",
+      "graded": "false",
+      "shared": "false",
+      "actions": "3"
+    },
+    "correct": {
+      "principal": "25000",
+      "rate": "8",
+      "years": "10",
+      "worst": "-2",
+      "best": "2",
+      "base": "53973.12",
+      "worstOutput": "44771.19",
+      "bestOutput": "64843.56",
+      "graded": "true",
+      "shared": "false",
+      "actions": "5"
+    },
+    "solution": true
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "overflow": false,
+    "hero": {
+      "top": 99,
+      "height": 153,
+      "bottom": 252
+    },
+    "sequence": {
+      "top": 262,
+      "height": 54,
+      "bottom": 316
+    },
+    "board": {
+      "top": 322,
+      "height": 700,
+      "bottom": 1022
+    },
+    "bottom": {
+      "top": 1034,
+      "height": 338,
+      "bottom": 1372
+    },
+    "adjacent": {
+      "top": 1385,
+      "height": 44,
+      "bottom": 1429
+    }
+  },
+  "mobileMetrics": {
+    "width": 390,
+    "overflow": false
+  },
+  "logs": []
+}

@@ -423,6 +423,25 @@ describe("FinanceLessonAdapter", () => {
     expect(html).toContain('data-points="7"');
   });
 
+  it("uses the dedicated scenario-comparison surface for lesson 616", () => {
+    const lesson = lessonCatalog.find((candidate) => candidate.id === 616)!;
+    const html = renderToStaticMarkup(
+      <FinanceLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="finance-mockup-0673"');
+    expect(html).toContain(
+      "dedicated-three-scenario-compound-growth-distribution-model",
+    );
+    expect(html).toContain('data-principal="25000"');
+    expect(html).toContain('data-rate="8"');
+    expect(html).toContain('data-years="10"');
+    expect(html).toContain('data-base-output="53973.12"');
+  });
+
   it("renders all 27 finance routes with explicit controls and no legacy fallback", () => {
     const lessons = lessonCatalog.filter(
       (lesson) => lesson.adapter === "finance",
@@ -438,7 +457,7 @@ describe("FinanceLessonAdapter", () => {
       );
       expect(html, String(lesson.id)).toContain(lesson.title);
       expect(html, String(lesson.id)).toMatch(
-        /finance and modelling lab|simple-interest model|finance-mockup-0648|finance-mockup-0649|finance-mockup-0650|finance-mockup-0651|finance-mockup-0652|finance-mockup-0653|finance-mockup-0654|finance-mockup-0655|finance-mockup-0656|finance-mockup-0657|finance-mockup-0658|finance-mockup-0659|finance-mockup-0660|finance-mockup-0661|finance-mockup-0662|finance-mockup-0663|finance-mockup-0664|finance-mockup-0665|finance-mockup-0666|finance-mockup-0667|finance-mockup-0668|finance-mockup-0669|finance-mockup-0670|finance-mockup-0671|finance-mockup-0672/,
+        /finance and modelling lab|simple-interest model|finance-mockup-0648|finance-mockup-0649|finance-mockup-0650|finance-mockup-0651|finance-mockup-0652|finance-mockup-0653|finance-mockup-0654|finance-mockup-0655|finance-mockup-0656|finance-mockup-0657|finance-mockup-0658|finance-mockup-0659|finance-mockup-0660|finance-mockup-0661|finance-mockup-0662|finance-mockup-0663|finance-mockup-0664|finance-mockup-0665|finance-mockup-0666|finance-mockup-0667|finance-mockup-0668|finance-mockup-0669|finance-mockup-0670|finance-mockup-0671|finance-mockup-0672|finance-mockup-0673/,
       );
       expect(html, String(lesson.id)).not.toContain("Legacy");
       expect(html, String(lesson.id)).toMatch(
@@ -503,7 +522,7 @@ describe("FinanceLessonAdapter", () => {
       );
       expect(html, `lesson ${lessonId}`).toContain(snippet);
       expect(html, `lesson ${lessonId}`).toMatch(
-        /finance-result|finance-mockup-0649|finance-mockup-0650|finance-mockup-0651|finance-mockup-0652|finance-mockup-0653|finance-mockup-0654|finance-mockup-0655|finance-mockup-0656|finance-mockup-0657|finance-mockup-0658|finance-mockup-0659|finance-mockup-0660|finance-mockup-0661|finance-mockup-0662|finance-mockup-0663|finance-mockup-0664|finance-mockup-0665|finance-mockup-0666|finance-mockup-0667|finance-mockup-0668|finance-mockup-0669|finance-mockup-0670|finance-mockup-0671|finance-mockup-0672/,
+        /finance-result|finance-mockup-0649|finance-mockup-0650|finance-mockup-0651|finance-mockup-0652|finance-mockup-0653|finance-mockup-0654|finance-mockup-0655|finance-mockup-0656|finance-mockup-0657|finance-mockup-0658|finance-mockup-0659|finance-mockup-0660|finance-mockup-0661|finance-mockup-0662|finance-mockup-0663|finance-mockup-0664|finance-mockup-0665|finance-mockup-0666|finance-mockup-0667|finance-mockup-0668|finance-mockup-0669|finance-mockup-0670|finance-mockup-0671|finance-mockup-0672|finance-mockup-0673/,
       );
     }
   });
