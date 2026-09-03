@@ -1,0 +1,47 @@
+{
+  "mockup": "0714",
+  "lessonId": 10040,
+  "route": "/lessons/school/class-9/class-9-real-numbers-decimal-expansion-of-rational-numbers",
+  "surface": "DecimalExpansionTargetLesson10040",
+  "objectModel": "dedicated-long-division-remainder-cycle-engine",
+  "targetViewport": {
+    "width": 911,
+    "height": 1726
+  },
+  "desktop": {
+    "documentWidth": 896,
+    "consoleWarningsOrErrors": 0,
+    "mainFraction": "1/7",
+    "repeatingBlock": "142857",
+    "sections": {
+      "hero": { "x": 233, "y": 90, "width": 662, "height": 134 },
+      "tabs": { "x": 233, "y": 234, "width": 662, "height": 37 },
+      "workspace": { "x": 233, "y": 283, "width": 662, "height": 620 },
+      "rule": { "x": 233, "y": 915, "width": 662, "height": 64 },
+      "theory": { "x": 233, "y": 991, "width": 662, "height": 285 },
+      "challenge": { "x": 233, "y": 1288, "width": 662, "height": 285 },
+      "navigation": { "x": 233, "y": 1589, "width": 662, "height": 47 }
+    }
+  },
+  "mobile": {
+    "width": 390,
+    "documentWidth": 390,
+    "pageLevelHorizontalOverflow": false,
+    "consoleWarningsOrErrors": 0
+  },
+  "interactions": {
+    "threeElevenths": {
+      "decimal": "0.(27)...",
+      "remainders": [3, 8, 3],
+      "classification": "repeating"
+    },
+    "oneEighth": {
+      "decimal": "0.125",
+      "remainders": [1, 2, 4, 0],
+      "classification": "terminating"
+    },
+    "challengeSolutionToggles": true,
+    "lessonCompletionReaches": "100%",
+    "tabsAndSaveOperate": true
+  }
+}

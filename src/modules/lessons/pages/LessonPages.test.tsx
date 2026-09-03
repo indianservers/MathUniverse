@@ -1184,6 +1184,29 @@ describe("lesson pages", () => {
     expect(html).toContain('data-challenge-result="correct"');
   });
 
+  it("renders the dedicated decimal expansion target for lesson 10040", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-9/class-9-real-numbers-decimal-expansion-of-rational-numbers",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0714"');
+    expect(html).toContain("dedicated-long-division-remainder-cycle-engine");
+    expect(html).toContain('data-main-fraction="1/7"');
+    expect(html).toContain('data-main-cycle="142857"');
+    expect(html).toContain('data-try-result="idle"');
+    expect(html).toContain("Remainder 1 repeats");
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
