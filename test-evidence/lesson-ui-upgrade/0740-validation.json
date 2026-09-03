@@ -1,0 +1,38 @@
+{
+  "mockup": "0740",
+  "lessonId": 10066,
+  "route": "/lessons/school/class-9/class-9-triangle-proofs-sas-congruence",
+  "objectModel": "dedicated-two-triangle-sas-congruence-overlay-engine",
+  "desktop": {
+    "viewport": [899, 1749],
+    "hero": [83, 208],
+    "tabs": [220, 262],
+    "lab": [274, 915],
+    "theory": [929, 1199],
+    "challenge": [1213, 1409],
+    "navigation": [1423, 1469],
+    "documentScrollWidth": 899,
+    "consoleErrorsOrWarnings": 0
+  },
+  "mobile": {
+    "viewport": [390, 844],
+    "documentScrollWidth": 390,
+    "pageWidth": 366.4,
+    "triangleModels": 4,
+    "measureControls": 6,
+    "consoleErrorsOrWarnings": 0
+  },
+  "interactions": {
+    "initialABC": [5, 7, 60],
+    "initialDEF": [5, 7, 60],
+    "mismatchDEF": [6, 7, 60],
+    "mismatchScore": 2,
+    "matchedMeasuresScore": 3,
+    "overlayProofScore": 4,
+    "overlayCongruent": true,
+    "randomizeChangesBothModels": true,
+    "resetRestoresTarget": true,
+    "formulaTabSelected": true
+  },
+  "status": "complete"
+}

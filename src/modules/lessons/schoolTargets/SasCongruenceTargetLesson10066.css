@@ -1,0 +1,512 @@
+.sas10066-page {
+  position: relative;
+  top: -24px;
+  left: -4px;
+  width: min(687px, calc(100vw - 212px));
+  margin: 0 auto;
+  color: #263550;
+  font:
+    9px/1.5 Inter,
+    Arial,
+    sans-serif;
+  letter-spacing: 0;
+}
+.sas10066-page * {
+  box-sizing: border-box;
+}
+.sas10066-page h1,
+.sas10066-page h2,
+.sas10066-page p {
+  margin: 0;
+}
+.sas10066-page button,
+.sas10066-page input {
+  font: inherit;
+}
+.sas10066-page button {
+  cursor: pointer;
+}
+.sas10066-page a {
+  color: inherit;
+  text-decoration: none;
+}
+.sas10066-page svg {
+  width: 14px;
+  height: 14px;
+}
+.sas10066-hero {
+  position: relative;
+  height: 125px;
+  padding: 14px;
+  border: 1px solid #dbe5eb;
+  border-radius: 12px;
+  background: #fff;
+}
+.sas10066-hero small,
+.sas10066-page h2 {
+  color: #0965ad;
+  font-weight: 900;
+  letter-spacing: 0.4px;
+}
+.sas10066-hero h1 {
+  margin: 9px 0 8px;
+  font-size: 25px;
+  line-height: 1;
+}
+.sas10066-hero > div {
+  position: absolute;
+  right: 14px;
+  bottom: 24px;
+  display: flex;
+  gap: 7px;
+}
+.sas10066-hero > div span {
+  padding: 4px 9px;
+  border-radius: 12px;
+  background: #f0f3f7;
+  font-weight: 800;
+}
+.sas10066-tabs {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  height: 42px;
+  margin-top: 12px;
+  border-bottom: 1px solid #dce4e9;
+  background: #fff;
+}
+.sas10066-tabs button {
+  border: 0;
+  background: none;
+}
+.sas10066-tabs .active {
+  border-bottom: 3px solid #337ef0;
+  color: #0866bd;
+  font-weight: 900;
+}
+.sas10066-page main {
+  margin-top: 12px;
+}
+.sas10066-lab {
+  padding: 12px;
+  border: 1px solid #dbe5eb;
+  border-radius: 9px;
+  background: #fff;
+}
+.sas10066-lab > header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.sas10066-lab > header h2 {
+  color: #253450;
+}
+.sas10066-lab > header nav {
+  display: flex;
+  gap: 8px;
+}
+.sas10066-lab > header button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 12px;
+  border: 1px solid #d6e1e7;
+  border-radius: 6px;
+  background: #fff;
+}
+.sas10066-lab > header button.active {
+  border-color: #7139da;
+  background: #7139da;
+  color: #fff;
+}
+.sas10066-models {
+  display: grid;
+  grid-template-columns: 1fr 125px 1fr;
+  gap: 12px;
+  margin-top: 12px;
+}
+.sas10066-triangle-card {
+  position: relative;
+  height: 285px;
+  padding: 8px;
+  border: 1px solid #dbe5eb;
+  border-radius: 9px;
+}
+.sas10066-triangle-card > span {
+  position: absolute;
+  z-index: 1;
+  padding: 4px 8px;
+  border-radius: 5px;
+  background: #e7f2ff;
+  color: #076ab9;
+  font-weight: 900;
+}
+.sas10066-triangle-card:last-child > span {
+  background: #eee8ff;
+  color: #6630d0;
+}
+.sas10066-triangle {
+  width: 100% !important;
+  height: 100% !important;
+  overflow: visible;
+}
+.sas10066-triangle path {
+  fill: #edf8fb88;
+  stroke: #187bca;
+  stroke-width: 3;
+}
+.sas10066-triangle path.angle {
+  fill: none;
+  stroke: #1ca34f;
+  stroke-width: 2;
+}
+.sas10066-triangle circle {
+  fill: #176dbe;
+}
+.sas10066-triangle text {
+  font-size: 15px;
+  font-weight: 900;
+  fill: #172943;
+}
+.sas10066-triangle text.base {
+  fill: #ee8700;
+}
+.sas10066-triangle text.side {
+  fill: #1475c6;
+}
+.sas10066-triangle text.degree {
+  fill: #11a245;
+}
+.sas10066-correspondence {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+}
+.sas10066-correspondence p {
+  display: grid;
+  grid-template-columns: 12px 15px 25px 15px;
+  align-items: center;
+  font-weight: 900;
+}
+.sas10066-correspondence i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #147ad0;
+}
+.sas10066-correspondence i.orange {
+  background: #ee8800;
+}
+.sas10066-correspondence i.purple {
+  background: #6d31d5;
+}
+.sas10066-correspondence span {
+  text-align: center;
+}
+.sas10066-controls {
+  display: grid;
+  grid-template-columns: 1fr 120px 1fr;
+  gap: 12px;
+  margin-top: 12px;
+}
+.sas10066-controls > section {
+  padding: 10px;
+  border: 1px solid #dbe5eb;
+  border-radius: 8px;
+}
+.sas10066-controls label {
+  display: block;
+  margin-bottom: 12px;
+}
+.sas10066-controls label > span {
+  display: grid;
+  grid-template-columns: 22px 1fr 48px 22px;
+  gap: 6px;
+  align-items: center;
+  margin-top: 7px;
+}
+.sas10066-controls button {
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: 1px solid #d6e1e7;
+  border-radius: 50%;
+  background: #fff;
+}
+.sas10066-controls input {
+  width: 100%;
+  accent-color: #197dcd;
+}
+.sas10066-controls output {
+  padding: 6px;
+  border: 1px solid #dbe5eb;
+  border-radius: 5px;
+  text-align: center;
+}
+.sas10066-overlay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border: 1px dashed #9d74ed;
+  border-radius: 8px;
+  text-align: center;
+}
+.sas10066-overlay svg {
+  width: 95px !important;
+  height: 75px !important;
+}
+.sas10066-overlay path {
+  fill: none;
+  stroke: #7c8795;
+  stroke-width: 2;
+}
+.sas10066-overlay path.offset {
+  stroke: #7839dc;
+}
+.sas10066-overlay path.overlaid {
+  stroke: #7435db;
+  stroke-width: 4;
+}
+.sas10066-overlay text {
+  font-size: 10px;
+  fill: #263550;
+  text-anchor: middle;
+}
+.sas10066-lab > footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 14px;
+  padding: 12px 16px;
+  border: 1px solid #a7dcb9;
+  border-radius: 8px;
+  background: #effbf3;
+  color: #188045;
+}
+.sas10066-lab > footer > span {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+}
+.sas10066-lab > footer svg {
+  grid-row: 1/3;
+  width: 26px;
+  height: 26px;
+  padding: 6px;
+  border-radius: 50%;
+  background: #1ca14e;
+  color: #fff;
+}
+.sas10066-lab > footer small {
+  grid-column: 2;
+}
+.sas10066-lab > footer strong {
+  padding: 8px 14px;
+  border-radius: 6px;
+  background: #e5f8eb;
+}
+.sas10066-lab > footer i {
+  font-family: serif;
+  font-size: 14px;
+}
+.sas10066-lab > footer.mismatch {
+  border-color: #e8c784;
+  background: #fff9e9;
+  color: #8e6512;
+}
+.sas10066-theory {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 14px;
+}
+.sas10066-theory article {
+  height: 270px;
+  padding: 12px;
+  border: 1px solid #dbe5eb;
+  border-radius: 8px;
+  background: #fff;
+}
+.sas10066-theory p {
+  margin: 10px 0;
+}
+.sas10066-theory article > strong {
+  display: block;
+  margin-top: 16px;
+  padding: 10px;
+  border: 1px solid #b9d5f5;
+  border-radius: 6px;
+  background: #f3f8ff;
+  font-family: serif;
+  font-size: 12px;
+}
+.sas10066-pair {
+  display: flex;
+}
+.sas10066-pair svg {
+  width: 50% !important;
+  height: 120px !important;
+}
+.sas10066-theory .warning svg {
+  width: 100% !important;
+  height: 105px !important;
+}
+.sas10066-ssa path {
+  fill: none;
+  stroke: #dc333d;
+  stroke-width: 2;
+}
+.sas10066-ssa text {
+  font-size: 10px;
+  fill: #ce2734;
+}
+.sas10066-challenge {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 12px;
+  margin-top: 14px;
+  padding: 14px;
+  border: 1px solid #cbb5f3;
+  border-radius: 8px;
+  background: #fcfaff;
+}
+.sas10066-challenge header {
+  grid-column: 1/-1;
+}
+.sas10066-challenge header p {
+  margin-top: 6px;
+}
+.sas10066-challenge ul {
+  margin: 0;
+  padding: 12px;
+  list-style: none;
+  border: 1px solid #dbe5eb;
+  border-radius: 7px;
+  background: #fff;
+}
+.sas10066-challenge li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 8px;
+}
+.sas10066-challenge li svg {
+  width: 12px;
+}
+.sas10066-challenge li b {
+  margin-left: auto;
+  color: #a3adb8;
+}
+.sas10066-challenge li.done b {
+  color: #19a14d;
+}
+.sas10066-challenge aside {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 18px;
+  border: 1px dashed #9e77e8;
+  border-radius: 8px;
+  color: #6730c7;
+}
+.sas10066-challenge aside > svg {
+  width: 65px;
+  height: 65px;
+  padding: 16px;
+  border: 4px double #fff;
+  border-radius: 50%;
+  background: #8b4be6;
+  color: #fff;
+}
+.sas10066-challenge aside h2 {
+  font-size: 16px;
+  color: #6730c7;
+}
+.sas10066-adjacent {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 14px;
+}
+.sas10066-adjacent a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 165px;
+  padding: 10px 14px;
+  border: 1px solid #dbe5eb;
+  border-radius: 8px;
+  background: #fff;
+}
+.sas10066-adjacent span {
+  display: flex;
+  flex-direction: column;
+}
+.sas10066-adjacent .next {
+  justify-content: flex-end;
+  background: #7540de;
+  color: #fff;
+  text-align: right;
+}
+.sas10066-adjacent .next svg {
+  margin-left: auto;
+}
+@media (max-width: 760px) {
+  .sas10066-page {
+    top: 0;
+    left: 0;
+    width: calc(100vw - 24px);
+    font-size: 10px;
+  }
+  .sas10066-hero {
+    height: auto;
+    min-height: 190px;
+  }
+  .sas10066-hero > div {
+    position: static;
+    flex-wrap: wrap;
+    margin-top: 12px;
+  }
+  .sas10066-models,
+  .sas10066-controls,
+  .sas10066-theory,
+  .sas10066-challenge {
+    grid-template-columns: 1fr;
+  }
+  .sas10066-models > .sas10066-correspondence {
+    min-height: 120px;
+  }
+  .sas10066-controls > .sas10066-overlay {
+    min-height: 150px;
+  }
+  .sas10066-theory article {
+    height: auto;
+    min-height: 270px;
+  }
+  .sas10066-challenge header {
+    grid-column: 1;
+  }
+  .sas10066-lab > header {
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .sas10066-lab > header nav {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  .sas10066-lab > footer {
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .sas10066-tabs {
+    overflow: hidden;
+  }
+  .sas10066-adjacent {
+    gap: 7px;
+  }
+  .sas10066-adjacent a {
+    width: 50%;
+    padding: 8px;
+  }
+}

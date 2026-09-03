@@ -1895,6 +1895,35 @@ describe("lesson pages", () => {
     expect(html).toContain('aria-label="Interactive exterior angle triangle"');
   });
 
+  it("renders the dedicated SAS-congruence target for lesson 10066", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-9/class-9-triangle-proofs-sas-congruence",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0740"');
+    expect(html).toContain(
+      "dedicated-two-triangle-sas-congruence-overlay-engine",
+    );
+    expect(html).toContain('data-abc="5,7,60"');
+    expect(html).toContain('data-def="5,7,60"');
+    expect(html).toContain('data-overlay="true"');
+    expect(html).toContain('data-matches="true"');
+    expect(html).toContain('data-score="4"');
+    expect(html).toContain('aria-label="Triangle ABC SAS model"');
+    expect(html).toContain('aria-label="Triangle DEF SAS model"');
+    expect(html).toContain('draggable="true"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
