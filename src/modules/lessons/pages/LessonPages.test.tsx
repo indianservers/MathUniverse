@@ -2126,6 +2126,37 @@ describe("lesson pages", () => {
     expect(html).toContain('aria-label="Draggable vertex A"');
   });
 
+  it("renders the dedicated parallelogram-opposite-angles target for lesson 10074", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-9/class-9-quadrilateral-proofs-parallelogram-opposite-angles",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0748"');
+    expect(html).toContain(
+      "dedicated-constrained-parallelogram-opposite-angle-engine",
+    );
+    expect(html).toContain('data-points="82,85;402,85;492,312;172,312"');
+    expect(html).toContain('data-angles="68,112,68,112"');
+    expect(html).toContain('data-diagonal="AC"');
+    expect(html).toContain('data-layers="1,1,1"');
+    expect(html).toContain('data-proof-step="1"');
+    expect(html).toContain('data-challenge="95;85,85,95;3/3"');
+    expect(html).toContain(
+      'aria-label="Draggable opposite-angle parallelogram"',
+    );
+    expect(html).toContain('aria-label="Draggable vertex C"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

@@ -1,0 +1,46 @@
+{
+  "mockup": "0748",
+  "lessonId": 10074,
+  "route": "/lessons/school/class-9/class-9-quadrilateral-proofs-parallelogram-opposite-angles",
+  "objectModel": "dedicated-constrained-parallelogram-opposite-angle-engine",
+  "desktop": {
+    "viewport": [899, 1762],
+    "hero": [91, 213],
+    "tabs": [223, 267],
+    "lab": [277, 922],
+    "theory": [932, 1297],
+    "lowerCards": [1307, 1567],
+    "navigation": [1577, 1610],
+    "documentScrollWidth": 884,
+    "consoleErrorsOrWarnings": 0
+  },
+  "mobile": {
+    "viewport": [390, 844],
+    "documentScrollWidth": 375,
+    "pageWidth": 366.4,
+    "draggableHandles": 4,
+    "visibilitySwitches": 4,
+    "proofSteps": 5,
+    "predictionInputs": 4,
+    "labSections": 1,
+    "lowerSections": 1,
+    "consoleErrorsOrWarnings": 0
+  },
+  "interactions": {
+    "initialPoints": "82,85;402,85;492,312;172,312",
+    "initialAngles": [68, 112, 68, 112],
+    "keyboardMovedPoints": "82,85;402,85;488,322;168,322",
+    "keyboardMovedAngles": [70, 110, 70, 110],
+    "oppositeAnglesRemainEqual": true,
+    "adjacentAnglesRemainSupplementary": true,
+    "diagonalBDSelected": true,
+    "independentLayerState": [true, false, false],
+    "proofStepFiveSelected": true,
+    "challengeAngleB": 100,
+    "initialChangedChallengeScore": "0/3",
+    "correctedPredictionScore": "1/3",
+    "formulaTabSelected": true,
+    "resetRestoresTarget": true
+  },
+  "status": "complete"
+}
