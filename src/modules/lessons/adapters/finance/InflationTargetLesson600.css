@@ -1,0 +1,472 @@
+.inf600-page {
+  position: relative;
+  top: -2px;
+  width: 100%;
+  color: #102044;
+  font:
+    9px/1.45 Inter,
+    Arial,
+    sans-serif;
+  letter-spacing: 0;
+}
+.inf600-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.inf600-page h1,
+.inf600-page h2,
+.inf600-page h3,
+.inf600-page h4,
+.inf600-page p,
+.inf600-page dl {
+  margin: 0;
+}
+.inf600-page button,
+.inf600-page input {
+  font: inherit;
+  color: inherit;
+}
+.inf600-hero,
+.inf600-tabs,
+.inf600-lab,
+.inf600-theory > article,
+.inf600-challenge,
+.inf600-adjacent {
+  border: 1px solid #dbe5ef;
+  background: #fff;
+  border-radius: 9px;
+}
+.inf600-hero {
+  height: 184px;
+  padding: 27px 16px;
+  display: grid;
+  grid-template-columns: 62px 1fr;
+  gap: 16px;
+}
+.inf600-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #08a9c4;
+  color: #fff;
+}
+.inf600-icon svg {
+  width: 30px;
+}
+.inf600-hero main > span {
+  display: flex;
+  gap: 8px;
+}
+.inf600-hero main > span b {
+  padding: 4px 9px;
+  border-radius: 12px;
+  background: #e8f7fa;
+  color: #087f9d;
+  font-size: 7px;
+}
+.inf600-hero main > span b + b {
+  background: #f0f2f5;
+  color: #56647a;
+}
+.inf600-hero h1 {
+  margin-top: 10px;
+  font-size: 30px;
+  line-height: 1;
+  font-weight: 800;
+}
+.inf600-hero main > p {
+  margin-top: 5px;
+  font-size: 13px;
+  color: #56667d;
+}
+.inf600-hero dl {
+  margin-top: 15px;
+  display: flex;
+  gap: 28px;
+  color: #52627a;
+}
+.inf600-hero main > aside {
+  margin-top: 17px;
+}
+.inf600-tabs {
+  height: 40px;
+  margin-top: 11px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  padding: 3px;
+}
+.inf600-tabs button {
+  border: 0;
+  background: #fff;
+  font-weight: 700;
+}
+.inf600-tabs button.active {
+  border-radius: 10px;
+  background: #079db3;
+  color: #fff;
+}
+.inf600-note {
+  height: 27px;
+  padding: 7px 12px;
+  background: #effaff;
+  border: 1px solid #bde4ef;
+}
+.inf600-lab {
+  height: 582px;
+  margin-top: 11px;
+  padding: 10px;
+}
+.inf600-lab > header {
+  height: 57px;
+  display: flex;
+  justify-content: space-between;
+}
+.inf600-lab > header h2 {
+  font-size: 14px;
+}
+.inf600-lab > header p {
+  margin-top: 3px;
+  color: #596a82;
+}
+.inf600-lab > header button {
+  height: 31px;
+  padding: 0 10px;
+  border: 1px solid #dbe5ef;
+  border-radius: 7px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.inf600-lab > header svg {
+  width: 12px;
+}
+.inf600-work {
+  height: 494px;
+  display: grid;
+  grid-template-columns: 195px 1fr;
+  gap: 10px;
+}
+.inf600-work > aside {
+  padding: 11px;
+  border: 1px solid #dbe5ef;
+  border-radius: 7px;
+}
+.inf600-control {
+  display: block;
+  margin-bottom: 16px;
+}
+.inf600-control > b {
+  display: block;
+  margin-bottom: 6px;
+}
+.inf600-control > span {
+  height: 28px;
+  padding: 5px 8px;
+  display: flex;
+  border: 1px solid #dbe5ef;
+  border-radius: 5px;
+}
+.inf600-control > span input {
+  width: 100%;
+  border: 0;
+  font-weight: 800;
+  background: transparent;
+}
+.inf600-control > input {
+  width: 100%;
+  accent-color: #198ee0;
+}
+.inf600-control small {
+  display: block;
+  color: #64758b;
+}
+.inf600-control small i {
+  float: right;
+  font-style: normal;
+}
+.inf600-work > aside > section {
+  margin-top: 7px;
+  padding: 11px;
+  border-radius: 7px;
+  background: #edf8fc;
+}
+.inf600-work > aside > section p {
+  margin-top: 10px;
+}
+.inf600-work > aside > section p b {
+  display: block;
+  font-size: 14px;
+}
+.inf600-work > main {
+  min-width: 0;
+}
+.inf600-chart {
+  height: 426px;
+  padding: 13px;
+  border-radius: 7px;
+  background: #061432;
+  color: #fff;
+}
+.inf600-chart header {
+  display: flex;
+  justify-content: space-between;
+}
+.inf600-chart header > b {
+  color: #44d6e6;
+}
+.inf600-chart svg {
+  width: 100%;
+  height: 270px;
+}
+.inf600-chart svg line {
+  stroke: #8490a8;
+}
+.inf600-chart svg polyline {
+  fill: none;
+  stroke: #32d4e7;
+  stroke-width: 3;
+}
+.inf600-chart svg circle {
+  fill: #32d4e7;
+}
+.inf600-chart svg circle.last {
+  fill: #ffab32;
+}
+.inf600-chart svg text {
+  fill: #fff;
+  font-size: 9px;
+  text-anchor: middle;
+}
+.inf600-chart h4 {
+  height: 24px;
+}
+.inf600-chart table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+  font-size: 7px;
+}
+.inf600-chart th,
+.inf600-chart td {
+  padding: 5px 2px;
+  border: 1px solid #41506d;
+}
+.inf600-real {
+  height: 58px;
+  margin-top: 10px;
+  padding: 10px 12px;
+  position: relative;
+  border: 1px solid #bfe0ee;
+  border-radius: 7px;
+  background: #f1fbfe;
+}
+.inf600-real h3 {
+  color: #087f95;
+}
+.inf600-real p {
+  margin-top: 5px;
+}
+.inf600-real > b {
+  position: absolute;
+  right: 12px;
+  top: 10px;
+  font-size: 17px;
+}
+.inf600-real small {
+  position: absolute;
+  right: 12px;
+  bottom: 8px;
+}
+.inf600-theory {
+  height: 294px;
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.2fr;
+  gap: 9px;
+}
+.inf600-theory > article {
+  padding: 12px;
+}
+.inf600-theory h3 {
+  font-size: 12px;
+}
+.inf600-theory p {
+  margin-top: 12px;
+}
+.inf600-theory aside {
+  margin-top: 20px;
+  padding: 9px;
+  border: 1px solid #d2e6f3;
+  border-radius: 6px;
+  background: #eff9ff;
+}
+.inf600-theory article:nth-child(2) strong,
+.inf600-theory article:nth-child(3) strong {
+  display: block;
+  margin-top: 11px;
+  padding: 10px;
+  text-align: center;
+  background: #eef7fc;
+  font:
+    15px/1.7 Georgia,
+    serif;
+}
+.inf600-theory article:nth-child(2) aside {
+  margin-top: 8px;
+  border-color: #f0c9ce;
+  background: #fff0f2;
+  color: #bf2940;
+}
+.inf600-challenge {
+  height: 129px;
+  margin-top: 10px;
+  padding: 13px;
+  display: grid;
+  grid-template-columns: 1fr 125px 150px;
+  gap: 15px;
+}
+.inf600-challenge p {
+  margin-top: 10px;
+}
+.inf600-challenge small {
+  display: block;
+  margin-top: 12px;
+  color: #176cc2;
+}
+.inf600-challenge > div:nth-child(2) {
+  display: grid;
+  gap: 8px;
+  align-content: center;
+}
+.inf600-challenge button {
+  height: 32px;
+  border: 1px solid #dbe5ef;
+  border-radius: 7px;
+  background: #fff;
+}
+.inf600-challenge button:first-child {
+  border: 0;
+  background: #078da7;
+  color: #fff;
+}
+.inf600-challenge > aside {
+  padding: 13px;
+  border: 1px solid #dbe5ef;
+  border-radius: 8px;
+  background: #f7f9fc;
+}
+.inf600-challenge > aside b {
+  display: block;
+  margin-top: 8px;
+  font-size: 17px;
+}
+.inf600-challenge em {
+  display: block;
+  margin-top: 5px;
+  font-style: normal;
+}
+.inf600-challenge em.correct {
+  color: #168442;
+}
+.inf600-challenge em.wrong {
+  color: #c92c41;
+}
+.inf600-adjacent {
+  height: 52px;
+  margin-top: 10px;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.inf600-adjacent a {
+  display: flex;
+  gap: 8px;
+  color: inherit;
+  text-decoration: none;
+}
+.inf600-adjacent a:last-child {
+  text-align: right;
+}
+.inf600-adjacent span {
+  display: grid;
+}
+.inf600-adjacent b {
+  font-size: 10px;
+}
+body:has(.inf600-page) [data-testid="desktop-sidebar"] {
+  width: 211px !important;
+  flex-basis: 211px !important;
+}
+body:has(.inf600-page) #main-content {
+  padding: 0 13px !important;
+}
+body:has(.inf600-page) .lesson-shell-header,
+body:has(.inf600-page) .lesson-page-shell > nav[role="tablist"],
+body:has(.inf600-page) .lesson-workbench-heading,
+body:has(.inf600-page) .lesson-workbench > .mt-3.grid,
+body:has(.inf600-page) .lesson-adjacent-nav {
+  display: none !important;
+}
+body:has(.inf600-page) .lesson-page-shell > div {
+  margin-top: 0 !important;
+}
+body:has(.inf600-page) .lesson-workbench {
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+body:has(.inf600-page) footer[aria-label="Site footer"] {
+  height: 104px;
+  overflow: hidden;
+}
+@media (max-width: 700px) {
+  body:has(.inf600-page) [data-testid="desktop-sidebar"] {
+    display: none !important;
+  }
+  body:has(.inf600-page) #main-content {
+    width: 100% !important;
+    padding: 0 !important;
+  }
+  .inf600-page {
+    top: 0;
+    padding: 6px;
+  }
+  .inf600-hero {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .inf600-tabs {
+    overflow: auto;
+    grid-template-columns: repeat(5, minmax(90px, 1fr));
+  }
+  .inf600-lab,
+  .inf600-work,
+  .inf600-theory,
+  .inf600-challenge {
+    height: auto;
+  }
+  .inf600-work,
+  .inf600-theory,
+  .inf600-challenge {
+    grid-template-columns: 1fr;
+  }
+  .inf600-work > main {
+    overflow-x: auto;
+  }
+  .inf600-chart,
+  .inf600-real {
+    min-width: 650px;
+  }
+  .inf600-challenge > aside {
+    min-width: 0;
+  }
+  .inf600-adjacent {
+    height: auto;
+    min-height: 52px;
+  }
+}

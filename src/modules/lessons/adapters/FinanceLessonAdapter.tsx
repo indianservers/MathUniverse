@@ -11,6 +11,7 @@ import CompoundInterestTargetLesson592 from "./finance/CompoundInterestTargetLes
 import DepreciationTargetLesson599 from "./finance/DepreciationTargetLesson599";
 import EffectiveInterestRateTargetLesson593 from "./finance/EffectiveInterestRateTargetLesson593";
 import FutureValueTargetLesson595 from "./finance/FutureValueTargetLesson595";
+import InflationTargetLesson600 from "./finance/InflationTargetLesson600";
 import LoansEmiTargetLesson597 from "./finance/LoansEmiTargetLesson597";
 import PresentValueTargetLesson594 from "./finance/PresentValueTargetLesson594";
 import SimpleInterestTargetLesson591 from "./finance/SimpleInterestTargetLesson591";
@@ -175,6 +176,7 @@ export default function FinanceLessonAdapter(props: LessonAdapterProps) {
     return <AmortisationTableTargetLesson598 {...props} />;
   if (props.lesson.id === 599)
     return <DepreciationTargetLesson599 {...props} />;
+  if (props.lesson.id === 600) return <InflationTargetLesson600 {...props} />;
   if (mode === "simple-interest") {
     return (
       <AdapterFrame
