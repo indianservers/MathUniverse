@@ -499,6 +499,30 @@ describe("lesson pages", () => {
     );
   });
 
+  it("renders the dedicated digital root target for lesson 10014", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-7/class-7-numbers-and-arithmetic-digital-root-and-divisibility",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0688"');
+    expect(html).toContain(
+      "dedicated-repeated-digit-sum-digital-root-and-independent-builders",
+    );
+    expect(html).toContain('data-number="987"');
+    expect(html).toContain('data-root="6"');
+    expect(html).toContain('data-steps="24,6"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

@@ -1,0 +1,27 @@
+{
+  "mockup": "0688",
+  "lessonNumericId": 10014,
+  "route": "/lessons/school/class-7/class-7-numbers-and-arithmetic-digital-root-and-divisibility",
+  "objectModel": "dedicated-repeated-digit-sum-digital-root-and-independent-builders",
+  "viewport": { "desktop": [963, 1634], "mobile": [390, 844] },
+  "layout": {
+    "hero": { "x": 207, "y": 90, "width": 742, "height": 126 },
+    "tabs": { "x": 207, "y": 224, "width": 742, "height": 37 },
+    "observe": { "x": 207, "y": 273, "width": 742, "height": 364 },
+    "middle": { "x": 207, "y": 645, "width": 742, "height": 297 },
+    "rule": { "x": 207, "y": 950, "width": 742, "height": 338 },
+    "practice": { "x": 207, "y": 1296, "width": 742, "height": 251 },
+    "adjacentNavigation": { "x": 207, "y": 1563, "width": 742, "height": 62 }
+  },
+  "interactions": {
+    "initial": { "number": 987, "root": 6, "steps": [24, 6] },
+    "example12345": { "root": 6, "steps": [15, 6] },
+    "cleared": { "number": 0, "root": 0 },
+    "number1089": { "root": 9, "steps": [18, 9] },
+    "practice123": { "root": 6 },
+    "challenge9999Accepted": false,
+    "challengeReason": "Every number divisible by 9 is also divisible by 3."
+  },
+  "mobileHorizontalOverflow": false,
+  "consoleWarningsOrErrors": []
+}

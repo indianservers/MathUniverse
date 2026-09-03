@@ -28,6 +28,7 @@ import NumberPatternTargetLesson10010 from "../schoolTargets/NumberPatternTarget
 import ShapePatternTargetLesson10011 from "../schoolTargets/ShapePatternTargetLesson10011";
 import RuleMachineTargetLesson10012 from "../schoolTargets/RuleMachineTargetLesson10012";
 import DivisibilityTargetLesson10013 from "../schoolTargets/DivisibilityTargetLesson10013";
+import DigitalRootTargetLesson10014 from "../schoolTargets/DigitalRootTargetLesson10014";
 import { getStrengthenedFoundationLesson } from "../strengthening/foundationNumberContent";
 import type { SchoolLessonContent } from "../syllabus/lessonSyllabusTypes";
 
@@ -66,6 +67,8 @@ export default function SchoolLessonPage() {
     return <RuleMachineTargetLesson10012 lesson={lesson} />;
   if (lesson.numericId === 10013)
     return <DivisibilityTargetLesson10013 lesson={lesson} />;
+  if (lesson.numericId === 10014)
+    return <DigitalRootTargetLesson10014 lesson={lesson} />;
   const adjacent = adjacentSchoolLessons(lesson);
   const strengthened = getStrengthenedFoundationLesson(lesson.numericId);
   const content = strengthened
