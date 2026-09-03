@@ -51,6 +51,7 @@ import ParallelogramSidesTargetLesson10073 from "../schoolTargets/ParallelogramS
 import ParallelogramAnglesTargetLesson10074 from "../schoolTargets/ParallelogramAnglesTargetLesson10074";
 import ParallelogramDiagonalsTargetLesson10075 from "../schoolTargets/ParallelogramDiagonalsTargetLesson10075";
 import ParallelogramConditionsTargetLesson10076 from "../schoolTargets/ParallelogramConditionsTargetLesson10076";
+import MidpointTheoremTargetLesson10077 from "../schoolTargets/MidpointTheoremTargetLesson10077";
 import PlaceValueTargetLesson10001 from "../schoolTargets/PlaceValueTargetLesson10001";
 import NumberNamingTargetLesson10002 from "../schoolTargets/NumberNamingTargetLesson10002";
 import EstimationRoundingTargetLesson10003 from "../schoolTargets/EstimationRoundingTargetLesson10003";
@@ -174,6 +175,8 @@ export default function SchoolLessonPage() {
     return <ParallelogramDiagonalsTargetLesson10075 lesson={lesson} />;
   if (lesson.numericId === 10076)
     return <ParallelogramConditionsTargetLesson10076 lesson={lesson} />;
+  if (lesson.numericId === 10077)
+    return <MidpointTheoremTargetLesson10077 lesson={lesson} />;
   if (lesson.numericId === 10001)
     return <PlaceValueTargetLesson10001 lesson={lesson} />;
   if (lesson.numericId === 10002)

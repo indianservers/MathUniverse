@@ -1,0 +1,47 @@
+{
+  "mockup": "0751",
+  "lessonId": 10077,
+  "route": "/lessons/school/class-9/class-9-quadrilateral-proofs-midpoint-theorem",
+  "objectModel": "dedicated-moving-triangle-midpoint-segment-engine",
+  "desktop": {
+    "viewport": [899, 1762],
+    "hero": [83, 223],
+    "tabs": [233, 277],
+    "lab": [287, 776],
+    "proof": [786, 1002],
+    "theory": [1012, 1232],
+    "challenge": [1242, 1421],
+    "navigation": [1431, 1464],
+    "documentScrollWidth": 899,
+    "consoleErrorsOrWarnings": 0
+  },
+  "mobile": {
+    "viewport": [390, 844],
+    "documentScrollWidth": 375,
+    "pageWidth": 366.4,
+    "draggableVertices": 3,
+    "computedMidpoints": 2,
+    "challengeTasks": 2,
+    "labSections": 1,
+    "warningSections": 1,
+    "consoleErrorsOrWarnings": 0
+  },
+  "interactions": {
+    "initialPoints": "324.32,91.79;100,320;500,320",
+    "initialMidpoints": "212.16,205.9;412.16,205.9",
+    "initialLengths": [8, 7.2, 10, 5],
+    "initialRatio": 0.5,
+    "movedPoints": "324.32,91.79;100,320;510,316",
+    "movedMidpoints": "212.16,205.9;417.16,203.9",
+    "movedLengths": [8, 7.28, 10.25, 5.13],
+    "movedRatio": 0.5,
+    "parallelPreserved": true,
+    "inspectModeBlocksMovement": true,
+    "midpointsHidden": true,
+    "fullscreenToggled": true,
+    "independentTaskState": [false, true],
+    "formulaTabSelected": true,
+    "resetRestoresTarget": true
+  },
+  "status": "complete"
+}

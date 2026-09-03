@@ -2219,6 +2219,34 @@ describe("lesson pages", () => {
     expect(html).toContain('aria-label="Challenge justification"');
   });
 
+  it("renders the dedicated midpoint-theorem target for lesson 10077", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-9/class-9-quadrilateral-proofs-midpoint-theorem",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0751"');
+    expect(html).toContain("dedicated-moving-triangle-midpoint-segment-engine");
+    expect(html).toContain('data-points="324.32,91.79;100,320;500,320"');
+    expect(html).toContain('data-midpoints="212.16,205.9;412.16,205.9"');
+    expect(html).toContain('data-lengths="8,7.2,10,5"');
+    expect(html).toContain('data-ratio="0.5"');
+    expect(html).toContain('data-parallel="true"');
+    expect(html).toContain('data-show-midpoints="true"');
+    expect(html).toContain('data-checks="1,1"');
+    expect(html).toContain('aria-label="Draggable midpoint theorem triangle"');
+    expect(html).toContain('aria-label="Draggable vertex A"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
