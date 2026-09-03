@@ -18,6 +18,7 @@ import FutureValueTargetLesson595 from "./finance/FutureValueTargetLesson595";
 import InflationTargetLesson600 from "./finance/InflationTargetLesson600";
 import InvestmentComparisonTargetLesson605 from "./finance/InvestmentComparisonTargetLesson605";
 import LinearModelsTargetLesson607 from "./finance/LinearModelsTargetLesson607";
+import LinearProgrammingTargetLesson617 from "./finance/LinearProgrammingTargetLesson617";
 import LoansEmiTargetLesson597 from "./finance/LoansEmiTargetLesson597";
 import ModelBuilderTargetLesson606 from "./finance/ModelBuilderTargetLesson606";
 import ParameterEstimationTargetLesson612 from "./finance/ParameterEstimationTargetLesson612";
@@ -222,6 +223,8 @@ export default function FinanceLessonAdapter(props: LessonAdapterProps) {
     return <ResidualErrorTargetLesson615 {...props} />;
   if (props.lesson.id === 616)
     return <ScenarioComparisonTargetLesson616 {...props} />;
+  if (props.lesson.id === 617)
+    return <LinearProgrammingTargetLesson617 {...props} />;
   if (mode === "simple-interest") {
     return (
       <AdapterFrame

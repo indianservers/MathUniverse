@@ -1,0 +1,127 @@
+{
+  "passed": true,
+  "checks": {
+    "initial": {
+      "point": "8,0",
+      "value": "24",
+      "corners": "5",
+      "c1": "8,4",
+      "c2": "4,8",
+      "objective": "3,2",
+      "graded": "",
+      "actions": "0"
+    },
+    "constraint": {
+      "point": "8,0",
+      "value": "24",
+      "corners": "5",
+      "c1": "8,6",
+      "c2": "4,8",
+      "objective": "3,2",
+      "graded": "",
+      "actions": "1"
+    },
+    "objective": {
+      "point": "0,6",
+      "value": "30",
+      "corners": "5",
+      "c1": "8,6",
+      "c2": "4,8",
+      "objective": "3,5",
+      "graded": "",
+      "actions": "2"
+    },
+    "drag": {
+      "point": "0,5.14",
+      "value": "25.70",
+      "corners": "5",
+      "c1": "8,5.14",
+      "c2": "4,8",
+      "objective": "3,5",
+      "graded": "",
+      "actions": "8"
+    },
+    "sweep": {
+      "point": "0,5.14",
+      "value": "25.70",
+      "corners": "5",
+      "c1": "8,5.14",
+      "c2": "4,8",
+      "objective": "3,5",
+      "graded": "",
+      "actions": "11"
+    },
+    "wrong": {
+      "point": "0,5.14",
+      "value": "25.70",
+      "corners": "5",
+      "c1": "8,5.14",
+      "c2": "4,8",
+      "objective": "3,5",
+      "graded": "false",
+      "actions": "12"
+    },
+    "correct": {
+      "point": "0,5.14",
+      "value": "25.70",
+      "corners": "5",
+      "c1": "8,5.14",
+      "c2": "4,8",
+      "objective": "3,5",
+      "graded": "true",
+      "actions": "13"
+    },
+    "reset": {
+      "point": "8,0",
+      "value": "24",
+      "corners": "5",
+      "c1": "8,4",
+      "c2": "4,8",
+      "objective": "3,2",
+      "graded": "",
+      "actions": "1"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1019,
+      "height": 1625
+    },
+    "overflow": false,
+    "hero": {
+      "top": 101,
+      "height": 216,
+      "bottom": 317
+    },
+    "tabs": {
+      "top": 327,
+      "height": 37,
+      "bottom": 364
+    },
+    "lab": {
+      "top": 374,
+      "height": 531,
+      "bottom": 905
+    },
+    "analysis": {
+      "top": 915,
+      "height": 270,
+      "bottom": 1185
+    },
+    "bottom": {
+      "top": 1195,
+      "height": 203,
+      "bottom": 1398
+    },
+    "adjacent": {
+      "top": 1408,
+      "height": 50,
+      "bottom": 1458
+    }
+  },
+  "mobileMetrics": {
+    "width": 390,
+    "overflow": false
+  },
+  "logs": []
+}
