@@ -1,0 +1,37 @@
+{
+  "mockup": "0737",
+  "lessonId": 10063,
+  "route": "/lessons/school/class-9/class-9-euclidean-geometry-parallel-line-converse-theorems",
+  "objectModel": "dedicated-parallel-converse-evidence-inference-engine",
+  "desktop": {
+    "viewport": [899, 1800],
+    "hero": [89, 214],
+    "tabs": [226, 256],
+    "lab": [268, 883],
+    "rule": [897, 1007],
+    "theory": [1021, 1321],
+    "challenge": [1335, 1613],
+    "navigation": [1628, 1667],
+    "consoleErrorsOrWarnings": 0
+  },
+  "mobile": {
+    "viewport": [390, 844],
+    "documentScrollWidth": 375,
+    "pageWidth": 366.4,
+    "theoremControls": 3,
+    "geometryTools": 5,
+    "challengeSelectors": 3,
+    "consoleErrorsOrWarnings": 0
+  },
+  "interactions": {
+    "sameSidePair": [58, 122],
+    "rotatedAngle": 59,
+    "movedOffset": 8,
+    "skewedLine": 12,
+    "skewedCondition": false,
+    "incorrectChallengeScore": 2,
+    "restoredChallengeScore": 3,
+    "resetCondition": true
+  },
+  "status": "complete"
+}

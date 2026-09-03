@@ -1809,6 +1809,35 @@ describe("lesson pages", () => {
     );
   });
 
+  it("renders the dedicated parallel-converse target for lesson 10063", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-9/class-9-euclidean-geometry-parallel-line-converse-theorems",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0737"');
+    expect(html).toContain(
+      "dedicated-parallel-converse-evidence-inference-engine",
+    );
+    expect(html).toContain('data-test="0"');
+    expect(html).toContain('data-angle="58"');
+    expect(html).toContain('data-paired="58"');
+    expect(html).toContain('data-condition="true"');
+    expect(html).toContain('data-challenge-score="3"');
+    expect(html).toContain(
+      'aria-label="Interactive parallel converse diagram"',
+    );
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
