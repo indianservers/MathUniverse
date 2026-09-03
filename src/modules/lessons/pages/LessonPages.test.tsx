@@ -523,6 +523,30 @@ describe("lesson pages", () => {
     expect(html).toContain('data-steps="24,6"');
   });
 
+  it("renders the dedicated remainder target for lesson 10015", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-7/class-7-numbers-and-arithmetic-remainder-reasoning",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0689"');
+    expect(html).toContain(
+      "dedicated-division-number-line-jumps-remainder-invariant-and-grading",
+    );
+    expect(html).toContain('data-division="29/5"');
+    expect(html).toContain('data-quotient="5"');
+    expect(html).toContain('data-remainder="4"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

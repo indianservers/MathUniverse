@@ -1,0 +1,532 @@
+.page-transition:has(.rr10015-page),
+main:has(.rr10015-page) {
+  overflow-x: visible !important;
+}
+main:has(.rr10015-page) nav[aria-label="Breadcrumb"] {
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 8px;
+}
+.rr10015-page {
+  position: relative;
+  top: -23px;
+  width: calc(100% + 23px);
+  margin-left: -26px;
+  color: #17213d;
+  font:
+    9px/1.5 Inter,
+    Arial,
+    sans-serif;
+}
+.rr10015-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.rr10015-page h1,
+.rr10015-page h2,
+.rr10015-page h3,
+.rr10015-page p,
+.rr10015-page dl {
+  margin: 0;
+}
+.rr10015-page button,
+.rr10015-page input {
+  font: inherit;
+  color: inherit;
+}
+.rr10015-hero,
+.rr10015-tabs,
+.rr10015-lab,
+.rr10015-concepts > article,
+.rr10015-practice,
+.rr10015-lower > article,
+.rr10015-adjacent {
+  border: 1px solid #dce5ee;
+  border-radius: 9px;
+  background: #fff;
+}
+.rr10015-hero {
+  position: relative;
+  height: 139px;
+  padding: 15px 16px;
+}
+.rr10015-hero small,
+.rr10015-page h2 {
+  color: #6b28d4;
+  font-weight: 900;
+}
+.rr10015-hero > small {
+  color: #087fa5;
+}
+.rr10015-hero h1 {
+  margin-top: 7px;
+  font-size: 21px;
+}
+.rr10015-hero > p {
+  width: 510px;
+  margin-top: 8px;
+}
+.rr10015-hero dl {
+  display: flex;
+  gap: 7px;
+  margin-top: 14px;
+}
+.rr10015-hero dl span {
+  padding: 3px 8px;
+  border-radius: 12px;
+  background: #f1f4f8;
+  font-weight: 800;
+}
+.rr10015-hero > aside {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  width: 175px;
+}
+.rr10015-hero > aside a {
+  float: right;
+  padding: 8px 12px;
+  border: 1px solid #dce5ee;
+  border-radius: 7px;
+  color: inherit;
+  text-decoration: none;
+  font-weight: 800;
+}
+.rr10015-hero > aside p {
+  clear: both;
+  padding-top: 12px;
+  line-height: 2;
+}
+.rr10015-tabs {
+  height: 42px;
+  margin-top: 8px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+.rr10015-tabs button {
+  border: 0;
+  background: #fff;
+  font-weight: 900;
+}
+.rr10015-tabs button.active {
+  border-bottom: 3px solid #712ee2;
+  color: #5c25c0;
+}
+.rr10015-lab {
+  position: relative;
+  height: 580px;
+  margin-top: 8px;
+  padding: 12px;
+}
+.rr10015-lab > header {
+  position: relative;
+  height: 47px;
+  padding-left: 4px;
+}
+.rr10015-lab > header p {
+  margin-top: 7px;
+}
+.rr10015-lab > header > div {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: flex;
+  gap: 8px;
+}
+.rr10015-lab > header button {
+  display: flex;
+  gap: 5px;
+  padding: 8px 12px;
+  border: 1px solid #dce5ee;
+  border-radius: 7px;
+  background: #fff;
+}
+.rr10015-page svg {
+  width: 12px;
+  height: 12px;
+}
+.rr10015-workspace {
+  height: 420px;
+  display: grid;
+  grid-template-columns: 165px 1fr;
+  gap: 12px;
+}
+.rr10015-workspace > aside {
+  display: grid;
+  grid-template-rows: 30px 65px 65px 58px 92px 91px;
+  gap: 0;
+  border: 1px solid #dce5ee;
+  border-radius: 7px;
+  overflow: hidden;
+}
+.rr10015-workspace > aside > * {
+  padding: 9px;
+}
+.rr10015-workspace > aside label {
+  display: grid;
+  font-weight: 900;
+}
+.rr10015-workspace > aside input {
+  height: 32px;
+  margin-top: 6px;
+  padding: 0 10px;
+  border: 1px solid #dce5ee;
+  border-radius: 6px;
+}
+.rr10015-workspace > aside section {
+  border-top: 1px solid #dce5ee;
+}
+.rr10015-workspace > aside section:nth-of-type(2) {
+  background: #effaff;
+}
+.rr10015-workspace > aside section:last-child {
+  background: #f8f2ff;
+}
+.rr10015-workspace > aside p {
+  margin-top: 6px;
+}
+.rr10015-workspace > article {
+  border: 1px solid #dce5ee;
+  border-radius: 7px;
+  overflow: hidden;
+}
+.rr10015-workspace article > nav {
+  height: 38px;
+  display: flex;
+  gap: 12px;
+  padding: 8px;
+  background: #f7f9fc;
+}
+.rr10015-workspace article > nav label {
+  padding: 3px 8px;
+  border-radius: 10px;
+  background: #eef3f7;
+}
+.rr10015-workspace article > nav input {
+  accent-color: #0aae9d;
+}
+.rr10015-workspace article svg {
+  width: 100%;
+  height: 360px;
+}
+.rr10015-workspace svg .axis {
+  stroke: #111;
+  stroke-width: 3;
+}
+.rr10015-workspace svg path {
+  fill: none;
+  stroke: #7831e3;
+  stroke-width: 2;
+}
+.rr10015-workspace svg text {
+  text-anchor: middle;
+  fill: #17213d;
+  font-size: 12px;
+}
+.rr10015-workspace svg .title,
+.rr10015-workspace svg .groups-text {
+  fill: #7029d7;
+  font-weight: 900;
+}
+.rr10015-workspace svg .groups {
+  stroke: #7029d7;
+  stroke-width: 2;
+}
+.rr10015-workspace svg .rem {
+  stroke: #ee7c11;
+  stroke-width: 2;
+}
+.rr10015-workspace svg .rem-text {
+  fill: #e76500;
+  font-weight: 900;
+}
+.rr10015-workspace svg .end {
+  fill: #7a2ee2;
+}
+.rr10015-lab > footer {
+  height: 73px;
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr 0.8fr;
+  border: 1px solid #dce5ee;
+  border-radius: 7px;
+}
+.rr10015-lab > footer > * {
+  padding: 12px;
+  border-right: 1px solid #dce5ee;
+}
+.rr10015-lab > footer strong {
+  font-size: 15px;
+}
+.rr10015-lab > footer strong b {
+  color: #6723d2;
+}
+.rr10015-lab > footer strong em {
+  color: #eb6e00;
+  font-style: normal;
+}
+.rr10015-lab > output {
+  position: absolute;
+  right: 15px;
+  top: 52px;
+  padding: 6px 10px;
+  background: #fff8dc;
+  color: #7e4b00;
+}
+.rr10015-concepts {
+  height: 310px;
+  margin-top: 8px;
+  display: grid;
+  grid-template-columns: 1.1fr 1.2fr;
+  grid-template-rows: 1fr 0.85fr;
+  gap: 8px;
+}
+.rr10015-concepts > article {
+  padding: 13px;
+}
+.rr10015-concepts h2 {
+  font-size: 10px;
+}
+.rr10015-concepts h2 small {
+  color: #6828c9;
+}
+.rr10015-concepts ul {
+  padding-left: 22px;
+  line-height: 2.2;
+}
+.rr10015-concepts article:nth-child(2) > p {
+  margin: 8px 0;
+}
+.rr10015-concepts article:nth-child(2) > div {
+  display: flex;
+  gap: 8px;
+}
+.rr10015-concepts button {
+  padding: 7px 10px;
+  border: 1px solid #dce5ee;
+  border-radius: 6px;
+  background: #fff;
+}
+.rr10015-concepts label {
+  display: flex;
+  align-items: end;
+  gap: 8px;
+  margin-top: 13px;
+  font-weight: 900;
+}
+.rr10015-concepts label span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.rr10015-concepts label input {
+  width: 65px;
+  height: 30px;
+  border: 1px solid #dce5ee;
+  border-radius: 5px;
+}
+.rr10015-concepts label > button {
+  background: #6f29d8;
+  color: #fff;
+}
+.rr10015-concepts article:nth-child(3) > p,
+.rr10015-concepts article:nth-child(4) > p {
+  margin: 12px 0;
+}
+.rr10015-concepts article:nth-child(3) > aside {
+  padding: 10px;
+  border: 1px solid #a9e6ce;
+  border-radius: 7px;
+  background: #effcf7;
+  text-align: center;
+  color: #08765a;
+}
+.rr10015-concepts article:nth-child(3) aside small {
+  display: block;
+  margin-top: 10px;
+}
+.rr10015-concepts article:nth-child(4) > strong {
+  display: block;
+  padding: 10px;
+  border: 1px solid #efc66e;
+  border-radius: 7px;
+  background: #fffaf0;
+  text-align: center;
+  font:
+    italic 14px Georgia,
+    serif;
+}
+.rr10015-practice {
+  position: relative;
+  height: 100px;
+  margin-top: 8px;
+  padding: 12px;
+}
+.rr10015-practice > p {
+  margin-top: 6px;
+}
+.rr10015-practice > div {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  margin-top: 8px;
+  margin-right: 95px;
+}
+.rr10015-practice label {
+  display: grid;
+  grid-template-columns: 1fr 28px 28px 15px;
+  align-items: center;
+  gap: 3px;
+  font:
+    11px Georgia,
+    serif;
+}
+.rr10015-practice input {
+  width: 28px;
+  height: 25px;
+  border: 1px solid #dce5ee;
+  border-radius: 4px;
+  text-align: center;
+}
+.rr10015-practice > button {
+  position: absolute;
+  right: 12px;
+  bottom: 22px;
+  padding: 8px 12px;
+  border: 0;
+  border-radius: 6px;
+  background: #762bd7;
+  color: #fff;
+}
+.rr10015-lower {
+  height: 191px;
+  margin-top: 8px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.rr10015-lower > article {
+  padding: 12px;
+}
+.rr10015-lower p {
+  margin: 9px 0;
+}
+.rr10015-lower ul {
+  padding-left: 18px;
+  line-height: 1.9;
+}
+.rr10015-lower article:nth-child(2) h2 {
+  color: #b81f3e;
+}
+.rr10015-lower article:nth-child(2) > strong {
+  display: block;
+  padding: 7px;
+  border: 1px solid #f2d18e;
+  border-radius: 6px;
+  background: #fff9e8;
+}
+.rr10015-lower article:nth-child(3) h2 {
+  color: #245bc0;
+}
+.rr10015-lower button {
+  padding: 7px 10px;
+  border: 0;
+  border-radius: 5px;
+  background: #7029d3;
+  color: #fff;
+}
+.rr10015-lower output {
+  display: block;
+  margin-top: 8px;
+  padding: 6px;
+  border: 1px solid #a6dfbf;
+  border-radius: 5px;
+  background: #effbf4;
+  color: #087748;
+}
+.rr10015-adjacent {
+  height: 66px;
+  margin-top: 8px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.rr10015-adjacent a {
+  padding: 12px;
+  color: inherit;
+  text-decoration: none;
+}
+.rr10015-adjacent a:last-child {
+  text-align: right;
+}
+.rr10015-adjacent b {
+  display: block;
+  margin-top: 5px;
+}
+@media (max-width: 700px) {
+  .rr10015-page {
+    top: 0;
+    width: 100%;
+    margin-left: 0;
+    font-size: 10px;
+  }
+  .rr10015-hero {
+    height: auto;
+    min-height: 220px;
+  }
+  .rr10015-hero > p {
+    width: auto;
+  }
+  .rr10015-hero > aside {
+    position: static;
+    width: auto;
+  }
+  .rr10015-tabs {
+    grid-template-columns: repeat(5, 100px);
+    overflow-x: auto;
+  }
+  .rr10015-lab,
+  .rr10015-concepts,
+  .rr10015-practice,
+  .rr10015-lower,
+  .rr10015-adjacent {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .rr10015-lab > header {
+    height: 100px;
+  }
+  .rr10015-lab > header > div {
+    top: 50px;
+  }
+  .rr10015-workspace {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .rr10015-workspace > aside {
+    height: 400px;
+  }
+  .rr10015-workspace > article {
+    min-height: 410px;
+  }
+  .rr10015-lab > footer {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .rr10015-concepts > article {
+    min-height: 170px;
+  }
+  .rr10015-practice > div {
+    grid-template-columns: 1fr;
+    margin-right: 0;
+  }
+  .rr10015-practice > button {
+    position: static;
+    margin-top: 10px;
+  }
+  .rr10015-lower > article {
+    min-height: 190px;
+  }
+  .rr10015-adjacent {
+    margin-bottom: 80px;
+  }
+}

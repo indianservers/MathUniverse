@@ -1,0 +1,27 @@
+{
+  "mockup": "0689",
+  "lessonNumericId": 10015,
+  "route": "/lessons/school/class-7/class-7-numbers-and-arithmetic-remainder-reasoning",
+  "objectModel": "dedicated-division-number-line-jumps-remainder-invariant-and-grading",
+  "viewport": { "desktop": [963, 1634], "mobile": [390, 844] },
+  "layout": {
+    "hero": { "x": 210, "y": 92, "width": 715, "height": 139 },
+    "tabs": { "x": 210, "y": 239, "width": 715, "height": 42 },
+    "lab": { "x": 210, "y": 289, "width": 715, "height": 580 },
+    "concepts": { "x": 210, "y": 877, "width": 715, "height": 310 },
+    "practice": { "x": 210, "y": 1195, "width": 715, "height": 100 },
+    "lower": { "x": 210, "y": 1303, "width": 715, "height": 191 },
+    "adjacentNavigation": { "x": 210, "y": 1502, "width": 715, "height": 66 }
+  },
+  "interactions": {
+    "initial": { "division": "29/5", "quotient": 5, "remainder": 4 },
+    "applied": { "division": "37/6", "quotient": 6, "remainder": 1 },
+    "allLayersHidden": true,
+    "resetRestoresAllLayers": true,
+    "practiceCorrect": 5,
+    "challengeSolution": 57,
+    "mockupIncorrectSolution": 71
+  },
+  "mobileHorizontalOverflow": false,
+  "consoleWarningsOrErrors": []
+}
