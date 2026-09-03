@@ -1639,6 +1639,32 @@ describe("lesson pages", () => {
     expect(html).toContain('aria-label="Part value"');
   });
 
+  it("renders the dedicated proof-structure target for lesson 10057", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-9/class-9-euclidean-geometry-proof-structure-and-logical-statements",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0731"');
+    expect(html).toContain("dedicated-ordered-proof-reason-and-repair-engine");
+    expect(html).toContain('data-proof="G1,D1,T1"');
+    expect(html).toContain('data-valid="true"');
+    expect(html).toContain('data-extra-given="false"');
+    expect(html).toContain('data-fix-score="idle"');
+    expect(html).toContain('aria-label="Repair step 1"');
+    expect(html).toContain('aria-label="Repair step 2"');
+    expect(html).toContain('aria-label="Repair step 3"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

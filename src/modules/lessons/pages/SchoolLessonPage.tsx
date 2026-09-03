@@ -31,6 +31,7 @@ import EuclideanFoundationsTargetLesson10053 from "../schoolTargets/EuclideanFou
 import EuclidPostulatesTargetLesson10054 from "../schoolTargets/EuclidPostulatesTargetLesson10054";
 import FifthPostulateEquivalenceTargetLesson10055 from "../schoolTargets/FifthPostulateEquivalenceTargetLesson10055";
 import AxiomTheoremTargetLesson10056 from "../schoolTargets/AxiomTheoremTargetLesson10056";
+import ProofStructureTargetLesson10057 from "../schoolTargets/ProofStructureTargetLesson10057";
 import PlaceValueTargetLesson10001 from "../schoolTargets/PlaceValueTargetLesson10001";
 import NumberNamingTargetLesson10002 from "../schoolTargets/NumberNamingTargetLesson10002";
 import EstimationRoundingTargetLesson10003 from "../schoolTargets/EstimationRoundingTargetLesson10003";
@@ -114,6 +115,8 @@ export default function SchoolLessonPage() {
     return <FifthPostulateEquivalenceTargetLesson10055 lesson={lesson} />;
   if (lesson.numericId === 10056)
     return <AxiomTheoremTargetLesson10056 lesson={lesson} />;
+  if (lesson.numericId === 10057)
+    return <ProofStructureTargetLesson10057 lesson={lesson} />;
   if (lesson.numericId === 10001)
     return <PlaceValueTargetLesson10001 lesson={lesson} />;
   if (lesson.numericId === 10002)

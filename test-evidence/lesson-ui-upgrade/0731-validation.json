@@ -1,0 +1,35 @@
+{
+  "mockup": "0731",
+  "lessonId": 10057,
+  "route": "/lessons/school/class-9/class-9-euclidean-geometry-proof-structure-and-logical-statements",
+  "objectModel": "dedicated-ordered-proof-reason-and-repair-engine",
+  "desktop": {
+    "viewport": [899, 1748],
+    "hero": [91, 226],
+    "tabs": [226, 264],
+    "builder": [274, 984],
+    "validityStrip": [912, 984],
+    "workedAndWarning": [999, 1315],
+    "challenge": [1331, 1591],
+    "navigation": [1605, 1645],
+    "consoleErrorsOrWarnings": 0
+  },
+  "mobile": {
+    "viewport": [390, 844],
+    "documentScrollWidth": 375,
+    "pageWidth": 366.4,
+    "factControls": 6,
+    "repairSelectors": 3,
+    "consoleErrorsOrWarnings": 0
+  },
+  "interactions": {
+    "proofAfterClear": [],
+    "restoredProof": ["G1", "D1", "T1"],
+    "proofValid": true,
+    "optionalGiven": true,
+    "repairScore": "3/3",
+    "hintConsumed": true,
+    "recordedActions": 11
+  },
+  "status": "complete"
+}
