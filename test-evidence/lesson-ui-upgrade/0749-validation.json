@@ -1,0 +1,49 @@
+{
+  "mockup": "0749",
+  "lessonId": 10075,
+  "route": "/lessons/school/class-9/class-9-quadrilateral-proofs-parallelogram-diagonals",
+  "objectModel": "dedicated-half-diagonal-midpoint-bisection-engine",
+  "desktop": {
+    "viewport": [899, 1762],
+    "hero": [83, 203],
+    "tabs": [213, 257],
+    "lab": [267, 715],
+    "result": [725, 775],
+    "proof": [785, 981],
+    "theory": [991, 1211],
+    "lowerCards": [1221, 1479],
+    "navigation": [1489, 1522],
+    "documentScrollWidth": 899,
+    "consoleErrorsOrWarnings": 0
+  },
+  "mobile": {
+    "viewport": [390, 844],
+    "documentScrollWidth": 375,
+    "pageWidth": 366.4,
+    "draggableVertices": 4,
+    "movableMidpoints": 1,
+    "challengeRadios": 12,
+    "labSections": 1,
+    "proofSections": 1,
+    "consoleErrorsOrWarnings": 0
+  },
+  "interactions": {
+    "initialPoints": "88,46;440,70;472,334;120,310;280,190",
+    "initialMeasures": [6, 6, 5, 5],
+    "initialTotals": [12, 10],
+    "vertexMovedMeasures": [6, 6, 4.94, 4.94],
+    "vertexMovePreservesMidpoint": true,
+    "moveOToolUnlocksMidpoint": true,
+    "unlockedCandidateMeasures": [6.2, 5.8, 4.73, 5.15],
+    "unlockedCandidateInvalid": true,
+    "relockRestoresEquality": true,
+    "proofHidden": true,
+    "incorrectChallengeScore": "3/4",
+    "correctChallengeScore": "4/4",
+    "randomizeChangesGeometry": true,
+    "zoomInValue": 110,
+    "practiceTabSelected": true,
+    "resetRestoresTarget": true
+  },
+  "status": "complete"
+}

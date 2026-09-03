@@ -49,6 +49,7 @@ import EqualSidesAnglesTargetLesson10071 from "../schoolTargets/EqualSidesAngles
 import TriangleInequalityTargetLesson10072 from "../schoolTargets/TriangleInequalityTargetLesson10072";
 import ParallelogramSidesTargetLesson10073 from "../schoolTargets/ParallelogramSidesTargetLesson10073";
 import ParallelogramAnglesTargetLesson10074 from "../schoolTargets/ParallelogramAnglesTargetLesson10074";
+import ParallelogramDiagonalsTargetLesson10075 from "../schoolTargets/ParallelogramDiagonalsTargetLesson10075";
 import PlaceValueTargetLesson10001 from "../schoolTargets/PlaceValueTargetLesson10001";
 import NumberNamingTargetLesson10002 from "../schoolTargets/NumberNamingTargetLesson10002";
 import EstimationRoundingTargetLesson10003 from "../schoolTargets/EstimationRoundingTargetLesson10003";
@@ -168,6 +169,8 @@ export default function SchoolLessonPage() {
     return <ParallelogramSidesTargetLesson10073 lesson={lesson} />;
   if (lesson.numericId === 10074)
     return <ParallelogramAnglesTargetLesson10074 lesson={lesson} />;
+  if (lesson.numericId === 10075)
+    return <ParallelogramDiagonalsTargetLesson10075 lesson={lesson} />;
   if (lesson.numericId === 10001)
     return <PlaceValueTargetLesson10001 lesson={lesson} />;
   if (lesson.numericId === 10002)

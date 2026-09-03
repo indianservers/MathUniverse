@@ -2157,6 +2157,37 @@ describe("lesson pages", () => {
     expect(html).toContain('aria-label="Draggable vertex C"');
   });
 
+  it("renders the dedicated parallelogram-diagonals target for lesson 10075", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-9/class-9-quadrilateral-proofs-parallelogram-diagonals",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0749"');
+    expect(html).toContain("dedicated-half-diagonal-midpoint-bisection-engine");
+    expect(html).toContain(
+      'data-points="88,46;440,70;472,334;120,310;280,190"',
+    );
+    expect(html).toContain('data-measures="6,6,5,5"');
+    expect(html).toContain('data-totals="12,10"');
+    expect(html).toContain('data-midpoint="true"');
+    expect(html).toContain('data-locked="true"');
+    expect(html).toContain('data-score="4/4"');
+    expect(html).toContain(
+      'aria-label="Draggable parallelogram diagonal model"',
+    );
+    expect(html).toContain('aria-label="Draggable midpoint O"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
