@@ -33,6 +33,20 @@ describe("FinanceLessonAdapter", () => {
     expect(html).toContain('data-amount="14693.28"');
   });
 
+  it("uses the dedicated effective-rate surface for lesson 593", () => {
+    const lesson = lessonCatalog.find((candidate) => candidate.id === 593)!;
+    const html = renderToStaticMarkup(
+      <FinanceLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="finance-mockup-0650"');
+    expect(html).toContain("dedicated-effective-annual-rate-comparator");
+    expect(html).toContain('data-ear="12.6825"');
+  });
+
   it("renders all 27 finance routes with explicit controls and no legacy fallback", () => {
     const lessons = lessonCatalog.filter(
       (lesson) => lesson.adapter === "finance",
@@ -48,7 +62,7 @@ describe("FinanceLessonAdapter", () => {
       );
       expect(html, String(lesson.id)).toContain(lesson.title);
       expect(html, String(lesson.id)).toMatch(
-        /finance and modelling lab|simple-interest model|finance-mockup-0648|finance-mockup-0649/,
+        /finance and modelling lab|simple-interest model|finance-mockup-0648|finance-mockup-0649|finance-mockup-0650/,
       );
       expect(html, String(lesson.id)).not.toContain("Legacy");
       expect(html, String(lesson.id)).toContain('type="range"');
@@ -111,7 +125,7 @@ describe("FinanceLessonAdapter", () => {
       );
       expect(html, `lesson ${lessonId}`).toContain(snippet);
       expect(html, `lesson ${lessonId}`).toMatch(
-        /finance-result|finance-mockup-0649/,
+        /finance-result|finance-mockup-0649|finance-mockup-0650/,
       );
     }
   });
