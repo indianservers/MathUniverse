@@ -2247,6 +2247,40 @@ describe("lesson pages", () => {
     expect(html).toContain('aria-label="Draggable vertex A"');
   });
 
+  it("renders the dedicated converse-midpoint target for lesson 10078", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-9/class-9-quadrilateral-proofs-converse-of-midpoint-theorem",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0752"');
+    expect(html).toContain(
+      "dedicated-midpoint-parallel-line-intersection-converse-engine",
+    );
+    expect(html).toContain('data-points="210,55;80,330;500,330"');
+    expect(html).toContain('data-d="145,192.5"');
+    expect(html).toContain('data-e="355,192.5"');
+    expect(html).toContain('data-ratio="1"');
+    expect(html).toContain('data-parallel="true"');
+    expect(html).toContain('data-bisected="true"');
+    expect(html).toContain('data-angle="0"');
+    expect(html).toContain('data-mode="forward"');
+    expect(html).toContain('data-show="1,1,1"');
+    expect(html).toContain(
+      'aria-label="Draggable converse midpoint theorem triangle"',
+    );
+    expect(html).toContain('aria-label="Line DE rotation"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

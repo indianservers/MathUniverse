@@ -1,0 +1,51 @@
+{
+  "mockup": "0752",
+  "lessonId": 10078,
+  "route": "/lessons/school/class-9/class-9-quadrilateral-proofs-converse-of-midpoint-theorem",
+  "objectModel": "dedicated-midpoint-parallel-line-intersection-converse-engine",
+  "desktop": {
+    "viewport": [899, 1762],
+    "hero": [83, 219],
+    "tabs": [229, 273],
+    "lab": [283, 838],
+    "theory": [848, 1103],
+    "lowerCards": [1113, 1373],
+    "navigation": [1383, 1416],
+    "documentScrollWidth": 899,
+    "consoleErrorsOrWarnings": 0
+  },
+  "mobile": {
+    "viewport": [390, 844],
+    "documentScrollWidth": 375,
+    "pageWidth": 366.4,
+    "draggableVertices": 3,
+    "computedMarkers": 2,
+    "visibilityControls": 3,
+    "rotationButtons": 2,
+    "labSections": 1,
+    "consoleErrorsOrWarnings": 0
+  },
+  "interactions": {
+    "initialD": [145, 192.5],
+    "initialE": [355, 192.5],
+    "initialLengths": [3.802, 3.802, 4.996, 4.996],
+    "initialRatio": 1,
+    "movedA": [220, 59],
+    "movedD": [150, 194.5],
+    "movedE": [360, 194.5],
+    "movedRatio": 1,
+    "parallelMovePreservesBisection": true,
+    "rotatedAngle": 10,
+    "rotatedE": [402.968, 237.987],
+    "rotatedLengths": [3.802, 3.802, 6.648, 3.343],
+    "rotatedRatio": 1.989,
+    "rotatedParallel": false,
+    "rotatedBisected": false,
+    "failureFeedbackShown": true,
+    "converseModeSelected": true,
+    "independentVisibilityState": [false, true, false],
+    "formulaTabSelected": true,
+    "resetRestoresTarget": true
+  },
+  "status": "complete"
+}
