@@ -1131,6 +1131,33 @@ describe("lesson pages", () => {
     expect(html).toContain('data-challenge-valid="false"');
   });
 
+  it("renders the dedicated route map target for lesson 10038", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-8/class-8-information-processing-route-map-reasoning",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0712"');
+    expect(html).toContain("dedicated-draggable-waypoint-grid-route-reasoner");
+    expect(html).toContain('data-start="0,0"');
+    expect(html).toContain('data-end="5,4"');
+    expect(html).toContain('data-waypoints="3,0;3,4"');
+    expect(html).toContain('data-distance="9"');
+    expect(html).toContain('data-turns="2"');
+    expect(html).toContain('data-direct="6.4"');
+    expect(html).toContain('data-valid="true"');
+    expect(html).toContain('data-challenge-distance="0"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

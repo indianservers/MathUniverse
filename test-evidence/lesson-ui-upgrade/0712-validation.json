@@ -1,0 +1,51 @@
+{
+  "mockup": "0712",
+  "lessonNumericId": 10038,
+  "route": "/lessons/school/class-8/class-8-information-processing-route-map-reasoning",
+  "objectModel": "dedicated-draggable-waypoint-grid-route-reasoner",
+  "viewport": { "desktop": [968, 1633], "mobile": [390, 844] },
+  "layout": {
+    "hero": { "x": 208, "y": 89, "width": 750, "height": 120 },
+    "tabs": { "x": 208, "y": 209, "width": 750, "height": 45 },
+    "map": { "x": 208, "y": 264, "width": 750, "height": 470 },
+    "summary": { "x": 208, "y": 746, "width": 750, "height": 225 },
+    "rule": { "x": 208, "y": 983, "width": 750, "height": 85 },
+    "theory": { "x": 208, "y": 1100, "width": 750, "height": 250 },
+    "challenge": { "x": 208, "y": 1362, "width": 750, "height": 132 },
+    "adjacentNavigation": { "x": 208, "y": 1506, "width": 750, "height": 50 },
+    "footer": { "x": 198, "y": 1560, "width": 750, "height": 70 }
+  },
+  "interactions": {
+    "initial": {
+      "start": [0, 0],
+      "end": [5, 4],
+      "waypoints": [
+        [3, 0],
+        [3, 4]
+      ],
+      "distance": 9,
+      "turns": 2,
+      "directDistance": 6.4,
+      "valid": true
+    },
+    "endpointKeyboardAndPointerDrag": true,
+    "movedEnd": { "end": [4, 4], "distance": 8, "directDistance": 5.7 },
+    "distanceLayerToggleWorking": true,
+    "turnLayerToggleWorking": true,
+    "snapToggleWorking": true,
+    "blockedRoadTogglesWorking": true,
+    "gridNodeAddsWaypoint": true,
+    "diagonalRouteRejected": true,
+    "challengeInitial": { "distance": 0, "turns": 0 },
+    "challengeSolved": {
+      "directions": ["N", "E", "N", "E"],
+      "distance": 8,
+      "turns": 3
+    },
+    "fullResetWorking": true
+  },
+  "mockupArithmeticCorrection": "The supplied badge says 7 km for 3 km + 4 km + 2 km. The live model correctly reports 9 km.",
+  "desktopHorizontalOverflow": false,
+  "mobileHorizontalOverflow": false,
+  "consoleWarningsOrErrors": []
+}
