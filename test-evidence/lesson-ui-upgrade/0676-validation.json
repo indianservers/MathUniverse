@@ -1,0 +1,147 @@
+{
+  "passed": true,
+  "checks": {
+    "initial": {
+      "number": "133215",
+      "indian": "1,33,215",
+      "international": "133,215",
+      "comma": "correct",
+      "practice": "",
+      "choice": "",
+      "actions": "0"
+    },
+    "input": {
+      "number": "24567890",
+      "indian": "2,45,67,890",
+      "international": "24,567,890",
+      "comma": "correct",
+      "practice": "",
+      "choice": "",
+      "actions": "1"
+    },
+    "swapped": {
+      "number": "24567890",
+      "indian": "2,45,67,890",
+      "international": "24,567,890",
+      "comma": "swapped",
+      "practice": "",
+      "choice": "",
+      "actions": "2"
+    },
+    "drag": {
+      "number": "24567890",
+      "indian": "2,45,67,890",
+      "international": "24,567,890",
+      "comma": "correct",
+      "practice": "",
+      "choice": "",
+      "actions": "3"
+    },
+    "random": {
+      "number": "727841697",
+      "indian": "72,78,41,697",
+      "international": "727,841,697",
+      "comma": "correct",
+      "practice": "",
+      "choice": "",
+      "actions": "4"
+    },
+    "clear": {
+      "number": "0",
+      "indian": "0",
+      "international": "0",
+      "comma": "correct",
+      "practice": "",
+      "choice": "",
+      "actions": "5"
+    },
+    "reset": {
+      "number": "133215",
+      "indian": "1,33,215",
+      "international": "133,215",
+      "comma": "correct",
+      "practice": "",
+      "choice": "",
+      "actions": "6"
+    },
+    "practiceWrong": {
+      "number": "133215",
+      "indian": "1,33,215",
+      "international": "133,215",
+      "comma": "correct",
+      "practice": "false",
+      "choice": "",
+      "actions": "7"
+    },
+    "practiceCorrect": {
+      "number": "133215",
+      "indian": "1,33,215",
+      "international": "133,215",
+      "comma": "correct",
+      "practice": "true",
+      "choice": "",
+      "actions": "8"
+    },
+    "choiceCorrect": {
+      "number": "133215",
+      "indian": "1,33,215",
+      "international": "133,215",
+      "comma": "correct",
+      "practice": "true",
+      "choice": "true",
+      "actions": "9"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 958,
+      "height": 1718
+    },
+    "overflow": false,
+    "hero": {
+      "top": 93,
+      "height": 126,
+      "bottom": 219
+    },
+    "tabs": {
+      "top": 222,
+      "height": 32,
+      "bottom": 254
+    },
+    "lab": {
+      "top": 266,
+      "height": 478,
+      "bottom": 744
+    },
+    "notice": {
+      "top": 754,
+      "height": 94,
+      "bottom": 848
+    },
+    "rules": {
+      "top": 858,
+      "height": 309,
+      "bottom": 1167
+    },
+    "practice": {
+      "top": 1177,
+      "height": 231,
+      "bottom": 1408
+    },
+    "mistake": {
+      "top": 1418,
+      "height": 59,
+      "bottom": 1477
+    },
+    "adjacent": {
+      "top": 1487,
+      "height": 52,
+      "bottom": 1539
+    }
+  },
+  "mobileMetrics": {
+    "width": 390,
+    "overflow": false
+  },
+  "logs": []
+}

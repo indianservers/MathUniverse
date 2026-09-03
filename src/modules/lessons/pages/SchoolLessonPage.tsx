@@ -16,6 +16,7 @@ import {
 import SchoolLessonInteractiveLab from "../components/SchoolLessonInteractiveLab";
 import { DecimalExpansionLessonPage } from "../decimalExpansion/DecimalExpansionLessonPage";
 import PlaceValueTargetLesson10001 from "../schoolTargets/PlaceValueTargetLesson10001";
+import NumberNamingTargetLesson10002 from "../schoolTargets/NumberNamingTargetLesson10002";
 import { getStrengthenedFoundationLesson } from "../strengthening/foundationNumberContent";
 import type { SchoolLessonContent } from "../syllabus/lessonSyllabusTypes";
 
@@ -30,6 +31,8 @@ export default function SchoolLessonPage() {
     return <DecimalExpansionLessonPage lesson={lesson} />;
   if (lesson.numericId === 10001)
     return <PlaceValueTargetLesson10001 lesson={lesson} />;
+  if (lesson.numericId === 10002)
+    return <NumberNamingTargetLesson10002 lesson={lesson} />;
   const adjacent = adjacentSchoolLessons(lesson);
   const strengthened = getStrengthenedFoundationLesson(lesson.numericId);
   const content = strengthened
