@@ -271,6 +271,33 @@ describe("lesson pages", () => {
     expect(html).toContain('data-upper="4.35"');
   });
 
+  it("renders the dedicated mixed-unit conversion target for lesson 10005", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-6/class-6-numbers-and-arithmetic-mixed-units-and-unit-conversion",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0679"');
+    expect(html).toContain(
+      "dedicated-drag-drop-dimensional-unit-conversion-and-comparison-model",
+    );
+    expect(html).toContain('data-observe-difference="0.00"');
+    expect(html).toContain('data-a-metres="2.50"');
+    expect(html).toContain('data-b-metres="1.75"');
+    expect(html).toContain('data-difference="0.75"');
+    expect(html).toContain('data-chain-valid="true"');
+    expect(html).toContain('data-chain-result="2.5"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

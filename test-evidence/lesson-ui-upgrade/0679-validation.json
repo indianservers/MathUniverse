@@ -1,0 +1,128 @@
+{
+  "passed": true,
+  "checks": {
+    "initial": {
+      "observeDifference": "0.00",
+      "aMetres": "2.50",
+      "bMetres": "1.75",
+      "difference": "0.75",
+      "chainValid": "true",
+      "chainResult": "2.5",
+      "challengeGraded": "",
+      "actions": "0"
+    },
+    "observe": {
+      "observeDifference": "0.60",
+      "aMetres": "2.50",
+      "bMetres": "1.75",
+      "difference": "0.75",
+      "chainValid": "true",
+      "chainResult": "2.5",
+      "challengeGraded": "",
+      "actions": "1"
+    },
+    "manipulate": {
+      "observeDifference": "0.60",
+      "aMetres": "3000.00",
+      "bMetres": "500.00",
+      "difference": "2500.00",
+      "chainValid": "true",
+      "chainResult": "2.5",
+      "challengeGraded": "",
+      "actions": "5"
+    },
+    "wrongFactor": {
+      "observeDifference": "0.60",
+      "aMetres": "3000.00",
+      "bMetres": "500.00",
+      "difference": "2500.00",
+      "chainValid": "false",
+      "chainResult": "",
+      "challengeGraded": "",
+      "actions": "7"
+    },
+    "correctFactor": {
+      "observeDifference": "0.60",
+      "aMetres": "3000.00",
+      "bMetres": "500.00",
+      "difference": "2500.00",
+      "chainValid": "true",
+      "chainResult": "2.5",
+      "challengeGraded": "",
+      "actions": "8"
+    },
+    "challengeWrong": {
+      "observeDifference": "0.60",
+      "aMetres": "3000.00",
+      "bMetres": "500.00",
+      "difference": "2500.00",
+      "chainValid": "true",
+      "chainResult": "2.5",
+      "challengeGraded": "false",
+      "actions": "9"
+    },
+    "challengeCorrect": {
+      "observeDifference": "0.60",
+      "aMetres": "3000.00",
+      "bMetres": "500.00",
+      "difference": "2500.00",
+      "chainValid": "true",
+      "chainResult": "2.5",
+      "challengeGraded": "true",
+      "actions": "10"
+    },
+    "practiceCorrect": [
+      "Correct",
+      "Correct",
+      "Correct"
+    ]
+  },
+  "metrics": {
+    "document": {
+      "width": 963,
+      "height": 1636
+    },
+    "overflow": false,
+    "hero": {
+      "top": 88,
+      "height": 109,
+      "bottom": 197
+    },
+    "tabs": {
+      "top": 206,
+      "height": 30,
+      "bottom": 236
+    },
+    "workspace": {
+      "top": 245,
+      "height": 996,
+      "bottom": 1241
+    },
+    "worked": {
+      "top": 1250,
+      "height": 91,
+      "bottom": 1341
+    },
+    "practice": {
+      "top": 1350,
+      "height": 125,
+      "bottom": 1475
+    },
+    "adjacent": {
+      "top": 1484,
+      "height": 39,
+      "bottom": 1523
+    },
+    "footer": {
+      "x": 194,
+      "y": 1536.84375,
+      "width": 769,
+      "height": 99
+    }
+  },
+  "mobileMetrics": {
+    "width": 390,
+    "overflow": false
+  },
+  "logs": []
+}
