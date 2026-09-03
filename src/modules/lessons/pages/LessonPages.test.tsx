@@ -648,6 +648,33 @@ describe("lesson pages", () => {
     expect(html).toContain('data-percent="12.00"');
   });
 
+  it("renders the dedicated household budget target for lesson 10020", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-7/class-7-applied-arithmetic-household-budget-arithmetic",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0694"');
+    expect(html).toContain(
+      "dedicated-household-income-expense-envelope-balance-goal-planner",
+    );
+    expect(html).toContain('data-income="5000"');
+    expect(html).toContain('data-total="4800"');
+    expect(html).toContain('data-balance="200"');
+    expect(html).toContain('data-savings="300"');
+    expect(html).toContain('data-percent="4.00"');
+    expect(html).toContain('data-envelopes="6"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

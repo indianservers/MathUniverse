@@ -1,0 +1,39 @@
+{
+  "mockup": "0694",
+  "lessonNumericId": 10020,
+  "route": "/lessons/school/class-7/class-7-applied-arithmetic-household-budget-arithmetic",
+  "objectModel": "dedicated-household-income-expense-envelope-balance-goal-planner",
+  "viewport": { "desktop": [963, 1642], "mobile": [390, 844] },
+  "layout": {
+    "hero": { "x": 207, "y": 89, "width": 742, "height": 126 },
+    "tabs": { "x": 207, "y": 215, "width": 742, "height": 48 },
+    "process": { "x": 207, "y": 293, "width": 742, "height": 59 },
+    "planner": { "x": 207, "y": 378, "width": 742, "height": 645 },
+    "theory": { "x": 207, "y": 1033, "width": 742, "height": 438 },
+    "adjacentNavigation": { "x": 207, "y": 1485, "width": 742, "height": 35 }
+  },
+  "interactions": {
+    "initial": {
+      "income": 5000,
+      "total": 4800,
+      "balance": 200,
+      "savings": 300,
+      "percent": 4,
+      "status": "ON TRACK"
+    },
+    "income6000": { "balance": 1200, "percent": 20 },
+    "housing2000": { "total": 5000, "balance": 1000 },
+    "removeUtilities": { "envelopes": 5, "total": 4600 },
+    "addEnvelope": { "envelopes": 6, "total": 4700 },
+    "defaultPlanAccepted": false,
+    "goalAdjusted": { "savings": 500, "goalMet": true, "grade": "correct" },
+    "overspend": {
+      "income": 4000,
+      "balance": -1000,
+      "status": "OVER BUDGET",
+      "gradeInvalidated": true
+    }
+  },
+  "mobileHorizontalOverflow": false,
+  "consoleWarningsOrErrors": []
+}
