@@ -1,0 +1,57 @@
+{
+  "mockup": "0722",
+  "lessonId": 10048,
+  "route": "/lessons/school/class-9/class-9-polynomials-remainder-theorem",
+  "surface": "RemainderTheoremTargetLesson10048",
+  "objectModel": "dedicated-remainder-theorem-synthetic-substitution-engine",
+  "targetViewport": { "width": 919, "height": 1711 },
+  "desktop": {
+    "consoleWarningsOrErrors": 0,
+    "sections": {
+      "hero": { "x": 200, "y": 90, "width": 707, "height": 147 },
+      "lab": { "x": 200, "y": 250, "width": 707, "height": 711 },
+      "division": { "x": 416, "y": 317, "width": 258, "height": 326 },
+      "theory": { "x": 200, "y": 972, "width": 707, "height": 262 },
+      "challenges": { "x": 200, "y": 1245, "width": 707, "height": 254 },
+      "navigation": { "x": 200, "y": 1499, "width": 707, "height": 58 }
+    }
+  },
+  "mobile": {
+    "width": 390,
+    "documentWidth": 375,
+    "pageWidth": 359,
+    "graphWidth": 312,
+    "graphHeight": 235,
+    "pageLevelHorizontalOverflow": false,
+    "consoleWarningsOrErrors": 0,
+    "divisionRows": 2,
+    "theoryCards": 3,
+    "challengeCards": 2
+  },
+  "interactions": {
+    "initial": {
+      "polynomial": "x² + 3x + 2",
+      "a": 2,
+      "quotient": "x + 5",
+      "remainder": 12
+    },
+    "zeroRemainder": { "a": -1, "quotient": "x + 2", "remainder": 0 },
+    "customPolynomial": {
+      "input": "2x^3 - x + 4",
+      "a": -1,
+      "quotient": "2x² − 2x + 1",
+      "remainder": 3
+    },
+    "quickModel": {
+      "polynomial": "x³ + 0x² − 4x + 1",
+      "a": 3,
+      "quotient": "x² + 3x + 5",
+      "remainder": 16
+    },
+    "quickWrongRejected": true,
+    "quickCorrectAccepted": 16,
+    "resetRestoresInitial": true,
+    "tabs": true
+  },
+  "mockupCorrection": "The target pictured no 16 option for p(3)=3³−4(3)+1; the real model supplies and accepts the mathematically correct remainder 16."
+}

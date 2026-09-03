@@ -1381,6 +1381,33 @@ describe("lesson pages", () => {
     expect(html).toContain('draggable="true"');
   });
 
+  it("renders the dedicated remainder-theorem target for lesson 10048", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-9/class-9-polynomials-remainder-theorem",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0722"');
+    expect(html).toContain(
+      "dedicated-remainder-theorem-synthetic-substitution-engine",
+    );
+    expect(html).toContain('data-polynomial="x² + 3x + 2"');
+    expect(html).toContain('data-a="2"');
+    expect(html).toContain('data-quotient="x + 5"');
+    expect(html).toContain('data-remainder="12"');
+    expect(html).toContain('data-identity="true"');
+    expect(html).toContain('data-quick="idle"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
