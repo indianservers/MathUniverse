@@ -54,6 +54,7 @@ import ParallelogramConditionsTargetLesson10076 from "../schoolTargets/Parallelo
 import MidpointTheoremTargetLesson10077 from "../schoolTargets/MidpointTheoremTargetLesson10077";
 import MidpointConverseTargetLesson10078 from "../schoolTargets/MidpointConverseTargetLesson10078";
 import HeronFormulaTargetLesson10079 from "../schoolTargets/HeronFormulaTargetLesson10079";
+import SemiPerimeterTargetLesson10080 from "../schoolTargets/SemiPerimeterTargetLesson10080";
 import PlaceValueTargetLesson10001 from "../schoolTargets/PlaceValueTargetLesson10001";
 import NumberNamingTargetLesson10002 from "../schoolTargets/NumberNamingTargetLesson10002";
 import EstimationRoundingTargetLesson10003 from "../schoolTargets/EstimationRoundingTargetLesson10003";
@@ -183,6 +184,8 @@ export default function SchoolLessonPage() {
     return <MidpointConverseTargetLesson10078 lesson={lesson} />;
   if (lesson.numericId === 10079)
     return <HeronFormulaTargetLesson10079 lesson={lesson} />;
+  if (lesson.numericId === 10080)
+    return <SemiPerimeterTargetLesson10080 lesson={lesson} />;
   if (lesson.numericId === 10001)
     return <PlaceValueTargetLesson10001 lesson={lesson} />;
   if (lesson.numericId === 10002)

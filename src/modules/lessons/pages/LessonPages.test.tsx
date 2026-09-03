@@ -2309,6 +2309,33 @@ describe("lesson pages", () => {
     expect(html).toContain('aria-label="Side a"');
   });
 
+  it("renders the dedicated semi-perimeter target for lesson 10080", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-9/class-9-mensuration-semi-perimeter-lab",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0754"');
+    expect(html).toContain(
+      "dedicated-semiperimeter-ribbon-heron-factor-engine",
+    );
+    expect(html).toContain('data-sides="5,5,6"');
+    expect(html).toContain('data-perimeter="16"');
+    expect(html).toContain('data-semiperimeter="8"');
+    expect(html).toContain('data-factors="3,3,2"');
+    expect(html).toContain('data-area="12"');
+    expect(html).toContain('aria-label="Draggable semi-perimeter triangle"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

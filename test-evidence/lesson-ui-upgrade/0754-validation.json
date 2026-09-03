@@ -1,0 +1,43 @@
+{
+  "mockup": "0754",
+  "lessonId": 10080,
+  "route": "/lessons/school/class-9/class-9-mensuration-semi-perimeter-lab",
+  "objectModel": "dedicated-semiperimeter-ribbon-heron-factor-engine",
+  "default": {
+    "sides": [5, 5, 6],
+    "perimeter": 16,
+    "semiperimeter": 8,
+    "factors": [3, 3, 2],
+    "area": 12,
+    "choice": 1
+  },
+  "interactions": {
+    "editedSides": [7, 5, 6],
+    "editedSemiperimeter": 9,
+    "editedFactors": [2, 4, 3],
+    "editedArea": 14.697,
+    "vertexMoveSides": [6, 5, 7.1],
+    "selectedChoice": 0,
+    "resetRestoredDefaults": true
+  },
+  "desktop": {
+    "viewport": [970, 1640],
+    "hero": [91, 223],
+    "tabs": [223, 270],
+    "lab": [284, 924],
+    "cards": [936, 1171],
+    "practice": [1183, 1399],
+    "navigation": [1411, 1447]
+  },
+  "mobile": {
+    "viewport": [390, 844],
+    "documentWidth": 375,
+    "pageWidth": 374.4,
+    "sliders": 3,
+    "draggableVertices": 3,
+    "choices": 4,
+    "horizontalOverflow": false
+  },
+  "console": { "warnings": 0, "errors": 0 },
+  "targetCorrection": "The mockup shows 16.971 for sides 5,5,6 and preselects 5,11,8 as maximum. The real Heron results are area 12 and maximum option 7,9,8; the interactive lesson intentionally uses the correct mathematics."
+}
