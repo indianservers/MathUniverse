@@ -1,0 +1,41 @@
+{
+  "mockup": "0743",
+  "lessonId": 10069,
+  "route": "/lessons/school/class-9/class-9-triangle-proofs-sss-congruence",
+  "objectModel": "dedicated-linked-sss-circle-intersection-rigid-overlay-engine",
+  "desktop": {
+    "viewport": [899, 1762],
+    "hero": [91, 241],
+    "tabs": [253, 297],
+    "lab": [309, 837],
+    "theory": [849, 1149],
+    "warning": [1161, 1277],
+    "challenge": [1289, 1541],
+    "navigation": [1553, 1600],
+    "documentScrollWidth": 884,
+    "consoleErrorsOrWarnings": 0
+  },
+  "mobile": {
+    "viewport": [390, 844],
+    "documentScrollWidth": 390,
+    "pageWidth": 366.4,
+    "linkedSideControls": 3,
+    "interactiveTriangles": 3,
+    "consoleErrorsOrWarnings": 0
+  },
+  "interactions": {
+    "initialSides": [5, 6, 7],
+    "initialMode": "Perfect Overlay",
+    "resultPanelTop": 724,
+    "correspondenceHidden": true,
+    "measurementsHidden": true,
+    "arcsClearedAndRestored": true,
+    "rotateModeSelected": true,
+    "wrongChallengePairs": ["FD", "EF", "FD"],
+    "wrongChallengeRejected": true,
+    "correctChallengePairs": ["DE", "EF", "FD"],
+    "perfectOverlayAccepted": true,
+    "resetRestoresConstruction": true
+  },
+  "status": "complete"
+}

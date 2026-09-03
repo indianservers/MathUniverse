@@ -1980,6 +1980,35 @@ describe("lesson pages", () => {
     expect(html).toContain('aria-label="AAS triangle DEF"');
   });
 
+  it("renders the dedicated SSS-congruence target for lesson 10069", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-9/class-9-triangle-proofs-sss-congruence",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0743"');
+    expect(html).toContain(
+      "dedicated-linked-sss-circle-intersection-rigid-overlay-engine",
+    );
+    expect(html).toContain('data-sides="5,6,7"');
+    expect(html).toContain('data-valid="true"');
+    expect(html).toContain('data-mode="Perfect Overlay"');
+    expect(html).toContain('data-arcs="true"');
+    expect(html).toContain('data-measures="true"');
+    expect(html).toContain('data-correspondence="true"');
+    expect(html).toContain('aria-label="SSS triangle ABC"');
+    expect(html).toContain('aria-label="SSS triangle DEF"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
