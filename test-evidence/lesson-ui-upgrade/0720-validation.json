@@ -1,0 +1,53 @@
+{
+  "mockup": "0720",
+  "lessonId": 10046,
+  "route": "/lessons/school/class-9/class-9-polynomials-graphical-zeros-of-polynomials",
+  "surface": "GraphicalZerosTargetLesson10046",
+  "objectModel": "dedicated-quadratic-coefficients-draggable-roots-engine",
+  "targetViewport": { "width": 958, "height": 1641 },
+  "desktop": {
+    "consoleWarningsOrErrors": 0,
+    "sections": {
+      "hero": { "x": 208, "y": 90, "width": 740, "height": 123 },
+      "tabs": { "x": 208, "y": 222, "width": 740, "height": 36 },
+      "lab": { "x": 221, "y": 268, "width": 714, "height": 713 },
+      "graph": { "x": 423, "y": 384, "width": 501, "height": 410 },
+      "rule": { "x": 423, "y": 815, "width": 501, "height": 139 },
+      "theory": { "x": 221, "y": 991, "width": 714, "height": 293 },
+      "challenge": { "x": 221, "y": 1294, "width": 714, "height": 192 },
+      "navigation": { "x": 208, "y": 1496, "width": 740, "height": 57 }
+    }
+  },
+  "mobile": {
+    "width": 390,
+    "documentWidth": 375,
+    "pageWidth": 359,
+    "graphWidth": 310,
+    "graphHeight": 310,
+    "pageLevelHorizontalOverflow": false,
+    "consoleWarningsOrErrors": 0
+  },
+  "interactions": {
+    "initial": {
+      "polynomial": "x² − 5x + 6",
+      "discriminant": 1,
+      "roots": [2, 3]
+    },
+    "rootDriven": {
+      "roots": [0, 3],
+      "a": 1,
+      "b": -3,
+      "c": 0,
+      "discriminant": 9
+    },
+    "zoom": { "from": 100, "to": 120 },
+    "resetRestoresInitial": true,
+    "repeatedRootChallenge": {
+      "root": -2,
+      "factored": "(x + 2)²",
+      "expanded": "x² + 4x + 4"
+    },
+    "pointerAndKeyboardRootHandles": true,
+    "tabs": true
+  }
+}

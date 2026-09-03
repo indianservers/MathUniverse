@@ -1327,6 +1327,33 @@ describe("lesson pages", () => {
     expect(html).toContain('data-challenge="idle"');
   });
 
+  it("renders the dedicated graphical-zeros target for lesson 10046", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-9/class-9-polynomials-graphical-zeros-of-polynomials",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0720"');
+    expect(html).toContain(
+      "dedicated-quadratic-coefficients-draggable-roots-engine",
+    );
+    expect(html).toContain('data-a="1"');
+    expect(html).toContain('data-b="-5"');
+    expect(html).toContain('data-c="6"');
+    expect(html).toContain('data-roots="2,3"');
+    expect(html).toContain('aria-label="Interactive quadratic graph"');
+    expect(html).toContain('data-challenge-root="-1"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
