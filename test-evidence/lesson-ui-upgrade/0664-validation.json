@@ -1,0 +1,134 @@
+{
+  "passed": true,
+  "checks": {
+    "initial": {
+      "slope": "800",
+      "intercept": "1000",
+      "points": "6",
+      "residuals": "true",
+      "dragging": "false",
+      "output": "9000",
+      "graded": "",
+      "actions": "0"
+    },
+    "controls": {
+      "slope": "1200",
+      "intercept": "1500",
+      "points": "6",
+      "residuals": "true",
+      "dragging": "false",
+      "output": "13500",
+      "graded": "",
+      "actions": "2"
+    },
+    "residuals": {
+      "slope": "1200",
+      "intercept": "1500",
+      "points": "6",
+      "residuals": "false",
+      "dragging": "false",
+      "output": "13500",
+      "graded": "",
+      "actions": "3"
+    },
+    "added": {
+      "slope": "1200",
+      "intercept": "1500",
+      "points": "7",
+      "residuals": "false",
+      "dragging": "false",
+      "output": "13500",
+      "graded": "",
+      "actions": "4"
+    },
+    "drag": {
+      "slope": "1150",
+      "intercept": "1500",
+      "points": "7",
+      "residuals": "false",
+      "dragging": "false",
+      "output": "13000",
+      "graded": "",
+      "actions": "6"
+    },
+    "formula": true,
+    "reset": {
+      "slope": "800",
+      "intercept": "1000",
+      "points": "6",
+      "residuals": "true",
+      "dragging": "false",
+      "output": "9000",
+      "graded": "",
+      "actions": "1"
+    },
+    "wrong": {
+      "slope": "800",
+      "intercept": "1000",
+      "points": "6",
+      "residuals": "true",
+      "dragging": "false",
+      "output": "9000",
+      "graded": "false",
+      "actions": "5"
+    },
+    "correct": {
+      "slope": "800",
+      "intercept": "1000",
+      "points": "6",
+      "residuals": "true",
+      "dragging": "false",
+      "output": "9000",
+      "graded": "true",
+      "actions": "8"
+    },
+    "hint": true
+  },
+  "metrics": {
+    "document": {
+      "width": 1009,
+      "height": 1558
+    },
+    "overflow": false,
+    "hero": {
+      "top": 97,
+      "height": 143,
+      "bottom": 240
+    },
+    "tabs": {
+      "top": 250,
+      "height": 49,
+      "bottom": 299
+    },
+    "journey": {
+      "top": 299,
+      "height": 78,
+      "bottom": 377
+    },
+    "lab": {
+      "top": 387,
+      "height": 519,
+      "bottom": 906
+    },
+    "theory": {
+      "top": 916,
+      "height": 165,
+      "bottom": 1081
+    },
+    "lower": {
+      "top": 1094,
+      "height": 268,
+      "bottom": 1362
+    },
+    "adjacent": {
+      "top": 1372,
+      "height": 59,
+      "bottom": 1431
+    }
+  },
+  "mobileMetrics": {
+    "width": 390,
+    "overflow": false
+  },
+  "logs": []
+}

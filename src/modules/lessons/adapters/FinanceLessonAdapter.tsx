@@ -15,6 +15,7 @@ import EffectiveInterestRateTargetLesson593 from "./finance/EffectiveInterestRat
 import FutureValueTargetLesson595 from "./finance/FutureValueTargetLesson595";
 import InflationTargetLesson600 from "./finance/InflationTargetLesson600";
 import InvestmentComparisonTargetLesson605 from "./finance/InvestmentComparisonTargetLesson605";
+import LinearModelsTargetLesson607 from "./finance/LinearModelsTargetLesson607";
 import LoansEmiTargetLesson597 from "./finance/LoansEmiTargetLesson597";
 import ModelBuilderTargetLesson606 from "./finance/ModelBuilderTargetLesson606";
 import PresentValueTargetLesson594 from "./finance/PresentValueTargetLesson594";
@@ -192,6 +193,8 @@ export default function FinanceLessonAdapter(props: LessonAdapterProps) {
     return <InvestmentComparisonTargetLesson605 {...props} />;
   if (props.lesson.id === 606)
     return <ModelBuilderTargetLesson606 {...props} />;
+  if (props.lesson.id === 607)
+    return <LinearModelsTargetLesson607 {...props} />;
   if (mode === "simple-interest") {
     return (
       <AdapterFrame
