@@ -571,6 +571,30 @@ describe("lesson pages", () => {
     expect(html).toContain('data-rows="5"');
   });
 
+  it("renders the dedicated ratio table target for lesson 10017", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-7/class-7-numbers-and-arithmetic-ratio-tables",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0691"');
+    expect(html).toContain(
+      "dedicated-scaled-ratio-row-simplification-double-number-line-and-practice",
+    );
+    expect(html).toContain('data-base="4:3"');
+    expect(html).toContain('data-active="16:12"');
+    expect(html).toContain('data-simple="4:3"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

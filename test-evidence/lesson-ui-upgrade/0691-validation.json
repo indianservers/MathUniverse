@@ -1,0 +1,26 @@
+{
+  "mockup": "0691",
+  "lessonNumericId": 10017,
+  "route": "/lessons/school/class-7/class-7-numbers-and-arithmetic-ratio-tables",
+  "objectModel": "dedicated-scaled-ratio-row-simplification-double-number-line-and-practice",
+  "viewport": { "desktop": [963, 1634], "mobile": [390, 844] },
+  "layout": {
+    "hero": { "x": 201, "y": 92, "width": 747, "height": 140 },
+    "tabs": { "x": 201, "y": 244, "width": 747, "height": 43 },
+    "lab": { "x": 201, "y": 295, "width": 747, "height": 596 },
+    "rules": { "x": 201, "y": 899, "width": 747, "height": 149 },
+    "lower": { "x": 201, "y": 1060, "width": 747, "height": 384 },
+    "adjacentNavigation": { "x": 201, "y": 1452, "width": 747, "height": 65 }
+  },
+  "interactions": {
+    "presetTimesTwo": { "ratio": "8:6", "simplified": "4:3" },
+    "clearRows": [1],
+    "customFactor1_5": { "ratio": "6:4.5", "simplified": "4:3" },
+    "resetFactors": [1, 2, 3, 4, 0.5],
+    "wrongMissingValueAccepted": false,
+    "correctMissingValue": 9,
+    "practiceAccepted": true
+  },
+  "mobileHorizontalOverflow": false,
+  "consoleWarningsOrErrors": []
+}
