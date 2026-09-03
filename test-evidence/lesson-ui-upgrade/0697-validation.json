@@ -1,0 +1,46 @@
+{
+  "mockup": "0697",
+  "lessonNumericId": 10023,
+  "route": "/lessons/school/class-7/class-7-practical-geometry-copying-an-angle",
+  "objectModel": "dedicated-equal-radius-arc-chord-transfer-angle-copy-construction",
+  "viewport": { "desktop": [924, 1703], "mobile": [390, 844] },
+  "layout": {
+    "hero": { "x": 188, "y": 1, "width": 736, "height": 126 },
+    "tabs": { "x": 188, "y": 127, "width": 736, "height": 50 },
+    "process": { "x": 201, "y": 187, "width": 710, "height": 80 },
+    "construction": { "x": 201, "y": 283, "width": 710, "height": 626 },
+    "source": { "x": 212, "y": 284, "width": 229, "height": 461 },
+    "controls": { "x": 452, "y": 284, "width": 159 },
+    "target": { "x": 622, "y": 284, "width": 278, "height": 461 },
+    "theory": { "x": 201, "y": 930, "width": 710, "height": 300 },
+    "challenge": { "x": 201, "y": 1242, "width": 710, "height": 282 },
+    "adjacentNavigation": { "x": 201, "y": 1536, "width": 710, "height": 48 }
+  },
+  "interactions": {
+    "initial": {
+      "sourceAngle": 36,
+      "copiedAngle": 36,
+      "radius": 2.5,
+      "steps": 6,
+      "congruent": true
+    },
+    "increaseRadius": 2.75,
+    "changeSource": {
+      "sourceAngle": 48,
+      "copiedAngle": 36,
+      "congruent": false
+    },
+    "copyAndCheck": { "sourceAngle": 48, "copiedAngle": 48, "congruent": true },
+    "undoRedoWorking": true,
+    "constructionStepToggleWorking": true,
+    "targetResetClearsAllSixSteps": true,
+    "toolSelected": "Straightedge",
+    "tabsWorking": true,
+    "challengeResetAndCheckWorking": true,
+    "sourcePointPointerDrag": true,
+    "resetRestoredDefaults": true
+  },
+  "desktopHorizontalOverflow": false,
+  "mobileHorizontalOverflow": false,
+  "consoleWarningsOrErrors": []
+}

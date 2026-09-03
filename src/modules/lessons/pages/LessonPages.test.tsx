@@ -727,6 +727,33 @@ describe("lesson pages", () => {
     expect(html).toContain('data-tool="Select"');
   });
 
+  it("renders the dedicated copying an angle target for lesson 10023", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-7/class-7-practical-geometry-copying-an-angle",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0697"');
+    expect(html).toContain(
+      "dedicated-equal-radius-arc-chord-transfer-angle-copy-construction",
+    );
+    expect(html).toContain('data-source-angle="36"');
+    expect(html).toContain('data-copied-angle="36"');
+    expect(html).toContain('data-radius="2.50"');
+    expect(html).toContain('data-steps="6"');
+    expect(html).toContain('data-congruent="true"');
+    expect(html).toContain('data-tool="Compass"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
