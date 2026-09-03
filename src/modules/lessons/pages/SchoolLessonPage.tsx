@@ -15,6 +15,7 @@ import {
 } from "../catalog/school/schoolSyllabusCatalog";
 import SchoolLessonInteractiveLab from "../components/SchoolLessonInteractiveLab";
 import DecimalExpansionTargetLesson10040 from "../schoolTargets/DecimalExpansionTargetLesson10040";
+import TerminatingDecimalsTargetLesson10041 from "../schoolTargets/TerminatingDecimalsTargetLesson10041";
 import PlaceValueTargetLesson10001 from "../schoolTargets/PlaceValueTargetLesson10001";
 import NumberNamingTargetLesson10002 from "../schoolTargets/NumberNamingTargetLesson10002";
 import EstimationRoundingTargetLesson10003 from "../schoolTargets/EstimationRoundingTargetLesson10003";
@@ -66,6 +67,8 @@ export default function SchoolLessonPage() {
   if (!lesson) return <LessonNotFound />;
   if (lesson.slug === DECIMAL_EXPANSION_ROUTE_SLUG)
     return <DecimalExpansionTargetLesson10040 lesson={lesson} />;
+  if (lesson.numericId === 10041)
+    return <TerminatingDecimalsTargetLesson10041 lesson={lesson} />;
   if (lesson.numericId === 10001)
     return <PlaceValueTargetLesson10001 lesson={lesson} />;
   if (lesson.numericId === 10002)

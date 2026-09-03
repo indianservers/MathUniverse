@@ -1207,6 +1207,28 @@ describe("lesson pages", () => {
     expect(html).toContain("Remainder 1 repeats");
   });
 
+  it("renders the dedicated terminating-decimal target for lesson 10041", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-9/class-9-real-numbers-terminating-and-non-terminating-decimals",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0715"');
+    expect(html).toContain("dedicated-simplify-factor-predict-verify-engine");
+    expect(html).toContain('data-reduced="7/40"');
+    expect(html).toContain('data-classification="terminating"');
+    expect(html).toContain('data-decimal="0.175"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
