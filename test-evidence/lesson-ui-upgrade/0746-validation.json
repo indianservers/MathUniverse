@@ -1,0 +1,46 @@
+{
+  "mockup": "0746",
+  "lessonId": 10072,
+  "route": "/lessons/school/class-9/class-9-triangle-proofs-triangle-inequality",
+  "objectModel": "dedicated-segment-drop-triangle-inequality-engine",
+  "desktop": {
+    "viewport": [899, 1762],
+    "hero": [83, 203],
+    "tabs": [213, 256],
+    "builder": [268, 648],
+    "checks": [660, 912],
+    "theory": [924, 1295],
+    "challenge": [1307, 1480],
+    "navigation": [1492, 1526],
+    "documentScrollWidth": 899,
+    "consoleErrorsOrWarnings": 0
+  },
+  "mobile": {
+    "viewport": [390, 844],
+    "documentScrollWidth": 375,
+    "pageWidth": 366.4,
+    "theorySections": 1,
+    "challengeSections": 1,
+    "consoleErrorsOrWarnings": 0
+  },
+  "interactions": {
+    "initialSides": [4, 5, 8],
+    "initialChecks": [true, true, true],
+    "initialPerimeter": 17,
+    "segmentsPlaced": ["a", "b", "c"],
+    "constructedShapeVisible": true,
+    "clearRemovesSegments": true,
+    "degenerateSides": [3, 4, 7],
+    "degenerateChecks": [false, true, true],
+    "degeneratePerimeter": 14,
+    "equilateralChecks": [true, true, true],
+    "numericInputSides": [10, 5, 8],
+    "numericInputPerimeter": 23,
+    "numberLineViewSelected": true,
+    "resetRestoresTriangleView": true,
+    "challengeValueToggle": 5,
+    "learnTabSelected": true,
+    "resetRestoresTarget": true
+  },
+  "status": "complete"
+}

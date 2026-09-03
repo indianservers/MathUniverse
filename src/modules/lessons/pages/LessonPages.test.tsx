@@ -2069,6 +2069,34 @@ describe("lesson pages", () => {
     );
   });
 
+  it("renders the dedicated triangle-inequality target for lesson 10072", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-9/class-9-triangle-proofs-triangle-inequality",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0746"');
+    expect(html).toContain("dedicated-segment-drop-triangle-inequality-engine");
+    expect(html).toContain('data-sides="4,5,8"');
+    expect(html).toContain('data-checks="1,1,1"');
+    expect(html).toContain('data-valid="true"');
+    expect(html).toContain('data-perimeter="17"');
+    expect(html).toContain('data-placed=""');
+    expect(html).toContain('data-view="triangle"');
+    expect(html).toContain('data-challenge="5,6,7,8,9,10,11,12,13"');
+    expect(html).toContain('aria-label="Triangle construction drop zone"');
+    expect(html).toContain('draggable="true"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
