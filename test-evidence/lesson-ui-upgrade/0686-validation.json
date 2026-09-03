@@ -1,0 +1,36 @@
+{
+  "mockup": "0686",
+  "lessonNumericId": 10012,
+  "route": "/lessons/school/class-6/class-6-patterns-input-output-rule-machines",
+  "objectModel": "dedicated-drag-drop-operation-block-rule-machine-and-grading-model",
+  "viewport": {
+    "desktop": [963, 1634],
+    "mobile": [390, 844]
+  },
+  "layout": {
+    "hero": { "x": 207, "y": 90, "width": 742, "height": 143 },
+    "tabs": { "x": 207, "y": 241, "width": 742, "height": 40 },
+    "lab": { "x": 207, "y": 295, "width": 742, "height": 485 },
+    "operationTray": { "x": 530, "y": 416, "width": 316, "height": 72 },
+    "theory": { "x": 207, "y": 799, "width": 742, "height": 285 },
+    "workedExample": { "x": 207, "y": 1100, "width": 742, "height": 140 },
+    "practice": { "x": 207, "y": 1254, "width": 742, "height": 275 },
+    "adjacentNavigation": { "x": 207, "y": 1542, "width": 742, "height": 78 }
+  },
+  "interactions": {
+    "initial": {
+      "operations": ["x1", "+3", null, null],
+      "outputs": [4, 5, 6, 7],
+      "accuracy": 100
+    },
+    "placedPlusFive": { "outputs": [9, 10, 11, 12], "accuracy": 0 },
+    "reset": { "outputs": [4, 5, 6, 7], "accuracy": 100 },
+    "testInput10": 13,
+    "practiceWrongCount": 2,
+    "practiceCorrectCount": 3,
+    "challengeRejected": "x + 3",
+    "challengeAccepted": "x - 3"
+  },
+  "mobileHorizontalOverflow": false,
+  "consoleWarningsOrErrors": []
+}

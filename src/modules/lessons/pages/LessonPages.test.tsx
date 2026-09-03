@@ -449,6 +449,31 @@ describe("lesson pages", () => {
     expect(html).toContain('data-added="2"');
   });
 
+  it("renders the dedicated Input-Output Rule Machines target surface", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-6/class-6-patterns-input-output-rule-machines",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0686"');
+    expect(html).toContain(
+      "dedicated-drag-drop-operation-block-rule-machine-and-grading-model",
+    );
+    expect(html).toContain('data-ops="× 1|+ 3|drop|drop"');
+    expect(html).toContain('data-known-outputs="4,5,6,7"');
+    expect(html).toContain('data-accuracy="100"');
+    expect(html).toContain('data-practice-correct="3"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
