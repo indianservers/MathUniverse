@@ -1,0 +1,42 @@
+{
+  "mockup": "0718",
+  "lessonId": 10044,
+  "route": "/lessons/school/class-9/class-9-real-numbers-rationalisation-of-denominators",
+  "surface": "RationalisationTargetLesson10044",
+  "objectModel": "dedicated-conjugate-rationalisation-equivalence-engine",
+  "targetViewport": { "width": 958, "height": 1641 },
+  "desktop": {
+    "consoleWarningsOrErrors": 0,
+    "sections": {
+      "hero": { "x": 208, "y": 90, "width": 740, "height": 123 },
+      "tabs": { "x": 208, "y": 221, "width": 740, "height": 43 },
+      "workbench": { "x": 221, "y": 277, "width": 714, "height": 570 },
+      "rules": { "x": 221, "y": 859, "width": 714, "height": 142 },
+      "theory": { "x": 221, "y": 1013, "width": 714, "height": 337 },
+      "remember": { "x": 221, "y": 1362, "width": 714, "height": 70 },
+      "navigation": { "x": 208, "y": 1445, "width": 740, "height": 58 }
+    }
+  },
+  "mobile": {
+    "width": 390,
+    "documentWidth": 375,
+    "pageWidth": 359,
+    "pageLevelHorizontalOverflow": false,
+    "consoleWarningsOrErrors": 0
+  },
+  "interactions": {
+    "reset": { "numerator": "", "denominator": "", "valid": "idle" },
+    "tilePlacement": { "numerator": "√3 − 1", "denominator": "√3 − 1" },
+    "validFactor": { "accepted": true, "finalDenominator": 2 },
+    "invalidEqualFactor": { "factor": "1/1", "accepted": false },
+    "hint": { "restoredConjugateFactor": true },
+    "challenge": {
+      "rejected": "3√5",
+      "accepted": "3√5 − 6",
+      "numericalValue": 0.927051,
+      "equivalent": true
+    },
+    "tabs": true,
+    "nativeDraggableTiles": true
+  }
+}

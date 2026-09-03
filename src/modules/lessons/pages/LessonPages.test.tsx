@@ -1277,6 +1277,32 @@ describe("lesson pages", () => {
     expect(html).toContain('data-challenge="idle"');
   });
 
+  it("renders the dedicated rationalisation target for lesson 10044", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-9/class-9-real-numbers-rationalisation-of-denominators",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0718"');
+    expect(html).toContain(
+      "dedicated-conjugate-rationalisation-equivalence-engine",
+    );
+    expect(html).toContain('data-numerator="√3 − 1"');
+    expect(html).toContain('data-denominator="√3 − 1"');
+    expect(html).toContain('data-valid="true"');
+    expect(html).toContain('draggable="true"');
+    expect(html).toContain('data-challenge="true"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
