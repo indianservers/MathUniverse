@@ -1,0 +1,48 @@
+{
+  "mockup": "0728",
+  "lessonId": 10054,
+  "route": "/lessons/school/class-9/class-9-euclidean-geometry-euclid-s-five-postulates",
+  "surface": "EuclidPostulatesTargetLesson10054",
+  "objectModel": "dedicated-five-postulate-construction-and-matching-engine",
+  "generatedAsset": "/assets/lessons/euclid-five-postulates-hero.png",
+  "targetViewport": { "width": 899, "height": 1748 },
+  "desktop": {
+    "consoleWarningsOrErrors": 0,
+    "sections": {
+      "hero": { "x": 191, "y": 83, "width": 695, "height": 208 },
+      "heroImage": { "x": 574, "y": 96, "width": 320, "height": 185 },
+      "tabs": { "x": 191, "y": 301, "width": 695, "height": 43 },
+      "explorer": { "x": 191, "y": 359, "width": 695, "height": 679 },
+      "canvas": { "x": 405, "y": 437, "width": 478, "height": 578 },
+      "theory": { "x": 191, "y": 1049, "width": 695, "height": 261 },
+      "challenge": { "x": 191, "y": 1321, "width": 695, "height": 208 },
+      "navigation": { "x": 191, "y": 1541, "width": 695, "height": 51 }
+    }
+  },
+  "mobile": {
+    "width": 390,
+    "documentWidth": 375,
+    "documentHeight": 3313,
+    "pageLevelHorizontalOverflow": false,
+    "consoleWarningsOrErrors": 0,
+    "heroImageLoaded": true,
+    "postulateButtons": 5,
+    "toolButtons": 7,
+    "challengeSelects": 5
+  },
+  "interactions": {
+    "initial": {
+      "postulate": 1,
+      "tool": "Select",
+      "a": [95, 180],
+      "b": [315, 180]
+    },
+    "postulateThreeRendersCircle": true,
+    "circleToolSelection": true,
+    "keyboardHandleMove": { "a": [103, 180] },
+    "pointerDragImplemented": true,
+    "challengeScore": 5,
+    "resetRestoresInitialConstruction": true,
+    "tabStateChange": true
+  }
+}

@@ -1552,6 +1552,35 @@ describe("lesson pages", () => {
     expect(html).toContain("DEFINITION DEPENDENCY MAP");
   });
 
+  it("renders the dedicated Euclid-postulates target for lesson 10054", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-9/class-9-euclidean-geometry-euclid-s-five-postulates",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0728"');
+    expect(html).toContain(
+      "dedicated-five-postulate-construction-and-matching-engine",
+    );
+    expect(html).toContain('data-postulate="1"');
+    expect(html).toContain('data-tool="Select"');
+    expect(html).toContain('data-a="95,180"');
+    expect(html).toContain('data-b="315,180"');
+    expect(html).toContain('data-score="idle"');
+    expect(html).toContain('aria-label="Interactive Euclidean construction"');
+    expect(html).toContain('aria-label="Postulate match 5"');
+    expect(html).toContain("euclid-five-postulates-hero.png");
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
