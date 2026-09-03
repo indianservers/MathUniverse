@@ -1,0 +1,105 @@
+{
+  "passed": true,
+  "checks": {
+    "initial": {
+      "result": "83.33",
+      "valid": "true",
+      "chain": "m/km|h/min|h/h",
+      "challengeResult": "2.50",
+      "challengeValid": "false",
+      "graded": "",
+      "actions": "0"
+    },
+    "removed": {
+      "result": "0.08",
+      "valid": "false",
+      "chain": "h/min|h/h",
+      "challengeResult": "2.50",
+      "challengeValid": "false",
+      "graded": "",
+      "actions": "1"
+    },
+    "restored": {
+      "result": "83.33",
+      "valid": "true",
+      "chain": "h/min|h/h|m/km",
+      "challengeResult": "2.50",
+      "challengeValid": "false",
+      "graded": "",
+      "actions": "2"
+    },
+    "cancellations": 0,
+    "hint": true,
+    "formula": true,
+    "reset": {
+      "result": "83.33",
+      "valid": "true",
+      "chain": "m/km|h/min|h/h",
+      "challengeResult": "2.50",
+      "challengeValid": "false",
+      "graded": "",
+      "actions": "1"
+    },
+    "dragged": {
+      "result": "83.33",
+      "valid": "true",
+      "chain": "m/km|h/min|h/h",
+      "challengeResult": "9.00",
+      "challengeValid": "true",
+      "graded": "",
+      "actions": "4"
+    },
+    "correct": {
+      "result": "83.33",
+      "valid": "true",
+      "chain": "m/km|h/min|h/h",
+      "challengeResult": "9.00",
+      "challengeValid": "true",
+      "graded": "true",
+      "actions": "5"
+    },
+    "solution": true
+  },
+  "metrics": {
+    "document": {
+      "width": 1048,
+      "height": 1501
+    },
+    "overflow": false,
+    "hero": {
+      "top": 107,
+      "height": 157,
+      "bottom": 264
+    },
+    "tabs": {
+      "top": 276,
+      "height": 48,
+      "bottom": 324
+    },
+    "lab": {
+      "top": 337,
+      "height": 521,
+      "bottom": 858
+    },
+    "theory": {
+      "top": 870,
+      "height": 302,
+      "bottom": 1172
+    },
+    "challenge": {
+      "top": 1178,
+      "height": 169,
+      "bottom": 1347
+    },
+    "adjacent": {
+      "top": 1359,
+      "height": 51,
+      "bottom": 1410
+    }
+  },
+  "mobileMetrics": {
+    "width": 390,
+    "overflow": false
+  },
+  "logs": []
+}

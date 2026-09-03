@@ -1,0 +1,556 @@
+.da613-page {
+  position: relative;
+  top: 16px;
+  width: 100%;
+  margin-bottom: 10px;
+  color: #102044;
+  font:
+    8px/1.45 Inter,
+    Arial,
+    sans-serif;
+  letter-spacing: 0;
+}
+.da613-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.da613-page h1,
+.da613-page h2,
+.da613-page h3,
+.da613-page p,
+.da613-page dl {
+  margin: 0;
+}
+.da613-page button,
+.da613-page input {
+  font: inherit;
+  color: inherit;
+}
+.da613-hero,
+.da613-tabs,
+.da613-lab,
+.da613-theory > article,
+.da613-challenge,
+.da613-adjacent {
+  border: 1px solid #dbe5ef;
+  border-radius: 9px;
+  background: #fff;
+}
+.da613-hero {
+  position: relative;
+  height: 157px;
+  padding: 16px;
+}
+.da613-hero > div {
+  display: flex;
+  gap: 8px;
+}
+.da613-hero > div b {
+  padding: 4px 8px;
+  border-radius: 12px;
+  background: #e8f9fb;
+  color: #0783a0;
+  font-size: 7px;
+}
+.da613-hero > div b + b {
+  background: #f0f2f5;
+  color: #526277;
+}
+.da613-hero h1 {
+  margin-top: 10px;
+  font-size: 27px;
+  font-weight: 800;
+  line-height: 1;
+}
+.da613-hero > p {
+  margin-top: 8px;
+  font-size: 11px;
+  font-weight: 600;
+}
+.da613-hero dl {
+  position: absolute;
+  top: 21px;
+  right: 25px;
+  width: 290px;
+  display: grid;
+  gap: 7px;
+  font-size: 9px;
+}
+.da613-hero dl span {
+  font-weight: 600;
+}
+.da613-hero > aside {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 0;
+  height: 43px;
+  padding: 12px 0;
+  border-top: 1px solid #dbe5ef;
+}
+.da613-hero > aside b {
+  margin-right: 15px;
+  color: #087a9d;
+}
+.da613-tabs {
+  height: 48px;
+  margin-top: 12px;
+  padding: 4px 8px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+.da613-tabs button {
+  border: 0;
+  background: #fff;
+  font-weight: 800;
+}
+.da613-tabs button.active {
+  border-radius: 18px;
+  background: #0799be;
+  color: #fff;
+}
+.da613-note {
+  height: 25px;
+  padding: 6px 10px;
+  border: 1px solid #b9e5ef;
+  background: #effaff;
+}
+.da613-lab {
+  height: 521px;
+  margin-top: 13px;
+  padding: 14px;
+}
+.da613-lab > header {
+  height: 76px;
+  display: flex;
+  justify-content: space-between;
+}
+.da613-lab > header h2 {
+  margin-top: 4px;
+  font-size: 15px;
+}
+.da613-lab > header p {
+  margin-top: 5px;
+}
+.da613-lab > header > div > b {
+  color: #0782a3;
+}
+.da613-lab > header > span {
+  display: flex;
+  gap: 8px;
+}
+.da613-lab > header button,
+.da613-lab > header strong {
+  height: 29px;
+  padding: 7px 13px;
+  border: 1px solid #d9e4ee;
+  border-radius: 7px;
+  background: #fff;
+}
+.da613-lab svg {
+  width: 11px;
+  height: 11px;
+  vertical-align: middle;
+}
+.da613-lab > header strong.valid {
+  background: #eef9ef;
+  color: #167e35;
+}
+.da613-lab > main {
+  height: 327px;
+  padding: 14px;
+  border: 1px solid #d9e4ee;
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: 1fr 190px;
+  grid-template-rows: 178px 118px;
+  gap: 10px;
+}
+.da613-chain {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.da613-chain > article {
+  width: 115px;
+  height: 100px;
+  padding: 12px;
+  border: 1px solid #cbdbe8;
+  border-radius: 8px;
+}
+.da613-chain article:last-child {
+  width: 190px;
+}
+.da613-chain article strong {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 22px;
+  color: #084ab5;
+  font-size: 16px;
+}
+.da613-chain article i {
+  margin-left: 15px;
+  font:
+    15px/1.3 Georgia,
+    serif;
+  text-align: center;
+}
+.da613-chain > div {
+  position: relative;
+  width: 98px;
+}
+.da613-chain > div > button {
+  width: 98px;
+  height: 100px;
+}
+.da613-chain > div > i {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  color: #19883c;
+}
+.da613-chain .drop {
+  height: 70px;
+  border: 2px dashed #d4dfe9;
+  border-radius: 7px;
+  display: grid;
+  place-items: center;
+  color: #78899e;
+  text-align: center;
+}
+.da613-chain button,
+.da613-pool button,
+.da613-challenge footer button {
+  border: 1px solid #cfdce8;
+  border-radius: 6px;
+  background: #fff;
+  font:
+    12px Georgia,
+    serif;
+}
+.da613-chain button span,
+.da613-pool button span,
+.da613-challenge footer button span {
+  display: block;
+  height: 32px;
+  padding: 8px;
+  border-bottom: 1px solid #8797aa;
+}
+.da613-chain button span + span,
+.da613-pool button span + span,
+.da613-challenge footer button span + span {
+  border: 0;
+}
+.da613-lab main > aside {
+  padding: 11px;
+  border: 1px solid #dbe5ee;
+  border-radius: 7px;
+}
+.da613-lab main > aside p {
+  height: 43px;
+  padding: 12px 0;
+  border-bottom: 1px solid #e1e8ef;
+  display: flex;
+  justify-content: space-between;
+}
+.da613-lab main > aside b {
+  color: #13843a;
+}
+.da613-pool {
+  padding: 10px;
+  border: 1px solid #dbe5ee;
+  border-radius: 7px;
+}
+.da613-pool > p {
+  margin-top: 4px;
+}
+.da613-pool > div {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 4px;
+  margin-top: 9px;
+}
+.da613-pool button {
+  height: 60px;
+}
+.da613-pool button span,
+.da613-challenge footer button span {
+  height: 28px;
+  padding: 6px;
+}
+.da613-lab > output {
+  height: 35px;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 6px;
+  background: #fff0ee;
+  color: #b92339;
+  display: block;
+}
+.da613-lab > output.valid {
+  background: #e8f7ec;
+  color: #157d35;
+  font-weight: 700;
+}
+.da613-lab > label {
+  display: block;
+  margin-top: 10px;
+}
+.da613-lab > label input {
+  accent-color: #12a8cf;
+  vertical-align: middle;
+}
+.da613-lab > .hint {
+  float: right;
+  color: #087e9d;
+}
+.da613-theory {
+  height: 302px;
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 12px;
+}
+.da613-theory > article {
+  padding: 14px;
+}
+.da613-theory h2 {
+  font-size: 9px;
+  color: #087e9d;
+}
+.da613-theory h3 {
+  margin-top: 6px;
+  font-size: 11px;
+}
+.da613-theory p {
+  margin-top: 10px;
+}
+.da613-theory strong {
+  display: block;
+  margin-top: 13px;
+  font:
+    12px/1.8 Georgia,
+    serif;
+}
+.da613-theory aside {
+  margin: 12px auto 0;
+  text-align: center;
+}
+.da613-theory article:nth-child(4) h2 {
+  color: #b11f2e;
+}
+.da613-challenge {
+  position: relative;
+  height: 169px;
+  margin-top: 6px;
+  padding: 14px;
+  display: grid;
+  grid-template-columns: 90px 15px 240px 85px 125px 1fr;
+  gap: 8px;
+  align-items: center;
+}
+.da613-challenge header {
+  position: absolute;
+  top: 12px;
+  left: 14px;
+}
+.da613-challenge header > b {
+  color: #087e9d;
+}
+.da613-challenge header h2 {
+  font-size: 13px;
+}
+.da613-challenge > article {
+  height: 83px;
+  margin-top: 30px;
+  padding: 10px;
+  border: 1px solid #d5e0ea;
+  border-radius: 7px;
+}
+.da613-challenge > article strong {
+  display: block;
+  margin-top: 20px;
+  color: #0758b8;
+  font-size: 15px;
+}
+.da613-challenge > .zones {
+  height: 83px;
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+}
+.da613-challenge > .zones i,
+.da613-challenge > .zones span {
+  border: 2px dashed #d5e0ea;
+  border-radius: 7px;
+  display: grid;
+  place-items: center;
+  font-style: normal;
+  color: #75879a;
+}
+.da613-challenge > section,
+.da613-challenge > aside {
+  height: 83px;
+  margin-top: 30px;
+  padding: 9px;
+  border: 1px solid #dbe5ee;
+  border-radius: 7px;
+}
+.da613-challenge > section button {
+  width: 100%;
+  height: 26px;
+  border: 0;
+  border-radius: 12px;
+  background: #078db1;
+  color: #fff;
+}
+.da613-challenge > section button + button {
+  background: #fff;
+  color: #102044;
+}
+.da613-challenge > aside svg {
+  width: 11px;
+}
+.da613-challenge > aside p {
+  margin-top: 7px;
+}
+.da613-challenge footer {
+  position: absolute;
+  left: 120px;
+  right: 0;
+  bottom: 3px;
+  height: 27px;
+  display: flex;
+  gap: 3px;
+  overflow: hidden;
+}
+.da613-challenge footer button {
+  height: 27px;
+  font-size: 7px;
+}
+.da613-challenge footer button span {
+  display: inline;
+  border: 0;
+  padding: 3px;
+}
+.da613-adjacent {
+  height: 51px;
+  margin-top: 12px;
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.da613-adjacent a {
+  display: flex;
+  gap: 8px;
+  color: inherit;
+  text-decoration: none;
+}
+.da613-adjacent a:last-child {
+  text-align: right;
+}
+.da613-adjacent svg {
+  width: 13px;
+}
+.da613-adjacent span {
+  display: grid;
+}
+.da613-adjacent b {
+  font-size: 9px;
+}
+body:has(.da613-page) [data-testid="desktop-sidebar"] {
+  width: 218px !important;
+  flex-basis: 218px !important;
+}
+body:has(.da613-page) #main-content {
+  padding: 0 16px !important;
+}
+body:has(.da613-page) .lesson-shell-header,
+body:has(.da613-page) .lesson-page-shell > nav[role="tablist"],
+body:has(.da613-page) .lesson-workbench-heading,
+body:has(.da613-page) .lesson-workbench > .mt-3.grid,
+body:has(.da613-page) .lesson-adjacent-nav {
+  display: none !important;
+}
+body:has(.da613-page) .lesson-page-shell > div {
+  margin-top: 0 !important;
+}
+body:has(.da613-page) .lesson-workbench {
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+body:has(.da613-page) footer[aria-label="Site footer"] {
+  height: 91px;
+  overflow: hidden;
+}
+@media (max-width: 700px) {
+  body:has(.da613-page) [data-testid="desktop-sidebar"] {
+    display: none !important;
+  }
+  body:has(.da613-page) #main-content {
+    width: 100% !important;
+    padding: 0 !important;
+  }
+  .da613-page {
+    top: 0;
+    margin: 0;
+    padding: 6px;
+  }
+  .da613-hero,
+  .da613-lab,
+  .da613-theory,
+  .da613-challenge {
+    height: auto;
+  }
+  .da613-hero dl {
+    position: static;
+    margin-top: 10px;
+  }
+  .da613-hero {
+    padding-bottom: 55px;
+  }
+  .da613-tabs {
+    overflow: auto;
+    grid-template-columns: repeat(5, minmax(85px, 1fr));
+  }
+  .da613-lab > main {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .da613-chain {
+    overflow: auto;
+  }
+  .da613-chain > * {
+    flex: 0 0 auto;
+  }
+  .da613-pool > div {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .da613-theory {
+    grid-template-columns: 1fr;
+  }
+  .da613-theory > article {
+    min-height: 150px;
+  }
+  .da613-challenge {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 55px;
+  }
+  .da613-challenge header {
+    top: 12px;
+  }
+  .da613-challenge footer {
+    position: static;
+    width: 100%;
+  }
+  .da613-adjacent {
+    min-height: 51px;
+  }
+}

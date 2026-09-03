@@ -10,6 +10,7 @@ import BreakEvenTargetLesson603 from "./finance/BreakEvenTargetLesson603";
 import AnnuitiesTargetLesson596 from "./finance/AnnuitiesTargetLesson596";
 import CompoundInterestTargetLesson592 from "./finance/CompoundInterestTargetLesson592";
 import CurrencyConversionTargetLesson601 from "./finance/CurrencyConversionTargetLesson601";
+import DimensionalAnalysisTargetLesson613 from "./finance/DimensionalAnalysisTargetLesson613";
 import DepreciationTargetLesson599 from "./finance/DepreciationTargetLesson599";
 import EffectiveInterestRateTargetLesson593 from "./finance/EffectiveInterestRateTargetLesson593";
 import ExponentialLogisticTargetLesson609 from "./finance/ExponentialLogisticTargetLesson609";
@@ -210,6 +211,8 @@ export default function FinanceLessonAdapter(props: LessonAdapterProps) {
     return <PiecewiseModelsTargetLesson611 {...props} />;
   if (props.lesson.id === 612)
     return <ParameterEstimationTargetLesson612 {...props} />;
+  if (props.lesson.id === 613)
+    return <DimensionalAnalysisTargetLesson613 {...props} />;
   if (mode === "simple-interest") {
     return (
       <AdapterFrame
