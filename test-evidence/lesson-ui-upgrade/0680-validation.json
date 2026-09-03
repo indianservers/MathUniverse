@@ -1,0 +1,106 @@
+{
+  "passed": true,
+  "checks": {
+    "initial": {
+      "key": "1",
+      "counts": "7,5,3,9",
+      "totalIcons": "24",
+      "countGraded": "",
+      "challenge": "0,0,0,0",
+      "challengeGraded": "",
+      "actions": "0"
+    },
+    "keyTwo": {
+      "key": "2",
+      "counts": "8,6,3,9",
+      "totalIcons": "13",
+      "countGraded": "",
+      "challenge": "0,0,0,0",
+      "challengeGraded": "",
+      "actions": "3"
+    },
+    "chartEdits": {
+      "key": "2",
+      "counts": "10,7,3,9",
+      "totalIcons": "14.5",
+      "countGraded": "",
+      "challenge": "0,0,0,0",
+      "challengeGraded": "",
+      "actions": "5"
+    },
+    "countCheck": {
+      "key": "2",
+      "counts": "10,7,3,9",
+      "totalIcons": "14.5",
+      "countGraded": "true",
+      "challenge": "0,0,0,0",
+      "challengeGraded": "",
+      "actions": "6"
+    },
+    "challengeBuilt": {
+      "key": "2",
+      "counts": "10,7,3,9",
+      "totalIcons": "14.5",
+      "countGraded": "true",
+      "challenge": "14,10,6,8",
+      "challengeGraded": "",
+      "actions": "25"
+    },
+    "challengeCorrect": {
+      "key": "2",
+      "counts": "10,7,3,9",
+      "totalIcons": "14.5",
+      "countGraded": "true",
+      "challenge": "14,10,6,8",
+      "challengeGraded": "true",
+      "actions": "26"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 968,
+      "height": 1635
+    },
+    "overflow": false,
+    "hero": {
+      "top": 89,
+      "height": 128,
+      "bottom": 217
+    },
+    "tabs": {
+      "top": 217,
+      "height": 47,
+      "bottom": 264
+    },
+    "builder": {
+      "top": 264,
+      "height": 535,
+      "bottom": 799
+    },
+    "concepts": {
+      "top": 809,
+      "height": 132,
+      "bottom": 941
+    },
+    "theory": {
+      "top": 951,
+      "height": 273,
+      "bottom": 1224
+    },
+    "challenge": {
+      "top": 1234,
+      "height": 219,
+      "bottom": 1453
+    },
+    "adjacent": {
+      "top": 1463,
+      "height": 54,
+      "bottom": 1517
+    }
+  },
+  "mobileMetrics": {
+    "width": 390,
+    "overflow": false
+  },
+  "logs": []
+}

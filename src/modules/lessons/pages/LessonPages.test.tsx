@@ -298,6 +298,31 @@ describe("lesson pages", () => {
     expect(html).toContain('data-chain-result="2.5"');
   });
 
+  it("renders the dedicated pictograph builder target for lesson 10006", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-6/class-6-data-handling-pictograph-builder",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0680"');
+    expect(html).toContain(
+      "dedicated-draggable-keyed-pictograph-and-row-challenge-model",
+    );
+    expect(html).toContain('data-key="1"');
+    expect(html).toContain('data-counts="7,5,3,9"');
+    expect(html).toContain('data-total-icons="24"');
+    expect(html).toContain('data-challenge="0,0,0,0"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
