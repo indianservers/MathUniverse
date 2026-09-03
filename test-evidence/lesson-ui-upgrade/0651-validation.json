@@ -1,0 +1,138 @@
+{
+  "passed": true,
+  "checks": {
+    "initial": {
+      "future": "25000",
+      "rate": "7",
+      "years": "5",
+      "present": "17824.65",
+      "discount": "7175.35",
+      "graded": "",
+      "actions": "0",
+      "steps": 5
+    },
+    "future": {
+      "future": "50000",
+      "rate": "7",
+      "years": "5",
+      "present": "35649.31",
+      "discount": "14350.69",
+      "graded": "",
+      "actions": "1",
+      "steps": 5
+    },
+    "rate": {
+      "future": "50000",
+      "rate": "10",
+      "years": "5",
+      "present": "31046.07",
+      "discount": "18953.93",
+      "graded": "",
+      "actions": "2",
+      "steps": 5
+    },
+    "years": {
+      "future": "50000",
+      "rate": "10",
+      "years": "3",
+      "present": "37565.74",
+      "discount": "12434.26",
+      "graded": "",
+      "actions": "3",
+      "steps": 3
+    },
+    "sliders": {
+      "future": "30000",
+      "rate": "5",
+      "years": "4",
+      "present": "24681.07",
+      "discount": "5318.93",
+      "graded": "",
+      "actions": "6",
+      "steps": 4
+    },
+    "formula": true,
+    "wrong": {
+      "future": "30000",
+      "rate": "5",
+      "years": "4",
+      "present": "24681.07",
+      "discount": "5318.93",
+      "graded": "false",
+      "actions": "10",
+      "steps": 4
+    },
+    "correct": {
+      "future": "30000",
+      "rate": "5",
+      "years": "4",
+      "present": "24681.07",
+      "discount": "5318.93",
+      "graded": "true",
+      "actions": "12",
+      "steps": 4
+    },
+    "reset": {
+      "future": "25000",
+      "rate": "7",
+      "years": "5",
+      "present": "17824.65",
+      "discount": "7175.35",
+      "graded": "",
+      "actions": "1",
+      "steps": 5
+    },
+    "final": {
+      "future": "25000",
+      "rate": "7",
+      "years": "5",
+      "present": "17824.65",
+      "discount": "7175.35",
+      "graded": "",
+      "actions": "0",
+      "steps": 5
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1042,
+      "height": 1509
+    },
+    "overflow": false,
+    "hero": {
+      "top": 91,
+      "height": 184,
+      "bottom": 275
+    },
+    "tabs": {
+      "top": 289,
+      "height": 59,
+      "bottom": 348
+    },
+    "lab": {
+      "top": 362,
+      "height": 628,
+      "bottom": 990
+    },
+    "theory": {
+      "top": 1004,
+      "height": 239,
+      "bottom": 1243
+    },
+    "practice": {
+      "top": 1257,
+      "height": 107,
+      "bottom": 1364
+    },
+    "adjacent": {
+      "top": 1378,
+      "height": 52,
+      "bottom": 1430
+    }
+  },
+  "mobileMetrics": {
+    "width": 390,
+    "overflow": false
+  },
+  "logs": []
+}
