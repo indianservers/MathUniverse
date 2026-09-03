@@ -246,6 +246,31 @@ describe("lesson pages", () => {
     expect(html).toContain('data-actual-total="128"');
   });
 
+  it("renders the dedicated approximation error-bounds target for lesson 10004", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-6/class-6-numbers-and-arithmetic-approximation-and-error-bounds",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0678"');
+    expect(html).toContain(
+      "dedicated-draggable-half-open-rounding-error-bound-model",
+    );
+    expect(html).toContain('data-exact="4.3268"');
+    expect(html).toContain('data-rounded="4.3"');
+    expect(html).toContain('data-lower="4.25"');
+    expect(html).toContain('data-upper="4.35"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

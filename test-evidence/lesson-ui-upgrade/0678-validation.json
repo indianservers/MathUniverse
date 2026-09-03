@@ -1,0 +1,124 @@
+{
+  "passed": true,
+  "checks": {
+    "initial": {
+      "exact": "4.3268",
+      "step": "0.1",
+      "rounded": "4.3",
+      "lower": "4.25",
+      "upper": "4.35",
+      "absolute": "0.0268",
+      "relative": "0.619",
+      "graded": "true",
+      "actions": "0"
+    },
+    "precision": {
+      "exact": "47.628",
+      "step": "0.01",
+      "rounded": "47.63",
+      "lower": "47.625",
+      "upper": "47.635",
+      "absolute": "0.0020",
+      "relative": "0.004",
+      "graded": "true",
+      "actions": "2"
+    },
+    "toggles": {
+      "exact": "47.628",
+      "step": "0.01",
+      "rounded": "47.63",
+      "lower": "47.625",
+      "upper": "47.635",
+      "absolute": "0.0020",
+      "relative": "0.004",
+      "graded": "true",
+      "actions": "8"
+    },
+    "drag": {
+      "exact": "47.63",
+      "step": "0.01",
+      "rounded": "47.63",
+      "lower": "47.625",
+      "upper": "47.635",
+      "absolute": "0.0000",
+      "relative": "0.000",
+      "graded": "true",
+      "actions": "13"
+    },
+    "reset": {
+      "exact": "4.3268",
+      "step": "0.1",
+      "rounded": "4.3",
+      "lower": "4.25",
+      "upper": "4.35",
+      "absolute": "0.0268",
+      "relative": "0.619",
+      "graded": "true",
+      "actions": "14"
+    },
+    "wrong": {
+      "exact": "4.3268",
+      "step": "0.1",
+      "rounded": "4.3",
+      "lower": "4.25",
+      "upper": "4.35",
+      "absolute": "0.0268",
+      "relative": "0.619",
+      "graded": "false",
+      "actions": "15"
+    },
+    "correct": {
+      "exact": "4.3268",
+      "step": "0.1",
+      "rounded": "4.3",
+      "lower": "4.25",
+      "upper": "4.35",
+      "absolute": "0.0268",
+      "relative": "0.619",
+      "graded": "true",
+      "actions": "16"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 958,
+      "height": 1710
+    },
+    "overflow": false,
+    "hero": {
+      "top": 93,
+      "height": 127,
+      "bottom": 220
+    },
+    "tabs": {
+      "top": 231,
+      "height": 58,
+      "bottom": 289
+    },
+    "lab": {
+      "top": 289,
+      "height": 535,
+      "bottom": 824
+    },
+    "pattern": {
+      "top": 834,
+      "height": 155,
+      "bottom": 989
+    },
+    "lower": {
+      "top": 999,
+      "height": 470,
+      "bottom": 1469
+    },
+    "adjacent": {
+      "top": 1479,
+      "height": 52,
+      "bottom": 1531
+    }
+  },
+  "mobileMetrics": {
+    "width": 390,
+    "overflow": false
+  },
+  "logs": []
+}
