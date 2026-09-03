@@ -1,0 +1,47 @@
+{
+  "mockup": "0750",
+  "lessonId": 10076,
+  "route": "/lessons/school/class-9/class-9-quadrilateral-proofs-conditions-for-a-quadrilateral-to-be-a-parallelogram",
+  "objectModel": "dedicated-quadrilateral-measurement-and-sufficient-condition-dashboard",
+  "desktop": {
+    "viewport": [899, 1762],
+    "hero": [111, 251],
+    "tabs": [251, 296],
+    "lab": [351, 789],
+    "measurements": [799, 887],
+    "theory": [897, 1157],
+    "challenge": [1167, 1402],
+    "navigation": [1412, 1445],
+    "documentScrollWidth": 899,
+    "consoleErrorsOrWarnings": 0
+  },
+  "mobile": {
+    "viewport": [390, 844],
+    "documentScrollWidth": 375,
+    "pageWidth": 366.4,
+    "draggableHandles": 4,
+    "conditionControls": 5,
+    "switches": 2,
+    "justificationInputs": 1,
+    "labSections": 1,
+    "consoleErrorsOrWarnings": 0
+  },
+  "interactions": {
+    "initialPoints": "105,70;420,88;378,320;58,310",
+    "initialCertificates": [false, false, false, true, false],
+    "initialConditionCount": 1,
+    "movedPoints": "115,74;420,88;378,320;58,310",
+    "movedSides": [6.11, 4.72, 6.4, 4.86],
+    "movedHalfDiagonals": [3.56, 3.65, 4.11, 4.38],
+    "movedAngles": [100.95, 82.37, 98.47, 78.21],
+    "twoCertificateCount": 2,
+    "restoredChallengeCount": 1,
+    "shapeLockPreventsMovement": true,
+    "measurementsHidden": true,
+    "marksToolSelected": true,
+    "substantiveJustificationAccepted": true,
+    "formulaTabSelected": true,
+    "resetRestoresTarget": true
+  },
+  "status": "complete"
+}

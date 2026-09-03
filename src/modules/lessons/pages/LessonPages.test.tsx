@@ -2188,6 +2188,37 @@ describe("lesson pages", () => {
     expect(html).toContain('aria-label="Draggable midpoint O"');
   });
 
+  it("renders the dedicated quadrilateral-condition dashboard for lesson 10076", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-9/class-9-quadrilateral-proofs-conditions-for-a-quadrilateral-to-be-a-parallelogram",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0750"');
+    expect(html).toContain(
+      "dedicated-quadrilateral-measurement-and-sufficient-condition-dashboard",
+    );
+    expect(html).toContain('data-points="105,70;420,88;378,320;58,310"');
+    expect(html).toContain('data-certificates="0,0,0,1,0"');
+    expect(html).toContain('data-result="true"');
+    expect(html).toContain('data-count="1"');
+    expect(html).toContain('data-tool="vertex"');
+    expect(html).toContain('data-locked="false"');
+    expect(html).toContain(
+      'aria-label="Draggable quadrilateral condition model"',
+    );
+    expect(html).toContain('aria-label="Challenge justification"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
