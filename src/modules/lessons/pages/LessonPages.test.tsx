@@ -2364,6 +2364,33 @@ describe("lesson pages", () => {
     expect(html).toContain('aria-label="Draggable coordinate triangle"');
   });
 
+  it("renders the dedicated combined-solids target for lesson 10082", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-9/class-9-mensuration-combined-solids",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0756"');
+    expect(html).toContain(
+      "dedicated-component-solid-volume-external-surface-engine",
+    );
+    expect(html).toContain('data-parts="cylinder,hemisphere"');
+    expect(html).toContain('data-volume-pi="90"');
+    expect(html).toContain('data-surface-pi="75"');
+    expect(html).toContain('data-radius="3"');
+    expect(html).toContain('data-height="8"');
+    expect(html).toContain('data-correct="true"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

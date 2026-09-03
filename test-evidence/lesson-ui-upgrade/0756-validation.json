@@ -1,0 +1,46 @@
+{
+  "mockup": "0756",
+  "lessonId": 10082,
+  "route": "/lessons/school/class-9/class-9-mensuration-combined-solids",
+  "objectModel": "dedicated-component-solid-volume-external-surface-engine",
+  "default": {
+    "parts": ["cylinder", "hemisphere"],
+    "radius": 3,
+    "height": 8,
+    "volumePi": 90,
+    "surfacePi": 75
+  },
+  "interactions": {
+    "addedParts": ["cylinder", "hemisphere", "cone"],
+    "resizedRadius": 4,
+    "resizedHeight": 10,
+    "resizedVolumePi": 256,
+    "resizedSurfacePi": 155.08,
+    "wireframe": true,
+    "exploded": true,
+    "hiddenSurfaces": true,
+    "wrongChallengeRejected": true,
+    "correctChallengeAccepted": true,
+    "resetRestoredDefaults": true
+  },
+  "desktop": {
+    "viewport": [970, 1647],
+    "hero": [81, 219],
+    "tabs": [226, 268],
+    "builder": [278, 763],
+    "ledger": [772, 962],
+    "cards": [972, 1268],
+    "challenge": [1278, 1498],
+    "navigation": [1519, 1550]
+  },
+  "mobile": {
+    "viewport": [390, 844],
+    "documentWidth": 375,
+    "pageWidth": 374.4,
+    "addButtons": 3,
+    "defaultParts": 2,
+    "challengeCheckboxes": 5,
+    "horizontalOverflow": false
+  },
+  "console": { "warnings": 0, "errors": 0 }
+}
