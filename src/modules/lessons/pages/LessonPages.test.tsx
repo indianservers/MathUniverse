@@ -1867,6 +1867,34 @@ describe("lesson pages", () => {
     );
   });
 
+  it("renders the dedicated exterior-angle target for lesson 10065", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-9/class-9-euclidean-geometry-exterior-angle-theorem",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0739"');
+    expect(html).toContain(
+      "dedicated-exterior-ray-remote-angle-balance-engine",
+    );
+    expect(html).toContain('data-extended="true"');
+    expect(html).toContain('data-tilt="0"');
+    expect(html).toContain('data-angles="42,73,65,115"');
+    expect(html).toContain('data-valid="true"');
+    expect(html).toContain('data-answer="73"');
+    expect(html).toContain('data-correct="true"');
+    expect(html).toContain('aria-label="Interactive exterior angle triangle"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

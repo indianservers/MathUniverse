@@ -1,0 +1,43 @@
+{
+  "mockup": "0739",
+  "lessonId": 10065,
+  "route": "/lessons/school/class-9/class-9-euclidean-geometry-exterior-angle-theorem",
+  "objectModel": "dedicated-exterior-ray-remote-angle-balance-engine",
+  "desktop": {
+    "viewport": [899, 1843],
+    "hero": [83, 228],
+    "tabs": [242, 282],
+    "explorer": [296, 881],
+    "theory": [895, 1190],
+    "challenge": [1204, 1424],
+    "takeaway": [1438, 1523],
+    "navigation": [1537, 1589],
+    "documentScrollWidth": 899,
+    "consoleErrorsOrWarnings": 0
+  },
+  "mobile": {
+    "viewport": [390, 844],
+    "documentScrollWidth": 375,
+    "pageWidth": 366.4,
+    "diagramCount": 1,
+    "misconceptionCount": 1,
+    "challengeCount": 1,
+    "takeawayCount": 1,
+    "consoleErrorsOrWarnings": 0
+  },
+  "interactions": {
+    "initialAngles": [42, 73, 65, 115],
+    "handleAfterArrowUp": {
+      "tilt": 1,
+      "angles": [42, 73, 64, 116],
+      "valid": false
+    },
+    "resetAngles": [42, 73, 65, 115],
+    "extensionOffValid": false,
+    "extensionOnValid": true,
+    "wrongAnswerCorrect": false,
+    "answer73Correct": true,
+    "formulaTabSelected": true
+  },
+  "status": "complete"
+}
