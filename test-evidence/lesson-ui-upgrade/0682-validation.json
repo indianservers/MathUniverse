@@ -1,0 +1,136 @@
+{
+  "passed": true,
+  "checks": {
+    "initial": {
+      "testid": "school-mockup-0682",
+      "objectModel": "dedicated-survey-response-tally-frequency-percentage-and-bar-model",
+      "responses": "Cricket|Football|Cricket|Badminton|Cricket|Football|Basketball|Cricket|Tennis|Football|Cricket|Badminton|Cricket|Cricket|Football|Basketball|Cricket|Tennis|Cricket|Badminton",
+      "counts": "9,4,3,2,2",
+      "total": "20",
+      "practiceCounts": "0,0,0,0,0",
+      "practiceTotal": "0",
+      "orientation": "vertical",
+      "showCounts": "true",
+      "actions": "0"
+    },
+    "add": {
+      "testid": "school-mockup-0682",
+      "objectModel": "dedicated-survey-response-tally-frequency-percentage-and-bar-model",
+      "responses": "Cricket|Football|Cricket|Badminton|Cricket|Football|Basketball|Cricket|Tennis|Football|Cricket|Badminton|Cricket|Cricket|Football|Basketball|Cricket|Tennis|Cricket|Badminton|Cricket",
+      "counts": "10,4,3,2,2",
+      "total": "21",
+      "practiceCounts": "0,0,0,0,0",
+      "practiceTotal": "0",
+      "orientation": "vertical",
+      "showCounts": "true",
+      "actions": "1"
+    },
+    "undo": {
+      "testid": "school-mockup-0682",
+      "objectModel": "dedicated-survey-response-tally-frequency-percentage-and-bar-model",
+      "responses": "Cricket|Football|Cricket|Badminton|Cricket|Football|Basketball|Cricket|Tennis|Football|Cricket|Badminton|Cricket|Cricket|Football|Basketball|Cricket|Tennis|Cricket|Badminton",
+      "counts": "9,4,3,2,2",
+      "total": "20",
+      "practiceCounts": "0,0,0,0,0",
+      "practiceTotal": "0",
+      "orientation": "vertical",
+      "showCounts": "true",
+      "actions": "2"
+    },
+    "custom": {
+      "testid": "school-mockup-0682",
+      "objectModel": "dedicated-survey-response-tally-frequency-percentage-and-bar-model",
+      "responses": "Cricket|Football|Cricket|Badminton|Cricket|Football|Basketball|Cricket|Tennis|Football|Cricket|Badminton|Cricket|Cricket|Football|Basketball|Cricket|Tennis|Cricket|Badminton|Hockey",
+      "counts": "9,4,3,2,2,1",
+      "total": "21",
+      "practiceCounts": "0,0,0,0,0",
+      "practiceTotal": "0",
+      "orientation": "vertical",
+      "showCounts": "true",
+      "actions": "3"
+    },
+    "chart": {
+      "testid": "school-mockup-0682",
+      "objectModel": "dedicated-survey-response-tally-frequency-percentage-and-bar-model",
+      "responses": "Cricket|Football|Cricket|Badminton|Cricket|Football|Basketball|Cricket|Tennis|Football|Cricket|Badminton|Cricket|Cricket|Football|Basketball|Cricket|Tennis|Cricket|Badminton|Hockey",
+      "counts": "3,2,9,4,1,2",
+      "total": "21",
+      "practiceCounts": "0,0,0,0,0",
+      "practiceTotal": "0",
+      "orientation": "horizontal",
+      "showCounts": "false",
+      "actions": "6"
+    },
+    "reset": {
+      "testid": "school-mockup-0682",
+      "objectModel": "dedicated-survey-response-tally-frequency-percentage-and-bar-model",
+      "responses": "Cricket|Football|Cricket|Badminton|Cricket|Football|Basketball|Cricket|Tennis|Football|Cricket|Badminton|Cricket|Cricket|Football|Basketball|Cricket|Tennis|Cricket|Badminton|Hockey",
+      "counts": "3,2,9,4,1,2",
+      "total": "21",
+      "practiceCounts": "0,0,0,0,0",
+      "practiceTotal": "0",
+      "orientation": "vertical",
+      "showCounts": "true",
+      "actions": "7"
+    },
+    "practice": {
+      "testid": "school-mockup-0682",
+      "objectModel": "dedicated-survey-response-tally-frequency-percentage-and-bar-model",
+      "responses": "Cricket|Football|Cricket|Badminton|Cricket|Football|Basketball|Cricket|Tennis|Football|Cricket|Badminton|Cricket|Cricket|Football|Basketball|Cricket|Tennis|Cricket|Badminton|Hockey",
+      "counts": "3,2,9,4,1,2",
+      "total": "21",
+      "practiceCounts": "4,3,0,0,0",
+      "practiceTotal": "7",
+      "orientation": "vertical",
+      "showCounts": "true",
+      "actions": "14"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 968,
+      "height": 1635
+    },
+    "overflow": false,
+    "hero": {
+      "top": 90,
+      "height": 153,
+      "bottom": 243
+    },
+    "tabs": {
+      "top": 249,
+      "height": 43,
+      "bottom": 292
+    },
+    "steps": {
+      "top": 299,
+      "height": 55,
+      "bottom": 354
+    },
+    "main": {
+      "top": 362,
+      "height": 750,
+      "bottom": 1112
+    },
+    "practice": {
+      "top": 1121,
+      "height": 220,
+      "bottom": 1341
+    },
+    "bottom": {
+      "top": 1350,
+      "height": 207,
+      "bottom": 1557
+    },
+    "adjacent": {
+      "top": 1566,
+      "height": 51,
+      "bottom": 1617
+    }
+  },
+  "mobileMetrics": {
+    "width": 390,
+    "overflow": false
+  },
+  "logs": []
+}

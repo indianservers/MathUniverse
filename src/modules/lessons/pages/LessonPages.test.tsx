@@ -350,6 +350,30 @@ describe("lesson pages", () => {
     expect(html).toContain('data-total="120"');
   });
 
+  it("renders the dedicated survey frequency target for lesson 10008", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-6/class-6-data-handling-survey-to-frequency-table",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0682"');
+    expect(html).toContain(
+      "dedicated-survey-response-tally-frequency-percentage-and-bar-model",
+    );
+    expect(html).toContain('data-counts="9,4,3,2,2"');
+    expect(html).toContain('data-total="20"');
+    expect(html).toContain('data-practice-counts="0,0,0,0,0"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
