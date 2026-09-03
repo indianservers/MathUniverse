@@ -1665,6 +1665,34 @@ describe("lesson pages", () => {
     expect(html).toContain('aria-label="Repair step 3"');
   });
 
+  it("renders the dedicated vertically-opposite-angles target for lesson 10058", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-9/class-9-euclidean-geometry-vertically-opposite-angles",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0732"');
+    expect(html).toContain(
+      "dedicated-intersecting-lines-drag-angle-pair-engine",
+    );
+    expect(html).toContain('data-angle="68"');
+    expect(html).toContain('data-supplement="112"');
+    expect(html).toContain('data-challenge="125"');
+    expect(html).toContain(
+      'aria-label="Interactive intersecting lines diagram"',
+    );
+    expect(html).toContain('aria-label="Angle between lines"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
