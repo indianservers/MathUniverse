@@ -41,6 +41,7 @@ import ParallelConverseTargetLesson10063 from "../schoolTargets/ParallelConverse
 import TriangleAngleSumTargetLesson10064 from "../schoolTargets/TriangleAngleSumTargetLesson10064";
 import ExteriorAngleTargetLesson10065 from "../schoolTargets/ExteriorAngleTargetLesson10065";
 import SasCongruenceTargetLesson10066 from "../schoolTargets/SasCongruenceTargetLesson10066";
+import AsaCongruenceTargetLesson10067 from "../schoolTargets/AsaCongruenceTargetLesson10067";
 import PlaceValueTargetLesson10001 from "../schoolTargets/PlaceValueTargetLesson10001";
 import NumberNamingTargetLesson10002 from "../schoolTargets/NumberNamingTargetLesson10002";
 import EstimationRoundingTargetLesson10003 from "../schoolTargets/EstimationRoundingTargetLesson10003";
@@ -144,6 +145,8 @@ export default function SchoolLessonPage() {
     return <ExteriorAngleTargetLesson10065 lesson={lesson} />;
   if (lesson.numericId === 10066)
     return <SasCongruenceTargetLesson10066 lesson={lesson} />;
+  if (lesson.numericId === 10067)
+    return <AsaCongruenceTargetLesson10067 lesson={lesson} />;
   if (lesson.numericId === 10001)
     return <PlaceValueTargetLesson10001 lesson={lesson} />;
   if (lesson.numericId === 10002)

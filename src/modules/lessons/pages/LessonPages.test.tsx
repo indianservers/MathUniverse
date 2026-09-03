@@ -1924,6 +1924,33 @@ describe("lesson pages", () => {
     expect(html).toContain('draggable="true"');
   });
 
+  it("renders the dedicated ASA-congruence target for lesson 10067", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-9/class-9-triangle-proofs-asa-congruence",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0741"');
+    expect(html).toContain(
+      "dedicated-dual-angle-included-side-asa-congruence-engine",
+    );
+    expect(html).toContain('data-one="50,70,6,60"');
+    expect(html).toContain('data-two="50,70,6,60"');
+    expect(html).toContain('data-matches="true"');
+    expect(html).toContain('data-challenge="40,65,7"');
+    expect(html).toContain('aria-label="ASA triangle ABC"');
+    expect(html).toContain('aria-label="ASA triangle DEF"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

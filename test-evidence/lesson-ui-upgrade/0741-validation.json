@@ -1,0 +1,36 @@
+{
+  "mockup": "0741",
+  "lessonId": 10067,
+  "route": "/lessons/school/class-9/class-9-triangle-proofs-asa-congruence",
+  "objectModel": "dedicated-dual-angle-included-side-asa-congruence-engine",
+  "desktop": {
+    "viewport": [899, 1762],
+    "hero": [83, 201],
+    "tabs": [201, 241],
+    "lab": [253, 1022],
+    "theory": [1036, 1509],
+    "navigation": [1523, 1570],
+    "documentScrollWidth": 899,
+    "consoleErrorsOrWarnings": 0
+  },
+  "mobile": {
+    "viewport": [390, 844],
+    "documentScrollWidth": 390,
+    "pageWidth": 366.4,
+    "angleControls": 4,
+    "includedSideSteppers": 2,
+    "consoleErrorsOrWarnings": 0
+  },
+  "interactions": {
+    "initialTriangles": [50, 70, 6, 60],
+    "mismatchTriangleTwo": [50, 70, 7, 60],
+    "mismatchDetected": true,
+    "selectedTool": 2,
+    "resetRestoresCongruence": true,
+    "challengeChanged": [40, 65, 8],
+    "challengeRestored": [40, 65, 7],
+    "checkActionWorks": true,
+    "formulaTabSelected": true
+  },
+  "status": "complete"
+}
