@@ -754,6 +754,33 @@ describe("lesson pages", () => {
     expect(html).toContain('data-tool="Compass"');
   });
 
+  it("renders the dedicated perpendicular bisector target for lesson 10024", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-7/class-7-practical-geometry-perpendicular-bisector-construction",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0698"');
+    expect(html).toContain(
+      "dedicated-equal-radius-arc-intersection-midpoint-perpendicular-bisector-construction",
+    );
+    expect(html).toContain('data-length="8.00"');
+    expect(html).toContain('data-radius="4.00"');
+    expect(html).toContain('data-arc-distance="6.00"');
+    expect(html).toContain('data-valid="true"');
+    expect(html).toContain('data-bisector="true"');
+    expect(html).toContain('data-right-angle="true"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

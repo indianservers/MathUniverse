@@ -1,0 +1,42 @@
+{
+  "mockup": "0698",
+  "lessonNumericId": 10024,
+  "route": "/lessons/school/class-7/class-7-practical-geometry-perpendicular-bisector-construction",
+  "objectModel": "dedicated-equal-radius-arc-intersection-midpoint-perpendicular-bisector-construction",
+  "viewport": { "desktop": [924, 1703], "mobile": [390, 844] },
+  "layout": {
+    "hero": { "x": 204, "y": 90, "width": 698, "height": 131 },
+    "tabs": { "x": 204, "y": 237, "width": 698, "height": 42 },
+    "construction": { "x": 204, "y": 290, "width": 698, "height": 600 },
+    "learningSequence": { "x": 204, "y": 909, "width": 698, "height": 126 },
+    "theory": { "x": 204, "y": 1053, "width": 698, "height": 450 },
+    "adjacentNavigation": { "x": 204, "y": 1520, "width": 698, "height": 45 }
+  },
+  "interactions": {
+    "initial": {
+      "length": 8,
+      "radiusControl": 4,
+      "arcDistance": 6,
+      "valid": true,
+      "midpointHalf": 4,
+      "angle": 90
+    },
+    "invalidConstruction": {
+      "length": 12,
+      "radiusControl": 2.5,
+      "arcDistance": 4.5,
+      "valid": false
+    },
+    "arcsToggleWorking": true,
+    "bisectorToggleWorking": true,
+    "rightAngleToggleWorking": true,
+    "toolSelected": "Compass",
+    "tabsWorking": true,
+    "challengeCheckWorking": true,
+    "endpointsUsePointerDrag": true,
+    "resetRestoredDefaults": true
+  },
+  "desktopHorizontalOverflow": false,
+  "mobileHorizontalOverflow": false,
+  "consoleWarningsOrErrors": []
+}
