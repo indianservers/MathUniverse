@@ -36,6 +36,7 @@ import BillsTaxTargetLesson10018 from "../schoolTargets/BillsTaxTargetLesson1001
 import ProfitLossTargetLesson10019 from "../schoolTargets/ProfitLossTargetLesson10019";
 import HouseholdBudgetTargetLesson10020 from "../schoolTargets/HouseholdBudgetTargetLesson10020";
 import ScaleFactorTargetLesson10021 from "../schoolTargets/ScaleFactorTargetLesson10021";
+import CopyLineSegmentTargetLesson10022 from "../schoolTargets/CopyLineSegmentTargetLesson10022";
 import { getStrengthenedFoundationLesson } from "../strengthening/foundationNumberContent";
 import type { SchoolLessonContent } from "../syllabus/lessonSyllabusTypes";
 
@@ -90,6 +91,8 @@ export default function SchoolLessonPage() {
     return <HouseholdBudgetTargetLesson10020 lesson={lesson} />;
   if (lesson.numericId === 10021)
     return <ScaleFactorTargetLesson10021 lesson={lesson} />;
+  if (lesson.numericId === 10022)
+    return <CopyLineSegmentTargetLesson10022 lesson={lesson} />;
   const adjacent = adjacentSchoolLessons(lesson);
   const strengthened = getStrengthenedFoundationLesson(lesson.numericId);
   const content = strengthened

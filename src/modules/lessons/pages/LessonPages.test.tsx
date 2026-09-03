@@ -701,6 +701,32 @@ describe("lesson pages", () => {
     expect(html).toContain('data-mode="Enlargement"');
   });
 
+  it("renders the dedicated copying a line segment target for lesson 10022", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-7/class-7-practical-geometry-copying-a-line-segment",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0696"');
+    expect(html).toContain(
+      "dedicated-compass-radius-ray-endpoint-line-segment-copy-construction",
+    );
+    expect(html).toContain('data-radius="5.00"');
+    expect(html).toContain('data-original="5.00"');
+    expect(html).toContain('data-difference="0.00"');
+    expect(html).toContain('data-verified="true"');
+    expect(html).toContain('data-tool="Select"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

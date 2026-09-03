@@ -1,0 +1,29 @@
+{
+  "mockup": "0696",
+  "lessonNumericId": 10022,
+  "route": "/lessons/school/class-7/class-7-practical-geometry-copying-a-line-segment",
+  "objectModel": "dedicated-compass-radius-ray-endpoint-line-segment-copy-construction",
+  "viewport": { "desktop": [924, 1703], "mobile": [390, 844] },
+  "layout": {
+    "hero": { "x": 209, "y": 95, "width": 695, "height": 158 },
+    "tabs": { "x": 209, "y": 265, "width": 695, "height": 43 },
+    "process": { "x": 209, "y": 308, "width": 695, "height": 62 },
+    "construction": { "x": 209, "y": 395, "width": 695, "height": 596 },
+    "theory": { "x": 209, "y": 1004, "width": 695, "height": 321 },
+    "challenge": { "x": 209, "y": 1335, "width": 695, "height": 106 },
+    "adjacentNavigation": { "x": 209, "y": 1467, "width": 695, "height": 56 }
+  },
+  "interactions": {
+    "initial": { "ab": 5, "cd": 5, "difference": 0, "verified": true },
+    "increaseRadius": { "cd": 5.25, "difference": 0.25, "verified": false },
+    "undoAndCheck": { "cd": 5, "difference": 0, "verified": true },
+    "toolSelected": "Compass",
+    "hintRevealed": true,
+    "wrongChallengeAccepted": false,
+    "correctChallenge": 6.2,
+    "resetRestoredDefaults": true,
+    "endpointDPointerDrag": true
+  },
+  "mobileHorizontalOverflow": false,
+  "consoleWarningsOrErrors": []
+}
