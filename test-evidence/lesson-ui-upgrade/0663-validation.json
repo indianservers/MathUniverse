@@ -1,0 +1,170 @@
+{
+  "passed": true,
+  "checks": {
+    "initial": {
+      "relationship": "linear",
+      "fitMethod": "least-squares",
+      "points": "6",
+      "a": "800.0000",
+      "b": "1000.0000",
+      "r2": "1.0000",
+      "prediction": "6600.00",
+      "fitted": "true",
+      "graded": "",
+      "actions": "0"
+    },
+    "edited": {
+      "relationship": "linear",
+      "fitMethod": "least-squares",
+      "points": "6",
+      "a": "871.4286",
+      "b": "904.7619",
+      "r2": "0.9911",
+      "prediction": "7004.76",
+      "fitted": "false",
+      "graded": "",
+      "actions": "1"
+    },
+    "twoPoint": {
+      "relationship": "linear",
+      "fitMethod": "two-point",
+      "points": "6",
+      "a": "900.0000",
+      "b": "1000.0000",
+      "r2": "1.0000",
+      "prediction": "7300.00",
+      "fitted": "false",
+      "graded": "",
+      "actions": "2"
+    },
+    "fitted": {
+      "relationship": "linear",
+      "fitMethod": "two-point",
+      "points": "6",
+      "a": "900.0000",
+      "b": "1000.0000",
+      "r2": "1.0000",
+      "prediction": "7300.00",
+      "fitted": "true",
+      "graded": "",
+      "actions": "3"
+    },
+    "added": {
+      "relationship": "linear",
+      "fitMethod": "two-point",
+      "points": "7",
+      "a": "900.0000",
+      "b": "1000.0000",
+      "r2": "1.0000",
+      "prediction": "7300.00",
+      "fitted": "false",
+      "graded": "",
+      "actions": "4"
+    },
+    "removed": {
+      "relationship": "linear",
+      "fitMethod": "two-point",
+      "points": "6",
+      "a": "900.0000",
+      "b": "1000.0000",
+      "r2": "1.0000",
+      "prediction": "7300.00",
+      "fitted": "false",
+      "graded": "",
+      "actions": "5"
+    },
+    "exponential": {
+      "relationship": "exponential",
+      "fitMethod": "two-point",
+      "points": "6",
+      "a": "1000.0000",
+      "b": "1.4063",
+      "r2": "1.0000",
+      "prediction": "10876.97",
+      "fitted": "false",
+      "graded": "",
+      "actions": "6"
+    },
+    "table": true,
+    "equation": true,
+    "formula": true,
+    "prediction": {
+      "relationship": "linear",
+      "fitMethod": "least-squares",
+      "points": "6",
+      "a": "800.0000",
+      "b": "1000.0000",
+      "r2": "1.0000",
+      "prediction": "7400.00",
+      "fitted": "true",
+      "graded": "",
+      "actions": "1"
+    },
+    "wrong": {
+      "relationship": "linear",
+      "fitMethod": "least-squares",
+      "points": "6",
+      "a": "800.0000",
+      "b": "1000.0000",
+      "r2": "1.0000",
+      "prediction": "7400.00",
+      "fitted": "true",
+      "graded": "false",
+      "actions": "5"
+    },
+    "correct": {
+      "relationship": "linear",
+      "fitMethod": "least-squares",
+      "points": "6",
+      "a": "800.0000",
+      "b": "1000.0000",
+      "r2": "1.0000",
+      "prediction": "7400.00",
+      "fitted": "true",
+      "graded": "true",
+      "actions": "7"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 986,
+      "height": 1595
+    },
+    "overflow": false,
+    "hero": {
+      "top": 97,
+      "height": 137,
+      "bottom": 234
+    },
+    "tabs": {
+      "top": 244,
+      "height": 48,
+      "bottom": 292
+    },
+    "builder": {
+      "top": 302,
+      "height": 386,
+      "bottom": 688
+    },
+    "middle": {
+      "top": 706,
+      "height": 303,
+      "bottom": 1009
+    },
+    "lower": {
+      "top": 1024,
+      "height": 349,
+      "bottom": 1373
+    },
+    "adjacent": {
+      "top": 1383,
+      "height": 59,
+      "bottom": 1442
+    }
+  },
+  "mobileMetrics": {
+    "width": 390,
+    "overflow": false
+  },
+  "logs": []
+}
