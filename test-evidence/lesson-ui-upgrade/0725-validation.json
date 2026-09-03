@@ -1,0 +1,53 @@
+{
+  "mockup": "0725",
+  "lessonId": 10051,
+  "route": "/lessons/school/class-9/class-9-polynomials-cubic-algebraic-identities",
+  "surface": "CubicIdentitiesTargetLesson10051",
+  "objectModel": "dedicated-cubic-volume-decomposition-and-signed-tile-engine",
+  "targetViewport": { "width": 955, "height": 1647 },
+  "desktop": {
+    "consoleWarningsOrErrors": 0,
+    "documentWidth": 940,
+    "sections": {
+      "hero": { "x": 206, "y": 90, "width": 739, "height": 126 },
+      "tabs": { "x": 206, "y": 222, "width": 739, "height": 42 },
+      "lab": { "x": 206, "y": 274, "width": 739, "height": 508 },
+      "cube": { "x": 219, "y": 344, "width": 296, "height": 292 },
+      "theory": { "x": 206, "y": 794, "width": 739, "height": 264 },
+      "challenge": { "x": 206, "y": 1070, "width": 739, "height": 360 },
+      "navigation": { "x": 206, "y": 1444, "width": 739, "height": 42 }
+    }
+  },
+  "mobile": {
+    "width": 390,
+    "documentWidth": 375,
+    "documentHeight": 3567,
+    "pageLevelHorizontalOverflow": false,
+    "consoleWarningsOrErrors": 0,
+    "cubeWidth": 324,
+    "cubeHeight": 270,
+    "paletteButtons": 8,
+    "challengeSlots": 4,
+    "numberInputs": 2
+  },
+  "interactions": {
+    "initial": {
+      "mode": "plus",
+      "a": 2,
+      "b": 1,
+      "lhs": 27,
+      "rhs": 27,
+      "cubeTiles": ["a3", "a2b", "ab2", "b3"]
+    },
+    "collapseClearsCube": true,
+    "singleTileAssembly": ["a3"],
+    "minusIdentity": { "a": 4, "b": 2, "lhs": 8, "rhs": 8 },
+    "labelsToggle": true,
+    "resetRestoresInitialModel": true,
+    "incompleteChallengeRejected": true,
+    "completeChallengeAccepted": true,
+    "hintToggle": true,
+    "solutionToggle": true,
+    "tabStateChange": true
+  }
+}

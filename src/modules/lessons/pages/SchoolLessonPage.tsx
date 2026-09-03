@@ -25,6 +25,7 @@ import PolynomialDivisionTargetLesson10047 from "../schoolTargets/PolynomialDivi
 import RemainderTheoremTargetLesson10048 from "../schoolTargets/RemainderTheoremTargetLesson10048";
 import FactorTheoremTargetLesson10049 from "../schoolTargets/FactorTheoremTargetLesson10049";
 import ZerosCoefficientsTargetLesson10050 from "../schoolTargets/ZerosCoefficientsTargetLesson10050";
+import CubicIdentitiesTargetLesson10051 from "../schoolTargets/CubicIdentitiesTargetLesson10051";
 import PlaceValueTargetLesson10001 from "../schoolTargets/PlaceValueTargetLesson10001";
 import NumberNamingTargetLesson10002 from "../schoolTargets/NumberNamingTargetLesson10002";
 import EstimationRoundingTargetLesson10003 from "../schoolTargets/EstimationRoundingTargetLesson10003";
@@ -96,6 +97,8 @@ export default function SchoolLessonPage() {
     return <FactorTheoremTargetLesson10049 lesson={lesson} />;
   if (lesson.numericId === 10050)
     return <ZerosCoefficientsTargetLesson10050 lesson={lesson} />;
+  if (lesson.numericId === 10051)
+    return <CubicIdentitiesTargetLesson10051 lesson={lesson} />;
   if (lesson.numericId === 10001)
     return <PlaceValueTargetLesson10001 lesson={lesson} />;
   if (lesson.numericId === 10002)

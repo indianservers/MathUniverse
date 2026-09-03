@@ -1466,6 +1466,36 @@ describe("lesson pages", () => {
     expect(html).toContain('aria-label="Interactive roots graph"');
   });
 
+  it("renders the dedicated cubic-identities target for lesson 10051", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-9/class-9-polynomials-cubic-algebraic-identities",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0725"');
+    expect(html).toContain(
+      "dedicated-cubic-volume-decomposition-and-signed-tile-engine",
+    );
+    expect(html).toContain('data-mode="plus"');
+    expect(html).toContain('data-a="2"');
+    expect(html).toContain('data-b="1"');
+    expect(html).toContain('data-lhs="27"');
+    expect(html).toContain('data-rhs="27"');
+    expect(html).toContain('data-expanded="true"');
+    expect(html).toContain('data-cube-tiles="a3,a2b,ab2,b3"');
+    expect(html).toContain('data-challenge="a3,a2b,ab2,b3"');
+    expect(html).toContain('aria-label="Cubic identity volume decomposition"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
