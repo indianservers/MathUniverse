@@ -1,0 +1,34 @@
+{
+  "mockup": "0711",
+  "lessonNumericId": 10037,
+  "route": "/lessons/school/class-8/class-8-information-processing-magic-squares",
+  "objectModel": "dedicated-drag-drop-eight-line-magic-square-solver",
+  "viewport": { "desktop": [968, 1633], "mobile": [390, 844] },
+  "layout": {
+    "hero": { "x": 200, "y": 89, "width": 750, "height": 136 },
+    "tabs": { "x": 200, "y": 233, "width": 750, "height": 41 },
+    "lab": { "x": 200, "y": 286, "width": 750, "height": 548 },
+    "legend": { "x": 216, "y": 782, "width": 450, "height": 38 },
+    "theory": { "x": 200, "y": 866, "width": 750, "height": 255 },
+    "challenge": { "x": 200, "y": 1133, "width": 750, "height": 300 },
+    "adjacentNavigation": { "x": 200, "y": 1445, "width": 750, "height": 46 },
+    "footer": { "x": 202, "y": 1518, "width": 750, "height": 108 }
+  },
+  "interactions": {
+    "initialGrid": [8, 1, 6, 3, 5, 7, 4, 9, 2],
+    "initialLineSums": [15, 15, 15, 15, 15, 15, 15, 15],
+    "nativeDragDropImplemented": true,
+    "candidateClickAndSwapImplemented": true,
+    "clearPreservesFixedCentre": true,
+    "checkAndResetWorking": true,
+    "threeProgressiveHintsWorking": true,
+    "challengeInitial": [2, 7, 6, 0, 5, 1, 4, 0, 0],
+    "challengeSolved": [2, 7, 6, 9, 5, 1, 4, 3, 8],
+    "challengeAllEightLinesEqual15": true,
+    "tabsWorking": true
+  },
+  "desktopHorizontalOverflow": false,
+  "mobileHorizontalOverflow": false,
+  "mobileChallengeControlsOverlap": false,
+  "consoleWarningsOrErrors": []
+}

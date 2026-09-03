@@ -51,6 +51,7 @@ import MeanMedianModePathTargetLesson10033 from "../schoolTargets/MeanMedianMode
 import RangeSpreadTargetLesson10034 from "../schoolTargets/RangeSpreadTargetLesson10034";
 import FlowchartLogicTargetLesson10035 from "../schoolTargets/FlowchartLogicTargetLesson10035";
 import PatternEncodingTargetLesson10036 from "../schoolTargets/PatternEncodingTargetLesson10036";
+import MagicSquaresTargetLesson10037 from "../schoolTargets/MagicSquaresTargetLesson10037";
 import { getStrengthenedFoundationLesson } from "../strengthening/foundationNumberContent";
 import type { SchoolLessonContent } from "../syllabus/lessonSyllabusTypes";
 
@@ -135,6 +136,8 @@ export default function SchoolLessonPage() {
     return <FlowchartLogicTargetLesson10035 lesson={lesson} />;
   if (lesson.numericId === 10036)
     return <PatternEncodingTargetLesson10036 lesson={lesson} />;
+  if (lesson.numericId === 10037)
+    return <MagicSquaresTargetLesson10037 lesson={lesson} />;
   const adjacent = adjacentSchoolLessons(lesson);
   const strengthened = getStrengthenedFoundationLesson(lesson.numericId);
   const content = strengthened

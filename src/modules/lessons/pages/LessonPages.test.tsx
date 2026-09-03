@@ -1105,6 +1105,32 @@ describe("lesson pages", () => {
     expect(html).toContain('data-challenge-output="DTKFIG"');
   });
 
+  it("renders the dedicated magic squares target for lesson 10037", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-8/class-8-information-processing-magic-squares",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0711"');
+    expect(html).toContain(
+      "dedicated-drag-drop-eight-line-magic-square-solver",
+    );
+    expect(html).toContain('data-grid="8,1,6,3,5,7,4,9,2"');
+    expect(html).toContain('data-valid="true"');
+    expect(html).toContain('data-sums="15,15,15,15,15,15,15,15"');
+    expect(html).toContain('data-challenge-grid="2,7,6,0,5,1,4,0,0"');
+    expect(html).toContain('data-challenge-valid="false"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
