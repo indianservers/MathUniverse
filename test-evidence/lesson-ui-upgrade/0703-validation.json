@@ -1,0 +1,41 @@
+{
+  "mockup": "0703",
+  "lessonNumericId": 10029,
+  "route": "/lessons/school/class-8/class-8-practical-geometry-triangle-construction-by-sas",
+  "objectModel": "dedicated-two-sides-included-angle-sas-protractor-construction",
+  "viewport": {
+    "desktop": [924, 1703],
+    "mobile": [390, 844]
+  },
+  "layout": {
+    "hero": { "x": 196, "y": 89, "width": 712, "height": 123 },
+    "tabs": { "x": 196, "y": 222, "width": 712, "height": 41 },
+    "construction": { "x": 196, "y": 264, "width": 712, "height": 646 },
+    "theory": { "x": 196, "y": 928, "width": 712, "height": 291 },
+    "challenge": { "x": 196, "y": 1231, "width": 712, "height": 264 },
+    "adjacentNavigation": { "x": 196, "y": 1509, "width": 712, "height": 44 }
+  },
+  "interactions": {
+    "initial": {
+      "ab": 6,
+      "ac": 4,
+      "includedAngle": 55,
+      "bc": 4.95,
+      "stage": 5
+    },
+    "changedModel": { "ab": 7, "ac": 4, "includedAngle": 56, "bc": 5.8 },
+    "derivedRemainingAnglesWorking": true,
+    "toolSelectionWorking": true,
+    "snapToggleWorking": true,
+    "pointCPointerAndKeyboardDrag": true,
+    "clearAndReplayWorking": true,
+    "zoomWorking": true,
+    "tabsWorking": true,
+    "challengeIncorrectRejected": true,
+    "challengeFiveSevenSixtyAccepted": true,
+    "fullResetWorking": true
+  },
+  "desktopHorizontalOverflow": false,
+  "mobileHorizontalOverflow": false,
+  "consoleWarningsOrErrors": []
+}

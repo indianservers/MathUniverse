@@ -889,6 +889,34 @@ describe("lesson pages", () => {
     expect(html).toContain('data-upper="true"');
   });
 
+  it("renders the dedicated triangle SAS target for lesson 10029", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-8/class-8-practical-geometry-triangle-construction-by-sas",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0703"');
+    expect(html).toContain(
+      "dedicated-two-sides-included-angle-sas-protractor-construction",
+    );
+    expect(html).toContain('data-ab="6"');
+    expect(html).toContain('data-ac="4"');
+    expect(html).toContain('data-angle="55"');
+    expect(html).toContain('data-bc="4.95"');
+    expect(html).toContain('data-stage="5"');
+    expect(html).toContain('data-tool="Ray at A"');
+    expect(html).toContain('data-snap="true"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

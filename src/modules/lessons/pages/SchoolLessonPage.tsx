@@ -43,6 +43,7 @@ import AngleBisectorTargetLesson10025 from "../schoolTargets/AngleBisectorTarget
 import PerpendicularPointTargetLesson10026 from "../schoolTargets/PerpendicularPointTargetLesson10026";
 import ParallelLineTargetLesson10027 from "../schoolTargets/ParallelLineTargetLesson10027";
 import TriangleSssTargetLesson10028 from "../schoolTargets/TriangleSssTargetLesson10028";
+import TriangleSasTargetLesson10029 from "../schoolTargets/TriangleSasTargetLesson10029";
 import { getStrengthenedFoundationLesson } from "../strengthening/foundationNumberContent";
 import type { SchoolLessonContent } from "../syllabus/lessonSyllabusTypes";
 
@@ -111,6 +112,8 @@ export default function SchoolLessonPage() {
     return <ParallelLineTargetLesson10027 lesson={lesson} />;
   if (lesson.numericId === 10028)
     return <TriangleSssTargetLesson10028 lesson={lesson} />;
+  if (lesson.numericId === 10029)
+    return <TriangleSasTargetLesson10029 lesson={lesson} />;
   const adjacent = adjacentSchoolLessons(lesson);
   const strengthened = getStrengthenedFoundationLesson(lesson.numericId);
   const content = strengthened
