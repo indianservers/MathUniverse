@@ -2281,6 +2281,34 @@ describe("lesson pages", () => {
     expect(html).toContain('aria-label="Line DE rotation"');
   });
 
+  it("renders the dedicated Heron formula target for lesson 10079", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-9/class-9-mensuration-heron-s-formula-derivation",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0753"');
+    expect(html).toContain(
+      "dedicated-heron-altitude-semiperimeter-area-engine",
+    );
+    expect(html).toContain('data-sides="13,14,15"');
+    expect(html).toContain('data-semiperimeter="21"');
+    expect(html).toContain('data-area="84"');
+    expect(html).toContain('data-valid="true"');
+    expect(html).toContain('data-order="ABCDEF"');
+    expect(html).toContain('aria-label="Draggable Heron formula triangle"');
+    expect(html).toContain('aria-label="Side a"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

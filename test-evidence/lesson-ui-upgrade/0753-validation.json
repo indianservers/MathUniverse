@@ -1,0 +1,47 @@
+{
+  "mockup": "0753",
+  "lessonId": 10079,
+  "route": "/lessons/school/class-9/class-9-mensuration-heron-s-formula-derivation",
+  "target": "0753-school-class-9-mensuration-heron-s-formula-derivation-redesigned.png",
+  "objectModel": "dedicated-heron-altitude-semiperimeter-area-engine",
+  "default": {
+    "sides": [13, 14, 15],
+    "semiperimeter": 21,
+    "area": 84,
+    "valid": true,
+    "order": "ABCDEF"
+  },
+  "interactions": {
+    "sideA10Area": 67.71,
+    "keyboardVertexMoveSides": [10, 13.9, 15.1],
+    "collapsedFirstDerivation": true,
+    "reorderedSteps": "BACDEF",
+    "quickVerifyChecked": true,
+    "resetRestoredDefaults": true,
+    "actionCountAtReset": 6
+  },
+  "desktop": {
+    "viewport": [970, 1600],
+    "pageWidth": 747,
+    "hero": [91, 219],
+    "tabs": [228, 273],
+    "lab": [282, 998],
+    "cards": [1008, 1198],
+    "practice": [1208, 1436],
+    "navigation": [1446, 1477]
+  },
+  "mobile": {
+    "viewport": [390, 844],
+    "documentWidth": 375,
+    "pageWidth": 374.4,
+    "sideInputs": 3,
+    "draggableVertices": 3,
+    "derivationAccordions": 6,
+    "practiceMoveButtons": 12,
+    "horizontalOverflow": false
+  },
+  "console": {
+    "warnings": 0,
+    "errors": 0
+  }
+}
