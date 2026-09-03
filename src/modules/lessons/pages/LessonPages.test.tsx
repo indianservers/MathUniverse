@@ -917,6 +917,33 @@ describe("lesson pages", () => {
     expect(html).toContain('data-snap="true"');
   });
 
+  it("renders the dedicated triangle ASA target for lesson 10030", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-8/class-8-practical-geometry-triangle-construction-by-asa",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0704"');
+    expect(html).toContain(
+      "dedicated-two-angle-included-side-ray-intersection-asa-construction",
+    );
+    expect(html).toContain('data-angle-a="50"');
+    expect(html).toContain('data-angle-b="65"');
+    expect(html).toContain('data-angle-c="65"');
+    expect(html).toContain('data-side="7"');
+    expect(html).toContain('data-valid="true"');
+    expect(html).toContain('data-steps="true"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
