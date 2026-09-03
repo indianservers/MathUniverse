@@ -1,0 +1,164 @@
+{
+  "passed": true,
+  "checks": {
+    "initial": {
+      "left": "-1",
+      "right": "3",
+      "value": "3",
+      "leftContinuous": "true",
+      "rightContinuous": "false",
+      "rules": "1,4|0,3|1,-4",
+      "closed": "1010",
+      "dragging": "",
+      "graded": "",
+      "actions": "0"
+    },
+    "ruleEdit": {
+      "left": "-1",
+      "right": "3",
+      "value": "3",
+      "leftContinuous": "false",
+      "rightContinuous": "false",
+      "rules": "1,5|0,3|1,-4",
+      "closed": "1010",
+      "dragging": "",
+      "graded": "",
+      "actions": "1"
+    },
+    "breakpoints": {
+      "left": "-2",
+      "right": "4",
+      "value": "3",
+      "leftContinuous": "true",
+      "rightContinuous": "false",
+      "rules": "1,5|0,3|1,-4",
+      "closed": "1010",
+      "dragging": "",
+      "graded": "",
+      "actions": "3"
+    },
+    "endpoint": {
+      "left": "-2",
+      "right": "4",
+      "value": "3",
+      "leftContinuous": "true",
+      "rightContinuous": "false",
+      "rules": "1,5|0,3|1,-4",
+      "closed": "0110",
+      "dragging": "",
+      "graded": "",
+      "actions": "4"
+    },
+    "evaluate": {
+      "left": "-2",
+      "right": "4",
+      "value": "2",
+      "leftContinuous": "true",
+      "rightContinuous": "false",
+      "rules": "1,5|0,3|1,-4",
+      "closed": "0110",
+      "dragging": "",
+      "graded": "",
+      "actions": "5"
+    },
+    "drag": {
+      "left": "0",
+      "right": "4",
+      "value": "2",
+      "leftContinuous": "false",
+      "rightContinuous": "false",
+      "rules": "1,5|0,3|1,-4",
+      "closed": "0110",
+      "dragging": "",
+      "graded": "",
+      "actions": "9"
+    },
+    "randomized": {
+      "left": "-2",
+      "right": "3",
+      "value": "0",
+      "leftContinuous": "false",
+      "rightContinuous": "false",
+      "rules": "1,2|0,1|-1,6",
+      "closed": "1010",
+      "dragging": "",
+      "graded": "",
+      "actions": "10"
+    },
+    "formula": true,
+    "reset": {
+      "left": "-1",
+      "right": "3",
+      "value": "3",
+      "leftContinuous": "true",
+      "rightContinuous": "false",
+      "rules": "1,4|0,3|1,-4",
+      "closed": "1010",
+      "dragging": "",
+      "graded": "",
+      "actions": "1"
+    },
+    "wrong": {
+      "left": "-1",
+      "right": "3",
+      "value": "3",
+      "leftContinuous": "true",
+      "rightContinuous": "false",
+      "rules": "1,4|0,3|1,-4",
+      "closed": "1010",
+      "dragging": "",
+      "graded": "false",
+      "actions": "5"
+    },
+    "correct": {
+      "left": "-1",
+      "right": "3",
+      "value": "3",
+      "leftContinuous": "true",
+      "rightContinuous": "false",
+      "rules": "1,4|0,3|1,-4",
+      "closed": "1010",
+      "dragging": "",
+      "graded": "true",
+      "actions": "7"
+    },
+    "hint": true
+  },
+  "metrics": {
+    "document": {
+      "width": 1142,
+      "height": 1434
+    },
+    "overflow": false,
+    "hero": {
+      "top": 102,
+      "height": 185,
+      "bottom": 287
+    },
+    "sequence": {
+      "top": 297,
+      "height": 57,
+      "bottom": 354
+    },
+    "builder": {
+      "top": 362,
+      "height": 598,
+      "bottom": 960
+    },
+    "theory": {
+      "top": 968,
+      "height": 306,
+      "bottom": 1274
+    },
+    "adjacent": {
+      "top": 1290,
+      "height": 62,
+      "bottom": 1352
+    }
+  },
+  "mobileMetrics": {
+    "width": 390,
+    "overflow": false
+  },
+  "logs": []
+}
