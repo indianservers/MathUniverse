@@ -1,0 +1,39 @@
+{
+  "mockup": "0717",
+  "lessonId": 10043,
+  "route": "/lessons/school/class-9/class-9-real-numbers-successive-magnification-on-the-number-line",
+  "surface": "SuccessiveMagnificationTargetLesson10043",
+  "objectModel": "dedicated-successive-decimal-interval-zoom-engine",
+  "targetViewport": { "width": 958, "height": 1641 },
+  "desktop": {
+    "consoleWarningsOrErrors": 0,
+    "sections": {
+      "hero": { "x": 208, "y": 90, "width": 740, "height": 136 },
+      "tabs": { "x": 208, "y": 233, "width": 740, "height": 56 },
+      "lab": { "x": 220, "y": 301, "width": 716, "height": 733 },
+      "theory": { "x": 220, "y": 1046, "width": 716, "height": 448 },
+      "navigation": { "x": 208, "y": 1506, "width": 740, "height": 62 }
+    }
+  },
+  "mobile": {
+    "width": 390,
+    "documentWidth": 375,
+    "pageWidth": 359,
+    "pageLevelHorizontalOverflow": false,
+    "consoleWarningsOrErrors": 0
+  },
+  "interactions": {
+    "initial": { "level": 1, "interval": "[1.4, 1.5)", "width": 0.1 },
+    "wrongDigit": { "digit": 3, "interval": "[1.43, 1.44)", "width": 0.01 },
+    "reset": { "level": 0, "interval": "[1, 2)" },
+    "correctZoom": { "digit": 4, "interval": "[1.4, 1.5)" },
+    "targetChange": { "target": "sqrt3", "resetInterval": "[1, 2)" },
+    "challenge": {
+      "digits": [7, 3, 2],
+      "interval": "[1.732, 1.733)",
+      "correct": true
+    },
+    "showTargetToggle": true,
+    "tabs": true
+  }
+}

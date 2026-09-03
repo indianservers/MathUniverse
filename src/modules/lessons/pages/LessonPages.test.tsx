@@ -1254,6 +1254,29 @@ describe("lesson pages", () => {
     expect(html).toContain('data-challenge="idle"');
   });
 
+  it("renders the dedicated successive magnification target for lesson 10043", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-9/class-9-real-numbers-successive-magnification-on-the-number-line",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0717"');
+    expect(html).toContain("dedicated-successive-decimal-interval-zoom-engine");
+    expect(html).toContain('data-level="1"');
+    expect(html).toContain('data-interval="1.4,1.5"');
+    expect(html).toContain('data-width="0.1"');
+    expect(html).toContain('data-challenge="idle"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
