@@ -1,0 +1,116 @@
+{
+  "passed": true,
+  "checks": {
+    "initial": {
+      "cost": "100000",
+      "residual": "0",
+      "life": "5",
+      "rate": "15",
+      "slEnd": "0.00",
+      "rbEnd": "44370.53",
+      "view": "Graph",
+      "actions": "0",
+      "rows": 6
+    },
+    "inputs": {
+      "cost": "120000",
+      "residual": "10000",
+      "life": "6",
+      "rate": "20",
+      "slEnd": "10000.00",
+      "rbEnd": "31457.28",
+      "view": "Graph",
+      "actions": "4",
+      "rows": 7
+    },
+    "sliders": {
+      "cost": "120000",
+      "residual": "10000",
+      "life": "8",
+      "rate": "25",
+      "slEnd": "10000.00",
+      "rbEnd": "12013.55",
+      "view": "Graph",
+      "actions": "6",
+      "rows": 9
+    },
+    "table": {
+      "cost": "120000",
+      "residual": "10000",
+      "life": "8",
+      "rate": "25",
+      "slEnd": "10000.00",
+      "rbEnd": "12013.55",
+      "view": "Table",
+      "actions": "7",
+      "rows": 9
+    },
+    "rbOnly": {
+      "sl": 0,
+      "rb": 1
+    },
+    "none": {
+      "sl": 0,
+      "rb": 0
+    },
+    "formula": true,
+    "reset": {
+      "cost": "100000",
+      "residual": "0",
+      "life": "5",
+      "rate": "15",
+      "slEnd": "0.00",
+      "rbEnd": "44370.53",
+      "view": "Graph",
+      "actions": "1",
+      "rows": 6
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1052,
+      "height": 1495
+    },
+    "overflow": false,
+    "hero": {
+      "top": 110,
+      "height": 123,
+      "bottom": 233
+    },
+    "tabs": {
+      "top": 233,
+      "height": 57,
+      "bottom": 290
+    },
+    "lab": {
+      "top": 301,
+      "height": 531,
+      "bottom": 832
+    },
+    "pattern": {
+      "top": 843,
+      "height": 211,
+      "bottom": 1054
+    },
+    "rule": {
+      "top": 1065,
+      "height": 215,
+      "bottom": 1280
+    },
+    "practice": {
+      "top": 1291,
+      "height": 111,
+      "bottom": 1402
+    },
+    "adjacent": {
+      "top": 1414,
+      "height": 60,
+      "bottom": 1474
+    }
+  },
+  "mobileMetrics": {
+    "width": 390,
+    "overflow": false
+  },
+  "logs": []
+}

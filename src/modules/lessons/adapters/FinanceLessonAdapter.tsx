@@ -8,6 +8,7 @@ import { FinanceConceptActivity } from "./finance/FinanceConceptActivity";
 import AmortisationTableTargetLesson598 from "./finance/AmortisationTableTargetLesson598";
 import AnnuitiesTargetLesson596 from "./finance/AnnuitiesTargetLesson596";
 import CompoundInterestTargetLesson592 from "./finance/CompoundInterestTargetLesson592";
+import DepreciationTargetLesson599 from "./finance/DepreciationTargetLesson599";
 import EffectiveInterestRateTargetLesson593 from "./finance/EffectiveInterestRateTargetLesson593";
 import FutureValueTargetLesson595 from "./finance/FutureValueTargetLesson595";
 import LoansEmiTargetLesson597 from "./finance/LoansEmiTargetLesson597";
@@ -172,6 +173,8 @@ export default function FinanceLessonAdapter(props: LessonAdapterProps) {
   if (props.lesson.id === 597) return <LoansEmiTargetLesson597 {...props} />;
   if (props.lesson.id === 598)
     return <AmortisationTableTargetLesson598 {...props} />;
+  if (props.lesson.id === 599)
+    return <DepreciationTargetLesson599 {...props} />;
   if (mode === "simple-interest") {
     return (
       <AdapterFrame
