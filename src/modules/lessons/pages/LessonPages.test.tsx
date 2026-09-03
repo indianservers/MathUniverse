@@ -1080,6 +1080,31 @@ describe("lesson pages", () => {
     expect(html).toContain('data-zoom="100"');
   });
 
+  it("renders the dedicated pattern encoding target for lesson 10036", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-8/class-8-information-processing-pattern-encoding",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0710"');
+    expect(html).toContain("dedicated-live-alphabet-rule-encoding-machine");
+    expect(html).toContain('data-operation="Shift"');
+    expect(html).toContain('data-direction="Right"');
+    expect(html).toContain('data-amount="2"');
+    expect(html).toContain('data-word="CODE"');
+    expect(html).toContain('data-output="EQFG"');
+    expect(html).toContain('data-challenge-output="DTKFIG"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

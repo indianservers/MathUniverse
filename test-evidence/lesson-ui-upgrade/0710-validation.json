@@ -1,0 +1,41 @@
+{
+  "mockup": "0710",
+  "lessonNumericId": 10036,
+  "route": "/lessons/school/class-8/class-8-information-processing-pattern-encoding",
+  "objectModel": "dedicated-live-alphabet-rule-encoding-machine",
+  "viewport": { "desktop": [968, 1633], "mobile": [390, 844] },
+  "layout": {
+    "hero": { "x": 200, "y": 89, "width": 750, "height": 139 },
+    "tabs": { "x": 200, "y": 238, "width": 750, "height": 45 },
+    "machine": { "x": 200, "y": 300, "width": 750, "height": 690 },
+    "theory": { "x": 200, "y": 999, "width": 750, "height": 255 },
+    "challenge": { "x": 200, "y": 1263, "width": 750, "height": 195 },
+    "adjacentNavigation": { "x": 200, "y": 1467, "width": 750, "height": 45 },
+    "footer": { "x": 200, "y": 1520, "width": 750, "height": 108 }
+  },
+  "interactions": {
+    "initial": {
+      "operation": "Shift",
+      "direction": "Right",
+      "amount": 2,
+      "word": "CODE",
+      "output": "EQFG"
+    },
+    "mirror": { "word": "CODE", "output": "XLWV" },
+    "swap": { "word": "CODE", "output": "OCED" },
+    "leftShiftThree": { "word": "CODE", "output": "ZLAB" },
+    "showStepsWorking": true,
+    "animationToggleWorking": true,
+    "challenge": {
+      "word": "BRIDGE",
+      "output": "DTKFIG",
+      "rule": "Shift forward by 2"
+    },
+    "newWordWorking": true,
+    "tabsWorking": true,
+    "fullResetWorking": true
+  },
+  "desktopHorizontalOverflow": false,
+  "mobileHorizontalOverflow": false,
+  "consoleWarningsOrErrors": []
+}
