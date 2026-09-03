@@ -675,6 +675,32 @@ describe("lesson pages", () => {
     expect(html).toContain('data-envelopes="6"');
   });
 
+  it("renders the dedicated scale factor target for lesson 10021", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-7/class-7-applied-arithmetic-scale-factor-in-maps-and-recipes",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0695"');
+    expect(html).toContain(
+      "dedicated-shared-scale-factor-map-distance-recipe-quantity-proportion-table",
+    );
+    expect(html).toContain('data-factor="2.50"');
+    expect(html).toContain('data-map-length="10.00"');
+    expect(html).toContain('data-distance="500"');
+    expect(html).toContain('data-servings="10"');
+    expect(html).toContain('data-mode="Enlargement"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

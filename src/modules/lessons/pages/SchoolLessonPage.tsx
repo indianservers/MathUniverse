@@ -35,6 +35,7 @@ import RatioTableTargetLesson10017 from "../schoolTargets/RatioTableTargetLesson
 import BillsTaxTargetLesson10018 from "../schoolTargets/BillsTaxTargetLesson10018";
 import ProfitLossTargetLesson10019 from "../schoolTargets/ProfitLossTargetLesson10019";
 import HouseholdBudgetTargetLesson10020 from "../schoolTargets/HouseholdBudgetTargetLesson10020";
+import ScaleFactorTargetLesson10021 from "../schoolTargets/ScaleFactorTargetLesson10021";
 import { getStrengthenedFoundationLesson } from "../strengthening/foundationNumberContent";
 import type { SchoolLessonContent } from "../syllabus/lessonSyllabusTypes";
 
@@ -87,6 +88,8 @@ export default function SchoolLessonPage() {
     return <ProfitLossTargetLesson10019 lesson={lesson} />;
   if (lesson.numericId === 10020)
     return <HouseholdBudgetTargetLesson10020 lesson={lesson} />;
+  if (lesson.numericId === 10021)
+    return <ScaleFactorTargetLesson10021 lesson={lesson} />;
   const adjacent = adjacentSchoolLessons(lesson);
   const strengthened = getStrengthenedFoundationLesson(lesson.numericId);
   const content = strengthened

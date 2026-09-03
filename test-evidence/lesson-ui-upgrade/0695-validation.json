@@ -1,0 +1,42 @@
+{
+  "mockup": "0695",
+  "lessonNumericId": 10021,
+  "route": "/lessons/school/class-7/class-7-applied-arithmetic-scale-factor-in-maps-and-recipes",
+  "objectModel": "dedicated-shared-scale-factor-map-distance-recipe-quantity-proportion-table",
+  "viewport": { "desktop": [967, 1670], "mobile": [390, 844] },
+  "layout": {
+    "hero": { "x": 211, "y": 91, "width": 722, "height": 123 },
+    "tabs": { "x": 211, "y": 214, "width": 722, "height": 42 },
+    "lab": { "x": 211, "y": 263, "width": 722, "height": 500 },
+    "table": { "x": 211, "y": 778, "width": 722, "height": 229 },
+    "readouts": { "x": 211, "y": 1018, "width": 722, "height": 119 },
+    "theory": { "x": 211, "y": 1155, "width": 722, "height": 279 },
+    "challenge": { "x": 211, "y": 1449, "width": 722, "height": 137 },
+    "adjacentNavigation": { "x": 211, "y": 1601, "width": 722, "height": 64 }
+  },
+  "interactions": {
+    "initial": {
+      "factor": 2.5,
+      "scaledMapLength": 10,
+      "distance": 500,
+      "servings": 10,
+      "mode": "Enlargement"
+    },
+    "factorOne": {
+      "scaledMapLength": 4,
+      "distance": 200,
+      "servings": 4,
+      "mode": "No change"
+    },
+    "factor1_75Map6": {
+      "scaledMapLength": 10.5,
+      "distance": 525,
+      "servings": 7
+    },
+    "wrongChallengeAccepted": false,
+    "correctChallenge": { "distance": 262.5, "rice": 2.625 },
+    "resetRestoredDefaults": true
+  },
+  "mobileHorizontalOverflow": false,
+  "consoleWarningsOrErrors": []
+}
