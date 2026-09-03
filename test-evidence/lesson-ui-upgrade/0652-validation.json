@@ -1,0 +1,168 @@
+{
+  "passed": true,
+  "checks": {
+    "initial": {
+      "principal": "15000",
+      "rate": "7",
+      "periods": "8",
+      "frequency": "Annually",
+      "future": "25772.79",
+      "interest": "10772.79",
+      "reached": "false",
+      "actions": "0",
+      "points": 9,
+      "factors": 8
+    },
+    "principal": {
+      "principal": "18000",
+      "rate": "7",
+      "periods": "8",
+      "frequency": "Annually",
+      "future": "30927.35",
+      "interest": "12927.35",
+      "reached": "true",
+      "actions": "1",
+      "points": 9,
+      "factors": 8
+    },
+    "rate": {
+      "principal": "18000",
+      "rate": "8",
+      "periods": "8",
+      "frequency": "Annually",
+      "future": "33316.74",
+      "interest": "15316.74",
+      "reached": "true",
+      "actions": "2",
+      "points": 9,
+      "factors": 8
+    },
+    "periods": {
+      "principal": "18000",
+      "rate": "8",
+      "periods": "10",
+      "frequency": "Annually",
+      "future": "38860.65",
+      "interest": "20860.65",
+      "reached": "true",
+      "actions": "3",
+      "points": 11,
+      "factors": 10
+    },
+    "frequency": {
+      "principal": "18000",
+      "rate": "8",
+      "periods": "10",
+      "frequency": "Quarterly",
+      "future": "39744.71",
+      "interest": "21744.71",
+      "reached": "true",
+      "actions": "4",
+      "points": 11,
+      "factors": 10
+    },
+    "restored": {
+      "principal": "15000",
+      "rate": "7",
+      "periods": "8",
+      "frequency": "Annually",
+      "future": "25772.79",
+      "interest": "10772.79",
+      "reached": "false",
+      "actions": "8",
+      "points": 9,
+      "factors": 8
+    },
+    "quickTime": {
+      "principal": "15000",
+      "rate": "7",
+      "periods": "9",
+      "frequency": "Annually",
+      "future": "27576.89",
+      "interest": "12576.89",
+      "reached": "false",
+      "actions": "9",
+      "points": 10,
+      "factors": 9
+    },
+    "quickRate": {
+      "principal": "15000",
+      "rate": "8",
+      "periods": "9",
+      "frequency": "Annually",
+      "future": "29985.07",
+      "interest": "14985.07",
+      "reached": "false",
+      "actions": "10",
+      "points": 10,
+      "factors": 9
+    },
+    "quickDeposit": {
+      "principal": "18000",
+      "rate": "8",
+      "periods": "9",
+      "frequency": "Annually",
+      "future": "35982.08",
+      "interest": "17982.08",
+      "reached": "true",
+      "actions": "11",
+      "points": 10,
+      "factors": 9
+    },
+    "formula": true,
+    "final": {
+      "principal": "15000",
+      "rate": "7",
+      "periods": "8",
+      "frequency": "Annually",
+      "future": "25772.79",
+      "interest": "10772.79",
+      "reached": "false",
+      "actions": "0",
+      "points": 9,
+      "factors": 8
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 975,
+      "height": 1614
+    },
+    "overflow": false,
+    "hero": {
+      "top": 91,
+      "height": 188,
+      "bottom": 279
+    },
+    "tabs": {
+      "top": 289,
+      "height": 32,
+      "bottom": 321
+    },
+    "lab": {
+      "top": 331,
+      "height": 534,
+      "bottom": 865
+    },
+    "theory": {
+      "top": 875,
+      "height": 335,
+      "bottom": 1210
+    },
+    "practice": {
+      "top": 1224,
+      "height": 207,
+      "bottom": 1431
+    },
+    "adjacent": {
+      "top": 1445,
+      "height": 41,
+      "bottom": 1486
+    }
+  },
+  "mobileMetrics": {
+    "width": 390,
+    "overflow": false
+  },
+  "logs": []
+}

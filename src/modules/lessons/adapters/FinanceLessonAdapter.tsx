@@ -7,6 +7,7 @@ import type { LessonAdapterProps } from "../types";
 import { FinanceConceptActivity } from "./finance/FinanceConceptActivity";
 import CompoundInterestTargetLesson592 from "./finance/CompoundInterestTargetLesson592";
 import EffectiveInterestRateTargetLesson593 from "./finance/EffectiveInterestRateTargetLesson593";
+import FutureValueTargetLesson595 from "./finance/FutureValueTargetLesson595";
 import PresentValueTargetLesson594 from "./finance/PresentValueTargetLesson594";
 import SimpleInterestTargetLesson591 from "./finance/SimpleInterestTargetLesson591";
 import { SimpleInterestActivity } from "./p0/PriorityConceptActivities";
@@ -163,6 +164,7 @@ export default function FinanceLessonAdapter(props: LessonAdapterProps) {
     return <EffectiveInterestRateTargetLesson593 {...props} />;
   if (props.lesson.id === 594)
     return <PresentValueTargetLesson594 {...props} />;
+  if (props.lesson.id === 595) return <FutureValueTargetLesson595 {...props} />;
   if (mode === "simple-interest") {
     return (
       <AdapterFrame
