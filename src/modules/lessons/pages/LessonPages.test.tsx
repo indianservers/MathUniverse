@@ -425,6 +425,30 @@ describe("lesson pages", () => {
     expect(html).toContain('data-terms="4,8,12,16,20,24,28,32,36,40"');
   });
 
+  it("renders the dedicated shape pattern target for lesson 10011", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-6/class-6-patterns-shape-pattern-completion",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0685"');
+    expect(html).toContain(
+      "dedicated-growing-odd-tile-pattern-breakdown-and-rule-model",
+    );
+    expect(html).toContain('data-figure="4"');
+    expect(html).toContain('data-total="7"');
+    expect(html).toContain('data-added="2"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

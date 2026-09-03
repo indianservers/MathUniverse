@@ -1,0 +1,113 @@
+{
+  "passed": true,
+  "checks": {
+    "initial": {
+      "testid": "school-mockup-0685",
+      "objectModel": "dedicated-growing-odd-tile-pattern-breakdown-and-rule-model",
+      "figure": "4",
+      "total": "7",
+      "added": "2",
+      "showAdded": "true",
+      "graded": "true",
+      "actions": "0"
+    },
+    "figureSix": {
+      "testid": "school-mockup-0685",
+      "objectModel": "dedicated-growing-odd-tile-pattern-breakdown-and-rule-model",
+      "figure": "6",
+      "total": "11",
+      "added": "2",
+      "showAdded": "true",
+      "graded": "true",
+      "actions": "1"
+    },
+    "hidden": {
+      "testid": "school-mockup-0685",
+      "objectModel": "dedicated-growing-odd-tile-pattern-breakdown-and-rule-model",
+      "figure": "6",
+      "total": "11",
+      "added": "2",
+      "showAdded": "false",
+      "graded": "true",
+      "actions": "2"
+    },
+    "reset": {
+      "testid": "school-mockup-0685",
+      "objectModel": "dedicated-growing-odd-tile-pattern-breakdown-and-rule-model",
+      "figure": "4",
+      "total": "7",
+      "added": "2",
+      "showAdded": "true",
+      "graded": "true",
+      "actions": "3"
+    },
+    "wrong": {
+      "testid": "school-mockup-0685",
+      "objectModel": "dedicated-growing-odd-tile-pattern-breakdown-and-rule-model",
+      "figure": "4",
+      "total": "7",
+      "added": "2",
+      "showAdded": "true",
+      "graded": "false",
+      "actions": "4"
+    },
+    "correct": {
+      "testid": "school-mockup-0685",
+      "objectModel": "dedicated-growing-odd-tile-pattern-breakdown-and-rule-model",
+      "figure": "4",
+      "total": "7",
+      "added": "2",
+      "showAdded": "true",
+      "graded": "true",
+      "actions": "5"
+    },
+    "explanation": true
+  },
+  "metrics": {
+    "document": {
+      "width": 963,
+      "height": 1634
+    },
+    "overflow": false,
+    "hero": {
+      "top": 92,
+      "height": 151,
+      "bottom": 243
+    },
+    "tabs": {
+      "top": 251,
+      "height": 36,
+      "bottom": 287
+    },
+    "observe": {
+      "top": 295,
+      "height": 287,
+      "bottom": 582
+    },
+    "middle": {
+      "top": 590,
+      "height": 354,
+      "bottom": 944
+    },
+    "rules": {
+      "top": 952,
+      "height": 249,
+      "bottom": 1201
+    },
+    "lower": {
+      "top": 1209,
+      "height": 225,
+      "bottom": 1434
+    },
+    "adjacent": {
+      "top": 1444,
+      "height": 52,
+      "bottom": 1496
+    }
+  },
+  "mobileMetrics": {
+    "width": 390,
+    "overflow": false
+  },
+  "logs": []
+}
