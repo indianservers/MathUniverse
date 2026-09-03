@@ -1611,6 +1611,34 @@ describe("lesson pages", () => {
     );
   });
 
+  it("renders the dedicated axiom-versus-theorem target for lesson 10056", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-9/class-9-euclidean-geometry-axiom-versus-theorem",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0730"');
+    expect(html).toContain(
+      "dedicated-proof-dependency-counterexample-and-minimal-chain-engine",
+    );
+    expect(html).toContain('data-assumed="A1,A2,D1"');
+    expect(html).toContain('data-proved="T1,T2"');
+    expect(html).toContain('data-valid="true"');
+    expect(html).toContain('data-counterexample="true"');
+    expect(html).toContain('data-challenge=""');
+    expect(html).toContain('aria-label="Whole value"');
+    expect(html).toContain('aria-label="Part value"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

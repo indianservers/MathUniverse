@@ -1,0 +1,50 @@
+{
+  "mockup": "0730",
+  "lessonId": 10056,
+  "route": "/lessons/school/class-9/class-9-euclidean-geometry-axiom-versus-theorem",
+  "surface": "AxiomTheoremTargetLesson10056",
+  "objectModel": "dedicated-proof-dependency-counterexample-and-minimal-chain-engine",
+  "targetViewport": { "width": 899, "height": 1748 },
+  "desktop": {
+    "consoleWarningsOrErrors": 0,
+    "sections": {
+      "hero": { "x": 204, "y": 88, "width": 687, "height": 128 },
+      "tabs": { "x": 204, "y": 226, "width": 687, "height": 38 },
+      "builder": { "x": 204, "y": 275, "width": 687, "height": 518 },
+      "board": { "x": 218, "y": 349, "width": 659, "height": 350 },
+      "evidenceCounterexampleChain": {
+        "x": 204,
+        "y": 809,
+        "width": 687,
+        "height": 345
+      },
+      "why": { "x": 204, "y": 1171, "width": 687, "height": 179 },
+      "lower": { "x": 204, "y": 1366, "width": 687, "height": 216 },
+      "navigation": { "x": 204, "y": 1599, "width": 687, "height": 50 }
+    }
+  },
+  "mobile": {
+    "width": 390,
+    "documentWidth": 375,
+    "documentHeight": 3949,
+    "pageLevelHorizontalOverflow": false,
+    "consoleWarningsOrErrors": 0,
+    "sourceCards": 5,
+    "laneCards": 5,
+    "counterexampleInputs": 2
+  },
+  "interactions": {
+    "initial": {
+      "assumed": ["A1", "A2", "D1"],
+      "proved": ["T1", "T2"],
+      "valid": true
+    },
+    "resetClearsBuilder": true,
+    "restoreReturnsValidChain": true,
+    "initialCounterexample": { "whole": 2, "part": 5, "found": true },
+    "nonCounterexample": { "whole": 6, "part": 5, "found": false },
+    "minimalChallenge": ["D1", "T1", "T2"],
+    "minimalChallengeValid": true,
+    "tabStateChange": true
+  }
+}
