@@ -1,0 +1,47 @@
+{
+  "mockup": "0726",
+  "lessonId": 10052,
+  "route": "/lessons/school/class-9/class-9-polynomials-polynomial-factorisation-practice",
+  "surface": "FactorisationPracticeTargetLesson10052",
+  "objectModel": "dedicated-four-method-factorisation-and-expansion-verification-engine",
+  "targetViewport": { "width": 955, "height": 1647 },
+  "desktop": {
+    "consoleWarningsOrErrors": 0,
+    "sections": {
+      "hero": { "x": 214, "y": 102, "width": 719, "height": 151 },
+      "tabs": { "x": 214, "y": 253, "width": 719, "height": 53 },
+      "board": { "x": 214, "y": 324, "width": 719, "height": 574 },
+      "work": { "x": 230, "y": 370, "width": 687, "height": 415 },
+      "theory": { "x": 214, "y": 915, "width": 719, "height": 215 },
+      "challenge": { "x": 214, "y": 1145, "width": 719, "height": 300 },
+      "navigation": { "x": 214, "y": 1460, "width": 719, "height": 48 }
+    }
+  },
+  "mobile": {
+    "width": 390,
+    "documentWidth": 375,
+    "documentHeight": 3502,
+    "pageLevelHorizontalOverflow": false,
+    "consoleWarningsOrErrors": 0,
+    "methodButtons": 5,
+    "challengeRows": 4,
+    "challengeInputs": 8
+  },
+  "interactions": {
+    "initial": {
+      "method": "Common Factor",
+      "factor": "3x",
+      "result": "3x(2x + 3)",
+      "score": 4
+    },
+    "resetClearsFactor": true,
+    "factorPlacementRestoresExpansion": true,
+    "differenceOfSquares": {
+      "polynomial": "x² − 9",
+      "result": "(x − 3)(x + 3)"
+    },
+    "incorrectAnswerScore": 3,
+    "restoredAnswerScore": 4,
+    "tabStateChange": true
+  }
+}

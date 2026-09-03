@@ -1496,6 +1496,34 @@ describe("lesson pages", () => {
     expect(html).toContain('aria-label="Cubic identity volume decomposition"');
   });
 
+  it("renders the dedicated factorisation-practice target for lesson 10052", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-9/class-9-polynomials-polynomial-factorisation-practice",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0726"');
+    expect(html).toContain(
+      "dedicated-four-method-factorisation-and-expansion-verification-engine",
+    );
+    expect(html).toContain('data-method="Common Factor"');
+    expect(html).toContain('data-polynomial="6x² + 9x"');
+    expect(html).toContain('data-factor="3x"');
+    expect(html).toContain('data-result="3x(2x + 3)"');
+    expect(html).toContain('data-score="4"');
+    expect(html).toContain('aria-label="Factorisation 1"');
+    expect(html).toContain('aria-label="Expansion 4"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
