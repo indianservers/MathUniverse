@@ -1,0 +1,26 @@
+{
+  "mockup": "0687",
+  "lessonNumericId": 10013,
+  "route": "/lessons/school/class-7/class-7-numbers-and-arithmetic-divisibility-tests-for-2-4-5-6-8-10-and-11",
+  "objectModel": "dedicated-digit-card-divisibility-engine-and-all-rules-challenge",
+  "viewport": { "desktop": [963, 1634], "mobile": [390, 844] },
+  "layout": {
+    "hero": { "x": 223, "y": 92, "width": 712, "height": 159 },
+    "lab": { "x": 223, "y": 255, "width": 712, "height": 915 },
+    "theory": { "x": 223, "y": 1178, "width": 712, "height": 287 },
+    "challenge": { "x": 223, "y": 1473, "width": 712, "height": 58 },
+    "adjacentNavigation": { "x": 223, "y": 1539, "width": 712, "height": 92 }
+  },
+  "interactions": {
+    "initial": "2:true|4:true|5:false|6:false|8:true|10:false|11:true",
+    "addedDigit": 12325,
+    "removedDigit": 1232,
+    "cleared": 0,
+    "challengeNumber": 7524,
+    "challengeResults": "2:true|4:true|5:false|6:true|8:false|10:false|11:true",
+    "challengeChecked": true,
+    "resetNumber": 1232
+  },
+  "mobileHorizontalOverflow": false,
+  "consoleWarningsOrErrors": []
+}

@@ -474,6 +474,31 @@ describe("lesson pages", () => {
     expect(html).toContain('data-practice-correct="3"');
   });
 
+  it("renders the dedicated divisibility tests target for lesson 10013", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-7/class-7-numbers-and-arithmetic-divisibility-tests-for-2-4-5-6-8-10-and-11",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0687"');
+    expect(html).toContain(
+      "dedicated-digit-card-divisibility-engine-and-all-rules-challenge",
+    );
+    expect(html).toContain('data-number="1232"');
+    expect(html).toContain(
+      'data-results="2:true|4:true|5:false|6:false|8:true|10:false|11:true"',
+    );
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
