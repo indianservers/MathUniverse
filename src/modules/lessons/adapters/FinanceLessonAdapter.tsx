@@ -15,6 +15,7 @@ import FutureValueTargetLesson595 from "./finance/FutureValueTargetLesson595";
 import InflationTargetLesson600 from "./finance/InflationTargetLesson600";
 import LoansEmiTargetLesson597 from "./finance/LoansEmiTargetLesson597";
 import PresentValueTargetLesson594 from "./finance/PresentValueTargetLesson594";
+import ProfitLossTargetLesson602 from "./finance/ProfitLossTargetLesson602";
 import SimpleInterestTargetLesson591 from "./finance/SimpleInterestTargetLesson591";
 import { SimpleInterestActivity } from "./p0/PriorityConceptActivities";
 
@@ -180,6 +181,7 @@ export default function FinanceLessonAdapter(props: LessonAdapterProps) {
   if (props.lesson.id === 600) return <InflationTargetLesson600 {...props} />;
   if (props.lesson.id === 601)
     return <CurrencyConversionTargetLesson601 {...props} />;
+  if (props.lesson.id === 602) return <ProfitLossTargetLesson602 {...props} />;
   if (mode === "simple-interest") {
     return (
       <AdapterFrame

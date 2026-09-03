@@ -1,0 +1,108 @@
+{
+  "passed": true,
+  "checks": {
+    "initial": {
+      "selling": "1100",
+      "profit": "300",
+      "markup": "37.50",
+      "margin": "27.27",
+      "display": "profit",
+      "graded": "",
+      "actions": "0",
+      "rows": 5
+    },
+    "loss": {
+      "selling": "600",
+      "profit": "-200",
+      "markup": "-25.00",
+      "margin": "-33.33",
+      "display": "profit",
+      "graded": "",
+      "actions": "1",
+      "rows": 5
+    },
+    "lossDisplay": {
+      "selling": "600",
+      "profit": "-200",
+      "markup": "-25.00",
+      "margin": "-33.33",
+      "display": "loss",
+      "graded": "",
+      "actions": "2",
+      "rows": 5
+    },
+    "table": {
+      "selling": "1400",
+      "profit": "600",
+      "markup": "75.00",
+      "margin": "42.86",
+      "display": "loss",
+      "graded": "",
+      "actions": "3",
+      "rows": 5
+    },
+    "formula": true,
+    "wrong": {
+      "selling": "1400",
+      "profit": "600",
+      "markup": "75.00",
+      "margin": "42.86",
+      "display": "loss",
+      "graded": "false",
+      "actions": "8",
+      "rows": 5
+    },
+    "correct": {
+      "selling": "1400",
+      "profit": "600",
+      "markup": "75.00",
+      "margin": "42.86",
+      "display": "loss",
+      "graded": "true",
+      "actions": "12",
+      "rows": 5
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1009,
+      "height": 1559
+    },
+    "overflow": false,
+    "hero": {
+      "top": 97,
+      "height": 157,
+      "bottom": 254
+    },
+    "tabs": {
+      "top": 266,
+      "height": 59,
+      "bottom": 325
+    },
+    "lab": {
+      "top": 335,
+      "height": 449,
+      "bottom": 784
+    },
+    "upper": {
+      "top": 794,
+      "height": 283,
+      "bottom": 1077
+    },
+    "lower": {
+      "top": 1087,
+      "height": 277,
+      "bottom": 1364
+    },
+    "adjacent": {
+      "top": 1375,
+      "height": 59,
+      "bottom": 1434
+    }
+  },
+  "mobileMetrics": {
+    "width": 390,
+    "overflow": false
+  },
+  "logs": []
+}
