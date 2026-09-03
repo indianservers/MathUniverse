@@ -1,0 +1,124 @@
+{
+  "passed": true,
+  "checks": {
+    "initial": {
+      "number": "4382",
+      "system": "International",
+      "selected": "0",
+      "practice": "true",
+      "quick": "true",
+      "actions": "0"
+    },
+    "click": {
+      "number": "7382",
+      "system": "International",
+      "selected": "1",
+      "practice": "true",
+      "quick": "true",
+      "actions": "1"
+    },
+    "drag": {
+      "number": "7352",
+      "system": "International",
+      "selected": "3",
+      "practice": "true",
+      "quick": "true",
+      "actions": "2"
+    },
+    "system": {
+      "number": "7352",
+      "system": "Indian",
+      "selected": "3",
+      "practice": "true",
+      "quick": "true",
+      "actions": "3"
+    },
+    "practiceWrong": {
+      "number": "7352",
+      "system": "Indian",
+      "selected": "3",
+      "practice": "false",
+      "quick": "true",
+      "actions": "4"
+    },
+    "practiceCorrect": {
+      "number": "7352",
+      "system": "Indian",
+      "selected": "3",
+      "practice": "true",
+      "quick": "true",
+      "actions": "6"
+    },
+    "quickWrong": {
+      "number": "7352",
+      "system": "Indian",
+      "selected": "3",
+      "practice": "true",
+      "quick": "false",
+      "actions": "7"
+    },
+    "quickCorrect": {
+      "number": "7352",
+      "system": "Indian",
+      "selected": "3",
+      "practice": "true",
+      "quick": "true",
+      "actions": "8"
+    },
+    "reset": {
+      "number": "4382",
+      "system": "International",
+      "selected": "0",
+      "practice": "true",
+      "quick": "true",
+      "actions": "9"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 967,
+      "height": 1751
+    },
+    "overflow": false,
+    "hero": {
+      "top": 94,
+      "height": 130,
+      "bottom": 224
+    },
+    "tabs": {
+      "top": 234,
+      "height": 39,
+      "bottom": 273
+    },
+    "main": {
+      "top": 275,
+      "height": 470,
+      "bottom": 745
+    },
+    "middle": {
+      "top": 755,
+      "height": 300,
+      "bottom": 1055
+    },
+    "practice": {
+      "top": 1065,
+      "height": 330,
+      "bottom": 1395
+    },
+    "challenge": {
+      "top": 1405,
+      "height": 100,
+      "bottom": 1505
+    },
+    "adjacent": {
+      "top": 1515,
+      "height": 64,
+      "bottom": 1579
+    }
+  },
+  "mobileMetrics": {
+    "width": 390,
+    "overflow": false
+  },
+  "logs": []
+}

@@ -1,0 +1,619 @@
+.pv10001-page {
+  position: relative;
+  top: -5px;
+  width: 100%;
+  margin-bottom: -5px;
+  color: #142044;
+  font:
+    9px/1.45 Inter,
+    Arial,
+    sans-serif;
+  letter-spacing: 0;
+}
+.pv10001-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.pv10001-page h1,
+.pv10001-page h2,
+.pv10001-page h3,
+.pv10001-page p,
+.pv10001-page dl {
+  margin: 0;
+}
+.pv10001-page button,
+.pv10001-page input,
+.pv10001-page select {
+  font: inherit;
+  color: inherit;
+}
+.pv10001-hero,
+.pv10001-main,
+.pv10001-middle > article,
+.pv10001-practice > article,
+.pv10001-challenge,
+.pv10001-adjacent {
+  border: 1px solid #dce5ee;
+  border-radius: 14px;
+  background: #fff;
+}
+.pv10001-hero {
+  position: relative;
+  height: 130px;
+  padding: 18px 15px;
+}
+.pv10001-hero > small {
+  color: #07839e;
+  font-weight: 900;
+}
+.pv10001-hero h1 {
+  margin-top: 8px;
+  font-size: 21px;
+}
+.pv10001-hero > p {
+  margin-top: 5px;
+}
+.pv10001-hero dl {
+  display: flex;
+  margin-top: 10px;
+  gap: 7px;
+}
+.pv10001-hero dl span {
+  padding: 5px 10px;
+  border-radius: 12px;
+  background: #f1f4f8;
+  font-weight: 800;
+}
+.pv10001-hero nav {
+  position: absolute;
+  top: 18px;
+  right: 15px;
+  width: 230px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+}
+.pv10001-hero nav button {
+  height: 33px;
+  border: 1px solid #dce5ee;
+  border-radius: 8px;
+  background: #fff;
+}
+.pv10001-hero nav label {
+  grid-column: 1/-1;
+  display: grid;
+  grid-template-columns: 1fr 160px;
+  align-items: center;
+  text-align: right;
+}
+.pv10001-page progress {
+  width: 100%;
+  height: 7px;
+  accent-color: #09a8bd;
+}
+.pv10001-tabs {
+  height: 39px;
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr) 64px 30px;
+  align-items: center;
+  border-bottom: 1px solid #dce5ee;
+}
+.pv10001-tabs button {
+  height: 37px;
+  border: 0;
+  background: transparent;
+  font-weight: 900;
+}
+.pv10001-tabs button.active {
+  border-bottom: 3px solid #5b2bc5;
+  color: #5525b3;
+}
+.pv10001-tabs svg {
+  width: 13px;
+  vertical-align: middle;
+}
+.pv10001-tabnote {
+  height: 25px;
+  padding: 6px 12px;
+  background: #eef9fb;
+}
+.pv10001-main {
+  height: 470px;
+  margin-top: 2px;
+  padding: 14px;
+}
+.pv10001-main > header,
+.pv10001-middle header,
+.pv10001-practice header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.pv10001-main header i,
+.pv10001-middle header i,
+.pv10001-practice header i {
+  display: grid;
+  width: 22px;
+  height: 22px;
+  flex: none;
+  place-items: center;
+  border-radius: 50%;
+  background: #6136d5;
+  color: #fff;
+  font-style: normal;
+  font-weight: 900;
+}
+.pv10001-main h2,
+.pv10001-middle h2,
+.pv10001-practice h2,
+.pv10001-challenge h2 {
+  color: #5222ae;
+  font-size: 11px;
+}
+.pv10001-main > header p,
+.pv10001-middle header p,
+.pv10001-practice header p {
+  margin-top: 4px;
+}
+.pv10001-main > header label {
+  margin-left: auto;
+  font-weight: 800;
+}
+.pv10001-main select {
+  width: 128px;
+  height: 31px;
+  margin-left: 8px;
+  padding: 0 10px;
+  border: 1px solid #dce5ee;
+  border-radius: 8px;
+  background: #fff;
+}
+.pv10001-main > main {
+  height: 292px;
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: 2.3fr 1fr;
+  gap: 14px;
+}
+.pv10001-place-grid {
+  height: 210px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.pv10001-place-grid > button {
+  display: grid;
+  grid-template-rows: 38px 53px 1fr;
+  padding: 0;
+  border: 1px solid #dce5ee;
+  background: #fff;
+}
+.pv10001-place-grid > button:first-child {
+  border-radius: 8px 0 0 8px;
+}
+.pv10001-place-grid > button:last-child {
+  border-radius: 0 8px 8px 0;
+}
+.pv10001-place-grid > button > b {
+  padding: 12px 3px;
+  background: #713ce0;
+  color: #fff;
+}
+.pv10001-place-grid > button.blue > b {
+  background: #2788ed;
+}
+.pv10001-place-grid > button.cyan > b {
+  background: #18bdc4;
+}
+.pv10001-place-grid > button.violet > b {
+  background: #8653df;
+}
+.pv10001-place-grid > button small {
+  padding: 12px 2px;
+  color: #6733cb;
+  font-size: 11px;
+  font-weight: 900;
+}
+.pv10001-place-grid > button small em {
+  display: block;
+  color: #63718a;
+  font-size: 8px;
+  font-style: normal;
+}
+.pv10001-place-grid > button strong {
+  display: grid;
+  width: 58px;
+  height: 62px;
+  margin: auto;
+  place-items: center;
+  border: 2px dashed #1676e8;
+  border-radius: 8px;
+  font-size: 28px;
+}
+.pv10001-place-grid > button.selected strong {
+  background: #ecf7ff;
+  box-shadow: 0 0 0 3px #97d4ff;
+}
+.pv10001-builder h3 {
+  margin: 8px 3px;
+}
+.pv10001-builder h3 small {
+  color: #75849a;
+}
+.pv10001-digits {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 6px;
+}
+.pv10001-digits button {
+  height: 42px;
+  border: 1px solid #dce5ee;
+  border-radius: 7px;
+  background: #fff;
+  font-size: 20px;
+  font-weight: 700;
+}
+.pv10001-main > main > aside {
+  border: 1px solid #dce5ee;
+  border-radius: 8px;
+}
+.pv10001-main > main > aside > b,
+.pv10001-main > main > aside > strong {
+  display: block;
+  padding: 12px;
+}
+.pv10001-main > main > aside > strong {
+  padding-top: 0;
+  font-size: 28px;
+}
+.pv10001-main > main > aside section {
+  padding: 10px 12px;
+  border-top: 1px solid #dce5ee;
+}
+.pv10001-main > main > aside section p {
+  margin-top: 5px;
+}
+.pv10001-main .purple,
+.pv10001-main .violet {
+  color: #6c35d8;
+}
+.pv10001-main .blue {
+  color: #2079df;
+}
+.pv10001-main .cyan {
+  color: #02a8b8;
+}
+.pv10001-main > footer {
+  position: relative;
+  height: 59px;
+  margin-top: 15px;
+  padding: 10px 145px 8px 55px;
+  border: 1px solid #f3b84e;
+  border-radius: 8px;
+  background: #fff9eb;
+}
+.pv10001-main > footer > b {
+  position: absolute;
+  left: 14px;
+  top: 7px;
+  display: grid;
+  width: 32px;
+  height: 38px;
+  place-items: center;
+  border: 3px solid #c77800;
+  border-radius: 50%;
+  color: #c77800;
+  font-size: 20px;
+}
+.pv10001-main > footer span small {
+  display: block;
+  margin-top: 5px;
+  color: #c77800;
+}
+.pv10001-main > footer button {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  height: 32px;
+  padding: 0 15px;
+  border: 0;
+  border-radius: 8px;
+  background: #ec8a00;
+  color: #fff;
+  font-weight: 900;
+}
+.pv10001-main > footer > p {
+  position: absolute;
+  left: 190px;
+  bottom: 4px;
+  color: #9a5b00;
+}
+.pv10001-middle,
+.pv10001-practice {
+  height: 300px;
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1.08fr;
+  gap: 10px;
+}
+.pv10001-middle > article,
+.pv10001-practice > article {
+  padding: 13px;
+}
+.pv10001-middle table {
+  width: 100%;
+  margin-top: 16px;
+  border-collapse: collapse;
+  text-align: center;
+}
+.pv10001-middle th,
+.pv10001-middle td {
+  height: 27px;
+  border: 1px solid #dce5ee;
+}
+.pv10001-middle thead {
+  color: #6730c8;
+}
+.pv10001-middle > article > p {
+  margin: 14px 4px 0;
+}
+.pv10001-middle article:nth-child(2) > section {
+  margin-top: 11px;
+  padding: 10px;
+  border: 1px solid #dce5ee;
+  border-radius: 7px;
+  background: #fafbff;
+}
+.pv10001-middle article:nth-child(2) > section > b {
+  color: #6632c7;
+}
+.pv10001-middle article:nth-child(2) .mistake {
+  border-color: #ff9c9c;
+  background: #fff8f8;
+}
+.pv10001-middle article:nth-child(2) .mistake > b {
+  color: #d01f35;
+}
+.pv10001-practice {
+  height: 330px;
+}
+.pv10001-practice .example-grid {
+  height: 92px;
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  border: 1px solid #dce5ee;
+  border-radius: 7px;
+  overflow: hidden;
+}
+.pv10001-practice .example-grid span {
+  display: grid;
+  grid-template-rows: 34px 1fr;
+  border-right: 1px solid #dce5ee;
+  text-align: center;
+}
+.pv10001-practice .example-grid b {
+  display: grid;
+  place-items: center;
+  background: #7040d9;
+  color: #fff;
+  font-size: 7px;
+}
+.pv10001-practice .example-grid strong {
+  display: grid;
+  place-items: center;
+  font-size: 14px;
+}
+.pv10001-practice article > p {
+  margin-top: 13px;
+}
+.pv10001-practice output {
+  display: grid;
+  width: 195px;
+  height: 56px;
+  margin: 15px auto 10px;
+  place-items: center;
+  border: 1px solid #a9bad0;
+  border-radius: 7px;
+}
+.pv10001-practice output strong {
+  display: block;
+  font-size: 25px;
+}
+.practice-digits {
+  height: 67px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid #dce5ee;
+  border-radius: 7px;
+}
+.practice-digits input {
+  width: 48px;
+  height: 42px;
+  margin: auto;
+  border: 2px dashed #2f83e7;
+  border-radius: 7px;
+  text-align: center;
+  font-size: 17px;
+  font-weight: 900;
+}
+.pv10001-practice article > button {
+  height: 31px;
+  margin: 10px 5px 0;
+  padding: 0 17px;
+  border: 1px solid #4e8ee6;
+  border-radius: 7px;
+  background: #fff;
+}
+.pv10001-practice article > p.correct,
+.pv10001-practice article > p.wrong {
+  display: flex;
+  padding: 9px;
+  border: 1px solid #6fd09e;
+  border-radius: 7px;
+  background: #effcf5;
+  color: #078a48;
+}
+.pv10001-practice article > p.wrong {
+  border-color: #ef8798;
+  background: #fff0f2;
+  color: #b5233d;
+}
+.pv10001-practice article > p svg {
+  width: 16px;
+}
+.pv10001-challenge {
+  height: 100px;
+  margin-top: 10px;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 35px 1fr 165px 68px;
+  align-items: start;
+  gap: 10px;
+  background: #fbf9ff;
+  border-color: #cbb9ef;
+}
+.pv10001-challenge > svg {
+  width: 28px;
+  color: #6732cc;
+}
+.pv10001-challenge input {
+  height: 34px;
+  padding: 7px 15px;
+  border: 1px solid #dce5ee;
+  border-radius: 7px;
+}
+.pv10001-challenge button {
+  height: 34px;
+  border: 0;
+  border-radius: 7px;
+  background: #05a95d;
+  color: #fff;
+  font-weight: 900;
+}
+.pv10001-challenge output {
+  grid-column: 3/-1;
+  color: #078a48;
+  text-align: center;
+}
+.pv10001-adjacent {
+  height: 64px;
+  margin-top: 10px;
+  padding: 10px 15px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+}
+.pv10001-adjacent span,
+.pv10001-adjacent a {
+  display: grid;
+  color: inherit;
+  text-decoration: none;
+}
+.pv10001-adjacent label {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 5px;
+  text-align: center;
+}
+.pv10001-adjacent a {
+  text-align: right;
+}
+.pv10001-adjacent b {
+  font-weight: 500;
+  color: #1761c5;
+}
+body:has(.pv10001-page) #main-content {
+  margin-left: 0 !important;
+  padding: 0 19px !important;
+}
+body:has(.pv10001-page) [data-testid="desktop-sidebar"] {
+  width: 190px !important;
+}
+body:has(.pv10001-page) #main-content > nav[aria-label="Breadcrumb"] {
+  margin-bottom: 8px !important;
+}
+body:has(.pv10001-page) #main-content > div {
+  max-width: none !important;
+}
+body:has(.pv10001-page) footer[aria-label="Site footer"] {
+  margin-top: 12px !important;
+}
+@media (max-width: 700px) {
+  body:has(.pv10001-page) [data-testid="desktop-sidebar"] {
+    display: none !important;
+  }
+  body:has(.pv10001-page) #main-content {
+    margin-left: 0 !important;
+    padding: 0 8px !important;
+  }
+  .pv10001-page {
+    top: 0;
+    margin: 0;
+    font-size: 9px;
+  }
+  .pv10001-hero,
+  .pv10001-main,
+  .pv10001-middle,
+  .pv10001-practice,
+  .pv10001-challenge,
+  .pv10001-adjacent {
+    height: auto;
+  }
+  .pv10001-hero nav {
+    position: static;
+    width: auto;
+    margin-top: 10px;
+  }
+  .pv10001-hero {
+    padding: 15px;
+  }
+  .pv10001-hero dl {
+    flex-wrap: wrap;
+  }
+  .pv10001-tabs {
+    grid-template-columns: repeat(5, 90px) 60px 30px;
+    overflow-x: auto;
+  }
+  .pv10001-main > main,
+  .pv10001-middle,
+  .pv10001-practice {
+    grid-template-columns: 1fr;
+  }
+  .pv10001-main > main {
+    height: auto;
+  }
+  .pv10001-main > main > aside {
+    margin-top: 10px;
+  }
+  .pv10001-main > footer {
+    height: auto;
+    padding: 12px 110px 12px 50px;
+  }
+  .pv10001-main > footer button {
+    right: 8px;
+    padding: 0 8px;
+  }
+  .pv10001-main > footer > p {
+    position: static;
+    margin-top: 5px;
+  }
+  .pv10001-middle > article,
+  .pv10001-practice > article {
+    min-height: 280px;
+  }
+  .pv10001-challenge {
+    grid-template-columns: 30px 1fr;
+  }
+  .pv10001-challenge input,
+  .pv10001-challenge button,
+  .pv10001-challenge output {
+    grid-column: 2;
+  }
+  .pv10001-adjacent {
+    grid-template-columns: 1fr 90px 1fr;
+  }
+  .pv10001-digits {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
