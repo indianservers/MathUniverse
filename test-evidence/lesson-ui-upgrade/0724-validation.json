@@ -1,0 +1,60 @@
+{
+  "mockup": "0724",
+  "lessonId": 10050,
+  "route": "/lessons/school/class-9/class-9-polynomials-relationship-between-zeros-and-coefficients",
+  "surface": "ZerosCoefficientsTargetLesson10050",
+  "objectModel": "dedicated-vieta-draggable-roots-coefficient-engine",
+  "targetViewport": { "width": 955, "height": 1647 },
+  "desktop": {
+    "consoleWarningsOrErrors": 0,
+    "documentWidth": 940,
+    "sections": {
+      "hero": { "x": 206, "y": 90, "width": 739, "height": 131 },
+      "tabs": { "x": 206, "y": 229, "width": 739, "height": 36 },
+      "lab": { "x": 206, "y": 278, "width": 739, "height": 581 },
+      "graph": { "x": 219, "y": 307, "width": 367, "height": 284 },
+      "theory": { "x": 206, "y": 872, "width": 739, "height": 255 },
+      "lower": { "x": 206, "y": 1140, "width": 739, "height": 314 },
+      "navigation": { "x": 206, "y": 1469, "width": 739, "height": 34 }
+    }
+  },
+  "mobile": {
+    "width": 390,
+    "documentWidth": 375,
+    "documentHeight": 3643,
+    "pageLevelHorizontalOverflow": false,
+    "consoleWarningsOrErrors": 0,
+    "graphWidth": 334,
+    "graphHeight": 284,
+    "rangeInputs": 2,
+    "numberInputs": 2,
+    "contentCards": 5
+  },
+  "interactions": {
+    "initial": {
+      "alpha": 1,
+      "beta": 3,
+      "a": 1,
+      "b": -4,
+      "c": 3,
+      "sum": 4,
+      "product": 3,
+      "targetRoots": [2, 3]
+    },
+    "keyboardRootMove": {
+      "alpha": 0.5,
+      "beta": 3,
+      "b": -3.5,
+      "c": 1.5,
+      "sum": 3.5,
+      "product": 1.5
+    },
+    "resetRestoresInitialRoots": true,
+    "customRepeatedRootTarget": [2, 2],
+    "negativeDiscriminantReturnsNoRealRoots": true,
+    "wrongQuickAnswerRejected": "C",
+    "correctQuickAnswerAccepted": "B",
+    "explanationToggle": true,
+    "tabStateChange": true
+  }
+}

@@ -1435,6 +1435,37 @@ describe("lesson pages", () => {
     expect(html).toContain('data-remainder="0"');
   });
 
+  it("renders the dedicated zeros-and-coefficients target for lesson 10050", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-9/class-9-polynomials-relationship-between-zeros-and-coefficients",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0724"');
+    expect(html).toContain(
+      "dedicated-vieta-draggable-roots-coefficient-engine",
+    );
+    expect(html).toContain('data-alpha="1"');
+    expect(html).toContain('data-beta="3"');
+    expect(html).toContain('data-b="-4"');
+    expect(html).toContain('data-c="3"');
+    expect(html).toContain('data-sum="4"');
+    expect(html).toContain('data-product="3"');
+    expect(html).toContain('data-target-roots="2,3"');
+    expect(html).toContain('data-quick="B"');
+    expect(html).toContain('data-quick-correct="true"');
+    expect(html).toContain('aria-label="Interactive roots graph"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
