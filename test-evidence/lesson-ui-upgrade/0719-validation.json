@@ -1,0 +1,43 @@
+{
+  "mockup": "0719",
+  "lessonId": 10045,
+  "route": "/lessons/school/class-9/class-9-real-numbers-nth-roots-and-radical-meaning",
+  "surface": "NthRootsTargetLesson10045",
+  "objectModel": "dedicated-power-root-domain-and-matching-engine",
+  "targetViewport": { "width": 958, "height": 1641 },
+  "desktop": {
+    "consoleWarningsOrErrors": 0,
+    "sections": {
+      "hero": { "x": 208, "y": 90, "width": 740, "height": 143 },
+      "tabs": { "x": 208, "y": 246, "width": 740, "height": 42 },
+      "machine": { "x": 221, "y": 302, "width": 714, "height": 705 },
+      "lower": { "x": 221, "y": 1019, "width": 714, "height": 205 },
+      "challenge": { "x": 221, "y": 1236, "width": 714, "height": 255 },
+      "navigation": { "x": 208, "y": 1505, "width": 740, "height": 62 }
+    }
+  },
+  "mobile": {
+    "width": 390,
+    "documentWidth": 375,
+    "pageWidth": 359,
+    "pageLevelHorizontalOverflow": false,
+    "consoleWarningsOrErrors": 0,
+    "flowCards": 3,
+    "lowerCards": 2,
+    "matchingRows": 4
+  },
+  "interactions": {
+    "initial": { "base": -8, "index": 3, "power": -512, "root": -2 },
+    "negativeEven": {
+      "base": -8,
+      "index": 4,
+      "power": 4096,
+      "root": "no real root"
+    },
+    "positiveEven": { "base": 16, "index": 4, "power": 65536, "root": 2 },
+    "reset": { "base": -8, "index": 3, "power": -512, "root": -2 },
+    "challengeMismatchRejected": true,
+    "completeMatchingAndExplanationAccepted": true,
+    "tabs": true
+  }
+}
