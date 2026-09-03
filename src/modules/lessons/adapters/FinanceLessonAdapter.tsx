@@ -14,6 +14,7 @@ import DepreciationTargetLesson599 from "./finance/DepreciationTargetLesson599";
 import EffectiveInterestRateTargetLesson593 from "./finance/EffectiveInterestRateTargetLesson593";
 import FutureValueTargetLesson595 from "./finance/FutureValueTargetLesson595";
 import InflationTargetLesson600 from "./finance/InflationTargetLesson600";
+import InvestmentComparisonTargetLesson605 from "./finance/InvestmentComparisonTargetLesson605";
 import LoansEmiTargetLesson597 from "./finance/LoansEmiTargetLesson597";
 import PresentValueTargetLesson594 from "./finance/PresentValueTargetLesson594";
 import ProfitLossTargetLesson602 from "./finance/ProfitLossTargetLesson602";
@@ -186,6 +187,8 @@ export default function FinanceLessonAdapter(props: LessonAdapterProps) {
   if (props.lesson.id === 602) return <ProfitLossTargetLesson602 {...props} />;
   if (props.lesson.id === 603) return <BreakEvenTargetLesson603 {...props} />;
   if (props.lesson.id === 604) return <TaxDiscountTargetLesson604 {...props} />;
+  if (props.lesson.id === 605)
+    return <InvestmentComparisonTargetLesson605 {...props} />;
   if (mode === "simple-interest") {
     return (
       <AdapterFrame

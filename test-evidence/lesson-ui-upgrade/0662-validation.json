@@ -1,0 +1,119 @@
+{
+  "passed": true,
+  "checks": {
+    "initial": {
+      "capital": "20000",
+      "rateA": "6",
+      "rateB": "8",
+      "years": "5",
+      "fee": "1",
+      "finalA": "25452.78",
+      "finalB": "27946.33",
+      "points": "6",
+      "graded": "",
+      "actions": "0"
+    },
+    "changed": {
+      "capital": "30000",
+      "rateA": "5",
+      "rateB": "9",
+      "years": "4",
+      "fee": "0.5",
+      "finalA": "35741.34",
+      "finalB": "41506.83",
+      "points": "5",
+      "graded": "",
+      "actions": "5"
+    },
+    "risk": "High",
+    "formula": true,
+    "wrong": {
+      "capital": "30000",
+      "rateA": "5",
+      "rateB": "9",
+      "years": "4",
+      "fee": "0.5",
+      "finalA": "35741.34",
+      "finalB": "41506.83",
+      "points": "5",
+      "graded": "false",
+      "actions": "9"
+    },
+    "correct": {
+      "capital": "30000",
+      "rateA": "5",
+      "rateB": "9",
+      "years": "4",
+      "fee": "0.5",
+      "finalA": "35741.34",
+      "finalB": "41506.83",
+      "points": "5",
+      "graded": "true",
+      "actions": "11"
+    },
+    "solution": true,
+    "reset": {
+      "capital": "20000",
+      "rateA": "6",
+      "rateB": "8",
+      "years": "5",
+      "fee": "1",
+      "finalA": "25452.78",
+      "finalB": "27946.33",
+      "points": "6",
+      "graded": "",
+      "actions": "1"
+    }
+  },
+  "expectedChanged": {
+    "a": "35741.34",
+    "b": "41506.83"
+  },
+  "metrics": {
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "overflow": false,
+    "hero": {
+      "top": 97,
+      "height": 125,
+      "bottom": 222
+    },
+    "tabs": {
+      "top": 232,
+      "height": 39,
+      "bottom": 271
+    },
+    "sequence": {
+      "top": 281,
+      "height": 102,
+      "bottom": 383
+    },
+    "lab": {
+      "top": 399,
+      "height": 615,
+      "bottom": 1014
+    },
+    "theory": {
+      "top": 1024,
+      "height": 205,
+      "bottom": 1229
+    },
+    "challenge": {
+      "top": 1239,
+      "height": 116,
+      "bottom": 1355
+    },
+    "adjacent": {
+      "top": 1365,
+      "height": 53,
+      "bottom": 1418
+    }
+  },
+  "mobileMetrics": {
+    "width": 390,
+    "overflow": false
+  },
+  "logs": []
+}
