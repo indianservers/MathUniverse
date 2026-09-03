@@ -2037,6 +2037,38 @@ describe("lesson pages", () => {
     expect(html).toContain('aria-label="Interactive RHS triangle DEF"');
   });
 
+  it("renders the dedicated equal-sides-and-angles target for lesson 10071", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-9/class-9-triangle-proofs-equal-sides-and-equal-angles",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0745"');
+    expect(html).toContain(
+      "dedicated-constrained-apex-isosceles-opposite-parts-engine",
+    );
+    expect(html).toContain('data-apex="0.00,2.43"');
+    expect(html).toContain('data-sides="6.72,6.72,7.24"');
+    expect(html).toContain('data-angles="44.7,67.6,67.6"');
+    expect(html).toContain('data-side-lock="1"');
+    expect(html).toContain('data-angle-lock="1"');
+    expect(html).toContain('data-options="1,1,1,1"');
+    expect(html).toContain('data-equal="true"');
+    expect(html).toContain('data-choice="0,0,1,0"');
+    expect(html).toContain(
+      'aria-label="Draggable equal sides and angles triangle"',
+    );
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

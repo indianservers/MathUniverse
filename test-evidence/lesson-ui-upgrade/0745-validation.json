@@ -1,0 +1,44 @@
+{
+  "mockup": "0745",
+  "lessonId": 10071,
+  "route": "/lessons/school/class-9/class-9-triangle-proofs-equal-sides-and-equal-angles",
+  "objectModel": "dedicated-constrained-apex-isosceles-opposite-parts-engine",
+  "desktop": {
+    "viewport": [899, 1762],
+    "hero": [91, 209],
+    "tabs": [221, 263],
+    "lab": [275, 779],
+    "currentTruth": [791, 844],
+    "theory": [856, 1146],
+    "challenge": [1158, 1472],
+    "rule": [1484, 1541],
+    "navigation": [1553, 1600],
+    "documentScrollWidth": 884,
+    "consoleErrorsOrWarnings": 0
+  },
+  "mobile": {
+    "viewport": [390, 844],
+    "documentScrollWidth": 390,
+    "pageWidth": 366.4,
+    "draggableHandles": 2,
+    "lockChoices": 8,
+    "consoleErrorsOrWarnings": 0
+  },
+  "interactions": {
+    "initialApex": [0, 2.43],
+    "initialSides": [6.72, 6.72, 7.24],
+    "initialAngles": [44.7, 67.6, 67.6],
+    "lockedMoveApex": [0, 2.48],
+    "lockedEqualityPreserved": true,
+    "unlockedMoveApex": [0.05, 2.48],
+    "unlockedEqualityBroken": true,
+    "alternateSideLock": 2,
+    "tickLayerHidden": true,
+    "resetRestoresTarget": true,
+    "challengeApexMoved": true,
+    "explanationLength": 39,
+    "ruleSaved": true,
+    "formulaTabSelected": true
+  },
+  "status": "complete"
+}

@@ -1,0 +1,451 @@
+.esa10071-page {
+  position: relative;
+  top: -24px;
+  left: -4px;
+  width: min(687px, calc(100vw - 212px));
+  margin: 0 auto;
+  color: #263550;
+  font:
+    9px/1.5 Inter,
+    Arial,
+    sans-serif;
+  letter-spacing: 0;
+}
+.esa10071-page * {
+  box-sizing: border-box;
+}
+.esa10071-page h1,
+.esa10071-page h2,
+.esa10071-page h3,
+.esa10071-page p {
+  margin: 0;
+}
+.esa10071-page button,
+.esa10071-page input,
+.esa10071-page textarea {
+  font: inherit;
+}
+.esa10071-page button {
+  cursor: pointer;
+}
+.esa10071-page a {
+  color: inherit;
+  text-decoration: none;
+}
+.esa10071-page svg {
+  width: 14px;
+  height: 14px;
+}
+.esa10071-hero {
+  height: 118px;
+  padding: 14px;
+  border: 1px solid #dce5ea;
+  border-radius: 12px;
+  background: #fff;
+}
+.esa10071-hero small,
+.esa10071-page h2,
+.esa10071-page h3 {
+  color: #6730c5;
+  font-weight: 900;
+  letter-spacing: 0.35px;
+}
+.esa10071-hero h1 {
+  margin: 8px 0 4px;
+  font-size: 23px;
+}
+.esa10071-hero > div {
+  display: flex;
+  gap: 7px;
+  margin-top: 12px;
+}
+.esa10071-hero > div span {
+  padding: 4px 9px;
+  border-radius: 12px;
+  background: #eef2f6;
+  font-weight: 800;
+}
+.esa10071-tabs {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  height: 42px;
+  margin-top: 12px;
+  border: 1px solid #dce5ea;
+  border-radius: 8px;
+  background: #fff;
+}
+.esa10071-tabs button {
+  border: 0;
+  background: none;
+}
+.esa10071-tabs .active {
+  border-bottom: 3px solid #7437d9;
+  color: #6630c8;
+  font-weight: 900;
+}
+.esa10071-page main {
+  margin-top: 12px;
+}
+.esa10071-lab {
+  display: grid;
+  grid-template-columns: 1fr 225px;
+  border: 1px solid #dce5ea;
+  border-radius: 9px;
+  background: #fff;
+}
+.esa10071-canvas {
+  padding: 12px;
+  border-right: 1px solid #dce5ea;
+}
+.esa10071-canvas header h2 {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.esa10071-diagram {
+  width: 100% !important;
+  height: 370px !important;
+}
+.esa10071-diagram .shape {
+  fill: #f5f0ff55;
+  stroke: #7135d4;
+  stroke-width: 3;
+}
+.esa10071-diagram circle {
+  fill: #193f69;
+}
+.esa10071-diagram .handle {
+  fill: #813fde;
+  cursor: move;
+}
+.esa10071-diagram .arc {
+  fill: none;
+  stroke: #187bc4;
+  stroke-width: 2;
+}
+.esa10071-diagram .arc.a {
+  stroke: #6f32cf;
+}
+.esa10071-diagram .tick {
+  stroke: #7637d7;
+  stroke-width: 2;
+}
+.esa10071-diagram text {
+  font-size: 14px;
+  font-weight: 900;
+  fill: #172d49;
+}
+.esa10071-diagram .ma {
+  fill: #6130c0;
+}
+.esa10071-diagram .mb,
+.esa10071-diagram .mc {
+  fill: #116fb4;
+}
+.esa10071-diagram .length {
+  fill: #6a31c9;
+  font-size: 10px;
+}
+.esa10071-diagram .drag {
+  fill: #7436d4;
+  font-size: 11px;
+}
+.esa10071-canvas > strong {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: max-content;
+  margin: -16px auto 12px;
+  padding: 8px 14px;
+  border-radius: 7px;
+  background: #eaf8ef;
+  color: #197c47;
+  font: 16px serif;
+}
+.esa10071-canvas > strong.pending {
+  background: #fff7e5;
+  color: #8b6410;
+}
+.esa10071-canvas > footer {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding-top: 10px;
+  border-top: 1px solid #dce5ea;
+}
+.esa10071-canvas > footer h3 {
+  margin-right: auto;
+}
+.esa10071-canvas > footer span {
+  padding: 6px;
+  border-radius: 5px;
+  background: #f5f7f9;
+}
+.esa10071-canvas > footer span.angle {
+  background: #f2edff;
+  color: #6330c1;
+}
+.esa10071-controls {
+  padding: 12px;
+}
+.esa10071-controls > section {
+  padding: 12px 0;
+  border-bottom: 1px solid #dce5ea;
+}
+.esa10071-controls section > p {
+  margin: 6px 0;
+}
+.esa10071-segmented {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.esa10071-segmented button {
+  padding: 7px 3px;
+  border: 1px solid #dce5ea;
+  background: #fff;
+}
+.esa10071-segmented button.active {
+  background: #7439d9;
+  color: #fff;
+}
+.esa10071-controls section:nth-of-type(3) label {
+  display: block;
+  margin: 9px 0;
+}
+.esa10071-controls section:nth-of-type(3) input {
+  accent-color: #7438d5;
+}
+.esa10071-controls > button {
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+  width: 100%;
+  margin-top: 14px;
+  padding: 8px;
+  border: 1px solid #dce5ea;
+  border-radius: 6px;
+  background: #fff;
+}
+.esa10071-now {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px solid #9bd5b1;
+  border-radius: 8px;
+  background: #effaf3;
+  color: #197b46;
+}
+.esa10071-now > span {
+  margin-left: auto;
+  padding: 4px 8px;
+  border: 1px solid #d2baf3;
+  border-radius: 12px;
+  color: #6730c7;
+}
+.esa10071-theory {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr 1.15fr;
+  gap: 10px;
+  margin-top: 12px;
+}
+.esa10071-theory article {
+  height: 290px;
+  padding: 12px;
+  border: 1px solid #dce5ea;
+  border-radius: 8px;
+  background: #fff;
+}
+.esa10071-theory h2 {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.esa10071-theory p {
+  margin: 12px 0;
+}
+.esa10071-theory article > a {
+  display: block;
+  margin-top: 62px;
+  color: #6b31ce;
+}
+.esa10071-mini {
+  display: block;
+  width: 175px !important;
+  height: 115px !important;
+  margin: auto;
+}
+.esa10071-mini path:first-child {
+  fill: #f4efff55;
+  stroke: #7134d0;
+  stroke-width: 2;
+}
+.esa10071-mini .arc {
+  fill: none;
+  stroke: #169553;
+  stroke-width: 2;
+}
+.esa10071-mini .tick {
+  stroke: #7136d2;
+  stroke-width: 2;
+}
+.esa10071-mini text {
+  font-size: 10px;
+  fill: #17304e;
+}
+.esa10071-theory .warning {
+  border-color: #edc277;
+  background: #fffdf7;
+}
+.esa10071-theory .warning h2 {
+  color: #ad4a17;
+}
+.esa10071-theory .warning > strong {
+  display: block;
+  color: #168348;
+}
+.esa10071-theory .warning > strong.bad {
+  color: #d62c38;
+}
+.esa10071-theory .warning .esa10071-mini {
+  height: 75px !important;
+}
+.esa10071-challenge {
+  display: grid;
+  grid-template-columns: 220px 1fr 220px;
+  gap: 10px;
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px solid #d5c0f1;
+  border-radius: 8px;
+  background: #fcfaff;
+}
+.esa10071-challenge > header {
+  grid-column: 1/-1;
+}
+.esa10071-challenge > div .esa10071-diagram {
+  height: 230px !important;
+}
+.esa10071-challenge > section,
+.esa10071-challenge > aside {
+  padding: 10px;
+  border: 1px solid #dce5ea;
+  border-radius: 7px;
+  background: #fff;
+}
+.esa10071-challenge section > p {
+  margin: 8px 0;
+}
+.esa10071-challenge section > label {
+  display: block;
+  margin: 8px 0;
+}
+.esa10071-challenge textarea {
+  width: 100%;
+  height: 115px;
+  margin-top: 8px;
+  padding: 8px;
+  border: 1px solid #dce5ea;
+  border-radius: 6px;
+  resize: vertical;
+}
+.esa10071-challenge aside > p {
+  color: #7a8793;
+}
+.esa10071-challenge aside > footer {
+  margin-top: 14px;
+  padding: 10px;
+  border: 1px solid #efc37e;
+  border-radius: 6px;
+  background: #fff9ee;
+  color: #a14e20;
+}
+.esa10071-rule {
+  position: relative;
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px solid #a9d7ef;
+  border-radius: 8px;
+  background: #f2faff;
+}
+.esa10071-rule p {
+  margin-top: 5px;
+}
+.esa10071-rule button {
+  position: absolute;
+  right: 12px;
+  top: 17px;
+  display: flex;
+  gap: 6px;
+  padding: 7px 12px;
+  border: 1px solid #dce5ea;
+  border-radius: 6px;
+  background: #fff;
+}
+.esa10071-rule button.saved {
+  background: #eaf8ef;
+  color: #177c46;
+}
+.esa10071-adjacent {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+.esa10071-adjacent a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 49%;
+  padding: 9px;
+  border: 1px solid #dce5ea;
+  border-radius: 7px;
+  background: #fff;
+}
+.esa10071-adjacent a:last-child {
+  justify-content: flex-end;
+  text-align: right;
+}
+@media (max-width: 760px) {
+  .esa10071-page {
+    top: 0;
+    left: 0;
+    width: calc(100vw - 24px);
+    font-size: 10px;
+  }
+  .esa10071-hero {
+    height: auto;
+    min-height: 160px;
+  }
+  .esa10071-lab,
+  .esa10071-theory,
+  .esa10071-challenge {
+    grid-template-columns: 1fr;
+  }
+  .esa10071-canvas {
+    border-right: 0;
+    border-bottom: 1px solid #dce5ea;
+  }
+  .esa10071-canvas > footer {
+    flex-wrap: wrap;
+  }
+  .esa10071-canvas > footer h3 {
+    width: 100%;
+  }
+  .esa10071-theory article {
+    height: auto;
+    min-height: 270px;
+  }
+  .esa10071-challenge > header {
+    grid-column: 1;
+  }
+  .esa10071-rule {
+    padding-right: 100px;
+  }
+  .esa10071-adjacent {
+    gap: 6px;
+  }
+  .esa10071-adjacent a {
+    width: 50%;
+  }
+}
