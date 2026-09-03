@@ -1,0 +1,126 @@
+{
+  "passed": true,
+  "checks": {
+    "initial": {
+      "kind": "logistic",
+      "p0": "1000",
+      "capacity": "10000",
+      "rate": "0.4400",
+      "inflection": "4.9937",
+      "p5": "5006.94",
+      "p10": "9004.98",
+      "rows": "11",
+      "actions": "0"
+    },
+    "parameters": {
+      "kind": "logistic",
+      "p0": "2000",
+      "capacity": "20000",
+      "rate": "0.5000",
+      "inflection": "4.3944",
+      "p5": "11502.42",
+      "p10": "18856.51",
+      "rows": "11",
+      "actions": "4"
+    },
+    "inflection": {
+      "kind": "logistic",
+      "p0": "2000",
+      "capacity": "20000",
+      "rate": "0.2197",
+      "inflection": "10.0000",
+      "p5": "5000.00",
+      "p10": "10000.00",
+      "rows": "11",
+      "actions": "5"
+    },
+    "growth": {
+      "kind": "growth",
+      "p0": "2000",
+      "capacity": "20000",
+      "rate": "0.2197",
+      "inflection": "10.0000",
+      "p5": "6000.00",
+      "p10": "18000.00",
+      "rows": "11",
+      "actions": "6"
+    },
+    "decay": {
+      "kind": "decay",
+      "p0": "2000",
+      "capacity": "20000",
+      "rate": "0.2197",
+      "inflection": "10.0000",
+      "p5": "666.67",
+      "p10": "222.22",
+      "rows": "11",
+      "actions": "7"
+    },
+    "logistic": {
+      "kind": "logistic",
+      "p0": "2000",
+      "capacity": "20000",
+      "rate": "0.2197",
+      "inflection": "10.0000",
+      "p5": "5000.00",
+      "p10": "10000.00",
+      "rows": "11",
+      "actions": "8"
+    },
+    "solution": true,
+    "formula": true,
+    "reset": {
+      "kind": "logistic",
+      "p0": "1000",
+      "capacity": "10000",
+      "rate": "0.4400",
+      "inflection": "4.9937",
+      "p5": "5006.94",
+      "p10": "9004.98",
+      "rows": "11",
+      "actions": "1"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1000,
+      "height": 1573
+    },
+    "overflow": false,
+    "hero": {
+      "top": 97,
+      "height": 151,
+      "bottom": 248
+    },
+    "tabs": {
+      "top": 206,
+      "height": 42,
+      "bottom": 248
+    },
+    "lab": {
+      "top": 258,
+      "height": 678,
+      "bottom": 936
+    },
+    "theory": {
+      "top": 946,
+      "height": 201,
+      "bottom": 1147
+    },
+    "worked": {
+      "top": 1157,
+      "height": 228,
+      "bottom": 1385
+    },
+    "adjacent": {
+      "top": 1395,
+      "height": 59,
+      "bottom": 1454
+    }
+  },
+  "mobileMetrics": {
+    "width": 390,
+    "overflow": false
+  },
+  "logs": []
+}

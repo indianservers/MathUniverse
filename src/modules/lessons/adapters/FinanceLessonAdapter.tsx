@@ -12,6 +12,7 @@ import CompoundInterestTargetLesson592 from "./finance/CompoundInterestTargetLes
 import CurrencyConversionTargetLesson601 from "./finance/CurrencyConversionTargetLesson601";
 import DepreciationTargetLesson599 from "./finance/DepreciationTargetLesson599";
 import EffectiveInterestRateTargetLesson593 from "./finance/EffectiveInterestRateTargetLesson593";
+import ExponentialLogisticTargetLesson609 from "./finance/ExponentialLogisticTargetLesson609";
 import FutureValueTargetLesson595 from "./finance/FutureValueTargetLesson595";
 import InflationTargetLesson600 from "./finance/InflationTargetLesson600";
 import InvestmentComparisonTargetLesson605 from "./finance/InvestmentComparisonTargetLesson605";
@@ -198,6 +199,8 @@ export default function FinanceLessonAdapter(props: LessonAdapterProps) {
     return <LinearModelsTargetLesson607 {...props} />;
   if (props.lesson.id === 608)
     return <QuadraticModelsTargetLesson608 {...props} />;
+  if (props.lesson.id === 609)
+    return <ExponentialLogisticTargetLesson609 {...props} />;
   if (mode === "simple-interest") {
     return (
       <AdapterFrame
