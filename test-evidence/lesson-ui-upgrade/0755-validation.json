@@ -1,0 +1,47 @@
+{
+  "mockup": "0755",
+  "lessonId": 10081,
+  "route": "/lessons/school/class-9/class-9-mensuration-coordinate-area-versus-heron-s-formula",
+  "objectModel": "dedicated-coordinate-shoelace-heron-reconciliation-engine",
+  "default": {
+    "a": [0, 0],
+    "b": [4, 0],
+    "c": [0, 3],
+    "sides": [4, 5, 3],
+    "semiperimeter": 6,
+    "coordinateArea": 6,
+    "heronArea": 6,
+    "match": true
+  },
+  "interactions": {
+    "snappedC": [1, 3],
+    "snappedSides": [4, 4.2426, 3.1623],
+    "snappedArea": 6,
+    "freeC": [1, 3.2],
+    "freeArea": 6.4,
+    "undoC": [1, 3],
+    "mismatchedTarget": 7,
+    "resetRestoredDefaults": true
+  },
+  "desktop": {
+    "viewport": [970, 1653],
+    "hero": [89, 221],
+    "tabs": [240, 283],
+    "lab": [293, 736],
+    "methods": [746, 1034],
+    "comparison": [1044, 1187],
+    "cards": [1197, 1432],
+    "challenge": [1442, 1547],
+    "navigation": [1571, 1639]
+  },
+  "mobile": {
+    "viewport": [390, 844],
+    "documentWidth": 375,
+    "pageWidth": 374.4,
+    "draggableHandles": 1,
+    "methodPanels": 2,
+    "historyAndSnapControls": 3,
+    "horizontalOverflow": false
+  },
+  "console": { "warnings": 0, "errors": 0 }
+}

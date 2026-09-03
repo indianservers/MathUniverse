@@ -2336,6 +2336,34 @@ describe("lesson pages", () => {
     expect(html).toContain('aria-label="Draggable semi-perimeter triangle"');
   });
 
+  it("renders the dedicated coordinate-versus-Heron target for lesson 10081", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-9/class-9-mensuration-coordinate-area-versus-heron-s-formula",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0755"');
+    expect(html).toContain(
+      "dedicated-coordinate-shoelace-heron-reconciliation-engine",
+    );
+    expect(html).toContain('data-c="0,3"');
+    expect(html).toContain('data-sides="4,5,3"');
+    expect(html).toContain('data-semiperimeter="6"');
+    expect(html).toContain('data-coordinate-area="6"');
+    expect(html).toContain('data-heron-area="6"');
+    expect(html).toContain('data-match="true"');
+    expect(html).toContain('aria-label="Draggable coordinate triangle"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
