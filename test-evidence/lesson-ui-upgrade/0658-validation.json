@@ -1,0 +1,168 @@
+{
+  "passed": true,
+  "checks": {
+    "initial": {
+      "source": "USD",
+      "target": "INR",
+      "rate": "83.420000",
+      "amount": "120",
+      "result": "10010.40",
+      "fee": "0",
+      "decimals": "2",
+      "graded": "true",
+      "challenge": "0",
+      "actions": "0"
+    },
+    "eurJpy": {
+      "source": "EUR",
+      "target": "JPY",
+      "rate": "164.700000",
+      "amount": "250",
+      "result": "41175.00",
+      "fee": "0",
+      "decimals": "2",
+      "graded": "true",
+      "challenge": "0",
+      "actions": "3"
+    },
+    "swapped": {
+      "source": "JPY",
+      "target": "EUR",
+      "rate": "0.006072",
+      "amount": "250",
+      "result": "1.52",
+      "fee": "0",
+      "decimals": "2",
+      "graded": "",
+      "challenge": "0",
+      "actions": "4"
+    },
+    "fee": {
+      "source": "JPY",
+      "target": "EUR",
+      "rate": "0.006072",
+      "amount": "250",
+      "result": "1.49",
+      "fee": "2",
+      "decimals": "2",
+      "graded": "",
+      "challenge": "0",
+      "actions": "6"
+    },
+    "rounding": {
+      "source": "JPY",
+      "target": "EUR",
+      "rate": "0.006072",
+      "amount": "250",
+      "result": "1.49",
+      "fee": "2",
+      "decimals": "4",
+      "graded": "",
+      "challenge": "0",
+      "actions": "7"
+    },
+    "steps": true,
+    "formula": true,
+    "wrong": {
+      "source": "JPY",
+      "target": "EUR",
+      "rate": "0.006072",
+      "amount": "250",
+      "result": "1.49",
+      "fee": "2",
+      "decimals": "4",
+      "graded": "false",
+      "challenge": "0",
+      "actions": "11"
+    },
+    "correct": {
+      "source": "JPY",
+      "target": "EUR",
+      "rate": "0.006072",
+      "amount": "250",
+      "result": "1.49",
+      "fee": "2",
+      "decimals": "4",
+      "graded": "true",
+      "challenge": "0",
+      "actions": "13"
+    },
+    "solution": true,
+    "newChallenge": {
+      "source": "JPY",
+      "target": "EUR",
+      "rate": "0.006072",
+      "amount": "250",
+      "result": "1.49",
+      "fee": "2",
+      "decimals": "4",
+      "graded": "",
+      "challenge": "1",
+      "actions": "15"
+    },
+    "reset": {
+      "source": "USD",
+      "target": "INR",
+      "rate": "83.420000",
+      "amount": "120",
+      "result": "10010.40",
+      "fee": "0",
+      "decimals": "2",
+      "graded": "true",
+      "challenge": "0",
+      "actions": "1"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 935,
+      "height": 1683
+    },
+    "overflow": false,
+    "hero": {
+      "top": 97,
+      "height": 123,
+      "bottom": 220
+    },
+    "tabs": {
+      "top": 222,
+      "height": 40,
+      "bottom": 262
+    },
+    "lab": {
+      "top": 274,
+      "height": 379,
+      "bottom": 653
+    },
+    "units": {
+      "top": 665,
+      "height": 151,
+      "bottom": 816
+    },
+    "theory": {
+      "top": 828,
+      "height": 247,
+      "bottom": 1075
+    },
+    "misconception": {
+      "top": 1087,
+      "height": 88,
+      "bottom": 1175
+    },
+    "challenge": {
+      "top": 1187,
+      "height": 291,
+      "bottom": 1478
+    },
+    "adjacent": {
+      "top": 1490,
+      "height": 61,
+      "bottom": 1551
+    }
+  },
+  "mobileMetrics": {
+    "width": 390,
+    "overflow": false
+  },
+  "logs": []
+}
