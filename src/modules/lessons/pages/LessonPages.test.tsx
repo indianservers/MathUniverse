@@ -221,6 +221,31 @@ describe("lesson pages", () => {
     );
   });
 
+  it("renders the dedicated estimation and rounding target for lesson 10003", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-6/class-6-numbers-and-arithmetic-estimation-and-rounding-lab",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0677"');
+    expect(html).toContain(
+      "dedicated-draggable-number-line-rounding-and-live-error-model",
+    );
+    expect(html).toContain('data-number="53"');
+    expect(html).toContain('data-rounded="50"');
+    expect(html).toContain('data-estimate-total="130"');
+    expect(html).toContain('data-actual-total="128"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

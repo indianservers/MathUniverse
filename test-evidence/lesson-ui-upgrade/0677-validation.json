@@ -1,0 +1,172 @@
+{
+  "passed": true,
+  "checks": {
+    "initial": {
+      "number": "53",
+      "step": "10",
+      "rounded": "50",
+      "error": "3",
+      "items": "53,27,48",
+      "estimate": "130",
+      "actual": "128",
+      "totalError": "2",
+      "graded": "",
+      "actions": "0"
+    },
+    "quick": {
+      "number": "67",
+      "step": "10",
+      "rounded": "70",
+      "error": "3",
+      "items": "53,27,48",
+      "estimate": "130",
+      "actual": "128",
+      "totalError": "2",
+      "graded": "",
+      "actions": "1"
+    },
+    "place": {
+      "number": "67",
+      "step": "100",
+      "rounded": "100",
+      "error": "33",
+      "items": "53,27,48",
+      "estimate": "100",
+      "actual": "128",
+      "totalError": "28",
+      "graded": "",
+      "actions": "2"
+    },
+    "drag": {
+      "number": "68",
+      "step": "10",
+      "rounded": "70",
+      "error": "2",
+      "items": "53,27,48",
+      "estimate": "130",
+      "actual": "128",
+      "totalError": "2",
+      "graded": "",
+      "actions": "8"
+    },
+    "add": {
+      "number": "53",
+      "step": "10",
+      "rounded": "50",
+      "error": "3",
+      "items": "53,27,48,53",
+      "estimate": "180",
+      "actual": "181",
+      "totalError": "1",
+      "graded": "",
+      "actions": "10"
+    },
+    "remove": {
+      "number": "53",
+      "step": "10",
+      "rounded": "50",
+      "error": "3",
+      "items": "27,48,53",
+      "estimate": "130",
+      "actual": "128",
+      "totalError": "2",
+      "graded": "",
+      "actions": "11"
+    },
+    "clear": {
+      "number": "53",
+      "step": "10",
+      "rounded": "50",
+      "error": "3",
+      "items": "",
+      "estimate": "0",
+      "actual": "0",
+      "totalError": "0",
+      "graded": "",
+      "actions": "12"
+    },
+    "reset": {
+      "number": "53",
+      "step": "10",
+      "rounded": "50",
+      "error": "3",
+      "items": "53,27,48",
+      "estimate": "130",
+      "actual": "128",
+      "totalError": "2",
+      "graded": "",
+      "actions": "13"
+    },
+    "wrong": {
+      "number": "53",
+      "step": "10",
+      "rounded": "50",
+      "error": "3",
+      "items": "53,27,48",
+      "estimate": "130",
+      "actual": "128",
+      "totalError": "2",
+      "graded": "false",
+      "actions": "14"
+    },
+    "correct": {
+      "number": "53",
+      "step": "10",
+      "rounded": "50",
+      "error": "3",
+      "items": "53,27,48",
+      "estimate": "130",
+      "actual": "128",
+      "totalError": "2",
+      "graded": "true",
+      "actions": "15"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 958,
+      "height": 1753
+    },
+    "overflow": false,
+    "hero": {
+      "top": 118,
+      "height": 116,
+      "bottom": 234
+    },
+    "tabs": {
+      "top": 248,
+      "height": 39,
+      "bottom": 287
+    },
+    "lab": {
+      "top": 297,
+      "height": 535,
+      "bottom": 832
+    },
+    "totals": {
+      "top": 842,
+      "height": 302,
+      "bottom": 1144
+    },
+    "theory": {
+      "top": 1154,
+      "height": 215,
+      "bottom": 1369
+    },
+    "challenge": {
+      "top": 1379,
+      "height": 147,
+      "bottom": 1526
+    },
+    "adjacent": {
+      "top": 1546,
+      "height": 53,
+      "bottom": 1599
+    }
+  },
+  "mobileMetrics": {
+    "width": 390,
+    "overflow": false
+  },
+  "logs": []
+}

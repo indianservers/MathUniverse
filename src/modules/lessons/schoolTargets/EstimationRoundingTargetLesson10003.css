@@ -1,0 +1,561 @@
+.er10003-page {
+  position: relative;
+  top: 11px;
+  width: 100%;
+  margin-bottom: 11px;
+  color: #142044;
+  font:
+    8px/1.45 Inter,
+    Arial,
+    sans-serif;
+  letter-spacing: 0;
+}
+.er10003-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.er10003-page h1,
+.er10003-page h2,
+.er10003-page h3,
+.er10003-page p,
+.er10003-page dl {
+  margin: 0;
+}
+.er10003-page button,
+.er10003-page input,
+.er10003-page select {
+  font: inherit;
+  color: inherit;
+}
+.er10003-hero,
+.er10003-lab,
+.er10003-totals,
+.er10003-theory > article,
+.er10003-challenge > *,
+.er10003-adjacent {
+  border: 1px solid #dce5ee;
+  border-radius: 9px;
+  background: #fff;
+}
+.er10003-hero {
+  height: 116px;
+  padding: 18px;
+  display: grid;
+  grid-template-columns: 1fr 215px;
+  gap: 20px;
+}
+.er10003-hero h1 {
+  font-size: 22px;
+}
+.er10003-hero dl {
+  display: flex;
+  margin-top: 10px;
+  gap: 10px;
+}
+.er10003-hero dl span {
+  font-weight: 700;
+}
+.er10003-hero > div > p {
+  margin-top: 11px;
+}
+.er10003-hero aside {
+  padding: 14px;
+  border-radius: 8px;
+  background: #f3ecfc;
+  text-align: center;
+}
+.er10003-hero aside strong {
+  color: #7237cf;
+  font-size: 10px;
+}
+.er10003-hero aside p {
+  margin-top: 9px;
+}
+.er10003-tabs {
+  height: 39px;
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  border-bottom: 1px solid #dce5ee;
+}
+.er10003-tabs button {
+  border: 0;
+  background: transparent;
+  font-weight: 800;
+}
+.er10003-tabs button.active {
+  border-bottom: 2px solid #7133d2;
+  color: #7133d2;
+}
+.er10003-tabnote {
+  height: 24px;
+  padding: 6px 10px;
+  background: #f2ecfb;
+}
+.er10003-lab {
+  height: 535px;
+  margin-top: 10px;
+  padding: 12px;
+}
+.er10003-lab > ol {
+  height: 70px;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  list-style: none;
+}
+.er10003-lab > ol li {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  padding: 6px;
+}
+.er10003-lab > ol i {
+  grid-row: 1/3;
+  display: grid;
+  width: 20px;
+  height: 20px;
+  place-items: center;
+  border-radius: 50%;
+  background: #1688d5;
+  color: #fff;
+  font-style: normal;
+}
+.er10003-lab > ol li:nth-child(2) i {
+  background: #7135d4;
+}
+.er10003-lab > ol small {
+  grid-column: 2;
+}
+.er10003-lab > main {
+  height: 336px;
+  display: grid;
+  grid-template-columns: 164px 1fr;
+  gap: 12px;
+}
+.er10003-lab > main > aside section {
+  padding: 12px;
+  border: 1px solid #dce5ee;
+  border-radius: 7px;
+}
+.er10003-lab > main > aside section + section {
+  margin-top: 12px;
+}
+.er10003-lab > main > aside h2,
+.er10003-lab > main > article h2,
+.er10003-totals h2,
+.er10003-theory h2,
+.er10003-challenge h2 {
+  font-size: 10px;
+}
+.er10003-lab > main > aside label {
+  display: grid;
+  margin-top: 20px;
+  gap: 8px;
+}
+.er10003-lab select {
+  height: 31px;
+  border: 1px solid #dce5ee;
+  border-radius: 6px;
+  background: #fff;
+}
+.er10003-lab > main > aside p {
+  margin-top: 10px;
+}
+.er10003-lab > main > aside section:nth-child(2) div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 12px;
+  gap: 7px;
+}
+.er10003-lab > main > aside section:nth-child(2) button {
+  height: 31px;
+  border: 1px solid #dce5ee;
+  border-radius: 6px;
+  background: #fff;
+}
+.er10003-lab > main > article {
+  padding: 12px;
+  border: 1px solid #dce5ee;
+  border-radius: 7px;
+}
+.er10003-lab > main > article > header {
+  display: flex;
+  justify-content: space-between;
+}
+.er10003-lab > main > article header p {
+  margin-top: 6px;
+}
+.er10003-lab > main > article header button {
+  height: 31px;
+  padding: 0 12px;
+  border: 1px solid #dce5ee;
+  border-radius: 7px;
+  background: #fff;
+}
+.er10003-lab > main > article header svg {
+  width: 12px;
+  vertical-align: middle;
+}
+.er10003-lab svg {
+  width: 100%;
+  height: 270px;
+  margin-top: 8px;
+  border: 1px solid #dce5ee;
+  border-radius: 7px;
+  touch-action: none;
+}
+.er10003-lab svg text {
+  fill: #142044;
+  font-size: 11px;
+  font-weight: 700;
+}
+.er10003-lab svg .axis {
+  stroke: #485877;
+  stroke-width: 2;
+}
+.er10003-lab svg .tick {
+  stroke: #6e7d96;
+}
+.er10003-lab svg .landmark {
+  fill: #218fe1;
+}
+.er10003-lab svg .mid {
+  stroke: #9c50e4;
+  stroke-width: 2;
+}
+.er10003-lab svg .guide {
+  stroke: #8b43dc;
+  stroke-dasharray: 5 4;
+}
+.er10003-lab svg .number {
+  fill: #8546dc;
+  cursor: ew-resize;
+}
+.er10003-lab svg .bubble {
+  fill: #8546dc;
+  font-size: 16px;
+}
+.er10003-lab > footer {
+  height: 68px;
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid #dce5ee;
+  border-radius: 7px;
+}
+.er10003-lab > footer span {
+  display: grid;
+  place-items: center;
+  border-right: 1px solid #dce5ee;
+}
+.er10003-lab > footer small {
+  align-self: end;
+}
+.er10003-lab > footer strong {
+  align-self: start;
+  font-size: 19px;
+}
+.er10003-lab > footer .purple {
+  color: #7d3bd5;
+}
+.er10003-lab > footer .blue {
+  color: #1687d5;
+}
+.er10003-lab > footer .red {
+  color: #db2d45;
+}
+.er10003-totals {
+  height: 302px;
+  margin-top: 10px;
+  padding: 12px;
+}
+.er10003-totals > header {
+  display: flex;
+  justify-content: space-between;
+}
+.er10003-totals header p {
+  margin-top: 7px;
+}
+.er10003-totals header button {
+  height: 31px;
+  padding: 0 12px;
+  border: 1px solid #dce5ee;
+  border-radius: 7px;
+  background: #fff;
+}
+.er10003-totals header svg {
+  width: 12px;
+  vertical-align: middle;
+}
+.er10003-totals .chips {
+  height: 52px;
+  padding-top: 10px;
+}
+.er10003-totals .chips button {
+  height: 34px;
+  margin-right: 10px;
+  padding: 0 12px;
+  border: 1px solid #d4c0f2;
+  border-radius: 7px;
+  background: #fbf8ff;
+  color: #7339cd;
+}
+.er10003-totals .chips svg {
+  width: 12px;
+  vertical-align: middle;
+}
+.er10003-totals table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+.er10003-totals th,
+.er10003-totals td {
+  height: 37px;
+  border: 1px solid #dce5ee;
+}
+.er10003-totals td i {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  margin-right: 24px;
+  border-radius: 50%;
+  background: #7b38d4;
+}
+.er10003-totals td i.blue {
+  background: #1688d5;
+}
+.er10003-totals td i.green {
+  background: #3abb7d;
+}
+.er10003-totals td b,
+.er10003-totals tfoot {
+  color: #d82542;
+  font-size: 13px;
+}
+.er10003-totals tfoot td:nth-child(3),
+.er10003-totals tfoot td:nth-child(4) {
+  color: #7b37d2;
+  font-size: 13px;
+  font-weight: 900;
+}
+.er10003-theory {
+  height: 215px;
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 0.86fr;
+  gap: 12px;
+}
+.er10003-theory > article {
+  padding: 13px;
+}
+.er10003-theory h2 {
+  color: #087b96;
+}
+.er10003-theory article:nth-child(3) h2 {
+  color: #c4263e;
+}
+.er10003-theory p,
+.er10003-theory h3 {
+  margin-top: 12px;
+}
+.er10003-theory ul {
+  padding-left: 17px;
+}
+.er10003-theory li {
+  margin-top: 8px;
+}
+.er10003-theory output,
+.er10003-theory > article > strong {
+  display: block;
+  margin-top: 12px;
+  padding: 8px;
+  border: 1px solid #94bfef;
+  border-radius: 6px;
+  background: #eff8ff;
+  color: #1766b8;
+}
+.er10003-theory > article > strong {
+  width: 75px;
+  margin-inline: auto;
+  border-color: #b5e3cf;
+  background: #eaf9f1;
+  color: #07834a;
+  text-align: center;
+}
+.er10003-theory .mini-line {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 12px;
+}
+.er10003-challenge {
+  height: 147px;
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 1.55fr 0.9fr;
+  gap: 12px;
+}
+.er10003-challenge > * {
+  padding: 13px;
+}
+.er10003-challenge article > p,
+.er10003-challenge aside > p {
+  margin-top: 7px;
+}
+.er10003-challenge article > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr 110px;
+  margin-top: 10px;
+  gap: 14px;
+}
+.er10003-challenge label {
+  display: grid;
+  gap: 5px;
+}
+.er10003-challenge input {
+  height: 31px;
+  padding: 6px;
+  border: 1px solid #cbd8e7;
+  border-radius: 6px;
+}
+.er10003-challenge button {
+  align-self: end;
+  height: 31px;
+  border: 0;
+  border-radius: 6px;
+  background: #278ae4;
+  color: #fff;
+  font-weight: 900;
+}
+.er10003-challenge output {
+  display: block;
+  margin-top: 5px;
+  color: #087c46;
+}
+.er10003-challenge aside div {
+  margin-top: 12px;
+  text-align: center;
+}
+.er10003-adjacent {
+  height: 53px;
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+}
+.er10003-adjacent a {
+  display: grid;
+  padding: 10px 14px;
+  color: inherit;
+  text-decoration: none;
+}
+.er10003-adjacent label {
+  display: grid;
+  text-align: center;
+}
+.er10003-adjacent progress {
+  width: 130px;
+  margin: auto;
+  accent-color: #8a43da;
+}
+.er10003-adjacent a:last-child {
+  text-align: right;
+}
+.er10003-adjacent b {
+  color: #465574;
+  font-weight: 500;
+}
+body:has(.er10003-page) [data-testid="desktop-sidebar"] {
+  width: 190px !important;
+  display: flex !important;
+}
+body:has(.er10003-page) #main-content {
+  margin-left: 0 !important;
+  padding: 0 8px !important;
+}
+body:has(.er10003-page) #main-content > div {
+  max-width: none !important;
+}
+body:has(.er10003-page) nav[aria-label="Breadcrumb"] {
+  height: 28px !important;
+  min-height: 28px !important;
+  flex-wrap: nowrap !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  font-size: 7px !important;
+}
+body:has(.er10003-page) footer[aria-label="Site footer"] {
+  margin-top: 10px !important;
+}
+@media (max-width: 700px) {
+  body:has(.er10003-page) [data-testid="desktop-sidebar"] {
+    display: none !important;
+  }
+  body:has(.er10003-page) #main-content {
+    padding: 0 8px !important;
+  }
+  .er10003-page {
+    top: 0;
+    margin: 0;
+    font-size: 9px;
+  }
+  .er10003-hero,
+  .er10003-lab,
+  .er10003-totals,
+  .er10003-theory,
+  .er10003-challenge,
+  .er10003-adjacent {
+    height: auto;
+  }
+  .er10003-hero {
+    grid-template-columns: 1fr;
+  }
+  .er10003-tabs {
+    grid-template-columns: repeat(5, 100px);
+    overflow-x: auto;
+  }
+  .er10003-lab > ol {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .er10003-lab > main {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .er10003-lab > main > aside {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .er10003-lab > main > aside section + section {
+    margin: 0;
+  }
+  .er10003-lab > main > article {
+    margin-top: 10px;
+  }
+  .er10003-lab > footer,
+  .er10003-theory,
+  .er10003-challenge {
+    grid-template-columns: 1fr;
+  }
+  .er10003-lab > footer {
+    height: auto;
+  }
+  .er10003-lab > footer span {
+    min-height: 60px;
+  }
+  .er10003-theory > article,
+  .er10003-challenge > * {
+    min-height: 170px;
+  }
+  .er10003-totals {
+    overflow-x: auto;
+  }
+  .er10003-totals table {
+    min-width: 600px;
+  }
+  .er10003-adjacent {
+    grid-template-columns: 1fr 90px 1fr;
+  }
+}
