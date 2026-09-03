@@ -1,0 +1,32 @@
+{
+  "mockup": "0705",
+  "lessonNumericId": 10031,
+  "route": "/lessons/school/class-8/class-8-practical-geometry-right-triangle-construction-by-rhs",
+  "objectModel": "dedicated-thales-semicircle-hypotenuse-leg-rhs-construction",
+  "viewport": { "desktop": [924, 1703], "mobile": [390, 844] },
+  "layout": {
+    "hero": { "x": 211, "y": 88, "width": 696, "height": 150 },
+    "tabs": { "x": 211, "y": 249, "width": 696, "height": 44 },
+    "construction": { "x": 211, "y": 311, "width": 696, "height": 704 },
+    "theory": { "x": 211, "y": 1029, "width": 696, "height": 250 },
+    "lowerCards": { "x": 211, "y": 1293, "width": 696, "height": 184 },
+    "adjacentNavigation": { "x": 211, "y": 1491, "width": 696, "height": 69 }
+  },
+  "interactions": {
+    "initial": { "hypotenuse": 8, "leg": 5, "otherLeg": 6.24, "valid": true },
+    "changedModel": { "hypotenuse": 9, "leg": 5.1, "otherLeg": 7.42 },
+    "invalidModel": { "hypotenuse": 2, "leg": 5, "valid": false },
+    "pointCPointerAndKeyboardDrag": true,
+    "semicircleToggleWorking": true,
+    "lengthToggleWorking": true,
+    "rightAngleToggleWorking": true,
+    "compassToolWorking": true,
+    "instructionsWorking": true,
+    "tabsWorking": true,
+    "challengeTenSixWorking": true,
+    "fullResetWorking": true
+  },
+  "desktopHorizontalOverflow": false,
+  "mobileHorizontalOverflow": false,
+  "consoleWarningsOrErrors": []
+}

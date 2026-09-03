@@ -944,6 +944,33 @@ describe("lesson pages", () => {
     expect(html).toContain('data-steps="true"');
   });
 
+  it("renders the dedicated right triangle RHS target for lesson 10031", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-8/class-8-practical-geometry-right-triangle-construction-by-rhs",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0705"');
+    expect(html).toContain(
+      "dedicated-thales-semicircle-hypotenuse-leg-rhs-construction",
+    );
+    expect(html).toContain('data-hypotenuse="8"');
+    expect(html).toContain('data-leg="5"');
+    expect(html).toContain('data-other="6.24"');
+    expect(html).toContain('data-valid="true"');
+    expect(html).toContain('data-semicircle="true"');
+    expect(html).toContain('data-right-angle="true"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
