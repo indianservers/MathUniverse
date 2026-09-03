@@ -621,6 +621,33 @@ describe("lesson pages", () => {
     expect(html).toContain('data-items="4"');
   });
 
+  it("renders the dedicated profit and loss target for lesson 10019", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-7/class-7-applied-arithmetic-profit-loss-and-marked-price",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0693"');
+    expect(html).toContain(
+      "dedicated-cost-marked-discount-selling-price-profit-loss-store-flow",
+    );
+    expect(html).toContain('data-cp="1000"');
+    expect(html).toContain('data-mp="1400"');
+    expect(html).toContain('data-discount="20"');
+    expect(html).toContain('data-sp="1120"');
+    expect(html).toContain('data-result="PROFIT"');
+    expect(html).toContain('data-percent="12.00"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

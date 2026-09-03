@@ -1,0 +1,42 @@
+{
+  "mockup": "0693",
+  "lessonNumericId": 10019,
+  "route": "/lessons/school/class-7/class-7-applied-arithmetic-profit-loss-and-marked-price",
+  "objectModel": "dedicated-cost-marked-discount-selling-price-profit-loss-store-flow",
+  "viewport": { "desktop": [963, 1634], "mobile": [390, 844] },
+  "layout": {
+    "hero": { "x": 215, "y": 104, "width": 731, "height": 139 },
+    "tabs": { "x": 215, "y": 257, "width": 731, "height": 39 },
+    "storeLab": { "x": 215, "y": 311, "width": 731, "height": 584 },
+    "theory": { "x": 215, "y": 911, "width": 731, "height": 291 },
+    "patterns": { "x": 215, "y": 1217, "width": 731, "height": 154 },
+    "practice": { "x": 215, "y": 1387, "width": 731, "height": 154 },
+    "adjacentNavigation": { "x": 215, "y": 1558, "width": 731, "height": 50 }
+  },
+  "interactions": {
+    "initial": {
+      "cp": 1000,
+      "mp": 1400,
+      "discount": 20,
+      "sp": 1120,
+      "difference": 120,
+      "result": "PROFIT",
+      "percent": 12
+    },
+    "discount21": { "sp": 1106, "difference": 106, "percent": 10.6 },
+    "lossPreset": {
+      "cp": 1600,
+      "sp": 1120,
+      "difference": -480,
+      "result": "LOSS",
+      "percent": 30
+    },
+    "randomized": { "cp": 1320, "mp": 1880, "discount": 25, "sp": 1410 },
+    "wrongPracticeAccepted": false,
+    "correctPractice": { "sp": 1800, "profit": 300, "percent": 20 },
+    "stepsRevealed": true,
+    "resetRestoredDefaults": true
+  },
+  "mobileHorizontalOverflow": false,
+  "consoleWarningsOrErrors": []
+}
