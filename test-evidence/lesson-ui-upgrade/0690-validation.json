@@ -1,0 +1,33 @@
+{
+  "mockup": "0690",
+  "lessonNumericId": 10016,
+  "route": "/lessons/school/class-7/class-7-numbers-and-arithmetic-unit-rate-table-lab",
+  "objectModel": "dedicated-linked-unit-rate-table-double-number-line-and-comparison-grading",
+  "viewport": { "desktop": [963, 1634], "mobile": [390, 844] },
+  "layout": {
+    "hero": { "x": 207, "y": 90, "width": 742, "height": 116 },
+    "tabs": { "x": 207, "y": 220, "width": 742, "height": 34 },
+    "manipulate": { "x": 207, "y": 268, "width": 742, "height": 428 },
+    "visual": { "x": 207, "y": 708, "width": 742, "height": 262 },
+    "flow": { "x": 207, "y": 982, "width": 742, "height": 98 },
+    "theory": { "x": 207, "y": 1088, "width": 742, "height": 260 },
+    "challenge": { "x": 207, "y": 1356, "width": 742, "height": 126 },
+    "adjacentNavigation": { "x": 207, "y": 1492, "width": 742, "height": 51 }
+  },
+  "interactions": {
+    "changedValues": { "a": 6, "b": 30, "unitRate": 5 },
+    "riceContext": { "a": 5, "b": 200, "unitRate": 40 },
+    "rowCount": [5, 4, 5],
+    "autoAnimationDisabled": true,
+    "replays": 1,
+    "reset": { "a": 4, "b": 12, "unitRate": 3 },
+    "challenge": {
+      "optionA": 8,
+      "optionB": 7.5,
+      "better": "B",
+      "accepted": true
+    }
+  },
+  "mobileHorizontalOverflow": false,
+  "consoleWarningsOrErrors": []
+}

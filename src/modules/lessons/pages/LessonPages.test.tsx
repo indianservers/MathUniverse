@@ -547,6 +547,30 @@ describe("lesson pages", () => {
     expect(html).toContain('data-remainder="4"');
   });
 
+  it("renders the dedicated unit rate target for lesson 10016", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-7/class-7-numbers-and-arithmetic-unit-rate-table-lab",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0690"');
+    expect(html).toContain(
+      "dedicated-linked-unit-rate-table-double-number-line-and-comparison-grading",
+    );
+    expect(html).toContain('data-values="4,12"');
+    expect(html).toContain('data-unit-rate="3"');
+    expect(html).toContain('data-rows="5"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

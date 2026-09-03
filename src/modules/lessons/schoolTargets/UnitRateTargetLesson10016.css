@@ -1,0 +1,548 @@
+.page-transition:has(.ur10016-page),
+main:has(.ur10016-page) {
+  overflow-x: visible !important;
+}
+main:has(.ur10016-page) nav[aria-label="Breadcrumb"] {
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 8px;
+}
+.ur10016-page {
+  position: relative;
+  top: -25px;
+  width: calc(100% + 50px);
+  margin-left: -29px;
+  color: #17213d;
+  font:
+    9px/1.45 Inter,
+    Arial,
+    sans-serif;
+}
+.ur10016-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.ur10016-page h1,
+.ur10016-page h2,
+.ur10016-page h3,
+.ur10016-page p,
+.ur10016-page dl {
+  margin: 0;
+}
+.ur10016-page button,
+.ur10016-page input,
+.ur10016-page select {
+  font: inherit;
+  color: inherit;
+}
+.ur10016-hero,
+.ur10016-tabs,
+.ur10016-manipulate,
+.ur10016-visual,
+.ur10016-flow,
+.ur10016-theory > article,
+.ur10016-challenge,
+.ur10016-adjacent {
+  border: 1px solid #dce5ee;
+  border-radius: 9px;
+  background: #fff;
+}
+.ur10016-hero {
+  position: relative;
+  height: 116px;
+  padding: 15px 16px;
+}
+.ur10016-hero small,
+.ur10016-page h2 {
+  color: #087fa5;
+  font-weight: 900;
+}
+.ur10016-hero h1 {
+  margin-top: 7px;
+  font-size: 21px;
+}
+.ur10016-hero > p {
+  margin-top: 6px;
+}
+.ur10016-hero dl {
+  display: flex;
+  gap: 7px;
+  margin-top: 13px;
+}
+.ur10016-hero dl span {
+  padding: 3px 8px;
+  border-radius: 12px;
+  background: #f1f4f8;
+  font-weight: 800;
+}
+.ur10016-hero > a {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  padding: 9px 13px;
+  border: 1px solid #dce5ee;
+  border-radius: 7px;
+  color: inherit;
+  text-decoration: none;
+}
+.ur10016-tabs {
+  height: 34px;
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  overflow: hidden;
+}
+.ur10016-tabs button {
+  border: 0;
+  background: #fff;
+  font-weight: 900;
+}
+.ur10016-tabs button.active {
+  background: #078fae;
+  color: #fff;
+}
+.ur10016-manipulate {
+  height: 428px;
+  margin-top: 14px;
+  padding: 13px;
+}
+.ur10016-manipulate > header {
+  position: relative;
+  height: 49px;
+}
+.ur10016-manipulate > header h2 {
+  color: #17213d;
+  font-size: 15px;
+}
+.ur10016-manipulate > header p {
+  margin-top: 5px;
+}
+.ur10016-manipulate > header button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: flex;
+  gap: 5px;
+  padding: 8px 12px;
+  border: 1px solid #dce5ee;
+  border-radius: 6px;
+  background: #fff;
+}
+.ur10016-page svg {
+  width: 12px;
+  height: 12px;
+}
+.ur10016-workspace {
+  height: 351px;
+  display: grid;
+  grid-template-columns: 170px 1.35fr 0.85fr;
+  gap: 12px;
+}
+.ur10016-workspace > aside {
+  position: relative;
+}
+.ur10016-workspace > aside label {
+  display: grid;
+  margin-bottom: 9px;
+  font-weight: 800;
+}
+.ur10016-workspace input,
+.ur10016-workspace select {
+  height: 30px;
+  margin-top: 5px;
+  padding: 0 8px;
+  border: 1px solid #dce5ee;
+  border-radius: 5px;
+}
+.ur10016-workspace > aside > b {
+  display: block;
+  margin-top: 7px;
+  color: #2461b7;
+}
+.ur10016-workspace > aside > p {
+  margin: 4px 0;
+}
+.ur10016-workspace > aside > button {
+  padding: 6px 10px;
+  border: 1px solid #148bb8;
+  border-radius: 5px;
+  background: #fff;
+  color: #087da2;
+}
+.ur10016-workspace > aside > button svg {
+  width: 12px;
+}
+.ur10016-workspace > aside > footer {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 12px;
+}
+.ur10016-workspace > aside > footer button {
+  width: 25px;
+  height: 25px;
+  border: 1px solid #dce5ee;
+  border-radius: 5px;
+  background: #fff;
+}
+.ur10016-workspace > article {
+  min-width: 0;
+}
+.ur10016-workspace > article > h3 small {
+  font-weight: 400;
+  color: #6b7280;
+}
+.ur10016-page table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.ur10016-workspace table {
+  margin-top: 8px;
+}
+.ur10016-page th,
+.ur10016-page td {
+  padding: 9px 6px;
+  border: 1px solid #dce5ee;
+  text-align: center;
+}
+.ur10016-workspace tr.start {
+  background: #fff8e5;
+}
+.ur10016-workspace tr.unit {
+  background: #effcf7;
+  font-weight: 900;
+}
+.ur10016-workspace > article:nth-child(2) > aside {
+  margin-top: 10px;
+  padding: 11px;
+  border: 1px solid #b4dce8;
+  border-radius: 7px;
+}
+.ur10016-workspace > article:nth-child(2) > aside strong {
+  display: block;
+  margin: 7px 0;
+  font-size: 22px;
+}
+.ur10016-workspace > article:nth-child(3) {
+  padding: 9px;
+  border: 1px solid #dce5ee;
+  border-radius: 7px;
+}
+.ur10016-workspace > article:nth-child(3) > section {
+  margin: 10px 0;
+  padding: 12px;
+  border: 1px solid #dce5ee;
+  border-radius: 6px;
+}
+.ur10016-workspace > article:nth-child(3) > section strong {
+  font-size: 19px;
+}
+.ur10016-workspace > article:nth-child(3) > select {
+  display: block;
+  width: 120px;
+}
+.ur10016-workspace > article:nth-child(3) > p > b {
+  display: inline-grid;
+  width: 45px;
+  height: 35px;
+  place-items: center;
+  border: 1px solid #dce5ee;
+  border-radius: 5px;
+}
+.ur10016-workspace > article:nth-child(3) > footer {
+  margin-top: 13px;
+  padding-top: 12px;
+  border-top: 1px solid #dce5ee;
+}
+.ur10016-workspace > article:nth-child(3) > footer p {
+  margin-top: 7px;
+}
+.ur10016-visual {
+  position: relative;
+  height: 262px;
+  margin-top: 12px;
+  padding: 13px;
+}
+.ur10016-visual > header {
+  position: relative;
+}
+.ur10016-visual > header h2 {
+  color: #17213d;
+}
+.ur10016-visual > header label {
+  position: absolute;
+  right: 95px;
+  top: 0;
+}
+.ur10016-visual > header input {
+  accent-color: #078fad;
+}
+.ur10016-visual > header button {
+  position: absolute;
+  right: 0;
+  top: -5px;
+  padding: 7px 10px;
+  border: 1px solid #dce5ee;
+  border-radius: 6px;
+  background: #fff;
+}
+.ur10016-visual > svg {
+  width: 560px;
+  height: 180px;
+  margin-top: 12px;
+}
+.ur10016-visual svg line {
+  stroke: #536072;
+}
+.ur10016-visual svg circle {
+  fill: #1768c2;
+}
+.ur10016-visual svg circle:nth-of-type(even) {
+  fill: #7132cc;
+}
+.ur10016-visual svg text {
+  font-size: 11px;
+  fill: #17375e;
+}
+.ur10016-visual > aside {
+  position: absolute;
+  right: 13px;
+  top: 58px;
+  width: 170px;
+  height: 150px;
+  padding: 11px;
+  border: 1px solid #dce5ee;
+  border-radius: 7px;
+}
+.ur10016-visual > aside p {
+  margin: 13px 0;
+}
+.ur10016-visual > footer {
+  position: absolute;
+  left: 17px;
+  bottom: 12px;
+  width: 520px;
+  padding: 9px;
+  border: 1px solid #b5dff0;
+  border-radius: 6px;
+  background: #f4fbff;
+  text-align: center;
+  color: #1760ac;
+}
+.ur10016-flow {
+  height: 98px;
+  margin-top: 12px;
+  padding: 9px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  position: relative;
+}
+.ur10016-flow > b {
+  position: absolute;
+  left: 9px;
+  top: 7px;
+}
+.ur10016-flow > span {
+  margin-top: 18px;
+  padding: 0 10px;
+  border-top: 3px solid #58b8db;
+}
+.ur10016-flow i {
+  display: grid;
+  width: 20px;
+  height: 20px;
+  margin-top: -11px;
+  place-items: center;
+  border-radius: 50%;
+  background: #dcecf3;
+  font-style: normal;
+}
+.ur10016-flow strong,
+.ur10016-flow small {
+  display: block;
+  margin-top: 5px;
+}
+.ur10016-theory {
+  height: 260px;
+  margin-top: 8px;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr 0.95fr;
+  gap: 8px;
+}
+.ur10016-theory > article {
+  padding: 13px;
+}
+.ur10016-theory p {
+  margin: 10px 0;
+}
+.ur10016-theory table td {
+  padding: 6px;
+}
+.ur10016-theory article:first-child > strong {
+  display: block;
+  margin-top: 8px;
+  padding: 8px;
+  border: 1px solid #c5acee;
+  border-radius: 6px;
+  background: #f3eaff;
+  text-align: center;
+  color: #6924c6;
+}
+.ur10016-theory h3 {
+  margin-top: 14px;
+  color: #087fa5;
+}
+.ur10016-theory article:nth-child(2) > strong {
+  display: block;
+  margin-top: 10px;
+  padding: 9px;
+  border: 1px solid #b8d9e9;
+  border-radius: 6px;
+}
+.ur10016-theory article:last-child {
+  border-color: #f0bdc7;
+  background: #fff9fa;
+}
+.ur10016-theory article:last-child h2 {
+  color: #be2945;
+}
+.ur10016-theory .wrong {
+  color: #d9284c;
+}
+.ur10016-theory .right {
+  color: #078955;
+}
+.ur10016-challenge {
+  height: 126px;
+  margin-top: 8px;
+  padding: 12px;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr;
+}
+.ur10016-challenge > article {
+  padding: 0 10px;
+}
+.ur10016-challenge > article + article {
+  border-left: 1px solid #dce5ee;
+}
+.ur10016-challenge p {
+  margin: 7px 0;
+}
+.ur10016-challenge article:first-child > div {
+  display: flex;
+  gap: 12px;
+}
+.ur10016-challenge article:first-child > div b {
+  padding: 8px;
+  border: 1px solid #b9d9e9;
+  border-radius: 6px;
+}
+.ur10016-challenge article:nth-child(2) label {
+  display: block;
+  margin: 8px;
+}
+.ur10016-challenge input {
+  width: 58px;
+  height: 26px;
+  border: 1px solid #dce5ee;
+  border-radius: 4px;
+}
+.ur10016-challenge article:last-child label {
+  margin-right: 8px;
+}
+.ur10016-challenge article:last-child button {
+  display: block;
+  margin-top: 13px;
+  padding: 8px 13px;
+  border: 0;
+  border-radius: 12px;
+  background: #078fae;
+  color: #fff;
+}
+.ur10016-challenge output {
+  display: block;
+  margin-top: 5px;
+  color: #087b53;
+}
+.ur10016-adjacent {
+  height: 51px;
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.ur10016-adjacent a {
+  padding: 9px 13px;
+  color: inherit;
+  text-decoration: none;
+}
+.ur10016-adjacent a:last-child {
+  text-align: right;
+}
+.ur10016-adjacent b {
+  display: block;
+  margin-top: 3px;
+}
+@media (max-width: 700px) {
+  .ur10016-page {
+    top: 0;
+    width: 100%;
+    margin-left: 0;
+    font-size: 10px;
+  }
+  .ur10016-hero {
+    height: auto;
+    min-height: 175px;
+  }
+  .ur10016-hero > a {
+    position: static;
+    display: inline-block;
+    margin-top: 10px;
+  }
+  .ur10016-tabs {
+    grid-template-columns: repeat(5, 100px);
+    overflow-x: auto;
+  }
+  .ur10016-manipulate,
+  .ur10016-workspace,
+  .ur10016-visual,
+  .ur10016-flow,
+  .ur10016-theory,
+  .ur10016-challenge,
+  .ur10016-adjacent {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .ur10016-manipulate > header {
+    height: 80px;
+  }
+  .ur10016-workspace > aside,
+  .ur10016-workspace > article {
+    min-height: 340px;
+  }
+  .ur10016-visual > svg {
+    width: 100%;
+    height: auto;
+  }
+  .ur10016-visual > aside,
+  .ur10016-visual > footer {
+    position: static;
+    width: auto;
+    margin-top: 10px;
+  }
+  .ur10016-flow > span {
+    min-height: 80px;
+  }
+  .ur10016-theory > article {
+    min-height: 250px;
+  }
+  .ur10016-challenge > article {
+    min-height: 120px;
+  }
+  .ur10016-challenge > article + article {
+    border-left: 0;
+    border-top: 1px solid #dce5ee;
+  }
+  .ur10016-adjacent {
+    margin-bottom: 80px;
+  }
+}
