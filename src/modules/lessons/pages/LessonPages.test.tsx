@@ -1693,6 +1693,34 @@ describe("lesson pages", () => {
     expect(html).toContain('aria-label="Angle between lines"');
   });
 
+  it("renders the dedicated linear-pair target for lesson 10059", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-9/class-9-euclidean-geometry-linear-pair-axiom-and-converse",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0733"');
+    expect(html).toContain(
+      "dedicated-linear-pair-axiom-converse-construction-engine",
+    );
+    expect(html).toContain('data-angle="72"');
+    expect(html).toContain('data-supplement="108"');
+    expect(html).toContain('data-mode="axiom"');
+    expect(html).toContain('data-tool="ray"');
+    expect(html).toContain('data-challenge="65,115"');
+    expect(html).toContain('data-challenge-valid="true"');
+    expect(html).toContain('aria-label="Interactive linear pair construction"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

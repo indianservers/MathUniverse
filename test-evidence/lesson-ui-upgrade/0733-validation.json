@@ -1,0 +1,36 @@
+{
+  "mockup": "0733",
+  "lessonId": 10059,
+  "route": "/lessons/school/class-9/class-9-euclidean-geometry-linear-pair-axiom-and-converse",
+  "objectModel": "dedicated-linear-pair-axiom-converse-construction-engine",
+  "desktop": {
+    "viewport": [899, 1809],
+    "hero": [89, 236],
+    "tabs": [250, 290],
+    "construction": [306, 812],
+    "theory": [827, 1195],
+    "challenge": [1209, 1566],
+    "navigation": [1580, 1619],
+    "consoleErrorsOrWarnings": 0
+  },
+  "mobile": {
+    "viewport": [390, 844],
+    "documentScrollWidth": 375,
+    "pageWidth": 366.4,
+    "interactiveDiagrams": 2,
+    "toggles": 3,
+    "challengeRanges": 2,
+    "consoleErrorsOrWarnings": 0
+  },
+  "interactions": {
+    "snappedAngle": 70,
+    "unsnappedAngle": 71,
+    "changedMode": "converse",
+    "changedTool": "select",
+    "labelsAndFillsHidden": true,
+    "resetAngles": [72, 108],
+    "rejectedChallenge": [64, 115],
+    "acceptedChallenge": [64, 116]
+  },
+  "status": "complete"
+}
