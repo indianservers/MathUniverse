@@ -1,0 +1,123 @@
+{
+  "passed": true,
+  "checks": {
+    "initial": {
+      "factor": "principal",
+      "change": "10",
+      "baseline": "30772.48",
+      "current": "33849.73",
+      "impact": "10.00",
+      "most": "principal",
+      "graded": "",
+      "actions": "0"
+    },
+    "rate": {
+      "factor": "rate",
+      "change": "10",
+      "baseline": "30772.48",
+      "current": "31918.44",
+      "impact": "3.72",
+      "most": "principal",
+      "graded": "",
+      "actions": "1"
+    },
+    "negative": {
+      "factor": "rate",
+      "change": "-10",
+      "baseline": "30772.48",
+      "current": "29659.67",
+      "impact": "-3.62",
+      "most": "principal",
+      "graded": "",
+      "actions": "2"
+    },
+    "slider": {
+      "factor": "rate",
+      "change": "15",
+      "baseline": "30772.48",
+      "current": "32504.09",
+      "impact": "5.63",
+      "most": "principal",
+      "graded": "",
+      "actions": "3"
+    },
+    "zero": {
+      "factor": "rate",
+      "change": "0",
+      "baseline": "30772.48",
+      "current": "30772.48",
+      "impact": "0.00",
+      "most": "principal",
+      "graded": "",
+      "actions": "4"
+    },
+    "formula": true,
+    "reset": {
+      "factor": "principal",
+      "change": "10",
+      "baseline": "30772.48",
+      "current": "33849.73",
+      "impact": "10.00",
+      "most": "principal",
+      "graded": "",
+      "actions": "1"
+    },
+    "wrong": {
+      "factor": "principal",
+      "change": "10",
+      "baseline": "30772.48",
+      "current": "33849.73",
+      "impact": "10.00",
+      "most": "principal",
+      "graded": "false",
+      "actions": "4"
+    },
+    "correct": {
+      "factor": "principal",
+      "change": "10",
+      "baseline": "30772.48",
+      "current": "33849.73",
+      "impact": "10.00",
+      "most": "principal",
+      "graded": "true",
+      "actions": "7"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1146,
+      "height": 1379
+    },
+    "overflow": false,
+    "hero": {
+      "top": 101,
+      "height": 166,
+      "bottom": 267
+    },
+    "sequence": {
+      "top": 290,
+      "height": 62,
+      "bottom": 352
+    },
+    "dashboard": {
+      "top": 366,
+      "height": 672,
+      "bottom": 1038
+    },
+    "theory": {
+      "top": 1054,
+      "height": 211,
+      "bottom": 1265
+    },
+    "adjacent": {
+      "top": 1278,
+      "height": 57,
+      "bottom": 1335
+    }
+  },
+  "mobileMetrics": {
+    "width": 390,
+    "overflow": false
+  },
+  "logs": []
+}
