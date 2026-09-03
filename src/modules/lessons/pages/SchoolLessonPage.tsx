@@ -21,6 +21,7 @@ import SuccessiveMagnificationTargetLesson10043 from "../schoolTargets/Successiv
 import RationalisationTargetLesson10044 from "../schoolTargets/RationalisationTargetLesson10044";
 import NthRootsTargetLesson10045 from "../schoolTargets/NthRootsTargetLesson10045";
 import GraphicalZerosTargetLesson10046 from "../schoolTargets/GraphicalZerosTargetLesson10046";
+import PolynomialDivisionTargetLesson10047 from "../schoolTargets/PolynomialDivisionTargetLesson10047";
 import PlaceValueTargetLesson10001 from "../schoolTargets/PlaceValueTargetLesson10001";
 import NumberNamingTargetLesson10002 from "../schoolTargets/NumberNamingTargetLesson10002";
 import EstimationRoundingTargetLesson10003 from "../schoolTargets/EstimationRoundingTargetLesson10003";
@@ -84,6 +85,8 @@ export default function SchoolLessonPage() {
     return <NthRootsTargetLesson10045 lesson={lesson} />;
   if (lesson.numericId === 10046)
     return <GraphicalZerosTargetLesson10046 lesson={lesson} />;
+  if (lesson.numericId === 10047)
+    return <PolynomialDivisionTargetLesson10047 lesson={lesson} />;
   if (lesson.numericId === 10001)
     return <PlaceValueTargetLesson10001 lesson={lesson} />;
   if (lesson.numericId === 10002)

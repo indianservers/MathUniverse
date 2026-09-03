@@ -1,0 +1,604 @@
+.division10047-page {
+  position: relative;
+  left: -5px;
+  top: -10px;
+  width: min(750px, calc(100vw - 218px));
+  margin: 0 auto -10px;
+  color: #263d62;
+  font:
+    9px/1.5 Inter,
+    Arial,
+    sans-serif;
+}
+.division10047-page * {
+  box-sizing: border-box;
+}
+.division10047-page h1,
+.division10047-page h2,
+.division10047-page h3,
+.division10047-page p {
+  margin: 0;
+}
+.division10047-page button {
+  font: inherit;
+}
+.division10047-page svg {
+  width: 13px;
+}
+.division10047-hero {
+  height: 125px;
+  border: 1px solid #d4e1ed;
+  border-radius: 12px;
+  background: #fff;
+  padding: 16px;
+  position: relative;
+}
+.division10047-hero > small {
+  color: #087caa;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+.division10047-hero h1 {
+  font-size: 21px;
+  color: #10192d;
+  margin: 5px 0;
+}
+.division10047-hero > div {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+.division10047-hero > div span {
+  padding: 3px 10px;
+  border-radius: 12px;
+  background: #eff4f8;
+  font-weight: 800;
+}
+.division10047-hero > a {
+  position: absolute;
+  right: 14px;
+  top: 17px;
+  height: 35px;
+  border: 1px solid #cce4ee;
+  border-radius: 17px;
+  padding: 0 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: #29486e;
+}
+.division10047-tabs {
+  height: 46px;
+  background: #fff;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  border-bottom: 1px solid #d3dfeb;
+}
+.division10047-tabs button {
+  border: 0;
+  border-bottom: 3px solid transparent;
+  background: none;
+  color: #51627e;
+}
+.division10047-tabs button.active {
+  color: #0879c1;
+  border-color: #0879c1;
+}
+.division10047-main {
+  padding: 10px 13px;
+  background: #fff;
+  display: grid;
+  gap: 12px;
+}
+.division-board {
+  height: 592px;
+  border: 1px solid #cfe2ed;
+  border-radius: 10px;
+  padding: 9px;
+}
+.division-board > header {
+  height: 43px;
+  display: flex;
+  align-items: start;
+}
+.division-board > header h2 {
+  font-size: 15px;
+  color: #173357;
+  margin-right: auto;
+}
+.division-board > header button {
+  height: 32px;
+  border: 1px solid #c8e2ee;
+  border-radius: 8px;
+  background: #fff;
+  padding: 0 12px;
+  margin-left: 7px;
+}
+.division-board > aside {
+  height: 37px;
+  border-radius: 6px;
+  background: #eaf7ff;
+  color: #0875b9;
+  padding: 10px;
+}
+.division-board > aside svg {
+  vertical-align: middle;
+  margin-right: 7px;
+}
+.division-work {
+  height: 489px;
+  display: grid;
+  grid-template-columns: 142px 1fr 248px;
+  gap: 10px;
+  margin-top: 9px;
+}
+.division-work > aside:first-child {
+  display: grid;
+  grid-template-rows: 246px 233px;
+  gap: 9px;
+}
+.division-work > aside > section,
+.division-calculation {
+  border: 1px solid #d4e0eb;
+  border-radius: 8px;
+  padding: 9px;
+}
+.division-work h3 {
+  color: #0877ad;
+}
+.division-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+.division-cards button {
+  width: 35px;
+  height: 35px;
+  border: 1px solid #bfe6d4;
+  border-radius: 6px;
+  background: #eafaf1;
+  color: #177b4e;
+  font-family: Georgia, serif;
+}
+.division-cards button:nth-child(n + 4):nth-child(-n + 6) {
+  background: #fff0f0;
+  color: #b43838;
+  border-color: #efc8c8;
+}
+.division-cards button:nth-child(n + 7):nth-child(-n + 10) {
+  background: #fff8e4;
+  color: #8d6000;
+  border-color: #f1ddb0;
+}
+.division-cards button:nth-child(n + 11) {
+  background: #edf6ff;
+  color: #1477b4;
+  border-color: #cce2f2;
+}
+.division-work > aside:first-child section:last-child > button {
+  width: 100%;
+  height: 31px;
+  border: 1px solid #d5e0ea;
+  border-radius: 6px;
+  background: #fff;
+  margin: 3px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 7px;
+}
+.division-work > aside:first-child section:last-child > button.active {
+  border-color: #7454d9;
+  background: #f5f1ff;
+}
+.division-work > aside:first-child section:last-child > button b {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #7bb7e0;
+  border-radius: 50%;
+  color: #0878b4;
+}
+.division-work > aside:first-child section:last-child > button span {
+  margin-left: auto;
+}
+.division-calculation {
+  position: relative;
+}
+.division-calculation > header {
+  display: flex;
+  gap: 10px;
+}
+.division-formula {
+  font:
+    14px/1.5 Georgia,
+    serif;
+  color: #452d8c;
+}
+.division-quotient {
+  margin: 15px 16px 0 36px;
+  border-bottom: 2px solid #7753da;
+  text-align: center;
+}
+.division-quotient > b {
+  display: block;
+  color: #0877ba;
+}
+.division-quotient > div {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.division-quotient span {
+  height: 31px;
+  border: 1px solid #9ccbed;
+  border-radius: 5px;
+  background: #edf7ff;
+  padding: 7px;
+  font: 13px Georgia;
+}
+.division-quotient small {
+  display: block;
+  color: #7753da;
+}
+.long-division {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  margin-top: 7px;
+  font:
+    13px/1.5 Georgia,
+    serif;
+}
+.long-division > b {
+  padding: 7px 3px;
+}
+.long-division > div {
+  border-left: 2px solid #33445e;
+  padding-left: 8px;
+}
+.long-division strong {
+  display: block;
+  padding: 5px;
+}
+.long-division article {
+  text-align: center;
+}
+.long-division article span {
+  display: block;
+  padding: 5px;
+}
+.long-division article span:first-child {
+  margin-left: auto;
+  width: 80%;
+  border: 1px solid #f1b8c2;
+  border-radius: 5px;
+  background: #fff3f5;
+  color: #9c3344;
+}
+.long-division hr {
+  border: 0;
+  border-top: 1px solid #33445e;
+}
+.division-calculation > footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 13px;
+  margin-top: 7px;
+}
+.division-calculation > footer b {
+  color: #0876b8;
+}
+.division-calculation > footer span {
+  border: 1px solid #abd4f2;
+  border-radius: 5px;
+  background: #eaf6ff;
+  padding: 7px 22px;
+}
+.division-calculation > aside {
+  position: absolute;
+  bottom: 9px;
+  left: 9px;
+  right: 9px;
+  height: 35px;
+  border: 1px solid #f0cf83;
+  border-radius: 6px;
+  background: #fff9ea;
+  color: #a66800;
+  padding: 9px;
+}
+.division-work > aside:last-child {
+  display: grid;
+  grid-template-rows: 354px 126px;
+  gap: 9px;
+}
+.division-work > aside:last-child section h2 {
+  font-size: 12px;
+  color: #17517d;
+}
+.division-work > aside:last-child section > p {
+  margin: 10px 0;
+}
+.division-work > aside:last-child section > div {
+  border: 1px solid #cce3ee;
+  border-radius: 7px;
+  display: grid;
+  grid-template-columns: 1fr 20px 1fr;
+  padding: 8px;
+}
+.division-work > aside:last-child section > div b {
+  font-size: 8px;
+}
+.division-work > aside:last-child section > div .division-formula {
+  font-size: 8px;
+  white-space: nowrap;
+}
+.division-work > aside:last-child section > footer {
+  height: 33px;
+  margin-top: 8px;
+  border: 1px solid #a9dfc2;
+  border-radius: 6px;
+  background: #eafaf2;
+  color: #187848;
+  padding: 7px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+}
+.division-theory {
+  height: 181px;
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap: 10px;
+}
+.division-theory > article {
+  border: 1px solid #d5e0eb;
+  border-radius: 9px;
+  padding: 12px;
+}
+.division-theory h2 {
+  font-size: 12px;
+  color: #0879b1;
+  margin-bottom: 10px;
+}
+.division-theory h2 span {
+  float: right;
+  background: #e9faef;
+  color: #168047;
+  border-radius: 5px;
+  padding: 4px;
+}
+.division-theory p {
+  margin: 9px 0;
+}
+.degree-path {
+  margin-top: 12px;
+  color: #3479a4;
+}
+.division-challenge {
+  height: 200px;
+  border: 1px solid #ddcdf4;
+  border-radius: 9px;
+  background: #fcfaff;
+  padding: 12px;
+}
+.division-challenge > header {
+  height: 51px;
+}
+.division-challenge h2 {
+  font-size: 13px;
+  color: #6a39bc;
+}
+.division-challenge > div {
+  height: 125px;
+  display: grid;
+  grid-template-columns: 165px 1.5fr 1fr;
+}
+.division-challenge > div > section {
+  padding: 8px;
+  border-right: 1px solid #ddd5e9;
+}
+.division-challenge > div > section:last-child {
+  border: 0;
+}
+.division-challenge button {
+  border: 0;
+  border-radius: 6px;
+  background: #e9ddff;
+  color: #6334b7;
+  padding: 8px;
+  margin: 10px 0;
+}
+.division-challenge > div > section:nth-child(2) {
+  border: 1px solid #d6e0eb;
+  border-radius: 7px;
+  background: #fff;
+}
+.division-challenge > div > section:nth-child(2) p {
+  margin: 7px 0;
+}
+.division-challenge > div > section:nth-child(3) > div {
+  border: 1px solid #d5e1ec;
+  border-radius: 6px;
+  padding: 10px;
+  margin: 8px 0;
+}
+.division-challenge > div > section:nth-child(3) > strong {
+  display: block;
+  background: #eafaf1;
+  color: #16804b;
+  padding: 8px;
+  border-radius: 6px;
+}
+.division-misconception {
+  height: 184px;
+  border: 1px solid #efc991;
+  border-radius: 9px;
+  background: #fffbf4;
+  padding: 12px;
+}
+.division-misconception h2 {
+  font-size: 11px;
+  color: #9e5f0a;
+}
+.division-misconception > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.2fr;
+  margin-top: 14px;
+}
+.division-misconception article {
+  border: 1px solid #d7e1eb;
+  background: #fff;
+  padding: 10px;
+}
+.division-misconception article:first-child b {
+  color: #df3a44;
+}
+.division-misconception article:nth-child(2) b {
+  color: #159256;
+}
+.division-misconception article .division-formula {
+  display: block;
+  text-align: center;
+  margin: 15px;
+}
+.division-misconception aside {
+  padding: 10px 30px;
+}
+.division10047-adjacent {
+  height: 57px;
+  background: #fff;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 7px 12px;
+}
+.division10047-adjacent a {
+  border: 1px solid #d1e2ea;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 11px;
+  text-decoration: none;
+  color: #29476b;
+}
+.division10047-adjacent span {
+  display: flex;
+  gap: 4px;
+}
+.division10047-adjacent small {
+  font-weight: 700;
+}
+@media (min-width: 900px) {
+  body:has(.division10047-page) .app-layout-rail > aside {
+    display: block !important;
+    position: sticky;
+    top: 0;
+    width: 193px !important;
+  }
+  body:has(.division10047-page)
+    .app-layout-rail
+    > div
+    > header
+    > div
+    > button:first-child {
+    display: none;
+  }
+  body:has(.division10047-page) .app-layout-rail > div > header {
+    height: 56px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+  body:has(.division10047-page) #main-content {
+    padding-top: 8px;
+  }
+  body:has(.division10047-page) #main-content nav[aria-label="Breadcrumb"] {
+    flex-wrap: nowrap;
+    gap: 6px;
+    height: 28px;
+    margin-bottom: 2px;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 9px;
+  }
+}
+@media (max-width: 899px) {
+  .division10047-page {
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+  }
+  .division10047-hero {
+    height: auto;
+    min-height: 190px;
+  }
+  .division10047-hero h1 {
+    font-size: 19px;
+  }
+  .division10047-hero > div {
+    flex-wrap: wrap;
+  }
+  .division10047-tabs {
+    overflow-x: auto;
+    grid-template-columns: repeat(5, 90px);
+  }
+  .division-board,
+  .division-work,
+  .division-theory,
+  .division-challenge,
+  .division-misconception {
+    height: auto;
+  }
+  .division-board > header {
+    height: auto;
+    min-height: 70px;
+  }
+  .division-work {
+    grid-template-columns: 1fr;
+  }
+  .division-work > aside:first-child,
+  .division-work > aside:last-child {
+    grid-template-rows: auto;
+  }
+  .division-work > aside > section {
+    min-height: 130px;
+  }
+  .division-calculation {
+    min-height: 450px;
+  }
+  .division-theory {
+    grid-template-columns: 1fr;
+  }
+  .division-theory > article {
+    min-height: 220px;
+  }
+  .division-challenge > div {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .division-challenge > div > section {
+    min-height: 110px;
+    border-right: 0;
+    border-bottom: 1px solid #ddd5e9;
+  }
+  .division-misconception > div {
+    grid-template-columns: 1fr;
+  }
+  .division-misconception > div > * {
+    min-height: 110px;
+  }
+  .division10047-adjacent {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .division10047-adjacent a {
+    min-height: 52px;
+  }
+}

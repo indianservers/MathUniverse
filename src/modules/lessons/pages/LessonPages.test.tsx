@@ -1354,6 +1354,33 @@ describe("lesson pages", () => {
     expect(html).toContain('data-challenge-root="-1"');
   });
 
+  it("renders the dedicated polynomial-division target for lesson 10047", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-9/class-9-polynomials-polynomial-division",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0721"');
+    expect(html).toContain(
+      "dedicated-polynomial-long-division-coefficient-engine",
+    );
+    expect(html).toContain('data-dividend="x³ + 0x² + 0x − 1"');
+    expect(html).toContain('data-divisor="x − 1"');
+    expect(html).toContain('data-quotient="x² + x + 1"');
+    expect(html).toContain('data-remainder="0"');
+    expect(html).toContain('data-identity="true"');
+    expect(html).toContain('draggable="true"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
