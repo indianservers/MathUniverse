@@ -44,6 +44,7 @@ import SasCongruenceTargetLesson10066 from "../schoolTargets/SasCongruenceTarget
 import AsaCongruenceTargetLesson10067 from "../schoolTargets/AsaCongruenceTargetLesson10067";
 import AasCongruenceTargetLesson10068 from "../schoolTargets/AasCongruenceTargetLesson10068";
 import SssCongruenceTargetLesson10069 from "../schoolTargets/SssCongruenceTargetLesson10069";
+import RhsCongruenceTargetLesson10070 from "../schoolTargets/RhsCongruenceTargetLesson10070";
 import PlaceValueTargetLesson10001 from "../schoolTargets/PlaceValueTargetLesson10001";
 import NumberNamingTargetLesson10002 from "../schoolTargets/NumberNamingTargetLesson10002";
 import EstimationRoundingTargetLesson10003 from "../schoolTargets/EstimationRoundingTargetLesson10003";
@@ -153,6 +154,8 @@ export default function SchoolLessonPage() {
     return <AasCongruenceTargetLesson10068 lesson={lesson} />;
   if (lesson.numericId === 10069)
     return <SssCongruenceTargetLesson10069 lesson={lesson} />;
+  if (lesson.numericId === 10070)
+    return <RhsCongruenceTargetLesson10070 lesson={lesson} />;
   if (lesson.numericId === 10001)
     return <PlaceValueTargetLesson10001 lesson={lesson} />;
   if (lesson.numericId === 10002)

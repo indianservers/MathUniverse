@@ -1,0 +1,37 @@
+{
+  "mockup": "0744",
+  "lessonId": 10070,
+  "route": "/lessons/school/class-9/class-9-triangle-proofs-rhs-congruence",
+  "objectModel": "dedicated-rhs-pythagorean-locked-right-triangle-engine",
+  "desktop": {
+    "viewport": [899, 1762],
+    "hero": [83, 218],
+    "tabs": [230, 270],
+    "lab": [282, 883],
+    "theory": [895, 1521],
+    "navigation": [1533, 1569],
+    "documentScrollWidth": 899,
+    "consoleErrorsOrWarnings": 0
+  },
+  "mobile": {
+    "viewport": [390, 844],
+    "documentScrollWidth": 390,
+    "pageWidth": 366.4,
+    "draggableHandles": 2,
+    "sideSteppers": 3,
+    "consoleErrorsOrWarnings": 0
+  },
+  "interactions": {
+    "initialModel": [10, 6, 8],
+    "handleMovedModel": [10, 7, 7.14],
+    "hypotenuseChangedModel": [11, 7, 8.49],
+    "hypotenuseDeselectedInvalidatesRHS": true,
+    "mirrorSelected": true,
+    "overlaySelected": true,
+    "fullscreenToggled": true,
+    "wrongChallengeRejected": true,
+    "correctChallengeAccepted": true,
+    "formulaTabSelected": true
+  },
+  "status": "complete"
+}
