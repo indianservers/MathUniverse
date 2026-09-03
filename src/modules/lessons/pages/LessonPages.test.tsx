@@ -1581,6 +1581,36 @@ describe("lesson pages", () => {
     expect(html).toContain("euclid-five-postulates-hero.png");
   });
 
+  it("renders the dedicated fifth-postulate-equivalence target for lesson 10055", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-9/class-9-euclidean-geometry-equivalent-forms-of-the-fifth-postulate",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0729"');
+    expect(html).toContain(
+      "dedicated-linked-parallel-equivalence-and-assumption-testing-engine",
+    );
+    expect(html).toContain('data-scenario="Playfair&#x27;s Axiom"');
+    expect(html).toContain('data-point="220,92"');
+    expect(html).toContain('data-angle="-10"');
+    expect(html).toContain('data-show-angles="true"');
+    expect(html).toContain('data-transversal="true"');
+    expect(html).toContain('data-score="idle"');
+    expect(html).toContain(
+      'aria-label="Interactive fifth-postulate equivalence diagram"',
+    );
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

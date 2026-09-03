@@ -1,0 +1,45 @@
+{
+  "mockup": "0729",
+  "lessonId": 10055,
+  "route": "/lessons/school/class-9/class-9-euclidean-geometry-equivalent-forms-of-the-fifth-postulate",
+  "surface": "FifthPostulateEquivalenceTargetLesson10055",
+  "objectModel": "dedicated-linked-parallel-equivalence-and-assumption-testing-engine",
+  "targetViewport": { "width": 899, "height": 1748 },
+  "desktop": {
+    "consoleWarningsOrErrors": 0,
+    "sections": {
+      "hero": { "x": 193, "y": 89, "width": 690, "height": 135 },
+      "tabs": { "x": 193, "y": 232, "width": 690, "height": 44 },
+      "explorer": { "x": 193, "y": 291, "width": 690, "height": 757 },
+      "diagram": { "x": 385, "y": 361, "width": 494, "height": 279 },
+      "theory": { "x": 193, "y": 1060, "width": 690, "height": 309 },
+      "challenge": { "x": 193, "y": 1381, "width": 690, "height": 170 },
+      "navigation": { "x": 193, "y": 1581, "width": 690, "height": 47 }
+    }
+  },
+  "mobile": {
+    "width": 390,
+    "documentWidth": 375,
+    "documentHeight": 3894,
+    "pageLevelHorizontalOverflow": false,
+    "consoleWarningsOrErrors": 0,
+    "scenarioRadios": 3,
+    "controlToggles": 3,
+    "challengeRadios": 6
+  },
+  "interactions": {
+    "initial": {
+      "scenario": "Playfair's Axiom",
+      "point": [220, 92],
+      "angle": -10
+    },
+    "interiorAngleScenarioSelection": true,
+    "visibilityToggles": true,
+    "keyboardPointMove": { "point": [228, 92] },
+    "pointerDragImplemented": true,
+    "animationChangesAngle": { "from": -10, "to": -5 },
+    "challengeScore": 3,
+    "resetRestoresDiagram": true,
+    "tabStateChange": true
+  }
+}

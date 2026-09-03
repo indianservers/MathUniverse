@@ -29,6 +29,7 @@ import CubicIdentitiesTargetLesson10051 from "../schoolTargets/CubicIdentitiesTa
 import FactorisationPracticeTargetLesson10052 from "../schoolTargets/FactorisationPracticeTargetLesson10052";
 import EuclideanFoundationsTargetLesson10053 from "../schoolTargets/EuclideanFoundationsTargetLesson10053";
 import EuclidPostulatesTargetLesson10054 from "../schoolTargets/EuclidPostulatesTargetLesson10054";
+import FifthPostulateEquivalenceTargetLesson10055 from "../schoolTargets/FifthPostulateEquivalenceTargetLesson10055";
 import PlaceValueTargetLesson10001 from "../schoolTargets/PlaceValueTargetLesson10001";
 import NumberNamingTargetLesson10002 from "../schoolTargets/NumberNamingTargetLesson10002";
 import EstimationRoundingTargetLesson10003 from "../schoolTargets/EstimationRoundingTargetLesson10003";
@@ -108,6 +109,8 @@ export default function SchoolLessonPage() {
     return <EuclideanFoundationsTargetLesson10053 lesson={lesson} />;
   if (lesson.numericId === 10054)
     return <EuclidPostulatesTargetLesson10054 lesson={lesson} />;
+  if (lesson.numericId === 10055)
+    return <FifthPostulateEquivalenceTargetLesson10055 lesson={lesson} />;
   if (lesson.numericId === 10001)
     return <PlaceValueTargetLesson10001 lesson={lesson} />;
   if (lesson.numericId === 10002)
