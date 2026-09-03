@@ -1,0 +1,134 @@
+{
+  "passed": true,
+  "checks": {
+    "initial": {
+      "model": "linear",
+      "a": "0.000",
+      "m": "2.000",
+      "b": "1.000",
+      "sse": "9.00",
+      "mae": "1.00",
+      "points": "7",
+      "scale": "auto",
+      "display": "line|residuals|table|grid",
+      "practice": "false",
+      "actions": "0"
+    },
+    "controls": {
+      "model": "linear",
+      "a": "0.000",
+      "m": "1.500",
+      "b": "2.000",
+      "sse": "26.00",
+      "mae": "1.57",
+      "points": "7",
+      "scale": "auto",
+      "display": "line|residuals|table|grid",
+      "practice": "false",
+      "actions": "2"
+    },
+    "display": {
+      "model": "linear",
+      "a": "0.000",
+      "m": "1.500",
+      "b": "2.000",
+      "sse": "26.00",
+      "mae": "1.57",
+      "points": "7",
+      "scale": "fixed",
+      "display": "line|grid",
+      "practice": "false",
+      "actions": "5"
+    },
+    "quadratic": {
+      "model": "quadratic",
+      "a": "0.200",
+      "m": "1.500",
+      "b": "2.000",
+      "sse": "102.24",
+      "mae": "2.86",
+      "points": "7",
+      "scale": "fixed",
+      "display": "line|grid",
+      "practice": "false",
+      "actions": "7"
+    },
+    "drag": {
+      "model": "quadratic",
+      "a": "0.200",
+      "m": "1.500",
+      "b": "2.000",
+      "sse": "105.81",
+      "mae": "3.10",
+      "points": "7",
+      "scale": "fixed",
+      "display": "line|grid",
+      "practice": "false",
+      "actions": "11"
+    },
+    "practice": {
+      "model": "quadratic",
+      "a": "-0.136",
+      "m": "3.121",
+      "b": "-0.329",
+      "sse": "18.85",
+      "mae": "1.36",
+      "points": "7",
+      "scale": "fixed",
+      "display": "line|grid",
+      "practice": "true",
+      "actions": "12"
+    },
+    "formula": true,
+    "reset": {
+      "model": "linear",
+      "a": "0.000",
+      "m": "2.000",
+      "b": "1.000",
+      "sse": "9.00",
+      "mae": "1.00",
+      "points": "7",
+      "scale": "auto",
+      "display": "line|residuals|table|grid",
+      "practice": "false",
+      "actions": "1"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1042,
+      "height": 1542
+    },
+    "overflow": false,
+    "hero": {
+      "top": 109,
+      "height": 179,
+      "bottom": 288
+    },
+    "tabs": {
+      "top": 300,
+      "height": 56,
+      "bottom": 356
+    },
+    "lab": {
+      "top": 368,
+      "height": 914,
+      "bottom": 1282
+    },
+    "theory": {
+      "top": 1294,
+      "height": 144,
+      "bottom": 1438
+    },
+    "adjacent": {
+      "top": 1450,
+      "height": 48,
+      "bottom": 1498
+    }
+  },
+  "mobileMetrics": {
+    "width": 390,
+    "overflow": false
+  },
+  "logs": []
+}
