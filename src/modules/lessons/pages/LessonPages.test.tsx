@@ -1524,6 +1524,34 @@ describe("lesson pages", () => {
     expect(html).toContain('aria-label="Expansion 4"');
   });
 
+  it("renders the dedicated Euclidean-foundations target for lesson 10053", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-9/class-9-euclidean-geometry-definitions-axioms-and-postulates",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0727"');
+    expect(html).toContain(
+      "dedicated-euclidean-statement-classification-dependency-and-justification-engine",
+    );
+    expect(html).toContain('data-correct="6"');
+    expect(html).toContain('data-total="6"');
+    expect(html).toContain('data-checked="true"');
+    expect(html).toContain('data-challenge-score="idle"');
+    expect(html).toContain('aria-label="Justification 1"');
+    expect(html).toContain('aria-label="Justification 2"');
+    expect(html).toContain("DEFINITION DEPENDENCY MAP");
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

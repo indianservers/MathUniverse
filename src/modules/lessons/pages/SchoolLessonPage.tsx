@@ -27,6 +27,7 @@ import FactorTheoremTargetLesson10049 from "../schoolTargets/FactorTheoremTarget
 import ZerosCoefficientsTargetLesson10050 from "../schoolTargets/ZerosCoefficientsTargetLesson10050";
 import CubicIdentitiesTargetLesson10051 from "../schoolTargets/CubicIdentitiesTargetLesson10051";
 import FactorisationPracticeTargetLesson10052 from "../schoolTargets/FactorisationPracticeTargetLesson10052";
+import EuclideanFoundationsTargetLesson10053 from "../schoolTargets/EuclideanFoundationsTargetLesson10053";
 import PlaceValueTargetLesson10001 from "../schoolTargets/PlaceValueTargetLesson10001";
 import NumberNamingTargetLesson10002 from "../schoolTargets/NumberNamingTargetLesson10002";
 import EstimationRoundingTargetLesson10003 from "../schoolTargets/EstimationRoundingTargetLesson10003";
@@ -102,6 +103,8 @@ export default function SchoolLessonPage() {
     return <CubicIdentitiesTargetLesson10051 lesson={lesson} />;
   if (lesson.numericId === 10052)
     return <FactorisationPracticeTargetLesson10052 lesson={lesson} />;
+  if (lesson.numericId === 10053)
+    return <EuclideanFoundationsTargetLesson10053 lesson={lesson} />;
   if (lesson.numericId === 10001)
     return <PlaceValueTargetLesson10001 lesson={lesson} />;
   if (lesson.numericId === 10002)

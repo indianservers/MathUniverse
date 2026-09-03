@@ -1,0 +1,47 @@
+{
+  "mockup": "0727",
+  "lessonId": 10053,
+  "route": "/lessons/school/class-9/class-9-euclidean-geometry-definitions-axioms-and-postulates",
+  "surface": "EuclideanFoundationsTargetLesson10053",
+  "objectModel": "dedicated-euclidean-statement-classification-dependency-and-justification-engine",
+  "targetViewport": { "width": 899, "height": 1748 },
+  "desktop": {
+    "consoleWarningsOrErrors": 0,
+    "documentWidth": 899,
+    "documentHeight": 1748,
+    "sections": {
+      "hero": { "x": 190, "y": 91, "width": 694, "height": 140 },
+      "tabs": { "x": 190, "y": 242, "width": 694, "height": 43 },
+      "studio": { "x": 190, "y": 303, "width": 694, "height": 517 },
+      "sortingBoard": { "x": 204, "y": 354, "width": 666, "height": 398 },
+      "dependencyAndEvidence": {
+        "x": 190,
+        "y": 831,
+        "width": 694,
+        "height": 357
+      },
+      "lower": { "x": 190, "y": 1202, "width": 694, "height": 291 },
+      "navigation": { "x": 190, "y": 1517, "width": 694, "height": 50 }
+    }
+  },
+  "mobile": {
+    "width": 390,
+    "documentWidth": 375,
+    "documentHeight": 3802,
+    "pageLevelHorizontalOverflow": false,
+    "consoleWarningsOrErrors": 0,
+    "sourceCards": 6,
+    "categories": 3,
+    "placedCards": 6,
+    "challengeInputs": 2
+  },
+  "interactions": {
+    "initialCorrect": 6,
+    "resetCorrect": 0,
+    "partialClassificationCorrect": 1,
+    "partialCheckRejected": true,
+    "restoredCorrect": 6,
+    "challengeScore": 2,
+    "tabStateChange": true
+  }
+}
