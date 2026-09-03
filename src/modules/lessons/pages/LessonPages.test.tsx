@@ -1951,6 +1951,35 @@ describe("lesson pages", () => {
     expect(html).toContain('aria-label="ASA triangle DEF"');
   });
 
+  it("renders the dedicated AAS-congruence target for lesson 10068", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-9/class-9-triangle-proofs-aas-congruence",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0742"');
+    expect(html).toContain(
+      "dedicated-aas-nonincluded-side-law-of-sines-engine",
+    );
+    expect(html).toContain('data-model="45,70,6"');
+    expect(html).toContain('data-third="65"');
+    expect(html).toContain('data-sides="5.79,4.51"');
+    expect(html).toContain('data-overlay="false"');
+    expect(html).toContain('data-show-sides="false"');
+    expect(html).toContain('data-valid="true"');
+    expect(html).toContain('aria-label="AAS triangle ABC"');
+    expect(html).toContain('aria-label="AAS triangle DEF"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

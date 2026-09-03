@@ -1,0 +1,38 @@
+{
+  "mockup": "0742",
+  "lessonId": 10068,
+  "route": "/lessons/school/class-9/class-9-triangle-proofs-aas-congruence",
+  "objectModel": "dedicated-aas-nonincluded-side-law-of-sines-engine",
+  "desktop": {
+    "viewport": [899, 1762],
+    "hero": [83, 209],
+    "tabs": [219, 263],
+    "lab": [275, 799],
+    "content": [811, 1472],
+    "navigation": [1484, 1531],
+    "documentScrollWidth": 899,
+    "consoleErrorsOrWarnings": 0
+  },
+  "mobile": {
+    "viewport": [390, 844],
+    "documentScrollWidth": 390,
+    "pageWidth": 366.4,
+    "angleDials": 2,
+    "triangleModels": 4,
+    "consoleErrorsOrWarnings": 0
+  },
+  "interactions": {
+    "initialModel": [45, 70, 6],
+    "initialThirdAngle": 65,
+    "initialCalculatedSides": [5.79, 4.51],
+    "changedModel": [46, 70, 6],
+    "changedThirdAngle": 64,
+    "changedCalculatedSides": [5.74, 4.59],
+    "overlayEnabled": true,
+    "correspondingSidesEnabled": true,
+    "challengeCompleted": true,
+    "resetRestoresTarget": true,
+    "formulaTabSelected": true
+  },
+  "status": "complete"
+}
