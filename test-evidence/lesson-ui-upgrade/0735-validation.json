@@ -1,0 +1,36 @@
+{
+  "mockup": "0735",
+  "lessonId": 10061,
+  "route": "/lessons/school/class-9/class-9-euclidean-geometry-alternate-interior-angles",
+  "objectModel": "dedicated-alternate-interior-position-equality-converse-engine",
+  "desktop": {
+    "viewport": [899, 1953],
+    "hero": [91, 216],
+    "tabs": [230, 270],
+    "explorer": [286, 861],
+    "theory": [875, 1250],
+    "challenge": [1265, 1585],
+    "takeaway": [1599, 1789],
+    "navigation": [1803, 1842],
+    "consoleErrorsOrWarnings": 0
+  },
+  "mobile": {
+    "viewport": [390, 844],
+    "documentScrollWidth": 375,
+    "pageWidth": 366.4,
+    "interactiveDiagrams": 2,
+    "challengeChoices": 4,
+    "takeawayCards": 4,
+    "consoleErrorsOrWarnings": 0
+  },
+  "interactions": {
+    "movedOffset": 8,
+    "rotatedAngle": 118,
+    "converseParallel": false,
+    "challengeAfterMove": true,
+    "challengeWithWrongPair": false,
+    "challengeAfterRepair": true,
+    "resetMain": { "angle": 117, "offset": 0, "parallel": true }
+  },
+  "status": "complete"
+}

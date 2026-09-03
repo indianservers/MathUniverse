@@ -1750,6 +1750,35 @@ describe("lesson pages", () => {
     );
   });
 
+  it("renders the dedicated alternate-interior target for lesson 10061", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-9/class-9-euclidean-geometry-alternate-interior-angles",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0735"');
+    expect(html).toContain(
+      "dedicated-alternate-interior-position-equality-converse-engine",
+    );
+    expect(html).toContain('data-angle="117"');
+    expect(html).toContain('data-supplement="63"');
+    expect(html).toContain('data-parallel="true"');
+    expect(html).toContain('data-selected="0,1"');
+    expect(html).toContain('data-solved="false"');
+    expect(html).toContain(
+      'aria-label="Interactive alternate interior angle diagram"',
+    );
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
