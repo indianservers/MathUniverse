@@ -1,0 +1,209 @@
+{
+  "passed": true,
+  "checks": {
+    "initial": {
+      "payment": "5000",
+      "rate": "6",
+      "periods": "10",
+      "timing": "ordinary",
+      "fv": "65903.97",
+      "pv": "36800.44",
+      "view": "FV",
+      "graded": "",
+      "actions": "0",
+      "payments": 10,
+      "points": 6
+    },
+    "payment": {
+      "payment": "10000",
+      "rate": "6",
+      "periods": "10",
+      "timing": "ordinary",
+      "fv": "131807.95",
+      "pv": "73600.87",
+      "view": "FV",
+      "graded": "",
+      "actions": "1",
+      "payments": 10,
+      "points": 6
+    },
+    "rate": {
+      "payment": "10000",
+      "rate": "8",
+      "periods": "10",
+      "timing": "ordinary",
+      "fv": "144865.62",
+      "pv": "67100.81",
+      "view": "FV",
+      "graded": "",
+      "actions": "2",
+      "payments": 10,
+      "points": 6
+    },
+    "periods": {
+      "payment": "10000",
+      "rate": "8",
+      "periods": "7",
+      "timing": "ordinary",
+      "fv": "89228.03",
+      "pv": "52063.70",
+      "view": "FV",
+      "graded": "",
+      "actions": "3",
+      "payments": 7,
+      "points": 5
+    },
+    "due": {
+      "payment": "10000",
+      "rate": "8",
+      "periods": "7",
+      "timing": "due",
+      "fv": "96366.28",
+      "pv": "56228.80",
+      "view": "FV",
+      "graded": "",
+      "actions": "4",
+      "payments": 7,
+      "points": 5
+    },
+    "pvView": {
+      "payment": "10000",
+      "rate": "8",
+      "periods": "7",
+      "timing": "due",
+      "fv": "96366.28",
+      "pv": "56228.80",
+      "view": "PV",
+      "graded": "",
+      "actions": "5",
+      "payments": 7,
+      "points": 5
+    },
+    "sliders": {
+      "payment": "4000",
+      "rate": "6",
+      "periods": "10",
+      "timing": "due",
+      "fv": "55886.57",
+      "pv": "31206.77",
+      "view": "PV",
+      "graded": "",
+      "actions": "8",
+      "payments": 10,
+      "points": 6
+    },
+    "ordinary": {
+      "payment": "4000",
+      "rate": "6",
+      "periods": "10",
+      "timing": "ordinary",
+      "fv": "52723.18",
+      "pv": "29440.35",
+      "view": "PV",
+      "graded": "",
+      "actions": "9",
+      "payments": 10,
+      "points": 6
+    },
+    "formula": true,
+    "wrong": {
+      "payment": "4000",
+      "rate": "6",
+      "periods": "10",
+      "timing": "ordinary",
+      "fv": "52723.18",
+      "pv": "29440.35",
+      "view": "PV",
+      "graded": "false",
+      "actions": "13",
+      "payments": 10,
+      "points": 6
+    },
+    "correct": {
+      "payment": "4000",
+      "rate": "6",
+      "periods": "10",
+      "timing": "ordinary",
+      "fv": "52723.18",
+      "pv": "29440.35",
+      "view": "PV",
+      "graded": "true",
+      "actions": "15",
+      "payments": 10,
+      "points": 6
+    },
+    "reset": {
+      "payment": "5000",
+      "rate": "6",
+      "periods": "10",
+      "timing": "ordinary",
+      "fv": "65903.97",
+      "pv": "36800.44",
+      "view": "FV",
+      "graded": "",
+      "actions": "1",
+      "payments": 10,
+      "points": 6
+    },
+    "final": {
+      "payment": "5000",
+      "rate": "6",
+      "periods": "10",
+      "timing": "ordinary",
+      "fv": "65903.97",
+      "pv": "36800.44",
+      "view": "FV",
+      "graded": "",
+      "actions": "0",
+      "payments": 10,
+      "points": 6
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 989,
+      "height": 1591
+    },
+    "overflow": false,
+    "hero": {
+      "top": 91,
+      "height": 110,
+      "bottom": 201
+    },
+    "tabs": {
+      "top": 210,
+      "height": 32,
+      "bottom": 242
+    },
+    "observe": {
+      "top": 251,
+      "height": 358,
+      "bottom": 609
+    },
+    "middle": {
+      "top": 618,
+      "height": 320,
+      "bottom": 938
+    },
+    "lower": {
+      "top": 947,
+      "height": 282,
+      "bottom": 1229
+    },
+    "worked": {
+      "top": 1238,
+      "height": 196,
+      "bottom": 1434
+    },
+    "adjacent": {
+      "top": 1443,
+      "height": 47,
+      "bottom": 1490
+    }
+  },
+  "mobileMetrics": {
+    "width": 390,
+    "overflow": false
+  },
+  "logs": []
+}
