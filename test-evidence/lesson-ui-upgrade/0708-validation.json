@@ -1,0 +1,41 @@
+{
+  "mockup": "0708",
+  "lessonNumericId": 10034,
+  "route": "/lessons/school/class-8/class-8-data-handling-range-and-spread-explorer",
+  "objectModel": "dedicated-draggable-extremes-range-spread-explorer",
+  "viewport": {
+    "desktop": [963, 1633],
+    "mobile": [390, 844]
+  },
+  "layout": {
+    "hero": { "x": 213, "y": 89, "width": 740, "height": 134 },
+    "tabs": { "x": 213, "y": 236, "width": 740, "height": 45 },
+    "explorer": { "x": 213, "y": 281, "width": 740, "height": 474 },
+    "summary": { "x": 213, "y": 767, "width": 740, "height": 145 },
+    "theory": { "x": 213, "y": 939, "width": 740, "height": 227 },
+    "challenge": { "x": 213, "y": 1182, "width": 740, "height": 255 },
+    "adjacentNavigation": { "x": 213, "y": 1447, "width": 740, "height": 62 }
+  },
+  "interactions": {
+    "initial": {
+      "values": [3, 5, 6, 8, 11],
+      "minimum": 3,
+      "maximum": 11,
+      "range": 8,
+      "median": 6
+    },
+    "animated": { "values": [3, 5, 6, 8, 16], "range": 13 },
+    "mainPointPointerAndKeyboardDrag": true,
+    "outlierToggleWorking": true,
+    "whyExplanationWorking": true,
+    "challengeInitial": { "range": 8, "median": 6 },
+    "challengeSolved": { "values": [3, 5, 6, 8, 15], "range": 12, "median": 6 },
+    "tipsAndAnswerWorking": true,
+    "tabsWorking": true,
+    "fullResetWorking": true
+  },
+  "desktopHorizontalOverflow": false,
+  "mobileHorizontalOverflow": false,
+  "mobileChallengeControlsOverlap": false,
+  "consoleWarningsOrErrors": []
+}

@@ -1024,6 +1024,34 @@ describe("lesson pages", () => {
     expect(html).toContain('data-mode="3"');
   });
 
+  it("renders the dedicated range and spread target for lesson 10034", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-8/class-8-data-handling-range-and-spread-explorer",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0708"');
+    expect(html).toContain(
+      "dedicated-draggable-extremes-range-spread-explorer",
+    );
+    expect(html).toContain('data-values="3,5,6,8,11"');
+    expect(html).toContain('data-min="3"');
+    expect(html).toContain('data-max="11"');
+    expect(html).toContain('data-range="8"');
+    expect(html).toContain('data-median="6"');
+    expect(html).toContain('data-outlier="true"');
+    expect(html).toContain('data-challenge-range="8"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
