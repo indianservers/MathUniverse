@@ -835,6 +835,33 @@ describe("lesson pages", () => {
     expect(html).toContain('data-steps="true"');
   });
 
+  it("renders the dedicated parallel line target for lesson 10027", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-7/class-7-practical-geometry-parallel-line-construction",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0701"');
+    expect(html).toContain(
+      "dedicated-corresponding-angle-copy-transversal-parallel-line-construction",
+    );
+    expect(html).toContain('data-stage="4"');
+    expect(html).toContain('data-progress="0"');
+    expect(html).toContain('data-angle="74"');
+    expect(html).toContain('data-parallel="true"');
+    expect(html).toContain('data-grid="true"');
+    expect(html).toContain('data-transversal="true"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

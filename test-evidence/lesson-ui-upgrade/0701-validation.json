@@ -1,0 +1,36 @@
+{
+  "mockup": "0701",
+  "lessonNumericId": 10027,
+  "route": "/lessons/school/class-7/class-7-practical-geometry-parallel-line-construction",
+  "objectModel": "dedicated-corresponding-angle-copy-transversal-parallel-line-construction",
+  "viewport": { "desktop": [924, 1703], "mobile": [390, 844] },
+  "layout": {
+    "hero": { "x": 196, "y": 79, "width": 713, "height": 145 },
+    "tabs": { "x": 196, "y": 224, "width": 713, "height": 46 },
+    "construction": { "x": 196, "y": 281, "width": 713, "height": 522 },
+    "steps": { "x": 196, "y": 281, "width": 144, "height": 522 },
+    "workspace": { "x": 352, "y": 281, "width": 557, "height": 522 },
+    "theory": { "x": 196, "y": 820, "width": 713, "height": 299 },
+    "cards": { "x": 196, "y": 1131, "width": 713, "height": 204 },
+    "challenge": { "x": 196, "y": 1348, "width": 713, "height": 206 },
+    "adjacentNavigation": { "x": 196, "y": 1570, "width": 713, "height": 55 }
+  },
+  "interactions": {
+    "initial": { "stage": 4, "progress": 0, "angle": 74, "parallel": true },
+    "completed": { "stage": 5, "progress": 100 },
+    "stageNavigationWorking": true,
+    "gridTransversalLabelsTogglesWorking": true,
+    "zoomWorking": true,
+    "toolSelected": "Compass",
+    "tabsWorking": true,
+    "wrongQuickAnswerRejected": true,
+    "correctQuickAnswerAccepted": true,
+    "incompleteChallengeRejected": true,
+    "fourConditionChallengeAccepted": true,
+    "hintAndNewChallengeWorking": true,
+    "resetRestoredTargetState": true
+  },
+  "desktopHorizontalOverflow": false,
+  "mobileHorizontalOverflow": false,
+  "consoleWarningsOrErrors": []
+}
