@@ -1,0 +1,132 @@
+{
+  "passed": true,
+  "checks": {
+    "initial": {
+      "slope": "4.000",
+      "intercept": "10.000",
+      "fitSlope": "3.777",
+      "fitIntercept": "11.088",
+      "sse": "2132.16",
+      "rmse": "8.16",
+      "r2": "0.916",
+      "points": "32",
+      "graded": "",
+      "actions": "0"
+    },
+    "controls": {
+      "slope": "2.500",
+      "intercept": "20.000",
+      "fitSlope": "3.777",
+      "fitIntercept": "11.088",
+      "sse": "7222.12",
+      "rmse": "15.02",
+      "r2": "0.715",
+      "points": "32",
+      "graded": "",
+      "actions": "2"
+    },
+    "suggested": {
+      "slope": "3.777",
+      "intercept": "11.088",
+      "fitSlope": "3.777",
+      "fitIntercept": "11.088",
+      "sse": "2013.14",
+      "rmse": "7.93",
+      "r2": "0.921",
+      "points": "32",
+      "graded": "",
+      "actions": "3"
+    },
+    "drag": {
+      "slope": "3.777",
+      "intercept": "11.088",
+      "fitSlope": "3.765",
+      "fitIntercept": "12.687",
+      "sse": "3746.30",
+      "rmse": "10.82",
+      "r2": "0.860",
+      "points": "32",
+      "graded": "",
+      "actions": "7"
+    },
+    "formula": true,
+    "reset": {
+      "slope": "4.000",
+      "intercept": "10.000",
+      "fitSlope": "3.777",
+      "fitIntercept": "11.088",
+      "sse": "2132.16",
+      "rmse": "8.16",
+      "r2": "0.916",
+      "points": "32",
+      "graded": "",
+      "actions": "1"
+    },
+    "wrong": {
+      "slope": "4.000",
+      "intercept": "10.000",
+      "fitSlope": "3.777",
+      "fitIntercept": "11.088",
+      "sse": "2132.16",
+      "rmse": "8.16",
+      "r2": "0.916",
+      "points": "32",
+      "graded": "false",
+      "actions": "4"
+    },
+    "correct": {
+      "slope": "4.000",
+      "intercept": "10.000",
+      "fitSlope": "3.777",
+      "fitIntercept": "11.088",
+      "sse": "2132.16",
+      "rmse": "8.16",
+      "r2": "0.916",
+      "points": "32",
+      "graded": "true",
+      "actions": "7"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 1017,
+      "height": 1546
+    },
+    "overflow": false,
+    "hero": {
+      "top": 111,
+      "height": 187,
+      "bottom": 298
+    },
+    "sequence": {
+      "top": 339,
+      "height": 56,
+      "bottom": 395
+    },
+    "lab": {
+      "top": 412,
+      "height": 532,
+      "bottom": 944
+    },
+    "theory": {
+      "top": 958,
+      "height": 331,
+      "bottom": 1289
+    },
+    "challenge": {
+      "top": 1301,
+      "height": 89,
+      "bottom": 1390
+    },
+    "adjacent": {
+      "top": 1402,
+      "height": 54,
+      "bottom": 1456
+    }
+  },
+  "mobileMetrics": {
+    "width": 390,
+    "overflow": false
+  },
+  "logs": []
+}
