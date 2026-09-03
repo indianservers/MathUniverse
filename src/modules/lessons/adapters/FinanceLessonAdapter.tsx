@@ -6,6 +6,7 @@ import {
 import type { LessonAdapterProps } from "../types";
 import { FinanceConceptActivity } from "./finance/FinanceConceptActivity";
 import AmortisationTableTargetLesson598 from "./finance/AmortisationTableTargetLesson598";
+import BreakEvenTargetLesson603 from "./finance/BreakEvenTargetLesson603";
 import AnnuitiesTargetLesson596 from "./finance/AnnuitiesTargetLesson596";
 import CompoundInterestTargetLesson592 from "./finance/CompoundInterestTargetLesson592";
 import CurrencyConversionTargetLesson601 from "./finance/CurrencyConversionTargetLesson601";
@@ -182,6 +183,7 @@ export default function FinanceLessonAdapter(props: LessonAdapterProps) {
   if (props.lesson.id === 601)
     return <CurrencyConversionTargetLesson601 {...props} />;
   if (props.lesson.id === 602) return <ProfitLossTargetLesson602 {...props} />;
+  if (props.lesson.id === 603) return <BreakEvenTargetLesson603 {...props} />;
   if (mode === "simple-interest") {
     return (
       <AdapterFrame

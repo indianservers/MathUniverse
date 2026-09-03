@@ -1,0 +1,132 @@
+{
+  "passed": true,
+  "checks": {
+    "initial": {
+      "fixed": "50000",
+      "variable": "400",
+      "price": "900",
+      "quantity": "100",
+      "revenue": "90000",
+      "cost": "90000",
+      "profit": "0",
+      "cm": "500",
+      "be": "100.00",
+      "graded": "",
+      "actions": "0"
+    },
+    "quantity": {
+      "fixed": "50000",
+      "variable": "400",
+      "price": "900",
+      "quantity": "150",
+      "revenue": "135000",
+      "cost": "110000",
+      "profit": "25000",
+      "cm": "500",
+      "be": "100.00",
+      "graded": "",
+      "actions": "1"
+    },
+    "assumptions": {
+      "fixed": "80000",
+      "variable": "300",
+      "price": "750",
+      "quantity": "150",
+      "revenue": "112500",
+      "cost": "125000",
+      "profit": "-12500",
+      "cm": "450",
+      "be": "177.78",
+      "graded": "",
+      "actions": "4"
+    },
+    "formula": true,
+    "wrong": {
+      "fixed": "80000",
+      "variable": "300",
+      "price": "750",
+      "quantity": "150",
+      "revenue": "112500",
+      "cost": "125000",
+      "profit": "-12500",
+      "cm": "450",
+      "be": "177.78",
+      "graded": "false",
+      "actions": "7"
+    },
+    "correct": {
+      "fixed": "80000",
+      "variable": "300",
+      "price": "750",
+      "quantity": "150",
+      "revenue": "112500",
+      "cost": "125000",
+      "profit": "-12500",
+      "cm": "450",
+      "be": "177.78",
+      "graded": "true",
+      "actions": "9"
+    },
+    "hint": true,
+    "reset": {
+      "fixed": "50000",
+      "variable": "400",
+      "price": "900",
+      "quantity": "100",
+      "revenue": "90000",
+      "cost": "90000",
+      "profit": "0",
+      "cm": "500",
+      "be": "100.00",
+      "graded": "",
+      "actions": "1"
+    }
+  },
+  "metrics": {
+    "document": {
+      "width": 992,
+      "height": 1644
+    },
+    "overflow": false,
+    "hero": {
+      "top": 97,
+      "height": 157,
+      "bottom": 254
+    },
+    "tabs": {
+      "top": 264,
+      "height": 59,
+      "bottom": 323
+    },
+    "body": {
+      "top": 333,
+      "height": 981,
+      "bottom": 1314
+    },
+    "chart": {
+      "top": 333,
+      "height": 600,
+      "bottom": 933
+    },
+    "controls": {
+      "top": 942,
+      "height": 372,
+      "bottom": 1314
+    },
+    "challenge": {
+      "top": 1324,
+      "height": 137,
+      "bottom": 1461
+    },
+    "adjacent": {
+      "top": 1471,
+      "height": 70,
+      "bottom": 1541
+    }
+  },
+  "mobileMetrics": {
+    "width": 390,
+    "overflow": false
+  },
+  "logs": []
+}
