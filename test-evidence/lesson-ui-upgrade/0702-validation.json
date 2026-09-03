@@ -1,0 +1,33 @@
+{
+  "mockup": "0702",
+  "lessonNumericId": 10028,
+  "route": "/lessons/school/class-8/class-8-practical-geometry-triangle-construction-by-sss",
+  "objectModel": "dedicated-three-side-circle-intersection-sss-triangle-construction",
+  "viewport": {
+    "desktop": [924, 1703],
+    "mobile": [390, 844]
+  },
+  "layout": {
+    "hero": { "x": 196, "y": 89, "width": 712, "height": 136 },
+    "tabs": { "x": 196, "y": 235, "width": 712, "height": 41 },
+    "construction": { "x": 196, "y": 288, "width": 712, "height": 540 },
+    "theory": { "x": 196, "y": 852, "width": 712, "height": 317 },
+    "challenge": { "x": 196, "y": 1184, "width": 712, "height": 309 },
+    "adjacentNavigation": { "x": 196, "y": 1510, "width": 712, "height": 35 }
+  },
+  "interactions": {
+    "initial": { "ab": 7, "ac": 5, "bc": 6, "valid": true, "stage": 4 },
+    "invalidMain": { "ab": 15, "ac": 5, "bc": 6, "valid": false },
+    "replayReachedStage5": true,
+    "zoomWorking": true,
+    "intersectionUpperLowerWorking": true,
+    "tabsWorking": true,
+    "challengeDefaultAccepted": true,
+    "challengeInvalidRejected": true,
+    "mainAndChallengeResetToTarget": true,
+    "intersectionPointerAndKeyboardDrag": true
+  },
+  "desktopHorizontalOverflow": false,
+  "mobileHorizontalOverflow": false,
+  "consoleWarningsOrErrors": []
+}

@@ -862,6 +862,33 @@ describe("lesson pages", () => {
     expect(html).toContain('data-transversal="true"');
   });
 
+  it("renders the dedicated triangle SSS target for lesson 10028", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-8/class-8-practical-geometry-triangle-construction-by-sss",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0702"');
+    expect(html).toContain(
+      "dedicated-three-side-circle-intersection-sss-triangle-construction",
+    );
+    expect(html).toContain('data-ab="7"');
+    expect(html).toContain('data-ac="5"');
+    expect(html).toContain('data-bc="6"');
+    expect(html).toContain('data-valid="true"');
+    expect(html).toContain('data-stage="4"');
+    expect(html).toContain('data-upper="true"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
