@@ -2097,6 +2097,35 @@ describe("lesson pages", () => {
     expect(html).toContain('draggable="true"');
   });
 
+  it("renders the dedicated parallelogram-opposite-sides target for lesson 10073", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-9/class-9-quadrilateral-proofs-parallelogram-opposite-sides",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0747"');
+    expect(html).toContain(
+      "dedicated-constrained-parallelogram-congruence-proof-engine",
+    );
+    expect(html).toContain('data-points="118,82;488,82;440,330;70,330"');
+    expect(html).toContain('data-sides="370,252.6,370,252.6"');
+    expect(html).toContain('data-opposite-equal="true"');
+    expect(html).toContain('data-diagonal="AC"');
+    expect(html).toContain('data-overlays="1,1,1"');
+    expect(html).toContain('data-score="7/7"');
+    expect(html).toContain('aria-label="Draggable parallelogram ABCD"');
+    expect(html).toContain('aria-label="Draggable vertex A"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

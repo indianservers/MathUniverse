@@ -1,0 +1,47 @@
+{
+  "mockup": "0747",
+  "lessonId": 10073,
+  "route": "/lessons/school/class-9/class-9-quadrilateral-proofs-parallelogram-opposite-sides",
+  "objectModel": "dedicated-constrained-parallelogram-congruence-proof-engine",
+  "desktop": {
+    "viewport": [899, 1762],
+    "hero": [91, 217],
+    "tabs": [227, 271],
+    "lab": [283, 847],
+    "whyItWorks": [859, 1035],
+    "lowerCards": [1047, 1529],
+    "navigation": [1541, 1598],
+    "documentScrollWidth": 884,
+    "consoleErrorsOrWarnings": 0
+  },
+  "mobile": {
+    "viewport": [390, 844],
+    "documentScrollWidth": 375,
+    "pageWidth": 366.4,
+    "draggableHandles": 3,
+    "overlaySwitches": 3,
+    "proofSelectors": 7,
+    "labSections": 1,
+    "lowerSections": 1,
+    "consoleErrorsOrWarnings": 0
+  },
+  "interactions": {
+    "initialPoints": "118,82;488,82;440,330;70,330",
+    "initialSides": [370, 252.6, 370, 252.6],
+    "keyboardMovedPoints": "122,92;488,82;436,320;70,330",
+    "keyboardMovedSides": [366.1, 243.6, 366.1, 243.6],
+    "oppositeSidesRemainEqual": true,
+    "diagonalBDSelected": true,
+    "independentOverlayState": [false, false, true],
+    "panToolSelected": true,
+    "zoomInValue": 110,
+    "labelsHidden": true,
+    "randomizeChangesGeometry": true,
+    "fitViewSelected": true,
+    "incorrectProofScore": "6/7",
+    "correctProofScore": "7/7",
+    "formulaTabSelected": true,
+    "resetRestoresTarget": true
+  },
+  "status": "complete"
+}
