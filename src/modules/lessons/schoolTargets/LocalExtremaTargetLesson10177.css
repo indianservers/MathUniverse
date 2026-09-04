@@ -1,0 +1,364 @@
+.le10177-page {
+  position: relative;
+  top: -22px;
+  width: min(720px, 100%);
+  margin: 0;
+  color: #29374b;
+  font:
+    8px/1.45 Inter,
+    Arial,
+    sans-serif;
+  letter-spacing: 0;
+}
+.le10177-page:before {
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  background: #effaff;
+  content: "";
+}
+.le10177-page * {
+  box-sizing: border-box;
+}
+.le10177-page h1,
+.le10177-page h2,
+.le10177-page h3,
+.le10177-page h4,
+.le10177-page p {
+  margin: 0;
+}
+.le10177-page button,
+.le10177-page input {
+  font: inherit;
+  color: inherit;
+}
+.le10177-page button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 6px 9px;
+  border: 1px solid #d4e2e8;
+  border-radius: 5px;
+  background: #fff;
+  cursor: pointer;
+}
+.le10177-page button svg,
+.le10177-page b svg {
+  width: 11px;
+  height: 11px;
+}
+.le10177-page > header {
+  height: 130px;
+  padding: 15px;
+  border-radius: 14px;
+  background: #fff;
+}
+.le10177-page > header small,
+.le10177-page h3 {
+  color: #0084b8;
+  font-weight: 900;
+}
+.le10177-page > header h1 {
+  margin: 5px 0;
+  color: #111827;
+  font-size: 20px;
+}
+.le10177-page > header > div {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+}
+.le10177-page > header span {
+  padding: 3px 8px;
+  border-radius: 10px;
+  background: #edf2f5;
+  font-weight: 800;
+}
+.le-tabs,
+.le-lab article,
+.le-lab aside section,
+.le-sign,
+.le-three article,
+.le-lower article,
+.le10177-page > footer {
+  border: 1px solid #d8e6eb;
+  border-radius: 8px;
+  background: #fff;
+}
+.le-tabs {
+  display: grid;
+  height: 38px;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 9px;
+}
+.le-tabs label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.le-tabs input {
+  position: absolute;
+  opacity: 0;
+}
+.le-tabs label:has(input:checked) {
+  border-bottom: 2px solid #079bc5;
+  color: #079bc5;
+}
+.le-lab {
+  display: grid;
+  height: 487px;
+  grid-template-columns: 1.8fr 1fr;
+  gap: 9px;
+  margin-top: 13px;
+}
+.le-lab > article {
+  padding: 11px;
+}
+.le-lab > article > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.le-lab > article h2 {
+  margin-top: 7px;
+  font:
+    17px Georgia,
+    serif;
+}
+.le-lab > article > div p b {
+  color: #7138d5;
+}
+.le-lab > article > div p i {
+  color: #0aa0b8;
+}
+.le-lab svg {
+  display: block;
+  width: 100%;
+  height: 385px;
+}
+.le-lab svg text {
+  font:
+    10px Inter,
+    Arial;
+}
+.le-lab > article > b {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.le-lab > aside section {
+  padding: 12px;
+}
+.le-lab > aside section + section {
+  height: 375px;
+  margin-top: 9px;
+}
+.le-lab > aside label {
+  display: grid;
+  gap: 7px;
+  margin-top: 10px;
+}
+.le-lab > aside input {
+  width: 100%;
+  accent-color: #079bc5;
+}
+.le-lab > aside section h2 {
+  margin: 18px 0;
+  font:
+    16px Georgia,
+    serif;
+}
+.le-lab > aside section strong,
+.le-lab > aside section > b {
+  display: block;
+  margin: 8px 0;
+  color: #079bc5;
+  font-size: 14px;
+}
+.le-lab > aside section h4 {
+  margin-top: 16px;
+}
+.le-lab > aside section > div {
+  display: flex;
+  gap: 9px;
+  margin-top: 30px;
+}
+.le-lab > aside section > div button {
+  flex: 1;
+}
+.le-sign {
+  min-height: 233px;
+  margin-top: 9px;
+  padding: 11px;
+}
+.le10177-page table {
+  width: 100%;
+  margin-top: 10px;
+  border-collapse: collapse;
+  text-align: center;
+}
+.le10177-page th,
+.le10177-page td {
+  padding: 9px;
+  border: 1px solid #d8e3e8;
+}
+.le-sign td {
+  font-weight: 800;
+}
+.le-sign tr:nth-child(2) td:first-of-type,
+.le-sign tr:nth-child(2) td:last-of-type {
+  color: #7138d5;
+}
+.le-sign tr:nth-child(2) td:nth-of-type(3) {
+  color: #079bc5;
+}
+.le-three {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr 0.9fr;
+  gap: 9px;
+  margin-top: 9px;
+}
+.le-three article {
+  min-height: 157px;
+  padding: 11px;
+}
+.le-three p {
+  margin: 10px 0;
+}
+.le-three article:last-child {
+  border-color: #efd49b;
+  background: #fffaf0;
+}
+.le-three article:last-child h3 {
+  color: #b36a19;
+}
+.le-lower {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 9px;
+  margin-top: 9px;
+}
+.le-lower > article {
+  min-height: 298px;
+  padding: 11px;
+}
+.le-lower > article li {
+  margin: 10px 0;
+}
+.le-lower > article > b {
+  display: block;
+  margin-top: 15px;
+}
+.le-lower > div {
+  display: grid;
+  gap: 9px;
+}
+.le-lower > div article {
+  min-height: 144px;
+  padding: 11px;
+}
+.le-lower > div article:first-child {
+  border-color: #d0b8f2;
+}
+.le-lower label {
+  display: block;
+  margin: 5px 0;
+}
+.le-lower output {
+  display: block;
+  margin-top: 7px;
+  color: #087c52;
+  font-weight: 800;
+}
+.le-adjacent {
+  display: flex;
+  justify-content: space-between;
+  margin: 9px 0 24px;
+}
+.le-adjacent button {
+  min-width: 330px;
+}
+.le10177-page > footer {
+  min-height: 82px;
+  padding: 11px;
+}
+.le10177-page > footer p {
+  margin: 5px 0 13px;
+  color: #627185;
+}
+body:has(.le10177-page) [data-testid="desktop-sidebar"] {
+  display: flex !important;
+  width: 188px !important;
+}
+body:has(.le10177-page) #main-content {
+  margin-left: 0 !important;
+  padding: 0 14px !important;
+}
+body:has(.le10177-page) #main-content > div {
+  max-width: none !important;
+}
+body:has(.le10177-page) nav[aria-label="Breadcrumb"] {
+  height: 34px !important;
+  min-height: 34px !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  font-size: 7px !important;
+}
+body:has(.le10177-page) #lesson-section-interaction ~ * {
+  display: none !important;
+}
+@media (max-width: 700px) {
+  body:has(.le10177-page) [data-testid="desktop-sidebar"] {
+    display: none !important;
+  }
+  .le10177-page {
+    top: 0;
+    width: 100%;
+    padding: 6px;
+  }
+  .le10177-page > header {
+    height: auto;
+  }
+  .le-tabs {
+    overflow-x: auto;
+  }
+  .le-lab,
+  .le-three,
+  .le-lower {
+    display: block;
+    height: auto;
+  }
+  .le-lab > *,
+  .le-three > *,
+  .le-lower > * {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+  .le-lab svg {
+    height: 310px;
+  }
+  .le-lab > aside section + section,
+  .le-three article,
+  .le-lower > article,
+  .le-lower > div article {
+    height: auto;
+    min-height: 0;
+  }
+  .le-sign {
+    overflow-x: auto;
+  }
+  .le-sign table {
+    min-width: 620px;
+  }
+  .le-adjacent {
+    display: grid;
+    gap: 7px;
+  }
+  .le-adjacent button {
+    width: 100%;
+    min-width: 0;
+  }
+}

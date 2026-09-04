@@ -1,0 +1,52 @@
+{
+  "mockup": "0851",
+  "lessonId": 10177,
+  "route": "/lessons/school/class-12/class-12-formal-calculus-local-maxima-and-minima",
+  "objectModel": "dedicated-local-extrema-first-derivative-engine",
+  "reference": "0851-reference.png",
+  "default": {
+    "function": "x^3-3x",
+    "x0": 0.5,
+    "derivative": -2.25,
+    "sign": "negative",
+    "localMaximum": [-1, 2],
+    "localMinimum": [1, -2]
+  },
+  "desktop": {
+    "targetWidth": 951,
+    "targetHeight": 1654,
+    "clientWidth": 936,
+    "scrollWidth": 936,
+    "horizontalOverflow": false,
+    "lessonFrame": {
+      "x": 202,
+      "y": 90.8,
+      "width": 720,
+      "height": 1550.6,
+      "bottom": 1641.4
+    },
+    "controlsChecked": 16,
+    "genericSectionsReplaced": true,
+    "browserErrorLogs": 0
+  },
+  "mobile": {
+    "viewportWidth": 390,
+    "clientWidth": 375,
+    "scrollWidth": 375,
+    "horizontalOverflow": false,
+    "lessonWidth": 347.2,
+    "clippedControls": 0,
+    "controlsChecked": 16,
+    "visibleErrorSurfaces": 0
+  },
+  "interactions": {
+    "selectedMaximum": { "x": -1, "derivative": 0 },
+    "selectedMinimum": { "x": 1, "derivative": 0 },
+    "keyboardTangent": { "x": 1.9, "derivative": 7.83, "sign": "positive" },
+    "playbackAdvanced": true,
+    "resetStoppedPlayback": true,
+    "nativeTabsSelectable": true,
+    "quarticSolution": { "maximum": 0, "minima": ["-sqrt(2)", "sqrt(2)"] },
+    "stationaryInflectionAnswerAccepted": true
+  }
+}

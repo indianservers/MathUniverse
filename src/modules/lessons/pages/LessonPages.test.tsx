@@ -4294,6 +4294,15 @@ describe("lesson pages", () => {
     expect(html).toContain('data-critical-points="-1,1"');
   });
 
+  it("renders the dedicated local extrema engine for lesson 10177", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/school/class-12/class-12-formal-calculus-local-maxima-and-minima"]}><Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="school-mockup-0851"');
+    expect(html).toContain("dedicated-local-extrema-first-derivative-engine");
+    expect(html).toContain('data-x="0.5"');
+    expect(html).toContain('data-derivative="-2.25"');
+    expect(html).toContain('data-sign="Negative (−)"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
