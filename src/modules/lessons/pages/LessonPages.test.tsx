@@ -4284,6 +4284,16 @@ describe("lesson pages", () => {
     expect(html).toContain('data-secant-slope="2.5"');
   });
 
+  it("renders the dedicated increasing and decreasing engine for lesson 10176", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/school/class-12/class-12-formal-calculus-increasing-and-decreasing-functions"]}><Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="school-mockup-0850"');
+    expect(html).toContain("dedicated-cubic-derivative-sign-engine");
+    expect(html).toContain('data-x="-0.5"');
+    expect(html).toContain('data-derivative="-2.25"');
+    expect(html).toContain('data-status="decreasing"');
+    expect(html).toContain('data-critical-points="-1,1"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

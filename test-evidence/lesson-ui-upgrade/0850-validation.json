@@ -1,0 +1,53 @@
+{
+  "mockup": "0850",
+  "lessonId": 10176,
+  "route": "/lessons/school/class-12/class-12-formal-calculus-increasing-and-decreasing-functions",
+  "objectModel": "dedicated-cubic-derivative-sign-engine",
+  "reference": "0850-reference.png",
+  "default": {
+    "function": "x^3-3x",
+    "x": -0.5,
+    "derivative": -2.25,
+    "status": "decreasing",
+    "criticalPoints": [-1, 1]
+  },
+  "desktop": {
+    "targetWidth": 946,
+    "targetHeight": 1663,
+    "clientWidth": 931,
+    "scrollWidth": 931,
+    "horizontalOverflow": false,
+    "lessonFrame": {
+      "x": 202,
+      "y": 90.8,
+      "width": 715.2,
+      "height": 1555.4,
+      "bottom": 1646.2
+    },
+    "controlsChecked": 22,
+    "genericSectionsReplaced": true,
+    "browserErrorLogs": 0
+  },
+  "mobile": {
+    "viewportWidth": 390,
+    "clientWidth": 375,
+    "scrollWidth": 375,
+    "horizontalOverflow": false,
+    "lessonWidth": 347.2,
+    "clippedControls": 0,
+    "controlsChecked": 22,
+    "visibleErrorSurfaces": 0
+  },
+  "interactions": {
+    "movedTangent": { "x": 2, "derivative": 9, "status": "increasing" },
+    "keyboardTangent": { "x": 1.9, "derivative": 7.83, "status": "increasing" },
+    "intervalTest": { "x": 2, "derivative": 9 },
+    "monotoneCubic": { "a": 1, "b": 2, "criticalPoints": "none" },
+    "twoTurningPoints": { "a": -6, "criticalPoints": [-1.414, 1.414] },
+    "turningAndTangentHidden": true,
+    "allPracticeAnswersRevealed": true,
+    "challengeHintRevealed": true,
+    "graphZoom": 1.1,
+    "fitRestored": true
+  }
+}
