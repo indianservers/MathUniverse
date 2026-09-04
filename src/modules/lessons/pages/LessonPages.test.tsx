@@ -4126,6 +4126,15 @@ describe("lesson pages", () => {
     expect(html).toContain("KEY VECTORS &amp; COMPUTATIONS");
   });
 
+  it("renders the dedicated point-normal plane engine for lesson 10159", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/school/class-12/class-12-three-dimensional-geometry-plane-equation"]}><Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="school-mockup-0833"');
+    expect(html).toContain("dedicated-point-normal-plane-equation-engine");
+    expect(html).toContain('data-equation="2x - y + 3z = 0"');
+    expect(html).toContain('data-magnitude="3.742"');
+    expect(html).toContain("EQUATION DERIVATION");
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

@@ -1,0 +1,46 @@
+{
+  "mockup": "0833",
+  "lessonId": 10159,
+  "route": "/lessons/school/class-12/class-12-three-dimensional-geometry-plane-equation",
+  "objectModel": "dedicated-point-normal-plane-equation-engine",
+  "reference": "0833-reference.png",
+  "default": {
+    "point": [1, 2, 0],
+    "normal": [2, -1, 3],
+    "equation": "2x - y + 3z = 0",
+    "normalMagnitude": 3.742,
+    "originDistance": 0
+  },
+  "desktop": {
+    "targetWidth": 919,
+    "targetHeight": 1712,
+    "clientWidth": 904,
+    "scrollWidth": 904,
+    "horizontalOverflow": false,
+    "sidebarWidth": 184,
+    "lessonFrame": { "x": 198, "y": 88.8, "width": 706, "height": 1623, "bottom": 1711.8 },
+    "visibleErrorSurfaces": 0
+  },
+  "mobile": {
+    "viewportWidth": 390,
+    "clientWidth": 375,
+    "scrollWidth": 375,
+    "horizontalOverflow": false,
+    "lessonWidth": 347.2,
+    "clippedControls": 0,
+    "controlsChecked": 35
+  },
+  "interactions": {
+    "editedPlane": { "point": [2, -1, 3], "normal": [1, 2, -2], "equation": "x + 2y - 2z + 6 = 0", "originDistance": 2 },
+    "scaledNormal": { "normal": [2, 4, -4], "magnitude": 6, "equation": "2x + 4y - 4z + 12 = 0" },
+    "customPoint": { "point": [0, -3, 0], "onPlane": true },
+    "movedAnchor": { "point": [1.25, 2, 0.25], "equation": "2x - y + 3z - 1.25 = 0" },
+    "zeroNormalRejected": true,
+    "activeTab": "COEFFICIENTS",
+    "camera": { "rotate": 18, "pan": 15, "zoom": 1.1 },
+    "layerToggle": "plane",
+    "derivationDetails": true,
+    "practiceChecked": true,
+    "resetAllState": true
+  }
+}
