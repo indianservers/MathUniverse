@@ -4106,6 +4106,16 @@ describe("lesson pages", () => {
     expect(html).toContain("POINT MEMBERSHIP TEST");
   });
 
+  it("renders the dedicated skew-line classification lab for lesson 10157", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/school/class-12/class-12-three-dimensional-geometry-skew-lines"]}><Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="school-mockup-0831"');
+    expect(html).toContain("dedicated-skew-line-classification-engine");
+    expect(html).toContain('data-classification="Skew"');
+    expect(html).toContain('data-cross="(0, 0, 1)"');
+    expect(html).toContain('data-triple="1"');
+    expect(html).toContain("RELATIONSHIP CLASSIFIER");
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

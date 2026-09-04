@@ -136,6 +136,7 @@ import DirectionCosinesTargetLesson10153 from "../schoolTargets/DirectionCosines
 import LineTwoPoints3DTargetLesson10154 from "../schoolTargets/LineTwoPoints3DTargetLesson10154";
 import VectorEquationLineTargetLesson10155 from "../schoolTargets/VectorEquationLineTargetLesson10155";
 import CartesianLineTargetLesson10156 from "../schoolTargets/CartesianLineTargetLesson10156";
+import SkewLinesTargetLesson10157 from "../schoolTargets/SkewLinesTargetLesson10157";
 import PlaceValueTargetLesson10001 from "../schoolTargets/PlaceValueTargetLesson10001";
 import NumberNamingTargetLesson10002 from "../schoolTargets/NumberNamingTargetLesson10002";
 import EstimationRoundingTargetLesson10003 from "../schoolTargets/EstimationRoundingTargetLesson10003";
@@ -435,6 +436,8 @@ function SchoolLessonBody({
     return <VectorEquationLineTargetLesson10155 lesson={lesson} />;
   if (lesson.numericId === 10156)
     return <CartesianLineTargetLesson10156 lesson={lesson} />;
+  if (lesson.numericId === 10157)
+    return <SkewLinesTargetLesson10157 lesson={lesson} />;
   if (lesson.numericId === 10001)
     return <PlaceValueTargetLesson10001 lesson={lesson} />;
   if (lesson.numericId === 10002)

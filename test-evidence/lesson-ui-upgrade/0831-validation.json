@@ -1,0 +1,43 @@
+{
+  "mockup": "0831",
+  "lessonId": 10157,
+  "route": "/lessons/school/class-12/class-12-three-dimensional-geometry-skew-lines",
+  "objectModel": "dedicated-skew-line-classification-engine",
+  "reference": "0831-reference.png",
+  "default": {
+    "line1": { "point": [0, 0, 0], "direction": [1, 0, 0] },
+    "line2": { "point": [0, 1, 1], "direction": [0, 1, 0] },
+    "crossProduct": [0, 0, 1],
+    "scalarTripleProduct": 1,
+    "classification": "Skew"
+  },
+  "desktop": {
+    "targetWidth": 920,
+    "targetHeight": 1728,
+    "clientWidth": 905,
+    "scrollWidth": 905,
+    "horizontalOverflow": false,
+    "sidebarWidth": 182,
+    "lessonFrame": { "x": 195, "y": 88.8, "width": 710.8, "height": 1613.2, "bottom": 1702 },
+    "visibleErrorSurfaces": 0
+  },
+  "mobile": {
+    "viewportWidth": 390,
+    "clientWidth": 375,
+    "scrollWidth": 375,
+    "horizontalOverflow": false,
+    "lessonWidth": 349.2,
+    "clippedControls": 0,
+    "controlsChecked": 23
+  },
+  "interactions": {
+    "presetClassifications": ["Intersecting", "Parallel", "Coincident", "Skew"],
+    "editedDirection": { "direction": [1, 2, 2], "crossProduct": [-2, 0, 1], "classification": "Skew" },
+    "planeVisibility": true,
+    "cameraRotationDegrees": 18,
+    "cameraReset": true,
+    "wireframeToggle": true,
+    "solutionReveal": "Coincident; parallel distinct; skew.",
+    "defaultRestored": true
+  }
+}
