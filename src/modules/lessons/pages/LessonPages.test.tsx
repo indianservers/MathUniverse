@@ -3919,6 +3919,20 @@ describe("lesson pages", () => {
     expect(html).toContain('data-latus-length="12.00"');
   });
 
+  it("renders the dedicated focus-directrix locus lab for lesson 10142", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter initialEntries={["/lessons/school/class-11/class-11-conic-sections-focus-directrix-definition"]}>
+        <Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0816"');
+    expect(html).toContain("dedicated-focus-directrix-locus-trace-engine");
+    expect(html).toContain('data-focus-y="1.50"');
+    expect(html).toContain('data-directrix-y="-5.00"');
+    expect(html).toContain('data-equal="true"');
+    expect(html).toContain('data-eccentricity="1.000"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

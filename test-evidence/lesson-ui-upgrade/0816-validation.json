@@ -1,0 +1,74 @@
+{
+  "mockup": "0816",
+  "lessonId": 10142,
+  "route": "/lessons/school/class-11/class-11-conic-sections-focus-directrix-definition",
+  "surface": "FocusDirectrixTargetLesson10142",
+  "objectModel": "dedicated-focus-directrix-locus-trace-engine",
+  "referencePixels": { "width": 1672, "height": 941 },
+  "desktopCapturePixels": { "width": 1672, "height": 940 },
+  "mobileCapturePixels": { "width": 375, "height": 779 },
+  "default": {
+    "focusY": 1.5,
+    "directrixY": -5,
+    "point": [4, -0.52],
+    "pf": 4.481,
+    "pd": 4.481,
+    "equal": true,
+    "eccentricity": 1,
+    "traceCount": 0
+  },
+  "interactions": {
+    "freePointKeyboard": {
+      "point": [4, -0.27],
+      "pf": 4.374,
+      "pd": 4.73,
+      "equal": false,
+      "eccentricity": 0.925,
+      "traceCount": 0
+    },
+    "freePointPointerDrag": {
+      "point": [4.67, 1.25],
+      "pf": 4.677,
+      "pd": 6.25,
+      "equal": false,
+      "eccentricity": 0.748,
+      "traceCount": 0
+    },
+    "snapToLocus": {
+      "point": [4.67, -0.07],
+      "pf": 4.928,
+      "pd": 4.928,
+      "equal": true,
+      "eccentricity": 1,
+      "traceCount": 1
+    },
+    "directrixKeyboard": {
+      "directrixY": -4.75,
+      "point": [4, -0.34],
+      "pf": 4.405,
+      "pd": 4.405,
+      "equal": true
+    },
+    "animationPaused": {
+      "point": [5.59, 0.66],
+      "pf": 5.656,
+      "pd": 5.656,
+      "traceCount": 11,
+      "playing": false
+    },
+    "clearTrace": { "traceCount": 0, "playing": false },
+    "reset": {
+      "focusY": 1.5,
+      "directrixY": -5,
+      "point": [4, -0.52],
+      "pf": 4.481,
+      "pd": 4.481,
+      "equal": true,
+      "eccentricity": 1,
+      "traceCount": 0
+    }
+  },
+  "mobileLayout": { "clientWidth": 375, "scrollWidth": 375 },
+  "consoleErrors": 0,
+  "status": "complete"
+}
