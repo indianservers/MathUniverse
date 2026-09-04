@@ -4225,6 +4225,15 @@ describe("lesson pages", () => {
     expect(html).toContain('data-jump-size="2"');
   });
 
+  it("renders the dedicated infinite discontinuity asymptote engine for lesson 10170", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/school/class-12/class-12-formal-calculus-infinite-discontinuity"]}><Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="school-mockup-0844"');
+    expect(html).toContain("dedicated-vertical-asymptote-one-sided-limit-engine");
+    expect(html).toContain('data-asymptote="2.00"');
+    expect(html).toContain('data-left-limit="-infinity"');
+    expect(html).toContain('data-right-limit="infinity"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

@@ -1,0 +1,60 @@
+{
+  "mockup": "0844",
+  "lessonId": 10170,
+  "route": "/lessons/school/class-12/class-12-formal-calculus-infinite-discontinuity",
+  "objectModel": "dedicated-vertical-asymptote-one-sided-limit-engine",
+  "reference": "0844-reference.png",
+  "default": {
+    "function": "1/(x-a)",
+    "asymptote": 2,
+    "leftLimit": "-infinity",
+    "rightLimit": "infinity",
+    "leftProbe": [1.5, -2],
+    "rightProbe": [2.5, 2],
+    "classification": "Infinite Discontinuity"
+  },
+  "desktop": {
+    "targetWidth": 951,
+    "targetHeight": 1654,
+    "clientWidth": 936,
+    "scrollWidth": 936,
+    "horizontalOverflow": false,
+    "lessonFrame": {
+      "x": 202,
+      "y": 90.8,
+      "width": 720,
+      "height": 1549.6,
+      "bottom": 1640.4
+    },
+    "controlsChecked": 11,
+    "genericSectionsReplaced": true,
+    "visibleErrorSurfaces": 0
+  },
+  "mobile": {
+    "viewportWidth": 390,
+    "clientWidth": 375,
+    "scrollWidth": 375,
+    "horizontalOverflow": false,
+    "lessonWidth": 351.2,
+    "clippedControls": 0,
+    "controlsChecked": 11,
+    "visibleErrorSurfaces": 0
+  },
+  "interactions": {
+    "epsilon": {
+      "value": 0.05,
+      "leftProbe": [1.95, -20],
+      "rightProbe": [2.05, 20]
+    },
+    "keyboardLeftProbe": [1.98, -50],
+    "translatedAsymptote": {
+      "a": -1,
+      "leftProbe": [-1.5, -2],
+      "rightProbe": [-0.5, 2]
+    },
+    "gridHidden": true,
+    "asymptoteHidden": true,
+    "practiceFeedbackShown": true,
+    "resetAllState": true
+  }
+}
