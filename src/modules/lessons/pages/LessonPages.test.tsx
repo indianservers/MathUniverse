@@ -3331,6 +3331,30 @@ describe("lesson pages", () => {
     expect(html).toContain("Total pairs = 14");
   });
 
+  it("renders the dedicated one-one mapping lab for lesson 10117", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-11/class-11-relations-and-functions-one-one-functions",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0791"');
+    expect(html).toContain(
+      "dedicated-injective-mapping-collision-horizontal-line-engine",
+    );
+    expect(html).toContain('data-mapping="-2:-3;-1:-1;0:1;1:3;2:5"');
+    expect(html).toContain('data-max-preimages="1"');
+    expect(html).toContain('data-injective="true"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
