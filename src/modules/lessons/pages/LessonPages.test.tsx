@@ -4035,6 +4035,17 @@ describe("lesson pages", () => {
     expect(html).toContain('data-verified="1.0000"');
   });
 
+  it("renders the dedicated hyperbola tangent branch lab for lesson 10150", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/school/class-11/class-11-conic-sections-tangent-to-a-hyperbola"]}><Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="school-mockup-0824"');
+    expect(html).toContain("dedicated-hyperbola-tangent-branch-engine");
+    expect(html).toContain('data-a="3.00"');
+    expect(html).toContain('data-b="2.00"');
+    expect(html).toContain('data-theta="0.700"');
+    expect(html).toContain('data-branch="Right"');
+    expect(html).toContain('data-verified="1.0000"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

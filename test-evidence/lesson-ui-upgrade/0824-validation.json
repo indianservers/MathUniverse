@@ -1,0 +1,15 @@
+{
+  "mockup": "0824",
+  "lessonId": 10150,
+  "route": "/lessons/school/class-11/class-11-conic-sections-tangent-to-a-hyperbola",
+  "surface": "dedicated-hyperbola-tangent-branch-engine",
+  "reference": "0824-reference.png",
+  "desktop": { "capture": "0824-desktop.png", "referenceSize": "1672x941", "clientWidth": 1672, "documentOverflow": false },
+  "mobile": { "capture": "0824-mobile.png", "clientWidth": 375, "scrollWidth": 375, "documentOverflow": false },
+  "defaultModel": { "a": 3, "b": 2, "theta": 0.7, "point": [3.922, 1.685], "branch": "Right", "slope": 1.0348, "xIntercept": 2.2945, "yIntercept": -2.3745, "verified": 1 },
+  "leftBranchModel": { "a": 4, "b": 3, "theta": 2, "point": [-9.612, -6.555], "branch": "Left", "verified": 1 },
+  "pointerDrag": { "theta": 2.27, "point": [-6.218, -3.57], "branch": "Left", "slope": 0.9796, "verified": 1 },
+  "verifiedInteractions": ["a and b inputs and steppers", "native theta range and steppers", "real pointer branch drag", "right-to-left branch crossing", "five asymptote presets", "live tangent intercepts", "header control layout repair"],
+  "consoleErrors": 0,
+  "status": "complete"
+}
