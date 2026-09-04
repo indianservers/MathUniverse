@@ -2621,6 +2621,35 @@ describe("lesson pages", () => {
     expect(html).toContain('aria-label="Draggable chord endpoint B"');
   });
 
+  it("renders the dedicated arc-angle target for lesson 10091", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-10/class-10-circle-proofs-angle-subtended-by-an-arc",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0765"');
+    expect(html).toContain(
+      "dedicated-fixed-arc-central-inscribed-angle-engine",
+    );
+    expect(html).toContain('data-position="0.5"');
+    expect(html).toContain('data-c="0,1"');
+    expect(html).toContain('data-central-angle="118.4"');
+    expect(html).toContain('data-inscribed-angle="59.2"');
+    expect(html).toContain('data-ratio="2"');
+    expect(html).toContain('data-invariant="true"');
+    expect(html).toContain('aria-label="Draggable point C on major arc"');
+    expect(html).toContain('aria-label="Point C around major arc"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
