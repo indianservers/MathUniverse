@@ -3497,6 +3497,29 @@ describe("lesson pages", () => {
     expect(html).toContain('data-associative="true"');
   });
 
+  it("renders the dedicated trig domain-range lab for lesson 10124", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-11/class-11-trigonometry-domain-and-range-of-trigonometric-functions",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0798"');
+    expect(html).toContain("dedicated-six-function-domain-range-engine");
+    expect(html).toContain('data-function="sin"');
+    expect(html).toContain('data-angle="0.7854"');
+    expect(html).toContain('data-value="0.7071"');
+    expect(html).toContain('data-mode="radians"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

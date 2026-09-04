@@ -1,0 +1,50 @@
+{
+  "mockup": "0798",
+  "lessonId": 10124,
+  "route": "/lessons/school/class-11/class-11-trigonometry-domain-and-range-of-trigonometric-functions",
+  "surface": "TrigDomainRangeTargetLesson10124",
+  "objectModel": "dedicated-six-function-domain-range-engine",
+  "referencePixels": { "width": 1672, "height": 941 },
+  "desktopCapturePixels": { "width": 1265, "height": 712 },
+  "mobileCapturePixels": { "width": 375, "height": 811 },
+  "default": {
+    "function": "sin",
+    "angleRadians": 0.7854,
+    "value": 0.7071,
+    "mode": "radians",
+    "trace": true,
+    "span": "two",
+    "tab": "Overview"
+  },
+  "interactions": {
+    "tanAtPiOver4": { "function": "tan", "value": 1 },
+    "tanAtPiOver2": {
+      "angleRadians": 1.5708,
+      "value": "undefined"
+    },
+    "displayControls": {
+      "mode": "degrees",
+      "trace": false,
+      "span": "one"
+    },
+    "cotangentGallery": {
+      "function": "cot",
+      "value": 0,
+      "tab": "Explorer"
+    },
+    "unitCircleHandle": {
+      "startAngleRadians": 0,
+      "keyboardStepRadians": 0.0873
+    },
+    "restored": {
+      "function": "sin",
+      "angleRadians": 0.7854,
+      "value": 0.7071,
+      "mode": "radians",
+      "trace": true,
+      "span": "two",
+      "tab": "Overview"
+    }
+  },
+  "status": "complete"
+}

@@ -1,0 +1,328 @@
+.tr10124-page {
+  position: relative;
+  top: -8px;
+  width: min(1360px, calc(100vw - 320px));
+  margin: auto;
+  color: #e8eef8;
+  background: #031328;
+  font:
+    11px/1.4 Inter,
+    Arial,
+    sans-serif;
+  letter-spacing: 0;
+}
+.tr10124-page:before {
+  position: fixed;
+  z-index: -1;
+  inset: 58px 0 0 283px;
+  background: #031328;
+  content: "";
+}
+.tr10124-page * {
+  box-sizing: border-box;
+}
+.tr10124-page h1,
+.tr10124-page h2,
+.tr10124-page p {
+  margin: 0;
+}
+.tr10124-page button,
+.tr10124-page select,
+.tr10124-page input {
+  font: inherit;
+  color: inherit;
+}
+.tr10124-page > header {
+  position: relative;
+  min-height: 120px;
+  padding: 15px;
+}
+.tr10124-page > header small,
+.tr10124-page h2 {
+  color: #56d7d4;
+  font-weight: 900;
+  letter-spacing: 0.7px;
+}
+.tr10124-page > header h1 {
+  margin: 6px 0;
+  max-width: calc(100% - 550px);
+  font-size: 23px;
+}
+.tr10124-page > header > p {
+  max-width: calc(100% - 550px);
+}
+.tr10124-page > header > label {
+  position: absolute;
+  right: 290px;
+  top: 18px;
+  display: grid;
+  gap: 4px;
+  width: 250px;
+}
+.tr10124-page select {
+  padding: 8px;
+  border: 1px solid #304961;
+  border-radius: 6px;
+  background: #091b31;
+}
+.tr10124-page > header fieldset {
+  position: absolute;
+  right: 120px;
+  top: 13px;
+  border: 0;
+}
+.tr10124-page > header fieldset button {
+  padding: 7px 16px;
+  border: 0;
+  background: #13243c;
+}
+.tr10124-page > header fieldset button.active {
+  background: #1cc4c2;
+  color: #03212a;
+}
+.tr10124-tabs {
+  display: flex;
+  gap: 10px;
+  border-bottom: 1px solid #29435c;
+}
+.tr10124-tabs button {
+  position: relative;
+  padding: 9px 18px;
+  border: 0;
+  background: transparent;
+}
+.tr10124-tabs button.active {
+  border-bottom: 2px solid #28d4cf;
+}
+.tr10124-tabs b {
+  position: absolute;
+  top: -1px;
+  padding: 2px 7px;
+  border-radius: 9px;
+  background: #26cbc7;
+}
+.tr10124-page > main {
+  display: grid;
+  grid-template-columns: minmax(0, 27fr) minmax(0, 44fr) minmax(0, 29fr);
+  gap: 10px;
+  margin-top: 12px;
+}
+.tr10124-page > main > section,
+.tr10124-facts article,
+.tr10124-gallery {
+  border: 1px solid #29435c;
+  border-radius: 7px;
+  background: #071a30;
+}
+.tr10124-page > main h2 {
+  padding: 11px;
+}
+.tr10124-circle svg {
+  display: block;
+  width: 100%;
+  height: 265px;
+}
+.tr10124-circle svg .axis,
+.tr10124-graph .axis {
+  stroke: #dce9f5;
+  stroke-width: 1;
+}
+.tr10124-circle .unit {
+  fill: none;
+  stroke: #e3ebf5;
+}
+.tr10124-circle .ray {
+  stroke: #66dddc;
+}
+.tr10124-circle .projection {
+  stroke: #3bd8d5;
+  stroke-dasharray: 5 4;
+}
+.tr10124-circle .angle {
+  fill: #1eb8b842;
+  stroke: #24c9c7;
+}
+.tr10124-circle .handle {
+  fill: #31dfdb;
+  cursor: grab;
+}
+.tr10124-circle text {
+  fill: #dce7f2;
+  font-size: 12px;
+}
+.tr10124-slider {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+}
+.tr10124-slider input {
+  width: 100%;
+  accent-color: #25d5d1;
+}
+.tr10124-circle > strong {
+  display: block;
+  color: #30d8d4;
+  text-align: center;
+  font-size: 13px;
+}
+.tr10124-presets {
+  display: flex;
+  gap: 5px;
+  padding: 10px;
+}
+.tr10124-presets button {
+  flex: 1;
+  padding: 6px;
+  border: 1px solid #304961;
+  background: #091a30;
+}
+.tr10124-circle footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-top: 1px solid #29435c;
+}
+.tr10124-graph {
+  position: relative;
+}
+.tr10124-graph h2 em {
+  float: right;
+  color: #e9eef7;
+  font: italic 16px Georgia;
+}
+.tr10124-graph > svg {
+  width: 100%;
+  height: 330px;
+}
+.tr10124-graph svg .grid {
+  stroke: #17304a;
+}
+.tr10124-graph svg path {
+  fill: none;
+  stroke-width: 2;
+}
+.tr10124-graph svg .trace {
+  stroke: #57deda;
+  stroke-dasharray: 5 4;
+}
+.tr10124-graph > footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 11px;
+  border-top: 1px solid #29435c;
+}
+.tr10124-graph > footer label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.tr10124-facts {
+  display: grid;
+  gap: 7px;
+}
+.tr10124-facts article {
+  padding: 10px;
+}
+.tr10124-facts article:first-child div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin-top: 7px;
+}
+.tr10124-facts article:first-child span {
+  padding-left: 7px;
+  border-left: 2px solid #28d9d4;
+}
+.tr10124-facts p {
+  display: grid;
+  grid-template-columns: 75px 1fr;
+  padding: 3px 5px;
+  border-left: 2px solid transparent;
+}
+.tr10124-facts p.selected {
+  border-color: #35d9d3;
+  background: #10263b;
+}
+.tr10124-facts p span {
+  font-family: Georgia, serif;
+  font-size: 12px;
+}
+.tr10124-gallery {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+  margin-top: 10px;
+  padding: 8px;
+}
+.tr10124-gallery > header {
+  grid-column: 1/-1;
+  font-weight: 800;
+}
+.tr10124-gallery > header span {
+  float: right;
+  font-weight: 400;
+}
+.tr10124-gallery > button {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+  padding: 8px;
+  border: 1px solid #29435c;
+  border-radius: 6px;
+  background: #07172b;
+  text-align: left;
+}
+.tr10124-gallery > button.active {
+  outline: 2px solid #2ad7d1;
+}
+.tr10124-gallery svg {
+  width: 100%;
+  height: 50px;
+}
+.tr10124-gallery path {
+  fill: none;
+  stroke-width: 5;
+}
+.tr10124-gallery small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+@media (max-width: 800px) {
+  .tr10124-page {
+    top: 0;
+    width: 100%;
+    padding: 8px;
+  }
+  .tr10124-page:before {
+    inset: 0;
+  }
+  .tr10124-page > header > label,
+  .tr10124-page > header fieldset {
+    position: static;
+    margin-top: 9px;
+  }
+  .tr10124-page > header > label {
+    width: 100%;
+  }
+  .tr10124-page > header h1,
+  .tr10124-page > header > p {
+    max-width: none;
+  }
+  .tr10124-page > main {
+    display: block;
+  }
+  .tr10124-page > main > * {
+    margin-top: 9px;
+  }
+  .tr10124-gallery {
+    grid-template-columns: 1fr 1fr;
+  }
+  .tr10124-graph > svg {
+    height: 260px;
+  }
+  .tr10124-circle svg {
+    height: 270px;
+  }
+}
