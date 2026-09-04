@@ -3150,6 +3150,33 @@ describe("lesson pages", () => {
     expect(html).toContain('data-median-class="20-30"');
   });
 
+  it("renders the dedicated Three.js frustum target for lesson 10110", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-10/class-10-mensuration-frustum-of-a-cone",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0784"');
+    expect(html).toContain("dedicated-threejs-frustum-annular-net-engine");
+    expect(html).toContain('data-radius-base="6"');
+    expect(html).toContain('data-radius-top="3"');
+    expect(html).toContain('data-height="8"');
+    expect(html).toContain('data-slant="8.54"');
+    expect(html).toContain('data-volume="527.79"');
+    expect(html).toContain('data-csa="241.58"');
+    expect(html).toContain('data-tsa="382.95"');
+    expect(html).toContain('data-theta="126.4"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

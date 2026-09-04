@@ -1,0 +1,62 @@
+{
+  "lessonId": 10110,
+  "mockup": 784,
+  "route": "/lessons/school/class-10/class-10-mensuration-frustum-of-a-cone",
+  "objectModel": "dedicated-threejs-frustum-annular-net-engine",
+  "reference": "0784-reference.png",
+  "captures": { "desktop": "0784-desktop.png", "mobile": "0784-mobile.png" },
+  "threeJs": {
+    "canvasNonblank": true,
+    "canvasPixelAudit": {
+      "samples": 8927,
+      "distinctColors": 1267,
+      "nonDarkRatio": 0.22
+    },
+    "orbit": true,
+    "zoom": true,
+    "autoRotate": true,
+    "cameraPresets": 4,
+    "ghostFullCone": true
+  },
+  "states": {
+    "default": {
+      "R": 6,
+      "r": 3,
+      "h": 8,
+      "slant": 8.54,
+      "volume": 527.79,
+      "csa": 241.58,
+      "tsa": 382.95,
+      "thetaDegrees": 126.4,
+      "unfold": true,
+      "animate": false,
+      "view": "perspective"
+    },
+    "keyboardBaseRadiusUp": {
+      "R": 6.5,
+      "r": 3,
+      "h": 8,
+      "slant": 8.73,
+      "volume": 592.71,
+      "csa": 260.61,
+      "tsa": 421.62,
+      "thetaDegrees": 144.29
+    },
+    "controls": {
+      "animate": true,
+      "view": "front",
+      "unfold": false,
+      "tab": "net"
+    },
+    "reset": {
+      "R": 6,
+      "r": 3,
+      "h": 8,
+      "animate": false,
+      "view": "perspective",
+      "unfold": true,
+      "tab": "3d"
+    }
+  },
+  "mockupCorrection": "Used V=pi*h*(R^2+Rr+r^2)/3 and theta=2*pi*(R-r)/l, producing the mathematically valid volume and annular-sector net."
+}
