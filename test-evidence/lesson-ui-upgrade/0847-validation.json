@@ -1,0 +1,63 @@
+{
+  "mockup": "0847",
+  "lessonId": 10173,
+  "route": "/lessons/school/class-12/class-12-formal-calculus-lagrange-mean-value-theorem",
+  "objectModel": "dedicated-lagrange-secant-tangent-engine",
+  "reference": "0847-reference.png",
+  "default": {
+    "function": "x^2",
+    "interval": [1, 3],
+    "endpointValues": [1, 9],
+    "secantSlope": 4,
+    "stationaryPoint": 2,
+    "tangentSlope": 4,
+    "slopesMatch": true
+  },
+  "desktop": {
+    "targetWidth": 916,
+    "targetHeight": 1718,
+    "clientWidth": 901,
+    "scrollWidth": 901,
+    "horizontalOverflow": false,
+    "lessonFrame": {
+      "x": 198,
+      "y": 90.8,
+      "width": 688.8,
+      "height": 1601.2,
+      "bottom": 1692
+    },
+    "controlsChecked": 14,
+    "genericSectionsReplaced": true,
+    "browserErrorLogs": 0
+  },
+  "mobile": {
+    "viewportWidth": 390,
+    "clientWidth": 375,
+    "scrollWidth": 375,
+    "horizontalOverflow": false,
+    "lessonWidth": 347.2,
+    "clippedControls": 0,
+    "controlsChecked": 14,
+    "visibleErrorSurfaces": 0
+  },
+  "interactions": {
+    "changedInterval": {
+      "interval": [0, 3],
+      "secantSlope": 3,
+      "stationaryPoint": 1.5,
+      "tangentSlope": 3,
+      "slopesMatch": true
+    },
+    "keyboardEndpointMovement": [0, 2.9],
+    "secantHidden": true,
+    "tangentHidden": true,
+    "invalidSolverInterval": [5, 2],
+    "invalidSolverRejected": true,
+    "symmetricSolver": {
+      "interval": [-2, 2],
+      "stationaryPoint": 0,
+      "derivativeAtC": 0
+    },
+    "practiceSolutions": ["c=3.5", "c=(a+b)/2", "c=0"]
+  }
+}

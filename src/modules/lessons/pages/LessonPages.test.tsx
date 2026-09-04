@@ -4252,6 +4252,16 @@ describe("lesson pages", () => {
     expect(html).toContain('data-c="2"');
   });
 
+  it("renders the dedicated Lagrange mean value theorem engine for lesson 10173", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/school/class-12/class-12-formal-calculus-lagrange-mean-value-theorem"]}><Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="school-mockup-0847"');
+    expect(html).toContain("dedicated-lagrange-secant-tangent-engine");
+    expect(html).toContain('data-interval="[1, 3]"');
+    expect(html).toContain('data-secant-slope="4"');
+    expect(html).toContain('data-c="2"');
+    expect(html).toContain('data-slopes-match="true"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
