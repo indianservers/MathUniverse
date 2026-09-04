@@ -81,6 +81,7 @@ import GroupedMeanAssumedTargetLesson10103 from "../schoolTargets/GroupedMeanAss
 import GroupedMeanStepTargetLesson10104 from "../schoolTargets/GroupedMeanStepTargetLesson10104";
 import LessThanCumulativeTargetLesson10105 from "../schoolTargets/LessThanCumulativeTargetLesson10105";
 import MoreThanCumulativeTargetLesson10106 from "../schoolTargets/MoreThanCumulativeTargetLesson10106";
+import LessThanOgiveTargetLesson10107 from "../schoolTargets/LessThanOgiveTargetLesson10107";
 import PlaceValueTargetLesson10001 from "../schoolTargets/PlaceValueTargetLesson10001";
 import NumberNamingTargetLesson10002 from "../schoolTargets/NumberNamingTargetLesson10002";
 import EstimationRoundingTargetLesson10003 from "../schoolTargets/EstimationRoundingTargetLesson10003";
@@ -264,6 +265,8 @@ export default function SchoolLessonPage() {
     return <LessThanCumulativeTargetLesson10105 lesson={lesson} />;
   if (lesson.numericId === 10106)
     return <MoreThanCumulativeTargetLesson10106 lesson={lesson} />;
+  if (lesson.numericId === 10107)
+    return <LessThanOgiveTargetLesson10107 lesson={lesson} />;
   if (lesson.numericId === 10001)
     return <PlaceValueTargetLesson10001 lesson={lesson} />;
   if (lesson.numericId === 10002)

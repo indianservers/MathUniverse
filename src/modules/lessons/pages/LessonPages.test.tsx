@@ -3070,6 +3070,33 @@ describe("lesson pages", () => {
     expect(html).toContain('aria-label="Clear frequency row 2"');
   });
 
+  it("renders the dedicated less-than ogive target for lesson 10107", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-10/class-10-statistics-less-than-ogive",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0781"');
+    expect(html).toContain("dedicated-less-than-ogive-median-read-off-engine");
+    expect(html).toContain(
+      'data-points="10.5:0,20.5:4,30.5:8,40.5:15,50.5:22,60.5:28,70.5:30"',
+    );
+    expect(html).toContain('data-total="30"');
+    expect(html).toContain('data-half="15"');
+    expect(html).toContain('data-median="40.5"');
+    expect(html).toContain('aria-label="Ogive point 4"');
+    expect(html).toContain("Export PNG");
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
