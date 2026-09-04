@@ -3989,6 +3989,20 @@ describe("lesson pages", () => {
     expect(html).toContain('data-mode="point"');
   });
 
+  it("renders the dedicated parametric conic tracer for lesson 10146", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter initialEntries={["/lessons/school/class-11/class-11-conic-sections-parametric-coordinates"]}>
+        <Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0820"');
+    expect(html).toContain("dedicated-three-conic-parametric-tracer-engine");
+    expect(html).toContain('data-curve="parabola"');
+    expect(html).toContain('data-t="1.600"');
+    expect(html).toContain('data-point="5.120,6.400"');
+    expect(html).toContain('data-equation="y² = 4ax"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

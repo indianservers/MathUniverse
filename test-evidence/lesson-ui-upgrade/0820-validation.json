@@ -1,0 +1,20 @@
+{
+  "mockup": "0820",
+  "lessonId": 10146,
+  "route": "/lessons/school/class-11/class-11-conic-sections-parametric-coordinates",
+  "surface": "dedicated-three-conic-parametric-tracer-engine",
+  "reference": "0820-reference.png",
+  "desktop": { "capture": "0820-desktop.png", "referenceSize": "1672x941", "clientWidth": 1672, "documentOverflow": false },
+  "mobile": { "capture": "0820-mobile.png", "clientWidth": 375, "scrollWidth": 375, "documentOverflow": false },
+  "defaultModel": { "curve": "parabola", "a": 2, "t": 1.6, "point": [5.12, 6.4], "equation": "y^2 = 4ax" },
+  "verifiedModels": [
+    { "curve": "parabola", "t": 1, "point": [2, 4] },
+    { "curve": "ellipse", "t": 0.7, "point": [3.824, 1.933] },
+    { "curve": "ellipse", "t": 0.8, "point": [3.484, 2.152] },
+    { "curve": "hyperbola", "t": 0.55, "point": [2.346, 1.839] }
+  ],
+  "verifiedInteractions": ["curve tab switching", "native parameter range", "forward and backward stepping", "continuous playback and pause", "real pointer-constrained parameter drag", "zoom in and out", "fit", "full reset"],
+  "pointerDrag": { "curve": "parabola", "t": 0.152, "point": [0.046, 0.607] },
+  "consoleErrors": 0,
+  "status": "complete"
+}
