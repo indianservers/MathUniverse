@@ -1,0 +1,62 @@
+{
+  "mockup": "0852",
+  "lessonId": 10178,
+  "route": "/lessons/school/class-12/class-12-formal-calculus-absolute-maxima-and-minima",
+  "objectModel": "dedicated-closed-interval-candidate-engine",
+  "reference": "0852-reference.png",
+  "default": {
+    "function": "x^3-3x+1",
+    "interval": [-2, 2],
+    "type": "closed",
+    "absoluteMaximum": 3,
+    "maximumAt": [-1, 2],
+    "absoluteMinimum": -1,
+    "minimumAt": [-2, 1]
+  },
+  "desktop": {
+    "targetWidth": 951,
+    "targetHeight": 1654,
+    "clientWidth": 936,
+    "scrollWidth": 936,
+    "horizontalOverflow": false,
+    "lessonFrame": {
+      "x": 204,
+      "y": 90.8,
+      "width": 718,
+      "height": 1549.2,
+      "bottom": 1640
+    },
+    "controlsChecked": 19,
+    "genericSectionsReplaced": true,
+    "browserErrorLogs": 0
+  },
+  "mobile": {
+    "viewportWidth": 390,
+    "clientWidth": 375,
+    "scrollWidth": 375,
+    "horizontalOverflow": false,
+    "lessonWidth": 347.2,
+    "clippedControls": 0,
+    "controlsChecked": 19,
+    "visibleErrorSurfaces": 0
+  },
+  "interactions": {
+    "openDefault": { "maximum": 3, "minimum": -1, "candidateCount": 2 },
+    "narrowClosed": {
+      "interval": [-0.5, 0.5],
+      "maximum": 2.38,
+      "minimum": -0.38
+    },
+    "keyboardEndpoint": [-0.4, 0.5],
+    "narrowOpenHasNoAttainedExtrema": true,
+    "resetAllState": true,
+    "practice": {
+      "interval": [-1.5, 3.5],
+      "maximum": 33.375,
+      "minimum": -1,
+      "accepted": true,
+      "solutionRevealed": true
+    },
+    "nativePracticeTabSelected": true
+  }
+}

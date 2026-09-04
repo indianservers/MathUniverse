@@ -1,0 +1,349 @@
+.ae10178-page {
+  position: relative;
+  top: -22px;
+  width: min(720px, 100%);
+  margin: 0;
+  color: #29374b;
+  font:
+    8px/1.45 Inter,
+    Arial,
+    sans-serif;
+  letter-spacing: 0;
+}
+.ae10178-page:before {
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  background: #effaff;
+  content: "";
+}
+.ae10178-page * {
+  box-sizing: border-box;
+}
+.ae10178-page h1,
+.ae10178-page h3,
+.ae10178-page h4,
+.ae10178-page p {
+  margin: 0;
+}
+.ae10178-page button,
+.ae10178-page input {
+  font: inherit;
+  color: inherit;
+}
+.ae10178-page button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 6px 9px;
+  border: 1px solid #d4e2e8;
+  border-radius: 5px;
+  background: #fff;
+  cursor: pointer;
+}
+.ae10178-page button svg {
+  width: 11px;
+  height: 11px;
+}
+.ae10178-page > header {
+  height: 139px;
+  padding: 15px;
+  border-radius: 14px 14px 0 0;
+  background: #fff;
+}
+.ae10178-page > header small,
+.ae10178-page h3 {
+  color: #0785be;
+  font-weight: 900;
+}
+.ae10178-page > header h1 {
+  margin: 5px 0;
+  color: #111827;
+  font-size: 20px;
+}
+.ae10178-page > header > div {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+}
+.ae10178-page > header span {
+  padding: 3px 8px;
+  border-radius: 10px;
+  background: #edf2f5;
+  font-weight: 800;
+}
+.ae-tabs,
+.ae-main article,
+.ae-main aside section,
+.ae-types,
+.ae-practice {
+  border: 1px solid #d8e6eb;
+  border-radius: 8px;
+  background: #fff;
+}
+.ae-tabs {
+  display: grid;
+  height: 48px;
+  grid-template-columns: repeat(4, 1fr);
+  border-radius: 0;
+}
+.ae-tabs label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.ae-tabs input {
+  position: absolute;
+  opacity: 0;
+}
+.ae-tabs label:has(input:checked) {
+  border-bottom: 2px solid #078dc4;
+  color: #078dc4;
+  font-weight: 900;
+}
+.ae-main {
+  display: grid;
+  grid-template-columns: 2.1fr 1fr;
+  gap: 9px;
+  margin-top: 14px;
+}
+.ae-main > article {
+  min-height: 963px;
+  padding: 11px;
+}
+.ae-title {
+  display: flex;
+  justify-content: space-between;
+}
+.ae-title > div:last-child {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.ae-title button.active {
+  background: #0788c3;
+  color: #fff;
+}
+.ae-main svg {
+  display: block;
+  width: 100%;
+  height: 430px;
+}
+.ae-main svg text {
+  font:
+    10px Inter,
+    Arial;
+}
+.ae-drag {
+  text-align: center;
+  font-style: italic;
+}
+.ae-sliders {
+  display: grid;
+  grid-template-columns: 1fr 35px 1fr 55px;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0;
+}
+.ae-sliders label {
+  display: grid;
+  padding: 9px;
+  border: 1px solid #d8e4e9;
+  border-radius: 6px;
+}
+.ae-sliders input {
+  width: 100%;
+  accent-color: #0788c3;
+}
+.ae-table {
+  padding: 10px;
+  border: 1px solid #d8e5ea;
+  border-radius: 7px;
+}
+.ae10178-page table {
+  width: 100%;
+  margin-top: 8px;
+  border-collapse: collapse;
+  text-align: center;
+}
+.ae10178-page th,
+.ae10178-page td {
+  padding: 7px;
+  border: 1px solid #d8e3e8;
+}
+.ae-table > div {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+.ae-table > div b {
+  flex: 1;
+  padding: 8px;
+  border-radius: 5px;
+  background: #eaf9f2;
+  color: #087e52;
+}
+.ae-table > div b:last-child {
+  background: #fff0f0;
+  color: #c83b42;
+}
+.ae-main > aside {
+  display: grid;
+  gap: 9px;
+}
+.ae-main aside section {
+  padding: 12px;
+}
+.ae-main aside li {
+  margin: 10px 0;
+}
+.ae-main aside .warn {
+  border-color: #efd49b;
+  background: #fffaf0;
+}
+.ae-main aside section:last-child table {
+  width: 70%;
+  margin: auto;
+}
+.ae-main aside section:last-child > b {
+  display: block;
+  margin-top: 15px;
+}
+.ae-types {
+  display: grid;
+  min-height: 130px;
+  grid-template-columns: 1.6fr 0.8fr 0.8fr;
+  gap: 9px;
+  margin-top: 9px;
+  padding: 11px;
+}
+.ae-types article {
+  padding: 9px;
+}
+.ae-types article + article {
+  border: 1px solid #b5e1ce;
+  border-radius: 6px;
+}
+.ae-types article:last-child {
+  border-color: #d6c3ee;
+}
+.ae-types p {
+  margin-top: 8px;
+}
+.ae-practice {
+  min-height: 187px;
+  margin-top: 18px;
+  padding: 12px;
+}
+.ae-practice > div {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr 0.8fr;
+  gap: 9px;
+  margin-top: 10px;
+}
+.ae-practice article {
+  min-height: 115px;
+  padding: 10px;
+  border: 1px solid #d9e5e9;
+  border-radius: 6px;
+}
+.ae-practice label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 6px 0;
+}
+.ae-practice input {
+  min-width: 0;
+  flex: 1;
+}
+.ae-practice input[type="range"] {
+  accent-color: #0788c3;
+}
+.ae-practice output {
+  display: block;
+  margin-top: 6px;
+  color: #087e52;
+  font-weight: 800;
+}
+.ae-adjacent {
+  display: flex;
+  justify-content: space-between;
+  margin: 16px 0 9px;
+}
+.ae-adjacent button {
+  min-width: 330px;
+}
+body:has(.ae10178-page) [data-testid="desktop-sidebar"] {
+  display: flex !important;
+  width: 190px !important;
+}
+body:has(.ae10178-page) #main-content {
+  margin-left: 0 !important;
+  padding: 0 14px !important;
+}
+body:has(.ae10178-page) #main-content > div {
+  max-width: none !important;
+}
+body:has(.ae10178-page) nav[aria-label="Breadcrumb"] {
+  height: 34px !important;
+  min-height: 34px !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  font-size: 7px !important;
+}
+body:has(.ae10178-page) #lesson-section-interaction ~ * {
+  display: none !important;
+}
+@media (max-width: 700px) {
+  body:has(.ae10178-page) [data-testid="desktop-sidebar"] {
+    display: none !important;
+  }
+  .ae10178-page {
+    top: 0;
+    width: 100%;
+    padding: 6px;
+  }
+  .ae-tabs {
+    overflow-x: auto;
+  }
+  .ae-main,
+  .ae-types,
+  .ae-practice > div {
+    display: block;
+  }
+  .ae-main > *,
+  .ae-types > *,
+  .ae-practice article {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+  .ae-main > article {
+    min-height: 0;
+  }
+  .ae-main svg {
+    height: 330px;
+  }
+  .ae-sliders {
+    grid-template-columns: 1fr;
+  }
+  .ae-table {
+    overflow-x: auto;
+  }
+  .ae-table table {
+    min-width: 520px;
+  }
+  .ae-types {
+    min-height: 0;
+  }
+  .ae-adjacent {
+    display: grid;
+    gap: 7px;
+  }
+  .ae-adjacent button {
+    width: 100%;
+    min-width: 0;
+  }
+}

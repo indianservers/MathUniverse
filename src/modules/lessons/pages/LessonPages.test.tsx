@@ -4303,6 +4303,16 @@ describe("lesson pages", () => {
     expect(html).toContain('data-sign="Negative (−)"');
   });
 
+  it("renders the dedicated absolute extrema engine for lesson 10178", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/school/class-12/class-12-formal-calculus-absolute-maxima-and-minima"]}><Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="school-mockup-0852"');
+    expect(html).toContain("dedicated-closed-interval-candidate-engine");
+    expect(html).toContain('data-interval="[-2, 2]"');
+    expect(html).toContain('data-interval-type="closed"');
+    expect(html).toContain('data-absolute-maximum="3"');
+    expect(html).toContain('data-absolute-minimum="-1"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
