@@ -1,0 +1,49 @@
+{
+  "mockup": "0760",
+  "lessonId": 10086,
+  "route": "/lessons/school/class-10/class-10-coordinate-geometry-external-section-formula",
+  "objectModel": "dedicated-directed-external-section-singularity-engine",
+  "default": {
+    "a": [0, 0],
+    "b": [4, 2],
+    "ratio": [2, 1],
+    "point": [8, 4],
+    "distances": [8.944, 4.472],
+    "ratioMatch": true
+  },
+  "interactions": {
+    "presetRatio": [3, 2],
+    "presetPoint": [12, 6],
+    "singularRatio": [1, 1],
+    "singularPoint": "undefined",
+    "leftRatio": [1, 2],
+    "leftPoint": [-4, -2],
+    "leftRatioMatch": true,
+    "editedRatio": [5, 2],
+    "editedPoint": [6.67, 3.33],
+    "editedRatioMatch": true,
+    "gridToggle": true,
+    "keyboardRatio": [3, 1],
+    "keyboardPoint": [6, 3],
+    "resetRestoredDefaults": true
+  },
+  "desktop": {
+    "viewport": [970, 1712],
+    "hero": [90, 209],
+    "tabs": [219, 266],
+    "lab": [276, 830],
+    "whyItWorks": [840, 1023],
+    "workedExample": [1033, 1288],
+    "challenge": [1298, 1582],
+    "navigation": [1592, 1624]
+  },
+  "mobile": {
+    "viewport": [390, 844],
+    "documentWidth": 375,
+    "draggableHandles": 1,
+    "inputs": 5,
+    "ratioRows": 7,
+    "horizontalOverflow": false
+  },
+  "console": { "warnings": 0, "errors": 0 }
+}

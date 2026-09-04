@@ -2471,6 +2471,34 @@ describe("lesson pages", () => {
     expect(html).toContain('aria-label="Draggable challenge point P"');
   });
 
+  it("renders the dedicated external-section target for lesson 10086", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-10/class-10-coordinate-geometry-external-section-formula",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0760"');
+    expect(html).toContain(
+      "dedicated-directed-external-section-singularity-engine",
+    );
+    expect(html).toContain('data-point="8,4"');
+    expect(html).toContain('data-ratio="2:1"');
+    expect(html).toContain('data-distances="8.944,4.472"');
+    expect(html).toContain('data-match="true"');
+    expect(html).toContain('data-singular="false"');
+    expect(html).toContain('aria-label="Draggable external point P"');
+    expect(html).toContain("Point goes to infinity");
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
