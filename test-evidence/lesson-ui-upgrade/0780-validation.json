@@ -1,0 +1,44 @@
+{
+  "lessonId": 10106,
+  "mockup": 780,
+  "route": "/lessons/school/class-10/class-10-statistics-more-than-cumulative-frequency",
+  "objectModel": "dedicated-more-than-descending-subtraction-engine",
+  "reference": "0780-reference.png",
+  "captures": {
+    "desktop": "0780-desktop.png",
+    "mobile": "0780-mobile.png"
+  },
+  "controls": {
+    "frequencyHandles": 5,
+    "clearButtons": 5,
+    "resetButtons": 1,
+    "tableOverflowOnMobile": "internal"
+  },
+  "states": {
+    "default": {
+      "frequencies": [6, 9, 12, 8, 5],
+      "total": 40,
+      "moreThan": [40, 34, 25, 13, 5, 0],
+      "lessThan": [0, 6, 15, 27, 35, 40]
+    },
+    "keyboardRow3Up": {
+      "frequencies": [6, 9, 13, 8, 5],
+      "total": 41,
+      "moreThan": [41, 35, 26, 13, 5, 0],
+      "lessThan": [0, 6, 15, 28, 36, 41]
+    },
+    "clearRow2": {
+      "frequencies": [6, 0, 13, 8, 5],
+      "total": 32,
+      "moreThan": [32, 26, 26, 13, 5, 0],
+      "lessThan": [0, 6, 6, 19, 27, 32],
+      "row2Blocks": 0
+    },
+    "reset": {
+      "frequencies": [6, 9, 12, 8, 5],
+      "total": 40,
+      "moreThan": [40, 34, 25, 13, 5, 0],
+      "lessThan": [0, 6, 15, 27, 35, 40]
+    }
+  }
+}

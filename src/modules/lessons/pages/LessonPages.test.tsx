@@ -3045,6 +3045,31 @@ describe("lesson pages", () => {
     expect(html).toContain("Randomize Frequencies");
   });
 
+  it("renders the dedicated more-than cumulative target for lesson 10106", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-10/class-10-statistics-more-than-cumulative-frequency",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0780"');
+    expect(html).toContain("dedicated-more-than-descending-subtraction-engine");
+    expect(html).toContain('data-frequencies="6,9,12,8,5"');
+    expect(html).toContain('data-more-than="40,34,25,13,5,0"');
+    expect(html).toContain('data-less-than="0,6,15,27,35,40"');
+    expect(html).toContain('data-total="40"');
+    expect(html).toContain('aria-label="Frequency row 3"');
+    expect(html).toContain('aria-label="Clear frequency row 2"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
