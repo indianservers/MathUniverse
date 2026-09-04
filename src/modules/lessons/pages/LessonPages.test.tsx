@@ -4207,6 +4207,15 @@ describe("lesson pages", () => {
     expect(html).toContain('data-continuous="true"');
   });
 
+  it("renders the dedicated removable discontinuity repair engine for lesson 10168", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/school/class-12/class-12-formal-calculus-removable-discontinuity"]}><Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="school-mockup-0842"');
+    expect(html).toContain("dedicated-removable-discontinuity-repair-engine");
+    expect(html).toContain('data-defined="4"');
+    expect(html).toContain('data-limit="4"');
+    expect(html).toContain('data-repaired="true"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

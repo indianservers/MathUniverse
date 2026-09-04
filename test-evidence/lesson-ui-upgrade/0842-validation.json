@@ -1,0 +1,60 @@
+{
+  "mockup": "0842",
+  "lessonId": 10168,
+  "route": "/lessons/school/class-12/class-12-formal-calculus-removable-discontinuity",
+  "objectModel": "dedicated-removable-discontinuity-repair-engine",
+  "reference": "0842-reference.png",
+  "default": {
+    "nearbyRule": "x+2",
+    "point": 2,
+    "limit": 4,
+    "definedValue": 4,
+    "repaired": true,
+    "conditions": [true, true, true],
+    "graphPoint": [2, 4]
+  },
+  "desktop": {
+    "targetWidth": 941,
+    "targetHeight": 1672,
+    "clientWidth": 926,
+    "scrollWidth": 926,
+    "horizontalOverflow": false,
+    "sidebarWidth": 215,
+    "lessonFrame": {
+      "x": 227,
+      "y": 90.8,
+      "width": 687.4,
+      "height": 1564.6,
+      "bottom": 1655.4
+    },
+    "controlsChecked": 20,
+    "genericSectionsReplaced": true,
+    "visibleErrorSurfaces": 0
+  },
+  "mobile": {
+    "viewportWidth": 390,
+    "clientWidth": 375,
+    "scrollWidth": 375,
+    "horizontalOverflow": false,
+    "lessonWidth": 351.2,
+    "clippedControls": 0,
+    "controlsChecked": 20,
+    "visibleErrorSurfaces": 0
+  },
+  "interactions": {
+    "mismatch": { "definedValue": 5, "repaired": false },
+    "keyboardDefinedPoint": 4.5,
+    "undefinedValue": { "defined": false, "repaired": false },
+    "probes": [
+      [1.999, 3.999],
+      [2.001, 4.001]
+    ],
+    "holeLayerHidden": true,
+    "tableRows": 8,
+    "practiceAnswers": [2, -4],
+    "transferWrongRejected": 5,
+    "transferCorrectAccepted": 6,
+    "graphCoordinatesAligned": true,
+    "resetAllState": true
+  }
+}
