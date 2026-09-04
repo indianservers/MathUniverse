@@ -1,0 +1,62 @@
+{
+  "mockup": "0809",
+  "lessonId": 10135,
+  "route": "/lessons/school/class-11/class-11-binomial-theorem-general-term",
+  "surface": "BinomialGeneralTermTargetLesson10135",
+  "objectModel": "dedicated-binomial-general-term-locator-engine",
+  "referencePixels": { "width": 1672, "height": 941 },
+  "desktopCapturePixels": { "width": 1665, "height": 932 },
+  "mobileCapturePixels": { "width": 375, "height": 811 },
+  "default": {
+    "n": 7,
+    "k": 4,
+    "r": 3,
+    "coefficient": 35,
+    "powerA": 4,
+    "powerB": 3,
+    "term": "35a⁴b³",
+    "balanced": true
+  },
+  "interactions": {
+    "powerEight": {
+      "n": 8,
+      "k": 4,
+      "r": 3,
+      "coefficient": 56,
+      "term": "56a⁵b³"
+    },
+    "nextTerm": { "n": 8, "k": 5, "r": 4, "coefficient": 70, "term": "70a⁴b⁴" },
+    "directTermSelection": {
+      "n": 8,
+      "k": 2,
+      "r": 1,
+      "coefficient": 8,
+      "term": "8a⁷b"
+    },
+    "firstGeneratedExample": {
+      "n": 5,
+      "k": 3,
+      "r": 2,
+      "coefficient": 10,
+      "term": "10a³b²"
+    },
+    "secondGeneratedExample": {
+      "n": 8,
+      "k": 6,
+      "r": 5,
+      "coefficient": 56,
+      "term": "56a³b⁵"
+    },
+    "reset": {
+      "n": 7,
+      "k": 4,
+      "r": 3,
+      "coefficient": 35,
+      "term": "35a⁴b³",
+      "balanced": true
+    }
+  },
+  "mobileLayout": { "clientWidth": 375, "scrollWidth": 375 },
+  "consoleErrors": 0,
+  "status": "complete"
+}

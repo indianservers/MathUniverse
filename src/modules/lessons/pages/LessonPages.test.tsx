@@ -3749,6 +3749,30 @@ describe("lesson pages", () => {
     expect(html).toContain('data-coefficient-sum="16"');
   });
 
+  it("renders the dedicated binomial general-term lab for lesson 10135", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-11/class-11-binomial-theorem-general-term",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0809"');
+    expect(html).toContain("dedicated-binomial-general-term-locator-engine");
+    expect(html).toContain('data-n="7"');
+    expect(html).toContain('data-k="4"');
+    expect(html).toContain('data-r="3"');
+    expect(html).toContain('data-coefficient="35"');
+    expect(html).toContain('data-term="35a⁴b³"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
