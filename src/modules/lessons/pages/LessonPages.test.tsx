@@ -2707,6 +2707,36 @@ describe("lesson pages", () => {
     expect(html).toContain('aria-label="Point D on circle"');
   });
 
+  it("renders the dedicated cyclic-quadrilateral target for lesson 10094", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-10/class-10-circle-proofs-cyclic-quadrilateral",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0768"');
+    expect(html).toContain("dedicated-four-vertex-cyclic-quadrilateral-engine");
+    expect(html).toContain('data-vertices-on-circle="4"');
+    expect(html).toContain('data-angle-a="94.5"');
+    expect(html).toContain('data-angle-b="93"');
+    expect(html).toContain('data-angle-c="85.5"');
+    expect(html).toContain('data-angle-d="87"');
+    expect(html).toContain('data-sum-ac="180"');
+    expect(html).toContain('data-sum-bd="180"');
+    expect(html).toContain('data-cyclic="true"');
+    expect(html).toContain('aria-label="Vertex A"');
+    expect(html).toContain('aria-label="Vertex D"');
+    expect(html).toContain('aria-label="Challenge vertex B radius"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

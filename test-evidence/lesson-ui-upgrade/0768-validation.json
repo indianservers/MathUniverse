@@ -1,0 +1,51 @@
+{
+  "mockup": "0768",
+  "lessonId": 10094,
+  "route": "/lessons/school/class-10/class-10-circle-proofs-cyclic-quadrilateral",
+  "objectModel": "dedicated-four-vertex-cyclic-quadrilateral-engine",
+  "default": {
+    "verticesOnCircle": 4,
+    "angles": { "A": 94.5, "B": 93, "C": 85.5, "D": 87 },
+    "sumAC": 180,
+    "sumBD": 180,
+    "cyclic": true,
+    "challengeRadius": 1.2
+  },
+  "interactions": {
+    "offCircleVertices": 3,
+    "offCircleSumAC": 168,
+    "offCircleSumBD": 192,
+    "offCircleCyclic": false,
+    "snapRestoredVertices": 4,
+    "snapRestoredSumAC": 180,
+    "snapRestoredSumBD": 180,
+    "snapRestoredCyclic": true,
+    "randomCyclicValid": true,
+    "toolMode": "move",
+    "circleLayerToggle": true,
+    "angleLayerToggle": true,
+    "sumLayerToggle": true,
+    "challengeRestoredRadius": 1,
+    "challengeCorrect": true,
+    "resetRestoredDefaults": true
+  },
+  "desktop": {
+    "viewport": [970, 1712],
+    "hero": [62, 206],
+    "tabs": [216, 266],
+    "lab": [280, 900],
+    "cards": [914, 1209],
+    "challenge": [1223, 1448],
+    "navigation": [1462, 1498]
+  },
+  "mobile": {
+    "viewport": [390, 844],
+    "documentWidth": 375,
+    "draggableHandles": 4,
+    "inputs": 5,
+    "cards": 3,
+    "challengePanels": 3,
+    "horizontalOverflow": false
+  },
+  "console": { "warnings": 0, "errors": 0 }
+}
