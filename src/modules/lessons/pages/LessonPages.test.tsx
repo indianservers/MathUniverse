@@ -4262,6 +4262,17 @@ describe("lesson pages", () => {
     expect(html).toContain('data-slopes-match="true"');
   });
 
+  it("renders the dedicated rate of change engine for lesson 10174", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/school/class-12/class-12-formal-calculus-rate-of-change"]}><Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="school-mockup-0848"');
+    expect(html).toContain("dedicated-position-rate-motion-engine");
+    expect(html).toContain('data-interval="[1, 3]"');
+    expect(html).toContain('data-time="2"');
+    expect(html).toContain('data-average-rate="6"');
+    expect(html).toContain('data-instantaneous-rate="6"');
+    expect(html).toContain('data-rates-match="true"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

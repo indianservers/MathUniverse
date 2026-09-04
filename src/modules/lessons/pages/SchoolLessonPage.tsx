@@ -153,6 +153,7 @@ import InfiniteDiscontinuityTargetLesson10170 from "../schoolTargets/InfiniteDis
 import DifferentiabilityContinuityTargetLesson10171 from "../schoolTargets/DifferentiabilityContinuityTargetLesson10171";
 import RollesTheoremTargetLesson10172 from "../schoolTargets/RollesTheoremTargetLesson10172";
 import LagrangeMvtTargetLesson10173 from "../schoolTargets/LagrangeMvtTargetLesson10173";
+import RateOfChangeTargetLesson10174 from "../schoolTargets/RateOfChangeTargetLesson10174";
 import PlaceValueTargetLesson10001 from "../schoolTargets/PlaceValueTargetLesson10001";
 import NumberNamingTargetLesson10002 from "../schoolTargets/NumberNamingTargetLesson10002";
 import EstimationRoundingTargetLesson10003 from "../schoolTargets/EstimationRoundingTargetLesson10003";
@@ -486,6 +487,8 @@ function SchoolLessonBody({
     return <RollesTheoremTargetLesson10172 lesson={lesson} />;
   if (lesson.numericId === 10173)
     return <LagrangeMvtTargetLesson10173 lesson={lesson} />;
+  if (lesson.numericId === 10174)
+    return <RateOfChangeTargetLesson10174 lesson={lesson} />;
   if (lesson.numericId === 10001)
     return <PlaceValueTargetLesson10001 lesson={lesson} />;
   if (lesson.numericId === 10002)

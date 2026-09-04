@@ -1,0 +1,67 @@
+{
+  "mockup": "0848",
+  "lessonId": 10174,
+  "route": "/lessons/school/class-12/class-12-formal-calculus-rate-of-change",
+  "objectModel": "dedicated-position-rate-motion-engine",
+  "reference": "0848-reference.png",
+  "default": {
+    "positionFunction": "t^2+2t",
+    "interval": [1, 3],
+    "time": 2,
+    "averageRate": 6,
+    "instantaneousRate": 6,
+    "ratesMatch": true
+  },
+  "desktop": {
+    "targetWidth": 951,
+    "targetHeight": 1654,
+    "clientWidth": 936,
+    "scrollWidth": 936,
+    "horizontalOverflow": false,
+    "lessonFrame": {
+      "x": 201,
+      "y": 90.8,
+      "width": 720,
+      "height": 1563.2,
+      "bottom": 1654
+    },
+    "controlsChecked": 24,
+    "genericSectionsReplaced": true,
+    "browserErrorLogs": 0
+  },
+  "mobile": {
+    "viewportWidth": 390,
+    "clientWidth": 375,
+    "scrollWidth": 375,
+    "horizontalOverflow": false,
+    "lessonWidth": 347.2,
+    "clippedControls": 0,
+    "controlsChecked": 24,
+    "visibleErrorSurfaces": 0
+  },
+  "interactions": {
+    "changedState": {
+      "interval": [0, 4],
+      "time": 1,
+      "averageRate": 6,
+      "instantaneousRate": 4,
+      "ratesMatch": false
+    },
+    "keyboardTimeMovement": {
+      "time": 1.1,
+      "instantaneousRate": 4.2
+    },
+    "feetVelocity": 13.78,
+    "allGraphLayersHidden": true,
+    "graphZoom": 1.1,
+    "playbackAdvancedTime": true,
+    "matchingChallenge": {
+      "interval": [0, 4],
+      "averageRate": 6,
+      "instantaneousRateAt2": 6,
+      "matched": true
+    },
+    "practiceRevealed": true,
+    "realWorldHintRevealed": true
+  }
+}
