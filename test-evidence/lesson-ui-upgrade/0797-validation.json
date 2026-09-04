@@ -1,0 +1,53 @@
+{
+  "mockup": "0797",
+  "lessonId": 10123,
+  "route": "/lessons/school/class-11/class-11-relations-and-functions-binary-operations",
+  "surface": "BinaryOperationsTargetLesson10123",
+  "objectModel": "dedicated-cayley-operation-property-engine",
+  "referencePixels": { "width": 1672, "height": 941 },
+  "desktopCapturePixels": { "width": 1265, "height": 712 },
+  "mobileCapturePixels": { "width": 375, "height": 811 },
+  "default": {
+    "size": 4,
+    "preset": "add",
+    "pair": "2,3",
+    "result": 1,
+    "closure": true,
+    "identity": 0,
+    "inverses": true,
+    "commutative": true,
+    "associative": true
+  },
+  "interactions": {
+    "multiplyModulo4": {
+      "result": 2,
+      "identity": 1,
+      "inverses": false,
+      "commutative": true,
+      "associative": true
+    },
+    "subtractModulo4": {
+      "result": 3,
+      "identity": "none",
+      "inverses": false,
+      "commutative": false,
+      "associative": false
+    },
+    "customUnwrappedZ5": {
+      "pair": "2,4",
+      "result": 6,
+      "closure": false,
+      "inverses": false
+    },
+    "selectPair": { "pair": "1,2", "result": 3 },
+    "reset": {
+      "size": 4,
+      "preset": "add",
+      "pair": "2,3",
+      "result": 1,
+      "closure": true,
+      "identity": 0
+    }
+  },
+  "status": "complete"
+}

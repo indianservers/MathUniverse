@@ -1,0 +1,335 @@
+.bin10123-page {
+  position: relative;
+  top: -8px;
+  width: min(1350px, calc(100vw - 330px));
+  margin: auto;
+  color: #e8eef8;
+  background: #031328;
+  font:
+    12px/1.45 Inter,
+    Arial,
+    sans-serif;
+  letter-spacing: 0;
+}
+.bin10123-page:before {
+  position: fixed;
+  z-index: -1;
+  inset: 58px 0 0 283px;
+  background: #031328;
+  content: "";
+}
+.bin10123-page * {
+  box-sizing: border-box;
+}
+.bin10123-page h1,
+.bin10123-page h2,
+.bin10123-page h3,
+.bin10123-page p {
+  margin: 0;
+}
+.bin10123-page button,
+.bin10123-page select,
+.bin10123-page input {
+  font: inherit;
+  color: inherit;
+}
+.bin10123-page > header {
+  position: relative;
+  min-height: 145px;
+  padding: 20px;
+  border: 1px solid #29435c;
+  border-radius: 9px;
+  background: #06172d;
+}
+.bin10123-page > header small,
+.bin10123-page main > header small {
+  color: #38d8d0;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+.bin10123-page > header h1 {
+  margin: 5px 0;
+  font-size: 26px;
+}
+.bin10123-page > header p {
+  max-width: 720px;
+}
+.bin10123-page > header nav {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+}
+.bin10123-page > header nav span {
+  padding: 4px 11px;
+  border: 1px solid #30465d;
+  border-radius: 13px;
+  font-weight: 800;
+}
+.bin10123-page > header > button {
+  position: absolute;
+  right: 17px;
+  top: 18px;
+  display: flex;
+  gap: 7px;
+  padding: 10px 14px;
+  border: 1px solid #30465d;
+  border-radius: 7px;
+  background: #07162a;
+}
+.bin10123-page svg {
+  width: 16px;
+}
+.bin10123-page > main {
+  margin-top: 18px;
+  padding: 16px;
+  border: 1px solid #29435c;
+  border-radius: 9px;
+  background: #06172d;
+}
+.bin10123-page main > header h2 {
+  margin: 6px 0 2px;
+  font-size: 22px;
+}
+.bin10123-controls {
+  display: grid;
+  grid-template-columns: 200px 280px 180px;
+  gap: 12px;
+  margin-top: 12px;
+}
+.bin10123-controls label {
+  display: grid;
+  gap: 3px;
+  color: #aebdce;
+}
+.bin10123-controls select,
+.bin10123-controls input,
+.bin10123-controls > button {
+  height: 43px;
+  padding: 7px 11px;
+  border: 1px solid #30465d;
+  border-radius: 7px;
+  background: #081a31;
+}
+.bin10123-controls > button {
+  align-self: end;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.bin10123-custom {
+  grid-column: 1/-1;
+  display: flex;
+  gap: 10px;
+}
+.bin10123-custom label {
+  width: 150px;
+}
+.bin10123-custom .bin10123-wrap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: auto;
+}
+.bin10123-custom .bin10123-wrap input {
+  width: 18px;
+  height: 18px;
+}
+.bin10123-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 51fr) minmax(180px, 18fr) minmax(0, 31fr);
+  gap: 14px;
+  margin-top: 14px;
+}
+.bin10123-table,
+.bin10123-inspector article,
+.bin10123-properties {
+  padding: 12px;
+  border: 1px solid #29435c;
+  border-radius: 8px;
+  background: #051428;
+}
+.bin10123-table table {
+  width: 100%;
+  margin-top: 11px;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+.bin10123-table th,
+.bin10123-table td {
+  height: 52px;
+  border: 1px solid #39516b;
+  text-align: center;
+  font-size: 14px;
+  cursor: pointer;
+}
+.bin10123-table th {
+  font-weight: 900;
+}
+.bin10123-table th.row {
+  outline: 2px solid #1d9fe5;
+  outline-offset: -2px;
+  background: #0b3154;
+}
+.bin10123-table th.column {
+  background: #174a47;
+}
+.bin10123-table td.result {
+  outline: 2px solid #25d9c8;
+  outline-offset: -2px;
+  background: #114844;
+}
+.bin10123-table > p {
+  padding: 9px 0;
+  border-bottom: 1px solid #263e56;
+}
+.bin10123-table footer {
+  display: flex;
+  gap: 35px;
+  padding-top: 9px;
+}
+.bin10123-table footer span:first-child {
+  color: #43aeef;
+}
+.bin10123-table footer span:nth-child(2) {
+  color: #54d89d;
+}
+.bin10123-table footer span:last-child {
+  color: #4dd4c8;
+}
+.bin10123-inspector {
+  display: grid;
+  gap: 10px;
+}
+.bin10123-inspector article p {
+  margin-top: 4px;
+}
+.bin10123-inspector article > p i,
+.bin10123-inspector em {
+  color: #39d8d2;
+}
+.bin10123-inspector article > strong {
+  display: block;
+  margin-top: 7px;
+  font-size: 17px;
+}
+.bin10123-inspector hr {
+  border: 0;
+  border-top: 1px solid #30465d;
+}
+.bin10123-inspector span {
+  display: block;
+}
+.bin10123-inspector .good {
+  color: #57e6a3;
+}
+.bin10123-inspector .bad {
+  color: #ff7474;
+}
+.bin10123-inspector button {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+  padding: 7px;
+  border: 1px solid #30465d;
+  border-radius: 6px;
+  background: #07172c;
+}
+.bin10123-properties {
+  display: grid;
+  gap: 7px;
+}
+.bin10123-properties > article {
+  display: grid;
+  grid-template-columns: 22px 1fr auto;
+  gap: 8px;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #263e56;
+  border-radius: 7px;
+}
+.bin10123-properties article svg {
+  padding: 3px;
+  border-radius: 50%;
+  background: #1e6d61;
+  color: #62e3a8;
+}
+.bin10123-properties article p {
+  color: #b8c4d2;
+}
+.bin10123-properties article b {
+  color: #5ce6a5;
+}
+.bin10123-properties article.fails svg {
+  background: #6d2632;
+  color: #ff7b83;
+}
+.bin10123-properties article.fails b {
+  color: #ff7b83;
+}
+.bin10123-properties > footer {
+  display: flex;
+  gap: 10px;
+  margin-top: 2px;
+  padding: 13px;
+  border: 1px solid #bd7c00;
+  border-radius: 8px;
+}
+.bin10123-properties > footer svg,
+.bin10123-properties > footer strong {
+  color: #ffb82e;
+}
+.bin10123-tip {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px solid #29435c;
+  border-radius: 8px;
+  background: #06172d;
+}
+.bin10123-tip svg,
+.bin10123-tip strong {
+  color: #33d8d0;
+}
+@media (max-width: 800px) {
+  .bin10123-page {
+    top: 0;
+    width: 100%;
+    padding: 8px;
+  }
+  .bin10123-page:before {
+    inset: 0;
+  }
+  .bin10123-page > header > button {
+    position: static;
+    margin-top: 10px;
+  }
+  .bin10123-page > header nav {
+    flex-wrap: wrap;
+  }
+  .bin10123-controls,
+  .bin10123-workspace {
+    display: block;
+  }
+  .bin10123-controls > * {
+    margin-top: 8px;
+  }
+  .bin10123-custom {
+    display: grid;
+  }
+  .bin10123-table,
+  .bin10123-inspector,
+  .bin10123-properties {
+    margin-top: 10px;
+  }
+  .bin10123-table {
+    overflow-x: auto;
+  }
+  .bin10123-table table {
+    min-width: 520px;
+  }
+  .bin10123-table footer {
+    min-width: 520px;
+    gap: 12px;
+  }
+}

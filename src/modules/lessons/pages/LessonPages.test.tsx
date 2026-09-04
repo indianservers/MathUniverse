@@ -3474,6 +3474,29 @@ describe("lesson pages", () => {
     expect(html).toContain('data-inverse-visible="true"');
   });
 
+  it("renders the dedicated binary-operation lab for lesson 10123", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-11/class-11-relations-and-functions-binary-operations",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0797"');
+    expect(html).toContain("dedicated-cayley-operation-property-engine");
+    expect(html).toContain('data-size="4"');
+    expect(html).toContain('data-result="1"');
+    expect(html).toContain('data-identity="0"');
+    expect(html).toContain('data-associative="true"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
