@@ -1,0 +1,30 @@
+{
+  "mockup": "0837",
+  "lessonId": 10163,
+  "route": "/lessons/school/class-12/class-12-three-dimensional-geometry-angle-between-two-planes",
+  "objectModel": "dedicated-two-plane-dihedral-intersection-engine",
+  "reference": "0837-reference.png",
+  "mockupCorrections": [
+    "(1,2,2) cross (2,-1,2) is (6,2,-5), not (6,0,-5).",
+    "For zero plane constants, the intersection passes through (0,0,0); the pictured (0,-2,5) lies on neither plane."
+  ],
+  "default": { "normal1": [1,2,2], "normal2": [2,-1,2], "dotProduct": 4, "crossProduct": [6,2,-5], "angleDegrees": 63.6122, "relation": "Intersecting", "intersectionPoint": [0,0,0] },
+  "desktop": { "targetWidth": 919, "targetHeight": 1711, "clientWidth": 904, "scrollWidth": 904, "horizontalOverflow": false, "sidebarWidth": 184, "lessonFrame": { "x": 198, "y": 88.8, "width": 706, "height": 1622, "bottom": 1710.8 }, "visibleErrorSurfaces": 0 },
+  "mobile": { "viewportWidth": 390, "clientWidth": 375, "scrollWidth": 375, "horizontalOverflow": false, "lessonWidth": 347.2, "clippedControls": 0, "controlsChecked": 29 },
+  "interactions": {
+    "parallel": { "crossProduct": [0,0,0], "angle": 0 },
+    "coincident": { "angle": 0 },
+    "perpendicular": { "crossProduct": [2,4,-5], "angle": 90 },
+    "supplementaryAngle": 116.3878,
+    "movedNormal": { "crossProduct": [6.2,2,-5.2], "angle": 60.0644 },
+    "relationCheckGated": true,
+    "camera": { "rotate": 18, "pan": 15, "zoom": 1.1 },
+    "twoDimensionalView": true,
+    "gridHidden": true,
+    "assessmentPassed": true,
+    "swapCrossProduct": [-6,-2,5],
+    "randomCrossProduct": [-1,7,5],
+    "zeroNormalRejectedWithoutNaN": true,
+    "resetAllState": true
+  }
+}
