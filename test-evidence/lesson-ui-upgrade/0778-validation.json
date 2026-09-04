@@ -1,0 +1,53 @@
+{
+  "mockup": "0778",
+  "lessonId": 10104,
+  "route": "/lessons/school/class-10/class-10-statistics-grouped-mean-by-step-deviation",
+  "objectModel": "dedicated-step-deviation-common-width-engine",
+  "default": {
+    "assumedMean": 25,
+    "classWidth": 10,
+    "frequencies": [4, 9, 13, 10, 4],
+    "stepDeviations": [-2, -1, 0, 1, 2],
+    "totalFrequency": 40,
+    "totalStep": 1,
+    "mean": 25.25,
+    "equalWidths": true
+  },
+  "interactions": {
+    "assumedMeanKeyboard": {
+      "assumedMean": 26,
+      "totalStep": -3,
+      "mean": 25.25
+    },
+    "classWidthKeyboard": {
+      "classWidth": 11,
+      "totalStep": -2.73,
+      "mean": 25.25,
+      "detectorValid": false
+    },
+    "frequencyEdit": { "totalFrequency": 41, "totalStep": -1, "mean": 24.76 },
+    "midpointEdit": { "totalStep": 1.4, "mean": 25.35 },
+    "unequalWidthEdit": {
+      "widths": [10, 12, 10, 10, 10],
+      "detectorValid": false
+    },
+    "pointerDrag": { "assumedMean": 35.1, "totalStep": -39.4, "mean": 25.25 },
+    "resetRestoredDefaults": true
+  },
+  "desktop": {
+    "viewport": [1680, 941],
+    "contentX": [333, 1645],
+    "hero": [120, 287],
+    "lab": [303, 913]
+  },
+  "mobile": {
+    "viewport": [390, 844],
+    "documentWidth": 375,
+    "tableViewportWidth": 353,
+    "tableScrollWidth": 760,
+    "draggableHandles": 1,
+    "inputs": 22,
+    "horizontalOverflow": false
+  },
+  "console": { "warnings": 0, "errors": 0 }
+}

@@ -2992,6 +2992,33 @@ describe("lesson pages", () => {
     expect(html).toContain('aria-label="Frequency row 1"');
   });
 
+  it("renders the dedicated step-deviation target for lesson 10104", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-10/class-10-statistics-grouped-mean-by-step-deviation",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0778"');
+    expect(html).toContain("dedicated-step-deviation-common-width-engine");
+    expect(html).toContain('data-assumed-mean="25"');
+    expect(html).toContain('data-class-width="10"');
+    expect(html).toContain('data-total-frequency="40"');
+    expect(html).toContain('data-total-step="1"');
+    expect(html).toContain('data-mean="25.25"');
+    expect(html).toContain('data-equal-width="true"');
+    expect(html).toContain('data-widths="10,10,10,10,10"');
+    expect(html).toContain('aria-label="Assumed mean step marker"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
