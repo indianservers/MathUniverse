@@ -4323,6 +4323,15 @@ describe("lesson pages", () => {
     expect(html).toContain('data-actual="2.02485"');
   });
 
+  it("renders the dedicated integration by substitution engine for lesson 10180", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/school/class-12/class-12-formal-calculus-integration-by-substitution"]}><Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="school-mockup-0854"');
+    expect(html).toContain("dedicated-u-substitution-transformation-engine");
+    expect(html).toContain('data-choice="x²"');
+    expect(html).toContain('data-match="true"');
+    expect(html).toContain('data-transformed="integral-cos-u-du"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

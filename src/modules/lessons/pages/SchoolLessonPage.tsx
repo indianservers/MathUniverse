@@ -159,6 +159,7 @@ import IncreasingDecreasingTargetLesson10176 from "../schoolTargets/IncreasingDe
 import LocalExtremaTargetLesson10177 from "../schoolTargets/LocalExtremaTargetLesson10177";
 import AbsoluteExtremaTargetLesson10178 from "../schoolTargets/AbsoluteExtremaTargetLesson10178";
 import DifferentialsApproximationTargetLesson10179 from "../schoolTargets/DifferentialsApproximationTargetLesson10179";
+import IntegrationSubstitutionTargetLesson10180 from "../schoolTargets/IntegrationSubstitutionTargetLesson10180";
 import PlaceValueTargetLesson10001 from "../schoolTargets/PlaceValueTargetLesson10001";
 import NumberNamingTargetLesson10002 from "../schoolTargets/NumberNamingTargetLesson10002";
 import EstimationRoundingTargetLesson10003 from "../schoolTargets/EstimationRoundingTargetLesson10003";
@@ -504,6 +505,8 @@ function SchoolLessonBody({
     return <AbsoluteExtremaTargetLesson10178 lesson={lesson} />;
   if (lesson.numericId === 10179)
     return <DifferentialsApproximationTargetLesson10179 lesson={lesson} />;
+  if (lesson.numericId === 10180)
+    return <IntegrationSubstitutionTargetLesson10180 lesson={lesson} />;
   if (lesson.numericId === 10001)
     return <PlaceValueTargetLesson10001 lesson={lesson} />;
   if (lesson.numericId === 10002)

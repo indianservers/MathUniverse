@@ -1,0 +1,57 @@
+{
+  "mockup": "0854",
+  "lessonId": 10180,
+  "route": "/lessons/school/class-12/class-12-formal-calculus-integration-by-substitution",
+  "objectModel": "dedicated-u-substitution-transformation-engine",
+  "reference": "0854-reference.png",
+  "default": {
+    "integral": "integral 2x cos(x^2) dx",
+    "substitution": "u=x^2",
+    "differential": "du=2x dx",
+    "transformed": "integral cos(u) du",
+    "antiderivative": "sin(x^2)+C"
+  },
+  "desktop": {
+    "targetWidth": 948,
+    "targetHeight": 1659,
+    "clientWidth": 933,
+    "scrollWidth": 933,
+    "horizontalOverflow": false,
+    "lessonFrame": {
+      "x": 202,
+      "y": 90.8,
+      "width": 716,
+      "height": 1561,
+      "bottom": 1651.8
+    },
+    "controlsChecked": 15,
+    "generatedPlots": 2,
+    "genericSectionsReplaced": true,
+    "visibleErrorSurfaces": 0
+  },
+  "mobile": {
+    "viewportWidth": 390,
+    "clientWidth": 375,
+    "scrollWidth": 375,
+    "horizontalOverflow": false,
+    "lessonWidth": 347.2,
+    "clippedControls": 0,
+    "controlsChecked": 15,
+    "visibleErrorSurfaces": 0
+  },
+  "interactions": {
+    "wrongChoice": "x",
+    "wrongChoiceRejected": true,
+    "correctChoice": "x^2",
+    "duMatchRestored": true,
+    "practiceWrongRejected": true,
+    "practiceAccepted": [
+      "-2cos(x^2)+C",
+      "3/10(x^2+5)^5+C",
+      "1/10 sin(5x^2+1)+C"
+    ],
+    "hintsRevealed": true,
+    "resetAllState": true,
+    "adjacentNavigationIsLinked": true
+  }
+}
