@@ -1,0 +1,19 @@
+{
+  "mockup": "0788",
+  "lessonId": 10114,
+  "route": "/lessons/school/class-11/class-11-relations-and-functions-symmetric-relations",
+  "surface": "SymmetricRelationsTargetLesson10114",
+  "objectModel": "dedicated-symmetric-relation-mirror-witness-engine",
+  "desktopViewport": { "width": 1680, "height": 941 },
+  "mobileViewport": { "width": 390, "height": 844 },
+  "default": { "pairCount": 15, "unmatched": ["1,3"], "symmetric": false },
+  "interactions": {
+    "repairOne": { "pairCount": 16, "unmatched": [], "symmetric": true },
+    "remove24": { "pairCount": 15, "unmatched": ["4,2"], "symmetric": false },
+    "repairAll": { "pairCount": 16, "symmetric": true },
+    "reset": { "pairCount": 15, "unmatched": ["1,3"] },
+    "matrixCells": 16,
+    "graphKeyboardEdges": true
+  },
+  "status": "complete"
+}

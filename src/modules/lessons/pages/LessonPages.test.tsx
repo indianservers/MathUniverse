@@ -3260,6 +3260,31 @@ describe("lesson pages", () => {
     expect(html).toContain("Missing self-pair: (1, 1)");
   });
 
+  it("renders the dedicated symmetric relation checker for lesson 10114", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-11/class-11-relations-and-functions-symmetric-relations",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0788"');
+    expect(html).toContain(
+      "dedicated-symmetric-relation-mirror-witness-engine",
+    );
+    expect(html).toContain('data-pair-count="15"');
+    expect(html).toContain('data-unmatched="1,3"');
+    expect(html).toContain('data-symmetric="false"');
+    expect(html).toContain("Complete symmetric pair (3,1)");
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
