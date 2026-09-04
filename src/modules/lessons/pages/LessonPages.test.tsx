@@ -3520,6 +3520,29 @@ describe("lesson pages", () => {
     expect(html).toContain('data-mode="radians"');
   });
 
+  it("renders the dedicated trig transformation lab for lesson 10125", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-11/class-11-trigonometry-transformation-of-trigonometric-graphs",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0799"');
+    expect(html).toContain("dedicated-sinusoid-transformation-engine");
+    expect(html).toContain('data-amplitude="1.50"');
+    expect(html).toContain('data-period="3.1416"');
+    expect(html).toContain('data-maximum="2.25"');
+    expect(html).toContain('data-minimum="-0.75"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

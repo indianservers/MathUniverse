@@ -99,6 +99,7 @@ import CompositionFunctionsTargetLesson10121 from "../schoolTargets/CompositionF
 import InvertibleFunctionsTargetLesson10122 from "../schoolTargets/InvertibleFunctionsTargetLesson10122";
 import BinaryOperationsTargetLesson10123 from "../schoolTargets/BinaryOperationsTargetLesson10123";
 import TrigDomainRangeTargetLesson10124 from "../schoolTargets/TrigDomainRangeTargetLesson10124";
+import TrigTransformTargetLesson10125 from "../schoolTargets/TrigTransformTargetLesson10125";
 import PlaceValueTargetLesson10001 from "../schoolTargets/PlaceValueTargetLesson10001";
 import NumberNamingTargetLesson10002 from "../schoolTargets/NumberNamingTargetLesson10002";
 import EstimationRoundingTargetLesson10003 from "../schoolTargets/EstimationRoundingTargetLesson10003";
@@ -318,6 +319,8 @@ export default function SchoolLessonPage() {
     return <BinaryOperationsTargetLesson10123 lesson={lesson} />;
   if (lesson.numericId === 10124)
     return <TrigDomainRangeTargetLesson10124 lesson={lesson} />;
+  if (lesson.numericId === 10125)
+    return <TrigTransformTargetLesson10125 lesson={lesson} />;
   if (lesson.numericId === 10001)
     return <PlaceValueTargetLesson10001 lesson={lesson} />;
   if (lesson.numericId === 10002)

@@ -1,0 +1,53 @@
+{
+  "mockup": "0799",
+  "lessonId": 10125,
+  "route": "/lessons/school/class-11/class-11-trigonometry-transformation-of-trigonometric-graphs",
+  "surface": "TrigTransformTargetLesson10125",
+  "objectModel": "dedicated-sinusoid-transformation-engine",
+  "referencePixels": { "width": 1672, "height": 941 },
+  "desktopCapturePixels": { "width": 1265, "height": 712 },
+  "mobileCapturePixels": { "width": 375, "height": 811 },
+  "default": {
+    "amplitude": 1.5,
+    "frequency": 2,
+    "phase": 0.7854,
+    "verticalShift": 0.75,
+    "period": 3.1416,
+    "maximum": 2.25,
+    "minimum": -0.75,
+    "step": 2,
+    "parentVisible": true,
+    "transformedVisible": true
+  },
+  "interactions": {
+    "parameterEdit": {
+      "amplitude": 2,
+      "frequency": 1,
+      "verticalShift": -0.5,
+      "period": 6.2832,
+      "maximum": 1.5,
+      "minimum": -2.5
+    },
+    "display": {
+      "parentVisible": false,
+      "zoom": 1.1,
+      "step": 3,
+      "expanded": true
+    },
+    "boardCheck": "sin(36°) ≈ 0.588",
+    "reset": {
+      "amplitude": 1.5,
+      "frequency": 2,
+      "phase": 0.7854,
+      "verticalShift": 0.75,
+      "period": 3.1416,
+      "maximum": 2.25,
+      "minimum": -0.75,
+      "step": 2,
+      "zoom": 1,
+      "expanded": false
+    }
+  },
+  "correction": "Generated key points follow y=1.5sin(2(x-π/4))+0.75 exactly; the target's minimum label at 5π/4 is inconsistent with that displayed formula.",
+  "status": "complete"
+}
