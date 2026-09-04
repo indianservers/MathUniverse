@@ -4013,6 +4013,17 @@ describe("lesson pages", () => {
     expect(html).toContain('data-secant-slope="0.7143"');
   });
 
+  it("renders the dedicated parabola normal lab for lesson 10148", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/school/class-11/class-11-conic-sections-normal-to-a-parabola"]}><Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="school-mockup-0822"');
+    expect(html).toContain("dedicated-parabola-normal-perpendicularity-engine");
+    expect(html).toContain('data-t="1.50"');
+    expect(html).toContain('data-point="2.25,3.00"');
+    expect(html).toContain('data-product="-1.000000"');
+    expect(html).toContain('data-normal-intercept="6.3750"');
+    expect(html).toContain('data-angle="90.00"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

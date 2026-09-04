@@ -1,0 +1,15 @@
+{
+  "mockup": "0822",
+  "lessonId": 10148,
+  "route": "/lessons/school/class-11/class-11-conic-sections-normal-to-a-parabola",
+  "surface": "dedicated-parabola-normal-perpendicularity-engine",
+  "reference": "0822-reference.png",
+  "desktop": { "capture": "0822-desktop.png", "referenceSize": "1672x941", "clientWidth": 1672, "documentOverflow": false },
+  "mobile": { "capture": "0822-mobile.png", "clientWidth": 375, "scrollWidth": 375, "documentOverflow": false },
+  "defaultModel": { "t": 1.5, "point": [2.25, 3], "tangentSlope": 0.666667, "normalSlope": -1.5, "product": -1, "normalIntercept": 6.375, "angle": 90 },
+  "specialCase": { "t": 0, "point": [0, 0], "tangentSlope": "Infinity", "normalSlope": 0 },
+  "pointerDrag": { "t": -0.32, "point": [0.1, -0.63], "tangentSlope": -3.150183, "normalSlope": 0.317442 },
+  "verifiedInteractions": ["parameter presets and native range", "real constrained point drag", "point and pan modes", "real pan to 45.8,35.0", "zoom", "axes and grid layers", "trace with two recorded points", "reset"],
+  "consoleErrors": 0,
+  "status": "complete"
+}
