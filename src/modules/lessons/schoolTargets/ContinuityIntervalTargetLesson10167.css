@@ -1,0 +1,448 @@
+.ci10167-page {
+  position: relative;
+  top: -22px;
+  width: min(720px, 100%);
+  margin: 0;
+  color: #2d3a4f;
+  font:
+    8px/1.45 Inter,
+    Arial,
+    sans-serif;
+  letter-spacing: 0;
+}
+.ci10167-page:before {
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  background: #effaff;
+  content: "";
+}
+.ci10167-page * {
+  box-sizing: border-box;
+}
+.ci10167-page h1,
+.ci10167-page h2,
+.ci10167-page h3,
+.ci10167-page p {
+  margin: 0;
+}
+.ci10167-page button,
+.ci10167-page input {
+  font: inherit;
+  color: inherit;
+}
+.ci10167-page > header {
+  height: 125px;
+  padding: 15px;
+  border-radius: 14px;
+  background: #fff;
+}
+.ci10167-page > header small,
+.ci10167-page h3 {
+  color: #0084af;
+  font-weight: 900;
+}
+.ci10167-page > header h1 {
+  margin: 5px 0 4px;
+  color: #111827;
+  font-size: 20px;
+}
+.ci10167-page > header > div {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+}
+.ci10167-page > header span {
+  padding: 3px 8px;
+  border-radius: 10px;
+  background: #eef2f5;
+  font-weight: 800;
+}
+.ci10167-page button {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 9px;
+  border: 1px solid #d5e3e9;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+}
+.ci10167-page button svg {
+  width: 11px;
+}
+.ci-graph {
+  margin-top: 8px;
+  border: 1px solid #cce7ee;
+  border-radius: 11px;
+  background: #fff;
+  overflow: hidden;
+}
+.ci-title {
+  display: flex;
+  height: 38px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+}
+.ci-title > div {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.ci-title label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.ci-title input {
+  accent-color: #1684e7;
+}
+.ci-graph-grid {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  border-top: 1px solid #e1eaee;
+}
+.ci-graph-grid > aside {
+  padding: 12px;
+  border-right: 1px solid #e1eaee;
+}
+.ci-graph-grid > aside h2 {
+  font:
+    17px Georgia,
+    serif;
+}
+.ci-graph-grid > aside > p {
+  margin: 8px 0;
+}
+.ci-graph-grid > aside > b {
+  display: block;
+  margin: 8px 0;
+}
+.ci-graph-grid > aside > b:first-of-type {
+  color: #009cb9;
+}
+.ci-graph-grid > aside section {
+  margin-top: 18px;
+  padding: 10px;
+  border: 1px solid #dbe7ec;
+  border-radius: 7px;
+}
+.ci-graph-grid > aside label {
+  display: block;
+  margin-top: 15px;
+  font-weight: 800;
+}
+.ci-graph-grid > aside output {
+  float: right;
+  padding: 3px 5px;
+  border: 1px solid #dae5ea;
+  border-radius: 4px;
+}
+.ci-graph-grid > aside input {
+  width: 100%;
+  accent-color: #1776df;
+}
+.ci-graph-grid > article {
+  position: relative;
+  min-height: 374px;
+  overflow: hidden;
+}
+.ci-graph-grid svg {
+  width: 100%;
+  height: 340px;
+  transform-origin: center;
+  transition: 0.15s;
+}
+.ci-graph-grid svg text {
+  font:
+    11px Inter,
+    Arial;
+}
+.ci-current {
+  position: absolute;
+  bottom: 11px;
+  left: 14px;
+  padding: 6px 12px;
+  border-radius: 13px;
+  background: #edf2f5;
+  font-weight: 800;
+}
+.ci-tools {
+  position: absolute;
+  right: 10px;
+  bottom: 9px;
+  display: flex;
+  height: 28px;
+  align-items: center;
+  gap: 4px;
+}
+.ci-tools button {
+  height: 24px;
+  padding: 4px;
+}
+.ci-checks {
+  display: grid;
+  grid-template-columns: 1fr 1.7fr;
+  gap: 9px;
+  margin-top: 9px;
+}
+.ci-checks > article,
+.ci-summary article,
+.ci-explain article,
+.ci-practice article {
+  padding: 11px;
+  border: 1px solid #d8e7ec;
+  border-radius: 8px;
+  background: #fff;
+}
+.ci-checks > article {
+  min-height: 220px;
+}
+.ci-checks > article:first-child > div {
+  position: relative;
+  margin-top: 7px;
+  padding: 8px 8px 8px 38px;
+  border: 1px solid #bce6d5;
+  border-radius: 6px;
+  background: #f2fbf7;
+}
+.ci-checks strong.yes,
+.ci-checks .yes strong,
+.ci-summary .yes,
+.ci-practice .yes {
+  color: #0ba66f;
+}
+.ci-checks .no strong,
+.ci-summary .no,
+.ci-practice .no {
+  color: #dd4651;
+}
+.ci-checks > article:first-child strong {
+  position: absolute;
+  left: 9px;
+  display: grid;
+  width: 20px;
+  height: 20px;
+  place-items: center;
+  border-radius: 50%;
+  background: #0daf77;
+  color: #fff;
+}
+.ci-checks > article:first-child .no strong {
+  background: #dd4651;
+}
+.ci-checks small {
+  display: block;
+}
+.ci-checks > article + article > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 9px;
+}
+.ci-checks section {
+  min-height: 170px;
+  padding: 10px;
+  border: 1px solid #a9daf0;
+  border-radius: 7px;
+}
+.ci-checks section h2,
+.ci-checks section p {
+  margin: 12px 0;
+  font:
+    12px Georgia,
+    serif;
+}
+.ci-summary {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.15fr;
+  gap: 9px;
+  margin-top: 9px;
+}
+.ci-summary article {
+  min-height: 118px;
+}
+.ci-summary p {
+  margin-top: 12px;
+}
+.ci-summary strong {
+  display: block;
+  width: max-content;
+  margin: 12px auto 0;
+  padding: 5px 12px;
+  border: 1px solid;
+  border-radius: 15px;
+}
+.ci-explain,
+.ci-practice {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 9px;
+  margin-top: 9px;
+}
+.ci-explain article {
+  min-height: 184px;
+}
+.ci-explain p {
+  margin: 9px 0;
+}
+.ci-explain article + article {
+  border-color: #f1c7be;
+  background: #fffaf8;
+}
+.ci-explain article + article strong {
+  display: block;
+  margin-top: 12px;
+  padding: 8px;
+  border: 1px solid #f0bec4;
+  border-radius: 6px;
+  background: #fff1f3;
+}
+.ci-practice article {
+  min-height: 225px;
+}
+.ci10167-page table {
+  width: 100%;
+  margin-top: 9px;
+  border-collapse: collapse;
+  text-align: center;
+}
+.ci10167-page th,
+.ci10167-page td {
+  padding: 6px;
+  border: 1px solid #d7e3e8;
+}
+.ci10167-page td:not(:first-child) {
+  color: #0ba66f;
+}
+.ci-practice article:first-child button {
+  margin-top: 8px;
+  border-color: #1689da;
+  color: #0876bb;
+}
+.ci-tabs {
+  display: flex;
+  margin: 8px 0;
+  border-bottom: 1px solid #dce5e9;
+}
+.ci-tabs button {
+  border: 0;
+  border-radius: 0;
+}
+.ci-tabs button.active {
+  border-bottom: 2px solid #128bd0;
+  color: #087eb9;
+}
+.ci-practice article + article label {
+  display: grid;
+  gap: 7px;
+  margin: 12px 0;
+}
+.ci-practice input {
+  width: 100%;
+  accent-color: #1683d8;
+}
+.ci-practice article + article > div:not(.ci-tabs) {
+  width: max-content;
+  margin: 10px auto;
+  padding: 5px 12px;
+  border: 1px solid;
+  border-radius: 15px;
+  font-weight: 900;
+}
+.ci-adjacent {
+  display: flex;
+  justify-content: space-between;
+  margin: 9px 0;
+}
+.ci-adjacent button {
+  min-width: 260px;
+  justify-content: center;
+}
+.ci10167-page > footer {
+  min-height: 135px;
+  padding: 12px;
+  border: 1px solid #d8e7ec;
+  border-radius: 8px;
+  background: #fff;
+}
+.ci10167-page > footer b {
+  font-size: 10px;
+}
+.ci10167-page > footer p {
+  margin: 5px 0 15px;
+  color: #627185;
+}
+body:has(.ci10167-page) [data-testid="desktop-sidebar"] {
+  display: flex !important;
+  width: 190px !important;
+}
+body:has(.ci10167-page) #main-content {
+  margin-left: 0 !important;
+  padding: 0 12px !important;
+}
+body:has(.ci10167-page) #main-content > div {
+  max-width: none !important;
+}
+body:has(.ci10167-page) nav[aria-label="Breadcrumb"] {
+  height: 34px !important;
+  min-height: 34px !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  font-size: 7px !important;
+}
+body:has(.ci10167-page) #lesson-section-interaction ~ * {
+  display: none !important;
+}
+@media (max-width: 700px) {
+  body:has(.ci10167-page) [data-testid="desktop-sidebar"] {
+    display: none !important;
+  }
+  .ci10167-page {
+    top: 0;
+    width: 100%;
+    padding: 6px;
+  }
+  .ci10167-page > header {
+    height: auto;
+  }
+  .ci-graph-grid,
+  .ci-checks,
+  .ci-summary,
+  .ci-explain,
+  .ci-practice {
+    display: block;
+  }
+  .ci-graph-grid > *,
+  .ci-checks > *,
+  .ci-summary > *,
+  .ci-explain > *,
+  .ci-practice > * {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+  .ci-graph-grid > aside {
+    border-right: 0;
+  }
+  .ci-graph-grid > article {
+    min-height: 320px;
+  }
+  .ci-graph-grid svg {
+    height: 290px;
+  }
+  .ci-checks > article,
+  .ci-summary article,
+  .ci-explain article,
+  .ci-practice article {
+    min-height: 0;
+  }
+  .ci-adjacent {
+    display: grid;
+    gap: 7px;
+  }
+  .ci-adjacent button {
+    width: 100%;
+    min-width: 0;
+  }
+}

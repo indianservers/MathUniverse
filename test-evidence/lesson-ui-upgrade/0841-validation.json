@@ -1,0 +1,63 @@
+{
+  "mockup": "0841",
+  "lessonId": 10167,
+  "route": "/lessons/school/class-12/class-12-formal-calculus-continuity-on-an-interval",
+  "objectModel": "dedicated-closed-interval-continuity-engine",
+  "reference": "0841-reference.png",
+  "default": {
+    "function": "sqrt(4-x^2)",
+    "interval": [-2, 2],
+    "endpointValues": [0, 0],
+    "interiorContinuous": true,
+    "leftEndpointContinuous": true,
+    "rightEndpointContinuous": true,
+    "continuous": true
+  },
+  "desktop": {
+    "targetWidth": 951,
+    "targetHeight": 1654,
+    "clientWidth": 936,
+    "scrollWidth": 936,
+    "horizontalOverflow": false,
+    "lessonFrame": {
+      "x": 202,
+      "y": 90.8,
+      "width": 720,
+      "height": 1549.2,
+      "bottom": 1640.0
+    },
+    "controlsChecked": 17,
+    "genericSectionsReplaced": true,
+    "visibleErrorSurfaces": 0
+  },
+  "mobile": {
+    "viewportWidth": 390,
+    "clientWidth": 375,
+    "scrollWidth": 375,
+    "horizontalOverflow": false,
+    "lessonWidth": 351.2,
+    "clippedControls": 0,
+    "controlsChecked": 17,
+    "visibleErrorSurfaces": 0
+  },
+  "interactions": {
+    "adjustedInterval": [-1.5, 1.5],
+    "adjustedEndpointValues": [1.32, 1.32],
+    "keyboardLeftEndpoint": -1.4,
+    "interiorBreak": {
+      "x": 0,
+      "interiorContinuous": false,
+      "continuous": false
+    },
+    "excludedBreak": {
+      "x": -1.8,
+      "interiorContinuous": true,
+      "continuous": true
+    },
+    "gridHidden": true,
+    "zoomChanged": true,
+    "practiceRevealed": true,
+    "endpointOrderingPreserved": true,
+    "resetAllState": true
+  }
+}

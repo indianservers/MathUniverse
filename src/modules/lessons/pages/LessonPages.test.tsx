@@ -4198,6 +4198,15 @@ describe("lesson pages", () => {
     expect(html).toContain('data-continuous="true"');
   });
 
+  it("renders the dedicated interval continuity engine for lesson 10167", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/school/class-12/class-12-formal-calculus-continuity-on-an-interval"]}><Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="school-mockup-0841"');
+    expect(html).toContain("dedicated-closed-interval-continuity-engine");
+    expect(html).toContain('data-interval="[-2.00, 2.00]"');
+    expect(html).toContain('data-interior="true"');
+    expect(html).toContain('data-continuous="true"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
