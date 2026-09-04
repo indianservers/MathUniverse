@@ -1,0 +1,51 @@
+{
+  "mockup": "0761",
+  "lessonId": 10087,
+  "route": "/lessons/school/class-10/class-10-coordinate-geometry-area-of-triangle-using-coordinates",
+  "objectModel": "dedicated-three-vertex-signed-determinant-area-engine",
+  "default": {
+    "a": [1, 1],
+    "b": [5, 1],
+    "c": [3, 4],
+    "determinant": 12,
+    "signedArea": 6,
+    "absoluteArea": 6,
+    "orientation": "counterclockwise",
+    "base": 4,
+    "height": 3
+  },
+  "interactions": {
+    "editedC": [3, 2],
+    "editedDeterminant": 4,
+    "editedSignedArea": 2,
+    "keyboardA": [1, 2],
+    "keyboardDeterminant": 2,
+    "heightLayerToggle": true,
+    "coordinateLayerToggle": true,
+    "absoluteMode": true,
+    "swappedSignedArea": -1,
+    "swappedAbsoluteArea": 1,
+    "swappedOrientation": "clockwise",
+    "explanationInput": true,
+    "resetRestoredDefaults": true
+  },
+  "desktop": {
+    "viewport": [970, 1712],
+    "hero": [90, 206],
+    "tabs": [206, 248],
+    "lab": [258, 810],
+    "tip": [820, 861],
+    "cards": [871, 1491],
+    "navigation": [1501, 1533]
+  },
+  "mobile": {
+    "viewport": [390, 844],
+    "documentWidth": 375,
+    "draggableHandles": 3,
+    "inputs": 10,
+    "cards": 4,
+    "textareas": 1,
+    "horizontalOverflow": false
+  },
+  "console": { "warnings": 0, "errors": 0 }
+}

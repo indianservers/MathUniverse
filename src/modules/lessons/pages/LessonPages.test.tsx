@@ -2499,6 +2499,37 @@ describe("lesson pages", () => {
     expect(html).toContain("Point goes to infinity");
   });
 
+  it("renders the dedicated coordinate-triangle-area target for lesson 10087", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-10/class-10-coordinate-geometry-area-of-triangle-using-coordinates",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0761"');
+    expect(html).toContain(
+      "dedicated-three-vertex-signed-determinant-area-engine",
+    );
+    expect(html).toContain('data-a="1,1"');
+    expect(html).toContain('data-b="5,1"');
+    expect(html).toContain('data-c="3,4"');
+    expect(html).toContain('data-determinant="12"');
+    expect(html).toContain('data-signed-area="6"');
+    expect(html).toContain('data-absolute-area="6"');
+    expect(html).toContain('data-orientation="counterclockwise"');
+    expect(html).toContain('aria-label="Draggable vertex A"');
+    expect(html).toContain('aria-label="Draggable vertex B"');
+    expect(html).toContain('aria-label="Draggable vertex C"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

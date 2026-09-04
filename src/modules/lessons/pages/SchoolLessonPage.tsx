@@ -61,6 +61,7 @@ import DistanceFormulaTargetLesson10083 from "../schoolTargets/DistanceFormulaTa
 import MidpointFormulaTargetLesson10084 from "../schoolTargets/MidpointFormulaTargetLesson10084";
 import InternalSectionFormulaTargetLesson10085 from "../schoolTargets/InternalSectionFormulaTargetLesson10085";
 import ExternalSectionFormulaTargetLesson10086 from "../schoolTargets/ExternalSectionFormulaTargetLesson10086";
+import CoordinateTriangleAreaTargetLesson10087 from "../schoolTargets/CoordinateTriangleAreaTargetLesson10087";
 import PlaceValueTargetLesson10001 from "../schoolTargets/PlaceValueTargetLesson10001";
 import NumberNamingTargetLesson10002 from "../schoolTargets/NumberNamingTargetLesson10002";
 import EstimationRoundingTargetLesson10003 from "../schoolTargets/EstimationRoundingTargetLesson10003";
@@ -204,6 +205,8 @@ export default function SchoolLessonPage() {
     return <InternalSectionFormulaTargetLesson10085 lesson={lesson} />;
   if (lesson.numericId === 10086)
     return <ExternalSectionFormulaTargetLesson10086 lesson={lesson} />;
+  if (lesson.numericId === 10087)
+    return <CoordinateTriangleAreaTargetLesson10087 lesson={lesson} />;
   if (lesson.numericId === 10001)
     return <PlaceValueTargetLesson10001 lesson={lesson} />;
   if (lesson.numericId === 10002)
