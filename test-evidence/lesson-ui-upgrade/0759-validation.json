@@ -1,0 +1,48 @@
+{
+  "mockup": "0759",
+  "lessonId": 10085,
+  "route": "/lessons/school/class-10/class-10-coordinate-geometry-internal-section-formula",
+  "objectModel": "dedicated-internal-section-weighted-ratio-engine",
+  "default": {
+    "a": [0, 0],
+    "b": [10, 5],
+    "ratio": [2, 3],
+    "point": [4, 2],
+    "distances": [4.47, 6.71],
+    "ratioMatch": true,
+    "challengePoint": [6, 3]
+  },
+  "interactions": {
+    "editedA": [-2, 1],
+    "editedB": [8, 6],
+    "editedRatio": [3, 2],
+    "editedPoint": [4, 4],
+    "editedDistances": [6.71, 4.47],
+    "keyboardRatio": [2, 3],
+    "keyboardPoint": [2, 3],
+    "wrongChallengePoint": [5, 3],
+    "wrongChallengeRejected": true,
+    "correctChallengePoint": [6, 3],
+    "correctChallengeAccepted": true,
+    "resetRestoredDefaults": true
+  },
+  "desktop": {
+    "viewport": [970, 1712],
+    "hero": [90, 209],
+    "tabs": [219, 261],
+    "exploration": [273, 949],
+    "cards": [959, 1152],
+    "workedExample": [1162, 1317],
+    "challenge": [1327, 1564],
+    "navigation": [1574, 1606]
+  },
+  "mobile": {
+    "viewport": [390, 844],
+    "documentWidth": 375,
+    "draggableHandles": 2,
+    "inputs": 9,
+    "theoryCards": 3,
+    "horizontalOverflow": false
+  },
+  "console": { "warnings": 0, "errors": 0 }
+}

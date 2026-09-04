@@ -2444,6 +2444,33 @@ describe("lesson pages", () => {
     expect(html).toContain('data-challenge-fixed="true"');
   });
 
+  it("renders the dedicated internal-section target for lesson 10085", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-10/class-10-coordinate-geometry-internal-section-formula",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0759"');
+    expect(html).toContain("dedicated-internal-section-weighted-ratio-engine");
+    expect(html).toContain('data-point="4,2"');
+    expect(html).toContain('data-ratio="2:3"');
+    expect(html).toContain('data-distances="4.47,6.71"');
+    expect(html).toContain('data-ratio-match="true"');
+    expect(html).toContain('data-challenge-point="6,3"');
+    expect(html).toContain('data-challenge-correct="true"');
+    expect(html).toContain('aria-label="Draggable main point P"');
+    expect(html).toContain('aria-label="Draggable challenge point P"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
