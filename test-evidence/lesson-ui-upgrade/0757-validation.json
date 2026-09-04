@@ -1,0 +1,46 @@
+{
+  "mockup": "0757",
+  "lessonId": 10083,
+  "route": "/lessons/school/class-10/class-10-coordinate-geometry-distance-formula",
+  "objectModel": "dedicated-two-point-distance-pythagorean-engine",
+  "default": {
+    "a": [1, 2],
+    "b": [5, 5],
+    "differences": [4, 3],
+    "square": 25,
+    "distance": 5,
+    "grid": true,
+    "gridStep": 1
+  },
+  "interactions": {
+    "editedA": [-1, 1],
+    "editedDifferences": [6, 4],
+    "editedSquare": 52,
+    "editedDistance": 7.21,
+    "keyboardB": [6, 5],
+    "halfGridB": [5.5, 5],
+    "pointerDraggedB": [6, 4],
+    "pointerDistance": 5.39,
+    "gridHidden": true,
+    "fullscreen": true,
+    "resetRestoredDefaults": true
+  },
+  "desktop": {
+    "viewport": [970, 1712],
+    "hero": [91, 214],
+    "tabs": [214, 256],
+    "lab": [266, 891],
+    "lowerPanels": [901, 1471],
+    "navigation": [1494, 1525]
+  },
+  "mobile": {
+    "viewport": [390, 844],
+    "documentWidth": 375,
+    "pageWidth": 374.4,
+    "draggableHandles": 2,
+    "coordinateInputs": 4,
+    "gridLines": 30,
+    "horizontalOverflow": false
+  },
+  "console": { "warnings": 0, "errors": 0 }
+}

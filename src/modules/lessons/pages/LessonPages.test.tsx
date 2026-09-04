@@ -2391,6 +2391,32 @@ describe("lesson pages", () => {
     expect(html).toContain('data-correct="true"');
   });
 
+  it("renders the dedicated distance-formula target for lesson 10083", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-10/class-10-coordinate-geometry-distance-formula",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0757"');
+    expect(html).toContain("dedicated-two-point-distance-pythagorean-engine");
+    expect(html).toContain('data-a="1,2"');
+    expect(html).toContain('data-b="5,5"');
+    expect(html).toContain('data-differences="4,3"');
+    expect(html).toContain('data-square="25"');
+    expect(html).toContain('data-distance="5"');
+    expect(html).toContain('aria-label="Draggable point A"');
+    expect(html).toContain('aria-label="Draggable point B"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
