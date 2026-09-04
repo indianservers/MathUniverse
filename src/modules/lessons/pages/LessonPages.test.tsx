@@ -3566,6 +3566,29 @@ describe("lesson pages", () => {
     expect(html).toContain('data-verified="true"');
   });
 
+  it("renders the dedicated principal-solutions lab for lesson 10127", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-11/class-11-trigonometry-principal-solutions",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0801"');
+    expect(html).toContain("dedicated-principal-interval-filter-engine");
+    expect(html).toContain('data-equation="cos-neg-root"');
+    expect(html).toContain('data-interval="zero-two"');
+    expect(html).toContain('data-principal="5π/6;7π/6"');
+    expect(html).toContain('data-verified="true"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

@@ -1,0 +1,34 @@
+{
+  "mockup": "0801",
+  "lessonId": 10127,
+  "route": "/lessons/school/class-11/class-11-trigonometry-principal-solutions",
+  "surface": "PrincipalSolutionsTargetLesson10127",
+  "objectModel": "dedicated-principal-interval-filter-engine",
+  "referencePixels": { "width": 1672, "height": 941 },
+  "desktopCapturePixels": { "width": 1265, "height": 712 },
+  "mobileCapturePixels": { "width": 375, "height": 811 },
+  "default": {
+    "equation": "cos-neg-root",
+    "interval": "zero-two",
+    "principal": ["5π/6", "7π/6"],
+    "verified": true,
+    "contrast": true,
+    "selectedOnly": true
+  },
+  "interactions": {
+    "negativeToPositivePi": { "principal": ["-5π/6", "5π/6"] },
+    "zeroToPi": { "principal": ["5π/6"] },
+    "sinHalfZeroToPi": { "principal": ["π/6", "5π/6"] },
+    "tanOneNegativeToPositivePi": { "principal": ["-3π/4", "π/4"] },
+    "comparisonControlsOff": { "contrast": false, "selectedOnly": false },
+    "restored": {
+      "equation": "cos-neg-root",
+      "interval": "zero-two",
+      "principal": ["5π/6", "7π/6"],
+      "verified": true,
+      "contrast": true,
+      "selectedOnly": true
+    }
+  },
+  "status": "complete"
+}
