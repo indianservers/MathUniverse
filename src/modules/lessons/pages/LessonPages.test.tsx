@@ -4116,6 +4116,16 @@ describe("lesson pages", () => {
     expect(html).toContain("RELATIONSHIP CLASSIFIER");
   });
 
+  it("renders the dedicated shortest-distance line engine for lesson 10158", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/school/class-12/class-12-three-dimensional-geometry-shortest-distance-between-lines"]}><Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="school-mockup-0832"');
+    expect(html).toContain("dedicated-shortest-distance-two-line-engine");
+    expect(html).toContain('data-distance="1"');
+    expect(html).toContain('data-parallel="false"');
+    expect(html).toContain('data-cross="(0, 0, 1)"');
+    expect(html).toContain("KEY VECTORS &amp; COMPUTATIONS");
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

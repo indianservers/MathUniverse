@@ -1,0 +1,43 @@
+{
+  "mockup": "0832",
+  "lessonId": 10158,
+  "route": "/lessons/school/class-12/class-12-three-dimensional-geometry-shortest-distance-between-lines",
+  "objectModel": "dedicated-shortest-distance-two-line-engine",
+  "reference": "0832-reference.png",
+  "default": {
+    "line1": { "point": [0, 0, 0], "direction": [1, 0, 0] },
+    "line2": { "point": [0, 1, 1], "direction": [0, 1, 0] },
+    "crossProduct": [0, 0, 1],
+    "closestFeet": [[0, 0, 0], [0, 0, 1]],
+    "distance": 1,
+    "parallel": false
+  },
+  "desktop": {
+    "targetWidth": 912,
+    "targetHeight": 1725,
+    "clientWidth": 897,
+    "scrollWidth": 897,
+    "horizontalOverflow": false,
+    "sidebarWidth": 181,
+    "lessonFrame": { "x": 195, "y": 88.8, "width": 701.8, "height": 1623, "bottom": 1711.8 },
+    "visibleErrorSurfaces": 0
+  },
+  "mobile": {
+    "viewportWidth": 390,
+    "clientWidth": 375,
+    "scrollWidth": 375,
+    "horizontalOverflow": false,
+    "lessonWidth": 347.2,
+    "clippedControls": 0,
+    "controlsChecked": 23
+  },
+  "interactions": {
+    "parallelFormula": { "direction2": [1, 0, 0], "point2": [0, 1, 1], "distance": 1.4142 },
+    "parallelPointEdit": { "point2": [0, 1, 0], "distance": 1 },
+    "movedAnchor": { "point2": [0.25, 1, 1.25], "distance": 1.25, "feet": [[0.25, 0, 0], [0.25, 0, 1.25]] },
+    "hiddenLayers": ["perpendicular", "axes", "plane"],
+    "cameraRotationDegrees": 18,
+    "practiceSolutionReveal": true,
+    "resetAllState": true
+  }
+}
