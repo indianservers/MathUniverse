@@ -1,0 +1,55 @@
+{
+  "mockup": "0774",
+  "lessonId": 10100,
+  "route": "/lessons/school/class-10/class-10-trigonometry-applications-shadow-length-modelling",
+  "objectModel": "dedicated-shadow-similar-triangle-engine",
+  "default": {
+    "solarElevation": 45,
+    "shadowLength": 6,
+    "objectHeight": 6,
+    "heightShadowRatio": 1,
+    "challengeHeight": 6.3
+  },
+  "interactions": {
+    "angleKeyboard": {
+      "angle": 46,
+      "shadow": 6,
+      "height": 6.21,
+      "ratio": 1.035
+    },
+    "shadowKeyboard": {
+      "angle": 46,
+      "shadow": 6.5,
+      "height": 6.73,
+      "ratio": 1.0354
+    },
+    "pointerDrag": {
+      "angle": 46,
+      "shadow": 1.52,
+      "height": 1.57,
+      "ratio": 1.0329
+    },
+    "unitSwitchUpdatedLabels": true,
+    "resetRestoredDefaults": true
+  },
+  "desktop": {
+    "viewport": [970, 1712],
+    "hero": [90, 225],
+    "tabs": [225, 269],
+    "lab": [283, 746],
+    "calculation": [746, 948],
+    "theory": [962, 1132],
+    "examples": [1146, 1406],
+    "navigation": [1420, 1465]
+  },
+  "mobile": {
+    "viewport": [390, 844],
+    "documentWidth": 375,
+    "draggableHandles": 1,
+    "inputs": 2,
+    "theoryCards": 2,
+    "exampleCards": 3,
+    "horizontalOverflow": false
+  },
+  "console": { "warnings": 0, "errors": 0 }
+}

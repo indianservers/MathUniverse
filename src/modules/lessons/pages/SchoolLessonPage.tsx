@@ -74,6 +74,7 @@ import TangentPerpendicularTargetLesson10096 from "../schoolTargets/TangentPerpe
 import TangentLengthsExternalTargetLesson10097 from "../schoolTargets/TangentLengthsExternalTargetLesson10097";
 import AngleElevationTargetLesson10098 from "../schoolTargets/AngleElevationTargetLesson10098";
 import AngleDepressionTargetLesson10099 from "../schoolTargets/AngleDepressionTargetLesson10099";
+import ShadowLengthTargetLesson10100 from "../schoolTargets/ShadowLengthTargetLesson10100";
 import PlaceValueTargetLesson10001 from "../schoolTargets/PlaceValueTargetLesson10001";
 import NumberNamingTargetLesson10002 from "../schoolTargets/NumberNamingTargetLesson10002";
 import EstimationRoundingTargetLesson10003 from "../schoolTargets/EstimationRoundingTargetLesson10003";
@@ -243,6 +244,8 @@ export default function SchoolLessonPage() {
     return <AngleElevationTargetLesson10098 lesson={lesson} />;
   if (lesson.numericId === 10099)
     return <AngleDepressionTargetLesson10099 lesson={lesson} />;
+  if (lesson.numericId === 10100)
+    return <ShadowLengthTargetLesson10100 lesson={lesson} />;
   if (lesson.numericId === 10001)
     return <PlaceValueTargetLesson10001 lesson={lesson} />;
   if (lesson.numericId === 10002)

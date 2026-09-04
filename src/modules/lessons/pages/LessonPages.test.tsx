@@ -2883,6 +2883,33 @@ describe("lesson pages", () => {
     expect(html).toContain("angle-depression-lighthouse.png");
   });
 
+  it("renders the dedicated shadow-length target for lesson 10100", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-10/class-10-trigonometry-applications-shadow-length-modelling",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0774"');
+    expect(html).toContain("dedicated-shadow-similar-triangle-engine");
+    expect(html).toContain('data-angle="45"');
+    expect(html).toContain('data-shadow="6"');
+    expect(html).toContain('data-height="6"');
+    expect(html).toContain('data-ratio="1"');
+    expect(html).toContain('data-challenge-height="6.3"');
+    expect(html).toContain('aria-label="Shadow endpoint"');
+    expect(html).toContain('aria-label="Solar elevation"');
+    expect(html).toContain('aria-label="Shadow length"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
