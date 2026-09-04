@@ -3958,6 +3958,22 @@ describe("lesson pages", () => {
     expect(html).toContain('data-eccentricity="0.8000"');
   });
 
+  it("renders the dedicated hyperbola focal-difference lab for lesson 10144", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter initialEntries={["/lessons/school/class-11/class-11-conic-sections-hyperbola-standard-forms"]}>
+        <Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0818"');
+    expect(html).toContain("dedicated-hyperbola-focal-difference-engine");
+    expect(html).toContain('data-orientation="horizontal"');
+    expect(html).toContain('data-a="4.00"');
+    expect(html).toContain('data-b="3.00"');
+    expect(html).toContain('data-c="5.0000"');
+    expect(html).toContain('data-distance-difference="8.0000"');
+    expect(html).toContain('data-eccentricity="1.2500"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

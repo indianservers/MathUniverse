@@ -1,0 +1,45 @@
+{
+  "mockup": "0818",
+  "lessonId": 10144,
+  "route": "/lessons/school/class-11/class-11-conic-sections-hyperbola-standard-forms",
+  "surface": "dedicated-hyperbola-focal-difference-engine",
+  "reference": "0818-reference.png",
+  "desktop": {
+    "capture": "0818-desktop.png",
+    "referenceSize": "1672x941",
+    "clientWidth": 1672,
+    "documentOverflow": false
+  },
+  "mobile": {
+    "capture": "0818-mobile.png",
+    "clientWidth": 375,
+    "scrollWidth": 375,
+    "documentOverflow": false
+  },
+  "defaultModel": {
+    "orientation": "horizontal",
+    "a": 4,
+    "b": 3,
+    "c": 5,
+    "eccentricity": 1.25,
+    "distanceDifference": 8,
+    "point": [6.4, 3.75]
+  },
+  "alternateModel": {
+    "orientation": "vertical",
+    "a": 5,
+    "b": 2,
+    "c": 5.3852,
+    "eccentricity": 1.077,
+    "distanceDifference": 10
+  },
+  "verifiedInteractions": [
+    "transverse and conjugate controls recalculate dependent values",
+    "orientation rotates branches, foci, vertices, and asymptotes",
+    "real pointer drag projects P onto the selected branch",
+    "absolute focal-distance difference remains twice a",
+    "reset restores all target defaults"
+  ],
+  "consoleErrors": 0,
+  "status": "complete"
+}

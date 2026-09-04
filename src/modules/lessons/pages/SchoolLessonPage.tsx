@@ -123,6 +123,7 @@ import CombinatorialInterpretationTargetLesson10140 from "../schoolTargets/Combi
 import ParabolaStandardFormsTargetLesson10141 from "../schoolTargets/ParabolaStandardFormsTargetLesson10141";
 import FocusDirectrixTargetLesson10142 from "../schoolTargets/FocusDirectrixTargetLesson10142";
 import EllipseStandardFormsTargetLesson10143 from "../schoolTargets/EllipseStandardFormsTargetLesson10143";
+import HyperbolaStandardFormsTargetLesson10144 from "../schoolTargets/HyperbolaStandardFormsTargetLesson10144";
 import PlaceValueTargetLesson10001 from "../schoolTargets/PlaceValueTargetLesson10001";
 import NumberNamingTargetLesson10002 from "../schoolTargets/NumberNamingTargetLesson10002";
 import EstimationRoundingTargetLesson10003 from "../schoolTargets/EstimationRoundingTargetLesson10003";
@@ -396,6 +397,8 @@ function SchoolLessonBody({
     return <FocusDirectrixTargetLesson10142 lesson={lesson} />;
   if (lesson.numericId === 10143)
     return <EllipseStandardFormsTargetLesson10143 lesson={lesson} />;
+  if (lesson.numericId === 10144)
+    return <HyperbolaStandardFormsTargetLesson10144 lesson={lesson} />;
   if (lesson.numericId === 10001)
     return <PlaceValueTargetLesson10001 lesson={lesson} />;
   if (lesson.numericId === 10002)

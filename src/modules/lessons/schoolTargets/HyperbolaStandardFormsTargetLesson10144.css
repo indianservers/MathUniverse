@@ -1,0 +1,376 @@
+.hy10144-page {
+  width: min(1390px, calc(100vw - 300px));
+  margin: auto;
+  color: #edf4fc;
+  background: #03152a;
+  font:
+    13px/1.45 Inter,
+    Arial,
+    sans-serif;
+  letter-spacing: 0;
+}
+.hy10144-page:before {
+  position: fixed;
+  z-index: -1;
+  inset: 58px 0 0 270px;
+  background: #03152a;
+  content: "";
+}
+.hy10144-page * {
+  box-sizing: border-box;
+}
+.hy10144-page h1,
+.hy10144-page h2,
+.hy10144-page p {
+  margin: 0;
+}
+.hy10144-page button,
+.hy10144-page input {
+  font: inherit;
+  color: inherit;
+}
+.hy10144-page > header {
+  position: relative;
+  padding: 14px 16px 18px;
+  border: 1px solid #263e59;
+  border-radius: 10px 10px 0 0;
+  background: #07182e;
+}
+.hy10144-page > header small,
+.hy10144-page h2 {
+  color: #35e3df;
+  font-weight: 900;
+  letter-spacing: 0;
+}
+.hy10144-page > header h1 {
+  margin: 7px 0 3px;
+  font-size: 27px;
+}
+.hy10144-page > header p {
+  color: #d4dce8;
+}
+.hy10144-page > header button {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 15px;
+  border: 1px solid #304965;
+  border-radius: 7px;
+  background: #08182e;
+}
+.hy10144-page > header button svg {
+  width: 15px;
+}
+.hy10144-page > main {
+  display: grid;
+  grid-template-columns: 310px 1fr;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid #263e59;
+  border-top: 0;
+  background: #07182e;
+}
+.hy-controls {
+  padding: 10px;
+  border: 1px solid #263e59;
+  border-radius: 8px;
+}
+.hy-controls h2 {
+  margin: 5px 0 10px;
+  font-size: 12px;
+}
+.hy-forms {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+.hy-forms button {
+  min-height: 64px;
+  border: 1px solid #344b68;
+  border-radius: 7px;
+  background: #091a31;
+}
+.hy-forms button.active {
+  border-color: #2ddde1;
+  background: #06445a;
+}
+.hy-forms b,
+.hy-forms span {
+  display: block;
+}
+.hy-forms span {
+  margin-top: 4px;
+  font: 16px Georgia;
+}
+.hy-controls > label {
+  display: grid;
+  grid-template-columns: 1fr 55px;
+  gap: 6px;
+  margin: 8px 0;
+}
+.hy-controls > label b {
+  grid-column: 1/-1;
+}
+.hy-controls input {
+  width: 100%;
+  accent-color: #35d8df;
+}
+.hy-controls output {
+  padding: 4px;
+  border: 1px solid #2c4562;
+  border-radius: 5px;
+  text-align: center;
+}
+.hy-controls article {
+  margin-top: 12px;
+  padding: 9px;
+  border: 1px solid #253d59;
+  border-radius: 6px;
+}
+.hy-controls article p {
+  margin: 5px 0;
+  font-family: Georgia;
+}
+.hy-elements p {
+  display: grid;
+  grid-template-columns: 12px 1fr 1.2fr;
+  font-family: inherit !important;
+}
+.hy-elements p span {
+  text-align: right;
+}
+.hy-elements i {
+  width: 9px;
+  height: 9px;
+  margin-top: 5px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.hy-elements .cyan {
+  color: #47d4dd;
+}
+.hy-elements .orange {
+  color: #f59b45;
+}
+.hy-elements .violet {
+  color: #a66be8;
+}
+.hy-elements .dash {
+  height: 0;
+  margin-top: 9px;
+  border-top: 2px dashed #35aee8;
+  border-radius: 0;
+  background: none;
+}
+.hy-elements .rect {
+  border: 1px dashed #e7ce24;
+  border-radius: 0;
+  background: none;
+}
+.hy-work {
+  min-width: 0;
+}
+.hy-board {
+  position: relative;
+  height: 485px;
+  border: 1px solid #263e59;
+  border-radius: 8px;
+  background: #06172b;
+  overflow: hidden;
+}
+.hy-board > h2 {
+  position: absolute;
+  z-index: 2;
+  top: 12px;
+  left: 15px;
+}
+.hy-board .equation {
+  position: absolute;
+  z-index: 2;
+  top: 42px;
+  left: 15px;
+  padding: 7px 10px;
+  border: 1px solid #263e59;
+  border-radius: 5px;
+}
+.hy-board .equation strong {
+  display: block;
+  font: 17px Georgia;
+}
+.drag-hint {
+  position: absolute;
+  z-index: 2;
+  right: 10px;
+  top: 10px;
+  display: flex;
+  gap: 7px;
+  padding: 7px 14px;
+  border: 1px solid #263e59;
+  border-radius: 8px;
+}
+.drag-hint svg {
+  width: 15px;
+}
+.hy-board > svg {
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+}
+.hy-board .grid {
+  stroke: #112b45;
+}
+.hy-board .axis {
+  stroke: #d1dbe6;
+}
+.hy-board .asymptote {
+  stroke: #159ee7;
+  stroke-width: 1.5;
+  stroke-dasharray: 7 5;
+}
+.hy-board .conjugate {
+  fill: none;
+  stroke: #efd322;
+  stroke-width: 2;
+  stroke-dasharray: 3 3;
+}
+.hy-board .curve {
+  fill: none;
+  stroke: #20dce3;
+  stroke-width: 2;
+}
+.hy-board .distance {
+  stroke: #e1e7ef;
+  stroke-width: 1.5;
+  stroke-dasharray: 6 4;
+}
+.hy-board .foci {
+  fill: #f59b45;
+}
+.hy-board .vertices {
+  fill: #50d8df;
+}
+.hy-board .point circle {
+  fill: #46d7dc;
+  stroke: #d8ffff;
+  cursor: grab;
+}
+.hy-board .point text {
+  fill: #36e6ec;
+  font-weight: 700;
+}
+.verify {
+  position: absolute;
+  right: 12px;
+  top: 88px;
+  width: 155px;
+  padding: 12px;
+  border: 1px solid #26d9dc;
+  border-radius: 9px;
+  background: #07182e;
+}
+.verify p {
+  margin: 5px 0;
+  font: 15px Georgia;
+}
+.verify b {
+  float: right;
+  color: #f3a24d;
+}
+.verify > strong {
+  display: block;
+  text-align: center;
+  color: #f4d442;
+}
+.verify span {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  color: #56df8b;
+}
+.verify span svg {
+  width: 18px;
+}
+.hy-summary {
+  display: grid;
+  grid-template-columns: 1.1fr 0.85fr 1.25fr;
+  gap: 8px;
+  margin-top: 8px;
+}
+.hy-summary article {
+  min-height: 145px;
+  padding: 11px;
+  border: 1px solid #263e59;
+  border-radius: 7px;
+}
+.hy-summary h2 {
+  margin-bottom: 8px;
+}
+.hy-summary p {
+  margin: 7px 0;
+}
+.hy-summary p span {
+  float: right;
+  font-family: Georgia;
+}
+@media (max-width: 900px) {
+  .hy10144-page {
+    width: 100%;
+    padding: 8px;
+  }
+  .hy10144-page:before {
+    inset: 0;
+  }
+  .hy10144-page > header button {
+    position: static;
+    margin-top: 10px;
+  }
+  .hy10144-page > main {
+    display: block;
+  }
+  .hy-controls {
+    margin-bottom: 8px;
+  }
+  .hy-board {
+    height: 440px;
+  }
+  .hy-summary {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 480px) {
+  .hy10144-page > header h1 {
+    font-size: 24px;
+  }
+  .hy-forms {
+    grid-template-columns: 1fr;
+  }
+  .hy-board {
+    height: 370px;
+  }
+  .hy-board .equation {
+    display: none;
+  }
+  .drag-hint {
+    left: 8px;
+    right: auto;
+    font-size: 11px;
+  }
+  .verify {
+    top: auto;
+    right: 6px;
+    bottom: 6px;
+    width: 135px;
+    padding: 7px;
+  }
+  .hy-summary {
+    display: block;
+  }
+  .hy-summary article {
+    margin-top: 8px;
+    min-height: 0;
+  }
+}
