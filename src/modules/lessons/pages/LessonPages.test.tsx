@@ -3845,6 +3845,31 @@ describe("lesson pages", () => {
     expect(html).toContain('data-reliable="true"');
   });
 
+  it("renders the dedicated Pascal-identity lab for lesson 10139", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-11/class-11-binomial-theorem-pascal-identity",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0813"');
+    expect(html).toContain("dedicated-pascal-combinatorial-path-engine");
+    expect(html).toContain('data-n="5"');
+    expect(html).toContain('data-r="2"');
+    expect(html).toContain('data-selected="10"');
+    expect(html).toContain('data-left-parent="4"');
+    expect(html).toContain('data-right-parent="6"');
+    expect(html).toContain('data-verified="true"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

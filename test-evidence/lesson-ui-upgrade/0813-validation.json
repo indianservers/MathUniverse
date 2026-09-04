@@ -1,0 +1,47 @@
+{
+  "mockup": "0813",
+  "lessonId": 10139,
+  "route": "/lessons/school/class-11/class-11-binomial-theorem-pascal-identity",
+  "surface": "PascalIdentityTargetLesson10139",
+  "objectModel": "dedicated-pascal-combinatorial-path-engine",
+  "referencePixels": { "width": 1672, "height": 941 },
+  "desktopCapturePixels": { "width": 1650, "height": 924 },
+  "mobileCapturePixels": { "width": 375, "height": 779 },
+  "default": {
+    "n": 5,
+    "r": 2,
+    "selected": 10,
+    "leftParent": 4,
+    "rightParent": 6,
+    "verified": true
+  },
+  "interactions": {
+    "chooseC63": {
+      "n": 6,
+      "r": 3,
+      "selected": 20,
+      "leftParent": 10,
+      "rightParent": 10,
+      "verified": true
+    },
+    "chooseC31": {
+      "n": 3,
+      "r": 1,
+      "selected": 3,
+      "leftParent": 1,
+      "rightParent": 2,
+      "verified": true
+    },
+    "reset": {
+      "n": 5,
+      "r": 2,
+      "selected": 10,
+      "leftParent": 4,
+      "rightParent": 6,
+      "verified": true
+    }
+  },
+  "mobileLayout": { "clientWidth": 375, "scrollWidth": 375 },
+  "consoleErrors": 0,
+  "status": "complete"
+}
