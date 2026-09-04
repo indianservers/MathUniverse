@@ -3933,6 +3933,31 @@ describe("lesson pages", () => {
     expect(html).toContain('data-eccentricity="1.000"');
   });
 
+  it("renders the dedicated ellipse two-focus lab for lesson 10143", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-11/class-11-conic-sections-ellipse-standard-forms",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0817"');
+    expect(html).toContain("dedicated-ellipse-two-focus-invariant-engine");
+    expect(html).toContain('data-orientation="horizontal"');
+    expect(html).toContain('data-a="5.00"');
+    expect(html).toContain('data-b="3.00"');
+    expect(html).toContain('data-c="4.0000"');
+    expect(html).toContain('data-distance-sum="10.0000"');
+    expect(html).toContain('data-eccentricity="0.8000"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

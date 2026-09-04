@@ -1,0 +1,47 @@
+{
+  "mockup": "0817",
+  "lessonId": 10143,
+  "route": "/lessons/school/class-11/class-11-conic-sections-ellipse-standard-forms",
+  "surface": "dedicated-ellipse-two-focus-invariant-engine",
+  "reference": "0817-reference.png",
+  "desktop": {
+    "capture": "0817-desktop.png",
+    "referenceSize": "1672x941",
+    "clientWidth": 1672,
+    "documentOverflow": false
+  },
+  "mobile": {
+    "capture": "0817-mobile.png",
+    "viewport": "375x811",
+    "clientWidth": 375,
+    "scrollWidth": 375,
+    "documentOverflow": false
+  },
+  "defaultModel": {
+    "orientation": "horizontal",
+    "a": 5,
+    "b": 3,
+    "c": 4,
+    "eccentricity": 0.8,
+    "distanceSum": 10
+  },
+  "verifiedInteractions": [
+    "semi-major and semi-minor sliders recalculate all dependent values",
+    "horizontal and vertical standard forms rotate the generated construction",
+    "real pointer drag constrains P to the ellipse",
+    "PF1 plus PF2 remains equal to twice the semi-major axis",
+    "grid and dimension toggles control independent SVG layers",
+    "random point changes the ellipse parameter",
+    "reset restores the target defaults"
+  ],
+  "alternateModel": {
+    "orientation": "vertical",
+    "a": 6,
+    "b": 4,
+    "c": 4.4721,
+    "eccentricity": 0.7454,
+    "distanceSum": 12
+  },
+  "consoleErrors": 0,
+  "status": "complete"
+}
