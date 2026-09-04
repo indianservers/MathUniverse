@@ -3680,6 +3680,29 @@ describe("lesson pages", () => {
     expect(html).toContain('data-theorem-proved="true"');
   });
 
+  it("renders the dedicated inequality induction lab for lesson 10132", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-11/class-11-mathematical-induction-inequality-by-induction",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0806"');
+    expect(html).toContain("dedicated-exponential-inequality-induction-engine");
+    expect(html).toContain('data-selected-n="8"');
+    expect(html).toContain('data-power="256"');
+    expect(html).toContain('data-linear="9"');
+    expect(html).toContain('data-proof-valid="true"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

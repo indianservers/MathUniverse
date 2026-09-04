@@ -1,0 +1,341 @@
+.ii10132-page {
+  position: relative;
+  top: -8px;
+  width: min(1368px, calc(100vw - 310px));
+  margin: auto;
+  color: #edf3fb;
+  background: #03152a;
+  font:
+    12px/1.45 Inter,
+    Arial,
+    sans-serif;
+  letter-spacing: 0;
+}
+.ii10132-page:before {
+  position: fixed;
+  z-index: -1;
+  inset: 58px 0 0 283px;
+  background: #03152a;
+  content: "";
+}
+.ii10132-page * {
+  box-sizing: border-box;
+}
+.ii10132-page h1,
+.ii10132-page h2,
+.ii10132-page h3,
+.ii10132-page p {
+  margin: 0;
+}
+.ii10132-page button,
+.ii10132-page input,
+.ii10132-page select {
+  font: inherit;
+  color: inherit;
+}
+.ii10132-page > header {
+  padding: 17px 15px;
+}
+.ii10132-page > header small,
+.ii10132-page h2,
+.ii10132-page h3 {
+  color: #4bd6df;
+  font-weight: 900;
+}
+.ii10132-page > header h1 {
+  margin: 5px 0;
+  font-size: 27px;
+}
+.ii10132-page > header > div {
+  display: flex;
+  gap: 8px;
+  margin-top: 13px;
+}
+.ii10132-page > header span {
+  padding: 6px 13px;
+  border-radius: 7px;
+  background: #0c4153;
+  color: #52e4df;
+  font-weight: 900;
+}
+.ii10132-page > header span:last-child {
+  background: #252453;
+  color: #bc9bf4;
+}
+.ii10132-page > main {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  gap: 12px;
+}
+.ii10132-proof,
+.ii10132-evidence {
+  padding: 15px;
+  border: 1px solid #38516c;
+  border-radius: 8px;
+  background: #071a31;
+}
+.ii10132-proof > article {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 10px;
+  padding: 9px 0;
+}
+.ii10132-proof > article > b {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #3ad4cf;
+  color: #06263b;
+}
+.ii10132-proof > article:nth-of-type(2) > b {
+  background: #429be5;
+}
+.ii10132-proof > article:nth-of-type(3) > b {
+  background: #8c59dc;
+}
+.ii10132-proof article > div > strong {
+  display: inline-block;
+  margin-top: 7px;
+  font: 17px Georgia;
+}
+.ii10132-proof .box {
+  padding: 7px 35px;
+  border: 1px solid #38516b;
+  border-radius: 6px;
+}
+.ii10132-lines {
+  display: grid;
+  grid-template-columns: 1fr 160px;
+  margin-top: 6px;
+}
+.ii10132-lines span {
+  padding: 3px 15px;
+  border: 1px solid #38516b;
+  font: 16px Georgia;
+  text-align: center;
+}
+.ii10132-lines em {
+  padding: 5px;
+  font-style: normal;
+}
+.ii10132-proof fieldset {
+  margin-top: 5px;
+  padding: 8px 12px;
+  border: 1px solid #6647a0;
+  background: #17163f;
+}
+.ii10132-proof fieldset legend {
+  color: #d9c5ff;
+}
+.ii10132-proof fieldset label {
+  display: block;
+  margin-top: 5px;
+}
+.ii10132-proof fieldset button {
+  margin-top: 6px;
+  padding: 6px 13px;
+  border: 1px solid #415a75;
+  border-radius: 5px;
+  background: #10263f;
+}
+.ii10132-proof fieldset strong {
+  display: block;
+  margin-top: 6px;
+}
+.ii10132-page .valid {
+  color: #56e0d9;
+}
+.ii10132-page .invalid {
+  color: #ff9197;
+}
+.ii10132-proof > footer {
+  padding: 10px;
+  border: 1px solid #5d4594;
+  border-radius: 6px;
+}
+.ii10132-evidence > header {
+  display: grid;
+  grid-template-columns: 1fr 300px 145px;
+  align-items: center;
+  gap: 12px;
+}
+.ii10132-evidence > header h2 span {
+  padding: 0;
+  background: none;
+}
+.ii10132-evidence label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ii10132-evidence input[type="range"] {
+  flex: 1;
+  accent-color: #7d48df;
+}
+.ii10132-evidence output,
+.ii10132-evidence select {
+  padding: 7px 12px;
+  border: 1px solid #425b77;
+  border-radius: 5px;
+  background: #0d1e35;
+}
+.ii10132-table {
+  overflow-x: auto;
+  margin-top: 13px;
+}
+.ii10132-table table {
+  width: 100%;
+  min-width: 760px;
+  border-collapse: collapse;
+}
+.ii10132-table th,
+.ii10132-table td {
+  height: 40px;
+  border: 1px solid #30465f;
+  text-align: center;
+}
+.ii10132-table th:first-child {
+  width: 70px;
+  font: 15px Georgia;
+}
+.ii10132-table .selected {
+  background: #17344f;
+  border-top: 2px solid #65dfe1;
+}
+.ii10132-table td {
+  position: relative;
+  vertical-align: bottom;
+}
+.ii10132-table td i {
+  display: block;
+  width: 16px;
+  margin: auto;
+  background: #23b9b4;
+}
+.ii10132-table td i.linear {
+  background: #379cd9;
+}
+.ii10132-table td span {
+  display: block;
+  font-size: 10px;
+}
+.ii10132-table td svg {
+  width: 15px;
+  color: #42da91;
+}
+.ii10132-legend {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin: 8px;
+}
+.ii10132-legend span {
+  padding: 0;
+  background: none;
+  color: #eef3fb;
+}
+.ii10132-legend span:first-child {
+  color: #32c6c0;
+}
+.ii10132-legend span:nth-child(2) {
+  color: #43a8e3;
+}
+.ii10132-legend svg {
+  width: 14px;
+}
+.ii10132-evidence > aside {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid #3076c0;
+  border-radius: 6px;
+  background: #0b2350;
+}
+.ii10132-evidence > aside svg {
+  width: 18px;
+  color: #4adbe2;
+}
+.ii10132-evidence > section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 11px;
+}
+.ii10132-evidence > section article {
+  padding: 13px;
+  border: 1px solid #38516b;
+  border-radius: 7px;
+}
+.ii10132-evidence > section h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ii10132-evidence > section svg {
+  width: 16px;
+}
+.ii10132-evidence ol {
+  padding-left: 20px;
+}
+.ii10132-evidence > section p {
+  margin-top: 8px;
+}
+.ii10132-evidence > section strong {
+  color: #45ded7;
+}
+.ii10132-page > footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 9px;
+  padding: 9px 14px;
+  border: 1px solid #38516b;
+  border-radius: 7px;
+}
+.ii10132-page > footer button {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 10px;
+  border: 1px solid #425c78;
+  border-radius: 5px;
+  background: #0d213a;
+}
+.ii10132-page > footer svg {
+  width: 16px;
+}
+@media (max-width: 800px) {
+  .ii10132-page {
+    top: 0;
+    width: 100%;
+    padding: 8px;
+  }
+  .ii10132-page:before {
+    inset: 0;
+  }
+  .ii10132-page > header > div {
+    flex-wrap: wrap;
+  }
+  .ii10132-page > main {
+    grid-template-columns: 1fr;
+  }
+  .ii10132-lines {
+    grid-template-columns: 1fr;
+  }
+  .ii10132-evidence > header {
+    grid-template-columns: 1fr;
+  }
+  .ii10132-evidence > section {
+    grid-template-columns: 1fr;
+  }
+  .ii10132-page > footer {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .ii10132-page > footer span {
+    padding: 5px;
+  }
+}

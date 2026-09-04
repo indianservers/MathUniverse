@@ -1,0 +1,52 @@
+{
+  "mockup": "0806",
+  "lessonId": 10132,
+  "route": "/lessons/school/class-11/class-11-mathematical-induction-inequality-by-induction",
+  "surface": "InequalityInductionTargetLesson10132",
+  "objectModel": "dedicated-exponential-inequality-induction-engine",
+  "referencePixels": { "width": 1672, "height": 941 },
+  "desktopCapturePixels": { "width": 1665, "height": 932 },
+  "mobileCapturePixels": { "width": 375, "height": 811 },
+  "default": {
+    "selectedN": 8,
+    "power": 256,
+    "linear": 9,
+    "viewTo": 16,
+    "reason": "natural",
+    "reasonCorrect": true,
+    "checked": true,
+    "proofValid": true
+  },
+  "interactions": {
+    "invalidReason": {
+      "reason": "two",
+      "reasonCorrect": false,
+      "checked": true,
+      "proofValid": false
+    },
+    "restoreReason": {
+      "reason": "natural",
+      "reasonCorrect": true,
+      "checked": true,
+      "proofValid": true
+    },
+    "rangeEight": {
+      "selectedN": 8,
+      "power": 256,
+      "linear": 9,
+      "viewTo": 8
+    },
+    "reset": {
+      "selectedN": 8,
+      "power": 256,
+      "linear": 9,
+      "viewTo": 16,
+      "reason": "natural",
+      "checked": true,
+      "proofValid": true
+    }
+  },
+  "mobileLayout": { "clientWidth": 375, "scrollWidth": 375 },
+  "consoleErrors": 0,
+  "status": "complete"
+}
