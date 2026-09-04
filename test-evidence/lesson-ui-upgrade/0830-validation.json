@@ -1,0 +1,41 @@
+{
+  "mockup": "0830",
+  "lessonId": 10156,
+  "route": "/lessons/school/class-12/class-12-three-dimensional-geometry-cartesian-equation-of-a-line",
+  "objectModel": "dedicated-parametric-to-cartesian-line-elimination-engine",
+  "reference": "0830-reference.png",
+  "default": {
+    "pointOnLine": [1, 2, -1],
+    "direction": [2, -1, 3],
+    "parameter": 1.5,
+    "currentPoint": [4, 0.5, 3.5],
+    "magnitude": 3.7417
+  },
+  "desktop": {
+    "targetWidth": 915,
+    "targetHeight": 1719,
+    "clientWidth": 900,
+    "scrollWidth": 900,
+    "horizontalOverflow": false,
+    "sidebarWidth": 181,
+    "lessonFrame": { "x": 195, "y": 88.8, "width": 705, "height": 1594.4 },
+    "visibleErrorSurfaces": 0
+  },
+  "mobile": {
+    "viewportWidth": 390,
+    "clientWidth": 375,
+    "scrollWidth": 375,
+    "horizontalOverflow": false,
+    "lessonWidth": 347.2,
+    "clippedControls": 0,
+    "controlsChecked": 16
+  },
+  "interactions": {
+    "parameter": { "t": -2.5, "point": [-4, 4.5, -8.5] },
+    "rejectedPoint": [5, -1, 5],
+    "acceptedPoint": { "point": [5, 0, 5], "t": 2 },
+    "zeroDirectionComponent": { "direction": [2, 0, 3], "constraint": "y = 2" },
+    "editedLine": { "pointX": -2, "direction": [4, 0, 3], "currentPoint": [-12, 2, -8.5] },
+    "resetAllState": true
+  }
+}

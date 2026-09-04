@@ -4096,6 +4096,16 @@ describe("lesson pages", () => {
     expect(html).toContain("Point-on-line test");
   });
 
+  it("renders the dedicated parameter-elimination Cartesian line lab for lesson 10156", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/school/class-12/class-12-three-dimensional-geometry-cartesian-equation-of-a-line"]}><Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="school-mockup-0830"');
+    expect(html).toContain("dedicated-parametric-to-cartesian-line-elimination-engine");
+    expect(html).toContain('data-point="4,0.5,3.5"');
+    expect(html).toContain('data-direction="2,-1,3"');
+    expect(html).toContain("ELIMINATE t FROM EACH EQUATION");
+    expect(html).toContain("POINT MEMBERSHIP TEST");
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
