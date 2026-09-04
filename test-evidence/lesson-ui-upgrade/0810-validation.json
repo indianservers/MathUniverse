@@ -1,0 +1,49 @@
+{
+  "mockup": "0810",
+  "lessonId": 10136,
+  "route": "/lessons/school/class-11/class-11-binomial-theorem-middle-term",
+  "surface": "BinomialMiddleTermTargetLesson10136",
+  "objectModel": "dedicated-binomial-middle-parity-engine",
+  "referencePixels": { "width": 1672, "height": 941 },
+  "desktopCapturePixels": { "width": 1665, "height": 932 },
+  "mobileCapturePixels": { "width": 375, "height": 811 },
+  "default": {
+    "n": 6,
+    "termCount": 7,
+    "parity": "even",
+    "middleCount": 1,
+    "middlePositions": [4],
+    "middleCoefficients": [20],
+    "board": false
+  },
+  "interactions": {
+    "oddFive": {
+      "n": 5,
+      "termCount": 6,
+      "parity": "odd",
+      "middleCount": 2,
+      "middlePositions": [3, 4],
+      "middleCoefficients": [10, 10]
+    },
+    "evenEight": {
+      "n": 8,
+      "termCount": 9,
+      "parity": "even",
+      "middleCount": 1,
+      "middlePositions": [5],
+      "middleCoefficients": [70]
+    },
+    "boardSteps": { "shown": true, "hidden": true },
+    "reset": {
+      "n": 6,
+      "termCount": 7,
+      "parity": "even",
+      "middlePositions": [4],
+      "middleCoefficients": [20],
+      "board": false
+    }
+  },
+  "mobileLayout": { "clientWidth": 375, "scrollWidth": 375 },
+  "consoleErrors": 0,
+  "status": "complete"
+}

@@ -3773,6 +3773,30 @@ describe("lesson pages", () => {
     expect(html).toContain('data-term="35a⁴b³"');
   });
 
+  it("renders the dedicated binomial middle-term lab for lesson 10136", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-11/class-11-binomial-theorem-middle-term",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0810"');
+    expect(html).toContain("dedicated-binomial-middle-parity-engine");
+    expect(html).toContain('data-n="6"');
+    expect(html).toContain('data-term-count="7"');
+    expect(html).toContain('data-middle-count="1"');
+    expect(html).toContain('data-middle-positions="4"');
+    expect(html).toContain('data-middle-coefficients="20"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
