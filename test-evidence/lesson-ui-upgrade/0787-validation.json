@@ -1,0 +1,25 @@
+{
+  "mockup": "0787",
+  "lessonId": 10113,
+  "route": "/lessons/school/class-11/class-11-relations-and-functions-reflexive-relations",
+  "surface": "ReflexiveRelationsTargetLesson10113",
+  "objectModel": "dedicated-reflexive-directed-graph-matrix-witness-engine",
+  "desktopViewport": { "width": 1680, "height": 941 },
+  "mobileViewport": { "width": 390, "height": 844 },
+  "default": {
+    "setSize": 4,
+    "pairCount": 8,
+    "missing": [1],
+    "reflexive": false
+  },
+  "interactions": {
+    "addAllSelfPairs": { "pairCount": 9, "missing": [], "reflexive": true },
+    "remove22AndTest": { "missing": [2], "reflexive": false, "tested": true },
+    "resizeSet": { "setSize": 2, "pairCount": 2 },
+    "matrixCells": 16,
+    "graphKeyboardSelfLoops": true,
+    "graphMatrixViews": true
+  },
+  "correction": "The mockup shows matrix (1,1)=1 while its checker says (1,1) is missing. The live model uses 0 so every representation agrees.",
+  "status": "complete"
+}

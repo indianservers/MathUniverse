@@ -87,6 +87,7 @@ import MedianOgiveTargetLesson10109 from "../schoolTargets/MedianOgiveTargetLess
 import FrustumConeTargetLesson10110 from "../schoolTargets/FrustumConeTargetLesson10110";
 import CombinedSolidsTargetLesson10111 from "../schoolTargets/CombinedSolidsTargetLesson10111";
 import TypesRelationsTargetLesson10112 from "../schoolTargets/TypesRelationsTargetLesson10112";
+import ReflexiveRelationsTargetLesson10113 from "../schoolTargets/ReflexiveRelationsTargetLesson10113";
 import PlaceValueTargetLesson10001 from "../schoolTargets/PlaceValueTargetLesson10001";
 import NumberNamingTargetLesson10002 from "../schoolTargets/NumberNamingTargetLesson10002";
 import EstimationRoundingTargetLesson10003 from "../schoolTargets/EstimationRoundingTargetLesson10003";
@@ -282,6 +283,8 @@ export default function SchoolLessonPage() {
     return <CombinedSolidsTargetLesson10111 lesson={lesson} />;
   if (lesson.numericId === 10112)
     return <TypesRelationsTargetLesson10112 lesson={lesson} />;
+  if (lesson.numericId === 10113)
+    return <ReflexiveRelationsTargetLesson10113 lesson={lesson} />;
   if (lesson.numericId === 10001)
     return <PlaceValueTargetLesson10001 lesson={lesson} />;
   if (lesson.numericId === 10002)

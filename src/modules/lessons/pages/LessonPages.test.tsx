@@ -3234,6 +3234,32 @@ describe("lesson pages", () => {
     expect(html).toContain("Toggle pair 4, 4");
   });
 
+  it("renders the dedicated reflexive relation checker for lesson 10113", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-11/class-11-relations-and-functions-reflexive-relations",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0787"');
+    expect(html).toContain(
+      "dedicated-reflexive-directed-graph-matrix-witness-engine",
+    );
+    expect(html).toContain('data-set-size="4"');
+    expect(html).toContain('data-pair-count="8"');
+    expect(html).toContain('data-missing="1"');
+    expect(html).toContain('data-reflexive="false"');
+    expect(html).toContain("Missing self-pair: (1, 1)");
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
