@@ -4003,6 +4003,16 @@ describe("lesson pages", () => {
     expect(html).toContain('data-equation="y² = 4ax"');
   });
 
+  it("renders the dedicated parabola tangent limit lab for lesson 10147", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/school/class-11/class-11-conic-sections-tangent-to-a-parabola"]}><Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="school-mockup-0821"');
+    expect(html).toContain("dedicated-parabola-tangent-secant-limit-engine");
+    expect(html).toContain('data-t="1.200"');
+    expect(html).toContain('data-point="1.440,2.400"');
+    expect(html).toContain('data-tangent-slope="0.8333"');
+    expect(html).toContain('data-secant-slope="0.7143"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

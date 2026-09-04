@@ -1,0 +1,15 @@
+{
+  "mockup": "0821",
+  "lessonId": 10147,
+  "route": "/lessons/school/class-11/class-11-conic-sections-tangent-to-a-parabola",
+  "surface": "dedicated-parabola-tangent-secant-limit-engine",
+  "reference": "0821-reference.png",
+  "desktop": { "capture": "0821-desktop.png", "referenceSize": "1672x941", "clientWidth": 1672, "documentOverflow": false },
+  "mobile": { "capture": "0821-mobile.png", "clientWidth": 375, "scrollWidth": 375, "documentOverflow": false },
+  "defaultModel": { "a": 1, "t": 1.2, "point": [1.44, 2.4], "q": [2.56, 3.2], "tangentSlope": 0.8333, "secantSlope": 0.7143, "delta": 0.4 },
+  "specialCase": { "t": 0, "point": [0, 0], "tangentSlope": "Infinity", "tangent": "x=0" },
+  "pointerDrag": { "t": -0.124, "point": [0.015, -0.248], "tangentSlope": -8.062 },
+  "verifiedInteractions": ["native parameter range", "second-point gap", "second point visibility", "focus and directrix visibility", "playback and pause", "zoom", "real constrained contact-point drag", "reset"],
+  "consoleErrors": 0,
+  "status": "complete"
+}
