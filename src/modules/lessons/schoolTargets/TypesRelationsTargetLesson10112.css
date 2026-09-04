@@ -1,0 +1,349 @@
+.rel10112-page {
+  position: relative;
+  top: -8px;
+  left: 1px;
+  width: min(1380px, calc(100vw - 294px));
+  margin: auto;
+  color: #e7efff;
+  background: #031328;
+  font:
+    12px/1.4 Inter,
+    Arial,
+    sans-serif;
+  letter-spacing: 0;
+}
+.rel10112-page:before {
+  position: fixed;
+  z-index: -1;
+  inset: 58px 0 0 283px;
+  background: #031328;
+  content: "";
+}
+.rel10112-page * {
+  box-sizing: border-box;
+}
+.rel10112-page h1,
+.rel10112-page h2,
+.rel10112-page h3,
+.rel10112-page p {
+  margin: 0;
+}
+.rel10112-page button {
+  font: inherit;
+  color: inherit;
+}
+.rel10112-page > header {
+  position: relative;
+  height: 125px;
+  padding: 16px 23px;
+  border: 1px solid #28546b;
+  border-radius: 10px 10px 0 0;
+  background: linear-gradient(110deg, #071f39, #031328);
+}
+.rel10112-page > header small,
+.rel10112-page h2 {
+  color: #38e1dd;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+.rel10112-page > header h1 {
+  margin: 4px 0;
+  font-size: 27px;
+}
+.rel10112-page > header > button {
+  position: absolute;
+  right: 16px;
+  top: 15px;
+  padding: 10px 16px;
+  border: 1px solid #245a73;
+  border-radius: 7px;
+  background: #06172c;
+}
+.rel10112-page > main {
+  display: grid;
+  grid-template-columns: 37% 26% 37%;
+  height: 465px;
+  border-inline: 1px solid #28546b;
+}
+.rel10112-page > main > section {
+  min-width: 0;
+  padding: 15px;
+  border-right: 1px solid #29445d;
+  background: #06162a;
+}
+.rel10112-page h2 {
+  font-size: 12px;
+}
+.rel10112-page h2 i {
+  margin-left: 5px;
+  color: #dce6f7;
+  font:
+    italic 15px Georgia,
+    serif;
+  letter-spacing: 0;
+}
+.rel10112-graph h2 {
+  display: flex;
+  align-items: center;
+}
+.rel10112-graph h2 span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  color: #dce6f7;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.rel10112-graph > svg {
+  width: 100%;
+  height: 310px;
+}
+.rel10112-graph > svg .edge,
+.rel10112-graph > svg .draft {
+  stroke: #4be3df;
+  stroke-width: 2.2;
+  fill: none;
+}
+.rel10112-graph > svg marker path {
+  fill: #4be3df;
+}
+.rel10112-graph > svg .node {
+  cursor: crosshair;
+  outline: none;
+}
+.rel10112-graph > svg .node circle {
+  fill: #0d2442;
+  stroke: #52cfee;
+  stroke-width: 2;
+}
+.rel10112-graph > svg .node text {
+  fill: #f5f8ff;
+  text-anchor: middle;
+  font-size: 29px;
+  font-weight: 700;
+  pointer-events: none;
+}
+.rel10112-graph > label {
+  display: block;
+  color: #4be3df;
+  font-weight: 700;
+}
+.rel10112-graph > output {
+  display: block;
+  min-height: 42px;
+  margin-top: 3px;
+  padding: 10px 14px;
+  overflow: auto;
+  border: 1px solid #35506a;
+  border-radius: 6px;
+  background: #07182a;
+  font:
+    italic 13px Georgia,
+    serif;
+  white-space: nowrap;
+}
+.rel10112-matrix > p {
+  margin: 5px 0 15px;
+}
+.matrix-grid {
+  display: grid;
+  grid-template-columns: 50px repeat(4, 1fr);
+  grid-auto-rows: 59px;
+  gap: 2px;
+  text-align: center;
+}
+.matrix-grid > b {
+  display: grid;
+  place-items: center;
+  color: #f3f6ff;
+  font-size: 17px;
+}
+.matrix-grid > b:first-child,
+.matrix-grid > b:nth-child(-n + 5) {
+  color: #41dcdd;
+}
+.matrix-grid button {
+  border: 1px solid #2c4961;
+  background: #071629;
+  font-size: 18px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.matrix-grid button.selected {
+  box-shadow: inset 0 0 0 1px #42637b;
+}
+.rel10112-matrix footer {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 16px;
+  color: #41dc99;
+  font:
+    italic 14px Georgia,
+    serif;
+}
+.rel10112-diagnostics h2 {
+  display: flex;
+  gap: 5px;
+}
+.rel10112-graph h2 svg,
+.rel10112-diagnostics h2 svg {
+  width: 14px;
+  height: 14px;
+}
+.rel10112-diagnostics > article {
+  display: grid;
+  grid-template-columns: 30px 1fr 62px;
+  gap: 8px;
+  align-items: start;
+  margin-top: 10px;
+  padding: 11px;
+  border: 1px solid #2b455d;
+  border-radius: 7px;
+  background: #0a1d34;
+}
+.rel10112-diagnostics article > span {
+  display: grid;
+  place-items: center;
+  width: 27px;
+  height: 27px;
+  border: 2px solid #3ae787;
+  border-radius: 50%;
+  color: #3ae787;
+}
+.rel10112-diagnostics article.bad > span {
+  border-color: #ff504d;
+  color: #ff504d;
+}
+.rel10112-diagnostics article svg {
+  width: 16px;
+  height: 16px;
+}
+.rel10112-diagnostics h3 {
+  font-size: 14px;
+}
+.rel10112-diagnostics em {
+  font:
+    italic 12px Georgia,
+    serif;
+}
+.rel10112-diagnostics article p {
+  margin-top: 12px;
+  font-size: 11px;
+}
+.rel10112-diagnostics article > strong {
+  align-self: center;
+  color: #44e68c;
+  font-size: 16px;
+}
+.rel10112-diagnostics article.bad > strong {
+  color: #ff514f;
+}
+.rel10112-presets {
+  display: grid;
+  grid-template-columns: 1fr 305px;
+  min-height: 137px;
+  border: 1px solid #28546b;
+  border-radius: 0 0 10px 10px;
+  background: #06162a;
+}
+.rel10112-presets > section,
+.rel10112-presets > aside {
+  padding: 13px 16px;
+}
+.rel10112-presets > aside {
+  border-left: 1px solid #29445d;
+}
+.rel10112-presets nav {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+  margin-top: 9px;
+}
+.rel10112-presets nav button {
+  display: grid;
+  min-width: 0;
+  padding: 7px 5px;
+  border: 1px solid #35506a;
+  border-radius: 6px;
+  background: #0a192d;
+  cursor: pointer;
+}
+.rel10112-presets nav button b {
+  font-size: 12px;
+}
+.rel10112-presets nav button span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font:
+    italic 10px Georgia,
+    serif;
+}
+.rel10112-presets section > p,
+.rel10112-presets aside p {
+  margin-top: 8px;
+  color: #bfcade;
+  font-size: 10px;
+}
+.rel10112-presets aside > button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  margin-top: 12px;
+  padding: 11px;
+  border: 1px solid #2bd9dc;
+  border-radius: 7px;
+  background: #07182a;
+  color: #41e0e1;
+  font-size: 14px;
+  font-weight: 800;
+}
+.rel10112-presets aside svg {
+  width: 17px;
+}
+@media (max-width: 800px) {
+  .rel10112-page {
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 8px;
+  }
+  .rel10112-page:before {
+    inset: 0;
+  }
+  .rel10112-page > header {
+    height: auto;
+    padding: 15px;
+  }
+  .rel10112-page > header h1 {
+    font-size: 24px;
+  }
+  .rel10112-page > header > button {
+    position: static;
+    margin-top: 10px;
+  }
+  .rel10112-page > main {
+    display: block;
+    height: auto;
+    border: 0;
+  }
+  .rel10112-page > main > section {
+    border: 1px solid #29445d;
+  }
+  .rel10112-graph > svg {
+    height: 300px;
+  }
+  .rel10112-presets {
+    display: block;
+  }
+  .rel10112-presets nav {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .rel10112-presets > aside {
+    border: 0;
+    border-top: 1px solid #29445d;
+  }
+}

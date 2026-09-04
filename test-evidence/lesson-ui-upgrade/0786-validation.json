@@ -1,0 +1,39 @@
+{
+  "mockup": "0786",
+  "lessonId": 10112,
+  "route": "/lessons/school/class-11/class-11-relations-and-functions-types-of-relations",
+  "surface": "TypesRelationsTargetLesson10112",
+  "objectModel": "dedicated-directed-relation-matrix-property-engine",
+  "desktopViewport": { "width": 1680, "height": 941 },
+  "mobileViewport": { "width": 390, "height": 844 },
+  "default": {
+    "pairCount": 9,
+    "reflexive": true,
+    "symmetric": false,
+    "antisymmetric": true,
+    "transitive": false,
+    "symmetricWitness": "(1,2) without (2,1)",
+    "transitiveWitness": "(1,2) and (2,4) without (1,4)"
+  },
+  "interactions": {
+    "identityPreset": {
+      "pairCount": 4,
+      "reflexive": true,
+      "symmetric": true,
+      "antisymmetric": true,
+      "transitive": true
+    },
+    "identityPlus12": {
+      "pairCount": 5,
+      "symmetric": false,
+      "transitive": true
+    },
+    "emptyReset": { "pairCount": 0, "reflexive": false },
+    "matrixCells": 16,
+    "presets": 6,
+    "graphPointerArrows": true,
+    "graphKeyboardLoops": true
+  },
+  "correction": "The mockup marks the displayed relation symmetric and not antisymmetric, but (1,2) exists without (2,1) and no distinct pair appears in both directions. The engine reports the mathematically valid results.",
+  "status": "complete"
+}
