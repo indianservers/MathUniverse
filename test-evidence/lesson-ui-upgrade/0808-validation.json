@@ -1,0 +1,52 @@
+{
+  "mockup": "0808",
+  "lessonId": 10134,
+  "route": "/lessons/school/class-11/class-11-binomial-theorem-binomial-expansion",
+  "surface": "BinomialExpansionTargetLesson10134",
+  "objectModel": "dedicated-binomial-coefficient-term-engine",
+  "referencePixels": { "width": 1672, "height": 940 },
+  "desktopCapturePixels": { "width": 1665, "height": 932 },
+  "mobileCapturePixels": { "width": 375, "height": 811 },
+  "default": {
+    "n": 4,
+    "r": 2,
+    "coefficient": 6,
+    "powerA": 2,
+    "powerB": 2,
+    "term": "6a²b²",
+    "coefficientSum": 16,
+    "view": "studio",
+    "inspector": true
+  },
+  "interactions": {
+    "selectRTwoPlusOne": {
+      "n": 4,
+      "r": 3,
+      "coefficient": 4,
+      "powerA": 1,
+      "powerB": 3,
+      "term": "4ab³"
+    },
+    "inspector": { "closed": false, "reopened": true },
+    "pascalSelection": {
+      "n": 3,
+      "r": 1,
+      "coefficient": 3,
+      "term": "3a²b",
+      "coefficientSum": 8,
+      "view": "studio"
+    },
+    "coefficientTable": { "view": "table", "rows": 9 },
+    "reset": {
+      "n": 4,
+      "r": 2,
+      "coefficient": 6,
+      "coefficientSum": 16,
+      "view": "studio",
+      "inspector": true
+    }
+  },
+  "mobileLayout": { "clientWidth": 375, "scrollWidth": 375 },
+  "consoleErrors": 0,
+  "status": "complete"
+}

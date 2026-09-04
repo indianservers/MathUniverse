@@ -3726,6 +3726,29 @@ describe("lesson pages", () => {
     expect(html).toContain('data-proof-valid="true"');
   });
 
+  it("renders the dedicated binomial-expansion lab for lesson 10134", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-11/class-11-binomial-theorem-binomial-expansion",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0808"');
+    expect(html).toContain("dedicated-binomial-coefficient-term-engine");
+    expect(html).toContain('data-n="4"');
+    expect(html).toContain('data-r="2"');
+    expect(html).toContain('data-coefficient="6"');
+    expect(html).toContain('data-coefficient-sum="16"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
