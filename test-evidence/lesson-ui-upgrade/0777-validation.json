@@ -1,0 +1,63 @@
+{
+  "mockup": "0777",
+  "lessonId": 10103,
+  "route": "/lessons/school/class-10/class-10-statistics-grouped-mean-by-assumed-mean",
+  "objectModel": "dedicated-assumed-mean-deviation-invariant-engine",
+  "default": {
+    "assumedMean": 25,
+    "totalFrequency": 40,
+    "totalDeviation": 60,
+    "mean": 26.5,
+    "directMean": 26.5,
+    "invariant": true
+  },
+  "interactions": {
+    "stepper": { "assumedMean": 26, "totalDeviation": 20, "mean": 26.5 },
+    "typedAssumedMean": {
+      "assumedMean": 30,
+      "totalDeviation": -140,
+      "mean": 26.5
+    },
+    "keyboardMarker": {
+      "assumedMean": 31,
+      "totalDeviation": -180,
+      "mean": 26.5
+    },
+    "pointerDrag": {
+      "assumedMean": 35.8,
+      "totalDeviation": -372,
+      "mean": 26.5
+    },
+    "frequencyEdit": {
+      "totalFrequency": 41,
+      "totalDeviation": 40,
+      "mean": 25.98,
+      "invariant": true
+    },
+    "intervalEdit": {
+      "midpoint": 6,
+      "totalDeviation": 64,
+      "mean": 26.6,
+      "invariant": true
+    },
+    "resetRestoredDefaults": true
+  },
+  "desktop": {
+    "viewport": [1680, 941],
+    "contentX": [305, 1652],
+    "hero": [95, 251],
+    "workbench": [251, 751],
+    "navigation": [761, 807],
+    "footer": [821, 931]
+  },
+  "mobile": {
+    "viewport": [390, 844],
+    "documentWidth": 375,
+    "tableViewportWidth": 345,
+    "tableScrollWidth": 600,
+    "draggableHandles": 1,
+    "inputs": 15,
+    "horizontalOverflow": false
+  },
+  "console": { "warnings": 0, "errors": 0 }
+}

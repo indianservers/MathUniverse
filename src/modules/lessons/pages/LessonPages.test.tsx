@@ -2965,6 +2965,33 @@ describe("lesson pages", () => {
     expect(html).toContain("Calculate Mean");
   });
 
+  it("renders the dedicated assumed-mean target for lesson 10103", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-10/class-10-statistics-grouped-mean-by-assumed-mean",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0777"');
+    expect(html).toContain("dedicated-assumed-mean-deviation-invariant-engine");
+    expect(html).toContain('data-assumed-mean="25"');
+    expect(html).toContain('data-total-frequency="40"');
+    expect(html).toContain('data-total-deviation="60"');
+    expect(html).toContain('data-mean="26.5"');
+    expect(html).toContain('data-direct-mean="26.5"');
+    expect(html).toContain('data-invariant="true"');
+    expect(html).toContain('aria-label="Assumed mean marker"');
+    expect(html).toContain('aria-label="Frequency row 1"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
