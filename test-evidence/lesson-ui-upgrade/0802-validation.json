@@ -1,0 +1,38 @@
+{
+  "mockup": "0802",
+  "lessonId": 10128,
+  "route": "/lessons/school/class-11/class-11-mathematical-induction-logic-of-mathematical-induction",
+  "surface": "InductionLogicTargetLesson10128",
+  "objectModel": "dedicated-induction-proof-chain-engine",
+  "referencePixels": { "width": 1672, "height": 941 },
+  "desktopCapturePixels": { "width": 1265, "height": 712 },
+  "mobileCapturePixels": { "width": 375, "height": 811 },
+  "default": {
+    "base": true,
+    "statements": true,
+    "links": true,
+    "conclusion": true,
+    "missingPieces": 0,
+    "brokenLinks": 0
+  },
+  "interactions": {
+    "removeBase": { "base": false, "conclusion": false, "missingPieces": 1 },
+    "restoreBase": { "base": true, "conclusion": true },
+    "breakLink": { "links": false, "conclusion": false, "brokenLinks": 1 },
+    "restoreLinks": { "links": true, "conclusion": true },
+    "removeStatement": {
+      "statements": false,
+      "conclusion": false,
+      "missingPieces": 1
+    },
+    "formalStatement": { "formal": true, "conclusion": true },
+    "reset": {
+      "base": true,
+      "statements": true,
+      "links": true,
+      "conclusion": true,
+      "formal": false
+    }
+  },
+  "status": "complete"
+}

@@ -3589,6 +3589,28 @@ describe("lesson pages", () => {
     expect(html).toContain('data-verified="true"');
   });
 
+  it("renders the dedicated induction-logic lab for lesson 10128", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-11/class-11-mathematical-induction-logic-of-mathematical-induction",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0802"');
+    expect(html).toContain("dedicated-induction-proof-chain-engine");
+    expect(html).toContain('data-base="true"');
+    expect(html).toContain('data-links="true"');
+    expect(html).toContain('data-conclusion="true"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
