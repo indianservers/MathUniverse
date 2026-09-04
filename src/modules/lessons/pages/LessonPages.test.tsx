@@ -3450,6 +3450,30 @@ describe("lesson pages", () => {
     expect(html).toContain('data-compatible="true"');
   });
 
+  it("renders the dedicated invertible-function lab for lesson 10122", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-11/class-11-relations-and-functions-invertible-functions",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0796"');
+    expect(html).toContain("dedicated-bijection-inverse-verification-engine");
+    expect(html).toContain('data-mapping="1:a;2:b;3:c"');
+    expect(html).toContain('data-injective="true"');
+    expect(html).toContain('data-onto="true"');
+    expect(html).toContain('data-invertible="true"');
+    expect(html).toContain('data-inverse-visible="true"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

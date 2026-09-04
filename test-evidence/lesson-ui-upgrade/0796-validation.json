@@ -1,0 +1,48 @@
+{
+  "mockup": "0796",
+  "lessonId": 10122,
+  "route": "/lessons/school/class-11/class-11-relations-and-functions-invertible-functions",
+  "surface": "InvertibleFunctionsTargetLesson10122",
+  "objectModel": "dedicated-bijection-inverse-verification-engine",
+  "referencePixels": { "width": 1672, "height": 941 },
+  "desktopCapturePixels": { "width": 1265, "height": 712 },
+  "mobileCapturePixels": { "width": 375, "height": 811 },
+  "default": {
+    "size": 3,
+    "mapping": "1:a;2:b;3:c",
+    "injective": true,
+    "onto": true,
+    "invertible": true,
+    "inverseVisible": true,
+    "automaticInverse": true
+  },
+  "interactions": {
+    "automaticInverseOff": {
+      "automaticInverse": false,
+      "inverseVisible": false
+    },
+    "manualFlip": {
+      "automaticInverse": false,
+      "inverseVisible": true
+    },
+    "collision": {
+      "mapping": "1:b;2:b;3:c",
+      "injective": false,
+      "onto": false,
+      "invertible": false,
+      "inverseVisible": false
+    },
+    "editSets": {
+      "size": 4,
+      "mapping": "1:a;2:b;3:c;4:d",
+      "invertible": true
+    },
+    "reset": {
+      "size": 3,
+      "mapping": "1:a;2:b;3:c",
+      "invertible": true,
+      "automaticInverse": true
+    }
+  },
+  "status": "complete"
+}
