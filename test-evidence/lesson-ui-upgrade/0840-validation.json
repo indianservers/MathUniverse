@@ -1,0 +1,57 @@
+{
+  "mockup": "0840",
+  "lessonId": 10166,
+  "route": "/lessons/school/class-12/class-12-formal-calculus-continuity-at-a-point",
+  "objectModel": "dedicated-three-condition-continuity-engine",
+  "reference": "0840-reference.png",
+  "default": {
+    "definedValue": 2,
+    "limit": 2,
+    "continuous": true,
+    "epsilon": 0.0001,
+    "conditions": [true, true, true],
+    "graphPoint": [1, 2]
+  },
+  "desktop": {
+    "targetWidth": 951,
+    "targetHeight": 1654,
+    "clientWidth": 936,
+    "scrollWidth": 936,
+    "horizontalOverflow": false,
+    "lessonFrame": {
+      "x": 202,
+      "y": 90.8,
+      "width": 720,
+      "height": 1549.4,
+      "bottom": 1640.2
+    },
+    "controlsChecked": 17,
+    "genericSectionsReplaced": true,
+    "visibleErrorSurfaces": 0
+  },
+  "mobile": {
+    "viewportWidth": 390,
+    "clientWidth": 375,
+    "scrollWidth": 375,
+    "horizontalOverflow": false,
+    "lessonWidth": 351.2,
+    "clippedControls": 0,
+    "controlsChecked": 17,
+    "visibleErrorSurfaces": 0
+  },
+  "interactions": {
+    "mismatch": { "definedValue": 3, "limit": 2, "continuous": false },
+    "keyboardPoint": 2.75,
+    "probeDistance": 0.01,
+    "probeValues": [
+      [0.99, 1.99],
+      [1.01, 2.01]
+    ],
+    "holeLayerHidden": true,
+    "counterexample": { "definedValue": 1, "continuous": false },
+    "practiceRevealed": ["No", "Yes", "No"],
+    "graphCoordinatesAligned": true,
+    "allFiveLayersReset": true,
+    "resetAllState": true
+  }
+}

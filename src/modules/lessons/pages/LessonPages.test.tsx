@@ -4189,6 +4189,15 @@ describe("lesson pages", () => {
     expect(html).toContain('data-two-sided="2.000"');
   });
 
+  it("renders the dedicated continuity checker for lesson 10166", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/school/class-12/class-12-formal-calculus-continuity-at-a-point"]}><Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="school-mockup-0840"');
+    expect(html).toContain("dedicated-three-condition-continuity-engine");
+    expect(html).toContain('data-defined="2"');
+    expect(html).toContain('data-limit="2"');
+    expect(html).toContain('data-continuous="true"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

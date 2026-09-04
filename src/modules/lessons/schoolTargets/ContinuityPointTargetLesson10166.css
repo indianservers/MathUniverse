@@ -1,0 +1,452 @@
+.cp10166-page {
+  position: relative;
+  top: -22px;
+  width: min(720px, 100%);
+  margin: 0;
+  color: #29364a;
+  font:
+    8px/1.45 Inter,
+    Arial,
+    sans-serif;
+  letter-spacing: 0;
+}
+.cp10166-page:before {
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  background: #effaff;
+  content: "";
+}
+.cp10166-page * {
+  box-sizing: border-box;
+}
+.cp10166-page h1,
+.cp10166-page h2,
+.cp10166-page h3,
+.cp10166-page p {
+  margin: 0;
+}
+.cp10166-page button,
+.cp10166-page input {
+  font: inherit;
+  color: inherit;
+}
+.cp10166-page > header {
+  height: 130px;
+  padding: 15px;
+  border-radius: 14px;
+  background: #fff;
+}
+.cp10166-page > header small,
+.cp10166-page h3 {
+  color: #0087ad;
+  font-weight: 900;
+}
+.cp10166-page > header h1 {
+  margin: 5px 0 4px;
+  color: #111827;
+  font-size: 20px;
+}
+.cp10166-page > header > div {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+}
+.cp10166-page > header span {
+  padding: 3px 8px;
+  border-radius: 10px;
+  background: #eef2f5;
+  font-weight: 800;
+}
+.cp10166-page button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 9px;
+  border: 1px solid #d6e3e8;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+}
+.cp10166-page button svg {
+  width: 11px;
+}
+.cp-checker {
+  margin-top: 8px;
+  padding: 12px;
+  border: 1px solid #cce8ef;
+  border-radius: 12px;
+  background: #fff;
+}
+.cp-checker > h3 {
+  margin-bottom: 10px;
+}
+.cp-main {
+  display: grid;
+  grid-template-columns: 168px 1fr 176px;
+  gap: 12px;
+}
+.cp-main aside section,
+.cp-options section {
+  margin-bottom: 9px;
+  padding: 10px;
+  border: 1px solid #dde8ec;
+  border-radius: 7px;
+}
+.cp-main aside h2,
+.cp-options h2 {
+  font-size: 10px;
+}
+.cp-main aside p {
+  margin: 5px 0;
+}
+.cp-main > aside:first-child label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border: 1px solid #dbe6eb;
+  border-radius: 6px;
+  font-size: 12px;
+}
+.cp-main > aside:first-child input {
+  width: 55px;
+  padding: 4px;
+  border: 0;
+}
+.cp-rule {
+  margin-top: 9px;
+  font:
+    10px/2 Georgia,
+    serif;
+}
+.cp-status {
+  min-height: 92px;
+}
+.cp-status strong,
+.cp-conditions article strong {
+  display: inline-grid;
+  width: 29px;
+  height: 29px;
+  margin: 8px;
+  place-items: center;
+  border-radius: 50%;
+  background: #0cae7c;
+  color: #fff;
+  font-size: 17px;
+}
+.cp-status.no strong,
+.cp-conditions article.no strong {
+  background: #df4652;
+}
+.cp-status.ok,
+.cp-conditions article.ok {
+  border-color: #ace4d1;
+  background: #f3fcf8;
+}
+.cp-status.no,
+.cp-conditions article.no {
+  border-color: #efb8bd;
+  background: #fff5f5;
+}
+.cp-canvas {
+  overflow: hidden;
+}
+.cp-tools {
+  display: flex;
+  height: 28px;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.cp-tools button {
+  height: 24px;
+  padding: 4px;
+}
+.cp-canvas svg {
+  display: block;
+  width: 100%;
+  height: 300px;
+  transform-origin: center;
+  transition: 0.15s;
+}
+.cp-canvas svg text {
+  font:
+    10px Inter,
+    Arial;
+}
+.cp-options section:first-child {
+  display: grid;
+  gap: 7px;
+}
+.cp-options section:first-child b:first-child {
+  color: #2d3eeb;
+}
+.cp-options label {
+  display: block;
+  margin-top: 7px;
+}
+.cp-options input[type="checkbox"] {
+  margin-right: 5px;
+  accent-color: #00a2bd;
+}
+.cp-options input[type="range"] {
+  width: 100%;
+  accent-color: #08a4bf;
+}
+.cp-options output {
+  float: right;
+  padding: 2px 4px;
+  border: 1px solid #dce6ea;
+  border-radius: 4px;
+}
+.cp-probes {
+  display: grid;
+  grid-template-columns: 1fr 22px 1fr 22px 1.2fr 1fr;
+  gap: 7px;
+  align-items: center;
+  margin-top: 9px;
+}
+.cp-probes article {
+  min-height: 98px;
+  padding: 10px;
+  border: 1px solid #50a9ec;
+  border-radius: 7px;
+}
+.cp-probes > article:last-child {
+  text-align: center;
+}
+.cp-probes > article:last-child strong {
+  display: block;
+  margin-top: 20px;
+  color: #e43131;
+  font:
+    16px Georgia,
+    serif;
+}
+.cp-probes > b {
+  color: #168bc4;
+  font-size: 25px;
+}
+.cp-probes .limit {
+  border-color: #9edfcf;
+  background: #f4fcf9;
+}
+.cp-probes .limit strong {
+  display: block;
+  margin: 14px 0;
+  font:
+    16px Georgia,
+    serif;
+}
+.cp-conditions {
+  min-height: 165px;
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #9ad9f0;
+  border-radius: 7px;
+}
+.cp-conditions > div {
+  display: grid;
+  grid-template-columns: 1.7fr 1fr;
+  gap: 28px;
+  margin-top: 7px;
+}
+.cp10166-page table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+.cp10166-page th,
+.cp10166-page td {
+  padding: 6px;
+  border: 1px solid #cfe0e8;
+}
+.cp10166-page th {
+  color: #087da6;
+}
+.cp-conditions td:last-child {
+  color: #0aaa75;
+  font-weight: 900;
+}
+.cp-conditions td.no {
+  color: #df4652;
+}
+.cp-conditions article {
+  padding: 10px;
+  border: 1px solid;
+}
+.cp-info,
+.cp-practice {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+  margin-top: 9px;
+}
+.cp-info article,
+.cp-practice article,
+.cp-warning,
+.cp-worked {
+  padding: 11px;
+  border: 1px solid #d7e7ed;
+  border-radius: 8px;
+  background: #fff;
+}
+.cp-info article {
+  min-height: 92px;
+}
+.cp-info p {
+  margin: 9px 0;
+}
+.cp-warning {
+  position: relative;
+  min-height: 78px;
+  margin-top: 9px;
+  border-color: #f2d693;
+  background: #fffaf0;
+}
+.cp-warning p {
+  margin-top: 10px;
+}
+.cp-warning button {
+  position: absolute;
+  right: 20px;
+  bottom: 22px;
+  background: #141b2e;
+  color: #fff;
+}
+.cp-worked {
+  display: grid;
+  grid-template-columns: 1.7fr 1fr;
+  min-height: 176px;
+  margin-top: 9px;
+  border-color: #d8c8f6;
+  background: #faf7ff;
+}
+.cp-worked p {
+  margin: 9px 0;
+}
+.cp-worked svg {
+  width: 100%;
+  height: 145px;
+  background: #fff;
+}
+.cp-practice article {
+  min-height: 200px;
+}
+.cp-practice button {
+  margin-top: 8px;
+  background: #058fb0;
+  color: #fff;
+}
+.cp-practice article + article label {
+  display: grid;
+  gap: 8px;
+  margin-top: 15px;
+  font:
+    13px Georgia,
+    serif;
+}
+.cp-practice input {
+  width: 100%;
+  accent-color: #08a0b9;
+}
+.cp-practice article + article div {
+  margin-top: 12px;
+  padding: 10px;
+  border: 1px solid;
+  border-radius: 6px;
+  font-weight: 900;
+}
+.cp-adjacent {
+  display: flex;
+  justify-content: space-between;
+  margin: 9px 0;
+}
+.cp-adjacent button {
+  min-width: 220px;
+  justify-content: center;
+}
+.cp10166-page > footer {
+  min-height: 129px;
+  padding: 12px;
+  border: 1px solid #d8e7ec;
+  border-radius: 8px;
+  background: #fff;
+}
+.cp10166-page > footer b {
+  font-size: 10px;
+}
+.cp10166-page > footer p {
+  margin: 5px 0 15px;
+  color: #627185;
+}
+body:has(.cp10166-page) [data-testid="desktop-sidebar"] {
+  display: flex !important;
+  width: 190px !important;
+}
+body:has(.cp10166-page) #main-content {
+  margin-left: 0 !important;
+  padding: 0 12px !important;
+}
+body:has(.cp10166-page) #main-content > div {
+  max-width: none !important;
+}
+body:has(.cp10166-page) nav[aria-label="Breadcrumb"] {
+  height: 34px !important;
+  min-height: 34px !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  font-size: 7px !important;
+}
+body:has(.cp10166-page) #lesson-section-interaction ~ * {
+  display: none !important;
+}
+@media (max-width: 700px) {
+  body:has(.cp10166-page) [data-testid="desktop-sidebar"] {
+    display: none !important;
+  }
+  .cp10166-page {
+    top: 0;
+    width: 100%;
+    padding: 6px;
+  }
+  .cp10166-page > header {
+    height: auto;
+  }
+  .cp-main,
+  .cp-probes,
+  .cp-conditions > div,
+  .cp-info,
+  .cp-worked,
+  .cp-practice {
+    display: block;
+  }
+  .cp-main > *,
+  .cp-probes > *,
+  .cp-conditions > div > *,
+  .cp-info > *,
+  .cp-worked > *,
+  .cp-practice > * {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+  .cp-probes > b {
+    display: none;
+  }
+  .cp-canvas svg {
+    height: 260px;
+  }
+  .cp-warning button {
+    position: static;
+    margin-top: 10px;
+  }
+  .cp-adjacent {
+    display: grid;
+    gap: 7px;
+  }
+  .cp-adjacent button {
+    width: 100%;
+    min-width: 0;
+  }
+}

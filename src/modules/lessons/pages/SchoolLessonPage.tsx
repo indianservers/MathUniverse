@@ -145,6 +145,7 @@ import PointPlaneDistanceTargetLesson10162 from "../schoolTargets/PointPlaneDist
 import PlaneAngleTargetLesson10163 from "../schoolTargets/PlaneAngleTargetLesson10163";
 import LinePlaneAngleTargetLesson10164 from "../schoolTargets/LinePlaneAngleTargetLesson10164";
 import OneSidedLimitsTargetLesson10165 from "../schoolTargets/OneSidedLimitsTargetLesson10165";
+import ContinuityPointTargetLesson10166 from "../schoolTargets/ContinuityPointTargetLesson10166";
 import PlaceValueTargetLesson10001 from "../schoolTargets/PlaceValueTargetLesson10001";
 import NumberNamingTargetLesson10002 from "../schoolTargets/NumberNamingTargetLesson10002";
 import EstimationRoundingTargetLesson10003 from "../schoolTargets/EstimationRoundingTargetLesson10003";
@@ -462,6 +463,8 @@ function SchoolLessonBody({
     return <LinePlaneAngleTargetLesson10164 lesson={lesson} />;
   if (lesson.numericId === 10165)
     return <OneSidedLimitsTargetLesson10165 lesson={lesson} />;
+  if (lesson.numericId === 10166)
+    return <ContinuityPointTargetLesson10166 lesson={lesson} />;
   if (lesson.numericId === 10001)
     return <PlaceValueTargetLesson10001 lesson={lesson} />;
   if (lesson.numericId === 10002)
