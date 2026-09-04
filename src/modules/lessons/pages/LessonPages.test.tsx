@@ -2857,6 +2857,32 @@ describe("lesson pages", () => {
     expect(html).toContain("angle-elevation-scene-v2.png");
   });
 
+  it("renders the dedicated angle-depression target for lesson 10099", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-10/class-10-trigonometry-applications-angle-of-depression",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0773"');
+    expect(html).toContain("dedicated-angle-depression-parallel-lines-engine");
+    expect(html).toContain('data-height="40"');
+    expect(html).toContain('data-distance="69.28"');
+    expect(html).toContain('data-depression-angle="30"');
+    expect(html).toContain('data-elevation-angle="30"');
+    expect(html).toContain('data-equal-angles="true"');
+    expect(html).toContain('aria-label="Boat B"');
+    expect(html).toContain("angle-depression-lighthouse.png");
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

@@ -1,0 +1,50 @@
+{
+  "mockup": "0773",
+  "lessonId": 10099,
+  "route": "/lessons/school/class-10/class-10-trigonometry-applications-angle-of-depression",
+  "objectModel": "dedicated-angle-depression-parallel-lines-engine",
+  "asset": {
+    "path": "src/assets/lessons/angle-depression-lighthouse.png",
+    "width": 1672,
+    "height": 941,
+    "loaded": true
+  },
+  "default": {
+    "height": 40,
+    "distance": 69.28,
+    "depressionAngle": 30,
+    "elevationAngle": 30,
+    "equalAngles": true
+  },
+  "interactions": {
+    "heightKeyboard": { "height": 41, "distance": 69.28, "angle": 30.62 },
+    "distanceKeyboard": { "height": 41, "distance": 70.28, "angle": 30.26 },
+    "pointerDrag": { "height": 41, "distance": 30.47, "angle": 53.38 },
+    "challengeSolved": {
+      "height": 40,
+      "distance": 40,
+      "angle": 45,
+      "difference": 0
+    },
+    "resetRestoredDefaults": true
+  },
+  "desktop": {
+    "viewport": [970, 1712],
+    "hero": [90, 216],
+    "tabs": [226, 271],
+    "scene": [285, 848],
+    "cards": [862, 1172],
+    "challenge": [1186, 1325],
+    "navigation": [1339, 1374]
+  },
+  "mobile": {
+    "viewport": [390, 844],
+    "documentWidth": 375,
+    "draggableHandles": 1,
+    "inputs": 2,
+    "cards": 3,
+    "challengePanels": 3,
+    "horizontalOverflow": false
+  },
+  "console": { "warnings": 0, "errors": 0 }
+}
