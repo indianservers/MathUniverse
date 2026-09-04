@@ -114,6 +114,7 @@ import BinomialMiddleTermTargetLesson10136 from "../schoolTargets/BinomialMiddle
 import BinomialIndependentTermTargetLesson10137 from "../schoolTargets/BinomialIndependentTermTargetLesson10137";
 import BinomialApproximationTargetLesson10138 from "../schoolTargets/BinomialApproximationTargetLesson10138";
 import PascalIdentityTargetLesson10139 from "../schoolTargets/PascalIdentityTargetLesson10139";
+import CombinatorialInterpretationTargetLesson10140 from "../schoolTargets/CombinatorialInterpretationTargetLesson10140";
 import PlaceValueTargetLesson10001 from "../schoolTargets/PlaceValueTargetLesson10001";
 import NumberNamingTargetLesson10002 from "../schoolTargets/NumberNamingTargetLesson10002";
 import EstimationRoundingTargetLesson10003 from "../schoolTargets/EstimationRoundingTargetLesson10003";
@@ -363,6 +364,8 @@ export default function SchoolLessonPage() {
     return <BinomialApproximationTargetLesson10138 lesson={lesson} />;
   if (lesson.numericId === 10139)
     return <PascalIdentityTargetLesson10139 lesson={lesson} />;
+  if (lesson.numericId === 10140)
+    return <CombinatorialInterpretationTargetLesson10140 lesson={lesson} />;
   if (lesson.numericId === 10001)
     return <PlaceValueTargetLesson10001 lesson={lesson} />;
   if (lesson.numericId === 10002)

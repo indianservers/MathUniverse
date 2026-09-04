@@ -1,0 +1,34 @@
+{
+  "mockup": "0814",
+  "lessonId": 10140,
+  "route": "/lessons/school/class-11/class-11-binomial-theorem-combinatorial-interpretation",
+  "surface": "CombinatorialInterpretationTargetLesson10140",
+  "objectModel": "dedicated-subset-enumeration-binomial-engine",
+  "referencePixels": { "width": 1536, "height": 1024 },
+  "desktopCapturePixels": { "width": 1536, "height": 1031 },
+  "mobileCapturePixels": { "width": 375, "height": 779 },
+  "default": {
+    "n": 5,
+    "r": 3,
+    "count": 10,
+    "selected": [2, 4, 5],
+    "view": "list",
+    "sort": "lexicographic"
+  },
+  "interactions": {
+    "increaseN": { "n": 6, "r": 3, "count": 20 },
+    "decreaseR": { "n": 6, "r": 2, "count": 15 },
+    "viewAndSort": { "view": "grid", "sort": "sum" },
+    "reset": {
+      "n": 5,
+      "r": 3,
+      "count": 10,
+      "selected": [2, 4, 5],
+      "view": "list",
+      "sort": "lexicographic"
+    }
+  },
+  "mobileLayout": { "clientWidth": 375, "scrollWidth": 375 },
+  "consoleErrors": 0,
+  "status": "complete"
+}

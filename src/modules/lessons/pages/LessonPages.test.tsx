@@ -3870,6 +3870,29 @@ describe("lesson pages", () => {
     expect(html).toContain('data-verified="true"');
   });
 
+  it("renders the dedicated combinatorial-interpretation lab for lesson 10140", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-11/class-11-binomial-theorem-combinatorial-interpretation",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0814"');
+    expect(html).toContain("dedicated-subset-enumeration-binomial-engine");
+    expect(html).toContain('data-n="5"');
+    expect(html).toContain('data-r="3"');
+    expect(html).toContain('data-count="10"');
+    expect(html).toContain('data-selected="2,4,5"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
