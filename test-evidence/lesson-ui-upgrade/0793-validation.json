@@ -1,0 +1,31 @@
+{
+  "mockup": "0793",
+  "lessonId": 10119,
+  "route": "/lessons/school/class-11/class-11-relations-and-functions-into-functions",
+  "surface": "IntoFunctionsTargetLesson10119",
+  "objectModel": "dedicated-into-function-range-coverage-engine",
+  "desktopViewport": { "width": 1680, "height": 941 },
+  "mobileViewport": { "width": 390, "height": 844 },
+  "default": {
+    "mapping": ["a:1", "b:3", "c:3", "d:4"],
+    "range": [1, 3, 4],
+    "unused": [2, 5],
+    "coverage": 60,
+    "valid": true,
+    "into": true
+  },
+  "interactions": {
+    "reassignATo5": { "range": [3, 4, 5], "unused": [1, 2], "coverage": 60 },
+    "fourDistinct": {
+      "range": [1, 2, 3, 4],
+      "unused": [5],
+      "coverage": 80,
+      "into": true
+    },
+    "clear": { "mapped": 0, "valid": false, "into": false },
+    "htmlDragDrop": true,
+    "clickAssignment": true,
+    "reset": true
+  },
+  "status": "complete"
+}

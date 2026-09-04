@@ -1,0 +1,324 @@
+.into10119-page {
+  position: relative;
+  top: -8px;
+  left: 1px;
+  width: min(1380px, calc(100vw - 294px));
+  margin: auto;
+  color: #e7eefb;
+  background: #031328;
+  font:
+    11px/1.45 Inter,
+    Arial,
+    sans-serif;
+  letter-spacing: 0;
+}
+.into10119-page:before {
+  position: fixed;
+  z-index: -1;
+  inset: 58px 0 0 283px;
+  background: #031328;
+  content: "";
+}
+.into10119-page * {
+  box-sizing: border-box;
+}
+.into10119-page h1,
+.into10119-page h2,
+.into10119-page h3,
+.into10119-page p {
+  margin: 0;
+}
+.into10119-page button {
+  font: inherit;
+  color: inherit;
+}
+.into10119-page > header {
+  position: relative;
+  height: 165px;
+  padding: 18px;
+  border: 1px solid #29455e;
+  border-radius: 9px;
+  background: linear-gradient(110deg, #071e37, #04142a);
+}
+.into10119-page > header small,
+.into10119-page h2 {
+  color: #40deda;
+  font-weight: 900;
+  letter-spacing: 0.9px;
+}
+.into10119-page > header h1 {
+  margin: 5px 0;
+  font-size: 27px;
+}
+.into10119-page > header nav {
+  display: flex;
+  gap: 7px;
+  margin-top: 12px;
+}
+.into10119-page > header nav span {
+  padding: 4px 11px;
+  border: 1px solid #304860;
+  border-radius: 13px;
+  font-weight: 800;
+}
+.into10119-page > header > button {
+  position: absolute;
+  right: 14px;
+  top: 17px;
+  padding: 9px 14px;
+  border: 1px solid #304860;
+  border-radius: 7px;
+  background: #07172c;
+}
+.into10119-page > main {
+  display: grid;
+  grid-template-columns: 64% 36%;
+  gap: 12px;
+  margin-top: 12px;
+}
+.into10119-page > main > section,
+.into10119-analysis > article,
+.into10119-analysis > div > article {
+  padding: 14px;
+  border: 1px solid #29455e;
+  border-radius: 8px;
+  background: #06162b;
+}
+.into10119-lab .title {
+  display: flex;
+  justify-content: space-between;
+}
+.into10119-lab .title button {
+  display: flex;
+  gap: 6px;
+  padding: 7px 10px;
+  border: 1px solid #304860;
+  border-radius: 6px;
+  background: #07172c;
+}
+.into10119-page button svg {
+  width: 15px;
+}
+.into10119-lab > h3 {
+  margin-top: 8px;
+  font-size: 17px;
+}
+.into10119-lab > p {
+  max-width: 650px;
+}
+.into10119-lab .mapper {
+  display: grid;
+  grid-template-columns: 120px 1fr 120px;
+  margin-top: 18px;
+}
+.into10119-lab .mapper > article {
+  display: grid;
+  grid-template-rows: 35px repeat(5, 55px);
+  gap: 5px;
+  padding: 8px;
+  border: 1px solid #304860;
+  border-radius: 8px;
+}
+.into10119-lab .mapper > article:first-child {
+  grid-template-rows: 35px repeat(4, 65px);
+}
+.into10119-lab .mapper article button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 0;
+  background: transparent;
+  font-size: 16px;
+}
+.into10119-lab .mapper article button > svg {
+  position: absolute;
+  left: 3px;
+  width: 14px;
+  color: #657286;
+}
+.into10119-lab .mapper article button i {
+  position: absolute;
+  right: -15px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #39d7d4;
+}
+.into10119-lab .mapper article button.selected {
+  outline: 2px solid #40dfdc;
+  border-radius: 6px;
+}
+.into10119-lab .mapper .codomain button {
+  width: 34px;
+  height: 34px;
+  margin: auto;
+  border-radius: 50%;
+  background: #6339a7;
+}
+.into10119-lab .mapper .codomain button.used {
+  background: #774bd1;
+}
+.into10119-lab .mapper .codomain button i {
+  left: -19px;
+  right: auto;
+  border: 2px solid #9d62e5;
+  background: #15182d;
+}
+.into10119-lab .mapper > svg {
+  width: 100%;
+  height: 330px;
+}
+.into10119-lab .mapper > svg path {
+  fill: none;
+  stroke: #4adbdc;
+  stroke-width: 1.8;
+}
+.into10119-lab .mapper > svg marker path {
+  fill: #4adbdc;
+}
+.into10119-lab > aside {
+  display: flex;
+  gap: 7px;
+  margin: 8px;
+}
+.into10119-lab > aside svg {
+  width: 16px;
+}
+.into10119-lab > footer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid #40536b;
+}
+.into10119-lab > footer section {
+  padding: 12px;
+  text-align: center;
+}
+.into10119-lab > footer section + section {
+  border-left: 1px solid #40536b;
+}
+.into10119-lab > footer strong {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 6px 16px;
+  border: 1px solid #884bc7;
+  border-radius: 5px;
+  color: #c17aff;
+  font:
+    italic 15px Georgia,
+    serif;
+}
+.into10119-analysis {
+  display: grid;
+  grid-template-rows: 88px 120px 84px 1fr;
+  gap: 12px;
+}
+.into10119-analysis .coverage header {
+  font-size: 13px;
+}
+.into10119-analysis .coverage header span {
+  float: right;
+}
+.into10119-analysis progress {
+  width: 100%;
+  height: 16px;
+  margin-top: 12px;
+  accent-color: #2ac9c7;
+}
+.into10119-analysis progress::-webkit-progress-value {
+  background: #2ac9c7;
+}
+.into10119-analysis > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.into10119-analysis > div article p {
+  margin: 6px;
+}
+.into10119-analysis > div article p b {
+  float: right;
+}
+.into10119-analysis > div article strong {
+  display: block;
+  margin-top: 22px;
+  padding: 10px;
+  border: 1px solid #29455e;
+  color: #40deda;
+  text-align: center;
+  overflow-wrap: anywhere;
+  font-size: 14px;
+}
+.into10119-analysis .status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.into10119-analysis .status > strong {
+  flex: 0 0 125px;
+  color: #45dedb;
+  font-size: 14px;
+  text-align: right;
+}
+.into10119-analysis .status.no > strong {
+  color: #ff6969;
+}
+.into10119-analysis .example > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 12px;
+}
+.into10119-analysis .example pre {
+  font:
+    15px/1.55 Georgia,
+    serif;
+}
+.into10119-analysis .example b {
+  color: #ba78ee;
+  font:
+    italic 14px Georgia,
+    serif;
+}
+.into10119-analysis .example button {
+  margin: 12px 5px 0 0;
+  padding: 8px;
+  border: 1px solid #304860;
+  border-radius: 6px;
+  background: #07172c;
+}
+@media (max-width: 800px) {
+  .into10119-page {
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 8px;
+  }
+  .into10119-page:before {
+    inset: 0;
+  }
+  .into10119-page > header {
+    height: auto;
+  }
+  .into10119-page > header > button {
+    position: static;
+    margin-top: 8px;
+  }
+  .into10119-page > main {
+    display: block;
+  }
+  .into10119-lab .mapper {
+    grid-template-columns: 75px 1fr 75px;
+  }
+  .into10119-analysis {
+    margin-top: 10px;
+    grid-template-rows: auto;
+  }
+  .into10119-lab > footer {
+    display: block;
+  }
+  .into10119-lab > footer section + section {
+    border: 0;
+    border-top: 1px solid #40536b;
+  }
+}

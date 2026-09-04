@@ -3378,6 +3378,30 @@ describe("lesson pages", () => {
     expect(html).toContain('data-many-one="true"');
   });
 
+  it("renders the dedicated into-function coverage lab for lesson 10119", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-11/class-11-relations-and-functions-into-functions",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0793"');
+    expect(html).toContain("dedicated-into-function-range-coverage-engine");
+    expect(html).toContain('data-mapping="a:1;b:3;c:3;d:4"');
+    expect(html).toContain('data-range="1,3,4"');
+    expect(html).toContain('data-unused="2,5"');
+    expect(html).toContain('data-coverage="60"');
+    expect(html).toContain('data-into="true"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
