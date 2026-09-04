@@ -1,0 +1,326 @@
+.cmp10121-page {
+  position: relative;
+  top: -8px;
+  left: 1px;
+  width: min(1380px, calc(100vw - 294px));
+  margin: auto;
+  color: #e7eefb;
+  background: #031328;
+  font:
+    11px/1.43 Inter,
+    Arial,
+    sans-serif;
+  letter-spacing: 0;
+}
+.cmp10121-page:before {
+  position: fixed;
+  z-index: -1;
+  inset: 58px 0 0 283px;
+  background: #031328;
+  content: "";
+}
+.cmp10121-page * {
+  box-sizing: border-box;
+}
+.cmp10121-page h1,
+.cmp10121-page h2,
+.cmp10121-page h3,
+.cmp10121-page p {
+  margin: 0;
+}
+.cmp10121-page button,
+.cmp10121-page input {
+  font: inherit;
+  color: inherit;
+}
+.cmp10121-page > header {
+  position: relative;
+  height: 145px;
+  padding: 18px;
+  background: #041429;
+}
+.cmp10121-page > header small,
+.cmp10121-page h2 {
+  color: #40deda;
+  font-weight: 900;
+  letter-spacing: 0.7px;
+}
+.cmp10121-page > header h1 {
+  margin: 5px 0;
+  font-size: 25px;
+}
+.cmp10121-page > header nav {
+  display: flex;
+  gap: 7px;
+  margin-top: 10px;
+}
+.cmp10121-page > header nav span {
+  padding: 4px 11px;
+  border: 1px solid #304860;
+  border-radius: 13px;
+  font-weight: 800;
+}
+.cmp10121-page > header > button {
+  position: absolute;
+  right: 12px;
+  top: 14px;
+  padding: 8px 12px;
+  border: 1px solid #304860;
+  border-radius: 7px;
+  background: #07172c;
+}
+.cmp10121-page > header > .reset {
+  top: auto;
+  bottom: 15px;
+  display: flex;
+  gap: 5px;
+}
+.cmp10121-page button svg,
+.cmp10121-page h2 svg {
+  width: 14px;
+}
+.cmp10121-page > main {
+  position: relative;
+  padding: 8px;
+  background: #041429;
+}
+.cmp10121-pipeline {
+  display: grid;
+  grid-template-columns: 23% 8% 32% 8% 29%;
+  width: 70%;
+  align-items: center;
+}
+.cmp10121-pipeline > article {
+  display: grid;
+  gap: 6px;
+  padding: 12px;
+  border: 1px solid #29455e;
+  border-radius: 7px;
+  text-align: center;
+}
+.cmp10121-pipeline > article h2 {
+  display: flex;
+  justify-content: center;
+}
+.cmp10121-pipeline > article button {
+  height: 28px;
+  border: 1px solid #304860;
+  border-radius: 5px;
+  background: #10213a;
+  text-align: left;
+  padding-left: 14px;
+}
+.cmp10121-pipeline > article button.selected {
+  border-color: #2bdedc;
+  box-shadow: inset 0 0 12px #0b6870;
+}
+.cmp10121-pipeline > article label {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+.cmp10121-pipeline > article input {
+  width: 55px;
+  border: 1px solid #304860;
+  background: #07172c;
+}
+.cmp10121-pipeline > article > strong {
+  padding: 7px;
+  border: 1px solid #2bd0ce;
+  color: #41deda;
+}
+.cmp10121-pipeline > article:nth-of-type(3) > strong {
+  border-color: #8f55c5;
+  color: #bf82f0;
+}
+.cmp10121-pipeline .fn {
+  display: grid;
+  justify-items: center;
+  color: #42deda;
+  font-size: 22px;
+}
+.cmp10121-pipeline .fn span {
+  font-size: 12px;
+}
+.cmp10121-pipeline .purple {
+  color: #b376eb;
+}
+.cmp10121-lower {
+  display: block;
+  width: 70%;
+  margin-top: 10px;
+}
+.cmp10121-lower > article,
+.cmp10121-lower > aside > article {
+  padding: 12px;
+  border: 1px solid #29455e;
+  border-radius: 7px;
+}
+.cmp10121-lower .edit > div {
+  display: grid;
+  grid-template-columns: 1fr 45px 1fr;
+  align-items: center;
+}
+.cmp10121-lower .edit section {
+  padding: 8px;
+}
+.cmp10121-lower .edit section > div {
+  display: grid;
+  grid-template-columns: 1fr 20px 1fr 30px;
+  margin-top: 5px;
+}
+.cmp10121-lower .edit input {
+  min-width: 0;
+  padding: 5px;
+  border: 1px solid #304860;
+  background: #0a1a30;
+}
+.cmp10121-lower .edit section button {
+  border: 0;
+  background: transparent;
+}
+.cmp10121-lower .edit section button svg {
+  width: 13px;
+}
+.cmp10121-lower .edit section > button {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 7px;
+  color: #42deda;
+}
+.cmp10121-lower .swap {
+  width: 34px;
+  height: 34px;
+  border: 1px solid #304860;
+  border-radius: 50%;
+  background: #07172c;
+}
+.cmp10121-lower > aside {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 29%;
+  display: grid;
+  gap: 9px;
+}
+.cmp10121-lower > aside > article strong,
+.cmp10121-lower > aside > article em {
+  display: block;
+  margin: 7px;
+  padding: 7px;
+  text-align: center;
+  font:
+    italic 15px Georgia,
+    serif;
+}
+.cmp10121-lower > aside > article em {
+  border: 1px solid #2bd1cf;
+  color: #43deda;
+}
+.cmp10121-lower > aside > article p {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px;
+  border-bottom: 1px solid #29455e;
+}
+.cmp10121-lower > aside > article p svg {
+  width: 15px;
+  color: #4be495;
+}
+.cmp10121-lower > aside > article footer {
+  padding: 9px;
+  border: 1px solid #20845d;
+}
+.cmp10121-lower > aside > article footer.bad {
+  border-color: #a84343;
+  color: #ff6d6d;
+}
+.cmp10121-lower .order > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.cmp10121-lower .order section + section {
+  border-left: 1px solid #29455e;
+}
+.cmp10121-lower .order section b {
+  display: block;
+  color: #42deda;
+  text-align: center;
+}
+.cmp10121-lower .order > strong {
+  color: #ff9ba4;
+  background: #2a1323;
+}
+.cmp10121-page > main > footer {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+  margin-top: 10px;
+  width: 70%;
+  padding: 10px 18px;
+  border: 1px solid #29455e;
+  border-radius: 7px;
+}
+.cmp10121-page > main > footer span {
+  font:
+    italic 16px Georgia,
+    serif;
+}
+.cmp10121-page > main > footer i {
+  padding: 5px 28px;
+  border: 1px solid #2bdedc;
+  border-radius: 5px;
+  color: #42deda;
+}
+.cmp10121-page > main > footer strong {
+  margin-left: auto;
+  color: #43deda;
+  font-size: 15px;
+}
+@media (max-width: 800px) {
+  .cmp10121-page {
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 8px;
+  }
+  .cmp10121-page:before {
+    inset: 0;
+  }
+  .cmp10121-page > header {
+    height: auto;
+  }
+  .cmp10121-page > header > button {
+    position: static;
+    margin-top: 8px;
+  }
+  .cmp10121-page > header > .reset {
+    display: inline-flex;
+    margin-left: 8px;
+  }
+  .cmp10121-pipeline {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+  .cmp10121-pipeline > .fn {
+    margin: 8px;
+  }
+  .cmp10121-lower {
+    display: block;
+    width: 100%;
+  }
+  .cmp10121-lower > aside {
+    position: static;
+    width: 100%;
+    margin-top: 8px;
+  }
+  .cmp10121-page > main > footer {
+    display: grid;
+    gap: 8px;
+    width: 100%;
+  }
+  .cmp10121-page > main > footer strong {
+    margin: 0;
+  }
+}

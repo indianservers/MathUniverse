@@ -1,0 +1,38 @@
+{
+  "mockup": "0795",
+  "lessonId": 10121,
+  "route": "/lessons/school/class-11/class-11-relations-and-functions-composition-of-functions",
+  "surface": "CompositionFunctionsTargetLesson10121",
+  "objectModel": "dedicated-editable-function-composition-pipeline-engine",
+  "desktopViewport": { "width": 1680, "height": 941 },
+  "mobileViewport": { "width": 390, "height": 844 },
+  "default": {
+    "x": 0,
+    "fValue": 1,
+    "composed": 2,
+    "compatible": true,
+    "fRows": 5,
+    "gRows": 5
+  },
+  "interactions": {
+    "xEquals1": { "fValue": 3, "composed": 5 },
+    "removeG3": {
+      "composed": "undefined",
+      "compatible": false,
+      "missing": [3],
+      "gRows": 4
+    },
+    "addFRow": { "fRows": 6, "missing": [3, 7] },
+    "swap": { "fRows": 4, "gRows": 6, "compatible": false },
+    "reset": {
+      "x": 0,
+      "fValue": 1,
+      "composed": 2,
+      "compatible": true,
+      "fRows": 5,
+      "gRows": 5
+    }
+  },
+  "correction": "The target g table states g(1)=2, so g(f(0))=2 rather than the highlighted 5.",
+  "status": "complete"
+}

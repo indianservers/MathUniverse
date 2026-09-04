@@ -95,6 +95,7 @@ import OneOneFunctionsTargetLesson10117 from "../schoolTargets/OneOneFunctionsTa
 import ManyOneFunctionsTargetLesson10118 from "../schoolTargets/ManyOneFunctionsTargetLesson10118";
 import IntoFunctionsTargetLesson10119 from "../schoolTargets/IntoFunctionsTargetLesson10119";
 import OntoFunctionsTargetLesson10120 from "../schoolTargets/OntoFunctionsTargetLesson10120";
+import CompositionFunctionsTargetLesson10121 from "../schoolTargets/CompositionFunctionsTargetLesson10121";
 import PlaceValueTargetLesson10001 from "../schoolTargets/PlaceValueTargetLesson10001";
 import NumberNamingTargetLesson10002 from "../schoolTargets/NumberNamingTargetLesson10002";
 import EstimationRoundingTargetLesson10003 from "../schoolTargets/EstimationRoundingTargetLesson10003";
@@ -306,6 +307,8 @@ export default function SchoolLessonPage() {
     return <IntoFunctionsTargetLesson10119 lesson={lesson} />;
   if (lesson.numericId === 10120)
     return <OntoFunctionsTargetLesson10120 lesson={lesson} />;
+  if (lesson.numericId === 10121)
+    return <CompositionFunctionsTargetLesson10121 lesson={lesson} />;
   if (lesson.numericId === 10001)
     return <PlaceValueTargetLesson10001 lesson={lesson} />;
   if (lesson.numericId === 10002)
