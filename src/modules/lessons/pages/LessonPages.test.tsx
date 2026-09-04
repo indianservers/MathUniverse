@@ -4144,6 +4144,15 @@ describe("lesson pages", () => {
     expect(html).toContain('data-on-plane="false"');
   });
 
+  it("renders the dedicated intercept-plane engine for lesson 10161", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/school/class-12/class-12-three-dimensional-geometry-intercept-form-of-a-plane"]}><Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="school-mockup-0835"');
+    expect(html).toContain("dedicated-three-axis-intercept-plane-engine");
+    expect(html).toContain('data-intercepts="4,3,2"');
+    expect(html).toContain('data-standard="3x + 4y + 6z = 12"');
+    expect(html).toContain('data-volume="4"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

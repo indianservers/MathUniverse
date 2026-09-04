@@ -1,0 +1,36 @@
+{
+  "mockup": "0835",
+  "lessonId": 10161,
+  "route": "/lessons/school/class-12/class-12-three-dimensional-geometry-intercept-form-of-a-plane",
+  "objectModel": "dedicated-three-axis-intercept-plane-engine",
+  "reference": "0835-reference.png",
+  "default": {
+    "intercepts": [4, 3, 2],
+    "interceptForm": "x/4 + y/3 + z/2 = 1",
+    "standardForm": "3x + 4y + 6z = 12",
+    "normal": [3, 4, 6],
+    "originDistance": 1.536,
+    "tetrahedronVolume": 4
+  },
+  "desktop": {
+    "targetWidth": 914,
+    "targetHeight": 1720,
+    "clientWidth": 899,
+    "scrollWidth": 899,
+    "horizontalOverflow": false,
+    "sidebarWidth": 183,
+    "lessonFrame": { "x": 197, "y": 88.8, "width": 702.2, "height": 1630.6, "bottom": 1719.4 },
+    "visibleErrorSurfaces": 0
+  },
+  "mobile": { "viewportWidth": 390, "clientWidth": 375, "scrollWidth": 375, "horizontalOverflow": false, "lessonWidth": 347.2, "clippedControls": 0, "controlsChecked": 24 },
+  "interactions": {
+    "sliderState": { "intercepts": [6, 4, 3], "standardForm": "2x + 3y + 4z = 12", "distance": 2.228, "volume": 12 },
+    "infiniteIntercept": { "intercepts": ["infinity", 3, 2], "standardForm": "2y + 3z = 6", "distance": 1.664, "volume": "unbounded", "xSliderDisabled": true },
+    "zeroDenominatorClampedTo": 0.25,
+    "movedHandles": { "intercepts": [4.25, 2.75, 2], "standardForm": "5.5x + 8.5y + 11.688z = 23.375", "volume": 3.896 },
+    "hiddenLayers": ["plane", "traces", "tetrahedron"],
+    "cameraRotationDegrees": 18,
+    "practiceSolutionReveal": true,
+    "resetAllState": true
+  }
+}
