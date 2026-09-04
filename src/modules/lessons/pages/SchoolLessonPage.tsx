@@ -76,6 +76,7 @@ import AngleElevationTargetLesson10098 from "../schoolTargets/AngleElevationTarg
 import AngleDepressionTargetLesson10099 from "../schoolTargets/AngleDepressionTargetLesson10099";
 import ShadowLengthTargetLesson10100 from "../schoolTargets/ShadowLengthTargetLesson10100";
 import TwoObserverHeightTargetLesson10101 from "../schoolTargets/TwoObserverHeightTargetLesson10101";
+import GroupedMeanDirectTargetLesson10102 from "../schoolTargets/GroupedMeanDirectTargetLesson10102";
 import PlaceValueTargetLesson10001 from "../schoolTargets/PlaceValueTargetLesson10001";
 import NumberNamingTargetLesson10002 from "../schoolTargets/NumberNamingTargetLesson10002";
 import EstimationRoundingTargetLesson10003 from "../schoolTargets/EstimationRoundingTargetLesson10003";
@@ -249,6 +250,8 @@ export default function SchoolLessonPage() {
     return <ShadowLengthTargetLesson10100 lesson={lesson} />;
   if (lesson.numericId === 10101)
     return <TwoObserverHeightTargetLesson10101 lesson={lesson} />;
+  if (lesson.numericId === 10102)
+    return <GroupedMeanDirectTargetLesson10102 lesson={lesson} />;
   if (lesson.numericId === 10001)
     return <PlaceValueTargetLesson10001 lesson={lesson} />;
   if (lesson.numericId === 10002)

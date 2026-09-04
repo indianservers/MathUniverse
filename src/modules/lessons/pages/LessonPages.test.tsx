@@ -2938,6 +2938,33 @@ describe("lesson pages", () => {
     expect(html).toContain('aria-label="Far observer"');
   });
 
+  it("renders the dedicated grouped-mean direct target for lesson 10102", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-10/class-10-statistics-grouped-mean-by-direct-method",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0776"');
+    expect(html).toContain("dedicated-grouped-frequency-direct-mean-engine");
+    expect(html).toContain('data-row-count="5"');
+    expect(html).toContain('data-selected-row="4"');
+    expect(html).toContain('data-total-frequency="40"');
+    expect(html).toContain('data-total-product="1140"');
+    expect(html).toContain('data-mean="28.5"');
+    expect(html).toContain('aria-label="Frequency row 1"');
+    expect(html).toContain('aria-label="Midpoint row 4"');
+    expect(html).toContain("Calculate Mean");
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

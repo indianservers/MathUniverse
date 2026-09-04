@@ -1,0 +1,59 @@
+{
+  "mockup": "0776",
+  "lessonId": 10102,
+  "route": "/lessons/school/class-10/class-10-statistics-grouped-mean-by-direct-method",
+  "objectModel": "dedicated-grouped-frequency-direct-mean-engine",
+  "default": {
+    "rows": 5,
+    "selectedRow": 4,
+    "totalFrequency": 40,
+    "totalProduct": 1140,
+    "mean": 28.5
+  },
+  "interactions": {
+    "frequencyEdit": {
+      "totalFrequency": 41,
+      "totalProduct": 1145,
+      "mean": 27.93
+    },
+    "intervalEdit": { "midpoint": 6, "totalProduct": 1144, "mean": 28.6 },
+    "midpointKeyboard": {
+      "interval": [31, 41],
+      "midpoint": 36,
+      "totalProduct": 1152,
+      "mean": 28.8
+    },
+    "midpointPointerDrag": {
+      "interval": [40, 50],
+      "midpoint": 45,
+      "totalProduct": 1260,
+      "mean": 31.5
+    },
+    "addRow": {
+      "rows": 6,
+      "totalFrequency": 41,
+      "totalProduct": 1195,
+      "mean": 29.15
+    },
+    "removeRowRestoredDataset": true,
+    "calculateStateVerified": true,
+    "resetRestoredDefaults": true
+  },
+  "desktop": {
+    "viewport": [1680, 947],
+    "contentX": [317, 1657],
+    "hero": [59, 243],
+    "workbench": [257, 871],
+    "instruction": [883, 925]
+  },
+  "mobile": {
+    "viewport": [390, 844],
+    "documentWidth": 375,
+    "tableViewportWidth": 373,
+    "tableScrollWidth": 690,
+    "draggableHandles": 5,
+    "inputs": 15,
+    "horizontalOverflow": false
+  },
+  "console": { "warnings": 0, "errors": 0 }
+}

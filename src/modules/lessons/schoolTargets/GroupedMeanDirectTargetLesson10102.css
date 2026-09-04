@@ -1,0 +1,344 @@
+.gmd10102-page {
+  position: relative;
+  top: -48px;
+  left: 18px;
+  width: min(1340px, calc(100vw - 340px));
+  margin: auto;
+  color: #dcecff;
+  font:
+    14px/1.45 Inter,
+    Arial,
+    sans-serif;
+  letter-spacing: 0;
+}
+.gmd10102-page:before {
+  position: fixed;
+  z-index: -1;
+  inset: 52px 0 0 302px;
+  background: #03142a;
+  content: "";
+}
+.gmd10102-page * {
+  box-sizing: border-box;
+}
+.gmd10102-page h1,
+.gmd10102-page h2,
+.gmd10102-page p {
+  margin: 0;
+}
+.gmd10102-page button,
+.gmd10102-page input {
+  font: inherit;
+  color: inherit;
+}
+.gmd10102-page svg {
+  width: 18px;
+  height: 18px;
+}
+.gmd10102-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 184px;
+  min-height: 0;
+  padding: 18px 24px;
+  border: 1px solid #274462;
+  border-radius: 12px;
+  background: linear-gradient(125deg, #06203b, #03142a);
+}
+.gmd10102-hero > div {
+  max-width: 900px;
+}
+.gmd10102-hero small {
+  color: #20e2e6;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+}
+.gmd10102-hero h1 {
+  margin: 6px 0 3px;
+  font-size: 31px;
+}
+.gmd10102-hero nav {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+.gmd10102-hero nav span {
+  padding: 6px 14px;
+  border-radius: 18px;
+  background: #152b43;
+  font-weight: 800;
+}
+.gmd10102-hero > button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border: 1px solid #3a5d79;
+  border-radius: 8px;
+  background: #071b31;
+  font-weight: 800;
+}
+.gmd10102-page > main {
+  display: grid;
+  grid-template-columns: 46% 54%;
+  height: 614px;
+  gap: 12px;
+  margin-top: 14px;
+}
+.gmd10102-left,
+.gmd10102-right {
+  min-width: 0;
+  border: 1px solid #25435f;
+  border-radius: 10px;
+  background: #06182e;
+}
+.gmd10102-table {
+  overflow: auto;
+}
+.gmd10102-table table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+.gmd10102-table th {
+  height: 58px;
+  padding: 6px;
+  border-right: 1px solid #213d58;
+  font-weight: 800;
+}
+.gmd10102-table td {
+  height: 50px;
+  padding: 5px;
+  border-top: 1px solid #213d58;
+  border-right: 1px solid #213d58;
+}
+.gmd10102-table tr.selected {
+  outline: 2px solid #1ed5da;
+  outline-offset: -2px;
+  background: #0b2943;
+}
+.gmd10102-table tr.selected td:first-child,
+.gmd10102-table tr.selected td:nth-child(4) {
+  color: #21e1e3;
+}
+.gmd10102-table input {
+  width: 48px;
+  padding: 6px;
+  border: 1px solid #48627b;
+  border-radius: 5px;
+  background: #07182c;
+  text-align: center;
+}
+.gmd10102-table td:nth-child(3) input {
+  width: 65px;
+}
+.gmd10102-table td:nth-child(4) strong,
+.gmd10102-table td:nth-child(4) small {
+  display: block;
+}
+.gmd10102-table td button {
+  padding: 4px;
+  border: 0;
+  background: transparent;
+}
+.gmd10102-table tfoot td {
+  height: 64px;
+}
+.gmd10102-table tfoot button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 12px;
+  border: 1px solid #48627b;
+  border-radius: 7px;
+}
+.gmd10102-table tfoot span,
+.gmd10102-table tfoot strong {
+  display: block;
+}
+.gmd10102-table tfoot span {
+  color: #1ddde1;
+}
+.gmd10102-formula {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 14px 10px;
+  padding: 14px;
+  border: 1px solid #294661;
+  border-radius: 8px;
+  text-align: center;
+}
+.gmd10102-formula article {
+  min-width: 150px;
+}
+.gmd10102-formula article + i {
+  font-size: 20px;
+}
+.gmd10102-formula b {
+  color: #ffd839;
+}
+.gmd10102-formula p {
+  margin-top: 7px;
+  font:
+    italic 22px Georgia,
+    serif;
+}
+.gmd10102-formula > strong {
+  color: #1ee6e5;
+  font:
+    italic 27px Georgia,
+    serif;
+}
+.gmd10102-calculate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 280px;
+  margin: 0 auto 14px;
+  padding: 11px;
+  border: 0;
+  border-radius: 10px;
+  background: linear-gradient(#38dfe2, #10b8c7);
+  color: #001526 !important;
+  font-size: 18px;
+  font-weight: 900;
+}
+.gmd10102-right {
+  padding: 12px;
+}
+.gmd10102-right > header {
+  padding: 3px 4px 10px;
+  border-bottom: 1px solid #17344e;
+}
+.gmd10102-right h2 {
+  font-size: 15px;
+}
+.gmd10102-right h2 span,
+.gmd10102-right > footer b {
+  color: #1de0e1;
+}
+.gmd10102-right > header p {
+  margin-top: 8px;
+}
+.gmd10102-right > svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 355px;
+}
+.gmd10102-right svg text {
+  fill: #dcecff;
+  font-size: 13px;
+}
+.gmd10102-right svg line {
+  stroke: #72869b;
+  stroke-width: 1.5;
+}
+.gmd10102-right svg rect {
+  fill: #10a8b6;
+}
+.gmd10102-right svg .selected text {
+  fill: #c989ff;
+}
+.gmd10102-right svg .selected rect {
+  fill: #9e60f3;
+}
+.gmd10102-marker {
+  fill: #17c8cc;
+  stroke: #8cf6f7;
+  stroke-width: 2;
+  cursor: ew-resize;
+}
+.gmd10102-right svg .selected .gmd10102-marker {
+  fill: #8a43d1;
+  stroke: #ddb6ff;
+}
+.gmd10102-marker:focus {
+  stroke: #fff;
+  stroke-width: 5;
+  outline: 0;
+}
+.gmd10102-right > footer {
+  display: flex;
+  justify-content: space-around;
+  padding: 14px;
+  border: 1px solid #17344e;
+  border-radius: 7px;
+  background: #091e35;
+}
+.gmd10102-right > aside {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 30px;
+  padding: 20px;
+  border: 1px solid #a83354;
+  border-radius: 9px;
+  background: #17152d;
+}
+.gmd10102-right > aside svg,
+.gmd10102-right > aside strong {
+  color: #ff5c80;
+}
+.gmd10102-right > aside svg {
+  width: 34px;
+  height: 34px;
+}
+.gmd10102-right > aside p {
+  margin-top: 10px;
+}
+.gmd10102-tip {
+  height: 42px;
+  margin-top: 12px;
+  padding: 9px 12px;
+  border: 1px solid #23415d;
+  border-radius: 7px;
+  background: #06172c;
+}
+@media (max-width: 900px) {
+  .gmd10102-page {
+    top: -22px;
+    left: 0;
+    width: calc(100vw - 16px);
+    font-size: 10px;
+  }
+  .gmd10102-page:before {
+    inset: 0;
+    background: #03142a;
+  }
+  .gmd10102-hero {
+    align-items: flex-start;
+    min-height: 185px;
+    padding: 15px;
+  }
+  .gmd10102-hero h1 {
+    font-size: 22px;
+  }
+  .gmd10102-hero nav {
+    flex-wrap: wrap;
+  }
+  .gmd10102-hero > button {
+    white-space: nowrap;
+  }
+  .gmd10102-page > main {
+    grid-template-columns: 1fr;
+  }
+  .gmd10102-table {
+    overflow-x: auto;
+  }
+  .gmd10102-table table {
+    min-width: 690px;
+  }
+  .gmd10102-formula {
+    overflow: auto;
+  }
+  .gmd10102-formula article {
+    min-width: 120px;
+  }
+  .gmd10102-right > aside {
+    margin-top: 12px;
+  }
+}
