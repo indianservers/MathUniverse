@@ -1,0 +1,27 @@
+{
+  "mockup": "0792",
+  "lessonId": 10118,
+  "route": "/lessons/school/class-11/class-11-relations-and-functions-many-one-functions",
+  "surface": "ManyOneFunctionsTargetLesson10118",
+  "objectModel": "dedicated-many-one-fibre-bucket-mapping-engine",
+  "desktopViewport": { "width": 1680, "height": 941 },
+  "mobileViewport": { "width": 390, "height": 844 },
+  "default": {
+    "mapping": ["-2:4", "-1:1", "0:0", "1:1", "2:4"],
+    "formula": "square",
+    "mapped": 5,
+    "distinct": 3,
+    "valid": true,
+    "manyOne": true
+  },
+  "interactions": {
+    "reassignMinus2To3": { "distinct": 4, "manyOne": true },
+    "clear": { "mapped": 0, "valid": false, "manyOne": false },
+    "absolute": { "distinct": 3, "manyOne": true },
+    "oneOneShift": { "distinct": 5, "manyOne": false },
+    "htmlDragDrop": true,
+    "clickAssignment": true,
+    "reset": true
+  },
+  "status": "complete"
+}

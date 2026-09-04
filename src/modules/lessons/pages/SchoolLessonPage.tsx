@@ -92,6 +92,7 @@ import SymmetricRelationsTargetLesson10114 from "../schoolTargets/SymmetricRelat
 import TransitiveRelationsTargetLesson10115 from "../schoolTargets/TransitiveRelationsTargetLesson10115";
 import EquivalenceRelationsTargetLesson10116 from "../schoolTargets/EquivalenceRelationsTargetLesson10116";
 import OneOneFunctionsTargetLesson10117 from "../schoolTargets/OneOneFunctionsTargetLesson10117";
+import ManyOneFunctionsTargetLesson10118 from "../schoolTargets/ManyOneFunctionsTargetLesson10118";
 import PlaceValueTargetLesson10001 from "../schoolTargets/PlaceValueTargetLesson10001";
 import NumberNamingTargetLesson10002 from "../schoolTargets/NumberNamingTargetLesson10002";
 import EstimationRoundingTargetLesson10003 from "../schoolTargets/EstimationRoundingTargetLesson10003";
@@ -297,6 +298,8 @@ export default function SchoolLessonPage() {
     return <EquivalenceRelationsTargetLesson10116 lesson={lesson} />;
   if (lesson.numericId === 10117)
     return <OneOneFunctionsTargetLesson10117 lesson={lesson} />;
+  if (lesson.numericId === 10118)
+    return <ManyOneFunctionsTargetLesson10118 lesson={lesson} />;
   if (lesson.numericId === 10001)
     return <PlaceValueTargetLesson10001 lesson={lesson} />;
   if (lesson.numericId === 10002)

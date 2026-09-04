@@ -3355,6 +3355,29 @@ describe("lesson pages", () => {
     expect(html).toContain('data-injective="true"');
   });
 
+  it("renders the dedicated many-one fibre lab for lesson 10118", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-11/class-11-relations-and-functions-many-one-functions",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0792"');
+    expect(html).toContain("dedicated-many-one-fibre-bucket-mapping-engine");
+    expect(html).toContain('data-mapping="-2:4;-1:1;0:0;1:1;2:4"');
+    expect(html).toContain('data-distinct="3"');
+    expect(html).toContain('data-valid="true"');
+    expect(html).toContain('data-many-one="true"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
