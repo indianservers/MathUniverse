@@ -2797,6 +2797,36 @@ describe("lesson pages", () => {
     expect(html).toContain('aria-label="Rotate tangent line"');
   });
 
+  it("renders the dedicated external-tangent-length target for lesson 10097", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-10/class-10-circle-proofs-tangent-lengths-from-an-external-point",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0771"');
+    expect(html).toContain(
+      "dedicated-external-point-two-tangent-congruence-engine",
+    );
+    expect(html).toContain('data-distance-op="10"');
+    expect(html).toContain('data-direction="0"');
+    expect(html).toContain('data-pa="8"');
+    expect(html).toContain('data-pb="8"');
+    expect(html).toContain('data-difference="0"');
+    expect(html).toContain('data-equal="true"');
+    expect(html).toContain('aria-label="Point A"');
+    expect(html).toContain('aria-label="Point B"');
+    expect(html).toContain('aria-label="Point P"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

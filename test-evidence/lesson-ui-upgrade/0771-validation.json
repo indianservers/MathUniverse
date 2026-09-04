@@ -1,0 +1,61 @@
+{
+  "mockup": "0771",
+  "lessonId": 10097,
+  "route": "/lessons/school/class-10/class-10-circle-proofs-tangent-lengths-from-an-external-point",
+  "objectModel": "dedicated-external-point-two-tangent-congruence-engine",
+  "default": {
+    "radius": 6,
+    "distanceOP": 10,
+    "direction": 0,
+    "PA": 8,
+    "PB": 8,
+    "difference": 0,
+    "equal": true
+  },
+  "interactions": {
+    "farPointerDrag": {
+      "distanceOP": 12.89,
+      "PA": 11.41,
+      "PB": 11.41,
+      "equal": true
+    },
+    "nearPointerDrag": {
+      "distanceOP": 6.5,
+      "PA": 2.5,
+      "PB": 2.5,
+      "equal": true
+    },
+    "contactAPointerRotation": {
+      "direction": 33.14,
+      "distanceOP": 6.5,
+      "PA": 2.5,
+      "PB": 2.5,
+      "equal": true
+    },
+    "disabledPDragBefore": 6.5,
+    "disabledPDragAfter": 6.5,
+    "radiiLayerToggle": true,
+    "rightAngleLayerToggle": true,
+    "congruenceLayerToggle": true,
+    "resetRestoredDefaults": true
+  },
+  "desktop": {
+    "viewport": [970, 1712],
+    "hero": [90, 225],
+    "tabs": [235, 278],
+    "lab": [292, 811],
+    "proof": [825, 1060],
+    "bottom": [1074, 1354],
+    "navigation": [1368, 1404]
+  },
+  "mobile": {
+    "viewport": [390, 844],
+    "documentWidth": 375,
+    "draggableHandles": 3,
+    "inputs": 6,
+    "proofPanels": 2,
+    "bottomPanels": 2,
+    "horizontalOverflow": false
+  },
+  "console": { "warnings": 0, "errors": 0 }
+}
