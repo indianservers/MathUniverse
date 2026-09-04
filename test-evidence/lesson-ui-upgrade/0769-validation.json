@@ -1,0 +1,50 @@
+{
+  "mockup": "0769",
+  "lessonId": 10095,
+  "route": "/lessons/school/class-10/class-10-circle-proofs-opposite-angles-of-a-cyclic-quadrilateral",
+  "objectModel": "dedicated-cyclic-opposite-angle-and-arc-engine",
+  "default": {
+    "angles": { "A": 112, "B": 74, "C": 68, "D": 106 },
+    "arcs": { "BC": 224, "CD": 148, "DA": 136, "AB": 212 },
+    "sumAC": 180,
+    "sumBD": 180,
+    "balanced": true,
+    "targetA": 95,
+    "expectedC": 85
+  },
+  "interactions": {
+    "keyboardMovedAngles": { "A": 112, "B": 73, "C": 68, "D": 107 },
+    "keyboardMovedSumAC": 180,
+    "keyboardMovedSumBD": 180,
+    "keyboardMovedBalanced": true,
+    "angleLayerToggle": true,
+    "arcLayerToggle": true,
+    "sumLayerToggle": true,
+    "centerLayerToggle": true,
+    "wrongPredictionRejected": true,
+    "correctPredictionAccepted": true,
+    "movedTargetA": 94,
+    "movedExpectedC": 86,
+    "resetRestoredDefaults": true
+  },
+  "desktop": {
+    "viewport": [970, 1712],
+    "hero": [90, 200],
+    "tabs": [210, 255],
+    "lab": [269, 784],
+    "arcs": [798, 995],
+    "cards": [1009, 1286],
+    "challenge": [1300, 1527],
+    "navigation": [1541, 1576]
+  },
+  "mobile": {
+    "viewport": [390, 844],
+    "documentWidth": 375,
+    "draggableHandles": 4,
+    "inputs": 8,
+    "arcPanels": 4,
+    "cards": 3,
+    "horizontalOverflow": false
+  },
+  "console": { "warnings": 0, "errors": 0 }
+}

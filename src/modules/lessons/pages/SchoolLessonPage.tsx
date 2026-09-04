@@ -69,6 +69,7 @@ import AngleSubtendedArcTargetLesson10091 from "../schoolTargets/AngleSubtendedA
 import AngleSemicircleTargetLesson10092 from "../schoolTargets/AngleSemicircleTargetLesson10092";
 import AnglesSameSegmentTargetLesson10093 from "../schoolTargets/AnglesSameSegmentTargetLesson10093";
 import CyclicQuadrilateralTargetLesson10094 from "../schoolTargets/CyclicQuadrilateralTargetLesson10094";
+import OppositeCyclicAnglesTargetLesson10095 from "../schoolTargets/OppositeCyclicAnglesTargetLesson10095";
 import PlaceValueTargetLesson10001 from "../schoolTargets/PlaceValueTargetLesson10001";
 import NumberNamingTargetLesson10002 from "../schoolTargets/NumberNamingTargetLesson10002";
 import EstimationRoundingTargetLesson10003 from "../schoolTargets/EstimationRoundingTargetLesson10003";
@@ -228,6 +229,8 @@ export default function SchoolLessonPage() {
     return <AnglesSameSegmentTargetLesson10093 lesson={lesson} />;
   if (lesson.numericId === 10094)
     return <CyclicQuadrilateralTargetLesson10094 lesson={lesson} />;
+  if (lesson.numericId === 10095)
+    return <OppositeCyclicAnglesTargetLesson10095 lesson={lesson} />;
   if (lesson.numericId === 10001)
     return <PlaceValueTargetLesson10001 lesson={lesson} />;
   if (lesson.numericId === 10002)

@@ -2737,6 +2737,36 @@ describe("lesson pages", () => {
     expect(html).toContain('aria-label="Challenge vertex B radius"');
   });
 
+  it("renders the dedicated opposite-cyclic-angle target for lesson 10095", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-10/class-10-circle-proofs-opposite-angles-of-a-cyclic-quadrilateral",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0769"');
+    expect(html).toContain("dedicated-cyclic-opposite-angle-and-arc-engine");
+    expect(html).toContain('data-angle-a="112"');
+    expect(html).toContain('data-angle-b="74"');
+    expect(html).toContain('data-angle-c="68"');
+    expect(html).toContain('data-angle-d="106"');
+    expect(html).toContain('data-sum-ac="180"');
+    expect(html).toContain('data-sum-bd="180"');
+    expect(html).toContain('data-balanced="true"');
+    expect(html).toContain('data-arc-bc="224"');
+    expect(html).toContain('data-arc-ab="212"');
+    expect(html).toContain('aria-label="Challenge angle A"');
+    expect(html).toContain('aria-label="Prediction for angle C"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
