@@ -2678,6 +2678,35 @@ describe("lesson pages", () => {
     expect(html).toContain('aria-label="Start auto-drag"');
   });
 
+  it("renders the dedicated same-segment target for lesson 10093", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-10/class-10-circle-proofs-angles-in-the-same-segment",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0767"');
+    expect(html).toContain(
+      "dedicated-two-point-same-segment-inscribed-angle-engine",
+    );
+    expect(html).toContain('data-c-angle="125"');
+    expect(html).toContain('data-d-angle="55"');
+    expect(html).toContain('data-angle-c="52"');
+    expect(html).toContain('data-angle-d="52"');
+    expect(html).toContain('data-difference="0"');
+    expect(html).toContain('data-relation="equal"');
+    expect(html).toContain('aria-label="Point C on circle"');
+    expect(html).toContain('aria-label="Point D on circle"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

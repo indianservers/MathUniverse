@@ -1,0 +1,45 @@
+{
+  "mockup": "0767",
+  "lessonId": 10093,
+  "route": "/lessons/school/class-10/class-10-circle-proofs-angles-in-the-same-segment",
+  "objectModel": "dedicated-two-point-same-segment-inscribed-angle-engine",
+  "default": {
+    "cAngle": 125,
+    "dAngle": 55,
+    "angleACB": 52,
+    "angleADB": 52,
+    "difference": 0,
+    "centralAngle": 104,
+    "relation": "equal"
+  },
+  "interactions": {
+    "equalAnswerCorrect": true,
+    "keyboardCrossedD": 270,
+    "oppositeAngleACB": 52,
+    "oppositeAngleADB": 128,
+    "oppositeSum": 180,
+    "oppositeRelation": "supplementary",
+    "supplementaryAnswerCorrect": true,
+    "resetRestoredDefaults": true
+  },
+  "desktop": {
+    "viewport": [970, 1712],
+    "hero": [90, 229],
+    "tabs": [239, 291],
+    "explore": [318, 740],
+    "proof": [754, 842],
+    "cards": [856, 1189],
+    "challenge": [1203, 1326],
+    "goal": [1340, 1379],
+    "navigation": [1397, 1433]
+  },
+  "mobile": {
+    "viewport": [390, 844],
+    "documentWidth": 375,
+    "draggableHandles": 2,
+    "buttons": 8,
+    "cards": 3,
+    "horizontalOverflow": false
+  },
+  "console": { "warnings": 0, "errors": 0 }
+}
