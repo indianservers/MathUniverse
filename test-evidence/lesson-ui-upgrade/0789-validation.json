@@ -1,0 +1,24 @@
+{
+  "mockup": "0789",
+  "lessonId": 10115,
+  "route": "/lessons/school/class-11/class-11-relations-and-functions-transitive-relations",
+  "surface": "TransitiveRelationsTargetLesson10115",
+  "objectModel": "dedicated-transitive-closure-path-witness-engine",
+  "desktopViewport": { "width": 1680, "height": 941 },
+  "mobileViewport": { "width": 390, "height": 844 },
+  "default": {
+    "pairs": ["a,b", "b,c"],
+    "witnesses": ["a,c"],
+    "transitive": false
+  },
+  "interactions": {
+    "repairAndCheck": { "pairCount": 3, "transitive": true, "checked": true },
+    "nodeInputCA": { "pairCount": 3, "witnesses": ["a,c", "b,a", "c,b"] },
+    "cycleClosure": { "pairCount": 9, "transitive": true },
+    "matrixCells": 9,
+    "removableGraphArrows": true,
+    "instructions": true,
+    "reset": true
+  },
+  "status": "complete"
+}

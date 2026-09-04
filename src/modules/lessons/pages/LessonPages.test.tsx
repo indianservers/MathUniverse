@@ -3285,6 +3285,29 @@ describe("lesson pages", () => {
     expect(html).toContain("Complete symmetric pair (3,1)");
   });
 
+  it("renders the dedicated transitive closure lab for lesson 10115", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-11/class-11-relations-and-functions-transitive-relations",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0789"');
+    expect(html).toContain("dedicated-transitive-closure-path-witness-engine");
+    expect(html).toContain('data-pair-count="2"');
+    expect(html).toContain('data-witnesses="a,c"');
+    expect(html).toContain('data-transitive="false"');
+    expect(html).toContain("Add a → c");
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
