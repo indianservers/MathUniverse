@@ -1,0 +1,37 @@
+{
+  "mockup": "0825",
+  "lessonId": 10151,
+  "route": "/lessons/school/class-11/class-11-conic-sections-conic-identification-from-general-equation",
+  "objectModel": "dedicated-general-conic-discriminant-and-contour-engine",
+  "reference": "0825-reference.png",
+  "desktop": {
+    "viewport": { "width": 1687, "height": 949 },
+    "clientWidth": 1672,
+    "scrollWidth": 1672,
+    "overflow": false,
+    "classification": "HYPERBOLA",
+    "discriminant": 16,
+    "rotationDegrees": 13.283,
+    "center": [-0.25, -0.75],
+    "contourPathLength": 5611,
+    "visibleErrorSurfaces": 0
+  },
+  "mobile": {
+    "viewport": { "width": 390, "height": 811 },
+    "clientWidth": 375,
+    "scrollWidth": 375,
+    "overflow": false,
+    "controlCount": 10,
+    "clippedControls": 0
+  },
+  "interactions": {
+    "coefficientEdit": { "A": 1, "B": 0, "C": 1, "classification": "ELLIPSE-TYPE", "discriminant": -4 },
+    "principalAxesView": true,
+    "zoom": true,
+    "animation": { "runningF": 2.25, "paused": true },
+    "clear": { "values": [0, 0, 0, 0, 0, 0], "classification": "ALL PLANE" },
+    "randomExample": { "classification": "ELLIPSE-TYPE", "nonemptyContour": true },
+    "workedExampleLoading": true,
+    "resetView": true
+  }
+}

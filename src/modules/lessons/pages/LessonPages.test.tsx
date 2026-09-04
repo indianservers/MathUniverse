@@ -4046,6 +4046,16 @@ describe("lesson pages", () => {
     expect(html).toContain('data-verified="1.0000"');
   });
 
+  it("renders the dedicated general conic classifier for lesson 10151", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/school/class-11/class-11-conic-sections-conic-identification-from-general-equation"]}><Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="school-mockup-0825"');
+    expect(html).toContain("dedicated-general-conic-discriminant-and-contour-engine");
+    expect(html).toContain('data-classification="HYPERBOLA"');
+    expect(html).toContain('data-discriminant="16"');
+    expect(html).toContain("Coefficient A");
+    expect(html).toContain("Principal axes (u, v)");
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

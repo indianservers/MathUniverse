@@ -130,6 +130,7 @@ import ParabolaTangentTargetLesson10147 from "../schoolTargets/ParabolaTangentTa
 import ParabolaNormalTargetLesson10148 from "../schoolTargets/ParabolaNormalTargetLesson10148";
 import EllipseTangentTargetLesson10149 from "../schoolTargets/EllipseTangentTargetLesson10149";
 import HyperbolaTangentTargetLesson10150 from "../schoolTargets/HyperbolaTangentTargetLesson10150";
+import ConicIdentificationTargetLesson10151 from "../schoolTargets/ConicIdentificationTargetLesson10151";
 import PlaceValueTargetLesson10001 from "../schoolTargets/PlaceValueTargetLesson10001";
 import NumberNamingTargetLesson10002 from "../schoolTargets/NumberNamingTargetLesson10002";
 import EstimationRoundingTargetLesson10003 from "../schoolTargets/EstimationRoundingTargetLesson10003";
@@ -417,6 +418,8 @@ function SchoolLessonBody({
     return <EllipseTangentTargetLesson10149 lesson={lesson} />;
   if (lesson.numericId === 10150)
     return <HyperbolaTangentTargetLesson10150 lesson={lesson} />;
+  if (lesson.numericId === 10151)
+    return <ConicIdentificationTargetLesson10151 lesson={lesson} />;
   if (lesson.numericId === 10001)
     return <PlaceValueTargetLesson10001 lesson={lesson} />;
   if (lesson.numericId === 10002)
