@@ -1,0 +1,53 @@
+{
+  "mockup": "0805",
+  "lessonId": 10131,
+  "route": "/lessons/school/class-11/class-11-mathematical-induction-divisibility-by-induction",
+  "surface": "DivisibilityInductionTargetLesson10131",
+  "objectModel": "dedicated-divisibility-induction-remainder-engine",
+  "referencePixels": { "width": 1672, "height": 941 },
+  "desktopCapturePixels": { "width": 1665, "height": 932 },
+  "mobileCapturePixels": { "width": 375, "height": 811 },
+  "default": {
+    "step": 1,
+    "base": true,
+    "hypothesis": "k",
+    "hypothesisValid": true,
+    "sampleN": 1,
+    "sampleValue": 6,
+    "quotient": 1,
+    "remainder": 0,
+    "theoremProved": true
+  },
+  "interactions": {
+    "falseBase": { "base": false, "theoremProved": false },
+    "fixedExampleHypothesis": {
+      "base": true,
+      "hypothesis": "2",
+      "hypothesisValid": false,
+      "theoremProved": false
+    },
+    "restoreHypothesis": {
+      "hypothesis": "k",
+      "hypothesisValid": true,
+      "theoremProved": true
+    },
+    "remainderNFour": {
+      "step": 3,
+      "sampleN": 4,
+      "sampleValue": 2400,
+      "quotient": 400,
+      "remainder": 0
+    },
+    "exactLanguage": { "visible": true },
+    "reset": {
+      "step": 1,
+      "base": true,
+      "hypothesis": "k",
+      "sampleN": 1,
+      "theoremProved": true
+    }
+  },
+  "mobileLayout": { "clientWidth": 375, "scrollWidth": 375 },
+  "consoleErrors": 0,
+  "status": "complete"
+}

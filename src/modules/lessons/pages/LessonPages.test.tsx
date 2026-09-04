@@ -3658,6 +3658,28 @@ describe("lesson pages", () => {
     expect(html).toContain('data-proof-valid="false"');
   });
 
+  it("renders the dedicated divisibility induction lab for lesson 10131", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-11/class-11-mathematical-induction-divisibility-by-induction",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0805"');
+    expect(html).toContain("dedicated-divisibility-induction-remainder-engine");
+    expect(html).toContain('data-sample-value="6"');
+    expect(html).toContain('data-remainder="0"');
+    expect(html).toContain('data-theorem-proved="true"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
