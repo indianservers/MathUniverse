@@ -3611,6 +3611,30 @@ describe("lesson pages", () => {
     expect(html).toContain('data-conclusion="true"');
   });
 
+  it("renders the dedicated induction base-step lab for lesson 10129", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-11/class-11-mathematical-induction-base-case-and-inductive-step",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0803"');
+    expect(html).toContain("dedicated-gated-induction-algebra-engine");
+    expect(html).toContain('data-base="true"');
+    expect(html).toContain('data-proof-valid="false"');
+    expect(html).toContain('data-old-dots="25"');
+    expect(html).toContain('data-added-dots="11"');
+    expect(html).toContain('data-total-dots="36"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

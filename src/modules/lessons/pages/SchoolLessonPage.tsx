@@ -103,6 +103,7 @@ import TrigTransformTargetLesson10125 from "../schoolTargets/TrigTransformTarget
 import TrigGeneralSolutionsTargetLesson10126 from "../schoolTargets/TrigGeneralSolutionsTargetLesson10126";
 import PrincipalSolutionsTargetLesson10127 from "../schoolTargets/PrincipalSolutionsTargetLesson10127";
 import InductionLogicTargetLesson10128 from "../schoolTargets/InductionLogicTargetLesson10128";
+import InductionBaseStepTargetLesson10129 from "../schoolTargets/InductionBaseStepTargetLesson10129";
 import PlaceValueTargetLesson10001 from "../schoolTargets/PlaceValueTargetLesson10001";
 import NumberNamingTargetLesson10002 from "../schoolTargets/NumberNamingTargetLesson10002";
 import EstimationRoundingTargetLesson10003 from "../schoolTargets/EstimationRoundingTargetLesson10003";
@@ -330,6 +331,8 @@ export default function SchoolLessonPage() {
     return <PrincipalSolutionsTargetLesson10127 lesson={lesson} />;
   if (lesson.numericId === 10128)
     return <InductionLogicTargetLesson10128 lesson={lesson} />;
+  if (lesson.numericId === 10129)
+    return <InductionBaseStepTargetLesson10129 lesson={lesson} />;
   if (lesson.numericId === 10001)
     return <PlaceValueTargetLesson10001 lesson={lesson} />;
   if (lesson.numericId === 10002)

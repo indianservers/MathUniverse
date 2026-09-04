@@ -1,0 +1,50 @@
+{
+  "mockup": "0803",
+  "lessonId": 10129,
+  "route": "/lessons/school/class-11/class-11-mathematical-induction-base-case-and-inductive-step",
+  "surface": "InductionBaseStepTargetLesson10129",
+  "objectModel": "dedicated-gated-induction-algebra-engine",
+  "referencePixels": { "width": 1672, "height": 941 },
+  "desktopCapturePixels": { "width": 1265, "height": 712 },
+  "mobileCapturePixels": { "width": 375, "height": 811 },
+  "default": {
+    "base": true,
+    "hypothesis": false,
+    "expansion": false,
+    "square": false,
+    "proofValid": false,
+    "complete": false,
+    "k": 5,
+    "oldDots": 25,
+    "addedDots": 11,
+    "totalDots": 36
+  },
+  "interactions": {
+    "invalidHypothesis": { "expression": "k", "hypothesis": false },
+    "hypothesisValid": { "expression": "k^2", "hypothesis": true },
+    "expansionValid": {
+      "expression": "k^2 + 2k + 1",
+      "expansion": true
+    },
+    "proofValid": {
+      "expression": "(k + 1)^2",
+      "square": true,
+      "proofValid": true
+    },
+    "kSix": { "k": 6, "oldDots": 36, "addedDots": 13, "totalDots": 49 },
+    "complete": { "complete": true },
+    "reset": {
+      "base": true,
+      "hypothesis": false,
+      "expansion": false,
+      "square": false,
+      "proofValid": false,
+      "complete": false,
+      "k": 5,
+      "oldDots": 25,
+      "addedDots": 11,
+      "totalDots": 36
+    }
+  },
+  "status": "complete"
+}
