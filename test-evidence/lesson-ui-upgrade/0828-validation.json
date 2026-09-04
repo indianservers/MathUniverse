@@ -1,0 +1,46 @@
+{
+  "mockup": "0828",
+  "lessonId": 10154,
+  "route": "/lessons/school/class-12/class-12-three-dimensional-geometry-line-through-two-points-in-3d",
+  "objectModel": "dedicated-draggable-two-point-3d-line-engine",
+  "reference": "0828-reference.png",
+  "default": {
+    "pointA": [1, 2, 3],
+    "pointB": [4, 6, 5],
+    "direction": [3, 4, 2],
+    "parameter": 2,
+    "pointOnLine": [7, 10, 7],
+    "magnitude": 5.3852,
+    "collinear": true
+  },
+  "desktop": {
+    "viewport": { "width": 914, "height": 1720 },
+    "clientWidth": 899,
+    "scrollWidth": 899,
+    "overflow": false,
+    "sidebarWidth": 174,
+    "lessonBox": { "x": 188, "y": 88.8, "width": 711.2, "height": 1573.49 },
+    "visibleErrorSurfaces": 0
+  },
+  "mobile": {
+    "viewport": { "width": 390, "height": 811 },
+    "clientWidth": 375,
+    "scrollWidth": 375,
+    "overflow": false,
+    "lessonWidth": 347.2,
+    "controls": 14,
+    "clippedControls": 0
+  },
+  "interactions": {
+    "editedPointB": [5, 7, 9],
+    "editedDirection": [4, 5, 6],
+    "editedMagnitude": 8.775,
+    "pointAtT2": [9, 12, 15],
+    "continuousParameter": { "t": 1.5, "point": [5.5, 8, 6] },
+    "camera": ["rotate", "pan", "zoom", "fit"],
+    "axesHidden": true,
+    "keyboardPointMovementDirection": [5, 5, 6],
+    "resetAllState": true,
+    "svgSelectorCollisionRepaired": true
+  }
+}

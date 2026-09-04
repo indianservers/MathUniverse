@@ -4076,6 +4076,16 @@ describe("lesson pages", () => {
     expect(html).toContain("Interactive direction cosines unit sphere");
   });
 
+  it("renders the dedicated line-through-two-points 3D constructor for lesson 10154", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/school/class-12/class-12-three-dimensional-geometry-line-through-two-points-in-3d"]}><Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="school-mockup-0828"');
+    expect(html).toContain("dedicated-draggable-two-point-3d-line-engine");
+    expect(html).toContain('data-direction="3,4,2"');
+    expect(html).toContain('data-point="7,10,7"');
+    expect(html).toContain("Draggable point A");
+    expect(html).toContain("AP = td");
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
