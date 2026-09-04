@@ -1,0 +1,72 @@
+{
+  "mockup": "0846",
+  "lessonId": 10172,
+  "route": "/lessons/school/class-12/class-12-formal-calculus-rolle-s-theorem",
+  "objectModel": "dedicated-rolle-endpoint-stationary-point-engine",
+  "reference": "0846-reference.png",
+  "default": {
+    "function": "x^2-4x+3",
+    "interval": [1, 3],
+    "endpointValues": [0, 0],
+    "endpointsEqual": true,
+    "secantSlope": 0,
+    "stationaryPoint": 2,
+    "derivativeAtC": 0,
+    "eligible": true
+  },
+  "desktop": {
+    "targetWidth": 916,
+    "targetHeight": 1718,
+    "clientWidth": 901,
+    "scrollWidth": 901,
+    "horizontalOverflow": false,
+    "lessonFrame": {
+      "x": 198,
+      "y": 90.8,
+      "width": 688.8,
+      "height": 1618.4,
+      "bottom": 1709.2
+    },
+    "controlsChecked": 17,
+    "genericSectionsReplaced": true,
+    "visibleErrorSurfaces": 0
+  },
+  "mobile": {
+    "viewportWidth": 390,
+    "clientWidth": 375,
+    "scrollWidth": 375,
+    "horizontalOverflow": false,
+    "lessonWidth": 347.2,
+    "clippedControls": 0,
+    "controlsChecked": 17,
+    "visibleErrorSurfaces": 0
+  },
+  "interactions": {
+    "asymmetricInterval": {
+      "interval": [0, 3],
+      "endpointsEqual": false,
+      "secantSlope": -1,
+      "eligible": false
+    },
+    "symmetricInterval": {
+      "interval": [0.5, 3.5],
+      "endpointsEqual": true,
+      "secantSlope": 0,
+      "stationaryPoint": 2,
+      "eligible": true
+    },
+    "keyboardEndpointMovement": [0.6, 3.5],
+    "horizontalTangentHidden": true,
+    "failureTab2Shown": true,
+    "practiceRevealed": true,
+    "quadraticSolver": {
+      "coefficients": [1, -6, 8],
+      "interval": [1, 5],
+      "stationaryPoint": 3,
+      "derivativeAtC": 0,
+      "verified": true
+    },
+    "invalidSolverInterval": [1, 4],
+    "invalidSolverRejected": true
+  }
+}

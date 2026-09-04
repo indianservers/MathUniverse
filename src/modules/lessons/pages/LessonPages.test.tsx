@@ -4243,6 +4243,15 @@ describe("lesson pages", () => {
     expect(html).toContain('data-differentiable="false"');
   });
 
+  it("renders the dedicated Rolle theorem engine for lesson 10172", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/school/class-12/class-12-formal-calculus-rolle-s-theorem"]}><Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="school-mockup-0846"');
+    expect(html).toContain("dedicated-rolle-endpoint-stationary-point-engine");
+    expect(html).toContain('data-interval="[1, 3]"');
+    expect(html).toContain('data-endpoints-equal="true"');
+    expect(html).toContain('data-c="2"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
