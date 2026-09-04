@@ -1,0 +1,62 @@
+{
+  "lessonId": 10105,
+  "mockup": 779,
+  "route": "/lessons/school/class-10/class-10-statistics-less-than-cumulative-frequency",
+  "objectModel": "dedicated-less-than-cumulative-ogive-engine",
+  "reference": "0779-reference.png",
+  "captures": {
+    "desktop": "0779-desktop.png",
+    "mobile": "0779-mobile.png"
+  },
+  "desktop": {
+    "viewport": [1680, 941],
+    "root": { "x": 301.4, "width": 1350 },
+    "bands": {
+      "hero": [99, 249],
+      "workspace": [255, 675],
+      "warning": [683, 739],
+      "try": [748, 844],
+      "lessonFooter": [854, 940]
+    },
+    "horizontalOverflow": false
+  },
+  "mobile": {
+    "viewport": [390, 844],
+    "frequencyHandles": 6,
+    "checkboxes": 2,
+    "tableOverflow": "internal",
+    "documentOverflow": false
+  },
+  "states": {
+    "default": {
+      "frequencies": [4, 3, 5, 6, 7, 5],
+      "cumulative": [4, 7, 12, 18, 25, 30],
+      "total": 30,
+      "showValues": true,
+      "showPoints": true
+    },
+    "keyboardRow3Up": {
+      "frequencies": [4, 3, 6, 6, 7, 5],
+      "cumulative": [4, 7, 13, 19, 26, 31],
+      "total": 31
+    },
+    "pointerRow3Up": {
+      "frequencies": [4, 3, 9, 6, 7, 5],
+      "cumulative": [4, 7, 16, 22, 29, 34],
+      "total": 34
+    },
+    "layersHidden": { "showValues": false, "showPoints": false },
+    "randomizeCycle1": {
+      "frequencies": [5, 2, 7, 4, 9, 6],
+      "cumulative": [5, 7, 14, 18, 27, 33],
+      "total": 33
+    },
+    "reset": {
+      "frequencies": [4, 3, 5, 6, 7, 5],
+      "cumulative": [4, 7, 12, 18, 25, 30],
+      "total": 30,
+      "showValues": true,
+      "showPoints": true
+    }
+  }
+}
