@@ -154,6 +154,7 @@ import DifferentiabilityContinuityTargetLesson10171 from "../schoolTargets/Diffe
 import RollesTheoremTargetLesson10172 from "../schoolTargets/RollesTheoremTargetLesson10172";
 import LagrangeMvtTargetLesson10173 from "../schoolTargets/LagrangeMvtTargetLesson10173";
 import RateOfChangeTargetLesson10174 from "../schoolTargets/RateOfChangeTargetLesson10174";
+import TangentsNormalsTargetLesson10175 from "../schoolTargets/TangentsNormalsTargetLesson10175";
 import PlaceValueTargetLesson10001 from "../schoolTargets/PlaceValueTargetLesson10001";
 import NumberNamingTargetLesson10002 from "../schoolTargets/NumberNamingTargetLesson10002";
 import EstimationRoundingTargetLesson10003 from "../schoolTargets/EstimationRoundingTargetLesson10003";
@@ -489,6 +490,8 @@ function SchoolLessonBody({
     return <LagrangeMvtTargetLesson10173 lesson={lesson} />;
   if (lesson.numericId === 10174)
     return <RateOfChangeTargetLesson10174 lesson={lesson} />;
+  if (lesson.numericId === 10175)
+    return <TangentsNormalsTargetLesson10175 lesson={lesson} />;
   if (lesson.numericId === 10001)
     return <PlaceValueTargetLesson10001 lesson={lesson} />;
   if (lesson.numericId === 10002)

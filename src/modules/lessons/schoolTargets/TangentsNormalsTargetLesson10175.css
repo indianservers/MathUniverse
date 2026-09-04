@@ -1,0 +1,336 @@
+.tn10175-page {
+  position: relative;
+  top: -22px;
+  width: min(722px, 100%);
+  margin: 0;
+  color: #29374b;
+  font:
+    8px/1.45 Inter,
+    Arial,
+    sans-serif;
+  letter-spacing: 0;
+}
+.tn10175-page:before {
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  background: #effaff;
+  content: "";
+}
+.tn10175-page * {
+  box-sizing: border-box;
+}
+.tn10175-page h1,
+.tn10175-page h3,
+.tn10175-page h4,
+.tn10175-page p {
+  margin: 0;
+}
+.tn10175-page button,
+.tn10175-page input {
+  font: inherit;
+  color: inherit;
+}
+.tn10175-page button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 5px 8px;
+  border: 1px solid #d4e1e7;
+  border-radius: 5px;
+  background: #fff;
+  cursor: pointer;
+}
+.tn10175-page button svg {
+  width: 11px;
+  height: 11px;
+}
+.tn10175-page > header {
+  height: 127px;
+  padding: 15px;
+  border-radius: 14px;
+  background: #fff;
+}
+.tn10175-page > header small,
+.tn10175-page h3 {
+  color: #0084b8;
+  font-weight: 900;
+}
+.tn10175-page > header h1 {
+  margin: 5px 0;
+  color: #111827;
+  font-size: 20px;
+}
+.tn10175-page > header > div {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+}
+.tn10175-page > header span {
+  padding: 3px 8px;
+  border-radius: 10px;
+  background: #edf2f5;
+  font-weight: 800;
+}
+.tn-lab,
+.tn-pair article,
+.tn-explain article,
+.tn-practice article,
+.tn-arc,
+.tn10175-page > footer {
+  border: 1px solid #d8e6eb;
+  border-radius: 8px;
+  background: #fff;
+}
+.tn-lab {
+  display: grid;
+  height: 407px;
+  grid-template-columns: 122px 1fr 242px;
+  gap: 7px;
+  margin-top: 9px;
+  padding: 8px;
+}
+.tn-lab > aside section {
+  padding: 9px;
+  border: 1px solid #d8e4e9;
+  border-radius: 6px;
+}
+.tn-lab > aside section + section {
+  margin-top: 8px;
+}
+.tn-lab > aside label {
+  display: block;
+  margin: 8px 0;
+}
+.tn-lab > aside input {
+  vertical-align: middle;
+  accent-color: #176fef;
+}
+.tn-lab > aside output {
+  display: block;
+  text-align: center;
+}
+.tn-lab > article {
+  overflow: hidden;
+}
+.tn-lab > article svg {
+  width: 100%;
+  height: 390px;
+  transform-origin: center;
+}
+.tn-lab svg text {
+  font:
+    10px Inter,
+    Arial;
+}
+.tn-lab > aside:last-child section {
+  min-height: 112px;
+}
+.tn-lab > aside:last-child strong {
+  display: block;
+  margin: 15px 0;
+  font:
+    10px Georgia,
+    serif;
+}
+.tn-green {
+  border-color: #7fd2a9 !important;
+  background: #f1faf6 !important;
+}
+.tn-red {
+  border-color: #f3a5a5 !important;
+  background: #fff5f5 !important;
+}
+.tn-red h3 {
+  color: #e1353d;
+}
+.tn-lab ul {
+  padding-left: 17px;
+}
+.tn-pair {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 9px;
+  margin-top: 9px;
+}
+.tn-pair article {
+  min-height: 315px;
+  padding: 11px;
+}
+.tn-pair h4 {
+  margin-top: 12px;
+}
+.tn-pair p {
+  margin: 8px 0;
+}
+.tn-pair article:first-child > b {
+  display: block;
+  padding: 7px;
+  border: 1px solid #69cb91;
+  border-radius: 5px;
+  color: #07814e;
+}
+.tn-pair article:first-child > .red {
+  border-color: #f17171;
+  color: #d92935;
+}
+.tn10175-page table {
+  width: 100%;
+  margin-top: 8px;
+  border-collapse: collapse;
+  text-align: center;
+}
+.tn10175-page th,
+.tn10175-page td {
+  padding: 5px;
+  border: 1px solid #b7b5d0;
+}
+.tn-pair article:last-child > b {
+  display: block;
+  margin-top: 12px;
+  padding: 9px;
+  border: 1px solid #edce84;
+  border-radius: 6px;
+  background: #fff9e9;
+}
+.tn-explain {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 9px;
+  margin-top: 9px;
+}
+.tn-explain article {
+  min-height: 198px;
+  padding: 11px;
+}
+.tn-explain p {
+  margin: 10px 0;
+}
+.tn-explain article:first-child {
+  border-color: #9fd5f0;
+}
+.tn-explain article:first-child > b {
+  display: block;
+  color: #087d52;
+}
+.tn-explain article:last-child {
+  border-color: #efaaa5;
+  background: #fffafa;
+}
+.tn-explain article:last-child h3 {
+  color: #d33c3c;
+}
+.tn-practice {
+  display: grid;
+  grid-template-columns: 2.1fr 1fr;
+  gap: 9px;
+  margin-top: 9px;
+}
+.tn-practice article {
+  min-height: 217px;
+  padding: 10px;
+}
+.tn-practice article:last-child label {
+  display: grid;
+  margin: 10px 0;
+}
+.tn-practice article:last-child input {
+  width: 100%;
+  accent-color: #176fed;
+}
+.tn-practice article:last-child output {
+  display: block;
+  margin: 9px 0;
+  padding: 7px;
+  border: 1px solid #b8daeb;
+  border-radius: 5px;
+}
+.tn-arc {
+  min-height: 103px;
+  margin-top: 9px;
+  padding: 11px;
+}
+.tn-arc > div {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  gap: 8px;
+  margin-top: 9px;
+}
+.tn-arc span {
+  max-width: 115px;
+}
+.tn10175-page > footer {
+  min-height: 107px;
+  margin-top: 20px;
+  padding: 11px;
+}
+.tn10175-page > footer b {
+  font-size: 10px;
+}
+.tn10175-page > footer p {
+  margin: 5px 0 14px;
+  color: #627185;
+}
+body:has(.tn10175-page) [data-testid="desktop-sidebar"] {
+  display: flex !important;
+  width: 190px !important;
+}
+body:has(.tn10175-page) #main-content {
+  margin-left: 0 !important;
+  padding: 0 14px !important;
+}
+body:has(.tn10175-page) #main-content > div {
+  max-width: none !important;
+}
+body:has(.tn10175-page) nav[aria-label="Breadcrumb"] {
+  height: 34px !important;
+  min-height: 34px !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  font-size: 7px !important;
+}
+body:has(.tn10175-page) #lesson-section-interaction ~ * {
+  display: none !important;
+}
+@media (max-width: 700px) {
+  body:has(.tn10175-page) [data-testid="desktop-sidebar"] {
+    display: none !important;
+  }
+  .tn10175-page {
+    top: 0;
+    width: 100%;
+    padding: 6px;
+  }
+  .tn10175-page > header {
+    height: auto;
+  }
+  .tn-lab,
+  .tn-pair,
+  .tn-explain,
+  .tn-practice {
+    display: block;
+    height: auto;
+  }
+  .tn-lab > *,
+  .tn-pair > *,
+  .tn-explain > *,
+  .tn-practice > * {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+  .tn-lab > article svg {
+    height: 300px;
+  }
+  .tn-pair article,
+  .tn-explain article,
+  .tn-practice article {
+    min-height: 0;
+  }
+  .tn-arc > div {
+    grid-template-columns: 1fr 1fr;
+  }
+  .tn-arc span {
+    max-width: none;
+  }
+}

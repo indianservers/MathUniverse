@@ -1,0 +1,62 @@
+{
+  "mockup": "0849",
+  "lessonId": 10175,
+  "route": "/lessons/school/class-12/class-12-formal-calculus-tangents-and-normals",
+  "objectModel": "dedicated-tangent-normal-secant-limit-engine",
+  "reference": "0849-reference.png",
+  "default": {
+    "function": "x^2",
+    "x0": 1,
+    "q": 1.5,
+    "tangentSlope": 2,
+    "normalSlope": -0.5,
+    "secantSlope": 2.5
+  },
+  "desktop": {
+    "targetWidth": 953,
+    "targetHeight": 1651,
+    "clientWidth": 938,
+    "scrollWidth": 938,
+    "horizontalOverflow": false,
+    "lessonFrame": {
+      "x": 204,
+      "y": 90.8,
+      "width": 720.4,
+      "height": 1539,
+      "bottom": 1629.8
+    },
+    "controlsChecked": 13,
+    "genericSectionsReplaced": true,
+    "browserErrorLogs": 0
+  },
+  "mobile": {
+    "viewportWidth": 390,
+    "clientWidth": 375,
+    "scrollWidth": 375,
+    "horizontalOverflow": false,
+    "lessonWidth": 347.2,
+    "clippedControls": 0,
+    "controlsChecked": 13,
+    "visibleErrorSurfaces": 0
+  },
+  "interactions": {
+    "changedState": {
+      "x0": 2,
+      "q": 2.5,
+      "tangentSlope": 4,
+      "normalSlope": -0.25,
+      "secantSlope": 4.5
+    },
+    "keyboardQ": 2.49,
+    "allFiveLayersHidden": true,
+    "graphZoom": 1.1,
+    "resetAllState": true,
+    "zeroSlopeCase": {
+      "x0": 0,
+      "tangentSlope": 0,
+      "normal": "vertical",
+      "equation": "x=0"
+    },
+    "coincidentSecantUsesLimit": true
+  }
+}

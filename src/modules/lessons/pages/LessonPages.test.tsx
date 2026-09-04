@@ -4273,6 +4273,17 @@ describe("lesson pages", () => {
     expect(html).toContain('data-rates-match="true"');
   });
 
+  it("renders the dedicated tangents and normals engine for lesson 10175", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/school/class-12/class-12-formal-calculus-tangents-and-normals"]}><Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="school-mockup-0849"');
+    expect(html).toContain("dedicated-tangent-normal-secant-limit-engine");
+    expect(html).toContain('data-x0="1"');
+    expect(html).toContain('data-q="1.5"');
+    expect(html).toContain('data-tangent-slope="2"');
+    expect(html).toContain('data-normal-slope="-0.5"');
+    expect(html).toContain('data-secant-slope="2.5"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
