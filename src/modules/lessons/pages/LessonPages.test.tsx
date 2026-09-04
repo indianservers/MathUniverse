@@ -4135,6 +4135,15 @@ describe("lesson pages", () => {
     expect(html).toContain("EQUATION DERIVATION");
   });
 
+  it("renders the dedicated point-normal displacement engine for lesson 10160", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/school/class-12/class-12-three-dimensional-geometry-point-normal-form"]}><Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="school-mockup-0834"');
+    expect(html).toContain("dedicated-point-normal-displacement-orthogonality-engine");
+    expect(html).toContain('data-equation="2x + y - z + 3 = 0"');
+    expect(html).toContain('data-residual="1.4"');
+    expect(html).toContain('data-on-plane="false"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

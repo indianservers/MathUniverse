@@ -1,0 +1,41 @@
+{
+  "mockup": "0834",
+  "lessonId": 10160,
+  "route": "/lessons/school/class-12/class-12-three-dimensional-geometry-point-normal-form",
+  "objectModel": "dedicated-point-normal-displacement-orthogonality-engine",
+  "reference": "0834-reference.png",
+  "mockupCorrection": "R=(0.4,-0.6,1.8) has residual 1.4, so it is off 2x+y-z+3=0 rather than on the plane.",
+  "default": {
+    "planePoint": [1, -2, 3],
+    "normal": [2, 1, -1],
+    "testPoint": [0.4, -0.6, 1.8],
+    "equation": "2x + y - z + 3 = 0",
+    "residual": 1.4,
+    "distance": 0.5715,
+    "onPlane": false
+  },
+  "desktop": {
+    "targetWidth": 912,
+    "targetHeight": 1724,
+    "clientWidth": 897,
+    "scrollWidth": 897,
+    "horizontalOverflow": false,
+    "sidebarWidth": 176,
+    "lessonFrame": { "x": 190, "y": 88.8, "width": 703, "height": 1634.4, "bottom": 1723.2 },
+    "visibleErrorSurfaces": 0
+  },
+  "mobile": { "viewportWidth": 390, "clientWidth": 375, "scrollWidth": 375, "horizontalOverflow": false, "lessonWidth": 347.2, "clippedControls": 0, "controlsChecked": 31 },
+  "interactions": {
+    "onPlanePreset": { "point": [2, -4, 3], "residual": 0, "distance": 0 },
+    "positiveOffset": { "point": [3, -1, 2], "residual": 6, "distance": 2.4495 },
+    "negativeOffset": { "point": [-1, -3, 4], "residual": -6, "distance": 2.4495 },
+    "randomPreset": { "point": [-1.25, 0.5, 2.25], "residual": -1.25, "distance": 0.5103 },
+    "reversedNormalEquation": "-2x - y + z - 3 = 0",
+    "movedAnchor": { "point": [0.6, -0.6, 2], "residual": 1.6, "distance": 0.6532 },
+    "fourPracticeGradersPassed": true,
+    "zeroNormalRejected": true,
+    "cameraRotationDegrees": 18,
+    "cameraHitTargetRepaired": true,
+    "resetAllState": true
+  }
+}
