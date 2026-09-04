@@ -1,0 +1,63 @@
+{
+  "mockup": "0853",
+  "lessonId": 10179,
+  "route": "/lessons/school/class-12/class-12-formal-calculus-approximation-using-differentials",
+  "objectModel": "dedicated-differential-linearization-engine",
+  "reference": "0853-reference.png",
+  "default": {
+    "function": "sqrt(x)",
+    "base": 4,
+    "dx": 0.1,
+    "actual": 2.02485,
+    "differential": 0.025,
+    "approximation": 2.025,
+    "absoluteError": 0.00015
+  },
+  "desktop": {
+    "targetWidth": 946,
+    "targetHeight": 1663,
+    "clientWidth": 931,
+    "scrollWidth": 931,
+    "horizontalOverflow": false,
+    "lessonFrame": {
+      "x": 202,
+      "y": 90.8,
+      "width": 715.2,
+      "height": 1552.8,
+      "bottom": 1643.6
+    },
+    "controlsChecked": 21,
+    "genericSectionsReplaced": true,
+    "browserErrorLogs": 0
+  },
+  "mobile": {
+    "viewportWidth": 390,
+    "clientWidth": 375,
+    "scrollWidth": 375,
+    "horizontalOverflow": false,
+    "lessonWidth": 347.2,
+    "clippedControls": 0,
+    "controlsChecked": 21,
+    "visibleErrorSurfaces": 0
+  },
+  "interactions": {
+    "changedState": {
+      "base": 9,
+      "dx": 0.2,
+      "actual": 3.03315,
+      "differential": 0.03333,
+      "approximation": 3.03333,
+      "absoluteError": 0.00018
+    },
+    "keyboardDx": 0.21,
+    "animatedDx": 0.008,
+    "animationSpeed": 4,
+    "graphZoom": 1.1,
+    "fitRestored": true,
+    "resetAllState": true,
+    "practiceWrongRejected": true,
+    "cubeRootEstimate": 3.01111,
+    "practiceAccepted": true,
+    "nativePracticeTabSelected": true
+  }
+}

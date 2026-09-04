@@ -4313,6 +4313,16 @@ describe("lesson pages", () => {
     expect(html).toContain('data-absolute-minimum="-1"');
   });
 
+  it("renders the dedicated differential approximation engine for lesson 10179", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/school/class-12/class-12-formal-calculus-approximation-using-differentials"]}><Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="school-mockup-0853"');
+    expect(html).toContain("dedicated-differential-linearization-engine");
+    expect(html).toContain('data-base="4"');
+    expect(html).toContain('data-dx="0.1"');
+    expect(html).toContain('data-approximation="2.025"');
+    expect(html).toContain('data-actual="2.02485"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
