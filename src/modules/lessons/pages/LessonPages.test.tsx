@@ -3308,6 +3308,29 @@ describe("lesson pages", () => {
     expect(html).toContain("Add a → c");
   });
 
+  it("renders the dedicated equivalence relation partition lab for lesson 10116", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-11/class-11-relations-and-functions-equivalence-relations",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0790"');
+    expect(html).toContain("dedicated-equivalence-relation-partition-engine");
+    expect(html).toContain('data-pair-count="14"');
+    expect(html).toContain('data-equivalence="true"');
+    expect(html).toContain('data-classes="abc|de|f"');
+    expect(html).toContain("Total pairs = 14");
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

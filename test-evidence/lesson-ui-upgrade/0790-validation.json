@@ -1,0 +1,34 @@
+{
+  "mockup": "0790",
+  "lessonId": 10116,
+  "route": "/lessons/school/class-11/class-11-relations-and-functions-equivalence-relations",
+  "surface": "EquivalenceRelationsTargetLesson10116",
+  "objectModel": "dedicated-equivalence-relation-partition-engine",
+  "desktopViewport": { "width": 1680, "height": 941 },
+  "mobileViewport": { "width": 390, "height": 844 },
+  "default": {
+    "pairCount": 14,
+    "reflexive": true,
+    "symmetric": true,
+    "transitive": true,
+    "classes": ["abc", "de", "f"]
+  },
+  "interactions": {
+    "removeAA": { "reflexive": false, "equivalence": false, "classes": [] },
+    "removeAB": {
+      "symmetric": false,
+      "transitive": false,
+      "equivalence": false
+    },
+    "graphAddFA": { "pairCount": 15, "symmetric": false },
+    "clear": { "pairCount": 0, "equivalence": false },
+    "reset": {
+      "pairCount": 14,
+      "equivalence": true,
+      "classes": ["abc", "de", "f"]
+    },
+    "matrixCells": 36
+  },
+  "correction": "The target class blocks contain 9+4+1=14 ordered pairs, not the displayed 15.",
+  "status": "complete"
+}
