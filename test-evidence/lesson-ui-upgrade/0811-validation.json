@@ -1,0 +1,63 @@
+{
+  "mockup": "0811",
+  "lessonId": 10137,
+  "route": "/lessons/school/class-11/class-11-binomial-theorem-independent-term",
+  "surface": "BinomialIndependentTermTargetLesson10137",
+  "objectModel": "dedicated-binomial-exponent-zero-engine",
+  "referencePixels": { "width": 1672, "height": 941 },
+  "desktopCapturePixels": { "width": 1665, "height": 932 },
+  "mobileCapturePixels": { "width": 375, "height": 811 },
+  "default": {
+    "n": 6,
+    "a": 2,
+    "b": -3,
+    "m": 2,
+    "r": 2,
+    "constant": 2160,
+    "checkerR": 2,
+    "checkerExponent": 0,
+    "configurationValid": true
+  },
+  "interactions": {
+    "wrongChecker": {
+      "checkerR": 1,
+      "checkerExponent": 3,
+      "checkerValid": false
+    },
+    "noConstant": {
+      "n": 5,
+      "m": 2,
+      "r": "none",
+      "constant": "none",
+      "configurationValid": false
+    },
+    "repairedPower": {
+      "n": 5,
+      "m": 4,
+      "r": 1,
+      "constant": -240,
+      "checkerR": 1,
+      "checkerExponent": 0,
+      "checkerValid": true
+    },
+    "coefficientEdit": {
+      "a": 3,
+      "b": 2,
+      "r": 1,
+      "constant": 810,
+      "configurationValid": true
+    },
+    "reset": {
+      "n": 6,
+      "a": 2,
+      "b": -3,
+      "m": 2,
+      "r": 2,
+      "constant": 2160,
+      "checkerR": 2
+    }
+  },
+  "mobileLayout": { "clientWidth": 375, "scrollWidth": 375 },
+  "consoleErrors": 0,
+  "status": "complete"
+}

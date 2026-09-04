@@ -3797,6 +3797,30 @@ describe("lesson pages", () => {
     expect(html).toContain('data-middle-coefficients="20"');
   });
 
+  it("renders the dedicated binomial independent-term lab for lesson 10137", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-11/class-11-binomial-theorem-independent-term",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0811"');
+    expect(html).toContain("dedicated-binomial-exponent-zero-engine");
+    expect(html).toContain('data-n="6"');
+    expect(html).toContain('data-r="2"');
+    expect(html).toContain('data-constant="2160"');
+    expect(html).toContain('data-checker-exponent="0"');
+    expect(html).toContain('data-configuration-valid="true"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

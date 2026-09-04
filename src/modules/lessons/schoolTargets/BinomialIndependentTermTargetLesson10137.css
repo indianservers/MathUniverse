@@ -1,0 +1,327 @@
+.it10137-page {
+  position: relative;
+  top: -8px;
+  width: min(1368px, calc(100vw - 310px));
+  margin: auto;
+  color: #edf3fb;
+  background: #03152a;
+  font:
+    12px/1.45 Inter,
+    Arial,
+    sans-serif;
+  letter-spacing: 0;
+}
+.it10137-page:before {
+  position: fixed;
+  z-index: -1;
+  inset: 58px 0 0 283px;
+  background: #03152a;
+  content: "";
+}
+.it10137-page * {
+  box-sizing: border-box;
+}
+.it10137-page h1,
+.it10137-page h2,
+.it10137-page h3,
+.it10137-page p {
+  margin: 0;
+}
+.it10137-page button,
+.it10137-page input {
+  font: inherit;
+  color: inherit;
+}
+.it10137-page h2,
+.it10137-page h3,
+.it10137-page > header small {
+  color: #4dd6df;
+  font-weight: 900;
+}
+.it10137-page > header {
+  min-height: 152px;
+  padding: 17px 25px;
+  border: 1px solid #38516b;
+  border-radius: 8px;
+  background: #071a31;
+}
+.it10137-page > header h1 {
+  margin: 7px 0;
+  font-size: 27px;
+}
+.it10137-page > header p {
+  max-width: 900px;
+}
+.it10137-page > header > div {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+.it10137-page > header span {
+  padding: 5px 13px;
+  border-radius: 14px;
+  background: #182d50;
+  color: #82acef;
+  font-weight: 800;
+}
+.it10137-page > main {
+  margin-top: 12px;
+  padding: 14px;
+  border: 1px solid #38516b;
+  border-radius: 8px;
+  background: #071a31;
+}
+.it10137-page > main > header {
+  display: flex;
+  justify-content: space-between;
+}
+.it10137-page > main > header p {
+  margin-top: 7px;
+}
+.it10137-page > main > header p strong {
+  margin-left: 45px;
+  font: 20px Georgia;
+}
+.it10137-page > main > header button {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 13px;
+  border: 1px solid #405b77;
+  border-radius: 7px;
+  background: #0b1f37;
+}
+.it10137-page svg {
+  width: 17px;
+}
+.it10137-workspace {
+  display: grid;
+  grid-template-columns: 335px 1fr 430px;
+  gap: 14px;
+  margin-top: 12px;
+}
+.it10137-inputs,
+.it10137-steps,
+.it10137-check > section,
+.it10137-check > footer {
+  border: 1px solid #38516b;
+  border-radius: 8px;
+}
+.it10137-inputs > div {
+  padding: 12px;
+}
+.it10137-inputs label {
+  display: grid;
+  grid-template-columns: 1fr 135px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.it10137-inputs input {
+  padding: 7px;
+  border: 1px solid #38516b;
+  border-radius: 5px;
+  background: #0b1f37;
+}
+.it10137-inputs > section {
+  padding: 14px;
+  border-top: 1px solid #38516b;
+}
+.it10137-inputs > section > p {
+  margin-top: 13px;
+}
+.it10137-inputs > section > strong {
+  display: block;
+  margin-top: 5px;
+  font: 16px Georgia;
+}
+.it10137-inputs footer {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+  padding: 12px;
+  border: 1px solid;
+  border-radius: 7px;
+}
+.it10137-inputs footer div {
+  display: grid;
+}
+.it10137-page .valid {
+  border-color: #28c7ad !important;
+  color: #55dfc5;
+}
+.it10137-page .invalid {
+  border-color: #da6371 !important;
+  color: #ff979e;
+}
+.it10137-steps {
+  padding: 14px;
+}
+.it10137-steps ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.it10137-steps li {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 10px;
+  margin-top: 8px;
+}
+.it10137-steps li > b {
+  display: grid;
+  place-items: center;
+  width: 23px;
+  height: 23px;
+  border-radius: 50%;
+  background: #0d4b61;
+  color: #5be2e1;
+}
+.it10137-steps li p {
+  margin-top: 4px;
+  font: 16px Georgia;
+}
+.it10137-steps > footer {
+  margin-top: 11px;
+  padding: 10px;
+  border: 1px solid #38516b;
+  border-radius: 7px;
+  text-align: center;
+  font-size: 16px;
+}
+.it10137-steps > footer strong {
+  color: #45d6cd;
+  font-size: 26px;
+}
+.it10137-check {
+  display: grid;
+  gap: 10px;
+}
+.it10137-check > section {
+  padding: 14px;
+}
+.it10137-check > section > p {
+  margin-top: 8px;
+}
+.it10137-check > section:first-child > div {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 13px;
+}
+.it10137-check > section:first-child span {
+  display: grid;
+  gap: 5px;
+  padding: 10px 22px;
+  border: 1px solid #535e8c;
+  border-radius: 7px;
+  text-align: center;
+}
+.it10137-check > section:first-child > strong {
+  display: block;
+  width: 70px;
+  margin: 7px auto;
+  padding: 7px;
+  border: 1px solid;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 22px;
+}
+.it10137-check > section:first-child > p {
+  text-align: center;
+  font: 16px Georgia;
+}
+.it10137-check label {
+  display: grid;
+  grid-template-columns: 1fr 40px 70px 40px;
+  align-items: center;
+  margin-top: 12px;
+}
+.it10137-check label button,
+.it10137-check label input {
+  height: 36px;
+  border: 1px solid #38516b;
+  background: #0b1f37;
+  text-align: center;
+}
+.it10137-check > section:nth-child(2) > strong {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 11px;
+}
+.it10137-check > footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px;
+  background: #16133f;
+}
+.it10137-bottom {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 14px;
+  margin-top: 12px;
+}
+.it10137-bottom > article {
+  padding: 14px;
+  border: 1px solid #38516b;
+  border-radius: 8px;
+  background: #071a31;
+}
+.it10137-bottom > article > div {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-top: 13px;
+}
+.it10137-bottom > article > div span {
+  padding: 12px;
+  border-left: 2px solid #45c8db;
+  background: transparent;
+}
+.it10137-bottom > article h2 {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.it10137-bottom > article p {
+  display: flex;
+  gap: 7px;
+  margin-top: 7px;
+}
+@media (max-width: 800px) {
+  .it10137-page {
+    top: 0;
+    width: 100%;
+    padding: 8px;
+  }
+  .it10137-page:before {
+    inset: 0;
+  }
+  .it10137-page > header > div {
+    flex-wrap: wrap;
+  }
+  .it10137-page > main > header {
+    flex-direction: column;
+    gap: 9px;
+  }
+  .it10137-page > main > header p strong {
+    display: block;
+    margin: 7px 0;
+  }
+  .it10137-workspace,
+  .it10137-bottom {
+    grid-template-columns: 1fr;
+  }
+  .it10137-inputs label {
+    grid-template-columns: 1fr 110px;
+  }
+  .it10137-check > section:first-child > div {
+    gap: 7px;
+  }
+  .it10137-check > section:first-child span {
+    padding: 8px;
+  }
+  .it10137-bottom > article > div {
+    grid-template-columns: 1fr;
+  }
+}
