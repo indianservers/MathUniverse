@@ -1,0 +1,48 @@
+{
+  "mockup": "0758",
+  "lessonId": 10084,
+  "route": "/lessons/school/class-10/class-10-coordinate-geometry-midpoint-formula",
+  "objectModel": "dedicated-endpoint-average-equal-distance-midpoint-engine",
+  "default": {
+    "a": [-2, 4],
+    "b": [6, -2],
+    "midpoint": [2, 1],
+    "distances": [5, 5],
+    "challengeA": [-1, 5],
+    "challengeB": [5, -3],
+    "challengeMidpoint": [2, 1]
+  },
+  "interactions": {
+    "editedA": [-4, 6],
+    "editedMidpoint": [1, 2],
+    "editedDistances": [6.403, 6.403],
+    "keyboardB": [5, -2],
+    "keyboardMidpoint": [0.5, 2],
+    "pointerA": [-1, 2],
+    "pointerMidpoint": [2.5, 0],
+    "pointerDistances": [4.031, 4.031],
+    "brokenChallengeMidpoint": [1.5, 1],
+    "restoredChallengeMidpoint": [2, 1],
+    "resetRestoredDefaults": true
+  },
+  "desktop": {
+    "viewport": [970, 1712],
+    "hero": [90, 222],
+    "tabs": [232, 274],
+    "lab": [284, 719],
+    "averages": [729, 885],
+    "cards": [895, 1165],
+    "challenge": [1184, 1519],
+    "navigation": [1542, 1588]
+  },
+  "mobile": {
+    "viewport": [390, 844],
+    "documentWidth": 375,
+    "pageWidth": 374.4,
+    "draggableHandles": 4,
+    "computedMidpoints": 2,
+    "coordinateInputs": 8,
+    "horizontalOverflow": false
+  },
+  "console": { "warnings": 0, "errors": 0 }
+}

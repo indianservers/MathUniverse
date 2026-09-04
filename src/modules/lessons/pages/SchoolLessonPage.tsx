@@ -58,6 +58,7 @@ import SemiPerimeterTargetLesson10080 from "../schoolTargets/SemiPerimeterTarget
 import CoordinateHeronTargetLesson10081 from "../schoolTargets/CoordinateHeronTargetLesson10081";
 import CombinedSolidsTargetLesson10082 from "../schoolTargets/CombinedSolidsTargetLesson10082";
 import DistanceFormulaTargetLesson10083 from "../schoolTargets/DistanceFormulaTargetLesson10083";
+import MidpointFormulaTargetLesson10084 from "../schoolTargets/MidpointFormulaTargetLesson10084";
 import PlaceValueTargetLesson10001 from "../schoolTargets/PlaceValueTargetLesson10001";
 import NumberNamingTargetLesson10002 from "../schoolTargets/NumberNamingTargetLesson10002";
 import EstimationRoundingTargetLesson10003 from "../schoolTargets/EstimationRoundingTargetLesson10003";
@@ -195,6 +196,8 @@ export default function SchoolLessonPage() {
     return <CombinedSolidsTargetLesson10082 lesson={lesson} />;
   if (lesson.numericId === 10083)
     return <DistanceFormulaTargetLesson10083 lesson={lesson} />;
+  if (lesson.numericId === 10084)
+    return <MidpointFormulaTargetLesson10084 lesson={lesson} />;
   if (lesson.numericId === 10001)
     return <PlaceValueTargetLesson10001 lesson={lesson} />;
   if (lesson.numericId === 10002)

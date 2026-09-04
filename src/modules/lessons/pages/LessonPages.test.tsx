@@ -2417,6 +2417,33 @@ describe("lesson pages", () => {
     expect(html).toContain('aria-label="Draggable point B"');
   });
 
+  it("renders the dedicated midpoint-formula target for lesson 10084", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-10/class-10-coordinate-geometry-midpoint-formula",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0758"');
+    expect(html).toContain(
+      "dedicated-endpoint-average-equal-distance-midpoint-engine",
+    );
+    expect(html).toContain('data-a="-2,4"');
+    expect(html).toContain('data-b="6,-2"');
+    expect(html).toContain('data-midpoint="2,1"');
+    expect(html).toContain('data-distances="5,5"');
+    expect(html).toContain('data-challenge-midpoint="2,1"');
+    expect(html).toContain('data-challenge-fixed="true"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
