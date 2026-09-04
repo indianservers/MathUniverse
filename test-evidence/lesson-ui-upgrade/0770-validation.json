@@ -1,0 +1,68 @@
+{
+  "mockup": "0770",
+  "lessonId": 10096,
+  "route": "/lessons/school/class-10/class-10-circle-proofs-tangent-perpendicular-to-radius",
+  "objectModel": "dedicated-tangent-line-distance-intersection-engine",
+  "default": {
+    "tAngle": 270,
+    "lineAngle": 0,
+    "lineOffset": 0,
+    "distance": 6,
+    "intersections": 1,
+    "contactAngle": 90,
+    "status": "tangent",
+    "perpendicular": true
+  },
+  "interactions": {
+    "secant": {
+      "lineAngle": 154,
+      "distance": 5.39,
+      "intersections": 2,
+      "contactAngle": 64
+    },
+    "none": {
+      "lineAngle": 0,
+      "lineOffset": -1,
+      "distance": 7,
+      "intersections": 0
+    },
+    "snapMoved": {
+      "tAngle": 272,
+      "lineAngle": 2,
+      "distance": 6,
+      "intersections": 1,
+      "contactAngle": 90
+    },
+    "freeRotated": {
+      "tAngle": 272,
+      "lineAngle": 12,
+      "distance": 5.91,
+      "intersections": 2,
+      "contactAngle": 80
+    },
+    "radiusLayerToggle": true,
+    "distanceLayerToggle": true,
+    "angleLayerToggle": true,
+    "resetRestoredDefaults": true
+  },
+  "desktop": {
+    "viewport": [970, 1712],
+    "hero": [90, 230],
+    "tabs": [240, 288],
+    "lab": [302, 852],
+    "cards": [866, 1191],
+    "challenge": [1205, 1458],
+    "tip": [1458, 1493],
+    "navigation": [1507, 1542]
+  },
+  "mobile": {
+    "viewport": [390, 844],
+    "documentWidth": 375,
+    "draggableHandles": 2,
+    "inputs": 6,
+    "cards": 3,
+    "challengePanels": 3,
+    "horizontalOverflow": false
+  },
+  "console": { "warnings": 0, "errors": 0 }
+}

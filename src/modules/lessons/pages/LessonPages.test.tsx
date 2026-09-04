@@ -2767,6 +2767,36 @@ describe("lesson pages", () => {
     expect(html).toContain('aria-label="Prediction for angle C"');
   });
 
+  it("renders the dedicated tangent-perpendicular target for lesson 10096", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-10/class-10-circle-proofs-tangent-perpendicular-to-radius",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0770"');
+    expect(html).toContain(
+      "dedicated-tangent-line-distance-intersection-engine",
+    );
+    expect(html).toContain('data-t-angle="270"');
+    expect(html).toContain('data-line-angle="0"');
+    expect(html).toContain('data-distance="6"');
+    expect(html).toContain('data-intersections="1"');
+    expect(html).toContain('data-contact-angle="90"');
+    expect(html).toContain('data-status="tangent"');
+    expect(html).toContain('data-perpendicular="true"');
+    expect(html).toContain('aria-label="Tangent point T"');
+    expect(html).toContain('aria-label="Rotate tangent line"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
