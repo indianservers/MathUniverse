@@ -1,0 +1,43 @@
+{
+  "mockup": "0827",
+  "lessonId": 10153,
+  "route": "/lessons/school/class-12/class-12-three-dimensional-geometry-direction-cosines",
+  "objectModel": "dedicated-unit-sphere-direction-cosines-engine",
+  "reference": "0827-reference.png",
+  "default": {
+    "vector": [2, 3, 6],
+    "norm": 7,
+    "cosines": [0.28571, 0.42857, 0.85714],
+    "anglesDegrees": [73.7398, 64.6231, 30.9280],
+    "identity": 1
+  },
+  "desktop": {
+    "viewport": { "width": 864, "height": 1821 },
+    "clientWidth": 849,
+    "scrollWidth": 849,
+    "overflow": false,
+    "sidebarWidth": 173,
+    "lessonBox": { "x": 185, "y": 88.8, "width": 663.8, "height": 1519.47 },
+    "visibleErrorSurfaces": 0
+  },
+  "mobile": {
+    "viewport": { "width": 390, "height": 811 },
+    "clientWidth": 375,
+    "scrollWidth": 375,
+    "overflow": false,
+    "lessonWidth": 351.2,
+    "controls": 21,
+    "clippedControls": 0
+  },
+  "interactions": {
+    "appliedVector": [-4, -3, 6],
+    "appliedNorm": 7.81025,
+    "appliedCosines": [-0.51215, -0.38411, 0.76822],
+    "appliedSigns": ["negative", "negative", "positive"],
+    "identityAfterUpdate": 1,
+    "twoDimensionalView": true,
+    "projectionLayerHidden": true,
+    "autoRotationMovedEndpoint": true,
+    "resetVectorAndLayers": true
+  }
+}

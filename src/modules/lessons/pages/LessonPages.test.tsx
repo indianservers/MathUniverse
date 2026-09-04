@@ -4066,6 +4066,16 @@ describe("lesson pages", () => {
     expect(html).toContain("Draggable point B");
   });
 
+  it("renders the dedicated unit-sphere direction-cosines explorer for lesson 10153", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/school/class-12/class-12-three-dimensional-geometry-direction-cosines"]}><Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="school-mockup-0827"');
+    expect(html).toContain("dedicated-unit-sphere-direction-cosines-engine");
+    expect(html).toContain('data-vector="2,3,6"');
+    expect(html).toContain('data-norm="7.00000"');
+    expect(html).toContain('data-identity="1.000000"');
+    expect(html).toContain("Interactive direction cosines unit sphere");
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
