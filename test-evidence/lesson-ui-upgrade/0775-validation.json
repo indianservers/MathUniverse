@@ -1,0 +1,52 @@
+{
+  "mockup": "0775",
+  "lessonId": 10101,
+  "route": "/lessons/school/class-10/class-10-trigonometry-applications-two-observer-height-problems",
+  "objectModel": "dedicated-two-observer-linked-tangent-engine",
+  "default": {
+    "nearAngle": 60,
+    "farAngle": 30,
+    "observerGap": 20,
+    "nearDistance": 10,
+    "farDistance": 30,
+    "height": 17.321
+  },
+  "interactions": {
+    "nearKeyboard": { "nearAngle": 59, "nearDistance": 10.62, "height": 17.68 },
+    "farKeyboard": { "farAngle": 31, "nearDistance": 11.3, "height": 18.807 },
+    "gapKeyboard": {
+      "observerGap": 21,
+      "nearDistance": 11.87,
+      "height": 19.748
+    },
+    "nearPointerDrag": {
+      "nearAngle": 56.4,
+      "nearDistance": 13.95,
+      "height": 21.002
+    },
+    "wrongChallengeRejected": true,
+    "correctChallengeAccepted": { "nearDistance": 21.21, "height": 21.21 },
+    "solutionRevealVerified": true,
+    "resetRestoredDefaults": true
+  },
+  "desktop": {
+    "viewport": [970, 1712],
+    "hero": [90, 216],
+    "tabs": [226, 271],
+    "lab": [275, 797],
+    "equations": [811, 1076],
+    "cards": [1090, 1350],
+    "challenge": [1364, 1468],
+    "navigation": [1482, 1517]
+  },
+  "mobile": {
+    "viewport": [390, 844],
+    "documentWidth": 375,
+    "draggableHandles": 2,
+    "inputs": 4,
+    "cards": 3,
+    "challengeInputs": 2,
+    "horizontalOverflow": false
+  },
+  "console": { "warnings": 0, "errors": 0 }
+}

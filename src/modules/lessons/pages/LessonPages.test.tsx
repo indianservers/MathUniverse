@@ -2910,6 +2910,34 @@ describe("lesson pages", () => {
     expect(html).toContain('aria-label="Shadow length"');
   });
 
+  it("renders the dedicated two-observer target for lesson 10101", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-10/class-10-trigonometry-applications-two-observer-height-problems",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0775"');
+    expect(html).toContain("dedicated-two-observer-linked-tangent-engine");
+    expect(html).toContain('data-near-angle="60"');
+    expect(html).toContain('data-far-angle="30"');
+    expect(html).toContain('data-observer-gap="20"');
+    expect(html).toContain('data-near-distance="10"');
+    expect(html).toContain('data-height="17.321"');
+    expect(html).toContain('data-challenge-near="21.21"');
+    expect(html).toContain('data-challenge-height="21.21"');
+    expect(html).toContain('aria-label="Near observer"');
+    expect(html).toContain('aria-label="Far observer"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
