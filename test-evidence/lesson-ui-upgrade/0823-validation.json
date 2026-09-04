@@ -1,0 +1,15 @@
+{
+  "mockup": "0823",
+  "lessonId": 10149,
+  "route": "/lessons/school/class-11/class-11-conic-sections-tangent-to-an-ellipse",
+  "surface": "dedicated-ellipse-tangent-contact-engine",
+  "reference": "0823-reference.png",
+  "desktop": { "capture": "0823-desktop.png", "referenceSize": "1672x941", "clientWidth": 1672, "documentOverflow": false },
+  "mobile": { "capture": "0823-mobile.png", "clientWidth": 375, "scrollWidth": 375, "documentOverflow": false },
+  "defaultModel": { "a": 5, "b": 3, "theta": 60, "point": [2.5, 2.5981], "slope": -0.3464, "normalSlope": 2.8868, "xIntercept": 10, "yIntercept": 3.4641, "verified": 1 },
+  "limitModel": { "a": 6, "b": 4, "theta": 90, "point": [0, 4], "slope": 0, "normalSlope": "Infinity", "xIntercept": "Infinity", "yIntercept": 4 },
+  "pointerDrag": { "theta": 3.77, "point": [5.987, 0.2627], "slope": -10.1292, "verified": 1 },
+  "verifiedInteractions": ["semi-axis inputs", "native angle range", "real constrained contact-point drag", "horizontal-tangent limit", "live intercepts", "identity verifier", "construction layout repair"],
+  "consoleErrors": 0,
+  "status": "complete"
+}

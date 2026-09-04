@@ -4024,6 +4024,17 @@ describe("lesson pages", () => {
     expect(html).toContain('data-angle="90.00"');
   });
 
+  it("renders the dedicated ellipse tangent lab for lesson 10149", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/school/class-11/class-11-conic-sections-tangent-to-an-ellipse"]}><Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="school-mockup-0823"');
+    expect(html).toContain("dedicated-ellipse-tangent-contact-engine");
+    expect(html).toContain('data-a="5.00"');
+    expect(html).toContain('data-b="3.00"');
+    expect(html).toContain('data-theta="60.00"');
+    expect(html).toContain('data-point="2.5000,2.5981"');
+    expect(html).toContain('data-verified="1.0000"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
