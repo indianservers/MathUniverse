@@ -4180,6 +4180,15 @@ describe("lesson pages", () => {
     expect(html).toContain('data-projection="(0.1111, 2.4444, 1.1111)"');
   });
 
+  it("renders the dedicated one-sided limits microscope for lesson 10165", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/school/class-12/class-12-formal-calculus-left-hand-and-right-hand-limits"]}><Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="school-mockup-0839"');
+    expect(html).toContain("dedicated-one-sided-limit-microscope");
+    expect(html).toContain('data-left-limit="2.000"');
+    expect(html).toContain('data-right-limit="2.000"');
+    expect(html).toContain('data-two-sided="2.000"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

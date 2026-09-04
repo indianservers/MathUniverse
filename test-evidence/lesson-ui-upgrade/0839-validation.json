@@ -1,0 +1,52 @@
+{
+  "mockup": "0839",
+  "lessonId": 10165,
+  "route": "/lessons/school/class-12/class-12-formal-calculus-left-hand-and-right-hand-limits",
+  "objectModel": "dedicated-one-sided-limit-microscope",
+  "reference": "0839-reference.png",
+  "default": {
+    "leftLimit": 2,
+    "rightLimit": 2,
+    "twoSidedLimit": 2,
+    "epsilon": 0.1,
+    "leftProbe": 0.9,
+    "rightProbe": 1.1,
+    "continuous": true
+  },
+  "desktop": {
+    "targetWidth": 946,
+    "targetHeight": 1662,
+    "clientWidth": 931,
+    "scrollWidth": 931,
+    "horizontalOverflow": false,
+    "lessonFrame": {
+      "x": 202,
+      "y": 90.8,
+      "width": 717.2,
+      "height": 1545.9,
+      "bottom": 1636.7
+    },
+    "controlsChecked": 16,
+    "visibleErrorSurfaces": 0
+  },
+  "mobile": {
+    "viewportWidth": 390,
+    "clientWidth": 375,
+    "scrollWidth": 375,
+    "horizontalOverflow": false,
+    "lessonWidth": 351.2,
+    "clippedControls": 0,
+    "controlsChecked": 16,
+    "visibleErrorSurfaces": 0
+  },
+  "interactions": {
+    "jumpScenario": { "leftLimit": 2, "rightLimit": 3, "twoSidedLimit": "DNE" },
+    "epsilonWindow": 0.05,
+    "keyboardProbeMovement": true,
+    "symmetricProbeLock": true,
+    "jumpAnswers": ["2", "3", "DNE"],
+    "allAnswersAccepted": true,
+    "genericSectionsReplaced": true,
+    "resetAllState": true
+  }
+}
