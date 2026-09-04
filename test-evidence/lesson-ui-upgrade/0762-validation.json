@@ -1,0 +1,54 @@
+{
+  "mockup": "0762",
+  "lessonId": 10088,
+  "route": "/lessons/school/class-10/class-10-coordinate-geometry-collinearity-using-coordinate-area",
+  "objectModel": "dedicated-three-point-zero-determinant-line-distance-engine",
+  "default": {
+    "a": [1, 2],
+    "b": [3, 4],
+    "c": [5, 6],
+    "determinant": 0,
+    "area": 0,
+    "distance": 0,
+    "collinear": true
+  },
+  "interactions": {
+    "editedC": [5, 5],
+    "editedDeterminant": -2,
+    "editedArea": 1,
+    "editedDistance": 0.7071,
+    "keyboardRestoredC": [5, 6],
+    "snapSourceC": [5, 3],
+    "snappedC": [3.5, 4.5],
+    "snappedDeterminant": 0,
+    "snappedDistance": 0,
+    "lineFitToggle": true,
+    "panTool": true,
+    "zoom": 1.1,
+    "deleteAndRestoreC": true,
+    "wrongEquationRejected": true,
+    "correctEquation": "y = x + 1",
+    "correctEquationAccepted": true
+  },
+  "desktop": {
+    "viewport": [970, 1712],
+    "hero": [90, 184],
+    "tabs": [184, 227],
+    "rule": [230, 279],
+    "lab": [297, 1052],
+    "cards": [1072, 1299],
+    "challenge": [1319, 1561],
+    "navigation": [1575, 1636],
+    "tip": [1651, 1705]
+  },
+  "mobile": {
+    "viewport": [390, 844],
+    "documentWidth": 375,
+    "draggableHandles": 3,
+    "inputs": 8,
+    "cards": 3,
+    "challengePanels": 3,
+    "horizontalOverflow": false
+  },
+  "console": { "warnings": 0, "errors": 0 }
+}

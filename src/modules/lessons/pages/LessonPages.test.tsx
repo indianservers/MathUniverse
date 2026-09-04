@@ -2530,6 +2530,36 @@ describe("lesson pages", () => {
     expect(html).toContain('aria-label="Draggable vertex C"');
   });
 
+  it("renders the dedicated collinearity-area target for lesson 10088", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-10/class-10-coordinate-geometry-collinearity-using-coordinate-area",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0762"');
+    expect(html).toContain(
+      "dedicated-three-point-zero-determinant-line-distance-engine",
+    );
+    expect(html).toContain('data-a="1,2"');
+    expect(html).toContain('data-b="3,4"');
+    expect(html).toContain('data-c="5,6"');
+    expect(html).toContain('data-determinant="0"');
+    expect(html).toContain('data-area="0"');
+    expect(html).toContain('data-distance="0"');
+    expect(html).toContain('data-collinear="true"');
+    expect(html).toContain('aria-label="Draggable collinearity point C"');
+    expect(html).toContain('aria-label="Line equation"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
