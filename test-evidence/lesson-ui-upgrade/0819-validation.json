@@ -1,0 +1,19 @@
+{
+  "mockup": "0819",
+  "lessonId": 10145,
+  "route": "/lessons/school/class-11/class-11-conic-sections-eccentricity",
+  "surface": "dedicated-focus-directrix-eccentricity-morph-engine",
+  "reference": "0819-reference.png",
+  "desktop": { "capture": "0819-desktop.png", "referenceSize": "1672x941", "clientWidth": 1672, "documentOverflow": false },
+  "mobile": { "capture": "0819-mobile.png", "clientWidth": 375, "scrollWidth": 375, "documentOverflow": false },
+  "defaultModel": { "eccentricity": 0.6, "regime": "Ellipse", "pf": 2.03, "pd": 3.384, "ratio": 0.6, "zoom": 1, "pan": [0, 0] },
+  "verifiedRegimes": [
+    { "eccentricity": 0, "regime": "Circle", "ratio": 0 },
+    { "eccentricity": 0.6, "regime": "Ellipse", "ratio": 0.6 },
+    { "eccentricity": 1, "regime": "Parabola", "ratio": 1 },
+    { "eccentricity": 1.4, "regime": "Hyperbola", "ratio": 1.4 }
+  ],
+  "verifiedInteractions": ["continuous eccentricity morph", "real constrained point drag", "pointer and pan mode selection", "real graph pan to 51.5,39.0", "zoom in and out", "view reset", "full lab reset"],
+  "consoleErrors": 0,
+  "status": "complete"
+}

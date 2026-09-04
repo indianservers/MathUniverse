@@ -3974,6 +3974,21 @@ describe("lesson pages", () => {
     expect(html).toContain('data-eccentricity="1.2500"');
   });
 
+  it("renders the dedicated eccentricity morph lab for lesson 10145", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter initialEntries={["/lessons/school/class-11/class-11-conic-sections-eccentricity"]}>
+        <Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0819"');
+    expect(html).toContain("dedicated-focus-directrix-eccentricity-morph-engine");
+    expect(html).toContain('data-eccentricity="0.60"');
+    expect(html).toContain('data-regime="Ellipse"');
+    expect(html).toContain('data-ratio="0.600"');
+    expect(html).toContain('data-zoom="1.00"');
+    expect(html).toContain('data-mode="point"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
