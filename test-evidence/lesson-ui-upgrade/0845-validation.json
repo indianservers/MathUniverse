@@ -1,0 +1,62 @@
+{
+  "mockup": "0845",
+  "lessonId": 10171,
+  "route": "/lessons/school/class-12/class-12-formal-calculus-differentiability-versus-continuity",
+  "objectModel": "dedicated-one-sided-derivative-comparison-engine",
+  "reference": "0845-reference.png",
+  "default": {
+    "case": "corner",
+    "function": "abs(x)",
+    "continuous": true,
+    "leftDerivative": -1,
+    "rightDerivative": 1,
+    "differentiable": false,
+    "graphOrientation": "minimum-at-origin"
+  },
+  "desktop": {
+    "targetWidth": 946,
+    "targetHeight": 1663,
+    "clientWidth": 931,
+    "scrollWidth": 931,
+    "horizontalOverflow": false,
+    "lessonFrame": {
+      "x": 202,
+      "y": 90.8,
+      "width": 715,
+      "height": 1560.8,
+      "bottom": 1651.6
+    },
+    "controlsChecked": 26,
+    "genericSectionsReplaced": true,
+    "visibleErrorSurfaces": 0
+  },
+  "mobile": {
+    "viewportWidth": 390,
+    "clientWidth": 375,
+    "scrollWidth": 375,
+    "horizontalOverflow": false,
+    "lessonWidth": 351.2,
+    "clippedControls": 0,
+    "controlsChecked": 26,
+    "visibleErrorSurfaces": 0
+  },
+  "interactions": {
+    "keyboardRightProbe": true,
+    "cornerTangentSuppressed": true,
+    "smooth": {
+      "continuous": true,
+      "differentiable": true,
+      "tangentShown": true
+    },
+    "step": {
+      "continuous": false,
+      "differentiable": false,
+      "leftDerivative": "DNE",
+      "rightDerivative": "DNE"
+    },
+    "practiceTabSelected": true,
+    "observationFeedbackShown": true,
+    "radioAnswersAccepted": ["No", "No"],
+    "resetAllState": true
+  }
+}
