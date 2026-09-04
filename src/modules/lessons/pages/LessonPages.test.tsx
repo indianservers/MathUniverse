@@ -2827,6 +2827,36 @@ describe("lesson pages", () => {
     expect(html).toContain('aria-label="Point P"');
   });
 
+  it("renders the dedicated angle-elevation target for lesson 10098", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-10/class-10-trigonometry-applications-angle-of-elevation",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0772"');
+    expect(html).toContain(
+      "dedicated-angle-elevation-surveying-triangle-engine",
+    );
+    expect(html).toContain('data-distance="20"');
+    expect(html).toContain('data-angle="45"');
+    expect(html).toContain('data-eye-height="1.6"');
+    expect(html).toContain('data-height="20"');
+    expect(html).toContain('data-total-height="21.6"');
+    expect(html).toContain('data-challenge-expected="22.61"');
+    expect(html).toContain('aria-label="Tower top C"');
+    expect(html).toContain('aria-label="Tower height estimate"');
+    expect(html).toContain("angle-elevation-scene-v2.png");
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

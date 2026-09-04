@@ -1,0 +1,49 @@
+{
+  "mockup": "0772",
+  "lessonId": 10098,
+  "route": "/lessons/school/class-10/class-10-trigonometry-applications-angle-of-elevation",
+  "objectModel": "dedicated-angle-elevation-surveying-triangle-engine",
+  "asset": {
+    "path": "src/assets/lessons/angle-elevation-scene-v2.png",
+    "width": 1448,
+    "height": 1086,
+    "loaded": true
+  },
+  "default": {
+    "distance": 20,
+    "angle": 45,
+    "eyeHeight": 1.6,
+    "height": 20,
+    "totalHeight": 21.6,
+    "challengeExpected": 22.61
+  },
+  "interactions": {
+    "distanceKeyboard": { "distance": 21, "height": 21, "totalHeight": 22.6 },
+    "angleKeyboard": { "angle": 46, "height": 21.75, "totalHeight": 23.35 },
+    "eyeKeyboard": { "eyeHeight": 1.7, "height": 21.75, "totalHeight": 23.45 },
+    "pointerDrag": { "angle": 78.37, "height": 102.03, "totalHeight": 103.73 },
+    "wrongEstimateRejected": true,
+    "correctEstimateAccepted": true,
+    "resetRestoredDefaults": true
+  },
+  "desktop": {
+    "viewport": [970, 1712],
+    "hero": [90, 220],
+    "tabs": [230, 275],
+    "lab": [289, 872],
+    "rule": [886, 1028],
+    "cards": [1042, 1352],
+    "challenge": [1366, 1484],
+    "navigation": [1498, 1534]
+  },
+  "mobile": {
+    "viewport": [390, 844],
+    "documentWidth": 375,
+    "draggableHandles": 1,
+    "inputs": 4,
+    "cards": 3,
+    "challengePanels": 4,
+    "horizontalOverflow": false
+  },
+  "console": { "warnings": 0, "errors": 0 }
+}

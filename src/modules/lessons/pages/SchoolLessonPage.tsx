@@ -72,6 +72,7 @@ import CyclicQuadrilateralTargetLesson10094 from "../schoolTargets/CyclicQuadril
 import OppositeCyclicAnglesTargetLesson10095 from "../schoolTargets/OppositeCyclicAnglesTargetLesson10095";
 import TangentPerpendicularTargetLesson10096 from "../schoolTargets/TangentPerpendicularTargetLesson10096";
 import TangentLengthsExternalTargetLesson10097 from "../schoolTargets/TangentLengthsExternalTargetLesson10097";
+import AngleElevationTargetLesson10098 from "../schoolTargets/AngleElevationTargetLesson10098";
 import PlaceValueTargetLesson10001 from "../schoolTargets/PlaceValueTargetLesson10001";
 import NumberNamingTargetLesson10002 from "../schoolTargets/NumberNamingTargetLesson10002";
 import EstimationRoundingTargetLesson10003 from "../schoolTargets/EstimationRoundingTargetLesson10003";
@@ -237,6 +238,8 @@ export default function SchoolLessonPage() {
     return <TangentPerpendicularTargetLesson10096 lesson={lesson} />;
   if (lesson.numericId === 10097)
     return <TangentLengthsExternalTargetLesson10097 lesson={lesson} />;
+  if (lesson.numericId === 10098)
+    return <AngleElevationTargetLesson10098 lesson={lesson} />;
   if (lesson.numericId === 10001)
     return <PlaceValueTargetLesson10001 lesson={lesson} />;
   if (lesson.numericId === 10002)
