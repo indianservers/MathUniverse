@@ -1,0 +1,62 @@
+{
+  "mockup": "0815",
+  "lessonId": 10141,
+  "route": "/lessons/school/class-11/class-11-conic-sections-parabola-standard-forms",
+  "surface": "ParabolaStandardFormsTargetLesson10141",
+  "objectModel": "dedicated-four-orientation-parabola-constraint-engine",
+  "referencePixels": { "width": 1672, "height": 941 },
+  "desktopCapturePixels": { "width": 1672, "height": 940 },
+  "mobileCapturePixels": { "width": 375, "height": 779 },
+  "default": {
+    "form": "right",
+    "a": 3,
+    "focus": [3, 0],
+    "directrix": "x = -3.00",
+    "axis": "y = 0 (x-axis)",
+    "latusLength": 12
+  },
+  "interactions": {
+    "slider": {
+      "form": "right",
+      "a": 4,
+      "focus": [4, 0],
+      "directrix": "x = -4.00",
+      "latusLength": 16
+    },
+    "downForm": {
+      "form": "down",
+      "a": 4,
+      "focus": [0, -4],
+      "directrix": "y = 4.00",
+      "axis": "x = 0 (y-axis)"
+    },
+    "focusKeyboard": {
+      "form": "down",
+      "a": 4.5,
+      "focus": [0, -4.5],
+      "latusLength": 18
+    },
+    "focusPointerDrag": {
+      "form": "right",
+      "a": 5,
+      "focus": [5, 0],
+      "directrix": "x = -5.00",
+      "latusLength": 20
+    },
+    "reset": {
+      "form": "right",
+      "a": 3,
+      "focus": [3, 0],
+      "directrix": "x = -3.00",
+      "latusLength": 12
+    }
+  },
+  "mobileLayout": {
+    "clientWidth": 375,
+    "scrollWidth": 375,
+    "headerBottom": 382.16,
+    "explorerTop": 396.16
+  },
+  "consoleErrors": 0,
+  "status": "complete"
+}

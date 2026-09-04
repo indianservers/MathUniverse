@@ -66,10 +66,10 @@ describe("lesson pages", () => {
     );
     expect(html).toContain("Basic Calculator");
     expect(html).toContain("Interaction + visualization");
-    expect(html).toContain("Explain");
+    expect(html).toContain("Learn");
     expect(html).toContain("Examples");
     expect(html).toContain("Formulas");
-    expect(html).toContain("Know more");
+    expect(html).toContain("Practice");
   });
 
   it("renders expert-review lessons with topic-specific visual requirements", () => {
@@ -3891,6 +3891,32 @@ describe("lesson pages", () => {
     expect(html).toContain('data-r="3"');
     expect(html).toContain('data-count="10"');
     expect(html).toContain('data-selected="2,4,5"');
+  });
+
+  it("renders the dedicated parabola-standard-forms lab for lesson 10141", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-11/class-11-conic-sections-parabola-standard-forms",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0815"');
+    expect(html).toContain(
+      "dedicated-four-orientation-parabola-constraint-engine",
+    );
+    expect(html).toContain('data-form="right"');
+    expect(html).toContain('data-a="3.00"');
+    expect(html).toContain('data-focus="3.00,0.00"');
+    expect(html).toContain('data-directrix="x = -3.00"');
+    expect(html).toContain('data-latus-length="12.00"');
   });
 
   it("renders strengthened school batch content beyond the first three lessons", () => {

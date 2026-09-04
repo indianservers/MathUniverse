@@ -14,6 +14,11 @@ import {
   findSchoolLesson,
 } from "../catalog/school/schoolSyllabusCatalog";
 import SchoolLessonInteractiveLab from "../components/SchoolLessonInteractiveLab";
+import {
+  captureLessonTabClick,
+  LessonSectionNav,
+  SchoolLessonSections,
+} from "../components/LessonSectionJourney";
 import DecimalExpansionTargetLesson10040 from "../schoolTargets/DecimalExpansionTargetLesson10040";
 import TerminatingDecimalsTargetLesson10041 from "../schoolTargets/TerminatingDecimalsTargetLesson10041";
 import RationalIrrationalTargetLesson10042 from "../schoolTargets/RationalIrrationalTargetLesson10042";
@@ -115,6 +120,7 @@ import BinomialIndependentTermTargetLesson10137 from "../schoolTargets/BinomialI
 import BinomialApproximationTargetLesson10138 from "../schoolTargets/BinomialApproximationTargetLesson10138";
 import PascalIdentityTargetLesson10139 from "../schoolTargets/PascalIdentityTargetLesson10139";
 import CombinatorialInterpretationTargetLesson10140 from "../schoolTargets/CombinatorialInterpretationTargetLesson10140";
+import ParabolaStandardFormsTargetLesson10141 from "../schoolTargets/ParabolaStandardFormsTargetLesson10141";
 import PlaceValueTargetLesson10001 from "../schoolTargets/PlaceValueTargetLesson10001";
 import NumberNamingTargetLesson10002 from "../schoolTargets/NumberNamingTargetLesson10002";
 import EstimationRoundingTargetLesson10003 from "../schoolTargets/EstimationRoundingTargetLesson10003";
@@ -164,6 +170,22 @@ export default function SchoolLessonPage() {
   const { levelSlug: routeLevelSlug, lessonSlug } = useParams();
   const lesson = findSchoolLesson(routeLevelSlug, lessonSlug);
   if (!lesson) return <LessonNotFound />;
+  return (
+    <div className="space-y-4" onClickCapture={captureLessonTabClick}>
+      <section id="lesson-section-interaction" className="scroll-mt-20">
+        <SchoolLessonBody lesson={lesson} />
+      </section>
+      <LessonSectionNav />
+      <SchoolLessonSections lesson={lesson} />
+    </div>
+  );
+}
+
+function SchoolLessonBody({
+  lesson,
+}: {
+  lesson: Parameters<typeof adjacentSchoolLessons>[0];
+}) {
   if (lesson.slug === DECIMAL_EXPANSION_ROUTE_SLUG)
     return <DecimalExpansionTargetLesson10040 lesson={lesson} />;
   if (lesson.numericId === 10041)
@@ -366,6 +388,8 @@ export default function SchoolLessonPage() {
     return <PascalIdentityTargetLesson10139 lesson={lesson} />;
   if (lesson.numericId === 10140)
     return <CombinatorialInterpretationTargetLesson10140 lesson={lesson} />;
+  if (lesson.numericId === 10141)
+    return <ParabolaStandardFormsTargetLesson10141 lesson={lesson} />;
   if (lesson.numericId === 10001)
     return <PlaceValueTargetLesson10001 lesson={lesson} />;
   if (lesson.numericId === 10002)
