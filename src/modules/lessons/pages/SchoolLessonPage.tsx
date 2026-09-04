@@ -148,6 +148,7 @@ import OneSidedLimitsTargetLesson10165 from "../schoolTargets/OneSidedLimitsTarg
 import ContinuityPointTargetLesson10166 from "../schoolTargets/ContinuityPointTargetLesson10166";
 import ContinuityIntervalTargetLesson10167 from "../schoolTargets/ContinuityIntervalTargetLesson10167";
 import RemovableDiscontinuityTargetLesson10168 from "../schoolTargets/RemovableDiscontinuityTargetLesson10168";
+import JumpDiscontinuityTargetLesson10169 from "../schoolTargets/JumpDiscontinuityTargetLesson10169";
 import PlaceValueTargetLesson10001 from "../schoolTargets/PlaceValueTargetLesson10001";
 import NumberNamingTargetLesson10002 from "../schoolTargets/NumberNamingTargetLesson10002";
 import EstimationRoundingTargetLesson10003 from "../schoolTargets/EstimationRoundingTargetLesson10003";
@@ -471,6 +472,8 @@ function SchoolLessonBody({
     return <ContinuityIntervalTargetLesson10167 lesson={lesson} />;
   if (lesson.numericId === 10168)
     return <RemovableDiscontinuityTargetLesson10168 lesson={lesson} />;
+  if (lesson.numericId === 10169)
+    return <JumpDiscontinuityTargetLesson10169 lesson={lesson} />;
   if (lesson.numericId === 10001)
     return <PlaceValueTargetLesson10001 lesson={lesson} />;
   if (lesson.numericId === 10002)

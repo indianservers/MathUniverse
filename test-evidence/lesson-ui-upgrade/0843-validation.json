@@ -1,0 +1,65 @@
+{
+  "mockup": "0843",
+  "lessonId": 10169,
+  "route": "/lessons/school/class-12/class-12-formal-calculus-jump-discontinuity",
+  "objectModel": "dedicated-piecewise-jump-comparison-engine",
+  "reference": "0843-reference.png",
+  "default": {
+    "scenario": "jump",
+    "leftRule": "x+1",
+    "rightRule": "x+3",
+    "leftLimit": 1,
+    "rightLimit": 3,
+    "jumpSize": 2,
+    "definedValue": 3,
+    "classification": "Jump Discontinuity"
+  },
+  "desktop": {
+    "targetWidth": 951,
+    "targetHeight": 1654,
+    "clientWidth": 936,
+    "scrollWidth": 936,
+    "horizontalOverflow": false,
+    "lessonFrame": {
+      "x": 202,
+      "y": 90.8,
+      "width": 720,
+      "height": 1540.475,
+      "bottom": 1631.275
+    },
+    "controlsChecked": 18,
+    "genericSectionsReplaced": true,
+    "visibleErrorSurfaces": 0
+  },
+  "mobile": {
+    "viewportWidth": 390,
+    "clientWidth": 375,
+    "scrollWidth": 375,
+    "horizontalOverflow": false,
+    "lessonWidth": 351.2,
+    "clippedControls": 0,
+    "controlsChecked": 18,
+    "visibleErrorSurfaces": 0
+  },
+  "interactions": {
+    "keyboardProbeMovement": true,
+    "changedPoint": {
+      "definedValue": 5,
+      "leftLimit": 1,
+      "rightLimit": 3,
+      "jumpSize": 2
+    },
+    "removable": {
+      "leftLimit": 1,
+      "rightLimit": 1,
+      "jumpSize": 0,
+      "classification": "Removable Discontinuity"
+    },
+    "repairedRemovableClassification": "Continuous",
+    "infiniteClassification": "Infinite Discontinuity",
+    "infiniteLimits": ["infinity", "infinity"],
+    "zoomChanged": true,
+    "practiceHintShown": true,
+    "resetAllState": true
+  }
+}

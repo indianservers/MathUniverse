@@ -4216,6 +4216,15 @@ describe("lesson pages", () => {
     expect(html).toContain('data-repaired="true"');
   });
 
+  it("renders the dedicated jump discontinuity comparison engine for lesson 10169", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/school/class-12/class-12-formal-calculus-jump-discontinuity"]}><Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="school-mockup-0843"');
+    expect(html).toContain("dedicated-piecewise-jump-comparison-engine");
+    expect(html).toContain('data-left-limit="1"');
+    expect(html).toContain('data-right-limit="3"');
+    expect(html).toContain('data-jump-size="2"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
