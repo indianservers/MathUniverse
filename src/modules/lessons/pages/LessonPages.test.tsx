@@ -3703,6 +3703,29 @@ describe("lesson pages", () => {
     expect(html).toContain('data-proof-valid="true"');
   });
 
+  it("renders the dedicated strong-induction lab for lesson 10133", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-11/class-11-mathematical-induction-strong-induction-introduction",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0807"');
+    expect(html).toContain("dedicated-strong-induction-support-tile-engine");
+    expect(html).toContain('data-k="13"');
+    expect(html).toContain('data-support-value="11"');
+    expect(html).toContain('data-next-total="14"');
+    expect(html).toContain('data-proof-valid="true"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

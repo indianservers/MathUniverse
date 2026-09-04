@@ -107,6 +107,7 @@ import InductionBaseStepTargetLesson10129 from "../schoolTargets/InductionBaseSt
 import SumFormulaInductionTargetLesson10130 from "../schoolTargets/SumFormulaInductionTargetLesson10130";
 import DivisibilityInductionTargetLesson10131 from "../schoolTargets/DivisibilityInductionTargetLesson10131";
 import InequalityInductionTargetLesson10132 from "../schoolTargets/InequalityInductionTargetLesson10132";
+import StrongInductionTargetLesson10133 from "../schoolTargets/StrongInductionTargetLesson10133";
 import PlaceValueTargetLesson10001 from "../schoolTargets/PlaceValueTargetLesson10001";
 import NumberNamingTargetLesson10002 from "../schoolTargets/NumberNamingTargetLesson10002";
 import EstimationRoundingTargetLesson10003 from "../schoolTargets/EstimationRoundingTargetLesson10003";
@@ -342,6 +343,8 @@ export default function SchoolLessonPage() {
     return <DivisibilityInductionTargetLesson10131 lesson={lesson} />;
   if (lesson.numericId === 10132)
     return <InequalityInductionTargetLesson10132 lesson={lesson} />;
+  if (lesson.numericId === 10133)
+    return <StrongInductionTargetLesson10133 lesson={lesson} />;
   if (lesson.numericId === 10001)
     return <PlaceValueTargetLesson10001 lesson={lesson} />;
   if (lesson.numericId === 10002)

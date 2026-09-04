@@ -1,0 +1,53 @@
+{
+  "mockup": "0807",
+  "lessonId": 10133,
+  "route": "/lessons/school/class-11/class-11-mathematical-induction-strong-induction-introduction",
+  "surface": "StrongInductionTargetLesson10133",
+  "objectModel": "dedicated-strong-induction-support-tile-engine",
+  "referencePixels": { "width": 1672, "height": 941 },
+  "desktopCapturePixels": { "width": 1665, "height": 932 },
+  "mobileCapturePixels": { "width": 375, "height": 811 },
+  "default": {
+    "mode": "strong",
+    "k": 13,
+    "supportValue": 11,
+    "supportTotal": 11,
+    "nextTotal": 14,
+    "basesValid": true,
+    "supportAvailable": true,
+    "proofValid": true
+  },
+  "interactions": {
+    "ordinaryMode": {
+      "mode": "ordinary",
+      "supportAvailable": false,
+      "proofValid": false
+    },
+    "missingBase": {
+      "mode": "strong",
+      "basesValid": false,
+      "supportAvailable": true,
+      "proofValid": false
+    },
+    "kTwenty": {
+      "mode": "strong",
+      "k": 20,
+      "supportValue": 18,
+      "supportTotal": 18,
+      "nextTotal": 21,
+      "basesValid": true,
+      "proofValid": true
+    },
+    "reset": {
+      "mode": "strong",
+      "k": 13,
+      "supportValue": 11,
+      "nextTotal": 14,
+      "basesValid": true,
+      "proofValid": true
+    }
+  },
+  "mobileLayout": { "clientWidth": 375, "scrollWidth": 375 },
+  "consoleErrors": 0,
+  "status": "complete"
+}
