@@ -4332,6 +4332,15 @@ describe("lesson pages", () => {
     expect(html).toContain('data-transformed="integral-cos-u-du"');
   });
 
+  it("renders the dedicated integration by parts engine for lesson 10181", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/school/class-12/class-12-formal-calculus-integration-by-parts"]}><Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="school-mockup-0855"');
+    expect(html).toContain("dedicated-integration-by-parts-product-rule-engine");
+    expect(html).toContain('data-u="unassigned"');
+    expect(html).toContain('data-dv="unassigned"');
+    expect(html).toContain('data-assignment-correct="false"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

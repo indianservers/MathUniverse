@@ -1,0 +1,55 @@
+{
+  "mockup": "0855",
+  "lessonId": 10181,
+  "route": "/lessons/school/class-12/class-12-formal-calculus-integration-by-parts",
+  "objectModel": "dedicated-integration-by-parts-product-rule-engine",
+  "reference": "0855-reference.png",
+  "default": {
+    "integral": "integral x e^x dx",
+    "u": "unassigned",
+    "dv": "unassigned",
+    "du": "dx",
+    "v": "e^x",
+    "antiderivative": "e^x(x-1)+C"
+  },
+  "desktop": {
+    "targetWidth": 948,
+    "targetHeight": 1659,
+    "clientWidth": 933,
+    "scrollWidth": 933,
+    "horizontalOverflow": false,
+    "lessonFrame": { "x": 202, "y": 90.8, "width": 716, "height": 1535.2, "bottom": 1626 },
+    "controlsChecked": 27,
+    "verificationGraphPaths": 4,
+    "genericSectionsReplaced": true,
+    "visibleErrorSurfaces": 0
+  },
+  "mobile": {
+    "viewportWidth": 390,
+    "clientWidth": 375,
+    "scrollWidth": 375,
+    "horizontalOverflow": false,
+    "lessonWidth": 347.2,
+    "clippedControls": 0,
+    "controlsChecked": 27,
+    "visibleErrorSurfaces": 0
+  },
+  "interactions": {
+    "clickAndDragAssignmentEnabled": true,
+    "assignedU": "x",
+    "assignedDv": "e^x dx",
+    "assignmentAccepted": true,
+    "generatedExample": "integral x sin(x) dx",
+    "exampleClearsAssignment": true,
+    "liateChoices": 5,
+    "quickWrongRejected": true,
+    "quickCorrectAccepted": true,
+    "challengeFieldsGraded": 7,
+    "challengeWrongRejected": true,
+    "challengeAnswer": "e^x(x^2-2x+2)+C",
+    "challengeAccepted": true,
+    "stepsRevealed": true,
+    "solutionRevealed": true,
+    "resetAllState": true
+  }
+}
