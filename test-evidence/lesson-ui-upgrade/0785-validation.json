@@ -1,0 +1,58 @@
+{
+  "lessonId": 10111,
+  "mockup": 785,
+  "route": "/lessons/school/class-10/class-10-mensuration-combined-solids",
+  "objectModel": "dedicated-threejs-combined-solids-hidden-face-engine",
+  "reference": "0785-reference.png",
+  "captures": { "desktop": "0785-desktop.png", "mobile": "0785-mobile.png" },
+  "threeJs": {
+    "canvasNonblank": true,
+    "canvasPixelAudit": {
+      "samples": 11040,
+      "distinctColors": 1697,
+      "nonDarkRatio": 0.11
+    },
+    "orbitModes": ["rotate", "pan", "zoom"],
+    "explode": true,
+    "grid": true,
+    "axes": true
+  },
+  "states": {
+    "default": {
+      "radius": 3,
+      "cylinderHeight": 12,
+      "coneSlant": 6,
+      "coneHeight": 5.2,
+      "volumes": [339.29, 56.55, 48.97],
+      "totalVolume": 444.81,
+      "exposedArea": 339.29,
+      "faceArea": 28.27
+    },
+    "radiusUp": {
+      "radius": 3.5,
+      "coneHeight": 4.87,
+      "volumes": [461.81, 89.8, 62.52],
+      "totalVolume": 614.13,
+      "exposedArea": 406.84,
+      "faceArea": 38.48
+    },
+    "controls": {
+      "explode": true,
+      "tool": "pan",
+      "axes": true,
+      "mode": "surface",
+      "answer": "b",
+      "feedback": "correct"
+    },
+    "reset": {
+      "radius": 3,
+      "cylinderHeight": 12,
+      "coneSlant": 6,
+      "explode": false,
+      "tool": "rotate",
+      "mode": "volume",
+      "answer": "unanswered"
+    }
+  },
+  "mockupCorrection": "Used hemisphere volume 2*pi*r^3/3 and cone height sqrt(l^2-r^2); hidden circular faces remain excluded from exposed area."
+}

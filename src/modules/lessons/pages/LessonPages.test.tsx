@@ -3177,6 +3177,36 @@ describe("lesson pages", () => {
     expect(html).toContain('data-theta="126.4"');
   });
 
+  it("renders the dedicated Three.js combined-solids target for lesson 10111", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-10/class-10-mensuration-combined-solids",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0785"');
+    expect(html).toContain(
+      "dedicated-threejs-combined-solids-hidden-face-engine",
+    );
+    expect(html).toContain('data-radius="3"');
+    expect(html).toContain('data-cylinder-height="12"');
+    expect(html).toContain('data-cone-slant="6"');
+    expect(html).toContain('data-cone-height="5.2"');
+    expect(html).toContain('data-cylinder-volume="339.29"');
+    expect(html).toContain('data-hemisphere-volume="56.55"');
+    expect(html).toContain('data-cone-volume="48.97"');
+    expect(html).toContain('data-total-volume="444.81"');
+    expect(html).toContain('data-exposed-area="339.29"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
