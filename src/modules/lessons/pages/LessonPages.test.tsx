@@ -2560,6 +2560,36 @@ describe("lesson pages", () => {
     expect(html).toContain('aria-label="Line equation"');
   });
 
+  it("renders the dedicated equal-chords target for lesson 10089", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-10/class-10-circle-proofs-equal-chords-and-equal-angles",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0763"');
+    expect(html).toContain(
+      "dedicated-equal-chord-central-angle-congruence-engine",
+    );
+    expect(html).toContain('data-ab="6"');
+    expect(html).toContain('data-cd="6"');
+    expect(html).toContain('data-left-angle="54"');
+    expect(html).toContain('data-right-angle="54"');
+    expect(html).toContain('data-equal-chords="true"');
+    expect(html).toContain('data-equal-angles="true"');
+    expect(html).toContain('data-theorem="true"');
+    expect(html).toContain('aria-label="Draggable chord point A"');
+    expect(html).toContain('aria-label="Draggable chord point D"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

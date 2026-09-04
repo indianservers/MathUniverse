@@ -1,0 +1,48 @@
+{
+  "mockup": "0763",
+  "lessonId": 10089,
+  "route": "/lessons/school/class-10/class-10-circle-proofs-equal-chords-and-equal-angles",
+  "objectModel": "dedicated-equal-chord-central-angle-congruence-engine",
+  "default": {
+    "ab": 6,
+    "cd": 6,
+    "angleAOB": 54,
+    "angleCOD": 54,
+    "equalChords": true,
+    "equalAngles": true,
+    "theorem": true
+  },
+  "interactions": {
+    "keyboardRightRotation": 2,
+    "keyboardOverlayRotation": 2,
+    "rotationPreservedChord": 6,
+    "rotationPreservedAngle": 54,
+    "converseOffAngle": 70,
+    "converseOffChord": 7.58,
+    "converseOffTheorem": false,
+    "radiiToggle": true,
+    "arcsToggle": true,
+    "lengthLabelsToggle": true,
+    "rotateTool": true,
+    "resetRestoredDefaults": true
+  },
+  "desktop": {
+    "viewport": [970, 1712],
+    "hero": [90, 233],
+    "tabs": [265, 308],
+    "investigation": [320, 1014],
+    "cards": [1029, 1324],
+    "challenge": [1339, 1618],
+    "navigation": [1632, 1694]
+  },
+  "mobile": {
+    "viewport": [390, 844],
+    "documentWidth": 375,
+    "draggableHandles": 4,
+    "inputs": 7,
+    "cards": 3,
+    "readouts": 4,
+    "horizontalOverflow": false
+  },
+  "console": { "warnings": 0, "errors": 0 }
+}
