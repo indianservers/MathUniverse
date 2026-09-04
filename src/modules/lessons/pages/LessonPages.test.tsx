@@ -3402,6 +3402,29 @@ describe("lesson pages", () => {
     expect(html).toContain('data-into="true"');
   });
 
+  it("renders the dedicated onto-function coverage lab for lesson 10120", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-11/class-11-relations-and-functions-onto-functions",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0794"');
+    expect(html).toContain("dedicated-surjectivity-preimage-coverage-engine");
+    expect(html).toContain('data-mapping="-1:-2;0:-1;1:0;2:1"');
+    expect(html).toContain('data-covered="4"');
+    expect(html).toContain('data-coverage="100"');
+    expect(html).toContain('data-onto="true"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

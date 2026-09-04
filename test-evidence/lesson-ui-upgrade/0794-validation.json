@@ -1,0 +1,35 @@
+{
+  "mockup": "0794",
+  "lessonId": 10120,
+  "route": "/lessons/school/class-11/class-11-relations-and-functions-onto-functions",
+  "surface": "OntoFunctionsTargetLesson10120",
+  "objectModel": "dedicated-surjectivity-preimage-coverage-engine",
+  "desktopViewport": { "width": 1680, "height": 941 },
+  "mobileViewport": { "width": 390, "height": 844 },
+  "default": {
+    "mapping": ["-1:-2", "0:-1", "1:0", "2:1"],
+    "mapped": 4,
+    "covered": 4,
+    "coverage": 100,
+    "valid": true,
+    "onto": true
+  },
+  "interactions": {
+    "collapse2ToMinus2": {
+      "covered": 3,
+      "coverage": 75,
+      "onto": false,
+      "tested": true
+    },
+    "resetArrows": { "mapped": 0, "covered": 0, "valid": false, "onto": false },
+    "restoreAndTest": {
+      "covered": 4,
+      "coverage": 100,
+      "onto": true,
+      "tested": true
+    },
+    "htmlDragDrop": true,
+    "clickAssignment": true
+  },
+  "status": "complete"
+}

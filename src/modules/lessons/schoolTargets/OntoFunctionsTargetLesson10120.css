@@ -1,0 +1,322 @@
+.onto10120-page {
+  position: relative;
+  top: -8px;
+  left: 1px;
+  width: min(1380px, calc(100vw - 294px));
+  margin: auto;
+  color: #e7eefb;
+  background: #031328;
+  font:
+    11px/1.45 Inter,
+    Arial,
+    sans-serif;
+  letter-spacing: 0;
+}
+.onto10120-page:before {
+  position: fixed;
+  z-index: -1;
+  inset: 58px 0 0 283px;
+  background: #031328;
+  content: "";
+}
+.onto10120-page * {
+  box-sizing: border-box;
+}
+.onto10120-page h1,
+.onto10120-page h2,
+.onto10120-page h3,
+.onto10120-page p {
+  margin: 0;
+}
+.onto10120-page button {
+  font: inherit;
+  color: inherit;
+}
+.onto10120-page > header {
+  position: relative;
+  height: 150px;
+  padding: 18px;
+  border: 1px solid #29455e;
+  border-radius: 9px;
+  background: linear-gradient(110deg, #071e37, #04142a);
+}
+.onto10120-page > header small,
+.onto10120-page h2 {
+  color: #42dedc;
+  font-weight: 900;
+  letter-spacing: 0.8px;
+}
+.onto10120-page > header h1 {
+  margin: 5px 0;
+  font-size: 27px;
+}
+.onto10120-page > header nav {
+  display: flex;
+  gap: 7px;
+  margin-top: 12px;
+}
+.onto10120-page > header nav span {
+  padding: 4px 11px;
+  border: 1px solid #304860;
+  border-radius: 13px;
+  font-weight: 800;
+}
+.onto10120-page > header > button {
+  position: absolute;
+  right: 14px;
+  top: 17px;
+  padding: 9px 14px;
+  border: 1px solid #304860;
+  border-radius: 7px;
+  background: #07172c;
+}
+.onto10120-page > main {
+  display: grid;
+  grid-template-columns: 25% 75%;
+  gap: 10px;
+  margin-top: 10px;
+}
+.onto10120-page > main > aside,
+.onto10120-work {
+  padding: 14px;
+  border: 1px solid #29455e;
+  border-radius: 8px;
+  background: #06162b;
+}
+.onto10120-page > main > aside > p {
+  margin: 12px 0;
+}
+.onto10120-page > main > aside article {
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px solid #304860;
+  border-radius: 7px;
+}
+.onto10120-page > main > aside article strong {
+  display: block;
+  margin: 10px 0;
+  font:
+    italic 19px Georgia,
+    serif;
+}
+.onto10120-page > main > aside table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.onto10120-page > main > aside th,
+.onto10120-page > main > aside td {
+  padding: 7px;
+  border: 1px solid #40536b;
+  text-align: center;
+}
+.onto10120-page > main > aside article footer {
+  margin-top: 12px;
+}
+.onto10120-page > main > aside article footer svg {
+  width: 18px;
+  color: #4ce596;
+}
+.onto10120-page > main > aside article p {
+  margin: 10px 0;
+}
+.onto10120-work {
+  padding: 0;
+}
+.onto10120-work > .mapper {
+  display: grid;
+  grid-template-columns: 110px 1fr 100px 290px;
+  min-height: 385px;
+}
+.onto10120-work > .mapper > article {
+  padding: 16px;
+}
+.onto10120-work .mapper > article:first-child,
+.onto10120-work .codomain {
+  display: grid;
+  grid-template-rows: 35px repeat(4, 65px);
+  gap: 8px;
+}
+.onto10120-work .mapper article button {
+  position: relative;
+  border: 0;
+  border-radius: 7px;
+  background: #10233e;
+  font-size: 18px;
+}
+.onto10120-work .mapper article button.selected {
+  outline: 3px solid #3ddedb;
+}
+.onto10120-work .mapper article button i {
+  position: absolute;
+  right: -8px;
+  top: 25px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #3bdedc;
+}
+.onto10120-work .codomain button {
+  width: 58px;
+  height: 58px;
+  margin: auto;
+  border: 4px solid #3c6fb5 !important;
+  border-radius: 50% !important;
+  background: #0b1c34 !important;
+}
+.onto10120-work .codomain button.covered {
+  border-color: #55c88c !important;
+}
+.onto10120-work .mapper > svg {
+  width: 100%;
+  height: 330px;
+  margin-top: 35px;
+}
+.onto10120-work .mapper > svg path {
+  fill: none;
+  stroke: #39dedc;
+  stroke-width: 2;
+}
+.onto10120-work .mapper > svg .guide {
+  stroke: #5a6a80;
+  stroke-dasharray: 8 7;
+}
+.onto10120-work .mapper > svg marker path {
+  fill: #39dedc;
+}
+.onto10120-work .coverage {
+  border-left: 1px solid #29455e;
+}
+.onto10120-work .coverage > div {
+  display: grid;
+  grid-template-columns: 45px 1fr 25px;
+  align-items: center;
+  margin-top: 10px;
+}
+.onto10120-work .coverage > div > b {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 3px solid #4b79c5;
+  border-radius: 50%;
+}
+.onto10120-work .coverage > div span {
+  color: #4ae39b;
+  font-size: 18px;
+}
+.onto10120-work .coverage > footer {
+  margin-top: 14px;
+  border-top: 1px solid #29455e;
+  padding-top: 10px;
+}
+.onto10120-work progress {
+  width: 100%;
+  height: 17px;
+  margin-top: 8px;
+  accent-color: #2bd0c9;
+}
+.onto10120-work progress::-webkit-progress-value {
+  background: #2bd0c9;
+}
+.onto10120-work .coverage > footer > strong {
+  display: block;
+  margin-top: -19px;
+  text-align: center;
+}
+.onto10120-work > footer {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr 1.35fr 0.9fr;
+  gap: 10px;
+  padding: 12px;
+  border-top: 1px solid #29455e;
+}
+.onto10120-work > footer > section,
+.onto10120-work > footer > button {
+  min-height: 82px;
+  padding: 10px;
+  border: 1px solid #29455e;
+  border-radius: 7px;
+  background: #07172c;
+}
+.onto10120-work > footer section button {
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+  width: 100%;
+  margin-top: 8px;
+  padding: 10px;
+  border: 0;
+  border-radius: 6px;
+  background: #20a9a2;
+}
+.onto10120-work > footer section svg {
+  width: 25px;
+  color: #4de596;
+}
+.onto10120-work > footer section b {
+  color: #42e097;
+}
+.onto10120-work > footer section > strong {
+  font:
+    italic 18px Georgia,
+    serif;
+}
+.onto10120-work > footer > .reset {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.onto10120-work > footer > .reset svg {
+  width: 27px;
+}
+.onto10120-work > footer > .reset span {
+  display: grid;
+}
+.onto10120-work > footer > .restore {
+  position: absolute;
+  right: 13px;
+  bottom: -36px;
+  min-height: 28px;
+  height: 28px;
+  padding: 4px 10px;
+}
+@media (max-width: 800px) {
+  .onto10120-page {
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 8px;
+  }
+  .onto10120-page:before {
+    inset: 0;
+  }
+  .onto10120-page > header {
+    height: auto;
+  }
+  .onto10120-page > header > button {
+    position: static;
+    margin-top: 8px;
+  }
+  .onto10120-page > main {
+    display: block;
+  }
+  .onto10120-work {
+    margin-top: 10px;
+  }
+  .onto10120-work > .mapper {
+    grid-template-columns: 70px 1fr 70px 115px;
+  }
+  .onto10120-work .coverage {
+    padding: 7px !important;
+  }
+  .onto10120-work > footer {
+    grid-template-columns: 1fr;
+  }
+  .onto10120-work > footer > .restore {
+    position: static;
+  }
+  .onto10120-page > main > aside article {
+    display: none;
+  }
+}
