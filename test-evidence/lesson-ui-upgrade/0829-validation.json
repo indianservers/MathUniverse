@@ -1,0 +1,50 @@
+{
+  "mockup": "0829",
+  "lessonId": 10155,
+  "route": "/lessons/school/class-12/class-12-three-dimensional-geometry-vector-equation-of-a-line",
+  "objectModel": "dedicated-anchor-direction-vector-line-engine",
+  "reference": "0829-reference.png",
+  "default": {
+    "anchor": [1, -1, 2],
+    "direction": [2, 1, 3],
+    "lambda": 2,
+    "point": [5, 1, 8],
+    "anchorNorm": 2.449,
+    "directionNorm": 3.742,
+    "dotProduct": 7,
+    "angleDegrees": 40.203
+  },
+  "desktop": {
+    "viewport": { "width": 864, "height": 1821 },
+    "clientWidth": 849,
+    "scrollWidth": 849,
+    "overflow": false,
+    "sidebarWidth": 173,
+    "lessonBox": { "x": 185, "y": 88.8, "width": 663.8, "height": 1644 },
+    "navigationLinks": 6,
+    "visibleErrorSurfaces": 0
+  },
+  "mobile": {
+    "viewport": { "width": 390, "height": 811 },
+    "clientWidth": 375,
+    "scrollWidth": 375,
+    "overflow": false,
+    "lessonWidth": 351.2,
+    "controlsAndLinks": 32,
+    "clippedControls": 0
+  },
+  "interactions": {
+    "editedAnchor": [0, 2, -1],
+    "editedDirection": [-1, 2, 2],
+    "editedLambda": -1.5,
+    "editedPoint": [1.5, -1, -4],
+    "editedDotProduct": 2,
+    "editedAngleDegrees": 72.654,
+    "lineLayerHidden": true,
+    "signedLambdaPreset": true,
+    "animationAdvancedLambda": true,
+    "practiceWrongState": "Try again",
+    "practiceCorrectStates": ["Correct", "Correct", "Correct"],
+    "resetAllState": true
+  }
+}

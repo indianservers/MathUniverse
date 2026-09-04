@@ -1,0 +1,465 @@
+.ve10155-page {
+  position: relative;
+  top: -18px;
+  width: min(664px, calc(100% + 12px));
+  margin: auto auto auto 0;
+  color: #27344c;
+  font:
+    9px/1.5 Inter,
+    Arial,
+    sans-serif;
+  letter-spacing: 0;
+}
+.ve10155-page:before {
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  background: #effaff;
+  content: "";
+}
+.ve10155-page * {
+  box-sizing: border-box;
+}
+.ve10155-page h1,
+.ve10155-page h2,
+.ve10155-page h3,
+.ve10155-page p {
+  margin: 0;
+}
+.ve10155-page button,
+.ve10155-page input,
+.ve10155-page select {
+  font: inherit;
+  color: inherit;
+}
+.ve10155-page > header {
+  height: 135px;
+  padding: 14px;
+  border-radius: 15px;
+  background: #fff;
+}
+.ve10155-page > header small,
+.ve10155-page h3,
+.ve-title small {
+  color: #087dac;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+}
+.ve10155-page > header h1 {
+  margin: 6px 0 5px;
+  color: #101b2d;
+  font-size: 22px;
+}
+.ve10155-page > header > div {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+}
+.ve10155-page > header span {
+  padding: 4px 9px;
+  border-radius: 11px;
+  background: #eef3f6;
+  font-weight: 800;
+}
+.ve-lab {
+  margin-top: 10px;
+  padding: 9px;
+  border: 1px solid #d7e4eb;
+  border-radius: 13px;
+  background: #fff;
+}
+.ve-title {
+  display: flex;
+  justify-content: space-between;
+}
+.ve-title h2 {
+  font-size: 18px;
+}
+.ve-title > span {
+  display: flex;
+  gap: 5px;
+}
+.ve10155-page button {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 7px;
+  border: 1px solid #d6e3ea;
+  border-radius: 7px;
+  background: #fff;
+  cursor: pointer;
+}
+.ve10155-page button svg {
+  width: 12px;
+}
+.ve-top {
+  display: grid;
+  grid-template-columns: 145px 1fr 170px;
+  gap: 8px;
+  margin-top: 9px;
+}
+.ve-controls,
+.ve-scene,
+.ve-results article {
+  border: 1px solid #d7e4eb;
+  border-radius: 8px;
+}
+.ve-controls {
+  position: relative;
+  padding-top: 32px;
+}
+.lambda-badge {
+  position: absolute;
+  top: 4px;
+  left: 6px;
+  padding: 6px;
+  border-radius: 8px;
+  background: #e7f8ed;
+  color: #28945e;
+}
+.ve-controls article {
+  padding: 9px;
+  border-bottom: 1px solid #d7e4eb;
+}
+.ve-controls article > div {
+  display: flex;
+  gap: 3px;
+  margin-top: 7px;
+}
+.ve-controls article label {
+  display: grid;
+  grid-template-columns: 10px 1fr;
+  align-items: center;
+}
+.ve-controls input {
+  min-width: 0;
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #d7e3ea;
+  border-radius: 5px;
+}
+.ve-controls .lambda {
+  display: grid;
+  grid-template-columns: 1fr 30px;
+  gap: 6px;
+}
+.ve-controls .lambda input {
+  accent-color: #6c45df;
+}
+.ve-controls article strong {
+  display: block;
+  margin-top: 6px;
+  padding: 6px;
+  border: 1px solid #d8e4eb;
+  border-radius: 5px;
+}
+.layer-list {
+  display: grid;
+  gap: 5px;
+  padding: 8px;
+}
+.layer-list label {
+  display: flex;
+  gap: 5px;
+}
+.ve-scene {
+  padding: 8px;
+}
+.ve-scene > svg {
+  display: block;
+  width: 100%;
+  height: 540px;
+}
+.ve-scene .axis {
+  stroke-width: 1.8;
+}
+.ve-scene .x {
+  stroke: #e33;
+}
+.ve-scene .y {
+  stroke: #2a9b5a;
+}
+.ve-scene .z {
+  stroke: #2461e7;
+}
+.ve-scene .line {
+  stroke: #7340e8;
+  stroke-width: 2.5;
+  stroke-dasharray: 7 4;
+}
+.ve-scene .anchor {
+  stroke: #2778d8;
+  stroke-width: 3;
+}
+.ve-scene .direction {
+  stroke: #239651;
+  stroke-width: 3;
+}
+.ve-scene circle.a {
+  fill: #344f6d;
+}
+.ve-scene circle.p {
+  fill: #7747d8;
+}
+.ve-scene text {
+  font-size: 10px;
+}
+.ve-scene .plabel {
+  fill: #6733d2;
+  font-weight: 700;
+}
+.scene-legend {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+.ve-results {
+  display: grid;
+  gap: 8px;
+}
+.ve-results article {
+  padding: 9px;
+}
+.ve-results article p {
+  margin-top: 7px;
+  font: 11px Georgia;
+}
+.ve-results .violet {
+  background: #f8f4ff;
+}
+.ve-results .blue {
+  background: #f1f7ff;
+}
+.ve-results .green {
+  background: #f1fbf5;
+}
+.ve-second,
+.ve-third {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 8px;
+  margin-top: 9px;
+}
+.ve-second > article,
+.ve-third > article,
+.ve-worked,
+.ve-practice {
+  padding: 9px;
+  border: 1px solid #d7e4eb;
+  border-radius: 8px;
+}
+.ve-second > article {
+  min-height: 220px;
+}
+.ve-third > article {
+  min-height: 170px;
+}
+.ve-second > article > p,
+.ve-third p {
+  margin-top: 7px;
+}
+.ve-second svg {
+  display: block;
+  width: 100%;
+  height: 160px;
+}
+.ve-second svg line {
+  stroke-width: 2;
+}
+.ve-second svg .a {
+  stroke: #288dd6;
+}
+.ve-second svg .b {
+  stroke: #239b58;
+}
+.ve-second svg .sum {
+  stroke: #7038d4;
+  stroke-width: 3;
+}
+.ve-second svg .dash {
+  stroke: #6c7887;
+  stroke-dasharray: 5;
+}
+.numberline {
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  margin: 35px 0 10px;
+  border-top: 2px solid #26344c;
+}
+.numberline button {
+  margin-top: -14px;
+  border-radius: 50%;
+  background: #773fd3;
+  color: #fff;
+}
+.lambda-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.lambda-cards p {
+  padding: 8px;
+  border: 1px solid #ddd6f5;
+  border-radius: 7px;
+}
+.ve-third > article:first-child > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 10px;
+}
+.ve-third > article:first-child p {
+  padding: 9px;
+  border: 1px solid #d7e4eb;
+}
+.ve-third strong {
+  display: block;
+  margin-top: 14px;
+  padding: 8px;
+  border: 1px solid #a9dec6;
+  border-radius: 6px;
+  color: #23915f;
+}
+.ve-third strong svg {
+  width: 12px;
+}
+.ve-worked {
+  margin-top: 9px;
+  min-height: 170px;
+  background: #fffaf0;
+}
+.ve-worked > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-top: 8px;
+}
+.ve-worked article {
+  min-height: 115px;
+  padding: 9px;
+  border-right: 1px solid #e5d7bd;
+}
+.ve-worked p {
+  margin-top: 8px;
+}
+.ve-practice {
+  margin-top: 9px;
+  min-height: 180px;
+}
+.ve-practice > div {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 7px;
+  margin-top: 8px;
+}
+.ve-practice article {
+  min-height: 130px;
+  padding: 8px;
+  border: 1px solid #d7e4eb;
+  border-radius: 7px;
+}
+.ve-practice article > div {
+  display: flex;
+  gap: 3px;
+  margin: 10px 0;
+}
+.ve-practice input,
+.ve-practice select {
+  min-width: 0;
+  width: 100%;
+  padding: 6px;
+  border: 1px solid #d7e3ea;
+  border-radius: 5px;
+}
+.ve-practice article > div input {
+  width: 33%;
+}
+.ve-practice button {
+  margin-top: 8px;
+  background: #edf5ff;
+  color: #156cca;
+}
+.ve-practice strong {
+  margin-left: 6px;
+  color: #258e60;
+}
+.ve-adjacent {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.ve-adjacent a,
+.ve-quick a {
+  padding: 8px 12px;
+  border: 1px solid #d5e5ec;
+  border-radius: 8px;
+  color: #24344c;
+  text-decoration: none;
+}
+.ve-adjacent a {
+  width: 49%;
+}
+.ve-adjacent a:last-child {
+  text-align: right;
+}
+.ve-quick {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+}
+.ve-quick a {
+  padding: 5px 8px;
+}
+body:has(.ve10155-page) [data-testid="desktop-sidebar"] {
+  display: flex !important;
+  width: 173px !important;
+}
+body:has(.ve10155-page) #main-content {
+  margin-left: 0 !important;
+  padding: 0 12px !important;
+}
+body:has(.ve10155-page) #main-content > div {
+  max-width: none !important;
+}
+body:has(.ve10155-page) nav[aria-label="Breadcrumb"] {
+  height: 28px !important;
+  min-height: 28px !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  font-size: 7px !important;
+}
+@media (max-width: 700px) {
+  body:has(.ve10155-page) [data-testid="desktop-sidebar"] {
+    display: none !important;
+  }
+  .ve10155-page {
+    width: 100%;
+    top: 0;
+    padding: 7px;
+  }
+  .ve-title,
+  .ve-top,
+  .ve-second,
+  .ve-third {
+    display: block;
+  }
+  .ve-title > span {
+    margin-top: 8px;
+  }
+  .ve-top > *,
+  .ve-second > *,
+  .ve-third > * {
+    margin-bottom: 8px;
+  }
+  .ve-worked > div,
+  .ve-practice > div {
+    grid-template-columns: 1fr;
+  }
+  .ve-adjacent,
+  .ve-quick {
+    flex-wrap: wrap;
+  }
+  .ve-scene > svg {
+    height: 350px;
+  }
+}

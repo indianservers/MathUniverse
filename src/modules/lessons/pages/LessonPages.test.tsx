@@ -4086,6 +4086,16 @@ describe("lesson pages", () => {
     expect(html).toContain("AP = td");
   });
 
+  it("renders the dedicated anchor-direction vector line explorer for lesson 10155", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/school/class-12/class-12-three-dimensional-geometry-vector-equation-of-a-line"]}><Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="school-mockup-0829"');
+    expect(html).toContain("dedicated-anchor-direction-vector-line-engine");
+    expect(html).toContain('data-anchor="1,-1,2"');
+    expect(html).toContain('data-direction="2,1,3"');
+    expect(html).toContain('data-point="5,1,8"');
+    expect(html).toContain("Point-on-line test");
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

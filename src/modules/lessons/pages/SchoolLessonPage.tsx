@@ -134,6 +134,7 @@ import ConicIdentificationTargetLesson10151 from "../schoolTargets/ConicIdentifi
 import DirectionRatiosTargetLesson10152 from "../schoolTargets/DirectionRatiosTargetLesson10152";
 import DirectionCosinesTargetLesson10153 from "../schoolTargets/DirectionCosinesTargetLesson10153";
 import LineTwoPoints3DTargetLesson10154 from "../schoolTargets/LineTwoPoints3DTargetLesson10154";
+import VectorEquationLineTargetLesson10155 from "../schoolTargets/VectorEquationLineTargetLesson10155";
 import PlaceValueTargetLesson10001 from "../schoolTargets/PlaceValueTargetLesson10001";
 import NumberNamingTargetLesson10002 from "../schoolTargets/NumberNamingTargetLesson10002";
 import EstimationRoundingTargetLesson10003 from "../schoolTargets/EstimationRoundingTargetLesson10003";
@@ -429,6 +430,8 @@ function SchoolLessonBody({
     return <DirectionCosinesTargetLesson10153 lesson={lesson} />;
   if (lesson.numericId === 10154)
     return <LineTwoPoints3DTargetLesson10154 lesson={lesson} />;
+  if (lesson.numericId === 10155)
+    return <VectorEquationLineTargetLesson10155 lesson={lesson} />;
   if (lesson.numericId === 10001)
     return <PlaceValueTargetLesson10001 lesson={lesson} />;
   if (lesson.numericId === 10002)
