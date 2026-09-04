@@ -3821,6 +3821,30 @@ describe("lesson pages", () => {
     expect(html).toContain('data-configuration-valid="true"');
   });
 
+  it("renders the dedicated binomial-approximation lab for lesson 10138", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-11/class-11-binomial-theorem-binomial-approximation",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0812"');
+    expect(html).toContain("dedicated-binomial-tangent-approximation-engine");
+    expect(html).toContain('data-x="0.02"');
+    expect(html).toContain('data-n="5"');
+    expect(html).toContain('data-exact="1.10408"');
+    expect(html).toContain('data-approximation="1.10000"');
+    expect(html).toContain('data-reliable="true"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

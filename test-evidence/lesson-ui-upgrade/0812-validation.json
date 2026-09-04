@@ -1,0 +1,62 @@
+{
+  "mockup": "0812",
+  "lessonId": 10138,
+  "route": "/lessons/school/class-11/class-11-binomial-theorem-binomial-approximation",
+  "surface": "BinomialApproximationTargetLesson10138",
+  "objectModel": "dedicated-binomial-tangent-approximation-engine",
+  "referencePixels": { "width": 1672, "height": 941 },
+  "desktopCapturePixels": { "width": 1665, "height": 932 },
+  "mobileCapturePixels": { "width": 375, "height": 811 },
+  "default": {
+    "x": 0.02,
+    "n": 5,
+    "exact": "1.10408",
+    "approximation": "1.10000",
+    "absoluteError": "0.00408",
+    "percentError": "0.369",
+    "zoom": 0.2,
+    "axes": true,
+    "grid": true,
+    "reliable": true
+  },
+  "interactions": {
+    "largeX": {
+      "x": 0.15,
+      "n": 5,
+      "exact": "2.01136",
+      "approximation": "1.75000",
+      "absoluteError": "0.26136",
+      "percentError": "12.994",
+      "reliable": false
+    },
+    "zoomClamp": {
+      "x": 0.1,
+      "zoom": 0.1,
+      "exact": "1.61051",
+      "approximation": "1.50000",
+      "reliable": true
+    },
+    "negativePower": {
+      "x": 0.05,
+      "n": -2,
+      "exact": "0.90703",
+      "approximation": "0.90000",
+      "absoluteError": "0.00703",
+      "percentError": "0.774"
+    },
+    "layersOff": { "axes": false, "grid": false },
+    "reset": {
+      "x": 0.02,
+      "n": 5,
+      "zoom": 0.2,
+      "axes": true,
+      "grid": true,
+      "exact": "1.10408",
+      "approximation": "1.10000",
+      "percentError": "0.369"
+    }
+  },
+  "mobileLayout": { "clientWidth": 375, "scrollWidth": 375 },
+  "consoleErrors": 0,
+  "status": "complete"
+}
