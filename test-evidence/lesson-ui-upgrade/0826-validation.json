@@ -1,0 +1,46 @@
+{
+  "mockup": "0826",
+  "lessonId": 10152,
+  "route": "/lessons/school/class-12/class-12-three-dimensional-geometry-direction-ratios",
+  "objectModel": "dedicated-draggable-3d-direction-ratio-engine",
+  "reference": "0826-reference.png",
+  "default": {
+    "pointA": [1, 2, 3],
+    "pointB": [4, 6, 3],
+    "vector": [3, 4, 0],
+    "directionRatios": [3, 4, 0],
+    "magnitude": 5,
+    "unitVector": [0.6, 0.8, 0]
+  },
+  "desktop": {
+    "viewport": { "width": 958, "height": 1640 },
+    "clientWidth": 943,
+    "scrollWidth": 943,
+    "overflow": false,
+    "sidebarWidth": 190,
+    "lessonBox": { "x": 202, "y": 88.8, "width": 744, "height": 1402.84 },
+    "visibleErrorSurfaces": 0
+  },
+  "mobile": {
+    "viewport": { "width": 390, "height": 811 },
+    "clientWidth": 375,
+    "scrollWidth": 375,
+    "overflow": false,
+    "lessonWidth": 361.2,
+    "buttons": 7,
+    "inputsAndSelects": 12,
+    "clippedControls": 0
+  },
+  "interactions": {
+    "editedPointB": [6, 5, 7],
+    "editedVector": [5, 3, 4],
+    "editedRatio": [5, 3, 4],
+    "editedMagnitude": 7.0711,
+    "scalarMultiple": { "k": 3, "result": [15, 9, 12] },
+    "camera": ["rotate", "pan", "zoom"],
+    "keyboardPointMovement": true,
+    "incompletePracticeResult": "Review proportional triples.",
+    "completePracticeResult": "All selections are correct.",
+    "resetAllState": true
+  }
+}

@@ -4056,6 +4056,16 @@ describe("lesson pages", () => {
     expect(html).toContain("Principal axes (u, v)");
   });
 
+  it("renders the dedicated 3D direction-ratio studio for lesson 10152", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/school/class-12/class-12-three-dimensional-geometry-direction-ratios"]}><Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="school-mockup-0826"');
+    expect(html).toContain("dedicated-draggable-3d-direction-ratio-engine");
+    expect(html).toContain('data-vector="3,4,0"');
+    expect(html).toContain('data-ratio="3:4:0"');
+    expect(html).toContain('data-magnitude="5.0000"');
+    expect(html).toContain("Draggable point B");
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
