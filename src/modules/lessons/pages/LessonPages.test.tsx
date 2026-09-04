@@ -3097,6 +3097,32 @@ describe("lesson pages", () => {
     expect(html).toContain("Export PNG");
   });
 
+  it("renders the dedicated more-than ogive target for lesson 10108", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-10/class-10-statistics-more-than-ogive",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0782"');
+    expect(html).toContain(
+      "dedicated-more-than-ogive-descending-median-engine",
+    );
+    expect(html).toContain('data-frequencies="4,6,8,7,5"');
+    expect(html).toContain('data-more-than="30,26,20,12,5,0"');
+    expect(html).toContain('data-total="30"');
+    expect(html).toContain('data-median="26.3"');
+    expect(html).toContain('aria-label="More-than point 4"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

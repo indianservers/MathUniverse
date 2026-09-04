@@ -1,0 +1,29 @@
+{
+  "lessonId": 10108,
+  "mockup": 782,
+  "route": "/lessons/school/class-10/class-10-statistics-more-than-ogive",
+  "objectModel": "dedicated-more-than-ogive-descending-median-engine",
+  "reference": "0782-reference.png",
+  "captures": { "desktop": "0782-desktop.png", "mobile": "0782-mobile.png" },
+  "states": {
+    "default": {
+      "frequencies": [4, 6, 8, 7, 5],
+      "moreThan": [30, 26, 20, 12, 5, 0],
+      "total": 30,
+      "half": 15,
+      "median": 26.3,
+      "guide": true,
+      "mode": "graph"
+    },
+    "keyboardPoint4Down": {
+      "frequencies": [4, 6, 8, 8, 5],
+      "moreThan": [31, 27, 21, 13, 5, 0],
+      "total": 31,
+      "half": 15.5,
+      "median": 26.9
+    },
+    "controls": { "guide": false, "mode": "table" },
+    "reset": { "total": 30, "median": 26.3, "guide": true, "mode": "graph" }
+  },
+  "mockupCorrection": "Removed the contradictory sixth frequency and derived median 26.3 from the displayed coherent curve instead of the mockup label 24.3."
+}
