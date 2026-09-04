@@ -3123,6 +3123,33 @@ describe("lesson pages", () => {
     expect(html).toContain('aria-label="More-than point 4"');
   });
 
+  it("renders the dedicated median-from-ogive target for lesson 10109", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-10/class-10-statistics-median-from-an-ogive",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0783"');
+    expect(html).toContain(
+      "dedicated-dual-ogive-grouped-median-equivalence-engine",
+    );
+    expect(html).toContain('data-frequencies="5,9,12,15,7,2"');
+    expect(html).toContain('data-less="0,5,14,26,41,48,50"');
+    expect(html).toContain('data-more="50,45,36,24,9,2,0"');
+    expect(html).toContain('data-total="50"');
+    expect(html).toContain('data-median="29.17"');
+    expect(html).toContain('data-median-class="20-30"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

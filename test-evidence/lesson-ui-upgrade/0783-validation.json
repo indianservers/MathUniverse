@@ -1,0 +1,35 @@
+{
+  "lessonId": 10109,
+  "mockup": 783,
+  "route": "/lessons/school/class-10/class-10-statistics-median-from-an-ogive",
+  "objectModel": "dedicated-dual-ogive-grouped-median-equivalence-engine",
+  "reference": "0783-reference.png",
+  "captures": { "desktop": "0783-desktop.png", "mobile": "0783-mobile.png" },
+  "states": {
+    "default": {
+      "frequencies": [5, 9, 12, 15, 7, 2],
+      "less": [0, 5, 14, 26, 41, 48, 50],
+      "more": [50, 45, 36, 24, 9, 2, 0],
+      "total": 50,
+      "half": 25,
+      "medianClass": "20-30",
+      "median": 29.17
+    },
+    "keyboardMedianClassUp": {
+      "frequencies": [5, 9, 13, 15, 7, 2],
+      "less": [0, 5, 14, 27, 42, 49, 51],
+      "more": [51, 46, 37, 24, 9, 2, 0],
+      "total": 51,
+      "half": 25.5,
+      "median": 28.85
+    },
+    "layersHidden": { "showLess": false, "showMore": false },
+    "reset": {
+      "total": 50,
+      "median": 29.17,
+      "showLess": true,
+      "showMore": true
+    }
+  },
+  "mockupCorrection": "Derived the more-than series and intersection from the displayed frequency distribution; all graphical and formula methods now agree at 29.17."
+}

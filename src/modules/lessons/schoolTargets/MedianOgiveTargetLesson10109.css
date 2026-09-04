@@ -1,0 +1,350 @@
+.med10109-page {
+  position: relative;
+  top: -8px;
+  left: 1px;
+  width: min(1390px, calc(100vw - 290px));
+  margin: auto;
+  color: #e4edff;
+  background: #031328;
+  font:
+    12px/1.45 Inter,
+    Arial,
+    sans-serif;
+  letter-spacing: 0;
+}
+.med10109-page:before {
+  position: fixed;
+  z-index: -1;
+  inset: 58px 0 0 283px;
+  background: #031328;
+  content: "";
+}
+.med10109-page * {
+  box-sizing: border-box;
+}
+.med10109-page h1,
+.med10109-page h2,
+.med10109-page p {
+  margin: 0;
+}
+.med10109-page button,
+.med10109-page input {
+  font: inherit;
+  color: inherit;
+}
+.med10109-page svg {
+  width: 18px;
+  height: 18px;
+}
+.med10109-hero {
+  display: grid;
+  grid-template-columns: 1.45fr 0.85fr;
+  gap: 20px;
+  height: 151px;
+  padding: 18px;
+  border: 1px solid #29435e;
+  border-radius: 11px;
+  background: linear-gradient(110deg, #071f39, #031328);
+}
+.med10109-hero small {
+  color: #38dce5;
+  font-weight: 900;
+  letter-spacing: 1.4px;
+}
+.med10109-hero h1 {
+  margin: 7px 0 2px;
+  font-size: 24px;
+}
+.med10109-hero nav {
+  display: flex;
+  gap: 7px;
+  margin-top: 12px;
+}
+.med10109-hero nav span {
+  padding: 4px 11px;
+  border: 1px solid #34506b;
+  border-radius: 15px;
+  font-weight: 800;
+}
+.med10109-hero aside {
+  padding: 12px;
+  border: 1px solid #314b65;
+  border-radius: 9px;
+}
+.med10109-hero aside b,
+.med10109-page h2 {
+  color: #5a9dff;
+}
+.med10109-hero aside p {
+  margin-top: 8px;
+}
+.med10109-workspace {
+  display: grid;
+  grid-template-columns: 28% 50% 22%;
+  gap: 10px;
+  height: 620px;
+  margin-top: 10px;
+}
+.med10109-workspace > section,
+.med10109-right > section {
+  min-width: 0;
+  padding: 11px;
+  border: 1px solid #29435e;
+  border-radius: 9px;
+  background: #06182f;
+}
+.med10109-page h2 {
+  font-size: 13px;
+}
+.med10109-page h2 span {
+  color: #e4edff;
+}
+.med10109-data table,
+.med10109-compare table {
+  width: 100%;
+  margin-top: 12px;
+  border-collapse: collapse;
+  text-align: center;
+}
+.med10109-data th,
+.med10109-data td,
+.med10109-compare th,
+.med10109-compare td {
+  height: 34px;
+  padding: 3px;
+  border: 1px solid #304a64;
+}
+.med10109-data td:first-child {
+  white-space: nowrap;
+}
+.med10109-data td:first-child svg {
+  width: 13px;
+  vertical-align: middle;
+  color: #9cb0c4;
+}
+.med10109-data [role="slider"] {
+  padding: 5px;
+  border: 1px solid #27617c;
+  border-radius: 4px;
+  cursor: ns-resize;
+  touch-action: none;
+}
+.med10109-data [role="slider"]:focus {
+  outline: 2px solid #fff;
+}
+.med10109-data > p {
+  margin-top: 10px;
+}
+.med10109-data > aside {
+  display: grid;
+  grid-template-columns: 1fr 30px 1fr;
+  align-items: center;
+  margin-top: 16px;
+  padding: 12px;
+  border: 1px solid #314b65;
+  border-radius: 7px;
+  font-size: 16px;
+  text-align: center;
+}
+.med10109-data > aside span {
+  grid-column: 1/-1;
+  margin-top: 12px;
+  text-align: left;
+}
+.med10109-dual > header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.med10109-dual > header h2 {
+  margin-right: auto;
+}
+.med10109-dual label {
+  white-space: nowrap;
+}
+.med10109-dual input {
+  accent-color: #39dce3;
+}
+.med10109-dual button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 9px;
+  border: 1px solid #31506b;
+  border-radius: 6px;
+  background: #07192d;
+}
+.med10109-dual > svg {
+  display: block;
+  width: 100%;
+  height: 330px;
+}
+.med10109-dual svg line {
+  stroke: #dce9f8;
+}
+.med10109-dual .grid line {
+  stroke: #29445d;
+}
+.med10109-dual path {
+  fill: none;
+  stroke-width: 3;
+}
+.med10109-dual path.less {
+  stroke: #2bdedb;
+  fill: none;
+}
+.med10109-dual circle.less {
+  fill: #20acb9;
+  stroke: #2bdedb;
+}
+.med10109-dual path.more {
+  stroke: #976ae8;
+  fill: none;
+}
+.med10109-dual circle.more {
+  fill: #7c53d0;
+  stroke: #976ae8;
+}
+.med10109-dual .guide line {
+  stroke: #ffbd2e;
+  stroke-width: 2;
+  stroke-dasharray: 5 4;
+}
+.med10109-dual .guide circle {
+  fill: #ffb32c;
+  stroke: #fff;
+}
+.med10109-dual text {
+  fill: #e4edff;
+  font-size: 10px;
+}
+.med10109-dual .guide text {
+  fill: #ffbd2e;
+  font-weight: 900;
+}
+.med10109-read {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 9px;
+}
+.med10109-read article {
+  padding: 10px;
+  border: 1px solid #1b8b89;
+  border-radius: 7px;
+  text-align: center;
+}
+.med10109-read article:nth-child(2) {
+  border-color: #704db8;
+}
+.med10109-read article b {
+  color: #34dce1;
+}
+.med10109-read article strong {
+  display: block;
+  margin-top: 7px;
+}
+.med10109-dual > aside {
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #29435e;
+  border-radius: 7px;
+}
+.med10109-right {
+  display: grid;
+  grid-template-rows: 1fr 225px;
+  gap: 10px;
+  min-width: 0;
+}
+.med10109-formula > strong {
+  display: block;
+  margin: 18px 0;
+  padding: 12px;
+  border: 1px solid #435d77;
+  border-radius: 8px;
+  font:
+    italic 18px Georgia,
+    serif;
+  text-align: center;
+}
+.med10109-formula > div {
+  margin-top: 12px;
+  padding: 10px;
+  border: 1px solid #314b65;
+  border-radius: 7px;
+  line-height: 1.7;
+}
+.med10109-formula mark {
+  display: block;
+  margin-top: 10px;
+  padding: 7px;
+  border: 1px solid #9b7721;
+  border-radius: 4px;
+  background: #382e16;
+  color: #ffd14d;
+  font-weight: 900;
+  text-align: center;
+}
+.med10109-compare table {
+  font-size: 10px;
+}
+.med10109-compare p {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+.med10109-compare p svg {
+  color: #30d89a;
+}
+@media (max-width: 900px) {
+  .med10109-page {
+    top: -22px;
+    left: 0;
+    width: calc(100vw - 16px);
+    font-size: 10px;
+  }
+  .med10109-page:before {
+    inset: 0;
+  }
+  .med10109-hero {
+    grid-template-columns: 1fr;
+    height: auto;
+    min-height: 260px;
+    padding: 12px;
+  }
+  .med10109-hero h1 {
+    font-size: 21px;
+  }
+  .med10109-hero nav {
+    flex-wrap: wrap;
+  }
+  .med10109-workspace {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+  .med10109-data table {
+    min-width: 330px;
+  }
+  .med10109-data {
+    overflow-x: auto;
+  }
+  .med10109-dual > header {
+    flex-wrap: wrap;
+  }
+  .med10109-dual > header h2 {
+    width: 100%;
+  }
+  .med10109-dual > svg {
+    height: auto;
+    min-height: 270px;
+  }
+  .med10109-read {
+    grid-template-columns: 1fr;
+  }
+  .med10109-right {
+    grid-template-rows: auto;
+  }
+  .med10109-workspace > section,
+  .med10109-right > section {
+    padding: 9px;
+  }
+}
