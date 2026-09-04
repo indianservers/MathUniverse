@@ -1,0 +1,51 @@
+{
+  "mockup": "0804",
+  "lessonId": 10130,
+  "route": "/lessons/school/class-11/class-11-mathematical-induction-sum-formula-by-induction",
+  "surface": "SumFormulaInductionTargetLesson10130",
+  "objectModel": "dedicated-triangular-sum-induction-order-engine",
+  "referencePixels": { "width": 1672, "height": 941 },
+  "desktopCapturePixels": { "width": 1665, "height": 932 },
+  "mobileCapturePixels": { "width": 375, "height": 811 },
+  "default": {
+    "k": 5,
+    "sumK": 15,
+    "nextTerm": 6,
+    "sumNext": 21,
+    "filled": 0,
+    "checked": false,
+    "proofValid": false
+  },
+  "interactions": {
+    "correctOrder": {
+      "slots": ["A", "B", "C", "D", "E"],
+      "filled": 5,
+      "orderCorrect": true,
+      "checked": true,
+      "proofValid": true
+    },
+    "invalidOrder": {
+      "slots": ["B", "A", "C", "D", "E"],
+      "filled": 5,
+      "orderCorrect": false,
+      "checked": true,
+      "proofValid": false
+    },
+    "kSix": { "k": 6, "sumK": 21, "nextTerm": 7, "sumNext": 28 },
+    "shuffle": {
+      "sourceOrder": ["C", "A", "E", "B", "D"],
+      "filled": 0,
+      "checked": false
+    },
+    "reset": {
+      "k": 5,
+      "sourceOrder": ["A", "B", "C", "D", "E"],
+      "filled": 0,
+      "checked": false,
+      "proofValid": false
+    }
+  },
+  "mobileLayout": { "clientWidth": 375, "scrollWidth": 375 },
+  "consoleErrors": 0,
+  "status": "complete"
+}
