@@ -2590,6 +2590,37 @@ describe("lesson pages", () => {
     expect(html).toContain('aria-label="Draggable chord point D"');
   });
 
+  it("renders the dedicated centre-perpendicular target for lesson 10090", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-10/class-10-circle-proofs-perpendicular-from-centre-to-chord",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0764"');
+    expect(html).toContain(
+      "dedicated-centre-perpendicular-chord-bisection-engine",
+    );
+    expect(html).toContain('data-radius="6"');
+    expect(html).toContain('data-chord="10"');
+    expect(html).toContain('data-half="5"');
+    expect(html).toContain('data-om="3.32"');
+    expect(html).toContain('data-am="5"');
+    expect(html).toContain('data-mb="5"');
+    expect(html).toContain('data-right-angles="90,90"');
+    expect(html).toContain('data-congruent="true"');
+    expect(html).toContain('aria-label="Draggable chord endpoint A"');
+    expect(html).toContain('aria-label="Draggable chord endpoint B"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

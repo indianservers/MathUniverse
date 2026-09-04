@@ -64,6 +64,7 @@ import ExternalSectionFormulaTargetLesson10086 from "../schoolTargets/ExternalSe
 import CoordinateTriangleAreaTargetLesson10087 from "../schoolTargets/CoordinateTriangleAreaTargetLesson10087";
 import CollinearityCoordinateAreaTargetLesson10088 from "../schoolTargets/CollinearityCoordinateAreaTargetLesson10088";
 import EqualChordsAnglesTargetLesson10089 from "../schoolTargets/EqualChordsAnglesTargetLesson10089";
+import PerpendicularCentreChordTargetLesson10090 from "../schoolTargets/PerpendicularCentreChordTargetLesson10090";
 import PlaceValueTargetLesson10001 from "../schoolTargets/PlaceValueTargetLesson10001";
 import NumberNamingTargetLesson10002 from "../schoolTargets/NumberNamingTargetLesson10002";
 import EstimationRoundingTargetLesson10003 from "../schoolTargets/EstimationRoundingTargetLesson10003";
@@ -213,6 +214,8 @@ export default function SchoolLessonPage() {
     return <CollinearityCoordinateAreaTargetLesson10088 lesson={lesson} />;
   if (lesson.numericId === 10089)
     return <EqualChordsAnglesTargetLesson10089 lesson={lesson} />;
+  if (lesson.numericId === 10090)
+    return <PerpendicularCentreChordTargetLesson10090 lesson={lesson} />;
   if (lesson.numericId === 10001)
     return <PlaceValueTargetLesson10001 lesson={lesson} />;
   if (lesson.numericId === 10002)

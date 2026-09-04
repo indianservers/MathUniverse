@@ -1,0 +1,46 @@
+{
+  "mockup": "0764",
+  "lessonId": 10090,
+  "route": "/lessons/school/class-10/class-10-circle-proofs-perpendicular-from-centre-to-chord",
+  "objectModel": "dedicated-centre-perpendicular-chord-bisection-engine",
+  "default": {
+    "radius": 6,
+    "chord": 10,
+    "am": 5,
+    "mb": 5,
+    "om": 3.32,
+    "angles": [90, 90],
+    "rhsCongruent": true
+  },
+  "interactions": {
+    "keyboardChord": 11,
+    "keyboardHalf": 5.5,
+    "keyboardOm": 2.4,
+    "constructionHidden": true,
+    "randomRadius": 4.5,
+    "randomChord": 5.4,
+    "randomHalf": 2.7,
+    "randomOm": 3.6,
+    "resetRestoredDefaults": true
+  },
+  "desktop": {
+    "viewport": [970, 1712],
+    "hero": [90, 222],
+    "tabs": [238, 281],
+    "lab": [291, 832],
+    "theorem": [842, 933],
+    "cards": [948, 1318],
+    "challenge": [1333, 1476],
+    "navigation": [1488, 1549]
+  },
+  "mobile": {
+    "viewport": [390, 844],
+    "documentWidth": 375,
+    "draggableHandles": 2,
+    "inputs": 2,
+    "cards": 3,
+    "challengePanels": 3,
+    "horizontalOverflow": false
+  },
+  "console": { "warnings": 0, "errors": 0 }
+}
