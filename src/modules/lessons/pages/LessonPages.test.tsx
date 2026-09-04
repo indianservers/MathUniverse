@@ -4171,6 +4171,15 @@ describe("lesson pages", () => {
     expect(html).toContain('data-angle="63.6122"');
   });
 
+  it("renders the dedicated line-plane angle engine for lesson 10164", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/school/class-12/class-12-three-dimensional-geometry-angle-between-line-and-plane"]}><Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="school-mockup-0838"');
+    expect(html).toContain("dedicated-line-plane-complementary-angle-engine");
+    expect(html).toContain('data-dot="4"');
+    expect(html).toContain('data-angle="26.3878"');
+    expect(html).toContain('data-projection="(0.1111, 2.4444, 1.1111)"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
