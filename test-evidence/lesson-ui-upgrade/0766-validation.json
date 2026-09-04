@@ -1,0 +1,48 @@
+{
+  "mockup": "0766",
+  "lessonId": 10092,
+  "route": "/lessons/school/class-10/class-10-circle-proofs-angle-in-a-semicircle",
+  "objectModel": "dedicated-diameter-semicircle-right-angle-engine",
+  "default": {
+    "theta": 68,
+    "c": [2.36, 5.85],
+    "angleA": 34,
+    "angleB": 56,
+    "angleC": 90,
+    "ac": 7.06,
+    "bc": 10.46,
+    "diameter": 12.62,
+    "pythagorean": true
+  },
+  "interactions": {
+    "keyboardTheta": 66,
+    "keyboardC": [2.57, 5.76],
+    "keyboardAngleA": 33,
+    "keyboardAngleB": 57,
+    "keyboardRightAngle": 90,
+    "keyboardPythagorean": true,
+    "mediumAutoDragTheta": 82,
+    "fastAutoDragTheta": 96,
+    "pauseWorks": true,
+    "resetRestoredDefaults": true
+  },
+  "desktop": {
+    "viewport": [970, 1712],
+    "hero": [62, 207],
+    "tabs": [217, 257],
+    "lab": [271, 767],
+    "animation": [777, 829],
+    "cards": [843, 1148],
+    "lower": [1162, 1352],
+    "navigation": [1366, 1402]
+  },
+  "mobile": {
+    "viewport": [390, 844],
+    "documentWidth": 375,
+    "draggableHandles": 1,
+    "inputs": 1,
+    "cards": 3,
+    "horizontalOverflow": false
+  },
+  "console": { "warnings": 0, "errors": 0 }
+}

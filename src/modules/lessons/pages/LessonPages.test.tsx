@@ -2650,6 +2650,34 @@ describe("lesson pages", () => {
     expect(html).toContain('aria-label="Point C around major arc"');
   });
 
+  it("renders the dedicated semicircle target for lesson 10092", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-10/class-10-circle-proofs-angle-in-a-semicircle",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0766"');
+    expect(html).toContain("dedicated-diameter-semicircle-right-angle-engine");
+    expect(html).toContain('data-theta="68"');
+    expect(html).toContain('data-c="2.36,5.85"');
+    expect(html).toContain('data-angle-a="34"');
+    expect(html).toContain('data-angle-b="56"');
+    expect(html).toContain('data-angle-c="90"');
+    expect(html).toContain('data-pythagorean="true"');
+    expect(html).toContain('aria-label="Point C on semicircle"');
+    expect(html).toContain('aria-label="Point C position"');
+    expect(html).toContain('aria-label="Start auto-drag"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
