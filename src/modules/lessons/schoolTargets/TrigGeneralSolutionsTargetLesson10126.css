@@ -1,0 +1,334 @@
+.gs10126-page {
+  position: relative;
+  top: -8px;
+  width: min(1360px, calc(100vw - 320px));
+  margin: auto;
+  color: #e8eef8;
+  background: #031328;
+  font:
+    11px/1.45 Inter,
+    Arial,
+    sans-serif;
+  letter-spacing: 0;
+}
+.gs10126-page:before {
+  position: fixed;
+  z-index: -1;
+  inset: 58px 0 0 283px;
+  background: #031328;
+  content: "";
+}
+.gs10126-page * {
+  box-sizing: border-box;
+}
+.gs10126-page h1,
+.gs10126-page h2,
+.gs10126-page p {
+  margin: 0;
+}
+.gs10126-page button,
+.gs10126-page select,
+.gs10126-page input {
+  font: inherit;
+  color: inherit;
+}
+.gs10126-page > header {
+  padding: 17px;
+}
+.gs10126-page > header small,
+.gs10126-page h2,
+.gs10126-toolbar strong {
+  color: #4ed9d6;
+  font-weight: 900;
+  letter-spacing: 0.6px;
+}
+.gs10126-page > header h1 {
+  margin: 6px 0;
+  font-size: 24px;
+}
+.gs10126-page > header nav {
+  display: flex;
+  gap: 7px;
+  margin-top: 11px;
+}
+.gs10126-page > header nav span {
+  padding: 4px 10px;
+  border-radius: 12px;
+  background: #12243a;
+  font-weight: 800;
+}
+.gs10126-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 14px 8px;
+  border-top: 1px solid #29435c;
+}
+.gs10126-toolbar > div {
+  margin-right: auto;
+}
+.gs10126-toolbar label {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.gs10126-toolbar select,
+.gs10126-toolbar button {
+  padding: 9px 13px;
+  border: 1px solid #304960;
+  border-radius: 6px;
+  background: #09192e;
+}
+.gs10126-toolbar button {
+  display: flex;
+  gap: 6px;
+}
+.gs10126-page svg {
+  width: 16px;
+}
+.gs10126-page > main {
+  display: grid;
+  grid-template-columns: minmax(280px, 31fr) minmax(210px, 20fr) minmax(0, 49fr);
+  gap: 10px;
+}
+.gs10126-page > main > section,
+.gs10126-families article,
+.gs10126-families > footer,
+.gs10126-bottom article {
+  border: 1px solid #29435c;
+  border-radius: 7px;
+  background: #07192e;
+}
+.gs10126-circle {
+  padding: 13px;
+}
+.gs10126-circle > svg {
+  width: 100%;
+  height: 305px;
+}
+.gs10126-circle svg .axis {
+  stroke: #dce8f4;
+}
+.gs10126-circle svg .unit,
+.orbit-row svg circle {
+  fill: none;
+  stroke: #4b85d7;
+}
+.gs10126-circle svg .level {
+  stroke: #efa427;
+  stroke-dasharray: 5 4;
+}
+.gs10126-circle svg .ray {
+  stroke: #d8e5f1;
+  stroke-dasharray: 5 4;
+}
+.gs10126-circle svg circle.family0,
+.orbit-row .family0 {
+  fill: #35deda;
+}
+.gs10126-circle svg circle.family1,
+.orbit-row .family1 {
+  fill: #ad6bea;
+}
+.gs10126-circle svg text {
+  fill: #33d9d5;
+  font: 13px Georgia;
+}
+.gs10126-circle footer {
+  padding-top: 10px;
+  border-top: 1px solid #29435c;
+}
+.gs10126-circle footer label {
+  display: grid;
+  grid-template-columns: 100px 95px 1fr;
+  align-items: center;
+  gap: 10px;
+}
+.gs10126-circle footer label div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.gs10126-circle footer button {
+  display: grid;
+  place-items: center;
+  width: 27px;
+  height: 27px;
+  border: 1px solid #304960;
+  background: #08192e;
+}
+.gs10126-circle footer input {
+  width: 100%;
+  accent-color: #39d4d1;
+}
+.gs10126-circle footer > span {
+  display: block;
+  margin-top: 8px;
+  color: #55dcd8;
+}
+.gs10126-families {
+  display: grid;
+  gap: 9px;
+}
+.gs10126-families article,
+.gs10126-families > footer {
+  padding: 13px;
+}
+.gs10126-families article > div {
+  margin-top: 12px;
+}
+.gs10126-families i {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 7px;
+  border-radius: 50%;
+}
+.gs10126-families .family0 {
+  background: #31ddd9;
+  color: #31ddd9;
+}
+.gs10126-families .family1 {
+  background: #a96be7;
+  color: #a96be7;
+}
+.gs10126-families article p {
+  margin: 7px 0;
+  font: 16px Georgia;
+}
+.gs10126-families > footer {
+  display: flex;
+  gap: 8px;
+}
+.gs10126-timeline {
+  padding: 13px;
+}
+.timeline {
+  position: relative;
+  height: 150px;
+  margin: 25px 18px 0;
+}
+.timeline hr {
+  position: absolute;
+  top: 42px;
+  width: 100%;
+  border: 0;
+  border-top: 2px solid #8190a1;
+}
+.timeline .tick {
+  position: absolute;
+  top: 13px;
+  transform: translateX(-50%);
+  font: 15px Georgia;
+}
+.timeline .point {
+  position: absolute;
+  top: 39px;
+  width: 1px;
+  height: 1px;
+  border: 0;
+  background: transparent;
+}
+.timeline .point i {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: #31dcd8;
+}
+.timeline .point.family1 i {
+  background: #aa68e8;
+}
+.timeline .point b {
+  position: absolute;
+  top: 23px;
+  left: 0;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font: 13px Georgia;
+}
+.timeline .point.current {
+  top: 35px;
+  height: 110px;
+  outline: 1px solid #1d7293;
+}
+.orbit-row {
+  display: flex;
+  justify-content: space-around;
+  margin-top: -20px;
+}
+.orbit-row svg {
+  width: 68px;
+}
+.orbit-row svg line {
+  stroke: #8495a8;
+}
+.gs10126-timeline > footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  margin-top: 14px;
+  padding: 14px;
+  border: 1px solid #29435c;
+  border-radius: 7px;
+}
+.gs10126-timeline > footer strong {
+  padding: 10px 24px;
+  border: 1px solid currentColor;
+  border-radius: 6px;
+  color: #31dcd8;
+  font: 16px Georgia;
+}
+.gs10126-timeline > footer strong.family1 {
+  color: #aa68e8;
+}
+.gs10126-bottom {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 10px;
+  margin-top: 12px;
+}
+.gs10126-bottom article {
+  padding: 14px;
+}
+.gs10126-bottom article p {
+  margin-top: 8px;
+  font: 15px Georgia;
+}
+@media (max-width: 800px) {
+  .gs10126-page {
+    top: 0;
+    width: 100%;
+    padding: 8px;
+  }
+  .gs10126-page:before {
+    inset: 0;
+  }
+  .gs10126-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .gs10126-toolbar label {
+    display: grid;
+  }
+  .gs10126-page > main,
+  .gs10126-bottom {
+    display: block;
+  }
+  .gs10126-page > main > * {
+    margin-top: 9px;
+  }
+  .gs10126-timeline {
+    overflow-x: auto;
+  }
+  .gs10126-timeline > .timeline,
+  .gs10126-timeline > .orbit-row,
+  .gs10126-timeline > footer {
+    min-width: 650px;
+  }
+  .gs10126-bottom article {
+    margin-top: 9px;
+  }
+}

@@ -3543,6 +3543,29 @@ describe("lesson pages", () => {
     expect(html).toContain('data-minimum="-0.75"');
   });
 
+  it("renders the dedicated general trig-solutions lab for lesson 10126", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter
+        initialEntries={[
+          "/lessons/school/class-11/class-11-trigonometry-general-solutions-of-trigonometric-equations",
+        ]}
+      >
+        <Routes>
+          <Route
+            path="/lessons/school/:levelSlug/:lessonSlug"
+            element={<SchoolLessonPage />}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="school-mockup-0800"');
+    expect(html).toContain("dedicated-periodic-trig-solution-family-engine");
+    expect(html).toContain('data-equation="sin-half"');
+    expect(html).toContain('data-family-count="2"');
+    expect(html).toContain('data-solutions="π/6;5π/6"');
+    expect(html).toContain('data-verified="true"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

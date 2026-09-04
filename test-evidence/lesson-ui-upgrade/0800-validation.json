@@ -1,0 +1,35 @@
+{
+  "mockup": "0800",
+  "lessonId": 10126,
+  "route": "/lessons/school/class-11/class-11-trigonometry-general-solutions-of-trigonometric-equations",
+  "surface": "TrigGeneralSolutionsTargetLesson10126",
+  "objectModel": "dedicated-periodic-trig-solution-family-engine",
+  "referencePixels": { "width": 1672, "height": 941 },
+  "desktopCapturePixels": { "width": 1265, "height": 712 },
+  "mobileCapturePixels": { "width": 375, "height": 811 },
+  "default": {
+    "equation": "sin-half",
+    "n": 0,
+    "families": 2,
+    "solutions": ["π/6", "5π/6"],
+    "timelineSolutions": 6,
+    "verified": true
+  },
+  "interactions": {
+    "nEquals1": { "solutions": ["13π/6", "17π/6"] },
+    "timelineNegative": {
+      "n": -1,
+      "solutions": ["-11π/6", "-7π/6"]
+    },
+    "cosHalf": { "solutions": ["π/3", "5π/3"], "families": 2 },
+    "tanOne": { "solutions": ["π/4"], "families": 1 },
+    "sinZero": { "solutions": ["0", "π"], "timelineSolutions": 7 },
+    "reset": {
+      "equation": "sin-half",
+      "n": 0,
+      "solutions": ["π/6", "5π/6"],
+      "verified": true
+    }
+  },
+  "status": "complete"
+}
