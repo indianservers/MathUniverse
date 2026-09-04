@@ -4153,6 +4153,15 @@ describe("lesson pages", () => {
     expect(html).toContain('data-volume="4"');
   });
 
+  it("renders the dedicated point-plane projection engine for lesson 10162", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/school/class-12/class-12-three-dimensional-geometry-distance-from-point-to-plane"]}><Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="school-mockup-0836"');
+    expect(html).toContain("dedicated-point-plane-orthogonal-projection-engine");
+    expect(html).toContain('data-numerator="3"');
+    expect(html).toContain('data-distance="1"');
+    expect(html).toContain('data-foot="(0.3333, 2.3333, 3.3333)"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
