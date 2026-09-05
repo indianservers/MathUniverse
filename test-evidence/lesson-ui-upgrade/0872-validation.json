@@ -1,0 +1,9 @@
+{
+  "mockup": "0872",
+  "lessonId": 10198,
+  "route": "/lessons/school/class-12/class-12-matrices-and-determinants-cramer-s-rule",
+  "objectModel": "dedicated-cramer-column-replacement-engine",
+  "default": { "system": [2, 1, 5, 1, -1, 1], "determinant": -3, "deltaX": -6, "deltaY": -3, "case": "unique", "solution": [2, 1] },
+  "desktop": { "targetWidth": 958, "targetHeight": 1641, "clientWidth": 958, "scrollWidth": 943, "horizontalOverflow": false, "lessonFrame": { "x": 201, "y": 88.8, "width": 735, "height": 1557.2, "bottom": 1646 }, "determinantModels": 3, "clippedControls": 0 },
+  "interactions": { "swapped": { "determinant": 3, "deltaX": 6, "deltaY": 3, "solution": [2, 1] }, "random": { "determinant": -7, "solution": [1.7142857143, -0.1428571429] }, "singular": { "system": [2, 1, 5, 4, 2, 12], "case": "none" }, "resetWorking": true, "practiceCardsPassed": 4, "checkAllPassed": 4, "gradedAnswerInvalidatesOnEdit": true, "hintsWorking": true, "learnMoreWorking": true }
+}

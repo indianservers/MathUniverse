@@ -4516,6 +4516,18 @@ describe("lesson pages", () => {
     expect(html).toContain('data-zoom="1"');
   });
 
+  it("renders the dedicated Cramer column-replacement engine for lesson 10198", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/school/class-12/class-12-matrices-and-determinants-cramer-s-rule"]}><Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="school-mockup-0872"');
+    expect(html).toContain("dedicated-cramer-column-replacement-engine");
+    expect(html).toContain('data-delta="-3"');
+    expect(html).toContain('data-delta-x="-6"');
+    expect(html).toContain('data-delta-y="-3"');
+    expect(html).toContain('data-case="unique"');
+    expect(html).toContain('data-x="2"');
+    expect(html).toContain('data-y="1"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
