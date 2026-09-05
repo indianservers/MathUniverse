@@ -1,0 +1,10 @@
+{
+  "mockup": "0868",
+  "lessonId": 10194,
+  "route": "/lessons/school/class-12/class-12-matrices-and-determinants-adjoint-of-a-matrix",
+  "objectModel": "dedicated-adjoint-transpose-verification-engine",
+  "default": { "entry": "C12", "minor": -5, "sign": -1, "cofactor": 5, "destination": [2, 1], "determinant": 22 },
+  "desktop": { "targetWidth": 951, "targetHeight": 1663, "clientWidth": 951, "scrollWidth": 951, "horizontalOverflow": false, "lessonFrame": { "x": 201, "y": 90, "width": 732, "height": 1418, "bottom": 1508 }, "clippedControls": 0 },
+  "mobile": { "viewportWidth": 390, "clientWidth": 390, "scrollWidth": 390, "horizontalOverflow": false, "lessonWidth": 350.63, "clippedControls": 0 },
+  "interactions": { "cofactorCellsChecked": 9, "allTransposeDestinationsMatched": true, "product": [[22, 0, 0], [0, 22, 0], [0, 0, 22]], "flipWorking": true, "answerRevealWorking": true, "adjointB": [[4, -3], [-1, 2]], "adjointD": [[3, 1], [-2, 4]] }
+}
