@@ -1,0 +1,21 @@
+{
+  "mockup": "0862",
+  "lessonId": 10188,
+  "route": "/lessons/school/class-12/class-12-differential-equations-variable-separable-equations",
+  "objectModel": "dedicated-variable-separation-slope-field-engine",
+  "reference": "0862-reference.png",
+  "default": { "separated": true, "pointX": 0.5, "pointY": 2.2663, "equationSlope": 1.1331, "curveSlope": 1.1331, "solution": "2e^(x^2/2)" },
+  "desktop": { "targetWidth": 951, "targetHeight": 1654, "clientWidth": 951, "scrollWidth": 951, "horizontalOverflow": false, "lessonFrame": { "x": 20, "y": 85, "width": 720, "height": 1528.31, "bottom": 1613.31 }, "controlsChecked": 18, "clippedControls": 0, "genericSectionsReplaced": true, "visibleErrorSurfaces": 0 },
+  "mobile": { "viewportWidth": 390, "clientWidth": 390, "scrollWidth": 390, "horizontalOverflow": false, "lessonWidth": 374, "clippedControls": 0, "controlsChecked": 18, "genericSectionsReplaced": true, "visibleErrorSurfaces": 0 },
+  "interactions": {
+    "movedPoint": { "x": 1, "y": 3.2974, "equationSlope": 3.2974, "curveSlope": 3.2974 },
+    "wrongSeparationRejected": true,
+    "correctSeparationAccepted": "dy/y = x dx",
+    "practiceAccepted": "y = 3e^(x^2)",
+    "reviewChecksPassed": 3,
+    "resetAllState": true,
+    "htmlDragDropImplemented": true,
+    "pointerCaptureAndKeyboardImplemented": true,
+    "resultBoxesInsidePanels": true
+  }
+}

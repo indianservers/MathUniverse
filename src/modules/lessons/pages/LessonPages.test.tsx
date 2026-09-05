@@ -4401,6 +4401,16 @@ describe("lesson pages", () => {
     expect(html).toContain('data-selected-degree="2"');
   });
 
+  it("renders the dedicated variable-separation slope-field engine for lesson 10188", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/school/class-12/class-12-differential-equations-variable-separable-equations"]}><Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="school-mockup-0862"');
+    expect(html).toContain("dedicated-variable-separation-slope-field-engine");
+    expect(html).toContain('data-separated="true"');
+    expect(html).toContain('data-point-x="0.5"');
+    expect(html).toContain('data-point-y="2.2663"');
+    expect(html).toContain('data-equation-slope="1.1331"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

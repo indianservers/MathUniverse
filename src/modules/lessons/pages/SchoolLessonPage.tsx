@@ -167,6 +167,7 @@ import AreaUnderCurveTargetLesson10184 from "../schoolTargets/AreaUnderCurveTarg
 import AreaBetweenCurvesTargetLesson10185 from "../schoolTargets/AreaBetweenCurvesTargetLesson10185";
 import FormationDifferentialEquationsTargetLesson10186 from "../schoolTargets/FormationDifferentialEquationsTargetLesson10186";
 import OrderDegreeDifferentialEquationTargetLesson10187 from "../schoolTargets/OrderDegreeDifferentialEquationTargetLesson10187";
+import VariableSeparableEquationsTargetLesson10188 from "../schoolTargets/VariableSeparableEquationsTargetLesson10188";
 import PlaceValueTargetLesson10001 from "../schoolTargets/PlaceValueTargetLesson10001";
 import NumberNamingTargetLesson10002 from "../schoolTargets/NumberNamingTargetLesson10002";
 import EstimationRoundingTargetLesson10003 from "../schoolTargets/EstimationRoundingTargetLesson10003";
@@ -528,6 +529,8 @@ function SchoolLessonBody({
     return <FormationDifferentialEquationsTargetLesson10186 lesson={lesson} />;
   if (lesson.numericId === 10187)
     return <OrderDegreeDifferentialEquationTargetLesson10187 lesson={lesson} />;
+  if (lesson.numericId === 10188)
+    return <VariableSeparableEquationsTargetLesson10188 lesson={lesson} />;
   if (lesson.numericId === 10001)
     return <PlaceValueTargetLesson10001 lesson={lesson} />;
   if (lesson.numericId === 10002)
