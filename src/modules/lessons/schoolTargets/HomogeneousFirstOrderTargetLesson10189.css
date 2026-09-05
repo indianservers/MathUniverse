@@ -1,0 +1,385 @@
+.hfo10189-page {
+  position: relative;
+  top: -32px;
+  width: min(720px, 100%);
+  margin: 0;
+  color: #29384c;
+  font:
+    8px/1.48 Inter,
+    Arial,
+    sans-serif;
+  letter-spacing: 0;
+}
+.hfo10189-page:before {
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  background: #effaff;
+  content: "";
+}
+.hfo10189-page * {
+  box-sizing: border-box;
+}
+.hfo10189-page h1,
+.hfo10189-page h2,
+.hfo10189-page h3,
+.hfo10189-page p {
+  margin: 0;
+}
+.hfo10189-page button,
+.hfo10189-page input,
+.hfo10189-page textarea {
+  font: inherit;
+  color: inherit;
+}
+.hfo10189-page button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 10px;
+  border: 1px solid #d2e2e9;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+}
+.hfo10189-page button svg {
+  width: 11px;
+}
+.hfo-hero,
+.hfo-lab,
+.hfo-middle > article,
+.hfo-practice,
+.hfo-nav a {
+  border: 1px solid #d7e7ed;
+  border-radius: 10px;
+  background: #fff;
+}
+.hfo-hero {
+  min-height: 132px;
+  padding: 15px;
+}
+.hfo-hero small,
+.hfo10189-page h3 {
+  color: #0786bb;
+  font-weight: 900;
+}
+.hfo-hero h1 {
+  margin: 6px 0;
+  color: #111827;
+  font-size: 20px;
+}
+.hfo-hero > div {
+  display: flex;
+  gap: 5px;
+  margin-top: 10px;
+}
+.hfo-hero span {
+  padding: 3px 8px;
+  border-radius: 10px;
+  background: #edf2f5;
+  font-weight: 800;
+}
+.hfo-lab {
+  min-height: 650px;
+  margin-top: 9px;
+  padding: 10px;
+}
+.hfo-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 12px;
+  margin-top: 10px;
+}
+.hfo-geometry,
+.hfo-derive {
+  padding: 10px;
+  border: 1px solid #dce7ec;
+  border-radius: 8px;
+}
+.formula {
+  font:
+    italic 12px Georgia,
+    serif;
+}
+.hfo-geometry > p {
+  margin: 9px 0 !important;
+}
+.hfo-graph-row {
+  display: grid;
+  grid-template-columns: 95px 1fr;
+  gap: 10px;
+}
+.hfo-graph-row > aside {
+  padding: 8px;
+  border: 1px solid #d9e5eb;
+  border-radius: 7px;
+}
+.hfo-graph-row aside b,
+.hfo-graph-row aside strong {
+  display: block;
+  margin: 7px 0;
+}
+.hfo-graph-row aside strong {
+  color: #146ad3;
+}
+.hfo-graph-row aside p {
+  margin: 14px 0 !important;
+}
+.hfo-graph-row > div > label {
+  display: block;
+  text-align: right;
+}
+.hfo-graph-row svg {
+  width: 100%;
+  height: 330px;
+}
+.hfo-graph-row .gridline {
+  stroke: #e7edf0;
+}
+.hfo-graph-row .axis {
+  stroke: #253749;
+}
+.hfo-graph-row .ray {
+  stroke-dasharray: 5 4;
+}
+.hfo-graph-row .muted {
+  stroke: #aebbc4;
+}
+.hfo-graph-row .active {
+  stroke: #176cff;
+  stroke-width: 2;
+}
+.hfo-graph-row circle {
+  fill: #176cff;
+  stroke: #fff;
+  stroke-width: 2;
+  cursor: ew-resize;
+}
+.hfo-graph-row rect {
+  fill: #effcf5;
+  stroke: #7bd3a4;
+}
+.hfo-graph-row text {
+  font:
+    8px Inter,
+    Arial;
+}
+.hfo-graph-row > div > input {
+  width: 100%;
+  accent-color: #176cff;
+}
+.hfo-key {
+  padding: 9px;
+  border: 1px solid #d8e5eb;
+  border-radius: 6px;
+}
+.hfo-derive > div {
+  position: relative;
+  min-height: 74px;
+  margin: 8px 0;
+  padding: 10px 10px 8px 38px;
+  border: 1px solid #dbe6ec;
+  border-radius: 8px;
+}
+.hfo-derive i {
+  position: absolute;
+  left: 10px;
+  display: grid;
+  width: 19px;
+  height: 19px;
+  place-items: center;
+  border-radius: 50%;
+  background: #e5f7ff;
+  color: #0787bd;
+  font-style: normal;
+  font-weight: 900;
+}
+.hfo-derive .formula {
+  margin: 8px 0 !important;
+}
+.hfo-answer {
+  display: block;
+  padding: 10px;
+  border: 1px solid #aadebd;
+  border-radius: 7px;
+  background: #effcf4;
+  color: #126f46;
+}
+.hfo-middle {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr 0.9fr;
+  gap: 8px;
+  margin-top: 9px;
+}
+.hfo-middle > article {
+  min-height: 320px;
+  padding: 11px;
+}
+.hfo-middle table {
+  width: 100%;
+  margin: 12px 0;
+  border-collapse: collapse;
+}
+.hfo-middle th,
+.hfo-middle td {
+  padding: 8px 3px;
+  border: 1px solid #dce6eb;
+  text-align: center;
+}
+.hfo-middle td:last-child {
+  color: #00a25d;
+}
+.hfo-middle svg {
+  width: 100%;
+  height: 225px;
+}
+.hfo-middle .slope {
+  stroke: #74b8d4;
+}
+.hfo-middle .family {
+  fill: none;
+  stroke-width: 1.5;
+}
+.hfo-middle .c0 {
+  stroke: #25a65e;
+}
+.hfo-middle .c1 {
+  stroke: #176cff;
+}
+.hfo-middle .c2 {
+  stroke: #ef4444;
+}
+.hfo-middle .c3 {
+  stroke: #ff7d62;
+}
+.hfo-middle .c4 {
+  stroke: #884ae3;
+}
+.hfo-legend {
+  display: flex;
+  justify-content: space-around;
+}
+.hfo-domain {
+  margin: 14px 0;
+  padding: 10px;
+  border: 1px solid #b8d4ff;
+  border-radius: 7px;
+  background: #f1f7ff;
+  color: #1761c0;
+  font-weight: 900;
+}
+.hfo-warn {
+  padding: 10px;
+  border: 1px solid #f0d48c;
+  border-radius: 7px;
+  background: #fff8e8;
+  color: #704018;
+}
+.hfo-warn p {
+  margin: 10px 0 !important;
+}
+.hfo-practice {
+  min-height: 225px;
+  margin-top: 9px;
+  padding: 12px;
+}
+.hfo-practice-title {
+  display: flex;
+  justify-content: space-between;
+}
+.hfo-practice > div:nth-child(2) {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  margin-top: 10px;
+  border: 1px solid #dbe6ec;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.hfo-practice aside {
+  padding: 12px;
+  background: #eef8ff;
+}
+.hfo-practice label {
+  padding: 10px;
+}
+.hfo-practice textarea {
+  display: block;
+  width: 100%;
+  height: 75px;
+  margin: 5px 0;
+  padding: 8px;
+  border: 1px solid #d9e4e9;
+  border-radius: 6px;
+}
+.hfo-practice label button {
+  float: right;
+  background: #078db8;
+  color: #fff;
+}
+.hfo-practice > p {
+  margin: 12px !important;
+}
+.correct {
+  color: #078650;
+}
+.incorrect {
+  color: #bf3e30;
+}
+.hfo-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 9px;
+}
+.hfo-nav a {
+  padding: 9px;
+  color: #29384c;
+  text-decoration: none;
+}
+.hfo-nav a:last-child {
+  text-align: right;
+}
+.hfo-complete {
+  height: 27px;
+  padding-top: 8px;
+  color: #0786bb;
+  text-align: center;
+  font-weight: 900;
+}
+.lesson-school-shell:has(.hfo10189-page) > .lesson-section-nav,
+.lesson-school-shell:has(.hfo10189-page)
+  > section:not(#lesson-section-interaction) {
+  display: none !important;
+}
+.lesson-school-shell:has(.hfo10189-page) {
+  display: block !important;
+}
+@media (max-width: 700px) {
+  .hfo10189-page {
+    top: 0;
+    width: 100%;
+    font-size: 10px;
+  }
+  .hfo-hero h1 {
+    font-size: 22px;
+  }
+  .hfo-grid,
+  .hfo-middle {
+    grid-template-columns: 1fr;
+  }
+  .hfo-graph-row {
+    grid-template-columns: 85px 1fr;
+  }
+  .hfo-middle > article {
+    min-height: 260px;
+  }
+  .hfo-practice > div:nth-child(2) {
+    grid-template-columns: 1fr;
+  }
+  .hfo-nav {
+    grid-template-columns: 1fr;
+  }
+  .hfo-graph-row svg {
+    height: auto;
+  }
+}

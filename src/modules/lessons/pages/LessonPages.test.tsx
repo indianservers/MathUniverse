@@ -4411,6 +4411,16 @@ describe("lesson pages", () => {
     expect(html).toContain('data-equation-slope="1.1331"');
   });
 
+  it("renders the dedicated homogeneous ratio-substitution engine for lesson 10189", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/school/class-12/class-12-differential-equations-homogeneous-first-order-equations"]}><Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="school-mockup-0863"');
+    expect(html).toContain("dedicated-homogeneous-ratio-substitution-engine");
+    expect(html).toContain('data-x="4"');
+    expect(html).toContain('data-y="2"');
+    expect(html).toContain('data-ratio="0.5"');
+    expect(html).toContain('data-slope="1.5"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
