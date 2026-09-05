@@ -1,0 +1,22 @@
+{
+  "mockup": "0866",
+  "lessonId": 10192,
+  "route": "/lessons/school/class-12/class-12-differential-equations-direction-fields",
+  "objectModel": "dedicated-direction-field-numerical-solver",
+  "reference": "0866-reference.png",
+  "default": { "probe": [0, 1], "slope": -1, "method": "Euler", "step": 0.05, "traced": true, "maxSampledError": 0.0188, "exactSolution": "x - 1 + 2e^-x" },
+  "desktop": { "targetWidth": 951, "targetHeight": 1654, "clientWidth": 951, "scrollWidth": 951, "horizontalOverflow": false, "lessonFrame": { "x": 20, "y": 85, "width": 720, "height": 1570.83, "bottom": 1655.83 }, "controlsChecked": 26, "clippedControls": 0, "genericSectionsReplaced": true, "targetHeroRestored": true, "visibleErrorSurfaces": 0 },
+  "mobile": { "viewportWidth": 390, "clientWidth": 390, "scrollWidth": 390, "horizontalOverflow": false, "lessonWidth": 350.63, "clippedControls": 0, "controlsChecked": 26, "genericSectionsReplaced": true, "targetHeroRestored": true, "visibleErrorSurfaces": 0 },
+  "interactions": {
+    "keyboardProbe": { "point": [0.05, 1.05], "slope": -1 },
+    "coarseEuler": { "step": 0.2, "maxSampledError": 0.0804 },
+    "rk4ImprovedError": true,
+    "fieldViewControlsWorking": true,
+    "isoclineControlsWorking": true,
+    "clearAndRetraceWorking": true,
+    "wrongPredictionRejected": true,
+    "predictionAccepted": "Upward and getting steeper",
+    "resetAllState": true,
+    "pointerCaptureImplemented": true
+  }
+}

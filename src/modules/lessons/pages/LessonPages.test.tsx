@@ -4441,6 +4441,17 @@ describe("lesson pages", () => {
     expect(html).toContain('data-visible-count="5"');
   });
 
+  it("renders the dedicated direction-field numerical solver for lesson 10192", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/school/class-12/class-12-differential-equations-direction-fields"]}><Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="school-mockup-0866"');
+    expect(html).toContain("dedicated-direction-field-numerical-solver");
+    expect(html).toContain('data-probe-x="0"');
+    expect(html).toContain('data-probe-y="1"');
+    expect(html).toContain('data-slope="-1"');
+    expect(html).toContain('data-method="Euler"');
+    expect(html).toContain('data-step="0.05"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
