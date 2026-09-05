@@ -4392,6 +4392,15 @@ describe("lesson pages", () => {
     expect(html).toContain('data-grid="true"');
   });
 
+  it("renders the dedicated order and degree classifier for lesson 10187", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/school/class-12/class-12-differential-equations-order-and-degree"]}><Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="school-mockup-0861"');
+    expect(html).toContain("dedicated-order-degree-equation-classifier");
+    expect(html).toContain('data-selected-term="third"');
+    expect(html).toContain('data-selected-order="3"');
+    expect(html).toContain('data-selected-degree="2"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

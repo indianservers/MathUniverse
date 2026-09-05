@@ -1,0 +1,22 @@
+{
+  "mockup": "0861",
+  "lessonId": 10187,
+  "route": "/lessons/school/class-12/class-12-differential-equations-order-and-degree",
+  "objectModel": "dedicated-order-degree-equation-classifier",
+  "reference": "0861-reference.png",
+  "default": { "selectedTerm": "third", "selectedOrder": 3, "selectedDegree": 2, "polynomialInDerivatives": true },
+  "desktop": { "targetWidth": 948, "targetHeight": 1660, "clientWidth": 948, "scrollWidth": 948, "horizontalOverflow": false, "lessonFrame": { "x": 20, "y": 85, "width": 720, "height": 1504.63, "bottom": 1589.63 }, "controlsChecked": 24, "clippedControls": 0, "genericSectionsReplaced": true, "visibleErrorSurfaces": 0 },
+  "mobile": { "viewportWidth": 390, "clientWidth": 390, "scrollWidth": 390, "horizontalOverflow": false, "lessonWidth": 374, "clippedControls": 0, "controlsChecked": 24, "genericSectionsReplaced": true, "visibleErrorSurfaces": 0 },
+  "interactions": {
+    "firstDerivativeTerm": { "order": 1, "degree": 4 },
+    "plainYTerm": { "order": 0, "degree": 1 },
+    "examplesSorted": true,
+    "exampleSolutionRevealed": true,
+    "wrongConceptRejected": "Order = 4, Degree = 2",
+    "conceptAccepted": "Order = 3, Degree = 2",
+    "wrongPracticeRejected": true,
+    "practiceAccepted": ["3/1", "1/undefined", "2/undefined"],
+    "showSolutionsWorking": true,
+    "resetAllState": true
+  }
+}
