@@ -1,0 +1,10 @@
+{
+  "mockup": "0870",
+  "lessonId": 10196,
+  "route": "/lessons/school/class-12/class-12-matrices-and-determinants-determinants-and-geometric-area",
+  "objectModel": "dedicated-determinant-area-linear-transformation-engine",
+  "default": { "matrix": [[3,1],[1,2]], "determinant": 5, "area": 5, "orientation": "Positive (Counterclockwise)" },
+  "desktop": { "targetWidth": 949, "targetHeight": 1657, "clientWidth": 949, "scrollWidth": 949, "horizontalOverflow": false, "lessonFrame": { "x": 197, "y": 83, "width": 738, "height": 1563.47, "bottom": 1646.47 }, "controlsChecked": 17, "clippedControls": 0 },
+  "mobile": { "viewportWidth": 390, "clientWidth": 390, "scrollWidth": 390, "horizontalOverflow": false, "lessonWidth": 350.63, "controlsChecked": 17, "clippedControls": 0, "practiceCards": 4 },
+  "interactions": { "swap": { "determinant": -5, "area": 5, "orientation": "Negative (Clockwise)" }, "identityDeterminant": 1, "randomDeterminant": 6, "collapseDeterminant": 0, "pointerDrag": { "a": 3.9, "determinant": 6.8 }, "keyboardHandle": { "d": 2.1, "determinant": 7.19 }, "practiceChecks": 4, "solutionRevealWorking": true, "problemRegenerationWorking": true }
+}

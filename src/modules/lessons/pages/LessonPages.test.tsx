@@ -4492,6 +4492,19 @@ describe("lesson pages", () => {
     expect(html).toContain('data-answer-visible="false"');
   });
 
+  it("renders the dedicated determinant-area transformation for lesson 10196", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/school/class-12/class-12-matrices-and-determinants-determinants-and-geometric-area"]}><Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="school-mockup-0870"');
+    expect(html).toContain("dedicated-determinant-area-linear-transformation-engine");
+    expect(html).toContain('data-a="3"');
+    expect(html).toContain('data-b="1"');
+    expect(html).toContain('data-c="1"');
+    expect(html).toContain('data-d="2"');
+    expect(html).toContain('data-determinant="5"');
+    expect(html).toContain('data-area="5"');
+    expect(html).toContain('data-orientation="Positive (Counterclockwise)"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
