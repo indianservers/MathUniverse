@@ -1,0 +1,10 @@
+{
+  "mockup": "0871",
+  "lessonId": 10197,
+  "route": "/lessons/school/class-12/class-12-matrices-and-determinants-solving-linear-equations-by-matrices",
+  "objectModel": "dedicated-linear-system-matrix-and-graph-engine",
+  "default": { "system": [2,1,5,1,-1,1], "determinant": -3, "case": "unique", "solution": [2,1] },
+  "desktop": { "targetWidth": 949, "targetHeight": 1658, "clientWidth": 949, "scrollWidth": 949, "horizontalOverflow": false, "lessonFrame": { "x": 202, "y": 90, "width": 737, "height": 1533.19, "bottom": 1623.19 }, "graphWidth": 405, "controlsChecked": 27, "clippedControls": 0 },
+  "mobile": { "viewportWidth": 390, "clientWidth": 390, "scrollWidth": 390, "horizontalOverflow": false, "lessonWidth": 350.63, "graphWidth": 326.63, "controlsChecked": 27, "clippedControls": 0 },
+  "interactions": { "editedConstantSolution": [2.3333333333,1.3333333333], "parallelCase": "none", "coincidentCase": "infinite", "editedCoefficient": { "determinant": -4, "solution": [1.5,0.5] }, "zoom": 1.2, "fit": 1, "hintsChecked": 3, "solutionsChecked": 3, "workCheckWorking": true, "practiceResetWorking": true }
+}
