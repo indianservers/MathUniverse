@@ -4350,6 +4350,16 @@ describe("lesson pages", () => {
     expect(html).toContain('data-solved="true"');
   });
 
+  it("renders the dedicated definite integral properties engine for lesson 10183", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/school/class-12/class-12-formal-calculus-definite-integral-properties"]}><Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="school-mockup-0857"');
+    expect(html).toContain("dedicated-signed-area-additivity-engine");
+    expect(html).toContain('data-c="2"');
+    expect(html).toContain('data-left="2.00"');
+    expect(html).toContain('data-right="6.00"');
+    expect(html).toContain('data-total="8.00"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

@@ -162,6 +162,7 @@ import DifferentialsApproximationTargetLesson10179 from "../schoolTargets/Differ
 import IntegrationSubstitutionTargetLesson10180 from "../schoolTargets/IntegrationSubstitutionTargetLesson10180";
 import IntegrationByPartsTargetLesson10181 from "../schoolTargets/IntegrationByPartsTargetLesson10181";
 import PartialFractionsTargetLesson10182 from "../schoolTargets/PartialFractionsTargetLesson10182";
+import DefiniteIntegralPropertiesTargetLesson10183 from "../schoolTargets/DefiniteIntegralPropertiesTargetLesson10183";
 import PlaceValueTargetLesson10001 from "../schoolTargets/PlaceValueTargetLesson10001";
 import NumberNamingTargetLesson10002 from "../schoolTargets/NumberNamingTargetLesson10002";
 import EstimationRoundingTargetLesson10003 from "../schoolTargets/EstimationRoundingTargetLesson10003";
@@ -513,6 +514,8 @@ function SchoolLessonBody({
     return <IntegrationByPartsTargetLesson10181 lesson={lesson} />;
   if (lesson.numericId === 10182)
     return <PartialFractionsTargetLesson10182 lesson={lesson} />;
+  if (lesson.numericId === 10183)
+    return <DefiniteIntegralPropertiesTargetLesson10183 lesson={lesson} />;
   if (lesson.numericId === 10001)
     return <PlaceValueTargetLesson10001 lesson={lesson} />;
   if (lesson.numericId === 10002)

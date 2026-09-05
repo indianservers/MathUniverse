@@ -1,0 +1,41 @@
+{
+  "mockup": "0857",
+  "lessonId": 10183,
+  "route": "/lessons/school/class-12/class-12-formal-calculus-definite-integral-properties",
+  "objectModel": "dedicated-signed-area-additivity-engine",
+  "reference": "0857-reference.png",
+  "default": { "function": "x", "interval": [0, 4], "split": 2, "leftArea": 2, "rightArea": 6, "totalArea": 8 },
+  "desktop": {
+    "targetWidth": 872,
+    "targetHeight": 1804,
+    "clientWidth": 872,
+    "scrollWidth": 872,
+    "horizontalOverflow": false,
+    "lessonFrame": { "x": 202, "y": 91, "width": 656, "height": 1653.75, "bottom": 1744.75 },
+    "controlsChecked": 18,
+    "clippedControls": 0,
+    "genericSectionsReplaced": true,
+    "visibleErrorSurfaces": 0
+  },
+  "mobile": {
+    "viewportWidth": 390,
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "horizontalOverflow": false,
+    "lessonWidth": 362,
+    "clippedControls": 0,
+    "controlsChecked": 18,
+    "visibleErrorSurfaces": 0
+  },
+  "interactions": {
+    "changedSplit": 3,
+    "changedLeftArea": 4.5,
+    "changedRightArea": 3.5,
+    "totalInvariant": 8,
+    "keyboardMovementVerified": true,
+    "pointerCaptureImplemented": true,
+    "wrongMatchesRejected": true,
+    "allSixMatchesAccepted": true,
+    "resetAllState": true
+  }
+}
