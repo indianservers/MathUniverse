@@ -1,0 +1,417 @@
+.auc10184-page {
+  position: relative;
+  top: -32px;
+  width: min(720px, 100%);
+  margin: 0;
+  color: #29384c;
+  font:
+    8px/1.45 Inter,
+    Arial,
+    sans-serif;
+  letter-spacing: 0;
+}
+.auc10184-page:before {
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  background: #effaff;
+  content: "";
+}
+.auc10184-page * {
+  box-sizing: border-box;
+}
+.auc10184-page h1,
+.auc10184-page h2,
+.auc10184-page h3,
+.auc10184-page h4,
+.auc10184-page p {
+  margin: 0;
+}
+.auc10184-page button,
+.auc10184-page input,
+.auc10184-page select {
+  font: inherit;
+  color: inherit;
+}
+.auc10184-page button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-height: 27px;
+  padding: 5px 9px;
+  border: 1px solid #d4e2e8;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+}
+.auc10184-page button svg {
+  width: 11px;
+  height: 11px;
+}
+.auc10184-page > header,
+.auc-lab,
+.auc-theory article,
+.auc-practice {
+  border: 1px solid #d7e7ed;
+  border-radius: 9px;
+  background: #fff;
+}
+.auc10184-page > header {
+  min-height: 122px;
+  padding: 15px;
+}
+.auc10184-page > header small,
+.auc10184-page h3 {
+  color: #0786bb;
+  font-weight: 900;
+}
+.auc10184-page > header h1 {
+  margin: 5px 0;
+  color: #111827;
+  font-size: 20px;
+}
+.auc10184-page > header > div {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+}
+.auc10184-page > header span {
+  padding: 3px 8px;
+  border-radius: 10px;
+  background: #edf2f5;
+  font-weight: 800;
+}
+.auc-lab {
+  min-height: 560px;
+  margin-top: 9px;
+  padding: 11px;
+}
+.auc-lab > h2 {
+  margin: 4px 0;
+  font-size: 14px;
+}
+.auc-main {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 10px;
+  margin-top: 7px;
+}
+.auc-main > aside {
+  display: grid;
+  gap: 7px;
+}
+.auc-main > aside article,
+.auc-main > aside > label,
+.auc-main fieldset {
+  padding: 8px;
+  border: 1px solid #d8e5ea;
+  border-radius: 6px;
+}
+.auc-main > aside h2 {
+  margin-top: 6px;
+  font:
+    700 11px Georgia,
+    serif;
+}
+.auc-main > aside > label {
+  display: grid;
+  gap: 6px;
+}
+.auc-main input[type="range"] {
+  width: 100%;
+  accent-color: #087bc2;
+}
+.auc-main > aside > label > span {
+  display: flex;
+  justify-content: space-between;
+}
+.auc-main i {
+  font-style: normal;
+}
+.auc-main i.active {
+  color: #087bc2;
+  font-weight: 900;
+}
+.auc-main fieldset {
+  margin: 0;
+}
+.auc-main fieldset label {
+  display: block;
+  margin: 5px 0;
+}
+.auc-main input[type="radio"] {
+  margin-right: 5px;
+  accent-color: #087bc2;
+}
+.auc-main > aside > div {
+  display: flex;
+  gap: 5px;
+}
+.auc-main > aside > div button:first-child {
+  background: #135db1;
+  color: #fff;
+}
+.auc-main > article {
+  position: relative;
+  border: 1px solid #d8e5ea;
+  border-radius: 6px;
+}
+.auc-main svg {
+  display: block;
+  width: 100%;
+  height: 390px;
+  background:
+    repeating-linear-gradient(0deg, transparent 0 42px, #edf2f4 43px),
+    repeating-linear-gradient(90deg, transparent 0 48px, #edf2f4 49px);
+}
+.auc-main svg text {
+  font:
+    12px Georgia,
+    serif;
+  fill: #155dcc;
+}
+.auc-dx {
+  position: absolute;
+  right: 10px;
+  bottom: 12px;
+  padding: 8px;
+  border: 1px solid #d7e4e9;
+  border-radius: 6px;
+  background: #fff;
+  font:
+    700 10px Georgia,
+    serif;
+}
+.auc-results {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 9px;
+  border: 1px solid #d8e5ea;
+  border-radius: 7px;
+}
+.auc-results article {
+  min-height: 70px;
+  padding: 10px;
+  border-right: 1px solid #d8e5ea;
+}
+.auc-results article:last-child {
+  border: 0;
+}
+.auc-results h2 {
+  margin-top: 8px;
+  font:
+    700 11px Georgia,
+    serif;
+}
+.auc-results article:nth-child(3) {
+  color: #d61550;
+}
+.auc-theory {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 9px;
+  margin-top: 9px;
+}
+.auc-theory article {
+  min-height: 150px;
+  padding: 12px;
+}
+.auc-theory h4,
+.auc-theory p {
+  margin: 8px 0;
+}
+.auc-theory h2 {
+  padding: 9px;
+  border: 1px solid #b9d7ed;
+  border-radius: 6px;
+  background: #f3f9ff;
+  font:
+    700 10px/1.6 Georgia,
+    serif;
+}
+.auc-theory .warn {
+  border-color: #eed097;
+  background: #fffaf0;
+}
+.auc-theory .warn h3 {
+  color: #b16e00;
+}
+.auc-practice {
+  min-height: 430px;
+  margin-top: 9px;
+  padding: 11px;
+}
+.auc-practice > p {
+  margin: 5px 0;
+}
+.auc-practice > div {
+  display: grid;
+  grid-template-columns: 130px 1fr 165px;
+  gap: 8px;
+}
+.auc-practice > div > aside,
+.auc-practice > div > article {
+  padding: 8px;
+  border: 1px solid #d8e5ea;
+  border-radius: 6px;
+}
+.auc-practice > div > aside label {
+  display: block;
+  margin: 7px 0;
+}
+.auc-practice > div > aside button {
+  margin: 5px 3px;
+}
+.auc-practice > div > article svg {
+  width: 100%;
+  height: 245px;
+}
+.auc-practice > div > aside:last-child p {
+  margin: 16px 0;
+  padding: 8px;
+  border: 1px solid #d8e5ea;
+  border-radius: 6px;
+}
+.auc-practice > footer {
+  display: grid;
+  grid-template-columns: 0.8fr 1.5fr;
+  gap: 9px;
+  margin-top: 9px;
+}
+.auc-practice > footer > label,
+.auc-practice > footer > section {
+  padding: 9px;
+  border: 1px solid #d8e5ea;
+  border-radius: 6px;
+}
+.auc-practice > footer > label {
+  display: grid;
+  grid-template-columns: 1fr 52px;
+  gap: 5px;
+}
+.auc-practice input,
+.auc-practice select {
+  min-width: 0;
+  padding: 6px;
+  border: 1px solid #d6e2e8;
+  border-radius: 5px;
+}
+.auc-practice > footer > section {
+  display: grid;
+  grid-template-columns: 1fr 1fr 70px;
+  gap: 7px;
+}
+.auc-practice > footer > section label {
+  display: grid;
+  gap: 5px;
+}
+.auc-practice output {
+  grid-column: 1/-1;
+  color: #087d4a;
+  font-weight: 900;
+}
+.auc-adjacent {
+  display: flex;
+  gap: 10px;
+  margin: 9px 0;
+}
+.auc-adjacent a {
+  display: flex;
+  width: 50%;
+  min-height: 31px;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border: 1px solid #d5e3e9;
+  border-radius: 6px;
+  background: #fff;
+  color: inherit;
+  text-decoration: none;
+}
+.auc10184-page > footer {
+  position: relative;
+  min-height: 78px;
+  padding: 11px;
+  border: 1px solid #d7e7ed;
+  border-radius: 9px;
+  background: #fff;
+}
+.auc10184-page > footer p {
+  margin: 5px 0 12px;
+  color: #627185;
+}
+.auc10184-page > footer div {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  display: flex;
+  gap: 6px;
+}
+.auc10184-page > footer a {
+  padding: 5px 8px;
+  border: 1px solid #d5e3e9;
+  border-radius: 6px;
+  color: inherit;
+  text-decoration: none;
+}
+body:has(.auc10184-page) [data-testid="desktop-sidebar"] {
+  display: flex !important;
+  width: 188px !important;
+}
+body:has(.auc10184-page) #main-content {
+  margin-left: 0 !important;
+  padding: 0 14px !important;
+}
+body:has(.auc10184-page) #main-content > div {
+  max-width: none !important;
+}
+body:has(.auc10184-page) nav[aria-label="Breadcrumb"] {
+  height: 34px !important;
+  min-height: 34px !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  font-size: 7px !important;
+}
+body:has(.auc10184-page) #lesson-section-interaction ~ * {
+  display: none !important;
+}
+body:has(.auc10184-page) .lesson-section-nav {
+  display: none !important;
+}
+@media (max-width: 700px) {
+  body:has(.auc10184-page) [data-testid="desktop-sidebar"] {
+    display: none !important;
+  }
+  .auc10184-page {
+    top: 0;
+    width: 100%;
+    padding: 6px;
+  }
+  .auc10184-page > header > div {
+    flex-wrap: wrap;
+  }
+  .auc-main,
+  .auc-results,
+  .auc-theory,
+  .auc-practice > div,
+  .auc-practice > footer,
+  .auc-practice > footer > section {
+    grid-template-columns: 1fr;
+  }
+  .auc-main svg {
+    height: 300px;
+  }
+  .auc-practice > footer > label {
+    grid-template-columns: 1fr;
+  }
+  .auc-practice output {
+    grid-column: auto;
+  }
+  .auc-adjacent {
+    display: grid;
+  }
+  .auc-adjacent a {
+    width: 100%;
+  }
+}

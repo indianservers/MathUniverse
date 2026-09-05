@@ -1,0 +1,22 @@
+{
+  "mockup": "0858",
+  "lessonId": 10184,
+  "route": "/lessons/school/class-12/class-12-formal-calculus-area-under-a-curve",
+  "objectModel": "dedicated-riemann-sum-convergence-engine",
+  "reference": "0858-reference.png",
+  "default": { "function": "x^2", "interval": [0, 2], "rectangles": 4, "method": "midpoint", "approximation": 2.625, "exact": 2.6667, "signedError": -0.0417 },
+  "desktop": { "targetWidth": 951, "targetHeight": 1654, "clientWidth": 951, "scrollWidth": 951, "horizontalOverflow": false, "lessonFrame": { "x": 202, "y": 91, "width": 720, "height": 1575, "bottom": 1666 }, "controlsChecked": 22, "clippedControls": 0, "genericSectionsReplaced": true, "visibleErrorSurfaces": 0 },
+  "mobile": { "viewportWidth": 390, "clientWidth": 390, "scrollWidth": 390, "horizontalOverflow": false, "lessonWidth": 362, "clippedControls": 0, "controlsChecked": 22, "visibleErrorSurfaces": 0 },
+  "interactions": {
+    "rightEndpointN4": { "approximation": 3.75, "signedError": 1.0833 },
+    "animationReachedN": 64,
+    "mainReset": true,
+    "practiceLeftN4": 6.25,
+    "practiceMidpointN4": 5.375,
+    "exactAnswerWrongRejected": true,
+    "exactAnswerAccepted": "16/3",
+    "conceptWrongRejected": true,
+    "conceptPositiveAndEqualAccepted": true,
+    "practiceReset": true
+  }
+}

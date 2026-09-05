@@ -4360,6 +4360,16 @@ describe("lesson pages", () => {
     expect(html).toContain('data-total="8.00"');
   });
 
+  it("renders the dedicated area under a curve engine for lesson 10184", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/school/class-12/class-12-formal-calculus-area-under-a-curve"]}><Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="school-mockup-0858"');
+    expect(html).toContain("dedicated-riemann-sum-convergence-engine");
+    expect(html).toContain('data-n="4"');
+    expect(html).toContain('data-method="mid"');
+    expect(html).toContain('data-approximation="2.625"');
+    expect(html).toContain('data-exact="2.6667"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
