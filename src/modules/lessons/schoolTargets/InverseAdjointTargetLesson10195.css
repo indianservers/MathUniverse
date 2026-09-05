@@ -1,0 +1,562 @@
+.ia10195-page {
+  position: relative;
+  top: -32px;
+  width: min(676px, 100%);
+  margin: 0;
+  color: #29384c;
+  font:
+    8px/1.45 Inter,
+    Arial,
+    sans-serif;
+  letter-spacing: 0;
+}
+.ia10195-page:before {
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  background: #f5fbff;
+  content: "";
+}
+.ia10195-page * {
+  box-sizing: border-box;
+}
+.ia10195-page h1,
+.ia10195-page h2,
+.ia10195-page p {
+  margin: 0;
+}
+.ia10195-page button,
+.ia10195-page select,
+.ia10195-page a {
+  font: inherit;
+  color: inherit;
+}
+.ia10195-page button,
+.ia10195-page a {
+  cursor: pointer;
+}
+.ia10195-page > section,
+.ia-hero,
+.ia-main > section,
+.ia-top-grid > section,
+.ia-side > section {
+  border: 1px solid #d6e7ee;
+  border-radius: 9px;
+  background: #fff;
+}
+.ia-hero {
+  position: relative;
+  min-height: 125px;
+  margin-bottom: 10px;
+  padding: 14px;
+}
+.ia-hero small,
+.ia10195-page h2 {
+  color: #0876d2;
+  font-weight: 900;
+}
+.ia-hero h1 {
+  margin: 6px 0;
+  color: #111827;
+  font-size: 20px;
+}
+.ia-hero > div {
+  margin-top: 13px;
+}
+.ia-hero-copy {
+  margin-top: 0 !important;
+}
+.ia-hero > div b {
+  padding: 3px 7px;
+  border-radius: 8px;
+  background: #edf2f7;
+  font-size: 7px;
+}
+.ia-hero > a {
+  position: absolute;
+  right: 13px;
+  top: 12px;
+  padding: 7px 10px;
+  border: 1px solid #d8e5eb;
+  border-radius: 7px;
+  text-decoration: none;
+}
+.ia-hero-actions {
+  position: absolute;
+  right: 13px;
+  bottom: 12px;
+  display: flex;
+  gap: 7px;
+}
+.ia-hero button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 9px;
+  border: 1px solid #d7e5ec;
+  border-radius: 7px;
+  background: #fff;
+}
+.ia-hero svg {
+  width: 11px;
+}
+.ia-machine {
+  min-height: 116px;
+  margin-bottom: 10px;
+  padding: 11px;
+}
+.ia-machine > div {
+  display: grid;
+  margin-top: 8px;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid #81b9ef;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.ia-machine button {
+  display: flex;
+  min-height: 72px;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px 14px;
+  border: 0;
+  border-right: 1px solid #b8d9ed;
+  background: #fafdff;
+}
+.ia-machine button:last-child {
+  border: 0;
+}
+.ia-machine button.active {
+  background: #edf6ff;
+  box-shadow: inset 0 -3px #2585f5;
+}
+.ia-machine i {
+  color: #177ee9;
+  font-style: normal;
+  font-weight: 900;
+}
+.ia-machine span {
+  margin-top: 4px;
+  font-size: 7px;
+}
+.ia-layout {
+  display: grid;
+  grid-template-columns: 1fr 170px;
+  gap: 9px;
+}
+.ia-main {
+  min-width: 0;
+}
+.ia-top-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.ia-top-grid > section {
+  position: relative;
+  min-height: 395px;
+  padding: 10px;
+}
+.ia-top-grid > section:nth-child(3),
+.ia-top-grid > section:nth-child(4) {
+  min-height: 290px;
+}
+.ia-top-grid > section.focus {
+  outline: 2px solid #80b6fa;
+  outline-offset: -2px;
+}
+.ia10195-page h2 {
+  font-size: 9px;
+}
+.ia10195-page h2 > i {
+  display: inline-grid;
+  width: 18px;
+  height: 18px;
+  margin-right: 6px;
+  place-items: center;
+  border-radius: 50%;
+  background: #2585f5;
+  color: #fff;
+  font-style: normal;
+}
+.ia-top-grid article {
+  margin-top: 9px;
+  padding: 8px;
+  border: 1px solid #e0e8ec;
+  border-radius: 7px;
+}
+.ia-equation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  margin: 10px 0;
+}
+.ia-equation em {
+  font:
+    13px Georgia,
+    serif;
+}
+.ia-matrix {
+  display: grid;
+  border: 1px solid #9eaab3;
+  background: #fff;
+  grid-template-columns: repeat(3, 1fr);
+}
+.ia-matrix.n3 {
+  width: 120px;
+  height: 105px;
+}
+.ia-matrix.n2 {
+  width: 70px;
+  height: 66px;
+  grid-template-columns: repeat(2, 1fr);
+}
+.ia-matrix span {
+  display: grid;
+  min-width: 0;
+  place-items: center;
+  border-right: 1px solid #ccd4d9;
+  border-bottom: 1px solid #ccd4d9;
+  font:
+    11px Georgia,
+    serif;
+}
+.ia-matrix span:nth-child(3n) {
+  border-right: 0;
+}
+.ia-matrix span.selected {
+  outline: 2px solid #9b5cf4;
+  outline-offset: -2px;
+  background: #f6f0ff;
+  color: #7c3aed;
+  font-weight: 900;
+}
+.ia-det {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.ia-det strong {
+  color: #0c9b68;
+  font-size: 19px;
+}
+.ia-top-grid footer {
+  margin-top: 7px;
+  padding: 7px;
+  border: 1px solid #68d0a9;
+  border-radius: 6px;
+  background: #f3fff9;
+  text-align: center;
+  color: #127a58;
+}
+.ia-top-grid aside {
+  margin-top: 16px;
+  padding: 10px;
+  border: 1px solid #f2b9b9;
+  border-radius: 7px;
+  background: #fff7f7;
+  color: #b72727;
+}
+.ia-top-grid aside button {
+  width: 100%;
+  padding: 6px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+.ia-outline {
+  position: absolute;
+  right: 12px;
+  bottom: 52px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 13px;
+  border: 1px solid #42a9ed;
+  border-radius: 6px;
+  background: #fff;
+  color: #0876d2;
+}
+.ia-outline svg {
+  width: 11px;
+}
+.ia-pop {
+  position: absolute;
+  right: 10px;
+  bottom: 5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px;
+  background: #f7fdff;
+}
+.ia-formula {
+  margin: 25px 0;
+  text-align: center;
+  font:
+    13px Georgia,
+    serif;
+}
+.ia-top-grid > section:nth-child(3) .ia-formula {
+  margin: 10px 0;
+}
+.ia-top-grid > section:nth-child(3) .ia-equation {
+  margin: 5px 0;
+}
+.ia-top-grid > section:nth-child(3) .ia-matrix.n3 {
+  width: 108px;
+  height: 78px;
+}
+.ia-top-grid > section:nth-child(4) article {
+  min-height: 115px;
+  margin-top: 6px;
+  padding: 5px;
+}
+.ia-top-grid > section:nth-child(4) .ia-matrix.n3 {
+  width: 95px;
+  height: 82px;
+}
+.ia-top-grid > section:nth-child(4) article > span,
+.ia-practice article > span {
+  float: right;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 3px;
+  border: 1px solid #66d2aa;
+  border-radius: 5px;
+  background: #effff8;
+  color: #12815c;
+}
+.ia-top-grid svg,
+.ia-practice svg {
+  width: 10px;
+}
+.ia-inspect {
+  min-height: 299px;
+  margin-top: 8px;
+  padding: 10px;
+}
+.ia-inspect > p {
+  margin: 4px 0;
+}
+.ia-selects {
+  display: flex;
+  gap: 25px;
+  margin: 8px 0;
+}
+.ia-selects label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.ia-selects select {
+  padding: 5px 18px 5px 7px;
+  border: 1px solid #d6e2e8;
+  border-radius: 6px;
+  background: #fff;
+}
+.ia-inspect-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr 1fr;
+  gap: 8px;
+}
+.ia-inspect-grid article {
+  min-height: 215px;
+  padding: 8px;
+  border: 1px solid #d6e4ea;
+  border-radius: 7px;
+}
+.ia-vector {
+  display: flex;
+  margin: 8px 0;
+  border: 1px solid #9bd9ed;
+}
+.ia-vector span {
+  flex: 1;
+  padding: 7px;
+  text-align: center;
+}
+.ia-col {
+  display: grid;
+  width: 65px;
+  margin: 7px auto;
+  border: 1px solid #cdb9ee;
+}
+.ia-col span {
+  padding: 5px;
+  text-align: center;
+}
+.ia-inspect-grid article:nth-child(2) {
+  font:
+    11px Georgia,
+    serif;
+}
+.ia-inspect-grid article:nth-child(2) p {
+  margin: 14px;
+}
+.ia-inspect-grid article:nth-child(3) {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+}
+.ia-side {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.ia-side > section {
+  padding: 10px;
+}
+.ia-side > section:first-child {
+  min-height: 355px;
+  border-color: #f1c8c8;
+  background: #fff9f9;
+}
+.ia-side > section:nth-child(2) {
+  min-height: 305px;
+  border-color: #f1d7c8;
+  background: #fffbf8;
+}
+.ia-side .memory {
+  min-height: 178px;
+}
+.ia-side p {
+  margin: 10px 0;
+}
+.ia-side strong {
+  display: block;
+  margin: 9px 0;
+  color: #dc3545;
+}
+.ia-side .ia-matrix {
+  margin: auto;
+}
+.ia-practice {
+  height: 240px;
+  min-height: 240px;
+  margin-top: 10px;
+  padding: 11px;
+  border-color: #cab8f4 !important;
+}
+.ia-practice > div {
+  display: grid;
+  grid-template-columns: 0.8fr 1.35fr 1fr 0.9fr;
+  margin-top: 8px;
+}
+.ia-practice article {
+  display: block !important;
+  min-height: 175px;
+  padding: 8px;
+  border-right: 1px solid #d4dee3;
+}
+.ia-practice article:last-child {
+  border: 1px solid #d9e2e7;
+  border-radius: 7px;
+}
+.ia-practice article > .ia-matrix {
+  margin: 5px auto;
+}
+.ia-practice article:last-child button {
+  width: 100%;
+  padding: 7px;
+  border: 1px solid #40a9ed;
+  border-radius: 6px;
+  background: #fff;
+}
+.ia-takeaway {
+  min-height: 79px;
+  margin-top: 13px;
+  padding: 15px;
+  border: 1px solid #a8dbee;
+  border-radius: 8px;
+  background: #f5fcff;
+  color: #0873aa;
+}
+div:has(> #lesson-section-interaction .ia10195-page) > .lesson-section-nav,
+div:has(> #lesson-section-interaction .ia10195-page)
+  > section:not(#lesson-section-interaction) {
+  display: none !important;
+}
+body #lesson-section-interaction .ia10195-page.ia10195-page > .ia-hero {
+  display: block !important;
+  height: auto !important;
+  min-height: 125px !important;
+  padding: 14px !important;
+  overflow: visible !important;
+}
+body #lesson-section-interaction .ia10195-page.ia10195-page > .ia-hero > p {
+  display: block !important;
+}
+@media (min-width: 700px) and (max-width: 959px) {
+  body:has(.ia10195-page) .app-layout-rail > aside {
+    position: sticky;
+    top: 0;
+    display: block !important;
+    width: 208px !important;
+  }
+  body:has(.ia10195-page) #main-content {
+    padding-right: 12px !important;
+    padding-left: 13px !important;
+  }
+  body:has(.ia10195-page) nav[class*="bottom-0"] {
+    display: none !important;
+  }
+  .ia10195-page {
+    top: -59px;
+    width: min(676px, 100%);
+  }
+}
+@media (max-width: 700px) {
+  .ia10195-page {
+    top: 0;
+    width: 100%;
+    font-size: 10px;
+  }
+  .ia-hero {
+    min-height: 210px;
+  }
+  .ia-hero > a,
+  .ia-hero-actions {
+    position: static;
+    width: max-content;
+    margin-top: 10px;
+  }
+  .ia-machine > div,
+  .ia-layout,
+  .ia-top-grid,
+  .ia-inspect-grid,
+  .ia-practice > div {
+    grid-template-columns: 1fr;
+  }
+  .ia-machine button {
+    border-right: 0;
+    border-bottom: 1px solid #b8d9ed;
+  }
+  .ia-top-grid > section {
+    min-height: 390px;
+  }
+  .ia-outline {
+    position: static;
+    margin-top: 15px;
+  }
+  .ia-pop {
+    position: static;
+  }
+  .ia-selects {
+    flex-direction: column;
+    gap: 7px;
+  }
+  .ia-side > section {
+    min-height: 0 !important;
+  }
+  .ia-practice article {
+    border-right: 0;
+    border-bottom: 1px solid #d4dee3;
+  }
+  .ia-takeaway {
+    margin-bottom: 75px;
+  }
+}

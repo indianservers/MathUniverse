@@ -4478,6 +4478,20 @@ describe("lesson pages", () => {
     expect(html).toContain('data-determinant="22"');
   });
 
+  it("renders the dedicated inverse-by-adjoint engine for lesson 10195", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/school/class-12/class-12-matrices-and-determinants-inverse-by-adjoint"]}><Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="school-mockup-0869"');
+    expect(html).toContain("dedicated-inverse-adjoint-exact-matrix-engine");
+    expect(html).toContain('data-example="1"');
+    expect(html).toContain('data-stage="1"');
+    expect(html).toContain('data-determinant="22"');
+    expect(html).toContain('data-row="1"');
+    expect(html).toContain('data-column="2"');
+    expect(html).toContain('data-cell-value="0"');
+    expect(html).toContain('data-cofactors-visible="false"');
+    expect(html).toContain('data-answer-visible="false"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

@@ -1,0 +1,10 @@
+{
+  "mockup": "0869",
+  "lessonId": 10195,
+  "route": "/lessons/school/class-12/class-12-matrices-and-determinants-inverse-by-adjoint",
+  "objectModel": "dedicated-inverse-adjoint-exact-matrix-engine",
+  "default": { "example": 1, "stage": 1, "determinant": 22, "order": "A*A^-1", "cell": [1, 2], "cellValue": 0 },
+  "desktop": { "targetWidth": 909, "targetHeight": 1730, "clientWidth": 909, "scrollWidth": 909, "horizontalOverflow": false, "lessonFrame": { "x": 221, "y": 94, "width": 676, "height": 1624.88, "bottom": 1718.88 }, "clippedControls": 0 },
+  "mobile": { "viewportWidth": 390, "clientWidth": 390, "scrollWidth": 390, "horizontalOverflow": false, "lessonWidth": 350.63, "clippedControls": 0 },
+  "interactions": { "stagesChecked": 4, "leftProduct": [[1,0,0],[0,1,0],[0,0,1]], "rightProduct": [[1,0,0],[0,1,0],[0,0,1]], "productCellsChecked": 18, "cofactorRevealWorking": true, "answerRevealWorking": true, "alternateDeterminant": 4, "resetWorking": true, "singularDeterminant": 0, "practiceInverseB": [["3/5","-7/10"],["-1/5","2/5"]], "practiceInverseC": [["3/11","1/11"],["-5/11","2/11"]] }
+}
