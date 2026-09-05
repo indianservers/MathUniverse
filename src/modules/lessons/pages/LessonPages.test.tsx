@@ -4370,6 +4370,17 @@ describe("lesson pages", () => {
     expect(html).toContain('data-exact="2.6667"');
   });
 
+  it("renders the dedicated area between curves engine for lesson 10185", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/school/class-12/class-12-formal-calculus-area-between-curves"]}><Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="school-mockup-0859"');
+    expect(html).toContain("dedicated-between-curves-slice-engine");
+    expect(html).toContain('data-x="1.2"');
+    expect(html).toContain('data-upper="2.4"');
+    expect(html).toContain('data-lower="1.44"');
+    expect(html).toContain('data-height="0.96"');
+    expect(html).toContain('data-area="1.33"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

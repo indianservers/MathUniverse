@@ -1,0 +1,21 @@
+{
+  "mockup": "0859",
+  "lessonId": 10185,
+  "route": "/lessons/school/class-12/class-12-formal-calculus-area-between-curves",
+  "objectModel": "dedicated-between-curves-slice-engine",
+  "reference": "0859-reference.png",
+  "default": { "x": 1.2, "upper": 2.4, "lower": 1.44, "height": 0.96, "order": "top", "mode": "vertical", "area": 1.3333 },
+  "desktop": { "targetWidth": 947, "targetHeight": 1661, "clientWidth": 947, "scrollWidth": 947, "horizontalOverflow": false, "lessonFrame": { "x": 202, "y": 91, "width": 720, "height": 1557.38, "bottom": 1648.38 }, "controlsChecked": 11, "clippedControls": 0, "genericSectionsReplaced": true, "visibleErrorSurfaces": 0 },
+  "mobile": { "viewportWidth": 390, "clientWidth": 390, "scrollWidth": 390, "horizontalOverflow": false, "lessonWidth": 362, "clippedControls": 0, "controlsChecked": 11, "visibleErrorSurfaces": 0 },
+  "interactions": {
+    "movedSlice": { "x": 1.5, "upper": 3, "lower": 2.25, "height": 0.75 },
+    "animationAdvanced": true,
+    "bottomMinusTopWarning": true,
+    "horizontalMode": true,
+    "resetAllState": true,
+    "wrongAnswerRejected": true,
+    "answerAccepted": "4/3",
+    "solutionRevealed": true,
+    "pointerCaptureImplemented": true
+  }
+}
