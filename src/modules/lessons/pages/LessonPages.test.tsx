@@ -4341,6 +4341,15 @@ describe("lesson pages", () => {
     expect(html).toContain('data-assignment-correct="false"');
   });
 
+  it("renders the dedicated partial fractions engine for lesson 10182", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/school/class-12/class-12-formal-calculus-integration-by-partial-fractions"]}><Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="school-mockup-0856"');
+    expect(html).toContain("dedicated-partial-fraction-coefficient-engine");
+    expect(html).toContain('data-a="2"');
+    expect(html).toContain('data-b="1"');
+    expect(html).toContain('data-solved="true"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

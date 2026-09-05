@@ -1,0 +1,461 @@
+.pf10182-page {
+  position: relative;
+  top: -22px;
+  width: min(716px, 100%);
+  margin: 0;
+  color: #29384c;
+  font:
+    8px/1.45 Inter,
+    Arial,
+    sans-serif;
+  letter-spacing: 0;
+}
+.pf10182-page:before {
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  background: #effaff;
+  content: "";
+}
+.pf10182-page * {
+  box-sizing: border-box;
+}
+.pf10182-page h1,
+.pf10182-page h2,
+.pf10182-page h3,
+.pf10182-page h4,
+.pf10182-page p {
+  margin: 0;
+}
+.pf10182-page button,
+.pf10182-page input {
+  font: inherit;
+  color: inherit;
+}
+.pf10182-page button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-height: 27px;
+  padding: 5px 9px;
+  border: 1px solid #d3e2e9;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+}
+.pf10182-page button svg {
+  width: 11px;
+  height: 11px;
+}
+.pf10182-page > header,
+.pf-prereq article,
+.pf-lab,
+.pf-side > section,
+.pf-checks article,
+.pf-practice {
+  border: 1px solid #d7e7ed;
+  border-radius: 9px;
+  background: #fff;
+}
+.pf10182-page > header {
+  min-height: 132px;
+  padding: 15px;
+}
+.pf10182-page > header small,
+.pf10182-page h3 {
+  color: #0786bb;
+  font-weight: 900;
+}
+.pf10182-page > header h1 {
+  margin: 5px 0;
+  color: #111827;
+  font-size: 20px;
+  line-height: 1.15;
+}
+.pf10182-page > header > div {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+}
+.pf10182-page > header span {
+  padding: 3px 8px;
+  border-radius: 10px;
+  background: #edf2f5;
+  font-weight: 800;
+}
+.pf-prereq {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 9px;
+  margin-top: 9px;
+}
+.pf-prereq article {
+  min-height: 100px;
+  padding: 12px;
+  background: #f7fcff;
+}
+.pf-prereq article:last-child {
+  border-color: #f2c8c8;
+  background: #fff7f7;
+}
+.pf-prereq article:last-child h3 {
+  color: #df3942;
+}
+.pf-prereq p {
+  margin: 6px 0;
+}
+.pf-prereq svg {
+  width: 12px;
+  height: 12px;
+  color: #078c51;
+  vertical-align: middle;
+}
+.pf-prereq button {
+  border-color: #f18d8d;
+  color: #d62e38;
+}
+.pf-body {
+  display: grid;
+  grid-template-columns: 1.03fr 1.1fr;
+  gap: 9px;
+  margin-top: 9px;
+}
+.pf-lab {
+  min-height: 990px;
+  padding: 10px;
+  background: #fbfeff;
+}
+.pf-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.pf-lab > article {
+  position: relative;
+  margin-top: 8px;
+  padding: 11px;
+  border: 1px solid #d8e5ea;
+  border-radius: 7px;
+  background: #fff;
+}
+.pf-lab h4 i {
+  display: inline-grid;
+  width: 16px;
+  height: 16px;
+  place-items: center;
+  margin-right: 5px;
+  border-radius: 50%;
+  background: #078cc0;
+  color: #fff;
+  font-style: normal;
+}
+.pf-lab article > p {
+  margin: 8px 0;
+  font:
+    9px Georgia,
+    serif;
+}
+.pf-lab article > .ok {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  padding: 6px;
+  border: 1px solid #7ed2a6;
+  border-radius: 12px;
+  background: #effcf5;
+  color: #07864d;
+}
+.pf-steppers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 10px 0;
+}
+.pf-steppers label {
+  padding: 7px;
+  border: 1px solid #d9e4e9;
+  border-radius: 6px;
+}
+.pf-steppers label > span {
+  display: flex;
+  margin-top: 5px;
+}
+.pf-steppers input {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid #d7e2e8;
+  text-align: center;
+}
+.pf-steppers button {
+  min-width: 27px;
+  padding: 3px;
+}
+.pf-lab article:nth-of-type(2) > button {
+  float: right;
+  border-color: #43b8e7;
+  color: #087ba9;
+}
+.pf-match {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+  margin-top: 9px;
+}
+.pf-match span {
+  display: grid;
+  gap: 5px;
+  padding: 8px;
+  border: 1px solid #d9e6eb;
+  border-radius: 6px;
+  text-align: center;
+  font:
+    700 10px Georgia,
+    serif;
+}
+.pf-match b {
+  color: #07884f;
+  font:
+    700 8px Inter,
+    Arial;
+}
+.pf-solved,
+.pf-final {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 9px;
+  padding: 8px;
+  border: 1px solid #e6d29f;
+  border-radius: 6px;
+  background: #fffaf0;
+}
+.pf-solved.on,
+.pf-final.on {
+  border-color: #8dd7b0;
+  background: #effcf5;
+  color: #07834c;
+}
+.pf-solved svg {
+  width: 12px;
+}
+.pf-lab h2 {
+  margin: 8px 0;
+  font:
+    700 10px/1.7 Georgia,
+    serif;
+}
+.pf-final {
+  justify-content: space-between;
+}
+.pf-final button {
+  min-width: 24px;
+  padding: 2px;
+}
+.pf-side {
+  display: grid;
+  min-height: 990px;
+  gap: 9px;
+}
+.pf-side > section {
+  padding: 11px;
+}
+.pf-side > section:first-child {
+  min-height: 467px;
+}
+.pf-side > section > p {
+  margin: 7px 0;
+}
+.pf-side svg {
+  display: block;
+  width: 100%;
+  height: 275px;
+  margin-top: 5px;
+  background:
+    repeating-linear-gradient(0deg, transparent 0 27px, #edf2f4 28px),
+    repeating-linear-gradient(90deg, transparent 0 30px, #edf2f4 31px);
+}
+.pf-side > section:first-child > div {
+  margin-top: 10px;
+  padding: 9px;
+  border: 1px solid #efd59a;
+  border-radius: 6px;
+  background: #fffaf0;
+}
+.pf-methods {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 8px;
+}
+.pf-methods article {
+  min-height: 156px;
+  padding: 9px;
+  border: 1px solid #d9e5ea;
+  border-radius: 6px;
+}
+.pf-methods p {
+  margin: 10px 0;
+  font:
+    9px Georgia,
+    serif;
+}
+.pf-checks {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 8px;
+}
+.pf-checks article {
+  min-height: 125px;
+  padding: 10px;
+}
+.pf-checks p {
+  margin: 7px 0;
+}
+.pf-checks article:first-child b {
+  display: block;
+  padding: 7px;
+  border-radius: 5px;
+  background: #eaf9f1;
+  color: #07834d;
+}
+.pf-practice {
+  display: grid;
+  grid-template-columns: 1.5fr 0.65fr 0.65fr 0.48fr 1.3fr;
+  align-items: center;
+  gap: 8px;
+  min-height: 125px;
+  margin-top: 9px;
+  padding: 11px;
+  background: #fbf8ff;
+}
+.pf-practice > div p {
+  margin: 8px 0;
+  font:
+    700 10px Georgia,
+    serif;
+}
+.pf-practice label {
+  display: grid;
+  gap: 5px;
+}
+.pf-practice input {
+  width: 100%;
+  min-width: 0;
+  padding: 6px;
+  border: 1px solid #d5e2e8;
+  border-radius: 5px;
+}
+.pf-practice > aside {
+  min-height: 82px;
+  padding: 8px;
+  border-left: 1px solid #e2e7ec;
+}
+.pf-practice output {
+  grid-column: 1/-1;
+  color: #07834d;
+  font-weight: 800;
+}
+.pf-adjacent {
+  display: flex;
+  gap: 10px;
+  margin: 9px 0;
+}
+.pf-adjacent a {
+  display: flex;
+  width: 50%;
+  min-height: 31px;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 9px;
+  border: 1px solid #d5e3e9;
+  border-radius: 6px;
+  background: #fff;
+  color: inherit;
+  text-decoration: none;
+}
+.pf10182-page > footer {
+  position: relative;
+  min-height: 92px;
+  padding: 11px;
+  border: 1px solid #d7e7ed;
+  border-radius: 9px;
+  background: #fff;
+}
+.pf10182-page > footer p {
+  margin: 5px 0 12px;
+  color: #627185;
+}
+.pf10182-page > footer div {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  display: flex;
+  gap: 6px;
+}
+.pf10182-page > footer a {
+  padding: 5px 8px;
+  border: 1px solid #d5e3e9;
+  border-radius: 6px;
+  color: inherit;
+  text-decoration: none;
+}
+body:has(.pf10182-page) [data-testid="desktop-sidebar"] {
+  display: flex !important;
+  width: 188px !important;
+}
+body:has(.pf10182-page) #main-content {
+  margin-left: 0 !important;
+  padding: 0 14px !important;
+}
+body:has(.pf10182-page) #main-content > div {
+  max-width: none !important;
+}
+body:has(.pf10182-page) nav[aria-label="Breadcrumb"] {
+  height: 34px !important;
+  min-height: 34px !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  font-size: 7px !important;
+}
+body:has(.pf10182-page) #lesson-section-interaction ~ * {
+  display: none !important;
+}
+@media (max-width: 700px) {
+  body:has(.pf10182-page) [data-testid="desktop-sidebar"] {
+    display: none !important;
+  }
+  .pf10182-page {
+    top: 0;
+    width: 100%;
+    padding: 6px;
+  }
+  .pf10182-page > header > div,
+  .pf-title {
+    flex-wrap: wrap;
+  }
+  .pf-prereq,
+  .pf-body,
+  .pf-methods,
+  .pf-checks,
+  .pf-practice {
+    grid-template-columns: 1fr;
+  }
+  .pf-steppers,
+  .pf-match {
+    grid-template-columns: 1fr;
+  }
+  .pf-practice > aside {
+    border-left: 0;
+  }
+  .pf-practice output {
+    grid-column: auto;
+  }
+  .pf-adjacent {
+    display: grid;
+  }
+  .pf-adjacent a {
+    width: 100%;
+  }
+}

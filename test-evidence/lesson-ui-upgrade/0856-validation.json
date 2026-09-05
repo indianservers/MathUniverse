@@ -1,0 +1,32 @@
+{
+  "mockup": "0856",
+  "lessonId": 10182,
+  "route": "/lessons/school/class-12/class-12-formal-calculus-integration-by-partial-fractions",
+  "objectModel": "dedicated-partial-fraction-coefficient-engine",
+  "reference": "0856-reference.png",
+  "default": { "A": 2, "B": 1, "xCoefficient": 3, "constant": 5, "solved": true, "antiderivative": "2ln|x+1|+ln|x+2|+C" },
+  "desktop": {
+    "targetWidth": 948,
+    "targetHeight": 1659,
+    "clientWidth": 948,
+    "scrollWidth": 948,
+    "horizontalOverflow": false,
+    "lessonFrame": { "x": 202, "y": 90.8, "width": 716, "height": 1515, "bottom": 1605.8 },
+    "controlsChecked": 19,
+    "rationalGraphBranches": 3,
+    "genericSectionsReplaced": true,
+    "visibleErrorSurfaces": 0
+  },
+  "mobile": { "viewportWidth": 390, "clientWidth": 375, "scrollWidth": 375, "horizontalOverflow": false, "lessonWidth": 347.2, "clippedControls": 0, "controlsChecked": 19, "visibleErrorSurfaces": 0 },
+  "interactions": {
+    "unsolvedState": { "A": 1, "B": 1, "xCoefficient": 2, "constant": 3, "solved": false },
+    "automaticSolveRestored": true,
+    "practiceWrongRejected": true,
+    "practiceA": 2.6,
+    "practiceB": -0.6,
+    "practiceAccepted": true,
+    "answerRevealed": true,
+    "properFractionExplanationRevealed": true,
+    "resetAllState": true
+  }
+}
