@@ -4421,6 +4421,16 @@ describe("lesson pages", () => {
     expect(html).toContain('data-slope="1.5"');
   });
 
+  it("renders the dedicated integrating-factor pipeline for lesson 10190", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/school/class-12/class-12-differential-equations-linear-first-order-equations"]}><Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="school-mockup-0864"');
+    expect(html).toContain("dedicated-integrating-factor-pipeline-engine");
+    expect(html).toContain('data-active-stage="7"');
+    expect(html).toContain('data-mu="exp(2x)"');
+    expect(html).toContain('data-c="0.6667"');
+    expect(html).toContain('data-residual="0"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

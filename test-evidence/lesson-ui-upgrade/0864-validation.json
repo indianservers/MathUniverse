@@ -1,0 +1,20 @@
+{
+  "mockup": "0864",
+  "lessonId": 10190,
+  "route": "/lessons/school/class-12/class-12-differential-equations-linear-first-order-equations",
+  "objectModel": "dedicated-integrating-factor-pipeline-engine",
+  "reference": "0864-reference.png",
+  "default": { "activeStage": 7, "p": 2, "q": "exp(x)", "integratingFactor": "exp(2x)", "constant": 0.6667, "residual": 0 },
+  "desktop": { "targetWidth": 951, "targetHeight": 1654, "clientWidth": 951, "scrollWidth": 951, "horizontalOverflow": false, "lessonFrame": { "x": 20, "y": 85, "width": 720, "height": 1520.88, "bottom": 1605.88 }, "controlsChecked": 14, "clippedControls": 0, "genericSectionsReplaced": true, "visibleErrorSurfaces": 0 },
+  "mobile": { "viewportWidth": 390, "clientWidth": 390, "scrollWidth": 390, "horizontalOverflow": false, "lessonWidth": 374, "clippedControls": 0, "controlsChecked": 14, "genericSectionsReplaced": true, "visibleErrorSurfaces": 0 },
+  "interactions": {
+    "stageSelection": 3,
+    "wrongIntegratingFactorRejected": "exp(5x)",
+    "integratingFactorAccepted": "exp(-5x)",
+    "practiceSolutionsRevealed": true,
+    "resetAllState": true,
+    "sevenComputedStages": true,
+    "residualVerified": 0,
+    "graphsGenerated": true
+  }
+}
