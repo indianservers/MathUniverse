@@ -1,0 +1,21 @@
+{
+  "mockup": "0860",
+  "lessonId": 10186,
+  "route": "/lessons/school/class-12/class-12-differential-equations-formation-of-differential-equations",
+  "objectModel": "dedicated-family-to-differential-equation-engine",
+  "reference": "0860-reference.png",
+  "default": { "c1": 1.25, "c2": -0.75, "range": "two", "samples": 800, "grid": true, "invariant": "y'' + y = 0" },
+  "desktop": { "targetWidth": 946, "targetHeight": 1662, "clientWidth": 946, "scrollWidth": 946, "horizontalOverflow": false, "lessonFrame": { "x": 20, "y": 85, "width": 720, "height": 1472.5, "bottom": 1557.5 }, "controlsChecked": 11, "clippedControls": 0, "genericSectionsReplaced": true, "visibleErrorSurfaces": 0 },
+  "mobile": { "viewportWidth": 390, "clientWidth": 390, "scrollWidth": 390, "horizontalOverflow": false, "lessonWidth": 374, "lessonTop": 157, "clippedControls": 0, "controlsChecked": 11, "genericSectionsReplaced": true, "visibleErrorSurfaces": 0 },
+  "interactions": {
+    "changedConstants": { "c1": -0.5, "c2": 1.5 },
+    "expandedDomain": "four",
+    "sampleDensity": 1200,
+    "gridHidden": true,
+    "resetAllState": true,
+    "wrongEquationRejected": "y'' + y = 0",
+    "equationAccepted": "y'' - y = 0",
+    "solutionRevealed": true,
+    "curvesGeneratedFromState": true
+  }
+}

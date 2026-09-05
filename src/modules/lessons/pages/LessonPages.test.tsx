@@ -4381,6 +4381,17 @@ describe("lesson pages", () => {
     expect(html).toContain('data-area="1.33"');
   });
 
+  it("renders the dedicated differential-equation family engine for lesson 10186", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/school/class-12/class-12-differential-equations-formation-of-differential-equations"]}><Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="school-mockup-0860"');
+    expect(html).toContain("dedicated-family-to-differential-equation-engine");
+    expect(html).toContain('data-c1="1.25"');
+    expect(html).toContain('data-c2="-0.75"');
+    expect(html).toContain('data-range="two"');
+    expect(html).toContain('data-samples="800"');
+    expect(html).toContain('data-grid="true"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter

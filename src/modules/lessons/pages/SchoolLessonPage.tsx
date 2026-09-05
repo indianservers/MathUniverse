@@ -165,6 +165,7 @@ import PartialFractionsTargetLesson10182 from "../schoolTargets/PartialFractions
 import DefiniteIntegralPropertiesTargetLesson10183 from "../schoolTargets/DefiniteIntegralPropertiesTargetLesson10183";
 import AreaUnderCurveTargetLesson10184 from "../schoolTargets/AreaUnderCurveTargetLesson10184";
 import AreaBetweenCurvesTargetLesson10185 from "../schoolTargets/AreaBetweenCurvesTargetLesson10185";
+import FormationDifferentialEquationsTargetLesson10186 from "../schoolTargets/FormationDifferentialEquationsTargetLesson10186";
 import PlaceValueTargetLesson10001 from "../schoolTargets/PlaceValueTargetLesson10001";
 import NumberNamingTargetLesson10002 from "../schoolTargets/NumberNamingTargetLesson10002";
 import EstimationRoundingTargetLesson10003 from "../schoolTargets/EstimationRoundingTargetLesson10003";
@@ -522,6 +523,8 @@ function SchoolLessonBody({
     return <AreaUnderCurveTargetLesson10184 lesson={lesson} />;
   if (lesson.numericId === 10185)
     return <AreaBetweenCurvesTargetLesson10185 lesson={lesson} />;
+  if (lesson.numericId === 10186)
+    return <FormationDifferentialEquationsTargetLesson10186 lesson={lesson} />;
   if (lesson.numericId === 10001)
     return <PlaceValueTargetLesson10001 lesson={lesson} />;
   if (lesson.numericId === 10002)
