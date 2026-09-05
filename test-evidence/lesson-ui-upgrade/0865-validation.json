@@ -1,0 +1,22 @@
+{
+  "mockup": "0865",
+  "lessonId": 10191,
+  "route": "/lessons/school/class-12/class-12-differential-equations-general-and-particular-solutions",
+  "objectModel": "dedicated-general-particular-solution-family-engine",
+  "reference": "0865-reference.png",
+  "default": { "constant": 2, "initialValue": 2, "residual": 0, "zoom": 1, "visibleCurves": 5 },
+  "desktop": { "targetWidth": 951, "targetHeight": 1654, "clientWidth": 951, "scrollWidth": 951, "horizontalOverflow": false, "lessonFrame": { "x": 20, "y": 85, "width": 720, "height": 1533.83, "bottom": 1618.83 }, "controlsChecked": 15, "clippedControls": 0, "genericSectionsReplaced": true, "visibleErrorSurfaces": 0 },
+  "mobile": { "viewportWidth": 390, "clientWidth": 390, "scrollWidth": 390, "horizontalOverflow": false, "lessonWidth": 374, "clippedControls": 0, "controlsChecked": 15, "genericSectionsReplaced": true, "visibleErrorSurfaces": 0 },
+  "interactions": {
+    "changedConstant": { "constant": 0.75, "initialValue": 0.75, "residual": 0 },
+    "familyMemberHidden": true,
+    "visibleCurveCount": 4,
+    "zoomChanged": 1.1,
+    "fitRestored": 1,
+    "wrongParticularSolutionRejected": "2e^x",
+    "particularSolutionAccepted": "e^x",
+    "resetAllState": true,
+    "pointerCaptureAndKeyboardImplemented": true,
+    "curvesGeneratedFromState": true
+  }
+}

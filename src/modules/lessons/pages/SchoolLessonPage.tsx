@@ -170,6 +170,7 @@ import OrderDegreeDifferentialEquationTargetLesson10187 from "../schoolTargets/O
 import VariableSeparableEquationsTargetLesson10188 from "../schoolTargets/VariableSeparableEquationsTargetLesson10188";
 import HomogeneousFirstOrderTargetLesson10189 from "../schoolTargets/HomogeneousFirstOrderTargetLesson10189";
 import LinearFirstOrderTargetLesson10190 from "../schoolTargets/LinearFirstOrderTargetLesson10190";
+import GeneralParticularSolutionsTargetLesson10191 from "../schoolTargets/GeneralParticularSolutionsTargetLesson10191";
 import PlaceValueTargetLesson10001 from "../schoolTargets/PlaceValueTargetLesson10001";
 import NumberNamingTargetLesson10002 from "../schoolTargets/NumberNamingTargetLesson10002";
 import EstimationRoundingTargetLesson10003 from "../schoolTargets/EstimationRoundingTargetLesson10003";
@@ -537,6 +538,8 @@ function SchoolLessonBody({
     return <HomogeneousFirstOrderTargetLesson10189 lesson={lesson} />;
   if (lesson.numericId === 10190)
     return <LinearFirstOrderTargetLesson10190 lesson={lesson} />;
+  if (lesson.numericId === 10191)
+    return <GeneralParticularSolutionsTargetLesson10191 lesson={lesson} />;
   if (lesson.numericId === 10001)
     return <PlaceValueTargetLesson10001 lesson={lesson} />;
   if (lesson.numericId === 10002)

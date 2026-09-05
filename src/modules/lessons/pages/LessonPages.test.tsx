@@ -4431,6 +4431,16 @@ describe("lesson pages", () => {
     expect(html).toContain('data-residual="0"');
   });
 
+  it("renders the dedicated general and particular solution family for lesson 10191", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/school/class-12/class-12-differential-equations-general-and-particular-solutions"]}><Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="school-mockup-0865"');
+    expect(html).toContain("dedicated-general-particular-solution-family-engine");
+    expect(html).toContain('data-c="2"');
+    expect(html).toContain('data-y0="2"');
+    expect(html).toContain('data-residual="0"');
+    expect(html).toContain('data-visible-count="5"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
