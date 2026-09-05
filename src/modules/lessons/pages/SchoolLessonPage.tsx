@@ -172,6 +172,7 @@ import HomogeneousFirstOrderTargetLesson10189 from "../schoolTargets/Homogeneous
 import LinearFirstOrderTargetLesson10190 from "../schoolTargets/LinearFirstOrderTargetLesson10190";
 import GeneralParticularSolutionsTargetLesson10191 from "../schoolTargets/GeneralParticularSolutionsTargetLesson10191";
 import DirectionFieldsTargetLesson10192 from "../schoolTargets/DirectionFieldsTargetLesson10192";
+import MinorsCofactorsTargetLesson10193 from "../schoolTargets/MinorsCofactorsTargetLesson10193";
 import PlaceValueTargetLesson10001 from "../schoolTargets/PlaceValueTargetLesson10001";
 import NumberNamingTargetLesson10002 from "../schoolTargets/NumberNamingTargetLesson10002";
 import EstimationRoundingTargetLesson10003 from "../schoolTargets/EstimationRoundingTargetLesson10003";
@@ -543,6 +544,8 @@ function SchoolLessonBody({
     return <GeneralParticularSolutionsTargetLesson10191 lesson={lesson} />;
   if (lesson.numericId === 10192)
     return <DirectionFieldsTargetLesson10192 lesson={lesson} />;
+  if (lesson.numericId === 10193)
+    return <MinorsCofactorsTargetLesson10193 lesson={lesson} />;
   if (lesson.numericId === 10001)
     return <PlaceValueTargetLesson10001 lesson={lesson} />;
   if (lesson.numericId === 10002)

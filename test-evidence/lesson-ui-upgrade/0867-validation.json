@@ -1,0 +1,53 @@
+{
+  "mockup": "0867",
+  "lessonId": 10193,
+  "route": "/lessons/school/class-12/class-12-matrices-and-determinants-minors-and-cofactors",
+  "objectModel": "dedicated-minor-cofactor-matrix-engine",
+  "reference": "0867-reference.png",
+  "default": {
+    "source": "A",
+    "entry": "a23",
+    "value": 5,
+    "minor": -2,
+    "sign": -1,
+    "cofactor": 2,
+    "determinant": 22
+  },
+  "desktop": {
+    "targetWidth": 948,
+    "targetHeight": 1659,
+    "clientWidth": 948,
+    "scrollWidth": 948,
+    "horizontalOverflow": false,
+    "lessonFrame": {
+      "x": 201,
+      "y": 90,
+      "width": 732,
+      "height": 1552,
+      "bottom": 1642
+    },
+    "railWidth": 192,
+    "controlsChecked": 27,
+    "clippedControls": 0,
+    "inertCrossMatrixButtons": 0,
+    "genericSectionsReplaced": true
+  },
+  "mobile": {
+    "viewportWidth": 390,
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "horizontalOverflow": false,
+    "lessonWidth": 350.63,
+    "clippedControls": 0,
+    "genericSectionsReplaced": true
+  },
+  "interactions": {
+    "matrixCellsChecked": 18,
+    "practiceShortcutsChecked": 8,
+    "a11": { "minor": 24, "sign": 1, "cofactor": 24, "determinant": 22 },
+    "a12": { "minor": -5, "sign": -1, "cofactor": 5, "determinant": 22 },
+    "b11": { "minor": -10, "sign": 1, "cofactor": -10, "determinant": -9 },
+    "allIndependentCalculationsMatched": true,
+    "schoolLessonsHref": "/lessons/school"
+  }
+}

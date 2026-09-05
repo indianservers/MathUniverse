@@ -4452,6 +4452,19 @@ describe("lesson pages", () => {
     expect(html).toContain('data-step="0.05"');
   });
 
+  it("renders the dedicated minor and cofactor matrix engine for lesson 10193", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/school/class-12/class-12-matrices-and-determinants-minors-and-cofactors"]}><Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="school-mockup-0867"');
+    expect(html).toContain("dedicated-minor-cofactor-matrix-engine");
+    expect(html).toContain('data-row="2"');
+    expect(html).toContain('data-column="3"');
+    expect(html).toContain('data-entry="5"');
+    expect(html).toContain('data-minor="-2"');
+    expect(html).toContain('data-sign="-1"');
+    expect(html).toContain('data-cofactor="2"');
+    expect(html).toContain('data-determinant="22"');
+  });
+
   it("renders strengthened school batch content beyond the first three lessons", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter
