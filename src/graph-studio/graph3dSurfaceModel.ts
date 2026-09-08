@@ -1,4 +1,13 @@
 export type SurfacePalette = "height" | "thermal" | "contour" | "mono" | "custom";
+export type Graph3DLayerKind = "explicit" | "implicit" | "parametric" | "curve" | "vector-field";
+export type Graph3DCoordinateMode = "cartesian" | "cylindrical" | "spherical";
+export type Graph3DKeyframe = {
+  id: string;
+  label: string;
+  time: number;
+  camera: [number, number, number];
+  variables: Record<string, number>;
+};
 
 export type Graph3DSurface = {
   id: string;
@@ -12,6 +21,17 @@ export type Graph3DSurface = {
   wireframe: boolean;
   showPoints: boolean;
   samplingAnimation: boolean;
+  kind: Graph3DLayerKind;
+  coordinateMode: Graph3DCoordinateMode;
+  components: { x: string; y: string; z: string };
+  uMin: number;
+  uMax: number;
+  vMin: number;
+  vMax: number;
+  tMin: number;
+  tMax: number;
+  adaptive: boolean;
+  streamlines: boolean;
 };
 
 const colors = [
@@ -36,6 +56,17 @@ export function createGraph3DSurface(expression = "sin(x) * cos(y)", index = 0):
     wireframe: false,
     showPoints: false,
     samplingAnimation: index === 0,
+    kind: "explicit",
+    coordinateMode: "cartesian",
+    components: { x: "u", y: "v", z: expression },
+    uMin: -3,
+    uMax: 3,
+    vMin: -3,
+    vMax: 3,
+    tMin: 0,
+    tMax: Math.PI * 6,
+    adaptive: true,
+    streamlines: true,
   };
 }
 

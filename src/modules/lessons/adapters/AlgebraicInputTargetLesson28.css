@@ -3,7 +3,7 @@
   top: -18px;
   left: 7px;
   width: 931px;
-  height: 1160px;
+  height: auto;
   margin-bottom: -18px;
   color: #0a1738;
   font-size: 11px;
@@ -54,7 +54,7 @@
   color: #00758a;
 }
 .input-surface {
-  height: 996px;
+  height: auto;
   padding: 17px;
   border: 1px solid #dfe6ed;
   border-radius: 15px;
@@ -179,14 +179,15 @@
 }
 .input-main {
   display: grid;
-  height: 606px;
+  height: auto;
   margin-top: 15px;
-  grid-template-columns: 535px 347px;
+  grid-template-columns: minmax(0, 535fr) minmax(0, 347fr);
   gap: 12px;
 }
 .input-left {
   display: grid;
-  grid-template-rows: 510px 86px;
+  grid-template-rows: auto auto;
+  min-width: 0;
   gap: 10px;
 }
 .parsed-graph,
@@ -253,6 +254,9 @@
   justify-content: space-between;
   color: #536983;
   font-size: 12px;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
 }
 .key-points {
   padding: 10px;
@@ -282,7 +286,8 @@
 }
 .input-side {
   display: grid;
-  grid-template-rows: 198px 206px 137px;
+  grid-template-rows: auto auto auto;
+  align-content: start;
   gap: 12px;
 }
 .input-side > section {
@@ -501,4 +506,21 @@ body:has(.algebraic-input-page)
   .input-side {
     margin-top: 12px;
   }
+}
+
+@media (max-width: 700px) {
+  .algebraic-input-page .input-header { height: auto; grid-template-columns: minmax(0, 1fr); gap: 16px; margin-bottom: 16px; }
+  .algebraic-input-page .input-header > div nav { flex-wrap: wrap; }
+  .algebraic-input-page .input-header > aside { grid-template-columns: minmax(0, 1fr) auto auto; }
+  .algebraic-input-page .input-header > aside button { min-height: 44px; padding: 6px; }
+  .algebraic-input-page .input-entry { height: auto; }
+  .algebraic-input-page .input-entry input { min-width: 0; width: 100%; font-size: 20px; }
+  .algebraic-input-page .input-math-preview { max-width: calc(100% - 48px); overflow: hidden; font-size: 20px; top: 13px; }
+  .algebraic-input-page .parsed-graph { padding: 10px; }
+  .algebraic-input-page .parsed-graph dl { grid-template-columns: 65px minmax(0, 1fr); }
+  .algebraic-input-page .parsed-graph dd { max-width: 100%; overflow-wrap: anywhere; }
+  .algebraic-input-page .key-points > div { grid-template-columns: 1fr; }
+  .algebraic-input-page .input-footer { height: auto; }
+  .algebraic-input-page .input-footer nav { position: static; margin-top: 12px; flex-wrap: wrap; }
+  .algebraic-input-page .input-footer:after { white-space: pre-wrap; }
 }

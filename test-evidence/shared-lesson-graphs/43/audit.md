@@ -1,0 +1,9 @@
+# Parametric Curves baseline audit
+
+Source: GraphLessonAdapter.tsx. Actual control state is a=2, b=3, t=1.5; all sliders have range [-5,5], step 0.5. Reset restores these actual defaults; Fit restores t=1.5. The displayed a=3, b=2 and t=1.2pi do not match the inputs. Preserve actual control defaults/bounds/steps and correct the stale captions and dependent outputs.
+
+The lesson states x=3cos(t), y=2sin(t), and explicitly labels controls a radius and b radius. The existing preset generalizes these as x=a*cos(t), y=b*sin(t), t=0..2*pi, with view x/y=[-5,5]. Connect the existing a and b controls to that existing parameterized rule. Negative scales retain the original allowed values and reflect the parametrization; zero scales produce a segment or point. The displayed formula must follow current controls rather than remain at stale constants.
+
+Confirmed defects: original ellipse, unrelated orange curve and fixed point use inconsistent axes/ticks and never evaluate the declared rule. The trace has a fixed screen y=260 and x derived linearly from t, although t is not an axis. Static outputs correspond approximately to 3cos(1.2pi),2sin(1.2pi) rather than actual controls. Speed is a “live” placeholder. The sample table falls through to sin(x)+0.3x instead of an ordered pair.
+
+Correction: sample one full period from 0 to 2pi with 361 lesson-owned points; compute position and speed from the current controls. Replace the unrelated orange curve with a constant-length tangent direction arrow, explicitly described as direction rather than velocity magnitude. Preserve original t table inputs 0, pi/2 and pi, and sample-table inputs [-3,-2,-1,0,1,1.5,2,3], with calculated ordered pairs. Label the latter t, not x. Keep the old renderer for later consumers. There was no point-drag or animation callback to preserve; t remains controlled by its original slider/steppers, while shared mouse/touch pan and zoom are available.

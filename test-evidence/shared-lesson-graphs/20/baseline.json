@@ -1,0 +1,551 @@
+{
+  "records": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "state": {
+        "testid": "algebra-mockup-0020",
+        "dedicatedLesson": "20",
+        "objectModel": "single-source-variable-linked-rule-substitution-output-dependency-graph-table-verification-model",
+        "x": "1",
+        "y": "5",
+        "view": "0",
+        "symbolic": "true",
+        "workspaceOpen": "false",
+        "actions": "0"
+      },
+      "overflow": false,
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "name": "English (English)⌄",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Reset",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Share",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Workspace⌄",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "◉Interact",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "▣Explore",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "♧Explain",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "▤Examples",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "∑Formulas",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "✣Know more",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Symbolic trace",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "Active variable x drag control",
+          "value": "1",
+          "min": "-5",
+          "max": "5",
+          "step": "1"
+        },
+        {
+          "tag": "BUTTON",
+          "name": "-1",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "0",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "1",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "2",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "3",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Sitemap",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Docs",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "About",
+          "value": ""
+        }
+      ],
+      "bars": [],
+      "graphs": [
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "state": {
+        "testid": "algebra-mockup-0020",
+        "dedicatedLesson": "20",
+        "objectModel": "single-source-variable-linked-rule-substitution-output-dependency-graph-table-verification-model",
+        "x": "1",
+        "y": "5",
+        "view": "0",
+        "symbolic": "true",
+        "workspaceOpen": "false",
+        "actions": "0"
+      },
+      "overflow": false,
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "name": "English (English)⌄",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Reset",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Share",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Workspace⌄",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "◉Interact",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "▣Explore",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "♧Explain",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "▤Examples",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "∑Formulas",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "✣Know more",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Symbolic trace",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "Active variable x drag control",
+          "value": "1",
+          "min": "-5",
+          "max": "5",
+          "step": "1"
+        },
+        {
+          "tag": "BUTTON",
+          "name": "-1",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "0",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "1",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "2",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "3",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Sitemap",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Docs",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "About",
+          "value": ""
+        }
+      ],
+      "bars": [],
+      "graphs": [
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "state": {
+        "testid": "algebra-mockup-0020",
+        "dedicatedLesson": "20",
+        "objectModel": "single-source-variable-linked-rule-substitution-output-dependency-graph-table-verification-model",
+        "x": "1",
+        "y": "5",
+        "view": "0",
+        "symbolic": "true",
+        "workspaceOpen": "false",
+        "actions": "0"
+      },
+      "overflow": false,
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "name": "English (English)⌄",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Reset",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Share",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Workspace⌄",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "◉Interact",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "▣Explore",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "♧Explain",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "▤Examples",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "∑Formulas",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "✣Know more",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Symbolic trace",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "Active variable x drag control",
+          "value": "1",
+          "min": "-5",
+          "max": "5",
+          "step": "1"
+        },
+        {
+          "tag": "BUTTON",
+          "name": "-1",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "0",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "1",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "2",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "3",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Sitemap",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Docs",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "About",
+          "value": ""
+        }
+      ],
+      "bars": [],
+      "graphs": [
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

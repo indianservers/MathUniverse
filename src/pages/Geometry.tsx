@@ -38,8 +38,9 @@ import { useProgress } from "../hooks/useProgress";
 import { Point2D, clamp, distance2D, roundTo, triangleAreaFromPoints, trianglePerimeter } from "../utils/math";
 import { rightTriangleMetrics } from "../utils/coreAccuracyOracles";
 import { geometryWorkspaceModule } from "./geometryStudioModules";
+import GeometryEnhancementWorkbench from "../studios/geometry/GeometryEnhancementWorkbench";
 
-type GeometryTab = "triangles" | "pythagoras" | "theorems" | "circles" | "solids" | "accuracy";
+type GeometryTab = "triangles" | "pythagoras" | "theorems" | "circles" | "solids" | "accuracy" | "advanced";
 type InspectorTab = "vertices" | "measurements" | "construction";
 type CircleInspectorTab = "circle" | "constructions" | "results";
 type TheoremPanelTab = "statement" | "proof" | "check";
@@ -59,6 +60,7 @@ const geometryTabs: Array<{ id: GeometryTab; label: string }> = [
   { id: "circles", label: "Circles" },
   { id: "solids", label: "3D Solids" },
   { id: "accuracy", label: "Accuracy & Examples" },
+  { id: "advanced", label: "Advanced Workbench" },
 ];
 
 const trianglePresets: Record<TrianglePreset, { label: string; note: string; a: Point2D; b: Point2D; c: Point2D }> = {
@@ -168,6 +170,7 @@ export default function Geometry() {
         {tab === "circles" && <CirclesTab />}
         {tab === "solids" && <SolidsTab />}
         {tab === "accuracy" && <AccuracyTabFixed />}
+        {tab === "advanced" && <GeometryEnhancementWorkbench />}
       </section>
     </main>
   );

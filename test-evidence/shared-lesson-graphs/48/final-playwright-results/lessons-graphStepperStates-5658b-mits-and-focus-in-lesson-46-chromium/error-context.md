@@ -1,0 +1,295 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: lessons\graphStepperStates.e2e.ts >> Numeric graph controls expose limits and focus in lesson 46
+- Location: tests\lessons\graphStepperStates.e2e.ts:2:262
+
+# Error details
+
+```
+Test timeout of 90000ms exceeded.
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e2]:
+  - progressbar "Loading page"
+  - generic [ref=e3]:
+    - link "Skip to content" [ref=e4] [cursor=pointer]:
+      - /url: "#main-content"
+    - generic [ref=e6]:
+      - banner [ref=e7]:
+        - generic [ref=e8]:
+          - paragraph [ref=e10]: Interactive Math Lab
+          - generic [ref=e11]:
+            - button "Keyboard shortcuts" [ref=e12] [cursor=pointer]: Keyboard shortcuts (?)
+            - button "Accessibility settings" [ref=e16] [cursor=pointer]
+            - button "Toggle theme" [ref=e20] [cursor=pointer]: "Theme: Light"
+      - main [ref=e23]:
+        - generic [ref=e24]:
+          - generic [ref=e25]:
+            - button "Go back" [ref=e26] [cursor=pointer]
+            - navigation "Breadcrumb" [ref=e29]:
+              - link "Home" [ref=e30] [cursor=pointer]:
+                - /url: /
+              - generic [ref=e32]:
+                - generic [ref=e33]: ">"
+                - link "Lessons" [ref=e34] [cursor=pointer]:
+                  - /url: /lessons
+              - generic [ref=e36]:
+                - generic [ref=e37]: ">"
+                - link "Graphs And Functions" [ref=e38] [cursor=pointer]:
+                  - /url: /lessons/graphs-and-functions
+              - generic [ref=e40]:
+                - generic [ref=e41]: ">"
+                - generic [ref=e42]: 46 Data Plotter
+          - generic [ref=e43]:
+            - generic [ref=e46]:
+              - heading "Data Plotter" [level=1] [ref=e48]
+              - generic [ref=e49]:
+                - generic "Load a lesson language pack on demand" [ref=e50]:
+                  - combobox "Lesson language" [ref=e54]:
+                    - option "English (English)" [selected]
+                    - option "हिन्दी (Hindi)"
+                    - option "বাংলা (Bengali)"
+                    - option "తెలుగు (Telugu)"
+                    - option "தமிழ் (Tamil)"
+                    - option "मराठी (Marathi)"
+                    - option "ગુજરાતી (Gujarati)"
+                    - option "ಕನ್ನಡ (Kannada)"
+                    - option "മലയാളം (Malayalam)"
+                    - option "ਪੰਜਾਬੀ (Punjabi)"
+                    - option "ଓଡ଼ିଆ (Odia)"
+                    - option "অসমীয়া (Assamese)"
+                    - option "اردو (Urdu)"
+                - button "Reset" [ref=e55] [cursor=pointer]
+                - button "Share" [ref=e59] [cursor=pointer]
+                - link "Workspace" [ref=e66] [cursor=pointer]:
+                  - /url: /workspace/graph
+            - tablist "Lesson content tabs" [ref=e71]:
+              - tab "Interaction + visualization" [selected] [ref=e72] [cursor=pointer]
+              - tab "Learn" [ref=e76] [cursor=pointer]
+              - tab "Examples" [ref=e79] [cursor=pointer]
+              - tab "Formulas" [ref=e82] [cursor=pointer]
+              - tab "Practice" [ref=e85] [cursor=pointer]
+            - main [ref=e89]:
+              - tabpanel "Lesson interaction and visualization" [ref=e90]:
+                - generic [ref=e91]:
+                  - generic [ref=e92]:
+                    - complementary [ref=e93]:
+                      - paragraph [ref=e94]: Data story
+                      - heading "r = 0.9986" [level=3] [ref=e95]
+                      - generic [ref=e96]:
+                        - generic [ref=e97]:
+                          - generic [ref=e98]: "1"
+                          - generic [ref=e99]: Plot each row
+                        - generic [ref=e100]:
+                          - generic [ref=e101]: "2"
+                          - generic [ref=e102]: Inspect outliers
+                        - generic [ref=e103]:
+                          - generic [ref=e104]: "3"
+                          - generic [ref=e105]: Compare to fit line
+                      - generic [ref=e106]: Trend, spread, and outliers must all be visible.
+                    - main [ref=e107]:
+                      - generic [ref=e108]:
+                        - generic [ref=e109]:
+                          - heading "Study hours vs Quiz score" [level=3] [ref=e110]
+                          - paragraph [ref=e111]: Best-fit line
+                        - generic [ref=e112]:
+                          - button "Reset view" [ref=e113] [cursor=pointer]
+                          - button "Fit" [ref=e117] [cursor=pointer]
+                          - button "Share" [ref=e121] [cursor=pointer]
+                          - button "Move graph" [ref=e128] [cursor=pointer]
+                          - button "Toggle guides" [ref=e134] [cursor=pointer]
+                          - button "Inspector" [ref=e137] [cursor=pointer]
+                      - region [ref=e142]:
+                        - generic [ref=e143]:
+                          - generic [ref=e144]:
+                            - heading "Data Plotter" [level=3] [ref=e145]
+                            - paragraph [ref=e146]: x measures study hours; y measures quiz score. The orange comparison point is excluded from the fit.
+                          - group "Graph view controls" [ref=e147]:
+                            - button "Zoom graph in" [ref=e148] [cursor=pointer]:
+                              - text: ＋
+                              - generic [ref=e149]: Zoom in
+                            - button "Zoom graph out" [ref=e150] [cursor=pointer]:
+                              - text: −
+                              - generic [ref=e151]: Zoom out
+                            - button "Reset graph view" [ref=e152] [cursor=pointer]:
+                              - text: ↺
+                              - generic [ref=e153]: Reset view
+                        - list "Graph legend" [ref=e154]:
+                          - listitem [ref=e155]:
+                            - generic [ref=e157]: Least-squares fit
+                          - listitem [ref=e158]:
+                            - generic [ref=e160]: Three recorded rows
+                          - listitem [ref=e161]:
+                            - generic [ref=e163]: Recorded residuals
+                          - listitem [ref=e164]:
+                            - generic [ref=e166]: Probe residual
+                          - listitem [ref=e167]:
+                            - generic [ref=e169]: Trace hours
+                        - generic [ref=e171]:
+                          - img "Data Plotter" [ref=e172]:
+                            - generic [ref=e175]:
+                              - generic [ref=e176]: "-5"
+                              - generic [ref=e177]: "0"
+                              - generic [ref=e178]: "5"
+                              - generic [ref=e179]: "0"
+                              - generic [ref=e180]: "50"
+                              - generic [ref=e181]: "100"
+                              - generic [ref=e182]: x
+                              - generic [ref=e183]: "y"
+                            - generic [ref=e187]:
+                              - 'generic "Three recorded rows: (2, 68)" [ref=e188]'
+                              - 'generic "Three recorded rows: (4, 78)" [ref=e189]'
+                              - 'generic "Three recorded rows: (6, 90)" [ref=e190]'
+                            - generic [ref=e192]:
+                              - 'button "(2h, 68): (2, 68)" [ref=e193] [cursor=pointer]'
+                              - generic: (2h, 68)
+                            - generic [ref=e194]:
+                              - 'button "(4h, 78): (4, 78)" [ref=e195] [cursor=pointer]'
+                              - generic: (4h, 78)
+                            - generic [ref=e196]:
+                              - 'button "(6h, 90): (6, 90)" [ref=e197] [cursor=pointer]'
+                              - generic: (6h, 90)
+                            - generic [ref=e198]:
+                              - 'button "Fit 64.92: (1.5, 64.91666666666667)" [ref=e199] [cursor=pointer]'
+                              - generic: Fit 64.92
+                            - generic [ref=e200]:
+                              - 'button "Probe (5, 3): (5, 3)" [ref=e201] [cursor=pointer]'
+                              - generic: Probe (5, 3)
+                          - paragraph [ref=e202]: Focus the graph and use arrow keys to pan, plus or minus to zoom, and zero to reset the view. Tab to a point to inspect its coordinates.
+                        - generic [ref=e203]: "Fit: score = 5.500 × hours + 56.667. r = 0.9986; probe (5, 3), residual = -81.167; fit at 1.5 hours = 64.917. The trace extrapolates outside the recorded 2–6 hour range."
+                      - generic [ref=e204]:
+                        - generic [ref=e205]:
+                          - paragraph [ref=e206]: trend
+                          - paragraph [ref=e207]: positive
+                        - generic [ref=e208]:
+                          - paragraph [ref=e209]: r
+                          - paragraph [ref=e210]: "0.9986"
+                        - generic [ref=e211]:
+                          - paragraph [ref=e212]: Probe residual
+                          - paragraph [ref=e213]: "-81.167"
+                    - complementary [ref=e214]:
+                      - generic [ref=e215]:
+                        - paragraph [ref=e216]: Data controls
+                        - generic [ref=e217]:
+                          - generic [ref=e218]:
+                            - generic [ref=e219]:
+                              - generic [ref=e220]: hours
+                              - generic [ref=e221]: "5"
+                            - slider "hours" [active] [ref=e222]: "5"
+                            - generic [ref=e223]:
+                              - button "Decrease hours" [ref=e224] [cursor=pointer]
+                              - status [ref=e226]: "5"
+                              - button "Increase hours" [disabled] [ref=e227]
+                          - generic [ref=e229]:
+                            - generic [ref=e230]:
+                              - generic [ref=e231]: score
+                              - generic [ref=e232]: "3"
+                            - slider "score" [ref=e233]: "3"
+                            - generic [ref=e234]:
+                              - button "Decrease score" [ref=e235] [cursor=pointer]
+                              - status [ref=e237]: "3"
+                              - button "Increase score" [ref=e238] [cursor=pointer]
+                          - generic [ref=e240]:
+                            - generic [ref=e241]:
+                              - generic [ref=e242]: Trace x
+                              - generic [ref=e243]: "1.5"
+                            - slider "Trace x" [ref=e244]: "1.5"
+                            - generic [ref=e245]:
+                              - button "Decrease Trace x" [ref=e246] [cursor=pointer]
+                              - status [ref=e248]: "1.5"
+                              - button "Increase Trace x" [ref=e249] [cursor=pointer]
+                      - generic [ref=e251]:
+                        - paragraph [ref=e252]: "Recorded rows: hours → score"
+                        - table [ref=e254]:
+                          - rowgroup [ref=e255]:
+                            - row [ref=e256]:
+                              - rowheader "Study" [ref=e257]
+                              - cell "2h" [ref=e258]
+                              - cell "68" [ref=e259]
+                            - row [ref=e260]:
+                              - rowheader "Study" [ref=e261]
+                              - cell "4h" [ref=e262]
+                              - cell "78" [ref=e263]
+                            - row [ref=e264]:
+                              - rowheader "Study" [ref=e265]
+                              - cell "6h" [ref=e266]
+                              - cell "90" [ref=e267]
+                  - generic [ref=e268]:
+                    - generic [ref=e269]:
+                      - paragraph [ref=e270]: Sample values
+                      - table [ref=e272]:
+                        - rowgroup [ref=e273]:
+                          - row [ref=e274]:
+                            - columnheader "hours" [ref=e275]
+                            - columnheader "-3" [ref=e276]
+                            - columnheader "-2" [ref=e277]
+                            - columnheader "-1" [ref=e278]
+                            - columnheader "0" [ref=e279]
+                            - columnheader "1" [ref=e280]
+                            - columnheader "1.5" [ref=e281]
+                            - columnheader "2" [ref=e282]
+                            - columnheader "3" [ref=e283]
+                        - rowgroup [ref=e284]:
+                          - row [ref=e285]:
+                            - rowheader "Fitted score" [ref=e286]
+                            - cell "40.167" [ref=e287]
+                            - cell "45.667" [ref=e288]
+                            - cell "51.167" [ref=e289]
+                            - cell "56.667" [ref=e290]
+                            - cell "62.167" [ref=e291]
+                            - cell "64.917" [ref=e292]
+                            - cell "67.667" [ref=e293]
+                            - cell "73.167" [ref=e294]
+                    - generic [ref=e295]:
+                      - strong [ref=e296]: Do not force a curve before inspecting the data.
+                      - text: r = 0.9986; probe (5, 3), residual = -81.167; fit at 1.5 hours = 64.917
+            - navigation "Adjacent lessons" [ref=e297]:
+              - link "Previous Point Plotter" [ref=e298] [cursor=pointer]:
+                - /url: /lessons/graphs-and-functions/45-point-plotter
+                - generic [ref=e301]:
+                  - generic [ref=e302]: Previous
+                  - generic [ref=e303]: Point Plotter
+              - link "Next Table of Values" [ref=e304] [cursor=pointer]:
+                - /url: /lessons/graphs-and-functions/47-table-of-values
+                - generic [ref=e305]:
+                  - generic [ref=e306]: Next
+                  - generic [ref=e307]: Table of Values
+      - contentinfo "Site footer" [ref=e310]:
+        - generic [ref=e311]:
+          - paragraph [ref=e312]: © 2026 Indian Servers Private Limited · Math Universe · www.IndianServers.com · info@IndianServers.com
+          - navigation "Footer links" [ref=e313]:
+            - link "Sitemap" [ref=e314] [cursor=pointer]:
+              - /url: /sitemap
+            - generic [ref=e315]: ·
+            - link "Docs" [ref=e316] [cursor=pointer]:
+              - /url: /documentation
+            - generic [ref=e317]: ·
+            - link "About" [ref=e318] [cursor=pointer]:
+              - /url: /about
+    - navigation "Mobile learning shortcuts" [ref=e319]:
+      - generic [ref=e320]:
+        - link "Home" [ref=e321] [cursor=pointer]:
+          - /url: /
+        - link "Workspace" [ref=e325] [cursor=pointer]:
+          - /url: /workspace
+        - link "Shapes" [ref=e328] [cursor=pointer]:
+          - /url: /shapes
+        - link "AR" [ref=e333] [cursor=pointer]:
+          - /url: /modules/ar-math-lab
+        - link "3 Learn" [ref=e339] [cursor=pointer]:
+          - /url: /learn
+          - generic [ref=e340]: "3"
+          - text: Learn
+        - link "Calc" [ref=e343] [cursor=pointer]:
+          - /url: /calculator
+    - button "Back to top" [ref=e346] [cursor=pointer]
+```

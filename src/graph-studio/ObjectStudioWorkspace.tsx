@@ -1,13 +1,12 @@
 import {
-  Box, Calculator, ChevronDown, ChevronLeft, ChevronRight, Circle, Copy, Crosshair, Download, Eye, EyeOff,
-  Focus, Fullscreen, Grid3X3, Hand, Home, Layers3, LineChart, Lock, Menu, MoreHorizontal, MousePointer2,
+  ChevronDown, ChevronLeft, ChevronRight, Copy, Crosshair, Download, Eye, EyeOff,
+  Focus, Fullscreen, Grid3X3, Hand, Layers3, Lock, Menu, MousePointer2,
   Move3D, Network, Orbit, Pause, Pencil, Play, Plus, Redo2, Rotate3D, Save, Search,
   Settings, Shapes, SlidersHorizontal, Trash2, Undo2, Unlock, ZoomIn, ZoomOut,
 } from "lucide-react";
 import { useEffect, useMemo, useState, type DragEvent, type ReactNode } from "react";
-import { Link } from "react-router-dom";
 
-export type ObjectStudioMode = "create" | "transform" | "measure" | "animate" | "learn";
+export type ObjectStudioMode = "create" | "transform" | "measure" | "learn";
 export type ObjectStudioTool = "select" | "move" | "rotate" | "scale" | "orbit" | "pan" | "zoom";
 export type ObjectStudioInspectorTab = "transform" | "appearance" | "functions";
 export type ObjectStudioDockTab = "properties" | "measurements" | "timeline";
@@ -67,12 +66,6 @@ type Props = {
   onSnapStep: (value: number) => void;
 };
 
-const nav = [
-  ["Home", "/", Home], ["Workspace", "/workspace", Layers3], ["2D Explorer", "/workspace/geometry", Shapes],
-  ["3D Studio", "/workspace/3d", Box], ["Shapes", "/shapes", Circle], ["Graphs", "/workspace/graph", LineChart],
-  ["Calculator", "/calculator", Calculator],
-] as const;
-
 export default function ObjectStudioWorkspace(props: Props) {
   const [projectName, setProjectName] = useState("Geometry Playground");
   const [renaming, setRenaming] = useState(false);
@@ -104,14 +97,6 @@ export default function ObjectStudioWorkspace(props: Props) {
   const dimensions = props.selectedTransform.dimensions ?? [props.selectedTransform.scale, props.selectedTransform.scale, props.selectedTransform.scale];
   const scaled = dimensions.map((value) => value * props.selectedTransform.scale);
 
-  const chooseMode = (next: ObjectStudioMode) => {
-    setMode(next);
-    if (next === "create") setLeftOpen(true);
-    if (next === "transform") { setRightOpen(true); setInspectorTab("transform"); props.onTool("move"); }
-    if (next === "measure") { setDockOpen(true); setDockTab("measurements"); }
-    if (next === "animate") { setDockOpen(true); setDockTab("timeline"); }
-    if (next === "learn") setRightOpen(true);
-  };
   const insert = (id: string) => { props.onAdd(id); setMode("transform"); props.onTool("move"); setRightOpen(true); };
   const dropShape = (event: DragEvent) => { event.preventDefault(); const id = event.dataTransfer.getData("application/x-math-universe-shape"); if (id) insert(id); };
   const numericMode: "position" | "rotation" | "scale" = props.tool === "rotate" ? "rotation" : props.tool === "scale" ? "scale" : "position";
@@ -120,7 +105,6 @@ export default function ObjectStudioWorkspace(props: Props) {
     <header className="gs3d-topbar">
       <div className="gs3d-brand"><div className="gs3d-mark">MU</div><strong>3D Object Studio</strong></div>
       <div className="gs3d-project-name">{renaming ? <input autoFocus aria-label="Project name" value={projectName} onChange={(event) => setProjectName(event.target.value)} onBlur={() => setRenaming(false)} onKeyDown={(event) => event.key === "Enter" && setRenaming(false)} /> : <button type="button" onClick={() => setRenaming(true)} title="Rename project"><span>{projectName}</span><Pencil /></button>}</div>
-      <nav className="gs3d-modes" aria-label="Object Studio modes">{(["create", "transform", "measure", "animate", "learn"] as ObjectStudioMode[]).map((item) => <button key={item} type="button" className={mode === item ? "active" : ""} onClick={() => chooseMode(item)}>{item}</button>)}</nav>
       <div className="gs3d-top-actions">
         <TopAction label="Undo" icon={<Undo2 />} onClick={props.onUndo} disabled={!props.canUndo} />
         <TopAction label="Redo" icon={<Redo2 />} onClick={props.onRedo} disabled={!props.canRedo} />
@@ -131,8 +115,6 @@ export default function ObjectStudioWorkspace(props: Props) {
       </div>
       <button type="button" className="gs3d-mobile-menu" onClick={() => setLeftOpen((value) => !value)} aria-label="Open shape library"><Menu /></button>
     </header>
-
-    <nav className="gs3d-navrail" aria-label="Object Studio navigation">{nav.map(([label, route, Icon]) => <Link key={label} to={route} className={label === "3D Studio" ? "active" : ""} title={label}><Icon /><span>{label}</span></Link>)}<Link to="/math-lab" title="More"><MoreHorizontal /><span>More</span></Link></nav>
 
     <aside className={`gs3d-left-panel os-left-panel ${leftOpen ? "open" : ""}`} aria-label="Shape Library">
       <PanelHeader title="Shape Library" side="left" onCollapse={() => setLeftOpen(false)} />

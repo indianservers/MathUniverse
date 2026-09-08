@@ -1,7 +1,6 @@
-import { PhaseTwoProofExperience } from "../../components/PhaseTwoProofExperience";
 import type { VisualProof, VisualProofCategory } from "../../data/proofTypes";
-import { oddNumberSumPhaseTwoConfig } from "../phase-two/phaseTwoProofConfigs";
+import OddSquaresMobileProof from "./OddSquaresMobileProof";
 
-export default function SumFirstNOddNumbersProof({ category, proof }: { category: VisualProofCategory; proof: VisualProof }) {
-  return <PhaseTwoProofExperience category={category} proof={proof} config={oddNumberSumPhaseTwoConfig} />;
+export default function SumFirstNOddNumbersProof({ category: _category, proof: _proof }: { category: VisualProofCategory; proof: VisualProof }) {
+  return <OddSquaresMobileProof />;
 }

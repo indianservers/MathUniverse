@@ -1,0 +1,3 @@
+import { describe, expect, it } from "vitest";
+import { geometricAnalysis, sampleGeometric, simulateGeometric } from "./geometricLessonModel";
+describe("geometric lesson model",()=>{it("computes the target PMF, moments, and memoryless identity",()=>{const result=geometricAnalysis(.3,4,10,2,3);expect(result.exact).toBeCloseTo(.1029,4);expect(result.cumulative).toBeCloseTo(.7599,4);expect(result.mean).toBeCloseTo(3.3333,4);expect(result.variance).toBeCloseTo(7.7778,4);expect(result.conditional).toBeCloseTo(result.tailN,10);});it("generates valid first-success trials",()=>{expect(sampleGeometric(.3,12)).toBeGreaterThanOrEqual(1);const result=simulateGeometric(.3,5000);expect(result.mean).toBeGreaterThan(3.1);expect(result.mean).toBeLessThan(3.6);});});

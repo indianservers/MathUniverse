@@ -1,0 +1,28 @@
+.parallelogram-mobile {
+  --ink: #21384a;
+  position: fixed; inset: 0; z-index: 100;
+  display: grid; grid-template-rows: 78px minmax(0, 1fr) 88px;
+  min-height: 100dvh; overflow: hidden; color: var(--ink);
+  background: #fbfaf6; font-family: "Nunito", "Segoe UI", sans-serif; touch-action: none;
+}
+.parallelogram-header { display: grid; grid-template-columns: 48px minmax(0, 1fr) 54px 44px; align-items: center; padding: 6px 8px 0; }
+.parallelogram-header button, .parallelogram-controls button, .parallelogram-menu button { display: grid; place-items: center; border: 0; color: var(--ink); background: transparent; }
+.parallelogram-header button { width: 44px; height: 44px; }
+.parallelogram-header svg { width: 27px; height: 27px; stroke-width: 2.5; }
+.parallelogram-header h1 { margin: 0; text-align: center; font-size: clamp(16px, 4.35vw, 22px); font-weight: 900; letter-spacing: -.035em; white-space: nowrap; }
+.parallelogram-header p { margin: 0; color: #636b70; font-size: 15px; white-space: nowrap; }
+.parallelogram-stage { min-height: 0; display: grid; place-items: center; background-image: linear-gradient(rgba(99,119,125,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(99,119,125,.055) 1px,transparent 1px); background-size: 28px 28px; }
+.parallelogram-stage svg { width: min(100%, 540px); height: 100%; overflow: visible; }
+.parallelogram-measure { fill: #218ebc; font-family: Georgia,serif; font-size: 21px; font-style: italic; text-anchor: middle; dominant-baseline: middle; }
+.parallelogram-shear-handle { cursor: ew-resize; outline: none; }
+.parallelogram-formula rect { fill: #fff; stroke: #5267a4; stroke-width: 1.7; }
+.parallelogram-formula text { font-family: Georgia,serif; font-size: 28px; font-style: italic; text-anchor: middle; dominant-baseline: middle; }
+.parallelogram-controls { display: flex; align-items: center; justify-content: space-between; padding: 6px 22px calc(10px + env(safe-area-inset-bottom)); }
+.parallelogram-controls button { width: 62px; height: 62px; border: 1px solid #ddd8d0; border-radius: 50%; background: #fff; box-shadow: 0 7px 15px rgba(41,44,45,.15); }
+.parallelogram-controls svg { width: 29px; height: 29px; stroke: #46599b; stroke-width: 2.5; }
+.parallelogram-controls button:first-child svg { fill: #46599b; }
+.parallelogram-menu { position: absolute; top: 66px; right: 14px; width: min(335px,calc(100vw - 28px)); padding: 21px; border: 1px solid #e0dbd3; border-radius: 20px; background: #fff; box-shadow: 0 18px 45px rgba(42,45,46,.17); touch-action: auto; }
+.parallelogram-menu button { position: absolute; top: 10px; right: 10px; width: 38px; height: 38px; }
+.parallelogram-menu h2 { margin: 0 38px 8px 0; font-size: 20px; font-weight: 900; }
+.parallelogram-menu p { margin: 8px 0 0; color: #59656c; font-size: 14px; line-height: 1.5; }
+.parallelogram-menu p:last-child { color: #26799c; font-weight: 800; }

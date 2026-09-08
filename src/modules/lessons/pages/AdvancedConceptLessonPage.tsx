@@ -4,17 +4,71 @@ import { adjacentAdvancedConceptLessons, findAdvancedConceptLesson } from "../ca
 import { adjacentLessonInPathway, pathwaysForAdvancedLesson } from "../catalog/advanced/advancedConceptPathways";
 import AdvancedLessonInteractiveLab from "../components/AdvancedLessonInteractiveLab";
 import AdvancedLessonMasteryPanel from "../components/AdvancedLessonMasteryPanel";
+import PartialQuotientsTargetLesson2001 from "../schoolTargets/PartialQuotientsTargetLesson2001";
+import ConvergentsTargetLesson2002 from "../schoolTargets/ConvergentsTargetLesson2002";
+import EuclideanAlgorithmLinkTargetLesson2003 from "../schoolTargets/EuclideanAlgorithmLinkTargetLesson2003";
+import BestRationalApproximationsTargetLesson2004 from "../schoolTargets/BestRationalApproximationsTargetLesson2004";
+import PeriodicSquareRootsTargetLesson2005 from "../schoolTargets/PeriodicSquareRootsTargetLesson2005";
+import CollatzConjectureTargetLesson2006 from "../schoolTargets/CollatzConjectureTargetLesson2006";
+import GoldbachConjectureTargetLesson2007 from "../schoolTargets/GoldbachConjectureTargetLesson2007";
+import RiemannHypothesisTargetLesson2008 from "../schoolTargets/RiemannHypothesisTargetLesson2008";
+import FermatLastTheoremTargetLesson2009 from "../schoolTargets/FermatLastTheoremTargetLesson2009";
+import FourColorTheoremTargetLesson2010 from "../schoolTargets/FourColorTheoremTargetLesson2010";
+import ConfidenceIntervalsTargetLesson2011 from "../schoolTargets/ConfidenceIntervalsTargetLesson2011";
+import MarginSampleSizeTargetLesson2012 from "../schoolTargets/MarginSampleSizeTargetLesson2012";
+import HypothesisTestsTargetLesson2013 from "../schoolTargets/HypothesisTestsTargetLesson2013";
+import PValuesTargetLesson2014 from "../schoolTargets/PValuesTargetLesson2014";
+import TypeErrorsTargetLesson2015 from "../schoolTargets/TypeErrorsTargetLesson2015";
+import SlopeFieldsTargetLesson2016 from "../schoolTargets/SlopeFieldsTargetLesson2016";
+import EulerMethodTargetLesson2017 from "../schoolTargets/EulerMethodTargetLesson2017";
+import GrowthDecayTargetLesson2018 from "../schoolTargets/GrowthDecayTargetLesson2018";
+import LogisticTargetLesson2019 from "../schoolTargets/LogisticTargetLesson2019";
+import OscillatorTargetLesson2020 from "../schoolTargets/OscillatorTargetLesson2020";
+import GammaTargetLesson2021 from "../schoolTargets/GammaTargetLesson2021";
+import BetaTargetLesson2022 from "../schoolTargets/BetaTargetLesson2022";
+import ErrorFunctionTargetLesson2023 from "../schoolTargets/ErrorFunctionTargetLesson2023";
+import ZetaTargetLesson2024 from "../schoolTargets/ZetaTargetLesson2024";
+import BesselTargetLesson2025 from "../schoolTargets/BesselTargetLesson2025";
 
 export default function AdvancedConceptLessonPage() {
   const { lessonSlug } = useParams();
   const lesson = findAdvancedConceptLesson(lessonSlug);
   if (!lesson) return <LessonNotFound />;
+  if (lesson.numericId === 2001) return <PartialQuotientsTargetLesson2001 lesson={lesson} />;
+  if (lesson.numericId === 2002) return <ConvergentsTargetLesson2002 lesson={lesson} />;
+  if (lesson.numericId === 2003) return <EuclideanAlgorithmLinkTargetLesson2003 lesson={lesson} />;
+  if (lesson.numericId === 2004) return <BestRationalApproximationsTargetLesson2004 lesson={lesson} />;
+  if (lesson.numericId === 2005) return <PeriodicSquareRootsTargetLesson2005 lesson={lesson} />;
+  if (lesson.numericId === 2006) return <CollatzConjectureTargetLesson2006 lesson={lesson} />;
+  if (lesson.numericId === 2007) return <GoldbachConjectureTargetLesson2007 lesson={lesson} />;
+  if (lesson.numericId === 2008) return <RiemannHypothesisTargetLesson2008 lesson={lesson} />;
+  if (lesson.numericId === 2009) return <FermatLastTheoremTargetLesson2009 lesson={lesson} />;
+  if (lesson.numericId === 2010) return <FourColorTheoremTargetLesson2010 lesson={lesson} />;
+  if (lesson.numericId === 2011) return <ConfidenceIntervalsTargetLesson2011 lesson={lesson} />;
+  if (lesson.numericId === 2012) return <MarginSampleSizeTargetLesson2012 lesson={lesson} />;
+  if (lesson.numericId === 2013) return <HypothesisTestsTargetLesson2013 lesson={lesson} />;
+  if (lesson.numericId === 2014) return <PValuesTargetLesson2014 lesson={lesson} />;
+  if (lesson.numericId === 2015) return <TypeErrorsTargetLesson2015 lesson={lesson} />;
+  if (lesson.numericId === 2016) return <SlopeFieldsTargetLesson2016 lesson={lesson} />;
+  if (lesson.numericId === 2017) return <EulerMethodTargetLesson2017 lesson={lesson} />;
+  if (lesson.numericId === 2018) return <GrowthDecayTargetLesson2018 lesson={lesson} />;
+  if (lesson.numericId === 2019) return <LogisticTargetLesson2019 lesson={lesson} />;
+  if (lesson.numericId === 2020) return <OscillatorTargetLesson2020 lesson={lesson} />;
+  if (lesson.numericId === 2021) return <GammaTargetLesson2021 lesson={lesson} />;
+  if (lesson.numericId === 2022) return <BetaTargetLesson2022 lesson={lesson} />;
+  if (lesson.numericId === 2023) return <ErrorFunctionTargetLesson2023 lesson={lesson} />;
+  if (lesson.numericId === 2024) return <ZetaTargetLesson2024 lesson={lesson} />;
+  if (lesson.numericId === 2025) return <BesselTargetLesson2025 lesson={lesson} />;
   const adjacent = adjacentAdvancedConceptLessons(lesson);
   const pathways = pathwaysForAdvancedLesson(lesson.id);
 
   return (
-    <div className="space-y-4" data-testid="advanced-concept-lesson-page">
-      <header className="rounded-3xl border border-cyan-100 bg-white p-5 shadow-xl shadow-cyan-950/5 dark:border-white/10 dark:bg-slate-950/75">
+    <div
+      className="space-y-4"
+      data-testid="advanced-concept-lesson-page"
+      data-lesson-viewport="advanced"
+    >
+      <header className="advanced-lesson-header rounded-3xl border border-cyan-100 bg-white p-5 shadow-xl shadow-cyan-950/5 dark:border-white/10 dark:bg-slate-950/75">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.18em] text-cyan-600 dark:text-cyan-300">Phase 1 - {lesson.strand}</p>
@@ -23,7 +77,7 @@ export default function AdvancedConceptLessonPage() {
           </div>
           <Link className="action-secondary" to="/lessons/advanced-concepts"><ArrowLeft className="h-4 w-4" />Advanced lessons</Link>
         </div>
-        <div className="mt-4 flex flex-wrap gap-2">
+        <div className="advanced-lesson-header-meta mt-4 flex flex-wrap gap-2">
           <Chip label={`#${lesson.numericId}`} />
           <Chip label={`${lesson.estimatedMinutes} min`} />
           <Chip label={lesson.difficulty} />

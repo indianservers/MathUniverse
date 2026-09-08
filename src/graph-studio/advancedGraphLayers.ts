@@ -1,5 +1,6 @@
 import type { GraphSample } from "../utils/mathEngine/graphSampler";
 import { compileFunctionExpression, compileTwoVariableExpression } from "../utils/functionParser";
+import { sampleCobweb } from "./graph2dAdvanced";
 
 export type AdvancedGraphStyle = "line" | "points" | "vectors";
 
@@ -7,7 +8,7 @@ export type AdvancedGraphSample = {
   points: GraphSample[];
   normalized: string;
   style: AdvancedGraphStyle;
-  family: "sequence" | "recurrence" | "contour" | "polar-range" | "vector-field" | "slope-field";
+  family: "sequence" | "recurrence" | "cobweb" | "contour" | "polar-range" | "parametric" | "vector-field" | "slope-field";
   error?: string;
 };
 
@@ -22,6 +23,9 @@ export function sampleAdvancedGraphExpression(input: string, xMin: number, xMax:
   const recurrence = callArguments(normalized, "recur");
   if (recurrence) return safeSample(normalized, "recurrence", "points", () => sampleRecurrence(recurrence));
 
+  const cobweb = callArguments(normalized, "cobweb");
+  if (cobweb) return safeSample(normalized, "cobweb", "line", () => sampleCobweb(Number(cobweb[0]), cobweb[1], Number(cobweb[2])));
+
   const contour = callArguments(normalized, "contour");
   if (contour) return safeSample(normalized, "contour", "line", () => sampleContours(contour, xMin, xMax));
 
@@ -31,9 +35,24 @@ export function sampleAdvancedGraphExpression(input: string, xMin: number, xMax:
   const slope = callArguments(normalized, "slope");
   if (slope) return safeSample(normalized, "slope-field", "vectors", () => sampleSlopeField(slope, xMin, xMax));
 
+  const parametric = callArguments(normalized, "param");
+  if (parametric) return safeSample(normalized, "parametric", "line", () => sampleParametricRange(parametric));
+
   const polarRange = normalized.match(/^r=(.+),theta=(-?(?:pi|\d+(?:\.\d+)?))\.\.(-?(?:pi|\d+(?:\.\d+)?))$/i);
   if (polarRange) return safeSample(normalized, "polar-range", "line", () => samplePolarRange(polarRange[1], parseBound(polarRange[2]), parseBound(polarRange[3])));
   return null;
+}
+
+function sampleParametricRange(args: string[]) {
+  if (args.length !== 4) throw new Error("Use param(x(t), y(t), t minimum, t maximum).");
+  const xFn = compileFunctionExpression(args[0].replace(/\bt\b/gi, "x"));
+  const yFn = compileFunctionExpression(args[1].replace(/\bt\b/gi, "x"));
+  const start = parseBound(args[2]); const end = parseBound(args[3]);
+  if (!(end > start)) throw new Error("Parametric end must be greater than its start.");
+  return Array.from({ length: 720 }, (_, index) => {
+    const t = start + index / 719 * (end - start); const x = xFn(t); const y = yFn(t);
+    return Number.isFinite(x) && Number.isFinite(y) ? { x, y, valid: true } : { x: t, y: null, valid: false };
+  });
 }
 
 function sampleSequence(args: string[]) {
@@ -168,6 +187,10 @@ function integer(value: string, label: string) {
 function parseBound(value: string) {
   if (/^-?pi$/i.test(value)) return value.startsWith("-") ? -Math.PI : Math.PI;
   const parsed = Number(value);
-  if (!Number.isFinite(parsed)) throw new Error("Polar angle bounds must be numbers or pi.");
-  return parsed;
+  if (Number.isFinite(parsed)) return parsed;
+  try {
+    const evaluated = compileFunctionExpression(value)(0);
+    if (Number.isFinite(evaluated)) return evaluated;
+  } catch { /* Use the domain-specific message below. */ }
+  throw new Error("Angle bounds must be numeric expressions such as 0, pi, or 2*pi.");
 }

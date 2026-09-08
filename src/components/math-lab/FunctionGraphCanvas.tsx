@@ -46,6 +46,7 @@ type FunctionGraphCanvasProps = {
   logY?: boolean;
   interactivePoints?: Array<{ id: string; x: number; y: number; label: string; color: string }>;
   onInteractivePointChange?: (id: string, x: number, y: number) => void;
+  precisionCrosshair?: boolean;
   imageLayers?: Array<{ id: string; href: string; x: number; y: number; width: number; height: number; opacity: number; label: string }>;
 };
 
@@ -69,6 +70,7 @@ export default function FunctionGraphCanvas({
   logY = false,
   interactivePoints = [],
   onInteractivePointChange,
+  precisionCrosshair = false,
   imageLayers = [],
 }: FunctionGraphCanvasProps) {
   const dragRef = useRef<{ clientX: number; clientY: number; view: FunctionGraphView } | null>(null);
@@ -233,11 +235,12 @@ export default function FunctionGraphCanvas({
       {tracePoint && traceSeries && typeof tracePoint.y === "number" && (
         <g>
           <line x1={toScreen(tracePoint.x, view.yMin).x} x2={toScreen(tracePoint.x, view.yMin).x} y1="0" y2={HEIGHT} stroke="#64748b" strokeDasharray="5 7" opacity="0.45" />
+          {precisionCrosshair && <line x1="0" x2={WIDTH} y1={toScreen(tracePoint.x, tracePoint.y).y} y2={toScreen(tracePoint.x, tracePoint.y).y} stroke="#64748b" strokeDasharray="5 7" opacity="0.45" />}
           <circle cx={toScreen(tracePoint.x, tracePoint.y).x} cy={toScreen(tracePoint.x, tracePoint.y).y} r="7" fill={traceSeries.color} stroke="#ffffff" strokeWidth="3" />
           <g transform={`translate(${Math.min(WIDTH - 190, Math.max(10, toScreen(tracePoint.x, tracePoint.y).x + 12))}, ${Math.min(HEIGHT - 72, Math.max(12, toScreen(tracePoint.x, tracePoint.y).y - 42))})`}>
             <rect width="178" height="62" rx="14" fill="#0f172a" opacity="0.92" />
             <text x="12" y="22" fill="#e0f2fe" fontSize="13" fontWeight="700">{traceSeries.label}</text>
-            <text x="12" y="44" fill="#ffffff" fontSize="13">x={formatTick(tracePoint.x)}, y={formatTick(tracePoint.y)}</text>
+            <text x="12" y="44" fill="#ffffff" fontSize="13">x={precisionCrosshair ? formatPrecision(tracePoint.x) : formatTick(tracePoint.x)}, y={precisionCrosshair ? formatPrecision(tracePoint.y) : formatTick(tracePoint.y)}</text>
           </g>
         </g>
       )}
@@ -383,3 +386,5 @@ function formatTick(value: number) {
   if (Math.abs(value) >= 1000 || (Math.abs(value) > 0 && Math.abs(value) < 0.001)) return value.toExponential(2);
   return Number(value.toFixed(3)).toString();
 }
+
+function formatPrecision(value: number) { return Number(value.toFixed(6)).toString(); }

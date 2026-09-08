@@ -1,0 +1,3 @@
+import { describe, expect, it } from "vitest";
+import { frequencies, isModeAnswer, modeDefault, modes } from "./modeLessonModel";
+describe("Mode model", () => { it("derives unique, multiple and absent modes", () => { expect(frequencies(modeDefault)[5]).toBe(5); expect(modes(modeDefault)).toEqual([5]); expect(modes([2, 2, 3, 3, 4])).toEqual([2, 3]); expect(modes([1, 2, 3])).toEqual([1, 2, 3]); }); it("validates a canonical comma-separated answer", () => { expect(isModeAnswer([2, 2, 3, 3], "2, 3")).toBe(true); expect(isModeAnswer([2, 2, 3, 3], "3,2")).toBe(false); expect(isModeAnswer([1, 2, 3], "1, 2, 3")).toBe(true); }); });

@@ -12,6 +12,10 @@ import {
 import { useEffect, useMemo, useState } from "react";
 import type { PointerEvent as ReactPointerEvent } from "react";
 import type { LessonAdapterProps } from "../../types";
+import {
+  arithmeticQuizChoices,
+  arithmeticSequenceAnalysis,
+} from "./arithmeticSequenceLessonModel";
 import "./ArithmeticSequencesTargetLesson335.css";
 
 const clean = (value: number) => Number(value.toFixed(6));
@@ -38,15 +42,16 @@ export default function ArithmeticSequencesTargetLesson335({
     [solverInput, setSolverInput] = useState("25"),
     [solverResult, setSolverResult] = useState(""),
     [quickResult, setQuickResult] = useState<"" | "correct" | "incorrect">(""),
+    [language, setLanguage] = useState<"en" | "hi">("en"),
     [actions, setActions] = useState(0);
-  const terms = useMemo(
-      () =>
-        Array.from({ length: 10 }, (_, index) => first + index * difference),
+  const analysis = useMemo(
+      () => arithmeticSequenceAnalysis(first, difference),
       [first, difference],
     ),
-    differences = terms.slice(1).map((value, index) => value - terms[index]),
-    nth40 = first + 39 * difference,
-    intercept = first - difference;
+    { terms, differences, intercept } = analysis,
+    nth40 = analysis.term(40),
+    quickAnswer = analysis.term(12),
+    quickChoices = arithmeticQuizChoices(quickAnswer);
 
   const reset = () => {
     setFirst(5);
@@ -58,6 +63,7 @@ export default function ArithmeticSequencesTargetLesson335({
     setSolverInput("25");
     setSolverResult("");
     setQuickResult("");
+    setLanguage("en");
     setActions(0);
   };
   useEffect(reset, [resetToken]);
@@ -90,18 +96,16 @@ export default function ArithmeticSequencesTargetLesson335({
       if (!Number.isFinite(value)) return setSolverResult("Enter a number.");
       if (solverMode === "term") {
         const n = Math.max(1, Math.round(value));
-        setSolverResult(`a${n} = ${clean(first + (n - 1) * difference)}`);
+        setSolverResult(`a${n} = ${clean(analysis.term(n))}`);
         return;
       }
-      if (difference === 0) {
-        setSolverResult(value === first ? "Every positive index" : "No index");
-        return;
-      }
-      const n = 1 + (value - first) / difference;
+      const n = analysis.indexOf(value);
       setSolverResult(
-        Number.isInteger(n) && n >= 1
+        n
           ? `n = ${n}`
-          : "Not a term in this sequence",
+          : difference === 0 && value === first
+            ? "Every positive index"
+            : "Not a term in this sequence",
       );
     });
   const dragGraph = (
@@ -111,11 +115,21 @@ export default function ArithmeticSequencesTargetLesson335({
     if (event.buttons !== 1 || index === 0) return;
     const rect = event.currentTarget.ownerSVGElement?.getBoundingClientRect();
     if (!rect) return;
-    const desired =
-      40 - ((event.clientY - rect.top - 22) / (rect.height - 54)) * 40;
+    const ratio = Math.max(
+      0,
+      Math.min(1, (event.clientY - rect.top - 22) / (rect.height - 54)),
+    );
+    const desired = graphMax - ratio * (graphMax - graphMin);
     changeDifference((desired - first) / index);
   };
-  const graphY = (value: number) => 28 + ((40 - value) / 40) * 132;
+  const graphPadding = Math.max(
+      2,
+      (analysis.maxTerm - analysis.minTerm) * 0.12,
+    ),
+    graphMin = analysis.minTerm - graphPadding,
+    graphMax = analysis.maxTerm + graphPadding,
+    graphY = (value: number) =>
+      28 + ((graphMax - value) / Math.max(1, graphMax - graphMin)) * 132;
   const graphPoints = terms
     .map((value, index) => `${43 + index * 37},${graphY(value)}`)
     .join(" ");
@@ -140,6 +154,7 @@ export default function ArithmeticSequencesTargetLesson335({
       data-solver-result={solverResult}
       data-quick-result={quickResult}
       data-actions={actions}
+      data-language={language}
     >
       <header className="seq335-hero">
         <div>
@@ -147,8 +162,14 @@ export default function ArithmeticSequencesTargetLesson335({
             <b>ADVANCED MATHEMATICS</b>
             <b>SEQUENCES AND SERIES</b>
           </span>
-          <h1>Arithmetic Sequences</h1>
-          <p>Linear growth by a constant difference.</p>
+          <h1>
+            {language === "en" ? "Arithmetic Sequences" : "समांतर श्रेणियाँ"}
+          </h1>
+          <p>
+            {language === "en"
+              ? "Linear growth by a constant difference."
+              : "एक स्थिर अंतर द्वारा रैखिक वृद्धि।"}
+          </p>
           <div className="seq335-meta">
             <b>Intermediate-Advanced</b>
             <b>Exploration Lab</b>
@@ -164,7 +185,16 @@ export default function ArithmeticSequencesTargetLesson335({
           </p>
         </article>
         <div className="seq335-actions">
-          <button>English (English)</button>
+          <select
+            aria-label="Lesson language"
+            value={language}
+            onChange={(event) =>
+              act(() => setLanguage(event.target.value as "en" | "hi"))
+            }
+          >
+            <option value="en">English (English)</option>
+            <option value="hi">हिन्दी (Hindi)</option>
+          </select>
           <button onClick={() => act(reset)}>
             <RotateCcw /> Reset
           </button>
@@ -175,7 +205,16 @@ export default function ArithmeticSequencesTargetLesson335({
           >
             <Share2 /> Share
           </button>
-          <button onClick={() => act(() => setTab(tabs[0]))}>Workspace</button>
+          <button
+            onClick={() => {
+              act(() => setTab(tabs[0]));
+              document
+                .getElementById("seq335-explorer")
+                ?.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
+            Workspace
+          </button>
         </div>
       </header>
       <nav className="seq335-tabs">
@@ -183,14 +222,29 @@ export default function ArithmeticSequencesTargetLesson335({
           <button
             key={name}
             className={tab === name ? "active" : ""}
-            onClick={() => act(() => setTab(name))}
+            onClick={() => {
+              act(() => setTab(name));
+              const target =
+                name === tabs[0]
+                  ? "seq335-explorer"
+                  : name === "Formulas"
+                    ? "seq335-formulas"
+                    : name === "Quick Check"
+                      ? "seq335-quick"
+                      : name === "Guided Practice"
+                        ? "seq335-guided"
+                        : "seq335-insights";
+              document
+                .getElementById(target)
+                ?.scrollIntoView({ behavior: "smooth" });
+            }}
           >
             {name}
           </button>
         ))}
       </nav>
 
-      <section className="seq335-explorer">
+      <section className="seq335-explorer" id="seq335-explorer">
         <main>
           <header>
             <h2>1. Explore an Arithmetic Sequence</h2>
@@ -309,7 +363,7 @@ export default function ArithmeticSequencesTargetLesson335({
             </p>
           </div>
         </main>
-        <aside>
+        <aside id="seq335-insights">
           <article>
             <h3>KEY INSIGHT</h3>
             <p>
@@ -418,8 +472,8 @@ export default function ArithmeticSequencesTargetLesson335({
         </article>
       </section>
 
-      <section className="seq335-pair formulas-row">
-        <article>
+      <section className="seq335-pair formulas-row" id="seq335-formulas">
+        <article id="seq335-guided">
           <h2>4. Formulas</h2>
           <div className="seq335-formulas">
             <div>
@@ -520,21 +574,17 @@ export default function ArithmeticSequencesTargetLesson335({
             <Check /> Answer: a₄₀ = {clean(nth40)}
           </div>
         </article>
-        <article className="seq335-quick">
+        <article className="seq335-quick" id="seq335-quick">
           <h2>7. Quick Check</h2>
           <p>What is the 12th term?</p>
-          {[34, 35, 38, 37].map((value, index) => (
+          {quickChoices.map((value, index) => (
             <button
               key={value}
-              className={
-                quickResult && value === first + 11 * difference
-                  ? "correct"
-                  : ""
-              }
+              className={quickResult && value === quickAnswer ? "correct" : ""}
               onClick={() =>
                 act(() =>
                   setQuickResult(
-                    value === first + 11 * difference ? "correct" : "incorrect",
+                    value === quickAnswer ? "correct" : "incorrect",
                   ),
                 )
               }
@@ -544,7 +594,7 @@ export default function ArithmeticSequencesTargetLesson335({
           ))}
           <output className={quickResult}>
             {quickResult === "correct"
-              ? `Correct! a₁₂ = ${clean(first + 11 * difference)}`
+              ? `Correct! a₁₂ = ${clean(quickAnswer)}`
               : quickResult === "incorrect"
                 ? "Try the explicit formula again."
                 : ""}
@@ -566,7 +616,12 @@ export default function ArithmeticSequencesTargetLesson335({
           </div>
           <button
             className="practice-button"
-            onClick={() => act(() => setTab("Guided Practice"))}
+            onClick={() => {
+              act(() => setTab("Guided Practice"));
+              document
+                .getElementById("seq335-guided")
+                ?.scrollIntoView({ behavior: "smooth" });
+            }}
           >
             Go to Practice Set →
           </button>

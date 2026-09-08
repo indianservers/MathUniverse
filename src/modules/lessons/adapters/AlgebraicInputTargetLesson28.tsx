@@ -12,6 +12,8 @@ import {
 } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { LessonAdapterProps } from "../types";
+import { LessonCartesianGraph } from "../graphs/LessonCartesianGraph";
+import { lessonGraphZeroCrossingConverges } from "../graphs/lessonGraphGeometry";
 import "./AlgebraicInputTargetLesson28.css";
 
 type Parsed = {
@@ -22,7 +24,7 @@ type Parsed = {
   checks: boolean[];
   error: string;
 };
-type Sample = { x: number; y: number };
+const GRAPH_VIEW={xMin:-233/34,xMax:(500-233)/34,yMin:(143-280)/19,yMax:143/19};
 const engine = nerdamer as unknown as (
   expression: string,
   substitutions?: Record<string, string>,
@@ -87,11 +89,9 @@ function parseInput(input: string): Parsed {
 function evaluate(parsed: Parsed, x: number) {
   if (!parsed.valid) return NaN;
   try {
-    const value = Number(
-      engine(parsed.expression, { [parsed.variable]: String(x) })
-        .evaluate()
-        .toString(),
-    );
+    const result=engine(parsed.expression, { [parsed.variable]: String(x) }).evaluate();
+    // Nerdamer's toString() may be a fraction, e.g. -399/100; text() is decimal.
+    const value=Number(result.text?result.text():result.toString());
     return Number.isFinite(value) ? value : NaN;
   } catch {
     return NaN;
@@ -128,6 +128,7 @@ export default function AlgebraicInputTargetLesson28({
     [editing, setEditing] = useState(false),
     [shareState, setShareState] = useState("Share"),
     [actions, setActions] = useState(0);
+  const [graphView,setGraphView]=useState(GRAPH_VIEW);
   const inputRef = useRef<HTMLInputElement>(null),
     parsed = useMemo(() => parseInput(input), [input]);
   const samples = useMemo(
@@ -138,13 +139,18 @@ export default function AlgebraicInputTargetLesson28({
       }).filter((point) => Number.isFinite(point.y)),
     [parsed],
   );
+  const breakBefore=useMemo(()=>samples.map((point,index)=>{
+    if(index===0)return false;
+    const previous=samples[index-1];
+    return point.x-previous.x>.100001 || (previous.y*point.y<0&&!lessonGraphZeroCrossingConverges(x=>evaluate(parsed,x),previous,point));
+  }),[samples,parsed]);
   const roots = useMemo(() => {
     const found: number[] = [];
     for (let index = 1; index < samples.length; index++) {
       const a = samples[index - 1],
         b = samples[index];
       if (Math.abs(a.y) < 0.02) found.push(a.x);
-      else if (a.y * b.y < 0)
+      else if (!breakBefore[index] && a.y * b.y < 0)
         found.push(a.x + ((0 - a.y) * (b.x - a.x)) / (b.y - a.y));
     }
     return found
@@ -153,7 +159,7 @@ export default function AlgebraicInputTargetLesson28({
           index === 0 || Math.abs(value - array[index - 1]) > 0.15,
       )
       .slice(0, 3);
-  }, [samples]);
+  }, [samples,breakBefore]);
   const vertex = useMemo(
       () =>
         samples.reduce(
@@ -168,6 +174,7 @@ export default function AlgebraicInputTargetLesson28({
     onInteraction();
   };
   const reset = () => {
+    setGraphView(GRAPH_VIEW);
     setInput("f(x) = x^2 - 4");
     setGraphCount(0);
     setEditing(false);
@@ -176,6 +183,7 @@ export default function AlgebraicInputTargetLesson28({
     onInteraction();
   };
   useEffect(() => {
+    setGraphView(GRAPH_VIEW);
     setInput("f(x) = x^2 - 4");
     setGraphCount(0);
     setEditing(false);
@@ -306,7 +314,11 @@ export default function AlgebraicInputTargetLesson28({
               </dl>
               <hr />
               <h2>Graph preview</h2>
-              <FunctionPlot samples={samples} roots={roots} vertex={vertex} />
+              <LessonCartesianGraph title="Graph preview" xLabel={parsed.variable||'x'}
+                view={graphView} onViewChange={setGraphView} onResetView={()=>setGraphView(GRAPH_VIEW)}
+                legend={parsed.valid?[{id:'function',label:`${parsed.name}(${parsed.variable}) = ${parsed.expression}`,color:'#0875ef'}]:[]}
+                series={parsed.valid?[{id:'function',label:parsed.expression,color:'#0875ef',points:samples.flatMap((point,index)=>breakBefore[index]?[null,point]:[point])}]:[]}
+                annotations={parsed.valid&&samples.length?[...roots.map((x,index)=>({id:`root-${index}`,x,y:0,label:`(${format(x)}, 0)`,color:'#0875ef'})),{id:'vertex',...vertex,label:`(${format(vertex.x)}, ${format(vertex.y)})`,color:'#0875ef'}]:[]}/>
               <footer>
                 <span>
                   Roots:&nbsp;{" "}
@@ -432,87 +444,5 @@ export default function AlgebraicInputTargetLesson28({
   );
 }
 
-function FunctionPlot({
-  samples,
-  roots,
-  vertex,
-}: {
-  samples: Sample[];
-  roots: number[];
-  vertex: Sample;
-}) {
-  const map = (point: Sample) => ({
-      x: 233 + point.x * 34,
-      y: 143 - point.y * 19,
-    }),
-    path = samples
-      .map((point, index) => {
-        const p = map(point);
-        return `${index ? "L" : "M"}${p.x.toFixed(1)},${p.y.toFixed(1)}`;
-      })
-      .join(" ");
-  return (
-    <svg
-      className="function-preview"
-      viewBox="0 0 500 280"
-      role="img"
-      aria-label="Parsed function graph preview"
-    >
-      <defs>
-        <pattern
-          id="input-grid"
-          width="34"
-          height="38"
-          patternUnits="userSpaceOnUse"
-        >
-          <path
-            d="M34 0H0V38"
-            fill="none"
-            stroke="#dce3ea"
-            strokeDasharray="4 3"
-          />
-        </pattern>
-      </defs>
-      <rect width="500" height="280" fill="url(#input-grid)" />
-      <line className="axis" x1="5" y1="143" x2="495" y2="143" />
-      <line className="axis" x1="233" y1="4" x2="233" y2="276" />
-      <path className="curve" d={path} />
-      {roots.map((root) => {
-        const p = map({ x: root, y: 0 });
-        return (
-          <g key={root}>
-            <circle cx={p.x} cy={p.y} r="4" />
-            <rect
-              className="label-box"
-              x={p.x - 29}
-              y={p.y - 35}
-              width="58"
-              height="29"
-              rx="6"
-            />
-            <text x={p.x - 21} y={p.y - 16}>
-              ({format(root)}, 0)
-            </text>
-          </g>
-        );
-      })}
-      <circle cx={map(vertex).x} cy={map(vertex).y} r="5" />
-      <rect
-        className="label-box"
-        x={map(vertex).x + 8}
-        y={map(vertex).y + 9}
-        width="60"
-        height="30"
-        rx="6"
-      />
-      <text x={map(vertex).x + 16} y={map(vertex).y + 29}>
-        ({format(vertex.x)}, {format(vertex.y)})
-      </text>
-      {[-6, -4, -2, 0, 2, 4, 6].map((value) => (
-        <text className="tick" key={value} x={229 + value * 34} y="160">
-          {value}
-        </text>
-      ))}
-    </svg>
-  );
-}
+
+

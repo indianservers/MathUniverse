@@ -37,6 +37,7 @@ import CalculusDerivativesStudio from "./CalculusDerivativesStudio";
 import CalculusLimitsStudio from "./CalculusLimitsStudio";
 import CalculusMultivariableStudio from "./CalculusMultivariableStudio";
 import CalculusConceptStudio, { type ConceptPage } from "./CalculusConceptStudio";
+import CalculusEnhancementWorkbench from "../studios/calculus/CalculusEnhancementWorkbench";
 import "./CalculusStudio.css";
 
 export type CalculusStudioPage =
@@ -49,7 +50,8 @@ export type CalculusStudioPage =
   | "integral-applications"
   | "differential-equations"
   | "series-parametric-polar"
-  | "multivariable-vector";
+  | "multivariable-vector"
+  | "advanced";
 
 type LabMode = {
   id: string;
@@ -67,6 +69,7 @@ const studioRoutes: Record<CalculusStudioPage, string> = {
   "differential-equations": "/calculus/differential-equations",
   "series-parametric-polar": "/calculus/series-parametric-polar",
   "multivariable-vector": "/calculus/multivariable-vector",
+  advanced: "/calculus/advanced",
 };
 
 const navItems = [
@@ -80,6 +83,7 @@ const navItems = [
   { page: "differential-equations", label: "Differential Equations", icon: Activity },
   { page: "series-parametric-polar", label: "Series / Parametric / Polar", icon: Target },
   { page: "multivariable-vector", label: "Multivariable / Vector", icon: Box },
+  { page: "advanced", label: "Advanced Workbench", icon: Grid3X3 },
 ] satisfies Array<{ page: CalculusStudioPage; label: string; icon: typeof Home }>;
 
 const pageMeta: Record<CalculusStudioPage, { title: string; subtitle: string; modes: LabMode[] }> = {
@@ -93,6 +97,7 @@ const pageMeta: Record<CalculusStudioPage, { title: string; subtitle: string; mo
   "differential-equations": { title: "Differential Equations Studio", subtitle: "Read slope fields, trace solution curves, and compare numerical methods.", modes: modeList("slope", "Slope Fields", "ivp", "Initial Value", "separable", "Separable", "growth", "Growth Models", "euler", "Euler", "rk4", "RK4") },
   "series-parametric-polar": { title: "Series, Parametric & Polar Studio", subtitle: "Explore series expansions, parametric curves, and polar graphs interactively.", modes: modeList("sequences", "Sequences", "convergence", "Convergence", "power", "Power Series", "taylor", "Taylor", "parametric", "Parametric", "polar", "Polar") },
   "multivariable-vector": { title: "Multivariable & Vector Calculus Studio", subtitle: "Explore surfaces, gradients, tangent planes, multiple integrals, and fields.", modes: modeList("partial", "Partial Derivatives", "gradient", "Gradient", "plane", "Tangent Plane", "optimization", "Optimization", "multiple", "Multiple Integrals", "fields", "Vector Fields", "theorems", "Theorems") },
+  advanced: { title: "Advanced Calculus Workbench", subtitle: "Twenty-five linked limit, derivative, integral, series, ODE, and vector-calculus tools.", modes: [] },
 };
 
 function modeList(...items: string[]) {
@@ -273,6 +278,7 @@ function JourneyNode({ title, page }: { title: string; page: CalculusStudioPage 
 
 function StudioLab({ page }: { page: Exclude<CalculusStudioPage, "home"> }) {
   const [params, setParams] = useSearchParams();
+  if (page === "advanced") return <CalculusEnhancementWorkbench />;
   if (page === "multivariable-vector") return <CalculusMultivariableStudio />;
   const meta = pageMeta[page];
   const defaultMode = page === "integration" ? "definite" : meta.modes[0].id;

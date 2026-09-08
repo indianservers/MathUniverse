@@ -9,6 +9,8 @@ import {
 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../types";
+import { LessonGraphWorkspace } from "../graphs/LessonGraphWorkspace";
+import { LessonBarGraph } from "../graphs/LessonBarGraph";
 import "./ExponentialCalculationsTargetLesson9.css";
 const VIEWS = [
   "Interaction + visualization",
@@ -257,25 +259,21 @@ export default function ExponentialCalculationsTargetLesson9({
                 ))}
               </div>
             </div>
-            <h3 className="growth-title">
-              Growth chart <small>(exponential growth)</small>
-            </h3>
-            <div className="exponential-chart">
-              {Array.from({ length: exponent + 1 }, (_, i) => (
-                <div className={i <= animationStep ? "shown" : ""} key={i}>
-                  <b>{base ** i}</b>
-                  <i
-                    style={{
-                      height: `${Math.max(8, (base ** i / output) * 100)}%`,
-                    }}
-                  />
-                  <span>
-                    {base}
-                    <sup>{i}</sup>
-                  </span>
-                </div>
-              ))}
-            </div>
+            <LessonGraphWorkspace
+              title="Growth chart (exponential growth)"
+              legend={[
+                { id: "powers", label: "Earlier powers", color: "#7626c8" },
+                { id: "output", label: `${base}^${exponent} = ${output}`, color: "#ff7315" },
+              ]}
+              observation="Compare the values above each bar; very small bars are kept visible."
+            >
+              <LessonBarGraph label={`Powers of ${base}, exponents 0 to ${exponent}`} bars={Array.from({ length: exponent + 1 }, (_, i) => ({
+                id: String(i), label: `${base}^${i}`, value: base ** i,
+                color: i === exponent ? "#ff7315" : "#7626c8",
+                fraction: Math.max(8, (base ** i / output) * 100) / 100,
+                revealed: i <= animationStep,
+              }))} />
+            </LessonGraphWorkspace>
           </section>
           <section className="exponential-practice">
             <header>

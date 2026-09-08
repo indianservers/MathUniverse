@@ -1,0 +1,401 @@
+{
+  "records": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "state": {
+        "testid": "algebra-mockup-0029",
+        "dedicatedLesson": "29",
+        "objectModel": "preserved-object-identity-executable-old-new-rule-dependent-output-dual-graph-dependency-tree-model",
+        "name": "f",
+        "oldRule": "x + 1",
+        "rule": "x^2 - 1",
+        "draft": "x^2 - 1",
+        "valid": "true",
+        "a": "3",
+        "b": "-1",
+        "revision": "1",
+        "actions": "0"
+      },
+      "overflow": false,
+      "controls": [
+        {
+          "tag": "INPUT",
+          "name": "Object name",
+          "value": "f",
+          "min": "",
+          "max": "",
+          "step": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "New object definition",
+          "value": "x^2 - 1",
+          "min": "",
+          "max": "",
+          "step": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Clear object definition",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "View as table",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Redefine f",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Sitemap",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Docs",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "About",
+          "value": ""
+        }
+      ],
+      "bars": [],
+      "graphs": [
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 290 230",
+          "label": "BEFORE (Original) graph of f"
+        },
+        {
+          "viewBox": "0 0 290 230",
+          "label": "AFTER (Redefined) graph of f"
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "state": {
+        "testid": "algebra-mockup-0029",
+        "dedicatedLesson": "29",
+        "objectModel": "preserved-object-identity-executable-old-new-rule-dependent-output-dual-graph-dependency-tree-model",
+        "name": "f",
+        "oldRule": "x + 1",
+        "rule": "x^2 - 1",
+        "draft": "x^2 - 1",
+        "valid": "true",
+        "a": "3",
+        "b": "-1",
+        "revision": "1",
+        "actions": "0"
+      },
+      "overflow": false,
+      "controls": [
+        {
+          "tag": "INPUT",
+          "name": "Object name",
+          "value": "f",
+          "min": "",
+          "max": "",
+          "step": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "New object definition",
+          "value": "x^2 - 1",
+          "min": "",
+          "max": "",
+          "step": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Clear object definition",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "View as table",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Redefine f",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Sitemap",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Docs",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "About",
+          "value": ""
+        }
+      ],
+      "bars": [],
+      "graphs": [
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 290 230",
+          "label": "BEFORE (Original) graph of f"
+        },
+        {
+          "viewBox": "0 0 290 230",
+          "label": "AFTER (Redefined) graph of f"
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "state": {
+        "testid": "algebra-mockup-0029",
+        "dedicatedLesson": "29",
+        "objectModel": "preserved-object-identity-executable-old-new-rule-dependent-output-dual-graph-dependency-tree-model",
+        "name": "f",
+        "oldRule": "x + 1",
+        "rule": "x^2 - 1",
+        "draft": "x^2 - 1",
+        "valid": "true",
+        "a": "3",
+        "b": "-1",
+        "revision": "1",
+        "actions": "0"
+      },
+      "overflow": false,
+      "controls": [
+        {
+          "tag": "INPUT",
+          "name": "Object name",
+          "value": "f",
+          "min": "",
+          "max": "",
+          "step": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "New object definition",
+          "value": "x^2 - 1",
+          "min": "",
+          "max": "",
+          "step": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Clear object definition",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "View as table",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Redefine f",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Sitemap",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Docs",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "About",
+          "value": ""
+        }
+      ],
+      "bars": [],
+      "graphs": [
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 290 230",
+          "label": "BEFORE (Original) graph of f"
+        },
+        {
+          "viewBox": "0 0 290 230",
+          "label": "AFTER (Redefined) graph of f"
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

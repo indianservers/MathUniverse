@@ -141,9 +141,189 @@ describe("lesson pages", () => {
       </MemoryRouter>,
     );
     expect(html).toContain("Partial Quotients");
-    expect(html).toContain("Step Explorer");
-    expect(html).toContain("continued fraction convergent error plot");
-    expect(html).toContain("convergents climb toward the target");
+    expect(html).toContain('data-testid="advanced-mockup-0895"');
+    expect(html).toContain("Euclidean peel machine");
+    expect(html).toContain("Convergent selection on the number line");
+    expect(html).toContain("Convergents ladder");
+  });
+
+  it("renders the dedicated convergents route", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter initialEntries={["/lessons/advanced-concepts/2002-convergents"]}>
+        <Routes>
+          <Route path="/lessons/advanced-concepts/:lessonSlug" element={<AdvancedConceptLessonPage />} />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="advanced-mockup-0896"');
+    expect(html).toContain("Recurrence engine");
+    expect(html).toContain("Denominator cap challenge");
+    expect(html).not.toContain("Open studio");
+  });
+
+  it("renders the dedicated Euclidean algorithm link route", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter initialEntries={["/lessons/advanced-concepts/2003-euclidean-algorithm-continued-fractions"]}>
+        <Routes><Route path="/lessons/advanced-concepts/:lessonSlug" element={<AdvancedConceptLessonPage />} /></Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="advanced-mockup-0897"');
+    expect(html).toContain("Build &amp; Show Euclid");
+    expect(html).not.toContain("Open studio");
+  });
+
+  it("renders the dedicated best rational approximations route", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter initialEntries={["/lessons/advanced-concepts/2004-best-rational-approximations"]}>
+        <Routes><Route path="/lessons/advanced-concepts/:lessonSlug" element={<AdvancedConceptLessonPage />} /></Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="advanced-mockup-0898"');
+    expect(html).toContain("333/106");
+    expect(html).toContain("289/92");
+    expect(html).not.toContain("Open studio");
+  });
+
+  it("renders the dedicated periodic square roots route", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter initialEntries={["/lessons/advanced-concepts/2005-periodic-square-root-continued-fractions"]}>
+        <Routes><Route path="/lessons/advanced-concepts/:lessonSlug" element={<AdvancedConceptLessonPage />} /></Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="advanced-mockup-0899"');
+    expect(html).toContain("211/44");
+    expect(html).toContain("State Cycle Explorer");
+    expect(html).not.toContain("Open studio");
+  });
+
+  it("renders the dedicated Collatz route", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter initialEntries={["/lessons/advanced-concepts/2006-collatz-conjecture"]}>
+        <Routes><Route path="/lessons/advanced-concepts/:lessonSlug" element={<AdvancedConceptLessonPage />} /></Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="advanced-mockup-0900"');
+    expect(html).toContain("Status: Not run");
+    expect(html).not.toContain("Open studio");
+  });
+
+  it("renders the dedicated Goldbach route", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter initialEntries={["/lessons/advanced-concepts/2007-goldbach-conjecture"]}>
+        <Routes><Route path="/lessons/advanced-concepts/:lessonSlug" element={<AdvancedConceptLessonPage />} /></Routes>
+      </MemoryRouter>,
+    );
+    expect(html).toContain('data-testid="advanced-mockup-0901"');
+    expect(html).toContain("32.14%");
+    expect(html).not.toContain("Open studio");
+  });
+
+  it("renders the dedicated Riemann hypothesis route", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/advanced-concepts/2008-riemann-hypothesis-primes"]}><Routes><Route path="/lessons/advanced-concepts/:lessonSlug" element={<AdvancedConceptLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="advanced-mockup-0902"');
+    expect(html).not.toContain("Open studio");
+  });
+
+  it("renders the dedicated Fermat route", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/advanced-concepts/2009-fermats-last-theorem"]}><Routes><Route path="/lessons/advanced-concepts/:lessonSlug" element={<AdvancedConceptLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="advanced-mockup-0903"');
+    expect(html).not.toContain("Open studio");
+  });
+
+  it("renders the dedicated Four-Color route", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/advanced-concepts/2010-four-color-theorem"]}><Routes><Route path="/lessons/advanced-concepts/:lessonSlug" element={<AdvancedConceptLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="advanced-mockup-0904"');
+    expect(html).not.toContain("Open studio");
+  });
+
+  it("renders the dedicated Confidence Intervals route", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/advanced-concepts/2011-confidence-intervals"]}><Routes><Route path="/lessons/advanced-concepts/:lessonSlug" element={<AdvancedConceptLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="advanced-mockup-0905"');
+    expect(html).not.toContain("Open studio");
+  });
+
+  it("renders the dedicated Margin of Error route", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/advanced-concepts/2012-margin-of-error-sample-size"]}><Routes><Route path="/lessons/advanced-concepts/:lessonSlug" element={<AdvancedConceptLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="advanced-mockup-0906"');
+    expect(html).not.toContain("Open studio");
+  });
+
+  it("renders the dedicated Hypothesis Tests route", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/advanced-concepts/2013-hypothesis-tests"]}><Routes><Route path="/lessons/advanced-concepts/:lessonSlug" element={<AdvancedConceptLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="advanced-mockup-0907"');
+    expect(html).not.toContain("Open studio");
+  });
+
+  it("renders the dedicated p-Values route", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/advanced-concepts/2014-p-values"]}><Routes><Route path="/lessons/advanced-concepts/:lessonSlug" element={<AdvancedConceptLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="advanced-mockup-0908"');
+    expect(html).not.toContain("Open studio");
+  });
+
+  it("renders the dedicated Type I and Type II Error route", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/advanced-concepts/2015-type-i-type-ii-error"]}><Routes><Route path="/lessons/advanced-concepts/:lessonSlug" element={<AdvancedConceptLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="advanced-mockup-0909"');
+    expect(html).not.toContain("Open studio");
+  });
+
+  it("renders the dedicated Slope Fields route", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/advanced-concepts/2016-slope-fields"]}><Routes><Route path="/lessons/advanced-concepts/:lessonSlug" element={<AdvancedConceptLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="advanced-mockup-0910"');
+    expect(html).not.toContain("Open studio");
+  });
+
+  it("renders the dedicated Euler Method route", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/advanced-concepts/2017-euler-method"]}><Routes><Route path="/lessons/advanced-concepts/:lessonSlug" element={<AdvancedConceptLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="advanced-mockup-0911"');
+    expect(html).toContain("Euler Step Walker");
+  });
+
+  it("renders the dedicated Growth and Decay IVPs route", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/advanced-concepts/2018-growth-decay-ivps"]}><Routes><Route path="/lessons/advanced-concepts/:lessonSlug" element={<AdvancedConceptLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="advanced-mockup-0912"');
+    expect(html).toContain("Proportional Change Lab");
+  });
+
+  it("renders the dedicated Logistic Differential Equation route", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/advanced-concepts/2019-logistic-differential-equation"]}><Routes><Route path="/lessons/advanced-concepts/:lessonSlug" element={<AdvancedConceptLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="advanced-mockup-0913"');
+    expect(html).toContain("Central Carrying Capacity Lab");
+  });
+
+  it("renders the dedicated Second-Order Oscillator route", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/advanced-concepts/2020-second-order-oscillator"]}><Routes><Route path="/lessons/advanced-concepts/:lessonSlug" element={<AdvancedConceptLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="advanced-mockup-0914"');
+    expect(html).toContain("Spring–Mass Motion Lab");
+  });
+
+  it("renders the dedicated Gamma Function route", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/advanced-concepts/2021-gamma-function"]}><Routes><Route path="/lessons/advanced-concepts/:lessonSlug" element={<AdvancedConceptLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="advanced-mockup-0915"');
+    expect(html).toContain("Definition by Improper Integral");
+  });
+
+  it("renders the dedicated Beta Function route", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/advanced-concepts/2022-beta-function"]}><Routes><Route path="/lessons/advanced-concepts/:lessonSlug" element={<AdvancedConceptLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="advanced-mockup-0916"');
+    expect(html).toContain("Interactive Two-Parameter Shape Lab");
+  });
+
+  it("renders the dedicated Error Function route", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/advanced-concepts/2023-error-function"]}><Routes><Route path="/lessons/advanced-concepts/:lessonSlug" element={<AdvancedConceptLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="advanced-mockup-0917"');
+    expect(html).toContain("Gaussian Accumulation Lab");
+  });
+
+  it("renders the dedicated Zeta Function route", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/advanced-concepts/2024-zeta-function"]}><Routes><Route path="/lessons/advanced-concepts/:lessonSlug" element={<AdvancedConceptLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="advanced-mockup-0918"');
+    expect(html).toContain("Series–Prime Bridge");
+  });
+
+  it("renders the dedicated Bessel Function route", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/advanced-concepts/2025-bessel-function"]}><Routes><Route path="/lessons/advanced-concepts/:lessonSlug" element={<AdvancedConceptLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="advanced-mockup-0919"');
+    expect(html).toContain("Drum Membrane Mode");
   });
 
   it("renders a generated school lesson route", () => {
@@ -4526,6 +4706,15 @@ describe("lesson pages", () => {
     expect(html).toContain('data-case="unique"');
     expect(html).toContain('data-x="2"');
     expect(html).toContain('data-y="1"');
+  });
+
+  it("renders the dedicated Rouche-Capelli rank engine for lesson 10199", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/school/class-12/class-12-matrices-and-determinants-consistency-of-linear-systems"]}><Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain('data-testid="school-mockup-0873"');
+    expect(html).toContain("dedicated-rouche-capelli-rank-engine");
+    expect(html).toContain('data-case="infinite"');
+    expect(html).toContain('data-rank-a="1"');
+    expect(html).toContain('data-rank-augmented="1"');
   });
 
   it("renders strengthened school batch content beyond the first three lessons", () => {

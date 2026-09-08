@@ -1,0 +1,189 @@
+{
+  "results": [
+    {
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "width": 1280,
+      "height": 2116.015625,
+      "font": "16px",
+      "overflow": false,
+      "values": {
+        "testid": "school-mockup-0872",
+        "objectModel": "dedicated-cramer-column-replacement-engine",
+        "delta": "-3",
+        "deltaX": "-6",
+        "deltaY": "-3",
+        "case": "unique",
+        "x": "2",
+        "y": "1",
+        "hints": "false"
+      },
+      "tiny": 0,
+      "smallControls": 0
+    },
+    {
+      "viewport": {
+        "width": 1536,
+        "height": 864
+      },
+      "width": 1280,
+      "height": 2116.015625,
+      "font": "16px",
+      "overflow": false,
+      "values": {
+        "testid": "school-mockup-0872",
+        "objectModel": "dedicated-cramer-column-replacement-engine",
+        "delta": "-3",
+        "deltaX": "-6",
+        "deltaY": "-3",
+        "case": "unique",
+        "x": "2",
+        "y": "1",
+        "hints": "false"
+      },
+      "tiny": 0,
+      "smallControls": 0
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "width": 1280,
+      "height": 2116.015625,
+      "font": "16px",
+      "overflow": false,
+      "values": {
+        "testid": "school-mockup-0872",
+        "objectModel": "dedicated-cramer-column-replacement-engine",
+        "delta": "-3",
+        "deltaX": "-6",
+        "deltaY": "-3",
+        "case": "unique",
+        "x": "2",
+        "y": "1",
+        "hints": "false"
+      },
+      "tiny": 0,
+      "smallControls": 0
+    },
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "width": 1280,
+      "height": 2113.765625,
+      "font": "16px",
+      "overflow": false,
+      "values": {
+        "testid": "school-mockup-0872",
+        "objectModel": "dedicated-cramer-column-replacement-engine",
+        "delta": "-3",
+        "deltaX": "-6",
+        "deltaY": "-3",
+        "case": "unique",
+        "x": "2",
+        "y": "1",
+        "hints": "false"
+      },
+      "tiny": 0,
+      "smallControls": 0
+    },
+    {
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "width": 984,
+      "height": 3136.4375,
+      "font": "16px",
+      "overflow": false,
+      "values": {
+        "testid": "school-mockup-0872",
+        "objectModel": "dedicated-cramer-column-replacement-engine",
+        "delta": "-3",
+        "deltaX": "-6",
+        "deltaY": "-3",
+        "case": "unique",
+        "x": "2",
+        "y": "1",
+        "hints": "false"
+      },
+      "tiny": 0,
+      "smallControls": 0
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "width": 720,
+      "height": 3164.515625,
+      "font": "16px",
+      "overflow": false,
+      "values": {
+        "testid": "school-mockup-0872",
+        "objectModel": "dedicated-cramer-column-replacement-engine",
+        "delta": "-3",
+        "deltaX": "-6",
+        "deltaY": "-3",
+        "case": "unique",
+        "x": "2",
+        "y": "1",
+        "hints": "false"
+      },
+      "tiny": 0,
+      "smallControls": 0
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "width": 350.625,
+      "height": 4814.53125,
+      "font": "16px",
+      "overflow": false,
+      "values": {
+        "testid": "school-mockup-0872",
+        "objectModel": "dedicated-cramer-column-replacement-engine",
+        "delta": "-3",
+        "deltaX": "-6",
+        "deltaY": "-3",
+        "case": "unique",
+        "x": "2",
+        "y": "1",
+        "hints": "false"
+      },
+      "tiny": 0,
+      "smallControls": 0
+    },
+    {
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "width": 322.40625,
+      "height": 4940.984375,
+      "font": "16px",
+      "overflow": false,
+      "values": {
+        "testid": "school-mockup-0872",
+        "objectModel": "dedicated-cramer-column-replacement-engine",
+        "delta": "-3",
+        "deltaX": "-6",
+        "deltaY": "-3",
+        "case": "unique",
+        "x": "2",
+        "y": "1",
+        "hints": "false"
+      },
+      "tiny": 0,
+      "smallControls": 0
+    }
+  ],
+  "errors": []
+}

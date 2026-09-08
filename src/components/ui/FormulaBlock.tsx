@@ -22,7 +22,13 @@ export default function FormulaBlock({ title, formula, explanation }: FormulaBlo
 
   return (
     <div data-formula-block data-formula-title={title}>
-      <SectionCard title={title} description={explanation} compact>
+      <SectionCard
+        title={title}
+        description={explanation}
+        compact
+        allowFullscreen={false}
+        visualizationTools={false}
+      >
         <FormulaImageStrip title={title} formula={`${formula} ${explanation ?? ""}`} />
         <div className="formula-card min-w-0 overflow-hidden rounded-xl border border-cyan-200/70 bg-gradient-to-br from-cyan-50 to-violet-50 px-3 py-4 text-center shadow-inner shadow-white/60 dark:border-cyan-400/20 dark:from-cyan-400/10 dark:to-violet-500/10 dark:shadow-black/10">
           {html ? (

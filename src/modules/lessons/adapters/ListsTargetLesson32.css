@@ -606,3 +606,34 @@ body:has(.lists-page)
     margin-top: 12px;
   }
 }
+
+.lists-page,.lists-layout,.lists-workspace,.lists-visuals,.lists-shell,.lists-header,.lists-concepts { height:auto; }
+.lists-header { flex-wrap:wrap; gap:16px; }
+.lesson-page-shell[data-lesson-id="32"] .lists-layout { grid-template-columns:minmax(0,1fr) 300px !important; }
+.lists-page .lists-visuals { grid-template-columns:minmax(0,1fr); }
+.lists-page .lists-workspace > header { flex-wrap:wrap; gap:12px; }
+.lists-page .list-editor { height:auto; min-height:97px; flex-wrap:wrap; }
+.lists-page .pipeline { height:auto; }
+.lists-page .pipeline > div { flex-wrap:wrap; gap:10px; }
+.lists-page .pipeline article { height:auto; min-height:67px; flex:1 1 130px; }
+.lists-page .pipeline-result > div { flex-wrap:wrap; }
+.lists-page .list-item input { background:transparent; color:#0c193a; }
+.lists-page .lists-visuals > article > nav { flex-wrap:wrap; }
+@media(max-width:1099px) { .lesson-page-shell[data-lesson-id="32"] .lists-layout { grid-template-columns:minmax(0,1fr) !important; } }
+@media(max-width:700px) {
+ .lists-page .lists-header aside { flex-wrap:wrap; }
+ .lists-page .lists-header { padding-bottom:16px; }
+ .lists-page .lists-concepts { grid-template-columns:minmax(0,1fr); }
+ .lists-page .list-operations button { height:auto; min-height:44px; grid-template-columns:27px 65px minmax(0,1fr); }
+ .lists-page .list-operations small { grid-column:2/-1; }
+ .lists-page .lists-visuals > article > nav button { min-height:44px; }
+}
+.lists-page .list-item { margin-bottom:38px; }
+.lists-page .index-label { margin-top:8px !important; }
+.lists-page .lists-tabs { height:auto; flex-wrap:wrap; }
+.lists-page .lists-tabs button { height:auto; min-height:44px; white-space:normal; }
+.lists-page .lists-side { height:auto; grid-template-rows:repeat(3,auto); }
+.lists-page .list-operations button { height:auto; min-height:48px; grid-template-columns:27px 65px minmax(0,1fr); padding-top:8px; padding-bottom:8px; }
+.lists-page .list-operations small { grid-column:2/-1; }
+.lesson-page-shell[data-lesson-id="32"]:not([data-lesson-view="interaction"]) > .lesson-section-nav:has(+ #lesson-section-interaction > [data-dedicated-lesson="32"] > nav) { display:flex; }
+@media(max-width:959px) { .lists-page { padding-bottom:100px; } }

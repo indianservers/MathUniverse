@@ -1,0 +1,341 @@
+{
+  "records": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "state": {
+        "testid": "algebra-mockup-0025",
+        "dedicatedLesson": "25",
+        "objectModel": "two-draggable-parent-points-derived-segment-midpoint-length-label-hierarchy-model",
+        "ax": "1",
+        "ay": "2",
+        "bx": "5",
+        "by": "2",
+        "mx": "3",
+        "my": "2",
+        "length": "4",
+        "actions": "0"
+      },
+      "overflow": false,
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "name": "Zoom graph in",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Zoom graph out",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Reset graph view",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Decrease A x",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Increase A x",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Decrease A y",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Increase A y",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Decrease B x",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Increase B x",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Decrease B y",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Increase B y",
+          "value": ""
+        }
+      ],
+      "bars": [],
+      "graphs": [
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 1032 480",
+          "label": "Independent points and dependent midpoint"
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "state": {
+        "testid": "algebra-mockup-0025",
+        "dedicatedLesson": "25",
+        "objectModel": "two-draggable-parent-points-derived-segment-midpoint-length-label-hierarchy-model",
+        "ax": "1",
+        "ay": "2",
+        "bx": "5",
+        "by": "2",
+        "mx": "3",
+        "my": "2",
+        "length": "4",
+        "actions": "0"
+      },
+      "overflow": false,
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "name": "Zoom graph in",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Zoom graph out",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Reset graph view",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Decrease A x",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Increase A x",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Decrease A y",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Increase A y",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Decrease B x",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Increase B x",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Decrease B y",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Increase B y",
+          "value": ""
+        }
+      ],
+      "bars": [],
+      "graphs": [
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 662 335.59722222222223",
+          "label": "Independent points and dependent midpoint"
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "state": {
+        "testid": "algebra-mockup-0025",
+        "dedicatedLesson": "25",
+        "objectModel": "two-draggable-parent-points-derived-segment-midpoint-length-label-hierarchy-model",
+        "ax": "1",
+        "ay": "2",
+        "bx": "5",
+        "by": "2",
+        "mx": "3",
+        "my": "2",
+        "length": "4",
+        "actions": "0"
+      },
+      "overflow": false,
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "name": "Zoom graph in",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Zoom graph out",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Reset graph view",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Decrease A x",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Increase A x",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Decrease A y",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Increase A y",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Decrease B x",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Increase B x",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Decrease B y",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Increase B y",
+          "value": ""
+        }
+      ],
+      "bars": [],
+      "graphs": [
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 300.625 260",
+          "label": "Independent points and dependent midpoint"
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

@@ -2,7 +2,7 @@
   position: relative;
   top: -18px;
   width: 1178px;
-  height: 938px;
+  height: auto;
   margin-bottom: -18px;
   color: #0a1740;
   font-size: 11px;
@@ -30,7 +30,7 @@
   display: grid;
   grid-template-columns: minmax(0, 902px) 267px;
   gap: 9px;
-  height: 938px;
+  height: auto;
 }
 .target-exponential-columns > main {
   min-width: 0;
@@ -103,7 +103,7 @@
   background: linear-gradient(100deg, #07a6b9, #059cbb);
 }
 .exponential-lab {
-  height: 615px;
+  height: auto;
   margin-top: 6px;
   border: 1px solid #d7e2ed;
   border-radius: 12px;
@@ -633,4 +633,26 @@
     grid-template-columns: 1fr;
     height: auto;
   }
+  .exponential-practice { height: auto; }
+}
+/* Keep existing lesson controls reachable around the responsive graph. */
+@media (max-width: 600px) {
+  .target-exponential-header { height: auto; }
+  .target-exponential-header > div { flex-wrap: wrap; }
+  .target-exponential-header nav { position: static; margin-top: 12px; }
+  .target-exponential-tabs { display: flex; overflow-x: auto; height: auto; padding: 6px; }
+  .target-exponential-tabs button { flex-shrink: 0; min-height: 44px; padding-inline: 12px; }
+  .exponential-summary { height: auto; grid-template-columns: 1fr; }
+  .exponential-summary section > div { height: auto; min-height: 45px; flex-wrap: wrap; gap: 4px; }
+  .exponential-summary aside strong { margin-top: 4px; }
+  .exponential-controls { height: auto; flex-wrap: wrap; margin-block: 12px; }
+  .exponential-controls > section { width: calc(50% - 6px); height: auto; }
+  .exponential-controls button { min-height: 44px; }
+  .exponential-practice > header { height: auto; }
+  .exponential-practice > header button { position: static; margin-block: 12px; }
+  .exponential-drag { height: auto; padding-top: 32px; }
+  .exponential-drag > b { position: static; display: block; }
+  .exponential-drag > input { position: static; display: block; opacity: 1; width: 100%; min-height: 44px; }
+  .exponential-drag > div { gap: 4px; margin-top: 8px; grid-template-columns: repeat(3,minmax(0,1fr)); }
+  .exponential-drag button { min-height: 44px; }
 }

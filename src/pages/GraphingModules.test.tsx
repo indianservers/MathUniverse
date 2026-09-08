@@ -65,8 +65,8 @@ describe("graphing workspaces", () => {
     expect(html).toContain("Visible range");
     expect(html).toContain("Find intersections");
     expect(html).toContain("Graph Studio 2D");
-    expect(html).toContain("Build");
-    expect(html).toContain("Analyze");
+    expect(html).not.toContain(">Build<");
+    expect(html).not.toContain(">Analyze<");
     expect(html).toContain("Learn");
     expect(html).toContain('aria-label="Zoom in"');
     expect(html).toContain('aria-label="Zoom out"');
@@ -87,9 +87,9 @@ describe("graphing workspaces", () => {
     expect(html).toContain("Surface Inspector");
     expect(html).toContain("Cross-section");
     expect(html).toContain("Timeline");
-    expect(html).toContain("Build");
-    expect(html).toContain("Analyze");
-    expect(html).toContain("Animate");
+    expect(html).not.toContain(">Build<");
+    expect(html).not.toContain(">Analyze<");
+    expect(html).not.toContain(">Animate<");
     expect(html).toContain("Learn");
     expect(html).toContain("Export");
     expect(html).toContain("Offline ready");

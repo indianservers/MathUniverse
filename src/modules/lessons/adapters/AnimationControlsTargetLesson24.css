@@ -2,7 +2,7 @@
   position: relative;
   top: -22px;
   width: 1078px;
-  height: 989px;
+  height: auto;
   margin-bottom: -22px;
   color: #0a1738;
   font-size: 12px;
@@ -53,7 +53,7 @@
   color: #00748b;
 }
 .animation-header {
-  height: 149px;
+  min-height: 149px;
   padding: 14px 17px;
   border-radius: 15px 15px 0 0;
   background: #fff;
@@ -69,6 +69,7 @@
 }
 .animation-header nav {
   display: flex;
+  flex-wrap: wrap;
   margin-top: 18px;
   gap: 12px;
 }
@@ -80,13 +81,13 @@
 }
 .animation-main {
   display: grid;
-  height: 756px;
-  grid-template-columns: 658px 405px;
+  height: auto;
+  grid-template-columns: minmax(0, 1.4fr) minmax(280px, 1fr);
   gap: 15px;
 }
 .animation-left {
   display: grid;
-  grid-template-rows: 579px 169px;
+  grid-template-rows: auto auto;
   gap: 8px;
 }
 .animation-graph,
@@ -218,8 +219,8 @@
 }
 .animation-timeline nav {
   display: grid;
-  grid-template-columns: 109px 136px 156px 1fr;
-  gap: 15px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
 }
 .animation-timeline nav button {
   display: flex;
@@ -245,11 +246,11 @@
   width: 18px;
 }
 .animation-side {
-  height: 756px;
+  height: auto;
   min-height: 0;
   padding: 15px;
   display: grid;
-  grid-template-rows: 108px 97px 82px 84px minmax(0, 1fr);
+  grid-template-rows: auto auto auto auto minmax(0, 1fr);
   gap: 14px;
 }
 .animation-side > section {
@@ -416,7 +417,7 @@
 }
 .animation-neighbors {
   display: grid;
-  height: 69px;
+  min-height: 69px;
   margin-top: 15px;
   grid-template-columns: 1fr 1fr;
   border: 1px solid #dfe6ed;
@@ -427,7 +428,7 @@
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 0 18px;
+  padding: 12px 18px;
   color: inherit;
   text-decoration: none;
 }
@@ -477,3 +478,4 @@
     margin-top: 12px;
   }
 }
+

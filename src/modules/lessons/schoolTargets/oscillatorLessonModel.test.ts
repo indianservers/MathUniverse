@@ -1,0 +1,12 @@
+import { describe,expect,it } from "vitest";
+import { checkOscillatorPractice,oscillatorSamples,oscillatorState,oscillatorSummary } from "./oscillatorLessonModel";
+describe("Spring mass oscillator",()=>{
+  const p={omega:2,x0:1,v0:0};
+  it("matches the target instantaneous values and 75/25 energy split",()=>{const s=oscillatorState(p,Math.PI/6);expect(s.x).toBeCloseTo(.5,12);expect(s.v).toBeCloseTo(-Math.sqrt(3),12);expect(s.a).toBeCloseTo(-2,12);expect(s.ke/s.energy).toBeCloseTo(.75,12);expect(s.pe/s.energy).toBeCloseTo(.25,12);expect(oscillatorSummary(p).period).toBe(Math.PI);});
+  it("preserves both initial conditions in every damping regime",()=>{for(const zeta of [0,.1,.99999,1,1.00001,2]){const s=oscillatorState({omega:3,x0:-1.2,v0:2.3},0,zeta);expect(s.x).toBeCloseTo(-1.2,10);expect(s.v).toBeCloseTo(2.3,10);}});
+  it("satisfies x'=v and the damped acceleration equation",()=>{for(const zeta of [0,.2,1,1.6])for(const t of [.2,1,4]){const p={omega:1.7,x0:-.8,v0:1.1},s=oscillatorState(p,t,zeta),before=oscillatorState(p,t-1e-5,zeta),after=oscillatorState(p,t+1e-5,zeta);expect((after.x-before.x)/2e-5).toBeCloseTo(s.v,6);expect((after.v-before.v)/2e-5).toBeCloseTo(s.a,6);expect(s.a).toBeCloseTo(-(p.omega**2)*s.x-2*zeta*p.omega*s.v,10);}});
+  it("conserves undamped energy and satisfies the phase ellipse",()=>{const p={omega:.5,x0:1.5,v0:-4},summary=oscillatorSummary(p);for(const s of oscillatorSamples(p)){expect(s.energy).toBeCloseTo(summary.energy,10);expect(s.x*s.x+(s.v/p.omega)**2).toBeCloseTo(summary.amplitude**2,10);}});
+  it("loses energy monotonically when damped",()=>{for(const zeta of [.1,1,2]){const samples=oscillatorSamples({omega:2,x0:1,v0:2},zeta);samples.forEach((s,i)=>{expect(Number.isFinite(s.energy)).toBe(true);if(i)expect(s.energy).toBeLessThanOrEqual(samples[i-1].energy+1e-10);});expect(samples.at(-1)!.energy).toBeLessThan(samples[0].energy);}});
+  it("handles the rest state and parameter extremes",()=>{for(const zeta of [0,.5,1,2]){expect(oscillatorState({omega:2,x0:0,v0:0},5,zeta).energy).toBe(0);for(const omega of [.5,5])for(const x0 of [-2,2])for(const v0 of [-4,4])expect(oscillatorSamples({omega,x0,v0},zeta).every(s=>[s.x,s.v,s.a,s.energy].every(Number.isFinite))).toBe(true);}});
+  it("grades the three fixed practice answers without accepting blank input",()=>{expect(checkOscillatorPractice(".500","-1.732","-2.000")).toEqual([true,true,true]);expect(checkOscillatorPractice("","","")).toEqual([false,false,false]);expect(checkOscillatorPractice(".5","1.732","-2")).toEqual([true,false,true]);});
+});

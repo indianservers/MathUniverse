@@ -1,0 +1,503 @@
+{
+  "records": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "state": {
+        "testid": "algebra-mockup-0022",
+        "dedicatedLesson": "22",
+        "objectModel": "discrete-integer-snap-iteration-table-staircase-plot-linked-affine-calculation-model",
+        "x": "3",
+        "y": "9",
+        "view": "0",
+        "actions": "0"
+      },
+      "overflow": false,
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "name": "Interaction + visualization",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "▣Explain",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Examples",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "∑Formulas",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "✣Know more",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "Integer slider x drag control",
+          "value": "3",
+          "min": "-5",
+          "max": "5",
+          "step": "1"
+        },
+        {
+          "tag": "BUTTON",
+          "name": "-5",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "-4",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "-3",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "-2",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "-1",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "0",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "1",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "2",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "3",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "4",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "5",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "‹ Previousx = 2",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Nextx = 4 ›",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Sitemap",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Docs",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "About",
+          "value": ""
+        }
+      ],
+      "bars": [],
+      "graphs": [
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 360 250",
+          "label": "Integer step plot with selected point 3, 9"
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "state": {
+        "testid": "algebra-mockup-0022",
+        "dedicatedLesson": "22",
+        "objectModel": "discrete-integer-snap-iteration-table-staircase-plot-linked-affine-calculation-model",
+        "x": "3",
+        "y": "9",
+        "view": "0",
+        "actions": "0"
+      },
+      "overflow": false,
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "name": "Interaction + visualization",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "▣Explain",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Examples",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "∑Formulas",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "✣Know more",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "Integer slider x drag control",
+          "value": "3",
+          "min": "-5",
+          "max": "5",
+          "step": "1"
+        },
+        {
+          "tag": "BUTTON",
+          "name": "-5",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "-4",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "-3",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "-2",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "-1",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "0",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "1",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "2",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "3",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "4",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "5",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "‹ Previousx = 2",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Nextx = 4 ›",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Sitemap",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Docs",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "About",
+          "value": ""
+        }
+      ],
+      "bars": [],
+      "graphs": [
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 360 250",
+          "label": "Integer step plot with selected point 3, 9"
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "state": {
+        "testid": "algebra-mockup-0022",
+        "dedicatedLesson": "22",
+        "objectModel": "discrete-integer-snap-iteration-table-staircase-plot-linked-affine-calculation-model",
+        "x": "3",
+        "y": "9",
+        "view": "0",
+        "actions": "0"
+      },
+      "overflow": false,
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "name": "Interaction + visualization",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "▣Explain",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Examples",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "∑Formulas",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "✣Know more",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "Integer slider x drag control",
+          "value": "3",
+          "min": "-5",
+          "max": "5",
+          "step": "1"
+        },
+        {
+          "tag": "BUTTON",
+          "name": "-5",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "-4",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "-3",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "-2",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "-1",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "0",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "1",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "2",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "3",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "4",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "5",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "‹ Previousx = 2",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Nextx = 4 ›",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Sitemap",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Docs",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "About",
+          "value": ""
+        }
+      ],
+      "bars": [],
+      "graphs": [
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 360 250",
+          "label": "Integer step plot with selected point 3, 9"
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

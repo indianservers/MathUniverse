@@ -1,5 +1,5 @@
-import MathWorkspace from "./MathWorkspace";
+import MathLabGraphingCalculator from "./MathLabGraphingCalculator";
 
 export default function WorkspaceGraph() {
-  return <MathWorkspace initialView="graph" singleView />;
+  return <MathLabGraphingCalculator />;
 }

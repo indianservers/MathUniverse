@@ -3,7 +3,7 @@
   top: -35px;
   left: -1px;
   width: 945px;
-  height: 1187px;
+  height: auto;
   margin-bottom: -35px;
   color: #0b1738;
   font-size: 11px;
@@ -109,9 +109,9 @@
 }
 .integer-main {
   display: grid;
-  height: 723px;
+  height: auto;
   margin-top: 13px;
-  grid-template-columns: 698px 235px;
+  grid-template-columns: minmax(0, 1fr) 235px;
   gap: 8px;
 }
 .integer-lab,
@@ -147,7 +147,7 @@
   z-index: 2;
   top: 25px;
   left: 8px;
-  width: 644px;
+  width: calc(100% - 16px);
   height: 5px;
   appearance: none;
   border-radius: 4px;
@@ -287,9 +287,9 @@
 }
 .integer-lower {
   display: grid;
-  height: 306px;
+  height: auto;
   margin-top: 13px;
-  grid-template-columns: 262px 1fr;
+  grid-template-columns: minmax(200px, .7fr) minmax(260px, 1fr);
   gap: 13px;
 }
 .integer-table,
@@ -385,14 +385,14 @@
   font-weight: 800;
 }
 .integer-side > section {
-  height: 723px;
+  height: auto;
   padding: 15px 13px;
 }
 .integer-side h2 {
   font-size: 15px;
 }
 .integer-control-card {
-  height: 368px;
+  height: auto;
   margin-top: 16px;
   padding: 14px;
   border: 1px solid #dce5ed;
@@ -631,3 +631,14 @@ body:has(.integer-slider-page)
     height: auto;
   }
 }
+@media (max-width: 600px) {
+  .integer-lower { grid-template-columns: minmax(0, 1fr); }
+  .integer-calculation { height: auto; }
+  .integer-calculation > div { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .integer-calculation em { transform: rotate(90deg); }
+  .integer-header { height: auto; }
+  .integer-header > div { flex-wrap: wrap; }
+  .integer-tabs { display: flex; overflow-x: auto; gap: 8px; }
+  .integer-tabs button { flex: 0 0 auto; min-height: 44px; padding: 8px; }
+}
+

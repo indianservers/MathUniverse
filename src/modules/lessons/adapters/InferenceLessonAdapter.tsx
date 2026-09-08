@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
-import SliderControl, { SliderGroup } from "../../../components/ui/SliderControl";
+import SliderControl, {
+  SliderGroup,
+} from "../../../components/ui/SliderControl";
 import {
   oneProportionZTest,
   simulateConfidenceIntervals,
@@ -7,32 +9,185 @@ import {
 } from "../../../utils/mathEngine/probabilityUtils";
 import AdapterFrame from "../components/AdapterFrame";
 import type { LessonAdapterProps } from "../types";
+import SamplingDistributionsLesson537 from "./SamplingDistributionsLesson537";
+import CentralLimitTheoremLesson538 from "./CentralLimitTheoremLesson538";
+import ConfidenceIntervalMeanLesson539 from "./ConfidenceIntervalMeanLesson539";
+import ConfidenceIntervalProportionLesson540 from "./ConfidenceIntervalProportionLesson540";
+import DifferenceMeansIntervalLesson541 from "./DifferenceMeansIntervalLesson541";
+import DifferenceProportionsIntervalLesson542 from "./DifferenceProportionsIntervalLesson542";
+import OneSampleZTestLesson543 from "./OneSampleZTestLesson543";
+import OneSampleTTestLesson544 from "./OneSampleTTestLesson544";
+import TwoSampleTTestLesson545 from "./TwoSampleTTestLesson545";
+import PairedTTestLesson546 from "./PairedTTestLesson546";
+import OneProportionTestLesson547 from "./OneProportionTestLesson547";
+import TwoProportionTestLesson548 from "./TwoProportionTestLesson548";
+import ChiSquareGoodnessOfFitLesson549 from "./ChiSquareGoodnessOfFitLesson549";
+import ChiSquareIndependenceLesson550 from "./ChiSquareIndependenceLesson550";
+import VarianceTestsLesson551 from "./VarianceTestsLesson551";
+import AnovaLesson552 from "./AnovaLesson552";
+import PValueVisualiserLesson553 from "./PValueVisualiserLesson553";
+import TypeErrorsLesson554 from "./TypeErrorsLesson554";
+import PowerTestLesson555 from "./PowerTestLesson555";
 
 function inferenceGuidanceFor(title: string) {
   const name = title.toLowerCase();
-  if (name.includes("sampling distributions")) return ["Sampling Distributions", "Study statistics from many samples.", "Do not confuse this with raw data values."];
-  if (name.includes("central limit")) return ["Central Limit Theorem", "Large-sample means become approximately normal.", "The raw data need not be normal."];
-  if (name.includes("confidence interval for mean")) return ["Confidence Interval for Mean", "Estimate a population mean with a margin of error.", "Confidence describes long-run capture."];
-  if (name.includes("confidence interval for proportion")) return ["Confidence Interval for Proportion", "Use p-hat from successes divided by sample size.", "The interval estimates a population proportion."];
-  if (name.includes("difference of means")) return ["Difference of Means Interval", "Estimate one mean minus another.", "Use paired methods for matched data."];
-  if (name.includes("difference of proportions")) return ["Difference of Proportions Interval", "Estimate one proportion minus another.", "Use separate sample proportions for ordinary intervals."];
-  if (name.includes("one-sample z")) return ["One-Sample z-Test", "Standardise with a z statistic.", "Check z-test conditions first."];
-  if (name.includes("one-sample t")) return ["One-Sample t-Test", "Use t when population standard deviation is unknown.", "Use sample standard deviation."];
-  if (name.includes("two-sample t")) return ["Two-Sample t-Test", "Compare two independent means.", "Use paired t for matched data."];
-  if (name.includes("paired t")) return ["Paired t-Test", "Test the mean of within-pair differences.", "Subtract within each pair first."];
-  if (name.includes("one-proportion")) return ["One-Proportion Test", "Test one population proportion.", "Use the null proportion in the test standard error."];
-  if (name.includes("two-proportion")) return ["Two-Proportion Test", "Compare two population proportions.", "Pool when the null says they are equal."];
-  if (name.includes("goodness-of-fit")) return ["Chi-Square Goodness-of-Fit", "Compare observed and expected counts.", "Use counts, not only percentages."];
-  if (name.includes("independence")) return ["Chi-Square Independence", "Use a two-way table.", "Association does not prove cause."];
-  if (name.includes("variance tests")) return ["Variance Tests", "Test or compare population variance.", "Classical variance tests are sensitive to outliers."];
-  if (name.includes("anova")) return ["ANOVA", "Compare several population means with one F test.", "Start with the overall test."];
-  if (name.includes("p-value")) return ["p-Value Visualiser", "Shade results at least as extreme as the observed statistic.", "A p-value is not the probability the null is true."];
-  if (name.includes("type i")) return ["Type I and Type II Errors", "Type I is a false alarm; Type II is a missed detection.", "Name the real state and the decision."];
-  if (name.includes("power of a test")) return ["Power of a Test", "Power is the chance to reject a false null.", "It equals 1 minus Type II error probability."];
-  return ["Inference", "Check assumptions, compute the statistic, and interpret in context.", "A p-value is not the probability the null is true."];
+  if (name.includes("sampling distributions"))
+    return [
+      "Sampling Distributions",
+      "Study statistics from many samples.",
+      "Do not confuse this with raw data values.",
+    ];
+  if (name.includes("central limit"))
+    return [
+      "Central Limit Theorem",
+      "Large-sample means become approximately normal.",
+      "The raw data need not be normal.",
+    ];
+  if (name.includes("confidence interval for mean"))
+    return [
+      "Confidence Interval for Mean",
+      "Estimate a population mean with a margin of error.",
+      "Confidence describes long-run capture.",
+    ];
+  if (name.includes("confidence interval for proportion"))
+    return [
+      "Confidence Interval for Proportion",
+      "Use p-hat from successes divided by sample size.",
+      "The interval estimates a population proportion.",
+    ];
+  if (name.includes("difference of means"))
+    return [
+      "Difference of Means Interval",
+      "Estimate one mean minus another.",
+      "Use paired methods for matched data.",
+    ];
+  if (name.includes("difference of proportions"))
+    return [
+      "Difference of Proportions Interval",
+      "Estimate one proportion minus another.",
+      "Use separate sample proportions for ordinary intervals.",
+    ];
+  if (name.includes("one-sample z"))
+    return [
+      "One-Sample z-Test",
+      "Standardise with a z statistic.",
+      "Check z-test conditions first.",
+    ];
+  if (name.includes("one-sample t"))
+    return [
+      "One-Sample t-Test",
+      "Use t when population standard deviation is unknown.",
+      "Use sample standard deviation.",
+    ];
+  if (name.includes("two-sample t"))
+    return [
+      "Two-Sample t-Test",
+      "Compare two independent means.",
+      "Use paired t for matched data.",
+    ];
+  if (name.includes("paired t"))
+    return [
+      "Paired t-Test",
+      "Test the mean of within-pair differences.",
+      "Subtract within each pair first.",
+    ];
+  if (name.includes("one-proportion"))
+    return [
+      "One-Proportion Test",
+      "Test one population proportion.",
+      "Use the null proportion in the test standard error.",
+    ];
+  if (name.includes("two-proportion"))
+    return [
+      "Two-Proportion Test",
+      "Compare two population proportions.",
+      "Pool when the null says they are equal.",
+    ];
+  if (name.includes("goodness-of-fit"))
+    return [
+      "Chi-Square Goodness-of-Fit",
+      "Compare observed and expected counts.",
+      "Use counts, not only percentages.",
+    ];
+  if (name.includes("independence"))
+    return [
+      "Chi-Square Independence",
+      "Use a two-way table.",
+      "Association does not prove cause.",
+    ];
+  if (name.includes("variance tests"))
+    return [
+      "Variance Tests",
+      "Test or compare population variance.",
+      "Classical variance tests are sensitive to outliers.",
+    ];
+  if (name.includes("anova"))
+    return [
+      "ANOVA",
+      "Compare several population means with one F test.",
+      "Start with the overall test.",
+    ];
+  if (name.includes("p-value"))
+    return [
+      "p-Value Visualiser",
+      "Shade results at least as extreme as the observed statistic.",
+      "A p-value is not the probability the null is true.",
+    ];
+  if (name.includes("type i"))
+    return [
+      "Type I and Type II Errors",
+      "Type I is a false alarm; Type II is a missed detection.",
+      "Name the real state and the decision.",
+    ];
+  if (name.includes("power of a test"))
+    return [
+      "Power of a Test",
+      "Power is the chance to reject a false null.",
+      "It equals 1 minus Type II error probability.",
+    ];
+  return [
+    "Inference",
+    "Check assumptions, compute the statistic, and interpret in context.",
+    "A p-value is not the probability the null is true.",
+  ];
 }
 
-export default function InferenceLessonAdapter({ lesson, resetToken, onInteraction }: LessonAdapterProps) {
+export default function InferenceLessonAdapter(props: LessonAdapterProps) {
+  if (props.lesson.id === 537)
+    return <SamplingDistributionsLesson537 {...props} />;
+  if (props.lesson.id === 538)
+    return <CentralLimitTheoremLesson538 {...props} />;
+  if (props.lesson.id === 539)
+    return <ConfidenceIntervalMeanLesson539 {...props} />;
+  if (props.lesson.id === 540)
+    return <ConfidenceIntervalProportionLesson540 {...props} />;
+  if (props.lesson.id === 541)
+    return <DifferenceMeansIntervalLesson541 {...props} />;
+  if (props.lesson.id === 542)
+    return <DifferenceProportionsIntervalLesson542 {...props} />;
+  if (props.lesson.id === 543) return <OneSampleZTestLesson543 {...props} />;
+  if (props.lesson.id === 544) return <OneSampleTTestLesson544 {...props} />;
+  if (props.lesson.id === 545) return <TwoSampleTTestLesson545 {...props} />;
+  if (props.lesson.id === 546) return <PairedTTestLesson546 {...props} />;
+  if (props.lesson.id === 547) return <OneProportionTestLesson547 {...props} />;
+  if (props.lesson.id === 548) return <TwoProportionTestLesson548 {...props} />;
+  if (props.lesson.id === 549)
+    return <ChiSquareGoodnessOfFitLesson549 {...props} />;
+  if (props.lesson.id === 550)
+    return <ChiSquareIndependenceLesson550 {...props} />;
+  if (props.lesson.id === 551) return <VarianceTestsLesson551 {...props} />;
+  if (props.lesson.id === 552) return <AnovaLesson552 {...props} />;
+  if (props.lesson.id === 553) return <PValueVisualiserLesson553 {...props} />;
+  if (props.lesson.id === 554) return <TypeErrorsLesson554 {...props} />;
+  if (props.lesson.id === 555) return <PowerTestLesson555 {...props} />;
+  return <SharedInferenceLessonAdapter {...props} />;
+}
+
+function SharedInferenceLessonAdapter({
+  lesson,
+  resetToken,
+  onInteraction,
+}: LessonAdapterProps) {
   const seed = lesson.id * 65537 + 31;
   const [sampleSize, setSampleSize] = useState(30);
   const [successes, setSuccesses] = useState(18);
@@ -42,10 +197,22 @@ export default function InferenceLessonAdapter({ lesson, resetToken, onInteracti
     setSuccesses(18);
     setConfidence(95);
   }, [resetToken]);
-  const intervals = useMemo(() => simulateConfidenceIntervals(30, sampleSize, confidence / 100, seed), [confidence, sampleSize, seed]);
-  const sampling = useMemo(() => simulateSamplingDistribution(300, sampleSize, seed), [sampleSize, seed]);
-  const test = useMemo(() => oneProportionZTest(Math.min(successes, sampleSize), sampleSize, 0.5), [sampleSize, successes]);
-  const isTest = /test|null|p-value|error|power|significance|anova|chi-square|variance/i.test(lesson.title);
+  const intervals = useMemo(
+    () => simulateConfidenceIntervals(30, sampleSize, confidence / 100, seed),
+    [confidence, sampleSize, seed],
+  );
+  const sampling = useMemo(
+    () => simulateSamplingDistribution(300, sampleSize, seed),
+    [sampleSize, seed],
+  );
+  const test = useMemo(
+    () => oneProportionZTest(Math.min(successes, sampleSize), sampleSize, 0.5),
+    [sampleSize, successes],
+  );
+  const isTest =
+    /test|null|p-value|error|power|significance|anova|chi-square|variance/i.test(
+      lesson.title,
+    );
   const guidance = inferenceGuidanceFor(lesson.title);
   const maxBin = Math.max(...sampling.histogram.map((bin) => bin.count), 1);
   const update = (setter: (value: number) => void) => (value: number) => {
@@ -56,23 +223,45 @@ export default function InferenceLessonAdapter({ lesson, resetToken, onInteracti
   return (
     <AdapterFrame
       title={`${lesson.title} - inference lab`}
-      value={isTest ? `p = ${test.pValue.toFixed(4)}` : `capture ${(intervals.captureRate * 100).toFixed(1)}%`}
+      value={
+        isTest
+          ? `p = ${test.pValue.toFixed(4)}`
+          : `capture ${(intervals.captureRate * 100).toFixed(1)}%`
+      }
       footer={`All repeated samples use deterministic seed ${seed}; sample size controls both standard error and interval width.`}
     >
       <div className="grid gap-3 xl:grid-cols-[minmax(0,1fr)_290px]">
         <div className="rounded-xl bg-slate-50 p-3 dark:bg-slate-900">
-          {isTest ? <TestView z={test.z} reject={test.reject} /> : <IntervalView intervals={intervals.intervals} />}
-          <div className="mt-3 flex h-28 items-end gap-1" aria-label="Sampling distribution">
+          {isTest ? (
+            <TestView z={test.z} reject={test.reject} />
+          ) : (
+            <IntervalView intervals={intervals.intervals} />
+          )}
+          <div
+            className="mt-3 flex h-28 items-end gap-1"
+            aria-label="Sampling distribution"
+          >
             {sampling.histogram.map((bin) => (
-              <div key={bin.label} className="flex-1 rounded-t bg-cyan-500" style={{ height: `${Math.max(4, bin.count / maxBin * 105)}px` }} title={`${bin.label}: ${bin.count}`} />
+              <div
+                key={bin.label}
+                className="flex-1 rounded-t bg-cyan-500"
+                style={{
+                  height: `${Math.max(4, (bin.count / maxBin) * 105)}px`,
+                }}
+                title={`${bin.label}: ${bin.count}`}
+              />
             ))}
           </div>
         </div>
         <div className="space-y-3">
           <div className="rounded-xl bg-slate-100 p-3 text-sm font-semibold text-slate-700 dark:bg-white/10 dark:text-slate-100">
             <p>{guidance[0]}</p>
-            <p className="mt-1 text-xs text-slate-500 dark:text-slate-300">{guidance[1]}</p>
-            <p className="mt-1 text-xs text-slate-500 dark:text-slate-300">{guidance[2]}</p>
+            <p className="mt-1 text-xs text-slate-500 dark:text-slate-300">
+              {guidance[1]}
+            </p>
+            <p className="mt-1 text-xs text-slate-500 dark:text-slate-300">
+              {guidance[2]}
+            </p>
           </div>
           <SliderGroup title="Study design">
             <SliderControl
@@ -88,14 +277,40 @@ export default function InferenceLessonAdapter({ lesson, resetToken, onInteracti
                 onInteraction();
               }}
             />
-            <SliderControl density="compact" label="Successes" value={successes} min={0} max={sampleSize} step={1} onChange={update(setSuccesses)} />
-            <SliderControl density="compact" label="Confidence" value={confidence} min={90} max={99} step={1} unit="%" onChange={update(setConfidence)} />
+            <SliderControl
+              density="compact"
+              label="Successes"
+              value={successes}
+              min={0}
+              max={sampleSize}
+              step={1}
+              onChange={update(setSuccesses)}
+            />
+            <SliderControl
+              density="compact"
+              label="Confidence"
+              value={confidence}
+              min={90}
+              max={99}
+              step={1}
+              unit="%"
+              onChange={update(setConfidence)}
+            />
           </SliderGroup>
           <div className="grid grid-cols-2 gap-2">
-            <Metric label="Mean of means" value={sampling.meanOfMeans.toFixed(3)} />
-            <Metric label="Std. error" value={sampling.standardError.toFixed(3)} />
+            <Metric
+              label="Mean of means"
+              value={sampling.meanOfMeans.toFixed(3)}
+            />
+            <Metric
+              label="Std. error"
+              value={sampling.standardError.toFixed(3)}
+            />
             <Metric label="z statistic" value={test.z.toFixed(3)} />
-            <Metric label="Decision" value={test.reject ? "Reject H0" : "Keep H0"} />
+            <Metric
+              label="Decision"
+              value={test.reject ? "Reject H0" : "Keep H0"}
+            />
           </div>
         </div>
       </div>
@@ -103,15 +318,49 @@ export default function InferenceLessonAdapter({ lesson, resetToken, onInteracti
   );
 }
 
-function IntervalView({ intervals }: { intervals: Array<{ index: number; mean: number; lower: number; upper: number; captures: boolean }> }) {
-  const sx = (value: number) => 40 + (value - 2) / 3 * 560;
+function IntervalView({
+  intervals,
+}: {
+  intervals: Array<{
+    index: number;
+    mean: number;
+    lower: number;
+    upper: number;
+    captures: boolean;
+  }>;
+}) {
+  const sx = (value: number) => 40 + ((value - 2) / 3) * 560;
   return (
-    <svg viewBox="0 0 640 260" className="h-[230px] w-full" role="img" aria-label="Confidence interval capture simulation">
-      <line x1={sx(3.5)} x2={sx(3.5)} y1="10" y2="245" stroke="#f59e0b" strokeWidth="3" />
+    <svg
+      viewBox="0 0 640 260"
+      className="h-[230px] w-full"
+      role="img"
+      aria-label="Confidence interval capture simulation"
+    >
+      <line
+        x1={sx(3.5)}
+        x2={sx(3.5)}
+        y1="10"
+        y2="245"
+        stroke="#f59e0b"
+        strokeWidth="3"
+      />
       {intervals.slice(0, 20).map((item, index) => (
         <g key={item.index}>
-          <line x1={sx(item.lower)} x2={sx(item.upper)} y1={18 + index * 11} y2={18 + index * 11} stroke={item.captures ? "#0891b2" : "#ef4444"} strokeWidth="3" />
-          <circle cx={sx(item.mean)} cy={18 + index * 11} r="3" fill={item.captures ? "#0891b2" : "#ef4444"} />
+          <line
+            x1={sx(item.lower)}
+            x2={sx(item.upper)}
+            y1={18 + index * 11}
+            y2={18 + index * 11}
+            stroke={item.captures ? "#0891b2" : "#ef4444"}
+            strokeWidth="3"
+          />
+          <circle
+            cx={sx(item.mean)}
+            cy={18 + index * 11}
+            r="3"
+            fill={item.captures ? "#0891b2" : "#ef4444"}
+          />
         </g>
       ))}
     </svg>
@@ -119,14 +368,47 @@ function IntervalView({ intervals }: { intervals: Array<{ index: number; mean: n
 }
 
 function TestView({ z, reject }: { z: number; reject: boolean }) {
-  const x = 320 + Math.max(-3, Math.min(3, z)) / 3 * 270;
+  const x = 320 + (Math.max(-3, Math.min(3, z)) / 3) * 270;
   return (
-    <svg viewBox="0 0 640 260" className="h-[230px] w-full" role="img" aria-label="Hypothesis test rejection region">
-      <path d="M40 220 C160 220 190 45 320 45 C450 45 480 220 600 220" fill="none" stroke="#06b6d4" strokeWidth="4" />
-      <rect x="40" y="210" width="105" height="20" fill="#ef4444" opacity=".25" />
-      <rect x="495" y="210" width="105" height="20" fill="#ef4444" opacity=".25" />
-      <line x1={x} x2={x} y1="35" y2="225" stroke={reject ? "#ef4444" : "#f59e0b"} strokeWidth="4" />
-      <text x={x} y="28" textAnchor="middle" fontWeight="800" fill="#334155">z={z.toFixed(2)}</text>
+    <svg
+      viewBox="0 0 640 260"
+      className="h-[230px] w-full"
+      role="img"
+      aria-label="Hypothesis test rejection region"
+    >
+      <path
+        d="M40 220 C160 220 190 45 320 45 C450 45 480 220 600 220"
+        fill="none"
+        stroke="#06b6d4"
+        strokeWidth="4"
+      />
+      <rect
+        x="40"
+        y="210"
+        width="105"
+        height="20"
+        fill="#ef4444"
+        opacity=".25"
+      />
+      <rect
+        x="495"
+        y="210"
+        width="105"
+        height="20"
+        fill="#ef4444"
+        opacity=".25"
+      />
+      <line
+        x1={x}
+        x2={x}
+        y1="35"
+        y2="225"
+        stroke={reject ? "#ef4444" : "#f59e0b"}
+        strokeWidth="4"
+      />
+      <text x={x} y="28" textAnchor="middle" fontWeight="800" fill="#334155">
+        z={z.toFixed(2)}
+      </text>
     </svg>
   );
 }
@@ -134,7 +416,9 @@ function TestView({ z, reject }: { z: number; reject: boolean }) {
 function Metric({ label, value }: { label: string; value: string }) {
   return (
     <div className="rounded-xl bg-slate-100 p-2 text-center dark:bg-white/10">
-      <span className="block text-[10px] font-bold text-slate-500">{label}</span>
+      <span className="block text-[10px] font-bold text-slate-500">
+        {label}
+      </span>
       <strong className="text-xs">{value}</strong>
     </div>
   );

@@ -1,5 +1,5 @@
 import { Line, OrbitControls } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Trash2 } from "lucide-react";
@@ -17,7 +17,20 @@ import { symbolicDerivative, trySymbolic } from "../utils/symbolic";
 import { createMathWorkspacePayload, type MathWorkspacePayload } from "../workspace/mathWorkspaces";
 import { readWorkspaceTransfer, saveWorkspaceTransfer } from "../workspace/workspaceTransfer";
 import { useReducedMotion } from "../hooks/useReducedMotion";
-import { createGraph3DSurface, migrateGraph3DSurfaces, type Graph3DSurface, type SurfacePalette } from "../graph-studio/graph3dSurfaceModel";
+import { createGraph3DSurface, migrateGraph3DSurfaces, type Graph3DKeyframe, type Graph3DLayerKind, type Graph3DSurface, type SurfacePalette } from "../graph-studio/graph3dSurfaceModel";
+import {
+  findCriticalPoints,
+  sampleAdaptiveExplicitSurface,
+  sampleCoordinateSurface,
+  sampleImplicitSurface,
+  sampleParametricCurve,
+  sampleParametricSurface,
+  sampleVectorField,
+  volumeBetweenSurfaces,
+  type Graph3DMesh,
+  type Graph3DPoint,
+  type Graph3DVectorField,
+} from "../graph-studio/graph3dAdvanced";
 import { DEFAULT_GRAPH_3D_THEME_ID, GRAPH_3D_THEME_STORAGE_KEY, getGraph3DTheme, isGraph3DThemeId, type Graph3DTheme, type Graph3DThemeId } from "../graph-studio/graph3dThemes";
 import ShareExportControl from "../components/workspace/ShareExportControl";
 import type { PortableWorkspaceAdapter } from "../workspace/portableWorkspace";
@@ -35,6 +48,7 @@ const examples = [
 type ObjectPosition = { x: number; y: number; z: number };
 type ReferenceObjectKind = "none" | "helix" | "sphere" | "cone" | "cylinder";
 type SliceAxis = "x" | "y" | "z";
+type AdvancedLayerResult = { mesh?: Graph3DMesh; curve?: Graph3DPoint[]; field?: Graph3DVectorField; error?: string };
 type Graph3DWorkspaceState = {
   surfaces: Graph3DSurface[];
   selectedSurfaceId: string;
@@ -55,6 +69,8 @@ type Graph3DWorkspaceState = {
   sliceX: number;
   referenceObject: ReferenceObjectKind;
   variables?: GraphStudioVariable[];
+  cameraPosition?: [number, number, number];
+  keyframes?: Graph3DKeyframe[];
 };
 type BeautifulSurfacePreset = {
   name: string;
@@ -92,10 +108,13 @@ export default function MathLab3DGraphing() {
   const [sliceX, setSliceX] = useState(0);
   const [referenceObject, setReferenceObject] = useState<ReferenceObjectKind>("none");
   const [cameraPosition, setCameraPosition] = useState<[number, number, number]>([4, 3.2, 6]);
+  const cameraCaptureRef = useRef<[number, number, number]>([4, 3.2, 6]);
   const [savedGraphs, setSavedGraphs] = useState<SavedGraphWorkspace<Graph3DWorkspaceState>[]>(() => readSavedGraphWorkspaces(GRAPH_3D_STORAGE_KEY));
   const [graphVariables, setGraphVariables] = useState<GraphStudioVariable[]>([]);
   const [sliceAxis, setSliceAxis] = useState<SliceAxis>("x");
   const [analysisPoint, setAnalysisPoint] = useState({ x: 0, y: 0 });
+  const [keyframes, setKeyframes] = useState<Graph3DKeyframe[]>([]);
+  const [keyframesPlaying, setKeyframesPlaying] = useState(false);
   const [exactPartial, setExactPartial] = useState<string | null>(null);
   const [studioTool, setStudioTool] = useState<Studio3DTool>("select");
   const [graphThemeId, setGraphThemeId] = useState<Graph3DThemeId>(() => {
@@ -104,7 +123,7 @@ export default function MathLab3DGraphing() {
   });
   const graphTheme = getGraph3DTheme(graphThemeId);
 
-  const graphStudioState = useMemo<Graph3DWorkspaceState>(() => ({ surfaces, selectedSurfaceId, xRange, yRange, resolution, showGrid, showAxes, showInfiniteAxes, sliceEnabled, sliceX, referenceObject, variables: graphVariables }), [graphVariables, referenceObject, resolution, selectedSurfaceId, showAxes, showGrid, showInfiniteAxes, sliceEnabled, sliceX, surfaces, xRange, yRange]);
+  const graphStudioState = useMemo<Graph3DWorkspaceState>(() => ({ surfaces, selectedSurfaceId, xRange, yRange, resolution, showGrid, showAxes, showInfiniteAxes, sliceEnabled, sliceX, referenceObject, variables: graphVariables, cameraPosition, keyframes }), [cameraPosition, graphVariables, keyframes, referenceObject, resolution, selectedSurfaceId, showAxes, showGrid, showInfiniteAxes, sliceEnabled, sliceX, surfaces, xRange, yRange]);
   const graphStudio = useGraphStudioProject({
     dimension: "3d",
     initialName: "Graph Studio 3D",
@@ -123,6 +142,8 @@ export default function MathLab3DGraphing() {
       setSliceX(state.sliceX);
       setReferenceObject(state.referenceObject);
       setGraphVariables(state.variables ?? variables);
+      setCameraPosition(state.cameraPosition ?? [4, 3.2, 6]);
+      setKeyframes(state.keyframes ?? []);
       setCameraKey((value) => value + 1);
     },
   });
@@ -130,16 +151,27 @@ export default function MathLab3DGraphing() {
   const selectedSurface = surfaces.find((item) => item.id === selectedSurfaceId) ?? surfaces[0];
   const expression = selectedSurface.expression;
   const resolvedExpression = substituteGraphVariables(expression, graphVariables);
-  const sampledSurfaces = useMemo(() => surfaces.map((item) => ({ item, samples: sampleSurface(substituteGraphVariables(item.expression, graphVariables), -xRange, xRange, -yRange, yRange, resolution) })), [graphVariables, resolution, surfaces, xRange, yRange]);
+  const sampledSurfaces = useMemo(() => surfaces.map((item) => ({
+    item,
+    samples: item.kind === "explicit" && item.coordinateMode === "cartesian"
+      ? sampleSurface(substituteGraphVariables(item.expression, graphVariables), -xRange, xRange, -yRange, yRange, resolution)
+      : { grid: [], minZ: null, maxZ: null } as SurfaceSampleResult,
+  })), [graphVariables, resolution, surfaces, xRange, yRange]);
+  const advancedLayers = useMemo(() => Object.fromEntries(surfaces.map((item) => [item.id, buildAdvancedLayer(item, graphVariables, xRange, yRange, resolution)])) as Record<string, AdvancedLayerResult>, [graphVariables, resolution, surfaces, xRange, yRange]);
   const surface = sampledSurfaces.find(({ item }) => item.id === selectedSurface.id)?.samples ?? sampledSurfaces[0].samples;
-  const visibleValidSurfaces = sampledSurfaces.filter(({ item, samples }) => item.visible && !samples.error);
-  const surfaceDifferential = useMemo(() => analyzeSurfaceDifferential(resolvedExpression, analysisPoint.x, analysisPoint.y), [analysisPoint, resolvedExpression]);
+  const layerErrors = useMemo(() => Object.fromEntries(surfaces.map((item) => [item.id, advancedLayers[item.id]?.error ?? sampledSurfaces.find((sampled) => sampled.item.id === item.id)?.samples.error])), [advancedLayers, sampledSurfaces, surfaces]);
+  const visibleValidSurfaces = surfaces.filter((item) => item.visible && !layerErrors[item.id]);
+  const supportsDifferential = selectedSurface.kind === "explicit" && selectedSurface.coordinateMode === "cartesian";
+  const surfaceDifferential = useMemo(() => supportsDifferential ? analyzeSurfaceDifferential(resolvedExpression, analysisPoint.x, analysisPoint.y) : null, [analysisPoint, resolvedExpression, supportsDifferential]);
+  const criticalPoints = useMemo(() => supportsDifferential ? findCriticalPoints(resolvedExpression, xRange, yRange) : [], [resolvedExpression, supportsDifferential, xRange, yRange]);
+  const volumePartner = useMemo(() => surfaces.find((item) => item.id !== selectedSurface.id && item.visible && item.kind === "explicit" && item.coordinateMode === "cartesian"), [selectedSurface.id, surfaces]);
+  const volumeAnalysis = useMemo(() => supportsDifferential && volumePartner ? volumeBetweenSurfaces(resolvedExpression, substituteGraphVariables(volumePartner.expression, graphVariables), xRange, yRange) : null, [graphVariables, resolvedExpression, supportsDifferential, volumePartner, xRange, yRange]);
   const sampleRows = useMemo(() => surface.grid.flatMap((row, rowIndex) => row.filter((_, colIndex) => rowIndex % Math.max(1, Math.floor(surface.grid.length / 4)) === 0 && colIndex % Math.max(1, Math.floor(row.length / 4)) === 0)).slice(0, 16), [surface.grid]);
   const variablesPlaying = graphVariables.some((variable) => variable.playing);
 
   useEffect(() => {
     setGraphVariables((current) => {
-      const expressions = surfaces.filter((surface) => surface.visible).map((surface) => surface.expression);
+      const expressions = surfaces.filter((surface) => surface.visible).flatMap((surface) => layerVariableExpressions(surface));
       const next = reconcileGraphVariables(expressions, current);
       return sameVariables(current, next) ? current : next;
     });
@@ -186,6 +218,7 @@ export default function MathLab3DGraphing() {
       setGraphVariables(Array.isArray(state.variables) ? state.variables.slice(0, 24) : []);
       setObjectPosition(state.objectPosition && [state.objectPosition.x, state.objectPosition.y, state.objectPosition.z].every(Number.isFinite) ? state.objectPosition : initialObjectPosition);
       setCameraPosition(Array.isArray(state.cameraPosition) && state.cameraPosition.length === 3 ? state.cameraPosition.map(Number) as [number, number, number] : [4, 3.2, 6]);
+      setKeyframes(Array.isArray(state.keyframes) ? state.keyframes.slice(0, 24) : []);
       setAnalysisPoint(state.analysisPoint && Number.isFinite(state.analysisPoint.x) && Number.isFinite(state.analysisPoint.y) ? state.analysisPoint : { x: 0, y: 0 });
       setAutoRotate(Boolean(state.autoRotate));
       if (isGraph3DThemeId(state.graphThemeId)) setGraphThemeId(state.graphThemeId);
@@ -225,12 +258,13 @@ export default function MathLab3DGraphing() {
       onSelectedSurfaceChange={setSelectedSurfaceId}
       onSurfaceChange={updateSurface}
       onAddExpression={() => addSurface("x^2 - y^2")}
-      onDuplicateExpression={(surfaceId) => addSurface(surfaces.find((item) => item.id === surfaceId)?.expression ?? "x^2 - y^2")}
+      onAddLayer={addAdvancedLayer}
+      onDuplicateExpression={duplicateSurface}
       onDeleteExpression={deleteSurface}
       onSetAllVisibility={(visible) => setSurfaces((current) => current.map((item) => ({ ...item, visible })))}
-      surfaceErrors={Object.fromEntries(sampledSurfaces.map(({ item, samples }) => [item.id, samples.error]))}
+      surfaceErrors={layerErrors}
       examples={examples}
-      onExample={(next) => updateSurface(selectedSurface.id, { expression: next })}
+      onExample={(next) => updateSurface(selectedSurface.id, { expression: next, kind: "explicit", coordinateMode: "cartesian", adaptive: false })}
       onRandomExample={tryRandom}
       variables={graphVariables}
       onVariablesChange={updateStudioVariables}
@@ -241,30 +275,42 @@ export default function MathLab3DGraphing() {
         setGraphThemeId(nextTheme);
         setSurfaces((current) => current.map((item) => ({ ...item, palette: "height" })));
       }}
+      keyframes={keyframes}
+      keyframesPlaying={keyframesPlaying}
+      onAddKeyframe={captureKeyframe}
+      onDeleteKeyframe={(id) => setKeyframes((current) => current.filter((keyframe) => keyframe.id !== id))}
+      onPlayKeyframes={() => setKeyframesPlaying((playing) => keyframes.length >= 2 && !playing)}
       scene={!visibleValidSurfaces.length ? (
         <div className="flex h-full items-center justify-center bg-slate-950 p-6 text-center text-sm font-bold text-amber-200">No visible valid surface. Correct an expression or show a valid layer.</div>
       ) : (
-        <ThreeSceneWrapper key={cameraKey} height="100%" mobileHeight="100%" interactionLabel="Drag to orbit - wheel/pinch zoom - shift-drag pan" cameraPosition={cameraPosition} fov={46} quality="high" chrome="cinematic" showHint={false} sceneOverlay={`radial-gradient(circle at 68% 22%, ${graphTheme.backgroundAccent}99, transparent 42%), linear-gradient(180deg, transparent, ${graphTheme.background}cc)`} sceneLabel={autoRotate && !reducedMotion ? "3D graphing - rotating" : undefined} sceneSummary={`Surface z equals ${expression}. Domain x from ${-xRange} to ${xRange}, y from ${-yRange} to ${yRange}. ${surface.grid.flat().filter((point) => point.valid).length} valid samples.`} className="h-full rounded-none border-0">
+        <ThreeSceneWrapper key={cameraKey} height="100%" mobileHeight="100%" interactionLabel="Drag to orbit - wheel/pinch zoom - shift-drag pan" cameraPosition={cameraPosition} fov={46} quality="high" chrome="cinematic" showHint={false} sceneOverlay={`radial-gradient(circle at 68% 22%, ${graphTheme.backgroundAccent}99, transparent 42%), linear-gradient(180deg, transparent, ${graphTheme.background}cc)`} sceneLabel={autoRotate && !reducedMotion ? "3D graphing - rotating" : undefined} sceneSummary={`${selectedSurface.name}, a ${selectedSurface.kind} 3D layer. Domain scale ${xRange} by ${yRange}.`} className="h-full rounded-none border-0">
           <color attach="background" args={[graphTheme.background]} />
           <ambientLight intensity={graphThemeId === "minimal-pearl" ? 0.88 : 0.58} />
           <hemisphereLight args={[graphTheme.gradient.at(-1)?.color ?? "#ffffff", graphTheme.background, 0.72]} />
           <directionalLight position={[5, 8, 6]} intensity={graphThemeId === "arctic-glass" ? 1.65 : 1.25} color={graphTheme.gradient.at(-1)?.color} />
           <pointLight position={[-4, 2.5, -3]} intensity={0.58} color={graphTheme.gradient[0].color} />
           <group position={toScenePosition(objectPosition)}>
-            {visibleValidSurfaces.map(({ item, samples }) => <group key={item.id}><SurfaceMesh samples={samples} palette={item.palette} colorLow={item.colorLow} colorHigh={item.colorHigh} wireframe={item.wireframe} opacity={item.opacity} theme={graphTheme} selected={item.id === selectedSurface.id} interactive={item.id === selectedSurface.id && studioTool !== "select"} onPick={handleSurfacePick} />{item.samplingAnimation && <SamplingSweep samples={samples} active theme={graphTheme} />}{item.showPoints && <SamplePointCloud samples={samples} color={graphTheme.point} />}</group>)}
+            {visibleValidSurfaces.map((item) => {
+              const samples = sampledSurfaces.find((sampled) => sampled.item.id === item.id)?.samples;
+              return <Graph3DLayer key={item.id} surface={item} samples={samples} advanced={advancedLayers[item.id]} theme={graphTheme} selected={item.id === selectedSurface.id} interactive={item.id === selectedSurface.id && studioTool !== "select"} onPick={handleSurfacePick} />;
+            })}
             {showBase && <BasePlane size={Math.max(xRange, yRange) * 2.08} theme={graphTheme} />}
             {showGrid && <gridHelper args={[Math.max(xRange, yRange) * 2.2, 18, graphTheme.gridMajor, graphTheme.gridMinor]} />}
             {showAxes && <ThemeAxes scale={Math.max(xRange, yRange) * 1.25} theme={graphTheme} showLabels={showLabels} infinite={showInfiniteAxes} />}
-            {showLabels && <SurfaceLabels scale={Math.max(xRange, yRange) * 1.25} expression={expression} samples={surface} objectPosition={objectPosition} theme={graphTheme} />}
-            {sliceEnabled && <SlicePlane axis={sliceAxis} value={sliceX} range={Math.max(xRange, yRange)} samples={surface} color={graphTheme.crossSection} />}
-            {sliceEnabled && <SliceCurve axis={sliceAxis} value={sliceX} samples={surface} color={graphTheme.crossSection} />}
+            {showLabels && supportsDifferential && <SurfaceLabels scale={Math.max(xRange, yRange) * 1.25} expression={expression} samples={surface} objectPosition={objectPosition} theme={graphTheme} />}
+            {sliceEnabled && supportsDifferential && <SlicePlane axis={sliceAxis} value={sliceX} range={Math.max(xRange, yRange)} samples={surface} color={graphTheme.crossSection} onChange={setSliceX} />}
+            {sliceEnabled && supportsDifferential && <SliceCurve axis={sliceAxis} value={sliceX} samples={surface} color={graphTheme.crossSection} />}
             {surfaceDifferential && <SurfaceDifferentialGeometry analysis={surfaceDifferential} scale={Math.max(0.7, Math.min(xRange, yRange) * 0.22)} theme={graphTheme} />}
+            {criticalPoints.map((point, index) => <CriticalPointMarker key={`${point.x}-${point.y}-${index}`} point={point} theme={graphTheme} />)}
+            {volumePartner && <VolumeBetweenSurfaces top={surface} bottom={sampledSurfaces.find((sampled) => sampled.item.id === volumePartner.id)?.samples} theme={graphTheme} />}
             <ReferenceObject kind={referenceObject} scale={Math.max(1.4, Math.min(xRange, yRange) * 0.48)} />
           </group>
+          <CameraPositionTracker onChange={(position) => { cameraCaptureRef.current = position; }} />
+          <KeyframeCameraAnimator keyframes={keyframes} playing={keyframesPlaying} onVariables={applyKeyframeVariables} onFinish={() => setKeyframesPlaying(false)} />
           <OrbitControls enablePan enableZoom enableDamping dampingFactor={0.08} autoRotate={autoRotate && !reducedMotion} autoRotateSpeed={0.7} />
         </ThreeSceneWrapper>
       )}
-      crossSectionPreview={sliceEnabled ? <CrossSectionChart axis={sliceAxis} value={sliceX} samples={surface} theme={graphTheme} /> : undefined}
+      crossSectionPreview={sliceEnabled && supportsDifferential ? <CrossSectionChart axis={sliceAxis} value={sliceX} samples={surface} theme={graphTheme} /> : undefined}
       onCameraView={setCameraView}
       onResetCamera={() => setCameraView([4, 3.2, 6])}
       surface={surface}
@@ -275,6 +321,8 @@ export default function MathLab3DGraphing() {
       onExactPartial={calculatePartial}
       exactPartial={exactPartial}
       onUsePartialSurface={() => { if (exactPartial) addSurface(exactPartial); }}
+      criticalPoints={criticalPoints}
+      volumeAnalysis={volumeAnalysis}
       xRange={xRange}
       yRange={yRange}
       resolution={resolution}
@@ -335,7 +383,8 @@ export default function MathLab3DGraphing() {
   }
 
   function copyEquation() {
-    void navigator.clipboard?.writeText(`z = ${selectedSurface.expression}`);
+    const value = selectedSurface.kind === "explicit" ? `z = ${selectedSurface.expression}` : selectedSurface.kind === "implicit" ? selectedSurface.expression : `${selectedSurface.components.x}, ${selectedSurface.components.y}, ${selectedSurface.components.z}`;
+    void navigator.clipboard?.writeText(value);
   }
 
   function updateStudioVariables(variables: GraphStudioVariable[]) {
@@ -344,13 +393,23 @@ export default function MathLab3DGraphing() {
   }
 
   function exportSurfaceCsv() {
-    const csv = ["x,y,z,valid", ...surface.grid.flatMap((row) => row.map((point) => `${point.x},${point.y},${point.z ?? ""},${point.valid}`))].join("\n");
-    downloadGraphStudioFile(`${fileSlug(expression)}-surface.csv`, csv, "text/csv");
+    const advanced = advancedLayers[selectedSurface.id];
+    let rows: string[];
+    if (advanced?.mesh) {
+      rows = ["x,y,z", ...Array.from({ length: Math.floor(advanced.mesh.positions.length / 3) }, (_, index) => advanced.mesh!.positions.slice(index * 3, index * 3 + 3).join(","))];
+    } else if (advanced?.curve) {
+      rows = ["x,y,z", ...advanced.curve.map((point) => `${point.x},${point.y},${point.z}`)];
+    } else if (advanced?.field) {
+      rows = ["x,y,z,vx,vy,vz", ...advanced.field.vectors.map(({ origin, vector }) => `${origin.x},${origin.y},${origin.z},${vector.x},${vector.y},${vector.z}`)];
+    } else {
+      rows = ["x,y,z,valid", ...surface.grid.flatMap((row) => row.map((point) => `${point.x},${point.y},${point.z ?? ""},${point.valid}`))];
+    }
+    downloadGraphStudioFile(`${fileSlug(selectedSurface.name)}-3d.csv`, rows.join("\n"), "text/csv");
   }
 
   function tryRandom() {
     const preset = beautifulSurfacePresets[Math.floor(Math.random() * beautifulSurfacePresets.length)];
-    updateSurface(selectedSurface.id, { expression: preset.expression, palette: preset.palette, wireframe: ["contour", "mono"].includes(preset.palette), showPoints: false });
+    updateSurface(selectedSurface.id, { expression: preset.expression, kind: "explicit", coordinateMode: "cartesian", adaptive: false, palette: preset.palette, wireframe: ["contour", "mono"].includes(preset.palette), showPoints: false });
     setXRange(preset.xRange);
     setYRange(preset.yRange);
     setResolution(preset.resolution);
@@ -392,8 +451,9 @@ export default function MathLab3DGraphing() {
     setSliceX(state.sliceX);
     setReferenceObject(state.referenceObject);
     setGraphVariables(state.variables ?? []);
+    setKeyframes(state.keyframes ?? []);
     graphStudio.updateProject({ name: workspace.name });
-    setCameraView([4, 3.2, 6]);
+    setCameraView(state.cameraPosition ?? [4, 3.2, 6]);
   }
 
   function removeSavedGraph(id: string) {
@@ -410,6 +470,52 @@ export default function MathLab3DGraphing() {
     setSelectedSurfaceId(next.id);
   }
 
+  function addAdvancedLayer(kind: Graph3DLayerKind) {
+    const next = createGraph3DSurface(kind === "implicit" ? "x^2+y^2+z^2=9" : "0", surfaces.length);
+    next.kind = kind;
+    next.samplingAnimation = false;
+    next.adaptive = kind === "explicit";
+    if (kind === "implicit") next.name = "Implicit sphere";
+    if (kind === "parametric") {
+      next.name = "Parametric torus";
+      next.components = { x: "(2+0.6*cos(v))*cos(u)", y: "(2+0.6*cos(v))*sin(u)", z: "0.6*sin(v)" };
+      next.uMin = 0; next.uMax = Math.PI * 2; next.vMin = 0; next.vMax = Math.PI * 2;
+    }
+    if (kind === "curve") {
+      next.name = "Parametric helix";
+      next.components = { x: "cos(t)", y: "sin(t)", z: "t/4" };
+      next.tMin = 0; next.tMax = Math.PI * 6;
+    }
+    if (kind === "vector-field") {
+      next.name = "Rotational vector field";
+      next.components = { x: "-y", y: "x", z: "0.25*z" };
+    }
+    setSurfaces((current) => [...current, next]);
+    setSelectedSurfaceId(next.id);
+  }
+
+  function duplicateSurface(surfaceId: string) {
+    const source = surfaces.find((item) => item.id === surfaceId);
+    if (!source) return;
+    const next = { ...source, id: `surface-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`, name: `${source.name} copy`, components: { ...source.components } };
+    setSurfaces((current) => [...current, next]);
+    setSelectedSurfaceId(next.id);
+  }
+
+  function captureKeyframe() {
+    setKeyframes((current) => [...current, {
+      id: `keyframe-${Date.now()}`,
+      label: `Keyframe ${current.length + 1}`,
+      time: current.length ? current[current.length - 1].time + 2 : 0,
+      camera: [...cameraCaptureRef.current] as [number, number, number],
+      variables: Object.fromEntries(graphVariables.map((variable) => [variable.name, variable.value])),
+    }]);
+  }
+
+  function applyKeyframeVariables(values: Record<string, number>) {
+    setGraphVariables((current) => current.map((variable) => values[variable.name] === undefined ? variable : { ...variable, value: values[variable.name], playing: false }));
+  }
+
   function deleteSurface(surfaceId: string) {
     setSurfaces((current) => {
       if (current.length === 1) return current;
@@ -421,6 +527,52 @@ export default function MathLab3DGraphing() {
   }
 }
 
+function buildAdvancedLayer(surface: Graph3DSurface, variables: GraphStudioVariable[], xRange: number, yRange: number, resolution: number): AdvancedLayerResult {
+  const intrinsic = surface.kind === "parametric" ? new Set(["u", "v"]) : surface.kind === "curve" ? new Set(["t"]) : new Set<string>();
+  const activeVariables = variables.filter((variable) => !intrinsic.has(variable.name.toLowerCase()));
+  const resolve = (value: string) => substituteGraphVariables(value, activeVariables);
+  if (surface.kind === "explicit") {
+    const expression = resolve(surface.expression);
+    if (surface.coordinateMode === "cartesian") {
+      if (!surface.adaptive) return {};
+      const mesh = sampleAdaptiveExplicitSurface(expression, xRange, yRange, Math.max(8, Math.round(resolution / 3)), 2);
+      return { mesh, error: mesh.error };
+    }
+    const coordinateExpression = surface.coordinateMode === "cylindrical"
+      ? expression.replace(/\br\b/gi, "u").replace(/\btheta\b/gi, "v")
+      : expression.replace(/\btheta\b/gi, "u").replace(/\bphi\b/gi, "v");
+    try {
+      const mesh = sampleCoordinateSurface(coordinateExpression, surface.coordinateMode, { uMin: surface.uMin, uMax: surface.uMax, vMin: surface.vMin, vMax: surface.vMax }, resolution);
+      return { mesh, error: mesh.error };
+    } catch (error) {
+      return { error: error instanceof Error ? error.message : "Coordinate surface could not be sampled." };
+    }
+  }
+  if (surface.kind === "implicit") {
+    const mesh = sampleImplicitSurface(resolve(surface.expression), Math.max(xRange, yRange), Math.max(12, Math.round(resolution * 0.55)));
+    return { mesh, error: mesh.error };
+  }
+  if (surface.kind === "parametric") {
+    const mesh = sampleParametricSurface({ x: resolve(surface.components.x), y: resolve(surface.components.y), z: resolve(surface.components.z) }, { uMin: surface.uMin, uMax: surface.uMax, vMin: surface.vMin, vMax: surface.vMax }, resolution);
+    return { mesh, error: mesh.error };
+  }
+  if (surface.kind === "curve") {
+    const curve = sampleParametricCurve({ x: resolve(surface.components.x), y: resolve(surface.components.y), z: resolve(surface.components.z) }, surface.tMin, surface.tMax, Math.max(120, resolution * 6));
+    return { curve: curve.points, error: curve.error };
+  }
+  const field = sampleVectorField({ x: resolve(surface.components.x), y: resolve(surface.components.y), z: resolve(surface.components.z) }, Math.max(xRange, yRange), 4, surface.streamlines);
+  return { field, error: field.error };
+}
+
+function layerVariableExpressions(surface: Graph3DSurface) {
+  if (surface.kind === "parametric") return Object.values(surface.components).map((value) => value.replace(/\bu\b/gi, "x").replace(/\bv\b/gi, "y"));
+  if (surface.kind === "curve") return Object.values(surface.components).map((value) => value.replace(/\bt\b/gi, "x"));
+  if (surface.kind === "vector-field") return Object.values(surface.components);
+  if (surface.coordinateMode === "cylindrical") return [surface.expression.replace(/\br\b/gi, "x").replace(/\btheta\b/gi, "y")];
+  if (surface.coordinateMode === "spherical") return [surface.expression.replace(/\brho\b/gi, "x").replace(/\btheta\b/gi, "x").replace(/\bphi\b/gi, "y")];
+  return [surface.expression];
+}
+
 function Saved3DGraphList({ saved, onLoad, onDelete }: { saved: SavedGraphWorkspace<Graph3DWorkspaceState>[]; onLoad: (workspace: SavedGraphWorkspace<Graph3DWorkspaceState>) => void; onDelete: (id: string) => void }) {
   if (!saved.length) return <p className="mt-3 text-sm font-semibold text-slate-500">No saved 3D graphs yet.</p>;
   return (
@@ -429,13 +581,21 @@ function Saved3DGraphList({ saved, onLoad, onDelete }: { saved: SavedGraphWorksp
         <div key={workspace.id} className="flex items-center gap-2 rounded-xl border border-slate-200 p-2 dark:border-white/10">
           <button type="button" className="min-w-0 flex-1 text-left" onClick={() => onLoad(workspace)}>
             <span className="block truncate text-sm font-black">{workspace.name}</span>
-            <span className="block truncate text-xs text-slate-500">{migrateGraph3DSurfaces(workspace.state).length} surfaces · z = {migrateGraph3DSurfaces(workspace.state)[0].expression}</span>
+            <span className="block truncate text-xs text-slate-500">{migrateGraph3DSurfaces(workspace.state).length} layers · {describeLayer(migrateGraph3DSurfaces(workspace.state)[0])}</span>
           </button>
           <button type="button" className="tooltip-icon rounded-lg p-2 text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-400/10" aria-label={`Delete ${workspace.name}`} data-tooltip="Delete saved graph" onClick={() => onDelete(workspace.id)}><Trash2 className="h-4 w-4" /></button>
         </div>
       ))}
     </div>
   );
+}
+
+function describeLayer(surface: Graph3DSurface) {
+  if (surface.kind === "explicit") return surface.coordinateMode === "cartesian" ? `z = ${surface.expression}` : `${surface.coordinateMode}: ${surface.expression}`;
+  if (surface.kind === "implicit") return surface.expression;
+  if (surface.kind === "curve") return `curve (${surface.components.x}, ${surface.components.y}, ${surface.components.z})`;
+  if (surface.kind === "vector-field") return `field <${surface.components.x}, ${surface.components.y}, ${surface.components.z}>`;
+  return `surface (${surface.components.x}, ${surface.components.y}, ${surface.components.z})`;
 }
 
 function buildBeautifulSurfacePresets(): BeautifulSurfacePreset[] {
@@ -519,6 +679,112 @@ function buildBeautifulSurfacePresets(): BeautifulSurfacePreset[] {
   return [...trigMix, ...radial, ...flower, ...waves, ...gaussians, ...polynomial, ...special, ...harmonic, ...landscapes, ...gems];
 }
 
+function Graph3DLayer({ surface, samples, advanced, theme, selected, interactive, onPick }: { surface: Graph3DSurface; samples?: SurfaceSampleResult; advanced?: AdvancedLayerResult; theme: Graph3DTheme; selected: boolean; interactive: boolean; onPick: (point: THREE.Vector3) => void }) {
+  if (surface.kind === "explicit" && surface.coordinateMode === "cartesian" && !surface.adaptive && samples) {
+    return <group><SurfaceMesh samples={samples} palette={surface.palette} colorLow={surface.colorLow} colorHigh={surface.colorHigh} wireframe={surface.wireframe} opacity={surface.opacity} theme={theme} selected={selected} interactive={interactive} onPick={onPick} />{surface.samplingAnimation && <SamplingSweep samples={samples} active theme={theme} />}{surface.showPoints && <SamplePointCloud samples={samples} color={theme.point} />}</group>;
+  }
+  if (advanced?.mesh) return <AdvancedMesh mesh={advanced.mesh} surface={surface} theme={theme} selected={selected} interactive={interactive && surface.kind === "explicit"} onPick={onPick} verticalScaleFactor={surface.kind === "explicit" && surface.coordinateMode === "cartesian" && samples ? verticalScale(samples) : 1} />;
+  if (advanced?.curve) return <ParametricCurveLayer points={advanced.curve} color={selected ? theme.selection : surface.colorHigh} />;
+  if (advanced?.field) return <VectorFieldLayer field={advanced.field} color={selected ? theme.selection : surface.colorHigh} />;
+  return null;
+}
+
+function AdvancedMesh({ mesh, surface, theme, selected, interactive, onPick, verticalScaleFactor }: { mesh: Graph3DMesh; surface: Graph3DSurface; theme: Graph3DTheme; selected: boolean; interactive: boolean; onPick: (point: THREE.Vector3) => void; verticalScaleFactor: number }) {
+  const [hovered, setHovered] = useState(false);
+  const geometry = useMemo(() => {
+    const result = new THREE.BufferGeometry();
+    const positions: number[] = [];
+    const colors: number[] = [];
+    const low = new THREE.Color(surface.colorLow);
+    const high = new THREE.Color(surface.colorHigh);
+    const minZ = mesh.minZ ?? -1;
+    const span = Math.max(1e-8, (mesh.maxZ ?? 1) - minZ);
+    for (let index = 0; index < mesh.positions.length; index += 3) {
+      const x = mesh.positions[index]; const y = mesh.positions[index + 1]; const z = mesh.positions[index + 2];
+      positions.push(x, z * verticalScaleFactor, y);
+      const color = low.clone().lerp(high, Math.max(0, Math.min(1, (z - minZ) / span)));
+      colors.push(color.r, color.g, color.b);
+    }
+    result.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
+    result.setAttribute("color", new THREE.Float32BufferAttribute(colors, 3));
+    result.setIndex(mesh.indices);
+    result.computeVertexNormals();
+    return result;
+  }, [mesh, surface.colorHigh, surface.colorLow, verticalScaleFactor]);
+  useEffect(() => () => geometry.dispose(), [geometry]);
+  return <group><mesh geometry={geometry} onClick={interactive ? (event) => { event.stopPropagation(); onPick(event.point.clone()); } : undefined} onPointerOver={() => { setHovered(true); if (interactive) document.body.style.cursor = "crosshair"; }} onPointerOut={() => { setHovered(false); document.body.style.cursor = ""; }}><meshPhysicalMaterial vertexColors side={THREE.DoubleSide} roughness={theme.roughness} metalness={theme.metalness} transparent opacity={surface.opacity * theme.surfaceOpacity} emissive={hovered ? theme.hover : selected ? theme.selection : theme.emissive} emissiveIntensity={hovered ? 0.22 : theme.emissiveIntensity * 0.6} depthWrite={surface.opacity > 0.7} /></mesh><mesh geometry={geometry} scale={[1.001, 1.001, 1.001]}><meshBasicMaterial color={selected ? theme.selection : theme.mesh} wireframe transparent opacity={surface.wireframe ? 0.38 : theme.meshOpacity} depthWrite={false} /></mesh></group>;
+}
+
+function ParametricCurveLayer({ points, color }: { points: Graph3DPoint[]; color: string }) {
+  const scenePoints = useMemo(() => points.map((point) => new THREE.Vector3(point.x, point.z, point.y)), [points]);
+  if (scenePoints.length < 2) return null;
+  return <group><Line points={scenePoints} color={color} lineWidth={4} /><mesh position={scenePoints[0]}><sphereGeometry args={[0.07, 12, 12]} /><meshStandardMaterial color={color} /></mesh><mesh position={scenePoints[scenePoints.length - 1]}><sphereGeometry args={[0.07, 12, 12]} /><meshStandardMaterial color={color} /></mesh></group>;
+}
+
+function VectorFieldLayer({ field, color }: { field: Graph3DVectorField; color: string }) {
+  return <group>{field.vectors.map(({ origin, vector }, index) => {
+    const length = Math.max(1e-8, Math.hypot(vector.x, vector.y, vector.z));
+    const scale = 0.48 / length;
+    const end = { x: origin.x + vector.x * scale, y: origin.y + vector.y * scale, z: origin.z + vector.z * scale };
+    return <group key={`${index}-${origin.x}-${origin.y}-${origin.z}`}><Line points={[[origin.x, origin.z, origin.y], [end.x, end.z, end.y]]} color={color} lineWidth={2} /><mesh position={[end.x, end.z, end.y]}><sphereGeometry args={[0.035, 7, 7]} /><meshBasicMaterial color={color} /></mesh></group>;
+  })}{field.streamlines.map((line, index) => <Line key={`stream-${index}`} points={line.map((point) => [point.x, point.z, point.y] as [number, number, number])} color="#fef08a" lineWidth={2.4} />)}</group>;
+}
+
+function CriticalPointMarker({ point, theme }: { point: { x: number; y: number; z: number; kind: string }; theme: Graph3DTheme }) {
+  const color = point.kind === "minimum" ? theme.axes[1] : point.kind === "maximum" ? theme.axes[0] : point.kind === "saddle" ? theme.axes[2] : theme.point;
+  return <group position={[point.x, point.z, point.y]}><mesh><sphereGeometry args={[0.1, 16, 16]} /><meshStandardMaterial color={color} emissive={color} emissiveIntensity={0.55} /></mesh><TextSprite text={point.kind} position={[0, 0.24, 0]} color={color} width={0.72} /></group>;
+}
+
+function VolumeBetweenSurfaces({ top, bottom, theme }: { top: SurfaceSampleResult; bottom?: SurfaceSampleResult; theme: Graph3DTheme }) {
+  if (!bottom?.grid.length || !top.grid.length) return null;
+  const stride = Math.max(2, Math.floor(top.grid.length / 15));
+  const scale = Math.min(verticalScale(top), verticalScale(bottom));
+  const dx = Math.abs((top.grid[0]?.[1]?.x ?? 0.2) - (top.grid[0]?.[0]?.x ?? 0)) * stride;
+  const dy = Math.abs((top.grid[1]?.[0]?.y ?? 0.2) - (top.grid[0]?.[0]?.y ?? 0)) * stride;
+  const blocks = top.grid.flatMap((row, rowIndex) => row.filter((_, columnIndex) => rowIndex % stride === 0 && columnIndex % stride === 0).map((point, columnIndex) => ({ point, bottom: bottom.grid[rowIndex]?.[columnIndex * stride] }))).filter(({ point, bottom: lower }) => point.valid && lower?.valid && point.z !== null && lower.z !== null).slice(0, 260);
+  return <group>{blocks.map(({ point, bottom: lower }, index) => { const topZ = point.z!; const bottomZ = lower!.z!; const height = Math.max(0.012, Math.abs(topZ - bottomZ) * scale); return <mesh key={`${index}-${point.x}-${point.y}`} position={[point.x, (topZ + bottomZ) * scale / 2, point.y]}><boxGeometry args={[Math.max(0.04, dx * 0.82), height, Math.max(0.04, dy * 0.82)]} /><meshBasicMaterial color={theme.crossSection} transparent opacity={0.055} depthWrite={false} /></mesh>; })}</group>;
+}
+
+function CameraPositionTracker({ onChange }: { onChange: (position: [number, number, number]) => void }) {
+  const { camera } = useThree();
+  const lastPosition = useRef(new THREE.Vector3(Number.NaN, Number.NaN, Number.NaN));
+  useFrame(() => {
+    if (camera.position.distanceToSquared(lastPosition.current) < 0.000001) return;
+    lastPosition.current.copy(camera.position);
+    onChange([camera.position.x, camera.position.y, camera.position.z]);
+  });
+  return null;
+}
+
+function KeyframeCameraAnimator({ keyframes, playing, onVariables, onFinish }: { keyframes: Graph3DKeyframe[]; playing: boolean; onVariables: (values: Record<string, number>) => void; onFinish: () => void }) {
+  const { camera } = useThree();
+  const startRef = useRef(0);
+  const lastUpdateRef = useRef(0);
+  useEffect(() => { if (playing) { startRef.current = performance.now(); lastUpdateRef.current = 0; } }, [playing]);
+  useFrame(() => {
+    if (!playing || keyframes.length < 2) return;
+    const elapsed = (performance.now() - startRef.current) / 1000;
+    const duration = keyframes[keyframes.length - 1].time;
+    const current = keyframes.findIndex((keyframe) => keyframe.time >= elapsed);
+    if (elapsed >= duration || current < 0) { onVariables(keyframes[keyframes.length - 1].variables); onFinish(); return; }
+    const right = Math.max(1, current);
+    const left = right - 1;
+    const first = keyframes[left]; const second = keyframes[right];
+    const ratio = (elapsed - first.time) / Math.max(0.001, second.time - first.time);
+    camera.position.set(lerpNumber(first.camera[0], second.camera[0], ratio), lerpNumber(first.camera[1], second.camera[1], ratio), lerpNumber(first.camera[2], second.camera[2], ratio));
+    camera.lookAt(0, 0, 0);
+    camera.updateProjectionMatrix();
+    if (elapsed - lastUpdateRef.current > 0.08) {
+      const values = Object.fromEntries(Object.keys({ ...first.variables, ...second.variables }).map((name) => [name, lerpNumber(first.variables[name] ?? second.variables[name] ?? 0, second.variables[name] ?? first.variables[name] ?? 0, ratio)]));
+      onVariables(values);
+      lastUpdateRef.current = elapsed;
+    }
+  });
+  return null;
+}
+
+function lerpNumber(first: number, second: number, ratio: number) { return first + (second - first) * Math.max(0, Math.min(1, ratio)); }
+
 function SurfaceMesh({ samples, palette, colorLow, colorHigh, wireframe, opacity, theme, selected, interactive = false, onPick }: { samples: SurfaceSampleResult; palette: SurfacePalette; colorLow: string; colorHigh: string; wireframe: boolean; opacity: number; theme: Graph3DTheme; selected: boolean; interactive?: boolean; onPick?: (point: THREE.Vector3) => void }) {
   const [hovered, setHovered] = useState(false);
   const geometry = useMemo(() => {
@@ -552,12 +818,13 @@ function SurfaceMesh({ samples, palette, colorLow, colorHigh, wireframe, opacity
   );
 }
 
-function SlicePlane({ axis, value, range, samples, color }: { axis: SliceAxis; value: number; range: number; samples: SurfaceSampleResult; color: string }) {
+function SlicePlane({ axis, value, range, samples, color, onChange }: { axis: SliceAxis; value: number; range: number; samples: SurfaceSampleResult; color: string; onChange: (value: number) => void }) {
+  const [dragging, setDragging] = useState(false);
   const height = Math.max(2, Math.abs(samples.minZ ?? -1), Math.abs(samples.maxZ ?? 1)) * verticalScale(samples) * 2.2;
   const position: [number, number, number] = axis === "x" ? [value, height * 0.08, 0] : axis === "y" ? [0, height * 0.08, value] : [0, value * verticalScale(samples), 0];
   const rotation: [number, number, number] = axis === "x" ? [0, Math.PI / 2, 0] : axis === "y" ? [0, 0, 0] : [-Math.PI / 2, 0, 0];
   return (
-    <mesh position={position} rotation={rotation}>
+    <mesh position={position} rotation={rotation} onPointerDown={(event) => { event.stopPropagation(); setDragging(true); document.body.style.cursor = "grabbing"; }} onPointerMove={(event) => { if (!dragging) return; event.stopPropagation(); const next = axis === "x" ? event.point.x : axis === "y" ? event.point.z : event.point.y / verticalScale(samples); onChange(Number(Math.max(-range, Math.min(range, next)).toFixed(3))); }} onPointerUp={() => { setDragging(false); document.body.style.cursor = ""; }} onPointerOut={() => { if (dragging) setDragging(false); document.body.style.cursor = ""; }}>
       <planeGeometry args={axis === "z" ? [range * 2.1, range * 2.1] : [range * 2.1, height]} />
       <meshBasicMaterial color={color} transparent opacity={0.17} side={THREE.DoubleSide} depthWrite={false} />
     </mesh>

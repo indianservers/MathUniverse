@@ -1,0 +1,275 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: lessons\cartesianSharedGraph.e2e.ts >> Cartesian ordered pairs and controls at 390
+- Location: tests\lessons\cartesianSharedGraph.e2e.ts:2:63
+
+# Error details
+
+```
+Test timeout of 90000ms exceeded.
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e2]:
+  - progressbar "Loading page"
+  - generic [ref=e3]:
+    - link "Skip to content" [ref=e4] [cursor=pointer]:
+      - /url: "#main-content"
+    - generic [ref=e6]:
+      - banner [ref=e7]:
+        - generic [ref=e8]:
+          - paragraph [ref=e10]: Interactive Math Lab
+          - generic [ref=e11]:
+            - button "Keyboard shortcuts" [ref=e12] [cursor=pointer]: Keyboard shortcuts (?)
+            - button "Accessibility settings" [ref=e16] [cursor=pointer]
+            - button "Toggle theme" [ref=e20] [cursor=pointer]: "Theme: Light"
+      - main [ref=e23]:
+        - generic [ref=e24]:
+          - generic [ref=e25]:
+            - button "Go back" [ref=e26] [cursor=pointer]
+            - navigation "Breadcrumb" [ref=e29]:
+              - link "Home" [ref=e30] [cursor=pointer]:
+                - /url: /
+              - generic [ref=e32]:
+                - generic [ref=e33]: ">"
+                - link "Lessons" [ref=e34] [cursor=pointer]:
+                  - /url: /lessons
+              - generic [ref=e36]:
+                - generic [ref=e37]: ">"
+                - link "Graphs And Functions" [ref=e38] [cursor=pointer]:
+                  - /url: /lessons/graphs-and-functions
+              - generic [ref=e40]:
+                - generic [ref=e41]: ">"
+                - generic [ref=e42]: 39 Cartesian Graphing
+          - generic [ref=e43]:
+            - generic [ref=e46]:
+              - heading "Cartesian Graphing" [level=1] [ref=e48]
+              - generic [ref=e49]:
+                - generic "Load a lesson language pack on demand" [ref=e50]:
+                  - combobox "Lesson language" [ref=e54]:
+                    - option "English (English)" [selected]
+                    - option "हिन्दी (Hindi)"
+                    - option "বাংলা (Bengali)"
+                    - option "తెలుగు (Telugu)"
+                    - option "தமிழ் (Tamil)"
+                    - option "मराठी (Marathi)"
+                    - option "ગુજરાતી (Gujarati)"
+                    - option "ಕನ್ನಡ (Kannada)"
+                    - option "മലയാളം (Malayalam)"
+                    - option "ਪੰਜਾਬੀ (Punjabi)"
+                    - option "ଓଡ଼ିଆ (Odia)"
+                    - option "অসমীয়া (Assamese)"
+                    - option "اردو (Urdu)"
+                - button "Reset" [ref=e55] [cursor=pointer]
+                - button "Share" [ref=e59] [cursor=pointer]
+                - link "Workspace" [ref=e66] [cursor=pointer]:
+                  - /url: /workspace/graph
+            - tablist "Lesson content tabs" [ref=e71]:
+              - tab "Interaction + visualization" [selected] [ref=e72] [cursor=pointer]
+              - tab "Learn" [ref=e76] [cursor=pointer]
+              - tab "Examples" [ref=e79] [cursor=pointer]
+              - tab "Formulas" [ref=e82] [cursor=pointer]
+              - tab "Practice" [ref=e85] [cursor=pointer]
+            - main [ref=e89]:
+              - tabpanel "Lesson interaction and visualization" [ref=e90]:
+                - generic [ref=e91]:
+                  - generic [ref=e92]:
+                    - complementary [ref=e93]:
+                      - paragraph [ref=e94]: Ordered pair
+                      - heading "P(1.5, 2.5)" [level=3] [ref=e95]
+                      - generic [ref=e96]:
+                        - generic [ref=e97]:
+                          - generic [ref=e98]: "1"
+                          - generic [ref=e99]: Read the ordered pair
+                        - generic [ref=e100]:
+                          - generic [ref=e101]: "2"
+                          - generic [ref=e102]: Move on the coordinate plane
+                        - generic [ref=e103]:
+                          - generic [ref=e104]: "3"
+                          - generic [ref=e105]: Plot the point
+                      - generic [ref=e106]: Always read the x-coordinate before the y-coordinate.
+                    - main [ref=e107]:
+                      - generic [ref=e108]:
+                        - generic [ref=e109]:
+                          - heading "Plot the point. Read x first, then y." [level=3] [ref=e110]
+                          - paragraph [ref=e111]: x first and y second
+                        - generic [ref=e112]:
+                          - button "Reset view" [ref=e113] [cursor=pointer]
+                          - button "Fit" [ref=e117] [cursor=pointer]
+                          - button "Share" [ref=e121] [cursor=pointer]
+                          - button "Move graph" [ref=e128] [cursor=pointer]
+                          - button "Toggle guides" [ref=e134] [cursor=pointer]
+                          - button "Inspector" [ref=e137] [cursor=pointer]
+                      - region [ref=e142]:
+                        - generic [ref=e143]:
+                          - generic [ref=e144]:
+                            - heading "Cartesian Graphing" [level=3] [ref=e145]
+                            - paragraph [ref=e146]: Read x first (horizontal), then y (vertical).
+                          - group "Graph view controls" [ref=e147]:
+                            - button "Zoom graph in" [ref=e148] [cursor=pointer]:
+                              - text: ＋
+                              - generic [ref=e149]: Zoom in
+                            - button "Zoom graph out" [ref=e150] [cursor=pointer]:
+                              - text: −
+                              - generic [ref=e151]: Zoom out
+                            - button "Reset graph view" [ref=e152] [cursor=pointer]:
+                              - text: ↺
+                              - generic [ref=e153]: Reset view
+                        - list "Graph legend" [ref=e154]:
+                          - listitem [ref=e155]:
+                            - generic [ref=e157]: x first, then y
+                          - listitem [ref=e158]:
+                            - generic [ref=e160]: Trace x
+                        - generic [ref=e162]:
+                          - img "Cartesian Graphing" [ref=e163]:
+                            - generic [ref=e166]:
+                              - generic [ref=e167]: "-5"
+                              - generic [ref=e168]: "0"
+                              - generic [ref=e169]: "5"
+                              - generic [ref=e170]: "-5"
+                              - generic [ref=e171]: "0"
+                              - generic [ref=e172]: "5"
+                              - generic [ref=e173]: x
+                              - generic [ref=e174]: "y"
+                            - generic [ref=e178]:
+                              - 'button "Trace (1.5, 2.5): (1.5, 2.5)" [ref=e179] [cursor=pointer]'
+                              - generic: Trace (1.5, 2.5)
+                            - generic [ref=e180]:
+                              - 'button "P(1.5, 2.5): (1.5, 2.5)" [active] [pressed] [ref=e181] [cursor=pointer]'
+                              - generic: P(1.5, 2.5)
+                          - paragraph [ref=e182]: Focus the graph and use arrow keys to pan, plus or minus to zoom, and zero to reset the view. Tab to a point to inspect its coordinates.
+                          - status [ref=e183]: "P(1.5, 2.5): (1.5, 2.5)"
+                      - generic [ref=e184]:
+                        - generic [ref=e185]:
+                          - paragraph [ref=e186]: x
+                          - paragraph [ref=e187]: "1.5"
+                        - generic [ref=e188]:
+                          - paragraph [ref=e189]: "y"
+                          - paragraph [ref=e190]: "2.5"
+                        - generic [ref=e191]:
+                          - paragraph [ref=e192]: P
+                          - paragraph [ref=e193]: (1.5, 2.5)
+                    - complementary [ref=e194]:
+                      - generic [ref=e195]:
+                        - paragraph [ref=e196]: Your point
+                        - generic [ref=e197]:
+                          - generic [ref=e198]:
+                            - generic [ref=e199]:
+                              - generic [ref=e200]: x first (horizontal)
+                              - generic [ref=e201]: "1.5"
+                            - slider "x first (horizontal)" [ref=e202]: "1.5"
+                            - generic [ref=e203]:
+                              - button "Decrease x first (horizontal)" [ref=e204] [cursor=pointer]
+                              - status [ref=e206]: "1.5"
+                              - button "Increase x first (horizontal)" [ref=e207] [cursor=pointer]
+                          - generic [ref=e209]:
+                            - generic [ref=e210]:
+                              - generic [ref=e211]: y second (vertical)
+                              - generic [ref=e212]: "2.5"
+                            - slider "y second (vertical)" [ref=e213]: "2.5"
+                            - generic [ref=e214]:
+                              - button "Decrease y second (vertical)" [ref=e215] [cursor=pointer]
+                              - status [ref=e217]: "2.5"
+                              - button "Increase y second (vertical)" [ref=e218] [cursor=pointer]
+                          - generic [ref=e220]:
+                            - generic [ref=e221]:
+                              - generic [ref=e222]: Trace x
+                              - generic [ref=e223]: "1.5"
+                            - slider "Trace x" [ref=e224]: "1.5"
+                            - generic [ref=e225]:
+                              - button "Decrease Trace x" [ref=e226] [cursor=pointer]
+                              - status [ref=e228]: "1.5"
+                              - button "Increase Trace x" [ref=e229] [cursor=pointer]
+                      - generic [ref=e231]:
+                        - paragraph [ref=e232]: Read in order
+                        - table [ref=e234]:
+                          - rowgroup [ref=e235]:
+                            - row [ref=e236]:
+                              - rowheader "P" [ref=e237]
+                              - cell "(1.5, 2.5)" [ref=e238]
+                              - cell "selected" [ref=e239]
+                            - row [ref=e240]:
+                              - rowheader "A" [ref=e241]
+                              - cell "(-3, 1)" [ref=e242]
+                              - cell "sample" [ref=e243]
+                            - row [ref=e244]:
+                              - rowheader "B" [ref=e245]
+                              - cell "(0, -2)" [ref=e246]
+                              - cell "sample" [ref=e247]
+                            - row [ref=e248]:
+                              - rowheader "C" [ref=e249]
+                              - cell "(4, -1)" [ref=e250]
+                              - cell "sample" [ref=e251]
+                  - generic [ref=e252]:
+                    - generic [ref=e253]:
+                      - paragraph [ref=e254]: Sample values
+                      - table [ref=e256]:
+                        - rowgroup [ref=e257]:
+                          - row [ref=e258]:
+                            - columnheader "x" [ref=e259]
+                            - columnheader "-3" [ref=e260]
+                            - columnheader "-2" [ref=e261]
+                            - columnheader "-1" [ref=e262]
+                            - columnheader "0" [ref=e263]
+                            - columnheader "1" [ref=e264]
+                            - columnheader "1.5" [ref=e265]
+                            - columnheader "2" [ref=e266]
+                            - columnheader "3" [ref=e267]
+                        - rowgroup [ref=e268]:
+                          - row [ref=e269]:
+                            - rowheader "Cartesian Graphing" [ref=e270]
+                            - cell "(-3, 2.5)" [ref=e271]
+                            - cell "(-2, 2.5)" [ref=e272]
+                            - cell "(-1, 2.5)" [ref=e273]
+                            - cell "(0, 2.5)" [ref=e274]
+                            - cell "(1, 2.5)" [ref=e275]
+                            - cell "(1.5, 2.5)" [ref=e276]
+                            - cell "(2, 2.5)" [ref=e277]
+                            - cell "(3, 2.5)" [ref=e278]
+                    - generic [ref=e279]:
+                      - strong [ref=e280]: Read the x-coordinate before the y-coordinate.
+                      - text: "x: 1.5 · y: 2.5 · P: (1.5, 2.5)"
+            - navigation "Adjacent lessons" [ref=e281]:
+              - link "Next Function Plotter" [ref=e282] [cursor=pointer]:
+                - /url: /lessons/graphs-and-functions/40-function-plotter
+                - generic [ref=e283]:
+                  - generic [ref=e284]: Next
+                  - generic [ref=e285]: Function Plotter
+      - contentinfo "Site footer" [ref=e288]:
+        - generic [ref=e289]:
+          - paragraph [ref=e290]: © 2026 Indian Servers Private Limited · Math Universe · www.IndianServers.com · info@IndianServers.com
+          - navigation "Footer links" [ref=e291]:
+            - link "Sitemap" [ref=e292] [cursor=pointer]:
+              - /url: /sitemap
+            - generic [ref=e293]: ·
+            - link "Docs" [ref=e294] [cursor=pointer]:
+              - /url: /documentation
+            - generic [ref=e295]: ·
+            - link "About" [ref=e296] [cursor=pointer]:
+              - /url: /about
+    - navigation "Mobile learning shortcuts" [ref=e297]:
+      - generic [ref=e298]:
+        - link "Home" [ref=e299] [cursor=pointer]:
+          - /url: /
+        - link "Workspace" [ref=e303] [cursor=pointer]:
+          - /url: /workspace
+        - link "Shapes" [ref=e306] [cursor=pointer]:
+          - /url: /shapes
+        - link "AR" [ref=e311] [cursor=pointer]:
+          - /url: /modules/ar-math-lab
+        - link "3 Learn" [ref=e317] [cursor=pointer]:
+          - /url: /learn
+          - generic [ref=e318]: "3"
+          - text: Learn
+        - link "Calc" [ref=e321] [cursor=pointer]:
+          - /url: /calculator
+    - button "Back to top" [ref=e324] [cursor=pointer]
+```

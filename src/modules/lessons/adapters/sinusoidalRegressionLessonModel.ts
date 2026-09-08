@@ -1,0 +1,3 @@
+export const sinusoidalDefault = [5.38, 7.92, 9.46, 9.02, 6.7, 3.92, 1.54, .98, 2.3, 4.26, 6.62, 8.7];
+export function sinusoidalModel(x: number, A: number, B: number, C: number, D: number) { return A * Math.sin(B * (x - C)) + D; }
+export function sinusoidalStats(values = sinusoidalDefault, A = 4.489, B = .558, C = -.191, D = 5.05) { const residuals = values.map((value, x) => value - sinusoidalModel(x, A, B, C, D)), sse = residuals.reduce((s, e) => s + e ** 2, 0), mean = values.reduce((s, v) => s + v, 0) / values.length, sst = values.reduce((s, v) => s + (v - mean) ** 2, 0); return { residuals, sse, r2: 1 - sse / sst, rmse: Math.sqrt(sse / values.length), period: 2 * Math.PI / B }; }

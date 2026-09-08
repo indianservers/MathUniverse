@@ -1,0 +1,189 @@
+{
+  "results": [
+    {
+      "width": 1880,
+      "height": 1558.78125,
+      "font": "8px",
+      "overflow": false,
+      "values": {
+        "testid": "school-mockup-0872",
+        "objectModel": "dedicated-cramer-column-replacement-engine",
+        "delta": "-3",
+        "deltaX": "-6",
+        "deltaY": "-3",
+        "case": "unique",
+        "x": "2",
+        "y": "1",
+        "hints": "false"
+      },
+      "tiny": 59,
+      "smallControls": 24,
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      }
+    },
+    {
+      "width": 1496,
+      "height": 1558.78125,
+      "font": "8px",
+      "overflow": false,
+      "values": {
+        "testid": "school-mockup-0872",
+        "objectModel": "dedicated-cramer-column-replacement-engine",
+        "delta": "-3",
+        "deltaX": "-6",
+        "deltaY": "-3",
+        "case": "unique",
+        "x": "2",
+        "y": "1",
+        "hints": "false"
+      },
+      "tiny": 59,
+      "smallControls": 24,
+      "viewport": {
+        "width": 1536,
+        "height": 864
+      }
+    },
+    {
+      "width": 1400,
+      "height": 1558.78125,
+      "font": "8px",
+      "overflow": false,
+      "values": {
+        "testid": "school-mockup-0872",
+        "objectModel": "dedicated-cramer-column-replacement-engine",
+        "delta": "-3",
+        "deltaX": "-6",
+        "deltaY": "-3",
+        "case": "unique",
+        "x": "2",
+        "y": "1",
+        "hints": "false"
+      },
+      "tiny": 59,
+      "smallControls": 24,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "width": 1326,
+      "height": 1558.78125,
+      "font": "8px",
+      "overflow": false,
+      "values": {
+        "testid": "school-mockup-0872",
+        "objectModel": "dedicated-cramer-column-replacement-engine",
+        "delta": "-3",
+        "deltaX": "-6",
+        "deltaY": "-3",
+        "case": "unique",
+        "x": "2",
+        "y": "1",
+        "hints": "false"
+      },
+      "tiny": 59,
+      "smallControls": 24,
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      }
+    },
+    {
+      "width": 984,
+      "height": 1558.78125,
+      "font": "8px",
+      "overflow": false,
+      "values": {
+        "testid": "school-mockup-0872",
+        "objectModel": "dedicated-cramer-column-replacement-engine",
+        "delta": "-3",
+        "deltaX": "-6",
+        "deltaY": "-3",
+        "case": "unique",
+        "x": "2",
+        "y": "1",
+        "hints": "false"
+      },
+      "tiny": 59,
+      "smallControls": 24,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      }
+    },
+    {
+      "width": 715,
+      "height": 1558.78125,
+      "font": "8px",
+      "overflow": false,
+      "values": {
+        "testid": "school-mockup-0872",
+        "objectModel": "dedicated-cramer-column-replacement-engine",
+        "delta": "-3",
+        "deltaX": "-6",
+        "deltaY": "-3",
+        "case": "unique",
+        "x": "2",
+        "y": "1",
+        "hints": "false"
+      },
+      "tiny": 59,
+      "smallControls": 24,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      }
+    },
+    {
+      "width": 350.625,
+      "height": 3827.28125,
+      "font": "10px",
+      "overflow": false,
+      "values": {
+        "testid": "school-mockup-0872",
+        "objectModel": "dedicated-cramer-column-replacement-engine",
+        "delta": "-3",
+        "deltaX": "-6",
+        "deltaY": "-3",
+        "case": "unique",
+        "x": "2",
+        "y": "1",
+        "hints": "false"
+      },
+      "tiny": 59,
+      "smallControls": 22,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "width": 322.40625,
+      "height": 3827.28125,
+      "font": "10px",
+      "overflow": false,
+      "values": {
+        "testid": "school-mockup-0872",
+        "objectModel": "dedicated-cramer-column-replacement-engine",
+        "delta": "-3",
+        "deltaX": "-6",
+        "deltaY": "-3",
+        "case": "unique",
+        "x": "2",
+        "y": "1",
+        "hints": "false"
+      },
+      "tiny": 59,
+      "smallControls": 22,
+      "viewport": {
+        "width": 360,
+        "height": 800
+      }
+    }
+  ],
+  "errors": []
+}

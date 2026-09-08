@@ -3,7 +3,7 @@
   top: -20px;
   left: 6px;
   width: 934px;
-  height: 1172px;
+  height: auto;
   margin-bottom: -20px;
   color: #091534;
   font-size: 12px;
@@ -55,7 +55,7 @@
   color: #006980;
 }
 .numeric-surface {
-  height: 1033px;
+  height: auto;
   padding: 19px;
   border: 1px solid #dbe4eb;
   border-radius: 18px;
@@ -111,8 +111,8 @@
 }
 .numeric-main {
   display: grid;
-  height: 789px;
-  grid-template-columns: 586px 294px;
+  height: auto;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 1fr);
   gap: 13px;
 }
 .numeric-main section {
@@ -306,7 +306,7 @@
 }
 .numeric-right {
   display: grid;
-  grid-template-rows: 425px 350px;
+  grid-template-rows: auto auto;
   gap: 14px;
 }
 .numeric-control {
@@ -661,3 +661,4 @@ body:has(.numeric-slider-page)
     margin-top: 14px;
   }
 }
+

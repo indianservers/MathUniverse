@@ -1,0 +1,578 @@
+{
+  "records": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "state": {
+        "testid": "algebra-mockup-0033",
+        "dedicatedLesson": "33",
+        "objectModel": "editable-resizable-matrix-selected-cell-row-column-determinant-trace-vector-action-geometric-transform-model",
+        "matrix": "1,2,3,4",
+        "rows": "2",
+        "columns": "2",
+        "selectedRow": "1",
+        "selectedColumn": "1",
+        "selectedValue": "4",
+        "draft": "4",
+        "determinant": "-2",
+        "trace": "5",
+        "vector": "3,7",
+        "workspace": "false",
+        "tab": "0",
+        "actions": "0"
+      },
+      "overflow": false,
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "name": "⌁ English (English)⌄",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Reset",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Share",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Workspace",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "⌘ Overview",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "▦ Matrix Editor",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "⚙ Properties",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "♧ Actions",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "∑ Transformations",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "▣ Examples",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "☰ More",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Select cell row 1 column 1",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Select cell row 1 column 2",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Select cell row 2 column 1",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Select cell row 2 column 2",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "−",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "＋",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "−",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "＋",
+          "value": ""
+        },
+        {
+          "tag": "SELECT",
+          "name": "Selected matrix cell",
+          "value": "1,1"
+        },
+        {
+          "tag": "INPUT",
+          "name": "Selected matrix cell value",
+          "value": "4",
+          "min": "",
+          "max": "",
+          "step": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Apply",
+          "value": ""
+        }
+      ],
+      "bars": [],
+      "graphs": [
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 460 250",
+          "label": "Matrix transformation of the unit square"
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "state": {
+        "testid": "algebra-mockup-0033",
+        "dedicatedLesson": "33",
+        "objectModel": "editable-resizable-matrix-selected-cell-row-column-determinant-trace-vector-action-geometric-transform-model",
+        "matrix": "1,2,3,4",
+        "rows": "2",
+        "columns": "2",
+        "selectedRow": "1",
+        "selectedColumn": "1",
+        "selectedValue": "4",
+        "draft": "4",
+        "determinant": "-2",
+        "trace": "5",
+        "vector": "3,7",
+        "workspace": "false",
+        "tab": "0",
+        "actions": "0"
+      },
+      "overflow": false,
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "name": "⌁ English (English)⌄",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Reset",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Share",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Workspace",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "⌘ Overview",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "▦ Matrix Editor",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "⚙ Properties",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "♧ Actions",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "∑ Transformations",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "▣ Examples",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "☰ More",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Select cell row 1 column 1",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Select cell row 1 column 2",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Select cell row 2 column 1",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Select cell row 2 column 2",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "−",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "＋",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "−",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "＋",
+          "value": ""
+        },
+        {
+          "tag": "SELECT",
+          "name": "Selected matrix cell",
+          "value": "1,1"
+        },
+        {
+          "tag": "INPUT",
+          "name": "Selected matrix cell value",
+          "value": "4",
+          "min": "",
+          "max": "",
+          "step": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Apply",
+          "value": ""
+        }
+      ],
+      "bars": [],
+      "graphs": [
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 460 250",
+          "label": "Matrix transformation of the unit square"
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "state": {
+        "testid": "algebra-mockup-0033",
+        "dedicatedLesson": "33",
+        "objectModel": "editable-resizable-matrix-selected-cell-row-column-determinant-trace-vector-action-geometric-transform-model",
+        "matrix": "1,2,3,4",
+        "rows": "2",
+        "columns": "2",
+        "selectedRow": "1",
+        "selectedColumn": "1",
+        "selectedValue": "4",
+        "draft": "4",
+        "determinant": "-2",
+        "trace": "5",
+        "vector": "3,7",
+        "workspace": "false",
+        "tab": "0",
+        "actions": "0"
+      },
+      "overflow": false,
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "name": "⌁ English (English)⌄",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Reset",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Share",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Workspace",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "⌘ Overview",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "▦ Matrix Editor",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "⚙ Properties",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "♧ Actions",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "∑ Transformations",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "▣ Examples",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "☰ More",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Select cell row 1 column 1",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Select cell row 1 column 2",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Select cell row 2 column 1",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Select cell row 2 column 2",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "−",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "＋",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "−",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "＋",
+          "value": ""
+        },
+        {
+          "tag": "SELECT",
+          "name": "Selected matrix cell",
+          "value": "1,1"
+        },
+        {
+          "tag": "INPUT",
+          "name": "Selected matrix cell value",
+          "value": "4",
+          "min": "",
+          "max": "",
+          "step": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Apply",
+          "value": ""
+        }
+      ],
+      "bars": [],
+      "graphs": [
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 460 250",
+          "label": "Matrix transformation of the unit square"
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

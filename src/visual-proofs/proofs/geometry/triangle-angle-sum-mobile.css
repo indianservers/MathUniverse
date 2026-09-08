@@ -1,0 +1,108 @@
+.triangle-proof-mobile {
+  --ink: #17395a;
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  grid-template-rows: 86px minmax(0, 1fr) 106px;
+  min-height: 100dvh;
+  overflow: hidden;
+  color: var(--ink);
+  background-color: #fbfaf5;
+  background-image:
+    linear-gradient(rgba(41, 112, 150, .075) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(41, 112, 150, .075) 1px, transparent 1px);
+  background-size: 22px 22px;
+  font-family: "Nunito", "Segoe UI", sans-serif;
+  touch-action: none;
+}
+
+.triangle-proof-header {
+  display: grid;
+  grid-template-columns: 54px minmax(0, 1fr) 54px;
+  align-items: center;
+  padding: 7px 14px 0;
+}
+
+.triangle-proof-header button,
+.triangle-control-button,
+.triangle-menu-close {
+  display: grid;
+  place-items: center;
+  border: 0;
+  color: var(--ink);
+  background: transparent;
+}
+
+.triangle-proof-header button { width: 48px; height: 48px; border-radius: 16px; }
+.triangle-proof-header button:active { background: rgba(23, 57, 90, .08); }
+.triangle-proof-header svg { width: 29px; height: 29px; stroke-width: 2.5; }
+.triangle-proof-header div { min-width: 0; text-align: center; }
+.triangle-proof-header h1 { margin: 0; font-size: clamp(20px, 5.8vw, 27px); font-weight: 800; letter-spacing: -.02em; line-height: 1.1; }
+.triangle-proof-header p { margin: 5px 0 0; color: #58728b; font-size: 14px; font-weight: 700; }
+
+.triangle-proof-stage { min-height: 0; display: grid; place-items: center; padding: 0 8px; }
+.triangle-proof-stage svg { display: block; width: min(100%, 520px); height: 100%; overflow: visible; }
+.triangle-outline { fill: rgba(255, 255, 255, .13); stroke: var(--ink); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+.triangle-angle-label,
+.triangle-strip-label,
+.triangle-total-label { fill: var(--ink); text-anchor: middle; dominant-baseline: middle; font-weight: 900; paint-order: stroke; stroke: #fbfaf5; stroke-width: 3px; stroke-linejoin: round; }
+.triangle-angle-label { font-size: 20px; }
+.triangle-strip-label { font-size: 15px; stroke-width: 2px; }
+.triangle-total-label { font-size: 25px; letter-spacing: .01em; }
+.triangle-drag-handle { cursor: grab; outline: none; }
+.triangle-drag-handle:active { cursor: grabbing; }
+.triangle-drag-handle:focus circle:first-child { stroke-width: 5; }
+
+.triangle-proof-controls {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr) 64px;
+  align-items: center;
+  gap: 18px;
+  width: min(100%, 520px);
+  margin: 0 auto;
+  padding: 9px 25px calc(13px + env(safe-area-inset-bottom));
+}
+
+.triangle-control-button {
+  width: 62px;
+  height: 62px;
+  border: 1px solid rgba(23, 57, 90, .08);
+  border-radius: 17px;
+  background: rgba(255, 255, 255, .92);
+  box-shadow: 0 7px 20px rgba(42, 74, 98, .13);
+}
+.triangle-control-button:active { transform: scale(.96); }
+.triangle-control-button svg { width: 29px; height: 29px; fill: var(--ink); stroke-width: 2.5; }
+.triangle-control-button:last-child svg { fill: none; }
+.triangle-progress { display: flex; align-items: center; height: 48px; }
+.triangle-progress input { width: 100%; height: 28px; margin: 0; appearance: none; background: transparent; accent-color: var(--ink); }
+.triangle-progress input::-webkit-slider-runnable-track { height: 7px; border-radius: 99px; background: linear-gradient(to right, var(--ink) 0 var(--proof-progress, 68%), #d9e2e8 var(--proof-progress, 68%) 100%); }
+.triangle-progress input::-webkit-slider-thumb { width: 25px; height: 25px; margin-top: -9px; appearance: none; border: 4px solid var(--ink); border-radius: 50%; background: #fff; box-shadow: 0 2px 7px rgba(23, 57, 90, .2); }
+
+.triangle-proof-menu {
+  position: absolute;
+  top: 70px;
+  right: 16px;
+  width: min(330px, calc(100vw - 32px));
+  padding: 22px;
+  border: 1px solid rgba(23, 57, 90, .1);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, .98);
+  box-shadow: 0 18px 50px rgba(23, 57, 90, .18);
+  touch-action: auto;
+}
+.triangle-proof-menu h2 { margin: 0 36px 8px 0; font-size: 20px; font-weight: 900; }
+.triangle-proof-menu p { margin: 0; color: #47657e; font-size: 14px; font-weight: 650; line-height: 1.55; }
+.triangle-proof-menu label { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 18px; font-size: 14px; font-weight: 850; }
+.triangle-proof-menu input { width: 22px; height: 22px; accent-color: #32bdd9; }
+.triangle-menu-close { position: absolute; top: 13px; right: 13px; width: 38px; height: 38px; border-radius: 12px; }
+
+@media (min-width: 700px) {
+  .triangle-proof-mobile { grid-template-rows: 94px minmax(0, 1fr) 112px; }
+  .triangle-proof-stage svg { max-width: 560px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .triangle-control-button { transition: none; }
+}

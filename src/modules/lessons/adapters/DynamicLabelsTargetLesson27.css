@@ -3,7 +3,7 @@
   top: -31px;
   left: 3px;
   width: 943px;
-  height: 1173px;
+  height: auto;
   margin-bottom: -31px;
   color: #0a1738;
   font-size: 11px;
@@ -55,7 +55,7 @@
   color: #00758a;
 }
 .labels-surface {
-  height: 1041px;
+  height: auto;
   padding: 14px 17px;
   border: 1px solid #dfe6ed;
   border-radius: 14px;
@@ -118,19 +118,19 @@
 }
 .labels-main {
   display: grid;
-  height: 821px;
+  height: auto;
   margin-top: 14px;
-  grid-template-columns: 614px 270px;
+  grid-template-columns: minmax(0, 1fr) 270px;
   gap: 15px;
 }
 .labels-content {
   display: grid;
-  grid-template-rows: 463px 63px 264px;
+  grid-template-rows: auto auto auto;
   gap: 13px;
 }
 .labels-graph-row {
   display: grid;
-  grid-template-columns: 445px 138px;
+  grid-template-columns: minmax(0, 1fr) 138px;
   gap: 31px;
 }
 .labels-graph {
@@ -223,7 +223,7 @@
 }
 .labels-bottom {
   display: grid;
-  grid-template-columns: 299px 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 13px;
 }
 .labels-bottom > section {
@@ -339,7 +339,7 @@
   font-size: 9px;
 }
 .labels-controls {
-  height: 821px;
+  height: auto;
   padding: 16px;
   border: 1px solid #dce4ec;
   border-radius: 12px;
@@ -554,3 +554,17 @@ body:has(.labels-page)
     margin-top: 12px;
   }
 }
+@media (max-width: 600px) {
+  .labels-graph-row, .labels-bottom { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .labels-header { height: auto; flex-wrap: wrap; gap: 12px; }
+  .labels-tabs { display: flex; overflow-x: auto; gap: 8px; }
+  .labels-tabs button { flex: 0 0 auto; min-height: 44px; padding: 8px 12px; }
+  .labels-calculation { margin-top: 0; height: auto; }
+}
+
+/* The local tabs are inside the lab surface; keep the existing journey navigation
+   available when that surface is hidden by an explanatory tab. */
+.lesson-page-shell[data-lesson-id="27"]:not([data-lesson-view="interaction"]) > .lesson-section-nav:has(+ #lesson-section-interaction > [data-dedicated-lesson="27"] > nav) {
+  display: flex;
+}
+

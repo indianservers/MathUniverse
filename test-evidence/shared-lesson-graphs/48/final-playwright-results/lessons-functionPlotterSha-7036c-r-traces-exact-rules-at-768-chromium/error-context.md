@@ -1,0 +1,289 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: lessons\functionPlotterSharedGraph.e2e.ts >> Function Plotter traces exact rules at 768
+- Location: tests\lessons\functionPlotterSharedGraph.e2e.ts:2:63
+
+# Error details
+
+```
+Test timeout of 90000ms exceeded.
+```
+
+```
+Tearing down "context" exceeded the test timeout of 90000ms.
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e2]:
+  - progressbar "Loading page"
+  - generic [ref=e3]:
+    - link "Skip to content" [ref=e4] [cursor=pointer]:
+      - /url: "#main-content"
+    - generic [ref=e6]:
+      - banner [ref=e7]:
+        - generic [ref=e8]:
+          - generic [ref=e9]:
+            - paragraph [ref=e10]: Interactive Math Lab
+            - paragraph [ref=e11]: Visual proofs, simulations, graphing, and practice
+          - generic [ref=e12]:
+            - button "Ctrl+K" [ref=e13] [cursor=pointer]
+            - generic [ref=e18]:
+              - generic [ref=e19]: "0"
+              - generic [ref=e22]: 0 XP
+            - button "Teacher mode" [ref=e26] [cursor=pointer]
+            - button "Keyboard shortcuts" [ref=e29] [cursor=pointer]: Keyboard shortcuts (?)
+            - button "Accessibility settings" [ref=e33] [cursor=pointer]
+            - button "Toggle theme" [ref=e37] [cursor=pointer]: "Theme: Light"
+      - main [ref=e40]:
+        - generic [ref=e41]:
+          - generic [ref=e42]:
+            - button "Go back" [ref=e43] [cursor=pointer]
+            - navigation "Breadcrumb" [ref=e46]:
+              - link "Home" [ref=e47] [cursor=pointer]:
+                - /url: /
+              - generic [ref=e49]:
+                - generic [ref=e50]: ">"
+                - link "Lessons" [ref=e51] [cursor=pointer]:
+                  - /url: /lessons
+              - generic [ref=e53]:
+                - generic [ref=e54]: ">"
+                - link "Graphs And Functions" [ref=e55] [cursor=pointer]:
+                  - /url: /lessons/graphs-and-functions
+              - generic [ref=e57]:
+                - generic [ref=e58]: ">"
+                - generic [ref=e59]: 40 Function Plotter
+          - generic [ref=e60]:
+            - generic [ref=e63]:
+              - heading "Function Plotter" [level=1] [ref=e65]
+              - generic [ref=e66]:
+                - generic "Load a lesson language pack on demand" [ref=e67]:
+                  - combobox "Lesson language" [ref=e71]:
+                    - option "English (English)" [selected]
+                    - option "हिन्दी (Hindi)"
+                    - option "বাংলা (Bengali)"
+                    - option "తెలుగు (Telugu)"
+                    - option "தமிழ் (Tamil)"
+                    - option "मराठी (Marathi)"
+                    - option "ગુજરાતી (Gujarati)"
+                    - option "ಕನ್ನಡ (Kannada)"
+                    - option "മലയാളം (Malayalam)"
+                    - option "ਪੰਜਾਬੀ (Punjabi)"
+                    - option "ଓଡ଼ିଆ (Odia)"
+                    - option "অসমীয়া (Assamese)"
+                    - option "اردو (Urdu)"
+                - button "Reset" [ref=e72] [cursor=pointer]
+                - button "Share" [ref=e76] [cursor=pointer]
+                - link "Workspace" [ref=e83] [cursor=pointer]:
+                  - /url: /workspace/graph
+            - tablist "Lesson content tabs" [ref=e88]:
+              - tab "Interaction + visualization" [selected] [ref=e89] [cursor=pointer]
+              - tab "Learn" [ref=e93] [cursor=pointer]
+              - tab "Examples" [ref=e96] [cursor=pointer]
+              - tab "Formulas" [ref=e99] [cursor=pointer]
+              - tab "Practice" [ref=e102] [cursor=pointer]
+            - main [ref=e106]:
+              - tabpanel "Lesson interaction and visualization" [ref=e107]:
+                - generic [ref=e108]:
+                  - generic [ref=e109]:
+                    - complementary [ref=e110]:
+                      - paragraph [ref=e111]: Intersections
+                      - heading "Trace x = -2.5" [level=3] [ref=e112]
+                      - generic [ref=e113]:
+                        - generic [ref=e114]:
+                          - generic [ref=e115]: "1"
+                          - generic [ref=e116]: "f & g: (-1.378, -0.102); (2.178, 2.742)"
+                        - generic [ref=e117]:
+                          - generic [ref=e118]: "2"
+                          - generic [ref=e119]: "f & h: (-1.062, -0.873); (1.728, 0.988)"
+                        - generic [ref=e120]:
+                          - generic [ref=e121]: "3"
+                          - generic [ref=e122]: "g & h: (-2.235, -0.788)"
+                      - generic [ref=e123]: Move the trace to see function values update together.
+                    - main [ref=e124]:
+                      - generic [ref=e125]:
+                        - generic [ref=e126]:
+                          - heading "f(x)=x^2-2, g(x)=0.8x+1, h(x)=sin(x)" [level=3] [ref=e127]
+                          - paragraph [ref=e128]: Outputs update together
+                        - generic [ref=e129]:
+                          - button "Reset view" [ref=e130] [cursor=pointer]
+                          - button "Fit" [ref=e134] [cursor=pointer]
+                          - button "Share" [ref=e138] [cursor=pointer]
+                          - button "Move graph" [ref=e145] [cursor=pointer]
+                          - button "Toggle guides" [ref=e151] [cursor=pointer]
+                          - button "Inspector" [ref=e154] [cursor=pointer]
+                      - region [ref=e159]:
+                        - generic [ref=e160]:
+                          - generic [ref=e161]:
+                            - heading "Function Plotter" [level=3] [ref=e162]
+                            - paragraph [ref=e163]: Compare each function at the same x input.
+                          - group "Graph view controls" [ref=e164]:
+                            - button "Zoom graph in" [ref=e165] [cursor=pointer]:
+                              - text: ＋
+                              - generic [ref=e166]: Zoom in
+                            - button "Zoom graph out" [ref=e167] [cursor=pointer]:
+                              - text: −
+                              - generic [ref=e168]: Zoom out
+                            - button "Reset graph view" [ref=e169] [cursor=pointer]:
+                              - text: ↺
+                              - generic [ref=e170]: Reset view
+                        - list "Graph legend" [ref=e171]:
+                          - listitem [ref=e172]:
+                            - generic [ref=e174]: f(x) = x² − 2
+                          - listitem [ref=e175]:
+                            - generic [ref=e177]: g(x) = 0.8x + 1
+                          - listitem [ref=e178]:
+                            - generic [ref=e180]: h(x) = sin(x)
+                          - listitem [ref=e181]:
+                            - generic [ref=e183]: Trace x = -2.5
+                        - generic [ref=e185]:
+                          - img "Function Plotter" [ref=e186]:
+                            - generic [ref=e189]:
+                              - generic [ref=e190]: "-6"
+                              - generic [ref=e191]: "-4"
+                              - generic [ref=e192]: "-2"
+                              - generic [ref=e193]: "0"
+                              - generic [ref=e194]: "2"
+                              - generic [ref=e195]: "4"
+                              - generic [ref=e196]: "6"
+                              - generic [ref=e197]: "-5"
+                              - generic [ref=e198]: "0"
+                              - generic [ref=e199]: "5"
+                              - generic [ref=e200]: x
+                              - generic [ref=e201]: "y"
+                            - generic [ref=e209]:
+                              - 'button "f(-2.5) = 4.250: (-2.5, 4.25)" [ref=e210] [cursor=pointer]'
+                              - generic: f(-2.5) = 4.250
+                            - generic [ref=e211]:
+                              - 'button "g(-2.5) = -1.000: (-2.5, -1)" [ref=e212] [cursor=pointer]'
+                              - generic: g(-2.5) = -1.000
+                            - generic [ref=e213]:
+                              - 'button "h(-2.5) = -0.598: (-2.5, -0.5984721441039565)" [ref=e214] [cursor=pointer]'
+                              - generic: h(-2.5) = -0.598
+                          - paragraph [ref=e215]: Focus the graph and use arrow keys to pan, plus or minus to zoom, and zero to reset the view. Tab to a point to inspect its coordinates.
+                      - generic [ref=e216]:
+                        - generic [ref=e217]:
+                          - paragraph [ref=e218]: f(-2.5)
+                          - paragraph [ref=e219]: "4.250"
+                        - generic [ref=e220]:
+                          - paragraph [ref=e221]: g(-2.5)
+                          - paragraph [ref=e222]: "-1.000"
+                        - generic [ref=e223]:
+                          - paragraph [ref=e224]: h(-2.5)
+                          - paragraph [ref=e225]: "-0.598"
+                    - complementary [ref=e226]:
+                      - generic [ref=e227]:
+                        - paragraph [ref=e228]: Functions
+                        - generic [ref=e229]:
+                          - generic [ref=e230] [cursor=pointer]:
+                            - checkbox "Show f(x)" [checked] [ref=e231]
+                            - generic [ref=e232]:
+                              - strong [ref=e233]: Show f(x)
+                              - text: x^2 - 2
+                          - generic [ref=e234] [cursor=pointer]:
+                            - checkbox "Show g(x)" [checked] [ref=e235]
+                            - generic [ref=e236]:
+                              - strong [ref=e237]: Show g(x)
+                              - text: 0.8x + 1
+                          - generic [ref=e238]:
+                            - generic [ref=e239]:
+                              - generic [ref=e240]: Trace x
+                              - generic [ref=e241]: "-2.5"
+                            - slider "Trace x" [active] [ref=e242]: "-2.5"
+                            - generic [ref=e243]:
+                              - button "Decrease Trace x" [ref=e244] [cursor=pointer]
+                              - status [ref=e246]: "-2.5"
+                              - button "Increase Trace x" [ref=e247] [cursor=pointer]
+                      - generic [ref=e249]:
+                        - paragraph [ref=e250]: Outputs at trace
+                        - table [ref=e252]:
+                          - rowgroup [ref=e253]:
+                            - row [ref=e254]:
+                              - rowheader "f" [ref=e255]
+                              - cell "x^2 - 2" [ref=e256]
+                              - cell "visible" [ref=e257]
+                            - row [ref=e258]:
+                              - rowheader "g" [ref=e259]
+                              - cell "0.8x + 1" [ref=e260]
+                              - cell "visible" [ref=e261]
+                            - row [ref=e262]:
+                              - rowheader "h" [ref=e263]
+                              - cell "sin(x)" [ref=e264]
+                              - cell "visible" [ref=e265]
+                  - generic [ref=e266]:
+                    - generic [ref=e267]:
+                      - paragraph [ref=e268]: Sample values
+                      - table [ref=e270]:
+                        - rowgroup [ref=e271]:
+                          - row [ref=e272]:
+                            - columnheader "x" [ref=e273]
+                            - columnheader "-3" [ref=e274]
+                            - columnheader "-2" [ref=e275]
+                            - columnheader "-1" [ref=e276]
+                            - columnheader "0" [ref=e277]
+                            - columnheader "1" [ref=e278]
+                            - columnheader "1.5" [ref=e279]
+                            - columnheader "2" [ref=e280]
+                            - columnheader "3" [ref=e281]
+                        - rowgroup [ref=e282]:
+                          - row [ref=e283]:
+                            - rowheader "Function Plotter" [ref=e284]
+                            - cell "7.000" [ref=e285]
+                            - cell "2.000" [ref=e286]
+                            - cell "-1.000" [ref=e287]
+                            - cell "-2.000" [ref=e288]
+                            - cell "-1.000" [ref=e289]
+                            - cell "0.250" [ref=e290]
+                            - cell "2.000" [ref=e291]
+                            - cell "7.000" [ref=e292]
+                    - generic [ref=e293]:
+                      - strong [ref=e294]: Do not compare curves without checking the same x input.
+                      - text: f(-2.5) = 4.250 · g(-2.5) = -1.000 · h(-2.5) = -0.598
+            - navigation "Adjacent lessons" [ref=e295]:
+              - link "Previous Cartesian Graphing" [ref=e296] [cursor=pointer]:
+                - /url: /lessons/graphs-and-functions/39-cartesian-graphing
+                - generic [ref=e299]:
+                  - generic [ref=e300]: Previous
+                  - generic [ref=e301]: Cartesian Graphing
+              - link "Next Equation Grapher" [ref=e302] [cursor=pointer]:
+                - /url: /lessons/graphs-and-functions/41-equation-grapher
+                - generic [ref=e303]:
+                  - generic [ref=e304]: Next
+                  - generic [ref=e305]: Equation Grapher
+      - contentinfo "Site footer" [ref=e308]:
+        - generic [ref=e309]:
+          - paragraph [ref=e310]: © 2026 Indian Servers Private Limited · Math Universe · www.IndianServers.com · info@IndianServers.com
+          - navigation "Footer links" [ref=e311]:
+            - link "Sitemap" [ref=e312] [cursor=pointer]:
+              - /url: /sitemap
+            - generic [ref=e313]: ·
+            - link "Docs" [ref=e314] [cursor=pointer]:
+              - /url: /documentation
+            - generic [ref=e315]: ·
+            - link "About" [ref=e316] [cursor=pointer]:
+              - /url: /about
+    - navigation "Mobile learning shortcuts" [ref=e317]:
+      - generic [ref=e318]:
+        - link "Home" [ref=e319] [cursor=pointer]:
+          - /url: /
+        - link "Workspace" [ref=e323] [cursor=pointer]:
+          - /url: /workspace
+        - link "Shapes" [ref=e326] [cursor=pointer]:
+          - /url: /shapes
+        - link "AR" [ref=e331] [cursor=pointer]:
+          - /url: /modules/ar-math-lab
+        - link "3 Learn" [ref=e337] [cursor=pointer]:
+          - /url: /learn
+          - generic [ref=e338]: "3"
+          - text: Learn
+        - link "Calc" [ref=e341] [cursor=pointer]:
+          - /url: /calculator
+    - button "Back to top" [ref=e344] [cursor=pointer]
+```

@@ -13,6 +13,8 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../types";
+import { LessonGraphWorkspace } from "../graphs/LessonGraphWorkspace";
+import { LessonDependencyGraph } from "../graphs/LessonDependencyGraph";
 import "./VariableExplorerTargetLesson20.css";
 
 const TABS = ["Interact", "Explore", "Explain", "Examples", "Formulas", "Know more"];
@@ -63,7 +65,14 @@ export default function VariableExplorerTargetLesson20({ resetToken, onInteracti
           <div className="variable-stage rule"><i>2</i><span><small>RULE</small><b>{symbolic?"y = 2x + 3":`y = 2(${x}) + 3`}</b></span></div><em>↓</em>
           <div className="variable-stage substitute"><i>3</i><span><small>SUBSTITUTE</small><b>y = 2(<strong>{x}</strong>) + 3</b></span></div><em>↓</em>
           <div className="variable-stage output"><i>4</i><span><small>OUTPUT</small><b>y = {y}</b></span></div>
-          <section className="variable-graph"><h3>Dependency Graph <small>(update order)</small></h3><div><b>x</b><span>→</span><b>2x</b><span>→</span><b>+3</b><span>→</span><b>y</b></div><p>When x changes, updates flow left to right.</p></section>
+          <LessonGraphWorkspace title="Dependency Graph (update order)" observation="When x changes, updates flow left to right.">
+            <LessonDependencyGraph label="Dependency update order" nodes={[
+              {id:"x",label:"x",color:"#268ff1"},
+              {id:"multiply",label:"2x",color:"#23b56e"},
+              {id:"add",label:"+3",color:"#8d4ce4"},
+              {id:"y",label:"y",color:"#eaa711"},
+            ]} />
+          </LessonGraphWorkspace>
         </section>
         <aside className="variable-side">
           <section className="variable-control"><header><h2>Active variable</h2><b>x</b></header><div><label>Adjust x <output>x = {x}</output></label><input aria-label="Active variable x drag control" type="range" min="-5" max="5" step="1" value={x} onChange={event=>setVariable(Number(event.target.value))}/><span><i>-5</i><i>0</i><i>5</i></span><nav>{PRESETS.map(value=><button type="button" className={x===value?"active":""} key={value} onClick={()=>setVariable(value)}>{value}</button>)}</nav></div></section>

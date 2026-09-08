@@ -12,16 +12,16 @@ type SectionCardProps = {
   compact?: boolean;
   headerAction?: ReactNode;
   tone?: "default" | "spotlight";
-  allowFullscreen?: boolean;
+  allowFullscreen?: boolean | "auto";
   visualizationTools?: boolean | "auto";
 };
 
-export default function SectionCard({ id, title, description, children, className, compact = false, headerAction, tone = "default", allowFullscreen = false, visualizationTools = "auto" }: SectionCardProps) {
+export default function SectionCard({ id, title, description, children, className, compact = false, headerAction, tone = "default", allowFullscreen = "auto", visualizationTools = "auto" }: SectionCardProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const [fullscreen, setFullscreen] = useState(false);
   const [fullscreenOffset, setFullscreenOffset] = useState({ x: 0, y: 0 });
   const spotlight = tone === "spotlight";
-  const fullscreenEnabled = allowFullscreen || isFullscreenCandidate(title, description);
+  const fullscreenEnabled = allowFullscreen === true || (allowFullscreen === "auto" && isFullscreenCandidate(title, description));
   const visualizationToolsEnabled = Boolean(title) && (visualizationTools === true || (visualizationTools === "auto" && isVisualizationToolCandidate(title, description)));
 
   useEffect(() => {

@@ -3,20 +3,24 @@ import "nerdamer/Algebra";
 import { Check, CircleAlert, RefreshCw, Sparkles, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../types";
+import { LessonCartesianGraph } from "../graphs/LessonCartesianGraph";
+import { LessonDependencyTree } from "../graphs/LessonDependencyTree";
+import { LessonGraphWorkspace } from "../graphs/LessonGraphWorkspace";
+import { lessonGraphZeroCrossingConverges } from "../graphs/lessonGraphGeometry";
 import "./ObjectRedefinitionTargetLesson29.css";
 
 type Point = { x: number; y: number };
 const engine = nerdamer as unknown as (
   expression: string,
   substitutions?: Record<string, string>,
-) => { evaluate: () => { toString: () => string } };
+) => { evaluate: () => { text: () => string; toString: () => string } };
 
 function calculate(expression: string, x: number) {
   try {
     const result = Number(
       engine(expression, { x: String(x) })
         .evaluate()
-        .toString(),
+        .text(),
     );
     return Number.isFinite(result) ? result : NaN;
   } catch {
@@ -215,6 +219,7 @@ export default function ObjectRedefinitionTargetLesson29({
             </section>
             <section className="graph-comparison">
               <RuleGraph
+                key={`before-${resetToken}`}
                 kind="before"
                 title="BEFORE (Original)"
                 name={name || "f"}
@@ -225,6 +230,7 @@ export default function ObjectRedefinitionTargetLesson29({
               />
               <div className="comparison-arrow">→</div>
               <RuleGraph
+                key={`after-${resetToken}`}
                 kind="after"
                 title="AFTER (Redefined)"
                 name={name || "f"}
@@ -412,106 +418,20 @@ export default function ObjectRedefinitionTargetLesson29({
   );
 }
 
-function RuleGraph({
-  kind,
-  title,
-  name,
-  rule,
-  samples,
-  pointA,
-  pointB,
-}: {
-  kind: "before" | "after";
-  title: string;
-  name: string;
-  rule: string;
-  samples: Point[];
-  pointA: number;
-  pointB: number;
-}) {
-  const map = (point: Point) => ({
-    x: 145 + point.x * 31,
-    y: 132 - point.y * 27,
-  });
-  const path = samples
-    .map((point, index) => {
-      const mapped = map(point);
-      return `${index ? "L" : "M"}${mapped.x.toFixed(1)},${mapped.y.toFixed(1)}`;
-    })
-    .join(" ");
-  return (
-    <section className={`rule-graph ${kind}`}>
-      <header>
-        <b>{title}</b>
-        <span>
-          {kind === "before" ? "Old" : "New"}: {name}(x) ={" "}
-          <PrettyRule expression={rule} />
-        </span>
-      </header>
-      <p>
-        {name}(x) = <PrettyRule expression={rule} />
-      </p>
-      <svg
-        viewBox="0 0 290 230"
-        role="img"
-        aria-label={`${title} graph of ${name}`}
-      >
-        <defs>
-          <pattern
-            id={`rule-grid-${kind}`}
-            width="31"
-            height="27"
-            patternUnits="userSpaceOnUse"
-          >
-            <path
-              d="M31 0H0V27"
-              fill="none"
-              stroke="#e1e7ed"
-              strokeDasharray="4 3"
-            />
-          </pattern>
-        </defs>
-        <rect width="290" height="230" fill={`url(#rule-grid-${kind})`} />
-        <line className="axis" x1="5" y1="132" x2="285" y2="132" />
-        <line className="axis" x1="145" y1="4" x2="145" y2="226" />
-        <path className="plot" d={path} />
-        {[
-          [2, pointA, "A"],
-          [0, pointB, "B"],
-        ].map(([x, y, label]) => {
-          const point = map({ x: Number(x), y: Number(y) });
-          return (
-            <g key={label}>
-              <line
-                className="guide"
-                x1={point.x}
-                y1={point.y}
-                x2={point.x}
-                y2="132"
-              />
-              <circle cx={point.x} cy={point.y} r="4" />
-              <text x={point.x + 9} y={point.y + 4}>
-                {label}({x}, {format(Number(y))})
-              </text>
-            </g>
-          );
-        })}
-      </svg>
-    </section>
-  );
-}
 
-function Tree({ name, tone }: { name: string; tone: "old" | "new" }) {
-  return (
-    <section className={`tree ${tone}`}>
-      <b>{name}</b>
-      <small>Primary object</small>
-      <i></i>
-      <div>
-        {["A = f(2)", "B = f(0)", "Value table", "Graph of f"].map((label) => (
-          <span key={label}>{label}</span>
-        ))}
-      </div>
-    </section>
-  );
+const RULE_VIEW={xMin:-145/31,xMax:145/31,yMin:(132-230)/27,yMax:132/27};
+function RuleGraph({kind,title,name,rule,samples,pointA,pointB}:{kind:'before'|'after';title:string;name:string;rule:string;samples:Point[];pointA:number;pointB:number}) {
+  const [view,setView]=useState(RULE_VIEW),color=kind==='before'?'#0875ef':'#9149dc';
+  const points=useMemo(()=>samples.flatMap((point,index)=>{
+    const previous=samples[index-1];
+    const gap=previous&&(point.x-previous.x>.100001||(previous.y*point.y<0&&!lessonGraphZeroCrossingConverges(x=>calculate(rule,x),previous,point)));
+    return gap?[null,point]:[point];
+  }),[samples,rule]);
+  const annotations=[{id:'A',x:2,y:pointA,label:`A(2, ${format(pointA)})`,color},{id:'B',x:0,y:pointB,label:`B(0, ${format(pointB)})`,color}].filter(p=>Number.isFinite(p.y));
+  return <div className={`shared-rule-graph ${kind}`}><LessonCartesianGraph title={title} description={`${name}(x) = ${rule}`} view={view} onViewChange={setView} onResetView={()=>setView(RULE_VIEW)}
+    series={[{id:'function',label:`${name}(x) = ${rule}`,color,points},...annotations.map(p=>({id:`guide-${p.id}`,label:`${p.id} projection`,color,dashPattern:'5 4',points:[{x:p.x,y:0},{x:p.x,y:p.y}]}))]} annotations={annotations}/></div>;
+}
+function Tree({name,tone}:{name:string;tone:'old'|'new'}) {
+  const color=tone==='old'?'#0875ef':'#9149dc';
+  return <LessonGraphWorkspace title={`${tone==='old'?'Before':'After'} dependencies`} description="Primary object"><LessonDependencyTree label={`${tone} dependencies`} levels={[[{id:'primary',label:name,color}],['A = f(2)','B = f(0)','Value table','Graph of f'].map((label,index)=>({id:`dependent-${index}`,label,color}))]}/></LessonGraphWorkspace>;
 }

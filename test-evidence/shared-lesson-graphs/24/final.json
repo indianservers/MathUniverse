@@ -1,0 +1,440 @@
+{
+  "records": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "state": {
+        "testid": "algebra-mockup-0024",
+        "dedicatedLesson": "24",
+        "objectModel": "timed-six-frame-affine-parameter-trace-playback-speed-loop-seek-output-model",
+        "frame": "3",
+        "a": "1.5",
+        "output": "4",
+        "playing": "true",
+        "speed": "1x",
+        "loop": "true",
+        "actions": "0"
+      },
+      "overflow": false,
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "name": "Zoom graph in",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Zoom graph out",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Reset graph view",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Seek frame 0",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Seek frame 1",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Seek frame 2",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Seek frame 3",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Seek frame 4",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Seek frame 5",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Pause",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Step back",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Step forward",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Loop",
+          "value": ""
+        },
+        {
+          "tag": "SELECT",
+          "name": "Animation speed",
+          "value": "1x"
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Loop animation",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "00.0y = 0.0x + 11",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "10.5y = 0.5x + 12",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "21.0y = 1.0x + 13",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "31.5y = 1.5x + 14",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "42.0y = 2.0x + 15",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "52.0y = 2.0x + 15",
+          "value": ""
+        }
+      ],
+      "bars": [],
+      "graphs": [
+        {
+          "viewBox": "0 0 771.90625 480",
+          "label": "y = ax + 1"
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "state": {
+        "testid": "algebra-mockup-0024",
+        "dedicatedLesson": "24",
+        "objectModel": "timed-six-frame-affine-parameter-trace-playback-speed-loop-seek-output-model",
+        "frame": "3",
+        "a": "1.5",
+        "output": "4",
+        "playing": "true",
+        "speed": "1x",
+        "loop": "true",
+        "actions": "0"
+      },
+      "overflow": false,
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "name": "Zoom graph in",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Zoom graph out",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Reset graph view",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Seek frame 0",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Seek frame 1",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Seek frame 2",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Seek frame 3",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Seek frame 4",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Seek frame 5",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Pause",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Step back",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Step forward",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Loop",
+          "value": ""
+        },
+        {
+          "tag": "SELECT",
+          "name": "Animation speed",
+          "value": "1x"
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Loop animation",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "00.0y = 0.0x + 11",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "10.5y = 0.5x + 12",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "21.0y = 1.0x + 13",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "31.5y = 1.5x + 14",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "42.0y = 2.0x + 15",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "52.0y = 2.0x + 15",
+          "value": ""
+        }
+      ],
+      "bars": [],
+      "graphs": [
+        {
+          "viewBox": "0 0 684 480",
+          "label": "y = ax + 1"
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "state": {
+        "testid": "algebra-mockup-0024",
+        "dedicatedLesson": "24",
+        "objectModel": "timed-six-frame-affine-parameter-trace-playback-speed-loop-seek-output-model",
+        "frame": "3",
+        "a": "1.5",
+        "output": "4",
+        "playing": "true",
+        "speed": "1x",
+        "loop": "true",
+        "actions": "0"
+      },
+      "overflow": false,
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "name": "Zoom graph in",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Zoom graph out",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Reset graph view",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Seek frame 0",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Seek frame 1",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Seek frame 2",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Seek frame 3",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Seek frame 4",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Seek frame 5",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Pause",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Step back",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Step forward",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Loop",
+          "value": ""
+        },
+        {
+          "tag": "SELECT",
+          "name": "Animation speed",
+          "value": "1x"
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Loop animation",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "00.0y = 0.0x + 11",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "10.5y = 0.5x + 12",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "21.0y = 1.0x + 13",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "31.5y = 1.5x + 14",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "42.0y = 2.0x + 15",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "52.0y = 2.0x + 15",
+          "value": ""
+        }
+      ],
+      "bars": [],
+      "graphs": [
+        {
+          "viewBox": "0 0 322.625 282.296875",
+          "label": "y = ax + 1"
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

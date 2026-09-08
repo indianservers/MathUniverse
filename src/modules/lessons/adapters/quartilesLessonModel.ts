@@ -1,0 +1,4 @@
+export const quartilesDefault = [2, 3, 4, 4, 5, 6, 7, 8, 10];
+export function ordered(values: number[]) { return [...values].sort((a, b) => a - b); }
+export function quartiles(values: number[]) { const data = ordered(values); if (!data.length) return null; const middle = Math.floor(data.length / 2); const median = data.length % 2 ? data[middle] : (data[middle - 1] + data[middle]) / 2; const lower = data.slice(0, middle); const upper = data.slice(data.length % 2 ? middle + 1 : middle); const med = (set: number[]) => set.length % 2 ? set[Math.floor(set.length / 2)] : (set[set.length / 2 - 1] + set[set.length / 2]) / 2; const q1 = med(lower); const q3 = med(upper); return { min: data[0], q1, median, q3, max: data[data.length - 1], iqr: q3 - q1, lowerFence: q1 - 1.5 * (q3 - q1), upperFence: q3 + 1.5 * (q3 - q1) }; }
+export function iqrAnswer(values: number[], answer: string) { const result = quartiles(values); return result !== null && Number(answer) === result.iqr; }

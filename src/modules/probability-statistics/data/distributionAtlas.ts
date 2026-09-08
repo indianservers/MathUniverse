@@ -334,7 +334,7 @@ function combination(n: number, k: number) {
   return value;
 }
 
-function gamma(z: number): number {
+export function gamma(z: number): number {
   const coefficients = [676.5203681218851, -1259.1392167224028, 771.3234287776531, -176.6150291621406, 12.507343278686905, -0.13857109526572012, 9.984369578019572e-6, 1.5056327351493116e-7];
   if (z < 0.5) return Math.PI / (Math.sin(Math.PI * z) * gamma(1 - z));
   let x = 0.9999999999998099;

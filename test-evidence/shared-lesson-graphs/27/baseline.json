@@ -1,0 +1,539 @@
+{
+  "records": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "state": {
+        "testid": "algebra-mockup-0027",
+        "dedicatedLesson": "27",
+        "objectModel": "draggable-point-token-template-coordinate-distance-projection-live-label-model",
+        "x": "3",
+        "y": "2",
+        "distance": "3.61",
+        "template": "0",
+        "coordinates": "true",
+        "showDistance": "true",
+        "projections": "true",
+        "view": "0",
+        "actions": "0"
+      },
+      "overflow": false,
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "name": "◉Interaction",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "▣Explain",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "♧Examples",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "∑Formulas",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "✣Know more",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Share",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Reset",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "x-coordinate value",
+          "value": "3",
+          "min": "-10",
+          "max": "10",
+          "step": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Decrease x",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Increase x",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "x-coordinate drag control",
+          "value": "3",
+          "min": "-10",
+          "max": "10",
+          "step": "1"
+        },
+        {
+          "tag": "INPUT",
+          "name": "y-coordinate value",
+          "value": "2",
+          "min": "-10",
+          "max": "10",
+          "step": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Decrease y",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Increase y",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "y-coordinate drag control",
+          "value": "2",
+          "min": "-10",
+          "max": "10",
+          "step": "1"
+        },
+        {
+          "tag": "BUTTON",
+          "name": "P = ({x}, {y}), distance = {d}",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "P = ({x}, {y}) | d = {d}",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "({x}, {y}) -> distance = {d}",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Sitemap",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Docs",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "About",
+          "value": ""
+        }
+      ],
+      "bars": [],
+      "graphs": [
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 445 463",
+          "label": "Draggable point P with dynamic label"
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "state": {
+        "testid": "algebra-mockup-0027",
+        "dedicatedLesson": "27",
+        "objectModel": "draggable-point-token-template-coordinate-distance-projection-live-label-model",
+        "x": "3",
+        "y": "2",
+        "distance": "3.61",
+        "template": "0",
+        "coordinates": "true",
+        "showDistance": "true",
+        "projections": "true",
+        "view": "0",
+        "actions": "0"
+      },
+      "overflow": false,
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "name": "◉Interaction",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "▣Explain",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "♧Examples",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "∑Formulas",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "✣Know more",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Share",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Reset",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "x-coordinate value",
+          "value": "3",
+          "min": "-10",
+          "max": "10",
+          "step": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Decrease x",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Increase x",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "x-coordinate drag control",
+          "value": "3",
+          "min": "-10",
+          "max": "10",
+          "step": "1"
+        },
+        {
+          "tag": "INPUT",
+          "name": "y-coordinate value",
+          "value": "2",
+          "min": "-10",
+          "max": "10",
+          "step": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Decrease y",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Increase y",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "y-coordinate drag control",
+          "value": "2",
+          "min": "-10",
+          "max": "10",
+          "step": "1"
+        },
+        {
+          "tag": "BUTTON",
+          "name": "P = ({x}, {y}), distance = {d}",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "P = ({x}, {y}) | d = {d}",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "({x}, {y}) -> distance = {d}",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Sitemap",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Docs",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "About",
+          "value": ""
+        }
+      ],
+      "bars": [],
+      "graphs": [
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 445 463",
+          "label": "Draggable point P with dynamic label"
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "state": {
+        "testid": "algebra-mockup-0027",
+        "dedicatedLesson": "27",
+        "objectModel": "draggable-point-token-template-coordinate-distance-projection-live-label-model",
+        "x": "3",
+        "y": "2",
+        "distance": "3.61",
+        "template": "0",
+        "coordinates": "true",
+        "showDistance": "true",
+        "projections": "true",
+        "view": "0",
+        "actions": "0"
+      },
+      "overflow": false,
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "name": "◉Interaction",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "▣Explain",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "♧Examples",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "∑Formulas",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "✣Know more",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Share",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Reset",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "x-coordinate value",
+          "value": "3",
+          "min": "-10",
+          "max": "10",
+          "step": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Decrease x",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Increase x",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "x-coordinate drag control",
+          "value": "3",
+          "min": "-10",
+          "max": "10",
+          "step": "1"
+        },
+        {
+          "tag": "INPUT",
+          "name": "y-coordinate value",
+          "value": "2",
+          "min": "-10",
+          "max": "10",
+          "step": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Decrease y",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Increase y",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "y-coordinate drag control",
+          "value": "2",
+          "min": "-10",
+          "max": "10",
+          "step": "1"
+        },
+        {
+          "tag": "BUTTON",
+          "name": "P = ({x}, {y}), distance = {d}",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "P = ({x}, {y}) | d = {d}",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "({x}, {y}) -> distance = {d}",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Sitemap",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Docs",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "About",
+          "value": ""
+        }
+      ],
+      "bars": [],
+      "graphs": [
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 445 463",
+          "label": "Draggable point P with dynamic label"
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

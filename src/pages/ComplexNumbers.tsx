@@ -12,6 +12,7 @@ import ComplexPlaneVisualizer from "../visualizations/complex/ComplexPlaneVisual
 import EulerFormula2D from "../visualizations/complex/EulerFormula2D";
 import EulerFormula3D from "../visualizations/complex/EulerFormula3D";
 import EulerIdentityAnimation from "../visualizations/complex/EulerIdentityAnimation";
+import ComplexEnhancementWorkbench from "../studios/complex/ComplexEnhancementWorkbench";
 
 const complexApplications = [
   { title: "Signal processing", visual: "signal-processing", description: "Complex exponentials split signals into amplitude and phase." },
@@ -22,7 +23,7 @@ const complexApplications = [
   { title: "Neural frequency analysis", visual: "frequency-analysis", description: "Spectral features reveal repeating patterns in learned signals." },
 ] as const;
 
-type ComplexTabId = "plane" | "multiply" | "euler-2d" | "euler-3d" | "identity" | "applications";
+type ComplexTabId = "plane" | "multiply" | "euler-2d" | "euler-3d" | "identity" | "applications" | "advanced";
 
 export default function ComplexNumbers() {
   const topic = topics.find((item) => item.id === "complex")!;
@@ -73,6 +74,7 @@ export default function ComplexNumbers() {
       focus: "real use",
       content: <ComplexApplications />,
     },
+    { id: "advanced" as const, label: "Advanced Workbench", summary: "Use 25 connected complex arithmetic, analysis, dynamics, and application tools.", focus: "complex analysis", content: <ComplexEnhancementWorkbench /> },
   ], []);
   const currentTab = tabs.find((tab) => tab.id === activeTab) ?? tabs[0];
 
@@ -155,7 +157,7 @@ function ComplexApplications() {
 function readComplexTabFromUrl(): ComplexTabId {
   if (typeof window === "undefined") return "plane";
   const tab = new URLSearchParams(window.location.search).get("tab");
-  if (tab === "multiply" || tab === "euler-2d" || tab === "euler-3d" || tab === "identity" || tab === "applications") return tab;
+  if (tab === "multiply" || tab === "euler-2d" || tab === "euler-3d" || tab === "identity" || tab === "applications" || tab === "advanced") return tab;
   return "plane";
 }
 

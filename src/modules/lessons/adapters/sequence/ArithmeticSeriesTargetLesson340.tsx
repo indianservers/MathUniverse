@@ -2,6 +2,11 @@ import { Maximize2, RotateCcw, Share2 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import type { PointerEvent as ReactPointerEvent } from "react";
 import type { LessonAdapterProps } from "../../types";
+import {
+  ARITHMETIC_SERIES_DEFAULTS,
+  arithmeticSeriesAnalysis,
+  arithmeticSeriesSum,
+} from "./arithmeticSeriesLessonModel";
 import "./ArithmeticSeriesTargetLesson340.css";
 const clean = (v: number) => Number(v.toFixed(6)),
   tabs = [
@@ -15,34 +20,29 @@ export default function ArithmeticSeriesTargetLesson340({
   resetToken,
   onInteraction,
 }: LessonAdapterProps) {
-  const [first, setFirst] = useState(2),
-    [difference, setDifference] = useState(3),
-    [count, setCount] = useState(10),
+  const [first, setFirst] = useState(ARITHMETIC_SERIES_DEFAULTS.first),
+    [difference, setDifference] = useState(
+      ARITHMETIC_SERIES_DEFAULTS.difference,
+    ),
+    [count, setCount] = useState(ARITHMETIC_SERIES_DEFAULTS.count),
     [tab, setTab] = useState(tabs[0]),
     [interactive, setInteractive] = useState(true),
+    [language, setLanguage] = useState<"en" | "hi">("en"),
     [quick, setQuick] = useState<"" | "correct" | "incorrect">(""),
     [actions, setActions] = useState(0);
-  const terms = useMemo(
-      () => Array.from({ length: count }, (_, i) => first + i * difference),
+  const analysis = useMemo(
+      () => arithmeticSeriesAnalysis(first, difference, count),
       [first, difference, count],
     ),
-    partials = terms.reduce<number[]>(
-      (a, v) => [...a, v + (a.at(-1) ?? 0)],
-      [],
-    ),
-    last = terms.at(-1) ?? first,
-    total = partials.at(-1) ?? 0,
-    pairSum = first + last,
-    pairs = Array.from({ length: Math.ceil(count / 2) }, (_, i) => [
-      terms[i],
-      terms[count - 1 - i],
-    ]);
+    { terms, partials, last, total, pairSum, pairs, plotMin, plotMax } =
+      analysis;
   const reset = () => {
-    setFirst(2);
-    setDifference(3);
-    setCount(10);
+    setFirst(ARITHMETIC_SERIES_DEFAULTS.first);
+    setDifference(ARITHMETIC_SERIES_DEFAULTS.difference);
+    setCount(ARITHMETIC_SERIES_DEFAULTS.count);
     setTab(tabs[0]);
     setInteractive(true);
+    setLanguage("en");
     setQuick("");
     setActions(0);
   };
@@ -59,16 +59,15 @@ export default function ArithmeticSeriesTargetLesson340({
       else setCount(Math.max(2, Math.min(20, Math.round(value))));
       setQuick("");
     });
-  const min = Math.min(...terms, 0) - 3,
-    max = Math.max(...terms, 0) + 3,
-    y = (v: number) => 175 - ((v - min) / (max - min)) * 130;
+  const y = (v: number) => 175 - ((v - plotMin) / (plotMax - plotMin)) * 130;
   const drag = (index: number, event: ReactPointerEvent<SVGCircleElement>) => {
     if (event.buttons !== 1) return;
     const rect = event.currentTarget.ownerSVGElement?.getBoundingClientRect();
     if (!rect) return;
     const desired =
-      max -
-      ((event.clientY - rect.top - 20) / (rect.height - 45)) * (max - min);
+      plotMax -
+      ((event.clientY - rect.top - 20) / (rect.height - 45)) *
+        (plotMax - plotMin);
     if (index === 0) change("first", desired);
     else change("difference", (desired - first) / index);
   };
@@ -87,6 +86,7 @@ export default function ArithmeticSeriesTargetLesson340({
       data-total={clean(total)}
       data-tab={tab}
       data-interactive={interactive}
+      data-language={language}
       data-quick-result={quick}
       data-actions={actions}
     >
@@ -95,8 +95,12 @@ export default function ArithmeticSeriesTargetLesson340({
           <b>ADVANCED MATHEMATICS</b>
           <b>SEQUENCES AND SERIES</b>
         </span>
-        <h1>Arithmetic Series</h1>
-        <p>Sum of an arithmetic progression (A.P.).</p>
+        <h1>{language === "en" ? "Arithmetic Series" : "समांतर श्रेणी"}</h1>
+        <p>
+          {language === "en"
+            ? "Sum of an arithmetic progression (A.P.)."
+            : "समांतर श्रेणी का योग।"}
+        </p>
         <div>
           {[
             "Intermediate-Advanced",
@@ -108,7 +112,16 @@ export default function ArithmeticSeriesTargetLesson340({
           ))}
         </div>
         <nav>
-          <button>English (English)</button>
+          <select
+            aria-label="Lesson language"
+            value={language}
+            onChange={(event) =>
+              act(() => setLanguage(event.target.value as "en" | "hi"))
+            }
+          >
+            <option value="en">English (English)</option>
+            <option value="hi">हिन्दी (Hindi)</option>
+          </select>
           <button onClick={() => act(reset)}>
             <RotateCcw />
             Reset
@@ -121,7 +134,16 @@ export default function ArithmeticSeriesTargetLesson340({
             <Share2 />
             Share
           </button>
-          <button onClick={() => act(() => setTab(tabs[0]))}>Workspace</button>
+          <button
+            onClick={() => {
+              act(() => setTab(tabs[0]));
+              document
+                .getElementById("seq340-lab")
+                ?.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
+            Workspace
+          </button>
         </nav>
       </header>
       <nav className="seq340-tabs">
@@ -129,13 +151,26 @@ export default function ArithmeticSeriesTargetLesson340({
           <button
             key={name}
             className={tab === name ? "active" : ""}
-            onClick={() => act(() => setTab(name))}
+            onClick={() => {
+              act(() => setTab(name));
+              document
+                .getElementById(
+                  name === tabs[0]
+                    ? "seq340-lab"
+                    : name === "Formulas"
+                      ? "seq340-derivation"
+                      : name === "Examples"
+                        ? "seq340-pairs"
+                        : "seq340-objective",
+                )
+                ?.scrollIntoView({ behavior: "smooth" });
+            }}
           >
             {name}
           </button>
         ))}
       </nav>
-      <section className="seq340-objective">
+      <section className="seq340-objective" id="seq340-objective">
         <b>LEARNING OBJECTIVE</b>
         <p>
           Understand the arithmetic series, derive the sum using pairwise and
@@ -143,7 +178,7 @@ export default function ArithmeticSeriesTargetLesson340({
           (n−1)d].
         </p>
       </section>
-      <section className="seq340-lab">
+      <section className="seq340-lab" id="seq340-lab">
         <header>
           <div>
             <h2>Arithmetic Series Lab</h2>
@@ -259,16 +294,16 @@ export default function ArithmeticSeriesTargetLesson340({
             </svg>
           </article>
         </main>
-        <section className="seq340-pair">
+        <section className="seq340-pair" id="seq340-pairs">
           <article>
             <h3>Term strip (pair from ends)</h3>
-            {pairs.map(([a, b], i) => (
+            {pairs.map((pair, i) => (
               <div key={i}>
-                <b>{clean(a)}</b>
+                <b>{clean(pair.first)}</b>
                 <span>+</span>
-                <b>{clean(b)}</b>
+                <b>{clean(pair.last)}</b>
                 <span>=</span>
-                <strong>{clean(a + b)}</strong>
+                <strong>{clean(pair.sum)}</strong>
               </div>
             ))}
             <output>Common pair sum = {clean(pairSum)}</output>
@@ -306,7 +341,7 @@ export default function ArithmeticSeriesTargetLesson340({
           </article>
         </section>
       </section>
-      <section className="seq340-derivation">
+      <section className="seq340-derivation" id="seq340-derivation">
         <article>
           <h2>Derivation (pairing / trapezoid idea)</h2>
           <p>
@@ -359,7 +394,7 @@ export default function ArithmeticSeriesTargetLesson340({
         <div>
           <h2>Quick Check</h2>
           <p>Compute the first 12 terms sum when a₁=7 and d=4.</p>
-          {[264, 270, 348, 288].map((v, i) => (
+          {[264, 270, arithmeticSeriesSum(7, 4, 12), 288].map((v, i) => (
             <button
               key={v}
               className={quick && v === 348 ? "correct" : ""}

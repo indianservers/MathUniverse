@@ -1,0 +1,246 @@
+.sqrt-factor-proof {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  grid-template-rows: 76px 1fr;
+  background: #fbfaf7;
+  color: #252932;
+  font-family: "Nunito", sans-serif;
+  overflow: hidden;
+}
+.sqrt-factor-proof button {
+  display: grid;
+  place-items: center;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+}
+.sqrt-factor-proof > header {
+  display: grid;
+  grid-template-columns: 44px 1fr 44px;
+  align-items: center;
+  padding: 3px 9px;
+  background: #fff;
+}
+.sqrt-factor-proof header > div {
+  text-align: center;
+}
+.sqrt-factor-proof h1 {
+  margin: 0;
+  font-size: 17px;
+  white-space: nowrap;
+}
+.sqrt-factor-proof header p {
+  margin: 3px 0 0;
+  font-size: 15px;
+}
+.sqrt-factor-proof header svg {
+  width: 27px;
+  height: 27px;
+}
+.sqrt-card {
+  position: relative;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto auto auto auto;
+  margin: 0 13px 15px;
+  border: 1px solid #e7c9ac;
+  border-radius: 8px;
+  background: #fffdf9;
+  overflow: hidden;
+}
+.sqrt-card > svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.sqrt-card svg text {
+  font-family: "Nunito", sans-serif;
+}
+.sqrt-card .axis {
+  fill: none;
+  stroke: #192231;
+  stroke-width: 1.2;
+}
+.sqrt-card .axis-fill {
+  fill: #192231;
+}
+.sqrt-card .gridline {
+  stroke: #e4bea0;
+  stroke-width: 0.7;
+  stroke-dasharray: 4 3;
+}
+.sqrt-card .diagonal {
+  fill: none;
+  stroke: #17202c;
+  stroke-width: 1;
+  stroke-dasharray: 5 4;
+}
+.sqrt-card .factor-curve {
+  fill: none;
+  stroke: #152135;
+  stroke-width: 1.7;
+}
+.sqrt-card .root-line {
+  stroke: #6249e5;
+  stroke-width: 1;
+  stroke-dasharray: 4 3;
+}
+.sqrt-card .root-line.dark {
+  stroke: #20242b;
+}
+.sqrt-card .root-dot {
+  fill: #303238;
+}
+.sqrt-card .root-label {
+  font-size: 15px;
+}
+.sqrt-card .n-title {
+  font-size: 24px;
+  text-anchor: middle;
+}
+.sqrt-card .axis-name {
+  font-size: 16px;
+  font-style: italic;
+}
+.sqrt-card .equation {
+  font-size: 23px;
+  text-anchor: middle;
+}
+.sqrt-card .selected-pair circle {
+  filter: drop-shadow(0 0 5px #5e47e8);
+}
+.sqrt-card svg g text {
+  font-size: 12px;
+}
+.pair-picker {
+  display: grid;
+  grid-template-columns: 42px 1fr 42px;
+  align-items: start;
+  margin: -2px 8px 0;
+}
+.pair-picker > button {
+  width: 38px;
+  height: 38px;
+  border: 1.5px solid #242832;
+  border-radius: 50%;
+}
+.pair-picker > button svg {
+  width: 27px;
+}
+.pair-picker > div {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 2px;
+}
+.pair-picker > div button {
+  position: relative;
+  gap: 4px;
+  min-width: 43px;
+  font-size: 9px;
+  color: var(--pair-color);
+}
+.pair-picker > div i {
+  display: block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--pair-color);
+  box-shadow: 0 0 0 1px var(--pair-color);
+}
+.pair-picker > div button.active i {
+  outline: 4px solid #fff;
+  box-shadow: 0 0 9px 4px var(--pair-color);
+}
+.pair-values {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  align-items: center;
+  margin: 17px 22px 10px;
+  color: #5738d7;
+  font-size: 17px;
+}
+.pair-values span:last-child {
+  text-align: right;
+}
+.pair-values i {
+  text-align: center;
+  font-style: normal;
+}
+.sqrt-card > input {
+  display: block;
+  width: 83%;
+  margin: 8px auto;
+  accent-color: #6345e5;
+}
+.sqrt-caption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 21px;
+  color: #5738d7;
+  font-size: 12px;
+}
+.sqrt-caption strong {
+  font-size: 16px;
+}
+.sqrt-reset {
+  position: absolute;
+  right: 16px;
+  bottom: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50% !important;
+  background: #fff !important;
+  box-shadow: 0 2px 8px #0002;
+}
+.sqrt-factor-proof aside {
+  position: absolute;
+  z-index: 6;
+  top: 78px;
+  right: 13px;
+  width: min(350px, calc(100vw - 26px));
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 17px;
+  background: #fff;
+  box-shadow: 0 15px 40px #0003;
+}
+.sqrt-factor-proof aside > button:first-child {
+  position: absolute;
+  right: 11px;
+  top: 11px;
+}
+.sqrt-factor-proof aside h2 {
+  margin: 0 30px 8px 0;
+}
+.sqrt-factor-proof aside p {
+  line-height: 1.45;
+}
+.sqrt-factor-proof aside div {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.sqrt-factor-proof aside div button {
+  padding: 9px;
+  border-radius: 9px;
+  background: #674fe1;
+  color: #fff;
+}
+@media (max-height: 760px) {
+  .sqrt-factor-proof {
+    grid-template-rows: 65px 1fr;
+  }
+  .pair-picker {
+    margin-top: -8px;
+  }
+  .pair-values {
+    margin-top: 7px;
+  }
+  .sqrt-caption {
+    margin-top: 4px;
+  }
+}

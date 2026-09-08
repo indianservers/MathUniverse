@@ -23,7 +23,8 @@
   margin: 0;
 }
 .seq339-page button,
-.seq339-page input {
+.seq339-page input,
+.seq339-page select {
   color: inherit;
   font: inherit;
 }
@@ -76,7 +77,8 @@
   margin-top: 11px;
   gap: 8px;
 }
-.seq339-hero nav button {
+.seq339-hero nav button,
+.seq339-hero nav select {
   display: flex;
   height: 31px;
   padding: 0 13px;
@@ -86,7 +88,7 @@
   border-radius: 6px;
   background: #fff;
 }
-.seq339-hero nav button:first-child {
+.seq339-hero nav select:first-child {
   width: 132px;
 }
 .seq339-hero svg {

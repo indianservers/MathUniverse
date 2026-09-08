@@ -2,35 +2,15 @@ import { Check, Download, Play, RotateCcw, Share2 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import type { PointerEvent as ReactPointerEvent } from "react";
 import type { LessonAdapterProps } from "../../types";
+import {
+  formatSequencePolynomial,
+  generateSequence,
+  parseSequencePolynomial,
+  type SequenceCoefficients,
+} from "./sequenceGeneratorLessonModel";
 import "./SequenceGeneratorTargetLesson334.css";
 
-type Coefficients = { a: number; b: number; c: number };
 const clean = (v: number) => Number(v.toFixed(8));
-function parsePolynomial(source: string): Coefficients | null {
-  const text = source
-    .toLowerCase()
-    .replaceAll(" ", "")
-    .replaceAll("²", "^2")
-    .replace(/−/g, "-")
-    .replace(/(?<!^)-/g, "+-");
-  if (!text || /[^0-9n+\-.*^]/.test(text)) return null;
-  const result = { a: 0, b: 0, c: 0 };
-  for (const raw of text.split("+").filter(Boolean)) {
-    const term = raw.replaceAll("*", "");
-    if (term.includes("n^2")) {
-      const prefix = term.replace("n^2", "");
-      result.a += prefix === "" ? 1 : prefix === "-" ? -1 : Number(prefix);
-    } else if (term.includes("n")) {
-      const prefix = term.replace("n", "");
-      result.b += prefix === "" ? 1 : prefix === "-" ? -1 : Number(prefix);
-    } else result.c += Number(term);
-    if (Object.values(result).some((v) => !Number.isFinite(v))) return null;
-  }
-  return result;
-}
-const evaluate = (p: Coefficients, n: number) => p.a * n * n + p.b * n + p.c;
-const formatFormula = (p: Coefficients) =>
-  `${p.a}n² ${p.b < 0 ? "−" : "+"} ${Math.abs(p.b)}n ${p.c < 0 ? "−" : "+"} ${Math.abs(p.c)}`;
 
 export default function SequenceGeneratorTargetLesson334({
   resetToken,
@@ -38,7 +18,7 @@ export default function SequenceGeneratorTargetLesson334({
 }: LessonAdapterProps) {
   const [type, setType] = useState<"explicit" | "recursive">("explicit"),
     [formula, setFormula] = useState("3n² + 2n + 1"),
-    [coeff, setCoeff] = useState<Coefficients>({ a: 3, b: 2, c: 1 }),
+    [coeff, setCoeff] = useState<SequenceCoefficients>({ a: 3, b: 2, c: 1 }),
     [first, setFirst] = useState(1),
     [last, setLast] = useState(10),
     [step, setStep] = useState(1),
@@ -54,42 +34,32 @@ export default function SequenceGeneratorTargetLesson334({
     [turn15, setTurn15] = useState(""),
     [turn20, setTurn20] = useState(""),
     [turnResult, setTurnResult] = useState<"" | "correct" | "incorrect">(""),
+    [generatedRevision, setGeneratedRevision] = useState(1),
     [actions, setActions] = useState(0);
-  const indexes = useMemo(() => {
-      const values: number[] = [];
-      for (
-        let n = first;
-        n <= last && values.length < 20;
-        n += Math.max(1, step)
-      )
-        values.push(n);
-      return values;
-    }, [first, last, step]),
-    terms = useMemo(
+  const analysis = useMemo(
       () =>
-        indexes.map((n, i) =>
+        generateSequence(
           type === "explicit"
-            ? evaluate(coeff, n)
-            : recursiveStart + i * recursiveDiff,
+            ? { type, coefficients: coeff }
+            : { type, start: recursiveStart, difference: recursiveDiff },
+          first,
+          last,
+          step,
         ),
-      [indexes, type, coeff, recursiveStart, recursiveDiff],
+      [type, coeff, recursiveStart, recursiveDiff, first, last, step],
     ),
-    firstDiff = terms.map((v, i) => (i ? v - terms[i - 1] : NaN)),
-    secondDiff = firstDiff.map((v, i) => (i > 1 ? v - firstDiff[i - 1] : NaN)),
-    ratio = terms.map((v, i) =>
-      i && terms[i - 1] !== 0 ? v / terms[i - 1] : NaN,
-    ),
-    cumulative = terms.reduce<number[]>(
-      (acc, v) => [...acc, v + (acc.at(-1) ?? 0)],
-      [],
-    ),
-    classification =
-      type === "recursive" ||
-      firstDiff.slice(2).every((v) => Math.abs(v - firstDiff[1]) < 1e-8)
-        ? "Arithmetic sequence"
-        : secondDiff.slice(3).every((v) => Math.abs(v - secondDiff[2]) < 1e-8)
-          ? "Quadratic sequence"
-          : "General sequence";
+    {
+      indexes,
+      terms,
+      firstDifferences: firstDiff,
+      secondDifferences: secondDiff,
+      ratios: ratio,
+      cumulativeSums: cumulative,
+      classification,
+      constantFirst,
+      constantSecond,
+      constantRatio,
+    } = analysis;
   const reset = () => {
     setType("explicit");
     setFormula("3n² + 2n + 1");
@@ -109,6 +79,7 @@ export default function SequenceGeneratorTargetLesson334({
     setTurn15("");
     setTurn20("");
     setTurnResult("");
+    setGeneratedRevision(1);
     setActions(0);
   };
   useEffect(reset, [resetToken]);
@@ -117,9 +88,23 @@ export default function SequenceGeneratorTargetLesson334({
     setActions((v) => v + 1);
     onInteraction();
   };
+  const openTab = (name: string) => {
+    const target =
+      name === "Interaction + Visualisation"
+        ? "seq334-workspace"
+        : name === "Guided Practice"
+          ? "seq334-your-turn"
+          : name === "Quick Check"
+            ? "seq334-quick-check"
+            : "seq334-learning";
+    act(() => {
+      setTab(name);
+      document.getElementById(target)?.scrollIntoView({ behavior: "smooth" });
+    });
+  };
   const updateFormula = (value: string) => {
     setFormula(value);
-    const parsed = parsePolynomial(value);
+    const parsed = parseSequencePolynomial(value);
     if (parsed) setCoeff(parsed);
   };
   const exportCsv = () =>
@@ -157,7 +142,7 @@ export default function SequenceGeneratorTargetLesson334({
     act(() => {
       const next = { ...coeff, c: clean(coeff.c + delta) };
       setCoeff(next);
-      setFormula(formatFormula(next));
+      setFormula(formatSequencePolynomial(next));
     });
   };
   return (
@@ -184,6 +169,7 @@ export default function SequenceGeneratorTargetLesson334({
       data-quick-result={quickResult}
       data-turn-result={turnResult}
       data-actions={actions}
+      data-generated-revision={generatedRevision}
     >
       <header className="seq334-hero">
         <span>
@@ -235,7 +221,7 @@ export default function SequenceGeneratorTargetLesson334({
           <button
             key={name}
             className={tab === name ? "active" : ""}
-            onClick={() => act(() => setTab(name))}
+            onClick={() => openTab(name)}
           >
             {name}
           </button>
@@ -267,7 +253,7 @@ export default function SequenceGeneratorTargetLesson334({
             Share
           </button>
         </header>
-        <div className="seq334-workspace">
+        <div className="seq334-workspace" id="seq334-workspace">
           <aside>
             <h3>Definition type</h3>
             <div className="segmented">
@@ -294,7 +280,7 @@ export default function SequenceGeneratorTargetLesson334({
                     onChange={(e) => act(() => updateFormula(e.target.value))}
                   />
                   <span>
-                    {parsePolynomial(formula) ? (
+                    {parseSequencePolynomial(formula) ? (
                       <Check />
                     ) : (
                       "Invalid polynomial"
@@ -394,7 +380,12 @@ export default function SequenceGeneratorTargetLesson334({
               checked={sums}
               set={() => act(() => setSums(!sums))}
             />
-            <button className="generate" onClick={() => act(() => void 0)}>
+            <button
+              className="generate"
+              onClick={() =>
+                act(() => setGeneratedRevision((value) => value + 1))
+              }
+            >
               <Play />
               Generate Sequence
             </button>
@@ -495,22 +486,14 @@ export default function SequenceGeneratorTargetLesson334({
             <h3>Pattern detector</h3>
             <p>
               First differences{" "}
-              <b>
-                {classification === "Arithmetic sequence"
-                  ? "Constant ✓"
-                  : "Not constant"}
-              </b>
+              <b>{constantFirst ? "Constant ✓" : "Not constant"}</b>
             </p>
             <p>
               Second differences{" "}
-              <b>
-                {classification === "Quadratic sequence"
-                  ? "Constant ✓"
-                  : "Not constant"}
-              </b>
+              <b>{constantSecond ? "Constant ✓" : "Not constant"}</b>
             </p>
             <p>
-              Ratios <b>Not constant</b>
+              Ratios <b>{constantRatio ? "Constant ✓" : "Not constant"}</b>
             </p>
             <article>
               <b>Conclusion</b>
@@ -518,13 +501,13 @@ export default function SequenceGeneratorTargetLesson334({
             </article>
           </aside>
         </section>
-        <section className="seq334-learning">
+        <section className="seq334-learning" id="seq334-learning">
           <article>
             <h3>How we got the terms</h3>
             <p>We used the {type} definition.</p>
             <strong>
               {type === "explicit"
-                ? formatFormula(coeff)
+                ? formatSequencePolynomial(coeff)
                 : `aₙ=aₙ₋₁+${recursiveDiff}`}
             </strong>
             <p>
@@ -555,7 +538,7 @@ export default function SequenceGeneratorTargetLesson334({
         </section>
       </section>
       <section className="seq334-checks">
-        <article>
+        <article id="seq334-quick-check">
           <h2>Quick check</h2>
           <p>Using aₙ=3n²+2n+1, what is a₁₂?</p>
           <div>
@@ -582,7 +565,7 @@ export default function SequenceGeneratorTargetLesson334({
                 : ""}
           </output>
         </article>
-        <article>
+        <article id="seq334-your-turn">
           <h2>Your turn</h2>
           <p>Find a₁₅ and a₂₀.</p>
           <div>

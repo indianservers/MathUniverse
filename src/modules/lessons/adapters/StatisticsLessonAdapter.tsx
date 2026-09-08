@@ -24,6 +24,39 @@ import {
   range,
 } from "../../../utils/mathEngine/statisticsUtils";
 import type { LessonAdapterProps } from "../types";
+import DataTypesLesson467 from "./DataTypesLesson467";
+import FrequencyTablesLesson468 from "./FrequencyTablesLesson468";
+import GroupedFrequencyTablesLesson469 from "./GroupedFrequencyTablesLesson469";
+import MeanLesson470 from "./MeanLesson470";
+import MedianLesson471 from "./MedianLesson471";
+import ModeLesson472 from "./ModeLesson472";
+import WeightedMeanLesson473 from "./WeightedMeanLesson473";
+import RangeLesson474 from "./RangeLesson474";
+import QuartilesLesson475 from "./QuartilesLesson475";
+import VarianceLesson476 from "./VarianceLesson476";
+import PercentilesLesson477 from "./PercentilesLesson477";
+import ZScoresLesson478 from "./ZScoresLesson478";
+import OutliersLesson479 from "./OutliersLesson479";
+import BoxPlotLesson480 from "./BoxPlotLesson480";
+import DotPlotLesson481 from "./DotPlotLesson481";
+import StemAndLeafLesson482 from "./StemAndLeafLesson482";
+import HistogramLesson483 from "./HistogramLesson483";
+import FrequencyPolygonLesson484 from "./FrequencyPolygonLesson484";
+import CumulativeFrequencyLesson485 from "./CumulativeFrequencyLesson485";
+import BarPieLesson486 from "./BarPieLesson486";
+import ScatterPlotLesson487 from "./ScatterPlotLesson487";
+import TimeSeriesLesson488 from "./TimeSeriesLesson488";
+import CorrelationLesson489 from "./CorrelationLesson489";
+import LinearRegressionLesson490 from "./LinearRegressionLesson490";
+import PolynomialRegressionLesson491 from "./PolynomialRegressionLesson491";
+import ExponentialRegressionLesson492 from "./ExponentialRegressionLesson492";
+import LogarithmicRegressionLesson493 from "./LogarithmicRegressionLesson493";
+import PowerRegressionLesson494 from "./PowerRegressionLesson494";
+import LogisticRegressionLesson495 from "./LogisticRegressionLesson495";
+import SinusoidalRegressionLesson496 from "./SinusoidalRegressionLesson496";
+import ResidualPlotLesson497 from "./ResidualPlotLesson497";
+import ModelComparisonLesson498 from "./ModelComparisonLesson498";
+import InterpolationLesson499 from "./InterpolationLesson499";
 
 type Kind =
   "classify" | "table" | "summary" | "distribution" | "paired" | "regression";
@@ -117,7 +150,44 @@ const paired: ResultTableRow[] = [
   { x: 8, y: 9.2 },
 ];
 
-export default function StatisticsLessonAdapter({
+export default function StatisticsLessonAdapter(props: LessonAdapterProps) {
+  if (props.lesson.id === 467) return <DataTypesLesson467 {...props} />;
+  if (props.lesson.id === 468) return <FrequencyTablesLesson468 {...props} />;
+  if (props.lesson.id === 469) return <GroupedFrequencyTablesLesson469 {...props} />;
+  if (props.lesson.id === 470) return <MeanLesson470 {...props} />;
+  if (props.lesson.id === 471) return <MedianLesson471 {...props} />;
+  if (props.lesson.id === 472) return <ModeLesson472 {...props} />;
+  if (props.lesson.id === 473) return <WeightedMeanLesson473 {...props} />;
+  if (props.lesson.id === 474) return <RangeLesson474 {...props} />;
+  if (props.lesson.id === 475) return <QuartilesLesson475 {...props} />;
+  if (props.lesson.id === 476) return <VarianceLesson476 {...props} />;
+  if (props.lesson.id === 477) return <PercentilesLesson477 {...props} />;
+  if (props.lesson.id === 478) return <ZScoresLesson478 {...props} />;
+  if (props.lesson.id === 479) return <OutliersLesson479 {...props} />;
+  if (props.lesson.id === 480) return <BoxPlotLesson480 {...props} />;
+  if (props.lesson.id === 481) return <DotPlotLesson481 {...props} />;
+  if (props.lesson.id === 482) return <StemAndLeafLesson482 {...props} />;
+  if (props.lesson.id === 483) return <HistogramLesson483 {...props} />;
+  if (props.lesson.id === 484) return <FrequencyPolygonLesson484 {...props} />;
+  if (props.lesson.id === 485) return <CumulativeFrequencyLesson485 {...props} />;
+  if (props.lesson.id === 486) return <BarPieLesson486 {...props} />;
+  if (props.lesson.id === 487) return <ScatterPlotLesson487 {...props} />;
+  if (props.lesson.id === 488) return <TimeSeriesLesson488 {...props} />;
+  if (props.lesson.id === 489) return <CorrelationLesson489 {...props} />;
+  if (props.lesson.id === 490) return <LinearRegressionLesson490 {...props} />;
+  if (props.lesson.id === 491) return <PolynomialRegressionLesson491 {...props} />;
+  if (props.lesson.id === 492) return <ExponentialRegressionLesson492 {...props} />;
+  if (props.lesson.id === 493) return <LogarithmicRegressionLesson493 {...props} />;
+  if (props.lesson.id === 494) return <PowerRegressionLesson494 {...props} />;
+  if (props.lesson.id === 495) return <LogisticRegressionLesson495 {...props} />;
+  if (props.lesson.id === 496) return <SinusoidalRegressionLesson496 {...props} />;
+  if (props.lesson.id === 497) return <ResidualPlotLesson497 {...props} />;
+  if (props.lesson.id === 498) return <ModelComparisonLesson498 {...props} />;
+  if (props.lesson.id === 499) return <InterpolationLesson499 {...props} />;
+  return <SharedStatisticsLessonAdapter {...props} />;
+}
+
+function SharedStatisticsLessonAdapter({
   lesson,
   resetToken,
   onInteraction,

@@ -2,6 +2,7 @@ import { CheckCircle2, Eye, Maximize2, RotateCcw } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./HyperbolicFunctionsTargetLesson12.css";
+import { LessonCartesianGraph } from "../graphs/LessonCartesianGraph";
 
 const TABS = [
   "Interaction + visualization",
@@ -12,12 +13,15 @@ const TABS = [
 ];
 const PRACTICE = [0, 1, -1, 2] as const;
 const fmt = (value: number) => Number(value.toFixed(3)).toString();
-const graphY = (value: number) => 300 - 225 * (1 - Math.exp(-value / 3));
+// Legacy labels disagreed with the nonlinear projection. Keep the sampled x
+// domain and use a linear y range containing every sample (exp(2.5) < 13).
+const HYPER_GRAPH_VIEW = { xMin: -2.5, xMax: 2.5, yMin: 0, yMax: 13 };
 
 export default function HyperbolicFunctionsTargetLesson12({
   resetToken,
   onInteraction,
 }: LessonAdapterProps) {
+  const [graphView, setGraphView] = useState(HYPER_GRAPH_VIEW);
   const [x, setX] = useState(1),
     [view, setView] = useState(0),
     [actions, setActions] = useState(0),
@@ -34,6 +38,7 @@ export default function HyperbolicFunctionsTargetLesson12({
     onInteraction();
   };
   const reset = () => {
+    setGraphView(HYPER_GRAPH_VIEW);
     setX(1);
     setView(0);
     setActions(0);
@@ -42,6 +47,7 @@ export default function HyperbolicFunctionsTargetLesson12({
     onInteraction();
   };
   useEffect(() => {
+    setGraphView(HYPER_GRAPH_VIEW);
     setX(1);
     setView(0);
     setActions(0);
@@ -53,16 +59,14 @@ export default function HyperbolicFunctionsTargetLesson12({
       Array.from({ length: 81 }, (_, i) => {
         const sample = -2.5 + i / 16;
         return {
-          px: 15 + i * 7.1,
-          positive: graphY(Math.exp(sample)),
-          negative: graphY(Math.exp(-sample)),
+          x: sample,
+          positive: Math.exp(sample),
+          negative: Math.exp(-sample),
         };
       }),
     [],
   );
-  const px = 15 + (x + 2.5) * 113.6,
-    pyPositive = graphY(positive),
-    pyNegative = graphY(negative);
+
   return (
     <div
       className="target-hyper-page"
@@ -112,7 +116,7 @@ export default function HyperbolicFunctionsTargetLesson12({
             ⌘ Share
           </button>
         </nav>
-        <button type="button" onClick={onInteraction}>
+        <button type="button" onClick={() => onInteraction()}>
           ↗ Workspace
         </button>
       </header>
@@ -142,7 +146,7 @@ export default function HyperbolicFunctionsTargetLesson12({
               Ready
             </b>
             <span>{actions} actions</span>
-            <button type="button" onClick={onInteraction}>
+            <button type="button" onClick={() => onInteraction()} aria-label="Record graph interaction">
               <Maximize2 />
             </button>
           </div>
@@ -153,107 +157,21 @@ export default function HyperbolicFunctionsTargetLesson12({
               <b>Drag the blue handle to change x.</b> The values update
               instantly.<span>hyperbolic, not circular sine</span>
             </div>
-            <section className="hyper-graph">
-              <svg
-                viewBox="0 0 600 360"
-                aria-label="Hyperbolic exponential graph"
-              >
-                <line x1="15" y1="300" x2="585" y2="300" />
-                <line x1="160" y1="340" x2="160" y2="15" />
-                {[70, 145, 220].map((lineY) => (
-                  <line
-                    className="graph-grid"
-                    x1="15"
-                    y1={lineY}
-                    x2="585"
-                    y2={lineY}
-                    key={lineY}
-                  />
-                ))}
-                <line
-                  className="guide"
-                  x1={px}
-                  y1="300"
-                  x2={px}
-                  y2={pyPositive}
-                />
-                <line
-                  className="difference"
-                  x1={px}
-                  y1={pyPositive}
-                  x2={px}
-                  y2={pyNegative}
-                />
-                <text
-                  className="difference-label"
-                  x={px - 7}
-                  y={(pyPositive + pyNegative) / 2}
-                >
-                  ↕
-                </text>
-                <polyline
-                  className="positive"
-                  points={curves.map((p) => `${p.px},${p.positive}`).join(" ")}
-                />
-                <polyline
-                  className="negative"
-                  points={curves.map((p) => `${p.px},${p.negative}`).join(" ")}
-                />
-                <circle
-                  className="positive-dot"
-                  cx={px}
-                  cy={pyPositive}
-                  r="7"
-                />
-                <circle
-                  className="negative-dot"
-                  cx={px}
-                  cy={pyNegative}
-                  r="7"
-                />
-                <text x="535" y="55">
-                  y = eˣ
-                </text>
-                <text className="violet" x="540" y="260">
-                  y = e⁻ˣ
-                </text>
-                <text x={px + 12} y={pyPositive + 15}>
-                  eˣ ≈ {fmt(positive)}
-                </text>
-                <text className="violet" x={px + 12} y={pyNegative - 8}>
-                  e⁻ˣ ≈ {fmt(negative)}
-                </text>
-                <text x="580" y="315">
-                  x
-                </text>
-                <text x="150" y="14">
-                  y
-                </text>
-                <text className="axis-label" x="58" y="318">
-                  −2
-                </text>
-                <text className="axis-label" x="148" y="318">
-                  0
-                </text>
-                <text className="axis-label" x="260" y="318">
-                  1
-                </text>
-                <text className="axis-label" x="374" y="318">
-                  2
-                </text>
-                <text className="axis-label" x="488" y="318">
-                  3
-                </text>
-                <text className="axis-label" x="145" y="225">
-                  1
-                </text>
-                <text className="axis-label" x="145" y="150">
-                  2
-                </text>
-                <text className="axis-label" x="145" y="75">
-                  3
-                </text>
-              </svg>
+            <section className="hyper-shared-graph">
+              <LessonCartesianGraph
+                title="Hyperbolic sine using exponentials"
+                description="Compare eˣ and e⁻ˣ at the same x. Drag a labelled point horizontally to change x."
+                view={graphView} onViewChange={setGraphView} onResetView={() => setGraphView(HYPER_GRAPH_VIEW)}
+                series={[
+                  { id: "positive", label: "y = eˣ", color: "#08a6c0", points: curves.map(p => ({x:p.x,y:p.positive})) },
+                  { id: "negative", label: "y = e⁻ˣ", color: "#8c45e8", points: curves.map(p => ({x:p.x,y:p.negative})), dashed: true },
+                  { id: "difference", label: "Difference at x", color: "var(--lg-ink)", points: [{x,y:positive},{x,y:negative}], dashed: true },
+                ]}
+                annotations={[
+                  { id: "positive", x, y:positive, label: "eˣ ≈ " + fmt(positive), color: "#08a6c0", onChange: p => updateX(p.x), keyboardStep: .1 },
+                  { id: "negative", x, y:negative, label: "e⁻ˣ ≈ " + fmt(negative), color: "#8c45e8", onChange: p => updateX(p.x), keyboardStep: .1 },
+                ]}
+              />
               <output className="hyper-formula">
                 sinh({x}) ={" "}
                 <span>
@@ -414,3 +332,4 @@ function Trace({
     </section>
   );
 }
+

@@ -1,0 +1,353 @@
+.pv553 {
+  color: #17264e;
+  font-size: 12px;
+  line-height: 1.45;
+}
+.pv553 * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.pv553 h2 {
+  font-size: 30px;
+  margin: 4px 0;
+}
+.pv553 h3 {
+  font-size: 13px;
+  color: #087b9d;
+  margin: 0 0 7px;
+}
+.pv553 p {
+  margin: 5px 0;
+}
+.pv553 button,
+.pv553 input,
+.pv553 select {
+  font: inherit;
+}
+.pv553-hero,
+.pv553 > main,
+.pv553-scenario,
+.pv553-guide > *,
+.pv553-notes > *,
+.pv553-quiz {
+  border: 1px solid #dce5ed;
+  border-radius: 8px;
+  background: #fff;
+  padding: 12px;
+}
+.pv553-hero > span {
+  font-size: 9px;
+  color: #087d9f;
+  font-weight: 800;
+}
+.pv553-hero > div {
+  display: grid;
+  grid-template-columns: auto 1fr auto 1fr auto 1fr;
+  gap: 8px;
+  border: 1px solid #e1e8ee;
+  border-radius: 7px;
+  padding: 10px;
+  margin-top: 9px;
+}
+.pv553 > nav {
+  display: flex;
+  justify-content: space-around;
+  border: 1px solid #dce5ed;
+  border-radius: 7px;
+  padding: 4px;
+  margin-top: 10px;
+}
+.pv553 > nav > * {
+  padding: 8px 17px;
+}
+.pv553 > nav b {
+  background: #078da7;
+  color: #fff;
+  border-radius: 6px;
+}
+.pv553 > main {
+  margin-top: 10px;
+}
+.pv553 main > header {
+  display: flex;
+  align-items: center;
+}
+.pv553 main > header > div {
+  margin-right: auto;
+}
+.pv553 main > header h3 {
+  display: inline;
+  margin-left: 7px;
+}
+.pv553 main > header > div > b {
+  display: inline-grid;
+  place-items: center;
+  width: 19px;
+  height: 19px;
+  border-radius: 50%;
+  background: #078da7;
+  color: #fff;
+}
+.pv553 main > header button {
+  display: flex;
+  gap: 5px;
+  border: 1px solid #dce5ed;
+  background: #fff;
+  border-radius: 5px;
+  padding: 7px;
+}
+.pv553-options {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr 1.35fr 1.25fr 0.7fr 0.7fr;
+  gap: 12px;
+  border-top: 1px solid #e2e8ef;
+  padding-top: 10px;
+}
+.pv553-options label,
+.pv553-options legend {
+  font-weight: 700;
+}
+.pv553-options select,
+.pv553-options input[type="number"] {
+  display: block;
+  width: 100%;
+  border: 1px solid #dce5ed;
+  border-radius: 5px;
+  padding: 6px;
+  margin-top: 5px;
+}
+.pv553-options input[type="range"] {
+  width: calc(100% - 60px);
+  vertical-align: middle;
+  accent-color: #713ee7;
+}
+.pv553-options label > input[type="number"] {
+  display: inline-block;
+  width: 56px;
+}
+.pv553-options fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+.pv553-options fieldset button {
+  border: 1px solid #dce5ed;
+  background: #fff;
+  padding: 7px;
+}
+.pv553-options fieldset button:first-of-type {
+  border-radius: 6px 0 0 6px;
+}
+.pv553-options fieldset button:last-child {
+  border-radius: 0 6px 6px 0;
+}
+.pv553-options fieldset button.active {
+  border-color: #7440ec;
+  color: #5a2cce;
+  background: #f7f3ff;
+  font-weight: 800;
+}
+.pv553-work {
+  display: grid;
+  grid-template-columns: 210px 1fr;
+  gap: 10px;
+  margin-top: 10px;
+}
+.pv553-work > aside,
+.pv553-work > article {
+  border: 1px solid #dce5ed;
+  border-radius: 7px;
+  padding: 10px;
+}
+.pv553-work aside p {
+  display: flex;
+  justify-content: space-between;
+}
+.pv553-work aside strong {
+  color: #078eaf;
+}
+.pv553-work aside em {
+  color: #ae6b00;
+  font-style: normal;
+  font-weight: 800;
+}
+.pv553-work aside small {
+  display: block;
+  margin: 8px;
+}
+.pv553-work aside i {
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  margin-right: 5px;
+}
+.pv553-work .teal {
+  background: #4ec6d3;
+}
+.pv553-work .purple {
+  background: #d4bdf7;
+}
+.pv553-work .line {
+  width: 15px;
+  height: 2px;
+  background: #713ee7;
+}
+.pv553-work article > header {
+  display: flex;
+  justify-content: space-between;
+}
+.pv553-work article > div {
+  display: grid;
+  grid-template-columns: 1fr 210px;
+  gap: 10px;
+}
+.pv553-work article > div p {
+  background: #f7fafc;
+  border-radius: 6px;
+  padding: 9px;
+}
+.pv553-work svg {
+  width: 100%;
+  height: 330px;
+  touch-action: none;
+  cursor: ew-resize;
+}
+.pv553-work svg .axis {
+  stroke: #66768c;
+}
+.pv553-work svg polyline {
+  fill: none;
+  stroke: #17264e;
+  stroke-width: 2;
+}
+.pv553-work svg .shade {
+  fill: #3fc5d1aa;
+}
+.pv553-work svg .critical {
+  stroke: #9a52e7;
+  stroke-width: 2;
+  stroke-dasharray: 6 4;
+}
+.pv553-work svg .observed {
+  stroke: #713ee7;
+  stroke-width: 3;
+}
+.pv553-work svg text {
+  font-size: 13px;
+  fill: #6531d1;
+  font-weight: 800;
+}
+.pv553-scenario {
+  margin-top: 10px;
+}
+.pv553-scenario > div {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}
+.pv553-scenario span {
+  display: block;
+  background: #f7fafc;
+  border: 1px solid #e1e8ef;
+  border-radius: 6px;
+  padding: 9px;
+  text-align: center;
+}
+.pv553-scenario small,
+.pv553-scenario span b {
+  display: block;
+}
+.pv553-guide {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 10px;
+  margin-top: 10px;
+}
+.pv553-guide aside {
+  border-color: #8f6cea;
+}
+.pv553-guide aside h3:nth-of-type(2) {
+  margin-top: 15px;
+  color: #813dd2;
+}
+.pv553-notes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 10px;
+}
+.pv553-notes article:first-child {
+  background: #fff4f4;
+  border-color: #f5caca;
+}
+.pv553-notes article:last-child {
+  background: #fffaf0;
+  border-color: #f0d8a9;
+}
+.pv553-quiz {
+  margin-top: 10px;
+}
+.pv553-quiz > label {
+  display: inline-grid;
+  grid-template-columns: 1fr auto 100px;
+  gap: 6px;
+  width: 32%;
+  padding: 8px;
+  border: 1px solid #e1e8ef;
+  border-radius: 6px;
+  margin-right: 1%;
+  font-weight: 800;
+}
+.pv553-quiz label input {
+  width: 100%;
+  grid-column: 1/-1;
+  border: 1px solid #dce5ed;
+  border-radius: 5px;
+  padding: 7px;
+}
+.pv553-quiz label b {
+  grid-column: 1/-1;
+  display: flex;
+  gap: 4px;
+  padding: 5px;
+  border-radius: 5px;
+}
+.pv553 .correct {
+  background: #effaf3;
+  color: #137943;
+}
+.pv553 .incorrect {
+  background: #fff2f3;
+  color: #b72534;
+}
+@media (max-width: 1050px) {
+  .pv553-options {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .pv553-guide {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 720px) {
+  .pv553-hero > div,
+  .pv553-options,
+  .pv553-work,
+  .pv553-scenario > div,
+  .pv553-notes {
+    grid-template-columns: 1fr;
+  }
+  .pv553 > nav {
+    overflow-x: auto;
+    justify-content: flex-start;
+  }
+  .pv553 > nav > * {
+    white-space: nowrap;
+  }
+  .pv553-work article > div {
+    grid-template-columns: 1fr;
+  }
+  .pv553-quiz > label {
+    width: 100%;
+    margin: 4px 0;
+  }
+}

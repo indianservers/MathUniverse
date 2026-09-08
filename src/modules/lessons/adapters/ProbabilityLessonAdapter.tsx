@@ -1,6 +1,5 @@
 import {
   AlertTriangle,
-  BarChart3,
   BookOpen,
   CheckCircle2,
   Dices,
@@ -15,6 +14,43 @@ import {
 import { useEffect, useMemo, useState, type ReactNode } from "react";
 import { binomialDistribution } from "../../../utils/mathEngine/probabilityUtils";
 import type { LessonAdapterProps } from "../types";
+import SampleSpacesLesson500 from "./SampleSpacesLesson500";
+import EventsLesson501 from "./EventsLesson501";
+import ProbabilityScaleLesson502 from "./ProbabilityScaleLesson502";
+import ComplementRuleLesson503 from "./ComplementRuleLesson503";
+import AdditionRuleLesson504 from "./AdditionRuleLesson504";
+import MultiplicationRuleLesson505 from "./MultiplicationRuleLesson505";
+import IndependentEventsLesson506 from "./IndependentEventsLesson506";
+import MutuallyExclusiveEventsLesson507 from "./MutuallyExclusiveEventsLesson507";
+import ConditionalProbabilityLesson508 from "./ConditionalProbabilityLesson508";
+import TreeDiagramsLesson509 from "./TreeDiagramsLesson509";
+import VennDiagramsLesson510 from "./VennDiagramsLesson510";
+import TwoWayTablesLesson511 from "./TwoWayTablesLesson511";
+import BayesTheoremLesson512 from "./BayesTheoremLesson512";
+import ExpectedValueLesson513 from "./ExpectedValueLesson513";
+import ProbabilitySimulationLesson514 from "./ProbabilitySimulationLesson514";
+import LawLargeNumbersLesson515 from "./LawLargeNumbersLesson515";
+import DistributionCalculatorLesson516 from "./DistributionCalculatorLesson516";
+import ProbabilityPlotLesson517 from "./ProbabilityPlotLesson517";
+import CumulativeDistributionLesson518 from "./CumulativeDistributionLesson518";
+import IntervalTailProbabilityLesson519 from "./IntervalTailProbabilityLesson519";
+import InverseProbabilityLesson520 from "./InverseProbabilityLesson520";
+import BernoulliDistributionLesson521 from "./BernoulliDistributionLesson521";
+import BinomialDistributionLesson522 from "./BinomialDistributionLesson522";
+import HypergeometricDistributionLesson523 from "./HypergeometricDistributionLesson523";
+import PoissonDistributionLesson524 from "./PoissonDistributionLesson524";
+import GeometricDistributionLesson525 from "./GeometricDistributionLesson525";
+import NegativeBinomialDistributionLesson526 from "./NegativeBinomialDistributionLesson526";
+import UniformDistributionLesson527 from "./UniformDistributionLesson527";
+import NormalDistributionLesson528 from "./NormalDistributionLesson528";
+import StudentTDistributionLesson529 from "./StudentTDistributionLesson529";
+import ChiSquareDistributionLesson530 from "./ChiSquareDistributionLesson530";
+import FDistributionLesson531 from "./FDistributionLesson531";
+import ExponentialDistributionLesson532 from "./ExponentialDistributionLesson532";
+import GammaDistributionLesson533 from "./GammaDistributionLesson533";
+import WeibullDistributionLesson534 from "./WeibullDistributionLesson534";
+import StandardisationLesson535 from "./StandardisationLesson535";
+import DistributionSimulationLesson536 from "./DistributionSimulationLesson536";
 
 type Kind =
   "event" | "diagram" | "simulation" | "calculator" | "discrete" | "continuous";
@@ -94,7 +130,48 @@ const specs: Spec[] = rows.map(([title, kind, formula], index) => ({
   misconception: misconceptionFor(title),
 }));
 
-export default function ProbabilityLessonAdapter({
+export default function ProbabilityLessonAdapter(props: LessonAdapterProps) {
+  if (props.lesson.id === 500) return <SampleSpacesLesson500 {...props} />;
+  if (props.lesson.id === 501) return <EventsLesson501 {...props} />;
+  if (props.lesson.id === 502) return <ProbabilityScaleLesson502 {...props} />;
+  if (props.lesson.id === 503) return <ComplementRuleLesson503 {...props} />;
+  if (props.lesson.id === 504) return <AdditionRuleLesson504 {...props} />;
+  if (props.lesson.id === 505) return <MultiplicationRuleLesson505 {...props} />;
+  if (props.lesson.id === 506) return <IndependentEventsLesson506 {...props} />;
+  if (props.lesson.id === 507) return <MutuallyExclusiveEventsLesson507 {...props} />;
+  if (props.lesson.id === 508) return <ConditionalProbabilityLesson508 {...props} />;
+  if (props.lesson.id === 509) return <TreeDiagramsLesson509 {...props} />;
+  if (props.lesson.id === 510) return <VennDiagramsLesson510 {...props} />;
+  if (props.lesson.id === 511) return <TwoWayTablesLesson511 {...props} />;
+  if (props.lesson.id === 512) return <BayesTheoremLesson512 {...props} />;
+  if (props.lesson.id === 513) return <ExpectedValueLesson513 {...props} />;
+  if (props.lesson.id === 514) return <ProbabilitySimulationLesson514 {...props} />;
+  if (props.lesson.id === 515) return <LawLargeNumbersLesson515 {...props} />;
+  if (props.lesson.id === 516) return <DistributionCalculatorLesson516 {...props} />;
+  if (props.lesson.id === 517) return <ProbabilityPlotLesson517 {...props} />;
+  if (props.lesson.id === 518) return <CumulativeDistributionLesson518 {...props} />;
+  if (props.lesson.id === 519) return <IntervalTailProbabilityLesson519 {...props} />;
+  if (props.lesson.id === 520) return <InverseProbabilityLesson520 {...props} />;
+  if (props.lesson.id === 521) return <BernoulliDistributionLesson521 {...props} />;
+  if (props.lesson.id === 522) return <BinomialDistributionLesson522 {...props} />;
+  if (props.lesson.id === 523) return <HypergeometricDistributionLesson523 {...props} />;
+  if (props.lesson.id === 524) return <PoissonDistributionLesson524 {...props} />;
+  if (props.lesson.id === 525) return <GeometricDistributionLesson525 {...props} />;
+  if (props.lesson.id === 526) return <NegativeBinomialDistributionLesson526 {...props} />;
+  if (props.lesson.id === 527) return <UniformDistributionLesson527 {...props} />;
+  if (props.lesson.id === 528) return <NormalDistributionLesson528 {...props} />;
+  if (props.lesson.id === 529) return <StudentTDistributionLesson529 {...props} />;
+  if (props.lesson.id === 530) return <ChiSquareDistributionLesson530 {...props} />;
+  if (props.lesson.id === 531) return <FDistributionLesson531 {...props} />;
+  if (props.lesson.id === 532) return <ExponentialDistributionLesson532 {...props} />;
+  if (props.lesson.id === 533) return <GammaDistributionLesson533 {...props} />;
+  if (props.lesson.id === 534) return <WeibullDistributionLesson534 {...props} />;
+  if (props.lesson.id === 535) return <StandardisationLesson535 {...props} />;
+  if (props.lesson.id === 536) return <DistributionSimulationLesson536 {...props} />;
+  return <SharedProbabilityLessonAdapter {...props} />;
+}
+
+function SharedProbabilityLessonAdapter({
   lesson,
   resetToken,
   onInteraction,

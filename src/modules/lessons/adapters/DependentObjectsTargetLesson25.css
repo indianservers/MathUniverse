@@ -3,7 +3,7 @@
   top: -11px;
   left: 14px;
   width: 1046px;
-  height: 987px;
+  height: auto;
   margin-bottom: -11px;
   color: #0a1738;
   font-size: 12px;
@@ -125,9 +125,9 @@
 }
 .dependency-main {
   display: grid;
-  height: 713px;
+  height: auto;
   margin-top: 14px;
-  grid-template-columns: 736px 303px;
+  grid-template-columns: minmax(0, 1fr) 303px;
   gap: 7px;
 }
 .dependency-lab,
@@ -155,7 +155,7 @@
   stroke: #195fe4;
   stroke-width: 3;
 }
-.dependency-lab circle {
+.dependency-lab > svg circle {
   filter: url(#point-shadow);
   cursor: grab;
 }
@@ -179,8 +179,8 @@
 }
 .dependency-lower {
   display: grid;
-  height: 333px;
-  grid-template-columns: 445px 1fr;
+  height: auto;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
   gap: 17px;
 }
 .dependency-formula,
@@ -271,7 +271,7 @@
   font-size: 17px;
 }
 .dependency-hierarchy {
-  height: 333px;
+  height: auto;
   min-height: 0;
   overflow: hidden;
   padding: 15px;
@@ -535,3 +535,13 @@
     margin-top: 12px;
   }
 }
+@media (max-width: 600px) {
+  .dependency-lower { grid-template-columns: minmax(0, 1fr); margin-top: 12px; }
+  .dependency-header { height: auto; grid-template-columns: minmax(0, 1fr); padding: 16px; }
+  .dependency-header nav { flex-wrap: wrap; }
+  .dependency-header nav b { height: auto; padding-block: 8px; }
+  .dependency-formula .parent-cards { gap: 8px; }
+  .dependency-formula .parent-cards > b { width: auto; flex: 1; }
+  .dependency-formula .formula-flow > strong { width: 100%; }
+}
+

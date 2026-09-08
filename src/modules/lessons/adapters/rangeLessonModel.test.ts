@@ -1,0 +1,3 @@
+import { describe, expect, it } from "vitest";
+import { maxValue, minValue, rangeAnswer, rangeValue, rangeDefault } from "./rangeLessonModel";
+describe("Range model", () => { it("uses only the minimum and maximum", () => { expect(minValue(rangeDefault)).toBe(2); expect(maxValue(rangeDefault)).toBe(10); expect(rangeValue(rangeDefault)).toBe(8); expect(rangeValue([10, 2, 7])).toBe(8); }); it("handles empty data and exact practice answers", () => { expect(rangeValue([])).toBeNull(); expect(rangeAnswer([11, 4, 9, 7, 3], "8")).toBe(true); expect(rangeAnswer([11, 4, 9, 7, 3], "9")).toBe(false); }); });

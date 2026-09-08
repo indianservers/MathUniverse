@@ -1,0 +1,458 @@
+{
+  "records": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "state": {
+        "testid": "2d-graphing-mockup-0136"
+      },
+      "overflow": false,
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "name": "Reset view",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Fit",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Share",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Move graph",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Toggle guides",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Inspector",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "radius scale",
+          "value": "2",
+          "min": "-5",
+          "max": "5",
+          "step": "0.5"
+        },
+        {
+          "tag": "BUTTON",
+          "name": "",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "petals",
+          "value": "3",
+          "min": "-5",
+          "max": "5",
+          "step": "0.5"
+        },
+        {
+          "tag": "BUTTON",
+          "name": "",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "theta",
+          "value": "1.5",
+          "min": "-5",
+          "max": "5",
+          "step": "0.5"
+        },
+        {
+          "tag": "BUTTON",
+          "name": "",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "",
+          "value": ""
+        }
+      ],
+      "bars": [],
+      "graphs": [
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 720 520",
+          "label": "Polar Graphs graph workspace"
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "state": {
+        "testid": "2d-graphing-mockup-0136"
+      },
+      "overflow": false,
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "name": "Reset view",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Fit",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Share",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Move graph",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Toggle guides",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Inspector",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "radius scale",
+          "value": "2",
+          "min": "-5",
+          "max": "5",
+          "step": "0.5"
+        },
+        {
+          "tag": "BUTTON",
+          "name": "",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "petals",
+          "value": "3",
+          "min": "-5",
+          "max": "5",
+          "step": "0.5"
+        },
+        {
+          "tag": "BUTTON",
+          "name": "",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "theta",
+          "value": "1.5",
+          "min": "-5",
+          "max": "5",
+          "step": "0.5"
+        },
+        {
+          "tag": "BUTTON",
+          "name": "",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "",
+          "value": ""
+        }
+      ],
+      "bars": [],
+      "graphs": [
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 720 520",
+          "label": "Polar Graphs graph workspace"
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "state": {
+        "testid": "2d-graphing-mockup-0136"
+      },
+      "overflow": false,
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "name": "Reset view",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Fit",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Share",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Move graph",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Toggle guides",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Inspector",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "radius scale",
+          "value": "2",
+          "min": "-5",
+          "max": "5",
+          "step": "0.5"
+        },
+        {
+          "tag": "BUTTON",
+          "name": "",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "petals",
+          "value": "3",
+          "min": "-5",
+          "max": "5",
+          "step": "0.5"
+        },
+        {
+          "tag": "BUTTON",
+          "name": "",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "theta",
+          "value": "1.5",
+          "min": "-5",
+          "max": "5",
+          "step": "0.5"
+        },
+        {
+          "tag": "BUTTON",
+          "name": "",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "",
+          "value": ""
+        }
+      ],
+      "bars": [],
+      "graphs": [
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 720 520",
+          "label": "Polar Graphs graph workspace"
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

@@ -6,11 +6,17 @@ import {
   Share2,
   StepForward,
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { PointerEvent as ReactPointerEvent } from "react";
 import type { LessonAdapterProps } from "../../types";
+import {
+  factorial,
+  taylorDerivativeText,
+  taylorFunctionValue,
+  taylorMaclaurinAnalysis,
+} from "./taylorMaclaurinLessonModel";
+import type { TaylorFunction } from "./taylorMaclaurinLessonModel";
 import "./TaylorMaclaurinTargetLesson344.css";
-type FnName = "e^x" | "sin x" | "cos x" | "ln(1+x)" | "1/(1-x)";
 const tabs = [
   "Interactive Lab",
   "Guided Explanation",
@@ -19,50 +25,11 @@ const tabs = [
   "Quick Check",
 ];
 const clean = (v: number) => Number(v.toFixed(7));
-const fact = (n: number) => {
-  let v = 1;
-  for (let i = 2; i <= n; i += 1) v *= i;
-  return v;
-};
-const value = (fn: FnName, x: number) =>
-  fn === "e^x"
-    ? Math.exp(x)
-    : fn === "sin x"
-      ? Math.sin(x)
-      : fn === "cos x"
-        ? Math.cos(x)
-        : fn === "ln(1+x)"
-          ? Math.log1p(x)
-          : 1 / (1 - x);
-const coefficient = (fn: FnName, a: number, k: number) => {
-  if (fn === "e^x") return Math.exp(a) / fact(k);
-  if (fn === "sin x") return Math.sin(a + (k * Math.PI) / 2) / fact(k);
-  if (fn === "cos x") return Math.cos(a + (k * Math.PI) / 2) / fact(k);
-  if (fn === "ln(1+x)") {
-    if (a <= -1) return 0;
-    if (k === 0) return Math.log1p(a);
-    return (k % 2 ? 1 : -1) / (k * (1 + a) ** k);
-  }
-  if (Math.abs(1 - a) < 1e-9) return 0;
-  return 1 / (1 - a) ** (k + 1);
-};
-const derivativeText = (fn: FnName, k: number) =>
-  fn === "e^x"
-    ? "e^x"
-    : fn === "sin x"
-      ? ["sin x", "cos x", "-sin x", "-cos x"][k % 4]
-      : fn === "cos x"
-        ? ["cos x", "-sin x", "-cos x", "sin x"][k % 4]
-        : fn === "ln(1+x)"
-          ? k === 0
-            ? "ln(1+x)"
-            : `${k % 2 ? "" : "-"}${fact(k - 1)}/(1+x)^${k}`
-          : `${fact(k)}/(1-x)^${k + 1}`;
 export default function TaylorMaclaurinTargetLesson344({
   resetToken,
   onInteraction,
 }: LessonAdapterProps) {
-  const [fn, setFn] = useState<FnName>("e^x"),
+  const [fn, setFn] = useState<TaylorFunction>("e^x"),
     [center, setCenter] = useState(0),
     [order, setOrder] = useState(4),
     [low, setLow] = useState(-3),
@@ -71,47 +38,34 @@ export default function TaylorMaclaurinTargetLesson344({
     [playing, setPlaying] = useState(false),
     [speed, setSpeed] = useState(5),
     [tab, setTab] = useState(tabs[0]),
+    [language, setLanguage] = useState<"en" | "hi">("en"),
     [question, setQuestion] = useState(0),
     [quick, setQuick] = useState<"" | "correct" | "incorrect">(""),
     [fullscreen, setFullscreen] = useState(false),
     [actions, setActions] = useState(0);
-  const valid =
-    low < high &&
-    (fn !== "ln(1+x)" || low > -1) &&
-    (fn !== "1/(1-x)" || high < 1 || low > 1);
-  const coeffs = Array.from({ length: order + 1 }, (_, k) =>
-    coefficient(fn, center, k),
-  );
-  const poly = (x: number, n = shownOrder) =>
-    coeffs
-      .slice(0, n + 1)
-      .reduce((sum, c, k) => sum + c * (x - center) ** k, 0);
-  const samples = Array.from(
-    { length: 81 },
-    (_, i) => low + ((high - low) * i) / 80,
-  )
-    .map((x) => ({ x, f: value(fn, x), p: poly(x) }))
-    .filter(
-      (p) => Number.isFinite(p.f) && Math.abs(p.f) < 50 && Number.isFinite(p.p),
-    );
-  const maxError = Math.max(...samples.map((p) => Math.abs(p.f - p.p)), 0);
-  const orderErrors = Array.from({ length: 9 }, (_, n) =>
-    Math.max(
-      ...Array.from({ length: 61 }, (_, i) => {
-        const x = low + ((high - low) * i) / 60;
-        return Math.abs(
-          value(fn, x) -
-            coeffs
-              .slice(0, Math.min(n, order) + 1)
-              .reduce((s, c, k) => s + c * (x - center) ** k, 0),
-        );
-      }).filter(Number.isFinite),
-      0,
+  const analysis = useMemo(
+      () =>
+        taylorMaclaurinAnalysis({
+          fn,
+          center,
+          order,
+          shownOrder,
+          low,
+          high,
+        }),
+      [fn, center, order, shownOrder, low, high],
     ),
-  );
+    {
+      valid,
+      coefficients: coeffs,
+      samples,
+      maxError,
+      orderErrors,
+      expanded,
+    } = analysis;
   const yMin = Math.min(-2, ...samples.flatMap((p) => [p.f, p.p])),
     yMax = Math.max(2, ...samples.flatMap((p) => [p.f, p.p])),
-    gx = (x: number) => 35 + ((x - low) / (high - low)) * 525,
+    gx = (x: number) => 35 + ((x - low) / Math.max(0.001, high - low)) * 525,
     gy = (y: number) => 195 - ((y - yMin) / Math.max(0.01, yMax - yMin)) * 165;
   const path = (key: "f" | "p") =>
     samples
@@ -130,6 +84,7 @@ export default function TaylorMaclaurinTargetLesson344({
     setPlaying(false);
     setSpeed(5);
     setTab(tabs[0]);
+    setLanguage("en");
     setQuestion(0);
     setQuick("");
     setFullscreen(false);
@@ -169,13 +124,6 @@ export default function TaylorMaclaurinTargetLesson344({
       setQuick("");
     });
   };
-  const expanded = coeffs
-    .slice(0, shownOrder + 1)
-    .map(
-      (c, k) =>
-        `${k && c >= 0 ? "+" : ""}${clean(c)}${k ? `(x${center >= 0 ? "-" : "+"}${Math.abs(center)})${k > 1 ? `^${k}` : ""}` : ""}`,
-    )
-    .join(" ");
   const challenges = [
     {
       label: "Find the fourth-order Maclaurin polynomial of e^x.",
@@ -208,6 +156,7 @@ export default function TaylorMaclaurinTargetLesson344({
       data-valid={valid}
       data-playing={playing}
       data-tab={tab}
+      data-language={language}
       data-question={question}
       data-quick-result={quick}
       data-actions={actions}
@@ -218,8 +167,16 @@ export default function TaylorMaclaurinTargetLesson344({
             <b>ADVANCED MATHEMATICS</b>
             <b>SEQUENCES AND SERIES</b>
           </span>
-          <h1>Taylor and Maclaurin Series</h1>
-          <p>Approximate functions using derivatives at a chosen center.</p>
+          <h1>
+            {language === "en"
+              ? "Taylor and Maclaurin Series"
+              : "टेलर और मैक्लॉरिन श्रेणी"}
+          </h1>
+          <p>
+            {language === "en"
+              ? "Approximate functions using derivatives at a chosen center."
+              : "चुने हुए केंद्र पर अवकलजों से फलनों का सन्निकटन करें।"}
+          </p>
           <div>
             {[
               "Intermediate-Advanced",
@@ -231,14 +188,25 @@ export default function TaylorMaclaurinTargetLesson344({
             ))}
           </div>
           <nav>
-            <select aria-label="Language">
-              <option>English (English)</option>
+            <select
+              aria-label="Language"
+              value={language}
+              onChange={(event) =>
+                act(() => setLanguage(event.target.value as "en" | "hi"))
+              }
+            >
+              <option value="en">English (English)</option>
+              <option value="hi">हिन्दी (Hindi)</option>
             </select>
-            <button onClick={reset}>
+            <button onClick={() => act(reset)}>
               <RotateCcw />
               Reset Lab
             </button>
-            <button onClick={() => act(() => {})}>
+            <button
+              onClick={() =>
+                act(() => navigator.clipboard?.writeText(location.href))
+              }
+            >
               <Share2 />
               Share
             </button>
@@ -258,20 +226,31 @@ export default function TaylorMaclaurinTargetLesson344({
           <button
             className={tab === x ? "active" : ""}
             key={x}
-            onClick={() => act(() => setTab(x))}
+            onClick={() => {
+              act(() => setTab(x));
+              document
+                .getElementById(
+                  x === tabs[0]
+                    ? "seq344-lab"
+                    : x === "Quick Check"
+                      ? "seq344-check"
+                      : "seq344-insights",
+                )
+                ?.scrollIntoView({ behavior: "smooth" });
+            }}
           >
             {x}
           </button>
         ))}
       </nav>
-      <section className="seq344-lab">
+      <section className="seq344-lab" id="seq344-lab">
         <header>
           <div>
             <small>INTERACTIVE LAB</small>
             <h2>Explore Taylor & Maclaurin Series</h2>
           </div>
           <span>Controls</span>
-          <button onClick={reset}>Reset All</button>
+          <button onClick={() => act(reset)}>Reset All</button>
           <button
             title="Fullscreen"
             onClick={() => act(() => setFullscreen((v) => !v))}
@@ -287,7 +266,7 @@ export default function TaylorMaclaurinTargetLesson344({
               value={fn}
               onChange={(e) =>
                 act(() => {
-                  setFn(e.target.value as FnName);
+                  setFn(e.target.value as TaylorFunction);
                   setQuick("");
                 })
               }
@@ -377,7 +356,7 @@ export default function TaylorMaclaurinTargetLesson344({
               <circle
                 data-drag="taylor-center"
                 cx={gx(center)}
-                cy={gy(value(fn, center))}
+                cy={gy(taylorFunctionValue(fn, center))}
                 r="7"
                 onPointerDown={(e) =>
                   e.currentTarget.setPointerCapture(e.pointerId)
@@ -434,8 +413,8 @@ export default function TaylorMaclaurinTargetLesson344({
                 {coeffs.map((c, k) => (
                   <tr key={k}>
                     <td>{k}</td>
-                    <td>{derivativeText(fn, k)}</td>
-                    <td>{clean(c * fact(k))}</td>
+                    <td>{taylorDerivativeText(fn, k)}</td>
+                    <td>{clean(c * factorial(k))}</td>
                     <td>
                       {clean(c)}(x-a)^{k}
                     </td>
@@ -508,7 +487,7 @@ export default function TaylorMaclaurinTargetLesson344({
           </article>
         </section>
       </section>
-      <section className="seq344-insights">
+      <section className="seq344-insights" id="seq344-insights">
         <article>
           <b>Key Insight</b>
           <p>
@@ -540,7 +519,7 @@ export default function TaylorMaclaurinTargetLesson344({
           </p>
         </article>
       </section>
-      <section className="seq344-check">
+      <section className="seq344-check" id="seq344-check">
         <article>
           <small>QUICK CHECK ({question + 1} of 2)</small>
           <h2>{challenges[question].label}</h2>

@@ -1,7 +1,6 @@
-import { PhaseTwoProofExperience } from "../../components/PhaseTwoProofExperience";
 import type { VisualProof, VisualProofCategory } from "../../data/proofTypes";
-import { squareOfSumPhaseTwoConfig } from "../phase-two/phaseTwoProofConfigs";
+import SquareBinomialMobileProof from "./SquareBinomialMobileProof";
 
-export default function SquareOfSumProof({ category, proof }: { category: VisualProofCategory; proof: VisualProof }) {
-  return <PhaseTwoProofExperience category={category} proof={proof} config={squareOfSumPhaseTwoConfig} />;
+export default function SquareOfSumProof({ category: _category, proof: _proof }: { category: VisualProofCategory; proof: VisualProof }) {
+  return <SquareBinomialMobileProof />;
 }

@@ -2,53 +2,34 @@ import { Check, Download, RotateCcw } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import type { PointerEvent as ReactPointerEvent } from "react";
 import type { LessonAdapterProps } from "../../types";
+import {
+  applyRecursiveRule,
+  parseRecursiveRule,
+  recursiveRuleLabel,
+  recursiveSequenceAnalysis,
+  type RecursiveRule,
+} from "./recursiveSequenceLessonModel";
 import "./RecursiveSequencesTargetLesson337.css";
 
-type Rule =
-  { kind: "affine"; m: number; b: number } | { kind: "logistic"; r: number };
 const presets = {
   "Linear growth": {
     source: "a + 2",
-    rule: { kind: "affine", m: 1, b: 2 } as Rule,
+    rule: { kind: "affine", m: 1, b: 2 } as RecursiveRule,
   },
   "Linear decay": {
     source: "0.6a + 4",
-    rule: { kind: "affine", m: 0.6, b: 4 } as Rule,
+    rule: { kind: "affine", m: 0.6, b: 4 } as RecursiveRule,
   },
-  Doubling: { source: "2a", rule: { kind: "affine", m: 2, b: 0 } as Rule },
-  Logistic: { source: "3.2a(1-a)", rule: { kind: "logistic", r: 3.2 } as Rule },
+  Doubling: {
+    source: "2a",
+    rule: { kind: "affine", m: 2, b: 0 } as RecursiveRule,
+  },
+  Logistic: {
+    source: "3.2a(1-a)",
+    rule: { kind: "logistic", r: 3.2 } as RecursiveRule,
+  },
 };
 const clean = (v: number, precision = 6) => Number(v.toFixed(precision));
-function parseRule(source: string): Rule | null {
-  const text = source
-    .toLowerCase()
-    .replaceAll(" ", "")
-    .replaceAll("aₙ₋₁", "a")
-    .replaceAll("a_n-1", "a")
-    .replaceAll("*", "");
-  const logistic = text.match(/^([+-]?\d*\.?\d+)a\(1-a\)$/);
-  if (logistic) return { kind: "logistic", r: Number(logistic[1]) };
-  const affine = text.match(/^([+-]?\d*\.?\d*)a(?:([+-]\d*\.?\d+))?$/);
-  if (!affine) return null;
-  const m =
-      affine[1] === "" || affine[1] === "+"
-        ? 1
-        : affine[1] === "-"
-          ? -1
-          : Number(affine[1]),
-    b = Number(affine[2] ?? 0);
-  return Number.isFinite(m) && Number.isFinite(b)
-    ? { kind: "affine", m, b }
-    : null;
-}
-const applyRule = (rule: Rule, value: number) =>
-  rule.kind === "affine"
-    ? rule.m * value + rule.b
-    : rule.r * value * (1 - value);
-const ruleLabel = (rule: Rule) =>
-  rule.kind === "affine"
-    ? `${rule.m}aₙ₋₁ ${rule.b < 0 ? "−" : "+"} ${Math.abs(rule.b)}`
-    : `${rule.r}aₙ₋₁(1−aₙ₋₁)`;
 
 export default function RecursiveSequencesTargetLesson337({
   resetToken,
@@ -57,29 +38,18 @@ export default function RecursiveSequencesTargetLesson337({
   const [preset, setPreset] = useState<keyof typeof presets>("Linear decay"),
     [custom, setCustom] = useState(true),
     [source, setSource] = useState("0.6a + 4"),
-    [rule, setRule] = useState<Rule>(presets["Linear decay"].rule),
+    [rule, setRule] = useState<RecursiveRule>(presets["Linear decay"].rule),
     [initial, setInitial] = useState(2),
     [precision, setPrecision] = useState(6),
     [shown, setShown] = useState(5),
     [tab, setTab] = useState("Define & Visualisation"),
     [quick, setQuick] = useState<"" | "correct" | "incorrect">(""),
     [actions, setActions] = useState(0);
-  const terms = useMemo(() => {
-    const values = [initial];
-    for (let i = 1; i < 10; i++) values.push(applyRule(rule, values[i - 1]));
-    return values;
-  }, [initial, rule]);
-  const fixed =
-      rule.kind === "affine" && Math.abs(1 - rule.m) > 1e-10
-        ? rule.b / (1 - rule.m)
-        : null,
-    errors = terms.map((v) => (fixed === null ? NaN : Math.abs(v - fixed))),
-    stable = rule.kind === "affine" && Math.abs(rule.m) < 1,
-    behavior = stable
-      ? "Convergent"
-      : rule.kind === "affine" && Math.abs(rule.m) === 1
-        ? "Neutral"
-        : "Nonlinear / divergent";
+  const analysis = useMemo(
+      () => recursiveSequenceAnalysis(rule, initial),
+      [rule, initial],
+    ),
+    { terms, fixed, errors, stable, behavior, monotonic } = analysis;
   const reset = () => {
     setPreset("Linear decay");
     setCustom(true);
@@ -109,8 +79,10 @@ export default function RecursiveSequencesTargetLesson337({
     });
   const updateSource = (value: string) => {
     setSource(value);
-    const parsed = parseRule(value);
-    if (parsed) act(() => setRule(parsed));
+    const parsed = parseRecursiveRule(value);
+    act(() => {
+      if (parsed) setRule(parsed);
+    });
   };
   const changeInitial = (value: number) =>
     act(() => setInitial(clean(value, 6)));
@@ -136,10 +108,11 @@ export default function RecursiveSequencesTargetLesson337({
     if (event.buttons !== 1) return;
     const rect = event.currentTarget.ownerSVGElement?.getBoundingClientRect();
     if (!rect) return;
-    changeInitial(
-      max -
-        ((event.clientY - rect.top - 20) / (rect.height - 40)) * (max - min),
+    const pointerRatio = Math.max(
+      0,
+      Math.min(1, (event.clientY - rect.top - 20) / (rect.height - 40)),
     );
+    changeInitial(max - pointerRatio * (max - min));
   };
   const plotMin = Math.min(...terms, 0, fixed ?? 0) - 1,
     plotMax = Math.max(...terms, 10, fixed ?? 0) + 1,
@@ -151,7 +124,7 @@ export default function RecursiveSequencesTargetLesson337({
       data-object-model="editable-affine-logistic-recurrence-parser-presets-initial-condition-dependency-chain-memoized-table-cobweb-draggable-seed-time-series-fixed-point-error-export-practice"
       data-preset={preset}
       data-custom={custom}
-      data-rule={ruleLabel(rule)}
+      data-rule={recursiveRuleLabel(rule)}
       data-initial={initial}
       data-terms={terms.map((v) => clean(v, precision)).join(",")}
       data-fixed={fixed === null ? "none" : clean(fixed, precision)}
@@ -173,7 +146,18 @@ export default function RecursiveSequencesTargetLesson337({
           <button
             key={name}
             className={tab === name ? "active" : ""}
-            onClick={() => act(() => setTab(name))}
+            onClick={() => {
+              act(() => setTab(name));
+              const target =
+                name === "Define & Visualisation" || name === "Formulas"
+                  ? "seq337-config"
+                  : name === "Examples"
+                    ? "seq337-evaluation"
+                    : "seq337-insights";
+              document
+                .getElementById(target)
+                ?.scrollIntoView({ behavior: "smooth" });
+            }}
           >
             {name}
           </button>
@@ -193,7 +177,7 @@ export default function RecursiveSequencesTargetLesson337({
           conditions, dependency chains, and graphical insight.
         </p>
       </header>
-      <section className="seq337-config">
+      <section className="seq337-config" id="seq337-config">
         <article>
           <header>
             <h2>1. Define the recurrence</h2>
@@ -237,7 +221,7 @@ export default function RecursiveSequencesTargetLesson337({
               onClick={() => choosePreset(name)}
             >
               <b>{name}</b>
-              <span>aₙ = {ruleLabel(presets[name].rule)}</span>
+              <span>aₙ = {recursiveRuleLabel(presets[name].rule)}</span>
               {preset === name && <Check />}
             </button>
           ))}
@@ -245,7 +229,7 @@ export default function RecursiveSequencesTargetLesson337({
         <article className="settings">
           <h2>Active settings</h2>
           <p>
-            Recurrence: <b>aₙ = {ruleLabel(rule)}</b>
+            Recurrence: <b>aₙ = {recursiveRuleLabel(rule)}</b>
           </p>
           <p>
             Initial: <b>a₁ = {initial}</b>
@@ -294,7 +278,7 @@ export default function RecursiveSequencesTargetLesson337({
             <i /> Computed &nbsp;&nbsp; ○ Pending
           </footer>
         </article>
-        <article className="evaluation">
+        <article className="evaluation" id="seq337-evaluation">
           <h2>3. Step-by-step evaluation</h2>
           <p>Follow how each term is computed.</p>
           {terms.slice(0, shown).map((v, i) => (
@@ -302,7 +286,7 @@ export default function RecursiveSequencesTargetLesson337({
               <span>a{i + 1}</span>
               <b>
                 {i
-                  ? `${ruleLabel(rule).replaceAll("aₙ₋₁", `(${clean(terms[i - 1], precision)})`)} = ${clean(v, precision)}`
+                  ? `${recursiveRuleLabel(rule).replaceAll("aₙ₋₁", `(${clean(terms[i - 1], precision)})`)} = ${clean(v, precision)}`
                   : clean(v, precision)}
               </b>
               <Check />
@@ -322,7 +306,7 @@ export default function RecursiveSequencesTargetLesson337({
             <polyline
               points={Array.from({ length: 70 }, (_, i) => {
                 const x = plotMin + ((plotMax - plotMin) * i) / 69;
-                return `${28 + i * 3.32},${plotY(applyRule(rule, x))}`;
+                return `${28 + i * 3.32},${plotY(applyRecursiveRule(rule, x))}`;
               }).join(" ")}
               className="function"
             />
@@ -464,13 +448,11 @@ export default function RecursiveSequencesTargetLesson337({
             <b>
               Monotonic?
               <br />
-              {terms.every((v, i) => !i || v >= terms[i - 1])
-                ? "Increasing"
-                : "No"}
+              {monotonic}
             </b>
           </div>
         </article>
-        <aside>
+        <aside id="seq337-insights">
           {[
             [
               "7. Key insight",

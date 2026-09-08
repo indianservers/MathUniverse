@@ -1,0 +1,5 @@
+import { renderToStaticMarkup } from "react-dom/server";
+import { describe, expect, it, vi } from "vitest";
+import { lessonCatalog } from "../catalog/lessonCatalog";
+import StatisticsLessonAdapter from "./StatisticsLessonAdapter";
+describe("Mean dedicated surface", () => { it("routes lesson 470 to a real balancing activity", () => { const html = renderToStaticMarkup(<StatisticsLessonAdapter lesson={lessonCatalog.find(item => item.id === 470)!} resetToken={0} onInteraction={vi.fn()} />); expect(html).toContain('data-testid="statistics-mockup-0433"'); expect(html).toContain("Balanced at the mean"); expect(html).toContain("Show deviations"); expect(html).toContain("Sum of deviations"); expect(html.match(/aria-label="Data value/g)).toHaveLength(9); expect(html.match(/aria-label="Mean practice answer/g)).toHaveLength(4); expect(html).not.toContain("Shift all data"); }); });

@@ -1,7 +1,6 @@
-import { PhaseTwoProofExperience } from "../../components/PhaseTwoProofExperience";
 import type { VisualProof, VisualProofCategory } from "../../data/proofTypes";
-import { vectorAdditionPhaseTwentyConfig } from "../phase-twenty/phaseTwentyProofConfigs";
+import VectorAdditionMobileProof from "./VectorAdditionMobileProof";
 
-export default function VectorAdditionTipToTailProof({ category, proof }: { category: VisualProofCategory; proof: VisualProof }) {
-  return <PhaseTwoProofExperience category={category} proof={proof} config={vectorAdditionPhaseTwentyConfig} />;
+export default function VectorAdditionTipToTailProof({ category: _category, proof: _proof }: { category: VisualProofCategory; proof: VisualProof }) {
+  return <VectorAdditionMobileProof />;
 }

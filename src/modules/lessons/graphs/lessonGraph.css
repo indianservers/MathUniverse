@@ -1,0 +1,94 @@
+/* Lesson-only namespace. Never style the main graph studio or its canvas. */
+.lesson-graph-workspace {
+  --lg-paper: #fff; --lg-ink: #14274c; --lg-muted: #50648a; --lg-border: #d6e2f4; --lg-grid: #e7edf7; --lg-soft: #f5f8ff; --lg-focus: #2555ea;
+  min-width: 0; padding: 16px; border: 1px solid var(--lg-border); border-radius: 16px; background: var(--lg-paper); color: var(--lg-ink); font: 16px/1.5 Inter, Arial, sans-serif;
+}
+.dark .lesson-graph-workspace { --lg-paper: #14213a; --lg-ink: #e8efff; --lg-muted: #b8c8e4; --lg-border: #405575; --lg-grid: #293c58; --lg-soft: #1b2d49; --lg-focus: #8ab8ff; }
+.lesson-graph-workspace .lesson-graph-heading { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; height: auto; margin-bottom: 12px; }
+.lesson-graph-workspace .lesson-graph-heading h3 { font-size: 22px; line-height: 1.35; color: var(--lg-ink); }
+.lesson-graph-heading p { margin: 4px 0 0; color: var(--lg-muted); }
+.lesson-graph-workspace .lesson-graph-legend { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 12px; padding: 0; list-style: none; }
+.lesson-graph-legend li { display: flex; align-items: center; gap: 10px; padding: 8px 12px; border: 1px solid var(--lg-border); border-radius: 8px; }
+.lesson-graph-swatch { width: 32px; height: 0; border-top-width: 4px; flex-shrink: 0; }
+.lesson-graph-toolbar { display: flex; flex-wrap: wrap; gap: 8px; }
+.lesson-graph-workspace .lesson-graph-toolbar button { display: inline-flex; gap: 6px; align-items: center; min-height: 44px; padding: 8px 12px; border: 1px solid var(--lg-border); border-radius: 10px; background: var(--lg-paper); color: var(--lg-ink); font-size: 16px; }
+.lesson-graph-workspace button:disabled { opacity: .45; cursor: not-allowed; }
+.lesson-graph-workspace button:hover { background: var(--lg-soft); }
+.lesson-graph-workspace :is(button,[tabindex]):focus-visible { outline: 3px solid var(--lg-focus); outline-offset: 3px; }
+.lesson-graph-stage { min-width: 0; border: 1px solid var(--lg-border); border-radius: 10px; background: var(--lg-paper); }
+.lesson-graph-controls { margin-bottom: 12px; }
+.lesson-graph-observation { margin-top: 12px; padding: 12px; border-radius: 10px; background: var(--lg-soft); color: var(--lg-ink); }
+.lesson-bar-scroll { max-width: 100%; overflow-x: auto; padding: 8px; border-radius: 10px; }
+.lesson-bars { display: grid; grid-template-columns: repeat(var(--bar-count),minmax(70px,1fr)); gap: 6px; min-height: 220px; }
+.lesson-graph-workspace .lesson-bar { display: grid; grid-template-rows: 28px 160px 30px; gap: 4px; min-width: 0; border: 1px solid transparent; border-radius: 8px; background: transparent; padding: 4px; color: var(--lg-ink); cursor: pointer; }
+.lesson-graph-workspace .lesson-bar[aria-pressed="true"] { border-color: var(--lg-focus); background: var(--lg-soft); }
+.lesson-bar-value { align-self: end; text-align: center; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.lesson-bar-plot { display: flex; align-items: end; justify-content: center; border-bottom: 1px solid var(--lg-border); background: repeating-linear-gradient(to top, transparent 0, transparent 39px, var(--lg-grid) 39px, var(--lg-grid) 40px); }
+.lesson-bar-plot i { display: block; width: 64%; height: var(--bar-height); background: var(--bar-color); border-radius: 4px 4px 0 0; }
+.lesson-bar-label { text-align: center; }
+.lesson-graph-tooltip { display: block; padding: 8px 12px; min-height: 44px; color: var(--lg-muted); border-top: 1px solid var(--lg-border); }
+.lesson-cartesian-frame { min-width: 0; }
+.lesson-graph-workspace .lesson-cartesian-canvas { display: block; width: 100%; height: auto; border-radius: 10px; }
+.lesson-cartesian-grid line { stroke: var(--lg-grid); stroke-width: 1; }
+.lesson-cartesian-axes line { stroke: var(--lg-ink); stroke-width: 1.8; }
+.lesson-cartesian-ticks text, .lesson-cartesian-annotation { fill: var(--lg-ink); font: 14px Inter, Arial, sans-serif; }
+.lesson-cartesian-annotation { pointer-events: none; paint-order: stroke; stroke: var(--lg-paper); stroke-width: 5px; stroke-linejoin: round; }
+.lesson-chain-frame { overflow-x: auto; }
+.lesson-chain { display: grid; grid-template-columns: repeat(var(--node-count),minmax(36px,1fr)); min-width: max-content; gap: 16px; list-style: none; margin: 0; padding: 12px 8px; }
+.lesson-chain li { position: relative; display: grid; place-items: center; }
+.lesson-chain-node { display: grid; width: 100%; max-width: 56px; aspect-ratio: 1; place-items: center; border: 2px solid; border-radius: 50%; background: var(--lg-soft); color: var(--lg-ink); font-size: 18px; }
+.lesson-chain-arrow { position: absolute; right: -16px; color: var(--lg-muted); font-size: 18px; }
+.lesson-dependency-tree { margin: 0; padding: 12px; list-style: none; }
+.lesson-dependency-level { display: flex; justify-content: center; gap: 12px; }
+.lesson-dependency-node { min-width: 0; padding: 8px 12px; border: 1px solid; border-left-width: 4px; border-radius: 8px; color: var(--lg-ink); background: var(--lg-soft); text-align: center; overflow-wrap: anywhere; }
+.lesson-dependency-connector { display: grid; justify-items: center; color: var(--lg-muted); }
+.lesson-dependency-connector i { display: block; width: 50%; height: 12px; border: 1px solid var(--lg-muted); border-top: 0; }
+.lesson-dependency-connector span { font-size: 20px; line-height: 24px; }
+.lesson-number-line { padding: 12px 20px; color: var(--lg-ink); }
+.lesson-number-value { display: block; margin-bottom: 8px; }
+.lesson-number-band { position: relative; height: 82px; }
+.lesson-number-region { position: absolute; top: 0; height: 42px; opacity: .16; }
+.lesson-number-axis { position: absolute; top: 42px; width: 100%; border-top: 2px solid var(--lg-ink); }
+.lesson-number-boundary { position: absolute; top: 35px; width: 16px; height: 16px; border: 2px solid; border-radius: 50%; transform: translateX(-50%); }
+.lesson-number-marker { position: absolute; top: 8px; transform: translateX(-50%); color: var(--lg-ink); }
+.lesson-number-tick { position: absolute; top: 54px; transform: translateX(-50%); font-size: 14px; }
+.lesson-number-line input { display: block; width: 100%; min-height: 44px; accent-color: #079a82; }
+.lesson-visibility-graph { position: relative; min-width: 0; min-height: 180px; border: 1px solid var(--lg-border,#dce4ec); border-radius: 10px; background: var(--lg-paper,#fff); color: var(--lg-ink,#0a1738); }
+.lesson-visibility-x { position: absolute; top: 50%; left: 8px; right: 8px; border-top: 1px solid var(--lg-muted,#aeb8c5); }
+.lesson-visibility-y { position: absolute; left: 50%; top: 8px; bottom: 8px; border-left: 1px solid var(--lg-muted,#aeb8c5); }
+.lesson-visibility-graph .lesson-visibility-object { position: absolute; display: grid; place-items: center; width: 44px; height: 44px; transform: translate(-50%,-50%); color: #07977c; font-size: 31px; }
+.lesson-visibility-object[data-visible="false"] { border: 2px dashed #9aa5b3; border-radius: 50%; }
+.lesson-visibility-caption { position: absolute; bottom: 16px; left: 12px; right: 12px; text-align: center; }
+.lesson-visibility-graph.is-compact { min-height: 90px; }
+.lesson-visibility-graph.is-compact .lesson-visibility-x { border-top-style: dashed; }
+.lesson-visibility-graph.is-compact .lesson-visibility-y { left: 8px; }
+.lesson-visibility-graph.is-compact .lesson-visibility-object { width: 34px; height: 34px; font-size: 25px; }
+.lesson-point-preview { position: relative; height: 166px; background: linear-gradient(var(--lg-grid) 1px,transparent 1px),linear-gradient(90deg,var(--lg-grid) 1px,transparent 1px); background-size: 16px 16px; }
+.lesson-preview-x { position: absolute; left: 8px; right: 8px; border-top: 1px solid var(--lg-ink); }
+.lesson-preview-y { position: absolute; top: 8px; bottom: 8px; border-left: 1px solid var(--lg-ink); }
+.lesson-preview-point { position: absolute; width: 12px; height: 12px; border-radius: 50%; transform: translate(-50%,-50%); }
+.lesson-preview-label { position: absolute; transform: translate(10px,-24px); }
+@media (max-width: 600px) { .lesson-graph-workspace { padding: 12px; } .lesson-graph-workspace .lesson-graph-heading h3 { font-size: 20px; } }
+@media (prefers-reduced-motion: reduce) { .lesson-graph-workspace * { animation-duration: .01ms; transition-duration: .01ms; } }
+.lesson-balance-graph { position:relative; padding:30px 8px 0; min-height:180px; }
+.lesson-balance-beam { position:absolute; top:22px; left:12%; right:12%; height:5px; background:var(--lg-ink); text-align:center; line-height:5px; font-size:24px; }
+.lesson-balance-pans { display:flex; justify-content:space-between; gap:25px; position:relative; z-index:1; }
+.lesson-balance-pan { flex:1; display:flex; flex-wrap:wrap; justify-content:center; gap:5px; padding:22px 4px 8px; border-bottom:5px solid var(--lg-muted); border-radius:0 0 30% 30%; }
+.lesson-balance-pan span { background:var(--lg-soft); color:var(--lg-ink); border:1px solid var(--lg-border); border-radius:6px; padding:6px; }
+.lesson-balance-stand { height:65px; width:6px; margin:0 auto; background:var(--lg-muted); }
+.lesson-balance-stand:after { content:''; display:block; position:relative; top:61px; left:-30px; width:66px; height:5px; background:var(--lg-muted); border-radius:5px; }
+.lesson-balance-beam { line-height:normal; font-size:0; }
+.lesson-graph-workspace .lesson-balance-beam > b { display:inline-block; position:relative; top:-13px; font-size:22px; line-height:26px; padding:0 5px; background:var(--lg-paper); color:var(--lg-ink); }
+
+.lesson-bar-graph[data-mark="dot"] .lesson-bar-plot { position:relative; }
+.lesson-bar-graph[data-mark="dot"] .lesson-bar-plot i { position:absolute; bottom:var(--bar-height); left:calc(50% - 8px); width:16px; height:16px; border-radius:50%; transform:translateY(50%); }
+.lesson-bar[data-highlighted="true"] .lesson-bar-plot i { outline:3px solid var(--lg-ink); outline-offset:2px; }
+
+/* Keep long lesson observations readable beside the graph toolbar. */
+.lesson-graph-workspace .lesson-graph-heading > div:first-child { min-width: 0; flex: 1 1 280px; }
+.lesson-graph-workspace .lesson-graph-heading p { white-space: normal !important; overflow: visible !important; text-overflow: clip !important; overflow-wrap: anywhere; }
+.lesson-polar-grid ellipse { fill: none; stroke: var(--lg-grid); stroke-width: 1; }
+.lesson-polar-grid text { fill: var(--lg-muted); font: 12px Inter, Arial, sans-serif; paint-order: stroke; stroke: var(--lg-paper); stroke-width: 3px; pointer-events: none; }
+.lesson-graph-workspace .lesson-graph-swatch[data-kind="point"] { width:10px; height:10px; border-width:0; border-radius:50%; background:currentColor; }
+.lesson-graph-workspace .lesson-graph-swatch[data-kind="region"] { height:12px; border-width:1px; background:color-mix(in srgb,currentColor 20%,transparent); }
+.lesson-cartesian-label-leader { stroke:var(--lg-muted); stroke-width:1; opacity:.55; pointer-events:none; }

@@ -1,6 +1,7 @@
 import { CircleAlert, ExternalLink, RotateCcw, Share2 } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type CSSProperties } from "react";
 import type { LessonAdapterProps } from "../types";
+import { LessonCartesianGraph } from "../graphs/LessonCartesianGraph";
 import "./MatricesTargetLesson33.css";
 type Matrix = number[][];
 const determinant = (matrix: Matrix): number =>
@@ -33,6 +34,7 @@ export default function MatricesTargetLesson33({
   resetToken,
   onInteraction,
 }: LessonAdapterProps) {
+  const [graphReset,setGraphReset]=useState(0);
   const [matrix, setMatrix] = useState<Matrix>([
       [1, 2],
       [3, 4],
@@ -63,6 +65,7 @@ export default function MatricesTargetLesson33({
       onInteraction();
     },
     reset = () => {
+      setGraphReset(value=>value+1);
       setMatrix([
         [1, 2],
         [3, 4],
@@ -221,7 +224,7 @@ export default function MatricesTargetLesson33({
                 <b className="matrix-symbol">A =</b>
                 <div
                   className="matrix-grid"
-                  style={{ gridTemplateColumns: `repeat(${columns}, 88px)` }}
+                  style={{ '--matrix-columns':columns, gridTemplateColumns: `repeat(${columns}, 88px)` } as CSSProperties}
                 >
                   {matrix.flatMap((values, r) =>
                     values.map((value, c) => (
@@ -310,7 +313,7 @@ export default function MatricesTargetLesson33({
                 Geometric transformation: Unit square → A(unit square){" "}
                 <CircleAlert />
               </h2>
-              <TransformGraph matrix={matrix} />
+              <TransformGraph key={`${resetToken}-${graphReset}`} matrix={matrix} />
               <footer>
                 <span>
                   Input vector <Vector values={[1, 1]} />
@@ -449,52 +452,13 @@ function Vector({
     </span>
   );
 }
-function TransformGraph({ matrix }: { matrix: Matrix }) {
-  const a = matrix[0]?.[0] ?? 0,
-    b = matrix[0]?.[1] ?? 0,
-    c = matrix[1]?.[0] ?? 0,
-    d = matrix[1]?.[1] ?? 0,
-    map = (x: number, y: number) => ({ x: 270 + x * 48, y: 185 - y * 18 }),
-    points = [
-      [0, 0],
-      [a, c],
-      [a + b, c + d],
-      [b, d],
-    ].map(([x, y]) => map(x, y)),
-    path =
-      points
-        .map((point, index) => `${index ? "L" : "M"}${point.x},${point.y}`)
-        .join(" ") + "Z";
-  return (
-    <svg
-      viewBox="0 0 460 250"
-      role="img"
-      aria-label="Matrix transformation of the unit square"
-    >
-      <line x1="23" y1="184" x2="150" y2="184" />
-      <line x1="35" y1="205" x2="35" y2="45" />
-      <rect
-        x="35"
-        y="104"
-        width="72"
-        height="80"
-        fill="#eaf4ff"
-        stroke="#0875ef"
-      />
-      <text x="32" y="226">
-        Input: Unit square
-      </text>
-      <text x="282" y="226">
-        Output: Parallelogram
-      </text>
-      <path className="transform-shape" d={path} />
-      {points.map((point, index) => (
-        <circle key={index} cx={point.x} cy={point.y} r="4" />
-      ))}
-      <path d="M155 135h45l-10-8m10 8l-10 8" />
-      <text x="171" y="124">
-        A
-      </text>
-    </svg>
-  );
+
+const INPUT_VIEW={xMin:-35/72,xMax:(150-35)/72,yMin:(184-250)/80,yMax:184/80};
+const OUTPUT_VIEW={xMin:-270/48,xMax:(460-270)/48,yMin:(185-250)/18,yMax:185/18};
+function TransformGraph({matrix}:{matrix:Matrix}) {
+ const [inputView,setInputView]=useState(INPUT_VIEW),[outputView,setOutputView]=useState(OUTPUT_VIEW);
+ const a=matrix[0]?.[0]??0,b=matrix[0]?.[1]??0,c=matrix[1]?.[0]??0,d=matrix[1]?.[1]??0;
+ const input=[{x:0,y:0},{x:1,y:0},{x:1,y:1},{x:0,y:1}],output=[{x:0,y:0},{x:a,y:c},{x:a+b,y:c+d},{x:b,y:d}];
+ return <div className="matrix-shared-plots">{[{id:'input',title:'Input: Unit square',points:input,color:'#0875ef',view:inputView,onViewChange:setInputView,reset:()=>setInputView(INPUT_VIEW)},{id:'output',title:'Output: A(unit square)',points:output,color:'#7c32c7',view:outputView,onViewChange:setOutputView,reset:()=>setOutputView(OUTPUT_VIEW)}].map(plot=><div key={plot.id} data-transform-stage={plot.id}><LessonCartesianGraph unitAspectRatio={plot.id==='input'?72/80:48/18} title={plot.title} description={plot.id==='output'&&(matrix.length!==2||matrix[0].length!==2)?'This 2D preview uses the first two rows and columns; missing entries are zero.':undefined} view={plot.view} onViewChange={plot.onViewChange} onResetView={plot.reset} legend={[{id:'shape',label:plot.title,color:plot.color}]} series={[{id:'shape-fill',label:plot.title,color:plot.color,kind:'region',points:plot.points},{id:'shape-outline',label:plot.title,color:plot.color,points:[...plot.points,plot.points[0]]}]} annotations={plot.points.map((p,index)=>({id:`vertex-${index}`,...p,label:`(${p.x}, ${p.y})`,color:plot.color}))}/></div>)}</div>;
 }
+

@@ -1,7 +1,6 @@
 import type { VisualProof, VisualProofCategory } from "../../data/proofTypes";
-import { PhaseTwoProofExperience } from "../../components/PhaseTwoProofExperience";
-import { slopeFormulaPhaseEightConfig } from "../phase-eight/phaseEightProofConfigs";
+import SlopeTrianglesMobileProof from "./SlopeTrianglesMobileProof";
 
-export default function SlopeFormulaProof({ category, proof }: { category: VisualProofCategory; proof: VisualProof }) {
-  return <PhaseTwoProofExperience category={category} proof={proof} config={slopeFormulaPhaseEightConfig} />;
+export default function SlopeFormulaProof({ category: _category, proof: _proof }: { category: VisualProofCategory; proof: VisualProof }) {
+  return <SlopeTrianglesMobileProof />;
 }

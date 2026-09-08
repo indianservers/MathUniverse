@@ -3,6 +3,8 @@ import "nerdamer/Algebra";
 import { Check, CircleAlert, RotateCcw, Share2, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../types";
+import { LessonCartesianGraph, type LessonGraphSeries } from "../graphs/LessonCartesianGraph";
+import { LessonNumberLineGraph } from "../graphs/LessonNumberLineGraph";
 import "./InequalityInputTargetLesson31.css";
 
 type Operator = "<" | "<=" | ">" | ">=" | "=";
@@ -24,7 +26,7 @@ type Model = {
 const engine = nerdamer as unknown as (
   expression: string,
   substitutions?: Record<string, string>,
-) => { evaluate: () => { toString: () => string } };
+) => { evaluate: () => { text: () => string; toString: () => string } };
 const displayOperator = (operator: Operator) =>
   operator === "<=" ? "≤" : operator === ">=" ? "≥" : operator;
 const format = (value: number) =>
@@ -39,7 +41,7 @@ function evaluate(expression: string, x: number) {
     const value = Number(
       engine(normalized, { x: String(x) })
         .evaluate()
-        .toString(),
+        .text(),
     );
     return Number.isFinite(value) ? value : NaN;
   } catch {
@@ -142,6 +144,7 @@ export default function InequalityInputTargetLesson31({
   resetToken,
   onInteraction,
 }: LessonAdapterProps) {
+  const [graphReset,setGraphReset]=useState(0);
   const [input, setInput] = useState("2x + 3 < 11"),
     [shareState, setShareState] = useState("Share"),
     [actions, setActions] = useState(0);
@@ -151,6 +154,7 @@ export default function InequalityInputTargetLesson31({
     onInteraction();
   };
   const reset = () => {
+    setGraphReset(value=>value+1);
     setInput("2x + 3 < 11");
     setShareState("Share");
     setActions(0);
@@ -307,7 +311,7 @@ export default function InequalityInputTargetLesson31({
             </section>
             <section className="comparison-panel">
               <h2>GRAPH COMPARISON</h2>
-              <ComparisonGraph model={model} />
+              <ComparisonGraph key={`${resetToken}-${graphReset}`} model={model} />
               <nav>
                 <span>
                   <i></i>y = {model.left}
@@ -432,113 +436,21 @@ export default function InequalityInputTargetLesson31({
   );
 }
 
-function NumberLine({ model }: { model: Model }) {
-  const boundary = model.valid ? model.boundary : 4,
-    operator = model.valid ? model.solutionOperator : "<",
-    x = 150 + boundary * 17,
-    left = operator.startsWith("<");
-  return (
-    <svg
-      viewBox="0 0 350 120"
-      role="img"
-      aria-label="Inequality solution on number line"
-    >
-      <line className="base" x1="12" y1="55" x2="338" y2="55" />
-      <line
-        className="region"
-        x1={left ? 12 : x}
-        y1="55"
-        x2={left ? x : 338}
-        y2="55"
-      />
-      <path
-        className="arrow"
-        d={left ? "M12 55l10-7v14z" : "M338 55l-10-7v14z"}
-      />
-      <circle
-        className={model.inclusive ? "closed" : "open"}
-        cx={x}
-        cy="55"
-        r="9"
-      />
-      {[-6, -4, -2, 0, 2, 4, 6, 8, 10].map((value) => (
-        <g key={value}>
-          <line x1={150 + value * 17} y1="50" x2={150 + value * 17} y2="61" />
-          <text x={145 + value * 17} y="86">
-            {value}
-          </text>
-        </g>
-      ))}
-    </svg>
-  );
+
+const COMPARISON_VIEW={xMin:-145/20,xMax:(340-145)/20,yMin:(185-285)/8,yMax:185/8};
+function graphModel(model:Model):Model {
+ return model.valid?model:{...model,leftA:2,leftB:3,rightA:0,rightB:11,boundary:4,left:'2x + 3',right:'11',solutionOperator:'<',inclusive:false};
 }
-function ComparisonGraph({ model }: { model: Model }) {
-  const graphModel = model.valid
-      ? model
-      : {
-          ...model,
-          leftA: 2,
-          leftB: 3,
-          rightA: 0,
-          rightB: 11,
-          boundary: 4,
-          left: "2x + 3",
-          right: "11",
-        },
-    map = (x: number, y: number) => ({ x: 145 + x * 20, y: 185 - y * 8 }),
-    path = (a: number, b: number) => {
-      const p1 = map(-6, a * -6 + b),
-        p2 = map(8, a * 8 + b);
-      return `M${p1.x},${p1.y}L${p2.x},${p2.y}`;
-    },
-    point = map(
-      graphModel.boundary,
-      evaluate(graphModel.left, graphModel.boundary),
-    );
-  return (
-    <svg
-      viewBox="0 0 340 285"
-      role="img"
-      aria-label="Graph comparison and inequality region"
-    >
-      <defs>
-        <pattern
-          id="inequality-grid"
-          width="40"
-          height="32"
-          patternUnits="userSpaceOnUse"
-        >
-          <path d="M40 0H0V32" fill="none" stroke="#dce4ea" />
-        </pattern>
-      </defs>
-      <rect width="340" height="285" fill="url(#inequality-grid)" />
-      <rect
-        className="shade"
-        x="25"
-        y={point.y}
-        width={Math.max(0, point.x - 25)}
-        height={Math.max(0, 185 - point.y)}
-      />
-      <line className="axis" x1="15" y1="185" x2="330" y2="185" />
-      <line className="axis" x1="145" y1="8" x2="145" y2="275" />
-      <path
-        className="left-line"
-        d={path(graphModel.leftA, graphModel.leftB)}
-      />
-      <path
-        className="right-line"
-        d={path(graphModel.rightA, graphModel.rightB)}
-      />
-      <circle
-        className={model.inclusive ? "closed" : "open"}
-        cx={point.x}
-        cy={point.y}
-        r="7"
-      />
-      <text x={point.x + 8} y={point.y + 22}>
-        ({format(graphModel.boundary)},{" "}
-        {format(evaluate(graphModel.left, graphModel.boundary))})
-      </text>
-    </svg>
-  );
+function NumberLine({model}:{model:Model}) {
+ const m=graphModel(model),min=(12-150)/17,max=(338-150)/17;
+ const regions=m.solutionOperator==='='?[]:[{id:'solution',start:m.solutionOperator.startsWith('<')?min:m.boundary,end:m.solutionOperator.startsWith('<')?m.boundary:max,color:'#0875ef',label:`x ${displayOperator(m.solutionOperator)} ${format(m.boundary)}`}];
+ return <LessonNumberLineGraph title={model.valid?'Inequality solution on number line':'Reference example: x < 4'} min={min} max={max} regions={regions} boundary={{value:m.boundary,included:m.inclusive,color:m.inclusive?'#0875ef':'#e38300'}}/>;
+}
+function ComparisonGraph({model}:{model:Model}) {
+ const [view,setView]=useState(COMPARISON_VIEW),m=graphModel(model),y=m.leftA*m.boundary+m.leftB;
+ const start=m.solutionOperator.startsWith('<')?view.xMin:Math.max(view.xMin,m.boundary),end=m.solutionOperator.startsWith('<')?Math.min(view.xMax,m.boundary):view.xMax;
+ const series:LessonGraphSeries[]=[];
+ if(m.solutionOperator!=='='&&end>start)series.push({id:'solution-region',label:`x ${displayOperator(m.solutionOperator)} ${format(m.boundary)}`,color:'#48bdd7',kind:'region',points:[{x:start,y:view.yMin},{x:end,y:view.yMin},{x:end,y:view.yMax},{x:start,y:view.yMax}]});
+ series.push({id:'left',label:`y = ${m.left}`,color:'#0875ef',points:[{x:-6,y:-6*m.leftA+m.leftB},{x:8,y:8*m.leftA+m.leftB}]},{id:'right',label:`y = ${m.right}`,color:'#e28a00',points:[{x:-6,y:-6*m.rightA+m.rightB},{x:8,y:8*m.rightA+m.rightB}]});
+ return <LessonCartesianGraph title="Graph comparison and inequality region" description={model.valid?`Highlighted x-values satisfy x ${displayOperator(m.solutionOperator)} ${format(m.boundary)}`:'Reference example: 2x + 3 < 11'} view={view} onViewChange={setView} onResetView={()=>setView(COMPARISON_VIEW)} series={series} annotations={[{id:'boundary',x:m.boundary,y,label:`(${format(m.boundary)}, ${format(y)})`,color:m.inclusive?'#0875ef':'#e28a00',included:m.inclusive}]}/>;
 }

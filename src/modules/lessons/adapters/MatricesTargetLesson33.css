@@ -347,8 +347,8 @@
   width: 100%;
   height: 250px;
 }
-.matrix-transform svg line,
-.matrix-transform svg path:not(.transform-shape) {
+.matrix-transform > svg line,
+.matrix-transform > svg path:not(.transform-shape) {
   fill: none;
   stroke: #15233a;
 }
@@ -357,10 +357,10 @@
   stroke: #7c32c7;
   stroke-width: 2;
 }
-.matrix-transform circle {
+.matrix-transform > svg circle {
   fill: #7c32c7;
 }
-.matrix-transform text {
+.matrix-transform > svg text {
   font-size: 11px;
 }
 .matrix-transform footer {
@@ -522,3 +522,34 @@ body:has(.matrices-page)
     margin-top: 12px;
   }
 }
+
+.matrices-page,.matrices-surface,.matrix-main,.matrix-side,.matrices-header { height:auto; }
+.matrices-page .matrix-left,.matrices-page .matrix-middle,.matrices-page .matrix-side { grid-template-rows:repeat(2,auto); align-content:start; }
+.lesson-page-shell[data-lesson-id="33"] .matrix-main { grid-template-columns:minmax(0,1fr) minmax(0,1fr) 280px !important; }
+.matrices-page .matrix-shared-plots { display:grid; grid-template-columns:minmax(0,1fr); gap:12px; }
+.matrices-page .matrix-transform .lesson-cartesian-canvas { height:auto; }
+.matrices-page .matrix-transform footer { height:auto; flex-wrap:wrap; gap:12px; padding:12px 0; }
+.matrices-page .matrices-header aside { position:static; display:flex; flex-wrap:wrap; margin-top:12px; }
+.matrices-page .matrices-header nav,.matrices-page .matrix-tags,.matrices-page .matrix-tabs { flex-wrap:wrap; height:auto; }
+.matrices-page .matrix-grid-wrap { height:auto; flex-wrap:wrap; gap:14px; }
+.matrices-page .matrix-grid-wrap > aside { height:auto; }
+.matrices-page .matrix-grid { max-width:100%; overflow-x:auto; }
+.matrices-page .matrix-size p { height:auto; min-height:44px; }
+.matrices-page .matrix-size button { min-width:44px; min-height:44px; }
+.matrices-page .cell-editor input,.matrices-page .cell-editor select { background:#fff; color:#0c193a; min-height:44px; min-width:0; }
+.matrices-page .cell-editor button { min-height:44px; }
+@media(max-width:1099px) { .lesson-page-shell[data-lesson-id="33"] .matrix-main { grid-template-columns:minmax(0,1fr) !important; } }
+@media(max-width:700px) {
+ .matrices-page .matrix-facts { grid-template-columns:minmax(0,1fr); }
+ .matrices-page .matrix-grid { grid-template-columns:repeat(var(--matrix-columns,2),minmax(44px,1fr)) !important; }
+ .matrices-page .matrix-tabs button { min-height:44px; height:auto; }
+ .matrices-page { padding-bottom:100px; }
+}
+
+.matrices-page .matrix-grid-wrap { display:flex; align-items:center; padding-left:0; }
+.matrices-page .matrix-symbol { position:static; }
+.matrices-page .matrix-grid-wrap > aside { position:static; width:100%; }
+.matrices-page .matrix-editor > footer { position:static; margin:12px 0 0; }
+.matrices-page .matrix-side { top:0; }
+.matrices-page .matrix-grid button { width:100%; min-width:44px; }
+.lesson-page-shell[data-lesson-id="33"]:not([data-lesson-view="interaction"]) > .lesson-section-nav:has(+ #lesson-section-interaction > [data-dedicated-lesson="33"] > nav) { display:flex; }

@@ -1,0 +1,3 @@
+import { describe, expect, it } from "vitest";
+import { ordered, percentileOfValue, percentileRank, percentileAnswer, percentileDefault } from "./percentilesLessonModel";
+describe("Percentiles model", () => { it("computes direct percentile interpolation and inverse lookup", () => { expect(ordered(percentileDefault)).toEqual(percentileDefault); expect(percentileRank(80, percentileDefault)).toBe(8); expect(percentileOfValue(6, percentileDefault)).toBe(50); }); it("handles empty data and numeric answers", () => { expect(percentileRank(80, [])).toBeNull(); expect(percentileAnswer(30, percentileDefault, "4")).toBe(true); expect(percentileAnswer(30, percentileDefault, "8")).toBe(false); }); });

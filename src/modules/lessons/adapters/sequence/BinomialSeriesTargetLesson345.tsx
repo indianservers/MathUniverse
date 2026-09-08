@@ -1,7 +1,8 @@
 import { Maximize2, RotateCcw, Share2 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { PointerEvent as ReactPointerEvent } from "react";
 import type { LessonAdapterProps } from "../../types";
+import { binomialSeriesAnalysis } from "./binomialSeriesLessonModel";
 import "./BinomialSeriesTargetLesson345.css";
 const tabs = [
     "Interaction + visualization",
@@ -11,12 +12,6 @@ const tabs = [
     "Know more",
   ],
   clean = (v: number) => Number(v.toFixed(9));
-const coefficients = (alpha: number, count: number) => {
-  const values = [1];
-  for (let k = 1; k < count; k += 1)
-    values.push((values[k - 1] * (alpha - k + 1)) / k);
-  return values;
-};
 export default function BinomialSeriesTargetLesson345({
   resetToken,
   onInteraction,
@@ -26,32 +21,27 @@ export default function BinomialSeriesTargetLesson345({
     [count, setCount] = useState(6),
     [selectedK, setSelectedK] = useState(3),
     [tab, setTab] = useState(tabs[0]),
+    [language, setLanguage] = useState<"en" | "hi">("en"),
     [question, setQuestion] = useState(0),
     [quick, setQuick] = useState<"" | "correct" | "incorrect">(""),
     [fullscreen, setFullscreen] = useState(false),
     [actions, setActions] = useState(0);
-  const coeffs = coefficients(alpha, 21),
-    terms = coeffs.slice(0, count).map((c, k) => c * x ** k),
-    partials = terms.reduce<number[]>(
-      (a, v) => [...a, v + (a.at(-1) ?? 0)],
-      [],
+  const analysis = useMemo(
+      () => binomialSeriesAnalysis(alpha, x, count),
+      [alpha, x, count],
     ),
-    partial = partials.at(-1) ?? 0,
-    target = (1 + x) ** alpha,
-    error = Math.abs(partial - target),
-    errors = Array.from({ length: 21 }, (_, n) =>
-      Math.abs(
-        coeffs.slice(0, n + 1).reduce((s, c, k) => s + c * x ** k, 0) - target,
-      ),
-    );
-  const samples = Array.from(
-      { length: 81 },
-      (_, i) => -0.9 + (1.8 * i) / 80,
-    ).map((v) => ({
-      x: v,
-      target: (1 + v) ** alpha,
-      partial: coeffs.slice(0, count).reduce((s, c, k) => s + c * v ** k, 0),
-    })),
+    {
+      coefficients: coeffs,
+      partials,
+      partial,
+      target,
+      error,
+      errors,
+      samples,
+      expansion,
+      domain,
+      convergesAtInput,
+    } = analysis,
     yMax = Math.max(2.5, ...samples.flatMap((p) => [p.target, p.partial])),
     gx = (v: number) => 35 + ((v + 0.9) / 1.8) * 530,
     gy = (v: number) => 195 - (v / yMax) * 165,
@@ -68,6 +58,7 @@ export default function BinomialSeriesTargetLesson345({
     setCount(6);
     setSelectedK(3);
     setTab(tabs[0]);
+    setLanguage("en");
     setQuestion(0);
     setQuick("");
     setFullscreen(false);
@@ -90,30 +81,23 @@ export default function BinomialSeriesTargetLesson345({
       setQuick("");
     });
   };
-  const expansion = coeffs
-      .slice(0, count)
-      .map(
-        (c, k) =>
-          `${k && c >= 0 ? "+" : ""}${clean(c)}${k ? `x${k > 1 ? `^${k}` : ""}` : ""}`,
-      )
-      .join(" "),
-    challenges = [
-      {
-        label: "First three non-constant terms of (1+x)^0.5",
-        choices: [
-          "0.5x + 0.125x^2 + 0.0625x^3",
-          "0.5x - 0.125x^2 + 0.0625x^3",
-          "-0.5x + 0.125x^2 - 0.0625x^3",
-          "0.5x - 0.0625x^2 + 0.03125x^3",
-        ],
-        correct: 1,
-      },
-      {
-        label: "The basic real convergence domain is:",
-        choices: ["|x|<1", "|x|>1", "all x", "x=0 only"],
-        correct: 0,
-      },
-    ];
+  const challenges = [
+    {
+      label: "First three non-constant terms of (1+x)^0.5",
+      choices: [
+        "0.5x + 0.125x^2 + 0.0625x^3",
+        "0.5x - 0.125x^2 + 0.0625x^3",
+        "-0.5x + 0.125x^2 - 0.0625x^3",
+        "0.5x - 0.0625x^2 + 0.03125x^3",
+      ],
+      correct: 1,
+    },
+    {
+      label: "The basic real convergence domain is:",
+      choices: ["|x|<1", "|x|>1", "all x", "x=0 only"],
+      correct: 0,
+    },
+  ];
   return (
     <section
       className={`seq345-page${fullscreen ? " fullscreen" : ""}`}
@@ -129,6 +113,9 @@ export default function BinomialSeriesTargetLesson345({
       data-partial={clean(partial)}
       data-error={clean(error)}
       data-tab={tab}
+      data-language={language}
+      data-domain={domain}
+      data-converges-at-input={convergesAtInput}
       data-question={question}
       data-quick-result={quick}
       data-actions={actions}
@@ -138,8 +125,12 @@ export default function BinomialSeriesTargetLesson345({
           <b>ADVANCED MATHEMATICS</b>
           <b>SEQUENCES AND SERIES</b>
         </span>
-        <h1>Binomial Series</h1>
-        <p>Extend binomial expansion and explore convergence.</p>
+        <h1>{language === "en" ? "Binomial Series" : "द्विपद श्रेणी"}</h1>
+        <p>
+          {language === "en"
+            ? "Extend binomial expansion and explore convergence."
+            : "द्विपद विस्तार को बढ़ाएँ और अभिसरण का अन्वेषण करें।"}
+        </p>
         <div>
           {[
             "Intermediate-Advanced",
@@ -151,18 +142,38 @@ export default function BinomialSeriesTargetLesson345({
           ))}
         </div>
         <nav>
-          <select aria-label="Language">
-            <option>English (English)</option>
+          <select
+            aria-label="Language"
+            value={language}
+            onChange={(event) =>
+              act(() => setLanguage(event.target.value as "en" | "hi"))
+            }
+          >
+            <option value="en">English (English)</option>
+            <option value="hi">हिन्दी (Hindi)</option>
           </select>
-          <button onClick={reset}>
+          <button onClick={() => act(reset)}>
             <RotateCcw />
             Reset
           </button>
-          <button onClick={() => act(() => {})}>
+          <button
+            onClick={() =>
+              act(() => navigator.clipboard?.writeText(location.href))
+            }
+          >
             <Share2 />
             Share
           </button>
-          <button onClick={() => act(() => {})}>Workspace</button>
+          <button
+            onClick={() => {
+              act(() => setTab(tabs[0]));
+              document
+                .getElementById("seq345-lab")
+                ?.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
+            Workspace
+          </button>
         </nav>
       </header>
       <nav className="seq345-tabs">
@@ -170,13 +181,18 @@ export default function BinomialSeriesTargetLesson345({
           <button
             className={tab === v ? "active" : ""}
             key={v}
-            onClick={() => act(() => setTab(v))}
+            onClick={() => {
+              act(() => setTab(v));
+              document
+                .getElementById(v === tabs[0] ? "seq345-lab" : "seq345-learn")
+                ?.scrollIntoView({ behavior: "smooth" });
+            }}
           >
             {v}
           </button>
         ))}
       </nav>
-      <section className="seq345-lab">
+      <section className="seq345-lab" id="seq345-lab">
         <header>
           <div>
             <small>INTERACTION + VISUALIZATION</small>
@@ -204,14 +220,26 @@ export default function BinomialSeriesTargetLesson345({
                   max={2}
                   step={0.05}
                   value={alpha}
-                  onChange={(e) => act(() => setAlpha(Number(e.target.value)))}
+                  onChange={(e) =>
+                    act(() =>
+                      setAlpha(
+                        Math.max(-2, Math.min(2, Number(e.target.value))),
+                      ),
+                    )
+                  }
                 />
                 <input
                   aria-label="Binomial exponent number"
                   type="number"
                   step={0.05}
                   value={alpha}
-                  onChange={(e) => act(() => setAlpha(Number(e.target.value)))}
+                  onChange={(e) =>
+                    act(() =>
+                      setAlpha(
+                        Math.max(-2, Math.min(2, Number(e.target.value))),
+                      ),
+                    )
+                  }
                 />
               </label>
               <label>
@@ -223,7 +251,13 @@ export default function BinomialSeriesTargetLesson345({
                   max={0.9}
                   step={0.01}
                   value={x}
-                  onChange={(e) => act(() => setX(Number(e.target.value)))}
+                  onChange={(e) =>
+                    act(() =>
+                      setX(
+                        Math.max(-0.99, Math.min(0.99, Number(e.target.value))),
+                      ),
+                    )
+                  }
                 />
                 <input
                   aria-label="Binomial input number"
@@ -240,8 +274,9 @@ export default function BinomialSeriesTargetLesson345({
                 />
               </label>
               <output>
-                Domain: |x| &lt; 1<br />
-                Here, |{x}| &lt; 1
+                Domain: {domain}
+                <br />
+                Here, the series {convergesAtInput ? "converges" : "diverges"}
               </output>
               <label>
                 Truncation (n terms)
@@ -251,7 +286,16 @@ export default function BinomialSeriesTargetLesson345({
                   min={1}
                   max={15}
                   value={count}
-                  onChange={(e) => act(() => setCount(Number(e.target.value)))}
+                  onChange={(e) =>
+                    act(() =>
+                      setCount(
+                        Math.max(
+                          1,
+                          Math.min(15, Math.round(Number(e.target.value))),
+                        ),
+                      ),
+                    )
+                  }
                 />
                 <input
                   aria-label="Binomial terms number"
@@ -403,7 +447,7 @@ export default function BinomialSeriesTargetLesson345({
           </article>
         </div>
       </section>
-      <section className="seq345-learn">
+      <section className="seq345-learn" id="seq345-learn">
         <article>
           <h2>Learning objective</h2>
           <p>

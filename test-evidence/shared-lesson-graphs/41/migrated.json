@@ -1,0 +1,524 @@
+{
+  "records": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "state": {
+        "testid": "2d-graphing-mockup-0133",
+        "dedicatedLesson": "41",
+        "primary": "2",
+        "secondary": "3",
+        "trace": "1.5",
+        "guides": "true",
+        "lhs": "2.6944444444444446",
+        "satisfies": "false"
+      },
+      "overflow": false,
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "name": "Reset view",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Fit",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Share",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Move graph",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Toggle guides",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Inspector",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Zoom graph in",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Zoom graph out",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Reset graph view",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "Test x",
+          "value": "2",
+          "min": "-5",
+          "max": "5",
+          "step": "0.5"
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Decrease Test x",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Increase Test x",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "Test y",
+          "value": "3",
+          "min": "-5",
+          "max": "5",
+          "step": "0.5"
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Decrease Test y",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Increase Test y",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "Trace x",
+          "value": "1.5",
+          "min": "-5",
+          "max": "5",
+          "step": "0.5"
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Decrease Trace x",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Increase Trace x",
+          "value": ""
+        }
+      ],
+      "bars": [],
+      "graphs": [
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 799 480",
+          "label": "Equation Grapher"
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "state": {
+        "testid": "2d-graphing-mockup-0133",
+        "dedicatedLesson": "41",
+        "primary": "2",
+        "secondary": "3",
+        "trace": "1.5",
+        "guides": "true",
+        "lhs": "2.6944444444444446",
+        "satisfies": "false"
+      },
+      "overflow": false,
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "name": "Reset view",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Fit",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Share",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Move graph",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Toggle guides",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Inspector",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Zoom graph in",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Zoom graph out",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Reset graph view",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "Test x",
+          "value": "2",
+          "min": "-5",
+          "max": "5",
+          "step": "0.5"
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Decrease Test x",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Increase Test x",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "Test y",
+          "value": "3",
+          "min": "-5",
+          "max": "5",
+          "step": "0.5"
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Decrease Test y",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Increase Test y",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "Trace x",
+          "value": "1.5",
+          "min": "-5",
+          "max": "5",
+          "step": "0.5"
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Decrease Trace x",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Increase Trace x",
+          "value": ""
+        }
+      ],
+      "bars": [],
+      "graphs": [
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 598 398.6666666666667",
+          "label": "Equation Grapher"
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "state": {
+        "testid": "2d-graphing-mockup-0133",
+        "dedicatedLesson": "41",
+        "primary": "2",
+        "secondary": "3",
+        "trace": "1.5",
+        "guides": "true",
+        "lhs": "2.6944444444444446",
+        "satisfies": "false"
+      },
+      "overflow": false,
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "name": "Reset view",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Fit",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Share",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Move graph",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Toggle guides",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Inspector",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Zoom graph in",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Zoom graph out",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Reset graph view",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "Test x",
+          "value": "2",
+          "min": "-5",
+          "max": "5",
+          "step": "0.5"
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Decrease Test x",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Increase Test x",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "Test y",
+          "value": "3",
+          "min": "-5",
+          "max": "5",
+          "step": "0.5"
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Decrease Test y",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Increase Test y",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "Trace x",
+          "value": "1.5",
+          "min": "-5",
+          "max": "5",
+          "step": "0.5"
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Decrease Trace x",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Increase Trace x",
+          "value": ""
+        }
+      ],
+      "bars": [],
+      "graphs": [
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 236.625 260",
+          "label": "Equation Grapher"
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

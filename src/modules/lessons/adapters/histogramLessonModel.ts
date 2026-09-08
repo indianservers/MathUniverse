@@ -1,0 +1,3 @@
+export const histogramDefault = [42,45,48,52,54,55,57,58,60,61,63,64,66,68,70,72,75,78,80,82,85,87,88,90,92,94,96,98];
+export function histogramBins(values: number[], width: number, start = 40) { const safe = Math.max(1, width); const max = Math.max(start, ...values); return Array.from({ length: Math.ceil((max - start + 1) / safe) }, (_, index) => { const from = start + index * safe; return { from, to: from + safe, frequency: values.filter(value => value >= from && value < from + safe).length }; }); }
+export function modalBins(bins: { frequency: number }[]) { const max = Math.max(0, ...bins.map(bin => bin.frequency)); return bins.map((bin, index) => bin.frequency === max ? index : -1).filter(index => index >= 0); }

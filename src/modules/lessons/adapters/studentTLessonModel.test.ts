@@ -1,0 +1,3 @@
+import { describe, expect, it } from "vitest";
+import { studentTAnalysis, studentTCdf, studentTDensity, studentTQuantile } from "./studentTLessonModel";
+describe("Student t lesson model",()=>{it("computes the target two-tailed critical value",()=>{const result=studentTAnalysis(10,.05);expect(result.critical).toBeCloseTo(2.228,3);expect(result.central).toBeCloseTo(.95,3);expect(result.tail).toBe(.025)});it("is symmetric and inverts its CDF",()=>{expect(studentTDensity(-1,8)).toBeCloseTo(studentTDensity(1,8),10);const critical=studentTQuantile(.975,20);expect(studentTCdf(critical,20)).toBeCloseTo(.975,4)})});

@@ -1,0 +1,3 @@
+import { describe, expect, it } from "vitest";
+import { flaggedOutliers, fences, outlierAnswer, outliersDefault } from "./outliersLessonModel";
+describe("Outlier model", () => { it("flags values outside 1.5 IQR fences", () => { expect(flaggedOutliers(outliersDefault)).toEqual([]); expect(fences(outliersDefault)?.lower).toBeCloseTo(-11); expect(fences(outliersDefault)?.upper).toBeCloseTo(21); }); it("validates sorted answers and empty input", () => { expect(flaggedOutliers([])).toEqual([]); expect(outlierAnswer([2, 3, 4, 5, 5, 6, 7, 8, 9, 9, 10, 18], "18")).toBe(true); expect(outlierAnswer([2, 3, 4, 5, 5, 6, 7, 8, 9, 9, 10, 18], "10")).toBe(false); }); });

@@ -36,6 +36,7 @@ import { loadDiscreteSnapshot, saveDiscreteSnapshot } from "./shared-engines/dis
 import { arithmeticSumInduction, gcdTrace, linearRecurrence, modularTable, pigeonhole, sieve } from "./shared-engines/foundationsEngine";
 import { complexityClasses, haltingDiagonalDemo } from "./shared-engines/complexityEngine";
 import { bellmanFord, eulerPath, floydWarshall, stronglyConnectedComponents } from "./shared-engines/graphExtensionsEngine";
+import DiscreteEnhancementWorkbench from "../../studios/discrete/DiscreteEnhancementWorkbench";
 
 const canonicalLabs = [
   {
@@ -108,7 +109,7 @@ const discreteSampleGraph = {
   ],
 };
 
-type WorkbenchId = "automata" | "regex-pda" | "grammar" | "turing" | "foundations" | "graphs";
+type WorkbenchId = "automata" | "regex-pda" | "grammar" | "turing" | "foundations" | "graphs" | "advanced";
 
 const workbenches: Array<{ id: WorkbenchId; title: string; short: string; icon: typeof Binary; status: string }> = [
   { id: "automata", title: "Automata", short: "DFA, NFA, minimization", icon: Binary, status: "Live" },
@@ -117,6 +118,7 @@ const workbenches: Array<{ id: WorkbenchId; title: string; short: string; icon: 
   { id: "turing", title: "Turing", short: "Tape and universal code", icon: Cpu, status: "Live" },
   { id: "foundations", title: "Foundations", short: "Induction, gcd, recurrence", icon: Sigma, status: "Live" },
   { id: "graphs", title: "Graphs + Complexity", short: "Paths, SCC, P/NP", icon: Network, status: "Live" },
+  { id: "advanced", title: "Advanced Workbench", short: "25 connected discrete tools", icon: Cpu, status: "Live" },
 ];
 
 export default function DiscreteWorldModule() {
@@ -127,7 +129,7 @@ export default function DiscreteWorldModule() {
   const [pdaInput, setPdaInput] = useState("(()())");
   const [recurrenceTerms, setRecurrenceTerms] = useState(10);
   const [modulus, setModulus] = useState(7);
-  const [activeWorkbench, setActiveWorkbench] = useState<WorkbenchId>("automata");
+  const [activeWorkbench, setActiveWorkbench] = useState<WorkbenchId>(() => new URLSearchParams(window.location.search).get("workbench") === "advanced" ? "advanced" : "automata");
 
   useEffect(() => {
     const snapshot = loadDiscreteSnapshot();
@@ -162,7 +164,7 @@ export default function DiscreteWorldModule() {
               <button
                 key={item.id}
                 type="button"
-                onClick={() => setActiveWorkbench(item.id)}
+                onClick={() => { setActiveWorkbench(item.id); const url=new URL(window.location.href); if(item.id==="automata")url.searchParams.delete("workbench");else url.searchParams.set("workbench",item.id);window.history.pushState(null,"",`${url.pathname}${url.search}`); }}
                 className={`flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left transition ${activeWorkbench === item.id ? "bg-slate-950 text-white shadow-lg shadow-cyan-500/10 dark:bg-cyan-400 dark:text-slate-950" : "text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-white/10"}`}
               >
                 <item.icon className="h-4 w-4 shrink-0" />
@@ -202,6 +204,7 @@ export default function DiscreteWorldModule() {
           {activeWorkbench === "turing" && <TuringLab input={turingInput} onInput={setTuringInput} />}
           {activeWorkbench === "foundations" && <FoundationsLab recurrenceTerms={recurrenceTerms} onRecurrenceTerms={setRecurrenceTerms} modulus={modulus} onModulus={setModulus} />}
           {activeWorkbench === "graphs" && <GraphAndComplexityLab />}
+          {activeWorkbench === "advanced" && <DiscreteEnhancementWorkbench />}
         </main>
 
         <aside className="space-y-3">

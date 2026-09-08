@@ -1,6 +1,6 @@
 import { OrbitControls } from "@react-three/drei";
 import { type ThreeEvent, useFrame } from "@react-three/fiber";
-import { AlertTriangle, Box, Braces, Camera, Check, CheckCircle2, ChevronDown, Circle, CircleDot, Copy, Download, Eraser, Eye, EyeOff, FileText, Filter, FunctionSquare, Grid3X3, Home, Info, Keyboard, LineChart, ListTree, Magnet, Maximize2, Menu, Mic, MoreHorizontal, MousePointer2, Move, Orbit, PanelLeftClose, PanelRightClose, Pentagon, Pin, Play, Plus, Presentation, Redo2, Rotate3D, RotateCcw, Ruler, Save, Search, Settings, Share2, Sigma, Slash, SlidersHorizontal, Sparkles, Table2, Trash2, Undo2, User, WandSparkles, X, ZoomIn, ZoomOut, type LucideIcon } from "lucide-react";
+import { AlertTriangle, Box, Braces, Camera, Check, CheckCircle2, ChevronDown, Circle, CircleDot, Copy, Download, Eraser, Eye, EyeOff, FileText, Filter, FunctionSquare, Grid3X3, Home, Info, Keyboard, LineChart, ListTree, Magnet, Maximize2, Menu, Mic, MoreHorizontal, MousePointer2, Move, Orbit, PanelLeftClose, PanelLeftOpen, PanelRightClose, PanelRightOpen, Pentagon, Pin, Play, Plus, Presentation, Redo2, Rotate3D, RotateCcw, Ruler, Save, Search, Settings, Share2, Sigma, Slash, SlidersHorizontal, Sparkles, Table2, Trash2, Undo2, User, WandSparkles, X, ZoomIn, ZoomOut, type LucideIcon } from "lucide-react";
 import { MouseEvent as ReactMouseEvent, PointerEvent, useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import * as THREE from "three";
@@ -5066,6 +5066,9 @@ function CasStudioWorkspaceV2(props: CasStudioWorkspaceProps) {
   const [workspaceQuery, setWorkspaceQuery] = useState("");
   const [workspaceTitle, setWorkspaceTitle] = useState("Untitled Workspace");
   const [mobilePanel, setMobilePanel] = useState<"canvas" | "objects" | "result">("canvas");
+  const [leftPaneOpen, setLeftPaneOpen] = useState(false);
+  const [rightPaneOpen, setRightPaneOpen] = useState(false);
+  const [historyPaneOpen, setHistoryPaneOpen] = useState(false);
   const [inspectorTab, setInspectorTab] = useState<"result" | "steps" | "properties" | "assumptions" | "related">("result");
   const [displayMode, setDisplayMode] = useState<"2d" | "3d">("2d");
   const [graphTool, setGraphTool] = useState("select");
@@ -5212,25 +5215,37 @@ function CasStudioWorkspaceV2(props: CasStudioWorkspaceProps) {
     { id: "more", label: "More", icon: MoreHorizontal },
   ];
 
-  return <div className={`cas-studio-shell cas-studio-v2 mobile-panel-${mobilePanel}`} data-testid="workspace-cas-studio">
+  const toggleLeftPane = () => {
+    setLeftPaneOpen((open) => !open);
+    setMobilePanel((panel) => panel === "objects" ? "canvas" : "objects");
+  };
+  const toggleRightPane = () => {
+    setRightPaneOpen((open) => !open);
+    setMobilePanel((panel) => panel === "result" ? "canvas" : "result");
+  };
+
+  return <div className={`cas-studio-shell cas-studio-v2 mobile-panel-${mobilePanel} ${leftPaneOpen ? "is-left-pane-open" : ""} ${rightPaneOpen ? "is-right-pane-open" : ""} ${historyPaneOpen ? "is-history-pane-open" : ""}`} data-testid="workspace-cas-studio">
     <header className="cas-app-header">
       <div className="cas-brand"><span><Sigma /></span><strong>Computer Algebra Studio</strong></div>
       <input className="cas-workspace-title" value={workspaceTitle} onChange={(event) => setWorkspaceTitle(event.target.value)} aria-label="Workspace title" />
       <div className="cas-header-actions">
         <button type="button" onClick={onUndo} aria-label="Undo" title="Undo"><Undo2 /></button><button type="button" onClick={onRedo} aria-label="Redo" title="Redo"><Redo2 /></button>
+        <button type="button" className="cas-pane-toggle" onClick={toggleLeftPane} aria-expanded={leftPaneOpen || mobilePanel === "objects"} aria-controls="cas-object-explorer" title={leftPaneOpen ? "Collapse object explorer" : "Open object explorer"}>{leftPaneOpen ? <PanelLeftClose /> : <PanelLeftOpen />}<span>Objects</span></button>
+        <button type="button" className="cas-pane-toggle" onClick={toggleRightPane} aria-expanded={rightPaneOpen || mobilePanel === "result"} aria-controls="cas-result-inspector" title={rightPaneOpen ? "Collapse result inspector" : "Open result inspector"}>{rightPaneOpen ? <PanelRightClose /> : <PanelRightOpen />}<span>Results</span></button>
+        <button type="button" className="cas-pane-toggle cas-pane-toggle-history" onClick={() => setHistoryPaneOpen((open) => !open)} aria-expanded={historyPaneOpen} aria-controls="cas-history-workbench" title={historyPaneOpen ? "Collapse history and spreadsheet" : "Open history and spreadsheet"}><ChevronDown className={historyPaneOpen ? "" : "rotate-180"} /><span>History</span></button>
         <label className="cas-global-search"><Search /><input value={workspaceQuery} onChange={(event) => setWorkspaceQuery(event.target.value)} placeholder="Search" /></label>
         <button type="button" onClick={() => { void onShare(); setStatusMessage("Share link copied"); }}><Share2 /><span>Share</span></button>
         <button type="button" onClick={onExport}><Download /><span>Export</span></button>
-        <button type="button" onClick={() => { setInspectorTab("assumptions"); setMobilePanel("result"); }} aria-label="Settings"><Settings /></button>
+        <button type="button" onClick={() => { setInspectorTab("assumptions"); setRightPaneOpen(true); setMobilePanel("result"); }} aria-label="Settings"><Settings /></button>
         <button type="button" className="cas-avatar" onClick={() => setStatusMessage("Signed in workspace profile")} aria-label="User profile"><User /></button>
-        <button type="button" className="cas-mobile-menu" onClick={() => setMobilePanel("objects")} aria-label="Open objects"><Menu /></button>
+        <button type="button" className="cas-mobile-menu" onClick={() => { setLeftPaneOpen(true); setMobilePanel("objects"); }} aria-label="Open objects"><Menu /></button>
       </div>
     </header>
 
     <nav className="cas-studio-modebar" aria-label="Math workspace modules">{moduleItems.map((item) => { const Icon = item.icon; return <button key={item.label} type="button" className={item.current ? "is-active" : item.disabledReason ? "is-disabled" : ""} disabled={Boolean(item.disabledReason)} title={item.disabledReason} onClick={() => item.route && navigate(item.route)}><Icon />{item.label}</button>; })}</nav>
 
-    <aside className="cas-studio-left" aria-label="CAS object explorer">
-      <button type="button" className="cas-mobile-sheet-close" onClick={() => setMobilePanel("canvas")}><X />Close objects</button>
+    <aside id="cas-object-explorer" className="cas-studio-left" aria-label="CAS object explorer">
+      <button type="button" className="cas-mobile-sheet-close" onClick={() => { setLeftPaneOpen(false); setMobilePanel("canvas"); }}><X />Close objects</button>
       <div className="cas-panel-heading"><div><p>Object explorer</p><h3>{state.cells.length} objects</h3></div><button type="button" onClick={() => onAddCell()} title="Add object" aria-label="Add object"><Plus /></button></div>
       <label className="cas-search"><Search /><input value={workspaceQuery} placeholder="Search objects" onChange={(event) => setWorkspaceQuery(event.target.value)} /><button type="button" onClick={() => setWorkspaceQuery("")} aria-label="Clear filter"><Filter /></button></label>
       <div className="cas-object-list" role="list" aria-label="CAS objects">{filteredCells.map((cell) => {
@@ -5264,7 +5279,7 @@ function CasStudioWorkspaceV2(props: CasStudioWorkspaceProps) {
       </div>{speechState === "listening" && <div className="cas-speech-review" role="status"><span>Listening...</span><button type="button" onClick={() => { speechRecognitionRef.current?.abort(); setSpeechState("idle"); }}>Cancel</button></div>}{speechDraft && <div className="cas-speech-review" role="status"><label>Recognized math<input value={speechDraft} onChange={(event) => setSpeechDraft(event.target.value)} /></label><button type="button" onClick={() => { onComposerInputChange(speechDraft); setSpeechDraft(""); setSpeechState("idle"); }}>Use input</button><button type="button" onClick={() => { setSpeechDraft(""); setSpeechState("idle"); }}>Discard</button></div>}{keyboardOpen && <div className="cas-keyboard">{["x", "y", "pi", "e", "sqrt()", "cbrt()", "^", "abs()", "log", "ln", "sin", "cos", "tan", "Integral[]", "d/dx", "Sum[]", "infinity", "->", "alpha", "Omega", "..."].map((key) => <button key={key} type="button" onClick={() => onComposerInputChange(`${composerInput}${key}`)}>{key}</button>)}</div>}</section>
     </main>
 
-    <aside className="cas-studio-right" aria-label="CAS result inspector"><button type="button" className="cas-mobile-sheet-close" onClick={() => setMobilePanel("canvas")}><X />Close inspector</button>
+    <aside id="cas-result-inspector" className="cas-studio-right" aria-label="CAS result inspector"><button type="button" className="cas-mobile-sheet-close" onClick={() => { setRightPaneOpen(false); setMobilePanel("canvas"); }}><X />Close inspector</button>
       <div className="cas-inspector-tabs" role="tablist">{(["result", "steps", "properties", "assumptions", "related"] as const).map((tab) => <button key={tab} type="button" role="tab" aria-selected={inspectorTab === tab} className={inspectorTab === tab ? "is-active" : ""} onClick={() => setInspectorTab(tab)}>{tab[0].toUpperCase() + tab.slice(1)}</button>)}</div>
       {selectedCell ? <div className="cas-inspector-scroll">
         {inspectorTab === "result" && <><section className="cas-inspector-card"><div className="cas-panel-heading compact"><div><p>Exact solution</p><h3>In [{selectedIndex}]</h3></div>{selectedCell.ok ? <CheckCircle2 /> : <AlertTriangle />}</div><div className="cas-result-box"><MathExpression value={selectedCell.exact ?? selectedCell.output ?? "Run this object"} /><button type="button" onClick={() => void navigator.clipboard?.writeText(selectedCell.exact ?? selectedCell.output ?? selectedCell.input)} aria-label="Copy exact result"><Copy /></button></div>{selectedCell.numeric && <><p>Decimal approximation</p><div className="cas-result-box muted"><MathExpression value={selectedCell.numeric} /><button type="button" onClick={() => void navigator.clipboard?.writeText(selectedCell.numeric!)} aria-label="Copy decimal result"><Copy /></button></div></>}<p>{selectedCell.detail}</p></section><section className="cas-inspector-card"><div className="cas-panel-heading compact"><div><p>Domain and assumptions</p><h3>{domainMode === "real" ? "Real domain" : "Complex domain"}</h3></div><Info /></div><p>{state.assumptions || "No variable assumptions"}</p></section><section className="cas-action-grid"><button type="button" onClick={() => setInspectorTab("steps")}><Sparkles />Explain</button><button type="button" onClick={() => onRunCell(selectedCell.id)}><CheckCircle2 />Verify</button><button type="button" onClick={() => chooseOperation("simplify", selectedCell.input)}><RotateCcw />Alternative</button><button type="button" onClick={createSlider}><SlidersHorizontal />Create slider</button></section></>}
@@ -5276,10 +5291,10 @@ function CasStudioWorkspaceV2(props: CasStudioWorkspaceProps) {
       </div> : <EmptyPanel text="Add or select a CAS object to inspect its result." />}
     </aside>
 
-    <section className="cas-history-workbench"><div className="cas-history-pane"><header><strong>History</strong><span>{state.cells.length} calculations</span><button type="button" onClick={onReset} title="Clear history"><Trash2 /></button></header><div>{state.cells.slice(0, 6).map((cell) => <button key={cell.id} type="button" onClick={() => { onSelectCell(cell.id); onComposerInputChange(cell.input); onComposerOperationChange(cell.operation); }}><FunctionSquare /><span><strong>{cell.input}</strong><small>{cell.createdAt}</small></span>{cell.ok ? <CheckCircle2 /> : <AlertTriangle />}</button>)}</div></div><div className="cas-sheet-preview"><header><strong>Spreadsheet</strong><span>{Math.min(4, state.cells.length)} x 3</span><button type="button" onClick={() => navigate("/workspace/data/spreadsheet")}>Open</button></header><table><thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead><tbody>{state.cells.slice(0, 4).map((cell, index) => <tr key={cell.id}><th>{index + 1}</th><td>{cell.operation}</td><td>{cell.input}</td><td>{cell.exact ?? cell.output}</td></tr>)}</tbody></table></div></section>
+    <section id="cas-history-workbench" className="cas-history-workbench"><div className="cas-history-pane"><header><strong>History</strong><span>{state.cells.length} calculations</span><button type="button" onClick={onReset} title="Clear history"><Trash2 /></button></header><div>{state.cells.slice(0, 6).map((cell) => <button key={cell.id} type="button" onClick={() => { onSelectCell(cell.id); onComposerInputChange(cell.input); onComposerOperationChange(cell.operation); }}><FunctionSquare /><span><strong>{cell.input}</strong><small>{cell.createdAt}</small></span>{cell.ok ? <CheckCircle2 /> : <AlertTriangle />}</button>)}</div></div><div className="cas-sheet-preview"><header><strong>Spreadsheet</strong><span>{Math.min(4, state.cells.length)} x 3</span><button type="button" onClick={() => navigate("/workspace/data/spreadsheet")}>Open</button></header><table><thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead><tbody>{state.cells.slice(0, 4).map((cell, index) => <tr key={cell.id}><th>{index + 1}</th><td>{cell.operation}</td><td>{cell.input}</td><td>{cell.exact ?? cell.output}</td></tr>)}</tbody></table></div></section>
 
     <nav className="cas-tool-dock" aria-label="CAS mathematical tools"><div className="cas-tool-scroll">{CAS_DOCK_TOOLS.map((tool) => { const Icon = tool.icon; return <button key={tool.label} type="button" onClick={() => tool.route ? navigate(tool.route) : tool.operation ? chooseOperation(tool.operation) : setKeyboardOpen((value) => !value)}><Icon /><span>{tool.label}</span></button>; })}</div><div className="cas-global-controls"><button type="button" onClick={() => onModeChange(state.mode === "exact" ? "numeric" : "exact")}><span className="cas-status-dot" />{state.mode === "exact" ? "Exact" : "Numeric"}</button><button type="button" onClick={() => setAngleMode((mode) => mode === "rad" ? "deg" : "rad")}>{angleMode === "rad" ? "Radians" : "Degrees"}</button><button type="button" onClick={() => setDomainMode((mode) => mode === "real" ? "complex" : "real")}>{domainMode === "real" ? "Real" : "Complex"}</button><button type="button" onClick={() => setKeyboardOpen((value) => !value)} aria-label="Toggle keyboard"><Keyboard /></button></div></nav>
-    <nav className="cas-mobile-panels"><button type="button" className={mobilePanel === "objects" ? "is-active" : ""} onClick={() => setMobilePanel("objects")}><ListTree />Objects</button><button type="button" className={mobilePanel === "canvas" ? "is-active" : ""} onClick={() => setMobilePanel("canvas")}><Sigma />Notebook</button><button type="button" className={mobilePanel === "result" ? "is-active" : ""} onClick={() => setMobilePanel("result")}><CheckCircle2 />Result</button></nav>
+    <nav className="cas-mobile-panels"><button type="button" className={mobilePanel === "objects" ? "is-active" : ""} onClick={() => { setLeftPaneOpen(true); setMobilePanel("objects"); }}><ListTree />Objects</button><button type="button" className={mobilePanel === "canvas" ? "is-active" : ""} onClick={() => { setLeftPaneOpen(false); setRightPaneOpen(false); setMobilePanel("canvas"); }}><Sigma />Notebook</button><button type="button" className={mobilePanel === "result" ? "is-active" : ""} onClick={() => { setRightPaneOpen(true); setMobilePanel("result"); }}><CheckCircle2 />Result</button></nav>
   </div>;
 }
 

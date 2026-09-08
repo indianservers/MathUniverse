@@ -1,0 +1,3 @@
+export const logisticDefault = [{ x: -5, y: 0 }, { x: -4, y: 0 }, { x: -3, y: 0 }, { x: -2, y: 0 }, { x: -1, y: 0 }, { x: 0, y: 1 }, { x: 1, y: 1 }, { x: 2, y: 1 }, { x: 3, y: 1 }, { x: 4, y: 1 }];
+export function sigmoid(z: number) { return 1 / (1 + Math.exp(-z)); }
+export function logisticFit(points = logisticDefault) { let b0 = -.5, b1 = 1.2; for (let step = 0; step < 2500; step++) { let g0 = 0, g1 = 0; points.forEach(point => { const error = point.y - sigmoid(b0 + b1 * point.x); g0 += error; g1 += error * point.x; }); b0 += g0 * .01; b1 += g1 * .001; } const probs = points.map(p => sigmoid(b0 + b1 * p.x)); return { b0, b1, probs }; }

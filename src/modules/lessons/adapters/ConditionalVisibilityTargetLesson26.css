@@ -3,7 +3,7 @@
   top: -15px;
   left: 2px;
   width: 1022px;
-  height: 1065px;
+  height: auto;
   margin-bottom: -15px;
   color: #0a1738;
   font-size: 11px;
@@ -144,14 +144,14 @@
 }
 .visibility-main {
   display: grid;
-  height: 659px;
+  height: auto;
   margin-top: 8px;
-  grid-template-columns: 675px 337px;
+  grid-template-columns: minmax(0, 1fr) 337px;
   gap: 10px;
 }
 .visibility-lab,
 .visibility-side {
-  height: 659px;
+  height: auto;
   min-height: 0;
   overflow: hidden;
   border: 1px solid #dfe6ed;
@@ -283,9 +283,9 @@
 }
 .visibility-middle {
   display: grid;
-  height: 247px;
+  height: auto;
   margin-top: 14px;
-  grid-template-columns: 370px 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 20px;
 }
 .object-plot {
@@ -381,7 +381,7 @@
   color: #fff;
 }
 .visibility-before {
-  height: 150px;
+  height: auto;
   margin-top: 13px;
   padding: 10px;
   border: 1px solid #dce4ec;
@@ -398,7 +398,7 @@
 }
 .visibility-before article {
   display: grid;
-  height: 106px;
+  min-height: 106px;
   padding: 9px;
   grid-template-columns: 1fr 105px;
   border: 1px solid #c9eadf;
@@ -486,11 +486,13 @@
 .condition-editor > div {
   display: grid;
   margin-top: 10px;
-  grid-template-columns: 74px 88px 1fr;
+  grid-template-columns: minmax(0, .7fr) minmax(0, .9fr) minmax(0, 1fr);
   gap: 10px;
 }
 .condition-editor select,
 .condition-editor input {
+  min-width: 0;
+  width: 100%;
   height: 40px;
   padding: 0 11px;
   border: 1px solid #dce4ec;
@@ -513,6 +515,8 @@
   padding: 0 12px;
   border: 1px solid #dce4ec;
   border-radius: 8px;
+  background: #fff;
+  color: #0a1738;
 }
 .boundary-card > b {
   display: block;
@@ -523,12 +527,12 @@
   color: #536983;
 }
 .status-card {
-  height: 89px;
+  min-height: 89px;
   padding: 11px;
 }
 .status-card > div {
   display: grid;
-  height: 55px;
+  min-height: 55px;
   margin-top: 8px;
   padding: 8px;
   grid-template-columns: 22px 1fr;
@@ -642,3 +646,15 @@
     margin-top: 12px;
   }
 }
+@media (max-width: 600px) {
+  .visibility-header { height: auto; padding: 16px; }
+  .visibility-meta { flex-wrap: wrap; }
+  .visibility-header > nav { display: flex; flex-wrap: wrap; width: 100%; }
+  .visibility-header > nav button { min-height: 44px; padding: 8px 12px; }
+  .visibility-tabs { display: flex; overflow-x: auto; gap: 8px; }
+  .visibility-tabs button { flex: 0 0 auto; min-height: 44px; padding: 8px 12px; }
+  .visibility-lab > header { height: auto; min-height: 79px; flex-wrap: wrap; gap: 8px; padding-bottom: 12px; }
+  .visibility-middle, .visibility-before > div { grid-template-columns: minmax(0, 1fr); }
+  .visibility-before article { grid-template-columns: minmax(0, 1fr) 90px; }
+}
+

@@ -1,0 +1,11 @@
+import { expect,it } from "vitest";
+import { errorPower,errorProbability,planErrorPower } from "./errorPowerLessonModel";
+it("corrects the reference's inconsistent six-unit default effect",()=>{const model=errorPower(.05,56,36,"one");expect(model.se).toBe(1);expect(model.d).toBe(6);expect(model.upper).toBeCloseTo(51.644853627,6);expect(model.beta).toBeLessThan(.00001);expect(model.power).toBeGreaterThan(.99999);expect(errorProbability(model.beta)).toBe("< 0.001");});
+it("matches known one- and two-sided probability values",()=>{expect(errorPower(.05,51,36,"one").power).toBeCloseTo(.259511,5);expect(errorPower(.05,51,36,"two").power).toBeCloseTo(.170075,5);expect(errorPower(.05,51,36,"one").beta).toBeCloseTo(.740489,5);});
+it("conserves rejection plus non-rejection and treats zero effect as the null",()=>{for(const test of ["one","two"] as const)for(const alpha of [.001,.01,.05,.2])for(const mu of [50,50.1,51,56,60]){const m=errorPower(alpha,mu,36,test);expect(m.beta+m.power).toBeCloseTo(1,6);if(mu===50){expect(m.alternativeTrue).toBe(false);expect(m.power).toBe(alpha);expect(m.beta).toBe(1-alpha);}}});
+it("responds monotonically to alpha, effect and sample size",()=>{for(const test of ["one","two"] as const){expect(errorPower(.01,51,36,test).beta).toBeGreaterThan(errorPower(.05,51,36,test).beta);expect(errorPower(.05,51,100,test).power).toBeGreaterThan(errorPower(.05,51,36,test).power);expect(errorPower(.05,52,36,test).power).toBeGreaterThan(errorPower(.05,51,36,test).power);}});
+it("rejects invalid settings",()=>{for(const n of [9,201,10.5,NaN])expect(()=>errorPower(.05,56,n,"one")).toThrow();expect(()=>errorPower(0,56,36,"one")).toThrow();expect(()=>errorPower(.05,49,36,"one")).toThrow();expect(()=>errorPower(.05,Infinity,36,"one")).toThrow();});
+it("finds the smallest sufficient capstone n or reports an unreachable target",()=>{
+  for(const test of ["one","two"] as const){const plan=planErrorPower(.05,52,test,.8)!;expect(plan.power).toBeGreaterThanOrEqual(.8);expect(errorPower(.05,52,plan.n-1,test).power).toBeLessThan(.8);}
+  expect(planErrorPower(.05,50,"one",.8)).toBeNull();expect(planErrorPower(.001,50.01,"two",.99)).toBeNull();expect(()=>planErrorPower(.05,52,"one",1)).toThrow();
+});

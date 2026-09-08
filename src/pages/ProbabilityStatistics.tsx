@@ -11,10 +11,11 @@ import PhaseTwoDomainPanel from "../components/ui/PhaseTwoDomainPanel";
 import { distributionSpecs } from "../modules/probability-statistics/data/distributionAtlas";
 import { statisticsLearningContent } from "../modules/probability-statistics/data/learningContent";
 import { statisticsSyllabusStudios } from "../modules/probability-statistics/pages/StatisticsSyllabusCompletionPage";
+import StatisticsEnhancementWorkbench from "../studios/statistics/StatisticsEnhancementWorkbench";
 import LearningExpansion from "../modules/probability-statistics/pages/LearningExpansion";
 
 type AccentName = "cyan" | "violet" | "emerald" | "rose" | "amber" | "sky" | "indigo" | "slate";
-type StatsTabId = "concepts" | "normal" | "data" | "learning";
+type StatsTabId = "concepts" | "normal" | "data" | "learning" | "advanced";
 
 type ConceptCardItem = {
   title: string;
@@ -187,6 +188,7 @@ export default function ProbabilityStatistics() {
     { id: "normal" as const, label: "Normal Lab", summary: "Move mean, standard deviation, and observed x to see z-score and cumulative probability update." },
     { id: "data" as const, label: "Data Lab", summary: "Enter raw data, read quick summaries, and build a histogram from the same sample." },
     { id: "learning" as const, label: "Learning", summary: "Open the overview learning expansion and the domain readiness panel in one place." },
+    { id: "advanced" as const, label: "Advanced Workbench", summary: "Use 25 connected data, inference, regression, Bayesian, stochastic, and modelling tools." },
   ];
   const currentTab = tabs.find((tab) => tab.id === activeTab) ?? tabs[0];
 
@@ -287,6 +289,7 @@ export default function ProbabilityStatistics() {
                 <PhaseTwoDomainPanel domain="statistics-probability" />
               </div>
             ) : null}
+            {activeTab === "advanced" ? <StatisticsEnhancementWorkbench /> : null}
           </div>
         </section>
         <aside className="stats-inspector thin-scrollbar" aria-label="Probability and statistics inspector">
@@ -424,6 +427,6 @@ function round(value: number) {
 function readStatsTabFromUrl(): StatsTabId {
   if (typeof window === "undefined") return "concepts";
   const tab = new URLSearchParams(window.location.search).get("tab");
-  if (tab === "normal" || tab === "data" || tab === "learning") return tab;
+  if (tab === "normal" || tab === "data" || tab === "learning" || tab === "advanced") return tab;
   return "concepts";
 }

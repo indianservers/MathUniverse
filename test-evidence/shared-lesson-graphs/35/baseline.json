@@ -1,0 +1,323 @@
+{
+  "records": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "state": {
+        "testid": "algebra-mockup-0035",
+        "dedicatedLesson": "35",
+        "objectModel": "two-branch-piecewise-condition-endpoint-inclusion-evaluation-draggable-graph-probe-boundary-check-model",
+        "x": "1",
+        "value": "2",
+        "branch": "right",
+        "leftActive": "false",
+        "workspace": "false",
+        "actions": "0"
+      },
+      "overflow": false,
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "name": "Lesson language",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": " Reset",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": " Share",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": " Workspace",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Decrease x",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "Piecewise x value",
+          "value": "1",
+          "min": "-5",
+          "max": "5",
+          "step": "1"
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Increase x",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "f (x) = x + 3  for x < 0Left branch (open at (0,3))",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "f (x) = 2x  for x >= 0Right branch (closed at (0,0))",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "▣ Sitemap",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "⚑ Docs",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "✉ About",
+          "value": ""
+        }
+      ],
+      "bars": [],
+      "graphs": [
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 530 370",
+          "label": "Interactive piecewise function graph"
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "state": {
+        "testid": "algebra-mockup-0035",
+        "dedicatedLesson": "35",
+        "objectModel": "two-branch-piecewise-condition-endpoint-inclusion-evaluation-draggable-graph-probe-boundary-check-model",
+        "x": "1",
+        "value": "2",
+        "branch": "right",
+        "leftActive": "false",
+        "workspace": "false",
+        "actions": "0"
+      },
+      "overflow": false,
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "name": "Lesson language",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": " Reset",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": " Share",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": " Workspace",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Decrease x",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "Piecewise x value",
+          "value": "1",
+          "min": "-5",
+          "max": "5",
+          "step": "1"
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Increase x",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "f (x) = x + 3  for x < 0Left branch (open at (0,3))",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "f (x) = 2x  for x >= 0Right branch (closed at (0,0))",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "▣ Sitemap",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "⚑ Docs",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "✉ About",
+          "value": ""
+        }
+      ],
+      "bars": [],
+      "graphs": [
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 530 370",
+          "label": "Interactive piecewise function graph"
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "state": {
+        "testid": "algebra-mockup-0035",
+        "dedicatedLesson": "35",
+        "objectModel": "two-branch-piecewise-condition-endpoint-inclusion-evaluation-draggable-graph-probe-boundary-check-model",
+        "x": "1",
+        "value": "2",
+        "branch": "right",
+        "leftActive": "false",
+        "workspace": "false",
+        "actions": "0"
+      },
+      "overflow": false,
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "name": "Lesson language",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": " Reset",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": " Share",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": " Workspace",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Decrease x",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "Piecewise x value",
+          "value": "1",
+          "min": "-5",
+          "max": "5",
+          "step": "1"
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Increase x",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "f (x) = x + 3  for x < 0Left branch (open at (0,3))",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "f (x) = 2x  for x >= 0Right branch (closed at (0,0))",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "▣ Sitemap",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "⚑ Docs",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "✉ About",
+          "value": ""
+        }
+      ],
+      "bars": [],
+      "graphs": [
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 530 370",
+          "label": "Interactive piecewise function graph"
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

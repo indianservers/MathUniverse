@@ -1,5 +1,4 @@
 import {
-  Check,
   ChevronDown,
   ChevronRight,
   Clock3,
@@ -269,7 +268,7 @@ export default function GeometryWorkspacePanel({
   protocolEntries = [],
   onReplayProtocol,
 }: GeometryWorkspacePanelProps) {
-  const [studioMode, setStudioMode] = useState<"Construct" | "Analyze" | "Measure" | "Animate" | "Learn">("Construct");
+  const [studioMode, setStudioMode] = useState<"Construct" | "Measure" | "Animate" | "Learn">("Construct");
   const [registryTab, setRegistryTab] = useState<"Objects" | "Algebra" | "Layers">("Objects");
   const [inspectorTab, setInspectorTab] = useState<"Properties" | "Style" | "Relations">("Properties");
   const [projectName, setProjectName] = useState("Circle Theorem Exploration");
@@ -329,7 +328,7 @@ export default function GeometryWorkspacePanel({
           <p>{projectName}</p>
         </div>
         <div className="geometry-mode-tabs" aria-label="Geometry workspace modes">
-          {["Construct", "Analyze", "Measure", "Animate", "Learn"].map((mode) => (
+          {["Construct", "Measure", "Learn"].map((mode) => (
             <button key={mode} type="button" onClick={() => setStudioMode(mode as typeof studioMode)} className={mode === studioMode ? "active" : ""}>{mode}</button>
           ))}
         </div>

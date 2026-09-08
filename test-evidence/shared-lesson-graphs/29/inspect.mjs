@@ -1,0 +1,2 @@
+import {chromium} from 'playwright';
+const b=await chromium.launch();const p=await b.newPage({viewport:{width:390,height:844}});await p.goto('http://127.0.0.1:2277/lessons/core-workspaces/29-object-redefinition');await p.locator('.dependent-row').first().waitFor();console.log(await p.locator('.dependent-row').first().evaluate(e=>{const s=getComputedStyle(e);return {min:s.minWidth,max:s.maxWidth,width:s.width,grid:s.gridTemplateColumns,overflow:getComputedStyle(e.parentElement).overflowX};}));await b.close();

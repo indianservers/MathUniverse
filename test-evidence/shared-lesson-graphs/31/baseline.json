@@ -1,0 +1,374 @@
+{
+  "records": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "state": {
+        "testid": "algebra-mockup-0031",
+        "dedicatedLesson": "31",
+        "objectModel": "parsed-affine-inequality-sign-reversal-open-closed-boundary-number-line-graph-region-test-point-model",
+        "valid": "true",
+        "inputOperator": "<",
+        "solutionOperator": "<",
+        "boundary": "4",
+        "inclusive": "false",
+        "flipped": "false",
+        "actions": "0"
+      },
+      "overflow": false,
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "name": "Reset",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Share",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "Inequality input",
+          "value": "2x + 3 < 11",
+          "min": "",
+          "max": "",
+          "step": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Clear inequality input",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "•  2x + 1 < 5",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "•  x^2 - 4 >= 0",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "•  3(x - 2) <= 9",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "<",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "≤",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": ">",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "≥",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "=",
+          "value": ""
+        }
+      ],
+      "bars": [],
+      "graphs": [
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 350 120",
+          "label": "Inequality solution on number line"
+        },
+        {
+          "viewBox": "0 0 340 285",
+          "label": "Graph comparison and inequality region"
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "state": {
+        "testid": "algebra-mockup-0031",
+        "dedicatedLesson": "31",
+        "objectModel": "parsed-affine-inequality-sign-reversal-open-closed-boundary-number-line-graph-region-test-point-model",
+        "valid": "true",
+        "inputOperator": "<",
+        "solutionOperator": "<",
+        "boundary": "4",
+        "inclusive": "false",
+        "flipped": "false",
+        "actions": "0"
+      },
+      "overflow": false,
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "name": "Reset",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Share",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "Inequality input",
+          "value": "2x + 3 < 11",
+          "min": "",
+          "max": "",
+          "step": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Clear inequality input",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "•  2x + 1 < 5",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "•  x^2 - 4 >= 0",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "•  3(x - 2) <= 9",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "<",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "≤",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": ">",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "≥",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "=",
+          "value": ""
+        }
+      ],
+      "bars": [],
+      "graphs": [
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 350 120",
+          "label": "Inequality solution on number line"
+        },
+        {
+          "viewBox": "0 0 340 285",
+          "label": "Graph comparison and inequality region"
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "state": {
+        "testid": "algebra-mockup-0031",
+        "dedicatedLesson": "31",
+        "objectModel": "parsed-affine-inequality-sign-reversal-open-closed-boundary-number-line-graph-region-test-point-model",
+        "valid": "true",
+        "inputOperator": "<",
+        "solutionOperator": "<",
+        "boundary": "4",
+        "inclusive": "false",
+        "flipped": "false",
+        "actions": "0"
+      },
+      "overflow": false,
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "name": "Reset",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Share",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "Inequality input",
+          "value": "2x + 3 < 11",
+          "min": "",
+          "max": "",
+          "step": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Clear inequality input",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "•  2x + 1 < 5",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "•  x^2 - 4 >= 0",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "•  3(x - 2) <= 9",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "<",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "≤",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": ">",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "≥",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "=",
+          "value": ""
+        }
+      ],
+      "bars": [],
+      "graphs": [
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 350 120",
+          "label": "Inequality solution on number line"
+        },
+        {
+          "viewBox": "0 0 340 285",
+          "label": "Graph comparison and inequality region"
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,13 @@
+# Lesson 44: Polar Graphs
+
+Baseline: `baseline.tsx.txt`, `baseline.json`, and three viewport screenshots.
+
+The generic source initializes radius scale 2, frequency 3, and trace 1.5, each with bounds −5 to 5 and step 0.5. Its captions instead claim scale 4 and angle 40 degrees. The existing radius calculation uses JavaScript sine with radians; the fixed SVG rose and radius do not respond to controls. The preset confirms r = a sin(3θ) and a square view of −5 to 5. These conflicting captions and inactive controls are confirmed defects.
+
+The lesson adapter now supplies r = a sin(nθ) and Cartesian point (r cos θ, r sin θ) to the shared polar renderer. Actual defaults, slider bounds and steps, original table inputs (0, 30, 60 degrees), plot colors, and view bounds are retained. The frequency control is labeled explicitly instead of incorrectly calling its value a petal count. Derived petal count handles the allowed integer/half-integer values. The full trace is sampled over 2π for integers and 4π for half-integers. Zero scale or frequency renders the pole. Angle controls and the original sample table use radians; the degree examples convert explicitly.
+
+The polar grid has concentric circles and 30-degree spokes with equal coordinate units. The positive angle ray and signed radius are separate, so negative radii place the point on the opposite ray. All calculations and sampling stay in the lesson adapter. Cartesian rendering remains the default for existing consumers. No main 2D workspace source or global styles were edited for this migration.
+
+Validation passed: desktop/tablet/mobile light and dark screenshots, complete control range, signed/zero/half-integer cases, curve projection, circle metrics, mouse/touch navigation, reset, guide visibility, Inspector, clipboard and table values. Shared Inspector and Parametric Curves regression included. Scoped lint passes.
+
+Final browser log: `final-browser.log`, three passes in 2.8 minutes. Earlier combined run: 11 passes, one desktop test timeout after exhaustive sample assertions; retained in `browser.log`. Sample accuracy now checks the maximum error across every point with the same tolerance, eliminating thousands of redundant test-reporter steps. All three final layouts pass. Six Inspector and three Parametric regression checks pass. Nine geometry tests and scoped lint pass. Final screenshots reviewed at all sizes, light and dark; no console errors or horizontal overflow. The full repository typecheck finished with 138 diagnostics outside the migrated graph files; see `typecheck.log`. The production build remains blocked by these existing errors.

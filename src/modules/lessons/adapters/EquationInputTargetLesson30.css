@@ -589,3 +589,42 @@ body:has(.equation-page)
     margin-top: 12px;
   }
 }
+
+.equation-page,.equation-surface,.equation-main,.equation-work,.equation-page .graph-card { height:auto; }
+.equation-main { grid-template-columns:minmax(0,786fr) minmax(0,230fr); }
+.equation-work { grid-template-columns:minmax(0,385fr) minmax(0,387fr); align-items:start; }
+.equation-columns { grid-template-rows:auto auto; min-width:0; }
+.equation-page .graph-card > svg { height:365px; }
+.equation-page .graph-card .lesson-cartesian-canvas { height:auto; }
+.equation-side { grid-template-rows:repeat(4,auto); align-content:start; }
+.equation-entry > div { grid-template-columns:minmax(0,1fr) auto auto; }
+.equation-page input { min-width:0; background:#fff; color:#0c193a; }
+@media(max-width:1099px) {
+ .equation-main { grid-template-columns:minmax(0,1fr); }
+ .equation-work { grid-template-columns:minmax(0,1fr) minmax(0,1fr); }
+}
+@media(max-width:700px) {
+ .equation-page .equation-work { grid-template-columns:minmax(0,1fr); }
+ .equation-page .equation-entry { height:auto; }
+ .equation-page .equation-entry > div { grid-template-columns:minmax(0,1fr) auto; }
+ .equation-page .equation-entry input { grid-column:1/-1; width:100%; }
+ .equation-page .equation-entry button { min-height:44px; }
+ .equation-page .solution-checker { height:auto; }
+ .equation-page .solution-checker > div { height:auto; grid-template-columns:28px minmax(0,1fr); gap:8px; }
+ .equation-page .solution-checker > div > span { grid-template-columns:minmax(0,1fr); }
+ .equation-page .solution-checker em { grid-column:2; }
+ .equation-page .steps-card li { grid-template-columns:minmax(0,1fr); gap:5px; }
+}
+
+.equation-page .equation-header { height:auto; flex-wrap:wrap; gap:12px; margin-bottom:16px; }
+.equation-page .equation-header aside { flex-wrap:wrap; }
+.equation-page .solution-checker { width:100%; }
+@media(max-width:700px) {
+ .equation-page .solution-checker small { grid-column:1; }
+ .equation-page .solution-checker > div > svg { width:28px; height:28px; padding:6px; }
+}
+@media(max-width:700px) {
+ .equation-page .equation-entry > div { grid-template-columns:minmax(0,1fr); }
+ .equation-page .equation-entry button { width:100%; }
+}
+.dark .equation-page [data-series-id="guide"] polyline { stroke:var(--lg-muted); }

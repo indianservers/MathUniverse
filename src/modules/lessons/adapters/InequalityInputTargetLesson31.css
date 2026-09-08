@@ -531,3 +531,33 @@ body:has(.inequality-page)
     margin-top: 12px;
   }
 }
+
+.inequality-page,.inequality-layout,.inequality-main { height:auto; }
+.inequality-layout { grid-template-columns:minmax(0,979fr) minmax(0,213fr); }
+.inequality-main { grid-template-columns:minmax(0,244fr) minmax(0,304fr) minmax(0,379fr); align-items:start; }
+.inequality-page .comparison-panel .lesson-cartesian-canvas { height:auto; }
+.inequality-side { grid-template-rows:repeat(4,auto); align-content:start; }
+.inequality-page .inequality-header { height:auto; margin-bottom:16px; }
+.inequality-page .inequality-header aside { position:static; margin-top:12px; }
+.inequality-page .inequality-header nav,.inequality-page .inequality-tags { flex-wrap:wrap; }
+.inequality-page .inequality-entry { height:auto; }
+.inequality-page .inequality-entry input { min-width:0; width:100%; background:#fff; color:#0c193a; }
+.inequality-page .test-points { height:auto; }
+.inequality-page .test-points article { height:auto; min-height:110px; }
+@media(max-width:1099px) {
+ .inequality-page .inequality-layout { grid-template-columns:minmax(0,1fr); }
+ .inequality-page .inequality-main { grid-template-columns:minmax(0,1fr); }
+}
+@media(max-width:700px) {
+ .inequality-page .test-points > div { grid-template-columns:minmax(0,1fr); }
+ .inequality-page .inequality-header button,.inequality-page .operators button { min-height:44px; }
+ .inequality-page .comparison-panel nav { flex-wrap:wrap; }
+}
+/* Keep the lesson graph area wide enough within the shell's grid normalization. */
+.lesson-page-shell[data-lesson-id="31"] .inequality-layout { grid-template-columns:minmax(0,1fr) 240px !important; }
+.lesson-page-shell[data-lesson-id="31"] .inequality-main { grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important; }
+.inequality-page .comparison-panel { grid-column:1/-1; }
+.inequality-page .number-panel > p { white-space:normal; height:auto; }
+.inequality-page .solve-step { height:auto; min-height:54px; }
+@media(max-width:1099px) { .lesson-page-shell[data-lesson-id="31"] .inequality-layout { grid-template-columns:minmax(0,1fr) !important; } }
+@media(max-width:700px) { .lesson-page-shell[data-lesson-id="31"] .inequality-main { grid-template-columns:minmax(0,1fr) !important; } }

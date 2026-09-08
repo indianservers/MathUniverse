@@ -8,8 +8,9 @@ import EigenvectorVisualizer from "../visualizations/linear-algebra/EigenvectorV
 import LinearAlgebraApplications from "../visualizations/linear-algebra/LinearAlgebraApplications";
 import MatrixTransformationVisualizer from "../visualizations/linear-algebra/MatrixTransformationVisualizer";
 import VectorVisualizer from "../visualizations/linear-algebra/VectorVisualizer";
+import LinearAlgebraEnhancementWorkbench from "../studios/linear-algebra/LinearAlgebraEnhancementWorkbench";
 
-type LinearAlgebraMode = "vectors" | "matrix-transform" | "eigenvectors" | "applications" | "accuracy";
+type LinearAlgebraMode = "vectors" | "matrix-transform" | "eigenvectors" | "applications" | "accuracy" | "advanced";
 
 const modes: Array<{ id: LinearAlgebraMode; label: string }> = [
   { id: "vectors", label: "Vectors" },
@@ -17,12 +18,13 @@ const modes: Array<{ id: LinearAlgebraMode; label: string }> = [
   { id: "eigenvectors", label: "Eigenvectors" },
   { id: "applications", label: "Applications" },
   { id: "accuracy", label: "Accuracy & Validation" },
+  { id: "advanced", label: "Advanced Workbench" },
 ];
 
 export default function LinearAlgebra() {
   const topic = topics.find((item) => item.id === "linear-algebra")!;
   const { getTopicProgress, markTopicVisited, markTopicInteracted } = useProgress();
-  const [mode, setMode] = useState<LinearAlgebraMode>("vectors");
+  const [mode, setMode] = useState<LinearAlgebraMode>(() => new URLSearchParams(window.location.search).get("mode") === "advanced" ? "advanced" : "vectors");
   const progress = getTopicProgress(topic.id);
   const progressPercent = useMemo(() => {
     const normalized = progress > 1 ? progress : progress * 100;
@@ -64,7 +66,7 @@ export default function LinearAlgebra() {
 
       <nav className="la-mode-tabs" aria-label="Linear algebra modes">
         {modes.map((item) => (
-          <button key={item.id} type="button" className={mode === item.id ? "active" : ""} onClick={() => setMode(item.id)}>
+          <button key={item.id} type="button" className={mode === item.id ? "active" : ""} onClick={() => { setMode(item.id); const url=new URL(window.location.href); if(item.id==="vectors")url.searchParams.delete("mode");else url.searchParams.set("mode",item.id); window.history.pushState(null,"",`${url.pathname}${url.search}`); }}>
             {item.label}
           </button>
         ))}
@@ -88,6 +90,7 @@ export default function LinearAlgebra() {
           {mode === "eigenvectors" && <EigenvectorVisualizer />}
           {mode === "applications" && <LinearAlgebraApplications />}
           {mode === "accuracy" && <PhaseTwoDomainPanel domain="linear-algebra" />}
+          {mode === "advanced" && <LinearAlgebraEnhancementWorkbench />}
         </section>
       )}
     </main>

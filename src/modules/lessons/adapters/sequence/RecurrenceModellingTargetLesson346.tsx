@@ -1,13 +1,14 @@
 import { Maximize2, RotateCcw, Share2 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { PointerEvent as ReactPointerEvent } from "react";
 import type { LessonAdapterProps } from "../../types";
+import {
+  RECURRENCE_PRESETS,
+  recurrenceInitialForState,
+  recurrenceModellingAnalysis,
+} from "./recurrenceModellingLessonModel";
+import type { RecurrenceScenario } from "./recurrenceModellingLessonModel";
 import "./RecurrenceModellingTargetLesson346.css";
-type Scenario =
-  | "City population model"
-  | "Savings with deposits"
-  | "Bacteria culture"
-  | "Medication decay";
 const tabs = [
     "Interaction + visualization",
     "Explain",
@@ -16,75 +17,43 @@ const tabs = [
     "Know more",
   ],
   clean = (v: number) => Number(v.toFixed(6));
-const presets: Record<
-  Scenario,
-  { r: number; k: number; initial: number; units: string; description: string }
-> = {
-  "City population model": {
-    r: 1.1,
-    k: 0,
-    initial: 50000,
-    units: "people",
-    description:
-      "A city's population grows by a constant rate each year due to natural increase and net migration.",
-  },
-  "Savings with deposits": {
-    r: 1.05,
-    k: 1000,
-    initial: 10000,
-    units: "currency",
-    description:
-      "A savings balance earns interest and receives the same deposit each year.",
-  },
-  "Bacteria culture": {
-    r: 1.4,
-    k: 0,
-    initial: 1200,
-    units: "cells",
-    description:
-      "A culture multiplies by a constant factor during each observation interval.",
-  },
-  "Medication decay": {
-    r: 0.72,
-    k: 20,
-    initial: 200,
-    units: "mg",
-    description:
-      "Medication decays between doses and receives a fixed replenishment.",
-  },
-};
 export default function RecurrenceModellingTargetLesson346({
   resetToken,
   onInteraction,
 }: LessonAdapterProps) {
-  const [scenario, setScenario] = useState<Scenario>("City population model"),
+  const [scenario, setScenario] = useState<RecurrenceScenario>(
+      "City population model",
+    ),
     [r, setR] = useState(1.1),
     [k, setK] = useState(0),
     [initial, setInitial] = useState(50000),
     [units, setUnits] = useState("people"),
     [selectedN, setSelectedN] = useState(10),
     [tab, setTab] = useState(tabs[0]),
+    [language, setLanguage] = useState<"en" | "hi">("en"),
     [question, setQuestion] = useState(0),
     [quick, setQuick] = useState<"" | "correct" | "incorrect">(""),
     [fullscreen, setFullscreen] = useState(false),
     [actions, setActions] = useState(0);
-  const values = Array.from({ length: 11 }, (_, n) =>
-      Math.abs(r - 1) < 1e-10
-        ? initial + n * k
-        : r ** n * initial + (k * (1 - r ** n)) / (1 - r),
+  const analysis = useMemo(
+      () => recurrenceModellingAnalysis(r, k, initial, selectedN),
+      [r, k, initial, selectedN],
     ),
-    changes = values.map((v, n) => (n ? v - values[n - 1] : 0)),
-    closed = (n: number) =>
-      Math.abs(r - 1) < 1e-10
-        ? initial + n * k
-        : r ** n * initial + (k * (1 - r ** n)) / (1 - r),
-    equilibrium = Math.abs(1 - r) < 1e-10 ? null : k / (1 - r),
-    stable = Math.abs(r) < 1,
-    selectedRecursive = values[selectedN],
-    selectedClosed = closed(selectedN),
-    difference = Math.abs(selectedRecursive - selectedClosed);
-  const yMax = Math.max(...values, 1) * 1.12,
-    gy = (v: number) => 195 - (v / yMax) * 165,
+    {
+      values,
+      changes,
+      selectedRecursive,
+      selectedClosed,
+      difference,
+      exactMatch,
+      equilibrium,
+      stable,
+      oscillatory,
+      plotMin,
+      plotMax,
+    } = analysis,
+    gy = (v: number) =>
+      195 - ((v - plotMin) / Math.max(1, plotMax - plotMin)) * 165,
     gx = (n: number) => 35 + n * 52.5,
     path = values.map((v, n) => `${n ? "L" : "M"}${gx(n)} ${gy(v)}`).join(" ");
   const reset = () => {
@@ -95,6 +64,7 @@ export default function RecurrenceModellingTargetLesson346({
     setUnits("people");
     setSelectedN(10);
     setTab(tabs[0]);
+    setLanguage("en");
     setQuestion(0);
     setQuick("");
     setFullscreen(false);
@@ -106,9 +76,9 @@ export default function RecurrenceModellingTargetLesson346({
     setActions((v) => v + 1);
     onInteraction();
   };
-  const choose = (name: Scenario) =>
+  const choose = (name: RecurrenceScenario) =>
     act(() => {
-      const p = presets[name];
+      const p = RECURRENCE_PRESETS[name];
       setScenario(name);
       setR(p.r);
       setK(p.k);
@@ -122,19 +92,18 @@ export default function RecurrenceModellingTargetLesson346({
     if (!rect) return;
     const desired = Math.max(
       0,
-      ((195 - ((e.clientY - rect.top) / rect.height) * 230) / 165) * yMax,
+      plotMin +
+        ((195 - ((e.clientY - rect.top) / rect.height) * 230) / 165) *
+          (plotMax - plotMin),
     );
     act(() => {
       if (n === 0) setInitial(clean(desired));
       else if (initial !== 0 && k === 0)
         setR(clean((desired / initial) ** (1 / n)));
-      else
-        setInitial(
-          clean(
-            Math.max(0, desired - (k * (1 - r ** n)) / (1 - r)) /
-              Math.max(r ** n, 1e-9),
-          ),
-        );
+      else {
+        const solved = recurrenceInitialForState(desired, r, k, n);
+        if (solved !== null) setInitial(solved);
+      }
       setQuick("");
     });
   };
@@ -168,6 +137,7 @@ export default function RecurrenceModellingTargetLesson346({
       data-difference={clean(difference)}
       data-equilibrium={equilibrium === null ? "none" : clean(equilibrium)}
       data-stable={stable}
+      data-language={language}
       data-tab={tab}
       data-question={question}
       data-quick-result={quick}
@@ -178,8 +148,14 @@ export default function RecurrenceModellingTargetLesson346({
           <b>ADVANCED MATHEMATICS</b>
           <b>SEQUENCES AND SERIES</b>
         </span>
-        <h1>Recurrence Modelling</h1>
-        <p>Apply sequences to real problems.</p>
+        <h1>
+          {language === "en" ? "Recurrence Modelling" : "पुनरावृत्ति मॉडलिंग"}
+        </h1>
+        <p>
+          {language === "en"
+            ? "Apply sequences to real problems."
+            : "वास्तविक समस्याओं में अनुक्रम लागू करें।"}
+        </p>
         <div>
           {[
             "Intermediate-Advanced",
@@ -191,18 +167,38 @@ export default function RecurrenceModellingTargetLesson346({
           ))}
         </div>
         <nav>
-          <select aria-label="Language">
-            <option>English (English)</option>
+          <select
+            aria-label="Language"
+            value={language}
+            onChange={(event) =>
+              act(() => setLanguage(event.target.value as "en" | "hi"))
+            }
+          >
+            <option value="en">English (English)</option>
+            <option value="hi">हिन्दी (Hindi)</option>
           </select>
-          <button onClick={reset}>
+          <button onClick={() => act(reset)}>
             <RotateCcw />
             Reset
           </button>
-          <button onClick={() => act(() => {})}>
+          <button
+            onClick={() =>
+              act(() => navigator.clipboard?.writeText(location.href))
+            }
+          >
             <Share2 />
             Share
           </button>
-          <button onClick={() => act(() => {})}>Workspace</button>
+          <button
+            onClick={() => {
+              act(() => setTab(tabs[0]));
+              document
+                .getElementById("seq346-lab")
+                ?.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
+            Workspace
+          </button>
         </nav>
       </header>
       <nav className="seq346-tabs">
@@ -210,13 +206,18 @@ export default function RecurrenceModellingTargetLesson346({
           <button
             className={tab === v ? "active" : ""}
             key={v}
-            onClick={() => act(() => setTab(v))}
+            onClick={() => {
+              act(() => setTab(v));
+              document
+                .getElementById(v === tabs[0] ? "seq346-lab" : "seq346-notes")
+                ?.scrollIntoView({ behavior: "smooth" });
+            }}
           >
             {v}
           </button>
         ))}
       </nav>
-      <section className="seq346-lab">
+      <section className="seq346-lab" id="seq346-lab">
         <header>
           <div>
             <small>INTERACTION + VISUALIZATION</small>
@@ -237,13 +238,13 @@ export default function RecurrenceModellingTargetLesson346({
             <select
               aria-label="Recurrence scenario"
               value={scenario}
-              onChange={(e) => choose(e.target.value as Scenario)}
+              onChange={(e) => choose(e.target.value as RecurrenceScenario)}
             >
-              {Object.keys(presets).map((v) => (
+              {Object.keys(RECURRENCE_PRESETS).map((v) => (
                 <option key={v}>{v}</option>
               ))}
             </select>
-            <p>{presets[scenario].description}</p>
+            <p>{RECURRENCE_PRESETS[scenario].description}</p>
             <strong>
               Model type: P(n+1) = {r}P(n) {k ? `+ ${k}` : ""}
             </strong>
@@ -269,15 +270,17 @@ export default function RecurrenceModellingTargetLesson346({
                 onChange={(e) => act(() => setR(Number(e.target.value)))}
               />
             </label>
-            <label>
-              Additive input k
-              <input
-                aria-label="Additive input"
-                type="number"
-                value={k}
-                onChange={(e) => act(() => setK(Number(e.target.value)))}
-              />
-            </label>
+            {RECURRENCE_PRESETS[scenario].k !== 0 && (
+              <label>
+                Additive input k
+                <input
+                  aria-label="Additive input"
+                  type="number"
+                  value={k}
+                  onChange={(e) => act(() => setK(Number(e.target.value)))}
+                />
+              </label>
+            )}
             <output>
               P(n+1) = {r}P(n) {k ? `+ ${k}` : ""}
             </output>
@@ -395,7 +398,9 @@ export default function RecurrenceModellingTargetLesson346({
           </article>
           <article>
             <h2>Closed-form comparison</h2>
-            <strong>Pn = r^n P0 + k(1-r^n)/(1-r)</strong>
+            <strong>
+              {k ? "Pn = r^n P0 + k(1-r^n)/(1-r)" : "Pn = P0 r^n"}
+            </strong>
             <label>
               Compare at selected n
               <select
@@ -419,7 +424,7 @@ export default function RecurrenceModellingTargetLesson346({
             <p>
               Difference <b>{clean(difference)}</b>
             </p>
-            <output>Exact match</output>
+            <output>{exactMatch ? "Exact match" : "Check precision"}</output>
           </article>
           <article>
             <h2>Equilibrium & stability</h2>
@@ -437,13 +442,17 @@ export default function RecurrenceModellingTargetLesson346({
             <h3>Interpretation</h3>
             <p>
               {stable
-                ? "Values move toward equilibrium."
-                : "Positive values move away from equilibrium."}
+                ? oscillatory
+                  ? "Values oscillate toward equilibrium."
+                  : "Values move toward equilibrium."
+                : oscillatory
+                  ? "Values oscillate away from equilibrium."
+                  : "Positive values move away from equilibrium."}
             </p>
           </article>
         </section>
       </section>
-      <section className="seq346-notes">
+      <section className="seq346-notes" id="seq346-notes">
         <article>
           <h2>Guided explanation</h2>
           <ol>

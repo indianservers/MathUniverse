@@ -2,51 +2,15 @@ import { Copy, Pause, Play, RotateCcw, Share2 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import type { PointerEvent as ReactPointerEvent } from "react";
 import type { LessonAdapterProps } from "../../types";
+import {
+  DEFAULT_SIGMA_COEFFICIENTS,
+  parseSigmaSummand,
+  sigmaNotationAnalysis,
+  type SigmaCoefficients,
+} from "./sigmaNotationLessonModel";
 import "./SigmaNotationTargetLesson339.css";
 
-type Coeff = {
-  ii: number;
-  jj: number;
-  ij: number;
-  i: number;
-  j: number;
-  c: number;
-};
 const clean = (v: number) => Number(v.toFixed(8));
-function parse(source: string): Coeff | null {
-  const text = source
-    .toLowerCase()
-    .replaceAll(" ", "")
-    .replaceAll("²", "^2")
-    .replaceAll("*", "")
-    .replace(/−/g, "-")
-    .replace(/(?<!^)-/g, "+-");
-  if (!text || /[^0-9ij+\-.^]/.test(text)) return null;
-  const out = { ii: 0, jj: 0, ij: 0, i: 0, j: 0, c: 0 };
-  for (const raw of text.split("+").filter(Boolean)) {
-    const term = raw;
-    if (term.includes("i^2")) {
-      const p = term.replace("i^2", "");
-      out.ii += p === "" ? 1 : p === "-" ? -1 : Number(p);
-    } else if (term.includes("j^2")) {
-      const p = term.replace("j^2", "");
-      out.jj += p === "" ? 1 : p === "-" ? -1 : Number(p);
-    } else if (term.includes("ij")) {
-      const p = term.replace("ij", "");
-      out.ij += p === "" ? 1 : p === "-" ? -1 : Number(p);
-    } else if (term.includes("i")) {
-      const p = term.replace("i", "");
-      out.i += p === "" ? 1 : p === "-" ? -1 : Number(p);
-    } else if (term.includes("j")) {
-      const p = term.replace("j", "");
-      out.j += p === "" ? 1 : p === "-" ? -1 : Number(p);
-    } else out.c += Number(term);
-    if (Object.values(out).some((v) => !Number.isFinite(v))) return null;
-  }
-  return out;
-}
-const evaluate = (p: Coeff, i: number, j = 0) =>
-  p.ii * i * i + p.jj * j * j + p.ij * i * j + p.i * i + p.j * j + p.c;
 const tabs = [
   "Interaction + Visualisation",
   "Explain",
@@ -61,14 +25,7 @@ export default function SigmaNotationTargetLesson339({
   const [lower, setLower] = useState(1),
     [upper, setUpper] = useState(8),
     [source, setSource] = useState("i² + 1"),
-    [coeff, setCoeff] = useState<Coeff>({
-      ii: 1,
-      jj: 0,
-      ij: 0,
-      i: 0,
-      j: 0,
-      c: 1,
-    }),
+    [coeff, setCoeff] = useState<SigmaCoefficients>(DEFAULT_SIGMA_COEFFICIENTS),
     [nested, setNested] = useState(false),
     [current, setCurrent] = useState(5),
     [playing, setPlaying] = useState(false),
@@ -77,36 +34,18 @@ export default function SigmaNotationTargetLesson339({
     [answer, setAnswer] = useState(""),
     [result, setResult] = useState<"" | "correct" | "incorrect">(""),
     [copied, setCopied] = useState(false),
+    [language, setLanguage] = useState<"en" | "hi">("en"),
     [actions, setActions] = useState(0);
-  const indexes = useMemo(
-      () =>
-        Array.from(
-          { length: Math.max(0, upper - lower + 1) },
-          (_, k) => lower + k,
-        ),
-      [lower, upper],
+  const analysis = useMemo(
+      () => sigmaNotationAnalysis(lower, upper, coeff, nested),
+      [lower, upper, coeff, nested],
     ),
-    terms = useMemo(
-      () =>
-        indexes.map((i) =>
-          nested
-            ? Array.from({ length: i }, (_, k) =>
-                evaluate(coeff, i, k + 1),
-              ).reduce((a, b) => a + b, 0)
-            : evaluate(coeff, i),
-        ),
-      [indexes, nested, coeff],
-    ),
-    partials = terms.reduce<number[]>(
-      (a, v) => [...a, v + (a.at(-1) ?? 0)],
-      [],
-    ),
-    total = partials.at(-1) ?? 0;
+    { indexes, terms, partials, total } = analysis;
   const reset = () => {
     setLower(1);
     setUpper(8);
     setSource("i² + 1");
-    setCoeff({ ii: 1, jj: 0, ij: 0, i: 0, j: 0, c: 1 });
+    setCoeff(DEFAULT_SIGMA_COEFFICIENTS);
     setNested(false);
     setCurrent(5);
     setPlaying(false);
@@ -115,6 +54,7 @@ export default function SigmaNotationTargetLesson339({
     setAnswer("");
     setResult("");
     setCopied(false);
+    setLanguage("en");
     setActions(0);
   };
   useEffect(reset, [resetToken]);
@@ -136,9 +76,10 @@ export default function SigmaNotationTargetLesson339({
       if (which === "lower") {
         const v = Math.min(Math.round(value), upper);
         setLower(v);
+        setUpper((currentUpper) => Math.min(currentUpper, v + 49));
         setCurrent(v);
       } else {
-        const v = Math.max(Math.round(value), lower);
+        const v = Math.min(lower + 49, Math.max(Math.round(value), lower));
         setUpper(v);
         setCurrent((c) => Math.min(c, v));
       }
@@ -146,16 +87,18 @@ export default function SigmaNotationTargetLesson339({
     });
   const updateSource = (v: string) => {
     setSource(v);
-    const p = parse(v);
-    if (p) act(() => setCoeff(p));
-    setResult("");
+    const parsed = parseSigmaSummand(v);
+    act(() => {
+      if (parsed) setCoeff(parsed);
+      setResult("");
+    });
   };
   const setPreset = (v: string) => {
-    const p = parse(v);
-    if (p)
+    const parsed = parseSigmaSummand(v);
+    if (parsed)
       act(() => {
         setSource(v);
-        setCoeff(p);
+        setCoeff(parsed);
         setResult("");
       });
   };
@@ -170,8 +113,11 @@ export default function SigmaNotationTargetLesson339({
       );
       setCopied(true);
     });
-  const max = Math.max(...terms.map(Math.abs), 1),
-    graphY = (v: number) => 170 - (v / max) * 135;
+  const graphY = (v: number) =>
+    170 -
+    ((v - analysis.plotMin) /
+      Math.max(1, analysis.plotMax - analysis.plotMin)) *
+      135;
   return (
     <section
       className="seq339-page"
@@ -191,14 +137,20 @@ export default function SigmaNotationTargetLesson339({
       data-result={result}
       data-copied={copied}
       data-actions={actions}
+      data-language={language}
+      data-truncated={analysis.truncated}
     >
       <header className="seq339-hero">
         <span>
           <b>ADVANCED MATHEMATICS</b>
           <b>SEQUENCES AND SERIES</b>
         </span>
-        <h1>Sigma Notation</h1>
-        <p>Understand compact summation.</p>
+        <h1>{language === "en" ? "Sigma Notation" : "सिग्मा संकेतन"}</h1>
+        <p>
+          {language === "en"
+            ? "Understand compact summation."
+            : "संक्षिप्त योग को समझें।"}
+        </p>
         <div>
           {[
             "Intermediate-Advanced",
@@ -210,7 +162,16 @@ export default function SigmaNotationTargetLesson339({
           ))}
         </div>
         <nav>
-          <button>English (English)</button>
+          <select
+            aria-label="Lesson language"
+            value={language}
+            onChange={(event) =>
+              act(() => setLanguage(event.target.value as "en" | "hi"))
+            }
+          >
+            <option value="en">English (English)</option>
+            <option value="hi">हिन्दी (Hindi)</option>
+          </select>
           <button onClick={() => act(reset)}>
             <RotateCcw />
             Reset lab
@@ -223,7 +184,16 @@ export default function SigmaNotationTargetLesson339({
             <Share2 />
             Share
           </button>
-          <button onClick={() => act(() => setTab(tabs[0]))}>Workspace</button>
+          <button
+            onClick={() => {
+              act(() => setTab(tabs[0]));
+              document
+                .getElementById("seq339-lab")
+                ?.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
+            Workspace
+          </button>
         </nav>
       </header>
       <nav className="seq339-tabs">
@@ -231,13 +201,24 @@ export default function SigmaNotationTargetLesson339({
           <button
             key={name}
             className={tab === name ? "active" : ""}
-            onClick={() => act(() => setTab(name))}
+            onClick={() => {
+              act(() => setTab(name));
+              document
+                .getElementById(
+                  name === tabs[0]
+                    ? "seq339-lab"
+                    : name === "Formulas"
+                      ? "seq339-substitution"
+                      : "seq339-learning",
+                )
+                ?.scrollIntoView({ behavior: "smooth" });
+            }}
           >
             {name}
           </button>
         ))}
       </nav>
-      <section className="seq339-lab">
+      <section className="seq339-lab" id="seq339-lab">
         <header>
           <div>
             <b>SIGMA LAB</b>
@@ -393,7 +374,7 @@ export default function SigmaNotationTargetLesson339({
             <svg viewBox="0 0 330 210">
               <line x1="30" y1="175" x2="315" y2="175" className="axis" />
               {indexes.map((i, k) => {
-                const x = 45 + k * 32,
+                const x = 45 + k * (260 / Math.max(1, indexes.length - 1)),
                   y = graphY(terms[k]);
                 return (
                   <g key={i}>
@@ -415,17 +396,10 @@ export default function SigmaNotationTargetLesson339({
                 );
               })}
             </svg>
-            <output>
-              Growth:{" "}
-              {coeff.ii !== 0
-                ? "Quadratic (∝ i²)"
-                : coeff.i !== 0
-                  ? "Linear (∝ i)"
-                  : "Constant"}
-            </output>
+            <output>Growth: {analysis.growth}</output>
           </article>
         </section>
-        <section className="substitution">
+        <section className="substitution" id="seq339-substitution">
           <article>
             <h2>Index substitution (change variable)</h2>
             <p>
@@ -447,7 +421,7 @@ export default function SigmaNotationTargetLesson339({
           </article>
         </section>
       </section>
-      <section className="seq339-learning">
+      <section className="seq339-learning" id="seq339-learning">
         <article>
           <h2>Learning objective</h2>
           <p>

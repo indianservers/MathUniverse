@@ -55,6 +55,11 @@ import type {
   LessonProgress,
 } from "../types";
 import LessonSurface from "./LessonSurface";
+import {
+  captureLessonTabClick,
+  CoreLessonSections,
+  LessonSectionNav,
+} from "./LessonSectionJourney";
 
 type LessonInfoTab = "interaction" | "learn" | "examples" | "formulas" | "more";
 
@@ -104,6 +109,9 @@ export default function LessonShell({ lesson }: { lesson: LessonDefinition }) {
     lessonLanguageOptions.find((option) => option.code === languageCode) ??
     lessonLanguageOptions[0];
   const localizedContent = languageContent ?? lesson.content;
+  const journeyTab = infoTab === "more" ? "practice" : infoTab;
+  const selectJourneyTab = (section: "interaction" | "learn" | "examples" | "formulas" | "practice") =>
+    setInfoTab(section === "practice" ? "more" : section);
 
   useEffect(() => {
     setProgress(readLessonProgress(lesson));
@@ -253,12 +261,22 @@ export default function LessonShell({ lesson }: { lesson: LessonDefinition }) {
         className="lesson-page-shell space-y-3"
         data-testid="lesson-page"
         data-lesson-id={lesson.id}
+        data-lesson-view={journeyTab}
+        onClickCapture={(event) => captureLessonTabClick(event, selectJourneyTab)}
       >
-        <LessonSurface
-          lesson={lesson}
-          resetToken={resetToken}
-          onInteraction={recordInteraction}
-        />
+        <LessonSectionNav active={journeyTab} onChange={selectJourneyTab} />
+        <section
+          id="lesson-section-interaction"
+          className="scroll-mt-20"
+          data-lesson-viewport="interaction"
+        >
+          <LessonSurface
+            lesson={lesson}
+            resetToken={resetToken}
+            onInteraction={recordInteraction}
+          />
+        </section>
+        <CoreLessonSections lesson={lesson} active={journeyTab} />
         {usesImmersiveDynamicGeometryWorkspace ||
         (lesson.id >= 1 && lesson.id <= 38) ||
         (lesson.id >= 57 && lesson.id <= 142) ||
@@ -332,6 +350,7 @@ export default function LessonShell({ lesson }: { lesson: LessonDefinition }) {
       className="lesson-page-shell space-y-3"
       data-testid="lesson-page"
       data-lesson-id={lesson.id}
+      data-lesson-view={journeyTab}
     >
       <header className="lesson-shell-header overflow-hidden rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80">
         <div className="p-4 sm:p-5">
@@ -354,7 +373,7 @@ export default function LessonShell({ lesson }: { lesson: LessonDefinition }) {
               <p className="lesson-shell-purpose mt-2 max-w-4xl text-sm font-semibold leading-6 text-slate-600 dark:text-slate-300">
                 {lesson.purpose}
               </p>
-              <div className="mt-3 flex flex-wrap gap-2">
+              <div className="lesson-shell-meta mt-3 flex flex-wrap gap-2">
                 <InfoChip
                   icon={<Award className="h-3.5 w-3.5" />}
                   label={lesson.level}
@@ -441,8 +460,9 @@ export default function LessonShell({ lesson }: { lesson: LessonDefinition }) {
         <main className="space-y-3">
           {infoTab === "interaction" ? (
             <section
-              id="lesson-panel-interaction"
+              id="lesson-section-interaction"
               role="tabpanel"
+              data-lesson-viewport="interaction"
               className={`lesson-workbench rounded-2xl border border-cyan-100 bg-white/90 p-3 shadow-lg shadow-cyan-950/5 dark:border-white/10 dark:bg-slate-950/75${usesTargetGraphingWorkspace || usesTargetTrigonometryWorkspace || usesTargetStatisticsWorkspace || usesTargetProbabilityWorkspace || usesTargetLimitsDifferentialWorkspace || usesTargetIntegralDifferentialWorkspace || usesTargetSymbolicCasWorkspace ? " is-target-graphing-workbench" : ""}`}
               aria-label="Lesson interaction and visualization"
             >
@@ -529,6 +549,11 @@ export default function LessonShell({ lesson }: { lesson: LessonDefinition }) {
             />
           )}
         </main>
+      </div>
+
+      <div hidden aria-hidden="true" data-testid="lesson-tab-source-content">
+        <p>{[...lesson.contract.requiredControlIds, ...lesson.contract.requiredRepresentations, ...lesson.contract.workspaceObjects].join(" ")}</p>
+        <CoreLessonSections lesson={lesson} active="interaction" />
       </div>
 
       <nav
@@ -1531,7 +1556,7 @@ function LessonTabBar({
     },
     {
       id: "learn",
-      label: "Explain",
+      label: "Learn",
       icon: <NotebookText className="h-3.5 w-3.5" />,
     },
     {
@@ -1546,7 +1571,7 @@ function LessonTabBar({
     },
     {
       id: "more",
-      label: "Know more",
+      label: "Practice",
       icon: <Sparkles className="h-3.5 w-3.5" />,
     },
   ];

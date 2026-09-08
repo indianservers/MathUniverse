@@ -1,0 +1,3 @@
+export const frequencyPolygonDefault = [{ from: 0, to: 10, frequency: 2 }, { from: 10, to: 20, frequency: 5 }, { from: 20, to: 30, frequency: 9 }, { from: 30, to: 40, frequency: 14 }, { from: 40, to: 50, frequency: 11 }, { from: 50, to: 60, frequency: 6 }, { from: 60, to: 70, frequency: 3 }];
+export function polygonPoints(bins = frequencyPolygonDefault) { const width = bins[0]?.to - bins[0]?.from || 10; return [{ midpoint: bins[0]?.from - width / 2 || -5, frequency: 0 }, ...bins.map(bin => ({ midpoint: (bin.from + bin.to) / 2, frequency: bin.frequency })), { midpoint: (bins.at(-1)?.to || 70) + width / 2, frequency: 0 }]; }
+export function cumulative(bins = frequencyPolygonDefault) { let total = 0; return bins.map(bin => { total += bin.frequency; return total; }); }

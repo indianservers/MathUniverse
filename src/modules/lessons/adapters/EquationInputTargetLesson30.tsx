@@ -3,6 +3,8 @@ import "nerdamer/Algebra";
 import { Check, FlaskConical, Lightbulb, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../types";
+import { LessonCartesianGraph } from "../graphs/LessonCartesianGraph";
+import { LessonBalanceGraph } from "../graphs/LessonBalanceGraph";
 import "./EquationInputTargetLesson30.css";
 
 type EquationModel = {
@@ -22,7 +24,7 @@ type EquationModel = {
 const engine = nerdamer as unknown as (
   expression: string,
   substitutions?: Record<string, string>,
-) => { evaluate: () => { toString: () => string } };
+) => { evaluate: () => { text: () => string; toString: () => string } };
 
 function evaluate(expression: string, x: number) {
   try {
@@ -30,7 +32,7 @@ function evaluate(expression: string, x: number) {
     const value = Number(
       engine(normalized, { x: String(x) })
         .evaluate()
-        .toString(),
+        .text(),
     );
     return Number.isFinite(value) ? value : NaN;
   } catch {
@@ -241,7 +243,7 @@ export default function EquationInputTargetLesson30({
             <section className="graph-card">
               <h2>GRAPH VIEW</h2>
               <p>The lines intersect at the solution.</p>
-              <EquationGraph model={model} />
+              <EquationGraph key={resetToken} model={model} />
               <footer>
                 Intersection: ({format(model.solution)}, {format(model.solvedY)}
                 )
@@ -353,40 +355,6 @@ export default function EquationInputTargetLesson30({
   );
 }
 
-function BalanceModel({ model }: { model: EquationModel }) {
-  return (
-    <div className="balance-model">
-      <div className="beam">
-        <i></i>
-        <b>=</b>
-      </div>
-      <div className="pan left">
-        <span>{format(model.leftCoefficient)}x</span>
-        <span>
-          {model.leftConstant >= 0
-            ? `+ ${format(model.leftConstant)}`
-            : format(model.leftConstant)}
-        </span>
-      </div>
-      <div className="pan right">
-        <span>
-          {model.rightCoefficient
-            ? `${format(model.rightCoefficient)}x`
-            : format(model.rightConstant)}
-        </span>
-        {model.rightCoefficient && model.rightConstant ? (
-          <span>
-            {model.rightConstant >= 0
-              ? `+ ${format(model.rightConstant)}`
-              : format(model.rightConstant)}
-          </span>
-        ) : null}
-      </div>
-      <div className="stand"></div>
-    </div>
-  );
-}
-
 function SolutionSteps({
   model,
   solved,
@@ -436,80 +404,22 @@ function SolutionSteps({
   );
 }
 
-function EquationGraph({ model }: { model: EquationModel }) {
-  const safeModel = model.valid
-    ? model
-    : {
-        ...model,
-        left: "2x + 3",
-        right: "11",
-        solution: 4,
-        solvedY: 11,
-        leftCoefficient: 2,
-        leftConstant: 3,
-        rightCoefficient: 0,
-        rightConstant: 11,
-      };
-  const map = (point: { x: number; y: number }) => ({
-    x: 115 + point.x * 28,
-    y: 235 - point.y * 14,
-  });
-  const linePath = (a: number, b: number) => {
-    const start = map({ x: -4, y: a * -4 + b }),
-      end = map({ x: 7, y: a * 7 + b });
-    return `M${start.x},${start.y}L${end.x},${end.y}`;
-  };
-  const intersection = map({ x: safeModel.solution, y: safeModel.solvedY });
-  return (
-    <svg
-      viewBox="0 0 350 365"
-      role="img"
-      aria-label="Equation lines and solution intersection"
-    >
-      <defs>
-        <pattern
-          id="equation-grid"
-          width="28"
-          height="56"
-          patternUnits="userSpaceOnUse"
-        >
-          <path d="M28 0H0V56" fill="none" stroke="#dce3ea" />
-        </pattern>
-      </defs>
-      <rect width="350" height="365" fill="url(#equation-grid)" />
-      <line className="axis" x1="4" y1="235" x2="345" y2="235" />
-      <line className="axis" x1="115" y1="4" x2="115" y2="360" />
-      <path
-        className="left-line"
-        d={linePath(safeModel.leftCoefficient, safeModel.leftConstant)}
-      />
-      <path
-        className="right-line"
-        d={linePath(safeModel.rightCoefficient, safeModel.rightConstant)}
-      />
-      <line
-        className="guide"
-        x1={intersection.x}
-        y1={intersection.y}
-        x2={intersection.x}
-        y2="235"
-      />
-      <circle cx={intersection.x} cy={intersection.y} r="6" />
-      <text x={intersection.x + 8} y={intersection.y + 25}>
-        ({format(safeModel.solution)}, {format(safeModel.solvedY)})
-      </text>
-      <g className="line-label left">
-        <rect x="270" y="8" width="75" height="37" rx="5" />
-        <text x="278" y="31">
-          y = {safeModel.left}
-        </text>
-      </g>
-      <g className="line-label right">
-        <rect x="288" y="95" width="57" height="36" rx="5" />
-        <text x="296" y="118">
-          y = {safeModel.right}
-        </text>
-      </g>
-    </svg>
-  );
+
+function BalanceModel({model}:{model:EquationModel}) {
+  const left=[`${format(model.leftCoefficient)}x`,model.leftConstant>=0?`+ ${format(model.leftConstant)}`:format(model.leftConstant)];
+  const right=[model.rightCoefficient?`${format(model.rightCoefficient)}x`:format(model.rightConstant)];
+  if(model.rightCoefficient&&model.rightConstant)right.push(model.rightConstant>=0?`+ ${format(model.rightConstant)}`:format(model.rightConstant));
+  return <LessonBalanceGraph left={left} right={right}/>;
+}
+const EQUATION_VIEW={xMin:-115/28,xMax:(350-115)/28,yMin:(235-365)/14,yMax:235/14};
+function EquationGraph({model}:{model:EquationModel}) {
+  const [view,setView]=useState(EQUATION_VIEW);
+  // Retain the original invalid-input reference plot and identify it explicitly.
+  const m=model.valid?model:{...model,left:'2x + 3',right:'11',solution:4,solvedY:11,leftCoefficient:2,leftConstant:3,rightCoefficient:0,rightConstant:11};
+  return <LessonCartesianGraph title="Equation lines and solution intersection" description={model.valid?undefined:'Reference example: 2x + 3 = 11'} view={view} onViewChange={setView} onResetView={()=>setView(EQUATION_VIEW)}
+    series={[
+      {id:'left',label:`y = ${m.left}`,color:'#7040e8',points:[{x:-4,y:-4*m.leftCoefficient+m.leftConstant},{x:7,y:7*m.leftCoefficient+m.leftConstant}]},
+      {id:'right',label:`y = ${m.right}`,color:'#168fe7',points:[{x:-4,y:-4*m.rightCoefficient+m.rightConstant},{x:7,y:7*m.rightCoefficient+m.rightConstant}]},
+      {id:'guide',label:'Solution projection',color:'#26344d',dashed:true,points:[{x:m.solution,y:m.solvedY},{x:m.solution,y:0}]}
+    ]} annotations={[{id:'intersection',x:m.solution,y:m.solvedY,label:`(${format(m.solution)}, ${format(m.solvedY)})`,color:'#7040e8'}]}/>;
 }

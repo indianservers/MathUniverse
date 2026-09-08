@@ -1,0 +1,47 @@
+import { useRef,useState } from "react";
+import { Link } from "react-router-dom";
+import { ArrowLeft,ArrowRight,RotateCcw,TriangleAlert,CheckCircle2 } from "lucide-react";
+import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
+import { analyzeRegion,visibleRegion,satisfiesRegion,type RegionConstraint,type RegionPoint } from "./feasibleRegionModel";
+import { boundedConstraints,boundedPractice } from "./boundedRegionModel";
+import "./BoundedRegionTargetLesson10203.css";
+const fmt=(n:number)=>Number(n.toFixed(2));
+function BoundedGraph({constraints,onLimit,onK,compact=false}:{constraints:RegionConstraint[];onLimit?:(v:number)=>void;onK?:(v:number)=>void;compact?:boolean}) {
+  const dragging=useRef<"limit"|"k"|null>(null);
+  const extent=Math.max(10,constraints[2].c+1,constraints[3].c/2+1);
+  const scale=360/extent;
+  const map=(p:RegionPoint)=>[40+p[0]*scale,400-p[1]*scale];
+  const bounds={left:-40/scale,right:390/scale,top:390/scale,bottom:-30/scale};
+  const points=(p:RegionPoint[])=>p.map(point=>map(point).join(",")).join(" ");
+  const move=(event:React.PointerEvent<SVGSVGElement>)=>{
+    if(!dragging.current)return;const matrix=event.currentTarget.getScreenCTM();if(!matrix)return;
+    const p=new DOMPoint(event.clientX,event.clientY).matrixTransform(matrix.inverse());
+    if(dragging.current==="limit")onLimit?.(Math.max(1,Math.min(20,Math.round((400-p.y)/scale*10)/10)));
+    else onK?.(Math.max(1,Math.min(30,Math.round((p.x-40)/scale*20)/10)));
+  };
+  return <svg viewBox="0 0 440 440" className="br-graph" role="img" aria-label={compact?"Boundary removal comparison graph":"Bounded feasible region graph"} onPointerMove={move} onPointerUp={event=>{dragging.current=null;if(event.currentTarget.hasPointerCapture(event.pointerId))event.currentTarget.releasePointerCapture(event.pointerId);}} onPointerCancel={()=>{dragging.current=null;}}>
+    {Array.from({length:Math.ceil(extent)+1},(_,i)=>i).map(n=><g key={n}><path d={`M${map([n,0])[0]} 10V425 M10 ${map([0,n])[1]}H430`} stroke="#dde4ee" strokeDasharray="3 3"/><text x={map([n,0])[0]} y="417">{n}</text><text x="23" y={map([0,n])[1]+3}>{n}</text></g>)}
+    {constraints.filter(c=>c.enabled).map(c=><polygon key={c.label} points={points(visibleRegion([c],bounds))} fill={c.color} opacity=".04"/>)}
+    <polygon points={points(visibleRegion(constraints,bounds))} fill="#12a17b" opacity=".22"/>
+    <path d="M40 5V430 M5 400H435" fill="none" stroke="#25313c"/>
+    {constraints.filter(c=>c.enabled).map(c=>{const start:RegionPoint=c.b?[bounds.left,(c.c-c.a*bounds.left)/c.b]:[0,bounds.bottom];const end:RegionPoint=c.b?[bounds.right,(c.c-c.a*bounds.right)/c.b]:[0,bounds.top];return <line key={c.label} x1={map(start)[0]} y1={map(start)[1]} x2={map(end)[0]} y2={map(end)[1]} stroke={c.color} strokeWidth="1.5"/>;})}
+    {analyzeRegion(constraints).vertices.map((p,i)=><g key={p.join()}><circle cx={map(p)[0]} cy={map(p)[1]} r="3.5" fill="white" stroke="#18343c"/><text x={map(p)[0]+6} y={map(p)[1]-8}>{i===0?"O":String.fromCharCode(64+i)}({p.map(fmt).join(",")})</text></g>)}
+    {!compact&&(["limit","k"] as const).map(kind=>{const p:RegionPoint=kind==="limit"?[0,constraints[2].c]:[constraints[3].c/2,0];return <circle key={kind} cx={map(p)[0]} cy={map(p)[1]} r="6" fill="white" stroke={kind==="limit"?"#9244ff":"#ff7b24"} strokeWidth="2" role="slider" tabIndex={0} aria-label={kind==="limit"?"Sum boundary":"Double-x boundary"} aria-valuenow={kind==="limit"?constraints[2].c:constraints[3].c} onPointerDown={event=>{dragging.current=kind;event.currentTarget.ownerSVGElement?.setPointerCapture(event.pointerId);event.preventDefault();}} onKeyDown={event=>{if(["ArrowUp","ArrowRight","ArrowDown","ArrowLeft"].includes(event.key)){event.preventDefault();const delta=["ArrowUp","ArrowRight"].includes(event.key)?.1:-.1;if(kind==="limit")onLimit?.(Math.max(1,Math.min(20,fmt(constraints[2].c+delta))));else onK?.(Math.max(1,Math.min(30,fmt(constraints[3].c+delta))));}}}/>;})}
+  </svg>;
+}
+export default function BoundedRegionTargetLesson10203({lesson}:{lesson:SchoolSyllabusLesson}) {
+  const [enabled,setEnabled]=useState([true,true,true,true]),[k,setK]=useState(10),[limit,setLimit]=useState(7),[removed,setRemoved]=useState(2),[practice,setPractice]=useState(false),[tab,setTab]=useState("Interact");
+  const constraints=boundedConstraints(k,limit,enabled), model=analyzeRegion(constraints);
+  const comparison=constraints.map((c,i)=>({...c,enabled:c.enabled&&i!==removed})), comparisonModel=analyzeRegion(comparison);
+  const example=boundedPractice();
+  const point:RegionPoint=[2,3];
+  const reset=()=>{setEnabled([true,true,true,true]);setK(10);setLimit(7);setRemoved(2);setPractice(false);};
+  return <main className="br10203" data-testid="school-mockup-0877"><header><aside><small>BOUNDARY STATUS</small><h3>{model.kind}</h3><p>{model.kind==="BOUNDED"?"finite in every direction":model.kind==="UNBOUNDED"?"extends without bound":"no common feasible point"}</p></aside><small>CLASS 12 · LINEAR PROGRAMMING</small><h1>{lesson.title}</h1><p>Learn how intersecting linear half-planes can enclose a finite polygon.</p><div className="br-tags">Class 12 · Linear Programming · 16 min</div></header>
+    <nav className="br-tabs" aria-label="Lesson sections">{["Interact","Learn","Example","Rule","Practice"].map(name=><button key={name} aria-current={name===tab?"location":undefined} onClick={()=>{setTab(name);document.getElementById(`br-${name}`)?.scrollIntoView({behavior:"smooth"});}}>{name}</button>)}<button onClick={reset}><RotateCcw size={14}/>Reset all</button></nav>
+    <section id="br-Interact" className="br-lab"><aside><h2>INEQUALITIES (half-planes)</h2>{constraints.map((c,i)=><div className="br-constraint" style={{borderLeftColor:c.color}} key={i}><label><span style={{color:c.color}}>{c.label}</span><input type="checkbox" checked={enabled[i]} onChange={e=>setEnabled(previous=>previous.map((value,j)=>j===i?e.target.checked:value))}/></label>{i===3&&<label>k = {k}<input aria-label="Boundary constant k" type="number" min="1" max="30" step=".1" value={k} onChange={e=>{const v=Number(e.target.value);if(Number.isFinite(v))setK(Math.max(1,Math.min(30,v)));}}/></label>}</div>)}<div className="br-handle-key"><h3>Boundary handles</h3><p>Sum boundary: {limit}</p><p>Double-x boundary: {k}</p><span>■ Overlap shows the feasible region</span></div></aside><BoundedGraph constraints={constraints} onK={setK} onLimit={setLimit}/></section>
+    <section id="br-Example" className="br-analysis"><div><h2>COMPARE: REMOVE ONE BOUNDARY</h2><label>Remove:<select aria-label="Boundary to remove" value={removed} onChange={e=>setRemoved(Number(e.target.value))}>{constraints.map((c,i)=><option key={i} value={i}>{c.label}</option>)}</select></label><BoundedGraph constraints={comparison} compact/><p className="br-comparison-result">{comparisonModel.kind} · {comparisonModel.kind==="BOUNDED"?"The remaining constraints still enclose a finite region.":comparisonModel.kind==="UNBOUNDED"?"The region extends infinitely in at least one direction.":"No point satisfies every remaining constraint."}</p></div><div><section id="br-Rule"><h2>BOUNDARY TEST</h2>{[["Non-empty",model.kind!=="EMPTY","At least one point satisfies all inequalities."],["Closed",true,"Includes its boundary lines (≤ or ≥)."],["Finite",model.kind!=="UNBOUNDED","Does not extend infinitely in any direction."]].map(([name,pass,copy])=><p className="br-boundary-test" key={String(name)}><strong>{name}</strong><span>{copy}</span><b>{pass?"✓":"×"}</b></p>)}</section><section><h2>POINT TEST for P(2, 3)</h2><table><thead><tr><th>Inequality</th><th>Check</th><th>Holds?</th></tr></thead><tbody>{constraints.filter(c=>c.enabled).map(c=><tr key={c.label}><td>{c.label}</td><td>{c.a*2+c.b*3} ≤ {c.c}</td><td>{satisfiesRegion(point,c)?"✓":"×"}</td></tr>)}</tbody></table><p>{constraints.filter(c=>c.enabled).every(c=>satisfiesRegion(point,c))?"P(2, 3) satisfies all → inside the feasible region.":"P(2, 3) fails at least one active constraint."}</p></section></div></section>
+    <section id="br-Learn" className="br-notes"><article><h2>WHAT IS A BOUNDED FEASIBLE REGION?</h2><p>A feasible region is bounded when all of its points fit inside a finite disk. It can be a polygon, a single point or a line segment.</p></article><article><h2><TriangleAlert size={20}/>COMMON MISCONCEPTION</h2><p>Removing a constraint does not always make a region unbounded. Other constraints may still provide finite limits.</p></article></section>
+    <section id="br-Practice" className="br-practice"><h2>TRY IT: LESSON PRACTICE</h2><p>Determine whether the system has a bounded feasible region, then list its corner points.</p><p>x ≥ 0, y ≥ 0, x + 2y ≤ 8, 3x + y ≤ 12</p><button onClick={()=>setPractice(v=>!v)} aria-expanded={practice}><CheckCircle2 size={15}/>{practice?"Hide answer":"Check my answer"}</button>{practice&&<div role="status"><strong>{example.kind}</strong><p>Vertices: {example.vertices.map(p=>`(${p.map(fmt).join(", ")})`).join(" → ")}</p><p>Area: {fmt(example.area??0)} square units</p></div>}</section>
+    <nav className="br-next"><Link to="/lessons/school/class-12/class-12-linear-programming-corner-point-method"><ArrowLeft size={14}/>Previous: Corner-Point Method</Link><Link to="/lessons/school/class-12/class-12-linear-programming-unbounded-feasible-region">Next: Unbounded Feasible Region<ArrowRight size={14}/></Link></nav>
+  </main>;
+}

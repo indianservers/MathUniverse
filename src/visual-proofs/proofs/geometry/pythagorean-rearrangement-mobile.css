@@ -1,0 +1,37 @@
+.pythagorean-proof-mobile {
+  --ink: #252b2f;
+  position: fixed; inset: 0; z-index: 100;
+  display: grid; grid-template-rows: 88px minmax(0, 1fr) 112px 230px;
+  min-height: 100dvh; overflow: hidden; color: var(--ink);
+  background: #fbfaf6; font-family: "Nunito", "Segoe UI", sans-serif;
+}
+.pythagorean-proof-header { display: grid; grid-template-columns: 52px minmax(0,1fr) 52px; align-items: center; padding: 7px 13px 0; border-bottom: 1px solid #ddd9d0; }
+.pythagorean-proof-header button { display: grid; place-items: center; width: 46px; height: 46px; border: 0; border-radius: 14px; background: transparent; color: var(--ink); }
+.pythagorean-proof-header svg { width: 27px; height: 27px; stroke-width: 2.5; }
+.pythagorean-proof-header div { text-align: center; }
+.pythagorean-proof-header h1 { margin: 0; font-size: clamp(18px, 5vw, 25px); font-weight: 900; letter-spacing: -.025em; white-space: nowrap; }
+.pythagorean-proof-header p { margin: 5px 0 0; color: #777; font-size: 14px; }
+.pythagorean-proof-stage { min-height: 0; display: grid; place-items: center; background-image: linear-gradient(rgba(92,111,117,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(92,111,117,.045) 1px,transparent 1px); background-size: 16px 16px; }
+.pythagorean-proof-stage svg { width: min(100%, 560px); height: 100%; overflow: visible; }
+.pythagorean-panel { opacity: .82; transition: opacity .35s ease, filter .35s ease; }
+.pythagorean-panel.active { opacity: 1; filter: drop-shadow(0 4px 5px rgba(49,41,30,.12)); }
+.pythagorean-divider { stroke: #ddd8cf; stroke-width: 2; stroke-linecap: round; }
+.pythagorean-swap { color: var(--ink); }
+.pythagorean-swap circle { fill: #fff; stroke: #e1dbd1; stroke-width: 1.4; filter: drop-shadow(0 3px 4px rgba(50,40,28,.18)); }
+.pythagorean-swap svg { stroke-width: 3; }
+.pythagorean-triangle { cursor: pointer; transition: filter .2s ease, opacity .2s ease; }
+.pythagorean-triangle.selected { filter: brightness(1.08) drop-shadow(0 0 5px #fff); stroke-width: 4; }
+.pythagorean-math-label,.pythagorean-side-label { fill: var(--ink); text-anchor: middle; dominant-baseline: middle; font-family: Georgia, serif; font-style: italic; }
+.pythagorean-math-label { font-size: 23px; }.pythagorean-side-label { font-size: 17px; }
+.pythagorean-badge { fill: #fff; text-anchor: middle; dominant-baseline: middle; font-size: 9px; font-weight: 900; }
+.pythagorean-corner-button { cursor: pointer; }
+.pythagorean-proof-controls { display: flex; align-items: center; justify-content: center; gap: 28px; border-radius: 50% 50% 0 0/28% 28% 0 0; box-shadow: inset 0 1px 0 #e6e0d7; }
+.pythagorean-proof-controls button { display: grid; place-items: center; width: 58px; height: 58px; border: 1px solid #dfd8ce; border-radius: 50%; color: var(--ink); background: #fff; box-shadow: 0 7px 15px rgba(53,45,35,.12); }
+.pythagorean-proof-controls button.primary { width: 76px; height: 76px; }.pythagorean-proof-controls svg { width: 29px; height: 29px; stroke-width: 2.3; }.pythagorean-proof-controls .primary svg { fill: var(--ink); }
+.pythagorean-formula-card { align-self: start; display: flex; align-items: center; justify-content: center; gap: 12px; width: calc(100% - 44px); height: 142px; margin: 10px auto 0; border: 1px solid #ded7cd; border-radius: 19px; background: rgba(255,255,255,.72); box-shadow: 0 6px 15px rgba(55,45,34,.1); font-family: Georgia,serif; font-size: clamp(42px,12vw,62px); font-style: italic; }
+.pythagorean-formula-card .a-term { color: #f2a52f; }.pythagorean-formula-card .b-term { color: #605bd0; }.pythagorean-formula-card .c-term { color: #f27565; }
+.pythagorean-proof-menu { position: absolute; top: 70px; right: 15px; width: min(335px,calc(100vw - 30px)); padding: 21px; border: 1px solid #ded8ce; border-radius: 20px; background: #fff; box-shadow: 0 18px 45px rgba(48,41,33,.18); }
+.pythagorean-proof-menu button { position: absolute; top: 11px; right: 11px; display: grid; place-items: center; width: 38px; height: 38px; border: 0; background: transparent; }
+.pythagorean-proof-menu h2 { margin: 0 38px 8px 0; font-size: 20px; font-weight: 900; }.pythagorean-proof-menu p { margin: 0; color: #655f58; font-size: 14px; line-height: 1.5; }.pythagorean-proof-menu .hint { margin-top: 12px; color: #4b6a76; font-weight: 800; }
+@media (max-height: 750px) { .pythagorean-proof-mobile { grid-template-rows: 82px minmax(0,1fr) 96px 190px; }.pythagorean-formula-card { height: 120px; } }
+@media (prefers-reduced-motion:reduce) { .pythagorean-panel,.pythagorean-triangle { transition:none; } }

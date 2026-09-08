@@ -2,11 +2,14 @@ import { Maximize2, RotateCcw, Share2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { PointerEvent as ReactPointerEvent } from "react";
 import type { LessonAdapterProps } from "../../types";
+import {
+  convergenceDivergenceAnalysis,
+  geometricComparisonPartials,
+} from "./convergenceDivergenceLessonModel";
+import type { ConvergenceSeriesType } from "./convergenceDivergenceLessonModel";
 import "./ConvergenceDivergenceTargetLesson342.css";
 
-type SeriesType =
-  "Geometric" | "p-Series" | "Alternating" | "Factorial" | "Custom";
-const types: SeriesType[] = [
+const types: ConvergenceSeriesType[] = [
   "Geometric",
   "p-Series",
   "Alternating",
@@ -21,17 +24,12 @@ const tabs = [
   "Know more",
 ];
 const clean = (value: number) => Number(value.toFixed(6));
-const factorial = (n: number) => {
-  let value = 1;
-  for (let i = 2; i <= n; i += 1) value *= i;
-  return value;
-};
 
 export default function ConvergenceDivergenceTargetLesson342({
   resetToken,
   onInteraction,
 }: LessonAdapterProps) {
-  const [type, setType] = useState<SeriesType>("Geometric");
+  const [type, setType] = useState<ConvergenceSeriesType>("Geometric");
   const [first, setFirst] = useState(4);
   const [ratio, setRatio] = useState(0.5);
   const [power, setPower] = useState(2);
@@ -40,6 +38,7 @@ export default function ConvergenceDivergenceTargetLesson342({
   const [tolerance, setTolerance] = useState(0.05);
   const [comparison, setComparison] = useState("Divergent geometric, r = 1.5");
   const [tab, setTab] = useState(tabs[0]);
+  const [language, setLanguage] = useState<"en" | "hi">("en");
   const [question, setQuestion] = useState(0);
   const [answer, setAnswer] = useState<"" | "correct" | "incorrect">("");
   const [fullscreen, setFullscreen] = useState(false);
@@ -55,6 +54,7 @@ export default function ConvergenceDivergenceTargetLesson342({
     setTolerance(0.05);
     setComparison("Divergent geometric, r = 1.5");
     setTab(tabs[0]);
+    setLanguage("en");
     setQuestion(0);
     setAnswer("");
     setFullscreen(false);
@@ -66,70 +66,33 @@ export default function ConvergenceDivergenceTargetLesson342({
     setActions((value) => value + 1);
     onInteraction();
   };
-  const termAt = (n: number) => {
-    if (type === "Geometric") return first * ratio ** (n - 1);
-    if (type === "p-Series") return 1 / n ** power;
-    if (type === "Alternating") return (n % 2 ? 1 : -1) / n ** power;
-    if (type === "Factorial") return 1 / factorial(n);
-    return scale / (n + shift) ** power;
-  };
-  const terms = Array.from({ length: 20 }, (_, index) => termAt(index + 1));
-  const partials = terms.reduce<number[]>(
-    (values, term) => [...values, term + (values.at(-1) ?? 0)],
-    [],
-  );
-  const convergent =
-    type === "Geometric"
-      ? Math.abs(ratio) < 1
-      : type === "p-Series"
-        ? power > 1
-        : type === "Alternating"
-          ? power > 0
-          : type === "Factorial"
-            ? true
-            : power > 1 && shift > -1;
-  const absolute = type === "Alternating" ? power > 1 : convergent;
-  const nthLimit =
-    type === "Geometric"
-      ? Math.abs(ratio) < 1
-        ? 0
-        : ratio === 1
-          ? first
-          : Infinity
-      : type === "Custom" && power <= 0
-        ? Infinity
-        : 0;
-  const ratioLimit =
-    type === "Geometric" ? Math.abs(ratio) : type === "Factorial" ? 0 : 1;
-  const infiniteSum =
-    type === "Geometric" && convergent
-      ? first / (1 - ratio)
-      : type === "Factorial"
-        ? Math.E - 1
-        : convergent
-          ? Array.from({ length: 5000 }, (_, index) => {
-              const n = index + 1;
-              if (type === "p-Series") return 1 / n ** power;
-              if (type === "Alternating") return (n % 2 ? 1 : -1) / n ** power;
-              return scale / (n + shift) ** power;
-            }).reduce((sum, value) => sum + value, 0)
-          : null;
-  const min = Math.min(0, ...partials, infiniteSum ?? 0),
-    max = Math.max(1, ...partials, infiniteSum ?? 0);
+  const analysis = convergenceDivergenceAnalysis({
+    type,
+    first,
+    ratio,
+    power,
+    scale,
+    shift,
+  });
+  const {
+    terms,
+    partials,
+    convergent,
+    absolute,
+    nthLimit,
+    ratioLimit,
+    infiniteSum,
+    plotMin,
+    plotMax,
+  } = analysis;
   const graphY = (value: number) =>
-    178 - ((value - min) / Math.max(max - min, 0.001)) * 132;
+    178 - ((value - plotMin) / Math.max(plotMax - plotMin, 0.001)) * 132;
   const compareRatio = comparison.includes("1.2")
     ? 1.2
     : comparison.includes("-1")
       ? -1
       : 1.5;
-  const compare = Array.from(
-    { length: 16 },
-    (_, index) => 4 * compareRatio ** index,
-  ).reduce<number[]>(
-    (values, term) => [...values, term + (values.at(-1) ?? 0)],
-    [],
-  );
+  const compare = geometricComparisonPartials(compareRatio);
   const challenges = [
     {
       label: "Classify Σ 3^(n-1) / 5^n.",
@@ -162,7 +125,7 @@ export default function ConvergenceDivergenceTargetLesson342({
       setAnswer("");
     });
   };
-  const setModel = (next: SeriesType) =>
+  const setModel = (next: ConvergenceSeriesType) =>
     act(() => {
       setType(next);
       setAnswer("");
@@ -182,6 +145,7 @@ export default function ConvergenceDivergenceTargetLesson342({
       data-sum={infiniteSum === null ? "diverges" : clean(infiniteSum)}
       data-tolerance={tolerance}
       data-tab={tab}
+      data-language={language}
       data-question={question}
       data-quick-result={answer}
       data-actions={actions}
@@ -191,8 +155,14 @@ export default function ConvergenceDivergenceTargetLesson342({
           <b>ADVANCED MATHEMATICS</b>
           <b>SEQUENCES AND SERIES</b>
         </span>
-        <h1>Convergence and Divergence</h1>
-        <p>Classify sequence behaviour.</p>
+        <h1>
+          {language === "en" ? "Convergence and Divergence" : "अभिसरण और अपसरण"}
+        </h1>
+        <p>
+          {language === "en"
+            ? "Classify sequence behaviour."
+            : "अनुक्रम के व्यवहार का वर्गीकरण करें।"}
+        </p>
         <div>
           {[
             "Intermediate-Advanced",
@@ -204,19 +174,38 @@ export default function ConvergenceDivergenceTargetLesson342({
           ))}
         </div>
         <nav>
-          <select aria-label="Language" onChange={() => act(() => {})}>
-            <option>English (English)</option>
-            <option>Hindi (Hindi)</option>
+          <select
+            aria-label="Language"
+            value={language}
+            onChange={(event) =>
+              act(() => setLanguage(event.target.value as "en" | "hi"))
+            }
+          >
+            <option value="en">English (English)</option>
+            <option value="hi">हिन्दी (Hindi)</option>
           </select>
-          <button onClick={reset}>
+          <button onClick={() => act(reset)}>
             <RotateCcw />
             Reset All
           </button>
-          <button onClick={() => act(() => {})}>
+          <button
+            onClick={() =>
+              act(() => navigator.clipboard?.writeText(location.href))
+            }
+          >
             <Share2 />
             Share
           </button>
-          <button onClick={() => act(() => {})}>Workspace</button>
+          <button
+            onClick={() => {
+              act(() => setTab(tabs[0]));
+              document
+                .getElementById("seq342-define")
+                ?.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
+            Workspace
+          </button>
         </nav>
       </header>
       <nav className="seq342-tabs">
@@ -224,13 +213,26 @@ export default function ConvergenceDivergenceTargetLesson342({
           <button
             className={tab === item ? "active" : ""}
             key={item}
-            onClick={() => act(() => setTab(item))}
+            onClick={() => {
+              act(() => setTab(item));
+              document
+                .getElementById(
+                  item === tabs[0]
+                    ? "seq342-define"
+                    : item === "Examples"
+                      ? "seq342-worked"
+                      : item === "Formulas"
+                        ? "seq342-tests"
+                        : "seq342-objective",
+                )
+                ?.scrollIntoView({ behavior: "smooth" });
+            }}
           >
             {item}
           </button>
         ))}
       </nav>
-      <section className="seq342-objective">
+      <section className="seq342-objective" id="seq342-objective">
         <article>
           <small>LEARNING OBJECTIVE</small>
           <p>
@@ -249,7 +251,7 @@ export default function ConvergenceDivergenceTargetLesson342({
         </article>
         <div className="seq342-growth">▁▂▃▄▅▇</div>
       </section>
-      <section className="seq342-define">
+      <section className="seq342-define" id="seq342-define">
         <h2>
           <i>1</i> Define the series
         </h2>
@@ -291,7 +293,7 @@ export default function ConvergenceDivergenceTargetLesson342({
                       type="number"
                       value={first}
                       onChange={(e) =>
-                        act(() => setFirst(Number(e.target.value)))
+                        act(() => setFirst(clean(Number(e.target.value))))
                       }
                     />
                   </label>
@@ -303,7 +305,7 @@ export default function ConvergenceDivergenceTargetLesson342({
                       step="0.1"
                       value={ratio}
                       onChange={(e) =>
-                        act(() => setRatio(Number(e.target.value)))
+                        act(() => setRatio(clean(Number(e.target.value))))
                       }
                     />
                   </label>
@@ -318,7 +320,7 @@ export default function ConvergenceDivergenceTargetLesson342({
                     step="0.1"
                     value={power}
                     onChange={(e) =>
-                      act(() => setPower(Number(e.target.value)))
+                      act(() => setPower(clean(Number(e.target.value))))
                     }
                   />
                 </label>
@@ -332,7 +334,7 @@ export default function ConvergenceDivergenceTargetLesson342({
                       type="number"
                       value={scale}
                       onChange={(e) =>
-                        act(() => setScale(Number(e.target.value)))
+                        act(() => setScale(clean(Number(e.target.value))))
                       }
                     />
                   </label>
@@ -344,7 +346,11 @@ export default function ConvergenceDivergenceTargetLesson342({
                       step="0.1"
                       value={shift}
                       onChange={(e) =>
-                        act(() => setShift(Number(e.target.value)))
+                        act(() =>
+                          setShift(
+                            Math.max(-0.9, clean(Number(e.target.value))),
+                          ),
+                        )
                       }
                     />
                   </label>
@@ -356,7 +362,7 @@ export default function ConvergenceDivergenceTargetLesson342({
                       step="0.1"
                       value={power}
                       onChange={(e) =>
-                        act(() => setPower(Number(e.target.value)))
+                        act(() => setPower(clean(Number(e.target.value))))
                       }
                     />
                   </label>
@@ -492,13 +498,16 @@ export default function ConvergenceDivergenceTargetLesson342({
           as n increases.
         </output>
       </section>
-      <section className="seq342-tests">
+      <section className="seq342-tests" id="seq342-tests">
         <article>
           <h2>
             <i>3</i> Nth-term test
           </h2>
           <strong>
-            lim aₙ = {Number.isFinite(nthLimit) ? nthLimit : "does not exist"}
+            lim aₙ ={" "}
+            {nthLimit !== null && Number.isFinite(nthLimit)
+              ? nthLimit
+              : "does not exist"}
           </strong>
           <p className={nthLimit === 0 ? "good" : "bad"}>
             {nthLimit === 0
@@ -576,7 +585,7 @@ export default function ConvergenceDivergenceTargetLesson342({
           </div>
         </article>
       </section>
-      <section className="seq342-worked">
+      <section className="seq342-worked" id="seq342-worked">
         <article>
           <h2>
             <i>6</i> Worked solution (step-by-step)

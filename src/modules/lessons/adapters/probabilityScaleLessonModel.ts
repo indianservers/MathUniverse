@@ -1,0 +1,4 @@
+export const probabilityScenarios = [{ id: "three", label: "Get a 3 on a fair die", favorable: 1, total: 6 }, { id: "heads", label: "Heads on a fair coin", favorable: 1, total: 2 }, { id: "even", label: "Even number on a die", favorable: 3, total: 6 }, { id: "sun", label: "The sun will rise tomorrow", favorable: 1, total: 1 }, { id: "seven", label: "Get a 7 on a fair die", favorable: 0, total: 6 }];
+export function scenarioProbability(scenario: typeof probabilityScenarios[number]) { return scenario.total ? scenario.favorable / scenario.total : 0; }
+export function simulateProbability(probability: number, trials: number, random = Math.random) { let successes = 0; for (let i = 0; i < trials; i++) if (random() < probability) successes++; return successes / trials; }
+export function likelihood(probability: number) { return probability === 0 ? "Impossible" : probability === 1 ? "Certain" : probability === .5 ? "Even chance" : probability < .5 ? "Unlikely" : "Likely"; }

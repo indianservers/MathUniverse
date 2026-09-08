@@ -1,0 +1,380 @@
+{
+  "records": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "state": {
+        "testid": "algebra-mockup-0030",
+        "dedicatedLesson": "30",
+        "objectModel": "parsed-two-sided-linear-equation-balance-generated-steps-dual-line-intersection-substitution-proof-model",
+        "valid": "true",
+        "checked": "true",
+        "left": "2x + 3",
+        "right": "11",
+        "solution": "4",
+        "solvedY": "11",
+        "checks": "1",
+        "actions": "0"
+      },
+      "overflow": false,
+      "controls": [
+        {
+          "tag": "INPUT",
+          "name": "Equation input",
+          "value": "2x + 3 = 11",
+          "min": "",
+          "max": "",
+          "step": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Clear",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Check Equation",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Zoom graph in",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Zoom graph out",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Reset graph view",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "3x - 2 = 7",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "x + 5 = 2x - 1",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "4y = y + 12",
+          "value": ""
+        }
+      ],
+      "bars": [],
+      "graphs": [
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 453.640625 302.4270833333333",
+          "label": "Equation lines and solution intersection"
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "state": {
+        "testid": "algebra-mockup-0030",
+        "dedicatedLesson": "30",
+        "objectModel": "parsed-two-sided-linear-equation-balance-generated-steps-dual-line-intersection-substitution-proof-model",
+        "valid": "true",
+        "checked": "true",
+        "left": "2x + 3",
+        "right": "11",
+        "solution": "4",
+        "solvedY": "11",
+        "checks": "1",
+        "actions": "0"
+      },
+      "overflow": false,
+      "controls": [
+        {
+          "tag": "INPUT",
+          "name": "Equation input",
+          "value": "2x + 3 = 11",
+          "min": "",
+          "max": "",
+          "step": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Clear",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Check Equation",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Zoom graph in",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Zoom graph out",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Reset graph view",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "3x - 2 = 7",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "x + 5 = 2x - 1",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "4y = y + 12",
+          "value": ""
+        }
+      ],
+      "bars": [],
+      "graphs": [
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 273 260",
+          "label": "Equation lines and solution intersection"
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "state": {
+        "testid": "algebra-mockup-0030",
+        "dedicatedLesson": "30",
+        "objectModel": "parsed-two-sided-linear-equation-balance-generated-steps-dual-line-intersection-substitution-proof-model",
+        "valid": "true",
+        "checked": "true",
+        "left": "2x + 3",
+        "right": "11",
+        "solution": "4",
+        "solvedY": "11",
+        "checks": "1",
+        "actions": "0"
+      },
+      "overflow": false,
+      "controls": [
+        {
+          "tag": "INPUT",
+          "name": "Equation input",
+          "value": "2x + 3 = 11",
+          "min": "",
+          "max": "",
+          "step": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Clear",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Check Equation",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Zoom graph in",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Zoom graph out",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Reset graph view",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "3x - 2 = 7",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "x + 5 = 2x - 1",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "4y = y + 12",
+          "value": ""
+        }
+      ],
+      "bars": [],
+      "graphs": [
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 264.625 260",
+          "label": "Equation lines and solution intersection"
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

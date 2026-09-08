@@ -1,0 +1,339 @@
+.lesson-shell:has(.ig42-page) > header,
+.lesson-shell:has(.ig42-page) > .lesson-workbench,
+.lesson-shell:has(.ig42-page) > .lesson-reset-row {
+  display: none;
+}
+.lesson-shell:has(.ig42-page) {
+  max-width: none;
+  padding: 0;
+}
+.ig42-page {
+  --ink: #111a42;
+  color: var(--ink);
+  background: linear-gradient(145deg, #effcff, #fff 48%, #f5eeff);
+  padding: 20px;
+  min-height: 100vh;
+  font-family: Inter, system-ui, sans-serif;
+  letter-spacing: 0;
+}
+.ig42-page button,
+.ig42-page input {
+  font: inherit;
+}
+.ig42-breadcrumb {
+  font-size: 14px;
+  color: #60718b;
+  margin: 0 0 22px;
+}
+.ig42-hero {
+  background: #fff;
+  border: 1px solid #d9e5f1;
+  border-radius: 20px;
+  padding: 24px;
+  margin-bottom: 14px;
+}
+.ig42-hero small {
+  display: inline-block;
+  padding: 7px 12px;
+  border-radius: 14px;
+  background: #e6f7fb;
+  color: #087793;
+  font-weight: 800;
+  font-size: 11px;
+}
+.ig42-hero h1 {
+  font-size: 40px;
+  margin: 12px 0 2px;
+}
+.ig42-hero p {
+  font-size: 17px;
+  color: #566780;
+  margin: 0;
+}
+.ig42-hero nav {
+  display: flex;
+  gap: 12px;
+  margin-top: 14px;
+}
+.ig42-hero nav > * {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid #d7e2ee;
+  border-radius: 17px;
+  padding: 9px 14px;
+  background: #fff;
+  font-size: 12px;
+}
+.ig42-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 2.7fr) minmax(300px, 1.45fr);
+  gap: 14px;
+  background: #fff;
+  padding: 10px;
+  border-radius: 15px;
+}
+.ig42-graph {
+  border-right: 1px solid #e0e8f1;
+  padding-right: 12px;
+}
+.ig42-graph > header {
+  display: flex;
+  align-items: center;
+  padding: 4px;
+}
+.ig42-graph h2 {
+  font-size: 15px;
+}
+.ig42-graph > header > b {
+  margin: auto;
+  color: #4f6079;
+  font-size: 12px;
+}
+.ig42-graph > header > b::first-letter {
+  color: #21bdb1;
+}
+.ig42-graph > header nav {
+  display: flex;
+  gap: 5px;
+}
+.ig42-graph > header button {
+  border: 1px solid #d6e2ed;
+  background: #fff;
+  border-radius: 7px;
+  padding: 8px;
+}
+.ig42-graph > header svg,
+.ig42-controls svg {
+  width: 16px;
+}
+.ig42-graph > svg {
+  display: block;
+  width: 100%;
+  aspect-ratio: 720/630;
+}
+.ig42-graph svg .axis {
+  stroke: #111d3e;
+  stroke-width: 1.5;
+}
+.ig42-graph svg text {
+  font-size: 13px;
+  fill: #243451;
+}
+.ig42-line-label rect {
+  fill: #eef9ff;
+  stroke: #a8d8ea;
+}
+.ig42-line-label text {
+  fill: #167ca0 !important;
+  font-weight: 700;
+}
+.ig42-line-label.violet rect {
+  fill: #f5efff;
+  stroke: #ccb9fb;
+}
+.ig42-line-label.violet text {
+  fill: #6f36d7 !important;
+}
+.ig42-graph .test-point {
+  fill: #19ae9e;
+  stroke: #fff;
+  stroke-width: 3;
+  cursor: grab;
+}
+.ig42-point-label rect {
+  fill: #dff8f4;
+  stroke: #6fd3c8;
+}
+.ig42-point-label text {
+  fill: #098c80 !important;
+  font-weight: 800;
+}
+.ig42-graph > p {
+  border: 1px solid #badcf9;
+  background: #f4faff;
+  color: #245c9f;
+  border-radius: 7px;
+  padding: 11px;
+  font-size: 12px;
+}
+.ig42-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+.ig42-controls > section {
+  border: 1px solid;
+  border-radius: 10px;
+  padding: 13px;
+}
+.ig42-controls h2 {
+  font-size: 14px;
+  margin: 0 0 12px;
+}
+.ig42-controls section > b {
+  display: block;
+  font-size: 11px;
+  margin: 10px 0 6px;
+}
+.ig42-controls i {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 7px;
+}
+.ig42-segments {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.ig42-segments.three {
+  grid-template-columns: repeat(3, 1fr);
+}
+.ig42-segments button {
+  height: 36px;
+  border: 1px solid #d7e2ee;
+  background: #fff;
+  border-radius: 7px;
+}
+.ig42-segments button.active {
+  border-color: #278bdf;
+  background: #f3f9ff;
+  color: #1579c6;
+}
+.ig42-controls section:nth-child(2) .ig42-segments button.active {
+  border-color: #9559ed;
+  color: #7633dc;
+  background: #f8f4ff;
+}
+.ig42-test small {
+  color: #5b6a82;
+}
+.ig42-test > label {
+  display: grid;
+  grid-template-columns: 1fr 1fr 45px;
+  gap: 8px;
+  margin-top: 10px;
+}
+.ig42-test > label span {
+  border: 1px solid #d7e2ee;
+  border-radius: 6px;
+  padding: 6px;
+  font-size: 10px;
+}
+.ig42-test > label input {
+  display: block;
+  width: 100%;
+  border: 0;
+  font-weight: 700;
+}
+.ig42-test > label button {
+  border: 1px solid #b9d7ef;
+  background: #f5faff;
+  border-radius: 7px;
+  color: #278bdf;
+}
+.ig42-test > p {
+  display: grid;
+  grid-template-columns: auto 1.4fr 0.8fr 0.9fr 0.6fr;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  border-bottom: 1px solid #e1e9f1;
+  padding: 7px 0;
+  margin: 0;
+}
+.ig42-test > p span {
+  white-space: nowrap;
+}
+.ig42-test b.yes {
+  background: #e2f8ee;
+  color: #16865a;
+  padding: 5px;
+  border-radius: 8px;
+}
+.ig42-test b.no {
+  background: #fdebed;
+  color: #d33b45;
+  padding: 5px;
+  border-radius: 8px;
+}
+.ig42-test output {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 10px;
+  font-weight: 800;
+}
+.ig42-test output.yes {
+  color: #078d7e;
+}
+.ig42-test output.no {
+  color: #cf3541;
+}
+.ig42-test output span {
+  display: grid;
+}
+.ig42-controls > footer {
+  border: 1px solid #d7e2ee;
+  border-radius: 8px;
+  padding: 11px;
+  font-size: 10px;
+  display: flex;
+  gap: 11px;
+  flex-wrap: wrap;
+}
+.ig42-controls > footer hr {
+  width: 100%;
+  border: 0;
+  border-top: 1px solid #dce5ee;
+}
+.ig42-adjacent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 12px 0;
+}
+.ig42-adjacent a {
+  background: #fff;
+  border: 1px solid #d7e2ed;
+  border-radius: 12px;
+  padding: 14px;
+  text-decoration: none;
+  color: #35445e;
+  display: flex;
+  justify-content: space-between;
+}
+.ig42-adjacent span {
+  display: grid;
+  font-size: 10px;
+}
+.ig42-adjacent b {
+  font-size: 13px;
+  margin-top: 3px;
+}
+@media (max-width: 900px) {
+  .ig42-page {
+    padding: 8px;
+  }
+  .ig42-workspace {
+    grid-template-columns: 1fr;
+  }
+  .ig42-hero h1 {
+    font-size: 32px;
+  }
+  .ig42-hero nav {
+    flex-wrap: wrap;
+  }
+  .ig42-graph {
+    overflow: auto;
+    border: 0;
+  }
+  .ig42-graph > svg {
+    min-width: 630px;
+  }
+  .ig42-adjacent {
+    grid-template-columns: 1fr;
+  }
+}

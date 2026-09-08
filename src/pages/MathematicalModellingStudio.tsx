@@ -116,6 +116,7 @@ export default function MathematicalModellingStudio() {
               {item.label}
             </button>
           ))}
+          <Link to="/mathematical-modelling/advanced" className="inline-flex min-h-10 items-center rounded-md border border-violet-300 bg-violet-50 px-4 text-sm font-bold text-violet-800 hover:border-violet-500">Advanced Workbench</Link>
           <button type="button" onClick={reset} className="ml-auto inline-flex min-h-10 items-center gap-2 rounded-md border border-slate-200 bg-white px-3 text-sm font-bold text-slate-700 hover:border-cyan-300">
             <RefreshCw className="h-4 w-4" />Reset
           </button>

@@ -83,3 +83,28 @@ body:has(.piecewise-page) #main-content .flex.items-center.gap-2:has(> nav[aria-
   body:has(.piecewise-page) #main-content { padding:47px 13px 0; overflow:hidden; background:#fff; }
   body:has(.piecewise-page) footer[aria-label="Site footer"] { display:none; }
 }
+
+.piecewise-page,.piecewise-shell,.piecewise-layout,.piecewise-left,.piecewise-header { height:auto; }
+.piecewise-page .piecewise-left { grid-template-rows:auto auto; }
+.piecewise-page .piecewise-side { grid-template-rows:repeat(5,auto); align-content:start; }
+.lesson-page-shell[data-lesson-id="35"] .piecewise-layout { grid-template-columns:minmax(0,1fr) 300px !important; }
+.piecewise-page .piecewise-header { flex-wrap:wrap; gap:16px; }
+.piecewise-page .piecewise-header nav { flex-wrap:wrap; }
+.piecewise-page .piecewise-header aside { width:auto; display:flex; flex-wrap:wrap; }
+.piecewise-page .branch-legend { height:auto; margin:12px 0 0; padding:8px; gap:8px; }
+.piecewise-page .boundary-card,.piecewise-page .boundary-card article { height:auto; }
+.piecewise-page .active-condition > div,.piecewise-page .select-branch button { height:auto; min-height:61px; }
+.piecewise-page .slider-row button { min-width:44px; min-height:44px; }
+@media(max-width:1099px) { .lesson-page-shell[data-lesson-id="35"] .piecewise-layout { grid-template-columns:minmax(0,1fr) !important; } }
+@media(max-width:700px) {
+ .piecewise-page .branch-legend { grid-template-columns:35px minmax(0,1fr); }
+ .piecewise-page .boundary-card > div { grid-template-columns:minmax(0,1fr); }
+ .piecewise-page .piecewise-footer { height:auto; }
+ .piecewise-page .piecewise-footer nav { position:static; margin-top:12px; flex-wrap:wrap; }
+ .piecewise-page .piecewise-header button { min-height:44px; }
+}
+.piecewise-page .piecewise-header aside { align-items:flex-start; }
+.piecewise-page .piecewise-header aside button { height:44px; }
+.piecewise-page .slider-row { grid-template-columns:44px minmax(0,1fr) 44px; }
+.piecewise-page .tick-row { margin-left:54px; margin-right:54px; }
+@media(max-width:1099px) { .piecewise-page .piecewise-breadcrumb { display:none; } }

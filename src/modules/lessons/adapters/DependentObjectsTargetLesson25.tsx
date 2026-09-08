@@ -1,14 +1,16 @@
 import { CheckCircle2, Info, Lightbulb, Lock, Unlock } from "lucide-react";
 import {
   useEffect,
-  useRef,
   useState,
-  type PointerEvent as ReactPointerEvent,
 } from "react";
 import type { LessonAdapterProps } from "../types";
+import { LessonCartesianGraph } from "../graphs/LessonCartesianGraph";
+import { LessonGraphWorkspace } from "../graphs/LessonGraphWorkspace";
+import { LessonDependencyTree } from "../graphs/LessonDependencyTree";
 import "./DependentObjectsTargetLesson25.css";
 
 type Point = { x: number; y: number };
+const GRAPH_VIEW = {xMin:-80/72,xMax:(720-80)/72,yMin:(300-365)/52,yMax:300/52};
 const clamp = (value: number, min: number, max: number) =>
   Math.max(min, Math.min(max, value));
 const fmt = (value: number) =>
@@ -21,6 +23,7 @@ export default function DependentObjectsTargetLesson25({
   const [a, setA] = useState<Point>({ x: 1, y: 2 }),
     [b, setB] = useState<Point>({ x: 5, y: 2 }),
     [actions, setActions] = useState(0);
+  const [graphView,setGraphView]=useState(GRAPH_VIEW);
   const midpoint = { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 },
     length = Math.hypot(b.x - a.x, b.y - a.y);
   const touch = () => {
@@ -44,6 +47,7 @@ export default function DependentObjectsTargetLesson25({
     setA({ x: 1, y: 2 });
     setB({ x: 5, y: 2 });
     setActions(0);
+    setGraphView(GRAPH_VIEW);
   }, [resetToken]);
   return (
     <div
@@ -96,7 +100,16 @@ export default function DependentObjectsTargetLesson25({
       </header>
       <main className="dependency-main">
         <section className="dependency-lab">
-          <DependencyGraph a={a} b={b} midpoint={midpoint} onPoint={update} />
+          <LessonCartesianGraph title="Independent points and dependent midpoint"
+            description="Drag A or B to update segment AB and midpoint M."
+            view={graphView} onViewChange={setGraphView} onResetView={()=>setGraphView(GRAPH_VIEW)} aspectRatio={720/365}
+            legend={[{id:'parents',label:'Independent: A and B',color:'#0872dd'},{id:'midpoint',label:'Dependent: midpoint M',color:'#13a43e'}]}
+            series={[{id:'segment',label:'Segment AB',color:'#195fe4',points:[a,b]}]}
+            annotations={[
+              {id:'a',...a,label:`A(${a.x}, ${a.y})`,color:'#0872dd',testId:'dependency-handle-a',onChange:point=>update('a',point),keyboardStep:1},
+              {id:'b',...b,label:`B(${b.x}, ${b.y})`,color:'#0872dd',testId:'dependency-handle-b',onChange:point=>update('b',point),keyboardStep:1},
+              {id:'midpoint',...midpoint,label:`M(${fmt(midpoint.x)}, ${fmt(midpoint.y)})`,color:'#13a43e'},
+            ]}/>
           <div className="dependency-lower">
             <section className="dependency-formula">
               <div className="parent-cards">
@@ -132,34 +145,14 @@ export default function DependentObjectsTargetLesson25({
                 </b>
               </div>
             </section>
-            <section className="dependency-hierarchy">
-              <h2>Dependency hierarchy</h2>
-              <div>
-                <b>
-                  <i />A
-                </b>
-                <b>
-                  <i />B
-                </b>
-              </div>
-              <span>└────┴────┘</span>
-              <strong>
-                Segment AB
-                <i>
-                  <u />
-                  <u />
-                </i>
-              </strong>
-              <em>↓</em>
-              <strong>
-                <i />
-                Midpoint M
-              </strong>
-              <em>↓</em>
-              <strong>
-                M&nbsp; Label M({fmt(midpoint.x)}, {fmt(midpoint.y)})
-              </strong>
-            </section>
+            <LessonGraphWorkspace title="Dependency hierarchy">
+              <LessonDependencyTree label="A and B determine segment AB, midpoint M and its label" levels={[
+                [{id:'a',label:'A',color:'#0875df'},{id:'b',label:'B',color:'#0875df'}],
+                [{id:'segment',label:'Segment AB',color:'#195fe4'}],
+                [{id:'midpoint',label:'Midpoint M',color:'#13a43e'}],
+                [{id:'label',label:`Label M(${fmt(midpoint.x)}, ${fmt(midpoint.y)})`,color:'#13a43e'}],
+              ]}/>
+            </LessonGraphWorkspace>
           </div>
         </section>
         <aside className="dependency-side">
@@ -274,111 +267,4 @@ function PointControls({
   );
 }
 
-function DependencyGraph({
-  a,
-  b,
-  midpoint,
-  onPoint,
-}: {
-  a: Point;
-  b: Point;
-  midpoint: Point;
-  onPoint: (name: "a" | "b", point: Point) => void;
-}) {
-  const svg = useRef<SVGSVGElement>(null),
-    dragging = useRef<"a" | "b" | null>(null),
-    map = (point: Point) => ({ x: 80 + point.x * 72, y: 300 - point.y * 52 });
-  const pa = map(a),
-    pb = map(b),
-    pm = map(midpoint);
-  const update = (event: ReactPointerEvent<SVGSVGElement>) => {
-    if (!dragging.current || !svg.current) return;
-    const matrix = svg.current.getScreenCTM();
-    if (!matrix) return;
-    const point = new DOMPoint(event.clientX, event.clientY).matrixTransform(
-      matrix.inverse(),
-    );
-    onPoint(dragging.current, {
-      x: (point.x - 80) / 72,
-      y: (300 - point.y) / 52,
-    });
-  };
-  return (
-    <svg
-      ref={svg}
-      viewBox="0 0 720 365"
-      role="img"
-      aria-label="Draggable independent points A and B with dependent midpoint"
-      onPointerMove={update}
-      onPointerUp={() => {
-        dragging.current = null;
-      }}
-    >
-      <defs>
-        <pattern
-          id="dependency-grid"
-          width="36"
-          height="26"
-          patternUnits="userSpaceOnUse"
-        >
-          <path d="M36 0H0V26" fill="none" stroke="#e7ebef" />
-        </pattern>
-        <filter id="point-shadow">
-          <feDropShadow dx="0" dy="2" stdDeviation="2" floodOpacity=".28" />
-        </filter>
-      </defs>
-      <rect width="720" height="365" fill="url(#dependency-grid)" />
-      <line className="axis" x1="8" y1="300" x2="705" y2="300" />
-      <line className="axis" x1="80" y1="16" x2="80" y2="360" />
-      <text x="700" y="291">
-        x
-      </text>
-      <text x="89" y="19">
-        y
-      </text>
-      {[0, 1, 2, 3, 4, 5, 6, 7].map((value) => (
-        <text className="tick" key={`x${value}`} x={75 + value * 72} y="320">
-          {value}
-        </text>
-      ))}
-      {[-1, 1, 2, 3, 4, 5].map((value) => (
-        <text className="tick" key={`y${value}`} x="58" y={305 - value * 52}>
-          {value}
-        </text>
-      ))}
-      <line className="segment" x1={pa.x} y1={pa.y} x2={pb.x} y2={pb.y} />
-      <circle
-        data-testid="dependency-handle-a"
-        className="parent"
-        cx={pa.x}
-        cy={pa.y}
-        r="8"
-        onPointerDown={(event) => {
-          dragging.current = "a";
-          event.currentTarget.setPointerCapture(event.pointerId);
-        }}
-      />
-      <circle
-        data-testid="dependency-handle-b"
-        className="parent"
-        cx={pb.x}
-        cy={pb.y}
-        r="8"
-        onPointerDown={(event) => {
-          dragging.current = "b";
-          event.currentTarget.setPointerCapture(event.pointerId);
-        }}
-      />
-      <circle className="child" cx={pm.x} cy={pm.y} r="8" />
-      <text className="parent-label" x={pa.x - 20} y={pa.y - 23}>
-        A({a.x}, {a.y})
-      </text>
-      <text className="parent-label" x={pb.x - 20} y={pb.y - 23}>
-        B({b.x}, {b.y})
-      </text>
-      <text className="child-label" x={pm.x - 30} y={pm.y - 23}>
-        M({fmt(midpoint.x)}, {fmt(midpoint.y)})
-      </text>
-    </svg>
-  );
-}
+

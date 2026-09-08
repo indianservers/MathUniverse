@@ -1,7 +1,6 @@
-import { PhaseTwoProofExperience } from "../components/PhaseTwoProofExperience";
 import type { VisualProof, VisualProofCategory } from "../data/proofTypes";
-import { circleAreaUnrollingPhaseElevenConfig } from "./phase-eleven/phaseElevenProofConfigs";
+import CircleSectorsMobileProof from "./geometry/CircleSectorsMobileProof";
 
-export default function CircleAreaUnrollingProof({ category, proof }: { category: VisualProofCategory; proof: VisualProof }) {
-  return <PhaseTwoProofExperience category={category} proof={proof} config={circleAreaUnrollingPhaseElevenConfig} />;
+export default function CircleAreaUnrollingProof({ category: _category, proof: _proof }: { category: VisualProofCategory; proof: VisualProof }) {
+  return <CircleSectorsMobileProof />;
 }

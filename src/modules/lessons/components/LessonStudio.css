@@ -1,0 +1,75 @@
+/* Deliberately opt-in: legacy lessons retain their own layout until reviewed. */
+.lesson-studio-frame {
+  container: lesson-studio / inline-size;
+  --studio-ink: #24354b;
+  --studio-muted: #52647a;
+  --studio-paper: #fff;
+  --studio-soft: #f3f7fc;
+  --studio-line: #cfdae7;
+  --studio-accent: #0969a3;
+  --studio-success: #126245;
+  --studio-success-bg: #edf9f3;
+  --studio-warning: #8b3434;
+  --studio-warning-bg: #fff4f1;
+  --studio-gap: clamp(12px, 1.5cqi, 20px);
+}
+.dark .lesson-studio-frame {
+  --studio-ink: #e5edf7;
+  --studio-muted: #b1c1d4;
+  --studio-paper: #172338;
+  --studio-soft: #203048;
+  --studio-line: #455973;
+  --studio-accent: #87d1ff;
+  --studio-success: #91e4bc;
+  --studio-success-bg: #163b32;
+  --studio-warning: #ffb6a9;
+  --studio-warning-bg: #3c2932;
+}
+.lesson-studio {
+  max-width: 1280px;
+  margin-inline: auto;
+  color: var(--studio-ink);
+  font: 16px/1.55 Inter, Arial, sans-serif;
+}
+.lesson-studio :where(*) { box-sizing: border-box; }
+.lesson-studio :where(h1, h2, h3, p) { margin: 0; }
+.lesson-studio :where(h1) { font-size: clamp(30px, 3cqi, 38px); line-height: 1.2; font-weight: 750; }
+.lesson-studio :where(h2) { font-size: 21px; line-height: 1.35; font-weight: 700; }
+.lesson-studio :where(h3) { font-size: 17px; line-height: 1.4; font-weight: 700; }
+.lesson-studio :where(p) { max-width: 70ch; }
+.lesson-studio-panel {
+  padding: var(--studio-gap);
+  border: 1px solid var(--studio-line);
+  border-radius: 12px;
+  background: var(--studio-paper);
+}
+.lesson-studio-grid { display: grid; gap: var(--studio-gap); align-items: start; }
+.lesson-studio :where(button, input, select, textarea) {
+  min-height: 44px;
+  min-width: 0;
+  max-width: 100%;
+  border: 1px solid var(--studio-line);
+  border-radius: 8px;
+  padding: 9px 12px;
+  background: var(--studio-paper);
+  color: var(--studio-ink);
+  font: 16px/1.4 Inter, Arial, sans-serif;
+}
+.lesson-studio :where(button, a) { cursor: pointer; }
+.lesson-studio :where(button:hover) { background: var(--studio-soft); border-color: var(--studio-accent); }
+.lesson-studio :where(button:active) { background: var(--studio-soft); }
+.lesson-studio :where(button:disabled) { opacity: .55; cursor: not-allowed; }
+.lesson-studio :where(button, input, select, textarea, a):focus-visible {
+  outline: 3px solid var(--studio-accent);
+  outline-offset: 3px;
+}
+.lesson-studio :where(.lesson-studio-result) {
+  padding: 12px 16px;
+  border: 1px solid var(--studio-success);
+  border-radius: 8px;
+  background: var(--studio-success-bg);
+  color: var(--studio-success);
+}
+@media (prefers-reduced-motion: reduce) {
+  .lesson-studio :where(*) { scroll-behavior: auto; animation-duration: .01ms; transition-duration: .01ms; }
+}

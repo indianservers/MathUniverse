@@ -1,10 +1,17 @@
 import { Maximize2, Minus, Plus, RotateCcw, Share2 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { PointerEvent as ReactPointerEvent } from "react";
 import type { LessonAdapterProps } from "../../types";
+import {
+  evaluatePowerSeries,
+  formatPowerSeriesCoefficient,
+  parsePowerSeriesCoefficient,
+  powerSeriesAnalysis,
+  powerSeriesCoefficients,
+} from "./powerSeriesLessonModel";
+import type { PowerSeriesTarget } from "./powerSeriesLessonModel";
 import "./PowerSeriesTargetLesson343.css";
 
-type Target = "cos x" | "sin x" | "e^x" | "1 / (1 - x)";
 const tabs = [
   "Interaction + visualization",
   "Explain",
@@ -13,140 +20,57 @@ const tabs = [
   "Know more",
 ];
 const clean = (value: number) => Number(value.toFixed(8));
-const factorial = (n: number) => {
-  let value = 1;
-  for (let i = 2; i <= n; i += 1) value *= i;
-  return value;
-};
-const coefficientsFor = (target: Target, center: number, count: number) =>
-  Array.from({ length: count }, (_, n) => {
-    if (target === "cos x")
-      return Math.cos(center + (n * Math.PI) / 2) / factorial(n);
-    if (target === "sin x")
-      return Math.sin(center + (n * Math.PI) / 2) / factorial(n);
-    if (target === "e^x") return Math.exp(center) / factorial(n);
-    if (Math.abs(1 - center) < 1e-9) return 0;
-    return 1 / (1 - center) ** (n + 1);
-  });
-const targetValue = (target: Target, x: number) =>
-  target === "cos x"
-    ? Math.cos(x)
-    : target === "sin x"
-      ? Math.sin(x)
-      : target === "e^x"
-        ? Math.exp(x)
-        : 1 / (1 - x);
-const formatCoefficient = (value: number) => {
-  if (Math.abs(value) < 1e-10) return "0";
-  const reciprocal = Math.round(1 / Math.abs(value));
-  if (reciprocal > 1 && Math.abs(Math.abs(value) - 1 / reciprocal) < 1e-8)
-    return `${value < 0 ? "-" : ""}1/${reciprocal}`;
-  return clean(value).toString();
-};
-const parseCoefficient = (text: string) => {
-  const normalized = text.trim();
-  if (normalized.includes("/")) {
-    const [a, b] = normalized.split("/").map(Number);
-    return b ? a / b : 0;
-  }
-  return Number(normalized) || 0;
-};
 
 export default function PowerSeriesTargetLesson343({
   resetToken,
   onInteraction,
 }: LessonAdapterProps) {
   const [center, setCenter] = useState(0),
-    [target, setTarget] = useState<Target>("cos x"),
+    [target, setTarget] = useState<PowerSeriesTarget>("cos x"),
     [mode, setMode] = useState<"Preset" | "Manual">("Manual");
-  const [manual, setManual] = useState(() => coefficientsFor("cos x", 0, 9));
+  const [manual, setManual] = useState(() =>
+    powerSeriesCoefficients("cos x", 0, 9),
+  );
   const [degree, setDegree] = useState(8),
     [range, setRange] = useState(1.5 * Math.PI),
-    [tab, setTab] = useState(tabs[0]);
+    [tab, setTab] = useState(tabs[0]),
+    [language, setLanguage] = useState<"en" | "hi">("en");
   const [quick, setQuick] = useState<"" | "correct" | "incorrect">(""),
     [question, setQuestion] = useState(0),
     [fullscreen, setFullscreen] = useState(false),
     [actions, setActions] = useState(0);
-  const coefficients =
-    mode === "Preset"
-      ? coefficientsFor(target, center, Math.max(9, degree + 1))
-      : manual;
-  const active = coefficients.slice(0, degree + 1);
-  const partialAt = (x: number) =>
-    active.reduce(
-      (sum, coefficient, n) => sum + coefficient * (x - center) ** n,
-      0,
-    );
-  const sampleXs = Array.from(
-    { length: 81 },
-    (_, index) => center - range + (2 * range * index) / 80,
-  );
-  const graphPoints = sampleXs
-    .map((x) => ({ x, target: targetValue(target, x), partial: partialAt(x) }))
-    .filter(
-      (point) => Number.isFinite(point.target) && Math.abs(point.target) < 20,
-    );
-  const maxError = Math.max(
-    ...graphPoints.map((point) => Math.abs(point.partial - point.target)),
-    0,
-  );
-  const finitePairs = coefficients
-    .map((value, index) => ({ value, index }))
-    .filter((item) => item.index > 0 && Math.abs(item.value) > 1e-12);
-  const rootEstimates = finitePairs
-    .map((item) => 1 / Math.abs(item.value) ** (1 / item.index))
-    .filter(Number.isFinite);
-  const manualCosine = manual
-    .slice(0, 9)
-    .every(
-      (value, index) =>
-        Math.abs(value - coefficientsFor("cos x", center, 9)[index]) < 1e-8,
-    );
-  const manualRadius = rootEstimates.length
-    ? rootEstimates.slice(-3).reduce((sum, value) => sum + value, 0) /
-      Math.min(3, rootEstimates.length)
-    : Infinity;
-  const radius =
-    mode === "Preset"
-      ? target === "1 / (1 - x)"
-        ? Math.abs(1 - center)
-        : Infinity
-      : manualCosine
-        ? Infinity
-        : manualRadius;
-  const interval = Number.isFinite(radius)
-    ? `(${clean(center - radius)}, ${clean(center + radius)})`
-    : "(-∞, ∞)";
-  const recognized =
-    mode === "Preset"
-      ? target
-      : target === "cos x" && manualCosine
-        ? "cos x"
-        : "Custom series";
-  const expanded =
-    active
-      .map((value, index) => ({ value, index }))
-      .filter(({ value }) => Math.abs(value) > 1e-10)
-      .map(({ value, index }, termIndex) => {
-        const sign = value < 0 ? "−" : termIndex ? "+" : "";
-        const magnitude = formatCoefficient(Math.abs(value));
-        const power =
-          index === 0
-            ? ""
-            : index === 1
-              ? `(x${center ? `−${center}` : ""})`
-              : `(x${center ? `−${center}` : ""})^${index}`;
-        return `${sign} ${magnitude === "1" && power ? "" : magnitude}${power}`;
-      })
-      .join(" ") || "0";
+  const analysis = useMemo(
+      () =>
+        powerSeriesAnalysis({
+          target,
+          center,
+          degree,
+          range,
+          coefficients: manual,
+          preset: mode === "Preset",
+        }),
+      [target, center, degree, range, manual, mode],
+    ),
+    {
+      coefficients,
+      graphPoints,
+      maxError,
+      radius,
+      interval,
+      recognized,
+      expanded,
+    } = analysis,
+    active = coefficients.slice(0, degree + 1),
+    partialAt = (x: number) => evaluatePowerSeries(active, center, degree, x);
   const reset = () => {
     setCenter(0);
     setTarget("cos x");
     setMode("Manual");
-    setManual(coefficientsFor("cos x", 0, 9));
+    setManual(powerSeriesCoefficients("cos x", 0, 9));
     setDegree(8);
     setRange(1.5 * Math.PI);
     setTab(tabs[0]);
+    setLanguage("en");
     setQuick("");
     setQuestion(0);
     setFullscreen(false);
@@ -163,11 +87,13 @@ export default function PowerSeriesTargetLesson343({
       setCenter(clean(value));
       setQuick("");
     });
-  const changeTarget = (value: Target) =>
+  const changeTarget = (value: PowerSeriesTarget) =>
     act(() => {
       setTarget(value);
       if (mode === "Preset")
-        setManual(coefficientsFor(value, center, Math.max(9, degree + 1)));
+        setManual(
+          powerSeriesCoefficients(value, center, Math.max(9, degree + 1)),
+        );
       setQuick("");
     });
   const setCoefficient = (index: number, value: number) =>
@@ -244,6 +170,7 @@ export default function PowerSeriesTargetLesson343({
       data-error={clean(maxError)}
       data-recognized={recognized}
       data-tab={tab}
+      data-language={language}
       data-question={question}
       data-quick-result={quick}
       data-actions={actions}
@@ -254,8 +181,12 @@ export default function PowerSeriesTargetLesson343({
             <b>ADVANCED MATHEMATICS</b>
             <b>SEQUENCES AND SERIES</b>
           </span>
-          <h1>Power Series</h1>
-          <p>Represent functions as infinite polynomials.</p>
+          <h1>{language === "en" ? "Power Series" : "घात श्रेणी"}</h1>
+          <p>
+            {language === "en"
+              ? "Represent functions as infinite polynomials."
+              : "फलनों को अनंत बहुपदों के रूप में निरूपित करें।"}
+          </p>
           <div>
             {[
               "Intermediate-Advanced",
@@ -267,19 +198,38 @@ export default function PowerSeriesTargetLesson343({
             ))}
           </div>
           <nav>
-            <select aria-label="Language">
-              <option>English (English)</option>
-              <option>Hindi (Hindi)</option>
+            <select
+              aria-label="Language"
+              value={language}
+              onChange={(event) =>
+                act(() => setLanguage(event.target.value as "en" | "hi"))
+              }
+            >
+              <option value="en">English (English)</option>
+              <option value="hi">हिन्दी (Hindi)</option>
             </select>
-            <button onClick={reset}>
+            <button onClick={() => act(reset)}>
               <RotateCcw />
               Reset
             </button>
-            <button onClick={() => act(() => {})}>
+            <button
+              onClick={() =>
+                act(() => navigator.clipboard?.writeText(location.href))
+              }
+            >
               <Share2 />
               Share
             </button>
-            <button onClick={() => act(() => {})}>Workspace</button>
+            <button
+              onClick={() => {
+                act(() => setTab(tabs[0]));
+                document
+                  .getElementById("seq343-lab")
+                  ?.scrollIntoView({ behavior: "smooth" });
+              }}
+            >
+              Workspace
+            </button>
           </nav>
         </div>
         <aside>
@@ -296,13 +246,26 @@ export default function PowerSeriesTargetLesson343({
           <button
             key={item}
             className={tab === item ? "active" : ""}
-            onClick={() => act(() => setTab(item))}
+            onClick={() => {
+              act(() => setTab(item));
+              document
+                .getElementById(
+                  item === tabs[0]
+                    ? "seq343-lab"
+                    : item === "Examples"
+                      ? "seq343-guide"
+                      : item === "Formulas"
+                        ? "seq343-analysis"
+                        : "seq343-insights",
+                )
+                ?.scrollIntoView({ behavior: "smooth" });
+            }}
           >
             {item}
           </button>
         ))}
       </nav>
-      <section className="seq343-lab">
+      <section className="seq343-lab" id="seq343-lab">
         <header>
           <div>
             <small>INTERACTION · VISUALIZATION</small>
@@ -353,7 +316,7 @@ export default function PowerSeriesTargetLesson343({
                     act(() => {
                       setMode(item);
                       setManual(
-                        coefficientsFor(
+                        powerSeriesCoefficients(
                           target,
                           center,
                           Math.max(9, degree + 1),
@@ -379,12 +342,13 @@ export default function PowerSeriesTargetLesson343({
                       <td>
                         <input
                           aria-label={`Coefficient a${index}`}
-                          value={formatCoefficient(value)}
+                          value={formatPowerSeriesCoefficient(value)}
                           disabled={mode === "Preset"}
                           onChange={(event) =>
                             setCoefficient(
                               index,
-                              parseCoefficient(event.target.value),
+                              parsePowerSeriesCoefficient(event.target.value) ??
+                                value,
                             )
                           }
                         />
@@ -425,7 +389,7 @@ export default function PowerSeriesTargetLesson343({
                     aria-label="Target function"
                     value={target}
                     onChange={(event) =>
-                      changeTarget(event.target.value as Target)
+                      changeTarget(event.target.value as PowerSeriesTarget)
                     }
                   >
                     <option>cos x</option>
@@ -507,7 +471,7 @@ export default function PowerSeriesTargetLesson343({
                 </label>
               </footer>
             </section>
-            <section className="seq343-analysis">
+            <section className="seq343-analysis" id="seq343-analysis">
               <article>
                 <h2>3. Convergence interval</h2>
                 <p>Interval of convergence</p>
@@ -565,7 +529,7 @@ export default function PowerSeriesTargetLesson343({
           </main>
         </div>
       </section>
-      <section className="seq343-insights">
+      <section className="seq343-insights" id="seq343-insights">
         <article>
           <b>Key Insight</b>
           <p>
@@ -598,7 +562,7 @@ export default function PowerSeriesTargetLesson343({
           </p>
         </article>
       </section>
-      <section className="seq343-guide">
+      <section className="seq343-guide" id="seq343-guide">
         <b>Guided Explanation</b>
         <p>
           A power series centered at c is Σ aₙ(x-c)ⁿ. The radius R is the

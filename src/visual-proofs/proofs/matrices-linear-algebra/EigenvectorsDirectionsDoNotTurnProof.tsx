@@ -1,7 +1,6 @@
-import { PhaseTwoProofExperience } from "../../components/PhaseTwoProofExperience";
 import type { VisualProof, VisualProofCategory } from "../../data/proofTypes";
-import { eigenvectorsPhaseNineteenConfig } from "../phase-nineteen/phaseNineteenProofConfigs";
+import EigenvectorDirectionMobileProof from "./EigenvectorDirectionMobileProof";
 
-export default function EigenvectorsDirectionsDoNotTurnProof({ category, proof }: { category: VisualProofCategory; proof: VisualProof }) {
-  return <PhaseTwoProofExperience category={category} proof={proof} config={eigenvectorsPhaseNineteenConfig} />;
+export default function EigenvectorsDirectionsDoNotTurnProof({ category: _category, proof: _proof }: { category: VisualProofCategory; proof: VisualProof }) {
+  return <EigenvectorDirectionMobileProof />;
 }

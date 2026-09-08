@@ -1,0 +1,3 @@
+import { describe, expect, it } from "vitest";
+import { cartesianOutcomes, eventProbability, sampleSpaceDefault } from "./sampleSpacesLessonModel";
+describe("Sample spaces model", () => { it("builds every compound outcome once", () => { const outcomes = cartesianOutcomes(); expect(outcomes).toHaveLength(36); expect(new Set(outcomes.map(item => item.join("|"))).size).toBe(36); }); it("calculates event probability", () => { const outcomes = cartesianOutcomes(sampleSpaceDefault), event = eventProbability(outcomes, item => item[0] === "H" && item[1] === "5"); expect(event.count).toBe(3); expect(event.probability).toBeCloseTo(1 / 12); }); });

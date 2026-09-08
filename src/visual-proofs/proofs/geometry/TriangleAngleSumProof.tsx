@@ -1,7 +1,6 @@
 import type { VisualProof, VisualProofCategory } from "../../data/proofTypes";
-import { PhaseTwoProofExperience } from "../../components/PhaseTwoProofExperience";
-import { triangleAngleSumPhaseFourConfig } from "../phase-four/phaseFourProofConfigs";
+import TriangleAngleSumMobileProof from "./TriangleAngleSumMobileProof";
 
-export default function TriangleAngleSumProof({ category, proof }: { category: VisualProofCategory; proof: VisualProof }) {
-  return <PhaseTwoProofExperience category={category} proof={proof} config={triangleAngleSumPhaseFourConfig} />;
+export default function TriangleAngleSumProof({ category: _category, proof: _proof }: { category: VisualProofCategory; proof: VisualProof }) {
+  return <TriangleAngleSumMobileProof />;
 }

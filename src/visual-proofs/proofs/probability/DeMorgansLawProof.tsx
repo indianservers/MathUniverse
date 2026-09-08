@@ -1,0 +1,1 @@
+import type{VisualProof,VisualProofCategory}from"../../data/proofTypes";import DeMorgansMobileProof from"./DeMorgansMobileProof";export default function DeMorgansLawProof({category:_category,proof:_proof}:{category:VisualProofCategory;proof:VisualProof}){return <DeMorgansMobileProof/>}

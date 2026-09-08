@@ -630,3 +630,178 @@ body:has(.irrational-page)
     display: none;
   }
 }
+
+/* Fluid lesson canvas: use the available lesson stage instead of preserving the
+   original 805px reference-artboard width. */
+.irrational-page {
+  width: 100%;
+  max-width: none;
+  height: auto;
+}
+
+.irrational-shell,
+.irrational-work,
+.irrational-side {
+  height: auto;
+  min-width: 0;
+}
+
+.irrational-layout {
+  width: 100%;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 320px);
+  gap: clamp(14px, 1.4vw, 24px);
+}
+
+.irrational-top {
+  height: auto;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(12px, 2vw, 32px);
+}
+
+.geometry-model,
+.root-line-model {
+  min-width: 0;
+}
+
+.geometry-model svg,
+.root-line-model svg {
+  display: block;
+  width: min(100%, 430px);
+  height: auto;
+  margin-inline: auto;
+}
+
+.root-line-model svg {
+  transform: none;
+}
+
+.irrational-side {
+  top: 0;
+}
+
+@media (max-width: 899px) {
+  .irrational-page {
+    position: static;
+    margin: 0;
+  }
+
+  .irrational-breadcrumb {
+    position: static;
+    margin-bottom: 10px;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .irrational-hero,
+  .irrational-tabs,
+  .irrational-shell,
+  .irrational-layout,
+  .irrational-work,
+  .irrational-side,
+  .irrational-top,
+  .decimal-zoom,
+  .root-compare,
+  .root-sort,
+  .irrational-navigation,
+  .irrational-footer {
+    height: auto;
+  }
+
+  .irrational-hero {
+    padding: 14px;
+  }
+
+  .irrational-hero > nav,
+  .irrational-hero > div,
+  .irrational-hero aside {
+    flex-wrap: wrap;
+  }
+
+  .irrational-hero aside button:last-child {
+    margin-right: 0;
+  }
+
+  .irrational-tabs {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+  }
+
+  .irrational-tabs button {
+    min-width: max-content;
+    min-height: 42px;
+    padding-inline: 16px;
+    scroll-snap-align: start;
+  }
+
+  .irrational-layout,
+  .irrational-top,
+  .root-sort > div,
+  .irrational-navigation {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .irrational-side {
+    display: grid;
+    gap: 12px;
+    margin-top: 14px;
+  }
+
+  .irrational-side > section,
+  .square-bounds,
+  .root-approx,
+  .rounding-warning,
+  .root-practice {
+    height: auto;
+    margin-top: 0;
+  }
+
+  .decimal-zoom > div,
+  .decimal-zoom footer,
+  .root-sort nav {
+    flex-wrap: wrap;
+    height: auto;
+  }
+
+  .irrational-tags {
+    height: auto;
+    flex-wrap: wrap;
+  }
+
+  .irrational-tags span {
+    width: auto;
+    flex: 1 1 150px;
+  }
+
+  .irrational-footer nav {
+    position: static;
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 560px) {
+  .irrational-hero h1 {
+    font-size: clamp(26px, 9vw, 34px);
+    line-height: 1.1;
+  }
+
+  .irrational-hero aside button,
+  .irrational-hero aside button:first-child {
+    width: 100%;
+  }
+
+  .irrational-shell,
+  .irrational-work {
+    padding: 10px;
+  }
+
+  .decimal-zoom > div {
+    gap: 10px;
+  }
+
+  .root-compare > div {
+    gap: 12px;
+    font-size: 18px;
+  }
+}

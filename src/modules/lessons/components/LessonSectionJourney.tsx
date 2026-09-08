@@ -25,14 +25,14 @@ export function scrollToLessonSection(section: LessonSection) {
   });
 }
 
-export function captureLessonTabClick(event: ReactMouseEvent<HTMLElement>) {
+export function captureLessonTabClick(event: ReactMouseEvent<HTMLElement>, onSelect?: (section: LessonSection) => void) {
   const control = (event.target as HTMLElement).closest("button");
   if (!control || !control.closest("nav")) return;
   const section = lessonSectionForLabel(control.textContent ?? "");
   if (!section) return;
   event.preventDefault();
-  event.stopPropagation();
-  scrollToLessonSection(section);
+  if (onSelect) onSelect(section);
+  else scrollToLessonSection(section);
 }
 
 export function lessonSectionForLabel(rawLabel: string): LessonSection | null {
@@ -40,7 +40,7 @@ export function lessonSectionForLabel(rawLabel: string): LessonSection | null {
   return sectionAliases.find(([pattern]) => pattern.test(label))?.[1] ?? null;
 }
 
-export function LessonSectionNav({ active = "interaction" }: { active?: LessonSection }) {
+export function LessonSectionNav({ active = "interaction", onChange }: { active?: LessonSection; onChange?: (section: LessonSection) => void }) {
   const tabs: Array<{ id: LessonSection; label: string; icon: ReactNode }> = [
     { id: "interaction", label: "Interaction + visualization", icon: <Eye className="h-4 w-4" /> },
     { id: "learn", label: "Learn", icon: <BookOpen className="h-4 w-4" /> },
@@ -49,13 +49,14 @@ export function LessonSectionNav({ active = "interaction" }: { active?: LessonSe
     { id: "practice", label: "Practice", icon: <Dumbbell className="h-4 w-4" /> },
   ];
   return (
-    <nav className="mobile-safe-scroll flex gap-2 rounded-2xl border border-slate-200 bg-white/90 p-2 shadow-sm dark:border-white/10 dark:bg-slate-950/80" aria-label="Lesson sections">
+    <nav className="lesson-section-nav mobile-safe-scroll flex gap-2 rounded-2xl border border-slate-200 bg-white/90 p-2 shadow-sm dark:border-white/10 dark:bg-slate-950/80" aria-label="Lesson sections" role="tablist">
       {tabs.map((tab) => (
         <button
           key={tab.id}
           type="button"
-          aria-current={active === tab.id ? "location" : undefined}
-          onClick={() => scrollToLessonSection(tab.id)}
+          role="tab"
+          aria-selected={active === tab.id}
+          onClick={() => onChange ? onChange(tab.id) : scrollToLessonSection(tab.id)}
           className={active === tab.id
             ? "inline-flex min-h-10 shrink-0 items-center gap-2 rounded-xl bg-cyan-600 px-4 text-sm font-black text-white shadow"
             : "inline-flex min-h-10 shrink-0 items-center gap-2 rounded-xl px-4 text-sm font-black text-slate-600 transition hover:bg-cyan-50 hover:text-cyan-800 dark:text-slate-300 dark:hover:bg-cyan-300/10 dark:hover:text-cyan-100"}
@@ -67,34 +68,34 @@ export function LessonSectionNav({ active = "interaction" }: { active?: LessonSe
   );
 }
 
-export function CoreLessonSections({ lesson }: { lesson: LessonDefinition }) {
+export function CoreLessonSections({ lesson, active }: { lesson: LessonDefinition; active?: LessonSection }) {
   const strengthened = getStrengthenedFoundationLesson(lesson.id);
-  return <LessonSpecificSections lesson={lesson} strengthened={strengthened} />;
+  return <LessonSpecificSections lesson={lesson} strengthened={strengthened} active={active} />;
 }
 
-export function SchoolLessonSections({ lesson }: { lesson: SchoolSyllabusLesson }) {
+export function SchoolLessonSections({ lesson, active }: { lesson: SchoolSyllabusLesson; active?: LessonSection }) {
   const strengthened = getStrengthenedFoundationLesson(lesson.numericId);
-  if (strengthened) return <LessonSpecificSections strengthened={strengthened} />;
+  if (strengthened) return <LessonSpecificSections strengthened={strengthened} active={active} />;
   return (
     <div className="space-y-4" data-testid="lesson-specific-sections">
-      <JourneySection id="learn" title={`Learn ${lesson.title}`} icon={<BookOpen className="h-4 w-4" />}>
+      <JourneySection hidden={Boolean(active && active !== "learn")} id="learn" title={`Learn ${lesson.title}`} icon={<BookOpen className="h-4 w-4" />}>
         <p className="text-base leading-7 text-slate-700 dark:text-slate-200">{lesson.content.summary}</p>
         <NumberedList items={lesson.content.learn} />
       </JourneySection>
-      <JourneySection id="examples" title={`${lesson.title} examples`} icon={<Lightbulb className="h-4 w-4" />}>
+      <JourneySection hidden={Boolean(active && active !== "examples")} id="examples" title={`${lesson.title} examples`} icon={<Lightbulb className="h-4 w-4" />}>
         <NumberedList items={lesson.content.explore} />
       </JourneySection>
-      <JourneySection id="formulas" title={`${lesson.title} formulas and rules`} icon={<Sigma className="h-4 w-4" />}>
+      <JourneySection hidden={Boolean(active && active !== "formulas")} id="formulas" title={`${lesson.title} formulas and rules`} icon={<Sigma className="h-4 w-4" />}>
         <NumberedList items={[...lesson.content.learn.slice(0, 2), ...lesson.content.proofChecklist?.slice(0, 1) ?? []]} />
       </JourneySection>
-      <JourneySection id="practice" title={`Practice ${lesson.title}`} icon={<Dumbbell className="h-4 w-4" />}>
+      <JourneySection hidden={Boolean(active && active !== "practice")} id="practice" title={`Practice ${lesson.title}`} icon={<Dumbbell className="h-4 w-4" />}>
         <NumberedList items={[...lesson.content.practice, ...lesson.content.assessmentPrompts]} />
       </JourneySection>
     </div>
   );
 }
 
-function LessonSpecificSections({ lesson, strengthened }: { lesson?: LessonDefinition; strengthened: StrengthenedLesson | null }) {
+function LessonSpecificSections({ lesson, strengthened, active }: { lesson?: LessonDefinition; strengthened: StrengthenedLesson | null; active?: LessonSection }) {
   const title = strengthened?.title ?? lesson!.title;
   const learn = strengthened
     ? [strengthened.introduction, strengthened.basicIdea, strengthened.howItWorks, strengthened.whyItWorks]
@@ -114,12 +115,12 @@ function LessonSpecificSections({ lesson, strengthened }: { lesson?: LessonDefin
 
   return (
     <div className="space-y-4" data-testid="lesson-specific-sections">
-      <JourneySection id="learn" title={`Learn ${title}`} icon={<BookOpen className="h-4 w-4" />}>
+      <JourneySection hidden={Boolean(active && active !== "learn")} id="learn" title={`Learn ${title}`} icon={<BookOpen className="h-4 w-4" />}>
         <NumberedList items={learn} />
         {strengthened?.misconceptions[0] ? <Callout label="Common mistake" text={`${strengthened.misconceptions[0].mistake} ${strengthened.misconceptions[0].correction}`} /> : null}
       </JourneySection>
 
-      <JourneySection id="examples" title={`${title} examples`} icon={<Lightbulb className="h-4 w-4" />}>
+      <JourneySection hidden={Boolean(active && active !== "examples")} id="examples" title={`${title} examples`} icon={<Lightbulb className="h-4 w-4" />}>
         {workedExamples.map((example, index) => (
           <article key={example.id} className="rounded-xl border border-amber-100 bg-amber-50/70 p-4 dark:border-amber-300/20 dark:bg-amber-300/10">
             <h3 className="font-black text-slate-900 dark:text-white">Worked example {index + 1}: {example.prompt}</h3>
@@ -132,7 +133,7 @@ function LessonSpecificSections({ lesson, strengthened }: { lesson?: LessonDefin
         <NumberedList items={realExamples} />
       </JourneySection>
 
-      <JourneySection id="formulas" title={`${title} formulas and rules`} icon={<Sigma className="h-4 w-4" />}>
+      <JourneySection hidden={Boolean(active && active !== "formulas")} id="formulas" title={`${title} formulas and rules`} icon={<Sigma className="h-4 w-4" />}>
         {formulas.map((formula) => (
           <article key={`${formula.label}-${formula.expression}`} className="rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-white/10 dark:bg-white/10">
             <h3 className="text-sm font-black text-slate-900 dark:text-white">{formula.label}</h3>
@@ -144,7 +145,7 @@ function LessonSpecificSections({ lesson, strengthened }: { lesson?: LessonDefin
         {definingRules.length ? <NumberedList items={definingRules} /> : null}
       </JourneySection>
 
-      <JourneySection id="practice" title={`Practice ${title}`} icon={<Dumbbell className="h-4 w-4" />}>
+      <JourneySection hidden={Boolean(active && active !== "practice")} id="practice" title={`Practice ${title}`} icon={<Dumbbell className="h-4 w-4" />}>
         {practice.length ? practice.map((question, index) => (
           <details key={question.id} className="rounded-xl border border-emerald-100 bg-emerald-50/70 p-4 dark:border-emerald-300/20 dark:bg-emerald-300/10">
             <summary className="cursor-pointer font-black text-slate-900 dark:text-white">Question {index + 1}: {question.prompt}</summary>
@@ -161,9 +162,9 @@ function LessonSpecificSections({ lesson, strengthened }: { lesson?: LessonDefin
   );
 }
 
-function JourneySection({ id, title, icon, children }: { id: Exclude<LessonSection, "interaction">; title: string; icon: ReactNode; children: ReactNode }) {
+function JourneySection({ id, title, icon, children, hidden = false }: { id: Exclude<LessonSection, "interaction">; title: string; icon: ReactNode; children: ReactNode; hidden?: boolean }) {
   return (
-    <section id={`lesson-section-${id}`} className="scroll-mt-20 space-y-3 rounded-2xl border border-slate-200 bg-white/95 p-4 shadow-lg shadow-cyan-950/5 dark:border-white/10 dark:bg-slate-950/80" aria-labelledby={`lesson-heading-${id}`}>
+    <section hidden={hidden} role="tabpanel" aria-hidden={hidden} id={`lesson-section-${id}`} className="scroll-mt-20 space-y-3 rounded-2xl border border-slate-200 bg-white/95 p-4 shadow-lg shadow-cyan-950/5 dark:border-white/10 dark:bg-slate-950/80" aria-labelledby={`lesson-heading-${id}`}>
       <h2 id={`lesson-heading-${id}`} className="flex items-center gap-2 text-lg font-black text-cyan-700 dark:text-cyan-200">{icon}{title}</h2>
       {children}
     </section>

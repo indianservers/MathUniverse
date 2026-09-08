@@ -50,7 +50,7 @@ const CoverageDashboardPage = lazyRoute(() => import("./pages/CoverageDashboardP
 const Phase3LearningSystemPage = lazyRoute(() => import("./pages/Phase3LearningSystemPage"));
 const AdvancedSyllabusLabPage = lazyRoute(() => import("./pages/AdvancedSyllabusLabPage"));
 const AdvancedConceptStudios = lazyRoute(() => import("./pages/AdvancedConceptStudios"));
-const Algebra = lazyRoute(() => import("./pages/Algebra"));
+const AlgebraStudio = lazyRoute(() => import("./pages/AlgebraStudio"));
 const AlgebraicStructures = lazyRoute(() => import("./pages/AlgebraicStructures"));
 const AIApplications = lazyRoute(() => import("./pages/AIApplications"));
 const ARMathLab = lazyRoute(() => import("./pages/ARMathLab"));
@@ -97,6 +97,8 @@ const MathLabProbability = lazyRoute(() => import("./pages/MathLabProbability"))
 const MathLabSmartQuery = lazyRoute(() => import("./pages/MathLabSmartQuery"));
 const MathLabToolPage = lazyRoute(() => import("./pages/MathLabToolPage"));
 const MathematicalModellingStudio = lazyRoute(() => import("./pages/MathematicalModellingStudio"));
+const ModellingEnhancementWorkbench = lazyRoute(() => import("./studios/modelling/ModellingEnhancementWorkbench"));
+const StudioProjectCenter = lazyRoute(() => import("./studios/platform/StudioProjectCenter"));
 const MathVisualizationPage = lazyRoute(() => import("./pages/MathVisualizationPage"));
 const MathVisualDictionary = lazyRoute(() => import("./pages/MathVisualDictionary"));
 const WorkspaceHome = lazyRoute(() => import("./pages/WorkspaceHome"));
@@ -213,7 +215,17 @@ export default function App() {
             <Route path="authoring-studio" element={<Phase5MathEnvironmentPage />} />
             <Route path="curriculum-operations" element={<Phase5MathEnvironmentPage />} />
             <Route path="release-scorecard" element={<Phase5MathEnvironmentPage />} />
-            <Route path="algebra" element={<Algebra />} />
+            <Route path="algebra" element={<AlgebraStudio />} />
+            <Route path="algebra/expressions" element={<AlgebraStudio />} />
+            <Route path="algebra/equations" element={<AlgebraStudio />} />
+            <Route path="algebra/functions" element={<AlgebraStudio />} />
+            <Route path="algebra/polynomials" element={<AlgebraStudio />} />
+            <Route path="algebra/systems" element={<AlgebraStudio />} />
+            <Route path="algebra/exponents-logs" element={<AlgebraStudio />} />
+            <Route path="algebra/sequences" element={<AlgebraStudio />} />
+            <Route path="algebra/proof" element={<AlgebraStudio />} />
+            <Route path="algebra/cas" element={<AlgebraStudio />} />
+            <Route path="algebra/advanced" element={<AlgebraStudio />} />
             <Route path="algebraic-structures" element={<AlgebraicStructures />} />
             <Route path="math-lab" element={<MathLab />} />
             <Route path="engineering-math" element={<EngineeringMath />} />
@@ -284,6 +296,7 @@ export default function App() {
             <Route path="calculus/differential-equations" element={<CalculusStudio page="differential-equations" />} />
             <Route path="calculus/series-parametric-polar" element={<CalculusStudio page="series-parametric-polar" />} />
             <Route path="calculus/multivariable-vector" element={<CalculusStudio page="multivariable-vector" />} />
+            <Route path="calculus/advanced" element={<CalculusStudio page="advanced" />} />
             <Route path="calculus/integrals" element={<Navigate to="/calculus/integration" replace />} />
             <Route path="calculus/motion" element={<Navigate to="/calculus/derivative-applications?mode=motion" replace />} />
             <Route path="calculus/practice" element={<Navigate to="/calculus" replace />} />
@@ -303,6 +316,8 @@ export default function App() {
             <Route path="matrix-sandbox" element={<MatrixOperationsSandbox />} />
             <Route path="ai-applications" element={<AIApplications />} />
             <Route path="mathematical-modelling" element={<MathematicalModellingStudio />} />
+            <Route path="mathematical-modelling/advanced" element={<ModellingEnhancementWorkbench />} />
+            <Route path="studio-projects" element={<StudioProjectCenter />} />
             <Route path="learn" element={<LessonsHomePage />} />
             <Route path="learn/:topicSlug" element={<LearnDiscoveryPage />} />
             <Route path="learn/:topicSlug/:subtopicSlug" element={<LearnDiscoveryPage />} />

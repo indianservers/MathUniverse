@@ -1,0 +1,3 @@
+import { describe, expect, it } from "vitest";
+import { poissonAnalysis, poissonTimeline, simulatePoisson } from "./poissonLessonModel";
+describe("Poisson lesson model", () => { it("computes the target PMF and moments", () => { const result = poissonAnalysis(4, 2.5, 10); expect(result.mean).toBe(10); expect(result.variance).toBe(10); expect(result.std).toBeCloseTo(3.1623, 4); expect(result.exact).toBeCloseTo(0.12511, 5); }); it("simulates valid counts and timeline events", () => { const simulation = simulatePoisson(10, 5000); expect(simulation.sampleMean).toBeGreaterThan(9.8); expect(simulation.sampleMean).toBeLessThan(10.2); expect(poissonTimeline(10, 2.5).every((value) => value >= 0 && value <= 2.5)).toBe(true); }); });

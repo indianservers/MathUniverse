@@ -1,0 +1,7457 @@
+{
+  "items": [
+    {
+      "id": 9,
+      "name": "Exponential Calculations",
+      "route": "/lessons/core-workspaces/9-exponential-calculations",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 12,
+      "name": "Hyperbolic Functions",
+      "route": "/lessons/core-workspaces/12-hyperbolic-functions",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 20,
+      "name": "Variable Explorer",
+      "route": "/lessons/core-workspaces/20-variable-explorer",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 21,
+      "name": "Numeric Sliders",
+      "route": "/lessons/core-workspaces/21-numeric-sliders",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 22,
+      "name": "Integer Sliders",
+      "route": "/lessons/core-workspaces/22-integer-sliders",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 24,
+      "name": "Animation Controls",
+      "route": "/lessons/core-workspaces/24-animation-controls",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 25,
+      "name": "Dependent and Independent Objects",
+      "route": "/lessons/core-workspaces/25-dependent-and-independent-objects",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 26,
+      "name": "Conditional Visibility",
+      "route": "/lessons/core-workspaces/26-conditional-visibility",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 27,
+      "name": "Dynamic Labels",
+      "route": "/lessons/core-workspaces/27-dynamic-labels",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 28,
+      "name": "Algebraic Input",
+      "route": "/lessons/core-workspaces/28-algebraic-input",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 29,
+      "name": "Object Redefinition",
+      "route": "/lessons/core-workspaces/29-object-redefinition",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 30,
+      "name": "Equation Input",
+      "route": "/lessons/core-workspaces/30-equation-input",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 31,
+      "name": "Inequality Input",
+      "route": "/lessons/core-workspaces/31-inequality-input",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 32,
+      "name": "Lists",
+      "route": "/lessons/core-workspaces/32-lists",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 33,
+      "name": "Matrices",
+      "route": "/lessons/core-workspaces/33-matrices",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 35,
+      "name": "Piecewise Definitions",
+      "route": "/lessons/core-workspaces/35-piecewise-definitions",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 39,
+      "name": "Cartesian Graphing",
+      "route": "/lessons/graphs-and-functions/39-cartesian-graphing",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 40,
+      "name": "Function Plotter",
+      "route": "/lessons/graphs-and-functions/40-function-plotter",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 41,
+      "name": "Equation Grapher",
+      "route": "/lessons/graphs-and-functions/41-equation-grapher",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 42,
+      "name": "Inequality Grapher",
+      "route": "/lessons/graphs-and-functions/42-inequality-grapher",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 43,
+      "name": "Parametric Curves",
+      "route": "/lessons/graphs-and-functions/43-parametric-curves",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 44,
+      "name": "Polar Graphs",
+      "route": "/lessons/graphs-and-functions/44-polar-graphs",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 45,
+      "name": "Point Plotter",
+      "route": "/lessons/graphs-and-functions/45-point-plotter",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 46,
+      "name": "Data Plotter",
+      "route": "/lessons/graphs-and-functions/46-data-plotter",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 47,
+      "name": "Table of Values",
+      "route": "/lessons/graphs-and-functions/47-table-of-values",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 48,
+      "name": "Trace Mode",
+      "route": "/lessons/graphs-and-functions/48-trace-mode",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 49,
+      "name": "Zoom and Pan",
+      "route": "/lessons/graphs-and-functions/49-zoom-and-pan",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 50,
+      "name": "Axis Controls",
+      "route": "/lessons/graphs-and-functions/50-axis-controls",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 51,
+      "name": "Grid Controls",
+      "route": "/lessons/graphs-and-functions/51-grid-controls",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 52,
+      "name": "Multiple Graphics Views",
+      "route": "/lessons/graphs-and-functions/52-multiple-graphics-views",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 53,
+      "name": "Special Points",
+      "route": "/lessons/graphs-and-functions/53-special-points",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 54,
+      "name": "Graph Inspector",
+      "route": "/lessons/graphs-and-functions/54-graph-inspector",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 55,
+      "name": "Dynamic Parameters",
+      "route": "/lessons/graphs-and-functions/55-dynamic-parameters",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 56,
+      "name": "Export Graph",
+      "route": "/lessons/graphs-and-functions/56-export-graph",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 129,
+      "name": "Function Concept",
+      "route": "/lessons/graphs-and-functions/129-function-concept",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 130,
+      "name": "Domain and Range",
+      "route": "/lessons/graphs-and-functions/130-domain-and-range",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 131,
+      "name": "Function Notation",
+      "route": "/lessons/graphs-and-functions/131-function-notation",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 132,
+      "name": "Vertical-Line Test",
+      "route": "/lessons/graphs-and-functions/132-vertical-line-test",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 133,
+      "name": "Linear Functions",
+      "route": "/lessons/graphs-and-functions/133-linear-functions",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 134,
+      "name": "Quadratic Functions",
+      "route": "/lessons/graphs-and-functions/134-quadratic-functions",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 135,
+      "name": "Cubic Functions",
+      "route": "/lessons/graphs-and-functions/135-cubic-functions",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 136,
+      "name": "Higher-Degree Polynomials",
+      "route": "/lessons/graphs-and-functions/136-higher-degree-polynomials",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 137,
+      "name": "Reciprocal Functions",
+      "route": "/lessons/graphs-and-functions/137-reciprocal-functions",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 138,
+      "name": "Rational Functions",
+      "route": "/lessons/graphs-and-functions/138-rational-functions",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 139,
+      "name": "Square-Root Functions",
+      "route": "/lessons/graphs-and-functions/139-square-root-functions",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 140,
+      "name": "Cube-Root Functions",
+      "route": "/lessons/graphs-and-functions/140-cube-root-functions",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 141,
+      "name": "Absolute-Value Functions",
+      "route": "/lessons/graphs-and-functions/141-absolute-value-functions",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 142,
+      "name": "Exponential Functions",
+      "route": "/lessons/graphs-and-functions/142-exponential-functions",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 143,
+      "name": "Logarithmic Functions",
+      "route": "/lessons/graphs-and-functions/143-logarithmic-functions",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 144,
+      "name": "Trigonometric Functions",
+      "route": "/lessons/graphs-and-functions/144-trigonometric-functions",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 145,
+      "name": "Hyperbolic Functions",
+      "route": "/lessons/graphs-and-functions/145-hyperbolic-functions",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 146,
+      "name": "Floor Function",
+      "route": "/lessons/graphs-and-functions/146-floor-function",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 147,
+      "name": "Ceiling Function",
+      "route": "/lessons/graphs-and-functions/147-ceiling-function",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 148,
+      "name": "Sign Function",
+      "route": "/lessons/graphs-and-functions/148-sign-function",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 149,
+      "name": "Piecewise Functions",
+      "route": "/lessons/graphs-and-functions/149-piecewise-functions",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 150,
+      "name": "Composite Functions",
+      "route": "/lessons/graphs-and-functions/150-composite-functions",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 151,
+      "name": "Inverse Functions",
+      "route": "/lessons/graphs-and-functions/151-inverse-functions",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 152,
+      "name": "Even and Odd Functions",
+      "route": "/lessons/graphs-and-functions/152-even-and-odd-functions",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 153,
+      "name": "Increasing and Decreasing",
+      "route": "/lessons/graphs-and-functions/153-increasing-and-decreasing",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 154,
+      "name": "Periodic Functions",
+      "route": "/lessons/graphs-and-functions/154-periodic-functions",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 155,
+      "name": "Recursive Functions",
+      "route": "/lessons/graphs-and-functions/155-recursive-functions",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 156,
+      "name": "Vertical Translation",
+      "route": "/lessons/graphs-and-functions/156-vertical-translation",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 157,
+      "name": "Horizontal Translation",
+      "route": "/lessons/graphs-and-functions/157-horizontal-translation",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 158,
+      "name": "Vertical Stretch and Compression",
+      "route": "/lessons/graphs-and-functions/158-vertical-stretch-and-compression",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 159,
+      "name": "Horizontal Stretch and Compression",
+      "route": "/lessons/graphs-and-functions/159-horizontal-stretch-and-compression",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 160,
+      "name": "Reflection in x-Axis",
+      "route": "/lessons/graphs-and-functions/160-reflection-in-x-axis",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 161,
+      "name": "Reflection in y-Axis",
+      "route": "/lessons/graphs-and-functions/161-reflection-in-y-axis",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 162,
+      "name": "Combined Transformations",
+      "route": "/lessons/graphs-and-functions/162-combined-transformations",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 163,
+      "name": "Transformation Order",
+      "route": "/lessons/graphs-and-functions/163-transformation-order",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 164,
+      "name": "Parameter Explorer",
+      "route": "/lessons/graphs-and-functions/164-parameter-explorer",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 165,
+      "name": "Parent-Function Library",
+      "route": "/lessons/graphs-and-functions/165-parent-function-library",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 166,
+      "name": "Graph Matching",
+      "route": "/lessons/graphs-and-functions/166-graph-matching",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 79,
+      "name": "Decimal Place Value",
+      "route": "/lessons/numbers-and-arithmetic/79-decimal-place-value",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 85,
+      "name": "Direct Proportion",
+      "route": "/lessons/numbers-and-arithmetic/85-direct-proportion",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 86,
+      "name": "Inverse Proportion",
+      "route": "/lessons/numbers-and-arithmetic/86-inverse-proportion",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 111,
+      "name": "Linear Equations",
+      "route": "/lessons/algebra/111-linear-equations",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 112,
+      "name": "Simultaneous Linear Equations",
+      "route": "/lessons/algebra/112-simultaneous-linear-equations",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 114,
+      "name": "Quadratic Equations",
+      "route": "/lessons/algebra/114-quadratic-equations",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 115,
+      "name": "Polynomial Equations",
+      "route": "/lessons/algebra/115-polynomial-equations",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 118,
+      "name": "Exponential Equations",
+      "route": "/lessons/algebra/118-exponential-equations",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 122,
+      "name": "Linear Inequalities",
+      "route": "/lessons/algebra/122-linear-inequalities",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 124,
+      "name": "Quadratic Inequalities",
+      "route": "/lessons/algebra/124-quadratic-inequalities",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 125,
+      "name": "Polynomial Inequalities",
+      "route": "/lessons/algebra/125-polynomial-inequalities",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 126,
+      "name": "Two-Variable Inequalities",
+      "route": "/lessons/algebra/126-two-variable-inequalities",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 127,
+      "name": "Systems of Inequalities",
+      "route": "/lessons/algebra/127-systems-of-inequalities",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 168,
+      "name": "Plotting Points",
+      "route": "/lessons/geometry/168-plotting-points",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 169,
+      "name": "Distance Between Points",
+      "route": "/lessons/geometry/169-distance-between-points",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 170,
+      "name": "Midpoint",
+      "route": "/lessons/geometry/170-midpoint",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 171,
+      "name": "Section Formula",
+      "route": "/lessons/geometry/171-section-formula",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 172,
+      "name": "Gradient / Slope",
+      "route": "/lessons/geometry/172-gradient-slope",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 173,
+      "name": "Equation of a Line",
+      "route": "/lessons/geometry/173-equation-of-a-line",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 174,
+      "name": "Parallel Lines",
+      "route": "/lessons/geometry/174-parallel-lines",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 175,
+      "name": "Perpendicular Lines",
+      "route": "/lessons/geometry/175-perpendicular-lines",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 176,
+      "name": "Angle Between Lines",
+      "route": "/lessons/geometry/176-angle-between-lines",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 177,
+      "name": "Point-to-Line Distance",
+      "route": "/lessons/geometry/177-point-to-line-distance",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 178,
+      "name": "Coordinate Loci",
+      "route": "/lessons/geometry/178-coordinate-loci",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 179,
+      "name": "Coordinate Transformations",
+      "route": "/lessons/geometry/179-coordinate-transformations",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 181,
+      "name": "Parametric Coordinates",
+      "route": "/lessons/geometry/181-parametric-coordinates",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 183,
+      "name": "Vector Introduction",
+      "route": "/lessons/geometry/183-vector-introduction",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 184,
+      "name": "Component Form",
+      "route": "/lessons/geometry/184-component-form",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 185,
+      "name": "Position Vectors",
+      "route": "/lessons/geometry/185-position-vectors",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 186,
+      "name": "Vector Addition",
+      "route": "/lessons/geometry/186-vector-addition",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 187,
+      "name": "Vector Subtraction",
+      "route": "/lessons/geometry/187-vector-subtraction",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 188,
+      "name": "Scalar Multiplication",
+      "route": "/lessons/geometry/188-scalar-multiplication",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 189,
+      "name": "Magnitude and Unit Vectors",
+      "route": "/lessons/geometry/189-magnitude-and-unit-vectors",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 190,
+      "name": "Dot Product",
+      "route": "/lessons/geometry/190-dot-product",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 192,
+      "name": "Vector Projection",
+      "route": "/lessons/geometry/192-vector-projection",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 193,
+      "name": "Linear Combinations",
+      "route": "/lessons/geometry/193-linear-combinations",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 194,
+      "name": "Vector Equation of a Line",
+      "route": "/lessons/geometry/194-vector-equation-of-a-line",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 199,
+      "name": "Point on Object",
+      "route": "/lessons/geometry/199-point-on-object",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 203,
+      "name": "Line Through Two Points",
+      "route": "/lessons/geometry/203-line-through-two-points",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 204,
+      "name": "Segment",
+      "route": "/lessons/geometry/204-segment",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 205,
+      "name": "Segment with Given Length",
+      "route": "/lessons/geometry/205-segment-with-given-length",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 213,
+      "name": "Best-Fit Line",
+      "route": "/lessons/geometry/213-best-fit-line",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 225,
+      "name": "Circular Sector",
+      "route": "/lessons/geometry/225-circular-sector",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 226,
+      "name": "Conic Through Five Points",
+      "route": "/lessons/geometry/226-conic-through-five-points",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 227,
+      "name": "Ellipse",
+      "route": "/lessons/geometry/227-ellipse",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 228,
+      "name": "Hyperbola",
+      "route": "/lessons/geometry/228-hyperbola",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 229,
+      "name": "Parabola",
+      "route": "/lessons/geometry/229-parabola",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 231,
+      "name": "Area",
+      "route": "/lessons/geometry/231-area",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 232,
+      "name": "Angle",
+      "route": "/lessons/geometry/232-angle",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 233,
+      "name": "Fixed Angle",
+      "route": "/lessons/geometry/233-fixed-angle",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 234,
+      "name": "Relation Checker",
+      "route": "/lessons/geometry/234-relation-checker",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 235,
+      "name": "Construction Steps",
+      "route": "/lessons/geometry/235-construction-steps",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 236,
+      "name": "Translation by Vector",
+      "route": "/lessons/geometry/236-translation-by-vector",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 237,
+      "name": "Reflection in Line",
+      "route": "/lessons/geometry/237-reflection-in-line",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 238,
+      "name": "Reflection in Point",
+      "route": "/lessons/geometry/238-reflection-in-point",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 239,
+      "name": "Reflection in Circle",
+      "route": "/lessons/geometry/239-reflection-in-circle",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 240,
+      "name": "Rotation Around Point",
+      "route": "/lessons/geometry/240-rotation-around-point",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 241,
+      "name": "Dilation from Point",
+      "route": "/lessons/geometry/241-dilation-from-point",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 242,
+      "name": "Matrix Transformation",
+      "route": "/lessons/geometry/242-matrix-transformation",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 243,
+      "name": "Composite Transformations",
+      "route": "/lessons/geometry/243-composite-transformations",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 244,
+      "name": "Transformation Mapping",
+      "route": "/lessons/geometry/244-transformation-mapping",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 245,
+      "name": "Invariants",
+      "route": "/lessons/geometry/245-invariants",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 246,
+      "name": "Symmetry Explorer",
+      "route": "/lessons/geometry/246-symmetry-explorer",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 247,
+      "name": "Locus Generator",
+      "route": "/lessons/geometry/247-locus-generator",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 248,
+      "name": "Equidistant Loci",
+      "route": "/lessons/geometry/248-equidistant-loci",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 249,
+      "name": "Moving-Linkage Loci",
+      "route": "/lessons/geometry/249-moving-linkage-loci",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 250,
+      "name": "Envelope of Lines",
+      "route": "/lessons/geometry/250-envelope-of-lines",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 251,
+      "name": "Dynamic Trace",
+      "route": "/lessons/geometry/251-dynamic-trace",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 252,
+      "name": "Conjecture Testing",
+      "route": "/lessons/geometry/252-conjecture-testing",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 253,
+      "name": "Exact Proof",
+      "route": "/lessons/geometry/253-exact-proof",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 254,
+      "name": "Collinearity Test",
+      "route": "/lessons/geometry/254-collinearity-test",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 255,
+      "name": "Concurrency Test",
+      "route": "/lessons/geometry/255-concurrency-test",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 256,
+      "name": "Concyclicity Test",
+      "route": "/lessons/geometry/256-concyclicity-test",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 258,
+      "name": "Unit Circle",
+      "route": "/lessons/trigonometry/258-unit-circle",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 259,
+      "name": "Right-Triangle Ratios",
+      "route": "/lessons/trigonometry/259-right-triangle-ratios",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 261,
+      "name": "Sine Graph",
+      "route": "/lessons/trigonometry/261-sine-graph",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 262,
+      "name": "Cosine Graph",
+      "route": "/lessons/trigonometry/262-cosine-graph",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 263,
+      "name": "Tangent Graph",
+      "route": "/lessons/trigonometry/263-tangent-graph",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 264,
+      "name": "Reciprocal Trig Functions",
+      "route": "/lessons/trigonometry/264-reciprocal-trig-functions",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 269,
+      "name": "Trig Equations",
+      "route": "/lessons/trigonometry/269-trig-equations",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 275,
+      "name": "Harmonic Motion",
+      "route": "/lessons/trigonometry/275-harmonic-motion",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 277,
+      "name": "Informal Limits",
+      "route": "/lessons/calculus/277-informal-limits",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 278,
+      "name": "One-Sided Limits",
+      "route": "/lessons/calculus/278-one-sided-limits",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 279,
+      "name": "Infinite Limits",
+      "route": "/lessons/calculus/279-infinite-limits",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 280,
+      "name": "Limits at Infinity",
+      "route": "/lessons/calculus/280-limits-at-infinity",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 281,
+      "name": "Continuity at a Point",
+      "route": "/lessons/calculus/281-continuity-at-a-point",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 282,
+      "name": "Types of Discontinuity",
+      "route": "/lessons/calculus/282-types-of-discontinuity",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 283,
+      "name": "Epsilon–Delta Visualiser",
+      "route": "/lessons/calculus/283-epsilondelta-visualiser",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 284,
+      "name": "Average Rate of Change",
+      "route": "/lessons/calculus/284-average-rate-of-change",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 285,
+      "name": "Instantaneous Rate of Change",
+      "route": "/lessons/calculus/285-instantaneous-rate-of-change",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 286,
+      "name": "Derivative from First Principles",
+      "route": "/lessons/calculus/286-derivative-from-first-principles",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 287,
+      "name": "Tangent Line",
+      "route": "/lessons/calculus/287-tangent-line",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 288,
+      "name": "Normal Line",
+      "route": "/lessons/calculus/288-normal-line",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 289,
+      "name": "Derivative Graph",
+      "route": "/lessons/calculus/289-derivative-graph",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 290,
+      "name": "Higher Derivatives",
+      "route": "/lessons/calculus/290-higher-derivatives",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 291,
+      "name": "Product Rule",
+      "route": "/lessons/calculus/291-product-rule",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 292,
+      "name": "Quotient Rule",
+      "route": "/lessons/calculus/292-quotient-rule",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 293,
+      "name": "Chain Rule",
+      "route": "/lessons/calculus/293-chain-rule",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 294,
+      "name": "Implicit Differentiation",
+      "route": "/lessons/calculus/294-implicit-differentiation",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 295,
+      "name": "Parametric Differentiation",
+      "route": "/lessons/calculus/295-parametric-differentiation",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 296,
+      "name": "Critical Points",
+      "route": "/lessons/calculus/296-critical-points",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 297,
+      "name": "Increasing / Decreasing",
+      "route": "/lessons/calculus/297-increasing-decreasing",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 298,
+      "name": "Local and Global Extrema",
+      "route": "/lessons/calculus/298-local-and-global-extrema",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 299,
+      "name": "Concavity",
+      "route": "/lessons/calculus/299-concavity",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 300,
+      "name": "Inflection Points",
+      "route": "/lessons/calculus/300-inflection-points",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 301,
+      "name": "Optimisation",
+      "route": "/lessons/calculus/301-optimisation",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 302,
+      "name": "Related Rates",
+      "route": "/lessons/calculus/302-related-rates",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 303,
+      "name": "Motion Analysis",
+      "route": "/lessons/calculus/303-motion-analysis",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 304,
+      "name": "Newton's Method",
+      "route": "/lessons/calculus/304-newton-s-method",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 305,
+      "name": "Taylor Polynomial",
+      "route": "/lessons/calculus/305-taylor-polynomial",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 306,
+      "name": "Area by Rectangles",
+      "route": "/lessons/calculus/306-area-by-rectangles",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 307,
+      "name": "Riemann Sums",
+      "route": "/lessons/calculus/307-riemann-sums",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 308,
+      "name": "Definite Integral",
+      "route": "/lessons/calculus/308-definite-integral",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 309,
+      "name": "Indefinite Integral",
+      "route": "/lessons/calculus/309-indefinite-integral",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 310,
+      "name": "Fundamental Theorem",
+      "route": "/lessons/calculus/310-fundamental-theorem",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 311,
+      "name": "Area Between Curves",
+      "route": "/lessons/calculus/311-area-between-curves",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 312,
+      "name": "Substitution",
+      "route": "/lessons/calculus/312-substitution",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 313,
+      "name": "Integration by Parts",
+      "route": "/lessons/calculus/313-integration-by-parts",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 314,
+      "name": "Partial Fractions",
+      "route": "/lessons/calculus/314-partial-fractions",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 315,
+      "name": "Improper Integrals",
+      "route": "/lessons/calculus/315-improper-integrals",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 316,
+      "name": "Numerical Integration",
+      "route": "/lessons/calculus/316-numerical-integration",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 317,
+      "name": "Volume by Slicing",
+      "route": "/lessons/calculus/317-volume-by-slicing",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 318,
+      "name": "Disc and Washer Methods",
+      "route": "/lessons/calculus/318-disc-and-washer-methods",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 319,
+      "name": "Shell Method",
+      "route": "/lessons/calculus/319-shell-method",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 320,
+      "name": "Arc Length",
+      "route": "/lessons/calculus/320-arc-length",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 321,
+      "name": "Surface Area of Revolution",
+      "route": "/lessons/calculus/321-surface-area-of-revolution",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 322,
+      "name": "Accumulation Functions",
+      "route": "/lessons/calculus/322-accumulation-functions",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 323,
+      "name": "Direction Fields",
+      "route": "/lessons/calculus/323-direction-fields",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 324,
+      "name": "Euler's Method",
+      "route": "/lessons/calculus/324-euler-s-method",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 325,
+      "name": "Separable Equations",
+      "route": "/lessons/calculus/325-separable-equations",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 326,
+      "name": "First-Order Linear Equations",
+      "route": "/lessons/calculus/326-first-order-linear-equations",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 327,
+      "name": "Logistic Growth",
+      "route": "/lessons/calculus/327-logistic-growth",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 328,
+      "name": "Second-Order Equations",
+      "route": "/lessons/calculus/328-second-order-equations",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 329,
+      "name": "Phase Plane",
+      "route": "/lessons/calculus/329-phase-plane",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 330,
+      "name": "Equilibrium and Stability",
+      "route": "/lessons/calculus/330-equilibrium-and-stability",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 332,
+      "name": "Cobweb Diagrams",
+      "route": "/lessons/calculus/332-cobweb-diagrams",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 333,
+      "name": "Chaos and Bifurcation",
+      "route": "/lessons/calculus/333-chaos-and-bifurcation",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 334,
+      "name": "Sequence Generator",
+      "route": "/lessons/advanced-mathematics/334-sequence-generator",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 335,
+      "name": "Arithmetic Sequences",
+      "route": "/lessons/advanced-mathematics/335-arithmetic-sequences",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 336,
+      "name": "Geometric Sequences",
+      "route": "/lessons/advanced-mathematics/336-geometric-sequences",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 339,
+      "name": "Sigma Notation",
+      "route": "/lessons/advanced-mathematics/339-sigma-notation",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 340,
+      "name": "Arithmetic Series",
+      "route": "/lessons/advanced-mathematics/340-arithmetic-series",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 342,
+      "name": "Convergence and Divergence",
+      "route": "/lessons/advanced-mathematics/342-convergence-and-divergence",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 343,
+      "name": "Power Series",
+      "route": "/lessons/advanced-mathematics/343-power-series",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 344,
+      "name": "Taylor and Maclaurin Series",
+      "route": "/lessons/advanced-mathematics/344-taylor-and-maclaurin-series",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 345,
+      "name": "Binomial Series",
+      "route": "/lessons/advanced-mathematics/345-binomial-series",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 353,
+      "name": "Determinant",
+      "route": "/lessons/advanced-mathematics/353-determinant",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 357,
+      "name": "Augmented Matrices",
+      "route": "/lessons/advanced-mathematics/357-augmented-matrices",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 358,
+      "name": "Linear Transformations",
+      "route": "/lessons/advanced-mathematics/358-linear-transformations",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 359,
+      "name": "Eigenvalues and Eigenvectors",
+      "route": "/lessons/advanced-mathematics/359-eigenvalues-and-eigenvectors",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 361,
+      "name": "Linear Independence",
+      "route": "/lessons/advanced-mathematics/361-linear-independence",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 362,
+      "name": "Vector Spaces",
+      "route": "/lessons/advanced-mathematics/362-vector-spaces",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 363,
+      "name": "Gram–Schmidt",
+      "route": "/lessons/advanced-mathematics/363-gramschmidt",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 364,
+      "name": "Least Squares",
+      "route": "/lessons/advanced-mathematics/364-least-squares",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 379,
+      "name": "3D Points",
+      "route": "/lessons/3d-mathematics/379-3d-points",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 402,
+      "name": "Surface of Revolution",
+      "route": "/lessons/3d-mathematics/402-surface-of-revolution",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 403,
+      "name": "Extrusion",
+      "route": "/lessons/3d-mathematics/403-extrusion",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 405,
+      "name": "Cross-Sections",
+      "route": "/lessons/3d-mathematics/405-cross-sections",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 413,
+      "name": "Surface z=f(x,y)",
+      "route": "/lessons/3d-mathematics/413-surface-z-f-x-y",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 416,
+      "name": "Space Curves",
+      "route": "/lessons/3d-mathematics/416-space-curves",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 418,
+      "name": "Cylindrical Coordinates",
+      "route": "/lessons/3d-mathematics/418-cylindrical-coordinates",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 422,
+      "name": "Partial Derivatives",
+      "route": "/lessons/3d-mathematics/422-partial-derivatives",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 434,
+      "name": "Numerical Solve",
+      "route": "/lessons/symbolic-mathematics/434-numerical-solve",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 435,
+      "name": "Solve Systems",
+      "route": "/lessons/symbolic-mathematics/435-solve-systems",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 441,
+      "name": "Limits",
+      "route": "/lessons/symbolic-mathematics/441-limits",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 442,
+      "name": "Series Expansions",
+      "route": "/lessons/symbolic-mathematics/442-series-expansions",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 443,
+      "name": "Differential Equations",
+      "route": "/lessons/symbolic-mathematics/443-differential-equations",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 444,
+      "name": "Matrix Operations",
+      "route": "/lessons/symbolic-mathematics/444-matrix-operations",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 445,
+      "name": "Complex Calculations",
+      "route": "/lessons/symbolic-mathematics/445-complex-calculations",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 449,
+      "name": "CAS-to-Graph Link",
+      "route": "/lessons/symbolic-mathematics/449-cas-to-graph-link",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 557,
+      "name": "Factorials",
+      "route": "/lessons/discrete-and-applied-mathematics/557-factorials",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 565,
+      "name": "Vertex and Edge Builder",
+      "route": "/lessons/discrete-and-applied-mathematics/565-vertex-and-edge-builder",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 566,
+      "name": "Directed Graphs",
+      "route": "/lessons/discrete-and-applied-mathematics/566-directed-graphs",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 567,
+      "name": "Weighted Graphs",
+      "route": "/lessons/discrete-and-applied-mathematics/567-weighted-graphs",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 568,
+      "name": "Degree of a Vertex",
+      "route": "/lessons/discrete-and-applied-mathematics/568-degree-of-a-vertex",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 569,
+      "name": "Paths and Cycles",
+      "route": "/lessons/discrete-and-applied-mathematics/569-paths-and-cycles",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 570,
+      "name": "Connected Components",
+      "route": "/lessons/discrete-and-applied-mathematics/570-connected-components",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 571,
+      "name": "Euler Paths and Circuits",
+      "route": "/lessons/discrete-and-applied-mathematics/571-euler-paths-and-circuits",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 572,
+      "name": "Hamiltonian Paths and Cycles",
+      "route": "/lessons/discrete-and-applied-mathematics/572-hamiltonian-paths-and-cycles",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 574,
+      "name": "Minimum Spanning Tree",
+      "route": "/lessons/discrete-and-applied-mathematics/574-minimum-spanning-tree",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 575,
+      "name": "Shortest Path",
+      "route": "/lessons/discrete-and-applied-mathematics/575-shortest-path",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 576,
+      "name": "Graph Colouring",
+      "route": "/lessons/discrete-and-applied-mathematics/576-graph-colouring",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 577,
+      "name": "Bipartite Graphs",
+      "route": "/lessons/discrete-and-applied-mathematics/577-bipartite-graphs",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 578,
+      "name": "Planar Graphs",
+      "route": "/lessons/discrete-and-applied-mathematics/578-planar-graphs",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 580,
+      "name": "Travelling Salesperson",
+      "route": "/lessons/discrete-and-applied-mathematics/580-travelling-salesperson",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 581,
+      "name": "Adjacency Matrix",
+      "route": "/lessons/discrete-and-applied-mathematics/581-adjacency-matrix",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 592,
+      "name": "Compound Interest",
+      "route": "/lessons/discrete-and-applied-mathematics/592-compound-interest",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 593,
+      "name": "Effective Interest Rate",
+      "route": "/lessons/discrete-and-applied-mathematics/593-effective-interest-rate",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 595,
+      "name": "Future Value",
+      "route": "/lessons/discrete-and-applied-mathematics/595-future-value",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 598,
+      "name": "Amortisation Table",
+      "route": "/lessons/discrete-and-applied-mathematics/598-amortisation-table",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 599,
+      "name": "Depreciation",
+      "route": "/lessons/discrete-and-applied-mathematics/599-depreciation",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 600,
+      "name": "Inflation",
+      "route": "/lessons/discrete-and-applied-mathematics/600-inflation",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 603,
+      "name": "Break-Even Analysis",
+      "route": "/lessons/discrete-and-applied-mathematics/603-break-even-analysis",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 605,
+      "name": "Investment Comparison",
+      "route": "/lessons/discrete-and-applied-mathematics/605-investment-comparison",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 606,
+      "name": "Model Builder",
+      "route": "/lessons/discrete-and-applied-mathematics/606-model-builder",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 607,
+      "name": "Linear Models",
+      "route": "/lessons/discrete-and-applied-mathematics/607-linear-models",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 608,
+      "name": "Quadratic Models",
+      "route": "/lessons/discrete-and-applied-mathematics/608-quadratic-models",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 609,
+      "name": "Exponential and Logistic Models",
+      "route": "/lessons/discrete-and-applied-mathematics/609-exponential-and-logistic-models",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 610,
+      "name": "Periodic Models",
+      "route": "/lessons/discrete-and-applied-mathematics/610-periodic-models",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 611,
+      "name": "Piecewise Models",
+      "route": "/lessons/discrete-and-applied-mathematics/611-piecewise-models",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 612,
+      "name": "Parameter Estimation",
+      "route": "/lessons/discrete-and-applied-mathematics/612-parameter-estimation",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 614,
+      "name": "Sensitivity Analysis",
+      "route": "/lessons/discrete-and-applied-mathematics/614-sensitivity-analysis",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 615,
+      "name": "Residual and Error Analysis",
+      "route": "/lessons/discrete-and-applied-mathematics/615-residual-and-error-analysis",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 616,
+      "name": "Scenario Comparison",
+      "route": "/lessons/discrete-and-applied-mathematics/616-scenario-comparison",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 617,
+      "name": "Linear Programming",
+      "route": "/lessons/discrete-and-applied-mathematics/617-linear-programming",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 618,
+      "name": "Slider Component",
+      "route": "/lessons/authoring-and-learning-system/618-slider-component",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10006,
+      "name": "Pictograph Builder",
+      "route": "/lessons/school/class-6/class-6-data-handling-pictograph-builder",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10007,
+      "name": "Bar Graph Builder",
+      "route": "/lessons/school/class-6/class-6-data-handling-bar-graph-builder",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10008,
+      "name": "Survey to Frequency Table",
+      "route": "/lessons/school/class-6/class-6-data-handling-survey-to-frequency-table",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10009,
+      "name": "Misleading Graph Detection",
+      "route": "/lessons/school/class-6/class-6-data-handling-misleading-graph-detection",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10020,
+      "name": "Household Budget Arithmetic",
+      "route": "/lessons/school/class-7/class-7-applied-arithmetic-household-budget-arithmetic",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10032,
+      "name": "Double Bar Graph Comparison",
+      "route": "/lessons/school/class-8/class-8-data-handling-double-bar-graph-comparison",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10046,
+      "name": "Graphical Zeros of Polynomials",
+      "route": "/lessons/school/class-9/class-9-polynomials-graphical-zeros-of-polynomials",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10048,
+      "name": "Remainder Theorem",
+      "route": "/lessons/school/class-9/class-9-polynomials-remainder-theorem",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10049,
+      "name": "Factor Theorem",
+      "route": "/lessons/school/class-9/class-9-polynomials-factor-theorem",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10050,
+      "name": "Relationship Between Zeros and Coefficients",
+      "route": "/lessons/school/class-9/class-9-polynomials-relationship-between-zeros-and-coefficients",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10081,
+      "name": "Coordinate Area versus Heron's Formula",
+      "route": "/lessons/school/class-9/class-9-mensuration-coordinate-area-versus-heron-s-formula",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10083,
+      "name": "Distance Formula",
+      "route": "/lessons/school/class-10/class-10-coordinate-geometry-distance-formula",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10085,
+      "name": "Internal Section Formula",
+      "route": "/lessons/school/class-10/class-10-coordinate-geometry-internal-section-formula",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10086,
+      "name": "External Section Formula",
+      "route": "/lessons/school/class-10/class-10-coordinate-geometry-external-section-formula",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10105,
+      "name": "Less-Than Cumulative Frequency",
+      "route": "/lessons/school/class-10/class-10-statistics-less-than-cumulative-frequency",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10106,
+      "name": "More-Than Cumulative Frequency",
+      "route": "/lessons/school/class-10/class-10-statistics-more-than-cumulative-frequency",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10107,
+      "name": "Less-Than Ogive",
+      "route": "/lessons/school/class-10/class-10-statistics-less-than-ogive",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10108,
+      "name": "More-Than Ogive",
+      "route": "/lessons/school/class-10/class-10-statistics-more-than-ogive",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10109,
+      "name": "Median from an Ogive",
+      "route": "/lessons/school/class-10/class-10-statistics-median-from-an-ogive",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10112,
+      "name": "Types of Relations",
+      "route": "/lessons/school/class-11/class-11-relations-and-functions-types-of-relations",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10113,
+      "name": "Reflexive Relations",
+      "route": "/lessons/school/class-11/class-11-relations-and-functions-reflexive-relations",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10114,
+      "name": "Symmetric Relations",
+      "route": "/lessons/school/class-11/class-11-relations-and-functions-symmetric-relations",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10115,
+      "name": "Transitive Relations",
+      "route": "/lessons/school/class-11/class-11-relations-and-functions-transitive-relations",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10116,
+      "name": "Equivalence Relations",
+      "route": "/lessons/school/class-11/class-11-relations-and-functions-equivalence-relations",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10117,
+      "name": "One-One Functions",
+      "route": "/lessons/school/class-11/class-11-relations-and-functions-one-one-functions",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10122,
+      "name": "Invertible Functions",
+      "route": "/lessons/school/class-11/class-11-relations-and-functions-invertible-functions",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10124,
+      "name": "Domain and Range of Trigonometric Functions",
+      "route": "/lessons/school/class-11/class-11-trigonometry-domain-and-range-of-trigonometric-functions",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10125,
+      "name": "Transformation of Trigonometric Graphs",
+      "route": "/lessons/school/class-11/class-11-trigonometry-transformation-of-trigonometric-graphs",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10138,
+      "name": "Binomial Approximation",
+      "route": "/lessons/school/class-11/class-11-binomial-theorem-binomial-approximation",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10139,
+      "name": "Pascal Identity",
+      "route": "/lessons/school/class-11/class-11-binomial-theorem-pascal-identity",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10141,
+      "name": "Parabola Standard Forms",
+      "route": "/lessons/school/class-11/class-11-conic-sections-parabola-standard-forms",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10142,
+      "name": "Focus-Directrix Definition",
+      "route": "/lessons/school/class-11/class-11-conic-sections-focus-directrix-definition",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10143,
+      "name": "Ellipse Standard Forms",
+      "route": "/lessons/school/class-11/class-11-conic-sections-ellipse-standard-forms",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10144,
+      "name": "Hyperbola Standard Forms",
+      "route": "/lessons/school/class-11/class-11-conic-sections-hyperbola-standard-forms",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10145,
+      "name": "Eccentricity",
+      "route": "/lessons/school/class-11/class-11-conic-sections-eccentricity",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10146,
+      "name": "Parametric Coordinates",
+      "route": "/lessons/school/class-11/class-11-conic-sections-parametric-coordinates",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10147,
+      "name": "Tangent to a Parabola",
+      "route": "/lessons/school/class-11/class-11-conic-sections-tangent-to-a-parabola",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10148,
+      "name": "Normal to a Parabola",
+      "route": "/lessons/school/class-11/class-11-conic-sections-normal-to-a-parabola",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10149,
+      "name": "Tangent to an Ellipse",
+      "route": "/lessons/school/class-11/class-11-conic-sections-tangent-to-an-ellipse",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10150,
+      "name": "Tangent to a Hyperbola",
+      "route": "/lessons/school/class-11/class-11-conic-sections-tangent-to-a-hyperbola",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10151,
+      "name": "Conic Identification from General Equation",
+      "route": "/lessons/school/class-11/class-11-conic-sections-conic-identification-from-general-equation",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10156,
+      "name": "Cartesian Equation of a Line",
+      "route": "/lessons/school/class-12/class-12-three-dimensional-geometry-cartesian-equation-of-a-line",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10165,
+      "name": "Left-Hand and Right-Hand Limits",
+      "route": "/lessons/school/class-12/class-12-formal-calculus-left-hand-and-right-hand-limits",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10166,
+      "name": "Continuity at a Point",
+      "route": "/lessons/school/class-12/class-12-formal-calculus-continuity-at-a-point",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10167,
+      "name": "Continuity on an Interval",
+      "route": "/lessons/school/class-12/class-12-formal-calculus-continuity-on-an-interval",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10168,
+      "name": "Removable Discontinuity",
+      "route": "/lessons/school/class-12/class-12-formal-calculus-removable-discontinuity",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10169,
+      "name": "Jump Discontinuity",
+      "route": "/lessons/school/class-12/class-12-formal-calculus-jump-discontinuity",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10170,
+      "name": "Infinite Discontinuity",
+      "route": "/lessons/school/class-12/class-12-formal-calculus-infinite-discontinuity",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10171,
+      "name": "Differentiability versus Continuity",
+      "route": "/lessons/school/class-12/class-12-formal-calculus-differentiability-versus-continuity",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10172,
+      "name": "Rolle's Theorem",
+      "route": "/lessons/school/class-12/class-12-formal-calculus-rolle-s-theorem",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10173,
+      "name": "Lagrange Mean Value Theorem",
+      "route": "/lessons/school/class-12/class-12-formal-calculus-lagrange-mean-value-theorem",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10174,
+      "name": "Rate of Change",
+      "route": "/lessons/school/class-12/class-12-formal-calculus-rate-of-change",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10175,
+      "name": "Tangents and Normals",
+      "route": "/lessons/school/class-12/class-12-formal-calculus-tangents-and-normals",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10176,
+      "name": "Increasing and Decreasing Functions",
+      "route": "/lessons/school/class-12/class-12-formal-calculus-increasing-and-decreasing-functions",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10177,
+      "name": "Local Maxima and Minima",
+      "route": "/lessons/school/class-12/class-12-formal-calculus-local-maxima-and-minima",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10178,
+      "name": "Absolute Maxima and Minima",
+      "route": "/lessons/school/class-12/class-12-formal-calculus-absolute-maxima-and-minima",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10179,
+      "name": "Approximation Using Differentials",
+      "route": "/lessons/school/class-12/class-12-formal-calculus-approximation-using-differentials",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10181,
+      "name": "Integration by Parts",
+      "route": "/lessons/school/class-12/class-12-formal-calculus-integration-by-parts",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10182,
+      "name": "Integration by Partial Fractions",
+      "route": "/lessons/school/class-12/class-12-formal-calculus-integration-by-partial-fractions",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10183,
+      "name": "Definite Integral Properties",
+      "route": "/lessons/school/class-12/class-12-formal-calculus-definite-integral-properties",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10184,
+      "name": "Area Under a Curve",
+      "route": "/lessons/school/class-12/class-12-formal-calculus-area-under-a-curve",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10185,
+      "name": "Area Between Curves",
+      "route": "/lessons/school/class-12/class-12-formal-calculus-area-between-curves",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10186,
+      "name": "Formation of Differential Equations",
+      "route": "/lessons/school/class-12/class-12-differential-equations-formation-of-differential-equations",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10189,
+      "name": "Homogeneous First-Order Equations",
+      "route": "/lessons/school/class-12/class-12-differential-equations-homogeneous-first-order-equations",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10191,
+      "name": "General and Particular Solutions",
+      "route": "/lessons/school/class-12/class-12-differential-equations-general-and-particular-solutions",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10192,
+      "name": "Direction Fields",
+      "route": "/lessons/school/class-12/class-12-differential-equations-direction-fields",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10197,
+      "name": "Solving Linear Equations by Matrices",
+      "route": "/lessons/school/class-12/class-12-matrices-and-determinants-solving-linear-equations-by-matrices",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10198,
+      "name": "Cramer's Rule",
+      "route": "/lessons/school/class-12/class-12-matrices-and-determinants-cramer-s-rule",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 10199,
+      "name": "Consistency of Linear Systems",
+      "route": "/lessons/school/class-12/class-12-matrices-and-determinants-consistency-of-linear-systems",
+      "evidence": "Component or adapter evidence"
+    },
+    {
+      "id": 34,
+      "name": "Sequences",
+      "route": "/lessons/core-workspaces/34-sequences",
+      "evidence": "Catalog mention"
+    },
+    {
+      "id": 63,
+      "name": "Complex Numbers",
+      "route": "/lessons/numbers-and-arithmetic/63-complex-numbers",
+      "evidence": "Catalog mention"
+    },
+    {
+      "id": 106,
+      "name": "Identities",
+      "route": "/lessons/algebra/106-identities",
+      "evidence": "Catalog mention"
+    },
+    {
+      "id": 167,
+      "name": "Cartesian Plane",
+      "route": "/lessons/geometry/167-cartesian-plane",
+      "evidence": "Catalog mention"
+    },
+    {
+      "id": 180,
+      "name": "Polar Coordinates",
+      "route": "/lessons/geometry/180-polar-coordinates",
+      "evidence": "Catalog mention"
+    },
+    {
+      "id": 182,
+      "name": "Barycentric Coordinates",
+      "route": "/lessons/geometry/182-barycentric-coordinates",
+      "evidence": "Catalog mention"
+    },
+    {
+      "id": 266,
+      "name": "Trig Identities",
+      "route": "/lessons/trigonometry/266-trig-identities",
+      "evidence": "Catalog mention"
+    },
+    {
+      "id": 267,
+      "name": "Compound-Angle Formulae",
+      "route": "/lessons/trigonometry/267-compound-angle-formulae",
+      "evidence": "Catalog mention"
+    },
+    {
+      "id": 276,
+      "name": "Polar Trigonometry",
+      "route": "/lessons/trigonometry/276-polar-trigonometry",
+      "evidence": "Catalog mention"
+    },
+    {
+      "id": 365,
+      "name": "Complex Plane",
+      "route": "/lessons/advanced-mathematics/365-complex-plane",
+      "evidence": "Catalog mention"
+    },
+    {
+      "id": 374,
+      "name": "Roots",
+      "route": "/lessons/advanced-mathematics/374-roots",
+      "evidence": "Catalog mention"
+    },
+    {
+      "id": 382,
+      "name": "Planes",
+      "route": "/lessons/3d-mathematics/382-planes",
+      "evidence": "Catalog mention"
+    },
+    {
+      "id": 414,
+      "name": "Implicit Surfaces",
+      "route": "/lessons/3d-mathematics/414-implicit-surfaces",
+      "evidence": "Catalog mention"
+    },
+    {
+      "id": 415,
+      "name": "Parametric Surfaces",
+      "route": "/lessons/3d-mathematics/415-parametric-surfaces",
+      "evidence": "Catalog mention"
+    },
+    {
+      "id": 439,
+      "name": "Derivatives",
+      "route": "/lessons/symbolic-mathematics/439-derivatives",
+      "evidence": "Catalog mention"
+    },
+    {
+      "id": 450,
+      "name": "Data Entry Grid",
+      "route": "/lessons/data-and-probability/450-data-entry-grid",
+      "evidence": "Catalog mention"
+    },
+    {
+      "id": 451,
+      "name": "Cell Formulas",
+      "route": "/lessons/data-and-probability/451-cell-formulas",
+      "evidence": "Catalog mention"
+    },
+    {
+      "id": 452,
+      "name": "Fill and Copy",
+      "route": "/lessons/data-and-probability/452-fill-and-copy",
+      "evidence": "Catalog mention"
+    },
+    {
+      "id": 453,
+      "name": "Relative References",
+      "route": "/lessons/data-and-probability/453-relative-references",
+      "evidence": "Catalog mention"
+    },
+    {
+      "id": 454,
+      "name": "Absolute References",
+      "route": "/lessons/data-and-probability/454-absolute-references",
+      "evidence": "Catalog mention"
+    },
+    {
+      "id": 455,
+      "name": "Sorting",
+      "route": "/lessons/data-and-probability/455-sorting",
+      "evidence": "Catalog mention"
+    },
+    {
+      "id": 456,
+      "name": "Filtering",
+      "route": "/lessons/data-and-probability/456-filtering",
+      "evidence": "Catalog mention"
+    },
+    {
+      "id": 457,
+      "name": "Lists from Cells",
+      "route": "/lessons/data-and-probability/457-lists-from-cells",
+      "evidence": "Catalog mention"
+    },
+    {
+      "id": 458,
+      "name": "Points from Columns",
+      "route": "/lessons/data-and-probability/458-points-from-columns",
+      "evidence": "Catalog mention"
+    },
+    {
+      "id": 459,
+      "name": "Matrices from Cells",
+      "route": "/lessons/data-and-probability/459-matrices-from-cells",
+      "evidence": "Catalog mention"
+    },
+    {
+      "id": 460,
+      "name": "Frequency Tables",
+      "route": "/lessons/data-and-probability/460-frequency-tables",
+      "evidence": "Catalog mention"
+    },
+    {
+      "id": 461,
+      "name": "Summary Statistics",
+      "route": "/lessons/data-and-probability/461-summary-statistics",
+      "evidence": "Catalog mention"
+    },
+    {
+      "id": 462,
+      "name": "Spreadsheet Charts",
+      "route": "/lessons/data-and-probability/462-spreadsheet-charts",
+      "evidence": "Catalog mention"
+    },
+    {
+      "id": 463,
+      "name": "Regression from Data",
+      "route": "/lessons/data-and-probability/463-regression-from-data",
+      "evidence": "Catalog mention"
+    },
+    {
+      "id": 464,
+      "name": "Dynamic Cell Links",
+      "route": "/lessons/data-and-probability/464-dynamic-cell-links",
+      "evidence": "Catalog mention"
+    },
+    {
+      "id": 465,
+      "name": "Import CSV",
+      "route": "/lessons/data-and-probability/465-import-csv",
+      "evidence": "Catalog mention"
+    },
+    {
+      "id": 466,
+      "name": "Export Data",
+      "route": "/lessons/data-and-probability/466-export-data",
+      "evidence": "Catalog mention"
+    },
+    {
+      "id": 480,
+      "name": "Box Plot",
+      "route": "/lessons/data-and-probability/480-box-plot",
+      "evidence": "Catalog mention"
+    },
+    {
+      "id": 481,
+      "name": "Dot Plot",
+      "route": "/lessons/data-and-probability/481-dot-plot",
+      "evidence": "Catalog mention"
+    },
+    {
+      "id": 482,
+      "name": "Stem-and-Leaf Plot",
+      "route": "/lessons/data-and-probability/482-stem-and-leaf-plot",
+      "evidence": "Catalog mention"
+    },
+    {
+      "id": 483,
+      "name": "Histogram",
+      "route": "/lessons/data-and-probability/483-histogram",
+      "evidence": "Catalog mention"
+    },
+    {
+      "id": 485,
+      "name": "Cumulative Frequency Curve",
+      "route": "/lessons/data-and-probability/485-cumulative-frequency-curve",
+      "evidence": "Catalog mention"
+    },
+    {
+      "id": 486,
+      "name": "Bar and Pie Charts",
+      "route": "/lessons/data-and-probability/486-bar-and-pie-charts",
+      "evidence": "Catalog mention"
+    },
+    {
+      "id": 487,
+      "name": "Scatter Plot",
+      "route": "/lessons/data-and-probability/487-scatter-plot",
+      "evidence": "Catalog mention"
+    },
+    {
+      "id": 488,
+      "name": "Time-Series Plot",
+      "route": "/lessons/data-and-probability/488-time-series-plot",
+      "evidence": "Catalog mention"
+    },
+    {
+      "id": 497,
+      "name": "Residual Plot",
+      "route": "/lessons/data-and-probability/497-residual-plot",
+      "evidence": "Catalog mention"
+    },
+    {
+      "id": 515,
+      "name": "Law of Large Numbers",
+      "route": "/lessons/data-and-probability/515-law-of-large-numbers",
+      "evidence": "Catalog mention"
+    },
+    {
+      "id": 517,
+      "name": "Probability Plot",
+      "route": "/lessons/data-and-probability/517-probability-plot",
+      "evidence": "Catalog mention"
+    },
+    {
+      "id": 518,
+      "name": "Cumulative Distribution",
+      "route": "/lessons/data-and-probability/518-cumulative-distribution",
+      "evidence": "Catalog mention"
+    },
+    {
+      "id": 537,
+      "name": "Sampling Distributions",
+      "route": "/lessons/data-and-probability/537-sampling-distributions",
+      "evidence": "Catalog mention"
+    },
+    {
+      "id": 591,
+      "name": "Simple Interest",
+      "route": "/lessons/discrete-and-applied-mathematics/591-simple-interest",
+      "evidence": "Catalog mention"
+    },
+    {
+      "id": 648,
+      "name": "Graph Matching",
+      "route": "/lessons/authoring-and-learning-system/648-graph-matching",
+      "evidence": "Catalog mention"
+    },
+    {
+      "id": 650,
+      "name": "Multiple Representations",
+      "route": "/lessons/authoring-and-learning-system/650-multiple-representations",
+      "evidence": "Catalog mention"
+    },
+    {
+      "id": 657,
+      "name": "Drag and Manipulate",
+      "route": "/lessons/platform-capabilities/657-drag-and-manipulate",
+      "evidence": "Catalog mention"
+    },
+    {
+      "id": 665,
+      "name": "Linked Views",
+      "route": "/lessons/platform-capabilities/665-linked-views",
+      "evidence": "Catalog mention"
+    }
+  ],
+  "renderers": [
+    {
+      "file": "src/ar-math-lab\\arProductionHardening.test.ts",
+      "families": [
+        "three"
+      ]
+    },
+    {
+      "file": "src/ar-math-lab\\arProductionHardening.ts",
+      "families": [
+        "three"
+      ]
+    },
+    {
+      "file": "src/concept-map\\ConceptMapCanvas.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/graph-studio\\advancedGraphLayers.ts",
+      "families": [
+        "graphSampler"
+      ]
+    },
+    {
+      "file": "src/graph-studio\\graph2dAdvanced.ts",
+      "families": [
+        "graphSampler"
+      ]
+    },
+    {
+      "file": "src/graph-studio\\GraphIntelligencePanel.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/graph-studio\\GraphStudio2DWorkspace.tsx",
+      "families": [
+        "svg",
+        "functionCanvas",
+        "graphSampler"
+      ]
+    },
+    {
+      "file": "src/graph-studio\\graphViewUtils.ts",
+      "families": [
+        "functionCanvas",
+        "graphSampler"
+      ]
+    },
+    {
+      "file": "src/math-foundation\\adapters.ts",
+      "families": [
+        "graphSampler"
+      ]
+    },
+    {
+      "file": "src/math-foundation\\adaptiveGraph.test.ts",
+      "families": [
+        "graphSampler"
+      ]
+    },
+    {
+      "file": "src/pages\\About.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/pages\\AdvancedSyllabusLabPage.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/pages\\AIApplications.tsx",
+      "families": [
+        "svg",
+        "canvas"
+      ]
+    },
+    {
+      "file": "src/pages\\AlgebraStudio.tsx",
+      "families": [
+        "svg",
+        "graphSampler"
+      ]
+    },
+    {
+      "file": "src/pages\\ARMathLab.tsx",
+      "families": [
+        "svg",
+        "three"
+      ]
+    },
+    {
+      "file": "src/pages\\BoardSyllabusVisualizer.tsx",
+      "families": [
+        "svg",
+        "three"
+      ]
+    },
+    {
+      "file": "src/pages\\CalculusConceptStudio.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/pages\\CalculusDerivativeApplicationsStudio.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/pages\\CalculusDerivativesStudio.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/pages\\CalculusIntegrationStudio.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/pages\\CalculusIntegrationTechniquesStudio.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/pages\\CalculusLimitsStudio.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/pages\\CalculusMultivariableStudio.tsx",
+      "families": [
+        "svg",
+        "three"
+      ]
+    },
+    {
+      "file": "src/pages\\CalculusStudio.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/pages\\CircleToTriangleVisualization.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/pages\\ConceptDependencyGraph.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/pages\\DerivativesFormulaStudio.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/pages\\DerivativesTangentVisualizer.tsx",
+      "families": [
+        "svg",
+        "three"
+      ]
+    },
+    {
+      "file": "src/pages\\EigenvectorsVisualizerPage.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/pages\\EngineeringMath.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/pages\\FormulasWorkspace.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/pages\\FormulaVisualizerPage.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/pages\\FourierSeriesAnimator.tsx",
+      "families": [
+        "svg",
+        "recharts"
+      ]
+    },
+    {
+      "file": "src/pages\\FourierSeriesVisualizerPage.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/pages\\Geometry.tsx",
+      "families": [
+        "svg",
+        "three"
+      ]
+    },
+    {
+      "file": "src/pages\\GeometryConceptPage.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/pages\\GraphComparisonMode.tsx",
+      "families": [
+        "recharts"
+      ]
+    },
+    {
+      "file": "src/pages\\Home.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/pages\\IntegrationAreaVisualizerPage.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/pages\\IntegrationFormulaStudio.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/pages\\LimitsContinuityVisualizer.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/pages\\MathematicalModellingStudio.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/pages\\MathLab3DGraphing.tsx",
+      "families": [
+        "svg",
+        "three"
+      ]
+    },
+    {
+      "file": "src/pages\\MathLabConicSolver.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/pages\\MathLabFunctionExplorer.tsx",
+      "families": [
+        "functionCanvas",
+        "graphSampler"
+      ]
+    },
+    {
+      "file": "src/pages\\MathLabGraphingCalculator.tsx",
+      "families": [
+        "svg",
+        "functionCanvas",
+        "graphSampler"
+      ]
+    },
+    {
+      "file": "src/pages\\MathLabLinearAlgebra.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/pages\\MathLabProbability.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/pages\\MathVisualDictionary.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/pages\\MathVisualizationPage.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/pages\\MathWorkspace.tsx",
+      "families": [
+        "svg",
+        "three",
+        "functionCanvas",
+        "graphSampler"
+      ]
+    },
+    {
+      "file": "src/pages\\MatrixOperationPage.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/pages\\MatrixTransformationsVisualizerPage.tsx",
+      "families": [
+        "svg",
+        "three"
+      ]
+    },
+    {
+      "file": "src/pages\\NCERTConceptPage.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/pages\\NumberSystems.tsx",
+      "families": [
+        "svg",
+        "three"
+      ]
+    },
+    {
+      "file": "src/pages\\ParametricCurveExplorer.tsx",
+      "families": [
+        "recharts"
+      ]
+    },
+    {
+      "file": "src/pages\\PermutationsCombinationsVisualizer.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/pages\\Phase5MathEnvironmentPage.tsx",
+      "families": [
+        "three"
+      ]
+    },
+    {
+      "file": "src/pages\\PolarCoordinatesVisualizer.tsx",
+      "families": [
+        "recharts"
+      ]
+    },
+    {
+      "file": "src/pages\\ShapesExplorer.tsx",
+      "families": [
+        "svg",
+        "three"
+      ]
+    },
+    {
+      "file": "src/pages\\SlopeFieldsVisualizerPage.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/pages\\SurfacePlotter3D.tsx",
+      "families": [
+        "three"
+      ]
+    },
+    {
+      "file": "src/pages\\SyllabusUnitConceptPage.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/pages\\SyllabusVisualPage.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/pages\\TheoremLibraryPage.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/pages\\TrigonometryConceptPage.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/pages\\UniversalMathDocumentPage.tsx",
+      "families": [
+        "svg",
+        "graphSampler"
+      ]
+    },
+    {
+      "file": "src/pages\\WorkspaceHome.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/problem-solver\\ProblemGraph.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/truth-layer\\registry.ts",
+      "families": [
+        "graphSampler"
+      ]
+    },
+    {
+      "file": "src/workspace\\dynamicWorkspaceEngine.ts",
+      "families": [
+        "graphSampler"
+      ]
+    },
+    {
+      "file": "src/workspace\\graphingWorkflowRegression.test.ts",
+      "families": [
+        "graphSampler"
+      ]
+    },
+    {
+      "file": "src/workspace\\graphSampler.test.ts",
+      "families": [
+        "graphSampler"
+      ]
+    },
+    {
+      "file": "src/workspace\\graphValidation.ts",
+      "families": [
+        "graphSampler"
+      ]
+    },
+    {
+      "file": "src/components\\charts\\PremierDistributionChart.tsx",
+      "families": [
+        "svg",
+        "d3"
+      ]
+    },
+    {
+      "file": "src/components\\charts\\ResponsiveBarChart.tsx",
+      "families": [
+        "recharts"
+      ]
+    },
+    {
+      "file": "src/components\\charts\\ResponsiveLineChart.tsx",
+      "families": [
+        "recharts"
+      ]
+    },
+    {
+      "file": "src/components\\charts\\ResponsiveScatterChart.tsx",
+      "families": [
+        "recharts"
+      ]
+    },
+    {
+      "file": "src/components\\engineering\\EngineeringLiveSystemsPanel.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/components\\home\\InteractiveMathHero.tsx",
+      "families": [
+        "three"
+      ]
+    },
+    {
+      "file": "src/components\\inquiry\\InquirySimulationLabs.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/components\\math-lab\\FunctionGraphCanvas.tsx",
+      "families": [
+        "svg",
+        "functionCanvas",
+        "graphSampler"
+      ]
+    },
+    {
+      "file": "src/components\\matrix\\MatrixTransformationCanvas.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/components\\three\\AxisLabel.tsx",
+      "families": [
+        "three"
+      ]
+    },
+    {
+      "file": "src/components\\three\\ThreeSceneWrapper.tsx",
+      "families": [
+        "three"
+      ]
+    },
+    {
+      "file": "src/components\\ui\\ApplicationVisualCard.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/components\\ui\\DashboardCard.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/components\\ui\\VisualizationTools.tsx",
+      "families": [
+        "canvas"
+      ]
+    },
+    {
+      "file": "src/components\\workspace\\CasSpreadsheetStudio.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\algebraic-structures\\AlgebraicStructuresModule.tsx",
+      "families": [
+        "svg",
+        "d3"
+      ]
+    },
+    {
+      "file": "src/modules\\board\\BoardCanvas.tsx",
+      "families": [
+        "canvas"
+      ]
+    },
+    {
+      "file": "src/modules\\board\\boardEngineAdapters.test.ts",
+      "families": [
+        "functionCanvas",
+        "graphSampler"
+      ]
+    },
+    {
+      "file": "src/modules\\board\\boardEngineAdapters.ts",
+      "families": [
+        "functionCanvas",
+        "graphSampler"
+      ]
+    },
+    {
+      "file": "src/modules\\board\\BoardResultCard.tsx",
+      "families": [
+        "functionCanvas"
+      ]
+    },
+    {
+      "file": "src/modules\\combinatorics\\CombinatoricsModule.tsx",
+      "families": [
+        "svg",
+        "canvas"
+      ]
+    },
+    {
+      "file": "src/modules\\discrete-world\\DiscreteWorldModule.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\graph-theory\\graphTheoryEngine.ts",
+      "families": [
+        "cytoscape"
+      ]
+    },
+    {
+      "file": "src/modules\\graph-theory\\GraphTheoryModule.tsx",
+      "families": [
+        "svg",
+        "d3",
+        "cytoscape"
+      ]
+    },
+    {
+      "file": "src/modules\\magic-maths\\MagicMathsModule.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\mathematical-logic\\MathematicalLogicModule.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\set-theory\\SetTheoryModule.tsx",
+      "families": [
+        "svg",
+        "d3"
+      ]
+    },
+    {
+      "file": "src/trigonometry\\pages\\TrigFormulaVisualizerPage.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/utils\\mathEngine\\coreEngines.test.ts",
+      "families": [
+        "graphSampler"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\components\\GeometryProofThumbnail.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\data\\visualProofsPhaseTen.test.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\pages\\VisualProofsHomePage.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\VisualProofBlueprintProof.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\utils\\visualProofExportUtils.test.ts",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\utils\\visualProofExportUtils.ts",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visualizations\\ai\\GPSTriangulationVisualizer.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visualizations\\ai\\GradientDescentVisualizer.tsx",
+      "families": [
+        "recharts"
+      ]
+    },
+    {
+      "file": "src/visualizations\\ai\\NeuralNetworkVisualizer.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visualizations\\ai\\SignalProcessingVisualizer.tsx",
+      "families": [
+        "recharts"
+      ]
+    },
+    {
+      "file": "src/visualizations\\algebra\\LinearEquationVisualizer.tsx",
+      "families": [
+        "recharts"
+      ]
+    },
+    {
+      "file": "src/visualizations\\algebra\\QuadraticEquationVisualizer.tsx",
+      "families": [
+        "recharts"
+      ]
+    },
+    {
+      "file": "src/visualizations\\algebra\\SimultaneousEquationsVisualizer.tsx",
+      "families": [
+        "recharts"
+      ]
+    },
+    {
+      "file": "src/visualizations\\calculus\\CalculusConceptAtlas.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visualizations\\calculus\\CalculusFundamentalsProblems.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visualizations\\calculus\\DerivativeSlopeVisualizer.tsx",
+      "families": [
+        "recharts"
+      ]
+    },
+    {
+      "file": "src/visualizations\\calculus\\IntegrationAreaVisualizer.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visualizations\\calculus\\LimitsVisualizer.tsx",
+      "families": [
+        "recharts"
+      ]
+    },
+    {
+      "file": "src/visualizations\\calculus\\SeriesBlockAccumulation.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visualizations\\complex\\ComplexMultiplicationVisualizer.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visualizations\\complex\\ComplexPlaneVisualizer.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visualizations\\complex\\EulerFormula2D.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visualizations\\complex\\EulerFormula3D.tsx",
+      "families": [
+        "three"
+      ]
+    },
+    {
+      "file": "src/visualizations\\complex\\EulerIdentityAnimation.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visualizations\\formulas\\FormulaVisualizationAtlas.tsx",
+      "families": [
+        "svg",
+        "three"
+      ]
+    },
+    {
+      "file": "src/visualizations\\geometry\\CircleExplorer.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visualizations\\geometry\\GeometryTheoremVisualizers.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visualizations\\geometry\\PythagorasVisualizer.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visualizations\\geometry\\Shape3DExplorer.tsx",
+      "families": [
+        "three"
+      ]
+    },
+    {
+      "file": "src/visualizations\\geometry\\TriangleExplorer.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visualizations\\linear-algebra\\EigenvectorVisualizer.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visualizations\\linear-algebra\\MatrixTransformationVisualizer.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visualizations\\linear-algebra\\VectorVisualizer.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visualizations\\trigonometry\\AngleSumDifferenceVisualizer.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visualizations\\trigonometry\\CoreIdentityProofVisualizer.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visualizations\\trigonometry\\DoubleHalfAngleVisualizer.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visualizations\\trigonometry\\EclipseTrigonometryVisualizer.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visualizations\\trigonometry\\InverseTrigVisualizer.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visualizations\\trigonometry\\SineCosineWaveVisualizer.tsx",
+      "families": [
+        "svg",
+        "recharts"
+      ]
+    },
+    {
+      "file": "src/visualizations\\trigonometry\\TriangleCircleRatioVisualizer.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visualizations\\trigonometry\\TrigConcept3DView.tsx",
+      "families": [
+        "three"
+      ]
+    },
+    {
+      "file": "src/visualizations\\trigonometry\\TrigGraphStudio.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visualizations\\trigonometry\\TrigonometricFunctionsVisualizer.tsx",
+      "families": [
+        "svg",
+        "three"
+      ]
+    },
+    {
+      "file": "src/visualizations\\trigonometry\\TrigonometryMathLab.tsx",
+      "families": [
+        "svg",
+        "three"
+      ]
+    },
+    {
+      "file": "src/visualizations\\trigonometry\\TrigPracticeChallengeSystem.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visualizations\\trigonometry\\UnitCircleMasterVisualizer.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visualizations\\trigonometry\\UnitCircleVisualizer.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visualizations\\trigonometry\\WaveApplications.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/components\\ncert\\class10\\Class10BoardExamLabs.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/components\\ncert\\class12\\Class12GuidedLabs.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/components\\ncert\\grade7\\Grade7ConstructionsTilingsLab.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/components\\ncert\\grade7\\Grade7LinesTrianglesLab.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/components\\ncert\\grade7\\Grade7ManipulativeLab.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/components\\ncert\\grade8\\Grade8FractalsSolidViewsLab.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/components\\ncert\\grade8\\Grade8ProportionalReasoningLab.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/components\\workspace\\panels\\GeometryWorkspacePanel.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/components\\workspace\\panels\\graphPanelUtils.ts",
+      "families": [
+        "graphSampler"
+      ]
+    },
+    {
+      "file": "src/components\\workspace\\panels\\GraphWorkspacePanel.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\AbsoluteValueEquationsTargetLesson121.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\AbsoluteValueFunctionsTargetLesson141.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\AbsoluteValueTargetLesson14.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\AlgebraicInputTargetLesson28.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\AlgebraLessonAdapter.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\AngleBetweenLinesTargetLesson176.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\AngleBisectorTargetLesson211.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\AngleMeasurementTargetLesson257.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\AngleSlidersTargetLesson23.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\AngleTargetLesson232.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\AnimationControlsTargetLesson24.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\AreaTargetLesson231.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\AttachDetachTargetLesson202.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\AuthoringLessonAdapter.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\BarycentricCoordinatesTargetLesson182.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\BaseSystemsTargetLesson73.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\BearingsTargetLesson273.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\BestFitLineTargetLesson213.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\BooleanVariablesTargetLesson36.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\CalculatorLessonAdapter.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\CalculusLessonAdapter.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\CartesianPlaneTargetLesson167.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\CeilingFunctionTargetLesson147.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\CircleCentrePointTargetLesson218.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\CircleCentreRadiusTargetLesson219.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\CircleThreePointsTargetLesson220.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\CircularArcTargetLesson223.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\CircularSectorTargetLesson225.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\CircumcircularArcTargetLesson224.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\CollinearityTestTargetLesson254.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\CombinedTransformationsTargetLesson162.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\CompassTargetLesson221.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\ComplexLessonAdapter.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\ComplexNumbersTargetLesson63.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\ComponentFormTargetLesson184.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\CompositeFunctionsTargetLesson150.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\CompositeTransformationsTargetLesson243.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\CompoundAngleTargetLesson267.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\CompoundInequalitiesTargetLesson123.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\ConcurrencyTestTargetLesson255.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\ConcyclicityTestTargetLesson256.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\ConicFivePointsTargetLesson226.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\ConjectureTestingTargetLesson252.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\ConstantsLibraryTargetLesson16.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\ConstructionStepsTargetLesson235.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\ContinuedFractionsTargetLesson74.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\CoordinateLociTargetLesson178.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\CoordinateTransformationsTargetLesson179.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\CosineGraphTargetLesson262.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\CosineRuleTargetLesson271.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\CrossProductTargetLesson191.tsx",
+      "families": [
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\CubeRootFunctionsTargetLesson140.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\CubicFunctionsTargetLesson135.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\DependentObjectsTargetLesson25.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\DilationPointTargetLesson241.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\DirectProportionTargetLesson85.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\DistanceBetweenPointsTargetLesson169.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\DistanceLengthTargetLesson230.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\DomainRangeTargetLesson130.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\DotProductTargetLesson190.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\DoubleHalfAngleTargetLesson268.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\DynamicLabelsTargetLesson27.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\DynamicTraceTargetLesson251.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\ElevationDepressionTargetLesson274.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\EllipseTargetLesson227.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\EnvelopeLinesTargetLesson250.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\EquationInputTargetLesson30.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\EquationLineTargetLesson173.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\EquidistantLociTargetLesson248.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\EvenOddFunctionsTargetLesson152.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\ExactDecimalModesTargetLesson18.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\ExactProofTargetLesson253.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\ExactTrigValuesTargetLesson260.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\ExpandingBracketsTargetLesson95.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\ExponentialEquationsTargetLesson118.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\ExponentialFunctionsTargetLesson142.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\FixedAngleTargetLesson233.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\FloorFunctionTargetLesson146.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\ForceVectorsTargetLesson197.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\FractionModelsTargetLesson75.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\FreePointTargetLesson198.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\FunctionConceptTargetLesson129.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\FunctionNotationTargetLesson131.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\GeneralPolygonTargetLesson217.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\Geometry2DLessonAdapter.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\GradientSlopeTargetLesson172.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\GraphLessonAdapter.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\GraphMatchingTargetLesson166.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\HarmonicMotionTargetLesson275.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\HigherDegreePolynomialsTargetLesson136.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\HorizontalStretchCompressionTargetLesson159.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\HorizontalTranslationTargetLesson157.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\HyperbolaTargetLesson228.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\HyperbolicFunctionsTargetLesson12.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\HyperbolicFunctionsTargetLesson145.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\IncreasingDecreasingTargetLesson153.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\InequalityInputTargetLesson31.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\InferenceLessonAdapter.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\IntegerSlidersTargetLesson22.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\InvariantsTargetLesson245.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\InverseFunctionsTargetLesson151.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\InverseProportionTargetLesson86.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\InverseTrigonometryTargetLesson11.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\InverseTrigTargetLesson265.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\IrrationalNumbersTargetLesson61.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\LcmTargetLesson70.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\LearningLessonAdapter.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\LinearCombinationsTargetLesson193.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\LinearEquationsTargetLesson111.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\LinearFunctionsTargetLesson133.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\LinearInequalitiesTargetLesson122.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\LineThroughTwoPointsTargetLesson203.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\ListsTargetLesson32.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\LocusGeneratorTargetLesson247.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\LogarithmicFunctionsTargetLesson143.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\MagnitudeUnitVectorsTargetLesson189.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\MatricesTargetLesson33.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\MatrixTransformationTargetLesson242.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\MidpointTargetLesson170.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\ModularArithmeticTargetLesson72.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\MovingLinkageLociTargetLesson249.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\MultiplesTargetLesson66.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\NumberLessonAdapter.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\NumericalSolverTargetLesson128.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\ObjectRedefinitionTargetLesson29.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\ParabolaTargetLesson229.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\ParallelLinesTargetLesson174.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\ParallelLineTargetLesson209.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\ParameterExplorerTargetLesson164.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\ParametricCoordinatesTargetLesson181.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\ParentFunctionLibraryTargetLesson165.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\PeriodicFunctionsTargetLesson154.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\PerpendicularBisectorTargetLesson210.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\PerpendicularLinesTargetLesson175.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\PerpendicularLineTargetLesson208.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\PiecewiseDefinitionsTargetLesson35.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\PiecewiseFunctionsTargetLesson149.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\PlatformLessonAdapter.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\PlottingPointsTargetLesson168.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\PointLineDistanceTargetLesson177.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\PointOnObjectTargetLesson199.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\PolarCoordinatesTargetLesson180.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\PolarTrigonometryTargetLesson276.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\PolylineTargetLesson207.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\PolynomialEquationsTargetLesson115.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\PolynomialInequalitiesTargetLesson125.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\PositionVectorsTargetLesson185.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\PrimeFactorisationTargetLesson68.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\ProbabilityLessonAdapter.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\QuadraticEquationsTargetLesson114.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\QuadraticFunctionsTargetLesson134.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\QuadraticInequalitiesTargetLesson124.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\RadicalEquationsTargetLesson117.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\RationalEquationsTargetLesson116.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\RationalFunctionsTargetLesson138.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\RayTargetLesson206.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\ReciprocalFunctionsTargetLesson137.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\ReciprocalTrigTargetLesson264.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\RecursiveFunctionsTargetLesson155.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\ReflectionCircleTargetLesson239.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\ReflectionLineTargetLesson237.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\ReflectionPointTargetLesson238.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\ReflectionXAxisTargetLesson160.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\ReflectionYAxisTargetLesson161.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\RegularPolygonTargetLesson215.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\RelationCheckerTargetLesson234.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\RelativeMotionTargetLesson196.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\RightTriangleRatiosTargetLesson259.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\RigidPolygonTargetLesson216.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\RotationPointTargetLesson240.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\ScalarMultiplicationTargetLesson188.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\ScaleDrawingsTargetLesson91.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\SectionFormulaTargetLesson171.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\SegmentGivenLengthTargetLesson205.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\SegmentTargetLesson204.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\SemicircleTargetLesson222.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\SequencesTargetLesson34.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\SignFunctionTargetLesson148.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\SimultaneousLinearEquationsTargetLesson112.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\SineGraphTargetLesson261.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\SineRuleTargetLesson270.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\SliderComponentTargetLesson618.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\SquareRootFunctionsTargetLesson139.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\StatisticsLessonAdapter.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\SymmetryExplorerTargetLesson246.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\SystemsInequalitiesTargetLesson127.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\TangentGraphTargetLesson263.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\TangentTargetLesson212.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\ThreeVariableSystemsTargetLesson113.tsx",
+      "families": [
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\TransformationMappingTargetLesson244.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\TransformationOrderTargetLesson163.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\TranslationVectorTargetLesson236.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\TriangleAreaTargetLesson272.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\TriangleConstructorTargetLesson214.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\TrigEquationsTargetLesson269.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\TrigIdentitiesTargetLesson266.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\TrigonometricCalculatorTargetLesson10.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\TrigonometricEquationsTargetLesson120.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\TrigonometricFunctionsTargetLesson144.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\TrigonometryLessonAdapter.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\TwoVariableInequalitiesTargetLesson126.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\UnitCircleTargetLesson258.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\VectorAdditionTargetLesson186.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\VectorIntroductionTargetLesson183.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\VectorLessonAdapter.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\VectorLineTargetLesson194.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\VectorPlaneTargetLesson195.tsx",
+      "families": [
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\VectorProjectionTargetLesson192.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\VectorSubtractionTargetLesson187.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\VerticalLineTestTargetLesson132.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\VerticalStretchCompressionTargetLesson158.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\VerticalTranslationTargetLesson156.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\WholeNumbersTargetLesson58.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\components\\AdvancedLessonInteractiveLab.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\components\\LessonShell.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\components\\ReusableLessonEngine.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\components\\SchoolLessonInteractiveLab.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\components\\SchoolProofMiniTool.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\pages\\LearnDiscoveryPage.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\pages\\LessonsHomePage.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\AasCongruenceTargetLesson10068.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\AbsoluteExtremaTargetLesson10178.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\AlternateInteriorTargetLesson10061.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\AngleBisectorTargetLesson10025.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\AngleDepressionTargetLesson10099.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\AngleElevationTargetLesson10098.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\AngleSemicircleTargetLesson10092.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\AnglesSameSegmentTargetLesson10093.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\AngleSubtendedArcTargetLesson10091.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\AreaBetweenCurvesTargetLesson10185.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\AreaUnderCurveTargetLesson10184.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\AsaCongruenceTargetLesson10067.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\AxiomTheoremTargetLesson10056.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\BarGraphTargetLesson10007.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\BinomialApproximationTargetLesson10138.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\CartesianLineTargetLesson10156.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\CollinearityCoordinateAreaTargetLesson10088.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\CombinedSolidsTargetLesson10111.tsx",
+      "families": [
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\ConicIdentificationTargetLesson10151.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\ContinuityIntervalTargetLesson10167.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\ContinuityPointTargetLesson10166.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\CoordinateHeronTargetLesson10081.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\CoordinateTriangleAreaTargetLesson10087.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\CopyAngleTargetLesson10023.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\CopyLineSegmentTargetLesson10022.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\CorrespondingAnglesTargetLesson10060.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\CramersRuleTargetLesson10198.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\CubicIdentitiesTargetLesson10051.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\CyclicQuadrilateralTargetLesson10094.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\DefiniteIntegralPropertiesTargetLesson10183.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\DeterminantAreaTargetLesson10196.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\DifferentiabilityContinuityTargetLesson10171.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\DifferentialsApproximationTargetLesson10179.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\DirectionCosinesTargetLesson10153.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\DirectionFieldsTargetLesson10192.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\DirectionRatiosTargetLesson10152.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\DistanceFormulaTargetLesson10083.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\DoubleBarGraphTargetLesson10032.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\EccentricityTargetLesson10145.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\EllipseStandardFormsTargetLesson10143.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\EllipseTangentTargetLesson10149.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\EqualChordsAnglesTargetLesson10089.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\EqualSidesAnglesTargetLesson10071.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\EquivalenceRelationsTargetLesson10116.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\ErrorBoundsTargetLesson10004.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\EstimationRoundingTargetLesson10003.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\EuclidPostulatesTargetLesson10054.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\ExteriorAngleTargetLesson10065.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\ExternalSectionFormulaTargetLesson10086.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\FactorTheoremTargetLesson10049.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\FifthPostulateEquivalenceTargetLesson10055.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\FlowchartLogicTargetLesson10035.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\FocusDirectrixTargetLesson10142.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\FormationDifferentialEquationsTargetLesson10186.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\FrustumConeTargetLesson10110.tsx",
+      "families": [
+        "svg",
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\GeneralParticularSolutionsTargetLesson10191.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\GraphicalZerosTargetLesson10046.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\GroupedMeanAssumedTargetLesson10103.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\GroupedMeanDirectTargetLesson10102.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\GroupedMeanStepTargetLesson10104.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\HeronFormulaTargetLesson10079.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\HomogeneousFirstOrderTargetLesson10189.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\HyperbolaStandardFormsTargetLesson10144.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\HyperbolaTangentTargetLesson10150.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\IncreasingDecreasingTargetLesson10176.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\InductionBaseStepTargetLesson10129.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\InfiniteDiscontinuityTargetLesson10170.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\IntegrationByPartsTargetLesson10181.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\IntegrationSubstitutionTargetLesson10180.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\InterceptPlaneTargetLesson10161.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\InternalSectionFormulaTargetLesson10085.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\IntoFunctionsTargetLesson10119.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\InvertibleFunctionsTargetLesson10122.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\JumpDiscontinuityTargetLesson10169.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\LagrangeMvtTargetLesson10173.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\LessThanCumulativeTargetLesson10105.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\LessThanOgiveTargetLesson10107.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\LinearFirstOrderTargetLesson10190.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\LinearPairTargetLesson10059.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\LinearSystemConsistencyTargetLesson10199.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\LinearSystemsMatricesTargetLesson10197.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\LinePlaneAngleTargetLesson10164.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\LineTwoPoints3DTargetLesson10154.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\LocalExtremaTargetLesson10177.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\ManyOneFunctionsTargetLesson10118.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\MeanMedianModePathTargetLesson10033.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\MedianOgiveTargetLesson10109.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\MidpointConverseTargetLesson10078.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\MidpointFormulaTargetLesson10084.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\MidpointTheoremTargetLesson10077.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\MisleadingGraphTargetLesson10009.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\MoreThanCumulativeTargetLesson10106.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\MoreThanOgiveTargetLesson10108.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\OneOneFunctionsTargetLesson10117.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\OneSidedLimitsTargetLesson10165.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\OntoFunctionsTargetLesson10120.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\OppositeCyclicAnglesTargetLesson10095.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\ParabolaNormalTargetLesson10148.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\ParabolaStandardFormsTargetLesson10141.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\ParabolaTangentTargetLesson10147.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\ParallelConverseTargetLesson10063.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\ParallelLineTargetLesson10027.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\ParallelogramAnglesTargetLesson10074.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\ParallelogramConditionsTargetLesson10076.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\ParallelogramDiagonalsTargetLesson10075.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\ParallelogramSidesTargetLesson10073.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\ParametricCoordinatesTargetLesson10146.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\PartialFractionsTargetLesson10182.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\PascalIdentityTargetLesson10139.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\PerpendicularBisectorTargetLesson10024.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\PerpendicularCentreChordTargetLesson10090.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\PerpendicularPointTargetLesson10026.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\PlaneAngleTargetLesson10163.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\PlaneEquationTargetLesson10159.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\PointNormalFormTargetLesson10160.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\PointPlaneDistanceTargetLesson10162.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\PrincipalSolutionsTargetLesson10127.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\ProofStructureTargetLesson10057.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\RangeSpreadTargetLesson10034.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\RateOfChangeTargetLesson10174.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\RatioTableTargetLesson10017.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\ReflexiveRelationsTargetLesson10113.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\RemainderTargetLesson10015.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\RemainderTheoremTargetLesson10048.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\RemovableDiscontinuityTargetLesson10168.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\RhsCongruenceTargetLesson10070.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\RightTriangleRhsTargetLesson10031.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\RollesTheoremTargetLesson10172.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\RouteMapTargetLesson10038.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\SameSideInteriorTargetLesson10062.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\SasCongruenceTargetLesson10066.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\ScaleFactorTargetLesson10021.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\SemiPerimeterTargetLesson10080.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\ShadowLengthTargetLesson10100.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\ShortestDistanceLinesTargetLesson10158.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\SkewLinesTargetLesson10157.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\SssCongruenceTargetLesson10069.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\SumFormulaInductionTargetLesson10130.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\SurveyFrequencyTargetLesson10008.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\SymmetricRelationsTargetLesson10114.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\TangentLengthsExternalTargetLesson10097.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\TangentPerpendicularTargetLesson10096.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\TangentsNormalsTargetLesson10175.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\TransitiveRelationsTargetLesson10115.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\TriangleAngleSumTargetLesson10064.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\TriangleAsaTargetLesson10030.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\TriangleInequalityTargetLesson10072.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\TriangleSasTargetLesson10029.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\TriangleSssTargetLesson10028.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\TrigDomainRangeTargetLesson10124.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\TrigGeneralSolutionsTargetLesson10126.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\TrigTransformTargetLesson10125.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\TwoObserverHeightTargetLesson10101.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\TypesRelationsTargetLesson10112.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\UnitRateTargetLesson10016.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\VariableSeparableEquationsTargetLesson10188.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\VectorEquationLineTargetLesson10155.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\VerticalAnglesTargetLesson10058.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\schoolTargets\\ZerosCoefficientsTargetLesson10050.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\probability-statistics\\pages\\ProbabilityStatisticsPhaseThreePage.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\probability-statistics\\pages\\ProbabilityStatisticsPhaseTwoPage.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\probability-statistics\\pages\\StatisticsSyllabusCompletionPage.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/trigonometry\\components\\formula-visualizer\\FormulaComparisonGraph.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/trigonometry\\components\\formula-visualizer\\IdentityProofPanel.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/trigonometry\\components\\formula-visualizer\\UnitCircleFormulaVisualizer.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\algebra\\AbsoluteValueInequalityMobileProof.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\algebra\\AlgebraProofTemplate.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\algebra\\EquationBalanceMobileProof.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\algebra\\SquareBinomialMobileProof.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\calculus\\CalculusProofTemplate.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\calculus\\DerivativeSlopeMobileProof.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\calculus\\EpsilonDeltaMobileProof.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\calculus\\IntegralAccumulatedAreaMobileProof.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\coordinate-geometry\\CoordinateProofTemplate.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\coordinate-geometry\\SlopeTrianglesMobileProof.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\geometry\\CenterCircumferenceAnglesProof.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\geometry\\CircleRatioMobileProof.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\geometry\\CircleSectorsMobileProof.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\geometry\\GeometryProofTemplate.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\geometry\\IntersectingChordsMobileProof.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\geometry\\OrthographicProjectionFromCubeStacksProof.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\geometry\\ParallelogramCutSlideMobileProof.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\geometry\\PolygonTriangulationMobileProof.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\geometry\\PythagoreanRearrangementMobileProof.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\geometry\\ShearAreaMobileProof.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\geometry\\SimilarTriangleRatiosMobileProof.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\geometry\\TrapezoidDoublingMobileProof.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\geometry\\TriangleAngleSumMobileProof.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\geometry\\TriangleAreaDissectionMobileProof.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\matrices-linear-algebra\\EigenvectorDirectionMobileProof.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\matrices-linear-algebra\\MatrixAreaMobileProof.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\number-theory\\AdditionModuloNMobileProof.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\number-theory\\CompositeFactorSqrtMobileProof.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\number-theory\\CongruenceClockMobileProof.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\number-theory\\FundamentalArithmeticUniqueMobileProof.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\number-theory\\ModularArithmeticClockMobileProof.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\number-theory\\MultiplesNumberLineMobileProof.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\number-theory\\MultiplicationModuloNMobileProof.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\number-theory\\NegativeNumbersModuloNMobileProof.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\number-theory\\NumberTheoryProofTemplate.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\number-theory\\PrimeGapsExplorerMobileProof.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\phase-eight\\PhaseEightCoordinateVisualModels.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\phase-eighteen\\PhaseEighteenStatisticsVisualModels.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\phase-eleven\\PhaseElevenGeometryVisualModels.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\phase-fifteen\\PhaseFifteenCalculusVisualModels.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\phase-five\\PhaseFiveTrigVisualModels.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\phase-four\\PhaseFourVisualModels.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\phase-fourteen\\PhaseFourteenCalculusVisualModels.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\phase-nineteen\\PhaseNineteenMatrixVisualModels.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\phase-seven\\PhaseSevenTrigVisualModels.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\phase-seventeen\\PhaseSeventeenProbabilityVisualModels.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\phase-six\\PhaseSixTrigVisualModels.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\phase-sixteen\\PhaseSixteenNumberTheoryVisualModels.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\phase-thirteen\\PhaseThirteenSequenceVisualModels.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\phase-twelve\\PhaseTwelveAlgebraVisualModels.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\phase-twenty\\PhaseTwentyVectorVisualModels.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\phase-twenty-five\\PhaseTwentyFiveLogExponentVisualModels.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\phase-twenty-four\\PhaseTwentyFourInequalityVisualModels.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\phase-twenty-one\\PhaseTwentyOneComplexVisualModels.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\phase-twenty-seven\\PhaseTwentySevenEngineeringVisualModels.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\phase-twenty-six\\PhaseTwentySixTransformationVisualModels.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\phase-twenty-three\\PhaseTwentyThreeConicVisualModels.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\phase-twenty-two\\PhaseTwentyTwoMensurationVisualModels.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\phase-two\\PhaseTwoVisualModels.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\probability\\CountingPathsMobileProof.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\probability\\DeMorgansMobileProof.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\ratios\\RatioProofModels.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\sequences-series\\ArithmeticSequenceSumMobileProof.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\sequences-series\\ConsecutiveIntegersMobileProof.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\sequences-series\\DifferenceSquaresMobileProof.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\sequences-series\\EvenNumbersSumMobileProof.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\sequences-series\\NaturalSumMobileProof.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\sequences-series\\OddSquarePatternMobileProof.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\sequences-series\\OddSquaresMobileProof.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\sequences-series\\SequenceSeriesProofTemplate.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\sequences-series\\SierpinskiRetainedAreaProof.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\sequences-series\\SquareOddSumsMobileProof.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\sequences-series\\TriangularNumbersMobileProof.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\statistics\\AnscombeQuartetMobileProof.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\statistics\\NormalProbabilityMobileProof.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\trigonometry\\LawOfCosinesCircleConstructionProof.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\trigonometry\\TrigProofTemplate.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\trigonometry\\UnitCircleIdentityMobileProof.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/visual-proofs\\proofs\\vectors\\VectorAdditionMobileProof.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\AccumulationFunctionsTargetLesson322.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\ArcLengthTargetLesson320.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\AreaBetweenCurvesTargetLesson311.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\AreaRectanglesTargetLesson306.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\AverageRateTargetLesson284.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\ChainRuleTargetLesson293.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\ChaosBifurcationTargetLesson333.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\CobwebDiagramsTargetLesson332.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\ConcavityTargetLesson299.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\ContinuityAtPointTargetLesson281.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\CriticalPointsTargetLesson296.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\DefiniteIntegralTargetLesson308.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\DerivativeFirstPrinciplesTargetLesson286.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\DerivativeGraphTargetLesson289.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\DirectionFieldsTargetLesson323.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\DiscreteDynamicalSystemsTargetLesson331.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\DiscWasherTargetLesson318.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\EpsilonDeltaTargetLesson283.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\EquilibriumStabilityTargetLesson330.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\EulerMethodTargetLesson324.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\FirstOrderLinearTargetLesson326.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\FundamentalTheoremTargetLesson310.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\HigherDerivativesTargetLesson290.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\ImplicitDifferentiationTargetLesson294.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\ImproperIntegralsTargetLesson315.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\IncreasingDecreasingTargetLesson297.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\IndefiniteIntegralTargetLesson309.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\InfiniteLimitsTargetLesson279.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\InflectionPointsTargetLesson300.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\InformalLimitsTargetLesson277.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\InstantaneousRateTargetLesson285.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\IntegralDifferentialMockupLesson.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\IntegrationByPartsTargetLesson313.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\LimitsAtInfinityTargetLesson280.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\LimitsDifferentialMockupLesson.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\LocalGlobalExtremaTargetLesson298.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\LogisticGrowthTargetLesson327.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\MotionAnalysisTargetLesson303.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\NewtonMethodTargetLesson304.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\NormalLineTargetLesson288.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\NumericalIntegrationTargetLesson316.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\OneSidedLimitsTargetLesson278.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\OptimisationTargetLesson301.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\ParametricDifferentiationTargetLesson295.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\PartialFractionsTargetLesson314.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\PhasePlaneTargetLesson329.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\ProductRuleTargetLesson291.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\QuotientRuleTargetLesson292.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\RelatedRatesTargetLesson302.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\RiemannSumsTargetLesson307.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\SecondOrderEquationsTargetLesson328.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\SeparableEquationsTargetLesson325.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\ShellMethodTargetLesson319.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\SubstitutionTargetLesson312.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\SurfaceAreaRevolutionTargetLesson321.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\TangentLineTargetLesson287.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\TaylorPolynomialTargetLesson305.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\TypesOfDiscontinuityTargetLesson282.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\calculus\\VolumeSlicingTargetLesson317.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\cas\\CasToGraphTargetLesson449.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\cas\\ComplexCalculationsTargetLesson445.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\cas\\DifferentialEquationsTargetLesson443.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\cas\\LimitsTargetLesson441.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\cas\\MatrixOperationsTargetLesson444.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\cas\\NumericalSolveTargetLesson434.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\cas\\SeriesExpansionsTargetLesson442.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\cas\\SolveSystemsTargetLesson435.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\cas\\SymbolicCasMockupLesson.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\complex\\ComplexAdditionTargetLesson367.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\complex\\ComplexConjugateTargetLesson369.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\complex\\ComplexFunctionsTargetLesson377.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\complex\\ComplexMultiplicationTargetLesson368.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\complex\\ComplexPlaneTargetLesson365.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\complex\\EulerFormTargetLesson372.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\complex\\MobiusTargetLesson376.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\complex\\ModulusArgumentTargetLesson370.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\complex\\PolarFormTargetLesson371.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\complex\\PolynomialRootsTargetLesson375.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\complex\\PowersTargetLesson373.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\complex\\RealImaginaryTargetLesson366.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\complex\\RootsTargetLesson374.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\discrete\\AdjacencyMatrixTargetLesson581.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\discrete\\BipartiteGraphsTargetLesson577.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\discrete\\CartesianProductTargetLesson585.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\discrete\\ComplementTargetLesson584.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\discrete\\ConnectedComponentsTargetLesson570.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\discrete\\DirectedGraphsTargetLesson566.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\discrete\\DiscreteConceptActivities.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\discrete\\DiscreteP0Activities.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\discrete\\EulerPathsTargetLesson571.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\discrete\\FactorialsTargetLesson557.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\discrete\\GraphColouringTargetLesson576.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\discrete\\HamiltonianPathsTargetLesson572.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\discrete\\LogicalConnectivesTargetLesson588.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\discrete\\MinimumSpanningTreeTargetLesson574.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\discrete\\NetworkFlowTargetLesson579.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\discrete\\PathsCyclesTargetLesson569.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\discrete\\PlanarGraphsTargetLesson578.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\discrete\\PowerSetsTargetLesson586.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\discrete\\SetOperationsTargetLesson583.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\discrete\\ShortestPathTargetLesson575.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\discrete\\TravellingSalespersonTargetLesson580.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\discrete\\TreesTargetLesson573.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\discrete\\VertexDegreeTargetLesson568.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\discrete\\VertexEdgeBuilderTargetLesson565.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\discrete\\WeightedGraphsTargetLesson567.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\finance\\AmortisationTableTargetLesson598.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\finance\\AnnuitiesTargetLesson596.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\finance\\BreakEvenTargetLesson603.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\finance\\CompoundInterestTargetLesson592.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\finance\\DepreciationTargetLesson599.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\finance\\ExponentialLogisticTargetLesson609.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\finance\\FinanceConceptActivity.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\finance\\FutureValueTargetLesson595.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\finance\\InflationTargetLesson600.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\finance\\InvestmentComparisonTargetLesson605.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\finance\\LinearModelsTargetLesson607.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\finance\\LinearProgrammingTargetLesson617.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\finance\\LoansEmiTargetLesson597.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\finance\\ModelBuilderTargetLesson606.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\finance\\ParameterEstimationTargetLesson612.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\finance\\PeriodicModelsTargetLesson610.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\finance\\PiecewiseModelsTargetLesson611.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\finance\\ProfitLossTargetLesson602.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\finance\\QuadraticModelsTargetLesson608.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\finance\\ResidualErrorTargetLesson615.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\finance\\ScenarioComparisonTargetLesson616.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\finance\\SensitivityAnalysisTargetLesson614.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\finance\\SimpleInterestTargetLesson591.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\geometry3d\\AngleLinePlaneTargetLesson388.tsx",
+      "families": [
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\geometry3d\\AngleLinesTargetLesson386.tsx",
+      "families": [
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\geometry3d\\AnglePlanesTargetLesson387.tsx",
+      "families": [
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\geometry3d\\ARPlacementTargetLesson412.tsx",
+      "families": [
+        "svg",
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\geometry3d\\CameraControlsTargetLesson410.tsx",
+      "families": [
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\geometry3d\\ConeTargetLesson398.tsx",
+      "families": [
+        "svg",
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\geometry3d\\ContourCurvesTargetLesson420.tsx",
+      "families": [
+        "svg",
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\geometry3d\\CoordinateSystemTargetLesson378.tsx",
+      "families": [
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\geometry3d\\CrossSectionsTargetLesson405.tsx",
+      "families": [
+        "svg",
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\geometry3d\\CubeTargetLesson391.tsx",
+      "families": [
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\geometry3d\\CuboidTargetLesson392.tsx",
+      "families": [
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\geometry3d\\CylinderTargetLesson397.tsx",
+      "families": [
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\geometry3d\\CylindricalCoordinatesTargetLesson418.tsx",
+      "families": [
+        "svg",
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\geometry3d\\DistanceTargetLesson380.tsx",
+      "families": [
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\geometry3d\\DoubleIntegralsTargetLesson426.tsx",
+      "families": [
+        "svg",
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\geometry3d\\EulerFormulaTargetLesson408.tsx",
+      "families": [
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\geometry3d\\ExtrusionTargetLesson403.tsx",
+      "families": [
+        "svg",
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\geometry3d\\FrustumTargetLesson401.tsx",
+      "families": [
+        "svg",
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\geometry3d\\GradientVectorTargetLesson423.tsx",
+      "families": [
+        "svg",
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\geometry3d\\HemisphereTargetLesson400.tsx",
+      "families": [
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\geometry3d\\ImplicitSurfacesTargetLesson414.tsx",
+      "families": [
+        "svg",
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\geometry3d\\LevelSurfacesTargetLesson421.tsx",
+      "families": [
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\geometry3d\\LinePlaneTargetLesson384.tsx",
+      "families": [
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\geometry3d\\LinesTargetLesson381.tsx",
+      "families": [
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\geometry3d\\MultivariableOptimisationTargetLesson427.tsx",
+      "families": [
+        "svg",
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\geometry3d\\NetsSolidsTargetLesson404.tsx",
+      "families": [
+        "svg",
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\geometry3d\\NormalVectorTargetLesson425.tsx",
+      "families": [
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\geometry3d\\OrthographicViewsTargetLesson411.tsx",
+      "families": [
+        "svg",
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\geometry3d\\ParallelPlanesTargetLesson383.tsx",
+      "families": [
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\geometry3d\\ParametricSurfacesTargetLesson415.tsx",
+      "families": [
+        "svg",
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\geometry3d\\PartialDerivativesTargetLesson422.tsx",
+      "families": [
+        "svg",
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\geometry3d\\PlanePlaneTargetLesson385.tsx",
+      "families": [
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\geometry3d\\PlanesTargetLesson382.tsx",
+      "families": [
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\geometry3d\\PointPlaneDistanceTargetLesson389.tsx",
+      "families": [
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\geometry3d\\PointsTargetLesson379.tsx",
+      "families": [
+        "svg",
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\geometry3d\\PrismTargetLesson393.tsx",
+      "families": [
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\geometry3d\\PyramidTargetLesson394.tsx",
+      "families": [
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\geometry3d\\QuadricSurfacesTargetLesson417.tsx",
+      "families": [
+        "svg",
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\geometry3d\\RegularPolyhedraTargetLesson396.tsx",
+      "families": [
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\geometry3d\\SpaceCurvesTargetLesson416.tsx",
+      "families": [
+        "svg",
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\geometry3d\\SphereTargetLesson399.tsx",
+      "families": [
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\geometry3d\\SphericalCoordinatesTargetLesson419.tsx",
+      "families": [
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\geometry3d\\SurfaceAreaTargetLesson407.tsx",
+      "families": [
+        "svg",
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\geometry3d\\SurfaceFunctionTargetLesson413.tsx",
+      "families": [
+        "svg",
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\geometry3d\\SurfaceRevolutionTargetLesson402.tsx",
+      "families": [
+        "svg",
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\geometry3d\\TangentPlaneTargetLesson424.tsx",
+      "families": [
+        "svg",
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\geometry3d\\TetrahedronTargetLesson395.tsx",
+      "families": [
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\geometry3d\\VectorsTargetLesson390.tsx",
+      "families": [
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\geometry3d\\VolumeTargetLesson406.tsx",
+      "families": [
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\geometry3d\\XRayModeTargetLesson409.tsx",
+      "families": [
+        "three"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\graph\\FunctionMockupLesson.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\matrix\\AugmentedMatricesTargetLesson357.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\matrix\\BasisDimensionTargetLesson360.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\matrix\\DeterminantTargetLesson353.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\matrix\\EigenTargetLesson359.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\matrix\\GramSchmidtTargetLesson363.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\matrix\\IdentityMatrixTargetLesson351.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\matrix\\LeastSquaresTargetLesson364.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\matrix\\LinearIndependenceTargetLesson361.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\matrix\\LinearTransformationsTargetLesson358.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\matrix\\MatrixAdditionTargetLesson348.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\matrix\\MatrixConceptActivity.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\matrix\\MatrixInverseTargetLesson354.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\matrix\\ScalarMultiplicationTargetLesson349.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\matrix\\TransposeTargetLesson352.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\matrix\\VectorSpacesTargetLesson362.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\p0\\PriorityConceptActivities.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\sequence\\ArithmeticSequencesTargetLesson335.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\sequence\\ArithmeticSeriesTargetLesson340.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\sequence\\BinomialSeriesTargetLesson345.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\sequence\\ConvergenceDivergenceTargetLesson342.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\sequence\\FibonacciSequenceTargetLesson338.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\sequence\\GeometricSequencesTargetLesson336.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\sequence\\GeometricSeriesTargetLesson341.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\sequence\\PowerSeriesTargetLesson343.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\sequence\\RecurrenceModellingTargetLesson346.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\sequence\\RecursiveSequencesTargetLesson337.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\sequence\\SequenceConceptActivity.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\sequence\\SequenceGeneratorTargetLesson334.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\sequence\\SigmaNotationTargetLesson339.tsx",
+      "families": [
+        "svg"
+      ]
+    },
+    {
+      "file": "src/modules\\lessons\\adapters\\sequence\\TaylorMaclaurinTargetLesson344.tsx",
+      "families": [
+        "svg"
+      ]
+    }
+  ]
+}

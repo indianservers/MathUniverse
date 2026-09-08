@@ -648,3 +648,36 @@ body:has(.redefinition-page)
     margin-top: 12px;
   }
 }
+
+/* Lesson-only responsive containers for the shared renderers. */
+.redefinition-page,.redefinition-surface,.redefinition-main { height: auto; }
+.redefinition-main { grid-template-columns: minmax(0,660fr) minmax(0,239fr); }
+.redefinition-left { min-width: 0; grid-template-rows: repeat(4,auto); }
+.redefinition-side { min-width: 0; grid-template-rows: repeat(3,auto); align-content:start; }
+.redefinition-page .graph-comparison { grid-template-columns: minmax(0,1fr) minmax(0,1fr); }
+.redefinition-page .comparison-arrow { left:calc(50% - 19px); top:50%; }
+.redefinition-page .dependency-tree > div { height:auto; grid-template-columns:minmax(0,1fr) 70px minmax(0,1fr); gap:8px; }
+.redefinition-page .dependent-table { overflow-x:auto; }
+.redefinition-page .dependent-head,.redefinition-page .dependent-row { min-width:600px; grid-template-columns:28px 125px minmax(0,1fr) minmax(0,1fr) 23px; }
+@media(max-width:1099px) { .redefinition-main { grid-template-columns:minmax(0,1fr); } }
+@media(max-width:700px) {
+  .redefinition-page .redefinition-header { height:auto; margin-bottom:16px; }
+  .redefinition-page .redefinition-header aside { position:static; margin-top:12px; }
+  .redefinition-page .redefinition-header h1 { font-size:28px; line-height:1.2; }
+  .redefinition-page .definition-card > div,.redefinition-page .graph-comparison,.redefinition-page .dependency-tree > div { grid-template-columns:minmax(0,1fr); }
+  .redefinition-page .definition-card input { min-width:0; width:100%; min-height:44px; }
+  .redefinition-page .comparison-arrow { position:static; margin:auto; transform:rotate(90deg); }
+  .redefinition-page .definition-note { height:auto; min-height:44px; }
+  .redefinition-page .tree-arrow { text-align:center; }
+  .redefinition-page .redefinition-footer { height:auto; }
+  .redefinition-page .redefinition-footer nav { position:static; margin-top:12px; flex-wrap:wrap; }
+  .redefinition-page .redefinition-tags { flex-wrap:wrap; }
+}
+/* Retain readable columns inside the table's own scroll area, despite shell min-width normalization. */
+.lesson-page-shell[data-lesson-id="29"] .redefinition-page .dependent-head,
+.lesson-page-shell[data-lesson-id="29"] .redefinition-page .dependent-row { min-width:600px !important; }
+.redefinition-page .redefinition-header { height:auto; margin-bottom:16px; }
+.redefinition-page .redefinition-header > aside { position:static; margin-top:12px; }
+.redefinition-page .definition-card input { background:#fff; color:#0c193a; }
+.redefinition-page .lesson-dependency-level { flex-wrap:wrap; gap:8px; }
+.redefinition-page .lesson-dependency-level:has(> :nth-child(2)) > .lesson-dependency-node { flex:1 1 65px; }

@@ -1,14 +1,15 @@
 import { Lightbulb, RotateCcw, Share2, Sparkles } from "lucide-react";
 import {
   useEffect,
-  useRef,
   useState,
-  type PointerEvent as ReactPointerEvent,
 } from "react";
 import type { LessonAdapterProps } from "../types";
+import { LessonCartesianGraph } from "../graphs/LessonCartesianGraph";
+import { LessonPointPreview } from "../graphs/LessonPointPreview";
 import "./DynamicLabelsTargetLesson27.css";
 
 type Point = { x: number; y: number };
+const GRAPH_VIEW={xMin:-192/32,xMax:(445-192)/32,yMin:(232-463)/32,yMax:232/32};
 const TEMPLATES = [
   "P = ({x}, {y}), distance = {d}",
   "P = ({x}, {y}) | d = {d}",
@@ -31,6 +32,7 @@ export default function DynamicLabelsTargetLesson27({
     [view, setView] = useState(0),
     [shareState, setShareState] = useState("Share"),
     [actions, setActions] = useState(0);
+  const [graphView,setGraphView]=useState(GRAPH_VIEW);
   const touch = () => {
     setActions((value) => value + 1);
     onInteraction();
@@ -56,6 +58,7 @@ export default function DynamicLabelsTargetLesson27({
     return text || "P";
   };
   const reset = () => {
+    setGraphView(GRAPH_VIEW);
     setPoint({ x: 3, y: 2 });
     setTemplate(0);
     setCoordinates(true);
@@ -67,6 +70,7 @@ export default function DynamicLabelsTargetLesson27({
     onInteraction();
   };
   useEffect(() => {
+    setGraphView(GRAPH_VIEW);
     setPoint({ x: 3, y: 2 });
     setTemplate(0);
     setCoordinates(true);
@@ -158,12 +162,13 @@ export default function DynamicLabelsTargetLesson27({
         <main className="labels-main">
           <section className="labels-content">
             <div className="labels-graph-row">
-              <PointGraph
-                point={point}
-                projections={projections}
-                label={labelFor(point)}
-                onPoint={update}
-              />
+              <LessonCartesianGraph title="Point P with dynamic label" view={graphView} onViewChange={setGraphView} onResetView={()=>setGraphView(GRAPH_VIEW)} aspectRatio={445/463}
+                series={projections?[
+                  {id:'x-projection',label:'x projection',color:'#1788ef',dashed:true,dashPattern:'5 3',points:[{x:point.x,y:0},point]},
+                  {id:'y-projection',label:'y projection',color:'#1788ef',dashed:true,dashPattern:'5 3',points:[{x:0,y:point.y},point]},
+                  {id:'distance',label:'Distance from origin',color:'#1788ef',points:[{x:0,y:0},point]},
+                ]:[]}
+                annotations={[{id:'p',...point,label:labelFor(point),color:'#078aa5',testId:'dynamic-label-point-handle',onChange:update,keyboardStep:1}]}/>
               <section className="labels-calculation">
                 <h2>Calculation</h2>
                 <p>
@@ -206,7 +211,7 @@ export default function DynamicLabelsTargetLesson27({
               <section className="preview-card">
                 <h2>Another position preview</h2>
                 <p>Move P to (4, 1)</p>
-                <PreviewGraph label={labelFor(preview)} />
+                <LessonPointPreview label={labelFor(preview)} point={{left:59,top:48}} axes={{left:40,top:55}} color="#079bb7"/>
                 <b>Live label updates:&nbsp; {labelFor(preview)}</b>
               </section>
             </div>
@@ -383,6 +388,7 @@ function Toggle({
       <button
         type="button"
         role="switch"
+        aria-label={label}
         aria-checked={value}
         className={value ? "active" : ""}
         onClick={onToggle}
@@ -392,132 +398,4 @@ function Toggle({
     </label>
   );
 }
-function PointGraph({
-  point,
-  projections,
-  label,
-  onPoint,
-}: {
-  point: Point;
-  projections: boolean;
-  label: string;
-  onPoint: (point: Point) => void;
-}) {
-  const svg = useRef<SVGSVGElement>(null),
-    dragging = useRef(false),
-    map = (p: Point) => ({ x: 192 + p.x * 32, y: 232 - p.y * 32 }),
-    mapped = map(point);
-  const update = (event: ReactPointerEvent<SVGSVGElement>) => {
-    if (!dragging.current || !svg.current) return;
-    const matrix = svg.current.getScreenCTM();
-    if (!matrix) return;
-    const p = new DOMPoint(event.clientX, event.clientY).matrixTransform(
-      matrix.inverse(),
-    );
-    onPoint({ x: (p.x - 192) / 32, y: (232 - p.y) / 32 });
-  };
-  return (
-    <svg
-      ref={svg}
-      className="labels-graph"
-      viewBox="0 0 445 463"
-      role="img"
-      aria-label="Draggable point P with dynamic label"
-      onPointerMove={update}
-      onPointerUp={() => {
-        dragging.current = false;
-      }}
-    >
-      <defs>
-        <pattern
-          id="labels-grid"
-          width="16"
-          height="16"
-          patternUnits="userSpaceOnUse"
-        >
-          <path d="M16 0H0V16" fill="none" stroke="#e8edf1" />
-        </pattern>
-      </defs>
-      <rect width="445" height="463" fill="url(#labels-grid)" />
-      <line className="axis" x1="0" y1="232" x2="445" y2="232" />
-      <line className="axis" x1="192" y1="0" x2="192" y2="463" />
-      {projections ? (
-        <>
-          <line
-            className="projection"
-            x1={mapped.x}
-            y1={mapped.y}
-            x2={mapped.x}
-            y2="232"
-          />
-          <line
-            className="projection"
-            x1="192"
-            y1={mapped.y}
-            x2={mapped.x}
-            y2={mapped.y}
-          />
-          <line
-            className="label-radius-line"
-            x1="192"
-            y1="232"
-            x2={mapped.x}
-            y2={mapped.y}
-          />
-        </>
-      ) : null}
-      <circle
-        data-testid="dynamic-label-point-handle"
-        cx={mapped.x}
-        cy={mapped.y}
-        r="7"
-        onPointerDown={(event) => {
-          dragging.current = true;
-          event.currentTarget.setPointerCapture(event.pointerId);
-        }}
-      />
-      <text className="p-label" x={mapped.x + 8} y={mapped.y - 8}>
-        P
-      </text>
-      <g
-        className="dynamic-callout"
-        transform={`translate(${Math.min(mapped.x + 26, 268)} ${Math.max(mapped.y - 103, 18)})`}
-      >
-        <rect width="170" height="63" rx="8" />
-        <text x="14" y="25">
-          {label.split(/, distance| \| d| -> distance/)[0]}
-        </text>
-        <text x="14" y="48">
-          {label.includes("distance")
-            ? `distance from origin = ${formatDistance(point)}`
-            : label.includes("d =")
-              ? `d = ${formatDistance(point)}`
-              : ""}
-        </text>
-      </g>
-      {Array.from({ length: 13 }, (_, index) => index - 6).map((value) => (
-        <text className="tick" key={value} x={188 + value * 32} y="250">
-          {value}
-        </text>
-      ))}
-      {Array.from({ length: 13 }, (_, index) => index - 6)
-        .filter(Boolean)
-        .map((value) => (
-          <text className="tick" key={`y-${value}`} x="176" y={236 - value * 32}>
-            {value}
-          </text>
-        ))}
-    </svg>
-  );
-}
-function PreviewGraph({ label }: { label: string }) {
-  return (
-    <div className="preview-graph">
-      <span className="axis x" />
-      <span className="axis y" />
-      <i>●</i>
-      <b>P</b>
-      <output>{label}</output>
-    </div>
-  );
-}
+

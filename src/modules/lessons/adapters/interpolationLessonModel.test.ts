@@ -1,0 +1,3 @@
+import { describe, expect, it } from "vitest";
+import { interpolationDefault, interpolationModel } from "./interpolationLessonModel";
+describe("Interpolation model", () => { it("classifies predictions by data range", () => { expect(interpolationModel(interpolationDefault, 5).region).toBe("Interpolation"); expect(interpolationModel(interpolationDefault, 11).region).toBe("Extrapolation"); }); it("widens uncertainty beyond the range", () => { const inside = interpolationModel(interpolationDefault, 5), outside = interpolationModel(interpolationDefault, 12); expect(outside.interval[1] - outside.interval[0]).toBeGreaterThan(inside.interval[1] - inside.interval[0]); }); });

@@ -1,0 +1,638 @@
+{
+  "records": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "state": {
+        "testid": "algebra-mockup-0032",
+        "dedicatedLesson": "32",
+        "objectModel": "editable-draggable-ordered-list-index-selection-operation-pipeline-statistics-bar-dot-result-model",
+        "list": "2,4,6,8",
+        "selectedIndex": "2",
+        "selectedValue": "6",
+        "length": "4",
+        "sum": "20",
+        "mean": "5",
+        "finalList": "4,12,16,20",
+        "finalSum": "52",
+        "finalMean": "13",
+        "view": "bar",
+        "descending": "false",
+        "actions": "0"
+      },
+      "overflow": false,
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "name": "☷ Interaction + visualization",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "▣ Explain",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "♧ Examples",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Σ Formulas",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "✣ Know more",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Reset list",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "↔ Start over",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "List value 1",
+          "value": "2",
+          "min": "",
+          "max": "",
+          "step": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "List value 2",
+          "value": "4",
+          "min": "",
+          "max": "",
+          "step": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "List value 3",
+          "value": "6",
+          "min": "",
+          "max": "",
+          "step": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "List value 4",
+          "value": "8",
+          "min": "",
+          "max": "",
+          "step": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Append next list value",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Bar chart",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "⌘ Dot plot",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Index 1 = 2",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Index 2 = 4",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Index 3 = 6",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Index 4 = 8",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "AppendAdd a value to the end",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "RemoveRemove selected value",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "ƒxMapApply rule to all entriesmap x → 2x",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "⇄SortSort entries (asc / desc)",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "＋",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "−",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "ƒx",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "⇄",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Sum",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Mean",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Min",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Max",
+          "value": ""
+        }
+      ],
+      "bars": [],
+      "graphs": [
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "state": {
+        "testid": "algebra-mockup-0032",
+        "dedicatedLesson": "32",
+        "objectModel": "editable-draggable-ordered-list-index-selection-operation-pipeline-statistics-bar-dot-result-model",
+        "list": "2,4,6,8",
+        "selectedIndex": "2",
+        "selectedValue": "6",
+        "length": "4",
+        "sum": "20",
+        "mean": "5",
+        "finalList": "4,12,16,20",
+        "finalSum": "52",
+        "finalMean": "13",
+        "view": "bar",
+        "descending": "false",
+        "actions": "0"
+      },
+      "overflow": false,
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "name": "☷ Interaction + visualization",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "▣ Explain",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "♧ Examples",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Σ Formulas",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "✣ Know more",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Reset list",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "↔ Start over",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "List value 1",
+          "value": "2",
+          "min": "",
+          "max": "",
+          "step": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "List value 2",
+          "value": "4",
+          "min": "",
+          "max": "",
+          "step": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "List value 3",
+          "value": "6",
+          "min": "",
+          "max": "",
+          "step": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "List value 4",
+          "value": "8",
+          "min": "",
+          "max": "",
+          "step": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Append next list value",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Bar chart",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "⌘ Dot plot",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Index 1 = 2",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Index 2 = 4",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Index 3 = 6",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Index 4 = 8",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "AppendAdd a value to the end",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "RemoveRemove selected value",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "ƒxMapApply rule to all entriesmap x → 2x",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "⇄SortSort entries (asc / desc)",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "＋",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "−",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "ƒx",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "⇄",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Sum",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Mean",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Min",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Max",
+          "value": ""
+        }
+      ],
+      "bars": [],
+      "graphs": [
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "state": {
+        "testid": "algebra-mockup-0032",
+        "dedicatedLesson": "32",
+        "objectModel": "editable-draggable-ordered-list-index-selection-operation-pipeline-statistics-bar-dot-result-model",
+        "list": "2,4,6,8",
+        "selectedIndex": "2",
+        "selectedValue": "6",
+        "length": "4",
+        "sum": "20",
+        "mean": "5",
+        "finalList": "4,12,16,20",
+        "finalSum": "52",
+        "finalMean": "13",
+        "view": "bar",
+        "descending": "false",
+        "actions": "0"
+      },
+      "overflow": false,
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "name": "☷ Interaction + visualization",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "▣ Explain",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "♧ Examples",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Σ Formulas",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "✣ Know more",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Reset list",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "↔ Start over",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "List value 1",
+          "value": "2",
+          "min": "",
+          "max": "",
+          "step": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "List value 2",
+          "value": "4",
+          "min": "",
+          "max": "",
+          "step": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "List value 3",
+          "value": "6",
+          "min": "",
+          "max": "",
+          "step": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "List value 4",
+          "value": "8",
+          "min": "",
+          "max": "",
+          "step": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Append next list value",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Bar chart",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "⌘ Dot plot",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Index 1 = 2",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Index 2 = 4",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Index 3 = 6",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Index 4 = 8",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "AppendAdd a value to the end",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "RemoveRemove selected value",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "ƒxMapApply rule to all entriesmap x → 2x",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "⇄SortSort entries (asc / desc)",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "＋",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "−",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "ƒx",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "⇄",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Sum",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Mean",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Min",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Max",
+          "value": ""
+        }
+      ],
+      "bars": [],
+      "graphs": [
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

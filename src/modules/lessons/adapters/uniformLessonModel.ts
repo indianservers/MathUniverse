@@ -1,0 +1,3 @@
+export function uniformAnalysis(aValue:number,bValue:number,cValue:number,dValue:number){const a=Math.min(aValue,bValue-.01),b=Math.max(bValue,aValue+.01),c=Math.max(a,Math.min(b,cValue)),d=Math.max(c,Math.min(b,dValue)),width=b-a,height=1/width,selectedWidth=d-c,probability=selectedWidth/width,mean=(a+b)/2,variance=width**2/12,std=Math.sqrt(variance);return{a,b,c,d,width,height,selectedWidth,probability,mean,variance,std}}
+export function uniformDensity(x:number,a:number,b:number){return x>=a&&x<=b?1/(b-a):0}
+export function uniformCdf(x:number,a:number,b:number){if(x<a)return 0;if(x>b)return 1;return(x-a)/(b-a)}

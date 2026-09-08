@@ -1,0 +1,3 @@
+import { describe, expect, it } from "vitest";
+import { mean, standardDeviation, variance, varianceAnswer, varianceDefault } from "./varianceLessonModel";
+describe("Variance model", () => { it("computes sample and population dispersion", () => { expect(mean(varianceDefault)).toBeCloseTo(49 / 9); expect(variance(varianceDefault, true)).toBeCloseTo(6.5278, 3); expect(standardDeviation(varianceDefault, true)).toBeCloseTo(2.555, 3); expect(variance(varianceDefault, false)).toBeCloseTo(5.8025, 3); }); it("handles insufficient data and validates answers", () => { expect(variance([], true)).toBeNull(); expect(variance([4], true)).toBeNull(); expect(varianceAnswer([2, 4, 4, 6, 8], "5.2")).toBe(true); expect(varianceAnswer([2, 4, 4, 6, 8], "4")).toBe(false); }); });

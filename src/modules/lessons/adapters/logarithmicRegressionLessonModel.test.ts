@@ -1,0 +1,3 @@
+import { describe, expect, it } from "vitest";
+import { logarithmicDefault, logarithmicFit } from "./logarithmicRegressionLessonModel";
+describe("Logarithmic regression model", () => { it("fits positive-domain data", () => { const fit = logarithmicFit(); expect(fit.b).toBeGreaterThan(0); expect(fit.r2).toBeGreaterThan(.8); }); it("fits an exact log relation", () => { const fit = logarithmicFit([{ x: 1, y: 2 }, { x: Math.E, y: 4 }, { x: Math.E ** 2, y: 6 }]); expect(fit.a).toBeCloseTo(2); expect(fit.b).toBeCloseTo(2); expect(fit.sse).toBeCloseTo(0); expect(logarithmicDefault).toHaveLength(6); }); });

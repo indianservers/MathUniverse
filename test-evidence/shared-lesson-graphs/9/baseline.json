@@ -1,0 +1,728 @@
+{
+  "records": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "state": {
+        "testid": "calculator-mockup-0009",
+        "dedicatedLesson": "9",
+        "objectModel": "base-exponent-factor-chain-draggable-staircase-growth-chart-animation-practice-model",
+        "base": "2",
+        "exponent": "8",
+        "output": "256",
+        "view": "0",
+        "animationStep": "8",
+        "animating": "false",
+        "problem": "0",
+        "feedback": "correct"
+      },
+      "overflow": false,
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "name": "Reset",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "⌘ Share",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Interaction + visualization",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Explain",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Examples",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Formulas",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Know more",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Decrease Base",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Increase Base",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Decrease Exponent",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Increase Exponent",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Animate growth",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "Exponent drag control",
+          "value": "8",
+          "min": "0",
+          "max": "8",
+          "step": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "20",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "21",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "22",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "23",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "24",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "25",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "26",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "27",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "28",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "New problem",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "Exponential practice answer",
+          "value": "81",
+          "min": "",
+          "max": "",
+          "step": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Check",
+          "value": ""
+        }
+      ],
+      "bars": [
+        {
+          "text": "120",
+          "height": "8%"
+        },
+        {
+          "text": "221",
+          "height": "8%"
+        },
+        {
+          "text": "422",
+          "height": "8%"
+        },
+        {
+          "text": "823",
+          "height": "8%"
+        },
+        {
+          "text": "1624",
+          "height": "8%"
+        },
+        {
+          "text": "3225",
+          "height": "12.5%"
+        },
+        {
+          "text": "6426",
+          "height": "25%"
+        },
+        {
+          "text": "12827",
+          "height": "50%"
+        },
+        {
+          "text": "25628",
+          "height": "100%"
+        }
+      ],
+      "graphs": [
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "state": {
+        "testid": "calculator-mockup-0009",
+        "dedicatedLesson": "9",
+        "objectModel": "base-exponent-factor-chain-draggable-staircase-growth-chart-animation-practice-model",
+        "base": "2",
+        "exponent": "8",
+        "output": "256",
+        "view": "0",
+        "animationStep": "8",
+        "animating": "false",
+        "problem": "0",
+        "feedback": "correct"
+      },
+      "overflow": false,
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "name": "Reset",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "⌘ Share",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Interaction + visualization",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Explain",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Examples",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Formulas",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Know more",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Decrease Base",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Increase Base",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Decrease Exponent",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Increase Exponent",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Animate growth",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "Exponent drag control",
+          "value": "8",
+          "min": "0",
+          "max": "8",
+          "step": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "20",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "21",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "22",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "23",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "24",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "25",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "26",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "27",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "28",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "New problem",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "Exponential practice answer",
+          "value": "81",
+          "min": "",
+          "max": "",
+          "step": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Check",
+          "value": ""
+        }
+      ],
+      "bars": [
+        {
+          "text": "120",
+          "height": "8%"
+        },
+        {
+          "text": "221",
+          "height": "8%"
+        },
+        {
+          "text": "422",
+          "height": "8%"
+        },
+        {
+          "text": "823",
+          "height": "8%"
+        },
+        {
+          "text": "1624",
+          "height": "8%"
+        },
+        {
+          "text": "3225",
+          "height": "12.5%"
+        },
+        {
+          "text": "6426",
+          "height": "25%"
+        },
+        {
+          "text": "12827",
+          "height": "50%"
+        },
+        {
+          "text": "25628",
+          "height": "100%"
+        }
+      ],
+      "graphs": [
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "state": {
+        "testid": "calculator-mockup-0009",
+        "dedicatedLesson": "9",
+        "objectModel": "base-exponent-factor-chain-draggable-staircase-growth-chart-animation-practice-model",
+        "base": "2",
+        "exponent": "8",
+        "output": "256",
+        "view": "0",
+        "animationStep": "8",
+        "animating": "false",
+        "problem": "0",
+        "feedback": "correct"
+      },
+      "overflow": false,
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "name": "Reset",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "⌘ Share",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Interaction + visualization",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Explain",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Examples",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Formulas",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Know more",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Decrease Base",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Increase Base",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Decrease Exponent",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Increase Exponent",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Animate growth",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "Exponent drag control",
+          "value": "8",
+          "min": "0",
+          "max": "8",
+          "step": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "20",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "21",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "22",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "23",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "24",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "25",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "26",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "27",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "28",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "New problem",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "Exponential practice answer",
+          "value": "81",
+          "min": "",
+          "max": "",
+          "step": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Check",
+          "value": ""
+        }
+      ],
+      "bars": [
+        {
+          "text": "120",
+          "height": "8%"
+        },
+        {
+          "text": "221",
+          "height": "8%"
+        },
+        {
+          "text": "422",
+          "height": "8%"
+        },
+        {
+          "text": "823",
+          "height": "8%"
+        },
+        {
+          "text": "1624",
+          "height": "8%"
+        },
+        {
+          "text": "3225",
+          "height": "12.5%"
+        },
+        {
+          "text": "6426",
+          "height": "25%"
+        },
+        {
+          "text": "12827",
+          "height": "50%"
+        },
+        {
+          "text": "25628",
+          "height": "100%"
+        }
+      ],
+      "graphs": [
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

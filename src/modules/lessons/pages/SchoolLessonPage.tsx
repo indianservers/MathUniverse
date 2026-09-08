@@ -9,6 +9,7 @@ import {
   SearchCheck,
 } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
+import { useState } from "react";
 import {
   adjacentSchoolLessons,
   findSchoolLesson,
@@ -178,6 +179,28 @@ import InverseAdjointTargetLesson10195 from "../schoolTargets/InverseAdjointTarg
 import DeterminantAreaTargetLesson10196 from "../schoolTargets/DeterminantAreaTargetLesson10196";
 import LinearSystemsMatricesTargetLesson10197 from "../schoolTargets/LinearSystemsMatricesTargetLesson10197";
 import CramersRuleTargetLesson10198 from "../schoolTargets/CramersRuleTargetLesson10198";
+import LinearSystemConsistencyTargetLesson10199 from "../schoolTargets/LinearSystemConsistencyTargetLesson10199";
+import FormulatingLinearProgrammingTargetLesson10200 from "../schoolTargets/FormulatingLinearProgrammingTargetLesson10200";
+import FeasibleRegionTargetLesson10201 from "../schoolTargets/FeasibleRegionTargetLesson10201";
+import CornerPointTargetLesson10202 from "../schoolTargets/CornerPointTargetLesson10202";
+import BoundedRegionTargetLesson10203 from "../schoolTargets/BoundedRegionTargetLesson10203";
+import UnboundedRegionTargetLesson10204 from "../schoolTargets/UnboundedRegionTargetLesson10204";
+import MultipleOptimalTargetLesson10205 from "../schoolTargets/MultipleOptimalTargetLesson10205";
+import InfeasibleProblemsTargetLesson10206 from "../schoolTargets/InfeasibleProblemsTargetLesson10206";
+import DietProblemTargetLesson10207 from "../schoolTargets/DietProblemTargetLesson10207";
+import ProductionPlanningTargetLesson10208 from "../schoolTargets/ProductionPlanningTargetLesson10208";
+import TransportationTargetLesson10209 from "../schoolTargets/TransportationTargetLesson10209";
+import ConditionalProbabilityTargetLesson10210 from "../schoolTargets/ConditionalProbabilityTargetLesson10210";
+import MultiplicationRuleTargetLesson10211 from "../schoolTargets/MultiplicationRuleTargetLesson10211";
+import IndependentEventsTargetLesson10212 from "../schoolTargets/IndependentEventsTargetLesson10212";
+import TotalProbabilityTargetLesson10213 from "../schoolTargets/TotalProbabilityTargetLesson10213";
+import BayesTheoremTargetLesson10214 from "../schoolTargets/BayesTheoremTargetLesson10214";
+import RandomVariablesTargetLesson10215 from "../schoolTargets/RandomVariablesTargetLesson10215";
+import ProbabilityDistributionTargetLesson10216 from "../schoolTargets/ProbabilityDistributionTargetLesson10216";
+import ExpectedValueTargetLesson10217 from "../schoolTargets/ExpectedValueTargetLesson10217";
+import VarianceTargetLesson10218 from "../schoolTargets/VarianceTargetLesson10218";
+import BernoulliTrialsTargetLesson10219 from "../schoolTargets/BernoulliTrialsTargetLesson10219";
+import BinomialDistributionTargetLesson10220 from "../schoolTargets/BinomialDistributionTargetLesson10220";
 import PlaceValueTargetLesson10001 from "../schoolTargets/PlaceValueTargetLesson10001";
 import NumberNamingTargetLesson10002 from "../schoolTargets/NumberNamingTargetLesson10002";
 import EstimationRoundingTargetLesson10003 from "../schoolTargets/EstimationRoundingTargetLesson10003";
@@ -225,15 +248,20 @@ const DECIMAL_EXPANSION_ROUTE_SLUG =
 
 export default function SchoolLessonPage() {
   const { levelSlug: routeLevelSlug, lessonSlug } = useParams();
+  const [activeSection, setActiveSection] = useState<"interaction" | "learn" | "examples" | "formulas" | "practice">("interaction");
   const lesson = findSchoolLesson(routeLevelSlug, lessonSlug);
   if (!lesson) return <LessonNotFound />;
   return (
-    <div className="space-y-4" onClickCapture={captureLessonTabClick}>
-      <section id="lesson-section-interaction" className="scroll-mt-20">
+    <div className="lesson-school-shell space-y-4" data-lesson-view={activeSection} onClickCapture={(event) => captureLessonTabClick(event, setActiveSection)}>
+      {lesson.numericId !== 10198 && <LessonSectionNav active={activeSection} onChange={setActiveSection} />}
+      <section
+        id="lesson-section-interaction"
+        className="scroll-mt-20"
+        data-lesson-viewport="interaction"
+      >
         <SchoolLessonBody lesson={lesson} />
       </section>
-      <LessonSectionNav />
-      <SchoolLessonSections lesson={lesson} />
+      {lesson.numericId !== 10198 && <SchoolLessonSections lesson={lesson} active={activeSection} />}
     </div>
   );
 }
@@ -561,6 +589,50 @@ function SchoolLessonBody({
     return <LinearSystemsMatricesTargetLesson10197 lesson={lesson} />;
   if (lesson.numericId === 10198)
     return <CramersRuleTargetLesson10198 lesson={lesson} />;
+  if (lesson.numericId === 10199)
+    return <LinearSystemConsistencyTargetLesson10199 lesson={lesson} />;
+  if (lesson.numericId === 10200)
+    return <FormulatingLinearProgrammingTargetLesson10200 lesson={lesson} />;
+  if (lesson.numericId === 10201)
+    return <FeasibleRegionTargetLesson10201 lesson={lesson} />;
+  if (lesson.numericId === 10202)
+    return <CornerPointTargetLesson10202 lesson={lesson} />;
+  if (lesson.numericId === 10203)
+    return <BoundedRegionTargetLesson10203 lesson={lesson} />;
+  if (lesson.numericId === 10204)
+    return <UnboundedRegionTargetLesson10204 lesson={lesson} />;
+  if (lesson.numericId === 10205)
+    return <MultipleOptimalTargetLesson10205 lesson={lesson} />;
+  if (lesson.numericId === 10206)
+    return <InfeasibleProblemsTargetLesson10206 lesson={lesson} />;
+  if (lesson.numericId === 10207)
+    return <DietProblemTargetLesson10207 lesson={lesson} />;
+  if (lesson.numericId === 10208)
+    return <ProductionPlanningTargetLesson10208 lesson={lesson} />;
+  if (lesson.numericId === 10209)
+    return <TransportationTargetLesson10209 lesson={lesson} />;
+  if (lesson.numericId === 10210)
+    return <ConditionalProbabilityTargetLesson10210 lesson={lesson} />;
+  if (lesson.numericId === 10211)
+    return <MultiplicationRuleTargetLesson10211 lesson={lesson} />;
+  if (lesson.numericId === 10212)
+    return <IndependentEventsTargetLesson10212 lesson={lesson} />;
+  if (lesson.numericId === 10213)
+    return <TotalProbabilityTargetLesson10213 lesson={lesson} />;
+  if (lesson.numericId === 10214)
+    return <BayesTheoremTargetLesson10214 lesson={lesson} />;
+  if (lesson.numericId === 10215)
+    return <RandomVariablesTargetLesson10215 lesson={lesson} />;
+  if (lesson.numericId === 10216)
+    return <ProbabilityDistributionTargetLesson10216 lesson={lesson} />;
+  if (lesson.numericId === 10217)
+    return <ExpectedValueTargetLesson10217 lesson={lesson} />;
+  if (lesson.numericId === 10218)
+    return <VarianceTargetLesson10218 lesson={lesson} />;
+  if (lesson.numericId === 10219)
+    return <BernoulliTrialsTargetLesson10219 lesson={lesson} />;
+  if (lesson.numericId === 10220)
+    return <BinomialDistributionTargetLesson10220 lesson={lesson} />;
   if (lesson.numericId === 10001)
     return <PlaceValueTargetLesson10001 lesson={lesson} />;
   if (lesson.numericId === 10002)
@@ -649,7 +721,7 @@ function SchoolLessonBody({
 
   return (
     <div className="space-y-4" data-testid="school-lesson-page">
-      <header className="rounded-3xl border border-cyan-100 bg-white p-5 shadow-xl shadow-cyan-950/5 dark:border-white/10 dark:bg-slate-950/75">
+      <header className="school-lesson-header rounded-3xl border border-cyan-100 bg-white p-5 shadow-xl shadow-cyan-950/5 dark:border-white/10 dark:bg-slate-950/75">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.18em] text-cyan-600 dark:text-cyan-300">
@@ -667,7 +739,7 @@ function SchoolLessonBody({
             School lessons
           </Link>
         </div>
-        <div className="mt-4 flex flex-wrap gap-2">
+        <div className="school-lesson-header-meta mt-4 flex flex-wrap gap-2">
           <Chip label={`${lesson.metadata.estimatedMinutes} min`} />
           <Chip label={lesson.metadata.difficulty} />
           <Chip label={lesson.metadata.lessonType} />

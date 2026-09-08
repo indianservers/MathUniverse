@@ -1,10 +1,13 @@
 import { CheckCircle2, RotateCcw, Share2, Sparkles } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../types";
+import { LessonCartesianGraph } from "../graphs/LessonCartesianGraph";
 import "./NumericSlidersTargetLesson21.css";
 
 const PATTERN_VALUES = [-2, 0, 2, 4];
 const STEPS = [0.1, 0.5, 1];
+// Preserve the original point projection's visible domain and range.
+const GRAPH_VIEW = { xMin: -50 / 8.4, xMax: 50 / 8.4, yMin: -50 / 4.15, yMax: 50 / 4.15 };
 
 function decimalsFor(step: number) {
   return step < 1 ? 1 : 0;
@@ -21,10 +24,10 @@ export default function NumericSlidersTargetLesson21({ resetToken, onInteraction
   const [step, setStep] = useState(0.1);
   const [shareState, setShareState] = useState("Share");
   const [actions, setActions] = useState(0);
+  const [graphView, setGraphView] = useState(GRAPH_VIEW);
   const y = clean(2 * x + 3, step);
   const displayX = x.toFixed(decimalsFor(step)).replace(/\.0$/, "");
   const displayY = y.toFixed(decimalsFor(step)).replace(/\.0$/, "");
-  const graphPoint = useMemo(() => ({ left: 50 + x * 8.4, top: 50 - y * 4.15 }), [x, y]);
 
   const touch = () => { setActions((value) => value + 1); onInteraction(); };
   const setValue = (value: number) => {
@@ -33,9 +36,10 @@ export default function NumericSlidersTargetLesson21({ resetToken, onInteraction
     touch();
   };
   const reset = () => {
+    setGraphView(GRAPH_VIEW);
     setX(2); setMinimum(-5); setMaximum(5); setStep(0.1); setShareState("Share"); setActions(0); onInteraction();
   };
-  useEffect(() => { setX(2); setMinimum(-5); setMaximum(5); setStep(0.1); setShareState("Share"); setActions(0); }, [resetToken]);
+  useEffect(() => { setX(2); setMinimum(-5); setMaximum(5); setStep(0.1); setShareState("Share"); setActions(0); setGraphView(GRAPH_VIEW); }, [resetToken]);
   const updateMinimum = (value: number) => {
     const next = Math.min(value, maximum - step);
     setMinimum(next); setX((current) => Math.max(next, current)); touch();
@@ -66,7 +70,15 @@ export default function NumericSlidersTargetLesson21({ resetToken, onInteraction
           </div>
           <aside className="numeric-right">
             <section className="numeric-control"><h2>Numeric slider</h2><label>Active value</label><output>x = {displayX}</output><small>Drag the handle to change <i>x</i></small><div className="numeric-stepper"><button type="button" aria-label="Decrease x" onClick={()=>setValue(x-step)}>‹</button><input aria-label="Current x value" type="number" value={x} min={minimum} max={maximum} step={step} onChange={(event)=>setValue(Number(event.target.value))}/><button type="button" aria-label="Increase x" onClick={()=>setValue(x+step)}>›</button></div><label>Range</label><div className="numeric-bounds"><span>Min<input aria-label="Minimum slider value" type="number" value={minimum} step={step} onChange={(event)=>updateMinimum(Number(event.target.value))}/></span><span>Max<input aria-label="Maximum slider value" type="number" value={maximum} step={step} onChange={(event)=>updateMaximum(Number(event.target.value))}/></span></div><label htmlFor="numeric-step">Step (precision)</label><select id="numeric-step" value={step} onChange={(event)=>updateStep(Number(event.target.value))}>{STEPS.map(value=><option key={value} value={value}>{value}</option>)}</select><p><CheckCircle2 /><b>Linked output</b><small>All dependent values update automatically.</small></p></section>
-            <section className="numeric-graph"><h2><i>4.</i> Visual on the graph</h2><div className="numeric-plot"><strong>y = 2x + 3</strong><span className="axis x"/><span className="axis y"/><span className="line"/><span className="guide vertical" style={{left:`${graphPoint.left}%`,height:`${50-graphPoint.top}%`,top:`${graphPoint.top}%`}}/><span className="guide horizontal" style={{width:`${graphPoint.left-50}%`,left:"50%",top:`${graphPoint.top}%`}}/><i className="point" style={{left:`${graphPoint.left}%`,top:`${graphPoint.top}%`}}/><b className="point-label" style={{left:`${Math.min(graphPoint.left+2,69)}%`,top:`${Math.max(graphPoint.top+3,6)}%`}}>Point ({displayX}, {displayY})</b><label className="x-label">x</label><label className="y-label">y</label><small className="tick tx1">-5</small><small className="tick tx2">0</small><small className="tick tx3">5</small><small className="tick ty1">10</small><small className="tick ty2">5</small><small className="tick ty3">-5</small><small className="tick ty4">-10</small></div></section>
+            <LessonCartesianGraph title="4. Visual on the graph" description={`Point (${displayX}, ${displayY})`}
+              view={graphView} onViewChange={setGraphView} onResetView={()=>setGraphView(GRAPH_VIEW)}
+              legend={[{id:"linear",label:"y = 2x + 3",color:"#0582ff"}]}
+              series={[
+                {id:"linear",label:"y = 2x + 3",color:"#0582ff",points:[{x:graphView.xMin,y:2*graphView.xMin+3},{x:graphView.xMax,y:2*graphView.xMax+3}]},
+                {id:"x-guide",label:"x coordinate",color:"#1385f6",dashed:true,points:[{x,y:0},{x,y}]},
+                {id:"y-guide",label:"y coordinate",color:"#1385f6",dashed:true,points:[{x:0,y},{x,y}]},
+              ]}
+              annotations={[{id:"point",x,y,label:`Point (${displayX}, ${displayY})`,color:"#0878ee",onChange:point=>setValue(point.x),keyboardStep:step}]}/>
           </aside>
         </main>
         <nav className="numeric-neighbors"><a href="/lessons/core-workspaces/20-variable-explorer">←<span><small>Previous</small><b>Variable Explorer</b></span></a><a href="/lessons/core-workspaces/22-integer-sliders"><span><small>Next</small><b>Integer Sliders</b></span>→</a></nav>

@@ -11,65 +11,56 @@ import { topics } from "../data/topics";
 import { trigonometryConcepts } from "../data/trigonometryConcepts";
 import { useProgress } from "../hooks/useProgress";
 import TrigonometryMathLab from "../visualizations/trigonometry/TrigonometryMathLab";
+import TrigonometryEnhancementWorkbench from "../studios/trigonometry/TrigonometryEnhancementWorkbench";
 
-type TrigonometryTabId = "lab" | "concepts" | "formulas" | "syllabus" | "accuracy";
+type TrigonometryTabId = "lab" | "concepts" | "formulas" | "syllabus" | "accuracy" | "advanced";
+
+const syllabusGroups = [
+  { label: "JEE", categories: ["Identities", "Equations", "Triangle Solving", "Calculus"] },
+  { label: "Degree", categories: ["Advanced", "Degree", "Wave Parameters"] },
+  { label: "PG", categories: ["PG", "Applications"] },
+];
 
 export default function Trigonometry() {
   const topic = topics.find((item) => item.id === "trigonometry")!;
-  const { getTopicProgress, markTopicVisited, markTopicInteracted } = useProgress();
+  const { markTopicVisited, markTopicInteracted } = useProgress();
   const [activeTab, setActiveTab] = useState<TrigonometryTabId>(() => readTabFromUrl());
   useEffect(() => markTopicVisited(topic.id), [markTopicVisited, topic.id]);
 
-  const syllabusGroups = [
-    { label: "JEE", categories: ["Identities", "Equations", "Triangle Solving", "Calculus"] },
-    { label: "Degree", categories: ["Advanced", "Degree", "Wave Parameters"] },
-    { label: "PG", categories: ["PG", "Applications"] },
-  ];
   const formulaGroups = useMemo(() => Array.from(new Set(trigonometryConcepts.map((concept) => concept.category))).map((category) => ({
     category,
     concepts: trigonometryConcepts.filter((concept) => concept.category === category),
   })), []);
-  const progress = normalizeProgress(getTopicProgress(topic.id));
   const tabs = useMemo(() => [
     {
       id: "lab" as const,
-      label: "Lab",
-      summary: "Unit circle, waves, ratios, and live angle controls in one focused workspace.",
-      tools: ["Drag angle", "Grid", "Fit view", "Fullscreen"],
-      outputs: ["sin", "cos", "tan", "quadrant"],
+      label: "Main",
       content: <TrigonometryMathLab compact />,
     },
     {
       id: "concepts" as const,
       label: "Concepts",
-      summary: "Jump into focused visual concept pages without leaving the trigonometry track.",
-      tools: ["2D views", "3D views", "Practice"],
-      outputs: [`${trigonometryConcepts.length} lessons`, "visual notes"],
       content: <ConceptPages concepts={trigonometryConcepts} />,
     },
     {
       id: "formulas" as const,
       label: "Formulas",
-      summary: "Grouped identity sheet for quick revision and formula recall.",
-      tools: ["Grouped cards", "Concept links"],
-      outputs: [`${formulaGroups.length} groups`, "identity library"],
       content: <FormulaGroups groups={formulaGroups} />,
     },
     {
       id: "syllabus" as const,
       label: "Syllabus",
-      summary: "JEE, degree, and PG coverage arranged as compact learning lanes.",
-      tools: ["Exam lanes", "Quick links"],
-      outputs: ["JEE", "Degree", "PG"],
       content: <SyllabusCoverage groups={syllabusGroups} />,
     },
     {
       id: "accuracy" as const,
       label: "Accuracy & Examples",
-      summary: "Practice checks, examples, and validation prompts for the current domain.",
-      tools: ["Validate", "Examples", "Mistake review"],
-      outputs: ["accuracy score", "practice state"],
       content: <ConceptAccuracyPanel domain="trigonometry" />,
+    },
+    {
+      id: "advanced" as const,
+      label: "Advanced Workbench",
+      content: <TrigonometryEnhancementWorkbench />,
     },
   ], [formulaGroups]);
   const currentTab = tabs.find((tab) => tab.id === activeTab) ?? tabs[0];
@@ -93,14 +84,7 @@ export default function Trigonometry() {
       className="trig-studio"
       title="Trigonometry Studio"
       subtitle={topic.description}
-      breadcrumbs={["Home", "Math Topics", "Trigonometry"]}
-      difficulty={topic.difficulty}
-      estimatedMinutes={topic.estimatedMinutes}
-      progress={progress}
-      status={[
-        { id: "concepts", label: "Concepts", value: trigonometryConcepts.length, tone: "cyan" },
-        { id: "formula-groups", label: "Formula groups", value: formulaGroups.length, tone: "violet" },
-      ]}
+      showHeader={false}
     >
       <div className="trig-workspace" onPointerDown={() => markTopicInteracted(topic.id)}>
         <section className="trig-main-panel" aria-label="Trigonometry workspace">
@@ -111,17 +95,9 @@ export default function Trigonometry() {
               </button>
             ))}
           </div>
-          <div className="trig-context-strip">
-            <div>
-              <span>Active workspace</span>
-              <strong>{currentTab.label}</strong>
-            </div>
-            <p>{currentTab.summary}</p>
-          </div>
           <div className="trig-tab-content thin-scrollbar">{currentTab.content}</div>
         </section>
         <aside className="trig-inspector thin-scrollbar" aria-label="Trigonometry inspector">
-          <StudioGuidePanel tab={currentTab} progress={progress} />
           <ContinueCard routePrefix="/trigonometry" />
           <div className="trig-action-grid">
             <Link to="/trigonometry/formula-visualizer">Formula Visualizer</Link>
@@ -133,31 +109,6 @@ export default function Trigonometry() {
         </aside>
       </div>
     </StudioPageShell>
-  );
-}
-
-function StudioGuidePanel({ progress, tab }: { progress: number; tab: { label: string; summary: string; tools: string[]; outputs: string[] } }) {
-  return (
-    <div className="trig-guide-card">
-      <div className="trig-guide-head">
-        <span>Phase 1 workspace</span>
-        <strong>{tab.label}</strong>
-      </div>
-      <p>{tab.summary}</p>
-      <div className="trig-guide-meter" aria-label={`Progress ${progress}%`}>
-        <span style={{ width: `${Math.max(4, Math.min(100, progress))}%` }} />
-      </div>
-      <div className="trig-guide-columns">
-        <div>
-          <span>Tools</span>
-          {tab.tools.map((tool) => <b key={tool}>{tool}</b>)}
-        </div>
-        <div>
-          <span>Live outputs</span>
-          {tab.outputs.map((output) => <b key={output}>{output}</b>)}
-        </div>
-      </div>
-    </div>
   );
 }
 
@@ -237,12 +188,6 @@ function ConceptLink({ concept }: { concept: (typeof trigonometryConcepts)[numbe
 function readTabFromUrl(): TrigonometryTabId {
   if (typeof window === "undefined") return "lab";
   const tab = new URLSearchParams(window.location.search).get("tab");
-  if (tab === "concepts" || tab === "formulas" || tab === "syllabus" || tab === "accuracy") return tab;
+  if (tab === "concepts" || tab === "formulas" || tab === "syllabus" || tab === "accuracy" || tab === "advanced") return tab;
   return "lab";
-}
-
-function normalizeProgress(value: number) {
-  if (!Number.isFinite(value)) return 0;
-  const percent = value <= 1 ? value * 100 : value;
-  return Math.max(0, Math.min(100, Math.round(percent)));
 }

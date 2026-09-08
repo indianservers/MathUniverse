@@ -5,8 +5,11 @@ import {
   RotateCcw,
   Share2,
 } from "lucide-react";
-import { useEffect, useState, type CSSProperties } from "react";
+import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../types";
+import { LessonGraphWorkspace } from "../graphs/LessonGraphWorkspace";
+import { LessonNumberLineGraph } from "../graphs/LessonNumberLineGraph";
+import { LessonVisibilityGraph } from "../graphs/LessonVisibilityGraph";
 import "./ConditionalVisibilityTargetLesson26.css";
 
 const VIEWS = ["Explore", "Explain", "Examples", "Formulas", "Know more"];
@@ -93,6 +96,7 @@ export default function ConditionalVisibilityTargetLesson26({
       data-visible={visible}
       data-view={view}
       data-workspace={workspace}
+      data-legend={legend}
       data-actions={actions}
     >
       <nav className="visibility-breadcrumb">
@@ -175,6 +179,7 @@ export default function ConditionalVisibilityTargetLesson26({
             <button
               type="button"
               className={legend ? "active" : ""}
+              aria-pressed={legend}
               onClick={() => {
                 setLegend((value) => !value);
                 touch();
@@ -188,9 +193,10 @@ export default function ConditionalVisibilityTargetLesson26({
             boundary={boundary}
             operator={operator}
             onX={updateX}
+            legend={legend}
           />
           <div className="visibility-middle">
-            <ObjectPlot visible={visible} />
+            <LessonGraphWorkspace title="Object P"><LessonVisibilityGraph visible={visible}/></LessonGraphWorkspace>
             <section className="visibility-rule">
               <small>RULE</small>
               <h2>
@@ -225,7 +231,7 @@ export default function ConditionalVisibilityTargetLesson26({
                     {compare(before, operator, boundary) ? "visible" : "hidden"}
                   </span>
                 </section>
-                <MiniPlot visible={compare(before, operator, boundary)} />
+                <LessonVisibilityGraph compact visible={compare(before, operator, boundary)} />
               </article>
               <article>
                 <section>
@@ -240,7 +246,7 @@ export default function ConditionalVisibilityTargetLesson26({
                     {compare(after, operator, boundary) ? "visible" : "hidden"}
                   </span>
                 </section>
-                <MiniPlot visible={compare(after, operator, boundary)} />
+                <LessonVisibilityGraph compact visible={compare(after, operator, boundary)} />
               </article>
             </div>
           </section>
@@ -365,91 +371,16 @@ export default function ConditionalVisibilityTargetLesson26({
   );
 }
 
-function NumberLine({
-  x,
-  boundary,
-  operator,
-  onX,
-}: {
-  x: number;
-  boundary: number;
-  operator: string;
-  onX: (value: number) => void;
-}) {
-  const threshold = Math.max(0, Math.min(100, (boundary + 5) * 10)),
-    value = Math.max(0, Math.min(100, (x + 5) * 10)),
-    right = operator.includes(">"),
-    inclusive = operator.includes("=");
-  return (
-    <section
-      className="condition-line"
-      style={{ "--boundary": `${threshold}%` } as CSSProperties}
-    >
-      <div
-        className="hidden-region"
-        style={
-          right
-            ? { left: 0, width: `${threshold}%` }
-            : { left: `${threshold}%`, right: 0 }
-        }
-      >
-        <b>HIDDEN REGION</b>
-        <span>
-          x {right ? "<" : ">"} {display(boundary)}
-        </span>
-      </div>
-      <div
-        className="visible-region"
-        style={
-          right
-            ? { left: `${threshold}%`, right: 0 }
-            : { left: 0, width: `${threshold}%` }
-        }
-      >
-        <b>VISIBLE REGION</b>
-        <span>
-          x {operator} {display(boundary)}
-        </span>
-      </div>
-      <input
-        aria-label="Visibility number line drag control"
-        type="range"
-        min="-5"
-        max="5"
-        step=".1"
-        value={x}
-        onChange={(event) => onX(Number(event.target.value))}
-      />
-      <i
-        className={inclusive ? "closed" : "open"}
-        style={{ left: `${threshold}%` }}
-      />
-      <output style={{ left: `${value}%` }}>{display(x)}</output>
-      <footer>
-        {[-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5].map((number) => (
-          <span key={number}>{number}</span>
-        ))}
-      </footer>
-    </section>
-  );
+function NumberLine({x,boundary,operator,onX,legend}:{x:number;boundary:number;operator:string;onX:(value:number)=>void;legend:boolean}) {
+  // Partition the original domain; the lesson's existing comparison decides each region.
+  const cuts=[...new Set([-5,Math.max(-5,Math.min(5,boundary)),5])].sort((a,b)=>a-b);
+  const regions=cuts.slice(0,-1).map((start,index)=>{
+    const end=cuts[index+1],visible=compare((start+end)/2,operator,boundary);
+    return {id:`${visible?'visible':'hidden'}-${index}`,start,end,color:visible?'#078e66':'#d5202d',label:`${visible?'Visible':'Hidden'} region from ${start} to ${end}`};
+  });
+  return <LessonNumberLineGraph title={`Visibility regions: x ${operator} ${display(boundary)}`} min={-5} max={5} value={x} step={.1} onChange={onX} inputLabel="Visibility number line drag control"
+    regions={regions} boundary={{value:boundary,included:compare(boundary,operator,boundary),color:'#078e66'}}
+    legend={legend?[{id:'visible',label:'Visible region',color:'#078e66'},{id:'hidden',label:'Hidden region',color:'#d5202d'},{id:'boundary',label:`Boundary ${compare(boundary,operator,boundary)?'included':'excluded'}`,color:'#078e66'}]:undefined}/>;
 }
-function ObjectPlot({ visible }: { visible: boolean }) {
-  return (
-    <section className="object-plot">
-      <span className="axis x" />
-      <span className="axis y" />
-      <div className={visible ? "object visible" : "object hidden"}>
-        {visible ? "★" : ""}
-      </div>
-      <b>{visible ? "Object P" : "Object P hidden"}</b>
-    </section>
-  );
-}
-function MiniPlot({ visible }: { visible: boolean }) {
-  return (
-    <div className="mini-plot">
-      <span />
-      <i className={visible ? "visible" : ""}>{visible ? "★" : ""}</i>
-    </div>
-  );
-}
+
+

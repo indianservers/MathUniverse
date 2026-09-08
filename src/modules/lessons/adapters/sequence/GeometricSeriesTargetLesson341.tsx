@@ -2,6 +2,11 @@ import { Maximize2, RotateCcw, Share2 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import type { PointerEvent as ReactPointerEvent } from "react";
 import type { LessonAdapterProps } from "../../types";
+import {
+  GEOMETRIC_SERIES_DEFAULTS,
+  geometricSeriesAnalysis,
+  infiniteGeometricSeriesSum,
+} from "./geometricSeriesLessonModel";
 import "./GeometricSeriesTargetLesson341.css";
 const clean = (v: number) => Number(v.toFixed(6)),
   tabs = [
@@ -12,36 +17,46 @@ const clean = (v: number) => Number(v.toFixed(6)),
     "Know more",
   ],
   challenges = [
-    { a: 2, r: -0.4, choices: [2.5, -2.5, 10 / 7, NaN], correct: 2 },
+    {
+      a: 2,
+      r: -0.4,
+      choices: [2.5, -2.5, infiniteGeometricSeriesSum(2, -0.4)!, NaN],
+      correct: 2,
+    },
     { a: 5, r: 0.2, choices: [5, 6.25, 4, 25], correct: 1 },
   ];
 export default function GeometricSeriesTargetLesson341({
   resetToken,
   onInteraction,
 }: LessonAdapterProps) {
-  const [first, setFirst] = useState(3),
-    [ratio, setRatio] = useState(0.5),
-    [count, setCount] = useState(10),
+  const [first, setFirst] = useState(GEOMETRIC_SERIES_DEFAULTS.first),
+    [ratio, setRatio] = useState(GEOMETRIC_SERIES_DEFAULTS.ratio),
+    [count, setCount] = useState(GEOMETRIC_SERIES_DEFAULTS.count),
     [tab, setTab] = useState(tabs[0]),
+    [language, setLanguage] = useState<"en" | "hi">("en"),
     [challenge, setChallenge] = useState(0),
     [quick, setQuick] = useState<"" | "correct" | "incorrect">(""),
     [actions, setActions] = useState(0);
-  const terms = useMemo(
-      () => Array.from({ length: count }, (_, i) => first * ratio ** i),
+  const analysis = useMemo(
+      () => geometricSeriesAnalysis(first, ratio, count),
       [first, ratio, count],
     ),
-    partials = terms.reduce<number[]>(
-      (a, v) => [...a, v + (a.at(-1) ?? 0)],
-      [],
-    ),
-    finite = partials.at(-1) ?? 0,
-    converges = Math.abs(ratio) < 1,
-    infinite = converges ? first / (1 - ratio) : null;
+    {
+      terms,
+      partials,
+      finite,
+      converges,
+      infinite,
+      maximumTermMagnitude,
+      plotMin,
+      plotMax,
+    } = analysis;
   const reset = () => {
-    setFirst(3);
-    setRatio(0.5);
-    setCount(10);
+    setFirst(GEOMETRIC_SERIES_DEFAULTS.first);
+    setRatio(GEOMETRIC_SERIES_DEFAULTS.ratio);
+    setCount(GEOMETRIC_SERIES_DEFAULTS.count);
     setTab(tabs[0]);
+    setLanguage("en");
     setChallenge(0);
     setQuick("");
     setActions(0);
@@ -59,18 +74,15 @@ export default function GeometricSeriesTargetLesson341({
       else setCount(Math.max(1, Math.min(20, Math.round(value))));
       setQuick("");
     });
-  const maxAbs = Math.max(...terms.map(Math.abs), 1),
-    barY = (v: number) => 90 - (v / maxAbs) * 70,
-    partialMin = Math.min(...partials, 0, infinite ?? 0) - 1,
-    partialMax = Math.max(...partials, 0, infinite ?? 0) + 1,
-    partialY = (v: number) =>
-      190 - ((v - partialMin) / (partialMax - partialMin)) * 135;
+  const barY = (v: number) => 90 - (v / maximumTermMagnitude) * 70,
+    partialY = (v: number) => 190 - ((v - plotMin) / (plotMax - plotMin)) * 135;
   const drag = (i: number, event: ReactPointerEvent<SVGCircleElement>) => {
     if (event.buttons !== 1) return;
     const rect = event.currentTarget.ownerSVGElement?.getBoundingClientRect();
     if (!rect) return;
     const desired =
-      ((90 - ((event.clientY - rect.top) / rect.height) * 120) / 70) * maxAbs;
+      ((90 - ((event.clientY - rect.top) / rect.height) * 120) / 70) *
+      maximumTermMagnitude;
     if (i === 0) change("first", desired);
     else if (first !== 0) {
       const base = desired / first;
@@ -96,6 +108,7 @@ export default function GeometricSeriesTargetLesson341({
       data-converges={converges}
       data-infinite={infinite === null ? "diverges" : clean(infinite)}
       data-tab={tab}
+      data-language={language}
       data-challenge={challenge}
       data-quick-result={quick}
       data-actions={actions}
@@ -105,8 +118,12 @@ export default function GeometricSeriesTargetLesson341({
           <b>ADVANCED MATHEMATICS</b>
           <b>SEQUENCES AND SERIES</b>
         </span>
-        <h1>Geometric Series</h1>
-        <p>Explore finite and infinite geometric series.</p>
+        <h1>{language === "en" ? "Geometric Series" : "गुणोत्तर श्रेणी"}</h1>
+        <p>
+          {language === "en"
+            ? "Explore finite and infinite geometric series."
+            : "परिमित और अनंत गुणोत्तर श्रेणियों का अन्वेषण करें।"}
+        </p>
         <div>
           {[
             "Intermediate-Advanced",
@@ -118,7 +135,16 @@ export default function GeometricSeriesTargetLesson341({
           ))}
         </div>
         <nav>
-          <button>English (English)</button>
+          <select
+            aria-label="Lesson language"
+            value={language}
+            onChange={(event) =>
+              act(() => setLanguage(event.target.value as "en" | "hi"))
+            }
+          >
+            <option value="en">English (English)</option>
+            <option value="hi">हिन्दी (Hindi)</option>
+          </select>
           <button onClick={() => act(reset)}>
             <RotateCcw />
             Reset
@@ -131,7 +157,16 @@ export default function GeometricSeriesTargetLesson341({
             <Share2 />
             Share
           </button>
-          <button onClick={() => act(() => setTab(tabs[0]))}>Workspace</button>
+          <button
+            onClick={() => {
+              act(() => setTab(tabs[0]));
+              document
+                .getElementById("seq341-explorer")
+                ?.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
+            Workspace
+          </button>
         </nav>
       </header>
       <nav className="seq341-tabs">
@@ -139,13 +174,26 @@ export default function GeometricSeriesTargetLesson341({
           <button
             key={name}
             className={tab === name ? "active" : ""}
-            onClick={() => act(() => setTab(name))}
+            onClick={() => {
+              act(() => setTab(name));
+              document
+                .getElementById(
+                  name === tabs[0]
+                    ? "seq341-explorer"
+                    : name === "Examples"
+                      ? "seq341-worked"
+                      : name === "Formulas"
+                        ? "seq341-formulas"
+                        : "seq341-guide",
+                )
+                ?.scrollIntoView({ behavior: "smooth" });
+            }}
           >
             {name}
           </button>
         ))}
       </nav>
-      <section className="seq341-explorer">
+      <section className="seq341-explorer" id="seq341-explorer">
         <header>
           <div>
             <b>INTERACTION · VISUALIZATION</b>
@@ -336,7 +384,7 @@ export default function GeometricSeriesTargetLesson341({
           </section>
         </main>
       </section>
-      <section className="seq341-guide">
+      <section className="seq341-guide" id="seq341-guide">
         <article>
           <h2>What is a geometric series?</h2>
           <p>
@@ -368,7 +416,7 @@ export default function GeometricSeriesTargetLesson341({
           </article>
         </aside>
       </section>
-      <section className="seq341-formulas">
+      <section className="seq341-formulas" id="seq341-formulas">
         <article>
           <h2>Finite geometric series</h2>
           <strong>Sₙ = a(1−rⁿ)/(1−r), r≠1</strong>
@@ -387,7 +435,7 @@ export default function GeometricSeriesTargetLesson341({
           </p>
         </article>
       </section>
-      <section className="seq341-worked">
+      <section className="seq341-worked" id="seq341-worked">
         <div>
           <h2>Example: Sum the infinite geometric series</h2>
           <p>For a=3 and r=0.5:</p>
@@ -442,7 +490,12 @@ export default function GeometricSeriesTargetLesson341({
               <b>Correct!</b>
               <p>
                 S∞ = {currentChallenge.a}/(1−({currentChallenge.r})) ={" "}
-                {clean(currentChallenge.a / (1 - currentChallenge.r))}
+                {clean(
+                  infiniteGeometricSeriesSum(
+                    currentChallenge.a,
+                    currentChallenge.r,
+                  ) ?? Number.NaN,
+                )}
               </p>
               <button
                 onClick={() =>

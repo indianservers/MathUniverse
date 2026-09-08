@@ -1,0 +1,353 @@
+.op547 {
+  color: #172852;
+  font-size: 12px;
+  line-height: 1.45;
+}
+.op547 * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.op547 h2 {
+  font-size: 30px;
+  margin: 4px 0;
+}
+.op547 h3 {
+  font-size: 13px;
+  color: #087ba0;
+  margin: 0 0 7px;
+}
+.op547 p {
+  margin: 5px 0;
+}
+.op547 button,
+.op547 input,
+.op547 select {
+  font: inherit;
+}
+.op547 button {
+  cursor: pointer;
+}
+.op547-hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 330px;
+  gap: 15px;
+  border: 1px solid #dce5ed;
+  border-radius: 8px;
+  padding: 14px;
+}
+.op547-hero > div > span {
+  font-size: 9px;
+  color: #087d9f;
+  font-weight: 800;
+}
+.op547-hero > div > b {
+  display: inline-block;
+  border: 1px solid #dce5ed;
+  border-radius: 13px;
+  padding: 4px 8px;
+  margin: 8px 5px 0 0;
+  font-size: 9px;
+}
+.op547-hero > aside {
+  background: #f7f8fa;
+  border-radius: 7px;
+  padding: 10px;
+}
+.op547-hero > button {
+  position: absolute;
+  left: 14px;
+  bottom: 12px;
+  transform: translateY(42px);
+  display: flex;
+  gap: 5px;
+  border: 1px solid #dce5ed;
+  background: #fff;
+  border-radius: 5px;
+  padding: 7px 15px;
+}
+.op547 > nav {
+  display: flex;
+  justify-content: space-around;
+  border: 1px solid #dce5ed;
+  border-radius: 7px;
+  padding: 4px;
+  margin-top: 48px;
+}
+.op547 > nav > * {
+  padding: 8px 10px;
+}
+.op547 > nav b {
+  background: #078da7;
+  color: #fff;
+  border-radius: 6px;
+}
+.op547 > main,
+.op547-lower > article,
+.op547-lower > aside > section,
+.op547-quiz {
+  border: 1px solid #dce5ed;
+  border-radius: 8px;
+  background: #fff;
+  padding: 10px;
+}
+.op547 > main {
+  margin-top: 10px;
+}
+.op547 main > header {
+  display: flex;
+  justify-content: space-between;
+}
+.op547 main > header > b {
+  color: #158044;
+}
+.op547-lab {
+  display: grid;
+  grid-template-columns: 230px 1fr;
+  gap: 8px;
+}
+.op547-controls {
+  display: grid;
+  gap: 7px;
+}
+.op547-controls > label,
+.op547-controls fieldset {
+  display: grid;
+  gap: 6px;
+  border: 1px solid #dce5ed;
+  border-radius: 6px;
+  padding: 8px;
+  margin: 0;
+}
+.op547-controls label span {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.op547-controls input,
+.op547-controls select {
+  width: 100%;
+  border: 1px solid #dce5ed;
+  border-radius: 5px;
+  padding: 6px;
+}
+.op547-controls label span input {
+  width: 90px;
+}
+.op547-controls button {
+  border: 0;
+  background: #fff;
+  text-align: left;
+  padding: 4px;
+}
+.op547-controls button.active {
+  color: #087ba0;
+  font-weight: 800;
+  background: #edfaff;
+}
+.op547-plot {
+  position: relative;
+  border: 1px solid #dce5ed;
+  border-radius: 7px;
+  padding: 9px;
+}
+.op547-plot > aside {
+  position: absolute;
+  right: 12px;
+  top: 10px;
+  border: 1px solid #dce5ed;
+  border-radius: 6px;
+  padding: 8px;
+  background: #fff;
+}
+.op547-plot svg {
+  width: 100%;
+  height: 330px;
+  touch-action: none;
+}
+.op547-plot polyline {
+  fill: none;
+  stroke: #078fc9;
+  stroke-width: 0.7;
+}
+.op547-plot line {
+  stroke: #62758a;
+  stroke-width: 0.35;
+}
+.op547-plot .null {
+  stroke: #909dab;
+  stroke-dasharray: 2;
+}
+.op547-plot .tail {
+  fill: #9646da;
+  opacity: 0.6;
+}
+.op547-plot .observed {
+  stroke: #f09b00;
+  stroke-width: 0.7;
+}
+.op547-plot text {
+  font-size: 3.5px;
+  fill: #172c52;
+  font-weight: 700;
+}
+.op547-plot > p {
+  text-align: center;
+}
+.op547-plot footer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid #dce5ed;
+  border-radius: 7px;
+}
+.op547-plot footer span {
+  display: grid;
+  text-align: center;
+  padding: 8px;
+  border-right: 1px solid #e2e8ef;
+}
+.op547-plot footer b {
+  font-size: 16px;
+  color: #087ba0;
+}
+.op547-plot output {
+  display: block;
+  background: #eef9ff;
+  color: #1765a8;
+  padding: 8px;
+  margin-top: 7px;
+}
+.op547-lower {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 10px;
+  margin-top: 10px;
+}
+.op547-lower > article > p {
+  margin-top: 13px;
+  color: #087ba0;
+}
+.op547-lower > article > p i {
+  display: inline-grid;
+  width: 18px;
+  height: 18px;
+  place-items: center;
+  border-radius: 50%;
+  background: #176bcf;
+  color: #fff;
+  font-style: normal;
+  margin-right: 5px;
+}
+.op547-lower > article > b {
+  display: block;
+  margin-left: 24px;
+  font-family: Georgia, serif;
+}
+.op547-lower > article > button {
+  display: block;
+  margin: 15px auto 0;
+  border: 0;
+  background: #176bcf;
+  color: #fff;
+  border-radius: 5px;
+  padding: 7px 16px;
+}
+.op547-lower > aside {
+  display: grid;
+  gap: 8px;
+}
+.op547-lower > aside section:first-child {
+  background: #f3fbff;
+}
+.op547-lower > aside section:nth-child(2) {
+  background: #fff9ef;
+}
+.op547-lower > aside section:last-child {
+  background: #f3f9ff;
+}
+.op547-quiz {
+  margin-top: 10px;
+  background: #fcf7ff;
+}
+.op547-quiz > div {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr) 140px;
+  gap: 8px;
+}
+.op547-quiz article {
+  display: grid;
+  gap: 4px;
+  border: 1px solid #dce5ed;
+  border-radius: 6px;
+  padding: 7px;
+  background: #fff;
+}
+.op547-quiz button {
+  border: 1px solid #dce5ed;
+  background: #fff;
+  border-radius: 5px;
+  padding: 6px;
+  text-align: left;
+}
+.op547-quiz aside {
+  display: grid;
+  place-items: center;
+  border-radius: 7px;
+}
+.op547 .correct {
+  border-color: #18ab5d;
+  background: #effaf3;
+  color: #137943;
+}
+.op547 .incorrect {
+  border-color: #d94d55;
+  background: #fff2f2;
+  color: #a02a33;
+}
+.op547 > footer {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #dce5ed;
+  border-radius: 7px;
+  padding: 12px;
+  margin-top: 10px;
+  font-weight: 700;
+}
+.op547 button:focus-visible,
+.op547 input:focus-visible,
+.op547 select:focus-visible {
+  outline: 3px solid #08a0ba;
+  outline-offset: 2px;
+}
+@media (max-width: 700px) {
+  .op547 h2 {
+    font-size: 25px;
+  }
+  .op547-hero,
+  .op547-lab,
+  .op547-lower {
+    grid-template-columns: 1fr;
+  }
+  .op547 > nav > * {
+    padding: 7px 3px;
+    font-size: 7px;
+  }
+  .op547-plot > aside {
+    position: static;
+  }
+  .op547-plot svg {
+    height: 240px;
+  }
+  .op547-plot footer {
+    grid-template-columns: 1fr 1fr;
+  }
+  .op547-quiz > div {
+    grid-template-columns: 1fr;
+  }
+  .op547 > footer {
+    gap: 8px;
+  }
+  .op547 > footer span:last-child {
+    text-align: right;
+  }
+}

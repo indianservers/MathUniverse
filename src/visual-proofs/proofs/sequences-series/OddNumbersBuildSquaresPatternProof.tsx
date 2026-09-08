@@ -1,0 +1,1 @@
+import type{VisualProof,VisualProofCategory}from"../../data/proofTypes";import OddSquarePatternMobileProof from"./OddSquarePatternMobileProof";export default function OddNumbersBuildSquaresPatternProof({category:_category,proof:_proof}:{category:VisualProofCategory;proof:VisualProof}){return <OddSquarePatternMobileProof/>}

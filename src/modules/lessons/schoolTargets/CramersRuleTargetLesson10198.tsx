@@ -1,6 +1,7 @@
 import { CheckCircle2, Lightbulb } from "lucide-react";
 import { Fragment, useState } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
+import { LessonStudioFrame, LessonStudioGrid, LessonStudioPanel } from "../components/LessonStudio";
 import "./CramersRuleTargetLesson10198.css";
 
 type Sys = [number, number, number, number, number, number];
@@ -27,9 +28,9 @@ const calc = (s: Sys) => {
 };
 const fmt = (n: number | null) =>
   n === null ? "—" : Number.isInteger(n) ? String(n) : n.toFixed(2);
-function Matrix({ m }: { m: number[][] }) {
+function Matrix({ m, replacedColumn }: { m: number[][]; replacedColumn?: number }) {
   return (
-    <div className="cr-matrix">
+    <div className="cr-matrix" data-replaced-column={replacedColumn}>
       {m.flat().map((v, i) => (
         <span key={i}>{v}</span>
       ))}
@@ -53,11 +54,15 @@ function MiniGraph({ s }: { s: Sys }) {
     q1 = map(q[0], q[1]),
     q2 = map(q[2], q[3]);
   return (
-    <svg viewBox="0 0 300 290">
+    <svg viewBox="0 0 300 290" role="img" aria-label={`Graph of the two equations. ${r.type === "unique" ? `Intersection (${fmt(r.x)}, ${fmt(r.y)}).` : r.type === "none" ? "Parallel lines, no solution." : "Coincident lines, infinitely many solutions."}`}>
       {[-4, -3, -2, -1, 0, 1, 2, 3, 4].map((v) => (
         <g key={v}>
           <line x1={o.x + v * sc} y1="10" x2={o.x + v * sc} y2="280" />
           <line x1="10" y1={o.y - v * sc} x2="290" y2={o.y - v * sc} />
+          {v !== 0 && <>
+            <text className="cr-tick" x={o.x + v * sc} y={o.y + 16} textAnchor="middle">{v}</text>
+            <text className="cr-tick" x={o.x - 7} y={o.y - v * sc + 4} textAnchor="end">{v}</text>
+          </>}
         </g>
       ))}
       <line className="axis" x1="10" y1={o.y} x2="290" y2={o.y} />
@@ -113,8 +118,9 @@ export default function CramersRuleTargetLesson10198({
     },
     gradeAll = () => tasks.forEach((_, i) => grade(i));
   return (
+    <LessonStudioFrame>
     <main
-      className="cr10198-page"
+      className="cr10198-page lesson-studio"
       data-testid="school-mockup-0872"
       data-object-model="dedicated-cramer-column-replacement-engine"
       data-delta={r.D}
@@ -147,15 +153,17 @@ export default function CramersRuleTargetLesson10198({
                 ? "No solution"
                 : "Infinite solutions"}
             <strong>Δ {r.D !== 0 ? "≠" : "="} 0</strong>
+            {r.type === "unique" && <strong>x = {fmt(r.x)}, y = {fmt(r.y)}</strong>}
           </b>
         </div>
       </header>
-      <section className="cr-system">
-        <article>
+      <LessonStudioGrid className="cr-system">
+        <LessonStudioPanel as="article">
           <h2>
             <i>1</i> Enter / Edit the System
           </h2>
           <div className="cr-equation-inputs">
+            <div className="cr-equation-labels" aria-hidden="true"><span>x coefficient</span><span>y coefficient</span><span>constant</span></div>
             {[0, 3].map((start) => (
               <div className="cr-equation-row" key={start}>
                 {[0, 1, 2].map((offset) => {
@@ -184,8 +192,8 @@ export default function CramersRuleTargetLesson10198({
             <button onClick={reset}>Reset</button>
             <button onClick={swap}>Swap equations</button>
           </footer>
-        </article>
-        <article>
+        </LessonStudioPanel>
+        <LessonStudioPanel as="article">
           <p>System in Standard Form</p>
           <strong>
             {a}x {b < 0 ? "−" : "+"} {Math.abs(b)}y = {c}
@@ -197,8 +205,8 @@ export default function CramersRuleTargetLesson10198({
           <div className="cr-formula">
             A=[{a} {b}; {d} {e}], X=[x;y], b=[{c};{f}]
           </div>
-        </article>
-        <article>
+        </LessonStudioPanel>
+        <LessonStudioPanel as="article">
           <h2>Determinant Area Insight</h2>
           <p>
             For a 2×2 matrix det=ad−bc. Geometric meaning: signed area of the
@@ -206,14 +214,14 @@ export default function CramersRuleTargetLesson10198({
           </p>
           <div className="cr-parallelogram">u ▱ v</div>
           <b>Area = |det(A)| = {Math.abs(r.D)}</b>
-        </article>
-      </section>
-      <section className="cr-build">
+        </LessonStudioPanel>
+      </LessonStudioGrid>
+      <LessonStudioPanel className="cr-build">
         <h2>
           <i>2</i> Build Determinants by Column Replacement
         </h2>
         <p>Watch each determinant form step-by-step.</p>
-        <div>
+        <LessonStudioGrid>
           {[
             {
               title: "Step 1: Coefficient Determinant Δ",
@@ -252,13 +260,10 @@ export default function CramersRuleTargetLesson10198({
                     ? "Replace first column with constants b."
                     : "Replace second column with constants b."}
               </p>
-              <div className="cr-source-matrix">
-                <Matrix m={x.m} />
-              </div>
               <div className="cr-det">
                 <span>{i === 0 ? "Δ" : i === 1 ? "Δx" : "Δy"} = det =</span>
                 <div className="cr-cross-matrix">
-                  <Matrix m={x.m} />
+                  <Matrix m={x.m} replacedColumn={i === 0 ? undefined : i - 1} />
                 </div>
               </div>
               <div className="cr-work">
@@ -268,7 +273,7 @@ export default function CramersRuleTargetLesson10198({
                 </p>
                 <p>= {x.value}</p>
               </div>
-              <strong>
+              <strong className="lesson-studio-result">
                 {i === 0 ? "Δ" : i === 1 ? "Δx" : "Δy"} = {x.value}
               </strong>
               <footer>
@@ -283,9 +288,9 @@ export default function CramersRuleTargetLesson10198({
               </footer>
             </article>
           ))}
-        </div>
-      </section>
-      <section className="cr-solve">
+        </LessonStudioGrid>
+      </LessonStudioPanel>
+      <LessonStudioPanel className="cr-solve">
         <h2>
           <i>3</i> Solve Using Cramer&apos;s Rule
         </h2>
@@ -295,7 +300,7 @@ export default function CramersRuleTargetLesson10198({
               x = Δx/Δ = {r.Dx}/{r.D} = <b>{fmt(r.x)}</b> y = Δy/Δ = {r.Dy}/
               {r.D} = <b>{fmt(r.y)}</b>
             </div>
-            <strong>
+            <strong className="lesson-studio-result" aria-live="polite">
               Solution x={fmt(r.x)}
               <br />
               y={fmt(r.y)}
@@ -309,9 +314,9 @@ export default function CramersRuleTargetLesson10198({
             </strong>
           </>
         )}
-      </section>
-      <section className="cr-verify">
-        <article>
+      </LessonStudioPanel>
+      <LessonStudioGrid className="cr-verify">
+        <LessonStudioPanel as="article">
           <h2>
             <i>4</i> Verify Graphically
           </h2>
@@ -323,10 +328,10 @@ export default function CramersRuleTargetLesson10198({
                 : "The two equations draw the same line."}
           </p>
           <MiniGraph s={sys} />
-          <footer>■ First equation ■ Second equation ● {r.type}</footer>
-        </article>
+          <footer><span className="cr-legend-first">■ First equation</span><span className="cr-legend-second">■ Second equation</span><span>● {r.type}</span></footer>
+        </LessonStudioPanel>
         <div>
-          <article>
+          <LessonStudioPanel as="article">
             <h2>
               <i>5</i> Verify by Substitution
             </h2>
@@ -338,15 +343,15 @@ export default function CramersRuleTargetLesson10198({
                 <p>
                   {d}({fmt(r.x)}) + {e}({fmt(r.y)}) = {f} ✓
                 </p>
-                <strong>
+                <strong className="lesson-studio-result">
                   Both equations are satisfied. The solution is correct.
                 </strong>
               </>
             ) : (
               <p>No single ordered pair can be verified for this case.</p>
             )}
-          </article>
-          <article className="cr-zero">
+          </LessonStudioPanel>
+          <LessonStudioPanel as="article" className="cr-zero">
             <h2>
               <i>!</i> What if Δ = 0?
             </h2>
@@ -362,10 +367,10 @@ export default function CramersRuleTargetLesson10198({
                 matrix is invertible.
               </p>
             )}
-          </article>
+          </LessonStudioPanel>
         </div>
-      </section>
-      <section className="cr-practice">
+      </LessonStudioGrid>
+      <LessonStudioPanel className="cr-practice">
         <header>
           <div>
             <h2>
@@ -381,7 +386,7 @@ export default function CramersRuleTargetLesson10198({
             <button onClick={gradeAll}>Check all</button>
           </aside>
         </header>
-        <div>
+        <LessonStudioGrid>
           {tasks.map((s, i) => {
             const q = calc(s);
             return (
@@ -429,8 +434,8 @@ export default function CramersRuleTargetLesson10198({
               </article>
             );
           })}
-        </div>
-      </section>
+        </LessonStudioGrid>
+      </LessonStudioPanel>
       <nav className="cr-next">
         <a href="/lessons/school/class-12/class-12-matrices-and-determinants-determinant-properties">
           ← Previous: Determinants Basics
@@ -440,5 +445,6 @@ export default function CramersRuleTargetLesson10198({
         </a>
       </nav>
     </main>
+    </LessonStudioFrame>
   );
 }

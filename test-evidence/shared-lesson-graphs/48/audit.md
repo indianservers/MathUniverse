@@ -1,0 +1,11 @@
+# Lesson 48: Trace Mode
+
+Baseline source, three viewport screenshots, controls and console captured before migration.
+
+The fixed formula f(x)=sin(x)+0.3x and the sample-values table agree. Reference rows at x=1.7,1.8,1.9 have correctly rounded values 1.50,1.51,1.52 and remain unchanged. The actual control state is primary=2, secondary=3, trace=1.5; captions instead show trace x=1.8, slope=1.2 and step=0.1. All three numeric inputs use [-5,5], step .5. The slope input has no defined effect, and the control labeled step currently moves an unrelated generic graph cursor. The static curve/tangent/point do not evaluate the stated formula.
+
+The original trace-x control now moves a point on the fixed function. Slope is read-only f′(x)=cos(x)+0.3. The original signed step state is explicitly labeled offset Δx and supplies a comparison point x+Δx plus a secant estimate Δf/Δx; this is a signed horizontal step, not a function coefficient. At zero offset the secant is undefined and is omitted with an explanation; the derivative remains valid. Actual initial values and bounds/steps remain. Fit retains its original behavior of restoring the third control to 1.5, as well as restoring the original preset view [-7,7] × [-3,3]. The fixed reference rows are identified as references near x=1.8, distinct from the live trace. Sample-table highlighting follows the actual trace-x control.
+
+Initial verification: thirteen browser checks pass (three Trace Mode viewports and ten Inspector lessons). This covers all trace/offset values, exact derivative, tangent slope, signed secant, zero offset, both draggable points by mouse/touch/keyboard, view controls, guide visibility, references and sample highlighting. Screenshot review also prompted a shared numeric-control correction: lesson-only steppers now disable the direction that cannot move at a bound and provide explicit hover/active/focus styles. The original bounds/step and clamped results remain unchanged. A focused regression across all ten consumers is pending.
+
+Repository typecheck: 138 diagnostics outside GraphLessonAdapter, SharedTraceGraph48 and the shared graph directory (`typecheck.log`). Existing repository build failures remain unresolved.

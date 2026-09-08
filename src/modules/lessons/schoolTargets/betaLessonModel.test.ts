@@ -1,0 +1,11 @@
+import { describe,expect,it } from "vitest";
+import { betaAssessment,betaIntegrand,betaPresets,betaQuadrature,betaShape,betaValue } from "./betaLessonModel";
+describe("Beta two-parameter lesson",()=>{
+  it("matches default area and actual peak heights",()=>{expect(betaValue(2,3)).toBeCloseTo(1/12,12);expect(betaShape(2,3).mode).toBeCloseTo(1/3,12);expect(betaIntegrand(2,3,1/3)).toBeCloseTo(4/27,12);expect(betaIntegrand(2,3,1/3)/betaValue(2,3)).toBeCloseTo(16/9,12);});
+  it("independently integrates every preset and supported extremes",()=>{for(const {a,b} of [...betaPresets,{a:.25,b:.25},{a:.25,b:10},{a:10,b:.25},{a:10,b:10},{a:.99,b:1.01}])expect(betaQuadrature(a,b)/betaValue(a,b)).toBeCloseTo(1,8);});
+  it("obeys symmetry in values and reflected integrands",()=>{for(const [a,b] of [[2,5],[.5,2],[10,.25]]){expect(betaValue(a,b)).toBeCloseTo(betaValue(b,a),12);for(const t of [.1,.3,.5,.8])expect(betaIntegrand(a,b,t)).toBeCloseTo(betaIntegrand(b,a,1-t),10);}});
+  it("handles both endpoint singularities and boundary finite values",()=>{expect(betaIntegrand(.5,2,0)).toBe(Infinity);expect(betaIntegrand(2,.5,1)).toBe(Infinity);expect(betaIntegrand(1,5,0)).toBe(1);expect(betaIntegrand(5,1,1)).toBe(1);expect(betaIntegrand(2,3,0)).toBe(0);expect(betaIntegrand(2,3,1)).toBe(0);});
+  it("distinguishes interior modes, uniform and endpoint maxima",()=>{expect(betaShape(1,1).label).toBe("Uniform");expect(betaShape(.5,.5).mode).toBeNull();expect(betaShape(.5,.5).label).toBe("U-shaped");expect(betaShape(1,5).note).toBe("Maximum at 0.");expect(betaShape(5,1).note).toBe("Maximum at 1.");expect(betaShape(2,5).label).toBe("Right-skewed hump");expect(betaShape(5,2).label).toBe("Left-skewed hump");});
+  it("checks special values including capstone B(1,10)",()=>{for(const b of [1,2,5,10])expect(betaValue(1,b)).toBeCloseTo(1/b,12);expect(betaValue(.5,.5)).toBeCloseTo(Math.PI,12);expect(betaValue(2,2)).toBeCloseTo(1/6,12);});
+  it("grades assessment values and rejects blanks",()=>{expect(betaAssessment([".083333",".333333",".2","3.141593"])).toEqual([true,true,true,true]);expect(betaAssessment(["","","",""])).toEqual([false,false,false,false]);expect(betaAssessment(["1",".333333",".2","Infinity"])).toEqual([false,true,true,false]);});
+});

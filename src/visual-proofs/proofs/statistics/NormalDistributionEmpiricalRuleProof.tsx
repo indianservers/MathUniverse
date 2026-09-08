@@ -1,7 +1,6 @@
-import { PhaseTwoProofExperience } from "../../components/PhaseTwoProofExperience";
 import type { VisualProof, VisualProofCategory } from "../../data/proofTypes";
-import { normalEmpiricalRulePhaseEighteenConfig } from "../phase-eighteen/phaseEighteenProofConfigs";
+import NormalProbabilityMobileProof from "./NormalProbabilityMobileProof";
 
-export default function NormalDistributionEmpiricalRuleProof({ category, proof }: { category: VisualProofCategory; proof: VisualProof }) {
-  return <PhaseTwoProofExperience category={category} proof={proof} config={normalEmpiricalRulePhaseEighteenConfig} />;
+export default function NormalDistributionEmpiricalRuleProof({ category: _category, proof: _proof }: { category: VisualProofCategory; proof: VisualProof }) {
+  return <NormalProbabilityMobileProof />;
 }

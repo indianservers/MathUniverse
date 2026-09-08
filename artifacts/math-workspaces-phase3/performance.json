@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-08-20T11:07:03.052Z",
+  "generatedAt": "2026-09-05T20:04:48.214Z",
   "environment": "Vitest Node worker; one warm-up run before each measured scenario",
   "scenarios": [
     {
       "objectCount": 499,
       "dependencyCount": 498,
       "timings": {
-        "generateMs": 33.14,
-        "evaluateMs": 15.3,
-        "protocolMs": 0.59,
-        "exportMs": 47.04,
-        "totalMs": 96.08
+        "generateMs": 32.46,
+        "evaluateMs": 4.91,
+        "protocolMs": 0.79,
+        "exportMs": 31.81,
+        "totalMs": 69.98
       },
       "passed": true,
       "budgetMs": 1000
@@ -19,11 +19,11 @@
       "objectCount": 999,
       "dependencyCount": 998,
       "timings": {
-        "generateMs": 104.28,
-        "evaluateMs": 262.64,
-        "protocolMs": 1.56,
-        "exportMs": 320.45,
-        "totalMs": 688.93
+        "generateMs": 101.2,
+        "evaluateMs": 296.35,
+        "protocolMs": 0.54,
+        "exportMs": 298.12,
+        "totalMs": 696.21
       },
       "passed": true,
       "budgetMs": 2000
@@ -32,11 +32,11 @@
       "objectCount": 1999,
       "dependencyCount": 1998,
       "timings": {
-        "generateMs": 652.17,
-        "evaluateMs": 1658.26,
-        "protocolMs": 7.25,
-        "exportMs": 1714.91,
-        "totalMs": 4032.59
+        "generateMs": 584.29,
+        "evaluateMs": 1570.07,
+        "protocolMs": 4.59,
+        "exportMs": 2247.27,
+        "totalMs": 4406.21
       },
       "passed": true,
       "budgetMs": 5000

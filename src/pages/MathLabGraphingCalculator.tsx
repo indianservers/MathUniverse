@@ -7,10 +7,11 @@ import { useUniversalObjectGraphPublisher } from "../workspace/useUniversalObjec
 import { deleteGraphWorkspace, readSavedGraphWorkspaces, saveGraphWorkspace, type SavedGraphWorkspace } from "../utils/graphWorkspaceStorage";
 import type { GraphSample } from "../utils/mathEngine/graphSampler";
 import { compileFunctionExpression, compileTwoVariableExpression } from "../utils/functionParser";
-import GraphStudio2DWorkspace from "../graph-studio/GraphStudio2DWorkspace";
+import GraphStudio2DWorkspace, { type GraphTransform, type PiecewiseSegment } from "../graph-studio/GraphStudio2DWorkspace";
 import { sampleAdvancedGraphExpression } from "../graph-studio/advancedGraphLayers";
-import { createBlankGraphDataRows, linearRegression, numericGraphData, parseGraphData, type GraphDataRow } from "../graph-studio/dataAnalysis";
-import { buildExactGraphAnalysis } from "../graph-studio/exactGraphAnalysis";
+import { createBlankGraphDataRows, numericGraphData, parseGraphData, regressionModel, type GraphDataRow, type RegressionKind } from "../graph-studio/dataAnalysis";
+import { buildTransformationExpression, detectGraphAsymptotes, precisionSnapX, sampleTaylorPolynomial } from "../graph-studio/graph2dAdvanced";
+import { buildExactGraphAnalysis, buildExactIntersections } from "../graph-studio/exactGraphAnalysis";
 import { reconcileGraphVariables, substituteGraphVariables } from "../graph-studio/expressionEngine";
 import { fitGraphView } from "../graph-studio/graphViewUtils";
 import { downloadGraphStudioFile, exportGraphStudioProject } from "../graph-studio/projectStorage";
@@ -41,6 +42,8 @@ type FunctionRow = {
   imageY?: number;
   imageWidth?: number;
   imageHeight?: number;
+  piecewise?: PiecewiseSegment[];
+  transform?: GraphTransform;
 };
 
 type Graph2DWorkspaceState = {
@@ -58,6 +61,10 @@ type Graph2DWorkspaceState = {
   showResiduals?: boolean;
   logX?: boolean;
   logY?: boolean;
+  regressionKind?: RegressionKind;
+  showTaylor?: boolean;
+  taylorCenter?: number;
+  taylorDegree?: number;
 };
 
 type GraphExpressionSample = {
@@ -78,14 +85,15 @@ const DEFAULT_GRAPH_VIEW: FunctionGraphView = { xMin: -10, xMax: 10, yMin: -10, 
 export default function MathLabGraphingCalculator() {
   const [searchParams] = useSearchParams();
   const prefilledFunction = searchParams.get("q")?.trim();
-  const [functions, setFunctions] = useState<FunctionRow[]>(() => prefilledFunction ? [
+  const sharedProject = useMemo(() => readSharedGraph(searchParams.get("project")), [searchParams]);
+  const [functions, setFunctions] = useState<FunctionRow[]>(() => sharedProject?.functions?.length ? sharedProject.functions : prefilledFunction ? [
     { id: "f1", input: prefilledFunction, color: COLORS[0], visible: true },
   ] : [
     { id: "f1", input: "x^2 - 4", color: COLORS[0], visible: true },
     { id: "f2", input: "sin(x)", color: COLORS[1], visible: true },
   ]);
   const [selectedId, setSelectedId] = useState("f1");
-  const [view, setView] = useState<FunctionGraphView>(DEFAULT_GRAPH_VIEW);
+  const [view, setView] = useState<FunctionGraphView>(() => sharedProject?.view ?? DEFAULT_GRAPH_VIEW);
   const [showGrid, setShowGrid] = useState(true);
   const [showAxes, setShowAxes] = useState(true);
   const [traceMode, setTraceMode] = useState(true);
@@ -106,8 +114,12 @@ export default function MathLabGraphingCalculator() {
   const [showResiduals, setShowResiduals] = useState(false);
   const [logX, setLogX] = useState(false);
   const [logY, setLogY] = useState(false);
+  const [regressionKind, setRegressionKind] = useState<RegressionKind>("linear");
+  const [showTaylor, setShowTaylor] = useState(false);
+  const [taylorCenter, setTaylorCenter] = useState(0);
+  const [taylorDegree, setTaylorDegree] = useState(4);
 
-  const graphStudioState = useMemo<Graph2DWorkspaceState>(() => ({ functions, view, showGrid, showAxes, traceMode, integralStart, integralEnd, variables: graphVariables, dataRows, showData, showRegression, showResiduals, logX, logY }), [dataRows, functions, graphVariables, integralEnd, integralStart, logX, logY, showAxes, showData, showGrid, showRegression, showResiduals, traceMode, view]);
+  const graphStudioState = useMemo<Graph2DWorkspaceState>(() => ({ functions, view, showGrid, showAxes, traceMode, integralStart, integralEnd, variables: graphVariables, dataRows, showData, showRegression, showResiduals, logX, logY, regressionKind, showTaylor, taylorCenter, taylorDegree }), [dataRows, functions, graphVariables, integralEnd, integralStart, logX, logY, regressionKind, showAxes, showData, showGrid, showRegression, showResiduals, showTaylor, taylorCenter, taylorDegree, traceMode, view]);
   const graphStudio = useGraphStudioProject({
     dimension: "2d",
     initialName: "My Function Study",
@@ -128,6 +140,10 @@ export default function MathLabGraphingCalculator() {
       setShowResiduals(state.showResiduals ?? false);
       setLogX(state.logX ?? false);
       setLogY(state.logY ?? false);
+      setRegressionKind(state.regressionKind ?? "linear");
+      setShowTaylor(state.showTaylor ?? false);
+      setTaylorCenter(state.taylorCenter ?? 0);
+      setTaylorDegree(state.taylorDegree ?? 4);
     },
   });
 
@@ -145,37 +161,48 @@ export default function MathLabGraphingCalculator() {
   }, [variablesPlaying]);
 
   const plotted = useMemo(() => functions.map((item) => {
-    const sampled = sampleGraphExpression(substituteGraphVariables(item.input, graphVariables), view.xMin, view.xMax, 900);
+    const source = item.transform?.enabled ? buildTransformationExpression(item.transform.parent, item.transform.a, item.transform.b, item.transform.h, item.transform.k) : item.input;
+    const sampled = sampleGraphExpression(substituteGraphVariables(source, graphVariables), view.xMin, view.xMax, 900);
     return { ...item, ...sampled };
   }), [functions, graphVariables, view]);
 
   const selected = plotted.find((item) => item.id === selectedId) ?? plotted[0];
   const selectedFunction = functions.find((item) => item.id === selected?.id) ?? functions[0];
-  const selectedResolvedInput = selectedFunction ? substituteGraphVariables(selectedFunction.input, graphVariables) : "";
+  const selectedSourceInput = selectedFunction?.transform?.enabled ? buildTransformationExpression(selectedFunction.transform.parent, selectedFunction.transform.a, selectedFunction.transform.b, selectedFunction.transform.h, selectedFunction.transform.k) : selectedFunction?.input ?? "";
+  const selectedResolvedInput = substituteGraphVariables(selectedSourceInput, graphVariables);
   const interactivePoint = useMemo(() => buildInteractivePoint(selectedFunction, selected, traceX), [selected, selectedFunction, traceX]);
+  const parameterPoint = useMemo(() => buildParameterInteractivePoint(selectedFunction, selectedResolvedInput, graphVariables, traceX), [graphVariables, selectedFunction, selectedResolvedInput, traceX]);
   const table = useMemo(() => selectedFunction ? generateTableValues(selectedResolvedInput, tableStart, tableEnd, tableStep) : { rows: [] }, [selectedFunction, selectedResolvedInput, tableEnd, tableStart, tableStep]);
   const roots = useMemo(() => selectedFunction ? approximateRoots(selectedResolvedInput, view.xMin, view.xMax) : { roots: [] }, [selectedFunction, selectedResolvedInput, view.xMax, view.xMin]);
   const yIntercept = useMemo(() => selectedFunction ? approximateYIntercept(selectedResolvedInput) : { y: null }, [selectedFunction, selectedResolvedInput]);
   const visibleRange = useMemo(() => selectedFunction ? approximateVisibleRange(selectedResolvedInput, view.xMin, view.xMax) : { min: null, max: null }, [selectedFunction, selectedResolvedInput, view.xMax, view.xMin]);
   const discontinuities = useMemo(() => selected ? detectDiscontinuities(selected.points) : [], [selected]);
   const derivativePoints = useMemo(() => selected ? approximateDerivativePoints(selected.points) : [], [selected]);
+  const taylor = useMemo(() => selectedFunction ? sampleTaylorPolynomial(selectedResolvedInput, taylorCenter, taylorDegree, view.xMin, view.xMax) : { points: [], coefficients: [] }, [selectedFunction, selectedResolvedInput, taylorCenter, taylorDegree, view.xMax, view.xMin]);
   const extrema = useMemo(() => selected ? approximateExtrema(selected.points) : { minima: [], maxima: [] }, [selected]);
   const intersections = useMemo(() => approximateIntersections(plotted.filter((item) => item.visible && !item.error)), [plotted]);
+  const snapCandidates = useMemo(() => [...roots.roots.map((x) => ({ x, y: 0 })), ...intersections, ...extrema.minima, ...extrema.maxima], [extrema.maxima, extrema.minima, intersections, roots.roots]);
   const integralValue = useMemo(() => selected ? approximateIntegral(selected.points, Math.min(integralStart, integralEnd), Math.max(integralStart, integralEnd)) : null, [integralEnd, integralStart, selected]);
   const exactAnalysis = useMemo(() => buildExactGraphAnalysis(selectedResolvedInput, Math.min(integralStart, integralEnd), Math.max(integralStart, integralEnd)), [integralEnd, integralStart, selectedResolvedInput]);
+  const exactIntersections = useMemo(() => { const visible = functions.filter((item) => item.visible); return visible.length >= 2 ? buildExactIntersections(visible[0].input, visible[1].input) : undefined; }, [functions]);
   const numericData = useMemo(() => numericGraphData(dataRows), [dataRows]);
-  const regression = useMemo(() => linearRegression(numericData), [numericData]);
+  const regression = useMemo(() => regressionModel(numericData, regressionKind), [numericData, regressionKind]);
+  const asymptotes = useMemo(() => selected ? detectGraphAsymptotes(selected.points, view.xMin, view.xMax) : { vertical: [], horizontal: [] }, [selected, view.xMax, view.xMin]);
   const dataPoints = useMemo<GraphSample[]>(() => numericData.map((point) => ({ ...point, valid: true })), [numericData]);
   const regressionPoints = useMemo<GraphSample[]>(() => regression?.line.map((point) => ({ ...point, valid: true })) ?? [], [regression]);
   const graphSeries = useMemo(() => [
+    ...asymptotes.vertical.map((x, index) => ({ id: `vertical-asymptote-${index}`, label: `x = ${formatGraphNumber(x)}`, color: "#fb7185", points: [{ x, y: view.yMin, valid: true }, { x, y: view.yMax, valid: true }], visible: true, style: "dashed" as const, opacity: 0.65 })),
+    ...asymptotes.horizontal.map((y, index) => ({ id: `horizontal-asymptote-${index}`, label: `y = ${formatGraphNumber(y)}`, color: "#fb7185", points: [{ x: view.xMin, y, valid: true }, { x: view.xMax, y, valid: true }], visible: true, style: "dashed" as const, opacity: 0.65 })),
+    ...functions.filter((item) => item.visible && item.transform?.enabled).map((item) => ({ id: `${item.id}-parent`, label: `${item.name || "f"} parent`, color: item.color, points: sampleGraphExpression(substituteGraphVariables(item.transform!.parent, graphVariables), view.xMin, view.xMax, 700).points, visible: true, style: "dashed" as const, opacity: 0.34 })),
     ...plotted.flatMap((item) => [
       { id: item.id, label: item.label || item.name || item.input || "function", color: item.color, points: item.points, visible: item.visible && !item.error, style: item.style, opacity: item.opacity ?? 1 },
       ...(item.boundaryPoints?.length ? [{ id: `${item.id}-boundary`, label: `${item.input} boundary`, color: item.color, points: item.boundaryPoints, visible: item.visible && !item.error, style: item.boundaryStyle ?? "line" as const }] : []),
     ]),
     ...(showDerivative && selected ? [{ id: `${selected.id}-derivative`, label: `d/dx ${selected.input}`, color: "#ec4899", points: derivativePoints, visible: true, style: "derivative" as const }] : []),
+    ...(showTaylor && selected && taylor.points.length ? [{ id: `${selected.id}-taylor`, label: `Taylor degree ${taylorDegree}`, color: "#facc15", points: taylor.points, visible: true, style: "dashed" as const }] : []),
     ...(showData && dataPoints.length ? [{ id: "data-series", label: "Data points", color: "#fbbf24", points: dataPoints, visible: true, style: "points" as const }] : []),
     ...(showRegression && regressionPoints.length ? [{ id: "linear-regression", label: "Linear regression", color: "#a7f3d0", points: regressionPoints, visible: true, style: "line" as const }] : []),
-  ], [dataPoints, derivativePoints, plotted, regressionPoints, selected, showData, showDerivative, showRegression]);
+  ], [asymptotes.horizontal, asymptotes.vertical, dataPoints, derivativePoints, functions, graphVariables, plotted, regressionPoints, selected, showData, showDerivative, showRegression, showTaylor, taylor.points, taylorDegree, view.xMax, view.xMin, view.yMax, view.yMin]);
   const workspaceObjects = useMemo(() => buildGraphingCalculatorWorkspaceObjects({
     functions: plotted.map((item) => ({
       id: item.id,
@@ -206,9 +233,12 @@ export default function MathLabGraphingCalculator() {
       onUndo={graphStudio.undo}
       onRedo={graphStudio.redo}
       onSave={() => { graphStudio.save(); saveCurrentGraph(); }}
-      onExportProject={() => exportGraphStudioProject({ ...graphStudio.project, state: graphStudioState })}
+      onExportProject={() => downloadGraphStudioFile(`${fileSlug(graphStudio.project.name)}.json`, exportGraphStudioProject({ ...graphStudio.project, state: graphStudioState }))}
       onExportCsv={exportSelectedCsv}
       onExportSvg={exportSelectedSvg}
+      onExportPdf={exportGraphPdf}
+      onCopyShareLink={() => void navigator.clipboard?.writeText(buildShareUrl(functions, view))}
+      onCopyEmbed={() => void navigator.clipboard?.writeText(`<iframe src="${escapeHtmlAttribute(buildShareUrl(functions, view))}" width="960" height="640" loading="lazy" title="${escapeHtmlAttribute(graphStudio.project.name)}"></iframe>`)}
       onCopyEquation={() => void navigator.clipboard?.writeText(selectedFunction?.input ?? "")}
       functions={functions}
       plotted={plotted}
@@ -252,8 +282,8 @@ export default function MathLabGraphingCalculator() {
       onLogXChange={(value) => { setLogX(value); if (value) setView((current) => ({ ...current, xMin: Math.max(0.01, current.xMin), xMax: Math.max(10, current.xMax) })); }}
       onLogYChange={(value) => { setLogY(value); if (value) setView((current) => ({ ...current, yMin: Math.max(0.01, current.yMin), yMax: Math.max(10, current.yMax) })); }}
       onAddConstruction={addConstruction}
-      linkedPoint={interactivePoint ? { x: interactivePoint.x, y: interactivePoint.y } : null}
-      canvas={graphSeries.some((item) => item.visible && item.points.length) ? <FunctionGraphCanvas series={graphSeries} view={view} onViewChange={setView} onResetView={() => setView(DEFAULT_GRAPH_VIEW)} showGrid={showGrid} showAxes={showAxes} logX={logX} logY={logY} selectedSeriesId={selectedId} traceX={traceMode ? traceX : undefined} onTraceChange={traceMode ? setTraceX : undefined} interactivePoints={interactivePoint ? [interactivePoint] : []} onInteractivePointChange={moveInteractivePoint} imageLayers={functions.filter((item) => item.visible && isSafeImageUrl(item.imageUrl)).map((item) => ({ id: item.id, href: item.imageUrl!, x: item.imageX ?? -2, y: item.imageY ?? 2, width: item.imageWidth ?? 4, height: item.imageHeight ?? 4, opacity: item.opacity ?? 0.7, label: item.label || item.name || "Graph image" }))} residualSegments={showResiduals && regression ? regression.residuals : []} integralArea={showIntegral && selected ? { points: selected.points, color: selected.color, start: Math.min(integralStart, integralEnd), end: Math.max(integralStart, integralEnd) } : undefined} featurePoints={[...roots.roots.map((x) => ({ x, y: 0, type: "root" as const })), ...(typeof yIntercept.y === "number" ? [{ x: 0, y: yIntercept.y, type: "intercept" as const }] : []), ...extrema.minima.map((point) => ({ ...point, type: "minimum" as const })), ...extrema.maxima.map((point) => ({ ...point, type: "maximum" as const })), ...intersections.map((point) => ({ ...point, type: "intersection" as const }))]} /> : <div className="gs2d-canvas-empty">Enter a valid expression or data points to plot.</div>}
+      linkedPoint={interactivePoint ? { x: interactivePoint.x, y: interactivePoint.y } : parameterPoint ? { x: parameterPoint.x, y: parameterPoint.y } : null}
+      canvas={graphSeries.some((item) => item.visible && item.points.length) ? <FunctionGraphCanvas series={graphSeries} view={view} onViewChange={setView} onResetView={() => setView(DEFAULT_GRAPH_VIEW)} showGrid={showGrid} showAxes={showAxes} logX={logX} logY={logY} selectedSeriesId={selectedId} traceX={traceMode ? traceX : undefined} onTraceChange={traceMode ? setPrecisionTraceX : undefined} interactivePoints={[...(interactivePoint ? [interactivePoint] : []), ...(parameterPoint ? [parameterPoint] : [])]} onInteractivePointChange={moveInteractivePoint} precisionCrosshair imageLayers={functions.filter((item) => item.visible && isSafeImageUrl(item.imageUrl)).map((item) => ({ id: item.id, href: item.imageUrl!, x: item.imageX ?? -2, y: item.imageY ?? 2, width: item.imageWidth ?? 4, height: item.imageHeight ?? 4, opacity: item.opacity ?? 0.7, label: item.label || item.name || "Graph image" }))} residualSegments={showResiduals && regression ? regression.residuals : []} integralArea={showIntegral && selected ? { points: selected.points, color: selected.color, start: Math.min(integralStart, integralEnd), end: Math.max(integralStart, integralEnd) } : undefined} featurePoints={[...roots.roots.map((x) => ({ x, y: 0, type: "root" as const })), ...(typeof yIntercept.y === "number" ? [{ x: 0, y: yIntercept.y, type: "intercept" as const }] : []), ...extrema.minima.map((point) => ({ ...point, type: "minimum" as const })), ...extrema.maxima.map((point) => ({ ...point, type: "maximum" as const })), ...intersections.map((point) => ({ ...point, type: "intersection" as const }))]} /> : <div className="gs2d-canvas-empty">Enter a valid expression or data points to plot.</div>}
       roots={roots.roots}
       yIntercept={yIntercept.y}
       visibleRange={visibleRange}
@@ -264,6 +294,12 @@ export default function MathLabGraphingCalculator() {
       derivativePoints={derivativePoints}
       showDerivative={showDerivative}
       onShowDerivativeChange={setShowDerivative}
+      showTaylor={showTaylor}
+      onShowTaylorChange={setShowTaylor}
+      taylorCenter={taylorCenter}
+      taylorDegree={taylorDegree}
+      onTaylorCenterChange={setTaylorCenter}
+      onTaylorDegreeChange={setTaylorDegree}
       showIntegral={showIntegral}
       onShowIntegralChange={setShowIntegral}
       integralStart={integralStart}
@@ -281,6 +317,10 @@ export default function MathLabGraphingCalculator() {
       stylePreset={graphStudio.project.stylePreset}
       onStylePresetChange={(stylePreset) => graphStudio.updateProject({ stylePreset })}
       exactAnalysis={exactAnalysis}
+      exactIntersections={exactIntersections}
+      asymptotes={asymptotes}
+      regressionKind={regressionKind}
+      onRegressionKindChange={setRegressionKind}
       savedLibrary={<SavedGraphList saved={savedGraphs} onLoad={loadSavedGraph} onDelete={removeSavedGraph} />}
     />
   );
@@ -311,6 +351,28 @@ export default function MathLabGraphingCalculator() {
     downloadGraphStudioFile(`${fileSlug(selected.input)}.svg`, svg, "image/svg+xml");
   }
 
+  async function exportGraphPdf() {
+    const svg = document.querySelector<SVGSVGElement>("#graphing-canvas-panel svg");
+    if (!svg) return;
+    const markup = new XMLSerializer().serializeToString(svg);
+    const image = new Image();
+    const url = URL.createObjectURL(new Blob([markup], { type: "image/svg+xml" }));
+    await new Promise<void>((resolve, reject) => { image.onload = () => resolve(); image.onerror = () => reject(new Error("Graph image could not be prepared.")); image.src = url; });
+    const canvas = document.createElement("canvas"); canvas.width = 1440; canvas.height = 880;
+    const context = canvas.getContext("2d"); if (!context) { URL.revokeObjectURL(url); return; }
+    context.fillStyle = "#ffffff"; context.fillRect(0, 0, canvas.width, canvas.height); context.drawImage(image, 0, 0, canvas.width, canvas.height); URL.revokeObjectURL(url);
+    const { jsPDF } = await import("jspdf");
+    const pdf = new jsPDF({ orientation: "landscape", unit: "pt", format: "a4" });
+    pdf.setFontSize(18); pdf.text(graphStudio.project.name || "Graph Studio 2D", 32, 30);
+    pdf.addImage(canvas.toDataURL("image/png"), "PNG", 32, 44, 778, 475);
+    pdf.setFontSize(10); pdf.text(`Expressions: ${functions.map((item) => item.input).join(" | ").slice(0, 180)}`, 32, 540);
+    pdf.save(`${fileSlug(graphStudio.project.name)}.pdf`);
+  }
+
+  function setPrecisionTraceX(value: number) {
+    setTraceX(precisionSnapX(value, snapCandidates, view.xMax - view.xMin));
+  }
+
   function updateFunction(id: string, patch: Partial<FunctionRow>) {
     setFunctions((items) => items.map((item) => item.id === id && (!item.locked || patch.locked === false || patch.visible !== undefined) ? { ...item, ...patch } : item));
   }
@@ -332,6 +394,20 @@ export default function MathLabGraphingCalculator() {
   }
 
   function moveInteractivePoint(id: string, x: number, y: number) {
+    if (id.startsWith("parameter:")) {
+      const name = id.slice("parameter:".length);
+      const variable = graphVariables.find((item) => item.name === name);
+      if (!variable || !selectedFunction) return;
+      const delta = Math.max(0.0001, variable.step);
+      const shifted = graphVariables.map((item) => item.id === variable.id ? { ...item, value: item.value + delta } : item);
+      try {
+        const base = compileFunctionExpression(selectedResolvedInput)(x);
+        const changedExpression = substituteGraphVariables(selectedSourceInput, shifted);
+        const sensitivity = (compileFunctionExpression(changedExpression)(x) - base) / delta;
+        if (Number.isFinite(sensitivity) && Math.abs(sensitivity) > 1e-8) updateStudioVariables(graphVariables.map((item) => item.id === variable.id ? { ...item, value: Math.max(item.min, Math.min(item.max, item.value + (y - base) / sensitivity)) } : item));
+      } catch { /* Keep the parameter unchanged when the dragged location is outside its domain. */ }
+      return;
+    }
     const row = functions.find((item) => item.id === id);
     if (!row || row.locked) return;
     const descriptor = describeInteractiveExpression(row.input);
@@ -402,7 +478,7 @@ export default function MathLabGraphingCalculator() {
       id: `graph-2d-${Date.now()}`,
       name: saveName.trim() || "Untitled 2D graph",
       savedAt: now,
-      state: { functions, view, showGrid, showAxes, traceMode, integralStart, integralEnd, variables: graphVariables, dataRows, showData, showRegression, showResiduals, logX, logY },
+      state: graphStudioState,
     };
     setSavedGraphs(saveGraphWorkspace(GRAPH_2D_STORAGE_KEY, workspace));
   }
@@ -423,6 +499,10 @@ export default function MathLabGraphingCalculator() {
     setShowResiduals(workspace.state.showResiduals ?? false);
     setLogX(workspace.state.logX ?? false);
     setLogY(workspace.state.logY ?? false);
+    setRegressionKind(workspace.state.regressionKind ?? "linear");
+    setShowTaylor(workspace.state.showTaylor ?? false);
+    setTaylorCenter(workspace.state.taylorCenter ?? 0);
+    setTaylorDegree(workspace.state.taylorDegree ?? 4);
     setSaveName(workspace.name);
   }
 
@@ -674,6 +754,32 @@ function buildInteractivePoint(row: FunctionRow | undefined, sampled: (FunctionR
   return { id: row.id, ...point, label: row.name || "Drag to manipulate", color: row.color };
 }
 
+function buildParameterInteractivePoint(row: FunctionRow | undefined, resolvedExpression: string, variables: GraphStudioVariable[], traceX: number) {
+  if (!row || row.locked) return null;
+  const variable = variables.find((item) => new RegExp(`\\b${item.name}\\b`, "i").test(row.input));
+  if (!variable) return null;
+  try {
+    const y = compileFunctionExpression(resolvedExpression)(traceX);
+    if (!Number.isFinite(y)) return null;
+    return { id: `parameter:${variable.name}`, x: traceX, y, label: `Drag to change ${variable.name}`, color: "#facc15" };
+  } catch { return null; }
+}
+
+function buildShareUrl(functions: FunctionRow[], view: FunctionGraphView) {
+  const payload = btoa(unescape(encodeURIComponent(JSON.stringify({ functions, view }))));
+  const url = new URL(window.location.href); url.search = ""; url.searchParams.set("project", payload);
+  return url.toString();
+}
+
+function readSharedGraph(value: string | null): { functions: FunctionRow[]; view: FunctionGraphView } | null {
+  if (!value) return null;
+  try {
+    const parsed = JSON.parse(decodeURIComponent(escape(atob(value)))) as { functions?: FunctionRow[]; view?: FunctionGraphView };
+    if (!Array.isArray(parsed.functions) || !parsed.view || ![parsed.view.xMin, parsed.view.xMax, parsed.view.yMin, parsed.view.yMax].every(Number.isFinite)) return null;
+    return { functions: parsed.functions.filter((item) => item && typeof item.input === "string").slice(0, 40), view: parsed.view };
+  } catch { return null; }
+}
+
 function formatGraphNumber(value: number) {
   if (!Number.isFinite(value)) return "0";
   return Number(value.toFixed(6)).toString();
@@ -682,6 +788,8 @@ function formatGraphNumber(value: number) {
 function isSafeImageUrl(value?: string) {
   return Boolean(value && (/^https:\/\//i.test(value) || /^data:image\/(?:png|jpeg|gif|webp|svg\+xml)(?:;[^,]*)?,/i.test(value)));
 }
+
+function escapeHtmlAttribute(value: string) { return value.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;"); }
 
 function sameVariables(current: GraphStudioVariable[], next: GraphStudioVariable[]) {
   return current.length === next.length && current.every((variable, index) => variable.id === next[index]?.id);

@@ -1,0 +1,3 @@
+import { describe, expect, it } from "vitest";
+import { reconstruct, stemLeafDefault, stemLeafRows } from "./stemLeafLessonModel";
+describe("Stem-and-leaf model", () => { it("sorts values into split stems and leaves", () => { const rows = stemLeafRows(stemLeafDefault, true); expect(rows[0]).toEqual({ stem: 10, leaves: [2] }); expect(rows[1]).toEqual({ stem: 15, leaves: [7, 8, 9] }); expect(reconstruct(rows)).toEqual([...stemLeafDefault].sort((a, b) => a - b)); }); it("supports unsplit stems", () => { expect(stemLeafRows([12, 17, 21], false)).toEqual([{ stem: 10, leaves: [2, 7] }, { stem: 20, leaves: [1] }]); }); });

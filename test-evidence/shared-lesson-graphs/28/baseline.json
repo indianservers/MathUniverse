@@ -1,0 +1,392 @@
+{
+  "records": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "state": {
+        "testid": "algebra-mockup-0028",
+        "dedicatedLesson": "28",
+        "objectModel": "parsed-function-syntax-validation-sampled-graph-root-vertex-key-point-model",
+        "valid": "true",
+        "name": "f",
+        "variable": "x",
+        "expression": "x^2 - 4",
+        "graphCount": "0",
+        "editing": "false",
+        "actions": "0"
+      },
+      "overflow": false,
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "name": "⌁ English (English)⌄",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Reset",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Share",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "Algebra function input",
+          "value": "f(x) = x^2 - 4",
+          "min": "",
+          "max": "",
+          "step": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Clear algebra input",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "⌁ Create graph",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Edit input",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Sitemap",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Docs",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "About",
+          "value": ""
+        }
+      ],
+      "bars": [],
+      "graphs": [
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 500 280",
+          "label": "Parsed function graph preview"
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "state": {
+        "testid": "algebra-mockup-0028",
+        "dedicatedLesson": "28",
+        "objectModel": "parsed-function-syntax-validation-sampled-graph-root-vertex-key-point-model",
+        "valid": "true",
+        "name": "f",
+        "variable": "x",
+        "expression": "x^2 - 4",
+        "graphCount": "0",
+        "editing": "false",
+        "actions": "0"
+      },
+      "overflow": false,
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "name": "⌁ English (English)⌄",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Reset",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Share",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "Algebra function input",
+          "value": "f(x) = x^2 - 4",
+          "min": "",
+          "max": "",
+          "step": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Clear algebra input",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "⌁ Create graph",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Edit input",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Sitemap",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Docs",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "About",
+          "value": ""
+        }
+      ],
+      "bars": [],
+      "graphs": [
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 500 280",
+          "label": "Parsed function graph preview"
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "state": {
+        "testid": "algebra-mockup-0028",
+        "dedicatedLesson": "28",
+        "objectModel": "parsed-function-syntax-validation-sampled-graph-root-vertex-key-point-model",
+        "valid": "true",
+        "name": "f",
+        "variable": "x",
+        "expression": "x^2 - 4",
+        "graphCount": "0",
+        "editing": "false",
+        "actions": "0"
+      },
+      "overflow": false,
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "name": "⌁ English (English)⌄",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Reset",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Share",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "Algebra function input",
+          "value": "f(x) = x^2 - 4",
+          "min": "",
+          "max": "",
+          "step": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Clear algebra input",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "⌁ Create graph",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Edit input",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Sitemap",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Docs",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "About",
+          "value": ""
+        }
+      ],
+      "bars": [],
+      "graphs": [
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 500 280",
+          "label": "Parsed function graph preview"
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

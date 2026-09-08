@@ -1,6 +1,11 @@
 import { useEffect, useMemo, useState } from "react";
 import type { PointerEvent as ReactPointerEvent } from "react";
 import type { LessonAdapterProps } from "../../types";
+import {
+  geometricSequenceAnalysis,
+  solveGeometricUnknown,
+  type GeometricSolver,
+} from "./geometricSequenceLessonModel";
 import "./GeometricSequencesTargetLesson336.css";
 
 const clean = (value: number) => Number(value.toFixed(6));
@@ -19,22 +24,17 @@ export default function GeometricSequencesTargetLesson336({
     [ratio, setRatio] = useState(2),
     [plot, setPlot] = useState<"linear" | "log">("linear"),
     [tab, setTab] = useState(nav[0]),
-    [solver, setSolver] = useState<"n" | "first" | "ratio">("n"),
+    [solver, setSolver] = useState<GeometricSolver>("n"),
     [given, setGiven] = useState("192"),
     [index, setIndex] = useState("7"),
     [answer, setAnswer] = useState(""),
     [quick, setQuick] = useState<"" | "correct" | "incorrect">(""),
     [actions, setActions] = useState(0);
-  const terms = useMemo(
-    () => Array.from({ length: 10 }, (_, i) => first * ratio ** i),
-    [first, ratio],
-  );
-  const behavior =
-    Math.abs(ratio) > 1
-      ? "Growth"
-      : Math.abs(ratio) === 1
-        ? "Constant"
-        : "Decay";
+  const analysis = useMemo(
+      () => geometricSequenceAnalysis(first, ratio),
+      [first, ratio],
+    ),
+    { terms, behavior } = analysis;
   const reset = () => {
     setFirst(3);
     setRatio(2);
@@ -55,29 +55,14 @@ export default function GeometricSequencesTargetLesson336({
   };
   const solve = () =>
     act(() => {
-      const value = Number(given),
-        n = Number(index);
-      if (![value, n].every(Number.isFinite) || n < 1)
-        return setAnswer("Enter valid values.");
-      if (solver === "n") {
-        if (first === 0 || ratio <= 0 || value / first <= 0 || ratio === 1)
-          return setAnswer(
-            value === first ? "Any positive n" : "No real index",
-          );
-        const result = 1 + Math.log(value / first) / Math.log(ratio);
-        return setAnswer(
-          Number.isInteger(clean(result))
-            ? `n = ${clean(result)}`
-            : `n ≈ ${clean(result)}`,
-        );
-      }
-      if (solver === "first")
-        return setAnswer(`a₁ = ${clean(value / ratio ** (n - 1))}`);
-      if (n === 1) return setAnswer("r is not determined by a₁ alone");
-      const base = value / first;
-      if (base < 0 && (n - 1) % 2 === 0) return setAnswer("No real ratio");
       setAnswer(
-        `r = ${clean(Math.sign(base) * Math.abs(base) ** (1 / (n - 1)))}`,
+        solveGeometricUnknown(
+          solver,
+          Number(given),
+          Number(index),
+          first,
+          ratio,
+        ),
       );
     });
   const changeFirst = (v: number) =>
@@ -94,13 +79,24 @@ export default function GeometricSequencesTargetLesson336({
     graphY = (v: number) =>
       plot === "log"
         ? 168 - (Math.log10(Math.abs(v) + 1) / Math.log10(maxAbs + 1)) * 140
-        : 168 - ((v + maxAbs) / (2 * maxAbs)) * 140;
+        : 168 -
+          ((v - analysis.linearMin) /
+            Math.max(1, analysis.linearMax - analysis.linearMin)) *
+            140;
   const drag = (i: number, event: ReactPointerEvent<SVGCircleElement>) => {
     if (event.buttons !== 1 || i === 0 || first === 0) return;
     const rect = event.currentTarget.ownerSVGElement?.getBoundingClientRect();
     if (!rect) return;
-    const normalized = 1 - (event.clientY - rect.top - 20) / (rect.height - 48),
-      desired = (normalized * 2 - 1) * maxAbs;
+    const normalized = Math.max(
+        0,
+        Math.min(1, 1 - (event.clientY - rect.top - 20) / (rect.height - 48)),
+      ),
+      desired =
+        plot === "log"
+          ? Math.sign(terms[i] || 1) *
+            (10 ** (normalized * Math.log10(maxAbs + 1)) - 1)
+          : analysis.linearMin +
+            normalized * (analysis.linearMax - analysis.linearMin);
     const base = desired / first;
     if (base < 0 && i % 2 === 0) return;
     changeRatio(
@@ -152,13 +148,26 @@ export default function GeometricSequencesTargetLesson336({
           <button
             key={name}
             className={tab === name ? "active" : ""}
-            onClick={() => act(() => setTab(name))}
+            onClick={() => {
+              act(() => setTab(name));
+              const target =
+                name === nav[0]
+                  ? "seq336-intro"
+                  : name === "Guided Calculation"
+                    ? "seq336-worked"
+                    : name === "Practice & Check"
+                      ? "seq336-quick"
+                      : "seq336-notes";
+              document
+                .getElementById(target)
+                ?.scrollIntoView({ behavior: "smooth" });
+            }}
           >
             {name}
           </button>
         ))}
       </nav>
-      <section className="seq336-intro">
+      <section className="seq336-intro" id="seq336-intro">
         <article>
           <h3>LEARNING OBJECTIVE</h3>
           <p>
@@ -208,13 +217,7 @@ export default function GeometricSequencesTargetLesson336({
             <b>
               Sign of terms
               <br />
-              <strong>
-                {ratio < 0
-                  ? "Alternating"
-                  : terms.every((v) => v >= 0)
-                    ? "All positive"
-                    : "All negative"}
-              </strong>
+              <strong>{analysis.sign}</strong>
             </b>
             <b>
               Behavior
@@ -247,7 +250,7 @@ export default function GeometricSequencesTargetLesson336({
         <p>Rule: Multiply the previous term by r = {ratio}.</p>
       </section>
       <section className="seq336-pair tall">
-        <article>
+        <article id="seq336-worked">
           <h2>2. Term table</h2>
           <table>
             <thead>
@@ -385,9 +388,9 @@ export default function GeometricSequencesTargetLesson336({
           </strong>
           <p>• First term after 100:</p>
           <strong>
-            {terms.findIndex((v) => Math.abs(v) > 100) >= 0
-              ? `a${terms.findIndex((v) => Math.abs(v) > 100) + 1} = ${clean(terms.find((v) => Math.abs(v) > 100)!)}`
-              : "No first-ten term exceeds 100"}
+            {analysis.firstIndexBeyond(100)
+              ? `a${analysis.firstIndexBeyond(100)} = ${clean(analysis.term(analysis.firstIndexBeyond(100)!))}`
+              : "No term exceeds 100 in the search range"}
           </strong>
           <div className="tip">
             Tip: Use logs to solve exponential inequalities efficiently.
@@ -439,7 +442,7 @@ export default function GeometricSequencesTargetLesson336({
           </output>
         </article>
       </section>
-      <section className="seq336-notes">
+      <section className="seq336-notes" id="seq336-notes">
         {[
           [
             "8. Key insight",
@@ -460,7 +463,7 @@ export default function GeometricSequencesTargetLesson336({
           </article>
         ))}
       </section>
-      <section className="seq336-quick">
+      <section className="seq336-quick" id="seq336-quick">
         <div>
           <h2>11. Quick check (with answer)</h2>
           <p>Given a₁ = 3 and r = 2. What is a₁₀?</p>

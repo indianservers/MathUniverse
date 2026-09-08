@@ -1,0 +1,437 @@
+{
+  "records": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "state": {
+        "testid": "algebra-mockup-0026",
+        "dedicatedLesson": "26",
+        "objectModel": "editable-boolean-boundary-number-line-region-object-visibility-before-after-model",
+        "x": "2.5",
+        "operator": ">=",
+        "boundary": "2",
+        "visible": "true",
+        "view": "0",
+        "workspace": "false",
+        "actions": "0"
+      },
+      "overflow": false,
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "name": "English (English)⌄",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Reset",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Share",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Workspace",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "◉Explore",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "▣Explain",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "♧Examples",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "∑Formulas",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "✣Know more",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "♧ Legend",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "Visibility number line drag control",
+          "value": "2.5",
+          "min": "-5",
+          "max": "5",
+          "step": ".1"
+        },
+        {
+          "tag": "INPUT",
+          "name": "Conditional value x drag control",
+          "value": "2.5",
+          "min": "-5",
+          "max": "5",
+          "step": ".1"
+        },
+        {
+          "tag": "SELECT",
+          "name": "Condition variable",
+          "value": "x"
+        },
+        {
+          "tag": "SELECT",
+          "name": "Condition operator",
+          "value": ">="
+        },
+        {
+          "tag": "INPUT",
+          "name": "Condition boundary",
+          "value": "2",
+          "min": "",
+          "max": "",
+          "step": ".5"
+        },
+        {
+          "tag": "INPUT",
+          "name": "Boundary c",
+          "value": "2",
+          "min": "",
+          "max": "",
+          "step": ".5"
+        }
+      ],
+      "bars": [],
+      "graphs": [
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "state": {
+        "testid": "algebra-mockup-0026",
+        "dedicatedLesson": "26",
+        "objectModel": "editable-boolean-boundary-number-line-region-object-visibility-before-after-model",
+        "x": "2.5",
+        "operator": ">=",
+        "boundary": "2",
+        "visible": "true",
+        "view": "0",
+        "workspace": "false",
+        "actions": "0"
+      },
+      "overflow": false,
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "name": "English (English)⌄",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Reset",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Share",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Workspace",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "◉Explore",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "▣Explain",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "♧Examples",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "∑Formulas",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "✣Know more",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "♧ Legend",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "Visibility number line drag control",
+          "value": "2.5",
+          "min": "-5",
+          "max": "5",
+          "step": ".1"
+        },
+        {
+          "tag": "INPUT",
+          "name": "Conditional value x drag control",
+          "value": "2.5",
+          "min": "-5",
+          "max": "5",
+          "step": ".1"
+        },
+        {
+          "tag": "SELECT",
+          "name": "Condition variable",
+          "value": "x"
+        },
+        {
+          "tag": "SELECT",
+          "name": "Condition operator",
+          "value": ">="
+        },
+        {
+          "tag": "INPUT",
+          "name": "Condition boundary",
+          "value": "2",
+          "min": "",
+          "max": "",
+          "step": ".5"
+        },
+        {
+          "tag": "INPUT",
+          "name": "Boundary c",
+          "value": "2",
+          "min": "",
+          "max": "",
+          "step": ".5"
+        }
+      ],
+      "bars": [],
+      "graphs": [
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "state": {
+        "testid": "algebra-mockup-0026",
+        "dedicatedLesson": "26",
+        "objectModel": "editable-boolean-boundary-number-line-region-object-visibility-before-after-model",
+        "x": "2.5",
+        "operator": ">=",
+        "boundary": "2",
+        "visible": "true",
+        "view": "0",
+        "workspace": "false",
+        "actions": "0"
+      },
+      "overflow": false,
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "name": "English (English)⌄",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Reset",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Share",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Workspace",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "◉Explore",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "▣Explain",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "♧Examples",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "∑Formulas",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "✣Know more",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "♧ Legend",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "name": "Visibility number line drag control",
+          "value": "2.5",
+          "min": "-5",
+          "max": "5",
+          "step": ".1"
+        },
+        {
+          "tag": "INPUT",
+          "name": "Conditional value x drag control",
+          "value": "2.5",
+          "min": "-5",
+          "max": "5",
+          "step": ".1"
+        },
+        {
+          "tag": "SELECT",
+          "name": "Condition variable",
+          "value": "x"
+        },
+        {
+          "tag": "SELECT",
+          "name": "Condition operator",
+          "value": ">="
+        },
+        {
+          "tag": "INPUT",
+          "name": "Condition boundary",
+          "value": "2",
+          "min": "",
+          "max": "",
+          "step": ".5"
+        },
+        {
+          "tag": "INPUT",
+          "name": "Boundary c",
+          "value": "2",
+          "min": "",
+          "max": "",
+          "step": ".5"
+        }
+      ],
+      "bars": [],
+      "graphs": [
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        },
+        {
+          "viewBox": "0 0 24 24",
+          "label": null
+        }
+      ]
+    }
+  ],
+  "errors": []
+}
