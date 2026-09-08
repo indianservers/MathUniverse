@@ -148,7 +148,7 @@ export default function DivisibilityRulesTargetLesson71({
       data-actions={actions}
     >
       <span className="sr-only">
-        Concept trace: Divisibility rule audit. Use the rule for the chosen
+        Concept trace: Divisibility rule check. Use the rule for the chosen
         divisor only. Every decision is verified by exact division and
         remainder.
       </span>

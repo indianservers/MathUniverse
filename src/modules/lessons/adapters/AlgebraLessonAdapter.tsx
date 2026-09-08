@@ -1740,7 +1740,7 @@ function algebraTableTitle(kind: RedesignedAlgebraKind) {
   if (kind === "equation-input") return "Solve step-by-step";
   if (kind === "inequality-input") return "Test points";
   if (kind === "lists") return "List operation pipeline";
-  if (kind === "matrices") return "Matrix audit";
+  if (kind === "matrices") return "Matrix check";
   if (kind === "sequences") return "Term table";
   if (kind === "piecewise") return "Boundary tests";
   if (kind === "boolean-variables") return "Truth table";

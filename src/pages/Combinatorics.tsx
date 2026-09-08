@@ -7,10 +7,15 @@ import StudioPageShell from "../components/ui/StudioPageShell";
 export default function Combinatorics() {
   return (
     <StudioPageShell
+      guide={<div className="combinatorics-guide-card">
+            <span>Studio guide</span>
+            <h2>Counting cockpit</h2>
+            <p>Use the shared controls once, then switch workspaces to inspect trees, arrangements, coefficients, advanced counts, and practice prompts.</p>
+          </div>}
       className="combinatorics-studio"
       title="Combinatorics Studio"
       subtitle="Visualize counting trees, permutations, combinations, Pascal coefficients, expansions, and inclusion-exclusion."
-      breadcrumbs={["Home", "Discrete Mathematics", "Combinatorics"]}
+      breadcrumbs={["Home", "Studio", "Number & Discrete Mathematics", "Combinatorics"]}
       difficulty="Discrete Counting Lab"
       estimatedMinutes={65}
       progress={75}
@@ -24,11 +29,7 @@ export default function Combinatorics() {
           <CombinatoricsModule />
         </section>
         <aside className="combinatorics-inspector thin-scrollbar" aria-label="Combinatorics inspector">
-          <div className="combinatorics-guide-card">
-            <span>Studio guide</span>
-            <h2>Counting cockpit</h2>
-            <p>Use the shared controls once, then switch workspaces to inspect trees, arrangements, coefficients, advanced counts, and practice prompts.</p>
-          </div>
+
           <FormulaBlock title="Counting Identity" formula={String.raw`{n \choose r}=\frac{n!}{r!(n-r)!}`} />
           <SectionCard title="Workflow" compact>
             <div className="grid gap-2 text-sm font-semibold text-slate-600 dark:text-slate-300">

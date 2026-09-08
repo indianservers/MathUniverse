@@ -9,7 +9,6 @@ import {
   Repeat2,
   Sigma,
   SplitSquareVertical,
-  Workflow,
 } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import SectionCard from "../../components/ui/SectionCard";
@@ -41,14 +40,13 @@ import {
 } from "./combinatoricsStore";
 
 type CombinatoricsTab =
-  "map" | "counting" | "selection" | "coefficients" | "advanced" | "practice";
+  "counting" | "selection" | "coefficients" | "advanced" | "practice";
 
 const combinatoricsTabs: Array<{
   id: CombinatoricsTab;
   label: string;
-  icon: typeof Workflow;
+  icon: typeof SplitSquareVertical;
 }> = [
-  { id: "map", label: "Concept Map", icon: Workflow },
   { id: "counting", label: "Counting", icon: SplitSquareVertical },
   { id: "selection", label: "Permutations", icon: Layers3 },
   { id: "coefficients", label: "Coefficients", icon: Sigma },
@@ -98,7 +96,7 @@ export default function CombinatoricsModule() {
   const selectTab = (tabId: CombinatoricsTab) => {
     setActiveTab(tabId);
     const url = new URL(window.location.href);
-    if (tabId === "map") url.searchParams.delete("tab");
+    if (tabId === "counting") url.searchParams.delete("tab");
     else url.searchParams.set("tab", tabId);
     window.history.pushState(
       null,
@@ -109,8 +107,6 @@ export default function CombinatoricsModule() {
 
   return (
     <div className="combinatorics-module-shell">
-      <ControlsPanel {...store} />
-
       <nav
         className="combinatorics-module-tabs"
         aria-label="Combinatorics workspaces"
@@ -125,10 +121,9 @@ export default function CombinatoricsModule() {
           />
         ))}
       </nav>
+      <ControlsPanel {...store} />
 
       <div className="combinatorics-module-content thin-scrollbar">
-        {activeTab === "map" ? <ImplementationAudit /> : null}
-
         {activeTab === "counting" ? (
           <div className="grid gap-4 xl:grid-cols-[1.1fr_.9fr]">
             <CountingVisualizationEngine
@@ -200,108 +195,6 @@ export default function CombinatoricsModule() {
   );
 }
 
-function ImplementationAudit() {
-  const rows = [
-    [
-      "Counting Principles",
-      "Implemented",
-      "Product rule, addition rule, tree diagram, exact counters, and bounded cases.",
-    ],
-    [
-      "Permutations",
-      "Implemented",
-      "Arrangements with repetition, no repetition, constraints, and capped enumeration.",
-    ],
-    [
-      "Combinations",
-      "Implemented",
-      "Subset generator with visual group selection and exact nCr calculation.",
-    ],
-    [
-      "Repetition Cases",
-      "Implemented",
-      "Repeated permutations, repeated combinations, and bounded distributions.",
-    ],
-    [
-      "Binomial Coefficients",
-      "Implemented",
-      "Pascal explorer with highlighted rows and coefficient meaning.",
-    ],
-    [
-      "Binomial Theorem",
-      "Implemented",
-      "Interactive expansion terms connected to choices from each factor.",
-    ],
-    [
-      "Multinomial Theorem",
-      "Implemented",
-      "Symbolic term engine for three-variable expansions.",
-    ],
-    [
-      "Inclusion-Exclusion",
-      "Implemented",
-      "Animated three-set Venn calculation with overlap steps.",
-    ],
-    [
-      "Pigeonhole Principle",
-      "Implemented",
-      "Forced box-load visual and smallest guaranteed load.",
-    ],
-    [
-      "Derangements",
-      "Implemented",
-      "No-fixed-point counter using the standard recurrence.",
-    ],
-    [
-      "Catalan Numbers",
-      "Implemented",
-      "Parentheses, triangulation, and path-counting family counter.",
-    ],
-    [
-      "Stirling and Bell Numbers",
-      "Implemented",
-      "Partition-into-groups counter and total set partition count.",
-    ],
-    [
-      "Integer Partitions",
-      "Implemented",
-      "Compact partition lister for number decomposition.",
-    ],
-    [
-      "Recurrences",
-      "Implemented",
-      "Second-order recurrence trace and generating-function form.",
-    ],
-  ];
-  return (
-    <SectionCard
-      title="Concept Map"
-      description="Major combinatorics concepts are split into focused tabs instead of one long page."
-    >
-      <div className="grid gap-2 md:grid-cols-2 xl:grid-cols-3">
-        {rows.map(([topic, status, action]) => (
-          <div
-            key={topic}
-            className="rounded-2xl border border-cyan-100 bg-white/80 p-3 shadow-sm dark:border-white/10 dark:bg-white/5"
-          >
-            <div className="flex items-start justify-between gap-2">
-              <h2 className="text-sm font-black text-slate-950 dark:text-white">
-                {topic}
-              </h2>
-              <span className="mini-chip bg-emerald-100 text-emerald-800 dark:bg-emerald-400/15 dark:text-emerald-100">
-                {status}
-              </span>
-            </div>
-            <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">
-              {action}
-            </p>
-          </div>
-        ))}
-      </div>
-    </SectionCard>
-  );
-}
-
 function TabButton({
   active,
   icon: Icon,
@@ -309,7 +202,7 @@ function TabButton({
   onClick,
 }: {
   active: boolean;
-  icon: typeof Workflow;
+  icon: typeof SplitSquareVertical;
   label: string;
   onClick: () => void;
 }) {
@@ -994,7 +887,7 @@ function flattenTree(root: CountingNode) {
 }
 
 function readCombinatoricsTabFromUrl(): CombinatoricsTab {
-  if (typeof window === "undefined") return "map";
+  if (typeof window === "undefined") return "counting";
   const tab = new URLSearchParams(window.location.search).get("tab");
   if (
     tab === "counting" ||
@@ -1004,5 +897,5 @@ function readCombinatoricsTabFromUrl(): CombinatoricsTab {
     tab === "practice"
   )
     return tab;
-  return "map";
+  return "counting";
 }

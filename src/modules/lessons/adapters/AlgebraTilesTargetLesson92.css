@@ -109,6 +109,34 @@
   height: 1095px;
   margin-top: 14px;
 }
+.tiles92-layout.hidden {
+  display: none;
+}
+.tiles92-tab-panel {
+  min-height: 520px;
+  margin-top: 14px;
+  padding: 28px;
+  border: 1px solid #dce5eb;
+  border-radius: 15px;
+  background: #fff;
+}
+.tiles92-tab-panel h2 {
+  margin-bottom: 18px;
+  font-size: 24px;
+}
+.tiles92-tab-panel > strong {
+  display: block;
+  margin-bottom: 20px;
+  color: #087c94;
+  font-size: 28px;
+}
+.tiles92-tab-panel p {
+  max-width: 680px;
+  margin: 10px 0;
+  color: #52647b;
+  font-size: 14px;
+  line-height: 1.5;
+}
 .tiles92-builder {
   position: absolute;
   top: 0;

@@ -25,7 +25,7 @@ describe("lesson section journey", () => {
 
   it("renders the five same-page navigation controls", () => {
     const html = renderToStaticMarkup(<LessonSectionNav />);
-    for (const label of ["Interaction + visualization", "Learn", "Examples", "Formulas", "Practice"]) {
+    for (const label of ["Interaction + visualization", "Explain", "Examples", "Formulas", "Know more"]) {
       expect(html).toContain(`>${label}</button>`);
     }
   });
@@ -57,5 +57,33 @@ describe("lesson section journey", () => {
     expect(html).toContain(`${lesson.title} examples`);
     expect(html).toContain(`${lesson.title} formulas and rules`);
     expect(html).toContain(`Practice ${lesson.title}`);
+  });
+
+  it("provides one visible content panel for every tab in every catalog lesson", () => {
+    const sections = ["learn", "examples", "formulas", "practice"] as const;
+    const expectActivePanel = (html: string, section: (typeof sections)[number], label: string) => {
+      const panel = new RegExp(`<section(?=[^>]*id="lesson-section-${section}")(?![^>]*\\shidden=)[^>]*>`);
+      expect(html, `${label} exposes ${section}`).toMatch(panel);
+    };
+
+    for (const lesson of lessonCatalog) {
+      for (const section of sections) {
+        expectActivePanel(
+          renderToStaticMarkup(<CoreLessonSections lesson={lesson} active={section} />),
+          section,
+          `core lesson ${lesson.id}`,
+        );
+      }
+    }
+
+    for (const lesson of schoolLessonCatalog) {
+      for (const section of sections) {
+        expectActivePanel(
+          renderToStaticMarkup(<SchoolLessonSections lesson={lesson} active={section} />),
+          section,
+          `school lesson ${lesson.numericId}`,
+        );
+      }
+    }
   });
 });

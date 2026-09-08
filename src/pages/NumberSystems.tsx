@@ -49,6 +49,8 @@ export default function NumberSystems() {
     {
       id: "rational" as const,
       label: "Rational",
+      lessonId: "60",
+      lessonRoute: "/lessons/numbers-and-arithmetic/60-rational-numbers",
       summary: "Move p and q to connect fractions, reduced form, decimals, and points on a number line.",
       focus: `${p}/${q}`,
       content: <RationalLab p={p} q={q} setP={setP} setQ={setQ} decimal={decimal} />,
@@ -56,6 +58,8 @@ export default function NumberSystems() {
     {
       id: "irrational" as const,
       label: "Irrational",
+      lessonId: "61",
+      lessonRoute: "/lessons/numbers-and-arithmetic/61-irrational-numbers",
       summary: "Use roots and decimal precision to separate perfect-square rationals from irrational surds.",
       focus: `sqrt(${root})`,
       content: <IrrationalLab root={root} setRoot={setRoot} digits={digits} setDigits={setDigits} />,
@@ -63,6 +67,8 @@ export default function NumberSystems() {
     {
       id: "real-line" as const,
       label: "Real Line",
+      lessonId: "62",
+      lessonRoute: "/lessons/numbers-and-arithmetic/62-real-numbers",
       summary: "Place rational, irrational, and between-values on one continuous real number rail.",
       focus: "Q and R\\Q",
       content: <RealLineLab rational={rational} irrational={irrational} />,
@@ -70,6 +76,8 @@ export default function NumberSystems() {
     {
       id: "space" as const,
       label: "3D View",
+      lessonId: "60–62",
+      lessonRoute: "/lessons/numbers-and-arithmetic/62-real-numbers",
       summary: "Explore nested number-set rings and a 3D real-number rail.",
       focus: "N subset W subset Z subset Q subset R",
       content: <NumberSystem3D rational={rational} irrational={irrational} />,
@@ -77,6 +85,8 @@ export default function NumberSystems() {
     {
       id: "concepts" as const,
       label: "Concepts",
+      lessonId: "60–62",
+      lessonRoute: "/lessons/numbers-and-arithmetic/60-rational-numbers",
       summary: "Review the full hierarchy from natural numbers through reals and density.",
       focus: `${numberConcepts.length} ideas`,
       content: <ConceptGrid />,
@@ -84,6 +94,8 @@ export default function NumberSystems() {
     {
       id: "accuracy" as const,
       label: "Accuracy",
+      lessonId: "60–62",
+      lessonRoute: "/lessons/numbers-and-arithmetic/60-rational-numbers",
       summary: "Practice classification and catch decimal-expansion mistakes.",
       focus: "validation",
       content: <ConceptAccuracyPanel domain="number-systems" />,
@@ -107,14 +119,31 @@ export default function NumberSystems() {
 
   return (
     <StudioPageShell
+      guide={<div className="number-guide-card">
+            <span>Live classification</span>
+            <h2>{currentTab.label}</h2>
+            <p>{currentTab.summary}</p>
+            <div className="number-mini-grid">
+              <Metric label="fraction" value={`${p}/${q}`} />
+              <Metric label="reduced" value={`${normalized.numerator}/${normalized.denominator}`} />
+              <Metric label="rational" value={roundTo(rational, 5).toString()} />
+              <Metric label="surd" value={roundTo(irrational, 5).toString()} />
+            </div>
+          </div>}
       className="number-studio"
       title="Number Systems Studio"
+      titleBadge={(
+        <Link className="studio-lesson-id" to={currentTab.lessonRoute} aria-label={`Open lesson ${currentTab.lessonId}: ${currentTab.label}`}>
+          {currentTab.lessonId.includes("–") ? "Lessons" : "Lesson"} {currentTab.lessonId}
+        </Link>
+      )}
       subtitle={topic.description}
-      breadcrumbs={["Home", "Math Topics", "Number Systems"]}
+      breadcrumbs={["Home", "Studio", "Number & Discrete Mathematics", "Number Systems"]}
       difficulty={topic.difficulty}
       estimatedMinutes={topic.estimatedMinutes}
       progress={progress}
       status={[
+        { id: "lesson", label: "Lesson", value: currentTab.lessonId, tone: "green" },
         { id: "concepts", label: "Concepts", value: numberConcepts.length, tone: "cyan" },
         { id: "classification", label: "Current", value: currentTab.label, tone: "violet" },
       ]}
@@ -130,6 +159,7 @@ export default function NumberSystems() {
           </div>
           <div className="number-context-strip">
             <div>
+              <Link className="mb-1 inline-flex rounded-full bg-emerald-100 px-2.5 py-1 text-xs font-black text-emerald-800 hover:bg-emerald-200 dark:bg-emerald-400/15 dark:text-emerald-100" to={currentTab.lessonRoute}>Lesson {currentTab.lessonId}</Link>
               <span>Current focus</span>
               <strong>{currentTab.focus}</strong>
             </div>
@@ -138,17 +168,7 @@ export default function NumberSystems() {
           <div className="number-tab-content thin-scrollbar">{currentTab.content}</div>
         </section>
         <aside className="number-inspector thin-scrollbar" aria-label="Number systems inspector">
-          <div className="number-guide-card">
-            <span>Live classification</span>
-            <h2>{currentTab.label}</h2>
-            <p>{currentTab.summary}</p>
-            <div className="number-mini-grid">
-              <Metric label="fraction" value={`${p}/${q}`} />
-              <Metric label="reduced" value={`${normalized.numerator}/${normalized.denominator}`} />
-              <Metric label="rational" value={roundTo(rational, 5).toString()} />
-              <Metric label="surd" value={roundTo(irrational, 5).toString()} />
-            </div>
-          </div>
+
           <SectionCard title="Fast NCERT Links" compact>
             <div className="grid gap-2">
               <Link className="tool-button justify-start" to="/ncert/class-7-rational-numbers">Class 7 rational lab</Link>

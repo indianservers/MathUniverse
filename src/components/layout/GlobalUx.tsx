@@ -259,9 +259,9 @@ export function BreadcrumbTrail() {
             <span className="flex items-center gap-2">
               <span aria-hidden>&gt;</span>
               {last ? (
-                <span className="text-cyan-700 dark:text-cyan-200">
+                <Link to={path} aria-current="page" className="text-cyan-700 hover:underline dark:text-cyan-200">
                   {label}
-                </span>
+                </Link>
               ) : (
                 <Link to={path} className="hover:text-cyan-600">
                   {label}

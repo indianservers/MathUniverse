@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { forceCenter, forceLink, forceManyBody, forceSimulation } from "d3";
 import { motion } from "framer-motion";
 import {
@@ -358,8 +359,7 @@ function GraphTheoryStudio() {
       <header className="gt-header">
         <div>
           <div className="gt-breadcrumb">
-            Home <span>&gt;</span> Discrete Mathematics <span>&gt;</span> Graph
-            Theory
+            <Link to="/">Home</Link> <span aria-hidden="true">&gt;</span> <Link to="/math-lab">Studio</Link> <span aria-hidden="true">&gt;</span> <Link to="/discrete-world">Number &amp; Discrete Mathematics</Link> <span aria-hidden="true">&gt;</span> <Link to="/graph-theory" aria-current="page">Graph Theory</Link>
           </div>
           <h1>Graph Theory Studio</h1>
           <p>Build, analyze, and understand networks visually.</p>

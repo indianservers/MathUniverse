@@ -265,6 +265,7 @@ export default function LessonShell({ lesson }: { lesson: LessonDefinition }) {
         onClickCapture={(event) => captureLessonTabClick(event, selectJourneyTab)}
       >
         <LessonSectionNav active={journeyTab} onChange={selectJourneyTab} />
+        <div className="px-1 text-xs font-black uppercase tracking-wide text-cyan-700 dark:text-cyan-200">Lesson {lesson.id}</div>
         <section
           id="lesson-section-interaction"
           className="scroll-mt-20"
@@ -351,6 +352,7 @@ export default function LessonShell({ lesson }: { lesson: LessonDefinition }) {
       data-testid="lesson-page"
       data-lesson-id={lesson.id}
       data-lesson-view={journeyTab}
+      onClickCapture={(event) => captureLessonTabClick(event, selectJourneyTab)}
     >
       <header className="lesson-shell-header overflow-hidden rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80">
         <div className="p-4 sm:p-5">
@@ -377,6 +379,10 @@ export default function LessonShell({ lesson }: { lesson: LessonDefinition }) {
                 <InfoChip
                   icon={<Award className="h-3.5 w-3.5" />}
                   label={lesson.level}
+                />
+                <InfoChip
+                  icon={<BookOpen className="h-3.5 w-3.5" />}
+                  label={`Lesson ${lesson.id}`}
                 />
                 <InfoChip
                   icon={<Zap className="h-3.5 w-3.5" />}
@@ -1556,7 +1562,7 @@ function LessonTabBar({
     },
     {
       id: "learn",
-      label: "Learn",
+      label: "Explain",
       icon: <NotebookText className="h-3.5 w-3.5" />,
     },
     {
@@ -1571,7 +1577,7 @@ function LessonTabBar({
     },
     {
       id: "more",
-      label: "Practice",
+      label: "Know more",
       icon: <Sparkles className="h-3.5 w-3.5" />,
     },
   ];

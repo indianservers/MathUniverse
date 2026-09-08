@@ -177,7 +177,7 @@ export default function ConceptMapPage() {
           <nav aria-label="Breadcrumb">
             <Link to="/">Home</Link>
             <ChevronRight />
-            Concept Map
+            <Link to="/concept-map" aria-current="page">Concept Map</Link>
           </nav>
           <h1>Concept Map</h1>
           <p>Explore how mathematical concepts connect across the universe.</p>

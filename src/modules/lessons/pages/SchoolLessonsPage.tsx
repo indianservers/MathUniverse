@@ -133,7 +133,7 @@ function SchoolLessonCard({ lesson }: { lesson: SchoolSyllabusLesson }) {
   return (
     <Link to={lesson.route} className="group rounded-2xl border border-slate-200 bg-white p-4 transition hover:border-cyan-300 dark:border-white/10 dark:bg-slate-950/70">
       <div className="flex items-start justify-between gap-2">
-        <span className="text-[10px] font-black uppercase text-cyan-600">{lesson.metadata.academicLevel} · {lesson.metadata.lessonType}</span>
+        <span className="text-[10px] font-black uppercase text-cyan-600">Lesson {lesson.numericId} · {lesson.metadata.academicLevel} · {lesson.metadata.lessonType}</span>
         <ArrowRight className="h-4 w-4 text-slate-400 transition group-hover:translate-x-1" />
       </div>
       <h3 className="mt-1 font-black">{lesson.title}</h3>

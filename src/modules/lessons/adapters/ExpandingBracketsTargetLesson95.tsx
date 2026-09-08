@@ -10,20 +10,21 @@ import {
 } from "lucide-react";
 import { useEffect, useState, type DragEvent, type KeyboardEvent } from "react";
 import type { LessonAdapterProps } from "../types";
+import {
+  EXPANSION_PRACTICES_95,
+  expandedExpression95,
+  expansionBracket95,
+  expansionSign95,
+  expansionValues95,
+  isExpansionAnswer95,
+  type ExpansionPractice95 as Practice,
+} from "./expandingBracketsLesson95Model";
 import "./ExpandingBracketsTargetLesson95.css";
 
-type Practice = { factor: number; variable: string; constant: number };
-const practices: Practice[] = [
-  { factor: 3, variable: "y", constant: 5 },
-  { factor: 2, variable: "a", constant: 4 },
-  { factor: 5, variable: "m", constant: 2 },
-];
-const sign = (value: number) =>
-  value < 0 ? `− ${Math.abs(value)}` : `+ ${value}`;
-const bracket = (variable: string, constant: number) =>
-  `(${variable} ${sign(constant)})`;
-const expanded = (factor: number, variable: string, constant: number) =>
-  `${factor}${variable} ${sign(factor * constant)}`;
+const practices = EXPANSION_PRACTICES_95;
+const sign = expansionSign95;
+const bracket = expansionBracket95;
+const expanded = expandedExpression95;
 
 export default function ExpandingBracketsTargetLesson95({
   resetToken,
@@ -46,17 +47,21 @@ export default function ExpandingBracketsTargetLesson95({
   const expression = `${factor}${bracket(variable, constant)}`;
   const result = expanded(factor, variable, constant);
   const constantProduct = factor * constant;
-  const originalValue = factor * (checkValue + constant);
-  const expandedValue = factor * checkValue + constantProduct;
+  const verification = expansionValues95(factor, constant, checkValue);
+  const originalValue = verification.original;
+  const expandedValue = verification.distributed;
   const practice = practices[practiceIndex];
   const practiceExpected = expanded(
     practice.factor,
     practice.variable,
     practice.constant,
   );
-  const practiceCorrect =
-    practiceAnswer.replace(/\s/g, "").toLowerCase() ===
-    practiceExpected.replace(/\s/g, "").toLowerCase();
+  const practiceCorrect = isExpansionAnswer95(
+    practiceAnswer,
+    practice.factor,
+    practice.variable,
+    practice.constant,
+  );
   const act = () => {
     setActions((count) => count + 1);
     onInteraction();
@@ -76,18 +81,17 @@ export default function ExpandingBracketsTargetLesson95({
     setPracticeAnswer("3y + 15");
     setPracticeChecked(true);
     setActions(0);
-    onInteraction();
   };
   useEffect(() => {
     reset();
-  }, [resetToken]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [resetToken]);
   const updateFactor = (next: number) => {
     setFactor(Math.max(1, Math.min(8, next)));
     setChecked(false);
     act();
   };
   const updateConstant = (next: number) => {
-    setConstant(Math.max(1, Math.min(6, next)));
+    setConstant(Math.max(-6, Math.min(6, next)));
     setChecked(false);
     act();
   };
@@ -131,17 +135,17 @@ export default function ExpandingBracketsTargetLesson95({
       className="expand95-page"
       data-testid="algebra-mockup-0152"
       data-dedicated-lesson="95"
-      data-object-model="draggable-distributive-factor-dynamic-area-partition-symbolic-expansion-substitution-proof-graded-practice-model"
+      data-object-model="dedicated-tested-draggable-distributive-factor-dynamic-positive-negative-area-partition-symbolic-expansion-substitution-proof-graded-practice-and-functional-learning-tabs-model"
       data-factor={factor}
       data-variable={variable}
       data-constant={constant}
-      data-unit-cells={factor * constant}
+      data-unit-cells={Math.abs(factor * constant)}
       data-check-value={checkValue}
       data-expression={expression}
       data-expanded={result}
       data-original-value={originalValue}
       data-expanded-value={expandedValue}
-      data-equivalent={originalValue === expandedValue}
+      data-equivalent={verification.equivalent}
       data-show-arrows={showArrows}
       data-show-area={showArea}
       data-checked={checked}
@@ -212,7 +216,15 @@ export default function ExpandingBracketsTargetLesson95({
           ),
         )}
       </nav>
-      <main className="expand95-layout">
+      {tab !== "Interact" && (
+        <ExpansionTab95
+          tab={tab}
+          factor={factor}
+          variable={variable}
+          constant={constant}
+        />
+      )}
+      <main className={`expand95-layout ${tab === "Interact" ? "" : "hidden"}`}>
         <section className="expand95-area">
           <header>
             <div>
@@ -285,13 +297,18 @@ export default function ExpandingBracketsTargetLesson95({
               <div
                 className="expand95-units"
                 style={{
-                  gridTemplateColumns: `repeat(${constant}, 1fr)`,
+                  gridTemplateColumns: `repeat(${Math.max(1, Math.abs(constant))}, 1fr)`,
                   gridTemplateRows: `repeat(${factor}, 1fr)`,
                 }}
               >
-                {Array.from({ length: factor * constant }, (_, index) => (
-                  <i key={index}>1</i>
-                ))}
+                {Array.from(
+                  { length: Math.abs(factor * constant) },
+                  (_, index) => (
+                    <i className={constant < 0 ? "negative" : ""} key={index}>
+                      {constant < 0 ? "−1" : "1"}
+                    </i>
+                  ),
+                )}
               </div>
             </div>
             <b className="expand95-side">{factor}</b>
@@ -405,7 +422,13 @@ export default function ExpandingBracketsTargetLesson95({
               <Check />
               Check by substitution
             </button>
-            <button type="button" onClick={reset}>
+            <button
+              type="button"
+              onClick={() => {
+                reset();
+                act();
+              }}
+            >
               <RotateCcw />
               Reset
             </button>
@@ -633,5 +656,46 @@ function Toggle({
       </i>
       {label}
     </button>
+  );
+}
+
+function ExpansionTab95({
+  tab,
+  factor,
+  variable,
+  constant,
+}: {
+  tab: string;
+  factor: number;
+  variable: string;
+  constant: number;
+}) {
+  const expression = `${factor}${expansionBracket95(variable, constant)}`;
+  const result = expandedExpression95(factor, variable, constant);
+  const content =
+    tab === "Learn"
+      ? [
+          "Multiply the outside factor by every term inside the bracket.",
+          "The area parts must add to the same total.",
+        ]
+      : tab === "Examples"
+        ? EXPANSION_PRACTICES_95.map(
+            (item) =>
+              `${item.factor}${expansionBracket95(item.variable, item.constant)} → ${expandedExpression95(item.factor, item.variable, item.constant)}`,
+          )
+        : tab === "Formula"
+          ? ["a(b + c) = ab + ac", `${expression} = ${result}`]
+          : EXPANSION_PRACTICES_95.map(
+              (item) =>
+                `Expand ${item.factor}${expansionBracket95(item.variable, item.constant)}`,
+            );
+  return (
+    <section className="expand95-tab-panel" data-active-learning-tab={tab}>
+      <h2>{tab}</h2>
+      <strong>{result}</strong>
+      {content.map((item) => (
+        <p key={item}>{item}</p>
+      ))}
+    </section>
   );
 }

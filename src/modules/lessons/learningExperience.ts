@@ -5,9 +5,9 @@ import type { SchoolSyllabusLesson } from "./syllabus/lessonSyllabusTypes";
 import type { LessonDefinition } from "./types";
 
 export type LearningLessonRef =
-  | { kind: "interactive"; title: string; route: string; topic: string; level: string; summary: string; minutes: number }
-  | { kind: "school"; title: string; route: string; topic: string; level: string; summary: string; minutes: number }
-  | { kind: "advanced"; title: string; route: string; topic: string; level: string; summary: string; minutes: number };
+  | { kind: "interactive"; id: number; title: string; route: string; topic: string; level: string; summary: string; minutes: number }
+  | { kind: "school"; id: number; title: string; route: string; topic: string; level: string; summary: string; minutes: number }
+  | { kind: "advanced"; id: number; title: string; route: string; topic: string; level: string; summary: string; minutes: number };
 
 export type LearningSubtopic = {
   slug: string;
@@ -280,6 +280,7 @@ function lessonMatchScore(lesson: LearningLessonRef, terms: string[]) {
 function refFromInteractive(lesson: LessonDefinition): LearningLessonRef {
   return {
     kind: "interactive",
+    id: lesson.id,
     title: lesson.title,
     route: lesson.route,
     topic: lesson.topic,
@@ -292,6 +293,7 @@ function refFromInteractive(lesson: LessonDefinition): LearningLessonRef {
 function refFromSchool(lesson: SchoolSyllabusLesson): LearningLessonRef {
   return {
     kind: "school",
+    id: lesson.numericId,
     title: lesson.title,
     route: lesson.route,
     topic: lesson.metadata.conceptFamily,
@@ -304,6 +306,7 @@ function refFromSchool(lesson: SchoolSyllabusLesson): LearningLessonRef {
 function refFromAdvanced(lesson: AdvancedConceptLesson): LearningLessonRef {
   return {
     kind: "advanced",
+    id: lesson.numericId,
     title: lesson.title,
     route: lesson.route,
     topic: lesson.strand,

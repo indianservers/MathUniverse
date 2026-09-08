@@ -168,7 +168,7 @@ export default function LessonsHomePage() {
               <small>Showing best {filteredLessons.length}. Refine class, topic, type, or tool to narrow faster.</small>
             </div>
             <div className="learn-search-results lessons-results">
-              {filteredLessons.map((lesson, index) => <LessonResult key={lesson.route} lesson={lesson} index={index} />)}
+              {filteredLessons.map((lesson) => <LessonResult key={lesson.route} lesson={lesson} />)}
             </div>
             {filteredLessons.length === 0 ? <p className="learn-empty">No lesson matches those filters yet.</p> : null}
           </div>
@@ -450,12 +450,12 @@ function TopicCard({ topic, featured }: { topic: LearningTopic; featured?: boole
   );
 }
 
-function LessonResult({ lesson, index }: { lesson: LearningLessonRef; index: number }) {
+function LessonResult({ lesson }: { lesson: LearningLessonRef }) {
   const tool = visualToolFor(lesson);
   const type = learningTypeFilters.find((item) => item.id === learningTypeFor(lesson))?.label ?? learningTypeFor(lesson);
   return (
     <Link className="learn-result" to={lesson.route}>
-      <span>#{String(index + 1).padStart(2, "0")} - {type} - {tool}</span>
+      <span>Lesson {lesson.id} · {type} · {tool}</span>
       <strong>{lesson.title}</strong>
       <p>{lesson.summary}</p>
       <div className="lessons-result-meta">
@@ -575,7 +575,7 @@ function DomainRangePreview() {
 }
 
 function searchableText(lesson: LearningLessonRef) {
-  return [lesson.title, lesson.topic, lesson.level, lesson.summary, visualToolFor(lesson), learningTypeFor(lesson)].join(" ").toLowerCase();
+  return [lesson.id, lesson.title, lesson.topic, lesson.level, lesson.summary, visualToolFor(lesson), learningTypeFor(lesson)].join(" ").toLowerCase();
 }
 
 function countTopicLessons(topic: LearningTopic) {

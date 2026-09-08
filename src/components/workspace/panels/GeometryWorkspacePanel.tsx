@@ -45,6 +45,8 @@ import {
 import { Link } from "react-router-dom";
 import {
   type PointerEvent,
+  type WheelEvent,
+  type KeyboardEvent,
   type ReactNode,
   type RefObject,
   useEffect,
@@ -219,7 +221,14 @@ export type GeometryGraphSettings = {
   highContrastGrid: boolean;
   snapToGrid: boolean;
   snapToObjects: boolean;
+  gridType?: "cartesian" | "polar" | "isometric";
+  minorGrid?: boolean;
+  gridSpacing?: number;
+  showAxisLabels?: boolean;
+  pointCapture?: "automatic" | "snap" | "fixed" | "off";
+  snapStrength?: number;
 };
+export type GeometryCamera = { x: number; y: number; width: number; height: number };
 export type GeometryProtocolEntry = {
   id: string;
   label: string;
@@ -241,6 +250,7 @@ interface GeometryWorkspacePanelProps {
   workspaceImages: WorkspaceImage[];
   selectedImageId: string | null;
   graphSettings: GeometryGraphSettings;
+  camera: GeometryCamera;
   boardRef: RefObject<SVGSVGElement>;
   imageInputRef: RefObject<HTMLInputElement>;
   sidebar?: ReactNode;
@@ -271,6 +281,10 @@ interface GeometryWorkspacePanelProps {
   onLoad: () => void;
   onExport?: () => void;
   onGraphSettingsChange: (settings: GeometryGraphSettings) => void;
+  onZoom: (direction: "in" | "out", anchor?: { x: number; y: number }) => void;
+  onResetView: () => void;
+  onBoardWheel: (event: WheelEvent<SVGSVGElement>) => void;
+  onBoardKeyDown: (event: KeyboardEvent<SVGSVGElement>) => void;
   onClearPendingPicks: () => void;
   onBoardPointerDown: (event: PointerEvent<SVGSVGElement>) => void;
   onBoardPointerMove: (event: PointerEvent<SVGSVGElement>) => void;
@@ -423,10 +437,10 @@ export default function GeometryWorkspacePanel({
   selectedPointIds,
   polygonDraft,
   geometryObjectPicks,
-  constructionAccuracyReport,
   workspaceImages,
   selectedImageId,
   graphSettings,
+  camera,
   boardRef,
   imageInputRef,
   sidebar,
@@ -457,6 +471,10 @@ export default function GeometryWorkspacePanel({
   onLoad,
   onExport,
   onGraphSettingsChange,
+  onZoom,
+  onResetView,
+  onBoardWheel,
+  onBoardKeyDown,
   onClearPendingPicks,
   onBoardPointerDown,
   onBoardPointerMove,
@@ -692,22 +710,16 @@ export default function GeometryWorkspacePanel({
           onLoad={onLoad}
           onAddImage={() => imageInputRef.current?.click()}
         />
+        <div className="sr-only" aria-hidden="true">
+          <GeometryGraphSettingsBar settings={graphSettings} onChange={onGraphSettingsChange} />
+        </div>
       </aside>
 
       <main className="geometry-studio-main">
         <section className="geometry-canvas-panel">
-          <div className="geometry-canvas-header">
-            <GeometryGraphSettingsBar
-              settings={graphSettings}
-              onChange={onGraphSettingsChange}
-            />
-            <GeometryAccuracyStrip
-              report={constructionAccuracyReport}
-              selectedGeometry={selectedGeometry}
-            />
-          </div>
           <div className="geometry-canvas-stage">
             <GeometryNavTools activeTool={activeTool} onTool={chooseTool} />
+            <GeometryZoomControls onZoom={onZoom} onResetView={onResetView} />
             <GeometryBoard
               boardRef={boardRef}
               construction={construction}
@@ -717,7 +729,10 @@ export default function GeometryWorkspacePanel({
               selectedPointIds={selectedPointIds}
               polygonDraft={polygonDraft}
               activeTool={activeTool}
+              camera={camera}
               graphSettings={graphSettings}
+              onWheel={onBoardWheel}
+              onKeyDown={onBoardKeyDown}
               onPointerDown={onBoardPointerDown}
               onPointerMove={handleBoardMove}
               onPointerUp={onBoardPointerUp}
@@ -1017,7 +1032,7 @@ export default function GeometryWorkspacePanel({
         <span>
           {pointerCoordinate
             ? `x ${roundTo(pointerCoordinate.x, precision)}, y ${roundTo(pointerCoordinate.y, precision)}`
-            : constructionAccuracyReport.summary}
+            : `${construction.points.length} points`}
         </span>
         <button
           type="button"
@@ -1442,13 +1457,18 @@ function GeometryNavTools({
           aria-label={label}
         >
           <Icon className="h-4 w-4" />
-          <span>{label}</span>
         </button>
       ))}
-      <button type="button" title="Fit view" aria-label="Fit view">
-        <ZoomOut className="h-4 w-4" />
-        <span>Fit</span>
-      </button>
+    </div>
+  );
+}
+
+function GeometryZoomControls({ onZoom, onResetView }: { onZoom: (direction: "in" | "out") => void; onResetView: () => void }) {
+  return (
+    <div className="geometry-zoom-controls" aria-label="Canvas zoom controls">
+      <button type="button" onClick={() => onZoom("in")} title="Zoom in" aria-label="Zoom in"><ZoomIn className="h-4 w-4" /></button>
+      <button type="button" onClick={() => onZoom("out")} title="Zoom out" aria-label="Zoom out"><ZoomOut className="h-4 w-4" /></button>
+      <button type="button" onClick={onResetView} title="Reset view" aria-label="Reset view"><Home className="h-4 w-4" /></button>
     </div>
   );
 }
@@ -2166,6 +2186,8 @@ function GeometrySettingsDialog({
               "showMeasurements",
               "snapToGrid",
               "snapToObjects",
+              "minorGrid",
+              "showAxisLabels",
             ] as Array<keyof GeometryGraphSettings>
           ).map((key) => (
             <label key={key}>
@@ -2180,6 +2202,46 @@ function GeometrySettingsDialog({
             </label>
           ))}
         </div>
+        <label>
+          Grid style
+          <select
+            value={settings.gridType ?? "cartesian"}
+            onChange={(event) => onSettings({ ...settings, gridType: event.target.value as GeometryGraphSettings["gridType"] })}
+          >
+            <option value="cartesian">Cartesian</option>
+            <option value="polar">Polar</option>
+            <option value="isometric">Isometric</option>
+          </select>
+        </label>
+        <label>
+          Grid spacing
+          <select
+            value={settings.gridSpacing ?? 40}
+            onChange={(event) => onSettings({ ...settings, gridSpacing: Number(event.target.value) })}
+          >
+            {[20, 40, 80, 120].map((value) => <option key={value} value={value}>{value} px</option>)}
+          </select>
+        </label>
+        <label>
+          Point capture
+          <select
+            value={settings.pointCapture ?? (settings.snapToGrid ? "snap" : "off")}
+            onChange={(event) => {
+              const value = event.target.value as NonNullable<GeometryGraphSettings["pointCapture"]>;
+              onSettings({ ...settings, pointCapture: value, snapToGrid: value === "snap" || value === "fixed" });
+            }}
+          >
+            <option value="automatic">Automatic</option>
+            <option value="snap">Snap to grid</option>
+            <option value="fixed">Fixed to grid</option>
+            <option value="off">Off</option>
+          </select>
+        </label>
+        <label>
+          Snap strength
+          <input type="range" min="4" max="32" step="2" value={settings.snapStrength ?? 18} onChange={(event) => onSettings({ ...settings, snapStrength: Number(event.target.value) })} />
+          <span>{settings.snapStrength ?? 18}px</span>
+        </label>
         <button
           type="button"
           className="geometry-dialog-command"
@@ -2302,7 +2364,7 @@ function GeometryGraphSettingsBar({
   const items: Array<{ key: keyof GeometryGraphSettings; label: string }> = [
     { key: "showGrid", label: "Grid" },
     { key: "showAxes", label: "Axes" },
-    { key: "showUnitLabels", label: "Numbers" },
+    { key: "showUnitLabels", label: "Units" },
     { key: "showPointLabels", label: "Labels" },
     { key: "showMeasurements", label: "Measures" },
     { key: "snapToGrid", label: "Grid snap" },
@@ -2349,7 +2411,10 @@ function GeometryBoard({
   selectedPointIds,
   polygonDraft,
   activeTool,
+  camera,
   graphSettings,
+  onWheel,
+  onKeyDown,
   onPointerDown,
   onPointerMove,
   onPointerUp,
@@ -2364,7 +2429,10 @@ function GeometryBoard({
   selectedPointIds: string[];
   polygonDraft: string[];
   activeTool: GeometryTool;
+  camera: GeometryCamera;
   graphSettings: GeometryGraphSettings;
+  onWheel: (event: WheelEvent<SVGSVGElement>) => void;
+  onKeyDown: (event: KeyboardEvent<SVGSVGElement>) => void;
   onPointerDown: (event: PointerEvent<SVGSVGElement>) => void;
   onPointerMove: (event: PointerEvent<SVGSVGElement>) => void;
   onPointerUp: (event: PointerEvent<SVGSVGElement>) => void;
@@ -2376,7 +2444,7 @@ function GeometryBoard({
       ref={boardRef}
       data-testid="workspace-geometry-board"
       data-export="geometry"
-      viewBox="0 0 640 420"
+      viewBox={`${camera.x} ${camera.y} ${camera.width} ${camera.height}`}
       role="application"
       tabIndex={0}
       aria-label="Geometry constructor. Select a point and use arrow keys to nudge it. Press Escape to return to select mode."
@@ -2385,6 +2453,9 @@ function GeometryBoard({
       onContextMenu={onContextMenu}
       onPointerUp={onPointerUp}
       onPointerLeave={onPointerLeave}
+      onWheel={onWheel}
+      onKeyDown={onKeyDown}
+      data-active-tool={activeTool}
       className="geometry-board-svg w-full touch-none rounded-2xl border border-slate-200 bg-white dark:border-white/10 dark:bg-slate-950"
     >
       <title>Math Universe Geometry Construction</title>
@@ -2410,7 +2481,7 @@ function GeometryBoard({
           </feMerge>
         </filter>
       </defs>
-      <GeometryGrid settings={graphSettings} />
+      <GeometryGrid settings={graphSettings} camera={camera} />
       {workspaceImages
         .filter((image) => image.visible !== false)
         .map((image) => (
@@ -2565,116 +2636,82 @@ function GeometryBoard({
   );
 }
 
-function GeometryAccuracyStrip({
-  report,
-  selectedGeometry,
-}: {
-  report: GeometryCertificationReport;
-  selectedGeometry: SelectedGeometryObject | null;
-}) {
-  const failed = report.checks.filter(
-    (check) => check.severity === "fail",
-  ).length;
-  const warned = report.checks.filter(
-    (check) => check.severity === "warn",
-  ).length;
-  const status = failed ? "fail" : warned ? "warn" : "pass";
-  const statusStyle =
-    status === "pass"
-      ? "border-emerald-200 bg-emerald-50 text-emerald-950 dark:border-emerald-300/20 dark:bg-emerald-400/10 dark:text-emerald-50"
-      : status === "warn"
-        ? "border-amber-200 bg-amber-50 text-amber-950 dark:border-amber-300/20 dark:bg-amber-400/10 dark:text-amber-50"
-        : "border-rose-200 bg-rose-50 text-rose-950 dark:border-rose-300/20 dark:bg-rose-400/10 dark:text-rose-50";
-  const importantChecks = report.checks
-    .filter((check) => check.severity !== "pass")
-    .slice(0, 2);
-  const displayedChecks = importantChecks.length
-    ? importantChecks
-    : report.checks.slice(0, 2);
-  return (
-    <section
-      className={`rounded-2xl border px-3 py-2 ${statusStyle}`}
-      data-testid="workspace-geometry-accuracy"
-      aria-live="polite"
-    >
-      <div className="flex flex-wrap items-center justify-between gap-2">
-        <div>
-          <p className="text-sm font-black">Construction Accuracy</p>
-          <p className="text-xs font-semibold opacity-85">{report.summary}</p>
-        </div>
-        <div className="flex flex-wrap items-center gap-2 text-xs font-black">
-          <span className="rounded-full bg-white/70 px-2.5 py-1 text-slate-900 dark:bg-slate-950/50 dark:text-white">
-            {report.score}%
-          </span>
-          <span className="rounded-full bg-white/70 px-2.5 py-1 text-slate-900 dark:bg-slate-950/50 dark:text-white">
-            max residual {formatResidual(report.maxResidual)}
-          </span>
-          {selectedGeometry ? (
-            <span className="rounded-full bg-white/70 px-2.5 py-1 text-slate-900 dark:bg-slate-950/50 dark:text-white">
-              selected {selectedGeometry.type}
-            </span>
-          ) : null}
-        </div>
-      </div>
-      <div className="mt-2 grid gap-1.5 md:grid-cols-2">
-        {displayedChecks.map((check) => (
-          <p
-            key={check.id}
-            className="rounded-xl bg-white/55 px-2 py-1 text-xs font-semibold text-slate-800 dark:bg-slate-950/35 dark:text-slate-100"
-          >
-            <span className="font-black uppercase">{check.severity}</span> ·{" "}
-            {check.label}
-          </p>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function GeometryGrid({ settings }: { settings: GeometryGraphSettings }) {
+function GeometryGrid({ settings, camera }: { settings: GeometryGraphSettings; camera?: GeometryCamera }) {
   const showUnits = settings.showUnitLabels || settings.showUnits;
-  const width = 640;
-  const height = 420;
-  const unit = 40;
+  const width = camera?.width ?? 640;
+  const height = camera?.height ?? 420;
+  const unit = settings.gridSpacing ?? 40;
   const origin = { x: 320, y: 220 };
-  const verticals = Array.from({ length: 17 }, (_, i) => i * unit);
-  const horizontals = Array.from({ length: 12 }, (_, i) => i * unit);
+  const left = camera?.x ?? 0;
+  const top = camera?.y ?? 0;
+  const right = left + width;
+  const bottom = top + height;
+  const firstVertical = Math.floor((left - origin.x) / unit) - 1;
+  const lastVertical = Math.ceil((right - origin.x) / unit) + 1;
+  const firstHorizontal = Math.floor((top - origin.y) / unit) - 1;
+  const lastHorizontal = Math.ceil((bottom - origin.y) / unit) + 1;
+  const verticals = Array.from({ length: Math.max(0, lastVertical - firstVertical + 1) }, (_, i) => origin.x + (firstVertical + i) * unit);
+  const horizontals = Array.from({ length: Math.max(0, lastHorizontal - firstHorizontal + 1) }, (_, i) => origin.y + (firstHorizontal + i) * unit);
   const gridStroke = settings.highContrastGrid
     ? "rgba(14,165,233,.38)"
     : "rgba(148,163,184,.2)";
-  const axisStroke = settings.highContrastGrid ? "#0891b2" : "#0f172a";
+  const axisStroke = settings.highContrastGrid ? "#67e8f9" : "#cbd5e1";
+  const labelFill = settings.highContrastGrid ? "#f8fafc" : "#e2e8f0";
+  const gridType = settings.gridType ?? "cartesian";
+  const polarRings = Array.from({ length: Math.max(1, Math.ceil(Math.max(width, height) / unit / 2) + 2) }, (_, i) => (i + 1) * unit);
   return (
     <g>
-      {settings.showGrid &&
+      {settings.showGrid && gridType === "cartesian" &&
         verticals.map((x) => (
           <line
             key={`gv-${x}`}
             x1={x}
             x2={x}
-            y1="0"
-            y2={height}
+            y1={top - unit}
+            y2={bottom + unit}
             stroke={gridStroke}
             strokeWidth={settings.highContrastGrid ? 1.4 : 1}
           />
         ))}
-      {settings.showGrid &&
+      {settings.showGrid && gridType === "cartesian" &&
         horizontals.map((y) => (
           <line
             key={`gh-${y}`}
-            x1="0"
-            x2={width}
+            x1={left - unit}
+            x2={right + unit}
             y1={y}
             y2={y}
             stroke={gridStroke}
             strokeWidth={settings.highContrastGrid ? 1.4 : 1}
           />
         ))}
+      {settings.showGrid && settings.minorGrid && gridType === "cartesian" && (
+        <g opacity="0.45">
+          {verticals.map((x) => <line key={`gmv-${x}`} x1={x + unit / 2} x2={x + unit / 2} y1={top - unit} y2={bottom + unit} stroke={gridStroke} strokeWidth="0.6" />)}
+          {horizontals.map((y) => <line key={`gmh-${y}`} x1={left - unit} x2={right + unit} y1={y + unit / 2} y2={y + unit / 2} stroke={gridStroke} strokeWidth="0.6" />)}
+        </g>
+      )}
+      {settings.showGrid && gridType === "polar" && (
+        <g fill="none" stroke={gridStroke} strokeWidth="1">
+          {polarRings.map((radius) => <circle key={`pr-${radius}`} cx={origin.x} cy={origin.y} r={radius} />)}
+          {Array.from({ length: 12 }, (_, index) => {
+            const angle = index * Math.PI / 6;
+            return <line key={`pa-${index}`} x1={origin.x - Math.cos(angle) * Math.max(width, height)} y1={origin.y - Math.sin(angle) * Math.max(width, height)} x2={origin.x + Math.cos(angle) * Math.max(width, height)} y2={origin.y + Math.sin(angle) * Math.max(width, height)} />;
+          })}
+        </g>
+      )}
+      {settings.showGrid && gridType === "isometric" && (
+        <g stroke={gridStroke} strokeWidth="1" opacity="0.8">
+          {verticals.map((x) => <line key={`iv-${x}`} x1={x} y1={top - unit} x2={x + (bottom - top + unit * 2) * 0.58} y2={bottom + unit} />)}
+          {verticals.map((x) => <line key={`iv2-${x}`} x1={x} y1={bottom + unit} x2={x + (top - bottom - unit * 2) * 0.58} y2={top - unit} />)}
+        </g>
+      )}
       {(settings.showAxes || showUnits) && (
         <g className="select-none">
           {settings.showAxes && (
             <line
-              x1={0}
-              x2={width}
+              x1={left - unit}
+              x2={right + unit}
               y1={origin.y}
               y2={origin.y}
               stroke={axisStroke}
@@ -2686,8 +2723,8 @@ function GeometryGrid({ settings }: { settings: GeometryGraphSettings }) {
             <line
               x1={origin.x}
               x2={origin.x}
-              y1={0}
-              y2={height}
+              y1={top - unit}
+              y2={bottom + unit}
               stroke={axisStroke}
               strokeWidth={settings.highContrastGrid ? 2.4 : 1.8}
               opacity={settings.highContrastGrid ? 0.85 : 0.45}
@@ -2696,14 +2733,14 @@ function GeometryGrid({ settings }: { settings: GeometryGraphSettings }) {
           {showUnits &&
             verticals.map((x) => {
               const value = Math.round((x - origin.x) / unit);
-              if (value === 0 || x < 20 || x > width - 20) return null;
+              if (value === 0 || x < left + 20 || x > right - 20) return null;
               return (
                 <text
                   key={`x-unit-${x}`}
                   x={x}
                   y={origin.y + 18}
                   textAnchor="middle"
-                  fill="#334155"
+                  fill={labelFill}
                   fontSize="10"
                   fontWeight="800"
                 >
@@ -2714,14 +2751,14 @@ function GeometryGrid({ settings }: { settings: GeometryGraphSettings }) {
           {showUnits &&
             horizontals.map((y) => {
               const value = Math.round((origin.y - y) / unit);
-              if (value === 0 || y < 20 || y > height - 20) return null;
+              if (value === 0 || y < top + 20 || y > bottom - 20) return null;
               return (
                 <text
                   key={`y-unit-${y}`}
                   x={origin.x - 10}
                   y={y + 4}
                   textAnchor="end"
-                  fill="#334155"
+                  fill={labelFill}
                   fontSize="10"
                   fontWeight="800"
                 >
@@ -2733,29 +2770,29 @@ function GeometryGrid({ settings }: { settings: GeometryGraphSettings }) {
             <text
               x={origin.x + 7}
               y={origin.y + 16}
-              fill="#0f172a"
+              fill={labelFill}
               fontSize="10"
               fontWeight="900"
             >
               0
             </text>
           )}
-          {settings.showAxes && (
+          {(settings.showAxes && settings.showAxisLabels !== false) && (
             <text
-              x={width - 18}
+              x={right - 18}
               y={origin.y - 8}
-              fill="#0f172a"
+              fill={labelFill}
               fontSize="10"
               fontWeight="900"
             >
               x
             </text>
           )}
-          {settings.showAxes && (
+          {(settings.showAxes && settings.showAxisLabels !== false) && (
             <text
               x={origin.x + 8}
-              y={18}
-              fill="#0f172a"
+              y={top + 18}
+              fill={labelFill}
               fontSize="10"
               fontWeight="900"
             >
@@ -3520,11 +3557,4 @@ function centroid(points: GeoPoint[]) {
 function normalize(x: number, y: number) {
   const length = Math.hypot(x, y) || 1;
   return { x: x / length, y: y / length };
-}
-
-function formatResidual(value: number) {
-  if (!Number.isFinite(value)) return "unbounded";
-  if (value === 0) return "0";
-  if (Math.abs(value) < 0.000001) return value.toExponential(1);
-  return String(roundTo(value, 4));
 }

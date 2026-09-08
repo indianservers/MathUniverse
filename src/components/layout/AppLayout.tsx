@@ -8,10 +8,10 @@ import { ArrowLeft, Maximize2, Minimize2 } from "lucide-react";
 import MathWorkspaceLayout from "../workspace/MathWorkspaceLayout";
 import { findMathWorkspace } from "../../workspace/mathWorkspaces";
 
-function InlinePageNav({ showBack }: { showBack: boolean }) {
+function InlinePageNav({ showBack, hidden = false }: { showBack: boolean; hidden?: boolean }) {
   const navigate = useNavigate();
   const location = useLocation();
-  if (location.pathname === "/") return null;
+  if (location.pathname === "/" || hidden) return null;
   return (
     <div className="flex items-center gap-2">
       {showBack && (
@@ -74,6 +74,9 @@ export default function AppLayout() {
   const mainContentRef = useRef<HTMLElement | null>(null);
   const location = useLocation();
   const showBack = location.pathname.split("/").filter(Boolean).length > 1;
+  // StudioPageShell renders its own breadcrumb. Keep the shared trail for
+  // ordinary pages, but avoid showing two trails on shell based pages.
+  const hasOwnStudioBreadcrumb = /^\/(?:algebra|combinatorics|complex-numbers|set-theory|statistics|linear-algebra|matrices|number-systems|trigonometry|truth-table|mathematical-modelling|studio-projects|daily-challenge|worked-examples)(?:\/|$)/.test(location.pathname) || ["/probability-statistics", "/mathematical-logic"].includes(location.pathname);
   const isWorkspaceRoute =
     location.pathname === "/workspace" ||
     location.pathname.startsWith("/workspace/");
@@ -334,7 +337,7 @@ export default function AppLayout() {
               key={location.pathname}
               className="page-transition min-w-0 space-y-1.5 overflow-x-clip"
             >
-              <InlinePageNav showBack={showBack} />
+              <InlinePageNav showBack={showBack} hidden={hasOwnStudioBreadcrumb} />
               <Outlet />
             </div>
           </main>

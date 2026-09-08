@@ -2561,7 +2561,7 @@ function LessonCard({ lesson, index }: { lesson: LearningLessonRef; index: numbe
       <LessonThumbnail lesson={lesson} index={index} t={preview} />
       <div className="learn-catalog-body">
         <div className="learn-catalog-overline">
-          <span>{String(index + 1).padStart(2, "0")}</span>
+          <span>Lesson {lesson.id}</span>
           <small>{mode}</small>
         </div>
         <h3>{lesson.title}</h3>
@@ -2991,7 +2991,7 @@ function topicClassRange(topic: LearningTopic) {
 }
 
 function searchableText(lesson: LearningLessonRef) {
-  return `${lesson.title} ${lesson.summary} ${lesson.topic} ${lesson.level} ${lesson.kind}`.toLowerCase();
+  return `${lesson.id} ${lesson.title} ${lesson.summary} ${lesson.topic} ${lesson.level} ${lesson.kind}`.toLowerCase();
 }
 
 function lessonDifficulty(lesson: LearningLessonRef): Difficulty {

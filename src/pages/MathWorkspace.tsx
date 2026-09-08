@@ -1,7 +1,7 @@
 import { OrbitControls } from "@react-three/drei";
 import { type ThreeEvent, useFrame } from "@react-three/fiber";
 import { AlertTriangle, Box, Braces, Camera, Check, CheckCircle2, ChevronDown, Circle, CircleDot, Copy, Download, Eraser, Eye, EyeOff, FileText, Filter, FunctionSquare, Grid3X3, Home, Info, Keyboard, LineChart, ListTree, Magnet, Maximize2, Menu, Mic, MoreHorizontal, MousePointer2, Move, Orbit, PanelLeftClose, PanelLeftOpen, PanelRightClose, PanelRightOpen, Pentagon, Pin, Play, Plus, Presentation, Redo2, Rotate3D, RotateCcw, Ruler, Save, Search, Settings, Share2, Sigma, Slash, SlidersHorizontal, Sparkles, Table2, Trash2, Undo2, User, WandSparkles, X, ZoomIn, ZoomOut, type LucideIcon } from "lucide-react";
-import { MouseEvent as ReactMouseEvent, PointerEvent, useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { KeyboardEvent, MouseEvent as ReactMouseEvent, PointerEvent, WheelEvent, useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import * as THREE from "three";
 import { casCommandRegistrySummary, searchCasCommands } from "../cas/casCommandRegistry";
@@ -22,7 +22,7 @@ import {
 import { readCasNotebookState, saveCasNotebookState } from "../cas/casNotebookPersistence";
 import ThreeSceneWrapper from "../components/three/ThreeSceneWrapper";
 import MathKeyboardInput from "../components/math-keyboard/MathKeyboardInput";
-import GeometryWorkspacePanel, { type GeometryGraphSettings } from "../components/workspace/panels/GeometryWorkspacePanel";
+import GeometryWorkspacePanel, { type GeometryCamera, type GeometryGraphSettings } from "../components/workspace/panels/GeometryWorkspacePanel";
 import GraphWorkspacePanel, { type PlotItem, type PlotKind, type ResultTableRow } from "../components/workspace/panels/GraphWorkspacePanel";
 import InspectorPanel from "../components/workspace/InspectorPanel";
 import ObjectList, { type ObjectListAction } from "../components/workspace/ObjectList";
@@ -217,13 +217,19 @@ const initialSpreadsheet: SpreadsheetCellGrid = [
 const initialConstruction: Construction = { points: [], lines: [], circles: [], polygons: [], arcs: [], loci: [], constraints: [] };
 const defaultGeometryGraphSettings: GeometryGraphSettings = {
   showGrid: true,
-  showAxes: false,
-  showUnitLabels: false,
+  showAxes: true,
+  showUnitLabels: true,
   showPointLabels: true,
   showMeasurements: true,
   highContrastGrid: false,
   snapToGrid: true,
   snapToObjects: true,
+  gridType: "cartesian",
+  minorGrid: false,
+  gridSpacing: 40,
+  showAxisLabels: true,
+  pointCapture: "snap",
+  snapStrength: 18,
 };
 const defaultTransforms3d: Record<ThreeObjectId, Transform3D> = {
   surface: { name: "surface", position: [0, 0, 0], rotation: [0, 0, 0], scale: 1, visible: true, color: "#22d3ee", opacity: 0.45, material: "glass" },
@@ -340,6 +346,8 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   const [lockedGeometryIds, setLockedGeometryIds] = useState<string[]>([]);
   const [polygonDraft, setPolygonDraft] = useState<string[]>([]);
   const [geometryGraphSettings, setGeometryGraphSettings] = useState<GeometryGraphSettings>(defaultGeometryGraphSettings);
+  const [geometryCamera, setGeometryCamera] = useState<GeometryCamera>({ x: 0, y: 0, width: 640, height: 420 });
+  const geometryPanRef = useRef<{ clientX: number; clientY: number; camera: GeometryCamera } | null>(null);
   const geometryCertificationReport = useMemo(() => certifyGeometryConstruction(construction, {
     regularPolygonIds: construction.polygons.filter((polygon) => polygon.style?.label === "regular-polygon").map((polygon) => polygon.id),
   }), [construction]);
@@ -754,6 +762,15 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
     if (event.button === 2) return;
     event.currentTarget.setPointerCapture(event.pointerId);
     if (event.pointerType === "touch") event.preventDefault();
+    if (tool === "move-canvas") {
+      geometryPanRef.current = { clientX: event.clientX, clientY: event.clientY, camera: geometryCamera };
+      return;
+    }
+    if (tool === "zoom") {
+      const anchor = clientToBoard(event);
+      zoomGeometry("in", anchor ?? undefined);
+      return;
+    }
     const target = event.target as Element;
     const imageId = target.getAttribute("data-image-id");
     if (imageId) {
@@ -809,7 +826,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   };
 
   const createPointForActiveGeometryTool = (activeTool: GeometryTool, x: number, y: number) => {
-    if (activeTool === "freehand" || activeTool === "move-canvas" || activeTool === "zoom") {
+    if (activeTool === "freehand") {
       createDefaultGeometryToolObject(activeTool, x, y);
       return;
     }
@@ -1230,6 +1247,19 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   };
 
   const handleBoardPointerMove = (event: PointerEvent<SVGSVGElement>) => {
+    if (geometryPanRef.current) {
+      if (event.pointerType === "touch") event.preventDefault();
+      const rect = event.currentTarget.getBoundingClientRect();
+      const start = geometryPanRef.current;
+      const scaleX = start.camera.width / rect.width;
+      const scaleY = start.camera.height / rect.height;
+      setGeometryCamera({
+        ...start.camera,
+        x: start.camera.x - (event.clientX - start.clientX) * scaleX,
+        y: start.camera.y - (event.clientY - start.clientY) * scaleY,
+      });
+      return;
+    }
     if (!dragPointId && !dragGeometry && !dragImageId) return;
     if (event.pointerType === "touch") event.preventDefault();
     const point = clientToBoard(event);
@@ -1343,6 +1373,37 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
     });
     setSelectedGeometry(null);
     setContextMenu(null);
+  };
+
+  const zoomGeometry = (direction: "in" | "out", anchor?: { x: number; y: number }) => {
+    setGeometryCamera((current) => {
+      const factor = direction === "in" ? 0.8 : 1.25;
+      const nextWidth = Math.max(160, Math.min(1280, current.width * factor));
+      const nextHeight = Math.max(105, Math.min(840, current.height * factor));
+      const focus = anchor ?? { x: current.x + current.width / 2, y: current.y + current.height / 2 };
+      return {
+        x: focus.x - (focus.x - current.x) * (nextWidth / current.width),
+        y: focus.y - (focus.y - current.y) * (nextHeight / current.height),
+        width: nextWidth,
+        height: nextHeight,
+      };
+    });
+  };
+
+  const resetGeometryView = () => setGeometryCamera({ x: 0, y: 0, width: 640, height: 420 });
+  const handleGeometryWheel = (event: WheelEvent<SVGSVGElement>) => {
+    event.preventDefault();
+    const anchor = clientToBoard(event as unknown as PointerEvent<SVGSVGElement>);
+    zoomGeometry(event.deltaY < 0 ? "in" : "out", anchor ?? undefined);
+  };
+  const handleGeometryKeyDown = (event: KeyboardEvent<SVGSVGElement>) => {
+    if ((event.ctrlKey || event.metaKey) && (event.key === "+" || event.key === "=" || event.key === "-")) {
+      event.preventDefault();
+      zoomGeometry(event.key === "-" ? "out" : "in");
+    } else if (event.key === "0") {
+      event.preventDefault();
+      resetGeometryView();
+    }
   };
 
   const duplicateGeometryObject = (object = selectedGeometry) => {
@@ -2705,6 +2766,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
           workspaceImages={workspaceImages}
           selectedImageId={selectedImageId}
           graphSettings={geometryGraphSettings}
+          camera={geometryCamera}
           boardRef={svgRef}
           imageInputRef={imageInputRef}
           onImageUpload={handleImageUpload}
@@ -2727,11 +2789,15 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
           onLoad={loadConstruction}
           onExport={exportGeometryPng}
           onGraphSettingsChange={setGeometryGraphSettings}
+          onZoom={zoomGeometry}
+          onResetView={resetGeometryView}
+          onBoardWheel={handleGeometryWheel}
+          onBoardKeyDown={handleGeometryKeyDown}
           onClearPendingPicks={() => { setGeometryObjectPicks([]); setSelectedPointIds([]); setPolygonDraft([]); }}
           onBoardPointerDown={handleBoardPointerDown}
           onBoardPointerMove={handleBoardPointerMove}
-          onBoardPointerUp={(event) => { event.currentTarget.releasePointerCapture(event.pointerId); setDragPointId(null); setDragGeometry(null); setDragImageId(null); }}
-          onBoardPointerLeave={() => { setDragPointId(null); setDragGeometry(null); setDragImageId(null); }}
+          onBoardPointerUp={(event) => { event.currentTarget.releasePointerCapture(event.pointerId); geometryPanRef.current = null; setDragPointId(null); setDragGeometry(null); setDragImageId(null); }}
+          onBoardPointerLeave={() => { geometryPanRef.current = null; setDragPointId(null); setDragGeometry(null); setDragImageId(null); }}
           onBoardContextMenu={handleGeometryContextMenu}
           onGeometryExportRef={(node) => { geometryExportRef.current = node; }}
           onSelectGeometry={(selection) => { setSelectedGeometry(selection); setSelectedImageId(null); }}
@@ -2786,7 +2852,8 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
             constructionAccuracyReport={geometryCertificationReport}
             workspaceImages={workspaceImages}
             selectedImageId={selectedImageId}
-            graphSettings={geometryGraphSettings}
+          graphSettings={geometryGraphSettings}
+          camera={geometryCamera}
             boardRef={svgRef}
             imageInputRef={imageInputRef}
             onImageUpload={handleImageUpload}
@@ -2808,12 +2875,16 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
             onSave={saveConstruction}
             onLoad={loadConstruction}
             onExport={exportGeometryPng}
-            onGraphSettingsChange={setGeometryGraphSettings}
+          onGraphSettingsChange={setGeometryGraphSettings}
+          onZoom={zoomGeometry}
+          onResetView={resetGeometryView}
+          onBoardWheel={handleGeometryWheel}
+          onBoardKeyDown={handleGeometryKeyDown}
             onClearPendingPicks={() => { setGeometryObjectPicks([]); setSelectedPointIds([]); setPolygonDraft([]); }}
             onBoardPointerDown={handleBoardPointerDown}
             onBoardPointerMove={handleBoardPointerMove}
-            onBoardPointerUp={(event) => { event.currentTarget.releasePointerCapture(event.pointerId); setDragPointId(null); setDragGeometry(null); setDragImageId(null); }}
-            onBoardPointerLeave={() => { setDragPointId(null); setDragGeometry(null); setDragImageId(null); }}
+          onBoardPointerUp={(event) => { event.currentTarget.releasePointerCapture(event.pointerId); geometryPanRef.current = null; setDragPointId(null); setDragGeometry(null); setDragImageId(null); }}
+          onBoardPointerLeave={() => { geometryPanRef.current = null; setDragPointId(null); setDragGeometry(null); setDragImageId(null); }}
             onBoardContextMenu={handleGeometryContextMenu}
             onGeometryExportRef={(node) => { geometryExportRef.current = node; }}
             onSelectGeometry={(selection) => { setSelectedGeometry(selection); setSelectedImageId(null); }}
@@ -8371,9 +8442,18 @@ function arcLength(center: GeoPoint, start: GeoPoint, end: GeoPoint) {
   return radius * ((b - a + Math.PI * 2) % (Math.PI * 2));
 }
 
-function snapBoardPoint(point: { x: number; y: number }, construction: Construction, settings: Pick<GeometryGraphSettings, "snapToGrid" | "snapToObjects"> = defaultGeometryGraphSettings) {
-  const grid = { x: Math.round(point.x / 40) * 40, y: Math.round(point.y / 40) * 40 };
-  let best = settings.snapToGrid ? { ...grid, score: Math.hypot(point.x - grid.x, point.y - grid.y) } : { ...point, score: Number.POSITIVE_INFINITY };
+function snapBoardPoint(
+  point: { x: number; y: number },
+  construction: Construction,
+  settings: Pick<GeometryGraphSettings, "snapToGrid" | "snapToObjects" | "gridSpacing" | "pointCapture" | "snapStrength"> = defaultGeometryGraphSettings,
+) {
+  const capture = settings.pointCapture ?? (settings.snapToGrid ? "snap" : "off");
+  if (capture === "off") return { x: roundTo(point.x, 2), y: roundTo(point.y, 2) };
+  const gridUnit = settings.gridSpacing ?? 40;
+  const snapStrength = settings.snapStrength ?? 18;
+  const grid = { x: Math.round(point.x / gridUnit) * gridUnit, y: Math.round(point.y / gridUnit) * gridUnit };
+  const gridScore = Math.hypot(point.x - grid.x, point.y - grid.y);
+  let best = settings.snapToGrid ? { ...grid, score: gridScore } : { ...point, score: Number.POSITIVE_INFINITY };
   const candidates = settings.snapToObjects ? [
     ...construction.points.map((p) => ({ x: p.x, y: p.y })),
     ...allIntersections(construction),
@@ -8382,9 +8462,11 @@ function snapBoardPoint(point: { x: number; y: number }, construction: Construct
   ] : [];
   for (const candidate of candidates) {
     const score = Math.hypot(point.x - candidate.x, point.y - candidate.y);
-    if (score < best.score && score < 18) best = { ...candidate, score };
+    if (score < best.score && (capture === "automatic" || score < snapStrength)) best = { ...candidate, score };
   }
+  if (capture === "fixed") return grid;
   if (!settings.snapToGrid && !settings.snapToObjects) return { x: roundTo(point.x, 2), y: roundTo(point.y, 2) };
+  if (best.score > snapStrength) return { x: roundTo(point.x, 2), y: roundTo(point.y, 2) };
   return { x: best.x, y: best.y };
 }
 

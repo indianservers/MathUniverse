@@ -1,9 +1,9 @@
 import "reactflow/dist/style.css";
 import { forceCenter, forceLink, forceManyBody, forceSimulation } from "d3";
 import { motion } from "framer-motion";
-import { Binary, BrainCircuit, Check, ChevronRight, Dices, FunctionSquare, GitFork, Grid3X3, Maximize2, Minimize2, Network, Pause, Play, Table2 } from "lucide-react";
+import { Binary, BrainCircuit, Check, Dices, FunctionSquare, GitFork, Grid3X3, Maximize2, Minimize2, Network, Pause, Play, Table2 } from "lucide-react";
 import { useEffect, useMemo, useRef, useState, type KeyboardEvent, type PointerEvent } from "react";
-import { Link, Navigate, useParams } from "react-router-dom";
+import { Link, NavLink, Navigate, useParams } from "react-router-dom";
 import ReactFlow, { Background, Controls, MarkerType, type Edge, type Node } from "reactflow";
 import SectionCard from "../../components/ui/SectionCard";
 import {
@@ -35,7 +35,7 @@ const operations: Array<{ id: SetOperation; label: string }> = [
   { id: "symmetric-difference", label: "Symmetric diff" },
 ];
 
-const setTheoryPages = [
+export const setTheoryPages = [
   {
     slug: "set-builder",
     title: "Set Builder",
@@ -84,6 +84,10 @@ type SetTheoryPageSlug = (typeof setTheoryPages)[number]["slug"];
 
 function getSetTheoryPage(slug: string | undefined) {
   return setTheoryPages.find((page) => page.slug === slug);
+}
+
+export function getSetTheoryPageTitle(slug: string | undefined) {
+  return getSetTheoryPage(slug)?.title;
 }
 
 type VennSetId = "A" | "B" | "C";
@@ -235,7 +239,7 @@ function getSetRelationshipSummary(circles: VennSetCircle[]) {
   return { disjointPairs, subsetPairs, overlappingPairs, equalPairs, hasTripleOverlap: tripleOverlap, formulas: Array.from(formulas), primaryStatus };
 }
 
-export default function SetTheoryModule() {
+export default function SetTheoryModule({ showLauncher = true }: { showLauncher?: boolean } = {}) {
   const { pageSlug } = useParams();
   const store = useSetTheoryStore();
   const result = useMemo(() => applySetOperation(store.operation, store.universe, store.setA, store.setB), [store.operation, store.universe, store.setA, store.setB]);
@@ -260,7 +264,7 @@ export default function SetTheoryModule() {
           <p>Pick one focused lab at a time: sets, Venn diagrams, relations, Hasse diagrams, functions, representations, and practice.</p>
         </div>
       )}
-      <SetTheoryTopicLauncher />
+      {showLauncher ? <SetTheoryTopicLauncher /> : null}
 
       {activePage ? (
         <FocusedSetTheoryPage
@@ -286,27 +290,20 @@ export default function SetTheoryModule() {
   );
 }
 
-function SetTheoryTopicLauncher() {
+export function SetTheoryTopicLauncher() {
   return (
-    <SectionCard title="Set Theory Pages" description="Use one focused page at a time. Shared set data follows you across every page.">
-      <div className="grid gap-2 sm:grid-cols-2 xl:grid-cols-4">
-        {setTheoryPages.map((page, index) => {
-          const Icon = page.icon;
-          return (
-            <Link key={page.slug} to={`/set-theory/${page.slug}`} className="group rounded-lg border border-slate-200 bg-white/75 p-3 transition hover:border-cyan-300 hover:shadow-md dark:border-white/10 dark:bg-white/5">
-              <div className="flex items-center justify-between gap-2">
-                <span className="inline-flex items-center gap-2 text-sm font-black text-slate-950 dark:text-white">
-                  <Icon className="h-4 w-4 text-cyan-600 dark:text-cyan-200" />
-                  {page.title}
-                </span>
-                <ChevronRight className="h-4 w-4 text-slate-400 transition group-hover:translate-x-0.5 group-hover:text-cyan-600" />
-              </div>
-              <p className="mt-1 text-xs font-bold leading-5 text-slate-500 dark:text-slate-300">Page {index + 1}. {page.description}</p>
-            </Link>
-          );
-        })}
-      </div>
-    </SectionCard>
+    <nav className="set-theory-page-nav" aria-label="Set Theory Pages">
+      {setTheoryPages.map((page) => {
+        const Icon = page.icon;
+        return (
+          <NavLink key={page.slug} to={`/set-theory/${page.slug}`} title={page.description}
+            className={({ isActive }) => isActive ? "active" : ""}>
+            <Icon aria-hidden="true" />
+            <span>{page.title}</span>
+          </NavLink>
+        );
+      })}
+    </nav>
   );
 }
 

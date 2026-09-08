@@ -76,6 +76,7 @@ const canonicalLabs = [
     status: "Existing canonical module",
     coverage:
       "Natural, integer, rational, irrational, real-number, and number-line models.",
+    subcategories: [{ title: "Number systems", route: "/number-systems" }],
   },
   {
     title: "Logic Lab",
@@ -84,6 +85,7 @@ const canonicalLabs = [
     status: "Existing canonical module",
     coverage:
       "Truth tables, connectives, CNF/DNF, predicate models, inference rules.",
+    subcategories: [{ title: "Truth tables", route: "/truth-table" }],
   },
   {
     title: "Set Theory Lab",
@@ -92,6 +94,11 @@ const canonicalLabs = [
     status: "Existing canonical module",
     coverage:
       "Sets, Venn regions, relations, functions, Cartesian products, equivalence classes, Hasse covers.",
+    subcategories: [
+      { title: "Set Builder", route: "/set-theory/set-builder" },
+      { title: "Representations", route: "/set-theory/representations" },
+      { title: "Relations", route: "/set-theory/relations" },
+    ],
   },
   {
     title: "Combinatorics Lab",
@@ -100,6 +107,7 @@ const canonicalLabs = [
     status: "Existing canonical module",
     coverage:
       "Permutations, combinations, counting trees, Pascal triangle, inclusion-exclusion.",
+    subcategories: [{ title: "Formula visualizer", route: "/combinatorics/formula-visualizer" }],
   },
   {
     title: "Graph Theory Lab",
@@ -108,51 +116,9 @@ const canonicalLabs = [
     status: "Existing canonical module",
     coverage:
       "Graph editor, BFS/DFS, Dijkstra, MSTs, Euler/Hamiltonian checks, coloring.",
+    subcategories: [{ title: "Graph comparison", route: "/graph-comparison" }],
   },
 ];
-
-const automataAudit = [
-  [
-    "DFA",
-    "Implemented",
-    "Deterministic simulation, NFA conversion preview, and partition minimization are supported.",
-  ],
-  [
-    "NFA",
-    "Implemented now",
-    "Multi-state execution and epsilon closure are visualized.",
-  ],
-  [
-    "epsilon-NFA",
-    "Implemented now",
-    "Use eps transitions in the transition editor.",
-  ],
-  [
-    "Regular Expressions",
-    "Implemented now",
-    "Browser-only regex parser uses Thompson construction to build an NFA.",
-  ],
-  [
-    "Pushdown Automata",
-    "Implemented now",
-    "Balanced-parentheses PDA simulator shows stack actions.",
-  ],
-  [
-    "Turing Machines",
-    "Implemented now",
-    "Single-tape deterministic simulator with halt debugger.",
-  ],
-  [
-    "Grammars",
-    "Implemented now",
-    "CFG derivation search and Chomsky hierarchy classification preview.",
-  ],
-  [
-    "Parse Trees",
-    "Implemented now",
-    "Derivation levels render as a compact parse-tree preview.",
-  ],
-] as const;
 
 const automataMachine = sampleNfa;
 const turingMachine = unaryIncrementMachine;
@@ -330,17 +296,23 @@ export default function DiscreteWorldModule() {
             </p>
             <div className="mt-2 grid gap-1">
               {canonicalLabs.map((lab) => (
-                <Link
-                  key={lab.title}
-                  to={lab.route}
-                  className="flex items-center justify-between rounded-lg px-2 py-1.5 text-sm font-semibold text-slate-600 hover:bg-slate-100 hover:text-cyan-700 dark:text-slate-300 dark:hover:bg-white/10 dark:hover:text-cyan-200"
-                >
-                  <span className="inline-flex min-w-0 items-center gap-2">
-                    <lab.icon className="h-3.5 w-3.5 shrink-0" />
-                    <span className="truncate">{lab.title}</span>
-                  </span>
-                  <ArrowRight className="h-3.5 w-3.5 shrink-0" />
-                </Link>
+                <div key={lab.title} className="rounded-xl border border-slate-200 bg-white/70 p-2 dark:border-white/10 dark:bg-white/5">
+                  <Link to={lab.route} className="flex items-center justify-between rounded-lg px-2 py-1.5 text-sm font-black text-slate-700 hover:text-cyan-700 dark:text-slate-200 dark:hover:text-cyan-200">
+                    <span className="inline-flex min-w-0 items-center gap-2">
+                      <lab.icon className="h-3.5 w-3.5 shrink-0" />
+                      <span className="truncate">{lab.title}</span>
+                    </span>
+                    <ArrowRight className="h-3.5 w-3.5 shrink-0" />
+                  </Link>
+                  <div className="mt-1 grid gap-1 border-t border-slate-200 pt-1 dark:border-white/10">
+                    {lab.subcategories.map((subcategory) => (
+                      <Link key={subcategory.route} to={subcategory.route} className="flex items-center justify-between rounded-md px-2 py-1 text-xs font-semibold text-slate-500 hover:bg-slate-100 hover:text-cyan-700 dark:text-slate-400 dark:hover:bg-white/10 dark:hover:text-cyan-200">
+                        <span>↳ {subcategory.title}</span>
+                        <ArrowRight className="h-3 w-3 shrink-0" />
+                      </Link>
+                    ))}
+                  </div>
+                </div>
               ))}
             </div>
           </div>
@@ -395,7 +367,6 @@ export default function DiscreteWorldModule() {
         </main>
 
         <aside className="space-y-3">
-          <AuditPanel />
           <ArchitecturePanel onSave={saveSession} />
         </aside>
       </div>
@@ -637,42 +608,6 @@ function GrammarLab({
         </p>
       </div>
     </SectionCard>
-  );
-}
-
-function AuditPanel() {
-  const implemented = automataAudit.filter(([, status]) =>
-    status.toLowerCase().includes("implemented"),
-  ).length;
-  return (
-    <section className="glass-card rounded-2xl border border-slate-200 bg-white/85 p-3 dark:border-white/10 dark:bg-slate-950/80">
-      <div className="flex items-center justify-between gap-3">
-        <div>
-          <p className="text-xs font-black uppercase tracking-wide text-slate-400">
-            Audit
-          </p>
-          <h2 className="text-sm font-black text-slate-950 dark:text-white">
-            {implemented}/{automataAudit.length} automata areas live
-          </h2>
-        </div>
-        <span className="rounded-full bg-emerald-100 px-2 py-1 text-xs font-black text-emerald-700 dark:bg-emerald-400/15 dark:text-emerald-200">
-          Browser-only
-        </span>
-      </div>
-      <div className="mt-3 space-y-1.5">
-        {automataAudit.map(([topic, status]) => (
-          <div
-            key={topic}
-            className="flex items-center justify-between gap-2 rounded-lg bg-slate-100 px-2 py-1.5 text-xs dark:bg-white/10"
-          >
-            <span className="truncate font-semibold">{topic}</span>
-            <span className="shrink-0 text-slate-500 dark:text-slate-400">
-              {status.replace(" now", "")}
-            </span>
-          </div>
-        ))}
-      </div>
-    </section>
   );
 }
 

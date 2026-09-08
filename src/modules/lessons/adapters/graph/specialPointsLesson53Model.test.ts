@@ -30,7 +30,9 @@ describe("specialPointsLesson53Model", () => {
   });
 
   it("builds graph geometry and concise labels", () => {
-    expect(curvePath53((x) => x * x, FIT_BOUNDS_53, 400, 300).split(" ").length).toBeGreaterThan(100);
+    expect(
+      curvePath53((x) => x * x, FIT_BOUNDS_53, 400, 300).split(" ").length,
+    ).toBeGreaterThan(100);
     expect(formatPoint53({ x: 3, y: 0 })).toBe("(3, 0)");
     expect(formatPoint53({ x: 1.234, y: -2.345 })).toBe("(1.23, -2.35)");
   });

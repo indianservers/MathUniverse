@@ -1959,7 +1959,7 @@ function numberConceptTraceFor(lessonId: number, n: number, m: number, factors: 
     { label: "Second number", value: String(m), note: "Generate multiples of the second number." },
     { label: "First shared", value: String(lcm(n, m)), note: "The LCM is the first common positive multiple." },
   ], "LCM visuals should show converging multiple lists.");
-  if (lessonId === 71) return common("Divisibility rule audit", "digit sum", [
+  if (lessonId === 71) return common("Divisibility rule check", "digit sum", [
     { label: "Number", value: String(n), note: "Use the rule for the chosen divisor." },
     { label: "Digit sum", value: String(digitSum(n)), note: "For 9, the digit sum must be divisible by 9." },
     { label: "Decision", value: n % 9 === 0 ? "divisible by 9" : "not divisible by 9", note: "The rule must match exact division." },

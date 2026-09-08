@@ -8,7 +8,7 @@ export default function LessonsCategoryPage() {
   const category = lessonCategories.find((candidate) => candidate.slug === categorySlug);
   const lessons = lessonsForCategory(categorySlug);
   const [query, setQuery] = useState("");
-  const filtered = useMemo(() => lessons.filter((lesson) => `${lesson.title} ${lesson.topic}`.toLowerCase().includes(query.toLowerCase())), [lessons, query]);
+  const filtered = useMemo(() => lessons.filter((lesson) => `${lesson.id} ${lesson.title} ${lesson.topic}`.toLowerCase().includes(query.toLowerCase())), [lessons, query]);
   if (!category) return <LessonNotFound />;
   const topics = Array.from(new Set(filtered.map((lesson) => lesson.topic)));
   const phases = Array.from(new Set(lessons.map((lesson) => lesson.phase))).join("–");

@@ -68,15 +68,6 @@ export function MathRecognitionPanel({ result }: { result: MathRecognitionResult
         </div>
       ) : null}
 
-      <details className="rounded-xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-white/5">
-        <summary className="cursor-pointer text-xs font-black uppercase text-slate-600 dark:text-slate-300">Recognition Audit</summary>
-        <div className="mt-3 grid gap-2 md:grid-cols-3">
-          <SummaryTile label="Recognized" value={`${result.audit.recognizedTokens}/${result.audit.totalTokens}`} />
-          <SummaryTile label="Unknown" value={String(result.audit.unknownTokens)} />
-          <SummaryTile label="Suggestions" value={String(result.audit.suggestionsGenerated)} />
-        </div>
-        <pre className="mt-3 max-h-60 overflow-auto rounded-lg bg-slate-950 p-3 text-xs text-slate-100">{JSON.stringify(result.audit, null, 2)}</pre>
-      </details>
     </section>
   );
 }

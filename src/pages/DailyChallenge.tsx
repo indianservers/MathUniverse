@@ -24,6 +24,11 @@ export default function DailyChallenge() {
 
   return (
     <StudioPageShell
+      guide={<div className="daily-guide-card">
+            <span>Today</span>
+            <h2>{solved ? "Solved" : attempted ? "Retry ready" : "Not attempted"}</h2>
+            <p>Use one short equation to keep the streak alive. The problem is deterministic, so refreshing keeps today’s challenge stable.</p>
+          </div>}
       className="daily-studio"
       title="Daily Challenge Studio"
       subtitle="A deterministic problem seeded by the calendar date, with streak tracking and activity heatmap."
@@ -55,11 +60,7 @@ export default function DailyChallenge() {
           </SectionCard>
         </section>
         <aside className="daily-inspector thin-scrollbar" aria-label="Daily challenge inspector">
-          <div className="daily-guide-card">
-            <span>Today</span>
-            <h2>{solved ? "Solved" : attempted ? "Retry ready" : "Not attempted"}</h2>
-            <p>Use one short equation to keep the streak alive. The problem is deterministic, so refreshing keeps today’s challenge stable.</p>
-          </div>
+
           <div className="daily-metric-grid">
             <Metric label="Streak" value={streak} />
             <Metric label="Answer" value={attempted ? Number(activity[key].answer) : 0} />

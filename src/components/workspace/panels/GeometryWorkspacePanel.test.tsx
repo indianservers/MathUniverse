@@ -83,6 +83,7 @@ function renderPanel(
         workspaceImages={options.images ?? []}
         selectedImageId={options.images?.[0]?.id ?? null}
         graphSettings={graphSettings}
+        camera={{ x: 0, y: 0, width: 640, height: 420 }}
         boardRef={createRef<SVGSVGElement>()}
         imageInputRef={createRef<HTMLInputElement>()}
         sidebar={
@@ -111,6 +112,10 @@ function renderPanel(
         onSave={() => undefined}
         onLoad={() => undefined}
         onGraphSettingsChange={() => undefined}
+        onZoom={() => undefined}
+        onResetView={() => undefined}
+        onBoardWheel={() => undefined}
+        onBoardKeyDown={() => undefined}
         onClearPendingPicks={() => undefined}
         onBoardPointerDown={() => undefined}
         onBoardPointerMove={() => undefined}
@@ -155,8 +160,6 @@ describe("GeometryWorkspacePanel", () => {
     expect(html).toContain('data-object-type="polygon"');
     expect(html).toContain('data-object-type="locus"');
     expect(html).toContain('data-testid="workspace-geometry-measurements"');
-    expect(html).toContain('data-testid="workspace-geometry-accuracy"');
-    expect(html).toContain("Construction Accuracy");
   });
 
   it("can hide point labels and measurement overlays through graph settings", () => {
@@ -177,6 +180,7 @@ describe("GeometryWorkspacePanel", () => {
             showPointLabels: false,
             showMeasurements: false,
           }}
+          camera={{ x: 0, y: 0, width: 640, height: 420 }}
           boardRef={createRef<SVGSVGElement>()}
           imageInputRef={createRef<HTMLInputElement>()}
           sidebar={<aside>Inspector</aside>}
@@ -199,6 +203,10 @@ describe("GeometryWorkspacePanel", () => {
           onSave={() => undefined}
           onLoad={() => undefined}
           onGraphSettingsChange={() => undefined}
+          onZoom={() => undefined}
+          onResetView={() => undefined}
+          onBoardWheel={() => undefined}
+          onBoardKeyDown={() => undefined}
           onClearPendingPicks={() => undefined}
           onBoardPointerDown={() => undefined}
           onBoardPointerMove={() => undefined}
@@ -271,6 +279,7 @@ describe("GeometryWorkspacePanel", () => {
             showAxes: false,
             showUnitLabels: false,
           }}
+          camera={{ x: 0, y: 0, width: 640, height: 420 }}
           boardRef={createRef<SVGSVGElement>()}
           imageInputRef={createRef<HTMLInputElement>()}
           sidebar={<aside>Empty inspector</aside>}
@@ -293,6 +302,10 @@ describe("GeometryWorkspacePanel", () => {
           onSave={() => undefined}
           onLoad={() => undefined}
           onGraphSettingsChange={() => undefined}
+          onZoom={() => undefined}
+          onResetView={() => undefined}
+          onBoardWheel={() => undefined}
+          onBoardKeyDown={() => undefined}
           onClearPendingPicks={() => undefined}
           onBoardPointerDown={() => undefined}
           onBoardPointerMove={() => undefined}
@@ -307,7 +320,5 @@ describe("GeometryWorkspacePanel", () => {
     expect(html).toContain('data-testid="workspace-geometry-board"');
     expect(html).toContain("Move");
     expect(html).toContain("Touch mode");
-    expect(html).toContain("Construction Accuracy");
-    expect(html).toContain("100%");
   });
 });

@@ -208,6 +208,11 @@ export default function ProbabilityStatistics() {
 
   return (
     <StudioPageShell
+      guide={<div className="stats-guide-card">
+            <span>Studio guide</span>
+            <h2>{currentTab.label}</h2>
+            <p>{currentTab.summary}</p>
+          </div>}
       className="stats-studio"
       title="Statistics & Probability Studio"
       subtitle="Open concept cards for distributions, inference, regression, Bayesian reasoning, stochastic processes, and data labs."
@@ -293,11 +298,7 @@ export default function ProbabilityStatistics() {
           </div>
         </section>
         <aside className="stats-inspector thin-scrollbar" aria-label="Probability and statistics inspector">
-          <div className="stats-guide-card">
-            <span>Studio guide</span>
-            <h2>{currentTab.label}</h2>
-            <p>{currentTab.summary}</p>
-          </div>
+
           <label className="stats-search-box">
             <Search className="h-5 w-5 text-cyan-600" />
             <input value={conceptQuery} onChange={(event) => setConceptQuery(event.target.value)} placeholder="Search normal, p-value, regression..." />

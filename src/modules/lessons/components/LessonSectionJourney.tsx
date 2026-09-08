@@ -43,10 +43,10 @@ export function lessonSectionForLabel(rawLabel: string): LessonSection | null {
 export function LessonSectionNav({ active = "interaction", onChange }: { active?: LessonSection; onChange?: (section: LessonSection) => void }) {
   const tabs: Array<{ id: LessonSection; label: string; icon: ReactNode }> = [
     { id: "interaction", label: "Interaction + visualization", icon: <Eye className="h-4 w-4" /> },
-    { id: "learn", label: "Learn", icon: <BookOpen className="h-4 w-4" /> },
+    { id: "learn", label: "Explain", icon: <BookOpen className="h-4 w-4" /> },
     { id: "examples", label: "Examples", icon: <Lightbulb className="h-4 w-4" /> },
     { id: "formulas", label: "Formulas", icon: <Sigma className="h-4 w-4" /> },
-    { id: "practice", label: "Practice", icon: <Dumbbell className="h-4 w-4" /> },
+    { id: "practice", label: "Know more", icon: <Dumbbell className="h-4 w-4" /> },
   ];
   return (
     <nav className="lesson-section-nav mobile-safe-scroll flex gap-2 rounded-2xl border border-slate-200 bg-white/90 p-2 shadow-sm dark:border-white/10 dark:bg-slate-950/80" aria-label="Lesson sections" role="tablist">

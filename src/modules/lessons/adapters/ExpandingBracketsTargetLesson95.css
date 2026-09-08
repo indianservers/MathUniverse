@@ -98,6 +98,39 @@
   font-size: 10px;
   letter-spacing: 0;
 }
+.expand95-layout.hidden {
+  display: none;
+}
+.expand95-tab-panel {
+  min-height: 520px;
+  margin-top: 12px;
+  padding: 30px;
+  background: #fff;
+  border: 1px solid #dce5eb;
+  border-radius: 14px;
+}
+.expand95-tab-panel h2 {
+  margin-bottom: 18px;
+  font-size: 26px;
+}
+.expand95-tab-panel > strong {
+  display: block;
+  margin-bottom: 20px;
+  color: #7131d5;
+  font-size: 28px;
+}
+.expand95-tab-panel p {
+  max-width: 680px;
+  margin: 10px 0;
+  color: #52637f;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.expand95-units i.negative {
+  color: #b42336;
+  background: #ffe9ec;
+  border-color: #efaab4;
+}
 .expand95-page * {
   box-sizing: border-box;
   letter-spacing: 0;

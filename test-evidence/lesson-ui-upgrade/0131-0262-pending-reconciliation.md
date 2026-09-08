@@ -16,13 +16,20 @@
 | 0142 | 50 | Axis Controls | Code reconciled; browser acceptance deferred |
 | 0143 | 51 | Grid Controls | Code reconciled; browser acceptance deferred |
 | 0144 | 52 | Multiple Graphics Views | Code reconciled; browser acceptance deferred |
-| 0145 | 53 | Special Points | Next pending |
+| 0145 | 53 | Special Points | Code reconciled; browser acceptance deferred |
+| 0146 | 54 | Graph Inspector | Code reconciled; browser acceptance deferred |
+| 0147 | 55 | Dynamic Parameters | Code reconciled; browser acceptance deferred |
+| 0148 | 56 | Export Graph | Code reconciled; browser acceptance deferred |
+| 0149 | 92 | Algebra Tiles | Code reconciled; browser acceptance deferred |
+| 0150 | 93 | Like Terms | Code reconciled; browser acceptance deferred |
+| 0151 | 94 | Substitution | Code reconciled; browser acceptance deferred |
+| 0152 | 95 | Expanding Brackets | Next pending |
 
 ## Counts
 
 - Range size: 132 targets
-- Code reconciled in this pass: 14
-- Remaining in range: 118
-- Next target: 0145 / lesson 53
+- Code reconciled in this pass: 21
+- Remaining in range: 111
+- Next target: 0152 / lesson 95
 
 This tracker counts a lesson only after it has a dedicated route or surface, a lesson-specific mathematical model, working controls, focused tests, lint/type verification, and an audit note. Pixel-perfect browser acceptance is tracked separately when browser comparison resumes.

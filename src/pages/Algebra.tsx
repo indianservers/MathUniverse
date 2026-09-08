@@ -91,6 +91,12 @@ export default function Algebra() {
 
   return (
     <StudioPageShell
+      guide={<div className="algebra-guide-card">
+            <span>Studio guide</span>
+            <h2>{currentTab.label}</h2>
+            <p>{currentTab.summary}</p>
+            <div className="algebra-guide-meter"><i style={{ width: `${Math.max(4, Math.min(100, progress))}%` }} /></div>
+          </div>}
       className="algebra-studio"
       title="Algebra Studio"
       subtitle={topic.description}
@@ -122,12 +128,7 @@ export default function Algebra() {
           <div className="algebra-tab-content thin-scrollbar">{currentTab.content}</div>
         </section>
         <aside className="algebra-inspector thin-scrollbar" aria-label="Algebra inspector">
-          <div className="algebra-guide-card">
-            <span>Studio guide</span>
-            <h2>{currentTab.label}</h2>
-            <p>{currentTab.summary}</p>
-            <div className="algebra-guide-meter"><i style={{ width: `${Math.max(4, Math.min(100, progress))}%` }} /></div>
-          </div>
+
           <ContinueCard routePrefix="/algebra" />
           <Link to="/calculator" className="algebra-action">Scientific Calculator</Link>
           <FormulaBlock title="Line" formula="y=mx+c" />

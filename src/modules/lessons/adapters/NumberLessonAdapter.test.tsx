@@ -592,7 +592,7 @@ describe("NumberLessonAdapter", () => {
       68: "Prime factor tree",
       69: "Shared-factor intersection",
       70: "Shared-multiple ladder",
-      71: "Divisibility rule audit",
+      71: "Divisibility rule check",
       72: "Remainder clock",
       73: "Base-place conversion",
       74: "Nested-fraction layers",

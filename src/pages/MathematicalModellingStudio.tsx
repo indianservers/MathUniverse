@@ -146,7 +146,7 @@ export default function MathematicalModellingStudio() {
         </section>
 
         <aside className="min-h-0 overflow-auto rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
-          <span className="text-xs font-black uppercase text-emerald-700">Model audit</span>
+          <span className="text-xs font-black uppercase text-emerald-700">Model summary</span>
           <h2 className="mt-1 text-lg font-black text-slate-950">Assumptions & fit</h2>
           <div className="mt-3 grid grid-cols-2 gap-2">
             <Metric label="Prediction" value={selectedValue.toFixed(2)} />

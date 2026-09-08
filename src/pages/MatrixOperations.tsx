@@ -41,6 +41,11 @@ export default function MatrixOperations() {
 
   return (
     <StudioPageShell
+      guide={<div className="matrix-guide-card">
+            <span>Studio guide</span>
+            <h2>{currentTab.label} operations</h2>
+            <p>{currentTab.summary}</p>
+          </div>}
       className="matrix-studio"
       title="Matrix Operations Studio"
       subtitle="Learn matrix addition, subtraction, multiplication, transpose, determinant, inverse, rank, systems, eigenvectors, and transformations through interactive visual steps."
@@ -89,11 +94,7 @@ export default function MatrixOperations() {
           </div>
         </section>
         <aside className="matrix-inspector thin-scrollbar" aria-label="Matrix operations inspector">
-          <div className="matrix-guide-card">
-            <span>Studio guide</span>
-            <h2>{currentTab.label} operations</h2>
-            <p>{currentTab.summary}</p>
-          </div>
+
           <div className="matrix-mini-grid">
             <Metric label="Basic" value={counts.Basic} />
             <Metric label="Intermediate" value={counts.Intermediate} />

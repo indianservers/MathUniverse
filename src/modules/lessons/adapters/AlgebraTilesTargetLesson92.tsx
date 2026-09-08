@@ -1,58 +1,19 @@
 import { ArrowDown, Check, Info, RotateCcw, Trash2 } from "lucide-react";
 import { useEffect, useMemo, useState, type DragEvent } from "react";
 import type { LessonAdapterProps } from "../types";
+import {
+  ALGEBRA_TILE_PROBLEMS_92,
+  addAlgebraTile92,
+  algebraTileCoefficients92,
+  algebraTileExpression92,
+  algebraTileStartingExpression92,
+  evaluateAlgebraTiles92,
+  type AlgebraTileKind92 as TileKind,
+  type AlgebraTileProblem92 as Problem,
+} from "./algebraTilesLesson92Model";
 import "./AlgebraTilesTargetLesson92.css";
 
-type TileKind = "x" | "negative-x" | "unit" | "negative-unit" | "x-squared";
-type Problem = {
-  firstX: number;
-  secondX: number;
-  negativeX: number;
-  units: number;
-  negativeUnits: number;
-  xSquared: number;
-};
-const problems: Problem[] = [
-  {
-    firstX: 2,
-    secondX: 3,
-    negativeX: 0,
-    units: 0,
-    negativeUnits: 1,
-    xSquared: 0,
-  },
-  {
-    firstX: 3,
-    secondX: 2,
-    negativeX: 0,
-    units: 1,
-    negativeUnits: 0,
-    xSquared: 0,
-  },
-  {
-    firstX: 4,
-    secondX: 0,
-    negativeX: 2,
-    units: 0,
-    negativeUnits: 2,
-    xSquared: 0,
-  },
-];
-
-const term = (coefficient: number, symbol: string) => {
-  if (!coefficient) return "";
-  const magnitude = Math.abs(coefficient);
-  return `${coefficient < 0 ? "−" : ""}${magnitude === 1 ? "" : magnitude}${symbol}`;
-};
-const expressionFor = (problem: Problem) => {
-  const xCoefficient = problem.firstX + problem.secondX - problem.negativeX;
-  const constant = problem.units - problem.negativeUnits;
-  const terms = [term(problem.xSquared, "x²"), term(xCoefficient, "x")].filter(
-    Boolean,
-  );
-  if (constant) terms.push(`${constant < 0 ? "−" : "+"} ${Math.abs(constant)}`);
-  return terms.join(" ") || "0";
-};
+const problems = ALGEBRA_TILE_PROBLEMS_92;
 
 export default function AlgebraTilesTargetLesson92({
   resetToken,
@@ -69,7 +30,6 @@ export default function AlgebraTilesTargetLesson92({
   const [actions, setActions] = useState(0);
   const act = () => {
     setActions((count) => count + 1);
-    onInteraction();
   };
   const reset = () => {
     setProblemIndex(0);
@@ -93,15 +53,7 @@ export default function AlgebraTilesTargetLesson92({
     act();
   };
   const addTile = (kind: TileKind) => {
-    setProblem((current) => {
-      if (kind === "x") return { ...current, secondX: current.secondX + 1 };
-      if (kind === "negative-x")
-        return { ...current, negativeX: current.negativeX + 1 };
-      if (kind === "unit") return { ...current, units: current.units + 1 };
-      if (kind === "negative-unit")
-        return { ...current, negativeUnits: current.negativeUnits + 1 };
-      return { ...current, xSquared: current.xSquared + 1 };
-    });
+    setProblem((current) => addAlgebraTile92(current, kind));
     setCombined(false);
     act();
   };
@@ -143,23 +95,20 @@ export default function AlgebraTilesTargetLesson92({
     reset();
   }, [resetToken]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const xCoefficient = problem.firstX + problem.secondX - problem.negativeX;
-  const constant = problem.units - problem.negativeUnits;
-  const simplified = expressionFor(problem);
-  const starting = useMemo(() => {
-    const groups = [`${problem.firstX}x`, `${problem.secondX}x`];
-    if (problem.negativeX) groups.push(`− ${problem.negativeX}x`);
-    if (problem.units) groups.push(`+ ${problem.units}`);
-    if (problem.negativeUnits) groups.push(`− ${problem.negativeUnits}`);
-    return groups.join(" + ").replace("+ −", "−");
-  }, [problem]);
+  const { x: xCoefficient, constant } = algebraTileCoefficients92(problem);
+  const simplified = algebraTileExpression92(problem);
+  const starting = useMemo(
+    () => algebraTileStartingExpression92(problem),
+    [problem],
+  );
 
   return (
     <div
       className="tiles92-page"
       data-testid="algebra-mockup-0149"
       data-dedicated-lesson="92"
-      data-object-model="editable-positive-negative-algebra-tiles-draggable-bank-zero-pairs-linked-area-model-symbolic-trace-model"
+      data-object-model="dedicated-tested-positive-negative-algebra-tile-object-model-draggable-bank-zero-pairs-linked-area-model-symbolic-trace-evaluation-and-functional-learning-tabs"
+      data-evaluation-at-two={evaluateAlgebraTiles92(problem, 2)}
       data-expression={simplified}
       data-x-coefficient={xCoefficient}
       data-constant={constant}
@@ -214,7 +163,8 @@ export default function AlgebraTilesTargetLesson92({
           </button>
         ))}
       </nav>
-      <main className="tiles92-layout">
+      {tab !== "Workspace" && <LessonTab92 tab={tab} problem={problem} />}
+      <main className={`tiles92-layout ${tab === "Workspace" ? "" : "hidden"}`}>
         <section className="tiles92-builder">
           <header>
             <div>
@@ -224,7 +174,13 @@ export default function AlgebraTilesTargetLesson92({
               </p>
             </div>
             <nav>
-              <button type="button" onClick={reset}>
+              <button
+                type="button"
+                onClick={() => {
+                  reset();
+                  act();
+                }}
+              >
                 <RotateCcw />
                 Reset
               </button>
@@ -309,7 +265,7 @@ export default function AlgebraTilesTargetLesson92({
             </p>
             <p>
               <Tile kind="x-squared" compact />
-              <b>{problem.xSquared + 1}</b>
+              <b>{problem.xSquared}</b>
             </p>
           </section>
           <Checklist problem={problem} simplified={simplified} />
@@ -714,6 +670,40 @@ function Trace({
           </b>
         </article>
       </div>
+    </section>
+  );
+}
+
+function LessonTab92({ tab, problem }: { tab: string; problem: Problem }) {
+  const simplified = algebraTileExpression92(problem);
+  const coefficients = algebraTileCoefficients92(problem);
+  const content =
+    tab === "Explain"
+      ? [
+          "A tile's colour and shape encode its variable part and sign.",
+          "Only tiles with the same variable part can be combined.",
+        ]
+      : tab === "Examples"
+        ? ALGEBRA_TILE_PROBLEMS_92.map(
+            (item) =>
+              `${algebraTileStartingExpression92(item)} → ${algebraTileExpression92(item)}`,
+          )
+        : tab === "Formulas"
+          ? [
+              `x coefficient = ${problem.firstX} + ${problem.secondX} − ${problem.negativeX} = ${coefficients.x}`,
+              `constant = ${problem.units} − ${problem.negativeUnits} = ${coefficients.constant}`,
+            ]
+          : [
+              "Zero pairs preserve value.",
+              "Area models connect tile products to polynomial expansion.",
+            ];
+  return (
+    <section className="tiles92-tab-panel" data-active-learning-tab={tab}>
+      <h2>{tab}</h2>
+      <strong>{simplified}</strong>
+      {content.map((item) => (
+        <p key={item}>{item}</p>
+      ))}
     </section>
   );
 }

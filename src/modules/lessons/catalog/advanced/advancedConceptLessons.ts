@@ -394,6 +394,7 @@ export function advancedLessonsFor(strand: AdvancedConceptStrand | "ALL", query 
     if (!strandMatch) return false;
     if (!normalized) return true;
     return [
+      lesson.numericId,
       lesson.title,
       lesson.summary,
       lesson.strand,

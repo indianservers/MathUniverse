@@ -1,0 +1,325 @@
+.gi54-page {
+  --ink: #111b47;
+  --border: #dce5ef;
+  max-width: 1180px;
+  margin: auto;
+  padding: 20px;
+  color: var(--ink);
+  background: #f7fbff;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+.gi54-breadcrumb {
+  margin: 4px 0 18px;
+  color: #64718b;
+  font-size: 13px;
+}
+
+.gi54-hero {
+  padding: 22px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+}
+
+.gi54-hero h1 {
+  margin: 0 0 5px;
+  font-size: 34px;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.gi54-hero > p {
+  margin: 0;
+  color: #5f6d88;
+}
+
+.gi54-hero > section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.gi54-hero label,
+.gi54-curve-key,
+.gi54-hero button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 42px;
+  padding: 0 13px;
+  color: var(--ink);
+  background: white;
+  border: 1px solid #d7e0eb;
+  border-radius: 9px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.gi54-hero select {
+  color: inherit;
+  background: transparent;
+  border: 0;
+  font: inherit;
+}
+
+.gi54-curve-key i {
+  width: 18px;
+  height: 3px;
+  margin-left: 8px;
+  background: #0ba8b7;
+}
+
+.gi54-hero button {
+  cursor: pointer;
+}
+
+.gi54-hero button.active {
+  background: #eaf8fa;
+  border-color: #66c6cf;
+}
+
+.gi54-hero button svg {
+  width: 17px;
+}
+
+.gi54-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 290px;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.gi54-workspace > main,
+.gi54-facts {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+
+.gi54-workspace > main {
+  padding: 14px;
+}
+
+.gi54-graph > header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 34px;
+  font-weight: 700;
+}
+
+.gi54-graph > header i {
+  width: 28px;
+  height: 4px;
+  background: #0ba8b7;
+  border-radius: 4px;
+}
+
+.gi54-graph svg {
+  display: block;
+  width: 100%;
+  min-height: 470px;
+  border-radius: 8px;
+}
+
+.gi54-graph .decreasing-band {
+  fill: #fae7f0;
+  opacity: 0.72;
+}
+
+.gi54-graph .increasing-band {
+  fill: #efe8fb;
+  opacity: 0.72;
+}
+
+.gi54-graph .axis {
+  stroke: #17213f;
+  stroke-width: 1.7;
+}
+
+.gi54-graph .curve {
+  fill: none;
+  stroke: #0ba8b7;
+  stroke-width: 3;
+}
+
+.gi54-graph .root circle {
+  fill: white;
+  stroke: #17213f;
+  stroke-width: 2;
+}
+
+.gi54-graph .root text,
+.gi54-graph .extreme text {
+  fill: #152042;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.gi54-graph .extreme circle {
+  fill: #ffc928;
+  stroke: #685411;
+  stroke-width: 1.5;
+}
+
+.gi54-graph .probe-line {
+  stroke: #2b7cff;
+  stroke-width: 2;
+  stroke-dasharray: 6 5;
+}
+
+.gi54-graph .probe {
+  fill: #2b7cff;
+  stroke: white;
+  stroke-width: 3;
+  cursor: ew-resize;
+}
+
+.gi54-graph .probe-card rect {
+  fill: white;
+  stroke: #ccd8e6;
+  filter: drop-shadow(0 5px 7px #22315b24);
+}
+
+.gi54-graph .probe-card text {
+  fill: #17213f;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.gi54-intervals {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+
+.gi54-intervals article {
+  display: grid;
+  gap: 5px;
+  padding: 12px;
+  background: #f8ecf5;
+  border-radius: 9px;
+}
+
+.gi54-intervals article:nth-child(2) {
+  background: #f1edfc;
+}
+
+.gi54-intervals b,
+.gi54-intervals span {
+  font-size: 12px;
+}
+
+.gi54-intervals p {
+  margin: 0;
+  color: #66728b;
+  font-size: 11px;
+}
+
+.gi54-facts {
+  display: grid;
+  align-content: start;
+  gap: 9px;
+  padding: 14px;
+}
+
+.gi54-facts h2 {
+  margin: 0 0 2px;
+  font-size: 16px;
+}
+
+.gi54-facts > section {
+  padding: 12px;
+  border: 1px solid #dfe6ef;
+  border-radius: 9px;
+}
+
+.gi54-facts h3 {
+  margin: 0 0 8px;
+  font-size: 12px;
+}
+
+.gi54-facts p,
+.gi54-facts > section > b {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 5px 0;
+  color: #68758e;
+  font-size: 11px;
+}
+
+.gi54-facts span,
+.gi54-facts > section > b {
+  color: var(--ink);
+}
+
+.gi54-facts .selected {
+  background: #eafafb;
+  border-color: #9cdde2;
+}
+
+.gi54-facts .selected p {
+  color: #19894a;
+  font-weight: 700;
+}
+
+.gi54-adjacent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.gi54-adjacent a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 58px;
+  padding: 10px 14px;
+  color: var(--ink);
+  text-decoration: none;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.gi54-adjacent a:last-child {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.gi54-adjacent span {
+  display: grid;
+  gap: 3px;
+  color: #6b7690;
+  font-size: 9px;
+}
+
+.gi54-adjacent b {
+  color: var(--ink);
+  font-size: 12px;
+}
+
+@media (max-width: 800px) {
+  .gi54-page {
+    padding: 8px;
+  }
+
+  .gi54-workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .gi54-graph svg {
+    min-height: 340px;
+  }
+
+  .gi54-intervals,
+  .gi54-adjacent {
+    grid-template-columns: 1fr;
+  }
+}

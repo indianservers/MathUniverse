@@ -19,6 +19,7 @@ export function schoolLessonsFor(level: AcademicLevel | "ALL", board: SyllabusBo
     const boardMatches = board === "ALL" || lesson.boardPathways.includes(board);
     const queryMatches = !normalized || [
       lesson.title,
+      lesson.numericId,
       lesson.metadata.conceptFamily,
       lesson.content.summary,
       lesson.metadata.searchKeywords.join(" "),

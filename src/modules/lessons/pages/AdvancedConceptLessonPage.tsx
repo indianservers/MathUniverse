@@ -1,4 +1,5 @@
 import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, ClipboardCheck, ExternalLink, FlaskConical, ListChecks, Route, SearchCheck } from "lucide-react";
+import { useState, type ReactNode } from "react";
 import { Link, useParams } from "react-router-dom";
 import { adjacentAdvancedConceptLessons, findAdvancedConceptLesson } from "../catalog/advanced/advancedConceptLessons";
 import { adjacentLessonInPathway, pathwaysForAdvancedLesson } from "../catalog/advanced/advancedConceptPathways";
@@ -29,36 +30,14 @@ import BetaTargetLesson2022 from "../schoolTargets/BetaTargetLesson2022";
 import ErrorFunctionTargetLesson2023 from "../schoolTargets/ErrorFunctionTargetLesson2023";
 import ZetaTargetLesson2024 from "../schoolTargets/ZetaTargetLesson2024";
 import BesselTargetLesson2025 from "../schoolTargets/BesselTargetLesson2025";
+import { captureLessonTabClick, LessonSectionNav, type LessonSection } from "../components/LessonSectionJourney";
 
 export default function AdvancedConceptLessonPage() {
   const { lessonSlug } = useParams();
   const lesson = findAdvancedConceptLesson(lessonSlug);
   if (!lesson) return <LessonNotFound />;
-  if (lesson.numericId === 2001) return <PartialQuotientsTargetLesson2001 lesson={lesson} />;
-  if (lesson.numericId === 2002) return <ConvergentsTargetLesson2002 lesson={lesson} />;
-  if (lesson.numericId === 2003) return <EuclideanAlgorithmLinkTargetLesson2003 lesson={lesson} />;
-  if (lesson.numericId === 2004) return <BestRationalApproximationsTargetLesson2004 lesson={lesson} />;
-  if (lesson.numericId === 2005) return <PeriodicSquareRootsTargetLesson2005 lesson={lesson} />;
-  if (lesson.numericId === 2006) return <CollatzConjectureTargetLesson2006 lesson={lesson} />;
-  if (lesson.numericId === 2007) return <GoldbachConjectureTargetLesson2007 lesson={lesson} />;
-  if (lesson.numericId === 2008) return <RiemannHypothesisTargetLesson2008 lesson={lesson} />;
-  if (lesson.numericId === 2009) return <FermatLastTheoremTargetLesson2009 lesson={lesson} />;
-  if (lesson.numericId === 2010) return <FourColorTheoremTargetLesson2010 lesson={lesson} />;
-  if (lesson.numericId === 2011) return <ConfidenceIntervalsTargetLesson2011 lesson={lesson} />;
-  if (lesson.numericId === 2012) return <MarginSampleSizeTargetLesson2012 lesson={lesson} />;
-  if (lesson.numericId === 2013) return <HypothesisTestsTargetLesson2013 lesson={lesson} />;
-  if (lesson.numericId === 2014) return <PValuesTargetLesson2014 lesson={lesson} />;
-  if (lesson.numericId === 2015) return <TypeErrorsTargetLesson2015 lesson={lesson} />;
-  if (lesson.numericId === 2016) return <SlopeFieldsTargetLesson2016 lesson={lesson} />;
-  if (lesson.numericId === 2017) return <EulerMethodTargetLesson2017 lesson={lesson} />;
-  if (lesson.numericId === 2018) return <GrowthDecayTargetLesson2018 lesson={lesson} />;
-  if (lesson.numericId === 2019) return <LogisticTargetLesson2019 lesson={lesson} />;
-  if (lesson.numericId === 2020) return <OscillatorTargetLesson2020 lesson={lesson} />;
-  if (lesson.numericId === 2021) return <GammaTargetLesson2021 lesson={lesson} />;
-  if (lesson.numericId === 2022) return <BetaTargetLesson2022 lesson={lesson} />;
-  if (lesson.numericId === 2023) return <ErrorFunctionTargetLesson2023 lesson={lesson} />;
-  if (lesson.numericId === 2024) return <ZetaTargetLesson2024 lesson={lesson} />;
-  if (lesson.numericId === 2025) return <BesselTargetLesson2025 lesson={lesson} />;
+  const targetLesson = renderAdvancedTargetLesson(lesson);
+  if (targetLesson) return <AdvancedTargetLessonShell lesson={lesson}>{targetLesson}</AdvancedTargetLessonShell>;
   const adjacent = adjacentAdvancedConceptLessons(lesson);
   const pathways = pathwaysForAdvancedLesson(lesson.id);
 
@@ -161,6 +140,82 @@ export default function AdvancedConceptLessonPage() {
         {adjacent.previous ? <Link className="action-secondary justify-start" to={adjacent.previous.route}><ArrowLeft className="h-4 w-4" />{adjacent.previous.title}</Link> : <span />}
         {adjacent.next ? <Link className="action-secondary justify-end text-right" to={adjacent.next.route}>{adjacent.next.title}<ArrowRight className="h-4 w-4" /></Link> : <span />}
       </nav>
+    </div>
+  );
+}
+
+function renderAdvancedTargetLesson(lesson: NonNullable<ReturnType<typeof findAdvancedConceptLesson>>) {
+  switch (lesson.numericId) {
+    case 2001: return <PartialQuotientsTargetLesson2001 lesson={lesson} />;
+    case 2002: return <ConvergentsTargetLesson2002 lesson={lesson} />;
+    case 2003: return <EuclideanAlgorithmLinkTargetLesson2003 lesson={lesson} />;
+    case 2004: return <BestRationalApproximationsTargetLesson2004 lesson={lesson} />;
+    case 2005: return <PeriodicSquareRootsTargetLesson2005 lesson={lesson} />;
+    case 2006: return <CollatzConjectureTargetLesson2006 lesson={lesson} />;
+    case 2007: return <GoldbachConjectureTargetLesson2007 lesson={lesson} />;
+    case 2008: return <RiemannHypothesisTargetLesson2008 lesson={lesson} />;
+    case 2009: return <FermatLastTheoremTargetLesson2009 lesson={lesson} />;
+    case 2010: return <FourColorTheoremTargetLesson2010 lesson={lesson} />;
+    case 2011: return <ConfidenceIntervalsTargetLesson2011 lesson={lesson} />;
+    case 2012: return <MarginSampleSizeTargetLesson2012 lesson={lesson} />;
+    case 2013: return <HypothesisTestsTargetLesson2013 lesson={lesson} />;
+    case 2014: return <PValuesTargetLesson2014 lesson={lesson} />;
+    case 2015: return <TypeErrorsTargetLesson2015 lesson={lesson} />;
+    case 2016: return <SlopeFieldsTargetLesson2016 lesson={lesson} />;
+    case 2017: return <EulerMethodTargetLesson2017 lesson={lesson} />;
+    case 2018: return <GrowthDecayTargetLesson2018 lesson={lesson} />;
+    case 2019: return <LogisticTargetLesson2019 lesson={lesson} />;
+    case 2020: return <OscillatorTargetLesson2020 lesson={lesson} />;
+    case 2021: return <GammaTargetLesson2021 lesson={lesson} />;
+    case 2022: return <BetaTargetLesson2022 lesson={lesson} />;
+    case 2023: return <ErrorFunctionTargetLesson2023 lesson={lesson} />;
+    case 2024: return <ZetaTargetLesson2024 lesson={lesson} />;
+    case 2025: return <BesselTargetLesson2025 lesson={lesson} />;
+    default: return null;
+  }
+}
+
+function AdvancedTargetLessonShell({ lesson, children }: { lesson: NonNullable<ReturnType<typeof findAdvancedConceptLesson>>; children: ReactNode }) {
+  const [active, setActive] = useState<LessonSection>("interaction");
+  const panels: Array<{ id: Exclude<LessonSection, "interaction">; title: string; items: string[] }> = [
+    { id: "learn", title: `Explain ${lesson.title}`, items: [lesson.summary, ...lesson.learn] },
+    { id: "examples", title: `${lesson.title} examples`, items: lesson.explore },
+    { id: "formulas", title: `${lesson.title} formulas and rules`, items: lesson.learn },
+    { id: "practice", title: `Know more about ${lesson.title}`, items: [...lesson.practice, ...lesson.assessmentPrompts] },
+  ];
+
+  return (
+    <div
+      className="advanced-target-lesson-shell space-y-4"
+      data-testid="advanced-concept-lesson-page"
+      data-advanced-target-shell={lesson.numericId}
+      data-lesson-view={active}
+      onClickCapture={(event) => captureLessonTabClick(event, setActive)}
+    >
+      <LessonSectionNav active={active} onChange={setActive} />
+      <section id="lesson-section-interaction" hidden={active !== "interaction"} data-lesson-viewport="advanced">
+        {children}
+      </section>
+      {panels.map((panel) => (
+        <section
+          key={panel.id}
+          id={`lesson-section-${panel.id}`}
+          role="tabpanel"
+          hidden={active !== panel.id}
+          aria-hidden={active !== panel.id}
+          className="rounded-2xl border border-slate-200 bg-white/95 p-5 shadow-lg shadow-cyan-950/5 dark:border-white/10 dark:bg-slate-950/80"
+        >
+          <h2 className="text-xl font-black text-cyan-700 dark:text-cyan-200">{panel.title}</h2>
+          <ol className="mt-4 space-y-3">
+            {panel.items.map((item, index) => (
+              <li key={`${index}-${item}`} className="flex gap-3 text-base leading-7 text-slate-700 dark:text-slate-200">
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-cyan-50 text-xs font-black text-cyan-700 dark:bg-cyan-400/10 dark:text-cyan-100">{index + 1}</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ol>
+        </section>
+      ))}
     </div>
   );
 }

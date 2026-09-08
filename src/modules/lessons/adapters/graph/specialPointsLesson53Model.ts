@@ -8,7 +8,12 @@ export type Quadratic53 = {
 
 export type Line53 = { id: string; label: string; m: number; b: number };
 export type Point53 = { x: number; y: number };
-export type Bounds53 = { xMin: number; xMax: number; yMin: number; yMax: number };
+export type Bounds53 = {
+  xMin: number;
+  xMax: number;
+  yMin: number;
+  yMax: number;
+};
 
 export const QUADRATICS_53: Quadratic53[] = [
   { id: "q1", label: "f(x) = x² - 2x - 3", a: 1, b: -2, c: -3 },
@@ -22,8 +27,18 @@ export const LINES_53: Line53[] = [
   { id: "l3", label: "g(x) = -x + 2", m: -1, b: 2 },
 ];
 
-export const FULL_BOUNDS_53: Bounds53 = { xMin: -6.5, xMax: 7, yMin: -6, yMax: 4.25 };
-export const FIT_BOUNDS_53: Bounds53 = { xMin: -4.5, xMax: 5, yMin: -5, yMax: 4.5 };
+export const FULL_BOUNDS_53: Bounds53 = {
+  xMin: -6.5,
+  xMax: 7,
+  yMin: -6,
+  yMax: 4.25,
+};
+export const FIT_BOUNDS_53: Bounds53 = {
+  xMin: -4.5,
+  xMax: 5,
+  yMin: -5,
+  yMax: 4.5,
+};
 
 export function quadraticValue53(q: Quadratic53, x: number) {
   return q.a * x * x + q.b * x + q.c;
@@ -58,7 +73,12 @@ export function intersections53(q: Quadratic53, line: Line53): Point53[] {
   }));
 }
 
-export function graphPoint53(point: Point53, bounds: Bounds53, width: number, height: number) {
+export function graphPoint53(
+  point: Point53,
+  bounds: Bounds53,
+  width: number,
+  height: number,
+) {
   return {
     x: ((point.x - bounds.xMin) / (bounds.xMax - bounds.xMin)) * width,
     y: ((bounds.yMax - point.y) / (bounds.yMax - bounds.yMin)) * height,

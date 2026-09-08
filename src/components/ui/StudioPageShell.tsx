@@ -1,6 +1,21 @@
 import { Clock3, Gauge, Share2 } from "lucide-react";
 import { ReactNode, useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { shareStudio } from "../../utils/shareStudio";
+
+const breadcrumbRoutes: Record<string, string> = {
+  Home: "/", "Math Topics": "/learn", Studio: "/math-lab",
+  "Number & Discrete Mathematics": "/discrete-world",
+  "Discrete Mathematics": "/discrete-world",
+  Practice: "/quiz", Algebra: "/algebra",
+  "Complex Numbers": "/complex-numbers", Combinatorics: "/combinatorics",
+  "Daily Challenge": "/daily-challenge", Matrices: "/matrices", Operations: "/matrices",
+  "Number Systems": "/number-systems", "Probability & Statistics": "/statistics",
+  "Set Theory": "/set-theory", "Set Theory and Relations": "/set-theory",
+  "Mathematical Logic": "/mathematical-logic", Logic: "/mathematical-logic",
+  "Worked Examples": "/worked-examples", "Mathematical Modelling": "/mathematical-modelling",
+  "Advanced Workbench": "/mathematical-modelling/advanced", "Project Center": "/studio-projects",
+};
 
 export type StudioStatusChip = {
   id: string;
@@ -11,6 +26,7 @@ export type StudioStatusChip = {
 
 export type StudioPageShellProps = {
   title: string;
+  titleBadge?: ReactNode;
   subtitle: string;
   breadcrumbs?: string[];
   difficulty?: string;
@@ -18,6 +34,7 @@ export type StudioPageShellProps = {
   progress?: number;
   status?: StudioStatusChip[];
   tabs?: ReactNode;
+  guide?: ReactNode;
   toolbar?: ReactNode;
   children: ReactNode;
   className?: string;
@@ -36,10 +53,13 @@ export default function StudioPageShell({
   status = [],
   subtitle,
   tabs,
+  guide,
   title,
+  titleBadge,
   toolbar,
   showHeader = true,
 }: StudioPageShellProps) {
+  const { pathname } = useLocation();
   const [shareStatus, setShareStatus] = useState("");
   useEffect(() => {
     document.title = `${title} | Math Universe`;
@@ -64,13 +84,19 @@ export default function StudioPageShell({
               <nav aria-label="Breadcrumb">
                 {breadcrumbs.map((item, index) => (
                   <span key={`${item}-${index}`}>
-                    {index > 0 && <b>&gt;</b>}
-                    {item}
+                    {index > 0 && <b aria-hidden="true">&gt;</b>}
+                    <Link to={breadcrumbRoutes[item] ?? pathname}
+                      aria-current={(breadcrumbRoutes[item] ?? pathname) === pathname ? "page" : undefined}>
+                      {item}
+                    </Link>
                   </span>
                 ))}
               </nav>
             ) : null}
-            <h1>{title}</h1>
+            <div className="studio-shell-heading">
+              <h1>{title}</h1>
+              {titleBadge}
+            </div>
             <p>{subtitle}</p>
           </div>
           <div className="studio-shell-actions">
@@ -117,6 +143,7 @@ export default function StudioPageShell({
       {tabs ? <div className="studio-shell-tabs">{tabs}</div> : null}
       {toolbar ? <div className="studio-shell-toolbar">{toolbar}</div> : null}
       <section className="studio-shell-body">{children}</section>
+      {guide ? <section className="studio-shell-guide" aria-label="Studio guide">{guide}</section> : null}
     </main>
   );
 }

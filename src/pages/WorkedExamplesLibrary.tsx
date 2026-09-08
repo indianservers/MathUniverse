@@ -33,6 +33,11 @@ export default function WorkedExamplesLibrary() {
 
   return (
     <StudioPageShell
+      guide={<div className="examples-guide-card">
+            <span>Study guide</span>
+            <h2>{topic}</h2>
+            <p>Predict the next algebraic move, open hints only when needed, then compare against the rendered solution step.</p>
+          </div>}
       className="examples-studio"
       title="Worked Examples Studio"
       subtitle="Curated solved problems with rendered math and toggleable hints at each step."
@@ -85,11 +90,7 @@ export default function WorkedExamplesLibrary() {
           </div>
         </section>
         <aside className="examples-inspector thin-scrollbar" aria-label="Worked examples inspector">
-          <div className="examples-guide-card">
-            <span>Study guide</span>
-            <h2>{topic}</h2>
-            <p>Predict the next algebraic move, open hints only when needed, then compare against the rendered solution step.</p>
-          </div>
+
           <div className="examples-mini-grid">
             <Metric label="Steps" value={activeExample.steps.length} />
             <Metric label="Visible" value={visible.length} />

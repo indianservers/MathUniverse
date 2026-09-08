@@ -111,7 +111,7 @@ export function MathWorkspaceChrome({
         <ChevronRight className="h-3 w-3" aria-hidden />
         <Link to="/?section=math-workspaces">Math Workspaces</Link>
         <ChevronRight className="h-3 w-3" aria-hidden />
-        <span aria-current="page">{current.name}</span>
+        <Link to={location.pathname} aria-current="page">{current.name}</Link>
       </nav>
 
       <div className="math-workspace-switcher" ref={menuRef}>

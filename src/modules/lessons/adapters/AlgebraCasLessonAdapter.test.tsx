@@ -16,10 +16,11 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain('data-testid="algebra-mockup-0149"');
     expect(html).toContain('data-dedicated-lesson="92"');
     expect(html).toContain(
-      "editable-positive-negative-algebra-tiles-draggable-bank-zero-pairs-linked-area-model-symbolic-trace-model",
+      "dedicated-tested-positive-negative-algebra-tile-object-model",
     );
     expect(html).toContain('aria-label="Add x tile"');
     expect(html).toContain("Area model: (x+2)(x+3)");
+    expect(html).toContain('data-evaluation-at-two="9"');
   });
 
   it("routes lesson 93 to its dedicated like-terms object model", () => {
@@ -34,7 +35,7 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain('data-testid="algebra-mockup-0150"');
     expect(html).toContain('data-dedicated-lesson="93"');
     expect(html).toContain(
-      "draggable-like-term-coefficient-grouping-simplification-substitution-equivalence-graded-practice-model",
+      "dedicated-tested-draggable-like-term-coefficient-grouping-real-unit-inventory",
     );
     expect(html).toContain('aria-label="Add positive variable tile"');
     expect(html).toContain("Substitution check");
@@ -52,7 +53,7 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain('data-testid="algebra-mockup-0151"');
     expect(html).toContain('data-dedicated-lesson="94"');
     expect(html).toContain(
-      "draggable-substitution-slot-expression-value-step-evaluation-negative-brackets-equivalence-practice-model",
+      "dedicated-tested-draggable-substitution-slot-expression-value-step-evaluation-real-negative-bracket-precedence",
     );
     expect(html).toContain('aria-label="Drag chosen value"');
     expect(html).toContain("Why brackets matter");
@@ -70,7 +71,7 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain('data-testid="algebra-mockup-0152"');
     expect(html).toContain('data-dedicated-lesson="95"');
     expect(html).toContain(
-      "draggable-distributive-factor-dynamic-area-partition-symbolic-expansion-substitution-proof-graded-practice-model",
+      "dedicated-tested-draggable-distributive-factor-dynamic-positive-negative-area-partition",
     );
     expect(html).toContain('aria-label="Drag outside factor"');
     expect(html).toContain("Distributive area model");

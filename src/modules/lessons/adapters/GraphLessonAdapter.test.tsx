@@ -4,6 +4,68 @@ import { lessonCatalog } from "../catalog/lessonCatalog";
 import GraphLessonAdapter from "./GraphLessonAdapter";
 
 describe("GraphLessonAdapter", () => {
+  it("routes lesson 56 to its dedicated export-graph surface", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 56)!;
+    const html = renderToStaticMarkup(
+      <GraphLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="2d-graphing-mockup-0148"');
+    expect(html).toContain('data-dedicated-lesson="56"');
+    expect(html).toContain("live-svg-png-and-pdf-export");
+    expect(html).toContain("Download PNG");
+  });
+
+  it("routes lesson 55 to its dedicated dynamic-parameters surface", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 55)!;
+    const html = renderToStaticMarkup(
+      <GraphLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="2d-graphing-mockup-0147"');
+    expect(html).toContain('data-dedicated-lesson="55"');
+    expect(html).toContain(
+      "editable-sine-family-amplitude-frequency-and-midline",
+    );
+    expect(html).toContain('data-period="4.188790"');
+  });
+
+  it("routes lesson 54 to its dedicated graph-inspector surface", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 54)!;
+    const html = renderToStaticMarkup(
+      <GraphLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="2d-graphing-mockup-0146"');
+    expect(html).toContain('data-dedicated-lesson="54"');
+    expect(html).toContain("selectable-cubic-generated-curve");
+    expect(html).toContain('data-slope="1.320"');
+  });
+
+  it("routes lesson 53 to its dedicated special-points surface", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 53)!;
+    const html = renderToStaticMarkup(
+      <GraphLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="2d-graphing-mockup-0145"');
+    expect(html).toContain('data-dedicated-lesson="53"');
+    expect(html).toContain("selectable-quadratic-and-line-generated-curves");
+    expect(html).toContain('data-roots="(-1, 0);(3, 0)"');
+  });
+
   it("routes lesson 52 to its dedicated multiple-views surface", () => {
     const lesson = lessonCatalog.find((item) => item.id === 52)!;
     const html = renderToStaticMarkup(
@@ -925,33 +987,6 @@ describe("GraphLessonAdapter", () => {
     );
     expect(html).toContain('aria-label="Drag function input 1"');
     expect(html).toContain("Function machine + graph cross-check");
-  });
-
-  it("renders graphing calculator lessons 53 through 56 with tool-specific graph guidance", () => {
-    const expectedSnippets: Record<number, string> = {
-      53: "satisfy extra conditions",
-      54: "reports selected graph facts",
-      55: "change a whole graph family",
-      56: "axes, labels, and scale",
-    };
-
-    for (const [idText, snippet] of Object.entries(expectedSnippets)) {
-      const id = Number(idText);
-      const lesson = lessonCatalog.find((item) => item.id === id)!;
-      const html = renderToStaticMarkup(
-        <GraphLessonAdapter
-          lesson={lesson}
-          resetToken={0}
-          onInteraction={vi.fn()}
-        />,
-      );
-
-      expect(html, lesson.title).toContain(lesson.title);
-      expect(html, lesson.title).toContain(snippet);
-      expect(html, lesson.title).toContain('data-direct-interaction="true"');
-      expect(html, lesson.title).toContain("Drag graph");
-      expect(html, lesson.title).not.toContain("Linked graph: the formula");
-    }
   });
 
   it("renders function lessons 129 through 152 with lesson-specific graph guidance", () => {

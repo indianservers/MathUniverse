@@ -94,6 +94,12 @@ export default function ComplexNumbers() {
 
   return (
     <StudioPageShell
+      guide={<div className="complex-guide-card">
+            <span>Studio guide</span>
+            <h2>{currentTab.label}</h2>
+            <p>{currentTab.summary}</p>
+            <div className="complex-guide-meter"><i style={{ width: `${Math.max(4, Math.min(100, progress))}%` }} /></div>
+          </div>}
       className="complex-studio"
       title="Complex Numbers Studio"
       subtitle={topic.description}
@@ -125,12 +131,7 @@ export default function ComplexNumbers() {
           <div className="complex-tab-content thin-scrollbar">{currentTab.content}</div>
         </section>
         <aside className="complex-inspector thin-scrollbar" aria-label="Complex numbers inspector">
-          <div className="complex-guide-card">
-            <span>Studio guide</span>
-            <h2>{currentTab.label}</h2>
-            <p>{currentTab.summary}</p>
-            <div className="complex-guide-meter"><i style={{ width: `${Math.max(4, Math.min(100, progress))}%` }} /></div>
-          </div>
+
           <SectionCard title="Introduction" description="Complex numbers turn the plane into an arithmetic system. Addition moves points; multiplication rotates and scales; Euler's formula reveals why waves and rotations share the same mathematics." compact />
           <FormulaBlock title="Euler Formula" formula={"e^{i\\theta}=\\cos\\theta+i\\sin\\theta"} />
           <FormulaBlock title="Formula Summary" formula={"z=a+bi,\\quad |z|=\\sqrt{a^2+b^2},\\quad e^{i\\pi}+1=0"} />

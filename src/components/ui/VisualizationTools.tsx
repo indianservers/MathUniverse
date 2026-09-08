@@ -8,6 +8,7 @@ import {
   Link2,
   MousePointer2,
   Pencil,
+  SlidersHorizontal,
   SkipForward,
   Trash2,
   Type,
@@ -58,6 +59,7 @@ export default function VisualizationTools({
   const [step, setStep] = useState(0);
   const [xZoom, setXZoom] = useState(1);
   const [yZoom, setYZoom] = useState(1);
+  const [showToolControls, setShowToolControls] = useState(false);
 
   useEffect(() => {
     setAnnotations(loadAnnotations(storageKey));
@@ -173,8 +175,21 @@ export default function VisualizationTools({
   }
 
   return (
-    <div className="space-y-3">
-      <div className="visualization-tools flex flex-wrap items-center gap-2">
+    <div className="visualization-tools-shell space-y-3">
+      <div className={clsx("visualization-tools flex flex-wrap items-center gap-2", showToolControls && "is-expanded")}>
+        <button
+          className={clsx("tool-button tool-button-icon", showToolControls && "bg-cyan-50 text-cyan-700 dark:bg-cyan-400/15 dark:text-cyan-100")}
+          type="button"
+          title="Explore visualization tools"
+          aria-label="Explore visualization tools"
+          aria-expanded={showToolControls}
+          aria-controls="visualization-tool-controls"
+          onClick={() => setShowToolControls((value) => !value)}
+        >
+          <SlidersHorizontal className="h-4 w-4" />
+          <span className="sr-only">Explore visualization tools</span>
+        </button>
+        {showToolControls && <div id="visualization-tool-controls" className="visualization-tool-controls" role="group" aria-label="Visualization tools">
         <button
           className="tool-button"
           type="button"
@@ -236,42 +251,20 @@ export default function VisualizationTools({
         >
           <span>Trace</span>
         </button>
-        <label className="flex min-h-10 items-center gap-2 rounded-full border border-slate-200 bg-white/85 px-3 py-2 text-xs font-black dark:border-white/10 dark:bg-white/10">
-          {speed.toFixed(2)}x
-          <input
-            className="w-24 accent-cyan-500"
-            type="range"
-            min={0.25}
-            max={2}
-            step={0.25}
-            value={speed}
-            onChange={(event) => setSpeed(Number(event.target.value))}
-          />
-        </label>
-        <label className="flex min-h-10 items-center gap-2 rounded-full border border-slate-200 bg-white/85 px-3 py-2 text-xs font-black dark:border-white/10 dark:bg-white/10">
-          X {xZoom.toFixed(1)}
-          <input
-            className="w-20 accent-cyan-500"
-            type="range"
-            min={0.5}
-            max={3}
-            step={0.1}
-            value={xZoom}
-            onChange={(event) => setXZoom(Number(event.target.value))}
-          />
-        </label>
-        <label className="flex min-h-10 items-center gap-2 rounded-full border border-slate-200 bg-white/85 px-3 py-2 text-xs font-black dark:border-white/10 dark:bg-white/10">
-          Y {yZoom.toFixed(1)}
-          <input
-            className="w-20 accent-cyan-500"
-            type="range"
-            min={0.5}
-            max={3}
-            step={0.1}
-            value={yZoom}
-            onChange={(event) => setYZoom(Number(event.target.value))}
-          />
-        </label>
+        <div className="visualization-view-controls" role="group" aria-label="View controls">
+            <label title="Animation speed">
+              <span>Speed {speed.toFixed(2)}x</span>
+              <input type="range" min={0.25} max={2} step={0.25} value={speed} aria-label={`Animation speed ${speed.toFixed(2)}x`} onChange={(event) => setSpeed(Number(event.target.value))} />
+            </label>
+            <label title="Horizontal zoom">
+              <span>X {xZoom.toFixed(1)}</span>
+              <input type="range" min={0.5} max={3} step={0.1} value={xZoom} aria-label={`Horizontal zoom ${xZoom.toFixed(1)}`} onChange={(event) => setXZoom(Number(event.target.value))} />
+            </label>
+            <label title="Vertical zoom">
+              <span>Y {yZoom.toFixed(1)}</span>
+              <input type="range" min={0.5} max={3} step={0.1} value={yZoom} aria-label={`Vertical zoom ${yZoom.toFixed(1)}`} onChange={(event) => setYZoom(Number(event.target.value))} />
+            </label>
+        </div>
         <button
           className="tool-button"
           type="button"
@@ -320,6 +313,7 @@ export default function VisualizationTools({
           <Trash2 className="h-4 w-4" />
           <span>Clear</span>
         </button>
+        </div>}
       </div>
       <div
         className="relative"

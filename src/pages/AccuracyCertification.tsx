@@ -38,7 +38,7 @@ export default function AccuracyCertification() {
 
   return (
     <div className="space-y-5">
-      <TopicHeader title="Accuracy & Certification" subtitle="Auditable Phase 2 contracts for advanced mathematics, tools, AR/XR, practice, curriculum, and release evidence." difficulty="Advanced" estimatedMinutes={15} />
+      <TopicHeader title="Accuracy & Certification" subtitle="Phase 2 evidence for advanced mathematics, tools, AR/XR, practice, curriculum, and release quality." difficulty="Advanced" estimatedMinutes={15} />
 
       <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-5">
         <Metric value={phaseTwoAdvancedContracts.length} label="Advanced concept contracts" />
@@ -52,8 +52,8 @@ export default function AccuracyCertification() {
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           <Metric value={automated.withFullExamples} label="Concepts with all 14 example modes" />
           <Metric value={automated.withFullAssessments} label="Concepts with all 5 assessments" />
-          <Metric value={libraries.formulas} label="Formula records audited" />
-          <Metric value={libraries.theorems + libraries.visualProofs} label="Theorem and visual-proof records audited" />
+          <Metric value={libraries.formulas} label="Formula records reviewed" />
+          <Metric value={libraries.theorems + libraries.visualProofs} label="Theorem and visual-proof records reviewed" />
         </div>
         <p className="mt-3 rounded-xl bg-amber-50 p-3 text-xs font-semibold text-amber-900 dark:bg-amber-300/10 dark:text-amber-100">{automated.awaitingManualReview} advanced contracts still require accessibility review, browser evidence, and named mathematical reviewer sign-off. Automated checks cannot self-certify them.</p>
       </SectionCard>

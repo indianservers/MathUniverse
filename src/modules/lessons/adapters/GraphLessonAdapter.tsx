@@ -109,6 +109,10 @@ import ZoomPanTargetLesson49 from "./graph/ZoomPanTargetLesson49";
 import AxisControlsTargetLesson50 from "./graph/AxisControlsTargetLesson50";
 import GridControlsTargetLesson51 from "./graph/GridControlsTargetLesson51";
 import MultipleGraphicsViewsTargetLesson52 from "./graph/MultipleGraphicsViewsTargetLesson52";
+import SpecialPointsTargetLesson53 from "./graph/SpecialPointsTargetLesson53";
+import GraphInspectorTargetLesson54 from "./graph/GraphInspectorTargetLesson54";
+import DynamicParametersTargetLesson55 from "./graph/DynamicParametersTargetLesson55";
+import ExportGraphTargetLesson56 from "./graph/ExportGraphTargetLesson56";
 import type { LessonAdapterProps } from "../types";
 import {
   Eye,
@@ -304,6 +308,42 @@ export default function GraphLessonAdapter({
   if (lesson.id === 52) {
     return (
       <MultipleGraphicsViewsTargetLesson52
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
+  }
+  if (lesson.id === 53) {
+    return (
+      <SpecialPointsTargetLesson53
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
+  }
+  if (lesson.id === 54) {
+    return (
+      <GraphInspectorTargetLesson54
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
+  }
+  if (lesson.id === 55) {
+    return (
+      <DynamicParametersTargetLesson55
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
+  }
+  if (lesson.id === 56) {
+    return (
+      <ExportGraphTargetLesson56
         lesson={lesson}
         resetToken={resetToken}
         onInteraction={onInteraction}

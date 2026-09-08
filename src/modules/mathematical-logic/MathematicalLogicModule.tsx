@@ -10,7 +10,6 @@ import {
   Download,
   FileJson,
   FileText,
-  FlaskConical,
   GitBranch,
   Grid2X2,
   ListChecks,
@@ -64,7 +63,7 @@ const exercises = [
   { id: "predicate", prompt: "Change the domain so the universal prime statement becomes true.", answer: "Remove 4 or mark 4 as satisfying Prime." },
 ];
 
-type LogicTab = "build" | "tables" | "forms" | "inference" | "predicate" | "laws" | "practice" | "audit";
+type LogicTab = "build" | "tables" | "forms" | "inference" | "predicate" | "laws" | "practice";
 
 const logicTabs: Array<{ id: LogicTab; label: string; icon: typeof CircuitBoard }> = [
   { id: "build", label: "Build", icon: CircuitBoard },
@@ -74,10 +73,9 @@ const logicTabs: Array<{ id: LogicTab; label: string; icon: typeof CircuitBoard 
   { id: "predicate", label: "Predicate", icon: Route },
   { id: "laws", label: "Laws", icon: ScrollText },
   { id: "practice", label: "Practice", icon: ListChecks },
-  { id: "audit", label: "Status", icon: FlaskConical },
 ];
 
-const implementationAuditRows = [
+const logicCoverageRows = [
   ["Introduction to Mathematical Logic", "Implemented", "Overview, examples, modes, and guided practice."],
   ["Statements and Notation", "Implemented", "Symbol builder, syntax validation, presets, and parser feedback."],
   ["Logical Connectives", "Implemented", "NOT, AND, OR, XOR, NAND, NOR, implication, biconditional."],
@@ -282,32 +280,8 @@ export default function MathematicalLogicModule() {
         <PracticePanel quizAnswer={quizAnswer} quizChecked={quizChecked} setQuizAnswer={setQuizAnswer} setQuizChecked={setQuizChecked} completed={completedExercises} toggleExercise={toggleExercise} mode={mode} />
       )}
 
-      {activeTab === "audit" && <AuditReport />}
       </div>
     </div>
-  );
-}
-
-function AuditReport() {
-  return (
-    <SectionCard title="Implementation Status" description="What was present, what was pending, and what is now implemented.">
-      <div className="mobile-safe-scroll">
-        <table className="min-w-full text-sm">
-          <thead className="bg-slate-100 text-left dark:bg-white/10">
-            <tr><th className="px-3 py-2">Topic</th><th className="px-3 py-2">Status</th><th className="px-3 py-2">Action</th></tr>
-          </thead>
-          <tbody>
-            {implementationAuditRows.map(([topic, status, action]) => (
-              <tr key={topic} className="border-t border-slate-200 dark:border-white/10">
-                <td className="px-3 py-2 font-semibold">{topic}</td>
-                <td className="px-3 py-2"><span className="mini-chip">{status}</span></td>
-                <td className="px-3 py-2 text-slate-600 dark:text-slate-300">{action}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </SectionCard>
   );
 }
 
@@ -318,7 +292,7 @@ function LogicStatusStrip({ table, classification, error, completed }: { table: 
       <LogicMetric icon={<CircuitBoard className="h-4 w-4" />} label="Variables" value={table ? String(table.variables.length) : "0"} />
       <LogicMetric icon={<Sparkles className="h-4 w-4" />} label="Type" value={error ? "Invalid" : classification?.kind ?? "Pending"} />
       <LogicMetric icon={<ListChecks className="h-4 w-4" />} label="Practice" value={`${completed}/${exercises.length}`} />
-      <LogicMetric icon={<Grid2X2 className="h-4 w-4" />} label="Coverage" value={`${implementationAuditRows.length}/${implementationAuditRows.length}`} />
+      <LogicMetric icon={<Grid2X2 className="h-4 w-4" />} label="Coverage" value={`${logicCoverageRows.length}/${logicCoverageRows.length}`} />
     </div>
   );
 }
@@ -748,6 +722,6 @@ function classifyTruthTable(table: TruthTable) {
 function readLogicTabFromUrl(): LogicTab {
   if (typeof window === "undefined") return "build";
   const tab = new URLSearchParams(window.location.search).get("tab");
-  if (tab === "tables" || tab === "forms" || tab === "inference" || tab === "predicate" || tab === "laws" || tab === "practice" || tab === "audit") return tab;
+  if (tab === "tables" || tab === "forms" || tab === "inference" || tab === "predicate" || tab === "laws" || tab === "practice") return tab;
   return "build";
 }
