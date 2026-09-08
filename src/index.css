@@ -37735,13 +37735,42 @@ body:has(.lesson-school-shell)
 .lesson-page-shell,
 .lesson-school-shell,
 [data-testid="advanced-concept-lesson-page"] {
-  --lesson-font-caption: 12px;
-  --lesson-font-control: 14px;
-  --lesson-font-body: 15px;
-  --lesson-font-subheading: 17px;
-  --lesson-font-heading: 20px;
+  --lesson-font-caption: 14px;
+  --lesson-font-control: 16px;
+  --lesson-font-body: 17px;
+  --lesson-font-subheading: 19px;
+  --lesson-font-heading: 22px;
   font-size: var(--lesson-font-body);
   line-height: 1.5;
+}
+
+:is(.lesson-page-shell, .lesson-school-shell, [data-testid="advanced-concept-lesson-page"]) .text-xs {
+  font-size: var(--lesson-font-caption) !important;
+}
+
+:is(.lesson-page-shell, .lesson-school-shell, [data-testid="advanced-concept-lesson-page"]) .text-sm {
+  font-size: var(--lesson-font-control) !important;
+}
+
+:is(.lesson-page-shell, .lesson-school-shell, [data-testid="advanced-concept-lesson-page"]) .text-base {
+  font-size: var(--lesson-font-body) !important;
+}
+
+:is(.lesson-page-shell, .lesson-school-shell, [data-testid="advanced-concept-lesson-page"])
+  :is(p, li, td, th, label, output, figcaption) {
+  font-size: var(--lesson-font-body) !important;
+  line-height: 1.55 !important;
+}
+
+:is(.lesson-page-shell, .lesson-school-shell, [data-testid="advanced-concept-lesson-page"])
+  :is(button, input, select, textarea) {
+  font-size: var(--lesson-font-control) !important;
+}
+
+:is(.lesson-page-shell, .lesson-school-shell, [data-testid="advanced-concept-lesson-page"])
+  :is(small, [class*="-tags"]) {
+  font-size: var(--lesson-font-caption) !important;
+  line-height: 1.45 !important;
 }
 
 .lesson-page-shell [data-dedicated-lesson],
@@ -38034,13 +38063,44 @@ html { overflow-y: auto; scrollbar-gutter: stable; }
   border-radius: 8px;
   background: white;
   color: #334155;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 700;
 }
 .set-theory-page-nav a:hover { background: #ecfeff; }
 .set-theory-page-nav a.active { background: #0e7490; color: white; border-color: #0e7490; }
 .set-theory-page-nav a:focus-visible { outline: 2px solid #0891b2; outline-offset: 2px; }
 .set-theory-page-nav svg { width: 16px; height: 16px; }
+
+/* Readable typography for every Set Theory page, including the builder's
+   notation cards, operation explanations, controls, and supporting panels. */
+.set-theory-studio {
+  font-size: 17px;
+  line-height: 1.55;
+}
+.set-theory-studio :is(.text-xs, small) {
+  font-size: 14px !important;
+  line-height: 1.45 !important;
+}
+.set-theory-studio .text-sm,
+.set-theory-studio :is(p, li, label, output, td, th) {
+  font-size: 16px !important;
+  line-height: 1.55 !important;
+}
+.set-theory-studio .text-base {
+  font-size: 17px !important;
+}
+.set-theory-studio :is(button, input, select, textarea, a) {
+  font-size: 15px;
+}
+.set-theory-studio :is(.set-theory-page-context, .set-theory-guide-card) > span {
+  font-size: 13px;
+}
+.set-theory-studio :is(.set-theory-page-context, .set-theory-guide-card) > p {
+  font-size: 16px !important;
+}
+.set-theory-studio .set-theory-guide-card h2 {
+  font-size: 20px;
+}
 
 /* Shared studio document layout: content determines height and guides follow it. */
 .studio-shell {
