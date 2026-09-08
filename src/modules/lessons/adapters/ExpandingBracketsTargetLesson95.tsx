@@ -17,7 +17,6 @@ import {
   expansionSign95,
   expansionValues95,
   isExpansionAnswer95,
-  type ExpansionPractice95 as Practice,
 } from "./expandingBracketsLesson95Model";
 import "./ExpandingBracketsTargetLesson95.css";
 
