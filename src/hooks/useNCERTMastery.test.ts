@@ -1,5 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { emptyMasteryRecord, masteryPercent, masteryStatus, updateNCERTMasteryRecord } from "./useNCERTMastery";
+import {
+  emptyMasteryRecord,
+  masteryPercent,
+  masteryStatus,
+  updateNCERTMasteryRecord,
+} from "./useNCERTMastery";
 
 describe("NCERT mastery calculations", () => {
   it("calculates status from attempt history", () => {

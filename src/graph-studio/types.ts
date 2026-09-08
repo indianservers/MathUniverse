@@ -1,7 +1,14 @@
 export const GRAPH_STUDIO_SCHEMA_VERSION = 1;
 
 export type GraphStudioDimension = "2d" | "3d";
-export type GraphStudioStylePreset = "classroom" | "paper" | "neon" | "presentation" | "contrast" | "colorblind" | "print";
+export type GraphStudioStylePreset =
+  | "classroom"
+  | "paper"
+  | "neon"
+  | "presentation"
+  | "contrast"
+  | "colorblind"
+  | "print";
 
 export type GraphStudioVariable = {
   id: string;

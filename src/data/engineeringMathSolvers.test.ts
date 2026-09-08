@@ -66,22 +66,30 @@ describe("engineering math solvers", () => {
 
   it("registers deterministic solver presets for the engineering hub", async () => {
     const source = await readFile(pageSource, "utf8");
-    const coveredDomains = new Set(engineeringSolverPresets.map((preset) => preset.domainId));
+    const coveredDomains = new Set(
+      engineeringSolverPresets.map((preset) => preset.domainId),
+    );
 
     expect(engineeringSolverPresets.length).toBeGreaterThanOrEqual(11);
-    expect(engineeringSolverPresets.every((preset) => preset.route.startsWith("/syllabus-lab/"))).toBe(true);
-    expect(Array.from(coveredDomains)).toEqual(expect.arrayContaining([
-      "engineering-calculus",
-      "engineering-linear-algebra",
-      "numerical-methods",
-      "engineering-differential-equations",
-      "transforms-signals",
-      "partial-differential-equations",
-      "probability-statistics-stochastic",
-      "optimization-operations-research",
-      "vector-calculus-fields",
-      "complex-special-control",
-    ]));
+    expect(
+      engineeringSolverPresets.every((preset) =>
+        preset.route.startsWith("/syllabus-lab/"),
+      ),
+    ).toBe(true);
+    expect(Array.from(coveredDomains)).toEqual(
+      expect.arrayContaining([
+        "engineering-calculus",
+        "engineering-linear-algebra",
+        "numerical-methods",
+        "engineering-differential-equations",
+        "transforms-signals",
+        "partial-differential-equations",
+        "probability-statistics-stochastic",
+        "optimization-operations-research",
+        "vector-calculus-fields",
+        "complex-special-control",
+      ]),
+    );
     expect(coveredDomains.size).toBe(10);
     expect(source).toContain("Solver Presets");
     expect(source).toContain("engineeringSolverPresets");

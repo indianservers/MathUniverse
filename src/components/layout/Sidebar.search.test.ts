@@ -99,20 +99,42 @@ describe("Sidebar menu search", () => {
     expect(studio?.items).toEqual(
       expect.arrayContaining([
         expect.objectContaining({ title: "Calculus", route: "/calculus" }),
-        expect.objectContaining({ title: "Trigonometry", route: "/trigonometry" }),
+        expect.objectContaining({
+          title: "Trigonometry",
+          route: "/trigonometry",
+        }),
         expect.objectContaining({ title: "Geometry", route: "/geometry" }),
         expect.objectContaining({ title: "Algebra", route: "/algebra" }),
-        expect.objectContaining({ title: "Statistics & Probability", route: "/probability-statistics" }),
-        expect.objectContaining({ title: "Linear Algebra", route: "/linear-algebra" }),
-        expect.objectContaining({ title: "Number & Discrete Mathematics", route: "/discrete-world" }),
-        expect.objectContaining({ title: "Complex Numbers", route: "/complex-numbers" }),
-        expect.objectContaining({ title: "Mathematical Modelling", route: "/mathematical-modelling" }),
+        expect.objectContaining({
+          title: "Statistics & Probability",
+          route: "/probability-statistics",
+        }),
+        expect.objectContaining({
+          title: "Linear Algebra",
+          route: "/linear-algebra",
+        }),
+        expect.objectContaining({
+          title: "Number & Discrete Mathematics",
+          route: "/discrete-world",
+        }),
+        expect.objectContaining({
+          title: "Complex Numbers",
+          route: "/complex-numbers",
+        }),
+        expect.objectContaining({
+          title: "Mathematical Modelling",
+          route: "/mathematical-modelling",
+        }),
       ]),
     );
     expect(searchableTitlesInAllSections("calculus studio")).toContain(
       "Calculus",
     );
-    expect(searchableTitlesInAllSections("number discrete mathematics studio")).toContain("Number & Discrete Mathematics");
-    expect(searchableTitlesInAllSections("mathematical modeling simulation")).toContain("Mathematical Modelling");
+    expect(
+      searchableTitlesInAllSections("number discrete mathematics studio"),
+    ).toContain("Number & Discrete Mathematics");
+    expect(
+      searchableTitlesInAllSections("mathematical modeling simulation"),
+    ).toContain("Mathematical Modelling");
   });
 });

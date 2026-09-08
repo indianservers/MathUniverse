@@ -19,14 +19,18 @@ describe("olympyard topic metadata", () => {
     const filtered = filterOlympyardTopics(olympyardTopics, "class-1-2", "all");
 
     expect(filtered.length).toBeGreaterThan(0);
-    expect(filtered.every((topic) => topic.gradeBands.includes("class-1-2"))).toBe(true);
+    expect(
+      filtered.every((topic) => topic.gradeBands.includes("class-1-2")),
+    ).toBe(true);
   });
 
   it("filters by difficulty", () => {
     const filtered = filterOlympyardTopics(olympyardTopics, "all", "advanced");
 
     expect(filtered.length).toBeGreaterThan(0);
-    expect(filtered.every((topic) => topic.difficultyRange.includes("advanced"))).toBe(true);
+    expect(
+      filtered.every((topic) => topic.difficultyRange.includes("advanced")),
+    ).toBe(true);
   });
 
   it("has selector metadata for all supported filters", () => {
@@ -48,15 +52,16 @@ describe("olympyard topic metadata", () => {
 });
 
 function olympyardTopicsAllValid() {
-  return olympyardTopics.every((topic) =>
-    topic.id.length > 0 &&
-    topic.title.length > 0 &&
-    topic.description.length > 0 &&
-    topic.visualModel.length > 0 &&
-    topic.gradeBands.length > 0 &&
-    topic.difficultyRange.length > 0 &&
-    topic.availableQuestions >= 0 &&
-    (!topic.route || topic.route.startsWith("/")),
+  return olympyardTopics.every(
+    (topic) =>
+      topic.id.length > 0 &&
+      topic.title.length > 0 &&
+      topic.description.length > 0 &&
+      topic.visualModel.length > 0 &&
+      topic.gradeBands.length > 0 &&
+      topic.difficultyRange.length > 0 &&
+      topic.availableQuestions >= 0 &&
+      (!topic.route || topic.route.startsWith("/")),
   );
 }
 

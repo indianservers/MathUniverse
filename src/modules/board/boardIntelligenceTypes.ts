@@ -10,17 +10,10 @@ export type SmartBoardSubject =
   | "unknown";
 
 export type SmartBoardConfidenceLevel =
-  | "high"
-  | "review-recommended"
-  | "needs-confirmation"
-  | "unresolved";
+  "high" | "review-recommended" | "needs-confirmation" | "unresolved";
 
 export type SmartBoardIntelligenceMode =
-  | "manual"
-  | "assistive"
-  | "guided-learning"
-  | "fast-solve"
-  | "exploration";
+  "manual" | "assistive" | "guided-learning" | "fast-solve" | "exploration";
 
 export type SmartBoardGoalType =
   | "recognize"
@@ -53,7 +46,10 @@ export type SmartBoardGoal = {
   supportingSubjects: SmartBoardSubject[];
   targetElementIds: string[];
   confidence: SmartBoardConfidenceLevel;
-  evidence: Array<{ source: "command" | "selection" | "content" | "history"; detail: string }>;
+  evidence: Array<{
+    source: "command" | "selection" | "content" | "history";
+    detail: string;
+  }>;
   missingInformation: Array<{ field: string; reason: string }>;
   userConfirmed: boolean;
 };
@@ -142,12 +138,28 @@ export type SmartBoardIntelligenceContext = {
   activeWorkflowId?: string;
   currentGoal?: SmartBoardGoal;
   elements: SmartBoardContextElement[];
-  relationships: Array<{ id: string; type: string; sourceElementId: string; targetElementId: string }>;
-  recentActions: Array<{ id: string; actionType: string; sourceElementId: string; resultElementId: string; cancelled: boolean }>;
+  relationships: Array<{
+    id: string;
+    type: string;
+    sourceElementId: string;
+    targetElementId: string;
+  }>;
+  recentActions: Array<{
+    id: string;
+    actionType: string;
+    sourceElementId: string;
+    resultElementId: string;
+    cancelled: boolean;
+  }>;
   pendingAmbiguities: SmartBoardAmbiguity[];
   availableCapabilities: SmartBoardCapability[];
   serviceAvailability: SmartBoardServiceAvailability;
-  clientCapabilities: { online: boolean; pointer: boolean; touch: boolean; camera: boolean };
+  clientCapabilities: {
+    online: boolean;
+    pointer: boolean;
+    touch: boolean;
+    camera: boolean;
+  };
   contextVersion: number;
   metrics: SmartBoardContextMetrics;
   omittedElementIds: string[];
@@ -180,14 +192,29 @@ export type SmartBoardProblemState = {
   selectedMethod?: string;
   assumptions: string[];
   warnings: string[];
-  completionStatus: "not-started" | "in-progress" | "blocked" | "partially-complete" | "complete";
+  completionStatus:
+    | "not-started"
+    | "in-progress"
+    | "blocked"
+    | "partially-complete"
+    | "complete";
 };
 
 export type SmartBoardRecommendation = {
   id: string;
   action: SmartBoardCapability;
   boardActionType?: BoardActionType;
-  category: "continue" | "solve" | "verify" | "learn" | "visualize" | "explore" | "correct" | "practice" | "convert" | "compare";
+  category:
+    | "continue"
+    | "solve"
+    | "verify"
+    | "learn"
+    | "visualize"
+    | "explore"
+    | "correct"
+    | "practice"
+    | "convert"
+    | "compare";
   title: string;
   reason: string;
   subject: SmartBoardSubject;
@@ -208,7 +235,11 @@ export type SmartBoardRecommendation = {
   sourceElementIds: string[];
   requiredConfirmation: boolean;
   expectedOutcome?: string;
-  engine?: { id: string; label: string; localOrRemote: "local" | "remote" | "hybrid" };
+  engine?: {
+    id: string;
+    label: string;
+    localOrRemote: "local" | "remote" | "hybrid";
+  };
   enabled: boolean;
   disabledReason?: string;
 };
@@ -217,7 +248,11 @@ export type SmartBoardUnderstandingResult = {
   primarySubject?: SmartBoardSubject;
   supportingSubjects: SmartBoardSubject[];
   subjectConfidence: SmartBoardConfidenceLevel;
-  detectedConcepts: Array<{ id: string; label: string; confidence: SmartBoardConfidenceLevel }>;
+  detectedConcepts: Array<{
+    id: string;
+    label: string;
+    confidence: SmartBoardConfidenceLevel;
+  }>;
   activeProblem?: SmartBoardProblemState;
   inferredGoal?: SmartBoardGoal;
   knownFacts: Array<{ label: string; value: string; sourceElementId?: string }>;
@@ -232,14 +267,28 @@ export type SmartBoardUnderstandingResult = {
 export type SmartBoardWorkflowStep = {
   id: string;
   order: number;
-  type: "confirm" | "analyze" | "calculate" | "verify" | "visualize" | "explain" | "open-module";
+  type:
+    | "confirm"
+    | "analyze"
+    | "calculate"
+    | "verify"
+    | "visualize"
+    | "explain"
+    | "open-module";
   title: string;
   description?: string;
   toolId?: string;
   boardActionType?: BoardActionType;
   inputElementIds: string[];
   dependsOnStepIds: string[];
-  status: "pending" | "approved" | "running" | "success" | "failed" | "cancelled" | "skipped";
+  status:
+    | "pending"
+    | "approved"
+    | "running"
+    | "success"
+    | "failed"
+    | "cancelled"
+    | "skipped";
   requiresConfirmation: boolean;
   permissionClass: "read-only" | "reversible-write" | "sensitive";
   canRetry: boolean;
@@ -259,7 +308,14 @@ export type SmartBoardWorkflowPlan = {
   requiredCapabilities: SmartBoardCapability[];
   warnings: string[];
   createdAt: string;
-  status: "draft" | "approved" | "running" | "paused" | "completed" | "cancelled" | "failed";
+  status:
+    | "draft"
+    | "approved"
+    | "running"
+    | "paused"
+    | "completed"
+    | "cancelled"
+    | "failed";
 };
 
 export type SmartBoardSessionMemory = {
@@ -273,10 +329,24 @@ export type SmartBoardSessionMemory = {
   hiddenRecommendationCategories: string[];
   shownHintLevels: Record<string, number>;
   selectedMethods: Record<string, string>;
-  recentGraphSettings?: { xMin: number; xMax: number; yMin: number; yMax: number };
+  recentGraphSettings?: {
+    xMin: number;
+    xMax: number;
+    yMin: number;
+    yMax: number;
+  };
   userPreferences: {
     intelligenceMode: SmartBoardIntelligenceMode;
-    explanationMode: "one-line" | "brief" | "standard" | "detailed" | "visual-first" | "formula-first" | "exam-style" | "conceptual" | "step-by-step";
+    explanationMode:
+      | "one-line"
+      | "brief"
+      | "standard"
+      | "detailed"
+      | "visual-first"
+      | "formula-first"
+      | "exam-style"
+      | "conceptual"
+      | "step-by-step";
     proactiveRecommendations: boolean;
     stablePauseMs: number;
   };

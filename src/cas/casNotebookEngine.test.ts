@@ -8,7 +8,11 @@ import {
   type NotebookState,
 } from "./casNotebookEngine";
 
-function cell(id: string, input: string, operation: NotebookCell["operation"]): NotebookCell {
+function cell(
+  id: string,
+  input: string,
+  operation: NotebookCell["operation"],
+): NotebookCell {
   return {
     id,
     input,
@@ -42,12 +46,15 @@ describe("casNotebookEngine", () => {
   });
 
   it("can evaluate one cell using earlier solved worksheet memory", () => {
-    const firstRun = evaluateNotebookCells([
-      cell("c2", "ans1 + 4", "simplify"),
-      cell("c1", "2 + 3", "simplify"),
-    ], "", "exact");
+    const firstRun = evaluateNotebookCells(
+      [cell("c2", "ans1 + 4", "simplify"), cell("c1", "2 + 3", "simplify")],
+      "",
+      "exact",
+    );
 
-    const changed = firstRun.map((item) => (item.id === "c2" ? { ...item, input: "#1 * 2" } : item));
+    const changed = firstRun.map((item) =>
+      item.id === "c2" ? { ...item, input: "#1 * 2" } : item,
+    );
     const rerun = evaluateNotebookCellInState("c2", changed, "", "exact");
     const target = rerun.find((item) => item.id === "c2");
 
@@ -56,7 +63,11 @@ describe("casNotebookEngine", () => {
   });
 
   it("keeps numeric mode separate from exact mode", () => {
-    const [evaluated] = evaluateNotebookCells([cell("c1", "sqrt(34)", "simplify")], "", "numeric");
+    const [evaluated] = evaluateNotebookCells(
+      [cell("c1", "sqrt(34)", "simplify")],
+      "",
+      "numeric",
+    );
 
     expect(evaluated.output).toBe("5.830952 -> 5.830952");
     expect(evaluated.exact).toBe("sqrt(34)");
@@ -64,53 +75,96 @@ describe("casNotebookEngine", () => {
   });
 
   it("adds deeper matrix and list summaries", () => {
-    const evaluated = evaluateNotebookCells([
-      cell("list", "4, 6, 8, 10", "list"),
-      cell("matrix", "[[1,2],[3,4]]", "matrix"),
-    ], "", "exact");
+    const evaluated = evaluateNotebookCells(
+      [
+        cell("list", "4, 6, 8, 10", "list"),
+        cell("matrix", "[[1,2],[3,4]]", "matrix"),
+      ],
+      "",
+      "exact",
+    );
 
-    expect(evaluated.find((item) => item.id === "matrix")?.output).toContain("det=-2");
-    expect(evaluated.find((item) => item.id === "matrix")?.steps.join(" ")).toContain("RREF");
-    expect(evaluated.find((item) => item.id === "list")?.output).toContain("median=7");
-    expect(evaluated.find((item) => item.id === "list")?.output).toContain("stdev=");
+    expect(evaluated.find((item) => item.id === "matrix")?.output).toContain(
+      "det=-2",
+    );
+    expect(
+      evaluated.find((item) => item.id === "matrix")?.steps.join(" "),
+    ).toContain("RREF");
+    expect(evaluated.find((item) => item.id === "list")?.output).toContain(
+      "median=7",
+    );
+    expect(evaluated.find((item) => item.id === "list")?.output).toContain(
+      "stdev=",
+    );
   });
 
   it("exposes stronger symbolic operations through notebook cells", () => {
-    const evaluated = evaluateNotebookCells([
-      cell("definite", "x^2, 0, 2, x", "definite-integral"),
-      cell("tangent", "x^2, 3, x", "tangent-line"),
-      cell("identity", "tan(x), sin(x)/cos(x), x", "verify-identity"),
-    ], "", "exact");
+    const evaluated = evaluateNotebookCells(
+      [
+        cell("definite", "x^2, 0, 2, x", "definite-integral"),
+        cell("tangent", "x^2, 3, x", "tangent-line"),
+        cell("identity", "tan(x), sin(x)/cos(x), x", "verify-identity"),
+      ],
+      "",
+      "exact",
+    );
 
-    expect(operationOptions.map((item) => item.value)).toEqual(expect.arrayContaining(["definite-integral", "tangent-line", "verify-identity"]));
-    expect(evaluated.find((item) => item.id === "definite")?.output).toBe("8/3");
-    expect(evaluated.find((item) => item.id === "tangent")?.output).toBe("y = -9+6*x");
-    expect(evaluated.find((item) => item.id === "identity")?.output).toBe("Identity verified");
-    expect(evaluated.find((item) => item.id === "identity")?.steps.join(" ")).toContain("sample values were checked");
+    expect(operationOptions.map((item) => item.value)).toEqual(
+      expect.arrayContaining([
+        "definite-integral",
+        "tangent-line",
+        "verify-identity",
+      ]),
+    );
+    expect(evaluated.find((item) => item.id === "definite")?.output).toBe(
+      "8/3",
+    );
+    expect(evaluated.find((item) => item.id === "tangent")?.output).toBe(
+      "y = -9+6*x",
+    );
+    expect(evaluated.find((item) => item.id === "identity")?.output).toBe(
+      "Identity verified",
+    );
+    expect(
+      evaluated.find((item) => item.id === "identity")?.steps.join(" "),
+    ).toContain("sample values were checked");
   });
 
   it("supports advanced calculus, algebra, and matrix operations through the notebook", () => {
-    const evaluated = evaluateNotebookCells([
-      cell("square", "x^2+6*x+5, x", "complete-square"),
-      cell("side", "1/x, x, 0, above", "one-sided-limit"),
-      cell("taylor", "sin(x), x, 0, 3", "taylor"),
-      cell("det", "[[1,2],[3,4]]", "determinant"),
-      cell("rank", "[[1,2],[2,4]]", "matrix-rank"),
-    ], "x real", "exact");
+    const evaluated = evaluateNotebookCells(
+      [
+        cell("square", "x^2+6*x+5, x", "complete-square"),
+        cell("side", "1/x, x, 0, above", "one-sided-limit"),
+        cell("taylor", "sin(x), x, 0, 3", "taylor"),
+        cell("det", "[[1,2],[3,4]]", "determinant"),
+        cell("rank", "[[1,2],[2,4]]", "matrix-rank"),
+      ],
+      "x real",
+      "exact",
+    );
 
     expect(evaluated.find((item) => item.id === "square")?.ok).toBe(true);
     expect(evaluated.find((item) => item.id === "side")?.ok).toBe(true);
-    expect(evaluated.find((item) => item.id === "taylor")?.output).toContain("x");
+    expect(evaluated.find((item) => item.id === "taylor")?.output).toContain(
+      "x",
+    );
     expect(evaluated.find((item) => item.id === "det")?.output).toContain("-2");
     expect(evaluated.find((item) => item.id === "rank")?.output).toContain("1");
   });
 
   it("provides truthful structured step fields for progressive explanation", () => {
-    const [evaluated] = evaluateNotebookCells([cell("factor", "x^2-5*x+6", "factor")], "x real", "exact");
+    const [evaluated] = evaluateNotebookCells(
+      [cell("factor", "x^2-5*x+6", "factor")],
+      "x real",
+      "exact",
+    );
     const finalStep = evaluated.structuredSteps?.at(-1);
 
     expect(evaluated.structuredSteps?.length).toBe(evaluated.steps.length);
-    expect(finalStep).toMatchObject({ operation: "Factor", result: evaluated.output });
+    expect(finalStep).toMatchObject({
+      operation: "Factor",
+      result: evaluated.output,
+    });
     expect(finalStep?.previousExpression).toBeTruthy();
     expect(finalStep?.rule).toBeTruthy();
     expect(finalStep?.explanation).toBeTruthy();
@@ -118,8 +172,16 @@ describe("casNotebookEngine", () => {
   });
 
   it("exports a markdown solution notebook", () => {
-    const cells = evaluateNotebookCells([cell("c1", "x^2-5*x+6", "factor")], "x real", "exact");
-    const markdown = serializeCasNotebookMarkdown({ cells, assumptions: "x real", mode: "exact" } satisfies NotebookState);
+    const cells = evaluateNotebookCells(
+      [cell("c1", "x^2-5*x+6", "factor")],
+      "x real",
+      "exact",
+    );
+    const markdown = serializeCasNotebookMarkdown({
+      cells,
+      assumptions: "x real",
+      mode: "exact",
+    } satisfies NotebookState);
 
     expect(markdown).toContain("# CAS Notebook Export");
     expect(markdown).toContain("## In [1] factor");

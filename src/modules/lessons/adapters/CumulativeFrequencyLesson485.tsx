@@ -1,7 +1,294 @@
 import { useState } from "react";
 import { RotateCcw } from "lucide-react";
 import type { LessonAdapterProps } from "../types";
-import { cumulativeDefault, cumulativeValues, percentile } from "./cumulativeFrequencyLessonModel";
+import {
+  cumulativeDefault,
+  cumulativeValues,
+  percentile,
+} from "./cumulativeFrequencyLessonModel";
 import "./CumulativeFrequencyLesson485.css";
-export default function CumulativeFrequencyLesson485({ resetToken, onInteraction }: LessonAdapterProps) { return <CumulativeActivity key={resetToken} onInteraction={onInteraction} />; }
-function CumulativeActivity({ onInteraction }: Pick<LessonAdapterProps, "onInteraction">) { const [rows, setRows] = useState(cumulativeDefault), [more, setMore] = useState(false), [showQ1, setShowQ1] = useState(true), [showMedian, setShowMedian] = useState(true), [showQ3, setShowQ3] = useState(true); const cumulative = cumulativeValues(rows), total = cumulative.at(-1) ?? 0, values = [percentile(rows, .25), percentile(rows, .5), percentile(rows, .75)]; const update = (index: number, raw: string) => { const frequency = Math.max(0, Math.round(Number(raw))); if (!Number.isFinite(frequency)) return; setRows(rows.map((row, i) => i === index ? { ...row, frequency } : row)); onInteraction(); }; return <div className="cf485" data-testid="statistics-mockup-0448" data-target-family="statistics-and-regression"><header><div><span>DATA AND PROBABILITY · STATISTICS AND REGRESSION</span><h2>Cumulative Frequency Curve</h2><p>Plot and interpret an ogive (less-than cumulative frequency curve).</p></div><span>6–10 min lesson · Share</span></header><nav><b>Interact</b><span>Learn</span><span>Example</span><span>Formula</span><span>Practice</span></nav><section className="cf485-steps"><b>Observe<br /><small>See how data builds up.</small></b><b>Manipulate<br /><small>Change values and percentile lines.</small></b><b>Notice<br /><small>Read shape and quartiles.</small></b><b>Rule<br /><small>Use upper class boundaries.</small></b><b>Try<br /><small>Practice ogives.</small></b></section><section className="cf485-work"><aside><h3>Control panel</h3><div className="cf485-mode"><button type="button" className={!more ? "active" : ""} onClick={() => { setMore(false); onInteraction(); }}>Less-than (&lt;)</button><button type="button" className={more ? "active" : ""} onClick={() => { setMore(true); onInteraction(); }}>More-than (&gt;)</button></div><table><tbody>{rows.map((row, index) => <tr key={row.upper}><td>{row.upper - 9.5}–{row.upper - .5}</td><td>{row.upper}</td><td><input aria-label={`Cumulative frequency ${index + 1}`} value={row.frequency} onChange={event => update(index, event.target.value)} /></td><td>{cumulative[index]}</td></tr>)}</tbody></table><button type="button" onClick={() => { setRows([...rows, { upper: (rows.at(-1)?.upper ?? 199.5) + 10, frequency: 1 }]); onInteraction(); }}>+ Add class</button><button type="button" onClick={() => { setRows(cumulativeDefault); onInteraction(); }}><RotateCcw size={14} /> Reset data</button></aside><section className="cf485-chart"><h3>Visual: Ogive ({more ? "more-than" : "less-than"})</h3><div className="cf485-graph"><svg viewBox="0 0 700 300" role="img" aria-label="Cumulative frequency curve"><polyline points={(more ? [...cumulative].reverse() : cumulative).map((value, index, data) => `${index * (700 / (data.length - 1))},${280 - value / total * 240}`).join(" ")} /></svg>{[showQ1, showMedian, showQ3].map((show, index) => show && values[index] !== null && <i key={index} className={`cf485-line cf485-line-${index}`} style={{ left: `${((values[index]! - 129.5) / 70) * 100}%` }}><b>{["Q1", "Median", "Q3"][index]}</b>{values[index]!.toFixed(1)} cm</i>)}</div><div className="cf485-options"><label><input type="checkbox" checked={showQ1} onChange={event => setShowQ1(event.target.checked)} /> Q1 (25%)</label><label><input type="checkbox" checked={showMedian} onChange={event => setShowMedian(event.target.checked)} /> Median (50%)</label><label><input type="checkbox" checked={showQ3} onChange={event => setShowQ3(event.target.checked)} /> Q3 (75%)</label></div></section><aside className="cf485-results"><h3>Results & Summary</h3><p>Total (n)<b>{total}</b></p><p>Q1 (25%)<b>{values[0]?.toFixed(1)} cm</b></p><p>Median (50%)<b>{values[1]?.toFixed(1)} cm</b></p><p>Q3 (75%)<b>{values[2]?.toFixed(1)} cm</b></p><p>IQR<b>{values[0] !== null && values[2] !== null ? (values[2]! - values[0]!).toFixed(1) : "-"}</b></p></aside></section><section className="cf485-info"><article><h3>Definition</h3><p>A cumulative frequency curve (ogive) plots cumulative frequencies against upper class boundaries.</p></article><article><h3>Formula</h3><p>Use interpolation within each class interval to estimate a percentile from the curve.</p></article></section><section className="cf485-lower"><article><h3>Worked example</h3><p>The median corresponds to N/2 = {total / 2}. Read across to the curve and interpolate within its class.</p></article><article><h3>Misconception guard</h3><p>Use upper class boundaries, not class marks. Read between points with interpolation.</p></article><article><h3>Try it yourself</h3><p>Find the median rainfall and the 25th and 75th percentiles.</p><button type="button" onClick={() => onInteraction()}>Check answers</button></article></section><footer><button type="button" onClick={() => { setRows(cumulativeDefault); onInteraction(); }}><RotateCcw size={14} /> Reset lesson</button><span>Previous: Frequency Polygon &nbsp; Next: Bar and Pie Charts →</span></footer></div>; }
+export default function CumulativeFrequencyLesson485({
+  resetToken,
+  onInteraction,
+}: LessonAdapterProps) {
+  return <CumulativeActivity key={resetToken} onInteraction={onInteraction} />;
+}
+function CumulativeActivity({
+  onInteraction,
+}: Pick<LessonAdapterProps, "onInteraction">) {
+  const [rows, setRows] = useState(cumulativeDefault),
+    [more, setMore] = useState(false),
+    [showQ1, setShowQ1] = useState(true),
+    [showMedian, setShowMedian] = useState(true),
+    [showQ3, setShowQ3] = useState(true);
+  const cumulative = cumulativeValues(rows),
+    total = cumulative.at(-1) ?? 0,
+    values = [
+      percentile(rows, 0.25),
+      percentile(rows, 0.5),
+      percentile(rows, 0.75),
+    ];
+  const update = (index: number, raw: string) => {
+    const frequency = Math.max(0, Math.round(Number(raw)));
+    if (!Number.isFinite(frequency)) return;
+    setRows(rows.map((row, i) => (i === index ? { ...row, frequency } : row)));
+    onInteraction();
+  };
+  return (
+    <div
+      className="cf485"
+      data-testid="statistics-mockup-0448"
+      data-target-family="statistics-and-regression"
+    >
+      <header>
+        <div>
+          <span>DATA AND PROBABILITY · STATISTICS AND REGRESSION</span>
+          <h2>Cumulative Frequency Curve</h2>
+          <p>
+            Plot and interpret an ogive (less-than cumulative frequency curve).
+          </p>
+        </div>
+        <span>6–10 min lesson · Share</span>
+      </header>
+      <nav>
+        <b>Interact</b>
+        <span>Learn</span>
+        <span>Example</span>
+        <span>Formula</span>
+        <span>Practice</span>
+      </nav>
+      <section className="cf485-steps">
+        <b>
+          Observe
+          <br />
+          <small>See how data builds up.</small>
+        </b>
+        <b>
+          Manipulate
+          <br />
+          <small>Change values and percentile lines.</small>
+        </b>
+        <b>
+          Notice
+          <br />
+          <small>Read shape and quartiles.</small>
+        </b>
+        <b>
+          Rule
+          <br />
+          <small>Use upper class boundaries.</small>
+        </b>
+        <b>
+          Try
+          <br />
+          <small>Practice ogives.</small>
+        </b>
+      </section>
+      <section className="cf485-work">
+        <aside>
+          <h3>Control panel</h3>
+          <div className="cf485-mode">
+            <button
+              type="button"
+              className={!more ? "active" : ""}
+              onClick={() => {
+                setMore(false);
+                onInteraction();
+              }}
+            >
+              Less-than (&lt;)
+            </button>
+            <button
+              type="button"
+              className={more ? "active" : ""}
+              onClick={() => {
+                setMore(true);
+                onInteraction();
+              }}
+            >
+              More-than (&gt;)
+            </button>
+          </div>
+          <table>
+            <tbody>
+              {rows.map((row, index) => (
+                <tr key={row.upper}>
+                  <td>
+                    {row.upper - 9.5}–{row.upper - 0.5}
+                  </td>
+                  <td>{row.upper}</td>
+                  <td>
+                    <input
+                      aria-label={`Cumulative frequency ${index + 1}`}
+                      value={row.frequency}
+                      onChange={(event) => update(index, event.target.value)}
+                    />
+                  </td>
+                  <td>{cumulative[index]}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <button
+            type="button"
+            onClick={() => {
+              setRows([
+                ...rows,
+                { upper: (rows.at(-1)?.upper ?? 199.5) + 10, frequency: 1 },
+              ]);
+              onInteraction();
+            }}
+          >
+            + Add class
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              setRows(cumulativeDefault);
+              onInteraction();
+            }}
+          >
+            <RotateCcw size={14} /> Reset data
+          </button>
+        </aside>
+        <section className="cf485-chart">
+          <h3>Visual: Ogive ({more ? "more-than" : "less-than"})</h3>
+          <div className="cf485-graph">
+            <svg
+              viewBox="0 0 700 300"
+              role="img"
+              aria-label="Cumulative frequency curve"
+            >
+              <polyline
+                points={(more ? [...cumulative].reverse() : cumulative)
+                  .map(
+                    (value, index, data) =>
+                      `${index * (700 / (data.length - 1))},${280 - (value / total) * 240}`,
+                  )
+                  .join(" ")}
+              />
+            </svg>
+            {[showQ1, showMedian, showQ3].map(
+              (show, index) =>
+                show &&
+                values[index] !== null && (
+                  <i
+                    key={index}
+                    className={`cf485-line cf485-line-${index}`}
+                    style={{
+                      left: `${((values[index]! - 129.5) / 70) * 100}%`,
+                    }}
+                  >
+                    <b>{["Q1", "Median", "Q3"][index]}</b>
+                    {values[index]!.toFixed(1)} cm
+                  </i>
+                ),
+            )}
+          </div>
+          <div className="cf485-options">
+            <label>
+              <input
+                type="checkbox"
+                checked={showQ1}
+                onChange={(event) => setShowQ1(event.target.checked)}
+              />{" "}
+              Q1 (25%)
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                checked={showMedian}
+                onChange={(event) => setShowMedian(event.target.checked)}
+              />{" "}
+              Median (50%)
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                checked={showQ3}
+                onChange={(event) => setShowQ3(event.target.checked)}
+              />{" "}
+              Q3 (75%)
+            </label>
+          </div>
+        </section>
+        <aside className="cf485-results">
+          <h3>Results & Summary</h3>
+          <p>
+            Total (n)<b>{total}</b>
+          </p>
+          <p>
+            Q1 (25%)<b>{values[0]?.toFixed(1)} cm</b>
+          </p>
+          <p>
+            Median (50%)<b>{values[1]?.toFixed(1)} cm</b>
+          </p>
+          <p>
+            Q3 (75%)<b>{values[2]?.toFixed(1)} cm</b>
+          </p>
+          <p>
+            IQR
+            <b>
+              {values[0] !== null && values[2] !== null
+                ? (values[2]! - values[0]!).toFixed(1)
+                : "-"}
+            </b>
+          </p>
+        </aside>
+      </section>
+      <section className="cf485-info">
+        <article>
+          <h3>Definition</h3>
+          <p>
+            A cumulative frequency curve (ogive) plots cumulative frequencies
+            against upper class boundaries.
+          </p>
+        </article>
+        <article>
+          <h3>Formula</h3>
+          <p>
+            Use interpolation within each class interval to estimate a
+            percentile from the curve.
+          </p>
+        </article>
+      </section>
+      <section className="cf485-lower">
+        <article>
+          <h3>Worked example</h3>
+          <p>
+            The median corresponds to N/2 = {total / 2}. Read across to the
+            curve and interpolate within its class.
+          </p>
+        </article>
+        <article>
+          <h3>Misconception guard</h3>
+          <p>
+            Use upper class boundaries, not class marks. Read between points
+            with interpolation.
+          </p>
+        </article>
+        <article>
+          <h3>Try it yourself</h3>
+          <p>Find the median rainfall and the 25th and 75th percentiles.</p>
+          <button type="button" onClick={() => onInteraction()}>
+            Check answers
+          </button>
+        </article>
+      </section>
+      <footer>
+        <button
+          type="button"
+          onClick={() => {
+            setRows(cumulativeDefault);
+            onInteraction();
+          }}
+        >
+          <RotateCcw size={14} /> Reset lesson
+        </button>
+        <span>
+          Previous: Frequency Polygon &nbsp; Next: Bar and Pie Charts →
+        </span>
+      </footer>
+    </div>
+  );
+}

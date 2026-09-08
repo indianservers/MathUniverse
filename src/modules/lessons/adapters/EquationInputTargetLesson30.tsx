@@ -404,22 +404,94 @@ function SolutionSteps({
   );
 }
 
-
-function BalanceModel({model}:{model:EquationModel}) {
-  const left=[`${format(model.leftCoefficient)}x`,model.leftConstant>=0?`+ ${format(model.leftConstant)}`:format(model.leftConstant)];
-  const right=[model.rightCoefficient?`${format(model.rightCoefficient)}x`:format(model.rightConstant)];
-  if(model.rightCoefficient&&model.rightConstant)right.push(model.rightConstant>=0?`+ ${format(model.rightConstant)}`:format(model.rightConstant));
-  return <LessonBalanceGraph left={left} right={right}/>;
+function BalanceModel({ model }: { model: EquationModel }) {
+  const left = [
+    `${format(model.leftCoefficient)}x`,
+    model.leftConstant >= 0
+      ? `+ ${format(model.leftConstant)}`
+      : format(model.leftConstant),
+  ];
+  const right = [
+    model.rightCoefficient
+      ? `${format(model.rightCoefficient)}x`
+      : format(model.rightConstant),
+  ];
+  if (model.rightCoefficient && model.rightConstant)
+    right.push(
+      model.rightConstant >= 0
+        ? `+ ${format(model.rightConstant)}`
+        : format(model.rightConstant),
+    );
+  return <LessonBalanceGraph left={left} right={right} />;
 }
-const EQUATION_VIEW={xMin:-115/28,xMax:(350-115)/28,yMin:(235-365)/14,yMax:235/14};
-function EquationGraph({model}:{model:EquationModel}) {
-  const [view,setView]=useState(EQUATION_VIEW);
+const EQUATION_VIEW = {
+  xMin: -115 / 28,
+  xMax: (350 - 115) / 28,
+  yMin: (235 - 365) / 14,
+  yMax: 235 / 14,
+};
+function EquationGraph({ model }: { model: EquationModel }) {
+  const [view, setView] = useState(EQUATION_VIEW);
   // Retain the original invalid-input reference plot and identify it explicitly.
-  const m=model.valid?model:{...model,left:'2x + 3',right:'11',solution:4,solvedY:11,leftCoefficient:2,leftConstant:3,rightCoefficient:0,rightConstant:11};
-  return <LessonCartesianGraph title="Equation lines and solution intersection" description={model.valid?undefined:'Reference example: 2x + 3 = 11'} view={view} onViewChange={setView} onResetView={()=>setView(EQUATION_VIEW)}
-    series={[
-      {id:'left',label:`y = ${m.left}`,color:'#7040e8',points:[{x:-4,y:-4*m.leftCoefficient+m.leftConstant},{x:7,y:7*m.leftCoefficient+m.leftConstant}]},
-      {id:'right',label:`y = ${m.right}`,color:'#168fe7',points:[{x:-4,y:-4*m.rightCoefficient+m.rightConstant},{x:7,y:7*m.rightCoefficient+m.rightConstant}]},
-      {id:'guide',label:'Solution projection',color:'#26344d',dashed:true,points:[{x:m.solution,y:m.solvedY},{x:m.solution,y:0}]}
-    ]} annotations={[{id:'intersection',x:m.solution,y:m.solvedY,label:`(${format(m.solution)}, ${format(m.solvedY)})`,color:'#7040e8'}]}/>;
+  const m = model.valid
+    ? model
+    : {
+        ...model,
+        left: "2x + 3",
+        right: "11",
+        solution: 4,
+        solvedY: 11,
+        leftCoefficient: 2,
+        leftConstant: 3,
+        rightCoefficient: 0,
+        rightConstant: 11,
+      };
+  return (
+    <LessonCartesianGraph
+      title="Equation lines and solution intersection"
+      description={model.valid ? undefined : "Reference example: 2x + 3 = 11"}
+      view={view}
+      onViewChange={setView}
+      onResetView={() => setView(EQUATION_VIEW)}
+      series={[
+        {
+          id: "left",
+          label: `y = ${m.left}`,
+          color: "#7040e8",
+          points: [
+            { x: -4, y: -4 * m.leftCoefficient + m.leftConstant },
+            { x: 7, y: 7 * m.leftCoefficient + m.leftConstant },
+          ],
+        },
+        {
+          id: "right",
+          label: `y = ${m.right}`,
+          color: "#168fe7",
+          points: [
+            { x: -4, y: -4 * m.rightCoefficient + m.rightConstant },
+            { x: 7, y: 7 * m.rightCoefficient + m.rightConstant },
+          ],
+        },
+        {
+          id: "guide",
+          label: "Solution projection",
+          color: "#26344d",
+          dashed: true,
+          points: [
+            { x: m.solution, y: m.solvedY },
+            { x: m.solution, y: 0 },
+          ],
+        },
+      ]}
+      annotations={[
+        {
+          id: "intersection",
+          x: m.solution,
+          y: m.solvedY,
+          label: `(${format(m.solution)}, ${format(m.solvedY)})`,
+          color: "#7040e8",
+        },
+      ]}
+    />
+  );
 }

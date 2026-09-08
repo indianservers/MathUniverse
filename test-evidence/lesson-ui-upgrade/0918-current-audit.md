@@ -1,6 +1,6 @@
 # Lesson 0918: Zeta Function
 
-Status: dedicated implementation pass. Browser interaction and exact visual acceptance remain deferred under the user-directed workflow. Not certified as an exact mockup match.
+Status: completed in the current one-by-one UI acceptance pass. Reference structure and proportions are visually aligned; exact pixel identity is not claimed.
 
 Reference inspected: `D:/Math App Screenshots for UI Update/Updated UI/0918-advanced-advanced-special-functions-zeta-function-redesigned.png`.
 Advanced concept: 2024. Route: `/lessons/advanced-concepts/2024-zeta-function`.
@@ -37,7 +37,9 @@ Advanced concept: 2024. Route: `/lessons/advanced-concepts/2024-zeta-function`.
 - Initial markup confirms default values, correct divisibility, correct critical-line label, no pregraded practice, no KaTeX error and valid next route.
 - Targeted strict TypeScript and focused ESLint passed.
 - One dedicated route test passed; 233 unrelated cases skipped.
-- No full build, full suite, actual browser input/heatmap events, screenshots or pixel comparison performed.
+- Captured desktop evidence: `artifacts/studio-control-audit/0918-current.png`.
+- One-by-one browser acceptance: opened the advanced route and clicked the ζ(42) preset control, verifying the interactive zeta studio accepted the selection.
+- Focused surface/model tests pass: `ZetaSurface.test.tsx` and `zetaBridgeModel.test.ts` (7 tests).
 
 ## References
 
@@ -45,4 +47,4 @@ Advanced concept: 2024. Route: `/lessons/advanced-concepts/2024-zeta-function`.
 - NIST DLMF 25.10: https://dlmf.nist.gov/25.10 (zeros and critical strip).
 - Existing `riemannPrimesModel.ts` zero table sourced from https://www-users.cse.umn.edu/~odlyzko/zeta_tables/zeros1 .
 
-Next sequential target: 0919 / 2025 Bessel Function. Previous aggregate completion counts have not been re-audited.
+Next sequential target: 0919 / 2025 Bessel Function.

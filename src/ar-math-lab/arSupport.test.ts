@@ -3,7 +3,9 @@ import { detectARSupport } from "./arSupport";
 
 describe("detectARSupport", () => {
   function webGLCanvas() {
-    return { getContext: (name: string) => name === "webgl2" ? {} : null } as HTMLCanvasElement;
+    return {
+      getContext: (name: string) => (name === "webgl2" ? {} : null),
+    } as HTMLCanvasElement;
   }
 
   it("recommends AR when secure WebXR immersive-ar is supported", async () => {
@@ -12,7 +14,10 @@ describe("detectARSupport", () => {
       createCanvas: webGLCanvas,
       navigator: {
         xr: { isSessionSupported: async () => true },
-        mediaDevices: { getUserMedia: async () => ({} as MediaStream), enumerateDevices: async () => [{ kind: "videoinput" }] },
+        mediaDevices: {
+          getUserMedia: async () => ({}) as MediaStream,
+          enumerateDevices: async () => [{ kind: "videoinput" }],
+        },
       },
     });
 
@@ -27,7 +32,10 @@ describe("detectARSupport", () => {
       isSecureContext: true,
       createCanvas: webGLCanvas,
       navigator: {
-        mediaDevices: { getUserMedia: async () => ({} as MediaStream), enumerateDevices: async () => [{ kind: "videoinput" }] },
+        mediaDevices: {
+          getUserMedia: async () => ({}) as MediaStream,
+          enumerateDevices: async () => [{ kind: "videoinput" }],
+        },
       },
     });
 

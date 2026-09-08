@@ -1,6 +1,10 @@
 import { describe, expect, it } from "vitest";
 
-import { createCasNotebookRow, evaluateCasInput, evaluateCasNotebookRows } from "./casResult";
+import {
+  createCasNotebookRow,
+  evaluateCasInput,
+  evaluateCasNotebookRows,
+} from "./casResult";
 
 describe("casResult foundation", () => {
   it("executes implemented CAS commands through the existing symbolic engine", () => {
@@ -37,7 +41,9 @@ describe("casResult foundation", () => {
     const unknown = evaluateCasInput("HyperbolicCompass[triangle]");
 
     expect(unknown.status).toBe("error");
-    expect(`${unknown.summary} ${unknown.detail} ${unknown.warnings.join(" ")}`).not.toMatch(/not implemented|coming soon|placeholder/i);
+    expect(
+      `${unknown.summary} ${unknown.detail} ${unknown.warnings.join(" ")}`,
+    ).not.toMatch(/not implemented|coming soon|placeholder/i);
     expect(unknown.summary).toContain("Unknown CAS command");
   });
 
@@ -87,11 +93,17 @@ describe("casResult foundation", () => {
 
   it("executes Phase 4 linear algebra commands through the CAS notebook evaluator", () => {
     const determinant = evaluateCasInput("Determinant[[1,2],[3,4]]");
-    const matrixAdd = evaluateCasInput("MatrixAdd[[[1,2],[3,4]], [[5,6],[7,8]]]");
-    const matrixProduct = evaluateCasInput("MatrixMultiply[[[1,2],[3,4]], [[5,6],[7,8]]]");
+    const matrixAdd = evaluateCasInput(
+      "MatrixAdd[[[1,2],[3,4]], [[5,6],[7,8]]]",
+    );
+    const matrixProduct = evaluateCasInput(
+      "MatrixMultiply[[[1,2],[3,4]], [[5,6],[7,8]]]",
+    );
     const trace = evaluateCasInput("Trace[[1,2],[3,4]]");
     const identity = evaluateCasInput("IdentityMatrix[3]");
-    const characteristic = evaluateCasInput("CharacteristicPolynomial[[1,2],[3,4]]");
+    const characteristic = evaluateCasInput(
+      "CharacteristicPolynomial[[1,2],[3,4]]",
+    );
     const lu = evaluateCasInput("LUDecomposition[[4,3],[6,3]]");
     const qr = evaluateCasInput("QRDecomposition[[1,1],[1,0]]");
     const svd = evaluateCasInput("SVD[[3,0],[0,2]]");

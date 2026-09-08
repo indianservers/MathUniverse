@@ -1,6 +1,16 @@
 import { describe, expect, it } from "vitest";
 import { circle, line, point } from "../workspace/geometry2dKernel";
-import { applyAffine, composeAffine, constructCircumcircle, dilationMatrix, intersectGeometry, inverseAffine, reflectionAcrossLineMatrix, rotationMatrix, translationMatrix } from "./geometryPhase2";
+import {
+  applyAffine,
+  composeAffine,
+  constructCircumcircle,
+  dilationMatrix,
+  intersectGeometry,
+  inverseAffine,
+  reflectionAcrossLineMatrix,
+  rotationMatrix,
+  translationMatrix,
+} from "./geometryPhase2";
 
 describe("phase 2 geometry invariants", () => {
   it("constructs a circumcircle and exposes its construction identity", () => {
@@ -18,13 +28,29 @@ describe("phase 2 geometry invariants", () => {
   });
 
   it("distinguishes parallel, coincident, and multiple intersections", () => {
-    expect(intersectGeometry(line(point(0, 0), point(1, 0)), line(point(0, 1), point(1, 1))).status).toBe("NO_SOLUTION");
-    expect(intersectGeometry(line(point(0, 0), point(1, 0)), line(point(2, 0), point(3, 0))).status).toBe("INFINITE");
-    expect(intersectGeometry(line(point(-2, 0), point(2, 0)), circle(point(0, 0), 1)).status).toBe("MULTIPLE");
+    expect(
+      intersectGeometry(
+        line(point(0, 0), point(1, 0)),
+        line(point(0, 1), point(1, 1)),
+      ).status,
+    ).toBe("NO_SOLUTION");
+    expect(
+      intersectGeometry(
+        line(point(0, 0), point(1, 0)),
+        line(point(2, 0), point(3, 0)),
+      ).status,
+    ).toBe("INFINITE");
+    expect(
+      intersectGeometry(line(point(-2, 0), point(2, 0)), circle(point(0, 0), 1))
+        .status,
+    ).toBe("MULTIPLE");
   });
 
   it("composes and inverts affine transformations", () => {
-    const matrix = composeAffine(translationMatrix(3, -2), composeAffine(rotationMatrix(Math.PI / 2), dilationMatrix(2)));
+    const matrix = composeAffine(
+      translationMatrix(3, -2),
+      composeAffine(rotationMatrix(Math.PI / 2), dilationMatrix(2)),
+    );
     const transformed = applyAffine(matrix, point(1, 2));
     const inverse = inverseAffine(matrix);
     expect(inverse.status).toBe("EXACT");

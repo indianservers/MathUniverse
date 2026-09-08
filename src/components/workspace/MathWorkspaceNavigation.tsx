@@ -3,30 +3,73 @@ import { useEffect, useRef, useState } from "react";
 import type { CSSProperties, ReactNode } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { iconMap } from "../layout/navItems";
-import { findMathWorkspace, mathWorkspaceGroupLabels, mathWorkspaces, workspaceById, type MathWorkspaceDefinition, type MathWorkspaceGroup, type MathWorkspaceId, type MathWorkspacePayload } from "../../workspace/mathWorkspaces";
+import {
+  findMathWorkspace,
+  mathWorkspaceGroupLabels,
+  mathWorkspaces,
+  workspaceById,
+  type MathWorkspaceDefinition,
+  type MathWorkspaceGroup,
+  type MathWorkspaceId,
+  type MathWorkspacePayload,
+} from "../../workspace/mathWorkspaces";
 import "../../pages/WorkspaceHome.css";
 
-const workspaceGroups: MathWorkspaceGroup[] = ["calculate", "construct-graph", "explore"];
+const workspaceGroups: MathWorkspaceGroup[] = [
+  "calculate",
+  "construct-graph",
+  "explore",
+];
 
-export function WorkspaceSuiteBar({ workspace }: { workspace?: MathWorkspaceDefinition }) {
+export function WorkspaceSuiteBar({
+  workspace,
+}: {
+  workspace?: MathWorkspaceDefinition;
+}) {
   return (
     <header className="workspace-suite-bar" data-testid="workspace-suite-bar">
-      <Link to="/workspace" className="workspace-suite-brand" aria-label="Math Workspaces home">
-        <span className="workspace-suite-mark"><Grid3X3 /></span>
-        <span><strong>Math Workspaces</strong><small>Six connected studios</small></span>
+      <Link
+        to="/workspace"
+        className="workspace-suite-brand"
+        aria-label="Math Workspaces home"
+      >
+        <span className="workspace-suite-mark">
+          <Grid3X3 />
+        </span>
+        <span>
+          <strong>Math Workspaces</strong>
+          <small>Six connected studios</small>
+        </span>
       </Link>
       <nav aria-label="Workspace tools">
-        <Link to="/workspace" className={!workspace ? "is-active" : ""}><Home /><span>Home</span></Link>
+        <Link to="/workspace" className={!workspace ? "is-active" : ""}>
+          <Home />
+          <span>Home</span>
+        </Link>
         {mathWorkspaces.map((item) => {
           const Icon = iconMap[item.icon];
-          return <Link key={item.id} to={item.route} className={workspace?.id === item.id ? "is-active" : ""} aria-current={workspace?.id === item.id ? "page" : undefined}><Icon /><span>{item.name}</span></Link>;
+          return (
+            <Link
+              key={item.id}
+              to={item.route}
+              className={workspace?.id === item.id ? "is-active" : ""}
+              aria-current={workspace?.id === item.id ? "page" : undefined}
+            >
+              <Icon />
+              <span>{item.name}</span>
+            </Link>
+          );
         })}
       </nav>
     </header>
   );
 }
 
-export function MathWorkspaceChrome({ compact = false }: { compact?: boolean }) {
+export function MathWorkspaceChrome({
+  compact = false,
+}: {
+  compact?: boolean;
+}) {
   const location = useLocation();
   const current = findMathWorkspace(location.pathname);
   const [open, setOpen] = useState(false);
@@ -54,9 +97,17 @@ export function MathWorkspaceChrome({ compact = false }: { compact?: boolean }) 
   const CurrentIcon = iconMap[current.icon];
 
   return (
-    <div className={`math-workspace-chrome ${compact ? "math-workspace-chrome-compact" : ""}`} data-testid="math-workspace-chrome">
-      <nav className="math-workspace-breadcrumb" aria-label="Workspace breadcrumb">
-        <Link to="/" aria-label="Home"><Home className="h-3.5 w-3.5" /></Link>
+    <div
+      className={`math-workspace-chrome ${compact ? "math-workspace-chrome-compact" : ""}`}
+      data-testid="math-workspace-chrome"
+    >
+      <nav
+        className="math-workspace-breadcrumb"
+        aria-label="Workspace breadcrumb"
+      >
+        <Link to="/" aria-label="Home">
+          <Home className="h-3.5 w-3.5" />
+        </Link>
         <ChevronRight className="h-3 w-3" aria-hidden />
         <Link to="/?section=math-workspaces">Math Workspaces</Link>
         <ChevronRight className="h-3 w-3" aria-hidden />
@@ -72,35 +123,83 @@ export function MathWorkspaceChrome({ compact = false }: { compact?: boolean }) 
           aria-expanded={open}
           onClick={() => setOpen((value) => !value)}
         >
-          <span className="math-workspace-current-icon" style={{ "--workspace-accent": current.accent } as CSSProperties}>
+          <span
+            className="math-workspace-current-icon"
+            style={{ "--workspace-accent": current.accent } as CSSProperties}
+          >
             <CurrentIcon className="h-4 w-4" />
           </span>
           <span>{current.name}</span>
-          <ChevronDown className={`h-4 w-4 transition ${open ? "rotate-180" : ""}`} />
+          <ChevronDown
+            className={`h-4 w-4 transition ${open ? "rotate-180" : ""}`}
+          />
         </button>
 
         {open && (
-          <div className="math-workspace-switcher-menu" role="menu" aria-label="Switch math workspace">
-            <div className="math-workspace-switcher-title"><Grid3X3 className="h-4 w-4" />Math Workspaces</div>
+          <div
+            className="math-workspace-switcher-menu"
+            role="menu"
+            aria-label="Switch math workspace"
+          >
+            <div className="math-workspace-switcher-title">
+              <Grid3X3 className="h-4 w-4" />
+              Math Workspaces
+            </div>
             {workspaceGroups.map((group) => (
               <div key={group} className="math-workspace-switcher-group">
                 <p>{mathWorkspaceGroupLabels[group]}</p>
-                {mathWorkspaces.filter((workspace) => workspace.group === group).map((workspace) => {
-                  const Icon = iconMap[workspace.icon];
-                  const active = workspace.id === current.id;
-                  return active ? (
-                    <div key={workspace.id} className="math-workspace-switcher-item is-active" role="menuitem" aria-current="page">
-                      <span className="math-workspace-menu-icon" style={{ "--workspace-accent": workspace.accent } as CSSProperties}><Icon className="h-4 w-4" /></span>
-                      <span><strong>{workspace.name}</strong><small>{workspace.shortDescription}</small></span>
-                      <Check className="ml-auto h-4 w-4" />
-                    </div>
-                  ) : (
-                    <Link key={workspace.id} to={workspace.route} className="math-workspace-switcher-item" role="menuitem">
-                      <span className="math-workspace-menu-icon" style={{ "--workspace-accent": workspace.accent } as CSSProperties}><Icon className="h-4 w-4" /></span>
-                      <span><strong>{workspace.name}</strong><small>{workspace.shortDescription}</small></span>
-                    </Link>
-                  );
-                })}
+                {mathWorkspaces
+                  .filter((workspace) => workspace.group === group)
+                  .map((workspace) => {
+                    const Icon = iconMap[workspace.icon];
+                    const active = workspace.id === current.id;
+                    return active ? (
+                      <div
+                        key={workspace.id}
+                        className="math-workspace-switcher-item is-active"
+                        role="menuitem"
+                        aria-current="page"
+                      >
+                        <span
+                          className="math-workspace-menu-icon"
+                          style={
+                            {
+                              "--workspace-accent": workspace.accent,
+                            } as CSSProperties
+                          }
+                        >
+                          <Icon className="h-4 w-4" />
+                        </span>
+                        <span>
+                          <strong>{workspace.name}</strong>
+                          <small>{workspace.shortDescription}</small>
+                        </span>
+                        <Check className="ml-auto h-4 w-4" />
+                      </div>
+                    ) : (
+                      <Link
+                        key={workspace.id}
+                        to={workspace.route}
+                        className="math-workspace-switcher-item"
+                        role="menuitem"
+                      >
+                        <span
+                          className="math-workspace-menu-icon"
+                          style={
+                            {
+                              "--workspace-accent": workspace.accent,
+                            } as CSSProperties
+                          }
+                        >
+                          <Icon className="h-4 w-4" />
+                        </span>
+                        <span>
+                          <strong>{workspace.name}</strong>
+                          <small>{workspace.shortDescription}</small>
+                        </span>
+                      </Link>
+                    );
+                  })}
               </div>
             ))}
           </div>
@@ -112,26 +211,52 @@ export function MathWorkspaceChrome({ compact = false }: { compact?: boolean }) 
 
 export function MathWorkspacesHomeSection() {
   return (
-    <section id="math-workspaces" className="math-workspaces-home" aria-labelledby="math-workspaces-title">
+    <section
+      id="math-workspaces"
+      className="math-workspaces-home"
+      aria-labelledby="math-workspaces-title"
+    >
       <div className="math-workspaces-home-heading">
         <div>
-          <p><Grid3X3 className="h-4 w-4" />Connected studios</p>
+          <p>
+            <Grid3X3 className="h-4 w-4" />
+            Connected studios
+          </p>
           <h2 id="math-workspaces-title">Math Workspaces</h2>
-          <span>2D Geometry, 3D Geometry, 2D Graph, 3D Graph, CAS, and Solver are grouped in connected interactive studios.</span>
+          <span>
+            2D Geometry, 3D Geometry, 2D Graph, 3D Graph, CAS, and Solver are
+            grouped in connected interactive studios.
+          </span>
         </div>
         <span className="math-workspaces-suite-count">6 workspaces</span>
       </div>
       <div className="math-workspaces-card-grid">
         {mathWorkspaces.map((workspace) => {
           return (
-            <Link key={workspace.id} to={workspace.route} className="math-workspace-card" style={{ "--workspace-accent": workspace.accent } as CSSProperties}>
-              <span className="math-workspace-card-formula" aria-hidden="true">{workspace.formula}</span>
-              <span className="math-workspace-card-icon"><img src={workspace.artwork} alt="" /></span>
+            <Link
+              key={workspace.id}
+              to={workspace.route}
+              className="math-workspace-card"
+              style={
+                { "--workspace-accent": workspace.accent } as CSSProperties
+              }
+            >
+              <span className="math-workspace-card-formula" aria-hidden="true">
+                {workspace.formula}
+              </span>
+              <span className="math-workspace-card-icon">
+                <img src={workspace.artwork} alt="" />
+              </span>
               <span className="math-workspace-card-copy">
-                <span className="math-workspace-card-title"><strong>{workspace.name}</strong><em>{workspace.badge}</em></span>
+                <span className="math-workspace-card-title">
+                  <strong>{workspace.name}</strong>
+                  <em>{workspace.badge}</em>
+                </span>
                 <small>{workspace.description}</small>
               </span>
-              <span className="math-workspace-card-action">Open Workspace <ChevronRight className="h-4 w-4" /></span>
+              <span className="math-workspace-card-action">
+                Open Workspace <ChevronRight className="h-4 w-4" />
+              </span>
             </Link>
           );
         })}
@@ -140,7 +265,12 @@ export function MathWorkspacesHomeSection() {
   );
 }
 
-export function ContextualWorkspaceLink({ target, payload, children, className = "" }: {
+export function ContextualWorkspaceLink({
+  target,
+  payload,
+  children,
+  className = "",
+}: {
   target: MathWorkspaceId;
   payload: MathWorkspacePayload;
   children: ReactNode;
@@ -148,5 +278,13 @@ export function ContextualWorkspaceLink({ target, payload, children, className =
 }) {
   const workspace = workspaceById(target);
   if (!workspace) return null;
-  return <Link to={workspace.route} state={{ mathWorkspacePayload: payload }} className={className}>{children}</Link>;
+  return (
+    <Link
+      to={workspace.route}
+      state={{ mathWorkspacePayload: payload }}
+      className={className}
+    >
+      {children}
+    </Link>
+  );
 }

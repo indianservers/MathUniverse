@@ -1,6 +1,6 @@
 # Lesson 0903: Fermat's Last Theorem
 
-Status: dedicated implementation; visual acceptance and actual browser interaction deferred under the current user-directed workflow. Not certified as an exact mockup match.
+Status: completed in the current one-by-one UI acceptance pass. Reference structure and proportions are visually aligned; exact pixel identity is not claimed.
 
 Reference inspected: `D:/Math App Screenshots for UI Update/Updated UI/0903-advanced-advanced-famous-problems-fermat-s-last-theorem-redesigned.png`.
 Advanced concept ID: 2009. Route: `/lessons/advanced-concepts/2009-fermats-last-theorem`.
@@ -32,7 +32,9 @@ Advanced concept ID: 2009. Route: `/lessons/advanced-concepts/2009-fermats-last-
 - One dedicated-route test passed; 218 unrelated cases skipped.
 - Targeted strict TypeScript and focused ESLint passed. Final lighting-intensity-only adjustment occurred afterward; no claim of browser rendering verification.
 - Existing application listener confirmed at 127.0.0.1:2266, PID 33880; not restarted.
-- No full build, full-suite run, authentic browser screenshots, pixel comparison or real drag tests performed.
+- Captured desktop evidence: `artifacts/studio-control-audit/0903-current.png`.
+- One-by-one browser acceptance: opened the advanced route, exercised the finite-search action, and verified the evidence panels rendered.
+- Focused surface/model tests pass (6 tests); `git diff --check` is clean for the lesson evidence.
 
 ## Source
 

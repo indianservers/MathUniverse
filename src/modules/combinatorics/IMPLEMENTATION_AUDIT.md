@@ -2,17 +2,17 @@
 
 ## Existing Coverage
 
-| Topic | Audit Status | Existing Location | Action |
-| --- | --- | --- | --- |
-| Counting Principles | Partial | `NCERTConceptPage` permutation tree | Added canonical counting tree engine and step-by-step product-rule visualization. |
-| Permutations | Partial | NCERT permutation tree and advanced permutation-cycle lab | Added simulator with repetition toggle, swaps, constraints, and enumeration. |
-| Combinations | Partial | NCERT nCr comparison text | Added subset generator and dynamic selection visualization. |
-| Repetition Cases | Missing | No canonical implementation found | Added formulas and permutation/combination repetition modes. |
-| Constrained Repetitions | Missing | No implementation found | Added bounded stars-and-bars dynamic programming counter. |
-| Binomial Coefficients | Partial | Pascal triangle NCERT visual | Added scalable Pascal explorer and coefficient highlighting. |
-| Binomial Theorem | Partial | NCERT binomial visual | Added term-by-term expansion with coefficient animation and selected-term explanation. |
-| Multinomial Theorem | Missing | No implementation found | Added multinomial term generation and symbolic rendering. |
-| Principle of Inclusion and Exclusion | Missing | No implementation found | Added 3-set Venn calculation simulator and formula breakdown. |
+| Topic                                | Audit Status | Existing Location                                         | Action                                                                                 |
+| ------------------------------------ | ------------ | --------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| Counting Principles                  | Partial      | `NCERTConceptPage` permutation tree                       | Added canonical counting tree engine and step-by-step product-rule visualization.      |
+| Permutations                         | Partial      | NCERT permutation tree and advanced permutation-cycle lab | Added simulator with repetition toggle, swaps, constraints, and enumeration.           |
+| Combinations                         | Partial      | NCERT nCr comparison text                                 | Added subset generator and dynamic selection visualization.                            |
+| Repetition Cases                     | Missing      | No canonical implementation found                         | Added formulas and permutation/combination repetition modes.                           |
+| Constrained Repetitions              | Missing      | No implementation found                                   | Added bounded stars-and-bars dynamic programming counter.                              |
+| Binomial Coefficients                | Partial      | Pascal triangle NCERT visual                              | Added scalable Pascal explorer and coefficient highlighting.                           |
+| Binomial Theorem                     | Partial      | NCERT binomial visual                                     | Added term-by-term expansion with coefficient animation and selected-term explanation. |
+| Multinomial Theorem                  | Missing      | No implementation found                                   | Added multinomial term generation and symbolic rendering.                              |
+| Principle of Inclusion and Exclusion | Missing      | No implementation found                                   | Added 3-set Venn calculation simulator and formula breakdown.                          |
 
 ## Algorithms
 

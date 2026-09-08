@@ -1,5 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { cumulativeDensity, cumulativeProbability, cumulativeWorkedValues } from "./cumulativeDistributionLessonModel";
+import {
+  cumulativeDensity,
+  cumulativeProbability,
+  cumulativeWorkedValues,
+} from "./cumulativeDistributionLessonModel";
 
 describe("cumulative distribution lesson model", () => {
   it("evaluates the target continuous PDF and CDF", () => {

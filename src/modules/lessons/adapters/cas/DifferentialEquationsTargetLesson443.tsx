@@ -438,7 +438,9 @@ function OdeGraph({
             y2={sy(0) + 5}
             stroke="white"
           />
-          <text x={sx(value)} y={sy(0) + 22}>{value}</text>
+          <text x={sx(value)} y={sy(0) + 22}>
+            {value}
+          </text>
         </g>
       ))}
       {[-3, -2, -1, 1, 2, 3].map((value) => (
@@ -450,12 +452,20 @@ function OdeGraph({
             y2={sy(value)}
             stroke="white"
           />
-          <text x={sx(0) - 10} y={sy(value) + 4}>{value}</text>
+          <text x={sx(0) - 10} y={sy(value) + 4}>
+            {value}
+          </text>
         </g>
       ))}
-      <text x="780" y={sy(0) - 11} fill="white" fontSize="15" fontWeight="700">x</text>
-      <text x={sx(0) - 18} y="20" fill="white" fontSize="15" fontWeight="700">y</text>
-      <text x={sx(0) + 9} y={sy(0) + 22} fill="white" fontSize="12">0</text>
+      <text x="780" y={sy(0) - 11} fill="white" fontSize="15" fontWeight="700">
+        x
+      </text>
+      <text x={sx(0) - 18} y="20" fill="white" fontSize="15" fontWeight="700">
+        y
+      </text>
+      <text x={sx(0) + 9} y={sy(0) + 22} fill="white" fontSize="12">
+        0
+      </text>
       {[-0.7, 0.7].map((o) => (
         <path key={o} d={path(o)} fill="none" stroke="#69c8e9" opacity=".3" />
       ))}
@@ -466,19 +476,48 @@ function OdeGraph({
       ))}
       <g transform="translate(24 24)">
         <rect width="102" height="31" rx="8" fill="#12324e" stroke="#2c607c" />
-        <line x1="12" y1="15" x2="31" y2="15" stroke="#63cdf3" strokeWidth="2" />
-        <text x="38" y="20" fill="white" fontSize="13" fontWeight="700">slope field</text>
+        <line
+          x1="12"
+          y1="15"
+          x2="31"
+          y2="15"
+          stroke="#63cdf3"
+          strokeWidth="2"
+        />
+        <text x="38" y="20" fill="white" fontSize="13" fontWeight="700">
+          slope field
+        </text>
       </g>
       <g transform="translate(647 70)">
         <rect width="122" height="34" rx="9" fill="#214f2c" stroke="#59df60" />
-        <text x="15" y="22" fill="white" fontSize="13" fontWeight="700">exact solution</text>
-        <path d="M8 37L-36 75" stroke="#59df60" strokeWidth="2" markerEnd="url(#de443-arrow-green)" />
+        <text x="15" y="22" fill="white" fontSize="13" fontWeight="700">
+          exact solution
+        </text>
+        <path
+          d="M8 37L-36 75"
+          stroke="#59df60"
+          strokeWidth="2"
+          markerEnd="url(#de443-arrow-green)"
+        />
       </g>
       {euler.length > 2 && (
         <g transform="translate(529 409)">
-          <rect width="103" height="34" rx="9" fill="#684711" stroke="#ffad19" />
-          <text x="16" y="22" fill="white" fontSize="13" fontWeight="700">Euler step</text>
-          <path d="M108 12L161 -15" stroke="#ffad19" strokeWidth="2" markerEnd="url(#de443-arrow-orange)" />
+          <rect
+            width="103"
+            height="34"
+            rx="9"
+            fill="#684711"
+            stroke="#ffad19"
+          />
+          <text x="16" y="22" fill="white" fontSize="13" fontWeight="700">
+            Euler step
+          </text>
+          <path
+            d="M108 12L161 -15"
+            stroke="#ffad19"
+            strokeWidth="2"
+            markerEnd="url(#de443-arrow-orange)"
+          />
         </g>
       )}
       <circle
@@ -495,8 +534,12 @@ function OdeGraph({
       />
       <g transform={`translate(${sx(initial.x) - 170} ${sy(initial.y) - 62})`}>
         <rect width="132" height="45" rx="9" fill="#123d59" stroke="#29b7e5" />
-        <text x="12" y="19" fill="white" fontSize="12" fontWeight="700">initial condition</text>
-        <text x="12" y="36" fill="#d9f7ff" fontSize="12">({initial.x}, {initial.y})</text>
+        <text x="12" y="19" fill="white" fontSize="12" fontWeight="700">
+          initial condition
+        </text>
+        <text x="12" y="36" fill="#d9f7ff" fontSize="12">
+          ({initial.x}, {initial.y})
+        </text>
         <path d="M132 31L165 52" stroke="#29b7e5" strokeWidth="2" />
       </g>
     </svg>

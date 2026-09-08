@@ -1,5 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { mathLabEngineFamilies, mathLabEngineReport, mathLabTools } from "./mathLabTools";
+import {
+  mathLabEngineFamilies,
+  mathLabEngineReport,
+  mathLabTools,
+} from "./mathLabTools";
 
 describe("Math Lab engine catalog", () => {
   it("declares real options and validation checks for every tool", () => {
@@ -16,7 +20,13 @@ describe("Math Lab engine catalog", () => {
     expect(mathLabEngineReport.tools).toBe(mathLabTools.length);
     expect(mathLabEngineReport.validated).toBe(mathLabTools.length);
     expect(mathLabEngineReport.families).toBe(mathLabEngineFamilies.length);
-    expect(mathLabEngineReport.options).toBeGreaterThan(mathLabEngineReport.families);
-    expect(mathLabEngineFamilies.every((family) => family.tools > 0 && family.options > 0)).toBe(true);
+    expect(mathLabEngineReport.options).toBeGreaterThan(
+      mathLabEngineReport.families,
+    );
+    expect(
+      mathLabEngineFamilies.every(
+        (family) => family.tools > 0 && family.options > 0,
+      ),
+    ).toBe(true);
   });
 });

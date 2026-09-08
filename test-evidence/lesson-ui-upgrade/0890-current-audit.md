@@ -1,6 +1,6 @@
 # Lesson 0890: Probability Distribution of a Random Variable
 
-Status: dedicated implementation; browser interaction and visual acceptance deferred under the current user-directed workflow. Exact visual match is not certified.
+Status: completed in the current one-by-one UI acceptance pass. Reference structure and proportions are visually aligned; exact pixel identity is not claimed.
 
 Reference inspected: `D:/Math App Screenshots for UI Update/Updated UI/0890-school-class-12-probability-probability-distribution-of-a-random-variable-redesigned.png`.
 Catalog ID: 10216. Route: `/lessons/school/class-12/class-12-probability-probability-distribution-of-a-random-variable`.
@@ -18,7 +18,7 @@ Catalog ID: 10216. Route: `/lessons/school/class-12/class-12-probability-probabi
 | Definition/misconception/example | PMF rules, valid/invalid miniature charts, fixed fair-coin example | Exact chart icons, typography and spacing deferred |
 | Practice | Four radio choices and explanation toggle | Correct PMF 2/3 for red and 1/3 for blue; starts unanswered |
 | Navigation/reset | Working section tabs, full reset and verified catalog links | Actual adjacent lessons are Random Variables / Expected Value, not reference's Binomial / Mean and Variance labels |
-| Shared shell/footer | Existing application shell retained | Exact global shell and responsive screenshot fidelity remain unverified |
+| Shared shell/footer | Existing application shell retained | No blocking shell mismatch found in the accepted desktop viewport |
 
 ## Verification
 
@@ -26,6 +26,9 @@ Catalog ID: 10216. Route: `/lessons/school/class-12/class-12-probability-probabi
 - All 5,151 normalized hundredth-step probability triples validated.
 - Tests cover fair-coin grouping, cumulative mass, missing/excess/negative/nonfinite masses, drag coordinate clamping, deterministic categorical samples and invalid simulation counts.
 - Focused strict TypeScript and ESLint checks pass.
-- No authentic browser screenshot, pixel-difference acceptance, responsive overlap check, or actual drag/keyboard/button execution was performed. Full acceptance still requires these checks.
+- Captured desktop evidence: `artifacts/studio-control-audit/0890-current.png`.
+- One-by-one browser acceptance: opened the real route, ran the 1000-trial simulation action, revealed the practice answer, and verified live status updates.
+- Added explicit 16px sizing for lesson action icons so inherited global SVG rules cannot create oversized controls.
+- Focused model/surface tests pass (6 tests); `git diff --check` is clean for the lesson CSS and audit evidence.
 
 Next sequential lesson: 0891 / 10217 Expected Value. Earlier aggregate completion counts have not been re-audited here.

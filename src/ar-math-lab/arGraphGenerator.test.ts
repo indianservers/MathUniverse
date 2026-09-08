@@ -1,5 +1,12 @@
 import { describe, expect, it } from "vitest";
-import { defaultGraphSettings, generateARGraphObject, generateExplicitSurfaceMesh, generateParametricCurve, generateParametricSurfaceMesh, parameterSliderSpecs } from "./arGraphGenerator";
+import {
+  defaultGraphSettings,
+  generateARGraphObject,
+  generateExplicitSurfaceMesh,
+  generateParametricCurve,
+  generateParametricSurfaceMesh,
+  parameterSliderSpecs,
+} from "./arGraphGenerator";
 
 describe("AR Math Lab graph generator", () => {
   it("generates an explicit surface mesh without using unsafe evaluation", () => {
@@ -52,7 +59,11 @@ describe("AR Math Lab graph generator", () => {
   });
 
   it("generates recognized implicit shapes through predefined renderers", () => {
-    const graph = generateARGraphObject("x^2 + y^2 + z^2 = 9", defaultGraphSettings, {});
+    const graph = generateARGraphObject(
+      "x^2 + y^2 + z^2 = 9",
+      defaultGraphSettings,
+      {},
+    );
 
     expect(graph.type).toBe("recognized_implicit_shape");
     expect(graph.classification.suggestedRenderer).toBe("predefined_sphere");
@@ -68,7 +79,9 @@ describe("AR Math Lab graph generator", () => {
   });
 
   it("rejects unsupported implicit equations with a helpful error", () => {
-    expect(() => generateARGraphObject("x^2 + y^2 + z = 4", defaultGraphSettings, {})).toThrow(/not yet supported/i);
+    expect(() =>
+      generateARGraphObject("x^2 + y^2 + z = 4", defaultGraphSettings, {}),
+    ).toThrow(/not yet supported/i);
   });
 
   it.each([
@@ -81,14 +94,16 @@ describe("AR Math Lab graph generator", () => {
     "process.env",
     "x + + y",
   ])("rejects dangerous or invalid expression %s", (expression) => {
-    expect(() => generateExplicitSurfaceMesh({
-      expression,
-      xRange: [-1, 1],
-      yRange: [-1, 1],
-      resolutionX: 8,
-      resolutionY: 8,
-      parameters: {},
-      zScale: "auto",
-    })).toThrow();
+    expect(() =>
+      generateExplicitSurfaceMesh({
+        expression,
+        xRange: [-1, 1],
+        yRange: [-1, 1],
+        resolutionX: 8,
+        resolutionY: 8,
+        parameters: {},
+        zScale: "auto",
+      }),
+    ).toThrow();
   });
 });

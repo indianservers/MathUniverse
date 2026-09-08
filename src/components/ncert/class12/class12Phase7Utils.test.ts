@@ -1,18 +1,58 @@
 import { describe, expect, it } from "vitest";
-import { classifyContinuityCase, derivativeRuleStep } from "./class12CalculusUtils";
-import { cofactor3, cramer2, det2, det3, inverse2, multiplyMatrixVector2 } from "./class12DeterminantUtils";
-import { applyInitialConditionForGrowth, classifyDifferentialEquation, differentialEquationPreset } from "./class12DifferentialEquationsUtils";
+import {
+  classifyContinuityCase,
+  derivativeRuleStep,
+} from "./class12CalculusUtils";
+import {
+  cofactor3,
+  cramer2,
+  det2,
+  det3,
+  inverse2,
+  multiplyMatrixVector2,
+} from "./class12DeterminantUtils";
+import {
+  applyInitialConditionForGrowth,
+  classifyDifferentialEquation,
+  differentialEquationPreset,
+} from "./class12DifferentialEquationsUtils";
 import { integrationPresetStepper } from "./class12IntegrationUtils";
 import { feasibleCorners, optimizeCorners } from "./class12LppUtils";
 import { bayesPosterior } from "./class12ProbabilityUtils";
-import { composeRelations, functionClassifier, relationPropertyReport } from "./class12RelationsUtils";
-import { angleBetween, cross, directionCosines, dot, projectionLength, shortestDistanceSkew } from "./class12Vectors3DUtils";
+import {
+  composeRelations,
+  functionClassifier,
+  relationPropertyReport,
+} from "./class12RelationsUtils";
+import {
+  angleBetween,
+  cross,
+  directionCosines,
+  dot,
+  projectionLength,
+  shortestDistanceSkew,
+} from "./class12Vectors3DUtils";
 
 describe("Class 12 Phase 7 utilities", () => {
   it("checks relation properties, function classification, and composition", () => {
-    const equivalence = relationPropertyReport(["A", "B"], [["A", "A"], ["B", "B"], ["A", "B"], ["B", "A"]]);
+    const equivalence = relationPropertyReport(
+      ["A", "B"],
+      [
+        ["A", "A"],
+        ["B", "B"],
+        ["A", "B"],
+        ["B", "A"],
+      ],
+    );
     expect(equivalence.equivalence).toBe(true);
-    const classifier = functionClassifier(["A", "B"], ["1", "2"], [["A", "1"], ["B", "1"]]);
+    const classifier = functionClassifier(
+      ["A", "B"],
+      ["1", "2"],
+      [
+        ["A", "1"],
+        ["B", "1"],
+      ],
+    );
     expect(classifier.isFunction).toBe(true);
     expect(classifier.oneOne).toBe(false);
     expect(classifier.onto).toBe(false);
@@ -20,21 +60,61 @@ describe("Class 12 Phase 7 utilities", () => {
   });
 
   it("computes determinants, cofactors, inverse, and Cramer verification", () => {
-    expect(det2([[2, 3], [1, 4]])).toBe(5);
-    expect(det3([[1, 2, 3], [0, 1, 4], [5, 6, 0]])).toBe(1);
-    expect(cofactor3([[1, 2, 3], [0, 1, 4], [5, 6, 0]], 0, 1)).toBe(20);
-    const inverse = inverse2([[2, 1], [1, 1]]);
+    expect(
+      det2([
+        [2, 3],
+        [1, 4],
+      ]),
+    ).toBe(5);
+    expect(
+      det3([
+        [1, 2, 3],
+        [0, 1, 4],
+        [5, 6, 0],
+      ]),
+    ).toBe(1);
+    expect(
+      cofactor3(
+        [
+          [1, 2, 3],
+          [0, 1, 4],
+          [5, 6, 0],
+        ],
+        0,
+        1,
+      ),
+    ).toBe(20);
+    const inverse = inverse2([
+      [2, 1],
+      [1, 1],
+    ]);
     expect(inverse?.[0][0]).toBeCloseTo(1);
-    const solution = cramer2([[2, 1], [1, 1]], [5, 3]);
+    const solution = cramer2(
+      [
+        [2, 1],
+        [1, 1],
+      ],
+      [5, 3],
+    );
     expect(solution?.x).toBeCloseTo(2);
     expect(solution?.y).toBeCloseTo(1);
-    expect(multiplyMatrixVector2([[2, 1], [1, 1]], [2, 1])).toEqual([5, 3]);
+    expect(
+      multiplyMatrixVector2(
+        [
+          [2, 1],
+          [1, 1],
+        ],
+        [2, 1],
+      ),
+    ).toEqual([5, 3]);
   });
 
   it("classifies continuity and returns derivative-rule steppers", () => {
     expect(classifyContinuityCase("corner").continuous).toBe(true);
     expect(classifyContinuityCase("corner").differentiable).toBe(false);
-    expect(derivativeRuleStep("chain")).toContain("Multiply by the derivative of the inner function.");
+    expect(derivativeRuleStep("chain")).toContain(
+      "Multiply by the derivative of the inner function.",
+    );
   });
 
   it("returns supported integration presets without acting as a full CAS", () => {
@@ -44,7 +124,10 @@ describe("Class 12 Phase 7 utilities", () => {
   });
 
   it("classifies and verifies supported differential equations", () => {
-    expect(classifyDifferentialEquation("dy/dx + y = e^x")).toEqual({ order: 1, degree: 1 });
+    expect(classifyDifferentialEquation("dy/dx + y = e^x")).toEqual({
+      order: 1,
+      degree: 1,
+    });
     expect(differentialEquationPreset("growth").solution).toBe("y = C e^(kx)");
     expect(applyInitialConditionForGrowth(2, 0, 3).c).toBe(3);
   });
@@ -55,7 +138,9 @@ describe("Class 12 Phase 7 utilities", () => {
     expect(angleBetween([1, 0, 0], [0, 1, 0])).toBeCloseTo(Math.PI / 2);
     expect(projectionLength([3, 4, 0], [1, 0, 0])).toBe(3);
     expect(directionCosines([3, 0, 4])).toEqual([0.6, 0, 0.8]);
-    expect(shortestDistanceSkew([0, 0, 0], [1, 0, 0], [0, 1, 1], [0, 1, 0])).toBe(1);
+    expect(
+      shortestDistanceSkew([0, 0, 0], [1, 0, 0], [0, 1, 1], [0, 1, 0]),
+    ).toBe(1);
   });
 
   it("computes Bayes posterior and LPP corner optimization", () => {

@@ -28,20 +28,31 @@ describe("NCERT practice bank", () => {
 
   it("meets Phase 11 minimum question counts", () => {
     for (const conceptId of phase11Grade7PriorityConceptIds) {
-      expect(getNCERTPracticeItems(conceptId).length, conceptId).toBeGreaterThanOrEqual(8);
+      expect(
+        getNCERTPracticeItems(conceptId).length,
+        conceptId,
+      ).toBeGreaterThanOrEqual(8);
     }
     for (const conceptId of phase11Class10PriorityConceptIds) {
-      expect(getNCERTPracticeItems(conceptId).length, conceptId).toBeGreaterThanOrEqual(8);
+      expect(
+        getNCERTPracticeItems(conceptId).length,
+        conceptId,
+      ).toBeGreaterThanOrEqual(8);
     }
     for (const conceptId of phase11Class12PriorityConceptIds) {
-      expect(getNCERTPracticeItems(conceptId).length, conceptId).toBeGreaterThanOrEqual(5);
+      expect(
+        getNCERTPracticeItems(conceptId).length,
+        conceptId,
+      ).toBeGreaterThanOrEqual(5);
     }
   });
 
   it("checks every stored answer with its own answer key", () => {
     for (const item of ncertPracticeBank) {
       const answer = Array.isArray(item.answer) ? item.answer[0] : item.answer;
-      expect(checkNCERTPracticeAnswer(String(answer), item).ok, item.id).toBe(true);
+      expect(checkNCERTPracticeAnswer(String(answer), item).ok, item.id).toBe(
+        true,
+      );
     }
   });
 });

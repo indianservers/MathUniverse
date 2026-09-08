@@ -1,6 +1,10 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
-import { modularTable, rebuildOperationTable, type OperationTable } from "./algebraicStructuresEngine";
+import {
+  modularTable,
+  rebuildOperationTable,
+  type OperationTable,
+} from "./algebraicStructuresEngine";
 
 export type AlgebraicStructuresMode = "educational" | "quiz";
 
@@ -23,7 +27,9 @@ export type AlgebraicStructuresState = {
   setGate: (gate: "AND" | "OR" | "NOT" | "XOR") => void;
   setInputA: (value: boolean) => void;
   setInputB: (value: boolean) => void;
-  setLaw: (law: "de-morgan" | "distributive" | "associative" | "complement") => void;
+  setLaw: (
+    law: "de-morgan" | "distributive" | "associative" | "complement",
+  ) => void;
   setMode: (mode: AlgebraicStructuresMode) => void;
 };
 
@@ -42,7 +48,11 @@ export const useAlgebraicStructuresStore = create<AlgebraicStructuresState>()(
       inputB: false,
       law: "de-morgan",
       mode: "educational",
-      setElements: (elements) => set((state) => ({ elements, table: rebuildOperationTable(elements, state.table) })),
+      setElements: (elements) =>
+        set((state) => ({
+          elements,
+          table: rebuildOperationTable(elements, state.table),
+        })),
       setTable: (table) => set({ table }),
       useModularTable: (size, mode) => set(modularTable(size, mode)),
       setSelected: (selectedA, selectedB) => set({ selectedA, selectedB }),
@@ -53,6 +63,9 @@ export const useAlgebraicStructuresStore = create<AlgebraicStructuresState>()(
       setLaw: (law) => set({ law }),
       setMode: (mode) => set({ mode }),
     }),
-    { name: "math-universe-algebraic-structures-session", storage: createJSONStorage(() => localStorage) }
-  )
+    {
+      name: "math-universe-algebraic-structures-session",
+      storage: createJSONStorage(() => localStorage),
+    },
+  ),
 );

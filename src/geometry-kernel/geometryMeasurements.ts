@@ -27,11 +27,14 @@ export function polygonArea2d(points: KernelPoint[]) {
     points.reduce((sum, point, index) => {
       const next = points[(index + 1) % points.length];
       return sum + point.x * next.y - next.x * point.y;
-    }, 0) / 2
+    }, 0) / 2,
   );
 }
 
-export function classifyTriangle(points: [KernelPoint, KernelPoint, KernelPoint], unitScale = 40): TriangleClassification {
+export function classifyTriangle(
+  points: [KernelPoint, KernelPoint, KernelPoint],
+  unitScale = 40,
+): TriangleClassification {
   const rawSides = [
     distance2d(points[0], points[1]) / unitScale,
     distance2d(points[1], points[2]) / unitScale,
@@ -40,9 +43,19 @@ export function classifyTriangle(points: [KernelPoint, KernelPoint, KernelPoint]
 
   const [a, b, c] = rawSides;
   const eps = 0.04;
-  const sideType = Math.abs(a - c) < eps ? "equilateral" : Math.abs(a - b) < eps || Math.abs(b - c) < eps ? "isosceles" : "scalene";
+  const sideType =
+    Math.abs(a - c) < eps
+      ? "equilateral"
+      : Math.abs(a - b) < eps || Math.abs(b - c) < eps
+        ? "isosceles"
+        : "scalene";
   const squareBalance = a * a + b * b - c * c;
-  const angleType = Math.abs(squareBalance) < 0.08 ? "right" : squareBalance > 0 ? "acute" : "obtuse";
+  const angleType =
+    Math.abs(squareBalance) < 0.08
+      ? "right"
+      : squareBalance > 0
+        ? "acute"
+        : "obtuse";
 
   return {
     sideType,
@@ -53,13 +66,21 @@ export function classifyTriangle(points: [KernelPoint, KernelPoint, KernelPoint]
   };
 }
 
-export function appendLocusPoint(trace: LocusTracePoint[], point: KernelPoint, limit = 240) {
+export function appendLocusPoint(
+  trace: LocusTracePoint[],
+  point: KernelPoint,
+  limit = 240,
+) {
   const last = trace[trace.length - 1];
   if (last && Math.hypot(last.x - point.x, last.y - point.y) < 2) return trace;
   return [...trace, { x: point.x, y: point.y }].slice(-limit);
 }
 
 export function locusPath(points: LocusTracePoint[]) {
-  return points.map((point, index) => `${index === 0 ? "M" : "L"}${point.x.toFixed(2)},${point.y.toFixed(2)}`).join(" ");
+  return points
+    .map(
+      (point, index) =>
+        `${index === 0 ? "M" : "L"}${point.x.toFixed(2)},${point.y.toFixed(2)}`,
+    )
+    .join(" ");
 }
-

@@ -18,7 +18,9 @@ export type ARSupportEnvironment = {
   createCanvas?: () => HTMLCanvasElement | null;
 };
 
-export async function detectARSupport(environment: ARSupportEnvironment = defaultARSupportEnvironment()): Promise<ARSupportStatus> {
+export async function detectARSupport(
+  environment: ARSupportEnvironment = defaultARSupportEnvironment(),
+): Promise<ARSupportStatus> {
   const xr = environment.navigator?.xr;
   const mediaDevices = environment.navigator?.mediaDevices;
   const isSecureContext = Boolean(environment.isSecureContext);
@@ -26,9 +28,25 @@ export async function detectARSupport(environment: ARSupportEnvironment = defaul
   const immersiveARSupported = Boolean(await detectImmersiveAR(xr));
   const cameraAvailable = await detectCamera(mediaDevices);
   const webGLAvailable = detectWebGL(environment.createCanvas);
-  const recommendedMode = recommendMode({ isSecureContext, immersiveARSupported, cameraAvailable, webGLAvailable });
-  const warnings = buildSupportWarnings({ isSecureContext, webXRAvailable, immersiveARSupported, cameraAvailable, webGLAvailable });
-  const message = buildSupportMessage({ immersiveARSupported, cameraAvailable, webGLAvailable, isSecureContext });
+  const recommendedMode = recommendMode({
+    isSecureContext,
+    immersiveARSupported,
+    cameraAvailable,
+    webGLAvailable,
+  });
+  const warnings = buildSupportWarnings({
+    isSecureContext,
+    webXRAvailable,
+    immersiveARSupported,
+    cameraAvailable,
+    webGLAvailable,
+  });
+  const message = buildSupportMessage({
+    immersiveARSupported,
+    cameraAvailable,
+    webGLAvailable,
+    isSecureContext,
+  });
 
   return {
     webXRAvailable,
@@ -41,7 +59,12 @@ export async function detectARSupport(environment: ARSupportEnvironment = defaul
     message,
     hasNavigatorXR: webXRAvailable,
     secureContext: isSecureContext,
-    notes: [...buildSupportNotes({ webXRAvailable }), ...warnings, message, `Recommended mode: ${recommendedMode}.`],
+    notes: [
+      ...buildSupportNotes({ webXRAvailable }),
+      ...warnings,
+      message,
+      `Recommended mode: ${recommendedMode}.`,
+    ],
   };
 }
 
@@ -52,7 +75,8 @@ function defaultARSupportEnvironment(): ARSupportEnvironment {
 
   return {
     navigator: navigator as Navigator & ARSupportEnvironment["navigator"],
-    isSecureContext: typeof window === "undefined" ? false : window.isSecureContext,
+    isSecureContext:
+      typeof window === "undefined" ? false : window.isSecureContext,
     createCanvas: () => document.createElement("canvas"),
   };
 }
@@ -71,7 +95,10 @@ async function detectCamera(mediaDevices: MediaDevicesLike | undefined) {
   if (!mediaDevices.enumerateDevices) return true;
   try {
     const devices = await mediaDevices.enumerateDevices();
-    return devices.length === 0 || devices.some((device) => device.kind === "videoinput");
+    return (
+      devices.length === 0 ||
+      devices.some((device) => device.kind === "videoinput")
+    );
   } catch {
     return true;
   }
@@ -87,17 +114,41 @@ function detectWebGL(createCanvas: ARSupportEnvironment["createCanvas"]) {
   }
 }
 
-function recommendMode(status: Pick<ARSupportStatus, "isSecureContext" | "immersiveARSupported" | "cameraAvailable" | "webGLAvailable">): ARRenderMode {
+function recommendMode(
+  status: Pick<
+    ARSupportStatus,
+    | "isSecureContext"
+    | "immersiveARSupported"
+    | "cameraAvailable"
+    | "webGLAvailable"
+  >,
+): ARRenderMode {
   if (status.immersiveARSupported && status.cameraAvailable) return "ar";
   if (status.cameraAvailable) return "camera-preview";
   return "3d-preview";
 }
 
-function buildSupportWarnings(status: Pick<ARSupportStatus, "isSecureContext" | "webXRAvailable" | "immersiveARSupported" | "cameraAvailable" | "webGLAvailable">) {
+function buildSupportWarnings(
+  status: Pick<
+    ARSupportStatus,
+    | "isSecureContext"
+    | "webXRAvailable"
+    | "immersiveARSupported"
+    | "cameraAvailable"
+    | "webGLAvailable"
+  >,
+) {
   const warnings: string[] = [];
-  if (!status.isSecureContext) warnings.push("Live camera AR requires HTTPS or a secure localhost context.");
-  if (!status.cameraAvailable) warnings.push("Camera access is not available. 3D Preview Mode will be used.");
-  if (!status.webGLAvailable) warnings.push("WebGL is not available, so 3D preview may be limited.");
+  if (!status.isSecureContext)
+    warnings.push(
+      "Live camera AR requires HTTPS or a secure localhost context.",
+    );
+  if (!status.cameraAvailable)
+    warnings.push(
+      "Camera access is not available. 3D Preview Mode will be used.",
+    );
+  if (!status.webGLAvailable)
+    warnings.push("WebGL is not available, so 3D preview may be limited.");
   return warnings;
 }
 
@@ -105,9 +156,20 @@ function buildSupportNotes(status: Pick<ARSupportStatus, "webXRAvailable">) {
   return status.webXRAvailable ? [] : ["navigator.xr is not available."];
 }
 
-function buildSupportMessage(status: Pick<ARSupportStatus, "isSecureContext" | "immersiveARSupported" | "cameraAvailable" | "webGLAvailable">) {
-  if (!status.webGLAvailable) return "WebGL is unavailable. The page will keep controls visible, but 3D rendering may not work.";
-  if (status.cameraAvailable) return "Browser AR is ready. Start AR to use the live mobile camera with interactive 3D math.";
-  if (!status.isSecureContext) return "Live camera AR requires HTTPS or secure context.";
+function buildSupportMessage(
+  status: Pick<
+    ARSupportStatus,
+    | "isSecureContext"
+    | "immersiveARSupported"
+    | "cameraAvailable"
+    | "webGLAvailable"
+  >,
+) {
+  if (!status.webGLAvailable)
+    return "WebGL is unavailable. The page will keep controls visible, but 3D rendering may not work.";
+  if (status.cameraAvailable)
+    return "Browser AR is ready. Start AR to use the live mobile camera with interactive 3D math.";
+  if (!status.isSecureContext)
+    return "Live camera AR requires HTTPS or secure context.";
   return "Camera access is not available. 3D Preview Mode will be used.";
 }

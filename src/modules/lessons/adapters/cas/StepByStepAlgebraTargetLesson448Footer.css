@@ -28,10 +28,7 @@ body:has(.sa448-page)
   line-height: 11px !important;
 }
 
-body:has(.sa448-page)
-  footer[aria-label="Site footer"]
-  > div
-  > div:last-child {
+body:has(.sa448-page) footer[aria-label="Site footer"] > div > div:last-child {
   margin-top: 4px !important;
   padding-top: 4px !important;
 }

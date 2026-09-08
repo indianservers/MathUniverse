@@ -1,8 +1,5 @@
 import { CheckCircle2, Info, Lightbulb, Lock, Unlock } from "lucide-react";
-import {
-  useEffect,
-  useState,
-} from "react";
+import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../types";
 import { LessonCartesianGraph } from "../graphs/LessonCartesianGraph";
 import { LessonGraphWorkspace } from "../graphs/LessonGraphWorkspace";
@@ -10,7 +7,12 @@ import { LessonDependencyTree } from "../graphs/LessonDependencyTree";
 import "./DependentObjectsTargetLesson25.css";
 
 type Point = { x: number; y: number };
-const GRAPH_VIEW = {xMin:-80/72,xMax:(720-80)/72,yMin:(300-365)/52,yMax:300/52};
+const GRAPH_VIEW = {
+  xMin: -80 / 72,
+  xMax: (720 - 80) / 72,
+  yMin: (300 - 365) / 52,
+  yMax: 300 / 52,
+};
 const clamp = (value: number, min: number, max: number) =>
   Math.max(min, Math.min(max, value));
 const fmt = (value: number) =>
@@ -23,7 +25,7 @@ export default function DependentObjectsTargetLesson25({
   const [a, setA] = useState<Point>({ x: 1, y: 2 }),
     [b, setB] = useState<Point>({ x: 5, y: 2 }),
     [actions, setActions] = useState(0);
-  const [graphView,setGraphView]=useState(GRAPH_VIEW);
+  const [graphView, setGraphView] = useState(GRAPH_VIEW);
   const midpoint = { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 },
     length = Math.hypot(b.x - a.x, b.y - a.y);
   const touch = () => {
@@ -100,16 +102,60 @@ export default function DependentObjectsTargetLesson25({
       </header>
       <main className="dependency-main">
         <section className="dependency-lab">
-          <LessonCartesianGraph title="Independent points and dependent midpoint"
+          <LessonCartesianGraph
+            title="Independent points and dependent midpoint"
             description="Drag A or B to update segment AB and midpoint M."
-            view={graphView} onViewChange={setGraphView} onResetView={()=>setGraphView(GRAPH_VIEW)} aspectRatio={720/365}
-            legend={[{id:'parents',label:'Independent: A and B',color:'#0872dd'},{id:'midpoint',label:'Dependent: midpoint M',color:'#13a43e'}]}
-            series={[{id:'segment',label:'Segment AB',color:'#195fe4',points:[a,b]}]}
+            view={graphView}
+            onViewChange={setGraphView}
+            onResetView={() => setGraphView(GRAPH_VIEW)}
+            aspectRatio={720 / 365}
+            legend={[
+              {
+                id: "parents",
+                label: "Independent: A and B",
+                color: "#0872dd",
+              },
+              {
+                id: "midpoint",
+                label: "Dependent: midpoint M",
+                color: "#13a43e",
+              },
+            ]}
+            series={[
+              {
+                id: "segment",
+                label: "Segment AB",
+                color: "#195fe4",
+                points: [a, b],
+              },
+            ]}
             annotations={[
-              {id:'a',...a,label:`A(${a.x}, ${a.y})`,color:'#0872dd',testId:'dependency-handle-a',onChange:point=>update('a',point),keyboardStep:1},
-              {id:'b',...b,label:`B(${b.x}, ${b.y})`,color:'#0872dd',testId:'dependency-handle-b',onChange:point=>update('b',point),keyboardStep:1},
-              {id:'midpoint',...midpoint,label:`M(${fmt(midpoint.x)}, ${fmt(midpoint.y)})`,color:'#13a43e'},
-            ]}/>
+              {
+                id: "a",
+                ...a,
+                label: `A(${a.x}, ${a.y})`,
+                color: "#0872dd",
+                testId: "dependency-handle-a",
+                onChange: (point) => update("a", point),
+                keyboardStep: 1,
+              },
+              {
+                id: "b",
+                ...b,
+                label: `B(${b.x}, ${b.y})`,
+                color: "#0872dd",
+                testId: "dependency-handle-b",
+                onChange: (point) => update("b", point),
+                keyboardStep: 1,
+              },
+              {
+                id: "midpoint",
+                ...midpoint,
+                label: `M(${fmt(midpoint.x)}, ${fmt(midpoint.y)})`,
+                color: "#13a43e",
+              },
+            ]}
+          />
           <div className="dependency-lower">
             <section className="dependency-formula">
               <div className="parent-cards">
@@ -128,12 +174,16 @@ export default function DependentObjectsTargetLesson25({
                 <strong>
                   M = (&nbsp;
                   <i className="fraction">
-                    <span>x<sub>A</sub> + x<sub>B</sub></span>
+                    <span>
+                      x<sub>A</sub> + x<sub>B</sub>
+                    </span>
                     <small>2</small>
                   </i>
                   , &nbsp;
                   <i className="fraction">
-                    <span>y<sub>A</sub> + y<sub>B</sub></span>
+                    <span>
+                      y<sub>A</sub> + y<sub>B</sub>
+                    </span>
                     <small>2</small>
                   </i>
                   &nbsp;)
@@ -146,12 +196,24 @@ export default function DependentObjectsTargetLesson25({
               </div>
             </section>
             <LessonGraphWorkspace title="Dependency hierarchy">
-              <LessonDependencyTree label="A and B determine segment AB, midpoint M and its label" levels={[
-                [{id:'a',label:'A',color:'#0875df'},{id:'b',label:'B',color:'#0875df'}],
-                [{id:'segment',label:'Segment AB',color:'#195fe4'}],
-                [{id:'midpoint',label:'Midpoint M',color:'#13a43e'}],
-                [{id:'label',label:`Label M(${fmt(midpoint.x)}, ${fmt(midpoint.y)})`,color:'#13a43e'}],
-              ]}/>
+              <LessonDependencyTree
+                label="A and B determine segment AB, midpoint M and its label"
+                levels={[
+                  [
+                    { id: "a", label: "A", color: "#0875df" },
+                    { id: "b", label: "B", color: "#0875df" },
+                  ],
+                  [{ id: "segment", label: "Segment AB", color: "#195fe4" }],
+                  [{ id: "midpoint", label: "Midpoint M", color: "#13a43e" }],
+                  [
+                    {
+                      id: "label",
+                      label: `Label M(${fmt(midpoint.x)}, ${fmt(midpoint.y)})`,
+                      color: "#13a43e",
+                    },
+                  ],
+                ]}
+              />
             </LessonGraphWorkspace>
           </div>
         </section>
@@ -266,5 +328,3 @@ function PointControls({
     </section>
   );
 }
-
-

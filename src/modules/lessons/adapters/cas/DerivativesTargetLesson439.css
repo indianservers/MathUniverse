@@ -444,19 +444,34 @@ body:has(.dv439-page) .lesson-adjacent-nav {
 body:has(.dv439-page) [data-testid="desktop-sidebar"] > div {
   padding: 10px 9px 40px !important;
 }
-body:has(.dv439-page) [data-testid="desktop-sidebar"] > div > div:first-of-type {
+body:has(.dv439-page)
+  [data-testid="desktop-sidebar"]
+  > div
+  > div:first-of-type {
   height: 58px;
   margin-bottom: 12px !important;
   padding: 5px !important;
   border-radius: 10px;
 }
-body:has(.dv439-page) [data-testid="desktop-sidebar"] > div > div:first-of-type > button:first-child {
+body:has(.dv439-page)
+  [data-testid="desktop-sidebar"]
+  > div
+  > div:first-of-type
+  > button:first-child {
   padding: 8px !important;
 }
-body:has(.dv439-page) [data-testid="desktop-sidebar"] > div > div:first-of-type p:first-child {
+body:has(.dv439-page)
+  [data-testid="desktop-sidebar"]
+  > div
+  > div:first-of-type
+  p:first-child {
   font-size: 12px !important;
 }
-body:has(.dv439-page) [data-testid="desktop-sidebar"] > div > div:first-of-type p:last-child {
+body:has(.dv439-page)
+  [data-testid="desktop-sidebar"]
+  > div
+  > div:first-of-type
+  p:last-child {
   font-size: 7px !important;
 }
 body:has(.dv439-page) [data-testid="desktop-sidebar"] > div > label {
@@ -466,28 +481,56 @@ body:has(.dv439-page) [data-testid="desktop-sidebar"] > div > label {
   padding: 0 9px !important;
   font-size: 8px !important;
 }
-body:has(.dv439-page) [data-testid="desktop-sidebar"] nav[aria-label="Primary navigation"] {
+body:has(.dv439-page)
+  [data-testid="desktop-sidebar"]
+  nav[aria-label="Primary navigation"] {
   row-gap: 6px !important;
 }
-body:has(.dv439-page) [data-testid="desktop-sidebar"] nav[aria-label="Primary navigation"] button {
+body:has(.dv439-page)
+  [data-testid="desktop-sidebar"]
+  nav[aria-label="Primary navigation"]
+  button {
   min-height: 30px;
   padding: 5px 9px !important;
   font-size: 9px !important;
 }
-body:has(.dv439-page) [data-testid="desktop-sidebar"] nav[aria-label="Primary navigation"] a {
+body:has(.dv439-page)
+  [data-testid="desktop-sidebar"]
+  nav[aria-label="Primary navigation"]
+  a {
   min-height: 30px;
   padding: 5px 9px !important;
   font-size: 8px !important;
 }
-body:has(.dv439-page) [data-testid="desktop-sidebar"] nav[aria-label="Primary navigation"] a:has(span span + span) {
+body:has(.dv439-page)
+  [data-testid="desktop-sidebar"]
+  nav[aria-label="Primary navigation"]
+  a:has(span span + span) {
   min-height: 39px;
 }
-body:has(.dv439-page) [data-testid="desktop-sidebar"] nav[aria-label="Primary navigation"] a span span + span {
+body:has(.dv439-page)
+  [data-testid="desktop-sidebar"]
+  nav[aria-label="Primary navigation"]
+  a
+  span
+  span
+  + span {
   font-size: 6px !important;
 }
-body:has(.dv439-page) [data-testid="desktop-sidebar"] nav[aria-label="Primary navigation"] > div:nth-of-type(2),
-body:has(.dv439-page) [data-testid="desktop-sidebar"] nav[aria-label="Primary navigation"] > div:nth-of-type(n + 5),
-body:has(.dv439-page) [data-testid="desktop-sidebar"] nav[aria-label="Primary navigation"] > div:nth-of-type(4) > div > :nth-child(n + 2) {
+body:has(.dv439-page)
+  [data-testid="desktop-sidebar"]
+  nav[aria-label="Primary navigation"]
+  > div:nth-of-type(2),
+body:has(.dv439-page)
+  [data-testid="desktop-sidebar"]
+  nav[aria-label="Primary navigation"]
+  > div:nth-of-type(n + 5),
+body:has(.dv439-page)
+  [data-testid="desktop-sidebar"]
+  nav[aria-label="Primary navigation"]
+  > div:nth-of-type(4)
+  > div
+  > :nth-child(n + 2) {
   display: none;
 }
 @media (min-width: 960px) and (max-width: 1120px) {

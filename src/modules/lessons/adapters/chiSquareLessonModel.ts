@@ -1,7 +1,115 @@
-function logGamma(value:number):number{const coefficients=[676.5203681218851,-1259.1392167224028,771.3234287776531,-176.6150291621406,12.507343278686905,-.13857109526572012,9.984369578019572e-6,1.5056327351493116e-7];if(value<.5)return Math.log(Math.PI)-Math.log(Math.sin(Math.PI*value))-logGamma(1-value);let x=.9999999999998099;const shifted=value-1;coefficients.forEach((coefficient,index)=>{x+=coefficient/(shifted+index+1)});const t=shifted+coefficients.length-.5;return .5*Math.log(2*Math.PI)+(shifted+.5)*Math.log(t)-t+Math.log(x)}
-function regularizedGammaP(shape:number,x:number){if(x<=0)return 0;if(x<shape+1){let term=1/shape,sum=term;for(let n=1;n<200;n+=1){term*=x/(shape+n);sum+=term;if(Math.abs(term)<Math.abs(sum)*1e-14)break}return sum*Math.exp(-x+shape*Math.log(x)-logGamma(shape))}let b=x+1-shape,c=1/1e-30,d=1/b,h=d;for(let i=1;i<200;i+=1){const an=-i*(i-shape);b+=2;d=an*d+b;if(Math.abs(d)<1e-30)d=1e-30;c=b+an/c;if(Math.abs(c)<1e-30)c=1e-30;d=1/d;const delta=d*c;h*=delta;if(Math.abs(delta-1)<1e-14)break}return 1-Math.exp(-x+shape*Math.log(x)-logGamma(shape))*h}
-export function chiSquareDensity(x:number,dfValue:number){if(x<=0)return 0;const df=Math.max(1,dfValue),shape=df/2;return Math.exp((shape-1)*Math.log(x)-x/2-shape*Math.log(2)-logGamma(shape))}
-export function chiSquareCdf(x:number,dfValue:number){return x<=0?0:Math.max(0,Math.min(1,regularizedGammaP(Math.max(1,dfValue)/2,x/2)))}
-export function chiSquareQuantile(probabilityValue:number,dfValue:number){const probability=Math.max(.000001,Math.min(.999999,probabilityValue)),df=Math.max(1,dfValue);let low=0,high=Math.max(20,df+12*Math.sqrt(2*df));for(let iteration=0;iteration<70;iteration+=1){const middle=(low+high)/2;if(chiSquareCdf(middle,df)<probability)low=middle;else high=middle}return(low+high)/2}
-export function chiSquareAnalysis(dfValue:number,alphaValue:number){const df=Math.max(1,Math.round(dfValue)),alpha=Math.max(.001,Math.min(.25,alphaValue)),critical=chiSquareQuantile(1-alpha,df);return{df,alpha,critical,tail:1-chiSquareCdf(critical,df),mean:df,variance:2*df,std:Math.sqrt(2*df),mode:Math.max(0,df-2),skewness:Math.sqrt(8/df)}}
-export function chiSquareGoodnessOfFit(observed:number[],expected:number[]){const contributions=observed.map((value,index)=>(value-expected[index])**2/expected[index]),statistic=contributions.reduce((sum,value)=>sum+value,0),df=Math.max(1,observed.length-1),pValue=1-chiSquareCdf(statistic,df);return{contributions,statistic,df,pValue,totalObserved:observed.reduce((sum,value)=>sum+value,0),totalExpected:expected.reduce((sum,value)=>sum+value,0)}}
+function logGamma(value: number): number {
+  const coefficients = [
+    676.5203681218851, -1259.1392167224028, 771.3234287776531,
+    -176.6150291621406, 12.507343278686905, -0.13857109526572012,
+    9.984369578019572e-6, 1.5056327351493116e-7,
+  ];
+  if (value < 0.5)
+    return (
+      Math.log(Math.PI) -
+      Math.log(Math.sin(Math.PI * value)) -
+      logGamma(1 - value)
+    );
+  let x = 0.9999999999998099;
+  const shifted = value - 1;
+  coefficients.forEach((coefficient, index) => {
+    x += coefficient / (shifted + index + 1);
+  });
+  const t = shifted + coefficients.length - 0.5;
+  return (
+    0.5 * Math.log(2 * Math.PI) +
+    (shifted + 0.5) * Math.log(t) -
+    t +
+    Math.log(x)
+  );
+}
+function regularizedGammaP(shape: number, x: number) {
+  if (x <= 0) return 0;
+  if (x < shape + 1) {
+    let term = 1 / shape,
+      sum = term;
+    for (let n = 1; n < 200; n += 1) {
+      term *= x / (shape + n);
+      sum += term;
+      if (Math.abs(term) < Math.abs(sum) * 1e-14) break;
+    }
+    return sum * Math.exp(-x + shape * Math.log(x) - logGamma(shape));
+  }
+  let b = x + 1 - shape,
+    c = 1 / 1e-30,
+    d = 1 / b,
+    h = d;
+  for (let i = 1; i < 200; i += 1) {
+    const an = -i * (i - shape);
+    b += 2;
+    d = an * d + b;
+    if (Math.abs(d) < 1e-30) d = 1e-30;
+    c = b + an / c;
+    if (Math.abs(c) < 1e-30) c = 1e-30;
+    d = 1 / d;
+    const delta = d * c;
+    h *= delta;
+    if (Math.abs(delta - 1) < 1e-14) break;
+  }
+  return 1 - Math.exp(-x + shape * Math.log(x) - logGamma(shape)) * h;
+}
+export function chiSquareDensity(x: number, dfValue: number) {
+  if (x <= 0) return 0;
+  const df = Math.max(1, dfValue),
+    shape = df / 2;
+  return Math.exp(
+    (shape - 1) * Math.log(x) - x / 2 - shape * Math.log(2) - logGamma(shape),
+  );
+}
+export function chiSquareCdf(x: number, dfValue: number) {
+  return x <= 0
+    ? 0
+    : Math.max(
+        0,
+        Math.min(1, regularizedGammaP(Math.max(1, dfValue) / 2, x / 2)),
+      );
+}
+export function chiSquareQuantile(probabilityValue: number, dfValue: number) {
+  const probability = Math.max(0.000001, Math.min(0.999999, probabilityValue)),
+    df = Math.max(1, dfValue);
+  let low = 0,
+    high = Math.max(20, df + 12 * Math.sqrt(2 * df));
+  for (let iteration = 0; iteration < 70; iteration += 1) {
+    const middle = (low + high) / 2;
+    if (chiSquareCdf(middle, df) < probability) low = middle;
+    else high = middle;
+  }
+  return (low + high) / 2;
+}
+export function chiSquareAnalysis(dfValue: number, alphaValue: number) {
+  const df = Math.max(1, Math.round(dfValue)),
+    alpha = Math.max(0.001, Math.min(0.25, alphaValue)),
+    critical = chiSquareQuantile(1 - alpha, df);
+  return {
+    df,
+    alpha,
+    critical,
+    tail: 1 - chiSquareCdf(critical, df),
+    mean: df,
+    variance: 2 * df,
+    std: Math.sqrt(2 * df),
+    mode: Math.max(0, df - 2),
+    skewness: Math.sqrt(8 / df),
+  };
+}
+export function chiSquareGoodnessOfFit(observed: number[], expected: number[]) {
+  const contributions = observed.map(
+      (value, index) => (value - expected[index]) ** 2 / expected[index],
+    ),
+    statistic = contributions.reduce((sum, value) => sum + value, 0),
+    df = Math.max(1, observed.length - 1),
+    pValue = 1 - chiSquareCdf(statistic, df);
+  return {
+    contributions,
+    statistic,
+    df,
+    pValue,
+    totalObserved: observed.reduce((sum, value) => sum + value, 0),
+    totalExpected: expected.reduce((sum, value) => sum + value, 0),
+  };
+}

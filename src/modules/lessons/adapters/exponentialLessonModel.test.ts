@@ -1,5 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { exponentialAnalysis, exponentialCdf, exponentialSurvival, simulateExponentialArrivals } from "./exponentialLessonModel";
+import {
+  exponentialAnalysis,
+  exponentialCdf,
+  exponentialSurvival,
+  simulateExponentialArrivals,
+} from "./exponentialLessonModel";
 
 describe("exponential lesson model", () => {
   it("computes the target waiting-time values", () => {
@@ -12,7 +17,9 @@ describe("exponential lesson model", () => {
   });
 
   it("preserves memorylessness and generates bounded arrivals", () => {
-    expect(exponentialSurvival(5, 0.4) / exponentialSurvival(2, 0.4)).toBeCloseTo(exponentialSurvival(3, 0.4), 10);
+    expect(
+      exponentialSurvival(5, 0.4) / exponentialSurvival(2, 0.4),
+    ).toBeCloseTo(exponentialSurvival(3, 0.4), 10);
     const simulation = simulateExponentialArrivals(0.4, 18, 532);
     expect(simulation.elapsed).toBeLessThanOrEqual(18);
     expect(simulation.intervals.every((value) => value > 0)).toBe(true);

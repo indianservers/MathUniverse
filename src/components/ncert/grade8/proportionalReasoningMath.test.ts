@@ -31,17 +31,46 @@ describe("proportional reasoning math helpers", () => {
   });
 
   it("solves missing proportion positions", () => {
-    expect(getMissingProportionValue({ a: 2, b: 3, c: 8, position: "d" })).toBe(12);
-    expect(getMissingProportionValue({ b: 3, c: 8, d: 12, position: "a" })).toBe(2);
-    expect(getMissingProportionValue({ a: 2, c: 8, d: 12, position: "b" })).toBe(3);
-    expect(getMissingProportionValue({ a: 2, b: 3, d: 12, position: "c" })).toBe(8);
+    expect(getMissingProportionValue({ a: 2, b: 3, c: 8, position: "d" })).toBe(
+      12,
+    );
+    expect(
+      getMissingProportionValue({ b: 3, c: 8, d: 12, position: "a" }),
+    ).toBe(2);
+    expect(
+      getMissingProportionValue({ a: 2, c: 8, d: 12, position: "b" }),
+    ).toBe(3);
+    expect(
+      getMissingProportionValue({ a: 2, b: 3, d: 12, position: "c" }),
+    ).toBe(8);
   });
 
   it("normalizes map scale units", () => {
     expect(convertLength(100000, "cm", "km")).toBe(1);
-    expect(getRepresentativeFraction({ mapDistance: 2, actualDistance: 1, mapUnit: "cm", actualUnit: "km" }).denominator).toBe(50000);
-    expect(getActualDistanceFromMapScale({ mapDistance: 3.2, scaleDenominator: 50000, mapUnit: "cm", outputUnit: "km" }).actual).toBe(1.6);
-    expect(getMapDistanceFromActualScale({ actualDistance: 1.6, scaleDenominator: 50000, actualUnit: "km", outputUnit: "cm" }).map).toBe(3.2);
+    expect(
+      getRepresentativeFraction({
+        mapDistance: 2,
+        actualDistance: 1,
+        mapUnit: "cm",
+        actualUnit: "km",
+      }).denominator,
+    ).toBe(50000);
+    expect(
+      getActualDistanceFromMapScale({
+        mapDistance: 3.2,
+        scaleDenominator: 50000,
+        mapUnit: "cm",
+        outputUnit: "km",
+      }).actual,
+    ).toBe(1.6);
+    expect(
+      getMapDistanceFromActualScale({
+        actualDistance: 1.6,
+        scaleDenominator: 50000,
+        actualUnit: "km",
+        outputUnit: "cm",
+      }).map,
+    ).toBe(3.2);
   });
 
   it("splits two-term and multi-term ratios", () => {
@@ -50,17 +79,46 @@ describe("proportional reasoning math helpers", () => {
   });
 
   it("creates pie angles and percentages with exact totals after rounding", () => {
-    expect(getPieAnglesFromRatio([2, 3, 4]).reduce((a, b) => a + b, 0)).toBe(360);
-    expect(getPiePercentagesFromRatio([2, 3, 4]).reduce((a, b) => a + b, 0)).toBe(100);
+    expect(getPieAnglesFromRatio([2, 3, 4]).reduce((a, b) => a + b, 0)).toBe(
+      360,
+    );
+    expect(
+      getPiePercentagesFromRatio([2, 3, 4]).reduce((a, b) => a + b, 0),
+    ).toBe(100);
   });
 
   it("rejects invalid inputs", () => {
     expect(validateRatioInputs([2]).ok).toBe(false);
-    expect(() => getRepresentativeFraction({ mapDistance: 0, actualDistance: 1, mapUnit: "cm", actualUnit: "km" })).toThrow();
+    expect(() =>
+      getRepresentativeFraction({
+        mapDistance: 0,
+        actualDistance: 1,
+        mapUnit: "cm",
+        actualUnit: "km",
+      }),
+    ).toThrow();
   });
 
   it("generates direct and inverse tables", () => {
-    expect(generateProportionTable({ relationshipType: "direct", constant: 3, xValues: [1, 2] })).toEqual([{ x: 1, y: 3 }, { x: 2, y: 6 }]);
-    expect(generateProportionTable({ relationshipType: "inverse", constant: 12, xValues: [2, 3] })).toEqual([{ x: 2, y: 6 }, { x: 3, y: 4 }]);
+    expect(
+      generateProportionTable({
+        relationshipType: "direct",
+        constant: 3,
+        xValues: [1, 2],
+      }),
+    ).toEqual([
+      { x: 1, y: 3 },
+      { x: 2, y: 6 },
+    ]);
+    expect(
+      generateProportionTable({
+        relationshipType: "inverse",
+        constant: 12,
+        xValues: [2, 3],
+      }),
+    ).toEqual([
+      { x: 2, y: 6 },
+      { x: 3, y: 4 },
+    ]);
   });
 });

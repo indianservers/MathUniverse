@@ -1,5 +1,8 @@
 import { olympyardTopicById } from "./olympyardTopics";
-import { normalizeOlympyardProgressLite, type OlympyardProgressLite } from "./olympyardProgressLite";
+import {
+  normalizeOlympyardProgressLite,
+  type OlympyardProgressLite,
+} from "./olympyardProgressLite";
 
 export type PracticeSpineAreaLite = {
   id: string;
@@ -16,8 +19,14 @@ export const practiceSpineAreasLite: PracticeSpineAreaLite[] = [
     title: "Number Foundations",
     route: "/number-systems",
     practiceRoute: "/olympyard/practice/number-sense",
-    topicIds: ["number-sense", "fractions-decimals", "divisibility-rules", "factors-multiples"],
-    description: "Place value, fractions, divisibility, factors, and number structure.",
+    topicIds: [
+      "number-sense",
+      "fractions-decimals",
+      "divisibility-rules",
+      "factors-multiples",
+    ],
+    description:
+      "Place value, fractions, divisibility, factors, and number structure.",
   },
   {
     id: "algebra",
@@ -25,7 +34,8 @@ export const practiceSpineAreasLite: PracticeSpineAreaLite[] = [
     route: "/algebra",
     practiceRoute: "/olympyard/practice/algebraic-thinking",
     topicIds: ["algebraic-thinking", "patterns-sequences", "word-problems"],
-    description: "Balance models, patterns, story translation, and symbolic reasoning.",
+    description:
+      "Balance models, patterns, story translation, and symbolic reasoning.",
   },
   {
     id: "geometry",
@@ -33,7 +43,8 @@ export const practiceSpineAreasLite: PracticeSpineAreaLite[] = [
     route: "/geometry",
     practiceRoute: "/olympyard/practice/geometry-reasoning",
     topicIds: ["geometry-reasoning", "area-perimeter", "ratios-proportions"],
-    description: "Diagram reading, area/perimeter puzzles, similarity, and proof cues.",
+    description:
+      "Diagram reading, area/perimeter puzzles, similarity, and proof cues.",
   },
   {
     id: "logic",
@@ -41,7 +52,8 @@ export const practiceSpineAreasLite: PracticeSpineAreaLite[] = [
     route: "/combinatorics",
     practiceRoute: "/olympyard/practice/counting-combinatorics",
     topicIds: ["logical-reasoning", "counting-combinatorics", "number-theory"],
-    description: "Truth patterns, organized counting, primes, remainders, and cases.",
+    description:
+      "Truth patterns, organized counting, primes, remainders, and cases.",
   },
   {
     id: "data",
@@ -49,13 +61,16 @@ export const practiceSpineAreasLite: PracticeSpineAreaLite[] = [
     route: "/probability-statistics",
     practiceRoute: "/olympyard/practice/data-interpretation",
     topicIds: ["data-interpretation", "probability-puzzles"],
-    description: "Charts, averages, sample spaces, chance comparisons, and quick reads.",
+    description:
+      "Charts, averages, sample spaces, chance comparisons, and quick reads.",
   },
 ];
 
 export function buildPracticeSpineLite(progress: OlympyardProgressLite) {
   const safe = normalizeOlympyardProgressLite(progress);
-  const accuracy = safe.attempted ? Math.round((safe.correct / safe.attempted) * 100) : 0;
+  const accuracy = safe.attempted
+    ? Math.round((safe.correct / safe.attempted) * 100)
+    : 0;
   const weakTopics = weakTopicIds(safe);
   const primaryTopicId = weakTopics[0] ?? safe.lastTopicId ?? "number-sense";
   const primaryTopic = olympyardTopicById(primaryTopicId);
@@ -75,16 +90,32 @@ export function buildPracticeSpineLite(progress: OlympyardProgressLite) {
     mixedRoute: "/olympyard/mock-test?mode=mixed",
     speedRoute: "/olympyard/mock-test?mode=speed&timer=1",
     areaReadiness: practiceSpineAreasLite.map((area) => {
-      const topicStats = area.topicIds.map((topicId) => safe.topicMastery[topicId] ?? { attempted: 0, correct: 0 });
-      const attempted = topicStats.reduce((sum, item) => sum + item.attempted, 0);
+      const topicStats = area.topicIds.map(
+        (topicId) => safe.topicMastery[topicId] ?? { attempted: 0, correct: 0 },
+      );
+      const attempted = topicStats.reduce(
+        (sum, item) => sum + item.attempted,
+        0,
+      );
       const correct = topicStats.reduce((sum, item) => sum + item.correct, 0);
-      const areaAccuracy = attempted ? Math.round((correct / attempted) * 100) : 0;
-      const weak = area.topicIds.some((topicId) => weakTopics.includes(topicId));
+      const areaAccuracy = attempted
+        ? Math.round((correct / attempted) * 100)
+        : 0;
+      const weak = area.topicIds.some((topicId) =>
+        weakTopics.includes(topicId),
+      );
       return {
         ...area,
         attempted,
         accuracy: areaAccuracy,
-        state: attempted === 0 ? "new" : weak ? "review" : areaAccuracy >= 80 ? "strong" : "building",
+        state:
+          attempted === 0
+            ? "new"
+            : weak
+              ? "review"
+              : areaAccuracy >= 80
+                ? "strong"
+                : "building",
       };
     }),
   };
@@ -94,7 +125,9 @@ function weakTopicIds(progress: OlympyardProgressLite) {
   return Object.entries(progress.topicMastery)
     .map(([topicId, item]) => ({
       topicId,
-      accuracy: item.attempted ? Math.round((item.correct / item.attempted) * 100) : 0,
+      accuracy: item.attempted
+        ? Math.round((item.correct / item.attempted) * 100)
+        : 0,
       attempted: item.attempted,
     }))
     .filter((item) => item.attempted >= 2 && item.accuracy < 70)

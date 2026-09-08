@@ -48,18 +48,54 @@ describe("graph theory advanced utilities", () => {
   });
 
   it("detects direct K5 and K3,3 planarity obstruction patterns", () => {
-    const k5Nodes = ["A", "B", "C", "D", "E"].map((id) => ({ id, label: id, x: 0, y: 0 }));
+    const k5Nodes = ["A", "B", "C", "D", "E"].map((id) => ({
+      id,
+      label: id,
+      x: 0,
+      y: 0,
+    }));
     const k5Edges = k5Nodes.flatMap((source, sourceIndex) =>
-      k5Nodes.slice(sourceIndex + 1).map((target) => ({ id: `${source.id}-${target.id}`, source: source.id, target: target.id, weight: 1 }))
+      k5Nodes
+        .slice(sourceIndex + 1)
+        .map((target) => ({
+          id: `${source.id}-${target.id}`,
+          source: source.id,
+          target: target.id,
+          weight: 1,
+        })),
     );
 
-    expect(planarityObstructionHint({ directed: false, nodes: k5Nodes, edges: k5Edges }).obstruction).toBe("K5");
+    expect(
+      planarityObstructionHint({
+        directed: false,
+        nodes: k5Nodes,
+        edges: k5Edges,
+      }).obstruction,
+    ).toBe("K5");
 
-    const k33Nodes = ["A", "B", "C", "D", "E", "F"].map((id) => ({ id, label: id, x: 0, y: 0 }));
+    const k33Nodes = ["A", "B", "C", "D", "E", "F"].map((id) => ({
+      id,
+      label: id,
+      x: 0,
+      y: 0,
+    }));
     const left = ["A", "B", "C"];
     const right = ["D", "E", "F"];
-    const k33Edges = left.flatMap((source) => right.map((target) => ({ id: `${source}-${target}`, source, target, weight: 1 })));
+    const k33Edges = left.flatMap((source) =>
+      right.map((target) => ({
+        id: `${source}-${target}`,
+        source,
+        target,
+        weight: 1,
+      })),
+    );
 
-    expect(planarityObstructionHint({ directed: false, nodes: k33Nodes, edges: k33Edges }).obstruction).toBe("K3,3");
+    expect(
+      planarityObstructionHint({
+        directed: false,
+        nodes: k33Nodes,
+        edges: k33Edges,
+      }).obstruction,
+    ).toBe("K3,3");
   });
 });

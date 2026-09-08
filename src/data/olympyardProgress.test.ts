@@ -15,7 +15,12 @@ import { buildPracticeSpine } from "./olympyardPracticeSpine";
 
 describe("olympyard progress and mock test helpers", () => {
   it("normalizes legacy progress safely", () => {
-    const progress = normalizeOlympyardProgress({ attempted: 2, correct: 1, streak: 1, badges: ["First 10 correct"] } as never);
+    const progress = normalizeOlympyardProgress({
+      attempted: 2,
+      correct: 1,
+      streak: 1,
+      badges: ["First 10 correct"],
+    } as never);
     expect(progress.attempted).toBe(2);
     expect(progress.correct).toBe(1);
     expect(progress.topicMastery).toEqual({});
@@ -24,11 +29,14 @@ describe("olympyard progress and mock test helpers", () => {
 
   it("updates totals, topic mastery, streak, and badges", () => {
     const firstQuestion = olympyardQuestions[0];
-    const progress = updateOlympyardProgress(initialOlympyardProgress, Array.from({ length: 10 }, (_, index) => ({
-      questionId: `${firstQuestion.id}-${index}`,
-      topicId: firstQuestion.topicId,
-      correct: true,
-    })));
+    const progress = updateOlympyardProgress(
+      initialOlympyardProgress,
+      Array.from({ length: 10 }, (_, index) => ({
+        questionId: `${firstQuestion.id}-${index}`,
+        topicId: firstQuestion.topicId,
+        correct: true,
+      })),
+    );
 
     expect(progress.attempted).toBe(10);
     expect(progress.correct).toBe(10);
@@ -46,7 +54,9 @@ describe("olympyard progress and mock test helpers", () => {
     });
 
     expect(questions).toHaveLength(20);
-    expect(new Set(questions.map((question) => question.topicId)).size).toBeGreaterThan(1);
+    expect(
+      new Set(questions.map((question) => question.topicId)).size,
+    ).toBeGreaterThan(1);
   });
 
   it("supports weak area selection from local mastery", () => {
@@ -59,7 +69,12 @@ describe("olympyard progress and mock test helpers", () => {
 
     const weak = getWeakOlympyardTopics(progress);
     expect(weak[0].topicId).toBe("geometry-reasoning");
-    expect(selectOlympyardQuestions({ mode: "weak", grade: "all", difficulty: "all", questionCount: 10 }, progress).every((question) => question.topicId === "geometry-reasoning")).toBe(true);
+    expect(
+      selectOlympyardQuestions(
+        { mode: "weak", grade: "all", difficulty: "all", questionCount: 10 },
+        progress,
+      ).every((question) => question.topicId === "geometry-reasoning"),
+    ).toBe(true);
   });
 
   it("selects adaptive questions from weak, undersampled, and new topic signals", () => {
@@ -72,11 +87,18 @@ describe("olympyard progress and mock test helpers", () => {
     ]);
 
     const adaptiveTopics = getAdaptiveOlympyardTopics(progress, 3);
-    const adaptiveQuestions = selectOlympyardQuestions({ mode: "adaptive", grade: "all", difficulty: "all", questionCount: 10 }, progress);
+    const adaptiveQuestions = selectOlympyardQuestions(
+      { mode: "adaptive", grade: "all", difficulty: "all", questionCount: 10 },
+      progress,
+    );
 
     expect(adaptiveTopics[0].topicId).toBe("geometry-reasoning");
     expect(adaptiveQuestions.length).toBeGreaterThan(0);
-    expect(adaptiveQuestions.some((question) => question.topicId === "geometry-reasoning")).toBe(true);
+    expect(
+      adaptiveQuestions.some(
+        (question) => question.topicId === "geometry-reasoning",
+      ),
+    ).toBe(true);
   });
 
   it("builds the app-wide practice spine from Olympyard progress", () => {
@@ -93,15 +115,31 @@ describe("olympyard progress and mock test helpers", () => {
     expect(mastery.accuracy).toBe(80);
     expect(spine.primaryPracticeRoute).toContain("/olympyard/practice/");
     expect(spine.adaptiveRoute).toBe("/olympyard/mock-test?mode=adaptive");
-    expect(spine.areaReadiness.some((area) => area.id === "algebra" && area.state === "review")).toBe(true);
+    expect(
+      spine.areaReadiness.some(
+        (area) => area.id === "algebra" && area.state === "review",
+      ),
+    ).toBe(true);
   });
 
   it("summarizes sessions with topic breakdown and incorrect questions", () => {
     const questions = olympyardQuestions.slice(0, 3);
-    const summary = summarizeOlympyardSession({
-      [questions[0].id]: { questionId: questions[0].id, topicId: questions[0].topicId, correct: true },
-      [questions[1].id]: { questionId: questions[1].id, topicId: questions[1].topicId, correct: false },
-    }, questions, 125);
+    const summary = summarizeOlympyardSession(
+      {
+        [questions[0].id]: {
+          questionId: questions[0].id,
+          topicId: questions[0].topicId,
+          correct: true,
+        },
+        [questions[1].id]: {
+          questionId: questions[1].id,
+          topicId: questions[1].topicId,
+          correct: false,
+        },
+      },
+      questions,
+      125,
+    );
 
     expect(summary.score).toBe(1);
     expect(summary.attempted).toBe(2);

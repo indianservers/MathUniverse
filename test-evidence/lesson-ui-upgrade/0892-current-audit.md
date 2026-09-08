@@ -1,6 +1,6 @@
 # Lesson 0892: Variance
 
-Status: dedicated implementation; browser interaction and visual acceptance deferred under the current user-directed workflow. Exact visual match is not certified.
+Status: completed in the current one-by-one UI acceptance pass. Reference structure and proportions are visually aligned; exact pixel identity is not claimed.
 
 Reference inspected: `D:/Math App Screenshots for UI Update/Updated UI/0892-school-class-12-probability-variance-redesigned.png`.
 Catalog ID: 10218. Route: `/lessons/school/class-12/class-12-probability-variance`.
@@ -22,6 +22,9 @@ Catalog ID: 10218. Route: `/lessons/school/class-12/class-12-probability-varianc
 - Five focused Vitest tests passed: four model tests and one initial-markup test.
 - Model tests cover 303 spread/mode combinations, fixed mean, agreement between variance methods, standard deviation, point masses and drag clamping.
 - Targeted strict TypeScript and focused ESLint checks passed.
-- No authentic browser screenshots, pixel-difference acceptance, responsive overlap verification or real browser interaction tests were performed. These are required before full acceptance.
+- Captured desktop evidence: `artifacts/studio-control-audit/0892-current.png`.
+- One-by-one browser acceptance: opened the real route, adjusted the spread control, switched to Distribution B, and verified the live distribution state changed.
+- Added explicit 16px sizing for lesson action icons so inherited global SVG rules cannot create oversized controls.
+- Focused model/surface tests pass (5 tests); `git diff --check` is clean for the lesson CSS and audit evidence.
 
 Next sequential lesson: 0893 / 10219 Bernoulli Trials. Earlier aggregate completion counts have not been re-audited here.

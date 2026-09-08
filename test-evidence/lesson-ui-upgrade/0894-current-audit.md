@@ -1,6 +1,6 @@
 # Lesson 0894: Binomial Distribution
 
-Status: dedicated implementation; browser interaction and visual acceptance deferred under the current user-directed workflow. Exact visual match is not certified.
+Status: completed in the current one-by-one UI acceptance pass. Reference structure and proportions are visually aligned; exact pixel identity is not claimed.
 
 Reference inspected: `D:/Math App Screenshots for UI Update/Updated UI/0894-school-class-12-probability-binomial-distribution-redesigned.png`.
 Catalog ID: 10220. Route: `/lessons/school/class-12/class-12-probability-binomial-distribution`.
@@ -30,6 +30,8 @@ Catalog ID: 10220. Route: `/lessons/school/class-12/class-12-probability-binomia
 - Tests cover exact reference mean/variance/probability, query bounds and complementary tails, real deterministic-seeded D3 sampling, certainty, and invalid inputs.
 - Targeted strict TypeScript and focused ESLint checks passed.
 - Existing application listener verified on 127.0.0.1:2266.
-- No authentic browser screenshot, pixel comparison, responsive overlap verification or real browser interaction tests performed. These remain required before full acceptance.
+- Captured desktop evidence: `artifacts/studio-control-audit/0894-current.png`.
+- One-by-one browser acceptance: opened the real route, ran the 2000-trial simulation action, and verified the simulation section updated.
+- Focused model/surface tests pass (7 tests); `git diff --check` is clean for the lesson audit evidence.
 
 Next sequential target: 0895 / advanced concept 2001 Partial Quotients, route `/lessons/advanced-concepts/2001-partial-quotients`. Earlier aggregate completion counts have not been re-audited.

@@ -3,7 +3,15 @@ import { getNCERTConcept, type NCERTConcept } from "./ncertConcepts";
 export type NCERTResourceLink = {
   label: string;
   href: string;
-  type: "formula" | "theorem" | "visual-proof" | "math-lab" | "workspace" | "ar-xr" | "practice" | "reference";
+  type:
+    | "formula"
+    | "theorem"
+    | "visual-proof"
+    | "math-lab"
+    | "workspace"
+    | "ar-xr"
+    | "practice"
+    | "reference";
   exactness: "exact" | "category" | "related";
   keywords?: string[];
 };
@@ -31,7 +39,11 @@ export type NCERTResourceAuditRow = {
   action: string;
 };
 
-const formula = (label: string, categoryId: string, keywords: string[] = []): NCERTResourceLink => ({
+const formula = (
+  label: string,
+  categoryId: string,
+  keywords: string[] = [],
+): NCERTResourceLink => ({
   label,
   href: `/formulas/${categoryId}`,
   type: "formula",
@@ -39,7 +51,13 @@ const formula = (label: string, categoryId: string, keywords: string[] = []): NC
   keywords,
 });
 
-const theorem = (label: string, categoryId: string, slug?: string, exactness: NCERTResourceLink["exactness"] = slug ? "exact" : "category", keywords: string[] = []): NCERTResourceLink => ({
+const theorem = (
+  label: string,
+  categoryId: string,
+  slug?: string,
+  exactness: NCERTResourceLink["exactness"] = slug ? "exact" : "category",
+  keywords: string[] = [],
+): NCERTResourceLink => ({
   label,
   href: slug ? `/theorems/${categoryId}/${slug}` : `/theorems/${categoryId}`,
   type: "theorem",
@@ -47,23 +65,45 @@ const theorem = (label: string, categoryId: string, slug?: string, exactness: NC
   keywords,
 });
 
-const proof = (label: string, categorySlug: string, proofSlug?: string, exactness: NCERTResourceLink["exactness"] = proofSlug ? "exact" : "category", keywords: string[] = []): NCERTResourceLink => ({
+const proof = (
+  label: string,
+  categorySlug: string,
+  proofSlug?: string,
+  exactness: NCERTResourceLink["exactness"] = proofSlug ? "exact" : "category",
+  keywords: string[] = [],
+): NCERTResourceLink => ({
   label,
-  href: proofSlug ? `/visual-proofs/${categorySlug}/${proofSlug}` : `/visual-proofs/${categorySlug}`,
+  href: proofSlug
+    ? `/visual-proofs/${categorySlug}/${proofSlug}`
+    : `/visual-proofs/${categorySlug}`,
   type: "visual-proof",
   exactness,
   keywords,
 });
 
-const tool = (label: string, href: string, exactness: NCERTResourceLink["exactness"] = "exact", keywords: string[] = []): NCERTResourceLink => ({
+const tool = (
+  label: string,
+  href: string,
+  exactness: NCERTResourceLink["exactness"] = "exact",
+  keywords: string[] = [],
+): NCERTResourceLink => ({
   label,
   href,
-  type: href.startsWith("/workspace") ? "workspace" : href.startsWith("/modules/ar-math-lab") ? "ar-xr" : "math-lab",
+  type: href.startsWith("/workspace")
+    ? "workspace"
+    : href.startsWith("/modules/ar-math-lab")
+      ? "ar-xr"
+      : "math-lab",
   exactness,
   keywords,
 });
 
-const reference = (label: string, href: string, exactness: NCERTResourceLink["exactness"] = "related", keywords: string[] = []): NCERTResourceLink => ({
+const reference = (
+  label: string,
+  href: string,
+  exactness: NCERTResourceLink["exactness"] = "related",
+  keywords: string[] = [],
+): NCERTResourceLink => ({
   label,
   href,
   type: "reference",
@@ -73,12 +113,21 @@ const reference = (label: string, href: string, exactness: NCERTResourceLink["ex
 
 const byUnitFallback: Record<string, NCERTResourceLink[]> = {
   "Number System": [
-    formula("Number system formulas", "number-systems", ["integers", "rational", "irrational", "roots"]),
+    formula("Number system formulas", "number-systems", [
+      "integers",
+      "rational",
+      "irrational",
+      "roots",
+    ]),
     proof("Number theory visual proofs", "number-theory"),
     theorem("Number theory theorems", "number-theory"),
   ],
   Arithmetic: [
-    formula("Fractions, decimals, and percent formulas", "fractions-decimals-percent", ["percent", "interest", "decimals"]),
+    formula(
+      "Fractions, decimals, and percent formulas",
+      "fractions-decimals-percent",
+      ["percent", "interest", "decimals"],
+    ),
     reference("Practice dashboard", "/ncert", "related", ["NCERT practice"]),
   ],
   Algebra: [
@@ -147,235 +196,784 @@ const byUnitFallback: Record<string, NCERTResourceLink[]> = {
 export const ncertConceptResourceLinks: NCERTConceptResourceLinks[] = [
   {
     conceptId: "class-7-integers",
-    resources: [formula("Integer and number formulas", "number-systems"), proof("Integer movement and divisibility proofs", "number-theory", "even-odd-pairing", "exact"), reference("NCERT dashboard", "/ncert")],
+    resources: [
+      formula("Integer and number formulas", "number-systems"),
+      proof(
+        "Integer movement and divisibility proofs",
+        "number-theory",
+        "even-odd-pairing",
+        "exact",
+      ),
+      reference("NCERT dashboard", "/ncert"),
+    ],
   },
   {
     conceptId: "class-7-exponents",
-    resources: [formula("Exponent formulas", "algebra"), proof("Laws of exponents visual proof", "logarithms-exponents", "laws-of-exponents-same-base"), theorem("Exponent laws theorem", "algebra", "exponent-laws-theorem-21")],
+    resources: [
+      formula("Exponent formulas", "algebra"),
+      proof(
+        "Laws of exponents visual proof",
+        "logarithms-exponents",
+        "laws-of-exponents-same-base",
+      ),
+      theorem("Exponent laws theorem", "algebra", "exponent-laws-theorem-21"),
+    ],
   },
   {
     conceptId: "class-7-lines-and-triangles",
-    resources: [formula("Geometry formulas", "geometry"), proof("Triangle angle sum proof", "geometry", "triangle-angle-sum"), theorem("Triangle angle sum theorem", "geometry", "triangle-angle-sum-theorem-3")],
+    resources: [
+      formula("Geometry formulas", "geometry"),
+      proof("Triangle angle sum proof", "geometry", "triangle-angle-sum"),
+      theorem(
+        "Triangle angle sum theorem",
+        "geometry",
+        "triangle-angle-sum-theorem-3",
+      ),
+    ],
   },
   {
     conceptId: "class-7-data-handling",
-    resources: [formula("Statistics formulas", "statistics"), proof("Mean as balance point", "statistics", "mean-as-balance-point"), proof("Median and quartiles", "statistics", "median-and-quartiles")],
+    resources: [
+      formula("Statistics formulas", "statistics"),
+      proof("Mean as balance point", "statistics", "mean-as-balance-point"),
+      proof("Median and quartiles", "statistics", "median-and-quartiles"),
+    ],
   },
   {
     conceptId: "class-8-algebraic-identities",
-    resources: [formula("Algebraic identity formulas", "algebra"), proof("Square of a sum proof", "algebraic-identities", "square-of-sum"), proof("Difference of squares proof", "algebraic-identities", "difference-of-squares")],
+    resources: [
+      formula("Algebraic identity formulas", "algebra"),
+      proof("Square of a sum proof", "algebraic-identities", "square-of-sum"),
+      proof(
+        "Difference of squares proof",
+        "algebraic-identities",
+        "difference-of-squares",
+      ),
+    ],
   },
   {
     conceptId: "class-8-proportional-reasoning-2",
     resources: [
-      formula("Proportional reasoning formulas", "proportional-reasoning-2", ["ratio", "map scale", "direct proportion", "inverse proportion"]),
-      reference("Proportional reasoning visual formula lab", "/visual-formulas/proportional-reasoning-2", "exact", ["cross multiplication", "map scale", "ratio split"]),
-      theorem("Cross multiplication principle", "proportional-reasoning", "cross-multiplication-principle-1", "exact", ["equivalent ratios", "cross products"]),
-      theorem("Representative fraction principle", "proportional-reasoning", "representative-fraction-principle-2", "exact", ["map scale", "same units"]),
-      theorem("Multi-term ratio division principle", "proportional-reasoning", "multi-term-ratio-division-principle-3", "exact", ["sharing", "ratio parts"]),
-      theorem("Pie-angle proportionality principle", "proportional-reasoning", "pie-angle-proportionality-principle-4", "exact", ["pie chart", "360 degrees"]),
-      theorem("Direct proportion constant-ratio principle", "proportional-reasoning", "direct-proportion-constant-ratio-principle-5", "exact", ["constant ratio"]),
-      theorem("Inverse proportion constant-product principle", "proportional-reasoning", "inverse-proportion-constant-product-principle-6", "exact", ["constant product"]),
-      proof("Cross multiplication proof", "ratios", "cross-multiplication-equal-rectangles", "exact", ["cross multiplication", "equivalent ratios"]),
-      proof("Map scale same-unit proof", "ratios", "map-scale-same-unit-principle", "exact", ["representative fraction", "map scale"]),
-      proof("Multi-term ratio share proof", "ratios", "multi-term-ratio-shares", "exact", ["ratio split", "pie angles"]),
-      proof("Direct vs inverse proportion proof", "ratios", "direct-vs-inverse-proportion", "exact", ["direct proportion", "inverse proportion"]),
-      tool("Equivalent ratios tab", "/ncert/class-8-proportional-reasoning-2?tab=equivalent-ratios", "exact", ["cross multiplication"]),
-      tool("Map scale tab", "/ncert/class-8-proportional-reasoning-2?tab=map-scale", "exact", ["representative fraction"]),
-      tool("Ratio splitter tab", "/ncert/class-8-proportional-reasoning-2?tab=ratio-splitter", "exact", ["multi-term ratio"]),
-      tool("Pie ratio tab", "/ncert/class-8-proportional-reasoning-2?tab=pie-ratio", "exact", ["pie chart"]),
-      tool("Direct/inverse tab", "/ncert/class-8-proportional-reasoning-2?tab=direct-inverse", "exact", ["constant ratio", "constant product"]),
-      tool("Step-by-step proportional solver", "/problem-solver", "related", ["ratio", "map scale", "inverse proportion"]),
+      formula("Proportional reasoning formulas", "proportional-reasoning-2", [
+        "ratio",
+        "map scale",
+        "direct proportion",
+        "inverse proportion",
+      ]),
+      reference(
+        "Proportional reasoning visual formula lab",
+        "/visual-formulas/proportional-reasoning-2",
+        "exact",
+        ["cross multiplication", "map scale", "ratio split"],
+      ),
+      theorem(
+        "Cross multiplication principle",
+        "proportional-reasoning",
+        "cross-multiplication-principle-1",
+        "exact",
+        ["equivalent ratios", "cross products"],
+      ),
+      theorem(
+        "Representative fraction principle",
+        "proportional-reasoning",
+        "representative-fraction-principle-2",
+        "exact",
+        ["map scale", "same units"],
+      ),
+      theorem(
+        "Multi-term ratio division principle",
+        "proportional-reasoning",
+        "multi-term-ratio-division-principle-3",
+        "exact",
+        ["sharing", "ratio parts"],
+      ),
+      theorem(
+        "Pie-angle proportionality principle",
+        "proportional-reasoning",
+        "pie-angle-proportionality-principle-4",
+        "exact",
+        ["pie chart", "360 degrees"],
+      ),
+      theorem(
+        "Direct proportion constant-ratio principle",
+        "proportional-reasoning",
+        "direct-proportion-constant-ratio-principle-5",
+        "exact",
+        ["constant ratio"],
+      ),
+      theorem(
+        "Inverse proportion constant-product principle",
+        "proportional-reasoning",
+        "inverse-proportion-constant-product-principle-6",
+        "exact",
+        ["constant product"],
+      ),
+      proof(
+        "Cross multiplication proof",
+        "ratios",
+        "cross-multiplication-equal-rectangles",
+        "exact",
+        ["cross multiplication", "equivalent ratios"],
+      ),
+      proof(
+        "Map scale same-unit proof",
+        "ratios",
+        "map-scale-same-unit-principle",
+        "exact",
+        ["representative fraction", "map scale"],
+      ),
+      proof(
+        "Multi-term ratio share proof",
+        "ratios",
+        "multi-term-ratio-shares",
+        "exact",
+        ["ratio split", "pie angles"],
+      ),
+      proof(
+        "Direct vs inverse proportion proof",
+        "ratios",
+        "direct-vs-inverse-proportion",
+        "exact",
+        ["direct proportion", "inverse proportion"],
+      ),
+      tool(
+        "Equivalent ratios tab",
+        "/ncert/class-8-proportional-reasoning-2?tab=equivalent-ratios",
+        "exact",
+        ["cross multiplication"],
+      ),
+      tool(
+        "Map scale tab",
+        "/ncert/class-8-proportional-reasoning-2?tab=map-scale",
+        "exact",
+        ["representative fraction"],
+      ),
+      tool(
+        "Ratio splitter tab",
+        "/ncert/class-8-proportional-reasoning-2?tab=ratio-splitter",
+        "exact",
+        ["multi-term ratio"],
+      ),
+      tool(
+        "Pie ratio tab",
+        "/ncert/class-8-proportional-reasoning-2?tab=pie-ratio",
+        "exact",
+        ["pie chart"],
+      ),
+      tool(
+        "Direct/inverse tab",
+        "/ncert/class-8-proportional-reasoning-2?tab=direct-inverse",
+        "exact",
+        ["constant ratio", "constant product"],
+      ),
+      tool("Step-by-step proportional solver", "/problem-solver", "related", [
+        "ratio",
+        "map scale",
+        "inverse proportion",
+      ]),
       reference("NCERT dashboard", "/ncert", "related"),
     ],
   },
   {
     conceptId: "class-8-fractals-and-solid-views",
     resources: [
-      formula("Fractals and solid views formulas", "fractals-solid-views", ["sierpinski", "area fractions", "solid views"]),
-      reference("Sierpinski visual formula lab", "/visual-formulas/sierpinski-carpet", "exact", ["sierpinski carpet", "retained area", "removed squares"]),
-      theorem("Sierpinski retained area principle", "geometry", "sierpinski-retained-area-principle-25", "exact", ["fractals", "retained area"]),
-      theorem("Orthographic projection maximum principle", "geometry", "orthographic-projection-maximum-principle-27", "exact", ["solid views", "projection"]),
-      proof("Sierpinski retained area proof", "sequences-and-series", "sierpinski-retained-area", "exact", ["fractal area", "sierpinski"]),
-      proof("Sierpinski removed square sum proof", "sequences-and-series", "sierpinski-removed-square-sum", "exact", ["finite geometric sum"]),
-      proof("Orthographic projection proof", "geometry", "orthographic-projection-from-cube-stacks", "exact", ["top view", "front view", "side view"]),
-      proof("Non-unique solid projections proof", "geometry", "non-unique-solid-projections", "exact", ["projection equivalence", "hidden cubes"]),
-      tool("Fractal explorer tab", "/ncert/class-8-fractals-and-solid-views?tab=fractal", "exact", ["sierpinski carpet", "self similarity"]),
-      tool("Solid views tab", "/ncert/class-8-fractals-and-solid-views?tab=solid", "exact", ["cube stacks", "orthographic projections"]),
-      tool("Step-by-step Sierpinski solver", "/problem-solver", "related", ["retained squares", "removed area", "side scale"]),
-      tool("3D workspace", "/workspace/3d", "related", ["solid views", "cube stacks", "orthographic projections"]),
+      formula("Fractals and solid views formulas", "fractals-solid-views", [
+        "sierpinski",
+        "area fractions",
+        "solid views",
+      ]),
+      reference(
+        "Sierpinski visual formula lab",
+        "/visual-formulas/sierpinski-carpet",
+        "exact",
+        ["sierpinski carpet", "retained area", "removed squares"],
+      ),
+      theorem(
+        "Sierpinski retained area principle",
+        "geometry",
+        "sierpinski-retained-area-principle-25",
+        "exact",
+        ["fractals", "retained area"],
+      ),
+      theorem(
+        "Orthographic projection maximum principle",
+        "geometry",
+        "orthographic-projection-maximum-principle-27",
+        "exact",
+        ["solid views", "projection"],
+      ),
+      proof(
+        "Sierpinski retained area proof",
+        "sequences-and-series",
+        "sierpinski-retained-area",
+        "exact",
+        ["fractal area", "sierpinski"],
+      ),
+      proof(
+        "Sierpinski removed square sum proof",
+        "sequences-and-series",
+        "sierpinski-removed-square-sum",
+        "exact",
+        ["finite geometric sum"],
+      ),
+      proof(
+        "Orthographic projection proof",
+        "geometry",
+        "orthographic-projection-from-cube-stacks",
+        "exact",
+        ["top view", "front view", "side view"],
+      ),
+      proof(
+        "Non-unique solid projections proof",
+        "geometry",
+        "non-unique-solid-projections",
+        "exact",
+        ["projection equivalence", "hidden cubes"],
+      ),
+      tool(
+        "Fractal explorer tab",
+        "/ncert/class-8-fractals-and-solid-views?tab=fractal",
+        "exact",
+        ["sierpinski carpet", "self similarity"],
+      ),
+      tool(
+        "Solid views tab",
+        "/ncert/class-8-fractals-and-solid-views?tab=solid",
+        "exact",
+        ["cube stacks", "orthographic projections"],
+      ),
+      tool("Step-by-step Sierpinski solver", "/problem-solver", "related", [
+        "retained squares",
+        "removed area",
+        "side scale",
+      ]),
+      tool("3D workspace", "/workspace/3d", "related", [
+        "solid views",
+        "cube stacks",
+        "orthographic projections",
+      ]),
       reference("NCERT dashboard", "/ncert", "related"),
     ],
   },
   {
     conceptId: "class-9-euclid-geometry",
-    resources: [theorem("Geometry theorems", "geometry"), proof("Geometry proof library", "geometry"), reference("Visual proofs hub", "/visual-proofs", "category")],
+    resources: [
+      theorem("Geometry theorems", "geometry"),
+      proof("Geometry proof library", "geometry"),
+      reference("Visual proofs hub", "/visual-proofs", "category"),
+    ],
   },
   {
     conceptId: "class-9-heron",
-    resources: [formula("Geometry formulas", "geometry"), proof("Triangle area proof", "geometry", "triangle-area-half-rectangle"), theorem("Geometry theorems", "geometry")],
+    resources: [
+      formula("Geometry formulas", "geometry"),
+      proof("Triangle area proof", "geometry", "triangle-area-half-rectangle"),
+      theorem("Geometry theorems", "geometry"),
+    ],
   },
   {
     conceptId: "class-10-real-numbers",
-    resources: [formula("Number system formulas", "number-systems"), proof("Euclidean algorithm proof", "number-theory", "gcd-euclidean-algorithm"), theorem("Euclidean algorithm theorem", "number-theory", "euclidean-algorithm-theorem-2")],
+    resources: [
+      formula("Number system formulas", "number-systems"),
+      proof(
+        "Euclidean algorithm proof",
+        "number-theory",
+        "gcd-euclidean-algorithm",
+      ),
+      theorem(
+        "Euclidean algorithm theorem",
+        "number-theory",
+        "euclidean-algorithm-theorem-2",
+      ),
+    ],
   },
   {
     conceptId: "class-10-arithmetic-progressions",
-    resources: [formula("Sequences and series formulas", "sequences-series"), proof("Arithmetic progression visual proof", "sequences-and-series", "arithmetic-progression-equal-steps"), proof("Sum of AP proof", "sequences-and-series", "sum-arithmetic-progression")],
+    resources: [
+      formula("Sequences and series formulas", "sequences-series"),
+      proof(
+        "Arithmetic progression visual proof",
+        "sequences-and-series",
+        "arithmetic-progression-equal-steps",
+      ),
+      proof(
+        "Sum of AP proof",
+        "sequences-and-series",
+        "sum-arithmetic-progression",
+      ),
+    ],
   },
   {
     conceptId: "class-10-section-formula",
-    resources: [formula("Coordinate geometry formulas", "coordinate-geometry"), proof("Section formula visual proof", "coordinate-geometry", "section-formula"), theorem("Section formula theorem", "coordinate-geometry", "section-formula-theorem-3")],
+    resources: [
+      formula("Coordinate geometry formulas", "coordinate-geometry"),
+      proof(
+        "Section formula visual proof",
+        "coordinate-geometry",
+        "section-formula",
+      ),
+      theorem(
+        "Section formula theorem",
+        "coordinate-geometry",
+        "section-formula-theorem-3",
+      ),
+    ],
   },
   {
     conceptId: "class-10-heights-distances",
-    resources: [formula("Trigonometry formulas", "trigonometry"), proof("Right triangle ratios proof", "trigonometry", "right-triangle-trig-ratios"), tool("Trigonometry lab", "/trigonometry", "related")],
+    resources: [
+      formula("Trigonometry formulas", "trigonometry"),
+      proof(
+        "Right triangle ratios proof",
+        "trigonometry",
+        "right-triangle-trig-ratios",
+      ),
+      tool("Trigonometry lab", "/trigonometry", "related"),
+    ],
   },
   {
     conceptId: "class-10-polynomials",
-    resources: [formula("Polynomial formulas", "polynomials"), theorem("Factor theorem", "algebra", "factor-theorem-1"), proof("Quadratic factorization area model", "algebraic-identities", "quadratic-factorization-area-model"), tool("Polynomial workspace", "/workspace?template=polynomials")],
+    resources: [
+      formula("Polynomial formulas", "polynomials"),
+      theorem("Factor theorem", "algebra", "factor-theorem-1"),
+      proof(
+        "Quadratic factorization area model",
+        "algebraic-identities",
+        "quadratic-factorization-area-model",
+      ),
+      tool("Polynomial workspace", "/workspace?template=polynomials"),
+    ],
   },
   {
     conceptId: "class-10-pair-linear",
-    resources: [formula("Algebra formulas", "algebra"), proof("Linear system line intersection", "matrices-linear-algebra", "linear-system-line-intersection"), tool("Graph workspace", "/workspace/graph")],
+    resources: [
+      formula("Algebra formulas", "algebra"),
+      proof(
+        "Linear system line intersection",
+        "matrices-linear-algebra",
+        "linear-system-line-intersection",
+      ),
+      tool("Graph workspace", "/workspace/graph"),
+    ],
   },
   {
     conceptId: "class-10-quadratic",
-    resources: [formula("Quadratic formulas", "polynomials"), theorem("Quadratic discriminant theorem", "algebra", "quadratic-discriminant-theorem-6"), proof("Completing the square proof", "algebraic-identities", "completing-the-square"), tool("Graph workspace", "/workspace/graph")],
+    resources: [
+      formula("Quadratic formulas", "polynomials"),
+      theorem(
+        "Quadratic discriminant theorem",
+        "algebra",
+        "quadratic-discriminant-theorem-6",
+      ),
+      proof(
+        "Completing the square proof",
+        "algebraic-identities",
+        "completing-the-square",
+      ),
+      tool("Graph workspace", "/workspace/graph"),
+    ],
   },
   {
     conceptId: "class-10-irrational-numbers",
-    resources: [formula("Number system formulas", "number-systems"), proof("Irrationality of sqrt(2)", "number-theory", "irrationality-of-square-root-2"), theorem("Number theory theorems", "number-theory")],
+    resources: [
+      formula("Number system formulas", "number-systems"),
+      proof(
+        "Irrationality of sqrt(2)",
+        "number-theory",
+        "irrationality-of-square-root-2",
+      ),
+      theorem("Number theory theorems", "number-theory"),
+    ],
   },
   {
     conceptId: "class-10-polynomial-zero-coefficients",
-    resources: [formula("Polynomial formulas", "polynomials"), theorem("Vieta theorem", "algebra", "vieta-theorem-5"), proof("Quadratic factorization area model", "algebraic-identities", "quadratic-factorization-area-model")],
+    resources: [
+      formula("Polynomial formulas", "polynomials"),
+      theorem("Vieta theorem", "algebra", "vieta-theorem-5"),
+      proof(
+        "Quadratic factorization area model",
+        "algebraic-identities",
+        "quadratic-factorization-area-model",
+      ),
+    ],
   },
   {
     conceptId: "class-10-linear-substitution-elimination",
-    resources: [formula("Algebra formulas", "algebra"), proof("Linear system line intersection", "matrices-linear-algebra", "linear-system-line-intersection"), tool("Graph workspace", "/workspace/graph")],
+    resources: [
+      formula("Algebra formulas", "algebra"),
+      proof(
+        "Linear system line intersection",
+        "matrices-linear-algebra",
+        "linear-system-line-intersection",
+      ),
+      tool("Graph workspace", "/workspace/graph"),
+    ],
   },
   {
     conceptId: "class-10-linear-consistency",
-    resources: [formula("Algebra formulas", "algebra"), proof("Linear system line intersection", "matrices-linear-algebra", "linear-system-line-intersection"), theorem("Algebra theorems", "algebra")],
+    resources: [
+      formula("Algebra formulas", "algebra"),
+      proof(
+        "Linear system line intersection",
+        "matrices-linear-algebra",
+        "linear-system-line-intersection",
+      ),
+      theorem("Algebra theorems", "algebra"),
+    ],
   },
   {
     conceptId: "class-10-triangle-bpt-converse",
-    resources: [formula("Geometry formulas", "geometry"), proof("Similar triangles proportional sides", "geometry", "similar-triangles-proportional-sides"), theorem("Basic proportionality theorem", "geometry", "basic-proportionality-theorem-10")],
+    resources: [
+      formula("Geometry formulas", "geometry"),
+      proof(
+        "Similar triangles proportional sides",
+        "geometry",
+        "similar-triangles-proportional-sides",
+      ),
+      theorem(
+        "Basic proportionality theorem",
+        "geometry",
+        "basic-proportionality-theorem-10",
+      ),
+    ],
   },
   {
     conceptId: "class-10-similarity-criteria",
-    resources: [formula("Geometry formulas", "geometry"), proof("Similar triangles proportional sides", "geometry", "similar-triangles-proportional-sides"), theorem("AA similarity theorem", "geometry", "aa-similarity-theorem-9")],
+    resources: [
+      formula("Geometry formulas", "geometry"),
+      proof(
+        "Similar triangles proportional sides",
+        "geometry",
+        "similar-triangles-proportional-sides",
+      ),
+      theorem("AA similarity theorem", "geometry", "aa-similarity-theorem-9"),
+    ],
   },
   {
     conceptId: "class-10-areas-similar-triangles",
-    resources: [formula("Geometry formulas", "geometry"), proof("Similar triangles proportional sides", "geometry", "similar-triangles-proportional-sides"), theorem("Homothety scale theorem", "coordinate-geometry", "homothety-scale-theorem-18")],
+    resources: [
+      formula("Geometry formulas", "geometry"),
+      proof(
+        "Similar triangles proportional sides",
+        "geometry",
+        "similar-triangles-proportional-sides",
+      ),
+      theorem(
+        "Homothety scale theorem",
+        "coordinate-geometry",
+        "homothety-scale-theorem-18",
+      ),
+    ],
   },
   {
     conceptId: "class-10-special-trig-angles",
-    resources: [formula("Trigonometry formulas", "trigonometry"), proof("Right triangle trig ratios", "trigonometry", "right-triangle-trig-ratios"), proof("Unit circle sine and cosine", "trigonometry", "unit-circle-sine-cosine")],
+    resources: [
+      formula("Trigonometry formulas", "trigonometry"),
+      proof(
+        "Right triangle trig ratios",
+        "trigonometry",
+        "right-triangle-trig-ratios",
+      ),
+      proof(
+        "Unit circle sine and cosine",
+        "trigonometry",
+        "unit-circle-sine-cosine",
+      ),
+    ],
   },
   {
     conceptId: "class-10-circle-tangent-radius",
-    resources: [formula("Geometry formulas", "geometry"), theorem("Tangent radius theorem", "geometry", "tangent-radius-theorem-15"), proof("Circle tangent visual proofs", "geometry", undefined, "category")],
+    resources: [
+      formula("Geometry formulas", "geometry"),
+      theorem(
+        "Tangent radius theorem",
+        "geometry",
+        "tangent-radius-theorem-15",
+      ),
+      proof("Circle tangent visual proofs", "geometry", undefined, "category"),
+    ],
   },
   {
     conceptId: "class-10-two-tangents",
-    resources: [formula("Geometry formulas", "geometry"), theorem("Power of a point theorem", "geometry", "power-of-a-point-theorem-18"), proof("Circle tangent visual proofs", "geometry", undefined, "category")],
+    resources: [
+      formula("Geometry formulas", "geometry"),
+      theorem(
+        "Power of a point theorem",
+        "geometry",
+        "power-of-a-point-theorem-18",
+      ),
+      proof("Circle tangent visual proofs", "geometry", undefined, "category"),
+    ],
   },
   {
     conceptId: "class-10-sector-segment-area",
-    resources: [formula("Mensuration formulas", "mensuration-units"), proof("Sector area formula proof", "geometry", "sector-area-formula"), proof("Area of circle by unrolling", "geometry", "area-of-circle-by-unrolling")],
+    resources: [
+      formula("Mensuration formulas", "mensuration-units"),
+      proof("Sector area formula proof", "geometry", "sector-area-formula"),
+      proof(
+        "Area of circle by unrolling",
+        "geometry",
+        "area-of-circle-by-unrolling",
+      ),
+    ],
   },
   {
     conceptId: "class-10-composite-circle-regions",
-    resources: [formula("Mensuration formulas", "mensuration-units"), proof("Circle to triangle proof", "geometry", "circle-to-triangle"), proof("Sector area formula proof", "geometry", "sector-area-formula")],
+    resources: [
+      formula("Mensuration formulas", "mensuration-units"),
+      proof("Circle to triangle proof", "geometry", "circle-to-triangle"),
+      proof("Sector area formula proof", "geometry", "sector-area-formula"),
+    ],
   },
   {
     conceptId: "class-10-combination-solids",
-    resources: [formula("Mensuration formulas", "mensuration-units"), proof("Composite solids proof", "mensuration", "composite-solids-and-units"), tool("3D workspace", "/workspace/3d")],
+    resources: [
+      formula("Mensuration formulas", "mensuration-units"),
+      proof(
+        "Composite solids proof",
+        "mensuration",
+        "composite-solids-and-units",
+      ),
+      tool("3D workspace", "/workspace/3d"),
+    ],
   },
   {
     conceptId: "class-10-recasting-solids",
-    resources: [formula("Mensuration formulas", "mensuration-units"), proof("Cylinder volume and surface area", "mensuration", "cylinder-volume-surface-area"), tool("3D workspace", "/workspace/3d")],
+    resources: [
+      formula("Mensuration formulas", "mensuration-units"),
+      proof(
+        "Cylinder volume and surface area",
+        "mensuration",
+        "cylinder-volume-surface-area",
+      ),
+      tool("3D workspace", "/workspace/3d"),
+    ],
   },
   {
     conceptId: "class-10-frustum-cone",
-    resources: [formula("Mensuration formulas", "mensuration-units"), proof("Cone volume and surface area", "mensuration", "cone-volume-surface-area"), tool("3D workspace", "/workspace/3d")],
+    resources: [
+      formula("Mensuration formulas", "mensuration-units"),
+      proof(
+        "Cone volume and surface area",
+        "mensuration",
+        "cone-volume-surface-area",
+      ),
+      tool("3D workspace", "/workspace/3d"),
+    ],
   },
   {
     conceptId: "class-10-grouped-mean-methods",
-    resources: [formula("Statistics formulas", "statistics"), proof("Mean as balance point", "statistics", "mean-as-balance-point"), theorem("Expected value linearity theorem", "probability-statistics", "expected-value-linearity-theorem-6")],
+    resources: [
+      formula("Statistics formulas", "statistics"),
+      proof("Mean as balance point", "statistics", "mean-as-balance-point"),
+      theorem(
+        "Expected value linearity theorem",
+        "probability-statistics",
+        "expected-value-linearity-theorem-6",
+      ),
+    ],
   },
   {
     conceptId: "class-10-grouped-mode",
-    resources: [formula("Statistics formulas", "statistics"), proof("Histogram frequency distribution", "statistics", "histogram-frequency-distribution"), theorem("Probability and statistics theorems", "probability-statistics")],
+    resources: [
+      formula("Statistics formulas", "statistics"),
+      proof(
+        "Histogram frequency distribution",
+        "statistics",
+        "histogram-frequency-distribution",
+      ),
+      theorem("Probability and statistics theorems", "probability-statistics"),
+    ],
   },
   {
     conceptId: "class-10-grouped-median",
-    resources: [formula("Statistics formulas", "statistics"), proof("Median and quartiles", "statistics", "median-and-quartiles"), theorem("Probability and statistics theorems", "probability-statistics")],
+    resources: [
+      formula("Statistics formulas", "statistics"),
+      proof("Median and quartiles", "statistics", "median-and-quartiles"),
+      theorem("Probability and statistics theorems", "probability-statistics"),
+    ],
   },
   {
     conceptId: "class-12-relations-functions",
-    resources: [formula("Relations and functions formulas", "relations-functions"), theorem("Inverse function theorem", "algebra", "inverse-function-theorem-for-algebra-22"), tool("Function explorer", "/math/functions")],
+    resources: [
+      formula("Relations and functions formulas", "relations-functions"),
+      theorem(
+        "Inverse function theorem",
+        "algebra",
+        "inverse-function-theorem-for-algebra-22",
+      ),
+      tool("Function explorer", "/math/functions"),
+    ],
   },
   {
     conceptId: "class-12-determinants",
-    resources: [formula("Determinant formulas", "determinants"), proof("Determinant area scale factor", "matrices-linear-algebra", "determinant-area-scale-factor"), theorem("Determinant area theorem", "linear-algebra-vectors", "determinant-area-theorem-7"), tool("Linear algebra lab", "/linear-algebra", "related")],
+    resources: [
+      formula("Determinant formulas", "determinants"),
+      proof(
+        "Determinant area scale factor",
+        "matrices-linear-algebra",
+        "determinant-area-scale-factor",
+      ),
+      theorem(
+        "Determinant area theorem",
+        "linear-algebra-vectors",
+        "determinant-area-theorem-7",
+      ),
+      tool("Linear algebra lab", "/linear-algebra", "related"),
+    ],
   },
   {
     conceptId: "class-12-continuity-differentiability",
-    resources: [formula("Derivatives formulas", "derivatives"), proof("Derivative as tangent slope", "calculus", "derivative-slope-of-tangent"), theorem("Mean value theorem", "calculus-analysis", "mean-value-theorem-5"), tool("Derivatives lab", "/math/derivatives")],
+    resources: [
+      formula("Derivatives formulas", "derivatives"),
+      proof(
+        "Derivative as tangent slope",
+        "calculus",
+        "derivative-slope-of-tangent",
+      ),
+      theorem(
+        "Mean value theorem",
+        "calculus-analysis",
+        "mean-value-theorem-5",
+      ),
+      tool("Derivatives lab", "/math/derivatives"),
+    ],
   },
   {
     conceptId: "class-12-integration-methods",
-    resources: [formula("Integral formulas", "integrals"), proof("Definite integral accumulated area", "calculus", "definite-integral-accumulated-area"), theorem("Fundamental theorem of calculus I", "calculus-analysis", "fundamental-theorem-of-calculus-i-8"), tool("Integration lab", "/math/integration")],
+    resources: [
+      formula("Integral formulas", "integrals"),
+      proof(
+        "Definite integral accumulated area",
+        "calculus",
+        "definite-integral-accumulated-area",
+      ),
+      theorem(
+        "Fundamental theorem of calculus I",
+        "calculus-analysis",
+        "fundamental-theorem-of-calculus-i-8",
+      ),
+      tool("Integration lab", "/math/integration"),
+    ],
   },
   {
     conceptId: "class-12-differential-equations",
-    resources: [formula("Differential equations formulas", "differential-equations"), proof("Slope field visual proof", "engineering-mathematics", "first-order-differential-equation-slope-field"), tool("Slope fields lab", "/math/slope-fields")],
+    resources: [
+      formula("Differential equations formulas", "differential-equations"),
+      proof(
+        "Slope field visual proof",
+        "engineering-mathematics",
+        "first-order-differential-equation-slope-field",
+      ),
+      tool("Slope fields lab", "/math/slope-fields"),
+    ],
   },
   {
     conceptId: "class-12-vectors-3d-geometry",
-    resources: [formula("Vector formulas", "vectors"), proof("Vector projection component", "vectors", "vector-projection-component"), theorem("Dot product angle theorem", "linear-algebra-vectors", "dot-product-angle-theorem-14"), tool("Linear algebra lab", "/linear-algebra", "related")],
+    resources: [
+      formula("Vector formulas", "vectors"),
+      proof(
+        "Vector projection component",
+        "vectors",
+        "vector-projection-component",
+      ),
+      theorem(
+        "Dot product angle theorem",
+        "linear-algebra-vectors",
+        "dot-product-angle-theorem-14",
+      ),
+      tool("Linear algebra lab", "/linear-algebra", "related"),
+    ],
   },
   {
     conceptId: "class-12-bayes-theorem",
-    resources: [formula("Probability formulas", "probability"), theorem("Bayes theorem", "probability-statistics", "bayes-theorem-3"), proof("Conditional probability proof", "probability", "conditional-probability")],
+    resources: [
+      formula("Probability formulas", "probability"),
+      theorem("Bayes theorem", "probability-statistics", "bayes-theorem-3"),
+      proof(
+        "Conditional probability proof",
+        "probability",
+        "conditional-probability",
+      ),
+    ],
   },
   {
     conceptId: "class-12-linear-programming",
-    resources: [formula("Linear programming formulas", "linear-programming"), proof("Linear programming feasible region", "engineering-mathematics", "linear-programming-feasible-region"), tool("Concept map", "/concept-map", "related")],
+    resources: [
+      formula("Linear programming formulas", "linear-programming"),
+      proof(
+        "Linear programming feasible region",
+        "engineering-mathematics",
+        "linear-programming-feasible-region",
+      ),
+      tool("Concept map", "/concept-map", "related"),
+    ],
   },
   {
     conceptId: "class-12-inverse-trig",
-    resources: [formula("Trigonometry formulas", "trigonometry"), theorem("Inverse trig range theorem", "trigonometry", "inverse-trig-range-theorem-18"), proof("Complementary angle identities", "trigonometry", "complementary-angle-identities"), tool("Trigonometry lab", "/trigonometry", "related")],
+    resources: [
+      formula("Trigonometry formulas", "trigonometry"),
+      theorem(
+        "Inverse trig range theorem",
+        "trigonometry",
+        "inverse-trig-range-theorem-18",
+      ),
+      proof(
+        "Complementary angle identities",
+        "trigonometry",
+        "complementary-angle-identities",
+      ),
+      tool("Trigonometry lab", "/trigonometry", "related"),
+    ],
   },
 ];
 
-const explicitResourceMap = new Map(ncertConceptResourceLinks.map((entry) => [entry.conceptId, entry.resources]));
+const explicitResourceMap = new Map(
+  ncertConceptResourceLinks.map((entry) => [entry.conceptId, entry.resources]),
+);
 
-export function getNCERTConceptResourceLinks(conceptOrId: NCERTConcept | string): NCERTResourceLink[] {
-  const concept = typeof conceptOrId === "string" ? getNCERTConcept(conceptOrId) : conceptOrId;
-  const explicit = explicitResourceMap.get(typeof conceptOrId === "string" ? conceptOrId : conceptOrId.id);
+export function getNCERTConceptResourceLinks(
+  conceptOrId: NCERTConcept | string,
+): NCERTResourceLink[] {
+  const concept =
+    typeof conceptOrId === "string"
+      ? getNCERTConcept(conceptOrId)
+      : conceptOrId;
+  const explicit = explicitResourceMap.get(
+    typeof conceptOrId === "string" ? conceptOrId : conceptOrId.id,
+  );
   if (explicit) return explicit;
   if (!concept) return [reference("NCERT dashboard", "/ncert")];
-  return byUnitFallback[concept.unit] ?? [
-    reference("NCERT dashboard", "/ncert"),
-    reference("Formula library", "/formulas", "category"),
-    reference("Visual proofs hub", "/visual-proofs", "category"),
-  ];
+  return (
+    byUnitFallback[concept.unit] ?? [
+      reference("NCERT dashboard", "/ncert"),
+      reference("Formula library", "/formulas", "category"),
+      reference("Visual proofs hub", "/visual-proofs", "category"),
+    ]
+  );
 }
 
-export function getNCERTResourceAuditRow(concept: NCERTConcept): NCERTResourceAuditRow {
+export function getNCERTResourceAuditRow(
+  concept: NCERTConcept,
+): NCERTResourceAuditRow {
   const resources = getNCERTConceptResourceLinks(concept);
-  const byType = (type: NCERTResourceLink["type"]) => resources.find((resource) => resource.type === type);
+  const byType = (type: NCERTResourceLink["type"]) =>
+    resources.find((resource) => resource.type === type);
   const proofLink = byType("visual-proof");
   const formulaLink = byType("formula");
   const theoremLink = byType("theorem");
-  const toolLink = resources.find((resource) => resource.type === "math-lab" || resource.type === "workspace" || resource.type === "ar-xr");
-  const exactCount = resources.filter((resource) => resource.exactness === "exact").length;
-  const categoryCount = resources.filter((resource) => resource.exactness === "category").length;
+  const toolLink = resources.find(
+    (resource) =>
+      resource.type === "math-lab" ||
+      resource.type === "workspace" ||
+      resource.type === "ar-xr",
+  );
+  const exactCount = resources.filter(
+    (resource) => resource.exactness === "exact",
+  ).length;
+  const categoryCount = resources.filter(
+    (resource) => resource.exactness === "category",
+  ).length;
 
   return {
     ncertRoute: `/ncert/${concept.id}`,
@@ -383,13 +981,24 @@ export function getNCERTResourceAuditRow(concept: NCERTConcept): NCERTResourceAu
     currentTheoremLink: formatAuditCell(theoremLink),
     currentProofLink: formatAuditCell(proofLink),
     currentToolLink: formatAuditCell(toolLink),
-    exactLinkAvailable: exactCount > 0 ? `Yes (${exactCount} exact, ${categoryCount} category/related)` : "No exact route; category fallback kept",
-    action: exactCount > 0 ? "Use centralized exact/resource links" : "Keep documented category fallback",
+    exactLinkAvailable:
+      exactCount > 0
+        ? `Yes (${exactCount} exact, ${categoryCount} category/related)`
+        : "No exact route; category fallback kept",
+    action:
+      exactCount > 0
+        ? "Use centralized exact/resource links"
+        : "Keep documented category fallback",
   };
 }
 
 export function formatAuditCell(resource?: NCERTResourceLink) {
   if (!resource) return "Not applicable";
-  const status = resource.exactness === "exact" ? "Exact" : resource.exactness === "category" ? "Category fallback" : "Related";
+  const status =
+    resource.exactness === "exact"
+      ? "Exact"
+      : resource.exactness === "category"
+        ? "Category fallback"
+        : "Related";
   return `${status}: ${resource.href}`;
 }

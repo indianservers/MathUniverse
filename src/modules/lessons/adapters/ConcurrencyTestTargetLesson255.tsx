@@ -43,7 +43,9 @@ export default function ConcurrencyTestTargetLesson255({
     [zoom, setZoom] = useState(1),
     [objectView, setObjectView] = useState("primary-control"),
     [practice, setPractice] = useState({ f: 0.5, d: 0.5, e: 0.5 }),
-    [feedback, setFeedback] = useState("Great! Correct: your cevians are concurrent.");
+    [feedback, setFeedback] = useState(
+      "Great! Correct: your cevians are concurrent.",
+    );
   const model = useMemo(
     () => cevaModel(vertices, fractions),
     [vertices, fractions],
@@ -424,7 +426,10 @@ export default function ConcurrencyTestTargetLesson255({
           </p>
         </footer>
       </section>
-      <section className="target-concurrency-tags" aria-label="Concurrency object view">
+      <section
+        className="target-concurrency-tags"
+        aria-label="Concurrency object view"
+      >
         {["primary-control", "geometry object", "measurement"].map((name) => (
           <button
             type="button"

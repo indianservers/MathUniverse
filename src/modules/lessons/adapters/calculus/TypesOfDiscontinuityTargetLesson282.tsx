@@ -82,7 +82,13 @@ export default function TypesOfDiscontinuityTargetLesson282({
     >
       <span className="sr-only">Types of discontinuity</span>
       <nav className="td282-breadcrumb" aria-label="Target breadcrumb">
-        <span>Home</span><b>›</b><span>Lessons</span><b>›</b><span>Calculus</span><b>›</b><strong>282 Types of Discontinuity</strong>
+        <span>Home</span>
+        <b>›</b>
+        <span>Lessons</span>
+        <b>›</b>
+        <span>Calculus</span>
+        <b>›</b>
+        <strong>282 Types of Discontinuity</strong>
       </nav>
       <header className="td282-title">
         <h1>Types of Discontinuity</h1>

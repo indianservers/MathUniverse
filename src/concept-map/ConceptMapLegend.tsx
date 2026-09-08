@@ -11,7 +11,10 @@ const edgeItems = [
 
 export default function ConceptMapLegend() {
   return (
-    <section className="concept-panel concept-legend" aria-label="Concept map legend">
+    <section
+      className="concept-panel concept-legend"
+      aria-label="Concept map legend"
+    >
       <div>
         <h2>Categories</h2>
         <div className="concept-legend-grid">

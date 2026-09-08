@@ -38,7 +38,9 @@ describe("site links discoverability", () => {
   it("exposes every Class 7, Class 10, and Class 12 NCERT route to search", () => {
     const routePaths = paths();
     ncertConcepts
-      .filter((concept) => ["Class 7", "Class 10", "Class 12"].includes(concept.classLevel))
+      .filter((concept) =>
+        ["Class 7", "Class 10", "Class 12"].includes(concept.classLevel),
+      )
       .forEach((concept) => {
         expect(routePaths.has(ncertRoute(concept.id))).toBe(true);
       });
@@ -49,26 +51,44 @@ describe("site links discoverability", () => {
     expect(routePaths.has("/modules/ar-math-lab")).toBe(true);
     expect(routePaths.has("/formulas/algebra")).toBe(true);
     expect(routePaths.has("/theorems/geometry")).toBe(true);
-    expect(routePaths.has("/visual-proofs/geometry/pythagorean-theorem-area-rearrangement")).toBe(true);
+    expect(
+      routePaths.has(
+        "/visual-proofs/geometry/pythagorean-theorem-area-rearrangement",
+      ),
+    ).toBe(true);
     expect(routePaths.has("/workspace/graph")).toBe(true);
   });
 
   it("keeps route indexes discoverable across generated tool, formula, theorem, and proof links", () => {
     const routePaths = paths();
-    mathLabTools.forEach((tool) => expect(routePaths.has(tool.route)).toBe(true));
-    formulaCategories.forEach((category) => expect(routePaths.has(`/formulas/${category.id}`)).toBe(true));
+    mathLabTools.forEach((tool) =>
+      expect(routePaths.has(tool.route)).toBe(true),
+    );
+    formulaCategories.forEach((category) =>
+      expect(routePaths.has(`/formulas/${category.id}`)).toBe(true),
+    );
     theoremCategories.forEach((category) => {
       expect(routePaths.has(`/theorems/${category.id}`)).toBe(true);
-      category.theorems.forEach((theorem) => expect(routePaths.has(`/theorems/${category.id}/${theorem.slug}`)).toBe(true));
+      category.theorems.forEach((theorem) =>
+        expect(routePaths.has(`/theorems/${category.id}/${theorem.slug}`)).toBe(
+          true,
+        ),
+      );
     });
-    visualProofsIndex.forEach((proof) => expect(routePaths.has(proof.route)).toBe(true));
+    visualProofsIndex.forEach((proof) =>
+      expect(routePaths.has(proof.route)).toBe(true),
+    );
   });
 
   it("includes student-friendly NCERT search keywords", () => {
     const determinant = linkFor("/ncert/class-12-determinants");
     const tangent = linkFor("/ncert/class-10-two-tangents");
-    expect(determinant?.keywords.join(" ").toLowerCase()).toContain("determinant");
-    expect(determinant?.keywords.join(" ").toLowerCase()).toContain("visual lab");
+    expect(determinant?.keywords.join(" ").toLowerCase()).toContain(
+      "determinant",
+    );
+    expect(determinant?.keywords.join(" ").toLowerCase()).toContain(
+      "visual lab",
+    );
     expect(tangent?.keywords.join(" ").toLowerCase()).toContain("tangent");
     expect(tangent?.keywords.join(" ").toLowerCase()).toContain("theorem");
   });

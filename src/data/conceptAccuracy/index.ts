@@ -25,22 +25,37 @@ export const phaseOneAccuracyConcepts: StrengthenedConcept[] = [
   ...advancedCoreExtendedConcepts,
 ];
 
-const conceptById = new Map(phaseOneAccuracyConcepts.map((concept) => [concept.id, concept]));
+const conceptById = new Map(
+  phaseOneAccuracyConcepts.map((concept) => [concept.id, concept]),
+);
 
 export function accuracyConceptById(id: string) {
   return conceptById.get(id);
 }
 
 export function accuracyConceptsForDomain(domain: PhaseOneDomain) {
-  return phaseOneAccuracyConcepts.filter((concept) => concept.domain === domain);
+  return phaseOneAccuracyConcepts.filter(
+    (concept) => concept.domain === domain,
+  );
 }
 
 export function phaseOneAccuracySummary() {
   return {
     conceptCount: phaseOneAccuracyConcepts.length,
-    domainCount: new Set(phaseOneAccuracyConcepts.map((concept) => concept.domain)).size,
-    exampleCount: phaseOneAccuracyConcepts.reduce((sum, concept) => sum + concept.examples.length, 0),
-    misconceptionCount: phaseOneAccuracyConcepts.reduce((sum, concept) => sum + concept.misconceptions.length, 0),
-    invariantCount: phaseOneAccuracyConcepts.reduce((sum, concept) => sum + concept.invariants.length, 0),
+    domainCount: new Set(
+      phaseOneAccuracyConcepts.map((concept) => concept.domain),
+    ).size,
+    exampleCount: phaseOneAccuracyConcepts.reduce(
+      (sum, concept) => sum + concept.examples.length,
+      0,
+    ),
+    misconceptionCount: phaseOneAccuracyConcepts.reduce(
+      (sum, concept) => sum + concept.misconceptions.length,
+      0,
+    ),
+    invariantCount: phaseOneAccuracyConcepts.reduce(
+      (sum, concept) => sum + concept.invariants.length,
+      0,
+    ),
   };
 }

@@ -1,7 +1,10 @@
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import { ncertConcepts } from "../../../data/ncertConcepts";
-import Grade7ManipulativeLab, { grade7PriorityRouteIds, isGrade7PriorityRoute } from "./Grade7ManipulativeLab";
+import Grade7ManipulativeLab, {
+  grade7PriorityRouteIds,
+  isGrade7PriorityRoute,
+} from "./Grade7ManipulativeLab";
 
 describe("Grade 7 manipulative lab routing", () => {
   it("covers every Phase 6 priority Grade 7 route", () => {
@@ -14,9 +17,13 @@ describe("Grade 7 manipulative lab routing", () => {
   });
 
   it("renders compact tabs, sub-tabs, and practice for a new route", () => {
-    const concept = ncertConcepts.find((item) => item.id === "class-7-algebraic-expressions");
+    const concept = ncertConcepts.find(
+      (item) => item.id === "class-7-algebraic-expressions",
+    );
     expect(concept).toBeTruthy();
-    const html = renderToStaticMarkup(<Grade7ManipulativeLab concept={concept!} />);
+    const html = renderToStaticMarkup(
+      <Grade7ManipulativeLab concept={concept!} />,
+    );
 
     expect(html).toContain("Class 7 NCERT manipulative lab");
     expect(html).toContain("Visual Model");

@@ -1,4 +1,21 @@
-import { BookOpen, Box, Calculator, ChevronDown, Grid3X3, Hash, Home, Network, Presentation, ScanLine, Shapes, Sigma, Sparkles, Waves, X, type LucideIcon } from "lucide-react";
+import {
+  BookOpen,
+  Box,
+  Calculator,
+  ChevronDown,
+  Grid3X3,
+  Hash,
+  Home,
+  Network,
+  Presentation,
+  ScanLine,
+  Shapes,
+  Sigma,
+  Sparkles,
+  Waves,
+  X,
+  type LucideIcon,
+} from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
 type CalculusSidebarProps = {
@@ -16,9 +33,17 @@ type CalculusNavigationItem = {
 const calculusLessons: CalculusNavigationItem[] = [
   { label: "Limits", href: "/math/limits-continuity", icon: Sigma },
   { label: "Derivatives", href: "/math/derivatives", icon: Sigma },
-  { label: "Derivative Formula Atlas", href: "/math/derivatives/formula-visualizer", icon: Sparkles },
+  {
+    label: "Derivative Formula Atlas",
+    href: "/math/derivatives/formula-visualizer",
+    icon: Sparkles,
+  },
   { label: "Integration", href: "/math/integration", icon: Sigma },
-  { label: "Integration Formula Atlas", href: "/math/integration/formula-visualizer", icon: Sparkles },
+  {
+    label: "Integration Formula Atlas",
+    href: "/math/integration/formula-visualizer",
+    icon: Sparkles,
+  },
   { label: "Slope Fields", href: "/math/slope-fields", icon: Sigma },
 ];
 
@@ -39,38 +64,93 @@ const mathTopics: CalculusNavigationItem[] = [
   { label: "Trigonometry", href: "/trigonometry", icon: Waves },
 ];
 
-export default function CalculusSidebar({ mobileOpen, onClose, variant = "calculus" }: CalculusSidebarProps) {
+export default function CalculusSidebar({
+  mobileOpen,
+  onClose,
+  variant = "calculus",
+}: CalculusSidebarProps) {
   const { pathname } = useLocation();
 
   return (
     <>
       {mobileOpen && (
-        <button className="limits-nav-backdrop" aria-label="Close navigation" onClick={onClose} />
+        <button
+          className="limits-nav-backdrop"
+          aria-label="Close navigation"
+          onClick={onClose}
+        />
       )}
-      <aside className={`limits-sidebar ${variant === "main" ? "is-main" : ""} ${mobileOpen ? "is-open" : ""}`} aria-label={variant === "main" ? "Main navigation" : "Calculus navigation"}>
-        <Link className="limits-brand" to={variant === "main" ? "/" : "/calculus"} onClick={onClose}>
+      <aside
+        className={`limits-sidebar ${variant === "main" ? "is-main" : ""} ${mobileOpen ? "is-open" : ""}`}
+        aria-label={
+          variant === "main" ? "Main navigation" : "Calculus navigation"
+        }
+      >
+        <Link
+          className="limits-brand"
+          to={variant === "main" ? "/" : "/calculus"}
+          onClick={onClose}
+        >
           <Box aria-hidden="true" />
-          <span>{variant === "main" ? "Math Universe" : "Interactive Math Lab"}</span>
+          <span>
+            {variant === "main" ? "Math Universe" : "Interactive Math Lab"}
+          </span>
         </Link>
-        <button className="limits-nav-close" onClick={onClose} aria-label="Close navigation">
+        <button
+          className="limits-nav-close"
+          onClick={onClose}
+          aria-label="Close navigation"
+        >
           <X />
         </button>
 
         <nav>
-          {variant === "main" && <>
-            <div className="limits-main-links">
-              {mainNavigation.map(({label,href,icon:Icon})=><Link key={href} to={href} className={pathname===href?"is-selected":""} aria-current={pathname===href?"page":undefined} onClick={onClose}><Icon/><span>{label}</span>{pathname===href&&<i aria-hidden="true"/>}</Link>)}
-            </div>
-            <div className="limits-nav-heading limits-main-heading" aria-label="Math Topics section">
-              <Calculator aria-hidden="true" />
-              <span>Math Topics</span>
-              <ChevronDown aria-hidden="true" />
-            </div>
-            <div className="limits-main-links limits-topic-links">
-              {mathTopics.map(({label,href,icon:Icon})=><Link key={href} to={href} className={pathname===href?"is-selected":""} aria-current={pathname===href?"page":undefined} onClick={onClose}><Icon/><span>{label}</span>{pathname===href&&<i aria-hidden="true"/>}</Link>)}
-            </div>
-          </>}
-          <div className="limits-nav-heading" aria-label="Calculus section, expanded">
+          {variant === "main" && (
+            <>
+              <div className="limits-main-links">
+                {mainNavigation.map(({ label, href, icon: Icon }) => (
+                  <Link
+                    key={href}
+                    to={href}
+                    className={pathname === href ? "is-selected" : ""}
+                    aria-current={pathname === href ? "page" : undefined}
+                    onClick={onClose}
+                  >
+                    <Icon />
+                    <span>{label}</span>
+                    {pathname === href && <i aria-hidden="true" />}
+                  </Link>
+                ))}
+              </div>
+              <div
+                className="limits-nav-heading limits-main-heading"
+                aria-label="Math Topics section"
+              >
+                <Calculator aria-hidden="true" />
+                <span>Math Topics</span>
+                <ChevronDown aria-hidden="true" />
+              </div>
+              <div className="limits-main-links limits-topic-links">
+                {mathTopics.map(({ label, href, icon: Icon }) => (
+                  <Link
+                    key={href}
+                    to={href}
+                    className={pathname === href ? "is-selected" : ""}
+                    aria-current={pathname === href ? "page" : undefined}
+                    onClick={onClose}
+                  >
+                    <Icon />
+                    <span>{label}</span>
+                    {pathname === href && <i aria-hidden="true" />}
+                  </Link>
+                ))}
+              </div>
+            </>
+          )}
+          <div
+            className="limits-nav-heading"
+            aria-label="Calculus section, expanded"
+          >
             <Sigma aria-hidden="true" />
             <span>Calculus</span>
             <ChevronDown aria-hidden="true" />
@@ -85,7 +165,10 @@ export default function CalculusSidebar({ mobileOpen, onClose, variant = "calcul
             {pathname === "/calculus" && <i aria-hidden="true" />}
           </Link>
 
-          <div className="limits-nav-heading limits-core" aria-label="Core Calculus section, expanded">
+          <div
+            className="limits-nav-heading limits-core"
+            aria-label="Core Calculus section, expanded"
+          >
             <Sigma aria-hidden="true" />
             <span>Core Calculus</span>
             <ChevronDown aria-hidden="true" />

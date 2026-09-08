@@ -39,10 +39,18 @@ describe("NCERT resource links", () => {
     ...ncertConcepts.map((concept) => `/ncert/${concept.id}`),
     ...theoremCategories.flatMap((category) => [
       `/theorems/${category.id}`,
-      ...category.theorems.map((theorem) => `/theorems/${category.id}/${theorem.slug}`),
+      ...category.theorems.map(
+        (theorem) => `/theorems/${category.id}/${theorem.slug}`,
+      ),
     ]),
     ...visualProofsIndex.map((proof) => proof.route),
-    ...Array.from(new Set(visualProofsIndex.map((proof) => `/visual-proofs/${proof.categorySlug}`))),
+    ...Array.from(
+      new Set(
+        visualProofsIndex.map(
+          (proof) => `/visual-proofs/${proof.categorySlug}`,
+        ),
+      ),
+    ),
     ...knownDynamicRoutes,
   ]);
 
@@ -50,28 +58,53 @@ describe("NCERT resource links", () => {
     for (const concept of ncertConcepts) {
       const links = getNCERTConceptResourceLinks(concept);
       expect(links.length, concept.id).toBeGreaterThan(0);
-      expect(new Set(links.map((link) => link.href)).size, concept.id).toBe(links.length);
+      expect(new Set(links.map((link) => link.href)).size, concept.id).toBe(
+        links.length,
+      );
     }
   });
 
   it("only points to existing internal app routes", () => {
     for (const concept of ncertConcepts) {
       for (const link of getNCERTConceptResourceLinks(concept)) {
-        expect(link.href.startsWith("/"), `${concept.id}: ${link.href}`).toBe(true);
-        expect(knownRoutes.has(stripQuery(link.href)), `${concept.id}: ${link.href}`).toBe(true);
+        expect(link.href.startsWith("/"), `${concept.id}: ${link.href}`).toBe(
+          true,
+        );
+        expect(
+          knownRoutes.has(stripQuery(link.href)),
+          `${concept.id}: ${link.href}`,
+        ).toBe(true);
       }
     }
   });
 
   it("marks priority NCERT routes with exact links when exact resources exist", () => {
-    const priorityConcepts = ncertConcepts.filter((concept) => ["Class 10", "Class 12"].includes(concept.classLevel));
-    const exactReady = priorityConcepts.filter((concept) => getNCERTConceptResourceLinks(concept).some((link) => link.exactness === "exact"));
+    const priorityConcepts = ncertConcepts.filter((concept) =>
+      ["Class 10", "Class 12"].includes(concept.classLevel),
+    );
+    const exactReady = priorityConcepts.filter((concept) =>
+      getNCERTConceptResourceLinks(concept).some(
+        (link) => link.exactness === "exact",
+      ),
+    );
     expect(exactReady.length).toBeGreaterThanOrEqual(30);
   });
 
   it("keeps unresolved tangent visual proof as a category fallback instead of a fake exact route", () => {
-    const links = getNCERTConceptResourceLinks("class-10-circle-tangent-radius");
-    expect(links.some((link) => link.href === "/visual-proofs/geometry/circle-tangent-radius-theorem")).toBe(false);
-    expect(links).toContainEqual(expect.objectContaining({ href: "/visual-proofs/geometry", exactness: "category" }));
+    const links = getNCERTConceptResourceLinks(
+      "class-10-circle-tangent-radius",
+    );
+    expect(
+      links.some(
+        (link) =>
+          link.href === "/visual-proofs/geometry/circle-tangent-radius-theorem",
+      ),
+    ).toBe(false);
+    expect(links).toContainEqual(
+      expect.objectContaining({
+        href: "/visual-proofs/geometry",
+        exactness: "category",
+      }),
+    );
   });
 });

@@ -8,10 +8,56 @@ type ScientificKeypadProps = {
   onMemory: (action: "MC" | "MR" | "M+" | "M-") => void;
 };
 
-const sci = ["sin(", "cos(", "tan(", "asin(", "acos(", "atan(", "ln(", "log(", "exp(", "10^(", "^2", "^3", "^", "sqrt(", "cbrt(", "abs(", "pi", "e", "factorial(", "1/(", "(", ")"];
-const basic = ["7", "8", "9", "/", "4", "5", "6", "*", "1", "2", "3", "-", "0", ".", "%", "+"];
+const sci = [
+  "sin(",
+  "cos(",
+  "tan(",
+  "asin(",
+  "acos(",
+  "atan(",
+  "ln(",
+  "log(",
+  "exp(",
+  "10^(",
+  "^2",
+  "^3",
+  "^",
+  "sqrt(",
+  "cbrt(",
+  "abs(",
+  "pi",
+  "e",
+  "factorial(",
+  "1/(",
+  "(",
+  ")",
+];
+const basic = [
+  "7",
+  "8",
+  "9",
+  "/",
+  "4",
+  "5",
+  "6",
+  "*",
+  "1",
+  "2",
+  "3",
+  "-",
+  "0",
+  ".",
+  "%",
+  "+",
+];
 
-export default function ScientificKeypad({ onInput, onEquals, onClear, onBackspace, onMemory }: ScientificKeypadProps) {
+export default function ScientificKeypad({
+  onInput,
+  onEquals,
+  onClear,
+  onBackspace,
+  onMemory,
+}: ScientificKeypadProps) {
   return (
     <div className="space-y-4">
       <div className="grid grid-cols-4 gap-2">
@@ -21,14 +67,33 @@ export default function ScientificKeypad({ onInput, onEquals, onClear, onBackspa
         <CalculatorButton label="M-" onClick={() => onMemory("M-")} />
       </div>
       <div className="grid grid-cols-3 gap-2 sm:grid-cols-7">
-        {sci.map((key) => <CalculatorButton key={key} label={labelFor(key)} onClick={() => onInput(key)} />)}
+        {sci.map((key) => (
+          <CalculatorButton
+            key={key}
+            label={labelFor(key)}
+            onClick={() => onInput(key)}
+          />
+        ))}
       </div>
       <div className="grid grid-cols-4 gap-2">
         <CalculatorButton label="C" variant="danger" onClick={onClear} />
-        <CalculatorButton label="Back" onClick={onBackspace} title="Backspace" />
+        <CalculatorButton
+          label="Back"
+          onClick={onBackspace}
+          title="Backspace"
+        />
         <CalculatorButton label="(" onClick={() => onInput("(")} />
         <CalculatorButton label=")" onClick={() => onInput(")")} />
-        {basic.map((key) => <CalculatorButton key={key} label={display(key)} onClick={() => onInput(key)} variant={["/", "*", "-", "+"].includes(key) ? "primary" : "secondary"} />)}
+        {basic.map((key) => (
+          <CalculatorButton
+            key={key}
+            label={display(key)}
+            onClick={() => onInput(key)}
+            variant={
+              ["/", "*", "-", "+"].includes(key) ? "primary" : "secondary"
+            }
+          />
+        ))}
         <CalculatorButton label="=" variant="accent" onClick={onEquals} />
       </div>
     </div>

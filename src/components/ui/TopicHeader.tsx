@@ -13,7 +13,14 @@ type TopicHeaderProps = {
   progress?: number;
 };
 
-export default function TopicHeader({ title, subtitle, difficulty, estimatedMinutes, formula, progress = 0 }: TopicHeaderProps) {
+export default function TopicHeader({
+  title,
+  subtitle,
+  difficulty,
+  estimatedMinutes,
+  formula,
+  progress = 0,
+}: TopicHeaderProps) {
   useEffect(() => {
     document.title = `${title} | Math Universe`;
   }, [title]);
@@ -22,8 +29,12 @@ export default function TopicHeader({ title, subtitle, difficulty, estimatedMinu
       <div className="flex flex-wrap items-center gap-3 rounded-xl border border-cyan-100/80 bg-white/[.88] px-3 py-2.5 shadow-lg shadow-cyan-100/50 backdrop-blur dark:border-white/10 dark:bg-slate-900/[.78] dark:shadow-black/20">
         <ProgressBadge progress={progress} />
         <div className="min-w-0 flex-1">
-          <h1 className="truncate text-xl font-bold tracking-tight text-slate-950 dark:text-white">{title}</h1>
-          <p className="mt-0.5 line-clamp-1 text-xs leading-5 text-slate-500 dark:text-slate-400">{subtitle}</p>
+          <h1 className="truncate text-xl font-bold tracking-tight text-slate-950 dark:text-white">
+            {title}
+          </h1>
+          <p className="mt-0.5 line-clamp-1 text-xs leading-5 text-slate-500 dark:text-slate-400">
+            {subtitle}
+          </p>
         </div>
         <div className="flex flex-wrap items-center gap-2">
           {difficulty && (
@@ -41,7 +52,13 @@ export default function TopicHeader({ title, subtitle, difficulty, estimatedMinu
           <ShareSetupButton />
         </div>
       </div>
-      {formula && <FormulaBlock title={formula.title} formula={formula.formula} explanation={formula.explanation} />}
+      {formula && (
+        <FormulaBlock
+          title={formula.title}
+          formula={formula.formula}
+          explanation={formula.explanation}
+        />
+      )}
     </div>
   );
 }

@@ -1,6 +1,16 @@
 import { describe, expect, it } from "vitest";
 import { parseGeometrySolidInput } from "./arGeometrySolids";
-import { comparisonSummary, createAnimation, createMeasurement, createObjectDimensionMeasurement, feedbackFor, lessonFor, measurementValue, parseSceneJson, serializeScene } from "./arInteractiveTools";
+import {
+  comparisonSummary,
+  createAnimation,
+  createMeasurement,
+  createObjectDimensionMeasurement,
+  feedbackFor,
+  lessonFor,
+  measurementValue,
+  parseSceneJson,
+  serializeScene,
+} from "./arInteractiveTools";
 
 function solid(input: string) {
   const result = parseGeometrySolidInput(input);
@@ -43,8 +53,22 @@ describe("AR Math Lab interactive tools", () => {
     const cylinder = solid("Cylinder radius 5 cm height 12 cm");
 
     expect(lessonFor(undefined, cone).title).toBe("Cone");
-    expect(feedbackFor("Cone radius 5 cm height 12 cm", undefined, cone).join(" ")).toContain("5-12-13");
-    expect(comparisonSummary({ enabled: true, mode: "side-by-side", syncScale: true, objectAId: cone.id, objectBId: cylinder.id }, [], [cone, cylinder])).toContain("one-third");
+    expect(
+      feedbackFor("Cone radius 5 cm height 12 cm", undefined, cone).join(" "),
+    ).toContain("5-12-13");
+    expect(
+      comparisonSummary(
+        {
+          enabled: true,
+          mode: "side-by-side",
+          syncScale: true,
+          objectAId: cone.id,
+          objectBId: cylinder.id,
+        },
+        [],
+        [cone, cylinder],
+      ),
+    ).toContain("one-third");
   });
 
   it("serializes and validates scene JSON", () => {

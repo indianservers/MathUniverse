@@ -23,7 +23,12 @@ describe("Grade 7 manipulative utilities", () => {
   });
 
   it("checks rational, percent, and algebra calculations", () => {
-    expect(compareFractions({ numerator: 1, denominator: 2 }, { numerator: 3, denominator: 4 }).comparison).toBe("less");
+    expect(
+      compareFractions(
+        { numerator: 1, denominator: 2 },
+        { numerator: 3, denominator: 4 },
+      ).comparison,
+    ).toBe("less");
     expect(percentValue(800, 15)).toBe(120);
     expect(profitLoss(200, 250).type).toBe("profit");
     expect(simpleInterest(1000, 10, 2)).toBe(200);

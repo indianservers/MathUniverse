@@ -1,5 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { formulaVisualizerCategoryRouteMap, formulaVisualizerConfigs, getFormulaVisualizerForFormulaCategory, visualFormulaMenuLinks } from "./formulaVisualizerRoutes";
+import {
+  formulaVisualizerCategoryRouteMap,
+  formulaVisualizerConfigs,
+  getFormulaVisualizerForFormulaCategory,
+  visualFormulaMenuLinks,
+} from "./formulaVisualizerRoutes";
 import { realFormulaVisualizerModelTypes } from "../pages/FormulaVisualizerPage";
 
 const phase3Routes = [
@@ -48,36 +53,73 @@ describe("formula visualizer route registry", () => {
     formulaVisualizerConfigs.forEach((config) => {
       expect(config.formulas.length).toBeGreaterThanOrEqual(7);
       expect(config.defaultFormulaId).toBeTruthy();
-      expect(config.formulas.some((formula) => formula.id === config.defaultFormulaId)).toBe(true);
+      expect(
+        config.formulas.some(
+          (formula) => formula.id === config.defaultFormulaId,
+        ),
+      ).toBe(true);
       expect(config.searchTerms.join(" ")).toMatch(/visualizer/i);
-      expect(config.route.endsWith("/formula-visualizer") || config.route.startsWith("/visual-formulas/")).toBe(true);
+      expect(
+        config.route.endsWith("/formula-visualizer") ||
+          config.route.startsWith("/visual-formulas/"),
+      ).toBe(true);
     });
   });
 
   it("keeps every configured visual formula type backed by a real renderer", () => {
     const supportedTypes = new Set(realFormulaVisualizerModelTypes);
-    const configuredTypes = formulaVisualizerConfigs.flatMap((config) => config.formulas.map((formula) => ({
-      route: config.route,
-      formulaId: formula.id,
-      type: formula.visualizerType,
-    })));
+    const configuredTypes = formulaVisualizerConfigs.flatMap((config) =>
+      config.formulas.map((formula) => ({
+        route: config.route,
+        formulaId: formula.id,
+        type: formula.visualizerType,
+      })),
+    );
 
-    const unsupported = configuredTypes.filter((entry) => !supportedTypes.has(entry.type));
+    const unsupported = configuredTypes.filter(
+      (entry) => !supportedTypes.has(entry.type),
+    );
 
-    expect(unsupported, unsupported.map((entry) => `${entry.route} :: ${entry.formulaId} uses ${entry.type}`).join("\n")).toEqual([]);
+    expect(
+      unsupported,
+      unsupported
+        .map(
+          (entry) => `${entry.route} :: ${entry.formulaId} uses ${entry.type}`,
+        )
+        .join("\n"),
+    ).toEqual([]);
   });
 
   it("keeps formula library and menu links aligned to real visualizer routes", () => {
-    const routes = new Set(formulaVisualizerConfigs.map((config) => config.route));
-    visualFormulaMenuLinks.forEach((link) => expect(routes.has(link.route)).toBe(true));
-    Object.values(formulaVisualizerCategoryRouteMap).forEach((route) => expect(routes.has(route)).toBe(true));
+    const routes = new Set(
+      formulaVisualizerConfigs.map((config) => config.route),
+    );
+    visualFormulaMenuLinks.forEach((link) =>
+      expect(routes.has(link.route)).toBe(true),
+    );
+    Object.values(formulaVisualizerCategoryRouteMap).forEach((route) =>
+      expect(routes.has(route)).toBe(true),
+    );
     formulaVisualizerConfigs.forEach((config) => {
-      expect(getFormulaVisualizerForFormulaCategory(config.id)).toBe(config.route);
+      expect(getFormulaVisualizerForFormulaCategory(config.id)).toBe(
+        config.route,
+      );
     });
   });
 
   it("has teacher support on requested classroom-heavy concepts", () => {
-    ["early-number-sense", "fractions-decimals-percent", "algebra", "geometry", "derivatives", "integration", "probability", "statistics", "linear-algebra", "machine-learning-math"].forEach((id) => {
+    [
+      "early-number-sense",
+      "fractions-decimals-percent",
+      "algebra",
+      "geometry",
+      "derivatives",
+      "integration",
+      "probability",
+      "statistics",
+      "linear-algebra",
+      "machine-learning-math",
+    ].forEach((id) => {
       const config = formulaVisualizerConfigs.find((item) => item.id === id);
       expect(config, id).toBeTruthy();
       expect(config?.teacherNotes, id).toBeTruthy();

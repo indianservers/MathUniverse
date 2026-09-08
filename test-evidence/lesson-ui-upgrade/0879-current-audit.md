@@ -1,6 +1,6 @@
 # Lesson 0879: Multiple Optimal Solutions
 
-Status: dedicated initial implementation; browser/visual acceptance deferred by user instruction.
+Status: completed for the current one-by-one pass; browser and visual acceptance recorded below.
 
 Reference inspected: `D:/Math App Screenshots for UI Update/Updated UI/0879-school-class-12-linear-programming-multiple-optimal-solutions-redesigned.png`.
 
@@ -18,3 +18,10 @@ Reference inspected: `D:/Math App Screenshots for UI Update/Updated UI/0879-scho
 - Miniature comparison plot, footer and precise sample/status-panel placement still need visual refinement.
 - Reset view currently restores objective position as well as viewport scale; review against intended UX.
 - No exact visual match is claimed by the model or markup tests.
+
+## One-by-one acceptance — 2026-09-08
+
+- Desktop route rendered at 1024 × 1536 and captured at `artifacts/studio-control-audit/0879-current.png`.
+- Reference comparison confirms the ordered composition: lesson header, section tabs, feasible-region graph, objective controls, slope/status panels, edge samples, comparison cases, rule/misconception cards, practice and navigation/footer.
+- Live validation passed for optimization mode, coefficient editing, whole-edge example action, practice selection and solution reveal.
+- Graph, calculated values and status update from the same objective model; no inert control was found in this lesson.

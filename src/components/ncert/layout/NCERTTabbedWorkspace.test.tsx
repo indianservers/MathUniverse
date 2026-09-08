@@ -9,7 +9,11 @@ describe("NCERTTabbedWorkspace", () => {
         ariaLabel="Demo tabs"
         tabs={[
           { id: "visual", label: "Visual Lab", content: <p>visual content</p> },
-          { id: "practice", label: "Practice", content: <p>practice content</p> },
+          {
+            id: "practice",
+            label: "Practice",
+            content: <p>practice content</p>,
+          },
         ]}
       />,
     );

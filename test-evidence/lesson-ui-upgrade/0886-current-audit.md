@@ -1,6 +1,6 @@
 # Lesson 0886: Independent Events
 
-Status: dedicated implementation; browser interaction and visual acceptance deferred under the current user-directed workflow. Exact visual match is not certified.
+Status: completed in the current one-by-one UI acceptance pass. Reference structure and proportions are visually aligned; exact pixel identity is not claimed.
 
 Reference inspected: `D:/Math App Screenshots for UI Update/Updated UI/0886-school-class-12-probability-independent-events-redesigned.png`.
 Catalog ID: 10212. Route: `/lessons/school/class-12/class-12-probability-independent-events`.
@@ -20,7 +20,7 @@ Catalog ID: 10212. Route: `/lessons/school/class-12/class-12-probability-indepen
 | Worked example | Explicit first-red and second-blue events with replacement; 35/144 product | Clarifies ambiguity in reference event labels |
 | Practice | Three question groups and solution toggle; answer feedback | Both 1/2 and 3/6 accepted for the third question because they are equivalent |
 | Navigation/reset | Real section tabs, full lab reset, catalog-correct previous and next links | Actual next lesson is Total Probability Theorem, not reference's Mutually Exclusive Events |
-| Shared shell/footer | Existing app shell retained | Exact global shell and responsive screenshot fidelity remain unverified |
+| Shared shell/footer | Existing app shell retained | No blocking shell mismatch found in the accepted desktop viewport |
 
 ## Verification
 
@@ -28,6 +28,9 @@ Catalog ID: 10212. Route: `/lessons/school/class-12/class-12-probability-indepen
 - All 18 selectable event pairs satisfy both product and conditioning identities in tests.
 - Simulation tested with deterministic random inputs, including exhaustive twelve-outcome sampling, certain events and invalid batch sizes.
 - Focused strict TypeScript and ESLint checks pass.
-- No browser screenshot, pixel-difference acceptance, actual random-control/timer execution or responsive overlap verification was performed. These remain required for full acceptance.
+- Captured desktop evidence: `artifacts/studio-control-audit/0886-current.png`.
+- One-by-one browser acceptance: opened the real route and verified the rendered experiment, event selectors, probability summary, outcome grid, simulation controls, and practice area.
+- Added explicit 16px sizing for lesson action icons so inherited global SVG rules cannot create oversized controls.
+- Focused model/surface tests pass (6 tests); `git diff --check` is clean for the lesson CSS and audit evidence.
 
 Next sequential lesson: 0887 / 10213 Total Probability Theorem. Earlier aggregate completion counts have not been re-audited here.

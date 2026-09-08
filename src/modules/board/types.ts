@@ -1,6 +1,7 @@
 import type { BoardIntelligencePersistence } from "./boardIntelligenceTypes";
 
-export type BoardTool = "pen" | "highlighter" | "eraser" | "select" | "lasso" | "pan";
+export type BoardTool =
+  "pen" | "highlighter" | "eraser" | "select" | "lasso" | "pan";
 export type BoardBackground = "grid" | "dots" | "plain" | "ruled";
 
 export type BoardPoint = {
@@ -105,7 +106,16 @@ export type BoardActionType =
 
 export type BoardMathAmbiguity = {
   id: string;
-  type: "character" | "operator" | "variable" | "function" | "grouping" | "bounds" | "matrix-layout" | "dataset-layout" | "coordinate-system";
+  type:
+    | "character"
+    | "operator"
+    | "variable"
+    | "function"
+    | "grouping"
+    | "bounds"
+    | "matrix-layout"
+    | "dataset-layout"
+    | "coordinate-system";
   description: string;
   candidates: Array<{ label: string; latex?: string; value?: unknown }>;
   requiresResolution: boolean;
@@ -117,7 +127,13 @@ export type BoardSuggestedAction = {
   label: string;
   description?: string;
   priority: number;
-  engineAdapter: "cas" | "graph-2d" | "graph-3d" | "geometry" | "statistics" | "verification";
+  engineAdapter:
+    | "cas"
+    | "graph-2d"
+    | "graph-3d"
+    | "geometry"
+    | "statistics"
+    | "verification";
   enabled: boolean;
   disabledReason?: string;
   defaultParameters?: Record<string, unknown>;
@@ -239,7 +255,17 @@ export type BoardRecognitionRegion = {
   id: string;
   imageElementId: string;
   bounds: BoundingBox;
-  regionType: "single-expression" | "solution-sequence" | "system-of-equations" | "matrix" | "dataset" | "table" | "geometry-diagram" | "graph" | "text" | "unknown";
+  regionType:
+    | "single-expression"
+    | "solution-sequence"
+    | "system-of-equations"
+    | "matrix"
+    | "dataset"
+    | "table"
+    | "geometry-diagram"
+    | "graph"
+    | "text"
+    | "unknown";
   readingOrder?: number;
   selected: boolean;
   recognitionStatus: "idle" | "processing" | "success" | "error";
@@ -300,7 +326,8 @@ export type BoardMisconception = {
 
 export type BoardWorkVerificationResult = {
   sequenceId: string;
-  overallStatus: "correct" | "partially-correct" | "incorrect" | "ambiguous" | "incomplete";
+  overallStatus:
+    "correct" | "partially-correct" | "incorrect" | "ambiguous" | "incomplete";
   verifiedSteps: Array<{
     stepId: string;
     status: "valid" | "invalid" | "ambiguous" | "unverified";
@@ -311,13 +338,27 @@ export type BoardWorkVerificationResult = {
     recognitionIssue?: boolean;
   }>;
   firstInvalidStepId?: string;
-  finalAnswerStatus: "correct" | "incorrect" | "not-reached" | "not-applicable" | "ambiguous";
+  finalAnswerStatus:
+    "correct" | "incorrect" | "not-reached" | "not-applicable" | "ambiguous";
   expectedResultLatex?: string;
   misconceptions?: BoardMisconception[];
   warnings?: string[];
 };
 
-export type BoardTutorMode = "hint" | "next-step" | "full-solution" | "concept" | "visual" | "check-work" | "find-mistake" | "alternative" | "exam" | "concise" | "detailed" | "similar-problem" | "question";
+export type BoardTutorMode =
+  | "hint"
+  | "next-step"
+  | "full-solution"
+  | "concept"
+  | "visual"
+  | "check-work"
+  | "find-mistake"
+  | "alternative"
+  | "exam"
+  | "concise"
+  | "detailed"
+  | "similar-problem"
+  | "question";
 
 export type BoardTutorMessage = {
   id: string;
@@ -340,7 +381,21 @@ export type BoardAutomaticRecognitionSettings = {
 
 export type BoardRelationship = {
   id: string;
-  type: "recognized-as" | "derived-from" | "solves" | "graphs" | "verifies" | "visualizes" | "uses-result-of" | "explains" | "corrects" | "alternative-to" | "next-step-of" | "part-of-sequence" | "detected-from-image" | "suggested-by-tutor";
+  type:
+    | "recognized-as"
+    | "derived-from"
+    | "solves"
+    | "graphs"
+    | "verifies"
+    | "visualizes"
+    | "uses-result-of"
+    | "explains"
+    | "corrects"
+    | "alternative-to"
+    | "next-step-of"
+    | "part-of-sequence"
+    | "detected-from-image"
+    | "suggested-by-tutor";
   sourceElementId: string;
   targetElementId: string;
   createdAt: string;
@@ -364,7 +419,15 @@ export type BoardActionHistoryEntry = {
   cancelled: boolean;
 };
 
-export type BoardElement = StrokeElement | MathExpressionElement | TextElement | ShapeElement | BoardResultElement | BoardSolutionStepElement | BoardImageElement | BoardExplanationElement;
+export type BoardElement =
+  | StrokeElement
+  | MathExpressionElement
+  | TextElement
+  | ShapeElement
+  | BoardResultElement
+  | BoardSolutionStepElement
+  | BoardImageElement
+  | BoardExplanationElement;
 
 export type BoardDocument = {
   id: string;

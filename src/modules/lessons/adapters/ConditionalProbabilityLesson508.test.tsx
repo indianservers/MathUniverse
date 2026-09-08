@@ -6,7 +6,13 @@ import ProbabilityLessonAdapter from "./ProbabilityLessonAdapter";
 describe("Conditional Probability dedicated surface", () => {
   it("routes lesson 508 to its restricted dice sample-space lab", () => {
     const lesson = lessonCatalog.find((item) => item.id === 508)!;
-    const html = renderToStaticMarkup(<ProbabilityLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    const html = renderToStaticMarkup(
+      <ProbabilityLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
     expect(html).toContain('data-testid="probability-mockup-0471"');
     expect(html).toContain("Population grid (sample space)");
     expect(html).toContain("Two-way table");

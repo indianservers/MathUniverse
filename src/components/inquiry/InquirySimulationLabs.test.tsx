@@ -8,8 +8,8 @@ describe("InquirySimulationLabs", () => {
 
     expect(html).toContain("Try this first");
     expect(html).toContain("Common mistake");
-    expect(html).toContain("role=\"radiogroup\"");
-    expect(html).toContain("aria-live=\"polite\"");
+    expect(html).toContain('role="radiogroup"');
+    expect(html).toContain('aria-live="polite"');
     expect(html).toContain("Teacher notes");
   });
 
@@ -18,7 +18,7 @@ describe("InquirySimulationLabs", () => {
 
     expect(html).toContain("Ramp Slope Inquiry");
     expect(html).toContain("Slope increases");
-    expect(html).toContain("role=\"radio\"");
+    expect(html).toContain('role="radio"');
     expect(html).toContain("Check prediction");
   });
 });

@@ -2,11 +2,22 @@ import { describe, expect, it } from "vitest";
 import { parseGeometrySolidInput } from "./arGeometrySolids";
 import { defaultGraphSettings } from "./arGraphGenerator";
 import { buildLearningState, createARLearningEvent } from "./arLearningEngine";
-import type { ARComparison, ARGeneratedGeometrySolid, ARGeneratedGraphObject } from "./types";
+import type {
+  ARComparison,
+  ARGeneratedGeometrySolid,
+  ARGeneratedGraphObject,
+} from "./types";
 
-const emptyComparison: ARComparison = { enabled: false, mode: "side-by-side", syncScale: true };
+const emptyComparison: ARComparison = {
+  enabled: false,
+  mode: "side-by-side",
+  syncScale: true,
+};
 
-function build(input: string, overrides: Partial<Parameters<typeof buildLearningState>[1]> = {}) {
+function build(
+  input: string,
+  overrides: Partial<Parameters<typeof buildLearningState>[1]> = {},
+) {
   return buildLearningState(input, {
     graphSettings: defaultGraphSettings,
     parameterValues: {},
@@ -28,7 +39,10 @@ describe("arLearningEngine", () => {
   it("explains wave parameter changes with a live formula", () => {
     const state = build("z = sin(x) * sin(y)", {
       parameterValues: { a: 2, k: 3 },
-      lastEvent: createARLearningEvent("graph_parameter_changed", "g1", { key: "k", value: 3 }),
+      lastEvent: createARLearningEvent("graph_parameter_changed", "g1", {
+        key: "k",
+        value: 3,
+      }),
     });
 
     expect(state.activeConcept).toBe("Wave surface");
@@ -49,7 +63,10 @@ describe("arLearningEngine", () => {
     const state = build(cone.createdFromInput, {
       selectedSolid: cone,
       solids: [cone],
-      lastEvent: createARLearningEvent("geometry_dimension_changed", cone.id, { key: "radius", value: 8 }),
+      lastEvent: createARLearningEvent("geometry_dimension_changed", cone.id, {
+        key: "radius",
+        value: 8,
+      }),
     });
 
     expect(state.activeConcept).toBe("Cone");
@@ -70,19 +87,41 @@ describe("arLearningEngine", () => {
     const state = build(cone.createdFromInput, {
       selectedSolid: cone,
       solids: [cone, cylinder] as ARGeneratedGeometrySolid[],
-      comparison: { enabled: true, mode: "side-by-side", syncScale: true, objectAId: cone.id, objectBId: cylinder.id },
+      comparison: {
+        enabled: true,
+        mode: "side-by-side",
+        syncScale: true,
+        objectAId: cone.id,
+        objectBId: cylinder.id,
+      },
     });
 
     expect(state.comparisonInsight).toContain("one-third");
   });
 
   it("summarizes paraboloid versus saddle comparison", () => {
-    const paraboloid = { id: "p", name: "Paraboloid", equation: "z = x^2 + y^2", type: "explicit_surface" } as ARGeneratedGraphObject;
-    const saddle = { id: "s", name: "Saddle", equation: "z = x^2 - y^2", type: "explicit_surface" } as ARGeneratedGraphObject;
+    const paraboloid = {
+      id: "p",
+      name: "Paraboloid",
+      equation: "z = x^2 + y^2",
+      type: "explicit_surface",
+    } as ARGeneratedGraphObject;
+    const saddle = {
+      id: "s",
+      name: "Saddle",
+      equation: "z = x^2 - y^2",
+      type: "explicit_surface",
+    } as ARGeneratedGraphObject;
     const state = build(paraboloid.equation, {
       selectedGraph: paraboloid,
       graphs: [paraboloid, saddle],
-      comparison: { enabled: true, mode: "side-by-side", syncScale: true, objectAId: paraboloid.id, objectBId: saddle.id },
+      comparison: {
+        enabled: true,
+        mode: "side-by-side",
+        syncScale: true,
+        objectAId: paraboloid.id,
+        objectBId: saddle.id,
+      },
     });
 
     expect(state.comparisonInsight).toContain("rises on one axis");

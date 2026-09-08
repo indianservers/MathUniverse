@@ -41,7 +41,11 @@ describe("CalculusLessonAdapter", () => {
       const id = Number(idText);
       const lesson = lessonCatalog.find((item) => item.id === id)!;
       const html = renderToStaticMarkup(
-        <CalculusLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+        <CalculusLessonAdapter
+          lesson={lesson}
+          resetToken={0}
+          onInteraction={vi.fn()}
+        />,
       );
       const visibleText = html.replaceAll("&#x27;", "'");
 
@@ -87,7 +91,11 @@ describe("CalculusLessonAdapter", () => {
       const id = Number(idText);
       const lesson = lessonCatalog.find((item) => item.id === id)!;
       const html = renderToStaticMarkup(
-        <CalculusLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+        <CalculusLessonAdapter
+          lesson={lesson}
+          resetToken={0}
+          onInteraction={vi.fn()}
+        />,
       );
       const visibleText = html.replaceAll("&#x27;", "'");
 

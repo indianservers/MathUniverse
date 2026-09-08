@@ -196,7 +196,9 @@ export default function ConditionalVisibilityTargetLesson26({
             legend={legend}
           />
           <div className="visibility-middle">
-            <LessonGraphWorkspace title="Object P"><LessonVisibilityGraph visible={visible}/></LessonGraphWorkspace>
+            <LessonGraphWorkspace title="Object P">
+              <LessonVisibilityGraph visible={visible} />
+            </LessonGraphWorkspace>
             <section className="visibility-rule">
               <small>RULE</small>
               <h2>
@@ -231,7 +233,10 @@ export default function ConditionalVisibilityTargetLesson26({
                     {compare(before, operator, boundary) ? "visible" : "hidden"}
                   </span>
                 </section>
-                <LessonVisibilityGraph compact visible={compare(before, operator, boundary)} />
+                <LessonVisibilityGraph
+                  compact
+                  visible={compare(before, operator, boundary)}
+                />
               </article>
               <article>
                 <section>
@@ -246,7 +251,10 @@ export default function ConditionalVisibilityTargetLesson26({
                     {compare(after, operator, boundary) ? "visible" : "hidden"}
                   </span>
                 </section>
-                <LessonVisibilityGraph compact visible={compare(after, operator, boundary)} />
+                <LessonVisibilityGraph
+                  compact
+                  visible={compare(after, operator, boundary)}
+                />
               </article>
             </div>
           </section>
@@ -371,16 +379,62 @@ export default function ConditionalVisibilityTargetLesson26({
   );
 }
 
-function NumberLine({x,boundary,operator,onX,legend}:{x:number;boundary:number;operator:string;onX:(value:number)=>void;legend:boolean}) {
+function NumberLine({
+  x,
+  boundary,
+  operator,
+  onX,
+  legend,
+}: {
+  x: number;
+  boundary: number;
+  operator: string;
+  onX: (value: number) => void;
+  legend: boolean;
+}) {
   // Partition the original domain; the lesson's existing comparison decides each region.
-  const cuts=[...new Set([-5,Math.max(-5,Math.min(5,boundary)),5])].sort((a,b)=>a-b);
-  const regions=cuts.slice(0,-1).map((start,index)=>{
-    const end=cuts[index+1],visible=compare((start+end)/2,operator,boundary);
-    return {id:`${visible?'visible':'hidden'}-${index}`,start,end,color:visible?'#078e66':'#d5202d',label:`${visible?'Visible':'Hidden'} region from ${start} to ${end}`};
+  const cuts = [...new Set([-5, Math.max(-5, Math.min(5, boundary)), 5])].sort(
+    (a, b) => a - b,
+  );
+  const regions = cuts.slice(0, -1).map((start, index) => {
+    const end = cuts[index + 1],
+      visible = compare((start + end) / 2, operator, boundary);
+    return {
+      id: `${visible ? "visible" : "hidden"}-${index}`,
+      start,
+      end,
+      color: visible ? "#078e66" : "#d5202d",
+      label: `${visible ? "Visible" : "Hidden"} region from ${start} to ${end}`,
+    };
   });
-  return <LessonNumberLineGraph title={`Visibility regions: x ${operator} ${display(boundary)}`} min={-5} max={5} value={x} step={.1} onChange={onX} inputLabel="Visibility number line drag control"
-    regions={regions} boundary={{value:boundary,included:compare(boundary,operator,boundary),color:'#078e66'}}
-    legend={legend?[{id:'visible',label:'Visible region',color:'#078e66'},{id:'hidden',label:'Hidden region',color:'#d5202d'},{id:'boundary',label:`Boundary ${compare(boundary,operator,boundary)?'included':'excluded'}`,color:'#078e66'}]:undefined}/>;
+  return (
+    <LessonNumberLineGraph
+      title={`Visibility regions: x ${operator} ${display(boundary)}`}
+      min={-5}
+      max={5}
+      value={x}
+      step={0.1}
+      onChange={onX}
+      inputLabel="Visibility number line drag control"
+      regions={regions}
+      boundary={{
+        value: boundary,
+        included: compare(boundary, operator, boundary),
+        color: "#078e66",
+      }}
+      legend={
+        legend
+          ? [
+              { id: "visible", label: "Visible region", color: "#078e66" },
+              { id: "hidden", label: "Hidden region", color: "#d5202d" },
+              {
+                id: "boundary",
+                label: `Boundary ${compare(boundary, operator, boundary) ? "included" : "excluded"}`,
+                color: "#078e66",
+              },
+            ]
+          : undefined
+      }
+    />
+  );
 }
-
-

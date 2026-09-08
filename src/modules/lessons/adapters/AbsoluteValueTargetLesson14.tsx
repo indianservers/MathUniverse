@@ -169,7 +169,9 @@ export default function AbsoluteValueTargetLesson14({
         <div className="absolute-columns">
           <main>
             <section className="absolute-equation">
-              <div>| {value} | = <b>{distance}</b></div>
+              <div>
+                | {value} | = <b>{distance}</b>
+              </div>
               <small>
                 {mode === "distance"
                   ? "distance cannot be negative."

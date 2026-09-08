@@ -67,14 +67,14 @@ describe("graphing workspaces", () => {
     expect(html).toContain("Graph Studio 2D");
     expect(html).not.toContain(">Build<");
     expect(html).not.toContain(">Analyze<");
-    expect(html).toContain("Learn");
+    expect(html).toContain("Help");
     expect(html).toContain('aria-label="Zoom in"');
     expect(html).toContain('aria-label="Zoom out"');
     expect(html).toContain('aria-label="Fit visible graphs"');
     expect(html).toContain('aria-label="Reset to default window"');
     expect(html).toContain('aria-label="View graph full screen"');
     expect(html).toContain("Exact &amp; numerical");
-    expect(html).toContain("Use plus and minus to zoom");
+    expect(html).toContain('aria-label="Graph view controls"');
     expect(html).not.toContain("Animate");
     expect(html).toContain("Offline ready");
   });
@@ -90,7 +90,7 @@ describe("graphing workspaces", () => {
     expect(html).not.toContain(">Build<");
     expect(html).not.toContain(">Analyze<");
     expect(html).not.toContain(">Animate<");
-    expect(html).toContain("Learn");
+    expect(html).toContain("Help");
     expect(html).toContain("Export");
     expect(html).toContain("Offline ready");
   });

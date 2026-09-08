@@ -1,5 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { cellRegion, conditionalSummary, dicePairs, formatSet } from "./conditionalProbabilityLessonModel";
+import {
+  cellRegion,
+  conditionalSummary,
+  dicePairs,
+  formatSet,
+} from "./conditionalProbabilityLessonModel";
 
 describe("conditional probability lesson model", () => {
   it("builds all 36 ordered dice pairs", () => {
@@ -17,6 +22,8 @@ describe("conditional probability lesson model", () => {
   });
 
   it("recalculates non-default event pairs", () => {
-    expect(conditionalSummary("doubles", "atLeastOne6").probability).toBeCloseTo(1 / 11);
+    expect(
+      conditionalSummary("doubles", "atLeastOne6").probability,
+    ).toBeCloseTo(1 / 11);
   });
 });

@@ -1,5 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { fCdf, fDistributionAnalysis, fQuantile } from "./fDistributionLessonModel";
+import {
+  fCdf,
+  fDistributionAnalysis,
+  fQuantile,
+} from "./fDistributionLessonModel";
 
 describe("F distribution lesson model", () => {
   it("computes the target F(5,20) critical value", () => {

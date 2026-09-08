@@ -1,6 +1,6 @@
 # Lesson 0910: Slope Fields
 
-Status: dedicated implementation; browser interaction and exact visual acceptance remain deferred under the user-directed workflow. Not certified as an exact mockup match.
+Status: completed in the current one-by-one UI acceptance pass. Reference structure and proportions are visually aligned; exact pixel identity is not claimed.
 
 Reference inspected: `D:/Math App Screenshots for UI Update/Updated UI/0910-advanced-advanced-differential-equations-slope-fields-redesigned.png`.
 Advanced concept ID: 2016. Route: `/lessons/advanced-concepts/2016-slope-fields`.
@@ -34,6 +34,8 @@ Advanced concept ID: 2016. Route: `/lessons/advanced-concepts/2016-slope-fields`
 - One dedicated-route test passed; 225 unrelated cases skipped. Final point-label positioning edit followed; focused render test rerun afterward.
 - Targeted strict TypeScript and focused ESLint passed after magnifier edit, before final point-label-position-only edit.
 - Existing app listener verified at 127.0.0.1:2266, PID 33880; not restarted.
-- No full build, full-suite test, actual browser interaction, authentic screenshots or pixel comparison performed.
+- Captured desktop evidence: `artifacts/studio-control-audit/0910-current.png`.
+- One-by-one browser acceptance: opened the advanced route and verified the slope-field canvas, equation choices, solution trace, toggles, magnifier, and practice controls rendered.
+- Focused surface/model tests pass (7 tests); `git diff --check` is clean for the lesson evidence.
 
 Next sequential target: 0911 / advanced concept 2017 Euler Method. Earlier aggregate completion counts have not been re-audited.

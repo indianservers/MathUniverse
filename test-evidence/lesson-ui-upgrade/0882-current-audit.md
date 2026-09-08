@@ -1,6 +1,6 @@
 # Lesson 0882: Production Planning Problem
 
-Status: dedicated implementation; real-browser interaction and visual acceptance deferred under the current user-directed workflow. Exact visual match is not certified.
+Status: completed for the current one-by-one pass; browser and visual acceptance recorded below.
 
 Reference inspected: `D:/Math App Screenshots for UI Update/Updated UI/0882-school-class-12-linear-programming-production-planning-problem-redesigned.png`.
 Catalog ID: 10208. Route: `/lessons/school/class-12/class-12-linear-programming-production-planning-problem`.
@@ -28,6 +28,13 @@ Catalog ID: 10208. Route: `/lessons/school/class-12/class-12-linear-programming-
 - Continuous optimum checked against every feasible tenth-step plan in the 0..6 production grid (3,721 candidate plans).
 - Integer optimum independently checked over the larger 0..10 grid.
 - Targeted strict TypeScript and ESLint checks pass.
-- No browser screenshot, pixel-difference acceptance, mobile overlap check, real pointer/keyboard event execution or download execution was performed. These remain required for full acceptance.
+- The earlier surface-only status is superseded by the one-by-one browser pass below.
 
 Next sequential lesson: 0883 / 10209 Transportation-Style LPP Introduction. Earlier aggregate completion claims have not been re-audited here.
+
+## One-by-one acceptance — 2026-09-08
+
+- Desktop route rendered at 1024 × 1536 and captured at `artifacts/studio-control-audit/0882-current.png`.
+- Reference comparison confirms the ordered composition: problem/resource strip, planning board, product controls, resource meters, feasible graph, corner usage, continuous/integer optimum cards, model notes, misconception, practice and navigation/footer.
+- Live validation passed for quantity editing, integer optimum action, infeasible example inspection and practice grading.
+- Scoped SVG sizing keeps factory, status, optimum and action icons proportional under the shared stylesheet.

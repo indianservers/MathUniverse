@@ -1,4 +1,13 @@
-import { Component, lazy, Suspense, useEffect, useState, type ComponentType, type ErrorInfo, type ReactNode } from "react";
+import {
+  Component,
+  lazy,
+  Suspense,
+  useEffect,
+  useState,
+  type ComponentType,
+  type ErrorInfo,
+  type ReactNode,
+} from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import AppLayout from "./components/layout/AppLayout";
 import SeoMetadata from "./components/seo/SeoMetadata";
@@ -9,20 +18,30 @@ const routeChunkReloadWindowMs = 30_000;
 
 function isRouteChunkLoadError(error: unknown) {
   const message = error instanceof Error ? error.message : String(error);
-  return /ChunkLoadError|Loading chunk|Failed to fetch dynamically imported module|Importing a module script failed|error loading dynamically imported module/i.test(message);
+  return /ChunkLoadError|Loading chunk|Failed to fetch dynamically imported module|Importing a module script failed|error loading dynamically imported module/i.test(
+    message,
+  );
 }
 
-function lazyRoute<Props>(loader: () => Promise<{ default: ComponentType<Props> }>) {
+function lazyRoute<Props>(
+  loader: () => Promise<{ default: ComponentType<Props> }>,
+) {
   return lazy(async () => {
     try {
       const module = await loader();
-      if (typeof window !== "undefined") sessionStorage.removeItem(`${routeChunkReloadPrefix}${window.location.pathname}`);
+      if (typeof window !== "undefined")
+        sessionStorage.removeItem(
+          `${routeChunkReloadPrefix}${window.location.pathname}`,
+        );
       return module;
     } catch (error) {
       if (typeof window !== "undefined" && isRouteChunkLoadError(error)) {
         const reloadKey = `${routeChunkReloadPrefix}${window.location.pathname}`;
         const lastReload = Number(sessionStorage.getItem(reloadKey) ?? 0);
-        if (!Number.isFinite(lastReload) || Date.now() - lastReload > routeChunkReloadWindowMs) {
+        if (
+          !Number.isFinite(lastReload) ||
+          Date.now() - lastReload > routeChunkReloadWindowMs
+        ) {
           sessionStorage.setItem(reloadKey, String(Date.now()));
           await clearStaleAppCaches();
           window.location.replace(window.location.href);
@@ -36,7 +55,9 @@ function lazyRoute<Props>(loader: () => Promise<{ default: ComponentType<Props> 
 async function clearStaleAppCaches() {
   if ("serviceWorker" in navigator) {
     const registrations = await navigator.serviceWorker.getRegistrations();
-    await Promise.all(registrations.map((registration) => registration.unregister()));
+    await Promise.all(
+      registrations.map((registration) => registration.unregister()),
+    );
   }
   if ("caches" in window) {
     const keys = await caches.keys();
@@ -45,107 +66,233 @@ async function clearStaleAppCaches() {
 }
 
 const About = lazyRoute(() => import("./pages/About"));
-const AccuracyCertification = lazyRoute(() => import("./pages/AccuracyCertification"));
-const CoverageDashboardPage = lazyRoute(() => import("./pages/CoverageDashboardPage"));
-const Phase3LearningSystemPage = lazyRoute(() => import("./pages/Phase3LearningSystemPage"));
-const AdvancedSyllabusLabPage = lazyRoute(() => import("./pages/AdvancedSyllabusLabPage"));
-const AdvancedConceptStudios = lazyRoute(() => import("./pages/AdvancedConceptStudios"));
+const AccuracyCertification = lazyRoute(
+  () => import("./pages/AccuracyCertification"),
+);
+const CoverageDashboardPage = lazyRoute(
+  () => import("./pages/CoverageDashboardPage"),
+);
+const Phase3LearningSystemPage = lazyRoute(
+  () => import("./pages/Phase3LearningSystemPage"),
+);
+const AdvancedSyllabusLabPage = lazyRoute(
+  () => import("./pages/AdvancedSyllabusLabPage"),
+);
+const AdvancedConceptStudios = lazyRoute(
+  () => import("./pages/AdvancedConceptStudios"),
+);
 const AlgebraStudio = lazyRoute(() => import("./pages/AlgebraStudio"));
-const AlgebraicStructures = lazyRoute(() => import("./pages/AlgebraicStructures"));
+const AlgebraicStructures = lazyRoute(
+  () => import("./pages/AlgebraicStructures"),
+);
 const AIApplications = lazyRoute(() => import("./pages/AIApplications"));
 const ARMathLab = lazyRoute(() => import("./pages/ARMathLab"));
-const BoardSyllabusVisualizer = lazyRoute(() => import("./pages/BoardSyllabusVisualizer"));
+const BoardSyllabusVisualizer = lazyRoute(
+  () => import("./pages/BoardSyllabusVisualizer"),
+);
 const BoardPage = lazyRoute(() => import("./modules/board/BoardPage"));
 const CalculusStudio = lazyRoute(() => import("./pages/CalculusStudio"));
-const CircleToTriangleVisualization = lazyRoute(() => import("./pages/CircleToTriangleVisualization"));
+const CircleToTriangleVisualization = lazyRoute(
+  () => import("./pages/CircleToTriangleVisualization"),
+);
 const Combinatorics = lazyRoute(() => import("./pages/Combinatorics"));
 const ComplexNumbers = lazyRoute(() => import("./pages/ComplexNumbers"));
-const ConceptDependencyGraph = lazyRoute(() => import("./pages/ConceptDependencyGraph"));
+const ConceptDependencyGraph = lazyRoute(
+  () => import("./pages/ConceptDependencyGraph"),
+);
 const ConceptMapPage = lazyRoute(() => import("./concept-map/ConceptMapPage"));
 const DailyChallenge = lazyRoute(() => import("./pages/DailyChallenge"));
 const DiscreteWorld = lazyRoute(() => import("./pages/DiscreteWorld"));
 const Documentation = lazyRoute(() => import("./pages/Documentation"));
-const EigenvectorsVisualizerPage = lazyRoute(() => import("./pages/EigenvectorsVisualizerPage"));
+const EigenvectorsVisualizerPage = lazyRoute(
+  () => import("./pages/EigenvectorsVisualizerPage"),
+);
 const EngineeringMath = lazyRoute(() => import("./pages/EngineeringMath"));
 const Formulas = lazyRoute(() => import("./pages/Formulas"));
-const FormulaVisualizerPage = lazyRoute(() => import("./pages/FormulaVisualizerPage"));
-const FourierSeriesAnimator = lazyRoute(() => import("./pages/FourierSeriesAnimator"));
-const FourierSeriesVisualizerPage = lazyRoute(() => import("./pages/FourierSeriesVisualizerPage"));
+const FormulaVisualizerPage = lazyRoute(
+  () => import("./pages/FormulaVisualizerPage"),
+);
+const FourierSeriesAnimator = lazyRoute(
+  () => import("./pages/FourierSeriesAnimator"),
+);
+const FourierSeriesVisualizerPage = lazyRoute(
+  () => import("./pages/FourierSeriesVisualizerPage"),
+);
 const Geometry = lazyRoute(() => import("./pages/Geometry"));
-const GeometryConceptPage = lazyRoute(() => import("./pages/GeometryConceptPage"));
-const GraphComparisonMode = lazyRoute(() => import("./pages/GraphComparisonMode"));
+const GeometryConceptPage = lazyRoute(
+  () => import("./pages/GeometryConceptPage"),
+);
+const GraphComparisonMode = lazyRoute(
+  () => import("./pages/GraphComparisonMode"),
+);
 const GraphTheory = lazyRoute(() => import("./pages/GraphTheory"));
 const Home = lazyRoute(() => import("./pages/Home"));
-const LessonsHomePage = lazyRoute(() => import("./modules/lessons/pages/LessonsHomePage"));
-const LearnDiscoveryPage = lazyRoute(() => import("./modules/lessons/pages/LearnDiscoveryPage"));
-const LessonsCategoryPage = lazyRoute(() => import("./modules/lessons/pages/LessonsCategoryPage"));
-const LessonPage = lazyRoute(() => import("./modules/lessons/pages/LessonPage"));
-const AdvancedConceptLessonsPage = lazyRoute(() => import("./modules/lessons/pages/AdvancedConceptLessonsPage"));
-const AdvancedConceptLessonPage = lazyRoute(() => import("./modules/lessons/pages/AdvancedConceptLessonPage"));
-const SchoolLessonsPage = lazyRoute(() => import("./modules/lessons/pages/SchoolLessonsPage"));
-const SchoolLessonPage = lazyRoute(() => import("./modules/lessons/pages/SchoolLessonPage"));
-const Phase4ComputationalLabPage = lazyRoute(() => import("./pages/Phase4ComputationalLabPage"));
-const Phase5MathEnvironmentPage = lazyRoute(() => import("./pages/Phase5MathEnvironmentPage"));
+const LessonsHomePage = lazyRoute(
+  () => import("./modules/lessons/pages/LessonsHomePage"),
+);
+const LearnDiscoveryPage = lazyRoute(
+  () => import("./modules/lessons/pages/LearnDiscoveryPage"),
+);
+const LessonsCategoryPage = lazyRoute(
+  () => import("./modules/lessons/pages/LessonsCategoryPage"),
+);
+const LessonPage = lazyRoute(
+  () => import("./modules/lessons/pages/LessonPage"),
+);
+const AdvancedConceptLessonsPage = lazyRoute(
+  () => import("./modules/lessons/pages/AdvancedConceptLessonsPage"),
+);
+const AdvancedConceptLessonPage = lazyRoute(
+  () => import("./modules/lessons/pages/AdvancedConceptLessonPage"),
+);
+const SchoolLessonsPage = lazyRoute(
+  () => import("./modules/lessons/pages/SchoolLessonsPage"),
+);
+const SchoolLessonPage = lazyRoute(
+  () => import("./modules/lessons/pages/SchoolLessonPage"),
+);
+const Phase4ComputationalLabPage = lazyRoute(
+  () => import("./pages/Phase4ComputationalLabPage"),
+);
+const Phase5MathEnvironmentPage = lazyRoute(
+  () => import("./pages/Phase5MathEnvironmentPage"),
+);
 const LinearAlgebra = lazyRoute(() => import("./pages/LinearAlgebra"));
 const MathLab = lazyRoute(() => import("./pages/MathLab"));
 const MathLab3DGraphing = lazyRoute(() => import("./pages/MathLab3DGraphing"));
-const MathLabConicSolver = lazyRoute(() => import("./pages/MathLabConicSolver"));
-const MathLabFunctionExplorer = lazyRoute(() => import("./pages/MathLabFunctionExplorer"));
-const MathLabGraphingCalculator = lazyRoute(() => import("./pages/MathLabGraphingCalculator"));
-const MathLabLinearAlgebra = lazyRoute(() => import("./pages/MathLabLinearAlgebra"));
-const MathLabProbability = lazyRoute(() => import("./pages/MathLabProbability"));
+const MathLabConicSolver = lazyRoute(
+  () => import("./pages/MathLabConicSolver"),
+);
+const MathLabFunctionExplorer = lazyRoute(
+  () => import("./pages/MathLabFunctionExplorer"),
+);
+const MathLabGraphingCalculator = lazyRoute(
+  () => import("./pages/MathLabGraphingCalculator"),
+);
+const MathLabLinearAlgebra = lazyRoute(
+  () => import("./pages/MathLabLinearAlgebra"),
+);
+const MathLabProbability = lazyRoute(
+  () => import("./pages/MathLabProbability"),
+);
 const MathLabSmartQuery = lazyRoute(() => import("./pages/MathLabSmartQuery"));
 const MathLabToolPage = lazyRoute(() => import("./pages/MathLabToolPage"));
-const MathematicalModellingStudio = lazyRoute(() => import("./pages/MathematicalModellingStudio"));
-const ModellingEnhancementWorkbench = lazyRoute(() => import("./studios/modelling/ModellingEnhancementWorkbench"));
-const StudioProjectCenter = lazyRoute(() => import("./studios/platform/StudioProjectCenter"));
-const MathVisualizationPage = lazyRoute(() => import("./pages/MathVisualizationPage"));
-const MathVisualDictionary = lazyRoute(() => import("./pages/MathVisualDictionary"));
+const MathematicalModellingStudio = lazyRoute(
+  () => import("./pages/MathematicalModellingStudio"),
+);
+const ModellingEnhancementWorkbench = lazyRoute(
+  () => import("./studios/modelling/ModellingEnhancementWorkbench"),
+);
+const StudioProjectCenter = lazyRoute(
+  () => import("./studios/platform/StudioProjectCenter"),
+);
+const MathVisualizationPage = lazyRoute(
+  () => import("./pages/MathVisualizationPage"),
+);
+const MathVisualDictionary = lazyRoute(
+  () => import("./pages/MathVisualDictionary"),
+);
 const WorkspaceHome = lazyRoute(() => import("./pages/WorkspaceHome"));
 const MagicMaths = lazyRoute(() => import("./pages/MagicMaths"));
-const MatrixOperationPage = lazyRoute(() => import("./pages/MatrixOperationPage"));
+const MatrixOperationPage = lazyRoute(
+  () => import("./pages/MatrixOperationPage"),
+);
 const MatrixOperations = lazyRoute(() => import("./pages/MatrixOperations"));
-const MatrixOperationsSandbox = lazyRoute(() => import("./pages/MatrixOperationsSandbox"));
-const MatrixTransformationsVisualizerPage = lazyRoute(() => import("./pages/MatrixTransformationsVisualizerPage"));
+const MatrixOperationsSandbox = lazyRoute(
+  () => import("./pages/MatrixOperationsSandbox"),
+);
+const MatrixTransformationsVisualizerPage = lazyRoute(
+  () => import("./pages/MatrixTransformationsVisualizerPage"),
+);
 const NCERTConceptPage = lazyRoute(() => import("./pages/NCERTConceptPage"));
-const NCERTDashboardPage = lazyRoute(() => import("./pages/NCERTDashboardPage"));
+const NCERTDashboardPage = lazyRoute(
+  () => import("./pages/NCERTDashboardPage"),
+);
 const NumberSystems = lazyRoute(() => import("./pages/NumberSystems"));
 const Olympyard = lazyRoute(() => import("./pages/Olympyard"));
 const OlympyardMockTest = lazyRoute(() => import("./pages/OlympyardMockTest"));
 const OlympyardPractice = lazyRoute(() => import("./pages/OlympyardPractice"));
-const ParametricCurveExplorer = lazyRoute(() => import("./pages/ParametricCurveExplorer"));
-const PermutationsCombinationsVisualizer = lazyRoute(() => import("./pages/PermutationsCombinationsVisualizer"));
-const PolarCoordinatesVisualizer = lazyRoute(() => import("./pages/PolarCoordinatesVisualizer"));
-const ProbabilityStatistics = lazyRoute(() => import("./pages/ProbabilityStatistics"));
-const ProbabilityStatisticsModulePage = lazyRoute(() => import("./modules/probability-statistics/pages/ProbabilityStatisticsModulePage"));
-const DistributionAtlasPage = lazyRoute(() => import("./modules/probability-statistics/pages/DistributionAtlasPage"));
-const DistributionDetailPage = lazyRoute(() => import("./modules/probability-statistics/pages/DistributionDetailPage"));
-const ProbabilityStatisticsPhaseTwoPage = lazyRoute(() => import("./modules/probability-statistics/pages/ProbabilityStatisticsPhaseTwoPage"));
-const ProbabilityStatisticsPhaseThreePage = lazyRoute(() => import("./modules/probability-statistics/pages/ProbabilityStatisticsPhaseThreePage"));
-const StatisticsSyllabusCompletionPage = lazyRoute(() => import("./modules/probability-statistics/pages/StatisticsSyllabusCompletionPage"));
+const ParametricCurveExplorer = lazyRoute(
+  () => import("./pages/ParametricCurveExplorer"),
+);
+const PermutationsCombinationsVisualizer = lazyRoute(
+  () => import("./pages/PermutationsCombinationsVisualizer"),
+);
+const PolarCoordinatesVisualizer = lazyRoute(
+  () => import("./pages/PolarCoordinatesVisualizer"),
+);
+const ProbabilityStatistics = lazyRoute(
+  () => import("./pages/ProbabilityStatistics"),
+);
+const ProbabilityStatisticsModulePage = lazyRoute(
+  () =>
+    import("./modules/probability-statistics/pages/ProbabilityStatisticsModulePage"),
+);
+const DistributionAtlasPage = lazyRoute(
+  () => import("./modules/probability-statistics/pages/DistributionAtlasPage"),
+);
+const DistributionDetailPage = lazyRoute(
+  () => import("./modules/probability-statistics/pages/DistributionDetailPage"),
+);
+const ProbabilityStatisticsPhaseTwoPage = lazyRoute(
+  () =>
+    import("./modules/probability-statistics/pages/ProbabilityStatisticsPhaseTwoPage"),
+);
+const ProbabilityStatisticsPhaseThreePage = lazyRoute(
+  () =>
+    import("./modules/probability-statistics/pages/ProbabilityStatisticsPhaseThreePage"),
+);
+const StatisticsSyllabusCompletionPage = lazyRoute(
+  () =>
+    import("./modules/probability-statistics/pages/StatisticsSyllabusCompletionPage"),
+);
 const Quiz = lazyRoute(() => import("./pages/Quiz"));
-const ScientificCalculator = lazyRoute(() => import("./pages/ScientificCalculator"));
+const ScientificCalculator = lazyRoute(
+  () => import("./pages/ScientificCalculator"),
+);
 const SetTheory = lazyRoute(() => import("./pages/SetTheory"));
 const ShapesExplorer = lazyRoute(() => import("./pages/ShapesExplorer"));
 const Sitemap = lazyRoute(() => import("./pages/Sitemap"));
-const SpacedRepetitionQuiz = lazyRoute(() => import("./pages/SpacedRepetitionQuiz"));
-const StepByStepProblemSolver = lazyRoute(() => import("./pages/StepByStepProblemSolver"));
+const SpacedRepetitionQuiz = lazyRoute(
+  () => import("./pages/SpacedRepetitionQuiz"),
+);
+const StepByStepProblemSolver = lazyRoute(
+  () => import("./pages/StepByStepProblemSolver"),
+);
 const SurfacePlotter3D = lazyRoute(() => import("./pages/SurfacePlotter3D"));
 const Syllabus = lazyRoute(() => import("./pages/Syllabus"));
-const SyllabusVisualPage = lazyRoute(() => import("./pages/SyllabusVisualPage"));
+const SyllabusVisualPage = lazyRoute(
+  () => import("./pages/SyllabusVisualPage"),
+);
 const Theorems = lazyRoute(() => import("./pages/Theorems"));
 const Trigonometry = lazyRoute(() => import("./pages/Trigonometry"));
-const TrigonometryConceptPage = lazyRoute(() => import("./pages/TrigonometryConceptPage"));
-const TrigFormulaVisualizerPage = lazyRoute(() => import("./trigonometry/pages/TrigFormulaVisualizerPage"));
-const TruthTableGenerator = lazyRoute(() => import("./pages/TruthTableGenerator"));
+const TrigonometryConceptPage = lazyRoute(
+  () => import("./pages/TrigonometryConceptPage"),
+);
+const TrigFormulaVisualizerPage = lazyRoute(
+  () => import("./trigonometry/pages/TrigFormulaVisualizerPage"),
+);
+const TruthTableGenerator = lazyRoute(
+  () => import("./pages/TruthTableGenerator"),
+);
 const UnitConverter = lazyRoute(() => import("./pages/UnitConverter"));
-const UniversalMathDocumentPage = lazyRoute(() => import("./pages/UniversalMathDocumentPage"));
+const UniversalMathDocumentPage = lazyRoute(
+  () => import("./pages/UniversalMathDocumentPage"),
+);
 const VisualFormulasHub = lazyRoute(() => import("./pages/VisualFormulasHub"));
 const VisualShowcase = lazyRoute(() => import("./pages/VisualShowcase"));
-const VisualProofsHomePage = lazyRoute(() => import("./visual-proofs/pages/VisualProofsHomePage"));
-const VisualProofCategoryPage = lazyRoute(() => import("./visual-proofs/pages/VisualProofCategoryPage"));
-const VisualProofPage = lazyRoute(() => import("./visual-proofs/pages/VisualProofPage"));
-const WorkedExamplesLibrary = lazyRoute(() => import("./pages/WorkedExamplesLibrary"));
+const VisualProofsHomePage = lazyRoute(
+  () => import("./visual-proofs/pages/VisualProofsHomePage"),
+);
+const VisualProofCategoryPage = lazyRoute(
+  () => import("./visual-proofs/pages/VisualProofCategoryPage"),
+);
+const VisualProofPage = lazyRoute(
+  () => import("./visual-proofs/pages/VisualProofPage"),
+);
+const WorkedExamplesLibrary = lazyRoute(
+  () => import("./pages/WorkedExamplesLibrary"),
+);
 const Workspace3D = lazyRoute(() => import("./pages/Workspace3D"));
 const WorkspaceData = lazyRoute(() => import("./pages/WorkspaceData"));
 const WorkspaceGeometry = lazyRoute(() => import("./pages/WorkspaceGeometry"));
@@ -154,7 +301,10 @@ const WorkspaceGraph = lazyRoute(() => import("./pages/WorkspaceGraph"));
 type AppErrorBoundaryProps = { children: ReactNode; resetKey: string };
 type AppErrorBoundaryState = { hasError: boolean };
 
-class AppErrorBoundary extends Component<AppErrorBoundaryProps, AppErrorBoundaryState> {
+class AppErrorBoundary extends Component<
+  AppErrorBoundaryProps,
+  AppErrorBoundaryState
+> {
   state: AppErrorBoundaryState = { hasError: false };
 
   static getDerivedStateFromError(): AppErrorBoundaryState {
@@ -176,12 +326,23 @@ class AppErrorBoundary extends Component<AppErrorBoundaryProps, AppErrorBoundary
       return (
         <main className="flex min-h-screen items-center justify-center bg-slate-50 p-6 text-slate-950 dark:bg-slate-950 dark:text-white">
           <section className="max-w-xl rounded-lg border border-slate-200 bg-white p-6 shadow-xl dark:border-slate-800 dark:bg-slate-900">
-            <p className="text-sm font-semibold uppercase tracking-wide text-cyan-600 dark:text-cyan-300">Math Universe</p>
+            <p className="text-sm font-semibold uppercase tracking-wide text-cyan-600 dark:text-cyan-300">
+              Math Universe
+            </p>
             <h1 className="mt-3 text-2xl font-bold">Something went wrong.</h1>
             <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">
-              Reload the app to restore the latest lesson shell and cached visualizations.
+              Reload the app to restore the latest lesson shell and cached
+              visualizations.
             </p>
-            <button className="action-primary mt-5" type="button" onClick={() => { void clearStaleAppCaches().finally(() => window.location.replace(window.location.href)); }}>
+            <button
+              className="action-primary mt-5"
+              type="button"
+              onClick={() => {
+                void clearStaleAppCaches().finally(() =>
+                  window.location.replace(window.location.href),
+                );
+              }}
+            >
               Reload app
             </button>
           </section>
@@ -204,17 +365,38 @@ export default function App() {
         <Routes>
           <Route element={<AppLayout />}>
             <Route index element={<Home />} />
-            <Route path="accuracy-certification" element={<AccuracyCertification />} />
-            <Route path="coverage-dashboard" element={<CoverageDashboardPage />} />
-            <Route path="curriculum-evidence" element={<Phase3LearningSystemPage />} />
+            <Route
+              path="accuracy-certification"
+              element={<AccuracyCertification />}
+            />
+            <Route
+              path="coverage-dashboard"
+              element={<CoverageDashboardPage />}
+            />
+            <Route
+              path="curriculum-evidence"
+              element={<Phase3LearningSystemPage />}
+            />
             <Route path="learning/*" element={<Phase3LearningSystemPage />} />
             <Route path="compute/*" element={<Phase4ComputationalLabPage />} />
             <Route path="data/*" element={<Phase4ComputationalLabPage />} />
-            <Route path="probability-lab" element={<Phase4ComputationalLabPage />} />
+            <Route
+              path="probability-lab"
+              element={<Phase4ComputationalLabPage />}
+            />
             <Route path="math-3d" element={<Phase5MathEnvironmentPage />} />
-            <Route path="authoring-studio" element={<Phase5MathEnvironmentPage />} />
-            <Route path="curriculum-operations" element={<Phase5MathEnvironmentPage />} />
-            <Route path="release-scorecard" element={<Phase5MathEnvironmentPage />} />
+            <Route
+              path="authoring-studio"
+              element={<Phase5MathEnvironmentPage />}
+            />
+            <Route
+              path="curriculum-operations"
+              element={<Phase5MathEnvironmentPage />}
+            />
+            <Route
+              path="release-scorecard"
+              element={<Phase5MathEnvironmentPage />}
+            />
             <Route path="algebra" element={<AlgebraStudio />} />
             <Route path="algebra/expressions" element={<AlgebraStudio />} />
             <Route path="algebra/equations" element={<AlgebraStudio />} />
@@ -226,85 +408,259 @@ export default function App() {
             <Route path="algebra/proof" element={<AlgebraStudio />} />
             <Route path="algebra/cas" element={<AlgebraStudio />} />
             <Route path="algebra/advanced" element={<AlgebraStudio />} />
-            <Route path="algebraic-structures" element={<AlgebraicStructures />} />
+            <Route
+              path="algebraic-structures"
+              element={<AlgebraicStructures />}
+            />
             <Route path="math-lab" element={<MathLab />} />
             <Route path="engineering-math" element={<EngineeringMath />} />
-            <Route path="math-lab/graphing-calculator" element={<MathLabGraphingCalculator />} />
-            <Route path="math-lab/function-explorer" element={<MathLabFunctionExplorer />} />
-            <Route path="math-lab/linear-algebra" element={<MathLabLinearAlgebra />} />
-            <Route path="math-lab/3d-graphing" element={<MathLab3DGraphing />} />
+            <Route
+              path="math-lab/graphing-calculator"
+              element={<MathLabGraphingCalculator />}
+            />
+            <Route
+              path="math-lab/function-explorer"
+              element={<MathLabFunctionExplorer />}
+            />
+            <Route
+              path="math-lab/linear-algebra"
+              element={<MathLabLinearAlgebra />}
+            />
+            <Route
+              path="math-lab/3d-graphing"
+              element={<MathLab3DGraphing />}
+            />
             <Route path="math-lab/conics" element={<MathLabConicSolver />} />
-            <Route path="math-lab/probability" element={<MathLabProbability />} />
-            <Route path="math-lab/continued-fractions" element={<AdvancedConceptStudios />} />
-            <Route path="math-lab/famous-problems" element={<AdvancedConceptStudios />} />
-            <Route path="math-lab/stats-inference" element={<AdvancedConceptStudios />} />
-            <Route path="math-lab/differential-equations" element={<AdvancedConceptStudios />} />
-            <Route path="math-lab/special-functions" element={<AdvancedConceptStudios />} />
-            <Route path="math-lab/cas-solver" element={<Navigate to="/problem-solver" replace />} />
+            <Route
+              path="math-lab/probability"
+              element={<MathLabProbability />}
+            />
+            <Route
+              path="math-lab/continued-fractions"
+              element={<AdvancedConceptStudios />}
+            />
+            <Route
+              path="math-lab/famous-problems"
+              element={<AdvancedConceptStudios />}
+            />
+            <Route
+              path="math-lab/stats-inference"
+              element={<AdvancedConceptStudios />}
+            />
+            <Route
+              path="math-lab/differential-equations"
+              element={<AdvancedConceptStudios />}
+            />
+            <Route
+              path="math-lab/special-functions"
+              element={<AdvancedConceptStudios />}
+            />
+            <Route
+              path="math-lab/cas-solver"
+              element={<Navigate to="/problem-solver" replace />}
+            />
             <Route path="math-lab/query" element={<MathLabSmartQuery />} />
             <Route path="math-lab/:toolId" element={<MathLabToolPage />} />
-            <Route path="ar-math-lab" element={<Navigate to="/modules/ar-math-lab" replace />} />
+            <Route
+              path="ar-math-lab"
+              element={<Navigate to="/modules/ar-math-lab" replace />}
+            />
             <Route path="modules/ar-math-lab" element={<ARMathLab />} />
-            <Route path="visual-dictionary" element={<MathVisualDictionary />} />
+            <Route
+              path="visual-dictionary"
+              element={<MathVisualDictionary />}
+            />
             <Route path="magic-maths" element={<MagicMaths />} />
             <Route path="magic-maths/:conceptSlug" element={<MagicMaths />} />
             <Route path="workspace" element={<WorkspaceHome />} />
-            <Route path="math-document" element={<UniversalMathDocumentPage />} />
+            <Route
+              path="math-document"
+              element={<UniversalMathDocumentPage />}
+            />
             <Route path="board" element={<BoardPage />} />
             <Route path="workspace/graph" element={<WorkspaceGraph />} />
             <Route path="workspace/geometry" element={<WorkspaceGeometry />} />
             <Route path="workspace/3d" element={<Workspace3D />} />
             <Route path="workspace/data" element={<WorkspaceData />} />
-            <Route path="workspace/data/overview" element={<WorkspaceData page="overview" />} />
-            <Route path="workspace/data/spreadsheet" element={<WorkspaceData page="spreadsheet" />} />
-            <Route path="workspace/data/analysis" element={<WorkspaceData page="analysis" />} />
-            <Route path="workspace/data/cas" element={<WorkspaceData page="cas" />} />
-            <Route path="workspace/data/results" element={<WorkspaceData page="results" />} />
-            <Route path="workspace/data/objects" element={<WorkspaceData page="objects" />} />
-            <Route path="workspace/teach" element={<Navigate to="/workspace" replace />} />
+            <Route
+              path="workspace/data/overview"
+              element={<WorkspaceData page="overview" />}
+            />
+            <Route
+              path="workspace/data/spreadsheet"
+              element={<WorkspaceData page="spreadsheet" />}
+            />
+            <Route
+              path="workspace/data/analysis"
+              element={<WorkspaceData page="analysis" />}
+            />
+            <Route
+              path="workspace/data/cas"
+              element={<WorkspaceData page="cas" />}
+            />
+            <Route
+              path="workspace/data/results"
+              element={<WorkspaceData page="results" />}
+            />
+            <Route
+              path="workspace/data/objects"
+              element={<WorkspaceData page="objects" />}
+            />
+            <Route
+              path="workspace/teach"
+              element={<Navigate to="/workspace" replace />}
+            />
             <Route path="formulas" element={<Formulas />} />
             <Route path="formulas/:categorySlug" element={<Formulas />} />
             <Route path="visual-formulas" element={<VisualFormulasHub />} />
-            <Route path="visual-formulas/sierpinski-carpet" element={<FormulaVisualizerPage conceptId="sierpinski-carpet" />} />
-            <Route path="visual-formulas/proportional-reasoning-2" element={<FormulaVisualizerPage conceptId="proportional-reasoning-2" />} />
-            {formulaVisualizerConfigs.filter((config) => config.id !== "trigonometry" && config.id !== "sierpinski-carpet" && config.id !== "proportional-reasoning-2").map((config) => (
-              <Route key={config.route} path={config.route.slice(1)} element={<FormulaVisualizerPage conceptId={config.id} />} />
-            ))}
+            <Route
+              path="visual-formulas/sierpinski-carpet"
+              element={<FormulaVisualizerPage conceptId="sierpinski-carpet" />}
+            />
+            <Route
+              path="visual-formulas/proportional-reasoning-2"
+              element={
+                <FormulaVisualizerPage conceptId="proportional-reasoning-2" />
+              }
+            />
+            {formulaVisualizerConfigs
+              .filter(
+                (config) =>
+                  config.id !== "trigonometry" &&
+                  config.id !== "sierpinski-carpet" &&
+                  config.id !== "proportional-reasoning-2",
+              )
+              .map((config) => (
+                <Route
+                  key={config.route}
+                  path={config.route.slice(1)}
+                  element={<FormulaVisualizerPage conceptId={config.id} />}
+                />
+              ))}
             <Route path="theorems" element={<Theorems />} />
             <Route path="theorems/:categorySlug" element={<Theorems />} />
-            <Route path="theorems/:categorySlug/:theoremSlug" element={<Theorems />} />
+            <Route
+              path="theorems/:categorySlug/:theoremSlug"
+              element={<Theorems />}
+            />
             <Route path="visual-showcase" element={<VisualShowcase />} />
-            <Route path="circle-to-triangle" element={<CircleToTriangleVisualization />} />
+            <Route
+              path="circle-to-triangle"
+              element={<CircleToTriangleVisualization />}
+            />
             <Route path="visual-proofs" element={<VisualProofsHomePage />} />
-            <Route path="visual-proofs/:categorySlug" element={<VisualProofCategoryPage />} />
-            <Route path="visual-proofs/geometry/circle-to-triangle" element={<CircleToTriangleVisualization />} />
-            <Route path="visual-proofs/:categorySlug/:proofSlug" element={<VisualProofPage />} />
+            <Route
+              path="visual-proofs/:categorySlug"
+              element={<VisualProofCategoryPage />}
+            />
+            <Route
+              path="visual-proofs/geometry/circle-to-triangle"
+              element={<CircleToTriangleVisualization />}
+            />
+            <Route
+              path="visual-proofs/:categorySlug/:proofSlug"
+              element={<VisualProofPage />}
+            />
             <Route path="geometry" element={<Geometry />} />
-            <Route path="geometry/:conceptId" element={<GeometryConceptPage />} />
+            <Route
+              path="geometry/:conceptId"
+              element={<GeometryConceptPage />}
+            />
             <Route path="shapes" element={<ShapesExplorer />} />
             <Route path="number-systems" element={<NumberSystems />} />
             <Route path="trigonometry" element={<Trigonometry />} />
-            <Route path="trigonometry/formula-visualizer" element={<TrigFormulaVisualizerPage />} />
-            <Route path="trigonometry/:conceptId" element={<TrigonometryConceptPage />} />
+            <Route
+              path="trigonometry/formula-visualizer"
+              element={<TrigFormulaVisualizerPage />}
+            />
+            <Route
+              path="trigonometry/:conceptId"
+              element={<TrigonometryConceptPage />}
+            />
             <Route path="calculus" element={<CalculusStudio page="home" />} />
-            <Route path="calculus/limits" element={<CalculusStudio page="limits" />} />
-            <Route path="calculus/derivatives" element={<CalculusStudio page="derivatives" />} />
-            <Route path="calculus/derivative-applications" element={<CalculusStudio page="derivative-applications" />} />
-            <Route path="calculus/integration" element={<CalculusStudio page="integration" />} />
-            <Route path="calculus/integration-techniques" element={<CalculusStudio page="integration-techniques" />} />
-            <Route path="calculus/integral-applications" element={<CalculusStudio page="integral-applications" />} />
-            <Route path="calculus/differential-equations" element={<CalculusStudio page="differential-equations" />} />
-            <Route path="calculus/series-parametric-polar" element={<CalculusStudio page="series-parametric-polar" />} />
-            <Route path="calculus/multivariable-vector" element={<CalculusStudio page="multivariable-vector" />} />
-            <Route path="calculus/advanced" element={<CalculusStudio page="advanced" />} />
-            <Route path="calculus/integrals" element={<Navigate to="/calculus/integration" replace />} />
-            <Route path="calculus/motion" element={<Navigate to="/calculus/derivative-applications?mode=motion" replace />} />
-            <Route path="calculus/practice" element={<Navigate to="/calculus" replace />} />
-            <Route path="calculus/proof-problems" element={<Navigate to="/calculus/integration?mode=ftc" replace />} />
-            <Route path="calculus/series-blocks" element={<Navigate to="/calculus/series-parametric-polar" replace />} />
-            <Route path="calculus/atlas" element={<Navigate to="/calculus" replace />} />
-            <Route path="calculus/formulas" element={<Navigate to="/calculus/integration-techniques" replace />} />
-            <Route path="calculus/applications" element={<Navigate to="/calculus/derivative-applications" replace />} />
+            <Route
+              path="calculus/limits"
+              element={<CalculusStudio page="limits" />}
+            />
+            <Route
+              path="calculus/derivatives"
+              element={<CalculusStudio page="derivatives" />}
+            />
+            <Route
+              path="calculus/derivative-applications"
+              element={<CalculusStudio page="derivative-applications" />}
+            />
+            <Route
+              path="calculus/integration"
+              element={<CalculusStudio page="integration" />}
+            />
+            <Route
+              path="calculus/integration-techniques"
+              element={<CalculusStudio page="integration-techniques" />}
+            />
+            <Route
+              path="calculus/integral-applications"
+              element={<CalculusStudio page="integral-applications" />}
+            />
+            <Route
+              path="calculus/differential-equations"
+              element={<CalculusStudio page="differential-equations" />}
+            />
+            <Route
+              path="calculus/series-parametric-polar"
+              element={<CalculusStudio page="series-parametric-polar" />}
+            />
+            <Route
+              path="calculus/multivariable-vector"
+              element={<CalculusStudio page="multivariable-vector" />}
+            />
+            <Route
+              path="calculus/advanced"
+              element={<CalculusStudio page="advanced" />}
+            />
+            <Route
+              path="calculus/integrals"
+              element={<Navigate to="/calculus/integration" replace />}
+            />
+            <Route
+              path="calculus/motion"
+              element={
+                <Navigate
+                  to="/calculus/derivative-applications?mode=motion"
+                  replace
+                />
+              }
+            />
+            <Route
+              path="calculus/practice"
+              element={<Navigate to="/calculus" replace />}
+            />
+            <Route
+              path="calculus/proof-problems"
+              element={<Navigate to="/calculus/integration?mode=ftc" replace />}
+            />
+            <Route
+              path="calculus/series-blocks"
+              element={
+                <Navigate to="/calculus/series-parametric-polar" replace />
+              }
+            />
+            <Route
+              path="calculus/atlas"
+              element={<Navigate to="/calculus" replace />}
+            />
+            <Route
+              path="calculus/formulas"
+              element={
+                <Navigate to="/calculus/integration-techniques" replace />
+              }
+            />
+            <Route
+              path="calculus/applications"
+              element={
+                <Navigate to="/calculus/derivative-applications" replace />
+              }
+            />
             <Route path="combinatorics" element={<Combinatorics />} />
             <Route path="complex-numbers" element={<ComplexNumbers />} />
             <Route path="set-theory" element={<SetTheory />} />
@@ -312,28 +668,70 @@ export default function App() {
             <Route path="statistics" element={<ProbabilityStatistics />} />
             <Route path="linear-algebra" element={<LinearAlgebra />} />
             <Route path="matrices" element={<MatrixOperations />} />
-            <Route path="matrices/:operationId" element={<MatrixOperationPage />} />
-            <Route path="matrix-sandbox" element={<MatrixOperationsSandbox />} />
+            <Route
+              path="matrices/:operationId"
+              element={<MatrixOperationPage />}
+            />
+            <Route
+              path="matrix-sandbox"
+              element={<MatrixOperationsSandbox />}
+            />
             <Route path="ai-applications" element={<AIApplications />} />
-            <Route path="mathematical-modelling" element={<MathematicalModellingStudio />} />
-            <Route path="mathematical-modelling/advanced" element={<ModellingEnhancementWorkbench />} />
+            <Route
+              path="mathematical-modelling"
+              element={<MathematicalModellingStudio />}
+            />
+            <Route
+              path="mathematical-modelling/advanced"
+              element={<ModellingEnhancementWorkbench />}
+            />
             <Route path="studio-projects" element={<StudioProjectCenter />} />
             <Route path="learn" element={<LessonsHomePage />} />
             <Route path="learn/:topicSlug" element={<LearnDiscoveryPage />} />
-            <Route path="learn/:topicSlug/:subtopicSlug" element={<LearnDiscoveryPage />} />
+            <Route
+              path="learn/:topicSlug/:subtopicSlug"
+              element={<LearnDiscoveryPage />}
+            />
             <Route path="lessons" element={<LessonsHomePage />} />
-            <Route path="lessons/advanced-concepts" element={<AdvancedConceptLessonsPage />} />
-            <Route path="lessons/advanced-concepts/:lessonSlug" element={<AdvancedConceptLessonPage />} />
+            <Route
+              path="lessons/advanced-concepts"
+              element={<AdvancedConceptLessonsPage />}
+            />
+            <Route
+              path="lessons/advanced-concepts/:lessonSlug"
+              element={<AdvancedConceptLessonPage />}
+            />
             <Route path="lessons/school" element={<SchoolLessonsPage />} />
-            <Route path="lessons/school/:levelSlug" element={<SchoolLessonsPage />} />
-            <Route path="lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} />
-            <Route path="lessons/:categorySlug" element={<LessonsCategoryPage />} />
-            <Route path="lessons/:categorySlug/:lessonSlug" element={<LessonPage />} />
+            <Route
+              path="lessons/school/:levelSlug"
+              element={<SchoolLessonsPage />}
+            />
+            <Route
+              path="lessons/school/:levelSlug/:lessonSlug"
+              element={<SchoolLessonPage />}
+            />
+            <Route
+              path="lessons/:categorySlug"
+              element={<LessonsCategoryPage />}
+            />
+            <Route
+              path="lessons/:categorySlug/:lessonSlug"
+              element={<LessonPage />}
+            />
             <Route path="olympyard" element={<Olympyard />} />
             <Route path="olympyard/mock-test" element={<OlympyardMockTest />} />
-            <Route path="olympyard/practice/:topicId" element={<OlympyardPractice />} />
-            <Route path="spaced-repetition" element={<SpacedRepetitionQuiz />} />
-            <Route path="problem-solver" element={<StepByStepProblemSolver />} />
+            <Route
+              path="olympyard/practice/:topicId"
+              element={<OlympyardPractice />}
+            />
+            <Route
+              path="spaced-repetition"
+              element={<SpacedRepetitionQuiz />}
+            />
+            <Route
+              path="problem-solver"
+              element={<StepByStepProblemSolver />}
+            />
             <Route path="concept-map" element={<ConceptMapPage />} />
             <Route path="concept-graph" element={<ConceptDependencyGraph />} />
             <Route path="daily-challenge" element={<DailyChallenge />} />
@@ -341,51 +739,201 @@ export default function App() {
             <Route path="graph-comparison" element={<GraphComparisonMode />} />
             <Route path="graph-theory" element={<GraphTheory />} />
             <Route path="discrete-world" element={<DiscreteWorld />} />
-            <Route path="parametric-curves" element={<ParametricCurveExplorer />} />
+            <Route
+              path="parametric-curves"
+              element={<ParametricCurveExplorer />}
+            />
             <Route path="surface-plotter" element={<SurfacePlotter3D />} />
-            <Route path="fourier-animator" element={<FourierSeriesAnimator />} />
-            <Route path="polar-visualizer" element={<PolarCoordinatesVisualizer />} />
+            <Route
+              path="fourier-animator"
+              element={<FourierSeriesAnimator />}
+            />
+            <Route
+              path="polar-visualizer"
+              element={<PolarCoordinatesVisualizer />}
+            />
             <Route path="unit-converter" element={<UnitConverter />} />
-            <Route path="probability-statistics" element={<ProbabilityStatistics />} />
-            <Route path="probability-statistics/module" element={<ProbabilityStatisticsModulePage />} />
-            <Route path="probability-statistics/distributions" element={<DistributionAtlasPage />} />
-            <Route path="probability-statistics/distributions/:distributionId" element={<DistributionDetailPage />} />
-            <Route path="probability-statistics/sampling" element={<ProbabilityStatisticsPhaseTwoPage page="sampling" />} />
-            <Route path="probability-statistics/inference" element={<ProbabilityStatisticsPhaseTwoPage page="inference" />} />
-            <Route path="probability-statistics/regression" element={<ProbabilityStatisticsPhaseTwoPage page="regression" />} />
-            <Route path="probability-statistics/bayesian" element={<ProbabilityStatisticsPhaseThreePage page="bayesian" />} />
-            <Route path="probability-statistics/stochastic" element={<ProbabilityStatisticsPhaseThreePage page="stochastic" />} />
-            <Route path="probability-statistics/advanced-models" element={<ProbabilityStatisticsPhaseThreePage page="advanced-models" />} />
-            <Route path="probability-statistics/survey-sampling" element={<StatisticsSyllabusCompletionPage studioId="survey-sampling" />} />
-            <Route path="probability-statistics/design-of-experiments" element={<StatisticsSyllabusCompletionPage studioId="design-of-experiments" />} />
-            <Route path="probability-statistics/quality-control" element={<StatisticsSyllabusCompletionPage studioId="quality-control" />} />
-            <Route path="probability-statistics/time-series" element={<StatisticsSyllabusCompletionPage studioId="time-series" />} />
-            <Route path="probability-statistics/nonparametric" element={<StatisticsSyllabusCompletionPage studioId="nonparametric" />} />
-            <Route path="probability-statistics/multivariate-analysis" element={<StatisticsSyllabusCompletionPage studioId="multivariate-analysis" />} />
-            <Route path="probability-statistics/advanced-inference" element={<StatisticsSyllabusCompletionPage studioId="advanced-inference" />} />
-            <Route path="probability-statistics/official-statistics" element={<StatisticsSyllabusCompletionPage studioId="official-statistics" />} />
-            <Route path="probability-statistics/survival-analysis" element={<StatisticsSyllabusCompletionPage studioId="survival-analysis" />} />
-            <Route path="probability-statistics/actuarial-reliability" element={<StatisticsSyllabusCompletionPage studioId="actuarial-reliability" />} />
-            <Route path="probability-statistics/statistical-computing" element={<StatisticsSyllabusCompletionPage studioId="statistical-computing" />} />
-            <Route path="probability-statistics/applied-modelling" element={<StatisticsSyllabusCompletionPage studioId="applied-modelling" />} />
-            <Route path="probability-statistics/school-statistics" element={<StatisticsSyllabusCompletionPage studioId="school-statistics" />} />
-            <Route path="mathematical-logic" element={<TruthTableGenerator />} />
+            <Route
+              path="probability-statistics"
+              element={<ProbabilityStatistics />}
+            />
+            <Route
+              path="probability-statistics/module"
+              element={<ProbabilityStatisticsModulePage />}
+            />
+            <Route
+              path="probability-statistics/distributions"
+              element={<DistributionAtlasPage />}
+            />
+            <Route
+              path="probability-statistics/distributions/:distributionId"
+              element={<DistributionDetailPage />}
+            />
+            <Route
+              path="probability-statistics/sampling"
+              element={<ProbabilityStatisticsPhaseTwoPage page="sampling" />}
+            />
+            <Route
+              path="probability-statistics/inference"
+              element={<ProbabilityStatisticsPhaseTwoPage page="inference" />}
+            />
+            <Route
+              path="probability-statistics/regression"
+              element={<ProbabilityStatisticsPhaseTwoPage page="regression" />}
+            />
+            <Route
+              path="probability-statistics/bayesian"
+              element={<ProbabilityStatisticsPhaseThreePage page="bayesian" />}
+            />
+            <Route
+              path="probability-statistics/stochastic"
+              element={
+                <ProbabilityStatisticsPhaseThreePage page="stochastic" />
+              }
+            />
+            <Route
+              path="probability-statistics/advanced-models"
+              element={
+                <ProbabilityStatisticsPhaseThreePage page="advanced-models" />
+              }
+            />
+            <Route
+              path="probability-statistics/survey-sampling"
+              element={
+                <StatisticsSyllabusCompletionPage studioId="survey-sampling" />
+              }
+            />
+            <Route
+              path="probability-statistics/design-of-experiments"
+              element={
+                <StatisticsSyllabusCompletionPage studioId="design-of-experiments" />
+              }
+            />
+            <Route
+              path="probability-statistics/quality-control"
+              element={
+                <StatisticsSyllabusCompletionPage studioId="quality-control" />
+              }
+            />
+            <Route
+              path="probability-statistics/time-series"
+              element={
+                <StatisticsSyllabusCompletionPage studioId="time-series" />
+              }
+            />
+            <Route
+              path="probability-statistics/nonparametric"
+              element={
+                <StatisticsSyllabusCompletionPage studioId="nonparametric" />
+              }
+            />
+            <Route
+              path="probability-statistics/multivariate-analysis"
+              element={
+                <StatisticsSyllabusCompletionPage studioId="multivariate-analysis" />
+              }
+            />
+            <Route
+              path="probability-statistics/advanced-inference"
+              element={
+                <StatisticsSyllabusCompletionPage studioId="advanced-inference" />
+              }
+            />
+            <Route
+              path="probability-statistics/official-statistics"
+              element={
+                <StatisticsSyllabusCompletionPage studioId="official-statistics" />
+              }
+            />
+            <Route
+              path="probability-statistics/survival-analysis"
+              element={
+                <StatisticsSyllabusCompletionPage studioId="survival-analysis" />
+              }
+            />
+            <Route
+              path="probability-statistics/actuarial-reliability"
+              element={
+                <StatisticsSyllabusCompletionPage studioId="actuarial-reliability" />
+              }
+            />
+            <Route
+              path="probability-statistics/statistical-computing"
+              element={
+                <StatisticsSyllabusCompletionPage studioId="statistical-computing" />
+              }
+            />
+            <Route
+              path="probability-statistics/applied-modelling"
+              element={
+                <StatisticsSyllabusCompletionPage studioId="applied-modelling" />
+              }
+            />
+            <Route
+              path="probability-statistics/school-statistics"
+              element={
+                <StatisticsSyllabusCompletionPage studioId="school-statistics" />
+              }
+            />
+            <Route
+              path="mathematical-logic"
+              element={<TruthTableGenerator />}
+            />
             <Route path="truth-table" element={<TruthTableGenerator />} />
-            <Route path="math/functions-graphs" element={<Navigate to="/workspace/graph" replace />} />
-            <Route path="math/limits-continuity" element={<CalculusStudio page="limits" />} />
-            <Route path="math/derivatives" element={<CalculusStudio page="derivatives" />} />
-            <Route path="math/integration" element={<CalculusStudio page="integration" />} />
-            <Route path="math/matrix-transformations" element={<MatrixTransformationsVisualizerPage />} />
-            <Route path="math/eigenvectors" element={<EigenvectorsVisualizerPage />} />
-            <Route path="math/slope-fields" element={<CalculusStudio page="differential-equations" />} />
-            <Route path="math/fourier-series" element={<FourierSeriesVisualizerPage />} />
-            <Route path="math/permutations-combinations" element={<PermutationsCombinationsVisualizer />} />
-            <Route path="math/:visualizationId" element={<MathVisualizationPage />} />
+            <Route
+              path="math/functions-graphs"
+              element={<Navigate to="/workspace/graph" replace />}
+            />
+            <Route
+              path="math/limits-continuity"
+              element={<CalculusStudio page="limits" />}
+            />
+            <Route
+              path="math/derivatives"
+              element={<CalculusStudio page="derivatives" />}
+            />
+            <Route
+              path="math/integration"
+              element={<CalculusStudio page="integration" />}
+            />
+            <Route
+              path="math/matrix-transformations"
+              element={<MatrixTransformationsVisualizerPage />}
+            />
+            <Route
+              path="math/eigenvectors"
+              element={<EigenvectorsVisualizerPage />}
+            />
+            <Route
+              path="math/slope-fields"
+              element={<CalculusStudio page="differential-equations" />}
+            />
+            <Route
+              path="math/fourier-series"
+              element={<FourierSeriesVisualizerPage />}
+            />
+            <Route
+              path="math/permutations-combinations"
+              element={<PermutationsCombinationsVisualizer />}
+            />
+            <Route
+              path="math/:visualizationId"
+              element={<MathVisualizationPage />}
+            />
             <Route path="ncert" element={<NCERTDashboardPage />} />
             <Route path="ncert/:conceptId" element={<NCERTConceptPage />} />
-            <Route path="syllabus-visual/:topicId" element={<BoardSyllabusVisualizer />} />
-            <Route path="syllabus-visual-v2/:slug" element={<SyllabusVisualPage />} />
-            <Route path="syllabus-lab/:labId" element={<AdvancedSyllabusLabPage />} />
+            <Route
+              path="syllabus-visual/:topicId"
+              element={<BoardSyllabusVisualizer />}
+            />
+            <Route
+              path="syllabus-visual-v2/:slug"
+              element={<SyllabusVisualPage />}
+            />
+            <Route
+              path="syllabus-lab/:labId"
+              element={<AdvancedSyllabusLabPage />}
+            />
             <Route path="syllabus" element={<Syllabus />} />
             <Route path="syllabus/:levelId" element={<Syllabus />} />
             <Route path="calculator" element={<ScientificCalculator />} />
@@ -436,7 +984,10 @@ function RouteProgressBar() {
 function RouteFallback() {
   return (
     <div className="flex min-h-[60vh] items-center justify-center p-6">
-      <div className="h-10 w-10 animate-spin rounded-full border-4 border-cyan-200 border-t-cyan-600" aria-label="Loading" />
+      <div
+        className="h-10 w-10 animate-spin rounded-full border-4 border-cyan-200 border-t-cyan-600"
+        aria-label="Loading"
+      />
     </div>
   );
 }

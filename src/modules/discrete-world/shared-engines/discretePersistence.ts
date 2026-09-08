@@ -17,6 +17,11 @@ export function loadDiscreteSnapshot(): DiscreteWorldSnapshot | null {
   }
 }
 
-export function saveDiscreteSnapshot(snapshot: Omit<DiscreteWorldSnapshot, "savedAt">) {
-  localStorage.setItem(storageKey, JSON.stringify({ ...snapshot, savedAt: new Date().toISOString() }));
+export function saveDiscreteSnapshot(
+  snapshot: Omit<DiscreteWorldSnapshot, "savedAt">,
+) {
+  localStorage.setItem(
+    storageKey,
+    JSON.stringify({ ...snapshot, savedAt: new Date().toISOString() }),
+  );
 }

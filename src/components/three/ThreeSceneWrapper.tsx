@@ -1,6 +1,13 @@
 import { Canvas, useThree } from "@react-three/fiber";
 import { clsx } from "clsx";
-import { Component, CSSProperties, ReactNode, Suspense, useEffect, useRef } from "react";
+import {
+  Component,
+  CSSProperties,
+  ReactNode,
+  Suspense,
+  useEffect,
+  useRef,
+} from "react";
 import * as THREE from "three";
 import { LoadingSkeleton } from "../ui/UiFeedback";
 
@@ -30,7 +37,10 @@ function ThreeFallback() {
   );
 }
 
-class ThreeErrorBoundary extends Component<{ children: ReactNode }, { hasError: boolean }> {
+class ThreeErrorBoundary extends Component<
+  { children: ReactNode },
+  { hasError: boolean }
+> {
   state = { hasError: false };
 
   static getDerivedStateFromError() {
@@ -75,19 +85,23 @@ export default function ThreeSceneWrapper({
         isCinematic
           ? "rounded-xl border-cyan-200/20 shadow-2xl shadow-cyan-950/30 ring-1 ring-white/5"
           : "rounded-xl border-cyan-300/20 shadow-inner shadow-cyan-950/30",
-        className
+        className,
       )}
       style={style}
       role="application"
       tabIndex={0}
-      aria-label={sceneSummary ?? sceneLabel ?? `Interactive 3D scene. ${interactionLabel}`}
+      aria-label={
+        sceneSummary ??
+        sceneLabel ??
+        `Interactive 3D scene. ${interactionLabel}`
+      }
     >
       <div
         className={clsx(
           "pointer-events-none absolute inset-0 z-0",
           isCinematic
             ? "bg-[linear-gradient(135deg,rgba(8,47,73,0.34),transparent_36%),linear-gradient(315deg,rgba(88,28,135,0.24),transparent_34%),linear-gradient(180deg,rgba(2,6,23,0.08),rgba(2,6,23,0.72))]"
-            : "bg-[radial-gradient(circle_at_25%_15%,rgba(34,211,238,0.18),transparent_32%),radial-gradient(circle_at_80%_10%,rgba(167,139,250,0.12),transparent_30%)]"
+            : "bg-[radial-gradient(circle_at_25%_15%,rgba(34,211,238,0.18),transparent_32%),radial-gradient(circle_at_80%_10%,rgba(167,139,250,0.12),transparent_30%)]",
         )}
         style={sceneOverlay ? { background: sceneOverlay } : undefined}
       />
@@ -109,7 +123,12 @@ export default function ThreeSceneWrapper({
         </div>
       )}
       {showHint && (
-        <div className={clsx("pointer-events-none absolute z-10 rounded-full border border-white/10 bg-slate-950/75 px-3 py-1.5 text-[11px] font-bold text-cyan-100 shadow-lg shadow-black/20 backdrop-blur", sceneLabel || toolbar ? "bottom-3 left-3" : "left-3 top-3")}>
+        <div
+          className={clsx(
+            "pointer-events-none absolute z-10 rounded-full border border-white/10 bg-slate-950/75 px-3 py-1.5 text-[11px] font-bold text-cyan-100 shadow-lg shadow-black/20 backdrop-blur",
+            sceneLabel || toolbar ? "bottom-3 left-3" : "left-3 top-3",
+          )}
+        >
           {interactionLabel}
         </div>
       )}
@@ -118,10 +137,16 @@ export default function ThreeSceneWrapper({
           <Canvas
             camera={{ position: cameraPosition, fov }}
             dpr={quality === "high" ? [1, 2] : [1, 1.5]}
-            gl={{ antialias: quality === "high", alpha: true, preserveDrawingBuffer: true }}
+            gl={{
+              antialias: quality === "high",
+              alpha: true,
+              preserveDrawingBuffer: true,
+            }}
             onCreated={({ gl }) => {
               gl.outputColorSpace = THREE.SRGBColorSpace;
-              gl.toneMapping = isCinematic ? THREE.ACESFilmicToneMapping : THREE.NoToneMapping;
+              gl.toneMapping = isCinematic
+                ? THREE.ACESFilmicToneMapping
+                : THREE.NoToneMapping;
               gl.toneMappingExposure = isCinematic ? 1.08 : 1;
             }}
             shadows
@@ -130,16 +155,32 @@ export default function ThreeSceneWrapper({
             {defaultLights && !isCinematic && (
               <>
                 <hemisphereLight args={["#e0f2fe", "#0f172a", 0.45]} />
-                <directionalLight position={[5, 7, 6]} intensity={0.85} castShadow />
+                <directionalLight
+                  position={[5, 7, 6]}
+                  intensity={0.85}
+                  castShadow
+                />
               </>
             )}
             {defaultLights && isCinematic && (
               <>
                 <ambientLight intensity={0.38} />
                 <hemisphereLight args={["#dff7ff", "#050816", 0.62]} />
-                <directionalLight position={[5, 8, 7]} intensity={1.25} castShadow />
-                <pointLight position={[-4, 2.5, -3]} intensity={0.9} color="#22d3ee" />
-                <pointLight position={[3.5, -1, 4]} intensity={0.55} color="#c084fc" />
+                <directionalLight
+                  position={[5, 8, 7]}
+                  intensity={1.25}
+                  castShadow
+                />
+                <pointLight
+                  position={[-4, 2.5, -3]}
+                  intensity={0.9}
+                  color="#22d3ee"
+                />
+                <pointLight
+                  position={[3.5, -1, 4]}
+                  intensity={0.55}
+                  color="#c084fc"
+                />
               </>
             )}
             {children}
@@ -147,17 +188,23 @@ export default function ThreeSceneWrapper({
           </Canvas>
         </Suspense>
       </ThreeErrorBoundary>
-      <p className="sr-only">{sceneSummary ?? `Interactive 3D scene. ${interactionLabel}. Use the adjacent controls for a keyboard-accessible alternative.`}</p>
+      <p className="sr-only">
+        {sceneSummary ??
+          `Interactive 3D scene. ${interactionLabel}. Use the adjacent controls for a keyboard-accessible alternative.`}
+      </p>
     </div>
   );
 }
 
 function SceneLifecycleGuard() {
   const gl = useThree((state) => state.gl);
-  useEffect(() => () => {
-    gl.renderLists.dispose();
-    gl.dispose();
-    gl.forceContextLoss();
-  }, [gl]);
+  useEffect(
+    () => () => {
+      gl.renderLists.dispose();
+      gl.dispose();
+      gl.forceContextLoss();
+    },
+    [gl],
+  );
   return null;
 }

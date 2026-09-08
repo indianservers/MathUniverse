@@ -1,6 +1,6 @@
 # Lesson 0912: Growth and Decay IVPs
 
-Status: dedicated implementation pass. Browser interaction and exact visual acceptance remain deferred under the user-directed workflow. Not certified as an exact mockup match.
+Status: completed in the current one-by-one UI acceptance pass. Reference structure and proportions are visually aligned; exact pixel identity is not claimed.
 
 Reference inspected: `D:/Math App Screenshots for UI Update/Updated UI/0912-advanced-advanced-differential-equations-growth-and-decay-ivps-redesigned.png`.
 Advanced concept: 2018. Route: `/lessons/advanced-concepts/2018-growth-decay-ivps`.
@@ -33,6 +33,8 @@ Advanced concept: 2018. Route: `/lessons/advanced-concepts/2018-growth-decay-ivp
 - Dedicated route test passed; 227 unrelated cases skipped.
 - Targeted strict TypeScript and focused ESLint passed. Only subsequent change was replacing a floating-point exact-equality assertion in the model test with a tolerance check.
 - Existing app listener verified at 127.0.0.1:2266, PID 33880; left running.
-- No full build, full test suite, actual browser events, authentic screenshots or pixel comparison performed.
+- Captured desktop evidence: `artifacts/studio-control-audit/0912-current.png`.
+- One-by-one browser acceptance: opened the advanced route, changed the proportional-rate control to a decay value, and verified the live solution graph/state updated.
+- Focused surface/model tests pass (8 tests); `git diff --check` is clean for the lesson evidence.
 
 Next sequential target: 0913 / 2019 Logistic Differential Equation. Previous aggregate completion counts have not been re-audited.

@@ -62,14 +62,20 @@ describe("Sierpinski carpet math", () => {
   });
 
   it("builds sequence rows only up to the selected iteration", () => {
-    expect(getSierpinskiTable(3).map((row) => row.retainedSquares)).toEqual([1, 8, 64, 512]);
+    expect(getSierpinskiTable(3).map((row) => row.retainedSquares)).toEqual([
+      1, 8, 64, 512,
+    ]);
   });
 
   it("exposes exact typed formula helpers without render clamping", () => {
     expect(getSierpinskiRetainedSquareCount(6)).toBe(262144);
     expect(getSierpinskiNewlyRemovedSquareCount(6)).toBe(32768);
     expect(getSierpinskiCumulativeRemovedSquareCount(6)).toBe(37449);
-    expect(getSierpinskiSmallestSideScale(4)).toEqual({ numerator: 1, denominator: 81, text: "1/81" });
+    expect(getSierpinskiSmallestSideScale(4)).toEqual({
+      numerator: 1,
+      denominator: 81,
+      text: "1/81",
+    });
     expect(getSierpinskiRetainedAreaFraction(4).text).toBe("4096/6561");
     expect(getSierpinskiRemovedAreaFraction(4).text).toBe("2465/6561");
     expect(getSierpinskiIterationSummary(6).iteration).toBe(6);
@@ -78,7 +84,9 @@ describe("Sierpinski carpet math", () => {
 
   it("rejects invalid exact math iterations instead of silently hiding mistakes", () => {
     expect(() => getSierpinskiRetainedSquareCount(-1)).toThrow(/negative/i);
-    expect(() => getSierpinskiRetainedSquareCount(1.5)).toThrow(/whole number/i);
+    expect(() => getSierpinskiRetainedSquareCount(1.5)).toThrow(
+      /whole number/i,
+    );
   });
 });
 
@@ -111,17 +119,35 @@ describe("solid views math", () => {
   });
 
   it("accepts alternate solids when projections match and cube count is optional", () => {
-    const target = solidPresets.find((preset) => preset.id === "tower")?.grid ?? createEmptyGrid();
+    const target =
+      solidPresets.find((preset) => preset.id === "tower")?.grid ??
+      createEmptyGrid();
     const candidate = setStackHeight(createEmptyGrid(), 1, 1, 4);
-    expect(validateProjectionMatch(candidate, target).acceptsAlternative).toBe(true);
-    expect(validateProjectionMatch(candidate, target, true).cubeCountMatches).toBe(true);
+    expect(validateProjectionMatch(candidate, target).acceptsAlternative).toBe(
+      true,
+    );
+    expect(
+      validateProjectionMatch(candidate, target, true).cubeCountMatches,
+    ).toBe(true);
   });
 
   it("validates projection reconstruction against generated projection sets", () => {
     const example = nonUniqueProjectionExamples[0];
     expect(getCubeCount(example.b)).toBeGreaterThan(getCubeCount(example.a));
-    expect(validateSolidReconstruction(example.a, example.projections).acceptsAlternative).toBe(true);
-    expect(validateSolidReconstruction(example.b, example.projections).acceptsAlternative).toBe(true);
-    expect(validateSolidReconstruction(example.b, getProjectionSet(example.a), getCubeCount(example.a)).acceptsAlternative).toBe(false);
+    expect(
+      validateSolidReconstruction(example.a, example.projections)
+        .acceptsAlternative,
+    ).toBe(true);
+    expect(
+      validateSolidReconstruction(example.b, example.projections)
+        .acceptsAlternative,
+    ).toBe(true);
+    expect(
+      validateSolidReconstruction(
+        example.b,
+        getProjectionSet(example.a),
+        getCubeCount(example.a),
+      ).acceptsAlternative,
+    ).toBe(false);
   });
 });

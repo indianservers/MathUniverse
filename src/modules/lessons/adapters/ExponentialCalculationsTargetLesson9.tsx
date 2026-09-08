@@ -263,16 +263,25 @@ export default function ExponentialCalculationsTargetLesson9({
               title="Growth chart (exponential growth)"
               legend={[
                 { id: "powers", label: "Earlier powers", color: "#7626c8" },
-                { id: "output", label: `${base}^${exponent} = ${output}`, color: "#ff7315" },
+                {
+                  id: "output",
+                  label: `${base}^${exponent} = ${output}`,
+                  color: "#ff7315",
+                },
               ]}
               observation="Compare the values above each bar; very small bars are kept visible."
             >
-              <LessonBarGraph label={`Powers of ${base}, exponents 0 to ${exponent}`} bars={Array.from({ length: exponent + 1 }, (_, i) => ({
-                id: String(i), label: `${base}^${i}`, value: base ** i,
-                color: i === exponent ? "#ff7315" : "#7626c8",
-                fraction: Math.max(8, (base ** i / output) * 100) / 100,
-                revealed: i <= animationStep,
-              }))} />
+              <LessonBarGraph
+                label={`Powers of ${base}, exponents 0 to ${exponent}`}
+                bars={Array.from({ length: exponent + 1 }, (_, i) => ({
+                  id: String(i),
+                  label: `${base}^${i}`,
+                  value: base ** i,
+                  color: i === exponent ? "#ff7315" : "#7626c8",
+                  fraction: Math.max(8, (base ** i / output) * 100) / 100,
+                  revealed: i <= animationStep,
+                }))}
+              />
             </LessonGraphWorkspace>
           </section>
           <section className="exponential-practice">

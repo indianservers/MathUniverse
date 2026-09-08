@@ -6,7 +6,11 @@ import BoardPage, { renderBoardLatex } from "./BoardPage";
 
 describe("Board page", () => {
   it("renders the responsive Board route and recognition controls", () => {
-    const html = renderToStaticMarkup(<MemoryRouter><BoardPage /></MemoryRouter>);
+    const html = renderToStaticMarkup(
+      <MemoryRouter>
+        <BoardPage />
+      </MemoryRouter>,
+    );
     expect(html).toContain("Board — Intelligent AI Canvas");
     expect(html).toContain("Recognize");
     expect(html).toContain("Development adapter");
@@ -14,8 +18,13 @@ describe("Board page", () => {
   });
 
   it("rejects malformed LaTeX without crashing the preview", () => {
-    expect(renderBoardLatex(String.raw`\frac{1`)).toMatchObject({ valid: false, html: "" });
-    expect(renderBoardLatex(String.raw`\frac{1}{2}`)).toMatchObject({ valid: true });
+    expect(renderBoardLatex(String.raw`\frac{1`)).toMatchObject({
+      valid: false,
+      html: "",
+    });
+    expect(renderBoardLatex(String.raw`\frac{1}{2}`)).toMatchObject({
+      valid: true,
+    });
   });
 
   it("displays contextual actions for a selected recognized expression after interaction", () => {
@@ -29,7 +38,11 @@ describe("Board page", () => {
       createdAt: board.createdAt,
     });
     saveDraft(board);
-    const html = renderToStaticMarkup(<MemoryRouter><BoardPage /></MemoryRouter>);
+    const html = renderToStaticMarkup(
+      <MemoryRouter>
+        <BoardPage />
+      </MemoryRouter>,
+    );
     // Selection is gesture-driven on the live canvas; the integration/E2E test
     // verifies the contextual action surface after selecting this element.
     expect(html).toContain("1 elements");

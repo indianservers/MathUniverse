@@ -1,6 +1,6 @@
 # Lesson 0887: Total Probability Theorem
 
-Status: dedicated implementation; browser interaction and visual acceptance deferred under the current user-directed workflow. Exact visual match is not certified.
+Status: completed in the current one-by-one UI acceptance pass. Reference structure and proportions are visually aligned; exact pixel identity is not claimed.
 
 Reference inspected: `D:/Math App Screenshots for UI Update/Updated UI/0887-school-class-12-probability-total-probability-theorem-redesigned.png`.
 Catalog ID: 10213. Route: `/lessons/school/class-12/class-12-probability-total-probability-theorem`.
@@ -20,7 +20,7 @@ Catalog ID: 10213. Route: `/lessons/school/class-12/class-12-probability-total-p
 | Misconception | Raw-rate sum vs weighted conditional sum | Exact illustration and spacing deferred |
 | Practice | Three independent answer toggles with calculated solutions | Results: 0.039, 0.0235, 0.068; medical scenario is explicitly hypothetical mathematics |
 | Reset/navigation | All section tabs, full reset and slider-only reset; verified catalog links | Actual previous/next are Independent Events and Bayes' Theorem, not the mockup's Bayes / Expectation sequence |
-| Shared shell/footer | Existing application shell retained | Exact header/sidebar/footer and responsive screenshot fidelity remain unverified |
+| Shared shell/footer | Existing application shell retained | No blocking shell mismatch found in the accepted desktop viewport |
 
 ## Verification
 
@@ -29,6 +29,9 @@ Catalog ID: 10213. Route: `/lessons/school/class-12/class-12-probability-total-p
 - Tests cover default contribution shares, zero totals, zero-weight sources, all-defective sources, three practice results and invalid inputs.
 - Targeted strict TypeScript and ESLint checks pass.
 - Initial markup test expected hydration comments that static rendering does not emit; corrected to assert the actual static button labels.
-- No actual browser screenshot, pixel-difference acceptance, responsive overlap check or real browser event execution was performed. Full acceptance still requires these checks.
+- Captured desktop evidence: `artifacts/studio-control-audit/0887-current.png`.
+- One-by-one browser acceptance: opened the real route and verified the source-mix controls, defect-rate controls, live result, production stream, probability tree, contributions, theorem, examples, practice, and reset/navigation shell.
+- Added explicit 16px sizing for lesson action icons so inherited global SVG rules cannot create oversized controls.
+- Focused model/surface tests pass (6 tests); `git diff --check` is clean for the lesson CSS and audit evidence.
 
 Next sequential lesson: 0888 / 10214 Bayes' Theorem. Earlier aggregate completion counts have not been re-audited here.

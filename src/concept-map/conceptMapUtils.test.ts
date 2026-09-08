@@ -15,15 +15,25 @@ describe("concept map data and utilities", () => {
   it("ships a large enough Phase 1 knowledge graph", () => {
     expect(conceptNodes.length).toBeGreaterThanOrEqual(60);
     expect(conceptEdges.length).toBeGreaterThanOrEqual(100);
-    expect(Math.max(...conceptNodes.map((concept) => concept.x))).toBeLessThanOrEqual(1760);
-    expect(Math.max(...conceptNodes.map((concept) => concept.y))).toBeLessThanOrEqual(1060);
-    expect(Math.min(...conceptNodes.map((concept) => concept.x))).toBeGreaterThanOrEqual(0);
-    expect(Math.min(...conceptNodes.map((concept) => concept.y))).toBeGreaterThanOrEqual(0);
+    expect(
+      Math.max(...conceptNodes.map((concept) => concept.x)),
+    ).toBeLessThanOrEqual(1760);
+    expect(
+      Math.max(...conceptNodes.map((concept) => concept.y)),
+    ).toBeLessThanOrEqual(1060);
+    expect(
+      Math.min(...conceptNodes.map((concept) => concept.x)),
+    ).toBeGreaterThanOrEqual(0);
+    expect(
+      Math.min(...conceptNodes.map((concept) => concept.y)),
+    ).toBeGreaterThanOrEqual(0);
   });
 
   it("filters visible edges by relationship type", () => {
     const trigonometry = filterConcepts({ categories: ["trigonometry"] });
-    const edges = getVisibleEdges(trigonometry, undefined, false, false, ["prerequisite"]);
+    const edges = getVisibleEdges(trigonometry, undefined, false, false, [
+      "prerequisite",
+    ]);
     expect(edges.length).toBeGreaterThan(0);
     expect(edges.every((edge) => edge.type === "prerequisite")).toBe(true);
   });
@@ -31,8 +41,12 @@ describe("concept map data and utilities", () => {
   it("resolves core concept relationships", () => {
     const unitCircle = getConceptById("unit-circle");
     expect(unitCircle?.title).toBe("Unit Circle");
-    expect(getPrerequisites("unit-circle").map((concept) => concept.id)).toContain("right-triangle-trigonometry");
-    expect(getNextConcepts("unit-circle").map((concept) => concept.id)).toContain("trig-identities");
+    expect(
+      getPrerequisites("unit-circle").map((concept) => concept.id),
+    ).toContain("right-triangle-trigonometry");
+    expect(
+      getNextConcepts("unit-circle").map((concept) => concept.id),
+    ).toContain("trig-identities");
   });
 
   it("filters by search, category, difficulty, and module", () => {
@@ -42,22 +56,33 @@ describe("concept map data and utilities", () => {
       difficulties: ["intermediate"],
       modules: ["visualProof"],
     });
-    expect(results.some((concept) => concept.id === "trig-pythagorean-identity")).toBe(true);
+    expect(
+      results.some((concept) => concept.id === "trig-pythagorean-identity"),
+    ).toBe(true);
   });
 
   it("finds a learning path across categories", () => {
     const path = findLearningPath("fractions", "trig-pythagorean-identity");
     expect(path.map((concept) => concept.id)).toEqual(
-      expect.arrayContaining(["ratio-proportion", "right-triangle-trigonometry", "unit-circle", "trig-pythagorean-identity"]),
+      expect.arrayContaining([
+        "ratio-proportion",
+        "right-triangle-trigonometry",
+        "unit-circle",
+        "trig-pythagorean-identity",
+      ]),
     );
   });
 
   it("reports readiness and module count", () => {
     const readiness = getConceptReadiness("unit-circle", ["coordinate-plane"]);
     expect(readiness.ready).toBe(false);
-    expect(readiness.missingPrerequisites.map((concept) => concept.id)).toContain("right-triangle-trigonometry");
+    expect(
+      readiness.missingPrerequisites.map((concept) => concept.id),
+    ).toContain("right-triangle-trigonometry");
 
     const concept = getConceptById("pythagoras");
-    expect(concept ? getAvailableModuleCount(concept) : 0).toBeGreaterThanOrEqual(4);
+    expect(
+      concept ? getAvailableModuleCount(concept) : 0,
+    ).toBeGreaterThanOrEqual(4);
   });
 });

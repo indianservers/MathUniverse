@@ -1,4 +1,5 @@
-export type ConceptDifficulty = "foundation" | "basic" | "intermediate" | "advanced" | "olympiad";
+export type ConceptDifficulty =
+  "foundation" | "basic" | "intermediate" | "advanced" | "olympiad";
 
 export type ConceptCategory =
   | "numbers"

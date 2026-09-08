@@ -113,7 +113,15 @@ export default function ConcyclicityTestTargetLesson256({
           <b>◷ 6-10 min</b>
         </section>
         <footer>
-          <button type="button" onClick={() => { setTab("Explain"); onInteraction(); }}>⚑ English (English)⌄</button>
+          <button
+            type="button"
+            onClick={() => {
+              setTab("Explain");
+              onInteraction();
+            }}
+          >
+            ⚑ English (English)⌄
+          </button>
           <button type="button" onClick={() => reset()}>
             <RotateCcw />
             Reset
@@ -130,8 +138,24 @@ export default function ConcyclicityTestTargetLesson256({
             <Share2 />
             Share
           </button>
-          <button type="button" onClick={() => { setObjectView("geometry object"); onInteraction(); }}>⚙ Torkspace</button>
-          <button type="button" onClick={() => { setObjectView("measurement"); onInteraction(); }}>↗ Workspace</button>
+          <button
+            type="button"
+            onClick={() => {
+              setObjectView("geometry object");
+              onInteraction();
+            }}
+          >
+            ⚙ Torkspace
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              setObjectView("measurement");
+              onInteraction();
+            }}
+          >
+            ↗ Workspace
+          </button>
         </footer>
       </header>
       <section className="target-concyclic-steps">

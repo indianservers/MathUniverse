@@ -4,7 +4,10 @@ import {
   updateNCERTMasteryRecord,
   writeNCERTMasteryStore,
 } from "../../hooks/useNCERTMastery";
-import type { BoardMathClassification, BoardWorkVerificationResult } from "./types";
+import type {
+  BoardMathClassification,
+  BoardWorkVerificationResult,
+} from "./types";
 
 const CONCEPT_MAP: Partial<Record<BoardMathClassification, string>> = {
   equation: "algebra.linear-equations",
@@ -30,7 +33,12 @@ export function recordBoardMasteryEvidence(input: {
   recognitionConfidence?: number;
 }) {
   const conceptId = mapBoardConcept(input.classification);
-  if (!conceptId || (input.recognitionConfidence ?? 1) < 0.7 || input.verification.overallStatus === "ambiguous") return false;
+  if (
+    !conceptId ||
+    (input.recognitionConfidence ?? 1) < 0.7 ||
+    input.verification.overallStatus === "ambiguous"
+  )
+    return false;
   const store = readNCERTMasteryStore();
   store[conceptId] = updateNCERTMasteryRecord(
     store[conceptId] ?? emptyMasteryRecord(),

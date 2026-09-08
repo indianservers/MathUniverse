@@ -293,7 +293,9 @@ export default function LimitsDifferentialMockupLesson({
       data-testid={`limits-differential-mockup-${spec.mockup}`}
       data-target-family="limits-and-differential-calculus"
     >
-    <p className="sr-only">{lesson.title}. {spec.guidance}</p>
+      <p className="sr-only">
+        {lesson.title}. {spec.guidance}
+      </p>
       <MethodStrip spec={spec} />
       <section className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
         <div className="mb-4 flex flex-wrap items-center justify-between gap-3">

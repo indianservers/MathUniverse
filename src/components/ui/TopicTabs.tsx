@@ -7,7 +7,13 @@ type TopicTab = {
   content: ReactNode;
 };
 
-export default function TopicTabs({ tabs, initialId }: { tabs: TopicTab[]; initialId?: string }) {
+export default function TopicTabs({
+  tabs,
+  initialId,
+}: {
+  tabs: TopicTab[];
+  initialId?: string;
+}) {
   const [activeId, setActiveId] = useState(initialId ?? tabs[0]?.id);
   const active = tabs.find((tab) => tab.id === activeId) ?? tabs[0];
   if (!active) return null;
@@ -23,7 +29,12 @@ export default function TopicTabs({ tabs, initialId }: { tabs: TopicTab[]; initi
               className={`relative min-h-9 rounded-lg px-3 py-1.5 text-sm font-black transition ${active.id === tab.id ? "text-slate-950 dark:text-white" : "text-slate-500 hover:text-cyan-700 dark:text-slate-300 dark:hover:text-cyan-100"}`}
               onClick={() => setActiveId(tab.id)}
             >
-              {active.id === tab.id && <motion.span layoutId="topic-tab-pill" className="absolute inset-0 rounded-lg bg-cyan-100 dark:bg-cyan-400/15" />}
+              {active.id === tab.id && (
+                <motion.span
+                  layoutId="topic-tab-pill"
+                  className="absolute inset-0 rounded-lg bg-cyan-100 dark:bg-cyan-400/15"
+                />
+              )}
               <span className="relative">{tab.label}</span>
             </button>
           ))}

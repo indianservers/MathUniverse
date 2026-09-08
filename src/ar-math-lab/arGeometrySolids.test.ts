@@ -1,5 +1,8 @@
 import { describe, expect, it } from "vitest";
-import { calculateDisplayScale, parseGeometrySolidInput } from "./arGeometrySolids";
+import {
+  calculateDisplayScale,
+  parseGeometrySolidInput,
+} from "./arGeometrySolids";
 
 function solid(input: string) {
   const result = parseGeometrySolidInput(input);
@@ -16,8 +19,14 @@ describe("AR Math Lab geometry solids", () => {
     expect(cone.dimensions.height.meters).toBeCloseTo(0.12);
     expect(cone.calculatedValues.values.slantHeight).toBeCloseTo(13);
     expect(cone.calculatedValues.values.volume).toBeCloseTo(314.16, 1);
-    expect(cone.calculatedValues.values.curvedSurfaceArea).toBeCloseTo(204.2, 1);
-    expect(cone.calculatedValues.values.totalSurfaceArea).toBeCloseTo(282.74, 1);
+    expect(cone.calculatedValues.values.curvedSurfaceArea).toBeCloseTo(
+      204.2,
+      1,
+    );
+    expect(cone.calculatedValues.values.totalSurfaceArea).toBeCloseTo(
+      282.74,
+      1,
+    );
   });
 
   it("calculates cylinder values", () => {
@@ -25,8 +34,14 @@ describe("AR Math Lab geometry solids", () => {
 
     expect(cylinder.solidType).toBe("cylinder");
     expect(cylinder.calculatedValues.values.volume).toBeCloseTo(502.65, 1);
-    expect(cylinder.calculatedValues.values.curvedSurfaceArea).toBeCloseTo(251.33, 1);
-    expect(cylinder.calculatedValues.values.totalSurfaceArea).toBeCloseTo(351.86, 1);
+    expect(cylinder.calculatedValues.values.curvedSurfaceArea).toBeCloseTo(
+      251.33,
+      1,
+    );
+    expect(cylinder.calculatedValues.values.totalSurfaceArea).toBeCloseTo(
+      351.86,
+      1,
+    );
   });
 
   it("calculates cuboid and cube values", () => {
@@ -46,15 +61,30 @@ describe("AR Math Lab geometry solids", () => {
     expect(sphere.calculatedValues.values.volume).toBeCloseTo(523.6, 1);
     expect(sphere.calculatedValues.values.surfaceArea).toBeCloseTo(314.16, 1);
     expect(hemisphere.calculatedValues.values.volume).toBeCloseTo(452.39, 1);
-    expect(hemisphere.calculatedValues.values.curvedSurfaceArea).toBeCloseTo(226.19, 1);
-    expect(hemisphere.calculatedValues.values.totalSurfaceArea).toBeCloseTo(339.29, 1);
+    expect(hemisphere.calculatedValues.values.curvedSurfaceArea).toBeCloseTo(
+      226.19,
+      1,
+    );
+    expect(hemisphere.calculatedValues.values.totalSurfaceArea).toBeCloseTo(
+      339.29,
+      1,
+    );
   });
 
   it("parses frustum, torus, prism, pyramid, and box inputs", () => {
-    expect(solid("Frustum bottom radius 6 cm top radius 3 cm height 10 cm").solidType).toBe("frustum");
-    expect(solid("Torus major radius 8 cm minor radius 2 cm").solidType).toBe("torus");
-    expect(solid("Hexagonal prism side 3 cm height 12 cm").solidType).toBe("prism");
-    expect(solid("Square pyramid base side 6 cm height 10 cm").solidType).toBe("pyramid");
+    expect(
+      solid("Frustum bottom radius 6 cm top radius 3 cm height 10 cm")
+        .solidType,
+    ).toBe("frustum");
+    expect(solid("Torus major radius 8 cm minor radius 2 cm").solidType).toBe(
+      "torus",
+    );
+    expect(solid("Hexagonal prism side 3 cm height 12 cm").solidType).toBe(
+      "prism",
+    );
+    expect(solid("Square pyramid base side 6 cm height 10 cm").solidType).toBe(
+      "pyramid",
+    );
     const box = solid("Box 10 cm by 6 cm by 4 cm");
     expect(box.solidType).toBe("cuboid");
     expect(box.dimensions.length.value).toBe(10);
@@ -78,7 +108,14 @@ describe("AR Math Lab geometry solids", () => {
     if (!parsed.ok) return;
     expect(parsed.solid.unit).toBe("cm");
     expect(parsed.solid.warnings.join(" ")).toContain("No unit was detected");
-    expect(calculateDisplayScale({ ...parsed.solid, displayScaleMode: "real-scale" })).toBe(1);
-    expect(calculateDisplayScale({ ...parsed.solid, displayScaleMode: "miniature" })).toBeGreaterThan(1);
+    expect(
+      calculateDisplayScale({
+        ...parsed.solid,
+        displayScaleMode: "real-scale",
+      }),
+    ).toBe(1);
+    expect(
+      calculateDisplayScale({ ...parsed.solid, displayScaleMode: "miniature" }),
+    ).toBeGreaterThan(1);
   });
 });

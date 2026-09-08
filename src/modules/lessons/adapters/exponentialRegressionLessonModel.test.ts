@@ -1,3 +1,24 @@
 import { describe, expect, it } from "vitest";
-import { exponentialDefault, exponentialFit } from "./exponentialRegressionLessonModel";
-describe("Exponential regression model", () => { it("fits positive growth and rate", () => { const fit = exponentialFit(); expect(fit.a).toBeGreaterThan(0); expect(fit.b).toBeGreaterThan(1); expect(fit.r2).toBeGreaterThan(.9); }); it("fits an exact exponential", () => { const fit = exponentialFit([{ x: 0, y: 2 }, { x: 1, y: 4 }, { x: 2, y: 8 }]); expect(fit.a).toBeCloseTo(2); expect(fit.b).toBeCloseTo(2); expect(fit.sse).toBeCloseTo(0); expect(exponentialDefault).toHaveLength(10); }); });
+import {
+  exponentialDefault,
+  exponentialFit,
+} from "./exponentialRegressionLessonModel";
+describe("Exponential regression model", () => {
+  it("fits positive growth and rate", () => {
+    const fit = exponentialFit();
+    expect(fit.a).toBeGreaterThan(0);
+    expect(fit.b).toBeGreaterThan(1);
+    expect(fit.r2).toBeGreaterThan(0.9);
+  });
+  it("fits an exact exponential", () => {
+    const fit = exponentialFit([
+      { x: 0, y: 2 },
+      { x: 1, y: 4 },
+      { x: 2, y: 8 },
+    ]);
+    expect(fit.a).toBeCloseTo(2);
+    expect(fit.b).toBeCloseTo(2);
+    expect(fit.sse).toBeCloseTo(0);
+    expect(exponentialDefault).toHaveLength(10);
+  });
+});

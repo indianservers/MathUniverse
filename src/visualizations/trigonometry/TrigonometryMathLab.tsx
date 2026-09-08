@@ -2,7 +2,7 @@ import { Line, OrbitControls, Text } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { Calculator, CircleDot, Mountain, Pause, Play, RadioTower, RotateCcw, RotateCw, Triangle, Waves, ZoomIn, ZoomOut } from "lucide-react";
 import { type PointerEvent } from "react";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import * as THREE from "three";
 import ThreeSceneWrapper from "../../components/three/ThreeSceneWrapper";
@@ -43,6 +43,15 @@ export default function TrigonometryMathLab({ compact = false }: { compact?: boo
   const [graphRotation, setGraphRotation] = useState(0);
   const [zoom3d, setZoom3d] = useState(1);
 
+  useEffect(() => {
+    if (!animate2d) return;
+    const timer = window.setInterval(() => {
+      if (mode === "wave") setPhase((value) => value >= 180 ? -180 : value + 1);
+      else setAngle((value) => mode === "triangle" || mode === "navigation" ? value >= 85 ? 5 : value + 1 : value >= 359 ? 0 : value + 1);
+    }, 60);
+    return () => window.clearInterval(timer);
+  }, [animate2d, mode]);
+
   const theta = degreesToRadians(angle);
   const values = computeValues(theta, radius, amplitude, frequency, phase, distance, fn);
 
@@ -61,7 +70,7 @@ export default function TrigonometryMathLab({ compact = false }: { compact?: boo
                 <button
                   key={item.id}
                   type="button"
-                  onClick={() => setMode(item.id)}
+                  onClick={() => { setMode(item.id); if (item.id === "triangle" || item.id === "navigation") setAngle((value) => clamp(value, 5, 85)); }}
                   className={`flex min-h-16 flex-col items-center justify-center gap-1 rounded-xl border px-2 text-center text-xs font-black transition ${
                     mode === item.id
                       ? "border-cyan-400 bg-cyan-50 text-cyan-700 dark:bg-cyan-400/15 dark:text-cyan-100"
@@ -195,7 +204,7 @@ function TrigLabSvg({
   distance,
   zoom,
   rotation,
-  animate,
+  animate: _animate,
   onAngleChange,
 }: {
   mode: LabMode;
@@ -212,7 +221,7 @@ function TrigLabSvg({
   animate: boolean;
   onAngleChange: (angle: number) => void;
 }) {
-  const animatedRotation = animate ? rotation + angle : rotation;
+  const animatedRotation = rotation;
   const handlePointer = (event: PointerEvent<SVGSVGElement>) => {
     if (mode === "wave") return;
     const rect = event.currentTarget.getBoundingClientRect();
@@ -326,7 +335,7 @@ function WaveDiagram({ amplitude, frequency, phase }: { amplitude: number; frequ
   );
 }
 
-function GraphSvg({ fn, angle, amplitude, frequency, phase, zoom, rotation, animate }: { fn: TrigFn; angle: number; amplitude: number; frequency: number; phase: number; zoom: number; rotation: number; animate: boolean }) {
+function GraphSvg({ fn, angle, amplitude, frequency, phase, zoom, rotation, animate: _animate }: { fn: TrigFn; angle: number; amplitude: number; frequency: number; phase: number; zoom: number; rotation: number; animate: boolean }) {
   const width = 760;
   const height = 360;
   const phaseRad = degreesToRadians(phase);
@@ -338,7 +347,7 @@ function GraphSvg({ fn, angle, amplitude, frequency, phase, zoom, rotation, anim
   return (
     <svg viewBox={`0 0 ${width} ${height}`} className="h-[360px] w-full sm:h-[430px]">
       <rect width={width} height={height} rx="18" fill="#020617" />
-      <g transform={`translate(${width / 2} ${height / 2}) rotate(${animate ? rotation + angle : rotation}) scale(${zoom}) translate(${-width / 2} ${-height / 2})`}>
+      <g transform={`translate(${width / 2} ${height / 2}) rotate(${rotation}) scale(${zoom}) translate(${-width / 2} ${-height / 2})`}>
         <Grid width={width} height={height} />
         <line x1="0" x2={width} y1={height / 2} y2={height / 2} stroke="#94a3b8" />
         {paths.map((path, index) => <path key={`${fn}-${index}`} d={path} fill="none" stroke={fn === "sin" ? "#22d3ee" : fn === "cos" ? "#fb7185" : "#f59e0b"} strokeWidth="4" />)}

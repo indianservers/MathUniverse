@@ -1,4 +1,10 @@
-import type { BoardElement, BoardPoint, BoardViewport, BoundingBox, StrokeElement } from "./types";
+import type {
+  BoardElement,
+  BoardPoint,
+  BoardViewport,
+  BoundingBox,
+  StrokeElement,
+} from "./types";
 
 export function screenToBoard(
   point: Pick<BoardPoint, "x" | "y">,
@@ -20,7 +26,9 @@ export function boardToScreen(
   };
 }
 
-export function calculateBounds(points: Array<Pick<BoardPoint, "x" | "y">>): BoundingBox {
+export function calculateBounds(
+  points: Array<Pick<BoardPoint, "x" | "y">>,
+): BoundingBox {
   if (!points.length) return { x: 0, y: 0, width: 0, height: 0 };
   const xs = points.map((point) => point.x);
   const ys = points.map((point) => point.y);
@@ -29,7 +37,10 @@ export function calculateBounds(points: Array<Pick<BoardPoint, "x" | "y">>): Bou
   return { x, y, width: Math.max(...xs) - x, height: Math.max(...ys) - y };
 }
 
-export function expandBounds(bounds: BoundingBox, padding: number): BoundingBox {
+export function expandBounds(
+  bounds: BoundingBox,
+  padding: number,
+): BoundingBox {
   return {
     x: bounds.x - padding,
     y: bounds.y - padding,
@@ -48,17 +59,25 @@ export function unionBounds(bounds: BoundingBox[]): BoundingBox {
 }
 
 export function boxesIntersect(left: BoundingBox, right: BoundingBox) {
-  return left.x <= right.x + right.width
-    && left.x + left.width >= right.x
-    && left.y <= right.y + right.height
-    && left.y + left.height >= right.y;
+  return (
+    left.x <= right.x + right.width &&
+    left.x + left.width >= right.x &&
+    left.y <= right.y + right.height &&
+    left.y + left.height >= right.y
+  );
 }
 
-export function pointInBounds(point: Pick<BoardPoint, "x" | "y">, bounds: BoundingBox, padding = 0) {
-  return point.x >= bounds.x - padding
-    && point.x <= bounds.x + bounds.width + padding
-    && point.y >= bounds.y - padding
-    && point.y <= bounds.y + bounds.height + padding;
+export function pointInBounds(
+  point: Pick<BoardPoint, "x" | "y">,
+  bounds: BoundingBox,
+  padding = 0,
+) {
+  return (
+    point.x >= bounds.x - padding &&
+    point.x <= bounds.x + bounds.width + padding &&
+    point.y >= bounds.y - padding &&
+    point.y <= bounds.y + bounds.height + padding
+  );
 }
 
 export function distanceToSegment(
@@ -68,24 +87,49 @@ export function distanceToSegment(
 ) {
   const dx = end.x - start.x;
   const dy = end.y - start.y;
-  if (dx === 0 && dy === 0) return Math.hypot(point.x - start.x, point.y - start.y);
-  const t = Math.max(0, Math.min(1, ((point.x - start.x) * dx + (point.y - start.y) * dy) / (dx * dx + dy * dy)));
+  if (dx === 0 && dy === 0)
+    return Math.hypot(point.x - start.x, point.y - start.y);
+  const t = Math.max(
+    0,
+    Math.min(
+      1,
+      ((point.x - start.x) * dx + (point.y - start.y) * dy) /
+        (dx * dx + dy * dy),
+    ),
+  );
   return Math.hypot(point.x - (start.x + t * dx), point.y - (start.y + t * dy));
 }
 
-export function strokeHitTest(stroke: StrokeElement, point: Pick<BoardPoint, "x" | "y">, radius = 10) {
+export function strokeHitTest(
+  stroke: StrokeElement,
+  point: Pick<BoardPoint, "x" | "y">,
+  radius = 10,
+) {
   if (!pointInBounds(point, stroke.bounds, radius)) return false;
-  if (stroke.points.length === 1) return distanceToSegment(point, stroke.points[0], stroke.points[0]) <= radius;
-  return stroke.points.some((current, index) => index > 0
-    && distanceToSegment(point, stroke.points[index - 1], current) <= radius + stroke.width / 2);
+  if (stroke.points.length === 1)
+    return (
+      distanceToSegment(point, stroke.points[0], stroke.points[0]) <= radius
+    );
+  return stroke.points.some(
+    (current, index) =>
+      index > 0 &&
+      distanceToSegment(point, stroke.points[index - 1], current) <=
+        radius + stroke.width / 2,
+  );
 }
 
-export function simplifyPoints(points: BoardPoint[], tolerance = 0.8): BoardPoint[] {
+export function simplifyPoints(
+  points: BoardPoint[],
+  tolerance = 0.8,
+): BoardPoint[] {
   if (points.length < 3) return points;
   const simplified = [points[0]];
   for (let index = 1; index < points.length - 1; index += 1) {
     const previous = simplified[simplified.length - 1];
-    if (Math.hypot(points[index].x - previous.x, points[index].y - previous.y) >= tolerance) {
+    if (
+      Math.hypot(points[index].x - previous.x, points[index].y - previous.y) >=
+      tolerance
+    ) {
       simplified.push(points[index]);
     }
   }
@@ -108,17 +152,28 @@ export function smoothPoints(points: BoardPoint[]): BoardPoint[] {
   });
 }
 
-export function moveElement(element: BoardElement, dx: number, dy: number): BoardElement {
-  const bounds = { ...element.bounds, x: element.bounds.x + dx, y: element.bounds.y + dy };
+export function moveElement(
+  element: BoardElement,
+  dx: number,
+  dy: number,
+): BoardElement {
+  const bounds = {
+    ...element.bounds,
+    x: element.bounds.x + dx,
+    y: element.bounds.y + dy,
+  };
   if (element.type !== "stroke") return { ...element, bounds };
   return {
     ...element,
     bounds,
-    points: element.points.map((point) => ({ ...point, x: point.x + dx, y: point.y + dy })),
+    points: element.points.map((point) => ({
+      ...point,
+      x: point.x + dx,
+      y: point.y + dy,
+    })),
   };
 }
 
 export function snapValue(value: number, size = 20) {
   return Math.round(value / size) * size;
 }
-

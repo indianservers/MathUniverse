@@ -1,2 +1,15 @@
-export const barPieDefault = [{ name: "Apples", frequency: 18 }, { name: "Bananas", frequency: 24 }, { name: "Oranges", frequency: 15 }, { name: "Grapes", frequency: 12 }, { name: "Mangoes", frequency: 21 }];
-export function chartStats(rows = barPieDefault) { const total = rows.reduce((sum, row) => sum + row.frequency, 0); return rows.map(row => ({ ...row, angle: total ? row.frequency / total * 360 : 0, percent: total ? row.frequency / total * 100 : 0 })); }
+export const barPieDefault = [
+  { name: "Apples", frequency: 18 },
+  { name: "Bananas", frequency: 24 },
+  { name: "Oranges", frequency: 15 },
+  { name: "Grapes", frequency: 12 },
+  { name: "Mangoes", frequency: 21 },
+];
+export function chartStats(rows = barPieDefault) {
+  const total = rows.reduce((sum, row) => sum + row.frequency, 0);
+  return rows.map((row) => ({
+    ...row,
+    angle: total ? (row.frequency / total) * 360 : 0,
+    percent: total ? (row.frequency / total) * 100 : 0,
+  }));
+}

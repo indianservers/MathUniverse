@@ -1,15 +1,17 @@
 import { Lightbulb, RotateCcw, Share2, Sparkles } from "lucide-react";
-import {
-  useEffect,
-  useState,
-} from "react";
+import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../types";
 import { LessonCartesianGraph } from "../graphs/LessonCartesianGraph";
 import { LessonPointPreview } from "../graphs/LessonPointPreview";
 import "./DynamicLabelsTargetLesson27.css";
 
 type Point = { x: number; y: number };
-const GRAPH_VIEW={xMin:-192/32,xMax:(445-192)/32,yMin:(232-463)/32,yMax:232/32};
+const GRAPH_VIEW = {
+  xMin: -192 / 32,
+  xMax: (445 - 192) / 32,
+  yMin: (232 - 463) / 32,
+  yMax: 232 / 32,
+};
 const TEMPLATES = [
   "P = ({x}, {y}), distance = {d}",
   "P = ({x}, {y}) | d = {d}",
@@ -32,7 +34,7 @@ export default function DynamicLabelsTargetLesson27({
     [view, setView] = useState(0),
     [shareState, setShareState] = useState("Share"),
     [actions, setActions] = useState(0);
-  const [graphView,setGraphView]=useState(GRAPH_VIEW);
+  const [graphView, setGraphView] = useState(GRAPH_VIEW);
   const touch = () => {
     setActions((value) => value + 1);
     onInteraction();
@@ -162,13 +164,52 @@ export default function DynamicLabelsTargetLesson27({
         <main className="labels-main">
           <section className="labels-content">
             <div className="labels-graph-row">
-              <LessonCartesianGraph title="Point P with dynamic label" view={graphView} onViewChange={setGraphView} onResetView={()=>setGraphView(GRAPH_VIEW)} aspectRatio={445/463}
-                series={projections?[
-                  {id:'x-projection',label:'x projection',color:'#1788ef',dashed:true,dashPattern:'5 3',points:[{x:point.x,y:0},point]},
-                  {id:'y-projection',label:'y projection',color:'#1788ef',dashed:true,dashPattern:'5 3',points:[{x:0,y:point.y},point]},
-                  {id:'distance',label:'Distance from origin',color:'#1788ef',points:[{x:0,y:0},point]},
-                ]:[]}
-                annotations={[{id:'p',...point,label:labelFor(point),color:'#078aa5',testId:'dynamic-label-point-handle',onChange:update,keyboardStep:1}]}/>
+              <LessonCartesianGraph
+                title="Point P with dynamic label"
+                view={graphView}
+                onViewChange={setGraphView}
+                onResetView={() => setGraphView(GRAPH_VIEW)}
+                aspectRatio={445 / 463}
+                series={
+                  projections
+                    ? [
+                        {
+                          id: "x-projection",
+                          label: "x projection",
+                          color: "#1788ef",
+                          dashed: true,
+                          dashPattern: "5 3",
+                          points: [{ x: point.x, y: 0 }, point],
+                        },
+                        {
+                          id: "y-projection",
+                          label: "y projection",
+                          color: "#1788ef",
+                          dashed: true,
+                          dashPattern: "5 3",
+                          points: [{ x: 0, y: point.y }, point],
+                        },
+                        {
+                          id: "distance",
+                          label: "Distance from origin",
+                          color: "#1788ef",
+                          points: [{ x: 0, y: 0 }, point],
+                        },
+                      ]
+                    : []
+                }
+                annotations={[
+                  {
+                    id: "p",
+                    ...point,
+                    label: labelFor(point),
+                    color: "#078aa5",
+                    testId: "dynamic-label-point-handle",
+                    onChange: update,
+                    keyboardStep: 1,
+                  },
+                ]}
+              />
               <section className="labels-calculation">
                 <h2>Calculation</h2>
                 <p>
@@ -211,7 +252,12 @@ export default function DynamicLabelsTargetLesson27({
               <section className="preview-card">
                 <h2>Another position preview</h2>
                 <p>Move P to (4, 1)</p>
-                <LessonPointPreview label={labelFor(preview)} point={{left:59,top:48}} axes={{left:40,top:55}} color="#079bb7"/>
+                <LessonPointPreview
+                  label={labelFor(preview)}
+                  point={{ left: 59, top: 48 }}
+                  axes={{ left: 40, top: 55 }}
+                  color="#079bb7"
+                />
                 <b>Live label updates:&nbsp; {labelFor(preview)}</b>
               </section>
             </div>
@@ -398,4 +444,3 @@ function Toggle({
     </label>
   );
 }
-

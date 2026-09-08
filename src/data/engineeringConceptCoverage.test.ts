@@ -1,7 +1,13 @@
 import { readFile } from "node:fs/promises";
 import { describe, expect, it } from "vitest";
-import { advancedSyllabusLabs, engineeringConceptLabId } from "./advancedSyllabusLabs";
-import { buildEngineeringConceptCoverage, engineeringCoverageSummary } from "./engineeringConceptCoverage";
+import {
+  advancedSyllabusLabs,
+  engineeringConceptLabId,
+} from "./advancedSyllabusLabs";
+import {
+  buildEngineeringConceptCoverage,
+  engineeringCoverageSummary,
+} from "./engineeringConceptCoverage";
 import { engineeringMathDomains } from "./engineeringMathBlueprint";
 
 const pageSource = new URL("../pages/EngineeringMath.tsx", import.meta.url);
@@ -42,9 +48,17 @@ describe("engineering concept coverage", () => {
 
   it("creates a unique interactive lab page for every engineering concept", () => {
     const labIds = new Set(advancedSyllabusLabs.map((lab) => lab.id));
-    const concepts = engineeringMathDomains.flatMap((domain) => domain.topics.flatMap((topic) => topic.concepts.map((concept) => ({ topic, concept }))));
+    const concepts = engineeringMathDomains.flatMap((domain) =>
+      domain.topics.flatMap((topic) =>
+        topic.concepts.map((concept) => ({ topic, concept })),
+      ),
+    );
 
     expect(concepts.length).toBeGreaterThan(40);
-    expect(concepts.every(({ topic, concept }) => labIds.has(engineeringConceptLabId(topic.id, concept)))).toBe(true);
+    expect(
+      concepts.every(({ topic, concept }) =>
+        labIds.has(engineeringConceptLabId(topic.id, concept)),
+      ),
+    ).toBe(true);
   });
 });

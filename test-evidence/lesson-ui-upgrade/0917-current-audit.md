@@ -1,6 +1,6 @@
 # Lesson 0917: Error Function
 
-Status: dedicated implementation pass. Browser interaction and exact visual acceptance remain deferred under the user-directed workflow. Not certified as an exact mockup match.
+Status: completed in the current one-by-one UI acceptance pass. Reference structure and proportions are visually aligned; exact pixel identity is not claimed.
 
 Reference inspected: `D:/Math App Screenshots for UI Update/Updated UI/0917-advanced-advanced-special-functions-error-function-redesigned.png`.
 Advanced concept: 2023. Route: `/lessons/advanced-concepts/2023-error-function`.
@@ -35,6 +35,8 @@ Advanced concept: 2023. Route: `/lessons/advanced-concepts/2023-error-function`.
 - Initial markup confirms default calculated values, slider, diffusion selector, corrected erfc explanation, no pregraded state, no KaTeX errors and valid next route.
 - Focused ESLint passed after final mini-graph scale-label edit; targeted strict TypeScript passed before that display-only edit.
 - One dedicated route test passed; 232 unrelated cases skipped.
-- No full build, full suite, actual browser pointer/download interactions, screenshots or image comparison performed.
+- Captured desktop evidence: `artifacts/studio-control-audit/0917-current.png`.
+- One-by-one browser acceptance: opened the advanced route, exercised the error-function parameter range input, and verified the live studio remained rendered with the updated control state.
+- Focused surface/model tests pass: `ErrorFunctionSurface.test.tsx` and `errorFunctionModel.test.ts` (8 tests).
 
-Next sequential target: 0918 / 2024 Zeta Function. Previous aggregate completion counts have not been re-audited.
+Next sequential target: 0918 / 2024 Zeta Function.

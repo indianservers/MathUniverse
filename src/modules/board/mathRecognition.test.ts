@@ -1,5 +1,11 @@
 import { describe, expect, it } from "vitest";
-import { createMathRecognitionProvider, createRecognitionInput, DevelopmentMathRecognitionProvider, HttpMathRecognitionProvider, normalizeRecognitionResponse } from "./mathRecognition";
+import {
+  createMathRecognitionProvider,
+  createRecognitionInput,
+  DevelopmentMathRecognitionProvider,
+  HttpMathRecognitionProvider,
+  normalizeRecognitionResponse,
+} from "./mathRecognition";
 import type { StrokeElement } from "./types";
 
 function makeStroke(id: string, offset = 0): StrokeElement {
@@ -21,7 +27,10 @@ function makeStroke(id: string, offset = 0): StrokeElement {
 
 describe("math recognition pipeline", () => {
   it("crops selected strokes with padding and preserves vector metadata", () => {
-    const input = createRecognitionInput([makeStroke("a"), makeStroke("b", 20)], 5);
+    const input = createRecognitionInput(
+      [makeStroke("a"), makeStroke("b", 20)],
+      5,
+    );
     expect(input.bounds).toEqual({ x: -5, y: -5, width: 40, height: 20 });
     expect(input.strokes.map((stroke) => stroke.id)).toEqual(["a", "b"]);
   });
@@ -42,10 +51,12 @@ describe("math recognition pipeline", () => {
   });
 
   it("normalizes model responses from common OCR service shapes", () => {
-    expect(normalizeRecognitionResponse({
-      candidates: [{ latex: "\\sin 60^\\circ", confidence: 0.91 }],
-      confidence_score: 0.91,
-    })).toMatchObject({
+    expect(
+      normalizeRecognitionResponse({
+        candidates: [{ latex: "\\sin 60^\\circ", confidence: 0.91 }],
+        confidence_score: 0.91,
+      }),
+    ).toMatchObject({
       latex: "\\sin 60^\\circ",
       confidence: 0.91,
       detectedType: "unknown",
@@ -56,9 +67,11 @@ describe("math recognition pipeline", () => {
     expect(() => createRecognitionInput([])).toThrow(/select at least one/i);
     const controller = new AbortController();
     controller.abort();
-    await expect(new DevelopmentMathRecognitionProvider().recognize(
-      createRecognitionInput([makeStroke("a")]),
-      { signal: controller.signal },
-    )).rejects.toMatchObject({ name: "AbortError" });
+    await expect(
+      new DevelopmentMathRecognitionProvider().recognize(
+        createRecognitionInput([makeStroke("a")]),
+        { signal: controller.signal },
+      ),
+    ).rejects.toMatchObject({ name: "AbortError" });
   });
 });

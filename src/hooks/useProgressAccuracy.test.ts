@@ -20,7 +20,9 @@ describe("Phase 2 durable mastery evidence", () => {
   it("requires evidence spread across at least seven days for durable mastery", () => {
     const first = updateMasteryEvidence(undefined, 90, 0);
     const second = updateMasteryEvidence(first, 90, day);
-    expect(updateMasteryEvidence(second, 90, 6 * day).status).toBe("proficient");
+    expect(updateMasteryEvidence(second, 90, 6 * day).status).toBe(
+      "proficient",
+    );
     const durable = updateMasteryEvidence(second, 90, 8 * day);
     expect(durable.status).toBe("durable");
     expect(durable.reason).toContain("across at least 7 days");

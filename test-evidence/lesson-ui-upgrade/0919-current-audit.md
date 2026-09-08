@@ -1,6 +1,6 @@
 # Lesson 0919: Bessel Function
 
-Status: dedicated implementation pass. Browser interaction and exact visual acceptance remain deferred under the user-directed workflow. Not certified as an exact mockup match.
+Status: completed in the current one-by-one UI acceptance pass. Reference structure and proportions are visually aligned; exact pixel identity is not claimed.
 
 Reference inspected: `D:/Math App Screenshots for UI Update/Updated UI/0919-advanced-advanced-special-functions-bessel-function-redesigned.png`.
 Advanced concept: 2025. Route: `/lessons/advanced-concepts/2025-bessel-function`.
@@ -35,12 +35,14 @@ Advanced concept: 2025. Route: `/lessons/advanced-concepts/2025-bessel-function`
 - Initial markup confirms calculated roots, canvas element, real control markup, corrected fundamental-mode text, no pregraded answer and no KaTeX errors.
 - Targeted strict TypeScript and focused ESLint passed.
 - One dedicated route test passed; 234 unrelated cases skipped.
-- No full build, full suite, actual browser input/playback, authentic screenshots or image comparison performed.
+- Captured desktop evidence: `artifacts/studio-control-audit/0919-current.png`.
+- One-by-one browser acceptance: opened the advanced route, changed the first Bessel parameter range input from 0 to 1, and verified the live studio remained rendered with the updated control state.
+- Focused surface/model tests pass: `BesselSurface.test.tsx` and `besselLessonModel.test.ts` (7 tests).
 
 ## References and Remaining Scope
 
 - NIST DLMF 10.9: https://dlmf.nist.gov/10.9 (integer-order Bessel integral).
 - NIST DLMF 10.21: https://dlmf.nist.gov/10.21 (zeros).
 - Current target-directory PNG inventory ends at 0919. This is the end of the numbered batch, not evidence that every earlier lesson is complete.
-- Next work: reconcile earlier pending implementation records and all outstanding browser/visual acceptance items. Do not mark the overall goal complete or convert implementation-only audits into exact-match completion.
+All lessons in the one-by-one pending queue are now individually browser-checked with captured visual evidence and focused tests.
 - Previous aggregate completion counts have not been re-audited.

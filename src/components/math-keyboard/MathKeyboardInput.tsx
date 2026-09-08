@@ -1,8 +1,24 @@
-import { ArrowLeft, ArrowRight, Calculator, ChevronDown, ChevronUp, CornerDownLeft, Delete, Eraser, FunctionSquare, Keyboard, Pi, Sigma, Sparkles, Superscript } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  Calculator,
+  ChevronDown,
+  ChevronUp,
+  CornerDownLeft,
+  Delete,
+  Eraser,
+  FunctionSquare,
+  Keyboard,
+  Pi,
+  Sigma,
+  Sparkles,
+  Superscript,
+} from "lucide-react";
 import { ReactNode, useId, useMemo, useRef, useState } from "react";
 
 type KeyboardMode = "calculate" | "command" | "formula";
-type KeyGroup = "numbers" | "functions" | "algebra" | "calculus" | "symbols" | "commands";
+type KeyGroup =
+  "numbers" | "functions" | "algebra" | "calculus" | "symbols" | "commands";
 type MathKey = {
   label: string;
   insert: string;
@@ -38,7 +54,30 @@ const groupLabels: Record<KeyGroup, string> = {
 
 const keys: Record<KeyGroup, MathKey[]> = {
   numbers: [
-    ...["7", "8", "9", "/", "4", "5", "6", "*", "1", "2", "3", "-", "0", ".", "%", "+"].map((item) => ({ label: item === "*" ? "x" : item, insert: item, accent: ["+", "-", "*", "/"].includes(item) ? "operator" as const : undefined })),
+    ...[
+      "7",
+      "8",
+      "9",
+      "/",
+      "4",
+      "5",
+      "6",
+      "*",
+      "1",
+      "2",
+      "3",
+      "-",
+      "0",
+      ".",
+      "%",
+      "+",
+    ].map((item) => ({
+      label: item === "*" ? "x" : item,
+      insert: item,
+      accent: ["+", "-", "*", "/"].includes(item)
+        ? ("operator" as const)
+        : undefined,
+    })),
     { label: "=", insert: "=", accent: "operator" },
     { label: ",", insert: "," },
     { label: "(", insert: "(", accent: "structure" },
@@ -78,7 +117,12 @@ const keys: Record<KeyGroup, MathKey[]> = {
     { label: "expand", insert: "expand ", accent: "command" },
     { label: "simplify", insert: "simplify ", accent: "command" },
     { label: "roots", insert: "roots ", accent: "command" },
-    { label: "intersect", insert: "intersect  and ", caretOffset: -5, accent: "command" },
+    {
+      label: "intersect",
+      insert: "intersect  and ",
+      caretOffset: -5,
+      accent: "command",
+    },
   ],
   calculus: [
     { label: "d/dx", insert: "derivative ", accent: "command" },
@@ -106,23 +150,45 @@ const keys: Record<KeyGroup, MathKey[]> = {
     { label: "!=", insert: "!=", accent: "operator" },
     { label: "[ ]", insert: "[]", caretOffset: -1, accent: "structure" },
     { label: "{ }", insert: "{}", caretOffset: -1, accent: "structure" },
-    { label: "matrix", insert: "matrix([[,],[,]])", caretOffset: -8, accent: "structure" },
+    {
+      label: "matrix",
+      insert: "matrix([[,],[,]])",
+      caretOffset: -8,
+      accent: "structure",
+    },
   ],
   commands: [
     { label: "plot y", insert: "plot ", accent: "command" },
-    { label: "solve =0", insert: "solve =0", caretOffset: -2, accent: "command" },
+    {
+      label: "solve =0",
+      insert: "solve =0",
+      caretOffset: -2,
+      accent: "command",
+    },
     { label: "table", insert: "table ", accent: "command" },
     { label: "roots", insert: "roots ", accent: "command" },
     { label: "derivative", insert: "derivative ", accent: "command" },
     { label: "integral", insert: "integral ", accent: "command" },
     { label: "area circle", insert: "area circle radius ", accent: "command" },
-    { label: "intersect", insert: "intersect  and ", caretOffset: -5, accent: "command" },
+    {
+      label: "intersect",
+      insert: "intersect  and ",
+      caretOffset: -5,
+      accent: "command",
+    },
   ],
 };
 
 const modeGroups: Record<KeyboardMode, KeyGroup[]> = {
   calculate: ["numbers", "functions", "algebra", "calculus", "symbols"],
-  command: ["commands", "numbers", "functions", "algebra", "calculus", "symbols"],
+  command: [
+    "commands",
+    "numbers",
+    "functions",
+    "algebra",
+    "calculus",
+    "symbols",
+  ],
   formula: ["symbols", "algebra", "functions", "calculus", "numbers"],
 };
 
@@ -192,20 +258,80 @@ export default function MathKeyboardInput({
   return (
     <div className="sticky bottom-20 z-30 max-h-[78vh] overflow-y-auto rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-white/10 dark:bg-slate-950/95 md:static md:max-h-none md:overflow-hidden md:dark:bg-slate-950/70">
       <div className="flex flex-col gap-3 border-b border-slate-200 p-3 dark:border-white/10 md:flex-row md:items-center md:justify-between">
-        <label htmlFor={inputId} className="flex min-w-0 flex-1 items-center gap-2 text-sm font-bold text-slate-700 dark:text-slate-200">
+        <label
+          htmlFor={inputId}
+          className="flex min-w-0 flex-1 items-center gap-2 text-sm font-bold text-slate-700 dark:text-slate-200"
+        >
           <Keyboard className="h-4 w-4 text-cyan-500" />
           {label}
         </label>
         <div className="mobile-safe-scroll flex gap-2 pb-1 md:flex-wrap md:overflow-visible md:pb-0">
           {extraActions}
-          <button type="button" onClick={() => setCompact((value) => !value)} className="math-tool-button tooltip-icon" title={compact ? "Expand keyboard" : "Compact keyboard"} aria-label={compact ? "Expand keyboard" : "Compact keyboard"} data-tooltip={compact ? "Expand keyboard" : "Compact keyboard"}>
-            {compact ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+          <button
+            type="button"
+            onClick={() => setCompact((value) => !value)}
+            className="math-tool-button tooltip-icon"
+            title={compact ? "Expand keyboard" : "Compact keyboard"}
+            aria-label={compact ? "Expand keyboard" : "Compact keyboard"}
+            data-tooltip={compact ? "Expand keyboard" : "Compact keyboard"}
+          >
+            {compact ? (
+              <ChevronUp className="h-4 w-4" />
+            ) : (
+              <ChevronDown className="h-4 w-4" />
+            )}
           </button>
-          <button type="button" onClick={() => moveCaret(-1)} className="math-tool-button tooltip-icon" title="Move cursor left" aria-label="Move cursor left" data-tooltip="Move cursor left"><ArrowLeft className="h-4 w-4" /></button>
-          <button type="button" onClick={() => moveCaret(1)} className="math-tool-button tooltip-icon" title="Move cursor right" aria-label="Move cursor right" data-tooltip="Move cursor right"><ArrowRight className="h-4 w-4" /></button>
-          <button type="button" onClick={onBackspace ?? deleteLeft} className="math-tool-button tooltip-icon" title="Backspace" aria-label="Backspace" data-tooltip="Backspace"><Delete className="h-4 w-4" /></button>
-          <button type="button" onClick={clearValue} className="math-tool-button-danger tooltip-icon" title="Clear" aria-label="Clear" data-tooltip="Clear input"><Eraser className="h-4 w-4" /></button>
-          {onSubmit && <button type="button" onClick={onSubmit} className="action-primary py-2" title="Run calculation (Ctrl/Cmd+Enter)"><CornerDownLeft className="h-4 w-4" />Run</button>}
+          <button
+            type="button"
+            onClick={() => moveCaret(-1)}
+            className="math-tool-button tooltip-icon"
+            title="Move cursor left"
+            aria-label="Move cursor left"
+            data-tooltip="Move cursor left"
+          >
+            <ArrowLeft className="h-4 w-4" />
+          </button>
+          <button
+            type="button"
+            onClick={() => moveCaret(1)}
+            className="math-tool-button tooltip-icon"
+            title="Move cursor right"
+            aria-label="Move cursor right"
+            data-tooltip="Move cursor right"
+          >
+            <ArrowRight className="h-4 w-4" />
+          </button>
+          <button
+            type="button"
+            onClick={onBackspace ?? deleteLeft}
+            className="math-tool-button tooltip-icon"
+            title="Backspace"
+            aria-label="Backspace"
+            data-tooltip="Backspace"
+          >
+            <Delete className="h-4 w-4" />
+          </button>
+          <button
+            type="button"
+            onClick={clearValue}
+            className="math-tool-button-danger tooltip-icon"
+            title="Clear"
+            aria-label="Clear"
+            data-tooltip="Clear input"
+          >
+            <Eraser className="h-4 w-4" />
+          </button>
+          {onSubmit && (
+            <button
+              type="button"
+              onClick={onSubmit}
+              className="action-primary py-2"
+              title="Run calculation (Ctrl/Cmd+Enter)"
+            >
+              <CornerDownLeft className="h-4 w-4" />
+              Run
+            </button>
+          )}
         </div>
       </div>
 
@@ -232,7 +358,12 @@ export default function MathKeyboardInput({
           <>
             <div className="mobile-safe-scroll mt-3 flex gap-2 pb-1">
               {groups.map((group) => (
-                <button key={group} type="button" onClick={() => setActiveGroup(group)} className={`shrink-0 rounded-full px-3 py-2 text-xs font-bold transition ${activeGroup === group ? "bg-cyan-500 text-white shadow" : "bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-white/10 dark:text-slate-300 dark:hover:bg-white/15"}`}>
+                <button
+                  key={group}
+                  type="button"
+                  onClick={() => setActiveGroup(group)}
+                  className={`shrink-0 rounded-full px-3 py-2 text-xs font-bold transition ${activeGroup === group ? "bg-cyan-500 text-white shadow" : "bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-white/10 dark:text-slate-300 dark:hover:bg-white/15"}`}
+                >
                   {groupIcon(group)}
                   <span className="ml-1.5">{groupLabels[group]}</span>
                 </button>
@@ -259,7 +390,12 @@ export default function MathKeyboardInput({
         {examples.length > 0 && (
           <div className="mt-3 flex flex-wrap gap-2">
             {examples.map((example) => (
-              <button key={example} type="button" onClick={() => (onExample ?? onChange)(example)} className="mini-chip transition hover:bg-cyan-100 dark:hover:bg-cyan-300/15">
+              <button
+                key={example}
+                type="button"
+                onClick={() => (onExample ?? onChange)(example)}
+                className="mini-chip transition hover:bg-cyan-100 dark:hover:bg-cyan-300/15"
+              >
                 {example}
               </button>
             ))}
@@ -281,10 +417,15 @@ function groupIcon(group: KeyGroup) {
 }
 
 function keyClass(accent: MathKey["accent"]) {
-  if (accent === "operator") return "bg-slate-950 text-white hover:bg-cyan-600 dark:bg-white dark:text-slate-950 dark:hover:bg-cyan-200";
-  if (accent === "function") return "bg-indigo-50 text-indigo-800 hover:bg-indigo-100 dark:bg-indigo-400/15 dark:text-indigo-100 dark:hover:bg-indigo-400/25";
-  if (accent === "structure") return "bg-amber-50 text-amber-800 hover:bg-amber-100 dark:bg-amber-400/15 dark:text-amber-100 dark:hover:bg-amber-400/25";
-  if (accent === "constant") return "bg-emerald-50 text-emerald-800 hover:bg-emerald-100 dark:bg-emerald-400/15 dark:text-emerald-100 dark:hover:bg-emerald-400/25";
-  if (accent === "command") return "bg-cyan-50 text-cyan-800 hover:bg-cyan-100 dark:bg-cyan-400/15 dark:text-cyan-100 dark:hover:bg-cyan-400/25";
+  if (accent === "operator")
+    return "bg-slate-950 text-white hover:bg-cyan-600 dark:bg-white dark:text-slate-950 dark:hover:bg-cyan-200";
+  if (accent === "function")
+    return "bg-indigo-50 text-indigo-800 hover:bg-indigo-100 dark:bg-indigo-400/15 dark:text-indigo-100 dark:hover:bg-indigo-400/25";
+  if (accent === "structure")
+    return "bg-amber-50 text-amber-800 hover:bg-amber-100 dark:bg-amber-400/15 dark:text-amber-100 dark:hover:bg-amber-400/25";
+  if (accent === "constant")
+    return "bg-emerald-50 text-emerald-800 hover:bg-emerald-100 dark:bg-emerald-400/15 dark:text-emerald-100 dark:hover:bg-emerald-400/25";
+  if (accent === "command")
+    return "bg-cyan-50 text-cyan-800 hover:bg-cyan-100 dark:bg-cyan-400/15 dark:text-cyan-100 dark:hover:bg-cyan-400/25";
   return "bg-slate-100 text-slate-800 hover:bg-slate-200 dark:bg-white/10 dark:text-white dark:hover:bg-white/15";
 }

@@ -25,13 +25,24 @@ const stroke: StrokeElement = {
 
 describe("board geometry", () => {
   it("converts screen coordinates into board coordinates", () => {
-    expect(screenToBoard({ x: 140, y: 90 }, { x: 20, y: 10, zoom: 2 })).toEqual({ x: 60, y: 40 });
+    expect(screenToBoard({ x: 140, y: 90 }, { x: 20, y: 10, zoom: 2 })).toEqual(
+      { x: 60, y: 40 },
+    );
   });
 
   it("calculates bounds and rectangle collisions", () => {
-    expect(calculateBounds(stroke.points)).toEqual({ x: 10, y: 10, width: 20, height: 20 });
-    expect(boxesIntersect(stroke.bounds, { x: 25, y: 25, width: 10, height: 10 })).toBe(true);
-    expect(boxesIntersect(stroke.bounds, { x: 50, y: 50, width: 5, height: 5 })).toBe(false);
+    expect(calculateBounds(stroke.points)).toEqual({
+      x: 10,
+      y: 10,
+      width: 20,
+      height: 20,
+    });
+    expect(
+      boxesIntersect(stroke.bounds, { x: 25, y: 25, width: 10, height: 10 }),
+    ).toBe(true);
+    expect(
+      boxesIntersect(stroke.bounds, { x: 50, y: 50, width: 5, height: 5 }),
+    ).toBe(false);
   });
 
   it("detects eraser collisions with a stroke", () => {
@@ -47,4 +58,3 @@ describe("board geometry", () => {
     expect(smoothed[1].x).not.toBe(points[1].x);
   });
 });
-

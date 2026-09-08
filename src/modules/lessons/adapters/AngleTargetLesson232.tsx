@@ -672,9 +672,9 @@ function AnglePlot({
             fill="#1769e8"
             onPointerDown={() => onDrag(key as Exclude<Drag, null>)}
           />
-              {showLabels && (
-                <text
-                  data-testid="angle-point-label"
+          {showLabels && (
+            <text
+              data-testid="angle-point-label"
               x={
                 (screenPoint as Point).x +
                 (key === "a" ? -20 : key === "b" ? -14 : 0)

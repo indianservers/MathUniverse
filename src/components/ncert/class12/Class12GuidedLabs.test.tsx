@@ -15,8 +15,12 @@ describe("Class 12 tabbed NCERT guided labs", () => {
   });
 
   it("renders integration, vector, and practice surfaces for Phase 7 priority labs", () => {
-    const integration = renderToStaticMarkup(<Class12GuidedLab kind="integration-methods" />);
-    const vectors = renderToStaticMarkup(<Class12GuidedLab kind="vectors-3d-geometry" />);
+    const integration = renderToStaticMarkup(
+      <Class12GuidedLab kind="integration-methods" />,
+    );
+    const vectors = renderToStaticMarkup(
+      <Class12GuidedLab kind="vectors-3d-geometry" />,
+    );
 
     expect(integration).toContain("Substitution");
     expect(integration).toContain("Partial Fractions");

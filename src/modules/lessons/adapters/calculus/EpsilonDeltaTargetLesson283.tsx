@@ -504,13 +504,17 @@ function EpsilonGraph({
       {[-6, -4, -2, 2, 4, 6].map((value) => (
         <g key={`x-${value}`} className="tick">
           <line x1={sx(value)} y1={sy(0) - 4} x2={sx(value)} y2={sy(0) + 4} />
-          <text x={sx(value) - 5} y={sy(0) + 18}>{value}</text>
+          <text x={sx(value) - 5} y={sy(0) + 18}>
+            {value}
+          </text>
         </g>
       ))}
       {[-6, -4, -2, 2, 4, 6].map((value) => (
         <g key={`y-${value}`} className="tick">
           <line x1={sx(0) - 4} y1={sy(value)} x2={sx(0) + 4} y2={sy(value)} />
-          <text x={sx(0) - 20} y={sy(value) + 4}>{value}</text>
+          <text x={sx(0) - 20} y={sy(value) + 4}>
+            {value}
+          </text>
         </g>
       ))}
       <path
@@ -560,11 +564,21 @@ function EpsilonGraph({
       <text x={sx(a) + 14} y={sy(L) - 10}>
         ({a}, {L})
       </text>
-      <text x={sx(4.2)} y={sy(7.1)} className="function-label">f(x) = 2x</text>
-      <text x="8" y={sy(L + epsilon) - 8} className="purple-text">L + ε</text>
-      <text x="8" y={sy(L - epsilon) + 18} className="purple-text">L − ε</text>
-      <text x={sx(a - delta) - 36} y={sy(-1.7)} className="orange-text">a − δ</text>
-      <text x={sx(a + delta) + 5} y={sy(-1.7)} className="orange-text">a + δ</text>
+      <text x={sx(4.2)} y={sy(7.1)} className="function-label">
+        f(x) = 2x
+      </text>
+      <text x="8" y={sy(L + epsilon) - 8} className="purple-text">
+        L + ε
+      </text>
+      <text x="8" y={sy(L - epsilon) + 18} className="purple-text">
+        L − ε
+      </text>
+      <text x={sx(a - delta) - 36} y={sy(-1.7)} className="orange-text">
+        a − δ
+      </text>
+      <text x={sx(a + delta) + 5} y={sy(-1.7)} className="orange-text">
+        a + δ
+      </text>
       <text className="orange-text" x={sx(a) - 25} y={sy(-3) + 20}>
         δ = {delta}
       </text>

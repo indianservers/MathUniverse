@@ -399,13 +399,15 @@ function RenderedTemplate({ template, x }: { template: string; x: number }) {
 function SourceTemplate({ template }: { template: string }) {
   return (
     <>
-      {template.split(/(\{[xyz]\})/g).map((part, index) =>
-        /^\{[xyz]\}$/.test(part) ? (
-          <mark key={index}>{part}</mark>
-        ) : (
-          <span key={index}>{part}</span>
-        ),
-      )}
+      {template
+        .split(/(\{[xyz]\})/g)
+        .map((part, index) =>
+          /^\{[xyz]\}$/.test(part) ? (
+            <mark key={index}>{part}</mark>
+          ) : (
+            <span key={index}>{part}</span>
+          ),
+        )}
     </>
   );
 }

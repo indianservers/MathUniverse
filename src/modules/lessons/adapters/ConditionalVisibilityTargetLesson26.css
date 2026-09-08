@@ -486,7 +486,7 @@
 .condition-editor > div {
   display: grid;
   margin-top: 10px;
-  grid-template-columns: minmax(0, .7fr) minmax(0, .9fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 0.7fr) minmax(0, 0.9fr) minmax(0, 1fr);
   gap: 10px;
 }
 .condition-editor select,
@@ -647,14 +647,44 @@
   }
 }
 @media (max-width: 600px) {
-  .visibility-header { height: auto; padding: 16px; }
-  .visibility-meta { flex-wrap: wrap; }
-  .visibility-header > nav { display: flex; flex-wrap: wrap; width: 100%; }
-  .visibility-header > nav button { min-height: 44px; padding: 8px 12px; }
-  .visibility-tabs { display: flex; overflow-x: auto; gap: 8px; }
-  .visibility-tabs button { flex: 0 0 auto; min-height: 44px; padding: 8px 12px; }
-  .visibility-lab > header { height: auto; min-height: 79px; flex-wrap: wrap; gap: 8px; padding-bottom: 12px; }
-  .visibility-middle, .visibility-before > div { grid-template-columns: minmax(0, 1fr); }
-  .visibility-before article { grid-template-columns: minmax(0, 1fr) 90px; }
+  .visibility-header {
+    height: auto;
+    padding: 16px;
+  }
+  .visibility-meta {
+    flex-wrap: wrap;
+  }
+  .visibility-header > nav {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  .visibility-header > nav button {
+    min-height: 44px;
+    padding: 8px 12px;
+  }
+  .visibility-tabs {
+    display: flex;
+    overflow-x: auto;
+    gap: 8px;
+  }
+  .visibility-tabs button {
+    flex: 0 0 auto;
+    min-height: 44px;
+    padding: 8px 12px;
+  }
+  .visibility-lab > header {
+    height: auto;
+    min-height: 79px;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-bottom: 12px;
+  }
+  .visibility-middle,
+  .visibility-before > div {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .visibility-before article {
+    grid-template-columns: minmax(0, 1fr) 90px;
+  }
 }
-

@@ -2,7 +2,12 @@ export type OperationTable = Record<string, Record<string, string>>;
 export type BooleanAst =
   | { type: "var"; name: string }
   | { type: "not"; child: BooleanAst }
-  | { type: "binary"; op: "and" | "or" | "xor"; left: BooleanAst; right: BooleanAst };
+  | {
+      type: "binary";
+      op: "and" | "or" | "xor";
+      left: BooleanAst;
+      right: BooleanAst;
+    };
 
 export type AlgebraicValidation = {
   closed: boolean;
@@ -17,45 +22,103 @@ type Token = { type: "var" | "op" | "left" | "right"; value: string };
 
 const precedence: Record<string, number> = { "!": 3, "&": 2, "^": 1, "|": 0 };
 
-export function modularTable(size: number, mode: "add" | "multiply" = "add"): { elements: string[]; table: OperationTable } {
+export function modularTable(
+  size: number,
+  mode: "add" | "multiply" = "add",
+): { elements: string[]; table: OperationTable } {
   const elements = Array.from({ length: size }, (_, index) => String(index));
-  const table = Object.fromEntries(elements.map((a) => [
-    a,
-    Object.fromEntries(elements.map((b) => [b, String(mode === "add" ? (Number(a) + Number(b)) % size : (Number(a) * Number(b)) % size)])),
-  ])) as OperationTable;
+  const table = Object.fromEntries(
+    elements.map((a) => [
+      a,
+      Object.fromEntries(
+        elements.map((b) => [
+          b,
+          String(
+            mode === "add"
+              ? (Number(a) + Number(b)) % size
+              : (Number(a) * Number(b)) % size,
+          ),
+        ]),
+      ),
+    ]),
+  ) as OperationTable;
   return { elements, table };
 }
 
-export function rebuildOperationTable(elements: string[], table: OperationTable): OperationTable {
+export function rebuildOperationTable(
+  elements: string[],
+  table: OperationTable,
+): OperationTable {
   const fallback = elements[0] ?? "";
-  return Object.fromEntries(elements.map((row) => [
-    row,
-    Object.fromEntries(elements.map((column) => [column, elements.includes(table[row]?.[column]) ? table[row][column] : fallback])),
-  ])) as OperationTable;
+  return Object.fromEntries(
+    elements.map((row) => [
+      row,
+      Object.fromEntries(
+        elements.map((column) => [
+          column,
+          elements.includes(table[row]?.[column])
+            ? table[row][column]
+            : fallback,
+        ]),
+      ),
+    ]),
+  ) as OperationTable;
 }
 
-export function validateOperation(elements: string[], table: OperationTable): AlgebraicValidation {
+export function validateOperation(
+  elements: string[],
+  table: OperationTable,
+): AlgebraicValidation {
   const elementSet = new Set(elements);
   const failures: string[] = [];
-  const closed = elements.every((a) => elements.every((b) => {
-    const value = table[a]?.[b];
-    const ok = elementSet.has(value);
-    if (!ok) failures.push(`${a} * ${b} = ${value ?? "undefined"} is outside the set.`);
-    return ok;
-  }));
-  const associative = elements.every((a) => elements.every((b) => elements.every((c) => {
-    const left = table[table[a]?.[b]]?.[c];
-    const right = table[a]?.[table[b]?.[c]];
-    const ok = left === right;
-    if (!ok && failures.length < 5) failures.push(`Associativity fails at (${a}, ${b}, ${c}): (${a}*${b})*${c}=${left}, ${a}*(${b}*${c})=${right}.`);
-    return ok;
-  })));
-  const identity = elements.find((candidate) => elements.every((x) => table[candidate]?.[x] === x && table[x]?.[candidate] === x)) ?? null;
+  const closed = elements.every((a) =>
+    elements.every((b) => {
+      const value = table[a]?.[b];
+      const ok = elementSet.has(value);
+      if (!ok)
+        failures.push(
+          `${a} * ${b} = ${value ?? "undefined"} is outside the set.`,
+        );
+      return ok;
+    }),
+  );
+  const associative = elements.every((a) =>
+    elements.every((b) =>
+      elements.every((c) => {
+        const left = table[table[a]?.[b]]?.[c];
+        const right = table[a]?.[table[b]?.[c]];
+        const ok = left === right;
+        if (!ok && failures.length < 5)
+          failures.push(
+            `Associativity fails at (${a}, ${b}, ${c}): (${a}*${b})*${c}=${left}, ${a}*(${b}*${c})=${right}.`,
+          );
+        return ok;
+      }),
+    ),
+  );
+  const identity =
+    elements.find((candidate) =>
+      elements.every(
+        (x) => table[candidate]?.[x] === x && table[x]?.[candidate] === x,
+      ),
+    ) ?? null;
   const semigroup = closed && associative;
-  return { closed, associative, identity, semigroup, monoid: semigroup && identity !== null, failures };
+  return {
+    closed,
+    associative,
+    identity,
+    semigroup,
+    monoid: semigroup && identity !== null,
+    failures,
+  };
 }
 
-export function operationAnimation(elements: string[], table: OperationTable, a: string, b: string) {
+export function operationAnimation(
+  elements: string[],
+  table: OperationTable,
+  a: string,
+  b: string,
+) {
   return [
     { label: "Choose left operand", value: a },
     { label: "Choose right operand", value: b },
@@ -69,12 +132,18 @@ export function parseBooleanExpression(input: string): BooleanAst {
   for (const token of tokenize(input)) {
     if (token.type === "var") output.push(token);
     if (token.type === "op") {
-      while (ops.length && ops[ops.length - 1].type === "op" && precedence[ops[ops.length - 1].value] >= precedence[token.value]) output.push(ops.pop()!);
+      while (
+        ops.length &&
+        ops[ops.length - 1].type === "op" &&
+        precedence[ops[ops.length - 1].value] >= precedence[token.value]
+      )
+        output.push(ops.pop()!);
       ops.push(token);
     }
     if (token.type === "left") ops.push(token);
     if (token.type === "right") {
-      while (ops.length && ops[ops.length - 1].type !== "left") output.push(ops.pop()!);
+      while (ops.length && ops[ops.length - 1].type !== "left")
+        output.push(ops.pop()!);
       if (!ops.length) throw new Error("Mismatched parentheses.");
       ops.pop();
     }
@@ -95,8 +164,14 @@ export function parseBooleanExpression(input: string): BooleanAst {
       } else {
         const right = stack.pop();
         const left = stack.pop();
-        if (!left || !right) throw new Error(`${token.value} is missing an operand.`);
-        stack.push({ type: "binary", op: token.value === "&" ? "and" : token.value === "|" ? "or" : "xor", left, right });
+        if (!left || !right)
+          throw new Error(`${token.value} is missing an operand.`);
+        stack.push({
+          type: "binary",
+          op: token.value === "&" ? "and" : token.value === "|" ? "or" : "xor",
+          left,
+          right,
+        });
       }
     }
   }
@@ -141,7 +216,10 @@ export function booleanVariables(ast: BooleanAst) {
   return Array.from(names).sort();
 }
 
-export function evaluateBoolean(ast: BooleanAst, values: Record<string, boolean>): boolean {
+export function evaluateBoolean(
+  ast: BooleanAst,
+  values: Record<string, boolean>,
+): boolean {
   if (ast.type === "var") return Boolean(values[ast.name]);
   if (ast.type === "not") return !evaluateBoolean(ast.child, values);
   const left = evaluateBoolean(ast.left, values);
@@ -154,49 +232,107 @@ export function evaluateBoolean(ast: BooleanAst, values: Record<string, boolean>
 export function simplifyBooleanExpression(input: string) {
   const ast = parseBooleanExpression(input);
   const allVariables = booleanVariables(ast);
-  if (allVariables.length > 4) throw new Error("K-map simplification supports up to four variables.");
+  if (allVariables.length > 4)
+    throw new Error("K-map simplification supports up to four variables.");
   const variables = allVariables;
   const rows = Array.from({ length: 2 ** variables.length }, (_, mask) => {
-    const values = Object.fromEntries(variables.map((name, index) => [name, Boolean(mask & (1 << (variables.length - index - 1)))])) as Record<string, boolean>;
+    const values = Object.fromEntries(
+      variables.map((name, index) => [
+        name,
+        Boolean(mask & (1 << (variables.length - index - 1))),
+      ]),
+    ) as Record<string, boolean>;
     return { values, result: evaluateBoolean(ast, values), minterm: mask };
   });
   const trueRows = rows.filter((row) => row.result);
-  const expression = trueRows.length === rows.length
-    ? "1"
-    : trueRows.length
-    ? trueRows.map((row) => `(${variables.map((name) => row.values[name] ? name : `!${name}`).join(" & ")})`).join(" | ")
-    : "0";
-  return { ast, variables, rows, simplified: expression, kmap: kMapCells(variables, rows), circuit: booleanCircuitLayers(ast) };
+  const expression =
+    trueRows.length === rows.length
+      ? "1"
+      : trueRows.length
+        ? trueRows
+            .map(
+              (row) =>
+                `(${variables.map((name) => (row.values[name] ? name : `!${name}`)).join(" & ")})`,
+            )
+            .join(" | ")
+        : "0";
+  return {
+    ast,
+    variables,
+    rows,
+    simplified: expression,
+    kmap: kMapCells(variables, rows),
+    circuit: booleanCircuitLayers(ast),
+  };
 }
 
-function kMapCells(variables: string[], rows: Array<{ values: Record<string, boolean>; result: boolean; minterm: number }>) {
+function kMapCells(
+  variables: string[],
+  rows: Array<{
+    values: Record<string, boolean>;
+    result: boolean;
+    minterm: number;
+  }>,
+) {
   const gray = [0, 1, 3, 2];
   const rowCount = variables.length <= 2 ? 1 : 4;
   const colCount = variables.length <= 1 ? 2 : 4;
-  return Array.from({ length: rowCount }, (_, row) => Array.from({ length: colCount }, (_, col) => {
-    const index = variables.length <= 2 ? gray[col] ?? col : ((gray[row] ?? row) << 2) | (gray[col] ?? col);
-    return rows.find((item) => item.minterm === index)?.result ?? false;
-  }));
+  return Array.from({ length: rowCount }, (_, row) =>
+    Array.from({ length: colCount }, (_, col) => {
+      const index =
+        variables.length <= 2
+          ? (gray[col] ?? col)
+          : ((gray[row] ?? row) << 2) | (gray[col] ?? col);
+      return rows.find((item) => item.minterm === index)?.result ?? false;
+    }),
+  );
 }
 
-export function booleanLawSteps(law: "de-morgan" | "distributive" | "associative" | "complement") {
+export function booleanLawSteps(
+  law: "de-morgan" | "distributive" | "associative" | "complement",
+) {
   const laws = {
-    "de-morgan": ["!(A & B)", "!A | !B", "Negation distributes and flips AND to OR."],
-    distributive: ["A & (B | C)", "(A & B) | (A & C)", "A distributes across the joined expression."],
-    associative: ["(A | B) | C", "A | (B | C)", "Grouping changes, truth value stays fixed."],
-    complement: ["A | !A", "1", "A and its complement cover every Boolean value."],
+    "de-morgan": [
+      "!(A & B)",
+      "!A | !B",
+      "Negation distributes and flips AND to OR.",
+    ],
+    distributive: [
+      "A & (B | C)",
+      "(A & B) | (A & C)",
+      "A distributes across the joined expression.",
+    ],
+    associative: [
+      "(A | B) | C",
+      "A | (B | C)",
+      "Grouping changes, truth value stays fixed.",
+    ],
+    complement: [
+      "A | !A",
+      "1",
+      "A and its complement cover every Boolean value.",
+    ],
   };
   return laws[law];
 }
 
-export function gateOutput(gate: "AND" | "OR" | "NOT" | "XOR", a: boolean, b: boolean) {
+export function gateOutput(
+  gate: "AND" | "OR" | "NOT" | "XOR",
+  a: boolean,
+  b: boolean,
+) {
   if (gate === "AND") return a && b;
   if (gate === "OR") return a || b;
   if (gate === "NOT") return !a;
   return a !== b;
 }
 
-export function meetJoin(elements: string[], relationPairs: Array<[string, string]>, a: string, b: string) {
+export function meetJoin(
+  elements: string[],
+  relationPairs: Array<[string, string]>,
+  a: string,
+  b: string,
+) {
   const relates = new Set(relationPairs.map(([x, y]) => `${x}->${y}`));
   const leq = (x: string, y: string) => x === y || relates.has(`${x}->${y}`);
   const lower = elements.filter((x) => leq(x, a) && leq(x, b));
@@ -206,12 +342,18 @@ export function meetJoin(elements: string[], relationPairs: Array<[string, strin
   return { meet, join, lower, upper };
 }
 
-export function coverRelations(elements: string[], relationPairs: Array<[string, string]>) {
+export function coverRelations(
+  elements: string[],
+  relationPairs: Array<[string, string]>,
+) {
   const relates = new Set(relationPairs.map(([x, y]) => `${x}->${y}`));
   const leq = (x: string, y: string) => x === y || relates.has(`${x}->${y}`);
   return relationPairs.filter(([a, b]) => {
     if (a === b) return false;
-    return !elements.some((middle) => middle !== a && middle !== b && leq(a, middle) && leq(middle, b));
+    return !elements.some(
+      (middle) =>
+        middle !== a && middle !== b && leq(a, middle) && leq(middle, b),
+    );
   });
 }
 
@@ -220,7 +362,12 @@ export function booleanCircuitLayers(ast: BooleanAst) {
   let nextId = 0;
   const visit = (node: BooleanAst, depth = 0): string => {
     const id = `gate-${nextId++}`;
-    const label = node.type === "var" ? node.name : node.type === "not" ? "NOT" : node.op.toUpperCase();
+    const label =
+      node.type === "var"
+        ? node.name
+        : node.type === "not"
+          ? "NOT"
+          : node.op.toUpperCase();
     layers[depth] = [...(layers[depth] ?? []), { id, label }];
     if (node.type === "not") visit(node.child, depth + 1);
     if (node.type === "binary") {

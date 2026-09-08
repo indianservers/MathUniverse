@@ -42,14 +42,29 @@ export function similarTriangleAreaRatio(sideRatio: number) {
   return sideRatio ** 2;
 }
 
-export function classifyLinearSystem(a1: number, b1: number, c1: number, a2: number, b2: number, c2: number): LinearSystemVerdict {
+export function classifyLinearSystem(
+  a1: number,
+  b1: number,
+  c1: number,
+  a2: number,
+  b2: number,
+  c2: number,
+): LinearSystemVerdict {
   const det = a1 * b2 - a2 * b1;
   if (Math.abs(det) > 1e-9) return "unique";
-  const consistent = Math.abs(a1 * c2 - a2 * c1) < 1e-9 && Math.abs(b1 * c2 - b2 * c1) < 1e-9;
+  const consistent =
+    Math.abs(a1 * c2 - a2 * c1) < 1e-9 && Math.abs(b1 * c2 - b2 * c1) < 1e-9;
   return consistent ? "infinite" : "none";
 }
 
-export function solveLinearSystem(a1: number, b1: number, c1: number, a2: number, b2: number, c2: number) {
+export function solveLinearSystem(
+  a1: number,
+  b1: number,
+  c1: number,
+  a2: number,
+  b2: number,
+  c2: number,
+) {
   const det = a1 * b2 - a2 * b1;
   if (Math.abs(det) < 1e-9) return null;
   return {
@@ -59,24 +74,57 @@ export function solveLinearSystem(a1: number, b1: number, c1: number, a2: number
 }
 
 export function groupedStats(rows: GroupedClass[], assumedMean?: number) {
-  const validRows = rows.filter((row) => row.upper > row.lower && row.frequency >= 0);
+  const validRows = rows.filter(
+    (row) => row.upper > row.lower && row.frequency >= 0,
+  );
   const midpoints = validRows.map((row) => (row.lower + row.upper) / 2);
   const totalFrequency = validRows.reduce((sum, row) => sum + row.frequency, 0);
-  const fx = validRows.reduce((sum, row, index) => sum + row.frequency * midpoints[index], 0);
+  const fx = validRows.reduce(
+    (sum, row, index) => sum + row.frequency * midpoints[index],
+    0,
+  );
   const mean = totalFrequency > 0 ? fx / totalFrequency : 0;
   const classWidth = validRows[0] ? validRows[0].upper - validRows[0].lower : 1;
   const A = assumedMean ?? midpoints[Math.floor(midpoints.length / 2)] ?? 0;
-  const fu = validRows.reduce((sum, row, index) => sum + row.frequency * ((midpoints[index] - A) / classWidth), 0);
-  const assumedMeanValue = totalFrequency > 0 ? A + classWidth * (fu / totalFrequency) : 0;
+  const fu = validRows.reduce(
+    (sum, row, index) =>
+      sum + row.frequency * ((midpoints[index] - A) / classWidth),
+    0,
+  );
+  const assumedMeanValue =
+    totalFrequency > 0 ? A + classWidth * (fu / totalFrequency) : 0;
   const cumulative = validRows.reduce<number[]>((acc, row) => {
     acc.push((acc.at(-1) ?? 0) + row.frequency);
     return acc;
   }, []);
-  const modalIndex = validRows.reduce((best, row, index) => row.frequency > validRows[best].frequency ? index : best, 0);
-  const medianIndex = cumulative.findIndex((value) => value >= totalFrequency / 2);
+  const modalIndex = validRows.reduce(
+    (best, row, index) =>
+      row.frequency > validRows[best].frequency ? index : best,
+    0,
+  );
+  const medianIndex = cumulative.findIndex(
+    (value) => value >= totalFrequency / 2,
+  );
   const modal = modeForGrouped(validRows, modalIndex, classWidth);
-  const median = medianForGrouped(validRows, medianIndex < 0 ? 0 : medianIndex, cumulative, totalFrequency, classWidth);
-  return { rows: validRows, midpoints, cumulative, totalFrequency, mean, assumedMean: assumedMeanValue, modalIndex, medianIndex, modal, median };
+  const median = medianForGrouped(
+    validRows,
+    medianIndex < 0 ? 0 : medianIndex,
+    cumulative,
+    totalFrequency,
+    classWidth,
+  );
+  return {
+    rows: validRows,
+    midpoints,
+    cumulative,
+    totalFrequency,
+    mean,
+    assumedMean: assumedMeanValue,
+    modalIndex,
+    medianIndex,
+    modal,
+    median,
+  };
 }
 
 function modeForGrouped(rows: GroupedClass[], index: number, h: number) {
@@ -90,7 +138,13 @@ function modeForGrouped(rows: GroupedClass[], index: number, h: number) {
   return row.lower + ((f1 - f0) / denominator) * h;
 }
 
-function medianForGrouped(rows: GroupedClass[], index: number, cumulative: number[], n: number, h: number) {
+function medianForGrouped(
+  rows: GroupedClass[],
+  index: number,
+  cumulative: number[],
+  n: number,
+  h: number,
+) {
   const row = rows[index];
   if (!row || row.frequency === 0) return 0;
   const cfBefore = cumulative[index - 1] ?? 0;
@@ -106,7 +160,10 @@ export function triangleAreaFromTwoRadii(radius: number, angleDegrees: number) {
 }
 
 export function segmentArea(radius: number, angleDegrees: number) {
-  return sectorArea(radius, angleDegrees) - triangleAreaFromTwoRadii(radius, angleDegrees);
+  return (
+    sectorArea(radius, angleDegrees) -
+    triangleAreaFromTwoRadii(radius, angleDegrees)
+  );
 }
 
 export function annulusArea(outerRadius: number, innerRadius: number) {
@@ -149,7 +206,10 @@ export function frustumTSA(R: number, r: number, l: number) {
   return frustumCSA(R, r, l) + Math.PI * (R ** 2 + r ** 2);
 }
 
-export function heightFromAngleDistance(angleDegrees: number, distance: number) {
+export function heightFromAngleDistance(
+  angleDegrees: number,
+  distance: number,
+) {
   return distance * Math.tan((Math.PI * angleDegrees) / 180);
 }
 

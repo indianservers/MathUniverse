@@ -1,5 +1,11 @@
 import { describe, expect, it } from "vitest";
-import { polarAngleFromPixels, polarPetalCount, polarReferencePath, polarRosePath, polarRosePoint } from "./polarGraphsLesson44Model";
+import {
+  polarAngleFromPixels,
+  polarPetalCount,
+  polarReferencePath,
+  polarRosePath,
+  polarRosePoint,
+} from "./polarGraphsLesson44Model";
 
 describe("polar graphs lesson 44 model", () => {
   it("derives the live point from the displayed polar equation", () => {

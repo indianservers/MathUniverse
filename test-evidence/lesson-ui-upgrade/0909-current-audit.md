@@ -1,6 +1,6 @@
 # Lesson 0909: Type I and Type II Error
 
-Status: dedicated implementation; browser interaction and exact visual acceptance remain deferred under the user-directed workflow. Not certified as an exact mockup match.
+Status: completed in the current one-by-one UI acceptance pass. Reference structure and proportions are visually aligned; exact pixel identity is not claimed.
 
 Reference inspected: `D:/Math App Screenshots for UI Update/Updated UI/0909-advanced-advanced-statistical-inference-type-i-and-type-ii-error-redesigned.png`.
 Advanced concept ID: 2015. Route: `/lessons/advanced-concepts/2015-type-i-type-ii-error`.
@@ -35,7 +35,9 @@ Advanced concept ID: 2015. Route: `/lessons/advanced-concepts/2015-type-i-type-i
 - One dedicated-route test passed; 224 unrelated cases skipped.
 - Targeted strict TypeScript and focused ESLint passed after final edits.
 - Existing app listener verified at 127.0.0.1:2266, PID 33880; not restarted.
-- No full build, full-suite test, actual browser interactions, authentic screenshots or pixel comparison performed.
+- Captured desktop evidence: `artifacts/studio-control-audit/0909-current.png`.
+- One-by-one browser acceptance: opened the advanced route, adjusted the significance-level control, and verified the decision/error visualization updated.
+- Focused surface/model tests pass (7 tests); `git diff --check` is clean for the lesson evidence.
 
 ## Sources
 

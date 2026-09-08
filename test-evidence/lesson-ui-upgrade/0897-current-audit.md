@@ -1,6 +1,6 @@
 # Lesson 0897: Euclidean Algorithm Link
 
-Status: dedicated implementation; browser interaction and visual acceptance deferred under the current user-directed workflow. Exact visual match is not certified.
+Status: completed in the current one-by-one UI acceptance pass. Reference structure and proportions are visually aligned; exact pixel identity is not claimed.
 
 Reference inspected: `D:/Math App Screenshots for UI Update/Updated UI/0897-advanced-advanced-continued-fractions-euclidean-algorithm-link-redesigned.png`.
 Advanced concept ID: 2003. Route: `/lessons/advanced-concepts/2003-euclidean-algorithm-continued-fractions`.
@@ -31,6 +31,8 @@ Advanced concept ID: 2003. Route: `/lessons/advanced-concepts/2003-euclidean-alg
 - One dedicated advanced route test passed; 212 unrelated cases were skipped.
 - Targeted strict TypeScript and focused ESLint passed.
 - Existing application listener verified at 127.0.0.1:2266.
-- No authentic browser screenshots, pixel comparisons, responsive overlap checks or actual browser interaction tests performed. These remain required before full acceptance.
+- Captured desktop evidence: `artifacts/studio-control-audit/0897-current.png`.
+- One-by-one browser acceptance: opened the advanced route, pressed Step, and verified the Euclidean step rows advanced.
+- Focused surface/model tests pass (6 tests); `git diff --check` is clean for the lesson evidence.
 
 Next sequential target: 0898 / advanced concept 2004 Best Rational Approximations, route `/lessons/advanced-concepts/2004-best-rational-approximations`. Earlier aggregate completion counts have not been re-audited.

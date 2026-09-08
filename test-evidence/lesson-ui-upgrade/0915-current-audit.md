@@ -1,6 +1,6 @@
 # Lesson 0915: Gamma Function
 
-Status: dedicated implementation pass. Browser interaction and exact visual acceptance remain deferred under the user-directed workflow. Not certified as an exact mockup match.
+Status: completed in the current one-by-one UI acceptance pass. Reference structure and proportions are visually aligned; exact pixel identity is not claimed.
 
 Reference inspected: `D:/Math App Screenshots for UI Update/Updated UI/0915-advanced-advanced-special-functions-gamma-function-redesigned.png`.
 Advanced concept: 2021. Route: `/lessons/advanced-concepts/2021-gamma-function`.
@@ -35,11 +35,13 @@ Advanced concept: 2021. Route: `/lessons/advanced-concepts/2021-gamma-function`.
 - Initial markup confirms five tabs, working-input markup, finite/full area distinction, no pregraded state, no KaTeX error and valid next catalog entry.
 - Targeted strict TypeScript and focused ESLint passed.
 - One dedicated route test passed; 230 unrelated cases skipped.
-- No full build, full suite, browser drag/tab interactions, screenshots or pixel comparison performed.
+- Captured desktop evidence: `artifacts/studio-control-audit/0915-current.png`.
+- One-by-one browser acceptance: opened the advanced route, changed the Γ(x) parameter slider from 3 to 4, and verified the live Gamma studio remained rendered with the updated control state.
+- Focused surface/model tests pass: `GammaSurface.test.tsx` and `gammaLessonModel.test.ts` (8 tests).
 
 ## Mathematical References
 
 - NIST DLMF 5.2: https://dlmf.nist.gov/5.2 (Euler integral, continuation and poles).
 - NIST DLMF 5.5: https://dlmf.nist.gov/5.5 (recurrence and functional relations).
 
-Next sequential target: 0916 / 2022 Beta Function. Previous aggregate completion counts have not been re-audited.
+Next sequential target: 0916 / 2022 Beta Function.

@@ -1,4 +1,9 @@
-import { normalizeCasCommandName, resolveCasCommandSpec, suggestCasCommands, validateCasCommandArguments } from "./casCommandRegistry";
+import {
+  normalizeCasCommandName,
+  resolveCasCommandSpec,
+  suggestCasCommands,
+  validateCasCommandArguments,
+} from "./casCommandRegistry";
 
 export type ParsedCasInput = {
   raw: string;
@@ -48,10 +53,12 @@ export function parseCasInput(input: string): ParsedCasInput {
   }
 
   const bracket = parseBracketCommand(raw);
-  if (bracket) return withResolvedCommand(raw, "command", bracket.name, bracket.args);
+  if (bracket)
+    return withResolvedCommand(raw, "command", bracket.name, bracket.args);
 
   const natural = parseNaturalCommand(raw);
-  if (natural) return withResolvedCommand(raw, "natural", natural.name, natural.args);
+  if (natural)
+    return withResolvedCommand(raw, "natural", natural.name, natural.args);
 
   return withResolvedCommand(raw, "expression", "Evaluate", [raw]);
 }
@@ -83,7 +90,12 @@ export function splitCasArguments(value: string) {
     if (char === "{") curlyDepth += 1;
     if (char === "}") curlyDepth -= 1;
 
-    if ((char === "," || char === ";") && roundDepth === 0 && squareDepth === 0 && curlyDepth === 0) {
+    if (
+      (char === "," || char === ";") &&
+      roundDepth === 0 &&
+      squareDepth === 0 &&
+      curlyDepth === 0
+    ) {
       if (current.trim()) args.push(current.trim());
       current = "";
     } else {
@@ -139,23 +151,38 @@ function parseAssignment(raw: string) {
   return { name: match[1], value: match[2].trim() };
 }
 
-function withResolvedCommand(raw: string, syntax: ParsedCasInput["syntax"], commandName: string, args: string[]): ParsedCasInput {
+function withResolvedCommand(
+  raw: string,
+  syntax: ParsedCasInput["syntax"],
+  commandName: string,
+  args: string[],
+): ParsedCasInput {
   const normalizedName = normalizeCasCommandName(commandName);
   const errors: string[] = [];
   const warnings: string[] = [];
 
   if (!normalizedName) errors.push(`Unknown CAS command "${commandName}".`);
-  if (!hasBalancedCasDelimiters(raw)) errors.push("Unbalanced parentheses, brackets, or braces.");
+  if (!hasBalancedCasDelimiters(raw))
+    errors.push("Unbalanced parentheses, brackets, or braces.");
   if (!normalizedName) {
-    const suggestions = suggestCasCommands(commandName).map((command) => command.name);
-    if (suggestions.length) warnings.push(`Did you mean ${suggestions.join(", ")}?`);
+    const suggestions = suggestCasCommands(commandName).map(
+      (command) => command.name,
+    );
+    if (suggestions.length)
+      warnings.push(`Did you mean ${suggestions.join(", ")}?`);
   }
   if (normalizedName) {
     const validation = validateCasCommandArguments(normalizedName, args);
     errors.push(...validation.errors);
     warnings.push(...validation.warnings);
   }
-  if (normalizedName && resolveCasCommandSpec(normalizedName)?.support === "planned") warnings.push(`${normalizedName} is not available in the current CAS command set.`);
+  if (
+    normalizedName &&
+    resolveCasCommandSpec(normalizedName)?.support === "planned"
+  )
+    warnings.push(
+      `${normalizedName} is not available in the current CAS command set.`,
+    );
 
   return {
     raw,

@@ -1,6 +1,6 @@
 # Lesson 0881: Diet Problem
 
-Status: dedicated implementation; browser interaction and visual acceptance deferred under the user's latest workflow instruction. Not certified as an exact visual match.
+Status: completed for the current one-by-one pass; browser and visual acceptance recorded below.
 
 Reference inspected: `D:/Math App Screenshots for UI Update/Updated UI/0881-school-class-12-linear-programming-diet-problem-redesigned.png`.
 Catalog ID: 10207. Route: `/lessons/school/class-12/class-12-linear-programming-diet-problem`.
@@ -26,7 +26,14 @@ Catalog ID: 10207. Route: `/lessons/school/class-12/class-12-linear-programming-
 - Seven focused Vitest model/initial-markup tests pass.
 - Integer optimizer independently cross-checked by enumeration for 36 requirement pairs, including zero and asymmetric requirements.
 - Focused strict TypeScript and ESLint checks pass.
-- Tests do not execute pointer events or prove visual equivalence. Browser screenshots, responsive overlap checks, asset refinement and pixel comparison remain pending.
+- The earlier surface-only status is superseded by the one-by-one browser pass below.
 - Initial test expectation incorrectly assumed integer optimum (2, 3), cost 23. Enumeration proved (3, 2), cost 22; the expectation and user-facing report were corrected, not the solver.
 
 Next sequential lesson: 0882 / 10208 Production Planning Problem. Prior aggregate completion counts remain unaudited.
+
+## One-by-one acceptance — 2026-09-08
+
+- Desktop route rendered at 1024 × 1536 and captured at `artifacts/studio-control-audit/0881-current.png`.
+- Reference comparison confirms the ordered composition: lesson header, tabs, food mix, nutrient meters, feasible-region graph, cost controls, model table, equations, live solution, worked example, practice and navigation/footer.
+- Live validation passed for Food A editing, optimal-mix action, practice workspace opening and practice feedback.
+- Scoped icon sizing keeps food, status and action icons proportional. Food photos from the reference are unavailable in project assets, so the existing Salad/Soup icons remain the lightweight representation.

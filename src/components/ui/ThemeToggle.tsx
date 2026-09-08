@@ -15,7 +15,13 @@ export default function ThemeToggle() {
       title="Toggle theme"
       data-tooltip={`Theme: ${isHighContrast ? "High contrast" : isDark ? "Dark" : "Light"}`}
     >
-      {isHighContrast ? <Contrast className="h-5 w-5" /> : isDark ? <Sun className="h-5 w-5 transition-transform hover:rotate-12" /> : <Moon className="h-5 w-5 transition-transform hover:-rotate-12" />}
+      {isHighContrast ? (
+        <Contrast className="h-5 w-5" />
+      ) : isDark ? (
+        <Sun className="h-5 w-5 transition-transform hover:rotate-12" />
+      ) : (
+        <Moon className="h-5 w-5 transition-transform hover:-rotate-12" />
+      )}
     </button>
   );
 }

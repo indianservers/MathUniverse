@@ -31,7 +31,9 @@ export function createBoardDocument(title = "Untitled Board"): BoardDocument {
   };
 }
 
-export function serializeBoard(document: BoardDocument): SerializedBoardDocument {
+export function serializeBoard(
+  document: BoardDocument,
+): SerializedBoardDocument {
   return { schemaVersion: BOARD_SCHEMA_VERSION, document };
 }
 
@@ -51,48 +53,81 @@ export function migrateBoard(value: unknown): BoardDocument | null {
     },
     background: document.background ?? "grid",
     snapToGrid: document.snapToGrid ?? false,
-    relationships: Array.isArray(document.relationships) ? document.relationships : [],
-    actionHistory: Array.isArray(document.actionHistory) ? document.actionHistory : [],
-    solutionSequences: Array.isArray(document.solutionSequences) ? document.solutionSequences : [],
-    tutorMessages: Array.isArray(document.tutorMessages) ? document.tutorMessages : [],
+    relationships: Array.isArray(document.relationships)
+      ? document.relationships
+      : [],
+    actionHistory: Array.isArray(document.actionHistory)
+      ? document.actionHistory
+      : [],
+    solutionSequences: Array.isArray(document.solutionSequences)
+      ? document.solutionSequences
+      : [],
+    tutorMessages: Array.isArray(document.tutorMessages)
+      ? document.tutorMessages
+      : [],
     automaticRecognition: {
       mode: document.automaticRecognition?.mode ?? "manual",
       pauseMs: document.automaticRecognition?.pauseMs ?? 1_500,
-      minimumStrokeCount: document.automaticRecognition?.minimumStrokeCount ?? 2,
-      disabledForSession: document.automaticRecognition?.disabledForSession ?? false,
+      minimumStrokeCount:
+        document.automaticRecognition?.minimumStrokeCount ?? 2,
+      disabledForSession:
+        document.automaticRecognition?.disabledForSession ?? false,
       lastFingerprint: document.automaticRecognition?.lastFingerprint,
     },
-    intelligence: document.intelligence ?? createBoardIntelligencePersistence(document.id),
+    intelligence:
+      document.intelligence ?? createBoardIntelligencePersistence(document.id),
   };
 }
 
-export function readBoardLibrary(storage: Storage = localStorage): BoardDocument[] {
+export function readBoardLibrary(
+  storage: Storage = localStorage,
+): BoardDocument[] {
   try {
-    const parsed = JSON.parse(storage.getItem(BOARD_LIBRARY_KEY) ?? "[]") as unknown[];
-    return Array.isArray(parsed) ? parsed.map(migrateBoard).filter((item): item is BoardDocument => Boolean(item)) : [];
+    const parsed = JSON.parse(
+      storage.getItem(BOARD_LIBRARY_KEY) ?? "[]",
+    ) as unknown[];
+    return Array.isArray(parsed)
+      ? parsed
+          .map(migrateBoard)
+          .filter((item): item is BoardDocument => Boolean(item))
+      : [];
   } catch {
     return [];
   }
 }
 
-export function saveBoard(document: BoardDocument, storage: Storage = localStorage): BoardDocument[] {
+export function saveBoard(
+  document: BoardDocument,
+  storage: Storage = localStorage,
+): BoardDocument[] {
   const updated = { ...document, updatedAt: new Date().toISOString() };
-  const next = [updated, ...readBoardLibrary(storage).filter((item) => item.id !== updated.id)].slice(0, 32);
+  const next = [
+    updated,
+    ...readBoardLibrary(storage).filter((item) => item.id !== updated.id),
+  ].slice(0, 32);
   storage.setItem(BOARD_LIBRARY_KEY, JSON.stringify(next.map(serializeBoard)));
   return next;
 }
 
-export function deleteBoard(id: string, storage: Storage = localStorage): BoardDocument[] {
+export function deleteBoard(
+  id: string,
+  storage: Storage = localStorage,
+): BoardDocument[] {
   const next = readBoardLibrary(storage).filter((item) => item.id !== id);
   storage.setItem(BOARD_LIBRARY_KEY, JSON.stringify(next.map(serializeBoard)));
   return next;
 }
 
-export function saveDraft(document: BoardDocument, storage: Storage = localStorage) {
+export function saveDraft(
+  document: BoardDocument,
+  storage: Storage = localStorage,
+) {
   storage.setItem(BOARD_DRAFT_KEY, JSON.stringify(serializeBoard(document)));
 }
 
-export function recoverDraft(storage: Storage = localStorage): BoardDocument | null {
+export function recoverDraft(
+  storage: Storage = localStorage,
+): BoardDocument | null {
   try {
     return migrateBoard(JSON.parse(storage.getItem(BOARD_DRAFT_KEY) ?? "null"));
   } catch {

@@ -1,0 +1,354 @@
+.lesson-shell:has(.tm48-page) > header,
+.lesson-shell:has(.tm48-page) > .lesson-workbench,
+.lesson-shell:has(.tm48-page) > .lesson-reset-row {
+  display: none;
+}
+.lesson-shell:has(.tm48-page) {
+  max-width: none;
+  padding: 0;
+}
+.tm48-page {
+  --ink: #101942;
+  color: var(--ink);
+  background: linear-gradient(145deg, #effcff, #fff 48%, #f5eeff);
+  padding: 20px;
+  min-height: 100vh;
+  font-family: Inter, system-ui, sans-serif;
+  letter-spacing: 0;
+}
+.tm48-page button,
+.tm48-page input {
+  font: inherit;
+}
+.tm48-breadcrumb {
+  font-size: 14px;
+  color: #60718b;
+  margin: 0 0 22px;
+}
+.tm48-hero {
+  display: flex;
+  justify-content: space-between;
+  background: #fff;
+  border: 1px solid #d9e5f1;
+  border-radius: 20px;
+  padding: 24px;
+}
+.tm48-hero h1 {
+  font-size: 40px;
+  margin: 0 0 3px;
+}
+.tm48-hero p {
+  font-size: 17px;
+  color: #566780;
+  margin: 0;
+}
+.tm48-hero nav,
+.tm48-hero > section {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+.tm48-hero nav > * {
+  border: 1px solid #d7e2ed;
+  border-radius: 17px;
+  padding: 8px 13px;
+  font-size: 11px;
+}
+.tm48-hero > section button {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid #d7e2ed;
+  background: #fff;
+  border-radius: 9px;
+  padding: 10px 14px;
+  height: max-content;
+}
+.tm48-hero svg {
+  width: 16px;
+}
+.tm48-tabs {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  background: #fff;
+  border: 1px solid #d7e2ed;
+  border-radius: 15px;
+  padding: 10px;
+  margin-top: 12px;
+}
+.tm48-tabs button {
+  border: 0;
+  background: #fff;
+  padding: 13px;
+  font-weight: 700;
+  color: #394763;
+}
+.tm48-tabs button.active {
+  background: #079caf;
+  color: #fff;
+  border-radius: 9px;
+}
+.tm48-lab {
+  background: #fff;
+  border: 1px solid #d7e2ed;
+  border-radius: 15px;
+  padding: 16px;
+  margin-top: 14px;
+}
+.tm48-lab > header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.tm48-lab > header > div {
+  margin-right: auto;
+}
+.tm48-lab h2 {
+  font-size: 16px;
+  margin: 0;
+}
+.tm48-lab > header p {
+  font-size: 12px;
+  color: #5b6b83;
+}
+.tm48-lab > header > b,
+.tm48-lab > header > span {
+  border: 1px solid #d7e2ed;
+  border-radius: 17px;
+  padding: 8px 12px;
+  font-size: 11px;
+}
+.tm48-lab > header > b {
+  border-color: #eec66d;
+  background: #fff9e9;
+  color: #ae6100;
+}
+.tm48-lab > header > button {
+  border: 1px solid #d7e2ed;
+  background: #fff;
+  border-radius: 8px;
+  padding: 7px;
+}
+.tm48-lab > header svg {
+  width: 16px;
+}
+.tm48-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 2.7fr) minmax(270px, 1.15fr);
+  gap: 14px;
+}
+.tm48-graph,
+.tm48-controls {
+  border: 1px solid #d7e2ed;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.tm48-graph > svg {
+  display: block;
+  width: 100%;
+  aspect-ratio: 690/560;
+}
+.tm48-graph .axis {
+  stroke: #172443;
+  stroke-width: 1.4;
+}
+.tm48-graph .formula {
+  fill: #087f91;
+  font-size: 14px;
+  font-weight: 700;
+}
+.tm48-graph .curve {
+  fill: none;
+  stroke: #079caf;
+  stroke-width: 3;
+}
+.tm48-graph .tangent {
+  fill: none;
+  stroke: #f2940b;
+  stroke-width: 2;
+}
+.tm48-graph .trace-guide {
+  stroke: #4388f5;
+  stroke-width: 1.5;
+  stroke-dasharray: 6 5;
+}
+.tm48-graph .history {
+  fill: #42c5d4;
+}
+.tm48-graph .trace-point {
+  fill: #8a3fe1;
+  stroke: #fff;
+  stroke-width: 4;
+  cursor: ew-resize;
+}
+.tm48-label rect {
+  fill: #fff;
+  stroke: #d6e2ed;
+}
+.tm48-label text {
+  fill: #7436ce;
+  font-size: 12px;
+  font-weight: 700;
+}
+.tm48-controls {
+  padding: 17px;
+}
+.tm48-controls > h2 {
+  display: flex;
+  align-items: center;
+}
+.tm48-controls > h2 i {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #8a3fe1;
+  margin-left: 8px;
+}
+.tm48-controls > output {
+  display: grid;
+  gap: 6px;
+  color: #6e38d3;
+  font-size: 18px;
+}
+.tm48-controls > label {
+  display: grid;
+  margin-top: 20px;
+  font-size: 12px;
+  font-weight: 700;
+}
+.tm48-controls input[type="range"] {
+  width: 100%;
+  accent-color: #843bdc;
+}
+.tm48-controls label small {
+  display: flex;
+  justify-content: space-between;
+  color: #66768d;
+  font-weight: 400;
+}
+.tm48-controls label input[type="number"],
+.tm48-controls label output {
+  justify-self: center;
+  width: 90px;
+  border: 1px solid #d7e2ed;
+  border-radius: 7px;
+  padding: 7px;
+  text-align: center;
+  margin-top: 6px;
+}
+.tm48-controls > section {
+  margin-top: 18px;
+}
+.tm48-controls section h3 {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+}
+.tm48-controls section h3 b {
+  color: #e98200;
+  font-size: 18px;
+}
+.tm48-controls section p {
+  font-size: 11px;
+  color: #5e6f86;
+}
+.tm48-controls > nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.tm48-controls > nav button {
+  border: 1px solid #d7e2ed;
+  background: #fff;
+  border-radius: 8px;
+  padding: 9px;
+  font-size: 10px;
+}
+.tm48-controls > p {
+  border: 1px solid #aacef4;
+  background: #f4f9ff;
+  border-radius: 8px;
+  padding: 11px;
+  color: #315f98;
+  font-size: 11px;
+}
+.tm48-nearby {
+  border: 1px solid #d7e2ed;
+  border-radius: 11px;
+  margin-top: 12px;
+  padding: 12px;
+}
+.tm48-nearby h2 {
+  font-size: 13px;
+}
+.tm48-nearby table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 10px;
+}
+.tm48-nearby th,
+.tm48-nearby td {
+  border: 1px solid #d7e2ed;
+  padding: 8px;
+  text-align: center;
+}
+.tm48-nearby td.active {
+  background: #f5efff;
+  border-color: #9c63e8;
+  color: #7535cf;
+  font-weight: 700;
+}
+.tm48-nearby p {
+  font-size: 10px;
+  color: #60718a;
+}
+.tm48-adjacent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 14px;
+}
+.tm48-adjacent a {
+  display: flex;
+  justify-content: space-between;
+  background: #fff;
+  border: 1px solid #d7e2ed;
+  border-radius: 12px;
+  padding: 14px;
+  text-decoration: none;
+  color: #35445e;
+}
+.tm48-adjacent span {
+  display: grid;
+  font-size: 10px;
+}
+.tm48-adjacent b {
+  font-size: 13px;
+  margin-top: 3px;
+}
+@media (max-width: 900px) {
+  .tm48-page {
+    padding: 8px;
+  }
+  .tm48-hero {
+    display: block;
+  }
+  .tm48-hero h1 {
+    font-size: 32px;
+  }
+  .tm48-tabs {
+    grid-template-columns: 1fr 1fr;
+  }
+  .tm48-workspace {
+    grid-template-columns: 1fr;
+  }
+  .tm48-graph {
+    overflow: auto;
+  }
+  .tm48-graph > svg {
+    min-width: 620px;
+  }
+  .tm48-adjacent {
+    grid-template-columns: 1fr;
+  }
+}

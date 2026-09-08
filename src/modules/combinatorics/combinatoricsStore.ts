@@ -43,11 +43,15 @@ export const useCombinatoricsStore = create<CombinatoricsState>()(
       setAllowRepeat: (allowRepeat) => set({ allowRepeat }),
       setConstraint: (constraint) => set({ constraint }),
       setPascalRows: (pascalRows) => set({ pascalRows }),
-      setBinomialPower: (binomialPower) => set({ binomialPower, selectedTerm: 0 }),
+      setBinomialPower: (binomialPower) =>
+        set({ binomialPower, selectedTerm: 0 }),
       setMultinomialPower: (multinomialPower) => set({ multinomialPower }),
       setSelectedTerm: (selectedTerm) => set({ selectedTerm }),
       randomizeChallenge: () => set({ challengeSeed: Date.now() }),
     }),
-    { name: "math-universe-combinatorics-session", storage: createJSONStorage(() => localStorage) }
-  )
+    {
+      name: "math-universe-combinatorics-session",
+      storage: createJSONStorage(() => localStorage),
+    },
+  ),
 );

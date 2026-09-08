@@ -10,7 +10,10 @@ type FittableSeries = {
 const MIN_SPAN = 1e-6;
 const MAX_SPAN = 1e8;
 
-export function zoomGraphView(view: FunctionGraphView, factor: number): FunctionGraphView {
+export function zoomGraphView(
+  view: FunctionGraphView,
+  factor: number,
+): FunctionGraphView {
   const centerX = (view.xMin + view.xMax) / 2;
   const centerY = (view.yMin + view.yMax) / 2;
   const width = clampSpan((view.xMax - view.xMin) * factor);
@@ -23,11 +26,20 @@ export function zoomGraphView(view: FunctionGraphView, factor: number): Function
   };
 }
 
-export function fitGraphView(series: FittableSeries[], fallback: FunctionGraphView): FunctionGraphView {
+export function fitGraphView(
+  series: FittableSeries[],
+  fallback: FunctionGraphView,
+): FunctionGraphView {
   const points = series
     .filter((item) => item.visible && !item.error)
     .flatMap((item) => item.points)
-    .filter((point): point is GraphSample & { y: number } => point.valid && point.y !== null && Number.isFinite(point.x) && Number.isFinite(point.y));
+    .filter(
+      (point): point is GraphSample & { y: number } =>
+        point.valid &&
+        point.y !== null &&
+        Number.isFinite(point.x) &&
+        Number.isFinite(point.y),
+    );
   if (!points.length) return fallback;
 
   const xs = points.map((point) => point.x).sort((a, b) => a - b);
@@ -40,11 +52,18 @@ export function fitGraphView(series: FittableSeries[], fallback: FunctionGraphVi
   return paddedView(xMin, xMax, yMin, yMax);
 }
 
-function paddedView(xMin: number, xMax: number, yMin: number, yMax: number): FunctionGraphView {
+function paddedView(
+  xMin: number,
+  xMax: number,
+  yMin: number,
+  yMax: number,
+): FunctionGraphView {
   const xSpan = Math.max(MIN_SPAN, xMax - xMin);
   const ySpan = Math.max(MIN_SPAN, yMax - yMin);
-  const xPadding = xSpan <= MIN_SPAN ? Math.max(1, Math.abs(xMin) * 0.2) : xSpan * 0.08;
-  const yPadding = ySpan <= MIN_SPAN ? Math.max(1, Math.abs(yMin) * 0.2) : ySpan * 0.1;
+  const xPadding =
+    xSpan <= MIN_SPAN ? Math.max(1, Math.abs(xMin) * 0.2) : xSpan * 0.08;
+  const yPadding =
+    ySpan <= MIN_SPAN ? Math.max(1, Math.abs(yMin) * 0.2) : ySpan * 0.1;
   return {
     xMin: xMin - xPadding,
     xMax: xMax + xPadding,
@@ -55,7 +74,12 @@ function paddedView(xMin: number, xMax: number, yMin: number, yMax: number): Fun
 
 function percentile(values: number[], ratio: number) {
   if (!values.length) return 0;
-  return values[Math.min(values.length - 1, Math.max(0, Math.round((values.length - 1) * ratio)))];
+  return values[
+    Math.min(
+      values.length - 1,
+      Math.max(0, Math.round((values.length - 1) * ratio)),
+    )
+  ];
 }
 
 function clampSpan(value: number) {

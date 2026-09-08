@@ -43,12 +43,17 @@ export function conditionalSummary(aKind: EventAKind, bKind: EventBKind) {
     intersection,
     aOutsideB,
     neitherAWithinB,
-    outsideBoth: dicePairs.length - intersection.length - aOutsideB - neitherAWithinB,
+    outsideBoth:
+      dicePairs.length - intersection.length - aOutsideB - neitherAWithinB,
     probability: b.length === 0 ? 0 : intersection.length / b.length,
   };
 }
 
-export function cellRegion(pair: DicePair, aKind: EventAKind, bKind: EventBKind) {
+export function cellRegion(
+  pair: DicePair,
+  aKind: EventAKind,
+  bKind: EventBKind,
+) {
   const a = matchesA(pair, aKind);
   const b = matchesB(pair, bKind);
   return a && b ? "both" : a ? "a" : b ? "b" : "neither";

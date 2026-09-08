@@ -3,7 +3,13 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { MemoryRouter } from "react-router-dom";
 import { describe, expect, it } from "vitest";
 import { certifyGeometryConstruction } from "../../../workspace/geometryConstructionCertification";
-import GeometryWorkspacePanel, { type Construction, type GeometryGraphSettings, type GeometryTool, type SelectedGeometryObject, type WorkspaceImage } from "./GeometryWorkspacePanel";
+import GeometryWorkspacePanel, {
+  type Construction,
+  type GeometryGraphSettings,
+  type GeometryTool,
+  type SelectedGeometryObject,
+  type WorkspaceImage,
+} from "./GeometryWorkspacePanel";
 
 const construction: Construction = {
   points: [
@@ -11,11 +17,23 @@ const construction: Construction = {
     { id: "b", x: 320, y: 200, label: "B" },
     { id: "c", x: 260, y: 100, label: "C" },
   ],
-  lines: [{ id: "ab", a: "a", b: "b", style: { label: "segment", color: "#22d3ee" } }],
+  lines: [
+    { id: "ab", a: "a", b: "b", style: { label: "segment", color: "#22d3ee" } },
+  ],
   circles: [{ id: "circle-a", center: "a", edge: "c" }],
   polygons: [{ id: "tri", points: ["a", "b", "c"] }],
   arcs: [{ id: "angle-abc", center: "b", start: "a", end: "c", kind: "angle" }],
-  loci: [{ id: "trace-a", label: "trace A", points: [{ x: 150, y: 200 }, { x: 170, y: 205 }], style: { color: "#ec4899" } }],
+  loci: [
+    {
+      id: "trace-a",
+      label: "trace A",
+      points: [
+        { x: 150, y: 200 },
+        { x: 170, y: 205 },
+      ],
+      style: { color: "#ec4899" },
+    },
+  ],
   constraints: [{ id: "mid-ab", type: "midpoint", a: "a", b: "b", point: "c" }],
 };
 
@@ -41,58 +59,66 @@ const graphSettings: GeometryGraphSettings = {
   snapToObjects: true,
 };
 
-function renderPanel(options: {
-  activeTool?: GeometryTool;
-  selectedGeometry?: SelectedGeometryObject | null;
-  selectedPointIds?: string[];
-  polygonDraft?: string[];
-  picks?: SelectedGeometryObject[];
-  images?: WorkspaceImage[];
-  sidebar?: React.ReactNode;
-} = {}) {
+function renderPanel(
+  options: {
+    activeTool?: GeometryTool;
+    selectedGeometry?: SelectedGeometryObject | null;
+    selectedPointIds?: string[];
+    polygonDraft?: string[];
+    picks?: SelectedGeometryObject[];
+    images?: WorkspaceImage[];
+    sidebar?: React.ReactNode;
+  } = {},
+) {
   return renderToStaticMarkup(
     <MemoryRouter>
-    <GeometryWorkspacePanel
-      activeTool={options.activeTool ?? "point"}
-      construction={construction}
-      selectedGeometry={options.selectedGeometry ?? null}
-      selectedPointIds={options.selectedPointIds ?? []}
-      polygonDraft={options.polygonDraft ?? []}
-      geometryObjectPicks={options.picks ?? []}
-      constructionAccuracyReport={certifyGeometryConstruction(construction)}
-      workspaceImages={options.images ?? []}
-      selectedImageId={options.images?.[0]?.id ?? null}
-      graphSettings={graphSettings}
-      boardRef={createRef<SVGSVGElement>()}
-      imageInputRef={createRef<HTMLInputElement>()}
-      sidebar={options.sidebar ?? <aside data-testid="workspace-geometry-object-list">Inspector</aside>}
-      onImageUpload={() => undefined}
-      onToolChange={() => undefined}
-      onSelectAll={() => undefined}
-      onMoveSelected={() => undefined}
-      onRotateSelected={() => undefined}
-      onDilateSelected={() => undefined}
-      onResizeSelected={() => undefined}
-      onUndo={() => undefined}
-      onRedo={() => undefined}
-      onDeleteSelected={() => undefined}
-      onShowHide={() => undefined}
-      onLockSelected={() => undefined}
-      onTraceSelected={() => undefined}
-      onStopTrace={() => undefined}
-      onClearTrace={() => undefined}
-      onReset={() => undefined}
-      onSave={() => undefined}
-      onLoad={() => undefined}
-      onGraphSettingsChange={() => undefined}
-      onClearPendingPicks={() => undefined}
-      onBoardPointerDown={() => undefined}
-      onBoardPointerMove={() => undefined}
-      onBoardPointerUp={() => undefined}
-      onBoardPointerLeave={() => undefined}
-      onBoardContextMenu={() => undefined}
-      onGeometryExportRef={() => undefined}
-    />
+      <GeometryWorkspacePanel
+        activeTool={options.activeTool ?? "point"}
+        construction={construction}
+        selectedGeometry={options.selectedGeometry ?? null}
+        selectedPointIds={options.selectedPointIds ?? []}
+        polygonDraft={options.polygonDraft ?? []}
+        geometryObjectPicks={options.picks ?? []}
+        constructionAccuracyReport={certifyGeometryConstruction(construction)}
+        workspaceImages={options.images ?? []}
+        selectedImageId={options.images?.[0]?.id ?? null}
+        graphSettings={graphSettings}
+        boardRef={createRef<SVGSVGElement>()}
+        imageInputRef={createRef<HTMLInputElement>()}
+        sidebar={
+          options.sidebar ?? (
+            <aside data-testid="workspace-geometry-object-list">
+              Inspector
+            </aside>
+          )
+        }
+        onImageUpload={() => undefined}
+        onToolChange={() => undefined}
+        onSelectAll={() => undefined}
+        onMoveSelected={() => undefined}
+        onRotateSelected={() => undefined}
+        onDilateSelected={() => undefined}
+        onResizeSelected={() => undefined}
+        onUndo={() => undefined}
+        onRedo={() => undefined}
+        onDeleteSelected={() => undefined}
+        onShowHide={() => undefined}
+        onLockSelected={() => undefined}
+        onTraceSelected={() => undefined}
+        onStopTrace={() => undefined}
+        onClearTrace={() => undefined}
+        onReset={() => undefined}
+        onSave={() => undefined}
+        onLoad={() => undefined}
+        onGraphSettingsChange={() => undefined}
+        onClearPendingPicks={() => undefined}
+        onBoardPointerDown={() => undefined}
+        onBoardPointerMove={() => undefined}
+        onBoardPointerUp={() => undefined}
+        onBoardPointerLeave={() => undefined}
+        onBoardContextMenu={() => undefined}
+        onGeometryExportRef={() => undefined}
+      />
     </MemoryRouter>,
   );
 }
@@ -136,47 +162,51 @@ describe("GeometryWorkspacePanel", () => {
   it("can hide point labels and measurement overlays through graph settings", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter>
-      <GeometryWorkspacePanel
-        activeTool="point"
-        construction={construction}
-        selectedGeometry={null}
-        selectedPointIds={[]}
-        polygonDraft={[]}
-        geometryObjectPicks={[]}
-        constructionAccuracyReport={certifyGeometryConstruction(construction)}
-        workspaceImages={[]}
-        selectedImageId={null}
-        graphSettings={{ ...graphSettings, showPointLabels: false, showMeasurements: false }}
-        boardRef={createRef<SVGSVGElement>()}
-        imageInputRef={createRef<HTMLInputElement>()}
-        sidebar={<aside>Inspector</aside>}
-        onImageUpload={() => undefined}
-        onToolChange={() => undefined}
-        onSelectAll={() => undefined}
-        onMoveSelected={() => undefined}
-        onRotateSelected={() => undefined}
-        onDilateSelected={() => undefined}
-        onResizeSelected={() => undefined}
-        onUndo={() => undefined}
-        onRedo={() => undefined}
-        onDeleteSelected={() => undefined}
-        onShowHide={() => undefined}
-        onLockSelected={() => undefined}
-        onTraceSelected={() => undefined}
-        onStopTrace={() => undefined}
-        onClearTrace={() => undefined}
-        onReset={() => undefined}
-        onSave={() => undefined}
-        onLoad={() => undefined}
-        onGraphSettingsChange={() => undefined}
-        onClearPendingPicks={() => undefined}
-        onBoardPointerDown={() => undefined}
-        onBoardPointerMove={() => undefined}
-        onBoardPointerUp={() => undefined}
-        onBoardPointerLeave={() => undefined}
-        onBoardContextMenu={() => undefined}
-        onGeometryExportRef={() => undefined}
-      />
+        <GeometryWorkspacePanel
+          activeTool="point"
+          construction={construction}
+          selectedGeometry={null}
+          selectedPointIds={[]}
+          polygonDraft={[]}
+          geometryObjectPicks={[]}
+          constructionAccuracyReport={certifyGeometryConstruction(construction)}
+          workspaceImages={[]}
+          selectedImageId={null}
+          graphSettings={{
+            ...graphSettings,
+            showPointLabels: false,
+            showMeasurements: false,
+          }}
+          boardRef={createRef<SVGSVGElement>()}
+          imageInputRef={createRef<HTMLInputElement>()}
+          sidebar={<aside>Inspector</aside>}
+          onImageUpload={() => undefined}
+          onToolChange={() => undefined}
+          onSelectAll={() => undefined}
+          onMoveSelected={() => undefined}
+          onRotateSelected={() => undefined}
+          onDilateSelected={() => undefined}
+          onResizeSelected={() => undefined}
+          onUndo={() => undefined}
+          onRedo={() => undefined}
+          onDeleteSelected={() => undefined}
+          onShowHide={() => undefined}
+          onLockSelected={() => undefined}
+          onTraceSelected={() => undefined}
+          onStopTrace={() => undefined}
+          onClearTrace={() => undefined}
+          onReset={() => undefined}
+          onSave={() => undefined}
+          onLoad={() => undefined}
+          onGraphSettingsChange={() => undefined}
+          onClearPendingPicks={() => undefined}
+          onBoardPointerDown={() => undefined}
+          onBoardPointerMove={() => undefined}
+          onBoardPointerUp={() => undefined}
+          onBoardPointerLeave={() => undefined}
+          onBoardContextMenu={() => undefined}
+          onGeometryExportRef={() => undefined}
+        />
       </MemoryRouter>,
     );
 
@@ -206,56 +236,71 @@ describe("GeometryWorkspacePanel", () => {
       images: [image],
     });
 
-    expect(html).toContain("data-image-id=\"image-1\"");
+    expect(html).toContain('data-image-id="image-1"');
     expect(html).toContain("<polyline");
-    expect(html).toContain("stroke=\"#f97316\"");
+    expect(html).toContain('stroke="#f97316"');
   });
 
   it("handles empty construction state safely", () => {
-    const emptyConstruction: Construction = { points: [], lines: [], circles: [], polygons: [], arcs: [], loci: [], constraints: [] };
+    const emptyConstruction: Construction = {
+      points: [],
+      lines: [],
+      circles: [],
+      polygons: [],
+      arcs: [],
+      loci: [],
+      constraints: [],
+    };
     const html = renderToStaticMarkup(
       <MemoryRouter>
-      <GeometryWorkspacePanel
-        activeTool="select"
-        construction={emptyConstruction}
-        selectedGeometry={null}
-        selectedPointIds={[]}
-        polygonDraft={[]}
-        geometryObjectPicks={[]}
-        constructionAccuracyReport={certifyGeometryConstruction(emptyConstruction)}
-        workspaceImages={[]}
-        selectedImageId={null}
-        graphSettings={{ ...graphSettings, showGrid: false, showAxes: false, showUnitLabels: false }}
-        boardRef={createRef<SVGSVGElement>()}
-        imageInputRef={createRef<HTMLInputElement>()}
-        sidebar={<aside>Empty inspector</aside>}
-        onImageUpload={() => undefined}
-        onToolChange={() => undefined}
-        onSelectAll={() => undefined}
-        onMoveSelected={() => undefined}
-        onRotateSelected={() => undefined}
-        onDilateSelected={() => undefined}
-        onResizeSelected={() => undefined}
-        onUndo={() => undefined}
-        onRedo={() => undefined}
-        onDeleteSelected={() => undefined}
-        onShowHide={() => undefined}
-        onLockSelected={() => undefined}
-        onTraceSelected={() => undefined}
-        onStopTrace={() => undefined}
-        onClearTrace={() => undefined}
-        onReset={() => undefined}
-        onSave={() => undefined}
-        onLoad={() => undefined}
-        onGraphSettingsChange={() => undefined}
-        onClearPendingPicks={() => undefined}
-        onBoardPointerDown={() => undefined}
-        onBoardPointerMove={() => undefined}
-        onBoardPointerUp={() => undefined}
-        onBoardPointerLeave={() => undefined}
-        onBoardContextMenu={() => undefined}
-        onGeometryExportRef={() => undefined}
-      />
+        <GeometryWorkspacePanel
+          activeTool="select"
+          construction={emptyConstruction}
+          selectedGeometry={null}
+          selectedPointIds={[]}
+          polygonDraft={[]}
+          geometryObjectPicks={[]}
+          constructionAccuracyReport={certifyGeometryConstruction(
+            emptyConstruction,
+          )}
+          workspaceImages={[]}
+          selectedImageId={null}
+          graphSettings={{
+            ...graphSettings,
+            showGrid: false,
+            showAxes: false,
+            showUnitLabels: false,
+          }}
+          boardRef={createRef<SVGSVGElement>()}
+          imageInputRef={createRef<HTMLInputElement>()}
+          sidebar={<aside>Empty inspector</aside>}
+          onImageUpload={() => undefined}
+          onToolChange={() => undefined}
+          onSelectAll={() => undefined}
+          onMoveSelected={() => undefined}
+          onRotateSelected={() => undefined}
+          onDilateSelected={() => undefined}
+          onResizeSelected={() => undefined}
+          onUndo={() => undefined}
+          onRedo={() => undefined}
+          onDeleteSelected={() => undefined}
+          onShowHide={() => undefined}
+          onLockSelected={() => undefined}
+          onTraceSelected={() => undefined}
+          onStopTrace={() => undefined}
+          onClearTrace={() => undefined}
+          onReset={() => undefined}
+          onSave={() => undefined}
+          onLoad={() => undefined}
+          onGraphSettingsChange={() => undefined}
+          onClearPendingPicks={() => undefined}
+          onBoardPointerDown={() => undefined}
+          onBoardPointerMove={() => undefined}
+          onBoardPointerUp={() => undefined}
+          onBoardPointerLeave={() => undefined}
+          onBoardContextMenu={() => undefined}
+          onGeometryExportRef={() => undefined}
+        />
       </MemoryRouter>,
     );
 

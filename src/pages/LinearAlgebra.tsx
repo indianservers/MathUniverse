@@ -1,3 +1,5 @@
+import { shareStudio } from "../utils/shareStudio";
+import { useStudioMode } from "../hooks/useStudioMode";
 import { CheckCircle2, Clock3, ExternalLink, Home, Share2, Sparkles } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
@@ -24,11 +26,11 @@ const modes: Array<{ id: LinearAlgebraMode; label: string }> = [
 export default function LinearAlgebra() {
   const topic = topics.find((item) => item.id === "linear-algebra")!;
   const { getTopicProgress, markTopicVisited, markTopicInteracted } = useProgress();
-  const [mode, setMode] = useState<LinearAlgebraMode>(() => new URLSearchParams(window.location.search).get("mode") === "advanced" ? "advanced" : "vectors");
+  const [mode, setMode] = useStudioMode("mode", modes.map((item) => item.id), "vectors");
   const progress = getTopicProgress(topic.id);
   const progressPercent = useMemo(() => {
     const normalized = progress > 1 ? progress : progress * 100;
-    return Math.max(25, Math.min(100, Math.round(normalized)));
+    return Math.max(0, Math.min(100, Math.round(normalized)));
   }, [progress]);
 
   useEffect(() => markTopicVisited(topic.id), [markTopicVisited, topic.id]);
@@ -36,13 +38,9 @@ export default function LinearAlgebra() {
     document.title = "Linear Algebra Studio | Math Universe";
   }, []);
 
+  const [shareStatus, setShareStatus] = useState("");
   const shareSetup = async () => {
-    const url = window.location.href;
-    if (navigator.share) {
-      await navigator.share({ title: "Linear Algebra Studio", url });
-      return;
-    }
-    await navigator.clipboard?.writeText(url);
+    setShareStatus(await shareStudio("Linear Algebra Studio"));
   };
 
   return (
@@ -60,13 +58,13 @@ export default function LinearAlgebra() {
           <span className="la-progress"><CheckCircle2 />In progress - {progressPercent}%</span>
           <span>Advanced</span>
           <span><Clock3 />60 min</span>
-          <button type="button" onClick={() => void shareSetup()}><Share2 />Share this setup</button>
+          <button type="button" onClick={() => void shareSetup()}><Share2 />Share this setup</button>{shareStatus && <p role="status" style={{ overflowWrap: "anywhere" }}>{shareStatus}</p>}
         </div>
       </header>
 
       <nav className="la-mode-tabs" aria-label="Linear algebra modes">
         {modes.map((item) => (
-          <button key={item.id} type="button" className={mode === item.id ? "active" : ""} onClick={() => { setMode(item.id); const url=new URL(window.location.href); if(item.id==="vectors")url.searchParams.delete("mode");else url.searchParams.set("mode",item.id); window.history.pushState(null,"",`${url.pathname}${url.search}`); }}>
+          <button key={item.id} type="button" className={mode === item.id ? "active" : ""} onClick={() => setMode(item.id)}>
             {item.label}
           </button>
         ))}

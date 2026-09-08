@@ -1,5 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { mobileNativeCapabilities, mobileNativeCommandPlan, mobileNativeReadinessScore } from "./mobileNativeReadiness";
+import {
+  mobileNativeCapabilities,
+  mobileNativeCommandPlan,
+  mobileNativeReadinessScore,
+} from "./mobileNativeReadiness";
 
 describe("mobile native readiness", () => {
   it("tracks launch-critical mobile native capabilities", () => {

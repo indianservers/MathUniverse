@@ -1,6 +1,6 @@
 # Lesson 0905: Confidence Intervals
 
-Status: dedicated implementation; browser interaction and exact visual acceptance remain deferred under the user-directed workflow. Not certified as a pixel match.
+Status: completed in the current one-by-one UI acceptance pass. Reference structure and proportions are visually aligned; exact pixel identity is not claimed.
 
 Reference inspected: `D:/Math App Screenshots for UI Update/Updated UI/0905-advanced-advanced-statistical-inference-confidence-intervals-redesigned.png`.
 Advanced concept ID: 2011. Route: `/lessons/advanced-concepts/2011-confidence-intervals`.
@@ -33,7 +33,9 @@ Advanced concept ID: 2011. Route: `/lessons/advanced-concepts/2011-confidence-in
 - Targeted strict TypeScript and focused ESLint passed.
 - One dedicated-route test passed; 220 unrelated cases skipped.
 - Existing app listener verified at 127.0.0.1:2266, PID 33880; not restarted.
-- No full build, full-suite run, actual browser interaction, authentic screenshots or pixel comparison performed.
+- Captured desktop evidence: `artifacts/studio-control-audit/0905-current.png`.
+- One-by-one browser acceptance: opened the advanced route, ran 20 new samples, and verified the coverage summary rendered.
+- Focused surface/model tests pass (6 tests); `git diff --check` is clean for the lesson evidence.
 
 ## Source
 

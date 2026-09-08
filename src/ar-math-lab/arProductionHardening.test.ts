@@ -1,11 +1,22 @@
 import * as THREE from "three";
 import { describe, expect, it, vi } from "vitest";
-import { applyPerformanceModeToGraphSettings, disposeObject3D, hasHighResolutionRisk } from "./arProductionHardening";
+import {
+  applyPerformanceModeToGraphSettings,
+  disposeObject3D,
+  hasHighResolutionRisk,
+} from "./arProductionHardening";
 import { defaultGraphSettings } from "./arGraphGenerator";
 
 describe("AR Math Lab production hardening", () => {
   it("caps graph settings in performance mode", () => {
-    const settings = { ...defaultGraphSettings, resolutionX: 120, resolutionY: 110, resolutionU: 100, resolutionV: 80, samples: 900 };
+    const settings = {
+      ...defaultGraphSettings,
+      resolutionX: 120,
+      resolutionY: 110,
+      resolutionU: 100,
+      resolutionV: 80,
+      samples: 900,
+    };
     const optimized = applyPerformanceModeToGraphSettings(settings, true);
 
     expect(optimized.resolutionX).toBeLessThanOrEqual(40);
@@ -17,8 +28,16 @@ describe("AR Math Lab production hardening", () => {
   });
 
   it("detects high-resolution risk", () => {
-    expect(hasHighResolutionRisk({ ...defaultGraphSettings, resolutionX: 90 })).toBe(true);
-    expect(hasHighResolutionRisk({ ...defaultGraphSettings, resolutionX: 60, samples: 300 })).toBe(false);
+    expect(
+      hasHighResolutionRisk({ ...defaultGraphSettings, resolutionX: 90 }),
+    ).toBe(true);
+    expect(
+      hasHighResolutionRisk({
+        ...defaultGraphSettings,
+        resolutionX: 60,
+        samples: 300,
+      }),
+    ).toBe(false);
   });
 
   it("disposes geometries, materials, and textures", () => {

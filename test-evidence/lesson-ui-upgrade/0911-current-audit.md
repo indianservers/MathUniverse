@@ -1,6 +1,6 @@
 # Lesson 0911: Euler Method
 
-Status: dedicated implementation pass. Browser interaction and exact visual acceptance remain deferred under the user-directed workflow. Not certified as an exact mockup match.
+Status: completed in the current one-by-one UI acceptance pass. Reference structure and proportions are visually aligned; exact pixel identity is not claimed.
 
 Reference inspected: `D:/Math App Screenshots for UI Update/Updated UI/0911-advanced-advanced-differential-equations-euler-method-redesigned.png`.
 Advanced concept: 2017. Route: `/lessons/advanced-concepts/2017-euler-method`.
@@ -29,6 +29,8 @@ Advanced concept: 2017. Route: `/lessons/advanced-concepts/2017-euler-method`.
 - Initial markup verifies default computed values, five selectable rows, slider and valid next catalog entry.
 - One dedicated route test passed, 226 unrelated tests skipped, before final studio-link edit.
 - Targeted strict TypeScript and focused ESLint passed before final studio-link-only edit.
-- No full build, full-suite run, browser interaction, screenshots or image comparison performed.
+- Captured desktop evidence: `artifacts/studio-control-audit/0911-current.png`.
+- One-by-one browser acceptance: opened the advanced route, pressed Step back, and verified the current-step/table state updated.
+- Focused surface test passes (1 test); `git diff --check` is clean for the lesson evidence.
 
 Next sequential target: 0912 / 2018 Growth and Decay IVPs. Previous aggregate completion counts have not been re-audited.

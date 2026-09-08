@@ -45,14 +45,24 @@ export function readNCERTMasteryStore(): NCERTMasteryStore {
 
 export function writeNCERTMasteryStore(store: NCERTMasteryStore) {
   try {
-    window.localStorage.setItem(NCERT_MASTERY_STORAGE_KEY, JSON.stringify(store));
+    window.localStorage.setItem(
+      NCERT_MASTERY_STORAGE_KEY,
+      JSON.stringify(store),
+    );
   } catch {
     // Local storage can be unavailable in private mode or SSR-like tests.
   }
 }
 
-export function updateNCERTMasteryRecord(record: NCERTMasteryRecord, difficulty: string, correct: boolean): NCERTMasteryRecord {
-  const difficultyRecord = record.difficultyAttempts[difficulty] ?? { attempted: 0, correct: 0 };
+export function updateNCERTMasteryRecord(
+  record: NCERTMasteryRecord,
+  difficulty: string,
+  correct: boolean,
+): NCERTMasteryRecord {
+  const difficultyRecord = record.difficultyAttempts[difficulty] ?? {
+    attempted: 0,
+    correct: 0,
+  };
   return {
     attempted: record.attempted + 1,
     correct: record.correct + (correct ? 1 : 0),
@@ -73,19 +83,28 @@ export function useNCERTMastery(conceptId?: string) {
     if (typeof window === "undefined") return {};
     return readNCERTMasteryStore();
   });
-  const record = conceptId ? store[conceptId] ?? emptyMasteryRecord() : emptyMasteryRecord();
+  const record = conceptId
+    ? (store[conceptId] ?? emptyMasteryRecord())
+    : emptyMasteryRecord();
 
-  const recordAttempt = useCallback((difficulty: string, correct: boolean) => {
-    if (!conceptId) return;
-    setStore((current) => {
-      const next = {
-        ...current,
-        [conceptId]: updateNCERTMasteryRecord(current[conceptId] ?? emptyMasteryRecord(), difficulty, correct),
-      };
-      writeNCERTMasteryStore(next);
-      return next;
-    });
-  }, [conceptId]);
+  const recordAttempt = useCallback(
+    (difficulty: string, correct: boolean) => {
+      if (!conceptId) return;
+      setStore((current) => {
+        const next = {
+          ...current,
+          [conceptId]: updateNCERTMasteryRecord(
+            current[conceptId] ?? emptyMasteryRecord(),
+            difficulty,
+            correct,
+          ),
+        };
+        writeNCERTMasteryStore(next);
+        return next;
+      });
+    },
+    [conceptId],
+  );
 
   const reset = useCallback(() => {
     if (!conceptId) return;
@@ -97,12 +116,15 @@ export function useNCERTMastery(conceptId?: string) {
     });
   }, [conceptId]);
 
-  return useMemo(() => ({
-    record,
-    percent: masteryPercent(record),
-    status: masteryStatus(record),
-    recordAttempt,
-    reset,
-    store,
-  }), [record, recordAttempt, reset, store]);
+  return useMemo(
+    () => ({
+      record,
+      percent: masteryPercent(record),
+      status: masteryStatus(record),
+      recordAttempt,
+      reset,
+      store,
+    }),
+    [record, recordAttempt, reset, store],
+  );
 }

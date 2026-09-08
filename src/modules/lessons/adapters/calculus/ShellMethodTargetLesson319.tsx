@@ -447,12 +447,7 @@ function ShellGraph({
       <line x1={sx(0)} x2={sx(0)} y1={p} y2={h - p} className="axis" />
       {[0, 1, 2, 3, 4].map((value) => (
         <g key={`x-${value}`} className="tick">
-          <line
-            x1={sx(value)}
-            x2={sx(value)}
-            y1={sy(0) - 3}
-            y2={sy(0) + 3}
-          />
+          <line x1={sx(value)} x2={sx(value)} y1={sy(0) - 3} y2={sy(0) + 3} />
           <text x={sx(value)} y={sy(0) + 17} textAnchor="middle">
             {value}
           </text>
@@ -460,12 +455,7 @@ function ShellGraph({
       ))}
       {[-1, 0, 2, 4].map((value) => (
         <g key={`y-${value}`} className="tick">
-          <line
-            x1={sx(0) - 3}
-            x2={sx(0) + 3}
-            y1={sy(value)}
-            y2={sy(value)}
-          />
+          <line x1={sx(0) - 3} x2={sx(0) + 3} y1={sy(value)} y2={sy(value)} />
           <text x={sx(0) - 9} y={sy(value) + 4} textAnchor="end">
             {value}
           </text>

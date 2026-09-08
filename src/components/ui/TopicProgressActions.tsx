@@ -5,7 +5,9 @@ type TopicProgressActionsProps = {
   topicId: string;
 };
 
-export default function TopicProgressActions({ topicId }: TopicProgressActionsProps) {
+export default function TopicProgressActions({
+  topicId,
+}: TopicProgressActionsProps) {
   const { markTopicCompleted, getTopicProgress } = useProgress();
   const progress = getTopicProgress(topicId);
 

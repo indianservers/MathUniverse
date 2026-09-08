@@ -19,8 +19,14 @@ export async function setupNativeBridge() {
   const platform = nativePlatform();
   document.documentElement.dataset.nativePlatform = platform;
   document.documentElement.classList.toggle("native-shell", platform !== "web");
-  document.documentElement.classList.toggle("native-platform-android", platform === "android");
-  document.documentElement.classList.toggle("native-platform-ios", platform === "ios");
+  document.documentElement.classList.toggle(
+    "native-platform-android",
+    platform === "android",
+  );
+  document.documentElement.classList.toggle(
+    "native-platform-ios",
+    platform === "ios",
+  );
 
   if (platform === "web") return;
 

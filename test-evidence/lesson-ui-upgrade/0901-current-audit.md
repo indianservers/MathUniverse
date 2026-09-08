@@ -1,6 +1,6 @@
 # Lesson 0901: Goldbach Conjecture
 
-Status: dedicated implementation; browser interaction and visual acceptance deferred under the current user-directed workflow. Exact visual match is not certified.
+Status: completed in the current one-by-one UI acceptance pass. Reference structure and proportions are visually aligned; exact pixel identity is not claimed.
 
 Reference inspected: `D:/Math App Screenshots for UI Update/Updated UI/0901-advanced-advanced-famous-problems-goldbach-conjecture-redesigned.png`.
 Advanced concept ID: 2007. Route: `/lessons/advanced-concepts/2007-goldbach-conjecture`.
@@ -30,6 +30,8 @@ Advanced concept ID: 2007. Route: `/lessons/advanced-concepts/2007-goldbach-conj
 - One dedicated advanced route test passed; 216 unrelated cases were skipped.
 - Targeted strict TypeScript and focused ESLint passed.
 - Existing application listener verified at 127.0.0.1:2266.
-- No authentic browser screenshots, pixel comparisons, responsive overlap checks or actual browser interaction tests performed. These remain required before full acceptance.
+- Captured desktop evidence: `artifacts/studio-control-audit/0901-current.png`.
+- One-by-one browser acceptance: opened the advanced route, increased the explored even number, and verified the prime-pair summary rendered.
+- Focused surface/model tests pass (6 tests); `git diff --check` is clean for the lesson evidence.
 
 Next sequential target: 0902 / advanced concept 2008 Riemann Hypothesis and Primes, route `/lessons/advanced-concepts/2008-riemann-hypothesis-primes`. Earlier aggregate completion counts have not been re-audited.

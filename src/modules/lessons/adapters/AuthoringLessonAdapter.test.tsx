@@ -8,11 +8,17 @@ describe("AuthoringLessonAdapter", () => {
     const lesson = lessonCatalog.find((entry) => entry.id === 618);
     expect(lesson).toBeDefined();
     const html = renderToStaticMarkup(
-      <AuthoringLessonAdapter lesson={lesson!} resetToken={0} onInteraction={vi.fn()} />,
+      <AuthoringLessonAdapter
+        lesson={lesson!}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
     );
     expect(html).toContain('data-testid="authoring-mockup-0074"');
     expect(html).toContain('data-dedicated-lesson="618"');
-    expect(html).toContain("editable-slider-schema-draggable-range-live-parabola-equation-linked-preview-authoring-checklist-model");
+    expect(html).toContain(
+      "editable-slider-schema-draggable-range-live-parabola-equation-linked-preview-authoring-checklist-model",
+    );
     expect(html).toContain('aria-label="Parameter slider a"');
     expect(html).toContain("LIVE GRAPH PREVIEW");
   });
@@ -63,12 +69,18 @@ describe("AuthoringLessonAdapter", () => {
     for (const [lessonId, snippet] of expected) {
       const lesson = lessonCatalog.find((item) => item.id === lessonId)!;
       const html = renderToStaticMarkup(
-        <AuthoringLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+        <AuthoringLessonAdapter
+          lesson={lesson}
+          resetToken={0}
+          onInteraction={vi.fn()}
+        />,
       );
 
       expect(html, String(lessonId)).toContain(lesson.title);
       expect(html, String(lessonId)).toContain(snippet);
-      expect(html, String(lessonId)).not.toContain("Match the tool to one learning job.");
+      expect(html, String(lessonId)).not.toContain(
+        "Match the tool to one learning job.",
+      );
     }
   });
 });

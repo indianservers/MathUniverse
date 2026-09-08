@@ -137,8 +137,8 @@ export default function FactorsTargetLesson65({
     >
       <span className="sr-only">
         Concept trace: Factor pair check. Factor pairs divide exactly. Factors
-        divide exactly with remainder zero, while multiples continue by
-        repeated multiplication.
+        divide exactly with remainder zero, while multiples continue by repeated
+        multiplication.
       </span>
       <nav className="factors65-breadcrumb">
         <a href="/" aria-label="Back">

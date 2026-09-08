@@ -1,6 +1,6 @@
 # Lesson 0914: Second-Order Oscillator
 
-Status: dedicated implementation pass. Browser interaction and exact visual acceptance remain deferred under the user-directed workflow. Not certified as an exact mockup match.
+Status: completed in the current one-by-one UI acceptance pass. Reference structure and proportions are visually aligned; exact pixel identity is not claimed.
 
 Reference inspected: `D:/Math App Screenshots for UI Update/Updated UI/0914-advanced-advanced-differential-equations-second-order-oscillator-redesigned.png`.
 Advanced concept: 2020. Route: `/lessons/advanced-concepts/2020-second-order-oscillator`.
@@ -34,6 +34,8 @@ Advanced concept: 2020. Route: `/lessons/advanced-concepts/2020-second-order-osc
 - Initial markup confirms default synchronized readouts, five sliders, no pregraded answer, no KaTeX error, and valid next catalog route.
 - Targeted strict TypeScript and focused ESLint passed after final meter-range edit.
 - Dedicated route test reported one pass, 229 unrelated cases skipped.
-- No full build, full suite, browser playback/drag events, authentic screenshots or pixel comparison performed.
+- Captured desktop evidence: `artifacts/studio-control-audit/0914-current.png`.
+- One-by-one browser acceptance: opened the advanced route, changed the natural-frequency slider from 0.1 to 2, and verified the control state updated while the oscillator studio remained rendered.
+- Focused surface/model tests pass: `OscillatorSurface.test.tsx` and `oscillatorLessonModel.test.ts` (8 tests).
 
-Next sequential target: 0915 / 2021 Gamma Function. Previous aggregate completion counts have not been re-audited.
+Next sequential target: 0915 / 2021 Gamma Function.

@@ -185,11 +185,17 @@ describe("CalculatorLessonAdapter", () => {
   it("renders lesson 10 as a dedicated trigonometric geometry workspace", () => {
     const lesson = lessonCatalog.find((item) => item.id === 10)!;
     const html = renderToStaticMarkup(
-      <CalculatorLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+      <CalculatorLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
     );
     expect(html).toContain('data-testid="calculator-mockup-0010"');
     expect(html).toContain('data-dedicated-lesson="10"');
-    expect(html).toContain('data-object-model="dual-draggable-unit-circle-special-angle-triangle-mode-trace-practice-model"');
+    expect(html).toContain(
+      'data-object-model="dual-draggable-unit-circle-special-angle-triangle-mode-trace-practice-model"',
+    );
     expect(html).toContain('data-sin-angle="30"');
     expect(html).toContain('data-cos-angle="60"');
     expect(html).toContain('data-mode="DEG"');
@@ -199,10 +205,18 @@ describe("CalculatorLessonAdapter", () => {
   });
   it("renders lesson 11 as a dedicated inverse-trigonometry workspace", () => {
     const lesson = lessonCatalog.find((item) => item.id === 11)!;
-    const html = renderToStaticMarkup(<CalculatorLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    const html = renderToStaticMarkup(
+      <CalculatorLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
     expect(html).toContain('data-testid="calculator-mockup-0011"');
     expect(html).toContain('data-dedicated-lesson="11"');
-    expect(html).toContain('data-object-model="draggable-ratio-principal-angle-unit-circle-triangle-range-verification-practice-model"');
+    expect(html).toContain(
+      'data-object-model="draggable-ratio-principal-angle-unit-circle-triangle-range-verification-practice-model"',
+    );
     expect(html).toContain('data-ratio="0.5"');
     expect(html).toContain('data-angle="30"');
     expect(html).toContain('aria-label="Inverse sine ratio drag control"');
@@ -211,10 +225,18 @@ describe("CalculatorLessonAdapter", () => {
   });
   it("renders lesson 12 as a dedicated hyperbolic-functions workspace", () => {
     const lesson = lessonCatalog.find((item) => item.id === 12)!;
-    const html = renderToStaticMarkup(<CalculatorLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    const html = renderToStaticMarkup(
+      <CalculatorLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
     expect(html).toContain('data-testid="calculator-mockup-0012"');
     expect(html).toContain('data-dedicated-lesson="12"');
-    expect(html).toContain('data-object-model="draggable-x-dual-exponential-hyperbolic-sine-difference-trace-practice-model"');
+    expect(html).toContain(
+      'data-object-model="draggable-x-dual-exponential-hyperbolic-sine-difference-trace-practice-model"',
+    );
     expect(html).toContain('data-x="1"');
     expect(html).toContain('data-positive="2.718"');
     expect(html).toContain('data-negative="0.368"');
@@ -224,10 +246,18 @@ describe("CalculatorLessonAdapter", () => {
   });
   it("renders lesson 13 as a dedicated counting-choices workspace", () => {
     const lesson = lessonCatalog.find((item) => item.id === 13)!;
-    const html = renderToStaticMarkup(<CalculatorLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    const html = renderToStaticMarkup(
+      <CalculatorLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
     expect(html).toContain('data-testid="calculator-mockup-0013"');
     expect(html).toContain('data-dedicated-lesson="13"');
-    expect(html).toContain('data-object-model="draggable-distinct-items-factorial-permutation-combination-counting-trace-practice-model"');
+    expect(html).toContain(
+      'data-object-model="draggable-distinct-items-factorial-permutation-combination-counting-trace-practice-model"',
+    );
     expect(html).toContain('data-mode="factorial"');
     expect(html).toContain('data-n="6"');
     expect(html).toContain('data-result="720"');
@@ -236,22 +266,40 @@ describe("CalculatorLessonAdapter", () => {
   });
   it("renders lesson 14 as a dedicated absolute-value distance workspace", () => {
     const lesson = lessonCatalog.find((item) => item.id === 14)!;
-    const html = renderToStaticMarkup(<CalculatorLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    const html = renderToStaticMarkup(
+      <CalculatorLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
     expect(html).toContain('data-testid="calculator-mockup-0014"');
     expect(html).toContain('data-dedicated-lesson="14"');
-    expect(html).toContain('data-object-model="dual-draggable-signed-point-mirror-distance-arc-direction-trace-symmetry-practice-model"');
+    expect(html).toContain(
+      'data-object-model="dual-draggable-signed-point-mirror-distance-arc-direction-trace-symmetry-practice-model"',
+    );
     expect(html).toContain('data-value="-12"');
     expect(html).toContain('data-distance="12"');
     expect(html).toContain('data-direction="Left of zero"');
     expect(html).toContain('aria-label="Absolute value point drag control"');
-    expect(html).toContain('aria-label="Absolute value mirrored point drag control"');
+    expect(html).toContain(
+      'aria-label="Absolute value mirrored point drag control"',
+    );
   });
   it("renders lesson 15 as a dedicated rounding and precision workspace", () => {
     const lesson = lessonCatalog.find((item) => item.id === 15)!;
-    const html = renderToStaticMarkup(<CalculatorLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    const html = renderToStaticMarkup(
+      <CalculatorLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
     expect(html).toContain('data-testid="calculator-mockup-0015"');
     expect(html).toContain('data-dedicated-lesson="15"');
-    expect(html).toContain('data-object-model="editable-fraction-exact-decimal-precision-slider-next-digit-reported-error-practice-model"');
+    expect(html).toContain(
+      'data-object-model="editable-fraction-exact-decimal-precision-slider-next-digit-reported-error-practice-model"',
+    );
     expect(html).toContain('data-numerator="10"');
     expect(html).toContain('data-denominator="3"');
     expect(html).toContain('data-precision="2"');
@@ -260,22 +308,40 @@ describe("CalculatorLessonAdapter", () => {
   });
   it("renders lesson 16 as a dedicated constants library workspace", () => {
     const lesson = lessonCatalog.find((item) => item.id === 16)!;
-    const html = renderToStaticMarkup(<CalculatorLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    const html = renderToStaticMarkup(
+      <CalculatorLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
     expect(html).toContain('data-testid="calculator-mockup-0016"');
     expect(html).toContain('data-dedicated-lesson="16"');
-    expect(html).toContain('data-object-model="selectable-high-precision-constant-formula-visual-output-early-rounding-practice-model"');
+    expect(html).toContain(
+      'data-object-model="selectable-high-precision-constant-formula-visual-output-early-rounding-practice-model"',
+    );
     expect(html).toContain('data-constant="pi"');
     expect(html).toContain('data-precision="40"');
     expect(html).toContain('data-output="6.28319"');
-    expect(html).toContain('aria-label="Stored constant precision drag control"');
+    expect(html).toContain(
+      'aria-label="Stored constant precision drag control"',
+    );
     expect(html).toContain("Why stored precision matters");
   });
   it("renders lesson 17 as a dedicated calculation history workspace", () => {
     const lesson = lessonCatalog.find((item) => item.id === 17)!;
-    const html = renderToStaticMarkup(<CalculatorLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    const html = renderToStaticMarkup(
+      <CalculatorLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
     expect(html).toContain('data-testid="calculator-mockup-0017"');
     expect(html).toContain('data-dedicated-lesson="17"');
-    expect(html).toContain('data-object-model="selectable-provenance-history-row-reuse-copy-pin-inspection-dependency-chain-graded-practice-model"');
+    expect(html).toContain(
+      'data-object-model="selectable-provenance-history-row-reuse-copy-pin-inspection-dependency-chain-graded-practice-model"',
+    );
     expect(html).toContain('data-selected-row="1"');
     expect(html).toContain("Every result has a source");
     expect(html).toContain('aria-label="Reuse input from row 1"');
@@ -283,10 +349,18 @@ describe("CalculatorLessonAdapter", () => {
   });
   it("renders lesson 18 as a dedicated exact and decimal modes workspace", () => {
     const lesson = lessonCatalog.find((item) => item.id === 18)!;
-    const html = renderToStaticMarkup(<CalculatorLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    const html = renderToStaticMarkup(
+      <CalculatorLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
     expect(html).toContain('data-testid="calculator-mockup-0018"');
     expect(html).toContain('data-dedicated-lesson="18"');
-    expect(html).toContain('data-object-model="linked-unit-square-radical-decimal-number-line-precision-mode-comparison-graded-context-practice-model"');
+    expect(html).toContain(
+      'data-object-model="linked-unit-square-radical-decimal-number-line-precision-mode-comparison-graded-context-practice-model"',
+    );
     expect(html).toContain('data-mode="exact"');
     expect(html).toContain('data-precision="8"');
     expect(html).toContain('data-decimal="1.41421356"');

@@ -1,6 +1,6 @@
 # Lesson 0916: Beta Function
 
-Status: dedicated implementation pass. Browser interaction and exact visual acceptance remain deferred under the user-directed workflow. Not certified as an exact mockup match.
+Status: completed in the current one-by-one UI acceptance pass. Reference structure and proportions are visually aligned; exact pixel identity is not claimed.
 
 Reference inspected: `D:/Math App Screenshots for UI Update/Updated UI/0916-advanced-advanced-special-functions-beta-function-redesigned.png`.
 Advanced concept: 2022. Route: `/lessons/advanced-concepts/2022-beta-function`.
@@ -36,10 +36,12 @@ Advanced concept: 2022. Route: `/lessons/advanced-concepts/2022-beta-function`.
 - Initial markup confirms calculated area/normalization/mode, corrected skew, swap and range controls, self-report label, no pregraded answer, no KaTeX errors and valid next route.
 - Targeted strict TypeScript and focused ESLint passed.
 - One dedicated route test passed; 231 unrelated cases skipped.
-- No full build, full suite, actual browser input events, authentic screenshots or pixel comparison performed.
+- Captured desktop evidence: `artifacts/studio-control-audit/0916-current.png`.
+- One-by-one browser acceptance: opened the advanced route, changed the first Beta parameter slider from 2 to 3, and verified the control state updated while the paired-graph studio remained rendered.
+- Focused surface/model tests pass: `BetaSurface.test.tsx` and `betaLessonModel.test.ts` (8 tests).
 
 ## Mathematical Reference
 
 NIST DLMF 5.12: https://dlmf.nist.gov/5.12 (Euler beta integral and beta-gamma identity).
 
-Next sequential target: 0917 / 2023 Error Function. Previous aggregate completion counts have not been re-audited.
+Next sequential target: 0917 / 2023 Error Function.

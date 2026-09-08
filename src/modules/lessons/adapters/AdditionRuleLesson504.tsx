@@ -16,10 +16,7 @@ export default function AdditionRuleLesson504({
   onInteraction,
 }: LessonAdapterProps) {
   return (
-    <AdditionRuleActivity
-      key={resetToken}
-      onInteraction={onInteraction}
-    />
+    <AdditionRuleActivity key={resetToken} onInteraction={onInteraction} />
   );
 }
 
@@ -71,14 +68,22 @@ function AdditionRuleActivity({
       </header>
 
       <nav aria-label="Lesson sections">
-        <b>Interact</b><span>Learn</span><span>Example</span><span>Formula</span><span>Practice</span>
+        <b>Interact</b>
+        <span>Learn</span>
+        <span>Example</span>
+        <span>Formula</span>
+        <span>Practice</span>
       </nav>
 
       <section className="ar504-experiment">
         <header>
           <div>
             <h3>1. Interact: Explore events and the Addition Rule</h3>
-            <p><b>Experiment</b><br />Two dice are rolled.</p>
+            <p>
+              <b>Experiment</b>
+              <br />
+              Two dice are rolled.
+            </p>
           </div>
           <label className="ar504-switch">
             <input
@@ -134,16 +139,39 @@ function AdditionRuleActivity({
 
           <article className="ar504-space">
             <h4>Sample space (36 outcomes)</h4>
-            <div className={`ar504-venn ${mutuallyExclusive ? "exclusive" : ""}`}>
-              <button type="button" className="circle circle-a" onClick={() => chooseRegion("a")}>
-                <span>A<br /><small>Sum is 7</small></span><b>{summary.a.length - summary.intersection.length}</b>
+            <div
+              className={`ar504-venn ${mutuallyExclusive ? "exclusive" : ""}`}
+            >
+              <button
+                type="button"
+                className="circle circle-a"
+                onClick={() => chooseRegion("a")}
+              >
+                <span>
+                  A<br />
+                  <small>Sum is 7</small>
+                </span>
+                <b>{summary.a.length - summary.intersection.length}</b>
               </button>
-              <button type="button" className="circle circle-b" onClick={() => chooseRegion("b")}>
-                <span>B<br /><small>{bLabel}</small></span><b>{summary.b.length - summary.intersection.length}</b>
+              <button
+                type="button"
+                className="circle circle-b"
+                onClick={() => chooseRegion("b")}
+              >
+                <span>
+                  B<br />
+                  <small>{bLabel}</small>
+                </span>
+                <b>{summary.b.length - summary.intersection.length}</b>
               </button>
               {!mutuallyExclusive && (
-                <button type="button" className="venn-overlap" onClick={() => chooseRegion("intersection")}>
-                  <b>{summary.intersection.length}</b><small>(4, 3)</small>
+                <button
+                  type="button"
+                  className="venn-overlap"
+                  onClick={() => chooseRegion("intersection")}
+                >
+                  <b>{summary.intersection.length}</b>
+                  <small>(4, 3)</small>
                 </button>
               )}
             </div>
@@ -170,29 +198,52 @@ function AdditionRuleActivity({
               ))}
             </div>
             <div className="ar504-legend">
-              <span>A only ({summary.a.length - summary.intersection.length})</span>
+              <span>
+                A only ({summary.a.length - summary.intersection.length})
+              </span>
               <span>A ∩ B ({summary.intersection.length})</span>
-              <span>B only ({summary.b.length - summary.intersection.length})</span>
+              <span>
+                B only ({summary.b.length - summary.intersection.length})
+              </span>
               <span>Neither ({summary.neither})</span>
             </div>
           </article>
 
           <aside className="ar504-calculation">
             <h4>Live calculation</h4>
-            <p>Total outcomes <b>|S| = {summary.total}</b></p>
-            <p>|A| = {summary.a.length}<b>P(A) = {summary.a.length}/36</b></p>
-            <p>|B| = {summary.b.length}<b>P(B) = {summary.b.length}/36</b></p>
-            <p>|A ∩ B| = {summary.intersection.length}<b>P(A ∩ B) = {summary.intersection.length}/36</b></p>
+            <p>
+              Total outcomes <b>|S| = {summary.total}</b>
+            </p>
+            <p>
+              |A| = {summary.a.length}
+              <b>P(A) = {summary.a.length}/36</b>
+            </p>
+            <p>
+              |B| = {summary.b.length}
+              <b>P(B) = {summary.b.length}/36</b>
+            </p>
+            <p>
+              |A ∩ B| = {summary.intersection.length}
+              <b>P(A ∩ B) = {summary.intersection.length}/36</b>
+            </p>
             <div className="ar504-equation">
-              |A ∪ B| = |A| + |B| − |A ∩ B|<br />
-              = {summary.a.length} + {summary.b.length} − {summary.intersection.length}<br />
-              = {summary.union.length}
+              |A ∪ B| = |A| + |B| − |A ∩ B|
+              <br />= {summary.a.length} + {summary.b.length} −{" "}
+              {summary.intersection.length}
+              <br />= {summary.union.length}
             </div>
-            <strong>P(A ∪ B) = {summary.union.length}/36<br /><em>{(summary.probability * 100).toFixed(2)}%</em></strong>
+            <strong>
+              P(A ∪ B) = {summary.union.length}/36
+              <br />
+              <em>{(summary.probability * 100).toFixed(2)}%</em>
+            </strong>
             {!mutuallyExclusive && (
               <div className="ar504-warning">
                 <CircleAlert size={18} />
-                <span><b>Double-count warning</b> Adding |A| and |B| counts the intersection twice. Subtract |A ∩ B| once.</span>
+                <span>
+                  <b>Double-count warning</b> Adding |A| and |B| counts the
+                  intersection twice. Subtract |A ∩ B| once.
+                </span>
               </div>
             )}
           </aside>
@@ -205,16 +256,38 @@ function AdditionRuleActivity({
           <p>For any two events A and B,</p>
           <strong>P(A ∪ B) = P(A) + P(B) − P(A ∩ B)</strong>
         </article>
-        <article><h3>Notation guide</h3><p>• A ∪ B: A or B or both</p><p>• A ∩ B: A and B</p><p>• |S|: total number of outcomes</p></article>
+        <article>
+          <h3>Notation guide</h3>
+          <p>• A ∪ B: A or B or both</p>
+          <p>• A ∩ B: A and B</p>
+          <p>• |S|: total number of outcomes</p>
+        </article>
       </section>
 
       <section className="ar504-example">
         <h3>3. Worked example</h3>
-        <p>Two dice are rolled. Let A: “Sum is 7” and B: “First die is 4.” Find P(A ∪ B).</p>
+        <p>
+          Two dice are rolled. Let A: “Sum is 7” and B: “First die is 4.” Find
+          P(A ∪ B).
+        </p>
         <div>
-          <article><b>Step 1: Counts</b><p>|A| = 6<br />|B| = 6<br />|A ∩ B| = 1<br />|S| = 36</p></article>
-          <article><b>Step 2: Apply the rule</b><p>P(A ∪ B) = 6/36 + 6/36 − 1/36 = 11/36</p></article>
-          <article><b>Result</b><strong>P(A ∪ B) = 11/36 = 30.56%</strong></article>
+          <article>
+            <b>Step 1: Counts</b>
+            <p>
+              |A| = 6<br />
+              |B| = 6<br />
+              |A ∩ B| = 1<br />
+              |S| = 36
+            </p>
+          </article>
+          <article>
+            <b>Step 2: Apply the rule</b>
+            <p>P(A ∪ B) = 6/36 + 6/36 − 1/36 = 11/36</p>
+          </article>
+          <article>
+            <b>Result</b>
+            <strong>P(A ∪ B) = 11/36 = 30.56%</strong>
+          </article>
         </div>
       </section>
 
@@ -231,23 +304,57 @@ function AdditionRuleActivity({
           <div className="ar504-options">
             {practiceOptions.map((option) => (
               <label key={option}>
-                <input type="radio" name="addition-practice" value={option} checked={practiceAnswer === option} onChange={() => { setPracticeAnswer(option); setPracticeChecked(false); onInteraction(); }} /> {option}
+                <input
+                  type="radio"
+                  name="addition-practice"
+                  value={option}
+                  checked={practiceAnswer === option}
+                  onChange={() => {
+                    setPracticeAnswer(option);
+                    setPracticeChecked(false);
+                    onInteraction();
+                  }}
+                />{" "}
+                {option}
               </label>
             ))}
           </div>
-          <button type="button" onClick={() => { setPracticeChecked(true); onInteraction(); }}>Check answer</button>
+          <button
+            type="button"
+            onClick={() => {
+              setPracticeChecked(true);
+              onInteraction();
+            }}
+          >
+            Check answer
+          </button>
           {practiceChecked && (
-            <div className={practiceAnswer === "7/12" ? "correct" : "incorrect"} role="status">
-              {practiceAnswer === "7/12" ? <CheckCircle2 size={18} /> : <CircleAlert size={18} />}
-              <span><b>{practiceAnswer === "7/12" ? "Correct" : "Try again"}</b><br />|A| = 18, |B| = 6, |A ∩ B| = 3, so (18 + 6 − 3)/36 = 7/12.</span>
+            <div
+              className={practiceAnswer === "7/12" ? "correct" : "incorrect"}
+              role="status"
+            >
+              {practiceAnswer === "7/12" ? (
+                <CheckCircle2 size={18} />
+              ) : (
+                <CircleAlert size={18} />
+              )}
+              <span>
+                <b>{practiceAnswer === "7/12" ? "Correct" : "Try again"}</b>
+                <br />
+                |A| = 18, |B| = 6, |A ∩ B| = 3, so (18 + 6 − 3)/36 = 7/12.
+              </span>
             </div>
           )}
         </section>
       </div>
 
       <footer>
-        <button type="button" onClick={reset}><RotateCcw size={14} /> Reset lesson</button>
-        <span>Previous: Complement Rule &nbsp; Next: Multiplication Rule →</span>
+        <button type="button" onClick={reset}>
+          <RotateCcw size={14} /> Reset lesson
+        </button>
+        <span>
+          Previous: Complement Rule &nbsp; Next: Multiplication Rule →
+        </span>
       </footer>
     </div>
   );
@@ -269,8 +376,14 @@ function EventCard({
   onClick: () => void;
 }) {
   return (
-    <button type="button" className={`ar504-event event-${tone} ${active ? "active" : ""}`} onClick={onClick}>
-      <b>{label}</b><span>Count: {count}</span><span>P = {probability}</span>
+    <button
+      type="button"
+      className={`ar504-event event-${tone} ${active ? "active" : ""}`}
+      onClick={onClick}
+    >
+      <b>{label}</b>
+      <span>Count: {count}</span>
+      <span>P = {probability}</span>
     </button>
   );
 }

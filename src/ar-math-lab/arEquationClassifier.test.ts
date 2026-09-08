@@ -33,9 +33,21 @@ describe("AR Math Lab equation classifier", () => {
     expect(result.type).toBe("geometry_solid");
     expect(result.objectName).toBe("cylinder");
     expect(result.solidType).toBe("cylinder");
-    expect(result.solidDimensions?.radius).toEqual({ value: 4, unit: "cm", meters: 0.04 });
-    expect(result.solidDimensions?.height).toEqual({ value: 10, unit: "cm", meters: 0.1 });
-    expect(result.solidDimensions?.diameter).toEqual({ value: 8, unit: "cm", meters: 0.08 });
+    expect(result.solidDimensions?.radius).toEqual({
+      value: 4,
+      unit: "cm",
+      meters: 0.04,
+    });
+    expect(result.solidDimensions?.height).toEqual({
+      value: 10,
+      unit: "cm",
+      meters: 0.1,
+    });
+    expect(result.solidDimensions?.diameter).toEqual({
+      value: 8,
+      unit: "cm",
+      meters: 0.08,
+    });
   });
 
   it("returns helpful unknown input results", () => {

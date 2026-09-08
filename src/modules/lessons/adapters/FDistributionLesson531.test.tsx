@@ -4,7 +4,9 @@ import FDistributionLesson531 from "./FDistributionLesson531";
 
 describe("FDistributionLesson531", () => {
   it("renders the target F distribution workspace", () => {
-    const html = renderToStaticMarkup(<FDistributionLesson531 resetToken={0} onInteraction={vi.fn()}/>);
+    const html = renderToStaticMarkup(
+      <FDistributionLesson531 resetToken={0} onInteraction={vi.fn()} />,
+    );
     expect(html).toContain('data-testid="probability-mockup-0494"');
     expect(html).toContain("Explore the F distribution");
     expect(html).toContain("2.711");

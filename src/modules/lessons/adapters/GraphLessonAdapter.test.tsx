@@ -4,6 +4,158 @@ import { lessonCatalog } from "../catalog/lessonCatalog";
 import GraphLessonAdapter from "./GraphLessonAdapter";
 
 describe("GraphLessonAdapter", () => {
+  it("routes lesson 52 to its dedicated multiple-views surface", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 52)!;
+    const html = renderToStaticMarkup(
+      <GraphLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="2d-graphing-mockup-0144"');
+    expect(html).toContain('data-dedicated-lesson="52"');
+    expect(html).toContain(
+      "single-shared-function-four-independent-representations",
+    );
+    expect(html).toContain('aria-label="Drag graph cursor"');
+    expect(html).toContain('data-y="1.409297"');
+  });
+
+  it("routes lesson 51 to its dedicated grid-controls surface", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 51)!;
+    const html = renderToStaticMarkup(
+      <GraphLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="2d-graphing-mockup-0143"');
+    expect(html).toContain('data-dedicated-lesson="51"');
+    expect(html).toContain(
+      "major-grid-spacing-minor-subdivision-derived-snap-interval",
+    );
+    expect(html).toContain('aria-label="Drag grid estimate point"');
+    expect(html).toContain('data-minor="0.25"');
+  });
+
+  it("routes lesson 50 to its dedicated axis-controls surface", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 50)!;
+    const html = renderToStaticMarkup(
+      <GraphLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="2d-graphing-mockup-0142"');
+    expect(html).toContain('data-dedicated-lesson="50"');
+    expect(html).toContain(
+      "independent-axis-bounds-tick-spacing-linear-log-transforms",
+    );
+    expect(html).toContain('aria-label="Drag axis origin"');
+    expect(html).toContain('data-x-range="[-4, 4]"');
+  });
+
+  it("routes lesson 49 to its dedicated zoom-and-pan surface", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 49)!;
+    const html = renderToStaticMarkup(
+      <GraphLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="2d-graphing-mockup-0141"');
+    expect(html).toContain('data-dedicated-lesson="49"');
+    expect(html).toContain("bounded-independent-viewport-center-and-scale");
+    expect(html).toContain('aria-label="Drag viewport"');
+    expect(html).toContain("Same equation, different view");
+  });
+
+  it("routes lesson 48 to its dedicated trace-mode surface", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 48)!;
+    const html = renderToStaticMarkup(
+      <GraphLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="2d-graphing-mockup-0140"');
+    expect(html).toContain('data-dedicated-lesson="48"');
+    expect(html).toContain("exact-sine-linear-function-and-derivative");
+    expect(html).toContain('aria-label="Drag trace point"');
+    expect(html).toContain('data-slope="0.072798"');
+  });
+
+  it("routes lesson 47 to its dedicated table-of-values surface", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 47)!;
+    const html = renderToStaticMarkup(
+      <GraphLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="2d-graphing-mockup-0139"');
+    expect(html).toContain('data-dedicated-lesson="47"');
+    expect(html).toContain("editable-quadratic-rule-generated-value-rows");
+    expect(html).toContain('aria-label="Drag selected table point"');
+    expect(html).toContain("All second differences are 2");
+  });
+
+  it("routes lesson 46 to its dedicated data plotter", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 46)!;
+    const html = renderToStaticMarkup(
+      <GraphLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="2d-graphing-mockup-0138"');
+    expect(html).toContain('data-dedicated-lesson="46"');
+    expect(html).toContain("editable-addable-deletable-dataset");
+    expect(html).toContain('aria-label="Drag data row 5"');
+    expect(html).toContain('data-outliers="5"');
+  });
+
+  it("routes lesson 45 to its dedicated point plotter", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 45)!;
+    const html = renderToStaticMarkup(
+      <GraphLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="2d-graphing-mockup-0137"');
+    expect(html).toContain('data-dedicated-lesson="45"');
+    expect(html).toContain("editable-reorderable-colored-point-collection");
+    expect(html).toContain('aria-label="Drag point C"');
+    expect(html).toContain("Add point");
+  });
+
+  it("routes lesson 44 to its dedicated polar graph surface", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 44)!;
+    const html = renderToStaticMarkup(
+      <GraphLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="2d-graphing-mockup-0136"');
+    expect(html).toContain('data-dedicated-lesson="44"');
+    expect(html).toContain(
+      "editable-polar-angle-radius-scale-and-integer-petal-multiplier",
+    );
+    expect(html).toContain('aria-label="Drag polar angle"');
+    expect(html).toContain('data-petals="3"');
+  });
+
   it("routes lesson 43 to its dedicated parametric-curves surface", () => {
     const lesson = lessonCatalog.find((item) => item.id === 43)!;
     const html = renderToStaticMarkup(
@@ -775,17 +927,8 @@ describe("GraphLessonAdapter", () => {
     expect(html).toContain("Function machine + graph cross-check");
   });
 
-  it("renders graphing calculator lessons 44 through 56 with tool-specific graph guidance", () => {
+  it("renders graphing calculator lessons 53 through 56 with tool-specific graph guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      44: "angle and radius",
-      45: "exact ordered pairs",
-      46: "trend, spread, and outliers",
-      47: "pairs each input with its output",
-      48: "reads coordinates along the graph",
-      49: "change the view, not the equation",
-      50: "limits and scale",
-      51: "guide-line spacing",
-      52: "same object at different scales",
       53: "satisfy extra conditions",
       54: "reports selected graph facts",
       55: "change a whole graph family",

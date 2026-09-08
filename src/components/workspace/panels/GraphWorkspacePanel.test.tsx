@@ -1,13 +1,27 @@
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import GraphWorkspacePanel from "./GraphWorkspacePanel";
-import { buildAddedGraphPlots, removeGraphPlotById, type PlotItem, type ResultTableRow } from "./graphPanelUtils";
+import {
+  buildAddedGraphPlots,
+  removeGraphPlotById,
+  type PlotItem,
+  type ResultTableRow,
+} from "./graphPanelUtils";
 
 const colors = ["#06b6d4", "#8b5cf6"];
-const regressionSeed: ResultTableRow[] = [{ x: -1, y: -1 }, { x: 0, y: 0 }, { x: 1, y: 1 }];
+const regressionSeed: ResultTableRow[] = [
+  { x: -1, y: -1 },
+  { x: 0, y: 0 },
+  { x: 1, y: 1 },
+];
 const tableRange = { start: -2, end: 2, step: 1 };
 
-function renderPanel(plots: PlotItem[], validationMessage = null as Parameters<typeof GraphWorkspacePanel>[0]["validationMessage"]) {
+function renderPanel(
+  plots: PlotItem[],
+  validationMessage = null as Parameters<
+    typeof GraphWorkspacePanel
+  >[0]["validationMessage"],
+) {
   return renderToStaticMarkup(
     <GraphWorkspacePanel
       plots={plots}
@@ -23,7 +37,15 @@ function renderPanel(plots: PlotItem[], validationMessage = null as Parameters<t
 
 describe("GraphWorkspacePanel", () => {
   it("renders with one valid expression", () => {
-    const html = renderPanel([{ id: "plot-1", expression: "sin(x)", color: colors[0], kind: "function", visible: true }]);
+    const html = renderPanel([
+      {
+        id: "plot-1",
+        expression: "sin(x)",
+        color: colors[0],
+        kind: "function",
+        visible: true,
+      },
+    ]);
 
     expect(html).toContain("Desmos-style Graphing Lab");
     expect(html).toContain("sin(x)");
@@ -32,22 +54,46 @@ describe("GraphWorkspacePanel", () => {
   });
 
   it("preserves graph plot input safely inside the plots tab", () => {
-    const html = renderPanel([{ id: "plot-1", expression: "A subset B, y<=x^2", color: colors[0], kind: "function", visible: true }]);
+    const html = renderPanel([
+      {
+        id: "plot-1",
+        expression: "A subset B, y<=x^2",
+        color: colors[0],
+        kind: "function",
+        visible: true,
+      },
+    ]);
 
     expect(html).toContain("Edit graph expression A subset B");
     expect(html).toContain("A subset B, y&lt;=x^2");
   });
 
   it("preserves the graph surface test id and renders non-empty graph marks", () => {
-    const html = renderPanel([{ id: "plot-1", expression: "sin(x)", color: colors[0], kind: "function", visible: true }]);
+    const html = renderPanel([
+      {
+        id: "plot-1",
+        expression: "sin(x)",
+        color: colors[0],
+        kind: "function",
+        visible: true,
+      },
+    ]);
 
     expect(html).toContain('data-testid="workspace-graph-surface"');
     expect(html).toContain("<path");
-    expect(html).toContain("stroke=\"#06b6d4\"");
+    expect(html).toContain('stroke="#06b6d4"');
   });
 
   it("renders axis unit labels on the graph surface", () => {
-    const html = renderPanel([{ id: "plot-1", expression: "a*x+b", color: colors[0], kind: "function", visible: true }]);
+    const html = renderPanel([
+      {
+        id: "plot-1",
+        expression: "a*x+b",
+        color: colors[0],
+        kind: "function",
+        visible: true,
+      },
+    ]);
 
     expect(html).toContain(">1 unit</text>");
     expect(html).toContain(">x</text>");
@@ -56,7 +102,15 @@ describe("GraphWorkspacePanel", () => {
 
   it("renders visible validation messages with suggestions", () => {
     const html = renderPanel(
-      [{ id: "plot-1", expression: "sin(x)", color: colors[0], kind: "function", visible: true }],
+      [
+        {
+          id: "plot-1",
+          expression: "sin(x)",
+          color: colors[0],
+          kind: "function",
+          visible: true,
+        },
+      ],
       {
         status: "unsupported",
         input: "window.alert(1)",
@@ -81,7 +135,15 @@ describe("GraphWorkspacePanel", () => {
 
   it("keeps existing plots visible when validation is invalid", () => {
     const html = renderPanel(
-      [{ id: "plot-1", expression: "cos(x)", color: colors[1], kind: "function", visible: true }],
+      [
+        {
+          id: "plot-1",
+          expression: "cos(x)",
+          color: colors[1],
+          kind: "function",
+          visible: true,
+        },
+      ],
       {
         status: "invalid",
         input: "bad expression",
@@ -96,7 +158,15 @@ describe("GraphWorkspacePanel", () => {
   });
 
   it("builds the add-expression callback payload without mutating existing plots", () => {
-    const existing: PlotItem[] = [{ id: "plot-1", expression: "sin(x)", color: colors[0], kind: "function", visible: true }];
+    const existing: PlotItem[] = [
+      {
+        id: "plot-1",
+        expression: "sin(x)",
+        color: colors[0],
+        kind: "function",
+        visible: true,
+      },
+    ];
 
     const next = buildAddedGraphPlots(existing, "x^2", colors);
 
@@ -108,8 +178,20 @@ describe("GraphWorkspacePanel", () => {
 
   it("removes an expression by id", () => {
     const plots: PlotItem[] = [
-      { id: "plot-1", expression: "sin(x)", color: colors[0], kind: "function", visible: true },
-      { id: "plot-2", expression: "cos(x)", color: colors[1], kind: "function", visible: true },
+      {
+        id: "plot-1",
+        expression: "sin(x)",
+        color: colors[0],
+        kind: "function",
+        visible: true,
+      },
+      {
+        id: "plot-2",
+        expression: "cos(x)",
+        color: colors[1],
+        kind: "function",
+        visible: true,
+      },
     ];
 
     const next = removeGraphPlotById(plots, "plot-1");

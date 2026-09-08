@@ -555,16 +555,37 @@ body:has(.labels-page)
   }
 }
 @media (max-width: 600px) {
-  .labels-graph-row, .labels-bottom { grid-template-columns: minmax(0, 1fr); gap: 12px; }
-  .labels-header { height: auto; flex-wrap: wrap; gap: 12px; }
-  .labels-tabs { display: flex; overflow-x: auto; gap: 8px; }
-  .labels-tabs button { flex: 0 0 auto; min-height: 44px; padding: 8px 12px; }
-  .labels-calculation { margin-top: 0; height: auto; }
+  .labels-graph-row,
+  .labels-bottom {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+  .labels-header {
+    height: auto;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .labels-tabs {
+    display: flex;
+    overflow-x: auto;
+    gap: 8px;
+  }
+  .labels-tabs button {
+    flex: 0 0 auto;
+    min-height: 44px;
+    padding: 8px 12px;
+  }
+  .labels-calculation {
+    margin-top: 0;
+    height: auto;
+  }
 }
 
 /* The local tabs are inside the lab surface; keep the existing journey navigation
    available when that surface is hidden by an explanatory tab. */
-.lesson-page-shell[data-lesson-id="27"]:not([data-lesson-view="interaction"]) > .lesson-section-nav:has(+ #lesson-section-interaction > [data-dedicated-lesson="27"] > nav) {
+.lesson-page-shell[data-lesson-id="27"]:not([data-lesson-view="interaction"])
+  > .lesson-section-nav:has(
+    + #lesson-section-interaction > [data-dedicated-lesson="27"] > nav
+  ) {
   display: flex;
 }
-

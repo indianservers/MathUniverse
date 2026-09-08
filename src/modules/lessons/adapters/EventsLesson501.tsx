@@ -1,7 +1,211 @@
 import { useState } from "react";
 import { RotateCcw } from "lucide-react";
 import type { LessonAdapterProps } from "../types";
-import { diceOutcomes, eventOutcomes, eventSummary, type DiceEvent, type DiceOutcome } from "./eventsLessonModel";
+import {
+  diceOutcomes,
+  eventOutcomes,
+  eventSummary,
+  type DiceEvent,
+  type DiceOutcome,
+} from "./eventsLessonModel";
 import "./EventsLesson501.css";
-export default function EventsLesson501({ resetToken, onInteraction }: LessonAdapterProps) { return <EventsActivity key={resetToken} onInteraction={onInteraction} />; }
-function EventsActivity({ onInteraction }: Pick<LessonAdapterProps, "onInteraction">) { const [selected, setSelected] = useState<DiceOutcome[]>(eventOutcomes("doubles")), [eventType, setEventType] = useState<DiceEvent>("doubles"); const summary = eventSummary(selected); const apply = (kind: DiceEvent) => { setEventType(kind); setSelected(eventOutcomes(kind)); onInteraction(); }; const toggle = (outcome: DiceOutcome) => { const key = outcome.join(","), exists = selected.some(item => item.join(",") === key); setSelected(exists ? selected.filter(item => item.join(",") !== key) : [...selected, outcome]); setEventType("none"); onInteraction(); }; return <div className="ev501" data-testid="probability-mockup-0464" data-target-family="probability-and-distributions"><header><div><span>DATA AND PROBABILITY · PROBABILITY AND DISTRIBUTIONS</span><h2>Events</h2><p>Define outcome subsets.</p></div><span>Lesson 501 · Probability Lab</span></header><nav><b>Interact</b><span>Learn</span><span>Example</span><span>Formula</span><span>Practice</span></nav><section className="ev501-work"><aside><h3>1. Experiment</h3><label>Choose a probability experiment<select aria-label="Events experiment"><option>Two fair dice</option></select></label><p>36 equally likely outcomes.</p></aside><section className="ev501-space"><h3>2. Sample space</h3><p>Click outcomes to build Event A.</p><div className="ev501-grid">{diceOutcomes.map(outcome => { const active = selected.some(item => item[0] === outcome[0] && item[1] === outcome[1]); return <button type="button" key={outcome.join("-")} className={active ? "active" : ""} aria-label={`Outcome ${outcome[0]},${outcome[1]}`} onClick={() => toggle(outcome)}>({outcome.join(",")})</button>; })}</div><div className="ev501-presets"><button type="button" onClick={() => apply("sum7")}>Sum = 7</button><button type="button" onClick={() => apply("even")}>Even sum</button><button type="button" onClick={() => apply("doubles")}>Doubles</button><button type="button" onClick={() => apply("atLeast6")}>At least one 6</button><button type="button" onClick={() => apply("none")}>Clear all</button></div><p>Event A = &#123;{selected.map(item => `(${item.join(",")})`).join(", ")}&#125;</p></section><aside className="ev501-results"><h3>3. Results</h3><p>Count n(A)<b>{summary.count}</b></p><p>Total outcomes n(S)<b>{summary.total}</b></p><div>P(A) = {summary.count}/{summary.total} = {summary.probability.toFixed(4)}</div><div>n(Aᶜ) = {summary.complement}<br />P(Aᶜ) = {(1 - summary.probability).toFixed(4)}</div><p>Event type<b>{eventType === "none" ? "Custom event" : "Simple event"}</b></p></aside></section><section className="ev501-compare"><h3>Compare simple & compound events</h3>{(["sum7", "even", "atLeast6", "none", "certain"] as DiceEvent[]).map(kind => { const event = eventOutcomes(kind), result = eventSummary(event); return <article key={kind}><b>{kind === "sum7" ? "Sum = 7" : kind === "even" ? "Even sum" : kind === "atLeast6" ? "At least one 6" : kind === "none" ? "Impossible" : "Certain"}</b><p>n = {result.count}</p><strong>P = {result.count}/{result.total}</strong><div className="ev501-mini">{diceOutcomes.map(outcome => <i key={outcome.join("-")} className={event.some(item => item[0] === outcome[0] && item[1] === outcome[1]) ? "on" : ""} />)}</div></article>; })}</section><section className="ev501-lower"><article><h3>Misconception guard</h3><p>Events are subsets of the sample space. Ordered dice outcomes such as (1,2) and (2,1) are different.</p><p>Complements always add to 1.</p></article><article><h3>Self-check practice</h3><p>For two fair dice, what is P(sum = 7)? How many outcomes have at least one 6?</p><button type="button" onClick={() => onInteraction()}>Check answers</button></article></section><footer><button type="button" onClick={() => apply("doubles")}><RotateCcw size={14} /> Reset lesson</button><span>Previous: Sample Spaces &nbsp; Next: Probability Scale →</span></footer></div>; }
+export default function EventsLesson501({
+  resetToken,
+  onInteraction,
+}: LessonAdapterProps) {
+  return <EventsActivity key={resetToken} onInteraction={onInteraction} />;
+}
+function EventsActivity({
+  onInteraction,
+}: Pick<LessonAdapterProps, "onInteraction">) {
+  const [selected, setSelected] = useState<DiceOutcome[]>(
+      eventOutcomes("doubles"),
+    ),
+    [eventType, setEventType] = useState<DiceEvent>("doubles");
+  const summary = eventSummary(selected);
+  const apply = (kind: DiceEvent) => {
+    setEventType(kind);
+    setSelected(eventOutcomes(kind));
+    onInteraction();
+  };
+  const toggle = (outcome: DiceOutcome) => {
+    const key = outcome.join(","),
+      exists = selected.some((item) => item.join(",") === key);
+    setSelected(
+      exists
+        ? selected.filter((item) => item.join(",") !== key)
+        : [...selected, outcome],
+    );
+    setEventType("none");
+    onInteraction();
+  };
+  return (
+    <div
+      className="ev501"
+      data-testid="probability-mockup-0464"
+      data-target-family="probability-and-distributions"
+    >
+      <header>
+        <div>
+          <span>DATA AND PROBABILITY · PROBABILITY AND DISTRIBUTIONS</span>
+          <h2>Events</h2>
+          <p>Define outcome subsets.</p>
+        </div>
+        <span>Lesson 501 · Probability Lab</span>
+      </header>
+      <nav>
+        <b>Interact</b>
+        <span>Learn</span>
+        <span>Example</span>
+        <span>Formula</span>
+        <span>Practice</span>
+      </nav>
+      <section className="ev501-work">
+        <aside>
+          <h3>1. Experiment</h3>
+          <label>
+            Choose a probability experiment
+            <select aria-label="Events experiment">
+              <option>Two fair dice</option>
+            </select>
+          </label>
+          <p>36 equally likely outcomes.</p>
+        </aside>
+        <section className="ev501-space">
+          <h3>2. Sample space</h3>
+          <p>Click outcomes to build Event A.</p>
+          <div className="ev501-grid">
+            {diceOutcomes.map((outcome) => {
+              const active = selected.some(
+                (item) => item[0] === outcome[0] && item[1] === outcome[1],
+              );
+              return (
+                <button
+                  type="button"
+                  key={outcome.join("-")}
+                  className={active ? "active" : ""}
+                  aria-label={`Outcome ${outcome[0]},${outcome[1]}`}
+                  onClick={() => toggle(outcome)}
+                >
+                  ({outcome.join(",")})
+                </button>
+              );
+            })}
+          </div>
+          <div className="ev501-presets">
+            <button type="button" onClick={() => apply("sum7")}>
+              Sum = 7
+            </button>
+            <button type="button" onClick={() => apply("even")}>
+              Even sum
+            </button>
+            <button type="button" onClick={() => apply("doubles")}>
+              Doubles
+            </button>
+            <button type="button" onClick={() => apply("atLeast6")}>
+              At least one 6
+            </button>
+            <button type="button" onClick={() => apply("none")}>
+              Clear all
+            </button>
+          </div>
+          <p>
+            Event A = &#123;
+            {selected.map((item) => `(${item.join(",")})`).join(", ")}&#125;
+          </p>
+        </section>
+        <aside className="ev501-results">
+          <h3>3. Results</h3>
+          <p>
+            Count n(A)<b>{summary.count}</b>
+          </p>
+          <p>
+            Total outcomes n(S)<b>{summary.total}</b>
+          </p>
+          <div>
+            P(A) = {summary.count}/{summary.total} ={" "}
+            {summary.probability.toFixed(4)}
+          </div>
+          <div>
+            n(Aᶜ) = {summary.complement}
+            <br />
+            P(Aᶜ) = {(1 - summary.probability).toFixed(4)}
+          </div>
+          <p>
+            Event type
+            <b>{eventType === "none" ? "Custom event" : "Simple event"}</b>
+          </p>
+        </aside>
+      </section>
+      <section className="ev501-compare">
+        <h3>Compare simple & compound events</h3>
+        {(["sum7", "even", "atLeast6", "none", "certain"] as DiceEvent[]).map(
+          (kind) => {
+            const event = eventOutcomes(kind),
+              result = eventSummary(event);
+            return (
+              <article key={kind}>
+                <b>
+                  {kind === "sum7"
+                    ? "Sum = 7"
+                    : kind === "even"
+                      ? "Even sum"
+                      : kind === "atLeast6"
+                        ? "At least one 6"
+                        : kind === "none"
+                          ? "Impossible"
+                          : "Certain"}
+                </b>
+                <p>n = {result.count}</p>
+                <strong>
+                  P = {result.count}/{result.total}
+                </strong>
+                <div className="ev501-mini">
+                  {diceOutcomes.map((outcome) => (
+                    <i
+                      key={outcome.join("-")}
+                      className={
+                        event.some(
+                          (item) =>
+                            item[0] === outcome[0] && item[1] === outcome[1],
+                        )
+                          ? "on"
+                          : ""
+                      }
+                    />
+                  ))}
+                </div>
+              </article>
+            );
+          },
+        )}
+      </section>
+      <section className="ev501-lower">
+        <article>
+          <h3>Misconception guard</h3>
+          <p>
+            Events are subsets of the sample space. Ordered dice outcomes such
+            as (1,2) and (2,1) are different.
+          </p>
+          <p>Complements always add to 1.</p>
+        </article>
+        <article>
+          <h3>Self-check practice</h3>
+          <p>
+            For two fair dice, what is P(sum = 7)? How many outcomes have at
+            least one 6?
+          </p>
+          <button type="button" onClick={() => onInteraction()}>
+            Check answers
+          </button>
+        </article>
+      </section>
+      <footer>
+        <button type="button" onClick={() => apply("doubles")}>
+          <RotateCcw size={14} /> Reset lesson
+        </button>
+        <span>Previous: Sample Spaces &nbsp; Next: Probability Scale →</span>
+      </footer>
+    </div>
+  );
+}

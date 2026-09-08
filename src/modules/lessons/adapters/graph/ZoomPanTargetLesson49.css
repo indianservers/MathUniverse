@@ -1,0 +1,300 @@
+.lesson-shell:has(.zp49-page) > header,
+.lesson-shell:has(.zp49-page) > .lesson-workbench,
+.lesson-shell:has(.zp49-page) > .lesson-reset-row {
+  display: none;
+}
+.lesson-shell:has(.zp49-page) {
+  max-width: none;
+  padding: 0;
+}
+.zp49-page {
+  --ink: #101942;
+  color: var(--ink);
+  background: linear-gradient(145deg, #effcff, #fff 48%, #f5eeff);
+  padding: 20px;
+  min-height: 100vh;
+  font-family: Inter, system-ui, sans-serif;
+  letter-spacing: 0;
+}
+.zp49-page button {
+  font: inherit;
+}
+.zp49-breadcrumb {
+  font-size: 14px;
+  color: #60718b;
+  margin: 0 0 22px;
+}
+.zp49-hero {
+  position: relative;
+  background: #fff;
+  border: 1px solid #d9e5f1;
+  border-radius: 20px;
+  padding: 24px;
+}
+.zp49-hero small {
+  display: flex;
+  gap: 7px;
+}
+.zp49-hero small b {
+  padding: 7px 11px;
+  border-radius: 14px;
+  background: #e6f7fb;
+  color: #087793;
+  font-size: 10px;
+}
+.zp49-hero small b + b {
+  background: #f1f3f7;
+  color: #5b6577;
+}
+.zp49-hero h1 {
+  font-size: 40px;
+  margin: 12px 0 2px;
+}
+.zp49-hero p {
+  font-size: 17px;
+  color: #566780;
+  margin: 0;
+}
+.zp49-hero aside {
+  position: absolute;
+  right: 26px;
+  top: 42px;
+  display: grid;
+  text-align: center;
+  color: #66758d;
+}
+.zp49-hero aside strong {
+  border: 1px solid #bce4ee;
+  background: #f1fbfd;
+  border-radius: 10px;
+  padding: 15px 34px;
+  font:
+    22px Georgia,
+    serif;
+  color: #23304c;
+}
+.zp49-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(260px, 1.2fr) minmax(
+      220px,
+      0.9fr
+    );
+  gap: 12px;
+  background: #fff;
+  border-radius: 15px;
+  padding: 18px;
+  margin-top: 0;
+}
+.zp49-main,
+.zp49-previews article,
+.zp49-controls {
+  border: 1px solid #d7e2ed;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.zp49-main header,
+.zp49-previews header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+}
+.zp49-main h2,
+.zp49-previews h2,
+.zp49-controls h2 {
+  font-size: 13px;
+}
+.zp49-main header span,
+.zp49-previews header span {
+  background: #f5f0ff;
+  color: #6534b6;
+  border-radius: 12px;
+  padding: 6px 9px;
+  font-size: 9px;
+}
+.zp49-main > div {
+  position: relative;
+}
+.zp49-page svg {
+  display: block;
+  width: 100%;
+}
+.zp49-page svg .axis {
+  stroke: #172443;
+  stroke-width: 1.2;
+}
+.zp49-page svg .curve {
+  fill: none;
+  stroke: #079caf;
+  stroke-width: 3;
+}
+.zp49-page svg .viewport-rect {
+  fill: #8b5bdc22;
+  stroke: #7b3fd0;
+  stroke-width: 2;
+  cursor: move;
+}
+.zp49-main > div > button {
+  position: absolute;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid #f1b246;
+  background: #fff6dc;
+  color: #e77700;
+}
+.zp49-main > div > button svg {
+  width: 18px;
+}
+.zp49-main .left {
+  left: 15%;
+  top: 48%;
+}
+.zp49-main .right {
+  right: 15%;
+  top: 48%;
+}
+.zp49-main .up {
+  left: 47%;
+  top: 15%;
+}
+.zp49-main .down {
+  left: 47%;
+  bottom: 15%;
+}
+.zp49-previews {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: 12px;
+}
+.zp49-previews article > h2 {
+  padding: 10px;
+  margin: 0;
+}
+.zp49-controls {
+  padding: 14px;
+  height: max-content;
+}
+.zp49-controls > button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  border: 1px solid #d7e2ed;
+  background: #fff;
+  border-radius: 9px;
+  padding: 10px;
+  margin: 8px 0;
+}
+.zp49-controls svg {
+  width: 17px;
+}
+.zp49-controls hr {
+  border: 0;
+  border-top: 1px solid #dce5ee;
+  margin: 16px 0;
+}
+.zp49-controls label {
+  display: grid;
+  grid-template-columns: 1fr 36px 45px 36px;
+  align-items: center;
+  gap: 7px;
+  margin: 9px 0;
+  font-size: 12px;
+}
+.zp49-controls label button,
+.zp49-controls label output {
+  border: 1px solid #d7e2ed;
+  background: #fff;
+  border-radius: 7px;
+  padding: 7px;
+  text-align: center;
+}
+.zp49-controls article {
+  display: flex;
+  gap: 9px;
+  background: #f8f4ff;
+  border: 1px solid #d9cff3;
+  border-radius: 9px;
+  padding: 12px;
+  color: #5a47a0;
+  margin-top: 13px;
+  font-size: 11px;
+}
+.zp49-controls article svg {
+  color: #7e3bd0;
+}
+.zp49-controls article p {
+  text-align: center;
+  color: #586983;
+}
+.zp49-controls article strong {
+  display: block;
+  border: 1px solid #bce4ee;
+  background: #f1fbfd;
+  border-radius: 8px;
+  padding: 9px;
+  text-align: center;
+  font:
+    16px Georgia,
+    serif;
+  color: #28364e;
+}
+.zp49-note {
+  background: #fff;
+  border: 1px solid #d7e2ed;
+  border-radius: 0 0 12px 12px;
+  margin: 0;
+  padding: 12px;
+  color: #5b6c84;
+  font-size: 11px;
+}
+.zp49-adjacent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 14px;
+}
+.zp49-adjacent a {
+  display: flex;
+  justify-content: space-between;
+  background: #fff;
+  border: 1px solid #d7e2ed;
+  border-radius: 12px;
+  padding: 14px;
+  text-decoration: none;
+  color: #35445e;
+}
+.zp49-adjacent span {
+  display: grid;
+  font-size: 10px;
+}
+.zp49-adjacent b {
+  font-size: 13px;
+  margin-top: 3px;
+}
+@media (max-width: 1000px) {
+  .zp49-page {
+    padding: 8px;
+  }
+  .zp49-hero h1 {
+    font-size: 32px;
+  }
+  .zp49-hero aside {
+    position: static;
+    margin-top: 14px;
+  }
+  .zp49-workspace {
+    grid-template-columns: 1fr;
+  }
+  .zp49-main {
+    overflow: auto;
+  }
+  .zp49-main svg {
+    min-width: 560px;
+  }
+  .zp49-adjacent {
+    grid-template-columns: 1fr;
+  }
+}

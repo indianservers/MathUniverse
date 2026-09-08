@@ -509,18 +509,58 @@ body:has(.algebraic-input-page)
 }
 
 @media (max-width: 700px) {
-  .algebraic-input-page .input-header { height: auto; grid-template-columns: minmax(0, 1fr); gap: 16px; margin-bottom: 16px; }
-  .algebraic-input-page .input-header > div nav { flex-wrap: wrap; }
-  .algebraic-input-page .input-header > aside { grid-template-columns: minmax(0, 1fr) auto auto; }
-  .algebraic-input-page .input-header > aside button { min-height: 44px; padding: 6px; }
-  .algebraic-input-page .input-entry { height: auto; }
-  .algebraic-input-page .input-entry input { min-width: 0; width: 100%; font-size: 20px; }
-  .algebraic-input-page .input-math-preview { max-width: calc(100% - 48px); overflow: hidden; font-size: 20px; top: 13px; }
-  .algebraic-input-page .parsed-graph { padding: 10px; }
-  .algebraic-input-page .parsed-graph dl { grid-template-columns: 65px minmax(0, 1fr); }
-  .algebraic-input-page .parsed-graph dd { max-width: 100%; overflow-wrap: anywhere; }
-  .algebraic-input-page .key-points > div { grid-template-columns: 1fr; }
-  .algebraic-input-page .input-footer { height: auto; }
-  .algebraic-input-page .input-footer nav { position: static; margin-top: 12px; flex-wrap: wrap; }
-  .algebraic-input-page .input-footer:after { white-space: pre-wrap; }
+  .algebraic-input-page .input-header {
+    height: auto;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .algebraic-input-page .input-header > div nav {
+    flex-wrap: wrap;
+  }
+  .algebraic-input-page .input-header > aside {
+    grid-template-columns: minmax(0, 1fr) auto auto;
+  }
+  .algebraic-input-page .input-header > aside button {
+    min-height: 44px;
+    padding: 6px;
+  }
+  .algebraic-input-page .input-entry {
+    height: auto;
+  }
+  .algebraic-input-page .input-entry input {
+    min-width: 0;
+    width: 100%;
+    font-size: 20px;
+  }
+  .algebraic-input-page .input-math-preview {
+    max-width: calc(100% - 48px);
+    overflow: hidden;
+    font-size: 20px;
+    top: 13px;
+  }
+  .algebraic-input-page .parsed-graph {
+    padding: 10px;
+  }
+  .algebraic-input-page .parsed-graph dl {
+    grid-template-columns: 65px minmax(0, 1fr);
+  }
+  .algebraic-input-page .parsed-graph dd {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+  .algebraic-input-page .key-points > div {
+    grid-template-columns: 1fr;
+  }
+  .algebraic-input-page .input-footer {
+    height: auto;
+  }
+  .algebraic-input-page .input-footer nav {
+    position: static;
+    margin-top: 12px;
+    flex-wrap: wrap;
+  }
+  .algebraic-input-page .input-footer:after {
+    white-space: pre-wrap;
+  }
 }

@@ -1,6 +1,10 @@
 import { readFile } from "node:fs/promises";
 import { describe, expect, it } from "vitest";
-import { advancedSyllabusLabs, engineeringConceptLabId, syllabusConceptLabId } from "./advancedSyllabusLabs";
+import {
+  advancedSyllabusLabs,
+  engineeringConceptLabId,
+  syllabusConceptLabId,
+} from "./advancedSyllabusLabs";
 import { allSyllabusTopics } from "./syllabus";
 
 describe("syllabus concept labs", () => {
@@ -10,7 +14,10 @@ describe("syllabus concept labs", () => {
       topic.concepts.map((concept) => ({
         topic,
         concept,
-        id: topic.classLevel === "Engineering" ? engineeringConceptLabId(topic.id, concept) : syllabusConceptLabId(topic.id, concept),
+        id:
+          topic.classLevel === "Engineering"
+            ? engineeringConceptLabId(topic.id, concept)
+            : syllabusConceptLabId(topic.id, concept),
       })),
     );
 
@@ -19,7 +26,10 @@ describe("syllabus concept labs", () => {
   });
 
   it("links syllabus topic cards to generated concept tools", async () => {
-    const source = await readFile("src/components/syllabus/SyllabusTopicCard.tsx", "utf8");
+    const source = await readFile(
+      "src/components/syllabus/SyllabusTopicCard.tsx",
+      "utf8",
+    );
 
     expect(source).toContain("Interactive Concept Tools");
     expect(source).toContain("syllabusConceptLabId");

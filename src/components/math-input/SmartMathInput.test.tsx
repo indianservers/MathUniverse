@@ -1,15 +1,28 @@
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
-import SmartMathInput, { analyzeSmartMathInput, tokenizeSmartMathInput } from "./SmartMathInput";
+import SmartMathInput, {
+  analyzeSmartMathInput,
+  tokenizeSmartMathInput,
+} from "./SmartMathInput";
 
 describe("SmartMathInput", () => {
   it("recognizes powers, variables, set relations, and inequality relations", () => {
     const tokens = tokenizeSmartMathInput("y <= x^2 and A subset B");
 
-    expect(tokens.some((token) => token.text === "<=" && token.kind === "relation")).toBe(true);
-    expect(tokens.some((token) => token.text === "x^2" && token.kind === "power")).toBe(true);
-    expect(tokens.some((token) => token.text === "A" && token.kind === "variable")).toBe(true);
-    expect(tokens.some((token) => token.text === "subset" && token.kind === "relation")).toBe(true);
+    expect(
+      tokens.some((token) => token.text === "<=" && token.kind === "relation"),
+    ).toBe(true);
+    expect(
+      tokens.some((token) => token.text === "x^2" && token.kind === "power"),
+    ).toBe(true);
+    expect(
+      tokens.some((token) => token.text === "A" && token.kind === "variable"),
+    ).toBe(true);
+    expect(
+      tokens.some(
+        (token) => token.text === "subset" && token.kind === "relation",
+      ),
+    ).toBe(true);
   });
 
   it("shows Desmos-style readable math while preserving typed input", () => {

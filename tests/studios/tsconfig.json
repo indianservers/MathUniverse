@@ -1,0 +1,20 @@
+{
+  "extends": "../../tsconfig.app.json",
+  "compilerOptions": {
+    "incremental": true,
+    "tsBuildInfoFile": "../../tmp/studio-check.tsbuildinfo"
+  },
+  "include": [
+    "../../src/pages/AlgebraStudio.tsx",
+    "../../src/pages/Geometry.tsx",
+    "../../src/pages/LinearAlgebra.tsx",
+    "../../src/pages/MathematicalModellingStudio.tsx",
+    "../../src/studios/algebra/AlgebraInteractiveLabs.tsx",
+    "../../src/studios/geometry/*.tsx",
+    "../../src/studios/geometry/solidStudioModel.ts",
+    "../../src/studios/platform/StudioProjectCenter.tsx",
+    "../../src/modules/discrete-world/DiscreteWorldModule.tsx",
+    "../../src/visualizations/trigonometry/TrigonometryMathLab.tsx",
+    "../../src/**/*.d.ts"
+  ]
+}

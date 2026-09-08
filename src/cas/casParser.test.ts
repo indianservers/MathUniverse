@@ -1,6 +1,10 @@
 import { describe, expect, it } from "vitest";
 
-import { hasBalancedCasDelimiters, parseCasInput, splitCasArguments } from "./casParser";
+import {
+  hasBalancedCasDelimiters,
+  parseCasInput,
+  splitCasArguments,
+} from "./casParser";
 
 describe("casParser", () => {
   it("parses nested command arguments without splitting inner commas", () => {
@@ -33,11 +37,17 @@ describe("casParser", () => {
     expect(typo.errors.join(" ")).toContain("Unknown CAS command");
     expect(typo.warnings.join(" ")).toContain("Derivative");
     expect(emptyFactor.errors.join(" ")).toContain("Factor expects 1 argument");
-    expect(missingSubstitution.errors.join(" ")).toContain("at least one assignment");
+    expect(missingSubstitution.errors.join(" ")).toContain(
+      "at least one assignment",
+    );
   });
 
   it("exports reusable argument and delimiter helpers", () => {
-    expect(splitCasArguments("x^2, [1,2,3], f(a,b)")).toEqual(["x^2", "[1,2,3]", "f(a,b)"]);
+    expect(splitCasArguments("x^2, [1,2,3], f(a,b)")).toEqual([
+      "x^2",
+      "[1,2,3]",
+      "f(a,b)",
+    ]);
     expect(hasBalancedCasDelimiters("Factor[(x+1)]")).toBe(true);
     expect(hasBalancedCasDelimiters("Factor[(x+1]")).toBe(false);
   });

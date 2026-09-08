@@ -536,12 +536,30 @@
   }
 }
 @media (max-width: 600px) {
-  .dependency-lower { grid-template-columns: minmax(0, 1fr); margin-top: 12px; }
-  .dependency-header { height: auto; grid-template-columns: minmax(0, 1fr); padding: 16px; }
-  .dependency-header nav { flex-wrap: wrap; }
-  .dependency-header nav b { height: auto; padding-block: 8px; }
-  .dependency-formula .parent-cards { gap: 8px; }
-  .dependency-formula .parent-cards > b { width: auto; flex: 1; }
-  .dependency-formula .formula-flow > strong { width: 100%; }
+  .dependency-lower {
+    grid-template-columns: minmax(0, 1fr);
+    margin-top: 12px;
+  }
+  .dependency-header {
+    height: auto;
+    grid-template-columns: minmax(0, 1fr);
+    padding: 16px;
+  }
+  .dependency-header nav {
+    flex-wrap: wrap;
+  }
+  .dependency-header nav b {
+    height: auto;
+    padding-block: 8px;
+  }
+  .dependency-formula .parent-cards {
+    gap: 8px;
+  }
+  .dependency-formula .parent-cards > b {
+    width: auto;
+    flex: 1;
+  }
+  .dependency-formula .formula-flow > strong {
+    width: 100%;
+  }
 }
-

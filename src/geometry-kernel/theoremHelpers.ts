@@ -1,4 +1,8 @@
-import { classifyTriangle, distance2d, type KernelPoint } from "./geometryMeasurements";
+import {
+  classifyTriangle,
+  distance2d,
+  type KernelPoint,
+} from "./geometryMeasurements";
 
 export type TheoremInsight = {
   title: string;
@@ -7,7 +11,10 @@ export type TheoremInsight = {
   confidence: "exact" | "numeric";
 };
 
-export function triangleInsights(points: KernelPoint[], unitScale = 40): TheoremInsight[] {
+export function triangleInsights(
+  points: KernelPoint[],
+  unitScale = 40,
+): TheoremInsight[] {
   if (points.length !== 3) return [];
   const [a, b, c] = points as [KernelPoint, KernelPoint, KernelPoint];
   const classification = classifyTriangle([a, b, c], unitScale);
@@ -21,13 +28,18 @@ export function triangleInsights(points: KernelPoint[], unitScale = 40): Theorem
     {
       title: "Triangle area theorem",
       result: `Area = ${classification.area.toFixed(2)}`,
-      detail: "Computed using the shoelace formula from live vertex coordinates.",
+      detail:
+        "Computed using the shoelace formula from live vertex coordinates.",
       confidence: "numeric",
     },
   ];
 }
 
-export function circleInsights(center: KernelPoint | null, edge: KernelPoint | null, unitScale = 40): TheoremInsight[] {
+export function circleInsights(
+  center: KernelPoint | null,
+  edge: KernelPoint | null,
+  unitScale = 40,
+): TheoremInsight[] {
   if (!center || !edge) return [];
   const radius = distance2d(center, edge) / unitScale;
   return [
@@ -39,4 +51,3 @@ export function circleInsights(center: KernelPoint | null, edge: KernelPoint | n
     },
   ];
 }
-

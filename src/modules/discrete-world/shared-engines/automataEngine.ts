@@ -48,22 +48,39 @@ export function parseTransitionList(input: string): AutomatonTransition[] {
       const [left, right] = line.split("->").map((part) => part.trim());
       if (!left || !right) throw new Error(`Invalid transition: ${line}`);
       const [from, rawSymbol] = left.split(",").map((part) => part.trim());
-      const symbol = rawSymbol === "eps" || rawSymbol === "epsilon" ? epsilon : rawSymbol;
-      if (!from || rawSymbol === undefined || !right) throw new Error(`Invalid transition: ${line}`);
+      const symbol =
+        rawSymbol === "eps" || rawSymbol === "epsilon" ? epsilon : rawSymbol;
+      if (!from || rawSymbol === undefined || !right)
+        throw new Error(`Invalid transition: ${line}`);
       return { from, symbol, to: right };
     });
 }
 
 export function serializeTransitions(transitions: AutomatonTransition[]) {
-  return transitions.map((transition) => `${transition.from},${transition.symbol || "eps"} -> ${transition.to}`).join("\n");
+  return transitions
+    .map(
+      (transition) =>
+        `${transition.from},${transition.symbol || "eps"} -> ${transition.to}`,
+    )
+    .join("\n");
 }
 
 export function normalizeAutomaton(machine: FiniteAutomaton): FiniteAutomaton {
-  const transitionStates = machine.transitions.flatMap((transition) => [transition.from, transition.to]);
-  const states = unique([machine.start, ...machine.states, ...machine.accepts, ...transitionStates]);
+  const transitionStates = machine.transitions.flatMap((transition) => [
+    transition.from,
+    transition.to,
+  ]);
+  const states = unique([
+    machine.start,
+    ...machine.states,
+    ...machine.accepts,
+    ...transitionStates,
+  ]);
   const alphabet = unique([
     ...machine.alphabet,
-    ...machine.transitions.map((transition) => transition.symbol).filter(Boolean),
+    ...machine.transitions
+      .map((transition) => transition.symbol)
+      .filter(Boolean),
   ]);
   return { ...machine, states, alphabet };
 }
@@ -75,7 +92,10 @@ export function epsilonClosure(machine: FiniteAutomaton, seeds: string[]) {
   while (stack.length) {
     const state = stack.pop()!;
     normalized.transitions
-      .filter((transition) => transition.from === state && transition.symbol === epsilon)
+      .filter(
+        (transition) =>
+          transition.from === state && transition.symbol === epsilon,
+      )
       .forEach((transition) => {
         if (closure.has(transition.to)) return;
         closure.add(transition.to);
@@ -88,7 +108,10 @@ export function epsilonClosure(machine: FiniteAutomaton, seeds: string[]) {
 export function simulateAutomaton(machine: FiniteAutomaton, input: string) {
   const normalized = normalizeAutomaton(machine);
   const frames: AutomatonFrame[] = [];
-  let activeStates = normalized.kind === "nfa" ? epsilonClosure(normalized, [normalized.start]) : [normalized.start];
+  let activeStates =
+    normalized.kind === "nfa"
+      ? epsilonClosure(normalized, [normalized.start])
+      : [normalized.start];
   frames.push({
     index: 0,
     symbol: "start",
@@ -99,9 +122,15 @@ export function simulateAutomaton(machine: FiniteAutomaton, input: string) {
 
   for (let index = 0; index < input.length; index += 1) {
     const symbol = input[index];
-    const traversed = normalized.transitions.filter((transition) => activeStates.includes(transition.from) && transition.symbol === symbol);
+    const traversed = normalized.transitions.filter(
+      (transition) =>
+        activeStates.includes(transition.from) && transition.symbol === symbol,
+    );
     const next = unique(traversed.map((transition) => transition.to));
-    activeStates = normalized.kind === "nfa" ? epsilonClosure(normalized, next) : next.slice(0, 1);
+    activeStates =
+      normalized.kind === "nfa"
+        ? epsilonClosure(normalized, next)
+        : next.slice(0, 1);
     frames.push({
       index: index + 1,
       symbol,
@@ -113,7 +142,9 @@ export function simulateAutomaton(machine: FiniteAutomaton, input: string) {
     });
   }
 
-  const accepted = activeStates.some((state) => normalized.accepts.includes(state));
+  const accepted = activeStates.some((state) =>
+    normalized.accepts.includes(state),
+  );
   return { accepted, frames, finalStates: activeStates };
 }
 
@@ -128,10 +159,14 @@ export function determinizeNfa(machine: FiniteAutomaton): FiniteAutomaton {
   while (queue.length) {
     const current = queue.shift()!;
     const currentId = stateSetId(current);
-    if (current.some((state) => normalized.accepts.includes(state))) accepts.add(currentId);
+    if (current.some((state) => normalized.accepts.includes(state)))
+      accepts.add(currentId);
     normalized.alphabet.forEach((symbol) => {
       const reached = normalized.transitions
-        .filter((transition) => current.includes(transition.from) && transition.symbol === symbol)
+        .filter(
+          (transition) =>
+            current.includes(transition.from) && transition.symbol === symbol,
+        )
         .map((transition) => transition.to);
       const closed = epsilonClosure(normalized, reached);
       if (!closed.length) return;
@@ -167,10 +202,18 @@ export function minimizeDfa(machine: FiniteAutomaton) {
     for (const part of partitions) {
       const buckets = new Map<string, string[]>();
       part.forEach((state) => {
-        const signature = dfa.alphabet.map((symbol) => {
-          const target = dfa.transitions.find((transition) => transition.from === state && transition.symbol === symbol)?.to ?? "";
-          return partitions.findIndex((candidate) => candidate.includes(target));
-        }).join(",");
+        const signature = dfa.alphabet
+          .map((symbol) => {
+            const target =
+              dfa.transitions.find(
+                (transition) =>
+                  transition.from === state && transition.symbol === symbol,
+              )?.to ?? "";
+            return partitions.findIndex((candidate) =>
+              candidate.includes(target),
+            );
+          })
+          .join(",");
         buckets.set(signature, [...(buckets.get(signature) ?? []), state]);
       });
       nextPartitions.push(...buckets.values());
@@ -181,7 +224,9 @@ export function minimizeDfa(machine: FiniteAutomaton) {
   return {
     partitions,
     stateCount: partitions.length,
-    explanation: partitions.map((part, index) => `M${index} = { ${part.join(", ")} }`),
+    explanation: partitions.map(
+      (part, index) => `M${index} = { ${part.join(", ")} }`,
+    ),
   };
 }
 
@@ -221,22 +266,41 @@ export function regexToNfa(pattern: string): FiniteAutomaton {
       const accept = nextState();
       const left = build(node.left);
       const right = build(node.right);
-      transitions.push({ from: start, to: left.start, symbol: epsilon }, { from: start, to: right.start, symbol: epsilon });
-      transitions.push({ from: left.accept, to: accept, symbol: epsilon }, { from: right.accept, to: accept, symbol: epsilon });
+      transitions.push(
+        { from: start, to: left.start, symbol: epsilon },
+        { from: start, to: right.start, symbol: epsilon },
+      );
+      transitions.push(
+        { from: left.accept, to: accept, symbol: epsilon },
+        { from: right.accept, to: accept, symbol: epsilon },
+      );
       return { start, accept };
     }
     const start = nextState();
     const accept = nextState();
     const child = build(node.child);
-    transitions.push({ from: start, to: child.start, symbol: epsilon }, { from: start, to: accept, symbol: epsilon });
-    transitions.push({ from: child.accept, to: child.start, symbol: epsilon }, { from: child.accept, to: accept, symbol: epsilon });
+    transitions.push(
+      { from: start, to: child.start, symbol: epsilon },
+      { from: start, to: accept, symbol: epsilon },
+    );
+    transitions.push(
+      { from: child.accept, to: child.start, symbol: epsilon },
+      { from: child.accept, to: accept, symbol: epsilon },
+    );
     return { start, accept };
   };
   const built = build(ast);
   return normalizeAutomaton({
     kind: "nfa",
     states: [],
-    alphabet: Array.from(new Set(pattern.replace(/[()*|]/g, "").split("").filter(Boolean))),
+    alphabet: Array.from(
+      new Set(
+        pattern
+          .replace(/[()*|]/g, "")
+          .split("")
+          .filter(Boolean),
+      ),
+    ),
     start: built.start,
     accepts: [built.accept],
     transitions,
@@ -270,20 +334,42 @@ export const balancedParenthesesPda: PushdownAutomaton = {
   ],
 };
 
-export function simulatePda(machine: PushdownAutomaton, input: string, maxSteps = 80) {
-  type Config = { state: string; index: number; stack: string[]; trace: string[] };
-  const queue: Config[] = [{ state: machine.start, index: 0, stack: [machine.bottom], trace: ["Start with bottom marker."] }];
+export function simulatePda(
+  machine: PushdownAutomaton,
+  input: string,
+  maxSteps = 80,
+) {
+  type Config = {
+    state: string;
+    index: number;
+    stack: string[];
+    trace: string[];
+  };
+  const queue: Config[] = [
+    {
+      state: machine.start,
+      index: 0,
+      stack: [machine.bottom],
+      trace: ["Start with bottom marker."],
+    },
+  ];
   const seen = new Set<string>();
   while (queue.length) {
     const config = queue.shift()!;
     const key = `${config.state}:${config.index}:${config.stack.join("")}`;
     if (seen.has(key) || config.trace.length > maxSteps) continue;
     seen.add(key);
-    if (machine.accepts.includes(config.state) && config.index === input.length) return { accepted: true, trace: config.trace, stack: config.stack };
+    if (machine.accepts.includes(config.state) && config.index === input.length)
+      return { accepted: true, trace: config.trace, stack: config.stack };
     const top = config.stack[config.stack.length - 1] ?? "";
     const symbol = input[config.index] ?? "";
     machine.transitions
-      .filter((transition) => transition.from === config.state && transition.pop === top && (transition.input === symbol || transition.input === ""))
+      .filter(
+        (transition) =>
+          transition.from === config.state &&
+          transition.pop === top &&
+          (transition.input === symbol || transition.input === ""),
+      )
       .forEach((transition) => {
         const nextStack = config.stack.slice(0, -1);
         transition.push.split("").forEach((item) => {
@@ -293,14 +379,50 @@ export function simulatePda(machine: PushdownAutomaton, input: string, maxSteps 
           state: transition.to,
           index: config.index + (transition.input ? 1 : 0),
           stack: nextStack,
-          trace: [...config.trace, `${transition.from}, ${transition.input || "eps"}, pop ${transition.pop}, push ${transition.push || "eps"} -> ${transition.to}`],
+          trace: [
+            ...config.trace,
+            `${transition.from}, ${transition.input || "eps"}, pop ${transition.pop}, push ${transition.push || "eps"} -> ${transition.to}`,
+          ],
         });
       });
   }
-  return { accepted: false, trace: ["No accepting PDA branch found."], stack: [] };
+  return {
+    accepted: false,
+    trace: ["No accepting PDA branch found."],
+    stack: [],
+  };
 }
 
 function parseRegex(pattern: string): RegexAst {
+  const source = pattern.replace(/\s+/g, "");
+  let depth = 0,
+    needsOperand = true;
+  for (const token of source) {
+    if (/^[A-Za-z0-9]$/.test(token)) needsOperand = false;
+    else if (token === "(") {
+      depth++;
+      needsOperand = true;
+    } else if (token === ")") {
+      if (!depth || needsOperand)
+        throw new Error(
+          "Unmatched or empty parentheses in regular expression.",
+        );
+      depth--;
+      needsOperand = false;
+    } else if (token === "|") {
+      if (needsOperand)
+        throw new Error("Union needs an expression on both sides.");
+      needsOperand = true;
+    } else if (token === "*") {
+      if (needsOperand) throw new Error("Star must follow a symbol or group.");
+    } else
+      throw new Error(
+        `Unsupported regex symbol: ${token}. Use letters, digits, parentheses, | and *.`,
+      );
+  }
+  if (depth) throw new Error("Unmatched parentheses in regular expression.");
+  if (source && needsOperand)
+    throw new Error("Regular expression ends with an incomplete operation.");
   const tokens = insertConcat(pattern.replace(/\s+/g, "")).split("");
   const output: string[] = [];
   const ops: string[] = [];
@@ -312,19 +434,30 @@ function parseRegex(pattern: string): RegexAst {
       while (ops.length && ops[ops.length - 1] !== "(") output.push(ops.pop()!);
       ops.pop();
     } else {
-      while (ops.length && ops[ops.length - 1] !== "(" && precedence[ops[ops.length - 1]] >= precedence[token]) output.push(ops.pop()!);
+      while (
+        ops.length &&
+        ops[ops.length - 1] !== "(" &&
+        precedence[ops[ops.length - 1]] >= precedence[token]
+      )
+        output.push(ops.pop()!);
       ops.push(token);
     }
   });
   while (ops.length) output.push(ops.pop()!);
   const stack: RegexAst[] = [];
   output.forEach((token) => {
-    if (/^[A-Za-z0-9]$/.test(token)) stack.push({ type: "literal", value: token });
-    else if (token === "*") stack.push({ type: "star", child: stack.pop() ?? { type: "epsilon" } });
+    if (/^[A-Za-z0-9]$/.test(token))
+      stack.push({ type: "literal", value: token });
+    else if (token === "*")
+      stack.push({ type: "star", child: stack.pop() ?? { type: "epsilon" } });
     else {
       const right = stack.pop() ?? { type: "epsilon" };
       const left = stack.pop() ?? { type: "epsilon" };
-      stack.push(token === "|" ? { type: "union", left, right } : { type: "concat", left, right });
+      stack.push(
+        token === "|"
+          ? { type: "union", left, right }
+          : { type: "concat", left, right },
+      );
     }
   });
   return stack[0] ?? { type: "epsilon" };
@@ -337,7 +470,11 @@ function insertConcat(pattern: string) {
     const next = pattern[index + 1];
     output += current;
     if (!next) continue;
-    if ((/^[A-Za-z0-9)]$/.test(current) || current === "*") && (/^[A-Za-z0-9(]$/.test(next))) output += ".";
+    if (
+      (/^[A-Za-z0-9)]$/.test(current) || current === "*") &&
+      /^[A-Za-z0-9(]$/.test(next)
+    )
+      output += ".";
   }
   return output;
 }
@@ -347,5 +484,7 @@ function stateSetId(states: string[]) {
 }
 
 function unique(values: string[]) {
-  return Array.from(new Set(values.map((value) => value.trim()).filter(Boolean)));
+  return Array.from(
+    new Set(values.map((value) => value.trim()).filter(Boolean)),
+  );
 }

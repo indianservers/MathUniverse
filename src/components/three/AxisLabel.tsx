@@ -6,9 +6,19 @@ type AxisLabelProps = {
   color?: string;
 };
 
-export default function AxisLabel({ position, label, color = "#67e8f9" }: AxisLabelProps) {
+export default function AxisLabel({
+  position,
+  label,
+  color = "#67e8f9",
+}: AxisLabelProps) {
   return (
-    <Text position={position} fontSize={0.22} color={color} anchorX="center" anchorY="middle">
+    <Text
+      position={position}
+      fontSize={0.22}
+      color={color}
+      anchorX="center"
+      anchorY="middle"
+    >
       {label}
     </Text>
   );

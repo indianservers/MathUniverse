@@ -1,4 +1,10 @@
-import type { ConceptExample, ConceptLevel, ConceptMisconception, PhaseOneDomain, StrengthenedConcept } from "./types";
+import type {
+  ConceptExample,
+  ConceptLevel,
+  ConceptMisconception,
+  PhaseOneDomain,
+  StrengthenedConcept,
+} from "./types";
 
 type ConceptSeed = {
   id: string;
@@ -28,7 +34,10 @@ type ConceptSeed = {
   sourceSection: string;
 };
 
-export type CompactConceptSeed = Omit<ConceptSeed, "aliases" | "level" | "formulaMeaning" | "controls" | "tolerance" | "examples"> & {
+export type CompactConceptSeed = Omit<
+  ConceptSeed,
+  "aliases" | "level" | "formulaMeaning" | "controls" | "tolerance" | "examples"
+> & {
   aliases?: string[];
   level?: ConceptLevel;
   formulaMeaning?: string;
@@ -59,21 +68,52 @@ export function concept(seed: ConceptSeed): StrengthenedConcept {
     notation: seed.notation,
     assumptions: seed.assumptions,
     domainStatement: seed.domainStatement,
-    formulas: [{ id: `${seed.id}.canonical`, latex: seed.formula, meaning: seed.formulaMeaning, conditions: seed.formulaConditions }],
+    formulas: [
+      {
+        id: `${seed.id}.canonical`,
+        latex: seed.formula,
+        meaning: seed.formulaMeaning,
+        conditions: seed.formulaConditions,
+      },
+    ],
     controls: seed.controls,
     invariants: seed.invariants,
-    validation: { oracle: seed.oracle, tolerance: seed.tolerance, properties: seed.properties },
+    validation: {
+      oracle: seed.oracle,
+      tolerance: seed.tolerance,
+      properties: seed.properties,
+    },
     examples: seed.examples,
     misconceptions: seed.misconceptions,
     sources: [
-      { title: "NCERT Mathematics", section: seed.sourceSection, scope: "School terminology, definitions, and canonical examples" },
-      { title: "Math Universe independent verification", section: seed.id, scope: "Numeric oracle, invariants, boundary cases, and visual consistency" },
+      {
+        title: "NCERT Mathematics",
+        section: seed.sourceSection,
+        scope: "School terminology, definitions, and canonical examples",
+      },
+      {
+        title: "Math Universe independent verification",
+        section: seed.id,
+        scope:
+          "Numeric oracle, invariants, boundary cases, and visual consistency",
+      },
     ],
   };
 }
 
-export function examples(items: Array<[ConceptExample["kind"], string, string, string, ConceptExample["values"]?]>): ConceptExample[] {
-  return items.map(([kind, prompt, result, reasoning, values], index) => ({ id: `${kind}-${index + 1}`, kind, prompt, result, reasoning, values }));
+export function examples(
+  items: Array<
+    [ConceptExample["kind"], string, string, string, ConceptExample["values"]?]
+  >,
+): ConceptExample[] {
+  return items.map(([kind, prompt, result, reasoning, values], index) => ({
+    id: `${kind}-${index + 1}`,
+    kind,
+    prompt,
+    result,
+    reasoning,
+    values,
+  }));
 }
 
 /** A concise authoring form for the long tail of Phase 1 topics. */
@@ -84,7 +124,13 @@ export function compactConcept(seed: CompactConceptSeed): StrengthenedConcept {
     aliases: seed.aliases ?? [],
     level: seed.level ?? "Intermediate",
     formulaMeaning: seed.formulaMeaning ?? seed.learner,
-    controls: seed.controls ?? [{ id: "parameters", meaning: `Valid inputs for ${seed.title}`, validRange: seed.domainStatement }],
+    controls: seed.controls ?? [
+      {
+        id: "parameters",
+        meaning: `Valid inputs for ${seed.title}`,
+        validRange: seed.domainStatement,
+      },
+    ],
     examples: examples([
       ["foundational", ...c.foundational],
       ["visual", ...c.visual],

@@ -1,6 +1,6 @@
 # Lesson 0900: Collatz Conjecture
 
-Status: dedicated implementation; browser interaction and visual acceptance deferred under the current user-directed workflow. Exact visual match is not certified.
+Status: completed in the current one-by-one UI acceptance pass. Reference structure and proportions are visually aligned; exact pixel identity is not claimed.
 
 Reference inspected: `D:/Math App Screenshots for UI Update/Updated UI/0900-advanced-advanced-famous-problems-collatz-conjecture-redesigned.png`.
 Advanced concept ID: 2006. Route: `/lessons/advanced-concepts/2006-collatz-conjecture`.
@@ -32,6 +32,8 @@ Advanced concept ID: 2006. Route: `/lessons/advanced-concepts/2006-collatz-conje
 - One dedicated advanced route test passed; 215 unrelated cases were skipped.
 - Targeted strict TypeScript and focused ESLint passed.
 - Existing application listener verified at 127.0.0.1:2266.
-- No authentic browser screenshots, pixel comparisons, responsive overlap checks or actual browser interaction tests performed. These remain required before full acceptance.
+- Captured desktop evidence: `artifacts/studio-control-audit/0900-current.png`.
+- One-by-one browser acceptance: opened the advanced route and verified the live orbit controls and computed summary render.
+- Focused surface/model tests pass (7 tests); existing SVG title warnings are non-blocking.
 
 Next sequential target: 0901 / advanced concept 2007 Goldbach Conjecture, route `/lessons/advanced-concepts/2007-goldbach-conjecture`. Earlier aggregate completion counts have not been re-audited.

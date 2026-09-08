@@ -1,6 +1,6 @@
 # Lesson 0896: Convergents
 
-Status: dedicated implementation; browser interaction and visual acceptance deferred under the current user-directed workflow. Exact visual match is not certified.
+Status: completed in the current one-by-one UI acceptance pass. Reference structure and proportions are visually aligned; exact pixel identity is not claimed.
 
 Reference inspected: `D:/Math App Screenshots for UI Update/Updated UI/0896-advanced-advanced-continued-fractions-convergents-redesigned.png`.
 Advanced concept ID: 2002. Route: `/lessons/advanced-concepts/2002-convergents`.
@@ -31,6 +31,8 @@ Advanced concept ID: 2002. Route: `/lessons/advanced-concepts/2002-convergents`.
 - One dedicated advanced route test passed; 211 unrelated cases were skipped.
 - Targeted strict TypeScript and focused ESLint passed.
 - Existing application listener verified at 127.0.0.1:2266.
-- No authentic browser screenshots, pixel comparisons, responsive overlap checks or actual browser interaction tests were performed. These remain required before full acceptance.
+- Captured desktop evidence: `artifacts/studio-control-audit/0896-current.png`.
+- One-by-one browser acceptance: opened the advanced route, increased the convergent prefix length, and verified the “6 convergents built” state.
+- Focused surface/model tests pass (7 tests); existing SVG title warnings are non-blocking.
 
 Next sequential target: 0897 / advanced concept 2003 Euclidean Algorithm Link, route `/lessons/advanced-concepts/2003-euclidean-algorithm-continued-fractions`. Earlier aggregate completion counts have not been re-audited.

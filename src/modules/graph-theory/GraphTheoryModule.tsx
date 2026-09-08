@@ -31,7 +31,14 @@ import {
   User,
   Waypoints,
 } from "lucide-react";
-import { useEffect, useMemo, useRef, useState, type PointerEvent, type ReactNode } from "react";
+import {
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type PointerEvent,
+  type ReactNode,
+} from "react";
 import SectionCard from "../../components/ui/SectionCard";
 import TopicHeader from "../../components/ui/TopicHeader";
 import {
@@ -74,7 +81,10 @@ import {
   type GraphProject,
   adjacency,
 } from "./graphTheoryEngine";
-import { useGraphTheoryStore, type GraphAlgorithmName } from "./graphTheoryStore";
+import {
+  useGraphTheoryStore,
+  type GraphAlgorithmName,
+} from "./graphTheoryStore";
 
 const colors = ["#38bdf8", "#34d399", "#facc15", "#fb7185"];
 const graphTopicCoverage = [
@@ -101,7 +111,8 @@ const graphTopicCoverage = [
   "Theorem checklist",
 ];
 
-type GraphPrimaryTab = "Build" | "Analyze" | "Algorithms" | "Practice" | "Theory";
+type GraphPrimaryTab =
+  "Build" | "Analyze" | "Algorithms" | "Practice" | "Theory";
 type GraphTab = {
   id: string;
   label: string;
@@ -112,7 +123,8 @@ type GraphTab = {
 };
 type GraphStudyMode = "student" | "teacher";
 type GraphDensityMode = "beginner" | "advanced";
-type GraphTemplateName = "path" | "cycle" | "complete" | "bipartite" | "tree" | "star" | "wheel";
+type GraphTemplateName =
+  "path" | "cycle" | "complete" | "bipartite" | "tree" | "star" | "wheel";
 type GraphLayoutName = "circular" | "force" | "tree" | "layered";
 
 export default function GraphTheoryModule() {
@@ -121,10 +133,18 @@ export default function GraphTheoryModule() {
 
 function GraphTheoryStudio() {
   const store = useGraphTheoryStore();
-  const [activeTab, setActiveTab] = useState<"build" | "representations" | "algorithms" | "properties" | "learn">(() => readStudioTab());
-  const [tool, setTool] = useState<"select" | "move" | "connect" | "pan" | "lasso">("move");
-  const [selectedNodeId, setSelectedNodeId] = useState(store.nodes[1]?.id ?? store.nodes[0]?.id ?? "");
-  const [selectedEdgeId, setSelectedEdgeId] = useState(store.edges[0]?.id ?? "");
+  const [activeTab, setActiveTab] = useState<
+    "build" | "representations" | "algorithms" | "properties" | "learn"
+  >(() => readStudioTab());
+  const [tool, setTool] = useState<
+    "select" | "move" | "connect" | "pan" | "lasso"
+  >("move");
+  const [selectedNodeId, setSelectedNodeId] = useState(
+    store.nodes[1]?.id ?? store.nodes[0]?.id ?? "",
+  );
+  const [selectedEdgeId, setSelectedEdgeId] = useState(
+    store.edges[0]?.id ?? "",
+  );
   const [connectSource, setConnectSource] = useState<string | null>(null);
   const [draggingNode, setDraggingNode] = useState<string | null>(null);
   const [grid, setGrid] = useState(true);
@@ -133,7 +153,9 @@ function GraphTheoryStudio() {
   const [degreesVisible, setDegreesVisible] = useState(false);
   const [arrows, setArrows] = useState(true);
   const [snap, setSnap] = useState(false);
-  const [representationTab, setRepresentationTab] = useState<"list" | "matrix" | "incidence">("list");
+  const [representationTab, setRepresentationTab] = useState<
+    "list" | "matrix" | "incidence"
+  >("list");
   const [templateSearch, setTemplateSearch] = useState("");
   const [templateSize, setTemplateSize] = useState(6);
   const [history, setHistory] = useState<GraphProject[]>([]);
@@ -141,13 +163,28 @@ function GraphTheoryStudio() {
   const [zoom, setZoom] = useState(1);
   const [pan, setPan] = useState({ x: 0, y: 0 });
   const svgRef = useRef<SVGSVGElement>(null);
-  const project = useMemo(() => ({ nodes: store.nodes, edges: store.edges, directed: store.directed }), [store.nodes, store.edges, store.directed]);
+  const project = useMemo(
+    () => ({
+      nodes: store.nodes,
+      edges: store.edges,
+      directed: store.directed,
+    }),
+    [store.nodes, store.edges, store.directed],
+  );
   const metrics = useMemo(() => graphMetrics(project), [project]);
   const degrees = useMemo(() => directedDegreeMap(project), [project]);
-  const selectedNode = project.nodes.find((node) => node.id === selectedNodeId) ?? project.nodes[0];
-  const selectedEdge = project.edges.find((edge) => edge.id === selectedEdgeId) ?? project.edges[0];
-  const algorithm = useMemo(() => algorithmSteps(project, store.selectedAlgorithm), [project, store.selectedAlgorithm]);
-  const activeStep = algorithm[Math.min(store.stepIndex, Math.max(0, algorithm.length - 1))];
+  const selectedNode =
+    project.nodes.find((node) => node.id === selectedNodeId) ??
+    project.nodes[0];
+  const selectedEdge =
+    project.edges.find((edge) => edge.id === selectedEdgeId) ??
+    project.edges[0];
+  const algorithm = useMemo(
+    () => algorithmSteps(project, store.selectedAlgorithm),
+    [project, store.selectedAlgorithm],
+  );
+  const activeStep =
+    algorithm[Math.min(store.stepIndex, Math.max(0, algorithm.length - 1))];
   const fileRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -159,7 +196,11 @@ function GraphTheoryStudio() {
     return () => window.removeEventListener("popstate", onPop);
   }, []);
   useEffect(() => {
-    if (selectedNodeId && project.nodes.some((node) => node.id === selectedNodeId)) return;
+    if (
+      selectedNodeId &&
+      project.nodes.some((node) => node.id === selectedNodeId)
+    )
+      return;
     setSelectedNodeId(project.nodes[0]?.id ?? "");
   }, [project.nodes, selectedNodeId]);
 
@@ -190,13 +231,22 @@ function GraphTheoryStudio() {
   const deleteSelected = () => {
     if (selectedNode?.id) {
       pushHistory();
-      store.setNodes(project.nodes.filter((node) => node.id !== selectedNode.id));
-      store.setEdges(project.edges.filter((edge) => edge.source !== selectedNode.id && edge.target !== selectedNode.id));
+      store.setNodes(
+        project.nodes.filter((node) => node.id !== selectedNode.id),
+      );
+      store.setEdges(
+        project.edges.filter(
+          (edge) =>
+            edge.source !== selectedNode.id && edge.target !== selectedNode.id,
+        ),
+      );
       return;
     }
     if (selectedEdge?.id) {
       pushHistory();
-      store.setEdges(project.edges.filter((edge) => edge.id !== selectedEdge.id));
+      store.setEdges(
+        project.edges.filter((edge) => edge.id !== selectedEdge.id),
+      );
     }
   };
   const undo = () => {
@@ -218,26 +268,68 @@ function GraphTheoryStudio() {
     store.setNodes(layoutGraph(project, layout));
   };
   const applyTemplateChoice = (template: GraphTemplateName) => {
-    const replace = project.nodes.length === 0 || window.confirm("Replace the current graph? Choose Cancel to add the template beside it.");
-    const next = createSizedGraphTemplate(template, store.directed, templateSize);
+    const replace =
+      project.nodes.length === 0 ||
+      window.confirm(
+        "Replace the current graph? Choose Cancel to add the template beside it.",
+      );
+    const next = createSizedGraphTemplate(
+      template,
+      store.directed,
+      templateSize,
+    );
     pushHistory();
     if (replace) setProject(next);
     else {
       const dx = Math.max(80, Math.min(420, project.nodes.length * 12));
-      const nodes = next.nodes.map((node) => ({ ...node, id: uniqueNodeId(project, node.id), label: uniqueNodeLabel(project, node.label), x: Math.min(866, node.x + dx), y: node.y }));
-      const idMap = new Map(next.nodes.map((node, index) => [node.id, nodes[index].id]));
+      const nodes = next.nodes.map((node) => ({
+        ...node,
+        id: uniqueNodeId(project, node.id),
+        label: uniqueNodeLabel(project, node.label),
+        x: Math.min(866, node.x + dx),
+        y: node.y,
+      }));
+      const idMap = new Map(
+        next.nodes.map((node, index) => [node.id, nodes[index].id]),
+      );
       store.setNodes([...project.nodes, ...nodes]);
-      store.setEdges([...project.edges, ...next.edges.map((edge, index) => ({ ...edge, id: `edge-${Date.now()}-${index}`, source: idMap.get(edge.source) ?? edge.source, target: idMap.get(edge.target) ?? edge.target }))]);
+      store.setEdges([
+        ...project.edges,
+        ...next.edges.map((edge, index) => ({
+          ...edge,
+          id: `edge-${Date.now()}-${index}`,
+          source: idMap.get(edge.source) ?? edge.source,
+          target: idMap.get(edge.target) ?? edge.target,
+        })),
+      ]);
     }
   };
   const toGraphPoint = (event: PointerEvent<SVGSVGElement>) => {
     const rect = svgRef.current?.getBoundingClientRect();
     if (!rect) return { x: 0, y: 0 };
-    return { x: (((event.clientX - rect.left) * 900) / rect.width - pan.x) / zoom, y: (((event.clientY - rect.top) * 520) / rect.height - pan.y) / zoom };
+    return {
+      x: (((event.clientX - rect.left) * 900) / rect.width - pan.x) / zoom,
+      y: (((event.clientY - rect.top) * 520) / rect.height - pan.y) / zoom,
+    };
   };
-  const updateNodePosition = (nodeId: string, point: { x: number; y: number }) => {
-    const next = snap ? { x: Math.round(point.x / 34) * 34, y: Math.round(point.y / 34) * 34 } : point;
-    store.setNodes(project.nodes.map((node) => node.id === nodeId ? { ...node, x: Math.max(36, Math.min(864, next.x)), y: Math.max(36, Math.min(484, next.y)) } : node));
+  const updateNodePosition = (
+    nodeId: string,
+    point: { x: number; y: number },
+  ) => {
+    const next = snap
+      ? { x: Math.round(point.x / 34) * 34, y: Math.round(point.y / 34) * 34 }
+      : point;
+    store.setNodes(
+      project.nodes.map((node) =>
+        node.id === nodeId
+          ? {
+              ...node,
+              x: Math.max(36, Math.min(864, next.x)),
+              y: Math.max(36, Math.min(484, next.y)),
+            }
+          : node,
+      ),
+    );
   };
   const activeNodes = activeStep?.activeNodes ?? [];
   const activeEdges = activeStep?.activeEdges ?? [];
@@ -249,128 +341,568 @@ function GraphTheoryStudio() {
   const cuts = bridgesAndCutVertices(project);
   const bipartite = isBipartite(project);
   const topo = topologicalSort({ ...project, directed: true });
-  const templates = (["path", "cycle", "complete", "bipartite", "tree", "star", "wheel"] as GraphTemplateName[]).filter((item) => item.includes(templateSearch.toLowerCase()));
+  const templates = (
+    [
+      "path",
+      "cycle",
+      "complete",
+      "bipartite",
+      "tree",
+      "star",
+      "wheel",
+    ] as GraphTemplateName[]
+  ).filter((item) => item.includes(templateSearch.toLowerCase()));
 
   return (
     <main className="gt-studio">
       <header className="gt-header">
         <div>
-          <div className="gt-breadcrumb">Home <span>&gt;</span> Discrete Mathematics <span>&gt;</span> Graph Theory</div>
+          <div className="gt-breadcrumb">
+            Home <span>&gt;</span> Discrete Mathematics <span>&gt;</span> Graph
+            Theory
+          </div>
           <h1>Graph Theory Studio</h1>
           <p>Build, analyze, and understand networks visually.</p>
         </div>
         <div className="gt-header-actions">
-          <span><i className="cyan-dot" />{metrics.order} vertices</span>
-          <span><i className="violet-dot" />{metrics.size} edges</span>
-          <span><Network />{project.directed ? "Directed" : "Undirected"}</span>
-          <span><Gauge />Beginner</span>
-          <button type="button" onClick={() => download("graph-theory-setup.json", serializeGraph(project))}><Save />Share setup</button>
+          <span>
+            <i className="cyan-dot" />
+            {metrics.order} vertices
+          </span>
+          <span>
+            <i className="violet-dot" />
+            {metrics.size} edges
+          </span>
+          <span>
+            <Network />
+            {project.directed ? "Directed" : "Undirected"}
+          </span>
+          <span>
+            <Gauge />
+            Beginner
+          </span>
+          <button
+            type="button"
+            onClick={() =>
+              download("graph-theory-setup.json", serializeGraph(project))
+            }
+          >
+            <Save />
+            Share setup
+          </button>
         </div>
       </header>
-      <nav className="gt-tabs" role="tablist" aria-label="Graph Theory Studio tabs">
-        {([
-          ["build", "Build"], ["representations", "Representations"], ["algorithms", "Algorithms"], ["properties", "Properties"], ["learn", "Learn & Validate"],
-        ] as Array<[typeof activeTab, string]>).map(([id, label]) => <button key={id} type="button" role="tab" aria-selected={activeTab === id} className={activeTab === id ? "active" : ""} onClick={() => setTab(id)}>{label}</button>)}
+      <nav
+        className="gt-tabs"
+        role="tablist"
+        aria-label="Graph Theory Studio tabs"
+      >
+        {(
+          [
+            ["build", "Build"],
+            ["representations", "Representations"],
+            ["algorithms", "Algorithms"],
+            ["properties", "Properties"],
+            ["learn", "Learn & Validate"],
+          ] as Array<[typeof activeTab, string]>
+        ).map(([id, label]) => (
+          <button
+            key={id}
+            type="button"
+            role="tab"
+            aria-selected={activeTab === id}
+            className={activeTab === id ? "active" : ""}
+            onClick={() => setTab(id)}
+          >
+            {label}
+          </button>
+        ))}
       </nav>
       <section className="gt-workspace">
         <aside className="gt-toolbox">
           <PanelTitle title="Graph type" />
           <div className="gt-segment">
-            <button type="button" className={!project.directed ? "active" : ""} onClick={() => { pushHistory(); store.setDirected(false); }}><Network />Undirected</button>
-            <button type="button" className={project.directed ? "active" : ""} onClick={() => { pushHistory(); store.setDirected(true); }}><Route />Directed</button>
+            <button
+              type="button"
+              className={!project.directed ? "active" : ""}
+              onClick={() => {
+                pushHistory();
+                store.setDirected(false);
+              }}
+            >
+              <Network />
+              Undirected
+            </button>
+            <button
+              type="button"
+              className={project.directed ? "active" : ""}
+              onClick={() => {
+                pushHistory();
+                store.setDirected(true);
+              }}
+            >
+              <Route />
+              Directed
+            </button>
           </div>
           <div className="gt-toggle-grid">
-            <label><input type="checkbox" checked={weights} onChange={(event) => setWeights(event.target.checked)} />Weights</label>
-            <label><input type="checkbox" checked={arrows} onChange={(event) => setArrows(event.target.checked)} />Arrows</label>
+            <label>
+              <input
+                type="checkbox"
+                checked={weights}
+                onChange={(event) => setWeights(event.target.checked)}
+              />
+              Weights
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                checked={arrows}
+                onChange={(event) => setArrows(event.target.checked)}
+              />
+              Arrows
+            </label>
           </div>
           <PanelTitle title="Create" />
           <div className="gt-action-grid">
-            <button type="button" onClick={addNode}><Plus />Add node</button>
-            <button type="button" onClick={() => setTool("connect")}><GitBranch />Connect</button>
-            <button type="button" onClick={deleteSelected}><Trash2 />Delete</button>
-            <button type="button" onClick={() => selectedNode && addNode()}><Copy />Duplicate</button>
-            <button type="button" disabled={!history.length} onClick={undo}><Undo2 />Undo</button>
-            <button type="button" disabled={!future.length} onClick={redo}>Redo</button>
+            <button type="button" onClick={addNode}>
+              <Plus />
+              Add node
+            </button>
+            <button type="button" onClick={() => setTool("connect")}>
+              <GitBranch />
+              Connect
+            </button>
+            <button type="button" onClick={deleteSelected}>
+              <Trash2 />
+              Delete
+            </button>
+            <button type="button" onClick={() => selectedNode && addNode()}>
+              <Copy />
+              Duplicate
+            </button>
+            <button type="button" disabled={!history.length} onClick={undo}>
+              <Undo2 />
+              Undo
+            </button>
+            <button type="button" disabled={!future.length} onClick={redo}>
+              Redo
+            </button>
           </div>
-          <button className="gt-wide-action" type="button" onClick={() => { pushHistory(); store.resetProject(); }}>Reset sample</button>
-          <button className="gt-wide-action" type="button" onClick={() => fileRef.current?.click()}>Import graph</button>
-          <input ref={fileRef} hidden type="file" accept="application/json" onChange={(event) => void loadFile(event.target.files?.[0], store.loadProject)} />
+          <button
+            className="gt-wide-action"
+            type="button"
+            onClick={() => {
+              pushHistory();
+              store.resetProject();
+            }}
+          >
+            Reset sample
+          </button>
+          <button
+            className="gt-wide-action"
+            type="button"
+            onClick={() => fileRef.current?.click()}
+          >
+            Import graph
+          </button>
+          <input
+            ref={fileRef}
+            hidden
+            type="file"
+            accept="application/json"
+            onChange={(event) =>
+              void loadFile(event.target.files?.[0], store.loadProject)
+            }
+          />
           <PanelTitle title="Templates" />
-          <label className="gt-search">Search templates<input value={templateSearch} onChange={(event) => setTemplateSearch(event.target.value)} /></label>
-          <label className="gt-number">Size<input type="number" min={1} value={templateSize} onChange={(event) => setTemplateSize(Math.max(1, Number(event.target.value)))} /></label>
-          <div className="gt-template-grid">{templates.map((item) => <button key={item} type="button" onClick={() => applyTemplateChoice(item)}><Network />{item}</button>)}</div>
+          <label className="gt-search">
+            Search templates
+            <input
+              value={templateSearch}
+              onChange={(event) => setTemplateSearch(event.target.value)}
+            />
+          </label>
+          <label className="gt-number">
+            Size
+            <input
+              type="number"
+              min={1}
+              value={templateSize}
+              onChange={(event) =>
+                setTemplateSize(Math.max(1, Number(event.target.value)))
+              }
+            />
+          </label>
+          <div className="gt-template-grid">
+            {templates.map((item) => (
+              <button
+                key={item}
+                type="button"
+                onClick={() => applyTemplateChoice(item)}
+              >
+                <Network />
+                {item}
+              </button>
+            ))}
+          </div>
           <PanelTitle title="Layouts" />
-          <div className="gt-layout-grid">{(["force", "circular", "tree", "layered"] as GraphLayoutName[]).map((layout) => <button key={layout} type="button" onClick={() => applyLayoutChoice(layout)}>{layout}</button>)}</div>
+          <div className="gt-layout-grid">
+            {(
+              ["force", "circular", "tree", "layered"] as GraphLayoutName[]
+            ).map((layout) => (
+              <button
+                key={layout}
+                type="button"
+                onClick={() => applyLayoutChoice(layout)}
+              >
+                {layout}
+              </button>
+            ))}
+          </div>
           <PanelTitle title="Toggles" />
           <div className="gt-toggle-grid">
-            <label><input type="checkbox" checked={labels} onChange={(event) => setLabels(event.target.checked)} />Labels</label>
-            <label><input type="checkbox" checked={weights} onChange={(event) => setWeights(event.target.checked)} />Weights</label>
-            <label><input type="checkbox" checked={degreesVisible} onChange={(event) => setDegreesVisible(event.target.checked)} />Degrees</label>
-            <label><input type="checkbox" checked={grid} onChange={(event) => setGrid(event.target.checked)} />Grid</label>
-            <label><input type="checkbox" checked={snap} onChange={(event) => setSnap(event.target.checked)} />Snap</label>
+            <label>
+              <input
+                type="checkbox"
+                checked={labels}
+                onChange={(event) => setLabels(event.target.checked)}
+              />
+              Labels
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                checked={weights}
+                onChange={(event) => setWeights(event.target.checked)}
+              />
+              Weights
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                checked={degreesVisible}
+                onChange={(event) => setDegreesVisible(event.target.checked)}
+              />
+              Degrees
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                checked={grid}
+                onChange={(event) => setGrid(event.target.checked)}
+              />
+              Grid
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                checked={snap}
+                onChange={(event) => setSnap(event.target.checked)}
+              />
+              Snap
+            </label>
           </div>
         </aside>
         <section className="gt-canvas-panel">
           <div className="gt-canvas-toolbar">
-            {(["select", "move", "connect", "pan", "lasso"] as const).map((item) => <button key={item} type="button" className={tool === item ? "active" : ""} onClick={() => setTool(item)}>{item === "select" ? <MousePointer2 /> : item === "move" ? <Move /> : item === "connect" ? <GitBranch /> : item === "pan" ? <Waypoints /> : <Scissors />}{item}</button>)}
-            <button type="button" onClick={() => { setZoom(1); setPan({ x: 0, y: 0 }); }}><CircleDot />Fit</button>
-            <button type="button" onClick={() => setZoom((value) => Math.min(2.4, value + 0.15))}>Zoom</button>
-            <button type="button" className={grid ? "active" : ""} onClick={() => setGrid((value) => !value)}><CircleDot />Grid</button>
-            <button type="button" onClick={() => void togglePageFullscreen()}><Maximize2 />Fullscreen</button>
+            {(["select", "move", "connect", "pan", "lasso"] as const).map(
+              (item) => (
+                <button
+                  key={item}
+                  type="button"
+                  className={tool === item ? "active" : ""}
+                  onClick={() => setTool(item)}
+                >
+                  {item === "select" ? (
+                    <MousePointer2 />
+                  ) : item === "move" ? (
+                    <Move />
+                  ) : item === "connect" ? (
+                    <GitBranch />
+                  ) : item === "pan" ? (
+                    <Waypoints />
+                  ) : (
+                    <Scissors />
+                  )}
+                  {item}
+                </button>
+              ),
+            )}
+            <button
+              type="button"
+              onClick={() => {
+                setZoom(1);
+                setPan({ x: 0, y: 0 });
+              }}
+            >
+              <CircleDot />
+              Fit
+            </button>
+            <button
+              type="button"
+              onClick={() => setZoom((value) => Math.min(2.4, value + 0.15))}
+            >
+              Zoom
+            </button>
+            <button
+              type="button"
+              className={grid ? "active" : ""}
+              onClick={() => setGrid((value) => !value)}
+            >
+              <CircleDot />
+              Grid
+            </button>
+            <button type="button" onClick={() => void togglePageFullscreen()}>
+              <Maximize2 />
+              Fullscreen
+            </button>
           </div>
           <div className="gt-canvas">
-            <svg ref={svgRef} viewBox="0 0 900 520" onPointerMove={(event) => draggingNode && updateNodePosition(draggingNode, toGraphPoint(event))} onPointerUp={() => setDraggingNode(null)} onPointerLeave={() => setDraggingNode(null)}>
+            <svg
+              ref={svgRef}
+              viewBox="0 0 900 520"
+              onPointerMove={(event) =>
+                draggingNode &&
+                updateNodePosition(draggingNode, toGraphPoint(event))
+              }
+              onPointerUp={() => setDraggingNode(null)}
+              onPointerLeave={() => setDraggingNode(null)}
+            >
               <defs>
-                <pattern id="gt-dot-grid" width="28" height="28" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.2" fill="#64748b" opacity=".45" /></pattern>
-                <marker id="gt-arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#67e8f9" /></marker>
+                <pattern
+                  id="gt-dot-grid"
+                  width="28"
+                  height="28"
+                  patternUnits="userSpaceOnUse"
+                >
+                  <circle cx="2" cy="2" r="1.2" fill="#64748b" opacity=".45" />
+                </pattern>
+                <marker
+                  id="gt-arrow"
+                  markerWidth="10"
+                  markerHeight="10"
+                  refX="9"
+                  refY="3"
+                  orient="auto"
+                  markerUnits="strokeWidth"
+                >
+                  <path d="M0,0 L0,6 L9,3 z" fill="#67e8f9" />
+                </marker>
               </defs>
               <rect width="900" height="520" fill="#06152a" />
-              {grid && <rect width="900" height="520" fill="url(#gt-dot-grid)" />}
+              {grid && (
+                <rect width="900" height="520" fill="url(#gt-dot-grid)" />
+              )}
               <g transform={`translate(${pan.x} ${pan.y}) scale(${zoom})`}>
                 {project.edges.map((edge) => {
-                  const source = nodeById.get(edge.source), target = nodeById.get(edge.target);
+                  const source = nodeById.get(edge.source),
+                    target = nodeById.get(edge.target);
                   if (!source || !target) return null;
                   const active = activeEdges.includes(edge.id);
                   const selected = selectedEdge?.id === edge.id;
-                  return <g key={edge.id} onClick={() => setSelectedEdgeId(edge.id)}>
-                    <line x1={source.x} y1={source.y} x2={target.x} y2={target.y} stroke={active ? "#f59e0b" : selected ? "#a78bfa" : "#67e8f9"} strokeWidth={selected ? 5 : 3} markerEnd={project.directed && arrows ? "url(#gt-arrow)" : undefined} />
-                    {weights && <g><rect x={(source.x + target.x) / 2 - 14} y={(source.y + target.y) / 2 - 13} width="28" height="24" rx="7" fill="#f8fafc" /><text x={(source.x + target.x) / 2} y={(source.y + target.y) / 2 + 5} textAnchor="middle" fontWeight="900" fill="#0f172a">{edge.weight}</text></g>}
-                  </g>;
+                  return (
+                    <g key={edge.id} onClick={() => setSelectedEdgeId(edge.id)}>
+                      <line
+                        x1={source.x}
+                        y1={source.y}
+                        x2={target.x}
+                        y2={target.y}
+                        stroke={
+                          active ? "#f59e0b" : selected ? "#a78bfa" : "#67e8f9"
+                        }
+                        strokeWidth={selected ? 5 : 3}
+                        markerEnd={
+                          project.directed && arrows
+                            ? "url(#gt-arrow)"
+                            : undefined
+                        }
+                      />
+                      {weights && (
+                        <g>
+                          <rect
+                            x={(source.x + target.x) / 2 - 14}
+                            y={(source.y + target.y) / 2 - 13}
+                            width="28"
+                            height="24"
+                            rx="7"
+                            fill="#f8fafc"
+                          />
+                          <text
+                            x={(source.x + target.x) / 2}
+                            y={(source.y + target.y) / 2 + 5}
+                            textAnchor="middle"
+                            fontWeight="900"
+                            fill="#0f172a"
+                          >
+                            {edge.weight}
+                          </text>
+                        </g>
+                      )}
+                    </g>
+                  );
                 })}
                 {project.nodes.map((node, index) => {
                   const active = activeNodes.includes(node.id);
                   const selected = selectedNode?.id === node.id;
-                  return <g key={node.id} transform={`translate(${node.x} ${node.y})`} onPointerDown={(event) => {
-                    event.stopPropagation();
-                    setSelectedNodeId(node.id);
-                    if (tool === "connect") {
-                      if (!connectSource) setConnectSource(node.id);
-                      else if (connectSource !== node.id) { addEdge(connectSource, node.id); setConnectSource(null); }
-                    } else if (tool === "move") {
-                      pushHistory();
-                      setDraggingNode(node.id);
-                    }
-                  }}>
-                    <circle r="27" fill={colors[index % colors.length]} stroke={active || selected || connectSource === node.id ? "#ffffff" : "#020617"} strokeWidth={active || selected ? 6 : 3} />
-                    {labels && <text y="6" textAnchor="middle" fontSize="18" fontWeight="950" fill="#020617">{node.label}</text>}
-                    {degreesVisible && <text y="44" textAnchor="middle" fontSize="12" fontWeight="900" fill="#e0f2fe">deg {degreeMap(project).get(node.id) ?? 0}</text>}
-                  </g>;
+                  return (
+                    <g
+                      key={node.id}
+                      transform={`translate(${node.x} ${node.y})`}
+                      onPointerDown={(event) => {
+                        event.stopPropagation();
+                        setSelectedNodeId(node.id);
+                        if (tool === "connect") {
+                          if (!connectSource) setConnectSource(node.id);
+                          else if (connectSource !== node.id) {
+                            addEdge(connectSource, node.id);
+                            setConnectSource(null);
+                          }
+                        } else if (tool === "move") {
+                          pushHistory();
+                          setDraggingNode(node.id);
+                        }
+                      }}
+                    >
+                      <circle
+                        r="27"
+                        fill={colors[index % colors.length]}
+                        stroke={
+                          active || selected || connectSource === node.id
+                            ? "#ffffff"
+                            : "#020617"
+                        }
+                        strokeWidth={active || selected ? 6 : 3}
+                      />
+                      {labels && (
+                        <text
+                          y="6"
+                          textAnchor="middle"
+                          fontSize="18"
+                          fontWeight="950"
+                          fill="#020617"
+                        >
+                          {node.label}
+                        </text>
+                      )}
+                      {degreesVisible && (
+                        <text
+                          y="44"
+                          textAnchor="middle"
+                          fontSize="12"
+                          fontWeight="900"
+                          fill="#e0f2fe"
+                        >
+                          deg {degreeMap(project).get(node.id) ?? 0}
+                        </text>
+                      )}
+                    </g>
+                  );
                 })}
               </g>
             </svg>
           </div>
-          <div className="gt-status">{metrics.order} vertices <span>•</span> {metrics.size} edges <span>•</span> {components.length === 1 ? "Connected" : `${components.length} components`} <span>•</span> {project.directed ? "Directed" : "Undirected"} <span>•</span> Weighted <span>•</span> {Math.round(zoom * 100)}%</div>
+          <div className="gt-status">
+            {metrics.order} vertices <span>•</span> {metrics.size} edges{" "}
+            <span>•</span>{" "}
+            {components.length === 1
+              ? "Connected"
+              : `${components.length} components`}{" "}
+            <span>•</span> {project.directed ? "Directed" : "Undirected"}{" "}
+            <span>•</span> Weighted <span>•</span> {Math.round(zoom * 100)}%
+          </div>
           <div className="gt-metrics-row">
-            <MetricCard label="Degree sequence" value={`[${Array.from(degreeMap(project).values()).sort((a, b) => b - a).join(", ")}]`} />
-            <MetricCard label="Sum degrees" value={`${metrics.degreeSum} = 2|E|`} />
-            <MetricCard label="Connected" value={components.length === 1 ? "Yes" : "No"} tone={components.length === 1 ? "good" : "warn"} />
-            <MetricCard label="Cycle" value={metrics.size >= metrics.order ? "Yes" : "Maybe"} />
+            <MetricCard
+              label="Degree sequence"
+              value={`[${Array.from(degreeMap(project).values())
+                .sort((a, b) => b - a)
+                .join(", ")}]`}
+            />
+            <MetricCard
+              label="Sum degrees"
+              value={`${metrics.degreeSum} = 2|E|`}
+            />
+            <MetricCard
+              label="Connected"
+              value={components.length === 1 ? "Yes" : "No"}
+              tone={components.length === 1 ? "good" : "warn"}
+            />
+            <MetricCard
+              label="Cycle"
+              value={metrics.size >= metrics.order ? "Yes" : "Maybe"}
+            />
             <MetricCard label="Density" value={metrics.density.toFixed(2)} />
           </div>
         </section>
         <aside className="gt-inspector">
-          <div className="gt-inspector-tabs">{(["inspector", "representations", "analysis"] as const).map((tab) => <button key={tab} type="button" className={(tab === "representations" && activeTab === "representations") || (tab === "analysis" && activeTab === "properties") || (tab === "inspector" && activeTab !== "representations" && activeTab !== "properties") ? "active" : ""} onClick={() => tab === "representations" ? setTab("representations") : tab === "analysis" ? setTab("properties") : setTab("build")}>{tab}</button>)}</div>
-          {activeTab === "representations" ? <RepresentationsPanel project={project} mode={representationTab} onMode={setRepresentationTab} /> : activeTab === "properties" ? <AnalysisPanel project={project} components={components} cuts={cuts} bipartite={bipartite} topo={topo} /> : activeTab === "algorithms" ? <AlgorithmPanel project={project} selected={store.selectedAlgorithm} steps={algorithm} stepIndex={store.stepIndex} onAlgorithm={store.setSelectedAlgorithm} onStep={store.setStepIndex} /> : activeTab === "learn" ? <LearnPanel project={project} fileRef={fileRef} onLoad={store.loadProject} /> : <InspectorPanel node={selectedNode} edge={selectedEdge} degrees={degrees} project={project} onNodes={store.setNodes} onEdges={store.setEdges} />}
+          <div className="gt-inspector-tabs">
+            {(["inspector", "representations", "analysis"] as const).map(
+              (tab) => (
+                <button
+                  key={tab}
+                  type="button"
+                  className={
+                    (tab === "representations" &&
+                      activeTab === "representations") ||
+                    (tab === "analysis" && activeTab === "properties") ||
+                    (tab === "inspector" &&
+                      activeTab !== "representations" &&
+                      activeTab !== "properties")
+                      ? "active"
+                      : ""
+                  }
+                  onClick={() =>
+                    tab === "representations"
+                      ? setTab("representations")
+                      : tab === "analysis"
+                        ? setTab("properties")
+                        : setTab("build")
+                  }
+                >
+                  {tab}
+                </button>
+              ),
+            )}
+          </div>
+          {activeTab === "representations" ? (
+            <RepresentationsPanel
+              project={project}
+              mode={representationTab}
+              onMode={setRepresentationTab}
+            />
+          ) : activeTab === "properties" ? (
+            <AnalysisPanel
+              project={project}
+              components={components}
+              cuts={cuts}
+              bipartite={bipartite}
+              topo={topo}
+            />
+          ) : activeTab === "algorithms" ? (
+            <AlgorithmPanel
+              project={project}
+              selected={store.selectedAlgorithm}
+              steps={algorithm}
+              stepIndex={store.stepIndex}
+              onAlgorithm={store.setSelectedAlgorithm}
+              onStep={store.setStepIndex}
+            />
+          ) : activeTab === "learn" ? (
+            <LearnPanel
+              project={project}
+              fileRef={fileRef}
+              onLoad={store.loadProject}
+            />
+          ) : (
+            <InspectorPanel
+              node={selectedNode}
+              edge={selectedEdge}
+              degrees={degrees}
+              project={project}
+              onNodes={store.setNodes}
+              onEdges={store.setEdges}
+            />
+          )}
         </aside>
       </section>
     </main>
@@ -405,25 +937,88 @@ function GraphCockpit({
     <section className="rounded-3xl border border-cyan-200 bg-white/90 p-3 shadow-sm dark:border-cyan-300/20 dark:bg-slate-950/80">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex flex-wrap items-center gap-2">
-          <CockpitPill icon={<Network className="h-4 w-4" />} label="Nodes" value={String(metrics.order)} />
-          <CockpitPill icon={<GitBranch className="h-4 w-4" />} label="Edges" value={String(metrics.size)} />
-          <CockpitPill icon={<Route className="h-4 w-4" />} label="Graph" value={project.directed ? "Directed" : "Undirected"} />
-          <CockpitPill icon={<Play className="h-4 w-4" />} label="Algorithm" value={algorithm} />
-          <CockpitPill icon={<Gauge className="h-4 w-4" />} label="Density" value={`${Math.round(metrics.density * 100)}%`} />
+          <CockpitPill
+            icon={<Network className="h-4 w-4" />}
+            label="Nodes"
+            value={String(metrics.order)}
+          />
+          <CockpitPill
+            icon={<GitBranch className="h-4 w-4" />}
+            label="Edges"
+            value={String(metrics.size)}
+          />
+          <CockpitPill
+            icon={<Route className="h-4 w-4" />}
+            label="Graph"
+            value={project.directed ? "Directed" : "Undirected"}
+          />
+          <CockpitPill
+            icon={<Play className="h-4 w-4" />}
+            label="Algorithm"
+            value={algorithm}
+          />
+          <CockpitPill
+            icon={<Gauge className="h-4 w-4" />}
+            label="Density"
+            value={`${Math.round(metrics.density * 100)}%`}
+          />
         </div>
         <div className="flex flex-wrap gap-2">
-          <button className="tool-button" type="button" onClick={() => onReset()}><RotateCcw className="h-4 w-4" /> Reset</button>
-          <button className="tool-button" type="button" onClick={() => download("graph-theory-project.json", serializeGraph(project))}><Save className="h-4 w-4" /> Save</button>
-          <button className="tool-button" type="button" onClick={() => download("graph-theory-export.json", JSON.stringify({ exportedAt: new Date().toISOString(), ...project }, null, 2))}><FileJson className="h-4 w-4" /> Export</button>
-          <button className="tool-button" type="button" onClick={() => void togglePageFullscreen()}><Maximize2 className="h-4 w-4" /> Fullscreen</button>
+          <button
+            className="tool-button"
+            type="button"
+            onClick={() => onReset()}
+          >
+            <RotateCcw className="h-4 w-4" /> Reset
+          </button>
+          <button
+            className="tool-button"
+            type="button"
+            onClick={() =>
+              download("graph-theory-project.json", serializeGraph(project))
+            }
+          >
+            <Save className="h-4 w-4" /> Save
+          </button>
+          <button
+            className="tool-button"
+            type="button"
+            onClick={() =>
+              download(
+                "graph-theory-export.json",
+                JSON.stringify(
+                  { exportedAt: new Date().toISOString(), ...project },
+                  null,
+                  2,
+                ),
+              )
+            }
+          >
+            <FileJson className="h-4 w-4" /> Export
+          </button>
+          <button
+            className="tool-button"
+            type="button"
+            onClick={() => void togglePageFullscreen()}
+          >
+            <Maximize2 className="h-4 w-4" /> Fullscreen
+          </button>
         </div>
       </div>
       <div className="mt-3 flex flex-wrap items-center gap-2">
         <SegmentedChoice
           label="Mode"
           options={[
-            { id: "student", label: "Student", icon: <GraduationCap className="h-4 w-4" /> },
-            { id: "teacher", label: "Teacher", icon: <User className="h-4 w-4" /> },
+            {
+              id: "student",
+              label: "Student",
+              icon: <GraduationCap className="h-4 w-4" />,
+            },
+            {
+              id: "teacher",
+              label: "Teacher",
+              icon: <User className="h-4 w-4" />,
+            },
           ]}
           value={studyMode}
           onChange={(value) => onStudyMode(value as GraphStudyMode)}
@@ -431,17 +1026,33 @@ function GraphCockpit({
         <SegmentedChoice
           label="Density"
           options={[
-            { id: "beginner", label: "Beginner", icon: <BookOpen className="h-4 w-4" /> },
-            { id: "advanced", label: "Advanced", icon: <Gauge className="h-4 w-4" /> },
+            {
+              id: "beginner",
+              label: "Beginner",
+              icon: <BookOpen className="h-4 w-4" />,
+            },
+            {
+              id: "advanced",
+              label: "Advanced",
+              icon: <Gauge className="h-4 w-4" />,
+            },
           ]}
           value={densityMode}
           onChange={(value) => onDensityMode(value as GraphDensityMode)}
         />
-        <button className={`tool-button ${focusMode ? "bg-slate-950 text-white dark:bg-cyan-300 dark:text-slate-950" : ""}`} type="button" onClick={() => onFocusMode(!focusMode)}>
+        <button
+          className={`tool-button ${focusMode ? "bg-slate-950 text-white dark:bg-cyan-300 dark:text-slate-950" : ""}`}
+          type="button"
+          onClick={() => onFocusMode(!focusMode)}
+        >
           <PanelRightClose className="h-4 w-4" />
           {focusMode ? "Exit focus" : "Focus mode"}
         </button>
-        <button className="tool-button" type="button" onClick={() => onDirected(!project.directed)}>
+        <button
+          className="tool-button"
+          type="button"
+          onClick={() => onDirected(!project.directed)}
+        >
           <Route className="h-4 w-4" />
           {project.directed ? "Use undirected" : "Use directed"}
         </button>
@@ -454,124 +1065,535 @@ function PanelTitle({ title }: { title: string }) {
   return <h2 className="gt-panel-title">{title}</h2>;
 }
 
-function MetricCard({ label, value, tone }: { label: string; value: string; tone?: "good" | "warn" }) {
-  return <div className={`gt-metric-card ${tone ?? ""}`}><span>{label}</span><strong>{value}</strong></div>;
-}
-
-function InspectorPanel({ node, edge, degrees, project, onNodes, onEdges }: { node?: GraphProject["nodes"][number]; edge?: GraphProject["edges"][number]; degrees: ReturnType<typeof directedDegreeMap>; project: GraphProject; onNodes: (nodes: GraphProject["nodes"]) => void; onEdges: (edges: GraphProject["edges"]) => void }) {
-  const degree = node ? degrees.get(node.id) : undefined;
+function MetricCard({
+  label,
+  value,
+  tone,
+}: {
+  label: string;
+  value: string;
+  tone?: "good" | "warn";
+}) {
   return (
-    <div className="gt-inspector-body">
-      {node ? <section className="gt-card">
-        <h3>Node <b>{node.label}</b></h3>
-        <label>Stable ID<input value={node.id} readOnly /></label>
-        <label>Label<input value={node.label} onChange={(event) => onNodes(project.nodes.map((item) => item.id === node.id ? { ...item, label: event.target.value } : item))} /></label>
-        <div className="gt-two"><label>X<input type="number" value={roundTo(node.x, 1)} onChange={(event) => onNodes(project.nodes.map((item) => item.id === node.id ? { ...item, x: Number(event.target.value) } : item))} /></label><label>Y<input type="number" value={roundTo(node.y, 1)} onChange={(event) => onNodes(project.nodes.map((item) => item.id === node.id ? { ...item, y: Number(event.target.value) } : item))} /></label></div>
-        <div className="gt-mini-results"><span>Degree <b>{degree?.total ?? 0}</b></span><span>In <b>{degree?.in ?? 0}</b></span><span>Out <b>{degree?.out ?? 0}</b></span></div>
-        <p>Adjacent: {(adjacency(project).get(node.id) ?? []).map(({ to }) => to).join(", ") || "none"}</p>
-      </section> : null}
-      {edge ? <section className="gt-card">
-        <h3>Edge <b>{edge.source} - {edge.target}</b></h3>
-        <div className="gt-two"><label>Source<input value={edge.source} readOnly /></label><label>Target<input value={edge.target} readOnly /></label></div>
-        <label>Weight<input type="number" value={edge.weight} onChange={(event) => onEdges(project.edges.map((item) => item.id === edge.id ? { ...item, weight: Number(event.target.value) } : item))} /></label>
-        <p>{edge.directed || project.directed ? "Directed edge" : "Undirected edge"}</p>
-      </section> : null}
+    <div className={`gt-metric-card ${tone ?? ""}`}>
+      <span>{label}</span>
+      <strong>{value}</strong>
     </div>
   );
 }
 
-function RepresentationsPanel({ project, mode, onMode }: { project: GraphProject; mode: "list" | "matrix" | "incidence"; onMode: (mode: "list" | "matrix" | "incidence") => void }) {
+function InspectorPanel({
+  node,
+  edge,
+  degrees,
+  project,
+  onNodes,
+  onEdges,
+}: {
+  node?: GraphProject["nodes"][number];
+  edge?: GraphProject["edges"][number];
+  degrees: ReturnType<typeof directedDegreeMap>;
+  project: GraphProject;
+  onNodes: (nodes: GraphProject["nodes"]) => void;
+  onEdges: (edges: GraphProject["edges"]) => void;
+}) {
+  const degree = node ? degrees.get(node.id) : undefined;
+  return (
+    <div className="gt-inspector-body">
+      {node ? (
+        <section className="gt-card">
+          <h3>
+            Node <b>{node.label}</b>
+          </h3>
+          <label>
+            Stable ID
+            <input value={node.id} readOnly />
+          </label>
+          <label>
+            Label
+            <input
+              value={node.label}
+              onChange={(event) =>
+                onNodes(
+                  project.nodes.map((item) =>
+                    item.id === node.id
+                      ? { ...item, label: event.target.value }
+                      : item,
+                  ),
+                )
+              }
+            />
+          </label>
+          <div className="gt-two">
+            <label>
+              X
+              <input
+                type="number"
+                value={roundTo(node.x, 1)}
+                onChange={(event) =>
+                  onNodes(
+                    project.nodes.map((item) =>
+                      item.id === node.id
+                        ? { ...item, x: Number(event.target.value) }
+                        : item,
+                    ),
+                  )
+                }
+              />
+            </label>
+            <label>
+              Y
+              <input
+                type="number"
+                value={roundTo(node.y, 1)}
+                onChange={(event) =>
+                  onNodes(
+                    project.nodes.map((item) =>
+                      item.id === node.id
+                        ? { ...item, y: Number(event.target.value) }
+                        : item,
+                    ),
+                  )
+                }
+              />
+            </label>
+          </div>
+          <div className="gt-mini-results">
+            <span>
+              Degree <b>{degree?.total ?? 0}</b>
+            </span>
+            <span>
+              In <b>{degree?.in ?? 0}</b>
+            </span>
+            <span>
+              Out <b>{degree?.out ?? 0}</b>
+            </span>
+          </div>
+          <p>
+            Adjacent:{" "}
+            {(adjacency(project).get(node.id) ?? [])
+              .map(({ to }) => to)
+              .join(", ") || "none"}
+          </p>
+        </section>
+      ) : null}
+      {edge ? (
+        <section className="gt-card">
+          <h3>
+            Edge{" "}
+            <b>
+              {edge.source} - {edge.target}
+            </b>
+          </h3>
+          <div className="gt-two">
+            <label>
+              Source
+              <input value={edge.source} readOnly />
+            </label>
+            <label>
+              Target
+              <input value={edge.target} readOnly />
+            </label>
+          </div>
+          <label>
+            Weight
+            <input
+              type="number"
+              value={edge.weight}
+              onChange={(event) =>
+                onEdges(
+                  project.edges.map((item) =>
+                    item.id === edge.id
+                      ? { ...item, weight: Number(event.target.value) }
+                      : item,
+                  ),
+                )
+              }
+            />
+          </label>
+          <p>
+            {edge.directed || project.directed
+              ? "Directed edge"
+              : "Undirected edge"}
+          </p>
+        </section>
+      ) : null}
+    </div>
+  );
+}
+
+function RepresentationsPanel({
+  project,
+  mode,
+  onMode,
+}: {
+  project: GraphProject;
+  mode: "list" | "matrix" | "incidence";
+  onMode: (mode: "list" | "matrix" | "incidence") => void;
+}) {
   const list = adjacencyList(project);
   const matrix = adjacencyMatrix(project);
   const incidence = incidenceMatrix(project);
   return (
     <div className="gt-inspector-body">
-      <div className="gt-subtabs">{(["list", "matrix", "incidence"] as const).map((item) => <button key={item} type="button" className={mode === item ? "active" : ""} onClick={() => onMode(item)}>{item}</button>)}</div>
-      {mode === "list" && <div className="gt-rep-list">{list.map((row) => <div key={row.id}><b>{row.id}</b><span>:</span><code>{row.neighbors.join(", ") || "isolated"}</code></div>)}</div>}
-      {mode === "matrix" && <CompactMatrix rowLabels={matrix.ids} columnLabels={matrix.ids} values={matrix.matrix} />}
-      {mode === "incidence" && <><CompactMatrix rowLabels={incidence.ids} columnLabels={incidence.edgeIds} values={incidence.matrix} /><p className="gt-note">Directed incidence uses -1 at the source and 1 at the target.</p></>}
-      <div className="gt-validation"><p><CheckCircle2 /> Representations agree</p><p><CheckCircle2 /> Incidence dimensions {project.nodes.length} x {project.edges.length}</p></div>
+      <div className="gt-subtabs">
+        {(["list", "matrix", "incidence"] as const).map((item) => (
+          <button
+            key={item}
+            type="button"
+            className={mode === item ? "active" : ""}
+            onClick={() => onMode(item)}
+          >
+            {item}
+          </button>
+        ))}
+      </div>
+      {mode === "list" && (
+        <div className="gt-rep-list">
+          {list.map((row) => (
+            <div key={row.id}>
+              <b>{row.id}</b>
+              <span>:</span>
+              <code>{row.neighbors.join(", ") || "isolated"}</code>
+            </div>
+          ))}
+        </div>
+      )}
+      {mode === "matrix" && (
+        <CompactMatrix
+          rowLabels={matrix.ids}
+          columnLabels={matrix.ids}
+          values={matrix.matrix}
+        />
+      )}
+      {mode === "incidence" && (
+        <>
+          <CompactMatrix
+            rowLabels={incidence.ids}
+            columnLabels={incidence.edgeIds}
+            values={incidence.matrix}
+          />
+          <p className="gt-note">
+            Directed incidence uses -1 at the source and 1 at the target.
+          </p>
+        </>
+      )}
+      <div className="gt-validation">
+        <p>
+          <CheckCircle2 /> Representations agree
+        </p>
+        <p>
+          <CheckCircle2 /> Incidence dimensions {project.nodes.length} x{" "}
+          {project.edges.length}
+        </p>
+      </div>
     </div>
   );
 }
 
-function CompactMatrix({ rowLabels, columnLabels, values }: { rowLabels: string[]; columnLabels: string[]; values: Array<Array<string | number>> }) {
+function CompactMatrix({
+  rowLabels,
+  columnLabels,
+  values,
+}: {
+  rowLabels: string[];
+  columnLabels: string[];
+  values: Array<Array<string | number>>;
+}) {
   const rowLimit = 28;
   const colLimit = 28;
   return (
     <div className="gt-matrix">
       <table>
-        <thead><tr><th />{columnLabels.slice(0, colLimit).map((label) => <th key={label}>{label}</th>)}</tr></thead>
-        <tbody>{values.slice(0, rowLimit).map((row, index) => <tr key={rowLabels[index]}><th>{rowLabels[index]}</th>{row.slice(0, colLimit).map((value, column) => <td key={`${rowLabels[index]}-${column}`}>{value}</td>)}</tr>)}</tbody>
+        <thead>
+          <tr>
+            <th />
+            {columnLabels.slice(0, colLimit).map((label) => (
+              <th key={label}>{label}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {values.slice(0, rowLimit).map((row, index) => (
+            <tr key={rowLabels[index]}>
+              <th>{rowLabels[index]}</th>
+              {row.slice(0, colLimit).map((value, column) => (
+                <td key={`${rowLabels[index]}-${column}`}>{value}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
       </table>
-      {(rowLabels.length > rowLimit || columnLabels.length > colLimit) && <p className="gt-note">Compact preview is virtualized to the first {rowLimit} rows and {colLimit} columns. Full data remains in graph state/export.</p>}
+      {(rowLabels.length > rowLimit || columnLabels.length > colLimit) && (
+        <p className="gt-note">
+          Compact preview is virtualized to the first {rowLimit} rows and{" "}
+          {colLimit} columns. Full data remains in graph state/export.
+        </p>
+      )}
     </div>
   );
 }
 
-function AnalysisPanel({ project, components, cuts, bipartite, topo }: { project: GraphProject; components: string[][]; cuts: ReturnType<typeof bridgesAndCutVertices>; bipartite: ReturnType<typeof isBipartite>; topo: ReturnType<typeof topologicalSort> }) {
+function AnalysisPanel({
+  project,
+  components,
+  cuts,
+  bipartite,
+  topo,
+}: {
+  project: GraphProject;
+  components: string[][];
+  cuts: ReturnType<typeof bridgesAndCutVertices>;
+  bipartite: ReturnType<typeof isBipartite>;
+  topo: ReturnType<typeof topologicalSort>;
+}) {
   const metrics = graphMetrics(project);
-  const distance = project.nodes.length <= 80 ? graphDistanceMetrics(project) : null;
+  const distance =
+    project.nodes.length <= 80 ? graphDistanceMetrics(project) : null;
   return (
     <div className="gt-inspector-body">
       <div className="gt-result-grid">
         <MetricCard label="|V|" value={String(metrics.order)} />
         <MetricCard label="|E|" value={String(metrics.size)} />
-        <MetricCard label="Min degree" value={String(Math.min(...Array.from(degreeMap(project).values()), 0))} />
-        <MetricCard label="Max degree" value={String(Math.max(...Array.from(degreeMap(project).values()), 0))} />
+        <MetricCard
+          label="Min degree"
+          value={String(
+            Math.min(...Array.from(degreeMap(project).values()), 0),
+          )}
+        />
+        <MetricCard
+          label="Max degree"
+          value={String(
+            Math.max(...Array.from(degreeMap(project).values()), 0),
+          )}
+        />
         <MetricCard label="Density" value={metrics.density.toFixed(3)} />
         <MetricCard label="Components" value={String(components.length)} />
-        <MetricCard label="Bipartite" value={bipartite.bipartite ? "Yes" : "No"} tone={bipartite.bipartite ? "good" : "warn"} />
-        <MetricCard label="DAG" value={project.directed && topo.valid ? "Yes" : "No"} />
+        <MetricCard
+          label="Bipartite"
+          value={bipartite.bipartite ? "Yes" : "No"}
+          tone={bipartite.bipartite ? "good" : "warn"}
+        />
+        <MetricCard
+          label="DAG"
+          value={project.directed && topo.valid ? "Yes" : "No"}
+        />
       </div>
-      <section className="gt-card"><h3>Validation</h3><p>sum deg(v) = {metrics.degreeSum}; 2|E| = {metrics.size * 2}</p><p>Bridges: {cuts.bridges.join(", ") || "none"}</p><p>Cut vertices: {cuts.cutVertices.join(", ") || "none"}</p>{distance ? <p>Radius {fmtNumber(distance.radius)}, diameter {fmtNumber(distance.diameter)}, center {distance.center.join(", ") || "none"}</p> : <p>Distance metrics paused for large graph. Use manual analysis after filtering.</p>}</section>
+      <section className="gt-card">
+        <h3>Validation</h3>
+        <p>
+          sum deg(v) = {metrics.degreeSum}; 2|E| = {metrics.size * 2}
+        </p>
+        <p>Bridges: {cuts.bridges.join(", ") || "none"}</p>
+        <p>Cut vertices: {cuts.cutVertices.join(", ") || "none"}</p>
+        {distance ? (
+          <p>
+            Radius {fmtNumber(distance.radius)}, diameter{" "}
+            {fmtNumber(distance.diameter)}, center{" "}
+            {distance.center.join(", ") || "none"}
+          </p>
+        ) : (
+          <p>
+            Distance metrics paused for large graph. Use manual analysis after
+            filtering.
+          </p>
+        )}
+      </section>
     </div>
   );
 }
 
-function AlgorithmPanel({ project, selected, steps, stepIndex, onAlgorithm, onStep }: { project: GraphProject; selected: GraphAlgorithmName; steps: AlgorithmStep[]; stepIndex: number; onAlgorithm: (value: GraphAlgorithmName) => void; onStep: (step: number) => void }) {
+function AlgorithmPanel({
+  project,
+  selected,
+  steps,
+  stepIndex,
+  onAlgorithm,
+  onStep,
+}: {
+  project: GraphProject;
+  selected: GraphAlgorithmName;
+  steps: AlgorithmStep[];
+  stepIndex: number;
+  onAlgorithm: (value: GraphAlgorithmName) => void;
+  onStep: (step: number) => void;
+}) {
   const d = dijkstra(project);
   return (
     <div className="gt-inspector-body">
       <section className="gt-card">
         <h3>Algorithm runner</h3>
-        <label>Algorithm<select value={selected} onChange={(event) => onAlgorithm(event.target.value as GraphAlgorithmName)}>{["BFS", "DFS", "Dijkstra", "Kruskal", "Prim", "Topological Sort"].map((item) => <option key={item}>{item}</option>)}</select></label>
-        <label>Start node<select>{project.nodes.map((node) => <option key={node.id}>{node.label}</option>)}</select></label>
-        <div className="gt-runner-actions"><button type="button" onClick={() => onStep(0)}>Restart</button><button type="button" onClick={() => onStep(Math.max(0, stepIndex - 1))}>Previous</button><button type="button" onClick={() => onStep(Math.min(steps.length - 1, stepIndex + 1))}><Play />Run</button></div>
-        <p>Step {Math.min(stepIndex + 1, steps.length)} / {steps.length || 0}</p>
-        <strong>{steps[stepIndex]?.note ?? "Choose an algorithm to begin."}</strong>
+        <label>
+          Algorithm
+          <select
+            value={selected}
+            onChange={(event) =>
+              onAlgorithm(event.target.value as GraphAlgorithmName)
+            }
+          >
+            {[
+              "BFS",
+              "DFS",
+              "Dijkstra",
+              "Kruskal",
+              "Prim",
+              "Topological Sort",
+            ].map((item) => (
+              <option key={item}>{item}</option>
+            ))}
+          </select>
+        </label>
+        <label>
+          Start node
+          <select>
+            {project.nodes.map((node) => (
+              <option key={node.id}>{node.label}</option>
+            ))}
+          </select>
+        </label>
+        <div className="gt-runner-actions">
+          <button type="button" onClick={() => onStep(0)}>
+            Restart
+          </button>
+          <button
+            type="button"
+            onClick={() => onStep(Math.max(0, stepIndex - 1))}
+          >
+            Previous
+          </button>
+          <button
+            type="button"
+            onClick={() => onStep(Math.min(steps.length - 1, stepIndex + 1))}
+          >
+            <Play />
+            Run
+          </button>
+        </div>
+        <p>
+          Step {Math.min(stepIndex + 1, steps.length)} / {steps.length || 0}
+        </p>
+        <strong>
+          {steps[stepIndex]?.note ?? "Choose an algorithm to begin."}
+        </strong>
       </section>
-      <section className="gt-card"><h3>State</h3><p>Active nodes: {steps[stepIndex]?.activeNodes.join(", ") || "none"}</p><p>Active edges: {steps[stepIndex]?.activeEdges.join(", ") || "none"}</p><p>Dijkstra distances: {Object.entries(d.dist).map(([node, value]) => `${node}:${fmtNumber(value)}`).join("  ")}</p></section>
+      <section className="gt-card">
+        <h3>State</h3>
+        <p>
+          Active nodes: {steps[stepIndex]?.activeNodes.join(", ") || "none"}
+        </p>
+        <p>
+          Active edges: {steps[stepIndex]?.activeEdges.join(", ") || "none"}
+        </p>
+        <p>
+          Dijkstra distances:{" "}
+          {Object.entries(d.dist)
+            .map(([node, value]) => `${node}:${fmtNumber(value)}`)
+            .join("  ")}
+        </p>
+      </section>
     </div>
   );
 }
 
-function LearnPanel({ project, fileRef, onLoad }: { project: GraphProject; fileRef: React.RefObject<HTMLInputElement>; onLoad: (project: GraphProject) => void }) {
+function LearnPanel({
+  project,
+  fileRef,
+  onLoad,
+}: {
+  project: GraphProject;
+  fileRef: React.RefObject<HTMLInputElement>;
+  onLoad: (project: GraphProject) => void;
+}) {
   return (
     <div className="gt-inspector-body">
-      <section className="gt-card"><h3>Fundamentals</h3><p>Vertices are objects. Edges are relationships. Weighted edges carry cost. Directed edges carry orientation. Paths follow adjacent vertices; cycles return to the start.</p></section>
-      <section className="gt-card"><h3>Common mistakes</h3><p>Do not assume directed matrices are symmetric. Loops affect degree conventions. Dijkstra needs nonnegative weights. A connected graph is not automatically a tree.</p></section>
-      <section className="gt-card"><h3>Practice</h3><p>Build a graph with exactly two odd-degree vertices, then predict whether an Euler path exists.</p><button type="button" onClick={() => download("graph-project.json", serializeGraph(project))}>Save JSON</button><button type="button" onClick={() => fileRef.current?.click()}>Load JSON</button><input ref={fileRef} hidden type="file" accept="application/json" onChange={(event) => void loadFile(event.target.files?.[0], onLoad)} /></section>
+      <section className="gt-card">
+        <h3>Fundamentals</h3>
+        <p>
+          Vertices are objects. Edges are relationships. Weighted edges carry
+          cost. Directed edges carry orientation. Paths follow adjacent
+          vertices; cycles return to the start.
+        </p>
+      </section>
+      <section className="gt-card">
+        <h3>Common mistakes</h3>
+        <p>
+          Do not assume directed matrices are symmetric. Loops affect degree
+          conventions. Dijkstra needs nonnegative weights. A connected graph is
+          not automatically a tree.
+        </p>
+      </section>
+      <section className="gt-card">
+        <h3>Practice</h3>
+        <p>
+          Build a graph with exactly two odd-degree vertices, then predict
+          whether an Euler path exists.
+        </p>
+        <button
+          type="button"
+          onClick={() =>
+            download("graph-project.json", serializeGraph(project))
+          }
+        >
+          Save JSON
+        </button>
+        <button type="button" onClick={() => fileRef.current?.click()}>
+          Load JSON
+        </button>
+        <input
+          ref={fileRef}
+          hidden
+          type="file"
+          accept="application/json"
+          onChange={(event) => void loadFile(event.target.files?.[0], onLoad)}
+        />
+      </section>
     </div>
   );
 }
 
-function CockpitPill({ icon, label, value }: { icon: ReactNode; label: string; value: string }) {
+function CockpitPill({
+  icon,
+  label,
+  value,
+}: {
+  icon: ReactNode;
+  label: string;
+  value: string;
+}) {
   return (
     <div className="flex items-center gap-2 rounded-2xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm shadow-sm dark:border-white/10 dark:bg-white/5">
       <span className="text-cyan-700 dark:text-cyan-200">{icon}</span>
-      <span className="text-xs font-black uppercase text-slate-500 dark:text-slate-400">{label}</span>
+      <span className="text-xs font-black uppercase text-slate-500 dark:text-slate-400">
+        {label}
+      </span>
       <span className="font-black text-slate-950 dark:text-white">{value}</span>
     </div>
   );
 }
 
-function SegmentedChoice({ label, options, value, onChange }: { label: string; options: Array<{ id: string; label: string; icon: ReactNode }>; value: string; onChange: (value: string) => void }) {
+function SegmentedChoice({
+  label,
+  options,
+  value,
+  onChange,
+}: {
+  label: string;
+  options: Array<{ id: string; label: string; icon: ReactNode }>;
+  value: string;
+  onChange: (value: string) => void;
+}) {
   return (
     <div className="flex items-center gap-1 rounded-2xl border border-slate-200 bg-slate-50 p-1 dark:border-white/10 dark:bg-white/5">
-      <span className="px-2 text-[11px] font-black uppercase text-slate-500 dark:text-slate-400">{label}</span>
+      <span className="px-2 text-[11px] font-black uppercase text-slate-500 dark:text-slate-400">
+        {label}
+      </span>
       {options.map((option) => (
-        <button key={option.id} className={`inline-flex items-center gap-1 rounded-xl px-3 py-1.5 text-xs font-black transition ${value === option.id ? "bg-slate-950 text-white dark:bg-cyan-300 dark:text-slate-950" : "text-slate-600 hover:bg-white dark:text-slate-300 dark:hover:bg-white/10"}`} type="button" onClick={() => onChange(option.id)}>
+        <button
+          key={option.id}
+          className={`inline-flex items-center gap-1 rounded-xl px-3 py-1.5 text-xs font-black transition ${value === option.id ? "bg-slate-950 text-white dark:bg-cyan-300 dark:text-slate-950" : "text-slate-600 hover:bg-white dark:text-slate-300 dark:hover:bg-white/10"}`}
+          type="button"
+          onClick={() => onChange(option.id)}
+        >
           {option.icon}
           {option.label}
         </button>
@@ -580,15 +1602,39 @@ function SegmentedChoice({ label, options, value, onChange }: { label: string; o
   );
 }
 
-function GraphTheoryTabs({ algorithm, densityMode, focusMode, project, studyMode, tabs }: { algorithm: GraphAlgorithmName; densityMode: GraphDensityMode; focusMode: boolean; project: GraphProject; studyMode: GraphStudyMode; tabs: GraphTab[] }) {
+function GraphTheoryTabs({
+  algorithm,
+  densityMode,
+  focusMode,
+  project,
+  studyMode,
+  tabs,
+}: {
+  algorithm: GraphAlgorithmName;
+  densityMode: GraphDensityMode;
+  focusMode: boolean;
+  project: GraphProject;
+  studyMode: GraphStudyMode;
+  tabs: GraphTab[];
+}) {
   const [activeId, setActiveId] = useState(tabs[0]?.id ?? "");
   const active = tabs.find((tab) => tab.id === activeId) ?? tabs[0];
-  const groups: GraphPrimaryTab[] = ["Build", "Analyze", "Algorithms", "Practice", "Theory"];
+  const groups: GraphPrimaryTab[] = [
+    "Build",
+    "Analyze",
+    "Algorithms",
+    "Practice",
+    "Theory",
+  ];
   const activeGroup = active.group;
   return (
     <section className="rounded-3xl border border-cyan-200 bg-white/90 shadow-sm dark:border-cyan-300/20 dark:bg-slate-950/80">
       <div className="sticky top-0 z-20 rounded-t-3xl border-b border-slate-200 bg-white/95 p-2 backdrop-blur dark:border-white/10 dark:bg-slate-950/95">
-        <div role="tablist" aria-label="Graph theory primary workspaces" className="flex gap-2 overflow-x-auto thin-scrollbar">
+        <div
+          role="tablist"
+          aria-label="Graph theory primary workspaces"
+          className="flex gap-2 overflow-x-auto thin-scrollbar"
+        >
           {groups.map((group) => {
             const firstTab = tabs.find((tab) => tab.group === group);
             const selected = group === activeGroup;
@@ -607,34 +1653,48 @@ function GraphTheoryTabs({ algorithm, densityMode, focusMode, project, studyMode
             );
           })}
         </div>
-        <div role="tablist" aria-label="Graph theory secondary workspaces" className="mt-2 flex gap-2 overflow-x-auto thin-scrollbar">
-          {tabs.filter((tab) => tab.group === activeGroup).map((tab) => {
-            const selected = tab.id === active.id;
-            return (
-              <button
-                key={tab.id}
-                type="button"
-                role="tab"
-                aria-selected={selected}
-                className={`inline-flex min-h-10 shrink-0 items-center gap-2 rounded-2xl px-3 py-2 text-xs font-black transition ${selected ? "bg-cyan-500 text-white shadow-sm dark:bg-cyan-300 dark:text-slate-950" : "border border-slate-200 bg-white text-slate-600 hover:border-cyan-200 hover:text-slate-950 dark:border-white/10 dark:bg-white/5 dark:text-slate-300"}`}
-                onClick={() => setActiveId(tab.id)}
-              >
-                {tab.icon}
-                {tab.label}
-              </button>
-            );
-          })}
+        <div
+          role="tablist"
+          aria-label="Graph theory secondary workspaces"
+          className="mt-2 flex gap-2 overflow-x-auto thin-scrollbar"
+        >
+          {tabs
+            .filter((tab) => tab.group === activeGroup)
+            .map((tab) => {
+              const selected = tab.id === active.id;
+              return (
+                <button
+                  key={tab.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={selected}
+                  className={`inline-flex min-h-10 shrink-0 items-center gap-2 rounded-2xl px-3 py-2 text-xs font-black transition ${selected ? "bg-cyan-500 text-white shadow-sm dark:bg-cyan-300 dark:text-slate-950" : "border border-slate-200 bg-white text-slate-600 hover:border-cyan-200 hover:text-slate-950 dark:border-white/10 dark:bg-white/5 dark:text-slate-300"}`}
+                  onClick={() => setActiveId(tab.id)}
+                >
+                  {tab.icon}
+                  {tab.label}
+                </button>
+              );
+            })}
         </div>
         <div className="mt-2 flex flex-wrap items-center justify-between gap-2 rounded-2xl border border-cyan-100 bg-cyan-50/70 px-3 py-2 text-xs font-bold text-cyan-950 dark:border-cyan-300/20 dark:bg-cyan-300/10 dark:text-cyan-50">
           <div className="flex flex-wrap items-center gap-1">
-            <span className="rounded-full bg-white px-2 py-1 dark:bg-white/10">Graph Theory</span>
+            <span className="rounded-full bg-white px-2 py-1 dark:bg-white/10">
+              Graph Theory
+            </span>
             <span>{">"}</span>
-            <span className="rounded-full bg-white px-2 py-1 dark:bg-white/10">{active.group}</span>
+            <span className="rounded-full bg-white px-2 py-1 dark:bg-white/10">
+              {active.group}
+            </span>
             <span>{">"}</span>
-            <span className="rounded-full bg-white px-2 py-1 dark:bg-white/10">{active.id === "algorithms" ? algorithm : active.label}</span>
+            <span className="rounded-full bg-white px-2 py-1 dark:bg-white/10">
+              {active.id === "algorithms" ? algorithm : active.label}
+            </span>
           </div>
           <div className="flex flex-wrap items-center gap-2">
-            <span>{project.nodes.length}V / {project.edges.length}E</span>
+            <span>
+              {project.nodes.length}V / {project.edges.length}E
+            </span>
             <span>{project.directed ? "directed" : "undirected"}</span>
             <span>{studyMode}</span>
             <span>{densityMode}</span>
@@ -643,9 +1703,16 @@ function GraphTheoryTabs({ algorithm, densityMode, focusMode, project, studyMode
         </div>
       </div>
       <div role="tabpanel" className="p-3 sm:p-4">
-        <details open={densityMode === "beginner"} className="mb-3 rounded-2xl border border-slate-200 bg-slate-50 p-3 dark:border-white/10 dark:bg-white/5">
-          <summary className="cursor-pointer text-sm font-black text-slate-950 dark:text-white">{active.label} summary</summary>
-          <p className="mt-2 text-sm font-semibold leading-6 text-slate-600 dark:text-slate-300">{active.summary}</p>
+        <details
+          open={densityMode === "beginner"}
+          className="mb-3 rounded-2xl border border-slate-200 bg-slate-50 p-3 dark:border-white/10 dark:bg-white/5"
+        >
+          <summary className="cursor-pointer text-sm font-black text-slate-950 dark:text-white">
+            {active.label} summary
+          </summary>
+          <p className="mt-2 text-sm font-semibold leading-6 text-slate-600 dark:text-slate-300">
+            {active.summary}
+          </p>
         </details>
         {active.content}
       </div>
@@ -653,20 +1720,42 @@ function GraphTheoryTabs({ algorithm, densityMode, focusMode, project, studyMode
   );
 }
 
-function GraphTheoryCompletionDashboard({ project }: { project: GraphProject }) {
+function GraphTheoryCompletionDashboard({
+  project,
+}: {
+  project: GraphProject;
+}) {
   const metrics = graphMetrics(project);
   return (
-    <SectionCard title="Implementation Coverage" description="Canonical graph theory topics are grouped into tabs so students can work without long scrolling.">
+    <SectionCard
+      title="Implementation Coverage"
+      description="Canonical graph theory topics are grouped into tabs so students can work without long scrolling."
+    >
       <div className="grid gap-3 md:grid-cols-[.8fr_1.2fr]">
         <div className="grid grid-cols-2 gap-2">
-          <Metric label="Topics covered" value={String(graphTopicCoverage.length)} />
-          <Metric label="Current graph" value={`${metrics.order}V / ${metrics.size}E`} />
-          <Metric label="Density" value={`${Math.round(metrics.density * 100)}%`} />
-          <Metric label="Handshaking" value={`${metrics.degreeSum} = 2 x ${metrics.size}`} />
+          <Metric
+            label="Topics covered"
+            value={String(graphTopicCoverage.length)}
+          />
+          <Metric
+            label="Current graph"
+            value={`${metrics.order}V / ${metrics.size}E`}
+          />
+          <Metric
+            label="Density"
+            value={`${Math.round(metrics.density * 100)}%`}
+          />
+          <Metric
+            label="Handshaking"
+            value={`${metrics.degreeSum} = 2 x ${metrics.size}`}
+          />
         </div>
         <div className="grid max-h-52 gap-2 overflow-auto pr-1 sm:grid-cols-2 thin-scrollbar">
           {graphTopicCoverage.map((topic) => (
-            <div key={topic} className="flex items-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-3 py-2 text-sm font-black text-emerald-950 dark:border-emerald-300/20 dark:bg-emerald-300/10 dark:text-emerald-100">
+            <div
+              key={topic}
+              className="flex items-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-3 py-2 text-sm font-black text-emerald-950 dark:border-emerald-300/20 dark:bg-emerald-300/10 dark:text-emerald-100"
+            >
               <CheckCircle2 className="h-4 w-4" />
               {topic}
             </div>
@@ -679,25 +1768,89 @@ function GraphTheoryCompletionDashboard({ project }: { project: GraphProject }) 
 
 function _ImplementationAudit() {
   const rows = [
-    ["Basic Graph Concepts", "Covered", "Degree, order, size, density, and handshaking are now in the Structures tab."],
-    ["Isomorphism", "Covered", "Side-by-side signature comparison and mapping visualization are available."],
-    ["Subgraphs", "Covered", "Induced subgraph studio includes node selection and degree summary."],
-    ["Trees", "Covered", "Binary, AVL-style balance, expression-tree models, and traversal animation are available."],
+    [
+      "Basic Graph Concepts",
+      "Covered",
+      "Degree, order, size, density, and handshaking are now in the Structures tab.",
+    ],
+    [
+      "Isomorphism",
+      "Covered",
+      "Side-by-side signature comparison and mapping visualization are available.",
+    ],
+    [
+      "Subgraphs",
+      "Covered",
+      "Induced subgraph studio includes node selection and degree summary.",
+    ],
+    [
+      "Trees",
+      "Covered",
+      "Binary, AVL-style balance, expression-tree models, and traversal animation are available.",
+    ],
     ["Spanning Trees", "Covered", "Kruskal/Prim MST selection is available."],
-    ["Directed Trees", "Covered", "Directed toggle plus topological/tree views are available."],
+    [
+      "Directed Trees",
+      "Covered",
+      "Directed toggle plus topological/tree views are available.",
+    ],
     ["Binary Trees", "Covered", "Traversal animation panel is available."],
-    ["Planar Graphs", "Covered", "Crossing detection and Euler formula studio are available."],
-    ["Euler Circuits", "Covered", "Connected/even-degree validation and Hierholzer trace are available."],
-    ["Hamiltonian Graphs", "Covered", "Bounded brute-force cycle search is available."],
-    ["Chromatic Numbers", "Covered", "Exact small-graph solver and conflict coloring are available."],
-    ["Four Color Problem", "Covered", "Four-color demonstration is available through planarity and coloring panels."],
+    [
+      "Planar Graphs",
+      "Covered",
+      "Crossing detection and Euler formula studio are available.",
+    ],
+    [
+      "Euler Circuits",
+      "Covered",
+      "Connected/even-degree validation and Hierholzer trace are available.",
+    ],
+    [
+      "Hamiltonian Graphs",
+      "Covered",
+      "Bounded brute-force cycle search is available.",
+    ],
+    [
+      "Chromatic Numbers",
+      "Covered",
+      "Exact small-graph solver and conflict coloring are available.",
+    ],
+    [
+      "Four Color Problem",
+      "Covered",
+      "Four-color demonstration is available through planarity and coloring panels.",
+    ],
   ];
   return (
-    <SectionCard title="Coverage Reference" description="Canonical graph-theory topics available in this module.">
+    <SectionCard
+      title="Coverage Reference"
+      description="Canonical graph-theory topics available in this module."
+    >
       <div className="mobile-safe-scroll">
         <table className="min-w-full text-sm">
-          <thead className="bg-slate-100 text-left dark:bg-white/10"><tr><th className="px-3 py-2">Topic</th><th className="px-3 py-2">Status</th><th className="px-3 py-2">Action</th></tr></thead>
-          <tbody>{rows.map(([topic, status, action]) => <tr key={topic} className="border-t border-slate-200 dark:border-white/10"><td className="px-3 py-2 font-semibold">{topic}</td><td className="px-3 py-2"><span className="mini-chip">{status}</span></td><td className="px-3 py-2 text-slate-600 dark:text-slate-300">{action}</td></tr>)}</tbody>
+          <thead className="bg-slate-100 text-left dark:bg-white/10">
+            <tr>
+              <th className="px-3 py-2">Topic</th>
+              <th className="px-3 py-2">Status</th>
+              <th className="px-3 py-2">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map(([topic, status, action]) => (
+              <tr
+                key={topic}
+                className="border-t border-slate-200 dark:border-white/10"
+              >
+                <td className="px-3 py-2 font-semibold">{topic}</td>
+                <td className="px-3 py-2">
+                  <span className="mini-chip">{status}</span>
+                </td>
+                <td className="px-3 py-2 text-slate-600 dark:text-slate-300">
+                  {action}
+                </td>
+              </tr>
+            ))}
+          </tbody>
         </table>
       </div>
     </SectionCard>
@@ -734,7 +1887,9 @@ function GraphEditor({
   const [draggingNode, setDraggingNode] = useState<string | null>(null);
   const [zoom, setZoom] = useState(1);
   const [pan, setPan] = useState({ x: 0, y: 0 });
-  const [toolMode, setToolMode] = useState<"select" | "move" | "connect" | "pan" | "lasso">("move");
+  const [toolMode, setToolMode] = useState<
+    "select" | "move" | "connect" | "pan" | "lasso"
+  >("move");
   const [selectedNodes, setSelectedNodes] = useState<string[]>([]);
   const [selectedEdgeId, setSelectedEdgeId] = useState<string | null>(null);
   const [connectSource, setConnectSource] = useState<string | null>(null);
@@ -747,17 +1902,25 @@ function GraphEditor({
   const [showArrows, setShowArrows] = useState(true);
   const [history, setHistory] = useState<GraphProject[]>([]);
   const [future, setFuture] = useState<GraphProject[]>([]);
-  const [lasso, setLasso] = useState<{ start: { x: number; y: number }; end: { x: number; y: number } } | null>(null);
+  const [lasso, setLasso] = useState<{
+    start: { x: number; y: number };
+    end: { x: number; y: number };
+  } | null>(null);
   const [hoveredNodeId, setHoveredNodeId] = useState<string | null>(null);
   const [fullCanvas, setFullCanvas] = useState(false);
-  const [panDrag, setPanDrag] = useState<{ startClient: { x: number; y: number }; startPan: { x: number; y: number } } | null>(null);
+  const [panDrag, setPanDrag] = useState<{
+    startClient: { x: number; y: number };
+    startPan: { x: number; y: number };
+  } | null>(null);
   const svgRef = useRef<SVGSVGElement>(null);
   const activeNodes = activeStep?.activeNodes ?? [];
   const activeEdges = activeStep?.activeEdges ?? [];
   const graphNodeById = new Map(project.nodes.map((node) => [node.id, node]));
   const degrees = degreeMap(project);
   const selectedNodeSet = new Set(selectedNodes);
-  const hoveredNode = hoveredNodeId ? graphNodeById.get(hoveredNodeId) : undefined;
+  const hoveredNode = hoveredNodeId
+    ? graphNodeById.get(hoveredNodeId)
+    : undefined;
   const pushHistory = () => {
     setHistory((items) => [...items.slice(-14), project]);
     setFuture([]);
@@ -770,15 +1933,34 @@ function GraphEditor({
       y: (((event.clientY - rect.top) * 430) / rect.height - pan.y) / zoom,
     };
   };
-  const snapPoint = (point: { x: number; y: number }) => snapToGrid ? { x: Math.round(point.x / 34) * 34, y: Math.round(point.y / 34) * 34 } : point;
-  const updateNodePosition = (nodeId: string, point: { x: number; y: number }) => {
+  const snapPoint = (point: { x: number; y: number }) =>
+    snapToGrid
+      ? { x: Math.round(point.x / 34) * 34, y: Math.round(point.y / 34) * 34 }
+      : point;
+  const updateNodePosition = (
+    nodeId: string,
+    point: { x: number; y: number },
+  ) => {
     const snapped = snapPoint(point);
-    onNodes(project.nodes.map((node) => (node.id === nodeId ? { ...node, x: Math.max(34, Math.min(866, snapped.x)), y: Math.max(34, Math.min(396, snapped.y)) } : node)));
+    onNodes(
+      project.nodes.map((node) =>
+        node.id === nodeId
+          ? {
+              ...node,
+              x: Math.max(34, Math.min(866, snapped.x)),
+              y: Math.max(34, Math.min(396, snapped.y)),
+            }
+          : node,
+      ),
+    );
   };
   const handlePointerMove = (event: PointerEvent<SVGSVGElement>) => {
     const point = toGraphPoint(event);
     if (panDrag) {
-      setPan({ x: panDrag.startPan.x + event.clientX - panDrag.startClient.x, y: panDrag.startPan.y + event.clientY - panDrag.startClient.y });
+      setPan({
+        x: panDrag.startPan.x + event.clientX - panDrag.startClient.x,
+        y: panDrag.startPan.y + event.clientY - panDrag.startClient.y,
+      });
       return;
     }
     if (lasso) {
@@ -788,13 +1970,24 @@ function GraphEditor({
     if (draggingNode) updateNodePosition(draggingNode, point);
   };
   const handlePointerUp = (event: PointerEvent<SVGSVGElement>) => {
-    if (draggingNode) event.currentTarget.releasePointerCapture(event.pointerId);
+    if (draggingNode)
+      event.currentTarget.releasePointerCapture(event.pointerId);
     if (lasso) {
       const minX = Math.min(lasso.start.x, lasso.end.x);
       const maxX = Math.max(lasso.start.x, lasso.end.x);
       const minY = Math.min(lasso.start.y, lasso.end.y);
       const maxY = Math.max(lasso.start.y, lasso.end.y);
-      setSelectedNodes(project.nodes.filter((node) => node.x >= minX && node.x <= maxX && node.y >= minY && node.y <= maxY).map((node) => node.id));
+      setSelectedNodes(
+        project.nodes
+          .filter(
+            (node) =>
+              node.x >= minX &&
+              node.x <= maxX &&
+              node.y >= minY &&
+              node.y <= maxY,
+          )
+          .map((node) => node.id),
+      );
       setLasso(null);
     }
     setDraggingNode(null);
@@ -811,13 +2004,26 @@ function GraphEditor({
     pushHistory();
     const removeNodes = new Set(selectedNodes);
     onNodes(project.nodes.filter((node) => !removeNodes.has(node.id)));
-    onEdges(project.edges.filter((edge) => edge.id !== selectedEdgeId && !removeNodes.has(edge.source) && !removeNodes.has(edge.target)));
+    onEdges(
+      project.edges.filter(
+        (edge) =>
+          edge.id !== selectedEdgeId &&
+          !removeNodes.has(edge.source) &&
+          !removeNodes.has(edge.target),
+      ),
+    );
     setSelectedNodes([]);
     setSelectedEdgeId(null);
   };
   const duplicateGraph = () => {
     pushHistory();
-    onNodes(project.nodes.map((node) => ({ ...node, x: Math.min(866, node.x + 34), y: Math.min(396, node.y + 34) })));
+    onNodes(
+      project.nodes.map((node) => ({
+        ...node,
+        x: Math.min(866, node.x + 34),
+        y: Math.min(396, node.y + 34),
+      })),
+    );
   };
   const undo = () => {
     const previous = history.at(-1);
@@ -844,73 +2050,297 @@ function GraphEditor({
     setSelectedNodes([]);
     setSelectedEdgeId(null);
   };
-  const applyTemplate = (template: GraphTemplateName) => mutateProject(createGraphTemplate(template, directed));
+  const applyTemplate = (template: GraphTemplateName) =>
+    mutateProject(createGraphTemplate(template, directed));
   const applyLayout = (layout: GraphLayoutName) => {
     pushHistory();
     onNodes(layoutGraph(project, layout));
   };
-  const canvasClass = fullCanvas ? "fixed inset-4 z-50 h-auto rounded-3xl border border-cyan-200 bg-slate-950 p-3 shadow-2xl" : "relative h-[430px] overflow-hidden rounded-xl border border-cyan-200/15 bg-slate-950 shadow-inner shadow-cyan-950/30";
+  const canvasClass = fullCanvas
+    ? "fixed inset-4 z-50 h-auto rounded-3xl border border-cyan-200 bg-slate-950 p-3 shadow-2xl"
+    : "relative h-[430px] overflow-hidden rounded-xl border border-cyan-200/15 bg-slate-950 shadow-inner shadow-cyan-950/30";
   return (
-    <SectionCard title="Graph Editor" description="Create nodes, connect weighted edges, drag nodes, zoom, switch modes, and template common graph families." tone="spotlight">
+    <SectionCard
+      title="Graph Editor"
+      description="Create nodes, connect weighted edges, drag nodes, zoom, switch modes, and template common graph families."
+      tone="spotlight"
+    >
       <div className="mb-3 grid gap-2">
         <div className="flex flex-wrap gap-2">
-          <button className="tool-button" type="button" onClick={() => { pushHistory(); onAddNode(); }}><Plus className="h-4 w-4" /> Node</button>
-          <button className="tool-button" type="button" onClick={() => project.nodes.length >= 2 && (pushHistory(), onAddEdge(project.nodes.at(-2)!.id, project.nodes.at(-1)!.id))}><GitBranch className="h-4 w-4" /> Edge last two</button>
-          <button className="tool-button" type="button" onClick={() => { pushHistory(); onDirected(!directed); }}><Network className="h-4 w-4" /> {directed ? "Directed" : "Undirected"}</button>
-          <button className="tool-button" type="button" onClick={onReset}><RotateCcw className="h-4 w-4" /> Reset sample</button>
-          <button className="tool-button" type="button" onClick={clearGraph}><Trash2 className="h-4 w-4" /> Clear graph</button>
-          <button className="tool-button" type="button" onClick={() => setFullCanvas(!fullCanvas)}>{fullCanvas ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />} Canvas</button>
+          <button
+            className="tool-button"
+            type="button"
+            onClick={() => {
+              pushHistory();
+              onAddNode();
+            }}
+          >
+            <Plus className="h-4 w-4" /> Node
+          </button>
+          <button
+            className="tool-button"
+            type="button"
+            onClick={() =>
+              project.nodes.length >= 2 &&
+              (pushHistory(),
+              onAddEdge(project.nodes.at(-2)!.id, project.nodes.at(-1)!.id))
+            }
+          >
+            <GitBranch className="h-4 w-4" /> Edge last two
+          </button>
+          <button
+            className="tool-button"
+            type="button"
+            onClick={() => {
+              pushHistory();
+              onDirected(!directed);
+            }}
+          >
+            <Network className="h-4 w-4" />{" "}
+            {directed ? "Directed" : "Undirected"}
+          </button>
+          <button className="tool-button" type="button" onClick={onReset}>
+            <RotateCcw className="h-4 w-4" /> Reset sample
+          </button>
+          <button className="tool-button" type="button" onClick={clearGraph}>
+            <Trash2 className="h-4 w-4" /> Clear graph
+          </button>
+          <button
+            className="tool-button"
+            type="button"
+            onClick={() => setFullCanvas(!fullCanvas)}
+          >
+            {fullCanvas ? (
+              <Minimize2 className="h-4 w-4" />
+            ) : (
+              <Maximize2 className="h-4 w-4" />
+            )}{" "}
+            Canvas
+          </button>
         </div>
         <div className="flex flex-wrap gap-2">
-          {(["select", "move", "connect", "pan", "lasso"] as const).map((mode) => (
-            <button key={mode} className={`tool-button ${toolMode === mode ? "bg-cyan-500 text-white dark:bg-cyan-300 dark:text-slate-950" : ""}`} type="button" onClick={() => setToolMode(mode)}>
-              {mode === "select" ? <MousePointer2 className="h-4 w-4" /> : mode === "move" ? <Move className="h-4 w-4" /> : mode === "connect" ? <GitBranch className="h-4 w-4" /> : mode === "pan" ? <Waypoints className="h-4 w-4" /> : <Scissors className="h-4 w-4" />}
-              {mode}
-            </button>
-          ))}
-          <button className="tool-button" type="button" disabled={!selectedNodes.length && !selectedEdgeId} onClick={deleteSelection}><Trash2 className="h-4 w-4" /> Delete selected</button>
-          <button className="tool-button" type="button" onClick={duplicateGraph}><Copy className="h-4 w-4" /> Duplicate</button>
-          <button className="tool-button" type="button" disabled={!history.length} onClick={undo}><Undo2 className="h-4 w-4" /> Undo</button>
-          <button className="tool-button" type="button" disabled={!future.length} onClick={redo}>Redo</button>
+          {(["select", "move", "connect", "pan", "lasso"] as const).map(
+            (mode) => (
+              <button
+                key={mode}
+                className={`tool-button ${toolMode === mode ? "bg-cyan-500 text-white dark:bg-cyan-300 dark:text-slate-950" : ""}`}
+                type="button"
+                onClick={() => setToolMode(mode)}
+              >
+                {mode === "select" ? (
+                  <MousePointer2 className="h-4 w-4" />
+                ) : mode === "move" ? (
+                  <Move className="h-4 w-4" />
+                ) : mode === "connect" ? (
+                  <GitBranch className="h-4 w-4" />
+                ) : mode === "pan" ? (
+                  <Waypoints className="h-4 w-4" />
+                ) : (
+                  <Scissors className="h-4 w-4" />
+                )}
+                {mode}
+              </button>
+            ),
+          )}
+          <button
+            className="tool-button"
+            type="button"
+            disabled={!selectedNodes.length && !selectedEdgeId}
+            onClick={deleteSelection}
+          >
+            <Trash2 className="h-4 w-4" /> Delete selected
+          </button>
+          <button
+            className="tool-button"
+            type="button"
+            onClick={duplicateGraph}
+          >
+            <Copy className="h-4 w-4" /> Duplicate
+          </button>
+          <button
+            className="tool-button"
+            type="button"
+            disabled={!history.length}
+            onClick={undo}
+          >
+            <Undo2 className="h-4 w-4" /> Undo
+          </button>
+          <button
+            className="tool-button"
+            type="button"
+            disabled={!future.length}
+            onClick={redo}
+          >
+            Redo
+          </button>
         </div>
         <div className="flex flex-wrap items-center gap-2">
-          <button className="tool-button" type="button" onClick={() => setZoom((value) => Math.min(2, Number((value + 0.15).toFixed(2))))}>+</button>
-          <button className="tool-button" type="button" onClick={() => setZoom((value) => Math.max(0.55, Number((value - 0.15).toFixed(2))))}>-</button>
-          <button className="tool-button" type="button" onClick={() => { setZoom(1); setPan({ x: 0, y: 0 }); }}><CircleDot className="h-4 w-4" /> Fit</button>
-          <span className="rounded-full bg-slate-100 px-3 py-2 text-xs font-black text-slate-700 dark:bg-white/10 dark:text-slate-100">{Math.round(zoom * 100)}%</span>
-          <button className={`tool-button ${snapToGrid ? "bg-cyan-500 text-white dark:bg-cyan-300 dark:text-slate-950" : ""}`} type="button" onClick={() => setSnapToGrid(!snapToGrid)}><CircleDot className="h-4 w-4" /> Snap</button>
-          <label className="mini-chip">Node <input className="w-24 accent-cyan-500" type="range" min="16" max="36" value={nodeSize} onChange={(event) => setNodeSize(Number(event.target.value))} /></label>
-          <label className="mini-chip">Edge <input className="w-24 accent-cyan-500" type="range" min="1" max="8" value={edgeThickness} onChange={(event) => setEdgeThickness(Number(event.target.value))} /></label>
+          <button
+            className="tool-button"
+            type="button"
+            onClick={() =>
+              setZoom((value) => Math.min(2, Number((value + 0.15).toFixed(2))))
+            }
+          >
+            +
+          </button>
+          <button
+            className="tool-button"
+            type="button"
+            onClick={() =>
+              setZoom((value) =>
+                Math.max(0.55, Number((value - 0.15).toFixed(2))),
+              )
+            }
+          >
+            -
+          </button>
+          <button
+            className="tool-button"
+            type="button"
+            onClick={() => {
+              setZoom(1);
+              setPan({ x: 0, y: 0 });
+            }}
+          >
+            <CircleDot className="h-4 w-4" /> Fit
+          </button>
+          <span className="rounded-full bg-slate-100 px-3 py-2 text-xs font-black text-slate-700 dark:bg-white/10 dark:text-slate-100">
+            {Math.round(zoom * 100)}%
+          </span>
+          <button
+            className={`tool-button ${snapToGrid ? "bg-cyan-500 text-white dark:bg-cyan-300 dark:text-slate-950" : ""}`}
+            type="button"
+            onClick={() => setSnapToGrid(!snapToGrid)}
+          >
+            <CircleDot className="h-4 w-4" /> Snap
+          </button>
+          <label className="mini-chip">
+            Node{" "}
+            <input
+              className="w-24 accent-cyan-500"
+              type="range"
+              min="16"
+              max="36"
+              value={nodeSize}
+              onChange={(event) => setNodeSize(Number(event.target.value))}
+            />
+          </label>
+          <label className="mini-chip">
+            Edge{" "}
+            <input
+              className="w-24 accent-cyan-500"
+              type="range"
+              min="1"
+              max="8"
+              value={edgeThickness}
+              onChange={(event) => setEdgeThickness(Number(event.target.value))}
+            />
+          </label>
         </div>
         {!focusMode || densityMode === "beginner" ? (
           <div className="grid gap-2 lg:grid-cols-2">
             <div className="flex flex-wrap gap-2">
-              {(["path", "cycle", "complete", "bipartite", "tree", "star", "wheel"] as GraphTemplateName[]).map((template) => (
-                <button key={template} className="mini-chip bg-white text-slate-700 dark:bg-white/10 dark:text-slate-100" type="button" onClick={() => applyTemplate(template)}>{template}</button>
+              {(
+                [
+                  "path",
+                  "cycle",
+                  "complete",
+                  "bipartite",
+                  "tree",
+                  "star",
+                  "wheel",
+                ] as GraphTemplateName[]
+              ).map((template) => (
+                <button
+                  key={template}
+                  className="mini-chip bg-white text-slate-700 dark:bg-white/10 dark:text-slate-100"
+                  type="button"
+                  onClick={() => applyTemplate(template)}
+                >
+                  {template}
+                </button>
               ))}
             </div>
             <div className="flex flex-wrap gap-2">
-              {(["circular", "force", "tree", "layered"] as GraphLayoutName[]).map((layout) => (
-                <button key={layout} className="mini-chip bg-cyan-50 text-cyan-800 dark:bg-cyan-300/10 dark:text-cyan-100" type="button" onClick={() => applyLayout(layout)}>{layout} layout</button>
+              {(
+                ["circular", "force", "tree", "layered"] as GraphLayoutName[]
+              ).map((layout) => (
+                <button
+                  key={layout}
+                  className="mini-chip bg-cyan-50 text-cyan-800 dark:bg-cyan-300/10 dark:text-cyan-100"
+                  type="button"
+                  onClick={() => applyLayout(layout)}
+                >
+                  {layout} layout
+                </button>
               ))}
-              <label className="mini-chip"><input type="checkbox" checked={showNodeLabels} onChange={(event) => setShowNodeLabels(event.target.checked)} /> node labels</label>
-              <label className="mini-chip"><input type="checkbox" checked={showEdgeWeights} onChange={(event) => setShowEdgeWeights(event.target.checked)} /> weights</label>
-              <label className="mini-chip"><input type="checkbox" checked={showDegreeLabels} onChange={(event) => setShowDegreeLabels(event.target.checked)} /> degrees</label>
-              <label className="mini-chip"><input type="checkbox" checked={showArrows} onChange={(event) => setShowArrows(event.target.checked)} /> arrows</label>
+              <label className="mini-chip">
+                <input
+                  type="checkbox"
+                  checked={showNodeLabels}
+                  onChange={(event) => setShowNodeLabels(event.target.checked)}
+                />{" "}
+                node labels
+              </label>
+              <label className="mini-chip">
+                <input
+                  type="checkbox"
+                  checked={showEdgeWeights}
+                  onChange={(event) => setShowEdgeWeights(event.target.checked)}
+                />{" "}
+                weights
+              </label>
+              <label className="mini-chip">
+                <input
+                  type="checkbox"
+                  checked={showDegreeLabels}
+                  onChange={(event) =>
+                    setShowDegreeLabels(event.target.checked)
+                  }
+                />{" "}
+                degrees
+              </label>
+              <label className="mini-chip">
+                <input
+                  type="checkbox"
+                  checked={showArrows}
+                  onChange={(event) => setShowArrows(event.target.checked)}
+                />{" "}
+                arrows
+              </label>
             </div>
           </div>
         ) : null}
       </div>
       <div className={canvasClass}>
-        {fullCanvas ? <button className="absolute right-4 top-4 z-20 rounded-full bg-white px-3 py-2 text-sm font-black text-slate-950" type="button" onClick={() => setFullCanvas(false)}><Minimize2 className="inline h-4 w-4" /> Exit</button> : null}
+        {fullCanvas ? (
+          <button
+            className="absolute right-4 top-4 z-20 rounded-full bg-white px-3 py-2 text-sm font-black text-slate-950"
+            type="button"
+            onClick={() => setFullCanvas(false)}
+          >
+            <Minimize2 className="inline h-4 w-4" /> Exit
+          </button>
+        ) : null}
         {project.nodes.length === 0 ? (
           <div className="absolute inset-0 z-10 grid place-items-center p-6 text-center text-white">
             <div className="rounded-2xl border border-cyan-300/30 bg-slate-900/90 p-5 shadow-xl">
               <p className="text-lg font-black">No graph nodes yet</p>
-              <p className="mt-2 text-sm text-slate-300">Add a node or restore the sample graph to start editing.</p>
+              <p className="mt-2 text-sm text-slate-300">
+                Add a node or restore the sample graph to start editing.
+              </p>
               <div className="mt-4 flex justify-center gap-2">
-                <button className="action-primary" type="button" onClick={onAddNode}><Plus className="h-4 w-4" /> Add node</button>
-                <button className="tool-button" type="button" onClick={onReset}><RotateCcw className="h-4 w-4" /> Sample</button>
+                <button
+                  className="action-primary"
+                  type="button"
+                  onClick={onAddNode}
+                >
+                  <Plus className="h-4 w-4" /> Add node
+                </button>
+                <button className="tool-button" type="button" onClick={onReset}>
+                  <RotateCcw className="h-4 w-4" /> Sample
+                </button>
               </div>
             </div>
           </div>
@@ -925,10 +2355,18 @@ function GraphEditor({
           onPointerUp={handlePointerUp}
           onPointerCancel={handlePointerUp}
           onPointerDown={(event) => {
-            if (event.target !== event.currentTarget && (event.target as SVGElement).tagName !== "rect") return;
+            if (
+              event.target !== event.currentTarget &&
+              (event.target as SVGElement).tagName !== "rect"
+            )
+              return;
             const point = toGraphPoint(event);
             if (toolMode === "lasso") setLasso({ start: point, end: point });
-            if (toolMode === "pan") setPanDrag({ startClient: { x: event.clientX, y: event.clientY }, startPan: pan });
+            if (toolMode === "pan")
+              setPanDrag({
+                startClient: { x: event.clientX, y: event.clientY },
+                startPan: pan,
+              });
             if (toolMode === "select") {
               setSelectedNodes([]);
               setSelectedEdgeId(null);
@@ -936,16 +2374,33 @@ function GraphEditor({
           }}
         >
           <defs>
-            <pattern id="graph-grid" width="34" height="34" patternUnits="userSpaceOnUse">
+            <pattern
+              id="graph-grid"
+              width="34"
+              height="34"
+              patternUnits="userSpaceOnUse"
+            >
               <circle cx="2" cy="2" r="1.4" fill="#94a3b8" opacity="0.55" />
             </pattern>
-            <marker id="graph-arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+            <marker
+              id="graph-arrow"
+              markerWidth="10"
+              markerHeight="10"
+              refX="9"
+              refY="3"
+              orient="auto"
+              markerUnits="strokeWidth"
+            >
               <path d="M0,0 L0,6 L9,3 z" fill="#67e8f9" />
             </marker>
           </defs>
           <rect width="900" height="430" rx="18" fill="#020617" />
           <g transform={`translate(${pan.x} ${pan.y}) scale(${zoom})`}>
-            <rect width={900 / zoom} height={430 / zoom} fill="url(#graph-grid)" />
+            <rect
+              width={900 / zoom}
+              height={430 / zoom}
+              fill="url(#graph-grid)"
+            />
             {project.edges.map((edge) => {
               const source = graphNodeById.get(edge.source);
               const target = graphNodeById.get(edge.target);
@@ -955,21 +2410,48 @@ function GraphEditor({
               const midX = (source.x + target.x) / 2;
               const midY = (source.y + target.y) / 2;
               return (
-                <g key={edge.id} className="cursor-pointer" onClick={() => setSelectedEdgeId(edge.id)}>
+                <g
+                  key={edge.id}
+                  className="cursor-pointer"
+                  onClick={() => setSelectedEdgeId(edge.id)}
+                >
                   <line
                     x1={source.x}
                     y1={source.y}
                     x2={target.x}
                     y2={target.y}
-                    stroke={active ? "#facc15" : selected ? "#fb7185" : "#67e8f9"}
-                    strokeWidth={active || selected ? edgeThickness + 2 : edgeThickness}
+                    stroke={
+                      active ? "#facc15" : selected ? "#fb7185" : "#67e8f9"
+                    }
+                    strokeWidth={
+                      active || selected ? edgeThickness + 2 : edgeThickness
+                    }
                     strokeLinecap="round"
-                    markerEnd={directed && showArrows ? "url(#graph-arrow)" : undefined}
+                    markerEnd={
+                      directed && showArrows ? "url(#graph-arrow)" : undefined
+                    }
                   />
                   {showEdgeWeights ? (
                     <>
-                      <rect x={midX - 16} y={midY - 14} width="32" height="24" rx="10" fill="#f8fafc" opacity="0.95" />
-                      <text x={midX} y={midY + 5} textAnchor="middle" fill="#0f172a" fontSize="13" fontWeight="900">{edge.weight}</text>
+                      <rect
+                        x={midX - 16}
+                        y={midY - 14}
+                        width="32"
+                        height="24"
+                        rx="10"
+                        fill="#f8fafc"
+                        opacity="0.95"
+                      />
+                      <text
+                        x={midX}
+                        y={midY + 5}
+                        textAnchor="middle"
+                        fill="#0f172a"
+                        fontSize="13"
+                        fontWeight="900"
+                      >
+                        {edge.weight}
+                      </text>
                     </>
                   ) : null}
                 </g>
@@ -1001,7 +2483,10 @@ function GraphEditor({
                     const delta = deltas[event.key];
                     if (!delta) return;
                     event.preventDefault();
-                    updateNodePosition(node.id, { x: node.x + delta.x, y: node.y + delta.y });
+                    updateNodePosition(node.id, {
+                      x: node.x + delta.x,
+                      y: node.y + delta.y,
+                    });
                   }}
                   onPointerDown={(event) => {
                     event.stopPropagation();
@@ -1015,19 +2500,54 @@ function GraphEditor({
                       return;
                     }
                     if (toolMode === "select") {
-                      setSelectedNodes((items) => event.shiftKey ? (items.includes(node.id) ? items.filter((id) => id !== node.id) : [...items, node.id]) : [node.id]);
+                      setSelectedNodes((items) =>
+                        event.shiftKey
+                          ? items.includes(node.id)
+                            ? items.filter((id) => id !== node.id)
+                            : [...items, node.id]
+                          : [node.id],
+                      );
                       setSelectedEdgeId(null);
                       return;
                     }
                     if (toolMode === "pan" || toolMode === "lasso") return;
                     pushHistory();
-                    event.currentTarget.ownerSVGElement?.setPointerCapture(event.pointerId);
+                    event.currentTarget.ownerSVGElement?.setPointerCapture(
+                      event.pointerId,
+                    );
                     setDraggingNode(node.id);
                   }}
                 >
-                  <circle r={nodeSize} fill={fill} stroke={active || selected || connecting ? "#f8fafc" : "#0f172a"} strokeWidth={active || selected || connecting ? 5 : 3} />
-                  {showNodeLabels ? <text y="6" textAnchor="middle" fill="#0f172a" fontSize={Math.max(12, nodeSize - 7)} fontWeight="950">{node.label}</text> : null}
-                  {showDegreeLabels ? <text y={nodeSize + 18} textAnchor="middle" fill="#e0f2fe" fontSize="12" fontWeight="900">deg {degrees.get(node.id) ?? 0}</text> : null}
+                  <circle
+                    r={nodeSize}
+                    fill={fill}
+                    stroke={
+                      active || selected || connecting ? "#f8fafc" : "#0f172a"
+                    }
+                    strokeWidth={active || selected || connecting ? 5 : 3}
+                  />
+                  {showNodeLabels ? (
+                    <text
+                      y="6"
+                      textAnchor="middle"
+                      fill="#0f172a"
+                      fontSize={Math.max(12, nodeSize - 7)}
+                      fontWeight="950"
+                    >
+                      {node.label}
+                    </text>
+                  ) : null}
+                  {showDegreeLabels ? (
+                    <text
+                      y={nodeSize + 18}
+                      textAnchor="middle"
+                      fill="#e0f2fe"
+                      fontSize="12"
+                      fontWeight="900"
+                    >
+                      deg {degrees.get(node.id) ?? 0}
+                    </text>
+                  ) : null}
                 </g>
               );
             })}
@@ -1047,21 +2567,49 @@ function GraphEditor({
           </g>
         </svg>
         <div className="absolute bottom-3 right-3 hidden w-44 rounded-2xl border border-cyan-200/30 bg-slate-900/90 p-2 text-white shadow-xl md:block">
-          <p className="mb-1 text-[10px] font-black uppercase tracking-[0.16em] text-cyan-200">Mini map</p>
-          <svg viewBox="0 0 900 430" className="h-20 w-full rounded-xl bg-slate-950">
+          <p className="mb-1 text-[10px] font-black uppercase tracking-[0.16em] text-cyan-200">
+            Mini map
+          </p>
+          <svg
+            viewBox="0 0 900 430"
+            className="h-20 w-full rounded-xl bg-slate-950"
+          >
             {project.edges.map((edge) => {
               const source = graphNodeById.get(edge.source);
               const target = graphNodeById.get(edge.target);
-              return source && target ? <line key={edge.id} x1={source.x} y1={source.y} x2={target.x} y2={target.y} stroke="#155e75" strokeWidth="6" /> : null;
+              return source && target ? (
+                <line
+                  key={edge.id}
+                  x1={source.x}
+                  y1={source.y}
+                  x2={target.x}
+                  y2={target.y}
+                  stroke="#155e75"
+                  strokeWidth="6"
+                />
+              ) : null;
             })}
-            {project.nodes.map((node) => <circle key={node.id} cx={node.x} cy={node.y} r="15" fill="#67e8f9" />)}
+            {project.nodes.map((node) => (
+              <circle
+                key={node.id}
+                cx={node.x}
+                cy={node.y}
+                r="15"
+                fill="#67e8f9"
+              />
+            ))}
           </svg>
         </div>
         {hoveredNode ? (
           <div className="absolute left-3 top-3 rounded-2xl border border-cyan-200/30 bg-slate-900/90 px-3 py-2 text-sm font-bold text-white shadow-xl">
             <div className="text-cyan-200">Node {hoveredNode.label}</div>
             <div>Degree {degrees.get(hoveredNode.id) ?? 0}</div>
-            <div>Neighbors {(adjacency(project).get(hoveredNode.id) ?? []).map(({ to }) => to).join(", ") || "none"}</div>
+            <div>
+              Neighbors{" "}
+              {(adjacency(project).get(hoveredNode.id) ?? [])
+                .map(({ to }) => to)
+                .join(", ") || "none"}
+            </div>
           </div>
         ) : null}
         {selectedEdgeId ? (
@@ -1070,94 +2618,240 @@ function GraphEditor({
             onClose={() => setSelectedEdgeId(null)}
             onUpdate={(nextWeight) => {
               pushHistory();
-              onEdges(project.edges.map((edge) => edge.id === selectedEdgeId ? { ...edge, weight: nextWeight } : edge));
+              onEdges(
+                project.edges.map((edge) =>
+                  edge.id === selectedEdgeId
+                    ? { ...edge, weight: nextWeight }
+                    : edge,
+                ),
+              );
             }}
           />
         ) : null}
       </div>
-      {!focusMode ? <div className="mt-3 mobile-safe-scroll">
-        <table className="min-w-full text-sm">
-          <thead><tr><th className="px-2 py-1 text-left">Edge</th><th className="px-2 py-1">Weight</th></tr></thead>
-          <tbody>{project.edges.map((edge) => <tr key={edge.id} className="border-t border-slate-200 dark:border-white/10"><td className="px-2 py-1 font-mono">{edge.source} {"->"} {edge.target}</td><td className="px-2 py-1"><input className="w-20 rounded-lg border border-slate-200 bg-white p-1 text-center font-mono dark:border-white/10 dark:bg-slate-950" type="number" value={edge.weight} onChange={(event) => onEdges(project.edges.map((item) => item.id === edge.id ? { ...item, weight: Number(event.target.value) } : item))} /></td></tr>)}</tbody>
-        </table>
-      </div> : null}
+      {!focusMode ? (
+        <div className="mt-3 mobile-safe-scroll">
+          <table className="min-w-full text-sm">
+            <thead>
+              <tr>
+                <th className="px-2 py-1 text-left">Edge</th>
+                <th className="px-2 py-1">Weight</th>
+              </tr>
+            </thead>
+            <tbody>
+              {project.edges.map((edge) => (
+                <tr
+                  key={edge.id}
+                  className="border-t border-slate-200 dark:border-white/10"
+                >
+                  <td className="px-2 py-1 font-mono">
+                    {edge.source} {"->"} {edge.target}
+                  </td>
+                  <td className="px-2 py-1">
+                    <input
+                      className="w-20 rounded-lg border border-slate-200 bg-white p-1 text-center font-mono dark:border-white/10 dark:bg-slate-950"
+                      type="number"
+                      value={edge.weight}
+                      onChange={(event) =>
+                        onEdges(
+                          project.edges.map((item) =>
+                            item.id === edge.id
+                              ? { ...item, weight: Number(event.target.value) }
+                              : item,
+                          ),
+                        )
+                      }
+                    />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ) : null}
     </SectionCard>
   );
 }
 
-function EdgeEditPopover({ edge, onClose, onUpdate }: { edge?: GraphProject["edges"][number]; onClose: () => void; onUpdate: (weight: number) => void }) {
+function EdgeEditPopover({
+  edge,
+  onClose,
+  onUpdate,
+}: {
+  edge?: GraphProject["edges"][number];
+  onClose: () => void;
+  onUpdate: (weight: number) => void;
+}) {
   if (!edge) return null;
   return (
     <div className="absolute bottom-3 left-3 w-72 rounded-2xl border border-cyan-200/30 bg-white p-3 text-slate-950 shadow-2xl dark:bg-slate-900 dark:text-white">
       <div className="flex items-center justify-between gap-2">
         <div>
-          <p className="text-[11px] font-black uppercase tracking-[0.16em] text-cyan-700 dark:text-cyan-200">Edge editor</p>
-          <p className="font-black">{edge.source} {"->"} {edge.target}</p>
+          <p className="text-[11px] font-black uppercase tracking-[0.16em] text-cyan-700 dark:text-cyan-200">
+            Edge editor
+          </p>
+          <p className="font-black">
+            {edge.source} {"->"} {edge.target}
+          </p>
         </div>
-        <button className="rounded-full bg-slate-100 px-2 py-1 text-xs font-black dark:bg-white/10" type="button" onClick={onClose}>Close</button>
+        <button
+          className="rounded-full bg-slate-100 px-2 py-1 text-xs font-black dark:bg-white/10"
+          type="button"
+          onClick={onClose}
+        >
+          Close
+        </button>
       </div>
       <label className="mt-3 block text-sm font-bold">
         Weight
-        <input className="mt-1 w-full rounded-xl border border-slate-200 bg-white p-2 font-mono font-black text-slate-950 dark:border-white/10" type="number" value={edge.weight} onChange={(event) => onUpdate(Number(event.target.value))} />
+        <input
+          className="mt-1 w-full rounded-xl border border-slate-200 bg-white p-2 font-mono font-black text-slate-950 dark:border-white/10"
+          type="number"
+          value={edge.weight}
+          onChange={(event) => onUpdate(Number(event.target.value))}
+        />
       </label>
     </div>
   );
 }
 
-function createGraphTemplate(template: GraphTemplateName, directed: boolean): GraphProject {
-  const makeNodes = (count: number, layout: GraphLayoutName = "circular") => layoutGraph({
+function createGraphTemplate(
+  template: GraphTemplateName,
+  directed: boolean,
+): GraphProject {
+  const makeNodes = (count: number, layout: GraphLayoutName = "circular") =>
+    layoutGraph(
+      {
+        directed,
+        nodes: Array.from({ length: count }, (_, index) => {
+          const id = String.fromCharCode(65 + index);
+          return { id, label: id, x: 120 + index * 80, y: 200 };
+        }),
+        edges: [],
+      },
+      layout,
+    );
+  const edge = (
+    source: string,
+    target: string,
+    weight = 1,
+  ): GraphProject["edges"][number] => ({
+    id: `${source}-${target}`,
+    source,
+    target,
+    weight,
     directed,
-    nodes: Array.from({ length: count }, (_, index) => {
-      const id = String.fromCharCode(65 + index);
-      return { id, label: id, x: 120 + index * 80, y: 200 };
-    }),
-    edges: [],
-  }, layout);
-  const edge = (source: string, target: string, weight = 1): GraphProject["edges"][number] => ({ id: `${source}-${target}`, source, target, weight, directed });
+  });
   if (template === "path") {
     const nodes = makeNodes(6, "layered");
-    return { directed, nodes, edges: nodes.slice(0, -1).map((node, index) => edge(node.id, nodes[index + 1].id)) };
+    return {
+      directed,
+      nodes,
+      edges: nodes
+        .slice(0, -1)
+        .map((node, index) => edge(node.id, nodes[index + 1].id)),
+    };
   }
   if (template === "cycle") {
     const nodes = makeNodes(6);
-    return { directed, nodes, edges: nodes.map((node, index) => edge(node.id, nodes[(index + 1) % nodes.length].id)) };
+    return {
+      directed,
+      nodes,
+      edges: nodes.map((node, index) =>
+        edge(node.id, nodes[(index + 1) % nodes.length].id),
+      ),
+    };
   }
   if (template === "complete") {
     const nodes = makeNodes(5);
     const edges: GraphProject["edges"] = [];
-    nodes.forEach((source, left) => nodes.forEach((target, right) => {
-      if (left < right) edges.push(edge(source.id, target.id));
-    }));
+    nodes.forEach((source, left) =>
+      nodes.forEach((target, right) => {
+        if (left < right) edges.push(edge(source.id, target.id));
+      }),
+    );
     return { directed, nodes, edges };
   }
   if (template === "bipartite") {
-    const nodes = makeNodes(6, "layered").map((node, index) => ({ ...node, x: index < 3 ? 240 : 620, y: 95 + (index % 3) * 120 }));
-    return { directed, nodes, edges: [edge("A", "D"), edge("A", "E"), edge("B", "D"), edge("B", "F"), edge("C", "E"), edge("C", "F")] };
+    const nodes = makeNodes(6, "layered").map((node, index) => ({
+      ...node,
+      x: index < 3 ? 240 : 620,
+      y: 95 + (index % 3) * 120,
+    }));
+    return {
+      directed,
+      nodes,
+      edges: [
+        edge("A", "D"),
+        edge("A", "E"),
+        edge("B", "D"),
+        edge("B", "F"),
+        edge("C", "E"),
+        edge("C", "F"),
+      ],
+    };
   }
   if (template === "tree") {
     const nodes = makeNodes(7, "tree");
-    return { directed, nodes, edges: [edge("A", "B"), edge("A", "C"), edge("B", "D"), edge("B", "E"), edge("C", "F"), edge("C", "G")] };
+    return {
+      directed,
+      nodes,
+      edges: [
+        edge("A", "B"),
+        edge("A", "C"),
+        edge("B", "D"),
+        edge("B", "E"),
+        edge("C", "F"),
+        edge("C", "G"),
+      ],
+    };
   }
   if (template === "star") {
     const nodes = makeNodes(7);
-    return { directed, nodes, edges: nodes.slice(1).map((node) => edge("A", node.id)) };
+    return {
+      directed,
+      nodes,
+      edges: nodes.slice(1).map((node) => edge("A", node.id)),
+    };
   }
   const nodes = makeNodes(7);
-  return { directed, nodes, edges: [...nodes.slice(1).map((node) => edge("A", node.id)), ...nodes.slice(1).map((node, index, outer) => edge(node.id, outer[(index + 1) % outer.length].id))] };
+  return {
+    directed,
+    nodes,
+    edges: [
+      ...nodes.slice(1).map((node) => edge("A", node.id)),
+      ...nodes
+        .slice(1)
+        .map((node, index, outer) =>
+          edge(node.id, outer[(index + 1) % outer.length].id),
+        ),
+    ],
+  };
 }
 
-function layoutGraph(project: GraphProject, layout: GraphLayoutName): GraphProject["nodes"] {
+function layoutGraph(
+  project: GraphProject,
+  layout: GraphLayoutName,
+): GraphProject["nodes"] {
   if (!project.nodes.length) return [];
   if (layout === "force") {
     const preview = forcePreview(project);
     const byId = new Map(preview.map((node) => [node.id, node]));
     return project.nodes.map((node) => {
       const next = byId.get(node.id);
-      return { ...node, x: Math.max(45, Math.min(855, next?.x ?? node.x)), y: Math.max(45, Math.min(385, next?.y ?? node.y)) };
+      return {
+        ...node,
+        x: Math.max(45, Math.min(855, next?.x ?? node.x)),
+        y: Math.max(45, Math.min(385, next?.y ?? node.y)),
+      };
     });
   }
   if (layout === "layered") {
-    return project.nodes.map((node, index) => ({ ...node, x: 90 + (index % 6) * 140, y: 100 + Math.floor(index / 6) * 135 }));
+    return project.nodes.map((node, index) => ({
+      ...node,
+      x: 90 + (index % 6) * 140,
+      y: 100 + Math.floor(index / 6) * 135,
+    }));
   }
   if (layout === "tree") {
     const levels = [1, 2, 4, 8];
@@ -1174,7 +2868,11 @@ function layoutGraph(project: GraphProject, layout: GraphLayoutName): GraphProje
       offset = cursor - start;
       const slots = levels[level] ?? Math.max(1, project.nodes.length - start);
       cursor += 1;
-      return { ...node, x: 110 + ((offset + 1) * 680) / (slots + 1), y: 70 + level * 105 };
+      return {
+        ...node,
+        x: 110 + ((offset + 1) * 680) / (slots + 1),
+        y: 70 + level * 105,
+      };
     });
   }
   const centerX = 450;
@@ -1182,7 +2880,11 @@ function layoutGraph(project: GraphProject, layout: GraphLayoutName): GraphProje
   const radius = Math.min(170, 48 + project.nodes.length * 18);
   return project.nodes.map((node, index) => {
     const angle = (Math.PI * 2 * index) / project.nodes.length - Math.PI / 2;
-    return { ...node, x: centerX + Math.cos(angle) * radius, y: centerY + Math.sin(angle) * radius };
+    return {
+      ...node,
+      x: centerX + Math.cos(angle) * radius,
+      y: centerY + Math.sin(angle) * radius,
+    };
   });
 }
 
@@ -1190,27 +2892,84 @@ function isUsableGraphProject(project: GraphProject) {
   if (!project.nodes.length) return false;
   const ids = new Set(project.nodes.map((node) => node.id));
   return (
-    project.nodes.every((node) => node.id && node.label && Number.isFinite(node.x) && Number.isFinite(node.y)) &&
-    project.edges.every((edge) => edge.id && ids.has(edge.source) && ids.has(edge.target) && Number.isFinite(edge.weight))
+    project.nodes.every(
+      (node) =>
+        node.id &&
+        node.label &&
+        Number.isFinite(node.x) &&
+        Number.isFinite(node.y),
+    ) &&
+    project.edges.every(
+      (edge) =>
+        edge.id &&
+        ids.has(edge.source) &&
+        ids.has(edge.target) &&
+        Number.isFinite(edge.weight),
+    )
   );
 }
 
-function GraphAlgorithmsVisualizer({ project, selected, steps, stepIndex, onAlgorithm, onStep }: { project: GraphProject; selected: GraphAlgorithmName; steps: AlgorithmStep[]; stepIndex: number; onAlgorithm: (value: GraphAlgorithmName) => void; onStep: (step: number) => void }) {
+function GraphAlgorithmsVisualizer({
+  project,
+  selected,
+  steps,
+  stepIndex,
+  onAlgorithm,
+  onStep,
+}: {
+  project: GraphProject;
+  selected: GraphAlgorithmName;
+  steps: AlgorithmStep[];
+  stepIndex: number;
+  onAlgorithm: (value: GraphAlgorithmName) => void;
+  onStep: (step: number) => void;
+}) {
   const d = dijkstra(project);
   return (
-    <SectionCard title="Graph Algorithms Visualizer" description="Animate BFS, DFS, Dijkstra, Kruskal, Prim, and topological sort.">
-      <select className="w-full rounded-xl border border-slate-200 bg-white p-3 font-semibold dark:border-white/10 dark:bg-slate-950" value={selected} onChange={(event) => onAlgorithm(event.target.value as typeof selected)}>
-        {["BFS", "DFS", "Dijkstra", "Kruskal", "Prim", "Topological Sort"].map((item) => <option key={item}>{item}</option>)}
+    <SectionCard
+      title="Graph Algorithms Visualizer"
+      description="Animate BFS, DFS, Dijkstra, Kruskal, Prim, and topological sort."
+    >
+      <select
+        className="w-full rounded-xl border border-slate-200 bg-white p-3 font-semibold dark:border-white/10 dark:bg-slate-950"
+        value={selected}
+        onChange={(event) => onAlgorithm(event.target.value as typeof selected)}
+      >
+        {["BFS", "DFS", "Dijkstra", "Kruskal", "Prim", "Topological Sort"].map(
+          (item) => (
+            <option key={item}>{item}</option>
+          ),
+        )}
       </select>
       <div className="mt-3 flex gap-2">
-        <button className="action-primary" type="button" onClick={() => onStep(Math.min(steps.length - 1, stepIndex + 1))}><Play className="h-4 w-4" /> Step</button>
-        <button className="tool-button" type="button" onClick={() => onStep(0)}>Reset</button>
+        <button
+          className="action-primary"
+          type="button"
+          onClick={() => onStep(Math.min(steps.length - 1, stepIndex + 1))}
+        >
+          <Play className="h-4 w-4" /> Step
+        </button>
+        <button className="tool-button" type="button" onClick={() => onStep(0)}>
+          Reset
+        </button>
       </div>
       <div className="mt-3 rounded-xl bg-slate-100 p-4 dark:bg-white/10">
-        <div className="text-xs font-black uppercase text-slate-500">Step {Math.min(stepIndex + 1, steps.length)} of {steps.length}</div>
-        <div className="mt-1 font-semibold">{steps[stepIndex]?.note ?? "Choose an algorithm."}</div>
+        <div className="text-xs font-black uppercase text-slate-500">
+          Step {Math.min(stepIndex + 1, steps.length)} of {steps.length}
+        </div>
+        <div className="mt-1 font-semibold">
+          {steps[stepIndex]?.note ?? "Choose an algorithm."}
+        </div>
       </div>
-      <div className="mt-3 rounded-xl bg-slate-950 p-3 text-sm text-white">Dijkstra distances: {Object.entries(d.dist).map(([node, value]) => `${node}:${Number.isFinite(value) ? value : "inf"}`).join("  ")}</div>
+      <div className="mt-3 rounded-xl bg-slate-950 p-3 text-sm text-white">
+        Dijkstra distances:{" "}
+        {Object.entries(d.dist)
+          .map(
+            ([node, value]) =>
+              `${node}:${Number.isFinite(value) ? value : "inf"}`,
+          )
+          .join("  ")}
+      </div>
     </SectionCard>
   );
 }
@@ -1221,17 +2980,31 @@ function GraphRepresentationLab({ project }: { project: GraphProject }) {
   const matrix = adjacencyMatrix(project);
   const incidence = incidenceMatrix(project);
   return (
-    <SectionCard title="Representations Lab" description="Switch between adjacency list, adjacency matrix, and incidence matrix without leaving the graph.">
+    <SectionCard
+      title="Representations Lab"
+      description="Switch between adjacency list, adjacency matrix, and incidence matrix without leaving the graph."
+    >
       <div className="mb-3 flex flex-wrap gap-2">
         {(["list", "matrix", "incidence"] as const).map((item) => (
-          <button key={item} type="button" className={`tool-button ${mode === item ? "bg-cyan-500 text-white dark:bg-cyan-300 dark:text-slate-950" : ""}`} onClick={() => setMode(item)}>
+          <button
+            key={item}
+            type="button"
+            className={`tool-button ${mode === item ? "bg-cyan-500 text-white dark:bg-cyan-300 dark:text-slate-950" : ""}`}
+            onClick={() => setMode(item)}
+          >
             {item}
           </button>
         ))}
       </div>
       {mode === "list" ? (
         <div className="grid gap-2">
-          {list.map((row) => <Metric key={row.id} label={row.id} value={row.neighbors.join(", ") || "isolated"} />)}
+          {list.map((row) => (
+            <Metric
+              key={row.id}
+              label={row.id}
+              value={row.neighbors.join(", ") || "isolated"}
+            />
+          ))}
         </div>
       ) : (
         <MatrixTable
@@ -1248,12 +3021,27 @@ function ShortestPathLab({ project }: { project: GraphProject }) {
   const table = floydWarshall(project);
   const d = dijkstra(project);
   return (
-    <SectionCard title="Shortest Path Table" description="Compare single-source Dijkstra distances with an all-pairs Floyd-Warshall table.">
+    <SectionCard
+      title="Shortest Path Table"
+      description="Compare single-source Dijkstra distances with an all-pairs Floyd-Warshall table."
+    >
       <div className="grid gap-3 lg:grid-cols-[.7fr_1.3fr]">
         <div className="space-y-2">
-          {Object.entries(d.dist).map(([node, value]) => <Metric key={node} label={`A to ${node}`} value={Number.isFinite(value) ? String(value) : "unreachable"} />)}
+          {Object.entries(d.dist).map(([node, value]) => (
+            <Metric
+              key={node}
+              label={`A to ${node}`}
+              value={Number.isFinite(value) ? String(value) : "unreachable"}
+            />
+          ))}
         </div>
-        <MatrixTable rowLabels={table.ids} columnLabels={table.ids} values={table.dist.map((row) => row.map((value) => Number.isFinite(value) ? value : "inf"))} />
+        <MatrixTable
+          rowLabels={table.ids}
+          columnLabels={table.ids}
+          values={table.dist.map((row) =>
+            row.map((value) => (Number.isFinite(value) ? value : "inf")),
+          )}
+        />
       </div>
     </SectionCard>
   );
@@ -1263,19 +3051,47 @@ function GraphStructureLab({ project }: { project: GraphProject }) {
   const metrics = graphMetrics(project);
   const degrees = directedDegreeMap(project);
   return (
-    <SectionCard title="Core Graph Concepts" description="Order, size, density, degree, regularity, completeness, and handshaking in one compact panel.">
+    <SectionCard
+      title="Core Graph Concepts"
+      description="Order, size, density, degree, regularity, completeness, and handshaking in one compact panel."
+    >
       <div className="grid gap-2 sm:grid-cols-2">
         <Metric label="Order |V|" value={String(metrics.order)} />
         <Metric label="Size |E|" value={String(metrics.size)} />
-        <Metric label="Density" value={`${Math.round(metrics.density * 100)}%`} />
+        <Metric
+          label="Density"
+          value={`${Math.round(metrics.density * 100)}%`}
+        />
         <Metric label="Regular graph" value={metrics.regular ? "yes" : "no"} />
-        <Metric label="Complete graph" value={metrics.complete ? "yes" : "no"} />
+        <Metric
+          label="Complete graph"
+          value={metrics.complete ? "yes" : "no"}
+        />
         <Metric label="Isolated vertices" value={String(metrics.isolated)} />
       </div>
       <div className="mt-3 mobile-safe-scroll">
         <table className="min-w-full text-sm">
-          <thead><tr className="text-left"><th className="px-2 py-1">Vertex</th><th className="px-2 py-1">in</th><th className="px-2 py-1">out</th><th className="px-2 py-1">degree</th></tr></thead>
-          <tbody>{Array.from(degrees.entries()).map(([id, degree]) => <tr key={id} className="border-t border-slate-200 dark:border-white/10"><td className="px-2 py-1 font-black">{id}</td><td className="px-2 py-1">{degree.in}</td><td className="px-2 py-1">{degree.out}</td><td className="px-2 py-1">{degree.total}</td></tr>)}</tbody>
+          <thead>
+            <tr className="text-left">
+              <th className="px-2 py-1">Vertex</th>
+              <th className="px-2 py-1">in</th>
+              <th className="px-2 py-1">out</th>
+              <th className="px-2 py-1">degree</th>
+            </tr>
+          </thead>
+          <tbody>
+            {Array.from(degrees.entries()).map(([id, degree]) => (
+              <tr
+                key={id}
+                className="border-t border-slate-200 dark:border-white/10"
+              >
+                <td className="px-2 py-1 font-black">{id}</td>
+                <td className="px-2 py-1">{degree.in}</td>
+                <td className="px-2 py-1">{degree.out}</td>
+                <td className="px-2 py-1">{degree.total}</td>
+              </tr>
+            ))}
+          </tbody>
         </table>
       </div>
     </SectionCard>
@@ -1286,13 +3102,22 @@ function ConnectivityLab({ project }: { project: GraphProject }) {
   const components = cytoscapeMetrics(project).components;
   const cuts = bridgesAndCutVertices(project);
   return (
-    <SectionCard title="Connectivity, Bridges, and Cut Vertices" description="Remove one edge or one vertex mentally and see whether the graph separates.">
+    <SectionCard
+      title="Connectivity, Bridges, and Cut Vertices"
+      description="Remove one edge or one vertex mentally and see whether the graph separates."
+    >
       <div className="grid gap-2 sm:grid-cols-3">
         <Metric label="Components" value={String(components)} />
         <Metric label="Bridges" value={cuts.bridges.join(", ") || "none"} />
-        <Metric label="Cut vertices" value={cuts.cutVertices.join(", ") || "none"} />
+        <Metric
+          label="Cut vertices"
+          value={cuts.cutVertices.join(", ") || "none"}
+        />
       </div>
-      <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">A bridge is an edge whose removal increases the number of components. A cut vertex does the same for a vertex.</p>
+      <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">
+        A bridge is an edge whose removal increases the number of components. A
+        cut vertex does the same for a vertex.
+      </p>
     </SectionCard>
   );
 }
@@ -1301,10 +3126,23 @@ function DirectedGraphLab({ project }: { project: GraphProject }) {
   const directedProject = { ...project, directed: true };
   const topo = topologicalSort(directedProject);
   return (
-    <SectionCard title="Directed Graphs and DAGs" description="Read indegree, outdegree, and a topological order when the directed graph has no cycle.">
-      <Metric label="Topological order" value={topo.valid ? topo.order.join(" -> ") : "cycle detected"} />
+    <SectionCard
+      title="Directed Graphs and DAGs"
+      description="Read indegree, outdegree, and a topological order when the directed graph has no cycle."
+    >
+      <Metric
+        label="Topological order"
+        value={topo.valid ? topo.order.join(" -> ") : "cycle detected"}
+      />
       <div className="mt-3 space-y-2">
-        {topo.steps.slice(0, 6).map((step) => <div key={step.note} className="rounded-xl bg-slate-100 p-3 text-sm dark:bg-white/10">{step.note}</div>)}
+        {topo.steps.slice(0, 6).map((step) => (
+          <div
+            key={step.note}
+            className="rounded-xl bg-slate-100 p-3 text-sm dark:bg-white/10"
+          >
+            {step.note}
+          </div>
+        ))}
       </div>
     </SectionCard>
   );
@@ -1316,12 +3154,35 @@ function PathCycleLab({ project }: { project: GraphProject }) {
   const h = hamiltonianCycle(project);
   const e = eulerCircuitPath(project);
   return (
-    <SectionCard title="Walks, Trails, Paths, and Cycles" description="Use traversal traces to distinguish repeated vertices, repeated edges, and cycle closure.">
+    <SectionCard
+      title="Walks, Trails, Paths, and Cycles"
+      description="Use traversal traces to distinguish repeated vertices, repeated edges, and cycle closure."
+    >
       <div className="grid gap-2 sm:grid-cols-2">
-        <Metric label="BFS walk prefix" value={bfsSteps.slice(0, 4).map((step) => step.activeNodes.at(-1)).filter(Boolean).join(" -> ")} />
-        <Metric label="DFS path prefix" value={dfsSteps.slice(0, 4).map((step) => step.activeNodes.at(-1)).filter(Boolean).join(" -> ")} />
-        <Metric label="Euler trail/circuit" value={e.exists ? e.path.join(" -> ") : "not available"} />
-        <Metric label="Hamilton cycle" value={h.exists ? h.path.join(" -> ") : "not available"} />
+        <Metric
+          label="BFS walk prefix"
+          value={bfsSteps
+            .slice(0, 4)
+            .map((step) => step.activeNodes.at(-1))
+            .filter(Boolean)
+            .join(" -> ")}
+        />
+        <Metric
+          label="DFS path prefix"
+          value={dfsSteps
+            .slice(0, 4)
+            .map((step) => step.activeNodes.at(-1))
+            .filter(Boolean)
+            .join(" -> ")}
+        />
+        <Metric
+          label="Euler trail/circuit"
+          value={e.exists ? e.path.join(" -> ") : "not available"}
+        />
+        <Metric
+          label="Hamilton cycle"
+          value={h.exists ? h.path.join(" -> ") : "not available"}
+        />
       </div>
     </SectionCard>
   );
@@ -1331,13 +3192,25 @@ function BipartiteMatchingLab({ project }: { project: GraphProject }) {
   const bipartite = isBipartite(project);
   const matching = maximumMatching(project);
   return (
-    <SectionCard title="Bipartite and Matching Lab" description="Check two-color partitioning and find a maximum matching on the current graph.">
+    <SectionCard
+      title="Bipartite and Matching Lab"
+      description="Check two-color partitioning and find a maximum matching on the current graph."
+    >
       <div className="grid gap-2 sm:grid-cols-2">
         <Metric label="Bipartite" value={bipartite.bipartite ? "yes" : "no"} />
-        <Metric label="Conflicts" value={bipartite.conflicts.join(", ") || "none"} />
+        <Metric
+          label="Conflicts"
+          value={bipartite.conflicts.join(", ") || "none"}
+        />
         <Metric label="Left set" value={bipartite.left.join(", ") || "none"} />
-        <Metric label="Right set" value={bipartite.right.join(", ") || "none"} />
-        <Metric label="Maximum matching" value={matching.join(", ") || "none"} />
+        <Metric
+          label="Right set"
+          value={bipartite.right.join(", ") || "none"}
+        />
+        <Metric
+          label="Maximum matching"
+          value={matching.join(", ") || "none"}
+        />
       </div>
     </SectionCard>
   );
@@ -1346,10 +3219,19 @@ function BipartiteMatchingLab({ project }: { project: GraphProject }) {
 function CliqueIndependentLab({ project }: { project: GraphProject }) {
   const sets = cliqueAndIndependentSets(project);
   return (
-    <SectionCard title="Clique and Independent Set Lab" description="Find a largest all-connected group and a largest no-internal-edge group.">
+    <SectionCard
+      title="Clique and Independent Set Lab"
+      description="Find a largest all-connected group and a largest no-internal-edge group."
+    >
       <div className="grid gap-2 sm:grid-cols-2">
-        <Metric label="Clique number lower bound" value={`${sets.clique.length}: ${sets.clique.join(", ") || "none"}`} />
-        <Metric label="Independence number lower bound" value={`${sets.independent.length}: ${sets.independent.join(", ") || "none"}`} />
+        <Metric
+          label="Clique number lower bound"
+          value={`${sets.clique.length}: ${sets.clique.join(", ") || "none"}`}
+        />
+        <Metric
+          label="Independence number lower bound"
+          value={`${sets.independent.length}: ${sets.independent.join(", ") || "none"}`}
+        />
       </div>
     </SectionCard>
   );
@@ -1358,13 +3240,23 @@ function CliqueIndependentLab({ project }: { project: GraphProject }) {
 function ComplementGraphLab({ project }: { project: GraphProject }) {
   const complement = complementGraph(project);
   return (
-    <SectionCard title="Complement Graph Lab" description="Every absent edge in the original graph becomes an edge in the complement.">
+    <SectionCard
+      title="Complement Graph Lab"
+      description="Every absent edge in the original graph becomes an edge in the complement."
+    >
       <div className="grid gap-2 sm:grid-cols-2">
         <Metric label="Original edges" value={String(project.edges.length)} />
-        <Metric label="Complement edges" value={String(complement.edges.length)} />
+        <Metric
+          label="Complement edges"
+          value={String(complement.edges.length)}
+        />
       </div>
       <div className="mt-3 flex max-h-36 flex-wrap gap-2 overflow-auto pr-1 thin-scrollbar">
-        {complement.edges.map((edge) => <span key={edge.id} className="mini-chip">{edge.source}-{edge.target}</span>)}
+        {complement.edges.map((edge) => (
+          <span key={edge.id} className="mini-chip">
+            {edge.source}-{edge.target}
+          </span>
+        ))}
       </div>
     </SectionCard>
   );
@@ -1373,7 +3265,10 @@ function ComplementGraphLab({ project }: { project: GraphProject }) {
 function NetworkFlowLab({ project }: { project: GraphProject }) {
   const flow = maxFlowMinCut({ ...project, directed: true });
   return (
-    <SectionCard title="Network Flow and Cut Lab" description="Treat edge weights as capacities. Find augmenting paths and the final source-side cut.">
+    <SectionCard
+      title="Network Flow and Cut Lab"
+      description="Treat edge weights as capacities. Find augmenting paths and the final source-side cut."
+    >
       <div className="grid gap-2 sm:grid-cols-2">
         <Metric label="Source" value={flow.source || "none"} />
         <Metric label="Sink" value={flow.sink || "none"} />
@@ -1382,11 +3277,19 @@ function NetworkFlowLab({ project }: { project: GraphProject }) {
       </div>
       <div className="mt-3 grid gap-2">
         {flow.augmentingPaths.slice(0, 5).map((path, index) => (
-          <div key={`${path.path.join("-")}-${index}`} className="rounded-xl bg-slate-100 p-3 text-sm dark:bg-white/10">
-            <span className="font-black">Path {index + 1}:</span> {path.path.join(" -> ")} with bottleneck {path.bottleneck}
+          <div
+            key={`${path.path.join("-")}-${index}`}
+            className="rounded-xl bg-slate-100 p-3 text-sm dark:bg-white/10"
+          >
+            <span className="font-black">Path {index + 1}:</span>{" "}
+            {path.path.join(" -> ")} with bottleneck {path.bottleneck}
           </div>
         ))}
-        {!flow.augmentingPaths.length ? <p className="rounded-xl bg-slate-100 p-3 text-sm dark:bg-white/10">No augmenting path from source to sink.</p> : null}
+        {!flow.augmentingPaths.length ? (
+          <p className="rounded-xl bg-slate-100 p-3 text-sm dark:bg-white/10">
+            No augmenting path from source to sink.
+          </p>
+        ) : null}
       </div>
       <Metric label="Cut edges" value={flow.cutEdges.join(", ") || "none"} />
     </SectionCard>
@@ -1397,25 +3300,48 @@ function NetworkMetricsLab({ project }: { project: GraphProject }) {
   const distance = graphDistanceMetrics(project);
   const clustering = clusteringCoefficients(project);
   const girth = graphGirth(project);
-  const finite = (value: number) => Number.isFinite(value) ? String(value) : "inf";
+  const finite = (value: number) =>
+    Number.isFinite(value) ? String(value) : "inf";
   return (
-    <SectionCard title="Network Metrics Lab" description="Use radius, diameter, center, clustering, and girth to describe the shape of the network.">
+    <SectionCard
+      title="Network Metrics Lab"
+      description="Use radius, diameter, center, clustering, and girth to describe the shape of the network."
+    >
       <div className="grid gap-2 sm:grid-cols-2">
         <Metric label="Radius" value={finite(distance.radius)} />
         <Metric label="Diameter" value={finite(distance.diameter)} />
-        <Metric label="Center vertices" value={distance.center.join(", ") || "none"} />
+        <Metric
+          label="Center vertices"
+          value={distance.center.join(", ") || "none"}
+        />
         <Metric label="Girth" value={girth ? String(girth) : "acyclic"} />
-        <Metric label="Average clustering" value={clustering.average.toFixed(2)} />
+        <Metric
+          label="Average clustering"
+          value={clustering.average.toFixed(2)}
+        />
       </div>
       <div className="mt-3 mobile-safe-scroll">
         <table className="min-w-full text-sm">
-          <thead><tr className="text-left"><th className="px-2 py-1">Vertex</th><th className="px-2 py-1">Eccentricity</th><th className="px-2 py-1">Clustering</th></tr></thead>
+          <thead>
+            <tr className="text-left">
+              <th className="px-2 py-1">Vertex</th>
+              <th className="px-2 py-1">Eccentricity</th>
+              <th className="px-2 py-1">Clustering</th>
+            </tr>
+          </thead>
           <tbody>
             {project.nodes.map((node) => (
-              <tr key={node.id} className="border-t border-slate-200 dark:border-white/10">
+              <tr
+                key={node.id}
+                className="border-t border-slate-200 dark:border-white/10"
+              >
                 <td className="px-2 py-1 font-black">{node.id}</td>
-                <td className="px-2 py-1">{finite(distance.eccentricity[node.id])}</td>
-                <td className="px-2 py-1">{(clustering.local[node.id] ?? 0).toFixed(2)}</td>
+                <td className="px-2 py-1">
+                  {finite(distance.eccentricity[node.id])}
+                </td>
+                <td className="px-2 py-1">
+                  {(clustering.local[node.id] ?? 0).toFixed(2)}
+                </td>
               </tr>
             ))}
           </tbody>
@@ -1429,13 +3355,28 @@ function PlanarityObstructionLab({ project }: { project: GraphProject }) {
   const obstruction = planarityObstructionHint(project);
   const crossings = edgeCrossings(project);
   return (
-    <SectionCard title="Planarity Obstruction Lab" description="Compare drawn crossings with the classic K5 and K3,3 non-planar patterns.">
+    <SectionCard
+      title="Planarity Obstruction Lab"
+      description="Compare drawn crossings with the classic K5 and K3,3 non-planar patterns."
+    >
       <div className="grid gap-2 sm:grid-cols-2">
-        <Metric label="Drawn crossings" value={crossings.length ? crossings.map((pair) => pair.join(" x ")).join(", ") : "none"} />
+        <Metric
+          label="Drawn crossings"
+          value={
+            crossings.length
+              ? crossings.map((pair) => pair.join(" x ")).join(", ")
+              : "none"
+          }
+        />
         <Metric label="Obstruction hint" value={obstruction.obstruction} />
       </div>
-      <p className="mt-3 rounded-xl bg-amber-50 p-3 text-sm font-semibold text-amber-950 dark:bg-amber-300/10 dark:text-amber-100">{obstruction.note}</p>
-      <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">A drawing with crossings may still be planar if it can be redrawn. K5 and K3,3 are stronger structural warnings.</p>
+      <p className="mt-3 rounded-xl bg-amber-50 p-3 text-sm font-semibold text-amber-950 dark:bg-amber-300/10 dark:text-amber-100">
+        {obstruction.note}
+      </p>
+      <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">
+        A drawing with crossings may still be planar if it can be redrawn. K5
+        and K3,3 are stronger structural warnings.
+      </p>
     </SectionCard>
   );
 }
@@ -1447,24 +3388,68 @@ function GraphTheoryReference({ project }: { project: GraphProject }) {
   const coloring = chromaticNumber(project);
   const distance = graphDistanceMetrics(project);
   const rows = [
-    ["Handshaking lemma", `sum deg(v) = ${metrics.degreeSum}`, metrics.degreeSum === 2 * metrics.size ? "verified" : "check graph"],
-    ["Tree edge theorem", "|E| = |V| - 1 for trees", metrics.size === Math.max(0, metrics.order - 1) ? "edge count matches" : "not tree count"],
-    ["Euler circuit theorem", "connected and all degrees even", euler ? "passes" : "does not pass"],
-    ["Bipartite odd-cycle theorem", "bipartite iff no odd cycle", bipartite.bipartite ? "no conflict found" : "odd-cycle conflict likely"],
-    ["Four-color idea", "planar graphs need <= 4 colors", coloring.colors <= 4 ? `${coloring.colors} colors here` : "needs more than 4 in solver"],
-    ["Center theorem", "center minimizes eccentricity", `${distance.center.join(", ") || "none"} at radius ${Number.isFinite(distance.radius) ? distance.radius : "inf"}`],
+    [
+      "Handshaking lemma",
+      `sum deg(v) = ${metrics.degreeSum}`,
+      metrics.degreeSum === 2 * metrics.size ? "verified" : "check graph",
+    ],
+    [
+      "Tree edge theorem",
+      "|E| = |V| - 1 for trees",
+      metrics.size === Math.max(0, metrics.order - 1)
+        ? "edge count matches"
+        : "not tree count",
+    ],
+    [
+      "Euler circuit theorem",
+      "connected and all degrees even",
+      euler ? "passes" : "does not pass",
+    ],
+    [
+      "Bipartite odd-cycle theorem",
+      "bipartite iff no odd cycle",
+      bipartite.bipartite ? "no conflict found" : "odd-cycle conflict likely",
+    ],
+    [
+      "Four-color idea",
+      "planar graphs need <= 4 colors",
+      coloring.colors <= 4
+        ? `${coloring.colors} colors here`
+        : "needs more than 4 in solver",
+    ],
+    [
+      "Center theorem",
+      "center minimizes eccentricity",
+      `${distance.center.join(", ") || "none"} at radius ${Number.isFinite(distance.radius) ? distance.radius : "inf"}`,
+    ],
   ];
   return (
-    <SectionCard title="Theorem Checklist" description="A compact proof-reader for the current graph: what applies, what fails, and why.">
+    <SectionCard
+      title="Theorem Checklist"
+      description="A compact proof-reader for the current graph: what applies, what fails, and why."
+    >
       <div className="mobile-safe-scroll">
         <table className="min-w-full text-sm">
-          <thead><tr className="text-left"><th className="px-2 py-2">Theorem</th><th className="px-2 py-2">Statement cue</th><th className="px-2 py-2">Current graph</th></tr></thead>
+          <thead>
+            <tr className="text-left">
+              <th className="px-2 py-2">Theorem</th>
+              <th className="px-2 py-2">Statement cue</th>
+              <th className="px-2 py-2">Current graph</th>
+            </tr>
+          </thead>
           <tbody>
             {rows.map(([name, cue, status]) => (
-              <tr key={name} className="border-t border-slate-200 dark:border-white/10">
+              <tr
+                key={name}
+                className="border-t border-slate-200 dark:border-white/10"
+              >
                 <td className="px-2 py-2 font-black">{name}</td>
-                <td className="px-2 py-2 text-slate-600 dark:text-slate-300">{cue}</td>
-                <td className="px-2 py-2"><span className="mini-chip">{status}</span></td>
+                <td className="px-2 py-2 text-slate-600 dark:text-slate-300">
+                  {cue}
+                </td>
+                <td className="px-2 py-2">
+                  <span className="mini-chip">{status}</span>
+                </td>
               </tr>
             ))}
           </tbody>
@@ -1475,20 +3460,67 @@ function GraphTheoryReference({ project }: { project: GraphProject }) {
 }
 
 function IsomorphismChecker({ project }: { project: GraphProject }) {
-  const relabeled = { ...project, nodes: project.nodes.map((node, index) => ({ ...node, id: `v${index + 1}`, label: `v${index + 1}` })), edges: project.edges.map((edge) => ({ ...edge, source: `v${project.nodes.findIndex((node) => node.id === edge.source) + 1}`, target: `v${project.nodes.findIndex((node) => node.id === edge.target) + 1}` })) };
-  return <SectionCard title="Isomorphism Checker" description="Compares graph invariants and shows a side-by-side relabeling."><Metric label="Likely isomorphic" value={likelyIsomorphic(project, relabeled) ? "yes" : "no"} /><p className="mt-3 text-sm text-slate-600 dark:text-slate-300">Mapping: {project.nodes.map((node, index) => `${node.id}->v${index + 1}`).join(", ")}</p></SectionCard>;
+  const relabeled = {
+    ...project,
+    nodes: project.nodes.map((node, index) => ({
+      ...node,
+      id: `v${index + 1}`,
+      label: `v${index + 1}`,
+    })),
+    edges: project.edges.map((edge) => ({
+      ...edge,
+      source: `v${project.nodes.findIndex((node) => node.id === edge.source) + 1}`,
+      target: `v${project.nodes.findIndex((node) => node.id === edge.target) + 1}`,
+    })),
+  };
+  return (
+    <SectionCard
+      title="Isomorphism Checker"
+      description="Compares graph invariants and shows a side-by-side relabeling."
+    >
+      <Metric
+        label="Likely isomorphic"
+        value={likelyIsomorphic(project, relabeled) ? "yes" : "no"}
+      />
+      <p className="mt-3 text-sm text-slate-600 dark:text-slate-300">
+        Mapping:{" "}
+        {project.nodes
+          .map((node, index) => `${node.id}->v${index + 1}`)
+          .join(", ")}
+      </p>
+    </SectionCard>
+  );
 }
 
 function SubgraphStudio({ project }: { project: GraphProject }) {
-  const selected = project.nodes.filter((_, index) => index % 2 === 0).map((node) => node.id);
+  const selected = project.nodes
+    .filter((_, index) => index % 2 === 0)
+    .map((node) => node.id);
   const subgraph = inducedSubgraph(project, selected);
   const degree = degreeMap(subgraph);
   return (
-    <SectionCard title="Subgraph Studio" description="Induced subgraph from selected vertices with inherited edges and degree summary.">
-      <div className="flex flex-wrap gap-2">{project.nodes.map((node) => <span key={node.id} className={`rounded-full px-3 py-1 text-sm font-black ${selected.includes(node.id) ? "bg-cyan-200 text-slate-950" : "bg-slate-100 dark:bg-white/10"}`}>{node.id}</span>)}</div>
+    <SectionCard
+      title="Subgraph Studio"
+      description="Induced subgraph from selected vertices with inherited edges and degree summary."
+    >
+      <div className="flex flex-wrap gap-2">
+        {project.nodes.map((node) => (
+          <span
+            key={node.id}
+            className={`rounded-full px-3 py-1 text-sm font-black ${selected.includes(node.id) ? "bg-cyan-200 text-slate-950" : "bg-slate-100 dark:bg-white/10"}`}
+          >
+            {node.id}
+          </span>
+        ))}
+      </div>
       <Metric label="Subgraph vertices" value={String(subgraph.nodes.length)} />
       <Metric label="Subgraph edges" value={String(subgraph.edges.length)} />
-      <p className="mt-3 text-sm text-slate-600 dark:text-slate-300">Degrees: {Array.from(degree.entries()).map(([node, value]) => `${node}:${value}`).join(", ")}</p>
+      <p className="mt-3 text-sm text-slate-600 dark:text-slate-300">
+        Degrees:{" "}
+        {Array.from(degree.entries())
+          .map(([node, value]) => `${node}:${value}`)
+          .join(", ")}
+      </p>
     </SectionCard>
   );
 }
@@ -1496,19 +3528,134 @@ function SubgraphStudio({ project }: { project: GraphProject }) {
 function TreeVisualizationSystem() {
   const [kind, setKind] = useState<"binary" | "avl" | "expression">("binary");
   const model = treeModel(kind);
-  return <SectionCard title="Tree Visualization System" description="Binary, AVL-style balance, expression-tree shape, and recursive traversal animation."><div className="mb-3 flex flex-wrap gap-2">{(["binary", "avl", "expression"] as const).map((item) => <button key={item} type="button" className={`tool-button ${kind === item ? "bg-cyan-500 text-white dark:bg-cyan-400 dark:text-slate-950" : ""}`} onClick={() => setKind(item)}>{item}</button>)}</div><svg viewBox="0 0 520 260" className="h-72 w-full rounded-2xl bg-slate-950">{model.edges.map(([a, b]) => { const s = model.nodes.find((n) => n.id === a)!; const t = model.nodes.find((n) => n.id === b)!; return <line key={`${a}-${b}`} x1={s.x} y1={s.y} x2={t.x} y2={t.y} stroke="#67e8f9" strokeWidth="3" />; })}{model.nodes.map((node, index) => <motion.g key={node.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: index * 0.08 }}><circle cx={node.x} cy={node.y} r="24" fill="#1e293b" stroke="#a78bfa" strokeWidth="3" /><text x={node.x} y={node.y + 5} textAnchor="middle" fill="white" fontWeight="900">{node.id}</text></motion.g>)}</svg><p className="mt-3 text-sm">Traversal: {model.traversal.join(", ")}.</p></SectionCard>;
+  return (
+    <SectionCard
+      title="Tree Visualization System"
+      description="Binary, AVL-style balance, expression-tree shape, and recursive traversal animation."
+    >
+      <div className="mb-3 flex flex-wrap gap-2">
+        {(["binary", "avl", "expression"] as const).map((item) => (
+          <button
+            key={item}
+            type="button"
+            className={`tool-button ${kind === item ? "bg-cyan-500 text-white dark:bg-cyan-400 dark:text-slate-950" : ""}`}
+            onClick={() => setKind(item)}
+          >
+            {item}
+          </button>
+        ))}
+      </div>
+      <svg
+        viewBox="0 0 520 260"
+        className="h-72 w-full rounded-2xl bg-slate-950"
+      >
+        {model.edges.map(([a, b]) => {
+          const s = model.nodes.find((n) => n.id === a)!;
+          const t = model.nodes.find((n) => n.id === b)!;
+          return (
+            <line
+              key={`${a}-${b}`}
+              x1={s.x}
+              y1={s.y}
+              x2={t.x}
+              y2={t.y}
+              stroke="#67e8f9"
+              strokeWidth="3"
+            />
+          );
+        })}
+        {model.nodes.map((node, index) => (
+          <motion.g
+            key={node.id}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: index * 0.08 }}
+          >
+            <circle
+              cx={node.x}
+              cy={node.y}
+              r="24"
+              fill="#1e293b"
+              stroke="#a78bfa"
+              strokeWidth="3"
+            />
+            <text
+              x={node.x}
+              y={node.y + 5}
+              textAnchor="middle"
+              fill="white"
+              fontWeight="900"
+            >
+              {node.id}
+            </text>
+          </motion.g>
+        ))}
+      </svg>
+      <p className="mt-3 text-sm">Traversal: {model.traversal.join(", ")}.</p>
+    </SectionCard>
+  );
 }
 
 function SpanningTreeGenerator({ project }: { project: GraphProject }) {
   const k = kruskal(project);
   const p = prim(project);
-  return <SectionCard title="Spanning Tree Generator" description="MST animation highlights selected edges from Kruskal and Prim."><Metric label="Kruskal tree" value={k.tree.join(", ")} /><Metric label="Prim tree" value={p.tree.join(", ")} /><div className="mt-3 space-y-2">{k.steps.slice(0, 5).map((step) => <div key={step.note} className="rounded-xl bg-slate-100 p-3 text-sm dark:bg-white/10">{step.note}</div>)}</div></SectionCard>;
+  return (
+    <SectionCard
+      title="Spanning Tree Generator"
+      description="MST animation highlights selected edges from Kruskal and Prim."
+    >
+      <Metric label="Kruskal tree" value={k.tree.join(", ")} />
+      <Metric label="Prim tree" value={p.tree.join(", ")} />
+      <div className="mt-3 space-y-2">
+        {k.steps.slice(0, 5).map((step) => (
+          <div
+            key={step.note}
+            className="rounded-xl bg-slate-100 p-3 text-sm dark:bg-white/10"
+          >
+            {step.note}
+          </div>
+        ))}
+      </div>
+    </SectionCard>
+  );
 }
 
 function EulerHamiltonianExplorer({ project }: { project: GraphProject }) {
   const h = hamiltonianCycle(project);
   const e = eulerCircuitPath(project);
-  return <SectionCard title="Euler and Hamiltonian Explorer" description="Validates circuits and traces bounded traversal candidates."><Metric label="Euler circuit" value={eulerCircuit(project) ? "exists" : "not for current degrees/connectivity"} /><Metric label="Euler trace" value={e.exists ? e.path.join(" -> ") : "none"} /><Metric label="Hamiltonian cycle" value={h.exists ? h.path.join(" -> ") : "not found in bounded search"} /><div className="mt-3 space-y-2">{e.steps.slice(0, 4).map((step) => <div key={step.note} className="rounded-xl bg-slate-100 p-3 text-sm dark:bg-white/10">{step.note}</div>)}</div></SectionCard>;
+  return (
+    <SectionCard
+      title="Euler and Hamiltonian Explorer"
+      description="Validates circuits and traces bounded traversal candidates."
+    >
+      <Metric
+        label="Euler circuit"
+        value={
+          eulerCircuit(project)
+            ? "exists"
+            : "not for current degrees/connectivity"
+        }
+      />
+      <Metric
+        label="Euler trace"
+        value={e.exists ? e.path.join(" -> ") : "none"}
+      />
+      <Metric
+        label="Hamiltonian cycle"
+        value={h.exists ? h.path.join(" -> ") : "not found in bounded search"}
+      />
+      <div className="mt-3 space-y-2">
+        {e.steps.slice(0, 4).map((step) => (
+          <div
+            key={step.note}
+            className="rounded-xl bg-slate-100 p-3 text-sm dark:bg-white/10"
+          >
+            {step.note}
+          </div>
+        ))}
+      </div>
+    </SectionCard>
+  );
 }
 
 function PlanarGraphStudio({ project }: { project: GraphProject }) {
@@ -1516,37 +3663,188 @@ function PlanarGraphStudio({ project }: { project: GraphProject }) {
   const metrics = cytoscapeMetrics(project);
   const forceNodes = forcePreview(project);
   const faces = 2 - project.nodes.length + project.edges.length;
-  return <SectionCard title="Planar Graph Studio" description="Detects drawn crossings and visualizes Euler formula for connected planar candidates."><Metric label="Drawn crossings" value={String(crossings.length)} /><Metric label="Cytoscape components" value={String(metrics.components)} /><Metric label="D3 force preview nodes" value={String(forceNodes.length)} /><Metric label="Euler faces estimate" value={String(faces)} /><p className="mt-3 text-sm text-slate-600 dark:text-slate-300">Four Color demonstration: planar maps need no more than four colors; use the coloring panel to inspect conflicts.</p></SectionCard>;
+  return (
+    <SectionCard
+      title="Planar Graph Studio"
+      description="Detects drawn crossings and visualizes Euler formula for connected planar candidates."
+    >
+      <Metric label="Drawn crossings" value={String(crossings.length)} />
+      <Metric label="Cytoscape components" value={String(metrics.components)} />
+      <Metric
+        label="D3 force preview nodes"
+        value={String(forceNodes.length)}
+      />
+      <Metric label="Euler faces estimate" value={String(faces)} />
+      <p className="mt-3 text-sm text-slate-600 dark:text-slate-300">
+        Four Color demonstration: planar maps need no more than four colors; use
+        the coloring panel to inspect conflicts.
+      </p>
+    </SectionCard>
+  );
 }
 
-function GraphColoringEngine({ project, coloring, workerEnabled }: { project: GraphProject; coloring: ReturnType<typeof chromaticNumber>; workerEnabled: boolean }) {
+function GraphColoringEngine({
+  project,
+  coloring,
+  workerEnabled,
+}: {
+  project: GraphProject;
+  coloring: ReturnType<typeof chromaticNumber>;
+  workerEnabled: boolean;
+}) {
   const conflicts = graphColorConflicts(project, coloring.assignment);
-  return <SectionCard title="Graph Coloring Engine" description="Exact small-graph chromatic solver with worker-backed refresh and four-color demonstration."><div className="flex items-center gap-2"><Palette className="h-5 w-5 text-cyan-500" /><span className="font-black">Chromatic number: {coloring.colors}</span></div><div className="mt-3 flex flex-wrap gap-2">{project.nodes.map((node) => <span key={node.id} className="rounded-full px-3 py-1 text-sm font-black text-slate-950" style={{ background: colors[coloring.assignment[node.id] ?? 0] }}>{node.id}</span>)}</div><Metric label="Worker coloring" value={workerEnabled ? "active" : "fallback sync"} /><Metric label="Color conflicts" value={conflicts.length ? conflicts.join(", ") : "none"} /></SectionCard>;
+  return (
+    <SectionCard
+      title="Graph Coloring Engine"
+      description="Exact small-graph chromatic solver with worker-backed refresh and four-color demonstration."
+    >
+      <div className="flex items-center gap-2">
+        <Palette className="h-5 w-5 text-cyan-500" />
+        <span className="font-black">Chromatic number: {coloring.colors}</span>
+      </div>
+      <div className="mt-3 flex flex-wrap gap-2">
+        {project.nodes.map((node) => (
+          <span
+            key={node.id}
+            className="rounded-full px-3 py-1 text-sm font-black text-slate-950"
+            style={{ background: colors[coloring.assignment[node.id] ?? 0] }}
+          >
+            {node.id}
+          </span>
+        ))}
+      </div>
+      <Metric
+        label="Worker coloring"
+        value={workerEnabled ? "active" : "fallback sync"}
+      />
+      <Metric
+        label="Color conflicts"
+        value={conflicts.length ? conflicts.join(", ") : "none"}
+      />
+    </SectionCard>
+  );
 }
 
-function EducationalFeatures({ project, challengeMode, onChallenge, onLoad, fileRef }: { project: GraphProject; challengeMode: boolean; onChallenge: (value: boolean) => void; onLoad: (project: GraphProject) => void; fileRef: React.RefObject<HTMLInputElement> }) {
-  return <SectionCard title="Educational Features and Save/Load" description="Challenge mode, AI tutor hints, practice prompts, quiz generation, and graph project persistence."><div className="flex flex-wrap gap-2"><button className="tool-button" type="button" onClick={() => onChallenge(!challengeMode)}><BookOpen className="h-4 w-4" /> {challengeMode ? "Challenge mode" : "Study mode"}</button><button className="tool-button" type="button" onClick={() => download("graph-project.json", serializeGraph(project))}><Save className="h-4 w-4" /> Save JSON</button><button className="tool-button" type="button" onClick={() => fileRef.current?.click()}><Download className="h-4 w-4" /> Load JSON</button></div><input ref={fileRef} className="hidden" type="file" accept="application/json" onChange={(event) => void loadFile(event.target.files?.[0], onLoad)} /><div className="mt-3 grid gap-3 md:grid-cols-3"><Hint icon={<BrainCircuit className="h-4 w-4" />} title="AI tutor" text="Start by checking degrees, connectivity, and whether the graph is directed or weighted." /><Hint icon={<Shuffle className="h-4 w-4" />} title="Practice" text="Create a graph with an Euler circuit, then break it by adding one odd-degree node." /><Hint icon={<Network className="h-4 w-4" />} title="Large graph strategy" text="Use React Flow viewport culling, D3 layout, Cytoscape metrics, and worker-backed coloring for heavier graphs." /></div></SectionCard>;
+function EducationalFeatures({
+  project,
+  challengeMode,
+  onChallenge,
+  onLoad,
+  fileRef,
+}: {
+  project: GraphProject;
+  challengeMode: boolean;
+  onChallenge: (value: boolean) => void;
+  onLoad: (project: GraphProject) => void;
+  fileRef: React.RefObject<HTMLInputElement>;
+}) {
+  return (
+    <SectionCard
+      title="Educational Features and Save/Load"
+      description="Challenge mode, AI tutor hints, practice prompts, quiz generation, and graph project persistence."
+    >
+      <div className="flex flex-wrap gap-2">
+        <button
+          className="tool-button"
+          type="button"
+          onClick={() => onChallenge(!challengeMode)}
+        >
+          <BookOpen className="h-4 w-4" />{" "}
+          {challengeMode ? "Challenge mode" : "Study mode"}
+        </button>
+        <button
+          className="tool-button"
+          type="button"
+          onClick={() =>
+            download("graph-project.json", serializeGraph(project))
+          }
+        >
+          <Save className="h-4 w-4" /> Save JSON
+        </button>
+        <button
+          className="tool-button"
+          type="button"
+          onClick={() => fileRef.current?.click()}
+        >
+          <Download className="h-4 w-4" /> Load JSON
+        </button>
+      </div>
+      <input
+        ref={fileRef}
+        className="hidden"
+        type="file"
+        accept="application/json"
+        onChange={(event) => void loadFile(event.target.files?.[0], onLoad)}
+      />
+      <div className="mt-3 grid gap-3 md:grid-cols-3">
+        <Hint
+          icon={<BrainCircuit className="h-4 w-4" />}
+          title="AI tutor"
+          text="Start by checking degrees, connectivity, and whether the graph is directed or weighted."
+        />
+        <Hint
+          icon={<Shuffle className="h-4 w-4" />}
+          title="Practice"
+          text="Create a graph with an Euler circuit, then break it by adding one odd-degree node."
+        />
+        <Hint
+          icon={<Network className="h-4 w-4" />}
+          title="Large graph strategy"
+          text="Use React Flow viewport culling, D3 layout, Cytoscape metrics, and worker-backed coloring for heavier graphs."
+        />
+      </div>
+    </SectionCard>
+  );
 }
 
 function Metric({ label, value }: { label: string; value: string }) {
-  return <div className="mt-2 rounded-xl bg-slate-100 p-3 dark:bg-white/10"><div className="text-xs font-black uppercase text-slate-500">{label}</div><div className="break-words font-mono font-black">{value}</div></div>;
+  return (
+    <div className="mt-2 rounded-xl bg-slate-100 p-3 dark:bg-white/10">
+      <div className="text-xs font-black uppercase text-slate-500">{label}</div>
+      <div className="break-words font-mono font-black">{value}</div>
+    </div>
+  );
 }
 
-function MatrixTable({ rowLabels, columnLabels, values }: { rowLabels: string[]; columnLabels: string[]; values: Array<Array<string | number>> }) {
+function MatrixTable({
+  rowLabels,
+  columnLabels,
+  values,
+}: {
+  rowLabels: string[];
+  columnLabels: string[];
+  values: Array<Array<string | number>>;
+}) {
   return (
     <div className="mobile-safe-scroll max-h-80 overflow-auto rounded-xl border border-slate-200 bg-white/80 dark:border-white/10 dark:bg-white/5">
       <table className="min-w-full text-center text-sm">
         <thead className="sticky top-0 bg-slate-100 dark:bg-slate-900">
           <tr>
             <th className="px-2 py-2 text-left"> </th>
-            {columnLabels.map((label) => <th key={label} className="px-2 py-2 font-black">{label}</th>)}
+            {columnLabels.map((label) => (
+              <th key={label} className="px-2 py-2 font-black">
+                {label}
+              </th>
+            ))}
           </tr>
         </thead>
         <tbody>
           {values.map((row, rowIndex) => (
-            <tr key={rowLabels[rowIndex]} className="border-t border-slate-200 dark:border-white/10">
-              <th className="sticky left-0 bg-white px-2 py-2 text-left font-black dark:bg-slate-950">{rowLabels[rowIndex]}</th>
-              {row.map((value, columnIndex) => <td key={`${rowLabels[rowIndex]}-${columnLabels[columnIndex]}`} className="px-2 py-2 font-mono">{value}</td>)}
+            <tr
+              key={rowLabels[rowIndex]}
+              className="border-t border-slate-200 dark:border-white/10"
+            >
+              <th className="sticky left-0 bg-white px-2 py-2 text-left font-black dark:bg-slate-950">
+                {rowLabels[rowIndex]}
+              </th>
+              {row.map((value, columnIndex) => (
+                <td
+                  key={`${rowLabels[rowIndex]}-${columnLabels[columnIndex]}`}
+                  className="px-2 py-2 font-mono"
+                >
+                  {value}
+                </td>
+              ))}
             </tr>
           ))}
         </tbody>
@@ -1555,8 +3853,24 @@ function MatrixTable({ rowLabels, columnLabels, values }: { rowLabels: string[];
   );
 }
 
-function Hint({ icon, title, text }: { icon: JSX.Element; title: string; text: string }) {
-  return <div className="rounded-xl border border-slate-200 bg-white/70 p-3 dark:border-white/10 dark:bg-white/5"><div className="flex items-center gap-2 text-sm font-black">{icon}{title}</div><p className="mt-1 text-sm text-slate-600 dark:text-slate-300">{text}</p></div>;
+function Hint({
+  icon,
+  title,
+  text,
+}: {
+  icon: JSX.Element;
+  title: string;
+  text: string;
+}) {
+  return (
+    <div className="rounded-xl border border-slate-200 bg-white/70 p-3 dark:border-white/10 dark:bg-white/5">
+      <div className="flex items-center gap-2 text-sm font-black">
+        {icon}
+        {title}
+      </div>
+      <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">{text}</p>
+    </div>
+  );
 }
 
 function algorithmSteps(project: GraphProject, selected: GraphAlgorithmName) {
@@ -1568,31 +3882,85 @@ function algorithmSteps(project: GraphProject, selected: GraphAlgorithmName) {
   return topologicalSort({ ...project, directed: true }).steps;
 }
 
-function readStudioTab(): "build" | "representations" | "algorithms" | "properties" | "learn" {
+function readStudioTab():
+  "build" | "representations" | "algorithms" | "properties" | "learn" {
   const value = new URLSearchParams(window.location.search).get("tab");
-  return value === "representations" || value === "algorithms" || value === "properties" || value === "learn" ? value : "build";
+  return value === "representations" ||
+    value === "algorithms" ||
+    value === "properties" ||
+    value === "learn"
+    ? value
+    : "build";
 }
 
-function createSizedGraphTemplate(template: GraphTemplateName, directed: boolean, size: number) {
+function createSizedGraphTemplate(
+  template: GraphTemplateName,
+  directed: boolean,
+  size: number,
+) {
   if (size === 6) return createGraphTemplate(template, directed);
   const count = Math.max(1, Math.floor(size));
-  const makeNodes = () => layoutGraph({
+  const makeNodes = () =>
+    layoutGraph(
+      {
+        directed,
+        nodes: Array.from({ length: count }, (_, index) => ({
+          id: spreadsheetLabel(index),
+          label: spreadsheetLabel(index),
+          x: 120 + index * 44,
+          y: 220,
+        })),
+        edges: [],
+      },
+      template === "tree" ? "tree" : "circular",
+    );
+  const edge = (
+    source: string,
+    target: string,
+    weight = 1,
+  ): GraphProject["edges"][number] => ({
+    id: `${source}-${target}`,
+    source,
+    target,
+    weight,
     directed,
-    nodes: Array.from({ length: count }, (_, index) => ({ id: spreadsheetLabel(index), label: spreadsheetLabel(index), x: 120 + index * 44, y: 220 })),
-    edges: [],
-  }, template === "tree" ? "tree" : "circular");
-  const edge = (source: string, target: string, weight = 1): GraphProject["edges"][number] => ({ id: `${source}-${target}`, source, target, weight, directed });
+  });
   const nodes = makeNodes();
-  if (template === "path") return { directed, nodes, edges: nodes.slice(0, -1).map((node, index) => edge(node.id, nodes[index + 1].id)) };
-  if (template === "cycle") return { directed, nodes, edges: nodes.map((node, index) => edge(node.id, nodes[(index + 1) % nodes.length].id)) };
+  if (template === "path")
+    return {
+      directed,
+      nodes,
+      edges: nodes
+        .slice(0, -1)
+        .map((node, index) => edge(node.id, nodes[index + 1].id)),
+    };
+  if (template === "cycle")
+    return {
+      directed,
+      nodes,
+      edges: nodes.map((node, index) =>
+        edge(node.id, nodes[(index + 1) % nodes.length].id),
+      ),
+    };
   if (template === "complete") {
     const edges: GraphProject["edges"] = [];
-    nodes.forEach((source, left) => nodes.forEach((target, right) => { if (left < right) edges.push(edge(source.id, target.id)); }));
+    nodes.forEach((source, left) =>
+      nodes.forEach((target, right) => {
+        if (left < right) edges.push(edge(source.id, target.id));
+      }),
+    );
     return { directed, nodes, edges };
   }
   if (template === "star" || template === "wheel") {
     const spokes = nodes.slice(1).map((node) => edge(nodes[0].id, node.id));
-    const rim = template === "wheel" ? nodes.slice(1).map((node, index, outer) => edge(node.id, outer[(index + 1) % outer.length].id)) : [];
+    const rim =
+      template === "wheel"
+        ? nodes
+            .slice(1)
+            .map((node, index, outer) =>
+              edge(node.id, outer[(index + 1) % outer.length].id),
+            )
+        : [];
     return { directed, nodes, edges: [...spokes, ...rim] };
   }
   return createGraphTemplate(template, directed);
@@ -1652,16 +4020,31 @@ async function togglePageFullscreen() {
   await document.documentElement.requestFullscreen();
 }
 
-async function loadFile(file: File | undefined, onLoad: (project: GraphProject) => void) {
+async function loadFile(
+  file: File | undefined,
+  onLoad: (project: GraphProject) => void,
+) {
   if (!file) return;
   onLoad(JSON.parse(await file.text()) as GraphProject);
 }
 
 function forcePreview(project: GraphProject) {
-  const nodes = project.nodes.map((node) => ({ id: node.id, x: node.x, y: node.y }));
-  const links = project.edges.map((edge) => ({ source: edge.source, target: edge.target }));
+  const nodes = project.nodes.map((node) => ({
+    id: node.id,
+    x: node.x,
+    y: node.y,
+  }));
+  const links = project.edges.map((edge) => ({
+    source: edge.source,
+    target: edge.target,
+  }));
   forceSimulation(nodes)
-    .force("link", forceLink(links).id((node) => (node as { id: string }).id).distance(90))
+    .force(
+      "link",
+      forceLink(links)
+        .id((node) => (node as { id: string }).id)
+        .distance(90),
+    )
     .force("charge", forceManyBody().strength(-180))
     .force("center", forceCenter(260, 180))
     .tick(60)
@@ -1670,10 +4053,16 @@ function forcePreview(project: GraphProject) {
 }
 
 function useWorkerColoring(project: GraphProject) {
-  const [coloring, setColoring] = useState<ReturnType<typeof chromaticNumber> | null>(null);
+  const [coloring, setColoring] = useState<ReturnType<
+    typeof chromaticNumber
+  > | null>(null);
   useEffect(() => {
-    const worker = new Worker(new URL("./graphWorker.ts", import.meta.url), { type: "module" });
-    worker.onmessage = (event: MessageEvent<ReturnType<typeof chromaticNumber>>) => setColoring(event.data);
+    const worker = new Worker(new URL("./graphWorker.ts", import.meta.url), {
+      type: "module",
+    });
+    worker.onmessage = (
+      event: MessageEvent<ReturnType<typeof chromaticNumber>>,
+    ) => setColoring(event.data);
     worker.postMessage(project);
     return () => worker.terminate();
   }, [project]);

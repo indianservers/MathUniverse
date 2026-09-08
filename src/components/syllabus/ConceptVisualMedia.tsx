@@ -83,13 +83,48 @@ const iconByFamily: Record<ConceptFamily, LucideIcon> = {
 
 export function conceptFamilyForText(value: string): ConceptFamily {
   const lower = value.toLowerCase();
-  if (/(fourier|laplace|z-transform|signal|wave|heat|pde|ode|control|differential equation|engineering)/.test(lower)) return "signals-pde";
-  if (/(graph theory|network|shortest path|optimization|linear programming|operations|queue|game theory|transport|assignment|pert|cpm)/.test(lower)) return "networks-optimization";
-  if (/(matrix|matrices|vector|eigen|determinant|rank|span|basis|linear transformation|inner product)/.test(lower)) return "linear-vector";
-  if (/(statistics|probability|data|histogram|regression|random|distribution|mean|median|variance|sampling|bayes)/.test(lower)) return "data-probability";
-  if (/(geometry|triangle|circle|angle|line segment|polygon|solid|mensuration|area|volume|surface|conic|coordinate|euclid|locus)/.test(lower)) return "geometry";
-  if (/(complex|discrete|logic|set|union|intersection|subset|relation|function|combinatorics|permutation|combination|number theory|modular|cryptography|boolean)/.test(lower)) return "complex-discrete";
-  if (/(number|integer|fraction|decimal|rational|real|root|percent|ratio|proportion|exponent|logarithm|arithmetic)/.test(lower)) return "numbers";
+  if (
+    /(fourier|laplace|z-transform|signal|wave|heat|pde|ode|control|differential equation|engineering)/.test(
+      lower,
+    )
+  )
+    return "signals-pde";
+  if (
+    /(graph theory|network|shortest path|optimization|linear programming|operations|queue|game theory|transport|assignment|pert|cpm)/.test(
+      lower,
+    )
+  )
+    return "networks-optimization";
+  if (
+    /(matrix|matrices|vector|eigen|determinant|rank|span|basis|linear transformation|inner product)/.test(
+      lower,
+    )
+  )
+    return "linear-vector";
+  if (
+    /(statistics|probability|data|histogram|regression|random|distribution|mean|median|variance|sampling|bayes)/.test(
+      lower,
+    )
+  )
+    return "data-probability";
+  if (
+    /(geometry|triangle|circle|angle|line segment|polygon|solid|mensuration|area|volume|surface|conic|coordinate|euclid|locus)/.test(
+      lower,
+    )
+  )
+    return "geometry";
+  if (
+    /(complex|discrete|logic|set|union|intersection|subset|relation|function|combinatorics|permutation|combination|number theory|modular|cryptography|boolean)/.test(
+      lower,
+    )
+  )
+    return "complex-discrete";
+  if (
+    /(number|integer|fraction|decimal|rational|real|root|percent|ratio|proportion|exponent|logarithm|arithmetic)/.test(
+      lower,
+    )
+  )
+    return "numbers";
   return "algebra-calculus";
 }
 
@@ -101,48 +136,90 @@ export function conceptIconForText(value: string) {
   return iconByFamily[conceptFamilyForText(value)] ?? Calculator;
 }
 
-export function ConceptIconBadge({ text, className = "" }: { text: string; className?: string }) {
+export function ConceptIconBadge({
+  text,
+  className = "",
+}: {
+  text: string;
+  className?: string;
+}) {
   const Icon = conceptIconForText(text);
   const art = conceptArtForText(text);
   return (
-    <span className={`inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-gradient-to-br ${art.accent} text-slate-950 shadow-sm ${className}`}>
+    <span
+      className={`inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-gradient-to-br ${art.accent} text-slate-950 shadow-sm ${className}`}
+    >
       <Icon className="h-3.5 w-3.5" aria-hidden="true" />
     </span>
   );
 }
 
-export function ConceptImagePanel({ title, text, compact = false }: { title: string; text: string; compact?: boolean }) {
+export function ConceptImagePanel({
+  title,
+  text,
+  compact = false,
+}: {
+  title: string;
+  text: string;
+  compact?: boolean;
+}) {
   const art = conceptArtForText(`${title} ${text}`);
   const Icon = conceptIconForText(`${title} ${text}`);
   return (
-    <div className={`relative overflow-hidden rounded-2xl border border-white/20 bg-slate-950 shadow-sm ${compact ? "min-h-[138px]" : "min-h-[210px]"}`}>
-      <img src={art.image} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
+    <div
+      className={`relative overflow-hidden rounded-2xl border border-white/20 bg-slate-950 shadow-sm ${compact ? "min-h-[138px]" : "min-h-[210px]"}`}
+    >
+      <img
+        src={art.image}
+        alt=""
+        loading="lazy"
+        className="absolute inset-0 h-full w-full object-cover"
+      />
       <div className="absolute inset-0 bg-gradient-to-br from-slate-950/88 via-slate-950/44 to-slate-950/12" />
       <div className="relative flex min-h-[inherit] flex-col justify-between p-4 text-white">
         <div className="flex items-center justify-between gap-3">
-          <span className={`inline-flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br ${art.accent} text-slate-950 shadow-lg`}>
+          <span
+            className={`inline-flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br ${art.accent} text-slate-950 shadow-lg`}
+          >
             <Icon className="h-5 w-5" aria-hidden="true" />
           </span>
-          <span className="rounded-full border border-white/25 bg-white/15 px-3 py-1 text-xs font-bold backdrop-blur">{art.label}</span>
+          <span className="rounded-full border border-white/25 bg-white/15 px-3 py-1 text-xs font-bold backdrop-blur">
+            {art.label}
+          </span>
         </div>
         <div className="mt-7 max-w-[26rem]">
           <p className="text-lg font-black leading-tight md:text-xl">{title}</p>
-          {!compact && <p className="mt-2 text-sm leading-6 text-white/82">{text}</p>}
+          {!compact && (
+            <p className="mt-2 text-sm leading-6 text-white/82">{text}</p>
+          )}
         </div>
       </div>
     </div>
   );
 }
 
-export function FormulaImageStrip({ title, formula }: { title: string; formula: string }) {
+export function FormulaImageStrip({
+  title,
+  formula,
+}: {
+  title: string;
+  formula: string;
+}) {
   const art = conceptArtForText(`${title} ${formula}`);
   const Icon = conceptIconForText(`${title} ${formula}`);
   return (
     <div className="relative mb-3 overflow-hidden rounded-xl border border-white/30 bg-slate-950 text-white">
-      <img src={art.image} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover opacity-72" />
+      <img
+        src={art.image}
+        alt=""
+        loading="lazy"
+        className="absolute inset-0 h-full w-full object-cover opacity-72"
+      />
       <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/48 to-slate-950/15" />
       <div className="relative flex min-h-24 items-center gap-3 p-3">
-        <span className={`inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-to-br ${art.accent} text-slate-950 shadow-lg`}>
+        <span
+          className={`inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-to-br ${art.accent} text-slate-950 shadow-lg`}
+        >
           <Icon className="h-5 w-5" aria-hidden="true" />
         </span>
         <div className="min-w-0">

@@ -1,5 +1,7 @@
+import { useStudioMode } from "../hooks/useStudioMode";
+import { shareStudio } from "../utils/shareStudio";
 import { Activity, ArrowRight, BarChart3, BrainCircuit, FlaskConical, Network, RefreshCw, SlidersHorizontal, Target } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import MathExpression from "../components/ui/MathExpression";
 import StudioPageShell from "../components/ui/StudioPageShell";
@@ -48,44 +50,29 @@ const pathways = [
 ];
 
 export default function MathematicalModellingStudio() {
-  const [modelId, setModelId] = useState<ModelId>("logistic");
-  const [initialValue, setInitialValue] = useState(12);
-  const [rate, setRate] = useState(0.35);
-  const [capacity, setCapacity] = useState(100);
-  const [selectedTime, setSelectedTime] = useState(6);
+  const [modelId, setModelId] = useStudioMode<ModelId>("model", ["linear", "exponential", "logistic"], "logistic");
+  const [shareStatus, setShareStatus] = useState("");
+  const read = (key: string, fallback: number, min: number, max: number) => { const raw = new URLSearchParams(window.location.search).get(key); const n = raw === null ? fallback : Number(raw); return Number.isFinite(n) ? Math.max(min, Math.min(max, n)) : fallback; };
+  const [initialValue, setInitialValue] = useState(() => read("initial", 12, 2, 60));
+  const [rate, setRate] = useState(() => read("rate", 0.35, -0.2, 0.8));
+  const [capacity, setCapacity] = useState(() => read("capacity", 100, 40, 220));
+  const [selectedTime, setSelectedTime] = useState(() => read("time", 6, 0, 10));
   const model = models.find((item) => item.id === modelId) ?? models[0];
 
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const requested = params.get("model");
-    if (models.some((item) => item.id === requested)) setModelId(requested as ModelId);
-  }, []);
-
-  const selectModel = (next: ModelId) => {
-    setModelId(next);
-    const url = new URL(window.location.href);
-    url.searchParams.set("model", next);
-    window.history.pushState(null, "", `${url.pathname}${url.search}`);
-  };
-
-  const evaluate = (time: number) => {
-    if (modelId === "linear") return Math.max(0, initialValue + rate * 20 * time);
-    if (modelId === "exponential") return initialValue * Math.exp(rate * time);
-    const safeInitial = Math.min(initialValue, capacity - 0.1);
-    return capacity / (1 + ((capacity - safeInitial) / safeInitial) * Math.exp(-rate * time));
-  };
+  const selectModel = setModelId;
+  const shareSetup = async () => { const url = new URL(window.location.href); Object.entries({ model: modelId, initial: initialValue, rate, capacity, time: selectedTime }).forEach(([key, value]) => url.searchParams.set(key, String(value))); setShareStatus(await shareStudio("Mathematical Modelling Studio", url.toString())); };
 
   const points = useMemo(() => Array.from({ length: 41 }, (_, index) => {
     const time = index / 4;
     return { time, value: evaluateModel(modelId, time, initialValue, rate, capacity) };
   }), [capacity, initialValue, modelId, rate]);
-  const observed = useMemo(() => points.filter((_, index) => index % 5 === 0).map((point, index) => ({
+  const observed = useMemo(() => Array.from({ length: 41 }, (_, index) => ({ time: index / 4, value: evaluateModel("logistic", index / 4, 12, 0.35, 100) })).filter((_, index) => index % 5 === 0).map((point, index) => ({
     ...point,
     value: point.value * (1 + Math.sin(index * 1.7) * 0.045),
-  })), [points]);
+  })), []);
   const maximum = Math.max(capacity, ...points.map((point) => point.value), ...observed.map((point) => point.value), 1);
   const rmse = Math.sqrt(observed.reduce((sum, point) => sum + (point.value - evaluateModel(modelId, point.time, initialValue, rate, capacity)) ** 2, 0) / observed.length);
-  const selectedValue = evaluate(selectedTime);
+  const selectedValue = evaluateModel(modelId, selectedTime, initialValue, rate, capacity);
   const linePoints = points.map((point) => `${48 + point.time * 64},${258 - (point.value / maximum) * 210}`).join(" ");
 
   const reset = () => {
@@ -94,11 +81,12 @@ export default function MathematicalModellingStudio() {
     setRate(0.35);
     setCapacity(100);
     setSelectedTime(6);
-    window.history.replaceState(null, "", window.location.pathname);
+
   };
 
   return (
     <StudioPageShell
+      onShare={shareSetup}
       className="modelling-studio"
       title="Mathematical Modelling Studio"
       subtitle="Translate real systems into assumptions, equations, simulations, and evidence-based decisions."
@@ -107,7 +95,7 @@ export default function MathematicalModellingStudio() {
       estimatedMinutes={35}
       status={[
         { id: "family", label: "Model", value: model.label, tone: "cyan" },
-        { id: "fit", label: "Fit RMSE", value: rmse.toFixed(2), tone: "green" },
+        { id: "fit", label: "Reference RMSE", value: rmse.toFixed(2), tone: "green" },
       ]}
       toolbar={(
         <div className="flex flex-wrap items-center gap-2" role="tablist" aria-label="Model families">
@@ -123,6 +111,7 @@ export default function MathematicalModellingStudio() {
         </div>
       )}
     >
+      {shareStatus && <p role="status" style={{ overflowWrap: "anywhere" }}>{shareStatus}</p>}
       <div className="grid min-h-0 gap-3 xl:grid-cols-[280px_minmax(0,1fr)_300px]">
         <aside className="min-h-0 overflow-auto rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
           <div className="mb-4 flex items-center gap-2 text-sm font-black text-slate-950"><SlidersHorizontal className="h-4 w-4 text-cyan-600" />Parameters</div>
@@ -153,7 +142,7 @@ export default function MathematicalModellingStudio() {
             <circle cx={48 + selectedTime * 64} cy={258 - (selectedValue / maximum) * 210} r="7" fill="#a78bfa" stroke="#fff" strokeWidth="2" />
             <text x="368" y="297" fill="#cbd5e1" textAnchor="middle" fontSize="12">time</text>
           </svg>
-          <div className="flex flex-wrap gap-5 border-t border-white/10 pt-3 text-xs font-bold text-slate-300"><span><i className="mr-2 inline-block h-1 w-6 bg-cyan-400" />Model prediction</span><span><i className="mr-2 inline-block h-2 w-2 rounded-full bg-amber-400" />Observed sample</span><span><i className="mr-2 inline-block h-3 w-0.5 bg-violet-400" />Inspection time</span></div>
+          <div className="flex flex-wrap gap-5 border-t border-white/10 pt-3 text-xs font-bold text-slate-300"><span><i className="mr-2 inline-block h-1 w-6 bg-cyan-400" />Model prediction</span><span><i className="mr-2 inline-block h-2 w-2 rounded-full bg-amber-400" />Fixed simulated reference sample</span><span><i className="mr-2 inline-block h-3 w-0.5 bg-violet-400" />Inspection time</span></div>
         </section>
 
         <aside className="min-h-0 overflow-auto rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
@@ -184,10 +173,9 @@ export default function MathematicalModellingStudio() {
 }
 
 function evaluateModel(model: ModelId, time: number, initial: number, rate: number, capacity: number) {
-  if (model === "linear") return Math.max(0, initial + rate * 20 * time);
+  if (model === "linear") return initial + rate * time;
   if (model === "exponential") return initial * Math.exp(rate * time);
-  const safeInitial = Math.min(initial, capacity - 0.1);
-  return capacity / (1 + ((capacity - safeInitial) / safeInitial) * Math.exp(-rate * time));
+  return capacity / (1 + ((capacity - initial) / initial) * Math.exp(-rate * time));
 }
 
 function interpretModel(model: ModelId, rate: number, value: number, capacity: number) {

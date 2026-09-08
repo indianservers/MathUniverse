@@ -12,7 +12,9 @@ describe("ConceptMapPage", () => {
     );
 
     expect(html).toContain("Concept Map");
-    expect(html).toContain("Search concepts, formulas, theorems, or real-life uses");
+    expect(html).toContain(
+      "Search concepts, formulas, theorems, or real-life uses",
+    );
     expect(html).toContain("Unit Circle");
     expect(html).toContain("Learning path");
     expect(html).toContain("Show prerequisites");

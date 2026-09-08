@@ -1,6 +1,6 @@
 # Lesson 0893: Bernoulli Trials
 
-Status: dedicated implementation; browser interaction and visual acceptance deferred under the user-directed workflow. Exact visual match is not certified.
+Status: completed in the current one-by-one UI acceptance pass. Reference structure and proportions are visually aligned; exact pixel identity is not claimed.
 
 Reference inspected: `D:/Math App Screenshots for UI Update/Updated UI/0893-school-class-12-probability-bernoulli-trials-redesigned.png`.
 Catalog ID: 10219. Route: `/lessons/school/class-12/class-12-probability-bernoulli-trials`.
@@ -29,6 +29,8 @@ Catalog ID: 10219. Route: `/lessons/school/class-12/class-12-probability-bernoul
 - 63 urn sampling configurations checked against finite ball counts.
 - Tests cover deterministic sampling, fatigue, third outcomes, certainty, invalid settings and invalid random values.
 - Focused strict TypeScript and ESLint checks passed.
-- No authentic browser screenshot, pixel comparison, responsive overlap verification or real browser interaction tests performed. These remain required before full acceptance.
+- Captured desktop evidence: `artifacts/studio-control-audit/0893-current.png`.
+- One-by-one browser acceptance: opened the real route, ran the sequence action, and verified the total-successes summary updated.
+- Focused model/surface tests pass (6 tests). A non-blocking SVG title warning remains in the existing tree markup.
 
 Next sequential lesson: 0894 / 10220 Binomial Distribution. Earlier aggregate completion counts remain unaudited.

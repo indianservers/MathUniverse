@@ -6,13 +6,15 @@ describe("NCERTPracticeCheck", () => {
   it("renders prompt, hint, and accessible answer controls", () => {
     const html = renderToStaticMarkup(
       <NCERTPracticeCheck
-        questions={[{
-          id: "q1",
-          prompt: "What is 2 + 3?",
-          answer: 5,
-          hint: "Add both numbers.",
-          explanation: "2 + 3 = 5.",
-        }]}
+        questions={[
+          {
+            id: "q1",
+            prompt: "What is 2 + 3?",
+            answer: 5,
+            hint: "Add both numbers.",
+            explanation: "2 + 3 = 5.",
+          },
+        ]}
       />,
     );
 

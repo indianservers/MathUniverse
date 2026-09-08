@@ -1,0 +1,354 @@
+.lesson-shell:has(.mg52-page) > header,
+.lesson-shell:has(.mg52-page) > .lesson-workbench,
+.lesson-shell:has(.mg52-page) > .lesson-reset-row {
+  display: none;
+}
+.lesson-shell:has(.mg52-page) {
+  max-width: none;
+  padding: 0;
+}
+.mg52-page {
+  --ink: #101942;
+  color: var(--ink);
+  background: linear-gradient(145deg, #effcff, #fff 48%, #f5eeff);
+  padding: 20px;
+  min-height: 100vh;
+  font-family: Inter, system-ui, sans-serif;
+  letter-spacing: 0;
+}
+.mg52-page button,
+.mg52-page input,
+.mg52-page select {
+  font: inherit;
+}
+.mg52-breadcrumb {
+  font-size: 14px;
+  color: #60718b;
+  margin: 0 0 22px;
+}
+.mg52-hero {
+  background: #fff;
+  border: 1px solid #d9e5f1;
+  border-radius: 20px;
+  padding: 24px;
+}
+.mg52-hero small {
+  display: flex;
+  gap: 7px;
+}
+.mg52-hero small b {
+  padding: 7px 11px;
+  border-radius: 14px;
+  background: #e6f7fb;
+  color: #087793;
+  font-size: 10px;
+}
+.mg52-hero small b + b {
+  background: #f1f3f7;
+  color: #5c6577;
+}
+.mg52-hero h1 {
+  font-size: 40px;
+  margin: 12px 0 2px;
+}
+.mg52-hero p {
+  font-size: 17px;
+  color: #566780;
+  margin: 0;
+}
+.mg52-hero nav,
+.mg52-hero section {
+  display: flex;
+  gap: 10px;
+  margin-top: 13px;
+}
+.mg52-hero nav > * {
+  border: 1px solid #d7e2ed;
+  border-radius: 17px;
+  padding: 8px 13px;
+  font-size: 11px;
+}
+.mg52-hero section > * {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid #d7e2ed;
+  background: #fff;
+  border-radius: 9px;
+  padding: 10px 14px;
+  text-decoration: none;
+  color: #263550;
+}
+.mg52-hero section a {
+  display: inline-block;
+}
+.mg52-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(230px, 0.9fr);
+  gap: 12px;
+  background: #fff;
+  padding: 14px;
+}
+.mg52-panes {
+  display: grid;
+  grid-template-columns: 1fr 1.55fr;
+  gap: 12px;
+}
+.mg52-workspace.single .mg52-panes {
+  grid-template-columns: 1fr;
+}
+.mg52-workspace.split .mg52-panes {
+  grid-template-columns: 1fr 2fr;
+}
+.mg52-workspace.stack .mg52-panes {
+  grid-template-columns: 1fr;
+}
+.mg52-pane,
+.mg52-controls {
+  border: 1px solid #d7e2ed;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.mg52-pane > header {
+  display: flex;
+  align-items: center;
+  padding: 10px 13px;
+}
+.mg52-pane h2 {
+  font-size: 13px;
+  margin: 0;
+  margin-right: auto;
+}
+.mg52-pane > header button {
+  border: 0;
+  background: #fff;
+}
+.mg52-pane > header svg {
+  width: 16px;
+}
+.mg52-pane > svg {
+  display: block;
+  width: 100%;
+  aspect-ratio: 400/260;
+}
+.mg52-pane svg .axis {
+  stroke: #172443;
+  stroke-width: 1.3;
+}
+.mg52-pane svg .curve {
+  fill: none;
+  stroke: #079caf;
+  stroke-width: 3;
+}
+.mg52-pane svg .cursor-line {
+  stroke: #8a3fe1;
+  stroke-width: 1.5;
+  stroke-dasharray: 6 5;
+}
+.mg52-pane svg .cursor-point {
+  fill: #873ee0;
+  stroke: #fff;
+  stroke-width: 2;
+  cursor: ew-resize;
+}
+.mg52-label rect {
+  fill: #f8f2ff;
+  stroke: #a56eea;
+}
+.mg52-label text {
+  fill: #7234c8;
+  font-size: 10px;
+  font-weight: 700;
+}
+.mg52-pane > footer {
+  border-top: 1px solid #d7e2ed;
+  color: #7335cc;
+  text-align: center;
+  padding: 8px;
+  font-weight: 700;
+  font-size: 11px;
+}
+.mg52-pane.algebra {
+  padding-bottom: 12px;
+}
+.mg52-pane.algebra > strong {
+  display: block;
+  border: 1px solid #9563e6;
+  background: #fbf9ff;
+  border-radius: 7px;
+  margin: 0 12px;
+  padding: 18px;
+  text-align: center;
+  font:
+    21px Georgia,
+    serif;
+}
+.mg52-pane.algebra > section {
+  margin: 65px 12px 0;
+  border: 1px solid #d7e2ed;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 11px;
+}
+.mg52-pane.algebra section b {
+  display: block;
+  color: #7435d0;
+  font-size: 15px;
+}
+.mg52-pane.algebra output {
+  display: block;
+  color: #079caf;
+  font-weight: 700;
+  font-size: 14px;
+  margin-top: 12px;
+}
+.mg52-pane.table table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 10px;
+}
+.mg52-pane.table th,
+.mg52-pane.table td {
+  border: 1px solid #d7e2ed;
+  padding: 8px;
+  text-align: center;
+}
+.mg52-pane.table tr {
+  cursor: pointer;
+}
+.mg52-pane.table tr.active {
+  background: #fff7e8;
+  color: #dd7300;
+  font-weight: 700;
+  outline: 2px solid #f4a01e;
+}
+.mg52-controls {
+  padding: 14px;
+  height: max-content;
+}
+.mg52-controls > h2 {
+  font-size: 13px;
+}
+.mg52-controls > p {
+  font-size: 11px;
+  color: #5b6b83;
+  line-height: 1.6;
+}
+.mg52-controls hr {
+  border: 0;
+  border-top: 1px solid #dce5ee;
+  margin: 20px 0;
+}
+.mg52-controls h3 {
+  font-size: 12px;
+}
+.mg52-controls > section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.mg52-controls > section button {
+  display: grid;
+  justify-items: center;
+  gap: 5px;
+  border: 1px solid #d7e2ed;
+  background: #fff;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 10px;
+}
+.mg52-controls > section button.active {
+  border-color: #914fe1;
+  color: #7435cb;
+  background: #faf7ff;
+}
+.mg52-controls svg {
+  width: 20px;
+}
+.mg52-controls > label {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  font-size: 12px;
+  font-weight: 700;
+}
+.mg52-controls > label input {
+  accent-color: #7d36d2;
+  width: 36px;
+}
+.mg52-controls > label small {
+  grid-column: 1/-1;
+  color: #5e6e85;
+  font-weight: 400;
+  margin-top: 7px;
+}
+.mg52-selected {
+  background: #f6f9fd;
+  border: 1px solid #d7e2ed;
+  border-radius: 8px;
+  padding: 10px;
+  margin-top: 14px;
+  display: grid;
+  gap: 7px;
+  font-size: 10px;
+}
+.mg52-selected input {
+  border: 1px solid #8a4bdd;
+  border-radius: 5px;
+  padding: 7px;
+  text-align: center;
+  color: #7433c9;
+  font-weight: 700;
+}
+.mg52-selected b {
+  color: #079caf;
+  font-size: 12px;
+}
+.mg52-controls .mg52-restore {
+  margin-top: 12px;
+}
+.mg52-adjacent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 14px;
+}
+.mg52-adjacent a {
+  display: flex;
+  justify-content: space-between;
+  background: #fff;
+  border: 1px solid #d7e2ed;
+  border-radius: 12px;
+  padding: 14px;
+  text-decoration: none;
+  color: #35445e;
+}
+.mg52-adjacent span {
+  display: grid;
+  font-size: 10px;
+}
+.mg52-adjacent b {
+  font-size: 13px;
+  margin-top: 3px;
+}
+@media (max-width: 950px) {
+  .mg52-page {
+    padding: 8px;
+  }
+  .mg52-hero h1 {
+    font-size: 32px;
+  }
+  .mg52-hero nav,
+  .mg52-hero section {
+    flex-wrap: wrap;
+  }
+  .mg52-workspace {
+    grid-template-columns: 1fr;
+  }
+  .mg52-panes,
+  .mg52-workspace.split .mg52-panes {
+    grid-template-columns: 1fr;
+  }
+  .mg52-adjacent {
+    grid-template-columns: 1fr;
+  }
+}

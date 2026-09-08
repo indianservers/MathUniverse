@@ -6,9 +6,21 @@ describe("structured function analysis", () => {
     const result = analyzeFunction2d("f", "x^2-4", { min: -4, max: 4 });
     const roots = result.points.filter((point) => point.kind === "ROOT");
     expect(roots).toHaveLength(2);
-    expect(roots.map((point) => point.x)).toEqual(expect.arrayContaining([expect.closeTo(-2, 5), expect.closeTo(2, 5)]));
-    expect(roots.every((point) => point.method === "BRACKETED_BISECTION" && point.residual !== undefined)).toBe(true);
-    expect(result.points.some((point) => point.kind === "LOCAL_MINIMUM" && Math.abs(point.x!) < 0.02)).toBe(true);
+    expect(roots.map((point) => point.x)).toEqual(
+      expect.arrayContaining([expect.closeTo(-2, 5), expect.closeTo(2, 5)]),
+    );
+    expect(
+      roots.every(
+        (point) =>
+          point.method === "BRACKETED_BISECTION" &&
+          point.residual !== undefined,
+      ),
+    ).toBe(true);
+    expect(
+      result.points.some(
+        (point) => point.kind === "LOCAL_MINIMUM" && Math.abs(point.x!) < 0.02,
+      ),
+    ).toBe(true);
   });
 
   it("distinguishes a removable hole from an ordinary plotted point", () => {

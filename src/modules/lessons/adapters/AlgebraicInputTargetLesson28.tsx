@@ -24,7 +24,12 @@ type Parsed = {
   checks: boolean[];
   error: string;
 };
-const GRAPH_VIEW={xMin:-233/34,xMax:(500-233)/34,yMin:(143-280)/19,yMax:143/19};
+const GRAPH_VIEW = {
+  xMin: -233 / 34,
+  xMax: (500 - 233) / 34,
+  yMin: (143 - 280) / 19,
+  yMax: 143 / 19,
+};
 const engine = nerdamer as unknown as (
   expression: string,
   substitutions?: Record<string, string>,
@@ -89,9 +94,11 @@ function parseInput(input: string): Parsed {
 function evaluate(parsed: Parsed, x: number) {
   if (!parsed.valid) return NaN;
   try {
-    const result=engine(parsed.expression, { [parsed.variable]: String(x) }).evaluate();
+    const result = engine(parsed.expression, {
+      [parsed.variable]: String(x),
+    }).evaluate();
     // Nerdamer's toString() may be a fraction, e.g. -399/100; text() is decimal.
-    const value=Number(result.text?result.text():result.toString());
+    const value = Number(result.text ? result.text() : result.toString());
     return Number.isFinite(value) ? value : NaN;
   } catch {
     return NaN;
@@ -128,7 +135,7 @@ export default function AlgebraicInputTargetLesson28({
     [editing, setEditing] = useState(false),
     [shareState, setShareState] = useState("Share"),
     [actions, setActions] = useState(0);
-  const [graphView,setGraphView]=useState(GRAPH_VIEW);
+  const [graphView, setGraphView] = useState(GRAPH_VIEW);
   const inputRef = useRef<HTMLInputElement>(null),
     parsed = useMemo(() => parseInput(input), [input]);
   const samples = useMemo(
@@ -139,11 +146,23 @@ export default function AlgebraicInputTargetLesson28({
       }).filter((point) => Number.isFinite(point.y)),
     [parsed],
   );
-  const breakBefore=useMemo(()=>samples.map((point,index)=>{
-    if(index===0)return false;
-    const previous=samples[index-1];
-    return point.x-previous.x>.100001 || (previous.y*point.y<0&&!lessonGraphZeroCrossingConverges(x=>evaluate(parsed,x),previous,point));
-  }),[samples,parsed]);
+  const breakBefore = useMemo(
+    () =>
+      samples.map((point, index) => {
+        if (index === 0) return false;
+        const previous = samples[index - 1];
+        return (
+          point.x - previous.x > 0.100001 ||
+          (previous.y * point.y < 0 &&
+            !lessonGraphZeroCrossingConverges(
+              (x) => evaluate(parsed, x),
+              previous,
+              point,
+            ))
+        );
+      }),
+    [samples, parsed],
+  );
   const roots = useMemo(() => {
     const found: number[] = [];
     for (let index = 1; index < samples.length; index++) {
@@ -159,7 +178,7 @@ export default function AlgebraicInputTargetLesson28({
           index === 0 || Math.abs(value - array[index - 1]) > 0.15,
       )
       .slice(0, 3);
-  }, [samples,breakBefore]);
+  }, [samples, breakBefore]);
   const vertex = useMemo(
       () =>
         samples.reduce(
@@ -314,11 +333,57 @@ export default function AlgebraicInputTargetLesson28({
               </dl>
               <hr />
               <h2>Graph preview</h2>
-              <LessonCartesianGraph title="Graph preview" xLabel={parsed.variable||'x'}
-                view={graphView} onViewChange={setGraphView} onResetView={()=>setGraphView(GRAPH_VIEW)}
-                legend={parsed.valid?[{id:'function',label:`${parsed.name}(${parsed.variable}) = ${parsed.expression}`,color:'#0875ef'}]:[]}
-                series={parsed.valid?[{id:'function',label:parsed.expression,color:'#0875ef',points:samples.flatMap((point,index)=>breakBefore[index]?[null,point]:[point])}]:[]}
-                annotations={parsed.valid&&samples.length?[...roots.map((x,index)=>({id:`root-${index}`,x,y:0,label:`(${format(x)}, 0)`,color:'#0875ef'})),{id:'vertex',...vertex,label:`(${format(vertex.x)}, ${format(vertex.y)})`,color:'#0875ef'}]:[]}/>
+              <LessonCartesianGraph
+                title="Graph preview"
+                xLabel={parsed.variable || "x"}
+                view={graphView}
+                onViewChange={setGraphView}
+                onResetView={() => setGraphView(GRAPH_VIEW)}
+                legend={
+                  parsed.valid
+                    ? [
+                        {
+                          id: "function",
+                          label: `${parsed.name}(${parsed.variable}) = ${parsed.expression}`,
+                          color: "#0875ef",
+                        },
+                      ]
+                    : []
+                }
+                series={
+                  parsed.valid
+                    ? [
+                        {
+                          id: "function",
+                          label: parsed.expression,
+                          color: "#0875ef",
+                          points: samples.flatMap((point, index) =>
+                            breakBefore[index] ? [null, point] : [point],
+                          ),
+                        },
+                      ]
+                    : []
+                }
+                annotations={
+                  parsed.valid && samples.length
+                    ? [
+                        ...roots.map((x, index) => ({
+                          id: `root-${index}`,
+                          x,
+                          y: 0,
+                          label: `(${format(x)}, 0)`,
+                          color: "#0875ef",
+                        })),
+                        {
+                          id: "vertex",
+                          ...vertex,
+                          label: `(${format(vertex.x)}, ${format(vertex.y)})`,
+                          color: "#0875ef",
+                        },
+                      ]
+                    : []
+                }
+              />
               <footer>
                 <span>
                   Roots:&nbsp;{" "}
@@ -443,6 +508,3 @@ export default function AlgebraicInputTargetLesson28({
     </div>
   );
 }
-
-
-

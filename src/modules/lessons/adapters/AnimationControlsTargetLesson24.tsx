@@ -6,7 +6,12 @@ import "./AnimationControlsTargetLesson24.css";
 
 const FRAMES = [0, 0.5, 1, 1.5, 2, 2];
 const SPEEDS = { "0.5x": 2800, "1x": 1800, "2x": 900 } as const;
-const GRAPH_VIEW = {xMin:-302/55,xMax:(640-302)/55,yMin:(349-560)/55,yMax:349/55};
+const GRAPH_VIEW = {
+  xMin: -302 / 55,
+  xMax: (640 - 302) / 55,
+  yMin: (349 - 560) / 55,
+  yMax: 349 / 55,
+};
 
 export default function AnimationControlsTargetLesson24({
   resetToken,
@@ -245,18 +250,58 @@ export default function AnimationControlsTargetLesson24({
   );
 }
 
-function AnimationGraph({frame,resetToken}:{frame:number;resetToken:number}) {
-  const [view,setView]=useState(GRAPH_VIEW);
-  useEffect(()=>setView(GRAPH_VIEW),[resetToken]);
-  const active=FRAMES[frame];
-  const traces=[active,...FRAMES.slice(Math.max(0,frame-2),frame).reverse()]
-    .filter((value,index,array)=>array.indexOf(value)===index).slice(0,3);
-  const colors=['#087cf0','#8dc5fc','#acd7ff'];
-  return <LessonCartesianGraph title="y = ax + 1" description={`Current frame ${frame}: a = ${active.toFixed(1)}`}
-    view={view} onViewChange={setView} onResetView={()=>setView(GRAPH_VIEW)} aspectRatio={640/560}
-    legend={traces.map((slope,index)=>({id:`trace-${index}`,label:`${index===0?'Current':'Previous'}: a = ${slope.toFixed(1)}`,color:colors[index],dashed:index>0}))}
-    series={traces.map((slope,index)=>({id:`trace-${index}`,label:`y = ${slope}x + 1`,color:colors[index],dashed:index>0,dashPattern:index===1?'8 5':index===2?'3 4':undefined,points:[{x:-5,y:-5*slope+1},{x:5,y:5*slope+1}]}))}
-    annotations={[{id:'intercept',x:0,y:1,label:'(0, 1)',color:'#087cf0'},{id:'output',x:2,y:2*active+1,label:`(2, ${2*active+1})`,color:'#087cf0'}]}/>;
+function AnimationGraph({
+  frame,
+  resetToken,
+}: {
+  frame: number;
+  resetToken: number;
+}) {
+  const [view, setView] = useState(GRAPH_VIEW);
+  useEffect(() => setView(GRAPH_VIEW), [resetToken]);
+  const active = FRAMES[frame];
+  const traces = [
+    active,
+    ...FRAMES.slice(Math.max(0, frame - 2), frame).reverse(),
+  ]
+    .filter((value, index, array) => array.indexOf(value) === index)
+    .slice(0, 3);
+  const colors = ["#087cf0", "#8dc5fc", "#acd7ff"];
+  return (
+    <LessonCartesianGraph
+      title="y = ax + 1"
+      description={`Current frame ${frame}: a = ${active.toFixed(1)}`}
+      view={view}
+      onViewChange={setView}
+      onResetView={() => setView(GRAPH_VIEW)}
+      aspectRatio={640 / 560}
+      legend={traces.map((slope, index) => ({
+        id: `trace-${index}`,
+        label: `${index === 0 ? "Current" : "Previous"}: a = ${slope.toFixed(1)}`,
+        color: colors[index],
+        dashed: index > 0,
+      }))}
+      series={traces.map((slope, index) => ({
+        id: `trace-${index}`,
+        label: `y = ${slope}x + 1`,
+        color: colors[index],
+        dashed: index > 0,
+        dashPattern: index === 1 ? "8 5" : index === 2 ? "3 4" : undefined,
+        points: [
+          { x: -5, y: -5 * slope + 1 },
+          { x: 5, y: 5 * slope + 1 },
+        ],
+      }))}
+      annotations={[
+        { id: "intercept", x: 0, y: 1, label: "(0, 1)", color: "#087cf0" },
+        {
+          id: "output",
+          x: 2,
+          y: 2 * active + 1,
+          label: `(2, ${2 * active + 1})`,
+          color: "#087cf0",
+        },
+      ]}
+    />
+  );
 }
-
-

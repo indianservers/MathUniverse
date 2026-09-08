@@ -24,7 +24,10 @@ export default function NCERTTabbedWorkspace({
 }: NCERTTabbedWorkspaceProps) {
   const stableId = useId();
   const [activeId, setActiveId] = useState(defaultTabId ?? tabs[0]?.id ?? "");
-  const activeIndex = Math.max(0, tabs.findIndex((tab) => tab.id === activeId));
+  const activeIndex = Math.max(
+    0,
+    tabs.findIndex((tab) => tab.id === activeId),
+  );
   const activeTab = tabs[activeIndex] ?? tabs[0];
 
   const focusTab = (index: number) => {
@@ -59,7 +62,9 @@ export default function NCERTTabbedWorkspace({
 
   return (
     <section className="rounded-3xl border border-cyan-200 bg-white/95 shadow-sm dark:border-cyan-300/20 dark:bg-slate-950/80">
-      <div className={`${sticky ? "sticky top-0 z-20" : ""} rounded-t-3xl border-b border-slate-200 bg-white/95 p-2 backdrop-blur dark:border-white/10 dark:bg-slate-950/90`}>
+      <div
+        className={`${sticky ? "sticky top-0 z-20" : ""} rounded-t-3xl border-b border-slate-200 bg-white/95 p-2 backdrop-blur dark:border-white/10 dark:bg-slate-950/90`}
+      >
         <div
           role="tablist"
           aria-label={ariaLabel}
@@ -85,7 +90,11 @@ export default function NCERTTabbedWorkspace({
                 }`}
               >
                 <span>{tab.label}</span>
-                {tab.badge && <span className="ml-2 rounded-full bg-white/20 px-2 py-0.5 text-[11px]">{tab.badge}</span>}
+                {tab.badge && (
+                  <span className="ml-2 rounded-full bg-white/20 px-2 py-0.5 text-[11px]">
+                    {tab.badge}
+                  </span>
+                )}
               </button>
             );
           })}

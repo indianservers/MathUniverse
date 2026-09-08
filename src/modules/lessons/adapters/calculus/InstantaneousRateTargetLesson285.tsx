@@ -389,13 +389,17 @@ function InstantGraph({ h, onH }: { h: number; onH: (value: number) => void }) {
       {[-4, -3, -2, -1, 1, 2, 3, 4].map((value) => (
         <g className="tick" key={`x-${value}`}>
           <line x1={sx(value)} y1={sy(0) - 4} x2={sx(value)} y2={sy(0) + 4} />
-          <text x={sx(value) - 4} y={sy(0) + 18}>{value}</text>
+          <text x={sx(value) - 4} y={sy(0) + 18}>
+            {value}
+          </text>
         </g>
       ))}
       {[-10, -5, 5, 10, 15, 20, 25].map((value) => (
         <g className="tick" key={`y-${value}`}>
           <line x1={sx(0) - 4} y1={sy(value)} x2={sx(0) + 4} y2={sy(value)} />
-          <text x={sx(0) - 28} y={sy(value) + 4}>{value}</text>
+          <text x={sx(0) - 28} y={sy(value) + 4}>
+            {value}
+          </text>
         </g>
       ))}
       <path className="curve" d={path} />

@@ -1,6 +1,17 @@
 import { useEffect, useRef, useState } from "react";
-import { createGraphStudioProject, deleteGraphStudioProject, duplicateGraphStudioProject, importGraphStudioProject, readGraphStudioProjects, saveGraphStudioProject } from "./projectStorage";
-import type { GraphStudioDimension, GraphStudioProject, GraphStudioVariable } from "./types";
+import {
+  createGraphStudioProject,
+  deleteGraphStudioProject,
+  duplicateGraphStudioProject,
+  importGraphStudioProject,
+  readGraphStudioProjects,
+  saveGraphStudioProject,
+} from "./projectStorage";
+import type {
+  GraphStudioDimension,
+  GraphStudioProject,
+  GraphStudioVariable,
+} from "./types";
 
 type Options<TState> = {
   dimension: GraphStudioDimension;
@@ -9,9 +20,18 @@ type Options<TState> = {
   applyState: (state: TState, variables: GraphStudioVariable[]) => void;
 };
 
-export function useGraphStudioProject<TState>({ dimension, initialName, state, applyState }: Options<TState>) {
-  const [project, setProject] = useState(() => createGraphStudioProject(dimension, initialName, state));
-  const [projects, setProjects] = useState<GraphStudioProject<TState>[]>(() => readGraphStudioProjects<TState>(dimension));
+export function useGraphStudioProject<TState>({
+  dimension,
+  initialName,
+  state,
+  applyState,
+}: Options<TState>) {
+  const [project, setProject] = useState(() =>
+    createGraphStudioProject(dimension, initialName, state),
+  );
+  const [projects, setProjects] = useState<GraphStudioProject<TState>[]>(() =>
+    readGraphStudioProjects<TState>(dimension),
+  );
   const [undoStack, setUndoStack] = useState<TState[]>([]);
   const [redoStack, setRedoStack] = useState<TState[]>([]);
   const previousRef = useRef(state);
@@ -44,14 +64,19 @@ export function useGraphStudioProject<TState>({ dimension, initialName, state, a
     return () => window.clearTimeout(timer);
   }, [dimension, project, state]);
 
-  const updateProject = (patch: Partial<GraphStudioProject<TState>>) => setProject((current) => ({ ...current, ...patch }));
+  const updateProject = (patch: Partial<GraphStudioProject<TState>>) =>
+    setProject((current) => ({ ...current, ...patch }));
   const save = () => {
     const saved = saveGraphStudioProject({ ...project, state });
     setProject(saved);
     setProjects(readGraphStudioProjects<TState>(dimension));
   };
   const newProject = () => {
-    const next = createGraphStudioProject(dimension, `Untitled ${dimension.toUpperCase()} project`, initialStateRef.current);
+    const next = createGraphStudioProject(
+      dimension,
+      `Untitled ${dimension.toUpperCase()} project`,
+      initialStateRef.current,
+    );
     skipHistoryRef.current = true;
     applyState(initialStateRef.current, []);
     previousRef.current = initialStateRef.current;
@@ -101,5 +126,19 @@ export function useGraphStudioProject<TState>({ dimension, initialName, state, a
     applyState(next, project.variables);
   };
 
-  return { project, projects, updateProject, save, newProject, load, remove, duplicate, importProject, undo, redo, canUndo: undoStack.length > 0, canRedo: redoStack.length > 0 };
+  return {
+    project,
+    projects,
+    updateProject,
+    save,
+    newProject,
+    load,
+    remove,
+    duplicate,
+    importProject,
+    undo,
+    redo,
+    canUndo: undoStack.length > 0,
+    canRedo: redoStack.length > 0,
+  };
 }

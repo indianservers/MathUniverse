@@ -552,7 +552,9 @@ export function toggleDiscreteConceptGraph(
 }
 function graphEditLabel(mode: DiscreteLessonMode, graph: GraphProject) {
   if (mode === "components")
-    return graph.edges.some((edge) => edge.source === "E" || edge.target === "E")
+    return graph.edges.some(
+      (edge) => edge.source === "E" || edge.target === "E",
+    )
       ? "Isolate E"
       : "Reconnect E";
   if (mode === "planar")

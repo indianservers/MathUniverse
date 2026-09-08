@@ -24,7 +24,9 @@ describe("board persistence", () => {
   it("autosaves and recovers a draft after refresh", () => {
     const board = createBoardDocument("Recovered");
     saveDraft(board);
-    expect(JSON.parse(localStorage.getItem(BOARD_DRAFT_KEY) ?? "{}").schemaVersion).toBe(1);
+    expect(
+      JSON.parse(localStorage.getItem(BOARD_DRAFT_KEY) ?? "{}").schemaVersion,
+    ).toBe(1);
     expect(recoverDraft()?.title).toBe("Recovered");
     expect(serializeBoard(board).schemaVersion).toBe(1);
   });

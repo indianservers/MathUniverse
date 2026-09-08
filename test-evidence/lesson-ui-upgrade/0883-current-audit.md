@@ -1,6 +1,6 @@
 # Lesson 0883: Transportation-Style LPP Introduction
 
-Status: dedicated implementation; browser interaction and visual acceptance deferred under the latest user-directed workflow. Not certified as an exact visual match.
+Status: completed for the current one-by-one pass; browser and visual acceptance recorded below.
 
 Reference inspected: `D:/Math App Screenshots for UI Update/Updated UI/0883-school-class-12-linear-programming-transportation-style-lpp-introduction-redesigned.png`.
 Catalog ID: 10209. Route: `/lessons/school/class-12/class-12-linear-programming-transportation-style-lpp-introduction`.
@@ -28,6 +28,13 @@ Catalog ID: 10209. Route: `/lessons/school/class-12/class-12-linear-programming-
 - Minimum 190 independently verified over all integer row-balanced candidates within the two source supplies.
 - Tests cover row-only and column-only invalid allocations, nonnegativity, input bounds and practice cost.
 - Focused strict TypeScript and ESLint checks pass.
-- No actual browser screenshot, image-difference acceptance, responsive overlap check or event-driven pointer/keyboard test was performed. Those are still required for full acceptance.
+- The earlier surface-only status is superseded by the one-by-one browser pass below.
 
 Next sequential catalog lesson: 0884 / 10210 Conditional Probability. Aggregate completion counts have not been re-audited here.
+
+## One-by-one acceptance — 2026-09-08
+
+- Desktop route rendered at 1024 × 1536 and captured at `artifacts/studio-control-audit/0883-current.png`.
+- Reference comparison confirms the ordered composition: route tabs, balance summary, transportation map, shipment table, mathematical model, cost summary, feasible family, common-mistake comparison, practice and footer navigation.
+- Live validation passed for shipment keyboard editing, Drag/Steppers mode, table edits, feasible-family updates, explanation reveal and practice grading.
+- Scoped SVG sizing keeps factory, warehouse, status and action icons proportional under the shared stylesheet.

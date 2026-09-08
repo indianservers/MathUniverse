@@ -117,122 +117,2801 @@ export type AdvancedSyllabusLab = {
 };
 
 const authoredAdvancedSyllabusLabs: AdvancedSyllabusLab[] = [
-  { id: "venn-diagram-builder", title: "Interactive Venn Diagram Builder", category: "Sets, Relations and Logic", subcategory: "Sets", summary: "Build two-set regions and inspect union, intersection, and difference.", formula: "n(A union B)=n(A)+n(B)-n(A intersection B)", visual: "venn", sliderA: "Set A size", sliderB: "Overlap", minA: 10, maxA: 100, stepA: 1, minB: 0, maxB: 70, stepB: 1, defaultA: 60, defaultB: 25, tasks: ["Increase overlap.", "Compare union and intersection.", "Find A minus B."] },
-  { id: "function-mapping-arrows", title: "Function Mapping Arrows", category: "Sets, Relations and Logic", subcategory: "Functions", summary: "Map domain elements to codomain elements and test one-one and onto behavior.", formula: "f: A -> B", visual: "mapping", sliderA: "Domain size", sliderB: "Mapping shift", minA: 3, maxA: 7, stepA: 1, minB: 0, maxB: 6, stepB: 1, defaultA: 5, defaultB: 1, tasks: ["Check whether each input has one output.", "Look for repeated outputs.", "Test onto coverage."] },
-  { id: "relation-matrix-visualizer", title: "Relation Matrix Visualizer", category: "Sets, Relations and Logic", subcategory: "Relations", summary: "Represent relations as matrix entries and test reflexive, symmetric, and transitive patterns.", formula: "M_ij=1 when (a_i,a_j) is in R", visual: "relation-matrix", sliderA: "Relation rule", sliderB: "Set size", minA: 1, maxA: 4, stepA: 1, minB: 3, maxB: 7, stepB: 1, defaultA: 1, defaultB: 5, tasks: ["Try equality relation.", "Try less-than relation.", "Inspect diagonal entries."] },
-  { id: "truth-table-generator", title: "Truth Table Generator", category: "Sets, Relations and Logic", subcategory: "Logic", summary: "Generate truth values for compound logical statements.", formula: "p -> q is equivalent to not p or q", visual: "truth-table", sliderA: "Expression", sliderB: "Rows", minA: 1, maxA: 4, stepA: 1, minB: 2, maxB: 4, stepB: 1, defaultA: 1, defaultB: 4, tasks: ["Compare AND and OR.", "Find false implication row.", "Test biconditional."] },
-  { id: "proof-by-induction", title: "Proof-by-Induction Animation", category: "Sets, Relations and Logic", subcategory: "Proof", summary: "Animate base case and domino-style induction step.", formula: "P(1) true and P(k)->P(k+1) true implies P(n)", visual: "induction", sliderA: "Current n", sliderB: "Step strength", minA: 1, maxA: 12, stepA: 1, minB: 1, maxB: 4, stepB: 1, defaultA: 5, defaultB: 2, tasks: ["Check base case.", "Push one domino.", "Explain k to k+1."] },
-  { id: "equivalence-class-partition", title: "Equivalence Class Partition Simulator", category: "Sets, Relations and Logic", subcategory: "Relations", summary: "Partition a set into equivalence classes using modulo rules.", formula: "a ~ b when a mod m = b mod m", visual: "equivalence", sliderA: "Modulo m", sliderB: "Set size", minA: 2, maxA: 6, stepA: 1, minB: 8, maxB: 24, stepB: 1, defaultA: 3, defaultB: 15, tasks: ["Change modulo.", "Count classes.", "Find numbers in same class."] },
-  { id: "limit-approaching-animation", title: "Limit Approaching Animation", category: "Calculus", subcategory: "Limits", summary: "Move toward a point from left and right and compare output values.", formula: "lim x->a f(x)", visual: "limit", sliderA: "Approach distance", sliderB: "Target a", minA: 0.05, maxA: 2, stepA: 0.05, minB: -2, maxB: 2, stepB: 0.1, defaultA: 0.8, defaultB: 0, tasks: ["Approach from both sides.", "Compare y-values.", "Reduce distance."] },
-  { id: "continuity-explorer", title: "Continuity/Discontinuity Graph Explorer", category: "Calculus", subcategory: "Limits", summary: "Explore removable, jump, and infinite discontinuities.", formula: "continuous when limit equals function value", visual: "continuity", sliderA: "Discontinuity type", sliderB: "Point a", minA: 1, maxA: 3, stepA: 1, minB: -3, maxB: 3, stepB: 0.1, defaultA: 1, defaultB: 0, tasks: ["Make a hole.", "Make a jump.", "Compare f(a) with limit."] },
-  { id: "tangent-line-visualizer", title: "Tangent Line Visualizer", category: "Calculus", subcategory: "Derivatives", summary: "Move a point on a curve and read the tangent line slope.", formula: "slope = f'(x)", visual: "tangent", sliderA: "x position", sliderB: "Curve scale", minA: -3, maxA: 3, stepA: 0.05, minB: 0.5, maxB: 2.5, stepB: 0.1, defaultA: 1, defaultB: 1, tasks: ["Move to vertex.", "Find positive slope.", "Find negative slope."] },
-  { id: "derivative-as-slope", title: "Derivative as Slope Animation", category: "Calculus", subcategory: "Derivatives", summary: "Shrink secant width until it becomes the tangent slope.", formula: "f'(x)=lim h->0 [f(x+h)-f(x)]/h", visual: "derivative", sliderA: "x", sliderB: "h", minA: -3, maxA: 3, stepA: 0.05, minB: 0.05, maxB: 2, stepB: 0.05, defaultA: 1, defaultB: 1, tasks: ["Shrink h.", "Compare secant and tangent.", "Read derivative value."] },
-  { id: "higher-order-derivatives", title: "Higher-Order Derivative Graph Comparison", category: "Calculus", subcategory: "Derivatives", summary: "Compare f, f prime, and f double-prime graphs together.", formula: "f, f', f''", visual: "higher-derivative", sliderA: "Coefficient", sliderB: "x marker", minA: 0.2, maxA: 2, stepA: 0.1, minB: -3, maxB: 3, stepB: 0.05, defaultA: 1, defaultB: 1, tasks: ["Compare curve and slope.", "Find where f'' changes sign.", "Read all three values."] },
-  { id: "maxima-minima-detector", title: "Maxima-Minima Detector", category: "Calculus", subcategory: "Applications of Derivatives", summary: "Detect turning points by sign changes in the derivative.", formula: "critical points where f'(x)=0", visual: "maxima", sliderA: "Curve shift", sliderB: "Scan point", minA: -2, maxA: 2, stepA: 0.1, minB: -3, maxB: 3, stepB: 0.05, defaultA: 0, defaultB: 1, tasks: ["Find f'=0.", "Classify max/min.", "Move the curve."] },
-  { id: "taylor-series-approximation", title: "Taylor Series Approximation Visualizer", category: "Calculus", subcategory: "Series", summary: "Approximate a function with increasing polynomial degree.", formula: "f(x)=sum f^(n)(a)(x-a)^n/n!", visual: "taylor", sliderA: "Degree", sliderB: "x", minA: 1, maxA: 9, stepA: 1, minB: -3, maxB: 3, stepB: 0.05, defaultA: 3, defaultB: 1, tasks: ["Increase degree.", "Move away from center.", "Compare approximation error."] },
-  { id: "curvature-osculating-circle", title: "Curvature and Osculating Circle Simulator", category: "Calculus", subcategory: "Advanced Derivatives", summary: "Show the circle that best hugs a curve at one point.", formula: "curvature kappa = |y''|/(1+y'^2)^(3/2)", visual: "curvature", sliderA: "x position", sliderB: "Curve scale", minA: -2, maxA: 2, stepA: 0.05, minB: 0.5, maxB: 2, stepB: 0.1, defaultA: 0.8, defaultB: 1, tasks: ["Move along curve.", "Compare tight and flat parts.", "Read radius of curvature."] },
-  { id: "partial-derivative-slicer", title: "Partial Derivative Surface Slicer", category: "Calculus", subcategory: "Multivariable Calculus", summary: "Slice a surface in x and y directions to see partial derivatives.", formula: "partial f/partial x, partial f/partial y", visual: "partial", sliderA: "x slice", sliderB: "y slice", minA: -3, maxA: 3, stepA: 0.1, minB: -3, maxB: 3, stepB: 0.1, defaultA: 1, defaultB: 1, tasks: ["Move x slice.", "Move y slice.", "Compare two directional slopes."] },
-  { id: "riemann-sum-animation", title: "Riemann Sum Animation", category: "Calculus", subcategory: "Integral Calculus", summary: "Approximate area under a curve by changing the number of rectangles.", formula: "integral_a^b f(x) dx approx sum f(x_i) Delta x", visual: "riemann", sliderA: "Rectangles n", sliderB: "Right endpoint b", minA: 4, maxA: 60, stepA: 1, minB: 1, maxB: 5, stepB: 0.1, defaultA: 12, defaultB: 4, tasks: ["Increase rectangles.", "Compare over/under estimate.", "Watch Delta x shrink."] },
-  { id: "area-under-curve-simulator", title: "Area Under Curve Simulator", category: "Calculus", subcategory: "Integral Calculus", summary: "Highlight signed and total area under a curve over an interval.", formula: "Area = integral_a^b f(x) dx", visual: "area-under-curve", sliderA: "Start a", sliderB: "End b", minA: -3, maxA: 2, stepA: 0.1, minB: -1, maxB: 4, stepB: 0.1, defaultA: -1, defaultB: 3, tasks: ["Move the interval.", "Compare positive and negative area.", "Find where area changes sign."] },
-  { id: "shell-vs-washer-3d", title: "Shell Method vs Washer Method 3D View", category: "Calculus", subcategory: "Applications of Integrals", summary: "Compare vertical cylindrical shells with horizontal washers for solids of revolution.", formula: "V_shell=2pi integral x f(x) dx, V_washer=pi integral R^2-r^2 dx", visual: "shell-washer", sliderA: "Slice position", sliderB: "Method mix", minA: 0.2, maxA: 3.5, stepA: 0.05, minB: 0, maxB: 1, stepB: 0.05, defaultA: 1.4, defaultB: 0.2, tasks: ["Move the slice.", "Blend shell and washer views.", "Compare radius and height."] },
-  { id: "double-integral-region", title: "Double Integral Region Highlighter", category: "Calculus", subcategory: "Multivariable Calculus", summary: "Highlight a 2D integration region and sample height values over it.", formula: "double integral_R f(x,y) dA", visual: "double-integral", sliderA: "Region width", sliderB: "Region height", minA: 0.5, maxA: 4, stepA: 0.1, minB: 0.5, maxB: 3, stepB: 0.1, defaultA: 2.6, defaultB: 1.8, tasks: ["Change region width.", "Change region height.", "Estimate area elements dA."] },
-  { id: "triple-integral-volume", title: "Triple Integral Volume Explorer", category: "Calculus", subcategory: "Multivariable Calculus", summary: "Visualize a volume region as stacked boxes in 3D projection.", formula: "triple integral_E f(x,y,z) dV", visual: "triple-integral", sliderA: "Base size", sliderB: "Height", minA: 1, maxA: 5, stepA: 0.1, minB: 1, maxB: 5, stepB: 0.1, defaultA: 3, defaultB: 2.4, tasks: ["Increase base.", "Increase height.", "Count volume elements."] },
-  { id: "coordinate-transformation", title: "Coordinate Transformation Visualizer", category: "Calculus", subcategory: "Multivariable Calculus", summary: "Transform a square grid into polar-style curved coordinates and observe area scaling.", formula: "dA = |J| du dv", visual: "coordinate-transform", sliderA: "Warp strength", sliderB: "Rotation", minA: 0, maxA: 1, stepA: 0.05, minB: -90, maxB: 90, stepB: 1, defaultA: 0.45, defaultB: 25, tasks: ["Increase warp.", "Rotate coordinates.", "Look for area stretching."] },
-  { id: "beta-gamma-curves", title: "Beta/Gamma Function Curve Explorer", category: "Calculus", subcategory: "Special Functions", summary: "Compare Gamma and Beta function shapes using positive parameters.", formula: "Gamma(n)=(n-1)!, B(a,b)=Gamma(a)Gamma(b)/Gamma(a+b)", visual: "beta-gamma", sliderA: "alpha", sliderB: "beta", minA: 0.5, maxA: 6, stepA: 0.1, minB: 0.5, maxB: 6, stepB: 0.1, defaultA: 2.5, defaultB: 3, tasks: ["Change alpha.", "Change beta.", "Compare skew and peak."] },
-  { id: "sequence-convergence", title: "Sequence Convergence Animation", category: "Real Analysis", subcategory: "Sequences", summary: "Watch sequence terms approach a limiting value and compare error bands.", formula: "a_n -> L when |a_n-L| -> 0", visual: "sequence-convergence", sliderA: "Term n", sliderB: "Limit L", minA: 1, maxA: 80, stepA: 1, minB: -2, maxB: 2, stepB: 0.1, defaultA: 18, defaultB: 1, tasks: ["Increase n.", "Watch error shrink.", "Move the limit line."] },
-  { id: "cauchy-sequence-distance", title: "Cauchy Sequence Distance Visualizer", category: "Real Analysis", subcategory: "Sequences", summary: "See later sequence terms cluster close together even before naming the limit.", formula: "for every epsilon, |a_m-a_n| < epsilon eventually", visual: "cauchy-sequence", sliderA: "Start index N", sliderB: "Epsilon", minA: 1, maxA: 50, stepA: 1, minB: 0.05, maxB: 1, stepB: 0.05, defaultA: 12, defaultB: 0.25, tasks: ["Increase N.", "Shrink epsilon.", "Check tail distances."] },
-  { id: "series-partial-sum", title: "Series Partial Sum Visualizer", category: "Real Analysis", subcategory: "Series", summary: "Add terms one by one and watch partial sums settle or drift.", formula: "S_n = a_1 + a_2 + ... + a_n", visual: "series-partial-sum", sliderA: "Terms n", sliderB: "Ratio r", minA: 1, maxA: 80, stepA: 1, minB: -0.95, maxB: 0.95, stepB: 0.05, defaultA: 16, defaultB: 0.5, tasks: ["Increase terms.", "Try negative ratio.", "Compare with infinite sum."] },
-  { id: "convergence-test-comparison", title: "Convergence Test Comparison Tool", category: "Real Analysis", subcategory: "Series", summary: "Compare geometric, p-series, harmonic, and alternating behavior.", formula: "geometric |r|<1, p-series converges when p>1", visual: "convergence-test", sliderA: "Test family", sliderB: "Parameter", minA: 1, maxA: 4, stepA: 1, minB: 0.5, maxB: 3, stepB: 0.1, defaultA: 2, defaultB: 1.4, tasks: ["Switch tests.", "Move parameter across boundary.", "Classify convergence."] },
-  { id: "power-series-radius", title: "Power Series Radius of Convergence Circle", category: "Real Analysis", subcategory: "Power Series", summary: "Visualize radius of convergence around the center of a power series.", formula: "sum c_n(x-a)^n converges when |x-a| < R", visual: "power-series-radius", sliderA: "Radius R", sliderB: "Point x", minA: 0.5, maxA: 4, stepA: 0.1, minB: -5, maxB: 5, stepB: 0.1, defaultA: 2.5, defaultB: 1.4, tasks: ["Move x inside radius.", "Move x outside radius.", "Change R."] },
-  { id: "pointwise-vs-uniform", title: "Pointwise vs Uniform Convergence Animation", category: "Real Analysis", subcategory: "Function Sequences", summary: "Compare convergence at each point with convergence controlled uniformly over the whole interval.", formula: "uniform when sup_x |f_n(x)-f(x)| -> 0", visual: "pointwise-uniform", sliderA: "n", sliderB: "Probe x", minA: 1, maxA: 40, stepA: 1, minB: 0, maxB: 1, stepB: 0.01, defaultA: 8, defaultB: 0.8, tasks: ["Increase n.", "Probe near x=1.", "Compare maximum error."] },
-  { id: "riemann-partition-refinement", title: "Riemann Partition Refinement Visualizer", category: "Real Analysis", subcategory: "Riemann Integration", summary: "Refine a partition and compare upper/lower sums as mesh size shrinks.", formula: "mesh(P)->0, upper sum - lower sum -> 0", visual: "partition-refinement", sliderA: "Partition pieces", sliderB: "Sample bias", minA: 2, maxA: 50, stepA: 1, minB: 0, maxB: 1, stepB: 0.05, defaultA: 8, defaultB: 0.5, tasks: ["Increase pieces.", "Compare upper and lower rectangles.", "Reduce mesh size."] },
-  { id: "argand-plane-plot", title: "Argand Plane Interactive Plot", category: "Complex Analysis", subcategory: "Complex Plane", summary: "Plot a complex number as a point and vector with modulus and argument.", formula: "z=a+bi = r(cos theta + i sin theta)", visual: "argand-plane", sliderA: "Real part a", sliderB: "Imaginary part b", minA: -4, maxA: 4, stepA: 0.1, minB: -4, maxB: 4, stepB: 0.1, defaultA: 2, defaultB: 1.5, tasks: ["Move the real part.", "Move the imaginary part.", "Read modulus and argument."] },
-  { id: "complex-rotation-animation", title: "Complex Number Rotation Animation", category: "Complex Analysis", subcategory: "Complex Plane", summary: "Multiply by a unit complex number and watch rotation without changing modulus.", formula: "z e^(i theta) rotates z by theta", visual: "complex-rotation", sliderA: "Angle theta", sliderB: "Radius r", minA: 0, maxA: 360, stepA: 1, minB: 0.5, maxB: 4, stepB: 0.1, defaultA: 45, defaultB: 2.5, tasks: ["Rotate through quadrants.", "Keep radius fixed.", "Compare original and rotated vectors."] },
-  { id: "nth-roots-circle", title: "nth Roots on Circle", category: "Complex Analysis", subcategory: "Roots and Powers", summary: "Show nth roots equally spaced around a circle.", formula: "z_k = r^(1/n) e^((theta+2pi k)i/n)", visual: "nth-roots", sliderA: "Root count n", sliderB: "Angle theta", minA: 2, maxA: 12, stepA: 1, minB: 0, maxB: 360, stepB: 1, defaultA: 5, defaultB: 30, tasks: ["Change n.", "Rotate all roots.", "Notice equal angular spacing."] },
-  { id: "complex-domain-coloring", title: "Complex Function Domain-Coloring", category: "Complex Analysis", subcategory: "Complex Functions", summary: "Use hue for argument and brightness for modulus to visualize complex functions.", formula: "color = arg(f(z)), brightness = |f(z)|", visual: "domain-coloring", sliderA: "Power p", sliderB: "Zoom", minA: 1, maxA: 4, stepA: 1, minB: 0.5, maxB: 2, stepB: 0.1, defaultA: 2, defaultB: 1, tasks: ["Change power.", "Find zeros.", "Look for argument wrapping."] },
-  { id: "cauchy-riemann-surface", title: "Cauchy-Riemann Surface Explorer", category: "Complex Analysis", subcategory: "Analytic Functions", summary: "Compare u and v surface slices and inspect Cauchy-Riemann derivative matching.", formula: "u_x=v_y and u_y=-v_x", visual: "cauchy-riemann", sliderA: "x slice", sliderB: "y slice", minA: -2, maxA: 2, stepA: 0.1, minB: -2, maxB: 2, stepB: 0.1, defaultA: 1, defaultB: 0.8, tasks: ["Move x and y.", "Compare derivative directions.", "Connect u and v surfaces."] },
-  { id: "laurent-series-annulus", title: "Laurent Series Annulus Visualizer", category: "Complex Analysis", subcategory: "Series", summary: "Visualize inner and outer radii where a Laurent series converges.", formula: "sum a_n(z-z0)^n, R1 < |z-z0| < R2", visual: "laurent-annulus", sliderA: "Inner radius", sliderB: "Outer radius", minA: 0.2, maxA: 2.5, stepA: 0.1, minB: 1, maxB: 4, stepB: 0.1, defaultA: 0.9, defaultB: 2.8, tasks: ["Change inner radius.", "Change outer radius.", "Identify the annulus region."] },
-  { id: "residue-pole-animation", title: "Residue Pole Animation", category: "Complex Analysis", subcategory: "Residues", summary: "Show a pole, a contour around it, and the residue contribution.", formula: "Res(f,a) is coefficient of 1/(z-a)", visual: "residue-pole", sliderA: "Pole strength", sliderB: "Contour radius", minA: 0.5, maxA: 4, stepA: 0.1, minB: 0.6, maxB: 3, stepB: 0.1, defaultA: 1.5, defaultB: 1.8, tasks: ["Move contour radius.", "Increase pole strength.", "Watch circulation around the pole."] },
-  { id: "conformal-mapping-grid", title: "Conformal Mapping Grid Transformer", category: "Complex Analysis", subcategory: "Conformal Maps", summary: "Transform a rectangular grid through a complex map while preserving local angles.", formula: "w=f(z), analytic maps preserve angles locally", visual: "conformal-map", sliderA: "Map strength", sliderB: "Rotation", minA: 0, maxA: 1, stepA: 0.05, minB: -90, maxB: 90, stepB: 1, defaultA: 0.45, defaultB: 20, tasks: ["Increase map strength.", "Rotate the image.", "Check where grid angles stay square locally."] },
-  { id: "vector-2d-3d-visualizer", title: "2D and 3D Vector Visualizer", category: "Linear Algebra", subcategory: "Vectors", summary: "Explore vector components, magnitude, direction, and a projected 3D view.", formula: "v = <x,y,z>, |v| = sqrt(x^2+y^2+z^2)", visual: "vector-2d-3d", sliderA: "x component", sliderB: "y / z component", minA: -4, maxA: 4, stepA: 0.1, minB: -4, maxB: 4, stepB: 0.1, defaultA: 2.5, defaultB: 1.5, tasks: ["Change vector components.", "Compare 2D and 3D projections.", "Read vector magnitude."] },
-  { id: "span-basis-animation", title: "Span and Basis Animation", category: "Linear Algebra", subcategory: "Vector Spaces", summary: "Combine two basis vectors and watch how their span fills the plane.", formula: "span{u,v} = {au + bv : a,b in R}", visual: "span-basis", sliderA: "Coefficient a", sliderB: "Coefficient b", minA: -3, maxA: 3, stepA: 0.1, minB: -3, maxB: 3, stepB: 0.1, defaultA: 1.4, defaultB: 1.2, tasks: ["Move each coefficient.", "Watch the parallelogram.", "Decide if the vectors form a basis."] },
-  { id: "matrix-transformation-grid", title: "Matrix Transformation Grid Warping", category: "Linear Algebra", subcategory: "Matrix Transformations", summary: "Apply a 2x2 matrix to a grid and see scaling, shearing, rotation, and area change.", formula: "A[x y]^T = [ax+by cx+dy]^T", visual: "matrix-grid-warp", sliderA: "Shear / stretch", sliderB: "Rotation", minA: -1.5, maxA: 1.5, stepA: 0.05, minB: -90, maxB: 90, stepB: 1, defaultA: 0.45, defaultB: 25, tasks: ["Warp the grid.", "Track where basis vectors move.", "Estimate determinant area scale."] },
-  { id: "gaussian-elimination-steps", title: "Gaussian Elimination Step-by-Step", category: "Linear Algebra", subcategory: "Systems of Equations", summary: "Step through row operations until a system reaches echelon form.", formula: "[A|b] -> row echelon form -> solution", visual: "gaussian-elimination", sliderA: "Elimination step", sliderB: "Pivot scale", minA: 0, maxA: 4, stepA: 1, minB: 0.5, maxB: 3, stepB: 0.1, defaultA: 2, defaultB: 1, tasks: ["Move through row steps.", "Identify pivots.", "Read the final solution."] },
-  { id: "eigenvector-direction-visualizer", title: "Eigenvector Direction Visualizer", category: "Linear Algebra", subcategory: "Eigen Theory", summary: "Find directions that keep their line after a matrix transformation.", formula: "Av = lambda v", visual: "eigenvector-direction", sliderA: "Vector angle", sliderB: "Stretch lambda", minA: 0, maxA: 180, stepA: 1, minB: 0.5, maxB: 3, stepB: 0.1, defaultA: 35, defaultB: 1.8, tasks: ["Rotate the test vector.", "Compare v and Av.", "Spot eigen-directions."] },
-  { id: "diagonalization-flow", title: "Diagonalization Flow", category: "Linear Algebra", subcategory: "Eigen Theory", summary: "See a matrix action decomposed into eigenbasis, diagonal scaling, and return to standard basis.", formula: "A = P D P^-1", visual: "diagonalization-flow", sliderA: "lambda 1", sliderB: "lambda 2", minA: -2, maxA: 4, stepA: 0.1, minB: -2, maxB: 4, stepB: 0.1, defaultA: 2.2, defaultB: 0.8, tasks: ["Change eigenvalue scales.", "Follow P inverse, D, then P.", "Connect diagonal entries to stretching."] },
-  { id: "gram-schmidt-orthogonalization", title: "Gram-Schmidt Orthogonalization Animation", category: "Linear Algebra", subcategory: "Orthogonality", summary: "Project one vector onto another and subtract to create an orthogonal basis.", formula: "u2 = v2 - proj_u1(v2)", visual: "gram-schmidt", sliderA: "v2 x", sliderB: "v2 y", minA: -3, maxA: 4, stepA: 0.1, minB: -3, maxB: 4, stepB: 0.1, defaultA: 2.2, defaultB: 2.8, tasks: ["Move the second vector.", "Watch the projection.", "See the perpendicular remainder."] },
-  { id: "quadratic-form-surface", title: "Quadratic Form Surface Visualizer", category: "Linear Algebra", subcategory: "Quadratic Forms", summary: "Explore how a symmetric matrix creates bowls, saddles, and contour ellipses.", formula: "q(x,y) = ax^2 + 2bxy + cy^2", visual: "quadratic-form-surface", sliderA: "a coefficient", sliderB: "c coefficient", minA: -2, maxA: 3, stepA: 0.1, minB: -2, maxB: 3, stepB: 0.1, defaultA: 1.4, defaultB: 0.8, tasks: ["Change coefficients.", "Compare contours.", "Classify bowl, saddle, or flat direction."] },
-  { id: "cayley-table-generator", title: "Cayley Table Generator", category: "Abstract Algebra", subcategory: "Groups", summary: "Generate operation tables for modular addition and multiplication-style group laws.", formula: "a * b = (a + b) mod n", visual: "cayley-table", sliderA: "Order n", sliderB: "Operation shift", minA: 3, maxA: 8, stepA: 1, minB: 0, maxB: 7, stepB: 1, defaultA: 5, defaultB: 0, tasks: ["Change the group order.", "Find identity row and column.", "Check whether each row is a permutation."] },
-  { id: "group-operation-animation", title: "Group Operation Animation", category: "Abstract Algebra", subcategory: "Groups", summary: "Animate combining two elements on a cycle and landing on their product.", formula: "g^a * g^b = g^(a+b mod n)", visual: "group-operation", sliderA: "Element a", sliderB: "Element b", minA: 0, maxA: 7, stepA: 1, minB: 0, maxB: 7, stepB: 1, defaultA: 2, defaultB: 3, tasks: ["Move element a.", "Move element b.", "Watch the product wrap around the group."] },
-  { id: "symmetry-group-of-shapes", title: "Symmetry Group of Shapes", category: "Abstract Algebra", subcategory: "Symmetry Groups", summary: "Explore rotations and reflections that preserve regular polygons.", formula: "D_n has n rotations and n reflections", visual: "symmetry-group", sliderA: "Polygon sides n", sliderB: "Symmetry step", minA: 3, maxA: 8, stepA: 1, minB: 0, maxB: 15, stepB: 1, defaultA: 5, defaultB: 2, tasks: ["Change the polygon.", "Apply rotations.", "Compare rotation and reflection symmetries."] },
-  { id: "permutation-cycle-visualizer", title: "Permutation Cycle Visualizer", category: "Abstract Algebra", subcategory: "Permutations", summary: "Visualize a permutation as arrows and cycle notation.", formula: "sigma = (1 2 4)(3 5)", visual: "permutation-cycle", sliderA: "Set size", sliderB: "Cycle shift", minA: 4, maxA: 8, stepA: 1, minB: 1, maxB: 7, stepB: 1, defaultA: 6, defaultB: 2, tasks: ["Change set size.", "Change the shift.", "Read the cycle decomposition."] },
-  { id: "coset-partition-diagram", title: "Coset Partition Diagram", category: "Abstract Algebra", subcategory: "Cosets and Quotients", summary: "Partition a group into cosets of a subgroup and compare equal-sized blocks.", formula: "aH = {ah : h in H}", visual: "coset-partition", sliderA: "Group size", sliderB: "Subgroup size", minA: 6, maxA: 24, stepA: 1, minB: 2, maxB: 8, stepB: 1, defaultA: 12, defaultB: 3, tasks: ["Change group size.", "Change subgroup size.", "Count cosets."] },
-  { id: "homomorphism-mapping-explorer", title: "Homomorphism Mapping Explorer", category: "Abstract Algebra", subcategory: "Structure Maps", summary: "Map one cyclic group into another and inspect image, kernel, and operation preservation.", formula: "phi(a*b)=phi(a) phi(b)", visual: "homomorphism-map", sliderA: "Domain order", sliderB: "Map multiplier", minA: 4, maxA: 9, stepA: 1, minB: 1, maxB: 8, stepB: 1, defaultA: 6, defaultB: 2, tasks: ["Change domain order.", "Change multiplier.", "Find repeated images and kernel elements."] },
-  { id: "ring-operation-table", title: "Ring Operation Table", category: "Abstract Algebra", subcategory: "Rings", summary: "Compare addition and multiplication tables modulo n to see ring structure.", formula: "(a+b) mod n and (ab) mod n", visual: "ring-operation-table", sliderA: "Modulus n", sliderB: "Table mode", minA: 3, maxA: 8, stepA: 1, minB: 0, maxB: 1, stepB: 1, defaultA: 5, defaultB: 0, tasks: ["Switch addition and multiplication.", "Find additive identity.", "Look for zero divisors in multiplication."] },
-  { id: "slope-field-generator", title: "Slope Field Generator", category: "Differential Equations and PDEs", subcategory: "ODE Fields", summary: "Generate small tangent marks for a first-order differential equation across the plane.", formula: "dy/dx = f(x,y)", visual: "slope-field", sliderA: "x coefficient", sliderB: "y coefficient", minA: -2, maxA: 2, stepA: 0.1, minB: -2, maxB: 2, stepB: 0.1, defaultA: 0.6, defaultB: -0.4, tasks: ["Change the x coefficient.", "Change the y coefficient.", "Look for regions where slopes flatten."] },
-  { id: "solution-curve-animation", title: "Solution Curve Animation", category: "Differential Equations and PDEs", subcategory: "ODE Fields", summary: "Trace an approximate solution curve through a slope field from an initial value.", formula: "y' = ax + by, y(x0)=y0", visual: "solution-curve", sliderA: "Initial y0", sliderB: "growth rate", minA: -2, maxA: 2, stepA: 0.1, minB: -1.5, maxB: 1.5, stepB: 0.1, defaultA: 0.6, defaultB: 0.45, tasks: ["Move the initial value.", "Change growth rate.", "Follow how the curve obeys local slopes."] },
-  { id: "direction-field-explorer", title: "Direction Field Explorer", category: "Differential Equations and PDEs", subcategory: "ODE Fields", summary: "Explore a vector direction field where arrows show both horizontal and vertical change.", formula: "dx/dt = y, dy/dt = -kx", visual: "direction-field", sliderA: "spring k", sliderB: "damping", minA: 0.2, maxA: 2.5, stepA: 0.1, minB: 0, maxB: 1.2, stepB: 0.05, defaultA: 1, defaultB: 0.2, tasks: ["Change restoring strength.", "Add damping.", "Observe rotation toward equilibrium."] },
-  { id: "orthogonal-trajectory-visualizer", title: "Orthogonal Trajectory Visualizer", category: "Differential Equations and PDEs", subcategory: "Trajectory Families", summary: "Compare a family of curves with trajectories that cross them at right angles.", formula: "m_orthogonal = -1/m", visual: "orthogonal-trajectory", sliderA: "Family spacing", sliderB: "Rotation angle", minA: 0.5, maxA: 2.5, stepA: 0.1, minB: -45, maxB: 45, stepB: 1, defaultA: 1.2, defaultB: 0, tasks: ["Change spacing.", "Rotate the families.", "Find right-angle crossings."] },
-  { id: "spring-mass-ode-simulation", title: "Spring-Mass ODE Simulation", category: "Differential Equations and PDEs", subcategory: "ODE Models", summary: "Simulate a mass attached to a spring and connect oscillation to a second-order ODE.", formula: "m x'' + c x' + kx = 0", visual: "spring-mass-ode", sliderA: "spring k", sliderB: "damping c", minA: 0.2, maxA: 3, stepA: 0.1, minB: 0, maxB: 1.5, stepB: 0.05, defaultA: 1.4, defaultB: 0.25, tasks: ["Increase spring strength.", "Add damping.", "Compare oscillation amplitude."] },
-  { id: "heat-equation-color-map", title: "Heat Equation Color-Map Animation", category: "Differential Equations and PDEs", subcategory: "PDE Simulations", summary: "Watch heat diffuse from hot spots into a smoother temperature field.", formula: "u_t = alpha u_xx", visual: "heat-equation", sliderA: "time", sliderB: "diffusion alpha", minA: 0, maxA: 5, stepA: 0.1, minB: 0.2, maxB: 2, stepB: 0.1, defaultA: 1.2, defaultB: 0.8, tasks: ["Advance time.", "Increase diffusion.", "Watch sharp peaks smooth out."] },
-  { id: "wave-equation-string-vibration", title: "Wave Equation String Vibration", category: "Differential Equations and PDEs", subcategory: "PDE Simulations", summary: "Animate a vibrating string with changing wave speed and time.", formula: "u_tt = c^2 u_xx", visual: "wave-equation", sliderA: "time", sliderB: "wave speed c", minA: 0, maxA: 6.28, stepA: 0.05, minB: 0.5, maxB: 2, stepB: 0.05, defaultA: 1.1, defaultB: 1, tasks: ["Move time.", "Change wave speed.", "Find nodes and antinodes."] },
-  { id: "laplace-equation-potential-surface", title: "Laplace Equation Potential Surface", category: "Differential Equations and PDEs", subcategory: "Potential Theory", summary: "Visualize a harmonic potential surface and equipotential contours.", formula: "nabla^2 u = 0", visual: "laplace-potential", sliderA: "source strength", sliderB: "boundary tilt", minA: -2, maxA: 2, stepA: 0.1, minB: -2, maxB: 2, stepB: 0.1, defaultA: 1, defaultB: 0.5, tasks: ["Change source strength.", "Tilt the boundary.", "Compare surface and contours."] },
-  { id: "root-finding-animation", title: "Root-Finding Animation", category: "Numerical Methods", subcategory: "Roots and Iteration", summary: "Visualize bracketing a root and shrinking the interval around a sign change.", formula: "f(a)f(b)<0 implies a root in [a,b]", visual: "root-finding", sliderA: "Left bracket", sliderB: "Right bracket", minA: -3, maxA: 0.5, stepA: 0.05, minB: 0.5, maxB: 3, stepB: 0.05, defaultA: -2, defaultB: 2, tasks: ["Move brackets.", "Find sign changes.", "Watch the midpoint approach a root."] },
-  { id: "newton-raphson-tangent-iteration", title: "Newton-Raphson Tangent Iteration", category: "Numerical Methods", subcategory: "Roots and Iteration", summary: "Step along tangent lines that jump from an estimate to a better root estimate.", formula: "x_(n+1)=x_n - f(x_n)/f'(x_n)", visual: "newton-raphson", sliderA: "Initial x0", sliderB: "Iterations", minA: -3, maxA: 3, stepA: 0.05, minB: 1, maxB: 6, stepB: 1, defaultA: 2.4, defaultB: 4, tasks: ["Move the starting point.", "Increase iterations.", "Watch tangents hit the x-axis."] },
-  { id: "error-convergence-graph", title: "Error Convergence Graph", category: "Numerical Methods", subcategory: "Error Analysis", summary: "Compare linear, quadratic, and slow convergence by plotting error decay.", formula: "e_n = |x_n - alpha|", visual: "error-convergence", sliderA: "Method family", sliderB: "Initial error", minA: 1, maxA: 3, stepA: 1, minB: 0.1, maxB: 1, stepB: 0.05, defaultA: 2, defaultB: 0.8, tasks: ["Switch method type.", "Change initial error.", "Compare how fast error falls."] },
-  { id: "interpolation-curve-builder", title: "Interpolation Curve Builder", category: "Numerical Methods", subcategory: "Interpolation", summary: "Build an interpolating curve through sample points and compare degree effects.", formula: "P_n(x_i)=y_i", visual: "interpolation-builder", sliderA: "Point count", sliderB: "Curve tension", minA: 3, maxA: 8, stepA: 1, minB: 0, maxB: 1, stepB: 0.05, defaultA: 5, defaultB: 0.35, tasks: ["Change point count.", "Adjust tension.", "See how the curve passes through data."] },
-  { id: "numerical-integration-area-comparison", title: "Numerical Integration Area Comparison", category: "Numerical Methods", subcategory: "Numerical Integration", summary: "Compare rectangle, trapezoid, and Simpson-style area approximations.", formula: "integral_a^b f(x) dx approx weighted sum", visual: "numerical-integration", sliderA: "Subintervals n", sliderB: "Method mix", minA: 4, maxA: 32, stepA: 1, minB: 0, maxB: 2, stepB: 1, defaultA: 10, defaultB: 1, tasks: ["Increase subintervals.", "Switch area method.", "Compare approximation shapes."] },
-  { id: "euler-vs-rk4-solution-comparison", title: "Euler vs RK4 Solution Comparison", category: "Numerical Methods", subcategory: "ODE Solvers", summary: "Compare a coarse Euler path with a smoother RK4 approximation for the same ODE.", formula: "y_(n+1)=y_n+h f(x_n,y_n)", visual: "euler-rk4", sliderA: "Step count", sliderB: "Growth rate", minA: 4, maxA: 32, stepA: 1, minB: -1, maxB: 1, stepB: 0.05, defaultA: 10, defaultB: 0.45, tasks: ["Change step count.", "Change growth rate.", "Compare Euler and RK4 paths."] },
-  { id: "linear-system-solver-step-animation", title: "Linear System Solver Step Animation", category: "Numerical Methods", subcategory: "Linear Solvers", summary: "Animate iterative solution of a 2x2 linear system toward the intersection point.", formula: "Ax=b, x_(k+1)=x_k + correction", visual: "linear-system-solver", sliderA: "Iteration k", sliderB: "Relaxation", minA: 0, maxA: 10, stepA: 1, minB: 0.2, maxB: 1.4, stepB: 0.05, defaultA: 4, defaultB: 0.8, tasks: ["Increase iterations.", "Change relaxation.", "Watch guesses approach the line intersection."] },
-  { id: "cayley-hamilton-theorem-visualizer", title: "Cayley-Hamilton Theorem Visualizer", category: "B.Tech M1", subcategory: "Matrices", summary: "Watch a 2x2 matrix satisfy its own characteristic equation and use that relation to express the inverse.", formula: "A^2 - tr(A)A + det(A)I = 0", visual: "cayley-hamilton", sliderA: "Trace", sliderB: "Determinant", minA: -4, maxA: 4, stepA: 0.1, minB: -3, maxB: 6, stepB: 0.1, defaultA: 2, defaultB: 1, tasks: ["Change trace.", "Change determinant.", "Read the matrix equation balance."] },
-  { id: "rank-consistency-row-reduction", title: "Rank, Consistency and Row Reduction Lab", category: "B.Tech M1", subcategory: "Matrices", summary: "Step through row operations, identify pivots, compare rank(A) and rank([A|b]), and classify solutions.", formula: "rank(A)=rank([A|b]) for consistency", visual: "gaussian-elimination", sliderA: "Row operation step", sliderB: "Pivot scale", minA: 0, maxA: 4, stepA: 1, minB: 0.5, maxB: 3, stepB: 0.1, defaultA: 2, defaultB: 1.1, tasks: ["Move through row operations.", "Count pivots.", "Classify unique, infinite, or no solution."] },
-  { id: "canonical-quadratic-form-lab", title: "Canonical Quadratic Form Lab", category: "B.Tech M1", subcategory: "Matrices", summary: "Rotate principal axes and classify positive definite, negative definite, semidefinite, and indefinite forms.", formula: "q=x^T A x, P^TAP=D", visual: "quadratic-form-surface", sliderA: "lambda 1", sliderB: "lambda 2", minA: -2, maxA: 3, stepA: 0.1, minB: -2, maxB: 3, stepB: 0.1, defaultA: 1.5, defaultB: 0.8, tasks: ["Change eigenvalue signs.", "Read the surface type.", "Connect canonical form to definiteness."] },
-  { id: "comparison-test-lab", title: "Comparison Test Lab", category: "B.Tech M1", subcategory: "Infinite Series", summary: "Compare a positive-term series with a known benchmark to judge convergence.", formula: "0 <= a_n <= b_n and sum b_n converges => sum a_n converges", visual: "convergence-test", sliderA: "Series family", sliderB: "p or ratio", minA: 1, maxA: 4, stepA: 1, minB: 0.5, maxB: 3, stepB: 0.1, defaultA: 2, defaultB: 1.4, tasks: ["Switch benchmark families.", "Move the parameter.", "Classify convergence."] },
-  { id: "ratio-test-lab", title: "D'Alembert Ratio Test Lab", category: "B.Tech M1", subcategory: "Infinite Series", summary: "Track the limiting ratio of consecutive terms and classify the series.", formula: "L = lim |a_(n+1)/a_n|; L < 1 converges, L > 1 diverges", visual: "convergence-test", sliderA: "Test family", sliderB: "Limit L", minA: 1, maxA: 4, stepA: 1, minB: 0.2, maxB: 1.8, stepB: 0.05, defaultA: 1, defaultB: 0.72, tasks: ["Move L below 1.", "Move L above 1.", "Notice the inconclusive boundary."] },
-  { id: "root-test-lab", title: "Cauchy Root Test Lab", category: "B.Tech M1", subcategory: "Infinite Series", summary: "Visualize nth-root decay and the convergence boundary at one.", formula: "L = lim nthroot(|a_n|)", visual: "convergence-test", sliderA: "Term model", sliderB: "Root limit L", minA: 1, maxA: 4, stepA: 1, minB: 0.2, maxB: 1.8, stepB: 0.05, defaultA: 2, defaultB: 0.82, tasks: ["Set L less than one.", "Set L greater than one.", "Compare with ratio behavior."] },
-  { id: "raabe-log-gauss-test-lab", title: "Raabe, Logarithmic and Gauss Test Lab", category: "B.Tech M1", subcategory: "Infinite Series", summary: "Explore refined convergence tests used when ratio/root tests are inconclusive.", formula: "Raabe: n(a_n/a_(n+1)-1)", visual: "convergence-test", sliderA: "Refined test", sliderB: "Boundary parameter", minA: 1, maxA: 4, stepA: 1, minB: 0.5, maxB: 2.5, stepB: 0.05, defaultA: 3, defaultB: 1.2, tasks: ["Compare near-boundary cases.", "Move across one.", "Explain why a refined test helps."] },
-  { id: "alternating-absolute-convergence-lab", title: "Alternating and Absolute Convergence Lab", category: "B.Tech M1", subcategory: "Infinite Series", summary: "Compare alternating partial sums with absolute-value partial sums.", formula: "sum (-1)^n a_n, absolute convergence uses sum |a_n|", visual: "series-partial-sum", sliderA: "Terms n", sliderB: "Decay ratio", minA: 1, maxA: 80, stepA: 1, minB: -0.95, maxB: 0.95, stepB: 0.05, defaultA: 28, defaultB: -0.65, tasks: ["Increase terms.", "Flip the sign pattern.", "Compare oscillation with settling."] },
-  { id: "de-moivre-roots-lab", title: "De Moivre and Roots Lab", category: "B.Tech M1", subcategory: "Complex Numbers", summary: "Raise and root complex numbers by multiplying or dividing angles on the Argand plane.", formula: "(r(cos theta+i sin theta))^n = r^n(cos ntheta+i sin ntheta)", visual: "de-moivre", sliderA: "Power/root n", sliderB: "Angle theta", minA: 2, maxA: 10, stepA: 1, minB: 0, maxB: 360, stepB: 1, defaultA: 5, defaultB: 30, tasks: ["Change n.", "Rotate theta.", "Compare power angle with root spacing."] },
-  { id: "complex-log-branch-lab", title: "Complex Logarithm Branch Lab", category: "B.Tech M1", subcategory: "Complex Numbers", summary: "Show the multi-valued logarithm and how branch cuts choose a principal argument.", formula: "Log z = ln|z| + i(arg z + 2k pi)", visual: "complex-log", sliderA: "Argument theta", sliderB: "Branch k", minA: -180, maxA: 180, stepA: 1, minB: -2, maxB: 2, stepB: 1, defaultA: 80, defaultB: 0, tasks: ["Cross the branch cut.", "Change k.", "Track the imaginary part of Log z."] },
-  { id: "complex-trig-hyperbolic-lab", title: "Complex Trig and Hyperbolic Function Lab", category: "B.Tech M1", subcategory: "Complex Numbers", summary: "Connect circular and hyperbolic functions through exponential definitions.", formula: "sin z=(e^(iz)-e^(-iz))/(2i), cosh z=(e^z+e^(-z))/2", visual: "complex-trig", sliderA: "Real part x", sliderB: "Imaginary part y", minA: -3, maxA: 3, stepA: 0.1, minB: -2, maxB: 2, stepB: 0.1, defaultA: 1.2, defaultB: 0.8, tasks: ["Move x.", "Move y.", "Compare oscillation with growth."] },
-  { id: "jacobian-area-scaling-lab", title: "Jacobian Area Scaling Lab", category: "B.Tech M1", subcategory: "Multivariable Calculus", summary: "Warp a tiny rectangle and read how the Jacobian determinant scales area.", formula: "dA_xy = |J| dA_uv", visual: "jacobian", sliderA: "u-stretch", sliderB: "v-shear", minA: 0.4, maxA: 2.5, stepA: 0.05, minB: -1.2, maxB: 1.2, stepB: 0.05, defaultA: 1.3, defaultB: 0.45, tasks: ["Stretch u.", "Add shear.", "Compare original and transformed area."] },
-  { id: "lagrange-multiplier-contours", title: "Lagrange Multiplier Contour Lab", category: "B.Tech M1", subcategory: "Multivariable Calculus", summary: "Move a constraint over level curves and find where gradients become parallel.", formula: "grad f = lambda grad g", visual: "lagrange-multiplier", sliderA: "Constraint radius", sliderB: "Contour tilt", minA: 0.8, maxA: 3, stepA: 0.05, minB: -1.2, maxB: 1.2, stepB: 0.05, defaultA: 1.9, defaultB: 0.25, tasks: ["Change the constraint.", "Tilt the objective.", "Find tangent contour contact."] },
-  { id: "asymptote-curve-tracing-lab", title: "Asymptote and Curve Tracing Lab", category: "B.Tech M1", subcategory: "Differential Calculus", summary: "Trace intercepts, vertical asymptotes, horizontal behavior, and turning points in one workflow.", formula: "Analyze f, f', denominator zeros, and end behavior", visual: "asymptote-tracing", sliderA: "Vertical shift", sliderB: "Asymptote location", minA: -2, maxA: 2, stepA: 0.1, minB: -2, maxB: 2, stepB: 0.1, defaultA: 0.4, defaultB: 0.6, tasks: ["Move the asymptote.", "Find branches.", "Read end behavior."] },
-  { id: "higher-order-ode-characteristic-lab", title: "Higher-Order ODE Characteristic Roots Lab", category: "B.Tech M2", subcategory: "Differential Equations", summary: "See how real, repeated, and complex characteristic roots shape the complementary function.", formula: "ay''+by'+cy=0 -> ar^2+br+c=0", visual: "higher-order-ode", sliderA: "Damping b", sliderB: "Stiffness c", minA: -4, maxA: 4, stepA: 0.1, minB: -2, maxB: 6, stepB: 0.1, defaultA: 0.6, defaultB: 2.2, tasks: ["Make roots real.", "Make roots complex.", "Compare oscillation and growth."] },
-  { id: "cauchy-euler-ode-lab", title: "Cauchy-Euler ODE Lab", category: "B.Tech M2", subcategory: "Differential Equations", summary: "Transform an equation with powers of x into an auxiliary equation in m.", formula: "x^2y'' + axy' + by = 0 -> m(m-1)+am+b=0", visual: "cauchy-euler", sliderA: "a coefficient", sliderB: "b coefficient", minA: -3, maxA: 5, stepA: 0.1, minB: -4, maxB: 6, stepB: 0.1, defaultA: 1.5, defaultB: -1, tasks: ["Change a.", "Change b.", "Watch power-law solutions."] },
-  { id: "series-solution-special-functions-lab", title: "Series Solutions and Special Functions Lab", category: "B.Tech M2", subcategory: "Special Functions", summary: "Build a truncated power-series solution and connect recurrence coefficients to Bessel and Legendre patterns.", formula: "y=sum a_n x^n, J_n(x), P_n(x)", visual: "series-partial-sum", sliderA: "Terms n", sliderB: "Recurrence ratio", minA: 2, maxA: 80, stepA: 1, minB: -0.9, maxB: 0.9, stepB: 0.05, defaultA: 22, defaultB: 0.45, tasks: ["Increase terms.", "Change recurrence ratio.", "Compare approximation stability."] },
-  { id: "sturm-liouville-boundary-lab", title: "Sturm-Liouville Boundary Lab", category: "B.Tech M2", subcategory: "Special Functions", summary: "Visualize eigenfunction modes satisfying boundary conditions and their orthogonality in vibration and heat models.", formula: "-(py')'+qy=lambda wy", visual: "wave-equation", sliderA: "Mode/time", sliderB: "Wave speed", minA: 0, maxA: 6.28, stepA: 0.05, minB: 0.5, maxB: 2, stepB: 0.05, defaultA: 1.4, defaultB: 1.1, tasks: ["Move through modes.", "Change speed.", "Find nodes and boundary zeros."] },
-  { id: "laplace-transform-workflow", title: "Laplace Transform Workflow", category: "B.Tech M2", subcategory: "Laplace Transform", summary: "Follow the engineering workflow: time signal, transform domain algebra, and inverse transform.", formula: "L{f(t)}=F(s), L{y'}=sY-y(0)", visual: "laplace-transform", sliderA: "Decay/frequency", sliderB: "s value", minA: 0.2, maxA: 3, stepA: 0.05, minB: 0.3, maxB: 5, stepB: 0.05, defaultA: 1.2, defaultB: 2, tasks: ["Change the time signal.", "Move s.", "Compare f(t) and F(s)."] },
-  { id: "unit-step-impulse-lab", title: "Unit Step and Impulse Lab", category: "B.Tech M2", subcategory: "Laplace Transform", summary: "Visualize delayed switching, impulse spikes, and their transform-domain effect.", formula: "u(t-a), delta(t-a), e^(-as)F(s)", visual: "step-impulse", sliderA: "Delay a", sliderB: "Impulse strength", minA: 0, maxA: 5, stepA: 0.05, minB: 0.2, maxB: 3, stepB: 0.05, defaultA: 1.8, defaultB: 1.4, tasks: ["Move the switch time.", "Change impulse height.", "Connect delay to e^(-as)."] },
-  { id: "convolution-integral-lab", title: "Convolution Integral Lab", category: "B.Tech M2", subcategory: "Laplace Transform", summary: "Slide one signal across another and watch overlap accumulate into convolution.", formula: "(f*g)(t)=integral_0^t f(tau)g(t-tau)d tau", visual: "convolution", sliderA: "Shift t", sliderB: "Pulse width", minA: 0, maxA: 5, stepA: 0.05, minB: 0.4, maxB: 2.5, stepB: 0.05, defaultA: 2.2, defaultB: 1.1, tasks: ["Slide the pulse.", "Change width.", "Watch overlap area change."] },
-  { id: "fourier-transform-spectrum-lab", title: "Fourier Transform Spectrum Lab", category: "B.Tech M2", subcategory: "Fourier Analysis", summary: "Connect a time-domain pulse or wave packet to its frequency-domain spread.", formula: "F(omega)=integral f(t)e^(-i omega t)dt", visual: "fourier-transform", sliderA: "Pulse width", sliderB: "Frequency marker", minA: 0.4, maxA: 3, stepA: 0.05, minB: -5, maxB: 5, stepB: 0.1, defaultA: 1.1, defaultB: 1.5, tasks: ["Widen the pulse.", "Move the frequency marker.", "Compare time width and spectrum width."] },
-  { id: "z-transform-difference-equations", title: "Z-Transform and Difference Equations Lab", category: "B.Tech M2", subcategory: "Z-Transform", summary: "Visualize poles, region of convergence, shift behavior, and discrete recurrence response.", formula: "X(z)=sum x_n z^(-n), x_(n+1)=a x_n + b", visual: "z-transform", sliderA: "Pole radius", sliderB: "Input step", minA: 0.1, maxA: 1.8, stepA: 0.05, minB: -2, maxB: 2, stepB: 0.05, defaultA: 0.72, defaultB: 0.8, tasks: ["Move the pole inside the unit circle.", "Push it outside.", "Compare recurrence stability."] },
-  { id: "control-system-response-lab", title: "Control System Response Lab", category: "B.Tech M3", subcategory: "Control Systems Mathematics", summary: "Move poles and compare transform-domain stability with time-domain step and impulse response behavior.", formula: "G(s)=Y(s)/U(s), poles of G(s)", visual: "laplace-transform", sliderA: "Pole decay", sliderB: "s / frequency marker", minA: 0.2, maxA: 3, stepA: 0.05, minB: 0.3, maxB: 5, stepB: 0.05, defaultA: 1, defaultB: 2.4, tasks: ["Move the pole left or right.", "Compare decay.", "Connect pole location to stability."] },
-  { id: "mobius-transformation-lab", title: "Mobius Transformation Grid Lab", category: "B.Tech M2", subcategory: "Complex Analysis", summary: "Map a complex grid through a fractional linear transformation and watch lines become circles.", formula: "w=(az+b)/(cz+d)", visual: "mobius-map", sliderA: "Pole strength c", sliderB: "Rotation", minA: 0, maxA: 1.2, stepA: 0.05, minB: -90, maxB: 90, stepB: 1, defaultA: 0.35, defaultB: 25, tasks: ["Increase c.", "Rotate the grid.", "Track how circles and lines transform."] },
-  { id: "complex-line-integral-lab", title: "Complex Line Integral Lab", category: "B.Tech M2", subcategory: "Complex Analysis", summary: "Trace a contour and see how field samples accumulate along the path.", formula: "integral_C f(z) dz", visual: "complex-line-integral", sliderA: "Contour radius", sliderB: "Field swirl", minA: 0.8, maxA: 3.2, stepA: 0.05, minB: -2, maxB: 2, stepB: 0.05, defaultA: 1.8, defaultB: 1, tasks: ["Change contour radius.", "Change field swirl.", "Compare direction and accumulation."] },
-  { id: "cauchy-integral-formula-lab", title: "Cauchy Integral Formula Lab", category: "B.Tech M2", subcategory: "Complex Analysis", summary: "Show a point inside a contour and the integral kernel that recovers function values.", formula: "f(a)=1/(2pi i) integral_C f(z)/(z-a) dz", visual: "cauchy-integral", sliderA: "Point a radius", sliderB: "Contour radius", minA: 0, maxA: 2.5, stepA: 0.05, minB: 1, maxB: 3.5, stepB: 0.05, defaultA: 0.8, defaultB: 2.2, tasks: ["Move a inside.", "Move it outside.", "Compare when the formula applies."] },
-  { id: "vector-calculus-field-theorems", title: "Vector Calculus Field Theorems Lab", category: "B.Tech M3", subcategory: "Vector Calculus", summary: "Explore gradient, divergence, curl, flux, circulation, and the links behind Green, Gauss, and Stokes theorems.", formula: "grad f, div F, curl F, flux=int_S F.n dS", visual: "vector-calculus-field", sliderA: "Field swirl", sliderB: "Flux source", minA: -2, maxA: 2, stepA: 0.05, minB: -2, maxB: 2, stepB: 0.05, defaultA: 0.9, defaultB: 0.7, tasks: ["Increase swirl and read curl.", "Change source strength and read divergence.", "Compare boundary circulation with field rotation."] },
-  { id: "pde-classification-characteristics-lab", title: "PDE Classification and Characteristics Lab", category: "B.Tech M3", subcategory: "Partial Differential Equations", summary: "Classify equations by discriminant and compare characteristic flow with elliptic, parabolic, and hyperbolic behavior.", formula: "B^2-4AC determines PDE type", visual: "direction-field", sliderA: "A / flow strength", sliderB: "B / damping", minA: 0.2, maxA: 2.5, stepA: 0.1, minB: 0, maxB: 1.2, stepB: 0.05, defaultA: 1.2, defaultB: 0.35, tasks: ["Change coefficients.", "Read field direction.", "Classify the PDE family."] },
-  { id: "finite-difference-method-lab", title: "Finite Difference Method Lab", category: "B.Tech M3", subcategory: "Partial Differential Equations", summary: "Approximate derivatives on a grid and watch heat-equation updates smooth numerical data.", formula: "u_xx approx (u_(i+1)-2u_i+u_(i-1))/h^2", visual: "heat-equation", sliderA: "time step", sliderB: "diffusion / stability", minA: 0, maxA: 5, stepA: 0.1, minB: 0.2, maxB: 2, stepB: 0.1, defaultA: 1, defaultB: 0.7, tasks: ["Advance time.", "Change diffusion.", "Watch stability and smoothing."] },
-  { id: "fixed-point-iteration-lab", title: "Fixed-Point Iteration Lab", category: "B.Tech M2", subcategory: "Numerical Methods", summary: "Iterate x=g(x) and compare convergence with the line y=x.", formula: "x_(n+1)=g(x_n)", visual: "fixed-point", sliderA: "Initial x0", sliderB: "Contraction", minA: -2.5, maxA: 2.5, stepA: 0.05, minB: 0.2, maxB: 1.4, stepB: 0.05, defaultA: -1.8, defaultB: 0.65, tasks: ["Move x0.", "Increase contraction.", "Watch cobweb convergence."] },
-  { id: "secant-method-lab", title: "Secant Method Lab", category: "B.Tech M2", subcategory: "Numerical Methods", summary: "Use two previous points to build a secant estimate of a nonlinear equation root.", formula: "x_(n+1)=x_n-f(x_n)(x_n-x_(n-1))/(f(x_n)-f(x_(n-1)))", visual: "secant-method", sliderA: "x0", sliderB: "x1", minA: -3, maxA: 1, stepA: 0.05, minB: 0.5, maxB: 3, stepB: 0.05, defaultA: -1.5, defaultB: 2, tasks: ["Move both guesses.", "Watch secant intersections.", "Compare with Newton's tangent."] },
-  { id: "newton-divided-differences-lab", title: "Newton Divided Differences Lab", category: "B.Tech M2", subcategory: "Numerical Methods", summary: "Build interpolation coefficients from nested divided differences.", formula: "P_n(x)=a_0+a_1(x-x_0)+a_2(x-x_0)(x-x_1)+...", visual: "divided-differences", sliderA: "Point count", sliderB: "Evaluation x", minA: 3, maxA: 7, stepA: 1, minB: -3, maxB: 3, stepB: 0.1, defaultA: 5, defaultB: 1.2, tasks: ["Change point count.", "Move x.", "Read the nested polynomial path."] },
-  { id: "forward-backward-interpolation-lab", title: "Forward and Backward Interpolation Lab", category: "B.Tech M2", subcategory: "Numerical Methods", summary: "Compare table-based forward and backward differences on equally spaced data.", formula: "Newton forward/backward difference formulas", visual: "finite-difference-interpolation", sliderA: "Table index", sliderB: "Step h", minA: 0, maxA: 5, stepA: 1, minB: 0.4, maxB: 1.6, stepB: 0.05, defaultA: 2, defaultB: 1, tasks: ["Move table index.", "Change h.", "Compare forward and backward focus."] },
-  { id: "gaussian-quadrature-lab", title: "Gaussian Quadrature Lab", category: "B.Tech M2", subcategory: "Numerical Methods", summary: "Place optimal sample nodes and compare weighted area against ordinary rules.", formula: "integral_-1^1 f(x)dx approx sum w_i f(x_i)", visual: "gaussian-quadrature", sliderA: "Node count", sliderB: "Curve bend", minA: 2, maxA: 5, stepA: 1, minB: 0, maxB: 2, stepB: 0.05, defaultA: 3, defaultB: 0.8, tasks: ["Change node count.", "Bend the curve.", "Compare weighted samples."] },
-  { id: "numerical-linear-algebra-iteration-lab", title: "Numerical Linear Algebra Iteration Lab", category: "B.Tech M2", subcategory: "Numerical Methods", summary: "Compare direct row-reduction thinking with Jacobi, Gauss-Seidel, and relaxation-style iterative correction.", formula: "x^(k+1)=Bx^(k)+c", visual: "linear-system-solver", sliderA: "Iteration k", sliderB: "Relaxation omega", minA: 0, maxA: 12, stepA: 1, minB: 0.2, maxB: 1.4, stepB: 0.05, defaultA: 5, defaultB: 0.85, tasks: ["Increase iterations.", "Change relaxation.", "Watch the guess approach the solution."] },
-  { id: "power-method-eigenvalue-lab", title: "Power Method Eigenvalue Lab", category: "B.Tech M2", subcategory: "Numerical Methods", summary: "Repeatedly apply a matrix to a vector and watch the direction approach a dominant eigenvector.", formula: "x_(k+1)=Ax_k/||Ax_k||", visual: "eigenvector-direction", sliderA: "Starting angle", sliderB: "Dominant stretch", minA: 0, maxA: 180, stepA: 1, minB: 0.5, maxB: 3, stepB: 0.1, defaultA: 28, defaultB: 2.1, tasks: ["Rotate the start vector.", "Increase stretch.", "Observe direction convergence."] },
-  { id: "probability-distribution-expectation-lab", title: "Probability Distribution and Expectation Lab", category: "B.Tech M3", subcategory: "Probability and Statistics", summary: "Shape a distribution-like density and connect spread with expectation and variance readouts.", formula: "E[X]=sum x p(x), Var(X)=E[X^2]-(E[X])^2", visual: "beta-gamma", sliderA: "Shape alpha / mean", sliderB: "Shape beta / spread", minA: 0.5, maxA: 6, stepA: 0.1, minB: 0.5, maxB: 6, stepB: 0.1, defaultA: 2.2, defaultB: 3, tasks: ["Move alpha.", "Move beta.", "Connect skew and spread to expectation."] },
-  { id: "statistical-inference-regression-lab", title: "Statistical Inference and Regression Lab", category: "B.Tech M3", subcategory: "Probability and Statistics", summary: "Fit a trend through sampled data and inspect residual behavior before formal inference.", formula: "y=a+bx, residual = observed - fitted", visual: "interpolation-builder", sliderA: "Sample count", sliderB: "Trend tension", minA: 3, maxA: 9, stepA: 1, minB: 0.1, maxB: 2, stepB: 0.05, defaultA: 6, defaultB: 0.8, tasks: ["Change sample count.", "Adjust the trend.", "Compare fitted curve and points."] },
-  { id: "discrete-math-cse-structure-lab", title: "Discrete Mathematics for CSE Structure Lab", category: "B.Tech M2", subcategory: "Discrete Mathematics", summary: "Compare logic, relations, modular classes, and finite structure using a visual partition model.", formula: "relations, recurrence, Boolean structure, a mod m", visual: "equivalence", sliderA: "Modulo / rule", sliderB: "Set size", minA: 2, maxA: 8, stepA: 1, minB: 8, maxB: 32, stepB: 1, defaultA: 4, defaultB: 20, tasks: ["Change the rule.", "Count classes.", "Relate partitions to equivalence relations."] },
-  { id: "graph-theory-basics", title: "Graph Theory Explorer", category: "Discrete Mathematics", subcategory: "Graph Theory", summary: "Build an undirected graph, inspect degree sequence, and trace BFS layer-by-layer.", formula: "sum deg(v) = 2|E| (handshaking lemma)", visual: "graph-theory", sliderA: "Node count", sliderB: "Edge density", minA: 4, maxA: 9, stepA: 1, minB: 0.2, maxB: 0.9, stepB: 0.05, defaultA: 6, defaultB: 0.5, tasks: ["Increase nodes.", "Change edge density.", "Count degrees and verify handshaking lemma."] },
-  { id: "operations-research-lp", title: "Linear Programming Feasible Region", category: "Discrete Mathematics", subcategory: "Operations Research", summary: "Maximize an objective function over a polygon feasible region and identify the optimal corner.", formula: "max Z = c1*x + c2*y subject to Ax <= b, x,y >= 0", visual: "operations-research", sliderA: "Objective c1", sliderB: "Objective c2", minA: 0.5, maxA: 5, stepA: 0.5, minB: 0.5, maxB: 5, stepB: 0.5, defaultA: 3, defaultB: 2, tasks: ["Change c1 and watch optimal corner move.", "Set equal coefficients.", "Find minimum instead of maximum."] },
-  { id: "network-pert-game-theory-lab", title: "Network Models, PERT/CPM and Game Theory Lab", category: "B.Tech M4", subcategory: "Operations Research", summary: "Model a project network, compare objective tradeoffs, and connect critical paths with minimax-style decisions.", formula: "E=(a+4m+b)/6, minimax payoff", visual: "operations-research", sliderA: "Critical activity weight", sliderB: "Payoff slope", minA: 0.5, maxA: 5, stepA: 0.5, minB: 0.5, maxB: 5, stepB: 0.5, defaultA: 2.5, defaultB: 3, tasks: ["Move activity weight.", "Change payoff slope.", "Identify the active constraint or critical tradeoff."] },
-  { id: "reliability-markov-queueing-lab", title: "Reliability, Markov Chain and Queueing Lab", category: "B.Tech M4", subcategory: "Stochastic Processes", summary: "Represent system states as a transition graph and connect arrival/service rates to steady behavior.", formula: "P^(n), rho=lambda/mu, R(t)=e^(-lambda t)", visual: "graph-theory", sliderA: "State count", sliderB: "Transition density", minA: 4, maxA: 9, stepA: 1, minB: 0.2, maxB: 0.9, stepB: 0.05, defaultA: 5, defaultB: 0.45, tasks: ["Change states.", "Change transition density.", "Discuss steady-state flow."] },
-  { id: "stochastic-process-time-series-lab", title: "Time Series and Stochastic Process Lab", category: "B.Tech M4", subcategory: "Stochastic Processes", summary: "Build a sample path from partial sums and compare drift, oscillation, and settling behavior.", formula: "X_t, Cov(X_t,X_(t+k)), random walk increments", visual: "series-partial-sum", sliderA: "Samples n", sliderB: "Drift / correlation", minA: 1, maxA: 80, stepA: 1, minB: -0.95, maxB: 0.95, stepB: 0.05, defaultA: 32, defaultB: 0.25, tasks: ["Increase samples.", "Change drift.", "Compare sample-path behavior."] },
-  { id: "variational-calculus-lab", title: "Calculus of Variations Lab", category: "B.Tech M4", subcategory: "Optimization", summary: "Compare candidate paths and see how an Euler-Lagrange condition selects an extremal.", formula: "d/dx(partial F/partial y') - partial F/partial y = 0", visual: "lagrange-multiplier", sliderA: "Path constraint", sliderB: "Functional tilt", minA: 0.8, maxA: 3, stepA: 0.05, minB: -1.2, maxB: 1.2, stepB: 0.05, defaultA: 1.7, defaultB: 0.35, tasks: ["Change the path constraint.", "Tilt the functional.", "Find the extremal contact."] },
-  { id: "optimization-gradient-constraints-lab", title: "Optimization Techniques Gradient and Constraints Lab", category: "B.Tech M4", subcategory: "Optimization", summary: "Move an objective through a feasible region and connect gradient direction with constrained optima.", formula: "x_new=x-alpha grad f, max Z=cx", visual: "operations-research", sliderA: "Objective weight", sliderB: "Constraint slope", minA: 0.5, maxA: 5, stepA: 0.5, minB: 0.5, maxB: 5, stepB: 0.5, defaultA: 2.8, defaultB: 2.2, tasks: ["Move the objective.", "Find the active corner.", "Compare constrained and unconstrained movement."] },
-  { id: "number-theory-cryptography-lab", title: "Number Theory and Cryptography Lab", category: "B.Tech M3", subcategory: "Number Theory", summary: "Use modular classes to see congruence, gcd cycles, and RSA-style residue structure.", formula: "a congruent b mod n, gcd(a,b), c=m^e mod n", visual: "equivalence", sliderA: "Modulus n", sliderB: "Message range", minA: 2, maxA: 12, stepA: 1, minB: 8, maxB: 36, stepB: 1, defaultA: 7, defaultB: 24, tasks: ["Change modulus.", "Inspect residue classes.", "Connect classes to modular arithmetic."] },
-  { id: "machine-learning-math-lab", title: "Mathematics for Machine Learning Lab", category: "B.Tech M4", subcategory: "Machine Learning Mathematics", summary: "Connect vector iteration, residual error, and convergence used in regression and learning algorithms.", formula: "activation(Wx+b), loss(theta), x^(k+1)=Bx^(k)+c", visual: "error-convergence", sliderA: "Method family", sliderB: "Initial loss", minA: 1, maxA: 3, stepA: 1, minB: 0.1, maxB: 1, stepB: 0.05, defaultA: 2, defaultB: 0.75, tasks: ["Switch convergence type.", "Change initial loss.", "Explain why faster error decay matters."] },
+  {
+    id: "venn-diagram-builder",
+    title: "Interactive Venn Diagram Builder",
+    category: "Sets, Relations and Logic",
+    subcategory: "Sets",
+    summary:
+      "Build two-set regions and inspect union, intersection, and difference.",
+    formula: "n(A union B)=n(A)+n(B)-n(A intersection B)",
+    visual: "venn",
+    sliderA: "Set A size",
+    sliderB: "Overlap",
+    minA: 10,
+    maxA: 100,
+    stepA: 1,
+    minB: 0,
+    maxB: 70,
+    stepB: 1,
+    defaultA: 60,
+    defaultB: 25,
+    tasks: [
+      "Increase overlap.",
+      "Compare union and intersection.",
+      "Find A minus B.",
+    ],
+  },
+  {
+    id: "function-mapping-arrows",
+    title: "Function Mapping Arrows",
+    category: "Sets, Relations and Logic",
+    subcategory: "Functions",
+    summary:
+      "Map domain elements to codomain elements and test one-one and onto behavior.",
+    formula: "f: A -> B",
+    visual: "mapping",
+    sliderA: "Domain size",
+    sliderB: "Mapping shift",
+    minA: 3,
+    maxA: 7,
+    stepA: 1,
+    minB: 0,
+    maxB: 6,
+    stepB: 1,
+    defaultA: 5,
+    defaultB: 1,
+    tasks: [
+      "Check whether each input has one output.",
+      "Look for repeated outputs.",
+      "Test onto coverage.",
+    ],
+  },
+  {
+    id: "relation-matrix-visualizer",
+    title: "Relation Matrix Visualizer",
+    category: "Sets, Relations and Logic",
+    subcategory: "Relations",
+    summary:
+      "Represent relations as matrix entries and test reflexive, symmetric, and transitive patterns.",
+    formula: "M_ij=1 when (a_i,a_j) is in R",
+    visual: "relation-matrix",
+    sliderA: "Relation rule",
+    sliderB: "Set size",
+    minA: 1,
+    maxA: 4,
+    stepA: 1,
+    minB: 3,
+    maxB: 7,
+    stepB: 1,
+    defaultA: 1,
+    defaultB: 5,
+    tasks: [
+      "Try equality relation.",
+      "Try less-than relation.",
+      "Inspect diagonal entries.",
+    ],
+  },
+  {
+    id: "truth-table-generator",
+    title: "Truth Table Generator",
+    category: "Sets, Relations and Logic",
+    subcategory: "Logic",
+    summary: "Generate truth values for compound logical statements.",
+    formula: "p -> q is equivalent to not p or q",
+    visual: "truth-table",
+    sliderA: "Expression",
+    sliderB: "Rows",
+    minA: 1,
+    maxA: 4,
+    stepA: 1,
+    minB: 2,
+    maxB: 4,
+    stepB: 1,
+    defaultA: 1,
+    defaultB: 4,
+    tasks: [
+      "Compare AND and OR.",
+      "Find false implication row.",
+      "Test biconditional.",
+    ],
+  },
+  {
+    id: "proof-by-induction",
+    title: "Proof-by-Induction Animation",
+    category: "Sets, Relations and Logic",
+    subcategory: "Proof",
+    summary: "Animate base case and domino-style induction step.",
+    formula: "P(1) true and P(k)->P(k+1) true implies P(n)",
+    visual: "induction",
+    sliderA: "Current n",
+    sliderB: "Step strength",
+    minA: 1,
+    maxA: 12,
+    stepA: 1,
+    minB: 1,
+    maxB: 4,
+    stepB: 1,
+    defaultA: 5,
+    defaultB: 2,
+    tasks: ["Check base case.", "Push one domino.", "Explain k to k+1."],
+  },
+  {
+    id: "equivalence-class-partition",
+    title: "Equivalence Class Partition Simulator",
+    category: "Sets, Relations and Logic",
+    subcategory: "Relations",
+    summary: "Partition a set into equivalence classes using modulo rules.",
+    formula: "a ~ b when a mod m = b mod m",
+    visual: "equivalence",
+    sliderA: "Modulo m",
+    sliderB: "Set size",
+    minA: 2,
+    maxA: 6,
+    stepA: 1,
+    minB: 8,
+    maxB: 24,
+    stepB: 1,
+    defaultA: 3,
+    defaultB: 15,
+    tasks: ["Change modulo.", "Count classes.", "Find numbers in same class."],
+  },
+  {
+    id: "limit-approaching-animation",
+    title: "Limit Approaching Animation",
+    category: "Calculus",
+    subcategory: "Limits",
+    summary:
+      "Move toward a point from left and right and compare output values.",
+    formula: "lim x->a f(x)",
+    visual: "limit",
+    sliderA: "Approach distance",
+    sliderB: "Target a",
+    minA: 0.05,
+    maxA: 2,
+    stepA: 0.05,
+    minB: -2,
+    maxB: 2,
+    stepB: 0.1,
+    defaultA: 0.8,
+    defaultB: 0,
+    tasks: [
+      "Approach from both sides.",
+      "Compare y-values.",
+      "Reduce distance.",
+    ],
+  },
+  {
+    id: "continuity-explorer",
+    title: "Continuity/Discontinuity Graph Explorer",
+    category: "Calculus",
+    subcategory: "Limits",
+    summary: "Explore removable, jump, and infinite discontinuities.",
+    formula: "continuous when limit equals function value",
+    visual: "continuity",
+    sliderA: "Discontinuity type",
+    sliderB: "Point a",
+    minA: 1,
+    maxA: 3,
+    stepA: 1,
+    minB: -3,
+    maxB: 3,
+    stepB: 0.1,
+    defaultA: 1,
+    defaultB: 0,
+    tasks: ["Make a hole.", "Make a jump.", "Compare f(a) with limit."],
+  },
+  {
+    id: "tangent-line-visualizer",
+    title: "Tangent Line Visualizer",
+    category: "Calculus",
+    subcategory: "Derivatives",
+    summary: "Move a point on a curve and read the tangent line slope.",
+    formula: "slope = f'(x)",
+    visual: "tangent",
+    sliderA: "x position",
+    sliderB: "Curve scale",
+    minA: -3,
+    maxA: 3,
+    stepA: 0.05,
+    minB: 0.5,
+    maxB: 2.5,
+    stepB: 0.1,
+    defaultA: 1,
+    defaultB: 1,
+    tasks: ["Move to vertex.", "Find positive slope.", "Find negative slope."],
+  },
+  {
+    id: "derivative-as-slope",
+    title: "Derivative as Slope Animation",
+    category: "Calculus",
+    subcategory: "Derivatives",
+    summary: "Shrink secant width until it becomes the tangent slope.",
+    formula: "f'(x)=lim h->0 [f(x+h)-f(x)]/h",
+    visual: "derivative",
+    sliderA: "x",
+    sliderB: "h",
+    minA: -3,
+    maxA: 3,
+    stepA: 0.05,
+    minB: 0.05,
+    maxB: 2,
+    stepB: 0.05,
+    defaultA: 1,
+    defaultB: 1,
+    tasks: [
+      "Shrink h.",
+      "Compare secant and tangent.",
+      "Read derivative value.",
+    ],
+  },
+  {
+    id: "higher-order-derivatives",
+    title: "Higher-Order Derivative Graph Comparison",
+    category: "Calculus",
+    subcategory: "Derivatives",
+    summary: "Compare f, f prime, and f double-prime graphs together.",
+    formula: "f, f', f''",
+    visual: "higher-derivative",
+    sliderA: "Coefficient",
+    sliderB: "x marker",
+    minA: 0.2,
+    maxA: 2,
+    stepA: 0.1,
+    minB: -3,
+    maxB: 3,
+    stepB: 0.05,
+    defaultA: 1,
+    defaultB: 1,
+    tasks: [
+      "Compare curve and slope.",
+      "Find where f'' changes sign.",
+      "Read all three values.",
+    ],
+  },
+  {
+    id: "maxima-minima-detector",
+    title: "Maxima-Minima Detector",
+    category: "Calculus",
+    subcategory: "Applications of Derivatives",
+    summary: "Detect turning points by sign changes in the derivative.",
+    formula: "critical points where f'(x)=0",
+    visual: "maxima",
+    sliderA: "Curve shift",
+    sliderB: "Scan point",
+    minA: -2,
+    maxA: 2,
+    stepA: 0.1,
+    minB: -3,
+    maxB: 3,
+    stepB: 0.05,
+    defaultA: 0,
+    defaultB: 1,
+    tasks: ["Find f'=0.", "Classify max/min.", "Move the curve."],
+  },
+  {
+    id: "taylor-series-approximation",
+    title: "Taylor Series Approximation Visualizer",
+    category: "Calculus",
+    subcategory: "Series",
+    summary: "Approximate a function with increasing polynomial degree.",
+    formula: "f(x)=sum f^(n)(a)(x-a)^n/n!",
+    visual: "taylor",
+    sliderA: "Degree",
+    sliderB: "x",
+    minA: 1,
+    maxA: 9,
+    stepA: 1,
+    minB: -3,
+    maxB: 3,
+    stepB: 0.05,
+    defaultA: 3,
+    defaultB: 1,
+    tasks: [
+      "Increase degree.",
+      "Move away from center.",
+      "Compare approximation error.",
+    ],
+  },
+  {
+    id: "curvature-osculating-circle",
+    title: "Curvature and Osculating Circle Simulator",
+    category: "Calculus",
+    subcategory: "Advanced Derivatives",
+    summary: "Show the circle that best hugs a curve at one point.",
+    formula: "curvature kappa = |y''|/(1+y'^2)^(3/2)",
+    visual: "curvature",
+    sliderA: "x position",
+    sliderB: "Curve scale",
+    minA: -2,
+    maxA: 2,
+    stepA: 0.05,
+    minB: 0.5,
+    maxB: 2,
+    stepB: 0.1,
+    defaultA: 0.8,
+    defaultB: 1,
+    tasks: [
+      "Move along curve.",
+      "Compare tight and flat parts.",
+      "Read radius of curvature.",
+    ],
+  },
+  {
+    id: "partial-derivative-slicer",
+    title: "Partial Derivative Surface Slicer",
+    category: "Calculus",
+    subcategory: "Multivariable Calculus",
+    summary:
+      "Slice a surface in x and y directions to see partial derivatives.",
+    formula: "partial f/partial x, partial f/partial y",
+    visual: "partial",
+    sliderA: "x slice",
+    sliderB: "y slice",
+    minA: -3,
+    maxA: 3,
+    stepA: 0.1,
+    minB: -3,
+    maxB: 3,
+    stepB: 0.1,
+    defaultA: 1,
+    defaultB: 1,
+    tasks: [
+      "Move x slice.",
+      "Move y slice.",
+      "Compare two directional slopes.",
+    ],
+  },
+  {
+    id: "riemann-sum-animation",
+    title: "Riemann Sum Animation",
+    category: "Calculus",
+    subcategory: "Integral Calculus",
+    summary:
+      "Approximate area under a curve by changing the number of rectangles.",
+    formula: "integral_a^b f(x) dx approx sum f(x_i) Delta x",
+    visual: "riemann",
+    sliderA: "Rectangles n",
+    sliderB: "Right endpoint b",
+    minA: 4,
+    maxA: 60,
+    stepA: 1,
+    minB: 1,
+    maxB: 5,
+    stepB: 0.1,
+    defaultA: 12,
+    defaultB: 4,
+    tasks: [
+      "Increase rectangles.",
+      "Compare over/under estimate.",
+      "Watch Delta x shrink.",
+    ],
+  },
+  {
+    id: "area-under-curve-simulator",
+    title: "Area Under Curve Simulator",
+    category: "Calculus",
+    subcategory: "Integral Calculus",
+    summary: "Highlight signed and total area under a curve over an interval.",
+    formula: "Area = integral_a^b f(x) dx",
+    visual: "area-under-curve",
+    sliderA: "Start a",
+    sliderB: "End b",
+    minA: -3,
+    maxA: 2,
+    stepA: 0.1,
+    minB: -1,
+    maxB: 4,
+    stepB: 0.1,
+    defaultA: -1,
+    defaultB: 3,
+    tasks: [
+      "Move the interval.",
+      "Compare positive and negative area.",
+      "Find where area changes sign.",
+    ],
+  },
+  {
+    id: "shell-vs-washer-3d",
+    title: "Shell Method vs Washer Method 3D View",
+    category: "Calculus",
+    subcategory: "Applications of Integrals",
+    summary:
+      "Compare vertical cylindrical shells with horizontal washers for solids of revolution.",
+    formula: "V_shell=2pi integral x f(x) dx, V_washer=pi integral R^2-r^2 dx",
+    visual: "shell-washer",
+    sliderA: "Slice position",
+    sliderB: "Method mix",
+    minA: 0.2,
+    maxA: 3.5,
+    stepA: 0.05,
+    minB: 0,
+    maxB: 1,
+    stepB: 0.05,
+    defaultA: 1.4,
+    defaultB: 0.2,
+    tasks: [
+      "Move the slice.",
+      "Blend shell and washer views.",
+      "Compare radius and height.",
+    ],
+  },
+  {
+    id: "double-integral-region",
+    title: "Double Integral Region Highlighter",
+    category: "Calculus",
+    subcategory: "Multivariable Calculus",
+    summary:
+      "Highlight a 2D integration region and sample height values over it.",
+    formula: "double integral_R f(x,y) dA",
+    visual: "double-integral",
+    sliderA: "Region width",
+    sliderB: "Region height",
+    minA: 0.5,
+    maxA: 4,
+    stepA: 0.1,
+    minB: 0.5,
+    maxB: 3,
+    stepB: 0.1,
+    defaultA: 2.6,
+    defaultB: 1.8,
+    tasks: [
+      "Change region width.",
+      "Change region height.",
+      "Estimate area elements dA.",
+    ],
+  },
+  {
+    id: "triple-integral-volume",
+    title: "Triple Integral Volume Explorer",
+    category: "Calculus",
+    subcategory: "Multivariable Calculus",
+    summary: "Visualize a volume region as stacked boxes in 3D projection.",
+    formula: "triple integral_E f(x,y,z) dV",
+    visual: "triple-integral",
+    sliderA: "Base size",
+    sliderB: "Height",
+    minA: 1,
+    maxA: 5,
+    stepA: 0.1,
+    minB: 1,
+    maxB: 5,
+    stepB: 0.1,
+    defaultA: 3,
+    defaultB: 2.4,
+    tasks: ["Increase base.", "Increase height.", "Count volume elements."],
+  },
+  {
+    id: "coordinate-transformation",
+    title: "Coordinate Transformation Visualizer",
+    category: "Calculus",
+    subcategory: "Multivariable Calculus",
+    summary:
+      "Transform a square grid into polar-style curved coordinates and observe area scaling.",
+    formula: "dA = |J| du dv",
+    visual: "coordinate-transform",
+    sliderA: "Warp strength",
+    sliderB: "Rotation",
+    minA: 0,
+    maxA: 1,
+    stepA: 0.05,
+    minB: -90,
+    maxB: 90,
+    stepB: 1,
+    defaultA: 0.45,
+    defaultB: 25,
+    tasks: [
+      "Increase warp.",
+      "Rotate coordinates.",
+      "Look for area stretching.",
+    ],
+  },
+  {
+    id: "beta-gamma-curves",
+    title: "Beta/Gamma Function Curve Explorer",
+    category: "Calculus",
+    subcategory: "Special Functions",
+    summary:
+      "Compare Gamma and Beta function shapes using positive parameters.",
+    formula: "Gamma(n)=(n-1)!, B(a,b)=Gamma(a)Gamma(b)/Gamma(a+b)",
+    visual: "beta-gamma",
+    sliderA: "alpha",
+    sliderB: "beta",
+    minA: 0.5,
+    maxA: 6,
+    stepA: 0.1,
+    minB: 0.5,
+    maxB: 6,
+    stepB: 0.1,
+    defaultA: 2.5,
+    defaultB: 3,
+    tasks: ["Change alpha.", "Change beta.", "Compare skew and peak."],
+  },
+  {
+    id: "sequence-convergence",
+    title: "Sequence Convergence Animation",
+    category: "Real Analysis",
+    subcategory: "Sequences",
+    summary:
+      "Watch sequence terms approach a limiting value and compare error bands.",
+    formula: "a_n -> L when |a_n-L| -> 0",
+    visual: "sequence-convergence",
+    sliderA: "Term n",
+    sliderB: "Limit L",
+    minA: 1,
+    maxA: 80,
+    stepA: 1,
+    minB: -2,
+    maxB: 2,
+    stepB: 0.1,
+    defaultA: 18,
+    defaultB: 1,
+    tasks: ["Increase n.", "Watch error shrink.", "Move the limit line."],
+  },
+  {
+    id: "cauchy-sequence-distance",
+    title: "Cauchy Sequence Distance Visualizer",
+    category: "Real Analysis",
+    subcategory: "Sequences",
+    summary:
+      "See later sequence terms cluster close together even before naming the limit.",
+    formula: "for every epsilon, |a_m-a_n| < epsilon eventually",
+    visual: "cauchy-sequence",
+    sliderA: "Start index N",
+    sliderB: "Epsilon",
+    minA: 1,
+    maxA: 50,
+    stepA: 1,
+    minB: 0.05,
+    maxB: 1,
+    stepB: 0.05,
+    defaultA: 12,
+    defaultB: 0.25,
+    tasks: ["Increase N.", "Shrink epsilon.", "Check tail distances."],
+  },
+  {
+    id: "series-partial-sum",
+    title: "Series Partial Sum Visualizer",
+    category: "Real Analysis",
+    subcategory: "Series",
+    summary: "Add terms one by one and watch partial sums settle or drift.",
+    formula: "S_n = a_1 + a_2 + ... + a_n",
+    visual: "series-partial-sum",
+    sliderA: "Terms n",
+    sliderB: "Ratio r",
+    minA: 1,
+    maxA: 80,
+    stepA: 1,
+    minB: -0.95,
+    maxB: 0.95,
+    stepB: 0.05,
+    defaultA: 16,
+    defaultB: 0.5,
+    tasks: [
+      "Increase terms.",
+      "Try negative ratio.",
+      "Compare with infinite sum.",
+    ],
+  },
+  {
+    id: "convergence-test-comparison",
+    title: "Convergence Test Comparison Tool",
+    category: "Real Analysis",
+    subcategory: "Series",
+    summary: "Compare geometric, p-series, harmonic, and alternating behavior.",
+    formula: "geometric |r|<1, p-series converges when p>1",
+    visual: "convergence-test",
+    sliderA: "Test family",
+    sliderB: "Parameter",
+    minA: 1,
+    maxA: 4,
+    stepA: 1,
+    minB: 0.5,
+    maxB: 3,
+    stepB: 0.1,
+    defaultA: 2,
+    defaultB: 1.4,
+    tasks: [
+      "Switch tests.",
+      "Move parameter across boundary.",
+      "Classify convergence.",
+    ],
+  },
+  {
+    id: "power-series-radius",
+    title: "Power Series Radius of Convergence Circle",
+    category: "Real Analysis",
+    subcategory: "Power Series",
+    summary:
+      "Visualize radius of convergence around the center of a power series.",
+    formula: "sum c_n(x-a)^n converges when |x-a| < R",
+    visual: "power-series-radius",
+    sliderA: "Radius R",
+    sliderB: "Point x",
+    minA: 0.5,
+    maxA: 4,
+    stepA: 0.1,
+    minB: -5,
+    maxB: 5,
+    stepB: 0.1,
+    defaultA: 2.5,
+    defaultB: 1.4,
+    tasks: ["Move x inside radius.", "Move x outside radius.", "Change R."],
+  },
+  {
+    id: "pointwise-vs-uniform",
+    title: "Pointwise vs Uniform Convergence Animation",
+    category: "Real Analysis",
+    subcategory: "Function Sequences",
+    summary:
+      "Compare convergence at each point with convergence controlled uniformly over the whole interval.",
+    formula: "uniform when sup_x |f_n(x)-f(x)| -> 0",
+    visual: "pointwise-uniform",
+    sliderA: "n",
+    sliderB: "Probe x",
+    minA: 1,
+    maxA: 40,
+    stepA: 1,
+    minB: 0,
+    maxB: 1,
+    stepB: 0.01,
+    defaultA: 8,
+    defaultB: 0.8,
+    tasks: ["Increase n.", "Probe near x=1.", "Compare maximum error."],
+  },
+  {
+    id: "riemann-partition-refinement",
+    title: "Riemann Partition Refinement Visualizer",
+    category: "Real Analysis",
+    subcategory: "Riemann Integration",
+    summary:
+      "Refine a partition and compare upper/lower sums as mesh size shrinks.",
+    formula: "mesh(P)->0, upper sum - lower sum -> 0",
+    visual: "partition-refinement",
+    sliderA: "Partition pieces",
+    sliderB: "Sample bias",
+    minA: 2,
+    maxA: 50,
+    stepA: 1,
+    minB: 0,
+    maxB: 1,
+    stepB: 0.05,
+    defaultA: 8,
+    defaultB: 0.5,
+    tasks: [
+      "Increase pieces.",
+      "Compare upper and lower rectangles.",
+      "Reduce mesh size.",
+    ],
+  },
+  {
+    id: "argand-plane-plot",
+    title: "Argand Plane Interactive Plot",
+    category: "Complex Analysis",
+    subcategory: "Complex Plane",
+    summary:
+      "Plot a complex number as a point and vector with modulus and argument.",
+    formula: "z=a+bi = r(cos theta + i sin theta)",
+    visual: "argand-plane",
+    sliderA: "Real part a",
+    sliderB: "Imaginary part b",
+    minA: -4,
+    maxA: 4,
+    stepA: 0.1,
+    minB: -4,
+    maxB: 4,
+    stepB: 0.1,
+    defaultA: 2,
+    defaultB: 1.5,
+    tasks: [
+      "Move the real part.",
+      "Move the imaginary part.",
+      "Read modulus and argument.",
+    ],
+  },
+  {
+    id: "complex-rotation-animation",
+    title: "Complex Number Rotation Animation",
+    category: "Complex Analysis",
+    subcategory: "Complex Plane",
+    summary:
+      "Multiply by a unit complex number and watch rotation without changing modulus.",
+    formula: "z e^(i theta) rotates z by theta",
+    visual: "complex-rotation",
+    sliderA: "Angle theta",
+    sliderB: "Radius r",
+    minA: 0,
+    maxA: 360,
+    stepA: 1,
+    minB: 0.5,
+    maxB: 4,
+    stepB: 0.1,
+    defaultA: 45,
+    defaultB: 2.5,
+    tasks: [
+      "Rotate through quadrants.",
+      "Keep radius fixed.",
+      "Compare original and rotated vectors.",
+    ],
+  },
+  {
+    id: "nth-roots-circle",
+    title: "nth Roots on Circle",
+    category: "Complex Analysis",
+    subcategory: "Roots and Powers",
+    summary: "Show nth roots equally spaced around a circle.",
+    formula: "z_k = r^(1/n) e^((theta+2pi k)i/n)",
+    visual: "nth-roots",
+    sliderA: "Root count n",
+    sliderB: "Angle theta",
+    minA: 2,
+    maxA: 12,
+    stepA: 1,
+    minB: 0,
+    maxB: 360,
+    stepB: 1,
+    defaultA: 5,
+    defaultB: 30,
+    tasks: ["Change n.", "Rotate all roots.", "Notice equal angular spacing."],
+  },
+  {
+    id: "complex-domain-coloring",
+    title: "Complex Function Domain-Coloring",
+    category: "Complex Analysis",
+    subcategory: "Complex Functions",
+    summary:
+      "Use hue for argument and brightness for modulus to visualize complex functions.",
+    formula: "color = arg(f(z)), brightness = |f(z)|",
+    visual: "domain-coloring",
+    sliderA: "Power p",
+    sliderB: "Zoom",
+    minA: 1,
+    maxA: 4,
+    stepA: 1,
+    minB: 0.5,
+    maxB: 2,
+    stepB: 0.1,
+    defaultA: 2,
+    defaultB: 1,
+    tasks: ["Change power.", "Find zeros.", "Look for argument wrapping."],
+  },
+  {
+    id: "cauchy-riemann-surface",
+    title: "Cauchy-Riemann Surface Explorer",
+    category: "Complex Analysis",
+    subcategory: "Analytic Functions",
+    summary:
+      "Compare u and v surface slices and inspect Cauchy-Riemann derivative matching.",
+    formula: "u_x=v_y and u_y=-v_x",
+    visual: "cauchy-riemann",
+    sliderA: "x slice",
+    sliderB: "y slice",
+    minA: -2,
+    maxA: 2,
+    stepA: 0.1,
+    minB: -2,
+    maxB: 2,
+    stepB: 0.1,
+    defaultA: 1,
+    defaultB: 0.8,
+    tasks: [
+      "Move x and y.",
+      "Compare derivative directions.",
+      "Connect u and v surfaces.",
+    ],
+  },
+  {
+    id: "laurent-series-annulus",
+    title: "Laurent Series Annulus Visualizer",
+    category: "Complex Analysis",
+    subcategory: "Series",
+    summary:
+      "Visualize inner and outer radii where a Laurent series converges.",
+    formula: "sum a_n(z-z0)^n, R1 < |z-z0| < R2",
+    visual: "laurent-annulus",
+    sliderA: "Inner radius",
+    sliderB: "Outer radius",
+    minA: 0.2,
+    maxA: 2.5,
+    stepA: 0.1,
+    minB: 1,
+    maxB: 4,
+    stepB: 0.1,
+    defaultA: 0.9,
+    defaultB: 2.8,
+    tasks: [
+      "Change inner radius.",
+      "Change outer radius.",
+      "Identify the annulus region.",
+    ],
+  },
+  {
+    id: "residue-pole-animation",
+    title: "Residue Pole Animation",
+    category: "Complex Analysis",
+    subcategory: "Residues",
+    summary: "Show a pole, a contour around it, and the residue contribution.",
+    formula: "Res(f,a) is coefficient of 1/(z-a)",
+    visual: "residue-pole",
+    sliderA: "Pole strength",
+    sliderB: "Contour radius",
+    minA: 0.5,
+    maxA: 4,
+    stepA: 0.1,
+    minB: 0.6,
+    maxB: 3,
+    stepB: 0.1,
+    defaultA: 1.5,
+    defaultB: 1.8,
+    tasks: [
+      "Move contour radius.",
+      "Increase pole strength.",
+      "Watch circulation around the pole.",
+    ],
+  },
+  {
+    id: "conformal-mapping-grid",
+    title: "Conformal Mapping Grid Transformer",
+    category: "Complex Analysis",
+    subcategory: "Conformal Maps",
+    summary:
+      "Transform a rectangular grid through a complex map while preserving local angles.",
+    formula: "w=f(z), analytic maps preserve angles locally",
+    visual: "conformal-map",
+    sliderA: "Map strength",
+    sliderB: "Rotation",
+    minA: 0,
+    maxA: 1,
+    stepA: 0.05,
+    minB: -90,
+    maxB: 90,
+    stepB: 1,
+    defaultA: 0.45,
+    defaultB: 20,
+    tasks: [
+      "Increase map strength.",
+      "Rotate the image.",
+      "Check where grid angles stay square locally.",
+    ],
+  },
+  {
+    id: "vector-2d-3d-visualizer",
+    title: "2D and 3D Vector Visualizer",
+    category: "Linear Algebra",
+    subcategory: "Vectors",
+    summary:
+      "Explore vector components, magnitude, direction, and a projected 3D view.",
+    formula: "v = <x,y,z>, |v| = sqrt(x^2+y^2+z^2)",
+    visual: "vector-2d-3d",
+    sliderA: "x component",
+    sliderB: "y / z component",
+    minA: -4,
+    maxA: 4,
+    stepA: 0.1,
+    minB: -4,
+    maxB: 4,
+    stepB: 0.1,
+    defaultA: 2.5,
+    defaultB: 1.5,
+    tasks: [
+      "Change vector components.",
+      "Compare 2D and 3D projections.",
+      "Read vector magnitude.",
+    ],
+  },
+  {
+    id: "span-basis-animation",
+    title: "Span and Basis Animation",
+    category: "Linear Algebra",
+    subcategory: "Vector Spaces",
+    summary:
+      "Combine two basis vectors and watch how their span fills the plane.",
+    formula: "span{u,v} = {au + bv : a,b in R}",
+    visual: "span-basis",
+    sliderA: "Coefficient a",
+    sliderB: "Coefficient b",
+    minA: -3,
+    maxA: 3,
+    stepA: 0.1,
+    minB: -3,
+    maxB: 3,
+    stepB: 0.1,
+    defaultA: 1.4,
+    defaultB: 1.2,
+    tasks: [
+      "Move each coefficient.",
+      "Watch the parallelogram.",
+      "Decide if the vectors form a basis.",
+    ],
+  },
+  {
+    id: "matrix-transformation-grid",
+    title: "Matrix Transformation Grid Warping",
+    category: "Linear Algebra",
+    subcategory: "Matrix Transformations",
+    summary:
+      "Apply a 2x2 matrix to a grid and see scaling, shearing, rotation, and area change.",
+    formula: "A[x y]^T = [ax+by cx+dy]^T",
+    visual: "matrix-grid-warp",
+    sliderA: "Shear / stretch",
+    sliderB: "Rotation",
+    minA: -1.5,
+    maxA: 1.5,
+    stepA: 0.05,
+    minB: -90,
+    maxB: 90,
+    stepB: 1,
+    defaultA: 0.45,
+    defaultB: 25,
+    tasks: [
+      "Warp the grid.",
+      "Track where basis vectors move.",
+      "Estimate determinant area scale.",
+    ],
+  },
+  {
+    id: "gaussian-elimination-steps",
+    title: "Gaussian Elimination Step-by-Step",
+    category: "Linear Algebra",
+    subcategory: "Systems of Equations",
+    summary: "Step through row operations until a system reaches echelon form.",
+    formula: "[A|b] -> row echelon form -> solution",
+    visual: "gaussian-elimination",
+    sliderA: "Elimination step",
+    sliderB: "Pivot scale",
+    minA: 0,
+    maxA: 4,
+    stepA: 1,
+    minB: 0.5,
+    maxB: 3,
+    stepB: 0.1,
+    defaultA: 2,
+    defaultB: 1,
+    tasks: [
+      "Move through row steps.",
+      "Identify pivots.",
+      "Read the final solution.",
+    ],
+  },
+  {
+    id: "eigenvector-direction-visualizer",
+    title: "Eigenvector Direction Visualizer",
+    category: "Linear Algebra",
+    subcategory: "Eigen Theory",
+    summary:
+      "Find directions that keep their line after a matrix transformation.",
+    formula: "Av = lambda v",
+    visual: "eigenvector-direction",
+    sliderA: "Vector angle",
+    sliderB: "Stretch lambda",
+    minA: 0,
+    maxA: 180,
+    stepA: 1,
+    minB: 0.5,
+    maxB: 3,
+    stepB: 0.1,
+    defaultA: 35,
+    defaultB: 1.8,
+    tasks: [
+      "Rotate the test vector.",
+      "Compare v and Av.",
+      "Spot eigen-directions.",
+    ],
+  },
+  {
+    id: "diagonalization-flow",
+    title: "Diagonalization Flow",
+    category: "Linear Algebra",
+    subcategory: "Eigen Theory",
+    summary:
+      "See a matrix action decomposed into eigenbasis, diagonal scaling, and return to standard basis.",
+    formula: "A = P D P^-1",
+    visual: "diagonalization-flow",
+    sliderA: "lambda 1",
+    sliderB: "lambda 2",
+    minA: -2,
+    maxA: 4,
+    stepA: 0.1,
+    minB: -2,
+    maxB: 4,
+    stepB: 0.1,
+    defaultA: 2.2,
+    defaultB: 0.8,
+    tasks: [
+      "Change eigenvalue scales.",
+      "Follow P inverse, D, then P.",
+      "Connect diagonal entries to stretching.",
+    ],
+  },
+  {
+    id: "gram-schmidt-orthogonalization",
+    title: "Gram-Schmidt Orthogonalization Animation",
+    category: "Linear Algebra",
+    subcategory: "Orthogonality",
+    summary:
+      "Project one vector onto another and subtract to create an orthogonal basis.",
+    formula: "u2 = v2 - proj_u1(v2)",
+    visual: "gram-schmidt",
+    sliderA: "v2 x",
+    sliderB: "v2 y",
+    minA: -3,
+    maxA: 4,
+    stepA: 0.1,
+    minB: -3,
+    maxB: 4,
+    stepB: 0.1,
+    defaultA: 2.2,
+    defaultB: 2.8,
+    tasks: [
+      "Move the second vector.",
+      "Watch the projection.",
+      "See the perpendicular remainder.",
+    ],
+  },
+  {
+    id: "quadratic-form-surface",
+    title: "Quadratic Form Surface Visualizer",
+    category: "Linear Algebra",
+    subcategory: "Quadratic Forms",
+    summary:
+      "Explore how a symmetric matrix creates bowls, saddles, and contour ellipses.",
+    formula: "q(x,y) = ax^2 + 2bxy + cy^2",
+    visual: "quadratic-form-surface",
+    sliderA: "a coefficient",
+    sliderB: "c coefficient",
+    minA: -2,
+    maxA: 3,
+    stepA: 0.1,
+    minB: -2,
+    maxB: 3,
+    stepB: 0.1,
+    defaultA: 1.4,
+    defaultB: 0.8,
+    tasks: [
+      "Change coefficients.",
+      "Compare contours.",
+      "Classify bowl, saddle, or flat direction.",
+    ],
+  },
+  {
+    id: "cayley-table-generator",
+    title: "Cayley Table Generator",
+    category: "Abstract Algebra",
+    subcategory: "Groups",
+    summary:
+      "Generate operation tables for modular addition and multiplication-style group laws.",
+    formula: "a * b = (a + b) mod n",
+    visual: "cayley-table",
+    sliderA: "Order n",
+    sliderB: "Operation shift",
+    minA: 3,
+    maxA: 8,
+    stepA: 1,
+    minB: 0,
+    maxB: 7,
+    stepB: 1,
+    defaultA: 5,
+    defaultB: 0,
+    tasks: [
+      "Change the group order.",
+      "Find identity row and column.",
+      "Check whether each row is a permutation.",
+    ],
+  },
+  {
+    id: "group-operation-animation",
+    title: "Group Operation Animation",
+    category: "Abstract Algebra",
+    subcategory: "Groups",
+    summary:
+      "Animate combining two elements on a cycle and landing on their product.",
+    formula: "g^a * g^b = g^(a+b mod n)",
+    visual: "group-operation",
+    sliderA: "Element a",
+    sliderB: "Element b",
+    minA: 0,
+    maxA: 7,
+    stepA: 1,
+    minB: 0,
+    maxB: 7,
+    stepB: 1,
+    defaultA: 2,
+    defaultB: 3,
+    tasks: [
+      "Move element a.",
+      "Move element b.",
+      "Watch the product wrap around the group.",
+    ],
+  },
+  {
+    id: "symmetry-group-of-shapes",
+    title: "Symmetry Group of Shapes",
+    category: "Abstract Algebra",
+    subcategory: "Symmetry Groups",
+    summary:
+      "Explore rotations and reflections that preserve regular polygons.",
+    formula: "D_n has n rotations and n reflections",
+    visual: "symmetry-group",
+    sliderA: "Polygon sides n",
+    sliderB: "Symmetry step",
+    minA: 3,
+    maxA: 8,
+    stepA: 1,
+    minB: 0,
+    maxB: 15,
+    stepB: 1,
+    defaultA: 5,
+    defaultB: 2,
+    tasks: [
+      "Change the polygon.",
+      "Apply rotations.",
+      "Compare rotation and reflection symmetries.",
+    ],
+  },
+  {
+    id: "permutation-cycle-visualizer",
+    title: "Permutation Cycle Visualizer",
+    category: "Abstract Algebra",
+    subcategory: "Permutations",
+    summary: "Visualize a permutation as arrows and cycle notation.",
+    formula: "sigma = (1 2 4)(3 5)",
+    visual: "permutation-cycle",
+    sliderA: "Set size",
+    sliderB: "Cycle shift",
+    minA: 4,
+    maxA: 8,
+    stepA: 1,
+    minB: 1,
+    maxB: 7,
+    stepB: 1,
+    defaultA: 6,
+    defaultB: 2,
+    tasks: [
+      "Change set size.",
+      "Change the shift.",
+      "Read the cycle decomposition.",
+    ],
+  },
+  {
+    id: "coset-partition-diagram",
+    title: "Coset Partition Diagram",
+    category: "Abstract Algebra",
+    subcategory: "Cosets and Quotients",
+    summary:
+      "Partition a group into cosets of a subgroup and compare equal-sized blocks.",
+    formula: "aH = {ah : h in H}",
+    visual: "coset-partition",
+    sliderA: "Group size",
+    sliderB: "Subgroup size",
+    minA: 6,
+    maxA: 24,
+    stepA: 1,
+    minB: 2,
+    maxB: 8,
+    stepB: 1,
+    defaultA: 12,
+    defaultB: 3,
+    tasks: ["Change group size.", "Change subgroup size.", "Count cosets."],
+  },
+  {
+    id: "homomorphism-mapping-explorer",
+    title: "Homomorphism Mapping Explorer",
+    category: "Abstract Algebra",
+    subcategory: "Structure Maps",
+    summary:
+      "Map one cyclic group into another and inspect image, kernel, and operation preservation.",
+    formula: "phi(a*b)=phi(a) phi(b)",
+    visual: "homomorphism-map",
+    sliderA: "Domain order",
+    sliderB: "Map multiplier",
+    minA: 4,
+    maxA: 9,
+    stepA: 1,
+    minB: 1,
+    maxB: 8,
+    stepB: 1,
+    defaultA: 6,
+    defaultB: 2,
+    tasks: [
+      "Change domain order.",
+      "Change multiplier.",
+      "Find repeated images and kernel elements.",
+    ],
+  },
+  {
+    id: "ring-operation-table",
+    title: "Ring Operation Table",
+    category: "Abstract Algebra",
+    subcategory: "Rings",
+    summary:
+      "Compare addition and multiplication tables modulo n to see ring structure.",
+    formula: "(a+b) mod n and (ab) mod n",
+    visual: "ring-operation-table",
+    sliderA: "Modulus n",
+    sliderB: "Table mode",
+    minA: 3,
+    maxA: 8,
+    stepA: 1,
+    minB: 0,
+    maxB: 1,
+    stepB: 1,
+    defaultA: 5,
+    defaultB: 0,
+    tasks: [
+      "Switch addition and multiplication.",
+      "Find additive identity.",
+      "Look for zero divisors in multiplication.",
+    ],
+  },
+  {
+    id: "slope-field-generator",
+    title: "Slope Field Generator",
+    category: "Differential Equations and PDEs",
+    subcategory: "ODE Fields",
+    summary:
+      "Generate small tangent marks for a first-order differential equation across the plane.",
+    formula: "dy/dx = f(x,y)",
+    visual: "slope-field",
+    sliderA: "x coefficient",
+    sliderB: "y coefficient",
+    minA: -2,
+    maxA: 2,
+    stepA: 0.1,
+    minB: -2,
+    maxB: 2,
+    stepB: 0.1,
+    defaultA: 0.6,
+    defaultB: -0.4,
+    tasks: [
+      "Change the x coefficient.",
+      "Change the y coefficient.",
+      "Look for regions where slopes flatten.",
+    ],
+  },
+  {
+    id: "solution-curve-animation",
+    title: "Solution Curve Animation",
+    category: "Differential Equations and PDEs",
+    subcategory: "ODE Fields",
+    summary:
+      "Trace an approximate solution curve through a slope field from an initial value.",
+    formula: "y' = ax + by, y(x0)=y0",
+    visual: "solution-curve",
+    sliderA: "Initial y0",
+    sliderB: "growth rate",
+    minA: -2,
+    maxA: 2,
+    stepA: 0.1,
+    minB: -1.5,
+    maxB: 1.5,
+    stepB: 0.1,
+    defaultA: 0.6,
+    defaultB: 0.45,
+    tasks: [
+      "Move the initial value.",
+      "Change growth rate.",
+      "Follow how the curve obeys local slopes.",
+    ],
+  },
+  {
+    id: "direction-field-explorer",
+    title: "Direction Field Explorer",
+    category: "Differential Equations and PDEs",
+    subcategory: "ODE Fields",
+    summary:
+      "Explore a vector direction field where arrows show both horizontal and vertical change.",
+    formula: "dx/dt = y, dy/dt = -kx",
+    visual: "direction-field",
+    sliderA: "spring k",
+    sliderB: "damping",
+    minA: 0.2,
+    maxA: 2.5,
+    stepA: 0.1,
+    minB: 0,
+    maxB: 1.2,
+    stepB: 0.05,
+    defaultA: 1,
+    defaultB: 0.2,
+    tasks: [
+      "Change restoring strength.",
+      "Add damping.",
+      "Observe rotation toward equilibrium.",
+    ],
+  },
+  {
+    id: "orthogonal-trajectory-visualizer",
+    title: "Orthogonal Trajectory Visualizer",
+    category: "Differential Equations and PDEs",
+    subcategory: "Trajectory Families",
+    summary:
+      "Compare a family of curves with trajectories that cross them at right angles.",
+    formula: "m_orthogonal = -1/m",
+    visual: "orthogonal-trajectory",
+    sliderA: "Family spacing",
+    sliderB: "Rotation angle",
+    minA: 0.5,
+    maxA: 2.5,
+    stepA: 0.1,
+    minB: -45,
+    maxB: 45,
+    stepB: 1,
+    defaultA: 1.2,
+    defaultB: 0,
+    tasks: [
+      "Change spacing.",
+      "Rotate the families.",
+      "Find right-angle crossings.",
+    ],
+  },
+  {
+    id: "spring-mass-ode-simulation",
+    title: "Spring-Mass ODE Simulation",
+    category: "Differential Equations and PDEs",
+    subcategory: "ODE Models",
+    summary:
+      "Simulate a mass attached to a spring and connect oscillation to a second-order ODE.",
+    formula: "m x'' + c x' + kx = 0",
+    visual: "spring-mass-ode",
+    sliderA: "spring k",
+    sliderB: "damping c",
+    minA: 0.2,
+    maxA: 3,
+    stepA: 0.1,
+    minB: 0,
+    maxB: 1.5,
+    stepB: 0.05,
+    defaultA: 1.4,
+    defaultB: 0.25,
+    tasks: [
+      "Increase spring strength.",
+      "Add damping.",
+      "Compare oscillation amplitude.",
+    ],
+  },
+  {
+    id: "heat-equation-color-map",
+    title: "Heat Equation Color-Map Animation",
+    category: "Differential Equations and PDEs",
+    subcategory: "PDE Simulations",
+    summary:
+      "Watch heat diffuse from hot spots into a smoother temperature field.",
+    formula: "u_t = alpha u_xx",
+    visual: "heat-equation",
+    sliderA: "time",
+    sliderB: "diffusion alpha",
+    minA: 0,
+    maxA: 5,
+    stepA: 0.1,
+    minB: 0.2,
+    maxB: 2,
+    stepB: 0.1,
+    defaultA: 1.2,
+    defaultB: 0.8,
+    tasks: [
+      "Advance time.",
+      "Increase diffusion.",
+      "Watch sharp peaks smooth out.",
+    ],
+  },
+  {
+    id: "wave-equation-string-vibration",
+    title: "Wave Equation String Vibration",
+    category: "Differential Equations and PDEs",
+    subcategory: "PDE Simulations",
+    summary: "Animate a vibrating string with changing wave speed and time.",
+    formula: "u_tt = c^2 u_xx",
+    visual: "wave-equation",
+    sliderA: "time",
+    sliderB: "wave speed c",
+    minA: 0,
+    maxA: 6.28,
+    stepA: 0.05,
+    minB: 0.5,
+    maxB: 2,
+    stepB: 0.05,
+    defaultA: 1.1,
+    defaultB: 1,
+    tasks: ["Move time.", "Change wave speed.", "Find nodes and antinodes."],
+  },
+  {
+    id: "laplace-equation-potential-surface",
+    title: "Laplace Equation Potential Surface",
+    category: "Differential Equations and PDEs",
+    subcategory: "Potential Theory",
+    summary:
+      "Visualize a harmonic potential surface and equipotential contours.",
+    formula: "nabla^2 u = 0",
+    visual: "laplace-potential",
+    sliderA: "source strength",
+    sliderB: "boundary tilt",
+    minA: -2,
+    maxA: 2,
+    stepA: 0.1,
+    minB: -2,
+    maxB: 2,
+    stepB: 0.1,
+    defaultA: 1,
+    defaultB: 0.5,
+    tasks: [
+      "Change source strength.",
+      "Tilt the boundary.",
+      "Compare surface and contours.",
+    ],
+  },
+  {
+    id: "root-finding-animation",
+    title: "Root-Finding Animation",
+    category: "Numerical Methods",
+    subcategory: "Roots and Iteration",
+    summary:
+      "Visualize bracketing a root and shrinking the interval around a sign change.",
+    formula: "f(a)f(b)<0 implies a root in [a,b]",
+    visual: "root-finding",
+    sliderA: "Left bracket",
+    sliderB: "Right bracket",
+    minA: -3,
+    maxA: 0.5,
+    stepA: 0.05,
+    minB: 0.5,
+    maxB: 3,
+    stepB: 0.05,
+    defaultA: -2,
+    defaultB: 2,
+    tasks: [
+      "Move brackets.",
+      "Find sign changes.",
+      "Watch the midpoint approach a root.",
+    ],
+  },
+  {
+    id: "newton-raphson-tangent-iteration",
+    title: "Newton-Raphson Tangent Iteration",
+    category: "Numerical Methods",
+    subcategory: "Roots and Iteration",
+    summary:
+      "Step along tangent lines that jump from an estimate to a better root estimate.",
+    formula: "x_(n+1)=x_n - f(x_n)/f'(x_n)",
+    visual: "newton-raphson",
+    sliderA: "Initial x0",
+    sliderB: "Iterations",
+    minA: -3,
+    maxA: 3,
+    stepA: 0.05,
+    minB: 1,
+    maxB: 6,
+    stepB: 1,
+    defaultA: 2.4,
+    defaultB: 4,
+    tasks: [
+      "Move the starting point.",
+      "Increase iterations.",
+      "Watch tangents hit the x-axis.",
+    ],
+  },
+  {
+    id: "error-convergence-graph",
+    title: "Error Convergence Graph",
+    category: "Numerical Methods",
+    subcategory: "Error Analysis",
+    summary:
+      "Compare linear, quadratic, and slow convergence by plotting error decay.",
+    formula: "e_n = |x_n - alpha|",
+    visual: "error-convergence",
+    sliderA: "Method family",
+    sliderB: "Initial error",
+    minA: 1,
+    maxA: 3,
+    stepA: 1,
+    minB: 0.1,
+    maxB: 1,
+    stepB: 0.05,
+    defaultA: 2,
+    defaultB: 0.8,
+    tasks: [
+      "Switch method type.",
+      "Change initial error.",
+      "Compare how fast error falls.",
+    ],
+  },
+  {
+    id: "interpolation-curve-builder",
+    title: "Interpolation Curve Builder",
+    category: "Numerical Methods",
+    subcategory: "Interpolation",
+    summary:
+      "Build an interpolating curve through sample points and compare degree effects.",
+    formula: "P_n(x_i)=y_i",
+    visual: "interpolation-builder",
+    sliderA: "Point count",
+    sliderB: "Curve tension",
+    minA: 3,
+    maxA: 8,
+    stepA: 1,
+    minB: 0,
+    maxB: 1,
+    stepB: 0.05,
+    defaultA: 5,
+    defaultB: 0.35,
+    tasks: [
+      "Change point count.",
+      "Adjust tension.",
+      "See how the curve passes through data.",
+    ],
+  },
+  {
+    id: "numerical-integration-area-comparison",
+    title: "Numerical Integration Area Comparison",
+    category: "Numerical Methods",
+    subcategory: "Numerical Integration",
+    summary:
+      "Compare rectangle, trapezoid, and Simpson-style area approximations.",
+    formula: "integral_a^b f(x) dx approx weighted sum",
+    visual: "numerical-integration",
+    sliderA: "Subintervals n",
+    sliderB: "Method mix",
+    minA: 4,
+    maxA: 32,
+    stepA: 1,
+    minB: 0,
+    maxB: 2,
+    stepB: 1,
+    defaultA: 10,
+    defaultB: 1,
+    tasks: [
+      "Increase subintervals.",
+      "Switch area method.",
+      "Compare approximation shapes.",
+    ],
+  },
+  {
+    id: "euler-vs-rk4-solution-comparison",
+    title: "Euler vs RK4 Solution Comparison",
+    category: "Numerical Methods",
+    subcategory: "ODE Solvers",
+    summary:
+      "Compare a coarse Euler path with a smoother RK4 approximation for the same ODE.",
+    formula: "y_(n+1)=y_n+h f(x_n,y_n)",
+    visual: "euler-rk4",
+    sliderA: "Step count",
+    sliderB: "Growth rate",
+    minA: 4,
+    maxA: 32,
+    stepA: 1,
+    minB: -1,
+    maxB: 1,
+    stepB: 0.05,
+    defaultA: 10,
+    defaultB: 0.45,
+    tasks: [
+      "Change step count.",
+      "Change growth rate.",
+      "Compare Euler and RK4 paths.",
+    ],
+  },
+  {
+    id: "linear-system-solver-step-animation",
+    title: "Linear System Solver Step Animation",
+    category: "Numerical Methods",
+    subcategory: "Linear Solvers",
+    summary:
+      "Animate iterative solution of a 2x2 linear system toward the intersection point.",
+    formula: "Ax=b, x_(k+1)=x_k + correction",
+    visual: "linear-system-solver",
+    sliderA: "Iteration k",
+    sliderB: "Relaxation",
+    minA: 0,
+    maxA: 10,
+    stepA: 1,
+    minB: 0.2,
+    maxB: 1.4,
+    stepB: 0.05,
+    defaultA: 4,
+    defaultB: 0.8,
+    tasks: [
+      "Increase iterations.",
+      "Change relaxation.",
+      "Watch guesses approach the line intersection.",
+    ],
+  },
+  {
+    id: "cayley-hamilton-theorem-visualizer",
+    title: "Cayley-Hamilton Theorem Visualizer",
+    category: "B.Tech M1",
+    subcategory: "Matrices",
+    summary:
+      "Watch a 2x2 matrix satisfy its own characteristic equation and use that relation to express the inverse.",
+    formula: "A^2 - tr(A)A + det(A)I = 0",
+    visual: "cayley-hamilton",
+    sliderA: "Trace",
+    sliderB: "Determinant",
+    minA: -4,
+    maxA: 4,
+    stepA: 0.1,
+    minB: -3,
+    maxB: 6,
+    stepB: 0.1,
+    defaultA: 2,
+    defaultB: 1,
+    tasks: [
+      "Change trace.",
+      "Change determinant.",
+      "Read the matrix equation balance.",
+    ],
+  },
+  {
+    id: "rank-consistency-row-reduction",
+    title: "Rank, Consistency and Row Reduction Lab",
+    category: "B.Tech M1",
+    subcategory: "Matrices",
+    summary:
+      "Step through row operations, identify pivots, compare rank(A) and rank([A|b]), and classify solutions.",
+    formula: "rank(A)=rank([A|b]) for consistency",
+    visual: "gaussian-elimination",
+    sliderA: "Row operation step",
+    sliderB: "Pivot scale",
+    minA: 0,
+    maxA: 4,
+    stepA: 1,
+    minB: 0.5,
+    maxB: 3,
+    stepB: 0.1,
+    defaultA: 2,
+    defaultB: 1.1,
+    tasks: [
+      "Move through row operations.",
+      "Count pivots.",
+      "Classify unique, infinite, or no solution.",
+    ],
+  },
+  {
+    id: "canonical-quadratic-form-lab",
+    title: "Canonical Quadratic Form Lab",
+    category: "B.Tech M1",
+    subcategory: "Matrices",
+    summary:
+      "Rotate principal axes and classify positive definite, negative definite, semidefinite, and indefinite forms.",
+    formula: "q=x^T A x, P^TAP=D",
+    visual: "quadratic-form-surface",
+    sliderA: "lambda 1",
+    sliderB: "lambda 2",
+    minA: -2,
+    maxA: 3,
+    stepA: 0.1,
+    minB: -2,
+    maxB: 3,
+    stepB: 0.1,
+    defaultA: 1.5,
+    defaultB: 0.8,
+    tasks: [
+      "Change eigenvalue signs.",
+      "Read the surface type.",
+      "Connect canonical form to definiteness.",
+    ],
+  },
+  {
+    id: "comparison-test-lab",
+    title: "Comparison Test Lab",
+    category: "B.Tech M1",
+    subcategory: "Infinite Series",
+    summary:
+      "Compare a positive-term series with a known benchmark to judge convergence.",
+    formula: "0 <= a_n <= b_n and sum b_n converges => sum a_n converges",
+    visual: "convergence-test",
+    sliderA: "Series family",
+    sliderB: "p or ratio",
+    minA: 1,
+    maxA: 4,
+    stepA: 1,
+    minB: 0.5,
+    maxB: 3,
+    stepB: 0.1,
+    defaultA: 2,
+    defaultB: 1.4,
+    tasks: [
+      "Switch benchmark families.",
+      "Move the parameter.",
+      "Classify convergence.",
+    ],
+  },
+  {
+    id: "ratio-test-lab",
+    title: "D'Alembert Ratio Test Lab",
+    category: "B.Tech M1",
+    subcategory: "Infinite Series",
+    summary:
+      "Track the limiting ratio of consecutive terms and classify the series.",
+    formula: "L = lim |a_(n+1)/a_n|; L < 1 converges, L > 1 diverges",
+    visual: "convergence-test",
+    sliderA: "Test family",
+    sliderB: "Limit L",
+    minA: 1,
+    maxA: 4,
+    stepA: 1,
+    minB: 0.2,
+    maxB: 1.8,
+    stepB: 0.05,
+    defaultA: 1,
+    defaultB: 0.72,
+    tasks: [
+      "Move L below 1.",
+      "Move L above 1.",
+      "Notice the inconclusive boundary.",
+    ],
+  },
+  {
+    id: "root-test-lab",
+    title: "Cauchy Root Test Lab",
+    category: "B.Tech M1",
+    subcategory: "Infinite Series",
+    summary: "Visualize nth-root decay and the convergence boundary at one.",
+    formula: "L = lim nthroot(|a_n|)",
+    visual: "convergence-test",
+    sliderA: "Term model",
+    sliderB: "Root limit L",
+    minA: 1,
+    maxA: 4,
+    stepA: 1,
+    minB: 0.2,
+    maxB: 1.8,
+    stepB: 0.05,
+    defaultA: 2,
+    defaultB: 0.82,
+    tasks: [
+      "Set L less than one.",
+      "Set L greater than one.",
+      "Compare with ratio behavior.",
+    ],
+  },
+  {
+    id: "raabe-log-gauss-test-lab",
+    title: "Raabe, Logarithmic and Gauss Test Lab",
+    category: "B.Tech M1",
+    subcategory: "Infinite Series",
+    summary:
+      "Explore refined convergence tests used when ratio/root tests are inconclusive.",
+    formula: "Raabe: n(a_n/a_(n+1)-1)",
+    visual: "convergence-test",
+    sliderA: "Refined test",
+    sliderB: "Boundary parameter",
+    minA: 1,
+    maxA: 4,
+    stepA: 1,
+    minB: 0.5,
+    maxB: 2.5,
+    stepB: 0.05,
+    defaultA: 3,
+    defaultB: 1.2,
+    tasks: [
+      "Compare near-boundary cases.",
+      "Move across one.",
+      "Explain why a refined test helps.",
+    ],
+  },
+  {
+    id: "alternating-absolute-convergence-lab",
+    title: "Alternating and Absolute Convergence Lab",
+    category: "B.Tech M1",
+    subcategory: "Infinite Series",
+    summary:
+      "Compare alternating partial sums with absolute-value partial sums.",
+    formula: "sum (-1)^n a_n, absolute convergence uses sum |a_n|",
+    visual: "series-partial-sum",
+    sliderA: "Terms n",
+    sliderB: "Decay ratio",
+    minA: 1,
+    maxA: 80,
+    stepA: 1,
+    minB: -0.95,
+    maxB: 0.95,
+    stepB: 0.05,
+    defaultA: 28,
+    defaultB: -0.65,
+    tasks: [
+      "Increase terms.",
+      "Flip the sign pattern.",
+      "Compare oscillation with settling.",
+    ],
+  },
+  {
+    id: "de-moivre-roots-lab",
+    title: "De Moivre and Roots Lab",
+    category: "B.Tech M1",
+    subcategory: "Complex Numbers",
+    summary:
+      "Raise and root complex numbers by multiplying or dividing angles on the Argand plane.",
+    formula: "(r(cos theta+i sin theta))^n = r^n(cos ntheta+i sin ntheta)",
+    visual: "de-moivre",
+    sliderA: "Power/root n",
+    sliderB: "Angle theta",
+    minA: 2,
+    maxA: 10,
+    stepA: 1,
+    minB: 0,
+    maxB: 360,
+    stepB: 1,
+    defaultA: 5,
+    defaultB: 30,
+    tasks: [
+      "Change n.",
+      "Rotate theta.",
+      "Compare power angle with root spacing.",
+    ],
+  },
+  {
+    id: "complex-log-branch-lab",
+    title: "Complex Logarithm Branch Lab",
+    category: "B.Tech M1",
+    subcategory: "Complex Numbers",
+    summary:
+      "Show the multi-valued logarithm and how branch cuts choose a principal argument.",
+    formula: "Log z = ln|z| + i(arg z + 2k pi)",
+    visual: "complex-log",
+    sliderA: "Argument theta",
+    sliderB: "Branch k",
+    minA: -180,
+    maxA: 180,
+    stepA: 1,
+    minB: -2,
+    maxB: 2,
+    stepB: 1,
+    defaultA: 80,
+    defaultB: 0,
+    tasks: [
+      "Cross the branch cut.",
+      "Change k.",
+      "Track the imaginary part of Log z.",
+    ],
+  },
+  {
+    id: "complex-trig-hyperbolic-lab",
+    title: "Complex Trig and Hyperbolic Function Lab",
+    category: "B.Tech M1",
+    subcategory: "Complex Numbers",
+    summary:
+      "Connect circular and hyperbolic functions through exponential definitions.",
+    formula: "sin z=(e^(iz)-e^(-iz))/(2i), cosh z=(e^z+e^(-z))/2",
+    visual: "complex-trig",
+    sliderA: "Real part x",
+    sliderB: "Imaginary part y",
+    minA: -3,
+    maxA: 3,
+    stepA: 0.1,
+    minB: -2,
+    maxB: 2,
+    stepB: 0.1,
+    defaultA: 1.2,
+    defaultB: 0.8,
+    tasks: ["Move x.", "Move y.", "Compare oscillation with growth."],
+  },
+  {
+    id: "jacobian-area-scaling-lab",
+    title: "Jacobian Area Scaling Lab",
+    category: "B.Tech M1",
+    subcategory: "Multivariable Calculus",
+    summary:
+      "Warp a tiny rectangle and read how the Jacobian determinant scales area.",
+    formula: "dA_xy = |J| dA_uv",
+    visual: "jacobian",
+    sliderA: "u-stretch",
+    sliderB: "v-shear",
+    minA: 0.4,
+    maxA: 2.5,
+    stepA: 0.05,
+    minB: -1.2,
+    maxB: 1.2,
+    stepB: 0.05,
+    defaultA: 1.3,
+    defaultB: 0.45,
+    tasks: [
+      "Stretch u.",
+      "Add shear.",
+      "Compare original and transformed area.",
+    ],
+  },
+  {
+    id: "lagrange-multiplier-contours",
+    title: "Lagrange Multiplier Contour Lab",
+    category: "B.Tech M1",
+    subcategory: "Multivariable Calculus",
+    summary:
+      "Move a constraint over level curves and find where gradients become parallel.",
+    formula: "grad f = lambda grad g",
+    visual: "lagrange-multiplier",
+    sliderA: "Constraint radius",
+    sliderB: "Contour tilt",
+    minA: 0.8,
+    maxA: 3,
+    stepA: 0.05,
+    minB: -1.2,
+    maxB: 1.2,
+    stepB: 0.05,
+    defaultA: 1.9,
+    defaultB: 0.25,
+    tasks: [
+      "Change the constraint.",
+      "Tilt the objective.",
+      "Find tangent contour contact.",
+    ],
+  },
+  {
+    id: "asymptote-curve-tracing-lab",
+    title: "Asymptote and Curve Tracing Lab",
+    category: "B.Tech M1",
+    subcategory: "Differential Calculus",
+    summary:
+      "Trace intercepts, vertical asymptotes, horizontal behavior, and turning points in one workflow.",
+    formula: "Analyze f, f', denominator zeros, and end behavior",
+    visual: "asymptote-tracing",
+    sliderA: "Vertical shift",
+    sliderB: "Asymptote location",
+    minA: -2,
+    maxA: 2,
+    stepA: 0.1,
+    minB: -2,
+    maxB: 2,
+    stepB: 0.1,
+    defaultA: 0.4,
+    defaultB: 0.6,
+    tasks: ["Move the asymptote.", "Find branches.", "Read end behavior."],
+  },
+  {
+    id: "higher-order-ode-characteristic-lab",
+    title: "Higher-Order ODE Characteristic Roots Lab",
+    category: "B.Tech M2",
+    subcategory: "Differential Equations",
+    summary:
+      "See how real, repeated, and complex characteristic roots shape the complementary function.",
+    formula: "ay''+by'+cy=0 -> ar^2+br+c=0",
+    visual: "higher-order-ode",
+    sliderA: "Damping b",
+    sliderB: "Stiffness c",
+    minA: -4,
+    maxA: 4,
+    stepA: 0.1,
+    minB: -2,
+    maxB: 6,
+    stepB: 0.1,
+    defaultA: 0.6,
+    defaultB: 2.2,
+    tasks: [
+      "Make roots real.",
+      "Make roots complex.",
+      "Compare oscillation and growth.",
+    ],
+  },
+  {
+    id: "cauchy-euler-ode-lab",
+    title: "Cauchy-Euler ODE Lab",
+    category: "B.Tech M2",
+    subcategory: "Differential Equations",
+    summary:
+      "Transform an equation with powers of x into an auxiliary equation in m.",
+    formula: "x^2y'' + axy' + by = 0 -> m(m-1)+am+b=0",
+    visual: "cauchy-euler",
+    sliderA: "a coefficient",
+    sliderB: "b coefficient",
+    minA: -3,
+    maxA: 5,
+    stepA: 0.1,
+    minB: -4,
+    maxB: 6,
+    stepB: 0.1,
+    defaultA: 1.5,
+    defaultB: -1,
+    tasks: ["Change a.", "Change b.", "Watch power-law solutions."],
+  },
+  {
+    id: "series-solution-special-functions-lab",
+    title: "Series Solutions and Special Functions Lab",
+    category: "B.Tech M2",
+    subcategory: "Special Functions",
+    summary:
+      "Build a truncated power-series solution and connect recurrence coefficients to Bessel and Legendre patterns.",
+    formula: "y=sum a_n x^n, J_n(x), P_n(x)",
+    visual: "series-partial-sum",
+    sliderA: "Terms n",
+    sliderB: "Recurrence ratio",
+    minA: 2,
+    maxA: 80,
+    stepA: 1,
+    minB: -0.9,
+    maxB: 0.9,
+    stepB: 0.05,
+    defaultA: 22,
+    defaultB: 0.45,
+    tasks: [
+      "Increase terms.",
+      "Change recurrence ratio.",
+      "Compare approximation stability.",
+    ],
+  },
+  {
+    id: "sturm-liouville-boundary-lab",
+    title: "Sturm-Liouville Boundary Lab",
+    category: "B.Tech M2",
+    subcategory: "Special Functions",
+    summary:
+      "Visualize eigenfunction modes satisfying boundary conditions and their orthogonality in vibration and heat models.",
+    formula: "-(py')'+qy=lambda wy",
+    visual: "wave-equation",
+    sliderA: "Mode/time",
+    sliderB: "Wave speed",
+    minA: 0,
+    maxA: 6.28,
+    stepA: 0.05,
+    minB: 0.5,
+    maxB: 2,
+    stepB: 0.05,
+    defaultA: 1.4,
+    defaultB: 1.1,
+    tasks: [
+      "Move through modes.",
+      "Change speed.",
+      "Find nodes and boundary zeros.",
+    ],
+  },
+  {
+    id: "laplace-transform-workflow",
+    title: "Laplace Transform Workflow",
+    category: "B.Tech M2",
+    subcategory: "Laplace Transform",
+    summary:
+      "Follow the engineering workflow: time signal, transform domain algebra, and inverse transform.",
+    formula: "L{f(t)}=F(s), L{y'}=sY-y(0)",
+    visual: "laplace-transform",
+    sliderA: "Decay/frequency",
+    sliderB: "s value",
+    minA: 0.2,
+    maxA: 3,
+    stepA: 0.05,
+    minB: 0.3,
+    maxB: 5,
+    stepB: 0.05,
+    defaultA: 1.2,
+    defaultB: 2,
+    tasks: ["Change the time signal.", "Move s.", "Compare f(t) and F(s)."],
+  },
+  {
+    id: "unit-step-impulse-lab",
+    title: "Unit Step and Impulse Lab",
+    category: "B.Tech M2",
+    subcategory: "Laplace Transform",
+    summary:
+      "Visualize delayed switching, impulse spikes, and their transform-domain effect.",
+    formula: "u(t-a), delta(t-a), e^(-as)F(s)",
+    visual: "step-impulse",
+    sliderA: "Delay a",
+    sliderB: "Impulse strength",
+    minA: 0,
+    maxA: 5,
+    stepA: 0.05,
+    minB: 0.2,
+    maxB: 3,
+    stepB: 0.05,
+    defaultA: 1.8,
+    defaultB: 1.4,
+    tasks: [
+      "Move the switch time.",
+      "Change impulse height.",
+      "Connect delay to e^(-as).",
+    ],
+  },
+  {
+    id: "convolution-integral-lab",
+    title: "Convolution Integral Lab",
+    category: "B.Tech M2",
+    subcategory: "Laplace Transform",
+    summary:
+      "Slide one signal across another and watch overlap accumulate into convolution.",
+    formula: "(f*g)(t)=integral_0^t f(tau)g(t-tau)d tau",
+    visual: "convolution",
+    sliderA: "Shift t",
+    sliderB: "Pulse width",
+    minA: 0,
+    maxA: 5,
+    stepA: 0.05,
+    minB: 0.4,
+    maxB: 2.5,
+    stepB: 0.05,
+    defaultA: 2.2,
+    defaultB: 1.1,
+    tasks: ["Slide the pulse.", "Change width.", "Watch overlap area change."],
+  },
+  {
+    id: "fourier-transform-spectrum-lab",
+    title: "Fourier Transform Spectrum Lab",
+    category: "B.Tech M2",
+    subcategory: "Fourier Analysis",
+    summary:
+      "Connect a time-domain pulse or wave packet to its frequency-domain spread.",
+    formula: "F(omega)=integral f(t)e^(-i omega t)dt",
+    visual: "fourier-transform",
+    sliderA: "Pulse width",
+    sliderB: "Frequency marker",
+    minA: 0.4,
+    maxA: 3,
+    stepA: 0.05,
+    minB: -5,
+    maxB: 5,
+    stepB: 0.1,
+    defaultA: 1.1,
+    defaultB: 1.5,
+    tasks: [
+      "Widen the pulse.",
+      "Move the frequency marker.",
+      "Compare time width and spectrum width.",
+    ],
+  },
+  {
+    id: "z-transform-difference-equations",
+    title: "Z-Transform and Difference Equations Lab",
+    category: "B.Tech M2",
+    subcategory: "Z-Transform",
+    summary:
+      "Visualize poles, region of convergence, shift behavior, and discrete recurrence response.",
+    formula: "X(z)=sum x_n z^(-n), x_(n+1)=a x_n + b",
+    visual: "z-transform",
+    sliderA: "Pole radius",
+    sliderB: "Input step",
+    minA: 0.1,
+    maxA: 1.8,
+    stepA: 0.05,
+    minB: -2,
+    maxB: 2,
+    stepB: 0.05,
+    defaultA: 0.72,
+    defaultB: 0.8,
+    tasks: [
+      "Move the pole inside the unit circle.",
+      "Push it outside.",
+      "Compare recurrence stability.",
+    ],
+  },
+  {
+    id: "control-system-response-lab",
+    title: "Control System Response Lab",
+    category: "B.Tech M3",
+    subcategory: "Control Systems Mathematics",
+    summary:
+      "Move poles and compare transform-domain stability with time-domain step and impulse response behavior.",
+    formula: "G(s)=Y(s)/U(s), poles of G(s)",
+    visual: "laplace-transform",
+    sliderA: "Pole decay",
+    sliderB: "s / frequency marker",
+    minA: 0.2,
+    maxA: 3,
+    stepA: 0.05,
+    minB: 0.3,
+    maxB: 5,
+    stepB: 0.05,
+    defaultA: 1,
+    defaultB: 2.4,
+    tasks: [
+      "Move the pole left or right.",
+      "Compare decay.",
+      "Connect pole location to stability.",
+    ],
+  },
+  {
+    id: "mobius-transformation-lab",
+    title: "Mobius Transformation Grid Lab",
+    category: "B.Tech M2",
+    subcategory: "Complex Analysis",
+    summary:
+      "Map a complex grid through a fractional linear transformation and watch lines become circles.",
+    formula: "w=(az+b)/(cz+d)",
+    visual: "mobius-map",
+    sliderA: "Pole strength c",
+    sliderB: "Rotation",
+    minA: 0,
+    maxA: 1.2,
+    stepA: 0.05,
+    minB: -90,
+    maxB: 90,
+    stepB: 1,
+    defaultA: 0.35,
+    defaultB: 25,
+    tasks: [
+      "Increase c.",
+      "Rotate the grid.",
+      "Track how circles and lines transform.",
+    ],
+  },
+  {
+    id: "complex-line-integral-lab",
+    title: "Complex Line Integral Lab",
+    category: "B.Tech M2",
+    subcategory: "Complex Analysis",
+    summary:
+      "Trace a contour and see how field samples accumulate along the path.",
+    formula: "integral_C f(z) dz",
+    visual: "complex-line-integral",
+    sliderA: "Contour radius",
+    sliderB: "Field swirl",
+    minA: 0.8,
+    maxA: 3.2,
+    stepA: 0.05,
+    minB: -2,
+    maxB: 2,
+    stepB: 0.05,
+    defaultA: 1.8,
+    defaultB: 1,
+    tasks: [
+      "Change contour radius.",
+      "Change field swirl.",
+      "Compare direction and accumulation.",
+    ],
+  },
+  {
+    id: "cauchy-integral-formula-lab",
+    title: "Cauchy Integral Formula Lab",
+    category: "B.Tech M2",
+    subcategory: "Complex Analysis",
+    summary:
+      "Show a point inside a contour and the integral kernel that recovers function values.",
+    formula: "f(a)=1/(2pi i) integral_C f(z)/(z-a) dz",
+    visual: "cauchy-integral",
+    sliderA: "Point a radius",
+    sliderB: "Contour radius",
+    minA: 0,
+    maxA: 2.5,
+    stepA: 0.05,
+    minB: 1,
+    maxB: 3.5,
+    stepB: 0.05,
+    defaultA: 0.8,
+    defaultB: 2.2,
+    tasks: [
+      "Move a inside.",
+      "Move it outside.",
+      "Compare when the formula applies.",
+    ],
+  },
+  {
+    id: "vector-calculus-field-theorems",
+    title: "Vector Calculus Field Theorems Lab",
+    category: "B.Tech M3",
+    subcategory: "Vector Calculus",
+    summary:
+      "Explore gradient, divergence, curl, flux, circulation, and the links behind Green, Gauss, and Stokes theorems.",
+    formula: "grad f, div F, curl F, flux=int_S F.n dS",
+    visual: "vector-calculus-field",
+    sliderA: "Field swirl",
+    sliderB: "Flux source",
+    minA: -2,
+    maxA: 2,
+    stepA: 0.05,
+    minB: -2,
+    maxB: 2,
+    stepB: 0.05,
+    defaultA: 0.9,
+    defaultB: 0.7,
+    tasks: [
+      "Increase swirl and read curl.",
+      "Change source strength and read divergence.",
+      "Compare boundary circulation with field rotation.",
+    ],
+  },
+  {
+    id: "pde-classification-characteristics-lab",
+    title: "PDE Classification and Characteristics Lab",
+    category: "B.Tech M3",
+    subcategory: "Partial Differential Equations",
+    summary:
+      "Classify equations by discriminant and compare characteristic flow with elliptic, parabolic, and hyperbolic behavior.",
+    formula: "B^2-4AC determines PDE type",
+    visual: "direction-field",
+    sliderA: "A / flow strength",
+    sliderB: "B / damping",
+    minA: 0.2,
+    maxA: 2.5,
+    stepA: 0.1,
+    minB: 0,
+    maxB: 1.2,
+    stepB: 0.05,
+    defaultA: 1.2,
+    defaultB: 0.35,
+    tasks: [
+      "Change coefficients.",
+      "Read field direction.",
+      "Classify the PDE family.",
+    ],
+  },
+  {
+    id: "finite-difference-method-lab",
+    title: "Finite Difference Method Lab",
+    category: "B.Tech M3",
+    subcategory: "Partial Differential Equations",
+    summary:
+      "Approximate derivatives on a grid and watch heat-equation updates smooth numerical data.",
+    formula: "u_xx approx (u_(i+1)-2u_i+u_(i-1))/h^2",
+    visual: "heat-equation",
+    sliderA: "time step",
+    sliderB: "diffusion / stability",
+    minA: 0,
+    maxA: 5,
+    stepA: 0.1,
+    minB: 0.2,
+    maxB: 2,
+    stepB: 0.1,
+    defaultA: 1,
+    defaultB: 0.7,
+    tasks: [
+      "Advance time.",
+      "Change diffusion.",
+      "Watch stability and smoothing.",
+    ],
+  },
+  {
+    id: "fixed-point-iteration-lab",
+    title: "Fixed-Point Iteration Lab",
+    category: "B.Tech M2",
+    subcategory: "Numerical Methods",
+    summary: "Iterate x=g(x) and compare convergence with the line y=x.",
+    formula: "x_(n+1)=g(x_n)",
+    visual: "fixed-point",
+    sliderA: "Initial x0",
+    sliderB: "Contraction",
+    minA: -2.5,
+    maxA: 2.5,
+    stepA: 0.05,
+    minB: 0.2,
+    maxB: 1.4,
+    stepB: 0.05,
+    defaultA: -1.8,
+    defaultB: 0.65,
+    tasks: ["Move x0.", "Increase contraction.", "Watch cobweb convergence."],
+  },
+  {
+    id: "secant-method-lab",
+    title: "Secant Method Lab",
+    category: "B.Tech M2",
+    subcategory: "Numerical Methods",
+    summary:
+      "Use two previous points to build a secant estimate of a nonlinear equation root.",
+    formula: "x_(n+1)=x_n-f(x_n)(x_n-x_(n-1))/(f(x_n)-f(x_(n-1)))",
+    visual: "secant-method",
+    sliderA: "x0",
+    sliderB: "x1",
+    minA: -3,
+    maxA: 1,
+    stepA: 0.05,
+    minB: 0.5,
+    maxB: 3,
+    stepB: 0.05,
+    defaultA: -1.5,
+    defaultB: 2,
+    tasks: [
+      "Move both guesses.",
+      "Watch secant intersections.",
+      "Compare with Newton's tangent.",
+    ],
+  },
+  {
+    id: "newton-divided-differences-lab",
+    title: "Newton Divided Differences Lab",
+    category: "B.Tech M2",
+    subcategory: "Numerical Methods",
+    summary:
+      "Build interpolation coefficients from nested divided differences.",
+    formula: "P_n(x)=a_0+a_1(x-x_0)+a_2(x-x_0)(x-x_1)+...",
+    visual: "divided-differences",
+    sliderA: "Point count",
+    sliderB: "Evaluation x",
+    minA: 3,
+    maxA: 7,
+    stepA: 1,
+    minB: -3,
+    maxB: 3,
+    stepB: 0.1,
+    defaultA: 5,
+    defaultB: 1.2,
+    tasks: [
+      "Change point count.",
+      "Move x.",
+      "Read the nested polynomial path.",
+    ],
+  },
+  {
+    id: "forward-backward-interpolation-lab",
+    title: "Forward and Backward Interpolation Lab",
+    category: "B.Tech M2",
+    subcategory: "Numerical Methods",
+    summary:
+      "Compare table-based forward and backward differences on equally spaced data.",
+    formula: "Newton forward/backward difference formulas",
+    visual: "finite-difference-interpolation",
+    sliderA: "Table index",
+    sliderB: "Step h",
+    minA: 0,
+    maxA: 5,
+    stepA: 1,
+    minB: 0.4,
+    maxB: 1.6,
+    stepB: 0.05,
+    defaultA: 2,
+    defaultB: 1,
+    tasks: [
+      "Move table index.",
+      "Change h.",
+      "Compare forward and backward focus.",
+    ],
+  },
+  {
+    id: "gaussian-quadrature-lab",
+    title: "Gaussian Quadrature Lab",
+    category: "B.Tech M2",
+    subcategory: "Numerical Methods",
+    summary:
+      "Place optimal sample nodes and compare weighted area against ordinary rules.",
+    formula: "integral_-1^1 f(x)dx approx sum w_i f(x_i)",
+    visual: "gaussian-quadrature",
+    sliderA: "Node count",
+    sliderB: "Curve bend",
+    minA: 2,
+    maxA: 5,
+    stepA: 1,
+    minB: 0,
+    maxB: 2,
+    stepB: 0.05,
+    defaultA: 3,
+    defaultB: 0.8,
+    tasks: [
+      "Change node count.",
+      "Bend the curve.",
+      "Compare weighted samples.",
+    ],
+  },
+  {
+    id: "numerical-linear-algebra-iteration-lab",
+    title: "Numerical Linear Algebra Iteration Lab",
+    category: "B.Tech M2",
+    subcategory: "Numerical Methods",
+    summary:
+      "Compare direct row-reduction thinking with Jacobi, Gauss-Seidel, and relaxation-style iterative correction.",
+    formula: "x^(k+1)=Bx^(k)+c",
+    visual: "linear-system-solver",
+    sliderA: "Iteration k",
+    sliderB: "Relaxation omega",
+    minA: 0,
+    maxA: 12,
+    stepA: 1,
+    minB: 0.2,
+    maxB: 1.4,
+    stepB: 0.05,
+    defaultA: 5,
+    defaultB: 0.85,
+    tasks: [
+      "Increase iterations.",
+      "Change relaxation.",
+      "Watch the guess approach the solution.",
+    ],
+  },
+  {
+    id: "power-method-eigenvalue-lab",
+    title: "Power Method Eigenvalue Lab",
+    category: "B.Tech M2",
+    subcategory: "Numerical Methods",
+    summary:
+      "Repeatedly apply a matrix to a vector and watch the direction approach a dominant eigenvector.",
+    formula: "x_(k+1)=Ax_k/||Ax_k||",
+    visual: "eigenvector-direction",
+    sliderA: "Starting angle",
+    sliderB: "Dominant stretch",
+    minA: 0,
+    maxA: 180,
+    stepA: 1,
+    minB: 0.5,
+    maxB: 3,
+    stepB: 0.1,
+    defaultA: 28,
+    defaultB: 2.1,
+    tasks: [
+      "Rotate the start vector.",
+      "Increase stretch.",
+      "Observe direction convergence.",
+    ],
+  },
+  {
+    id: "probability-distribution-expectation-lab",
+    title: "Probability Distribution and Expectation Lab",
+    category: "B.Tech M3",
+    subcategory: "Probability and Statistics",
+    summary:
+      "Shape a distribution-like density and connect spread with expectation and variance readouts.",
+    formula: "E[X]=sum x p(x), Var(X)=E[X^2]-(E[X])^2",
+    visual: "beta-gamma",
+    sliderA: "Shape alpha / mean",
+    sliderB: "Shape beta / spread",
+    minA: 0.5,
+    maxA: 6,
+    stepA: 0.1,
+    minB: 0.5,
+    maxB: 6,
+    stepB: 0.1,
+    defaultA: 2.2,
+    defaultB: 3,
+    tasks: [
+      "Move alpha.",
+      "Move beta.",
+      "Connect skew and spread to expectation.",
+    ],
+  },
+  {
+    id: "statistical-inference-regression-lab",
+    title: "Statistical Inference and Regression Lab",
+    category: "B.Tech M3",
+    subcategory: "Probability and Statistics",
+    summary:
+      "Fit a trend through sampled data and inspect residual behavior before formal inference.",
+    formula: "y=a+bx, residual = observed - fitted",
+    visual: "interpolation-builder",
+    sliderA: "Sample count",
+    sliderB: "Trend tension",
+    minA: 3,
+    maxA: 9,
+    stepA: 1,
+    minB: 0.1,
+    maxB: 2,
+    stepB: 0.05,
+    defaultA: 6,
+    defaultB: 0.8,
+    tasks: [
+      "Change sample count.",
+      "Adjust the trend.",
+      "Compare fitted curve and points.",
+    ],
+  },
+  {
+    id: "discrete-math-cse-structure-lab",
+    title: "Discrete Mathematics for CSE Structure Lab",
+    category: "B.Tech M2",
+    subcategory: "Discrete Mathematics",
+    summary:
+      "Compare logic, relations, modular classes, and finite structure using a visual partition model.",
+    formula: "relations, recurrence, Boolean structure, a mod m",
+    visual: "equivalence",
+    sliderA: "Modulo / rule",
+    sliderB: "Set size",
+    minA: 2,
+    maxA: 8,
+    stepA: 1,
+    minB: 8,
+    maxB: 32,
+    stepB: 1,
+    defaultA: 4,
+    defaultB: 20,
+    tasks: [
+      "Change the rule.",
+      "Count classes.",
+      "Relate partitions to equivalence relations.",
+    ],
+  },
+  {
+    id: "graph-theory-basics",
+    title: "Graph Theory Explorer",
+    category: "Discrete Mathematics",
+    subcategory: "Graph Theory",
+    summary:
+      "Build an undirected graph, inspect degree sequence, and trace BFS layer-by-layer.",
+    formula: "sum deg(v) = 2|E| (handshaking lemma)",
+    visual: "graph-theory",
+    sliderA: "Node count",
+    sliderB: "Edge density",
+    minA: 4,
+    maxA: 9,
+    stepA: 1,
+    minB: 0.2,
+    maxB: 0.9,
+    stepB: 0.05,
+    defaultA: 6,
+    defaultB: 0.5,
+    tasks: [
+      "Increase nodes.",
+      "Change edge density.",
+      "Count degrees and verify handshaking lemma.",
+    ],
+  },
+  {
+    id: "operations-research-lp",
+    title: "Linear Programming Feasible Region",
+    category: "Discrete Mathematics",
+    subcategory: "Operations Research",
+    summary:
+      "Maximize an objective function over a polygon feasible region and identify the optimal corner.",
+    formula: "max Z = c1*x + c2*y subject to Ax <= b, x,y >= 0",
+    visual: "operations-research",
+    sliderA: "Objective c1",
+    sliderB: "Objective c2",
+    minA: 0.5,
+    maxA: 5,
+    stepA: 0.5,
+    minB: 0.5,
+    maxB: 5,
+    stepB: 0.5,
+    defaultA: 3,
+    defaultB: 2,
+    tasks: [
+      "Change c1 and watch optimal corner move.",
+      "Set equal coefficients.",
+      "Find minimum instead of maximum.",
+    ],
+  },
+  {
+    id: "network-pert-game-theory-lab",
+    title: "Network Models, PERT/CPM and Game Theory Lab",
+    category: "B.Tech M4",
+    subcategory: "Operations Research",
+    summary:
+      "Model a project network, compare objective tradeoffs, and connect critical paths with minimax-style decisions.",
+    formula: "E=(a+4m+b)/6, minimax payoff",
+    visual: "operations-research",
+    sliderA: "Critical activity weight",
+    sliderB: "Payoff slope",
+    minA: 0.5,
+    maxA: 5,
+    stepA: 0.5,
+    minB: 0.5,
+    maxB: 5,
+    stepB: 0.5,
+    defaultA: 2.5,
+    defaultB: 3,
+    tasks: [
+      "Move activity weight.",
+      "Change payoff slope.",
+      "Identify the active constraint or critical tradeoff.",
+    ],
+  },
+  {
+    id: "reliability-markov-queueing-lab",
+    title: "Reliability, Markov Chain and Queueing Lab",
+    category: "B.Tech M4",
+    subcategory: "Stochastic Processes",
+    summary:
+      "Represent system states as a transition graph and connect arrival/service rates to steady behavior.",
+    formula: "P^(n), rho=lambda/mu, R(t)=e^(-lambda t)",
+    visual: "graph-theory",
+    sliderA: "State count",
+    sliderB: "Transition density",
+    minA: 4,
+    maxA: 9,
+    stepA: 1,
+    minB: 0.2,
+    maxB: 0.9,
+    stepB: 0.05,
+    defaultA: 5,
+    defaultB: 0.45,
+    tasks: [
+      "Change states.",
+      "Change transition density.",
+      "Discuss steady-state flow.",
+    ],
+  },
+  {
+    id: "stochastic-process-time-series-lab",
+    title: "Time Series and Stochastic Process Lab",
+    category: "B.Tech M4",
+    subcategory: "Stochastic Processes",
+    summary:
+      "Build a sample path from partial sums and compare drift, oscillation, and settling behavior.",
+    formula: "X_t, Cov(X_t,X_(t+k)), random walk increments",
+    visual: "series-partial-sum",
+    sliderA: "Samples n",
+    sliderB: "Drift / correlation",
+    minA: 1,
+    maxA: 80,
+    stepA: 1,
+    minB: -0.95,
+    maxB: 0.95,
+    stepB: 0.05,
+    defaultA: 32,
+    defaultB: 0.25,
+    tasks: [
+      "Increase samples.",
+      "Change drift.",
+      "Compare sample-path behavior.",
+    ],
+  },
+  {
+    id: "variational-calculus-lab",
+    title: "Calculus of Variations Lab",
+    category: "B.Tech M4",
+    subcategory: "Optimization",
+    summary:
+      "Compare candidate paths and see how an Euler-Lagrange condition selects an extremal.",
+    formula: "d/dx(partial F/partial y') - partial F/partial y = 0",
+    visual: "lagrange-multiplier",
+    sliderA: "Path constraint",
+    sliderB: "Functional tilt",
+    minA: 0.8,
+    maxA: 3,
+    stepA: 0.05,
+    minB: -1.2,
+    maxB: 1.2,
+    stepB: 0.05,
+    defaultA: 1.7,
+    defaultB: 0.35,
+    tasks: [
+      "Change the path constraint.",
+      "Tilt the functional.",
+      "Find the extremal contact.",
+    ],
+  },
+  {
+    id: "optimization-gradient-constraints-lab",
+    title: "Optimization Techniques Gradient and Constraints Lab",
+    category: "B.Tech M4",
+    subcategory: "Optimization",
+    summary:
+      "Move an objective through a feasible region and connect gradient direction with constrained optima.",
+    formula: "x_new=x-alpha grad f, max Z=cx",
+    visual: "operations-research",
+    sliderA: "Objective weight",
+    sliderB: "Constraint slope",
+    minA: 0.5,
+    maxA: 5,
+    stepA: 0.5,
+    minB: 0.5,
+    maxB: 5,
+    stepB: 0.5,
+    defaultA: 2.8,
+    defaultB: 2.2,
+    tasks: [
+      "Move the objective.",
+      "Find the active corner.",
+      "Compare constrained and unconstrained movement.",
+    ],
+  },
+  {
+    id: "number-theory-cryptography-lab",
+    title: "Number Theory and Cryptography Lab",
+    category: "B.Tech M3",
+    subcategory: "Number Theory",
+    summary:
+      "Use modular classes to see congruence, gcd cycles, and RSA-style residue structure.",
+    formula: "a congruent b mod n, gcd(a,b), c=m^e mod n",
+    visual: "equivalence",
+    sliderA: "Modulus n",
+    sliderB: "Message range",
+    minA: 2,
+    maxA: 12,
+    stepA: 1,
+    minB: 8,
+    maxB: 36,
+    stepB: 1,
+    defaultA: 7,
+    defaultB: 24,
+    tasks: [
+      "Change modulus.",
+      "Inspect residue classes.",
+      "Connect classes to modular arithmetic.",
+    ],
+  },
+  {
+    id: "machine-learning-math-lab",
+    title: "Mathematics for Machine Learning Lab",
+    category: "B.Tech M4",
+    subcategory: "Machine Learning Mathematics",
+    summary:
+      "Connect vector iteration, residual error, and convergence used in regression and learning algorithms.",
+    formula: "activation(Wx+b), loss(theta), x^(k+1)=Bx^(k)+c",
+    visual: "error-convergence",
+    sliderA: "Method family",
+    sliderB: "Initial loss",
+    minA: 1,
+    maxA: 3,
+    stepA: 1,
+    minB: 0.1,
+    maxB: 1,
+    stepB: 0.05,
+    defaultA: 2,
+    defaultB: 0.75,
+    tasks: [
+      "Switch convergence type.",
+      "Change initial loss.",
+      "Explain why faster error decay matters.",
+    ],
+  },
 ];
 
 export const advancedSyllabusLabs: AdvancedSyllabusLab[] = [
@@ -245,7 +2924,9 @@ export function getAdvancedSyllabusLab(id?: string) {
   return advancedSyllabusLabs.find((lab) => lab.id === id);
 }
 
-export const advancedLabCategories = Array.from(new Set(advancedSyllabusLabs.map((lab) => lab.category)));
+export const advancedLabCategories = Array.from(
+  new Set(advancedSyllabusLabs.map((lab) => lab.category)),
+);
 
 export function engineeringConceptLabId(topicId: string, concept: string) {
   return `engineering-concept-${topicId}-${slug(concept)}`;
@@ -255,174 +2936,472 @@ export function syllabusConceptLabId(topicId: string, concept: string) {
   return `syllabus-concept-${topicId}-${slug(concept)}`;
 }
 
-function buildSyllabusConceptLabs(existingLabs: AdvancedSyllabusLab[]): AdvancedSyllabusLab[] {
+function buildSyllabusConceptLabs(
+  existingLabs: AdvancedSyllabusLab[],
+): AdvancedSyllabusLab[] {
   const existingIds = new Set(existingLabs.map((lab) => lab.id));
-  const engineeringTopicIds = new Set(engineeringSyllabusTopics.map((topic) => topic.id));
+  const engineeringTopicIds = new Set(
+    engineeringSyllabusTopics.map((topic) => topic.id),
+  );
   return allSyllabusTopics
     .filter((topic) => !engineeringTopicIds.has(topic.id))
     .flatMap((topic) =>
-      topic.concepts.map((concept, index): AdvancedSyllabusLab | null => {
-        const id = syllabusConceptLabId(topic.id, concept);
-        if (existingIds.has(id)) return null;
-        const visual = syllabusVisualForConcept(topic, concept);
-        const sliders = sliderPresetForVisual(visual);
-        return {
-          id,
-          title: `${concept} Interactive Tool`,
-          category: topic.classLevel,
-          subcategory: topic.unit,
-          summary: `${concept} from ${topic.title}: ${topic.description}`,
-          formula: topic.keyFormulas[index % Math.max(1, topic.keyFormulas.length)] ?? topic.keyFormulas[0] ?? concept,
-          visual,
-          tasks: [
-            `Move ${sliders.sliderA.toLowerCase()} and read the data visualization.`,
-            `Move ${sliders.sliderB.toLowerCase()} and compare the visual state.`,
-            `Explain how the graph, table, or diagram represents ${concept}.`,
-          ],
-          ...sliders,
-        };
-      }).filter((lab): lab is AdvancedSyllabusLab => Boolean(lab)),
+      topic.concepts
+        .map((concept, index): AdvancedSyllabusLab | null => {
+          const id = syllabusConceptLabId(topic.id, concept);
+          if (existingIds.has(id)) return null;
+          const visual = syllabusVisualForConcept(topic, concept);
+          const sliders = sliderPresetForVisual(visual);
+          return {
+            id,
+            title: `${concept} Interactive Tool`,
+            category: topic.classLevel,
+            subcategory: topic.unit,
+            summary: `${concept} from ${topic.title}: ${topic.description}`,
+            formula:
+              topic.keyFormulas[
+                index % Math.max(1, topic.keyFormulas.length)
+              ] ??
+              topic.keyFormulas[0] ??
+              concept,
+            visual,
+            tasks: [
+              `Move ${sliders.sliderA.toLowerCase()} and read the data visualization.`,
+              `Move ${sliders.sliderB.toLowerCase()} and compare the visual state.`,
+              `Explain how the graph, table, or diagram represents ${concept}.`,
+            ],
+            ...sliders,
+          };
+        })
+        .filter((lab): lab is AdvancedSyllabusLab => Boolean(lab)),
     );
 }
 
-function buildEngineeringConceptLabs(existingLabs: AdvancedSyllabusLab[]): AdvancedSyllabusLab[] {
+function buildEngineeringConceptLabs(
+  existingLabs: AdvancedSyllabusLab[],
+): AdvancedSyllabusLab[] {
   const existingIds = new Set(existingLabs.map((lab) => lab.id));
   return engineeringSyllabusTopics.flatMap((topic) =>
-    topic.concepts.map((concept, index): AdvancedSyllabusLab | null => {
-      const id = engineeringConceptLabId(topic.id, concept);
-      if (existingIds.has(id)) return null;
-      const visual = engineeringVisualForConcept(`${topic.title} ${topic.unit} ${concept}`);
-      const sliders = sliderPresetForVisual(visual);
-      return {
-        id,
-        title: `${concept} Interactive Lab`,
-        category: topic.classLevel,
-        subcategory: topic.unit,
-        summary: `${concept} from ${topic.title}: ${topic.description}`,
-        formula: topic.keyFormulas[index % Math.max(1, topic.keyFormulas.length)] ?? topic.keyFormulas[0] ?? concept,
-        visual,
-        tasks: [
-          `Move ${sliders.sliderA.toLowerCase()} and describe what changes.`,
-          `Move ${sliders.sliderB.toLowerCase()} and read the live measurement.`,
-          `Connect the diagram back to ${concept}.`,
-        ],
-        ...sliders,
-      };
-    }).filter((lab): lab is AdvancedSyllabusLab => Boolean(lab)),
+    topic.concepts
+      .map((concept, index): AdvancedSyllabusLab | null => {
+        const id = engineeringConceptLabId(topic.id, concept);
+        if (existingIds.has(id)) return null;
+        const visual = engineeringVisualForConcept(
+          `${topic.title} ${topic.unit} ${concept}`,
+        );
+        const sliders = sliderPresetForVisual(visual);
+        return {
+          id,
+          title: `${concept} Interactive Lab`,
+          category: topic.classLevel,
+          subcategory: topic.unit,
+          summary: `${concept} from ${topic.title}: ${topic.description}`,
+          formula:
+            topic.keyFormulas[index % Math.max(1, topic.keyFormulas.length)] ??
+            topic.keyFormulas[0] ??
+            concept,
+          visual,
+          tasks: [
+            `Move ${sliders.sliderA.toLowerCase()} and describe what changes.`,
+            `Move ${sliders.sliderB.toLowerCase()} and read the live measurement.`,
+            `Connect the diagram back to ${concept}.`,
+          ],
+          ...sliders,
+        };
+      })
+      .filter((lab): lab is AdvancedSyllabusLab => Boolean(lab)),
   );
 }
 
-export function syllabusVisualForConcept(topic: SyllabusTopic, concept: string): AdvancedLabVisual {
-  const text = `${topic.classLevel} ${topic.unit} ${topic.title} ${concept} ${topic.recommendedVisualization}`.toLowerCase();
+export function syllabusVisualForConcept(
+  topic: SyllabusTopic,
+  concept: string,
+): AdvancedLabVisual {
+  const text =
+    `${topic.classLevel} ${topic.unit} ${topic.title} ${concept} ${topic.recommendedVisualization}`.toLowerCase();
   if (/venn|set\b|union|intersection/.test(text)) return "venn";
-  if (/relation|function|domain|range|mapping|inverse function|composition/.test(text)) return "mapping";
-  if (/logic|statement|connective|predicate|truth/.test(text)) return "truth-table";
+  if (
+    /relation|function|domain|range|mapping|inverse function|composition/.test(
+      text,
+    )
+  )
+    return "mapping";
+  if (/logic|statement|connective|predicate|truth/.test(text))
+    return "truth-table";
   if (/boolean|recurrence/.test(text)) return "relation-matrix";
-  if (/permutation|combination|counting|factorial|arrangement|selection/.test(text)) return "permutation-cycle";
+  if (
+    /permutation|combination|counting|factorial|arrangement|selection/.test(
+      text,
+    )
+  )
+    return "permutation-cycle";
   if (/binomial|pascal/.test(text)) return "induction";
-  if (/integer|hcf|lcm|prime|euclid|gcd|modular|rsa|cryptography/.test(text)) return "equivalence";
-  if (/fraction|decimal|rational|irrational|real number|number line|surd|root/.test(text)) return "sequence-convergence";
+  if (/integer|hcf|lcm|prime|euclid|gcd|modular|rsa|cryptography/.test(text))
+    return "equivalence";
+  if (
+    /fraction|decimal|rational|irrational|real number|number line|surd|root/.test(
+      text,
+    )
+  )
+    return "sequence-convergence";
   if (/exponent|power|standard form/.test(text)) return "power-series-radius";
-  if (/percent|profit|loss|discount|interest|ratio|proportion/.test(text)) return "area-under-curve";
-  if (/linear equation|simultaneous|slope|intercept|straight line|line graph|coordinates|coordinate|section formula|midpoint|distance/.test(text)) return "root-finding";
-  if (/polynomial|quadratic|parabola|discriminant|factor|identity|algebraic expression/.test(text)) return "tangent";
-  if (/inequalit|linear programming|feasible/.test(text)) return "operations-research";
-  if (/sequence|series|progression|ap\b|arithmetic progression|geometric/.test(text)) return "series-partial-sum";
+  if (/percent|profit|loss|discount|interest|ratio|proportion/.test(text))
+    return "area-under-curve";
+  if (
+    /linear equation|simultaneous|slope|intercept|straight line|line graph|coordinates|coordinate|section formula|midpoint|distance/.test(
+      text,
+    )
+  )
+    return "root-finding";
+  if (
+    /polynomial|quadratic|parabola|discriminant|factor|identity|algebraic expression/.test(
+      text,
+    )
+  )
+    return "tangent";
+  if (/inequalit|linear programming|feasible/.test(text))
+    return "operations-research";
+  if (
+    /sequence|series|progression|ap\b|arithmetic progression|geometric/.test(
+      text,
+    )
+  )
+    return "series-partial-sum";
   if (/limit|continuity|differentiability/.test(text)) return "continuity";
-  if (/derivative|tangent|maxima|minima|optimization|rate/.test(text)) return "maxima";
+  if (/derivative|tangent|maxima|minima|optimization|rate/.test(text))
+    return "maxima";
   if (/integral|area accumulation|area under/.test(text)) return "riemann";
-  if (/differential equation|slope field|solution curve/.test(text)) return "slope-field";
-  if (/matrix|matrices|determinant|row|linear algebra/.test(text)) return "matrix-grid-warp";
-  if (/vector|three dimensional|3d|basis|component/.test(text)) return "vector-2d-3d";
+  if (/differential equation|slope field|solution curve/.test(text))
+    return "slope-field";
+  if (/matrix|matrices|determinant|row|linear algebra/.test(text))
+    return "matrix-grid-warp";
+  if (/vector|three dimensional|3d|basis|component/.test(text))
+    return "vector-2d-3d";
   if (/complex|argand|euler|polar/.test(text)) return "argand-plane";
-  if (/trigonometric|trigonometry|sine|cosine|unit circle|height|distance|inverse trig/.test(text)) return "complex-rotation";
-  if (/circle|arc|sector|tangent|chord|radius|diameter/.test(text)) return "curvature";
-  if (/triangle|heron|pythagoras|similarity|congruence|altitude|median/.test(text)) return "partition-refinement";
-  if (/quadrilateral|parallelogram|rhombus|rectangle|polygon|trapez/.test(text)) return "coordinate-transform";
-  if (/angle|transversal|parallel line|euclid|axiom|postulate|construction/.test(text)) return "cauchy-integral";
-  if (/mensuration|perimeter|area|surface|volume|solid|cube|cuboid|net|shape/.test(text)) return "triple-integral";
+  if (
+    /trigonometric|trigonometry|sine|cosine|unit circle|height|distance|inverse trig/.test(
+      text,
+    )
+  )
+    return "complex-rotation";
+  if (/circle|arc|sector|tangent|chord|radius|diameter/.test(text))
+    return "curvature";
+  if (
+    /triangle|heron|pythagoras|similarity|congruence|altitude|median/.test(text)
+  )
+    return "partition-refinement";
+  if (/quadrilateral|parallelogram|rhombus|rectangle|polygon|trapez/.test(text))
+    return "coordinate-transform";
+  if (
+    /angle|transversal|parallel line|euclid|axiom|postulate|construction/.test(
+      text,
+    )
+  )
+    return "cauchy-integral";
+  if (
+    /mensuration|perimeter|area|surface|volume|solid|cube|cuboid|net|shape/.test(
+      text,
+    )
+  )
+    return "triple-integral";
   if (/symmetry|reflection|rotation/.test(text)) return "symmetry-group";
-  if (/data|statistics|mean|median|mode|bar graph|chart|regression/.test(text)) return "interpolation-builder";
+  if (/data|statistics|mean|median|mode|bar graph|chart|regression/.test(text))
+    return "interpolation-builder";
   if (/probability|random|event|distribution/.test(text)) return "beta-gamma";
-  if (/graph theory|bfs|dfs|tree|shortest|spanning|coloring|network/.test(text)) return "graph-theory";
-  if (/abstract algebra|group|monoid|lattice|cayley/.test(text)) return "cayley-table";
-  if (/automata|grammar|turing|finite automata/.test(text)) return "homomorphism-map";
+  if (/graph theory|bfs|dfs|tree|shortest|spanning|coloring|network/.test(text))
+    return "graph-theory";
+  if (/abstract algebra|group|monoid|lattice|cayley/.test(text))
+    return "cayley-table";
+  if (/automata|grammar|turing|finite automata/.test(text))
+    return "homomorphism-map";
   if (/numerical|bisection|newton|secant/.test(text)) return "newton-raphson";
   if (/fourier|wave|signal/.test(text)) return "fourier-transform";
-  if (/modelling|modeling|machine learning|neural|loss|gradient/.test(text)) return "error-convergence";
+  if (/modelling|modeling|machine learning|neural|loss|gradient/.test(text))
+    return "error-convergence";
   return engineeringVisualForConcept(text);
 }
 
 export function engineeringVisualForConcept(value: string): AdvancedLabVisual {
   const text = value.toLowerCase();
-  if (/cayley|matrix inverse|matrix powers/.test(text)) return "cayley-hamilton";
-  if (/rank|echelon|consistency|free variables|row reduction|gauss elimination/.test(text)) return "gaussian-elimination";
-  if (/eigenvalue|eigenvector|diagonalization|dominant eigenvalue|power method/.test(text)) return "eigenvector-direction";
-  if (/quadratic form|canonical|definiteness|principal axes/.test(text)) return "quadratic-form-surface";
-  if (/orthogonality|projection|least squares|gram-schmidt|qr/.test(text)) return "gram-schmidt";
-  if (/comparison|ratio test|root test|alternating|series|convergence/.test(text)) return "convergence-test";
-  if (/curve tracing|asymptote|critical|curvature|maxima|minima/.test(text)) return "asymptote-tracing";
-  if (/lagrange multiplier|constrained extrema/.test(text)) return "lagrange-multiplier";
+  if (/cayley|matrix inverse|matrix powers/.test(text))
+    return "cayley-hamilton";
+  if (
+    /rank|echelon|consistency|free variables|row reduction|gauss elimination/.test(
+      text,
+    )
+  )
+    return "gaussian-elimination";
+  if (
+    /eigenvalue|eigenvector|diagonalization|dominant eigenvalue|power method/.test(
+      text,
+    )
+  )
+    return "eigenvector-direction";
+  if (/quadratic form|canonical|definiteness|principal axes/.test(text))
+    return "quadratic-form-surface";
+  if (/orthogonality|projection|least squares|gram-schmidt|qr/.test(text))
+    return "gram-schmidt";
+  if (
+    /comparison|ratio test|root test|alternating|series|convergence/.test(text)
+  )
+    return "convergence-test";
+  if (/curve tracing|asymptote|critical|curvature|maxima|minima/.test(text))
+    return "asymptote-tracing";
+  if (/lagrange multiplier|constrained extrema/.test(text))
+    return "lagrange-multiplier";
   if (/partial derivative|surface slice/.test(text)) return "partial";
-  if (/jacobian|coordinate transform|area scaling/.test(text)) return "jacobian";
-  if (/double integral|triple integral|multiple integral|volume/.test(text)) return "double-integral";
+  if (/jacobian|coordinate transform|area scaling/.test(text))
+    return "jacobian";
+  if (/double integral|triple integral|multiple integral|volume/.test(text))
+    return "double-integral";
   if (/gamma|beta/.test(text)) return "beta-gamma";
-  if (/slope field|separable|initial value|first-order/.test(text)) return "slope-field";
-  if (/auxiliary|repeated roots|complex roots|higher-order/.test(text)) return "higher-order-ode";
+  if (/slope field|separable|initial value|first-order/.test(text))
+    return "slope-field";
+  if (/auxiliary|repeated roots|complex roots|higher-order/.test(text))
+    return "higher-order-ode";
   if (/cauchy-euler|power solution/.test(text)) return "cauchy-euler";
-  if (/bessel|legendre|frobenius|special function/.test(text)) return "series-partial-sum";
+  if (/bessel|legendre|frobenius|special function/.test(text))
+    return "series-partial-sum";
   if (/sturm|boundary|eigenfunction/.test(text)) return "wave-equation";
-  if (/laplace transform|inverse transform|initial condition/.test(text)) return "laplace-transform";
+  if (/laplace transform|inverse transform|initial condition/.test(text))
+    return "laplace-transform";
   if (/unit step|impulse/.test(text)) return "step-impulse";
   if (/convolution/.test(text)) return "convolution";
   if (/fourier|spectrum/.test(text)) return "fourier-transform";
-  if (/z-transform|difference equation|discrete system/.test(text)) return "z-transform";
-  if (/heat equation|finite difference|grid method|stability/.test(text)) return "heat-equation";
+  if (/z-transform|difference equation|discrete system/.test(text))
+    return "z-transform";
+  if (/heat equation|finite difference|grid method|stability/.test(text))
+    return "heat-equation";
   if (/wave equation/.test(text)) return "wave-equation";
   if (/laplace equation|potential/.test(text)) return "laplace-potential";
-  if (/pde classification|characteristic|canonical form/.test(text)) return "direction-field";
+  if (/pde classification|characteristic|canonical form/.test(text))
+    return "direction-field";
   if (/analytic|mobius|cauchy-riemann/.test(text)) return "mobius-map";
-  if (/contour|residue|singularit|cauchy formula/.test(text)) return "complex-line-integral";
-  if (/gradient|divergence|curl|stokes|green|gauss|line integral|surface integral|vector calculus/.test(text)) return "vector-calculus-field";
-  if (/bisection|newton-raphson|secant|root-finding/.test(text)) return "newton-raphson";
+  if (/contour|residue|singularit|cauchy formula/.test(text))
+    return "complex-line-integral";
+  if (
+    /gradient|divergence|curl|stokes|green|gauss|line integral|surface integral|vector calculus/.test(
+      text,
+    )
+  )
+    return "vector-calculus-field";
+  if (/bisection|newton-raphson|secant|root-finding/.test(text))
+    return "newton-raphson";
   if (/fixed-point/.test(text)) return "fixed-point";
-  if (/jacobi|gauss-seidel|relaxation|numerical linear algebra/.test(text)) return "linear-system-solver";
-  if (/interpolation|divided differences|finite differences|curve fitting/.test(text)) return "divided-differences";
+  if (/jacobi|gauss-seidel|relaxation|numerical linear algebra/.test(text))
+    return "linear-system-solver";
+  if (
+    /interpolation|divided differences|finite differences|curve fitting/.test(
+      text,
+    )
+  )
+    return "divided-differences";
   if (/rk4|euler method|ode solver/.test(text)) return "euler-rk4";
   if (/quadrature|simpson|trapezoidal/.test(text)) return "gaussian-quadrature";
-  if (/random variable|distribution|expectation|variance|probability/.test(text)) return "beta-gamma";
-  if (/regression|sampling|hypothesis|inference|confidence/.test(text)) return "interpolation-builder";
+  if (
+    /random variable|distribution|expectation|variance|probability/.test(text)
+  )
+    return "beta-gamma";
+  if (/regression|sampling|hypothesis|inference|confidence/.test(text))
+    return "interpolation-builder";
   if (/reliability|markov|queue|steady state/.test(text)) return "graph-theory";
-  if (/time series|stationarity|random walk|autocorrelation/.test(text)) return "series-partial-sum";
-  if (/transfer function|pole|zero|control/.test(text)) return "laplace-transform";
-  if (/linear programming|transportation|assignment|simplex|operations/.test(text)) return "operations-research";
-  if (/pert|cpm|game theory|inventory|minimax|network/.test(text)) return "graph-theory";
-  if (/gradient descent|convexity|constraint|optimization/.test(text)) return "operations-research";
-  if (/functional|euler-lagrange|extremal|variational/.test(text)) return "lagrange-multiplier";
-  if (/logic|relation|recurrence|boolean|counting/.test(text)) return "relation-matrix";
+  if (/time series|stationarity|random walk|autocorrelation/.test(text))
+    return "series-partial-sum";
+  if (/transfer function|pole|zero|control/.test(text))
+    return "laplace-transform";
+  if (
+    /linear programming|transportation|assignment|simplex|operations/.test(text)
+  )
+    return "operations-research";
+  if (/pert|cpm|game theory|inventory|minimax|network/.test(text))
+    return "graph-theory";
+  if (/gradient descent|convexity|constraint|optimization/.test(text))
+    return "operations-research";
+  if (/functional|euler-lagrange|extremal|variational/.test(text))
+    return "lagrange-multiplier";
+  if (/logic|relation|recurrence|boolean|counting/.test(text))
+    return "relation-matrix";
   return "vector-2d-3d";
 }
 
 function sliderPresetForVisual(visual: AdvancedLabVisual) {
-  if (visual === "gaussian-elimination") return sliderPreset("Step", "Pivot scale", 0, 4, 1, 0.5, 2, 0.05, 1, 1);
-  if (visual === "eigenvector-direction") return sliderPreset("Angle", "Stretch", 0, 180, 1, 0.5, 3, 0.1, 35, 1.8);
-  if (visual === "convergence-test") return sliderPreset("Test family", "Parameter", 1, 4, 1, 0.4, 3, 0.1, 2, 1.4);
-  if (visual === "slope-field") return sliderPreset("x coefficient", "y coefficient", -2, 2, 0.05, -2, 2, 0.05, 0.8, -0.4);
-  if (visual === "heat-equation") return sliderPreset("Time", "Diffusion", 0, 5, 0.05, 0.2, 2, 0.05, 1.1, 0.8);
-  if (visual === "wave-equation") return sliderPreset("Time/mode", "Speed", 0, 6.28, 0.05, 0.5, 2.5, 0.05, 1.2, 1);
-  if (visual === "graph-theory") return sliderPreset("Node count", "Density", 4, 9, 1, 0.2, 0.9, 0.05, 6, 0.5);
-  if (visual === "operations-research") return sliderPreset("Objective c1", "Objective c2", 0.5, 5, 0.5, 0.5, 5, 0.5, 3, 2);
-  if (visual === "beta-gamma") return sliderPreset("Shape alpha", "Shape beta", 0.5, 6, 0.1, 0.5, 6, 0.1, 2.2, 3);
-  if (visual === "z-transform") return sliderPreset("Pole radius", "Input step", 0.1, 1.8, 0.05, -2, 2, 0.05, 0.72, 0.8);
-  if (visual === "vector-calculus-field") return sliderPreset("Field swirl", "Flux source", -2, 2, 0.05, -2, 2, 0.05, 0.9, 0.7);
-  if (visual === "laplace-transform") return sliderPreset("Decay/frequency", "s value", 0.2, 3, 0.05, 0.3, 5, 0.05, 1.2, 2);
-  return sliderPreset("Parameter A", "Parameter B", 0.5, 4, 0.05, -2, 4, 0.05, 1.2, 0.8);
+  if (visual === "gaussian-elimination")
+    return sliderPreset("Step", "Pivot scale", 0, 4, 1, 0.5, 2, 0.05, 1, 1);
+  if (visual === "eigenvector-direction")
+    return sliderPreset("Angle", "Stretch", 0, 180, 1, 0.5, 3, 0.1, 35, 1.8);
+  if (visual === "convergence-test")
+    return sliderPreset(
+      "Test family",
+      "Parameter",
+      1,
+      4,
+      1,
+      0.4,
+      3,
+      0.1,
+      2,
+      1.4,
+    );
+  if (visual === "slope-field")
+    return sliderPreset(
+      "x coefficient",
+      "y coefficient",
+      -2,
+      2,
+      0.05,
+      -2,
+      2,
+      0.05,
+      0.8,
+      -0.4,
+    );
+  if (visual === "heat-equation")
+    return sliderPreset(
+      "Time",
+      "Diffusion",
+      0,
+      5,
+      0.05,
+      0.2,
+      2,
+      0.05,
+      1.1,
+      0.8,
+    );
+  if (visual === "wave-equation")
+    return sliderPreset(
+      "Time/mode",
+      "Speed",
+      0,
+      6.28,
+      0.05,
+      0.5,
+      2.5,
+      0.05,
+      1.2,
+      1,
+    );
+  if (visual === "graph-theory")
+    return sliderPreset(
+      "Node count",
+      "Density",
+      4,
+      9,
+      1,
+      0.2,
+      0.9,
+      0.05,
+      6,
+      0.5,
+    );
+  if (visual === "operations-research")
+    return sliderPreset(
+      "Objective c1",
+      "Objective c2",
+      0.5,
+      5,
+      0.5,
+      0.5,
+      5,
+      0.5,
+      3,
+      2,
+    );
+  if (visual === "beta-gamma")
+    return sliderPreset(
+      "Shape alpha",
+      "Shape beta",
+      0.5,
+      6,
+      0.1,
+      0.5,
+      6,
+      0.1,
+      2.2,
+      3,
+    );
+  if (visual === "z-transform")
+    return sliderPreset(
+      "Pole radius",
+      "Input step",
+      0.1,
+      1.8,
+      0.05,
+      -2,
+      2,
+      0.05,
+      0.72,
+      0.8,
+    );
+  if (visual === "vector-calculus-field")
+    return sliderPreset(
+      "Field swirl",
+      "Flux source",
+      -2,
+      2,
+      0.05,
+      -2,
+      2,
+      0.05,
+      0.9,
+      0.7,
+    );
+  if (visual === "laplace-transform")
+    return sliderPreset(
+      "Decay/frequency",
+      "s value",
+      0.2,
+      3,
+      0.05,
+      0.3,
+      5,
+      0.05,
+      1.2,
+      2,
+    );
+  return sliderPreset(
+    "Parameter A",
+    "Parameter B",
+    0.5,
+    4,
+    0.05,
+    -2,
+    4,
+    0.05,
+    1.2,
+    0.8,
+  );
 }
 
-function sliderPreset(sliderA: string, sliderB: string, minA: number, maxA: number, stepA: number, minB: number, maxB: number, stepB: number, defaultA: number, defaultB: number) {
-  return { sliderA, sliderB, minA, maxA, stepA, minB, maxB, stepB, defaultA, defaultB };
+function sliderPreset(
+  sliderA: string,
+  sliderB: string,
+  minA: number,
+  maxA: number,
+  stepA: number,
+  minB: number,
+  maxB: number,
+  stepB: number,
+  defaultA: number,
+  defaultB: number,
+) {
+  return {
+    sliderA,
+    sliderB,
+    minA,
+    maxA,
+    stepA,
+    minB,
+    maxB,
+    stepB,
+    defaultA,
+    defaultB,
+  };
 }
 
 function slug(value: string) {
-  return value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  return value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
 }

@@ -1,6 +1,6 @@
 # Lesson 0906: Margin of Error and Sample Size
 
-Status: dedicated implementation; browser interaction and exact visual acceptance remain deferred under the user-directed workflow. Not certified as an exact mockup match.
+Status: completed in the current one-by-one UI acceptance pass. Reference structure and proportions are visually aligned; exact pixel identity is not claimed.
 
 Reference inspected: `D:/Math App Screenshots for UI Update/Updated UI/0906-advanced-advanced-statistical-inference-margin-of-error-and-sample-size-redesigned.png`.
 Advanced concept ID: 2012. Route: `/lessons/advanced-concepts/2012-margin-of-error-sample-size`.
@@ -32,7 +32,9 @@ Advanced concept ID: 2012. Route: `/lessons/advanced-concepts/2012-margin-of-err
 - Targeted strict TypeScript and focused ESLint passed.
 - One dedicated-route test passed; 221 unrelated cases skipped.
 - Existing application listener verified at 127.0.0.1:2266, PID 33880; not restarted.
-- No full build, full test suite, browser screenshots, real pointer/keyboard interaction or pixel comparison performed.
+- Captured desktop evidence: `artifacts/studio-control-audit/0906-current.png`.
+- One-by-one browser acceptance: opened the advanced route and verified the planner controls, confidence options, sample-size result, comparison panel and challenge section rendered.
+- Focused surface/model tests pass (6 tests); `git diff --check` is clean for the lesson evidence.
 
 ## Source
 

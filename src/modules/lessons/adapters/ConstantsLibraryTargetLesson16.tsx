@@ -203,7 +203,7 @@ export default function ConstantsLibraryTargetLesson16({
             </nav>
             <ConstantVisual
               id={selected}
-          formula={constant.formula}
+              formula={constant.formula}
               output={output}
             />
             <section className="constant-output">

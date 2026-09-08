@@ -12,12 +12,31 @@ export type ARObjectType =
 
 export type ARRenderMode = "ar" | "camera-preview" | "3d-preview";
 export type ARSessionMode = "none" | ARRenderMode;
-export type ARSessionStatus = "idle" | "checking" | "ready" | "starting" | "active" | "stopping" | "error" | "unsupported";
+export type ARSessionStatus =
+  | "idle"
+  | "checking"
+  | "ready"
+  | "starting"
+  | "active"
+  | "stopping"
+  | "error"
+  | "unsupported";
 export type ARCameraPermission = "unknown" | "granted" | "denied" | "prompt";
 
 export type ARUnit = "mm" | "cm" | "m" | "inch" | "ft";
-export type ARSolidType = "cube" | "cuboid" | "cylinder" | "cone" | "sphere" | "hemisphere" | "prism" | "pyramid" | "frustum" | "torus";
-export type ARScaleMode = "real-scale" | "fit-to-view" | "classroom-scale" | "miniature" | "custom";
+export type ARSolidType =
+  | "cube"
+  | "cuboid"
+  | "cylinder"
+  | "cone"
+  | "sphere"
+  | "hemisphere"
+  | "prism"
+  | "pyramid"
+  | "frustum"
+  | "torus";
+export type ARScaleMode =
+  "real-scale" | "fit-to-view" | "classroom-scale" | "miniature" | "custom";
 export type ARCrossSectionMode = "off" | "horizontal" | "vertical";
 export type ARGeometryQuality = "low" | "medium" | "high";
 export type ARMeasurementType =
@@ -31,10 +50,28 @@ export type ARMeasurementType =
   | "point_coordinate"
   | "surface_value"
   | "cross_section_dimension";
-export type ARAnimationTarget = "parameter" | "dimension" | "rotation" | "scale" | "cross_section" | "curve_trace";
+export type ARAnimationTarget =
+  | "parameter"
+  | "dimension"
+  | "rotation"
+  | "scale"
+  | "cross_section"
+  | "curve_trace";
 export type ARAnimationStatus = "idle" | "playing" | "paused" | "stopped";
-export type ARAdvancedToolTab = "build" | "graph" | "geometry" | "measure" | "animate" | "formula" | "learn" | "practice" | "compare" | "scene" | "settings";
-export type ARObjectStatus = "ready" | "generating" | "active" | "warning" | "error" | "hidden";
+export type ARAdvancedToolTab =
+  | "build"
+  | "graph"
+  | "geometry"
+  | "measure"
+  | "animate"
+  | "formula"
+  | "learn"
+  | "practice"
+  | "compare"
+  | "scene"
+  | "settings";
+export type ARObjectStatus =
+  "ready" | "generating" | "active" | "warning" | "error" | "hidden";
 
 export type ARDimension = {
   name: string;
@@ -50,7 +87,10 @@ export type EquationClassificationResult = {
   confidence: "high" | "medium" | "low";
   objectName?: string;
   solidType?: ARSolidType;
-  solidDimensions?: Record<string, { value: number; unit: ARUnit; meters: number }>;
+  solidDimensions?: Record<
+    string,
+    { value: number; unit: ARUnit; meters: number }
+  >;
   missingInputs?: string[];
   suggestedScaleMode?: ARScaleMode;
   dimensions: ARDimension[];
@@ -66,7 +106,9 @@ export type EquationClassificationResult = {
     | "predefined_cylinder"
     | "predefined_cone"
     | "unsupported";
-  suggestedRanges?: Partial<Record<"x" | "y" | "z" | "t" | "u" | "v", [number, number]>>;
+  suggestedRanges?: Partial<
+    Record<"x" | "y" | "z" | "t" | "u" | "v", [number, number]>
+  >;
   suggestedResolution?: Partial<Record<"x" | "y" | "t" | "u" | "v", number>>;
   suggestedParameters?: Record<string, number>;
   warnings?: string[];
@@ -126,7 +168,8 @@ export type ARMathObject = {
   renderMode: ARRenderMode;
 };
 
-export type ARSurfaceStyle = "solid" | "transparent" | "wireframe" | "solid-wireframe" | "points";
+export type ARSurfaceStyle =
+  "solid" | "transparent" | "wireframe" | "solid-wireframe" | "points";
 export type ARCurveStyle = "line" | "tube" | "line-points";
 
 export type ARGraphSettings = {

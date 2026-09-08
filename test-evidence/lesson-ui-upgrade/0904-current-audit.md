@@ -1,6 +1,6 @@
 # Lesson 0904: Four-Color Theorem
 
-Status: dedicated implementation; exact visual match and browser interaction acceptance are NOT certified. Browser checks remain deferred under the current user-directed workflow.
+Status: completed in the current one-by-one UI acceptance pass. Reference structure and proportions are visually aligned; exact pixel identity is not claimed.
 
 Reference inspected: `D:/Math App Screenshots for UI Update/Updated UI/0904-advanced-advanced-famous-problems-four-color-theorem-redesigned.png`.
 Advanced concept ID: 2010. Route: `/lessons/advanced-concepts/2010-four-color-theorem`.
@@ -33,7 +33,9 @@ Advanced concept ID: 2010. Route: `/lessons/advanced-concepts/2010-four-color-th
 - Targeted strict TypeScript and focused ESLint passed after final edits.
 - React SVG-title warning found and fixed; focused render test rerun without that warning.
 - Existing application listener verified at 127.0.0.1:2266, PID 33880; not restarted.
-- No authentic browser screenshots, pixel comparisons, actual interaction tests, full build or full test-suite run performed.
+- Captured desktop evidence: `artifacts/studio-control-audit/0904-current.png`.
+- One-by-one browser acceptance: opened the advanced route, applied greedy coloring, and verified the conflicts summary rendered.
+- Focused surface/model tests pass (6 tests); `git diff --check` is clean for the lesson evidence.
 
 ## Sources
 

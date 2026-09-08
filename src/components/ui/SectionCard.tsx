@@ -16,41 +16,68 @@ type SectionCardProps = {
   visualizationTools?: boolean | "auto";
 };
 
-export default function SectionCard({ id, title, description, children, className, compact = false, headerAction, tone = "default", allowFullscreen = "auto", visualizationTools = "auto" }: SectionCardProps) {
+export default function SectionCard({
+  id,
+  title,
+  description,
+  children,
+  className,
+  compact = false,
+  headerAction,
+  tone = "default",
+  allowFullscreen = "auto",
+  visualizationTools = "auto",
+}: SectionCardProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const [fullscreen, setFullscreen] = useState(false);
   const [fullscreenOffset, setFullscreenOffset] = useState({ x: 0, y: 0 });
   const spotlight = tone === "spotlight";
-  const fullscreenEnabled = allowFullscreen === true || (allowFullscreen === "auto" && isFullscreenCandidate(title, description));
-  const visualizationToolsEnabled = Boolean(title) && (visualizationTools === true || (visualizationTools === "auto" && isVisualizationToolCandidate(title, description)));
+  const fullscreenEnabled =
+    allowFullscreen === true ||
+    (allowFullscreen === "auto" && isFullscreenCandidate(title, description));
+  const visualizationToolsEnabled =
+    Boolean(title) &&
+    (visualizationTools === true ||
+      (visualizationTools === "auto" &&
+        isVisualizationToolCandidate(title, description)));
 
   useEffect(() => {
     if (!fullscreenEnabled) return undefined;
     const handleFullscreenChange = () => {
-      const isNativeFullscreen = document.fullscreenElement === sectionRef.current;
+      const isNativeFullscreen =
+        document.fullscreenElement === sectionRef.current;
       setFullscreen(isNativeFullscreen);
       if (isNativeFullscreen) setFullscreenOffset({ x: 0, y: 0 });
     };
     document.addEventListener("fullscreenchange", handleFullscreenChange);
-    return () => document.removeEventListener("fullscreenchange", handleFullscreenChange);
+    return () =>
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
   }, [fullscreenEnabled]);
 
   useEffect(() => {
     if (!fullscreen) return undefined;
     const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape" && document.fullscreenElement !== sectionRef.current) setFullscreen(false);
+      if (
+        event.key === "Escape" &&
+        document.fullscreenElement !== sectionRef.current
+      )
+        setFullscreen(false);
     };
     document.addEventListener("keydown", handleEscape);
     return () => document.removeEventListener("keydown", handleEscape);
   }, [fullscreen]);
 
   useEffect(() => {
-    if (!fullscreen || document.fullscreenElement === sectionRef.current) return undefined;
+    if (!fullscreen || document.fullscreenElement === sectionRef.current)
+      return undefined;
     const frame = requestAnimationFrame(() => {
       const rect = sectionRef.current?.getBoundingClientRect();
       if (!rect) return;
       if (Math.abs(rect.x) > 1 || Math.abs(rect.y) > 1) {
-        setFullscreenOffset((offset) => ({ x: offset.x - rect.x, y: offset.y - rect.y }));
+        setFullscreenOffset((offset) => ({
+          x: offset.x - rect.x,
+          y: offset.y - rect.y,
+        }));
       }
     });
     return () => cancelAnimationFrame(frame);
@@ -59,7 +86,8 @@ export default function SectionCard({ id, title, description, children, classNam
   async function toggleFullscreen() {
     if (!fullscreenEnabled || !sectionRef.current) return;
     if (fullscreen) {
-      if (document.fullscreenElement === sectionRef.current) await document.exitFullscreen();
+      if (document.fullscreenElement === sectionRef.current)
+        await document.exitFullscreen();
       setFullscreen(false);
       setFullscreenOffset({ x: 0, y: 0 });
       return;
@@ -68,7 +96,8 @@ export default function SectionCard({ id, title, description, children, classNam
     setFullscreen(true);
     try {
       await sectionRef.current.requestFullscreen();
-      if (document.fullscreenElement === sectionRef.current) setFullscreenOffset({ x: 0, y: 0 });
+      if (document.fullscreenElement === sectionRef.current)
+        setFullscreenOffset({ x: 0, y: 0 });
     } catch {
       setFullscreen(true);
     }
@@ -82,7 +111,11 @@ export default function SectionCard({ id, title, description, children, classNam
       title={fullscreen ? "Exit full screen" : "Full screen"}
       aria-label={fullscreen ? "Exit full screen" : "Open card full screen"}
     >
-      {fullscreen ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
+      {fullscreen ? (
+        <Minimize2 className="h-4 w-4" />
+      ) : (
+        <Maximize2 className="h-4 w-4" />
+      )}
     </button>
   ) : null;
 
@@ -91,7 +124,16 @@ export default function SectionCard({ id, title, description, children, classNam
       ref={sectionRef}
       id={id}
       data-fullscreen={fullscreen ? "true" : "false"}
-      style={fullscreen ? { position: "fixed", inset: 0, zIndex: 80, transform: `translate(${fullscreenOffset.x}px, ${fullscreenOffset.y}px)` } : undefined}
+      style={
+        fullscreen
+          ? {
+              position: "fixed",
+              inset: 0,
+              zIndex: 80,
+              transform: `translate(${fullscreenOffset.x}px, ${fullscreenOffset.y}px)`,
+            }
+          : undefined
+      }
       className={clsx(
         "group/section relative min-w-0 max-w-full overflow-hidden rounded-xl p-3",
         spotlight
@@ -99,25 +141,74 @@ export default function SectionCard({ id, title, description, children, classNam
           : "glass-card hover:border-cyan-200/80 dark:hover:border-cyan-400/25",
         compact ? "md:p-3" : "md:p-4",
         fullscreen && "h-screen w-screen overflow-auto rounded-none p-4 md:p-6",
-        className
+        className,
       )}
     >
-      <div className={clsx("absolute left-0 top-0 w-full", spotlight ? "h-px bg-gradient-to-r from-transparent via-cyan-200/80 to-transparent" : "gradient-line")} />
+      <div
+        className={clsx(
+          "absolute left-0 top-0 w-full",
+          spotlight
+            ? "h-px bg-gradient-to-r from-transparent via-cyan-200/80 to-transparent"
+            : "gradient-line",
+        )}
+      />
       {(title || description || headerAction || fullscreenButton) && (
-        <div className={clsx("flex items-start gap-3", compact ? "mb-2" : "mb-3")}>
-          <span className={clsx("mt-1.5 hidden h-1.5 w-1.5 shrink-0 rounded-full shadow-sm sm:block", spotlight ? "bg-cyan-200 shadow-cyan-200/50" : "bg-cyan-400 shadow-cyan-400/50")} />
+        <div
+          className={clsx("flex items-start gap-3", compact ? "mb-2" : "mb-3")}
+        >
+          <span
+            className={clsx(
+              "mt-1.5 hidden h-1.5 w-1.5 shrink-0 rounded-full shadow-sm sm:block",
+              spotlight
+                ? "bg-cyan-200 shadow-cyan-200/50"
+                : "bg-cyan-400 shadow-cyan-400/50",
+            )}
+          />
           <div className="min-w-0 flex-1">
-            {title && <h2 className={clsx("break-words font-semibold", spotlight ? "text-slate-950 dark:text-white" : "text-slate-950 dark:text-white", compact ? "text-base" : "text-lg")}>{title}</h2>}
-            {description && <p className={clsx("mt-0.5 max-w-4xl", spotlight ? "text-slate-600 dark:text-cyan-50/80" : "text-slate-600 dark:text-slate-300", compact ? "line-clamp-2 text-xs leading-5" : "text-sm leading-5")}>{description}</p>}
+            {title && (
+              <h2
+                className={clsx(
+                  "break-words font-semibold",
+                  spotlight
+                    ? "text-slate-950 dark:text-white"
+                    : "text-slate-950 dark:text-white",
+                  compact ? "text-base" : "text-lg",
+                )}
+              >
+                {title}
+              </h2>
+            )}
+            {description && (
+              <p
+                className={clsx(
+                  "mt-0.5 max-w-4xl",
+                  spotlight
+                    ? "text-slate-600 dark:text-cyan-50/80"
+                    : "text-slate-600 dark:text-slate-300",
+                  compact
+                    ? "line-clamp-2 text-xs leading-5"
+                    : "text-sm leading-5",
+                )}
+              >
+                {description}
+              </p>
+            )}
           </div>
-          {(headerAction || fullscreenButton) && <div className="flex shrink-0 items-center gap-2">{headerAction}{fullscreenButton}</div>}
+          {(headerAction || fullscreenButton) && (
+            <div className="flex shrink-0 items-center gap-2">
+              {headerAction}
+              {fullscreenButton}
+            </div>
+          )}
         </div>
       )}
       {visualizationToolsEnabled && title ? (
         <VisualizationTools title={title} targetRef={sectionRef}>
           {children}
         </VisualizationTools>
-      ) : children}
+      ) : (
+        children
+      )}
     </section>
   );
 }
@@ -125,13 +216,27 @@ export default function SectionCard({ id, title, description, children, classNam
 function isFullscreenCandidate(title?: string, description?: string) {
   const text = `${title ?? ""} ${description ?? ""}`.toLowerCase();
   if (!text.trim()) return false;
-  if (/\b(resources|checklist|dictionary|showcase|library|bank|menu|dashboard|summary|notes?)\b/.test(text)) return false;
-  return /\b(visualization|visualizer|visual check|visual cue|interactive visualization|graph|plot|canvas|pane|simulation|model|diagram|surface|3d|2d)\b/.test(text);
+  if (
+    /\b(resources|checklist|dictionary|showcase|library|bank|menu|dashboard|summary|notes?)\b/.test(
+      text,
+    )
+  )
+    return false;
+  return /\b(visualization|visualizer|visual check|visual cue|interactive visualization|graph|plot|canvas|pane|simulation|model|diagram|surface|3d|2d)\b/.test(
+    text,
+  );
 }
 
 function isVisualizationToolCandidate(title?: string, description?: string) {
   const text = `${title ?? ""} ${description ?? ""}`.toLowerCase();
   if (!text.trim()) return false;
-  if (/\b(resources|checklist|dictionary|showcase|library|bank|menu|dashboard|summary|notes?|theory|learn more|examples?|problems?|practice prompts?|classroom notes?|filters?|presets?|input check|values and explanation|controls?)\b/.test(text)) return false;
-  return /\b(interactive|lab|visualization|visualizer|visual check|visual cue|graph|plot|canvas|workspace|simulation|simulator|model|diagram|surface|3d|2d|proof|studio|engine)\b/.test(text);
+  if (
+    /\b(resources|checklist|dictionary|showcase|library|bank|menu|dashboard|summary|notes?|theory|learn more|examples?|problems?|practice prompts?|classroom notes?|filters?|presets?|input check|values and explanation|controls?)\b/.test(
+      text,
+    )
+  )
+    return false;
+  return /\b(interactive|lab|visualization|visualizer|visual check|visual cue|graph|plot|canvas|workspace|simulation|simulator|model|diagram|surface|3d|2d|proof|studio|engine)\b/.test(
+    text,
+  );
 }

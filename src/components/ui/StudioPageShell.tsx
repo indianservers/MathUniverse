@@ -1,5 +1,6 @@
 import { Clock3, Gauge, Share2 } from "lucide-react";
-import { ReactNode, useEffect } from "react";
+import { ReactNode, useEffect, useState } from "react";
+import { shareStudio } from "../../utils/shareStudio";
 
 export type StudioStatusChip = {
   id: string;
@@ -39,21 +40,19 @@ export default function StudioPageShell({
   toolbar,
   showHeader = true,
 }: StudioPageShellProps) {
+  const [shareStatus, setShareStatus] = useState("");
   useEffect(() => {
     document.title = `${title} | Math Universe`;
   }, [title]);
 
   const share = async () => {
     if (onShare) {
-      await onShare();
-      return;
-    }
-    const url = window.location.href;
-    if (navigator.share) {
-      await navigator.share({ title, url });
-      return;
-    }
-    await navigator.clipboard?.writeText(url);
+      try {
+        await onShare();
+      } catch {
+        setShareStatus("Sharing failed. Please try again.");
+      }
+    } else setShareStatus(await shareStudio(title));
   };
 
   return (
@@ -61,16 +60,57 @@ export default function StudioPageShell({
       {showHeader ? (
         <header className="studio-shell-header">
           <div className="studio-shell-title">
-            {breadcrumbs.length ? <nav aria-label="Breadcrumb">{breadcrumbs.map((item, index) => <span key={`${item}-${index}`}>{index > 0 && <b>&gt;</b>}{item}</span>)}</nav> : null}
+            {breadcrumbs.length ? (
+              <nav aria-label="Breadcrumb">
+                {breadcrumbs.map((item, index) => (
+                  <span key={`${item}-${index}`}>
+                    {index > 0 && <b>&gt;</b>}
+                    {item}
+                  </span>
+                ))}
+              </nav>
+            ) : null}
             <h1>{title}</h1>
             <p>{subtitle}</p>
           </div>
           <div className="studio-shell-actions">
-            {typeof progress === "number" ? <span className="studio-chip tone-cyan"><i />In progress - {Math.round(progress)}%</span> : null}
-            {status.map((chip) => <span key={chip.id} className={`studio-chip tone-${chip.tone ?? "slate"}`}><i />{chip.label}{chip.value !== undefined ? ` - ${chip.value}` : ""}</span>)}
-            {difficulty ? <span className="studio-chip tone-cyan"><Gauge />{difficulty}</span> : null}
-            {estimatedMinutes ? <span className="studio-chip tone-violet"><Clock3 />{estimatedMinutes} min</span> : null}
-            <button type="button" onClick={() => void share()}><Share2 />Share setup</button>
+            {typeof progress === "number" ? (
+              <span className="studio-chip tone-cyan">
+                <i />
+                In progress - {Math.round(progress)}%
+              </span>
+            ) : null}
+            {status.map((chip) => (
+              <span
+                key={chip.id}
+                className={`studio-chip tone-${chip.tone ?? "slate"}`}
+              >
+                <i />
+                {chip.label}
+                {chip.value !== undefined ? ` - ${chip.value}` : ""}
+              </span>
+            ))}
+            {difficulty ? (
+              <span className="studio-chip tone-cyan">
+                <Gauge />
+                {difficulty}
+              </span>
+            ) : null}
+            {estimatedMinutes ? (
+              <span className="studio-chip tone-violet">
+                <Clock3 />
+                {estimatedMinutes} min
+              </span>
+            ) : null}
+            <button type="button" onClick={() => void share()}>
+              <Share2 />
+              Share setup
+            </button>
+            {shareStatus && (
+              <p role="status" style={{ overflowWrap: "anywhere" }}>
+                {shareStatus}
+              </p>
+            )}
           </div>
         </header>
       ) : null}

@@ -1,8 +1,21 @@
-export const PHASE_ONE_DOMAINS = ["algebra", "number-systems", "geometry", "trigonometry", "calculus"] as const;
+export const PHASE_ONE_DOMAINS = [
+  "algebra",
+  "number-systems",
+  "geometry",
+  "trigonometry",
+  "calculus",
+] as const;
 
 export type PhaseOneDomain = (typeof PHASE_ONE_DOMAINS)[number];
 export type ConceptLevel = "Foundational" | "Intermediate" | "Advanced";
-export type ExampleKind = "foundational" | "visual" | "real-world" | "misconception" | "boundary" | "challenge" | "connection";
+export type ExampleKind =
+  | "foundational"
+  | "visual"
+  | "real-world"
+  | "misconception"
+  | "boundary"
+  | "challenge"
+  | "connection";
 
 export type ConceptFormula = {
   id: string;
@@ -68,4 +81,3 @@ export type ConceptValidationIssue = {
   field: string;
   message: string;
 };
-

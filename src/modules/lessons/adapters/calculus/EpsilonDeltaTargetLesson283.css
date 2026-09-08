@@ -243,7 +243,10 @@
 }
 .ed283-work svg .tick text {
   fill: #111827;
-  font: 10px Inter, system-ui, sans-serif;
+  font:
+    10px Inter,
+    system-ui,
+    sans-serif;
 }
 .ed283-work svg .function-label {
   fill: #087ef4;

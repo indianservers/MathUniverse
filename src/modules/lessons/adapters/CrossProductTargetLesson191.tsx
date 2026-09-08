@@ -245,11 +245,7 @@ function CrossScene({
       {parallelogram && <Parallelogram u={u} v={v} />}
       {projection && (
         <Line
-          points={[
-            scenePoint(v),
-            [v.x, 0, v.y],
-            [0, 0, 0],
-          ]}
+          points={[scenePoint(v), [v.x, 0, v.y], [0, 0, 0]]}
           color="#3478db"
           dashed
           lineWidth={1.5}

@@ -84,10 +84,18 @@ const INJECTION_PATTERNS = [
   /change (?:your|the system) behavior/i,
 ];
 
-export function buildBoardTutorContext(document: BoardDocument, selectedIds: string[]): BoardTutorContext {
-  const selected = document.elements.filter((element) => selectedIds.includes(element.id));
+export function buildBoardTutorContext(
+  document: BoardDocument,
+  selectedIds: string[],
+): BoardTutorContext {
+  const selected = document.elements.filter((element) =>
+    selectedIds.includes(element.id),
+  );
   const selectedExpressions = selected
-    .filter((element) => element.type === "math-expression" || element.type === "solution-step")
+    .filter(
+      (element) =>
+        element.type === "math-expression" || element.type === "solution-step",
+    )
     .slice(0, 12)
     .map((element) => {
       const analysis = safeAnalyze(element.latex);
@@ -111,16 +119,21 @@ export function buildBoardTutorContext(document: BoardDocument, selectedIds: str
       warnings: element.warnings?.slice(0, 8),
     }));
   const visibleGraphs = document.elements
-    .filter((element): element is BoardResultElement => element.type === "math-result" && Boolean(element.graph))
+    .filter(
+      (element): element is BoardResultElement =>
+        element.type === "math-result" && Boolean(element.graph),
+    )
     .slice(-8)
     .map((element) => ({
       elementId: element.id,
       sourceExpressionIds: element.sourceElementIds,
       graphType: element.graph?.mode ?? "unknown",
-      configuration: element.graph ? {
-        expression: element.graph.expression,
-        view: element.graph.view,
-      } : undefined,
+      configuration: element.graph
+        ? {
+            expression: element.graph.expression,
+            view: element.graph.view,
+          }
+        : undefined,
     }));
   return {
     boardId: document.id,
@@ -130,22 +143,32 @@ export function buildBoardTutorContext(document: BoardDocument, selectedIds: str
     selectedResults,
     visibleGraphs,
     actionHistory: document.actionHistory.slice(-20),
-    priorHints: document.tutorMessages.filter((message) => message.role === "tutor" && message.mode === "hint").length,
+    priorHints: document.tutorMessages.filter(
+      (message) => message.role === "tutor" && message.mode === "hint",
+    ).length,
   };
 }
 
 export function sanitizeTutorContent(value: string) {
-  return value.replace(/[<>]/g, "").replaceAll(String.fromCharCode(0), "").slice(0, 4_000);
+  return value
+    .replace(/[<>]/g, "")
+    .replaceAll(String.fromCharCode(0), "")
+    .slice(0, 4_000);
 }
 
 export function detectPromptInjection(value: string) {
   return INJECTION_PATTERNS.some((pattern) => pattern.test(value));
 }
 
-export function validateTutorTool(tool: string, input: Record<string, unknown>) {
-  if (!BOARD_TUTOR_TOOL_ALLOWLIST.has(tool as BoardTutorTool)) throw new Error("INVALID_TOOL_CALL");
+export function validateTutorTool(
+  tool: string,
+  input: Record<string, unknown>,
+) {
+  if (!BOARD_TUTOR_TOOL_ALLOWLIST.has(tool as BoardTutorTool))
+    throw new Error("INVALID_TOOL_CALL");
   const expression = input.expression;
-  if (typeof expression === "string" && expression.length > 2_000) throw new Error("INVALID_TOOL_CALL");
+  if (typeof expression === "string" && expression.length > 2_000)
+    throw new Error("INVALID_TOOL_CALL");
   if (Object.keys(input).length > 12) throw new Error("INVALID_TOOL_CALL");
   return true;
 }
@@ -209,7 +232,8 @@ export async function runBoardTutor(input: {
   context: BoardTutorContext;
   signal?: AbortSignal;
 }): Promise<BoardTutorResponse> {
-  if (input.signal?.aborted) throw new DOMException("Tutor request cancelled", "AbortError");
+  if (input.signal?.aborted)
+    throw new DOMException("Tutor request cancelled", "AbortError");
   const question = sanitizeTutorContent(input.question);
   if (detectPromptInjection(question)) {
     return {
@@ -231,20 +255,38 @@ export async function runBoardTutor(input: {
     return {
       text: hintForAnalysis(analysis, input.context.priorHints + 1),
       verified: true,
-      verificationMethod: "Deterministic hint rule matched to expression classification",
+      verificationMethod:
+        "Deterministic hint rule matched to expression classification",
       referencedElementIds: [expression.elementId],
     };
   }
   if (input.mode === "next-step") {
     return nextStepResponse(analysis, expression.elementId, input.signal);
   }
-  if (input.mode === "full-solution" || input.mode === "exam" || input.mode === "concise") {
-    const action = analysis.classification === "equation" ? "solve" : analysis.classification === "derivative" ? "differentiate" : analysis.classification === "integral" ? "integrate" : "simplify";
-    const result = await executeBoardAction({ action, analysis, parameters: { variable: analysis.variables[0] ?? "x" }, signal: input.signal });
+  if (
+    input.mode === "full-solution" ||
+    input.mode === "exam" ||
+    input.mode === "concise"
+  ) {
+    const action =
+      analysis.classification === "equation"
+        ? "solve"
+        : analysis.classification === "derivative"
+          ? "differentiate"
+          : analysis.classification === "integral"
+            ? "integrate"
+            : "simplify";
+    const result = await executeBoardAction({
+      action,
+      analysis,
+      parameters: { variable: analysis.variables[0] ?? "x" },
+      signal: input.signal,
+    });
     return {
-      text: input.mode === "concise"
-        ? result.exactOutputLatex ?? result.plainTextOutput ?? "No result."
-        : `${result.exactOutputLatex ?? result.plainTextOutput ?? "No result."}${result.steps?.[0]?.explanation ? `\n\nFirst verified step: ${result.steps[0].explanation}` : ""}`,
+      text:
+        input.mode === "concise"
+          ? (result.exactOutputLatex ?? result.plainTextOutput ?? "No result.")
+          : `${result.exactOutputLatex ?? result.plainTextOutput ?? "No result."}${result.steps?.[0]?.explanation ? `\n\nFirst verified step: ${result.steps[0].explanation}` : ""}`,
       verified: true,
       verificationMethod: result.engine.underlyingEngine,
       referencedElementIds: [expression.elementId],
@@ -279,12 +321,20 @@ export async function runBoardTutor(input: {
   return {
     text: conceptExplanation(analysis),
     verified: false,
-    verificationMethod: "Offline deterministic tutor; no production AI provider is configured",
+    verificationMethod:
+      "Offline deterministic tutor; no production AI provider is configured",
     referencedElementIds: [expression.elementId],
   };
 }
 
-export function createTutorMessage(role: BoardTutorMessage["role"], mode: BoardTutorMode, text: string, referencedElementIds: string[], verified: boolean, verificationMethod?: string): BoardTutorMessage {
+export function createTutorMessage(
+  role: BoardTutorMessage["role"],
+  mode: BoardTutorMode,
+  text: string,
+  referencedElementIds: string[],
+  verified: boolean,
+  verificationMethod?: string,
+): BoardTutorMessage {
   return {
     id: `tutor-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
     role,
@@ -305,12 +355,25 @@ function safeAnalyze(latex: string) {
   }
 }
 
-async function nextStepResponse(analysis: BoardMathAnalysis, elementId: string, signal?: AbortSignal): Promise<BoardTutorResponse> {
+async function nextStepResponse(
+  analysis: BoardMathAnalysis,
+  elementId: string,
+  signal?: AbortSignal,
+): Promise<BoardTutorResponse> {
   if (analysis.classification === "equation") {
-    const result = await executeBoardAction({ action: "solve", analysis, parameters: { variable: analysis.variables[0] ?? "x" }, signal });
-    const firstStep = result.steps?.find((step) => step.explanation && !/final/i.test(step.explanation));
+    const result = await executeBoardAction({
+      action: "solve",
+      analysis,
+      parameters: { variable: analysis.variables[0] ?? "x" },
+      signal,
+    });
+    const firstStep = result.steps?.find(
+      (step) => step.explanation && !/final/i.test(step.explanation),
+    );
     return {
-      text: firstStep?.explanation ?? "Apply one inverse operation to both sides, then stop and verify that transformation.",
+      text:
+        firstStep?.explanation ??
+        "Apply one inverse operation to both sides, then stop and verify that transformation.",
       verified: true,
       verificationMethod: result.engine.underlyingEngine,
       referencedElementIds: [elementId],
@@ -324,15 +387,22 @@ async function nextStepResponse(analysis: BoardMathAnalysis, elementId: string, 
   };
 }
 
-function alternativeMethod(classification: BoardMathAnalysis["classification"]) {
-  if (classification === "equation") return "An equation can often be solved algebraically and checked graphically by finding the intersection of both sides.";
-  if (classification === "algebraic-expression") return "For a quadratic, compare factorization, completing the square, and a graph. Use the method that best exposes the requested feature.";
-  if (classification === "integral") return "Depending on the integrand, compare substitution, integration by parts, or a numerical/graphical area interpretation.";
+function alternativeMethod(
+  classification: BoardMathAnalysis["classification"],
+) {
+  if (classification === "equation")
+    return "An equation can often be solved algebraically and checked graphically by finding the intersection of both sides.";
+  if (classification === "algebraic-expression")
+    return "For a quadratic, compare factorization, completing the square, and a graph. Use the method that best exposes the requested feature.";
+  if (classification === "integral")
+    return "Depending on the integrand, compare substitution, integration by parts, or a numerical/graphical area interpretation.";
   return "Try a symbolic method and a visual or numerical check, then compare whether both preserve the same conditions.";
 }
 
 function conceptExplanation(analysis: BoardMathAnalysis) {
-  const structures = analysis.detectedStructures.slice(0, 3).join(", ") || "mathematical structure";
+  const structures =
+    analysis.detectedStructures.slice(0, 3).join(", ") ||
+    "mathematical structure";
   return `This is classified as ${analysis.classification}. Focus on ${structures}. Use a Board engine action when you need an exact result; this offline explanation is not presented as a new CAS result.`;
 }
 

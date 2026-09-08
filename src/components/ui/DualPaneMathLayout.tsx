@@ -1,5 +1,12 @@
 import { Maximize2, Minimize2, RotateCcw, ZoomIn, ZoomOut } from "lucide-react";
-import { useEffect, useRef, useState, type CSSProperties, type PointerEvent as ReactPointerEvent, type ReactNode } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type PointerEvent as ReactPointerEvent,
+  type ReactNode,
+} from "react";
 import SectionCard from "./SectionCard";
 
 type Pane = {
@@ -20,18 +27,35 @@ type DualPaneMathLayoutProps = {
   theory?: ReactNode;
 };
 
-export default function DualPaneMathLayout({ title, subtitle, meta, controls, panes, insights, theory }: DualPaneMathLayoutProps) {
+export default function DualPaneMathLayout({
+  title,
+  subtitle,
+  meta,
+  controls,
+  panes,
+  insights,
+  theory,
+}: DualPaneMathLayoutProps) {
   const [activePane, setActivePane] = useState<"2d" | "3d">("2d");
-  const [zoomByPane, setZoomByPane] = useState<Record<"2d" | "3d", number>>({ "2d": 1, "3d": 1 });
+  const [zoomByPane, setZoomByPane] = useState<Record<"2d" | "3d", number>>({
+    "2d": 1,
+    "3d": 1,
+  });
   const [leftWidth, setLeftWidth] = useState(340);
   const [rightWidth, setRightWidth] = useState(360);
   const [rightCollapsed, setRightCollapsed] = useState(false);
   const [focusPane, setFocusPane] = useState(false);
   const pane = panes.find((item) => item.id === activePane) ?? panes[0];
   const zoom = zoomByPane[activePane];
-  const rightColumn = insights ? (rightCollapsed ? "58px" : `${rightWidth}px`) : "0px";
+  const rightColumn = insights
+    ? rightCollapsed
+      ? "58px"
+      : `${rightWidth}px`
+    : "0px";
   const gridStyle = {
-    "--math-grid-cols": focusPane ? "0px 0px minmax(520px, 1fr) 0px 0px" : `${leftWidth}px 12px minmax(520px, 1fr) ${insights ? "12px" : "0px"} ${rightColumn}`,
+    "--math-grid-cols": focusPane
+      ? "0px 0px minmax(520px, 1fr) 0px 0px"
+      : `${leftWidth}px 12px minmax(520px, 1fr) ${insights ? "12px" : "0px"} ${rightColumn}`,
   } as CSSProperties;
 
   const startResize = (side: "left" | "right", startX: number) => {
@@ -60,7 +84,10 @@ export default function DualPaneMathLayout({ title, subtitle, meta, controls, pa
   const updateZoom = (nextZoom: number) => {
     setZoomByPane((current) => ({
       ...current,
-      [activePane]: Math.min(2.5, Math.max(0.6, Math.round(nextZoom * 100) / 100)),
+      [activePane]: Math.min(
+        2.5,
+        Math.max(0.6, Math.round(nextZoom * 100) / 100),
+      ),
     }));
   };
 
@@ -69,23 +96,46 @@ export default function DualPaneMathLayout({ title, subtitle, meta, controls, pa
       <section className="rounded-[28px] border border-cyan-200/70 bg-white/82 p-4 shadow-xl shadow-cyan-500/10 backdrop-blur dark:border-white/10 dark:bg-slate-950/72">
         <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <p className="text-xs font-black uppercase tracking-[0.18em] text-cyan-600 dark:text-cyan-300">Interactive math lab</p>
-            <h1 className="mt-1 text-2xl font-black text-slate-950 dark:text-white sm:text-3xl">{title}</h1>
-            <p className="mt-1 max-w-4xl text-sm font-semibold leading-6 text-slate-600 dark:text-slate-300">{subtitle}</p>
+            <p className="text-xs font-black uppercase tracking-[0.18em] text-cyan-600 dark:text-cyan-300">
+              Interactive math lab
+            </p>
+            <h1 className="mt-1 text-2xl font-black text-slate-950 dark:text-white sm:text-3xl">
+              {title}
+            </h1>
+            <p className="mt-1 max-w-4xl text-sm font-semibold leading-6 text-slate-600 dark:text-slate-300">
+              {subtitle}
+            </p>
           </div>
           {meta ? <div className="flex flex-wrap gap-2">{meta}</div> : null}
         </div>
       </section>
 
-      <div className="grid min-h-[calc(100vh-210px)] gap-0 xl:[grid-template-columns:var(--math-grid-cols)]" style={gridStyle}>
-        <aside className={focusPane ? "hidden" : "xl:max-h-[calc(100vh-220px)] xl:overflow-y-auto xl:pr-1"}>
+      <div
+        className="grid min-h-[calc(100vh-210px)] gap-0 xl:[grid-template-columns:var(--math-grid-cols)]"
+        style={gridStyle}
+      >
+        <aside
+          className={
+            focusPane
+              ? "hidden"
+              : "xl:max-h-[calc(100vh-220px)] xl:overflow-y-auto xl:pr-1"
+          }
+        >
           <SectionCard title="Controls">{controls}</SectionCard>
         </aside>
 
-        <ResizeHandle label="Resize controls" onPointerDown={(event) => startResize("left", event.clientX)} disabled={focusPane} />
+        <ResizeHandle
+          label="Resize controls"
+          onPointerDown={(event) => startResize("left", event.clientX)}
+          disabled={focusPane}
+        />
 
         <main className="min-w-0 px-0 xl:px-1">
-          <SectionCard title={pane.title} description={pane.description} tone="spotlight">
+          <SectionCard
+            title={pane.title}
+            description={pane.description}
+            tone="spotlight"
+          >
             <div className="mb-4 flex rounded-2xl border border-cyan-200 bg-white/80 p-1 dark:border-white/10 dark:bg-slate-950/60">
               {panes.map((item) => (
                 <button
@@ -98,14 +148,27 @@ export default function DualPaneMathLayout({ title, subtitle, meta, controls, pa
                 </button>
               ))}
             </div>
-            <PaneToolbar activePane={activePane} paneLabel={pane.label} zoom={zoom} focusPane={focusPane} onZoom={updateZoom} onFocusToggle={() => setFocusPane((value) => !value)} />
+            <PaneToolbar
+              activePane={activePane}
+              paneLabel={pane.label}
+              zoom={zoom}
+              focusPane={focusPane}
+              onZoom={updateZoom}
+              onFocusToggle={() => setFocusPane((value) => !value)}
+            />
             <ZoomablePane zoom={zoom} label={pane.title}>
               {pane.content}
             </ZoomablePane>
           </SectionCard>
         </main>
 
-        {insights ? <ResizeHandle label="Resize explanation" onPointerDown={(event) => startResize("right", event.clientX)} disabled={rightCollapsed || focusPane} /> : null}
+        {insights ? (
+          <ResizeHandle
+            label="Resize explanation"
+            onPointerDown={(event) => startResize("right", event.clientX)}
+            disabled={rightCollapsed || focusPane}
+          />
+        ) : null}
 
         {insights && !focusPane ? (
           <aside className="relative xl:max-h-[calc(100vh-220px)] xl:overflow-y-auto xl:pl-1">
@@ -138,7 +201,10 @@ export default function DualPaneMathLayout({ title, subtitle, meta, controls, pa
       </div>
 
       {theory ? (
-        <SectionCard title="Theory" description="Read this after exploring the controls to connect the visual model with the mathematics.">
+        <SectionCard
+          title="Theory"
+          description="Read this after exploring the controls to connect the visual model with the mathematics."
+        >
           {theory}
         </SectionCard>
       ) : null}
@@ -146,30 +212,74 @@ export default function DualPaneMathLayout({ title, subtitle, meta, controls, pa
   );
 }
 
-function PaneToolbar({ activePane, paneLabel, zoom, focusPane, onZoom, onFocusToggle }: { activePane: "2d" | "3d"; paneLabel: string; zoom: number; focusPane: boolean; onZoom: (value: number) => void; onFocusToggle: () => void }) {
+function PaneToolbar({
+  activePane,
+  paneLabel,
+  zoom,
+  focusPane,
+  onZoom,
+  onFocusToggle,
+}: {
+  activePane: "2d" | "3d";
+  paneLabel: string;
+  zoom: number;
+  focusPane: boolean;
+  onZoom: (value: number) => void;
+  onFocusToggle: () => void;
+}) {
   const presets = activePane === "2d" ? [0.75, 1, 1.5, 2] : [0.8, 1, 1.25, 1.5];
   return (
     <div className="mb-3 space-y-2 rounded-2xl border border-cyan-200/70 bg-white/70 px-3 py-2 dark:border-white/10 dark:bg-slate-950/55">
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <span className="text-xs font-black uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">{paneLabel} controls · Zoom {Math.round(zoom * 100)}%</span>
+        <span className="text-xs font-black uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">
+          {paneLabel} controls · Zoom {Math.round(zoom * 100)}%
+        </span>
         <div className="flex items-center gap-2">
-          <button type="button" onClick={() => onZoom(zoom - 0.15)} aria-label={`Zoom out ${paneLabel}`} className="math-pane-tool-button">
+          <button
+            type="button"
+            onClick={() => onZoom(zoom - 0.15)}
+            aria-label={`Zoom out ${paneLabel}`}
+            className="math-pane-tool-button"
+          >
             <ZoomOut className="h-4 w-4" />
           </button>
-          <button type="button" onClick={() => onZoom(1)} aria-label={`Reset zoom ${paneLabel}`} className="math-pane-tool-button">
+          <button
+            type="button"
+            onClick={() => onZoom(1)}
+            aria-label={`Reset zoom ${paneLabel}`}
+            className="math-pane-tool-button"
+          >
             <RotateCcw className="h-4 w-4" />
           </button>
-          <button type="button" onClick={() => onZoom(zoom + 0.15)} aria-label={`Zoom in ${paneLabel}`} className="math-pane-tool-button">
+          <button
+            type="button"
+            onClick={() => onZoom(zoom + 0.15)}
+            aria-label={`Zoom in ${paneLabel}`}
+            className="math-pane-tool-button"
+          >
             <ZoomIn className="h-4 w-4" />
           </button>
-          <button type="button" onClick={onFocusToggle} aria-label={focusPane ? `Exit focus mode ${paneLabel}` : `Focus ${paneLabel}`} className="math-pane-tool-button">
-            {focusPane ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
+          <button
+            type="button"
+            onClick={onFocusToggle}
+            aria-label={
+              focusPane ? `Exit focus mode ${paneLabel}` : `Focus ${paneLabel}`
+            }
+            className="math-pane-tool-button"
+          >
+            {focusPane ? (
+              <Minimize2 className="h-4 w-4" />
+            ) : (
+              <Maximize2 className="h-4 w-4" />
+            )}
           </button>
         </div>
       </div>
       <div className="grid gap-2 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
         <label className="flex min-w-0 items-center gap-3">
-          <span className="text-xs font-bold uppercase text-slate-500 dark:text-slate-400">Scale</span>
+          <span className="text-xs font-bold uppercase text-slate-500 dark:text-slate-400">
+            Scale
+          </span>
           <input
             type="range"
             min="60"
@@ -188,7 +298,11 @@ function PaneToolbar({ activePane, paneLabel, zoom, focusPane, onZoom, onFocusTo
               type="button"
               onClick={() => onZoom(preset)}
               aria-label={`Set ${paneLabel} zoom to ${Math.round(preset * 100)} percent`}
-              className={Math.abs(zoom - preset) < 0.01 ? "math-pane-preset-button math-pane-preset-button-active" : "math-pane-preset-button"}
+              className={
+                Math.abs(zoom - preset) < 0.01
+                  ? "math-pane-preset-button math-pane-preset-button-active"
+                  : "math-pane-preset-button"
+              }
             >
               {Math.round(preset * 100)}%
             </button>
@@ -199,7 +313,15 @@ function PaneToolbar({ activePane, paneLabel, zoom, focusPane, onZoom, onFocusTo
   );
 }
 
-function ZoomablePane({ zoom, label, children }: { zoom: number; label: string; children: ReactNode }) {
+function ZoomablePane({
+  zoom,
+  label,
+  children,
+}: {
+  zoom: number;
+  label: string;
+  children: ReactNode;
+}) {
   const paneRef = useRef<HTMLDivElement | null>(null);
   const [fullscreen, setFullscreen] = useState(false);
   const frameStyle = {
@@ -213,9 +335,11 @@ function ZoomablePane({ zoom, label, children }: { zoom: number; label: string; 
   } as CSSProperties;
 
   useEffect(() => {
-    const onFullscreenChange = () => setFullscreen(document.fullscreenElement === paneRef.current);
+    const onFullscreenChange = () =>
+      setFullscreen(document.fullscreenElement === paneRef.current);
     document.addEventListener("fullscreenchange", onFullscreenChange);
-    return () => document.removeEventListener("fullscreenchange", onFullscreenChange);
+    return () =>
+      document.removeEventListener("fullscreenchange", onFullscreenChange);
   }, []);
 
   const toggleFullscreen = async () => {
@@ -237,10 +361,18 @@ function ZoomablePane({ zoom, label, children }: { zoom: number; label: string; 
           type="button"
           onClick={() => void toggleFullscreen()}
           className="math-pane-tool-button"
-          title={fullscreen ? `Exit full screen ${label}` : `Full screen ${label}`}
-          aria-label={fullscreen ? `Exit full screen ${label}` : `Full screen ${label}`}
+          title={
+            fullscreen ? `Exit full screen ${label}` : `Full screen ${label}`
+          }
+          aria-label={
+            fullscreen ? `Exit full screen ${label}` : `Full screen ${label}`
+          }
         >
-          {fullscreen ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
+          {fullscreen ? (
+            <Minimize2 className="h-4 w-4" />
+          ) : (
+            <Maximize2 className="h-4 w-4" />
+          )}
         </button>
       </div>
       <div style={frameStyle}>
@@ -250,7 +382,15 @@ function ZoomablePane({ zoom, label, children }: { zoom: number; label: string; 
   );
 }
 
-function ResizeHandle({ label, disabled, onPointerDown }: { label: string; disabled?: boolean; onPointerDown: (event: ReactPointerEvent<HTMLButtonElement>) => void }) {
+function ResizeHandle({
+  label,
+  disabled,
+  onPointerDown,
+}: {
+  label: string;
+  disabled?: boolean;
+  onPointerDown: (event: ReactPointerEvent<HTMLButtonElement>) => void;
+}) {
   return (
     <button
       type="button"

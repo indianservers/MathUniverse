@@ -1,1 +1,214 @@
-.cr503{color:#142349;font-size:12px;line-height:1.5}.cr503 *{box-sizing:border-box;letter-spacing:0}.cr503 h2{font-size:29px;margin:4px 0}.cr503 h3{font-size:13px;margin:0 0 7px}.cr503 p{margin:5px 0}.cr503 button,.cr503 input,.cr503 select{font:inherit}.cr503 button{cursor:pointer}.cr503>header{display:grid;grid-template-columns:1fr 330px;gap:14px;padding:10px 0 16px}.cr503>header span{font-size:9px;color:#0785a9;font-weight:800}.cr503>header article{background:#eef8fc;border-radius:6px;padding:12px}.cr503>header article>*{display:block}.cr503>header strong{font-size:23px}.cr503>nav{display:flex;gap:20px;border-block:1px solid #dce7ef}.cr503>nav>*{padding:9px 16px}.cr503>nav b{color:#078ca8;border-bottom:3px solid #078ca8}.cr503-experiment,.cr503-model article,.cr503-model aside,.cr503-calculation article,.cr503-lower article,.cr503-practice{border:1px solid #dfe8ef;border-radius:6px;padding:11px}.cr503-experiment{margin-top:14px}.cr503-experiment>header{display:flex;gap:10px;align-items:center}.cr503-experiment>header span{margin-left:auto}.cr503 button{border:1px solid #cbdbe8;background:#fff;border-radius:5px;padding:7px}.cr503-expbody{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:12px}.cr503-expbody label{display:grid;gap:5px;margin:8px 0}.cr503-expbody select,.cr503-expbody input{padding:7px;border:1px solid #ccdbe7;border-radius:4px}.cr503-die{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:12px}.cr503-die b{padding:9px;text-align:center;border:1px solid #dfe8ef;border-radius:5px}.cr503-die b.active{background:#0aa6bc;color:#fff}.cr503-model{display:grid;grid-template-columns:3fr 1fr;gap:12px;margin-top:12px}.cr503-bar{height:80px;display:flex;margin-top:14px}.cr503-bar span{display:grid;place-items:center;background:#3dc2d2;font-size:16px;font-weight:800}.cr503-bar span+span{background:#c8b7f2}.cr503-model aside p{padding:7px;border-bottom:1px solid #edf1f5}.cr503-model aside b{float:right;font-size:16px}.cr503-calculation,.cr503-lower{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}.cr503-calculation strong{display:block;background:#eef9fc;padding:14px;font-size:18px}.cr503-calculation button.active{background:#d9c8f5}.cr503-lower article:nth-child(2){background:#faf4ff}.cr503-practice{margin-top:12px}.cr503-practice>div{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.cr503-practice article{border:1px solid #dfe8ef;padding:9px}.cr503 footer{display:flex;justify-content:space-between;padding:16px 0;font-weight:700}.cr503 input:focus-visible,.cr503 select:focus-visible,.cr503 button:focus-visible{outline:3px solid #078fac;outline-offset:2px}@media(max-width:800px){.cr503>header,.cr503-expbody,.cr503-model,.cr503-calculation,.cr503-lower{display:grid;grid-template-columns:1fr}.cr503>nav{gap:0}.cr503>nav>*{padding:8px 5px;font-size:10px}.cr503-practice>div{grid-template-columns:1fr 1fr}}
+.cr503 {
+  color: #142349;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.cr503 * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.cr503 h2 {
+  font-size: 29px;
+  margin: 4px 0;
+}
+.cr503 h3 {
+  font-size: 13px;
+  margin: 0 0 7px;
+}
+.cr503 p {
+  margin: 5px 0;
+}
+.cr503 button,
+.cr503 input,
+.cr503 select {
+  font: inherit;
+}
+.cr503 button {
+  cursor: pointer;
+}
+.cr503 > header {
+  display: grid;
+  grid-template-columns: 1fr 330px;
+  gap: 14px;
+  padding: 10px 0 16px;
+}
+.cr503 > header span {
+  font-size: 9px;
+  color: #0785a9;
+  font-weight: 800;
+}
+.cr503 > header article {
+  background: #eef8fc;
+  border-radius: 6px;
+  padding: 12px;
+}
+.cr503 > header article > * {
+  display: block;
+}
+.cr503 > header strong {
+  font-size: 23px;
+}
+.cr503 > nav {
+  display: flex;
+  gap: 20px;
+  border-block: 1px solid #dce7ef;
+}
+.cr503 > nav > * {
+  padding: 9px 16px;
+}
+.cr503 > nav b {
+  color: #078ca8;
+  border-bottom: 3px solid #078ca8;
+}
+.cr503-experiment,
+.cr503-model article,
+.cr503-model aside,
+.cr503-calculation article,
+.cr503-lower article,
+.cr503-practice {
+  border: 1px solid #dfe8ef;
+  border-radius: 6px;
+  padding: 11px;
+}
+.cr503-experiment {
+  margin-top: 14px;
+}
+.cr503-experiment > header {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.cr503-experiment > header span {
+  margin-left: auto;
+}
+.cr503 button {
+  border: 1px solid #cbdbe8;
+  background: #fff;
+  border-radius: 5px;
+  padding: 7px;
+}
+.cr503-expbody {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 12px;
+}
+.cr503-expbody label {
+  display: grid;
+  gap: 5px;
+  margin: 8px 0;
+}
+.cr503-expbody select,
+.cr503-expbody input {
+  padding: 7px;
+  border: 1px solid #ccdbe7;
+  border-radius: 4px;
+}
+.cr503-die {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+  margin-top: 12px;
+}
+.cr503-die b {
+  padding: 9px;
+  text-align: center;
+  border: 1px solid #dfe8ef;
+  border-radius: 5px;
+}
+.cr503-die b.active {
+  background: #0aa6bc;
+  color: #fff;
+}
+.cr503-model {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 12px;
+  margin-top: 12px;
+}
+.cr503-bar {
+  height: 80px;
+  display: flex;
+  margin-top: 14px;
+}
+.cr503-bar span {
+  display: grid;
+  place-items: center;
+  background: #3dc2d2;
+  font-size: 16px;
+  font-weight: 800;
+}
+.cr503-bar span + span {
+  background: #c8b7f2;
+}
+.cr503-model aside p {
+  padding: 7px;
+  border-bottom: 1px solid #edf1f5;
+}
+.cr503-model aside b {
+  float: right;
+  font-size: 16px;
+}
+.cr503-calculation,
+.cr503-lower {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 12px;
+}
+.cr503-calculation strong {
+  display: block;
+  background: #eef9fc;
+  padding: 14px;
+  font-size: 18px;
+}
+.cr503-calculation button.active {
+  background: #d9c8f5;
+}
+.cr503-lower article:nth-child(2) {
+  background: #faf4ff;
+}
+.cr503-practice {
+  margin-top: 12px;
+}
+.cr503-practice > div {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+.cr503-practice article {
+  border: 1px solid #dfe8ef;
+  padding: 9px;
+}
+.cr503 footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 0;
+  font-weight: 700;
+}
+.cr503 input:focus-visible,
+.cr503 select:focus-visible,
+.cr503 button:focus-visible {
+  outline: 3px solid #078fac;
+  outline-offset: 2px;
+}
+@media (max-width: 800px) {
+  .cr503 > header,
+  .cr503-expbody,
+  .cr503-model,
+  .cr503-calculation,
+  .cr503-lower {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .cr503 > nav {
+    gap: 0;
+  }
+  .cr503 > nav > * {
+    padding: 8px 5px;
+    font-size: 10px;
+  }
+  .cr503-practice > div {
+    grid-template-columns: 1fr 1fr;
+  }
+}

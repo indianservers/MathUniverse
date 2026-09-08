@@ -1,7 +1,8 @@
 import { Shapes } from "lucide-react";
 import { useEffect, useState } from "react";
 
-export type ShapeThumbnailSize = "compact" | "small" | "medium" | "large" | "compare";
+export type ShapeThumbnailSize =
+  "compact" | "small" | "medium" | "large" | "compare";
 
 type ShapeThumbnailProps = {
   src: string;
@@ -28,14 +29,17 @@ export default function ShapeThumbnail({
   decorative = false,
   className = "",
 }: ShapeThumbnailProps) {
-  const [status, setStatus] = useState<"loading" | "loaded" | "error">("loading");
+  const [status, setStatus] = useState<"loading" | "loaded" | "error">(
+    "loading",
+  );
   const pixels = sizePixels[size];
 
   useEffect(() => setStatus("loading"), [src]);
 
   const handleError = () => {
     setStatus("error");
-    if (import.meta.env.DEV) console.warn(`[ShapeThumbnail] Unable to load ${name}: ${src}`);
+    if (import.meta.env.DEV)
+      console.warn(`[ShapeThumbnail] Unable to load ${name}: ${src}`);
   };
 
   return (
@@ -45,7 +49,9 @@ export default function ShapeThumbnail({
       data-state={status}
       data-testid={`shape-thumbnail-${name.toLowerCase().replace(/\s+/g, "-")}`}
     >
-      {status === "loading" && <span className="shape-thumbnail-placeholder" aria-hidden="true" />}
+      {status === "loading" && (
+        <span className="shape-thumbnail-placeholder" aria-hidden="true" />
+      )}
       {status !== "error" && (
         <img
           src={src}
@@ -57,7 +63,9 @@ export default function ShapeThumbnail({
           onError={handleError}
         />
       )}
-      {status === "error" && <Shapes className="shape-thumbnail-fallback" aria-hidden="true" />}
+      {status === "error" && (
+        <Shapes className="shape-thumbnail-fallback" aria-hidden="true" />
+      )}
     </span>
   );
 }

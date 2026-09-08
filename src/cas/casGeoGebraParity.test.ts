@@ -1,6 +1,10 @@
 import { describe, expect, it } from "vitest";
 
-import { geogebraCasParityReport, geogebraCasParitySummary, missingGeoGebraCasCommands } from "./casGeoGebraParity";
+import {
+  geogebraCasParityReport,
+  geogebraCasParitySummary,
+  missingGeoGebraCasCommands,
+} from "./casGeoGebraParity";
 
 describe("casGeoGebraParity", () => {
   it("tracks GeoGebra CAS coverage and remaining gaps", () => {
@@ -18,7 +22,9 @@ describe("casGeoGebraParity", () => {
     const byName = new Map(report.map((entry) => [entry.geogebra, entry]));
 
     expect(byName.get("Derivative")?.status).toBe("direct");
-    expect(byName.get("IntegralBetween")?.localCommand).toBe("DefiniteIntegral");
+    expect(byName.get("IntegralBetween")?.localCommand).toBe(
+      "DefiniteIntegral",
+    );
     expect(byName.get("ReducedRowEchelonForm")?.localCommand).toBe("RREF");
     expect(byName.get("SVD")?.status).toBe("direct");
     expect(byName.get("RandomBetween")?.status).toBe("direct");

@@ -1,6 +1,6 @@
 # Lesson 0902: Riemann Hypothesis and Primes
 
-Status: dedicated implementation; browser interaction and visual acceptance deferred under the user-directed workflow. Exact visual match is not certified.
+Status: completed in the current one-by-one UI acceptance pass. Reference structure and proportions are visually aligned; exact pixel identity is not claimed.
 
 Reference inspected: `D:/Math App Screenshots for UI Update/Updated UI/0902-advanced-advanced-famous-problems-riemann-hypothesis-and-primes-redesigned.png`.
 Advanced concept ID: 2008. Route: `/lessons/advanced-concepts/2008-riemann-hypothesis-primes`.
@@ -29,7 +29,9 @@ Advanced concept ID: 2008. Route: `/lessons/advanced-concepts/2008-riemann-hypot
 - One targeted dedicated-route test passed (217 unrelated cases skipped), before final callout/practice-helper edits; final focused render test passed afterward.
 - Targeted strict TypeScript and focused ESLint passed after final edits.
 - Existing application listener verified at 127.0.0.1:2266, PID 33880; not restarted.
-- No full application build, full-suite test or visual acceptance performed.
+- Captured desktop evidence: `artifacts/studio-control-audit/0902-current.png`.
+- One-by-one browser acceptance: opened the advanced route, exercised the critical-line switch, and verified the prime-count visualization rendered.
+- Focused surface/model tests pass (7 tests); existing SVG title warnings are non-blocking.
 
 ## Mathematical Sources
 

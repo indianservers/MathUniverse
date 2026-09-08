@@ -43,14 +43,18 @@ export type WorkspaceCasResult = {
 export function routeWorkspaceCasQuery(input: string): WorkspaceCasQuery {
   const raw = input.trim();
   const query = raw.toLowerCase();
-  const dataTool = /\b(probability|statistics|spreadsheet|csv|histogram|mean|median|standard deviation|regression|distribution|dice|coin|card)\b/.test(query);
+  const dataTool =
+    /\b(probability|statistics|spreadsheet|csv|histogram|mean|median|standard deviation|regression|distribution|dice|coin|card)\b/.test(
+      query,
+    );
   if (dataTool) {
     return {
       intent: "external-data-tool",
       expression: raw,
       confidence: "high",
       blocked: true,
-      reason: "This request belongs to the separate probability, statistics, and spreadsheet tool.",
+      reason:
+        "This request belongs to the separate probability, statistics, and spreadsheet tool.",
     };
   }
 
@@ -82,7 +86,8 @@ export function runWorkspaceCasQuery(input: string): WorkspaceCasResult | null {
   }
 
   const expression = query.expression;
-  if (!expression && !["geometry", "matrix"].includes(query.intent)) return null;
+  if (!expression && !["geometry", "matrix"].includes(query.intent))
+    return null;
 
   const symbolic = runSymbolicIntent(query.intent, expression);
   if (symbolic) {
@@ -107,7 +112,9 @@ export function runWorkspaceCasQuery(input: string): WorkspaceCasResult | null {
     detail: query.reason,
     steps: [
       `Intent: ${query.intent}.`,
-      expression ? `Extracted expression: ${expression}.` : "No standalone expression was extracted.",
+      expression
+        ? `Extracted expression: ${expression}.`
+        : "No standalone expression was extracted.",
       "Use a precise command if you want a direct symbolic result.",
     ],
     related: relatedForIntent(query.intent, expression),
@@ -120,11 +127,19 @@ function detectIntent(query: string): WorkspaceCasIntent {
   if (/\b(simplify|reduce)\b/.test(query)) return "simplify";
   if (/\bfactor\b/.test(query)) return "factor";
   if (/\bexpand\b/.test(query)) return "expand";
-  if (/\b(differentiate|derivative|diff|slope|tangent)\b/.test(query)) return "differentiate";
+  if (/\b(differentiate|derivative|diff|slope|tangent)\b/.test(query))
+    return "differentiate";
   if (/\b(integrate|integral|antiderivative)\b/.test(query)) return "integrate";
-  if (/\b(solve|roots?|zeroes?|equation)\b/.test(query) || query.includes("=")) return "solve";
-  if (/\b(matrix|vector|determinant|eigen|rank|span|basis)\b/.test(query)) return "matrix";
-  if (/\b(triangle|circle|angle|line|construct|geometry|perimeter|area)\b/.test(query)) return "geometry";
+  if (/\b(solve|roots?|zeroes?|equation)\b/.test(query) || query.includes("="))
+    return "solve";
+  if (/\b(matrix|vector|determinant|eigen|rank|span|basis)\b/.test(query))
+    return "matrix";
+  if (
+    /\b(triangle|circle|angle|line|construct|geometry|perimeter|area)\b/.test(
+      query,
+    )
+  )
+    return "geometry";
   return "unknown";
 }
 
@@ -135,38 +150,73 @@ function extractExpression(input: string, intent: WorkspaceCasIntent) {
 
   if (intent === "differentiate") return withoutCommand.replace(/^of\s+/i, "");
   if (intent === "integrate") return withoutCommand.replace(/^of\s+/i, "");
-  if (["plot", "solve", "simplify", "factor", "expand", "table"].includes(intent)) return withoutCommand;
+  if (
+    ["plot", "solve", "simplify", "factor", "expand", "table"].includes(intent)
+  )
+    return withoutCommand;
 
   const mathLike = input.match(/[a-z0-9+\-*/^().=\s]+/i)?.[0]?.trim() ?? "";
   return mathLike.length > 1 ? mathLike : "";
 }
 
 function runSymbolicIntent(intent: WorkspaceCasIntent, expression: string) {
-  if (intent === "simplify") return trySymbolic(() => symbolicSimplify(expression));
+  if (intent === "simplify")
+    return trySymbolic(() => symbolicSimplify(expression));
   if (intent === "factor") return trySymbolic(() => symbolicFactor(expression));
   if (intent === "expand") return trySymbolic(() => symbolicExpand(expression));
-  if (intent === "differentiate") return trySymbolic(() => symbolicDerivative(expression));
-  if (intent === "integrate") return trySymbolic(() => symbolicIntegral(expression));
-  if (intent === "solve") return trySymbolic(() => symbolicSolve(expression.includes("=") ? expression : `${expression}=0`));
+  if (intent === "differentiate")
+    return trySymbolic(() => symbolicDerivative(expression));
+  if (intent === "integrate")
+    return trySymbolic(() => symbolicIntegral(expression));
+  if (intent === "solve")
+    return trySymbolic(() =>
+      symbolicSolve(expression.includes("=") ? expression : `${expression}=0`),
+    );
   return null;
 }
 
 function buildReason(intent: WorkspaceCasIntent, expression: string) {
-  if (intent === "unknown") return "No strong workspace math intent was detected.";
-  if (expression) return `Detected ${intent} intent and extracted "${expression}".`;
+  if (intent === "unknown")
+    return "No strong workspace math intent was detected.";
+  if (expression)
+    return `Detected ${intent} intent and extracted "${expression}".`;
   return `Detected ${intent} intent.`;
 }
 
-function relatedForIntent(intent: WorkspaceCasIntent, expression: string, result?: string) {
+function relatedForIntent(
+  intent: WorkspaceCasIntent,
+  expression: string,
+  result?: string,
+) {
   if (!expression) return [];
-  if (intent === "solve") return [`plot ${expression.replace(/=.+$/, "")}`, `roots ${expression.replace(/=.+$/, "")}`];
-  if (intent === "differentiate") return [`plot ${expression}`, result ? `plot ${result}` : `table ${expression}`];
-  if (intent === "integrate") return [result ? `derivative ${result.replace(/\+C$/, "")}` : `derivative ${expression}`, `plot ${expression}`];
-  if (intent === "factor") return [result ? `expand ${result}` : `expand ${expression}`, `solve ${expression}=0`];
-  if (intent === "expand") return [result ? `factor ${result}` : `factor ${expression}`];
-  if (intent === "simplify") return [`plot ${expression}`, `table ${expression}`];
-  if (intent === "plot") return [`table ${expression}`, `derivative ${expression}`];
+  if (intent === "solve")
+    return [
+      `plot ${expression.replace(/=.+$/, "")}`,
+      `roots ${expression.replace(/=.+$/, "")}`,
+    ];
+  if (intent === "differentiate")
+    return [
+      `plot ${expression}`,
+      result ? `plot ${result}` : `table ${expression}`,
+    ];
+  if (intent === "integrate")
+    return [
+      result
+        ? `derivative ${result.replace(/\+C$/, "")}`
+        : `derivative ${expression}`,
+      `plot ${expression}`,
+    ];
+  if (intent === "factor")
+    return [
+      result ? `expand ${result}` : `expand ${expression}`,
+      `solve ${expression}=0`,
+    ];
+  if (intent === "expand")
+    return [result ? `factor ${result}` : `factor ${expression}`];
+  if (intent === "simplify")
+    return [`plot ${expression}`, `table ${expression}`];
+  if (intent === "plot")
+    return [`table ${expression}`, `derivative ${expression}`];
   if (intent === "table") return [`plot ${expression}`];
   return [];
 }
-

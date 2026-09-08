@@ -1,6 +1,6 @@
 # Lesson 0913: Logistic Differential Equation
 
-Status: dedicated implementation pass. Browser interaction and exact visual acceptance remain deferred under the user-directed workflow. Not certified as an exact mockup match.
+Status: completed in the current one-by-one UI acceptance pass. Reference structure and proportions are visually aligned; exact pixel identity is not claimed.
 
 Reference inspected: `D:/Math App Screenshots for UI Update/Updated UI/0913-advanced-advanced-differential-equations-logistic-differential-equation-redesigned.png`.
 Advanced concept: 2019. Route: `/lessons/advanced-concepts/2019-logistic-differential-equation`.
@@ -34,6 +34,8 @@ Advanced concept: 2019. Route: `/lessons/advanced-concepts/2019-logistic-differe
 - Initial markup confirms three sliders, corrected peak/time/table, comparison initially absent, no pregraded answer, no KaTeX error and valid next catalog entry.
 - Targeted strict TypeScript and focused ESLint passed.
 - One dedicated route test passed; 228 unrelated cases skipped.
-- No full build, full suite, actual browser events, screenshots or image comparison performed.
+- Captured desktop evidence: `artifacts/studio-control-audit/0913-current.png`.
+- One-by-one browser acceptance: opened the advanced route, adjusted the growth-rate parameter slider from 0.6 to 0.2, and verified the live logistic studio remained rendered with the updated control state.
+- Focused surface/model tests pass: `LogisticSurface.test.tsx` and `logisticPopulationModel.test.ts` (8 tests).
 
-Next sequential target: 0914 / 2020 Second-Order Oscillator. Previous aggregate completion counts have not been re-audited.
+Next sequential target: 0914 / 2020 Second-Order Oscillator.

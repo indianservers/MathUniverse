@@ -1,3 +1,21 @@
 import { describe, expect, it } from "vitest";
 import { binomialAnalysis, simulateBinomial } from "./binomialLessonModel";
-describe("binomial lesson model", () => { it("computes a normalized target distribution", () => { const result = binomialAnalysis(10, 0.6, 6, 4, 7); expect(result.exact).toBeCloseTo(0.25082, 5); expect(result.range).toBeCloseTo(0.77795, 5); expect(result.cumulative).toBeCloseTo(0.61772, 5); expect(result.pmf.reduce((sum, item) => sum + item.probability, 0)).toBeCloseTo(1, 10); expect(result.mean).toBe(6); expect(result.variance).toBeCloseTo(2.4); }); it("simulates reproducible binomial experiments", () => { const result = simulateBinomial(10, 0.6, 10000); expect(result.counts.reduce((sum, count) => sum + count, 0)).toBe(10000); expect(result.mean).toBeGreaterThan(5.9); expect(result.mean).toBeLessThan(6.1); }); });
+describe("binomial lesson model", () => {
+  it("computes a normalized target distribution", () => {
+    const result = binomialAnalysis(10, 0.6, 6, 4, 7);
+    expect(result.exact).toBeCloseTo(0.25082, 5);
+    expect(result.range).toBeCloseTo(0.77795, 5);
+    expect(result.cumulative).toBeCloseTo(0.61772, 5);
+    expect(
+      result.pmf.reduce((sum, item) => sum + item.probability, 0),
+    ).toBeCloseTo(1, 10);
+    expect(result.mean).toBe(6);
+    expect(result.variance).toBeCloseTo(2.4);
+  });
+  it("simulates reproducible binomial experiments", () => {
+    const result = simulateBinomial(10, 0.6, 10000);
+    expect(result.counts.reduce((sum, count) => sum + count, 0)).toBe(10000);
+    expect(result.mean).toBeGreaterThan(5.9);
+    expect(result.mean).toBeLessThan(6.1);
+  });
+});

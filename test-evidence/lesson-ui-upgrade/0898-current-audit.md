@@ -1,6 +1,6 @@
 # Lesson 0898: Best Rational Approximations
 
-Status: dedicated implementation; browser interaction and visual acceptance deferred under the current user-directed workflow. Exact visual match is not certified.
+Status: completed in the current one-by-one UI acceptance pass. Reference structure and proportions are visually aligned; exact pixel identity is not claimed.
 
 Reference inspected: `D:/Math App Screenshots for UI Update/Updated UI/0898-advanced-advanced-continued-fractions-best-rational-approximations-redesigned.png`.
 Advanced concept ID: 2004. Route: `/lessons/advanced-concepts/2004-best-rational-approximations`.
@@ -34,6 +34,8 @@ Advanced concept ID: 2004. Route: `/lessons/advanced-concepts/2004-best-rational
 - One dedicated advanced route test passed; 213 unrelated cases were skipped.
 - Targeted strict TypeScript and focused ESLint passed.
 - Existing application listener verified at 127.0.0.1:2266.
-- No authentic browser screenshots, pixel comparisons, responsive overlap checks or actual browser interaction tests performed. These remain required before full acceptance.
+- Captured desktop evidence: `artifacts/studio-control-audit/0898-current.png`.
+- One-by-one browser acceptance: opened the advanced route, adjusted the denominator-budget control, and toggled metric comparison.
+- Focused surface/model tests pass (6 tests); existing SVG title warnings are non-blocking.
 
 Next sequential target: 0899 / advanced concept 2005 Periodic Square Roots, route `/lessons/advanced-concepts/2005-periodic-square-root-continued-fractions`. Earlier aggregate completion counts have not been re-audited.

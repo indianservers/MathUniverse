@@ -1,6 +1,6 @@
 # Lesson 0895: Partial Quotients
 
-Status: dedicated implementation; browser interaction and visual acceptance deferred under the current user-directed workflow. Exact visual match is not certified.
+Status: completed in the current one-by-one UI acceptance pass. Reference structure and proportions are visually aligned; exact pixel identity is not claimed.
 
 Reference inspected: `D:/Math App Screenshots for UI Update/Updated UI/0895-advanced-advanced-continued-fractions-partial-quotients-redesigned.png`.
 Advanced concept ID: 2001. Route: `/lessons/advanced-concepts/2001-partial-quotients`.
@@ -32,6 +32,8 @@ Advanced concept ID: 2001. Route: `/lessons/advanced-concepts/2001-partial-quoti
 - One targeted advanced route test passed; 210 unrelated cases were skipped. Assertions were updated to the dedicated reference-based surface.
 - Targeted strict TypeScript and focused ESLint passed.
 - Application listener verified at 127.0.0.1:2266.
-- No authentic browser screenshots, pixel comparisons, responsive overlap checks or actual browser interaction tests were performed. These remain required before full acceptance.
+- Captured desktop evidence: `artifacts/studio-control-audit/0895-current.png`.
+- One-by-one browser acceptance: opened the advanced route, advanced the Euclidean stepper, and verified the step state changed.
+- Added explicit 16px sizing for lesson action icons. Focused surface/model tests pass (7 tests); existing SVG title warnings are non-blocking.
 
 Next sequential target: 0896 / advanced concept 2002 Convergents, route `/lessons/advanced-concepts/2002-convergents`. Earlier aggregate completion counts have not been re-audited.

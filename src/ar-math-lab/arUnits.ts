@@ -48,10 +48,29 @@ export function convertARMeasurement(value: number, from: ARUnit, to: ARUnit) {
 
 export function normalizeARUnit(unit: string): ARUnit | null {
   const normalized = unit.trim().toLowerCase();
-  if (normalized === "mm" || normalized === "millimeter" || normalized === "millimeters") return "mm";
-  if (normalized === "cm" || normalized === "centimeter" || normalized === "centimeters") return "cm";
-  if (normalized === "m" || normalized === "meter" || normalized === "meters" || normalized === "metre" || normalized === "metres") return "m";
-  if (normalized === "inch" || normalized === "inches" || normalized === "in") return "inch";
-  if (normalized === "ft" || normalized === "foot" || normalized === "feet") return "ft";
+  if (
+    normalized === "mm" ||
+    normalized === "millimeter" ||
+    normalized === "millimeters"
+  )
+    return "mm";
+  if (
+    normalized === "cm" ||
+    normalized === "centimeter" ||
+    normalized === "centimeters"
+  )
+    return "cm";
+  if (
+    normalized === "m" ||
+    normalized === "meter" ||
+    normalized === "meters" ||
+    normalized === "metre" ||
+    normalized === "metres"
+  )
+    return "m";
+  if (normalized === "inch" || normalized === "inches" || normalized === "in")
+    return "inch";
+  if (normalized === "ft" || normalized === "foot" || normalized === "feet")
+    return "ft";
   return null;
 }

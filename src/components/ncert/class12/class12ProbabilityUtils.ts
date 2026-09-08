@@ -1,7 +1,16 @@
-export function bayesPosterior(prior: number, likelihood: number, falsePositive: number) {
+export function bayesPosterior(
+  prior: number,
+  likelihood: number,
+  falsePositive: number,
+) {
   const evidence = prior * likelihood + (1 - prior) * falsePositive;
   const posterior = evidence === 0 ? 0 : (prior * likelihood) / evidence;
-  return { evidence, posterior, numerator: prior * likelihood, denominator: evidence };
+  return {
+    evidence,
+    posterior,
+    numerator: prior * likelihood,
+    denominator: evidence,
+  };
 }
 
 export const bayesPresets = {

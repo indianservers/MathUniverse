@@ -3,7 +3,9 @@ import { formulaVisualizerConfigs } from "./formulaVisualizerRoutes";
 import { buildFormulaVisualizationExplanation } from "./formulaVisualizationExplanations";
 
 describe("formula visualization explanations", () => {
-  const formulas = formulaVisualizerConfigs.flatMap((config) => config.formulas);
+  const formulas = formulaVisualizerConfigs.flatMap(
+    (config) => config.formulas,
+  );
 
   it("provides a detailed explanation for every configured formula", () => {
     expect(formulas.length).toBeGreaterThan(450);
@@ -16,15 +18,27 @@ describe("formula visualization explanations", () => {
       expect(explanation.invariant.length, formula.id).toBeGreaterThan(35);
       expect(explanation.commonMistake.length, formula.id).toBeGreaterThan(25);
       expect(explanation.tryThis.length, formula.id).toBeGreaterThan(20);
-      expect(explanation.successCondition.length, formula.id).toBeGreaterThan(20);
-      expect(explanation.textAlternative, formula.id).toContain(formula.plainText);
+      expect(explanation.successCondition.length, formula.id).toBeGreaterThan(
+        20,
+      );
+      expect(explanation.textAlternative, formula.id).toContain(
+        formula.plainText,
+      );
     }
   });
 
   it("uses topic-aware visual language", () => {
-    const derivative = formulas.find((formula) => formula.visualizerType === "calculus")!;
-    const setFormula = formulas.find((formula) => formula.visualizerType === "set-logic")!;
-    expect(buildFormulaVisualizationExplanation(derivative).diagramReading.join(" ")).toMatch(/curve|slope|area/);
-    expect(buildFormulaVisualizationExplanation(setFormula).diagramReading.join(" ")).toMatch(/set|region|row|operation/);
+    const derivative = formulas.find(
+      (formula) => formula.visualizerType === "calculus",
+    )!;
+    const setFormula = formulas.find(
+      (formula) => formula.visualizerType === "set-logic",
+    )!;
+    expect(
+      buildFormulaVisualizationExplanation(derivative).diagramReading.join(" "),
+    ).toMatch(/curve|slope|area/);
+    expect(
+      buildFormulaVisualizationExplanation(setFormula).diagramReading.join(" "),
+    ).toMatch(/set|region|row|operation/);
   });
 });

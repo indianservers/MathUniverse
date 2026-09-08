@@ -2,11 +2,23 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { findSiteLink } from "../../data/siteLinks";
 
-const defaultDescription = "Math Universe visualizes algebra, geometry, calculus, trigonometry, complex numbers, linear algebra, AI applications, and more.";
-const defaultKeywords = ["math universe", "interactive mathematics", "visual learning", "math visualizations"];
+const defaultDescription =
+  "Math Universe visualizes algebra, geometry, calculus, trigonometry, complex numbers, linear algebra, AI applications, and more.";
+const defaultKeywords = [
+  "math universe",
+  "interactive mathematics",
+  "visual learning",
+  "math visualizations",
+];
 
-function setMeta(name: string, content: string, attribute: "name" | "property" = "name") {
-  let element = document.head.querySelector<HTMLMetaElement>(`meta[${attribute}="${name}"]`);
+function setMeta(
+  name: string,
+  content: string,
+  attribute: "name" | "property" = "name",
+) {
+  let element = document.head.querySelector<HTMLMetaElement>(
+    `meta[${attribute}="${name}"]`,
+  );
 
   if (!element) {
     element = document.createElement("meta");
@@ -18,7 +30,9 @@ function setMeta(name: string, content: string, attribute: "name" | "property" =
 }
 
 function setCanonical(url: string) {
-  let element = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+  let element = document.head.querySelector<HTMLLinkElement>(
+    'link[rel="canonical"]',
+  );
 
   if (!element) {
     element = document.createElement("link");
@@ -48,7 +62,9 @@ export default function SeoMetadata() {
 
   useEffect(() => {
     const link = findSiteLink(location.pathname);
-    const title = link ? `${link.title} | Math Universe` : "Math Universe Visualizations";
+    const title = link
+      ? `${link.title} | Math Universe`
+      : "Math Universe Visualizations";
     const description = link?.description ?? defaultDescription;
     const keywords = (link?.keywords ?? defaultKeywords).join(", ");
     const canonicalUrl = `${window.location.origin}${location.pathname}`;
@@ -85,4 +101,3 @@ export default function SeoMetadata() {
 
   return null;
 }
-

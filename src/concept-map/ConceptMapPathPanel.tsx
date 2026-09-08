@@ -18,7 +18,10 @@ export default function ConceptMapPathPanel({
   startId: string;
 }) {
   return (
-    <section className="concept-panel concept-path-panel" aria-label="Learning path planner">
+    <section
+      className="concept-panel concept-path-panel"
+      aria-label="Learning path planner"
+    >
       <div className="concept-path-heading">
         <div>
           <p className="eyebrow">Learning path</p>
@@ -30,17 +33,27 @@ export default function ConceptMapPathPanel({
       <div className="concept-path-controls">
         <label>
           Start
-          <select value={startId} onChange={(event) => onStartId(event.target.value)}>
+          <select
+            value={startId}
+            onChange={(event) => onStartId(event.target.value)}
+          >
             {nodes.map((node) => (
-              <option key={node.id} value={node.id}>{node.title}</option>
+              <option key={node.id} value={node.id}>
+                {node.title}
+              </option>
             ))}
           </select>
         </label>
         <label>
           Goal
-          <select value={goalId} onChange={(event) => onGoalId(event.target.value)}>
+          <select
+            value={goalId}
+            onChange={(event) => onGoalId(event.target.value)}
+          >
             {nodes.map((node) => (
-              <option key={node.id} value={node.id}>{node.title}</option>
+              <option key={node.id} value={node.id}>
+                {node.title}
+              </option>
             ))}
           </select>
         </label>
@@ -58,7 +71,9 @@ export default function ConceptMapPathPanel({
           ))}
         </ol>
       ) : (
-        <p className="concept-muted">Pick two connected concepts to reveal a suggested prerequisite path.</p>
+        <p className="concept-muted">
+          Pick two connected concepts to reveal a suggested prerequisite path.
+        </p>
       )}
     </section>
   );

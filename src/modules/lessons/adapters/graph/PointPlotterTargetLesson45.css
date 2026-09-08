@@ -1,0 +1,323 @@
+.lesson-shell:has(.pp45-page) > header,
+.lesson-shell:has(.pp45-page) > .lesson-workbench,
+.lesson-shell:has(.pp45-page) > .lesson-reset-row {
+  display: none;
+}
+.lesson-shell:has(.pp45-page) {
+  max-width: none;
+  padding: 0;
+}
+.pp45-page {
+  --ink: #101942;
+  color: var(--ink);
+  background: linear-gradient(145deg, #effcff, #fff 48%, #f5eeff);
+  padding: 20px;
+  min-height: 100vh;
+  font-family: Inter, system-ui, sans-serif;
+  letter-spacing: 0;
+}
+.pp45-page button,
+.pp45-page input,
+.pp45-page select {
+  font: inherit;
+}
+.pp45-breadcrumb {
+  font-size: 14px;
+  color: #60718b;
+  margin: 0 0 22px;
+}
+.pp45-hero {
+  background: #fff;
+  border: 1px solid #d9e5f1;
+  border-radius: 20px;
+  padding: 24px;
+}
+.pp45-hero small {
+  display: flex;
+  gap: 8px;
+}
+.pp45-hero small b {
+  padding: 7px 12px;
+  border-radius: 14px;
+  background: #e6f7fb;
+  color: #087793;
+  font-size: 11px;
+}
+.pp45-hero small b + b {
+  background: #f1f4f8;
+  color: #4d5a70;
+}
+.pp45-hero h1 {
+  font-size: 40px;
+  margin: 12px 0 2px;
+}
+.pp45-hero p {
+  font-size: 17px;
+  color: #566780;
+  margin: 0;
+}
+.pp45-hero nav,
+.pp45-hero section {
+  display: flex;
+  gap: 10px;
+  margin-top: 13px;
+}
+.pp45-hero nav > * {
+  border: 1px solid #d7e2ed;
+  border-radius: 18px;
+  padding: 8px 13px;
+  font-size: 12px;
+}
+.pp45-hero section > * {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid #d7e2ed;
+  background: #fff;
+  border-radius: 9px;
+  padding: 10px 14px;
+}
+.pp45-hero svg {
+  width: 16px;
+}
+.pp45-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 2.7fr) minmax(285px, 1.2fr);
+  gap: 14px;
+  background: #fff;
+  border: 1px solid #d7e2ed;
+  border-radius: 15px;
+  padding: 14px;
+  margin-top: 14px;
+}
+.pp45-graph > header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  height: 42px;
+  font-size: 12px;
+}
+.pp45-graph > header label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.pp45-graph > header label:last-child {
+  margin-left: auto;
+}
+.pp45-graph > header small {
+  color: #63738a;
+}
+.pp45-graph > header input {
+  accent-color: #089caf;
+}
+.pp45-graph > svg {
+  display: block;
+  width: 100%;
+  aspect-ratio: 660/620;
+}
+.pp45-graph .axis {
+  stroke: #172443;
+  stroke-width: 1.5;
+}
+.pp45-graph .connection {
+  fill: none;
+  stroke: #94a3b8;
+  stroke-width: 2;
+  stroke-dasharray: 7 5;
+}
+.pp45-graph .guide {
+  stroke: #ea6500;
+  stroke-width: 1.5;
+  stroke-dasharray: 5 4;
+}
+.pp45-graph .guide-label {
+  fill: #df6206;
+  font-size: 11px;
+  font-weight: 700;
+}
+.pp45-graph .point-name {
+  font-size: 14px;
+  font-weight: 800;
+}
+.pp45-steps {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.pp45-steps article {
+  display: flex;
+  gap: 12px;
+  border: 1px solid #d7e2ed;
+  border-radius: 10px;
+  padding: 13px;
+  color: #5a6b83;
+  font-size: 11px;
+  line-height: 2;
+}
+.pp45-steps article > b {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #079caf;
+  color: #fff;
+  text-align: center;
+}
+.pp45-steps article:nth-child(2) > b {
+  background: #ea6500;
+}
+.pp45-steps h2 {
+  font-size: 12px;
+  color: #087d91;
+  margin: 0;
+}
+.pp45-steps article:nth-child(2) h2 {
+  color: #df6206;
+}
+.pp45-controls {
+  border: 1px solid #d7e2ed;
+  border-radius: 12px;
+  overflow: hidden;
+  height: max-content;
+}
+.pp45-controls > h2 {
+  font-size: 13px;
+  margin: 0;
+  padding: 14px;
+}
+.pp45-controls h2 small {
+  font-weight: 400;
+  color: #60718a;
+}
+.pp45-controls table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 12px;
+}
+.pp45-controls th,
+.pp45-controls td {
+  border-top: 1px solid #dce5ee;
+  padding: 8px;
+  text-align: center;
+}
+.pp45-controls tr.active {
+  background: #f2fbfd;
+}
+.pp45-controls td:first-child {
+  display: flex;
+  align-items: center;
+  cursor: grab;
+}
+.pp45-controls td svg {
+  width: 14px;
+  color: #708098;
+}
+.pp45-controls td input {
+  width: 50px;
+  border: 1px solid #d6e2ed;
+  border-radius: 6px;
+  padding: 7px;
+  text-align: center;
+}
+.pp45-controls td i {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+}
+.pp45-add {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 12px;
+  border: 1px solid #d2deea;
+  background: #fff;
+  border-radius: 8px;
+  padding: 8px;
+}
+.pp45-add svg {
+  width: 16px;
+}
+.pp45-controls > section {
+  border-top: 1px solid #dce5ee;
+  padding: 13px;
+}
+.pp45-controls h3 {
+  font-size: 12px;
+}
+.pp45-controls section div {
+  display: flex;
+  gap: 13px;
+}
+.pp45-controls section button {
+  width: 29px;
+  height: 29px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  outline: 1px solid transparent;
+}
+.pp45-controls section button.active {
+  outline-color: #079caf;
+}
+.pp45-controls > p {
+  margin: 12px;
+  background: #f5f9fc;
+  border: 1px solid #d7e2ed;
+  border-radius: 9px;
+  padding: 13px;
+  color: #52637b;
+  font-size: 11px;
+  line-height: 1.7;
+}
+.pp45-adjacent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 14px;
+}
+.pp45-adjacent a {
+  display: flex;
+  justify-content: space-between;
+  background: #fff;
+  border: 1px solid #d7e2ed;
+  border-radius: 12px;
+  padding: 14px;
+  text-decoration: none;
+  color: #35445e;
+}
+.pp45-adjacent span {
+  display: grid;
+  font-size: 10px;
+}
+.pp45-adjacent b {
+  font-size: 13px;
+  margin-top: 3px;
+}
+@media (max-width: 900px) {
+  .pp45-page {
+    padding: 8px;
+  }
+  .pp45-hero h1 {
+    font-size: 32px;
+  }
+  .pp45-hero nav,
+  .pp45-hero section,
+  .pp45-graph > header {
+    flex-wrap: wrap;
+    height: auto;
+  }
+  .pp45-workspace {
+    grid-template-columns: 1fr;
+    padding: 8px;
+  }
+  .pp45-graph {
+    overflow: auto;
+  }
+  .pp45-graph > svg {
+    min-width: 620px;
+  }
+  .pp45-steps,
+  .pp45-adjacent {
+    grid-template-columns: 1fr;
+  }
+}

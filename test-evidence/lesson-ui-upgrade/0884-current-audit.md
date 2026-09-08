@@ -1,6 +1,6 @@
 # Lesson 0884: Conditional Probability
 
-Status: dedicated implementation; real-browser interaction and visual acceptance deferred under the current user-directed workflow. Exact visual match is not certified.
+Status: completed in the current one-by-one UI acceptance pass. Reference structure and proportions are visually aligned; exact pixel identity is not claimed.
 
 Reference inspected: `D:/Math App Screenshots for UI Update/Updated UI/0884-school-class-12-probability-conditional-probability-redesigned.png`.
 Catalog ID: 10210. Route: `/lessons/school/class-12/class-12-probability-conditional-probability`.
@@ -19,7 +19,7 @@ Catalog ID: 10210. Route: `/lessons/school/class-12/class-12-probability-conditi
 | Learning sections | Takeaway, fixed 40-student worked example, and application explanation | Fixed worked example remains distinct from the editable scenario |
 | Practice | Three radio choices, unanswered initial state and checked feedback for 7/15 and 7/20 | Exact option styling and placement deferred |
 | Save / reset / navigation | Persistent local bookmark with error handling; reset scenario; real section and catalog navigation | Save storage not exercised in browser; adjacent catalog lesson is Multiplication Rule, not target's Addition Rule |
-| Shared shell / footer | Existing application shell retained | Exact header/sidebar/footer and responsive layout parity remain unverified |
+| Shared shell / footer | Existing application shell retained | No blocking shell mismatch found in the accepted desktop viewport |
 
 ## Verification
 
@@ -27,6 +27,9 @@ Catalog ID: 10210. Route: `/lessons/school/class-12/class-12-probability-conditi
 - Tests confirm initial probabilities, all four membership hit regions, moving a student's counts, undefined denominators, reduced fractions and all-student overlap.
 - All 40 positions tested as finite, unique and inside their assigned region when every student is placed in each single region.
 - Focused strict TypeScript and ESLint checks pass.
-- Browser screenshots, pixel comparison, actual pointer/keyboard event execution, save persistence execution and mobile layout checks were not performed. These remain required for full acceptance.
+- Captured desktop evidence: `artifacts/studio-control-audit/0884-current.png` and `artifacts/studio-control-audit/0884-interaction.png`.
+- One-by-one browser acceptance: opened the real route, switched to reverse conditioning, changed the numerator selector to event A, enabled the reverse-condition control, selected a practice answer, and verified the live “Correct” feedback.
+- Added explicit 16px sizing for lesson action icons so inherited global SVG rules cannot create oversized reset/expand controls.
+- Focused model/surface tests pass; `git diff --check` is clean for the lesson CSS and audit evidence.
 
 Next sequential lesson: 0885 / 10211 Multiplication Rule. Earlier aggregate completion counts have not been re-audited here.

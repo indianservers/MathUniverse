@@ -15,7 +15,10 @@ export function clampCumulativeX(value: number) {
 export function cumulativeDensity(value: number, mode: CumulativeMode) {
   const x = clampCumulativeX(value);
   if (mode === "continuous") return x / 2;
-  return discreteMasses.find((point) => Math.abs(point.x - x) < 0.001)?.probability ?? 0;
+  return (
+    discreteMasses.find((point) => Math.abs(point.x - x) < 0.001)
+      ?.probability ?? 0
+  );
 }
 
 export function cumulativeProbability(value: number, mode: CumulativeMode) {
@@ -27,6 +30,9 @@ export function cumulativeProbability(value: number, mode: CumulativeMode) {
 }
 
 export function cumulativeWorkedValues(mode: CumulativeMode) {
-  const values = mode === "continuous" ? [0, 0.5, 1, 1.4, 1.5, 2] : discreteMasses.map((point) => point.x);
+  const values =
+    mode === "continuous"
+      ? [0, 0.5, 1, 1.4, 1.5, 2]
+      : discreteMasses.map((point) => point.x);
   return values.map((x) => ({ x, cumulative: cumulativeProbability(x, mode) }));
 }

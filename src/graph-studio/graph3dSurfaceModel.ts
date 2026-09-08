@@ -1,5 +1,7 @@
-export type SurfacePalette = "height" | "thermal" | "contour" | "mono" | "custom";
-export type Graph3DLayerKind = "explicit" | "implicit" | "parametric" | "curve" | "vector-field";
+export type SurfacePalette =
+  "height" | "thermal" | "contour" | "mono" | "custom";
+export type Graph3DLayerKind =
+  "explicit" | "implicit" | "parametric" | "curve" | "vector-field";
 export type Graph3DCoordinateMode = "cartesian" | "cylindrical" | "spherical";
 export type Graph3DKeyframe = {
   id: string;
@@ -42,7 +44,10 @@ const colors = [
   ["#a3e635", "#14b8a6"],
 ] as const;
 
-export function createGraph3DSurface(expression = "sin(x) * cos(y)", index = 0): Graph3DSurface {
+export function createGraph3DSurface(
+  expression = "sin(x) * cos(y)",
+  index = 0,
+): Graph3DSurface {
   const [colorLow, colorHigh] = colors[index % colors.length];
   return {
     id: `surface-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
@@ -81,7 +86,9 @@ type LegacySurfaceState = {
   showPoints?: boolean;
 };
 
-export function migrateGraph3DSurfaces(state: LegacySurfaceState): Graph3DSurface[] {
+export function migrateGraph3DSurfaces(
+  state: LegacySurfaceState,
+): Graph3DSurface[] {
   if (Array.isArray(state.surfaces) && state.surfaces.length) {
     return state.surfaces.map((surface, index) => ({
       ...createGraph3DSurface(surface.expression, index),
@@ -99,5 +106,8 @@ export function migrateGraph3DSurfaces(state: LegacySurfaceState): Graph3DSurfac
     showPoints: state.showPoints ?? false,
   };
   if (!state.secondaryVisible) return [primary];
-  return [primary, createGraph3DSurface(state.secondaryExpression || "x^2 - y^2", 1)];
+  return [
+    primary,
+    createGraph3DSurface(state.secondaryExpression || "x^2 - y^2", 1),
+  ];
 }

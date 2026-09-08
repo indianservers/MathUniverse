@@ -100,6 +100,15 @@ import FunctionPlotterTargetLesson40 from "./graph/FunctionPlotterTargetLesson40
 import EquationGrapherTargetLesson41 from "./graph/EquationGrapherTargetLesson41";
 import InequalityGrapherTargetLesson42 from "./graph/InequalityGrapherTargetLesson42";
 import ParametricCurvesTargetLesson43 from "./graph/ParametricCurvesTargetLesson43";
+import PolarGraphsTargetLesson44 from "./graph/PolarGraphsTargetLesson44";
+import PointPlotterTargetLesson45 from "./graph/PointPlotterTargetLesson45";
+import DataPlotterTargetLesson46 from "./graph/DataPlotterTargetLesson46";
+import TableValuesTargetLesson47 from "./graph/TableValuesTargetLesson47";
+import TraceModeTargetLesson48 from "./graph/TraceModeTargetLesson48";
+import ZoomPanTargetLesson49 from "./graph/ZoomPanTargetLesson49";
+import AxisControlsTargetLesson50 from "./graph/AxisControlsTargetLesson50";
+import GridControlsTargetLesson51 from "./graph/GridControlsTargetLesson51";
+import MultipleGraphicsViewsTargetLesson52 from "./graph/MultipleGraphicsViewsTargetLesson52";
 import type { LessonAdapterProps } from "../types";
 import {
   Eye,
@@ -214,6 +223,87 @@ export default function GraphLessonAdapter({
   if (lesson.id === 43) {
     return (
       <ParametricCurvesTargetLesson43
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
+  }
+  if (lesson.id === 44) {
+    return (
+      <PolarGraphsTargetLesson44
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
+  }
+  if (lesson.id === 45) {
+    return (
+      <PointPlotterTargetLesson45
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
+  }
+  if (lesson.id === 46) {
+    return (
+      <DataPlotterTargetLesson46
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
+  }
+  if (lesson.id === 47) {
+    return (
+      <TableValuesTargetLesson47
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
+  }
+  if (lesson.id === 48) {
+    return (
+      <TraceModeTargetLesson48
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
+  }
+  if (lesson.id === 49) {
+    return (
+      <ZoomPanTargetLesson49
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
+  }
+  if (lesson.id === 50) {
+    return (
+      <AxisControlsTargetLesson50
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
+  }
+  if (lesson.id === 51) {
+    return (
+      <GridControlsTargetLesson51
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
+  }
+  if (lesson.id === 52) {
+    return (
+      <MultipleGraphicsViewsTargetLesson52
         lesson={lesson}
         resetToken={resetToken}
         onInteraction={onInteraction}

@@ -1,16 +1,17 @@
+import { shareStudio } from "../utils/shareStudio";
+import { solidStudioProperties } from "../studios/geometry/solidStudioModel";
+import SolidStudioNet from "../studios/geometry/SolidStudioNet";
+import GeometryTheoremWorkbench from "../studios/geometry/GeometryTheoremWorkbench";
+import GeometryAccuracyWorkbench from "../studios/geometry/GeometryAccuracyWorkbench";
 import { OrbitControls } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import {
   Box,
-  Check,
-  CheckCircle2,
   Circle as CircleIcon,
   Clock3,
   Cuboid,
-  Eraser,
   Eye,
   Grid3X3,
-  Home,
   Layers3,
   Lock,
   Maximize2,
@@ -18,7 +19,6 @@ import {
   Move,
   Pause,
   Play,
-  Plus,
   RefreshCcw,
   Ruler,
   Search,
@@ -43,15 +43,12 @@ import GeometryEnhancementWorkbench from "../studios/geometry/GeometryEnhancemen
 type GeometryTab = "triangles" | "pythagoras" | "theorems" | "circles" | "solids" | "accuracy" | "advanced";
 type InspectorTab = "vertices" | "measurements" | "construction";
 type CircleInspectorTab = "circle" | "constructions" | "results";
-type TheoremPanelTab = "statement" | "proof" | "check";
 type SolidPanelTab = "dimensions" | "properties" | "formulas" | "net";
-type AccuracyPanelTab = "validate" | "rounding" | "mistakes";
 type TrianglePreset = "equilateral" | "right" | "isosceles" | "scalene" | "acute" | "obtuse";
 type PythagorasPreset = "3-4-5" | "5-12-13" | "8-15-17" | "custom";
 type CirclePreset = "unit" | "semicircle" | "sector" | "annulus" | "tangent";
 type SolidId = "cube" | "cuboid" | "sphere" | "cylinder" | "cone" | "prism" | "pyramid" | "tetrahedron";
 type TheoremId = "angle-sum" | "exterior-angle" | "midpoint" | "basic-proportionality" | "similar-triangles" | "thales" | "law-of-sines" | "law-of-cosines";
-type ExampleId = "distance" | "triangle-area" | "pythagorean-check" | "circle-equation" | "cube-diagonal";
 
 const geometryTabs: Array<{ id: GeometryTab; label: string }> = [
   { id: "triangles", label: "Triangles" },
@@ -83,14 +80,6 @@ const theoremRegistry: Array<{ id: TheoremId; title: string; category: "Triangle
   { id: "law-of-cosines", title: "Law of Cosines", category: "Trigonometry", statement: "The side opposite an included angle follows the cosine correction.", given: "Sides a, b and included angle C", prove: "c^2 = a^2 + b^2 - 2ab cos C", steps: ["Resolve one side into components.", "Apply Pythagoras to the projected triangle.", "Expand the square.", "Simplify into the cosine form."], related: ["Pythagoras"] },
 ];
 
-const exampleRegistry: Array<{ id: ExampleId; title: string; category: "Coordinates" | "Triangles" | "Circles" | "3D"; prompt: string; steps: string[] }> = [
-  { id: "distance", title: "Distance between points", category: "Coordinates", prompt: "Distance: (-3, 2) to (5, 6)", steps: ["Identify Delta x and Delta y.", "Substitute into distance formula.", "Square differences.", "Add the squares.", "Take square root."] },
-  { id: "triangle-area", title: "Triangle area", category: "Triangles", prompt: "Use determinant area from coordinates.", steps: ["List vertices.", "Substitute coordinates.", "Compute signed sum.", "Take absolute half.", "State square units."] },
-  { id: "pythagorean-check", title: "Pythagorean check", category: "Triangles", prompt: "Check whether 6, 8, 10 is right.", steps: ["Find largest side.", "Square all sides.", "Compare leg squares to hypotenuse square.", "Verify equality.", "State triangle type."] },
-  { id: "circle-equation", title: "Circle equation", category: "Circles", prompt: "Center (1, 1), radius 5.", steps: ["Use center form.", "Substitute h, k, and r.", "Square the radius.", "Write the equation.", "Check a point."] },
-  { id: "cube-diagonal", title: "Cube diagonal", category: "3D", prompt: "Cube side length 4.", steps: ["Find face diagonal.", "Use 3D Pythagoras.", "Substitute side length.", "Simplify radical.", "Round decimal."] },
-];
-
 const solids: Array<{ id: SolidId; label: string }> = [
   { id: "cube", label: "Cube" },
   { id: "cuboid", label: "Cuboid" },
@@ -102,7 +91,6 @@ const solids: Array<{ id: SolidId; label: string }> = [
   { id: "tetrahedron", label: "Tetrahedron" },
 ];
 
-const axisRange = 10;
 
 export default function Geometry() {
   const topic = topics.find((item) => item.id === "geometry")!;
@@ -125,13 +113,9 @@ export default function Geometry() {
     updateQuery({ tab: next }, true);
   };
 
+  const [shareStatus, setShareStatus] = useState("");
   const shareSetup = async () => {
-    const url = window.location.href;
-    if (navigator.share) {
-      await navigator.share({ title: "Geometry Studio", url });
-      return;
-    }
-    await navigator.clipboard?.writeText(url);
+    setShareStatus(await shareStudio("Geometry Studio"));
   };
 
   return (
@@ -145,7 +129,7 @@ export default function Geometry() {
           <span className="gu-progress"><i />In progress - {progress}%</span>
           <span><Sparkles />Foundational</span>
           <span><Clock3 />40 min</span>
-          <button type="button" onClick={() => void shareSetup()}><Share2 />Share this setup</button>
+          <button type="button" onClick={() => void shareSetup()}><Share2 />Share this setup</button>{shareStatus && <p role="status" style={{ overflowWrap: "anywhere" }}>{shareStatus}</p>}
         </div>
       </header>
       <nav className="gu-tabs" role="tablist" aria-label="Geometry Studio tabs">
@@ -166,10 +150,10 @@ export default function Geometry() {
       <section className="gu-tab-panel">
         {tab === "triangles" && <TrianglesTab />}
         {tab === "pythagoras" && <PythagorasTabFixed />}
-        {tab === "theorems" && <TheoremsTab />}
+        {tab === "theorems" && <GeometryTheoremWorkbench theorems={theoremRegistry} />}
         {tab === "circles" && <CirclesTab />}
         {tab === "solids" && <SolidsTab />}
-        {tab === "accuracy" && <AccuracyTabFixed />}
+        {tab === "accuracy" && <GeometryAccuracyWorkbench />}
         {tab === "advanced" && <GeometryEnhancementWorkbench />}
       </section>
     </main>
@@ -260,58 +244,6 @@ function TrianglesTab() {
   );
 }
 
-function PythagorasTab() {
-  const initial = useMemo(readGeometryValues, []);
-  const [a, setA] = useState(initial.sideA);
-  const [b, setB] = useState(initial.sideB);
-  const [step, setStep] = useState(0);
-  const [panel, setPanel] = useState<"dimensions" | "proof" | "applications">("dimensions");
-  const [tool, setTool] = useState<"select" | "animate">("select");
-  const [playing, setPlaying] = useState(false);
-  const [tiles, setTiles] = useState(true);
-  const [grid, setGrid] = useState(true);
-  const [labels, setLabels] = useState(true);
-  const metrics = rightTriangleMetrics(a, b);
-  const c = metrics.c;
-  useEffect(() => updateQuery({ tab: "pythagoras", v_side_a: a, v_side_b: b, proof_step: step }), [a, b, step]);
-  useEffect(() => {
-    if (!playing) return;
-    const id = window.setInterval(() => setStep((value) => (value + 1) % 4), 1200);
-    return () => window.clearInterval(id);
-  }, [playing]);
-
-  const preset = (nextA: number, nextB: number, id: PythagorasPreset) => { setA(nextA); setB(nextB); updateQuery({ pythagoras: id, v_side_a: nextA, v_side_b: nextB }); };
-  return (
-    <div className="gu-proof-grid">
-      <WorkspaceFrame dark toolbar={<GeometryToolbar items={[
-        ["Select", <MousePointer2 />, tool === "select", () => setTool("select")],
-        ["Animate proof", playing ? <Pause /> : <Play />, playing, () => { setTool("animate"); setPanel("proof"); setPlaying((value) => !value); }],
-        ["Tiles", <Grid3X3 />, tiles, () => setTiles((value) => !value)],
-        ["Labels", <Eye />, labels, () => setLabels((value) => !value)],
-        ["Grid", <Grid3X3 />, grid, () => setGrid((value) => !value)],
-        ["Reset", <RefreshCcw />, false, () => preset(4, 3, "3-4-5")],
-        ["Fullscreen", <Maximize2 />, false, openActiveFullscreen],
-      ]} />}>
-        <PythagorasDiagram a={a} b={b} c={c} grid={grid} labels={labels} tiles={tiles} />
-      </WorkspaceFrame>
-      <Inspector title="Pythagoras" tabs={[["dimensions", "Dimensions"], ["proof", "Proof Steps"], ["applications", "Applications"]]} active={panel} onActive={setPanel}>
-        {panel === "dimensions" && <>
-        <RangeNumber label="Side a (leg)" value={a} min={1} max={12} step={0.5} color="#06b6d4" onChange={setA} />
-        <RangeNumber label="Side b (leg)" value={b} min={1} max={12} step={0.5} color="#8b5cf6" onChange={setB} />
-        <RangeNumber label="Hypotenuse c" value={roundTo(c, 3)} min={1} max={18} step={0.1} color="#f59e0b" onChange={() => undefined} disabled />
-        <FormulaHero formula="a² + b² = c²" substitution={`${fmt(a)}² + ${fmt(b)}² = ${fmt(c)}²`} result={`${fmt(a * a)} + ${fmt(b * b)} = ${fmt(c * c)}`} />
-        </>}
-        {panel === "proof" && <ProofSteps step={step} onStep={setStep} playing={playing} onPlaying={setPlaying} />}
-        {panel === "applications" && <InfoCard title="Applications" lines={["Distance on coordinate grids", "Construction layout checks", "Navigation and path length", "Screen and diagonal measurement"]} />}
-      </Inspector>
-      <div className="gu-lower-row">
-        <PresetButtons items={[["3-4-5", () => preset(4, 3, "3-4-5")], ["5-12-13", () => preset(5, 12, "5-12-13")], ["8-15-17", () => preset(8, 15, "8-15-17")], ["Custom", () => preset(6, 7, "custom")]]} />
-        <ResultGrid items={[["Triangle type", "Right angle at B", "Right triangle"], ["Perimeter", `${fmt(a)} + ${fmt(b)} + ${fmt(c)}`, a + b + c], ["Area", `(${fmt(a)} x ${fmt(b)}) / 2`, (a * b) / 2], ["Hypotenuse", `sqrt(${fmt(a)}² + ${fmt(b)}²)`, c]]} />
-      </div>
-    </div>
-  );
-}
-
 function PythagorasTabFixed() {
   const initial = useMemo(readGeometryValues, []);
   const [a, setA] = useState(initial.sideA);
@@ -363,61 +295,22 @@ function PythagorasTabFixed() {
   );
 }
 
-function TheoremsTab() {
-  const [selected, setSelected] = useState<TheoremId>(() => (new URLSearchParams(location.search).get("theorem") as TheoremId) || "angle-sum");
-  const [category, setCategory] = useState<"All" | "Triangles" | "Circles" | "Trigonometry">("All");
-  const [search, setSearch] = useState("");
-  const [panel, setPanel] = useState<TheoremPanelTab>("statement");
-  const [step, setStep] = useState(2);
-  const [tool, setTool] = useState<"select" | "drag">("select");
-  const [angleArcs, setAngleArcs] = useState(true);
-  const [construction, setConstruction] = useState(true);
-  const [labels, setLabels] = useState(true);
-  const theorem = theoremRegistry.find((item) => item.id === selected) ?? theoremRegistry[0];
-  const visible = theoremRegistry.filter((item) => (category === "All" || item.category === category) && `${item.title} ${item.statement} ${item.category}`.toLowerCase().includes(search.toLowerCase()));
-  useEffect(() => updateQuery({ tab: "theorems", theorem: selected, theorem_step: step }), [selected, step]);
-  const stats = triangleStats({ x: -4, y: -2 }, { x: 5, y: -2 }, { x: 0, y: 4 });
-
-  return (
-    <div className="gu-theorem-grid">
-      <aside className="gu-library">
-        <h2>Theorem Library</h2>
-        <label><Search /><input placeholder="Search theorems..." value={search} onChange={(event) => setSearch(event.target.value)} /></label>
-        <div className="gu-filter-row">{(["All", "Triangles", "Circles", "Trigonometry"] as const).map((item) => <button key={item} type="button" className={category === item ? "active" : ""} onClick={() => setCategory(item)}>{item}</button>)}</div>
-        <div className="gu-library-list">{visible.map((item) => <button key={item.id} type="button" className={item.id === selected ? "active" : ""} onClick={() => setSelected(item.id)}><Triangle /><strong>{item.title}</strong><span>{item.statement}</span>{item.id === selected && <Check />}</button>)}</div>
-      </aside>
-      <WorkspaceFrame dark toolbar={<GeometryToolbar items={[["Select", <MousePointer2 />, tool === "select", () => setTool("select")], ["Drag", <Move />, tool === "drag", () => setTool("drag")], ["Angle arcs", <Ruler />, angleArcs, () => setAngleArcs((value) => !value)], ["Construction lines", <Layers3 />, construction, () => setConstruction((value) => !value)], ["Labels", <Eye />, labels, () => setLabels((value) => !value)], ["Reset", <RefreshCcw />, false, () => setStep(0)], ["Fullscreen", <Maximize2 />, false, openActiveFullscreen]]} />}>
-        <TheoremDiagram theorem={theorem.id} stats={stats} step={step} angleArcs={angleArcs} construction={construction} labels={labels} />
-      </WorkspaceFrame>
-      <Inspector title="Theorem inspector" tabs={[["statement", "Statement"], ["proof", "Proof"], ["check", "Check"]]} active={panel} onActive={setPanel}>
-        {panel === "statement" && <StatementPanel theorem={theorem} />}
-        {panel === "proof" && <ProofSequence theorem={theorem} step={step} onStep={setStep} onPlay={() => setStep((value) => (value + 1) % theorem.steps.length)} />}
-        {panel === "check" && <><ResultGrid items={[["Angle sum", "Live", `${fmt(stats.angleA + stats.angleB + stats.angleC)} deg`], ["Tolerance", "", "±0.01 deg"], ["Status", "", "PASS"]]} /><Warning tone="success">The selected construction validates within tolerance.</Warning></>}
-      </Inspector>
-      <div className="gu-lower-row gu-theorem-bottom">
-        <MetricCard title="Live check" value={`${fmt(stats.angleA + stats.angleB + stats.angleC)} deg`} subtitle="Sum of angles" />
-        <InfoCard title="Assumptions" lines={["Euclidean geometry", "Parallel postulate", "Straight lines extend infinitely"]} />
-        <InfoCard title="Related theorems" lines={theorem.related} />
-        <InfoCard title="Try counterexample" lines={["Make the figure non-planar or break a line.", "Test now"]} />
-      </div>
-    </div>
-  );
-}
-
 function CirclesTab() {
   const initial = useMemo(readGeometryValues, []);
-  const [center, setCenter] = useState<Point2D>({ x: 1, y: 1 });
+  const [center, setCenter] = useState<Point2D>({ x: readNumber("circle_x", 1), y: readNumber("circle_y", 1) });
   const [radius, setRadius] = useState(initial.radius);
+  const [innerRadius, setInnerRadius] = useState(0);
   const [angle, setAngle] = useState(initial.sectorAngle);
   const [panel, setPanel] = useState<CircleInspectorTab>("circle");
   const [visible, setVisible] = useState({ radius: true, diameter: true, chord: true, tangent: true, secant: true, sector: true, labels: true, grid: true });
   const [tool, setTool] = useState<"select" | "point" | "radius" | "chord" | "tangent" | "sector">("select");
   const circumference = 2 * Math.PI * radius;
-  const area = Math.PI * radius * radius;
+  const area = Math.PI * (radius * radius - innerRadius * innerRadius);
   const arc = (angle / 360) * circumference;
   const sector = (angle / 360) * area;
   useEffect(() => updateQuery({ tab: "circles", v_radius_r: radius, v_sector_angle: angle, circle_x: center.x, circle_y: center.y }), [radius, angle, center]);
   const applyPreset = (preset: CirclePreset) => {
+    setInnerRadius(preset === "annulus" ? 3 : 0);
     if (preset === "unit") { setRadius(1); setAngle(360); }
     if (preset === "semicircle") { setRadius(5); setAngle(180); }
     if (preset === "sector") { setRadius(5); setAngle(72); }
@@ -427,12 +320,13 @@ function CirclesTab() {
   return (
     <div className="gu-circle-grid">
       <WorkspaceFrame dark toolbar={<GeometryToolbar items={[["Select", <MousePointer2 />, tool === "select", () => setTool("select")], ["Point", <Target />, tool === "point", () => setTool("point")], ["Radius", <Ruler />, visible.radius, () => setVisible((state) => ({ ...state, radius: !state.radius }))], ["Chord", <Layers3 />, visible.chord, () => setVisible((state) => ({ ...state, chord: !state.chord }))], ["Tangent", <Sparkles />, visible.tangent, () => setVisible((state) => ({ ...state, tangent: !state.tangent }))], ["Sector", <CircleIcon />, visible.sector, () => setVisible((state) => ({ ...state, sector: !state.sector }))], ["Labels", <Eye />, visible.labels, () => setVisible((state) => ({ ...state, labels: !state.labels }))], ["Grid", <Grid3X3 />, visible.grid, () => setVisible((state) => ({ ...state, grid: !state.grid }))], ["Reset", <RefreshCcw />, false, () => applyPreset("sector")], ["Fullscreen", <Maximize2 />, false, openActiveFullscreen]]} />}>
-        <CircleDiagram center={center} radius={radius} angle={angle} visible={visible} />
+        <CircleDiagram center={center} radius={radius} angle={angle} visible={visible} innerRadius={innerRadius} onPoint={tool === "point" ? setCenter : undefined} />
       </WorkspaceFrame>
       <Inspector title="Circle inspector" tabs={[["circle", "Circle"], ["constructions", "Constructions"], ["results", "Results"]]} active={panel} onActive={setPanel}>
         {panel === "circle" && <>
           <VertexEditor label="O" point={center} onChange={setCenter} />
-          <RangeNumber label="Radius r" value={radius} min={1} max={9} step={0.25} color="#06b6d4" onChange={setRadius} />
+          {innerRadius > 0 && <RangeNumber label="Inner radius" value={innerRadius} min={0.25} max={radius - 0.25} step={0.25} color="#8b5cf6" onChange={setInnerRadius} />}
+          <RangeNumber label="Radius r" value={radius} min={1} max={9} step={0.25} color="#06b6d4" onChange={(r) => { setRadius(r); setInnerRadius((inner) => Math.min(inner, Math.max(0, r - 0.25))); }} />
           <RangeNumber label="Central angle θ" value={angle} min={1} max={360} step={1} color="#8b5cf6" onChange={setAngle} />
           <div className="gu-toggle-grid">
             {([
@@ -452,7 +346,7 @@ function CirclesTab() {
 function SolidsTab() {
   const [solid, setSolid] = useState<SolidId>(() => (new URLSearchParams(location.search).get("solid") as SolidId) || "cube");
   const [side, setSide] = useState(readNumber("v_size_radius", 4));
-  const [height, setHeight] = useState(4);
+  const [height, setHeight] = useState(readNumber("solid_height", 4));
   const [wireframe, setWireframe] = useState(false);
   const [transparent, setTransparent] = useState(false);
   const [rotate, setRotate] = useState(true);
@@ -462,11 +356,11 @@ function SolidsTab() {
   const [lockProportions, setLockProportions] = useState(true);
   const [solidSearch, setSolidSearch] = useState("");
   const [panel, setPanel] = useState<SolidPanelTab>("dimensions");
-  const props = solidProperties(solid, side, height);
+  const props = solidStudioProperties(solid, side, height);
   useEffect(() => updateQuery({ tab: "solids", solid, v_size_radius: side, solid_height: height }), [solid, side, height]);
   const changeSide = (value: number) => {
     setSide(value);
-    if (lockProportions && solid === "cuboid") setHeight(value);
+    if (lockProportions) setHeight(height * value / side);
   };
   const visibleSolids = solids.filter((item) => item.label.toLowerCase().includes(solidSearch.toLowerCase()));
   return (
@@ -485,7 +379,7 @@ function SolidsTab() {
           <ThreeSceneWrapper height="100%" cameraPosition={[4.5, 3.4, 6]} fov={46} quality="high" chrome="standard" sceneLabel={`${solid} geometry solid`}>
             <ambientLight intensity={0.7} />
             <directionalLight position={[4, 5, 4]} intensity={1.4} />
-            <SolidMesh solid={solid} size={side} height={height} wireframe={wireframe} transparent={transparent} rotate={rotate} />
+            <SolidMesh solid={solid} size={side} height={height} wireframe={wireframe} transparent={transparent} rotate={rotate} measure={measure} onSelect={() => setPanel("properties")} />
             {crossSection && <mesh position={[0, 0.15, 0]} rotation={[-Math.PI / 2, 0, 0]}><planeGeometry args={[side * 1.4, side * 1.4]} /><meshStandardMaterial color="#a855f7" transparent opacity={0.22} side={THREE.DoubleSide} /></mesh>}
             <gridHelper args={[10, 20, "#38bdf8", "#1e3a5f"]} position={[0, -2.6, 0]} />
             <OrbitControls enablePan={pan} enableZoom />
@@ -494,126 +388,20 @@ function SolidsTab() {
         <div className="gu-lower-row">
           <InfoCard title="Animate Rotation" lines={[rotate ? "Playing" : "Paused", "Y-Axis", "Speed 0.45"]} />
           <InfoCard title="Cross-section" lines={[crossSection ? "Visible at position 0.50" : "Hidden", "Plane preview available"]} />
-          <InfoCard title="Unfold Net" lines={["Net preview", "Fold/unfold mapping"]} />
-          <InfoCard title="Related Shapes" lines={["Cuboid", "Square Prism"]} />
+          <button type="button" onClick={() => setPanel("net")}>Inspect unfolded net</button>
+          {measure && <InfoCard title="Measurements" lines={[`Size ${fmt(side)}; height ${fmt(height)}`, `Volume ${fmt(props.volume)}`, `Surface area ${fmt(props.surfaceArea)}`]} />}
         </div>
       </div>
       <Inspector title="Solid inspector" tabs={[["dimensions", "Dimensions"], ["properties", "Properties"], ["formulas", "Formulas"], ["net", "Net"]]} active={panel} onActive={setPanel}>
         {panel === "dimensions" && <>
-          <RangeNumber label={solid === "cube" ? "Side length" : "Length / radius"} value={side} min={1} max={8} step={0.25} color="#06b6d4" onChange={changeSide} />
+          <RangeNumber label={["sphere", "cylinder", "cone"].includes(solid) ? "Diameter" : "Edge length"} value={side} min={1} max={8} step={0.25} color="#06b6d4" onChange={changeSide} />
           {["cuboid", "cylinder", "cone", "prism", "pyramid"].includes(solid) && <RangeNumber label="Height" value={height} min={1} max={9} step={0.25} color="#8b5cf6" onChange={setHeight} />}
           <label className="gu-lock-row"><input type="checkbox" checked={lockProportions} onChange={(event) => setLockProportions(event.target.checked)} />{lockProportions ? <Lock /> : <Unlock />}Lock proportions</label>
         </>}
         {panel === "properties" && <ResultGrid items={[["Volume", "V", props.volume], ["Surface Area", "SA", props.surfaceArea], ["Base Area", "", props.baseArea], ["Space Diagonal", "", props.diagonal], ["Faces", "", props.faces], ["Edges", "", props.edges], ["Vertices", "", props.vertices]]} />}
         {panel === "formulas" && <FormulaCard title="Formulas" formula={props.formula} result={`Volume ${fmt(props.volume)} units³ · Surface ${fmt(props.surfaceArea)} units²`} />}
-        {panel === "net" && <InfoCard title="Net" lines={["Interactive net preview uses the existing 3D shape renderer state.", "Download/export can be added where export hooks are available."]} />}
+        {panel === "net" && <SolidStudioNet key={solid} solid={solid} size={side} height={height} />}
       </Inspector>
-    </div>
-  );
-}
-
-function AccuracyTab() {
-  const [selected, setSelected] = useState<ExampleId>(() => (new URLSearchParams(location.search).get("example") as ExampleId) || "distance");
-  const [category, setCategory] = useState<"All" | "Coordinates" | "Triangles" | "Circles" | "3D">("All");
-  const [step, setStep] = useState(0);
-  const [panel, setPanel] = useState<AccuracyPanelTab>("validate");
-  const example = exampleRegistry.find((item) => item.id === selected) ?? exampleRegistry[0];
-  const visible = exampleRegistry.filter((item) => category === "All" || item.category === category);
-  const expected = Math.sqrt(80);
-  const user = roundTo(expected, 2);
-  useEffect(() => updateQuery({ tab: "accuracy", example: selected, example_step: step }), [selected, step]);
-  return (
-    <div className="gu-accuracy-grid">
-      <div className="gu-summary-row">
-        <MetricCard title="Accuracy score" value="92%" subtitle="★★★★★" />
-        <MetricCard title="Completed" value="18 / 22" subtitle="Worked examples" />
-        <MetricCard title="Current streak" value="6 days" subtitle="Keep going" />
-        <MetricCard title="Estimated time" value="12 min" subtitle="This set" />
-      </div>
-      <aside className="gu-library">
-        <h2>Example Library</h2>
-        <label><Search /><input placeholder="Search examples..." /></label>
-        <div className="gu-filter-row">{(["All", "Coordinates", "Triangles", "Circles", "3D"] as const).map((item) => <button key={item} type="button" className={category === item ? "active" : ""} onClick={() => setCategory(item)}>{item}</button>)}</div>
-        <div className="gu-library-list">{visible.map((item) => <button key={item.id} type="button" className={item.id === selected ? "active" : ""} onClick={() => setSelected(item.id)}><Target /><strong>{item.title}</strong><span>{item.category}</span>{item.id === selected && <Check />}</button>)}</div>
-      </aside>
-      <WorkspaceFrame toolbar={<GeometryToolbar items={[["Drag", <MousePointer2 />, true, undefined], ["Show steps", <Layers3 />, true, undefined], ["Grid", <Grid3X3 />, true, undefined], ["Labels", <Eye />, true, undefined], ["Reset", <RefreshCcw />, false, () => setStep(0)]]} />}>
-        <h2 className="gu-workspace-title">{example.title}</h2>
-        <DistanceExampleDiagram step={step} />
-        <div className="gu-stepper">{example.steps.map((item, index) => <button key={item} type="button" className={step === index ? "active" : ""} onClick={() => setStep(index)}><b>{index + 1}</b>{item}</button>)}</div>
-        <div className="gu-proof-actions"><button type="button" onClick={() => setStep(Math.max(0, step - 1))}>Previous</button><span>Step {step + 1} of {example.steps.length}</span><button type="button" onClick={() => setStep(Math.min(example.steps.length - 1, step + 1))}>Next</button></div>
-      </WorkspaceFrame>
-      <Inspector title="Accuracy Check" tabs={[["validate", "Validate"], ["rounding", "Rounding"], ["mistakes", "Mistakes"]]} active={panel} onActive={setPanel}>
-        {panel === "validate" && <ResultGrid items={[["Measurement", "Distance AB", user], ["Expected", "", expected], ["Difference", "", Math.abs(expected - user)], ["Relative error", "", `${fmt(Math.abs(expected - user) / expected * 100)}%`], ["Tolerance", "", "±0.01"], ["Status", "", "PASS"]]} />}
-        {panel === "rounding" && <><FormulaCard title="Rounding" formula={`Exact value = √80 = ${expected}`} result={`Decimal to 2 places = ${user}`} /><div className="gu-filter-row">{[0, 1, 2, 3, 4, 5, 6].map((item) => <button key={item} type="button" className={item === 2 ? "active" : ""}>{item}</button>)}</div></>}
-        {panel === "mistakes" && <Warning tone="danger">Common mistakes: subtracting coordinates incorrectly, rounding too early, missing the square root, or omitting a square.</Warning>}
-      </Inspector>
-      <div className="gu-lower-row">
-        <InfoCard title="Practice" lines={["Easy: Distance (1, 2) to (4, 6)", "Medium: Distance (-2, -1) to (5, 3)", "Challenge: Distance (-5, 4) to (7, -2)"]} />
-        <div className="gu-answer-card"><input placeholder="Your answer" /><button type="button">Check answer</button><button type="button">Hint</button><button type="button">Try another</button></div>
-        <InfoCard title="Mastery by topic" lines={["Coordinates 94%", "Triangles 88%", "Circles 90%", "3D Solids 78%"]} />
-      </div>
-    </div>
-  );
-}
-
-function AccuracyTabFixed() {
-  const [selected, setSelected] = useState<ExampleId>(() => (new URLSearchParams(location.search).get("example") as ExampleId) || "distance");
-  const [category, setCategory] = useState<"All" | "Coordinates" | "Triangles" | "Circles" | "3D">("All");
-  const [step, setStep] = useState(0);
-  const [panel, setPanel] = useState<AccuracyPanelTab>("validate");
-  const [search, setSearch] = useState("");
-  const [tool, setTool] = useState<"drag" | "inspect">("drag");
-  const [showSteps, setShowSteps] = useState(true);
-  const [grid, setGrid] = useState(true);
-  const [labels, setLabels] = useState(true);
-  const [precision, setPrecision] = useState(readNumber("precision", 2));
-  const [answer, setAnswer] = useState("");
-  const [feedback, setFeedback] = useState("Ready");
-  const example = exampleRegistry.find((item) => item.id === selected) ?? exampleRegistry[0];
-  const visible = exampleRegistry.filter((item) => (category === "All" || item.category === category) && `${item.title} ${item.category} ${item.prompt}`.toLowerCase().includes(search.toLowerCase()));
-  const expected = Math.sqrt(80);
-  const user = roundTo(expected, precision);
-  useEffect(() => updateQuery({ tab: "accuracy", example: selected, example_step: step, precision }), [selected, step, precision]);
-  const checkAnswer = () => {
-    const numeric = Number(answer);
-    if (!Number.isFinite(numeric)) { setFeedback("Enter a numeric answer first."); return; }
-    setFeedback(Math.abs(numeric - user) <= 0.01 ? "Correct within tolerance." : `Not yet. Expected about ${user}.`);
-  };
-  const tryAnother = () => {
-    const current = exampleRegistry.findIndex((item) => item.id === selected);
-    const next = exampleRegistry[(current + 1) % exampleRegistry.length];
-    setSelected(next.id); setStep(0); setAnswer(""); setFeedback("Ready");
-  };
-  return (
-    <div className="gu-accuracy-grid">
-      <div className="gu-summary-row">
-        <MetricCard title="Accuracy score" value="92%" subtitle="Mastery estimate" />
-        <MetricCard title="Completed" value="18 / 22" subtitle="Worked examples" />
-        <MetricCard title="Current streak" value="6 days" subtitle="Keep going" />
-        <MetricCard title="Estimated time" value="12 min" subtitle="This set" />
-      </div>
-      <aside className="gu-library">
-        <h2>Example Library</h2>
-        <label><Search /><input placeholder="Search examples..." value={search} onChange={(event) => setSearch(event.target.value)} /></label>
-        <div className="gu-filter-row">{(["All", "Coordinates", "Triangles", "Circles", "3D"] as const).map((item) => <button key={item} type="button" className={category === item ? "active" : ""} onClick={() => setCategory(item)}>{item}</button>)}</div>
-        <div className="gu-library-list">{visible.map((item) => <button key={item.id} type="button" className={item.id === selected ? "active" : ""} onClick={() => { setSelected(item.id); setStep(0); }}><Target /><strong>{item.title}</strong><span>{item.category}</span>{item.id === selected && <Check />}</button>)}</div>
-      </aside>
-      <WorkspaceFrame toolbar={<GeometryToolbar items={[["Drag", <MousePointer2 />, tool === "drag", () => setTool("drag")], ["Inspect", <Target />, tool === "inspect", () => setTool("inspect")], ["Show steps", <Layers3 />, showSteps, () => setShowSteps((value) => !value)], ["Grid", <Grid3X3 />, grid, () => setGrid((value) => !value)], ["Labels", <Eye />, labels, () => setLabels((value) => !value)], ["Reset", <RefreshCcw />, false, () => setStep(0)]]} />}>
-        <h2 className="gu-workspace-title">{example.title}</h2>
-        <DistanceExampleDiagramFixed step={step} grid={grid} labels={labels} />
-        {showSteps && <div className="gu-stepper">{example.steps.map((item, index) => <button key={item} type="button" className={step === index ? "active" : ""} onClick={() => setStep(index)}><b>{index + 1}</b>{item}</button>)}</div>}
-        <div className="gu-proof-actions"><button type="button" onClick={() => setStep(Math.max(0, step - 1))}>Previous</button><span>Step {step + 1} of {example.steps.length}</span><button type="button" onClick={() => setStep(Math.min(example.steps.length - 1, step + 1))}>Next</button></div>
-      </WorkspaceFrame>
-      <Inspector title="Accuracy Check" tabs={[["validate", "Validate"], ["rounding", "Rounding"], ["mistakes", "Mistakes"]]} active={panel} onActive={setPanel}>
-        {panel === "validate" && <ResultGrid items={[["Measurement", "Distance AB", user], ["Expected", "", expected], ["Difference", "", Math.abs(expected - user)], ["Relative error", "", `${fmt(Math.abs(expected - user) / expected * 100)}%`], ["Tolerance", "", "+/-0.01"], ["Status", "", "PASS"]]} />}
-        {panel === "rounding" && <><FormulaCard title="Rounding" formula={`Exact value = sqrt(80) = ${expected}`} result={`Decimal to ${precision} places = ${user}`} /><div className="gu-filter-row">{[0, 1, 2, 3, 4, 5, 6].map((item) => <button key={item} type="button" className={item === precision ? "active" : ""} onClick={() => setPrecision(item)}>{item}</button>)}</div></>}
-        {panel === "mistakes" && <Warning tone="danger">Common mistakes: subtracting coordinates incorrectly, rounding too early, missing the square root, or omitting a square.</Warning>}
-      </Inspector>
-      <div className="gu-lower-row">
-        <InfoCard title="Practice" lines={["Easy: Distance (1, 2) to (4, 6)", "Medium: Distance (-2, -1) to (5, 3)", "Challenge: Distance (-5, 4) to (7, -2)"]} />
-        <div className="gu-answer-card"><input placeholder="Your answer" value={answer} onChange={(event) => setAnswer(event.target.value)} /><button type="button" onClick={checkAnswer}>Check answer</button><button type="button" onClick={() => setFeedback("Hint: square delta x and delta y, add them, then take the square root.")}>Hint</button><button type="button" onClick={tryAnother}>Try another</button><p>{feedback}</p></div>
-        <InfoCard title="Mastery by topic" lines={["Coordinates 94%", "Triangles 88%", "Circles 90%", "3D Solids 78%"]} />
-      </div>
     </div>
   );
 }
@@ -658,61 +446,27 @@ function PythagorasDiagram({ a, b, c, grid, labels, tiles }: { a: number; b: num
   return <svg viewBox="0 0 720 520" className="gu-proof-svg">{grid && <GridPattern dark />}{tiles && <><polygon points={sqC} className="square hyp" /><polygon points={sqA} className="square a" /><polygon points={sqB} className="square b" /></>}<polygon points={`${A.x},${A.y} ${B.x},${B.y} ${C.x},${C.y}`} className="tri" />{labels && <><text x={A.x + 75} y={A.y + 105}> {fmt(a * a)} </text><text x={B.x + 58} y={C.y + 70}> {fmt(b * b)} </text><text x={A.x - 70} y={A.y - 80}> {fmt(c * c)} </text><TextAt p={mid(A, B)} text={`a = ${fmt(a)}`} color="#06b6d4" /><TextAt p={mid(B, C)} text={`b = ${fmt(b)}`} color="#8b5cf6" /><TextAt p={mid(A, C)} text={`c = ${fmt(c)}`} color="#f59e0b" /></>}</svg>;
 }
 
-function TheoremDiagram({ stats, step, angleArcs, construction, labels }: { theorem: TheoremId; stats: ReturnType<typeof triangleStats>; step: number; angleArcs: boolean; construction: boolean; labels: boolean }) {
-  return <svg viewBox="0 0 720 520" className="gu-proof-svg"><GridPattern dark /><polygon points="120,350 560,350 360,115" fill="none" stroke="#f8fafc" strokeWidth="4" />{angleArcs && <><path d="M170 350 A50 50 0 0 1 200 310" stroke="#22d3ee" strokeWidth="4" fill="none" /><path d="M510 350 A50 50 0 0 0 485 310" stroke="#a855f7" strokeWidth="4" fill="none" /><path d="M330 150 A48 48 0 0 0 390 150" stroke="#f59e0b" strokeWidth="4" fill="none" /></>}{construction && step >= 2 && <line x1="90" y1="115" x2="610" y2="115" stroke="#f8fafc" strokeDasharray="9 8" />}{labels && <><text x="118" y="372">A</text><text x="575" y="372">B</text><text x="355" y="105">C</text><text x="150" y="455" className="big cyan">{fmt(stats.angleA)}°</text><text x="290" y="455" className="big violet">+ {fmt(stats.angleB)}°</text><text x="455" y="455" className="big orange">+ {fmt(stats.angleC)}° = 180°</text></>}</svg>;
-}
-
-function CircleDiagram({ center, radius, angle, visible }: { center: Point2D; radius: number; angle: number; visible: { radius: boolean; diameter: boolean; chord: boolean; tangent: boolean; secant: boolean; sector: boolean; labels: boolean; grid: boolean } }) {
+function CircleDiagram({ center, radius, angle, visible, innerRadius = 0, onPoint }: { innerRadius?: number; onPoint?: (point: Point2D) => void; center: Point2D; radius: number; angle: number; visible: { radius: boolean; diameter: boolean; chord: boolean; tangent: boolean; secant: boolean; sector: boolean; labels: boolean; grid: boolean } }) {
   const O = svgPoint(center);
   const rPx = radius * 24;
   const p = { x: O.x + rPx * Math.cos((angle * Math.PI) / 180), y: O.y - rPx * Math.sin((angle * Math.PI) / 180) };
-  return <CoordinateSvg dark grid={visible.grid}><circle cx={O.x} cy={O.y} r={rPx} className="circle-main" />{visible.sector && <path d={`M ${O.x} ${O.y} L ${O.x + rPx} ${O.y} A ${rPx} ${rPx} 0 ${angle > 180 ? 1 : 0} 0 ${p.x} ${p.y} Z`} className="sector" />}{visible.diameter && <line x1={O.x - rPx} y1={O.y} x2={O.x + rPx} y2={O.y} className="diameter" />}{visible.chord && <line x1={O.x - rPx * .68} y1={O.y + rPx * .72} x2={O.x + rPx * .68} y2={O.y + rPx * .72} className="diameter" />}{visible.radius && <line x1={O.x} y1={O.y} x2={p.x} y2={p.y} className="radius" />}{visible.secant && <line x1={O.x - rPx - 90} y1={O.y + rPx * .9} x2={O.x + rPx + 90} y2={O.y + rPx * .25} className="construction strong" />}{visible.tangent && <line x1={p.x - 120} y1={p.y - 90} x2={p.x + 120} y2={p.y + 90} className="tangent" />}<circle cx={O.x} cy={O.y} r="6" fill="#06b6d4" /><circle cx={p.x} cy={p.y} r="7" fill="#f8fafc" stroke="#06b6d4" strokeWidth="3" />{visible.labels && <><text x={O.x + 10} y={O.y - 12}>O ({fmt(center.x)}, {fmt(center.y)})</text><text x={p.x + 10} y={p.y - 10}>P</text><text x={O.x - 160} y={O.y - rPx + 30}>r = {fmt(radius)}</text><text x={O.x + 70} y={O.y - 35}>{fmt(angle)}°</text></>}</CoordinateSvg>;
+  return <CoordinateSvg dark grid={visible.grid} onPointerDown={(event) => { if (!onPoint) return; const svg = event.currentTarget, point = svg.createSVGPoint(); point.x = event.clientX; point.y = event.clientY; const matrix = svg.getScreenCTM(); if (matrix) { const p = point.matrixTransform(matrix.inverse()); onPoint({ x: clamp((p.x - 360) / 34, -9, 9), y: clamp((260 - p.y) / 24, -9, 9) }); } }}>{innerRadius > 0 && <circle cx={O.x} cy={O.y} r={innerRadius * 24} fill="#071d35" stroke="#a78bfa" strokeWidth="3" />}<circle cx={O.x} cy={O.y} r={rPx} className="circle-main" />{visible.sector && angle < 360 && <path d={`M ${O.x} ${O.y} L ${O.x + rPx} ${O.y} A ${rPx} ${rPx} 0 ${angle > 180 ? 1 : 0} 0 ${p.x} ${p.y} Z`} className="sector" />}{visible.diameter && <line x1={O.x - rPx} y1={O.y} x2={O.x + rPx} y2={O.y} className="diameter" />}{visible.chord && <line x1={O.x - rPx * .68} y1={O.y + rPx * .72} x2={O.x + rPx * .68} y2={O.y + rPx * .72} className="diameter" />}{visible.radius && <line x1={O.x} y1={O.y} x2={p.x} y2={p.y} className="radius" />}{visible.secant && <line x1={O.x - rPx - 90} y1={O.y + rPx * .9} x2={O.x + rPx + 90} y2={O.y + rPx * .25} className="construction strong" />}{visible.tangent && <line x1={p.x - 120 * Math.sin(angle * Math.PI / 180)} y1={p.y - 120 * Math.cos(angle * Math.PI / 180)} x2={p.x + 120 * Math.sin(angle * Math.PI / 180)} y2={p.y + 120 * Math.cos(angle * Math.PI / 180)} className="tangent" />}<circle cx={O.x} cy={O.y} r="6" fill="#06b6d4" /><circle cx={p.x} cy={p.y} r="7" fill="#f8fafc" stroke="#06b6d4" strokeWidth="3" />{visible.labels && <><text x={O.x + 10} y={O.y - 12}>O ({fmt(center.x)}, {fmt(center.y)})</text><text x={p.x + 10} y={p.y - 10}>P</text><text x={O.x - 160} y={O.y - rPx + 30}>r = {fmt(radius)}</text><text x={O.x + 70} y={O.y - 35}>{fmt(angle)}°</text></>}</CoordinateSvg>;
 }
 
-function DistanceExampleDiagram({ grid = true, labels = true, step }: { grid?: boolean; labels?: boolean; step: number }) {
-  const a = { x: -3, y: 2 }, b = { x: 5, y: 6 };
-  const A = svgPoint(a), B = svgPoint(b), C = svgPoint({ x: b.x, y: a.y });
-  return <CoordinateSvg><line x1={A.x} y1={A.y} x2={B.x} y2={B.y} className="example-segment" /><line x1={A.x} y1={A.y} x2={C.x} y2={C.y} className={step >= 0 ? "construction strong" : "construction"} /><line x1={C.x} y1={C.y} x2={B.x} y2={B.y} className={step >= 0 ? "construction strong" : "construction"} /><circle cx={A.x} cy={A.y} r="7" fill="#2563eb" /><circle cx={B.x} cy={B.y} r="7" fill="#2563eb" /><text x={A.x - 34} y={A.y - 16}>A (-3, 2)</text><text x={B.x + 10} y={B.y - 12}>B (5, 6)</text><text x={mid(A, C).x} y={mid(A, C).y + 20} fill="#059669">Δx = 8</text><text x={C.x + 15} y={mid(C, B).y} fill="#059669">Δy = 4</text><rect x="250" y="415" width="300" height="48" rx="10" fill="#e0f2fe" /><text x="282" y="445" className="formula-text">d = √((x₂-x₁)² + (y₂-y₁)²) = √80 = 8.94</text></CoordinateSvg>;
-}
-
-function DistanceExampleDiagramFixed({ grid = true, labels = true, step }: { grid?: boolean; labels?: boolean; step: number }) {
-  const a = { x: -3, y: 2 }, b = { x: 5, y: 6 };
-  const A = svgPoint(a), B = svgPoint(b), C = svgPoint({ x: b.x, y: a.y });
-  return (
-    <CoordinateSvg grid={grid}>
-      <line x1={A.x} y1={A.y} x2={B.x} y2={B.y} className="example-segment" />
-      <line x1={A.x} y1={A.y} x2={C.x} y2={C.y} className={step >= 0 ? "construction strong" : "construction"} />
-      <line x1={C.x} y1={C.y} x2={B.x} y2={B.y} className={step >= 0 ? "construction strong" : "construction"} />
-      <circle cx={A.x} cy={A.y} r="7" fill="#2563eb" />
-      <circle cx={B.x} cy={B.y} r="7" fill="#2563eb" />
-      {labels && <>
-        <text x={A.x - 34} y={A.y - 16}>A (-3, 2)</text>
-        <text x={B.x + 10} y={B.y - 12}>B (5, 6)</text>
-        <text x={mid(A, C).x} y={mid(A, C).y + 20} fill="#059669">dx = 8</text>
-        <text x={C.x + 15} y={mid(C, B).y} fill="#059669">dy = 4</text>
-      </>}
-      <rect x="250" y="415" width="300" height="48" rx="10" fill="#e0f2fe" />
-      <text x="282" y="445" className="formula-text">d = sqrt((x2-x1)^2 + (y2-y1)^2) = sqrt(80) = 8.94</text>
-    </CoordinateSvg>
-  );
-}
-
-function SolidMesh({ solid, size, height, wireframe, transparent, rotate }: { solid: SolidId; size: number; height: number; wireframe: boolean; transparent: boolean; rotate: boolean }) {
+function SolidMesh({ solid, size, height, wireframe, transparent, rotate, measure, onSelect }: { solid: SolidId; size: number; height: number; wireframe: boolean; transparent: boolean; rotate: boolean; measure: boolean; onSelect: () => void }) {
   const ref = useRef<THREE.Group>(null);
   useFrame((_, delta) => { if (ref.current && rotate) ref.current.rotation.y += delta * 0.38; });
-  return <group ref={ref}><mesh castShadow receiveShadow><SolidGeometry solid={solid} size={size} height={height} /><meshStandardMaterial color="#22d3ee" emissive="#0e7490" emissiveIntensity={0.18} roughness={0.25} transparent opacity={transparent ? 0.38 : 0.82} /></mesh>{wireframe && <mesh><SolidGeometry solid={solid} size={size} height={height} /><meshBasicMaterial color="#f8fafc" wireframe transparent opacity={0.35} /></mesh>}<DimensionLabel size={size} /></group>;
+  return <group ref={ref}><mesh castShadow receiveShadow onClick={onSelect}><SolidGeometry solid={solid} size={size} height={height} /><meshStandardMaterial color="#22d3ee" emissive="#0e7490" emissiveIntensity={0.18} roughness={0.25} transparent opacity={transparent ? 0.38 : 0.82} /></mesh>{wireframe && <mesh><SolidGeometry solid={solid} size={size} height={height} /><meshBasicMaterial color="#f8fafc" wireframe transparent opacity={0.35} /></mesh>}{measure && <axesHelper args={[size]} />}</group>;
 }
 
 function SolidGeometry({ solid, size, height }: { solid: SolidId; size: number; height: number }) {
   if (solid === "sphere") return <sphereGeometry args={[size / 2, 64, 36]} />;
   if (solid === "cylinder") return <cylinderGeometry args={[size / 2, size / 2, height, 64]} />;
   if (solid === "cone") return <coneGeometry args={[size / 2, height, 64]} />;
-  if (solid === "pyramid" || solid === "tetrahedron") return <coneGeometry args={[size / 1.6, height, solid === "tetrahedron" ? 3 : 4]} />;
+  if (solid === "pyramid") return <coneGeometry args={[size / Math.sqrt(2), height, 4]} />;
+  if (solid === "tetrahedron") return <tetrahedronGeometry args={[size * Math.sqrt(6) / 4, 0]} />;
+  if (solid === "prism") return <cylinderGeometry args={[size / Math.sqrt(3), size / Math.sqrt(3), height, 3]} />;
   return <boxGeometry args={solid === "cuboid" ? [size, size * 0.72, height] : [size, size, size]} />;
-}
-
-function DimensionLabel({ size }: { size: number }) {
-  return <group><axesHelper args={[2]} /><lineSegments><bufferGeometry /><lineBasicMaterial color="#ffffff" /></lineSegments></group>;
 }
 
 function WorkspaceFrame({ children, toolbar, dark = false }: { children: ReactNode; toolbar?: ReactNode; dark?: boolean }) {
@@ -751,14 +505,6 @@ function FormulaHero({ formula, substitution, result }: { formula: string; subst
 function ProofSteps({ step, onStep, playing, onPlaying }: { step: number; onStep: (step: number) => void; playing: boolean; onPlaying: (value: boolean) => void }) {
   const steps = ["Build squares", "Compare areas", "Rearrange", "Verify"];
   return <div className="gu-proof-steps">{steps.map((item, index) => <button key={item} type="button" className={step === index ? "active" : ""} onClick={() => onStep(index)}><b>{index + 1}</b><span>{item}</span><Play /></button>)}<div className="gu-proof-actions"><button type="button" onClick={() => onStep(Math.max(0, step - 1))}>Previous</button><button type="button" onClick={() => onPlaying(!playing)}>{playing ? "Pause" : "Play"}</button><button type="button" onClick={() => onStep(Math.min(3, step + 1))}>Next</button></div></div>;
-}
-
-function StatementPanel({ theorem }: { theorem: (typeof theoremRegistry)[number] }) {
-  return <div className="gu-statement"><h3>Theorem</h3><p>{theorem.statement}</p><h3>Given</h3><p>{theorem.given}</p><h3>To Prove</h3><p>{theorem.prove}</p></div>;
-}
-
-function ProofSequence({ theorem, step, onPlay, onStep }: { theorem: (typeof theoremRegistry)[number]; step: number; onPlay?: () => void; onStep: (step: number) => void }) {
-  return <div className="gu-proof-list">{theorem.steps.map((item, index) => <button key={item} type="button" className={step === index ? "active" : index < step ? "done" : ""} onClick={() => onStep(index)}><b>{index + 1}</b><span>{item}</span>{index <= step && <CheckCircle2 />}</button>)}<button type="button" className="gu-primary-action" onClick={onPlay}>Animate proof</button></div>;
 }
 
 function PresetButtons({ items }: { items: Array<[string, () => void]> }) {
@@ -805,14 +551,6 @@ function triangleAngle(p1: Point2D, vertex: Point2D, p2: Point2D) {
   return Math.acos(clamp((a * a + b * b - c * c) / (2 * a * b), -1, 1)) * 180 / Math.PI;
 }
 
-function solidProperties(solid: SolidId, size: number, height: number) {
-  if (solid === "sphere") return { volume: 4 / 3 * Math.PI * (size / 2) ** 3, surfaceArea: 4 * Math.PI * (size / 2) ** 2, baseArea: Math.PI * (size / 2) ** 2, diagonal: size, faces: 1, edges: 0, vertices: 0, formula: "V = 4/3πr³, SA = 4πr²" };
-  if (solid === "cylinder") return { volume: Math.PI * (size / 2) ** 2 * height, surfaceArea: 2 * Math.PI * (size / 2) * ((size / 2) + height), baseArea: Math.PI * (size / 2) ** 2, diagonal: Math.hypot(size, height), faces: 3, edges: 2, vertices: 0, formula: "V = πr²h, SA = 2πr(r+h)" };
-  if (solid === "cone") return { volume: Math.PI * (size / 2) ** 2 * height / 3, surfaceArea: Math.PI * (size / 2) * ((size / 2) + Math.hypot(size / 2, height)), baseArea: Math.PI * (size / 2) ** 2, diagonal: Math.hypot(size, height), faces: 2, edges: 1, vertices: 1, formula: "V = 1/3πr²h, SA = πr(r+l)" };
-  if (solid === "cuboid") return { volume: size * (size * 0.72) * height, surfaceArea: 2 * (size * size * 0.72 + size * height + size * 0.72 * height), baseArea: size * size * 0.72, diagonal: Math.hypot(size, size * 0.72, height), faces: 6, edges: 12, vertices: 8, formula: "V = lwh, SA = 2(lw+lh+wh)" };
-  return { volume: size ** 3, surfaceArea: 6 * size ** 2, baseArea: size ** 2, diagonal: Math.sqrt(3) * size, faces: solid === "tetrahedron" ? 4 : 6, edges: solid === "tetrahedron" ? 6 : 12, vertices: solid === "tetrahedron" ? 4 : 8, formula: "V = s³, SA = 6s²" };
-}
-
 function readGeometryTab(): GeometryTab {
   const value = new URLSearchParams(window.location.search).get("tab") as GeometryTab | null;
   return geometryTabs.some((item) => item.id === value) ? value! : "triangles";
@@ -846,7 +584,7 @@ function updateQuery(values: Record<string, string | number | boolean>, push = f
 
 function normalizeProgress(progress: number) {
   const normalized = progress > 1 ? progress : progress * 100;
-  return Math.max(25, Math.min(100, Math.round(normalized || 75)));
+  return Math.max(0, Math.min(100, Math.round(Number.isFinite(normalized) ? normalized : 0)));
 }
 
 function openActiveFullscreen() {

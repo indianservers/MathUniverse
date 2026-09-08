@@ -8,7 +8,9 @@ import {
 
 describe("Board mathematical analysis", () => {
   it("normalizes safe LaTeX for existing engines", () => {
-    const normalized = normalizeBoardExpression(String.raw`\frac{2x}{3}+\sin(x)`);
+    const normalized = normalizeBoardExpression(
+      String.raw`\frac{2x}{3}+\sin(x)`,
+    );
     expect(normalized.engineExpression).toContain("((2x)/(3))");
     expect(normalized.engineExpression).toContain("sin(x)");
   });
@@ -18,8 +20,12 @@ describe("Board mathematical analysis", () => {
     expect(analysis.classification).toBe("algebraic-expression");
     expect(analysis.variables).toEqual(["x"]);
     expect(analysis.metadata?.degree).toBe(2);
-    expect(analysis.suggestedActions.slice(0, 3).map((action) => action.label)).toEqual(["Factor", "Draw graph", "Find roots"]);
-    expect(analysis.suggestedActions.some((action) => action.label === "Draw graph")).toBe(true);
+    expect(
+      analysis.suggestedActions.slice(0, 3).map((action) => action.label),
+    ).toEqual(["Factor", "Draw graph", "Find roots"]);
+    expect(
+      analysis.suggestedActions.some((action) => action.label === "Draw graph"),
+    ).toBe(true);
   });
 
   it.each([
@@ -42,17 +48,23 @@ describe("Board mathematical analysis", () => {
     const ambiguities = detectAmbiguities("1/l+x", "algebraic-expression");
     expect(ambiguities[0].requiresResolution).toBe(true);
     const analysis = analyzeBoardExpression("1/l+x");
-    expect(analysis.suggestedActions.every((action) => !action.enabled)).toBe(true);
+    expect(analysis.suggestedActions.every((action) => !action.enabled)).toBe(
+      true,
+    );
   });
 
   it("suppresses irrelevant operations", () => {
-    const actions = analyzeBoardExpression("4,7,7,8").suggestedActions.map((action) => action.type);
+    const actions = analyzeBoardExpression("4,7,7,8").suggestedActions.map(
+      (action) => action.type,
+    );
     expect(actions).toEqual(["statistics"]);
     expect(actions).not.toContain("differentiate");
   });
 
   it("rejects malformed and oversized input", () => {
     expect(() => normalizeBoardExpression(String.raw`\frac{1`)).toThrow();
-    expect(() => normalizeBoardExpression("x".repeat(2_001))).toThrow(/exceeds/i);
+    expect(() => normalizeBoardExpression("x".repeat(2_001))).toThrow(
+      /exceeds/i,
+    );
   });
 });

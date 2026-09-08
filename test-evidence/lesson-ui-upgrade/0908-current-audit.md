@@ -1,6 +1,6 @@
 # Lesson 0908: p-Values
 
-Status: dedicated implementation; browser interaction and exact visual acceptance remain deferred under the user-directed workflow. Not certified as a pixel match.
+Status: completed in the current one-by-one UI acceptance pass. Reference structure and proportions are visually aligned; exact pixel identity is not claimed.
 
 Reference inspected: `D:/Math App Screenshots for UI Update/Updated UI/0908-advanced-advanced-statistical-inference-p-values-redesigned.png`.
 Advanced concept ID: 2014. Route: `/lessons/advanced-concepts/2014-p-values`.
@@ -34,7 +34,9 @@ Advanced concept ID: 2014. Route: `/lessons/advanced-concepts/2014-p-values`.
 - Targeted strict TypeScript and focused ESLint passed before final explanatory-caption-only edit.
 - One dedicated-route test passed after the final caption edit; 223 unrelated cases skipped.
 - Existing app listener verified at 127.0.0.1:2266, PID 33880; not restarted.
-- No full build, full test suite, actual browser interaction, authentic screenshots or pixel comparison performed.
+- Captured desktop evidence: `artifacts/studio-control-audit/0908-current.png`.
+- One-by-one browser acceptance: opened the advanced route, adjusted the observed-z slider, and verified the p-value visualization updated.
+- Focused surface/model tests pass (6 tests); `git diff --check` is clean for the lesson evidence.
 
 ## Sources
 

@@ -1,7 +1,10 @@
 import { useMemo } from "react";
 import { Command, Play, Sparkles } from "lucide-react";
 import SmartMathInput from "../math-input/SmartMathInput";
-import { commandExamplesFor, resolveCommandSpec } from "../../workspace/commandRegistry";
+import {
+  commandExamplesFor,
+  resolveCommandSpec,
+} from "../../workspace/commandRegistry";
 
 type CommandBarProps = {
   value: string;
@@ -25,11 +28,18 @@ const defaultCommandSuggestions = [
   "NORM.S.DIST(0,TRUE)",
 ];
 
-export default function CommandBar({ value, onChange, onRun }: CommandBarProps) {
+export default function CommandBar({
+  value,
+  onChange,
+  onRun,
+}: CommandBarProps) {
   const suggestions = useMemo(() => smartCommandSuggestions(value), [value]);
 
   return (
-    <div className="workspace-command-center" data-testid="workspace-command-bar">
+    <div
+      className="workspace-command-center"
+      data-testid="workspace-command-bar"
+    >
       <div className="flex min-w-0 items-start gap-2">
         <Command className="ml-2 mt-3 h-4 w-4 shrink-0 text-cyan-500" />
         <div className="min-w-0 flex-1">
@@ -45,15 +55,28 @@ export default function CommandBar({ value, onChange, onRun }: CommandBarProps) 
             value={value}
           />
         </div>
-        <button type="button" onClick={onRun} className="action-primary min-h-10 rounded-lg px-3 py-1" aria-label="Run workspace command">
+        <button
+          type="button"
+          onClick={onRun}
+          className="action-primary min-h-10 rounded-lg px-3 py-1"
+          aria-label="Run workspace command"
+        >
           <Play className="h-4 w-4" />
           Run
         </button>
       </div>
       <div className="workspace-command-suggestions">
-        <span className="inline-flex items-center gap-1 text-[11px] font-black uppercase text-slate-500 dark:text-slate-400"><Sparkles className="h-3.5 w-3.5 text-cyan-500" />Smart</span>
+        <span className="inline-flex items-center gap-1 text-[11px] font-black uppercase text-slate-500 dark:text-slate-400">
+          <Sparkles className="h-3.5 w-3.5 text-cyan-500" />
+          Smart
+        </span>
         {suggestions.slice(0, 8).map((suggestion) => (
-          <button key={suggestion} type="button" className="mini-chip transition hover:bg-cyan-100 hover:text-cyan-800 dark:hover:bg-cyan-300/15 dark:hover:text-cyan-100" onClick={() => onChange(suggestion)}>
+          <button
+            key={suggestion}
+            type="button"
+            className="mini-chip transition hover:bg-cyan-100 hover:text-cyan-800 dark:hover:bg-cyan-300/15 dark:hover:text-cyan-100"
+            onClick={() => onChange(suggestion)}
+          >
             {suggestion}
           </button>
         ))}
@@ -91,13 +114,34 @@ function smartCommandSuggestions(value: string) {
   const contextual = [
     ...(spec?.examples ?? []),
     ...registry,
-    ...defaultCommandSuggestions.filter((item) => item.toLowerCase().includes(query) || item.toLowerCase().includes(firstWord)),
+    ...defaultCommandSuggestions.filter(
+      (item) =>
+        item.toLowerCase().includes(query) ||
+        item.toLowerCase().includes(firstWord),
+    ),
   ];
-  if (query.includes("circle")) contextual.push("circle center=(0,0) radius=3", "area circle radius 5");
-  if (query.includes("matrix")) contextual.push("determinant [[1,2],[3,4]]", "inverse [[1,2],[3,4]]");
-  if (query.includes("point")) contextual.push("point A=(2,3)", "line (0,0), (4,3)");
-  if (query.includes("surface") || query.includes("3d")) contextual.push("surface z = sin(x) * cos(y)", "sphere center=(0,0,0) radius=2");
-  if (query.includes("mean") || query.includes("average")) contextual.push("mean(34,34,56,78)", "AVERAGE(10,20,30)", "MEDIAN(4,6,8,10)");
-  if (query.includes("stat") || query.includes("norm")) contextual.push("NORM.S.DIST(0,TRUE)", "STDEV.S(4,6,8,10)", "CORREL(1,2,3,2,4,6)");
+  if (query.includes("circle"))
+    contextual.push("circle center=(0,0) radius=3", "area circle radius 5");
+  if (query.includes("matrix"))
+    contextual.push("determinant [[1,2],[3,4]]", "inverse [[1,2],[3,4]]");
+  if (query.includes("point"))
+    contextual.push("point A=(2,3)", "line (0,0), (4,3)");
+  if (query.includes("surface") || query.includes("3d"))
+    contextual.push(
+      "surface z = sin(x) * cos(y)",
+      "sphere center=(0,0,0) radius=2",
+    );
+  if (query.includes("mean") || query.includes("average"))
+    contextual.push(
+      "mean(34,34,56,78)",
+      "AVERAGE(10,20,30)",
+      "MEDIAN(4,6,8,10)",
+    );
+  if (query.includes("stat") || query.includes("norm"))
+    contextual.push(
+      "NORM.S.DIST(0,TRUE)",
+      "STDEV.S(4,6,8,10)",
+      "CORREL(1,2,3,2,4,6)",
+    );
   return Array.from(new Set(contextual)).slice(0, 10);
 }

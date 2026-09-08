@@ -34,9 +34,30 @@ describe("Grade 7 NCERT math utilities", () => {
   });
 
   it("handles fraction arithmetic and simplification", () => {
-    expect(operateFractions({ numerator: 1, denominator: 2 }, { numerator: 1, denominator: 3 }, "add").result).toEqual({ numerator: 5, denominator: 6 });
-    expect(operateFractions({ numerator: 2, denominator: 3 }, { numerator: 3, denominator: 5 }, "multiply").result).toEqual({ numerator: 2, denominator: 5 });
-    expect(operateFractions({ numerator: 4, denominator: 5 }, { numerator: 2, denominator: 3 }, "divide").result).toEqual({ numerator: 6, denominator: 5 });
-    expect(simplifyFraction({ numerator: 18, denominator: 24 })).toEqual({ numerator: 3, denominator: 4 });
+    expect(
+      operateFractions(
+        { numerator: 1, denominator: 2 },
+        { numerator: 1, denominator: 3 },
+        "add",
+      ).result,
+    ).toEqual({ numerator: 5, denominator: 6 });
+    expect(
+      operateFractions(
+        { numerator: 2, denominator: 3 },
+        { numerator: 3, denominator: 5 },
+        "multiply",
+      ).result,
+    ).toEqual({ numerator: 2, denominator: 5 });
+    expect(
+      operateFractions(
+        { numerator: 4, denominator: 5 },
+        { numerator: 2, denominator: 3 },
+        "divide",
+      ).result,
+    ).toEqual({ numerator: 6, denominator: 5 });
+    expect(simplifyFraction({ numerator: 18, denominator: 24 })).toEqual({
+      numerator: 3,
+      denominator: 4,
+    });
   });
 });

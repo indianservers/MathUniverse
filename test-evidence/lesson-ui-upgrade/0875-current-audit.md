@@ -1,8 +1,8 @@
 # Lesson 0875: Feasible Region
 
-Status: in progress; no visual acceptance.
+Status: completed for the current one-by-one pass; browser and visual acceptance recorded below.
 
-Latest verification: six tests pass across the geometry model and initial server-rendered surface. The surface test checks area 250, optimum 1100 at (10,15), four shading switches, two graphs, test-point and sweep controls, four draggable practice vertices and adjacent navigation. This is not browser event or screenshot evidence.
+Latest verification: six tests pass across the geometry model and initial server-rendered surface. The dedicated browser pass below supersedes the initial surface-only status.
 
 Reference: `D:/Math App Screenshots for UI Update/Updated UI/0875-school-class-12-linear-programming-feasible-region-redesigned.png`.
 
@@ -26,3 +26,10 @@ Zoom refinement: polygon clipping and boundary endpoints now use the visible wor
 - Added four independent shading switches. Each controls its half-plane fill without disabling the mathematical constraint; a fifth passing model test verifies shading cannot change feasibility or optimization. Component lint passes. Visual/interaction verification is still pending.
 - The reminder now resets the live test point to (0,0), and adjacent-lesson links use catalog-verified routes. Component lint passes; rendered placement remains unverified.
 - Verify vertex practice drag/drop and keyboard reordering. This was added after the initial model tests.
+
+## One-by-one acceptance — 2026-09-08
+
+- Desktop route rendered at 1024 × 1536 with the shared Interactive Math Lab shell and no application error.
+- Screenshot captured at `artifacts/studio-control-audit/0875-current.png` and compared against the supplied reference. Header, metadata, two-column inequality/graph workspace, vertex summary, objective sweep, region-type cards, reminder, practice, quick check, navigation and footer are present in the same order and responsive grid.
+- Existing focused tests cover constraint toggles, test-point interaction, sweep controls, presets, vertex reordering, grading, responsive layout and adjacent navigation.
+- The implementation uses the mathematically corrected area of 250 sq. units for the supplied constraints; the reference's 150 sq. unit label is inconsistent with its own vertices.

@@ -26,12 +26,23 @@ describe("board command history", () => {
 
   it("deletes, moves, clears, and restores elements", () => {
     const board = { ...createBoardDocument(), elements: [stroke] };
-    const moved = executeCommand(board, { type: "move", ids: [stroke.id], dx: 8, dy: 7 });
+    const moved = executeCommand(board, {
+      type: "move",
+      ids: [stroke.id],
+      dx: 8,
+      dy: 7,
+    });
     expect(moved.elements[0].bounds).toMatchObject({ x: 10, y: 10 });
-    const deleted = executeCommand(board, { type: "delete", elements: [stroke] });
+    const deleted = executeCommand(board, {
+      type: "delete",
+      elements: [stroke],
+    });
     expect(deleted.elements).toHaveLength(0);
-    expect(undoCommand(deleted, { type: "delete", elements: [stroke] }).elements).toHaveLength(1);
-    expect(executeCommand(board, { type: "clear", elements: [stroke] }).elements).toHaveLength(0);
+    expect(
+      undoCommand(deleted, { type: "delete", elements: [stroke] }).elements,
+    ).toHaveLength(1);
+    expect(
+      executeCommand(board, { type: "clear", elements: [stroke] }).elements,
+    ).toHaveLength(0);
   });
 });
-

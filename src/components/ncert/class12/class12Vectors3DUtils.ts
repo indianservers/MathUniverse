@@ -37,7 +37,12 @@ export function lineVectorForm(point: Vector3, direction: Vector3) {
   return `r = (${point.join(", ")}) + lambda(${direction.join(", ")})`;
 }
 
-export function shortestDistanceSkew(p1: Vector3, d1: Vector3, p2: Vector3, d2: Vector3) {
+export function shortestDistanceSkew(
+  p1: Vector3,
+  d1: Vector3,
+  p2: Vector3,
+  d2: Vector3,
+) {
   const normal = cross(d1, d2);
   const normalMagnitude = magnitude(normal);
   if (normalMagnitude === 0) return 0;

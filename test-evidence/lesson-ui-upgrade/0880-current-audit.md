@@ -1,6 +1,6 @@
 # Lesson 0880: Infeasible Problems
 
-Status: dedicated implementation; browser interaction and visual acceptance deferred under the user's latest workflow instruction. Not certified as an exact visual match.
+Status: completed for the current one-by-one pass; browser and visual acceptance recorded below.
 
 Reference inspected: `D:/Math App Screenshots for UI Update/Updated UI/0880-school-class-12-linear-programming-infeasible-problems-redesigned.png`.
 Catalog ID: 10206. Route: `/lessons/school/class-12/class-12-linear-programming-infeasible-problems`.
@@ -26,7 +26,14 @@ Catalog ID: 10206. Route: `/lessons/school/class-12/class-12-linear-programming-
 - Seven focused Vitest tests passed: interval classification, all 1,681 slider-value pairs, drag coordinate mapping/clamping, practice classification, nonfinite inputs, and initial server-rendered markup.
 - Focused strict TypeScript check passed after fixing tuple-union argument typing.
 - Focused ESLint check passed.
-- No authentic browser screenshots, pointer-event execution, responsive-layout verification, or image-difference threshold acceptance was performed. Model and markup tests do not establish visual equivalence.
+- The earlier surface-only status is superseded by the one-by-one browser pass below.
 - No bitmap assets needed: number lines and half-planes are mathematical SVG surfaces, not static screenshots.
 
 Next sequential lesson: 0881 / 10207 Diet Problem. Prior aggregate completion claims have not been re-audited in this pass.
+
+## One-by-one acceptance — 2026-09-08
+
+- Desktop route rendered at 1024 × 1536 and captured at `artifacts/studio-control-audit/0880-current.png`.
+- Reference comparison confirms the ordered composition: lesson header, tabs, 1D bound editors and number line, result/certificate cards, transition examples, 2D comparison, rule sequence, notes, practice and navigation/footer.
+- Live validation passed for lower/upper bound editing, infeasible-state feedback, practice selection and grading. The mathematical output updates from the same overlap model.
+- Scoped SVG sizing keeps the lesson icons proportional under the shared application stylesheet.

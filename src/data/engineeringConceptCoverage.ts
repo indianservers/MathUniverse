@@ -1,4 +1,7 @@
-import { assessmentSummary, buildEngineeringAssessmentPlans } from "./engineeringAssessmentPlanner";
+import {
+  assessmentSummary,
+  buildEngineeringAssessmentPlans,
+} from "./engineeringAssessmentPlanner";
 import { caseStudiesForDomain } from "./engineeringCaseStudies";
 import { engineeringMathDomains } from "./engineeringMathBlueprint";
 import { formulasForDomain } from "./engineeringFormulaAtlas";
@@ -66,16 +69,27 @@ export function buildEngineeringConceptCoverage(): EngineeringConceptCoverageRow
       nativeVisuals: domain.nativeRoutes.length,
       formulas: formulasForDomain(domain.id).length,
       launchers: launchersForDomain(domain.id).length,
-      solvers: engineeringSolverPresets.filter((preset) => preset.domainId === domain.id).length,
+      solvers: engineeringSolverPresets.filter(
+        (preset) => preset.domainId === domain.id,
+      ).length,
       workedExamples: workedExamplesForDomain(domain.id).length,
       practice: practicePackForDomain(domain.id) ? 1 : 0,
       projects: projectsForDomain(domain.id).length,
       caseStudies: caseStudiesForDomain(domain.id).length,
-      assessment: assessmentPlans.some((plan) => plan.domainId === domain.id) ? 1 : 0,
+      assessment: assessmentPlans.some((plan) => plan.domainId === domain.id)
+        ? 1
+        : 0,
     };
     const dimensions = Object.keys(minimums) as EngineeringCoverageDimension[];
-    const missing = dimensions.filter((dimension) => counts[dimension] < minimums[dimension]).map((dimension) => `${labels[dimension]} ${counts[dimension]}/${minimums[dimension]}`);
-    const score = dimensions.filter((dimension) => counts[dimension] >= minimums[dimension]).length;
+    const missing = dimensions
+      .filter((dimension) => counts[dimension] < minimums[dimension])
+      .map(
+        (dimension) =>
+          `${labels[dimension]} ${counts[dimension]}/${minimums[dimension]}`,
+      );
+    const score = dimensions.filter(
+      (dimension) => counts[dimension] >= minimums[dimension],
+    ).length;
     return {
       domainId: domain.id,
       title: domain.title,
@@ -85,14 +99,20 @@ export function buildEngineeringConceptCoverage(): EngineeringConceptCoverageRow
       percent: Math.round((score / dimensions.length) * 100),
       counts,
       missing,
-      nextActions: missing.length ? missing.slice(0, 3).map((gap) => `Add ${gap}.`) : ["Ready for deeper simulations, timed tests, and exportable reports."],
+      nextActions: missing.length
+        ? missing.slice(0, 3).map((gap) => `Add ${gap}.`)
+        : [
+            "Ready for deeper simulations, timed tests, and exportable reports.",
+          ],
     };
   });
 }
 
 export function engineeringCoverageSummary() {
   const rows = buildEngineeringConceptCoverage();
-  const average = Math.round(rows.reduce((sum, row) => sum + row.percent, 0) / rows.length);
+  const average = Math.round(
+    rows.reduce((sum, row) => sum + row.percent, 0) / rows.length,
+  );
   return {
     average,
     completeDomains: rows.filter((row) => row.missing.length === 0).length,

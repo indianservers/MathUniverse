@@ -11,7 +11,8 @@ export function exponentialCdf(time: number, rate: number) {
 }
 
 export function exponentialAnalysis(rateValue: number, thresholdValue: number) {
-  const rate = Math.max(0.01, rateValue), threshold = Math.max(0, thresholdValue);
+  const rate = Math.max(0.01, rateValue),
+    threshold = Math.max(0, thresholdValue);
   return {
     rate,
     threshold,
@@ -23,17 +24,28 @@ export function exponentialAnalysis(rateValue: number, thresholdValue: number) {
   };
 }
 
-export function simulateExponentialArrivals(rateValue: number, horizonValue: number, seedValue: number) {
-  const rate = Math.max(0.01, rateValue), horizon = Math.max(0.01, horizonValue);
+export function simulateExponentialArrivals(
+  rateValue: number,
+  horizonValue: number,
+  seedValue: number,
+) {
+  const rate = Math.max(0.01, rateValue),
+    horizon = Math.max(0.01, horizonValue);
   let state = seedValue >>> 0;
   const intervals: number[] = [];
   let elapsed = 0;
   while (intervals.length < 1000) {
     state = (1664525 * state + 1013904223) >>> 0;
-    const interval = -Math.log(Math.max(Number.EPSILON, 1 - state / 4294967296)) / rate;
+    const interval =
+      -Math.log(Math.max(Number.EPSILON, 1 - state / 4294967296)) / rate;
     if (elapsed + interval > horizon) break;
     intervals.push(interval);
     elapsed += interval;
   }
-  return { intervals, elapsed, horizon, average: intervals.length ? elapsed / intervals.length : 0 };
+  return {
+    intervals,
+    elapsed,
+    horizon,
+    average: intervals.length ? elapsed / intervals.length : 0,
+  };
 }

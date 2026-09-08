@@ -12,22 +12,48 @@ import {
 
 describe("engineering dependency graph", () => {
   it("connects every engineering math domain", () => {
-    const domainIds = new Set(engineeringMathDomains.map((domain) => domain.id));
-    const connectedDomainIds = new Set(engineeringDependencyEdges.flatMap((edge) => [edge.from, edge.to]));
-    expect(Array.from(domainIds).every((domainId) => connectedDomainIds.has(domainId))).toBe(true);
-    expect(dependencyGraphSummary().connectedDomainCount).toBe(engineeringMathDomains.length);
+    const domainIds = new Set(
+      engineeringMathDomains.map((domain) => domain.id),
+    );
+    const connectedDomainIds = new Set(
+      engineeringDependencyEdges.flatMap((edge) => [edge.from, edge.to]),
+    );
+    expect(
+      Array.from(domainIds).every((domainId) =>
+        connectedDomainIds.has(domainId),
+      ),
+    ).toBe(true);
+    expect(dependencyGraphSummary().connectedDomainCount).toBe(
+      engineeringMathDomains.length,
+    );
   });
 
   it("uses only valid domain ids in edges and paths", () => {
-    const domainIds = new Set(engineeringMathDomains.map((domain) => domain.id));
-    expect(engineeringDependencyEdges.every((edge) => domainIds.has(edge.from) && domainIds.has(edge.to))).toBe(true);
-    expect(engineeringLearningPaths.every((path) => path.domainIds.every((domainId) => domainIds.has(domainId)))).toBe(true);
+    const domainIds = new Set(
+      engineeringMathDomains.map((domain) => domain.id),
+    );
+    expect(
+      engineeringDependencyEdges.every(
+        (edge) => domainIds.has(edge.from) && domainIds.has(edge.to),
+      ),
+    ).toBe(true);
+    expect(
+      engineeringLearningPaths.every((path) =>
+        path.domainIds.every((domainId) => domainIds.has(domainId)),
+      ),
+    ).toBe(true);
   });
 
   it("returns prerequisites, unlocks, and path memberships for selected domains", () => {
-    expect(unlocksForDomain("engineering-calculus").length).toBeGreaterThanOrEqual(3);
-    expect(dependenciesForDomain("partial-differential-equations").length).toBeGreaterThanOrEqual(3);
-    expect(learningPathsForDomain("engineering-linear-algebra").length).toBeGreaterThanOrEqual(2);
+    expect(
+      unlocksForDomain("engineering-calculus").length,
+    ).toBeGreaterThanOrEqual(3);
+    expect(
+      dependenciesForDomain("partial-differential-equations").length,
+    ).toBeGreaterThanOrEqual(3);
+    expect(
+      learningPathsForDomain("engineering-linear-algebra").length,
+    ).toBeGreaterThanOrEqual(2);
   });
 
   it("keeps learning paths meaningful", () => {
@@ -35,7 +61,9 @@ describe("engineering dependency graph", () => {
     expect(summary.edgeCount).toBeGreaterThanOrEqual(12);
     expect(summary.pathCount).toBeGreaterThanOrEqual(5);
     expect(summary.longestPathLength).toBeGreaterThanOrEqual(3);
-    expect(engineeringLearningPaths.every((path) => path.outcome.length > 30)).toBe(true);
+    expect(
+      engineeringLearningPaths.every((path) => path.outcome.length > 30),
+    ).toBe(true);
   });
 
   it("renders the dependency map on the Engineering Mathematics hub", async () => {

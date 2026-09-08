@@ -8,16 +8,18 @@ describe("NCERTTeacherModePanel", () => {
       <NCERTTeacherModePanel
         title="Integers"
         classLevel="Class 7"
-        questions={[{
-          id: "q1",
-          conceptId: "class-7-integers",
-          difficulty: "easy",
-          prompt: "Find -3 + 7.",
-          answer: 4,
-          answerType: "numeric",
-          hint: "Move right.",
-          explanation: "-3 + 7 = 4.",
-        }]}
+        questions={[
+          {
+            id: "q1",
+            conceptId: "class-7-integers",
+            difficulty: "easy",
+            prompt: "Find -3 + 7.",
+            answer: 4,
+            answerType: "numeric",
+            hint: "Move right.",
+            explanation: "-3 + 7 = 4.",
+          },
+        ]}
       />,
     );
     expect(html).toContain("Teacher worksheet mode");

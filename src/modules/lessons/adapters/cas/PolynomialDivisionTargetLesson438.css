@@ -603,20 +603,35 @@ body:has(.pd438-page)
 body:has(.pd438-page) [data-testid="desktop-sidebar"] > div {
   padding: 10px 9px 40px !important;
 }
-body:has(.pd438-page) [data-testid="desktop-sidebar"] > div > div:first-of-type {
+body:has(.pd438-page)
+  [data-testid="desktop-sidebar"]
+  > div
+  > div:first-of-type {
   height: 58px;
   margin-bottom: 12px !important;
   padding: 5px !important;
   border-radius: 10px;
 }
-body:has(.pd438-page) [data-testid="desktop-sidebar"] > div > div:first-of-type > button:first-child {
+body:has(.pd438-page)
+  [data-testid="desktop-sidebar"]
+  > div
+  > div:first-of-type
+  > button:first-child {
   padding: 8px !important;
   border-radius: 8px;
 }
-body:has(.pd438-page) [data-testid="desktop-sidebar"] > div > div:first-of-type p:first-child {
+body:has(.pd438-page)
+  [data-testid="desktop-sidebar"]
+  > div
+  > div:first-of-type
+  p:first-child {
   font-size: 12px !important;
 }
-body:has(.pd438-page) [data-testid="desktop-sidebar"] > div > div:first-of-type p:last-child {
+body:has(.pd438-page)
+  [data-testid="desktop-sidebar"]
+  > div
+  > div:first-of-type
+  p:last-child {
   font-size: 7px !important;
 }
 body:has(.pd438-page) [data-testid="desktop-sidebar"] > div > label {
@@ -627,23 +642,40 @@ body:has(.pd438-page) [data-testid="desktop-sidebar"] > div > label {
   border-radius: 8px;
   font-size: 8px !important;
 }
-body:has(.pd438-page) [data-testid="desktop-sidebar"] nav[aria-label="Primary navigation"] {
+body:has(.pd438-page)
+  [data-testid="desktop-sidebar"]
+  nav[aria-label="Primary navigation"] {
   row-gap: 6px !important;
 }
-body:has(.pd438-page) [data-testid="desktop-sidebar"] nav[aria-label="Primary navigation"] button {
+body:has(.pd438-page)
+  [data-testid="desktop-sidebar"]
+  nav[aria-label="Primary navigation"]
+  button {
   min-height: 30px;
   padding: 5px 9px !important;
   font-size: 9px !important;
 }
-body:has(.pd438-page) [data-testid="desktop-sidebar"] nav[aria-label="Primary navigation"] a {
+body:has(.pd438-page)
+  [data-testid="desktop-sidebar"]
+  nav[aria-label="Primary navigation"]
+  a {
   min-height: 30px;
   padding: 5px 9px !important;
   font-size: 8px !important;
 }
-body:has(.pd438-page) [data-testid="desktop-sidebar"] nav[aria-label="Primary navigation"] a:has(span span + span) {
+body:has(.pd438-page)
+  [data-testid="desktop-sidebar"]
+  nav[aria-label="Primary navigation"]
+  a:has(span span + span) {
   min-height: 39px;
 }
-body:has(.pd438-page) [data-testid="desktop-sidebar"] nav[aria-label="Primary navigation"] a span span + span {
+body:has(.pd438-page)
+  [data-testid="desktop-sidebar"]
+  nav[aria-label="Primary navigation"]
+  a
+  span
+  span
+  + span {
   font-size: 6px !important;
 }
 body:has(.pd438-page)

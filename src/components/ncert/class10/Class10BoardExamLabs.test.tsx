@@ -2,7 +2,10 @@ import { describe, expect, it } from "vitest";
 import { renderToStaticMarkup } from "react-dom/server";
 import { MemoryRouter } from "react-router-dom";
 import { ncertConcepts } from "../../../data/ncertConcepts";
-import Class10BoardExamLab, { class10PriorityRouteIds, isClass10PriorityRoute } from "./Class10BoardExamLabs";
+import Class10BoardExamLab, {
+  class10PriorityRouteIds,
+  isClass10PriorityRoute,
+} from "./Class10BoardExamLabs";
 
 describe("Class 10 board exam lab routing", () => {
   it("covers every Phase 5 priority NCERT route", () => {
@@ -21,7 +24,9 @@ describe("Class 10 board exam lab routing", () => {
   });
 
   it("renders the Phase 5.5 tabbed board-exam workspace", () => {
-    const concept = ncertConcepts.find((item) => item.id === "class-10-circle-tangent-radius");
+    const concept = ncertConcepts.find(
+      (item) => item.id === "class-10-circle-tangent-radius",
+    );
     expect(concept).toBeTruthy();
     const html = renderToStaticMarkup(
       <MemoryRouter>
@@ -37,7 +42,9 @@ describe("Class 10 board exam lab routing", () => {
   });
 
   it("labels grouped-data bars with frequency units", () => {
-    const concept = ncertConcepts.find((item) => item.id === "class-10-grouped-mean-methods");
+    const concept = ncertConcepts.find(
+      (item) => item.id === "class-10-grouped-mean-methods",
+    );
     expect(concept).toBeTruthy();
     const html = renderToStaticMarkup(
       <MemoryRouter>

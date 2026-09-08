@@ -32,7 +32,11 @@ describe("AlgebraLessonAdapter", () => {
       const id = Number(idText);
       const lesson = lessonCatalog.find((item) => item.id === id)!;
       const html = renderToStaticMarkup(
-        <AlgebraLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+        <AlgebraLessonAdapter
+          lesson={lesson}
+          resetToken={0}
+          onInteraction={vi.fn()}
+        />,
       );
 
       expect(html, lesson.title).toContain(lesson.title);
@@ -43,10 +47,18 @@ describe("AlgebraLessonAdapter", () => {
 
   it("renders lesson 19 as a dedicated linked algebra workspace", () => {
     const lesson = lessonCatalog.find((item) => item.id === 19)!;
-    const html = renderToStaticMarkup(<AlgebraLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    const html = renderToStaticMarkup(
+      <AlgebraLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
     expect(html).toContain('data-testid="algebra-mockup-0019"');
     expect(html).toContain('data-dedicated-lesson="19"');
-    expect(html).toContain('data-object-model="editable-affine-rule-draggable-variable-substitution-output-dependency-equivalence-table-practice-model"');
+    expect(html).toContain(
+      'data-object-model="editable-affine-rule-draggable-variable-substitution-output-dependency-equivalence-table-practice-model"',
+    );
     expect(html).toContain('data-x="5"');
     expect(html).toContain('data-output="13"');
     expect(html).toContain('aria-label="Variable x drag control"');
@@ -56,10 +68,18 @@ describe("AlgebraLessonAdapter", () => {
 
   it("renders lesson 20 as a dedicated variable dependency explorer", () => {
     const lesson = lessonCatalog.find((item) => item.id === 20)!;
-    const html = renderToStaticMarkup(<AlgebraLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    const html = renderToStaticMarkup(
+      <AlgebraLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
     expect(html).toContain('data-testid="algebra-mockup-0020"');
     expect(html).toContain('data-dedicated-lesson="20"');
-    expect(html).toContain('data-object-model="single-source-variable-linked-rule-substitution-output-dependency-graph-table-verification-model"');
+    expect(html).toContain(
+      'data-object-model="single-source-variable-linked-rule-substitution-output-dependency-graph-table-verification-model"',
+    );
     expect(html).toContain('data-x="1"');
     expect(html).toContain('data-y="5"');
     expect(html).toContain('aria-label="Active variable x drag control"');
@@ -69,10 +89,18 @@ describe("AlgebraLessonAdapter", () => {
 
   it("renders lesson 21 as a dedicated continuous numeric slider lab", () => {
     const lesson = lessonCatalog.find((item) => item.id === 21)!;
-    const html = renderToStaticMarkup(<AlgebraLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    const html = renderToStaticMarkup(
+      <AlgebraLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
     expect(html).toContain('data-testid="algebra-mockup-0021"');
     expect(html).toContain('data-dedicated-lesson="21"');
-    expect(html).toContain('data-object-model="continuous-bounded-precision-slider-linked-substitution-pattern-coordinate-graph-model"');
+    expect(html).toContain(
+      'data-object-model="continuous-bounded-precision-slider-linked-substitution-pattern-coordinate-graph-model"',
+    );
     expect(html).toContain('data-x="2"');
     expect(html).toContain('data-y="7"');
     expect(html).toContain('aria-label="Numeric slider x drag control"');
@@ -82,10 +110,18 @@ describe("AlgebraLessonAdapter", () => {
 
   it("renders lesson 22 as a dedicated discrete integer slider lab", () => {
     const lesson = lessonCatalog.find((item) => item.id === 22)!;
-    const html = renderToStaticMarkup(<AlgebraLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    const html = renderToStaticMarkup(
+      <AlgebraLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
     expect(html).toContain('data-testid="algebra-mockup-0022"');
     expect(html).toContain('data-dedicated-lesson="22"');
-    expect(html).toContain('data-object-model="discrete-integer-snap-iteration-table-staircase-plot-linked-affine-calculation-model"');
+    expect(html).toContain(
+      'data-object-model="discrete-integer-snap-iteration-table-staircase-plot-linked-affine-calculation-model"',
+    );
     expect(html).toContain('data-x="3"');
     expect(html).toContain('data-y="9"');
     expect(html).toContain('aria-label="Integer slider x drag control"');
@@ -95,10 +131,18 @@ describe("AlgebraLessonAdapter", () => {
 
   it("renders lesson 23 as a dedicated linked angle slider lab", () => {
     const lesson = lessonCatalog.find((item) => item.id === 23)!;
-    const html = renderToStaticMarkup(<AlgebraLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    const html = renderToStaticMarkup(
+      <AlgebraLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
     expect(html).toContain('data-testid="algebra-mockup-0023"');
     expect(html).toContain('data-dedicated-lesson="23"');
-    expect(html).toContain('data-object-model="draggable-unit-circle-linked-sine-wave-trig-values-degree-radian-common-angle-model"');
+    expect(html).toContain(
+      'data-object-model="draggable-unit-circle-linked-sine-wave-trig-values-degree-radian-common-angle-model"',
+    );
     expect(html).toContain('data-angle="60"');
     expect(html).toContain('data-sin="0.866"');
     expect(html).toContain('aria-label="Draggable angle unit circle"');
@@ -108,10 +152,18 @@ describe("AlgebraLessonAdapter", () => {
 
   it("renders lesson 24 as a dedicated timed animation workspace", () => {
     const lesson = lessonCatalog.find((item) => item.id === 24)!;
-    const html = renderToStaticMarkup(<AlgebraLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    const html = renderToStaticMarkup(
+      <AlgebraLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
     expect(html).toContain('data-testid="algebra-mockup-0024"');
     expect(html).toContain('data-dedicated-lesson="24"');
-    expect(html).toContain('data-object-model="timed-six-frame-affine-parameter-trace-playback-speed-loop-seek-output-model"');
+    expect(html).toContain(
+      'data-object-model="timed-six-frame-affine-parameter-trace-playback-speed-loop-seek-output-model"',
+    );
     expect(html).toContain('data-frame="3"');
     expect(html).toContain('data-a="1.5"');
     expect(html).toContain('data-output="4"');
@@ -121,24 +173,42 @@ describe("AlgebraLessonAdapter", () => {
 
   it("renders lesson 25 as a dedicated parent-child dependency workspace", () => {
     const lesson = lessonCatalog.find((item) => item.id === 25)!;
-    const html = renderToStaticMarkup(<AlgebraLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    const html = renderToStaticMarkup(
+      <AlgebraLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
     expect(html).toContain('data-testid="algebra-mockup-0025"');
     expect(html).toContain('data-dedicated-lesson="25"');
-    expect(html).toContain('data-object-model="two-draggable-parent-points-derived-segment-midpoint-length-label-hierarchy-model"');
+    expect(html).toContain(
+      'data-object-model="two-draggable-parent-points-derived-segment-midpoint-length-label-hierarchy-model"',
+    );
     expect(html).toContain('data-ax="1"');
     expect(html).toContain('data-bx="5"');
     expect(html).toContain('data-mx="3"');
     expect(html).toContain('data-length="4"');
-    expect(html).toContain('aria-label="Draggable independent points A and B with dependent midpoint"');
+    expect(html).toContain(
+      'aria-label="Draggable independent points A and B with dependent midpoint"',
+    );
     expect(html).toContain("Dependency hierarchy");
   });
 
   it("renders lesson 26 as a dedicated conditional visibility workspace", () => {
     const lesson = lessonCatalog.find((item) => item.id === 26)!;
-    const html = renderToStaticMarkup(<AlgebraLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    const html = renderToStaticMarkup(
+      <AlgebraLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
     expect(html).toContain('data-testid="algebra-mockup-0026"');
     expect(html).toContain('data-dedicated-lesson="26"');
-    expect(html).toContain('data-object-model="editable-boolean-boundary-number-line-region-object-visibility-before-after-model"');
+    expect(html).toContain(
+      'data-object-model="editable-boolean-boundary-number-line-region-object-visibility-before-after-model"',
+    );
     expect(html).toContain('data-x="2.5"');
     expect(html).toContain('data-operator="&gt;="');
     expect(html).toContain('data-boundary="2"');
@@ -149,10 +219,18 @@ describe("AlgebraLessonAdapter", () => {
 
   it("renders lesson 27 as a dedicated token-linked dynamic label workspace", () => {
     const lesson = lessonCatalog.find((item) => item.id === 27)!;
-    const html = renderToStaticMarkup(<AlgebraLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    const html = renderToStaticMarkup(
+      <AlgebraLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
     expect(html).toContain('data-testid="algebra-mockup-0027"');
     expect(html).toContain('data-dedicated-lesson="27"');
-    expect(html).toContain('data-object-model="draggable-point-token-template-coordinate-distance-projection-live-label-model"');
+    expect(html).toContain(
+      'data-object-model="draggable-point-token-template-coordinate-distance-projection-live-label-model"',
+    );
     expect(html).toContain('data-x="3"');
     expect(html).toContain('data-y="2"');
     expect(html).toContain('data-distance="3.61"');
@@ -162,10 +240,18 @@ describe("AlgebraLessonAdapter", () => {
 
   it("renders lesson 28 as a dedicated parsed algebraic input workspace", () => {
     const lesson = lessonCatalog.find((item) => item.id === 28)!;
-    const html = renderToStaticMarkup(<AlgebraLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    const html = renderToStaticMarkup(
+      <AlgebraLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
     expect(html).toContain('data-testid="algebra-mockup-0028"');
     expect(html).toContain('data-dedicated-lesson="28"');
-    expect(html).toContain('data-object-model="parsed-function-syntax-validation-sampled-graph-root-vertex-key-point-model"');
+    expect(html).toContain(
+      'data-object-model="parsed-function-syntax-validation-sampled-graph-root-vertex-key-point-model"',
+    );
     expect(html).toContain('data-valid="true"');
     expect(html).toContain('data-name="f"');
     expect(html).toContain('data-variable="x"');
@@ -175,10 +261,18 @@ describe("AlgebraLessonAdapter", () => {
 
   it("renders lesson 29 as a dedicated object redefinition workspace", () => {
     const lesson = lessonCatalog.find((item) => item.id === 29)!;
-    const html = renderToStaticMarkup(<AlgebraLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    const html = renderToStaticMarkup(
+      <AlgebraLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
     expect(html).toContain('data-testid="algebra-mockup-0029"');
     expect(html).toContain('data-dedicated-lesson="29"');
-    expect(html).toContain('data-object-model="preserved-object-identity-executable-old-new-rule-dependent-output-dual-graph-dependency-tree-model"');
+    expect(html).toContain(
+      'data-object-model="preserved-object-identity-executable-old-new-rule-dependent-output-dual-graph-dependency-tree-model"',
+    );
     expect(html).toContain('data-old-rule="x + 1"');
     expect(html).toContain('data-rule="x^2 - 1"');
     expect(html).toContain('data-a="3"');
@@ -188,10 +282,18 @@ describe("AlgebraLessonAdapter", () => {
 
   it("renders lesson 30 as a dedicated solvable equation workspace", () => {
     const lesson = lessonCatalog.find((item) => item.id === 30)!;
-    const html = renderToStaticMarkup(<AlgebraLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    const html = renderToStaticMarkup(
+      <AlgebraLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
     expect(html).toContain('data-testid="algebra-mockup-0030"');
     expect(html).toContain('data-dedicated-lesson="30"');
-    expect(html).toContain('data-object-model="parsed-two-sided-linear-equation-balance-generated-steps-dual-line-intersection-substitution-proof-model"');
+    expect(html).toContain(
+      'data-object-model="parsed-two-sided-linear-equation-balance-generated-steps-dual-line-intersection-substitution-proof-model"',
+    );
     expect(html).toContain('data-solution="4"');
     expect(html).toContain('data-solved-y="11"');
     expect(html).toContain('aria-label="Equation input"');
@@ -200,10 +302,18 @@ describe("AlgebraLessonAdapter", () => {
 
   it("renders lesson 31 as a dedicated inequality solution workspace", () => {
     const lesson = lessonCatalog.find((item) => item.id === 31)!;
-    const html = renderToStaticMarkup(<AlgebraLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    const html = renderToStaticMarkup(
+      <AlgebraLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
     expect(html).toContain('data-testid="algebra-mockup-0031"');
     expect(html).toContain('data-dedicated-lesson="31"');
-    expect(html).toContain('data-object-model="parsed-affine-inequality-sign-reversal-open-closed-boundary-number-line-graph-region-test-point-model"');
+    expect(html).toContain(
+      'data-object-model="parsed-affine-inequality-sign-reversal-open-closed-boundary-number-line-graph-region-test-point-model"',
+    );
     expect(html).toContain('data-solution-operator="&lt;"');
     expect(html).toContain('data-boundary="4"');
     expect(html).toContain('data-inclusive="false"');
@@ -214,12 +324,18 @@ describe("AlgebraLessonAdapter", () => {
   it("renders lesson 32 as a dedicated ordered-list operation workspace", () => {
     const lesson = lessonCatalog.find((item) => item.id === 32)!;
     const html = renderToStaticMarkup(
-      <AlgebraLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+      <AlgebraLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
     );
 
     expect(html).toContain('data-testid="algebra-mockup-0032"');
     expect(html).toContain('data-dedicated-lesson="32"');
-    expect(html).toContain('data-object-model="editable-draggable-ordered-list-index-selection-operation-pipeline-statistics-bar-dot-result-model"');
+    expect(html).toContain(
+      'data-object-model="editable-draggable-ordered-list-index-selection-operation-pipeline-statistics-bar-dot-result-model"',
+    );
     expect(html).toContain('data-list="2,4,6,8"');
     expect(html).toContain('data-selected-index="2"');
     expect(html).toContain('data-final-list="4,12,16,20"');
@@ -230,10 +346,18 @@ describe("AlgebraLessonAdapter", () => {
 
   it("renders lesson 33 as a dedicated editable matrix workspace", () => {
     const lesson = lessonCatalog.find((item) => item.id === 33)!;
-    const html = renderToStaticMarkup(<AlgebraLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    const html = renderToStaticMarkup(
+      <AlgebraLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
     expect(html).toContain('data-testid="algebra-mockup-0033"');
     expect(html).toContain('data-dedicated-lesson="33"');
-    expect(html).toContain('data-object-model="editable-resizable-matrix-selected-cell-row-column-determinant-trace-vector-action-geometric-transform-model"');
+    expect(html).toContain(
+      'data-object-model="editable-resizable-matrix-selected-cell-row-column-determinant-trace-vector-action-geometric-transform-model"',
+    );
     expect(html).toContain('data-matrix="1,2,3,4"');
     expect(html).toContain('data-determinant="-2"');
     expect(html).toContain('data-trace="5"');
@@ -243,10 +367,18 @@ describe("AlgebraLessonAdapter", () => {
 
   it("renders lesson 34 as a dedicated arithmetic sequence workspace", () => {
     const lesson = lessonCatalog.find((item) => item.id === 34)!;
-    const html = renderToStaticMarkup(<AlgebraLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    const html = renderToStaticMarkup(
+      <AlgebraLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
     expect(html).toContain('data-testid="algebra-mockup-0034"');
     expect(html).toContain('data-dedicated-lesson="34"');
-    expect(html).toContain('data-object-model="arithmetic-sequence-first-term-common-difference-index-explicit-rule-jump-table-prediction-model"');
+    expect(html).toContain(
+      'data-object-model="arithmetic-sequence-first-term-common-difference-index-explicit-rule-jump-table-prediction-model"',
+    );
     expect(html).toContain('data-terms="2,5,8,11,14,17"');
     expect(html).toContain('data-selected="5"');
     expect(html).toContain('data-selected-value="14"');
@@ -256,10 +388,18 @@ describe("AlgebraLessonAdapter", () => {
 
   it("renders lesson 35 as a dedicated piecewise-definition workspace", () => {
     const lesson = lessonCatalog.find((item) => item.id === 35)!;
-    const html = renderToStaticMarkup(<AlgebraLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    const html = renderToStaticMarkup(
+      <AlgebraLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
     expect(html).toContain('data-testid="algebra-mockup-0035"');
     expect(html).toContain('data-dedicated-lesson="35"');
-    expect(html).toContain('data-object-model="two-branch-piecewise-condition-endpoint-inclusion-evaluation-draggable-graph-probe-boundary-check-model"');
+    expect(html).toContain(
+      'data-object-model="two-branch-piecewise-condition-endpoint-inclusion-evaluation-draggable-graph-probe-boundary-check-model"',
+    );
     expect(html).toContain('data-x="1"');
     expect(html).toContain('data-value="2"');
     expect(html).toContain('data-branch="right"');
@@ -269,9 +409,17 @@ describe("AlgebraLessonAdapter", () => {
 
   it("renders lesson 36 as a dedicated Boolean logic workspace", () => {
     const lesson = lessonCatalog.find((item) => item.id === 36)!;
-    const html = renderToStaticMarkup(<AlgebraLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    const html = renderToStaticMarkup(
+      <AlgebraLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
     expect(html).toContain('data-testid="algebra-mockup-0036"');
-    expect(html).toContain('data-object-model="dual-boolean-switch-logic-gates-truth-table-operation-focus-conditional-visibility-model"');
+    expect(html).toContain(
+      'data-object-model="dual-boolean-switch-logic-gates-truth-table-operation-focus-conditional-visibility-model"',
+    );
     expect(html).toContain('data-a="true"');
     expect(html).toContain('data-b="false"');
     expect(html).toContain('data-and="false"');
@@ -282,9 +430,17 @@ describe("AlgebraLessonAdapter", () => {
 
   it("renders lesson 37 as a dedicated linked dynamic-text workspace", () => {
     const lesson = lessonCatalog.find((item) => item.id === 37)!;
-    const html = renderToStaticMarkup(<AlgebraLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    const html = renderToStaticMarkup(
+      <AlgebraLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
     expect(html).toContain('data-testid="algebra-mockup-0037"');
-    expect(html).toContain('data-object-model="editable-placeholder-template-linked-affine-variable-live-preview-comparison-state-model"');
+    expect(html).toContain(
+      'data-object-model="editable-placeholder-template-linked-affine-variable-live-preview-comparison-state-model"',
+    );
     expect(html).toContain('data-x="2"');
     expect(html).toContain('data-y="7"');
     expect(html).toContain('data-placeholders="{x},{y}"');
@@ -294,9 +450,17 @@ describe("AlgebraLessonAdapter", () => {
 
   it("renders lesson 38 as a dedicated validated LaTeX workspace", () => {
     const lesson = lessonCatalog.find((item) => item.id === 38)!;
-    const html = renderToStaticMarkup(<AlgebraLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    const html = renderToStaticMarkup(
+      <AlgebraLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
     expect(html).toContain('data-testid="algebra-mockup-0038"');
-    expect(html).toContain('data-object-model="editable-katex-source-exponent-group-slider-validation-comparison-library-insertion-model"');
+    expect(html).toContain(
+      'data-object-model="editable-katex-source-exponent-group-slider-validation-comparison-library-insertion-model"',
+    );
     expect(html).toContain('data-source="x^{2}+3x+2"');
     expect(html).toContain('data-exponent="2"');
     expect(html).toContain('data-valid="true"');
@@ -348,13 +512,19 @@ describe("AlgebraLessonAdapter", () => {
     for (const [idText, family] of Object.entries(expectedFamilies)) {
       const lesson = lessonCatalog.find((item) => item.id === Number(idText))!;
       const html = renderToStaticMarkup(
-        <AlgebraLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+        <AlgebraLessonAdapter
+          lesson={lesson}
+          resetToken={0}
+          onInteraction={vi.fn()}
+        />,
       );
 
       expect(html, lesson.title).toContain(`${lesson.title} structure lab`);
       expect(html, lesson.title).toContain(`${lesson.title} concept trace`);
       expect(html, lesson.title).toContain(family);
-      expect(html, lesson.title).toContain("This algebra page uses a lesson-specific symbolic workspace instead of a default line graph.");
+      expect(html, lesson.title).toContain(
+        "This algebra page uses a lesson-specific symbolic workspace instead of a default line graph.",
+      );
       expect(html, lesson.title).not.toContain("Graph of y equals");
     }
   });

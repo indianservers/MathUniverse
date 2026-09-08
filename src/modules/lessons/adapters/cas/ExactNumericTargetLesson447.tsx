@@ -283,7 +283,7 @@ export default function ExactNumericTargetLesson447({
         <aside>
           <b>Example</b>
           <p>1/3 ≈ 0.33333333 (8 digits)</p>
-              <p>but a rounded decimal is not exactly 1/3.</p>
+          <p>but a rounded decimal is not exactly 1/3.</p>
         </aside>
       </section>
       <section className="en447-worked">

@@ -14,9 +14,13 @@ describe("unit upgrade plan", () => {
     const targets = buildAppTopicUpgradeTargets();
 
     expect(targets).toHaveLength(topics.length);
-    expect(targets.every((target) => target.modifications.length > 0)).toBe(true);
+    expect(targets.every((target) => target.modifications.length > 0)).toBe(
+      true,
+    );
     expect(targets.every((target) => target.upgrades.length > 0)).toBe(true);
-    expect(targets.every((target) => target.qualityTargets.length > 0)).toBe(true);
+    expect(targets.every((target) => target.qualityTargets.length > 0)).toBe(
+      true,
+    );
   });
 
   it("covers every syllabus visual concept template", () => {
@@ -24,15 +28,24 @@ describe("unit upgrade plan", () => {
 
     expect(targets).toHaveLength(syllabusUnitConcepts.length);
     expect(targets.every((target) => target.route.startsWith("/"))).toBe(true);
-    expect(targets.every((target) => target.modifications.length > 0 && target.upgrades.length > 0)).toBe(true);
+    expect(
+      targets.every(
+        (target) =>
+          target.modifications.length > 0 && target.upgrades.length > 0,
+      ),
+    ).toBe(true);
   });
 
   it("keeps statistics and probability on native routes", () => {
     const targets = buildSyllabusTopicUpgradeTargets(allSyllabusTopics);
-    const statisticsTargets = targets.filter((target) => ["Statistics", "Probability"].includes(target.unit));
+    const statisticsTargets = targets.filter((target) =>
+      ["Statistics", "Probability"].includes(target.unit),
+    );
 
     expect(statisticsTargets.length).toBeGreaterThan(0);
-    expect(statisticsTargets.every((target) => target.route.startsWith("/"))).toBe(true);
+    expect(
+      statisticsTargets.every((target) => target.route.startsWith("/")),
+    ).toBe(true);
   });
 
   it("uses dedicated upgrade rules for every syllabus unit", () => {
@@ -40,12 +53,18 @@ describe("unit upgrade plan", () => {
     const units = new Set(allSyllabusTopics.map((topic) => topic.unit));
 
     expect(new Set(targets.map((target) => target.unit)).size).toBe(units.size);
-    expect(targets.every((target) => target.unit !== "General Mathematics")).toBe(true);
-    expect(targets.every((target) => target.qualityTargets.length > 0)).toBe(true);
+    expect(
+      targets.every((target) => target.unit !== "General Mathematics"),
+    ).toBe(true);
+    expect(targets.every((target) => target.qualityTargets.length > 0)).toBe(
+      true,
+    );
   });
 
   it("adds Engineering Mathematics with dedicated upgrade rules", () => {
-    const engineering = syllabusLevels.find((level) => level.id === "engineering");
+    const engineering = syllabusLevels.find(
+      (level) => level.id === "engineering",
+    );
     const targets = buildSyllabusTopicUpgradeTargets(engineering?.topics ?? []);
     const requiredUnits = [
       "Engineering Calculus",
@@ -79,11 +98,30 @@ describe("unit upgrade plan", () => {
 
     expect(engineering).toBeTruthy();
     expect(engineering?.topics.length).toBeGreaterThan(40);
-    expect(requiredUnits.every((unit) => targets.some((target) => target.unit === unit))).toBe(true);
-    expect(requiredTopics.every((title) => engineering?.topics.some((topic) => topic.title === title))).toBe(true);
-    expect(engineering?.topics.every((topic) => topic.linkedVisualization.route.startsWith("/"))).toBe(true);
-    expect(targets.every((target) => target.unit !== "General Mathematics")).toBe(true);
-    expect(targets.every((target) => target.modifications.length > 0 && target.upgrades.length > 0)).toBe(true);
+    expect(
+      requiredUnits.every((unit) =>
+        targets.some((target) => target.unit === unit),
+      ),
+    ).toBe(true);
+    expect(
+      requiredTopics.every((title) =>
+        engineering?.topics.some((topic) => topic.title === title),
+      ),
+    ).toBe(true);
+    expect(
+      engineering?.topics.every((topic) =>
+        topic.linkedVisualization.route.startsWith("/"),
+      ),
+    ).toBe(true);
+    expect(
+      targets.every((target) => target.unit !== "General Mathematics"),
+    ).toBe(true);
+    expect(
+      targets.every(
+        (target) =>
+          target.modifications.length > 0 && target.upgrades.length > 0,
+      ),
+    ).toBe(true);
   });
 
   it("summarizes the upgrade workload", () => {

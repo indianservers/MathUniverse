@@ -9,8 +9,10 @@ export const PHASE_TWO_ADVANCED_DOMAINS = [
   "ai-engineering",
 ] as const;
 
-export type PhaseTwoAdvancedDomain = (typeof PHASE_TWO_ADVANCED_DOMAINS)[number];
-export type CertificationStatus = "inventory" | "in-progress" | "review" | "certified" | "blocked";
+export type PhaseTwoAdvancedDomain =
+  (typeof PHASE_TWO_ADVANCED_DOMAINS)[number];
+export type CertificationStatus =
+  "inventory" | "in-progress" | "review" | "certified" | "blocked";
 
 export type AdvancedAccuracyContract = {
   id: string;
@@ -24,13 +26,25 @@ export type AdvancedAccuracyContract = {
   oracle: string;
   misconception: { claim: string; correction: string; counterexample: string };
   exampleContexts: string[];
-  assessmentModes: ["recognition", "calculation", "interpretation", "error-analysis", "transfer"];
+  assessmentModes: [
+    "recognition",
+    "calculation",
+    "interpretation",
+    "error-analysis",
+    "transfer",
+  ];
   accessibilityEvidence: string[];
   source: string;
   status: CertificationStatus;
 };
 
-export type PhaseTwoSystemArea = "libraries" | "tools-workspaces" | "ar-xr" | "practice" | "curriculum" | "certification";
+export type PhaseTwoSystemArea =
+  | "libraries"
+  | "tools-workspaces"
+  | "ar-xr"
+  | "practice"
+  | "curriculum"
+  | "certification";
 
 export type SystemAccuracyContract = {
   id: string;

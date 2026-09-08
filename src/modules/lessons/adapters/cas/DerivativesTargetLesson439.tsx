@@ -287,7 +287,9 @@ export default function DerivativesTargetLesson439({
           >
             Show solution
           </button>
-          {solution && <em>f'(x)=(3x^5-10x^4+x^3-6x^2+2x+4)/(x-2)^3; y=6x-6</em>}
+          {solution && (
+            <em>f'(x)=(3x^5-10x^4+x^3-6x^2+2x+4)/(x-2)^3; y=6x-6</em>
+          )}
           {feedback !== "idle" && (
             <strong className={feedback}>
               {feedback === "correct"

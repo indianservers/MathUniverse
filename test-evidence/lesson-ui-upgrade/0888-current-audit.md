@@ -1,6 +1,6 @@
 # Lesson 0888: Bayes' Theorem
 
-Status: dedicated implementation; browser interaction and visual acceptance deferred under the current user-directed workflow. Exact visual match is not certified.
+Status: completed in the current one-by-one UI acceptance pass. Reference structure and proportions are visually aligned; exact pixel identity is not claimed.
 
 Reference inspected: `D:/Math App Screenshots for UI Update/Updated UI/0888-school-class-12-probability-bayes-theorem-redesigned.png`.
 Catalog ID: 10214. Route: `/lessons/school/class-12/class-12-probability-bayes-theorem`.
@@ -20,7 +20,7 @@ Catalog ID: 10214. Route: `/lessons/school/class-12/class-12-probability-bayes-t
 | Frequencies and reasoning | Dynamic table, four reasoning steps and conditional-probability derivation | Exact typography and spacing deferred |
 | Practice | Checked multiple-choice answer and toggled calculated solution | Target's four answers are all wrong; added correct 63.2% (12/19) option |
 | Navigation/reset | All section tabs, reset and catalog-correct lesson links | Next is Random Variables, not reference's Naive Bayes Classifier |
-| Shared shell/footer | Existing application shell retained | Exact shell/footer and responsive screenshot fidelity remain unverified |
+| Shared shell/footer | Existing application shell retained | No blocking shell mismatch found in the accepted desktop viewport |
 
 ## Verification
 
@@ -28,6 +28,9 @@ Catalog ID: 10214. Route: `/lessons/school/class-12/class-12-probability-bayes-t
 - Tested 1,331 parameter combinations for normalized posteriors and reconstruction of joint probabilities, including zero-evidence states.
 - Tests cover equal likelihoods, zero source share, partial expected chips, initial labels and the corrected practice answer.
 - Targeted strict TypeScript and ESLint checks pass.
-- No browser screenshot, pixel-difference acceptance, actual slider/button execution or responsive layout verification was performed. These remain required for full acceptance.
+- Captured desktop evidence: `artifacts/studio-control-audit/0888-current.png`.
+- One-by-one browser acceptance: opened the real route, selected the M1|D posterior target, adjusted a prior slider, and verified the target selection and live controls updated.
+- Added explicit 16px sizing for lesson action icons so inherited global SVG rules cannot create oversized controls.
+- Focused model/surface tests pass (6 tests); `git diff --check` is clean for the lesson CSS and audit evidence.
 
 Next sequential lesson: 0889 / 10215 Random Variables. Earlier aggregate completion counts have not been re-audited here.
