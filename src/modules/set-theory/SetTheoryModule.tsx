@@ -1,7 +1,7 @@
 import "reactflow/dist/style.css";
 import { forceCenter, forceLink, forceManyBody, forceSimulation } from "d3";
 import { motion } from "framer-motion";
-import { Binary, BrainCircuit, Check, Dices, FunctionSquare, GitFork, Grid3X3, Maximize2, Minimize2, Network, Pause, Play, Table2 } from "lucide-react";
+import { Binary, BrainCircuit, Check, Dices, FunctionSquare, GitFork, Grid3X3, Maximize2, Minimize2, Network, Pause, Play, Plus, Redo2, RotateCcw, Table2, Trash2, Undo2 } from "lucide-react";
 import { useEffect, useMemo, useRef, useState, type KeyboardEvent, type PointerEvent } from "react";
 import { Link, NavLink, Navigate, useParams } from "react-router-dom";
 import ReactFlow, { Background, Controls, MarkerType, type Edge, type Node } from "reactflow";
@@ -26,6 +26,7 @@ import {
   type SetOperation,
 } from "./setTheoryEngine";
 import { useSetTheoryStore, type SetTheoryState } from "./setTheoryStore";
+import { evaluateSetExpression, expressionOperatorLabels, expressionSteps, formatSetExpression, parseSetExpression, type ExpressionToken, type SetExpressionOperator } from "./setExpressionEngine";
 
 const operations: Array<{ id: SetOperation; label: string }> = [
   { id: "union", label: "Union" },
@@ -107,9 +108,9 @@ type UniverseBounds = { x: number; y: number; width: number; height: number };
 
 const vennUniverseBounds: UniverseBounds = { x: 34, y: 34, width: 472, height: 252 };
 const vennCircleStyle: Record<VennSetId, Pick<VennSetCircle, "color" | "stroke">> = {
-  A: { color: "#22d3ee", stroke: "#67e8f9" },
-  B: { color: "#fb7185", stroke: "#fda4af" },
-  C: { color: "#22c55e", stroke: "#86efac" },
+  A: { color: "#38bdf8", stroke: "#bae6fd" },
+  B: { color: "#fb7185", stroke: "#fecdd3" },
+  C: { color: "#34d399", stroke: "#a7f3d0" },
 };
 const vennOverlapStyle: Record<string, { label: string; color: string; pattern: string }> = {
   AB: { label: "A ∩ B", color: "#a855f7", pattern: "url(#venn-stripes-ab)" },
@@ -118,12 +119,23 @@ const vennOverlapStyle: Record<string, { label: string; color: string; pattern: 
   ABC: { label: "A ∩ B ∩ C", color: "#fde047", pattern: "url(#venn-triple-pattern)" },
 };
 const vennLabelOffsets: Record<VennSetId, { x: number; y: number }> = {
-  A: { x: -42, y: -76 },
-  B: { x: 42, y: -76 },
-  C: { x: 0, y: 88 },
+  A: { x: -34, y: -28 },
+  B: { x: 34, y: -28 },
+  C: { x: 0, y: 42 },
 };
 
 type VennSetName = { id: VennSetId; shortLabel: string; displayName: string };
+type DynamicExpressionToken = ExpressionToken & { id: number };
+
+const dynamicOperatorOptions: Array<{ value: SetExpressionOperator | "not"; label: string }> = Object.entries(expressionOperatorLabels).map(([value, label]) => ({ value: value as SetExpressionOperator | "not", label }));
+
+function defaultDynamicExpression(): DynamicExpressionToken[] {
+  return [
+    { id: 1, kind: "set", value: "A" },
+    { id: 2, kind: "operator", value: "union" },
+    { id: 3, kind: "set", value: "B" },
+  ];
+}
 
 function distance(a: { cx: number; cy: number }, b: { cx: number; cy: number }) {
   return Math.hypot(a.cx - b.cx, a.cy - b.cy);
@@ -578,6 +590,15 @@ function VennEngine({
   const [activeDraggingId, setActiveDraggingId] = useState<VennSetId | null>(null);
   const [activeRegionKey, setActiveRegionKey] = useState<string | null>(null);
   const [universeName, setUniverseName] = useState("Students in the class");
+  const [dynamicExpression, setDynamicExpression] = useState<DynamicExpressionToken[]>(defaultDynamicExpression);
+  const [expressionHistory, setExpressionHistory] = useState<DynamicExpressionToken[][]>([]);
+  const [expressionFuture, setExpressionFuture] = useState<DynamicExpressionToken[][]>([]);
+  const [expressionError, setExpressionError] = useState<string | null>(null);
+  const [showMode, setShowMode] = useState(false);
+  const [showStep, setShowStep] = useState(0);
+  const [showPlaying, setShowPlaying] = useState(false);
+  const [showSpeed, setShowSpeed] = useState<"slow" | "normal" | "fast">("normal");
+  const [autoPlay, setAutoPlay] = useState(false);
   const [setNames, setSetNames] = useState<VennSetName[]>([
     { id: "A", shortLabel: "A", displayName: "Math Lovers" },
     { id: "B", shortLabel: "B", displayName: "Science Lovers" },
@@ -703,11 +724,44 @@ function VennEngine({
     return regions.allThree.length;
   };
   const regionProbability = (count: number) => universe.length ? `${Math.round((count / universe.length) * 100)}%` : "0%";
+  const expressionSets = useMemo(() => ({ A: setA, B: setB, C: setC }), [setA, setB, setC]);
+  const parsedExpression = useMemo(() => {
+    try {
+      const tree = parseSetExpression(dynamicExpression.map(({ id: _id, ...token }) => token));
+      return { tree, steps: expressionSteps(tree, expressionSets, universe), values: evaluateSetExpression(tree, expressionSets, universe) };
+    } catch {
+      return null;
+    }
+  }, [dynamicExpression, expressionSets, universe]);
+  const displayedExpressionResult = showMode && parsedExpression ? (parsedExpression.steps[Math.min(showStep, parsedExpression.steps.length - 1)]?.values ?? parsedExpression.values) : result;
+  const saveExpression = (next: DynamicExpressionToken[]) => {
+    setExpressionHistory((history) => [...history.slice(-19), dynamicExpression]);
+    setExpressionFuture([]);
+    setDynamicExpression(next);
+    try { parseSetExpression(next.map(({ id: _id, ...token }) => token)); setExpressionError(null); } catch (error) { setExpressionError(error instanceof Error ? error.message : "Check this expression."); }
+  };
+  const updateCircleRadius = (id: VennSetId, radius: number) => {
+    setCircles((current) => current.map((circle) => circle.id === id ? { ...circle, r: radius } : circle));
+  };
+  const updateExpressionToken = (id: number, patch: Partial<DynamicExpressionToken>) => saveExpression(dynamicExpression.map((token) => token.id === id ? { ...token, ...patch } as DynamicExpressionToken : token));
+  const addCondition = () => saveExpression([...dynamicExpression, { id: Date.now(), kind: "operator", value: "union" }, { id: Date.now() + 1, kind: "set", value: "C" }]);
+  const removeExpressionToken = (id: number) => saveExpression(dynamicExpression.filter((token) => token.id !== id));
+  const undoExpression = () => { const previous = expressionHistory.at(-1); if (!previous) return; setExpressionFuture((future) => [dynamicExpression, ...future]); setExpressionHistory((history) => history.slice(0, -1)); setDynamicExpression(previous); };
+  const redoExpression = () => { const next = expressionFuture[0]; if (!next) return; setExpressionHistory((history) => [...history, dynamicExpression]); setExpressionFuture((future) => future.slice(1)); setDynamicExpression(next); };
+  const clearExpression = () => saveExpression([]);
+  useEffect(() => {
+    if (!showPlaying || !parsedExpression?.steps.length) return undefined;
+    const timer = window.setInterval(() => setShowStep((step) => step >= parsedExpression.steps.length - 1 ? (setShowPlaying(false), step) : step + 1), showSpeed === "slow" ? 1500 : showSpeed === "fast" ? 450 : 900);
+    return () => window.clearInterval(timer);
+  }, [showPlaying, showSpeed, parsedExpression?.steps.length]);
+  const runShow = () => { if (!parsedExpression) { setExpressionError("Finish the expression before pressing Show."); return; } setShowMode(true); setShowStep(0); setShowPlaying(autoPlay); setExpressionError(null); };
 
   return (
     <div className={isFullscreen ? "fixed inset-0 z-50 overflow-auto bg-slate-50 p-3 text-slate-950 dark:bg-slate-950 dark:text-white sm:p-5" : ""}>
-      <SectionCard title="Venn Diagram Engine" description="Animate union, intersection, difference, complement, and symmetric difference.">
-        <div className="flex flex-wrap items-center justify-between gap-2">
+      <SectionCard title="Venn Diagram Engine" description="Animate union, intersection, difference, complement, and symmetric difference." className="venn-engine-card">
+        <div className="venn-engine-layout">
+        <div className="venn-engine-visual">
+        <div className="venn-engine-toolbar flex flex-wrap items-center justify-between gap-2">
           <div className="flex flex-wrap gap-2">
             {operations.map((item) => <button key={item.id} type="button" onClick={() => setOperation(item.id)} className={`tool-button ${operation === item.id ? "bg-cyan-500 text-white dark:bg-cyan-400 dark:text-slate-950" : ""}`}>{item.label}</button>)}
           </div>
@@ -716,8 +770,33 @@ function VennEngine({
             {isFullscreen ? "Exit full screen" : "Full screen"}
           </button>
         </div>
-      <svg viewBox="0 0 540 330" role="img" aria-label="Draggable three-set Venn diagram" className={`mt-4 w-full rounded-2xl bg-slate-950 ${isFullscreen ? "h-[72vh]" : expanded ? "h-[520px]" : compact ? "h-80" : "h-96"}`} style={{ touchAction: "none" }}>
+        <section className="dynamic-venn-show" aria-label="Dynamic Venn Show">
+          <div className="dynamic-venn-show-heading"><div><span className="studio-eyebrow">Dynamic Venn Show</span><h3>Build an expression, then watch it resolve</h3></div><button type="button" className="action-primary" onClick={runShow}><Play className="h-4 w-4" /> Show</button></div>
+          <div className="dynamic-expression-builder">
+            {dynamicExpression.map((token) => <div className={`dynamic-expression-block ${expressionError ? "has-error" : ""}`} key={token.id}>
+              {token.kind === "set" ? <select aria-label="Select set" value={token.value} onChange={(event) => updateExpressionToken(token.id, { value: event.target.value })}>{setNames.map((setName) => <option key={setName.id} value={setName.id}>{setName.shortLabel || setName.id}</option>)}</select> : token.kind === "operator" ? <select aria-label="Select operator" value={token.value} onChange={(event) => updateExpressionToken(token.id, { value: event.target.value as SetExpressionOperator | "not" })}>{dynamicOperatorOptions.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}</select> : <span>{token.kind === "left" ? "(" : ")"}</span>}
+              <button type="button" className="dynamic-expression-remove" aria-label="Remove expression block" onClick={() => removeExpressionToken(token.id)}><Trash2 /></button>
+            </div>)}
+            <button type="button" className="tool-button dynamic-expression-add" onClick={addCondition}><Plus className="h-4 w-4" /> Add condition</button>
+          </div>
+          <div className="dynamic-expression-actions"><button type="button" className="tool-button" onClick={() => saveExpression([...dynamicExpression, { id: Date.now(), kind: "left" }])}>+ (</button><button type="button" className="tool-button" onClick={() => saveExpression([...dynamicExpression, { id: Date.now(), kind: "right" }])}>) +</button><button type="button" className="tool-button" onClick={clearExpression}><RotateCcw /> Clear</button><button type="button" className="tool-button" onClick={undoExpression} disabled={!expressionHistory.length}><Undo2 /> Undo</button><button type="button" className="tool-button" onClick={redoExpression} disabled={!expressionFuture.length}><Redo2 /> Redo</button></div>
+          {expressionError ? <p className="dynamic-expression-error" role="alert">{expressionError}</p> : <p className="dynamic-expression-preview">{parsedExpression ? formatSetExpression(parsedExpression.tree) : "Add sets and operators in order. Parentheses are supported."}</p>}
+          {showMode && parsedExpression ? <div className="dynamic-show-controls"><div><strong>Step {Math.min(showStep + 1, parsedExpression.steps.length)} of {parsedExpression.steps.length}</strong><span>{parsedExpression.steps[Math.min(showStep, parsedExpression.steps.length - 1)]?.operation}</span></div><div className="dynamic-show-buttons"><button type="button" className="tool-button" onClick={() => setShowPlaying(false)}><Pause /> Pause</button><button type="button" className="tool-button" onClick={() => setShowStep((step) => Math.max(0, step - 1))}>Previous</button><button type="button" className="tool-button" onClick={() => setShowStep((step) => Math.min(parsedExpression.steps.length - 1, step + 1))}>Next</button><button type="button" className="tool-button" onClick={() => { setShowStep(0); setShowPlaying(false); }}>Restart</button><button type="button" className="tool-button" onClick={() => { setShowStep(parsedExpression.steps.length - 1); setShowPlaying(false); }}>Show final result</button><label className="tool-button"><input type="checkbox" checked={autoPlay} onChange={(event) => setAutoPlay(event.target.checked)} /> Auto-play</label><select className="tool-button" value={showSpeed} onChange={(event) => setShowSpeed(event.target.value as typeof showSpeed)}><option value="slow">Slow</option><option value="normal">Normal</option><option value="fast">Fast</option></select><button type="button" className="tool-button" onClick={() => setShowPlaying((playing) => !playing)}>{showPlaying ? "Playing" : "Play"}</button></div></div> : null}
+        </section>
+      <svg viewBox="0 0 540 330" role="img" aria-label="Draggable three-set Venn diagram" className={`venn-engine-canvas mt-4 w-full rounded-2xl ${isFullscreen ? "h-[72vh]" : expanded ? "h-[520px]" : compact ? "h-80" : "h-96"}`} style={{ touchAction: "none" }}>
         <defs>
+          <linearGradient id="venn-background" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stopColor="#0f172a" />
+            <stop offset="0.55" stopColor="#172554" />
+            <stop offset="1" stopColor="#312e81" />
+          </linearGradient>
+          <radialGradient id="venn-ambient-glow" cx="50%" cy="48%" r="62%">
+            <stop offset="0" stopColor="#67e8f9" stopOpacity="0.16" />
+            <stop offset="1" stopColor="#0f172a" stopOpacity="0" />
+          </radialGradient>
+          <pattern id="venn-grid" width="24" height="24" patternUnits="userSpaceOnUse">
+            <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#c4b5fd" strokeOpacity="0.08" strokeWidth="1" />
+          </pattern>
           <filter id="venn-drag-glow" x="-30%" y="-30%" width="160%" height="160%">
             <feDropShadow dx="0" dy="0" stdDeviation="7" floodColor="#facc15" floodOpacity="0.9" />
           </filter>
@@ -750,8 +829,15 @@ function VennEngine({
             <path d="M 0 0 L 16 16 M 16 0 L 0 16" stroke="#111827" strokeWidth="1.5" opacity="0.28" />
           </pattern>
         </defs>
-        <rect x={vennUniverseBounds.x} y={vennUniverseBounds.y} width={vennUniverseBounds.width} height={vennUniverseBounds.height} rx="20" fill="#020617" stroke="#475569" strokeWidth="3" />
-        <text x={vennUniverseBounds.x + 16} y={vennUniverseBounds.y + 26} fill="#cbd5e1" fontWeight="900" fontSize="14">U: {universeName}</text>
+        <rect width="540" height="330" fill="url(#venn-background)" />
+        <rect width="540" height="330" fill="url(#venn-grid)" />
+        <rect width="540" height="330" fill="url(#venn-ambient-glow)" />
+        <rect x={vennUniverseBounds.x} y={vennUniverseBounds.y} width={vennUniverseBounds.width} height={vennUniverseBounds.height} rx="24" fill="#020617" fillOpacity="0.22" stroke="#c4b5fd" strokeOpacity="0.42" strokeWidth="2" />
+        <rect x={vennUniverseBounds.x + 9} y={vennUniverseBounds.y + 9} width={vennUniverseBounds.width - 18} height={vennUniverseBounds.height - 18} rx="18" fill="none" stroke="#ffffff" strokeOpacity="0.1" strokeDasharray="4 8" />
+        <g>
+          <rect x={vennUniverseBounds.x + 14} y={vennUniverseBounds.y + 12} width="208" height="25" rx="12.5" fill="#020617" fillOpacity="0.72" stroke="#ffffff" strokeOpacity="0.12" />
+          <text x={vennUniverseBounds.x + 27} y={vennUniverseBounds.y + 29} fill="#e0f2fe" fontWeight="900" fontSize="12">U · {universeName}</text>
+        </g>
         {operation === "complement" && <rect x={vennUniverseBounds.x + 5} y={vennUniverseBounds.y + 5} width={vennUniverseBounds.width - 10} height={vennUniverseBounds.height - 10} rx="16" fill="#facc15" opacity="0.16" />}
         {operation === "union" && (
           <motion.g animate={{ opacity: playbackStep % 2 ? 0.95 : 0.6 }} transition={{ duration: 0.6 }}>
@@ -832,13 +918,16 @@ function VennEngine({
         })}
         {universe.map((item, index) => {
           const point = positionElement(item, index);
-          return <g key={item}><circle cx={point.x} cy={point.y} r={result.includes(item) && playbackStep % 2 ? 16 : 13} fill={result.includes(item) ? "#facc15" : "#334155"} stroke="#94a3b8" /><text x={point.x} y={point.y + 4} textAnchor="middle" fill="white" fontSize="11" fontWeight="800">{item}</text></g>;
+          const isDisplayed = displayedExpressionResult.includes(item);
+          return <g key={item} opacity={showMode && !isDisplayed ? 0.42 : 1}><circle cx={point.x} cy={point.y} r={isDisplayed && playbackStep % 2 ? 16 : 13} fill={isDisplayed ? "#facc15" : "#334155"} stroke={isDisplayed ? "#fff7ed" : "#94a3b8"} strokeWidth={isDisplayed ? 2 : 1} /><text x={point.x} y={point.y + 4} textAnchor="middle" fill="white" fontSize="11" fontWeight="800">{item}</text></g>;
         })}
-        <text x={vennUniverseBounds.x + 16} y={vennUniverseBounds.y + vennUniverseBounds.height - 12} fill="#f8fafc" fontSize="12" fontWeight="800">
+        <text x={vennUniverseBounds.x + 18} y={vennUniverseBounds.y + vennUniverseBounds.height - 13} fill="#cbd5e1" fontSize="11" fontWeight="800">
           Outside U regions: {outsideUniverse.length ? outsideUniverse.join(", ") : "∅"}
         </text>
       </svg>
-      <div className={`mt-3 grid gap-3 ${compact && !isFullscreen ? "lg:grid-cols-1" : "lg:grid-cols-[1.1fr_.9fr]"}`}>
+        </div>
+        <aside className="venn-engine-dock" aria-label="Venn diagram controls and relationship">
+      <div className="venn-engine-panels mt-3 grid grid-cols-1 gap-3">
         <div className="rounded-2xl border border-slate-200 bg-white/70 p-3 dark:border-white/10 dark:bg-white/5">
           <div className="text-sm font-black">Live relationship</div>
           <div className="mt-2 flex flex-wrap gap-2 text-xs font-black">
@@ -901,12 +990,13 @@ function VennEngine({
                   <input aria-label={`Short label for set ${setName.id}`} className="rounded-lg border border-slate-200 bg-white px-2 py-1 text-sm font-black dark:border-white/10 dark:bg-slate-950" value={setName.shortLabel} maxLength={4} onChange={(event) => updateSetName(setName.id, "shortLabel", event.target.value)} />
                   <input aria-label={`Display name for set ${setName.id}`} className="rounded-lg border border-slate-200 bg-white px-2 py-1 text-sm dark:border-white/10 dark:bg-slate-950" value={setName.displayName} onChange={(event) => updateSetName(setName.id, "displayName", event.target.value)} />
                 </div>
+                <label className="grid gap-1 text-[11px] font-bold text-slate-600 dark:text-slate-300">Circle size <input type="range" min="38" max="112" value={circles.find((circle) => circle.id === setName.id)?.r ?? 80} onChange={(event) => updateCircleRadius(setName.id, Number(event.target.value))} /></label>
               </div>
             ))}
-          </div>
-        </div>
       </div>
-      <div className={`mt-3 rounded-2xl border border-slate-200 bg-white/70 p-3 dark:border-white/10 dark:bg-white/5 ${compact && !isFullscreen ? "hidden" : ""}`}>
+      </div>
+      </div>
+      <div className={`venn-engine-region-map mt-3 rounded-2xl border border-slate-200 bg-white/70 p-3 dark:border-white/10 dark:bg-white/5 ${compact && !isFullscreen ? "hidden" : ""}`}>
         <div className="text-sm font-black">3-set region map</div>
         <div className="mt-2 grid gap-2 text-xs sm:grid-cols-2">
           {Object.entries(regions).map(([name, values]) => (
@@ -916,6 +1006,19 @@ function VennEngine({
           ))}
         </div>
       </div>
+      {showMode && parsedExpression ? <details className="dynamic-learning-panel" open>
+        <summary>Learning panel</summary>
+        <div className="dynamic-learning-content">
+          <p><strong>Current operation:</strong> {parsedExpression.steps[Math.min(showStep, parsedExpression.steps.length - 1)]?.operation ?? "Complete expression"}</p>
+          <p><strong>Symbolic expression:</strong> {parsedExpression.steps[Math.min(showStep, parsedExpression.steps.length - 1)]?.expression ?? formatSetExpression(parsedExpression.tree)}</p>
+          <p><strong>Plain language:</strong> {parsedExpression.steps[Math.min(showStep, parsedExpression.steps.length - 1)]?.operation ?? "The final set contains the members selected by the expression."}</p>
+          <p><strong>Elements:</strong> {displayedExpressionResult.join(", ") || "∅"} · <strong>Cardinality:</strong> {displayedExpressionResult.length}</p>
+          <p><strong>Final result:</strong> {parsedExpression.values.join(", ") || "∅"}</p>
+          <div className="dynamic-membership-table"><strong>Membership table</strong><div className="dynamic-membership-row dynamic-membership-head"><span>Member</span><span>A</span><span>B</span><span>C</span><span>Result</span></div>{universe.slice(0, 8).map((item) => <div className="dynamic-membership-row" key={item}><span>{item}</span><span>{setA.includes(item) ? 1 : 0}</span><span>{setB.includes(item) ? 1 : 0}</span><span>{setC.includes(item) ? 1 : 0}</span><span>{displayedExpressionResult.includes(item) ? 1 : 0}</span></div>)}</div>
+        </div>
+      </details> : null}
+        </aside>
+      </div>
     </SectionCard>
     </div>
   );
@@ -923,17 +1026,42 @@ function VennEngine({
 
 function RelationStudio({ domain, pairs, matrix, properties, onPairs }: { domain: string[]; pairs: OrderedPair[]; matrix: boolean[][]; properties: ReturnType<typeof relationProperties>; onPairs: (pairs: OrderedPair[]) => void }) {
   const [draft, setDraft] = useState(pairs.map((pair) => `(${pair[0]}, ${pair[1]})`).join("; "));
+  const [draftError, setDraftError] = useState<string | null>(null);
   const layout = useMemo(() => d3RelationLayout(domain, pairs), [domain, pairs]);
   const nodes: Node[] = layout.map((node, index) => ({ id: node.id, data: { label: node.id }, position: { x: node.x || circular(index, domain.length, 180, 135, 90).x, y: node.y || circular(index, domain.length, 180, 135, 90).y }, className: "rounded-full border border-cyan-300 bg-slate-950 px-3 py-2 text-white" }));
   const edges: Edge[] = pairs.map(([source, target], index) => ({ id: `${source}-${target}-${index}`, source, target, animated: true, markerEnd: { type: MarkerType.ArrowClosed } }));
+  const commitDraft = () => {
+    try {
+      onPairs(parsePairs(draft));
+      setDraftError(null);
+    } catch (error) {
+      setDraftError(error instanceof Error ? error.message : "Use pairs like (1, 2); (2, 4)");
+    }
+  };
+  const togglePair = (source: string, target: string) => {
+    const exists = pairs.some(([left, right]) => left === source && right === target);
+    const nextPairs = exists ? pairs.filter(([left, right]) => left !== source || right !== target) : [...pairs, [source, target] as OrderedPair];
+    onPairs(nextPairs);
+    setDraft(nextPairs.map((pair) => `(${pair[0]}, ${pair[1]})`).join("; "));
+    setDraftError(null);
+  };
   return (
     <SectionCard title="Relation Visualization" description="Ordered pairs are shown as matrix entries and a directed React Flow graph.">
-      <div className="mb-3 rounded-xl border border-cyan-200 bg-cyan-50 p-3 text-sm font-semibold leading-6 text-cyan-950 dark:border-cyan-400/20 dark:bg-cyan-400/10 dark:text-cyan-100">
-        This matrix is for a relation on the universe U, so rows and columns both use U = {"{"}{domain.join(", ")}{"}"}. Row labels are the first value/source of an ordered pair, and column labels are the second value/target. If the pair (2, 4) exists, row 2 and column 4 is marked 1.
+      <div className="relation-guide mb-3 grid gap-2 rounded-2xl border border-cyan-200 bg-cyan-50 p-3 text-sm text-cyan-950 dark:border-cyan-400/20 dark:bg-cyan-400/10 dark:text-cyan-100 sm:grid-cols-3">
+        <div><strong className="block font-black">1. Read a cell</strong><span>Row = first value. Column = second value.</span></div>
+        <div><strong className="block font-black">2. Edit directly</strong><span>Click a cell to toggle its ordered pair on or off.</span></div>
+        <div><strong className="block font-black">3. Follow the arrow</strong><span>The graph and relation properties update immediately.</span></div>
       </div>
-      <textarea className="w-full rounded-xl border border-slate-200 bg-white p-3 font-mono text-sm dark:border-white/10 dark:bg-slate-950" value={draft} onChange={(event) => setDraft(event.target.value)} onBlur={() => onPairs(parsePairs(draft))} />
+      <div className="mb-3 rounded-2xl border border-slate-200 bg-white/70 p-3 dark:border-white/10 dark:bg-white/5">
+        <div className="flex flex-wrap items-center justify-between gap-2"><label htmlFor="relation-pairs" className="text-sm font-black">Ordered pairs</label><span className="mini-chip">Example: (2, 4)</span></div>
+        <div className="mt-2 flex flex-col gap-2 sm:flex-row">
+          <textarea id="relation-pairs" className="min-h-20 w-full rounded-xl border border-slate-200 bg-white p-3 font-mono text-sm dark:border-white/10 dark:bg-slate-950" value={draft} onChange={(event) => { setDraft(event.target.value); setDraftError(null); }} />
+          <button className="action-primary shrink-0 self-start" type="button" onClick={commitDraft}>Apply pairs</button>
+        </div>
+        {draftError && <p className="mt-2 text-xs font-bold text-rose-600 dark:text-rose-300" role="alert">{draftError}</p>}
+      </div>
       <div className="mt-3 grid gap-3 lg:grid-cols-[.85fr_1.15fr]">
-        <MatrixTable domain={domain} matrix={matrix} />
+        <MatrixTable domain={domain} matrix={matrix} onToggle={togglePair} />
         <div className="h-72 overflow-hidden rounded-2xl border border-slate-200 dark:border-white/10"><ReactFlow nodes={nodes} edges={edges} fitView><Background /><Controls /></ReactFlow></div>
       </div>
       <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4">
@@ -1203,7 +1331,7 @@ function ChallengePanel({ challenge, onRandom }: { challenge: ReturnType<typeof 
   );
 }
 
-function MatrixTable({ domain, matrix }: { domain: string[]; matrix: boolean[][] }) {
+function MatrixTable({ domain, matrix, onToggle }: { domain: string[]; matrix: boolean[][]; onToggle: (source: string, target: string) => void }) {
   return (
     <div className="mobile-safe-scroll">
       <table className="min-w-full text-center text-sm">
@@ -1225,8 +1353,10 @@ function MatrixTable({ domain, matrix }: { domain: string[]; matrix: boolean[][]
             <tr key={domain[rowIndex]}>
               <th className="px-2 py-1">{domain[rowIndex]}</th>
               {row.map((value, columnIndex) => (
-                <td key={domain[columnIndex]} className={`border border-slate-200 px-2 py-1 dark:border-white/10 ${value ? "bg-cyan-100 font-black text-cyan-700 dark:bg-cyan-400/20 dark:text-cyan-100" : ""}`}>
-                  {value ? 1 : 0}
+                <td key={domain[columnIndex]} className="border border-slate-200 p-1 dark:border-white/10">
+                  <button type="button" className={`relation-matrix-cell ${value ? "is-on" : ""}`} aria-label={`${value ? "Remove" : "Add"} pair (${domain[rowIndex]}, ${domain[columnIndex]})`} aria-pressed={value} onClick={() => onToggle(domain[rowIndex], domain[columnIndex])}>
+                    {value ? 1 : 0}
+                  </button>
                 </td>
               ))}
             </tr>

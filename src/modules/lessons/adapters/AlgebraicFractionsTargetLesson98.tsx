@@ -12,49 +12,22 @@ import {
 } from "lucide-react";
 import { useEffect, useState, type DragEvent, type KeyboardEvent } from "react";
 import type { LessonAdapterProps } from "../types";
+import {
+  ALGEBRAIC_FRACTION_PRACTICES_98 as practices,
+  ALGEBRAIC_FRACTION_PRESETS_98 as presets,
+  algebraicFractionLabel98 as fractionLabel,
+  algebraicFractionValues98,
+  isAlgebraicFractionAnswer98,
+  isCommonFactorSource98,
+  linearFactor98 as linear,
+  quadraticFromRoots98 as quadratic,
+  simplifiedFractionAnswer98 as answerLabel,
+} from "./algebraicFractionsLesson98Model";
 import "./AlgebraicFractionsTargetLesson98.css";
 
-type FractionPreset = {
-  id: string;
-  variable: string;
-  cancelledRoot: number;
-  retainedRoot: number;
-};
-type Practice = {
-  variable: string;
-  cancelledRoot: number;
-  retainedRoot: number;
-};
-
-const presets: FractionPreset[] = [
-  { id: "difference-one", variable: "x", cancelledRoot: 1, retainedRoot: -1 },
-  { id: "difference-four", variable: "x", cancelledRoot: 2, retainedRoot: -2 },
-  { id: "quadratic-six", variable: "x", cancelledRoot: -2, retainedRoot: -3 },
-  { id: "difference-nine", variable: "x", cancelledRoot: -3, retainedRoot: 3 },
-];
-const practices: Practice[] = [
-  { variable: "y", cancelledRoot: 3, retainedRoot: -3 },
-  { variable: "a", cancelledRoot: 2, retainedRoot: -2 },
-  { variable: "m", cancelledRoot: -2, retainedRoot: -4 },
-];
-
 const minus = "−";
-const linear = (variable: string, root: number) =>
-  `${variable} ${root < 0 ? "+" : minus} ${Math.abs(root)}`;
-const signedTerm = (coefficient: number, suffix = "") => {
-  if (coefficient === 0) return "";
-  const magnitude =
-    Math.abs(coefficient) === 1 && suffix ? "" : Math.abs(coefficient);
-  return ` ${coefficient < 0 ? minus : "+"} ${magnitude}${suffix}`;
-};
-const quadratic = (variable: string, firstRoot: number, secondRoot: number) =>
-  `${variable}²${signedTerm(-(firstRoot + secondRoot), variable)}${signedTerm(firstRoot * secondRoot)}`;
-const fractionLabel = (item: FractionPreset | Practice) =>
-  `${quadratic(item.variable, item.cancelledRoot, item.retainedRoot)} / ${linear(item.variable, item.cancelledRoot)}`;
-const answerLabel = (item: Practice) =>
-  `${linear(item.variable, item.retainedRoot)}, ${item.variable} ≠ ${item.cancelledRoot}`;
-const normalize = (value: string) =>
-  value.toLowerCase().replace(/\s/g, "").replace(/-/g, minus);
+type AlgebraicFractionsTab98 =
+  "Interact" | "Learn" | "Examples" | "Formula" | "Practice";
 
 export default function AlgebraicFractionsTargetLesson98({
   resetToken,
@@ -66,7 +39,7 @@ export default function AlgebraicFractionsTargetLesson98({
   const [cancelEnabled, setCancelEnabled] = useState(true);
   const [restrictionEnabled, setRestrictionEnabled] = useState(true);
   const [substitutionEnabled, setSubstitutionEnabled] = useState(true);
-  const [tab, setTab] = useState("Interact");
+  const [tab, setTab] = useState<AlgebraicFractionsTab98>("Interact");
   const [dragging, setDragging] = useState("");
   const [cancelDrops, setCancelDrops] = useState<string[]>([]);
   const [practiceIndex, setPracticeIndex] = useState(0);
@@ -84,10 +57,10 @@ export default function AlgebraicFractionsTargetLesson98({
   const commonFactor = linear(preset.variable, preset.cancelledRoot);
   const simplified = linear(preset.variable, preset.retainedRoot);
   const restriction = preset.cancelledRoot;
-  const validCheck = checkValue !== restriction;
-  const originalNumeratorValue =
-    (checkValue - preset.cancelledRoot) * (checkValue - preset.retainedRoot);
-  const denominatorValue = checkValue - preset.cancelledRoot;
+  const proof = algebraicFractionValues98(preset, checkValue);
+  const validCheck = proof.valid;
+  const originalNumeratorValue = proof.numerator;
+  const denominatorValue = proof.denominator;
   const checkSymbol = checkValue < 0 ? `(${checkValue})` : `${checkValue}`;
   const substitutedNumerator = numerator.replaceAll(
     preset.variable,
@@ -97,20 +70,16 @@ export default function AlgebraicFractionsTargetLesson98({
     preset.variable,
     checkSymbol,
   );
-  const originalValue = validCheck
-    ? originalNumeratorValue / denominatorValue
-    : null;
-  const simplifiedValue = checkValue - preset.retainedRoot;
-  const equivalent = validCheck && originalValue === simplifiedValue;
+  const originalValue = proof.original;
+  const simplifiedValue = proof.simplified;
+  const equivalent = proof.equivalent;
   const practiceExpected = answerLabel(practice);
-  const practiceCorrect =
-    normalize(practiceAnswer).replace("!=", "≠") ===
-    normalize(practiceExpected);
+  const practiceCorrect = isAlgebraicFractionAnswer98(practiceAnswer, practice);
   const act = () => {
     setActions((count) => count + 1);
     onInteraction();
   };
-  const reset = () => {
+  const reset = (notify = true) => {
     setPresetId("difference-one");
     setCheckValue(3);
     setFactorEnabled(true);
@@ -124,10 +93,10 @@ export default function AlgebraicFractionsTargetLesson98({
     setPracticeAnswer("y + 3, y ≠ 3");
     setPracticeChecked(true);
     setActions(0);
-    onInteraction();
+    if (notify) onInteraction();
   };
   useEffect(() => {
-    reset();
+    reset(false);
   }, [resetToken]); // eslint-disable-line react-hooks/exhaustive-deps
   const choosePreset = (id: string) => {
     const next = presets.find((item) => item.id === id) ?? presets[0];
@@ -143,7 +112,10 @@ export default function AlgebraicFractionsTargetLesson98({
   const dropFactor = (event: DragEvent<HTMLElement>) => {
     event.preventDefault();
     const source = event.dataTransfer.getData("text/common-factor");
-    if (!source) return;
+    if (!isCommonFactorSource98(source)) {
+      setDragging("");
+      return;
+    }
     setCancelDrops((current) =>
       current.includes(source) ? current : [...current, source],
     );
@@ -171,7 +143,7 @@ export default function AlgebraicFractionsTargetLesson98({
       className="algfrac98-page"
       data-testid="algebra-mockup-0155"
       data-dedicated-lesson="98"
-      data-object-model="selectable-rational-expression-draggable-common-factor-cancellation-domain-restriction-substitution-graded-practice-model"
+      data-object-model="dedicated-tested-selectable-rational-expression-validated-draggable-common-factor-cancellation-domain-restriction-substitution-graded-practice-and-functional-learning-tabs-model"
       data-preset={presetId}
       data-numerator={numerator}
       data-denominator={denominator}
@@ -226,7 +198,7 @@ export default function AlgebraicFractionsTargetLesson98({
               className={tab === name ? "active" : ""}
               key={name}
               onClick={() => {
-                setTab(name);
+                setTab(name as AlgebraicFractionsTab98);
                 act();
               }}
             >
@@ -235,7 +207,12 @@ export default function AlgebraicFractionsTargetLesson98({
           ),
         )}
       </nav>
-      <main className="algfrac98-layout">
+      {tab !== "Interact" && (
+        <AlgebraicFractionsTabPanel98 tab={tab} presetId={presetId} />
+      )}
+      <main
+        className={`algfrac98-layout ${tab === "Interact" ? "" : "hidden"}`}
+      >
         <section className="algfrac98-left">
           <h2>Simplify the rational expression</h2>
           <div className="algfrac98-expression">
@@ -504,7 +481,7 @@ export default function AlgebraicFractionsTargetLesson98({
                   act();
                 }}
               />
-              <button type="button" onClick={reset}>
+              <button type="button" onClick={() => reset()}>
                 <RotateCcw />
                 Reset all steps
               </button>
@@ -639,5 +616,42 @@ function Toggle({
         <b />
       </i>
     </button>
+  );
+}
+
+function AlgebraicFractionsTabPanel98({
+  tab,
+  presetId,
+}: {
+  tab: Exclude<AlgebraicFractionsTab98, "Interact">;
+  presetId: string;
+}) {
+  const preset = presets.find((item) => item.id === presetId) ?? presets[0];
+  const result = answerLabel(preset);
+  const content =
+    tab === "Learn"
+      ? [
+          "Factor the numerator before cancelling a common factor.",
+          "Keep every value excluded by the original denominator.",
+        ]
+      : tab === "Examples"
+        ? presets.map((item) => `${fractionLabel(item)} → ${answerLabel(item)}`)
+        : tab === "Formula"
+          ? [
+              "(x − a)(x − b) / (x − a) = x − b, where x ≠ a",
+              `${fractionLabel(preset)} → ${result}`,
+            ]
+          : practices.map(
+              (item) =>
+                `Simplify ${fractionLabel(item)} and state its restriction`,
+            );
+  return (
+    <section className="algfrac98-tab-panel" data-active-learning-tab={tab}>
+      <h2>{tab}</h2>
+      <strong>{result}</strong>
+      {content.map((item) => (
+        <p key={item}>{item}</p>
+      ))}
+    </section>
   );
 }

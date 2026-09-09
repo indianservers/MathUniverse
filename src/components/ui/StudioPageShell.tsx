@@ -2,6 +2,7 @@ import { Clock3, Gauge, Share2 } from "lucide-react";
 import { ReactNode, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { shareStudio } from "../../utils/shareStudio";
+import { StudioLessonLinks } from "../lessons/StudioLessonLinks";
 
 const breadcrumbRoutes: Record<string, string> = {
   Home: "/", "Math Topics": "/learn", Studio: "/math-lab",
@@ -143,6 +144,7 @@ export default function StudioPageShell({
       {tabs ? <div className="studio-shell-tabs">{tabs}</div> : null}
       {toolbar ? <div className="studio-shell-toolbar">{toolbar}</div> : null}
       <section className="studio-shell-body">{children}</section>
+      <StudioLessonLinks pathname={pathname} />
       {guide ? <section className="studio-shell-guide" aria-label="Studio guide">{guide}</section> : null}
     </main>
   );

@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useState, type CSSProperties, type PointerEvent } from "react";
 import DashboardCard from "../components/ui/DashboardCard";
 import AITutorPanel from "../components/ui/AITutorPanel";
-import { iconMap } from "../components/layout/navItems";
+import { iconMap, navSections, type NavItem } from "../components/layout/navItems";
 import { topics } from "../data/topics";
 import { useProgress } from "../hooks/useProgress";
 import { recentRouteItems } from "../components/layout/GlobalUx";
@@ -311,6 +311,31 @@ export default function Home() {
       <MathWorkspacesHomeSection />
 
       <Link
+        to="/lessons"
+        className="home-lessons-featured group relative isolate overflow-hidden rounded-[1.35rem] border p-4 shadow-lg transition hover:-translate-y-1 hover:shadow-xl"
+        aria-labelledby="home-lessons-title"
+      >
+        <div className="absolute -right-10 -top-16 -z-10 h-40 w-40 rounded-full bg-fuchsia-400/30 blur-3xl" aria-hidden="true" />
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <span className="flex items-center gap-3">
+            <span className="grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br from-fuchsia-500 to-cyan-500 text-white shadow-lg">
+              <BookOpen className="h-6 w-6" />
+            </span>
+            <span>
+              <span className="block text-[10px] font-black uppercase tracking-[0.18em] text-fuchsia-700 dark:text-fuchsia-200">Featured learning path</span>
+              <strong id="home-lessons-title" className="mt-0.5 block text-xl font-black text-slate-950 dark:text-white">Lessons</strong>
+              <span className="mt-1 block text-sm font-semibold text-slate-600 dark:text-slate-300">Guided interactive lessons, advanced concepts, and school learning paths.</span>
+            </span>
+          </span>
+          <span className="inline-flex items-center gap-2 rounded-xl bg-slate-950 px-4 py-2 text-sm font-black text-white transition group-hover:bg-fuchsia-700 dark:bg-white dark:text-slate-950">
+            Open Lessons <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+          </span>
+        </div>
+      </Link>
+
+      <HomePageDirectory query={normalizedQuery} />
+
+      <Link
         to="/math-lab/3d-graphing"
         className="group grid max-w-md grid-cols-[48px_minmax(0,1fr)_auto] items-center gap-3 rounded-2xl border border-cyan-100 bg-white/85 p-3 shadow-sm transition hover:-translate-y-0.5 hover:border-cyan-300 hover:bg-cyan-50 dark:border-white/10 dark:bg-white/[0.04] dark:hover:border-cyan-300/40 dark:hover:bg-cyan-400/10"
         aria-labelledby="home-3d-graph-title"
@@ -397,6 +422,60 @@ export default function Home() {
       {homeFilter === "all" && <AITutorPanel />}
     </div>
   );
+}
+
+function HomePageDirectory({ query }: { query: string }) {
+  return (
+    <section className="home-page-directory" aria-labelledby="home-page-directory-title">
+      <div className="flex flex-wrap items-end justify-between gap-2">
+        <div>
+          <p className="text-xs font-black uppercase tracking-[0.18em] text-cyan-700 dark:text-cyan-300">Everything in Math Universe</p>
+          <h2 id="home-page-directory-title" className="mt-1 text-2xl font-black text-slate-950 dark:text-white">Explore by category</h2>
+          <p className="mt-1 max-w-3xl text-sm font-semibold text-slate-600 dark:text-slate-300">Every routed page is listed here in the same categories used by the main navigation.</p>
+        </div>
+        <span className="mini-chip">{navSections.length} categories</span>
+      </div>
+      <div className="mt-3 grid gap-3 lg:grid-cols-2 2xl:grid-cols-3">
+        {navSections.map((section) => {
+          const items = section.items.filter((item) => navItemMatches(item, query, section.title));
+          if (!items.length) return null;
+          const SectionIcon = iconMap[section.icon];
+          return (
+            <section key={section.title} className="home-page-category rounded-2xl border border-slate-200 bg-white/80 p-3 shadow-sm dark:border-white/10 dark:bg-white/[0.04]">
+              <div className="flex items-center gap-2 border-b border-slate-200 pb-2 dark:border-white/10">
+                <span className="grid h-8 w-8 place-items-center rounded-xl bg-cyan-50 text-cyan-700 dark:bg-cyan-400/10 dark:text-cyan-200"><SectionIcon className="h-4 w-4" /></span>
+                <h3 className="text-sm font-black text-slate-950 dark:text-white">{section.title}</h3>
+                <span className="ml-auto text-xs font-bold text-slate-400">{items.length}</span>
+              </div>
+              <div className="mt-2 grid gap-1.5 sm:grid-cols-2">
+                {items.map((item) => <HomeDirectoryItem key={`${item.title}-${item.route}`} item={item} query={query} />)}
+              </div>
+            </section>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
+function HomeDirectoryItem({ item, query }: { item: NavItem; query: string }) {
+  const Icon = iconMap[item.icon];
+  const children = (item.children ?? []).filter((child) => navItemMatches(child, query, item.title));
+  return (
+    <div className="home-directory-item">
+      {item.isExternal ? (
+        <a href={item.route} target="_blank" rel="noreferrer" className="home-directory-link"><Icon className="h-3.5 w-3.5" /><span>{item.title}</span></a>
+      ) : (
+        <Link to={item.route} className="home-directory-link"><Icon className="h-3.5 w-3.5" /><span>{item.title}</span></Link>
+      )}
+      {children.length > 0 && <div className="home-directory-children">{children.map((child) => <HomeDirectoryItem key={`${child.title}-${child.route}`} item={child} query={query} />)}</div>}
+    </div>
+  );
+}
+
+function navItemMatches(item: NavItem, query: string, category: string) {
+  if (!query) return true;
+  return `${category} ${item.title} ${item.route} ${item.description ?? ""} ${(item.searchTerms ?? []).join(" ")}`.toLowerCase().includes(query);
 }
 
 type HomeMathStudioHeroProps = {

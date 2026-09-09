@@ -57,10 +57,11 @@ export function createGraphVariable(
   name: string,
   value = 1,
 ): GraphStudioVariable {
+  const safeValue = Number.isFinite(value) ? value : 1;
   return {
     id: `variable-${name}`,
     name,
-    value,
+    value: safeValue,
     min: -10,
     max: 10,
     step: 0.1,
@@ -88,9 +89,10 @@ export function substituteGraphVariables(
 ) {
   return variables.reduce((result, variable) => {
     const escaped = variable.name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const safeValue = Number.isFinite(variable.value) ? variable.value : 0;
     return result.replace(
       new RegExp(`\\b${escaped}\\b`, "g"),
-      `(${Number(variable.value.toFixed(10))})`,
+      `(${Number(safeValue.toFixed(10))})`,
     );
   }, expression);
 }

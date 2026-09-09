@@ -22,7 +22,8 @@ describe("MathWorkspaceLayout", () => {
       expect(markup).toContain(`${workspace.name} workspace controls`);
       expect(markup).toContain("math-workspace-mobile-dock");
       expect(markup).toContain("Primary activity");
-      expect(markup).toContain("workspace-suite-bar");
+      if (workspace.id === "geometry") expect(markup).not.toContain("workspace-suite-bar");
+      else expect(markup).toContain("workspace-suite-bar");
     },
   );
 });

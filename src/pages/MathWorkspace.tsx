@@ -96,7 +96,14 @@ import { readLinkedParameters, saveLinkedParameter } from "../workspace/linkedPa
 import { readWorkspaceTransfer, saveWorkspaceTransfer } from "../workspace/workspaceTransfer";
 import CasSpreadsheetStudio from "../components/workspace/CasSpreadsheetStudio";
 import ShareExportControl from "../components/workspace/ShareExportControl";
-import type { PortableWorkspaceAdapter, PortableWorkspaceType } from "../workspace/portableWorkspace";
+import {
+  LESSON_EXTENSION,
+  WORKSPACE_EXTENSION,
+  parsePortableMathFile,
+  sceneForLessonMode,
+  type PortableWorkspaceAdapter,
+  type PortableWorkspaceType,
+} from "../workspace/portableWorkspace";
 import {
   createGeometryTransformRequest,
   createNoSelectionDeleteAction,
@@ -348,6 +355,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   const [geometryGraphSettings, setGeometryGraphSettings] = useState<GeometryGraphSettings>(defaultGeometryGraphSettings);
   const [geometryCamera, setGeometryCamera] = useState<GeometryCamera>({ x: 0, y: 0, width: 640, height: 420 });
   const geometryPanRef = useRef<{ clientX: number; clientY: number; camera: GeometryCamera } | null>(null);
+  const geometryFreehandRef = useRef<string | null>(null);
   const geometryCertificationReport = useMemo(() => certifyGeometryConstruction(construction, {
     regularPolygonIds: construction.polygons.filter((polygon) => polygon.style?.label === "regular-polygon").map((polygon) => polygon.id),
   }), [construction]);
@@ -410,6 +418,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   const geometryExportRef = useRef<SVGSVGElement | null>(null);
   const workspaceRef = useRef<HTMLDivElement>(null);
   const imageInputRef = useRef<HTMLInputElement>(null);
+  const portableImportInputRef = useRef<HTMLInputElement>(null);
   const routeStateAppliedRef = useRef("");
 
   useEffect(() => {
@@ -769,6 +778,18 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
     if (tool === "zoom") {
       const anchor = clientToBoard(event);
       zoomGeometry("in", anchor ?? undefined);
+      return;
+    }
+    if (tool === "freehand") {
+      const point = clientToBoard(event);
+      if (!point) return;
+      const id = crypto.randomUUID();
+      geometryFreehandRef.current = id;
+      setConstruction((current) => ({
+        ...current,
+        loci: [...current.loci, { id, label: "freehand", points: [point], style: { color: "#f97316", strokeWidth: 4 } }],
+      }));
+      recordWorkspaceStep("Draw freehand path", "Pointer sketch added to the board.");
       return;
     }
     const target = event.target as Element;
@@ -1260,6 +1281,22 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
       });
       return;
     }
+    if (geometryFreehandRef.current) {
+      if (event.pointerType === "touch") event.preventDefault();
+      const point = clientToBoard(event);
+      if (!point) return;
+      const freehandId = geometryFreehandRef.current;
+      setConstruction((current) => ({
+        ...current,
+        loci: current.loci.map((locus) => {
+          if (locus.id !== freehandId) return locus;
+          const previous = locus.points[locus.points.length - 1];
+          if (previous && Math.hypot(point.x - previous.x, point.y - previous.y) < 2) return locus;
+          return { ...locus, points: [...locus.points, point] };
+        }),
+      }));
+      return;
+    }
     if (!dragPointId && !dragGeometry && !dragImageId) return;
     if (event.pointerType === "touch") event.preventDefault();
     const point = clientToBoard(event);
@@ -1378,8 +1415,8 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   const zoomGeometry = (direction: "in" | "out", anchor?: { x: number; y: number }) => {
     setGeometryCamera((current) => {
       const factor = direction === "in" ? 0.8 : 1.25;
-      const nextWidth = Math.max(160, Math.min(1280, current.width * factor));
-      const nextHeight = Math.max(105, Math.min(840, current.height * factor));
+      const nextWidth = Math.max(16, Math.min(1_000_000_000, current.width * factor));
+      const nextHeight = Math.max(10.5, Math.min(656_250_000, current.height * factor));
       const focus = anchor ?? { x: current.x + current.width / 2, y: current.y + current.height / 2 };
       return {
         x: focus.x - (focus.x - current.x) * (nextWidth / current.width),
@@ -1391,6 +1428,36 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   };
 
   const resetGeometryView = () => setGeometryCamera({ x: 0, y: 0, width: 640, height: 420 });
+  const fitGeometryView = () => {
+    const visiblePoints = construction.points.filter((point) => point.style?.visible !== false);
+    const imageCorners = workspaceImages
+      .filter((image) => image.visible !== false)
+      .flatMap((image) => [
+        { x: image.x, y: image.y },
+        { x: image.x + image.width, y: image.y + image.height },
+      ]);
+    const points = [...visiblePoints, ...imageCorners];
+    if (!points.length) {
+      resetGeometryView();
+      return;
+    }
+    const minX = Math.min(...points.map((point) => point.x));
+    const maxX = Math.max(...points.map((point) => point.x));
+    const minY = Math.min(...points.map((point) => point.y));
+    const maxY = Math.max(...points.map((point) => point.y));
+    const padding = Math.max(48, Math.max(maxX - minX, maxY - minY) * 0.12);
+    let width = Math.max(160, maxX - minX + padding * 2);
+    let height = Math.max(105, maxY - minY + padding * 2);
+    const boardRatio = 640 / 420;
+    if (width / height > boardRatio) height = width / boardRatio;
+    else width = height * boardRatio;
+    setGeometryCamera({
+      x: (minX + maxX) / 2 - width / 2,
+      y: (minY + maxY) / 2 - height / 2,
+      width,
+      height,
+    });
+  };
   const handleGeometryWheel = (event: WheelEvent<SVGSVGElement>) => {
     event.preventDefault();
     const anchor = clientToBoard(event as unknown as PointerEvent<SVGSVGElement>);
@@ -1573,25 +1640,6 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   const saveConstruction = () => {
     localStorage.setItem("math-universe-workspace-construction", JSON.stringify({ construction, geometryGraphSettings }));
     setProjectStatus("Geometry construction saved in this browser.");
-  };
-  const loadConstruction = () => {
-    const saved = localStorage.getItem("math-universe-workspace-construction");
-    if (!saved) {
-      setProjectStatus("No saved geometry construction found in this browser yet.");
-      return;
-    }
-    try {
-      const parsed = JSON.parse(saved) as unknown;
-      if (isConstructionSavePayload(parsed)) {
-        setConstruction(normalizeConstruction(parsed.construction ?? initialConstruction));
-        setGeometryGraphSettings({ ...defaultGeometryGraphSettings, ...(parsed.geometryGraphSettings ?? {}) });
-      } else {
-        setConstruction(normalizeConstruction(parsed as Partial<Construction>));
-      }
-      setProjectStatus("Saved geometry construction loaded.");
-    } catch {
-      setProjectStatus("Saved geometry construction could not be loaded. The stored data is invalid.");
-    }
   };
   const snapshot = (): WorkspaceSnapshot => ({ input, results, plots, construction, geometryGraphSettings, lockedGeometryIds, surface, surfaceExpression, cameraPreset3d, sceneAnimationSpeed, solid, surfaceScale, height3d, crossSection, showSurface, showSolid, autoRotate3d, zoom3d, transforms3d, added3dObjects, deletedBase3dIds, images: workspaceImages, spreadsheet, tableRange: { start: tableStart, end: tableEnd, step: tableStep }, guidedMode, guidedPhase, teachingMode, revealStep, controlsLocked, highContrastMode, performanceMode, protocol, activityJournal, presentationNotes, objectProperties: objectPropertyOverrides });
   const saveWorkspace = () => {
@@ -2371,8 +2419,50 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
     canMerge: false,
   };
 
+  const openPortableWorkspaceImport = () => {
+    if (portableImportInputRef.current) portableImportInputRef.current.value = "";
+    portableImportInputRef.current?.click();
+  };
+
+  const importPortableWorkspaceFile = async (file: File | null) => {
+    if (!file) return;
+    setProjectStatus("Validating workspace file…");
+    try {
+      const result = await parsePortableMathFile(await file.text(), file.name, file.type);
+      if (!result.ok) {
+        setProjectStatus(result.error);
+        return;
+      }
+      if (result.file.workspace.type !== portableAdapter.workspaceType) {
+        setProjectStatus(`This file belongs to ${result.file.workspace.type}, not ${portableAdapter.workspaceType}.`);
+        return;
+      }
+      const mode = result.file.lesson?.openMode ?? "practice";
+      const scene = sceneForLessonMode(result.file, mode);
+      const warnings = portableAdapter.validateScene?.(scene) ?? [];
+      if (warnings.length) {
+        setProjectStatus(warnings[0]);
+        return;
+      }
+      await portableAdapter.deserializeScene(scene, "replace");
+      setProjectStatus(`${result.file.document.title} imported successfully${result.warnings.length ? ` with ${result.warnings.length} warning${result.warnings.length === 1 ? "" : "s"}` : ""}.`);
+    } catch (error) {
+      setProjectStatus(error instanceof Error ? error.message : "The workspace file could not be imported.");
+    } finally {
+      if (portableImportInputRef.current) portableImportInputRef.current.value = "";
+    }
+  };
+
   return (
     <div ref={workspaceRef} className={workspaceRootClass}>
+      <input
+        ref={portableImportInputRef}
+        type="file"
+        className="hidden"
+        accept={`${WORKSPACE_EXTENSION},${LESSON_EXTENSION},application/vnd.mathapp.workspace,application/vnd.mathapp.lesson,application/json`}
+        aria-label="Import workspace file"
+        onChange={(event) => void importPortableWorkspaceFile(event.target.files?.[0] ?? null)}
+      />
       {singleViewStudio && <ShareExportControl adapter={portableAdapter} />}
       {!singleViewStudio && <WorkspaceMainMenu active={workspaceView} onChange={setWorkspaceView} docked={singleView} />}
       {!singleView && <TopicHeader title="Math Workspace" subtitle="A unified workspace for graphing, commands, results, and dynamic geometric construction." difficulty="All levels" estimatedMinutes={45} />}
@@ -2786,18 +2876,19 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
           onClearTrace={clearGeometryTrace}
           onReset={() => { setConstruction(initialConstruction); setSelectedPointIds([]); setPolygonDraft([]); setGeometryObjectPicks([]); }}
           onSave={saveConstruction}
-          onLoad={loadConstruction}
+          onLoad={openPortableWorkspaceImport}
           onExport={exportGeometryPng}
           onGraphSettingsChange={setGeometryGraphSettings}
           onZoom={zoomGeometry}
+          onFitView={fitGeometryView}
           onResetView={resetGeometryView}
           onBoardWheel={handleGeometryWheel}
           onBoardKeyDown={handleGeometryKeyDown}
           onClearPendingPicks={() => { setGeometryObjectPicks([]); setSelectedPointIds([]); setPolygonDraft([]); }}
           onBoardPointerDown={handleBoardPointerDown}
           onBoardPointerMove={handleBoardPointerMove}
-          onBoardPointerUp={(event) => { event.currentTarget.releasePointerCapture(event.pointerId); geometryPanRef.current = null; setDragPointId(null); setDragGeometry(null); setDragImageId(null); }}
-          onBoardPointerLeave={() => { geometryPanRef.current = null; setDragPointId(null); setDragGeometry(null); setDragImageId(null); }}
+          onBoardPointerUp={(event) => { event.currentTarget.releasePointerCapture(event.pointerId); geometryPanRef.current = null; geometryFreehandRef.current = null; setDragPointId(null); setDragGeometry(null); setDragImageId(null); }}
+          onBoardPointerLeave={() => { geometryPanRef.current = null; geometryFreehandRef.current = null; setDragPointId(null); setDragGeometry(null); setDragImageId(null); }}
           onBoardContextMenu={handleGeometryContextMenu}
           onGeometryExportRef={(node) => { geometryExportRef.current = node; }}
           onSelectGeometry={(selection) => { setSelectedGeometry(selection); setSelectedImageId(null); }}
@@ -2873,18 +2964,19 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
             onClearTrace={clearGeometryTrace}
             onReset={() => { setConstruction(initialConstruction); setSelectedPointIds([]); setPolygonDraft([]); setGeometryObjectPicks([]); }}
             onSave={saveConstruction}
-            onLoad={loadConstruction}
+            onLoad={openPortableWorkspaceImport}
             onExport={exportGeometryPng}
           onGraphSettingsChange={setGeometryGraphSettings}
           onZoom={zoomGeometry}
+          onFitView={fitGeometryView}
           onResetView={resetGeometryView}
           onBoardWheel={handleGeometryWheel}
           onBoardKeyDown={handleGeometryKeyDown}
             onClearPendingPicks={() => { setGeometryObjectPicks([]); setSelectedPointIds([]); setPolygonDraft([]); }}
             onBoardPointerDown={handleBoardPointerDown}
             onBoardPointerMove={handleBoardPointerMove}
-          onBoardPointerUp={(event) => { event.currentTarget.releasePointerCapture(event.pointerId); geometryPanRef.current = null; setDragPointId(null); setDragGeometry(null); setDragImageId(null); }}
-          onBoardPointerLeave={() => { geometryPanRef.current = null; setDragPointId(null); setDragGeometry(null); setDragImageId(null); }}
+          onBoardPointerUp={(event) => { event.currentTarget.releasePointerCapture(event.pointerId); geometryPanRef.current = null; geometryFreehandRef.current = null; setDragPointId(null); setDragGeometry(null); setDragImageId(null); }}
+          onBoardPointerLeave={() => { geometryPanRef.current = null; geometryFreehandRef.current = null; setDragPointId(null); setDragGeometry(null); setDragImageId(null); }}
             onBoardContextMenu={handleGeometryContextMenu}
             onGeometryExportRef={(node) => { geometryExportRef.current = node; }}
             onSelectGeometry={(selection) => { setSelectedGeometry(selection); setSelectedImageId(null); }}
@@ -4671,7 +4763,7 @@ function UnifiedWorkspacePanel({
   onObjectChange: (object: MathObject, patch: Partial<MathObject>) => void;
 }) {
   return (
-    <CollapsibleSideCard id="workspace-unified-registry-panel" title="Unified Dynamic Workspace" subtitle="Graph, geometry, CAS, tables, spreadsheet, and 3D registry" meta={<span className="mini-chip">{objects.length} objects</span>} className="border-cyan-200/80 bg-white/85 dark:border-cyan-300/20 dark:bg-slate-950/50">
+    <CollapsibleSideCard id="workspace-unified-registry-panel" title="Unified Dynamic Workspace" subtitle="Graph, geometry, CAS, tables, spreadsheet, and 3D registry" meta={<span className="mini-chip">{objects.length} objects</span>} className="workspace-unified-registry-card border-cyan-200/80 bg-white/85 dark:border-cyan-300/20 dark:bg-slate-950/50">
       <ObjectList objects={objects} selectedObjectId={selectedObjectId} selectedObjectIds={selectedObjectIds} onObjectAction={onObjectAction} />
       <InspectorPanel object={selectedObject} onObjectChange={onObjectChange} />
     </CollapsibleSideCard>
@@ -8296,15 +8388,15 @@ function ConstructionHelp({ tool }: { tool: GeometryTool }) {
     vector: "Click tail point, then head point to create a vector-style object.",
     line: "Click two points to create a line.",
     circle: "Click a center point, then a radius point.",
-    polygon: "Click three or more points; the polygon is created after the third point.",
+    polygon: "Click three or more vertices, then click the first vertex again to close the polygon.",
     angle: "Click side point, vertex, side point. The second click is the vertex; a live preview arc appears before the final click.",
     "show-hide": "Use the selected-object section to show or hide the selected object.",
     lock: "Use the selected-object section to lock or unlock the selected object.",
-    freehand: "Sketch helper mode for marking an idea before converting it to construction objects.",
+    freehand: "Press and drag across the board to draw a real freehand path.",
     text: "Click the board to place a draggable text note point.",
     image: "Opens the image picker and places the image on the geometry board.",
     "move-canvas": "Move-canvas mode keeps construction objects unchanged while you inspect the board.",
-    zoom: "Zoom mode is available from the plate and keeps the current construction selected.",
+    zoom: "Use the dedicated plus and minus controls or the mouse wheel to zoom without changing the construction.",
     triangle: "Click three vertices to draw an editable triangle.",
     rectangle: "Click the board to insert an editable rectangle.",
     square: "Click the board to insert an editable square.",
@@ -8451,7 +8543,11 @@ function snapBoardPoint(
   if (capture === "off") return { x: roundTo(point.x, 2), y: roundTo(point.y, 2) };
   const gridUnit = settings.gridSpacing ?? 40;
   const snapStrength = settings.snapStrength ?? 18;
-  const grid = { x: Math.round(point.x / gridUnit) * gridUnit, y: Math.round(point.y / gridUnit) * gridUnit };
+  const gridOrigin = { x: 320, y: 220 };
+  const grid = {
+    x: gridOrigin.x + Math.round((point.x - gridOrigin.x) / gridUnit) * gridUnit,
+    y: gridOrigin.y + Math.round((point.y - gridOrigin.y) / gridUnit) * gridUnit,
+  };
   const gridScore = Math.hypot(point.x - grid.x, point.y - grid.y);
   let best = settings.snapToGrid ? { ...grid, score: gridScore } : { ...point, score: Number.POSITIVE_INFINITY };
   const candidates = settings.snapToObjects ? [
@@ -8748,10 +8844,6 @@ function normalizeConstruction(value: Partial<Construction>): Construction {
     loci: value.loci ?? [],
     constraints: value.constraints ?? [],
   });
-}
-
-function isConstructionSavePayload(value: unknown): value is { construction?: Partial<Construction>; geometryGraphSettings?: Partial<GeometryGraphSettings> } {
-  return Boolean(value && typeof value === "object" && "construction" in value);
 }
 
 function intersectionsForSelectedObjects(construction: Construction, first: SelectedGeometryObject, second: SelectedGeometryObject) {

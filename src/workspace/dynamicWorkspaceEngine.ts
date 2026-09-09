@@ -39,16 +39,45 @@ export function createObjectFromDefinition(input: string, existing: MathObject[]
 
 export function evaluateDynamicWorkspace(objects: MathObject[]): DynamicWorkspaceEvaluation {
   const diagnostics: DynamicDiagnostic[] = [];
-  const normalized = objects.map(normalizeMathObject);
-  const ordered = topologicalOrder(normalized, diagnostics);
+  const normalized = deduplicateObjects(objects, diagnostics).map(normalizeMathObject);
+  const { ordered, cycleIds } = topologicalOrder(normalized, diagnostics);
   const current = [...normalized];
   const positionById = new Map(current.map((object, index) => [object.id, index]));
   const index = indexObjects(current);
 
+  warnForAmbiguousLabels(current, diagnostics);
+
   ordered.forEach((object) => {
+    if (cycleIds.has(object.id)) {
+      replaceObjectStatus(current, positionById, index, object, "error");
+      return;
+    }
     if (!object.definition?.source) return;
+    let command: ParsedWorkspaceCommand;
     try {
-      const command = parseGeoGebraCommand(object.definition.source);
+      command = parseGeoGebraCommand(object.definition.source);
+    } catch (error) {
+      diagnostics.push({ objectId: object.id, severity: "error", message: error instanceof Error ? error.message : "Could not parse object definition." });
+      replaceObjectStatus(current, positionById, index, object, "error");
+      return;
+    }
+    const missingParents = referencedParentIds(object, command).filter((parentId) => !resolveIndexedObject(parentId, index));
+    if (missingParents.length) {
+      diagnostics.push({
+        objectId: object.id,
+        severity: "error",
+        message: `Missing ${missingParents.length === 1 ? "dependency" : "dependencies"}: ${missingParents.join(", ")}.`,
+      });
+      replaceObjectStatus(current, positionById, index, object, "error");
+      return;
+    }
+    const failedParent = object.dependencies?.find((dependency) => index.byId.get(dependency.id)?.status === "error");
+    if (failedParent) {
+      diagnostics.push({ objectId: object.id, severity: "error", message: `Dependency ${failedParent.label || failedParent.id} failed to evaluate.` });
+      replaceObjectStatus(current, positionById, index, object, "error");
+      return;
+    }
+    try {
       const previous = index.byId.get(object.id) ?? object;
       const next = normalizeDynamicObject(materializeCommand(command, object.id, index, previous));
       const position = positionById.get(object.id);
@@ -74,6 +103,60 @@ export function evaluateDynamicWorkspace(objects: MathObject[]): DynamicWorkspac
     algebra,
     diagnostics,
   };
+}
+
+function deduplicateObjects(objects: MathObject[], diagnostics: DynamicDiagnostic[]) {
+  const seen = new Set<string>();
+  const output: MathObject[] = [];
+  for (let index = objects.length - 1; index >= 0; index -= 1) {
+    const object = objects[index];
+    if (seen.has(object.id)) {
+      diagnostics.push({ objectId: object.id, severity: "warning", message: `Duplicate object id "${object.id}" was replaced by the newest value.` });
+      continue;
+    }
+    seen.add(object.id);
+    output.push(object);
+  }
+  return output.reverse();
+}
+
+function warnForAmbiguousLabels(objects: MathObject[], diagnostics: DynamicDiagnostic[]) {
+  const labels = new Map<string, string>();
+  objects.forEach((object) => {
+    const key = object.label.trim().toLowerCase();
+    const previous = labels.get(key);
+    if (key && previous && previous !== object.id) {
+      diagnostics.push({ objectId: object.id, severity: "warning", message: `Label "${object.label}" is ambiguous; dependency references use the newest matching object.` });
+    }
+    if (key) labels.set(key, object.id);
+  });
+}
+
+function referencedParentIds(object: MathObject, command?: ParsedWorkspaceCommand) {
+  return Array.from(new Set([
+    ...(object.dependencies?.map((dependency) => dependency.id) ?? []),
+    ...(object.definition?.parentIds ?? []),
+    ...(command?.parentIds ?? []),
+  ].filter(Boolean)));
+}
+
+function resolveIndexedObject(reference: string, index: ObjectIndex) {
+  return index.byId.get(reference) ?? index.byName.get(reference) ?? index.byName.get(reference.toLowerCase());
+}
+
+function replaceObjectStatus(
+  current: MathObject[],
+  positionById: Map<string, number>,
+  index: ObjectIndex,
+  object: MathObject,
+  status: MathObject["status"],
+) {
+  const position = positionById.get(object.id);
+  if (position === undefined) return;
+  const previous = current[position];
+  const next = normalizeMathObject({ ...previous, status });
+  current[position] = next;
+  updateObjectIndex(index, previous, next);
 }
 
 function updateObjectIndex(index: ObjectIndex, previous: MathObject, next: MathObject) {
@@ -255,24 +338,31 @@ function topologicalOrder(objects: MathObject[], diagnostics: DynamicDiagnostic[
   const byId = new Map(objects.map((object) => [object.id, object]));
   const visited = new Set<string>();
   const visiting = new Set<string>();
+  const cycleIds = new Set<string>();
+  const stack: string[] = [];
   const output: MathObject[] = [];
   const visit = (object: MathObject) => {
     if (visited.has(object.id)) return;
     if (visiting.has(object.id)) {
-      diagnostics.push({ objectId: object.id, severity: "error", message: "Circular dependency detected." });
+      const cycleStart = stack.indexOf(object.id);
+      const members = cycleStart >= 0 ? stack.slice(cycleStart) : [object.id];
+      members.forEach((id) => cycleIds.add(id));
       return;
     }
     visiting.add(object.id);
+    stack.push(object.id);
     object.dependencies?.forEach((dependency) => {
       const parent = byId.get(dependency.id);
       if (parent) visit(parent);
     });
+    stack.pop();
     visiting.delete(object.id);
     visited.add(object.id);
     output.push(object);
   };
   objects.forEach(visit);
-  return output;
+  cycleIds.forEach((objectId) => diagnostics.push({ objectId, severity: "error", message: "Circular dependency detected." }));
+  return { ordered: output, cycleIds };
 }
 
 function indexObjects(objects: MathObject[]): ObjectIndex {

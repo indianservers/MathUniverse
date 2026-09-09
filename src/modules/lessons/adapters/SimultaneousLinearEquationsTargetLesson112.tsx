@@ -13,95 +13,21 @@ import {
   Star,
 } from "lucide-react";
 import type { LessonAdapterProps } from "../types";
+import {
+  SIMULTANEOUS_PRACTICES_112 as practiceSystems,
+  SIMULTANEOUS_SYSTEMS_112 as systems,
+  combineSimultaneousSystem112,
+  isSimultaneousOperationDrop112,
+  isSimultaneousPracticeCorrect112,
+  simultaneousCoefficient112 as coefficient,
+  simultaneousEquationText112 as equationText,
+  simultaneousOperationLabel112 as operationLabel,
+  simultaneousOperationPayload112,
+  solveSimultaneousSystem112 as solve,
+  type SimultaneousEquation112 as Equation,
+  type SimultaneousSystem112 as SystemProblem,
+} from "./simultaneousLinearEquationsLesson112Model";
 import "./SimultaneousLinearEquationsTargetLesson112.css";
-
-type Equation = { a: number; b: number; c: number };
-type SystemProblem = {
-  id: string;
-  first: Equation;
-  second: Equation;
-  multipliers: [number, number];
-};
-
-const systems: SystemProblem[] = [
-  {
-    id: "sum-difference-seven-one",
-    first: { a: 1, b: 1, c: 7 },
-    second: { a: 1, b: -1, c: 1 },
-    multipliers: [1, 1],
-  },
-  {
-    id: "two-x-plus-y",
-    first: { a: 2, b: 1, c: 9 },
-    second: { a: 1, b: -1, c: 3 },
-    multipliers: [1, 1],
-  },
-  {
-    id: "subtract-parallel-y",
-    first: { a: 3, b: 1, c: 11 },
-    second: { a: 1, b: 1, c: 7 },
-    multipliers: [1, -1],
-  },
-  {
-    id: "double-second",
-    first: { a: 1, b: 2, c: 8 },
-    second: { a: 1, b: -1, c: 2 },
-    multipliers: [1, 2],
-  },
-];
-
-const practiceSystems: SystemProblem[] = [
-  {
-    id: "practice-five-one",
-    first: { a: 1, b: 1, c: 5 },
-    second: { a: 1, b: -1, c: 1 },
-    multipliers: [1, 1],
-  },
-  {
-    id: "practice-eight-two",
-    first: { a: 1, b: 1, c: 8 },
-    second: { a: 1, b: -1, c: 2 },
-    multipliers: [1, 1],
-  },
-];
-
-const round = (value: number) => Math.round(value * 100) / 100;
-const coefficient = (value: number, variable: string, first = false) => {
-  if (value === 0) return "";
-  const magnitude = Math.abs(value) === 1 ? "" : Math.abs(value);
-  if (first) return `${value < 0 ? "−" : ""}${magnitude}${variable}`;
-  return `${value < 0 ? " − " : " + "}${magnitude}${variable}`;
-};
-const equationText = (equation: Equation) =>
-  `${coefficient(equation.a, "x", true)}${coefficient(equation.b, "y", equation.a === 0)} = ${equation.c}`;
-const solve = (problem: SystemProblem) => {
-  const determinant =
-    problem.first.a * problem.second.b - problem.second.a * problem.first.b;
-  return {
-    determinant,
-    x: round(
-      (problem.first.c * problem.second.b -
-        problem.second.c * problem.first.b) /
-        determinant,
-    ),
-    y: round(
-      (problem.first.a * problem.second.c -
-        problem.second.a * problem.first.c) /
-        determinant,
-    ),
-  };
-};
-const scaled = (equation: Equation, multiplier: number): Equation => ({
-  a: equation.a * multiplier,
-  b: equation.b * multiplier,
-  c: equation.c * multiplier,
-});
-const operationLabel = (problem: SystemProblem) => {
-  const [, second] = problem.multipliers;
-  if (second === 1) return "Add equations";
-  if (second === -1) return "Subtract equation 2";
-  return `Add ${second} × equation 2`;
-};
 
 export default function SimultaneousLinearEquationsTargetLesson112({
   resetToken,
@@ -133,23 +59,23 @@ export default function SimultaneousLinearEquationsTargetLesson112({
     [systemId],
   );
   const solution = solve(problem);
-  const firstScaled = scaled(problem.first, problem.multipliers[0]);
-  const secondScaled = scaled(problem.second, problem.multipliers[1]);
-  const combinedEquation: Equation = {
-    a: firstScaled.a + secondScaled.a,
-    b: firstScaled.b + secondScaled.b,
-    c: firstScaled.c + secondScaled.c,
-  };
+  const {
+    first: firstScaled,
+    second: secondScaled,
+    combined: combinedEquation,
+  } = combineSimultaneousSystem112(problem);
   const practice = practiceSystems[practiceIndex];
   const practiceSolution = solve(practice);
-  const practiceCorrect =
-    Number(practiceX) === practiceSolution.x &&
-    Number(practiceY) === practiceSolution.y;
+  const practiceCorrect = isSimultaneousPracticeCorrect112(
+    practice,
+    Number(practiceX),
+    Number(practiceY),
+  );
   const act = () => {
     setActions((value) => value + 1);
     onInteraction();
   };
-  const reset = () => {
+  const reset = (notify = true) => {
     setSystemId(systems[0].id);
     setMethod("Elimination");
     setCombined(true);
@@ -168,9 +94,9 @@ export default function SimultaneousLinearEquationsTargetLesson112({
     setPracticeChecked(true);
     setShowPracticeSolution(false);
     setActions(0);
-    onInteraction();
+    if (notify) onInteraction();
   };
-  useEffect(() => reset(), [resetToken]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => reset(false), [resetToken]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const chooseSystem = (id: string) => {
     setSystemId(id);
@@ -180,15 +106,21 @@ export default function SimultaneousLinearEquationsTargetLesson112({
     act();
   };
   const startDrag = (event: DragEvent<HTMLButtonElement>) => {
-    event.dataTransfer.setData("text/simultaneous-operation", problem.id);
+    event.dataTransfer.setData(
+      "text/simultaneous-operation",
+      simultaneousOperationPayload112(problem, method),
+    );
     setDragging(true);
     setInvalidDrop(false);
     act();
   };
   const dropCombination = (event: DragEvent<HTMLElement>) => {
     event.preventDefault();
-    const valid =
-      event.dataTransfer.getData("text/simultaneous-operation") === problem.id;
+    const valid = isSimultaneousOperationDrop112(
+      event.dataTransfer.getData("text/simultaneous-operation"),
+      problem,
+      method,
+    );
     setCombined(valid);
     setInvalidDrop(!valid);
     setDragging(false);
@@ -213,7 +145,7 @@ export default function SimultaneousLinearEquationsTargetLesson112({
       className="sim112-page"
       data-testid="algebra-mockup-0169"
       data-dedicated-lesson="112"
-      data-object-model="selectable-two-equation-coefficient-system-determinant-solver-native-elimination-drag-generated-symbolic-steps-dynamic-dual-line-intersection-both-equation-verification-ordered-pair-practice-model"
+      data-object-model="dedicated-tested-selectable-two-equation-coefficient-system-determinant-solver-validated-native-elimination-and-substitution-drag-generated-symbolic-steps-dynamic-dual-line-intersection-both-equation-verification-graded-ordered-pair-practice-functional-tabs-model"
       data-system-id={problem.id}
       data-equation-one={equationText(problem.first)}
       data-equation-two={equationText(problem.second)}
@@ -297,6 +229,8 @@ export default function SimultaneousLinearEquationsTargetLesson112({
                 key={item}
                 onClick={() => {
                   setMethod(item);
+                  setCombined(false);
+                  setInvalidDrop(false);
                   act();
                 }}
               >
@@ -327,7 +261,7 @@ export default function SimultaneousLinearEquationsTargetLesson112({
                 </option>
               ))}
             </select>
-            <button type="button" onClick={reset}>
+            <button type="button" onClick={() => reset()}>
               <RotateCcw />
               Reset
             </button>
@@ -362,11 +296,6 @@ export default function SimultaneousLinearEquationsTargetLesson112({
             key={tab}
             onClick={() => {
               setActiveTab(tab);
-              if (tab === "Examples")
-                chooseSystem(
-                  systems[(systems.indexOf(problem) + 1) % systems.length].id,
-                );
-              if (tab === "Explain") setStepView("All steps");
               act();
             }}
           >
@@ -375,246 +304,258 @@ export default function SimultaneousLinearEquationsTargetLesson112({
         ))}
       </nav>
 
-      <section className="sim112-callouts">
-        <article>
-          <Lightbulb />
-          <b>Key idea:</b>
-          <p>
-            A solution is the point (x, y) that makes both equations true at the
-            same time.
-          </p>
-        </article>
-        <article>
-          <CircleAlert />
-          <span>
-            <b>Important</b>
-            <p>Checking only one equation is not enough.</p>
-          </span>
-        </article>
-      </section>
+      {activeTab === "Interaction + visualization" ? (
+        <>
+          <section className="sim112-callouts">
+            <article>
+              <Lightbulb />
+              <b>Key idea:</b>
+              <p>
+                A solution is the point (x, y) that makes both equations true at
+                the same time.
+              </p>
+            </article>
+            <article>
+              <CircleAlert />
+              <span>
+                <b>Important</b>
+                <p>Checking only one equation is not enough.</p>
+              </span>
+            </article>
+          </section>
 
-      <main className="sim112-workspace">
-        <section className="sim112-elimination">
-          <header>
-            <b>1</b>
-            <h2>
-              {method}{" "}
-              {method === "Elimination"
-                ? "(Add equations)"
-                : "(Isolate and replace)"}
-            </h2>
-            <span>Active</span>
-          </header>
-          <p>
-            {method === "Elimination"
-              ? "Combine the equations to eliminate y."
-              : "Isolate y in the first equation, then substitute."}
-          </p>
-          <div className="sim112-operation">
-            <button
-              type="button"
-              draggable
-              aria-label={`Drag elimination operation ${activeOperationLabel}`}
-              onDragStart={startDrag}
-              onDragEnd={() => setDragging(false)}
-            >
-              {activeOperationLabel}
-            </button>
+          <main className="sim112-workspace">
+            <section className="sim112-elimination">
+              <header>
+                <b>1</b>
+                <h2>
+                  {method}{" "}
+                  {method === "Elimination"
+                    ? "(Add equations)"
+                    : "(Isolate and replace)"}
+                </h2>
+                <span>Active</span>
+              </header>
+              <p>
+                {method === "Elimination"
+                  ? "Combine the equations to eliminate y."
+                  : "Isolate y in the first equation, then substitute."}
+              </p>
+              <div className="sim112-operation">
+                <button
+                  type="button"
+                  draggable
+                  aria-label={`Drag elimination operation ${activeOperationLabel}`}
+                  onDragStart={startDrag}
+                  onDragEnd={() => setDragging(false)}
+                >
+                  {activeOperationLabel}
+                </button>
+                <label>
+                  Add equations
+                  <input
+                    aria-label="Apply elimination"
+                    type="checkbox"
+                    checked={combined}
+                    onChange={(event) => {
+                      setCombined(event.target.checked);
+                      act();
+                    }}
+                  />
+                  <span />
+                </label>
+              </div>
+              <section
+                className={`sim112-steps ${combined ? "complete" : ""}`}
+                aria-label="Elimination combination drop target"
+                onDragOver={(event) => event.preventDefault()}
+                onDrop={dropCombination}
+              >
+                {method === "Elimination" ? (
+                  <EliminationSteps
+                    problem={problem}
+                    firstScaled={firstScaled}
+                    secondScaled={secondScaled}
+                    combined={combined}
+                    solution={solution}
+                    stepView={stepView}
+                  />
+                ) : (
+                  <SubstitutionSteps
+                    problem={problem}
+                    solution={solution}
+                    combined={combined}
+                    stepView={stepView}
+                  />
+                )}
+              </section>
+              {invalidDrop && (
+                <em>
+                  Drop the current system's operation into the derivation.
+                </em>
+              )}
+              <section className="sim112-find-y">
+                <b>Substitute to find y</b>
+                <p>
+                  Substitute x = {solution.x} into {equationText(problem.first)}
+                  .
+                </p>
+                <strong>
+                  {problem.first.a * solution.x}{" "}
+                  {coefficient(problem.first.b, "y")} = {problem.first.c}
+                </strong>
+                <strong>
+                  {coefficient(problem.first.b, "y", true)} = {problem.first.c}{" "}
+                  − {problem.first.a * solution.x}
+                </strong>
+                <strong>
+                  y = <i>{solution.y}</i>
+                </strong>
+              </section>
+              <section className="sim112-checks">
+                <header>
+                  <b>Check both equations</b>
+                  <label>
+                    <input
+                      aria-label="Check both equations"
+                      type="checkbox"
+                      checked={checkBoth}
+                      onChange={(event) => {
+                        setCheckBoth(event.target.checked);
+                        act();
+                      }}
+                    />
+                    <span />
+                  </label>
+                </header>
+                <p>
+                  {equationText(problem.first)}{" "}
+                  <b>
+                    {problem.first.a * solution.x}{" "}
+                    {coefficient(problem.first.b * solution.y, "", false)} ={" "}
+                    {problem.first.c}
+                  </b>
+                  {checkBoth && (
+                    <span>
+                      <Check />
+                      True
+                    </span>
+                  )}
+                </p>
+                <p>
+                  {equationText(problem.second)}{" "}
+                  <b>
+                    {problem.second.a * solution.x}{" "}
+                    {coefficient(problem.second.b * solution.y, "", false)} ={" "}
+                    {problem.second.c}
+                  </b>
+                  {checkBoth && (
+                    <span>
+                      <Check />
+                      True
+                    </span>
+                  )}
+                </p>
+              </section>
+              <footer>
+                Solution:{" "}
+                <b>
+                  ({solution.x}, {solution.y})
+                </b>
+              </footer>
+            </section>
+
+            <section className="sim112-graph">
+              <header>
+                <b>2</b>
+                <h2>Graph (Intersection of lines)</h2>
+                <label>
+                  Show intersection
+                  <input
+                    aria-label="Show system intersection"
+                    type="checkbox"
+                    checked={showIntersection}
+                    onChange={(event) => {
+                      setShowIntersection(event.target.checked);
+                      act();
+                    }}
+                  />
+                  <span />
+                </label>
+              </header>
+              <SystemGraph
+                problem={problem}
+                solution={solution}
+                showIntersection={showIntersection}
+                showGrid={showGrid}
+                theme={theme}
+              />
+              <footer>
+                <b>About the graph</b>
+                <p>
+                  Each equation is a straight line. The solution is the
+                  intersection point satisfying both lines.
+                </p>
+              </footer>
+            </section>
+          </main>
+
+          <section className="sim112-view-controls">
             <label>
-              Add equations
-              <input
-                aria-label="Apply elimination"
-                type="checkbox"
-                checked={combined}
+              Show steps
+              <select
+                aria-label="Simultaneous equation steps"
+                value={stepView}
                 onChange={(event) => {
-                  setCombined(event.target.checked);
+                  setStepView(event.target.value);
                   act();
                 }}
-              />
-              <span />
+              >
+                <option>All steps</option>
+                <option>Key steps</option>
+                <option>Result only</option>
+              </select>
             </label>
-          </div>
-          <section
-            className={`sim112-steps ${combined ? "complete" : ""}`}
-            aria-label="Elimination combination drop target"
-            onDragOver={(event) => event.preventDefault()}
-            onDrop={dropCombination}
-          >
-            {method === "Elimination" ? (
-              <EliminationSteps
-                problem={problem}
-                firstScaled={firstScaled}
-                secondScaled={secondScaled}
-                combined={combined}
-                solution={solution}
-                stepView={stepView}
-              />
-            ) : (
-              <SubstitutionSteps
-                problem={problem}
-                solution={solution}
-                combined={combined}
-                stepView={stepView}
-              />
-            )}
-          </section>
-          {invalidDrop && (
-            <em>Drop the current system's operation into the derivation.</em>
-          )}
-          <section className="sim112-find-y">
-            <b>Substitute to find y</b>
-            <p>
-              Substitute x = {solution.x} into {equationText(problem.first)}.
-            </p>
-            <strong>
-              {problem.first.a * solution.x} {coefficient(problem.first.b, "y")}{" "}
-              = {problem.first.c}
-            </strong>
-            <strong>
-              {coefficient(problem.first.b, "y", true)} = {problem.first.c} −{" "}
-              {problem.first.a * solution.x}
-            </strong>
-            <strong>
-              y = <i>{solution.y}</i>
-            </strong>
-          </section>
-          <section className="sim112-checks">
-            <header>
-              <b>Check both equations</b>
-              <label>
-                <input
-                  aria-label="Check both equations"
-                  type="checkbox"
-                  checked={checkBoth}
-                  onChange={(event) => {
-                    setCheckBoth(event.target.checked);
+            <div>
+              Theme
+              {["blue", "purple", "violet", "green", "orange"].map((color) => (
+                <button
+                  type="button"
+                  aria-label={`Use ${color} graph theme`}
+                  className={`${color} ${theme === color ? "active" : ""}`}
+                  key={color}
+                  onClick={() => {
+                    setTheme(color);
                     act();
                   }}
                 />
-                <span />
-              </label>
-            </header>
-            <p>
-              {equationText(problem.first)}{" "}
-              <b>
-                {problem.first.a * solution.x}{" "}
-                {coefficient(problem.first.b * solution.y, "", false)} ={" "}
-                {problem.first.c}
-              </b>
-              {checkBoth && (
-                <span>
-                  <Check />
-                  True
-                </span>
-              )}
-            </p>
-            <p>
-              {equationText(problem.second)}{" "}
-              <b>
-                {problem.second.a * solution.x}{" "}
-                {coefficient(problem.second.b * solution.y, "", false)} ={" "}
-                {problem.second.c}
-              </b>
-              {checkBoth && (
-                <span>
-                  <Check />
-                  True
-                </span>
-              )}
-            </p>
-          </section>
-          <footer>
-            Solution:{" "}
-            <b>
-              ({solution.x}, {solution.y})
-            </b>
-          </footer>
-        </section>
-
-        <section className="sim112-graph">
-          <header>
-            <b>2</b>
-            <h2>Graph (Intersection of lines)</h2>
+              ))}
+            </div>
             <label>
-              Show intersection
+              Grid
               <input
-                aria-label="Show system intersection"
+                aria-label="Show simultaneous graph grid"
                 type="checkbox"
-                checked={showIntersection}
+                checked={showGrid}
                 onChange={(event) => {
-                  setShowIntersection(event.target.checked);
+                  setShowGrid(event.target.checked);
                   act();
                 }}
               />
               <span />
             </label>
-          </header>
-          <SystemGraph
-            problem={problem}
-            solution={solution}
-            showIntersection={showIntersection}
-            showGrid={showGrid}
-            theme={theme}
-          />
-          <footer>
-            <b>About the graph</b>
-            <p>
-              Each equation is a straight line. The solution is the intersection
-              point satisfying both lines.
-            </p>
-          </footer>
-        </section>
-      </main>
-
-      <section className="sim112-view-controls">
-        <label>
-          Show steps
-          <select
-            aria-label="Simultaneous equation steps"
-            value={stepView}
-            onChange={(event) => {
-              setStepView(event.target.value);
-              act();
-            }}
-          >
-            <option>All steps</option>
-            <option>Key steps</option>
-            <option>Result only</option>
-          </select>
-        </label>
-        <div>
-          Theme
-          {["blue", "purple", "violet", "green", "orange"].map((color) => (
-            <button
-              type="button"
-              aria-label={`Use ${color} graph theme`}
-              className={`${color} ${theme === color ? "active" : ""}`}
-              key={color}
-              onClick={() => {
-                setTheme(color);
-                act();
-              }}
-            />
-          ))}
-        </div>
-        <label>
-          Grid
-          <input
-            aria-label="Show simultaneous graph grid"
-            type="checkbox"
-            checked={showGrid}
-            onChange={(event) => {
-              setShowGrid(event.target.checked);
-              act();
-            }}
-          />
-          <span />
-        </label>
-        <button type="button" onClick={reset}>
-          <RotateCcw />
-          Reset all
-        </button>
-      </section>
+            <button type="button" onClick={() => reset()}>
+              <RotateCcw />
+              Reset all
+            </button>
+          </section>
+        </>
+      ) : (
+        <SimultaneousTabPanel112
+          tab={activeTab}
+          onChooseSystem={chooseSystem}
+        />
+      )}
 
       <section className="sim112-practice">
         <header>
@@ -733,6 +674,64 @@ export default function SimultaneousLinearEquationsTargetLesson112({
         <small>www.IndianServers.com · info@IndianServers.com</small>
       </footer>
     </div>
+  );
+}
+
+function SimultaneousTabPanel112({
+  tab,
+  onChooseSystem,
+}: {
+  tab: string;
+  onChooseSystem: (id: string) => void;
+}) {
+  const content: Record<string, { title: string; body: string }> = {
+    Explain: {
+      title: "One ordered pair, two equations",
+      body: "Elimination removes one variable. Substitution replaces an isolated variable with an equal expression.",
+    },
+    Examples: {
+      title: "Calculated systems",
+      body: "Load another system with its own elimination, ordered pair, checks, and graph.",
+    },
+    Formulas: {
+      title: "Determinant rule",
+      body: "A non-zero determinant gives a unique intersection and ordered-pair solution.",
+    },
+    "Know more": {
+      title: "Algebra and graph agree",
+      body: "The solution satisfies both equations and lies at the intersection of their lines.",
+    },
+  };
+  const selected = content[tab] ?? content.Explain;
+  return (
+    <main className="sim112-workspace sim112-tab-panel">
+      <small>SIMULTANEOUS LINEAR EQUATIONS</small>
+      <h2>{selected.title}</h2>
+      <p>{selected.body}</p>
+      {tab === "Examples" && (
+        <div>
+          {systems.map((system) => {
+            const result = solve(system);
+            return (
+              <button
+                type="button"
+                key={system.id}
+                onClick={() => onChooseSystem(system.id)}
+              >
+                <span>
+                  {equationText(system.first)}
+                  <br />
+                  {equationText(system.second)}
+                </span>
+                <b>
+                  ({result.x}, {result.y})
+                </b>
+              </button>
+            );
+          })}
+        </div>
+      )}
+    </main>
   );
 }
 

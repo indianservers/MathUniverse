@@ -1,0 +1,79 @@
+import { ArrowUpRight, BookOpen, Search } from "lucide-react";
+import { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
+import { advancedConceptLessons } from "../../modules/lessons/catalog/advanced/advancedConceptLessons";
+import { lessonCatalog } from "../../modules/lessons/catalog/lessonCatalog";
+import { schoolLessonCatalog } from "../../modules/lessons/catalog/school/schoolSyllabusCatalog";
+import type { LessonDefinition } from "../../modules/lessons/types";
+
+const totalLessonCount = lessonCatalog.length + schoolLessonCatalog.length + advancedConceptLessons.length;
+
+type StudioConfig = { name: string; description: string; terms: string[] };
+const studioConfigs: Record<string, StudioConfig> = {
+  all: { name: "Math Universe", description: "Jump from any interactive studio into a connected lesson, school pathway, or advanced concept.", terms: [""] },
+  algebra: { name: "Algebra Studio", description: "Expressions, equations, functions, polynomials, systems, and sequences.", terms: ["algebra", "expression", "equation", "polynomial", "quadratic", "sequence", "exponent", "logarithm"] },
+  calculus: { name: "Calculus Studio", description: "Limits, derivatives, integrals, motion, series, and differential equations.", terms: ["calculus", "limit", "derivative", "integral", "differential", "series", "continuity", "tangent"] },
+  geometry: { name: "Geometry Studio", description: "Shapes, constructions, triangles, circles, measurement, and coordinates.", terms: ["geometry", "triangle", "circle", "shape", "construction", "coordinate", "angle", "mensuration"] },
+  trigonometry: { name: "Trigonometry Studio", description: "Ratios, identities, triangles, unit-circle motion, and waves.", terms: ["trigonometry", "sine", "cosine", "tangent", "triangle", "identity", "wave"] },
+  statistics: { name: "Probability & Statistics Studio", description: "Data, distributions, probability, sampling, and inference.", terms: ["statistics", "probability", "data", "distribution", "sampling", "inference", "regression", "bayesian"] },
+  vectors: { name: "Vectors & 3D Studio", description: "Vectors, matrices, transformations, planes, and three-dimensional geometry.", terms: ["vector", "matrix", "matrices", "linear algebra", "three dimensional", "3d", "determinant", "plane"] },
+  sets: { name: "Set Theory & Relations Studio", description: "Sets, relations, functions, logic, and finite structures.", terms: ["set", "relation", "function", "logic", "discrete", "mapping", "proof"] },
+  numbers: { name: "Number Systems Studio", description: "Integers, rationals, real numbers, powers, roots, and arithmetic.", terms: ["number", "integer", "rational", "fraction", "decimal", "percentage", "power", "root", "arithmetic"] },
+  discrete: { name: "Discrete Mathematics Studio", description: "Combinatorics, graph theory, logic, algorithms, and applied mathematics.", terms: ["discrete", "combinatorics", "permutation", "combination", "graph theory", "logic", "set", "algorithm"] },
+  complex: { name: "Complex Numbers Studio", description: "Complex-plane geometry, polar form, roots, and transformations.", terms: ["complex", "imaginary", "polar", "root", "number"] },
+};
+
+export function configForPath(pathname: string) {
+  if (pathname === "/math-lab" || pathname.startsWith("/workspace") || pathname.startsWith("/engineering-math")) return studioConfigs.all;
+  if (pathname.startsWith("/math-lab/continued-fractions") || pathname.startsWith("/math-lab/famous-problems")) return studioConfigs.discrete;
+  if (pathname.startsWith("/math-lab/differential-equations") || pathname.startsWith("/math-lab/special-functions")) return studioConfigs.calculus;
+  if (pathname.startsWith("/math-lab/graphing-calculator") || pathname.startsWith("/math-lab/function-explorer") || pathname.startsWith("/math-lab/conics")) return studioConfigs.algebra;
+  if (pathname.startsWith("/math-lab/linear-algebra")) return studioConfigs.vectors;
+  if (pathname.startsWith("/math-lab/cas-solver")) return studioConfigs.algebra;
+  if (pathname.startsWith("/algebra")) return studioConfigs.algebra;
+  if (pathname.startsWith("/calculus")) return studioConfigs.calculus;
+  if (pathname.startsWith("/geometry") || pathname.startsWith("/shapes")) return studioConfigs.geometry;
+  if (pathname.startsWith("/trigonometry")) return studioConfigs.trigonometry;
+  if (pathname.startsWith("/statistics") || pathname.startsWith("/probability-statistics") || pathname.startsWith("/math-lab/probability") || pathname.startsWith("/math-lab/stats-inference")) return studioConfigs.statistics;
+  if (pathname.startsWith("/linear-algebra") || pathname.startsWith("/matrices") || pathname.startsWith("/matrix-sandbox") || pathname.startsWith("/math-lab/3d-graphing")) return studioConfigs.vectors;
+  if (pathname.startsWith("/set-theory")) return studioConfigs.sets;
+  if (pathname.startsWith("/number-systems")) return studioConfigs.numbers;
+  if (pathname.startsWith("/combinatorics") || pathname.startsWith("/graph-theory") || pathname.startsWith("/discrete-world") || pathname.startsWith("/mathematical-logic")) return studioConfigs.discrete;
+  if (pathname.startsWith("/complex-numbers")) return studioConfigs.complex;
+  return null;
+}
+
+type LessonLink = { key: string; title: string; route: string; track: string; description: string };
+function searchable(lesson: LessonDefinition) { return [lesson.title, lesson.topic, lesson.category, lesson.description, lesson.notes ?? ""].join(" ").toLowerCase(); }
+
+export function schoolStudioFor(lesson: { title: string; metadata: { conceptFamily: string; searchKeywords: string[] } }) {
+  const text = [lesson.title, lesson.metadata.conceptFamily, ...lesson.metadata.searchKeywords].join(" ").toLowerCase();
+  if (/calculus|limit|derivative|integral/.test(text)) return { label: "Calculus Studio", to: "/calculus" };
+  if (/trigonometry|sine|cosine|tangent/.test(text)) return { label: "Trigonometry Studio", to: "/trigonometry" };
+  if (/statistics|probability|data handling|sampling/.test(text)) return { label: "Probability & Statistics Studio", to: "/probability-statistics" };
+  if (/vector|matrix|determinant|three dimensional/.test(text)) return { label: "Vectors & 3D Studio", to: "/linear-algebra" };
+  if (/geometry|triangle|circle|mensuration|coordinate/.test(text)) return { label: "Geometry Studio", to: "/geometry" };
+  if (/set|relation|logic|reasoning/.test(text)) return { label: "Set Theory & Relations Studio", to: "/set-theory" };
+  if (/algebra|polynomial|equation|sequence/.test(text)) return { label: "Algebra Studio", to: "/algebra" };
+  return { label: "Number Systems Studio", to: "/number-systems" };
+}
+
+export function StudioLessonLinks({ pathname }: { pathname: string }) {
+  const config = configForPath(pathname);
+  const [query, setQuery] = useState("");
+  const lessons = useMemo<LessonLink[]>(() => {
+    if (!config) return [];
+    const terms = config.terms.map((term) => term.toLowerCase());
+    const interactive = lessonCatalog.filter((lesson) => terms.some((term) => searchable(lesson).includes(term))).map((lesson) => ({ key: `i-${lesson.id}`, title: lesson.title, route: lesson.route, track: lesson.category, description: lesson.topic }));
+    const school = schoolLessonCatalog.filter((lesson) => terms.some((term) => [lesson.title, lesson.metadata.conceptFamily, ...lesson.metadata.searchKeywords].join(" ").toLowerCase().includes(term))).map((lesson) => ({ key: `s-${lesson.id}`, title: lesson.title, route: lesson.route, track: `${lesson.metadata.academicLevel.replace("_", " ")} · School`, description: lesson.metadata.conceptFamily }));
+    const advanced = advancedConceptLessons.filter((lesson) => terms.some((term) => [lesson.title, lesson.strand, ...lesson.searchKeywords].join(" ").toLowerCase().includes(term))).map((lesson) => ({ key: `a-${lesson.id}`, title: lesson.title, route: lesson.route, track: `Advanced · ${lesson.strand}`, description: lesson.summary }));
+    return [...interactive, ...school, ...advanced].sort((a, b) => a.title.localeCompare(b.title));
+  }, [config]);
+  if (!config) return null;
+  const filtered = lessons.filter((lesson) => `${lesson.title} ${lesson.track} ${lesson.description}`.toLowerCase().includes(query.trim().toLowerCase()));
+  return <section className="studio-lesson-links" aria-label={`${config.name} lessons`}>
+    <div className="studio-lesson-links-header"><div><p className="studio-eyebrow"><BookOpen /> Lesson path</p><h2>Lessons for this studio</h2><p>{config.description}</p></div><Link className="action-secondary" to="/lessons">Browse all {totalLessonCount} lessons <ArrowUpRight /></Link></div>
+    <div className="studio-lesson-links-tools"><span>{lessons.length} relevant lessons</span><label><Search /><span className="sr-only">Search studio lessons</span><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Filter lessons…" /></label></div>
+    <div className="studio-lesson-links-list">{filtered.map((lesson) => <Link key={lesson.key} to={lesson.route} className="studio-lesson-link"><span><strong>{lesson.title}</strong><small>{lesson.track} · {lesson.description}</small></span><ArrowUpRight /></Link>)}{!filtered.length && <p className="studio-lesson-empty">No lessons match that filter.</p>}</div>
+  </section>;
+}

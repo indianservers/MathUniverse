@@ -9,18 +9,20 @@ import {
 } from "lucide-react";
 import { useEffect, useState, type DragEvent, type KeyboardEvent } from "react";
 import type { LessonAdapterProps } from "../types";
+import {
+  binomial96,
+  DOUBLE_BRACKETS_CHALLENGES_96,
+  doubleBracketsExpression96,
+  expandedExpression96,
+  fourProducts96,
+  isDoubleBracketsAnswer96,
+  substitutionProof96,
+  uncombinedExpression96,
+} from "./doubleBracketsLesson96Model";
 import "./DoubleBracketsTargetLesson96.css";
 
-type Challenge = { variable: string; first: number; second: number };
-const challenges: Challenge[] = [
-  { variable: "y", first: 4, second: 1 },
-  { variable: "a", first: 2, second: 5 },
-  { variable: "m", first: 3, second: 2 },
-];
-const bracket = (variable: string, constant: number) =>
-  `(${variable} + ${constant})`;
-const polynomial = (variable: string, first: number, second: number) =>
-  `${variable}² + ${first + second}${variable} + ${first * second}`;
+type DoubleBracketsTab96 =
+  "Interact" | "Learn" | "Examples" | "Formula" | "Practice";
 
 export default function DoubleBracketsTargetLesson96({
   resetToken,
@@ -34,7 +36,7 @@ export default function DoubleBracketsTargetLesson96({
   const [combineMiddle, setCombineMiddle] = useState(true);
   const [checkEnabled, setCheckEnabled] = useState(true);
   const [checked, setChecked] = useState(true);
-  const [tab, setTab] = useState("Interact");
+  const [tab, setTab] = useState<DoubleBracketsTab96>("Interact");
   const [dragging, setDragging] = useState("");
   const [middleDrops, setMiddleDrops] = useState<string[]>([]);
   const [challengeIndex, setChallengeIndex] = useState(0);
@@ -44,25 +46,30 @@ export default function DoubleBracketsTargetLesson96({
   const [actions, setActions] = useState(0);
   const middle = first + second;
   const constant = first * second;
-  const expression = `${bracket(variable, first)}${bracket(variable, second)}`;
-  const expanded = polynomial(variable, first, second);
-  const uncombined = `${variable}² + ${second}${variable} + ${first}${variable} + ${constant}`;
-  const originalValue = (checkValue + first) * (checkValue + second);
-  const expandedValue = checkValue ** 2 + middle * checkValue + constant;
-  const challenge = challenges[challengeIndex];
-  const challengeExpected = polynomial(
+  const products = fourProducts96(variable, first, second);
+  const expression = doubleBracketsExpression96(variable, first, second);
+  const expanded = expandedExpression96(variable, first, second);
+  const uncombined = uncombinedExpression96(variable, first, second);
+  const proof = substitutionProof96(first, second, checkValue);
+  const originalValue = proof.original;
+  const expandedValue = proof.expanded;
+  const challenge = DOUBLE_BRACKETS_CHALLENGES_96[challengeIndex];
+  const challengeExpected = expandedExpression96(
     challenge.variable,
     challenge.first,
     challenge.second,
   );
-  const challengeCorrect =
-    challengeAnswer.replace(/\s/g, "").toLowerCase() ===
-    challengeExpected.replace(/\s/g, "").toLowerCase();
+  const challengeCorrect = isDoubleBracketsAnswer96(
+    challengeAnswer,
+    challenge.variable,
+    challenge.first,
+    challenge.second,
+  );
   const act = () => {
     setActions((count) => count + 1);
     onInteraction();
   };
-  const reset = () => {
+  const reset = (notify = true) => {
     setVariable("x");
     setFirst(2);
     setSecond(3);
@@ -79,10 +86,10 @@ export default function DoubleBracketsTargetLesson96({
     setChallengeChecked(true);
     setShowSolution(false);
     setActions(0);
-    onInteraction();
+    if (notify) onInteraction();
   };
   useEffect(() => {
-    reset();
+    reset(false);
   }, [resetToken]); // eslint-disable-line react-hooks/exhaustive-deps
   const updateFirst = (next: number) => {
     setFirst(Math.max(1, Math.min(6, next)));
@@ -112,10 +119,12 @@ export default function DoubleBracketsTargetLesson96({
     act();
   };
   const nextChallenge = () => {
-    const next = (challengeIndex + 1) % challenges.length;
-    const item = challenges[next];
+    const next = (challengeIndex + 1) % DOUBLE_BRACKETS_CHALLENGES_96.length;
+    const item = DOUBLE_BRACKETS_CHALLENGES_96[next];
     setChallengeIndex(next);
-    setChallengeAnswer(polynomial(item.variable, item.first, item.second));
+    setChallengeAnswer(
+      expandedExpression96(item.variable, item.first, item.second),
+    );
     setChallengeChecked(true);
     setShowSolution(false);
     act();
@@ -132,7 +141,7 @@ export default function DoubleBracketsTargetLesson96({
       className="double96-page"
       data-testid="algebra-mockup-0153"
       data-dedicated-lesson="96"
-      data-object-model="draggable-four-product-binomial-area-middle-term-combination-substitution-proof-graded-challenge-model"
+      data-object-model="dedicated-tested-draggable-four-product-binomial-area-middle-term-combination-substitution-proof-graded-challenge-and-functional-learning-tabs-model"
       data-variable={variable}
       data-first={first}
       data-second={second}
@@ -144,7 +153,7 @@ export default function DoubleBracketsTargetLesson96({
       data-constant={constant}
       data-original-value={originalValue}
       data-expanded-value={expandedValue}
-      data-equivalent={originalValue === expandedValue}
+      data-equivalent={proof.equivalent}
       data-show-products={showProducts}
       data-combine-middle={combineMiddle}
       data-check-enabled={checkEnabled}
@@ -202,7 +211,7 @@ export default function DoubleBracketsTargetLesson96({
               className={tab === name ? "active" : ""}
               key={name}
               onClick={() => {
-                setTab(name);
+                setTab(name as DoubleBracketsTab96);
                 act();
               }}
             >
@@ -211,7 +220,15 @@ export default function DoubleBracketsTargetLesson96({
           ),
         )}
       </nav>
-      <main className="double96-layout">
+      {tab !== "Interact" && (
+        <DoubleBracketsTabPanel96
+          tab={tab}
+          variable={variable}
+          first={first}
+          second={second}
+        />
+      )}
+      <main className={`double96-layout ${tab === "Interact" ? "" : "hidden"}`}>
         <section className="double96-area">
           <header>
             <h2>Area Tiles Model</h2>
@@ -235,8 +252,7 @@ export default function DoubleBracketsTargetLesson96({
                 onDragStart={(event) => startDrag(event, "second")}
                 onDragEnd={() => setDragging("")}
               >
-                {second}
-                {variable}
+                {products.firstMiddle}
               </button>
               <button
                 type="button"
@@ -245,8 +261,7 @@ export default function DoubleBracketsTargetLesson96({
                 onDragStart={(event) => startDrag(event, "first")}
                 onDragEnd={() => setDragging("")}
               >
-                {first}
-                {variable}
+                {products.secondMiddle}
               </button>
               <div
                 className="double96-units"
@@ -293,7 +308,11 @@ export default function DoubleBracketsTargetLesson96({
         <aside className="double96-builder">
           <header>
             <h2>Build your expression</h2>
-            <button type="button" aria-label="Reset expression" onClick={reset}>
+            <button
+              type="button"
+              aria-label="Reset expression"
+              onClick={() => reset()}
+            >
               <RotateCcw />
             </button>
           </header>
@@ -521,8 +540,8 @@ export default function DoubleBracketsTargetLesson96({
           <h2>Try it yourself</h2>
           <p>Expand using area tiles.</p>
           <strong>
-            {bracket(challenge.variable, challenge.first)}
-            {bracket(challenge.variable, challenge.second)}
+            {binomial96(challenge.variable, challenge.first)}
+            {binomial96(challenge.variable, challenge.second)}
           </strong>
           <label>
             Your answer
@@ -629,5 +648,46 @@ function Toggle({
         <b />
       </i>
     </button>
+  );
+}
+
+function DoubleBracketsTabPanel96({
+  tab,
+  variable,
+  first,
+  second,
+}: {
+  tab: Exclude<DoubleBracketsTab96, "Interact">;
+  variable: string;
+  first: number;
+  second: number;
+}) {
+  const expression = doubleBracketsExpression96(variable, first, second);
+  const result = expandedExpression96(variable, first, second);
+  const content =
+    tab === "Learn"
+      ? [
+          "Multiply every term in the first bracket by every term in the second bracket.",
+          "Combine the two like middle terms after recording all four products.",
+        ]
+      : tab === "Examples"
+        ? DOUBLE_BRACKETS_CHALLENGES_96.map(
+            (item) =>
+              `${doubleBracketsExpression96(item.variable, item.first, item.second)} = ${expandedExpression96(item.variable, item.first, item.second)}`,
+          )
+        : tab === "Formula"
+          ? ["(a + b)(c + d) = ac + ad + bc + bd", `${expression} = ${result}`]
+          : DOUBLE_BRACKETS_CHALLENGES_96.map(
+              (item) =>
+                `Expand ${doubleBracketsExpression96(item.variable, item.first, item.second)}`,
+            );
+  return (
+    <section className="double96-tab-panel" data-active-learning-tab={tab}>
+      <h2>{tab}</h2>
+      <strong>{result}</strong>
+      {content.map((item) => (
+        <p key={item}>{item}</p>
+      ))}
+    </section>
   );
 }

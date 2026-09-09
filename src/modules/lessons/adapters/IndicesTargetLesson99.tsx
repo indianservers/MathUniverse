@@ -1,15 +1,34 @@
-import { ArrowDown, ArrowLeft, ArrowRight, Check, CheckCircle2, RefreshCw, RotateCcw, Share2, XCircle } from "lucide-react";
+import {
+  ArrowDown,
+  ArrowLeft,
+  ArrowRight,
+  Check,
+  CheckCircle2,
+  RefreshCw,
+  RotateCcw,
+  Share2,
+  XCircle,
+} from "lucide-react";
 import { useEffect, useState, type DragEvent, type KeyboardEvent } from "react";
 import type { LessonAdapterProps } from "../types";
+import {
+  exponentLawValues99,
+  isIndexFactorSource99,
+  isPowerAnswer99,
+  power99 as power,
+  productOfPowers99,
+  repeatedFactors99 as factorString,
+  superscript99 as superscript,
+} from "./indicesLesson99Model";
 import "./IndicesTargetLesson99.css";
 
-const superscriptDigits: Record<string, string> = { "0": "⁰", "1": "¹", "2": "²", "3": "³", "4": "⁴", "5": "⁵", "6": "⁶", "7": "⁷", "8": "⁸", "9": "⁹", "-": "⁻" };
-const superscript = (value: number) => String(value).split("").map((digit) => superscriptDigits[digit] ?? digit).join("");
-const power = (base: string, exponent: number) => `${base}${superscript(exponent)}`;
-const factorString = (base: string, exponent: number) => Array.from({ length: exponent }, () => base).join(" × ");
-const normalize = (value: string) => value.toLowerCase().replace(/\s/g, "").replace(/\^/g, "");
+type IndicesTab99 =
+  "Interact" | "Explain" | "Examples" | "Practice" | "Formulas" | "Know more";
 
-export default function IndicesTargetLesson99({ resetToken, onInteraction }: LessonAdapterProps) {
+export default function IndicesTargetLesson99({
+  resetToken,
+  onInteraction,
+}: LessonAdapterProps) {
   const [base, setBase] = useState("x");
   const [firstExponent, setFirstExponent] = useState(3);
   const [secondExponent, setSecondExponent] = useState(2);
@@ -17,41 +36,676 @@ export default function IndicesTargetLesson99({ resetToken, onInteraction }: Les
   const [addExponents, setAddExponents] = useState(true);
   const [checkValue, setCheckValue] = useState(4);
   const [checked, setChecked] = useState(true);
-  const [tab, setTab] = useState("Interact");
+  const [tab, setTab] = useState<IndicesTab99>("Interact");
   const [dragging, setDragging] = useState("");
   const [factorDrops, setFactorDrops] = useState<string[]>([]);
   const [practiceAnswer, setPracticeAnswer] = useState("y⁷");
   const [practiceChecked, setPracticeChecked] = useState(true);
   const [shareCount, setShareCount] = useState(0);
   const [actions, setActions] = useState(0);
-  const combinedExponent = addExponents ? firstExponent + secondExponent : firstExponent;
-  const leftValue = checkValue ** firstExponent * checkValue ** secondExponent;
-  const rightValue = checkValue ** (firstExponent + secondExponent);
-  const equal = leftValue === rightValue;
+  const product = productOfPowers99(base, firstExponent, secondExponent);
+  const combinedExponent = product.combinedExponent;
+  const proof = exponentLawValues99(checkValue, firstExponent, secondExponent);
+  const leftValue = proof.left;
+  const rightValue = proof.right;
+  const equal = proof.equal;
   const practiceExpected = "y⁷";
-  const practiceCorrect = [normalize(practiceExpected), "y7"].includes(normalize(practiceAnswer));
-  const act = () => { setActions((count) => count + 1); onInteraction(); };
-  const reset = () => { setBase("x"); setFirstExponent(3); setSecondExponent(2); setShowFactors(true); setAddExponents(true); setCheckValue(4); setChecked(true); setTab("Interact"); setDragging(""); setFactorDrops([]); setPracticeAnswer("y⁷"); setPracticeChecked(true); setShareCount(0); setActions(0); onInteraction(); };
-  useEffect(() => { reset(); }, [resetToken]); // eslint-disable-line react-hooks/exhaustive-deps
-  const updateFirst = (value: number) => { setFirstExponent(Math.max(1, Math.min(6, value))); setChecked(false); setFactorDrops([]); act(); };
-  const updateSecond = (value: number) => { setSecondExponent(Math.max(1, Math.min(6, value))); setChecked(false); setFactorDrops([]); act(); };
-  const startDrag = (event: DragEvent<HTMLButtonElement>, source: string) => { event.dataTransfer.setData("text/index-factor", source); setDragging(source); };
-  const dropFactor = (event: DragEvent<HTMLElement>) => { event.preventDefault(); const source = event.dataTransfer.getData("text/index-factor"); if (!source) return; setFactorDrops((current) => current.includes(source) ? current : [...current, source]); setDragging(""); setAddExponents(true); act(); };
-  const gradePractice = () => { setPracticeChecked(true); act(); };
-  const handlePracticeKey = (event: KeyboardEvent<HTMLInputElement>) => { if (event.key === "Enter") gradePractice(); };
+  const practiceCorrect = isPowerAnswer99(practiceAnswer, "y", 7);
+  const act = () => {
+    setActions((count) => count + 1);
+    onInteraction();
+  };
+  const reset = (notify = true) => {
+    setBase("x");
+    setFirstExponent(3);
+    setSecondExponent(2);
+    setShowFactors(true);
+    setAddExponents(true);
+    setCheckValue(4);
+    setChecked(true);
+    setTab("Interact");
+    setDragging("");
+    setFactorDrops([]);
+    setPracticeAnswer("y⁷");
+    setPracticeChecked(true);
+    setShareCount(0);
+    setActions(0);
+    if (notify) onInteraction();
+  };
+  useEffect(() => {
+    reset(false);
+  }, [resetToken]); // eslint-disable-line react-hooks/exhaustive-deps
+  const updateFirst = (value: number) => {
+    setFirstExponent(Math.max(1, Math.min(6, value)));
+    setChecked(false);
+    setFactorDrops([]);
+    act();
+  };
+  const updateSecond = (value: number) => {
+    setSecondExponent(Math.max(1, Math.min(6, value)));
+    setChecked(false);
+    setFactorDrops([]);
+    act();
+  };
+  const startDrag = (event: DragEvent<HTMLButtonElement>, source: string) => {
+    event.dataTransfer.setData("text/index-factor", source);
+    setDragging(source);
+  };
+  const dropFactor = (event: DragEvent<HTMLElement>) => {
+    event.preventDefault();
+    const source = event.dataTransfer.getData("text/index-factor");
+    if (!isIndexFactorSource99(source, firstExponent, secondExponent)) {
+      setDragging("");
+      return;
+    }
+    setFactorDrops((current) =>
+      current.includes(source) ? current : [...current, source],
+    );
+    setDragging("");
+    setAddExponents(true);
+    act();
+  };
+  const gradePractice = () => {
+    setPracticeChecked(true);
+    act();
+  };
+  const handlePracticeKey = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") gradePractice();
+  };
+  const shareLesson = async () => {
+    const url = window.location.href;
+    if (navigator.share) {
+      await navigator.share({ title: "Indices", url });
+    } else if (navigator.clipboard) {
+      await navigator.clipboard.writeText(url);
+    }
+    setShareCount((count) => count + 1);
+    act();
+  };
 
-  return <div className="indices99-page" data-testid="algebra-mockup-0156" data-dedicated-lesson="99" data-object-model="editable-same-base-repeated-factor-draggable-product-of-powers-numeric-equality-graded-practice-model" data-base={base} data-first-exponent={firstExponent} data-second-exponent={secondExponent} data-combined-exponent={combinedExponent} data-first-power={power(base, firstExponent)} data-second-power={power(base, secondExponent)} data-result-power={power(base, combinedExponent)} data-left-value={leftValue} data-right-value={rightValue} data-equal={equal} data-check-value={checkValue} data-checked={checked} data-show-factors={showFactors} data-add-exponents={addExponents} data-tab={tab} data-dragging={dragging} data-factor-drops={factorDrops.join(",")} data-practice-answer={practiceExpected} data-practice-correct={practiceChecked && practiceCorrect} data-share-count={shareCount} data-actions={actions}>
-    <nav className="indices99-breadcrumb"><a href="/">Home</a><span>&gt;</span><a href="/lessons">Lessons</a><span>&gt;</span><a href="/lessons/algebra">Algebra</a><span>&gt;</span><a href="/lessons/algebra">Expressions and Manipulation</a><span>&gt;</span><b>Indices</b></nav>
-    <header className="indices99-intro"><h1>Indices</h1><p><b>Exponent law:</b> When bases match, add the exponents.</p><nav><b>Intermediate</b><b>Algebra</b><b>Exponent law</b><b>6-10 min</b></nav><aside><button type="button" onClick={() => { setShareCount((count) => count + 1); act(); }}><Share2 />Share</button><button type="button" onClick={reset}><RotateCcw />Reset</button><a href="/workspace">Workspace</a></aside></header>
-    <nav className="indices99-tabs">{["Interact", "Explain", "Examples", "Practice", "Formulas", "Know more"].map((name) => <button type="button" className={tab === name ? "active" : ""} key={name} onClick={() => { setTab(name); act(); }}>{name}</button>)}</nav>
-    <main className="indices99-main"><section className="indices99-lab"><small>EXPONENT LAW LAB</small><h2>Visualize the law with repeated multiplication</h2><p>Powers show repeated multiplication. When bases match, add the exponents.</p><div className="indices99-powers"><PowerGroup name="First power" tone="blue" base={base} exponent={firstExponent} showFactors={showFactors} onDragStart={startDrag} /><b>×</b><PowerGroup name="Second power" tone="purple" base={base} exponent={secondExponent} showFactors={showFactors} onDragStart={startDrag} /></div><div className="indices99-base-row"><span>Base:&nbsp; <b>{base}</b></span><strong>Same base: {base} <Check /></strong><span>Base:&nbsp; <b>{base}</b></span></div><div className="indices99-multiply"><ArrowDown /><b>Multiply</b></div><section className="indices99-combined" onDragOver={(event) => event.preventDefault()} onDrop={dropFactor}><h3>Combined power <i>{firstExponent + secondExponent}</i></h3><div>{Array.from({ length: firstExponent + secondExponent }, (_, index) => <span key={index}><button type="button" aria-label={`Combined factor ${index + 1}`}>{base}</button>{index < firstExponent + secondExponent - 1 && <b>×</b>}</span>)}</div><p>{showFactors ? factorString(base, firstExponent + secondExponent) : power(base, firstExponent + secondExponent)} &nbsp;&nbsp; = &nbsp;&nbsp; {power(base, firstExponent + secondExponent)}</p></section><footer><span>{power(base, firstExponent)} &nbsp;×&nbsp; {power(base, secondExponent)} &nbsp;=&nbsp; <b>{base}<sup>{firstExponent}+{secondExponent}</sup></b> &nbsp;=&nbsp; {power(base, firstExponent + secondExponent)}</span></footer></section>
-      <aside className="indices99-controls"><small>CONTROLS</small><label>Base (must match)<select aria-label="Base" value={base} onChange={(event) => { setBase(event.target.value); setChecked(false); setFactorDrops([]); act(); }}>{["x", "y", "a", "m"].map((value) => <option key={value}>{value}</option>)}</select></label><Stepper label="First exponent" value={firstExponent} onChange={updateFirst} /><Stepper label="Second exponent" value={secondExponent} onChange={updateSecond} /><Toggle label="Show repeated factors" detail="Visualize as linked factors" value={showFactors} onToggle={() => { setShowFactors((current) => !current); act(); }} /><Toggle label="Add exponents" detail="Combine exponents" value={addExponents} onToggle={() => { setAddExponents((current) => !current); act(); }} featured /><section><small>CHECK VALUE</small><Stepper label={`Check a value for ${base}`} value={checkValue} onChange={(value) => { setCheckValue(Math.max(-9, Math.min(9, value))); setChecked(false); act(); }} /><button type="button" onClick={() => { setChecked(true); act(); }}>Check value</button><button type="button" aria-label="Reset check value" onClick={() => { setCheckValue(4); setChecked(false); act(); }}><RefreshCw /></button></section><article><small>RESULT</small><h3>{power(base, firstExponent)} &nbsp;×&nbsp; {power(base, secondExponent)} &nbsp;=&nbsp; {power(base, firstExponent + secondExponent)}</h3><p>At {base} = {checkValue}</p><div><span>{checkValue}{superscript(firstExponent)} × {checkValue}{superscript(secondExponent)}<br />{checkValue ** firstExponent} × {checkValue ** secondExponent}<br />= {leftValue}</span><span>{checkValue}{superscript(firstExponent + secondExponent)}<br /><br />= {rightValue}</span></div><footer className={checked && equal ? "equal" : "pending"}>{checked ? equal ? "Equal ✓" : "Not equal" : "Check to verify"}</footer></article></aside>
-    </main><section className="indices99-notes"><article><small>GUIDED STEPS</small><ol><li><i>1</i><b>Check the base</b><p>Both powers have the same base {base}.</p><CheckCircle2 /></li><li><i>2</i><b>Add the exponents</b><p>{firstExponent} + {secondExponent} = {firstExponent + secondExponent}</p></li><li><i>3</i><b>Write the result</b><p>{power(base, firstExponent)} × {power(base, secondExponent)} = {power(base, firstExponent + secondExponent)}</p></li></ol><footer>This works for any value of {base}.</footer></article><article><small>THE LAW</small><p>If a and b are whole numbers,</p><strong><span>x<sup>a</sup> × x<sup>b</sup> = x<sup>a+b</sup></span></strong><p>Add exponents when the bases are the same.</p><p>Example</p><b>x⁷ × x⁴ = x¹¹</b></article><article><small>IMPORTANT RULE</small><h3>Add exponents only when bases match.</h3><p>Different bases cannot be combined.</p><b>Correct:</b><strong>x³ × x² = x⁵</strong><b className="wrong">Not allowed:</b><strong>2³ × 3² ≠ 6⁵ <XCircle /></strong><footer>You can't change the base.</footer></article></section>
-    <section className="indices99-practice"><small>PRACTICE: YOUR TURN</small><p>Simplify using the law. Add the exponents.</p><article><label>Simplify<strong>y⁴ × y³</strong><span>What is the equivalent single power?</span><input aria-label="Practice answer" value={practiceAnswer} onChange={(event) => { setPracticeAnswer(event.target.value); setPracticeChecked(false); act(); }} onKeyDown={handlePracticeKey} />{practiceChecked && practiceCorrect && <Check />}</label><div><button type="button" onClick={gradePractice}>Check answer</button><button type="button" onClick={() => { setPracticeAnswer(""); setPracticeChecked(false); act(); }}>Reset</button></div></article><aside><h3>Solution&nbsp;&nbsp;&nbsp;&nbsp; y⁴ × y³ = y<sup>4+3</sup> = y⁷</h3><p>Check with y = 2</p><div><span>2⁴ × 2³<br />16 × 8<br />= 128</span><span>2⁷<br /><br />= 128</span></div><footer className={practiceChecked && practiceCorrect ? "correct" : "pending"}>{practiceChecked ? practiceCorrect ? "Correct! ✓" : "Try again" : "Check your answer"}</footer></aside></section>
-    <nav className="indices99-navigation"><a href="/lessons/algebra/98-algebraic-fractions"><ArrowLeft /><span>Previous<b>Algebraic Fractions</b></span></a><a href="/lessons/algebra/100-negative-indices"><span>Next<b>Negative indices</b></span><ArrowRight /></a></nav>
-  </div>;
+  return (
+    <div
+      className="indices99-page"
+      data-testid="algebra-mockup-0156"
+      data-dedicated-lesson="99"
+      data-object-model="dedicated-tested-editable-same-base-repeated-factor-validated-draggable-product-of-powers-numeric-equality-graded-practice-functional-tabs-and-native-sharing-model"
+      data-base={base}
+      data-first-exponent={firstExponent}
+      data-second-exponent={secondExponent}
+      data-combined-exponent={combinedExponent}
+      data-first-power={power(base, firstExponent)}
+      data-second-power={power(base, secondExponent)}
+      data-result-power={power(base, combinedExponent)}
+      data-left-value={leftValue}
+      data-right-value={rightValue}
+      data-equal={equal}
+      data-check-value={checkValue}
+      data-checked={checked}
+      data-show-factors={showFactors}
+      data-add-exponents={addExponents}
+      data-tab={tab}
+      data-dragging={dragging}
+      data-factor-drops={factorDrops.join(",")}
+      data-practice-answer={practiceExpected}
+      data-practice-correct={practiceChecked && practiceCorrect}
+      data-share-count={shareCount}
+      data-actions={actions}
+    >
+      <nav className="indices99-breadcrumb">
+        <a href="/">Home</a>
+        <span>&gt;</span>
+        <a href="/lessons">Lessons</a>
+        <span>&gt;</span>
+        <a href="/lessons/algebra">Algebra</a>
+        <span>&gt;</span>
+        <a href="/lessons/algebra">Expressions and Manipulation</a>
+        <span>&gt;</span>
+        <b>Indices</b>
+      </nav>
+      <header className="indices99-intro">
+        <h1>Indices</h1>
+        <p>
+          <b>Exponent law:</b> When bases match, add the exponents.
+        </p>
+        <nav>
+          <b>Intermediate</b>
+          <b>Algebra</b>
+          <b>Exponent law</b>
+          <b>6-10 min</b>
+        </nav>
+        <aside>
+          <button type="button" onClick={shareLesson}>
+            <Share2 />
+            Share
+          </button>
+          <button type="button" onClick={() => reset()}>
+            <RotateCcw />
+            Reset
+          </button>
+          <a href="/workspace">Workspace</a>
+        </aside>
+      </header>
+      <nav className="indices99-tabs">
+        {[
+          "Interact",
+          "Explain",
+          "Examples",
+          "Practice",
+          "Formulas",
+          "Know more",
+        ].map((name) => (
+          <button
+            type="button"
+            className={tab === name ? "active" : ""}
+            key={name}
+            onClick={() => {
+              setTab(name as IndicesTab99);
+              act();
+            }}
+          >
+            {name}
+          </button>
+        ))}
+      </nav>
+      {tab !== "Interact" && (
+        <IndicesTabPanel99
+          tab={tab}
+          base={base}
+          firstExponent={firstExponent}
+          secondExponent={secondExponent}
+        />
+      )}
+      <main className="indices99-main">
+        <section className="indices99-lab">
+          <small>EXPONENT LAW LAB</small>
+          <h2>Visualize the law with repeated multiplication</h2>
+          <p>
+            Powers show repeated multiplication. When bases match, add the
+            exponents.
+          </p>
+          <div className="indices99-powers">
+            <PowerGroup
+              name="First power"
+              tone="blue"
+              base={base}
+              exponent={firstExponent}
+              showFactors={showFactors}
+              onDragStart={startDrag}
+            />
+            <b>×</b>
+            <PowerGroup
+              name="Second power"
+              tone="purple"
+              base={base}
+              exponent={secondExponent}
+              showFactors={showFactors}
+              onDragStart={startDrag}
+            />
+          </div>
+          <div className="indices99-base-row">
+            <span>
+              Base:&nbsp; <b>{base}</b>
+            </span>
+            <strong>
+              Same base: {base} <Check />
+            </strong>
+            <span>
+              Base:&nbsp; <b>{base}</b>
+            </span>
+          </div>
+          <div className="indices99-multiply">
+            <ArrowDown />
+            <b>Multiply</b>
+          </div>
+          <section
+            className="indices99-combined"
+            onDragOver={(event) => event.preventDefault()}
+            onDrop={dropFactor}
+          >
+            <h3>
+              Combined power <i>{addExponents ? combinedExponent : "?"}</i>
+            </h3>
+            <div>
+              {Array.from(
+                { length: firstExponent + secondExponent },
+                (_, index) => (
+                  <span key={index}>
+                    <button
+                      type="button"
+                      aria-label={`Combined factor ${index + 1}`}
+                    >
+                      {base}
+                    </button>
+                    {index < firstExponent + secondExponent - 1 && <b>×</b>}
+                  </span>
+                ),
+              )}
+            </div>
+            <p>
+              {showFactors
+                ? factorString(base, combinedExponent)
+                : `${product.first} × ${product.second}`}{" "}
+              &nbsp;&nbsp; = &nbsp;&nbsp;{" "}
+              {addExponents ? product.result : "Add exponents to combine"}
+            </p>
+          </section>
+          <footer>
+            <span>
+              {power(base, firstExponent)} &nbsp;×&nbsp;{" "}
+              {power(base, secondExponent)} &nbsp;=&nbsp;{" "}
+              <b>
+                {base}
+                <sup>
+                  {firstExponent}+{secondExponent}
+                </sup>
+              </b>{" "}
+              &nbsp;=&nbsp; {addExponents ? product.result : "not combined"}
+            </span>
+          </footer>
+        </section>
+        <aside className="indices99-controls">
+          <small>CONTROLS</small>
+          <label>
+            Base (must match)
+            <select
+              aria-label="Base"
+              value={base}
+              onChange={(event) => {
+                setBase(event.target.value);
+                setChecked(false);
+                setFactorDrops([]);
+                act();
+              }}
+            >
+              {["x", "y", "a", "m"].map((value) => (
+                <option key={value}>{value}</option>
+              ))}
+            </select>
+          </label>
+          <Stepper
+            label="First exponent"
+            value={firstExponent}
+            onChange={updateFirst}
+          />
+          <Stepper
+            label="Second exponent"
+            value={secondExponent}
+            onChange={updateSecond}
+          />
+          <Toggle
+            label="Show repeated factors"
+            detail="Visualize as linked factors"
+            value={showFactors}
+            onToggle={() => {
+              setShowFactors((current) => !current);
+              act();
+            }}
+          />
+          <Toggle
+            label="Add exponents"
+            detail="Combine exponents"
+            value={addExponents}
+            onToggle={() => {
+              setAddExponents((current) => !current);
+              act();
+            }}
+            featured
+          />
+          <section>
+            <small>CHECK VALUE</small>
+            <Stepper
+              label={`Check a value for ${base}`}
+              value={checkValue}
+              onChange={(value) => {
+                setCheckValue(Math.max(-9, Math.min(9, value)));
+                setChecked(false);
+                act();
+              }}
+            />
+            <button
+              type="button"
+              onClick={() => {
+                setChecked(true);
+                act();
+              }}
+            >
+              Check value
+            </button>
+            <button
+              type="button"
+              aria-label="Reset check value"
+              onClick={() => {
+                setCheckValue(4);
+                setChecked(false);
+                act();
+              }}
+            >
+              <RefreshCw />
+            </button>
+          </section>
+          <article>
+            <small>RESULT</small>
+            <h3>
+              {power(base, firstExponent)} &nbsp;×&nbsp;{" "}
+              {power(base, secondExponent)} &nbsp;=&nbsp;{" "}
+              {addExponents ? product.result : "waiting"}
+            </h3>
+            <p>
+              At {base} = {checkValue}
+            </p>
+            <div>
+              <span>
+                {checkValue}
+                {superscript(firstExponent)} × {checkValue}
+                {superscript(secondExponent)}
+                <br />
+                {checkValue ** firstExponent} × {checkValue ** secondExponent}
+                <br />= {leftValue}
+              </span>
+              <span>
+                {checkValue}
+                {superscript(firstExponent + secondExponent)}
+                <br />
+                <br />= {rightValue}
+              </span>
+            </div>
+            <footer className={checked && equal ? "equal" : "pending"}>
+              {checked ? (equal ? "Equal ✓" : "Not equal") : "Check to verify"}
+            </footer>
+          </article>
+        </aside>
+      </main>
+      <section className="indices99-notes">
+        <article>
+          <small>GUIDED STEPS</small>
+          <ol>
+            <li>
+              <i>1</i>
+              <b>Check the base</b>
+              <p>Both powers have the same base {base}.</p>
+              <CheckCircle2 />
+            </li>
+            <li>
+              <i>2</i>
+              <b>Add the exponents</b>
+              <p>
+                {firstExponent} + {secondExponent} ={" "}
+                {firstExponent + secondExponent}
+              </p>
+            </li>
+            <li>
+              <i>3</i>
+              <b>Write the result</b>
+              <p>
+                {power(base, firstExponent)} × {power(base, secondExponent)} ={" "}
+                {power(base, firstExponent + secondExponent)}
+              </p>
+            </li>
+          </ol>
+          <footer>This works for any value of {base}.</footer>
+        </article>
+        <article>
+          <small>THE LAW</small>
+          <p>If a and b are whole numbers,</p>
+          <strong>
+            <span>
+              x<sup>a</sup> × x<sup>b</sup> = x<sup>a+b</sup>
+            </span>
+          </strong>
+          <p>Add exponents when the bases are the same.</p>
+          <p>Example</p>
+          <b>x⁷ × x⁴ = x¹¹</b>
+        </article>
+        <article>
+          <small>IMPORTANT RULE</small>
+          <h3>Add exponents only when bases match.</h3>
+          <p>Different bases cannot be combined.</p>
+          <b>Correct:</b>
+          <strong>x³ × x² = x⁵</strong>
+          <b className="wrong">Not allowed:</b>
+          <strong>
+            2³ × 3² ≠ 6⁵ <XCircle />
+          </strong>
+          <footer>You can't change the base.</footer>
+        </article>
+      </section>
+      <section className="indices99-practice">
+        <small>PRACTICE: YOUR TURN</small>
+        <p>Simplify using the law. Add the exponents.</p>
+        <article>
+          <label>
+            Simplify<strong>y⁴ × y³</strong>
+            <span>What is the equivalent single power?</span>
+            <input
+              aria-label="Practice answer"
+              value={practiceAnswer}
+              onChange={(event) => {
+                setPracticeAnswer(event.target.value);
+                setPracticeChecked(false);
+                act();
+              }}
+              onKeyDown={handlePracticeKey}
+            />
+            {practiceChecked && practiceCorrect && <Check />}
+          </label>
+          <div>
+            <button type="button" onClick={gradePractice}>
+              Check answer
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setPracticeAnswer("");
+                setPracticeChecked(false);
+                act();
+              }}
+            >
+              Reset
+            </button>
+          </div>
+        </article>
+        <aside>
+          <h3>
+            Solution&nbsp;&nbsp;&nbsp;&nbsp; y⁴ × y³ = y<sup>4+3</sup> = y⁷
+          </h3>
+          <p>Check with y = 2</p>
+          <div>
+            <span>
+              2⁴ × 2³
+              <br />
+              16 × 8<br />= 128
+            </span>
+            <span>
+              2⁷
+              <br />
+              <br />= 128
+            </span>
+          </div>
+          <footer
+            className={
+              practiceChecked && practiceCorrect ? "correct" : "pending"
+            }
+          >
+            {practiceChecked
+              ? practiceCorrect
+                ? "Correct! ✓"
+                : "Try again"
+              : "Check your answer"}
+          </footer>
+        </aside>
+      </section>
+      <nav className="indices99-navigation">
+        <a href="/lessons/algebra/98-algebraic-fractions">
+          <ArrowLeft />
+          <span>
+            Previous<b>Algebraic Fractions</b>
+          </span>
+        </a>
+        <a href="/lessons/algebra/100-negative-indices">
+          <span>
+            Next<b>Negative indices</b>
+          </span>
+          <ArrowRight />
+        </a>
+      </nav>
+    </div>
+  );
 }
 
-function PowerGroup({ name, tone, base, exponent, showFactors, onDragStart }: { name: string; tone: string; base: string; exponent: number; showFactors: boolean; onDragStart: (event: DragEvent<HTMLButtonElement>, source: string) => void }) { return <section className={`indices99-power ${tone}`}><h3>{name}<i>{exponent}</i></h3><strong>{power(base, exponent)}</strong><div>{Array.from({ length: exponent }, (_, index) => <span key={index}><button type="button" draggable aria-label={`Drag ${name.toLowerCase()} factor ${index + 1}`} onDragStart={(event) => onDragStart(event, `${tone}-${index + 1}`)}>{base}</button>{index < exponent - 1 && <b>×</b>}</span>)}</div><p>{showFactors ? factorString(base, exponent) : power(base, exponent)}</p></section>; }
-function Stepper({ label, value, onChange }: { label: string; value: number; onChange: (value: number) => void }) { return <label className="indices99-stepper">{label}<div><button type="button" aria-label={`Decrease ${label}`} onClick={() => onChange(value - 1)}>−</button><input aria-label={label} type="number" value={value} onChange={(event) => onChange(Number(event.target.value))} /><button type="button" aria-label={`Increase ${label}`} onClick={() => onChange(value + 1)}>+</button></div></label>; }
-function Toggle({ label, detail, value, featured = false, onToggle }: { label: string; detail: string; value: boolean; featured?: boolean; onToggle: () => void }) { return <button type="button" role="switch" aria-checked={value} className={featured ? "featured" : ""} onClick={onToggle}><span><b>{label}</b><small>{detail}</small></span><i className={value ? "on" : ""}><b /></i></button>; }
+function PowerGroup({
+  name,
+  tone,
+  base,
+  exponent,
+  showFactors,
+  onDragStart,
+}: {
+  name: string;
+  tone: string;
+  base: string;
+  exponent: number;
+  showFactors: boolean;
+  onDragStart: (event: DragEvent<HTMLButtonElement>, source: string) => void;
+}) {
+  return (
+    <section className={`indices99-power ${tone}`}>
+      <h3>
+        {name}
+        <i>{exponent}</i>
+      </h3>
+      <strong>{power(base, exponent)}</strong>
+      <div>
+        {Array.from({ length: exponent }, (_, index) => (
+          <span key={index}>
+            <button
+              type="button"
+              draggable
+              aria-label={`Drag ${name.toLowerCase()} factor ${index + 1}`}
+              onDragStart={(event) =>
+                onDragStart(event, `${tone}-${index + 1}`)
+              }
+            >
+              {base}
+            </button>
+            {index < exponent - 1 && <b>×</b>}
+          </span>
+        ))}
+      </div>
+      <p>
+        {showFactors ? factorString(base, exponent) : power(base, exponent)}
+      </p>
+    </section>
+  );
+}
+function Stepper({
+  label,
+  value,
+  onChange,
+}: {
+  label: string;
+  value: number;
+  onChange: (value: number) => void;
+}) {
+  return (
+    <label className="indices99-stepper">
+      {label}
+      <div>
+        <button
+          type="button"
+          aria-label={`Decrease ${label}`}
+          onClick={() => onChange(value - 1)}
+        >
+          −
+        </button>
+        <input
+          aria-label={label}
+          type="number"
+          value={value}
+          onChange={(event) => onChange(Number(event.target.value))}
+        />
+        <button
+          type="button"
+          aria-label={`Increase ${label}`}
+          onClick={() => onChange(value + 1)}
+        >
+          +
+        </button>
+      </div>
+    </label>
+  );
+}
+function Toggle({
+  label,
+  detail,
+  value,
+  featured = false,
+  onToggle,
+}: {
+  label: string;
+  detail: string;
+  value: boolean;
+  featured?: boolean;
+  onToggle: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      role="switch"
+      aria-checked={value}
+      className={featured ? "featured" : ""}
+      onClick={onToggle}
+    >
+      <span>
+        <b>{label}</b>
+        <small>{detail}</small>
+      </span>
+      <i className={value ? "on" : ""}>
+        <b />
+      </i>
+    </button>
+  );
+}
+
+function IndicesTabPanel99({
+  tab,
+  base,
+  firstExponent,
+  secondExponent,
+}: {
+  tab: Exclude<IndicesTab99, "Interact">;
+  base: string;
+  firstExponent: number;
+  secondExponent: number;
+}) {
+  const product = productOfPowers99(base, firstExponent, secondExponent);
+  const content =
+    tab === "Explain"
+      ? [
+          "Write both powers as repeated factors and count every copy of the shared base.",
+          "The base stays unchanged while the exponents are added.",
+        ]
+      : tab === "Examples"
+        ? ["x⁷ × x⁴ = x¹¹", "a² × a⁵ = a⁷", "m³ × m³ = m⁶"]
+        : tab === "Formulas"
+          ? [
+              "xᵃ × xᵇ = xᵃ⁺ᵇ",
+              "This law applies only when both powers have the same base.",
+            ]
+          : tab === "Know more"
+            ? [
+                "A positive whole-number exponent counts repeated factors.",
+                "Different bases cannot be combined by adding exponents.",
+              ]
+            : ["Simplify y⁴ × y³", "Check the result by substituting y = 2."];
+  return (
+    <section className="indices99-tab-panel" data-active-learning-tab={tab}>
+      <h2>{tab}</h2>
+      <strong>
+        {product.first} × {product.second} = {product.result}
+      </strong>
+      {content.map((item) => (
+        <p key={item}>{item}</p>
+      ))}
+    </section>
+  );
+}

@@ -7,6 +7,7 @@ import { BackToTopButton, BreadcrumbTrail, UndoToastHost } from "./GlobalUx";
 import { ArrowLeft, Maximize2, Minimize2 } from "lucide-react";
 import MathWorkspaceLayout from "../workspace/MathWorkspaceLayout";
 import { findMathWorkspace } from "../../workspace/mathWorkspaces";
+import { StudioLessonLinks, configForPath } from "../lessons/StudioLessonLinks";
 
 function InlinePageNav({ showBack, hidden = false }: { showBack: boolean; hidden?: boolean }) {
   const navigate = useNavigate();
@@ -339,6 +340,7 @@ export default function AppLayout() {
             >
               <InlinePageNav showBack={showBack} hidden={hasOwnStudioBreadcrumb} />
               <Outlet />
+              {!hasOwnStudioBreadcrumb && !location.pathname.startsWith("/lessons") && configForPath(location.pathname) ? <StudioLessonLinks pathname={location.pathname} /> : null}
             </div>
           </main>
           <AppFooter />

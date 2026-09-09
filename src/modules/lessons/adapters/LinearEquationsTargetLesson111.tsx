@@ -20,38 +20,21 @@ import {
   Sparkles,
 } from "lucide-react";
 import type { LessonAdapterProps } from "../types";
+import {
+  LINEAR_PRACTICES_111 as practiceProblems,
+  LINEAR_PROBLEMS_111 as problems,
+  evaluateLinearGraph111,
+  inverseLinearOperation111 as inverse,
+  isLinearOperationDrop111,
+  isLinearPracticeCorrect111,
+  linearEquationText111 as expression,
+  linearGraphText111 as lineExpression,
+  linearOperationPayload111,
+  signedLinearTerm111 as signed,
+  solveLinearEquation111,
+  type LinearProblem111 as LinearProblem,
+} from "./linearEquationsLesson111Model";
 import "./LinearEquationsTargetLesson111.css";
-
-type LinearProblem = {
-  id: string;
-  variable: string;
-  a: number;
-  b: number;
-  c: number;
-};
-
-const problems: LinearProblem[] = [
-  { id: "four-x-plus-one", variable: "x", a: 4, b: 1, c: 13 },
-  { id: "three-x-minus-two", variable: "x", a: 3, b: -2, c: 10 },
-  { id: "two-x-plus-five", variable: "x", a: 2, b: 5, c: 17 },
-  { id: "negative-two-x-plus-seven", variable: "x", a: -2, b: 7, c: 1 },
-];
-
-const practiceProblems: LinearProblem[] = [
-  { id: "two-y-minus-five", variable: "y", a: 2, b: -5, c: 9 },
-  { id: "three-p-plus-four", variable: "p", a: 3, b: 4, c: 19 },
-];
-
-const signed = (value: number) =>
-  value >= 0 ? `+ ${value}` : `− ${Math.abs(value)}`;
-const expression = (problem: LinearProblem) =>
-  `${problem.a}${problem.variable} ${signed(problem.b)} = ${problem.c}`;
-const lineExpression = (problem: LinearProblem) =>
-  `y = ${problem.a}${problem.variable} ${signed(problem.b)}`;
-const solutionOf = (problem: LinearProblem) =>
-  (problem.c - problem.b) / problem.a;
-const inverse = (problem: LinearProblem) =>
-  problem.b >= 0 ? `Subtract ${problem.b}` : `Add ${Math.abs(problem.b)}`;
 const round = (value: number) => Math.round(value * 100) / 100;
 
 export default function LinearEquationsTargetLesson111({
@@ -80,20 +63,22 @@ export default function LinearEquationsTargetLesson111({
     () => problems.find((item) => item.id === problemId) ?? problems[0],
     [problemId],
   );
-  const solution = solutionOf(problem);
-  const intermediate = problem.c - problem.b;
-  const checkValue = problem.a * solution + problem.b;
-  const probeY = problem.a * probeX + problem.b;
+  const { solution, intermediate, checkValue } =
+    solveLinearEquation111(problem);
+  const probeY = evaluateLinearGraph111(problem, probeX);
   const probeOnTarget = Math.abs(probeX - solution) < 0.11;
   const practice = practiceProblems[practiceIndex];
-  const practiceSolution = solutionOf(practice);
-  const practiceCorrect = Number(practiceAnswer) === practiceSolution;
+  const practiceSolution = solveLinearEquation111(practice).solution;
+  const practiceCorrect = isLinearPracticeCorrect111(
+    practice,
+    Number(practiceAnswer),
+  );
   const act = () => {
     setActions((value) => value + 1);
     onInteraction();
   };
 
-  const reset = () => {
+  const reset = (notify = true) => {
     setProblemId(problems[0].id);
     setShowAlgebra(true);
     setShowGraph(true);
@@ -111,14 +96,14 @@ export default function LinearEquationsTargetLesson111({
     setPracticeAnswer("7");
     setPracticeChecked(true);
     setActions(0);
-    onInteraction();
+    if (notify) onInteraction();
   };
-  useEffect(() => reset(), [resetToken]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => reset(false), [resetToken]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const chooseProblem = (id: string) => {
     const next = problems.find((item) => item.id === id) ?? problems[0];
     setProblemId(next.id);
-    setProbeX(solutionOf(next));
+    setProbeX(solveLinearEquation111(next).solution);
     setOperationDrops([]);
     setInvalidDrop("");
     setChecked(false);
@@ -130,7 +115,7 @@ export default function LinearEquationsTargetLesson111({
   ) => {
     event.dataTransfer.setData(
       "text/linear-operation",
-      `${problem.id}:${operation}`,
+      linearOperationPayload111(problem, operation),
     );
     setDraggingOperation(operation);
     setInvalidDrop("");
@@ -142,7 +127,7 @@ export default function LinearEquationsTargetLesson111({
   ) => {
     event.preventDefault();
     const payload = event.dataTransfer.getData("text/linear-operation");
-    if (payload === `${problem.id}:${expected}`) {
+    if (isLinearOperationDrop111(payload, problem, expected)) {
       setOperationDrops((current) =>
         current.includes(expected) ? current : [...current, expected],
       );
@@ -164,13 +149,30 @@ export default function LinearEquationsTargetLesson111({
     setPracticeChecked(false);
     act();
   };
+  const shareLesson = async () => {
+    const shareData = {
+      title: "Linear Equations",
+      text: `Solve ${expression(problem)}.`,
+      url: window.location.href,
+    };
+    try {
+      if (navigator.share) await navigator.share(shareData);
+      else await navigator.clipboard.writeText(window.location.href);
+      setShared(true);
+      act();
+    } catch {
+      setShared(false);
+    }
+  };
+
+  const hindi = language.startsWith("Hindi");
 
   return (
     <div
       className="linear111-page"
       data-testid="algebra-mockup-0168"
       data-dedicated-lesson="111"
-      data-object-model="selectable-first-degree-equation-inverse-operation-native-drag-balance-table-dynamic-line-target-intersection-pointer-probe-substitution-check-graded-practice-model"
+      data-object-model="dedicated-tested-selectable-first-degree-equation-calculated-inverse-operation-validated-native-drag-balance-table-dynamic-line-target-intersection-pointer-probe-substitution-check-graded-practice-functional-tabs-language-and-native-sharing-model"
       data-problem={expression(problem)}
       data-problem-id={problem.id}
       data-a={problem.a}
@@ -220,10 +222,11 @@ export default function LinearEquationsTargetLesson111({
             <b>ALGEBRA</b>
             <b>EQUATIONS &amp; INEQUALITIES</b>
           </small>
-          <h1>Linear Equations</h1>
+          <h1>{hindi ? "रैखिक समीकरण" : "Linear Equations"}</h1>
           <p>
-            Solve first-degree equations and connect algebraic steps to a line
-            crossing a target value.
+            {hindi
+              ? "प्रथम-घात समीकरण हल करें और बीजगणितीय चरणों को लक्ष्य मान को काटने वाली रेखा से जोड़ें।"
+              : "Solve first-degree equations and connect algebraic steps to a line crossing a target value."}
           </p>
           <nav>
             <b>
@@ -254,17 +257,11 @@ export default function LinearEquationsTargetLesson111({
                 <option>Hindi (हिन्दी)</option>
               </select>
             </label>
-            <button type="button" onClick={reset}>
+            <button type="button" onClick={() => reset()}>
               <RotateCcw />
               Reset
             </button>
-            <button
-              type="button"
-              onClick={() => {
-                setShared(true);
-                act();
-              }}
-            >
+            <button type="button" onClick={shareLesson}>
               <Share2 />
               {shared ? "Link ready" : "Share"}
             </button>
@@ -304,14 +301,6 @@ export default function LinearEquationsTargetLesson111({
             key={tab}
             onClick={() => {
               setActiveTab(tab);
-              if (tab === "Examples")
-                chooseProblem(
-                  problems[(problems.indexOf(problem) + 1) % problems.length]
-                    .id,
-                );
-              if (tab === "Practice")
-                changePractice((practiceIndex + 1) % practiceProblems.length);
-              if (tab === "Explain") setChecked(true);
               act();
             }}
           >
@@ -320,252 +309,280 @@ export default function LinearEquationsTargetLesson111({
         ))}
       </nav>
 
-      <main className="linear111-workspace">
-        <section className="linear111-algebra">
-          <h2>Algebra: Solve the equation</h2>
-          <label>
-            Equation:
-            <select
-              aria-label="Linear equation"
-              value={problem.id}
-              onChange={(event) => chooseProblem(event.target.value)}
-            >
-              {problems.map((item) => (
-                <option value={item.id} key={item.id}>
-                  {expression(item)}
-                </option>
-              ))}
-            </select>
-          </label>
-          {showAlgebra ? (
-            <>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Step</th>
-                    <th>Operation</th>
-                    <th>Equation</th>
-                    <th>Balance</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Start</td>
-                    <td>{expression(problem)}</td>
-                    <td>
-                      <Scale /> = <Scale />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>
-                      <button
-                        type="button"
-                        draggable
-                        aria-label={`Drag constant operation ${inverse(problem)}`}
-                        onDragStart={(event) =>
-                          startOperationDrag(event, "constant")
-                        }
-                        onDragEnd={() => setDraggingOperation("")}
-                      >
-                        {inverse(problem)}
-                        <small>
-                          Inverse:{" "}
-                          {problem.b >= 0
-                            ? `−${problem.b}`
-                            : `+${Math.abs(problem.b)}`}
-                        </small>
-                      </button>
-                    </td>
-                    <td>
-                      {problem.a}
-                      {problem.variable} {signed(problem.b)}{" "}
-                      {problem.b >= 0
-                        ? `− ${problem.b}`
-                        : `+ ${Math.abs(problem.b)}`}{" "}
-                      = {problem.c}{" "}
-                      {problem.b >= 0
-                        ? `− ${problem.b}`
-                        : `+ ${Math.abs(problem.b)}`}
-                      <strong>
+      {activeTab === "Interact" ? (
+        <main className="linear111-workspace">
+          <section className="linear111-algebra">
+            <h2>Algebra: Solve the equation</h2>
+            <label>
+              Equation:
+              <select
+                aria-label="Linear equation"
+                value={problem.id}
+                onChange={(event) => chooseProblem(event.target.value)}
+              >
+                {problems.map((item) => (
+                  <option value={item.id} key={item.id}>
+                    {expression(item)}
+                  </option>
+                ))}
+              </select>
+            </label>
+            {showAlgebra ? (
+              <>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Step</th>
+                      <th>Operation</th>
+                      <th>Equation</th>
+                      <th>Balance</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>Start</td>
+                      <td>{expression(problem)}</td>
+                      <td>
+                        <Scale /> = <Scale />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>
+                        <button
+                          type="button"
+                          draggable
+                          aria-label={`Drag constant operation ${inverse(problem)}`}
+                          onDragStart={(event) =>
+                            startOperationDrag(event, "constant")
+                          }
+                          onDragEnd={() => setDraggingOperation("")}
+                        >
+                          {inverse(problem)}
+                          <small>
+                            Inverse:{" "}
+                            {problem.b >= 0
+                              ? `−${problem.b}`
+                              : `+${Math.abs(problem.b)}`}
+                          </small>
+                        </button>
+                      </td>
+                      <td>
                         {problem.a}
-                        {problem.variable} = {intermediate}
-                      </strong>
-                    </td>
-                    <td
-                      aria-label="Constant operation drop target"
-                      onDragOver={(event) => event.preventDefault()}
-                      onDrop={(event) => dropOperation(event, "constant")}
-                    >
-                      <Scale /> = <Scale />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>
-                      <button
-                        type="button"
-                        draggable
-                        aria-label={`Drag coefficient operation Divide by ${problem.a}`}
-                        onDragStart={(event) =>
-                          startOperationDrag(event, "coefficient")
-                        }
-                        onDragEnd={() => setDraggingOperation("")}
+                        {problem.variable} {signed(problem.b)}{" "}
+                        {problem.b >= 0
+                          ? `− ${problem.b}`
+                          : `+ ${Math.abs(problem.b)}`}{" "}
+                        = {problem.c}{" "}
+                        {problem.b >= 0
+                          ? `− ${problem.b}`
+                          : `+ ${Math.abs(problem.b)}`}
+                        <strong>
+                          {problem.a}
+                          {problem.variable} = {intermediate}
+                        </strong>
+                      </td>
+                      <td
+                        aria-label="Constant operation drop target"
+                        onDragOver={(event) => event.preventDefault()}
+                        onDrop={(event) => dropOperation(event, "constant")}
                       >
-                        Divide by {problem.a}
-                        <small>Inverse: ÷{problem.a}</small>
-                      </button>
-                    </td>
-                    <td>
-                      <span>
-                        {problem.a}
-                        {problem.variable}
-                        <i>{problem.a}</i>
-                      </span>{" "}
-                      ={" "}
-                      <span>
-                        {intermediate}
-                        <i>{problem.a}</i>
-                      </span>
-                      <strong>
-                        {problem.variable} = {solution}
-                      </strong>
-                    </td>
-                    <td
-                      aria-label="Coefficient operation drop target"
-                      onDragOver={(event) => event.preventDefault()}
-                      onDrop={(event) => dropOperation(event, "coefficient")}
-                    >
-                      <Scale /> = <Scale />
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              {invalidDrop && (
-                <em>Use each inverse operation on its matching balance row.</em>
-              )}
-              <section className="solution">
-                <Check />
-                <b>Solution</b>
+                        <Scale /> = <Scale />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>
+                        <button
+                          type="button"
+                          draggable
+                          aria-label={`Drag coefficient operation Divide by ${problem.a}`}
+                          onDragStart={(event) =>
+                            startOperationDrag(event, "coefficient")
+                          }
+                          onDragEnd={() => setDraggingOperation("")}
+                        >
+                          Divide by {problem.a}
+                          <small>Inverse: ÷{problem.a}</small>
+                        </button>
+                      </td>
+                      <td>
+                        <span>
+                          {problem.a}
+                          {problem.variable}
+                          <i>{problem.a}</i>
+                        </span>{" "}
+                        ={" "}
+                        <span>
+                          {intermediate}
+                          <i>{problem.a}</i>
+                        </span>
+                        <strong>
+                          {problem.variable} = {solution}
+                        </strong>
+                      </td>
+                      <td
+                        aria-label="Coefficient operation drop target"
+                        onDragOver={(event) => event.preventDefault()}
+                        onDrop={(event) => dropOperation(event, "coefficient")}
+                      >
+                        <Scale /> = <Scale />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                {invalidDrop && (
+                  <em>
+                    Use each inverse operation on its matching balance row.
+                  </em>
+                )}
+                <section className="solution">
+                  <Check />
+                  <b>Solution</b>
+                  <strong>
+                    {problem.variable} = {solution}
+                  </strong>
+                </section>
+                <section className="check">
+                  <h3>Check the solution</h3>
+                  <p>
+                    Substitute {problem.variable} = {solution} into the original
+                    equation.
+                  </p>
+                  <strong>
+                    {problem.a}({solution}) {signed(problem.b)} = {problem.c}
+                  </strong>
+                  <b>
+                    {problem.a * solution} {signed(problem.b)} = {checkValue}{" "}
+                    {checked && <Check />}
+                  </b>
+                </section>
+              </>
+            ) : (
+              <div className="linear111-hidden">Algebra steps hidden</div>
+            )}
+          </section>
+
+          <section className="linear111-graph">
+            <header>
+              <h2>Graph: {lineExpression(problem)}</h2>
+              <div>
+                <label>
+                  Show algebra
+                  <input
+                    aria-label="Show linear algebra"
+                    type="checkbox"
+                    checked={showAlgebra}
+                    onChange={(event) => {
+                      setShowAlgebra(event.target.checked);
+                      act();
+                    }}
+                  />
+                  <span />
+                </label>
+                <label>
+                  Show graph
+                  <input
+                    aria-label="Show linear graph"
+                    type="checkbox"
+                    checked={showGraph}
+                    onChange={(event) => {
+                      setShowGraph(event.target.checked);
+                      act();
+                    }}
+                  />
+                  <span />
+                </label>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setChecked(true);
+                    setProbeX(solution);
+                    act();
+                  }}
+                >
+                  Check solution
+                </button>
+              </div>
+            </header>
+            <div className="linear111-coefficients">
+              <b>a = {problem.a}</b>
+              <b>b = {problem.b}</b>
+              <b>c = {problem.c}</b>
+            </div>
+            {showGraph ? (
+              <LinearGraph
+                problem={problem}
+                probeX={probeX}
+                probeY={probeY}
+                probeDragging={probeDragging}
+                onPointerDown={(event) => {
+                  event.currentTarget.setPointerCapture(event.pointerId);
+                  setProbeDragging(true);
+                  act();
+                }}
+                onPointerMove={moveProbe}
+                onPointerUp={() => {
+                  setProbeDragging(false);
+                  act();
+                }}
+                onKeyDown={(direction) => {
+                  setProbeX((value) =>
+                    Math.max(-4, Math.min(6, round(value + direction * 0.1))),
+                  );
+                  act();
+                }}
+              />
+            ) : (
+              <div className="linear111-graph-hidden">Graph hidden</div>
+            )}
+            <footer>
+              <CircleHelp />
+              <b>Graph connection</b>
+              <p>
+                The line <strong>{lineExpression(problem)}</strong> intersects
+                the target line <strong>y = {problem.c}</strong> at ({solution},{" "}
+                {problem.c}).
+                <br />
+                The x-coordinate of this point is the solution:{" "}
                 <strong>
                   {problem.variable} = {solution}
                 </strong>
-              </section>
-              <section className="check">
-                <h3>Check the solution</h3>
-                <p>
-                  Substitute {problem.variable} = {solution} into the original
-                  equation.
-                </p>
-                <strong>
-                  {problem.a}({solution}) {signed(problem.b)} = {problem.c}
-                </strong>
-                <b>
-                  {problem.a * solution} {signed(problem.b)} = {checkValue}{" "}
-                  {checked && <Check />}
-                </b>
-              </section>
-            </>
-          ) : (
-            <div className="linear111-hidden">Algebra steps hidden</div>
-          )}
-        </section>
+                .
+              </p>
+              <span>
+                Probe: ({probeX.toFixed(1)}, {round(probeY)}){" "}
+                {probeOnTarget && "· target found"}
+              </span>
+            </footer>
+          </section>
+        </main>
+      ) : (
+        <LinearTabPanel111
+          tab={activeTab}
+          onChooseProblem={chooseProblem}
+          onPractice={() =>
+            changePractice((practiceIndex + 1) % practiceProblems.length)
+          }
+        />
+      )}
 
-        <section className="linear111-graph">
-          <header>
-            <h2>Graph: {lineExpression(problem)}</h2>
-            <div>
-              <label>
-                Show algebra
-                <input
-                  aria-label="Show linear algebra"
-                  type="checkbox"
-                  checked={showAlgebra}
-                  onChange={(event) => {
-                    setShowAlgebra(event.target.checked);
-                    act();
-                  }}
-                />
-                <span />
-              </label>
-              <label>
-                Show graph
-                <input
-                  aria-label="Show linear graph"
-                  type="checkbox"
-                  checked={showGraph}
-                  onChange={(event) => {
-                    setShowGraph(event.target.checked);
-                    act();
-                  }}
-                />
-                <span />
-              </label>
-              <button
-                type="button"
-                onClick={() => {
-                  setChecked(true);
-                  setProbeX(solution);
-                  act();
-                }}
-              >
-                Check solution
-              </button>
-            </div>
-          </header>
-          <div className="linear111-coefficients">
-            <b>a = {problem.a}</b>
-            <b>b = {problem.b}</b>
-            <b>c = {problem.c}</b>
-          </div>
-          {showGraph ? (
-            <LinearGraph
-              problem={problem}
-              probeX={probeX}
-              probeY={probeY}
-              probeDragging={probeDragging}
-              onPointerDown={(event) => {
-                event.currentTarget.setPointerCapture(event.pointerId);
-                setProbeDragging(true);
-                act();
-              }}
-              onPointerMove={moveProbe}
-              onPointerUp={() => {
-                setProbeDragging(false);
-                act();
-              }}
-              onKeyDown={(direction) => {
-                setProbeX((value) =>
-                  Math.max(-4, Math.min(6, round(value + direction * 0.1))),
-                );
-                act();
-              }}
-            />
-          ) : (
-            <div className="linear111-graph-hidden">Graph hidden</div>
-          )}
-          <footer>
-            <CircleHelp />
-            <b>Graph connection</b>
-            <p>
-              The line <strong>{lineExpression(problem)}</strong> intersects the
-              target line <strong>y = {problem.c}</strong> at ({solution},{" "}
-              {problem.c}).
-              <br />
-              The x-coordinate of this point is the solution:{" "}
-              <strong>
-                {problem.variable} = {solution}
-              </strong>
-              .
-            </p>
-            <span>
-              Probe: ({probeX.toFixed(1)}, {round(probeY)}){" "}
-              {probeOnTarget && "· target found"}
-            </span>
-          </footer>
+      {workspaceOpen && (
+        <section
+          className="linear111-workspace-panel"
+          aria-label="Linear equations workspace"
+        >
+          <b>Workspace values</b>
+          <span>{expression(problem)}</span>
+          <span>
+            {problem.variable} = {solution}
+          </span>
+          <span>
+            Check: {checkValue} = {problem.c}
+          </span>
         </section>
-      </main>
+      )}
 
       <section className="linear111-insights">
         <article>
@@ -710,6 +727,68 @@ export default function LinearEquationsTargetLesson111({
   );
 }
 
+function LinearTabPanel111({
+  tab,
+  onChooseProblem,
+  onPractice,
+}: {
+  tab: string;
+  onChooseProblem: (id: string) => void;
+  onPractice: () => void;
+}) {
+  const content: Record<string, { title: string; body: string }> = {
+    Explain: {
+      title: "Balance the equation",
+      body: "Undo the constant first, then divide by the non-zero coefficient. The same operation must be applied to both sides.",
+    },
+    Examples: {
+      title: "Calculated examples",
+      body: "Load a complete first-degree equation into the algebra table and interactive graph.",
+    },
+    Practice: {
+      title: "Independent practice",
+      body: "Generate the next equation and grade the answer against its calculated solution.",
+    },
+    Formulas: {
+      title: "Linear equation rule",
+      body: "For ax + b = c with a not equal to zero, the solution is x = (c - b) / a.",
+    },
+    "Know more": {
+      title: "Algebra meets geometry",
+      body: "The solution is the x-coordinate where y = ax + b intersects the horizontal target y = c.",
+    },
+  };
+  const selected = content[tab] ?? content.Explain;
+  return (
+    <main className="linear111-workspace linear111-tab-panel">
+      <small>LINEAR EQUATIONS</small>
+      <h2>{selected.title}</h2>
+      <p>{selected.body}</p>
+      {tab === "Examples" && (
+        <div>
+          {problems.map((problem) => (
+            <button
+              type="button"
+              key={problem.id}
+              onClick={() => onChooseProblem(problem.id)}
+            >
+              {expression(problem)}
+              <span>
+                {problem.variable} = {solveLinearEquation111(problem).solution}
+              </span>
+            </button>
+          ))}
+        </div>
+      )}
+      {tab === "Practice" && (
+        <button type="button" className="practice-action" onClick={onPractice}>
+          Load next practice
+        </button>
+      )}
+    </main>
+  );
+}
+
 function FormulaFraction() {
   return (
     <div className="linear111-formula">
@@ -743,7 +822,7 @@ function LinearGraph({
 }) {
   const xp = (x: number) => 24 + ((x + 4) / 10) * 406;
   const yp = (y: number) => 400 - ((y + 4) / 20) * 390;
-  const solution = solutionOf(problem);
+  const solution = solveLinearEquation111(problem).solution;
   const xAtMin = (-4 - problem.b) / problem.a;
   const xAtMax = (16 - problem.b) / problem.a;
   const lineX1 = Math.max(-4, Math.min(6, xAtMin));

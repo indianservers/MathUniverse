@@ -89,7 +89,7 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain('data-testid="algebra-mockup-0153"');
     expect(html).toContain('data-dedicated-lesson="96"');
     expect(html).toContain(
-      "draggable-four-product-binomial-area-middle-term-combination-substitution-proof-graded-challenge-model",
+      "dedicated-tested-draggable-four-product-binomial-area-middle-term-combination-substitution-proof-graded-challenge-and-functional-learning-tabs-model",
     );
     expect(html).toContain('aria-label="Drag first middle product"');
     expect(html).toContain("Area Tiles Model");
@@ -107,7 +107,7 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain('data-testid="algebra-mockup-0154"');
     expect(html).toContain('data-dedicated-lesson="97"');
     expect(html).toContain(
-      "editable-quadratic-factor-pair-search-draggable-reverse-area-expansion-substitution-graded-practice-model",
+      "dedicated-tested-editable-quadratic-factor-pair-search-validated-draggable-reverse-area-expansion-substitution-graded-practice-and-functional-learning-tabs-model",
     );
     expect(html).toContain('aria-label="Drag first split term"');
     expect(html).toContain("Find factor pair");
@@ -125,7 +125,7 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain('data-testid="algebra-mockup-0155"');
     expect(html).toContain('data-dedicated-lesson="98"');
     expect(html).toContain(
-      "selectable-rational-expression-draggable-common-factor-cancellation-domain-restriction-substitution-graded-practice-model",
+      "dedicated-tested-selectable-rational-expression-validated-draggable-common-factor-cancellation-domain-restriction-substitution-graded-practice-and-functional-learning-tabs-model",
     );
     expect(html).toContain('aria-label="Drag numerator common factor"');
     expect(html).toContain("Simplify the rational expression");
@@ -143,7 +143,7 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain('data-testid="algebra-mockup-0156"');
     expect(html).toContain('data-dedicated-lesson="99"');
     expect(html).toContain(
-      "editable-same-base-repeated-factor-draggable-product-of-powers-numeric-equality-graded-practice-model",
+      "dedicated-tested-editable-same-base-repeated-factor-validated-draggable-product-of-powers-numeric-equality-graded-practice-functional-tabs-and-native-sharing-model",
     );
     expect(html).toContain('aria-label="Drag first power factor 1"');
     expect(html).toContain("Visualize the law with repeated multiplication");
@@ -161,7 +161,7 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain('data-testid="algebra-mockup-0157"');
     expect(html).toContain('data-dedicated-lesson="100"');
     expect(html).toContain(
-      "editable-radicand-perfect-square-divisor-search-draggable-factor-extraction-exact-decimal-equivalence-graded-practice-model",
+      "dedicated-tested-editable-radicand-perfect-square-divisor-search-validated-draggable-radical-and-factor-extraction-exact-decimal-equivalence-graded-practice-functional-tabs-language-and-native-sharing-model",
     );
     expect(html).toContain('aria-label="Use factor 25"');
     expect(html).toContain("Square factor extraction drop target");
@@ -179,7 +179,7 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain('data-testid="algebra-mockup-0158"');
     expect(html).toContain('data-dedicated-lesson="101"');
     expect(html).toContain(
-      "selectable-radical-and-conjugate-denominator-draggable-unity-multiplier-rational-result-decimal-equivalence-graded-practice-model",
+      "dedicated-tested-selectable-radical-and-conjugate-denominator-validated-draggable-unity-multiplier-rational-result-decimal-equivalence-graded-practice-functional-tabs-native-sharing-and-persistent-bookmark-model",
     );
     expect(html).toContain('aria-label="Use matching multiplier"');
     expect(html).toContain("Denominator-cleaning workspace");
@@ -197,7 +197,7 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain('data-testid="algebra-mockup-0159"');
     expect(html).toContain('data-dedicated-lesson="102"');
     expect(html).toContain(
-      "coefficient-map-polynomial-add-subtract-convolution-draggable-degree-columns-substitution-equivalence-graded-practice-model",
+      "dedicated-tested-coefficient-map-polynomial-add-subtract-convolution-validated-draggable-degree-columns-substitution-equivalence-graded-practice-functional-tabs-language-and-native-sharing-model",
     );
     expect(html).toContain('aria-label="Drag A degree 2 term"');
     expect(html).toContain("Polynomial table workspace");
@@ -215,7 +215,7 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain('data-testid="algebra-mockup-0160"');
     expect(html).toContain('data-dedicated-lesson="103"');
     expect(html).toContain(
-      "editable-polynomial-coefficient-horner-synthetic-number-draggable-table-quotient-remainder-expansion-graded-practice-model",
+      "dedicated-tested-editable-polynomial-coefficient-horner-synthetic-number-validated-draggable-table-quotient-remainder-expansion-graded-practice-functional-tabs-and-animation-model",
     );
     expect(html).toContain('aria-label="Drag synthetic number"');
     expect(html).toContain("Synthetic division steps");
@@ -233,7 +233,7 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain('data-testid="algebra-mockup-0161"');
     expect(html).toContain('data-dedicated-lesson="104"');
     expect(html).toContain(
-      "editable-polynomial-independent-evaluation-synthetic-division-draggable-a-remainder-agreement-reconstruction-graded-practice-model",
+      "dedicated-tested-editable-polynomial-independent-evaluation-synthetic-division-validated-draggable-a-remainder-agreement-reconstruction-graded-practice-and-functional-tabs-model",
     );
     expect(html).toContain('aria-label="Drag value a"');
     expect(html).toContain("Check reconstruction");
@@ -251,7 +251,7 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain('data-testid="algebra-mockup-0162"');
     expect(html).toContain('data-dedicated-lesson="105"');
     expect(html).toContain(
-      "editable-polynomial-candidate-factor-root-extraction-draggable-substitution-zero-meter-synthetic-remainder-factor-pair-practice-model",
+      "dedicated-tested-editable-polynomial-candidate-factor-root-extraction-validated-draggable-substitution-zero-meter-synthetic-remainder-factor-pair-calculated-practice-and-functional-tabs-model",
     );
     expect(html).toContain('aria-label="Drag candidate factor"');
     expect(html).toContain("Factor Test Station");
@@ -269,7 +269,7 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain('data-testid="algebra-mockup-0163"');
     expect(html).toContain('data-dedicated-lesson="106"');
     expect(html).toContain(
-      "dynamic-square-area-partition-draggable-region-symbolic-combination-sample-equivalence-graded-practice-model",
+      "dedicated-tested-dynamic-square-area-partition-validated-draggable-region-symbolic-combination-sample-equivalence-calculated-graded-practice-functional-tabs-language-and-native-sharing-model",
     );
     expect(html).toContain('aria-label="Drag area tile x2"');
     expect(html).toContain("Prove the identity with an area model");
@@ -287,7 +287,7 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain('data-testid="algebra-mockup-0164"');
     expect(html).toContain('data-dedicated-lesson="107"');
     expect(html).toContain(
-      "selectable-one-step-equation-dynamic-balance-draggable-inverse-operation-both-sides-substitution-check-graded-practice-model",
+      "dedicated-tested-selectable-calculated-one-step-equation-dynamic-balance-validated-draggable-inverse-operation-both-sides-substitution-check-graded-practice-and-functional-tabs-model",
     );
     expect(html).toContain('aria-label="Drag inverse operation Subtract 5"');
     expect(html).toContain("Solve using the balance model");
@@ -305,7 +305,7 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain('data-testid="algebra-mockup-0165"');
     expect(html).toContain('data-dedicated-lesson="108"');
     expect(html).toContain(
-      "selectable-linear-expression-balance-sequence-draggable-constant-removal-equal-group-division-ordered-inverse-operations-substitution-check-graded-practice-model",
+      "dedicated-tested-selectable-calculated-linear-expression-balance-sequence-validated-draggable-constant-removal-equal-group-division-ordered-inverse-operations-substitution-check-and-graded-practice-model",
     );
     expect(html).toContain('aria-label="Drag remove constant Subtract 3"');
     expect(html).toContain("EXPLORE WITH THE BALANCE MODEL");
@@ -323,7 +323,7 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain('data-testid="algebra-mockup-0166"');
     expect(html).toContain('data-dedicated-lesson="109"');
     expect(html).toContain(
-      "selectable-fraction-equation-lcd-three-term-native-drag-clearing-simplification-original-substitution-check-lcd-and-answer-graded-practice-model",
+      "dedicated-tested-selectable-calculated-fraction-equation-lcd-three-term-validated-native-drag-clearing-simplification-original-substitution-check-graded-practice-and-functional-tabs-model",
     );
     expect(html).toContain('aria-label="Drag LCD multiplier 3"');
     expect(html).toContain("INTERACT · LCD BALANCE MODEL");
@@ -341,7 +341,7 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain('data-testid="algebra-mockup-0167"');
     expect(html).toContain('data-dedicated-lesson="110"');
     expect(html).toContain(
-      "selectable-literal-formula-target-subject-native-inverse-operation-drag-symbolic-isolation-restriction-tracking-numeric-substitution-generated-practice-model",
+      "dedicated-tested-selectable-calculated-literal-formula-target-subject-validated-native-inverse-operation-drag-symbolic-isolation-restriction-tracking-numeric-substitution-generated-practice-functional-tabs-language-and-native-sharing-model",
     );
     expect(html).toContain('aria-label="Drag inverse operation Divide by l"');
     expect(html).toContain("INTERACTION · FORMULA REARRANGER");
@@ -359,7 +359,7 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain('data-testid="algebra-mockup-0168"');
     expect(html).toContain('data-dedicated-lesson="111"');
     expect(html).toContain(
-      "selectable-first-degree-equation-inverse-operation-native-drag-balance-table-dynamic-line-target-intersection-pointer-probe-substitution-check-graded-practice-model",
+      "dedicated-tested-selectable-first-degree-equation-calculated-inverse-operation-validated-native-drag-balance-table-dynamic-line-target-intersection-pointer-probe-substitution-check-graded-practice-functional-tabs-language-and-native-sharing-model",
     );
     expect(html).toContain('aria-label="Drag constant operation Subtract 1"');
     expect(html).toContain("Graph: y = 4x + 1");
@@ -377,7 +377,7 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain('data-testid="algebra-mockup-0169"');
     expect(html).toContain('data-dedicated-lesson="112"');
     expect(html).toContain(
-      "selectable-two-equation-coefficient-system-determinant-solver-native-elimination-drag-generated-symbolic-steps-dynamic-dual-line-intersection-both-equation-verification-ordered-pair-practice-model",
+      "dedicated-tested-selectable-two-equation-coefficient-system-determinant-solver-validated-native-elimination-and-substitution-drag-generated-symbolic-steps-dynamic-dual-line-intersection-both-equation-verification-graded-ordered-pair-practice-functional-tabs-model",
     );
     expect(html).toContain(
       'aria-label="Drag elimination operation Add equations"',

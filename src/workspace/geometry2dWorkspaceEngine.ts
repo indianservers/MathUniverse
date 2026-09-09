@@ -102,8 +102,8 @@ export function dragGeometryPoint(scene: Geometry2DScene, pointId: string, nextP
 }
 
 export function snapPointToGeometry(pointer: KernelPoint, scene: Geometry2DScene, options: { gridSize?: number; threshold?: number } = {}): SnapResult {
-  const gridSize = options.gridSize ?? 1;
-  const threshold = options.threshold ?? gridSize / 2;
+  const gridSize = positiveFinite(options.gridSize, 1);
+  const threshold = nonNegativeFinite(options.threshold, gridSize / 2);
   const grid = point(Math.round(pointer.x / gridSize) * gridSize, Math.round(pointer.y / gridSize) * gridSize);
   const candidates: SnapResult[] = [{ kind: "grid", point: grid, distance: distanceBetween(pointer, grid), label: "Grid" }];
 
@@ -317,6 +317,14 @@ function snapPriority(kind: SnapKind) {
     grid: 4,
   };
   return order[kind];
+}
+
+function positiveFinite(value: number | undefined, fallback: number) {
+  return typeof value === "number" && Number.isFinite(value) && Math.abs(value) > 1e-12 ? Math.abs(value) : fallback;
+}
+
+function nonNegativeFinite(value: number | undefined, fallback: number) {
+  return typeof value === "number" && Number.isFinite(value) ? Math.max(0, value) : fallback;
 }
 
 function uniquePoints(points: KernelPoint[], tolerance = 1e-6) {

@@ -113,6 +113,7 @@ function renderPanel(
         onLoad={() => undefined}
         onGraphSettingsChange={() => undefined}
         onZoom={() => undefined}
+        onFitView={() => undefined}
         onResetView={() => undefined}
         onBoardWheel={() => undefined}
         onBoardKeyDown={() => undefined}
@@ -135,8 +136,15 @@ describe("GeometryWorkspacePanel", () => {
     expect(html).toContain('data-testid="workspace-geometry-board"');
     expect(html).toContain('role="application"');
     expect(html).toContain("Geometry constructor");
+    expect(html).toContain("∠ABC");
     expect(html).toContain('data-testid="workspace-geometry-graph-settings"');
     expect(html).toContain("Graph Settings");
+    expect(html).toContain('aria-label="Home page"');
+    expect(html).toContain("Load / Import");
+    expect(html).not.toContain('class="geometry-studio-rail"');
+    expect(html).not.toContain(">Learn</button>");
+    expect(html).not.toContain('aria-label="Zoom"');
+    expect(html).toContain('aria-label="Fit all objects"');
   });
 
   it("renders supported geometry tools and active tool state", () => {
@@ -204,6 +212,7 @@ describe("GeometryWorkspacePanel", () => {
           onLoad={() => undefined}
           onGraphSettingsChange={() => undefined}
           onZoom={() => undefined}
+          onFitView={() => undefined}
           onResetView={() => undefined}
           onBoardWheel={() => undefined}
           onBoardKeyDown={() => undefined}
@@ -303,6 +312,7 @@ describe("GeometryWorkspacePanel", () => {
           onLoad={() => undefined}
           onGraphSettingsChange={() => undefined}
           onZoom={() => undefined}
+          onFitView={() => undefined}
           onResetView={() => undefined}
           onBoardWheel={() => undefined}
           onBoardKeyDown={() => undefined}

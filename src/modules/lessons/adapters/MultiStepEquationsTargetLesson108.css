@@ -8,6 +8,11 @@
   font-size: 9px;
   letter-spacing: 0;
 }
+.multi108-intermediate.stage-hidden,
+.multi108-groups.stage-hidden,
+.multi108-result.stage-hidden {
+  visibility: hidden;
+}
 .multi108-page * {
   box-sizing: border-box;
   letter-spacing: 0;

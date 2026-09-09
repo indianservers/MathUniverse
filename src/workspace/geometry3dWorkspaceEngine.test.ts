@@ -54,6 +54,7 @@ describe("geometry 3D workspace engine", () => {
 
     expect(snapPointToGeometry3D(point3(0.1, 0.1, -2.1), scene, { gridSize: 1 }).kind).toBe("point");
     expect(snapPointToGeometry3D(point3(0.1, 0.1, 1.1), scene, { gridSize: 1 }).kind).toBe("intersection");
+    expect(snapPointToGeometry3D(point3(1.2, 1.7, 2.2), { objects: [], constraints: [] }, { gridSize: Number.NaN }).point).toEqual(point3(1, 2, 2));
     expect(allSceneIntersections3D(scene)).toHaveLength(1);
   });
 

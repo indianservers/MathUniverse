@@ -78,8 +78,8 @@ const routes: WorkspaceRouteHealth[] = [
 
 describe("workspace route smoke coverage", () => {
   it.each([
-    ["graph", <WorkspaceGraph />, ["Graph, CAS", "Workspace command keyboard", "Results"]],
-    ["geometry", <WorkspaceGeometry />, ["Dynamic Geometry Studio", "Move tool ready", "Object Properties"]],
+    ["graph", <WorkspaceGraph />, ["Graph Studio 2D", "Expressions &amp; Layers", "Function Inspector"]],
+    ["geometry", <WorkspaceGeometry />, ["2D Geometry Workspace", "Move tool ready", "Object Properties"]],
     ["3d", <Workspace3D />, ["3D Object Studio", "Shape Library", "Scene Objects"]],
     ["data", <WorkspaceData />, ["Computer Algebra Studio", "Symbolic notebook", "Exact solution"]],
     ["teach", <WorkspaceTeach />, ["Teacher", "Guided", "offline"]],

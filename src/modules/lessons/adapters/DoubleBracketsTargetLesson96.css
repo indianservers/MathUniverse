@@ -212,6 +212,33 @@
   height: 1260px;
   margin-top: 11px;
 }
+.double96-layout.hidden {
+  display: none;
+}
+.double96-tab-panel {
+  min-height: 360px;
+  margin-top: 11px;
+  padding: 32px;
+  border: 1px solid #dce5eb;
+  border-radius: 12px;
+  background: #fff;
+}
+.double96-tab-panel h2 {
+  margin-bottom: 18px;
+  color: #102a56;
+  font-size: 24px;
+}
+.double96-tab-panel > strong {
+  display: block;
+  margin-bottom: 20px;
+  color: #176ecb;
+  font-size: 28px;
+}
+.double96-tab-panel p {
+  margin: 10px 0;
+  color: #475a72;
+  font-weight: 700;
+}
 .double96-area {
   position: absolute;
   top: 0;

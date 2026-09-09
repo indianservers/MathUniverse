@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { createMathObject } from "./coreObjects";
-import { buildRuntimeWorkspaceObjects } from "./workspaceRuntimeModel";
+import { buildRuntimeWorkspace, buildRuntimeWorkspaceObjects } from "./workspaceRuntimeModel";
 
 describe("workspace runtime model", () => {
   it("adds shared engine measurements behind authored workspace objects", () => {
@@ -59,5 +59,16 @@ describe("workspace runtime model", () => {
 
     expect(runtime.some((object) => object.metadata?.measurementKind === "volume")).toBe(true);
     expect(runtime.some((object) => object.value.includes("circle center"))).toBe(true);
+  });
+
+  it("returns cross-studio diagnostics and build statistics", () => {
+    const original = createMathObject({ id: "same", label: "A", kind: "point", dimension: "2d" });
+    const replacement = createMathObject({ id: "same", label: "B", kind: "point", dimension: "2d" });
+    const report = buildRuntimeWorkspace([original, replacement]);
+
+    expect(report.objects.filter((object) => object.id === "same")).toHaveLength(1);
+    expect(report.stats.inputObjects).toBe(2);
+    expect(report.stats.warnings).toBe(1);
+    expect(report.diagnostics[0]?.message).toContain("Duplicate object id");
   });
 });

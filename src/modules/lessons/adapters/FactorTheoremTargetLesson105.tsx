@@ -10,130 +10,24 @@ import {
   X,
 } from "lucide-react";
 import type { LessonAdapterProps } from "../types";
+import {
+  FACTOR_PROBLEMS_105 as problems,
+  candidateFactorText105 as factorText,
+  complementaryRoot105,
+  divideByCandidateFactor105 as divide,
+  evaluateFactorPolynomial105 as evaluate,
+  factorSubstitutionTerms105 as substitution,
+  factorTheoremVerdict105,
+  formatFactorPolynomial105 as formatPolynomial,
+  isFactorDragPayload105,
+  parseCandidateFactor105 as parseFactor,
+  parseFactorPolynomial105 as parsePolynomial,
+  type FactorDivision105,
+} from "./factorTheoremLesson105Model";
 import "./FactorTheoremTargetLesson105.css";
 
-type Parsed = { coefficients: number[]; valid: boolean };
-const problems = [
-  { polynomial: "x² − 3x + 2", factor: "x − 1" },
-  { polynomial: "x² − 5x + 6", factor: "x − 2" },
-  { polynomial: "x² + x − 6", factor: "x + 3" },
-];
-const superscripts: Record<string, string> = {
-  "⁰": "0",
-  "¹": "1",
-  "²": "2",
-  "³": "3",
-  "⁴": "4",
-  "⁵": "5",
-};
-function parsePolynomial(source: string): Parsed {
-  const terms = source
-    .replace(/[⁰¹²³⁴⁵]/g, (value) => `^${superscripts[value]}`)
-    .replaceAll("−", "-")
-    .replace(/\s+/g, "")
-    .replace(/-/g, "+-")
-    .split("+")
-    .filter(Boolean);
-  const values = new Map<number, number>();
-  for (const term of terms) {
-    const variable = term.match(/^([+-]?)(\d*)x(?:\^([0-5]))?$/i);
-    const constant = term.match(/^([+-]?\d+)$/);
-    if (variable) {
-      const sign = variable[1] === "-" ? -1 : 1;
-      const coefficient = variable[2] ? sign * Number(variable[2]) : sign;
-      const degree = variable[3] ? Number(variable[3]) : 1;
-      values.set(degree, (values.get(degree) ?? 0) + coefficient);
-    } else if (constant)
-      values.set(0, (values.get(0) ?? 0) + Number(constant[1]));
-    else return { coefficients: [], valid: false };
-  }
-  const degree = Math.max(0, ...values.keys());
-  return {
-    coefficients: Array.from(
-      { length: degree + 1 },
-      (_, index) => values.get(degree - index) ?? 0,
-    ),
-    valid: terms.length > 0 && degree > 0,
-  };
-}
-function parseFactor(source: string) {
-  const match = source
-    .replaceAll("−", "-")
-    .replace(/\s+/g, "")
-    .match(/^x(?:([+-])(\d+))?$/i);
-  return match
-    ? {
-        valid: true,
-        root:
-          match[1] === "+"
-            ? -Number(match[2])
-            : match[1] === "-"
-              ? Number(match[2])
-              : 0,
-      }
-    : { valid: false, root: 0 };
-}
-function evaluate(coefficients: number[], value: number) {
-  return coefficients.reduce(
-    (result, coefficient) => result * value + coefficient,
-    0,
-  );
-}
-function divide(coefficients: number[], root: number) {
-  const products = Array(coefficients.length).fill(0) as number[];
-  const sums = Array(coefficients.length).fill(0) as number[];
-  sums[0] = coefficients[0] ?? 0;
-  for (let index = 1; index < coefficients.length; index += 1) {
-    products[index] = sums[index - 1] * root;
-    sums[index] = coefficients[index] + products[index];
-  }
-  return {
-    products,
-    sums,
-    quotient: sums.slice(0, -1),
-    remainder: sums.at(-1) ?? 0,
-  };
-}
-function formatPolynomial(coefficients: number[]) {
-  const degree = coefficients.length - 1;
-  const parts = coefficients.flatMap((coefficient, index) => {
-    if (!coefficient) return [];
-    const power = degree - index;
-    const symbol =
-      power === 0
-        ? ""
-        : power === 1
-          ? "x"
-          : `x${["⁰", "¹", "²", "³", "⁴", "⁵"][power]}`;
-    const magnitude =
-      symbol && Math.abs(coefficient) === 1
-        ? symbol
-        : `${Math.abs(coefficient)}${symbol}`;
-    return [{ coefficient, magnitude }];
-  });
-  return parts.length
-    ? parts
-        .map(
-          (part, index) =>
-            `${index === 0 ? (part.coefficient < 0 ? "−" : "") : part.coefficient < 0 ? " − " : " + "}${part.magnitude}`,
-        )
-        .join("")
-    : "0";
-}
-function substitution(coefficients: number[], value: number) {
-  const degree = coefficients.length - 1;
-  return coefficients
-    .map((coefficient, index) => {
-      const power = degree - index;
-      const factor = coefficient * value ** power;
-      return `${factor}`;
-    })
-    .join(" + ")
-    .replaceAll("+ -", "− ");
-}
-function factorText(root: number) {
-  return root < 0 ? `x + ${Math.abs(root)}` : root === 0 ? "x" : `x − ${root}`;
-}
+type FactorTab105 =
+  "Interact" | "Explain" | "Examples" | "Formulas" | "Know more";
 
 export default function FactorTheoremTargetLesson105({
   resetToken,
@@ -148,7 +42,7 @@ export default function FactorTheoremTargetLesson105({
   const [substitute, setSubstitute] = useState(true);
   const [checkZero, setCheckZero] = useState(true);
   const [revealPair, setRevealPair] = useState(true);
-  const [tab, setTab] = useState("Interact");
+  const [tab, setTab] = useState<FactorTab105>("Interact");
   const [dragging, setDragging] = useState("");
   const [factorDrops, setFactorDrops] = useState(0);
   const [valueDrops, setValueDrops] = useState(0);
@@ -165,27 +59,27 @@ export default function FactorTheoremTargetLesson105({
     [parsed.coefficients, factor.root],
   );
   const value = evaluate(parsed.coefficients, testValue);
-  const isFactor =
-    parsed.valid &&
-    factor.valid &&
-    testValue === factor.root &&
-    value === 0 &&
-    division.remainder === 0;
-  const otherRoot =
-    division.quotient.length === 2 && division.quotient[0] !== 0
-      ? -division.quotient[1] / division.quotient[0]
-      : Number.NaN;
+  const isFactor = factorTheoremVerdict105(
+    parsed,
+    factor,
+    testValue,
+    value,
+    division.remainder,
+  );
+  const otherRoot = complementaryRoot105(division.quotient);
   const meter = Math.max(0, Math.min(100, 50 + value * 5));
   const practicePolynomial = parsePolynomial("x² − 5x + 6");
   const practiceValue = evaluate(
     practicePolynomial.coefficients,
     practiceSelected,
   );
+  const practiceFactorValue = evaluate(practicePolynomial.coefficients, 3);
+  const practiceNonFactorValue = evaluate(practicePolynomial.coefficients, 4);
   const act = () => {
     setActions((count) => count + 1);
     onInteraction();
   };
-  const reset = () => {
+  const reset = (notify = true) => {
     setProblemIndex(0);
     setPolynomialInput(problems[0].polynomial);
     setFactorInput(problems[0].factor);
@@ -200,9 +94,9 @@ export default function FactorTheoremTargetLesson105({
     setInvalidDrop("");
     setPracticeSelected(3);
     setActions(0);
-    onInteraction();
+    if (notify) onInteraction();
   };
-  useEffect(() => reset(), [resetToken]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => reset(false), [resetToken]); // eslint-disable-line react-hooks/exhaustive-deps
   const updateFactor = (source: string) => {
     setFactorInput(source);
     const next = parseFactor(source);
@@ -222,10 +116,10 @@ export default function FactorTheoremTargetLesson105({
   const drop = (event: DragEvent<HTMLElement>, kind: "factor" | "value") => {
     event.preventDefault();
     const payload = event.dataTransfer.getData(`text/factor-theorem-${kind}`);
-    const valid =
-      kind === "factor"
-        ? payload === factorInput
-        : Number(payload) === testValue;
+    const valid = isFactorDragPayload105(
+      payload,
+      kind === "factor" ? factorInput : String(testValue),
+    );
     if (valid) {
       if (kind === "factor") setFactorDrops((count) => count + 1);
       else setValueDrops((count) => count + 1);
@@ -251,7 +145,7 @@ export default function FactorTheoremTargetLesson105({
       className="factor105-page"
       data-testid="algebra-mockup-0162"
       data-dedicated-lesson="105"
-      data-object-model="editable-polynomial-candidate-factor-root-extraction-draggable-substitution-zero-meter-synthetic-remainder-factor-pair-practice-model"
+      data-object-model="dedicated-tested-editable-polynomial-candidate-factor-root-extraction-validated-draggable-substitution-zero-meter-synthetic-remainder-factor-pair-calculated-practice-and-functional-tabs-model"
       data-polynomial={formatPolynomial(parsed.coefficients)}
       data-polynomial-valid={parsed.valid}
       data-factor={factorInput}
@@ -304,13 +198,15 @@ export default function FactorTheoremTargetLesson105({
         </nav>
       </header>
       <nav className="factor105-tabs">
-        {[
-          ["Interact", "Test and explore"],
-          ["Explain", "Understand the idea"],
-          ["Examples", "See it in action"],
-          ["Formulas", "Key formulas"],
-          ["Know more", "Deepen understanding"],
-        ].map(([name, detail]) => (
+        {(
+          [
+            ["Interact", "Test and explore"],
+            ["Explain", "Understand the idea"],
+            ["Examples", "See it in action"],
+            ["Formulas", "Key formulas"],
+            ["Know more", "Deepen understanding"],
+          ] as [FactorTab105, string][]
+        ).map(([name, detail]) => (
           <button
             type="button"
             className={tab === name ? "active" : ""}
@@ -325,13 +221,16 @@ export default function FactorTheoremTargetLesson105({
           </button>
         ))}
       </nav>
-      <main className="factor105-station">
+      {tab !== "Interact" && <FactorTabPanel105 tab={tab} />}
+      <main
+        className={`factor105-station ${tab !== "Interact" ? "hidden" : ""}`}
+      >
         <header>
           <h2>Factor Test Station</h2>
           <p>
             Test whether <i>x − a</i> is a factor of <i>f(x)</i>
           </p>
-          <button type="button" onClick={reset}>
+          <button type="button" onClick={() => reset()}>
             <RotateCcw />
             Reset
           </button>
@@ -564,10 +463,13 @@ export default function FactorTheoremTargetLesson105({
         </section>
         <section className="factor105-practice">
           <h2>Practice: Test different factor candidates</h2>
-          <article className="factor">
+          <article
+            className={`factor ${practiceSelected === 3 ? "selected" : ""}`}
+          >
             <h3>g(x) = x² − 5x + 6</h3>
             <button
               type="button"
+              aria-pressed={practiceSelected === 3}
               onClick={() => {
                 setPracticeSelected(3);
                 act();
@@ -577,7 +479,7 @@ export default function FactorTheoremTargetLesson105({
             </button>
             <div>
               <b>Substitution</b>
-              <p>g(3) = 3² − 5(3) + 6 = 0</p>
+              <p>g(3) = 3² − 5(3) + 6 = {practiceFactorValue}</p>
               <strong>
                 Yes: x − 3 is a factor <Check />
               </strong>
@@ -587,10 +489,13 @@ export default function FactorTheoremTargetLesson105({
               <span>Zeros: x = 2, x = 3</span>
             </footer>
           </article>
-          <article className="nonfactor">
+          <article
+            className={`nonfactor ${practiceSelected === 4 ? "selected" : ""}`}
+          >
             <h3>Test a non-factor</h3>
             <button
               type="button"
+              aria-pressed={practiceSelected === 4}
               onClick={() => {
                 setPracticeSelected(4);
                 act();
@@ -600,13 +505,13 @@ export default function FactorTheoremTargetLesson105({
             </button>
             <div>
               <b>Substitution</b>
-              <p>g(4) = 4² − 5(4) + 6 = 2</p>
+              <p>g(4) = 4² − 5(4) + 6 = {practiceNonFactorValue}</p>
               <strong>
                 Not a factor <X />
               </strong>
             </div>
             <footer>
-              Remainder = 2 ≠ 0<br />
+              Remainder = {practiceNonFactorValue} ≠ 0<br />
               <b>So, x − 4 is not a factor of g(x).</b>
             </footer>
           </article>
@@ -664,6 +569,39 @@ export default function FactorTheoremTargetLesson105({
   );
 }
 
+function FactorTabPanel105({
+  tab,
+}: {
+  tab: Exclude<FactorTab105, "Interact">;
+}) {
+  const content = {
+    Explain: {
+      title: "Why a zero remainder proves a factor",
+      body: "The division identity is f(x) = (x − a)q(x) + r. Substituting x = a leaves f(a) = r. Therefore x − a divides f(x) exactly when f(a) = 0.",
+    },
+    Examples: {
+      title: "Test a candidate without full division",
+      body: "For f(x) = x² − 3x + 2, f(1) = 0 and f(2) = 0. The matching factors are x − 1 and x − 2.",
+    },
+    Formulas: {
+      title: "Factor Theorem",
+      body: "x − a is a factor of f(x) if and only if f(a) = 0. Equivalently, a is a zero of f exactly when x − a is a factor.",
+    },
+    "Know more": {
+      title: "Roots, factors, and graph intercepts",
+      body: "The same value a links three views: f(a) = 0, x − a is a factor, and the graph of y = f(x) crosses or touches the x-axis at x = a.",
+    },
+  }[tab];
+
+  return (
+    <section className="factor105-tab-panel" aria-live="polite">
+      <small>{tab}</small>
+      <h2>{content.title}</h2>
+      <p>{content.body}</p>
+    </section>
+  );
+}
+
 function Switch({
   label,
   detail,
@@ -694,7 +632,7 @@ function MiniSynthetic({
 }: {
   coefficients: number[];
   root: number;
-  division: ReturnType<typeof divide>;
+  division: FactorDivision105;
 }) {
   return (
     <div

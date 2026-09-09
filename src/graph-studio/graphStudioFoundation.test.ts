@@ -36,6 +36,8 @@ describe("Graph Studio expression foundation", () => {
     expect(substituteGraphVariables("a*sin(x)+b", variables)).toBe(
       "(3)*sin(x)+(1)",
     );
+    expect(createGraphVariable("bad", Number.NaN).value).toBe(1);
+    expect(substituteGraphVariables("bad*x", [{ ...createGraphVariable("bad"), value: Number.POSITIVE_INFINITY }])).toBe("(0)*x");
   });
 
   it("keeps mathematical evaluation inside the safe parser", () => {

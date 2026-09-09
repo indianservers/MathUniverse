@@ -288,6 +288,48 @@
   grid-template-columns: 306px 1fr;
   gap: 8px;
 }
+.sim112-tab-panel {
+  display: block;
+  min-height: 660px;
+  padding: 34px;
+}
+.sim112-tab-panel > small {
+  color: #078ba4;
+  font-weight: 900;
+}
+.sim112-tab-panel > h2 {
+  margin-top: 12px;
+  font-size: 22px;
+}
+.sim112-tab-panel > p {
+  max-width: 520px;
+  margin-top: 10px;
+  color: #5c697d;
+  font-size: 12px;
+  line-height: 1.6;
+}
+.sim112-tab-panel > div {
+  display: grid;
+  margin-top: 24px;
+  gap: 10px;
+  grid-template-columns: repeat(2, 1fr);
+}
+.sim112-tab-panel > div button {
+  display: flex;
+  min-height: 74px;
+  padding: 13px;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #dce6ed;
+  border-radius: 8px;
+  background: #fff;
+  text-align: left;
+  font-weight: 800;
+}
+.sim112-tab-panel > div b {
+  color: #078b68;
+  font-size: 14px;
+}
 .sim112-elimination,
 .sim112-graph {
   padding: 12px;

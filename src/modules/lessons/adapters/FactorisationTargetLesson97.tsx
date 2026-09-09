@@ -14,61 +14,27 @@ import {
   type KeyboardEvent,
 } from "react";
 import type { LessonAdapterProps } from "../types";
+import {
+  FACTORISATION_CHALLENGES_97 as challenges,
+  factor97 as factor,
+  factorForm97 as factorForm,
+  factorisationValues97,
+  factorPairCandidates97 as candidatePairs,
+  factorPairKey97 as pairKey,
+  factorPairLabel97 as pairLabel,
+  factorPairMath97 as pairMath,
+  factorSignTerm97 as signTerm,
+  findFactorPair97 as findPair,
+  isAreaDropCorrect97,
+  isFactorisationAnswer97,
+  quadraticExpression97 as polynomial,
+  splitQuadratic97,
+  type FactorPair97 as Pair,
+} from "./factorisationLesson97Model";
 import "./FactorisationTargetLesson97.css";
 
-type Pair = [number, number];
-type Challenge = { variable: string; sum: number; product: number; pair: Pair };
-
-const challenges: Challenge[] = [
-  { variable: "y", sum: 7, product: 10, pair: [5, 2] },
-  { variable: "a", sum: 8, product: 15, pair: [3, 5] },
-  { variable: "m", sum: 9, product: 20, pair: [4, 5] },
-];
-
-const signTerm = (coefficient: number, suffix = "") =>
-  `${coefficient < 0 ? "−" : "+"} ${Math.abs(coefficient)}${suffix}`;
-const polynomial = (variable: string, sum: number, product: number) =>
-  `${variable}² ${signTerm(sum, variable)} ${signTerm(product)}`;
-const factor = (variable: string, value: number) =>
-  `(${variable} ${value < 0 ? "−" : "+"} ${Math.abs(value)})`;
-const factorForm = (variable: string, pair: Pair) =>
-  `${factor(variable, pair[0])}${factor(variable, pair[1])}`;
-const pairKey = (pair: Pair) => `${pair[0]},${pair[1]}`;
-const pairLabel = (pair: Pair) => `(${pair[0]}, ${pair[1]})`;
-const pairMath = (pair: Pair, operation: "product" | "sum") =>
-  operation === "product"
-    ? `${pair[0]} × ${pair[1]} = ${pair[0] * pair[1]}`
-    : `${pair[0]} + ${pair[1]} = ${pair[0] + pair[1]}`;
-
-function findPair(product: number, sum: number): Pair | null {
-  for (let first = -36; first <= 36; first += 1) {
-    const second = sum - first;
-    if (first <= second && first * second === product) return [first, second];
-  }
-  return null;
-}
-
-function candidatePairs(
-  product: number,
-  sum: number,
-  correct: Pair | null,
-): Pair[] {
-  const candidates: Pair[] = [[1, product]];
-  if (correct) candidates.push(correct);
-  else candidates.push([Math.floor(sum / 2), Math.ceil(sum / 2)]);
-  const last: Pair = correct
-    ? correct[0] >= 0 && correct[1] >= 0
-      ? [-correct[0], -correct[1]]
-      : [Math.abs(correct[0]), Math.abs(correct[1])]
-    : [-1, -product];
-  candidates.push(last);
-  return candidates
-    .filter(
-      (pair, index, all) =>
-        all.findIndex((item) => pairKey(item) === pairKey(pair)) === index,
-    )
-    .slice(0, 3);
-}
+type FactorisationTab97 =
+  "Interact" | "Learn" | "Examples" | "Formula" | "Practice";
 
 export default function FactorisationTargetLesson97({
   resetToken,
@@ -79,7 +45,7 @@ export default function FactorisationTargetLesson97({
   const [selectedPair, setSelectedPair] = useState("2,3");
   const [checkValue, setCheckValue] = useState(2);
   const [stage, setStage] = useState(1);
-  const [tab, setTab] = useState("Interact");
+  const [tab, setTab] = useState<FactorisationTab97>("Interact");
   const [dragging, setDragging] = useState("");
   const [areaDrops, setAreaDrops] = useState<string[]>([]);
   const [challengePair, setChallengePair] = useState("5,2");
@@ -99,32 +65,24 @@ export default function FactorisationTargetLesson97({
   const activePair = pairCorrect && correctPair ? correctPair : selected;
   const expression = polynomial("x", sum, product);
   const factors = factorForm("x", activePair);
-  const split = `x² ${signTerm(activePair[0], "x")} ${signTerm(activePair[1], "x")} ${signTerm(product)}`;
-  const originalValue = checkValue ** 2 + sum * checkValue + product;
-  const factorValue =
-    (checkValue + activePair[0]) * (checkValue + activePair[1]);
+  const split = splitQuadratic97("x", activePair, product);
+  const proof = factorisationValues97(sum, product, activePair, checkValue);
+  const originalValue = proof.original;
+  const factorValue = proof.factored;
   const challenge = challenges[0];
   const challengeExpected = factorForm(challenge.variable, challenge.pair);
-  const normalizedChallenge = challengeAnswer
-    .replace(/[−\s]/g, "")
-    .replace(/-/g, "−")
-    .toLowerCase();
-  const normalizedExpected = challengeExpected
-    .replace(/[−\s]/g, "")
-    .replace(/-/g, "−")
-    .toLowerCase();
   const challengeCorrect =
     challengePair === pairKey(challenge.pair) &&
-    (normalizedChallenge === normalizedExpected ||
-      normalizedChallenge ===
-        factorForm(challenge.variable, [challenge.pair[1], challenge.pair[0]])
-          .replace(/[−\s]/g, "")
-          .toLowerCase());
+    isFactorisationAnswer97(
+      challengeAnswer,
+      challenge.variable,
+      challenge.pair,
+    );
   const act = () => {
     setActions((count) => count + 1);
     onInteraction();
   };
-  const reset = () => {
+  const reset = (notify = true) => {
     setSum(5);
     setProduct(6);
     setSelectedPair("2,3");
@@ -137,10 +95,10 @@ export default function FactorisationTargetLesson97({
     setChallengeAnswer("(y + 5)(y + 2)");
     setChallengeChecked(true);
     setActions(0);
-    onInteraction();
+    if (notify) onInteraction();
   };
   useEffect(() => {
-    reset();
+    reset(false);
   }, [resetToken]); // eslint-disable-line react-hooks/exhaustive-deps
   const updateTargets = (nextProduct: number, nextSum: number) => {
     const boundedProduct = Math.max(-36, Math.min(36, nextProduct));
@@ -170,7 +128,10 @@ export default function FactorisationTargetLesson97({
   const dropTerm = (event: DragEvent<HTMLElement>, expected: string) => {
     event.preventDefault();
     const term = event.dataTransfer.getData("text/factor-term");
-    if (!term) return;
+    if (!term || !isAreaDropCorrect97(term, expected)) {
+      setDragging("");
+      return;
+    }
     setAreaDrops((current) =>
       current.includes(`${expected}:${term}`)
         ? current
@@ -191,7 +152,7 @@ export default function FactorisationTargetLesson97({
       className="factor97-page"
       data-testid="algebra-mockup-0154"
       data-dedicated-lesson="97"
-      data-object-model="editable-quadratic-factor-pair-search-draggable-reverse-area-expansion-substitution-graded-practice-model"
+      data-object-model="dedicated-tested-editable-quadratic-factor-pair-search-validated-draggable-reverse-area-expansion-substitution-graded-practice-and-functional-learning-tabs-model"
       data-sum={sum}
       data-product={product}
       data-correct-pair={correctPair ? pairKey(correctPair) : ""}
@@ -203,7 +164,7 @@ export default function FactorisationTargetLesson97({
       data-check-value={checkValue}
       data-original-value={originalValue}
       data-factor-value={factorValue}
-      data-equivalent={pairCorrect && originalValue === factorValue}
+      data-equivalent={proof.equivalent}
       data-stage={stage}
       data-tab={tab}
       data-dragging={dragging}
@@ -256,7 +217,7 @@ export default function FactorisationTargetLesson97({
               className={tab === name ? "active" : ""}
               key={name}
               onClick={() => {
-                setTab(name);
+                setTab(name as FactorisationTab97);
                 act();
               }}
             >
@@ -265,7 +226,17 @@ export default function FactorisationTargetLesson97({
           ),
         )}
       </nav>
-      <main className="factor97-workspace">
+      {tab !== "Interact" && (
+        <FactorisationTabPanel97
+          tab={tab}
+          sum={sum}
+          product={product}
+          pair={activePair}
+        />
+      )}
+      <main
+        className={`factor97-workspace ${tab === "Interact" ? "" : "hidden"}`}
+      >
         <header>
           <small>INTERACTIVE WORKSPACE</small>
           <h2>
@@ -710,5 +681,49 @@ function DropCell({
     >
       {label}
     </button>
+  );
+}
+
+function FactorisationTabPanel97({
+  tab,
+  sum,
+  product,
+  pair,
+}: {
+  tab: Exclude<FactorisationTab97, "Interact">;
+  sum: number;
+  product: number;
+  pair: Pair;
+}) {
+  const expression = polynomial("x", sum, product);
+  const factors = factorForm("x", pair);
+  const content =
+    tab === "Learn"
+      ? [
+          "Find two integers whose product is the constant term and whose sum is the middle coefficient.",
+          "Split the middle term, build the rectangle, and read its side lengths.",
+        ]
+      : tab === "Examples"
+        ? challenges.map(
+            (item) =>
+              `${polynomial(item.variable, item.sum, item.product)} = ${factorForm(item.variable, item.pair)}`,
+          )
+        : tab === "Formula"
+          ? [
+              "x² + (p + q)x + pq = (x + p)(x + q)",
+              `${expression} = ${factors}`,
+            ]
+          : challenges.map(
+              (item) =>
+                `Factorise ${polynomial(item.variable, item.sum, item.product)}`,
+            );
+  return (
+    <section className="factor97-tab-panel" data-active-learning-tab={tab}>
+      <h2>{tab}</h2>
+      <strong>{factors}</strong>
+      {content.map((item) => (
+        <p key={item}>{item}</p>
+      ))}
+    </section>
   );
 }

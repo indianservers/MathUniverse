@@ -254,6 +254,34 @@
   border-radius: 14px;
   background: rgba(255, 255, 255, 0.58);
 }
+.factor97-workspace.hidden {
+  display: none;
+}
+.factor97-tab-panel {
+  min-height: 360px;
+  margin-top: 15px;
+  padding: 32px;
+  border: 1px solid #dce5eb;
+  border-radius: 14px;
+  background: #fff;
+}
+.factor97-tab-panel h2 {
+  margin-bottom: 18px;
+  color: #172245;
+  font-size: 24px;
+}
+.factor97-tab-panel > strong {
+  display: block;
+  margin-bottom: 20px;
+  color: #5c35d5;
+  font-family: Georgia, serif;
+  font-size: 28px;
+}
+.factor97-tab-panel p {
+  margin: 10px 0;
+  color: #475a72;
+  font-weight: 700;
+}
 .factor97-workspace > header {
   height: 73px;
   padding: 16px 13px;

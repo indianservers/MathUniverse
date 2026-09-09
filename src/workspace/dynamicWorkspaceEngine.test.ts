@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { createMathObject } from "./coreObjects";
 import { createObjectFromDefinition, evaluateDynamicWorkspace } from "./dynamicWorkspaceEngine";
 
 describe("dynamic workspace engine", () => {
@@ -37,5 +38,52 @@ describe("dynamic workspace engine", () => {
     expect(result.algebra.map((row) => row.name)).toEqual(expect.arrayContaining(["f", "S"]));
     expect(result.objects.find((object) => object.label === "f")?.metadata?.graphKind).toBe("implicit");
     expect(result.objects.find((object) => object.label === "S")?.dimension).toBe("3d");
+  });
+
+  it("uses the newest value for duplicate ids and reports the repair", () => {
+    const oldPoint = createObjectFromDefinition("A=(1,1)");
+    const newPoint = { ...createObjectFromDefinition("A=(8,9)"), id: oldPoint.id };
+    const result = evaluateDynamicWorkspace([oldPoint, newPoint]);
+
+    expect(result.objects).toHaveLength(1);
+    expect(result.objects[0].geometry).toMatchObject({ type: "point", position: { x: 8, y: 9 } });
+    expect(result.diagnostics).toContainEqual(expect.objectContaining({ severity: "warning", message: expect.stringContaining("Duplicate object id") }));
+  });
+
+  it("blocks circular and missing dependencies instead of computing misleading fallback geometry", () => {
+    const first = createMathObject({
+      id: "first",
+      label: "first",
+      kind: "line",
+      dimension: "2d",
+      definition: { source: "first=Line[second,missing]", parentIds: ["second", "missing"] },
+      dependencies: [{ id: "second", label: "second", role: "parent" }],
+    });
+    const second = createMathObject({
+      id: "second",
+      label: "second",
+      kind: "line",
+      dimension: "2d",
+      definition: { source: "second=Line[first,missing]", parentIds: ["first", "missing"] },
+      dependencies: [{ id: "first", label: "first", role: "parent" }],
+    });
+    const result = evaluateDynamicWorkspace([first, second]);
+
+    expect(result.objects.every((object) => object.status === "error")).toBe(true);
+    expect(result.diagnostics.filter((diagnostic) => diagnostic.message === "Circular dependency detected.")).toHaveLength(2);
+  });
+
+  it("reports unresolved command references even when legacy metadata omitted parent ids", () => {
+    const line = createMathObject({
+      id: "line",
+      label: "line",
+      kind: "line",
+      dimension: "2d",
+      definition: { source: "line=Line[A,B]", parentIds: [] },
+    });
+    const result = evaluateDynamicWorkspace([line]);
+
+    expect(result.objects[0].status).toBe("error");
+    expect(result.diagnostics).toContainEqual(expect.objectContaining({ message: "Missing dependencies: A, B." }));
   });
 });

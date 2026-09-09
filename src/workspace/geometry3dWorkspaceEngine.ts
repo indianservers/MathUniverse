@@ -111,8 +111,8 @@ export function createSection3DObjects(scene: Geometry3DScene): Geometry3DObject
 }
 
 export function snapPointToGeometry3D(pointer: Point3, scene: Geometry3DScene, options: { gridSize?: number; threshold?: number } = {}): Snap3DResult {
-  const gridSize = options.gridSize ?? 1;
-  const threshold = options.threshold ?? gridSize / 2;
+  const gridSize = positiveFinite(options.gridSize, 1);
+  const threshold = nonNegativeFinite(options.threshold, gridSize / 2);
   const grid = point3(Math.round(pointer.x / gridSize) * gridSize, Math.round(pointer.y / gridSize) * gridSize, Math.round(pointer.z / gridSize) * gridSize);
   const candidates: Snap3DResult[] = [{ kind: "grid", point: grid, distance: distance3(pointer, grid), label: "Grid" }];
 
@@ -256,6 +256,14 @@ function pushCandidate(candidates: Snap3DResult[], kind: Snap3DKind, candidate: 
 function snap3DPriority(kind: Snap3DKind) {
   const order: Record<Snap3DKind, number> = { intersection: 0, point: 1, object: 2, grid: 3 };
   return order[kind];
+}
+
+function positiveFinite(value: number | undefined, fallback: number) {
+  return typeof value === "number" && Number.isFinite(value) && Math.abs(value) > 1e-12 ? Math.abs(value) : fallback;
+}
+
+function nonNegativeFinite(value: number | undefined, fallback: number) {
+  return typeof value === "number" && Number.isFinite(value) ? Math.max(0, value) : fallback;
 }
 
 function uniqueIntersections(intersections: Intersection3[]) {

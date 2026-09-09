@@ -4,6 +4,7 @@ import {
   BookOpen,
   CheckCircle2,
   ClipboardCheck,
+  ExternalLink,
   ListChecks,
   Route,
   SearchCheck,
@@ -20,6 +21,7 @@ import {
   LessonSectionNav,
   SchoolLessonSections,
 } from "../components/LessonSectionJourney";
+import { schoolStudioFor } from "../../../components/lessons/StudioLessonLinks";
 import DecimalExpansionTargetLesson10040 from "../schoolTargets/DecimalExpansionTargetLesson10040";
 import TerminatingDecimalsTargetLesson10041 from "../schoolTargets/TerminatingDecimalsTargetLesson10041";
 import RationalIrrationalTargetLesson10042 from "../schoolTargets/RationalIrrationalTargetLesson10042";
@@ -718,6 +720,7 @@ function SchoolLessonBody({
     : lesson.content;
   const objectives =
     strengthened?.learningObjectives ?? lesson.metadata.learningObjectives;
+  const relatedStudio = schoolStudioFor(lesson);
 
   return (
     <div className="space-y-4" data-testid="school-lesson-page">
@@ -734,10 +737,16 @@ function SchoolLessonBody({
               {content.summary}
             </p>
           </div>
-          <Link className="action-secondary" to="/lessons/school">
-            <ArrowLeft className="h-4 w-4" />
-            School lessons
-          </Link>
+          <div className="flex flex-wrap gap-2">
+            <Link className="action-primary" to={relatedStudio.to}>
+              <ExternalLink className="h-4 w-4" />
+              {relatedStudio.label}
+            </Link>
+            <Link className="action-secondary" to="/lessons/school">
+              <ArrowLeft className="h-4 w-4" />
+              School lessons
+            </Link>
+          </div>
         </div>
         <div className="school-lesson-header-meta mt-4 flex flex-wrap gap-2">
           <Chip label={`${lesson.metadata.estimatedMinutes} min`} />

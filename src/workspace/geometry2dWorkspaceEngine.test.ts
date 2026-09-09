@@ -96,6 +96,7 @@ describe("geometry 2D workspace engine", () => {
 
     expect(snapPointToGeometry({ x: 0.2, y: 0.1 }, scene, { gridSize: 1 }).kind).toBe("point");
     expect(snapPointToGeometry({ x: 5.1, y: 0.2 }, scene, { gridSize: 1 }).kind).toBe("intersection");
+    expect(snapPointToGeometry({ x: 1.2, y: 1.7 }, { objects: [], constraints: [] }, { gridSize: 0 }).point).toEqual({ x: 1, y: 2 });
     expect(allSceneIntersections(scene)).toHaveLength(1);
   });
 

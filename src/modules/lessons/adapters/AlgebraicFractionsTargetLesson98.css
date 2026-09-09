@@ -209,6 +209,34 @@
   grid-template-columns: 521px 249px;
   gap: 10px;
 }
+.algfrac98-layout.hidden {
+  display: none;
+}
+.algfrac98-tab-panel {
+  min-height: 360px;
+  margin-top: 17px;
+  padding: 32px;
+  border: 1px solid #dce5eb;
+  border-radius: 12px;
+  background: #fff;
+}
+.algfrac98-tab-panel h2 {
+  margin-bottom: 18px;
+  color: #12234d;
+  font-size: 24px;
+}
+.algfrac98-tab-panel > strong {
+  display: block;
+  margin-bottom: 20px;
+  color: #6d2fd0;
+  font-family: Georgia, serif;
+  font-size: 28px;
+}
+.algfrac98-tab-panel p {
+  margin: 10px 0;
+  color: #405477;
+  font-weight: 700;
+}
 .algfrac98-left {
   position: relative;
   height: 1089px;

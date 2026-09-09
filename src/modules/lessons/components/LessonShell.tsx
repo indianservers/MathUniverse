@@ -442,10 +442,10 @@ export default function LessonShell({ lesson }: { lesson: LessonDefinition }) {
               <Link
                 className="action-secondary"
                 to={workspaceRoute(lesson)}
-                title="Open related workspace"
+                title="Open related studio"
               >
                 <ExternalLink className="h-4 w-4" />
-                Workspace
+                Related studio
               </Link>
             </div>
           </div>

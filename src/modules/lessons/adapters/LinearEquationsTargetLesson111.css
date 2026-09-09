@@ -218,6 +218,69 @@
   grid-template-columns: 280px 1fr;
   gap: 8px;
 }
+.linear111-tab-panel {
+  display: block;
+  min-height: 660px;
+  padding: 34px;
+}
+.linear111-tab-panel > small {
+  color: #087f9c;
+  font-weight: 900;
+}
+.linear111-tab-panel > h2 {
+  margin-top: 12px;
+  font-size: 22px;
+}
+.linear111-tab-panel > p {
+  max-width: 520px;
+  margin-top: 10px;
+  color: #5c697d;
+  font-size: 12px;
+  line-height: 1.6;
+}
+.linear111-tab-panel > div {
+  display: grid;
+  margin-top: 24px;
+  gap: 10px;
+  grid-template-columns: repeat(2, 1fr);
+}
+.linear111-tab-panel > div button,
+.linear111-tab-panel > .practice-action {
+  display: grid;
+  min-height: 70px;
+  padding: 14px;
+  border: 1px solid #dce6ed;
+  border-radius: 8px;
+  background: #fff;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 900;
+}
+.linear111-tab-panel > div span {
+  margin-top: 6px;
+  color: #617087;
+  font-size: 9px;
+}
+.linear111-tab-panel > .practice-action {
+  min-height: 38px;
+  margin-top: 22px;
+  background: #eafaf5;
+  color: #08794d;
+}
+.linear111-workspace-panel {
+  position: absolute;
+  z-index: 4;
+  top: 195px;
+  right: 20px;
+  display: grid;
+  width: 190px;
+  padding: 12px;
+  gap: 6px;
+  border: 1px solid #b9dfe6;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 10px 24px rgba(29, 68, 91, 0.16);
+}
 .linear111-algebra,
 .linear111-graph {
   border: 1px solid #dce6ed;

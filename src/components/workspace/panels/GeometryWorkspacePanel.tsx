@@ -4,7 +4,6 @@ import {
   Clock3,
   Copy,
   Box,
-  Calculator,
   Circle,
   Download,
   Eraser,
@@ -14,11 +13,11 @@ import {
   Filter,
   FolderTree,
   Home,
-  Layers3,
   LineChart,
   ListTree,
   Lock,
   Magnet,
+  Maximize2,
   Menu,
   MousePointer2,
   Move,
@@ -282,6 +281,7 @@ interface GeometryWorkspacePanelProps {
   onExport?: () => void;
   onGraphSettingsChange: (settings: GeometryGraphSettings) => void;
   onZoom: (direction: "in" | "out", anchor?: { x: number; y: number }) => void;
+  onFitView: () => void;
   onResetView: () => void;
   onBoardWheel: (event: WheelEvent<SVGSVGElement>) => void;
   onBoardKeyDown: (event: KeyboardEvent<SVGSVGElement>) => void;
@@ -336,7 +336,6 @@ const geometryPaletteGroups: Array<{
       { id: "text", label: "Text", icon: Slash },
       { id: "image", label: "Image", icon: Box },
       { id: "move-canvas", label: "Move Canvas", icon: Move },
-      { id: "zoom", label: "Zoom", icon: ZoomIn },
     ],
   },
   {
@@ -472,6 +471,7 @@ export default function GeometryWorkspacePanel({
   onExport,
   onGraphSettingsChange,
   onZoom,
+  onFitView,
   onResetView,
   onBoardWheel,
   onBoardKeyDown,
@@ -488,7 +488,7 @@ export default function GeometryWorkspacePanel({
   onReplayProtocol,
 }: GeometryWorkspacePanelProps) {
   const [studioMode, setStudioMode] = useState<
-    "Construct" | "Measure" | "Animate" | "Learn"
+    "Construct" | "Measure" | "Animate"
   >("Construct");
   const [registryTab, setRegistryTab] = useState<
     "Objects" | "Algebra" | "Layers"
@@ -546,6 +546,10 @@ export default function GeometryWorkspacePanel({
         ? "Measurements"
         : "Construction Protocol";
   const chooseTool = (nextTool: GeometryTool) => {
+    if (nextTool === "image") {
+      imageInputRef.current?.click();
+      return;
+    }
     onToolChange(nextTool);
     setRecentTools((current) =>
       [nextTool, ...current.filter((tool) => tool !== nextTool)].slice(0, 6),
@@ -554,9 +558,12 @@ export default function GeometryWorkspacePanel({
   };
   const handleBoardMove = (event: PointerEvent<SVGSVGElement>) => {
     const rect = event.currentTarget.getBoundingClientRect();
+    const boardX = camera.x + ((event.clientX - rect.left) / rect.width) * camera.width;
+    const boardY = camera.y + ((event.clientY - rect.top) / rect.height) * camera.height;
+    const coordinateUnit = graphSettings.gridSpacing ?? 40;
     setPointerCoordinate({
-      x: ((event.clientX - rect.left) / rect.width) * 16 - 8,
-      y: 5.5 - ((event.clientY - rect.top) / rect.height) * 10.5,
+      x: (boardX - 320) / coordinateUnit,
+      y: (220 - boardY) / coordinateUnit,
     });
     onBoardPointerMove(event);
   };
@@ -573,10 +580,12 @@ export default function GeometryWorkspacePanel({
   }, [historyPlaying, onReplayProtocol, protocolEntries.length]);
   return (
     <div className="geometry-studio-shell">
-      <GeometryStudioRail />
       <header className="geometry-studio-topbar">
         <div className="min-w-0">
           <div className="flex min-w-0 items-center gap-2">
+            <Link to="/" className="geometry-home-button" title="Home page" aria-label="Home page">
+              <Home className="h-4 w-4" />
+            </Link>
             <h1>2D Geometry Workspace</h1>
             <button
               type="button"
@@ -594,7 +603,7 @@ export default function GeometryWorkspacePanel({
           className="geometry-mode-tabs"
           aria-label="Geometry workspace modes"
         >
-          {["Construct", "Measure", "Learn"].map((mode) => (
+          {["Construct", "Measure"].map((mode) => (
             <button
               key={mode}
               type="button"
@@ -621,11 +630,11 @@ export default function GeometryWorkspacePanel({
           <button
             type="button"
             onClick={onLoad}
-            title="Load saved construction"
-            aria-label="Load saved construction"
+            title="Load or import workspace file"
+            aria-label="Load or import workspace file"
           >
             <Download className="h-4 w-4" />
-            <span>Load</span>
+            <span>Load / Import</span>
           </button>
           <button
             type="button"
@@ -719,7 +728,7 @@ export default function GeometryWorkspacePanel({
         <section className="geometry-canvas-panel">
           <div className="geometry-canvas-stage">
             <GeometryNavTools activeTool={activeTool} onTool={chooseTool} />
-            <GeometryZoomControls onZoom={onZoom} onResetView={onResetView} />
+            <GeometryZoomControls onZoom={onZoom} onFitView={onFitView} onResetView={onResetView} />
             <GeometryBoard
               boardRef={boardRef}
               construction={construction}
@@ -816,10 +825,10 @@ export default function GeometryWorkspacePanel({
           {selectedPoint && (
             <div className="geometry-coordinate-readout">
               <span>
-                X <strong>{roundTo(selectedPoint.x / 40 - 8, 2)}</strong>
+                X <strong>{roundTo((selectedPoint.x - 320) / (graphSettings.gridSpacing ?? 40), 2)}</strong>
               </span>
               <span>
-                Y <strong>{roundTo(5.5 - selectedPoint.y / 40, 2)}</strong>
+                Y <strong>{roundTo((220 - selectedPoint.y) / (graphSettings.gridSpacing ?? 40), 2)}</strong>
               </span>
             </div>
           )}
@@ -1305,7 +1314,7 @@ function GeometryToolPalette({
       danger: true,
     },
     { id: "save", label: "Save", icon: Save, action: onSave },
-    { id: "load", label: "Load", icon: Download, action: onLoad },
+    { id: "load", label: "Load / Import", icon: Download, action: onLoad },
     { id: "add-image", label: "Add Image", icon: Plus, action: onAddImage },
   ];
 
@@ -1397,42 +1406,6 @@ function GeometryToolPalette({
   );
 }
 
-function GeometryStudioRail() {
-  const items = [
-    { label: "Home", href: "/", icon: Home },
-    { label: "Workspace", href: "/workspace", icon: Box },
-    {
-      label: "2D Geometry",
-      href: "/workspace/geometry",
-      icon: Pentagon,
-      active: true,
-    },
-    { label: "2D Graphs", href: "/workspace/graph", icon: LineChart },
-    { label: "3D Studio", href: "/workspace/3d", icon: Layers3 },
-    { label: "CAS", href: "/workspace/data", icon: Calculator },
-    { label: "More", href: "/sitemap", icon: ListTree },
-  ];
-  return (
-    <nav className="geometry-studio-rail" aria-label="Studio navigation">
-      <a className="geometry-brand" href="/" aria-label="Math Universe home">
-        mu
-      </a>
-      {items.map(({ label, href, icon: Icon, active }) => (
-        <Link
-          key={label}
-          to={href}
-          className={active ? "active" : ""}
-          aria-current={active ? "page" : undefined}
-          title={label}
-        >
-          <Icon className="h-4 w-4" />
-          <span>{label}</span>
-        </Link>
-      ))}
-    </nav>
-  );
-}
-
 function GeometryNavTools({
   activeTool,
   onTool,
@@ -1443,7 +1416,6 @@ function GeometryNavTools({
   const tools: Array<{ id: GeometryTool; label: string; icon: LucideIcon }> = [
     { id: "select", label: "Select", icon: MousePointer2 },
     { id: "move-canvas", label: "Pan", icon: Move },
-    { id: "zoom", label: "Zoom", icon: ZoomIn },
   ];
   return (
     <div className="geometry-nav-tools" aria-label="Canvas navigation tools">
@@ -1463,11 +1435,12 @@ function GeometryNavTools({
   );
 }
 
-function GeometryZoomControls({ onZoom, onResetView }: { onZoom: (direction: "in" | "out") => void; onResetView: () => void }) {
+function GeometryZoomControls({ onZoom, onFitView, onResetView }: { onZoom: (direction: "in" | "out") => void; onFitView: () => void; onResetView: () => void }) {
   return (
     <div className="geometry-zoom-controls" aria-label="Canvas zoom controls">
       <button type="button" onClick={() => onZoom("in")} title="Zoom in" aria-label="Zoom in"><ZoomIn className="h-4 w-4" /></button>
       <button type="button" onClick={() => onZoom("out")} title="Zoom out" aria-label="Zoom out"><ZoomOut className="h-4 w-4" /></button>
+      <button type="button" onClick={onFitView} title="Fit all objects" aria-label="Fit all objects"><Maximize2 className="h-4 w-4" /></button>
       <button type="button" onClick={onResetView} title="Reset view" aria-label="Reset view"><Home className="h-4 w-4" /></button>
     </div>
   );
@@ -2640,7 +2613,10 @@ function GeometryGrid({ settings, camera }: { settings: GeometryGraphSettings; c
   const showUnits = settings.showUnitLabels || settings.showUnits;
   const width = camera?.width ?? 640;
   const height = camera?.height ?? 420;
-  const unit = settings.gridSpacing ?? 40;
+  const baseUnit = settings.gridSpacing ?? 40;
+  const visibleSpan = Math.max(width, height);
+  const adaptiveMultiplier = Math.max(1, 2 ** Math.ceil(Math.log2(Math.max(1, visibleSpan / (baseUnit * 28)))));
+  const unit = baseUnit * adaptiveMultiplier;
   const origin = { x: 320, y: 220 };
   const left = camera?.x ?? 0;
   const top = camera?.y ?? 0;
@@ -2732,7 +2708,7 @@ function GeometryGrid({ settings, camera }: { settings: GeometryGraphSettings; c
           )}
           {showUnits &&
             verticals.map((x) => {
-              const value = Math.round((x - origin.x) / unit);
+              const value = Math.round((x - origin.x) / baseUnit);
               if (value === 0 || x < left + 20 || x > right - 20) return null;
               return (
                 <text
@@ -2750,7 +2726,7 @@ function GeometryGrid({ settings, camera }: { settings: GeometryGraphSettings; c
             })}
           {showUnits &&
             horizontals.map((y) => {
-              const value = Math.round((origin.y - y) / unit);
+              const value = Math.round((origin.y - y) / baseUnit);
               if (value === 0 || y < top + 20 || y > bottom - 20) return null;
               return (
                 <text
@@ -3007,6 +2983,67 @@ function GeometryArc({
   const radius = distance(center, start);
   const startAngle = Math.atan2(start.y - center.y, start.x - center.x);
   const endAngle = Math.atan2(end.y - center.y, end.x - center.x);
+  if (arc.kind === "angle") {
+    const markerRadius = Math.max(22, Math.min(54, distance(center, start) * 0.32, distance(center, end) * 0.32));
+    const startMarker = {
+      x: center.x + Math.cos(startAngle) * markerRadius,
+      y: center.y + Math.sin(startAngle) * markerRadius,
+    };
+    const endMarker = {
+      x: center.x + Math.cos(endAngle) * markerRadius,
+      y: center.y + Math.sin(endAngle) * markerRadius,
+    };
+    const clockwiseDelta = (endAngle - startAngle + Math.PI * 2) % (Math.PI * 2);
+    const sweep = clockwiseDelta <= Math.PI ? 1 : 0;
+    const minorDelta = clockwiseDelta <= Math.PI ? clockwiseDelta : Math.PI * 2 - clockwiseDelta;
+    const bisectorAngle = clockwiseDelta <= Math.PI
+      ? startAngle + minorDelta / 2
+      : startAngle - minorDelta / 2;
+    const markerPath = `M ${startMarker.x} ${startMarker.y} A ${markerRadius} ${markerRadius} 0 0 ${sweep} ${endMarker.x} ${endMarker.y}`;
+    const angleDegrees = minorDelta * 180 / Math.PI;
+    const labelRadius = markerRadius + 20;
+    const label = `∠${start.label}${center.label}${end.label} ${roundTo(angleDegrees, 1)}°`;
+    return (
+      <g opacity={arc.style?.opacity ?? 1}>
+        <path
+          d={`M ${start.x} ${start.y} L ${center.x} ${center.y} L ${end.x} ${end.y}`}
+          fill="none"
+          stroke={arc.style?.color ?? "#14b8a6"}
+          strokeWidth="2.5"
+          strokeDasharray="6 5"
+          opacity="0.72"
+          pointerEvents="none"
+        />
+        {selected && (
+          <path d={markerPath} fill="none" stroke="#67e8f9" strokeWidth="13" opacity="0.72" filter="url(#geometry-selected-glow-filter)" pointerEvents="none" />
+        )}
+        <path
+          data-object-type="arc"
+          data-object-id={arc.id}
+          d={markerPath}
+          fill="none"
+          stroke={arc.style?.color ?? "#14b8a6"}
+          strokeWidth={selected ? 7 : (arc.style?.strokeWidth ?? 5)}
+          strokeLinecap="round"
+          className="cursor-move"
+        />
+        <text
+          x={center.x + Math.cos(bisectorAngle) * labelRadius}
+          y={center.y + Math.sin(bisectorAngle) * labelRadius + 4}
+          textAnchor="middle"
+          fill="#f8fafc"
+          stroke="#0f172a"
+          strokeWidth="3"
+          paintOrder="stroke"
+          fontSize="12"
+          fontWeight="900"
+          pointerEvents="none"
+        >
+          {label}
+        </text>
+      </g>
+    );
+  }
   const largeArc =
     (endAngle - startAngle + Math.PI * 2) % (Math.PI * 2) > Math.PI ? 1 : 0;
   const path = `M ${center.x} ${center.y} L ${start.x} ${start.y} A ${radius} ${radius} 0 ${largeArc} 1 ${end.x} ${end.y}${arc.sector ? " Z" : ""}`;
@@ -3139,15 +3176,14 @@ function AngleToolPreview({
           strokeDasharray="8 6"
         />
       )}
-      {selected.length === 2 && (
+      {selected.length === 2 && vertex && (
         <circle
           cx={vertex.x}
           cy={vertex.y}
-          r="34"
-          fill="none"
+          r="6"
+          fill="#f97316"
           stroke="#f97316"
-          strokeWidth="3"
-          strokeDasharray="5 5"
+          strokeWidth="2"
         />
       )}
     </g>
