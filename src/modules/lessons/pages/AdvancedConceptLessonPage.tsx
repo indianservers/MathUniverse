@@ -30,7 +30,9 @@ import BetaTargetLesson2022 from "../schoolTargets/BetaTargetLesson2022";
 import ErrorFunctionTargetLesson2023 from "../schoolTargets/ErrorFunctionTargetLesson2023";
 import ZetaTargetLesson2024 from "../schoolTargets/ZetaTargetLesson2024";
 import BesselTargetLesson2025 from "../schoolTargets/BesselTargetLesson2025";
-import { captureLessonTabClick, LessonSectionNav, type LessonSection } from "../components/LessonSectionJourney";
+import { captureLessonTabClick, LessonSectionNav, StepByStepExamples, TryThese, type LessonSection, type LessonTryItem, type LessonWorkedExample } from "../components/LessonSectionJourney";
+import { MathText } from "../../../components/ui/MathExpression";
+import { getSupplementalNumericalExamples } from "../strengthening/catalogNumericalExamples";
 
 export default function AdvancedConceptLessonPage() {
   const { lessonSlug } = useParams();
@@ -57,7 +59,7 @@ export default function AdvancedConceptLessonPage() {
           <Link className="action-secondary" to="/lessons/advanced-concepts"><ArrowLeft className="h-4 w-4" />Advanced lessons</Link>
         </div>
         <div className="advanced-lesson-header-meta mt-4 flex flex-wrap gap-2">
-          <Chip label={`#${lesson.numericId}`} />
+          <Chip label={`Lesson ID: ${lesson.numericId}`} />
           <Chip label={`${lesson.estimatedMinutes} min`} />
           <Chip label={lesson.difficulty} />
           <Chip label={lesson.strand} />
@@ -177,12 +179,12 @@ function renderAdvancedTargetLesson(lesson: NonNullable<ReturnType<typeof findAd
 
 function AdvancedTargetLessonShell({ lesson, children }: { lesson: NonNullable<ReturnType<typeof findAdvancedConceptLesson>>; children: ReactNode }) {
   const [active, setActive] = useState<LessonSection>("interaction");
-  const panels: Array<{ id: Exclude<LessonSection, "interaction">; title: string; items: string[] }> = [
-    { id: "learn", title: `Explain ${lesson.title}`, items: [lesson.summary, ...lesson.learn] },
-    { id: "examples", title: `${lesson.title} examples`, items: lesson.explore },
-    { id: "formulas", title: `${lesson.title} formulas and rules`, items: lesson.learn },
-    { id: "practice", title: `Know more about ${lesson.title}`, items: [...lesson.practice, ...lesson.assessmentPrompts] },
+  const examples = advancedStepExamples(lesson);
+  const panels: Array<{ id: "learn" | "formulas"; title: string; items: string[] }> = [
+    { id: "learn", title: `Explain ${lesson.title}`, items: [lesson.summary, ...lesson.objectives, ...lesson.learn] },
+    { id: "formulas", title: `${lesson.title} formulas and rules`, items: examples.flatMap((example) => example.steps.slice(0, 2)) },
   ];
+  const tryItems = advancedTryItems(lesson);
 
   return (
     <div
@@ -192,7 +194,7 @@ function AdvancedTargetLessonShell({ lesson, children }: { lesson: NonNullable<R
       data-lesson-view={active}
       onClickCapture={(event) => captureLessonTabClick(event, setActive)}
     >
-      <LessonSectionNav active={active} onChange={setActive} />
+      <LessonSectionNav active={active} onChange={setActive} lessonId={lesson.numericId} />
       <section id="lesson-section-interaction" hidden={active !== "interaction"} data-lesson-viewport="advanced">
         {children}
       </section>
@@ -210,14 +212,80 @@ function AdvancedTargetLessonShell({ lesson, children }: { lesson: NonNullable<R
             {panel.items.map((item, index) => (
               <li key={`${index}-${item}`} className="flex gap-3 text-base leading-7 text-slate-700 dark:text-slate-200">
                 <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-cyan-50 text-xs font-black text-cyan-700 dark:bg-cyan-400/10 dark:text-cyan-100">{index + 1}</span>
-                <span>{item}</span>
+                <MathText value={item} />
               </li>
             ))}
           </ol>
+          {panel.id === "learn" ? (
+            <div className="mt-5 grid gap-3 lg:grid-cols-2">
+              <section className="rounded-xl border border-amber-200 bg-amber-50/70 p-4 dark:border-amber-300/20 dark:bg-amber-300/10">
+                <h3 className="text-sm font-black uppercase tracking-wide text-amber-800 dark:text-amber-100">Important interpretation checks</h3>
+                <ol className="mt-3 space-y-2">
+                  {lesson.assessmentPrompts.map((prompt, index) => (
+                    <li key={prompt} className="text-sm leading-6 text-slate-700 dark:text-slate-200">{index + 1}. {prompt}</li>
+                  ))}
+                </ol>
+              </section>
+              <section className="rounded-xl border border-cyan-200 bg-cyan-50/70 p-4 dark:border-cyan-300/20 dark:bg-cyan-300/10">
+                <h3 className="text-sm font-black uppercase tracking-wide text-cyan-800 dark:text-cyan-100">Key vocabulary</h3>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {lesson.searchKeywords.map((term) => <span key={term} className="rounded-full bg-white px-3 py-1 text-sm font-bold text-cyan-900 dark:bg-slate-950/60 dark:text-cyan-100">{term}</span>)}
+                </div>
+              </section>
+            </div>
+          ) : null}
         </section>
       ))}
+      <section
+        id="lesson-section-examples"
+        role="tabpanel"
+        hidden={active !== "examples"}
+        aria-hidden={active !== "examples"}
+        className="space-y-4 rounded-2xl border border-slate-200 bg-white/95 p-5 shadow-lg shadow-cyan-950/5 dark:border-white/10 dark:bg-slate-950/80"
+      >
+        <h2 className="text-xl font-black text-cyan-700 dark:text-cyan-200">{lesson.title} step-by-step examples</h2>
+        <StepByStepExamples lessonTitle={lesson.title} examples={examples} />
+      </section>
+      <section
+        id="lesson-section-practice"
+        role="tabpanel"
+        hidden={active !== "practice"}
+        aria-hidden={active !== "practice"}
+        className="rounded-2xl border border-slate-200 bg-white/95 p-5 shadow-lg shadow-cyan-950/5 dark:border-white/10 dark:bg-slate-950/80"
+      >
+        <TryThese lessonTitle={lesson.title} items={tryItems} />
+      </section>
     </div>
   );
+}
+
+export function advancedStepExamples(lesson: NonNullable<ReturnType<typeof findAdvancedConceptLesson>>): LessonWorkedExample[] {
+  const numericalExamples = getSupplementalNumericalExamples(lesson.numericId);
+  if (numericalExamples.length >= 3) return numericalExamples.slice(0, 3);
+
+  return lesson.explore.slice(0, 3).map((prompt, index) => ({
+    id: `${lesson.id}-example-${index + 1}`,
+    prompt,
+    steps: [
+      `Set the goal: ${lesson.objectives[index % lesson.objectives.length]}`,
+      `Apply this ${lesson.title} principle: ${lesson.learn[index % lesson.learn.length]}`,
+      `Verify the result by answering: ${lesson.assessmentPrompts[index % lesson.assessmentPrompts.length]}`,
+    ],
+    answer: `A complete response should demonstrate that ${lesson.learn[index % lesson.learn.length]}`,
+  }));
+}
+
+export function advancedTryItems(lesson: NonNullable<ReturnType<typeof findAdvancedConceptLesson>>): LessonTryItem[] {
+  return lesson.practice.map((prompt, index) => ({
+    id: `${lesson.id}-try-${index + 1}`,
+    prompt,
+    hint: lesson.objectives[index % lesson.objectives.length],
+    steps: [
+      `Use the ${lesson.title} idea: ${lesson.learn[index % lesson.learn.length]}`,
+      `Check the explanation against this question: ${lesson.assessmentPrompts[index % lesson.assessmentPrompts.length]}`,
+    ],
+    answer: `Model answer: ${lesson.learn[index % lesson.learn.length]}`,
+  }));
 }
 
 function Section({ icon, title, items }: { icon: JSX.Element; title: string; items: string[] }) {

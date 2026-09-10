@@ -184,7 +184,7 @@ export function schoolSyllabusProofLesson(seed: SchoolSyllabusProofSeed): Streng
     formulas: [formula(seed.formula.label, seed.formula.expression, seed.formula.exactness)],
     conditionsAndRestrictions: restrictionsFor(seed.topic),
     representations: [{ id: `${slug}-representation`, type: seed.representation, learningPurpose: `Show the exact structure of ${seed.title}.` }],
-    workedExamples: [{ id: `${slug}-worked-1`, prompt: seed.prompt, steps: ["Read the given information.", seed.action, "Check the answer against the lesson condition."], answer: seed.expected }],
+    workedExamples: workedExamplesFor(seed, slug),
     realLifeExamples: seed.examples.length >= 3 ? seed.examples.map(realExample(slug)) : examplesFor(seed.topic, slug),
     misconceptions: [{ code, mistake: seed.misconception[1], correction: seed.misconception[2] }],
     interaction: {
@@ -210,6 +210,50 @@ export function schoolSyllabusProofLesson(seed: SchoolSyllabusProofSeed): Streng
     expertReviewRequired: seed.expertReviewRequired,
     reviewReason: seed.expertReviewRequired ? "This theorem or proof-heavy school lesson needs expert review." : undefined,
   };
+}
+
+function workedExamplesFor(seed: SchoolSyllabusProofSeed, slug: string): StrengthenedLesson["workedExamples"] {
+  if (seed.id === 10084) {
+    return [
+      {
+        id: `${slug}-worked-1`,
+        prompt: "Find the midpoint of A(2, 4) and B(6, 8).",
+        steps: [
+          String.raw`\displaystyle x_M = \frac{2 + 6}{2} = 4`,
+          String.raw`\displaystyle y_M = \frac{4 + 8}{2} = 6`,
+          String.raw`\displaystyle M = (4, 6)`,
+        ],
+        answer: "M(4, 6)",
+      },
+      {
+        id: `${slug}-worked-2`,
+        prompt: "Find the midpoint of P(-3, 5) and Q(7, -1).",
+        steps: [
+          String.raw`\displaystyle x_M = \frac{-3 + 7}{2} = \frac{4}{2} = 2`,
+          String.raw`\displaystyle y_M = \frac{5 + (-1)}{2} = \frac{4}{2} = 2`,
+          String.raw`\displaystyle M = (2, 2)`,
+        ],
+        answer: "M(2, 2)",
+      },
+      {
+        id: `${slug}-worked-3`,
+        prompt: "The midpoint of A(1, 2) and B(x, y) is M(3, 4). Find B.",
+        steps: [
+          String.raw`\displaystyle \frac{1 + x}{2} = 3 \Rightarrow 1 + x = 6 \Rightarrow x = 5`,
+          String.raw`\displaystyle \frac{2 + y}{2} = 4 \Rightarrow 2 + y = 8 \Rightarrow y = 6`,
+          String.raw`\displaystyle B = (5, 6)`,
+        ],
+        answer: "B(5, 6)",
+      },
+    ];
+  }
+
+  return [{
+    id: `${slug}-worked-1`,
+    prompt: seed.prompt,
+    steps: ["Read the given information.", seed.action, "Check the answer against the lesson condition."],
+    answer: seed.expected,
+  }];
 }
 
 export function schoolSyllabusProofChallenge(seed: SchoolSyllabusProofSeed): SchoolSyllabusProofChallenge {

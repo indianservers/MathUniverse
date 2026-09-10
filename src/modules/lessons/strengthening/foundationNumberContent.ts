@@ -4,6 +4,7 @@ import { appliedModellingBatchStrengthenedChallenges, appliedModellingBatchStren
 import { authoringBatchStrengthenedChallenges, authoringBatchStrengthenedLessons } from "./authoringBatchStrengtheningContent";
 import { authoringContinuationBatchStrengthenedChallenges, authoringContinuationBatchStrengthenedLessons } from "./authoringContinuationBatchStrengtheningContent";
 import { calculusBatchStrengthenedChallenges, calculusBatchStrengthenedLessons } from "./calculusBatchStrengtheningContent";
+import { catalogGapStrengthenedChallenges, catalogGapStrengthenedLessons } from "./catalogGapStrengtheningContent";
 import { complexAdvancedBatchStrengthenedChallenges, complexAdvancedBatchStrengthenedLessons } from "./complexAdvancedBatchStrengtheningContent";
 import { complexBatchStrengthenedChallenges, complexBatchStrengthenedLessons } from "./complexBatchStrengtheningContent";
 import { coordinateStrengthenedChallenges, coordinateStrengthenedLessons } from "./coordinateGeometryStrengtheningContent";
@@ -972,8 +973,9 @@ Object.assign(foundationNumberLessons, Object.fromEntries([
   }),
 ].map((lesson) => [lesson.id, lesson])));
 
-const allStrengthenedLessons: Record<number, StrengthenedLesson> = {
+const rawStrengthenedLessons: Record<number, StrengthenedLesson> = {
   ...foundationNumberLessons,
+  ...catalogGapStrengthenedLessons,
   ...algebraStrengthenedLessons,
   ...appliedModellingBatchStrengthenedLessons,
   ...functionStrengthenedLessons,
@@ -1012,10 +1014,64 @@ const allStrengthenedLessons: Record<number, StrengthenedLesson> = {
   ...schoolSyllabusFinalBatchStrengthenedLessons,
 };
 
+const repeatedHowItWorks = repeatedValues(rawStrengthenedLessons, "howItWorks");
+const repeatedWhyItWorks = repeatedValues(rawStrengthenedLessons, "whyItWorks");
+
+const allStrengthenedLessons: Record<number, StrengthenedLesson> = Object.fromEntries(
+  Object.entries(rawStrengthenedLessons).map(([id, lesson]) => [Number(id), personalizeLessonNarrative(lesson)]),
+);
+
 export const strengthenedFoundationLessonIds = Object.keys(allStrengthenedLessons).map(Number).sort((left, right) => left - right);
 
 export function getStrengthenedFoundationLesson(id: number) {
   return allStrengthenedLessons[id] ?? null;
+}
+
+function personalizeLessonNarrative(lesson: StrengthenedLesson): StrengthenedLesson {
+  const definition = lesson.definitions[0]?.statement ?? lesson.basicIdea;
+  const fact = lesson.facts[0]?.statement ?? definition;
+  const genericSchoolIntroduction = /\bis a (?:school mathematics|class \d+) idea\b/i.test(lesson.introduction);
+  const introduction = genericSchoolIntroduction
+    ? `${definition} This ${lesson.academicLevel?.replace("_", " ").toLowerCase() ?? "school"} lesson develops the idea through ${lesson.representations[0]?.learningPurpose.toLowerCase() ?? "a mathematical model"}`
+    : lesson.introduction;
+  const howItWorks = repeatedHowItWorks.has(lesson.howItWorks)
+    ? `${lesson.howItWorks} For ${lesson.title}, apply that process to this defining condition: ${definition}`
+    : lesson.howItWorks;
+  const whyItWorks = repeatedWhyItWorks.has(lesson.whyItWorks)
+    ? `${lesson.whyItWorks} In ${lesson.title}, the key consequence is: ${fact}`
+    : lesson.whyItWorks;
+  const formulaCue = lesson.formulas[0]
+    ? `Use ${lesson.formulas[0].label}: ${lesson.formulas[0].expression}.`
+    : `Use this definition: ${definition}`;
+
+  return {
+    ...lesson,
+    introduction,
+    howItWorks,
+    whyItWorks,
+    guidedExploration: lesson.guidedExploration.map((step) => ({
+      ...step,
+      prompt: mentionsLesson(step.prompt, lesson.title) ? step.prompt : `${step.prompt} Connect the observation to ${lesson.title}.`,
+    })),
+    workedExamples: lesson.workedExamples.map((example) => ({
+      ...example,
+      steps: example.steps.some((step) => mentionsLesson(step, lesson.title) || lesson.formulas.some((item) => step.includes(item.label) || step.includes(item.expression)))
+        ? example.steps
+        : [...example.steps, formulaCue],
+    })),
+  };
+}
+
+function repeatedValues(lessons: Record<number, StrengthenedLesson>, field: "howItWorks" | "whyItWorks") {
+  const counts = new Map<string, number>();
+  for (const lesson of Object.values(lessons)) counts.set(lesson[field], (counts.get(lesson[field]) ?? 0) + 1);
+  return new Set([...counts].filter(([, count]) => count > 1).map(([value]) => value));
+}
+
+function mentionsLesson(text: string, title: string) {
+  const meaningfulWords = title.toLowerCase().split(/[^a-z0-9]+/).filter((word) => word.length >= 4);
+  const normalized = text.toLowerCase();
+  return meaningfulWords.some((word) => normalized.includes(word));
 }
 
 export function getStrengthenedLessonContent(lesson: Pick<LessonDefinition, "id" | "title" | "topic" | "outcome">): LessonContent | null {
@@ -1082,6 +1138,7 @@ const allStrengthenedChallenges: Record<number, FoundationChallenge> = {
     91: { prompt: "Map scale: 1 cm = 5 km. What real distance is 4 cm?", expected: "20", hint: "Multiply 4 by 5.", kind: "numeric", factoryId: "number.scale-drawings" },
     98: { prompt: "What value is excluded from (x + 1)/(x - 2)?", expected: "2", hint: "Set the denominator x - 2 equal to 0.", kind: "numeric", factoryId: "algebra.algebraic-fractions" },
     ...algebraStrengthenedChallenges,
+    ...catalogGapStrengthenedChallenges,
     ...appliedModellingBatchStrengthenedChallenges,
     ...functionStrengthenedChallenges,
     ...coordinateStrengthenedChallenges,

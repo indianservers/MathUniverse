@@ -255,7 +255,7 @@ export default function SchoolLessonPage() {
   if (!lesson) return <LessonNotFound />;
   return (
     <div className="lesson-school-shell space-y-4" data-lesson-view={activeSection} onClickCapture={(event) => captureLessonTabClick(event, setActiveSection)}>
-      {lesson.numericId !== 10198 && <LessonSectionNav active={activeSection} onChange={setActiveSection} />}
+      <LessonSectionNav active={activeSection} onChange={setActiveSection} lessonId={lesson.numericId} />
       <section
         id="lesson-section-interaction"
         className="scroll-mt-20"
@@ -263,7 +263,7 @@ export default function SchoolLessonPage() {
       >
         <SchoolLessonBody lesson={lesson} />
       </section>
-      {lesson.numericId !== 10198 && <SchoolLessonSections lesson={lesson} active={activeSection} />}
+      <SchoolLessonSections lesson={lesson} active={activeSection} />
     </div>
   );
 }

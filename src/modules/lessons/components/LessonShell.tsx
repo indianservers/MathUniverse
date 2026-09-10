@@ -58,7 +58,10 @@ import LessonSurface from "./LessonSurface";
 import {
   captureLessonTabClick,
   CoreLessonSections,
+  expandedWorkedExamples,
   LessonSectionNav,
+  StepByStepExamples,
+  TryThese,
 } from "./LessonSectionJourney";
 
 type LessonInfoTab = "interaction" | "learn" | "examples" | "formulas" | "more";
@@ -264,8 +267,7 @@ export default function LessonShell({ lesson }: { lesson: LessonDefinition }) {
         data-lesson-view={journeyTab}
         onClickCapture={(event) => captureLessonTabClick(event, selectJourneyTab)}
       >
-        <LessonSectionNav active={journeyTab} onChange={selectJourneyTab} />
-        <div className="px-1 text-xs font-black uppercase tracking-wide text-cyan-700 dark:text-cyan-200">Lesson {lesson.id}</div>
+        <LessonSectionNav active={journeyTab} onChange={selectJourneyTab} lessonId={lesson.id} />
         <section
           id="lesson-section-interaction"
           className="scroll-mt-20"
@@ -382,7 +384,7 @@ export default function LessonShell({ lesson }: { lesson: LessonDefinition }) {
                 />
                 <InfoChip
                   icon={<BookOpen className="h-3.5 w-3.5" />}
-                  label={`Lesson ${lesson.id}`}
+                  label={`Lesson ID: ${lesson.id}`}
                 />
                 <InfoChip
                   icon={<Zap className="h-3.5 w-3.5" />}
@@ -1215,6 +1217,11 @@ function LessonContentPanel({
           id="lesson-examples"
           className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_minmax(280px,0.9fr)]"
         >
+          {strengthenedLesson ? (
+            <div className="lg:col-span-2">
+              <StepByStepExamples lessonTitle={lesson.title} examples={expandedWorkedExamples(strengthenedLesson)} />
+            </div>
+          ) : null}
           <section className="rounded-xl border border-slate-200 bg-white p-4 dark:border-white/10 dark:bg-slate-950/70">
             <div className="flex flex-wrap items-center justify-between gap-2">
               <SectionTitle
@@ -1331,29 +1338,43 @@ function LessonContentPanel({
       ) : null}
 
       {activeTab === "more" ? (
-        <details
-          id="lesson-know-more"
-          className="group rounded-xl border border-violet-200 bg-violet-50/70 p-2 dark:border-violet-300/20 dark:bg-violet-300/10"
-          open
-        >
-          <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 rounded-lg px-3 py-2 text-sm font-black text-violet-900 transition hover:bg-white/70 dark:text-violet-100 dark:hover:bg-white/10">
-            <span className="inline-flex items-center gap-2">
-              <Sparkles className="h-4 w-4" />
-              Know more
-            </span>
-            <ChevronDown className="h-4 w-4 transition group-open:rotate-180" />
-          </summary>
-          <div className="grid gap-2 px-2 pb-2 pt-1 sm:grid-cols-2">
-            {content.knowMore.map((item) => (
-              <p
-                key={item}
-                className="rounded-lg bg-white/85 p-3 text-base font-semibold leading-7 text-slate-700 dark:bg-slate-950/50 dark:text-slate-200"
-              >
-                {item}
-              </p>
-            ))}
-          </div>
-        </details>
+        <div className="space-y-3">
+          {strengthenedLesson ? (
+            <TryThese
+              lessonTitle={lesson.title}
+              items={strengthenedLesson.practice.map((question) => ({
+                id: question.id,
+                prompt: question.prompt,
+                hint: question.hints[0],
+                steps: question.workedSolution,
+                answer: question.answer,
+              }))}
+            />
+          ) : null}
+          <details
+            id="lesson-know-more"
+            className="group rounded-xl border border-violet-200 bg-violet-50/70 p-2 dark:border-violet-300/20 dark:bg-violet-300/10"
+            open
+          >
+            <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 rounded-lg px-3 py-2 text-sm font-black text-violet-900 transition hover:bg-white/70 dark:text-violet-100 dark:hover:bg-white/10">
+              <span className="inline-flex items-center gap-2">
+                <Sparkles className="h-4 w-4" />
+                Know more
+              </span>
+              <ChevronDown className="h-4 w-4 transition group-open:rotate-180" />
+            </summary>
+            <div className="grid gap-2 px-2 pb-2 pt-1 sm:grid-cols-2">
+              {content.knowMore.map((item) => (
+                <p
+                  key={item}
+                  className="rounded-lg bg-white/85 p-3 text-base font-semibold leading-7 text-slate-700 dark:bg-slate-950/50 dark:text-slate-200"
+                >
+                  {item}
+                </p>
+              ))}
+            </div>
+          </details>
+        </div>
       ) : null}
     </section>
   );

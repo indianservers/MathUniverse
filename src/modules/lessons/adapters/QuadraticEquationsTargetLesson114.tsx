@@ -10,42 +10,23 @@ import {
   Sparkles,
 } from "lucide-react";
 import type { LessonAdapterProps } from "../types";
+import {
+  QUADRATIC_EXAMPLES_114 as examples,
+  evaluateQuadratic114,
+  isIntegerFactorableQuadratic114,
+  isQuadraticPracticeCorrect114,
+  quadraticEquationText114 as equationText,
+  quadraticExpressionText114 as expressionText,
+  quadraticFactorText114 as factorText,
+  quadraticFromRoots114,
+  quadraticMethodSteps114,
+  solveQuadratic114 as solveQuadratic,
+  tidyQuadratic114 as tidy,
+  type Quadratic114 as Quadratic,
+  type QuadraticMethod114,
+  type QuadraticRoots114 as Roots,
+} from "./quadraticEquationsLesson114Model";
 import "./QuadraticEquationsTargetLesson114.css";
-
-type Quadratic = { a: number; b: number; c: number };
-type Roots = { first: number; second: number; discriminant: number };
-
-const examples: Quadratic[] = [
-  { a: 1, b: -5, c: 6 },
-  { a: 1, b: -7, c: 12 },
-  { a: 1, b: -1, c: -6 },
-  { a: 1, b: 2, c: -8 },
-];
-
-const solveQuadratic = ({ a, b, c }: Quadratic): Roots => {
-  const discriminant = b * b - 4 * a * c;
-  if (a === 0 || discriminant < 0)
-    return { first: Number.NaN, second: Number.NaN, discriminant };
-  const root = Math.sqrt(discriminant);
-  return {
-    first: (-b - root) / (2 * a),
-    second: (-b + root) / (2 * a),
-    discriminant,
-  };
-};
-
-const tidy = (value: number) =>
-  Number.isInteger(value)
-    ? String(value)
-    : value.toFixed(2).replace(/\.00$/, "");
-const signedTerm = (value: number, variable = "") =>
-  `${value < 0 ? "−" : "+"} ${Math.abs(value)}${variable}`;
-const equationText = ({ a, b, c }: Quadratic, variable = "x") =>
-  `${a === 1 ? "" : a === -1 ? "−" : a}${variable}² ${signedTerm(b, variable)} ${signedTerm(c)} = 0`;
-const expressionText = ({ a, b, c }: Quadratic, variable = "x") =>
-  `${a === 1 ? "" : a === -1 ? "−" : a}${variable}² ${signedTerm(b, variable)} ${signedTerm(c)}`;
-const factorText = (roots: Roots, variable = "x") =>
-  `(${variable} ${roots.first < 0 ? "+" : "−"} ${tidy(Math.abs(roots.first))})(${variable} ${roots.second < 0 ? "+" : "−"} ${tidy(Math.abs(roots.second))}) = 0`;
 
 function QuadraticGraph({
   quadratic,
@@ -75,12 +56,11 @@ function QuadraticGraph({
     bounds.bottom - ((y - yMin) / (yMax - yMin)) * (bounds.bottom - bounds.top);
   const points = Array.from({ length: 101 }, (_, index) => {
     const x = xMin + ((xMax - xMin) * index) / 100;
-    const y = quadratic.a * x * x + quadratic.b * x + quadratic.c;
+    const y = evaluateQuadratic114(quadratic, x);
     return `${px(x)},${py(y)}`;
   }).join(" ");
-  const vertexX = -quadratic.b / (2 * quadratic.a);
-  const vertexY =
-    quadratic.a * vertexX * vertexX + quadratic.b * vertexX + quadratic.c;
+  const vertexX = roots.vertexX;
+  const vertexY = roots.vertexY;
   const move = (event: PointerEvent<SVGSVGElement>) => {
     if (dragging === null || !onRootMove || !svgRef.current) return;
     const box = svgRef.current.getBoundingClientRect();
@@ -147,41 +127,46 @@ function QuadraticGraph({
         y
       </text>
       <polyline className="curve" points={points} />
-      {[roots.first, roots.second].map((root, index) => (
-        <g key={index}>
-          <circle
-            className={interactive ? "root draggable" : "root"}
-            cx={px(root)}
-            cy={py(0)}
-            r="6"
-            role={interactive ? "slider" : undefined}
-            aria-label={interactive ? `Drag root ${index + 1}` : undefined}
-            tabIndex={interactive ? 0 : undefined}
-            onPointerDown={(event) => {
-              if (!interactive) return;
-              event.currentTarget.setPointerCapture(event.pointerId);
-              setDragging(index as 0 | 1);
-            }}
-            onKeyDown={(event) => {
-              if (!interactive || !onRootMove) return;
-              if (event.key === "ArrowLeft")
-                onRootMove(index as 0 | 1, root - 0.5);
-              if (event.key === "ArrowRight")
-                onRootMove(index as 0 | 1, root + 0.5);
-            }}
-          />
-          <text className="root-label" x={px(root)} y={py(0) - 10}>
-            ({tidy(root)}, 0)
+      {roots.discriminant >= 0 &&
+        [roots.first, roots.second].map((root, index) => (
+          <g key={index}>
+            <circle
+              className={interactive ? "root draggable" : "root"}
+              cx={px(root)}
+              cy={py(0)}
+              r="6"
+              role={interactive ? "slider" : undefined}
+              aria-label={interactive ? `Drag root ${index + 1}` : undefined}
+              tabIndex={interactive ? 0 : undefined}
+              onPointerDown={(event) => {
+                if (!interactive) return;
+                event.currentTarget.setPointerCapture(event.pointerId);
+                setDragging(index as 0 | 1);
+              }}
+              onKeyDown={(event) => {
+                if (!interactive || !onRootMove) return;
+                if (event.key === "ArrowLeft")
+                  onRootMove(index as 0 | 1, root - 0.5);
+                if (event.key === "ArrowRight")
+                  onRootMove(index as 0 | 1, root + 0.5);
+              }}
+            />
+            <text className="root-label" x={px(root)} y={py(0) - 10}>
+              ({tidy(root)}, 0)
+            </text>
+          </g>
+        ))}
+      {Number.isFinite(vertexX) && (
+        <>
+          <circle className="vertex" cx={px(vertexX)} cy={py(vertexY)} r="4" />
+          <text className="vertex-label" x={px(vertexX)} y={py(vertexY) + 18}>
+            Vertex
           </text>
-        </g>
-      ))}
-      <circle className="vertex" cx={px(vertexX)} cy={py(vertexY)} r="4" />
-      <text className="vertex-label" x={px(vertexX)} y={py(vertexY) + 18}>
-        Vertex
-      </text>
-      <text className="vertex-label" x={px(vertexX)} y={py(vertexY) + 31}>
-        ({tidy(vertexX)}, {tidy(vertexY)})
-      </text>
+          <text className="vertex-label" x={px(vertexX)} y={py(vertexY) + 31}>
+            ({tidy(vertexX)}, {tidy(vertexY)})
+          </text>
+        </>
+      )}
     </svg>
   );
 }
@@ -195,42 +180,39 @@ export default function QuadraticEquationsTargetLesson114({
   const [showFactors, setShowFactors] = useState(true);
   const [markRoots, setMarkRoots] = useState(true);
   const [checkRoots, setCheckRoots] = useState(true);
+  const [method, setMethod] = useState<QuadraticMethod114>("Factoring");
   const [activeTab, setActiveTab] = useState("Interactive");
   const [practiceAnswers, setPracticeAnswers] = useState(["3", "4"]);
   const [practiceChecked, setPracticeChecked] = useState(true);
   const [showSteps, setShowSteps] = useState(false);
   const [actions, setActions] = useState(0);
   const roots = useMemo(() => solveQuadratic(quadratic), [quadratic]);
-  const factorable =
-    roots.discriminant >= 0 &&
-    Number.isInteger(roots.first) &&
-    Number.isInteger(roots.second);
+  const factorable = isIntegerFactorableQuadratic114(quadratic);
   const practice = examples[1];
   const practiceRoots = solveQuadratic(practice);
-  const practiceCorrect =
-    practiceAnswers
-      .map(Number)
-      .sort((a, b) => a - b)
-      .join(",") ===
-    [practiceRoots.first, practiceRoots.second].sort((a, b) => a - b).join(",");
+  const practiceCorrect = isQuadraticPracticeCorrect114(
+    practice,
+    practiceAnswers.map(Number) as [number, number],
+  );
   const act = () => {
     setActions((value) => value + 1);
     onInteraction();
   };
-  const reset = () => {
+  const reset = (notify = true) => {
     setExampleIndex(0);
     setQuadratic(examples[0]);
     setShowFactors(true);
     setMarkRoots(true);
     setCheckRoots(true);
+    setMethod("Factoring");
     setActiveTab("Interactive");
     setPracticeAnswers(["3", "4"]);
     setPracticeChecked(true);
     setShowSteps(false);
     setActions(0);
-    onInteraction();
+    if (notify) onInteraction();
   };
-  useEffect(() => reset(), [resetToken]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => reset(false), [resetToken]); // eslint-disable-line react-hooks/exhaustive-deps
   const updateCoefficient = (key: keyof Quadratic, value: number) => {
     setQuadratic((current) => ({ ...current, [key]: value }));
     setCheckRoots(false);
@@ -239,11 +221,9 @@ export default function QuadraticEquationsTargetLesson114({
   const moveRoot = (index: 0 | 1, value: number) => {
     const nextRoots: [number, number] = [roots.first, roots.second];
     nextRoots[index] = value;
-    setQuadratic({
-      a: quadratic.a,
-      b: -quadratic.a * (nextRoots[0] + nextRoots[1]),
-      c: quadratic.a * nextRoots[0] * nextRoots[1],
-    });
+    setQuadratic(
+      quadraticFromRoots114(quadratic.a, nextRoots[0], nextRoots[1]),
+    );
     setCheckRoots(false);
     act();
   };
@@ -260,10 +240,13 @@ export default function QuadraticEquationsTargetLesson114({
       className="quad114-page"
       data-testid="algebra-mockup-0171"
       data-dedicated-lesson="114"
-      data-object-model="editable-quadratic-coefficients-discriminant-factor-pairs-zero-product-rule-pointer-draggable-root-graph-synchronized-verification-graded-practice-model"
+      data-object-model="dedicated-tested-editable-quadratic-coefficients-discriminant-multiple-solving-methods-factor-pairs-zero-product-rule-pointer-draggable-root-graph-synchronized-verification-graded-practice-functional-tabs-model"
       data-equation={`${quadratic.a},${quadratic.b},${quadratic.c}`}
       data-roots={`${roots.first},${roots.second}`}
       data-factorable={factorable}
+      data-method={method}
+      data-discriminant={roots.discriminant}
+      data-vertex={`${roots.vertexX},${roots.vertexY}`}
       data-practice-correct={practiceChecked && practiceCorrect}
       data-actions={actions}
     >
@@ -297,8 +280,7 @@ export default function QuadraticEquationsTargetLesson114({
               className={activeTab === tab ? "active" : ""}
               onClick={() => {
                 setActiveTab(tab);
-                if (tab === "Examples") nextEquation();
-                else act();
+                act();
               }}
             >
               {tab}
@@ -306,6 +288,18 @@ export default function QuadraticEquationsTargetLesson114({
           ))}
         </nav>
       </header>
+
+      {activeTab !== "Interactive" && (
+        <QuadraticTabPanel114
+          tab={activeTab}
+          onChooseExample={(index) => {
+            setExampleIndex(index);
+            setQuadratic(examples[index]);
+            setCheckRoots(false);
+            act();
+          }}
+        />
+      )}
 
       <section className="quad114-controls">
         <label className="equation">
@@ -329,8 +323,12 @@ export default function QuadraticEquationsTargetLesson114({
           <span>Method</span>
           <select
             aria-label="Quadratic solving method"
-            value="Factoring"
-            onChange={() => act()}
+            value={method}
+            onChange={(event) => {
+              setMethod(event.target.value as QuadraticMethod114);
+              setShowSteps(true);
+              act();
+            }}
           >
             <option>Factoring</option>
             <option>Quadratic formula</option>
@@ -362,7 +360,7 @@ export default function QuadraticEquationsTargetLesson114({
               act();
             }}
           />
-          <button onClick={reset}>
+          <button onClick={() => reset()}>
             <RotateCcw />
             Reset
           </button>
@@ -375,7 +373,9 @@ export default function QuadraticEquationsTargetLesson114({
 
       <section className="quad114-lab">
         <header>
-          <h2>Factor-to-Roots Lab</h2>
+          <h2>
+            {method === "Factoring" ? "Factor-to-Roots Lab" : `${method} Lab`}
+          </h2>
           <p>
             Factor the quadratic, apply the zero-product rule, and verify on the
             graph.
@@ -466,9 +466,7 @@ export default function QuadraticEquationsTargetLesson114({
         </footer>
         {showSteps && (
           <aside className="steps">
-            {factorable
-              ? `Find two numbers with product ${quadratic.c / quadratic.a} and sum ${quadratic.b / quadratic.a}: ${roots.first} and ${roots.second}. Factor, set each factor to zero, then check both roots.`
-              : `The discriminant is ${roots.discriminant}; use the quadratic formula.`}
+            {quadraticMethodSteps114(quadratic, method)}
           </aside>
         )}
       </section>
@@ -596,9 +594,9 @@ export default function QuadraticEquationsTargetLesson114({
           CAS-style tools, and classroom-ready activities.
         </span>
         <nav>
-          <button>Sitemap</button>
-          <button>Docs</button>
-          <button>About</button>
+          <a href="/sitemap">Sitemap</a>
+          <a href="/docs">Docs</a>
+          <a href="/about">About</a>
         </nav>
         <hr />
         <small>
@@ -606,6 +604,60 @@ export default function QuadraticEquationsTargetLesson114({
         </small>
       </footer>
     </div>
+  );
+}
+
+function QuadraticTabPanel114({
+  tab,
+  onChooseExample,
+}: {
+  tab: string;
+  onChooseExample: (index: number) => void;
+}) {
+  const content: Record<string, { title: string; body: string }> = {
+    "Guided Practice": {
+      title: "Guided practice",
+      body: "Enter both roots, check the ordered pair, and compare them with the x-intercepts below.",
+    },
+    Examples: {
+      title: "Calculated examples",
+      body: "Load a quadratic with synchronized coefficients, roots, factors, vertex, and parabola.",
+    },
+    Formulas: {
+      title: "Quadratic formula",
+      body: "For ax² + bx + c = 0, use x = (-b ± √(b² - 4ac)) / 2a.",
+    },
+    "Know more": {
+      title: "Roots and discriminant",
+      body: "The discriminant determines whether the parabola has two, one, or no real x-intercepts.",
+    },
+  };
+  const selected = content[tab] ?? content.Formulas;
+  return (
+    <section className="quad114-tab-panel">
+      <small>QUADRATIC EQUATIONS</small>
+      <h2>{selected.title}</h2>
+      <p>{selected.body}</p>
+      {tab === "Examples" && (
+        <div>
+          {examples.map((example, index) => {
+            const roots = solveQuadratic(example);
+            return (
+              <button
+                type="button"
+                key={`${example.a}-${example.b}-${example.c}`}
+                onClick={() => onChooseExample(index)}
+              >
+                <span>{equationText(example)}</span>
+                <b>
+                  {tidy(roots.first)}, {tidy(roots.second)}
+                </b>
+              </button>
+            );
+          })}
+        </div>
+      )}
+    </section>
   );
 }
 

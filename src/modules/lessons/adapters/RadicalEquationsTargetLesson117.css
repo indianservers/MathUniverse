@@ -116,6 +116,40 @@
   grid-template-columns: 1.68fr 1fr;
   gap: 10px;
 }
+.rad117-tab-panel {
+  margin-top: 10px;
+  padding: 24px;
+  border: 1px solid #dce6ed;
+  border-radius: 8px;
+  background: #fff;
+}
+.rad117-tab-panel > small {
+  color: #6d35d5;
+  font-weight: 900;
+}
+.rad117-tab-panel > h2 {
+  margin-top: 10px;
+  font-size: 20px;
+}
+.rad117-tab-panel > p {
+  max-width: 520px;
+  margin-top: 8px;
+  color: #5c697d;
+  font-size: 11px;
+  line-height: 1.6;
+}
+.rad117-tab-panel > button {
+  margin-top: 18px;
+  padding: 10px 14px;
+  border: 1px solid #d5c1f5;
+  border-radius: 8px;
+  background: #faf6ff;
+  color: #6332c2;
+  font-weight: 800;
+}
+.rad117-step.check strong.invalid {
+  color: #c23d36;
+}
 .rad117-lab,
 .rad117-rail > article {
   border: 1px solid #dce5ec;

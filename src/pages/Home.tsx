@@ -1,4 +1,4 @@
-import { BookOpen, BrainCircuit, Calculator, CheckCircle2, Compass, Cuboid, FlaskConical, Gauge, GraduationCap, HelpCircle, Layers3, LibraryBig, MonitorSmartphone, PlayCircle, Rocket, Route, Search, Sparkles, Trophy, Wand2, X, ArrowRight } from "lucide-react";
+import { BookOpen, BrainCircuit, Calculator, CheckCircle2, ChevronDown, Compass, Cuboid, FlaskConical, FolderTree, Gauge, GraduationCap, HelpCircle, Layers3, LibraryBig, MonitorSmartphone, PlayCircle, Rocket, Route, Search, Sparkles, Trophy, Wand2, X, ArrowRight } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState, type CSSProperties, type PointerEvent } from "react";
@@ -425,57 +425,154 @@ export default function Home() {
 }
 
 function HomePageDirectory({ query }: { query: string }) {
+  const visibleSections = navSections
+    .map((section) => ({
+      section,
+      items: section.items.filter((item) => navItemMatches(item, query, section.title)),
+    }))
+    .filter(({ items }) => items.length > 0);
+  const [expandedCategories, setExpandedCategories] = useState<Record<string, boolean>>(() => ({
+    [navSections[0]?.title ?? ""]: true,
+  }));
+  const searchIsActive = Boolean(query);
+  const allExpanded = visibleSections.every(({ section }) => searchIsActive || expandedCategories[section.title]);
+  const setAllCategories = (expanded: boolean) => {
+    setExpandedCategories(Object.fromEntries(visibleSections.map(({ section }) => [section.title, expanded])));
+  };
+
   return (
     <section className="home-page-directory" aria-labelledby="home-page-directory-title">
-      <div className="flex flex-wrap items-end justify-between gap-2">
+      <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <p className="text-xs font-black uppercase tracking-[0.18em] text-cyan-700 dark:text-cyan-300">Everything in Math Universe</p>
-          <h2 id="home-page-directory-title" className="mt-1 text-2xl font-black text-slate-950 dark:text-white">Explore by category</h2>
-          <p className="mt-1 max-w-3xl text-sm font-semibold text-slate-600 dark:text-slate-300">Every routed page is listed here in the same categories used by the main navigation.</p>
+          <h2 id="home-page-directory-title" className="mt-1 text-2xl font-black text-slate-950 dark:text-white">Categories &amp; subcategories</h2>
+          <p className="mt-1 max-w-3xl text-sm font-semibold text-slate-600 dark:text-slate-300">Open a category, then choose a subcategory or page.</p>
         </div>
-        <span className="mini-chip">{navSections.length} categories</span>
+        <div className="flex items-center gap-2">
+          <span className="mini-chip"><FolderTree className="h-3.5 w-3.5" />{visibleSections.length} categories</span>
+          <button
+            type="button"
+            className="home-directory-expand-all"
+            onClick={() => setAllCategories(!allExpanded)}
+          >
+            {allExpanded ? "Collapse all" : "Expand all"}
+          </button>
+        </div>
       </div>
-      <div className="mt-3 grid gap-3 lg:grid-cols-2 2xl:grid-cols-3">
-        {navSections.map((section) => {
-          const items = section.items.filter((item) => navItemMatches(item, query, section.title));
-          if (!items.length) return null;
-          const SectionIcon = iconMap[section.icon];
-          return (
-            <section key={section.title} className="home-page-category rounded-2xl border border-slate-200 bg-white/80 p-3 shadow-sm dark:border-white/10 dark:bg-white/[0.04]">
-              <div className="flex items-center gap-2 border-b border-slate-200 pb-2 dark:border-white/10">
-                <span className="grid h-8 w-8 place-items-center rounded-xl bg-cyan-50 text-cyan-700 dark:bg-cyan-400/10 dark:text-cyan-200"><SectionIcon className="h-4 w-4" /></span>
-                <h3 className="text-sm font-black text-slate-950 dark:text-white">{section.title}</h3>
-                <span className="ml-auto text-xs font-bold text-slate-400">{items.length}</span>
-              </div>
-              <div className="mt-2 grid gap-1.5 sm:grid-cols-2">
-                {items.map((item) => <HomeDirectoryItem key={`${item.title}-${item.route}`} item={item} query={query} />)}
-              </div>
-            </section>
-          );
-        })}
+      <div className="mt-3 grid items-start gap-3 lg:grid-cols-2">
+        {visibleSections.map(({ section, items }) => (
+          <HomeCategoryPanel
+            key={section.title}
+            section={section}
+            items={items}
+            query={query}
+            open={searchIsActive || Boolean(expandedCategories[section.title])}
+            onToggle={() => setExpandedCategories((current) => ({
+              ...current,
+              [section.title]: !current[section.title],
+            }))}
+          />
+        ))}
       </div>
     </section>
   );
 }
 
-function HomeDirectoryItem({ item, query }: { item: NavItem; query: string }) {
+function HomeCategoryPanel({ section, items, query, open, onToggle }: {
+  section: (typeof navSections)[number];
+  items: NavItem[];
+  query: string;
+  open: boolean;
+  onToggle: () => void;
+}) {
+  const SectionIcon = iconMap[section.icon];
+  const panelId = `home-category-${slugForId(section.title)}`;
+  const pageCount = items.reduce((total, item) => total + countDirectoryPages(item), 0);
+  return (
+    <section className={`home-page-category${open ? " is-open" : ""}`}>
+      <button
+        type="button"
+        className="home-category-toggle"
+        aria-expanded={open}
+        aria-controls={panelId}
+        onClick={onToggle}
+      >
+        <span className="home-category-icon"><SectionIcon className="h-5 w-5" /></span>
+        <span className="min-w-0 text-left">
+          <span className="block text-base font-black text-slate-950 dark:text-white">{section.title}</span>
+          <span className="mt-0.5 block text-xs font-bold text-slate-500 dark:text-slate-400">{items.length} subcategories · {pageCount} pages</span>
+        </span>
+        <ChevronDown className="home-directory-chevron ml-auto h-5 w-5 shrink-0" />
+      </button>
+      {open && (
+        <div id={panelId} className="home-category-content">
+          {items.map((item) => <HomeDirectoryItem key={`${item.title}-${item.route}`} item={item} query={query} />)}
+        </div>
+      )}
+    </section>
+  );
+}
+
+function HomeDirectoryItem({ item, query, depth = 0 }: { item: NavItem; query: string; depth?: number }) {
   const Icon = iconMap[item.icon];
   const children = (item.children ?? []).filter((child) => navItemMatches(child, query, item.title));
+  const [expanded, setExpanded] = useState(false);
+  const open = Boolean(query) || expanded;
+  const childrenId = `home-subcategory-${slugForId(`${item.title}-${item.route}`)}`;
+
+  if (children.length > 0) {
+    return (
+      <div className={`home-directory-item home-directory-subcategory${open ? " is-open" : ""}`} style={{ "--directory-depth": depth } as CSSProperties}>
+        <button
+          type="button"
+          className="home-subcategory-toggle"
+          aria-expanded={open}
+          aria-controls={childrenId}
+          onClick={() => setExpanded((value) => !value)}
+        >
+          <Icon className="h-4 w-4 shrink-0" />
+          <span>{item.title}</span>
+          <span className="home-directory-count">{children.length}</span>
+          <ChevronDown className="home-directory-chevron h-4 w-4 shrink-0" />
+        </button>
+        {open && (
+          <div id={childrenId} className="home-directory-children">
+            <DirectoryLink item={item} label={`${item.title} overview`} />
+            {children.map((child) => <HomeDirectoryItem key={`${child.title}-${child.route}`} item={child} query={query} depth={depth + 1} />)}
+          </div>
+        )}
+      </div>
+    );
+  }
+
   return (
-    <div className="home-directory-item">
-      {item.isExternal ? (
-        <a href={item.route} target="_blank" rel="noreferrer" className="home-directory-link"><Icon className="h-3.5 w-3.5" /><span>{item.title}</span></a>
-      ) : (
-        <Link to={item.route} className="home-directory-link"><Icon className="h-3.5 w-3.5" /><span>{item.title}</span></Link>
-      )}
-      {children.length > 0 && <div className="home-directory-children">{children.map((child) => <HomeDirectoryItem key={`${child.title}-${child.route}`} item={child} query={query} />)}</div>}
+    <div className="home-directory-item" style={{ "--directory-depth": depth } as CSSProperties}>
+      <DirectoryLink item={item} />
     </div>
+  );
+}
+
+function DirectoryLink({ item, label = item.title }: { item: NavItem; label?: string }) {
+  const Icon = iconMap[item.icon];
+  return item.isExternal ? (
+    <a href={item.route} target="_blank" rel="noreferrer" className="home-directory-link"><Icon className="h-4 w-4 shrink-0" /><span>{label}</span></a>
+  ) : (
+    <Link to={item.route} className="home-directory-link"><Icon className="h-4 w-4 shrink-0" /><span>{label}</span></Link>
   );
 }
 
 function navItemMatches(item: NavItem, query: string, category: string) {
   if (!query) return true;
-  return `${category} ${item.title} ${item.route} ${item.description ?? ""} ${(item.searchTerms ?? []).join(" ")}`.toLowerCase().includes(query);
+  const matchesSelf = `${category} ${item.title} ${item.route} ${item.description ?? ""} ${(item.searchTerms ?? []).join(" ")}`.toLowerCase().includes(query);
+  return matchesSelf || (item.children ?? []).some((child) => navItemMatches(child, query, item.title));
+}
+
+function countDirectoryPages(item: NavItem): number {
+  return 1 + (item.children ?? []).reduce((total, child) => total + countDirectoryPages(child), 0);
+}
+
+function slugForId(value: string) {
+  return value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 }
 
 type HomeMathStudioHeroProps = {

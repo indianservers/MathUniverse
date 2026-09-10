@@ -310,30 +310,20 @@ export default function AppLayout() {
             id="main-content"
             className={`app-fullscreen-target w-full max-w-none flex-1 pb-24 pt-2 md:pb-0 md:pt-4 ${isCompassTarget || isSemicircleTarget || isRigidPolygonTarget ? "px-3" : isGeneralPolygonTarget || isCircleCentreRadiusTarget ? "px-4" : isCircularArcTarget ? "pl-[23px] pr-4" : isCircumcircularArcTarget ? "pl-[6px] pr-3" : isCircularSectorTarget ? "pl-[6px] pr-4" : isConicFiveTarget ? "px-[14px]" : isEllipseTarget ? "pl-[13px] pr-[14px]" : isHyperbolaTarget ? "pl-[9px] pr-4" : isParabolaTarget ? "pl-[23px] pr-[19px]" : isDistanceTarget ? "pl-[17px] pr-4" : isAreaTarget ? "pl-[18px] pr-[11px]" : isAngleTarget ? "pl-[11px] pr-[3px]" : isFixedAngleTarget ? "pl-[12px] pr-[13px]" : isRelationTarget ? "pl-[18px] pr-[17px]" : isStepsTarget ? "pl-[14px] pr-[16px]" : isTranslationTarget ? "pl-[25px] pr-[34px]" : isReflectionTarget ? "px-[19px]" : isPointReflectionTarget ? "pl-[24px] pr-[19px]" : isCircleReflectionTarget ? "pl-[10px] pr-[13px]" : isRotationPointTarget ? "px-[20px]" : isDilationPointTarget ? "pl-[20px] pr-[16px]" : isMatrixTransformationTarget ? "px-[16px]" : isCompositeTransformationTarget ? "px-[12px]" : isTransformationMappingTarget ? "px-[12px]" : isInvariantsTarget || isSymmetryExplorerTarget || isLocusGeneratorTarget || isEquidistantLociTarget || isMovingLinkageTarget || isEnvelopeLinesTarget || isDynamicTraceTarget || isConjectureTestingTarget || isExactProofTarget || isCollinearityTestTarget || isConcurrencyTestTarget || isConcyclicityTestTarget || isAngleMeasurementTarget ? "px-[10px]" : isCircleThreePointsTarget ? "px-6" : "px-2 sm:px-4 md:px-5"}`}
           >
-            {!location.pathname.startsWith("/lessons/") && (
-              <button
-                type="button"
-                onClick={() => void toggleMainFullscreen()}
-                className="app-fullscreen-button"
-                title={
-                  mainFullscreen
-                    ? "Exit full screen"
-                    : "Full screen this module"
-                }
-                aria-label={
-                  mainFullscreen
-                    ? "Exit full screen"
-                    : "Full screen this module"
-                }
-              >
-                {mainFullscreen ? (
-                  <Minimize2 className="h-4 w-4" />
-                ) : (
-                  <Maximize2 className="h-4 w-4" />
-                )}
-                <span>{mainFullscreen ? "Exit" : "Full"}</span>
-              </button>
-            )}
+            <button
+              type="button"
+              onClick={() => void toggleMainFullscreen()}
+              className={`app-fullscreen-button${location.pathname.startsWith("/lessons/") ? " app-fullscreen-button-lesson" : ""}`}
+              title={mainFullscreen ? "Exit full screen" : "Full screen this lesson or module"}
+              aria-label={mainFullscreen ? "Exit full screen" : "Full screen this lesson or module"}
+            >
+              {mainFullscreen ? (
+                <Minimize2 className="h-4 w-4" />
+              ) : (
+                <Maximize2 className="h-4 w-4" />
+              )}
+              <span>{mainFullscreen ? "Exit" : "Full"}</span>
+            </button>
             <div
               key={location.pathname}
               className="page-transition min-w-0 space-y-1.5 overflow-x-clip"

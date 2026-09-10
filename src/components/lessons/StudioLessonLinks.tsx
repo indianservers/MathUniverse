@@ -44,7 +44,66 @@ export function configForPath(pathname: string) {
 }
 
 type LessonLink = { key: string; title: string; route: string; track: string; description: string };
-function searchable(lesson: LessonDefinition) { return [lesson.title, lesson.topic, lesson.category, lesson.description, lesson.notes ?? ""].join(" ").toLowerCase(); }
+export type InternalLessonTaxonomy = {
+  category: string;
+  subcategory: string;
+  tags: string[];
+};
+
+function words(...values: string[]) {
+  return [...new Set(values.join(" ").toLowerCase().match(/[a-z0-9]+(?:[ -][a-z0-9]+)*/g) ?? [])];
+}
+
+export function taxonomyForInteractiveLesson(lesson: LessonDefinition): InternalLessonTaxonomy {
+  return {
+    category: lesson.categorySlug,
+    subcategory: lesson.topic,
+    tags: words(lesson.title, lesson.description, lesson.workspace, lesson.interactions, lesson.outcome, lesson.feature, lesson.mode),
+  };
+}
+
+export function taxonomyForSchoolLesson(lesson: { title: string; metadata: { conceptFamily: string; searchKeywords: string[] } }): InternalLessonTaxonomy {
+  return {
+    category: lesson.metadata.conceptFamily,
+    subcategory: lesson.metadata.conceptFamily,
+    tags: words(lesson.title, lesson.metadata.conceptFamily, ...lesson.metadata.searchKeywords),
+  };
+}
+
+export function taxonomyForAdvancedLesson(lesson: { title: string; strand: string; searchKeywords: string[] }): InternalLessonTaxonomy {
+  return {
+    category: lesson.strand,
+    subcategory: lesson.strand,
+    tags: words(lesson.title, lesson.strand, ...lesson.searchKeywords),
+  };
+}
+
+function searchable(lesson: LessonDefinition) { return [lesson.title, lesson.topic, lesson.category, lesson.description, lesson.notes ?? ""].join(" "); }
+
+function escapeRegExp(value: string) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function termForms(term: string) {
+  const normalized = term.trim().toLowerCase();
+  if (!normalized || normalized.includes(" ")) return [normalized];
+  const forms = new Set([normalized]);
+  if (normalized.endsWith("y")) forms.add(`${normalized.slice(0, -1)}ies`);
+  else if (!normalized.endsWith("s")) forms.add(`${normalized}s`);
+  return [...forms];
+}
+
+/** Match complete words so e.g. "set" does not match the word "discrete". */
+export function matchesStudioTerm(text: string, term: string) {
+  const normalizedText = text.toLowerCase().replace(/[^a-z0-9]+/g, " ");
+  const normalizedTerm = term.trim().toLowerCase().replace(/[^a-z0-9]+/g, " ");
+  if (!normalizedTerm) return false;
+  return termForms(normalizedTerm).some((form) => new RegExp(`(?:^|\\s)${escapeRegExp(form)}(?:$|\\s)`, "i").test(normalizedText));
+}
+
+export function matchesStudioTerms(text: string, terms: string[]) {
+  return terms.some((term) => matchesStudioTerm(text, term));
+}
 
 export function schoolStudioFor(lesson: { title: string; metadata: { conceptFamily: string; searchKeywords: string[] } }) {
   const text = [lesson.title, lesson.metadata.conceptFamily, ...lesson.metadata.searchKeywords].join(" ").toLowerCase();
@@ -63,10 +122,10 @@ export function StudioLessonLinks({ pathname }: { pathname: string }) {
   const [query, setQuery] = useState("");
   const lessons = useMemo<LessonLink[]>(() => {
     if (!config) return [];
-    const terms = config.terms.map((term) => term.toLowerCase());
-    const interactive = lessonCatalog.filter((lesson) => terms.some((term) => searchable(lesson).includes(term))).map((lesson) => ({ key: `i-${lesson.id}`, title: lesson.title, route: lesson.route, track: lesson.category, description: lesson.topic }));
-    const school = schoolLessonCatalog.filter((lesson) => terms.some((term) => [lesson.title, lesson.metadata.conceptFamily, ...lesson.metadata.searchKeywords].join(" ").toLowerCase().includes(term))).map((lesson) => ({ key: `s-${lesson.id}`, title: lesson.title, route: lesson.route, track: `${lesson.metadata.academicLevel.replace("_", " ")} · School`, description: lesson.metadata.conceptFamily }));
-    const advanced = advancedConceptLessons.filter((lesson) => terms.some((term) => [lesson.title, lesson.strand, ...lesson.searchKeywords].join(" ").toLowerCase().includes(term))).map((lesson) => ({ key: `a-${lesson.id}`, title: lesson.title, route: lesson.route, track: `Advanced · ${lesson.strand}`, description: lesson.summary }));
+    const terms = config.terms;
+    const interactive = lessonCatalog.filter((lesson) => matchesStudioTerms(searchable(lesson), terms) || matchesStudioTerms(`${taxonomyForInteractiveLesson(lesson).category} ${taxonomyForInteractiveLesson(lesson).subcategory} ${taxonomyForInteractiveLesson(lesson).tags.join(" ")}`, terms)).map((lesson) => ({ key: `i-${lesson.id}`, title: lesson.title, route: lesson.route, track: lesson.category, description: lesson.topic }));
+    const school = schoolLessonCatalog.filter((lesson) => { const taxonomy = taxonomyForSchoolLesson(lesson); return matchesStudioTerms(`${taxonomy.category} ${taxonomy.subcategory} ${taxonomy.tags.join(" ")}`, terms); }).map((lesson) => ({ key: `s-${lesson.id}`, title: lesson.title, route: lesson.route, track: `${lesson.metadata.academicLevel.replace("_", " ")} · School`, description: lesson.metadata.conceptFamily }));
+    const advanced = advancedConceptLessons.filter((lesson) => { const taxonomy = taxonomyForAdvancedLesson(lesson); return matchesStudioTerms(`${taxonomy.category} ${taxonomy.subcategory} ${taxonomy.tags.join(" ")}`, terms); }).map((lesson) => ({ key: `a-${lesson.id}`, title: lesson.title, route: lesson.route, track: `Advanced · ${lesson.strand}`, description: lesson.summary }));
     return [...interactive, ...school, ...advanced].sort((a, b) => a.title.localeCompare(b.title));
   }, [config]);
   if (!config) return null;

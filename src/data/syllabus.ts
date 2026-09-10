@@ -32,6 +32,7 @@ export type SyllabusLevel = {
 
 export const syllabusLevelOptions = [
   { value: "All", label: "All" },
+  { value: "class-6", label: "Class 6 (Upcoming)" },
   { value: "class-7", label: "Class 7" },
   { value: "class-8", label: "Class 8" },
   { value: "class-9", label: "Class 9" },
@@ -138,6 +139,28 @@ function level(
 }
 
 export const syllabusLevels: SyllabusLevel[] = [
+  level(
+    "class-6",
+    "Class 6 Mathematics",
+    "Upcoming NCERT and state-board foundation covering number sense, arithmetic, algebra, geometry, measurement, data, constructions, and spatial reasoning.",
+    "Foundation",
+    [
+      topic("Class 6", "Patterns", "Number System", "future", "Pattern machine with growing shapes, number sequences, and rule tables", "", ["a_n = a_1 + (n-1)d"], ["Visual patterns", "Number patterns", "Rules"]),
+      topic("Class 6", "Number Play and Whole Numbers", "Number System", "future", "Place-value blocks, estimation line, and whole-number operation board", "", ["number = place values", "a + b", "a - b"], ["Place value", "Estimation", "Operations"]),
+      topic("Class 6", "Factors, Multiples and Prime Numbers", "Number System", "future", "Factor arrays, prime sieve, factor trees, HCF and LCM explorer", "", ["n = ab", "HCF(a,b)", "LCM(a,b)"], ["Factors", "Multiples", "Primes", "HCF and LCM"]),
+      topic("Class 6", "Integers", "Number System", "future", "Temperature and movement number line for comparing and operating on integers", "", ["a + (-b)", "-(-a)=a"], ["Positive integers", "Negative integers", "Number line"]),
+      topic("Class 6", "Fractions", "Arithmetic", "future", "Fraction bars, area models, equivalent fractions, comparison, and operations", "", ["a/b", "a/b = ka/kb"], ["Equivalent fractions", "Comparison", "Fraction operations"]),
+      topic("Class 6", "Decimals", "Arithmetic", "future", "Place-value grid linking fractions, money, measures, and decimal operations", "", ["1/10 = 0.1", "1/100 = 0.01"], ["Decimal place value", "Money", "Measures"]),
+      topic("Class 6", "Ratio, Proportion and Unitary Method", "Arithmetic", "future", "Ratio tables, double number lines, recipes, and unit-rate models", "", ["a:b", "a/b = c/d", "unit value = total/units"], ["Ratio", "Proportion", "Unitary method"]),
+      topic("Class 6", "Introduction to Algebra", "Algebra", "future", "Variable boxes, matchstick patterns, and expression rule builder", "", ["x + a", "P = 2(l+b)"], ["Variables", "Expressions", "Generalisation"]),
+      topic("Class 6", "Lines, Angles and Basic Geometrical Ideas", "Geometry", "future", "Point-line-ray canvas with angle estimation, measurement, and classification", "", ["right angle = 90°", "straight angle = 180°"], ["Points and lines", "Rays", "Angles", "Polygons"]),
+      topic("Class 6", "Perimeter and Area", "Mensuration", "future", "Resizable shapes with boundary tracing and square-unit tiling", "", ["P = 2(l+b)", "A = lb"], ["Perimeter", "Area", "Square units"]),
+      topic("Class 6", "Data Handling", "Statistics", "future", "Tally, pictograph, bar-chart, and interpretation studio", "", ["frequency = count", "mean = sum/n"], ["Tally marks", "Pictographs", "Bar graphs"]),
+      topic("Class 6", "Practical Constructions", "Geometry", "future", "Guided ruler-and-compass construction steps with replay and checking", "", ["circle = fixed radius", "perpendicular = 90°"], ["Ruler and compass", "Perpendiculars", "Angle construction"]),
+      topic("Class 6", "Symmetry", "Geometry", "future", "Mirror-line and rotational-symmetry explorer", "", ["rotation = 360°/n"], ["Line symmetry", "Rotational symmetry", "Reflection"]),
+      topic("Class 6", "Visualising Solid Shapes", "3D Geometry", "future", "Nets, faces, edges, vertices, and 2D views of rotatable solids", "", ["V - E + F = 2"], ["Nets", "Faces edges vertices", "Top front side views"]),
+    ],
+  ),
   level(
     "class-7",
     "Class 7 Mathematics",

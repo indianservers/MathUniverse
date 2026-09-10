@@ -13,6 +13,10 @@ import {
   TriangleAlert,
 } from "lucide-react";
 import type { LessonAdapterProps } from "../types";
+import {
+  isAbsoluteValuePracticeCorrect121,
+  solveAbsoluteValueEquation121,
+} from "./absoluteValueEquationsLesson121Model";
 import "./AbsoluteValueEquationsTargetLesson121.css";
 
 type DragPoint = "left" | "center" | "right" | null;
@@ -179,10 +183,51 @@ function NumberLine({
   );
 }
 
+function AbsoluteValueTabPanel121({
+  tab,
+  onLoadExample,
+}: {
+  tab: string;
+  onLoadExample: () => void;
+}) {
+  const content: Record<string, { title: string; body: string }> = {
+    Explain: {
+      title: "Distance creates two branches",
+      body: "The equation |x - c| = d asks for every point at distance d from center c, producing c - d and c + d when d is nonnegative.",
+    },
+    Examples: {
+      title: "Calculated distance examples",
+      body: "Load another center and distance into the number line, both linear branches, and the distance checks.",
+    },
+    Formulas: {
+      title: "Absolute-value equation rule",
+      body: "For d greater than or equal to zero, |x - c| = d is equivalent to x - c = -d or x - c = d.",
+    },
+    "Know more": {
+      title: "The no-solution case",
+      body: "An absolute value is never negative, so |x - c| = d has no real solution when d is below zero.",
+    },
+  };
+  const selected = content[tab] ?? content.Explain;
+  return (
+    <section className="abs121-tab-panel">
+      <small>ABSOLUTE-VALUE EQUATIONS</small>
+      <h2>{selected.title}</h2>
+      <p>{selected.body}</p>
+      {tab === "Examples" && (
+        <button type="button" onClick={onLoadExample}>
+          Load distance example
+        </button>
+      )}
+    </section>
+  );
+}
+
 export default function AbsoluteValueEquationsTargetLesson121({
   resetToken,
   onInteraction,
 }: LessonAdapterProps) {
+  const pageRef = useRef<HTMLDivElement>(null);
   const [center, setCenter] = useState(3);
   const [distance, setDistance] = useState(2);
   const [activeTab, setActiveTab] = useState("Interaction + visualization");
@@ -191,15 +236,27 @@ export default function AbsoluteValueEquationsTargetLesson121({
   const [workspace, setWorkspace] = useState(false);
   const [fullscreen, setFullscreen] = useState(false);
   const [practiceChecked, setPracticeChecked] = useState(false);
+  const [practiceFirst, setPracticeFirst] = useState("");
+  const [practiceSecond, setPracticeSecond] = useState("");
   const [actions, setActions] = useState(0);
-  const solvable = distance >= 0;
-  const left = center - distance;
-  const right = center + distance;
+  const solution = solveAbsoluteValueEquation121({
+    center,
+    distance,
+    variable: "x",
+  });
+  const { solvable, left, right } = solution;
+  const practiceCorrect =
+    practiceChecked &&
+    isAbsoluteValuePracticeCorrect121(
+      Number(practiceFirst),
+      Number(practiceSecond),
+    );
+  const hindi = language.startsWith("Hindi");
   const act = () => {
     setActions((value) => value + 1);
     onInteraction();
   };
-  const reset = () => {
+  const reset = (notify = true) => {
     setCenter(3);
     setDistance(2);
     setActiveTab("Interaction + visualization");
@@ -208,10 +265,18 @@ export default function AbsoluteValueEquationsTargetLesson121({
     setWorkspace(false);
     setFullscreen(false);
     setPracticeChecked(false);
+    setPracticeFirst("");
+    setPracticeSecond("");
     setActions(0);
-    onInteraction();
+    if (notify) onInteraction();
   };
-  useEffect(() => reset(), [resetToken]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => reset(false), [resetToken]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    const sync = () =>
+      setFullscreen(document.fullscreenElement === pageRef.current);
+    document.addEventListener("fullscreenchange", sync);
+    return () => document.removeEventListener("fullscreenchange", sync);
+  }, []);
   const updateCenter = (value: number) => {
     setCenter(value);
     setPracticeChecked(false);
@@ -228,17 +293,39 @@ export default function AbsoluteValueEquationsTargetLesson121({
     setPracticeChecked(false);
     act();
   };
+  const toggleFullscreen = async () => {
+    if (document.fullscreenElement) await document.exitFullscreen();
+    else await pageRef.current?.requestFullscreen();
+    act();
+  };
+  const shareLesson = async () => {
+    const data = {
+      title: "Absolute-Value Equations",
+      text: `Solve |x - ${center}| = ${distance}.`,
+      url: window.location.href,
+    };
+    try {
+      if (navigator.share) await navigator.share(data);
+      else await navigator.clipboard.writeText(window.location.href);
+      setShared(true);
+      act();
+    } catch {
+      setShared(false);
+    }
+  };
 
   return (
     <div
+      ref={pageRef}
       className={`abs121-page ${fullscreen ? "fullscreen" : ""}`}
       data-testid="algebra-mockup-0178"
       data-dedicated-lesson="121"
-      data-object-model="editable-absolute-value-center-distance-pointer-keyboard-draggable-number-line-solutions-linked-two-branch-linear-equations-distance-verification-negative-distance-no-solution-practice-model"
+      data-object-model="dedicated-tested-editable-absolute-value-center-distance-pointer-keyboard-draggable-number-line-calculated-solutions-linked-two-branch-linear-equations-distance-verification-negative-distance-no-solution-graded-practice-functional-tabs-language-native-fullscreen-sharing-and-workspace-model"
       data-problem={`${center},${distance}`}
       data-solutions={solvable ? `${left},${right}` : "none"}
       data-solvable={solvable}
       data-practice-checked={practiceChecked}
+      data-practice-correct={practiceCorrect}
       data-actions={actions}
     >
       <nav className="abs121-breadcrumb">
@@ -255,8 +342,12 @@ export default function AbsoluteValueEquationsTargetLesson121({
           <b>ALGEBRA</b>
           <b>EQUATIONS AND INEQUALITIES</b>
         </small>
-        <h1>Absolute-Value Equations</h1>
-        <p>Interpret distance-based solutions.</p>
+        <h1>{hindi ? "परम मान समीकरण" : "Absolute-Value Equations"}</h1>
+        <p>
+          {hindi
+            ? "दूरी पर आधारित हल समझें।"
+            : "Interpret distance-based solutions."}
+        </p>
         <nav>
           <b>♙ Intermediate-Advanced</b>
           <b>ϟ Guided Practice</b>
@@ -279,16 +370,11 @@ export default function AbsoluteValueEquationsTargetLesson121({
             </select>
             <ChevronDown />
           </label>
-          <button onClick={reset}>
+          <button onClick={() => reset()}>
             <RotateCcw />
             Reset
           </button>
-          <button
-            onClick={() => {
-              setShared(true);
-              act();
-            }}
-          >
+          <button onClick={shareLesson}>
             <Share2 />
             {shared ? "Link ready" : "Share"}
           </button>
@@ -315,14 +401,30 @@ export default function AbsoluteValueEquationsTargetLesson121({
             className={activeTab === tab ? "active" : ""}
             onClick={() => {
               setActiveTab(tab);
-              if (tab === "Examples") loadExample();
-              else act();
+              act();
             }}
           >
             {tab}
           </button>
         ))}
       </nav>
+      {activeTab !== "Interaction + visualization" && (
+        <AbsoluteValueTabPanel121 tab={activeTab} onLoadExample={loadExample} />
+      )}
+      {workspace && (
+        <section
+          className="abs121-workspace-panel"
+          aria-label="Absolute-value equation workspace"
+        >
+          <b>Current equation</b>
+          <span>
+            |x - {center}| = {distance}
+          </span>
+          <span>
+            {solvable ? `Solutions: ${left}, ${right}` : "No real solutions"}
+          </span>
+        </section>
+      )}
       <main className="abs121-lab">
         <header>
           <span>
@@ -333,10 +435,7 @@ export default function AbsoluteValueEquationsTargetLesson121({
           <b>{actions} actions</b>
           <button
             aria-label="Expand absolute-value workspace"
-            onClick={() => {
-              setFullscreen((value) => !value);
-              act();
-            }}
+            onClick={toggleFullscreen}
           >
             <Expand />
           </button>
@@ -503,7 +602,35 @@ export default function AbsoluteValueEquationsTargetLesson121({
               </header>
               <p>Solve: |y + 4| = 3</p>
               <small>Distance from −4 equals 3.</small>
-              <strong>y = −7 or y = −1</strong>
+              <div className="abs121-practice-inputs">
+                <label>
+                  y ={" "}
+                  <input
+                    aria-label="First absolute-value practice solution"
+                    type="number"
+                    value={practiceFirst}
+                    onChange={(event) => {
+                      setPracticeFirst(event.target.value);
+                      setPracticeChecked(false);
+                      act();
+                    }}
+                  />
+                </label>
+                <span>or</span>
+                <label>
+                  y ={" "}
+                  <input
+                    aria-label="Second absolute-value practice solution"
+                    type="number"
+                    value={practiceSecond}
+                    onChange={(event) => {
+                      setPracticeSecond(event.target.value);
+                      setPracticeChecked(false);
+                      act();
+                    }}
+                  />
+                </label>
+              </div>
               <button
                 onClick={() => {
                   setWorkspace(true);
@@ -513,7 +640,13 @@ export default function AbsoluteValueEquationsTargetLesson121({
               >
                 {workspace ? "Workspace open" : "Open in workspace"}
               </button>
-              {practiceChecked && <em>Both branches checked.</em>}
+              {practiceChecked && (
+                <em>
+                  {practiceCorrect
+                    ? "Both branches are correct."
+                    : "Check both distance solutions."}
+                </em>
+              )}
             </section>
           </aside>
         </section>
@@ -547,9 +680,9 @@ export default function AbsoluteValueEquationsTargetLesson121({
           CAS-style tools, and classroom-ready activities.
         </span>
         <nav>
-          <button>Sitemap</button>
-          <button>Docs</button>
-          <button>About</button>
+          <a href="/sitemap">Sitemap</a>
+          <a href="/docs">Docs</a>
+          <a href="/about">About</a>
         </nav>
         <hr />
         <small>

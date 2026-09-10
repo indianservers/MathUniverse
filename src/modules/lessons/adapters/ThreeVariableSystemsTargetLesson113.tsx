@@ -19,123 +19,23 @@ import {
   Sparkles,
 } from "lucide-react";
 import type { LessonAdapterProps } from "../types";
+import {
+  THREE_VARIABLE_PRACTICES_113 as practices,
+  THREE_VARIABLE_SYSTEMS_113 as systems,
+  combineToEliminateThree113 as combineToEliminate,
+  evaluateThreeVariableEquation113 as evaluate,
+  isThreeVariableOperationDrop113,
+  isThreeVariablePracticeCorrect113,
+  solveThreeVariableSystem113 as solve3,
+  threeVariableEquationText113 as equationText,
+  threeVariableOperationPayload113,
+  threeVariableOperationText113 as operationText,
+  threeVariableTerm113 as term,
+  type EquationThree113 as Equation3,
+  type SystemThree113 as System3,
+  type VariableThree113 as Variable,
+} from "./threeVariableSystemsLesson113Model";
 import "./ThreeVariableSystemsTargetLesson113.css";
-
-type Equation3 = { a: number; b: number; c: number; d: number };
-type System3 = { id: string; equations: [Equation3, Equation3, Equation3] };
-type Variable = "x" | "y" | "z";
-
-const systems: System3[] = [
-  {
-    id: "target-2-1-3",
-    equations: [
-      { a: 1, b: 1, c: 1, d: 6 },
-      { a: 1, b: -1, c: 1, d: 4 },
-      { a: 1, b: 1, c: -1, d: 0 },
-    ],
-  },
-  {
-    id: "example-2-1-4",
-    equations: [
-      { a: 2, b: 1, c: 1, d: 9 },
-      { a: 1, b: -1, c: 1, d: 5 },
-      { a: 1, b: 1, c: -1, d: -1 },
-    ],
-  },
-  {
-    id: "example-3-2-1",
-    equations: [
-      { a: 1, b: 1, c: 1, d: 6 },
-      { a: 1, b: -1, c: 1, d: 2 },
-      { a: 1, b: 1, c: -1, d: 4 },
-    ],
-  },
-];
-
-const practices: System3[] = [
-  {
-    id: "practice-4-2-3",
-    equations: [
-      { a: 1, b: 1, c: 1, d: 9 },
-      { a: 1, b: 1, c: -1, d: 3 },
-      { a: 1, b: -1, c: 1, d: 5 },
-    ],
-  },
-  {
-    id: "practice-2-3-1",
-    equations: [
-      { a: 1, b: 1, c: 1, d: 6 },
-      { a: 2, b: -1, c: 1, d: 2 },
-      { a: 1, b: 1, c: -1, d: 4 },
-    ],
-  },
-];
-
-const round = (value: number) => Math.round(value * 1000) / 1000;
-const det3 = (matrix: number[][]) =>
-  matrix[0][0] * (matrix[1][1] * matrix[2][2] - matrix[1][2] * matrix[2][1]) -
-  matrix[0][1] * (matrix[1][0] * matrix[2][2] - matrix[1][2] * matrix[2][0]) +
-  matrix[0][2] * (matrix[1][0] * matrix[2][1] - matrix[1][1] * matrix[2][0]);
-const solve3 = (system: System3) => {
-  const coefficients = system.equations.map(({ a, b, c }) => [a, b, c]);
-  const values = system.equations.map(({ d }) => d);
-  const determinant = det3(coefficients);
-  const replace = (column: number) =>
-    coefficients.map((row, rowIndex) =>
-      row.map((value, columnIndex) =>
-        columnIndex === column ? values[rowIndex] : value,
-      ),
-    );
-  return {
-    determinant,
-    x: round(det3(replace(0)) / determinant),
-    y: round(det3(replace(1)) / determinant),
-    z: round(det3(replace(2)) / determinant),
-  };
-};
-const term = (value: number, variable: Variable, first = false) => {
-  if (value === 0) return "";
-  const magnitude = Math.abs(value) === 1 ? "" : Math.abs(value);
-  if (first) return `${value < 0 ? "−" : ""}${magnitude}${variable}`;
-  return `${value < 0 ? " − " : " + "}${magnitude}${variable}`;
-};
-const equationText = (equation: Equation3) =>
-  `${term(equation.a, "x", true)}${term(equation.b, "y", equation.a === 0)}${term(equation.c, "z", equation.a === 0 && equation.b === 0)} = ${equation.d}`;
-const variableIndex = (variable: Variable) => ({ x: 0, y: 1, z: 2 })[variable];
-const coefficientsOf = (equation: Equation3) => [
-  equation.a,
-  equation.b,
-  equation.c,
-];
-const combineToEliminate = (
-  first: Equation3,
-  second: Equation3,
-  variable: Variable,
-) => {
-  const index = variableIndex(variable);
-  const firstCoefficient = coefficientsOf(first)[index];
-  const secondCoefficient = coefficientsOf(second)[index];
-  const firstMultiplier = 1;
-  const secondMultiplier = -firstCoefficient / secondCoefficient;
-  const combined: Equation3 = {
-    a: round(first.a + second.a * secondMultiplier),
-    b: round(first.b + second.b * secondMultiplier),
-    c: round(first.c + second.c * secondMultiplier),
-    d: round(first.d + second.d * secondMultiplier),
-  };
-  return { firstMultiplier, secondMultiplier, combined };
-};
-const operationText = (secondMultiplier: number, pair: string) => {
-  if (secondMultiplier === 1)
-    return `${pair.split("/")[0]} + ${pair.split("/")[1]}`;
-  if (secondMultiplier === -1)
-    return `${pair.split("/")[0]} − ${pair.split("/")[1]}`;
-  return `${pair.split("/")[0]} ${secondMultiplier > 0 ? "+" : "−"} ${Math.abs(secondMultiplier)}${pair.split("/")[1]}`;
-};
-const evaluate = (equation: Equation3, solution: ReturnType<typeof solve3>) =>
-  round(
-    equation.a * solution.x + equation.b * solution.y + equation.c * solution.z,
-  );
 
 export default function ThreeVariableSystemsTargetLesson113({
   resetToken,
@@ -189,15 +89,15 @@ export default function ThreeVariableSystemsTargetLesson113({
   );
   const practice = practices[practiceIndex];
   const practiceSolution = solve3(practice);
-  const practiceCorrect =
-    Number(practiceAnswers[0]) === practiceSolution.x &&
-    Number(practiceAnswers[1]) === practiceSolution.y &&
-    Number(practiceAnswers[2]) === practiceSolution.z;
+  const practiceCorrect = isThreeVariablePracticeCorrect113(
+    practice,
+    practiceAnswers.map(Number) as [number, number, number],
+  );
   const act = () => {
     setActions((value) => value + 1);
     onInteraction();
   };
-  const reset = () => {
+  const reset = (notify = true) => {
     setSystemIndex(0);
     setRightSides([6, 4, 0]);
     setEditing(false);
@@ -217,9 +117,9 @@ export default function ThreeVariableSystemsTargetLesson113({
     setPracticeChecked(true);
     setPracticeSteps(false);
     setActions(0);
-    onInteraction();
+    if (notify) onInteraction();
   };
-  useEffect(() => reset(), [resetToken]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => reset(false), [resetToken]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const chooseSystem = (index: number) => {
     const next = systems[index];
@@ -238,7 +138,7 @@ export default function ThreeVariableSystemsTargetLesson113({
   const startDrag = (event: DragEvent<HTMLButtonElement>) => {
     event.dataTransfer.setData(
       "text/three-variable-operation",
-      `${system.id}:${eliminate}`,
+      threeVariableOperationPayload113(system, eliminate),
     );
     setDragging(true);
     setInvalidDrop(false);
@@ -246,9 +146,11 @@ export default function ThreeVariableSystemsTargetLesson113({
   };
   const dropElimination = (event: DragEvent<HTMLElement>) => {
     event.preventDefault();
-    const valid =
-      event.dataTransfer.getData("text/three-variable-operation") ===
-      `${system.id}:${eliminate}`;
+    const valid = isThreeVariableOperationDrop113(
+      event.dataTransfer.getData("text/three-variable-operation"),
+      system,
+      eliminate,
+    );
     setStepsReady(valid);
     setInvalidDrop(!valid);
     setDragging(false);
@@ -261,13 +163,29 @@ export default function ThreeVariableSystemsTargetLesson113({
     setPracticeSteps(false);
     act();
   };
+  const shareLesson = async () => {
+    const shareData = {
+      title: "Three-Variable Systems",
+      text: `Solve the system with solution (${solution.x}, ${solution.y}, ${solution.z}).`,
+      url: window.location.href,
+    };
+    try {
+      if (navigator.share) await navigator.share(shareData);
+      else await navigator.clipboard.writeText(window.location.href);
+      setShared(true);
+      act();
+    } catch {
+      setShared(false);
+    }
+  };
+  const hindi = language.startsWith("Hindi");
 
   return (
     <div
       className="three113-page"
       data-testid="algebra-mockup-0170"
       data-dedicated-lesson="113"
-      data-object-model="editable-three-equation-coefficient-matrix-cramers-rule-solver-native-variable-elimination-drag-generated-row-reduction-threejs-plane-intersection-all-equation-verification-ordered-triple-practice-model"
+      data-object-model="dedicated-tested-editable-three-equation-coefficient-matrix-cramers-rule-solver-validated-native-variable-elimination-drag-generated-row-reduction-threejs-plane-intersection-all-equation-verification-graded-ordered-triple-practice-functional-tabs-language-and-native-sharing-model"
       data-system-id={system.id}
       data-determinant={solution.determinant}
       data-solution-x={solution.x}
@@ -312,10 +230,11 @@ export default function ThreeVariableSystemsTargetLesson113({
           <b>ALGEBRA</b>
           <b>EQUATIONS AND INEQUALITIES</b>
         </small>
-        <h1>Three-Variable Systems</h1>
+        <h1>{hindi ? "तीन-चर समीकरण निकाय" : "Three-Variable Systems"}</h1>
         <p>
-          Solve three independent linear equations in x, y, z. The solution is
-          an ordered triple (x, y, z) that satisfies all three.
+          {hindi
+            ? "x, y, z में तीन स्वतंत्र रैखिक समीकरण हल करें। समाधान एक क्रमित त्रिक है जो तीनों को संतुष्ट करता है।"
+            : "Solve three independent linear equations in x, y, z. The solution is an ordered triple (x, y, z) that satisfies all three."}
         </p>
         <nav>
           <b>
@@ -350,17 +269,11 @@ export default function ThreeVariableSystemsTargetLesson113({
               <option>Hindi (हिन्दी)</option>
             </select>
           </label>
-          <button type="button" onClick={reset}>
+          <button type="button" onClick={() => reset()}>
             <RotateCcw />
             Reset
           </button>
-          <button
-            type="button"
-            onClick={() => {
-              setShared(true);
-              act();
-            }}
-          >
+          <button type="button" onClick={shareLesson}>
             <Share2 />
             {shared ? "Link ready" : "Share"}
           </button>
@@ -391,9 +304,6 @@ export default function ThreeVariableSystemsTargetLesson113({
             key={tab}
             onClick={() => {
               setActiveTab(tab);
-              if (tab === "Examples")
-                chooseSystem((systemIndex + 1) % systems.length);
-              if (tab === "Explain") setStepsReady(true);
               act();
             }}
           >
@@ -402,241 +312,265 @@ export default function ThreeVariableSystemsTargetLesson113({
         ))}
       </nav>
 
-      <main className="three113-workspace">
-        <section className="three113-elimination">
-          <small>ELIMINATION LAB</small>
-          <h2>Eliminate and solve step-by-step</h2>
-          <section className="three113-system">
-            <header>
-              <b>System of equations</b>
-              <button
-                type="button"
-                onClick={() => {
-                  setEditing((value) => !value);
-                  act();
-                }}
-              >
-                <Pencil />
-                {editing ? "Done" : "Edit"}
-              </button>
-            </header>
-            {system.equations.map((equation, index) => (
-              <p key={index}>
-                <i>
-                  E<sub>{index + 1}</sub>
-                </i>
-                <span>
-                  {term(equation.a, "x", true)}
-                  {term(equation.b, "y")}
-                  {term(equation.c, "z")} =
-                </span>
-                {editing ? (
-                  <input
-                    aria-label={`Equation ${index + 1} right side`}
-                    type="number"
-                    value={rightSides[index]}
-                    onChange={(event) => {
-                      const next = [...rightSides] as [number, number, number];
-                      next[index] = Number(event.target.value);
-                      setRightSides(next);
-                      setStepsReady(false);
-                      setTripleChecked(false);
-                      act();
-                    }}
-                  />
-                ) : (
-                  <b>{equation.d}</b>
-                )}
-              </p>
-            ))}
-          </section>
-          <p className="three113-goal">
-            Goal: Find (x, y, z) that satisfies E₁, E₂, E₃.
-          </p>
-          <section className="three113-choice">
-            <h3>
-              <b>1</b>Choose variable to eliminate
-            </h3>
-            <select
-              aria-label="Variable to eliminate"
-              value={eliminate}
-              onChange={(event) =>
-                chooseVariable(event.target.value as Variable)
-              }
-            >
-              <option value="y">Eliminate y</option>
-              <option value="x">Eliminate x</option>
-              <option value="z">Eliminate z</option>
-            </select>
-          </section>
-          <section className="three113-table-wrap">
-            <h3>
-              <b>2</b>Elimination steps
-            </h3>
-            <button
-              type="button"
-              draggable
-              aria-label={`Drag eliminate ${eliminate} operation`}
-              onDragStart={startDrag}
-              onDragEnd={() => setDragging(false)}
-            >
-              Eliminate {eliminate}
-            </button>
-            <table
-              aria-label="Three variable elimination drop target"
-              onDragOver={(event) => event.preventDefault()}
-              onDrop={dropElimination}
-            >
-              <thead>
-                <tr>
-                  <th>Step</th>
-                  <th>Operation</th>
-                  <th>Result</th>
-                </tr>
-              </thead>
-              <tbody>
-                {stepsReady ? (
-                  <EliminationRows
-                    system={system}
-                    solution={solution}
-                    eliminate={eliminate}
-                    first={firstReduction}
-                    second={secondReduction}
-                  />
-                ) : (
-                  <tr>
-                    <td colSpan={3}>
-                      Drag Eliminate {eliminate} here to calculate the
-                      reduction.
-                    </td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
-            {invalidDrop && (
-              <em>Use the operation for the current system and variable.</em>
-            )}
-          </section>
-          <section className="three113-solved">
-            <b>Solved triple</b>
-            <strong>
-              (x, y, z) = ({solution.x}, {solution.y}, {solution.z})
-            </strong>
-            <p>This ordered triple satisfies all three equations.</p>
-            <button
-              type="button"
-              onClick={() => {
-                setTripleChecked(true);
-                act();
-              }}
-            >
-              <Check />
-              Check triple
-            </button>
-          </section>
-        </section>
-
-        <section className="three113-right">
-          <article className="three113-scene-panel">
-            <header>
-              <span>
-                <small>3D INTERSECTION LAB</small>
-                <h2>Three planes intersect at one point</h2>
-              </span>
-              <button
-                type="button"
-                onClick={() => {
-                  setRotationStep((value) => value + 1);
-                  setSceneMoves((value) => value + 1);
-                  act();
-                }}
-              >
-                <RotateCcw />
-                Rotate
-              </button>
-            </header>
-            <div
-              className="three113-canvas"
-              aria-label="Interactive three plane intersection scene"
-            >
-              <ThreePlaneScene
-                system={system}
-                solution={solution}
-                rotationStep={rotationStep}
-                onMove={() => {
-                  setSceneMoves((value) => value + 1);
-                  act();
-                }}
-              />
-            </div>
-            <div className="three113-solution-label">
-              ({solution.x}, {solution.y}, {solution.z})
-            </div>
-            <footer>
+      {activeTab === "Interaction + visualization" ? (
+        <main className="three113-workspace">
+          <section className="three113-elimination">
+            <small>ELIMINATION LAB</small>
+            <h2>Eliminate and solve step-by-step</h2>
+            <section className="three113-system">
+              <header>
+                <b>System of equations</b>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setEditing((value) => !value);
+                    act();
+                  }}
+                >
+                  <Pencil />
+                  {editing ? "Done" : "Edit"}
+                </button>
+              </header>
               {system.equations.map((equation, index) => (
                 <p key={index}>
-                  <i className={`plane-${index + 1}`} />E<sub>{index + 1}</sub>:{" "}
-                  {equationText(equation)}
+                  <i>
+                    E<sub>{index + 1}</sub>
+                  </i>
+                  <span>
+                    {term(equation.a, "x", true)}
+                    {term(equation.b, "y")}
+                    {term(equation.c, "z")} =
+                  </span>
+                  {editing ? (
+                    <input
+                      aria-label={`Equation ${index + 1} right side`}
+                      type="number"
+                      value={rightSides[index]}
+                      onChange={(event) => {
+                        const next = [...rightSides] as [
+                          number,
+                          number,
+                          number,
+                        ];
+                        next[index] = Number(event.target.value);
+                        setRightSides(next);
+                        setStepsReady(false);
+                        setTripleChecked(false);
+                        act();
+                      }}
+                    />
+                  ) : (
+                    <b>{equation.d}</b>
+                  )}
                 </p>
               ))}
-              <p>
-                <i className="point" />
-                Solution ({solution.x}, {solution.y}, {solution.z})
-              </p>
-            </footer>
-          </article>
-          <article className="three113-verification">
-            <small>CHECK THE SOLUTION</small>
-            <h3>Substitute the triple into each equation</h3>
-            <table>
-              <thead>
-                <tr>
-                  <th>Equation</th>
-                  <th>Substitution</th>
-                  <th>Result</th>
-                </tr>
-              </thead>
-              <tbody>
-                {system.equations.map((equation, index) => (
-                  <tr key={index}>
-                    <td>
-                      E<sub>{index + 1}</sub>: {equationText(equation)}
-                    </td>
-                    <td>
-                      {equation.a * solution.x}{" "}
-                      {equation.b * solution.y < 0 ? "−" : "+"}{" "}
-                      {Math.abs(equation.b * solution.y)}{" "}
-                      {equation.c * solution.z < 0 ? "−" : "+"}{" "}
-                      {Math.abs(equation.c * solution.z)} = {equation.d}
-                    </td>
-                    <td>
-                      {tripleChecked ? (
-                        <>
-                          <Check />
-                          True
-                        </>
-                      ) : (
-                        "Unchecked"
-                      )}
-                    </td>
+            </section>
+            <p className="three113-goal">
+              Goal: Find (x, y, z) that satisfies E₁, E₂, E₃.
+            </p>
+            <section className="three113-choice">
+              <h3>
+                <b>1</b>Choose variable to eliminate
+              </h3>
+              <select
+                aria-label="Variable to eliminate"
+                value={eliminate}
+                onChange={(event) =>
+                  chooseVariable(event.target.value as Variable)
+                }
+              >
+                <option value="y">Eliminate y</option>
+                <option value="x">Eliminate x</option>
+                <option value="z">Eliminate z</option>
+              </select>
+            </section>
+            <section className="three113-table-wrap">
+              <h3>
+                <b>2</b>Elimination steps
+              </h3>
+              <button
+                type="button"
+                draggable
+                aria-label={`Drag eliminate ${eliminate} operation`}
+                onDragStart={startDrag}
+                onDragEnd={() => setDragging(false)}
+              >
+                Eliminate {eliminate}
+              </button>
+              <table
+                aria-label="Three variable elimination drop target"
+                onDragOver={(event) => event.preventDefault()}
+                onDrop={dropElimination}
+              >
+                <thead>
+                  <tr>
+                    <th>Step</th>
+                    <th>Operation</th>
+                    <th>Result</th>
                   </tr>
+                </thead>
+                <tbody>
+                  {stepsReady ? (
+                    <EliminationRows
+                      system={system}
+                      solution={solution}
+                      eliminate={eliminate}
+                      first={firstReduction}
+                      second={secondReduction}
+                    />
+                  ) : (
+                    <tr>
+                      <td colSpan={3}>
+                        Drag Eliminate {eliminate} here to calculate the
+                        reduction.
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+              {invalidDrop && (
+                <em>Use the operation for the current system and variable.</em>
+              )}
+            </section>
+            <section className="three113-solved">
+              <b>Solved triple</b>
+              <strong>
+                (x, y, z) = ({solution.x}, {solution.y}, {solution.z})
+              </strong>
+              <p>This ordered triple satisfies all three equations.</p>
+              <button
+                type="button"
+                onClick={() => {
+                  setTripleChecked(true);
+                  act();
+                }}
+              >
+                <Check />
+                Check triple
+              </button>
+            </section>
+          </section>
+
+          <section className="three113-right">
+            <article className="three113-scene-panel">
+              <header>
+                <span>
+                  <small>3D INTERSECTION LAB</small>
+                  <h2>Three planes intersect at one point</h2>
+                </span>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setRotationStep((value) => value + 1);
+                    setSceneMoves((value) => value + 1);
+                    act();
+                  }}
+                >
+                  <RotateCcw />
+                  Rotate
+                </button>
+              </header>
+              <div
+                className="three113-canvas"
+                aria-label="Interactive three plane intersection scene"
+              >
+                <ThreePlaneScene
+                  system={system}
+                  solution={solution}
+                  rotationStep={rotationStep}
+                  onMove={() => {
+                    setSceneMoves((value) => value + 1);
+                    act();
+                  }}
+                />
+              </div>
+              <div className="three113-solution-label">
+                ({solution.x}, {solution.y}, {solution.z})
+              </div>
+              <footer>
+                {system.equations.map((equation, index) => (
+                  <p key={index}>
+                    <i className={`plane-${index + 1}`} />E
+                    <sub>{index + 1}</sub>: {equationText(equation)}
+                  </p>
                 ))}
-              </tbody>
-            </table>
-            <footer>
-              <span>
-                <b>System Status</b>
-                <small>
-                  {tripleChecked
-                    ? "All three equations are satisfied."
-                    : "Check the ordered triple."}
-                </small>
-              </span>
-              <b>{tripleChecked ? "Consistent" : "Pending"}</b>
-            </footer>
-          </article>
+                <p>
+                  <i className="point" />
+                  Solution ({solution.x}, {solution.y}, {solution.z})
+                </p>
+              </footer>
+            </article>
+            <article className="three113-verification">
+              <small>CHECK THE SOLUTION</small>
+              <h3>Substitute the triple into each equation</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Equation</th>
+                    <th>Substitution</th>
+                    <th>Result</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {system.equations.map((equation, index) => (
+                    <tr key={index}>
+                      <td>
+                        E<sub>{index + 1}</sub>: {equationText(equation)}
+                      </td>
+                      <td>
+                        {equation.a * solution.x}{" "}
+                        {equation.b * solution.y < 0 ? "−" : "+"}{" "}
+                        {Math.abs(equation.b * solution.y)}{" "}
+                        {equation.c * solution.z < 0 ? "−" : "+"}{" "}
+                        {Math.abs(equation.c * solution.z)} = {equation.d}
+                      </td>
+                      <td>
+                        {tripleChecked ? (
+                          <>
+                            <Check />
+                            True
+                          </>
+                        ) : (
+                          "Unchecked"
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <footer>
+                <span>
+                  <b>System Status</b>
+                  <small>
+                    {tripleChecked
+                      ? "All three equations are satisfied."
+                      : "Check the ordered triple."}
+                  </small>
+                </span>
+                <b>{tripleChecked ? "Consistent" : "Pending"}</b>
+              </footer>
+            </article>
+          </section>
+        </main>
+      ) : (
+        <ThreeVariableTabPanel113
+          tab={activeTab}
+          onChooseSystem={chooseSystem}
+        />
+      )}
+
+      {workspaceOpen && (
+        <section
+          className="three113-workspace-panel"
+          aria-label="Three variable system workspace"
+        >
+          <b>Current solution</b>
+          <span>det(A) = {solution.determinant}</span>
+          <span>
+            ({solution.x}, {solution.y}, {solution.z})
+          </span>
         </section>
-      </main>
+      )}
 
       <section className="three113-quick">
         <b>QUICK ACTIONS</b>
@@ -865,6 +799,60 @@ export default function ThreeVariableSystemsTargetLesson113({
         <small>www.IndianServers.com · info@IndianServers.com</small>
       </footer>
     </div>
+  );
+}
+
+function ThreeVariableTabPanel113({
+  tab,
+  onChooseSystem,
+}: {
+  tab: string;
+  onChooseSystem: (index: number) => void;
+}) {
+  const content: Record<string, { title: string; body: string }> = {
+    Explain: {
+      title: "Eliminate one variable twice",
+      body: "Create two equations in two variables, solve that pair, then substitute backward to recover the ordered triple.",
+    },
+    Examples: {
+      title: "Calculated three-variable systems",
+      body: "Load another coefficient matrix with generated elimination rows and a three-plane intersection.",
+    },
+    Formulas: {
+      title: "Cramer's rule check",
+      body: "The determinant and replaced-column determinants independently calculate x, y, and z.",
+    },
+    "Know more": {
+      title: "Three equations as planes",
+      body: "A unique ordered triple is the common point of three independent planes and satisfies every original equation.",
+    },
+  };
+  const selected = content[tab] ?? content.Explain;
+  return (
+    <main className="three113-workspace three113-tab-panel">
+      <small>THREE-VARIABLE SYSTEMS</small>
+      <h2>{selected.title}</h2>
+      <p>{selected.body}</p>
+      {tab === "Examples" && (
+        <div>
+          {systems.map((system, index) => {
+            const result = solve3(system);
+            return (
+              <button
+                type="button"
+                key={system.id}
+                onClick={() => onChooseSystem(index)}
+              >
+                <span>{system.equations.map(equationText).join("; ")}</span>
+                <b>
+                  ({result.x}, {result.y}, {result.z})
+                </b>
+              </button>
+            );
+          })}
+        </div>
+      )}
+    </main>
   );
 }
 

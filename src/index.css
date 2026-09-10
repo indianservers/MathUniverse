@@ -10712,6 +10712,24 @@ body {
   box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
   backdrop-filter: blur(8px);
 }
+.geometry-view-range {
+  display: grid;
+  align-content: center;
+  min-width: 156px;
+  padding: 0 7px;
+  color: #0f172a;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+.geometry-view-range span {
+  color: #64748b;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
 .geometry-zoom-controls button {
   display: grid;
   width: 34px;
@@ -10720,6 +10738,10 @@ body {
   border-radius: 8px;
   color: #0e7490;
   transition: background-color 120ms ease, color 120ms ease;
+}
+.geometry-zoom-controls button:disabled {
+  cursor: not-allowed;
+  color: #94a3b8;
 }
 .geometry-zoom-controls button:hover,
 .geometry-zoom-controls button:focus-visible {
@@ -15627,6 +15649,10 @@ body {
     @apply fixed bottom-4 right-4 z-40 hidden min-h-10 items-center justify-center gap-2 rounded-full border border-white/20 bg-slate-950/90 px-3 py-2 text-xs font-black text-white shadow-2xl shadow-cyan-950/20 backdrop-blur-xl transition hover:-translate-y-0.5 hover:bg-slate-900 focus-visible:ring-cyan-300 dark:bg-white/90 dark:text-slate-950 lg:inline-flex;
   }
 
+  .app-fullscreen-button-lesson {
+    bottom: 4.75rem;
+  }
+
   .inquiry-lab-shell {
     @apply bg-white/95 text-slate-950 shadow-2xl shadow-cyan-950/10 dark:bg-slate-950/90 dark:text-white dark:shadow-black/30;
   }
@@ -15708,10 +15734,7 @@ body {
     background: #020813;
     color: #e5edf7;
     display: grid;
-    grid-template-columns: minmax(268px, 304px) minmax(0, 1fr) minmax(
-        300px,
-        340px
-      );
+    grid-template-columns: minmax(236px, var(--geometry-tools-width, 304px)) minmax(0, 1fr) minmax(280px, var(--geometry-inspector-width, 340px));
     grid-template-rows: 58px minmax(0, 1fr) 28px;
     grid-template-areas:
       "top top top"
@@ -15758,6 +15781,38 @@ body {
     @apply flex shrink-0 items-center gap-1;
   }
 
+  .geometry-pane-controls {
+    @apply mr-1 flex items-center rounded-md border border-cyan-300/15 bg-slate-900/75 p-0.5;
+  }
+
+  .geometry-pane-controls button {
+    @apply min-h-8 min-w-8 px-1.5;
+  }
+
+  .geometry-studio-shell[data-active-pane="tools"] .geometry-studio-toolbox,
+  .geometry-studio-shell[data-active-pane="canvas"] .geometry-studio-main,
+  .geometry-studio-shell[data-active-pane="inspector"] .geometry-studio-right {
+    box-shadow: inset 0 0 0 1px rgba(103, 232, 249, 0.3);
+  }
+
+  .geometry-studio-shell[data-expanded-pane="tools"] {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "top" "tools" "status";
+  }
+  .geometry-studio-shell[data-expanded-pane="canvas"] {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "top" "main" "status";
+  }
+  .geometry-studio-shell[data-expanded-pane="inspector"] {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "top" "right" "status";
+  }
+  .geometry-studio-shell[data-expanded-pane="tools"] :is(.geometry-studio-main, .geometry-studio-right),
+  .geometry-studio-shell[data-expanded-pane="canvas"] :is(.geometry-studio-toolbox, .geometry-studio-right),
+  .geometry-studio-shell[data-expanded-pane="inspector"] :is(.geometry-studio-toolbox, .geometry-studio-main) {
+    display: none;
+  }
+
   .geometry-top-actions span {
     @apply hidden 2xl:inline;
   }
@@ -15792,7 +15847,7 @@ body {
   .geometry-studio-right {
     grid-area: right;
     @apply grid gap-2 border-l p-2;
-    grid-template-rows: minmax(0, 1fr) minmax(0, 0.95fr);
+    grid-template-rows: minmax(180px, var(--geometry-right-top, 1fr)) 8px minmax(180px, 0.95fr);
   }
 
   .geometry-studio-main {
@@ -15982,7 +16037,40 @@ body {
 
   .geometry-dock-content {
     @apply grid min-h-0 gap-2 overflow-hidden p-2;
-    grid-template-columns: 1.2fr 1fr 1fr;
+    grid-template-columns: minmax(180px, var(--geometry-bottom-first, 1.2fr)) 8px minmax(180px, var(--geometry-bottom-second, 1fr)) 8px minmax(180px, 1fr);
+  }
+
+  .geometry-pane-resizer,
+  .geometry-inline-resizer {
+    z-index: 20;
+    border-radius: 999px;
+    background: transparent;
+    touch-action: none;
+  }
+
+  .geometry-pane-resizer:hover,
+  .geometry-pane-resizer:active,
+  .geometry-inline-resizer:hover,
+  .geometry-inline-resizer:active {
+    background: rgba(103, 232, 249, 0.75);
+  }
+
+  .geometry-tool-resizer,
+  .geometry-inspector-resizer {
+    position: absolute;
+    top: 58px;
+    bottom: 28px;
+    width: 8px;
+    cursor: col-resize;
+  }
+  .geometry-tool-resizer { left: calc(var(--geometry-tools-width, 304px) - 4px); }
+  .geometry-inspector-resizer { right: calc(var(--geometry-inspector-width, 340px) - 4px); }
+  .geometry-inline-resizer { cursor: col-resize; }
+  .geometry-right-resizer { cursor: row-resize; }
+
+  .geometry-studio-shell[data-expanded-pane] .geometry-pane-resizer,
+  .geometry-studio-shell[data-expanded-pane] .geometry-inline-resizer {
+    display: none;
   }
 
   .geometry-dock-content > div,
@@ -15996,6 +16084,71 @@ body {
 
   .geometry-right-card .rounded-2xl {
     @apply rounded-lg border-white/10 bg-slate-900/70 text-slate-100;
+  }
+
+  /* The geometry workspace is intentionally dark even when the application
+     theme class is not present. Tailwind's `dark:` variants on inspector
+     fields therefore do not always activate, leaving pale text on pale input
+     surfaces. Keep every editable inspector control on the dark palette. */
+  .geometry-inspector-card label.rounded-xl,
+  .geometry-inspector-card label.rounded-xl > label,
+  .geometry-inspector-card .slider-range + div {
+    background: #14243b;
+    color: #e2e8f0;
+  }
+
+  .geometry-inspector-card :is(input:not([type="range"]):not([type="color"]), select, textarea) {
+    border-color: rgba(125, 211, 252, 0.28);
+    background: #0b1628;
+    color: #f8fafc;
+    color-scheme: dark;
+  }
+
+  .geometry-inspector-card :is(input, textarea)::placeholder {
+    color: #94a3b8;
+    opacity: 1;
+  }
+
+  .geometry-inspector-card span.rounded-lg,
+  .geometry-inspector-card .slider-range + div > span,
+  .geometry-inspector-card .slider-range ~ div > span {
+    background: #0b1628;
+    color: #a5f3fc;
+  }
+
+  .geometry-inspector-card button.rounded-2xl:not(.text-rose-700) {
+    background: #172b45;
+    color: #e0f2fe;
+  }
+
+  .geometry-inspector-card button.rounded-2xl:not(.text-rose-700):hover {
+    background: #1e3a5f;
+    color: #cffafe;
+  }
+
+  /* Shared cards inside the right sidebar and bottom dock use light utility
+     classes, but this workspace is always rendered on a dark surface. */
+  .geometry-studio-shell :is(.geometry-right-card, .geometry-bottom-dock) :is(.text-slate-400, .text-slate-500, .text-slate-600, .text-slate-700) {
+    color: #b8c8dc !important;
+  }
+  .geometry-studio-shell :is(.geometry-right-card, .geometry-bottom-dock) :is(.rounded-xl, .rounded-2xl):not(input):not(button) {
+    border-color: rgba(125, 211, 252, 0.18);
+    background-color: #111d31;
+    color: #e5edf7;
+  }
+  .geometry-studio-shell .geometry-bottom-dock :is(input, select, textarea) {
+    border-color: rgba(125, 211, 252, 0.28);
+    background: #0b1628;
+    color: #f8fafc;
+  }
+  .geometry-studio-shell .geometry-right-card :is(p, .geometry-empty-note),
+  .geometry-studio-shell .geometry-bottom-dock p {
+    color: #b8c8dc;
+  }
+  .geometry-studio-shell .geometry-dock-content > div:not(.geometry-inline-resizer) > :first-child {
+    border-color: rgba(125, 211, 252, 0.18);
+    background: #111d31;
+    color: #e5edf7;
   }
 
   .geometry-object-registry {
@@ -28533,6 +28686,62 @@ body {
   border-color: #93c5fd !important;
   box-shadow: 0 20px 40px rgba(37, 99, 235, 0.12) !important;
 }
+
+/* Consistent direction cues for previous/next navigation in every lesson.
+   Blue always means back; violet always means continue. */
+:is(.lesson-page-shell, .lesson-school-shell, [data-testid="advanced-concept-lesson-page"])
+  nav:is(.lesson-adjacent-nav, [class*="adjacent"], [class$="-next"], :has(> a[href*="/lessons/"]:nth-of-type(2)))
+  > a[href*="/lessons/"] {
+  min-height: 64px !important;
+  border-width: 1px !important;
+  border-style: solid !important;
+  border-radius: 16px !important;
+  padding: 12px 16px !important;
+  font-weight: 800 !important;
+  text-decoration: none !important;
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease !important;
+}
+
+:is(.lesson-page-shell, .lesson-school-shell, [data-testid="advanced-concept-lesson-page"])
+  nav:is(.lesson-adjacent-nav, [class*="adjacent"], [class$="-next"], :has(> a[href*="/lessons/"]:nth-of-type(2)))
+  > a[href*="/lessons/"]:first-of-type {
+  border-color: #7dd3fc !important;
+  background: linear-gradient(135deg, #f0f9ff, #e0f2fe) !important;
+  color: #075985 !important;
+  box-shadow: 0 10px 24px rgba(2, 132, 199, 0.1) !important;
+}
+
+:is(.lesson-page-shell, .lesson-school-shell, [data-testid="advanced-concept-lesson-page"])
+  nav:is(.lesson-adjacent-nav, [class*="adjacent"], [class$="-next"], :has(> a[href*="/lessons/"]:nth-of-type(2)))
+  > a[href*="/lessons/"]:last-of-type {
+  border-color: #c4b5fd !important;
+  background: linear-gradient(135deg, #f5f3ff, #ede9fe) !important;
+  color: #5b21b6 !important;
+  box-shadow: 0 10px 24px rgba(109, 40, 217, 0.1) !important;
+}
+
+:is(.lesson-page-shell, .lesson-school-shell, [data-testid="advanced-concept-lesson-page"])
+  nav:is(.lesson-adjacent-nav, [class*="adjacent"], [class$="-next"], :has(> a[href*="/lessons/"]:nth-of-type(2)))
+  > a[href*="/lessons/"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 30px rgba(30, 41, 59, 0.16) !important;
+}
+
+.dark :is(.lesson-page-shell, .lesson-school-shell, [data-testid="advanced-concept-lesson-page"])
+  nav:is(.lesson-adjacent-nav, [class*="adjacent"], [class$="-next"], :has(> a[href*="/lessons/"]:nth-of-type(2)))
+  > a[href*="/lessons/"]:first-of-type {
+  border-color: rgba(56, 189, 248, 0.45) !important;
+  background: linear-gradient(135deg, rgba(3, 105, 161, 0.28), rgba(14, 116, 144, 0.16)) !important;
+  color: #bae6fd !important;
+}
+
+.dark :is(.lesson-page-shell, .lesson-school-shell, [data-testid="advanced-concept-lesson-page"])
+  nav:is(.lesson-adjacent-nav, [class*="adjacent"], [class$="-next"], :has(> a[href*="/lessons/"]:nth-of-type(2)))
+  > a[href*="/lessons/"]:last-of-type {
+  border-color: rgba(167, 139, 250, 0.5) !important;
+  background: linear-gradient(135deg, rgba(109, 40, 217, 0.28), rgba(91, 33, 182, 0.18)) !important;
+  color: #ddd6fe !important;
+}
 @media (max-width: 1100px) {
   .learn-hero,
   .learn-flagship,
@@ -37581,9 +37790,15 @@ body:has([data-testid="advanced-concept-lesson-page"]) #main-content {
 }
 
 [data-lesson-viewport] > * {
+  position: relative !important;
+  top: 0 !important;
+  right: auto !important;
+  left: 0 !important;
   width: 100% !important;
   max-width: none !important;
   min-width: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
 }
 
 [data-lesson-viewport]
@@ -37694,6 +37909,30 @@ body:has([data-testid="advanced-concept-lesson-page"]) #main-content {
   display: none !important;
 }
 
+/* AppLayout already renders the canonical lesson breadcrumb above the shared
+   tab bar. Screenshot-matched adapters often pull their own breadcrumb upward
+   with absolute/negative positioning, which makes it overlap the tabs when a
+   lesson section is selected. Keep a single breadcrumb and a clean tab band. */
+:is(.lesson-page-shell, .lesson-school-shell)
+  #lesson-section-interaction
+  [data-dedicated-lesson]
+  > nav:is([class*="breadcrumb"], [aria-label*="breadcrumb" i]) {
+  display: none !important;
+}
+
+/* Older dedicated lessons sometimes ship a second five-tab lesson header.
+   The shared tab bar is the authoritative controller for lesson content. */
+:is(.lesson-page-shell, .lesson-school-shell)
+  #lesson-section-interaction
+  > *
+  > nav[class*="-tabs"]:has(> :nth-child(4)),
+:is(.lesson-page-shell, .lesson-school-shell)
+  #lesson-section-interaction
+  > *
+  > nav:has(> b:first-child + span:nth-child(2) + span:nth-child(3) + span:nth-child(4)) {
+  display: none !important;
+}
+
 /* Several screenshot-matched lesson styles hid the shell tab bar. Keep the
    shared controller visible so it can switch content without disappearing. */
 body:has(.lesson-page-shell)
@@ -37756,8 +37995,6 @@ body:has(.lesson-school-shell)
     grid-template-columns: minmax(0, 1fr) !important;
   }
 
-  .lesson-page-shell [data-dedicated-lesson] > nav:has(> button),
-  .lesson-school-shell [data-dedicated-lesson] > nav:has(> button),
   .lesson-section-nav,
   .lesson-page-shell > nav[role="tablist"] {
     display: flex !important;
@@ -37768,8 +38005,6 @@ body:has(.lesson-school-shell)
     scrollbar-width: thin;
   }
 
-  .lesson-page-shell [data-dedicated-lesson] > nav:has(> button) > button,
-  .lesson-school-shell [data-dedicated-lesson] > nav:has(> button) > button,
   .lesson-section-nav > button,
   .lesson-page-shell > nav[role="tablist"] > button {
     min-width: max-content !important;
@@ -37780,11 +38015,12 @@ body:has(.lesson-school-shell)
 
 /* Shared lesson readability standard.
    Dedicated lesson artwork used many screenshot-scale (6-10px) labels. Keep
-   instructional text readable, including labels rendered inside SVG diagrams. */
+   instructional text readable, including shell navigation, sidebars, and
+   labels rendered inside SVG diagrams. */
 .lesson-page-shell,
 .lesson-school-shell,
 [data-testid="advanced-concept-lesson-page"] {
-  --lesson-font-caption: 14px;
+  --lesson-font-caption: 15px;
   --lesson-font-control: 16px;
   --lesson-font-body: 17px;
   --lesson-font-subheading: 19px;
@@ -37794,6 +38030,20 @@ body:has(.lesson-school-shell)
 }
 
 :is(.lesson-page-shell, .lesson-school-shell, [data-testid="advanced-concept-lesson-page"]) .text-xs {
+  font-size: var(--lesson-font-caption) !important;
+}
+
+/* Tailwind's one-off pixel utilities are common in older lesson headers and
+   sidebar metadata, so promote them to the same readable caption floor. */
+:is(.lesson-page-shell, .lesson-school-shell, [data-testid="advanced-concept-lesson-page"])
+  :is(
+    [class~="text-[8px]"],
+    [class~="text-[9px]"],
+    [class~="text-[10px]"],
+    [class~="text-[11px]"],
+    [class~="text-[12px]"],
+    [class~="text-[13px]"]
+  ) {
   font-size: var(--lesson-font-caption) !important;
 }
 
@@ -37911,6 +38161,31 @@ body:has(.lesson-school-shell)
 .lesson-school-shell [data-dedicated-lesson] svg text,
 [data-testid="advanced-concept-lesson-page"] [data-dedicated-lesson] svg text {
   font-size: var(--lesson-font-caption) !important;
+}
+
+/* Some shared and fallback lesson visualizations sit outside a dedicated
+   lesson wrapper. Apply the same floor to every lesson SVG and to HTML-based
+   graph annotations, ticks, legends, and captions. */
+:is(.lesson-page-shell, .lesson-school-shell, [data-testid="advanced-concept-lesson-page"])
+  svg
+  text {
+  font-size: var(--lesson-font-caption) !important;
+}
+
+:is(.lesson-page-shell, .lesson-school-shell, [data-testid="advanced-concept-lesson-page"])
+  :is([class*="graph"], [class*="plot"], [class*="chart"], [class*="plane"], [class*="diagram"])
+  :is([class*="label"], [class*="annotation"], [class*="caption"], [class*="tick"], [class*="legend"]) {
+  font-size: var(--lesson-font-caption) !important;
+  line-height: 1.35 !important;
+}
+
+/* Sidebar controls are used continuously during a lesson, so they use the
+   regular control size rather than the smaller metadata size. */
+:is(.lesson-page-shell, .lesson-school-shell, [data-testid="advanced-concept-lesson-page"])
+  aside
+  :is(a, button, label, input, select, textarea, output) {
+  font-size: var(--lesson-font-control) !important;
+  line-height: 1.4 !important;
 }
 
 /* Text-only learning cards should size to their content instead of stretching
@@ -38292,6 +38567,141 @@ html { overflow-y: auto; scrollbar-gutter: stable; }
 
 .home-page-category {
   min-width: 0;
+  overflow: hidden;
+  border: 1px solid rgb(203 213 225 / 0.9);
+  border-radius: 1rem;
+  background: rgb(255 255 255 / 0.82);
+  box-shadow: 0 6px 18px rgb(15 23 42 / 0.05);
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.home-page-category.is-open {
+  border-color: rgb(103 232 249 / 0.9);
+  box-shadow: 0 12px 28px rgb(14 116 144 / 0.09);
+}
+
+.dark .home-page-category {
+  border-color: rgb(255 255 255 / 0.1);
+  background: rgb(255 255 255 / 0.04);
+}
+
+.dark .home-page-category.is-open {
+  border-color: rgb(34 211 238 / 0.35);
+}
+
+.home-category-toggle {
+  display: flex;
+  width: 100%;
+  min-height: 4.5rem;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.home-category-toggle:hover,
+.home-category-toggle:focus-visible {
+  background: rgb(236 254 255 / 0.7);
+}
+
+.dark .home-category-toggle:hover,
+.dark .home-category-toggle:focus-visible {
+  background: rgb(34 211 238 / 0.08);
+}
+
+.home-category-icon {
+  display: grid;
+  width: 2.5rem;
+  height: 2.5rem;
+  flex: none;
+  place-items: center;
+  border-radius: 0.8rem;
+  background: linear-gradient(135deg, rgb(207 250 254), rgb(224 231 255));
+  color: rgb(14 116 144);
+}
+
+.dark .home-category-icon {
+  background: linear-gradient(135deg, rgb(34 211 238 / 0.16), rgb(129 140 248 / 0.16));
+  color: rgb(165 243 252);
+}
+
+.home-category-content {
+  display: grid;
+  gap: 0.5rem;
+  border-top: 1px solid rgb(203 213 225 / 0.7);
+  padding: 0.75rem;
+}
+
+.dark .home-category-content {
+  border-color: rgb(255 255 255 / 0.1);
+}
+
+.home-directory-expand-all {
+  min-height: 2.25rem;
+  border: 1px solid rgb(165 243 252);
+  border-radius: 0.7rem;
+  padding: 0.4rem 0.7rem;
+  background: rgb(236 254 255);
+  color: rgb(14 116 144);
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.dark .home-directory-expand-all {
+  border-color: rgb(34 211 238 / 0.3);
+  background: rgb(34 211 238 / 0.1);
+  color: rgb(165 243 252);
+}
+
+.home-subcategory-toggle {
+  display: grid;
+  width: 100%;
+  min-height: 2.75rem;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 0.6rem;
+  border-radius: 0.75rem;
+  padding: 0.55rem 0.65rem;
+  color: rgb(15 23 42);
+  font-size: 0.82rem;
+  font-weight: 850;
+  text-align: left;
+}
+
+.home-subcategory-toggle:hover,
+.home-subcategory-toggle:focus-visible,
+.home-directory-subcategory.is-open > .home-subcategory-toggle {
+  background: rgb(241 245 249);
+  color: rgb(14 116 144);
+}
+
+.dark .home-subcategory-toggle {
+  color: rgb(226 232 240);
+}
+
+.dark .home-subcategory-toggle:hover,
+.dark .home-subcategory-toggle:focus-visible,
+.dark .home-directory-subcategory.is-open > .home-subcategory-toggle {
+  background: rgb(255 255 255 / 0.07);
+  color: rgb(165 243 252);
+}
+
+.home-directory-count {
+  min-width: 1.5rem;
+  border-radius: 999px;
+  padding: 0.15rem 0.4rem;
+  background: rgb(224 242 254);
+  color: rgb(3 105 161);
+  font-size: 0.7rem;
+  text-align: center;
+}
+
+.home-directory-chevron {
+  transition: transform 180ms ease;
+}
+
+.is-open > :is(.home-category-toggle, .home-subcategory-toggle) .home-directory-chevron {
+  transform: rotate(180deg);
 }
 
 .home-directory-link {
@@ -38325,16 +38735,28 @@ html { overflow-y: auto; scrollbar-gutter: stable; }
 }
 
 .home-directory-children {
-  margin: 0.15rem 0 0.25rem 1.15rem;
+  display: grid;
+  gap: 0.2rem;
+  margin: 0.2rem 0 0.35rem 1.15rem;
   border-left: 1px solid rgb(148 163 184 / 0.25);
-  padding-left: 0.35rem;
+  padding: 0.15rem 0 0.15rem 0.45rem;
 }
 
 .home-directory-children .home-directory-link {
-  min-height: 1.9rem;
-  padding-block: 0.35rem;
-  font-size: 0.7rem;
+  min-height: 2.25rem;
+  padding-block: 0.4rem;
+  font-size: 0.75rem;
   font-weight: 700;
+}
+
+@media (max-width: 639px) {
+  .home-category-toggle {
+    min-height: 4rem;
+  }
+
+  .home-directory-children {
+    margin-left: 0.65rem;
+  }
 }
 
 .relation-guide span {

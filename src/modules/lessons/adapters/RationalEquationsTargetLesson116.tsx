@@ -20,43 +20,18 @@ import {
   Trophy,
 } from "lucide-react";
 import type { LessonAdapterProps } from "../types";
+import {
+  RATIONAL_PRACTICES_116 as practices,
+  RATIONAL_PROBLEMS_116 as problems,
+  isRationalMultiplierDrop116,
+  isRationalPracticeCorrect116,
+  rationalDenominatorText116 as denominatorText,
+  rationalExactText116 as exactText,
+  rationalMultiplierPayload116,
+  solveRationalEquation116 as solve,
+  type RationalProblem116 as RationalProblem,
+} from "./rationalEquationsLesson116Model";
 import "./RationalEquationsTargetLesson116.css";
-
-type RationalProblem = {
-  numerator: number;
-  restriction: number;
-  right: number;
-  variable: string;
-};
-type Exact = { numerator: number; denominator: number; value: number };
-const problems: RationalProblem[] = [
-  { numerator: 1, restriction: 2, right: 3, variable: "x" },
-  { numerator: 2, restriction: 1, right: 4, variable: "x" },
-  { numerator: 3, restriction: -2, right: 2, variable: "x" },
-  { numerator: 4, restriction: 3, right: 5, variable: "x" },
-];
-const practices: RationalProblem[] = [
-  { numerator: 2, restriction: -1, right: 4, variable: "y" },
-  { numerator: 3, restriction: 2, right: 2, variable: "z" },
-  { numerator: 5, restriction: -2, right: 3, variable: "t" },
-];
-const gcd = (a: number, b: number): number =>
-  b === 0 ? Math.abs(a) : gcd(b, a % b);
-const solve = ({ numerator, restriction, right }: RationalProblem): Exact => {
-  const rawNumerator = right * restriction + numerator;
-  const divisor = gcd(rawNumerator, right) || 1;
-  const denominator = right / divisor;
-  const numeratorExact = rawNumerator / divisor;
-  return {
-    numerator: numeratorExact,
-    denominator,
-    value: numeratorExact / denominator,
-  };
-};
-const denominatorText = ({ restriction, variable }: RationalProblem) =>
-  `${variable} ${restriction < 0 ? "+" : "−"} ${Math.abs(restriction)}`;
-const exactText = ({ numerator, denominator }: Exact) =>
-  denominator === 1 ? `${numerator}` : `${numerator}/${denominator}`;
 
 function Fraction({
   top,
@@ -168,18 +143,14 @@ export default function RationalEquationsTargetLesson116({
   const answer = useMemo(() => solve(problem), [problem]);
   const practice = practices[practiceIndex];
   const practiceSolution = solve(practice);
-  const parseAnswer = (value: string) => {
-    const [a, b] = value.split("/").map(Number);
-    return value.includes("/") ? a / b : Number(value);
-  };
   const practiceCorrect =
-    practiceChecked &&
-    Math.abs(parseAnswer(practiceAnswer) - practiceSolution.value) < 0.00001;
+    practiceChecked && isRationalPracticeCorrect116(practice, practiceAnswer);
+  const candidateVerified = autoCheck || candidateChecked;
   const act = () => {
     setActions((value) => value + 1);
     onInteraction();
   };
-  const reset = () => {
+  const reset = (notify = true) => {
     setProblemIndex(0);
     setProblem(problems[0]);
     setEditing(false);
@@ -196,9 +167,9 @@ export default function RationalEquationsTargetLesson116({
     setDragging(false);
     setInvalidDrop(false);
     setActions(0);
-    onInteraction();
+    if (notify) onInteraction();
   };
-  useEffect(() => reset(), [resetToken]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => reset(false), [resetToken]); // eslint-disable-line react-hooks/exhaustive-deps
   const changeProblem = (next: RationalProblem) => {
     setProblem(next);
     setCleared(false);
@@ -214,7 +185,7 @@ export default function RationalEquationsTargetLesson116({
   const startMultiplier = (event: DragEvent<HTMLButtonElement>) => {
     event.dataTransfer.setData(
       "text/rational-multiplier",
-      denominatorText(problem),
+      rationalMultiplierPayload116(problem),
     );
     setDragging(true);
     setInvalidDrop(false);
@@ -222,9 +193,10 @@ export default function RationalEquationsTargetLesson116({
   };
   const dropMultiplier = (event: DragEvent<HTMLElement>) => {
     event.preventDefault();
-    const valid =
-      event.dataTransfer.getData("text/rational-multiplier") ===
-      denominatorText(problem);
+    const valid = isRationalMultiplierDrop116(
+      event.dataTransfer.getData("text/rational-multiplier"),
+      problem,
+    );
     setCleared(valid);
     setCandidateChecked(false);
     setDragging(false);
@@ -238,15 +210,33 @@ export default function RationalEquationsTargetLesson116({
     setPracticeChecked(false);
     act();
   };
+  const shareLesson = async () => {
+    const shareData = {
+      title: "Rational Equations",
+      text: `Solve ${problem.numerator}/(${denominatorText(problem)}) = ${problem.right}.`,
+      url: window.location.href,
+    };
+    try {
+      if (navigator.share) await navigator.share(shareData);
+      else await navigator.clipboard.writeText(window.location.href);
+      setShared(true);
+      act();
+    } catch {
+      setShared(false);
+    }
+  };
 
   return (
     <div
       className="rat116-page"
       data-testid="algebra-mockup-0173"
       data-dedicated-lesson="116"
-      data-object-model="editable-rational-equation-denominator-restriction-pointer-draggable-forbidden-value-native-lcd-drag-clearing-exact-fraction-linear-solve-original-substitution-extraneous-rejection-graded-practice-model"
+      data-object-model="dedicated-tested-editable-rational-equation-denominator-restriction-pointer-draggable-forbidden-value-validated-native-lcd-drag-clearing-exact-fraction-solution-classification-original-substitution-extraneous-rejection-graded-practice-functional-tabs-and-native-sharing-model"
       data-problem={`${problem.numerator},${problem.restriction},${problem.right}`}
       data-answer={exactText(answer)}
+      data-solution-status={answer.status}
+      data-restriction-satisfied={answer.restrictionSatisfied}
+      data-substitution-satisfied={answer.substitutionSatisfied}
       data-cleared={cleared}
       data-candidate-checked={candidateChecked}
       data-dragging={dragging}
@@ -288,8 +278,7 @@ export default function RationalEquationsTargetLesson116({
                 className={activeTab === tab ? "active" : ""}
                 onClick={() => {
                   setActiveTab(tab);
-                  if (tab === "Examples") nextProblem();
-                  else act();
+                  act();
                 }}
               >
                 {tab}
@@ -308,16 +297,11 @@ export default function RationalEquationsTargetLesson116({
             <Lightbulb />
             Hint
           </button>
-          <button onClick={reset}>
+          <button onClick={() => reset()}>
             <RotateCcw />
             Reset
           </button>
-          <button
-            onClick={() => {
-              setShared(true);
-              act();
-            }}
-          >
+          <button onClick={shareLesson}>
             <Share2 />
             {shared ? "Link ready" : "Share"}
           </button>
@@ -340,6 +324,9 @@ export default function RationalEquationsTargetLesson116({
           />
         </footer>
       </section>
+      {activeTab !== "Interaction" && (
+        <RationalTabPanel116 tab={activeTab} onNextExample={nextProblem} />
+      )}
       <main className="rat116-workspace">
         <section className="rat116-step restriction">
           <header>
@@ -559,8 +546,19 @@ export default function RationalEquationsTargetLesson116({
             <article>
               <b>Candidate</b>
               <strong>
-                {problem.variable} ={" "}
-                <Fraction top={answer.numerator} bottom={answer.denominator} />
+                {answer.status === "unique" ? (
+                  <>
+                    {problem.variable} ={" "}
+                    <Fraction
+                      top={answer.numerator}
+                      bottom={answer.denominator}
+                    />
+                  </>
+                ) : answer.status === "infinite" ? (
+                  `All ${problem.variable} except ${problem.restriction}`
+                ) : (
+                  "No candidate solution"
+                )}
               </strong>
             </article>
           </div>
@@ -587,38 +585,75 @@ export default function RationalEquationsTargetLesson116({
             <article>
               <b>Restriction check</b>
               <strong>
-                {problem.variable} = {exactText(answer)} ≠ {problem.restriction}
+                {answer.status === "unique"
+                  ? `${problem.variable} = ${exactText(answer)} ≠ ${problem.restriction}`
+                  : `${problem.variable} = ${problem.restriction} is excluded`}
               </strong>
-              <span>● Restriction satisfied</span>
+              <span>
+                ●{" "}
+                {answer.restrictionSatisfied
+                  ? "Restriction satisfied"
+                  : "Forbidden candidate rejected"}
+              </span>
             </article>
             <article>
               <b>Substitution check</b>
-              <strong>
-                <Fraction
-                  top={problem.numerator}
-                  bottom={`${exactText(answer)} − ${problem.restriction}`}
-                />{" "}
-                = {problem.right}
-              </strong>
-              <p>
-                <Fraction
-                  top={problem.numerator}
-                  bottom={
-                    <Fraction top={problem.numerator} bottom={problem.right} />
-                  }
-                />{" "}
-                = {problem.right}
-              </p>
-              <p>
-                {problem.right} = {problem.right} <Check />
-              </p>
+              {answer.status === "unique" ? (
+                <>
+                  <strong>
+                    <Fraction
+                      top={problem.numerator}
+                      bottom={`${exactText(answer)} − ${problem.restriction}`}
+                    />{" "}
+                    = {problem.right}
+                  </strong>
+                  <p>
+                    <Fraction
+                      top={problem.numerator}
+                      bottom={
+                        <Fraction
+                          top={problem.numerator}
+                          bottom={problem.right}
+                        />
+                      }
+                    />{" "}
+                    = {problem.right}
+                  </p>
+                  <p>
+                    {problem.right} = {problem.right} <Check />
+                  </p>
+                </>
+              ) : (
+                <p>
+                  {answer.status === "infinite"
+                    ? "The identity is true for every value in the restricted domain."
+                    : "The only algebraic candidate is forbidden or the equation is contradictory."}
+                </p>
+              )}
             </article>
             <article className="accepted">
               <b>Result</b>
-              <p>Solution</p>
+              <p>
+                {answer.status === "unique"
+                  ? "Solution"
+                  : answer.status === "infinite"
+                    ? "Infinitely many solutions"
+                    : "No solution"}
+              </p>
               <strong>
-                {problem.variable} ={" "}
-                <Fraction top={answer.numerator} bottom={answer.denominator} />
+                {answer.status === "unique" ? (
+                  <>
+                    {problem.variable} ={" "}
+                    <Fraction
+                      top={answer.numerator}
+                      bottom={answer.denominator}
+                    />
+                  </>
+                ) : answer.status === "infinite" ? (
+                  `${problem.variable} ≠ ${problem.restriction}`
+                ) : (
+                  "∅"
+                )}
               </strong>
               <button
                 onClick={() => {
@@ -627,7 +662,11 @@ export default function RationalEquationsTargetLesson116({
                 }}
               >
                 <Check />
-                {candidateChecked ? "Accepted" : "Check candidate"}
+                {candidateVerified
+                  ? answer.status === "unique"
+                    ? "Accepted"
+                    : "Classified"
+                  : "Check candidate"}
               </button>
             </article>
           </div>
@@ -648,12 +687,27 @@ export default function RationalEquationsTargetLesson116({
           <Trophy />
           <span>
             <b>
-              Final Answer: {problem.variable} ={" "}
-              <Fraction top={answer.numerator} bottom={answer.denominator} />
+              Final Answer:{" "}
+              {answer.status === "unique" ? (
+                <>
+                  {problem.variable} ={" "}
+                  <Fraction
+                    top={answer.numerator}
+                    bottom={answer.denominator}
+                  />
+                </>
+              ) : answer.status === "infinite" ? (
+                `all ${problem.variable} ≠ ${problem.restriction}`
+              ) : (
+                "no solution"
+              )}
             </b>
             <p>
-              This value satisfies the equation and does not violate the
-              restriction {problem.variable} ≠ {problem.restriction}.
+              {answer.status === "unique"
+                ? `This value satisfies the equation and does not violate ${problem.variable} ≠ ${problem.restriction}.`
+                : answer.status === "infinite"
+                  ? "Every allowed domain value satisfies the equation."
+                  : "No allowed value satisfies both the equation and its restriction."}
             </p>
           </span>
         </footer>
@@ -770,9 +824,9 @@ export default function RationalEquationsTargetLesson116({
           CAS-style tools, and classroom-ready activities.
         </span>
         <nav>
-          <button>Sitemap</button>
-          <button>Docs</button>
-          <button>About</button>
+          <a href="/sitemap">Sitemap</a>
+          <a href="/docs">Docs</a>
+          <a href="/about">About</a>
         </nav>
         <hr />
         <small>
@@ -781,6 +835,46 @@ export default function RationalEquationsTargetLesson116({
         <small>www.IndianServers.com info@IndianServers.com</small>
       </footer>
     </div>
+  );
+}
+
+function RationalTabPanel116({
+  tab,
+  onNextExample,
+}: {
+  tab: string;
+  onNextExample: () => void;
+}) {
+  const content: Record<string, { title: string; body: string }> = {
+    Explain: {
+      title: "Restriction before multiplication",
+      body: "Record every forbidden denominator value before clearing fractions, then verify candidates in the original equation.",
+    },
+    Examples: {
+      title: "Calculated rational examples",
+      body: "Load another numerator, denominator restriction, and right side into the complete solving workflow.",
+    },
+    Formulas: {
+      title: "Exact linear candidate",
+      body: "For n/(x-r) = k with k not zero, x = r + n/k, provided the result is allowed by the restriction.",
+    },
+    "Know more": {
+      title: "Extraneous candidates",
+      body: "Clearing a denominator can produce a forbidden value. It must be rejected even when it solves the cleared equation.",
+    },
+  };
+  const selected = content[tab] ?? content.Explain;
+  return (
+    <section className="rat116-tab-panel">
+      <small>RATIONAL EQUATIONS</small>
+      <h2>{selected.title}</h2>
+      <p>{selected.body}</p>
+      {tab === "Examples" && (
+        <button type="button" onClick={onNextExample}>
+          Load next rational equation
+        </button>
+      )}
+    </section>
   );
 }
 

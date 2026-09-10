@@ -75,6 +75,21 @@ for(const [width,height] of [[1440,900],[768,1024],[390,844]]) {
       await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));
       await page.screenshot({path:`test-evidence/shared-lesson-graphs/24/tested-${width}-${dark?'dark':'light'}.png`,fullPage:true});
     }
+    const sectionTabs=page.getByRole('tablist',{name:'Lesson sections'});
+    const appBreadcrumb=page.getByRole('navigation',{name:'Breadcrumb'});
+    const adapterBreadcrumb=lesson.locator(':scope > nav.animation-breadcrumb');
+    await expect(appBreadcrumb).toBeVisible();
+    await expect(adapterBreadcrumb).toBeHidden();
+    const [breadcrumbBox,tabsBox]=await Promise.all([appBreadcrumb.boundingBox(),sectionTabs.boundingBox()]);
+    expect(breadcrumbBox).not.toBeNull();expect(tabsBox).not.toBeNull();
+    expect(breadcrumbBox!.y+breadcrumbBox!.height).toBeLessThanOrEqual(tabsBox!.y+1);
+    await sectionTabs.getByRole('tab',{name:'Learn',exact:true}).click();
+    await expect(sectionTabs.getByRole('tab',{name:'Learn',exact:true})).toHaveAttribute('aria-selected','true');
+    await expect(page.locator('#lesson-section-learn')).toBeVisible();
+    await expect(adapterBreadcrumb).toBeHidden();
+    const headerBox=await lesson.locator(':scope > header.animation-header').boundingBox();
+    expect(headerBox).not.toBeNull();
+    expect(tabsBox!.y+tabsBox!.height).toBeLessThanOrEqual(headerBox!.y+1);
     expect(errors).toEqual([]);
   });
 }

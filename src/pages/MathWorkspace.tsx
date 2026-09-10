@@ -22,7 +22,7 @@ import {
 import { readCasNotebookState, saveCasNotebookState } from "../cas/casNotebookPersistence";
 import ThreeSceneWrapper from "../components/three/ThreeSceneWrapper";
 import MathKeyboardInput from "../components/math-keyboard/MathKeyboardInput";
-import GeometryWorkspacePanel, { type GeometryCamera, type GeometryGraphSettings } from "../components/workspace/panels/GeometryWorkspacePanel";
+import GeometryWorkspacePanel, { MAX_GEOMETRY_CAMERA_HEIGHT, MAX_GEOMETRY_CAMERA_WIDTH, type GeometryCamera, type GeometryGraphSettings } from "../components/workspace/panels/GeometryWorkspacePanel";
 import GraphWorkspacePanel, { type PlotItem, type PlotKind, type ResultTableRow } from "../components/workspace/panels/GraphWorkspacePanel";
 import InspectorPanel from "../components/workspace/InspectorPanel";
 import ObjectList, { type ObjectListAction } from "../components/workspace/ObjectList";
@@ -1415,8 +1415,8 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   const zoomGeometry = (direction: "in" | "out", anchor?: { x: number; y: number }) => {
     setGeometryCamera((current) => {
       const factor = direction === "in" ? 0.8 : 1.25;
-      const nextWidth = Math.max(16, Math.min(1_000_000_000, current.width * factor));
-      const nextHeight = Math.max(10.5, Math.min(656_250_000, current.height * factor));
+      const nextWidth = Math.max(16, Math.min(MAX_GEOMETRY_CAMERA_WIDTH, current.width * factor));
+      const nextHeight = Math.max(10.5, Math.min(MAX_GEOMETRY_CAMERA_HEIGHT, current.height * factor));
       const focus = anchor ?? { x: current.x + current.width / 2, y: current.y + current.height / 2 };
       return {
         x: focus.x - (focus.x - current.x) * (nextWidth / current.width),

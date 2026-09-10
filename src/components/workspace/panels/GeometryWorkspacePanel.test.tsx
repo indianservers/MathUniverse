@@ -68,6 +68,7 @@ function renderPanel(
     picks?: SelectedGeometryObject[];
     images?: WorkspaceImage[];
     sidebar?: React.ReactNode;
+    camera?: { x: number; y: number; width: number; height: number };
   } = {},
 ) {
   return renderToStaticMarkup(
@@ -83,7 +84,7 @@ function renderPanel(
         workspaceImages={options.images ?? []}
         selectedImageId={options.images?.[0]?.id ?? null}
         graphSettings={graphSettings}
-        camera={{ x: 0, y: 0, width: 640, height: 420 }}
+        camera={options.camera ?? { x: 0, y: 0, width: 640, height: 420 }}
         boardRef={createRef<SVGSVGElement>()}
         imageInputRef={createRef<HTMLInputElement>()}
         sidebar={
@@ -145,6 +146,14 @@ describe("GeometryWorkspacePanel", () => {
     expect(html).not.toContain(">Learn</button>");
     expect(html).not.toContain('aria-label="Zoom"');
     expect(html).toContain('aria-label="Fit all objects"');
+    expect(html).toContain('aria-label="Pane controls"');
+    expect(html).toContain('aria-label="Enlarge active pane"');
+    expect(html).toContain('aria-label="Expand active pane"');
+    expect(html).toContain('aria-label="Resize tools pane"');
+    expect(html).toContain('aria-label="Resize object inspector pane"');
+    expect(html).toContain('aria-label="Resize construction protocol pane"');
+    expect(html).toContain('data-testid="geometry-view-range"');
+    expect(html).toContain("Range</span> x -8…8 · y -5…5.5");
   });
 
   it("renders supported geometry tools and active tool state", () => {
@@ -157,6 +166,16 @@ describe("GeometryWorkspacePanel", () => {
     expect(html).toContain('data-testid="workspace-geometry-tool-point"');
     expect(html).toContain('data-testid="workspace-geometry-tool-line"');
     expect(html).toContain('data-testid="workspace-geometry-tool-circle"');
+  });
+
+  it("keeps tick labels readable at the maximum coordinate range", () => {
+    const html = renderPanel({
+      camera: { x: 0, y: 0, width: 163_840, height: 107_520 },
+    });
+
+    expect(html).toContain('font-size="2560"');
+    expect(html).toContain('title="Maximum coordinate range reached"');
+    expect(html).toContain("x -8…4088");
   });
 
   it("renders existing point line circle polygon locus and measurement marks", () => {

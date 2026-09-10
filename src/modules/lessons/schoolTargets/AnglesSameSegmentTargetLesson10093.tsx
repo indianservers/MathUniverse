@@ -4,9 +4,11 @@ import {
   ArrowRight,
   CheckCircle2,
   Info,
+  Maximize2,
+  Minimize2,
   RotateCcw,
 } from "lucide-react";
-import { type PointerEvent, useRef, useState } from "react";
+import { type PointerEvent, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./AnglesSameSegmentTargetLesson10093.css";
@@ -40,6 +42,20 @@ export default function AnglesSameSegmentTargetLesson10093({
   const [tab, setTab] = useState(0);
   const [actions, setActions] = useState(0);
   const svgRef = useRef<SVGSVGElement>(null);
+  const [visualFullscreen, setVisualFullscreen] = useState(false);
+  useEffect(() => {
+    if (!visualFullscreen) return;
+    const previousOverflow = document.body.style.overflow;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setVisualFullscreen(false);
+    };
+    document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [visualFullscreen]);
   const act = (fn: () => void) => {
     fn();
     setActions((value) => value + 1);
@@ -173,10 +189,23 @@ export default function AnglesSameSegmentTargetLesson10093({
               relation drives the result.
             </p>
           </aside>
-          <article>
-            <button onClick={reset}>
-              <RotateCcw /> Reset
-            </button>
+          <article
+            className={visualFullscreen ? "is-fullscreen" : ""}
+            data-smart-lesson-visual="geometry"
+          >
+            <div className="ass10093-visual-actions">
+              <button onClick={reset}>
+                <RotateCcw /> Reset
+              </button>
+              <button
+                onClick={() => setVisualFullscreen((value) => !value)}
+                aria-label={visualFullscreen ? "Exit full screen diagram" : "Open diagram full screen"}
+                title={visualFullscreen ? "Exit full screen" : "Full screen"}
+              >
+                {visualFullscreen ? <Minimize2 /> : <Maximize2 />}
+                {visualFullscreen ? "Exit" : "Full screen"}
+              </button>
+            </div>
             <svg
               ref={svgRef}
               viewBox="0 0 710 520"

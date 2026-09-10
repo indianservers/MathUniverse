@@ -6,6 +6,7 @@ import SyllabusFilterBar from "../components/syllabus/SyllabusFilterBar";
 import SyllabusRoadmap from "../components/syllabus/SyllabusRoadmap";
 import SyllabusTopicCard from "../components/syllabus/SyllabusTopicCard";
 import UnitUpgradeDashboard from "../components/syllabus/UnitUpgradeDashboard";
+import UpcomingCurriculumExpansion from "../components/syllabus/UpcomingCurriculumExpansion";
 import MathExpression from "../components/ui/MathExpression";
 import SectionCard from "../components/ui/SectionCard";
 import TopicHeader from "../components/ui/TopicHeader";
@@ -55,6 +56,7 @@ export default function Syllabus() {
       <SyllabusFilterBar search={search} level={levelFilter} unit={unitFilter} status={statusFilter} onSearch={setSearch} onLevel={handleLevelFilter} onUnit={setUnitFilter} onStatus={setStatusFilter} onReset={() => { setSearch(""); setLevelFilter(routeLevel); setUnitFilter("All"); setStatusFilter("All"); }} />
       <SmartSyllabusPlanner topics={filteredTopics.length ? filteredTopics : baseTopics} levelId={levelFilter} />
       <UnitUpgradeDashboard topics={filteredTopics.length ? filteredTopics : baseTopics} />
+      <UpcomingCurriculumExpansion />
 
       <SectionCard title="Grade and Board Topics" description="NCERT and school syllabus topics are grouped by class, with formulas, concepts, visual links, and guided workspace routes.">
         <div className="mb-5 flex flex-wrap items-center justify-between gap-3">

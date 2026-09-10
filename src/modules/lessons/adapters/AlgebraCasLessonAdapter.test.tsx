@@ -397,7 +397,7 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain('data-testid="algebra-mockup-0170"');
     expect(html).toContain('data-dedicated-lesson="113"');
     expect(html).toContain(
-      "editable-three-equation-coefficient-matrix-cramers-rule-solver-native-variable-elimination-drag-generated-row-reduction-threejs-plane-intersection-all-equation-verification-ordered-triple-practice-model",
+      "dedicated-tested-editable-three-equation-coefficient-matrix-cramers-rule-solver-validated-native-variable-elimination-drag-generated-row-reduction-threejs-plane-intersection-all-equation-verification-graded-ordered-triple-practice-functional-tabs-language-and-native-sharing-model",
     );
     expect(html).toContain('aria-label="Drag eliminate y operation"');
     expect(html).toContain("Three planes intersect at one point");
@@ -415,7 +415,7 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain('data-testid="algebra-mockup-0171"');
     expect(html).toContain('data-dedicated-lesson="114"');
     expect(html).toContain(
-      "editable-quadratic-coefficients-discriminant-factor-pairs-zero-product-rule-pointer-draggable-root-graph-synchronized-verification-graded-practice-model",
+      "dedicated-tested-editable-quadratic-coefficients-discriminant-multiple-solving-methods-factor-pairs-zero-product-rule-pointer-draggable-root-graph-synchronized-verification-graded-practice-functional-tabs-model",
     );
     expect(html).toContain('aria-label="Drag root 1"');
     expect(html).toContain("Factor-to-Roots Lab");
@@ -433,7 +433,7 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain('data-testid="algebra-mockup-0172"');
     expect(html).toContain('data-dedicated-lesson="115"');
     expect(html).toContain(
-      "editable-three-root-cubic-factor-stack-vieta-expansion-pointer-draggable-roots-zero-product-switches-svg-graph-substitution-check-lost-factor-warning-three-root-graded-practice-model",
+      "dedicated-tested-editable-three-root-cubic-factor-stack-vieta-expansion-pointer-draggable-roots-zero-product-switches-svg-graph-substitution-check-lost-factor-warning-three-root-graded-practice-functional-tabs-language-and-native-sharing-model",
     );
     expect(html).toContain('aria-label="Drag polynomial root 1"');
     expect(html).toContain("Factor-stack roots lab");
@@ -451,7 +451,7 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain('data-testid="algebra-mockup-0173"');
     expect(html).toContain('data-dedicated-lesson="116"');
     expect(html).toContain(
-      "editable-rational-equation-denominator-restriction-pointer-draggable-forbidden-value-native-lcd-drag-clearing-exact-fraction-linear-solve-original-substitution-extraneous-rejection-graded-practice-model",
+      "dedicated-tested-editable-rational-equation-denominator-restriction-pointer-draggable-forbidden-value-validated-native-lcd-drag-clearing-exact-fraction-solution-classification-original-substitution-extraneous-rejection-graded-practice-functional-tabs-and-native-sharing-model",
     );
     expect(html).toContain('aria-label="Drag multiplier x − 2"');
     expect(html).toContain("State denominator restrictions");
@@ -469,7 +469,7 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain('data-testid="algebra-mockup-0174"');
     expect(html).toContain('data-dedicated-lesson="117"');
     expect(html).toContain(
-      "editable-radical-equation-domain-boundary-pointer-drag-native-square-both-sides-drag-balance-isolation-generated-linear-solve-original-equation-check-extraneous-rejection-graded-practice-model",
+      "dedicated-tested-editable-radical-equation-domain-boundary-pointer-drag-validated-native-square-both-sides-drag-balance-isolation-generated-linear-candidate-original-principal-root-check-extraneous-rejection-graded-practice-functional-tabs-model",
     );
     expect(html).toContain('aria-label="Drag square both sides for x + 1"');
     expect(html).toContain("Radical Unwrapper Lab");
@@ -487,7 +487,7 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain('data-testid="algebra-mockup-0175"');
     expect(html).toContain('data-dedicated-lesson="118"');
     expect(html).toContain(
-      "editable-exponential-base-target-generated-power-ladder-native-matching-rung-drag-pointer-draggable-graph-exponent-common-base-logarithm-fallback-substitution-check-graded-practice-model",
+      "dedicated-tested-editable-exponential-base-target-generated-adaptive-power-ladder-validated-native-matching-rung-drag-pointer-draggable-logarithmic-graph-intersection-common-base-substitution-check-graded-practice-functional-tabs-language-sound-native-fullscreen-and-sharing-model",
     );
     expect(html).toContain('aria-label="Drag matching power 2 to 5"');
     expect(html).toContain("Power ladder matcher");
@@ -505,7 +505,7 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain('data-testid="algebra-mockup-0176"');
     expect(html).toContain('data-dedicated-lesson="119"');
     expect(html).toContain(
-      "editable-logarithm-candidate-native-range-drag-domain-gate-exponential-rewrite-generated-power-ladder-value-substitution-check-invalid-input-rejection-quick-practice-model",
+      "dedicated-tested-editable-logarithm-candidate-native-range-drag-domain-gate-exponential-rewrite-generated-adaptive-power-ladder-value-substitution-check-invalid-input-rejection-graded-quick-practice-functional-tabs-language-native-fullscreen-sharing-and-workspace-model",
     );
     expect(html).toContain('aria-label="Logarithm candidate slider"');
     expect(html).toContain("Domain-gated solver");
@@ -523,7 +523,7 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain('data-testid="algebra-mockup-0177"');
     expect(html).toContain('data-dedicated-lesson="120"');
     expect(html).toContain(
-      "editable-trigonometric-equation-preset-pointer-keyboard-draggable-unit-circle-angle-linked-periodic-wave-quadrant-reasoning-general-solution-family-angle-mode-quick-practice-model",
+      "dedicated-tested-editable-trigonometric-equation-preset-pointer-keyboard-draggable-unit-circle-angle-linked-periodic-wave-calculated-quadrant-reasoning-general-solution-family-angle-mode-graded-quick-practice-functional-tabs-language-native-fullscreen-sharing-and-workspace-model",
     );
     expect(html).toContain('aria-label="Drag reference angle on unit circle"');
     expect(html).toContain("Solve using the unit circle");
@@ -541,7 +541,7 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain('data-testid="algebra-mockup-0178"');
     expect(html).toContain('data-dedicated-lesson="121"');
     expect(html).toContain(
-      "editable-absolute-value-center-distance-pointer-keyboard-draggable-number-line-solutions-linked-two-branch-linear-equations-distance-verification-negative-distance-no-solution-practice-model",
+      "dedicated-tested-editable-absolute-value-center-distance-pointer-keyboard-draggable-number-line-calculated-solutions-linked-two-branch-linear-equations-distance-verification-negative-distance-no-solution-graded-practice-functional-tabs-language-native-fullscreen-sharing-and-workspace-model",
     );
     expect(html).toContain('aria-label="Drag absolute value center"');
     expect(html).toContain("Distance solver on the number line");
@@ -559,7 +559,7 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain('data-testid="algebra-mockup-0179"');
     expect(html).toContain('data-dedicated-lesson="122"');
     expect(html).toContain(
-      "editable-linear-inequality-coefficients-sign-aware-comparator-flip-pointer-keyboard-draggable-boundary-linked-open-closed-number-line-interval-notation-test-points-practice-model",
+      "dedicated-tested-editable-linear-inequality-coefficients-sign-aware-calculated-comparator-flip-pointer-keyboard-draggable-boundary-linked-open-closed-number-line-interval-notation-evaluated-test-points-functional-practice-tabs-language-native-fullscreen-sharing-and-workspace-model",
     );
     expect(html).toContain('aria-label="Drag linear inequality boundary"');
     expect(html).toContain("Solve on the number line");
@@ -577,7 +577,7 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain('data-testid="algebra-mockup-0180"');
     expect(html).toContain('data-dedicated-lesson="123"');
     expect(html).toContain(
-      "editable-compound-inequality-and-intersection-or-union-two-pointer-keyboard-draggable-boundaries-open-closed-endpoints-linked-number-lines-interval-notation-test-points-empty-set-practice-model",
+      "dedicated-tested-editable-compound-inequality-and-intersection-or-union-two-pointer-keyboard-draggable-boundaries-open-closed-endpoints-linked-number-lines-calculated-interval-notation-evaluated-test-points-empty-set-functional-practice-tabs-language-native-fullscreen-sharing-and-workspace-model",
     );
     expect(html).toContain('aria-label="Drag compound lower boundary"');
     expect(html).toContain("Build the intersection on a number line");
@@ -595,7 +595,7 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain('data-testid="algebra-mockup-0181"');
     expect(html).toContain('data-dedicated-lesson="124"');
     expect(html).toContain(
-      "editable-quadratic-inequality-two-pointer-keyboard-draggable-roots-linked-factorization-sign-chart-substitution-values-parabola-regions-interval-solution-inclusive-endpoints-practice-model",
+      "dedicated-tested-editable-quadratic-inequality-two-pointer-keyboard-draggable-roots-linked-calculated-factorization-sign-chart-substitution-values-parabola-regions-interval-solution-repeated-root-inclusive-endpoints-verified-practice-functional-tabs-language-native-fullscreen-sharing-and-workspace-model",
     );
     expect(html).toContain('aria-label="Drag quadratic first root"');
     expect(html).toContain("SIGN CHART (NUMBER LINE)");

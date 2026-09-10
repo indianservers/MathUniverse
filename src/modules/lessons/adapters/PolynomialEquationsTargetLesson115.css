@@ -194,6 +194,50 @@
   box-shadow: 0 5px 16px rgba(38, 72, 101, 0.06);
   overflow: hidden;
 }
+.poly115-tab-panel {
+  margin-top: 9px;
+  padding: 24px;
+  border: 1px solid #dce6ed;
+  border-radius: 8px;
+  background: #fff;
+}
+.poly115-tab-panel > small {
+  color: #078ba4;
+  font-weight: 900;
+}
+.poly115-tab-panel > h2 {
+  margin-top: 8px;
+  font-size: 18px;
+}
+.poly115-tab-panel > p {
+  max-width: 520px;
+  margin-top: 7px;
+  color: #5c697d;
+  line-height: 1.55;
+}
+.poly115-tab-panel > button {
+  margin-top: 14px;
+  padding: 10px 14px;
+  border: 1px solid #a9dce4;
+  border-radius: 7px;
+  background: #eaf9fb;
+  color: #087f96;
+  font-weight: 800;
+}
+.poly115-workspace-panel {
+  position: absolute;
+  z-index: 5;
+  top: 195px;
+  right: 18px;
+  display: grid;
+  width: 220px;
+  padding: 12px;
+  gap: 6px;
+  border: 1px solid #b9dfe6;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 10px 24px rgba(29, 68, 91, 0.16);
+}
 .poly115-lab > header {
   display: flex;
   height: 78px;

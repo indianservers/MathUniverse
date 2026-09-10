@@ -2885,6 +2885,8 @@ describe("lesson pages", () => {
     expect(html).toContain('data-relation="equal"');
     expect(html).toContain('aria-label="Point C on circle"');
     expect(html).toContain('aria-label="Point D on circle"');
+    expect(html).toContain('data-smart-lesson-visual="geometry"');
+    expect(html).toContain('aria-label="Open diagram full screen"');
   });
 
   it("renders the dedicated cyclic-quadrilateral target for lesson 10094", () => {

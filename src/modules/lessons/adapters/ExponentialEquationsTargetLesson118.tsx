@@ -17,22 +17,18 @@ import {
   Sparkles,
 } from "lucide-react";
 import type { LessonAdapterProps } from "../types";
+import {
+  EXPONENTIAL_EXAMPLES_118 as examples,
+  EXPONENTIAL_PRACTICES_118 as practices,
+  exponentialPowerLadder118,
+  exponentialRungPayload118,
+  exponentialTarget118 as targetOf,
+  isExponentialPracticeCorrect118,
+  isExponentialRungDrop118,
+  solveExponentialEquation118,
+  type ExponentialProblem118 as ExponentialProblem,
+} from "./exponentialEquationsLesson118Model";
 import "./ExponentialEquationsTargetLesson118.css";
-
-type ExponentialProblem = { base: number; exponent: number; variable: string };
-const examples: ExponentialProblem[] = [
-  { base: 2, exponent: 5, variable: "x" },
-  { base: 3, exponent: 3, variable: "x" },
-  { base: 4, exponent: 3, variable: "x" },
-  { base: 5, exponent: 2, variable: "x" },
-];
-const practices: ExponentialProblem[] = [
-  { base: 3, exponent: 4, variable: "y" },
-  { base: 2, exponent: 6, variable: "n" },
-  { base: 5, exponent: 3, variable: "t" },
-];
-const targetOf = ({ base, exponent }: ExponentialProblem) => base ** exponent;
-const close = (a: number, b: number) => Math.abs(a - b) < 1e-9;
 
 function Power({
   base,
@@ -52,10 +48,12 @@ function Power({
 function ExponentialGraph({
   base,
   exponent,
+  target,
   onMove,
 }: {
   base: number;
   exponent: number;
+  target: number;
   onMove: (value: number) => void;
 }) {
   const ref = useRef<SVGSVGElement>(null);
@@ -65,7 +63,6 @@ function ExponentialGraph({
   const bounds = { left: 35, right: 280, top: 30, bottom: 295 };
   const xMin = -2;
   const xMax = 7;
-  const target = base ** exponent;
   const yMax = Math.max(64, base ** Math.min(6, exponent + 1));
   const px = (x: number) =>
     bounds.left + ((x - xMin) / (xMax - xMin)) * (bounds.right - bounds.left);
@@ -202,6 +199,7 @@ export default function ExponentialEquationsTargetLesson118({
   resetToken,
   onInteraction,
 }: LessonAdapterProps) {
+  const pageRef = useRef<HTMLDivElement>(null);
   const [exampleIndex, setExampleIndex] = useState(0);
   const [problem, setProblem] = useState<ExponentialProblem>(examples[0]);
   const [target, setTarget] = useState(32);
@@ -221,18 +219,19 @@ export default function ExponentialEquationsTargetLesson118({
   const [dragging, setDragging] = useState(false);
   const [invalidDrop, setInvalidDrop] = useState(false);
   const [actions, setActions] = useState(0);
-  const exactExponent = Math.log(target) / Math.log(problem.base);
-  const matchable = close(exactExponent, Math.round(exactExponent));
-  const solvedExponent = matchable ? Math.round(exactExponent) : exactExponent;
+  const exponentialResult = solveExponentialEquation118(problem.base, target);
+  const { matchable, solvedExponent } = exponentialResult;
+  const powerLadder = exponentialPowerLadder118(problem.base, solvedExponent);
   const practice = practices[practiceIndex];
   const practiceTarget = targetOf(practice);
   const practiceCorrect =
-    practiceChecked && Number(practiceAnswer) === practice.exponent;
+    practiceChecked &&
+    isExponentialPracticeCorrect118(practice, Number(practiceAnswer));
   const act = () => {
     setActions((value) => value + 1);
     onInteraction();
   };
-  const reset = () => {
+  const reset = (notify = true) => {
     setExampleIndex(0);
     setProblem(examples[0]);
     setTarget(32);
@@ -252,9 +251,15 @@ export default function ExponentialEquationsTargetLesson118({
     setDragging(false);
     setInvalidDrop(false);
     setActions(0);
-    onInteraction();
+    if (notify) onInteraction();
   };
-  useEffect(() => reset(), [resetToken]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => reset(false), [resetToken]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    const sync = () =>
+      setFullscreen(document.fullscreenElement === pageRef.current);
+    document.addEventListener("fullscreenchange", sync);
+    return () => document.removeEventListener("fullscreenchange", sync);
+  }, []);
   const updateProblem = (base: number, nextTarget: number) => {
     setProblem((current) => ({
       ...current,
@@ -290,7 +295,7 @@ export default function ExponentialEquationsTargetLesson118({
   const startRung = (event: DragEvent<HTMLButtonElement>) => {
     event.dataTransfer.setData(
       "text/exponential-rung",
-      `${problem.base}:${target}`,
+      exponentialRungPayload118(problem.base, target),
     );
     setDragging(true);
     setInvalidDrop(false);
@@ -298,13 +303,16 @@ export default function ExponentialEquationsTargetLesson118({
   };
   const dropRung = (event: DragEvent<HTMLElement>) => {
     event.preventDefault();
-    const valid =
-      event.dataTransfer.getData("text/exponential-rung") ===
-      `${problem.base}:${target}`;
+    const valid = isExponentialRungDrop118(
+      event.dataTransfer.getData("text/exponential-rung"),
+      problem.base,
+      target,
+    );
     setMatched(valid);
     setChecked(false);
     setDragging(false);
     setInvalidDrop(!valid);
+    playTone(valid);
     act();
   };
   const nextPractice = () => {
@@ -314,15 +322,53 @@ export default function ExponentialEquationsTargetLesson118({
     setPracticeChecked(false);
     act();
   };
+  const playTone = (success: boolean) => {
+    if (!sound) return;
+    const context = new AudioContext();
+    const oscillator = context.createOscillator();
+    const gain = context.createGain();
+    oscillator.frequency.value = success ? 660 : 220;
+    gain.gain.setValueAtTime(0.05, context.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.0001, context.currentTime + 0.12);
+    oscillator.connect(gain).connect(context.destination);
+    oscillator.addEventListener("ended", () => void context.close());
+    oscillator.start();
+    oscillator.stop(context.currentTime + 0.12);
+  };
+  const toggleFullscreen = async () => {
+    if (document.fullscreenElement) await document.exitFullscreen();
+    else await pageRef.current?.requestFullscreen();
+    act();
+  };
+  const shareLesson = async () => {
+    const shareData = {
+      title: "Exponential Equations",
+      text: `Solve ${problem.base}^x = ${target}.`,
+      url: window.location.href,
+    };
+    try {
+      if (navigator.share) await navigator.share(shareData);
+      else await navigator.clipboard.writeText(window.location.href);
+      setShared(true);
+      act();
+    } catch {
+      setShared(false);
+    }
+  };
+  const hindi = language.startsWith("Hindi");
 
   return (
     <div
+      ref={pageRef}
       className={`exp118-page ${fullscreen ? "fullscreen" : ""}`}
       data-testid="algebra-mockup-0175"
       data-dedicated-lesson="118"
-      data-object-model="editable-exponential-base-target-generated-power-ladder-native-matching-rung-drag-pointer-draggable-graph-exponent-common-base-logarithm-fallback-substitution-check-graded-practice-model"
+      data-object-model="dedicated-tested-editable-exponential-base-target-generated-adaptive-power-ladder-validated-native-matching-rung-drag-pointer-draggable-logarithmic-graph-intersection-common-base-substitution-check-graded-practice-functional-tabs-language-sound-native-fullscreen-and-sharing-model"
       data-problem={`${problem.base},${target}`}
       data-exponent={solvedExponent}
+      data-checked-value={exponentialResult.checkedValue}
+      data-valid={exponentialResult.valid}
+      data-ladder-rungs={powerLadder.length}
       data-matchable={matchable}
       data-ladder-built={ladderBuilt}
       data-matched={matched}
@@ -348,8 +394,12 @@ export default function ExponentialEquationsTargetLesson118({
           <b>ALGEBRA</b>
           <b>EQUATIONS AND INEQUALITIES</b>
         </small>
-        <h1>Exponential Equations</h1>
-        <p>Solve variable-exponent equations by matching powers.</p>
+        <h1>{hindi ? "घातांकीय समीकरण" : "Exponential Equations"}</h1>
+        <p>
+          {hindi
+            ? "समान घातों का मिलान करके चर-घात समीकरण हल करें।"
+            : "Solve variable-exponent equations by matching powers."}
+        </p>
         <nav>
           <b>▣ Intermediate-Advanced Algebra</b>
           <b>◷ 6-10 min</b>
@@ -372,16 +422,11 @@ export default function ExponentialEquationsTargetLesson118({
               <option>Hindi (हिन्दी)</option>
             </select>
           </label>
-          <button onClick={reset}>
+          <button onClick={() => reset()}>
             <RotateCcw />
             Reset
           </button>
-          <button
-            onClick={() => {
-              setShared(true);
-              act();
-            }}
-          >
+          <button onClick={shareLesson}>
             <Share2 />
             {shared ? "Link ready" : "Share"}
           </button>
@@ -409,14 +454,33 @@ export default function ExponentialEquationsTargetLesson118({
             className={activeTab === tab ? "active" : ""}
             onClick={() => {
               setActiveTab(tab);
-              if (tab === "Examples") nextExample();
-              else act();
+              act();
             }}
           >
             {tab}
           </button>
         ))}
       </nav>
+      {activeTab !== "Interaction + visualization" && (
+        <ExponentialTabPanel118 tab={activeTab} onNextExample={nextExample} />
+      )}
+      {workspace && (
+        <section
+          className="exp118-workspace-panel"
+          aria-label="Exponential equation workspace"
+        >
+          <b>Current equation</b>
+          <span>
+            {problem.base}^{problem.variable} = {target}
+          </span>
+          <span>
+            {problem.variable} ={" "}
+            {Number.isFinite(solvedExponent)
+              ? solvedExponent.toFixed(matchable ? 0 : 4)
+              : "undefined"}
+          </span>
+        </section>
+      )}
       <main className="exp118-lab">
         <header>
           <span>
@@ -440,12 +504,7 @@ export default function ExponentialEquationsTargetLesson118({
                 act();
               }}
             />
-            <button
-              onClick={() => {
-                setFullscreen((value) => !value);
-                act();
-              }}
-            >
+            <button onClick={toggleFullscreen}>
               <Expand />
               Full screen
             </button>
@@ -501,6 +560,7 @@ export default function ExponentialEquationsTargetLesson118({
             onClick={() => {
               setMatched(matchable);
               setChecked(false);
+              playTone(matchable);
               act();
             }}
           >
@@ -510,6 +570,7 @@ export default function ExponentialEquationsTargetLesson118({
             className={checked ? "done" : ""}
             onClick={() => {
               setChecked(true);
+              playTone(exponentialResult.valid);
               act();
             }}
           >
@@ -528,32 +589,28 @@ export default function ExponentialEquationsTargetLesson118({
           <article className="ladder">
             <b>Power ladder for base {problem.base}</b>
             <div>
-              {Array.from({ length: 5 }, (_, index) => index + 1).map(
-                (exponent) => (
-                  <button
-                    key={exponent}
-                    className={
-                      problem.base ** exponent === target ? "selected" : ""
-                    }
-                    draggable={problem.base ** exponent === target}
-                    aria-label={
-                      problem.base ** exponent === target
-                        ? `Drag matching power ${problem.base} to ${exponent}`
-                        : undefined
-                    }
-                    onDragStart={
-                      problem.base ** exponent === target
-                        ? startRung
-                        : undefined
-                    }
-                    onDragEnd={() => setDragging(false)}
-                    onClick={() => moveExponent(exponent)}
-                  >
-                    <Power base={problem.base} exponent={exponent} /> ={" "}
-                    {problem.base ** exponent}
-                  </button>
-                ),
-              )}
+              {powerLadder.map(({ exponent, value }) => (
+                <button
+                  key={exponent}
+                  className={value === target ? "selected" : ""}
+                  draggable={problem.base ** exponent === target}
+                  aria-label={
+                    value === target
+                      ? `Drag matching power ${problem.base} to ${exponent}`
+                      : undefined
+                  }
+                  title={
+                    hints && value === target
+                      ? "This power equals the target. Select it or drag it to the right side."
+                      : undefined
+                  }
+                  onDragStart={value === target ? startRung : undefined}
+                  onDragEnd={() => setDragging(false)}
+                  onClick={() => moveExponent(exponent)}
+                >
+                  <Power base={problem.base} exponent={exponent} /> = {value}
+                </button>
+              ))}
             </div>
           </article>
           <article
@@ -585,9 +642,8 @@ export default function ExponentialEquationsTargetLesson118({
             </h3>
             <ExponentialGraph
               base={problem.base}
-              exponent={
-                matchable ? Math.round(solvedExponent) : problem.exponent
-              }
+              exponent={solvedExponent}
+              target={target}
               onMove={moveExponent}
             />
             <p>
@@ -623,9 +679,7 @@ export default function ExponentialEquationsTargetLesson118({
               = {Math.round(problem.base ** solvedExponent)} <Check />
             </p>
             <strong>
-              {checked && close(problem.base ** solvedExponent, target)
-                ? "True"
-                : "Pending"}
+              {checked && exponentialResult.valid ? "True" : "Pending"}
             </strong>
           </article>
         </section>
@@ -661,17 +715,18 @@ export default function ExponentialEquationsTargetLesson118({
           </article>
           <article className="practice-ladder">
             <b>Power ladder for base {practice.base}</b>
-            {Array.from({ length: 5 }, (_, index) => index + 1).map(
-              (exponent) => (
-                <span
-                  key={exponent}
-                  className={exponent === practice.exponent ? "selected" : ""}
-                >
-                  <Power base={practice.base} exponent={exponent} /> ={" "}
-                  {practice.base ** exponent}
-                </span>
-              ),
-            )}
+            {Array.from(
+              { length: Math.max(5, practice.exponent) },
+              (_, index) => index + 1,
+            ).map((exponent) => (
+              <span
+                key={exponent}
+                className={exponent === practice.exponent ? "selected" : ""}
+              >
+                <Power base={practice.base} exponent={exponent} /> ={" "}
+                {practice.base ** exponent}
+              </span>
+            ))}
           </article>
           <article>
             <b>Answer</b>
@@ -681,6 +736,7 @@ export default function ExponentialEquationsTargetLesson118({
             <button
               onClick={() => {
                 setPracticeChecked(true);
+                playTone(Number(practiceAnswer) === practice.exponent);
                 act();
               }}
             >
@@ -740,9 +796,9 @@ export default function ExponentialEquationsTargetLesson118({
           CAS-style tools, and classroom-ready activities.
         </span>
         <nav>
-          <button>Sitemap</button>
-          <button>Docs</button>
-          <button>About</button>
+          <a href="/sitemap">Sitemap</a>
+          <a href="/docs">Docs</a>
+          <a href="/about">About</a>
         </nav>
         <hr />
         <small>
@@ -751,6 +807,50 @@ export default function ExponentialEquationsTargetLesson118({
         <small>www.IndianServers.com info@IndianServers.com</small>
       </footer>
     </div>
+  );
+}
+
+function ExponentialTabPanel118({
+  tab,
+  onNextExample,
+}: {
+  tab: string;
+  onNextExample: () => void;
+}) {
+  const content: Record<string, { title: string; body: string }> = {
+    Explain: {
+      title: "Match equal powers",
+      body: "When both sides use the same positive base other than one, equality of values gives equality of exponents.",
+    },
+    Examples: {
+      title: "Calculated exponential examples",
+      body: "Load another base and exact target into the adaptive ladder, equation check, and graph.",
+    },
+    Practice: {
+      title: "Guided power matching",
+      body: "Use the complete ladder to identify the exponent, including examples whose solution is greater than five.",
+    },
+    Formulas: {
+      title: "Logarithmic fallback",
+      body: "When a target is not an integer power of the base, solve x = log(target) / log(base).",
+    },
+    "Know more": {
+      title: "Exponential intersection",
+      body: "The solution is the x-coordinate where y = b^x intersects the horizontal line y = target.",
+    },
+  };
+  const selected = content[tab] ?? content.Explain;
+  return (
+    <section className="exp118-tab-panel">
+      <small>EXPONENTIAL EQUATIONS</small>
+      <h2>{selected.title}</h2>
+      <p>{selected.body}</p>
+      {tab === "Examples" && (
+        <button type="button" onClick={onNextExample}>
+          Load next exponential equation
+        </button>
+      )}
+    </section>
   );
 }
 

@@ -8,6 +8,51 @@
   font-size: 9px;
   letter-spacing: 0;
 }
+.comp123-tab-panel,
+.comp123-workspace-panel {
+  display: grid;
+  min-height: 76px;
+  margin-top: 12px;
+  padding: 13px 16px;
+  align-content: center;
+  gap: 5px;
+  border: 1px solid #dce5ec;
+  border-radius: 9px;
+  background: #fff;
+}
+.comp123-tab-panel small {
+  color: #078ba5;
+  font-size: 7px;
+  font-weight: 900;
+}
+.comp123-tab-panel h2 {
+  font-size: 15px;
+}
+.comp123-tab-panel p,
+.comp123-workspace-panel span {
+  color: #5d6c83;
+  line-height: 15px;
+}
+.comp123-tab-panel button {
+  width: max-content;
+  margin-top: 4px;
+  padding: 7px 10px;
+  border: 1px solid #b9dfe7;
+  border-radius: 6px;
+  background: #eefafd;
+  color: #087e98;
+  font-weight: 800;
+}
+.comp123-footer a {
+  display: flex;
+  height: 32px;
+  padding: 0 12px;
+  align-items: center;
+  border: 1px solid #dce5ec;
+  border-radius: 7px;
+  background: #fff;
+  font-weight: 700;
+}
 .comp123-page * {
   box-sizing: border-box;
   letter-spacing: 0;

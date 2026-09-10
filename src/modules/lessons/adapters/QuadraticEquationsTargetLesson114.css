@@ -125,6 +125,47 @@
   grid-template-columns: 185px repeat(3, 95px) 1fr;
   grid-template-rows: 63px 57px;
 }
+.quad114-tab-panel {
+  margin-top: 10px;
+  padding: 22px;
+  border: 1px solid #dce6ed;
+  border-radius: 8px;
+  background: #fff;
+}
+.quad114-tab-panel > small {
+  color: #6d35d5;
+  font-weight: 900;
+}
+.quad114-tab-panel > h2 {
+  margin-top: 8px;
+  font-size: 18px;
+}
+.quad114-tab-panel > p {
+  margin-top: 7px;
+  color: #5c697d;
+  font-size: 11px;
+}
+.quad114-tab-panel > div {
+  display: grid;
+  margin-top: 14px;
+  gap: 8px;
+  grid-template-columns: repeat(2, 1fr);
+}
+.quad114-tab-panel > div button {
+  display: flex;
+  min-height: 52px;
+  padding: 10px;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #dce6ed;
+  border-radius: 8px;
+  background: #fff;
+  text-align: left;
+  font-weight: 800;
+}
+.quad114-tab-panel > div b {
+  color: #087f68;
+}
 .quad114-controls > label {
   min-width: 0;
   display: flex;

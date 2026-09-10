@@ -154,6 +154,52 @@
   color: #fff;
   box-shadow: 0 4px 10px rgba(0, 147, 173, 0.25);
 }
+.exp118-tab-panel,
+.exp118-workspace-panel {
+  display: grid;
+  min-height: 72px;
+  margin-top: 10px;
+  padding: 12px 14px;
+  align-content: center;
+  gap: 5px;
+  border: 1px solid #dce5ec;
+  border-radius: 8px;
+  background: #fff;
+}
+.exp118-tab-panel small {
+  color: #078ba5;
+  font-size: 6px;
+  font-weight: 900;
+}
+.exp118-tab-panel h2 {
+  font-size: 14px;
+}
+.exp118-tab-panel p,
+.exp118-workspace-panel span {
+  color: #5d6c83;
+  line-height: 14px;
+}
+.exp118-tab-panel button {
+  width: max-content;
+  height: 29px;
+  padding: 0 10px;
+  border: 1px solid #078fa8;
+  border-radius: 6px;
+  background: #078fa8;
+  color: #fff;
+  font-weight: 800;
+}
+.exp118-workspace-panel {
+  grid-template-columns: 120px 1fr 1fr;
+  align-items: center;
+}
+.exp118-page.fullscreen {
+  top: 0;
+  height: 100vh;
+  padding: 15px;
+  overflow: auto;
+  background: #f4fbfc;
+}
 .exp118-lab {
   height: 762px;
   margin-top: 10px;

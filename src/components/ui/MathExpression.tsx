@@ -66,6 +66,16 @@ export function MathText({
     );
   }
 
+  if (/[^\s/]\s*\/\s*[^\s/]/.test(value)) {
+    return (
+      <InlineMathText
+        value={value}
+        className={className}
+        mathClassName={mathClassName}
+      />
+    );
+  }
+
   return <span className={className}>{value}</span>;
 }
 
@@ -105,13 +115,21 @@ export function InlineMathText({
 export function isFormulaLike(value: string) {
   if (!/[A-Za-z0-9\\]/.test(value) || /^[=<>+\-*/^_.,;:!?]+$/.test(value))
     return false;
-  return /[=^_<>]|\\|sqrt\(|cbrt\(|\b(?:pi|theta|alpha|beta|gamma|delta|lambda|mu|sigma|phi)\b|\b(?:sin|cos|tan|sec|csc|cot|cosec|log|ln|lim)\b\s*[(^A-Za-z0-9]|[A-Za-z0-9)\]}]\s*[+*/]\s*[A-Za-z0-9([{]/i.test(
+  return /[=^_<>]|\\|sqrt\(|cbrt\(|\b(?:pi|theta|alpha|beta|gamma|delta|lambda|mu|sigma|phi)\b|\b(?:sin|cos|tan|sec|csc|cot|cosec|log|ln|lim)\b\s*[(^A-Za-z0-9]|[^\s/]+\s*\/\s*[^\s/]+|[A-Za-z0-9)\]}]\s*[+*]\s*[A-Za-z0-9([{]/i.test(
     value,
   );
 }
 
 export function normalizeFormulaForKatex(value: string) {
   return value
+    .replace(/₹/g, String.raw`\text{Rs.}`)
+    .replace(/(?<!\\)%/g, String.raw`\%`)
+    .replace(/[–—]/g, "-")
+    .replace(/∥/g, String.raw`\parallel{}`)
+    .replace(/′/g, "'")
+    .replace(/″/g, "''")
+    .replace(/√\(([^()]+)\)/g, String.raw`\sqrt{$1}`)
+    .replace(/√([A-Za-z0-9]+)/g, String.raw`\sqrt{$1}`)
     .replace(/!=/g, "\\ne")
     .replace(/<=/g, "\\le")
     .replace(/>=/g, "\\ge")
@@ -137,12 +155,17 @@ export function normalizeFormulaForKatex(value: string) {
     .replace(/(?<!\\)\bcot\b/g, "\\cot")
     .replace(/(?<!\\)\blog\b/g, "\\log")
     .replace(/(?<!\\)\bln\b/g, "\\ln")
+    .replace(/\(([^()]+)\)\s*\/\s*\(([^()]+)\)/g, "\\frac{$1}{$2}")
+    .replace(/\(([^()]+)\)\s*\/\s*(-?\d+(?:\.\d+)?)/g, "\\frac{$1}{$2}")
+    .replace(/(-?\d+(?:\.\d+)?)\s*\/\s*(-?\d+(?:\.\d+)?)/g, "\\frac{$1}{$2}")
+    .replace(/([A-Za-z0-9πθλμσ²³⁴⁵⁶⁷⁸⁹₀₁₂₃₄₅₆₇₈₉]+)\s*\/\s*(-?\d+(?:\.\d+)?)/g, "\\frac{$1}{$2}")
+    .replace(/(-?\d+(?:\.\d+)?)\s*\/\s*(\\sqrt\{[^{}]+\})/g, "\\frac{$1}{$2}")
+    .replace(/\b([A-Za-z][A-Za-z0-9_^{}]*)\s*\/\s*([A-Za-z][A-Za-z0-9_^{}]*)\b/g, "\\frac{$1}{$2}")
     .replace(
       /([A-Za-z0-9]+)\s*\/\s*(\\(?:sin|cos|tan|sec|csc|cot)\s*[A-Za-z])/g,
       "\\frac{$1}{$2}",
     )
     .replace(/\\theta\s*\/\s*2/g, "\\frac{\\theta}{2}")
-    .replace(/\b1\s*\/\s*2\b/g, "\\frac{1}{2}")
     .replace(/\b2\s*pi\b/g, "2\\pi")
     .replace(/\bsqrt\(([^()]+)\)/g, "\\sqrt{$1}")
     .replace(/\bcbrt\(([^()]+)\)/g, "\\sqrt[3]{$1}")

@@ -13,76 +13,16 @@ import {
   X,
 } from "lucide-react";
 import type { LessonAdapterProps } from "../types";
+import {
+  COMPOUND_INEQUALITY_EXAMPLES_123,
+  compoundConditionPass123 as conditionPass,
+  compoundPointPasses123,
+  compoundRelationText123 as relationText,
+  solveCompoundInequality123,
+  type CompoundBoundary123 as BoundaryName,
+  type CompoundMode123 as Mode,
+} from "./compoundInequalitiesLesson123Model";
 import "./CompoundInequalitiesTargetLesson123.css";
-
-type Mode = "AND" | "OR";
-type BoundaryName = "lower" | "upper";
-
-const relationText = (mode: Mode, side: BoundaryName, closed: boolean) => {
-  if (mode === "AND") {
-    if (side === "lower") return closed ? "≥" : ">";
-    return closed ? "≤" : "<";
-  }
-  if (side === "lower") return closed ? "≤" : "<";
-  return closed ? "≥" : ">";
-};
-
-const intervalText = (
-  mode: Mode,
-  lower: number,
-  upper: number,
-  lowerClosed: boolean,
-  upperClosed: boolean,
-) => {
-  if (mode === "AND") {
-    if (lower > upper || (lower === upper && (!lowerClosed || !upperClosed)))
-      return "∅";
-    return `${lowerClosed ? "[" : "("}${lower}, ${upper}${upperClosed ? "]" : ")"}`;
-  }
-  return `(-∞, ${lower}${lowerClosed ? "]" : ")"} ∪ ${upperClosed ? "[" : "("}${upper}, ∞)`;
-};
-
-const passes = (
-  mode: Mode,
-  value: number,
-  lower: number,
-  upper: number,
-  lowerClosed: boolean,
-  upperClosed: boolean,
-) => {
-  const lowerPass =
-    mode === "AND"
-      ? lowerClosed
-        ? value >= lower
-        : value > lower
-      : lowerClosed
-        ? value <= lower
-        : value < lower;
-  const upperPass =
-    mode === "AND"
-      ? upperClosed
-        ? value <= upper
-        : value < upper
-      : upperClosed
-        ? value >= upper
-        : value > upper;
-  return mode === "AND" ? lowerPass && upperPass : lowerPass || upperPass;
-};
-
-const conditionPass = (
-  mode: Mode,
-  side: BoundaryName,
-  value: number,
-  boundary: number,
-  closed: boolean,
-) => {
-  if (mode === "AND") {
-    if (side === "lower") return closed ? value >= boundary : value > boundary;
-    return closed ? value <= boundary : value < boundary;
-  }
-  if (side === "lower") return closed ? value <= boundary : value < boundary;
-  return closed ? value >= boundary : value > boundary;
-};
 
 function CompoundLine({
   lower,
@@ -274,10 +214,51 @@ function CompoundLine({
   );
 }
 
+function CompoundInequalityTabPanel123({
+  tab,
+  onLoadExample,
+}: {
+  tab: string;
+  onLoadExample: () => void;
+}) {
+  const content: Record<string, { title: string; body: string }> = {
+    Explain: {
+      title: "Intersect AND, unite OR",
+      body: "AND keeps values satisfying both inequalities; OR keeps values satisfying either inequality.",
+    },
+    Examples: {
+      title: "Calculated union example",
+      body: "Load an OR statement and update both rays, endpoint inclusion, interval union, and test points together.",
+    },
+    Formulas: {
+      title: "Set notation from endpoints",
+      body: "Parentheses represent excluded endpoints, brackets represent included endpoints, and infinity always uses a parenthesis.",
+    },
+    "Know more": {
+      title: "Empty intersections",
+      body: "An AND statement is empty when its lower boundary lies beyond its upper boundary, or when equal boundaries are not both included.",
+    },
+  };
+  const selected = content[tab] ?? content.Explain;
+  return (
+    <section className="comp123-tab-panel">
+      <small>COMPOUND INEQUALITIES</small>
+      <h2>{selected.title}</h2>
+      <p>{selected.body}</p>
+      {tab === "Examples" && (
+        <button type="button" onClick={onLoadExample}>
+          Load OR union example
+        </button>
+      )}
+    </section>
+  );
+}
+
 export default function CompoundInequalitiesTargetLesson123({
   resetToken,
   onInteraction,
 }: LessonAdapterProps) {
+  const pageRef = useRef<HTMLDivElement>(null);
   const [lower, setLower] = useState(2);
   const [upper, setUpper] = useState(6);
   const [lowerClosed, setLowerClosed] = useState(false);
@@ -289,32 +270,37 @@ export default function CompoundInequalitiesTargetLesson123({
   const [workspace, setWorkspace] = useState(false);
   const [fullscreen, setFullscreen] = useState(false);
   const [actions, setActions] = useState(0);
-  const interval = intervalText(mode, lower, upper, lowerClosed, upperClosed);
-  const empty = interval === "∅";
-  const midpoint = Math.round((lower + upper) / 2);
-  const tests =
-    mode === "AND"
-      ? [midpoint, lower, upper + 1]
-      : [lower - 1, midpoint, upper + 1];
+  const problem = { mode, lower, upper, lowerClosed, upperClosed };
+  const solution = solveCompoundInequality123(problem);
+  const { interval, empty } = solution;
+  const tests = solution.testPoints.map(({ value }) => value);
+  const hindi = language.startsWith("Hindi");
   const act = () => {
     setActions((value) => value + 1);
     onInteraction();
   };
-  const reset = () => {
-    setLower(2);
-    setUpper(6);
-    setLowerClosed(false);
-    setUpperClosed(true);
-    setMode("AND");
+  const reset = (notify = true) => {
+    const initial = COMPOUND_INEQUALITY_EXAMPLES_123[0];
+    setLower(initial.lower);
+    setUpper(initial.upper);
+    setLowerClosed(initial.lowerClosed);
+    setUpperClosed(initial.upperClosed);
+    setMode(initial.mode);
     setActiveTab("Interaction + visualization");
     setLanguage("English (English)");
     setShared(false);
     setWorkspace(false);
     setFullscreen(false);
     setActions(0);
-    onInteraction();
+    if (notify) onInteraction();
   };
-  useEffect(() => reset(), [resetToken]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => reset(false), [resetToken]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    const sync = () =>
+      setFullscreen(document.fullscreenElement === pageRef.current);
+    document.addEventListener("fullscreenchange", sync);
+    return () => document.removeEventListener("fullscreenchange", sync);
+  }, []);
   const moveBoundary = (name: BoundaryName, value: number) => {
     if (name === "lower") setLower(value);
     else setUpper(value);
@@ -326,20 +312,42 @@ export default function CompoundInequalitiesTargetLesson123({
     act();
   };
   const loadOrExample = () => {
-    setLower(-1);
-    setUpper(3);
-    setLowerClosed(false);
-    setUpperClosed(true);
-    setMode("OR");
+    const example = COMPOUND_INEQUALITY_EXAMPLES_123[1];
+    setLower(example.lower);
+    setUpper(example.upper);
+    setLowerClosed(example.lowerClosed);
+    setUpperClosed(example.upperClosed);
+    setMode(example.mode);
     act();
+  };
+  const toggleFullscreen = async () => {
+    if (document.fullscreenElement) await document.exitFullscreen();
+    else await pageRef.current?.requestFullscreen();
+    act();
+  };
+  const shareLesson = async () => {
+    const data = {
+      title: "Compound Inequalities",
+      text: `Solution set: ${interval}`,
+      url: window.location.href,
+    };
+    try {
+      if (navigator.share) await navigator.share(data);
+      else await navigator.clipboard.writeText(window.location.href);
+      setShared(true);
+      act();
+    } catch {
+      setShared(false);
+    }
   };
 
   return (
     <div
+      ref={pageRef}
       className={`comp123-page ${fullscreen ? "fullscreen" : ""}`}
       data-testid="algebra-mockup-0180"
       data-dedicated-lesson="123"
-      data-object-model="editable-compound-inequality-and-intersection-or-union-two-pointer-keyboard-draggable-boundaries-open-closed-endpoints-linked-number-lines-interval-notation-test-points-empty-set-practice-model"
+      data-object-model="dedicated-tested-editable-compound-inequality-and-intersection-or-union-two-pointer-keyboard-draggable-boundaries-open-closed-endpoints-linked-number-lines-calculated-interval-notation-evaluated-test-points-empty-set-functional-practice-tabs-language-native-fullscreen-sharing-and-workspace-model"
       data-problem={`${mode},${lower},${upper},${lowerClosed},${upperClosed}`}
       data-interval={interval}
       data-empty={empty}
@@ -359,8 +367,12 @@ export default function CompoundInequalitiesTargetLesson123({
           <b>ALGEBRA</b>
           <b>EQUATIONS AND INEQUALITIES</b>
         </small>
-        <h1>Compound Inequalities</h1>
-        <p>Understand intersection and union.</p>
+        <h1>{hindi ? "संयुक्त असमिकाएँ" : "Compound Inequalities"}</h1>
+        <p>
+          {hindi
+            ? "प्रतिच्छेद और संघ को समझें।"
+            : "Understand intersection and union."}
+        </p>
         <nav>
           <b>♙ Intermediate-Advanced</b>
           <b>ϟ Guided Practice</b>
@@ -383,16 +395,11 @@ export default function CompoundInequalitiesTargetLesson123({
             </select>
             <ChevronDown />
           </label>
-          <button onClick={reset}>
+          <button onClick={() => reset()}>
             <RotateCcw />
             Reset
           </button>
-          <button
-            onClick={() => {
-              setShared(true);
-              act();
-            }}
-          >
+          <button onClick={shareLesson}>
             <Share2 />
             {shared ? "Link ready" : "Share"}
           </button>
@@ -419,14 +426,30 @@ export default function CompoundInequalitiesTargetLesson123({
             className={activeTab === tab ? "active" : ""}
             onClick={() => {
               setActiveTab(tab);
-              if (tab === "Examples") loadOrExample();
-              else act();
+              act();
             }}
           >
             {tab}
           </button>
         ))}
       </nav>
+      {activeTab !== "Interaction + visualization" && (
+        <CompoundInequalityTabPanel123
+          tab={activeTab}
+          onLoadExample={loadOrExample}
+        />
+      )}
+      {workspace && (
+        <section
+          className="comp123-workspace-panel"
+          aria-label="Compound inequality workspace"
+        >
+          <b>Current set operation</b>
+          <span>
+            {mode === "AND" ? "Intersection" : "Union"}: {interval}
+          </span>
+        </section>
+      )}
       <main className="comp123-lab">
         <header>
           <span>
@@ -448,10 +471,7 @@ export default function CompoundInequalitiesTargetLesson123({
           <b>{actions} actions</b>
           <button
             aria-label="Expand compound inequality workspace"
-            onClick={() => {
-              setFullscreen((value) => !value);
-              act();
-            }}
+            onClick={toggleFullscreen}
           >
             <Expand />
           </button>
@@ -536,14 +556,7 @@ export default function CompoundInequalitiesTargetLesson123({
             <section>
               <h2>Test points</h2>
               {tests.map((value, index) => {
-                const result = passes(
-                  mode,
-                  value,
-                  lower,
-                  upper,
-                  lowerClosed,
-                  upperClosed,
-                );
+                const result = compoundPointPasses123(problem, value);
                 const lowerTruth = conditionPass(
                   mode,
                   "lower",
@@ -672,9 +685,9 @@ export default function CompoundInequalitiesTargetLesson123({
           CAS-style tools, and classroom-ready activities.
         </span>
         <nav>
-          <button>Sitemap</button>
-          <button>Docs</button>
-          <button>About</button>
+          <a href="/sitemap">Sitemap</a>
+          <a href="/docs">Docs</a>
+          <a href="/about">About</a>
         </nav>
         <hr />
         <small>

@@ -19,7 +19,7 @@ export default function TopicStatusBadge({
       ? "Available Lab"
       : status === "mapped"
         ? "Mapped Topic"
-        : "Future Lab";
+        : "Upcoming";
   return (
     <span
       className={`rounded-full border px-3 py-1 text-xs font-bold ${styles[status]}`}

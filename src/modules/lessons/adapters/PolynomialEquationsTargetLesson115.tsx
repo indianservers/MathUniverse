@@ -13,46 +13,22 @@ import {
   Trophy,
 } from "lucide-react";
 import type { LessonAdapterProps } from "../types";
+import {
+  POLYNOMIAL_EXAMPLES_115 as examples,
+  POLYNOMIAL_PRACTICES_115 as practices,
+  coefficientsFromRoots115 as coefficientsFor,
+  evaluatePolynomialRoots115 as valueAt,
+  isPolynomialPracticeCorrect115,
+  polynomialExpandedText115 as expandedText,
+  polynomialFactor115 as factor,
+  polynomialFactoredText115 as factoredText,
+  polynomialFromRootMove115,
+  polynomialRootChecks115,
+  type PolynomialRoots115 as Triple,
+} from "./polynomialEquationsLesson115Model";
 import "./PolynomialEquationsTargetLesson115.css";
 
-type Triple = [number, number, number];
-type Coefficients = {
-  cubic: number;
-  square: number;
-  linear: number;
-  constant: number;
-};
-
-const examples: Triple[] = [
-  [1, 2, 3],
-  [-2, 1, 3],
-  [0, 2, 4],
-  [-1, 3, 5],
-];
-const practices: Triple[] = [
-  [-1, 2, 4],
-  [-2, 1, 5],
-  [1, 3, 6],
-];
 const colors = ["#08a5bd", "#9a43e8", "#ff8319"];
-const coefficientsFor = ([r1, r2, r3]: Triple): Coefficients => ({
-  cubic: 1,
-  square: -(r1 + r2 + r3),
-  linear: r1 * r2 + r1 * r3 + r2 * r3,
-  constant: -r1 * r2 * r3,
-});
-const valueAt = (roots: Triple, x: number) =>
-  roots.reduce((value, root) => value * (x - root), 1);
-const sign = (value: number, term: string) =>
-  `${value < 0 ? "−" : "+"} ${Math.abs(value) === 1 && term ? "" : Math.abs(value)}${term}`;
-const expandedText = (roots: Triple, variable = "x") => {
-  const c = coefficientsFor(roots);
-  return `${variable}³ ${sign(c.square, `${variable}²`)} ${sign(c.linear, variable)} ${sign(c.constant, "")} = 0`;
-};
-const factor = (root: number, variable = "x") =>
-  `(${variable} ${root < 0 ? "+" : "−"} ${Math.abs(root)})`;
-const factoredText = (roots: Triple, variable = "x") =>
-  `${roots.map((root) => factor(root, variable)).join("")} = 0`;
 
 function PolynomialGraph({
   roots,
@@ -216,22 +192,22 @@ export default function PolynomialEquationsTargetLesson115({
   const [practiceSteps, setPracticeSteps] = useState(false);
   const [actions, setActions] = useState(0);
   const coefficients = useMemo(() => coefficientsFor(roots), [roots]);
+  const rootChecks = useMemo(() => polynomialRootChecks115(roots), [roots]);
   const activeRoots = roots.filter((_, index) => factorEnabled[index]);
   const allChecked = checked && factorEnabled.every(Boolean);
   const testedValue = valueAt(roots, testValue);
   const practice = practices[practiceIndex];
-  const expectedPractice = [...practice].sort((a, b) => a - b).join(",");
-  const suppliedPractice = practiceAnswers
-    .map(Number)
-    .sort((a, b) => a - b)
-    .join(",");
   const practiceCorrect =
-    practiceChecked && expectedPractice === suppliedPractice;
+    practiceChecked &&
+    isPolynomialPracticeCorrect115(
+      practice,
+      practiceAnswers.map(Number) as Triple,
+    );
   const act = () => {
     setActions((value) => value + 1);
     onInteraction();
   };
-  const reset = () => {
+  const reset = (notify = true) => {
     setExampleIndex(0);
     setRoots(examples[0]);
     setFactorEnabled([true, true, true]);
@@ -249,13 +225,11 @@ export default function PolynomialEquationsTargetLesson115({
     setPracticeChecked(true);
     setPracticeSteps(false);
     setActions(0);
-    onInteraction();
+    if (notify) onInteraction();
   };
-  useEffect(() => reset(), [resetToken]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => reset(false), [resetToken]); // eslint-disable-line react-hooks/exhaustive-deps
   const moveRoot = (index: number, value: number) => {
-    const next = [...roots] as Triple;
-    next[index] = value;
-    setRoots(next);
+    setRoots(polynomialFromRootMove115(roots, index, value));
     setChecked(false);
     act();
   };
@@ -275,18 +249,35 @@ export default function PolynomialEquationsTargetLesson115({
     setPracticeSteps(false);
     act();
   };
+  const shareLesson = async () => {
+    const shareData = {
+      title: "Polynomial Equations",
+      text: `Explore roots ${roots.join(", ")}.`,
+      url: window.location.href,
+    };
+    try {
+      if (navigator.share) await navigator.share(shareData);
+      else await navigator.clipboard.writeText(window.location.href);
+      setShared(true);
+      act();
+    } catch {
+      setShared(false);
+    }
+  };
+  const hindi = language.startsWith("Hindi");
 
   return (
     <div
       className="poly115-page"
       data-testid="algebra-mockup-0172"
       data-dedicated-lesson="115"
-      data-object-model="editable-three-root-cubic-factor-stack-vieta-expansion-pointer-draggable-roots-zero-product-switches-svg-graph-substitution-check-lost-factor-warning-three-root-graded-practice-model"
+      data-object-model="dedicated-tested-editable-three-root-cubic-factor-stack-vieta-expansion-pointer-draggable-roots-zero-product-switches-svg-graph-substitution-check-lost-factor-warning-three-root-graded-practice-functional-tabs-language-and-native-sharing-model"
       data-roots={roots.join(",")}
       data-coefficients={`${coefficients.cubic},${coefficients.square},${coefficients.linear},${coefficients.constant}`}
       data-factor-enabled={factorEnabled.join(",")}
       data-test-value={testValue}
       data-test-result={testedValue}
+      data-root-checks={rootChecks.join(",")}
       data-all-checked={allChecked}
       data-practice-index={practiceIndex}
       data-practice-correct={practiceCorrect}
@@ -307,8 +298,12 @@ export default function PolynomialEquationsTargetLesson115({
             <b>ALGEBRA</b>
             <b>EQUATIONS AND INEQUALITIES</b>
           </small>
-          <h1>Polynomial Equations</h1>
-          <p>Factor, set each factor to zero, and find all roots.</p>
+          <h1>{hindi ? "बहुपद समीकरण" : "Polynomial Equations"}</h1>
+          <p>
+            {hindi
+              ? "गुणनखंड करें, प्रत्येक गुणनखंड को शून्य रखें और सभी मूल ज्ञात करें।"
+              : "Factor, set each factor to zero, and find all roots."}
+          </p>
           <nav>
             <b>▣ Intermediate-Advanced</b>
             <b>⌁ Factor roots</b>
@@ -329,16 +324,11 @@ export default function PolynomialEquationsTargetLesson115({
                 <option>Hindi (हिन्दी)</option>
               </select>
             </label>
-            <button onClick={reset}>
+            <button onClick={() => reset()}>
               <RotateCcw />
               Reset
             </button>
-            <button
-              onClick={() => {
-                setShared(true);
-                act();
-              }}
-            >
+            <button onClick={shareLesson}>
               <Share2 />
               {shared ? "Link ready" : "Share"}
             </button>
@@ -381,14 +371,26 @@ export default function PolynomialEquationsTargetLesson115({
             className={activeTab === tab ? "active" : ""}
             onClick={() => {
               setActiveTab(tab);
-              if (tab === "Examples") nextExample();
-              else act();
+              act();
             }}
           >
             {tab}
           </button>
         ))}
       </nav>
+      {activeTab !== "Interaction + visualization" && (
+        <PolynomialTabPanel115 tab={activeTab} onChooseExample={nextExample} />
+      )}
+      {workspace && (
+        <section
+          className="poly115-workspace-panel"
+          aria-label="Polynomial equation workspace"
+        >
+          <b>Current polynomial</b>
+          <span>{expandedText(roots)}</span>
+          <span>Roots: {roots.join(", ")}</span>
+        </section>
+      )}
       <main className="poly115-lab">
         <header>
           <span>
@@ -713,9 +715,9 @@ export default function PolynomialEquationsTargetLesson115({
           CAS-style tools, and classroom-ready activities.
         </span>
         <nav>
-          <button>Sitemap</button>
-          <button>Docs</button>
-          <button>About</button>
+          <a href="/sitemap">Sitemap</a>
+          <a href="/docs">Docs</a>
+          <a href="/about">About</a>
         </nav>
         <hr />
         <small>
@@ -724,6 +726,50 @@ export default function PolynomialEquationsTargetLesson115({
         <small>www.IndianServers.com info@IndianServers.com</small>
       </footer>
     </div>
+  );
+}
+
+function PolynomialTabPanel115({
+  tab,
+  onChooseExample,
+}: {
+  tab: string;
+  onChooseExample: () => void;
+}) {
+  const content: Record<string, { title: string; body: string }> = {
+    Explain: {
+      title: "Zero-product reasoning",
+      body: "A product is zero when at least one factor is zero. Every factor must be solved so no root is lost.",
+    },
+    Examples: {
+      title: "Calculated cubic examples",
+      body: "Load another root set and rebuild its factors, expanded coefficients, checks, and graph.",
+    },
+    Practice: {
+      title: "Three-root practice",
+      body: "Enter all roots. Grading compares the complete solution set regardless of entry order.",
+    },
+    Formulas: {
+      title: "Vieta expansion",
+      body: "For roots r1, r2, r3, the coefficients come from their sum, pairwise products, and product.",
+    },
+    "Know more": {
+      title: "Multiplicity and intercepts",
+      body: "Each real root is an x-intercept. Repeated roots touch the axis without crossing it.",
+    },
+  };
+  const selected = content[tab] ?? content.Explain;
+  return (
+    <section className="poly115-tab-panel">
+      <small>POLYNOMIAL EQUATIONS</small>
+      <h2>{selected.title}</h2>
+      <p>{selected.body}</p>
+      {tab === "Examples" && (
+        <button type="button" onClick={onChooseExample}>
+          Load next cubic example
+        </button>
+      )}
+    </section>
   );
 }
 

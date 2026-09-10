@@ -162,12 +162,20 @@
 }
 .ass10093-explore > article {
   position: relative;
+  height: clamp(320px, 52vh, 520px);
+  min-height: 0;
+  overflow: hidden;
+  background: #fff;
 }
-.ass10093-explore > article > button {
+.ass10093-visual-actions {
   position: absolute;
   right: 10px;
   top: 6px;
   z-index: 2;
+  display: flex;
+  gap: 6px;
+}
+.ass10093-visual-actions > button {
   display: flex;
   gap: 5px;
   align-items: center;
@@ -179,9 +187,22 @@
 .ass10093-explore > article > svg {
   display: block;
   width: 100%;
-  height: auto;
-  aspect-ratio: 710/520;
+  height: 100%;
+  object-fit: contain;
   touch-action: none;
+}
+.ass10093-explore > article.is-fullscreen {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  width: 100vw !important;
+  height: 100vh !important;
+  padding: 12px;
+  background: #fff;
+}
+.ass10093-explore > article.is-fullscreen > svg {
+  width: 100%;
+  height: 100%;
 }
 .ass10093-page svg defs circle {
   fill: #dce4ea;
@@ -439,6 +460,9 @@
   .ass10093-explore > aside {
     border-right: 0;
     border-bottom: 1px solid #dce5ea;
+  }
+  .ass10093-explore > article {
+    height: clamp(300px, 58vh, 440px);
   }
   .ass10093-cards {
     grid-template-columns: 1fr;

@@ -48,7 +48,9 @@ import {
   type KeyboardEvent,
   type ReactNode,
   type RefObject,
+  type CSSProperties,
   useEffect,
+  useRef,
   useState,
 } from "react";
 import { roundTo } from "../../../utils/math";
@@ -228,6 +230,11 @@ export type GeometryGraphSettings = {
   snapStrength?: number;
 };
 export type GeometryCamera = { x: number; y: number; width: number; height: number };
+
+// Keep the coordinate plane useful at the furthest zoom level. Larger spans make
+// both construction objects and their coordinate labels impractical to inspect.
+export const MAX_GEOMETRY_CAMERA_WIDTH = 163_840;
+export const MAX_GEOMETRY_CAMERA_HEIGHT = 107_520;
 export type GeometryProtocolEntry = {
   id: string;
   label: string;
@@ -237,6 +244,7 @@ export type GeometryProtocolEntry = {
 type GeometryMobilePanel =
   "tools" | "objects" | "inspector" | "protocol" | null;
 type GeometryUnit = "units" | "mm" | "cm" | "m" | "in";
+type GeometryPane = "tools" | "canvas" | "inspector";
 
 interface GeometryWorkspacePanelProps {
   activeTool: GeometryTool;
@@ -523,6 +531,15 @@ export default function GeometryWorkspacePanel({
   const [pinnedMeasurements, setPinnedMeasurements] = useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = useState(0);
   const [historyPlaying, setHistoryPlaying] = useState(false);
+  const [activePane, setActivePane] = useState<GeometryPane>("canvas");
+  const [expandedPane, setExpandedPane] = useState<GeometryPane | null>(null);
+  const [toolPaneWidth, setToolPaneWidth] = useState(304);
+  const [inspectorPaneWidth, setInspectorPaneWidth] = useState(340);
+  const [rightTopHeight, setRightTopHeight] = useState<number | null>(null);
+  const [bottomFirstWidth, setBottomFirstWidth] = useState<number | null>(null);
+  const [bottomSecondWidth, setBottomSecondWidth] = useState<number | null>(null);
+  const rightPaneRef = useRef<HTMLElement>(null);
+  const bottomDockRef = useRef<HTMLElement>(null);
   const activeHint =
     geometryToolObjectPickHint(activeTool, geometryObjectPicks) ??
     `${geometryToolLabel(activeTool)} tool ready`;
@@ -545,6 +562,56 @@ export default function GeometryWorkspacePanel({
       : studioMode === "Measure"
         ? "Measurements"
         : "Construction Protocol";
+  const resizeActivePane = (direction: "increase" | "decrease") => {
+    const amount = direction === "increase" ? 32 : -32;
+    if (activePane === "tools") {
+      setToolPaneWidth((width) => Math.max(236, Math.min(420, width + amount)));
+    } else if (activePane === "inspector") {
+      setInspectorPaneWidth((width) => Math.max(280, Math.min(460, width + amount)));
+    } else {
+      // The canvas grows by reducing the side panes, and vice versa.
+      setToolPaneWidth((width) => Math.max(236, Math.min(420, width - amount / 2)));
+      setInspectorPaneWidth((width) => Math.max(280, Math.min(460, width - amount / 2)));
+    }
+  };
+  const togglePaneExpansion = () =>
+    setExpandedPane((current) => (current === activePane ? null : activePane));
+  const paneStyle = {
+    "--geometry-tools-width": `${toolPaneWidth}px`,
+    "--geometry-inspector-width": `${inspectorPaneWidth}px`,
+    "--geometry-right-top": rightTopHeight ? `${rightTopHeight}px` : "1fr",
+    "--geometry-bottom-first": bottomFirstWidth ? `${bottomFirstWidth}px` : "1.2fr",
+    "--geometry-bottom-second": bottomSecondWidth ? `${bottomSecondWidth}px` : "1fr",
+  } as CSSProperties;
+  const beginPaneResize = (event: PointerEvent<HTMLElement>, kind: "tools" | "inspector" | "right-row" | "bottom-first" | "bottom-second") => {
+    event.preventDefault();
+    const handle = event.currentTarget;
+    handle.setPointerCapture(event.pointerId);
+    handle.onpointermove = (moveEvent) => {
+      if (kind === "tools") setToolPaneWidth(Math.max(236, Math.min(420, moveEvent.clientX)));
+      else if (kind === "inspector") setInspectorPaneWidth(Math.max(280, Math.min(460, window.innerWidth - moveEvent.clientX)));
+      else if (kind === "right-row") {
+        const bounds = rightPaneRef.current?.getBoundingClientRect();
+        if (bounds) setRightTopHeight(Math.max(180, Math.min(bounds.height - 180, moveEvent.clientY - bounds.top)));
+      } else {
+        const bounds = bottomDockRef.current?.getBoundingClientRect();
+        if (!bounds) return;
+        const min = 180;
+        if (kind === "bottom-first") setBottomFirstWidth(Math.max(min, Math.min(bounds.width - min * 2 - 16, moveEvent.clientX - bounds.left)));
+        else {
+          const first = bottomFirstWidth ?? bounds.width * .38;
+          setBottomSecondWidth(Math.max(min, Math.min(bounds.width - first - min - 16, moveEvent.clientX - bounds.left - first - 8)));
+        }
+      }
+    };
+    const finish = () => {
+      handle.onpointermove = null;
+      handle.onpointerup = null;
+      handle.onpointercancel = null;
+    };
+    handle.onpointerup = finish;
+    handle.onpointercancel = finish;
+  };
   const chooseTool = (nextTool: GeometryTool) => {
     if (nextTool === "image") {
       imageInputRef.current?.click();
@@ -579,7 +646,12 @@ export default function GeometryWorkspacePanel({
     return () => window.clearInterval(timer);
   }, [historyPlaying, onReplayProtocol, protocolEntries.length]);
   return (
-    <div className="geometry-studio-shell">
+    <div
+      className="geometry-studio-shell"
+      data-active-pane={activePane}
+      data-expanded-pane={expandedPane ?? undefined}
+      style={paneStyle}
+    >
       <header className="geometry-studio-topbar">
         <div className="min-w-0">
           <div className="flex min-w-0 items-center gap-2">
@@ -615,6 +687,11 @@ export default function GeometryWorkspacePanel({
           ))}
         </div>
         <div className="geometry-top-actions">
+          <div className="geometry-pane-controls" aria-label="Pane controls">
+            <button type="button" onClick={() => resizeActivePane("decrease")} title="Reduce active pane" aria-label="Reduce active pane"><Minus className="h-4 w-4" /></button>
+            <button type="button" onClick={() => resizeActivePane("increase")} title="Enlarge active pane" aria-label="Enlarge active pane"><Plus className="h-4 w-4" /></button>
+            <button type="button" onClick={togglePaneExpansion} title={expandedPane ? "Restore pane layout" : "Expand active pane"} aria-label={expandedPane ? "Restore pane layout" : "Expand active pane"}><Maximize2 className="h-4 w-4" /></button>
+          </div>
           <button type="button" onClick={onUndo} title="Undo" aria-label="Undo">
             <RotateCcw className="h-4 w-4" />
             <span>Undo</span>
@@ -665,7 +742,7 @@ export default function GeometryWorkspacePanel({
         </div>
       </header>
 
-      <aside className="geometry-studio-toolbox">
+      <aside className="geometry-studio-toolbox" onPointerDownCapture={() => setActivePane("tools")} onDoubleClick={() => setExpandedPane((current) => current === "tools" ? null : "tools")}>
         <div className="geometry-panel-heading">
           <div>
             <h2>Geometry Tools</h2>
@@ -723,12 +800,13 @@ export default function GeometryWorkspacePanel({
           <GeometryGraphSettingsBar settings={graphSettings} onChange={onGraphSettingsChange} />
         </div>
       </aside>
+      <div className="geometry-pane-resizer geometry-tool-resizer" role="separator" aria-label="Resize tools pane" aria-orientation="vertical" onPointerDown={(event) => beginPaneResize(event, "tools")} />
 
-      <main className="geometry-studio-main">
+      <main className="geometry-studio-main" onPointerDownCapture={() => setActivePane("canvas")} onDoubleClick={() => setExpandedPane((current) => current === "canvas" ? null : "canvas")}>
         <section className="geometry-canvas-panel">
           <div className="geometry-canvas-stage">
             <GeometryNavTools activeTool={activeTool} onTool={chooseTool} />
-            <GeometryZoomControls onZoom={onZoom} onFitView={onFitView} onResetView={onResetView} />
+            <GeometryZoomControls camera={camera} onZoom={onZoom} onFitView={onFitView} onResetView={onResetView} />
             <GeometryBoard
               boardRef={boardRef}
               construction={construction}
@@ -844,7 +922,7 @@ export default function GeometryWorkspacePanel({
           )}
         </section>
 
-        <section className="geometry-bottom-dock">
+        <section className="geometry-bottom-dock" ref={bottomDockRef}>
           <div className="geometry-dock-tabs">
             {(
               ["Construction Protocol", "Measurements", "Animation"] as const
@@ -871,6 +949,7 @@ export default function GeometryWorkspacePanel({
             <div tabIndex={0} aria-label="Construction protocol">
               {constructionProtocol}
             </div>
+            <div className="geometry-inline-resizer" role="separator" aria-label="Resize construction protocol pane" aria-orientation="vertical" onPointerDown={(event) => beginPaneResize(event, "bottom-first")} />
             <div tabIndex={0} aria-label="Measurements">
               <GeometryPinnedMeasurements
                 construction={construction}
@@ -881,6 +960,7 @@ export default function GeometryWorkspacePanel({
               />
               {measurementsPanel}
             </div>
+            <div className="geometry-inline-resizer" role="separator" aria-label="Resize measurements pane" aria-orientation="vertical" onPointerDown={(event) => beginPaneResize(event, "bottom-second")} />
             <div tabIndex={0} aria-label="Constraints and construction help">
               {constraintsPanel ?? constructionHelp}
             </div>
@@ -893,6 +973,7 @@ export default function GeometryWorkspacePanel({
           graphSettings={graphSettings}
         />
       </main>
+      <div className="geometry-pane-resizer geometry-inspector-resizer" role="separator" aria-label="Resize inspector pane" aria-orientation="vertical" onPointerDown={(event) => beginPaneResize(event, "inspector")} />
 
       <nav
         className="geometry-mobile-tools"
@@ -924,7 +1005,7 @@ export default function GeometryWorkspacePanel({
         </button>
       </nav>
 
-      <aside className="geometry-studio-right">
+      <aside ref={rightPaneRef} className="geometry-studio-right" onPointerDownCapture={() => setActivePane("inspector")} onDoubleClick={() => setExpandedPane((current) => current === "inspector" ? null : "inspector")}>
         <section className="geometry-right-card geometry-objects-tabs">
           <div className="geometry-panel-heading">
             <h2>Objects & Algebra</h2>
@@ -984,6 +1065,7 @@ export default function GeometryWorkspacePanel({
           )}
           {registryTab === "Objects" && unifiedObjectsPanel}
         </section>
+        <div className="geometry-inline-resizer geometry-right-resizer" role="separator" aria-label="Resize object inspector pane" aria-orientation="horizontal" onPointerDown={(event) => beginPaneResize(event, "right-row")} />
         <section className="geometry-right-card geometry-inspector-card">
           <div className="geometry-panel-heading">
             <h2>Object Inspector</h2>
@@ -1435,11 +1517,20 @@ function GeometryNavTools({
   );
 }
 
-function GeometryZoomControls({ onZoom, onFitView, onResetView }: { onZoom: (direction: "in" | "out") => void; onFitView: () => void; onResetView: () => void }) {
+function GeometryZoomControls({ camera, onZoom, onFitView, onResetView }: { camera: GeometryCamera; onZoom: (direction: "in" | "out") => void; onFitView: () => void; onResetView: () => void }) {
+  const unit = 40;
+  const xMin = roundTo((camera.x - 320) / unit, 2);
+  const xMax = roundTo((camera.x + camera.width - 320) / unit, 2);
+  const yMin = roundTo((220 - (camera.y + camera.height)) / unit, 2);
+  const yMax = roundTo((220 - camera.y) / unit, 2);
+  const atMaximumRange = camera.width >= MAX_GEOMETRY_CAMERA_WIDTH;
   return (
     <div className="geometry-zoom-controls" aria-label="Canvas zoom controls">
+      <output className="geometry-view-range" data-testid="geometry-view-range" aria-label={`Visible coordinate range: x from ${xMin} to ${xMax}, y from ${yMin} to ${yMax}`}>
+        <span>Range</span> x {xMin}…{xMax} · y {yMin}…{yMax}
+      </output>
       <button type="button" onClick={() => onZoom("in")} title="Zoom in" aria-label="Zoom in"><ZoomIn className="h-4 w-4" /></button>
-      <button type="button" onClick={() => onZoom("out")} title="Zoom out" aria-label="Zoom out"><ZoomOut className="h-4 w-4" /></button>
+      <button type="button" onClick={() => onZoom("out")} title={atMaximumRange ? "Maximum coordinate range reached" : "Zoom out"} aria-label="Zoom out" disabled={atMaximumRange}><ZoomOut className="h-4 w-4" /></button>
       <button type="button" onClick={onFitView} title="Fit all objects" aria-label="Fit all objects"><Maximize2 className="h-4 w-4" /></button>
       <button type="button" onClick={onResetView} title="Reset view" aria-label="Reset view"><Home className="h-4 w-4" /></button>
     </div>
@@ -2614,6 +2705,12 @@ function GeometryGrid({ settings, camera }: { settings: GeometryGraphSettings; c
   const width = camera?.width ?? 640;
   const height = camera?.height ?? 420;
   const baseUnit = settings.gridSpacing ?? 40;
+  // SVG text is measured in world coordinates. Scale it with the viewBox so
+  // tick values keep the same readable on-screen size while zooming out.
+  const labelScale = Math.max(width / 640, height / 420);
+  const labelFontSize = 10 * labelScale;
+  const labelMargin = 20 * labelScale;
+  const labelOffset = 18 * labelScale;
   const visibleSpan = Math.max(width, height);
   const adaptiveMultiplier = Math.max(1, 2 ** Math.ceil(Math.log2(Math.max(1, visibleSpan / (baseUnit * 28)))));
   const unit = baseUnit * adaptiveMultiplier;
@@ -2709,15 +2806,15 @@ function GeometryGrid({ settings, camera }: { settings: GeometryGraphSettings; c
           {showUnits &&
             verticals.map((x) => {
               const value = Math.round((x - origin.x) / baseUnit);
-              if (value === 0 || x < left + 20 || x > right - 20) return null;
+              if (value === 0 || x < left + labelMargin || x > right - labelMargin) return null;
               return (
                 <text
                   key={`x-unit-${x}`}
                   x={x}
-                  y={origin.y + 18}
+                  y={origin.y + labelOffset}
                   textAnchor="middle"
                   fill={labelFill}
-                  fontSize="10"
+                  fontSize={labelFontSize}
                   fontWeight="800"
                 >
                   {value}
@@ -2727,15 +2824,15 @@ function GeometryGrid({ settings, camera }: { settings: GeometryGraphSettings; c
           {showUnits &&
             horizontals.map((y) => {
               const value = Math.round((origin.y - y) / baseUnit);
-              if (value === 0 || y < top + 20 || y > bottom - 20) return null;
+              if (value === 0 || y < top + labelMargin || y > bottom - labelMargin) return null;
               return (
                 <text
                   key={`y-unit-${y}`}
-                  x={origin.x - 10}
-                  y={y + 4}
+                  x={origin.x - 10 * labelScale}
+                  y={y + 4 * labelScale}
                   textAnchor="end"
                   fill={labelFill}
-                  fontSize="10"
+                  fontSize={labelFontSize}
                   fontWeight="800"
                 >
                   {value}
@@ -2744,10 +2841,10 @@ function GeometryGrid({ settings, camera }: { settings: GeometryGraphSettings; c
             })}
           {showUnits && (
             <text
-              x={origin.x + 7}
-              y={origin.y + 16}
+              x={origin.x + 7 * labelScale}
+              y={origin.y + 16 * labelScale}
               fill={labelFill}
-              fontSize="10"
+              fontSize={labelFontSize}
               fontWeight="900"
             >
               0
@@ -2755,10 +2852,10 @@ function GeometryGrid({ settings, camera }: { settings: GeometryGraphSettings; c
           )}
           {(settings.showAxes && settings.showAxisLabels !== false) && (
             <text
-              x={right - 18}
-              y={origin.y - 8}
+              x={right - 18 * labelScale}
+              y={origin.y - 8 * labelScale}
               fill={labelFill}
-              fontSize="10"
+              fontSize={labelFontSize}
               fontWeight="900"
             >
               x
@@ -2766,10 +2863,10 @@ function GeometryGrid({ settings, camera }: { settings: GeometryGraphSettings; c
           )}
           {(settings.showAxes && settings.showAxisLabels !== false) && (
             <text
-              x={origin.x + 8}
-              y={top + 18}
+              x={origin.x + 8 * labelScale}
+              y={top + 18 * labelScale}
               fill={labelFill}
-              fontSize="10"
+              fontSize={labelFontSize}
               fontWeight="900"
             >
               y

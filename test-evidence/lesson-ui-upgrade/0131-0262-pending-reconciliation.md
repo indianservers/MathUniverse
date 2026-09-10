@@ -41,13 +41,25 @@
 | 0167   |       110 | Literal Equations        | Code reconciled; browser acceptance deferred |
 | 0168   |       111 | Linear Equations         | Code reconciled; browser acceptance deferred |
 | 0169   |       112 | Simultaneous Equations   | Code reconciled; browser acceptance deferred |
-| 0170   |       113 | Three-Variable Systems   | Next pending                                 |
+| 0170   |       113 | Three-Variable Systems   | Code reconciled; browser acceptance deferred |
+| 0171   |       114 | Quadratic Equations      | Code reconciled; browser acceptance deferred |
+| 0172   |       115 | Polynomial Equations     | Code reconciled; browser acceptance deferred |
+| 0173   |       116 | Rational Equations       | Code reconciled; browser acceptance deferred |
+| 0174   |       117 | Radical Equations        | Code reconciled; browser acceptance deferred |
+| 0175   |       118 | Exponential Equations    | Code reconciled; browser acceptance deferred |
+| 0176   |       119 | Logarithmic Equations    | Code reconciled; browser acceptance deferred |
+| 0177   |       120 | Trigonometric Equations  | Code reconciled; browser acceptance deferred |
+| 0178   |       121 | Absolute Value Equations | Code reconciled; browser acceptance deferred |
+| 0179   |       122 | Linear Inequalities      | Code reconciled; browser acceptance deferred |
+| 0180   |       123 | Compound Inequalities    | Code reconciled; browser acceptance deferred |
+| 0181   |       124 | Quadratic Inequalities   | Code reconciled; browser acceptance deferred |
+| 0182   |       125 | Polynomial Inequalities  | Next pending                                 |
 
 ## Counts
 
 - Range size: 132 targets
-- Code reconciled in this pass: 39
-- Remaining in range: 93
-- Next target: 0170 / lesson 113
+- Code reconciled in this pass: 51
+- Remaining in range: 81
+- Next target: 0182 / lesson 125
 
 This tracker counts a lesson only after it has a dedicated route or surface, a lesson-specific mathematical model, working controls, focused tests, lint/type verification, and an audit note. Pixel-perfect browser acceptance is tracked separately when browser comparison resumes.

@@ -838,3 +838,69 @@ body:has(.abs121-page) footer[aria-label="Site footer"] {
 .abs121-pitfall > svg {
   fill: none;
 }
+.abs121-tab-panel,
+.abs121-workspace-panel {
+  display: grid;
+  min-height: 76px;
+  margin-top: 12px;
+  padding: 13px 16px;
+  align-content: center;
+  gap: 5px;
+  border: 1px solid #dce5ec;
+  border-radius: 8px;
+  background: #fff;
+}
+.abs121-tab-panel small {
+  color: #078ba5;
+  font-size: 7px;
+  font-weight: 900;
+}
+.abs121-tab-panel h2 {
+  font-size: 15px;
+}
+.abs121-tab-panel p,
+.abs121-workspace-panel span {
+  color: #5d6c83;
+  line-height: 15px;
+}
+.abs121-tab-panel button {
+  width: max-content;
+  padding: 7px 10px;
+  border: 1px solid #b9dfe7;
+  border-radius: 6px;
+  background: #eefafd;
+  color: #087e98;
+  font-weight: 800;
+}
+.abs121-practice-inputs {
+  display: flex;
+  margin-top: 12px;
+  align-items: center;
+  gap: 7px;
+}
+.abs121-practice-inputs label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: Georgia, serif;
+  font-weight: 700;
+}
+.abs121-practice-inputs input {
+  width: 55px;
+  height: 31px;
+  padding: 0 5px;
+  border: 1px solid #bce3e9;
+  border-radius: 6px;
+  background: #f5fcfd;
+  text-align: center;
+}
+.abs121-footer a {
+  display: inline-flex;
+  height: 30px;
+  padding: 0 10px;
+  align-items: center;
+  border: 1px solid #dce5ec;
+  border-radius: 7px;
+  background: #fff;
+  font-weight: 700;
+}

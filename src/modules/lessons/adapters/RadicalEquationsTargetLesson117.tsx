@@ -17,24 +17,17 @@ import {
   Trophy,
 } from "lucide-react";
 import type { LessonAdapterProps } from "../types";
+import {
+  RADICAL_PRACTICES_117 as practices,
+  RADICAL_PROBLEMS_117 as problems,
+  isRadicalPracticeCorrect117,
+  isRadicalSquareDrop117,
+  radicalInsideText117 as inside,
+  radicalSquarePayload117,
+  solveRadicalEquation117,
+  type RadicalProblem117 as RadicalProblem,
+} from "./radicalEquationsLesson117Model";
 import "./RadicalEquationsTargetLesson117.css";
-
-type RadicalProblem = { offset: number; right: number; variable: string };
-const problems: RadicalProblem[] = [
-  { offset: 1, right: 4, variable: "x" },
-  { offset: 4, right: 5, variable: "x" },
-  { offset: -3, right: 6, variable: "x" },
-  { offset: 2, right: 3, variable: "x" },
-];
-const practices: RadicalProblem[] = [
-  { offset: -2, right: 5, variable: "y" },
-  { offset: 3, right: 4, variable: "z" },
-  { offset: -5, right: 6, variable: "t" },
-];
-const inside = ({ variable, offset }: RadicalProblem) =>
-  `${variable} ${offset < 0 ? "−" : "+"} ${Math.abs(offset)}`;
-const solution = ({ offset, right }: RadicalProblem) => right * right - offset;
-const domain = ({ offset }: RadicalProblem) => -offset;
 
 function Radical({ children }: { children: React.ReactNode }) {
   return (
@@ -123,17 +116,20 @@ export default function RadicalEquationsTargetLesson117({
   const [dragging, setDragging] = useState(false);
   const [invalidDrop, setInvalidDrop] = useState(false);
   const [actions, setActions] = useState(0);
-  const answer = solution(problem);
-  const boundary = domain(problem);
+  const result = solveRadicalEquation117(problem);
+  const answer = result.candidate;
+  const boundary = result.boundary;
   const practice = practices[practiceIndex];
-  const practiceSolution = solution(practice);
+  const practiceResult = solveRadicalEquation117(practice);
+  const practiceSolution = practiceResult.candidate;
   const practiceCorrect =
-    practiceChecked && Number(practiceAnswer) === practiceSolution;
+    practiceChecked &&
+    isRadicalPracticeCorrect117(practice, Number(practiceAnswer));
   const act = () => {
     setActions((value) => value + 1);
     onInteraction();
   };
-  const reset = () => {
+  const reset = (notify = true) => {
     setProblemIndex(0);
     setProblem(problems[0]);
     setEditing(false);
@@ -146,9 +142,9 @@ export default function RadicalEquationsTargetLesson117({
     setDragging(false);
     setInvalidDrop(false);
     setActions(0);
-    onInteraction();
+    if (notify) onInteraction();
   };
-  useEffect(() => reset(), [resetToken]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => reset(false), [resetToken]); // eslint-disable-line react-hooks/exhaustive-deps
   const changeProblem = (next: RadicalProblem) => {
     setProblem(next);
     setSquared(false);
@@ -162,15 +158,20 @@ export default function RadicalEquationsTargetLesson117({
     changeProblem(problems[next]);
   };
   const startSquare = (event: DragEvent<HTMLButtonElement>) => {
-    event.dataTransfer.setData("text/radical-square", inside(problem));
+    event.dataTransfer.setData(
+      "text/radical-square",
+      radicalSquarePayload117(problem),
+    );
     setDragging(true);
     setInvalidDrop(false);
     act();
   };
   const dropSquare = (event: DragEvent<HTMLElement>) => {
     event.preventDefault();
-    const valid =
-      event.dataTransfer.getData("text/radical-square") === inside(problem);
+    const valid = isRadicalSquareDrop117(
+      event.dataTransfer.getData("text/radical-square"),
+      problem,
+    );
     setSquared(valid);
     setCandidateChecked(false);
     setDragging(false);
@@ -190,10 +191,13 @@ export default function RadicalEquationsTargetLesson117({
       className="rad117-page"
       data-testid="algebra-mockup-0174"
       data-dedicated-lesson="117"
-      data-object-model="editable-radical-equation-domain-boundary-pointer-drag-native-square-both-sides-drag-balance-isolation-generated-linear-solve-original-equation-check-extraneous-rejection-graded-practice-model"
+      data-object-model="dedicated-tested-editable-radical-equation-domain-boundary-pointer-drag-validated-native-square-both-sides-drag-balance-isolation-generated-linear-candidate-original-principal-root-check-extraneous-rejection-graded-practice-functional-tabs-model"
       data-problem={`${problem.offset},${problem.right}`}
       data-domain={boundary}
       data-solution={answer}
+      data-solution-status={result.status}
+      data-principal-root={result.principalRoot}
+      data-candidate-valid={result.valid}
       data-squared={squared}
       data-candidate-checked={candidateChecked}
       data-dragging={dragging}
@@ -231,8 +235,7 @@ export default function RadicalEquationsTargetLesson117({
                 className={activeTab === tab ? "active" : ""}
                 onClick={() => {
                   setActiveTab(tab);
-                  if (tab === "Examples") nextProblem();
-                  else act();
+                  act();
                 }}
               >
                 {tab}
@@ -241,6 +244,9 @@ export default function RadicalEquationsTargetLesson117({
           )}
         </nav>
       </header>
+      {activeTab !== "Interactive Lab" && (
+        <RadicalTabPanel117 tab={activeTab} onNextExample={nextProblem} />
+      )}
       <main className="rad117-main">
         <section className="rad117-lab">
           <header>
@@ -252,7 +258,7 @@ export default function RadicalEquationsTargetLesson117({
             </span>
             <nav>
               <button onClick={nextProblem}>▣ New Example</button>
-              <button onClick={reset}>
+              <button onClick={() => reset()}>
                 <RotateCcw />
                 Reset
               </button>
@@ -415,13 +421,13 @@ export default function RadicalEquationsTargetLesson117({
                 {problem.right}
               </p>
               <p>
-                {problem.right}
+                {result.principalRoot}
                 <span>=</span>
                 {problem.right}
               </p>
-              <strong>
-                <Check />
-                True
+              <strong className={result.valid ? "valid" : "invalid"}>
+                {result.valid ? <Check /> : <CircleAlert />}
+                {result.valid ? "True" : "False: extraneous candidate"}
               </strong>
             </article>
             <button
@@ -431,7 +437,9 @@ export default function RadicalEquationsTargetLesson117({
               }}
             >
               {candidateChecked
-                ? `${problem.variable} = ${answer} is a valid solution.`
+                ? result.valid
+                  ? `${problem.variable} = ${answer} is a valid solution.`
+                  : `${problem.variable} = ${answer} is extraneous and rejected.`
                 : "Check candidate"}
             </button>
           </section>
@@ -491,7 +499,13 @@ export default function RadicalEquationsTargetLesson117({
               Result
             </h3>
             <p>Solution set</p>
-            <strong>{`{ ${candidateChecked ? answer : "?"} }`}</strong>
+            <strong>
+              {candidateChecked
+                ? result.valid
+                  ? `{ ${answer} }`
+                  : "∅"
+                : "{ ? }"}
+            </strong>
             <span>
               (within domain {problem.variable} ≥ {boundary})
             </span>
@@ -612,9 +626,9 @@ export default function RadicalEquationsTargetLesson117({
           CAS-style tools, and classroom-ready activities.
         </span>
         <nav>
-          <button>Sitemap</button>
-          <button>Docs</button>
-          <button>About</button>
+          <a href="/sitemap">Sitemap</a>
+          <a href="/docs">Docs</a>
+          <a href="/about">About</a>
         </nav>
         <hr />
         <small>
@@ -623,5 +637,41 @@ export default function RadicalEquationsTargetLesson117({
         <small>www.IndianServers.com info@IndianServers.com</small>
       </footer>
     </div>
+  );
+}
+
+function RadicalTabPanel117({
+  tab,
+  onNextExample,
+}: {
+  tab: string;
+  onNextExample: () => void;
+}) {
+  const content: Record<string, { title: string; body: string }> = {
+    Examples: {
+      title: "Calculated radical examples",
+      body: "Load another radicand offset and right side into the complete isolate-square-solve-check workflow.",
+    },
+    "Key Ideas": {
+      title: "Check after squaring",
+      body: "Squaring is not reversible for a negative right side, so every generated candidate must be checked in the original equation.",
+    },
+    "Formula Sheet": {
+      title: "Square-root equation",
+      body: "For √(x + k) = r, the candidate is x = r² - k, the domain is x ≥ -k, and validity also requires r ≥ 0.",
+    },
+  };
+  const selected = content[tab] ?? content["Key Ideas"];
+  return (
+    <section className="rad117-tab-panel">
+      <small>RADICAL EQUATIONS</small>
+      <h2>{selected.title}</h2>
+      <p>{selected.body}</p>
+      {tab === "Examples" && (
+        <button type="button" onClick={onNextExample}>
+          Load next radical equation
+        </button>
+      )}
+    </section>
   );
 }
