@@ -38,7 +38,7 @@ export function polynomialRelationPasses125(
 }
 
 function formatEndpoint(value: number) {
- +  return Number.isInteger(value) ? String(value) : Number(value.toFixed(4)).toString();
+  return Number.isInteger(value) ? String(value) : Number(value.toFixed(4)).toString();
 }
 
 type Segment125 = {
