@@ -53,13 +53,14 @@
 | 0179   |       122 | Linear Inequalities      | Code reconciled; browser acceptance deferred |
 | 0180   |       123 | Compound Inequalities    | Code reconciled; browser acceptance deferred |
 | 0181   |       124 | Quadratic Inequalities   | Code reconciled; browser acceptance deferred |
-| 0182   |       125 | Polynomial Inequalities  | Next pending                                 |
+| 0182   |       125 | Polynomial Inequalities  | Code reconciled; browser acceptance deferred |
+| 0183   |       126 | Two-Variable Inequalities | Next pending                                |
 
 ## Counts
 
 - Range size: 132 targets
-- Code reconciled in this pass: 51
-- Remaining in range: 81
-- Next target: 0182 / lesson 125
+- Code reconciled in this pass: 52
+- Remaining in range: 80
+- Next target: 0183 / lesson 126
 
 This tracker counts a lesson only after it has a dedicated route or surface, a lesson-specific mathematical model, working controls, focused tests, lint/type verification, and an audit note. Pixel-perfect browser acceptance is tracked separately when browser comparison resumes.

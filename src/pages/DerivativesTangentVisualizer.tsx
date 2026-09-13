@@ -1,13 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useCallback, useEffect, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent } from "react";
 import { Line as ThreeLine, OrbitControls, Text } from "@react-three/drei";
-import { Link, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import {
   Bell, BookOpen, Check, ChevronDown, ChevronRight, Download, Expand, Grid3X3,
   Menu, Pause, Play, RotateCcw, Search, Settings, StepBack, StepForward,
   Sun, X,
 } from "lucide-react";
 import CalculusSidebar from "../components/calculus/CalculusSidebar";
+import StudioBreadcrumb, { mathStudioCrumbs } from "../components/ui/StudioBreadcrumb";
 import ThreeSceneWrapper from "../components/three/ThreeSceneWrapper";
 import { compileFunctionExpression } from "../utils/functionParser";
 import { roundTo } from "../utils/math";
@@ -77,7 +78,7 @@ export default function DerivativesTangentVisualizer() {
     <div className="limits-page">
       <DerivativesHeader onMenu={() => setMobileNavOpen(true)} />
       <div className="limits-content">
-        <section className="limits-titlebar"><div><nav aria-label="Breadcrumb"><Link to="/">Home</Link><ChevronRight/><Link to="/calculus">Math</Link><ChevronRight/><span>Derivatives</span></nav><h1>Derivatives &amp; Tangent Lines</h1><p>Explore derivatives as tangent slopes and watch secant lines converge as h → 0.</p></div><div className="limits-badges"><span>Differential Calculus</span><span>20 min</span></div></section>
+        <section className="limits-titlebar"><div><StudioBreadcrumb crumbs={mathStudioCrumbs({ label: "Calculus", to: "/calculus" }, { label: "Derivatives", to: "/calculus/derivatives" })} /><h1>Derivatives &amp; Tangent Lines</h1><p>Explore derivatives as tangent slopes and watch secant lines converge as h → 0.</p></div><div className="limits-badges"><span>Differential Calculus</span><span>20 min</span></div></section>
         <div className="limits-workspace derivatives-workspace">
           <ControlsCard draft={draft} error={compiled.error} a={a} h={h} fa={fa} fq={fq} showTangent={showTangent} showSecant={showSecant} showDerivative={showDerivative} playing={playing} speed={speed} onDraft={setDraft} onPlot={() => setExpression(draft)} onPreset={applyPreset} onA={setA} onH={(value) => setH(nonZero(value))} onTangent={setShowTangent} onSecant={setShowSecant} onDerivative={setShowDerivative} onPlaying={setPlaying} onSpeed={setSpeed} onReset={reset}/>
           <ExplorerCard fn={fn} expression={expression} a={a} h={h} fa={fa} fq={fq} derivative={derivative.value} secantSlope={secantSlope} showTangent={showTangent} showSecant={showSecant} showDerivative={showDerivative} activePane={activePane} onPane={setActivePane} gridVisible={gridVisible} onGrid={() => setGridVisible(v=>!v)} trace={trace} onTrace={()=>setTrace(v=>!v)} playing={playing} onPlaying={setPlaying} speed={speed} onSpeed={setSpeed} onH={setH} onReset={reset}/>

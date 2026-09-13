@@ -41,6 +41,7 @@ import {
   type ReactNode,
 } from "react";
 import SectionCard from "../../components/ui/SectionCard";
+import StudioBreadcrumb, { mathStudioCrumbs } from "../../components/ui/StudioBreadcrumb";
 import TopicHeader from "../../components/ui/TopicHeader";
 import {
   adjacencyList,
@@ -358,9 +359,13 @@ function GraphTheoryStudio() {
     <main className="gt-studio">
       <header className="gt-header">
         <div>
-          <div className="gt-breadcrumb">
-            <Link to="/">Home</Link> <span aria-hidden="true">&gt;</span> <Link to="/math-lab">Studio</Link> <span aria-hidden="true">&gt;</span> <Link to="/discrete-world">Number &amp; Discrete Mathematics</Link> <span aria-hidden="true">&gt;</span> <Link to="/graph-theory" aria-current="page">Graph Theory</Link>
-          </div>
+          <StudioBreadcrumb
+            className="gt-breadcrumb"
+            crumbs={[
+              ...mathStudioCrumbs({ label: "Number & Discrete Mathematics", to: "/discrete-world" }),
+              { label: "Graph Theory", to: "/graph-theory" },
+            ]}
+          />
           <h1>Graph Theory Studio</h1>
           <p>Build, analyze, and understand networks visually.</p>
         </div>

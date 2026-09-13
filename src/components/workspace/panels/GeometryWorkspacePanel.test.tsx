@@ -151,7 +151,8 @@ describe("GeometryWorkspacePanel", () => {
     expect(html).toContain('aria-label="Expand active pane"');
     expect(html).toContain('aria-label="Resize tools pane"');
     expect(html).toContain('aria-label="Resize object inspector pane"');
-    expect(html).toContain('aria-label="Resize construction protocol pane"');
+    expect(html).not.toContain("Construction Protocol");
+    expect(html).not.toContain('aria-label="Resize construction protocol pane"');
     expect(html).toContain('data-testid="geometry-view-range"');
     expect(html).toContain("Range</span> x -8…8 · y -5…5.5");
   });

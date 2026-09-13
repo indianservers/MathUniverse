@@ -1,20 +1,25 @@
 import { useStudioMode } from "../../hooks/useStudioMode";
 import { useEffect, useMemo, useState, type ReactNode } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import {
   ArrowRight,
   Binary,
   Braces,
+  Check,
   Cpu,
   GitBranch,
   Hash,
   Network,
   Play,
+  RotateCcw,
   Save,
   Sigma,
+  Sparkles,
+  Zap,
 } from "lucide-react";
+import { useProgress } from "../../hooks/useProgress";
+import StudioBreadcrumb, { mathStudioCrumbs } from "../../components/ui/StudioBreadcrumb";
 import SectionCard from "../../components/ui/SectionCard";
-import TopicHeader from "../../components/ui/TopicHeader";
 import {
   balancedParenthesesPda,
   determinizeNfa,
@@ -67,6 +72,10 @@ import {
   stronglyConnectedComponents,
 } from "./shared-engines/graphExtensionsEngine";
 import DiscreteEnhancementWorkbench from "../../studios/discrete/DiscreteEnhancementWorkbench";
+import MockupStudioApp from "../../studios/mockup/MockupStudioApp";
+import "./DiscreteWorldStudio.css";
+
+const ASSET = "/assets/discrete-studio";
 
 const canonicalLabs = [
   {
@@ -143,6 +152,7 @@ const discreteSampleGraph = {
 };
 
 type WorkbenchId =
+  | "overview"
   | "automata"
   | "regex-pda"
   | "grammar"
@@ -150,6 +160,45 @@ type WorkbenchId =
   | "foundations"
   | "graphs"
   | "advanced";
+
+const workbenchIds = [
+  "overview",
+  "automata",
+  "regex-pda",
+  "grammar",
+  "turing",
+  "foundations",
+  "graphs",
+  "advanced",
+] as const satisfies readonly WorkbenchId[];
+
+const studioNav: Array<{
+  id: string;
+  label: string;
+  caption: string;
+  iconSrc: string;
+  to?: string;
+  workbench?: WorkbenchId;
+}> = [
+  { id: "overview", label: "Overview", caption: "", iconSrc: `${ASSET}/discrete-nav-overview.png`, workbench: "overview" },
+  { id: "foundations", label: "Foundations", caption: "Sets, logic, proof methods", iconSrc: `${ASSET}/discrete-nav-foundations.png`, workbench: "foundations" },
+  { id: "number-systems", label: "Number Systems", caption: "Positional systems, bases", iconSrc: `${ASSET}/discrete-nav-numbers.png`, to: "/number-systems" },
+  { id: "number-theory", label: "Number Theory", caption: "Primes, divisibility, congruence", iconSrc: `${ASSET}/discrete-nav-theory.png`, workbench: "foundations" },
+  { id: "logic", label: "Logic & Proofs", caption: "Propositional & predicate logic", iconSrc: `${ASSET}/discrete-nav-logic.png`, to: "/mathematical-logic" },
+  { id: "sets", label: "Sets & Relations", caption: "Sets, relations, functions", iconSrc: `${ASSET}/discrete-nav-sets.png`, to: "/set-theory" },
+  { id: "combinatorics", label: "Combinatorics", caption: "Counting, permutations", iconSrc: `${ASSET}/discrete-nav-combinatorics.png`, to: "/combinatorics" },
+  { id: "graph-theory", label: "Graph Theory", caption: "Graphs, trees, traversal", iconSrc: `${ASSET}/discrete-nav-graphs.png`, to: "/graph-theory" },
+  { id: "automata", label: "Automata", caption: "DFA, NFA, epsilon-NFA", iconSrc: `${ASSET}/discrete-nav-automata.png`, workbench: "automata" },
+  { id: "languages", label: "Formal Languages", caption: "CFG, regular languages", iconSrc: `${ASSET}/discrete-nav-languages.png`, workbench: "grammar" },
+  { id: "complexity", label: "Complexity", caption: "P, NP, reductions", iconSrc: `${ASSET}/discrete-nav-complexity.png`, workbench: "graphs" },
+];
+
+function navIdForWorkbench(workbench: WorkbenchId) {
+  if (workbench === "grammar") return "languages";
+  if (workbench === "graphs") return "complexity";
+  if (workbench === "regex-pda" || workbench === "turing" || workbench === "advanced") return "";
+  return workbench;
+}
 
 const workbenches: Array<{
   id: WorkbenchId;
@@ -210,6 +259,13 @@ const workbenches: Array<{
 ];
 
 export default function DiscreteWorldModule() {
+  const [params] = useSearchParams();
+  if (params.get("workbench")) return <DiscreteWorldLegacy />;
+  return <MockupStudioApp studioId="discrete" />;
+}
+
+export function DiscreteWorldLegacy() {
+  const { getTopicProgress, markTopicVisited } = useProgress();
   const [automataInput, setAutomataInput] = useState("abb");
   const [grammarTarget, setGrammarTarget] = useState("aabb");
   const [turingInput, setTuringInput] = useState("111");
@@ -219,9 +275,16 @@ export default function DiscreteWorldModule() {
   const [modulus, setModulus] = useState(7);
   const [activeWorkbench, setActiveWorkbench] = useStudioMode<WorkbenchId>(
     "workbench",
-    ["automata", "regex-pda", "grammar", "turing", "foundations", "advanced"],
+    workbenchIds,
     "automata",
   );
+  const progress = getTopicProgress("discrete-world");
+  const activeNav = navIdForWorkbench(activeWorkbench);
+
+  useEffect(() => {
+    document.title = "Number & Discrete Mathematics Studio | Math Universe";
+    markTopicVisited("discrete-world");
+  }, [markTopicVisited]);
 
   useEffect(() => {
     const snapshot = loadDiscreteSnapshot();
@@ -234,152 +297,178 @@ export default function DiscreteWorldModule() {
   const saveSession = () =>
     saveDiscreteSnapshot({ automataInput, grammarTarget, turingInput });
 
-  const activeTitle =
-    workbenches.find((item) => item.id === activeWorkbench)?.title ??
-    "Automata";
-
   return (
-    <div className="space-y-4">
-      <TopicHeader
-        title="Number & Discrete Mathematics Studio"
-        subtitle="Explore number systems, number theory, logic, combinatorics, graphs, automata, grammars, and computation in one connected lab."
-        difficulty="Advanced"
-        estimatedMinutes={95}
-        formula={{
-          title: "Execution model",
-          formula: String.raw`\delta(q, a) = q'`,
-          explanation:
-            "All parsing, simulation, rendering, and saving run in the browser.",
-        }}
-      />
-
-      <div className="grid min-h-[calc(100vh-220px)] gap-4 xl:grid-cols-[260px_minmax(0,1fr)_330px]">
-        <aside className="glass-card overflow-hidden rounded-2xl border border-slate-200 bg-white/85 p-2 dark:border-white/10 dark:bg-slate-950/80">
-          <div className="px-3 py-2">
-            <p className="text-xs font-black uppercase tracking-wide text-slate-400">
-              Workbenches
-            </p>
-            <p className="mt-1 text-sm font-semibold text-slate-700 dark:text-slate-200">
-              Choose one lab, keep context visible.
-            </p>
-          </div>
-          <div className="mt-2 space-y-1">
-            {workbenches.map((item) => (
-              <button
-                key={item.id}
-                type="button"
-                onClick={() => setActiveWorkbench(item.id)}
-                className={`flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left transition ${activeWorkbench === item.id ? "bg-slate-950 text-white shadow-lg shadow-cyan-500/10 dark:bg-cyan-400 dark:text-slate-950" : "text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-white/10"}`}
-              >
-                <item.icon className="h-4 w-4 shrink-0" />
-                <span className="min-w-0 flex-1">
-                  <span className="block truncate text-sm font-bold">
-                    {item.title}
-                  </span>
-                  <span
-                    className={`block truncate text-xs ${activeWorkbench === item.id ? "text-white/70 dark:text-slate-900/70" : "text-slate-400"}`}
-                  >
-                    {item.short}
-                  </span>
+    <div className="nd-studio">
+      <aside className="nd-nav" aria-label="Number and Discrete Mathematics navigation">
+        <Link className="nd-brand" to="/discrete-world">
+          <img src={`${ASSET}/discrete-studio-mark.png`} alt="" />
+          <strong>Number & Discrete Mathematics Studio</strong>
+        </Link>
+        <nav>
+          {studioNav.map((item) => {
+            const active = !item.to && (item.id === activeNav || item.workbench === activeWorkbench);
+            const body = (
+              <>
+                <img src={item.iconSrc} alt="" />
+                <span>
+                  <b>{item.label}</b>
+                  {item.caption ? <small>{item.caption}</small> : null}
                 </span>
-                <span
-                  className={`rounded-full px-2 py-0.5 text-[10px] font-black uppercase ${activeWorkbench === item.id ? "bg-white/15 dark:bg-slate-950/10" : "bg-emerald-100 text-emerald-700 dark:bg-emerald-400/15 dark:text-emerald-200"}`}
-                >
-                  {item.status}
-                </span>
+              </>
+            );
+            return item.to ? (
+              <Link key={item.id} to={item.to}>{body}</Link>
+            ) : (
+              <button key={item.id} type="button" className={active ? "is-active" : ""} onClick={() => item.workbench && setActiveWorkbench(item.workbench)}>
+                {body}
               </button>
-            ))}
-          </div>
-          <div className="mt-3 border-t border-slate-200 px-3 py-3 dark:border-white/10">
-            <p className="text-xs font-black uppercase tracking-wide text-slate-400">
-              Canonical labs
-            </p>
-            <div className="mt-2 grid gap-1">
-              {canonicalLabs.map((lab) => (
-                <div key={lab.title} className="rounded-xl border border-slate-200 bg-white/70 p-2 dark:border-white/10 dark:bg-white/5">
-                  <Link to={lab.route} className="flex items-center justify-between rounded-lg px-2 py-1.5 text-sm font-black text-slate-700 hover:text-cyan-700 dark:text-slate-200 dark:hover:text-cyan-200">
-                    <span className="inline-flex min-w-0 items-center gap-2">
-                      <lab.icon className="h-3.5 w-3.5 shrink-0" />
-                      <span className="truncate">{lab.title}</span>
-                    </span>
-                    <ArrowRight className="h-3.5 w-3.5 shrink-0" />
-                  </Link>
-                  <div className="mt-1 grid gap-1 border-t border-slate-200 pt-1 dark:border-white/10">
-                    {lab.subcategories.map((subcategory) => (
-                      <Link key={subcategory.route} to={subcategory.route} className="flex items-center justify-between rounded-md px-2 py-1 text-xs font-semibold text-slate-500 hover:bg-slate-100 hover:text-cyan-700 dark:text-slate-400 dark:hover:bg-white/10 dark:hover:text-cyan-200">
-                        <span>↳ {subcategory.title}</span>
-                        <ArrowRight className="h-3 w-3 shrink-0" />
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              ))}
+            );
+          })}
+        </nav>
+      </aside>
+
+      <div className="nd-main">
+        <StudioBreadcrumb
+          className="nd-crumbs"
+          crumbs={mathStudioCrumbs(
+            { label: "Number & Discrete Mathematics", to: "/discrete-world" },
+            { label: activeWorkbench === "overview" ? "Overview" : (workbenches.find((item) => item.id === activeWorkbench)?.title ?? activeWorkbench), to: activeWorkbench === "overview" ? "/discrete-world" : `/discrete-world?workbench=${activeWorkbench}` },
+          )}
+        />
+        <section className="nd-head">
+          <div>
+            <h1>Number & Discrete Mathematics Studio</h1>
+            <p>Explore number systems, logic, sets, combinatorics, graphs, automata, formal languages, and complexity through interactive labs, simulations, and practice.</p>
+            <div className="nd-stats">
+              <div className="nd-stat"><img src={`${ASSET}/discrete-icon-labs.png`} alt="" /><span><b>10</b><small>Labs</small></span></div>
+              <div className="nd-stat"><img src={`${ASSET}/discrete-icon-concepts.png`} alt="" /><span><b>120+</b><small>Key Concepts</small></span></div>
+              <div className="nd-stat"><img src={`${ASSET}/discrete-icon-exercises.png`} alt="" /><span><b>500+</b><small>Interactive Exercises</small></span></div>
             </div>
           </div>
-        </aside>
+          <figure className="nd-hero-card nd-hero-art">
+            <img src={`${ASSET}/discrete-studio-hero.png`} alt="Discrete mathematics collage: sets, Venn diagram, graph, truth table, and n factorial" />
+          </figure>
+        </section>
+        <div className="nd-progress" aria-label={`Studio progress ${progress}%`}>
+          <span>Studio Progress</span>
+          <progress max={100} value={progress} />
+          <b>{progress}%</b>
+        </div>
 
-        <main className="min-w-0">
-          <div className="mb-3 flex flex-wrap items-center justify-between gap-2 rounded-2xl border border-slate-200 bg-white/85 px-4 py-3 shadow-sm dark:border-white/10 dark:bg-slate-950/80">
+        {activeWorkbench === "overview" && <OverviewLab onOpen={setActiveWorkbench} />}
+        {activeWorkbench === "automata" && (
+          <AutomataLab input={automataInput} onInput={setAutomataInput} onReset={() => setAutomataInput("abb")} />
+        )}
+        {activeWorkbench === "regex-pda" && (
+          <RegexPdaLab regexPattern={regexPattern} onRegexPattern={setRegexPattern} pdaInput={pdaInput} onPdaInput={setPdaInput} />
+        )}
+        {activeWorkbench === "grammar" && (
+          <GrammarLab target={grammarTarget} onTarget={setGrammarTarget} />
+        )}
+        {activeWorkbench === "turing" && (
+          <TuringLab input={turingInput} onInput={setTuringInput} />
+        )}
+        {activeWorkbench === "foundations" && (
+          <FoundationsLab recurrenceTerms={recurrenceTerms} onRecurrenceTerms={setRecurrenceTerms} modulus={modulus} onModulus={setModulus} />
+        )}
+        {activeWorkbench === "graphs" && <GraphAndComplexityLab />}
+        {activeWorkbench === "advanced" && <DiscreteEnhancementWorkbench />}
+
+        <section className="nd-suggest">
+          <header>
             <div>
-              <p className="text-xs font-black uppercase tracking-wide text-cyan-600 dark:text-cyan-300">
-                Active workbench
-              </p>
-              <h2 className="text-lg font-black text-slate-950 dark:text-white">
-                {activeTitle}
-              </h2>
+              <h2>Suggested Next Labs</h2>
+              <p>Continue your learning journey with related labs.</p>
             </div>
-            <button
-              className="action-primary inline-flex items-center gap-2"
-              type="button"
-              onClick={saveSession}
-            >
-              <Save className="h-4 w-4" /> Save
-            </button>
+            <button type="button" onClick={() => setActiveWorkbench("overview")}>View All Labs</button>
+          </header>
+          <div className="nd-suggest-grid">
+            <button type="button" onClick={() => setActiveWorkbench("turing")}><b>Turing Machines</b><small>Tape, head, and halt traces</small></button>
+            <button type="button" onClick={() => setActiveWorkbench("grammar")}><b>Context-Free Grammars</b><small>Derivations and parse trees</small></button>
+            <Link to="/graph-theory"><b>Graph Algorithms</b><small>Traversal, shortest paths, MST</small></Link>
+            <Link to="/combinatorics"><b>Combinatorics Lab</b><small>Counting, permutations, combinations</small></Link>
           </div>
-
-          {activeWorkbench === "automata" && (
-            <AutomataLab input={automataInput} onInput={setAutomataInput} />
-          )}
-          {activeWorkbench === "regex-pda" && (
-            <RegexPdaLab
-              regexPattern={regexPattern}
-              onRegexPattern={setRegexPattern}
-              pdaInput={pdaInput}
-              onPdaInput={setPdaInput}
-            />
-          )}
-          {activeWorkbench === "grammar" && (
-            <GrammarLab target={grammarTarget} onTarget={setGrammarTarget} />
-          )}
-          {activeWorkbench === "turing" && (
-            <TuringLab input={turingInput} onInput={setTuringInput} />
-          )}
-          {activeWorkbench === "foundations" && (
-            <FoundationsLab
-              recurrenceTerms={recurrenceTerms}
-              onRecurrenceTerms={setRecurrenceTerms}
-              modulus={modulus}
-              onModulus={setModulus}
-            />
-          )}
-          {activeWorkbench === "graphs" && <GraphAndComplexityLab />}
-          {activeWorkbench === "advanced" && <DiscreteEnhancementWorkbench />}
-        </main>
-
-        <aside className="space-y-3">
-          <ArchitecturePanel onSave={saveSession} />
-        </aside>
+        </section>
       </div>
+
+      <aside className="nd-rail">
+        <section className="nd-panel">
+          <h2><Sparkles /> Studio Scope</h2>
+          <ul>
+            {["Number theory", "Logic and proof techniques", "Sets and relations", "Combinatorics", "Graphs and graph algorithms", "Automata and formal languages", "Complexity theory"].map((item) => (
+              <li key={item}><Check /> {item}</li>
+            ))}
+          </ul>
+        </section>
+        <section className="nd-panel">
+          <h2>Learning Modes</h2>
+          <div className="nd-modes">
+            <button type="button" className={activeWorkbench === "automata" ? "is-active" : ""} onClick={() => setActiveWorkbench("automata")}>Visual Simulation</button>
+            <Link to="/lessons">Guided Practice</Link>
+            <Link to="/quiz">Challenge Problems</Link>
+          </div>
+        </section>
+        <section className="nd-panel">
+          <h2>Key Concepts</h2>
+          <div className="nd-chips">
+            <button type="button" onClick={() => setActiveWorkbench("automata")}>DFA / NFA</button>
+            <button type="button" onClick={() => setActiveWorkbench("regex-pda")}>Regular Languages</button>
+            <button type="button" onClick={() => setActiveWorkbench("grammar")}>CFG</button>
+            <button type="button" onClick={() => setActiveWorkbench("foundations")}>Number Theory</button>
+            <Link to="/combinatorics">Combinatorics</Link>
+            <Link to="/graph-theory">Graph Traversal</Link>
+            <button type="button" onClick={() => setActiveWorkbench("foundations")}>Induction</button>
+            <button type="button" onClick={() => setActiveWorkbench("graphs")}>P vs NP</button>
+          </div>
+        </section>
+        <section className="nd-panel nd-actions">
+          <h2><Zap /> Quick Actions</h2>
+          <button type="button" onClick={() => setActiveWorkbench("automata")}>Open Automata Challenges <ArrowRight /></button>
+          <Link to="/lessons">View Theory Notes <ArrowRight /></Link>
+          <Link to="/quiz">Practice Problems <ArrowRight /></Link>
+          <button type="button" onClick={saveSession}><Save /> Save session</button>
+        </section>
+        <blockquote className="nd-panel nd-quote">“Discrete mathematics turns finite ideas into infinite possibilities.”</blockquote>
+      </aside>
     </div>
+  );
+}
+
+function OverviewLab({ onOpen }: { onOpen: (id: WorkbenchId) => void }) {
+  return (
+    <section className="nd-lab">
+      <header className="nd-lab-top">
+        <div>
+          <h2>Studio Overview</h2>
+          <p>Open a connected discrete mathematics lab. Canonical modules live on their own routes.</p>
+        </div>
+      </header>
+      <div className="nd-overview-grid">
+        {workbenches.map((item) => (
+          <button key={item.id} type="button" onClick={() => onOpen(item.id)}>
+            <b>{item.title}</b>
+            <small>{item.short}</small>
+          </button>
+        ))}
+        {canonicalLabs.map((lab) => (
+          <Link key={lab.route} to={lab.route}>
+            <b>{lab.title}</b>
+            <small>{lab.coverage}</small>
+          </Link>
+        ))}
+      </div>
+    </section>
   );
 }
 
 function AutomataLab({
   input,
   onInput,
+  onReset,
 }: {
   input: string;
   onInput: (value: string) => void;
+  onReset: () => void;
 }) {
   const machine: FiniteAutomaton = automataMachine;
   const result = useMemo(
@@ -389,51 +478,57 @@ function AutomataLab({
   const dfa = useMemo(() => determinizeNfa(machine), [machine]);
   const minimized = useMemo(() => minimizeDfa(dfa), [dfa]);
   const active = result.frames[result.frames.length - 1];
+  const examples = ["abb", "ab", "a", "b", "aaabb"];
 
   return (
-    <SectionCard
-      title="Automata Simulation Lab"
-      description="NFA and epsilon-NFA execution with subset-construction preview."
-    >
-      <div className="flex flex-wrap items-center gap-2">
-        <input
-          className="min-w-0 flex-1 rounded-xl border border-slate-200 bg-white p-3 font-mono dark:border-white/10 dark:bg-slate-950"
-          value={input}
-          onChange={(event) => onInput(event.target.value)}
-        />
-        <span
-          className={`rounded-full px-3 py-1 text-sm font-semibold ${result.accepted ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-400/15 dark:text-emerald-200" : "bg-rose-100 text-rose-700 dark:bg-rose-400/15 dark:text-rose-200"}`}
-        >
-          {result.accepted ? "Accepted" : "Rejected"}
-        </span>
+    <section className="nd-lab">
+      <header className="nd-lab-top">
+        <div>
+          <h2>Automata Simulation Lab</h2>
+          <p>Build and test DFA, NFA, and epsilon-NFA with instant execution and minimization insights.</p>
+        </div>
+        <div className="nd-lab-actions">
+          <button type="button" onClick={() => onInput(examples[Math.floor(Math.random() * examples.length)])}>Examples</button>
+          <button type="button" onClick={onReset}><RotateCcw /> Reset</button>
+          <button type="button" className="nd-run" onClick={() => onInput(input)}><Play /> Run</button>
+        </div>
+      </header>
+      <div className="nd-input-row">
+        <label htmlFor="nd-automata-input">Input string</label>
+        <input id="nd-automata-input" value={input} onChange={(event) => onInput(event.target.value.replace(/[^ab]/gi, "").toLowerCase())} />
+        <small>Use a, b or ε (epsilon)</small>
       </div>
       <AutomataSvg machine={machine} activeStates={active.activeStates} />
-      <div className="grid gap-3 md:grid-cols-2">
-        <div className="rounded-lg bg-slate-100 p-3 dark:bg-white/10">
-          <p className="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
-            Transitions
-          </p>
-          <pre className="mt-2 whitespace-pre-wrap text-xs">
-            {serializeTransitions(machine.transitions)}
-          </pre>
-        </div>
-        <div className="rounded-lg bg-slate-100 p-3 dark:bg-white/10">
-          <p className="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
-            Equivalent DFA states
-          </p>
-          <p className="mt-2 text-sm">{dfa.states.join("  ")}</p>
-          <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">
-            Minimized partitions: {minimized.stateCount}
-          </p>
-        </div>
+      <p className="nd-legend">
+        <span><i style={{ background: "#67e8f9" }} /> Transition</span>
+        <span><i style={{ background: "#1e293b", boxShadow: "inset 0 0 0 2px #94a3b8" }} /> Regular state</span>
+        <span><i style={{ background: "#22d3ee", boxShadow: "inset 0 0 0 3px #34d399" }} /> Accepting state</span>
+      </p>
+      <div className="nd-cards">
+        <article className="nd-card">
+          <h3>Transitions</h3>
+          <pre>{serializeTransitions(machine.transitions).replaceAll("eps", "ε")}</pre>
+        </article>
+        <article className="nd-card">
+          <h3>Equivalent DFA States</h3>
+          <p>{dfa.states.join(" | ")}</p>
+          <small>Minimized partitions: {minimized.stateCount}</small>
+        </article>
+        <article className="nd-card">
+          <h3>Execution Trace (input: {input || "ε"})</h3>
+          <ol>
+            {result.frames.map((frame) => (
+              <li key={frame.index}>{frame.index + 1}. {frame.note}</li>
+            ))}
+          </ol>
+        </article>
+        <article className="nd-card">
+          <h3>Accepted String Insight</h3>
+          <p className="nd-ok">{result.accepted ? `The string ${input || "ε"} is accepted by this automaton.` : `The string ${input || "ε"} is rejected.`}</p>
+          <p>It reaches {result.finalStates.join(", ") || "no state"} after consuming all input symbols.</p>
+        </article>
       </div>
-      <FrameStrip
-        frames={result.frames.map(
-          (frame) =>
-            `${frame.symbol}: ${frame.activeStates.join(", ") || "empty"}`,
-        )}
-      />
-    </SectionCard>
+    </section>
   );
 }
 
@@ -923,14 +1018,17 @@ function AutomataSvg({
   const positions = new Map(
     machine.states.map((state, index) => [
       state,
-      { x: 90 + index * 150, y: index % 2 ? 145 : 80 },
+      {
+        x: 140 + index * 230,
+        y: 140,
+      },
     ]),
   );
-  const width = Math.max(520, 180 + machine.states.length * 150);
+  const width = Math.max(760, 180 + machine.states.length * 230);
   return (
     <svg
-      className="my-4 h-56 w-full rounded-lg bg-slate-950"
-      viewBox={`0 0 ${width} 220`}
+      className="nd-machine"
+      viewBox={`0 0 ${width} 280`}
       role="img"
       aria-label="Automata graph"
     >
@@ -946,6 +1044,15 @@ function AutomataSvg({
           <path d="M0,0 L0,6 L7,3 z" fill="#67e8f9" />
         </marker>
       </defs>
+      {(() => {
+        const start = positions.get(machine.start);
+        return start ? (
+          <g>
+            <line x1={start.x - 90} y1={start.y} x2={start.x - 38} y2={start.y} stroke="#67e8f9" strokeWidth="2" markerEnd="url(#arrow)" />
+            <text x={start.x - 92} y={start.y - 10} fill="#94a3b8" fontSize="12">start</text>
+          </g>
+        ) : null;
+      })()}
       {machine.transitions.map((transition, index) => {
         const from = positions.get(transition.from)!;
         const to = positions.get(transition.to)!;
@@ -966,7 +1073,7 @@ function AutomataSvg({
               fill="#e0f2fe"
               fontSize="12"
             >
-              {transition.symbol || "eps"}
+              {transition.symbol || "ε"}
             </text>
           </g>
         ) : (
@@ -987,7 +1094,7 @@ function AutomataSvg({
               fill="#e0f2fe"
               fontSize="12"
             >
-              {transition.symbol || "eps"}
+              {transition.symbol || "ε"}
             </text>
           </g>
         );

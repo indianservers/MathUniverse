@@ -5,6 +5,8 @@ import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import MathExpression from "../components/ui/MathExpression";
 import StudioPageShell from "../components/ui/StudioPageShell";
+import { mathStudioCrumbs } from "../components/ui/StudioBreadcrumb";
+import MockupStudioApp from "../studios/mockup/MockupStudioApp";
 
 type ModelId = "linear" | "exponential" | "logistic";
 
@@ -50,6 +52,10 @@ const pathways = [
 ];
 
 export default function MathematicalModellingStudio() {
+  return <MockupStudioApp studioId="modelling" />;
+}
+
+export function MathematicalModellingLegacy() {
   const [modelId, setModelId] = useStudioMode<ModelId>("model", ["linear", "exponential", "logistic"], "logistic");
   const [shareStatus, setShareStatus] = useState("");
   const read = (key: string, fallback: number, min: number, max: number) => { const raw = new URLSearchParams(window.location.search).get(key); const n = raw === null ? fallback : Number(raw); return Number.isFinite(n) ? Math.max(min, Math.min(max, n)) : fallback; };
@@ -90,7 +96,10 @@ export default function MathematicalModellingStudio() {
       className="modelling-studio"
       title="Mathematical Modelling Studio"
       subtitle="Translate real systems into assumptions, equations, simulations, and evidence-based decisions."
-      breadcrumbs={["Home", "Studio", "Mathematical Modelling"]}
+      breadcrumbs={mathStudioCrumbs(
+        { label: "Mathematical Modelling", to: "/mathematical-modelling" },
+        { label: model.label, to: modelId === "logistic" ? "/mathematical-modelling" : `/mathematical-modelling?model=${modelId}` },
+      )}
       difficulty="Intermediate"
       estimatedMinutes={35}
       status={[

@@ -6,10 +6,53 @@ export type PolynomialRoot125 = {
   multiplicity: number;
 };
 
+export type PolynomialInequalityExample125 = {
+  id: "target" | "repeated" | "negative-leading";
+  title: string;
+  roots: PolynomialRoot125[];
+  leading: number;
+  relation: PolynomialRelation125;
+  testPoint: number;
+};
+
 export const POLYNOMIAL_ROOTS_125: PolynomialRoot125[] = [
   { id: 0, value: -2, multiplicity: 1 },
   { id: 1, value: 1, multiplicity: 1 },
   { id: 2, value: 3, multiplicity: 1 },
+];
+
+export const POLYNOMIAL_EXAMPLES_125: PolynomialInequalityExample125[] = [
+  {
+    id: "target",
+    title: "Three simple roots",
+    roots: POLYNOMIAL_ROOTS_125,
+    leading: 1,
+    relation: ">=",
+    testPoint: 0,
+  },
+  {
+    id: "repeated",
+    title: "One repeated root",
+    roots: [
+      { id: 0, value: -1, multiplicity: 1 },
+      { id: 1, value: 2, multiplicity: 2 },
+    ],
+    leading: 1,
+    relation: "<",
+    testPoint: -2,
+  },
+  {
+    id: "negative-leading",
+    title: "Negative leading term",
+    roots: [
+      { id: 0, value: -3, multiplicity: 1 },
+      { id: 1, value: 1, multiplicity: 1 },
+      { id: 2, value: 4, multiplicity: 1 },
+    ],
+    leading: -1,
+    relation: "<=",
+    testPoint: 2,
+  },
 ];
 
 export function orderedPolynomialRoots125(roots: PolynomialRoot125[]) {
@@ -38,7 +81,9 @@ export function polynomialRelationPasses125(
 }
 
 function formatEndpoint(value: number) {
- +  return Number.isInteger(value) ? String(value) : Number(value.toFixed(4)).toString();
+  return Number.isInteger(value)
+    ? String(value)
+    : Number(value.toFixed(4)).toString();
 }
 
 type Segment125 = {

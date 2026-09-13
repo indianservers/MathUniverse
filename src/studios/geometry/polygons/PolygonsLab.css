@@ -1,0 +1,56 @@
+.poly-studio .tlab{min-width:0}
+.poly-tabs{display:flex;gap:2px;overflow:auto;margin:0 0 14px;padding:0;border:0;border-bottom:1px solid #dce7f4}
+.poly-tab{display:flex;align-items:center;gap:8px;min-height:42px;padding:0 16px;border:0;border-radius:0;background:transparent;text-align:left;color:#5b6b88;box-shadow:none}
+.poly-tab svg{width:16px;height:16px;color:#147df2}
+.poly-tab b{display:block;font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+.poly-tab small{display:none}
+.poly-tab.is-on{background:transparent;color:#0891b2;box-shadow:inset 0 -3px 0 #08b9dd}
+.poly-tab.is-on svg{color:#0891b2}
+.poly-lab{display:grid;grid-template-columns:276px minmax(0,1fr) 318px;gap:12px;align-items:start}
+.poly-controls,.poly-live{background:#f7fafc}
+.poly-controls h2,.poly-live h2{margin:0 0 8px;font-size:13px}
+.poly-stage{min-height:420px}
+.poly-tess-preview{margin-top:10px;padding-top:8px;border-top:1px solid #e8eef6}
+.poly-tess-preview b{display:block;margin-bottom:6px;color:#147df2;font-size:11px;font-weight:800}
+.poly-tess-preview svg{display:block;width:100%;height:72px}
+.poly-svg{max-height:none;height:min(62vh,560px);background:#fbfdff;border:1px solid #e6eef8}
+.poly-toggle{display:flex;align-items:center;gap:8px;margin:7px 0;font-size:12px;font-weight:700;color:#334155}
+.poly-presets{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin:8px 0}
+.poly-presets button,.poly-ghost{min-height:34px;padding:0 8px;border:1px solid #dce7f4;border-radius:10px;background:#fff;color:#1d2d50;font-size:11px;font-weight:800}
+.poly-presets button.active{color:#0369a1;background:#e7f6ff;border-color:#7dd3ea}
+.poly-measure{display:grid;grid-template-columns:10px 1fr auto;align-items:center;gap:8px;width:100%;margin:0 0 6px;padding:8px 10px;border:1px solid #dce7f4;border-radius:10px;background:#fff;text-align:left}
+.poly-measure i{width:8px;height:8px;border-radius:50%}
+.poly-measure span{color:#536381;font-size:11px;font-weight:700}
+.poly-measure strong{font-size:13px}
+.poly-measure.is-on,.poly-measure:hover,.poly-measure:focus-visible{border-color:#7dd3ea;background:#f2fbff}
+.poly-formula,.poly-prop,.poly-challenge{margin:10px 0 0;padding:10px;border:1px solid #dce7f4;border-radius:12px;background:#fff}
+.poly-formula b,.poly-prop b,.poly-challenge span{display:block;color:#0369a1;font-size:10px;letter-spacing:.08em;text-transform:uppercase}
+.poly-formula p,.poly-prop p,.poly-challenge p{margin:6px 0 0;color:#334155;font-size:12px;line-height:1.5}
+.poly-challenge-actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.poly-hint{color:#0f766e!important}
+.poly-warn{margin:8px 0;padding:8px 10px;border-radius:10px;background:#fff7ed;color:#c2410c;font-size:12px;font-weight:800}
+.poly-ok{margin:8px 0;padding:8px 10px;border-radius:10px;background:#ecfdf3;color:#047857;font-size:12px;font-weight:800}
+.poly-sub{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 10px}
+.poly-sub button{min-height:32px;padding:0 10px;border:1px solid #dce7f4;border-radius:999px;background:#fff;font-size:10px;font-weight:800}
+.poly-sub button.active{background:#e7f6ff;color:#0369a1;border-color:#7dd3ea}
+.poly-table-wrap{max-height:180px;overflow:auto;margin-top:8px;border:1px solid #dce7f4;border-radius:10px}
+.poly-table-wrap table{width:100%;border-collapse:collapse;font-size:10px}
+.poly-table-wrap th,.poly-table-wrap td{border-bottom:1px solid #e8eef6;padding:5px;text-align:right}
+.poly-table-wrap th:first-child,.poly-table-wrap td:first-child{text-align:left}
+.poly-handle:hover circle:last-of-type{stroke:#147df2}
+.poly-world{margin-top:10px;padding-top:8px;border-top:1px dashed #dce7f4;color:#536381;font-size:11px;line-height:1.45}
+.poly-world b{display:block;margin-bottom:4px;color:#0f172a}
+@media (max-width:1279px){
+  .poly-lab{grid-template-columns:minmax(220px,280px) minmax(0,1fr)}
+  .poly-live{grid-column:1 / -1}
+}
+@media (max-width:900px){
+  .poly-tabs{display:flex;overflow:auto;scroll-snap-type:x mandatory;padding-bottom:4px}
+  .poly-tab{flex:0 0 168px;scroll-snap-align:start}
+  .poly-lab{grid-template-columns:1fr}
+  .poly-stage{order:-1}
+  .poly-controls,.poly-live{order:0}
+}
+@media (max-width:360px){
+  .poly-tab{flex-basis:150px}
+}

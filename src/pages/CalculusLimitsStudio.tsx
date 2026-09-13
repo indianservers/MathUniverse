@@ -35,7 +35,6 @@ export type LimitMode =
   | "asymptotes"
   | "lhopital";
 
-type LearningView = "observe" | "understand" | "why" | "try" | "challenge";
 type Viewport = { xMin: number; xMax: number; yMin: number; yMax: number };
 type LimitAnalysis = {
   left: number;
@@ -115,17 +114,16 @@ const examples = [
 ];
 
 const learningTabs: Array<{
-  id: LearningView;
+  id: string;
   label: string;
   subtitle: string;
   icon: typeof Eye;
-  content: string;
 }> = [
-  { id: "observe", label: "Observe", subtitle: "What happens?", icon: Eye, content: "Move the approach points and compare the values reached from each side." },
-  { id: "understand", label: "Understand", subtitle: "Key idea", icon: Lightbulb, content: "The value at a point and the value approached near it are separate ideas." },
-  { id: "why", label: "Why", subtitle: "The reasoning", icon: CircleAlert, content: "Agreement between both sides is what makes a two-sided limit possible." },
-  { id: "try", label: "Try", subtitle: "Practice it", icon: Target, content: "Choose an example, move a, and predict the result before reading the live analysis." },
-  { id: "challenge", label: "Challenge", subtitle: "Take it further", icon: Trophy, content: "Find a function whose left and right limits exist but do not agree." },
+  { id: "observe", label: "Observe", subtitle: "What happens?", icon: Eye },
+  { id: "understand", label: "Understand", subtitle: "Key idea", icon: Lightbulb },
+  { id: "why", label: "Why", subtitle: "The reasoning", icon: CircleAlert },
+  { id: "try", label: "Try", subtitle: "Practice it", icon: Target },
+  { id: "challenge", label: "Challenge", subtitle: "Take it further", icon: Trophy },
 ];
 
 export default function CalculusLimitsStudio({ mode }: { mode: string }) {
@@ -148,7 +146,6 @@ export default function CalculusLimitsStudio({ mode }: { mode: string }) {
     const value = params.get("v_defined");
     return value === null ? null : numberParam(value, 0);
   });
-  const [learning, setLearning] = useState<LearningView>("observe");
   const [viewport, setViewport] = useState(config.viewport);
   const [trace, setTrace] = useState<{ x: number; y: number } | null>(null);
   const previousMode = useRef(activeMode);
@@ -341,15 +338,14 @@ export default function CalculusLimitsStudio({ mode }: { mode: string }) {
         </aside>
       </div>
 
-      <section className="cls-learning" aria-label="Learning views">
+      <section className="cls-learning" aria-label="Learning loop">
         <div className="cls-learning-tabs">
           {learningTabs.map(({ id, label, subtitle, icon: Icon }) => (
-            <button key={id} type="button" className={learning === id ? "active" : ""} onClick={() => setLearning(id)} aria-selected={learning === id}>
+            <div key={id}>
               <Icon /><span><b>{label}</b><small>{subtitle}</small></span>
-            </button>
+            </div>
           ))}
         </div>
-        <p>{learningTabs.find((item) => item.id === learning)?.content}</p>
       </section>
     </div>
   );
@@ -391,7 +387,7 @@ function LimitGraph({ fn, expression, a, leftDistance, rightDistance, analysis, 
   onZoom: (factor: number) => void;
   onResetView: () => void;
 }) {
-  const width = 820, height = 650, pad = 34;
+  const width = 820, height = 650, pad = 56;
   const sx = (x: number) => pad + (x - viewport.xMin) / (viewport.xMax - viewport.xMin) * (width - pad * 2);
   const sy = (y: number) => height - pad - (y - viewport.yMin) / (viewport.yMax - viewport.yMin) * (height - pad * 2);
   const points = fn ? sampleFunction(fn, viewport.xMin, viewport.xMax, Math.max(420, samples * 22)) : [];
@@ -441,7 +437,12 @@ function LimitGraph({ fn, expression, a, leftDistance, rightDistance, analysis, 
           {trace && <g className="cls-trace"><line x1={sx(trace.x)} x2={sx(trace.x)} y1={pad} y2={height-pad} /><circle cx={sx(trace.x)} cy={sy(trace.y)} r="6" /><text x={sx(trace.x)+10} y={sy(trace.y)-10}>({trim(trace.x)}, {trim(trace.y)})</text></g>}
         </g>
       </svg>
-      <div className="cls-graph-legend"><span><i className="cyan" />f(x)</span><span><i className="orange dot" />Left approach</span><span><i className="violet dot" />Right approach</span><span><i className="hole" />f(a) {analysis.defined ? "defined" : "undefined"}</span></div>
+      <div className="cls-graph-legend">
+        <span><i className="cyan" />f(x) = {expression}</span>
+        <span><i className="orange dot" />Left approach (x → a⁻)</span>
+        <span><i className="violet dot" />Right approach (x → a⁺)</span>
+        <span><i className="hole" />f({trim(a)}) {analysis.defined ? "defined" : "undefined"}</span>
+      </div>
     </section>
   );
 }

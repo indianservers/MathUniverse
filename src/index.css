@@ -15853,7 +15853,7 @@ body {
   .geometry-studio-main {
     grid-area: main;
     @apply grid min-h-0 gap-2 p-2;
-    grid-template-rows: minmax(0, 1fr) 76px 132px;
+    grid-template-rows: minmax(0, 1fr) 76px;
   }
 
   .geometry-panel-heading {
@@ -23295,14 +23295,13 @@ body {
   gap: 5px;
   color: #0e7490;
 }
+.la-breadcrumb b {
+  color: #94a3b8;
+  font-weight: 800;
+}
 .la-breadcrumb svg {
   width: 12px;
   height: 12px;
-}
-.la-breadcrumb span:not(:last-child)::after {
-  content: ">";
-  margin-left: 6px;
-  color: #94a3b8;
 }
 .la-kicker {
   display: inline-flex;
@@ -38269,12 +38268,7 @@ body,
   min-width: 0;
 }
 
-/* Standalone studios historically mounted their own copy of the application
-   menu. Keep their learning/tool panels, but remove the primary nav rail. */
-.alg-sidebar,
-.cs-sidebar,
-.cs-backdrop,
-.cs-menu,
+/* Formula-studio rails stay collapsed; Algebra and Calculus keep mockup sidebars. */
 .dfs-sidebar,
 .ifs-sidebar,
 .limits-sidebar,
@@ -38284,9 +38278,16 @@ body,
 }
 
 .alg-studio {
-  display: block !important;
+  display: grid !important;
   width: 100% !important;
-  grid-template-columns: minmax(0, 1fr) !important;
+  grid-template-columns: 212px minmax(0, 1fr) !important;
+}
+
+@media (max-width: 900px) {
+  .alg-studio {
+    display: block !important;
+    grid-template-columns: none !important;
+  }
 }
 
 .alg-stage,
@@ -38505,7 +38506,8 @@ html { overflow-y: auto; scrollbar-gutter: stable; }
 }
 /* A constrained host must allow reaching the bottom of its studio. */
 .math-workspace-stage:has(.studio-shell),
-.math-workspace-page:has(.studio-shell) { overflow-y: auto; }
+.math-workspace-page:has(.studio-shell),
+.math-workspace-page:has(.alg-studio) { overflow-y: auto; }
 
 /* Keep supporting inspectors below the primary lesson or studio workspace.
    This gives the main visualization the full width and makes the support

@@ -38,6 +38,7 @@ import CalculusLimitsStudio from "./CalculusLimitsStudio";
 import CalculusMultivariableStudio from "./CalculusMultivariableStudio";
 import CalculusConceptStudio, { type ConceptPage } from "./CalculusConceptStudio";
 import CalculusEnhancementWorkbench from "../studios/calculus/CalculusEnhancementWorkbench";
+import StudioBreadcrumb, { mathStudioCrumbs } from "../components/ui/StudioBreadcrumb";
 import "./CalculusStudio.css";
 
 export type CalculusStudioPage =
@@ -181,7 +182,10 @@ function StudioHeader({ page, theme, onTheme, onMenu }: { page: CalculusStudioPa
     <header className="cs-header">
       <button className="cs-menu" type="button" onClick={onMenu} aria-label="Open Calculus Studio menu"><Menu /></button>
       <div className="cs-title">
-        <nav aria-label="Breadcrumb"><Link to="/">Main</Link><ChevronRight /><Link to="/calculus">Calculus Studio</Link>{page !== "home" && <><ChevronRight /><span>{meta.title.replace(" Studio", "")}</span></>}</nav>
+        <StudioBreadcrumb crumbs={mathStudioCrumbs(
+          { label: "Calculus", to: "/calculus" },
+          page === "home" ? undefined : { label: meta.title.replace(" Studio", ""), to: studioRoutes[page] },
+        )} />
         <h1>{meta.title}</h1>
         <p>{meta.subtitle}</p>
       </div>

@@ -7,6 +7,7 @@ import ApplicationVisualCard from "../components/ui/ApplicationVisualCard";
 import ContinueCard from "../components/ui/ContinueCard";
 import ConceptAccuracyPanel from "../components/ui/ConceptAccuracyPanel";
 import StudioPageShell from "../components/ui/StudioPageShell";
+import { mathStudioCrumbs } from "../components/ui/StudioBreadcrumb";
 import { topics } from "../data/topics";
 import { useProgress } from "../hooks/useProgress";
 import FormulaVisualizationAtlas from "../visualizations/formulas/FormulaVisualizationAtlas";
@@ -100,7 +101,10 @@ export default function Algebra() {
       className="algebra-studio"
       title="Algebra Studio"
       subtitle={topic.description}
-      breadcrumbs={["Home", "Math Topics", "Algebra"]}
+      breadcrumbs={mathStudioCrumbs(
+        { label: "Algebra", to: "/algebra" },
+        { label: currentTab.label, to: currentTab.id === "linear" ? "/algebra" : `/algebra?tab=${currentTab.id}` },
+      )}
       difficulty={topic.difficulty}
       estimatedMinutes={topic.estimatedMinutes}
       progress={progress}

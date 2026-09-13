@@ -1,29 +1,28 @@
 import {
-  BadgeHelp,
   BarChart3,
   BookOpenCheck,
   Braces,
   Calculator,
-  CircleHelp,
   FlaskConical,
   FunctionSquare,
   Home,
   Lightbulb,
   LineChart,
-  Moon,
   MoveRight,
-  Settings,
+  Play,
+  Search,
   Sparkles,
   SquareFunction,
   Target,
   Trophy,
   type LucideIcon,
 } from "lucide-react";
-import { useState, type ReactNode } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { ExpressionsLab, EquationsLab, FunctionsLab, PolynomialsLab, SystemsLab, ExponentsLab, SequencesLab, ProofLab, CasGateway } from "../studios/algebra/AlgebraInteractiveLabs";
-import { useTheme } from "../hooks/useTheme";
+import { useProgress } from "../hooks/useProgress";
 import AlgebraEnhancementWorkbench from "../studios/algebra/AlgebraEnhancementWorkbench";
+import StudioBreadcrumb, { mathStudioCrumbs } from "../components/ui/StudioBreadcrumb";
 import "./AlgebraStudio.css";
 
 type AlgebraPage = "home" | "expressions" | "equations" | "functions" | "polynomials" | "systems" | "exponents" | "sequences" | "proof" | "cas" | "advanced";
@@ -34,6 +33,18 @@ type StudioNavItem = {
   route: string;
   icon: LucideIcon;
 };
+
+type TopicStudio = {
+  id: Exclude<AlgebraPage, "home">;
+  label: string;
+  route: string;
+  description: string;
+  iconSrc: string;
+  tabs: string[];
+};
+
+const LAST_ROUTE_KEY = "algebra-studio:last-route";
+const VISITED_KEY = "algebra-studio:visited-topics";
 
 const studioNav: StudioNavItem[] = [
   { id: "home", label: "Studio Home", route: "/algebra", icon: Home },
@@ -49,11 +60,43 @@ const studioNav: StudioNavItem[] = [
   { id: "advanced", label: "Advanced Workbench", route: "/algebra/advanced", icon: FlaskConical },
 ];
 
+const topicStudios: TopicStudio[] = [
+  { id: "expressions", label: "Expressions", route: "/algebra/expressions", description: "Build and simplify algebraic expressions.", iconSrc: "/assets/algebra-studio/algebra-icon-expressions.png", tabs: ["Simplify", "Expand", "Factor", "Combine Terms"] },
+  { id: "equations", label: "Equations", route: "/algebra/equations", description: "Solve and balance equations visually.", iconSrc: "/assets/algebra-studio/algebra-icon-equations.png", tabs: ["Linear", "Quadratic", "Absolute Value", "Inequalities"] },
+  { id: "functions", label: "Functions", route: "/algebra/functions", description: "Explore functions and transformations.", iconSrc: "/assets/algebra-studio/algebra-icon-functions.png", tabs: ["Families", "Transformations", "Composition", "Inverse", "Piecewise"] },
+  { id: "polynomials", label: "Polynomials", route: "/algebra/polynomials", description: "Analyze polynomials and their roots.", iconSrc: "/assets/algebra-studio/algebra-icon-polynomials.png", tabs: ["Roots", "Factors", "Division", "End Behavior", "Multiplicity"] },
+  { id: "systems", label: "Systems", route: "/algebra/systems", description: "Solve systems graphically.", iconSrc: "/assets/algebra-studio/algebra-icon-systems.png", tabs: ["Graphing", "Substitution", "Elimination", "Matrices", "Inequalities"] },
+  { id: "exponents", label: "Exponents & Logs", route: "/algebra/exponents-logs", description: "Work with exponential and logarithmic functions.", iconSrc: "/assets/algebra-studio/algebra-icon-exponents.png", tabs: ["Exponent Laws", "Radicals", "Exponential & Logs", "Equations"] },
+  { id: "sequences", label: "Sequences", route: "/algebra/sequences", description: "Find patterns and general terms.", iconSrc: "/assets/algebra-studio/algebra-icon-sequences.png", tabs: ["Arithmetic", "Geometric", "Recursive", "Sigma", "Patterns"] },
+  { id: "proof", label: "Algebraic Proof", route: "/algebra/proof", description: "Construct and validate proofs.", iconSrc: "/assets/algebra-studio/algebra-icon-proof.png", tabs: ["Identities", "Equation Proof", "Induction", "Inequality", "Counterexample"] },
+  { id: "cas", label: "CAS Explorer", route: "/algebra/cas", description: "Opens the connected CAS workspace.", iconSrc: "/assets/algebra-studio/algebra-icon-cas.png", tabs: ["Solve", "Simplify", "Factor", "Expand", "Substitute"] },
+  { id: "advanced", label: "Advanced Workbench", route: "/algebra/advanced", description: "Twenty-five linked algebra tools in one workbench.", iconSrc: "/assets/algebra-studio/algebra-studio-mark.png", tabs: [] },
+];
+
 const routePage: Record<string, AlgebraPage> = Object.fromEntries(studioNav.map((item) => [item.route, item.id])) as Record<string, AlgebraPage>;
+
+function readStringList(key: string): string[] {
+  if (typeof window === "undefined") return [];
+  try {
+    const value = JSON.parse(localStorage.getItem(key) ?? "[]");
+    return Array.isArray(value) ? value.filter((item): item is string => typeof item === "string") : [];
+  } catch {
+    return [];
+  }
+}
 
 export default function AlgebraStudio() {
   const location = useLocation();
   const page = routePage[location.pathname] ?? "home";
+
+  useEffect(() => {
+    if (page === "home") return;
+    localStorage.setItem(LAST_ROUTE_KEY, location.pathname);
+    const seen = new Set(readStringList(VISITED_KEY));
+    seen.add(page);
+    localStorage.setItem(VISITED_KEY, JSON.stringify([...seen]));
+  }, [location.pathname, page]);
+
   return (
     <main className="alg-studio">
       <AlgebraSidebar page={page} />
@@ -89,70 +132,119 @@ function AlgebraSidebar({ page }: { page: AlgebraPage }) {
 }
 
 function AlgebraMark() {
-  return <span className="alg-mark" aria-hidden="true"><i /><i /><i /></span>;
-}
-
-function StudioHeader({ title, subtitle, tabs, activeTab, onTab }: { title: string; subtitle: string; tabs?: string[]; activeTab?: string; onTab?: (tab: string) => void }) {
-  const [panel, setPanel] = useState<"help" | "settings" | null>(null);
-  const { toggleTheme, fontScale, setFontScale, reducedMotion, setReducedMotion } = useTheme();
-  return (
-    <>
-      <header className="alg-header">
-        <div><h1>{title}</h1><p>{subtitle}</p></div>
-        <div className="alg-header-actions"><button type="button" aria-label="Help" aria-expanded={panel === "help"} onClick={() => setPanel(panel === "help" ? null : "help")}><CircleHelp /></button><button type="button" aria-label="Settings" aria-expanded={panel === "settings"} onClick={() => setPanel(panel === "settings" ? null : "settings")}><Settings /></button><button type="button" aria-label="Theme" onClick={toggleTheme}><Moon /></button></div>
-      </header>
-      {panel === "help" && <section className="alg-card"><h2>Using Algebra Studio</h2><p>Choose a topic, then a mode. Edit the labelled parameters to update the mathematical model. Challenges check your answer against the current values; CAS computes the expression you enter.</p></section>}
-      {panel === "settings" && <section className="alg-card"><h2>Display settings</h2><label>Text size<select value={fontScale} onChange={(e) => setFontScale(e.target.value as typeof fontScale)}><option value="base">Standard</option><option value="large">Large</option><option value="xlarge">Extra large</option></select></label><label><input type="checkbox" checked={reducedMotion} onChange={(e) => setReducedMotion(e.target.checked)} />Reduce motion</label></section>}
-      {tabs && <nav className="alg-top-tabs" aria-label={`${title} modes`}>{tabs.map((tab) => <button type="button" key={tab} className={tab === activeTab ? "active" : ""} onClick={() => onTab?.(tab)}>{tab}</button>)}</nav>}
-    </>
-  );
+  return <img className="alg-mark-img" src="/assets/algebra-studio/algebra-studio-mark.png" alt="" width={40} height={40} />;
 }
 
 function StudioHome() {
-  const topics = studioNav.slice(1);
+  const { getTopicProgress, markTopicVisited } = useProgress();
+  const [query, setQuery] = useState("");
   const [answer, setAnswer] = useState("");
   const [checked, setChecked] = useState(false);
+  const [visited, setVisited] = useState<string[]>([]);
+  const searchRef = useRef<HTMLInputElement>(null);
+  const resumeRoute = typeof window === "undefined" ? "/algebra/functions" : (localStorage.getItem(LAST_ROUTE_KEY) || "/algebra/functions");
+  const progress = getTopicProgress("algebra");
+
+  useEffect(() => {
+    markTopicVisited("algebra");
+    setVisited(readStringList(VISITED_KEY));
+  }, [markTopicVisited]);
+
+  useEffect(() => {
+    const onKey = (event: KeyboardEvent) => {
+      if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k") {
+        event.preventDefault();
+        searchRef.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
+  const filtered = useMemo(() => {
+    const launchTopics = topicStudios.filter((item) => item.id !== "advanced");
+    const needle = query.trim().toLowerCase();
+    if (!needle) return launchTopics;
+    return launchTopics.filter((item) => `${item.label} ${item.description} ${item.route} ${item.tabs.join(" ")}`.toLowerCase().includes(needle));
+  }, [query]);
+
   return (
-    <div className="alg-page alg-home">
-      <StudioHeader title="Welcome to Algebra Studio" subtitle="Explore, connect, and master algebra through interactive visual models." />
-      <section className="alg-concept-map" aria-label="Algebra concept map">
-        <div className="alg-map-group left">{topics.slice(0, 5).map((item) => <Link key={item.id} to={item.route}><item.icon />{item.label}</Link>)}</div>
-        <div className="alg-map-core"><AlgebraMark /><b>ALGEBRA</b></div>
-        <div className="alg-map-group right">{topics.slice(5).map((item) => <Link key={item.id} to={item.route}><item.icon />{item.label}</Link>)}</div>
-      </section>
+    <div className="alg-page">
+      <header className="alg-header">
+        <div>
+          <StudioBreadcrumb crumbs={mathStudioCrumbs({ label: "Algebra", to: "/algebra" })} />
+          <h1>Welcome to Algebra Studio</h1>
+          <p>See the pattern. Shape the equation. Launch any lab from the map or the numbered cards.</p>
+        </div>
+        <label className="alg-landing-search">
+          <Search />
+          <input ref={searchRef} type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search topics, examples, or concepts..." aria-label="Search Algebra Studio topics" />
+          <kbd>Ctrl K</kbd>
+        </label>
+      </header>
       <div className="alg-home-grid">
-        <section className="alg-panel alg-launch"><PanelHeading title="Launch a topic" subtitle="Choose a topic to explore with interactive visual models." />
-          <div className="alg-topic-grid">{topics.map((item, index) => <TopicCard key={item.id} item={item} index={index + 1} />)}</div>
-        </section>
+        <div>
+          <section className="alg-concept-map" aria-label="Algebra concept map">
+            <div className="alg-map-group">
+              {topicStudios.filter((item) => item.id !== "advanced").slice(0, 4).map((item) => (
+                <Link key={item.id} to={item.route}>{item.label}</Link>
+              ))}
+            </div>
+            <div className="alg-map-core"><AlgebraMark /><span>ALGEBRA</span></div>
+            <div className="alg-map-group">
+              {topicStudios.filter((item) => item.id !== "advanced").slice(4).map((item) => (
+                <Link key={item.id} to={item.route}>{item.label}</Link>
+              ))}
+            </div>
+          </section>
+          <section className="alg-card alg-launch" id="algebra-topics">
+            <h2>Launch a topic</h2>
+            <p>Nine interactive labs. Open a studio or jump into a tab.</p>
+            {filtered.length === 0 ? <p className="alg-empty">No topics match “{query}”.</p> : (
+              <div className="alg-topic-grid">
+                {filtered.map((item, index) => (
+                  <article key={item.id} className="alg-topic-card">
+                    <span className="alg-topic-number">{index + 1}</span>
+                    <Link to={item.route}>
+                      <header><img src={item.iconSrc} alt="" width={56} height={56} /><b>{item.label}</b></header>
+                      <p>{item.description}</p>
+                    </Link>
+                    <nav className="alg-topic-tabs" aria-label={`${item.label} tabs`}>
+                      {item.tabs.map((tab) => (
+                        <Link key={tab} to={`${item.route}?mode=${encodeURIComponent(tab)}`}>{tab}</Link>
+                      ))}
+                    </nav>
+                  </article>
+                ))}
+              </div>
+            )}
+          </section>
+        </div>
         <aside className="alg-home-aside">
-          <Card title="Continue experiment" icon={<FlaskConical />}><MiniParabola /><b>Quadratic Functions</b><small>Explore transformations</small><Link className="alg-gradient-button" to="/algebra/functions">Continue</Link></Card>
-          <Card title="Your learning journey" icon={<Target />}><p>Explore a topic, change its parameters, then check a prediction. Each lab links its model to the calculated result.</p></Card>
-          <Card title="Visual challenge" icon={<BadgeHelp />}><p>Which expressions are equivalent to 2(x + 3) − (x − 1)?</p><div className="alg-answer-grid">{["x + 7", "2x + 5", "3x + 7", "x + 5", "2x + 6", "x + 6"].map((choice) => <button type="button" key={choice} aria-pressed={answer === choice} onClick={() => { setAnswer(choice); setChecked(false); }}>{choice}</button>)}</div><button className="alg-gradient-button" type="button" onClick={() => setChecked(true)}>Check answer</button>{checked && <p role="status">{answer === "x + 7" ? "Correct: 2x+6−x+1 = x+7." : "Not yet. Distribute the minus sign over (x−1)."}</p>}</Card>
+          <section className="alg-card">
+            <h2><Play /> Continue experiment</h2>
+            <strong>Quadratic Functions</strong>
+            <p>Resume {visited.length ? `${visited.length} topics started` : "your last lab"} · {progress}%</p>
+            <Link className="alg-gradient-button" to={resumeRoute}>Resume</Link>
+          </section>
+          <section className="alg-card" id="algebra-challenge">
+            <h2>Challenge of the day</h2>
+            <p>Simplify 2(x + 3) − (x − 1)</p>
+            <div className="alg-answer-grid">{["x + 7", "2x + 5", "3x + 7", "x + 5"].map((choice) => (
+              <button type="button" key={choice} aria-pressed={answer === choice} onClick={() => { setAnswer(choice); setChecked(false); }}>{choice}</button>
+            ))}</div>
+            <button className="alg-gradient-button" type="button" onClick={() => setChecked(true)}>Check answer</button>
+            {checked && <p role="status">{answer === "x + 7" ? "Correct: 2x + 6 − x + 1 = x + 7." : "Distribute the minus sign, then combine like terms."}</p>}
+          </section>
         </aside>
       </div>
-      <LearningStrip />
+      <section className="alg-learning-strip" aria-label="Learning loop">
+        <div><Lightbulb /><span><b>Observe</b><small>Visualize concepts with interactive diagrams.</small></span></div>
+        <div><Target /><span><b>Understand</b><small>Build intuition with clear explanations.</small></span></div>
+        <div><Sparkles /><span><b>Why</b><small>Discover the ideas and connections behind.</small></span></div>
+        <div><FlaskConical /><span><b>Try</b><small>Experiment, manipulate, and see results live.</small></span></div>
+        <div><Trophy /><span><b>Challenge</b><small>Solve problems and test your mastery.</small></span></div>
+      </section>
     </div>
   );
 }
-
-function TopicCard({ item, index }: { item: StudioNavItem; index: number }) {
-  const Icon = item.icon;
-  return <Link className="alg-topic-card" to={item.route}><span className="alg-topic-number">{index}</span><header><Icon /><b>{item.label}</b></header><MiniTopicVisual id={item.id} /><p>{topicDescription(item.id)}</p></Link>;
-}
-
-function MiniTopicVisual({ id }: { id: AlgebraPage }) {
-  if (id === "expressions") return <div className="alg-mini-tiles"><i>x</i><i>x</i><i>+</i><i>3</i></div>;
-  if (id === "equations") return <div className="alg-mini-balance"><span>2x + 3</span><b>⚖</b><span>7</span></div>;
-  if (id === "functions" || id === "polynomials") return <MiniParabola />;
-  if (id === "systems") return <div className="alg-mini-system"><i /><i /></div>;
-  if (id === "exponents") return <div className="alg-mini-formula">y = 2ˣ | y = log₂x</div>;
-  if (id === "sequences") return <div className="alg-mini-sequence">● | ●● | ●●● | …</div>;
-  if (id === "proof") return <div className="alg-mini-proof"><span>Given</span><b>→</b><span>Show</span><b>→</b><span>Therefore</span></div>;
-  return <div className="alg-mini-formula">expand((x + 2)³)</div>;
-}
-
-function Card({ title, icon, children, className = "" }: { title: string; icon?: ReactNode; children: ReactNode; className?: string }) { return <section className={`alg-card ${className}`}><h2>{icon}{title}</h2>{children}</section>; }
-function PanelHeading({ title, subtitle }: { title: string; subtitle: string }) { return <header className="alg-panel-heading"><h2>{title}</h2><p>{subtitle}</p></header>; }
-function LearningStrip() { const items: Array<[LucideIcon,string,string]> = [[Target,"Observe","Look closely at patterns and relationships."],[Lightbulb,"Understand","Connect ideas and build meaning."],[CircleHelp,"Why","Ask questions and discover why."],[FlaskConical,"Try","Practice with interactive tools."],[Trophy,"Challenge","Solve problems and level up."]]; return <footer className="alg-learning-strip">{items.map(([Icon,title,text]) => <div key={title}><Icon /><span><b>{title}</b><small>{text}</small></span></div>)}</footer>; }
-function topicDescription(id: AlgebraPage) { return ({ expressions:"Build and simplify algebraic expressions.", equations:"Solve and balance equations visually.", functions:"Explore functions and transformations.", polynomials:"Analyze polynomials and their roots.", systems:"Solve systems graphically.", exponents:"Work with exponential and logarithmic functions.", sequences:"Find patterns and general terms.", proof:"Construct and validate algebraic proofs.", cas:"Open the connected CAS workspace.", advanced:"Use 25 connected algebra analysis tools.", home:"" } as Record<AlgebraPage,string>)[id]; }
-function MiniParabola() { return <svg className="alg-mini-parabola" viewBox="0 0 180 70"><path d="M10 12 Q55 105 90 42 Q125 -18 170 55" fill="none" stroke="url(#mini-grad)" strokeWidth="3"/><defs><linearGradient id="mini-grad"><stop stopColor="#08b9da"/><stop offset="1" stopColor="#8c42f5"/></linearGradient></defs><line x1="6" x2="174" y1="55" y2="55" stroke="#9aa7bd"/><line x1="90" x2="90" y1="5" y2="65" stroke="#9aa7bd"/></svg>; }

@@ -39,6 +39,8 @@ import { Point2D, clamp, distance2D, roundTo, triangleAreaFromPoints, trianglePe
 import { rightTriangleMetrics } from "../utils/coreAccuracyOracles";
 import { geometryWorkspaceModule } from "./geometryStudioModules";
 import GeometryEnhancementWorkbench from "../studios/geometry/GeometryEnhancementWorkbench";
+import StudioBreadcrumb, { mathStudioCrumbs } from "../components/ui/StudioBreadcrumb";
+import MockupStudioApp from "../studios/mockup/MockupStudioApp";
 
 type GeometryTab = "triangles" | "pythagoras" | "theorems" | "circles" | "solids" | "accuracy" | "advanced";
 type InspectorTab = "vertices" | "measurements" | "construction";
@@ -93,6 +95,10 @@ const solids: Array<{ id: SolidId; label: string }> = [
 
 
 export default function Geometry() {
+  return <MockupStudioApp studioId="geometry" />;
+}
+
+export function GeometryLegacyWorkspace() {
   const topic = topics.find((item) => item.id === "geometry")!;
   const { getTopicProgress, markTopicVisited, markTopicInteracted } = useProgress();
   const [tab, setTab] = useState<GeometryTab>(() => readGeometryTab());
@@ -122,6 +128,10 @@ export default function Geometry() {
     <main className="geometry-universe" onPointerDown={() => markTopicInteracted(topic.id)}>
       <header className="gu-header">
         <div>
+          <StudioBreadcrumb crumbs={mathStudioCrumbs(
+            { label: "Geometry", to: "/geometry" },
+            { label: geometryTabs.find((item) => item.id === tab)?.label ?? "Triangles", to: tab === "triangles" ? "/geometry" : `/geometry?tab=${tab}` },
+          )} />
           <h1>Geometry Studio</h1>
           <p>Measure shapes, angles, areas, circles, and spatial relationships visually.</p>
         </div>

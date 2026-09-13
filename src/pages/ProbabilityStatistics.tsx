@@ -5,6 +5,7 @@ import GraphCard from "../components/ui/GraphCard";
 import SectionCard from "../components/ui/SectionCard";
 import SliderControl, { SliderGroup } from "../components/ui/SliderControl";
 import StudioPageShell from "../components/ui/StudioPageShell";
+import { mathStudioCrumbs } from "../components/ui/StudioBreadcrumb";
 import ResponsiveBarChart from "../components/charts/ResponsiveBarChart";
 import ResponsiveLineChart from "../components/charts/ResponsiveLineChart";
 import PhaseTwoDomainPanel from "../components/ui/PhaseTwoDomainPanel";
@@ -13,6 +14,7 @@ import { statisticsLearningContent } from "../modules/probability-statistics/dat
 import { statisticsSyllabusStudios } from "../modules/probability-statistics/pages/StatisticsSyllabusCompletionPage";
 import StatisticsEnhancementWorkbench from "../studios/statistics/StatisticsEnhancementWorkbench";
 import LearningExpansion from "../modules/probability-statistics/pages/LearningExpansion";
+import MockupStudioApp from "../studios/mockup/MockupStudioApp";
 
 type AccentName = "cyan" | "violet" | "emerald" | "rose" | "amber" | "sky" | "indigo" | "slate";
 type StatsTabId = "concepts" | "normal" | "data" | "learning" | "advanced";
@@ -133,6 +135,10 @@ const statisticsConceptCards = [
 ] as const satisfies readonly ConceptCardItem[];
 
 export default function ProbabilityStatistics() {
+  return <MockupStudioApp studioId="statistics" />;
+}
+
+export function ProbabilityStatisticsLegacy() {
   const [activeTab, setActiveTab] = useState<StatsTabId>(() => readStatsTabFromUrl());
   const [conceptQuery, setConceptQuery] = useState("");
   const [mean, setMean] = useState(0);
@@ -216,7 +222,10 @@ export default function ProbabilityStatistics() {
       className="stats-studio"
       title="Statistics & Probability Studio"
       subtitle="Open concept cards for distributions, inference, regression, Bayesian reasoning, stochastic processes, and data labs."
-      breadcrumbs={["Home", "Probability & Statistics"]}
+      breadcrumbs={mathStudioCrumbs(
+        { label: "Probability & Statistics", to: "/probability-statistics" },
+        { label: currentTab.label, to: currentTab.id === "concepts" ? "/probability-statistics" : `/probability-statistics?tab=${currentTab.id}` },
+      )}
       difficulty="Concept Home"
       estimatedMinutes={10}
       progress={76}

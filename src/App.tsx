@@ -562,6 +562,9 @@ export default function App() {
               element={<VisualProofPage />}
             />
             <Route path="geometry" element={<Geometry />} />
+            {["construction", "triangles", "circles", "polygons", "transformations", "coordinate", "measurement", "proofs", "solids", "ar"].map((slug) => (
+              <Route key={`geometry-${slug}`} path={`geometry/${slug}`} element={<Geometry />} />
+            ))}
             <Route
               path="geometry/:conceptId"
               element={<GeometryConceptPage />}
@@ -569,6 +572,9 @@ export default function App() {
             <Route path="shapes" element={<ShapesExplorer />} />
             <Route path="number-systems" element={<NumberSystems />} />
             <Route path="trigonometry" element={<Trigonometry />} />
+            {["unit-circle", "right-triangle", "graphs", "identities", "inverse", "oblique", "waves", "applications", "ar"].map((slug) => (
+              <Route key={`trig-${slug}`} path={`trigonometry/${slug}`} element={<Trigonometry />} />
+            ))}
             <Route
               path="trigonometry/formula-visualizer"
               element={<TrigFormulaVisualizerPage />}
@@ -663,10 +669,16 @@ export default function App() {
             />
             <Route path="combinatorics" element={<Combinatorics />} />
             <Route path="complex-numbers" element={<ComplexNumbers />} />
+            {["argand-plane", "arithmetic", "polar-forms", "rotation", "roots", "euler", "loci", "fractals", "waves-circuits"].map((slug) => (
+              <Route key={`complex-${slug}`} path={`complex-numbers/${slug}`} element={<ComplexNumbers />} />
+            ))}
             <Route path="set-theory" element={<SetTheory />} />
             <Route path="set-theory/:pageSlug" element={<SetTheory />} />
             <Route path="statistics" element={<ProbabilityStatistics />} />
             <Route path="linear-algebra" element={<LinearAlgebra />} />
+            {["vectors", "matrices", "row-reduction", "linear-transforms", "determinants", "vector-spaces", "eigenvectors", "orthogonality", "least-squares", "playground"].map((slug) => (
+              <Route key={`la-${slug}`} path={`linear-algebra/${slug}`} element={<LinearAlgebra />} />
+            ))}
             <Route path="matrices" element={<MatrixOperations />} />
             <Route
               path="matrices/:operationId"
@@ -681,6 +693,9 @@ export default function App() {
               path="mathematical-modelling"
               element={<MathematicalModellingStudio />}
             />
+            {["motion", "population", "epidemics", "finance", "optimization", "networks", "regression", "periodic", "numerical", "comparison"].map((slug) => (
+              <Route key={`model-${slug}`} path={`mathematical-modelling/${slug}`} element={<MathematicalModellingStudio />} />
+            ))}
             <Route
               path="mathematical-modelling/advanced"
               element={<ModellingEnhancementWorkbench />}
@@ -739,6 +754,9 @@ export default function App() {
             <Route path="graph-comparison" element={<GraphComparisonMode />} />
             <Route path="graph-theory" element={<GraphTheory />} />
             <Route path="discrete-world" element={<DiscreteWorld />} />
+            {["number-sense", "primes", "modular-arithmetic", "number-patterns", "combinatorics", "logic", "sets", "graphs", "algorithms", "cryptography"].map((slug) => (
+              <Route key={`dw-${slug}`} path={`discrete-world/${slug}`} element={<DiscreteWorld />} />
+            ))}
             <Route
               path="parametric-curves"
               element={<ParametricCurveExplorer />}
@@ -757,6 +775,9 @@ export default function App() {
               path="probability-statistics"
               element={<ProbabilityStatistics />}
             />
+            {["data-explorer", "descriptive", "interactive-distributions", "experiments", "counting", "clt", "confidence-intervals", "hypothesis", "correlation", "anova"].map((slug) => (
+              <Route key={`stats-${slug}`} path={`probability-statistics/${slug}`} element={<ProbabilityStatistics />} />
+            ))}
             <Route
               path="probability-statistics/module"
               element={<ProbabilityStatisticsModulePage />}

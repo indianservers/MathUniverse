@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 import { BookOpen, ChevronLeft, ChevronRight, Expand, Grid3X3, Lightbulb, Menu, Minus, Moon, Move, Pause, Play, Plus, RotateCcw, Search, Settings, Sigma, Sparkles, ZoomIn, ZoomOut } from "lucide-react";
 import type { FormulaVisualizerRouteConfig } from "../data/formulaVisualizerRoutes";
 import MathExpression from "../components/ui/MathExpression";
 import MainNavigation from "../components/layout/MainNavigation";
+import StudioBreadcrumb, { mathStudioCrumbs } from "../components/ui/StudioBreadcrumb";
 import { calculateRiemann, normalizeFormulaPartitions, parseIntegrationFormulaQuery, type FormulaPartition, type FormulaSamplingMethod } from "../utils/integrationFormulaStudioMath";
 import "./IntegrationFormulaStudio.css";
 
@@ -55,7 +56,10 @@ export default function IntegrationFormulaStudio({_config}:{_config:FormulaVisua
 }
 
 function StudioSidebar(){return <MainNavigation/>}
-function StudioTopbar(){return <div className="ifs-topbar"><div className="ifs-crumb">Home<ChevronRight/>Math<ChevronRight/>Integration<ChevronRight/><strong>Formula Visualizer</strong></div><div className="ifs-search"><Search/>Search… <kbd>⌘ K</kbd></div><button>🔥 5 day streak</button><button>☆ 120 XP</button><button><BookOpen/>Teacher mode</button><button aria-label="Settings"><Settings/></button><button aria-label="Theme"><Moon/></button></div>}
+function StudioTopbar(){
+  const location = useLocation();
+  return <div className="ifs-topbar"><StudioBreadcrumb className="ifs-crumb" crumbs={[...mathStudioCrumbs({ label: "Calculus", to: "/calculus" }), { label: "Integration", to: "/calculus/integration" }, { label: "Formula Visualizer", to: location.pathname }]}/><div className="ifs-search"><Search/>Search… <kbd>⌘ K</kbd></div><button>🔥 5 day streak</button><button>☆ 120 XP</button><button><BookOpen/>Teacher mode</button><button aria-label="Settings"><Settings/></button><button aria-label="Theme"><Moon/></button></div>;
+}
 
 function FormulaLibrary({selectedId,query,category,filtered,open,onClose,onQuery,onCategory,onSelect}:{selectedId:string;query:string;category:FormulaCategory;filtered:StudioFormula[];open:boolean;onClose:()=>void;onQuery:(v:string)=>void;onCategory:(v:FormulaCategory)=>void;onSelect:(id:string)=>void}){return <aside className={`ifs-library ${open?"open":""}`}><header><h2>FORMULA LIBRARY</h2><button onClick={onClose}><ChevronLeft/></button></header><label className="ifs-library-search"><Search/><input aria-label="Search integration formulas" placeholder="Search integration formulas..." value={query} onChange={e=>onQuery(e.target.value)}/></label><div className="ifs-filters">{(["All","Foundations","Rules","Techniques","Applications"] as FormulaCategory[]).map(value=><button className={category===value?"active":""} onClick={()=>onCategory(value)} key={value}>{value}</button>)}</div><div className="ifs-formula-list">{filtered.map(item=><button className={selectedId===item.id?"selected":""} key={item.id} onClick={()=>onSelect(item.id)}><span className="ifs-card-copy"><b>{item.title}</b><small>{item.description}</small><MathExpression value={item.latex}/></span><i>{item.difficulty}</i><ChevronRight/></button>)}{!filtered.length&&<p>No formulas match this search.</p>}</div></aside>}
 

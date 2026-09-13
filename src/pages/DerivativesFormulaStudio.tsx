@@ -1,12 +1,13 @@
 import { useEffect, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 import {
-  BookOpen, ChevronRight, Expand, Grid3X3, Home, Menu,
+  BookOpen, ChevronRight, Expand, Grid3X3, Menu,
   Moon, Move, Pause, Play, RotateCcw, Search, Settings, Sparkles,
   Waves as Trace, X, ZoomIn,
 } from "lucide-react";
 import MathExpression from "../components/ui/MathExpression";
 import MainNavigation from "../components/layout/MainNavigation";
+import StudioBreadcrumb, { mathStudioCrumbs } from "../components/ui/StudioBreadcrumb";
 import type { FormulaVisualizerEntry, FormulaVisualizerRouteConfig } from "../data/formulaVisualizerRoutes";
 import "./DerivativesFormulaStudio.css";
 
@@ -24,6 +25,7 @@ type FormulaModel = {
 };
 
 export default function DerivativesFormulaStudio({ config }: { config: FormulaVisualizerRouteConfig }) {
+  const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
   const [a, setA] = useState(() => numberParam(searchParams.get("v_a"), 3));
   const [h, setH] = useState(() => nonZero(numberParam(searchParams.get("v_h"), 2)));
@@ -85,7 +87,7 @@ export default function DerivativesFormulaStudio({ config }: { config: FormulaVi
     <StudioSidebar />
     <div className="dfs-page">
       <StudioTopbar />
-      <header className="dfs-heading"><div><div className="dfs-breadcrumb"><Home/>Home<ChevronRight/>Math<ChevronRight/>Derivatives<ChevronRight/><strong>Derivatives Formula Visualizer</strong></div><h1>Derivatives Formula Visualizer</h1><p>See every rule become a slope.</p></div><nav>{(["Explore","Formula Bank","Examples","Why it Works","Practice"] as TopTab[]).map(tab=><button className={topTab===tab?"active":""} onClick={()=>chooseTopTab(tab)} key={tab}>{tab}</button>)}</nav></header>
+      <header className="dfs-heading"><div><StudioBreadcrumb className="dfs-breadcrumb" crumbs={[...mathStudioCrumbs({ label: "Calculus", to: "/calculus" }), { label: "Derivatives", to: "/calculus/derivatives" }, { label: "Formula Visualizer", to: location.pathname }]} /><h1>Derivatives Formula Visualizer</h1><p>See every rule become a slope.</p></div><nav>{(["Explore","Formula Bank","Examples","Why it Works","Practice"] as TopTab[]).map(tab=><button className={topTab===tab?"active":""} onClick={()=>chooseTopTab(tab)} key={tab}>{tab}</button>)}</nav></header>
       <div className="dfs-mobile-actions"><button onClick={()=>setMobileLibrary(true)}><BookOpen/>Formula library</button><button onClick={()=>setMobileControls(true)}><Settings/>Controls</button></div>
       <div className="dfs-workspace">
         <FormulaLibrary config={config} selected={selected} selectedId={selectedId} query={formulaQuery} category={category} mobileOpen={mobileLibrary} onClose={()=>setMobileLibrary(false)} onQuery={setFormulaQuery} onCategory={setCategory} onSelect={(id)=>{setSelectedId(id);setMobileLibrary(false)}}/>

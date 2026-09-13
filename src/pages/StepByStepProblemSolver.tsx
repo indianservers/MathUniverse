@@ -1,6 +1,7 @@
 import katex from "katex";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import StudioBreadcrumb from "../components/ui/StudioBreadcrumb";
 import {
   BadgeIndianRupee, BarChart3, Calculator, Camera, Check, CheckCircle2, ChevronDown,
   CircleHelp, Clipboard, Clock3, Copy, Eraser, FileText, GraduationCap, Lightbulb,
@@ -61,7 +62,12 @@ export default function StepByStepProblemSolver() {
 
   return (
     <div className="problem-solver-page">
-      <nav className="ps-breadcrumb" aria-label="Breadcrumb"><span>Home</span><i>/</i><span>CAS</span><i>/</i><b>Algebra Solver</b></nav>
+      <StudioBreadcrumb className="ps-breadcrumb" crumbs={[
+        { label: "Home", to: "/" },
+        { label: "Mathematics", to: "/learn" },
+        { label: "CAS", to: "/workspace/data/cas" },
+        { label: "Algebra Solver", to: "/problem-solver" },
+      ]} />
       <header className="ps-header">
         <div className="ps-title-icon"><Calculator /></div>
         <div><h1>Step-by-Step Problem Solver</h1><p>Type a problem. See the reasoning. Check the answer.</p></div>

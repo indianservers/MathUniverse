@@ -528,7 +528,6 @@ export default function GeometryWorkspacePanel({
   const [unit, setUnit] = useState<GeometryUnit>("units");
   const [precision, setPrecision] = useState(2);
   const [snapMenuOpen, setSnapMenuOpen] = useState(false);
-  const [pinnedMeasurements, setPinnedMeasurements] = useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = useState(0);
   const [historyPlaying, setHistoryPlaying] = useState(false);
   const [activePane, setActivePane] = useState<GeometryPane>("canvas");
@@ -536,10 +535,7 @@ export default function GeometryWorkspacePanel({
   const [toolPaneWidth, setToolPaneWidth] = useState(304);
   const [inspectorPaneWidth, setInspectorPaneWidth] = useState(340);
   const [rightTopHeight, setRightTopHeight] = useState<number | null>(null);
-  const [bottomFirstWidth, setBottomFirstWidth] = useState<number | null>(null);
-  const [bottomSecondWidth, setBottomSecondWidth] = useState<number | null>(null);
   const rightPaneRef = useRef<HTMLElement>(null);
-  const bottomDockRef = useRef<HTMLElement>(null);
   const activeHint =
     geometryToolObjectPickHint(activeTool, geometryObjectPicks) ??
     `${geometryToolLabel(activeTool)} tool ready`;
@@ -556,12 +552,6 @@ export default function GeometryWorkspacePanel({
       ...graphSettings,
       highContrastGrid: !graphSettings.highContrastGrid,
     });
-  const activeDock =
-    studioMode === "Animate"
-      ? "Animation"
-      : studioMode === "Measure"
-        ? "Measurements"
-        : "Construction Protocol";
   const resizeActivePane = (direction: "increase" | "decrease") => {
     const amount = direction === "increase" ? 32 : -32;
     if (activePane === "tools") {
@@ -580,10 +570,8 @@ export default function GeometryWorkspacePanel({
     "--geometry-tools-width": `${toolPaneWidth}px`,
     "--geometry-inspector-width": `${inspectorPaneWidth}px`,
     "--geometry-right-top": rightTopHeight ? `${rightTopHeight}px` : "1fr",
-    "--geometry-bottom-first": bottomFirstWidth ? `${bottomFirstWidth}px` : "1.2fr",
-    "--geometry-bottom-second": bottomSecondWidth ? `${bottomSecondWidth}px` : "1fr",
   } as CSSProperties;
-  const beginPaneResize = (event: PointerEvent<HTMLElement>, kind: "tools" | "inspector" | "right-row" | "bottom-first" | "bottom-second") => {
+  const beginPaneResize = (event: PointerEvent<HTMLElement>, kind: "tools" | "inspector" | "right-row") => {
     event.preventDefault();
     const handle = event.currentTarget;
     handle.setPointerCapture(event.pointerId);
@@ -593,15 +581,6 @@ export default function GeometryWorkspacePanel({
       else if (kind === "right-row") {
         const bounds = rightPaneRef.current?.getBoundingClientRect();
         if (bounds) setRightTopHeight(Math.max(180, Math.min(bounds.height - 180, moveEvent.clientY - bounds.top)));
-      } else {
-        const bounds = bottomDockRef.current?.getBoundingClientRect();
-        if (!bounds) return;
-        const min = 180;
-        if (kind === "bottom-first") setBottomFirstWidth(Math.max(min, Math.min(bounds.width - min * 2 - 16, moveEvent.clientX - bounds.left)));
-        else {
-          const first = bottomFirstWidth ?? bounds.width * .38;
-          setBottomSecondWidth(Math.max(min, Math.min(bounds.width - first - min - 16, moveEvent.clientX - bounds.left - first - 8)));
-        }
       }
     };
     const finish = () => {
@@ -922,50 +901,6 @@ export default function GeometryWorkspacePanel({
           )}
         </section>
 
-        <section className="geometry-bottom-dock" ref={bottomDockRef}>
-          <div className="geometry-dock-tabs">
-            {(
-              ["Construction Protocol", "Measurements", "Animation"] as const
-            ).map((tab) => (
-              <button
-                key={tab}
-                type="button"
-                onClick={() =>
-                  setStudioMode(
-                    tab === "Animation"
-                      ? "Animate"
-                      : tab === "Measurements"
-                        ? "Measure"
-                        : "Construct",
-                  )
-                }
-                className={activeDock === tab ? "active" : ""}
-              >
-                {tab}
-              </button>
-            ))}
-          </div>
-          <div className="geometry-dock-content">
-            <div tabIndex={0} aria-label="Construction protocol">
-              {constructionProtocol}
-            </div>
-            <div className="geometry-inline-resizer" role="separator" aria-label="Resize construction protocol pane" aria-orientation="vertical" onPointerDown={(event) => beginPaneResize(event, "bottom-first")} />
-            <div tabIndex={0} aria-label="Measurements">
-              <GeometryPinnedMeasurements
-                construction={construction}
-                pinned={pinnedMeasurements}
-                onPinned={setPinnedMeasurements}
-                unit={unit}
-                precision={precision}
-              />
-              {measurementsPanel}
-            </div>
-            <div className="geometry-inline-resizer" role="separator" aria-label="Resize measurements pane" aria-orientation="vertical" onPointerDown={(event) => beginPaneResize(event, "bottom-second")} />
-            <div tabIndex={0} aria-label="Constraints and construction help">
-              {constraintsPanel ?? constructionHelp}
-            </div>
-          </div>
-        </section>
         <HiddenGeometryExport
           refSetter={onGeometryExportRef}
           construction={construction}
