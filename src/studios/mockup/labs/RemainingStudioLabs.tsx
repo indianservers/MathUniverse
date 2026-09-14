@@ -1,10 +1,11 @@
 import { useMemo, useState, type ReactNode } from "react";
-import PolygonsLab from "../../geometry/polygons/PolygonsLab";
+import CombinatoricsLab from "../../discrete/combinatorics/CombinatoricsLab";
+import CoordinateLab from "../../geometry/coordinate/CoordinateLab";
 import { MockupLearningStrip } from "../MockupStudioChrome";
 import type { StudioMockupPage } from "../studioMockupCatalog";
 import { ChallengeBox, Field, LiveRow, Panel, Segmented, SliderRow, StatusOk, StepList, clamp, fmt, useLabMode } from "../studioLabKit";
 
-function Chrome({ page, children }: { page: StudioMockupPage; children: ReactNode }) {
+function Chrome({ page, children, layout, toolbar }: { page: StudioMockupPage; children: ReactNode; layout?: "quad"; toolbar?: ReactNode }) {
   const { tabs, mode, setMode } = useLabMode(page);
   return (
     <>
@@ -13,9 +14,61 @@ function Chrome({ page, children }: { page: StudioMockupPage; children: ReactNod
           <button key={item} type="button" className={item === mode ? "active" : ""} aria-pressed={item === mode} onClick={() => setMode(item)}>{item}</button>
         ))}
       </nav>
-      <div className="msk-lab">{children}</div>
+      {toolbar}
+      <div className={`msk-lab${layout === "quad" ? " is-quad" : ""}`}>{children}</div>
       <MockupLearningStrip page={page} />
     </>
+  );
+}
+
+function ToolGlyph({ kind }: { kind: string }) {
+  const common = { fill: "none", stroke: "currentColor", strokeWidth: 1.7, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
+  const paths: Record<string, ReactNode> = {
+    Select: <path {...common} d="M7 4 8 17l3.2-3.1L14.8 20l1.8-1-3.5-6.1L18 12Z" />,
+    Point: <circle cx="12" cy="12" r="3.4" fill="currentColor" />,
+    Line: <path {...common} d="M3 18 21 6" />,
+    Segment: <><path {...common} d="M5 17 19 7" /><circle cx="5" cy="17" r="1.8" fill="currentColor" /><circle cx="19" cy="7" r="1.8" fill="currentColor" /></>,
+    Circle: <circle cx="12" cy="12" r="7" {...common} />,
+    Arc: <path {...common} d="M5 16A8 8 0 0 1 19 8" />,
+    Perpendicular: <><path {...common} d="M4 18h16" /><path {...common} d="M12 18V5" /><path {...common} d="M12 14h3v3" /></>,
+    Parallel: <><path {...common} d="M5 16 19 8" /><path {...common} d="M5 11 19 3" /></>,
+    Bisector: <><path {...common} d="M5 19 12 5l7 14" /><path {...common} d="M12 19V9" strokeDasharray="2 2" /></>,
+    Angle: <><path {...common} d="M5 18h14" /><path {...common} d="M5 18 16 6" /><path {...common} d="M9 18a6 6 0 0 0 4.2-2.2" /></>,
+    Polygon: <path {...common} d="M12 4 19 8.5v7L12 20 5 15.5v-7Z" />,
+    Text: <path {...common} d="M6 7h12M12 7v11M8 18h8" />,
+  };
+  return <svg viewBox="0 0 24 24" aria-hidden="true">{paths[kind]}</svg>;
+}
+
+function PascalTriangle({ rows = 6 }: { rows?: number }) {
+  const cells: number[][] = [[1]];
+  for (let r = 1; r < rows; r += 1) {
+    const prev = cells[r - 1]!;
+    cells.push(Array.from({ length: r + 1 }, (_, k) => (prev[k - 1] ?? 0) + (prev[k] ?? 0)));
+  }
+  return (
+    <div className="msk-pascal" aria-label="Pascal triangle">
+      {cells.map((row, i) => (
+        <span key={i}>{row.map((n, k) => <i key={`${i}-${k}`}>{n}</i>)}</span>
+      ))}
+    </div>
+  );
+}
+
+function FactorTree({ n = 84 }: { n?: number }) {
+  return (
+    <svg className="msk-graph msk-tree" viewBox="0 0 320 220" role="img" aria-label={`Factor tree of ${n}`}>
+      <rect width="320" height="220" fill="#f8fbff" />
+      <line x1="160" y1="36" x2="80" y2="88" stroke="#94a3b8" /><line x1="160" y1="36" x2="240" y2="88" stroke="#94a3b8" />
+      <line x1="240" y1="96" x2="190" y2="148" stroke="#94a3b8" /><line x1="240" y1="96" x2="290" y2="148" stroke="#94a3b8" />
+      <line x1="290" y1="156" x2="250" y2="204" stroke="#94a3b8" /><line x1="290" y1="156" x2="310" y2="204" stroke="#94a3b8" />
+      {[[160, 28, String(n), "#147df2"], [80, 96, "2", "#10b981"], [240, 96, String(n / 2), "#8b45f4"], [190, 156, "2", "#10b981"], [290, 156, String(n / 4), "#f59e0b"], [250, 204, "3", "#10b981"], [310, 204, "7", "#10b981"]].map(([x, y, label, fill]) => (
+        <g key={`${label}-${x}`}>
+          <circle cx={x} cy={y} r="14" fill={String(fill)} />
+          <text x={Number(x)} y={Number(y) + 4} textAnchor="middle" fill="#fff" fontSize="11" fontWeight="800">{label}</text>
+        </g>
+      ))}
+    </svg>
   );
 }
 
@@ -27,7 +80,7 @@ export default function RemainingStudioLab({ page, extra }: { page: StudioMockup
     case "coordinate": return <CoordinateLab page={page} />;
     case "measurement": return <MeasurementLab page={page} />;
     case "proofs": return <ProofsLab page={page} />;
-    case "solids": return <SolidsLab page={page} />;
+    case "solids": return <Chrome page={page}><Panel title="Shapes Explorer"><p className="msk-note">Solid geometry now lives in Shapes Explorer. Open a cylinder, cone, or sphere with live surface area and volume.</p><a className="msk-cta" href="/shapes?shape=cylinder">Open Shapes Explorer</a></Panel></Chrome>;
     case "geometry-ar": return <ArLab page={page} kind="geometry" />;
     case "inverse": return <InverseTrigLab page={page} />;
     case "applications": return <ApplicationsLab page={page} />;
@@ -90,11 +143,14 @@ function ConstructionLab({ page }: { page: StudioMockupPage }) {
   const r = Math.abs(bx - ax) / 2;
   const tools = ["Select", "Point", "Line", "Segment", "Circle", "Arc", "Perpendicular", "Parallel", "Bisector", "Angle", "Polygon", "Text"];
   return (
-    <Chrome page={page}>
+    <Chrome page={page} layout="quad">
       <Panel title="Construct">
-        <div className="msk-tool-grid">
+        <div className="msk-tool-grid is-icons">
           {tools.map((id) => (
-            <button key={id} type="button" className={tool === id.toLowerCase() ? "active" : ""} onClick={() => setTool(id.toLowerCase())}>{id}</button>
+            <button key={id} type="button" className={tool === id.toLowerCase() ? "active" : ""} onClick={() => setTool(id.toLowerCase())} aria-label={id}>
+              <ToolGlyph kind={id} />
+              {id}
+            </button>
           ))}
         </div>
         <p className="msk-note">Properties · Point C · label C</p>
@@ -130,8 +186,18 @@ function ConstructionLab({ page }: { page: StudioMockupPage }) {
         <LiveRow color="#147df2" label="A" value={`(${fmt(ax)}, 0)`} />
         <LiveRow color="#147df2" label="B" value={`(${fmt(bx)}, 0)`} />
         <LiveRow color="#f59e0b" label="C" value={`(${fmt(mid)}, ${fmt(r)})`} />
+        <h2>Dependencies</h2>
+        <LiveRow color="#08b9dd" label="AB" value="segment" />
+        <LiveRow color="#8b45f4" label="Perp. bisector of AB" value="line" />
+        <LiveRow color="#08b9dd" label="Circle O" value={`r = ${fmt(r)}`} />
+        <p className="msk-note">C is the intersection of the bisector and the circle.</p>
+      </aside>
+      <aside className="msk-panel msk-live">
+        <h2>Measurements</h2>
         <LiveRow color="#08b9dd" label="AB" value={`${fmt(bx - ax)}.00`} />
         <LiveRow color="#8b45f4" label="AC = BC" value={fmt(Math.hypot(r, r))} />
+        <LiveRow color="#f59e0b" label="OA = OB" value={fmt(r)} />
+        <h2>Proof explanation</h2>
         <p className="msk-note">C lies on the perpendicular bisector of AB. Therefore CA = CB.</p>
         <StatusOk>Proven · CA = CB</StatusOk>
         <StepList items={["Perpendicular bisector constructed of AB.", "C is the intersection of the bisector and the circle.", "Any point on the bisector is equidistant from A and B."]} />
@@ -178,47 +244,6 @@ function TransformsLab({ page }: { page: StudioMockupPage }) {
         <LiveRow color="#8b45f4" label="Image" value={`T${tx} ∘ R${rot} ∘ D${fmt(k, 2)}`} />
         <LiveRow color="#08b9dd" label="Isometry?" value={Math.abs(k - 1) < 0.05 ? "Yes · distances kept" : "No · dilation"} />
         <StepList items={["Translate by tx along x.", `Rotate ${fmt(rot, 0)}° about the centroid.`, `Dilate by k = ${fmt(k, 2)}.`, "Composition is applied right to left."]} />
-        <ChallengeBox {...page.challenge} />
-      </aside>
-    </Chrome>
-  );
-}
-
-function CoordinateLab({ page }: { page: StudioMockupPage }) {
-  const [x1, setX1] = useState(0);
-  const [y1, setY1] = useState(0);
-  const [x2, setX2] = useState(3);
-  const [y2, setY2] = useState(4);
-  const d = Math.hypot(x2 - x1, y2 - y1);
-  const mx = (x1 + x2) / 2, my = (y1 + y2) / 2;
-  const slope = x2 === x1 ? Infinity : (y2 - y1) / (x2 - x1);
-  return (
-    <Chrome page={page}>
-      <Panel title="Points">
-        <SliderRow label="x1" value={x1} min={-6} max={6} step={0.1} onChange={setX1} />
-        <SliderRow label="y1" value={y1} min={-6} max={6} step={0.1} onChange={setY1} />
-        <SliderRow label="x2" value={x2} min={-6} max={6} step={0.1} onChange={setX2} />
-        <SliderRow label="y2" value={y2} min={-6} max={6} step={0.1} onChange={setY2} />
-      </Panel>
-      <section className="msk-panel msk-canvas">
-        <svg className="msk-graph" viewBox="0 0 420 300" role="img" aria-label="Coordinate plane">
-          <rect width="420" height="300" fill="#f8fbff" />
-          {Array.from({ length: 13 }, (_, i) => <line key={`cv${i}`} x1={30 + i * 30} y1="20" x2={30 + i * 30} y2="280" stroke="#e8eef6" />)}
-          {Array.from({ length: 9 }, (_, i) => <line key={`ch${i}`} x1="30" y1={20 + i * 32} x2="390" y2={20 + i * 32} stroke="#e8eef6" />)}
-          <line x1="30" y1="150" x2="390" y2="150" stroke="#94a3b8" /><line x1="210" y1="20" x2="210" y2="280" stroke="#94a3b8" />
-          <line x1={210 + x1 * 22} y1={150 - y1 * 22} x2={210 + x2 * 22} y2={150 - y2 * 22} stroke="#147df2" strokeWidth="2" />
-          <circle cx={210 + x1 * 22} cy={150 - y1 * 22} r="5" fill="#08b9dd" />
-          <circle cx={210 + x2 * 22} cy={150 - y2 * 22} r="5" fill="#8b45f4" />
-          <circle cx={210 + mx * 22} cy={150 - my * 22} r="4" fill="#f59e0b" />
-          <text x={214 + x1 * 22} y={146 - y1 * 22} fontSize="11">P</text>
-          <text x={214 + x2 * 22} y={146 - y2 * 22} fontSize="11">Q</text>
-        </svg>
-      </section>
-      <aside className="msk-panel msk-live">
-        <LiveRow color="#147df2" label="Distance" value={`√((${fmt(x2 - x1)})²+(${fmt(y2 - y1)})²) = ${fmt(d)}`} />
-        <LiveRow color="#8b45f4" label="Midpoint" value={`(${fmt(mx, 2)}, ${fmt(my, 2)})`} />
-        <LiveRow color="#f59e0b" label="Slope" value={Number.isFinite(slope) ? fmt(slope) : "undefined"} />
-        <p className="msk-formula">d = √((x₂−x₁)² + (y₂−y₁)²)</p>
         <ChallengeBox {...page.challenge} />
       </aside>
     </Chrome>
@@ -285,31 +310,6 @@ function ProofsLab({ page }: { page: StudioMockupPage }) {
   );
 }
 
-function SolidsLab({ page }: { page: StudioMockupPage }) {
-  const [s, setS] = useState(4);
-  const [h, setH] = useState(5);
-  return (
-    <Chrome page={page}>
-      <Panel title="Solid">
-        <SliderRow label="Edge / radius" value={s} min={1} max={8} step={0.1} onChange={setS} />
-        <SliderRow label="Height" value={h} min={1} max={9} step={0.1} onChange={setH} />
-      </Panel>
-      <section className="msk-panel msk-canvas">
-        <svg className="msk-graph" viewBox="0 0 420 260" role="img" aria-label="Cuboid">
-          <rect width="420" height="260" fill="#f8fbff" />
-          <path d={`M120 80 L${120 + s * 22} 80 L${140 + s * 22} 110 L${140 + s * 22} ${110 + h * 16} L${140} ${110 + h * 16} L120 ${80 + h * 16} Z`} fill="none" stroke="#147df2" />
-        </svg>
-      </section>
-      <aside className="msk-panel msk-live">
-        <LiveRow color="#147df2" label="Volume" value={`s²h = ${fmt(s * s * h)}`} />
-        <LiveRow color="#8b45f4" label="Surface" value={`2s² + 4sh = ${fmt(2 * s * s + 4 * s * h)}`} />
-        <p className="msk-note">Net: two bases and four lateral faces fold without overlap.</p>
-        <ChallengeBox {...page.challenge} />
-      </aside>
-    </Chrome>
-  );
-}
-
 function ArLab({ page, kind }: { page: StudioMockupPage; kind: "geometry" | "trig" }) {
   const [dist, setDist] = useState(kind === "trig" ? 28.45 : 2.45);
   const [elev, setElev] = useState(kind === "trig" ? 32.7 : 78.4);
@@ -344,6 +344,10 @@ function ArLab({ page, kind }: { page: StudioMockupPage; kind: "geometry" | "tri
         )}
       </Panel>
       <section className="msk-panel msk-canvas">
+        <div className="msk-cam">
+          <span className="msk-cam-hud">AR CAMERA</span>
+          <i className="msk-cam-rec" />
+          <div className="msk-cam-frame" />
         {kind === "trig" ? (
           <svg className="msk-graph" viewBox="0 0 560 360" role="img" aria-label="Building height overlay">
             <rect width="560" height="360" fill="#9ec9f0" />
@@ -377,6 +381,7 @@ function ArLab({ page, kind }: { page: StudioMockupPage; kind: "geometry" | "tri
             <text x="188" y="318" fontSize="11">Pyramid</text>
           </svg>
         )}
+        </div>
       </section>
       <aside className="msk-panel msk-live">
         {kind === "trig" ? (
@@ -472,62 +477,100 @@ function ApplicationsLab({ page }: { page: StudioMockupPage }) {
 }
 
 function MatricesLab({ page }: { page: StudioMockupPage }) {
-  const [a11, setA11] = useState(1);
-  const [a12, setA12] = useState(2);
-  const [a21, setA21] = useState(0);
-  const [a22, setA22] = useState(3);
-  const [b11, setB11] = useState(2);
-  const [b12, setB12] = useState(1);
-  const [b21, setB21] = useState(0);
-  const [b22, setB22] = useState(-1);
-  const c11 = a11 * b11 + a12 * b21;
-  const c12 = a11 * b12 + a12 * b22;
-  const c21 = a21 * b11 + a22 * b21;
-  const c22 = a21 * b12 + a22 * b22;
-  const detA = a11 * a22 - a12 * a21;
-  const detB = b11 * b22 - b12 * b21;
+  const [op, setOp] = useState("Multiply");
+  const [view, setView] = useState("2D");
+  const [A, setA] = useState([[1, 2, -1], [0, 3, 4]]);
+  const [B, setB] = useState([[2, 1], [0, -1], [3, 2]]);
+  const setCell = (which: "A" | "B", r: number, c: number, value: number) => {
+    const next = (which === "A" ? A : B).map((row, i) => row.map((cell, j) => (i === r && j === c ? value : cell)));
+    if (which === "A") setA(next);
+    else setB(next);
+  };
+  const c11 = A[0]![0]! * B[0]![0]! + A[0]![1]! * B[1]![0]! + A[0]![2]! * B[2]![0]!;
+  const c12 = A[0]![0]! * B[0]![1]! + A[0]![1]! * B[1]![1]! + A[0]![2]! * B[2]![1]!;
+  const c21 = A[1]![0]! * B[0]![0]! + A[1]![1]! * B[1]![0]! + A[1]![2]! * B[2]![0]!;
+  const c22 = A[1]![0]! * B[0]![1]! + A[1]![1]! * B[1]![1]! + A[1]![2]! * B[2]![1]!;
+  const detC = c11 * c22 - c12 * c21;
+  const ops = [["Add", "+ Add"], ["Multiply", "× Multiply"], ["Inverse", "x⁻¹ Inverse"], ["Transpose", "T Transpose"], ["Block", "Block"]] as const;
   return (
-    <Chrome page={page}>
-      <Panel title="Operation A × B">
-        <p className="msk-note">Matrix A (2×2)</p>
-        <div className="msk-matrix-grid">
-          <input aria-label="A11" type="number" value={a11} onChange={(e) => setA11(Number(e.target.value))} />
-          <input aria-label="A12" type="number" value={a12} onChange={(e) => setA12(Number(e.target.value))} />
-          <input aria-label="A21" type="number" value={a21} onChange={(e) => setA21(Number(e.target.value))} />
-          <input aria-label="A22" type="number" value={a22} onChange={(e) => setA22(Number(e.target.value))} />
+    <Chrome
+      page={page}
+      toolbar={(
+        <div className="msk-opbar" aria-label="Matrix operations">
+          {ops.map(([id, label]) => (
+            <button key={id} type="button" className={op === id ? "active" : ""} onClick={() => setOp(id)}>{label}</button>
+          ))}
+          <span className="msk-opbar-view">
+            <button type="button" className={view === "2D" ? "active" : ""} onClick={() => setView("2D")}>2D</button>
+            <button type="button" className={view === "3D" ? "active" : ""} onClick={() => setView("3D")}>3D</button>
+          </span>
         </div>
-        <p className="msk-note">Matrix B (2×2)</p>
-        <div className="msk-matrix-grid">
-          <input aria-label="B11" type="number" value={b11} onChange={(e) => setB11(Number(e.target.value))} />
-          <input aria-label="B12" type="number" value={b12} onChange={(e) => setB12(Number(e.target.value))} />
-          <input aria-label="B21" type="number" value={b21} onChange={(e) => setB21(Number(e.target.value))} />
-          <input aria-label="B22" type="number" value={b22} onChange={(e) => setB22(Number(e.target.value))} />
-        </div>
+      )}
+    >
+      <Panel title={`Operation: A ${op === "Add" ? "+" : op === "Multiply" ? "×" : "·"} B`}>
+        <p className="msk-note">Matrix A (2 × 3)</p>
+        <table className="msk-sheet">
+          <thead><tr><th></th><th>c1</th><th>c2</th><th>c3</th></tr></thead>
+          <tbody>
+            {A.map((row, r) => (
+              <tr key={r}>
+                <th>r{r + 1}</th>
+                {row.map((cell, c) => (
+                  <td key={c}><input aria-label={`A${r + 1}${c + 1}`} type="number" value={cell} onChange={(e) => setCell("A", r, c, Number(e.target.value))} /></td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <p className="msk-note">Matrix B (3 × 2)</p>
+        <table className="msk-sheet">
+          <thead><tr><th></th><th>c1</th><th>c2</th></tr></thead>
+          <tbody>
+            {B.map((row, r) => (
+              <tr key={r}>
+                <th>r{r + 1}</th>
+                {row.map((cell, c) => (
+                  <td key={c}><input aria-label={`B${r + 1}${c + 1}`} type="number" value={cell} onChange={(e) => setCell("B", r, c, Number(e.target.value))} /></td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
         <button type="button" className="msk-primary">Compute A × B</button>
+        <label className="msk-toggle"><input type="checkbox" defaultChecked /> Animate computation</label>
       </Panel>
       <section className="msk-panel msk-canvas">
+        <p className="msk-note">Geometric preview: A × B · {view}</p>
         <svg className="msk-graph" viewBox="0 0 420 280" role="img" aria-label="Unit square after A then B">
           <rect width="420" height="280" fill="#f8fbff" />
-          <line x1="40" y1="200" x2="400" y2="200" stroke="#94a3b8" /><line x1="80" y1="20" x2="80" y2="260" stroke="#94a3b8" />
-          <polygon points="80,200 120,200 120,160 80,160" fill="none" stroke="#94a3b8" strokeDasharray="4 3" />
-          <polygon points={`80,200 ${80 + a11 * 28},${200 - a21 * 28} ${80 + (a11 + a12) * 28},${200 - (a21 + a22) * 28} ${80 + a12 * 28},${200 - a22 * 28}`} fill="rgba(8,185,221,.18)" stroke="#08b9dd" />
-          <polygon points={`80,200 ${80 + c11 * 18},${200 - c21 * 18} ${80 + (c11 + c12) * 18},${200 - (c21 + c22) * 18} ${80 + c12 * 18},${200 - c22 * 18}`} fill="rgba(139,69,244,.18)" stroke="#8b45f4" />
+          {[-2, -1, 1, 2, 3].map((t) => <line key={`gx${t}`} x1={80 + t * 70} y1="20" x2={80 + t * 70} y2="260" stroke="#e2e8f0" />)}
+          {[-2, -1, 1, 2].map((t) => <line key={`gy${t}`} x1="20" y1={200 - t * 50} x2="400" y2={200 - t * 50} stroke="#e2e8f0" />)}
+          <line x1="20" y1="200" x2="400" y2="200" stroke="#94a3b8" /><line x1="80" y1="16" x2="80" y2="264" stroke="#94a3b8" />
+          <text x="392" y="214" fontSize="11" fill="#64748b">x</text><text x="88" y="22" fontSize="11" fill="#64748b">y</text>
+          <polygon points="80,200 150,200 150,150 80,150" fill="none" stroke="#94a3b8" strokeDasharray="4 3" />
+          <text x="86" y="218" fontSize="10" fill="#64748b">Unit square</text>
+          <polygon points="150,200 220,186 236,136 166,150" fill="rgba(8,185,221,.2)" stroke="#08b9dd" />
+          <text x="188" y="128" fontSize="11" fill="#08b9dd">After A</text>
+          <polygon points="236,200 340,164 356,86 252,122" fill="rgba(139,69,244,.22)" stroke="#8b45f4" />
+          <text x="286" y="78" fontSize="11" fill="#8b45f4">After A × B</text>
         </svg>
+        <p className="msk-formula">det(A) · det(B) = det(A × B) · det(C) = {fmt(detC)}</p>
       </section>
       <aside className="msk-panel msk-live">
+        <h2>Dimensions &amp; compatibility</h2>
+        <p className="msk-note">A: 2 × 3 · B: 3 × 2 → A × B: 2 × 2 · Compatible</p>
         <h2>Result C = A × B</h2>
-        <div className="msk-matrix-grid">
-          <output>{fmt(c11)}</output>
-          <output>{fmt(c12)}</output>
-          <output>{fmt(c21)}</output>
-          <output>{fmt(c22)}</output>
-        </div>
-        <LiveRow color="#8b45f4" label="C11" value={fmt(c11)} />
-        <LiveRow color="#8b45f4" label="C12" value={fmt(c12)} />
-        <LiveRow color="#147df2" label="C21" value={fmt(c21)} />
-        <LiveRow color="#147df2" label="C22" value={fmt(c22)} />
-        <LiveRow color="#08b9dd" label="det A · det B" value={fmt(detA * detB)} />
-        <p className="msk-note">Each entry cᵢⱼ is the dot product of row i of A with column j of B. det(AB) = det(A) det(B).</p>
+        <table className="msk-sheet">
+          <thead><tr><th></th><th>c1</th><th>c2</th></tr></thead>
+          <tbody>
+            <tr><th>r1</th><td><output>{fmt(c11)}</output></td><td><output>{fmt(c12)}</output></td></tr>
+            <tr><th>r2</th><td><output>{fmt(c21)}</output></td><td><output>{fmt(c22)}</output></td></tr>
+          </tbody>
+        </table>
+        <h2>Computation (dot-product view)</h2>
+        <p className="msk-formula">c₁ = A × b₁ = {A[0]![0]}·{B[0]![0]} + {A[0]![1]}·{B[1]![0]} + {A[0]![2]}·{B[2]![0]} = {fmt(c11)}</p>
+        <p className="msk-formula">c₂ = A × b₂ = {fmt(c12)}</p>
+        <p className="msk-note">Matrix multiplication sends the columns of B through the linear transformation defined by A. Each entry cᵢⱼ is the dot product of row i of A with column j of B.</p>
         <StatusOk>Result verified</StatusOk>
         <ChallengeBox {...page.challenge} />
       </aside>
@@ -538,27 +581,52 @@ function MatricesLab({ page }: { page: StudioMockupPage }) {
 function RowReductionLab({ page }: { page: StudioMockupPage }) {
   const [a, setA] = useState(2);
   const [b, setB] = useState(1);
+  const [rhs1, setRhs1] = useState(5);
   const [c, setC] = useState(1);
   const [d, setD] = useState(3);
+  const [rhs2, setRhs2] = useState(7);
   const det = a * d - b * c;
+  const r21 = a === 0 ? 0 : c / a;
+  const row2 = [0, d - r21 * b, rhs2 - r21 * rhs1];
+  const pivot2 = row2[1] === 0 ? 1 : row2[1];
+  const rref = [
+    [1, 0, det === 0 ? "—" : fmt((d * rhs1 - b * rhs2) / det, 2)],
+    [0, 1, det === 0 ? "—" : fmt((a * rhs2 - c * rhs1) / det, 2)],
+  ];
   return (
     <Chrome page={page}>
-      <Panel title="System Ax = b">
-        <SliderRow label="a" value={a} min={-4} max={4} step={0.1} onChange={setA} />
-        <SliderRow label="b" value={b} min={-4} max={4} step={0.1} onChange={setB} />
-        <SliderRow label="c" value={c} min={-4} max={4} step={0.1} onChange={setC} />
-        <SliderRow label="d" value={d} min={-4} max={4} step={0.1} onChange={setD} />
+      <Panel title="Augmented system">
+        <SliderRow label="a₁₁" value={a} min={-4} max={4} step={0.1} onChange={setA} />
+        <SliderRow label="a₁₂" value={b} min={-4} max={4} step={0.1} onChange={setB} />
+        <SliderRow label="b₁" value={rhs1} min={-8} max={8} step={0.1} onChange={setRhs1} />
+        <SliderRow label="a₂₁" value={c} min={-4} max={4} step={0.1} onChange={setC} />
+        <SliderRow label="a₂₂" value={d} min={-4} max={4} step={0.1} onChange={setD} />
+        <SliderRow label="b₂" value={rhs2} min={-8} max={8} step={0.1} onChange={setRhs2} />
       </Panel>
       <section className="msk-panel msk-canvas">
-        <svg className="msk-graph" viewBox="0 0 420 240" role="img" aria-label="Two lines">
-          <rect width="420" height="240" fill="#f8fbff" />
-          <line x1="20" y1={120 - a * 8} x2="400" y2={120 + b * 8} stroke="#147df2" />
-          <line x1="20" y1={120 - c * 8} x2="400" y2={120 + d * 8} stroke="#8b45f4" />
+        <h2>RREF tableau</h2>
+        <table className="msk-rref">
+          <thead><tr><th>R1</th><th>x</th><th>y</th><th>|</th><th>b</th></tr></thead>
+          <tbody>
+            <tr><td>start</td><td className="is-pivot">{fmt(a)}</td><td>{fmt(b)}</td><td>|</td><td>{fmt(rhs1)}</td></tr>
+            <tr><td>start</td><td>{fmt(c)}</td><td>{fmt(d)}</td><td>|</td><td>{fmt(rhs2)}</td></tr>
+            <tr><td>R2 − {fmt(r21, 2)} R1</td><td>0</td><td className="is-pivot">{fmt(row2[1]!)}</td><td>|</td><td>{fmt(row2[2]!)}</td></tr>
+            <tr><td>RREF</td><td className="is-pivot">{rref[0]![0]}</td><td>{rref[0]![1]}</td><td>|</td><td>{rref[0]![2]}</td></tr>
+            <tr><td>RREF</td><td>{rref[1]![0]}</td><td className="is-pivot">{rref[1]![1]}</td><td>|</td><td>{rref[1]![2]}</td></tr>
+          </tbody>
+        </table>
+        <svg className="msk-graph" viewBox="0 0 420 180" role="img" aria-label="Two lines">
+          <rect width="420" height="180" fill="#f8fbff" />
+          <line x1="20" y1={90 - a * 6} x2="400" y2={90 + b * 6} stroke="#147df2" />
+          <line x1="20" y1={90 - c * 6} x2="400" y2={90 + d * 6} stroke="#8b45f4" />
         </svg>
       </section>
       <aside className="msk-panel msk-live">
-        <LiveRow color="#147df2" label="Rank" value={Math.abs(det) < 1e-6 ? "1 or 0" : "2"} />
-        <LiveRow color="#8b45f4" label="det" value={fmt(det)} />
+        <LiveRow color="#147df2" label="Pivots" value={Math.abs(det) < 1e-6 ? "1" : "2"} />
+        <LiveRow color="#8b45f4" label="Rank" value={Math.abs(det) < 1e-6 ? "1 or 0" : "2"} />
+        <LiveRow color="#08b9dd" label="det" value={fmt(det)} />
+        <LiveRow color="#f59e0b" label="R2 scale" value={fmt(pivot2)} />
+        <p className="msk-note">Each highlighted cell is a pivot. RREF is the unique reduced form with leading 1s and zeros above and below.</p>
         <ChallengeBox {...page.challenge} />
       </aside>
     </Chrome>
@@ -1083,11 +1151,15 @@ function PrimesLab({ page }: { page: StudioMockupPage }) {
   return (
     <Chrome page={page}>
       <Panel title="Sieve"><SliderRow label="Range" value={n} min={10} max={80} step={1} onChange={setN} /></Panel>
-      <section className="msk-panel msk-canvas"><div className="msk-note" style={{ display: "flex", flexWrap: "wrap", gap: 6, padding: 12 }}>{Array.from({ length: n }, (_, i) => <span key={i} style={{ width: 28, textAlign: "center", borderRadius: 6, background: primes.includes(i + 1) ? "#dbeafe" : "#f1f5f9" }}>{i + 1}</span>)}</div></section>
+      <section className="msk-panel msk-canvas">
+        <div className="msk-note" style={{ display: "flex", flexWrap: "wrap", gap: 6, padding: 12 }}>{Array.from({ length: n }, (_, i) => <span key={i} style={{ width: 28, textAlign: "center", borderRadius: 6, background: primes.includes(i + 1) ? "#dbeafe" : "#f1f5f9" }}>{i + 1}</span>)}</div>
+        <FactorTree n={84} />
+      </section>
       <aside className="msk-panel msk-live">
         <LiveRow color="#147df2" label="Primes ≤ n" value={String(primes.length)} />
         <LiveRow color="#8b45f4" label="Composites" value={String(n - primes.length - 1)} />
-        <p className="msk-note">Sieve of Eratosthenes marks multiples; remaining cells are prime.</p>
+        <LiveRow color="#10b981" label="84 = 2² × 3 × 7" value="unique" />
+        <p className="msk-note">Sieve of Eratosthenes marks multiples; the factor tree shows unique factorization.</p>
         <ChallengeBox {...page.challenge} />
       </aside>
     </Chrome>
@@ -1100,26 +1172,33 @@ function PatternsLab({ page }: { page: StudioMockupPage }) {
   return (
     <Chrome page={page}>
       <Panel title="Figurate"><SliderRow label="n" value={n} min={1} max={10} step={1} onChange={setN} /></Panel>
-      <section className="msk-panel msk-canvas"><svg className="msk-graph" viewBox="0 0 300 200">{Array.from({ length: n }, (_, row) => Array.from({ length: row + 1 }, (_, col) => <circle key={`${row}${col}`} cx={40 + col * 22 + (n - row) * 8} cy={40 + row * 22} r="6" fill="#147df2" />))}</svg></section>
+      <section className="msk-panel msk-canvas">
+        <svg className="msk-graph" viewBox="0 0 300 160">{Array.from({ length: n }, (_, row) => Array.from({ length: row + 1 }, (_, col) => <circle key={`${row}${col}`} cx={40 + col * 22 + (n - row) * 8} cy={28 + row * 18} r="5" fill="#147df2" />))}</svg>
+        <PascalTriangle rows={Math.min(7, n + 1)} />
+      </section>
       <aside className="msk-panel msk-live">
         <LiveRow color="#147df2" label="T_n" value={`${n}(${n}+1)/2 = ${tri}`} />
-        <p className="msk-note">Constant second difference means the sequence is quadratic.</p>
+        <LiveRow color="#8b45f4" label="Pascal C(n,2)" value={String(n * (n - 1) / 2)} />
+        <p className="msk-note">Constant second difference means the sequence is quadratic. Pascal row n holds binomial coefficients.</p>
         <ChallengeBox {...page.challenge} />
       </aside>
     </Chrome>
   );
 }
 
-function CombinatoricsLab({ page }: { page: StudioMockupPage }) {
+function CountingPascalLab({ page }: { page: StudioMockupPage }) {
   const [n, setN] = useState(5);
   const [k, setK] = useState(3);
-  const fact = (v: number) => v <= 1 ? 1 : v * fact(v - 1);
+  const fact = (v: number): number => (v <= 1 ? 1 : v * fact(v - 1));
   const p = n >= k ? fact(n) / fact(n - k) : 0;
   const c = k === 0 ? 1 : p / fact(k);
   return (
     <Chrome page={page}>
       <Panel title="nPr / nCr"><SliderRow label="n" value={n} min={1} max={8} step={1} onChange={setN} /><SliderRow label="k" value={k} min={0} max={8} step={1} onChange={setK} /></Panel>
-      <section className="msk-panel msk-canvas"><svg className="msk-graph" viewBox="0 0 300 180"><rect width="300" height="180" fill="#f8fbff" /><line x1="150" y1="20" x2="80" y2="70" stroke="#94a3b8" /><line x1="150" y1="20" x2="220" y2="70" stroke="#94a3b8" /><circle cx="150" cy="20" r="6" fill="#147df2" /></svg></section>
+      <section className="msk-panel msk-canvas">
+        <PascalTriangle rows={Math.min(8, n + 1)} />
+        <p className="msk-formula">C({n},{k}) sits in Pascal row {n}, entry {k}.</p>
+      </section>
       <aside className="msk-panel msk-live"><LiveRow color="#147df2" label="P(n,k)" value={fmt(p, 0)} /><LiveRow color="#8b45f4" label="C(n,k)" value={fmt(c, 0)} /><ChallengeBox {...page.challenge} /></aside>
     </Chrome>
   );
@@ -1202,7 +1281,17 @@ function DiscreteGraphsLab({ page }: { page: StudioMockupPage }) {
         <LiveRow color="#8b45f4" label="Edges" value="6" />
         <LiveRow color="#10b981" label="Tree edges" value="n − 1 = 4" />
         <LiveRow color="#f59e0b" label="A → E cost" value="3" />
-        <p className="msk-note">A tree with n vertices has n − 1 edges. Dijkstra is optimal on nonnegative weights.</p>
+        <table className="msk-mini-table">
+          <thead><tr><th>Node</th><th>d(A)</th><th>Via</th></tr></thead>
+          <tbody>
+            <tr><td>A</td><td>0</td><td>—</td></tr>
+            <tr><td>D</td><td>2</td><td>A</td></tr>
+            <tr><td>E</td><td>3</td><td>D</td></tr>
+            <tr><td>B</td><td>4</td><td>A</td></tr>
+            <tr><td>C</td><td>7</td><td>B</td></tr>
+          </tbody>
+        </table>
+        <p className="msk-note">A tree with n vertices has n − 1 edges. Dijkstra is optimal on nonnegative weights. This is a weighted network, not a sine graph.</p>
         <ChallengeBox {...page.challenge} />
       </aside>
     </Chrome>
@@ -1371,7 +1460,7 @@ function ExperimentsLab({ page }: { page: StudioMockupPage }) {
 }
 
 function CountingLab({ page }: { page: StudioMockupPage }) {
-  return <CombinatoricsLab page={page} />;
+  return <CountingPascalLab page={page} />;
 }
 
 function CltLab({ page }: { page: StudioMockupPage }) {

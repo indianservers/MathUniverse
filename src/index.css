@@ -10668,20 +10668,24 @@ body {
 }
 
 /* Shared workspace focus and input adaptation */
-.math-workspace-layout[data-workspace="geometry"] {
+.math-workspace-layout[data-workspace="geometry"],
+.math-workspace-layout[data-workspace="graphs-3d"] {
   grid-template-rows: minmax(0, 1fr) calc(var(--workspace-dock-height) + env(safe-area-inset-bottom));
 }
 
-.math-workspace-layout[data-workspace="geometry"] > .math-workspace-stage {
+.math-workspace-layout[data-workspace="geometry"] > .math-workspace-stage,
+.math-workspace-layout[data-workspace="graphs-3d"] > .math-workspace-stage {
   grid-row: 1;
 }
 
-.math-workspace-layout[data-workspace="geometry"] > .math-workspace-mobile-dock {
+.math-workspace-layout[data-workspace="geometry"] > .math-workspace-mobile-dock,
+.math-workspace-layout[data-workspace="graphs-3d"] > .math-workspace-mobile-dock {
   grid-row: 2;
 }
 
 @media (min-width: 1024px) {
-  .math-workspace-layout[data-workspace="geometry"] {
+  .math-workspace-layout[data-workspace="geometry"],
+  .math-workspace-layout[data-workspace="graphs-3d"] {
     grid-template-rows: minmax(0, 1fr);
   }
 }
@@ -10969,7 +10973,8 @@ body {
   grid-template-columns: 72px 0 minmax(420px, 1fr) 0;
 }
 .graph-studio-3d-shell:not(.has-dock) {
-  grid-template-rows: 58px minmax(0, 1fr) 38px 28px;
+  grid-template-areas: "top top top top" "nav left canvas right" "status status status status";
+  grid-template-rows: 58px minmax(0, 1fr) 28px;
 }
 
 /* The dedicated surface studio already sits inside the shared suite header.
@@ -10977,6 +10982,9 @@ body {
 .graph-studio-surface-shell {
   grid-template-areas: "top top top" "left canvas right" "left dock right" "status status status";
   grid-template-columns: 310px minmax(420px, 1fr) 320px;
+}
+.graph-studio-surface-shell:not(.has-dock) {
+  grid-template-areas: "top top top" "left canvas right" "status status status";
 }
 .graph-studio-surface-shell:not(.has-left) {
   grid-template-columns: 0 minmax(420px, 1fr) 320px;
@@ -12156,6 +12164,67 @@ body {
 .gs3d-status .saved {
   margin-left: auto;
 }
+.gs3d-keyframe-strip {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  padding: 6px 10px;
+  overflow-x: auto;
+  border-top: 1px solid var(--gs-border);
+  background: #06111f;
+}
+.gs3d-keyframe-strip button {
+  min-height: 28px;
+  padding: 0 8px;
+  border: 1px solid var(--gs-border);
+  border-radius: 5px;
+  color: #c5d4e4;
+  font-size: 10px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.gs3d-minimap {
+  position: absolute;
+  right: 12px;
+  bottom: 48px;
+  width: 88px;
+  height: 88px;
+  pointer-events: none;
+}
+.gs3d-minimap rect {
+  fill: #071322cc;
+  stroke: #22d3ee88;
+}
+.gs3d-minimap circle {
+  fill: #22d3ee;
+}
+.gs3d-minimap text {
+  fill: #67e8f9;
+  font-size: 10px;
+  font-weight: 800;
+}
+.gs3d-import-error {
+  position: absolute;
+  left: 12px;
+  bottom: 48px;
+  max-width: 360px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  background: #7f1d1dcc;
+  color: #fecaca;
+  font-size: 11px;
+  font-weight: 700;
+}
+.gs3d-latex {
+  display: block;
+  color: #8fb4d2;
+  font-size: 11px;
+  overflow: hidden;
+}
+.graph-studio-surface-shell.is-presenting .gs3d-left-panel,
+.graph-studio-surface-shell.is-presenting .gs3d-right-panel {
+  opacity: 0.08;
+}
 .gs3d-popover {
   position: absolute;
   z-index: 100;
@@ -12301,6 +12370,38 @@ body {
 .graph-studio-2d-shell {
   --gs-cyan: #13c8ef;
   --gs-violet: #f97316;
+}
+.graph-studio-2d-shell .gs3d-inspector-tabs {
+  height: 38px;
+  padding: 3px 8px;
+}
+.graph-studio-2d-shell .gs2d-inspector-data-tabs {
+  border-bottom: 1px solid var(--gs-border);
+}
+.graph-studio-2d-shell .gs3d-inspector-tabs button {
+  font-size: 9px;
+  text-transform: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.graph-studio-2d-shell .gs3d-right-panel .gs3d-panel-scroll {
+  height: calc(100% - 126px);
+}
+.graph-studio-2d-shell .gs2d-table-dock,
+.graph-studio-2d-shell .gs2d-data-dock {
+  grid-template-columns: 1fr;
+  height: auto;
+}
+.graph-studio-2d-shell .gs2d-table-wrap {
+  max-height: min(52vh, 420px);
+}
+.graph-studio-2d-shell .gs2d-data-toggles {
+  grid-template-columns: 1fr;
+}
+.graph-studio-2d-shell .gs3d-values-dock {
+  grid-template-columns: 1fr;
+  height: auto;
 }
 .graph-studio-2d-shell .gs3d-mobile-nav {
   grid-template-columns: repeat(3, minmax(0, 1fr));

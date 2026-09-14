@@ -14,6 +14,7 @@ import {
   Grid3X3,
   HelpCircle,
   Home,
+  Keyboard,
   Lightbulb,
   Menu,
   Moon,
@@ -189,23 +190,30 @@ function StudioHeader({ page, theme, onTheme, onMenu }: { page: CalculusStudioPa
         <h1>{meta.title}</h1>
         <p>{meta.subtitle}</p>
       </div>
-      <div className="cs-search-wrap">
-        <label className="cs-search">
-          <Search />
-          <input value={query} onChange={(event) => setQuery(event.target.value)} onKeyDown={(event) => event.key === "Enter" && submit()} placeholder="Search formulas, topics, or experiments..." />
-          <kbd>Ctrl+K</kbd>
-        </label>
-        {query.trim() && (
-          <div className="cs-search-results">
-            {results.map((item) => <button key={item.page} type="button" onClick={() => navigate(studioRoutes[item.page])}>{item.label}</button>)}
-            {!results.length && <span>No calculus studio result</span>}
-          </div>
-        )}
-      </div>
+      {page === "home" ? (
+        <div className="cs-search-wrap">
+          <label className="cs-search">
+            <Search />
+            <input value={query} onChange={(event) => setQuery(event.target.value)} onKeyDown={(event) => event.key === "Enter" && submit()} placeholder="Search formulas, topics, or experiments..." />
+            <kbd>Ctrl+K</kbd>
+          </label>
+          {query.trim() && (
+            <div className="cs-search-results">
+              {results.map((item) => <button key={item.page} type="button" onClick={() => navigate(studioRoutes[item.page])}>{item.label}</button>)}
+              {!results.length && <span>No calculus studio result</span>}
+            </div>
+          )}
+        </div>
+      ) : null}
       <div className="cs-header-actions">
-        <button type="button" onClick={onTheme} title="Toggle theme" aria-label="Toggle theme">{theme === "light" ? <Sun /> : <Moon />}</button>
+        <button type="button" onClick={onTheme} title="Light" aria-label="Light">{theme === "light" ? <Sun /> : <Moon />}</button>
+        <button type="button" onClick={() => alert("Shortcuts: use Tab to move, Enter to activate, Escape to close the mobile menu.")} title="Shortcuts" aria-label="Shortcuts"><Keyboard /></button>
         <button type="button" onClick={() => alert("Shortcuts: use Tab to move, Enter to activate, Escape to close the mobile menu.")} title="Help" aria-label="Help"><HelpCircle /></button>
-        <button type="button" onClick={() => alert("Settings are scoped to this studio theme and layout.")} title="Settings" aria-label="Settings"><Settings /></button>
+        {page === "limits" ? (
+          <button type="button" onClick={() => window.dispatchEvent(new Event("calculus-lab-reset"))} title="Reset all" aria-label="Reset all"><RotateCcw /></button>
+        ) : (
+          <button type="button" onClick={() => alert("Settings are scoped to this studio theme and layout.")} title="Settings" aria-label="Settings"><Settings /></button>
+        )}
       </div>
     </header>
   );

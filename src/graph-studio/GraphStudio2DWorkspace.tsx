@@ -2,7 +2,6 @@ import {
   Activity,
   ArrowDown,
   ArrowUp,
-  ChevronDown,
   ChevronLeft,
   ChevronRight,
   CircleHelp,
@@ -92,8 +91,13 @@ type FunctionRow = {
 };
 type PlottedRow = FunctionRow & { points: GraphSample[]; error?: string };
 type Point = { x: number; y: number };
-type InspectorTab = "properties" | "analysis" | "style";
-type DockTab = "table" | "data" | "calculations";
+type InspectorTab =
+  | "properties"
+  | "analysis"
+  | "style"
+  | "table"
+  | "data"
+  | "calculations";
 
 export type GraphStudio2DWorkspaceProps = {
   projectName: string;
@@ -200,10 +204,8 @@ export default function GraphStudio2DWorkspace(
   props: GraphStudio2DWorkspaceProps,
 ) {
   const [tab, setTab] = useState<InspectorTab>("analysis");
-  const [dockTab, setDockTab] = useState<DockTab>("table");
   const [leftOpen, setLeftOpen] = useState(true);
   const [rightOpen, setRightOpen] = useState(true);
-  const [dockOpen, setDockOpen] = useState(true);
   const [exportOpen, setExportOpen] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [helpOpen, setHelpOpen] = useState(false);
@@ -232,7 +234,6 @@ export default function GraphStudio2DWorkspace(
       if (media.matches) {
         setLeftOpen(false);
         setRightOpen(false);
-        setDockOpen(false);
       }
     };
     sync();
@@ -251,7 +252,7 @@ export default function GraphStudio2DWorkspace(
 
   return (
     <div
-      className={`graph-studio-3d-shell graph-studio-surface-shell graph-studio-2d-shell ${leftOpen ? "has-left" : ""} ${rightOpen ? "has-right" : ""} ${dockOpen ? "has-dock" : ""}`}
+      className={`graph-studio-3d-shell graph-studio-surface-shell graph-studio-2d-shell ${leftOpen ? "has-left" : ""} ${rightOpen ? "has-right" : ""}`}
     >
       <header className="gs3d-topbar">
         <div className="gs3d-brand">
@@ -581,60 +582,40 @@ export default function GraphStudio2DWorkspace(
             ),
           )}
         </div>
+        <div className="gs3d-inspector-tabs gs2d-inspector-data-tabs">
+          {(
+            [
+              ["table", "Function table"],
+              ["data", "Data & regression"],
+              ["calculations", "Calculations"],
+            ] as const
+          ).map(([item, label]) => (
+            <button
+              key={item}
+              type="button"
+              className={tab === item ? "active" : ""}
+              onClick={() => setTab(item)}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
         <div className="gs3d-panel-scroll">
           {tab === "properties" ? (
             <Properties props={props} selected={selected} />
           ) : tab === "style" ? (
             <Style props={props} selected={selected} />
+          ) : tab === "table" ? (
+            <TableDock props={props} selected={selected} />
+          ) : tab === "data" ? (
+            <DataDock props={props} />
+          ) : tab === "calculations" ? (
+            <Calculations props={props} />
           ) : (
             <Analysis props={props} selected={selected} />
           )}
         </div>
       </aside>
-
-      <section
-        className={`gs3d-dock ${dockOpen ? "open" : ""}`}
-        aria-label="Graph data dock"
-      >
-        <div className="gs3d-dock-tabs">
-          {(["table", "data", "calculations"] as DockTab[]).map((item) => (
-            <button
-              key={item}
-              type="button"
-              className={dockTab === item ? "active" : ""}
-              onClick={() => {
-                setDockTab(item);
-                setDockOpen(true);
-              }}
-            >
-              {item === "table"
-                ? "Function table"
-                : item === "data"
-                  ? "Data & regression"
-                  : capital(item)}
-            </button>
-          ))}
-          <button
-            type="button"
-            className="collapse"
-            onClick={() => setDockOpen((value) => !value)}
-            aria-label={dockOpen ? "Collapse dock" : "Expand dock"}
-          >
-            {dockOpen ? <ChevronDown /> : <ChevronRight />}
-          </button>
-        </div>
-        {dockOpen && (
-          <div className="gs3d-dock-content">
-            {dockTab === "table" ? (
-              <TableDock props={props} selected={selected} />
-            ) : dockTab === "data" ? (
-              <DataDock props={props} />
-            ) : (
-              <Calculations props={props} />
-            )}
-          </div>
-        )}
-      </section>
 
       <footer className="gs3d-status">
         <span className="online-dot" />
@@ -659,12 +640,12 @@ export default function GraphStudio2DWorkspace(
         <button
           type="button"
           onClick={() => {
-            setDockOpen(true);
-            setDockTab("table");
+            setRightOpen(true);
+            setTab("table");
           }}
         >
           <Table2 />
-          Values
+          Table
         </button>
       </nav>
     </div>

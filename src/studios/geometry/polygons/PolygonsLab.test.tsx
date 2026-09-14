@@ -39,5 +39,10 @@ describe("Polygons Lab", () => {
     expect(parsePolygonMode("Regular Polygon")).toBe("regular");
     const html = renderToString(<MemoryRouter initialEntries={["/geometry/polygons"]}><MockupStudioApp studioId="geometry" /></MemoryRouter>);
     expect(html).toContain("Regular octagon");
+    expect(html).toContain("Skip to figure");
+    expect(html).toContain("/geometry/triangles");
+    expect(html).toContain("/shapes?shape=hexagon");
+    expect(html).toContain("Build &amp; explore regular n-gons");
+    expect(html).toContain("role=\"tablist\"");
   });
 });

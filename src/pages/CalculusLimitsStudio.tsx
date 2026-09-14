@@ -223,6 +223,10 @@ export default function CalculusLimitsStudio({ mode }: { mode: string }) {
     setPlaying(false);
     setTrace(null);
   };
+  useEffect(() => {
+    window.addEventListener("calculus-lab-reset", reset);
+    return () => window.removeEventListener("calculus-lab-reset", reset);
+  });
   const step = () => {
     setLeftDistance((value) => Math.max(0.01, value * 0.72));
     setRightDistance((value) => Math.max(0.01, value * 0.72));

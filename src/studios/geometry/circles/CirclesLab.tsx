@@ -1,5 +1,5 @@
 import type { KeyboardEvent } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useEffect } from "react";
 import { MockupLearningStrip } from "../../mockup/MockupStudioChrome";
 import type { StudioMockupPage } from "../../mockup/studioMockupCatalog";
 import ArcsSectorsLab from "./ArcsSectorsLab";
@@ -7,7 +7,8 @@ import AnglesLab from "./AnglesLab";
 import ChordsLab from "./ChordsLab";
 import PowerOfPointLab from "./PowerOfPointLab";
 import TangentsLab from "./TangentsLab";
-import { CIRCLE_MODES, circleModeMeta, circleModeUrl, parseCircleMode, type CircleModeId } from "./circleMode";
+import { CircleSessionProvider, useCircleSession } from "./CircleSession";
+import { CIRCLE_MODES, circleModeMeta, type CircleModeId } from "./circleMode";
 import "./CirclesLab.css";
 
 function TabIcon({ id }: { id: CircleModeId }) {
@@ -61,31 +62,56 @@ function CirclesTabNavigation({ mode, onSelect }: { mode: CircleModeId; onSelect
   );
 }
 
-export default function CirclesLab({ page }: { page: StudioMockupPage }) {
-  const [params, setParams] = useSearchParams();
-  const mode = parseCircleMode(params.get("mode"));
-  const setMode = (next: CircleModeId) => {
-    const updated = new URLSearchParams(params);
-    updated.set("mode", circleModeUrl(next));
-    setParams(updated);
-  };
+function CirclesToolbar() {
+  const { snap, setSnap, teacher, setTeacher, units, setUnits, undo, share, exportSvg, announce } = useCircleSession();
+  return (
+    <div className="clab-toolbar">
+      <label className="clab-toggle"><input type="checkbox" checked={snap} onChange={(e) => setSnap(e.currentTarget.checked)} /> Snap to 30° / 0.5</label>
+      <label className="clab-toggle"><input type="checkbox" checked={teacher} onChange={(e) => setTeacher(e.currentTarget.checked)} /> Teacher mode</label>
+      <div className="clab-seg" role="group" aria-label="Units">
+        <button type="button" className={units === "units" ? "is-on" : ""} onClick={() => setUnits("units")}>Units</button>
+        <button type="button" className={units === "cm" ? "is-on" : ""} onClick={() => setUnits("cm")}>Centimetres</button>
+      </div>
+      <button type="button" className="clab-ghost" onClick={undo}>Undo</button>
+      <button type="button" className="clab-ghost" onClick={() => void share()}>Copy share URL</button>
+      <button type="button" className="clab-ghost" onClick={exportSvg}>Download SVG</button>
+      <p className="clab-live-region" role="status" aria-live="polite">{announce}</p>
+    </div>
+  );
+}
+
+function CirclesLabBody({ page }: { page: StudioMockupPage }) {
+  const { mode, setMode, kind } = useCircleSession();
   const meta = circleModeMeta(mode);
+  useEffect(() => {
+    const tabs = document.querySelector(".clab-tab[aria-selected='true']") as HTMLButtonElement | null;
+    tabs?.focus();
+  }, [mode]);
 
   return (
     <div className="clab">
       <CirclesTabNavigation mode={mode} onSelect={setMode} />
-      <div hidden={mode !== "chords"}><ChordsLab /></div>
-      <div hidden={mode !== "tangents"}><TangentsLab /></div>
-      <div hidden={mode !== "angles"}><AnglesLab /></div>
-      <div hidden={mode !== "power"}><PowerOfPointLab /></div>
-      <div hidden={mode !== "arcs"}><ArcsSectorsLab /></div>
+      <CirclesToolbar />
+      {mode === "chords" ? <ChordsLab /> : null}
+      {mode === "tangents" ? <TangentsLab /> : null}
+      {mode === "angles" ? <AnglesLab active /> : null}
+      {mode === "power" ? <PowerOfPointLab /> : null}
+      {mode === "arcs" ? <ArcsSectorsLab active /> : null}
       <MockupLearningStrip page={{ ...page, learning: {
         observe: `Watch the ${meta.label.toLowerCase()} construction respond as you drag.`,
-        understand: meta.description,
+        understand: kind ? `${meta.description} · ${kind}` : meta.description,
         why: "Each theorem is a consequence of radii, similar triangles, or intercepted arcs.",
-        try: "Use a preset, then drag a point and watch the live values.",
+        try: "Snap, presets, ghost targets, and arrow keys all edit the same live figure.",
         challenge: "Complete the tab challenge using the actual geometry, not a guess.",
       } }} />
     </div>
+  );
+}
+
+export default function CirclesLab({ page }: { page: StudioMockupPage }) {
+  return (
+    <CircleSessionProvider>
+      <CirclesLabBody page={page} />
+    </CircleSessionProvider>
   );
 }

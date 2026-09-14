@@ -78,7 +78,7 @@ export function LabFrame({
   return (
     <div className="tri-lab" aria-label={ariaLabel}>
       <Fold title="Controls">{controls}</Fold>
-      <section className="msk-panel tri-canvas">{canvas}</section>
+      <section className="msk-panel tri-canvas" id="lab-canvas">{canvas}</section>
       <aside className="tri-insights">
         <Fold title="Measurements">{insights}</Fold>
       </aside>

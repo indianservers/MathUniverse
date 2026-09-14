@@ -25,6 +25,7 @@ describe("coordinate geometry formulas", () => {
   it("writes slope-intercept, standard, and general forms", () => {
     const ell = lineForms(0.5, 1);
     expect(ell.slope).toContain("x");
+    expect(ell.slope).toContain("½");
     expect(slopeToGeneral(0.5, 1)).toEqual({ A: 1, B: -2, C: 2 });
     expect(ell.standard).toBe("x − 2y = -2");
     expect(ell.general).toBe("x − 2y + 2 = 0");

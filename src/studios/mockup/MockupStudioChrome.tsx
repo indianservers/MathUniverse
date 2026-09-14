@@ -143,7 +143,47 @@ export function MockupLearningStrip({ page }: { page: StudioMockupPage }) {
   );
 }
 
-function NavIcon({ id }: { id: string }) {
+function NavIcon({ id, studio }: { id: string; studio?: string }) {
+  const glyphId = studio === "discrete" && id === "graphs" ? "network-graph" : id;
+  const filled: Record<string, ReactNode> = {
+    home: <path d="M4 11.2 12 4l8 7.2V20h-6v-6H10v6H4Z" />,
+    construction: <><circle cx="12" cy="12" r="7" /><circle cx="12" cy="12" r="2" /><path d="M12 5v3M12 16v3M5 12h3M16 12h3" /></>,
+    triangles: <path d="M12 4 21 19H3Z" />,
+    circles: <circle cx="12" cy="12" r="8" />,
+    polygons: <path d="M12 3 20 8v8l-8 5-8-5V8Z" />,
+    "unit-circle": <><circle cx="12" cy="12" r="8" /><path d="M12 12 18 9" /></>,
+    "right-triangle": <path d="M4 20V5l15 15Z" />,
+    graphs: <path d="M3 16c3-8 6 2 9-4s5 1 9-6" />,
+    matrices: <path d="M5 5h6v6H5Zm8 0h6v6h-6ZM5 13h6v6H5Zm8 0h6v6h-6Z" />,
+    vectors: <path d="M5 19 19 5M19 5h-6M19 5v6" />,
+    "argand-plane": <><circle cx="12" cy="12" r="8" /><path d="M12 4v16M4 12h16" /></>,
+    identities: <path d="M7 4h10v4H7Zm0 6h10v4H7Zm0 6h10v4H7Z" />,
+    inverse: <path d="M5 16c2-8 12-8 14 0M12 6v8" />,
+    oblique: <path d="M4 19 10 5l10 14Z" />,
+    waves: <path d="M3 12c2-6 4 6 6 0s4 6 6 0 4 6 6 0" />,
+    applications: <path d="M12 3 14 9h6l-5 4 2 8-7-5-7 5 2-8-5-4h6Z" />,
+    transformations: <path d="M5 19V7l8-3v12Zm8-3 6-2v10l-6 2Z" />,
+    coordinate: <path d="M4 4h7v7H4Zm9 0h7v7h-7ZM4 13h7v7H4Zm9 0h7v7h-7Z" />,
+    measurement: <path d="M4 10h16v4H4Zm3-2v8M12 8v8M17 8v8" />,
+    proofs: <path d="M6 4h12v16H6Zm3 4h6M9 12h6M9 16h4" />,
+    solids: <path d="M12 3 21 8v8l-9 5-9-5V8Z" />,
+    ar: <path d="M4 8V4h4M16 4h4v4M20 16v4h-4M8 20H4v-4" />,
+    "row-reduction": <path d="M4 6h16M4 12h10M4 18h7" />,
+    determinants: <path d="M7 4v16M17 4v16M9 8h6M9 16h6" />,
+    eigenvectors: <path d="M5 19 19 5M12 19V5M5 12h14" />,
+    "number-sense": <path d="M7 4h3v16H7Zm7 0h3v16h-3Z" />,
+    primes: <path d="M12 3 20 8v8l-8 5-8-5V8Z" />,
+    "modular-arithmetic": <><circle cx="12" cy="12" r="8" /><path d="M12 6v6l4 2" /></>,
+    "network-graph": <><circle cx="6" cy="7" r="2.2" /><circle cx="18" cy="7" r="2.2" /><circle cx="7" cy="18" r="2.2" /><circle cx="17" cy="17" r="2.2" /><circle cx="12" cy="11" r="2.2" /><path d="M7.8 8.2 10.2 10M16.2 8.4 13.8 10.2M8.6 16.4 10.8 12.4M15.4 15.6 13.4 12.6" /></>,
+    algorithms: <path d="M6 4h12v5H6Zm0 7h12v9H6Z" />,
+    cryptography: <path d="M8 11V8a4 4 0 0 1 8 0v3H8Zm-2 0h12v9H6Z" />,
+    "data-explorer": <path d="M5 18V9h3v9Zm6 0V5h3v13Zm6 0v-7h3v7Z" />,
+    descriptive: <path d="M4 16h16M8 16V8m4 8V5m4 11v-6" />,
+    "interactive-distributions": <path d="M3 17c3-10 6 2 9-6s6 4 9-2" />,
+  };
+  if (filled[glyphId]) {
+    return <svg viewBox="0 0 24 24" aria-hidden="true"><g fill="currentColor" fillOpacity=".92" stroke="currentColor" strokeWidth="1.1" strokeLinejoin="round">{filled[glyphId]}</g></svg>;
+  }
   const Icon = pageIcons[id] ?? Sparkles;
   return <Icon />;
 }
@@ -159,11 +199,22 @@ export function MockupStudioChrome({
 }) {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
+  const [searchOpen, setSearchOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const labs = studioPagesWithoutHome(studio);
 
   useEffect(() => setOpen(false), [location.pathname]);
+  useEffect(() => {
+    const onKey = (event: KeyboardEvent) => {
+      if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k") {
+        event.preventDefault();
+        setSearchOpen(true);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
 
   const filtered = useMemo(() => {
     const needle = query.trim().toLowerCase();
@@ -182,8 +233,8 @@ export function MockupStudioChrome({
         <Link className="msk-main" to="/"><Home /><span>Main</span></Link>
         <nav aria-label={`${studio.name} navigation`}>
           {studio.pages.map((item) => (
-            <NavLink key={item.id} to={item.route} end={item.id === "home"} className={({ isActive }) => (isActive || page.id === item.id ? "active" : "")} onClick={() => setOpen(false)}>
-              <NavIcon id={item.id} /><span>{item.label}</span>
+            <NavLink key={item.id} to={item.route} end={item.id === "home"} className={({ isActive }) => (isActive || (page.id === item.id && item.route.startsWith(studio.basePath)) ? "active" : "")} onClick={() => setOpen(false)}>
+              <NavIcon id={item.id} studio={studio.id} /><span>{item.label}</span>
             </NavLink>
           ))}
         </nav>
@@ -200,16 +251,21 @@ export function MockupStudioChrome({
             <p>{page.id === "home" ? studio.homeSubtitle : page.subtitle}</p>
           </div>
           <div className="msk-tools">
-            <label className="msk-search">
-              <Search />
-              <input
-                value={query}
-                onChange={(event) => setQuery(event.target.value)}
-                onKeyDown={(event) => { if (event.key === "Enter" && filtered[0]) navigate(filtered[0].route); }}
-                placeholder={studio.searchPlaceholder}
-                aria-label={`Search ${studio.name}`}
-              />
-              {query ? <button type="button" aria-label="Clear search" onClick={() => setQuery("")}><X /></button> : <kbd>Ctrl+K</kbd>}
+            <div id="msk-lab-tools" className="msk-lab-tools" />
+            <label className={`msk-search${searchOpen || query ? " is-open" : ""}`}>
+              <button type="button" aria-label="Search" onClick={() => setSearchOpen((value) => !value)}><Search /></button>
+              {searchOpen || query ? (
+                <input
+                  autoFocus
+                  value={query}
+                  onChange={(event) => setQuery(event.target.value)}
+                  onKeyDown={(event) => { if (event.key === "Enter" && filtered[0]) navigate(filtered[0].route); }}
+                  onBlur={() => { if (!query) setSearchOpen(false); }}
+                  placeholder={studio.searchPlaceholder}
+                  aria-label={`Search ${studio.name}`}
+                />
+              ) : null}
+              {query ? <button type="button" aria-label="Clear search" onClick={() => setQuery("")}><X /></button> : null}
             </label>
             <button type="button" aria-label="Streak"><Flame /></button>
             <span><Star />0 XP</span>

@@ -1,4 +1,4 @@
-import { HelpCircle, Settings } from "lucide-react";
+import { HelpCircle, RotateCcw, RotateCw, Settings } from "lucide-react";
 import { useState, type ReactNode } from "react";
 import { useTheme } from "../../hooks/useTheme";
 
@@ -16,7 +16,7 @@ export default function AlgebraLabHeading({
   onMode?: (mode: string) => void;
 }) {
   const [panel, setPanel] = useState<"Help" | "Settings" | null>(null);
-  const { toggleTheme, fontScale, setFontScale, reducedMotion, setReducedMotion } = useTheme();
+  const { fontScale, setFontScale, reducedMotion, setReducedMotion } = useTheme();
   return (
     <>
       <header className="alg-header">
@@ -33,9 +33,10 @@ export default function AlgebraLabHeading({
           </nav>
         ) : null}
         <div className="alg-header-actions">
+          <button type="button" aria-label="Undo"><RotateCcw /></button>
+          <button type="button" aria-label="Redo"><RotateCw /></button>
           <button type="button" aria-expanded={panel === "Help"} onClick={() => setPanel(panel === "Help" ? null : "Help")} aria-label="Help"><HelpCircle /></button>
           <button type="button" aria-expanded={panel === "Settings"} onClick={() => setPanel(panel === "Settings" ? null : "Settings")} aria-label="Settings"><Settings /></button>
-          <button type="button" onClick={toggleTheme} aria-label="Theme">Theme</button>
         </div>
       </header>
       {panel === "Help" && <section className="alg-card"><h2>Explore this lab</h2><p>Select a mode and change its parameters to recompute the model. Use the result and graph together. Challenges check the current values; CAS and proof entry accept expressions with powers such as x^2.</p></section>}

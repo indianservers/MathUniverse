@@ -129,10 +129,13 @@ export function ExpressionsLab() {
           </div>
         </Card>
         <Card title="5. Visual model">
-          <div className="alg-area-model large" aria-label="Area model">
-            <span>x²</span><span>{tiles[1] >= 0 ? `+${tiles[1]}x` : `${tiles[1]}x`}</span>
-            <span>{tiles[1] >= 0 ? "−x" : "+x"}</span>
-            <span>{tiles[2]}</span>
+          <div className="alg-area-wrap">
+            <small>x</small><small>+2</small><small>x</small><small>−1</small>
+            <div className="alg-area-model large" aria-label="Area model">
+              <span>x²</span><span>{tiles[1] >= 0 ? `+${tiles[1]}x` : `${tiles[1]}x`}</span>
+              <span>{tiles[1] >= 0 ? "−x" : "+x"}</span>
+              <span>{tiles[2]}</span>
+            </div>
           </div>
           <ul className="alg-legend"><li>Positive</li><li>Negative</li><li>Selected</li><li>Zero</li></ul>
         </Card>
@@ -243,6 +246,15 @@ export function EquationsLab() {
             <button type="button" onClick={() => { setA(3); setB(5); setC(2); setD(-1); setOperand(-2); setNotice(""); setHistory([]); }}>↩ Undo</button>
           </div>
           <p role="status">{notice || "Apply the same operation to both sides."}</p>
+          <div className="alg-apply-row">
+            <span>Applying the same operation to both sides</span>
+            <output>{operand}x</output>
+            <i>→</i>
+            <output>{fmt(operand * (linear.kind === "one" ? linear.value : 0))}</output>
+            <i>=</i>
+            <output>{fmt(operand * (linear.kind === "one" ? linear.value : 0))}</output>
+            <label className="alg-toggle"><input type="checkbox" defaultChecked /> Auto-balance</label>
+          </div>
         </Card>
         <Card title="Solution on number line">
           <div className="alg-number-line" aria-label="Number line">
@@ -279,7 +291,7 @@ export function FunctionsLab() {
   const fn = (x: number) => mode === "Composition" ? base(a * x + k) : mode === "Inverse" ? (x - k) / a : mode === "Piecewise" ? x < h ? a * x + k : base(x) : a * base(x - h) + k;
   const expression = mode === "Composition" ? family.replaceAll("x", `(${a}*x+(${k}))`) : mode === "Inverse" ? `(x-(${k}))/${a}` : transformed;
   const range = a === 0 ? `{${k}}` : family === "x^2" || family === "abs(x)" ? a > 0 ? `[${k}, ∞)` : `(−∞, ${k}]` : family === "sin(x)" ? `[${k - Math.abs(a)}, ${k + Math.abs(a)}]` : "All real values";
-  return <div className="alg-page"><AlgebraLabHeading subtitle="Explore families, transformations, composition, inverses, and piecewise graphs." modes={modes} mode={mode} onMode={setMode}>Functions &amp; Transformations Lab</AlgebraLabHeading><div className="alg-three-column"><Card title="Function controls"><label className="alg-field">Base function<select value={family} onChange={(e) => setFamily(e.target.value)}>{["x^2", "x", "abs(x)", "sin(x)"].map((f) => <option key={f}>{f}</option>)}</select></label><Numeric label="a (stretch / slope)" value={a} step={0.5} onChange={setA} /><Numeric label="h (shift / boundary)" value={h} onChange={setH} /><Numeric label="k (vertical offset)" value={k} onChange={setK} /><Numeric label="Input x" value={probe} onChange={setProbe} /></Card><Card title={`${mode} model`}>{mode === "Piecewise" ? <><p>x &lt; {h}: {a}x + {k}; x ≥ {h}: {family}</p><Plot expressions={[`${a}*x+(${k})`, family]} /><p>Both branch curves are shown; the boundary selects the active branch in the table.</p></> : <><p>{mode === "Inverse" ? `Inverse of f(x) = ${a}x + ${k}` : expression}</p><Plot expressions={[mode === "Inverse" ? `${a}*x+(${k})` : family, expression]} /></>}<Result>{mode === "Inverse" && a === 0 ? "No inverse: a constant function is not one-to-one." : `Output at x=${probe}: ${fmt(fn(probe))}`}</Result></Card><Card title="Mapping & domain"><table className="alg-table"><thead><tr><th>x</th><th>Output</th></tr></thead><tbody>{[-2, -1, 0, 1, 2, 3].map((x) => <tr key={x}><td>{x}</td><td>{fmt(fn(x))}</td></tr>)}</tbody></table>{(mode === "Families" || mode === "Transformations") && <p>Domain: all real values. Range: {range}</p>}{mode === "Composition" && <p>First evaluate g(x) = {a}x + {k}, then apply f(x) = {family}.</p>}</Card></div><LabStrip items={[["Observe", "Watch the graph stretch, shift, and flip."], ["Understand", "a, h, and k rewrite the same family."], ["Why", "A transformation is a composition of maps."], ["Try", "Match a target graph with a, h, and k."], ["Challenge", "Find the inverse and check f(f⁻¹(x)) = x."]]} /></div>;
+  return <div className="alg-page"><AlgebraLabHeading subtitle="Explore families, transformations, composition, inverses, and piecewise graphs." modes={modes} mode={mode} onMode={setMode}>Functions &amp; Transformations Lab</AlgebraLabHeading><div className="alg-three-column"><Card title="Function controls"><label className="alg-field">Base function<select value={family} onChange={(e) => setFamily(e.target.value)}>{["x^2", "x", "abs(x)", "sin(x)"].map((f) => <option key={f}>{f}</option>)}</select></label><Numeric label="a (stretch / slope)" value={a} step={0.5} onChange={setA} /><Numeric label="h (shift / boundary)" value={h} onChange={setH} /><Numeric label="k (vertical offset)" value={k} onChange={setK} /><Numeric label="Input x" value={probe} onChange={setProbe} /><div className="alg-machine" aria-label="Function machine"><span>x = {probe}</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h12M13 7l7 5-7 5" fill="none" stroke="currentColor" strokeWidth="1.8" /></svg><em>f</em><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h12M13 7l7 5-7 5" fill="none" stroke="currentColor" strokeWidth="1.8" /></svg><b>{fmt(fn(probe))}</b></div></Card><Card title={`${mode} model`}>{mode === "Piecewise" ? <><p>x &lt; {h}: {a}x + {k}; x ≥ {h}: {family}</p><Plot expressions={[`${a}*x+(${k})`, family]} /><p>Both branch curves are shown; the boundary selects the active branch in the table.</p></> : <><p>{mode === "Inverse" ? `Inverse of f(x) = ${a}x + ${k}` : expression}</p><Plot expressions={[mode === "Inverse" ? `${a}*x+(${k})` : family, expression]} /></>}<Result>{mode === "Inverse" && a === 0 ? "No inverse: a constant function is not one-to-one." : `Output at x=${probe}: ${fmt(fn(probe))}`}</Result></Card><Card title="Mapping & domain"><table className="alg-table"><thead><tr><th>x</th><th>Output</th></tr></thead><tbody>{[-2, -1, 0, 1, 2, 3].map((x) => <tr key={x}><td>{x}</td><td>{fmt(fn(x))}</td></tr>)}</tbody></table>{(mode === "Families" || mode === "Transformations") && <p>Domain: all real values. Range: {range}</p>}{mode === "Composition" && <p>First evaluate g(x) = {a}x + {k}, then apply f(x) = {family}.</p>}</Card></div><LabStrip items={[["Observe", "Watch the graph stretch, shift, and flip."], ["Understand", "a, h, and k rewrite the same family."], ["Why", "A transformation is a composition of maps."], ["Try", "Match a target graph with a, h, and k."], ["Challenge", "Find the inverse and check f(f⁻¹(x)) = x."]]} /></div>;
 }
 
 export function PolynomialsLab() {

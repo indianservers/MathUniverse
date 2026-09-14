@@ -10,17 +10,20 @@ import {
   Eye,
   EyeOff,
   FileJson,
+  FilePlus2,
+  FolderOpen,
   Focus,
   Fullscreen,
   Grid3X3,
   Layers3,
   Maximize2,
   Menu,
+  MonitorPlay,
+  Pause,
+  Play,
   PanelLeftClose,
   PanelRightClose,
-  Pause,
   Pencil,
-  Play,
   Plus,
   Redo2,
   Repeat2,
@@ -29,11 +32,20 @@ import {
   Settings,
   Sigma,
   SlidersHorizontal,
-  StepForward,
   Trash2,
   Undo2,
+  Video,
 } from "lucide-react";
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
+import MathExpression from "../components/ui/MathExpression";
+import {
+  SURFACE_TEMPLATES,
+  expressionToLatex,
+  suggestExpressionFix,
+  type CameraBookmark,
+  type Graph3DAnnotation,
+  type ReadGraphChecklist,
+} from "./graph3dEnhancements";
 import type { SurfaceSampleResult } from "../utils/mathEngine/graph3dUtils";
 import type { GraphStudioStylePreset, GraphStudioVariable } from "./types";
 import type { SurfaceDifferential } from "./graphIntelligence";
@@ -51,8 +63,7 @@ import {
 } from "./graph3dThemes";
 
 export type Studio3DInspectorTab = "properties" | "analysis" | "style";
-export type Studio3DDockTab = "timeline" | "cross-section" | "values";
-export type Studio3DTool = "select" | "point" | "slice";
+export type Studio3DTool = "select" | "point" | "slice" | "annotate";
 
 type Position = { x: number; y: number; z: number };
 
@@ -64,11 +75,20 @@ export type GraphStudio3DWorkspaceProps = {
   onUndo: () => void;
   onRedo: () => void;
   onSave: () => void;
+  onNewProject: () => void;
+  onDuplicateProject: () => void;
+  onOpenProject: (raw: string) => void;
+  importError?: string | null;
   onExportProject: () => void;
   onExportCsv: () => void;
+  onExportMesh: (format: "stl" | "obj") => void;
+  onExportVideo: () => void;
+  recording?: boolean;
   onCopyEquation: () => void;
   onOpenCas: () => void;
   onOpenGeometry: () => void;
+  onPlotCasExpression: (expression: string) => void;
+  onApplyTemplate: (id: string) => void;
   surfaces: Graph3DSurface[];
   selectedSurfaceId: string;
   onSelectedSurfaceChange: (surfaceId: string) => void;
@@ -146,6 +166,35 @@ export type GraphStudio3DWorkspaceProps = {
   onPlayKeyframes: () => void;
   savedLibrary: ReactNode;
   shareControl?: ReactNode;
+  presentationMode: boolean;
+  onPresentationModeChange: (value: boolean) => void;
+  flyMode: boolean;
+  onFlyModeChange: (value: boolean) => void;
+  clipEnabled: boolean;
+  clipAxis: "x" | "y" | "z";
+  clipValue: number;
+  onClipEnabledChange: (value: boolean) => void;
+  onClipAxisChange: (value: "x" | "y" | "z") => void;
+  onClipValueChange: (value: number) => void;
+  bookmarks: CameraBookmark[];
+  onAddBookmark: () => void;
+  onOpenBookmark: (id: string) => void;
+  onDeleteBookmark: (id: string) => void;
+  annotations: Graph3DAnnotation[];
+  onClearAnnotations: () => void;
+  checklist: ReadGraphChecklist;
+  onChecklistChange: (patch: Partial<ReadGraphChecklist>) => void;
+  challengeOpen: boolean;
+  onChallengeOpenChange: (value: boolean) => void;
+  challengeMessage: string;
+  onChallengeGuess: (point: { x: number; y: number }) => void;
+  surfaceArea?: { area: number; error?: string } | null;
+  arcLength?: number | null;
+  vectorCalculus?: {
+    divergence: number;
+    curl: { x: number; y: number; z: number };
+  } | null;
+  intersectionCount?: number;
 };
 
 export default function GraphStudio3DWorkspace(
@@ -154,17 +203,17 @@ export default function GraphStudio3DWorkspace(
   const { onRedo, onSave, onUndo } = props;
   const [inspectorTab, setInspectorTab] =
     useState<Studio3DInspectorTab>("analysis");
-  const [dockTab, setDockTab] = useState<Studio3DDockTab>("timeline");
   const [leftOpen, setLeftOpen] = useState(true);
   const [rightOpen, setRightOpen] = useState(true);
-  const [dockOpen, setDockOpen] = useState(true);
   const [exportOpen, setExportOpen] = useState(false);
+  const [fileOpen, setFileOpen] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [helpOpen, setHelpOpen] = useState(false);
   const [viewOpen, setViewOpen] = useState(false);
   const [renaming, setRenaming] = useState(false);
   const [fps, setFps] = useState(60);
   const [viewLabel, setViewLabel] = useState("Perspective");
+  const projectInput = useRef<HTMLInputElement>(null);
   const tool = props.tool;
   const selectedSurface =
     props.surfaces.find((surface) => surface.id === props.selectedSurfaceId) ??
@@ -197,7 +246,6 @@ export default function GraphStudio3DWorkspace(
       if (!media.matches) return;
       setLeftOpen(false);
       setRightOpen(false);
-      setDockOpen(false);
     };
     syncPanels();
     media.addEventListener("change", syncPanels);
@@ -232,14 +280,12 @@ export default function GraphStudio3DWorkspace(
   const openCrossSection = () => {
     chooseTool("slice");
     props.onSliceEnabledChange(true);
-    setDockOpen(true);
-    setDockTab("cross-section");
   };
 
   return (
     <div
       id="graph-studio-3d-root"
-      className={`graph-studio-3d-shell graph-studio-surface-shell ${leftOpen ? "has-left" : ""} ${rightOpen ? "has-right" : ""} ${dockOpen ? "has-dock" : ""}`}
+      className={`graph-studio-3d-shell graph-studio-surface-shell ${leftOpen ? "has-left" : ""} ${rightOpen ? "has-right" : ""} ${props.presentationMode ? "is-presenting" : ""}`}
     >
       <header className="gs3d-topbar">
         <div className="gs3d-brand">
@@ -289,6 +335,37 @@ export default function GraphStudio3DWorkspace(
             icon={<Save />}
             onClick={props.onSave}
             shortcut="Ctrl+S"
+          />
+          <div className="relative">
+            <TopAction
+              label="File"
+              icon={<FolderOpen />}
+              onClick={() => setFileOpen((value) => !value)}
+            />
+            {fileOpen && (
+              <FileMenu
+                props={props}
+                close={() => setFileOpen(false)}
+                onPickFile={() => projectInput.current?.click()}
+                onRename={() => {
+                  setRenaming(true);
+                  setFileOpen(false);
+                }}
+              />
+            )}
+          </div>
+          <input
+            ref={projectInput}
+            type="file"
+            accept="application/json,.json"
+            className="hidden"
+            aria-label="Open project file"
+            onChange={async (event) => {
+              const file = event.target.files?.[0];
+              if (file) props.onOpenProject(await file.text());
+              event.target.value = "";
+              setFileOpen(false);
+            }}
           />
           <div className="relative">
             <TopAction
@@ -405,7 +482,16 @@ export default function GraphStudio3DWorkspace(
               Vector field
             </button>
           </div>
-          <div className="gs3d-presets">
+          <div className="gs3d-presets" aria-label="Equation templates">
+            {SURFACE_TEMPLATES.map((template) => (
+              <button
+                type="button"
+                key={template.id}
+                onClick={() => props.onApplyTemplate(template.id)}
+              >
+                {template.name}
+              </button>
+            ))}
             <button type="button" onClick={props.onRandomExample}>
               Random surface
             </button>
@@ -471,6 +557,36 @@ export default function GraphStudio3DWorkspace(
                 props.onSliceEnabledChange(value);
                 if (value) openCrossSection();
               }}
+            />
+            <ToggleRow
+              label="Clip plane"
+              icon={<Layers3 />}
+              checked={props.clipEnabled}
+              onChange={props.onClipEnabledChange}
+            />
+            <ToggleRow
+              label="Contours"
+              icon={<Activity />}
+              checked={selectedSurface.showContours}
+              onChange={(showContours) =>
+                props.onSurfaceChange(selectedSurface.id, { showContours })
+              }
+            />
+            <ToggleRow
+              label="Fill below surface"
+              icon={<Layers3 />}
+              checked={selectedSurface.fillBelow}
+              onChange={(fillBelow) =>
+                props.onSurfaceChange(selectedSurface.id, { fillBelow })
+              }
+            />
+            <ToggleRow
+              label="Two-sided shading"
+              icon={<Eye />}
+              checked={selectedSurface.twoSided}
+              onChange={(twoSided) =>
+                props.onSurfaceChange(selectedSurface.id, { twoSided })
+              }
             />
           </div>
         </div>
@@ -557,6 +673,26 @@ export default function GraphStudio3DWorkspace(
             active={tool === "slice"}
             onClick={openCrossSection}
           />
+          <CanvasTool
+            label="Annotate"
+            icon={<Pencil />}
+            active={tool === "annotate"}
+            onClick={() => chooseTool("annotate")}
+          />
+          <CanvasTool
+            label="Fly"
+            icon={<Focus />}
+            active={props.flyMode}
+            onClick={() => props.onFlyModeChange(!props.flyMode)}
+          />
+          <CanvasTool
+            label="Present"
+            icon={<MonitorPlay />}
+            active={props.presentationMode}
+            onClick={() =>
+              props.onPresentationModeChange(!props.presentationMode)
+            }
+          />
         </div>
         <div className="gs3d-canvas-actions">
           <button
@@ -576,7 +712,25 @@ export default function GraphStudio3DWorkspace(
         </div>
         <div id="surface-3d-panel" className="gs3d-scene-host">
           {props.scene}
+          <DomainMiniMap
+            analysisPoint={props.analysisPoint}
+            xRange={props.xRange}
+            yRange={props.yRange}
+            flyMode={props.flyMode}
+          />
         </div>
+        <KeyframeStrip
+          keyframes={props.keyframes}
+          playing={props.keyframesPlaying}
+          onAdd={props.onAddKeyframe}
+          onDelete={props.onDeleteKeyframe}
+          onPlay={props.onPlayKeyframes}
+        />
+        {props.importError && (
+          <p className="gs3d-import-error" role="alert">
+            {props.importError}
+          </p>
+        )}
         <div className="gs3d-interaction-hint">
           Drag to orbit <span /> Wheel to zoom <span /> Shift-drag to pan
         </div>
@@ -633,58 +787,6 @@ export default function GraphStudio3DWorkspace(
         </div>
       </aside>
 
-      <section
-        className={`gs3d-dock ${dockOpen ? "open" : ""}`}
-        aria-label="Analysis and animation dock"
-      >
-        <div className="gs3d-dock-tabs">
-          {(["timeline", "cross-section", "values"] as Studio3DDockTab[]).map(
-            (item) => (
-              <button
-                key={item}
-                type="button"
-                className={dockTab === item ? "active" : ""}
-                onClick={() => {
-                  setDockTab(item);
-                  setDockOpen(true);
-                }}
-              >
-                {item}
-              </button>
-            ),
-          )}
-          <button
-            type="button"
-            className="collapse"
-            onClick={() => setDockOpen((value) => !value)}
-            aria-label={dockOpen ? "Collapse dock" : "Expand dock"}
-          >
-            {dockOpen ? <ChevronDown /> : <ChevronRight />}
-          </button>
-        </div>
-        {dockOpen && (
-          <div className="gs3d-dock-content">
-            {dockTab === "timeline" ? (
-              <TimelineDock
-                variables={props.variables}
-                onChange={props.onVariablesChange}
-                autoRotate={props.autoRotate}
-                onAutoRotate={props.onAutoRotateChange}
-                keyframes={props.keyframes}
-                keyframesPlaying={props.keyframesPlaying}
-                onAddKeyframe={props.onAddKeyframe}
-                onDeleteKeyframe={props.onDeleteKeyframe}
-                onPlayKeyframes={props.onPlayKeyframes}
-              />
-            ) : dockTab === "cross-section" ? (
-              <SliceDock props={props} />
-            ) : (
-              <ValuesDock props={props} />
-            )}
-          </div>
-        )}
-      </section>
-
       <footer className="gs3d-status">
         <span className="online-dot" />
         Offline ready <span>{fps} FPS</span>
@@ -710,16 +812,6 @@ export default function GraphStudio3DWorkspace(
         <button type="button" onClick={() => setRightOpen(true)}>
           <SlidersHorizontal />
           Inspector
-        </button>
-        <button
-          type="button"
-          onClick={() => {
-            setDockOpen(true);
-            setDockTab("timeline");
-          }}
-        >
-          <Activity />
-          Timeline
         </button>
         {props.shareControl}
       </nav>
@@ -849,6 +941,9 @@ function ExpressionCard({
         >
           {expressionLabel}
         </button>
+        <span className="gs3d-latex">
+          <MathExpression value={expressionToLatex(usesComponents ? `${surface.components.x}, ${surface.components.y}, ${surface.components.z}` : surface.expression)} />
+        </span>
         {editing &&
           (usesComponents ? (
             <div onClick={(event) => event.stopPropagation()}>
@@ -884,7 +979,13 @@ function ExpressionCard({
               onClick={(event) => event.stopPropagation()}
             />
           ))}
-        {error && <p role="alert">{error}</p>}
+        {error && (
+          <ExpressionFixNote
+            expression={surface.expression}
+            error={error}
+            onApply={(rewrite) => onChange({ expression: rewrite })}
+          />
+        )}
       </div>
       <button
         type="button"
@@ -966,6 +1067,35 @@ function VariableControls({
                 )
               }
             />
+            <button
+              type="button"
+              aria-label={variable.playing ? `Pause ${variable.name}` : `Play ${variable.name}`}
+              onClick={() =>
+                onChange(
+                  variables.map((item, itemIndex) =>
+                    itemIndex === index ? { ...item, playing: !item.playing } : item,
+                  ),
+                )
+              }
+            >
+              {variable.playing ? <Pause /> : <Play />}
+            </button>
+            <button
+              type="button"
+              aria-label={`Toggle ${variable.name} playback mode`}
+              onClick={() =>
+                onChange(
+                  variables.map((item, itemIndex) =>
+                    itemIndex === index
+                      ? { ...item, playback: item.playback === "loop" ? "ping-pong" : "loop" }
+                      : item,
+                  ),
+                )
+              }
+            >
+              <Repeat2 />
+              {variable.playback}
+            </button>
           </div>
           <input
             aria-label={`${variable.name} slider`}
@@ -984,6 +1114,26 @@ function VariableControls({
               )
             }
           />
+          <label>
+            Speed
+            <select
+              aria-label={`${variable.name} speed`}
+              value={variable.speed}
+              onChange={(event) =>
+                onChange(
+                  variables.map((item, itemIndex) =>
+                    itemIndex === index
+                      ? { ...item, speed: Number(event.target.value) }
+                      : item,
+                  ),
+                )
+              }
+            >
+              <option value="0.5">0.5x</option>
+              <option value="1">1x</option>
+              <option value="2">2x</option>
+            </select>
+          </label>
         </div>
       ))}
     </div>
@@ -1134,7 +1284,7 @@ function PropertiesPanel({ props }: { props: GraphStudio3DWorkspaceProps }) {
           ))}
         </InspectorGroup>
       )}
-      <InspectorGroup title={parameterized ? "Parameter domain" : "Domain"}>
+      <InspectorGroup title={parameterized ? "Parameter domain" : "Independent window"}>
         {surface.kind === "curve" ? (
           <>
             <CompactSlider
@@ -1296,10 +1446,123 @@ function PropertiesPanel({ props }: { props: GraphStudio3DWorkspaceProps }) {
           step={2}
           onChange={props.onResolutionChange}
         />
+        <CompactSlider
+          label="Implicit LOD"
+          value={surface.lod}
+          min={1}
+          max={3}
+          step={1}
+          onChange={(lod) =>
+            props.onSurfaceChange(surface.id, { lod: lod as 1 | 2 | 3 })
+          }
+        />
+        <label className="gs3d-select-field">
+          Domain restriction
+          <input
+            aria-label="Domain restriction"
+            placeholder="x^2+y^2<=4"
+            value={surface.domainPredicate}
+            onChange={(event) =>
+              props.onSurfaceChange(surface.id, {
+                domainPredicate: event.target.value,
+              })
+            }
+          />
+        </label>
+        <CompactSlider
+          label="Layer x min"
+          value={surface.xMin}
+          min={-8}
+          max={8}
+          step={0.5}
+          onChange={(xMin) => props.onSurfaceChange(surface.id, { xMin })}
+        />
+        <CompactSlider
+          label="Layer x max"
+          value={surface.xMax}
+          min={-8}
+          max={8}
+          step={0.5}
+          onChange={(xMax) => props.onSurfaceChange(surface.id, { xMax })}
+        />
+        <CompactSlider
+          label="Layer y min"
+          value={surface.yMin}
+          min={-8}
+          max={8}
+          step={0.5}
+          onChange={(yMin) => props.onSurfaceChange(surface.id, { yMin })}
+        />
+        <CompactSlider
+          label="Layer y max"
+          value={surface.yMax}
+          min={-8}
+          max={8}
+          step={0.5}
+          onChange={(yMax) => props.onSurfaceChange(surface.id, { yMax })}
+        />
         <p className="gs3d-muted">
-          Adaptive explicit meshes refine high-curvature cells. Implicit meshes
-          are capped for interactive marching-tetrahedra rendering.
+          Each layer can keep its own window. LOD 3 raises implicit mesh density.
         </p>
+      </InspectorGroup>
+      <InspectorGroup title="Slice and clip">
+        <CompactSlider
+          label="Slice position"
+          value={props.sliceValue}
+          min={-Math.max(props.xRange, props.yRange)}
+          max={Math.max(props.xRange, props.yRange)}
+          step={0.1}
+          onChange={props.onSliceValueChange}
+        />
+        <label className="gs3d-select-field">
+          Slice axis
+          <select
+            value={props.sliceAxis}
+            onChange={(event) =>
+              props.onSliceAxisChange(event.target.value as "x" | "y" | "z")
+            }
+          >
+            <option value="x">X</option>
+            <option value="y">Y</option>
+            <option value="z">Z</option>
+          </select>
+        </label>
+        <label className="gs3d-select-field">
+          Clip axis
+          <select
+            value={props.clipAxis}
+            onChange={(event) =>
+              props.onClipAxisChange(event.target.value as "x" | "y" | "z")
+            }
+          >
+            <option value="x">X</option>
+            <option value="y">Y</option>
+            <option value="z">Z</option>
+          </select>
+        </label>
+        <CompactSlider
+          label="Clip position"
+          value={props.clipValue}
+          min={-Math.max(props.xRange, props.yRange)}
+          max={Math.max(props.xRange, props.yRange)}
+          step={0.1}
+          onChange={props.onClipValueChange}
+        />
+      </InspectorGroup>
+      <InspectorGroup title="Camera bookmarks">
+        <button type="button" onClick={props.onAddBookmark}>
+          Save current view
+        </button>
+        {props.bookmarks.map((bookmark) => (
+          <p className="gs3d-muted" key={bookmark.id}>
+            <button type="button" onClick={() => props.onOpenBookmark(bookmark.id)}>
+              {bookmark.name}
+            </button>
+            <button type="button" onClick={() => props.onDeleteBookmark(bookmark.id)}>
+              Remove
+            </button>
+          </p>
+        ))}
       </InspectorGroup>
     </div>
   );
@@ -1469,6 +1732,87 @@ function AnalysisPanel({
             Add derivative surface
           </button>
         </div>
+      )}
+      <InspectorGroup title="Measures">
+        <Metric
+          label="Surface area"
+          value={
+            props.surfaceArea?.error
+              ? props.surfaceArea.error
+              : props.surfaceArea
+                ? format(props.surfaceArea.area)
+                : "Unavailable"
+          }
+          status="numerical"
+        />
+        <Metric
+          label="Arc length"
+          value={props.arcLength == null ? "Unavailable" : format(props.arcLength)}
+          status="numerical"
+        />
+        <Metric
+          label="Intersection samples"
+          value={String(props.intersectionCount ?? 0)}
+          status="numerical"
+        />
+        {props.vectorCalculus && (
+          <>
+            <Metric
+              label="Divergence"
+              value={format(props.vectorCalculus.divergence)}
+              status="numerical"
+            />
+            <Metric
+              label="Curl"
+              value={`(${format(props.vectorCalculus.curl.x)}, ${format(props.vectorCalculus.curl.y)}, ${format(props.vectorCalculus.curl.z)})`}
+              status="numerical"
+            />
+          </>
+        )}
+      </InspectorGroup>
+      <InspectorGroup title="CAS round-trip">
+        <button type="button" onClick={props.onOpenCas}>
+          Send selected surface to CAS
+        </button>
+        <CasPlotField onPlot={props.onPlotCasExpression} />
+      </InspectorGroup>
+      <InspectorGroup title="Read the graph">
+        {(
+          [
+            ["intercepts", "Intercepts"],
+            ["extrema", "Extrema"],
+            ["symmetry", "Symmetry"],
+            ["slice", "Slice at x = a"],
+          ] as const
+        ).map(([key, label]) => (
+          <ToggleRow
+            key={key}
+            label={label}
+            icon={<Sigma />}
+            checked={props.checklist[key]}
+            onChange={(value) => props.onChecklistChange({ [key]: value })}
+          />
+        ))}
+      </InspectorGroup>
+      <InspectorGroup title="Find the saddle">
+        <button
+          type="button"
+          onClick={() => props.onChallengeOpenChange(!props.challengeOpen)}
+        >
+          {props.challengeOpen ? "Hide challenge" : "Start challenge"}
+        </button>
+        {props.challengeOpen && (
+          <p className="gs3d-muted">
+            Click the surface near a saddle. {props.challengeMessage}
+          </p>
+        )}
+      </InspectorGroup>
+      {props.annotations.length > 0 && (
+        <InspectorGroup title="Annotations">
+          <button type="button" onClick={props.onClearAnnotations}>
+            Clear annotations
+          </button>
+        </InspectorGroup>
       )}
     </div>
   );
@@ -1669,284 +2013,6 @@ function HelpPopover({
   );
 }
 
-function TimelineDock({
-  variables,
-  onChange,
-  autoRotate,
-  onAutoRotate,
-  keyframes,
-  keyframesPlaying,
-  onAddKeyframe,
-  onDeleteKeyframe,
-  onPlayKeyframes,
-}: {
-  variables: GraphStudioVariable[];
-  onChange: (variables: GraphStudioVariable[]) => void;
-  autoRotate: boolean;
-  onAutoRotate: (value: boolean) => void;
-  keyframes: Graph3DKeyframe[];
-  keyframesPlaying: boolean;
-  onAddKeyframe: () => void;
-  onDeleteKeyframe: (id: string) => void;
-  onPlayKeyframes: () => void;
-}) {
-  const primary = variables[0];
-  const playing = variables.some((item) => item.playing);
-  return (
-    <div className="gs3d-timeline">
-      <button
-        type="button"
-        className="play"
-        aria-label={
-          playing ? "Pause parameter animation" : "Play parameter animation"
-        }
-        disabled={!primary}
-        onClick={() =>
-          onChange(variables.map((item) => ({ ...item, playing: !playing })))
-        }
-      >
-        {playing ? <Pause /> : <Play />}
-      </button>
-      {primary ? (
-        <>
-          <strong>{primary.name}</strong>
-          <input
-            aria-label="Timeline value"
-            type="number"
-            value={primary.value}
-            step={primary.step}
-            onChange={(event) =>
-              onChange(
-                variables.map((item, index) =>
-                  index ? item : { ...item, value: Number(event.target.value) },
-                ),
-              )
-            }
-          />
-          <input
-            aria-label="Timeline scrubber"
-            className="scrubber"
-            type="range"
-            min={primary.min}
-            max={primary.max}
-            step={primary.step}
-            value={primary.value}
-            onChange={(event) =>
-              onChange(
-                variables.map((item, index) =>
-                  index ? item : { ...item, value: Number(event.target.value) },
-                ),
-              )
-            }
-          />
-          <span>{format(primary.max)}</span>
-          <label>
-            Speed
-            <select
-              value={primary.speed}
-              onChange={(event) =>
-                onChange(
-                  variables.map((item) => ({
-                    ...item,
-                    speed: Number(event.target.value),
-                  })),
-                )
-              }
-            >
-              <option value="0.5">0.5x</option>
-              <option value="1">1x</option>
-              <option value="2">2x</option>
-            </select>
-          </label>
-          <button
-            type="button"
-            onClick={() =>
-              onChange(
-                variables.map((item) => ({
-                  ...item,
-                  playback: item.playback === "loop" ? "ping-pong" : "loop",
-                })),
-              )
-            }
-          >
-            <Repeat2 />
-            {primary.playback}
-          </button>
-          <button
-            type="button"
-            onClick={() =>
-              onChange(
-                variables.map((item, index) =>
-                  index
-                    ? item
-                    : {
-                        ...item,
-                        value: Math.min(item.max, item.value + item.step),
-                      },
-                ),
-              )
-            }
-          >
-            <StepForward />
-            Step
-          </button>
-        </>
-      ) : (
-        <p>
-          Add a named parameter to an expression, or capture camera-only
-          keyframes.
-        </p>
-      )}
-      <button
-        type="button"
-        className={autoRotate ? "active" : ""}
-        aria-pressed={autoRotate}
-        onClick={() => onAutoRotate(!autoRotate)}
-      >
-        <RotateCcw />
-        {autoRotate ? "Pause orbit" : "Orbit"}
-      </button>
-      <button type="button" onClick={onAddKeyframe}>
-        <Plus />
-        Capture keyframe
-      </button>
-      <button
-        type="button"
-        onClick={onPlayKeyframes}
-        disabled={keyframes.length < 2}
-      >
-        {keyframesPlaying ? <Pause /> : <Play />}
-        {keyframesPlaying ? "Stop keyframes" : "Play keyframes"}
-      </button>
-      {keyframes.map((keyframe) => (
-        <button
-          type="button"
-          key={keyframe.id}
-          title="Remove keyframe"
-          onClick={() => onDeleteKeyframe(keyframe.id)}
-        >
-          {keyframe.label} · {format(keyframe.time)}s ×
-        </button>
-      ))}
-    </div>
-  );
-}
-
-function SliceDock({ props }: { props: GraphStudio3DWorkspaceProps }) {
-  const min =
-    props.sliceAxis === "z"
-      ? (props.surface.minZ ?? -3)
-      : -(props.sliceAxis === "x" ? props.xRange : props.yRange);
-  const max =
-    props.sliceAxis === "z"
-      ? (props.surface.maxZ ?? 3)
-      : props.sliceAxis === "x"
-        ? props.xRange
-        : props.yRange;
-  return (
-    <div className="gs3d-slice-dock">
-      <label>
-        Axis
-        <select
-          value={props.sliceAxis}
-          onChange={(event) =>
-            props.onSliceAxisChange(event.target.value as "x" | "y" | "z")
-          }
-        >
-          <option value="x">X</option>
-          <option value="y">Y</option>
-          <option value="z">Z</option>
-        </select>
-      </label>
-      <label>
-        Position
-        <input
-          type="number"
-          value={props.sliceValue}
-          step="0.1"
-          onChange={(event) =>
-            props.onSliceValueChange(Number(event.target.value))
-          }
-        />
-      </label>
-      <input
-        aria-label="Cross-section position"
-        type="range"
-        min={min}
-        max={max}
-        step="0.1"
-        value={props.sliceValue}
-        onChange={(event) =>
-          props.onSliceValueChange(Number(event.target.value))
-        }
-      />
-      <ToggleRow
-        label="Cutting plane and curve"
-        icon={<SlidersHorizontal />}
-        checked={props.sliceEnabled}
-        onChange={props.onSliceEnabledChange}
-      />
-      <div className="gs3d-cross-preview">{props.crossSectionPreview}</div>
-    </div>
-  );
-}
-
-function ValuesDock({ props }: { props: GraphStudio3DWorkspaceProps }) {
-  return (
-    <div className="gs3d-values-dock">
-      <div>
-        <span>Point</span>
-        <strong>
-          {props.differential
-            ? `${format(props.differential.point.x)}, ${format(props.differential.point.y)}, ${format(props.differential.point.z)}`
-            : "Unavailable"}
-        </strong>
-      </div>
-      <div>
-        <span>Gradient</span>
-        <strong>
-          {props.differential
-            ? `${format(props.differential.gradient.x)}, ${format(props.differential.gradient.y)}`
-            : "Unavailable"}
-        </strong>
-      </div>
-      <div>
-        <span>Normal</span>
-        <strong>
-          {props.differential
-            ? props.differential.normal.map(format).join(", ")
-            : "Unavailable"}
-        </strong>
-      </div>
-      <div className="gs3d-sample-table">
-        <span>Representative samples</span>
-        <table>
-          <thead>
-            <tr>
-              <th>x</th>
-              <th>y</th>
-              <th>z</th>
-            </tr>
-          </thead>
-          <tbody>
-            {props.sampleRows.slice(0, 5).map((point, index) => (
-              <tr key={`${point.x}-${point.y}-${index}`}>
-                <td>{format(point.x)}</td>
-                <td>{format(point.y)}</td>
-                <td>
-                  {point.valid && point.z !== null
-                    ? format(point.z)
-                    : "undefined"}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
-}
-
 function InspectorGroup({
   title,
   children,
@@ -2062,13 +2128,43 @@ function ExportMenu({
         <Copy />
         Copy equation
       </button>
+      <button
+        type="button"
+        onClick={() => {
+          props.onExportMesh("stl");
+          close();
+        }}
+      >
+        <Download />
+        Mesh STL
+      </button>
+      <button
+        type="button"
+        onClick={() => {
+          props.onExportMesh("obj");
+          close();
+        }}
+      >
+        <Download />
+        Mesh OBJ
+      </button>
+      <button
+        type="button"
+        onClick={() => {
+          props.onExportVideo();
+          close();
+        }}
+      >
+        <Video />
+        {props.recording ? "Recording orbit..." : "Orbit WebM"}
+      </button>
     </div>
   );
 }
 function SettingsMenu({ props }: { props: GraphStudio3DWorkspaceProps }) {
   return (
     <div className="gs3d-popover settings">
-      <p>Saved surfaces</p>
+      <p>Recent projects</p>
       {props.savedLibrary}
       <label>
         Appearance
@@ -2110,3 +2206,139 @@ async function exportCanvas(id: string, filename: string) {
 function format(value: number) {
   return `${Math.round(value * 1000) / 1000}`;
 }
+
+function FileMenu({
+  props,
+  close,
+  onPickFile,
+  onRename,
+}: {
+  props: GraphStudio3DWorkspaceProps;
+  close: () => void;
+  onPickFile: () => void;
+  onRename: () => void;
+}) {
+  return (
+    <div className="gs3d-popover export">
+      <button type="button" onClick={() => { props.onNewProject(); close(); }}>
+        <FilePlus2 />
+        New project
+      </button>
+      <button type="button" onClick={() => { onPickFile(); close(); }}>
+        <FolderOpen />
+        Open project file
+      </button>
+      <button type="button" onClick={() => { props.onDuplicateProject(); close(); }}>
+        <Copy />
+        Duplicate project
+      </button>
+      <button type="button" onClick={onRename}>
+        <Pencil />
+        Rename project
+      </button>
+    </div>
+  );
+}
+
+function ExpressionFixNote({
+  expression,
+  error,
+  onApply,
+}: {
+  expression: string;
+  error: string;
+  onApply: (rewrite: string) => void;
+}) {
+  const fix = suggestExpressionFix(expression, error);
+  return (
+    <p role="alert">
+      {fix.message} Try {fix.example}.
+      {fix.rewrite && (
+        <button type="button" onClick={() => onApply(fix.rewrite!)}>
+          Apply rewrite
+        </button>
+      )}
+    </p>
+  );
+}
+
+function CasPlotField({ onPlot }: { onPlot: (expression: string) => void }) {
+  const [value, setValue] = useState("");
+  return (
+    <label className="gs3d-select-field">
+      Plot CAS expression
+      <input
+        aria-label="CAS expression to plot"
+        value={value}
+        onChange={(event) => setValue(event.target.value)}
+        placeholder="paste CAS result"
+      />
+      <button
+        type="button"
+        onClick={() => {
+          if (value.trim()) onPlot(value.trim());
+        }}
+      >
+        Plot as layer
+      </button>
+    </label>
+  );
+}
+
+function KeyframeStrip({
+  keyframes,
+  playing,
+  onAdd,
+  onDelete,
+  onPlay,
+}: {
+  keyframes: GraphStudio3DWorkspaceProps["keyframes"];
+  playing: boolean;
+  onAdd: () => void;
+  onDelete: (id: string) => void;
+  onPlay: () => void;
+}) {
+  return (
+    <div className="gs3d-keyframe-strip" aria-label="Camera keyframes">
+      <button type="button" onClick={onAdd}>
+        Capture keyframe
+      </button>
+      <button type="button" onClick={onPlay} disabled={keyframes.length < 2}>
+        {playing ? "Stop" : "Play"} path
+      </button>
+      {keyframes.map((keyframe) => (
+        <button
+          type="button"
+          key={keyframe.id}
+          onClick={() => onDelete(keyframe.id)}
+          title="Remove keyframe"
+        >
+          {keyframe.label}
+        </button>
+      ))}
+    </div>
+  );
+}
+
+function DomainMiniMap({
+  analysisPoint,
+  xRange,
+  yRange,
+  flyMode,
+}: {
+  analysisPoint: { x: number; y: number };
+  xRange: number;
+  yRange: number;
+  flyMode: boolean;
+}) {
+  const x = 50 + (analysisPoint.x / Math.max(1e-6, xRange)) * 40;
+  const y = 50 - (analysisPoint.y / Math.max(1e-6, yRange)) * 40;
+  return (
+    <svg className="gs3d-minimap" viewBox="0 0 100 100" aria-label="Domain mini-map">
+      <rect x="8" y="8" width="84" height="84" rx="6" />
+      <circle cx={x} cy={y} r="4" />
+      {flyMode && <text x="12" y="18">FLY</text>}
+    </svg>
+  );
+}
+

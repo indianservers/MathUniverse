@@ -19,6 +19,7 @@ describe("studio mockup catalog", () => {
     const geo = studioMockups.geometry;
     expect(matchStudioPage(geo, "/geometry").id).toBe("home");
     expect(matchStudioPage(geo, "/geometry/triangles").id).toBe("triangles");
+    expect(geo.pages.find((item) => item.id === "solids")?.route).toBe("/shapes");
     expect(matchStudioPage(studioMockups["linear-algebra"], "/linear-algebra", "eigenvectors").id).toBe("eigenvectors");
   });
 });

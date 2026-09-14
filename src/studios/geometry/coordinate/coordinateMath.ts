@@ -63,10 +63,33 @@ export function fmtNum(n: number, digits = 5): string {
   return String(v);
 }
 
+const FRAC_GLYPHS: Record<string, string> = {
+  "1/2": "½",
+  "1/3": "⅓",
+  "2/3": "⅔",
+  "1/4": "¼",
+  "3/4": "¾",
+  "1/5": "⅕",
+  "2/5": "⅖",
+  "3/5": "⅗",
+  "4/5": "⅘",
+  "1/6": "⅙",
+  "5/6": "⅚",
+  "1/8": "⅛",
+  "3/8": "⅜",
+  "5/8": "⅝",
+  "7/8": "⅞",
+};
+
+export function fracGlyph(num: number, den: number): string | null {
+  const key = `${num}/${den}`;
+  return FRAC_GLYPHS[key] ?? (num < 0 ? FRAC_GLYPHS[`${-num}/${den}`] ? `−${FRAC_GLYPHS[`${-num}/${den}`]}` : null : null);
+}
+
 export function fmtPretty(n: number, digits = 5): string {
   const frac = closestFraction(n);
   if (frac.den > 1 && Math.abs(n - frac.num / frac.den) < 1e-9) {
-    return `${frac.num}/${frac.den}`;
+    return fracGlyph(frac.num, frac.den) ?? `${frac.num}/${frac.den}`;
   }
   return fmtNum(n, digits);
 }
@@ -85,6 +108,8 @@ function coeffX(m: number): string {
   if (Math.abs(m + 1) < 1e-12) return "−x";
   const frac = closestFraction(m);
   if (frac.den > 1 && Math.abs(m - frac.num / frac.den) < 1e-9) {
+    const glyph = fracGlyph(frac.num, frac.den);
+    if (glyph) return `${glyph}x`;
     const sign = frac.num < 0 ? "−" : "";
     return `${sign}${Math.abs(frac.num)}/${frac.den}x`;
   }
@@ -132,6 +157,21 @@ export function lineForms(m: number, intercept: number): { slope: string; standa
     slope: slopeInterceptString(m, intercept),
     standard: `${linearLeft(A, B)} = ${-C}`,
     general: `${linearLeft(A, B)}${C >= 0 ? ` + ${C}` : ` − ${-C}`} = 0`,
+  };
+}
+
+export function lineFormsLatex(m: number, intercept: number): { slope: string; standard: string; general: string } {
+  const { A, B, C } = slopeToGeneral(m, intercept);
+  const mf = closestFraction(m);
+  const slope = !Number.isFinite(m)
+    ? `x = ${fmtPretty(intercept)}`
+    : mf.den > 1
+      ? `y = \\frac{${mf.num}}{${mf.den}}x${intercept >= 0 ? ` + ${fmtNum(intercept, 4)}` : ` - ${fmtNum(Math.abs(intercept), 4)}`}`
+      : `y = ${fmtNum(m, 4)}x${intercept >= 0 ? ` + ${fmtNum(intercept, 4)}` : ` - ${fmtNum(Math.abs(intercept), 4)}`}`;
+  return {
+    slope,
+    standard: `${A}x ${B < 0 ? "-" : "+"} ${Math.abs(B)}y = ${-C}`,
+    general: `${A}x ${B < 0 ? "-" : "+"} ${Math.abs(B)}y ${C >= 0 ? `+ ${C}` : `- ${-C}`} = 0`,
   };
 }
 

@@ -1,12 +1,16 @@
 .poly-studio .tlab{min-width:0}
-.poly-tabs{display:flex;gap:2px;overflow:auto;margin:0 0 14px;padding:0;border:0;border-bottom:1px solid #dce7f4}
-.poly-tab{display:flex;align-items:center;gap:8px;min-height:42px;padding:0 16px;border:0;border-radius:0;background:transparent;text-align:left;color:#5b6b88;box-shadow:none}
+.poly-tabs{position:sticky;top:0;z-index:4;display:flex;gap:2px;overflow:auto;margin:0 0 14px;padding:6px 0 0;border:0;border-bottom:1px solid #dce7f4;background:#f9fcffee}
+.poly-tab{display:flex;align-items:center;gap:8px;min-height:52px;padding:6px 16px;border:0;border-radius:0;background:transparent;text-align:left;color:#5b6b88;box-shadow:none}
 .poly-tab svg{width:16px;height:16px;color:#147df2}
 .poly-tab b{display:block;font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
-.poly-tab small{display:none}
+.poly-tab small{display:block;margin-top:2px;color:#64748b;font-size:10px;font-weight:600;text-transform:none;letter-spacing:0}
 .poly-tab.is-on{background:transparent;color:#0891b2;box-shadow:inset 0 -3px 0 #08b9dd}
 .poly-tab.is-on svg{color:#0891b2}
-.poly-lab{display:grid;grid-template-columns:276px minmax(0,1fr) 318px;gap:12px;align-items:start}
+.poly-lab{display:grid;grid-template-columns:240px minmax(0,1fr) 210px 228px;gap:10px;align-items:start}
+.poly-canvas-tools{display:flex;gap:2px;margin-bottom:8px;padding:2px 4px;border:1px solid #dce7f4;border-radius:10px;background:#fff;width:max-content}
+.poly-canvas-tools button{width:32px;height:28px;border:0;background:transparent;color:#64748b;display:grid;place-items:center}
+.poly-canvas-tools button.active,.poly-canvas-tools button:hover{color:#0891b2;background:#e8f7ff;border-radius:8px}
+.poly-canvas-tools svg{width:15px;height:15px}
 .poly-controls,.poly-live{background:#f7fafc}
 .poly-controls h2,.poly-live h2{margin:0 0 8px;font-size:13px}
 .poly-stage{min-height:420px}

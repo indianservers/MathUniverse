@@ -252,6 +252,7 @@ const ScientificCalculator = lazyRoute(
 );
 const SetTheory = lazyRoute(() => import("./pages/SetTheory"));
 const ShapesExplorer = lazyRoute(() => import("./pages/ShapesExplorer"));
+const GeometrySolidsRedirect = lazyRoute(() => import("./studios/geometry/GeometrySolidsRedirect"));
 const Sitemap = lazyRoute(() => import("./pages/Sitemap"));
 const SpacedRepetitionQuiz = lazyRoute(
   () => import("./pages/SpacedRepetitionQuiz"),
@@ -562,7 +563,8 @@ export default function App() {
               element={<VisualProofPage />}
             />
             <Route path="geometry" element={<Geometry />} />
-            {["construction", "triangles", "circles", "polygons", "transformations", "coordinate", "measurement", "proofs", "solids", "ar"].map((slug) => (
+            <Route path="geometry/solids" element={<GeometrySolidsRedirect />} />
+            {["construction", "triangles", "circles", "polygons", "transformations", "coordinate", "measurement", "proofs", "ar"].map((slug) => (
               <Route key={`geometry-${slug}`} path={`geometry/${slug}`} element={<Geometry />} />
             ))}
             <Route

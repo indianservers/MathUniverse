@@ -250,15 +250,19 @@ export default function RightTriangleLab({ page }: { page: StudioMockupPage }) {
             <circle cx={ox} cy={oy} r="7" fill="#147df2" stroke="#fff" strokeWidth="2" />
           </svg>
           <aside className="msk-similar">
-            <h3>Similar Triangle (Scale {fmt(scale, 1)}×)</h3>
+            <h3>Similar Triangle (Scale: {fmt(scale, 1)}×)</h3>
             <input className="msk-similar-scale" type="range" min={0.5} max={3} step={0.1} value={scale} onChange={(event) => setScale(Number(event.target.value))} aria-label="Similar triangle scale" />
-            <svg viewBox="0 0 240 120" aria-hidden="true">
-              <polygon points={`18,102 ${18 + similar.a * 7.2},102 18,${102 - similar.b * 7.2}`} fill="none" stroke="#147df2" strokeWidth="1.7" />
-              <text x="78" y="116" fontSize="11" fill="#64748b">{fmt(similar.a, 2)}</text>
-              <text x="2" y="60" fontSize="11" fill="#64748b">{fmt(similar.b, 2)}</text>
-              <text x="86" y="42" fontSize="11" fill="#08b9dd">{fmt(similar.c, 2)}</text>
-              <text x={18 + similar.a * 7.2 - 26} y="94" fontSize="11" fill="#f59e0b">{fmt(solved.A, 0)}°</text>
-              <text x="24" y={102 - similar.b * 7.2 + 14} fontSize="11" fill="#8b45f4">{fmt(solved.B, 0)}°</text>
+            <svg viewBox="0 0 248 132" aria-hidden="true">
+              <polygon points="32,108 186,108 32,22" fill="none" stroke="#08b9dd" strokeWidth="1.55" />
+              <rect x="36" y="94" width="13" height="13" fill="none" stroke="#1e293b" strokeWidth="1.2" />
+              <circle cx="32" cy="108" r="3.4" fill="#147df2" />
+              <circle cx="186" cy="108" r="3.4" fill="#f59e0b" />
+              <circle cx="32" cy="22" r="3.4" fill="#8b45f4" />
+              <text x="88" y="128" fill="#475569" fontSize="16" fontFamily="Georgia, Times New Roman, serif">{fmt(similar.a, 2)}</text>
+              <text x="0" y="72" fill="#475569" fontSize="16" fontFamily="Georgia, Times New Roman, serif">{fmt(similar.b, 2)}</text>
+              <text x="114" y="54" fill="#08b9dd" fontSize="16" fontFamily="Georgia, Times New Roman, serif">{fmt(similar.c, 2)}</text>
+              <text x="42" y="42" fill="#8b45f4" fontSize="13" fontFamily="Georgia, Times New Roman, serif">{fmt(solved.B, 0)}°</text>
+              <text x="148" y="98" fill="#f59e0b" fontSize="13" fontFamily="Georgia, Times New Roman, serif">{fmt(solved.A, 0)}°</text>
             </svg>
           </aside>
         </section>

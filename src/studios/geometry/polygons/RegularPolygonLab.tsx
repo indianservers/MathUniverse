@@ -87,6 +87,15 @@ export default function RegularPolygonLab() {
 
       <Stage
         label={`Regular ${regularPolygonName(n)}`}
+        toolbar={(
+          <div className="poly-canvas-tools" aria-label="Canvas tools">
+            <button type="button" className="active" aria-label="Select"><svg viewBox="0 0 24 24"><path d="M7 4 8 17l3.2-3.1L14.8 20l1.8-1-3.5-6.1L18 12Z" fill="none" stroke="currentColor" strokeWidth="1.7" /></svg></button>
+            <button type="button" aria-label="Add"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" strokeWidth="1.7" /></svg></button>
+            <button type="button" aria-label="Line"><svg viewBox="0 0 24 24"><path d="M4 18 20 6" fill="none" stroke="currentColor" strokeWidth="1.7" /></svg></button>
+            <button type="button" aria-label="Text"><svg viewBox="0 0 24 24"><path d="M6 7h12M12 7v11" fill="none" stroke="currentColor" strokeWidth="1.7" /></svg></button>
+            <button type="button" aria-label="Circle"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7" fill="none" stroke="currentColor" strokeWidth="1.7" /></svg></button>
+          </div>
+        )}
         footer={(
           <div className="poly-tess-preview">
             <b>Tessellation preview</b>
@@ -166,8 +175,13 @@ export default function RegularPolygonLab() {
         <MeasureRow color="#08b9dd" label="Vertices" value={Array.from({ length: n }, (_, i) => String.fromCharCode(65 + i)).join(", ")} />
         <MeasureRow color="#8b45f4" label="Center" value="O" />
         <MeasureRow color="#147df2" label="Sides" value={n} />
-        <h2>Measurements</h2>
+        <h2>Dependencies</h2>
         <MeasureRow color="#147df2" label="n" value={m.n} />
+        <MeasureRow color="#0891b2" label="R" value={fmt(m.R, 3)} />
+        <MeasureRow color="#8b45f4" label="Interior" value={fmtDeg(m.interior)} />
+        <MeasureRow color="#f59e0b" label="Exterior" value={fmtDeg(m.exterior)} />
+      </LivePanel>
+      <LivePanel title="Measurements">
         <MeasureRow color="#147df2" label="Side length" value={fmt(m.side, 3)} active={on("side")} onHover={hover("side")} />
         <MeasureRow color="#0ea5e9" label="Perimeter" value={fmt(m.perimeter, 3)} />
         <MeasureRow color="#8b45f4" label="Interior angle" value={fmtDeg(m.interior)} active={on("interior")} onHover={hover("interior")} />
@@ -177,6 +191,7 @@ export default function RegularPolygonLab() {
         <MeasureRow color="#0891b2" label="Circumradius" value={fmt(m.R, 3)} active={on("circle")} onHover={hover("circle")} />
         <MeasureRow color="#147df2" label="Area" value={fmt(m.area, 3)} active={on("area")} onHover={hover("area")} />
         <MeasureRow color="#8b45f4" label="Diagonals" value={m.diagonals} active={on("diagonals")} onHover={hover("diagonals")} />
+        <h2>Proof explanation</h2>
         <FormulaCard title="Formulas">
           Interior ((n−2)×180°)/n = {fmtDeg(m.interior)}. Exterior 360°/n = {fmtDeg(m.exterior)}. Area = ½ n R² sin(2π/n).
         </FormulaCard>

@@ -19,6 +19,7 @@ import CirclesGeometryLab from "../../geometry/circles/CirclesLab";
 import RightTriangleLab from "./RightTriangleLab";
 import UnitCircleLab from "./UnitCircleLab";
 import RemainingStudioLab from "./RemainingStudioLabs";
+import CoordinateLab from "../../geometry/coordinate/CoordinateLab";
 import PolygonsLab from "../../geometry/polygons/PolygonsLab";
 import TrianglesLab from "../../geometry/triangles/TrianglesLab";
 
@@ -26,6 +27,7 @@ export default function DedicatedStudioLab({ page, extra }: { page: StudioMockup
   if (page.id === "right-triangle") return <RightTriangleLab page={page} />;
   if (page.id === "unit-circle") return <UnitCircleLab page={page} />;
   if (page.id === "polygons") return <PolygonsLab page={page} />;
+  if (page.id === "coordinate") return <CoordinateLab page={page} />;
   if (page.id === "triangles") return <TrianglesLab page={page} />;
   if (page.id === "vectors") return <VectorsLab page={page} />;
   if (page.id === "circles") return <CirclesGeometryLab page={page} />;

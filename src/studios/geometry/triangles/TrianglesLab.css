@@ -1,4 +1,4 @@
-.tri-tabs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin:0 0 12px;padding:0;border:0;background:transparent;overflow:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+.tri-tabs{position:sticky;top:0;z-index:4;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin:0 0 12px;padding:8px 0;border:0;background:#f9fcffee;overflow:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
 .tri-tab{display:flex;align-items:flex-start;gap:10px;min-height:72px;padding:10px 12px;border:1px solid #dce7f4;border-radius:14px;background:#fff;box-shadow:0 6px 16px #3a5b7f0a;color:#071641;text-align:left;cursor:pointer;scroll-snap-align:start;flex:1}
 .tri-tab svg{width:28px;height:28px;flex:none;stroke:#147df2}
 .tri-tab b{display:block;font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;line-height:1.2}

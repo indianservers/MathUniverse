@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useReducedMotion } from "../../../hooks/useReducedMotion";
 import { ChipRow, Field, Panel, Segmented } from "../../mockup/studioLabKit";
 import {
   EXPLORER_PRESETS,
@@ -37,6 +38,7 @@ const SPECIAL: Record<string, { A: Pt; B: Pt; C: Pt }> = {
 };
 
 export default function TriangleExplorerLab() {
+  const reducedMotion = useReducedMotion();
   const plane = defaultPlane();
   const svgRef = useRef<SVGSVGElement>(null);
   const drag = useRef<"A" | "B" | "C" | null>(null);
@@ -60,7 +62,7 @@ export default function TriangleExplorerLab() {
   const pb = perpendicularBisector(tri.B, tri.C);
 
   useEffect(() => {
-    if (!anim) return;
+    if (!anim || reducedMotion) return;
     const origin = { ...tri.C };
     let t = 0;
     let id = 0;

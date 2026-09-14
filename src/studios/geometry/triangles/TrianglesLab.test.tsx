@@ -20,6 +20,13 @@ describe("Triangles Lab", () => {
     expect(html).toContain("Triangle Explorer");
     expect(html).toContain("Sides, angles, area");
     expect(html).toContain("aria-pressed=\"true\"");
+    expect(html).toContain("Skip to figure");
+    expect(html).toContain("Related labs");
+    expect(html).toContain("/geometry/polygons");
+    expect(html).toContain("/shapes?shape=triangle");
+    expect(html).toContain("Copy measurements");
+    expect(html).toContain("Keyboard shortcuts");
+    expect(html).toContain("role=\"tablist\"");
   });
 
   it("renders five distinct mode environments from canonical URLs and aliases", () => {

@@ -201,7 +201,16 @@ export default function UnitCircleLab({ page }: { page: StudioMockupPage }) {
           <h2>Angle</h2>
           <LiveRow color="#f59e0b" label="θ" value={`${fmt(angle, 1)}° = ${fmt(live.rad, 4)} rad`} />
           <h2>Coordinates on Unit Circle</h2>
-          <LiveRow color="#22d3ee" label="(cos θ, sin θ)" value={`(${exactish(live.cos)}, ${exactish(live.sin)})`} />
+          <div className="msk-ratio">
+            <i style={{ background: "#22d3ee" }} />
+            <em>(cos θ, sin θ)</em>
+            <span>=</span>
+            <span className="msk-exact">(</span>
+            <ExactFrac value={exactish(live.cos)} />
+            <span className="msk-exact">,</span>
+            <ExactFrac value={exactish(live.sin)} />
+            <span className="msk-exact">)</span>
+          </div>
           <h2>Exact Trigonometric Values</h2>
           <ExactRow color="#22d3ee" name="sin θ" exact={exactish(live.sin)} approx={fmt(live.sin, 5)} />
           <ExactRow color="#8b45f4" name="cos θ" exact={exactish(live.cos)} approx={fmt(live.cos, 5)} />

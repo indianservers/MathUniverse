@@ -76,3 +76,18 @@ export function circleModeUrl(id: CircleModeId): string {
 export function circleModeMeta(id: CircleModeId) {
   return CIRCLE_MODES.find((mode) => mode.id === id) ?? CIRCLE_MODES[0];
 }
+
+export const ANGLE_KINDS = ["central", "inscribed", "semi", "chords", "secants", "tangent", "cyclic"] as const;
+export const POWER_KINDS = ["chord", "secant", "tangent", "radical"] as const;
+export type AngleKind = (typeof ANGLE_KINDS)[number];
+export type PowerKind = (typeof POWER_KINDS)[number];
+
+export function parseAngleKind(raw: string | null | undefined): AngleKind {
+  const key = (raw ?? "inscribed").toLowerCase();
+  return (ANGLE_KINDS as readonly string[]).includes(key) ? (key as AngleKind) : "inscribed";
+}
+
+export function parsePowerKind(raw: string | null | undefined): PowerKind {
+  const key = (raw ?? "chord").toLowerCase();
+  return (POWER_KINDS as readonly string[]).includes(key) ? (key as PowerKind) : "chord";
+}

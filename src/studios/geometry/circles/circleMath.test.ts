@@ -2,15 +2,19 @@ import { describe, expect, it } from "vitest";
 import {
   chordLengthFromCentral,
   chordThroughPoint,
+  clampToComplementaryArc,
   lineCircleIntersection,
   nearlyEqual,
+  onMinorArc,
   powerOfPoint,
+  radicalAxisX,
   sectorArea,
+  snapDeg,
   tangentContactPoints,
   tangentLength,
   vec,
 } from "./circleMath";
-import { circleModeUrl, parseCircleMode } from "./circleMode";
+import { circleModeUrl, parseAngleKind, parseCircleMode, parsePowerKind } from "./circleMode";
 
 describe("circle math", () => {
   it("computes chord length from a central angle", () => {
@@ -69,5 +73,21 @@ describe("circle mode aliases", () => {
     expect(parseCircleMode("Arcs%20%26%20Sectors")).toBe("arcs");
     expect(circleModeUrl("power")).toBe("Power of a Point");
     expect(circleModeUrl("arcs")).toBe("Arcs & Sectors");
+    expect(parseAngleKind("cyclic")).toBe("cyclic");
+    expect(parsePowerKind("radical")).toBe("radical");
+  });
+});
+
+describe("circle helpers", () => {
+  it("snaps nearby angles and keeps C off the minor arc", () => {
+    expect(snapDeg(32, true)).toBe(30);
+    expect(snapDeg(32, false)).toBe(32);
+    expect(onMinorArc(0, 90, 45)).toBe(true);
+    expect(onMinorArc(0, 90, 200)).toBe(false);
+    expect(onMinorArc(0, 90, clampToComplementaryArc(0, 90, 45))).toBe(false);
+  });
+
+  it("places the radical axis of two circles", () => {
+    expect(radicalAxisX(vec(0, 0), 5, vec(8, 0), 5)).toBeCloseTo(4, 8);
   });
 });

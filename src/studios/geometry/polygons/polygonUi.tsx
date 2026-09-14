@@ -243,9 +243,10 @@ function yClamp(n: number) {
   return clamp(n, 20, VIEW.h - 20);
 }
 
-export function Stage({ children, label, footer }: { children: ReactNode; label: string; footer?: ReactNode }) {
+export function Stage({ children, label, footer, toolbar }: { children: ReactNode; label: string; footer?: ReactNode; toolbar?: ReactNode }) {
   return (
-    <section className="msk-panel msk-canvas poly-stage">
+    <section className="msk-panel msk-canvas poly-stage" id="lab-canvas">
+      {toolbar}
       <svg className="msk-graph poly-svg" viewBox={`0 0 ${VIEW.w} ${VIEW.h}`} role="img" aria-label={label}>
         <rect width={VIEW.w} height={VIEW.h} fill="#fbfdff" />
         {children}

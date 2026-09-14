@@ -201,3 +201,90 @@ export function fmt(n: number, digits = 2): string {
 export function nearlyEqual(a: number, b: number, tol = 0.08): boolean {
   return Math.abs(a - b) <= tol;
 }
+
+export const NICE_DEG = [0, 30, 45, 60, 90, 120, 135, 150, 180, 210, 225, 240, 270, 300, 315, 330];
+
+export function snapDeg(deg: number, enabled: boolean): number {
+  if (!enabled) return deg;
+  let best = NICE_DEG[0];
+  let bestDelta = 400;
+  for (const nice of NICE_DEG) {
+    const delta = Math.abs(shortestDeltaDeg(deg, nice));
+    if (delta < bestDelta) {
+      bestDelta = delta;
+      best = nice;
+    }
+  }
+  return bestDelta <= 9 ? best : deg;
+}
+
+export function snapLength(n: number, enabled: boolean): number {
+  if (!enabled) return n;
+  return Math.round(n * 2) / 2;
+}
+
+export function constrainOnCircle(origin: Vec, radius: number, p: Vec): Vec {
+  return projectToCircle(origin, radius, p);
+}
+
+export function constrainInside(origin: Vec, radius: number, p: Vec, maxFrac = 0.86): Vec {
+  const rel = sub(p, origin);
+  const len = length(rel);
+  const max = radius * maxFrac;
+  if (len < 0.12) return add(origin, { x: 0.3, y: 0.2 });
+  if (len <= max) return p;
+  return add(origin, scale(normalize(rel), max));
+}
+
+export function constrainOutside(origin: Vec, radius: number, p: Vec, minExtra = 1.15): Vec {
+  const rel = sub(p, origin);
+  const len = length(rel);
+  const min = radius + minExtra;
+  if (len >= min) return p;
+  const dir = len < 1e-8 ? { x: 1, y: 0.2 } : normalize(rel);
+  return add(origin, scale(dir, min));
+}
+
+export function ccwDeg(from: number, to: number): number {
+  return normalizeDeg(to - from);
+}
+
+export function onMinorArc(aDeg: number, bDeg: number, cDeg: number): boolean {
+  const ab = ccwDeg(aDeg, bDeg);
+  const t = ccwDeg(aDeg, cDeg);
+  if (ab <= 180) return t > 0.5 && t < ab - 0.5;
+  return t > ab + 0.5 && t < 359.5;
+}
+
+export function onComplementaryArc(aDeg: number, bDeg: number, cDeg: number): boolean {
+  return !onMinorArc(aDeg, bDeg, cDeg);
+}
+
+export function clampToComplementaryArc(aDeg: number, bDeg: number, cDeg: number): number {
+  if (onComplementaryArc(aDeg, bDeg, cDeg)) return cDeg;
+  const ab = ccwDeg(aDeg, bDeg);
+  if (ab <= 180) return normalizeDeg(aDeg + ab + 18);
+  return normalizeDeg(aDeg + 18);
+}
+
+export function stepOnComplementaryArc(aDeg: number, bDeg: number, cDeg: number, delta: number): number {
+  return clampToComplementaryArc(aDeg, bDeg, cDeg + delta);
+}
+
+export function lineIntersection(a1: Vec, a2: Vec, b1: Vec, b2: Vec): Vec | null {
+  const d = (a1.x - a2.x) * (b1.y - b2.y) - (a1.y - a2.y) * (b1.x - b2.x);
+  if (Math.abs(d) < 1e-10) return null;
+  const t = ((a1.x - b1.x) * (b1.y - b2.y) - (a1.y - b1.y) * (b1.x - b2.x)) / d;
+  return { x: a1.x + t * (a2.x - a1.x), y: a1.y + t * (a2.y - a1.y) };
+}
+
+/** Radical axis of two circles as a vertical line x = k when centres are on the x-axis. */
+export function radicalAxisX(c1: Vec, r1: number, c2: Vec, r2: number): number {
+  const d = c2.x - c1.x;
+  if (Math.abs(d) < 1e-8) return c1.x;
+  return (d * d + r1 * r1 - r2 * r2) / (2 * d) + c1.x;
+}
+
+export function oppositeAngleSum(a: number, b: number): number {
+  return a + b;
+}

@@ -148,7 +148,7 @@ export function GeometryLegacyWorkspace() {
         </Link>
         <a href="/shapes" className="gu-tab-link"><Cuboid />2D/3D Shapes</a>
         {geometryTabs.map((item) => item.id === "solids" ? (
-          <a key={item.id} href={solidWorkspaceHref()} role="tab" aria-selected={tab === item.id} className={tab === item.id ? "gu-tab-link active" : "gu-tab-link"}>
+          <a key={item.id} href="/shapes?shape=cylinder" role="tab" aria-selected={tab === item.id} className={tab === item.id ? "gu-tab-link active" : "gu-tab-link"}>
             <Cuboid />{item.label}
           </a>
         ) : (
@@ -382,7 +382,7 @@ function SolidsTab() {
       <div className="gu-solid-main">
         <div className="gu-solid-link-row">
           <strong>3D solid workspace</strong>
-          <a href={solidWorkspaceHref(solid)}><Cuboid />Open in 3D Geometry</a>
+          <a href={`/shapes?shape=${solid === "prism" ? "triangular-prism" : solid === "pyramid" ? "square-pyramid" : solid}`}><Cuboid />Open in Shapes Explorer</a>
         </div>
         <GeometryToolbar items={[["Rotate", <RefreshCcw />, rotate, () => setRotate((value) => !value)], ["Pan", <Move />, pan, () => setPan((value) => !value)], ["Select Face", <MousePointer2 />, panel === "properties", () => setPanel("properties")], ["Measure", <Ruler />, measure, () => setMeasure((value) => !value)], ["Cross-section", <Layers3 />, crossSection, () => setCrossSection((value) => !value)], ["Net", <Grid3X3 />, panel === "net", () => setPanel("net")], ["Wireframe", <Grid3X3 />, wireframe, () => setWireframe((value) => !value)], ["Transparent", <Eye />, transparent, () => setTransparent((value) => !value)], ["Reset", <RefreshCcw />, false, () => { setSide(4); setHeight(4); setPanel("dimensions"); }], ["Fullscreen", <Maximize2 />, false, openActiveFullscreen]]} />
         <div className="gu-three-host">
@@ -600,12 +600,6 @@ function normalizeProgress(progress: number) {
 function openActiveFullscreen() {
   const target = document.querySelector<HTMLElement>(".gu-workspace-frame:hover, .gu-solid-main:hover, .gu-workspace-frame");
   void target?.requestFullscreen?.();
-}
-
-function solidWorkspaceHref(solid?: SolidId) {
-  const url = new URL("/workspace/3d", window.location.origin);
-  if (solid) url.searchParams.set("solid", solid);
-  return `${url.pathname}${url.search}`;
 }
 
 function toX(x: number) { return 360 + x * 34; }

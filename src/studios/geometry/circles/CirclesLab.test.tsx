@@ -51,8 +51,13 @@ describe("Circles Lab modes", () => {
     expect(arcs).toContain("Animate sector sweep");
   });
 
-  it("accepts canonical mode keys", () => {
+  it("accepts canonical keys, sub-modes, and studio tools", () => {
     expect(renderCircles("/geometry/circles?mode=power")).toContain("Power of a point laboratory");
     expect(renderCircles("/geometry/circles?mode=arcs")).toContain("Arc and sector explorer");
+    expect(renderCircles("/geometry/circles?mode=Angles&kind=cyclic")).toContain("Cyclic Quadrilateral");
+    expect(renderCircles("/geometry/circles?mode=power&kind=radical")).toContain("Radical Axis");
+    expect(renderCircles("/geometry/circles?mode=Chords")).toContain("Teacher mode");
+    expect(renderCircles("/geometry/circles?mode=Chords")).toContain("Snap to 30");
+    expect(renderCircles("/geometry/circles?mode=Chords")).toContain("Copy share URL");
   });
 });

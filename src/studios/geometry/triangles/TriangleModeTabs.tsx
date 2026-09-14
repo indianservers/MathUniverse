@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import type { TriangleModeDef, TriangleModeId } from "./useTriangleLabMode";
 
 function Icon({ id }: { id: TriangleModeId }) {
@@ -53,14 +54,22 @@ export default function TriangleModeTabs({
   mode: TriangleModeId;
   onChange: (id: TriangleModeId) => void;
 }) {
+  useEffect(() => {
+    document.getElementById(`tri-tab-${mode}`)?.scrollIntoView({ inline: "nearest", block: "nearest", behavior: "smooth" });
+  }, [mode]);
   return (
-    <nav className="tri-tabs" aria-label="Triangles Lab modes">
+    <nav className="tri-tabs" role="tablist" aria-label="Triangles Lab modes">
       {modes.map((item) => (
         <button
           key={item.id}
           type="button"
+          role="tab"
+          id={`tri-tab-${item.id}`}
           className={`tri-tab ${item.id === mode ? "active" : ""}`}
           aria-pressed={item.id === mode}
+          aria-selected={item.id === mode}
+          tabIndex={item.id === mode ? 0 : -1}
+          title={`${item.label}: ${item.subtitle}. Shortcut ${modes.findIndex((entry) => entry.id === item.id) + 1}`}
           onClick={() => onChange(item.id)}
         >
           <Icon id={item.id} />
