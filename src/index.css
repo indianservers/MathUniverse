@@ -9685,6 +9685,31 @@ body {
   backdrop-filter: blur(18px);
 }
 
+html[data-geometry-workspace-theme="light"]
+  .math-workspace-layout[data-workspace="geometry"] {
+  background: #dbe7f3;
+}
+
+.math-workspace-layout[data-workspace="geometry"] .portable-share-anchor {
+  top: 4.4rem;
+}
+
+html[data-geometry-workspace-theme="light"]
+  .math-workspace-layout[data-workspace="geometry"]
+  .portable-share-trigger {
+  border-color: rgba(14, 116, 144, 0.32);
+  background: rgba(255, 255, 255, 0.96);
+  color: #0f172a;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+}
+
+html[data-geometry-workspace-theme="light"]
+  .math-workspace-layout[data-workspace="geometry"]
+  .portable-share-trigger:hover {
+  border-color: #0e7490;
+  background: #e0f2fe;
+}
+
 .math-workspace-layout {
   --workspace-dock-height: 62px;
   container-name: math-workspace;
@@ -9720,6 +9745,12 @@ body {
   isolation: isolate;
 }
 
+.math-workspace-layout[data-workspace="graphs"] .math-workspace-stage,
+.math-workspace-layout[data-workspace="cas"] .math-workspace-stage {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
 .math-workspace-layout[data-workspace] .math-workspace-stage {
   background:
     radial-gradient(1200px 640px at 12% 0%, rgb(34 211 238 / 0.07), transparent 52%),
@@ -9738,8 +9769,10 @@ body {
 
 .math-workspace-stage > .h-dvh,
 .math-workspace-stage > .shapes-studio-shell,
-.math-workspace-stage > .graph-studio-3d-shell {
+.math-workspace-stage > .graph-studio-3d-shell,
+.math-workspace-stage > .geometry-studio-shell {
   height: 100%;
+  max-height: 100%;
   min-height: 0;
 }
 
@@ -10685,18 +10718,24 @@ body {
 
 /* Shared workspace focus and input adaptation */
 .math-workspace-layout[data-workspace="geometry"],
+.math-workspace-layout[data-workspace="geometry-3d"],
+.math-workspace-layout[data-workspace="graphs"],
 .math-workspace-layout[data-workspace="graphs-3d"],
 .math-workspace-layout[data-workspace="shapes"] {
   grid-template-rows: minmax(0, 1fr) calc(var(--workspace-dock-height) + env(safe-area-inset-bottom));
 }
 
 .math-workspace-layout[data-workspace="geometry"] > .math-workspace-stage,
+.math-workspace-layout[data-workspace="geometry-3d"] > .math-workspace-stage,
+.math-workspace-layout[data-workspace="graphs"] > .math-workspace-stage,
 .math-workspace-layout[data-workspace="graphs-3d"] > .math-workspace-stage,
 .math-workspace-layout[data-workspace="shapes"] > .math-workspace-stage {
   grid-row: 1;
 }
 
 .math-workspace-layout[data-workspace="geometry"] > .math-workspace-mobile-dock,
+.math-workspace-layout[data-workspace="geometry-3d"] > .math-workspace-mobile-dock,
+.math-workspace-layout[data-workspace="graphs"] > .math-workspace-mobile-dock,
 .math-workspace-layout[data-workspace="graphs-3d"] > .math-workspace-mobile-dock,
 .math-workspace-layout[data-workspace="shapes"] > .math-workspace-mobile-dock {
   grid-row: 2;
@@ -10704,6 +10743,8 @@ body {
 
 @media (min-width: 1024px) {
   .math-workspace-layout[data-workspace="geometry"],
+  .math-workspace-layout[data-workspace="geometry-3d"],
+  .math-workspace-layout[data-workspace="graphs"],
   .math-workspace-layout[data-workspace="graphs-3d"],
   .math-workspace-layout[data-workspace="shapes"] {
     grid-template-rows: minmax(0, 1fr);
@@ -10969,11 +11010,12 @@ body {
   --gs-cyan: #22d3ee;
   --gs-violet: #8b5cf6;
   display: grid;
-  grid-template-areas: "top top top top" "nav left canvas right" "nav left dock right" "status status status status";
-  grid-template-columns: 72px 310px minmax(420px, 1fr) 320px;
-  grid-template-rows: 58px minmax(0, 1fr) 128px 28px;
-  width: 100vw;
-  height: 100dvh;
+  grid-template-areas: "top" "canvas" "status" "mobile";
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: 54px minmax(0, 1fr) 26px 58px;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
   overflow: hidden;
   color: #e8f2fc;
   background: #030914;
@@ -10981,37 +11023,18 @@ body {
   letter-spacing: 0;
 }
 
-.graph-studio-3d-shell:not(.has-left) {
-  grid-template-columns: 72px 0 minmax(420px, 1fr) 320px;
-}
-.graph-studio-3d-shell:not(.has-right) {
-  grid-template-columns: 72px 310px minmax(420px, 1fr) 0;
-}
-.graph-studio-3d-shell:not(.has-left):not(.has-right) {
-  grid-template-columns: 72px 0 minmax(420px, 1fr) 0;
-}
-.graph-studio-3d-shell:not(.has-dock) {
-  grid-template-areas: "top top top top" "nav left canvas right" "status status status status";
-  grid-template-rows: 58px minmax(0, 1fr) 28px;
-}
-
-/* The dedicated surface studio already sits inside the shared suite header.
-   Keep only its mathematical panels and give the removed route rail to the canvas. */
-.graph-studio-surface-shell {
-  grid-template-areas: "top top top" "left canvas right" "left dock right" "status status status";
-  grid-template-columns: 310px minmax(420px, 1fr) 320px;
-}
-.graph-studio-surface-shell:not(.has-dock) {
-  grid-template-areas: "top top top" "left canvas right" "status status status";
-}
-.graph-studio-surface-shell:not(.has-left) {
-  grid-template-columns: 0 minmax(420px, 1fr) 320px;
-}
-.graph-studio-surface-shell:not(.has-right) {
-  grid-template-columns: 310px minmax(420px, 1fr) 0;
-}
+.graph-studio-3d-shell:not(.has-left),
+.graph-studio-3d-shell:not(.has-right),
+.graph-studio-3d-shell:not(.has-left):not(.has-right),
+.graph-studio-3d-shell:not(.has-dock),
+.graph-studio-surface-shell,
+.graph-studio-surface-shell:not(.has-dock),
+.graph-studio-surface-shell:not(.has-left),
+.graph-studio-surface-shell:not(.has-right),
 .graph-studio-surface-shell:not(.has-left):not(.has-right) {
-  grid-template-columns: 0 minmax(420px, 1fr) 0;
+  grid-template-areas: "top" "canvas" "status" "mobile";
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: 54px minmax(0, 1fr) 26px 58px;
 }
 .graph-studio-surface-shell .gs3d-topbar {
   grid-template-columns: auto minmax(150px, 1fr) auto;
@@ -11021,11 +11044,11 @@ body {
   grid-area: top;
   z-index: 60;
   display: grid;
-  grid-template-columns: auto minmax(130px, 230px) minmax(320px, 1fr) auto;
+  grid-template-columns: auto minmax(80px, 1fr) auto;
   align-items: center;
-  gap: 16px;
+  gap: 8px;
   min-width: 0;
-  padding: 6px 12px;
+  padding: 5px 8px;
   border-bottom: 1px solid var(--gs-border);
   background: #07111f;
 }
@@ -11075,7 +11098,7 @@ body {
 }
 .gs3d-modes {
   justify-self: center;
-  display: grid;
+  display: none;
   width: min(100%, 460px);
   grid-template-columns: repeat(4, 1fr);
   border: 1px solid rgba(125, 165, 205, 0.12);
@@ -11097,7 +11120,7 @@ body {
   background: linear-gradient(180deg, rgba(34, 211, 238, 0.1), transparent);
 }
 .gs3d-top-actions {
-  display: flex;
+  display: none;
   align-items: center;
   gap: 3px;
 }
@@ -11125,13 +11148,17 @@ body {
   height: 17px;
 }
 .gs3d-mobile-menu {
-  display: none;
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  color: white;
 }
 
 .gs3d-navrail {
   grid-area: nav;
   z-index: 50;
-  display: flex;
+  display: none;
   min-height: 0;
   flex-direction: column;
   align-items: stretch;
@@ -11205,6 +11232,21 @@ body {
   opacity: 0;
   pointer-events: none;
   transform: translateX(100%);
+}
+.gs3d-left-panel,
+.gs3d-right-panel {
+  position: fixed;
+  z-index: 90;
+  top: 54px;
+  bottom: 58px;
+  width: min(86vw, 320px);
+  box-shadow: 0 20px 60px #000c;
+}
+.gs3d-left-panel {
+  left: 0;
+}
+.gs3d-right-panel {
+  right: 0;
 }
 .gs3d-panel-header {
   display: flex;
@@ -12005,9 +12047,14 @@ body {
 
 .gs3d-dock {
   grid-area: dock;
-  z-index: 45;
+  z-index: 85;
   min-width: 0;
   overflow: hidden;
+  position: fixed;
+  right: 0;
+  bottom: 58px;
+  left: 0;
+  height: 38px;
   border-top: 1px solid var(--gs-border);
   background: #06111f;
 }
@@ -13446,7 +13493,27 @@ body {
   }
 }
 .gs3d-mobile-nav {
-  display: none;
+  grid-area: mobile;
+  z-index: 100;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  border-top: 1px solid var(--gs-border);
+  background: #06111f;
+}
+.gs3d-mobile-nav button {
+  display: flex;
+  min-width: 0;
+  min-height: 52px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  color: #9eb1c3;
+  font-size: 9px;
+  font-weight: 700;
+}
+.gs3d-mobile-nav svg {
+  width: 18px;
 }
 
 .graph-studio-3d-shell button:focus-visible,
@@ -13464,7 +13531,94 @@ body {
   }
 }
 
-@media (max-width: 1250px) {
+@media (min-width: 1101px) {
+  .graph-studio-3d-shell {
+    grid-template-areas: "top top top top" "nav left canvas right" "nav left dock right" "status status status status";
+    grid-template-columns: 72px 310px minmax(420px, 1fr) 320px;
+    grid-template-rows: 58px minmax(0, 1fr) 128px 28px;
+    width: 100vw;
+    height: 100%;
+  }
+  .graph-studio-3d-shell:not(.has-left) {
+    grid-template-columns: 72px 0 minmax(420px, 1fr) 320px;
+  }
+  .graph-studio-3d-shell:not(.has-right) {
+    grid-template-columns: 72px 310px minmax(420px, 1fr) 0;
+  }
+  .graph-studio-3d-shell:not(.has-left):not(.has-right) {
+    grid-template-columns: 72px 0 minmax(420px, 1fr) 0;
+  }
+  .graph-studio-3d-shell:not(.has-dock) {
+    grid-template-areas: "top top top top" "nav left canvas right" "status status status status";
+    grid-template-rows: 58px minmax(0, 1fr) 28px;
+  }
+  .graph-studio-surface-shell {
+    grid-template-areas: "top top top" "left canvas right" "left dock right" "status status status";
+    grid-template-columns: 310px minmax(420px, 1fr) 320px;
+  }
+  .graph-studio-surface-shell:not(.has-dock) {
+    grid-template-areas: "top top top" "left canvas right" "status status status";
+  }
+  .graph-studio-surface-shell:not(.has-left) {
+    grid-template-columns: 0 minmax(420px, 1fr) 320px;
+  }
+  .graph-studio-surface-shell:not(.has-right) {
+    grid-template-columns: 310px minmax(420px, 1fr) 0;
+  }
+  .graph-studio-surface-shell:not(.has-left):not(.has-right) {
+    grid-template-columns: 0 minmax(420px, 1fr) 0;
+  }
+  .gs3d-navrail {
+    display: flex;
+  }
+  .gs3d-modes {
+    display: grid;
+  }
+  .gs3d-top-actions {
+    display: flex;
+  }
+  .gs3d-mobile-menu,
+  .gs3d-mobile-nav {
+    display: none;
+  }
+  .gs3d-left-panel,
+  .gs3d-right-panel {
+    position: static;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    width: auto;
+    box-shadow: none;
+  }
+  .gs3d-dock {
+    position: static;
+    height: auto;
+    transform: none;
+    box-shadow: none;
+  }
+  .gs3d-topbar {
+    grid-template-columns: auto minmax(130px, 230px) minmax(320px, 1fr) auto;
+    gap: 16px;
+    padding: 6px 12px;
+  }
+  .object-studio-shell {
+    grid-template-areas: "top top top" "left canvas right" "left dock right" "status status status";
+    grid-template-columns: 300px minmax(420px, 1fr) 330px;
+    grid-template-rows: 58px minmax(0, 1fr) 138px 28px;
+  }
+  .object-studio-shell:not(.has-left) {
+    grid-template-columns: 0 minmax(420px, 1fr) 330px;
+  }
+  .object-studio-shell:not(.has-right) {
+    grid-template-columns: 300px minmax(420px, 1fr) 0;
+  }
+  .object-studio-shell:not(.has-left):not(.has-right) {
+    grid-template-columns: 0 minmax(420px, 1fr) 0;
+  }
+}
+
+@media (min-width: 1101px) and (max-width: 1250px) {
   .graph-studio-3d-shell {
     grid-template-columns: 64px 270px minmax(360px, 1fr) 280px;
   }
@@ -13673,7 +13827,9 @@ body {
 
 /* Hidden overflow is still programmatically scrollable when a low inspector
    control receives focus. Clip the outer 3D stage so only its panels scroll. */
-.math-workspace-layout[data-workspace="graphs-3d"] .math-workspace-stage {
+.math-workspace-layout[data-workspace="graphs-3d"] .math-workspace-stage,
+.math-workspace-layout[data-workspace="geometry-3d"] .math-workspace-stage,
+.math-workspace-layout[data-workspace="graphs"] .math-workspace-stage {
   overflow: clip;
 }
 
@@ -13764,18 +13920,14 @@ body {
 .object-studio-shell {
   --gs-cyan: #19d3f3;
   --gs-violet: #a855f7;
-  grid-template-areas: "top top top" "left canvas right" "left dock right" "status status status";
-  grid-template-columns: 300px minmax(420px, 1fr) 330px;
-  grid-template-rows: 58px minmax(0, 1fr) 138px 28px;
+  grid-template-areas: "top" "canvas" "status" "mobile";
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: 54px minmax(0, 1fr) 26px 58px;
 }
-.object-studio-shell:not(.has-left) {
-  grid-template-columns: 0 minmax(420px, 1fr) 330px;
-}
-.object-studio-shell:not(.has-right) {
-  grid-template-columns: 300px minmax(420px, 1fr) 0;
-}
+.object-studio-shell:not(.has-left),
+.object-studio-shell:not(.has-right),
 .object-studio-shell:not(.has-left):not(.has-right) {
-  grid-template-columns: 0 minmax(420px, 1fr) 0;
+  grid-template-columns: minmax(0, 1fr);
 }
 .object-studio-shell .gs3d-topbar {
   grid-template-columns: auto minmax(180px, 1fr) auto;
@@ -15460,7 +15612,17 @@ body {
   }
 
   .math-tool-button {
-    @apply inline-flex h-11 w-11 items-center justify-center rounded-xl border border-cyan-100 bg-white/85 text-slate-700 shadow-sm shadow-cyan-100/40 transition hover:border-cyan-300 hover:bg-cyan-50 dark:border-white/10 dark:bg-white/10 dark:text-slate-100 dark:hover:bg-white/15;
+    @apply inline-flex h-11 w-11 items-center justify-center rounded-xl border border-slate-300 bg-white text-slate-800 shadow-sm transition hover:border-cyan-400 hover:bg-cyan-50 dark:border-cyan-300/40 dark:bg-[#082032] dark:text-cyan-200 dark:hover:bg-[#0d2a44] dark:hover:text-cyan-50;
+  }
+  .math-tool-button svg {
+    color: inherit;
+    stroke-width: 2.4;
+  }
+
+  .geometry-studio-shell .math-tool-button {
+    border-color: rgba(103, 232, 249, 0.45);
+    background: #082032;
+    color: #67e8f9;
   }
 
   .ar-mobile-disclosure {
@@ -15810,7 +15972,17 @@ body {
   }
 
   .math-tool-button-danger {
-    @apply inline-flex h-11 w-11 items-center justify-center rounded-xl bg-rose-100 text-rose-700 transition hover:bg-rose-200 dark:bg-rose-400/15 dark:text-rose-100 dark:hover:bg-rose-400/25;
+    @apply inline-flex h-11 w-11 items-center justify-center rounded-xl border border-rose-300 bg-rose-50 text-rose-700 transition hover:bg-rose-100 dark:border-rose-400/40 dark:bg-[#3b1520] dark:text-rose-200 dark:hover:bg-[#4c1d2a] dark:hover:text-rose-50;
+  }
+  .math-tool-button-danger svg {
+    color: inherit;
+    stroke-width: 2.4;
+  }
+
+  .geometry-studio-shell .math-tool-button-danger {
+    border-color: rgba(251, 113, 133, 0.5);
+    background: #3b1520;
+    color: #fb7185;
   }
 
   .geometry-left-tools {
@@ -15827,15 +15999,16 @@ body {
   }
 
   .geometry-palette-button {
-    @apply flex min-h-[58px] w-full flex-col items-center justify-center gap-1 rounded-lg border border-transparent bg-slate-100 px-1.5 py-2 text-center text-[10px] font-black leading-tight text-slate-700 transition hover:border-cyan-300 hover:bg-cyan-50 hover:text-slate-950 dark:bg-white/10 dark:text-slate-200 dark:hover:border-cyan-300/40 dark:hover:bg-cyan-300/10 dark:hover:text-white;
+    @apply flex min-h-[58px] w-full flex-col items-center justify-center gap-1 rounded-lg border border-cyan-300/25 bg-[#0b1a2e] px-1.5 py-2 text-center text-[10px] font-black leading-tight text-slate-100 transition hover:border-cyan-300 hover:bg-cyan-950 hover:text-white;
   }
 
   .geometry-palette-button svg {
-    @apply shrink-0 text-cyan-600 dark:text-cyan-200;
+    @apply h-5 w-5 shrink-0 text-cyan-300;
+    stroke-width: 2.4;
   }
 
   .geometry-palette-button-active {
-    @apply border-cyan-300 bg-cyan-400 text-slate-950 shadow-lg shadow-cyan-400/25 dark:border-cyan-300 dark:bg-cyan-300 dark:text-slate-950;
+    @apply border-cyan-300 bg-cyan-400 text-slate-950 shadow-lg shadow-cyan-400/25;
   }
 
   .geometry-palette-button-active svg {
@@ -15843,26 +16016,70 @@ body {
   }
 
   .geometry-palette-button-danger {
-    @apply hover:border-rose-300 hover:bg-rose-50 hover:text-rose-800 dark:hover:border-rose-300/40 dark:hover:bg-rose-400/15 dark:hover:text-rose-50;
+    @apply hover:border-rose-400 hover:bg-rose-950 hover:text-rose-100;
   }
 
   .geometry-studio-shell {
+    --geo-grid: rgba(148, 163, 184, 0.2);
+    --geo-grid-strong: rgba(14, 165, 233, 0.38);
+    --geo-axis: #cbd5e1;
+    --geo-axis-strong: #67e8f9;
+    --geo-tick: #e2e8f0;
+    --geo-tick-strong: #f8fafc;
     position: relative;
-    height: 100dvh;
+    height: 100%;
+    min-height: 0;
     overflow: hidden;
     background: #020813;
     color: #e5edf7;
     display: grid;
-    grid-template-columns: minmax(236px, var(--geometry-tools-width, 304px)) minmax(0, 1fr) minmax(280px, var(--geometry-inspector-width, 340px));
-    grid-template-rows: 58px minmax(0, 1fr) 28px;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: 54px minmax(0, 1fr) 34px;
     grid-template-areas:
-      "top top top"
-      "tools main right"
-      "status status status";
+      "top"
+      "main"
+      "status";
   }
 
   .geometry-mobile-tools {
-    display: none;
+    position: absolute;
+    z-index: 34;
+    right: 8px;
+    bottom: 40px;
+    left: 8px;
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    max-width: 520px;
+    margin: 0 auto;
+    border: 1px solid rgba(34, 211, 238, 0.24);
+    border-radius: 8px;
+    background: rgba(2, 8, 19, 0.94);
+    padding: 4px;
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.42);
+    backdrop-filter: blur(12px);
+  }
+
+  .geometry-mobile-tools button {
+    display: flex;
+    min-width: 0;
+    min-height: 48px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2px;
+    border-radius: 5px;
+    color: #a8bdd0;
+    font-size: 9px;
+    font-weight: 800;
+  }
+
+  .geometry-mobile-tools button.active {
+    background: #22d3ee;
+    color: #082f49;
+  }
+  .geometry-mobile-tools svg {
+    width: 18px;
+    height: 18px;
   }
 
   .geometry-studio-topbar {
@@ -15898,6 +16115,29 @@ body {
 
   .geometry-top-actions {
     @apply flex shrink-0 items-center gap-1;
+  }
+
+  .geometry-theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 1px;
+    margin-left: 2px;
+    padding: 2px;
+    border: 1px solid rgba(34, 211, 238, 0.22);
+    border-radius: 8px;
+    background: rgba(2, 12, 24, 0.72);
+  }
+
+  .geometry-theme-toggle button {
+    min-height: 32px;
+    min-width: 32px;
+    padding: 0;
+    color: #94a3b8;
+  }
+
+  .geometry-theme-toggle button[aria-pressed="true"] {
+    background: #22d3ee;
+    color: #082f49;
   }
 
   .geometry-pane-controls {
@@ -15955,7 +16195,7 @@ body {
 
   .geometry-studio-toolbox,
   .geometry-studio-right {
-    @apply min-h-0 overflow-hidden border-cyan-300/10 bg-slate-950/80;
+    @apply min-h-0 overflow-x-hidden overflow-y-auto border-cyan-300/10 bg-slate-950/80;
   }
 
   .geometry-studio-toolbox {
@@ -16068,7 +16308,7 @@ body {
 
   .geometry-canvas-stage {
     @apply relative min-h-0 p-2;
-    min-height: 560px;
+    min-height: 0;
   }
 
   .geometry-canvas-stage svg[data-testid="workspace-geometry-board"] {
@@ -16247,7 +16487,7 @@ body {
 
   /* Shared cards inside the right sidebar and bottom dock use light utility
      classes, but this workspace is always rendered on a dark surface. */
-  .geometry-studio-shell :is(.geometry-right-card, .geometry-bottom-dock) :is(.text-slate-400, .text-slate-500, .text-slate-600, .text-slate-700) {
+  .geometry-studio-shell :is(.geometry-right-card, .geometry-bottom-dock) :is(.text-slate-400, .text-slate-500, .text-slate-600, .text-slate-700):not(button):not(a) {
     color: #b8c8dc !important;
   }
   .geometry-studio-shell :is(.geometry-right-card, .geometry-bottom-dock) :is(.rounded-xl, .rounded-2xl):not(input):not(button) {
@@ -16285,7 +16525,11 @@ body {
     @apply grid min-w-0 grid-cols-[18px_minmax(0,1fr)] items-center gap-2 text-left;
   }
   .geometry-object-row-action {
-    @apply grid h-7 w-7 place-items-center rounded-md text-slate-300 hover:bg-cyan-300/10 hover:text-cyan-100;
+    @apply grid h-7 w-7 place-items-center rounded-md border border-cyan-300/35 bg-[#082032] text-cyan-300 hover:bg-cyan-300/15 hover:text-cyan-100;
+  }
+  .geometry-object-row-action svg {
+    color: #67e8f9;
+    stroke-width: 2.4;
   }
   .geometry-registry-controls {
     display: grid;
@@ -16498,12 +16742,17 @@ body {
     line-height: 1.5;
   }
   .geometry-pinned-measurements {
+    position: absolute;
+    right: 12px;
+    bottom: 48px;
+    z-index: 10;
     display: grid;
     gap: 8px;
-    margin-bottom: 8px;
+    max-width: 280px;
+    margin-bottom: 0;
     border: 1px solid rgba(34, 211, 238, 0.12);
     border-radius: 6px;
-    background: rgba(2, 8, 23, 0.45);
+    background: rgba(2, 8, 23, 0.82);
     padding: 9px;
   }
   .geometry-pinned-measurements header {
@@ -16721,7 +16970,14 @@ body {
     @apply mt-0 max-w-[360px] overflow-hidden;
   }
 
-  @media (max-width: 1180px) {
+  .geometry-studio-shell .geometry-studio-toolbox,
+  .geometry-studio-shell .geometry-studio-right,
+  .geometry-studio-shell .geometry-studio-rail,
+  .geometry-studio-shell .geometry-pane-resizer {
+    display: none;
+  }
+
+  @media (min-width: 761px) and (max-width: 1180px) {
     .geometry-studio-shell {
       grid-template-columns: 56px minmax(0, 1fr);
       grid-template-rows: 56px minmax(0, 1fr) 30px;
@@ -16734,6 +16990,10 @@ body {
     .geometry-studio-toolbox,
     .geometry-studio-right {
       display: none;
+    }
+
+    .geometry-studio-rail {
+      display: flex;
     }
 
     .geometry-mobile-tools {
@@ -16775,6 +17035,37 @@ body {
     .geometry-mobile-tools svg {
       width: 18px;
       height: 18px;
+    }
+  }
+
+  @media (min-width: 1181px) {
+    .geometry-studio-shell {
+      grid-template-columns: minmax(236px, var(--geometry-tools-width, 304px)) minmax(0, 1fr) minmax(280px, var(--geometry-inspector-width, 340px));
+      grid-template-rows: 58px minmax(0, 1fr) 28px;
+      grid-template-areas:
+        "top top top"
+        "tools main right"
+        "status status status";
+    }
+
+    .geometry-studio-shell .geometry-studio-toolbox {
+      display: flex;
+    }
+
+    .geometry-studio-shell .geometry-studio-right {
+      display: grid;
+    }
+
+    .geometry-studio-shell .geometry-pane-resizer {
+      display: block;
+    }
+
+    .geometry-mobile-tools {
+      display: none;
+    }
+
+    .geometry-canvas-stage {
+      min-height: 560px;
     }
   }
 
@@ -16847,6 +17138,450 @@ body {
       flex: 0 0 auto;
       margin-left: 0;
     }
+
+    .geometry-theme-toggle button {
+      flex: 0 0 32px;
+    }
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] {
+    --geo-grid: rgba(15, 23, 42, 0.16);
+    --geo-grid-strong: rgba(14, 116, 144, 0.5);
+    --geo-axis: #334155;
+    --geo-axis-strong: #0e7490;
+    --geo-tick: #0f172a;
+    --geo-tick-strong: #155e75;
+    background: #dbe7f3;
+    color: #0f172a;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-studio-topbar {
+    border-bottom-color: rgba(14, 116, 144, 0.22);
+    background: #f4f8fc;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-studio-topbar h1 {
+    color: #0f172a;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-studio-topbar p {
+    color: #0e7490;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-home-button {
+    border-color: rgba(14, 116, 144, 0.35);
+    background: #e0f2fe;
+    color: #155e75;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-mode-tabs {
+    border-color: rgba(14, 116, 144, 0.22);
+    background: #e8f1f8;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-mode-tabs button,
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-top-actions button,
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-icon-button {
+    color: #334155;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-mode-tabs button:hover,
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-top-actions button:hover,
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-icon-button:hover {
+    background: rgba(14, 116, 144, 0.12);
+    color: #0e7490;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-mode-tabs button.active {
+    background: #0e7490;
+    color: #f8fafc;
+    box-shadow: 0 8px 18px rgba(14, 116, 144, 0.22);
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-pane-controls {
+    border-color: rgba(14, 116, 144, 0.22);
+    background: #e8f1f8;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-theme-toggle {
+    border-color: rgba(14, 116, 144, 0.28);
+    background: #e8f1f8;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-theme-toggle button {
+    color: #475569;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-theme-toggle button[aria-pressed="true"] {
+    background: #0e7490;
+    color: #f8fafc;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-studio-toolbox,
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-studio-right {
+    border-color: rgba(14, 116, 144, 0.18);
+    background: #f4f8fc;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-studio-rail {
+    border-color: rgba(14, 116, 144, 0.18);
+    background: #e8f1f8;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-brand {
+    border-color: rgba(14, 116, 144, 0.28);
+    background: #ffffff;
+    color: #0e7490;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-studio-rail a:not(.geometry-brand) {
+    color: #334155;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-panel-heading h2 {
+    color: #0f172a;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-panel-heading p,
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-panel-heading span {
+    color: #475569;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-tool-search input {
+    border-color: rgba(14, 116, 144, 0.28);
+    background: #ffffff;
+    color: #0f172a;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-palette-section-heading,
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-recent-tools > span {
+    color: #475569;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-palette-button {
+    border-color: rgba(14, 116, 144, 0.28);
+    background: #ffffff;
+    color: #0f172a;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-palette-button svg {
+    color: #0e7490;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-palette-button:hover {
+    border-color: #0e7490;
+    background: #e0f2fe;
+    color: #0f172a;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-palette-button-active {
+    border-color: #0e7490;
+    background: #0e7490;
+    color: #f8fafc;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-palette-button-active svg {
+    color: #f8fafc;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .math-tool-button {
+    border-color: rgba(14, 116, 144, 0.4);
+    background: #ffffff;
+    color: #0e7490;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .math-tool-button-danger {
+    border-color: rgba(190, 18, 60, 0.4);
+    background: #fff1f2;
+    color: #be123c;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-canvas-panel,
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-context-toolbar,
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-bottom-dock,
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-right-card {
+    border-color: rgba(14, 116, 144, 0.18);
+    background: #ffffff;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-canvas-header {
+    border-color: rgba(14, 116, 144, 0.18);
+    background: rgba(244, 248, 252, 0.92);
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-canvas-stage svg[data-testid="workspace-geometry-board"] {
+    border-color: rgba(14, 116, 144, 0.28);
+    background: #f8fafc;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-nav-tools {
+    border-color: rgba(14, 116, 144, 0.22);
+    background: rgba(255, 255, 255, 0.94);
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-nav-tools button,
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-context-toolbar button {
+    color: #1e293b;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-nav-tools button:hover,
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-context-toolbar button:hover {
+    background: rgba(14, 116, 144, 0.12);
+    color: #0e7490;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-nav-tools button.active,
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-context-toolbar button.active {
+    background: #0e7490;
+    color: #f8fafc;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-canvas-hint {
+    border-color: rgba(14, 116, 144, 0.22);
+    background: rgba(255, 255, 255, 0.92);
+    color: #334155;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-context-toolbar > div:first-child {
+    color: #475569;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-context-toolbar strong {
+    color: #0e7490;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-coordinate-readout {
+    color: #334155;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-coordinate-readout span {
+    border-color: rgba(14, 116, 144, 0.22);
+    background: #f1f5f9;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-coordinate-readout strong {
+    color: #0f172a;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-dock-tabs,
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-tab-strip {
+    border-color: rgba(14, 116, 144, 0.18);
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-dock-tabs button,
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-tab-strip button {
+    color: #475569;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-dock-tabs button.active,
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-tab-strip button.active {
+    border-color: #0e7490;
+    color: #0e7490;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-right-card .rounded-2xl {
+    border-color: rgba(14, 116, 144, 0.18);
+    background: #f1f5f9;
+    color: #0f172a;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-inspector-card label.rounded-xl,
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-inspector-card label.rounded-xl > label,
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-inspector-card .slider-range + div {
+    background: #f1f5f9;
+    color: #0f172a;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-inspector-card :is(input:not([type="range"]):not([type="color"]), select, textarea) {
+    border-color: rgba(14, 116, 144, 0.3);
+    background: #ffffff;
+    color: #0f172a;
+    color-scheme: light;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-inspector-card :is(input, textarea)::placeholder {
+    color: #64748b;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-inspector-card span.rounded-lg,
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-inspector-card .slider-range + div > span,
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-inspector-card .slider-range ~ div > span {
+    background: #ffffff;
+    color: #0e7490;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-inspector-card button.rounded-2xl:not(.text-rose-700) {
+    background: #e0f2fe;
+    color: #155e75;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] :is(.geometry-right-card, .geometry-bottom-dock) :is(.text-slate-400, .text-slate-500, .text-slate-600, .text-slate-700):not(button):not(a) {
+    color: #475569 !important;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] :is(.geometry-right-card, .geometry-bottom-dock) :is(.rounded-xl, .rounded-2xl):not(input):not(button) {
+    border-color: rgba(14, 116, 144, 0.18);
+    background-color: #f8fafc;
+    color: #0f172a;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-bottom-dock :is(input, select, textarea) {
+    border-color: rgba(14, 116, 144, 0.3);
+    background: #ffffff;
+    color: #0f172a;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-right-card :is(p, .geometry-empty-note),
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-bottom-dock p {
+    color: #475569;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-dock-content > div:not(.geometry-inline-resizer) > :first-child {
+    border-color: rgba(14, 116, 144, 0.18);
+    background: #f8fafc;
+    color: #0f172a;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-object-group h3 {
+    color: #475569;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-object-row {
+    border-color: rgba(14, 116, 144, 0.16);
+    background: #f8fafc;
+    color: #1e293b;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-object-row-action {
+    border-color: rgba(14, 116, 144, 0.35);
+    background: #ffffff;
+    color: #0e7490;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-object-row-action svg {
+    color: #0e7490;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-registry-controls label,
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-registry-controls input,
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-registry-controls select {
+    background: #ffffff;
+    color: #0f172a;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-registry-controls svg {
+    color: #0e7490;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-layer-manager > header {
+    color: #0e7490;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-layer-manager > header strong {
+    color: #0f172a;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-layer-manager > header span {
+    color: #475569;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-empty-note {
+    border-color: rgba(14, 116, 144, 0.18);
+    background: #f1f5f9;
+    color: #475569;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-statusbar {
+    border-top-color: rgba(14, 116, 144, 0.18);
+    background: #eef4fa;
+    color: #475569;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-statusbar button {
+    color: #0e7490;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-snap-candidate {
+    border-color: rgba(14, 116, 144, 0.28);
+    background: rgba(255, 255, 255, 0.94);
+    color: #475569;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-mobile-tools {
+    border-color: rgba(14, 116, 144, 0.28);
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 14px 36px rgba(15, 23, 42, 0.16);
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-mobile-tools button {
+    color: #334155;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-mobile-tools button.active {
+    background: #0e7490;
+    color: #f8fafc;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-modal-backdrop {
+    background: rgba(15, 23, 42, 0.35);
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-modal {
+    border-color: rgba(14, 116, 144, 0.28);
+    background: #ffffff;
+    box-shadow: 0 25px 70px rgba(15, 23, 42, 0.18);
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-modal > header span {
+    color: #0e7490;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-modal h2 {
+    color: #0f172a;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-modal > header button {
+    color: #334155;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-modal > label {
+    color: #334155;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-modal select {
+    border-color: rgba(14, 116, 144, 0.28);
+    background: #f8fafc;
+    color: #0f172a;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-settings-grid label {
+    border-color: rgba(14, 116, 144, 0.18);
+    background: #f8fafc;
+    color: #1e293b;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-dialog-command {
+    border-color: rgba(14, 116, 144, 0.3);
+    color: #0e7490;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-export-grid button {
+    border-color: rgba(14, 116, 144, 0.2);
+    background: #f8fafc;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-export-grid button:hover:not(:disabled) {
+    border-color: #0e7490;
+    background: #e0f2fe;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-export-grid svg {
+    color: #0e7490;
+  }
+
+  .geometry-studio-shell[data-geometry-theme="light"] .geometry-export-grid strong {
+    color: #0f172a;
   }
 
   .shapes-studio-shell {
@@ -38387,13 +39122,37 @@ body,
 .alg-studio {
   display: grid !important;
   width: 100% !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
   grid-template-columns: 212px minmax(0, 1fr) !important;
+  grid-template-rows: minmax(0, 1fr) !important;
+}
+
+.alg-stage {
+  min-height: 0 !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
 }
 
 @media (max-width: 900px) {
   .alg-studio {
-    display: block !important;
+    display: flex !important;
+    flex-direction: column !important;
     grid-template-columns: none !important;
+    grid-template-rows: none !important;
+  }
+
+  .alg-sidebar {
+    height: auto !important;
+    max-height: none !important;
+    flex: 0 0 auto;
+  }
+
+  .alg-stage {
+    flex: 1 1 auto;
+    min-height: 0 !important;
+    overflow-y: auto !important;
   }
 }
 
@@ -38450,7 +39209,17 @@ body,
 
 /* Pages retain a vertical scroll path even when a studio uses a fixed viewport. */
 html { overflow-y: auto; scrollbar-gutter: stable; }
-#main-content { overflow-y: auto; }
+#main-content:not(.math-workspace-host) { overflow-y: auto; }
+#main-content.math-workspace-host {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.math-workspace-page {
+  flex: 1 1 auto;
+  min-height: 0;
+  height: 100%;
+}
 .studio-shell .studio-shell-body { overflow-y: auto; }
 :is(.lesson-page-shell, .lesson-school-shell, [data-testid="advanced-concept-lesson-page"], [data-dedicated-lesson]) {
   overflow-y: auto !important;
@@ -38613,8 +39382,8 @@ html { overflow-y: auto; scrollbar-gutter: stable; }
 }
 /* A constrained host must allow reaching the bottom of its studio. */
 .math-workspace-stage:has(.studio-shell),
-.math-workspace-page:has(.studio-shell),
-.math-workspace-page:has(.alg-studio) { overflow-y: auto; }
+.math-workspace-page:has(.studio-shell) { overflow-y: auto; }
+.math-workspace-page:has(.alg-studio) { overflow: hidden; }
 
 /* Keep supporting inspectors below the primary lesson or studio workspace.
    This gives the main visualization the full width and makes the support

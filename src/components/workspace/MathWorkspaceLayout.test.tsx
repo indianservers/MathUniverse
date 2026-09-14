@@ -22,8 +22,14 @@ describe("MathWorkspaceLayout", () => {
       expect(markup).toContain(`${workspace.name} workspace controls`);
       expect(markup).toContain("math-workspace-mobile-dock");
       expect(markup).toContain("Primary activity");
+      expect(markup).toContain("math-workspace-stage");
+      if (workspace.id === "graphs") {
+        expect(markup).toContain("Scrollable graph workspace");
+      }
       if (
         workspace.id === "geometry" ||
+        workspace.id === "geometry-3d" ||
+        workspace.id === "graphs" ||
         workspace.id === "graphs-3d" ||
         workspace.id === "shapes"
       ) {

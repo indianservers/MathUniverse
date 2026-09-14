@@ -79,6 +79,22 @@ export default function UnitCircleLab({ page }: { page: StudioMockupPage }) {
   const [speed, setSpeed] = useState(1);
 
   useEffect(() => {
+    if (mode !== "Exact Values") return;
+    const nearest = ANGLE_CHIPS.reduce((best, item) =>
+      Math.abs(item.d - angle) < Math.abs(best - angle) ? item.d : best,
+    ANGLE_CHIPS[0]!.d);
+    if (nearest !== angle) setAngle(nearest);
+  }, [mode]);
+
+  useEffect(() => {
+    if (mode === "Reference Angles") setShowRef(true);
+    if (mode === "Unit Circle") {
+      setShowX(true);
+      setShowY(true);
+    }
+  }, [mode]);
+
+  useEffect(() => {
     if (!playing) return;
     const id = window.setInterval(() => {
       setAngle((value) => wrap180(value + (dir === "ccw" ? 1 : -1) * speed));
@@ -110,6 +126,13 @@ export default function UnitCircleLab({ page }: { page: StudioMockupPage }) {
     return `${40 + ((t + 180) / 360) * 420},${70 - Math.cos((t * Math.PI) / 180) * 36}`;
   }).join(" ");
 
+  const showProjections = mode === "Unit Circle" || mode === "Angles";
+  const showWaves = mode === "Angles" || mode === "Unit Circle";
+  const showExactTicks = mode === "Exact Values";
+  const showQuadrantFill = mode === "Quadrants";
+  const showRefTriangle = mode === "Reference Angles" || (mode !== "Quadrants" && showRef);
+  const showExactLabels = mode === "Exact Values" || mode === "Unit Circle" || mode === "Reference Angles";
+
   return (
     <>
       <nav className="msk-tabs" aria-label="Unit Circle modes">
@@ -117,8 +140,8 @@ export default function UnitCircleLab({ page }: { page: StudioMockupPage }) {
           <button key={item} type="button" className={item === mode ? "active" : ""} aria-pressed={item === mode} onClick={() => setMode(item)}>{item}</button>
         ))}
       </nav>
-      <div className="msk-lab">
-        <Panel title="Angle Controls">
+      <div className="msk-lab" data-uc-mode={mode}>
+        <Panel title={mode === "Exact Values" ? "Special angles" : mode === "Quadrants" ? "Quadrant focus" : mode === "Reference Angles" ? "Reference angle" : "Angle Controls"}>
           <Field label="Angle">
             <Segmented value={units} onChange={(id) => setUnits(id as "deg" | "rad")} options={[{ id: "deg", label: "Degrees (°)" }, { id: "rad", label: "Radians (rad)" }]} />
           </Field>
@@ -135,10 +158,19 @@ export default function UnitCircleLab({ page }: { page: StudioMockupPage }) {
             <Segmented value={dir} onChange={(id) => setDir(id as "ccw" | "cw")} options={[{ id: "ccw", label: "Counterclockwise" }, { id: "cw", label: "Clockwise" }]} />
           </Field>
           <p className="msk-note">Display options</p>
-          <label className="msk-toggle"><input type="checkbox" checked={showRef} onChange={(event) => setShowRef(event.target.checked)} /> Show reference triangle</label>
-          <label className="msk-toggle"><input type="checkbox" checked={showX} onChange={(event) => setShowX(event.target.checked)} /> Show x projection (cos θ)</label>
-          <label className="msk-toggle"><input type="checkbox" checked={showY} onChange={(event) => setShowY(event.target.checked)} /> Show y projection (sin θ)</label>
-          <label className="msk-toggle"><input type="checkbox" checked={showTan} onChange={(event) => setShowTan(event.target.checked)} /> Show tangent line</label>
+          {mode !== "Quadrants" && mode !== "Exact Values" ? (
+            <label className="msk-toggle"><input type="checkbox" checked={showRefTriangle} onChange={(event) => setShowRef(event.target.checked)} disabled={mode === "Reference Angles"} /> Show reference triangle</label>
+          ) : null}
+          {mode === "Unit Circle" || mode === "Angles" ? (
+            <>
+              <label className="msk-toggle"><input type="checkbox" checked={showX} onChange={(event) => setShowX(event.target.checked)} /> Show x projection (cos θ)</label>
+              <label className="msk-toggle"><input type="checkbox" checked={showY} onChange={(event) => setShowY(event.target.checked)} /> Show y projection (sin θ)</label>
+              <label className="msk-toggle"><input type="checkbox" checked={showTan} onChange={(event) => setShowTan(event.target.checked)} /> Show tangent line</label>
+            </>
+          ) : null}
+          {mode === "Quadrants" ? <p className="msk-note">The highlighted quadrant shows the signs of sin, cos, and tan for the current terminal ray.</p> : null}
+          {mode === "Exact Values" ? <p className="msk-note">Snap θ to a special angle to read exact sine, cosine, and tangent.</p> : null}
+          {mode === "Reference Angles" ? <p className="msk-note">The acute angle α to the x-axis is the reference angle. Related angles share the same exact values, with signs from the quadrant.</p> : null}
           <Field label="Animation">
             <div className="msk-btn-row">
               <button className="msk-cta" type="button" onClick={() => setPlaying((value) => !value)}>{playing ? "Pause" : "Play"}</button>
@@ -157,28 +189,60 @@ export default function UnitCircleLab({ page }: { page: StudioMockupPage }) {
               { q: 4, x: 360, y: 312, title: "Quadrant IV", sign: "(sin −, cos +)" },
             ].map((item) => (
               <g key={item.q}>
+                {showQuadrantFill ? (
+                  <rect
+                    x={item.q === 1 || item.q === 4 ? cx : cx - r}
+                    y={item.q === 1 || item.q === 2 ? cy - r : cy}
+                    width={r}
+                    height={r}
+                    fill={live.q === item.q ? "rgba(34,211,238,.22)" : "rgba(15,23,42,.18)"}
+                  />
+                ) : null}
                 <text x={item.x} y={item.y} className={`msk-quad${live.q === item.q ? " is-on" : ""}`}>{item.title}</text>
                 <text x={item.x} y={item.y + 14} className={`msk-quad-sign${live.q === item.q ? " is-on" : ""}`}>{item.sign}</text>
               </g>
             ))}
+            {showExactTicks
+              ? ANGLE_CHIPS.map((item) => {
+                  const rad = (item.d * Math.PI) / 180;
+                  const tx = cx + Math.cos(rad) * (r + 16);
+                  const ty = cy - Math.sin(rad) * (r + 16);
+                  return (
+                    <g key={`tick-${item.d}`}>
+                      <circle cx={cx + Math.cos(rad) * r} cy={cy - Math.sin(rad) * r} r={angle === item.d ? 5 : 3} fill={angle === item.d ? "#fbbf24" : "#67e8f9"} />
+                      <text x={tx} y={ty} fill="#fde68a" fontSize="10" textAnchor="middle">{item.d}°</text>
+                    </g>
+                  );
+                })
+              : null}
             <circle cx={cx} cy={cy} r={r} fill="none" stroke="#22d3ee" strokeWidth="2" />
             <line x1={cx - r - 20} y1={cy} x2={cx + r + 28} y2={cy} stroke="#64748b" />
             <line x1={cx} y1={cy + r + 16} x2={cx} y2={cy - r - 20} stroke="#64748b" />
             <text x={cx + r + 8} y={cy - 6} fill="#cbd5e1" fontSize="11">x</text>
             <text x={cx + 8} y={cy - r - 8} fill="#cbd5e1" fontSize="11">y</text>
-            {showX ? <line x1={cx} y1={cy} x2={px} y2={cy} stroke="#22d3ee" strokeDasharray="5 4" /> : null}
-            {showY ? <line x1={px} y1={cy} x2={px} y2={py} stroke="#a78bfa" strokeDasharray="5 4" /> : null}
-            {showRef ? <polygon points={`${cx},${cy} ${px},${cy} ${px},${py}`} fill="rgba(167,139,250,.12)" stroke="#a78bfa" /> : null}
-            {showTan && Number.isFinite(live.tan) ? <line x1={cx + r} y1={cy - live.tan * r} x2={cx + r} y2={cy} stroke="#f59e0b" strokeDasharray="4 4" /> : null}
+            {showProjections && showX ? <line x1={cx} y1={cy} x2={px} y2={cy} stroke="#22d3ee" strokeDasharray="5 4" /> : null}
+            {showProjections && showY ? <line x1={px} y1={cy} x2={px} y2={py} stroke="#a78bfa" strokeDasharray="5 4" /> : null}
+            {showRefTriangle ? <polygon points={`${cx},${cy} ${px},${cy} ${px},${py}`} fill="rgba(167,139,250,.12)" stroke="#a78bfa" /> : null}
+            {showProjections && showTan && Number.isFinite(live.tan) ? <line x1={cx + r} y1={cy - live.tan * r} x2={cx + r} y2={cy} stroke="#f59e0b" strokeDasharray="4 4" /> : null}
             <line x1={cx} y1={cy} x2={px} y2={py} stroke="#f8fafc" strokeWidth="2" />
             <path d={`M ${cx + 28} ${cy} A 28 28 0 ${Math.abs(angle) > 180 ? 1 : 0} ${angle >= 0 ? 0 : 1} ${cx + 28 * Math.cos(live.rad)} ${cy - 28 * Math.sin(live.rad)}`} fill="none" stroke="#f59e0b" strokeWidth="2" />
             <circle cx={px} cy={py} r="6" fill="#fbbf24" />
-            <text x={px + 10} y={py - 22} fill="#fde68a" fontSize="11">(cos θ, sin θ)</text>
-            <SvgExact x={px + 10} y={py - 4} value={exactish(live.cos)} />
-            <text x={px + 52} y={py - 4} fill="#fde68a" fontSize="11">,</text>
-            <SvgExact x={px + 62} y={py - 4} value={exactish(live.sin)} />
+            {showExactLabels ? (
+              <>
+                <text x={px + 10} y={py - 22} fill="#fde68a" fontSize="11">(cos θ, sin θ)</text>
+                <SvgExact x={px + 10} y={py - 4} value={exactish(live.cos)} />
+                <text x={px + 52} y={py - 4} fill="#fde68a" fontSize="11">,</text>
+                <SvgExact x={px + 62} y={py - 4} value={exactish(live.sin)} />
+              </>
+            ) : (
+              <text x={px + 10} y={py - 8} fill="#fde68a" fontSize="12">{mode === "Angles" ? `${fmt(angle, 0)}°` : `Q${live.q}`}</text>
+            )}
+            {mode === "Reference Angles" ? (
+              <text x={cx + 40} y={cy - 8} fill="#c4b5fd" fontSize="12">α = {fmt(live.ref, 0)}°</text>
+            ) : null}
             <text x={cx + 36} y={cy - 36} fill="#fbbf24" fontSize="13">{fmt(angle, 0)}°</text>
           </svg>
+          {showWaves ? (
           <svg className="msk-graph is-dark" viewBox="0 0 500 140" aria-label="Sine and cosine waves">
             <rect width="500" height="140" fill="#061428" />
             <text x="16" y="18" fill="#22d3ee" fontSize="11">sin θ</text>
@@ -195,38 +259,66 @@ export default function UnitCircleLab({ page }: { page: StudioMockupPage }) {
             <line x1={40 + ((angle + 180) / 360) * 420} y1="20" x2={40 + ((angle + 180) / 360) * 420} y2="124" stroke="#fbbf24" strokeDasharray="3 3" />
             <circle cx={40 + ((angle + 180) / 360) * 420} cy={70 - live.sin * 36} r="4" fill="#fbbf24" />
           </svg>
+          ) : null}
         </section>
 
         <aside className="msk-panel msk-live">
           <h2>Angle</h2>
           <LiveRow color="#f59e0b" label="θ" value={`${fmt(angle, 1)}° = ${fmt(live.rad, 4)} rad`} />
-          <h2>Coordinates on Unit Circle</h2>
-          <div className="msk-ratio">
-            <i style={{ background: "#22d3ee" }} />
-            <em>(cos θ, sin θ)</em>
-            <span>=</span>
-            <span className="msk-exact">(</span>
-            <ExactFrac value={exactish(live.cos)} />
-            <span className="msk-exact">,</span>
-            <ExactFrac value={exactish(live.sin)} />
-            <span className="msk-exact">)</span>
-          </div>
-          <h2>Exact Trigonometric Values</h2>
-          <ExactRow color="#22d3ee" name="sin θ" exact={exactish(live.sin)} approx={fmt(live.sin, 5)} />
-          <ExactRow color="#8b45f4" name="cos θ" exact={exactish(live.cos)} approx={fmt(live.cos, 5)} />
-          <ExactRow color="#f59e0b" name="tan θ" exact={Number.isFinite(live.tan) ? exactish(live.tan) : "undefined"} approx={Number.isFinite(live.tan) ? fmt(live.tan, 5) : "—"} />
-          <h2>Signs by Quadrant</h2>
-          <table className="msk-mini-table">
-            <thead><tr><th></th><th>I</th><th>II</th><th>III</th><th>IV</th></tr></thead>
-            <tbody>
-              <tr><td>sin</td><td>+</td><td>+</td><td>−</td><td>−</td></tr>
-              <tr><td>cos</td><td>+</td><td>−</td><td>−</td><td>+</td></tr>
-              <tr><td>tan</td><td>+</td><td>−</td><td>+</td><td>−</td></tr>
-            </tbody>
-          </table>
-          <h2>Reference Angle</h2>
-          <LiveRow color="#8b45f4" label="α" value={`${fmt(live.ref, 1)}°`} />
-          <p className="msk-note">At {fmt(angle, 0)}°, the terminal side lies in Quadrant {["I", "II", "III", "IV"][live.q - 1]}. Use the unit circle to read exact values and signs.</p>
+          {mode === "Unit Circle" || mode === "Exact Values" || mode === "Angles" ? (
+            <>
+              <h2>Coordinates on Unit Circle</h2>
+              <div className="msk-ratio">
+                <i style={{ background: "#22d3ee" }} />
+                <em>(cos θ, sin θ)</em>
+                <span>=</span>
+                <span className="msk-exact">(</span>
+                <ExactFrac value={exactish(live.cos)} />
+                <span className="msk-exact">,</span>
+                <ExactFrac value={exactish(live.sin)} />
+                <span className="msk-exact">)</span>
+              </div>
+            </>
+          ) : null}
+          {mode === "Exact Values" || mode === "Unit Circle" ? (
+            <>
+              <h2>Exact Trigonometric Values</h2>
+              <ExactRow color="#22d3ee" name="sin θ" exact={exactish(live.sin)} approx={fmt(live.sin, 5)} />
+              <ExactRow color="#8b45f4" name="cos θ" exact={exactish(live.cos)} approx={fmt(live.cos, 5)} />
+              <ExactRow color="#f59e0b" name="tan θ" exact={Number.isFinite(live.tan) ? exactish(live.tan) : "undefined"} approx={Number.isFinite(live.tan) ? fmt(live.tan, 5) : "—"} />
+            </>
+          ) : null}
+          {mode === "Quadrants" || mode === "Unit Circle" ? (
+            <>
+              <h2>Signs by Quadrant</h2>
+              <table className="msk-mini-table">
+                <thead><tr><th></th><th>I</th><th>II</th><th>III</th><th>IV</th></tr></thead>
+                <tbody>
+                  <tr><td>sin</td><td>+</td><td>+</td><td>−</td><td>−</td></tr>
+                  <tr><td>cos</td><td>+</td><td>−</td><td>−</td><td>+</td></tr>
+                  <tr><td>tan</td><td>+</td><td>−</td><td>+</td><td>−</td></tr>
+                </tbody>
+              </table>
+              <p className="msk-note">Current quadrant: {["I", "II", "III", "IV"][live.q - 1]}</p>
+            </>
+          ) : null}
+          {mode === "Reference Angles" || mode === "Angles" ? (
+            <>
+              <h2>Reference Angle</h2>
+              <LiveRow color="#8b45f4" label="α" value={`${fmt(live.ref, 1)}°`} />
+            </>
+          ) : null}
+          <p className="msk-note">
+            {mode === "Quadrants"
+              ? `At ${fmt(angle, 0)}°, the terminal side is in Quadrant ${["I", "II", "III", "IV"][live.q - 1]}. Read signs from the CAST table.`
+              : mode === "Exact Values"
+                ? `Exact values at ${fmt(angle, 0)}°: sin = ${exactish(live.sin)}, cos = ${exactish(live.cos)}.`
+                : mode === "Reference Angles"
+                  ? `α = ${fmt(live.ref, 0)}° is the acute angle to the x-axis. Signs still come from Quadrant ${["I", "II", "III", "IV"][live.q - 1]}.`
+                  : mode === "Angles"
+                    ? `θ = ${fmt(angle, 1)}° = ${fmt(live.rad, 4)} rad. Positive angles run counterclockwise.`
+                    : `At ${fmt(angle, 0)}°, the terminal side lies in Quadrant ${["I", "II", "III", "IV"][live.q - 1]}. Use the unit circle to read exact values and signs.`}
+          </p>
           <ChallengeBox prompt={page.challenge.prompt} expected={page.challenge.expected} hint={page.challenge.hint} />
         </aside>
       </div>

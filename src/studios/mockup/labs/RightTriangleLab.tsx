@@ -1,5 +1,5 @@
 import { MoreHorizontal, MousePointer2, Pencil, RotateCcw, Spline } from "lucide-react";
-import { useMemo, useRef, useState, type PointerEvent } from "react";
+import { useEffect, useMemo, useRef, useState, type PointerEvent } from "react";
 import { MockupLearningStrip } from "../MockupStudioChrome";
 import type { StudioMockupPage } from "../studioMockupCatalog";
 import { ChallengeBox, ChipRow, Field, Segmented, StatusOk, StepList, clamp, fmt, useLabMode } from "../studioLabKit";
@@ -57,6 +57,14 @@ function ValueRow({ color, label, value, ok = true }: { color: string; label: st
   );
 }
 
+function squarePoints(x1: number, y1: number, x2: number, y2: number, outward: 1 | -1) {
+  const dx = x2 - x1;
+  const dy = y2 - y1;
+  const nx = -dy * outward;
+  const ny = dx * outward;
+  return `${x1},${y1} ${x2},${y2} ${x2 + nx},${y2 + ny} ${x1 + nx},${y1 + ny}`;
+}
+
 export default function RightTriangleLab({ page }: { page: StudioMockupPage }) {
   const { tabs, mode, setMode } = useLabMode(page, MODES);
   const [known, setKnown] = useState<Known>("angle-side");
@@ -107,6 +115,12 @@ export default function RightTriangleLab({ page }: { page: StudioMockupPage }) {
     if (id === "454590") { setKnown("angle-side"); setAngleA(45); setHyp(Math.SQRT2); setOpp(1); setAdj(1); }
   };
 
+  useEffect(() => {
+    if (mode === "Pythagoras") setKnown("sides");
+    if (mode === "Ratios") setKnown("angle-side");
+    if (mode === "Special Triangles" && example !== "306090" && example !== "454590") applyExample("306090");
+  }, [mode]);
+
   const reset = () => {
     setKnown("angle-side"); setUnits("deg"); setAngleA(35); setOpp(7); setHyp(12); setAdj(Math.sqrt(95)); setOri("std"); setExample("custom"); setScale(1.5); setLocked(false);
   };
@@ -150,9 +164,20 @@ export default function RightTriangleLab({ page }: { page: StudioMockupPage }) {
           <button key={item} type="button" className={item === mode ? "active" : ""} aria-pressed={item === mode} onClick={() => setMode(item)}>{item}</button>
         ))}
       </nav>
-      <div className="msk-lab msk-rt">
+      <div className="msk-lab msk-rt" data-rt-mode={mode}>
         <section className="msk-panel">
-          <h2>Triangle Inputs</h2>
+          <h2>
+            {mode === "Ratios" ? "Ratio inputs"
+              : mode === "Pythagoras" ? "Side lengths"
+              : mode === "Similarity" ? "Similar triangles"
+              : mode === "Special Triangles" ? "Special right triangles"
+              : "Triangle Inputs"}
+          </h2>
+          {mode === "Ratios" ? <p className="msk-note">sin = opp/hyp, cos = adj/hyp, tan = opp/adj. Drag a vertex or change ∠A to watch the three ratios.</p> : null}
+          {mode === "Pythagoras" ? <p className="msk-note">Enter two legs or drag the vertices. The squares on the sides show a² + b² = c².</p> : null}
+          {mode === "Similarity" ? <p className="msk-note">AA similarity: corresponding angles match, so corresponding sides scale by k.</p> : null}
+          {mode === "Special Triangles" ? <p className="msk-note">30-60-90 sides are 1 : √3 : 2. 45-45-90 sides are 1 : 1 : √2.</p> : null}
+          {mode === "Solve Triangle" ? <p className="msk-note">Give an acute angle and a side, or two legs, and the lab fills the remaining values.</p> : null}
           <Field label="Known quantities">
             <Segmented value={known} onChange={(id) => setKnown(id as Known)} options={[{ id: "angle-side", label: "Angle & Side" }, { id: "sides", label: "Sides Only" }]} />
           </Field>
@@ -192,9 +217,23 @@ export default function RightTriangleLab({ page }: { page: StudioMockupPage }) {
               ))}
             </div>
           </Field>
-          <Field label="Examples">
-            <ChipRow value={example} onChange={(id) => applyExample(id as Example)} options={[{ id: "345", label: "3-4-5" }, { id: "306090", label: "30-60-90" }, { id: "454590", label: "45-45-90" }, { id: "custom", label: "Custom" }]} />
-          </Field>
+          {mode === "Special Triangles" ? (
+            <Field label="Family">
+              <ChipRow value={example === "454590" ? "454590" : "306090"} onChange={(id) => applyExample(id as Example)} options={[{ id: "306090", label: "30-60-90" }, { id: "454590", label: "45-45-90" }]} />
+            </Field>
+          ) : (
+            <Field label="Examples">
+              <ChipRow value={example} onChange={(id) => applyExample(id as Example)} options={[{ id: "345", label: "3-4-5" }, { id: "306090", label: "30-60-90" }, { id: "454590", label: "45-45-90" }, { id: "custom", label: "Custom" }]} />
+            </Field>
+          )}
+          {mode === "Similarity" ? (
+            <Field label="Scale factor k">
+              <div className="msk-num-row">
+                <input type="number" min={0.5} max={3} step={0.1} value={scale} onChange={(event) => setScale(Number(event.target.value))} />
+                <span>×</span>
+              </div>
+            </Field>
+          ) : null}
           <div className="msk-btn-row">
             <button className="msk-soft" type="button" onClick={reset}><RotateCcw /> Reset</button>
             <button className="msk-soft" type="button" onClick={() => setLocked((value) => !value)}>{locked ? "Unlock All" : "Lock All"}</button>
@@ -221,9 +260,37 @@ export default function RightTriangleLab({ page }: { page: StudioMockupPage }) {
             {Array.from({ length: 8 }, (_, i) => <text key={`tx${i}`} x={ox + i * 2 * u} y={oy + 14} fill="#94a3b8" fontSize="10" textAnchor="middle">{i * 2}</text>)}
             {Array.from({ length: 5 }, (_, i) => <text key={`ty${i}`} x={ox - 8} y={oy - (i + 1) * 2 * u + 4} fill="#94a3b8" fontSize="10" textAnchor="end">{(i + 1) * 2}</text>)}
             {trace ? <polyline points={Array.from({ length: 12 }, (_, i) => `${ox + (solved.a * i / 11) * u},${oy - (solved.b * i / 11) * u}`).join(" ")} fill="none" stroke="#94a3b8" strokeDasharray="4 4" /> : null}
-            <line x1={ox} y1={oy} x2={Ax} y2={Ay} stroke="#147df2" strokeWidth="2.2" />
-            <line x1={ox} y1={oy} x2={Bx} y2={By} stroke="#8b45f4" strokeWidth="2.2" />
-            <line x1={Ax} y1={Ay} x2={Bx} y2={By} stroke="#08b9dd" strokeWidth="2.2" />
+            {mode === "Pythagoras" ? (
+              <>
+                <polygon points={squarePoints(ox, oy, Ax, Ay, 1)} fill="rgba(20,125,242,.12)" stroke="#147df2" strokeWidth="1.4" />
+                <polygon points={squarePoints(ox, oy, Bx, By, -1)} fill="rgba(139,69,244,.12)" stroke="#8b45f4" strokeWidth="1.4" />
+                <polygon points={squarePoints(Ax, Ay, Bx, By, 1)} fill="rgba(8,185,221,.12)" stroke="#08b9dd" strokeWidth="1.4" />
+              </>
+            ) : null}
+            {mode === "Similarity" ? (
+              <polygon
+                points={`${ox},${oy} ${ox + similar.a * u},${oy} ${ox},${oy - similar.b * u}`}
+                fill="rgba(8,185,221,.08)"
+                stroke="#08b9dd"
+                strokeWidth="1.8"
+                strokeDasharray="6 4"
+              />
+            ) : null}
+            <line x1={ox} y1={oy} x2={Ax} y2={Ay} stroke="#147df2" strokeWidth={mode === "Ratios" ? 3.2 : 2.2} />
+            <line x1={ox} y1={oy} x2={Bx} y2={By} stroke="#8b45f4" strokeWidth={mode === "Ratios" ? 3.2 : 2.2} />
+            <line x1={Ax} y1={Ay} x2={Bx} y2={By} stroke="#08b9dd" strokeWidth={mode === "Ratios" ? 3.2 : 2.2} />
+            {mode === "Ratios" ? (
+              <>
+                <text x={(Ax + ox) / 2} y={Ay + 36} fill="#147df2" fontSize="12" fontWeight="800">opp</text>
+                <text x={ox - 28} y={(By + oy) / 2} fill="#8b45f4" fontSize="12" fontWeight="800">adj</text>
+                <text x={(Ax + Bx) / 2 + 28} y={(Ay + By) / 2 - 28} fill="#08b9dd" fontSize="12" fontWeight="800">hyp</text>
+              </>
+            ) : null}
+            {mode === "Special Triangles" ? (
+              <text x={(Ax + Bx) / 2 + 24} y={(Ay + By) / 2} fill="#0f172a" fontSize="13" fontWeight="800">
+                {example === "454590" ? "1 : 1 : √2" : "1 : √3 : 2"}
+              </text>
+            ) : null}
             <rect x={ox + 6} y={oy - 18} width="12" height="12" fill="none" stroke="#1e293b" />
             <path d={`M ${Ax - 30} ${Ay} A 30 30 0 0 0 ${Ax - 30 * Math.cos(solved.A * Math.PI / 180)} ${Ay - 30 * Math.sin(solved.A * Math.PI / 180)}`} fill="rgba(245,158,11,.16)" stroke="#f59e0b" />
             {measure ? (
@@ -249,6 +316,7 @@ export default function RightTriangleLab({ page }: { page: StudioMockupPage }) {
             <text x={(Ax + Bx) / 2 + 18} y={(Ay + By) / 2 - 14} fill="#08b9dd" fontSize="14" fontStyle="italic" fontWeight="700">c</text>
             <circle cx={ox} cy={oy} r="7" fill="#147df2" stroke="#fff" strokeWidth="2" />
           </svg>
+          {mode === "Similarity" || mode === "Solve Triangle" ? (
           <aside className="msk-similar">
             <h3>Similar Triangle (Scale: {fmt(scale, 1)}×)</h3>
             <input className="msk-similar-scale" type="range" min={0.5} max={3} step={0.1} value={scale} onChange={(event) => setScale(Number(event.target.value))} aria-label="Similar triangle scale" />
@@ -265,35 +333,97 @@ export default function RightTriangleLab({ page }: { page: StudioMockupPage }) {
               <text x="148" y="98" fill="#f59e0b" fontSize="13" fontFamily="Georgia, Times New Roman, serif">{fmt(solved.A, 0)}°</text>
             </svg>
           </aside>
+          ) : null}
         </section>
 
         <aside className="msk-panel msk-live">
-          <h2>Trigonometric Ratios (at ∠A = {fmt(fromDeg(solved.A, units), 1)}{unitLabel(units)})</h2>
-          <RatioLine color="#08b9dd" name="sin" words={["opp", "hyp"]} num={fmt(solved.b, 4)} den={fmt(solved.c, 4)} value={fmt(solved.sinA, 4)} />
-          <RatioLine color="#8b45f4" name="cos" words={["adj", "hyp"]} num={fmt(solved.a, 4)} den={fmt(solved.c, 4)} value={fmt(solved.cosA, 4)} />
-          <RatioLine color="#f59e0b" name="tan" words={["opp", "adj"]} num={fmt(solved.b, 4)} den={fmt(solved.a, 4)} value={fmt(solved.tanA, 4)} />
-          <h2>Solved Values</h2>
-          <ValueRow color="#f59e0b" label="∠A" value={`${fmt(fromDeg(solved.A, units), 2)}${unitLabel(units)}`} />
-          <ValueRow color="#8b45f4" label="∠B" value={`${fmt(fromDeg(solved.B, units), 2)}${unitLabel(units)}`} />
-          <ValueRow color="#147df2" label="∠C" value={`90${unitLabel(units)}`} />
-          <ValueRow color="#8b45f4" label="a (adjacent)" value={`${fmt(solved.a, 4)} cm`} />
-          <ValueRow color="#147df2" label="b (opposite)" value={`${fmt(solved.b, 4)} cm`} />
-          <ValueRow color="#08b9dd" label="c (hypotenuse)" value={`${fmt(solved.c, 4)} cm`} />
-          <h2>Pythagorean Check</h2>
-          <p className="msk-formula">a² + b² = c²</p>
-          <p className="msk-formula">({fmt(solved.a, 4)})² + ({fmt(solved.b, 4)})² = ({fmt(solved.c, 4)})²</p>
-          <p className="msk-formula">{fmt(solved.a * solved.a, 2)} + {fmt(solved.b * solved.b, 2)} = {fmt(solved.cc, 2)}</p>
-          <StatusOk>{solved.ok ? "Valid — all values are consistent." : "Sides are being reconciled."}</StatusOk>
+          {mode === "Ratios" || mode === "Solve Triangle" ? (
+            <>
+              <h2>{mode === "Ratios" ? "SOH-CAH-TOA" : `Trigonometric Ratios (at ∠A = ${fmt(fromDeg(solved.A, units), 1)}${unitLabel(units)})`}</h2>
+              <RatioLine color="#08b9dd" name="sin" words={["opp", "hyp"]} num={fmt(solved.b, 4)} den={fmt(solved.c, 4)} value={fmt(solved.sinA, 4)} />
+              <RatioLine color="#8b45f4" name="cos" words={["adj", "hyp"]} num={fmt(solved.a, 4)} den={fmt(solved.c, 4)} value={fmt(solved.cosA, 4)} />
+              <RatioLine color="#f59e0b" name="tan" words={["opp", "adj"]} num={fmt(solved.b, 4)} den={fmt(solved.a, 4)} value={fmt(solved.tanA, 4)} />
+            </>
+          ) : null}
+          {mode === "Solve Triangle" || mode === "Special Triangles" ? (
+            <>
+              <h2>{mode === "Special Triangles" ? "Special-triangle sides" : "Solved Values"}</h2>
+              <ValueRow color="#f59e0b" label="∠A" value={`${fmt(fromDeg(solved.A, units), 2)}${unitLabel(units)}`} />
+              <ValueRow color="#8b45f4" label="∠B" value={`${fmt(fromDeg(solved.B, units), 2)}${unitLabel(units)}`} />
+              <ValueRow color="#147df2" label="∠C" value={`90${unitLabel(units)}`} />
+              <ValueRow color="#8b45f4" label="a (adjacent)" value={`${fmt(solved.a, 4)} cm`} />
+              <ValueRow color="#147df2" label="b (opposite)" value={`${fmt(solved.b, 4)} cm`} />
+              <ValueRow color="#08b9dd" label="c (hypotenuse)" value={`${fmt(solved.c, 4)} cm`} />
+            </>
+          ) : null}
+          {mode === "Pythagoras" ? (
+            <>
+              <h2>Pythagorean Check</h2>
+              <p className="msk-formula">a² + b² = c²</p>
+              <p className="msk-formula">({fmt(solved.a, 4)})² + ({fmt(solved.b, 4)})² = ({fmt(solved.c, 4)})²</p>
+              <p className="msk-formula">{fmt(solved.a * solved.a, 2)} + {fmt(solved.b * solved.b, 2)} = {fmt(solved.cc, 2)}</p>
+              <StatusOk>{solved.ok ? "Valid — all values are consistent." : "Sides are being reconciled."}</StatusOk>
+              <ValueRow color="#8b45f4" label="a²" value={fmt(solved.a * solved.a, 4)} />
+              <ValueRow color="#147df2" label="b²" value={fmt(solved.b * solved.b, 4)} />
+              <ValueRow color="#08b9dd" label="c²" value={fmt(solved.cc, 4)} ok={solved.ok} />
+            </>
+          ) : null}
+          {mode === "Similarity" ? (
+            <>
+              <h2>Corresponding sides</h2>
+              <ValueRow color="#8b45f4" label="a → k a" value={`${fmt(solved.a, 2)} → ${fmt(similar.a, 2)}`} />
+              <ValueRow color="#147df2" label="b → k b" value={`${fmt(solved.b, 2)} → ${fmt(similar.b, 2)}`} />
+              <ValueRow color="#08b9dd" label="c → k c" value={`${fmt(solved.c, 2)} → ${fmt(similar.c, 2)}`} />
+              <p className="msk-formula">k = {fmt(scale, 1)}. Angles stay {fmt(solved.A, 0)}°, {fmt(solved.B, 0)}°, 90°.</p>
+            </>
+          ) : null}
+          {mode === "Special Triangles" ? (
+            <p className="msk-formula">
+              {example === "454590"
+                ? "Isosceles right triangle: legs equal, hypotenuse = leg × √2."
+                : "Shortest side is opposite 30°. Hypotenuse is twice that side."}
+            </p>
+          ) : null}
+          {mode === "Solve Triangle" ? (
+            <>
+              <h2>Pythagorean Check</h2>
+              <p className="msk-formula">a² + b² = c²</p>
+              <p className="msk-formula">({fmt(solved.a, 4)})² + ({fmt(solved.b, 4)})² = ({fmt(solved.c, 4)})²</p>
+              <p className="msk-formula">{fmt(solved.a * solved.a, 2)} + {fmt(solved.b * solved.b, 2)} = {fmt(solved.cc, 2)}</p>
+              <StatusOk>{solved.ok ? "Valid — all values are consistent." : "Sides are being reconciled."}</StatusOk>
+            </>
+          ) : null}
           <h2>Steps & Reasoning</h2>
-          <StepList items={[
-            "Given ∠A and two sides (b, c).",
-            "∠C = 90° (right angle).",
-            `∠B = 90° − ∠A = ${fmt(solved.B, 1)}°.`,
-            "Use sin A = opp / hyp to verify the ratio.",
-            "Use Pythagoras to find a = √(c² − b²).",
-            "All values validated.",
-          ]} />
-          <StatusOk>Solution status: all values are consistent.</StatusOk>
+          <StepList items={
+            mode === "Ratios" ? [
+              "SOH: sin A = opposite / hypotenuse.",
+              "CAH: cos A = adjacent / hypotenuse.",
+              "TOA: tan A = opposite / adjacent.",
+              `At ∠A = ${fmt(solved.A, 1)}°, sin A = ${fmt(solved.sinA, 4)}.`,
+            ] : mode === "Pythagoras" ? [
+              "The right angle is at C.",
+              "Square each side length.",
+              "a² + b² should equal c².",
+              solved.ok ? "The squares add exactly." : "Adjust a side until the check holds.",
+            ] : mode === "Similarity" ? [
+              "Corresponding angles are equal (AA).",
+              `Scale factor k = ${fmt(scale, 1)}.`,
+              "Multiply every side of ABC by k.",
+              "The dashed overlay is the similar copy.",
+            ] : mode === "Special Triangles" ? [
+              example === "454590" ? "Both acute angles are 45°." : "The acute angles are 30° and 60°.",
+              example === "454590" ? "Legs 1 and 1, hypotenuse √2." : "Opposite 30° is 1; opposite 60° is √3; hypotenuse 2.",
+              "Any similar copy keeps those ratios.",
+            ] : [
+              "Given ∠A and two sides (b, c).",
+              "∠C = 90° (right angle).",
+              `∠B = 90° − ∠A = ${fmt(solved.B, 1)}°.`,
+              "Use sin A = opp / hyp to verify the ratio.",
+              "Use Pythagoras to find a = √(c² − b²).",
+              "All values validated.",
+            ]
+          } />
+          {mode === "Solve Triangle" ? <StatusOk>Solution status: all values are consistent.</StatusOk> : null}
           <ChallengeBox prompt={page.challenge.prompt} expected={page.challenge.expected} hint={page.challenge.hint} />
         </aside>
       </div>

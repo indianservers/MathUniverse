@@ -68,6 +68,7 @@ function renderPanel(
     picks?: SelectedGeometryObject[];
     images?: WorkspaceImage[];
     sidebar?: React.ReactNode;
+    unifiedObjectsPanel?: React.ReactNode;
     camera?: { x: number; y: number; width: number; height: number };
   } = {},
 ) {
@@ -94,6 +95,7 @@ function renderPanel(
             </aside>
           )
         }
+        unifiedObjectsPanel={options.unifiedObjectsPanel}
         onImageUpload={() => undefined}
         onToolChange={() => undefined}
         onSelectAll={() => undefined}
@@ -350,5 +352,23 @@ describe("GeometryWorkspacePanel", () => {
     expect(html).toContain('data-testid="workspace-geometry-board"');
     expect(html).toContain("Move");
     expect(html).toContain("Touch mode");
+  });
+
+  it("keeps the objects pane on construction items and withholds the shared graph registry", () => {
+    const html = renderPanel({
+      unifiedObjectsPanel: <div>Unified Dynamic Workspace cone cylinder</div>,
+    });
+
+    expect(html).toContain("Points");
+    expect(html).toContain("8 objects");
+    expect(html).not.toContain("Unified Dynamic Workspace cone cylinder");
+    expect(html).toContain("Construct");
+    expect(html).toContain("Measure");
+    expect(html).toContain('data-geometry-studio-mode="Construct"');
+    expect(html).not.toContain("Pinned measurements");
+    expect(html).toContain('data-geometry-theme="dark"');
+    expect(html).toContain("Dark theme");
+    expect(html).toContain("Light theme");
+    expect(html).toContain('aria-label="Color theme"');
   });
 });

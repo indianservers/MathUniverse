@@ -127,46 +127,163 @@ function VectorsLab({ page }: { page: StudioMockupPage }) {
   );
 }
 
+function trigWord(kind: string) {
+  return kind === "Cosine" ? "cos" : kind === "Tangent" ? "tan" : "sin";
+}
+
+function evalTrig(kind: string, x: number, A: number, B: number, C: number, D: number) {
+  const inner = B * x + C;
+  const core = kind === "Cosine" ? Math.cos(inner) : kind === "Tangent" ? Math.tan(inner) : Math.sin(inner);
+  return A * core + D;
+}
+
+function waveSegments(evalY: (x: number) => number) {
+  const segments: string[] = [];
+  let current: string[] = [];
+  for (let i = 0; i <= 240; i++) {
+    const x = -Math.PI * 2 + (i / 240) * Math.PI * 4;
+    const y = evalY(x);
+    if (!Number.isFinite(y) || Math.abs(y) > 5) {
+      if (current.length > 1) segments.push(current.join(" "));
+      current = [];
+      continue;
+    }
+    current.push(`${20 + i * 2},${160 - clamp(y, -3.2, 3.2) * 36}`);
+  }
+  if (current.length > 1) segments.push(current.join(" "));
+  return segments;
+}
+
 function TrigGraphsLab({ page }: { page: StudioMockupPage }) {
+  const { tabs, mode, setMode } = useLabMode(page);
   const [amp, setAmp] = useState(2);
   const [freq, setFreq] = useState(1.5);
   const [phase, setPhase] = useState(-Math.PI / 6);
   const [shift, setShift] = useState(0.5);
   const [fn, setFn] = useState("Sine");
-  const yAt = (x: number) => amp * (fn === "Cosine" ? Math.cos(freq * x + phase) : fn === "Tangent" ? Math.tan(freq * x + phase) : Math.sin(freq * x + phase)) + shift;
-  const pts = Array.from({ length: 241 }, (_, i) => {
-    const x = -Math.PI * 2 + (i / 240) * Math.PI * 4;
-    const y = yAt(x);
-    if (!Number.isFinite(y) || Math.abs(y) > 5) return "";
-    return `${20 + i * 2},${160 - clamp(y, -3.2, 3.2) * 36}`;
-  }).filter(Boolean).join(" ");
+
+  useEffect(() => {
+    if (mode === "Sine" || mode === "Cosine" || mode === "Tangent") setFn(mode);
+  }, [mode]);
+
+  const family = mode === "Sine" || mode === "Cosine" || mode === "Tangent" ? mode : fn;
+  const A = mode === "Comparison" ? 1 : amp;
+  const B = mode === "Comparison" ? 1 : freq;
+  const C = mode === "Comparison" ? 0 : phase;
+  const D = mode === "Comparison" ? 0 : shift;
+  const word = trigWord(family);
+  const period = (family === "Tangent" ? Math.PI : 2 * Math.PI) / Math.abs(B || 1);
+  const live = waveSegments((x) => evalTrig(family, x, A, B, C, D));
+  const parent = waveSegments((x) => evalTrig(family, x, 1, 1, 0, 0));
+  const compare = [
+    { kind: "Sine", color: "#22d3ee" },
+    { kind: "Cosine", color: "#a78bfa" },
+    { kind: "Tangent", color: "#f59e0b" },
+  ] as const;
+
   return (
-    <LabChrome page={page}>
-      <Panel title="Function builder">
-        <p className="msk-formula">y = A {fn === "Cosine" ? "cos" : fn === "Tangent" ? "tan" : "sin"}(B(x − C)) + D</p>
-        <Field label="Function"><Segmented value={fn} onChange={setFn} options={["Sine", "Cosine", "Tangent"].map((id) => ({ id, label: id }))} /></Field>
-        <SliderRow label="Amplitude A" value={amp} min={0.2} max={3} step={0.1} onChange={setAmp} />
-        <SliderRow label="Period parameter B" value={freq} min={0.25} max={4} step={0.05} onChange={setFreq} />
-        <SliderRow label="Phase shift C" value={phase} min={-Math.PI} max={Math.PI} step={0.05} onChange={setPhase} />
-        <SliderRow label="Vertical shift D" value={shift} min={-2} max={2} step={0.1} onChange={setShift} />
-      </Panel>
-      <section className="msk-panel msk-canvas">
-        <svg className="msk-graph is-dark" viewBox="0 0 520 320" role="img" aria-label="Trig graph">
-          <rect width="520" height="320" fill="#061428" />
-          <line x1="20" y1="160" x2="500" y2="160" stroke="#334155" />
-          <line x1="270" y1="20" x2="270" y2="300" stroke="#334155" />
-          <polyline points={pts} fill="none" stroke="#22d3ee" strokeWidth="2.4" />
-          <text x="36" y="28" fill="#94a3b8" fontSize="11">y = {fmt(amp, 1)} {fn === "Cosine" ? "cos" : fn === "Tangent" ? "tan" : "sin"}({fmt(freq, 2)}x + {fmt(phase, 2)}) + {fmt(shift, 1)}</text>
-        </svg>
-      </section>
-      <aside className="msk-panel msk-live">
-        <LiveRow color="#22d3ee" label="Amplitude |A|" value={fmt(Math.abs(amp))} />
-        <LiveRow color="#8b45f4" label="Period" value={fmt((2 * Math.PI) / freq, 3)} />
-        <LiveRow color="#f59e0b" label="Phase shift C" value={fmt(phase, 3)} />
-        <LiveRow color="#10b981" label="Vertical D" value={fmt(shift, 2)} />
-        <ChallengeBox {...page.challenge} />
-      </aside>
-    </LabChrome>
+    <>
+      <nav className="msk-tabs" aria-label="Trigonometric graphs modes">
+        {tabs.map((item) => (
+          <button key={item} type="button" className={item === mode ? "active" : ""} aria-pressed={item === mode} onClick={() => setMode(item)}>{item}</button>
+        ))}
+      </nav>
+      <div className="msk-lab" data-tg-mode={mode}>
+        <Panel title={mode === "Transformations" ? "Transform the parent" : mode === "Comparison" ? "Compare the three graphs" : `${family} graph`}>
+          {mode === "Sine" ? <p className="msk-note">Sine starts at 0, reaches A at a quarter-period, and repeats every 2π/|B|.</p> : null}
+          {mode === "Cosine" ? <p className="msk-note">Cosine starts at A, is a sine wave shifted left by π/2, and has the same period 2π/|B|.</p> : null}
+          {mode === "Tangent" ? <p className="msk-note">Tangent has vertical asymptotes and period π/|B|. The graph is broken at those lines.</p> : null}
+          {mode === "Transformations" ? <p className="msk-note">A stretches height, B changes period, C shifts left/right, D moves the midline.</p> : null}
+          {mode === "Comparison" ? <p className="msk-note">Parent graphs y = sin x, y = cos x, and y = tan x on the same axes.</p> : null}
+          <p className="msk-formula">
+            {mode === "Comparison"
+              ? "y = sin x,  y = cos x,  y = tan x"
+              : `y = ${fmt(A, 1)} ${word}(${fmt(B, 2)}x + ${fmt(C, 2)}) + ${fmt(D, 1)}`}
+          </p>
+          {mode === "Transformations" || mode === "Comparison" ? (
+            <Field label="Function">
+              <Segmented value={family} onChange={setFn} options={["Sine", "Cosine", "Tangent"].map((id) => ({ id, label: id }))} />
+            </Field>
+          ) : null}
+          {mode !== "Comparison" ? (
+            <>
+              {family !== "Tangent" ? <SliderRow label="Amplitude A" value={amp} min={0.2} max={3} step={0.1} onChange={setAmp} /> : null}
+              <SliderRow label="Period parameter B" value={freq} min={0.25} max={4} step={0.05} onChange={setFreq} />
+              <SliderRow label="Phase shift C" value={phase} min={-Math.PI} max={Math.PI} step={0.05} onChange={setPhase} />
+              {family !== "Tangent" ? <SliderRow label="Vertical shift D" value={shift} min={-2} max={2} step={0.1} onChange={setShift} /> : null}
+            </>
+          ) : null}
+        </Panel>
+        <section className="msk-panel msk-canvas">
+          <svg className="msk-graph is-dark" viewBox="0 0 520 320" role="img" aria-label={`${mode} trigonometric graph`}>
+            <rect width="520" height="320" fill="#061428" />
+            <line x1="20" y1="160" x2="500" y2="160" stroke="#334155" />
+            <line x1="270" y1="20" x2="270" y2="300" stroke="#334155" />
+            {mode === "Transformations"
+              ? parent.map((pts) => <polyline key={`p-${pts.slice(0, 12)}`} points={pts} fill="none" stroke="#64748b" strokeWidth="1.6" strokeDasharray="5 4" />)
+              : null}
+            {mode === "Comparison"
+              ? compare.flatMap((item) =>
+                  waveSegments((x) => evalTrig(item.kind, x, 1, 1, 0, 0)).map((pts) => (
+                    <polyline key={`${item.kind}-${pts.slice(0, 12)}`} points={pts} fill="none" stroke={item.color} strokeWidth={item.kind === family ? 2.6 : 1.6} />
+                  )),
+                )
+              : live.map((pts) => <polyline key={pts.slice(0, 16)} points={pts} fill="none" stroke="#22d3ee" strokeWidth="2.4" />)}
+            {mode === "Tangent" ? (
+              <>
+                <line x1="202" y1="24" x2="202" y2="296" stroke="#f59e0b" strokeDasharray="4 4" />
+                <line x1="338" y1="24" x2="338" y2="296" stroke="#f59e0b" strokeDasharray="4 4" />
+              </>
+            ) : null}
+            <text x="36" y="28" fill="#94a3b8" fontSize="11">
+              {mode === "Comparison" ? "sin x  ·  cos x  ·  tan x" : `y = ${fmt(A, 1)} ${word}(${fmt(B, 2)}x + ${fmt(C, 2)}) + ${fmt(D, 1)}`}
+            </text>
+          </svg>
+        </section>
+        <aside className="msk-panel msk-live">
+          {mode === "Comparison" ? (
+            <>
+              <LiveRow color="#22d3ee" label="sin x" value="period 2π" />
+              <LiveRow color="#a78bfa" label="cos x" value="sine shifted left π/2" />
+              <LiveRow color="#f59e0b" label="tan x" value="period π, asymptotes" />
+            </>
+          ) : (
+            <>
+              {family !== "Tangent" ? <LiveRow color="#22d3ee" label="Amplitude |A|" value={fmt(Math.abs(A))} /> : <LiveRow color="#22d3ee" label="Range" value="all reals" />}
+              <LiveRow color="#8b45f4" label="Period" value={fmt(period, 3)} />
+              <LiveRow color="#f59e0b" label="Phase C" value={fmt(C, 3)} />
+              {family !== "Tangent" ? <LiveRow color="#10b981" label="Midline D" value={fmt(D, 2)} /> : <LiveRow color="#10b981" label="Asymptotes" value="odd multiples of π/(2|B|)" />}
+            </>
+          )}
+          <h2>Steps & Reasoning</h2>
+          <StepList items={
+            mode === "Cosine" ? [
+              "cos x = sin(x + π/2).",
+              `Period is 2π/|B| = ${fmt(period, 3)}.`,
+              "A maximum occurs when the cosine argument is 0.",
+            ] : mode === "Tangent" ? [
+              "tan x = sin x / cos x.",
+              `Period is π/|B| = ${fmt(period, 3)}.`,
+              "Vertical asymptotes appear where cosine is 0.",
+            ] : mode === "Transformations" ? [
+              "Gray dashed curve is the parent.",
+              "A stretches vertically; B compresses the period.",
+              "C shifts the graph; D moves the midline.",
+            ] : mode === "Comparison" ? [
+              "sin and cos are shifts of each other.",
+              "Both have period 2π and range [−1, 1].",
+              "tan has period π and is undefined at odd multiples of π/2.",
+            ] : [
+              "sin 0 = 0 and sin(π/2) = 1.",
+              `Period is 2π/|B| = ${fmt(period, 3)}.`,
+              "The graph repeats after each full period.",
+            ]
+          } />
+          <ChallengeBox {...page.challenge} />
+        </aside>
+      </div>
+      <MockupLearningStrip page={page} />
+    </>
   );
 }
 

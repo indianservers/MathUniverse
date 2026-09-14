@@ -102,7 +102,7 @@ export default function AlgebraStudio() {
   return (
     <main className="alg-studio">
       <AlgebraSidebar page={page} />
-      <section className="alg-stage">
+      <section className="alg-stage" data-testid="algebra-scroll-pane">
         {page === "home" && <StudioHome />}
         {page === "expressions" && <ExpressionsLab />}
         {page === "equations" && <EquationsLab />}

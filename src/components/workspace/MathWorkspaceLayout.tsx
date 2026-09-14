@@ -157,6 +157,8 @@ export default function MathWorkspaceLayout({
       data-viewport={viewportMode}
     >
       {workspace.id !== "geometry" &&
+        workspace.id !== "geometry-3d" &&
+        workspace.id !== "graphs" &&
         workspace.id !== "graphs-3d" &&
         workspace.id !== "shapes" && (
         <WorkspaceSuiteBar workspace={workspace} />

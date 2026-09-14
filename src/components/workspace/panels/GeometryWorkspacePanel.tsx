@@ -19,6 +19,7 @@ import {
   Magnet,
   Maximize2,
   Menu,
+  Moon,
   MousePointer2,
   Move,
   Minus,
@@ -33,6 +34,7 @@ import {
   Share2,
   SlidersHorizontal,
   Star,
+  Sun,
   Slash,
   Trash2,
   Unlock,
@@ -235,6 +237,29 @@ export type GeometryCamera = { x: number; y: number; width: number; height: numb
 // both construction objects and their coordinate labels impractical to inspect.
 export const MAX_GEOMETRY_CAMERA_WIDTH = 163_840;
 export const MAX_GEOMETRY_CAMERA_HEIGHT = 107_520;
+export type GeometryStudioTheme = "dark" | "light";
+const GEOMETRY_THEME_STORAGE_KEY = "math-universe-geometry-theme";
+
+function readGeometryStudioTheme(): GeometryStudioTheme {
+  if (typeof window === "undefined") {
+    return "dark";
+  }
+  try {
+    return window.localStorage.getItem(GEOMETRY_THEME_STORAGE_KEY) === "light"
+      ? "light"
+      : "dark";
+  } catch {
+    return "dark";
+  }
+}
+
+function persistGeometryStudioTheme(theme: GeometryStudioTheme) {
+  try {
+    window.localStorage.setItem(GEOMETRY_THEME_STORAGE_KEY, theme);
+  } catch {
+    /* ignore quota / private-mode failures */
+  }
+}
 export type GeometryProtocolEntry = {
   id: string;
   label: string;
@@ -403,6 +428,16 @@ const geometryPaletteGroups: Array<{
   },
 ];
 
+const geometryMeasureToolIds: GeometryTool[] = [
+  "select",
+  "point",
+  "segment",
+  "line",
+  "circle",
+  "circle-radius",
+  "angle",
+];
+
 export function geometryToolLabel(tool: GeometryTool) {
   return (
     geometryPaletteGroups
@@ -455,7 +490,7 @@ export default function GeometryWorkspacePanel({
   objectInspector,
   imageInspector,
   constructionProtocol,
-  unifiedObjectsPanel,
+  unifiedObjectsPanel: _unifiedObjectsPanel,
   measurementsPanel,
   constraintsPanel,
   onImageUpload,
@@ -515,6 +550,7 @@ export default function GeometryWorkspacePanel({
     "polygon",
   ]);
   const [recentTools, setRecentTools] = useState<GeometryTool[]>([]);
+  const [pinnedMeasurements, setPinnedMeasurements] = useState<string[]>([]);
   const [objectSearch, setObjectSearch] = useState("");
   const [objectFilter, setObjectFilter] = useState<
     "all" | GeometryObjectType | "visible" | "hidden"
@@ -524,6 +560,9 @@ export default function GeometryWorkspacePanel({
     y: number;
   } | null>(null);
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const [studioTheme, setStudioTheme] = useState<GeometryStudioTheme>(
+    readGeometryStudioTheme,
+  );
   const [exportOpen, setExportOpen] = useState(false);
   const [unit, setUnit] = useState<GeometryUnit>("units");
   const [precision, setPrecision] = useState(2);
@@ -538,7 +577,9 @@ export default function GeometryWorkspacePanel({
   const rightPaneRef = useRef<HTMLElement>(null);
   const activeHint =
     geometryToolObjectPickHint(activeTool, geometryObjectPicks) ??
-    `${geometryToolLabel(activeTool)} tool ready`;
+    (studioMode === "Measure"
+      ? "Measure mode shows lengths, angles, and areas on the figure. Use Angle, Segment, or Circle, or select a shape."
+      : `${geometryToolLabel(activeTool)} tool ready`);
   const selectedPoint =
     selectedGeometry?.type === "point"
       ? pointById(construction.points, selectedGeometry.id)
@@ -602,6 +643,13 @@ export default function GeometryWorkspacePanel({
     );
     if (window.innerWidth <= 1180) setMobilePanel(null);
   };
+  const applyStudioMode = (mode: typeof studioMode) => {
+    setStudioMode(mode);
+    if (mode === "Measure") {
+      onGraphSettingsChange({ ...graphSettings, showMeasurements: true });
+      if (!geometryMeasureToolIds.includes(activeTool)) chooseTool("select");
+    }
+  };
   const handleBoardMove = (event: PointerEvent<SVGSVGElement>) => {
     const rect = event.currentTarget.getBoundingClientRect();
     const boardX = camera.x + ((event.clientX - rect.left) / rect.width) * camera.width;
@@ -624,11 +672,22 @@ export default function GeometryWorkspacePanel({
     }, 1100);
     return () => window.clearInterval(timer);
   }, [historyPlaying, onReplayProtocol, protocolEntries.length]);
+  useEffect(() => {
+    document.documentElement.setAttribute(
+      "data-geometry-workspace-theme",
+      studioTheme,
+    );
+    return () => {
+      document.documentElement.removeAttribute("data-geometry-workspace-theme");
+    };
+  }, [studioTheme]);
   return (
     <div
       className="geometry-studio-shell"
       data-active-pane={activePane}
       data-expanded-pane={expandedPane ?? undefined}
+      data-geometry-studio-mode={studioMode}
+      data-geometry-theme={studioTheme}
       style={paneStyle}
     >
       <header className="geometry-studio-topbar">
@@ -658,8 +717,9 @@ export default function GeometryWorkspacePanel({
             <button
               key={mode}
               type="button"
-              onClick={() => setStudioMode(mode as typeof studioMode)}
+              onClick={() => applyStudioMode(mode as typeof studioMode)}
               className={mode === studioMode ? "active" : ""}
+              aria-pressed={mode === studioMode}
             >
               {mode}
             </button>
@@ -709,6 +769,32 @@ export default function GeometryWorkspacePanel({
           >
             <Settings className="h-4 w-4" />
           </button>
+          <div className="geometry-theme-toggle" role="group" aria-label="Color theme">
+            <button
+              type="button"
+              aria-pressed={studioTheme === "dark"}
+              title="Dark theme"
+              aria-label="Dark theme"
+              onClick={() => {
+                setStudioTheme("dark");
+                persistGeometryStudioTheme("dark");
+              }}
+            >
+              <Moon className="h-4 w-4" />
+            </button>
+            <button
+              type="button"
+              aria-pressed={studioTheme === "light"}
+              title="Light theme"
+              aria-label="Light theme"
+              onClick={() => {
+                setStudioTheme("light");
+                persistGeometryStudioTheme("light");
+              }}
+            >
+              <Sun className="h-4 w-4" />
+            </button>
+          </div>
           <button
             type="button"
             className="geometry-mobile-overflow"
@@ -747,6 +833,7 @@ export default function GeometryWorkspacePanel({
         <GeometryToolPalette
           activeTool={activeTool}
           search={toolSearch}
+          studioMode={studioMode}
           favorites={favoriteTools}
           recent={recentTools}
           onFavorite={(tool) =>
@@ -806,8 +893,19 @@ export default function GeometryWorkspacePanel({
               onContextMenu={onBoardContextMenu}
             />
             <div className="geometry-canvas-hint">
-              Drag points to explore · Shift for multi-select · Esc to clear
+              {studioMode === "Measure"
+                ? "Lengths, angles, and areas update as you drag points"
+                : "Drag points to explore · Shift for multi-select · Esc to clear"}
             </div>
+            {studioMode === "Measure" && (
+              <GeometryPinnedMeasurements
+                construction={construction}
+                pinned={pinnedMeasurements}
+                onPinned={setPinnedMeasurements}
+                unit={unit}
+                precision={precision}
+              />
+            )}
             <span className="sr-only">
               Touch mode supports direct manipulation with 44 pixel controls.
             </span>
@@ -990,7 +1088,19 @@ export default function GeometryWorkspacePanel({
               onToggleVisibility={onToggleGeometryVisibility}
             />
           )}
-          {registryTab === "Algebra" && unifiedObjectsPanel}
+          {registryTab === "Algebra" && (
+            <>
+              <GeometryObjectRegistry
+                construction={construction}
+                selectedGeometry={selectedGeometry}
+                search={objectSearch}
+                filter={objectFilter}
+                onSelect={onSelectGeometry}
+                onToggleVisibility={onToggleGeometryVisibility}
+              />
+              {measurementsPanel}
+            </>
+          )}
           {registryTab === "Layers" && (
             <GeometryLayerManager
               construction={construction}
@@ -998,7 +1108,6 @@ export default function GeometryWorkspacePanel({
               onSelect={onSelectGeometry}
             />
           )}
-          {registryTab === "Objects" && unifiedObjectsPanel}
         </section>
         <div className="geometry-inline-resizer geometry-right-resizer" role="separator" aria-label="Resize object inspector pane" aria-orientation="horizontal" onPointerDown={(event) => beginPaneResize(event, "right-row")} />
         <section className="geometry-right-card geometry-inspector-card">
@@ -1029,6 +1138,7 @@ export default function GeometryWorkspacePanel({
               {objectInspector}
               {imageInspector}
               {sidebar}
+              {studioMode === "Measure" && measurementsPanel}
             </>
           )}
           {inspectorTab === "Style" && (
@@ -1094,6 +1204,7 @@ export default function GeometryWorkspacePanel({
               <GeometryToolPalette
                 activeTool={activeTool}
                 search={toolSearch}
+                studioMode={studioMode}
                 favorites={favoriteTools}
                 recent={recentTools}
                 onFavorite={(tool) =>
@@ -1190,6 +1301,7 @@ export default function GeometryWorkspacePanel({
 function GeometryToolPalette({
   activeTool,
   search,
+  studioMode = "Construct",
   favorites,
   recent,
   onFavorite,
@@ -1214,6 +1326,7 @@ function GeometryToolPalette({
 }: {
   activeTool: GeometryTool;
   search: string;
+  studioMode?: "Construct" | "Measure" | "Animate";
   favorites: GeometryTool[];
   recent: GeometryTool[];
   onFavorite: (tool: GeometryTool) => void;
@@ -1245,11 +1358,14 @@ function GeometryToolPalette({
     tangent: "touch circle",
     locus: "path trace",
   };
+  const matchesMode = (item: GeometryPaletteToolItem) =>
+    studioMode !== "Measure" || geometryMeasureToolIds.includes(item.id);
   const matchesSearch = (item: GeometryPaletteToolItem) =>
-    !normalizedSearch ||
-    `${item.label} ${item.id} ${aliases[item.id] ?? ""}`
-      .toLowerCase()
-      .includes(normalizedSearch);
+    matchesMode(item) &&
+    (!normalizedSearch ||
+      `${item.label} ${item.id} ${aliases[item.id] ?? ""}`
+        .toLowerCase()
+        .includes(normalizedSearch));
   const toolById = (id: GeometryTool) =>
     geometryPaletteGroups
       .flatMap((group) => group.tools)
@@ -1341,15 +1457,17 @@ function GeometryToolPalette({
         <GeometryPaletteSection title="Favorites" collapsible={false}>
           {favorites
             .map(toolById)
-            .filter(Boolean)
+            .filter((item): item is GeometryPaletteToolItem =>
+              Boolean(item && matchesMode(item)),
+            )
             .map((item) => (
               <GeometryPaletteTool
-                key={`favorite-${item!.id}`}
-                item={item!}
-                active={activeTool === item!.id}
+                key={`favorite-${item.id}`}
+                item={item}
+                active={activeTool === item.id}
                 favorite
-                onFavorite={() => onFavorite(item!.id)}
-                onClick={() => onTool(item!.id)}
+                onFavorite={() => onFavorite(item.id)}
+                onClick={() => onTool(item.id)}
               />
             ))}
         </GeometryPaletteSection>
@@ -1362,7 +1480,9 @@ function GeometryToolPalette({
           </span>
           {recent
             .map(toolById)
-            .filter((item): item is GeometryPaletteToolItem => Boolean(item))
+            .filter((item): item is GeometryPaletteToolItem =>
+              Boolean(item && matchesMode(item)),
+            )
             .map((item) => {
               const Icon = item.icon;
               return (
@@ -1404,7 +1524,7 @@ function GeometryToolPalette({
           ))}
         </GeometryPaletteSection>
       )}
-      {!normalizedSearch && (
+      {!normalizedSearch && studioMode !== "Measure" && (
         <GeometryPaletteSection title="File / Image">
           {fileActions.map((item) => (
             <GeometryPaletteAction key={item.id} item={item} />
@@ -1445,7 +1565,7 @@ function GeometryNavTools({
           title={label}
           aria-label={label}
         >
-          <Icon className="h-4 w-4" />
+          <Icon className="h-5 w-5" strokeWidth={2.4} />
         </button>
       ))}
     </div>
@@ -1600,7 +1720,7 @@ function GeometryObjectRegistry({
                     onClick={() => onSelect?.({ type: row.type, id: row.id })}
                     className="geometry-object-row-main"
                   >
-                    <Icon className="h-4 w-4" />
+                    <Icon className="h-5 w-5" strokeWidth={2.4} />
                     <div>
                       <strong>{row.label}</strong>
                       <span>{row.value}</span>
@@ -1697,7 +1817,7 @@ function GeometryPaletteTool({
       title={`${item.label}. Right click to ${favorite ? "unpin" : "favorite"}.`}
       className={`geometry-palette-button ${active ? "geometry-palette-button-active" : ""}`}
     >
-      <Icon className="h-4 w-4" />
+      <Icon className="h-5 w-5" strokeWidth={2.4} />
       <span>{item.label}</span>
       {favorite && <Star className="geometry-tool-star" />}
     </button>
@@ -1713,7 +1833,7 @@ function GeometryPaletteAction({ item }: { item: GeometryPaletteActionItem }) {
       title={item.label}
       className={`geometry-palette-button ${item.danger ? "geometry-palette-button-danger" : ""}`}
     >
-      <Icon className="h-4 w-4" />
+      <Icon className="h-5 w-5" strokeWidth={2.4} />
       <span>{item.label}</span>
     </button>
   );
@@ -1954,6 +2074,18 @@ function GeometryPinnedMeasurements({
             id: circle.id,
             label: `Radius ${center.label}`,
             value: `${roundTo((distanceBetween(center, edge) / 40) * scale[unit], precision)} ${unit === "units" ? "u" : unit}`,
+          }
+        : null;
+    }),
+    ...construction.polygons.slice(0, 3).map((polygon, index) => {
+      const points = polygon.points
+        .map((id) => pointById(construction.points, id))
+        .filter((point): point is GeoPoint => Boolean(point));
+      return points.length >= 3
+        ? {
+            id: polygon.id,
+            label: `Polygon ${index + 1} area`,
+            value: `${roundTo(polygonArea(points) / 1600, precision)} ${unit === "units" ? "u²" : `${unit}²`}`,
           }
         : null;
     }),
@@ -2661,10 +2793,10 @@ function GeometryGrid({ settings, camera }: { settings: GeometryGraphSettings; c
   const verticals = Array.from({ length: Math.max(0, lastVertical - firstVertical + 1) }, (_, i) => origin.x + (firstVertical + i) * unit);
   const horizontals = Array.from({ length: Math.max(0, lastHorizontal - firstHorizontal + 1) }, (_, i) => origin.y + (firstHorizontal + i) * unit);
   const gridStroke = settings.highContrastGrid
-    ? "rgba(14,165,233,.38)"
-    : "rgba(148,163,184,.2)";
-  const axisStroke = settings.highContrastGrid ? "#67e8f9" : "#cbd5e1";
-  const labelFill = settings.highContrastGrid ? "#f8fafc" : "#e2e8f0";
+    ? "var(--geo-grid-strong)"
+    : "var(--geo-grid)";
+  const axisStroke = settings.highContrastGrid ? "var(--geo-axis-strong)" : "var(--geo-axis)";
+  const labelFill = settings.highContrastGrid ? "var(--geo-tick-strong)" : "var(--geo-tick)";
   const gridType = settings.gridType ?? "cartesian";
   const polarRings = Array.from({ length: Math.max(1, Math.ceil(Math.max(width, height) / unit / 2) + 2) }, (_, i) => (i + 1) * unit);
   return (

@@ -703,6 +703,7 @@ export default function App() {
               element={<ModellingEnhancementWorkbench />}
             />
             <Route path="studio-projects" element={<StudioProjectCenter />} />
+            <Route path="learning-paths" element={<Navigate to="/learn" replace />} />
             <Route path="learn" element={<LessonsHomePage />} />
             <Route path="learn/:topicSlug" element={<LearnDiscoveryPage />} />
             <Route
@@ -903,6 +904,22 @@ export default function App() {
               element={<TruthTableGenerator />}
             />
             <Route path="truth-table" element={<TruthTableGenerator />} />
+            <Route
+              path="math/algebra"
+              element={<Navigate to="/algebra" replace />}
+            />
+            <Route
+              path="math/geometry"
+              element={<Navigate to="/geometry" replace />}
+            />
+            <Route
+              path="math/trigonometry"
+              element={<Navigate to="/trigonometry" replace />}
+            />
+            <Route
+              path="math/functions"
+              element={<Navigate to="/math-lab/function-explorer" replace />}
+            />
             <Route
               path="math/functions-graphs"
               element={<Navigate to="/workspace/graph" replace />}

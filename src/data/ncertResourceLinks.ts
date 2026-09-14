@@ -175,7 +175,7 @@ const byUnitFallback: Record<string, NCERTResourceLink[]> = {
   "Advanced Algebra": [
     formula("Relations and functions formulas", "relations-functions"),
     theorem("Discrete math and logic theorems", "discrete-logic"),
-    tool("Function explorer", "/math/functions"),
+    tool("Function explorer", "/math-lab/function-explorer"),
   ],
   Calculus: [
     formula("Derivatives formulas", "derivatives"),
@@ -802,7 +802,7 @@ export const ncertConceptResourceLinks: NCERTConceptResourceLinks[] = [
         "algebra",
         "inverse-function-theorem-for-algebra-22",
       ),
-      tool("Function explorer", "/math/functions"),
+      tool("Function explorer", "/math-lab/function-explorer"),
     ],
   },
   {

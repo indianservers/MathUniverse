@@ -3055,14 +3055,6 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
                   onDelete={deleteSelectedImage}
                 />
                 <ConstructionProtocolPanel protocol={protocol} onReplay={restoreProtocolSnapshot} />
-                <UnifiedWorkspacePanel
-                  objects={unifiedWorkspaceObjects}
-                  selectedObject={unifiedSelectedObject}
-                  selectedObjectId={unifiedSelectedObjectId}
-                  selectedObjectIds={unifiedSelectedObjectIds}
-                  onObjectAction={handleUnifiedObjectAction}
-                  onObjectChange={handleUnifiedObjectChange}
-                />
                 <Measurements construction={construction} />
                 <ConstraintPanel construction={construction} />
               </>

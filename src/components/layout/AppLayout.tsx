@@ -252,7 +252,7 @@ export default function AppLayout() {
             <Outlet />
           </MathWorkspaceLayout>
         ) : (
-          <div className="math-workspace-page h-full min-h-0">
+          <div className="math-workspace-page h-full min-h-0 overflow-hidden">
             <Outlet />
           </div>
         )}

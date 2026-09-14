@@ -196,7 +196,7 @@ export default function ObjectList({
               aria-label="Show selected objects"
               onClick={() => runBulk("show")}
             >
-              <Eye className="h-3.5 w-3.5" />
+              <Eye className="h-4 w-4" strokeWidth={2.5} />
             </button>
             <button
               type="button"
@@ -204,7 +204,7 @@ export default function ObjectList({
               aria-label="Hide selected objects"
               onClick={() => runBulk("hide")}
             >
-              <EyeOff className="h-3.5 w-3.5" />
+              <EyeOff className="h-4 w-4" strokeWidth={2.5} />
             </button>
             <button
               type="button"
@@ -212,7 +212,7 @@ export default function ObjectList({
               aria-label="Duplicate selected objects"
               onClick={() => runBulk("duplicate")}
             >
-              <ClipboardCopy className="h-3.5 w-3.5" />
+              <ClipboardCopy className="h-4 w-4" strokeWidth={2.5} />
             </button>
             <button
               type="button"
@@ -220,7 +220,7 @@ export default function ObjectList({
               aria-label="Restore selected objects"
               onClick={() => runBulk("restore")}
             >
-              <RotateCcw className="h-3.5 w-3.5" />
+              <RotateCcw className="h-4 w-4" strokeWidth={2.5} />
             </button>
             <button
               type="button"
@@ -228,7 +228,7 @@ export default function ObjectList({
               aria-label="Remove selected objects"
               onClick={() => runBulk("remove")}
             >
-              <Trash2 className="h-3.5 w-3.5" />
+              <Trash2 className="h-4 w-4" strokeWidth={2.5} />
             </button>
           </div>
         )}
@@ -326,9 +326,9 @@ export default function ObjectList({
                     aria-label={object.visible ? "Hide object" : "Show object"}
                   >
                     {object.visible ? (
-                      <Eye className="h-3.5 w-3.5" />
+                      <Eye className="h-4 w-4" strokeWidth={2.5} />
                     ) : (
-                      <EyeOff className="h-3.5 w-3.5" />
+                      <EyeOff className="h-4 w-4" strokeWidth={2.5} />
                     )}
                   </button>
                   <button
@@ -337,7 +337,7 @@ export default function ObjectList({
                     className="math-tool-button h-8 w-8 rounded-lg"
                     aria-label="Duplicate object"
                   >
-                    <ClipboardCopy className="h-3.5 w-3.5" />
+                    <ClipboardCopy className="h-4 w-4" strokeWidth={2.5} />
                   </button>
                   <button
                     type="button"
@@ -345,7 +345,7 @@ export default function ObjectList({
                     className="math-tool-button h-8 w-8 rounded-lg"
                     aria-label="Restore object defaults"
                   >
-                    <RotateCcw className="h-3.5 w-3.5" />
+                    <RotateCcw className="h-4 w-4" strokeWidth={2.5} />
                   </button>
                   <button
                     type="button"
@@ -353,7 +353,7 @@ export default function ObjectList({
                     className="math-tool-button-danger h-8 w-8 rounded-lg"
                     aria-label="Remove object from workspace registry"
                   >
-                    <Trash2 className="h-3.5 w-3.5" />
+                    <Trash2 className="h-4 w-4" strokeWidth={2.5} />
                   </button>
                 </div>
               </div>

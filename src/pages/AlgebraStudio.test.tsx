@@ -1,7 +1,15 @@
+import { readFileSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { renderToString } from "react-dom/server";
 import { MemoryRouter } from "react-router-dom";
 import { describe, expect, it } from "vitest";
 import AlgebraStudio from "./AlgebraStudio";
+
+const algebraStudioCss = readFileSync(
+  join(dirname(fileURLToPath(import.meta.url)), "AlgebraStudio.css"),
+  "utf8",
+);
 
 const routes = [
   ["/algebra", "Welcome to Algebra Studio"],
@@ -22,6 +30,13 @@ describe("Algebra Studio reference routes", () => {
     const html = renderToString(<MemoryRouter initialEntries={[route]}><AlgebraStudio /></MemoryRouter>);
     expect(html).toContain(heading);
     expect(html).toContain("Algebra Studio navigation");
+  });
+
+  it("keeps the algebra stage as a vertical scroll pane", () => {
+    const html = renderToString(<MemoryRouter initialEntries={["/algebra"]}><AlgebraStudio /></MemoryRouter>);
+    expect(html).toContain('data-testid="algebra-scroll-pane"');
+    expect(algebraStudioCss).toMatch(/\.alg-stage\{[^}]*overflow-y:auto/);
+    expect(algebraStudioCss).toMatch(/\.alg-studio\{[^}]*overflow:hidden/);
   });
 
   it("renders the expressions tile dashboard and equations balance model", () => {
