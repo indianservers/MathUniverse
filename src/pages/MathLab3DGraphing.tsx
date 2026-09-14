@@ -9,7 +9,7 @@ import { SurfaceSampleResult, generateSurfaceMeshData, sampleSurface } from "../
 import { deleteGraphWorkspace, readSavedGraphWorkspaces, saveGraphWorkspace, type SavedGraphWorkspace } from "../utils/graphWorkspaceStorage";
 import { analyzeSurfaceDifferential, type SurfaceDifferential } from "../graph-studio/graphIntelligence";
 import GraphStudio3DWorkspace, { type Studio3DTool } from "../graph-studio/GraphStudio3DWorkspace";
-import { reconcileGraphVariables, substituteGraphVariables } from "../graph-studio/expressionEngine";
+import { reconcileGraphVariables, substituteGraphVariables, advanceGraphVariable } from "../graph-studio/expressionEngine";
 import { downloadGraphStudioFile, exportGraphStudioProject } from "../graph-studio/projectStorage";
 import { useGraphStudioProject } from "../graph-studio/useGraphStudioProject";
 import type { GraphStudioVariable } from "../graph-studio/types";
@@ -231,8 +231,16 @@ export default function MathLab3DGraphing() {
 
   useEffect(() => {
     if (!variablesPlaying || reducedMotion) return;
-    const timer = window.setInterval(() => setGraphVariables((current) => current.map(advanceGraphVariable)), 60);
-    return () => window.clearInterval(timer);
+    let frame = 0;
+    let last = performance.now();
+    const tick = (now: number) => {
+      const dt = now - last;
+      last = now;
+      setGraphVariables((current) => current.map((variable) => advanceGraphVariable(variable, dt)));
+      frame = window.requestAnimationFrame(tick);
+    };
+    frame = window.requestAnimationFrame(tick);
+    return () => window.cancelAnimationFrame(frame);
   }, [reducedMotion, variablesPlaying]);
 
   useEffect(() => setExactPartial(null), [resolvedExpression]);
@@ -1351,22 +1359,6 @@ function fileSlug(value: string) {
 
 function sameVariables(current: GraphStudioVariable[], next: GraphStudioVariable[]) {
   return current.length === next.length && current.every((variable, index) => variable.id === next[index]?.id);
-}
-
-function advanceGraphVariable(variable: GraphStudioVariable): GraphStudioVariable {
-  if (!variable.playing || variable.max <= variable.min) return variable;
-  const increment = Math.max(0.001, variable.step) * variable.speed * variable.direction;
-  let value = variable.value + increment;
-  let direction = variable.direction;
-  if (variable.playback === "ping-pong") {
-    if (value >= variable.max) { value = variable.max; direction = -1; }
-    if (value <= variable.min) { value = variable.min; direction = 1; }
-  } else {
-    const span = variable.max - variable.min;
-    if (value > variable.max) value = variable.min + (value - variable.max) % span;
-    if (value < variable.min) value = variable.max - (variable.min - value) % span;
-  }
-  return { ...variable, value: Number(value.toFixed(10)), direction };
 }
 
 function clamp(value: number, min: number, max: number) {

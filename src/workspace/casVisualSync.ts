@@ -40,6 +40,9 @@ export function createCasVisualSyncLinks(result: CasVisualResult): CasVisualSync
   } else if (/(simplify|factor|expand)/i.test(result.interpretation)) {
     if (isGraphableExpression(expression)) add({ kind: "plot", expression, label: "Plot input", auto: true });
     if (isGraphableExpression(cleanResult)) add({ kind: "plot", expression: cleanResult, label: "Plot result", auto: true });
+  } else if (interpretation.includes("plot") || interpretation.includes("graph")) {
+    if (isGraphableExpression(expression)) add({ kind: "plot", expression, label: "Plot in 2D Graph", auto: true });
+    if (isGraphableExpression(cleanResult) && cleanResult !== expression) add({ kind: "plot", expression: cleanResult, label: "Plot result", auto: true });
   } else if (interpretation.includes("solve") || interpretation.includes("roots")) {
     const residual = residualExpression(expression);
     if (isGraphableExpression(residual)) add({ kind: "plot", expression: residual, label: "Plot residual", auto: true });
@@ -48,6 +51,10 @@ export function createCasVisualSyncLinks(result: CasVisualResult): CasVisualSync
   }
 
   return Array.from(links.values()).slice(0, 6);
+}
+
+export function graphStudioHref(expression: string) {
+  return `/workspace/graph?q=${encodeURIComponent(cleanGraphExpression(expression))}`;
 }
 
 export function autoPlotExpressions(links: CasVisualSyncLink[]) {

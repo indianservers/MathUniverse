@@ -8,6 +8,7 @@ import {
   clampPoint,
   defaultPlane,
   fromSvg,
+  toSvg,
   lineIntersection,
   measureTriangle,
   midpoint,
@@ -21,6 +22,7 @@ import {
   DashedLine,
   DraggableVertex,
   GridLayer,
+  RightAngleMarker,
   SideMeasurement,
   SolidLine,
   bindSvgDrag,
@@ -37,7 +39,7 @@ const SPECIAL: Record<string, { A: Pt; B: Pt; C: Pt }> = {
   "3-4-5": { B: { x: 2, y: 1.5 }, C: { x: 8, y: 1.5 }, A: { x: 2, y: 6.5 } },
 };
 
-export default function TriangleExplorerLab() {
+export default function TriangleExplorerLab({ pulse = "observe" }: { pulse?: string }) {
   const reducedMotion = useReducedMotion();
   const plane = defaultPlane();
   const svgRef = useRef<SVGSVGElement>(null);
@@ -58,6 +60,12 @@ export default function TriangleExplorerLab() {
   const midBC = midpoint(tri.B, tri.C);
   const midCA = midpoint(tri.C, tri.A);
   const midAB = midpoint(tri.A, tri.B);
+  const footA = altitudeFoot(tri.A, tri.B, tri.C);
+  const footB = altitudeFoot(tri.B, tri.A, tri.C);
+  const footC = altitudeFoot(tri.C, tri.A, tri.B);
+  const aSvg = toSvg(plane, tri.A);
+  const bSvg = toSvg(plane, tri.B);
+  const cSvg = toSvg(plane, tri.C);
   const bis = lineIntersection(tri.A, angleBisectorDir(tri.A, tri.B, tri.C), tri.B, { x: tri.C.x - tri.B.x, y: tri.C.y - tri.B.y });
   const pb = perpendicularBisector(tri.B, tri.C);
 
@@ -74,6 +82,18 @@ export default function TriangleExplorerLab() {
     id = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(id);
   }, [anim]);
+
+  useEffect(() => {
+    if (pulse === "why") setSub("area");
+    if (pulse === "observe") setSub("explore");
+    if (pulse === "understand") setAnim(true);
+    if (pulse === "try") {
+      setPreset("isosceles");
+      setTri(EXPLORER_PRESETS.isosceles ?? EXPLORER_PRESETS.scalene);
+      setAnim(false);
+    }
+    if (pulse === "challenge") setSub("angles");
+  }, [pulse]);
 
   const applyPreset = (id: string) => {
     setPreset(id);
@@ -102,6 +122,7 @@ export default function TriangleExplorerLab() {
 
   return (
     <LabFrame
+      theme="explorer"
       ariaLabel="Triangle explorer"
       controls={
         <Panel title="Explorer controls">
@@ -147,7 +168,6 @@ export default function TriangleExplorerLab() {
       }
       canvas={
         <svg ref={svgRef} viewBox={`0 0 ${plane.width} ${plane.height}`} role="img" aria-label="Draggable triangle ABC">
-          <rect width={plane.width} height={plane.height} fill="#f8fbff" />
           {layers.grid ? <GridLayer plane={plane} /> : null}
           <polygon points={polyPoints(plane, [tri.A, tri.B, tri.C])} fill="rgba(20,125,242,.10)" stroke="#147df2" strokeWidth="2.2" />
           {sub === "area" ? (
@@ -160,7 +180,20 @@ export default function TriangleExplorerLab() {
               <AngleArc plane={plane} vertex={tri.C} p={tri.A} q={tri.B} color="#f59e0b" radius={18} label={`${okNum(m.angles.C, 1)}°`} />
             </>
           ) : null}
-          {(layers.altitudes || sub === "area") ? <DashedLine plane={plane} a={basePts[2]} b={foot} color="#64748b" /> : null}
+          {layers.altitudes ? (
+            <>
+              <DashedLine plane={plane} a={tri.A} b={footA} color="#64748b" />
+              <DashedLine plane={plane} a={tri.B} b={footB} color="#64748b" />
+              <DashedLine plane={plane} a={tri.C} b={footC} color="#64748b" />
+            </>
+          ) : null}
+          {(layers.altitudes || sub === "area") ? (
+            <>
+              <DashedLine plane={plane} a={basePts[2]} b={foot} color="#0ea5c6" />
+              <RightAngleMarker plane={plane} vertex={foot} p={basePts[2]} q={basePts[1]} color="#0ea5c6" />
+              <SideMeasurement plane={plane} a={basePts[2]} b={foot} text={`h=${okNum(height)}`} color="#0ea5c6" />
+            </>
+          ) : null}
           {layers.median ? <SolidLine plane={plane} a={tri.A} b={midBC} color="#10b981" /> : null}
           {layers.bisector && bis ? <SolidLine plane={plane} a={tri.A} b={bis} color="#8b45f4" /> : null}
           {layers.perp ? (
@@ -176,6 +209,13 @@ export default function TriangleExplorerLab() {
           <g onPointerDown={startDrag("A")}><DraggableVertex plane={plane} p={tri.A} label="A" active={drag.current === "A"} /></g>
           <g onPointerDown={startDrag("B")}><DraggableVertex plane={plane} p={tri.B} label="B" color="#0f766e" /></g>
           <g onPointerDown={startDrag("C")}><DraggableVertex plane={plane} p={tri.C} label="C" color="#8b45f4" /></g>
+          {layers.coords ? (
+            <>
+              <text x={aSvg.x + 12} y={aSvg.y + 18} fill="#536381" fontSize="11">({okNum(tri.A.x)}, {okNum(tri.A.y)})</text>
+              <text x={bSvg.x + 12} y={bSvg.y + 18} fill="#536381" fontSize="11">({okNum(tri.B.x)}, {okNum(tri.B.y)})</text>
+              <text x={cSvg.x + 12} y={cSvg.y + 18} fill="#536381" fontSize="11">({okNum(tri.C.x)}, {okNum(tri.C.y)})</text>
+            </>
+          ) : null}
         </svg>
       }
       insights={

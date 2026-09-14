@@ -1,6 +1,6 @@
 import { Copy, Download, Play, Plus, RotateCcw, Trash2 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import {
   casNotebookExamples,
   createNotebookCell,
@@ -19,6 +19,7 @@ import SectionCard from "../components/ui/SectionCard";
 import TopicHeader from "../components/ui/TopicHeader";
 import { buildCasNotebookWorkspaceObjects } from "../workspace/universalObjectGraph";
 import { useUniversalObjectGraphPublisher } from "../workspace/useUniversalObjectGraphPublisher";
+import { createCasVisualSyncLinks, graphStudioHref } from "../workspace/casVisualSync";
 
 const historyKey = "math-universe-cas-notebook-v3";
 
@@ -271,6 +272,19 @@ function CasNotebookCell({ cell, index, onRun, onChange, onRemove, onDuplicate }
             {cell.numeric && <p className="mt-2 break-words font-mono text-sm text-cyan-700 dark:text-cyan-200">numeric: {cell.numeric}</p>}
           </div>
           <p className="text-sm leading-6 text-slate-600 dark:text-slate-300">{cell.detail}</p>
+          {cell.ok && createCasVisualSyncLinks({
+            input: cell.input,
+            interpretation: cell.operation,
+            result: cell.output,
+          }).filter((link) => link.kind === "plot" && link.expression).map((link) => (
+            <Link
+              key={link.id}
+              to={graphStudioHref(link.expression!)}
+              className="inline-flex rounded-lg border border-cyan-300 bg-cyan-50 px-3 py-2 text-sm font-black text-cyan-800 dark:border-cyan-400/30 dark:bg-cyan-400/10 dark:text-cyan-100"
+            >
+              {link.label}
+            </Link>
+          ))}
           {!!cell.assumptionSummary?.length && (
             <div className="rounded-lg bg-indigo-50 p-3 text-sm font-semibold text-indigo-900 dark:bg-indigo-300/10 dark:text-indigo-100">
               Assumptions: {cell.assumptionSummary.join("; ")}

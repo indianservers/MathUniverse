@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { ChipRow, Field, Panel } from "../../mockup/studioLabKit";
 import {
   EXPLORER_PRESETS,
@@ -41,7 +41,7 @@ import {
 
 type CenterMode = "centroid" | "circumcenter" | "incenter" | "orthocenter" | "all";
 
-export default function TriangleCentersLab() {
+export default function TriangleCentersLab({ pulse = "observe" }: { pulse?: string }) {
   const plane = defaultPlane();
   const svgRef = useRef<SVGSVGElement>(null);
   const drag = useRef<"A" | "B" | "C" | null>(null);
@@ -93,6 +93,8 @@ export default function TriangleCentersLab() {
   const iSvg = toSvg(plane, geo.I);
   const R = geo.O ? dist(geo.O, geo.A) : 0;
   const bisA = lineIntersection(geo.A, angleBisectorDir(geo.A, geo.B, geo.C), geo.B, { x: geo.C.x - geo.B.x, y: geo.C.y - geo.B.y });
+  const bisB = lineIntersection(geo.B, angleBisectorDir(geo.B, geo.A, geo.C), geo.C, { x: geo.A.x - geo.C.x, y: geo.A.y - geo.C.y });
+  const bisC = lineIntersection(geo.C, angleBisectorDir(geo.C, geo.A, geo.B), geo.A, { x: geo.B.x - geo.A.x, y: geo.B.y - geo.A.y });
   const pbAB = perpendicularBisector(geo.A, geo.B);
   const pbBC = perpendicularBisector(geo.B, geo.C);
   const pbCA = perpendicularBisector(geo.C, geo.A);
@@ -109,8 +111,19 @@ export default function TriangleCentersLab() {
 
   const reset = () => { setTri(EXPLORER_PRESETS.acute); setMode("centroid"); setAdvanced(false); };
 
+  useEffect(() => {
+    if (pulse === "observe") setMode("centroid");
+    if (pulse === "understand") setMode("circumcenter");
+    if (pulse === "why") { setMode("all"); setAdvanced(true); }
+    if (pulse === "try" || pulse === "challenge") {
+      setMode("circumcenter");
+      setTri(EXPLORER_PRESETS.obtuse ?? EXPLORER_PRESETS.acute);
+    }
+  }, [pulse]);
+
   return (
     <LabFrame
+      theme="centers"
       ariaLabel="Triangle centers laboratory"
       controls={
         <Panel title="Centers">
@@ -134,7 +147,6 @@ export default function TriangleCentersLab() {
       }
       canvas={
         <svg ref={svgRef} viewBox={`0 0 ${plane.width} ${plane.height}`} role="img" aria-label="Triangle centers construction">
-          <rect width={plane.width} height={plane.height} fill="#f8fbff" />
           {grid ? <GridLayer plane={plane} /> : null}
           <polygon points={polyPoints(plane, [geo.A, geo.B, geo.C])} fill="rgba(20,125,242,.08)" stroke="#147df2" strokeWidth="2.1" />
           {show("centroid") ? (
@@ -157,11 +169,15 @@ export default function TriangleCentersLab() {
           {show("incenter") ? (
             <>
               {bisA ? <SolidLine plane={plane} a={geo.A} b={bisA} color="#d97706" width={1.3} /> : null}
+              {bisB ? <SolidLine plane={plane} a={geo.B} b={bisB} color="#d97706" width={1.3} /> : null}
+              {bisC ? <SolidLine plane={plane} a={geo.C} b={bisC} color="#d97706" width={1.3} /> : null}
               <DashedLine plane={plane} a={geo.I} b={footIbc} color="#d97706" />
               <DashedLine plane={plane} a={geo.I} b={footIca} color="#d97706" />
               <DashedLine plane={plane} a={geo.I} b={footIab} color="#d97706" />
               {showIncircle ? <circle cx={iSvg.x} cy={iSvg.y} r={geo.r * plane.unit} fill="rgba(245,158,11,.08)" stroke="#d97706" strokeWidth="1.4" /> : null}
               <CenterDot plane={plane} p={footIbc} label="" color="#d97706" />
+              <CenterDot plane={plane} p={footIca} label="" color="#d97706" />
+              <CenterDot plane={plane} p={footIab} label="" color="#d97706" />
               <CenterDot plane={plane} p={geo.I} label="I" color="#d97706" />
             </>
           ) : null}
@@ -171,6 +187,8 @@ export default function TriangleCentersLab() {
               <DashedLine plane={plane} a={geo.B} b={geo.Fb} />
               <DashedLine plane={plane} a={geo.C} b={geo.Fc} />
               <RightAngleMarker plane={plane} vertex={geo.Fa} p={geo.A} q={geo.B} />
+              <RightAngleMarker plane={plane} vertex={geo.Fb} p={geo.B} q={geo.A} />
+              <RightAngleMarker plane={plane} vertex={geo.Fc} p={geo.C} q={geo.A} />
               {geo.H ? <CenterDot plane={plane} p={geo.H} label="H" color="#8b45f4" /> : null}
             </>
           ) : null}

@@ -31,11 +31,15 @@ export default function PigeonholeLab({
   const [m, setM] = useState(4);
   const [dist, setDist] = useState<number[]>([2, 1, 1, 1]);
   const [mode, setMode] = useState("manual");
-  const [drag, setDrag] = useState<number | null>(null);
+  const [unplaced, setUnplaced] = useState(0);
+  const [drag, setDrag] = useState<"tray" | number | null>(null);
   const [ch, setCh] = useState(0);
   const [preset, setPreset] = useState("months");
 
-  const applyDist = (next: number[]) => setDist(next);
+  const applyDist = (next: number[]) => {
+    setDist(next);
+    setUnplaced(0);
+  };
 
   useEffect(() => {
     if (kind === "basic") { setN(5); setM(4); applyDist(worstOccupancy(5, 4)); }
@@ -62,6 +66,17 @@ export default function PigeonholeLab({
   };
 
   const moveTo = (box: number) => {
+    if (drag === "tray") {
+      if (unplaced <= 0) return;
+      setUnplaced((u) => u - 1);
+      setDist((current) => {
+        const next = [...current];
+        next[box] = (next[box] ?? 0) + 1;
+        return next;
+      });
+      setDrag(null);
+      return;
+    }
     if (drag == null) return;
     setDist((current) => {
       const next = [...current];
@@ -74,6 +89,7 @@ export default function PigeonholeLab({
 
   return (
     <ComboWorkspace
+      theme="pig"
       collapsed={collapsed}
       onToggle={() => setCollapsed((v) => !v)}
       controls={
@@ -109,12 +125,28 @@ export default function PigeonholeLab({
               ))}
             </div>
           ) : null}
-          <p className="combo-note">Drag a highlighted ball color, then click a box to move one object.</p>
+          <button type="button" className="combo-ghost" onClick={() => { setUnplaced(displayN); setDist(Array.from({ length: displayM }, () => 0)); setMode("manual"); }}>Empty boxes</button>
+          <p className="combo-note">Click a tray ball, then a box. Overloaded boxes highlight amber.</p>
         </>
       }
       viz={
         <>
           <h2 className={pulse === "observe" ? "combo-focus" : undefined}>Containers</h2>
+          <p className="combo-note">Unplaced objects</p>
+          <div className="combo-tray" aria-label="Unplaced objects">
+            {Array.from({ length: unplaced }, (_, i) => (
+              <button
+                key={i}
+                type="button"
+                className="combo-ball"
+                style={{ background: "#147df2", outline: drag === "tray" ? "2px solid #071641" : undefined }}
+                onClick={() => setDrag("tray")}
+                draggable
+                onDragStart={() => setDrag("tray")}
+              />
+            ))}
+            {unplaced === 0 ? <span className="combo-note">All objects placed.</span> : null}
+          </div>
           <div className="combo-bins" aria-label="Pigeonholes">
             {Array.from({ length: displayM }, (_, i) => {
               const count = dist[i] ?? 0;
@@ -138,7 +170,7 @@ export default function PigeonholeLab({
                         style={{ background: tokenColor("B", i) }}
                         draggable
                         onDragStart={() => setDrag(i)}
-                        onClick={() => setDrag(i)}
+                        onClick={(e) => { e.stopPropagation(); setDrag(i); }}
                       />
                     ))}
                   </div>

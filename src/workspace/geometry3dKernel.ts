@@ -22,9 +22,9 @@ export type GizmoHandle3 = {
 };
 
 export type Intersection3 =
-  | { kind: "point"; point: Point3; source: "line-plane" }
+  | { kind: "point"; point: Point3; source: "line-plane" | "line-sphere" | "line-line" | "sphere-sphere" | "perp-plane" }
   | { kind: "line"; line: Line3; source: "plane-plane" }
-  | { kind: "circle"; center: Point3; normal: Vector3; radius: number; source: "sphere-plane" };
+  | { kind: "circle"; center: Point3; normal: Vector3; radius: number; source: "sphere-plane" | "sphere-sphere" };
 
 const EPS = 1e-8;
 
@@ -87,7 +87,20 @@ export function intersect3(first: Object3, second: Object3): Intersection3[] {
   if (first.kind === "plane3" && second.kind === "plane3") return planePlaneIntersection(first, second);
   if (first.kind === "sphere3" && second.kind === "plane3") return spherePlaneIntersection(first, second);
   if (first.kind === "plane3" && second.kind === "sphere3") return spherePlaneIntersection(second, first);
+  if (first.kind === "line3" && second.kind === "sphere3") return lineSphereIntersection(first, second);
+  if (first.kind === "sphere3" && second.kind === "line3") return lineSphereIntersection(second, first);
+  if (first.kind === "sphere3" && second.kind === "sphere3") return sphereSphereIntersection(first, second);
+  if (first.kind === "line3" && second.kind === "line3") return lineLineIntersection(first, second);
   return [];
+}
+
+export function perpendicularFootToPlane(point: Point3, plane: Plane3): Point3 {
+  const signed = signedDistancePointPlane(point, plane);
+  return add3(point, scale3(plane.normal, -signed));
+}
+
+export function distancePointPlane(point: Point3, plane: Plane3) {
+  return Math.abs(signedDistancePointPlane(point, plane));
 }
 
 export function distance3(a: Point3, b: Point3) {
@@ -170,12 +183,63 @@ function planePlaneIntersection(first: Plane3, second: Plane3): Intersection3[] 
 }
 
 function spherePlaneIntersection(sphere: Sphere3, plane: Plane3): Intersection3[] {
-  const signedDistance = dot3(plane.normal, vector3(sphere.center.x - plane.point.x, sphere.center.y - plane.point.y, sphere.center.z - plane.point.z));
+  const signedDistance = signedDistancePointPlane(sphere.center, plane);
   const distance = Math.abs(signedDistance);
   if (distance > sphere.radius + EPS) return [];
   const center = add3(sphere.center, scale3(plane.normal, -signedDistance));
   const radius = Math.sqrt(Math.max(0, sphere.radius ** 2 - distance ** 2));
   return [{ kind: "circle", center, normal: plane.normal, radius, source: "sphere-plane" }];
+}
+
+function signedDistancePointPlane(point: Point3, plane: Plane3) {
+  return dot3(plane.normal, vector3(point.x - plane.point.x, point.y - plane.point.y, point.z - plane.point.z));
+}
+
+function lineSphereIntersection(line: Line3, sphere: Sphere3): Intersection3[] {
+  const oc = vector3(line.point.x - sphere.center.x, line.point.y - sphere.center.y, line.point.z - sphere.center.z);
+  const a = dot3(line.direction, line.direction);
+  const b = 2 * dot3(oc, line.direction);
+  const c = dot3(oc, oc) - sphere.radius ** 2;
+  const discriminant = b * b - 4 * a * c;
+  if (discriminant < -EPS) return [];
+  const root = Math.sqrt(Math.max(0, discriminant));
+  const t1 = (-b - root) / (2 * a);
+  const t2 = (-b + root) / (2 * a);
+  const points = [t1, t2]
+    .filter((t, index, values) => Number.isFinite(t) && values.findIndex((item) => Math.abs(item - t) < EPS) === index)
+    .map((t) => ({ kind: "point" as const, point: add3(line.point, scale3(line.direction, t)), source: "line-sphere" as const }));
+  return points;
+}
+
+function sphereSphereIntersection(first: Sphere3, second: Sphere3): Intersection3[] {
+  const between = vector3(second.center.x - first.center.x, second.center.y - first.center.y, second.center.z - first.center.z);
+  const d = magnitude3(between);
+  if (d < EPS) return [];
+  if (d > first.radius + second.radius + EPS) return [];
+  if (d + Math.min(first.radius, second.radius) < Math.max(first.radius, second.radius) - EPS) return [];
+  const a = (first.radius ** 2 - second.radius ** 2 + d * d) / (2 * d);
+  const radius = Math.sqrt(Math.max(0, first.radius ** 2 - a * a));
+  const normal = normalize3(between);
+  const center = add3(first.center, scale3(normal, a));
+  if (radius < EPS) return [{ kind: "point", point: center, source: "sphere-sphere" }];
+  return [{ kind: "circle", center, normal, radius, source: "sphere-sphere" }];
+}
+
+function lineLineIntersection(first: Line3, second: Line3): Intersection3[] {
+  const w = vector3(first.point.x - second.point.x, first.point.y - second.point.y, first.point.z - second.point.z);
+  const a = dot3(first.direction, first.direction);
+  const b = dot3(first.direction, second.direction);
+  const c = dot3(second.direction, second.direction);
+  const d = dot3(first.direction, w);
+  const e = dot3(second.direction, w);
+  const denom = a * c - b * b;
+  if (Math.abs(denom) < EPS) return [];
+  const t = (b * e - c * d) / denom;
+  const s = (a * e - b * d) / denom;
+  const p = add3(first.point, scale3(first.direction, t));
+  const q = add3(second.point, scale3(second.direction, s));
+  if (distance3(p, q) > 1e-6) return [];
+  return [{ kind: "point", point: p, source: "line-line" }];
 }
 
 function dot3(a: Vector3, b: Vector3) {

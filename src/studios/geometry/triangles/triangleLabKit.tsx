@@ -68,21 +68,39 @@ export function Fold({ title, children, open = true }: { title: string; children
 }
 
 export function LabFrame({
-  controls, canvas, insights, ariaLabel,
+  controls, canvas, insights, ariaLabel, theme = "explorer",
 }: {
   controls: ReactNode;
   canvas: ReactNode;
   insights: ReactNode;
   ariaLabel: string;
+  theme?: "explorer" | "congruence" | "similarity" | "centers" | "inequalities";
 }) {
   return (
-    <div className="tri-lab" aria-label={ariaLabel}>
+    <div className={`tri-lab tri-lab--${theme}`} aria-label={ariaLabel}>
       <Fold title="Controls">{controls}</Fold>
       <section className="msk-panel tri-canvas" id="lab-canvas">{canvas}</section>
       <aside className="tri-insights">
         <Fold title="Measurements">{insights}</Fold>
       </aside>
     </div>
+  );
+}
+
+export function LearningStrip({
+  items,
+}: {
+  items: Array<{ title: string; text: string; onClick: () => void; active?: boolean }>;
+}) {
+  return (
+    <section className="tri-strip" aria-label="Learning loop">
+      {items.map((item) => (
+        <button key={item.title} type="button" className={item.active ? "is-on" : ""} onClick={item.onClick}>
+          <b>{item.title}</b>
+          <small>{item.text}</small>
+        </button>
+      ))}
+    </section>
   );
 }
 

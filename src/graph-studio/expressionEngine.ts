@@ -97,6 +97,33 @@ export function substituteGraphVariables(
   }, expression);
 }
 
+export function advanceGraphVariable(
+  variable: GraphStudioVariable,
+  dtMs = 60,
+): GraphStudioVariable {
+  if (!variable.playing || variable.max <= variable.min) return variable;
+  const frames = Math.max(0.25, dtMs / 16.666);
+  const increment =
+    Math.max(0.001, variable.step) * variable.speed * variable.direction * frames;
+  let value = variable.value + increment;
+  let direction = variable.direction;
+  if (variable.playback === "ping-pong") {
+    if (value >= variable.max) {
+      value = variable.max;
+      direction = -1;
+    }
+    if (value <= variable.min) {
+      value = variable.min;
+      direction = 1;
+    }
+  } else {
+    const span = variable.max - variable.min;
+    if (value > variable.max) value = variable.min + ((value - variable.max) % span);
+    if (value < variable.min) value = variable.max - ((variable.min - value) % span);
+  }
+  return { ...variable, value: Number(value.toFixed(10)), direction };
+}
+
 export function explainExpressionError(expression: string, message?: string) {
   if (!expression.trim())
     return {

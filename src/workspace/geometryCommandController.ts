@@ -35,7 +35,7 @@ export type Construction = {
 };
 export type GeometryObjectType = "point" | "line" | "circle" | "polygon" | "arc" | "locus";
 export type SelectedGeometryObject = { type: GeometryObjectType; id: string };
-export type GeometryTransformMode = "translate" | "rotate" | "dilate";
+export type GeometryTransformMode = "translate" | "rotate" | "dilate" | "mirror";
 
 export type GeometryCommandResult<T> =
   | { ok: true; value: T }
@@ -68,6 +68,39 @@ export function pointIdsForObject(construction: Construction, object: SelectedGe
   if (object.type === "locus") return [];
   const polygon = construction.polygons.find((item) => item.id === object.id);
   return polygon?.points ?? [];
+}
+
+export function geometryObjectForPointIds(construction: Construction, pointIds: string[]): SelectedGeometryObject | null {
+  const idSet = new Set(pointIds);
+  if (!idSet.size) return null;
+  const polygon = [...construction.polygons].reverse().find((item) => item.points.some((id) => idSet.has(id)));
+  if (polygon) return { type: "polygon", id: polygon.id };
+  const circle = [...construction.circles].reverse().find((item) => idSet.has(item.center) || idSet.has(item.edge));
+  if (circle) return { type: "circle", id: circle.id };
+  const arc = [...construction.arcs].reverse().find((item) => idSet.has(item.center) || idSet.has(item.start) || idSet.has(item.end));
+  if (arc) return { type: "arc", id: arc.id };
+  const line = [...construction.lines].reverse().find((item) => idSet.has(item.a) || idSet.has(item.b));
+  if (line) return { type: "line", id: line.id };
+  const locus = [...construction.loci].reverse().find((item) => item.sourcePointId && idSet.has(item.sourcePointId));
+  if (locus) return { type: "locus", id: locus.id };
+  const pointId = pointIds[0];
+  return pointId && construction.points.some((point) => point.id === pointId) ? { type: "point", id: pointId } : null;
+}
+
+export function createdGeometryFromDelta(before: Construction, after: Construction): { object: SelectedGeometryObject | null; pointIds: string[] } {
+  const newPointIds = after.points.filter((point) => !before.points.some((item) => item.id === point.id)).map((point) => point.id);
+  const polygon = after.polygons.find((item) => !before.polygons.some((itemBefore) => itemBefore.id === item.id));
+  if (polygon) return { object: { type: "polygon", id: polygon.id }, pointIds: polygon.points };
+  const circle = after.circles.find((item) => !before.circles.some((itemBefore) => itemBefore.id === item.id));
+  if (circle) return { object: { type: "circle", id: circle.id }, pointIds: [circle.center, circle.edge] };
+  const line = after.lines.find((item) => !before.lines.some((itemBefore) => itemBefore.id === item.id));
+  if (line) return { object: { type: "line", id: line.id }, pointIds: [line.a, line.b] };
+  const arc = after.arcs.find((item) => !before.arcs.some((itemBefore) => itemBefore.id === item.id));
+  if (arc) return { object: { type: "arc", id: arc.id }, pointIds: [arc.center, arc.start, arc.end] };
+  const locus = after.loci.find((item) => !before.loci.some((itemBefore) => itemBefore.id === item.id));
+  if (locus) return { object: { type: "locus", id: locus.id }, pointIds: newPointIds };
+  if (newPointIds[0]) return { object: { type: "point", id: newPointIds[0] }, pointIds: newPointIds };
+  return { object: null, pointIds: newPointIds };
 }
 
 export function geometryObjectBySelection(construction: Construction, object: SelectedGeometryObject): { style?: GeoStyle } | null {

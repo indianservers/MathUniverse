@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { SliderRow } from "../../mockup/studioLabKit";
 import {
   fanDiagonals,
@@ -33,7 +33,7 @@ import {
 
 type AngleSub = "sum" | "regular" | "exterior" | "irregular";
 
-export default function InteriorAnglesLab() {
+export default function InteriorAnglesLab({ pulse = "observe" }: { pulse?: string }) {
   const [n, setN] = useState(5);
   const [sub, setSub] = useState<AngleSub>("sum");
   const [regular, setRegular] = useState(true);
@@ -99,8 +99,14 @@ export default function InteriorAnglesLab() {
   const sum = interiorAngleSum(n);
   const each = interiorAngleRegular(n);
 
+  useEffect(() => {
+    if (pulse === "try") { setSub("exterior"); setWalk(true); }
+    if (pulse === "challenge") syncRegular(7, false);
+    if (pulse === "observe") setSub("sum");
+  }, [pulse]);
+
   return (
-    <div className="poly-lab">
+    <div className="poly-lab poly-lab--angles">
       <Controls title="Interior angles">
         <div className="poly-sub">
           {([
@@ -127,7 +133,7 @@ export default function InteriorAnglesLab() {
 
       <section className="msk-panel msk-canvas poly-stage">
         <svg ref={svgRef} className="msk-graph poly-svg" viewBox={`0 0 ${VIEW.w} ${VIEW.h}`} role="img" aria-label="Interior angles lab">
-          <rect width={VIEW.w} height={VIEW.h} fill="#fbfdff" />
+          <rect width={VIEW.w} height={VIEW.h} fill="none" />
           {sub === "sum" || sub === "regular" ? geometry.triangles.map((tri, i) => {
             const pts = tri.map((p) => toScreen(p, 48));
             return <polygon key={`t${i}`} points={pointsAttr(pts)} fill={`rgba(139,69,244,${0.08 + (i % 3) * 0.05})`} stroke="#8b45f4" strokeWidth="1" />;

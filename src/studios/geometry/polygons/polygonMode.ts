@@ -74,9 +74,12 @@ export function usePolygonLabMode() {
   const [params, setParams] = useSearchParams();
   const mode = parsePolygonMode(params.get("mode"));
   const setMode = (next: PolygonModeId) => {
-    const updated = new URLSearchParams(params);
-    updated.set("mode", polygonModeUrl(next));
-    setParams(updated);
+    setParams((prev) => {
+      const updated = new URLSearchParams(prev);
+      if (next === "regular") updated.delete("mode");
+      else updated.set("mode", polygonModeUrl(next));
+      return updated;
+    });
   };
   return { mode, setMode, modes: POLYGON_MODES };
 }

@@ -57,6 +57,7 @@ export default function InclusionExclusionLab({
 
   return (
     <ComboWorkspace
+      theme="ie"
       collapsed={collapsed}
       onToggle={() => setCollapsed((v) => !v)}
       controls={
@@ -192,15 +193,15 @@ function Venn({
       {!two ? <text x="188" y="300" fill="#10b981" fontWeight="800">{labels[2]}</text> : null}
       {showCounts ? (
         <>
-          <text x={two ? 128 : 118} y="150" fontSize="12">{counts.a}</text>
-          <text x={two ? 286 : 292} y="150" fontSize="12">{counts.b}</text>
-          {two ? <text x="200" y="154" fontSize="12">{counts.ab}</text> : (
+          <text x={two ? 118 : 108} y="148" fontSize="13" fontWeight="800" fill="#147df2">{showCounts ? counts.a : ""}</text>
+          <text x={two ? 292 : 298} y="148" fontSize="13" fontWeight="800" fill="#8b45f4">{showCounts ? counts.b : ""}</text>
+          {two ? <text x="198" y="154" fontSize="13" fontWeight="800" fill="#b45309">{showCounts ? counts.ab : ""}</text> : (
             <>
-              <text x="198" y="250" fontSize="12">{counts.c}</text>
-              <text x="200" y="140" fontSize="12">{counts.ab}</text>
-              <text x="148" y="200" fontSize="12">{counts.ac}</text>
-              <text x="248" y="200" fontSize="12">{counts.bc}</text>
-              <text x="196" y="188" fontSize="12">{counts.abc}</text>
+              <text x="198" y="258" fontSize="13" fontWeight="800" fill="#047857">{showCounts ? counts.c : ""}</text>
+              <text x="198" y="138" fontSize="12" fontWeight="800">{showCounts ? counts.ab : ""}</text>
+              <text x="142" y="204" fontSize="12" fontWeight="800">{showCounts ? counts.ac : ""}</text>
+              <text x="252" y="204" fontSize="12" fontWeight="800">{showCounts ? counts.bc : ""}</text>
+              <text x="194" y="186" fontSize="12" fontWeight="800" fill="#b45309">{showCounts ? counts.abc : ""}</text>
             </>
           )}
         </>

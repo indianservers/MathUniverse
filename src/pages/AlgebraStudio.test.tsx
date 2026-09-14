@@ -31,8 +31,8 @@ describe("Algebra Studio reference routes", () => {
     expect(expressions).toContain("Equivalent forms");
     expect(expressions).toContain("Observe");
     const equations = renderToString(<MemoryRouter initialEntries={["/algebra/equations"]}><AlgebraStudio /></MemoryRouter>);
-    expect(equations).toContain("Balance model");
-    expect(equations).toContain("Solution on number line");
+    expect(equations).toContain("Balance Model");
+    expect(equations).toContain("Solution on Number Line");
     expect(equations).toContain("Watch how the scale stays balanced");
   });
 
@@ -62,6 +62,17 @@ describe("Algebra Studio reference routes", () => {
     expect(html).toContain("Substitute");
     expect(html).toContain("Advanced Workbench");
     expect(html).toContain("mode=Piecewise");
+  });
+
+  it("exposes working lab chrome: modes, undo, help, and challenges", () => {
+    const equations = renderToString(<MemoryRouter initialEntries={["/algebra/equations"]}><AlgebraStudio /></MemoryRouter>);
+    expect(equations).toContain("aria-label=\"Undo\"");
+    expect(equations).toContain("aria-label=\"Help\"");
+    expect(equations).toContain("Auto-balance");
+    expect(equations).toContain("Challenge Me");
+    const home = renderToString(<MemoryRouter initialEntries={["/algebra"]}><AlgebraStudio /></MemoryRouter>);
+    expect(home).toContain("x + 7");
+    expect(home).toContain("2(x + 3)");
   });
 
   it("renders all 25 functional Algebra enhancement tools", () => {

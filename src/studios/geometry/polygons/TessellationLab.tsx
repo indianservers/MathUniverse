@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import RegularTessellationLab from "./tessellation/TessellationLab";
 import { ChallengePanel, Controls, FormulaCard, LivePanel, MeasureRow, PresetGrid, PropertyCard, VIEW, fmtDeg } from "./polygonUi";
 import { interiorAngleRegular, regularPolygonName, tessellationAngleCheck } from "./polygonMath";
@@ -25,7 +25,7 @@ function poly(cx: number, cy: number, n: number, r: number, rot = -90) {
   }).join(" ");
 }
 
-export default function TessellationLab() {
+export default function TessellationLab({ pulse = "observe" }: { pulse?: string }) {
   const [sub, setSub] = useState<TessSub>("regular");
   const [semi, setSemi] = useState("6.6.6");
   const [custom, setCustom] = useState<Tile>("4");
@@ -37,6 +37,13 @@ export default function TessellationLab() {
   ]);
   const [n, setN] = useState(6);
   const test = tessellationAngleCheck(n);
+
+  useEffect(() => {
+    if (pulse === "try") setSub("semiregular");
+    if (pulse === "why") { setSub("regular"); setN(5); }
+    if (pulse === "observe") setSub("regular");
+    if (pulse === "challenge") setN(5);
+  }, [pulse]);
 
   if (sub === "regular") {
     return (
@@ -81,7 +88,7 @@ export default function TessellationLab() {
             setStamps((current) => [...current, { x: Math.round(x / size) * size, y: Math.round(y / size) * size, kind: custom, rot: stampRot }]);
           }}
         >
-          <rect width={VIEW.w} height={VIEW.h} fill="#f7fbff" />
+          <rect width={VIEW.w} height={VIEW.h} fill="none" />
           {sub === "semiregular" ? <SemiPattern id={semi} /> : null}
           {sub === "custom" ? stamps.map((s, i) => (
             <polygon key={i} points={poly(s.x, s.y, Number(s.kind), s.kind === "6" ? 22 : 18, s.rot - 90)} fill="rgba(8,185,221,.16)" stroke="#0891b2" />

@@ -156,7 +156,9 @@ export default function MathWorkspaceLayout({
       data-input={coarsePointer ? "coarse" : "fine"}
       data-viewport={viewportMode}
     >
-      {workspace.id !== "geometry" && workspace.id !== "graphs-3d" && (
+      {workspace.id !== "geometry" &&
+        workspace.id !== "graphs-3d" &&
+        workspace.id !== "shapes" && (
         <WorkspaceSuiteBar workspace={workspace} />
       )}
       <div

@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { SliderRow } from "../../mockup/studioLabKit";
 import {
   allDiagonals,
@@ -33,7 +33,7 @@ type DiagSub = "from-vertex" | "all" | "triangulation" | "intersections";
 
 const PALETTE = ["#147df2", "#8b45f4", "#08b9dd", "#f59e0b", "#10b981", "#ef4444", "#6366f1", "#0f766e"];
 
-export default function DiagonalsLab() {
+export default function DiagonalsLab({ pulse = "observe" }: { pulse?: string }) {
   const [n, setN] = useState(8);
   const [vertex, setVertex] = useState(0);
   const [sub, setSub] = useState<DiagSub>("from-vertex");
@@ -61,8 +61,15 @@ export default function DiagonalsLab() {
   const shownAll = Math.max(0, Math.round(progress * all.length));
   const shownTri = Math.max(0, Math.round(progress * triangles.length));
 
+  useEffect(() => {
+    if (pulse === "try") { setSub("all"); setProgress(0.08); setAnimate(true); }
+    if (pulse === "challenge") { setN(8); setSub("from-vertex"); }
+    if (pulse === "observe") setSub("from-vertex");
+    if (pulse === "understand") setSub("triangulation");
+  }, [pulse]);
+
   return (
-    <div className="poly-lab">
+    <div className="poly-lab poly-lab--diagonals">
       <Controls title="Diagonals">
         <div className="poly-sub">
           {([["from-vertex", "From one vertex"], ["all", "All diagonals"], ["triangulation", "Triangulation"], ["intersections", "Intersections"]] as const).map(([id, label]) => (
@@ -79,7 +86,7 @@ export default function DiagonalsLab() {
 
       <section className="msk-panel msk-canvas poly-stage">
         <svg className="msk-graph poly-svg" viewBox={`0 0 ${VIEW.w} ${VIEW.h}`} role="img" aria-label="Diagonals explorer">
-          <rect width={VIEW.w} height={VIEW.h} fill="#fbfdff" />
+          <rect width={VIEW.w} height={VIEW.h} fill="none" />
           <polygon points={pointsAttr(screen)} fill="rgba(20,125,242,.07)" stroke="#147df2" strokeWidth="2.2" />
           {sub === "from-vertex" ? diagsFrom.slice(0, shownFrom).map((line, i) => {
             const a = toScreen(line[0], 50);

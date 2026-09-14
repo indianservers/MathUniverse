@@ -28,7 +28,7 @@ import {
 
 const CHALLENGES = [
   { prompt: "How many ways to arrange 5 distinct objects?", expected: 120, hint: "5! = 5×4×3×2×1.", proof: "5! = 120" },
-  { prompt: "P(6,3) = ?", expected: 120, hint: "6×5×4.", proof: "P(6,3) = 6!/(3!) wait: 6!/(6-3)! = 120" },
+  { prompt: "P(6,3) = ?", expected: 120, hint: "6×5×4.", proof: "P(6,3) = 6!/(6−3)! = 120" },
   { prompt: "Circular arrangements of 5 distinct people?", expected: 24, hint: "Fix one person: (5−1)!.", proof: "(5−1)! = 24" },
   { prompt: "Unique arrangements of BANANA?", expected: 60, hint: "6! / (3! 2!).", proof: "6!/(3!2!) = 60" },
 ];
@@ -75,6 +75,7 @@ export default function ArrangementsLab({
       setOrder((current) => {
         const next = [...current];
         if (!nextPermutation(next)) next.sort();
+        setSlots(next.slice(0, slotCount));
         return next;
       });
       setHighlight((h) => h + 1);
@@ -125,8 +126,15 @@ export default function ArrangementsLab({
   const people = letters(n);
   const rotated = people.map((_, i) => people[(i + rotation) % n]!);
 
+  const applyPerm = (perm: string[]) => {
+    setOrder(perm);
+    setSlots(perm.slice(0, slotCount));
+    setHighlight((h) => h + 1);
+  };
+
   return (
     <ComboWorkspace
+      theme="arr"
       collapsed={collapsed}
       onToggle={() => setCollapsed((v) => !v)}
       controls={
@@ -158,12 +166,12 @@ export default function ArrangementsLab({
           ) : null}
           <div className="combo-btn-row">
             <button type="button" className="combo-ghost" onClick={shuffle}>Shuffle</button>
-            <button type="button" className="combo-ghost" onClick={() => setOrder((c) => { const next = [...c]; if (!nextPermutation(next)) next.sort(); return next; })}>Next</button>
-            <button type="button" className="combo-ghost" onClick={() => setOrder((c) => { const n2 = [...c]; if (!prevPermutation(n2)) n2.sort().reverse(); return n2; })}>Previous</button>
+            <button type="button" className="combo-ghost" onClick={() => { const next = [...order]; if (!nextPermutation(next)) next.sort(); applyPerm(next); }}>Next</button>
+            <button type="button" className="combo-ghost" onClick={() => { const next = [...order]; if (!prevPermutation(next)) next.sort().reverse(); applyPerm(next); }}>Previous</button>
             <button type="button" className="combo-primary" onClick={() => setPlaying((p) => !p)}>{playing ? "Pause" : "Animate"}</button>
-            <button type="button" className="combo-ghost" onClick={() => { setPlaying(false); setSlots(Array.from({ length: slotCount }, () => null)); setOrder(letters(n)); }}>Reset</button>
+            <button type="button" className="combo-ghost" onClick={() => { setPlaying(false); setSlots(Array.from({ length: slotCount }, () => null)); setOrder(letters(n)); setDrag(null); }}>Reset</button>
           </div>
-          <p className="combo-note">Drag tokens into ordered slots. Order creates a new outcome.</p>
+          <p className="combo-note">Click a token, then click a numbered slot — or drag. Order creates a new outcome.</p>
         </>
       }
       viz={
@@ -171,33 +179,63 @@ export default function ArrangementsLab({
           <h2 className={pulse === "observe" ? "combo-focus" : undefined}>Arrangement stage</h2>
           {kind !== "circular" ? (
             <>
+              <p className="combo-note">Object pool</p>
               <div className="combo-tokens" aria-label="Object pool">
-                {(kind === "repeated" ? word.split("") : kind === "all" ? order : items).map((label, i) => (
-                  <Token key={`${label}-${i}`} label={label} color={tokenColor(label, i)} draggable onDragStart={() => setDrag(label)} onClick={() => setDrag(label)} selected={drag === label} />
-                ))}
+                {(kind === "repeated" ? word.split("") : items).map((label, i) => {
+                  const used = !(kind === "repetition" && repeatOn) && slots.includes(label);
+                  return (
+                    <Token
+                      key={`${label}-${i}`}
+                      label={label}
+                      color={tokenColor(label, i)}
+                      draggable
+                      muted={used}
+                      selected={drag === label}
+                      onDragStart={() => setDrag(label)}
+                      onClick={() => setDrag(label)}
+                    />
+                  );
+                })}
               </div>
               {kind !== "repeated" ? (
                 <div className={`combo-stage${pulse === "understand" ? " combo-focus" : ""}`} aria-label="Ordered slots">
                   {Array.from({ length: slotCount }, (_, i) => (
-                    <Slot key={i} index={i} value={kind === "all" ? order[i] ?? null : slots[i] ?? null} color={tokenColor((kind === "all" ? order[i] : slots[i]) ?? "A", i)} onDrop={() => dropAt(i)} />
+                    <Slot
+                      key={i}
+                      index={i}
+                      value={slots[i] ?? null}
+                      choices={remainingChoices[i]}
+                      color={tokenColor(slots[i] ?? "A", i)}
+                      onDrop={() => dropAt(i)}
+                    />
                   ))}
                 </div>
               ) : (
                 <div className="combo-stage">
-                  {word.split("").map((label, i) => <Token key={`${label}${i}`} label={label} color={tokenColor(label)} muted={label === "A" && i > 0 && pulse === "why"} />)}
+                  {word.split("").map((label, i) => <Token key={`${label}${i}`} label={label} color={tokenColor(label)} muted={label === "A" && i > 0} />)}
                 </div>
               )}
+              {kind === "repeated" ? <p className="combo-note">Identical letters share a color family. Swapping two A’s leaves the word unchanged, so we divide by 3! × 2! for BANANA.</p> : null}
               {kind !== "repeated" && kind !== "circular" ? (
                 <div>
-                  <p className="combo-note">Remaining choices by slot</p>
-                  <ProductPath factors={kind === "repetition" && repeatOn ? remainingChoices : remainingChoices} total={kind === "repetition" && repeatOn ? totalRep : kind === "npr" ? totalNpr : totalAll} />
+                  <p className="combo-note">Why the product works</p>
+                  <ProductPath factors={remainingChoices} total={kind === "repetition" && repeatOn ? totalRep : kind === "npr" ? totalNpr : totalAll} />
                 </div>
               ) : null}
               {kind !== "circular" && kind !== "repeated" ? (
                 <>
                   <Seg value={listMode} onChange={(id) => setListMode(id as typeof listMode)} options={[{ id: "grid", label: "Grid" }, { id: "sequence", label: "Sequence" }, { id: "tree", label: "Tree" }]} />
-                  {n > ENUM_PERM_LIMIT ? <p className="combo-note">{listedTotal} total — showing first {ENUM_DISPLAY_CAP} would overflow; count only.</p> : (
-                    <div className="combo-list" aria-label="Enumerated arrangements">
+                  {n > ENUM_PERM_LIMIT ? <p className="combo-note">{listedTotal} total — showing first {ENUM_DISPLAY_CAP} would overflow; count only.</p> : listMode === "tree" ? (
+                    <div className="combo-tree-list" aria-label="Arrangement tree">
+                      {listed.map((row, i) => (
+                        <div key={row.join("") + i} className={i === highlight % listed.length ? "combo-focus" : undefined}>
+                          {row.map((ch, d) => <span key={d}>{"· ".repeat(d)}<b>{ch}</b></span>)}
+                          {" → "}{row.join("")}
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className={`combo-list${listMode === "sequence" ? " is-seq" : ""}`} aria-label="Enumerated arrangements">
                       {listed.map((row, i) => <span key={row.join("") + i} className={i === highlight % listed.length ? "is-on" : ""}>{row.join("")}</span>)}
                     </div>
                   )}
@@ -206,14 +244,21 @@ export default function ArrangementsLab({
               ) : null}
             </>
           ) : (
-            <CircularTable people={rotated} lockA={lockA} rotation={rotation} />
+            <>
+              <CircularTable people={rotated} lockA={lockA} rotation={rotation} />
+              <p className="combo-note">These linear strings are the same circular seating — rotate until A is first.</p>
+              <div className="combo-rotations">
+                {people.map((_, i) => {
+                  const rot = people.map((__, j) => people[(j + i) % n]!).join("");
+                  return <span key={rot} className={i === rotation ? "is-on" : ""}>{rot}</span>;
+                })}
+              </div>
+              <div className="combo-btn-row">
+                <button type="button" className="combo-ghost" onClick={() => setRotation((v) => (v + 1) % n)}>Rotate table</button>
+                <label className="combo-note"><input type="checkbox" checked={lockA} onChange={(e) => setLockA(e.target.checked)} /> Lock A at top</label>
+              </div>
+            </>
           )}
-          {kind === "circular" ? (
-            <div className="combo-btn-row">
-              <button type="button" className="combo-ghost" onClick={() => setRotation((v) => (v + 1) % n)}>Rotate table</button>
-              <label className="combo-note"><input type="checkbox" checked={lockA} onChange={(e) => setLockA(e.target.checked)} /> Lock A at top</label>
-            </div>
-          ) : null}
         </>
       }
       insights={
@@ -224,7 +269,7 @@ export default function ArrangementsLab({
           {kind === "repetition" ? <LiveRow color="#08b9dd" label={repeatOn ? "n^r" : "P(n,r)"} value={repeatOn ? totalRep : permutation(n, r)} /> : null}
           {kind === "circular" ? <LiveRow color="#f59e0b" label="(n−1)!" value={totalCirc} /> : null}
           {kind === "repeated" ? <LiveRow color="#8b45f4" label="unique" value={totalWord} /> : null}
-          <LiveRow color="#64748b" label="Current arrangement" value={(kind === "circular" ? rotated : kind === "repeated" ? word.split("") : placed.length ? placed : order).join("")} />
+          <LiveRow color="#64748b" label="Current arrangement" value={(kind === "circular" ? rotated : kind === "repeated" ? word.split("") : (placed.length ? placed : order)).join("")} />
           <LiveRow color="#0ea5e9" label="Index" value={String((highlight % Math.max(1, listedTotal)) + 1)} />
           {kind === "all" ? <FormulaCard title="Formula" formula="n! = n × (n−1) × ⋯ × 1" note="Each filled slot removes one remaining choice." /> : null}
           {kind === "npr" ? <FormulaCard title="Formula" formula="P(n,r) = n! / (n−r)!" note={`${n} × ${n - 1} × … for ${r} slots.`} /> : null}
@@ -250,22 +295,23 @@ function CircularTable({
   const n = people.length;
   const shown = lockA ? ["A", ...people.filter((p) => p !== "A")] : people;
   return (
-    <svg className="combo-circle" viewBox="0 0 360 320" role="img" aria-label="Circular table">
-      <rect width="360" height="320" fill="#f7fbff" />
-      <circle cx="180" cy="160" r="92" fill="#fff" stroke="#dce7f4" strokeWidth="18" />
+    <svg className="combo-circle" viewBox="0 0 420 340" role="img" aria-label="Circular table">
+      <circle cx="210" cy="160" r="104" fill="#fff" stroke="#dce7f4" strokeWidth="22" />
+      <circle cx="210" cy="160" r="58" fill="#f8fbff" stroke="#e2e8f0" />
       {shown.map((p, i) => {
         const a = -Math.PI / 2 + (i / n) * Math.PI * 2;
-        const x = 180 + Math.cos(a) * 92;
-        const y = 160 + Math.sin(a) * 92;
+        const x = 210 + Math.cos(a) * 104;
+        const y = 160 + Math.sin(a) * 104;
         return (
           <g key={`${p}${i}`}>
-            <circle cx={x} cy={y} r="16" fill={tokenColor(p, i)} />
-            <text x={x} y={y + 4} textAnchor="middle" fill="#fff" fontSize="12" fontWeight="800">{p}</text>
+            <circle cx={x} cy={y} r="20" fill={tokenColor(p, i)} />
+            <text x={x} y={y + 5} textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800">{p}</text>
           </g>
         );
       })}
-      <text x="180" y="164" textAnchor="middle" fontSize="12" fill="#64748b">rotate {rotation}</text>
-      <text x="180" y="300" textAnchor="middle" fontSize="12" fill="#40516d">Linear would count 5! = 120. Fix A, remaining 4! = 24.</text>
+      <text x="210" y="156" textAnchor="middle" fontSize="12" fill="#64748b">{lockA ? "A fixed" : "free rotate"}</text>
+      <text x="210" y="176" textAnchor="middle" fontSize="12" fill="#40516d">step {rotation}</text>
+      <text x="210" y="318" textAnchor="middle" fontSize="13" fill="#40516d">Linear {n}! = {n === 5 ? 120 : ""} · circular ({n}−1)! = {n === 5 ? 24 : ""}</text>
     </svg>
   );
 }

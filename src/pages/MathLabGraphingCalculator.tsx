@@ -12,7 +12,7 @@ import { sampleAdvancedGraphExpression } from "../graph-studio/advancedGraphLaye
 import { createBlankGraphDataRows, numericGraphData, parseGraphData, regressionModel, type GraphDataRow, type RegressionKind } from "../graph-studio/dataAnalysis";
 import { buildTransformationExpression, detectGraphAsymptotes, precisionSnapX, sampleTaylorPolynomial } from "../graph-studio/graph2dAdvanced";
 import { buildExactGraphAnalysis, buildExactIntersections } from "../graph-studio/exactGraphAnalysis";
-import { reconcileGraphVariables, substituteGraphVariables } from "../graph-studio/expressionEngine";
+import { reconcileGraphVariables, substituteGraphVariables, advanceGraphVariable } from "../graph-studio/expressionEngine";
 import { fitGraphView } from "../graph-studio/graphViewUtils";
 import { downloadGraphStudioFile, exportGraphStudioProject } from "../graph-studio/projectStorage";
 import { useGraphStudioProject } from "../graph-studio/useGraphStudioProject";
@@ -156,13 +156,21 @@ export default function MathLabGraphingCalculator() {
   }, [functions]);
   useEffect(() => {
     if (!variablesPlaying || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const timer = window.setInterval(() => setGraphVariables((current) => current.map(advanceGraphVariable)), 60);
-    return () => window.clearInterval(timer);
+    let frame = 0;
+    let last = performance.now();
+    const tick = (now: number) => {
+      const dt = now - last;
+      last = now;
+      setGraphVariables((current) => current.map((variable) => advanceGraphVariable(variable, dt)));
+      frame = window.requestAnimationFrame(tick);
+    };
+    frame = window.requestAnimationFrame(tick);
+    return () => window.cancelAnimationFrame(frame);
   }, [variablesPlaying]);
 
   const plotted = useMemo(() => functions.map((item) => {
     const source = item.transform?.enabled ? buildTransformationExpression(item.transform.parent, item.transform.a, item.transform.b, item.transform.h, item.transform.k) : item.input;
-    const sampled = sampleGraphExpression(substituteGraphVariables(source, graphVariables), view.xMin, view.xMax, 900);
+    const sampled = sampleGraphExpression(substituteGraphVariables(source, graphVariables), view.xMin, view.xMax, 900, view.yMin, view.yMax);
     return { ...item, ...sampled };
   }), [functions, graphVariables, view]);
 
@@ -529,8 +537,17 @@ function SavedGraphList({ saved, onLoad, onDelete }: { saved: SavedGraphWorkspac
   );
 }
 
-function sampleGraphExpression(input: string, xMin: number, xMax: number, samples: number): GraphExpressionSample {
+function sampleGraphExpression(input: string, xMin: number, xMax: number, samples: number, yMin = xMin, yMax = xMax): GraphExpressionSample {
   const normalized = input.trim().replace(/\u00b2/g, "^2").replace(/\u00b3/g, "^3").replace(/\u03b8/g, "theta").replace(/\s+/g, "");
+  const listMatch = normalized.match(/^\[(.+)\]$/);
+  if (listMatch && listMatch[1].split(",").every((item) => /^-?\d+(?:\.\d+)?$/.test(item.trim()))) {
+    const values = listMatch[1].split(",").map(Number);
+    return {
+      points: values.map((value, index) => ({ x: index + 1, y: value, valid: true })),
+      normalized,
+      style: "points",
+    };
+  }
   const advanced = sampleAdvancedGraphExpression(input, xMin, xMax);
   if (advanced) return advanced;
   if (normalized.includes(";") && normalized.split(";").every((item) => /^\(-?\d+(?:\.\d+)?,-?\d+(?:\.\d+)?\)$/.test(item))) {
@@ -606,8 +623,8 @@ function sampleGraphExpression(input: string, xMin: number, xMax: number, sample
     const [, left, operator, right] = relation;
     try {
       const fn = compileTwoVariableExpression(`(${left})-(${right})`);
-      if (operator !== "=") return { points: sampleInequalityRegion(fn, operator, xMin, xMax, 88), boundaryPoints: sampleImplicitRelation(fn, xMin, xMax, 110), boundaryStyle: operator.length === 1 ? "dashed" : "line", normalized, style: "region" };
-      return { points: sampleImplicitRelation(fn, xMin, xMax, 140), normalized, style: "line" };
+      if (operator !== "=") return { points: sampleInequalityRegion(fn, operator, xMin, xMax, yMin, yMax, 88), boundaryPoints: sampleImplicitRelation(fn, xMin, xMax, yMin, yMax, 110), boundaryStyle: operator.length === 1 ? "dashed" : "line", normalized, style: "region" };
+      return { points: sampleImplicitRelation(fn, xMin, xMax, yMin, yMax, 140), normalized, style: "line" };
     } catch (error) {
       return { points: [], normalized, style: "points", error: error instanceof Error ? error.message : "Invalid implicit relation." };
     }
@@ -615,18 +632,19 @@ function sampleGraphExpression(input: string, xMin: number, xMax: number, sample
   return { ...sampleFunction(input, xMin, xMax, samples), style: "line" as const };
 }
 
-function sampleImplicitRelation(fn: (x: number, y: number) => number, min: number, max: number, resolution: number) {
+function sampleImplicitRelation(fn: (x: number, y: number) => number, xMin: number, xMax: number, yMin: number, yMax: number, resolution: number) {
   const points: GraphSample[] = [];
-  const step = (max - min) / resolution;
+  const dx = (xMax - xMin) / resolution;
+  const dy = (yMax - yMin) / resolution;
   for (let row = 0; row < resolution; row += 1) {
-    const y = min + row * step;
+    const y = yMin + row * dy;
     for (let column = 0; column < resolution; column += 1) {
-      const x = min + column * step;
+      const x = xMin + column * dx;
       const corners = [
         { x, y, value: fn(x, y) },
-        { x: x + step, y, value: fn(x + step, y) },
-        { x: x + step, y: y + step, value: fn(x + step, y + step) },
-        { x, y: y + step, value: fn(x, y + step) },
+        { x: x + dx, y, value: fn(x + dx, y) },
+        { x: x + dx, y: y + dy, value: fn(x + dx, y + dy) },
+        { x, y: y + dy, value: fn(x, y + dy) },
       ];
       if (!corners.every((corner) => Number.isFinite(corner.value))) continue;
       const intersections = [[0, 1], [1, 2], [2, 3], [3, 0]].flatMap(([from, to]) => {
@@ -644,12 +662,12 @@ function sampleImplicitRelation(fn: (x: number, y: number) => number, min: numbe
   return points;
 }
 
-function sampleInequalityRegion(fn: (x: number, y: number) => number, operator: string, min: number, max: number, resolution: number) {
+function sampleInequalityRegion(fn: (x: number, y: number) => number, operator: string, xMin: number, xMax: number, yMin: number, yMax: number, resolution: number) {
   const points: GraphSample[] = [];
   for (let row = 0; row < resolution; row += 1) {
-    const y = min + row / (resolution - 1) * (max - min);
+    const y = yMin + row / Math.max(1, resolution - 1) * (yMax - yMin);
     for (let column = 0; column < resolution; column += 1) {
-      const x = min + column / (resolution - 1) * (max - min);
+      const x = xMin + column / Math.max(1, resolution - 1) * (xMax - xMin);
       const value = fn(x, y);
       const inside = operator.includes("<") ? value <= 0 : value >= 0;
       if (inside && Number.isFinite(value)) points.push({ x, y, valid: true });
@@ -793,20 +811,4 @@ function escapeHtmlAttribute(value: string) { return value.replace(/&/g, "&amp;"
 
 function sameVariables(current: GraphStudioVariable[], next: GraphStudioVariable[]) {
   return current.length === next.length && current.every((variable, index) => variable.id === next[index]?.id);
-}
-
-function advanceGraphVariable(variable: GraphStudioVariable): GraphStudioVariable {
-  if (!variable.playing || variable.max <= variable.min) return variable;
-  const increment = Math.max(0.001, variable.step) * variable.speed * variable.direction;
-  let value = variable.value + increment;
-  let direction = variable.direction;
-  if (variable.playback === "ping-pong") {
-    if (value >= variable.max) { value = variable.max; direction = -1; }
-    if (value <= variable.min) { value = variable.min; direction = 1; }
-  } else {
-    const span = variable.max - variable.min;
-    if (value > variable.max) value = variable.min + (value - variable.max) % span;
-    if (value < variable.min) value = variable.max - (variable.min - value) % span;
-  }
-  return { ...variable, value: Number(value.toFixed(10)), direction };
 }

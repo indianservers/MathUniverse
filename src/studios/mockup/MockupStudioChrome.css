@@ -78,6 +78,7 @@
 .msk-lab-tools{display:inline-flex;align-items:center;gap:6px}
 .msk-lab-tools:empty{display:none}
 .msk-tools .msk-lab-tools button.coord-reset{width:auto;padding:0 12px;border-radius:999px;font-size:11px;font-weight:800;color:#7c3aed}
+.msk-tools .msk-lab-tools select{min-height:36px;padding:0 12px;border:1px solid var(--line);border-radius:999px;background:#fff;color:#334155;font-size:12px;font-weight:800}
 .msk-launch-head h2{margin:0}.msk-launch-head p{margin:4px 0 12px;color:var(--muted);font-size:13px}
 .msk-card em{margin-top:auto;color:#147df2;font-size:11px;font-style:normal;font-weight:800}
 .msk-journey-row{display:flex;gap:10px;margin-bottom:14px;padding:14px;border:1px solid var(--line);border-radius:16px;background:#fff}

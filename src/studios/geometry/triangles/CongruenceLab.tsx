@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { ChipRow, Field, Panel, SliderRow, StatusOk } from "../../mockup/studioLabKit";
 import {
   almostEqual,
@@ -36,7 +36,7 @@ function swapMap(swap: boolean) {
     : { A: "D", B: "E", C: "F", AB: "DE", BC: "EF", CA: "FD" };
 }
 
-export default function CongruenceLab() {
+export default function CongruenceLab({ pulse = "observe" }: { pulse?: string }) {
   const plane = defaultPlane(720, 460);
   const svgRef = useRef<SVGSVGElement>(null);
   const drag = useRef<"A" | "B" | "C" | null>(null);
@@ -119,8 +119,16 @@ export default function CongruenceLab() {
     setFree({ A: { x: 2.4, y: 6.6 }, B: { x: 1.5, y: 1.5 }, C: { x: 7.2, y: 1.6 } });
   };
 
+  useEffect(() => {
+    if (pulse === "observe") setTest("SSS");
+    if (pulse === "understand") setTest("SAS");
+    if (pulse === "why") setTest("SSA");
+    if (pulse === "try" || pulse === "challenge") setTest("SAS");
+  }, [pulse]);
+
   return (
     <LabFrame
+      theme="congruence"
       ariaLabel="Congruence laboratory"
       controls={
         <Panel title="Congruence test">
@@ -181,7 +189,6 @@ export default function CongruenceLab() {
       }
       canvas={
         <svg ref={svgRef} viewBox={`0 0 ${plane.width} ${plane.height}`} role="img" aria-label="Two corresponding triangles">
-          <rect width={plane.width} height={plane.height} fill="#f8fbff" />
           <polygon points={polyPoints(plane, [L.A, L.B, L.C])} fill="rgba(20,125,242,.10)" stroke="#147df2" strokeWidth="2.1" />
           <polygon points={polyPoints(plane, [R.A, R.B, R.C])} fill="rgba(139,69,244,.10)" stroke="#8b45f4" strokeWidth="2.1" />
           <SideTickMark plane={plane} a={L.A} b={L.B} count={1} color="#147df2" />

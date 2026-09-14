@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { SliderRow } from "../../mockup/studioLabKit";
 import {
   apothemFoot,
@@ -37,7 +37,7 @@ const PRESETS = [
 
 type HL = "interior" | "exterior" | "apothem" | "radius" | "side" | "diagonals" | "area" | "center" | "circle" | null;
 
-export default function RegularPolygonLab() {
+export default function RegularPolygonLab({ pulse = "observe" }: { pulse?: string }) {
   const [n, setN] = useState(8);
   const [R, setR] = useState(4);
   const [rot, setRot] = useState(0);
@@ -66,8 +66,14 @@ export default function RegularPolygonLab() {
   const hover = (key: HL) => (on: boolean) => setHL(on ? key : null);
   const on = (key: HL) => highlight === key;
 
+  useEffect(() => {
+    if (pulse === "try" || pulse === "challenge") setN(8);
+    if (pulse === "understand") { setShowApothem(true); setHL("apothem"); }
+    if (pulse === "why") { setShowInterior(true); setHL("interior"); }
+  }, [pulse]);
+
   return (
-    <div className="poly-lab">
+    <div className="poly-lab poly-lab--regular">
       <Controls title="Regular polygon">
         <SliderRow label="Sides n" value={n} min={3} max={advanced ? 50 : 20} step={1} onChange={setN} />
         <Toggle checked={advanced} onChange={setAdvanced}>Advanced: n up to 50</Toggle>
@@ -87,33 +93,6 @@ export default function RegularPolygonLab() {
 
       <Stage
         label={`Regular ${regularPolygonName(n)}`}
-        toolbar={(
-          <div className="poly-canvas-tools" aria-label="Canvas tools">
-            <button type="button" className="active" aria-label="Select"><svg viewBox="0 0 24 24"><path d="M7 4 8 17l3.2-3.1L14.8 20l1.8-1-3.5-6.1L18 12Z" fill="none" stroke="currentColor" strokeWidth="1.7" /></svg></button>
-            <button type="button" aria-label="Add"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" strokeWidth="1.7" /></svg></button>
-            <button type="button" aria-label="Line"><svg viewBox="0 0 24 24"><path d="M4 18 20 6" fill="none" stroke="currentColor" strokeWidth="1.7" /></svg></button>
-            <button type="button" aria-label="Text"><svg viewBox="0 0 24 24"><path d="M6 7h12M12 7v11" fill="none" stroke="currentColor" strokeWidth="1.7" /></svg></button>
-            <button type="button" aria-label="Circle"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7" fill="none" stroke="currentColor" strokeWidth="1.7" /></svg></button>
-          </div>
-        )}
-        footer={(
-          <div className="poly-tess-preview">
-            <b>Tessellation preview</b>
-            <svg viewBox="0 0 420 90" aria-label="Hex tessellation preview">
-              {Array.from({ length: 14 }, (_, i) => {
-                const col = i % 7;
-                const row = Math.floor(i / 7);
-                const cx = 36 + col * 56 + (row % 2) * 28;
-                const cy = 28 + row * 48;
-                const pts = Array.from({ length: 6 }, (_, k) => {
-                  const a = ((k * 60) - 30) * Math.PI / 180;
-                  return `${cx + 22 * Math.cos(a)},${cy + 22 * Math.sin(a)}`;
-                }).join(" ");
-                return <polygon key={i} points={pts} fill="none" stroke="#147df2" />;
-              })}
-            </svg>
-          </div>
-        )}
       >
         {showCircle || on("circle") ? (
           <circle cx={origin.x} cy={origin.y} r={rPx} fill="none" stroke={on("circle") ? "#0891b2" : "#c9d8ea"} strokeWidth={on("circle") ? 2.2 : 1.2} />
@@ -166,22 +145,13 @@ export default function RegularPolygonLab() {
           <text key={`L${i}`} x={p.x + (p.x - origin.x) * 0.08} y={p.y + (p.y - origin.y) * 0.08} fontSize="11" fontWeight="800" fill="#0f172a">{String.fromCharCode(65 + (i % 26))}</text>
         )) : null}
         {screen.map((p, i) => <circle key={`v${i}`} cx={p.x} cy={p.y} r="5" fill="#08b9dd" stroke="#fff" strokeWidth="1.4" />)}
-        <text x="20" y="28" fill="#0f172a" fontSize="14" fontWeight="800">Regular {regularPolygonName(n)}</text>
+        <text x="20" y="28" fill="#0f172a" fontSize="14" fontWeight="800" className={pulse === "observe" ? "poly-focus" : undefined}>Regular {regularPolygonName(n)}</text>
         <text x="20" y="46" fill="#536381" fontSize="11">n = {m.n} · vertex-up orientation {fmt(rot, 0)}°</text>
       </Stage>
 
-      <LivePanel title="Live object tree">
-        <MeasureRow color="#10b981" label="Polygon" value={`Regular ${regularPolygonName(n)}`} />
-        <MeasureRow color="#08b9dd" label="Vertices" value={Array.from({ length: n }, (_, i) => String.fromCharCode(65 + i)).join(", ")} />
-        <MeasureRow color="#8b45f4" label="Center" value="O" />
-        <MeasureRow color="#147df2" label="Sides" value={n} />
-        <h2>Dependencies</h2>
+      <LivePanel title="Live measurements">
         <MeasureRow color="#147df2" label="n" value={m.n} />
         <MeasureRow color="#0891b2" label="R" value={fmt(m.R, 3)} />
-        <MeasureRow color="#8b45f4" label="Interior" value={fmtDeg(m.interior)} />
-        <MeasureRow color="#f59e0b" label="Exterior" value={fmtDeg(m.exterior)} />
-      </LivePanel>
-      <LivePanel title="Measurements">
         <MeasureRow color="#147df2" label="Side length" value={fmt(m.side, 3)} active={on("side")} onHover={hover("side")} />
         <MeasureRow color="#0ea5e9" label="Perimeter" value={fmt(m.perimeter, 3)} />
         <MeasureRow color="#8b45f4" label="Interior angle" value={fmtDeg(m.interior)} active={on("interior")} onHover={hover("interior")} />
@@ -191,9 +161,8 @@ export default function RegularPolygonLab() {
         <MeasureRow color="#0891b2" label="Circumradius" value={fmt(m.R, 3)} active={on("circle")} onHover={hover("circle")} />
         <MeasureRow color="#147df2" label="Area" value={fmt(m.area, 3)} active={on("area")} onHover={hover("area")} />
         <MeasureRow color="#8b45f4" label="Diagonals" value={m.diagonals} active={on("diagonals")} onHover={hover("diagonals")} />
-        <h2>Proof explanation</h2>
         <FormulaCard title="Formulas">
-          Interior ((n−2)×180°)/n = {fmtDeg(m.interior)}. Exterior 360°/n = {fmtDeg(m.exterior)}. Area = ½ n R² sin(2π/n).
+          Interior ((n−2)×180°)/n = {fmtDeg(m.interior)}. Exterior 360°/n = {fmtDeg(m.exterior)}. Side s = 2R sin(π/n). Apothem a = R cos(π/n). Area = ½ n R² sin(2π/n).
         </FormulaCard>
         <PropertyCard title="Why it matters">
           Equal sides and equal angles make a regular {regularPolygonName(n)} the model for bolt heads, stop signs, and honeycomb cells.

@@ -4,45 +4,45 @@ import type { TriangleModeDef, TriangleModeId } from "./useTriangleLabMode";
 function Icon({ id }: { id: TriangleModeId }) {
   if (id === "congruence") {
     return (
-      <svg viewBox="0 0 28 28" fill="none" aria-hidden="true">
-        <polygon points="4,22 10,6 16,22" strokeWidth="1.6" />
-        <polygon points="12,22 18,8 24,22" strokeWidth="1.6" />
+      <svg viewBox="0 0 46 46" fill="none" aria-hidden="true">
+        <polygon points="6,36 16,10 26,36" strokeWidth="2" />
+        <polygon points="20,36 30,12 40,36" strokeWidth="2" />
       </svg>
     );
   }
   if (id === "similarity") {
     return (
-      <svg viewBox="0 0 28 28" fill="none" aria-hidden="true">
-        <polygon points="5,22 10,10 15,22" strokeWidth="1.6" />
-        <polygon points="13,22 20,6 27,22" strokeWidth="1.6" />
+      <svg viewBox="0 0 46 46" fill="none" aria-hidden="true">
+        <polygon points="6,36 14,18 22,36" strokeWidth="2" />
+        <polygon points="22,36 32,8 44,36" strokeWidth="2" />
       </svg>
     );
   }
   if (id === "centers") {
     return (
-      <svg viewBox="0 0 28 28" fill="none" aria-hidden="true">
-        <polygon points="14,5 24,23 4,23" strokeWidth="1.6" />
-        <line x1="14" y1="5" x2="14" y2="23" strokeWidth="1.2" />
-        <line x1="4" y1="23" x2="19" y2="11" strokeWidth="1.2" />
-        <circle cx="14" cy="16" r="1.8" fill="currentColor" />
+      <svg viewBox="0 0 46 46" fill="none" aria-hidden="true">
+        <polygon points="23,6 40,38 6,38" strokeWidth="2" />
+        <line x1="23" y1="6" x2="23" y2="38" strokeWidth="1.4" />
+        <line x1="6" y1="38" x2="32" y2="16" strokeWidth="1.4" />
+        <circle cx="23" cy="26" r="2.4" fill="currentColor" />
       </svg>
     );
   }
   if (id === "inequalities") {
     return (
-      <svg viewBox="0 0 28 28" fill="none" aria-hidden="true">
-        <line x1="4" y1="8" x2="24" y2="8" strokeWidth="1.8" />
-        <line x1="4" y1="14" x2="18" y2="14" strokeWidth="1.8" />
-        <line x1="4" y1="20" x2="14" y2="20" strokeWidth="1.8" />
+      <svg viewBox="0 0 46 46" fill="none" aria-hidden="true">
+        <line x1="6" y1="12" x2="40" y2="12" strokeWidth="2.2" />
+        <line x1="6" y1="23" x2="30" y2="23" strokeWidth="2.2" />
+        <line x1="6" y1="34" x2="22" y2="34" strokeWidth="2.2" />
       </svg>
     );
   }
   return (
-    <svg viewBox="0 0 28 28" fill="none" aria-hidden="true">
-      <polygon points="14,5 24,23 4,23" strokeWidth="1.7" />
-      <circle cx="14" cy="5" r="1.6" fill="currentColor" />
-      <circle cx="24" cy="23" r="1.6" fill="currentColor" />
-      <circle cx="4" cy="23" r="1.6" fill="currentColor" />
+    <svg viewBox="0 0 46 46" fill="none" aria-hidden="true">
+      <polygon points="23,6 40,38 6,38" strokeWidth="2.2" />
+      <circle cx="23" cy="6" r="2.4" fill="currentColor" />
+      <circle cx="40" cy="38" r="2.4" fill="currentColor" />
+      <circle cx="6" cy="38" r="2.4" fill="currentColor" />
     </svg>
   );
 }
@@ -59,7 +59,7 @@ export default function TriangleModeTabs({
   }, [mode]);
   return (
     <nav className="tri-tabs" role="tablist" aria-label="Triangles Lab modes">
-      {modes.map((item) => (
+      {modes.map((item, index) => (
         <button
           key={item.id}
           type="button"
@@ -69,8 +69,15 @@ export default function TriangleModeTabs({
           aria-pressed={item.id === mode}
           aria-selected={item.id === mode}
           tabIndex={item.id === mode ? 0 : -1}
-          title={`${item.label}: ${item.subtitle}. Shortcut ${modes.findIndex((entry) => entry.id === item.id) + 1}`}
+          title={`${item.label}: ${item.subtitle}. Shortcut ${index + 1}`}
           onClick={() => onChange(item.id)}
+          onKeyDown={(event) => {
+            if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return;
+            event.preventDefault();
+            const i = modes.findIndex((m) => m.id === mode);
+            const next = event.key === "ArrowRight" ? (i + 1) % modes.length : (i - 1 + modes.length) % modes.length;
+            onChange(modes[next]!.id);
+          }}
         >
           <Icon id={item.id} />
           <span>

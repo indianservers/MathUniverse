@@ -848,7 +848,7 @@ export default function GeometryWorkspacePanel({
           <button
             type="button"
             onClick={() => onResizeSelected("decrease")}
-            disabled={!selectedGeometry}
+            disabled={!selectedGeometry && selectedPointIds.length === 0}
             title="Resize selected shape smaller"
           >
             <Minus className="h-4 w-4" />
@@ -857,7 +857,7 @@ export default function GeometryWorkspacePanel({
           <button
             type="button"
             onClick={() => onResizeSelected("increase")}
-            disabled={!selectedGeometry}
+            disabled={!selectedGeometry && selectedPointIds.length === 0}
             title="Resize selected shape larger"
           >
             <Plus className="h-4 w-4" />

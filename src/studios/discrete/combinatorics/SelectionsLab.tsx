@@ -81,6 +81,7 @@ export default function SelectionsLab({
 
   return (
     <ComboWorkspace
+      theme="sel"
       collapsed={collapsed}
       onToggle={() => setCollapsed((v) => !v)}
       controls={
@@ -167,7 +168,16 @@ export default function SelectionsLab({
                   </div>
                 </div>
               ) : (
-                <p className="combo-note">{orderMatters ? `Those ${picked.length} items would count as ${factorial(picked.length)} ordered lists.` : "ABC, ACB, and BAC are the same selection."}</p>
+                <>
+                  <p className="combo-note">{orderMatters ? `Those ${picked.length} items would count as ${factorial(picked.length)} ordered lists.` : "ABC, ACB, and BAC are the same selection."}</p>
+                  {picked.length >= 2 && !orderMatters ? (
+                    <div className="combo-collapse" aria-label="Orders collapse">
+                      {generatePermutations(picked, picked.length, 12).map((row) => <s key={row.join("")}>{row.join("")}</s>)}
+                      <span>→</span>
+                      <strong>{[...picked].sort().join("")}</strong>
+                    </div>
+                  ) : null}
+                </>
               )}
             </>
           ) : null}

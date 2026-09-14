@@ -248,10 +248,26 @@ export function Stage({ children, label, footer, toolbar }: { children: ReactNod
     <section className="msk-panel msk-canvas poly-stage" id="lab-canvas">
       {toolbar}
       <svg className="msk-graph poly-svg" viewBox={`0 0 ${VIEW.w} ${VIEW.h}`} role="img" aria-label={label}>
-        <rect width={VIEW.w} height={VIEW.h} fill="#fbfdff" />
         {children}
       </svg>
       {footer}
+    </section>
+  );
+}
+
+export function LearningStrip({
+  items,
+}: {
+  items: Array<{ title: string; text: string; onClick: () => void; active?: boolean }>;
+}) {
+  return (
+    <section className="poly-strip" aria-label="Learning loop">
+      {items.map((item) => (
+        <button key={item.title} type="button" className={item.active ? "is-on" : ""} onClick={item.onClick}>
+          <b>{item.title}</b>
+          <small>{item.text}</small>
+        </button>
+      ))}
     </section>
   );
 }

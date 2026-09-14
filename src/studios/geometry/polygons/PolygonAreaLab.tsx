@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { SliderRow } from "../../mockup/studioLabKit";
 import {
   COMPOSITE_PRESETS,
@@ -31,7 +31,7 @@ import {
 
 type AreaSub = "regular" | "decomposition" | "composite" | "coordinate";
 
-export default function PolygonAreaLab() {
+export default function PolygonAreaLab({ pulse = "observe" }: { pulse?: string }) {
   const [sub, setSub] = useState<AreaSub>("regular");
   const [n, setN] = useState(6);
   const [R, setR] = useState(3.6);
@@ -85,8 +85,14 @@ export default function PolygonAreaLab() {
 
   const target = useMemo(() => 50, []);
 
+  useEffect(() => {
+    if (pulse === "try") setSub("composite");
+    if (pulse === "why") { setSub("coordinate"); setTableOpen(true); }
+    if (pulse === "observe" || pulse === "challenge") setSub("regular");
+  }, [pulse]);
+
   return (
-    <div className="poly-lab">
+    <div className="poly-lab poly-lab--area">
       <Controls title="Area explorer">
         <div className="poly-sub">
           {([["regular", "Regular area"], ["decomposition", "Decomposition"], ["composite", "Composite"], ["coordinate", "Coordinate"]] as const).map(([id, label]) => (
@@ -118,7 +124,7 @@ export default function PolygonAreaLab() {
 
       <section className="msk-panel msk-canvas poly-stage">
         <svg ref={svgRef} className="msk-graph poly-svg" viewBox={`0 0 ${VIEW.w} ${VIEW.h}`} role="img" aria-label="Area lab">
-          <rect width={VIEW.w} height={VIEW.h} fill="#fbfdff" />
+          <rect width={VIEW.w} height={VIEW.h} fill="none" />
           {sub === "regular" ? (
             <g>
               {regularVerts.slice(0, wedgeCount).map((_, i) => {

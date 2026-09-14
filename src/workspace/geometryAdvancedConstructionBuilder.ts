@@ -7,7 +7,7 @@ export type GeometryAdvancedBuildResult = {
   status: GeometryConstructionStatus;
 };
 
-export type GeometryAdvancedTransformMode = "translate" | "rotate" | "dilate";
+export type GeometryAdvancedTransformMode = "translate" | "rotate" | "dilate" | "mirror";
 
 type PointLike = { x: number; y: number };
 
@@ -297,13 +297,14 @@ export function buildSelectedPointsTransform(
   const points = construction.points.filter((point) => uniqueIds.includes(point.id));
   if (!points.length) return warning(construction, uniqueIds, "Transform needs at least one selected point.");
   const center = centroid(points);
-  const angle = degreesToRadians(20);
+  const angle = degreesToRadians(45);
   return success({
     ...construction,
     points: construction.points.map((point) => {
       if (!uniqueIds.includes(point.id)) return point;
       if (mode === "translate") return { ...point, x: point.x + 24, y: point.y - 18 };
-      if (mode === "dilate") return { ...point, x: center.x + (point.x - center.x) * 1.15, y: center.y + (point.y - center.y) * 1.15 };
+      if (mode === "dilate") return { ...point, x: center.x + (point.x - center.x) * 1.5, y: center.y + (point.y - center.y) * 1.5 };
+      if (mode === "mirror") return { ...point, x: 2 * center.x - point.x, y: point.y };
       const dx = point.x - center.x;
       const dy = point.y - center.y;
       return { ...point, x: center.x + dx * Math.cos(angle) - dy * Math.sin(angle), y: center.y + dx * Math.sin(angle) + dy * Math.cos(angle) };

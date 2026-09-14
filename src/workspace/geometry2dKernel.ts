@@ -142,6 +142,29 @@ export function polygonPerimeter(points: KernelPoint[]) {
   return points.reduce((sum, item, index) => sum + distanceBetween(item, points[(index + 1) % points.length]), 0);
 }
 
+export function projectPointToLine(target: KernelPoint, object: KernelLinearObject): KernelPoint {
+  const ab = vector(object.a, object.b);
+  const length = ab.x * ab.x + ab.y * ab.y;
+  if (length < EPS) return { ...object.a };
+  const t = ((target.x - object.a.x) * ab.x + (target.y - object.a.y) * ab.y) / length;
+  const clamped = object.kind === "segment" ? Math.min(1, Math.max(0, t)) : object.kind === "ray" ? Math.max(0, t) : t;
+  return point(object.a.x + ab.x * clamped, object.a.y + ab.y * clamped);
+}
+
+export function reflectPointOverLine(target: KernelPoint, object: KernelLinearObject): KernelPoint {
+  const foot = projectPointToLine(target, { ...object, kind: "line" });
+  return point(2 * foot.x - target.x, 2 * foot.y - target.y);
+}
+
+export function invertPointInCircle(target: KernelPoint, host: KernelCircle): KernelPoint | null {
+  const dx = target.x - host.center.x;
+  const dy = target.y - host.center.y;
+  const r2 = dx * dx + dy * dy;
+  if (r2 < EPS) return null;
+  const scale = (host.radius * host.radius) / r2;
+  return point(host.center.x + dx * scale, host.center.y + dy * scale);
+}
+
 export function proofHintsForRelation(result: RelationResult) {
   const hints: Record<RelationResult["relation"], string[]> = {
     parallel: ["Compare slopes.", "Or compare direction vectors.", "Parallel lines keep a constant distance apart."],

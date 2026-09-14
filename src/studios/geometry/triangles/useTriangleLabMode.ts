@@ -58,9 +58,12 @@ export function useTriangleLabMode() {
   const [params, setParams] = useSearchParams();
   const mode = parseTriangleMode(params.get("mode"));
   const setMode = (next: TriangleModeId) => {
-    const updated = new URLSearchParams(params);
-    updated.set("mode", next);
-    setParams(updated);
+    setParams((prev) => {
+      const updated = new URLSearchParams(prev);
+      if (next === "explorer") updated.delete("mode");
+      else updated.set("mode", next);
+      return updated;
+    });
   };
   return { mode, setMode, modes: TRIANGLE_MODES };
 }

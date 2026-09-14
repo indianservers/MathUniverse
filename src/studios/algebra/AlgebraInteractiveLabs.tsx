@@ -5,39 +5,102 @@ import { Link } from "react-router-dom";
 import { useStudioMode } from "../../hooks/useStudioMode";
 import { runCasOperation, type CasOperation } from "../../utils/mathEngine/casUtils";
 import { sampleFunction } from "../../utils/mathEngine/graphSampler";
-import { polynomialFromRoots, quadraticRoots, solveLinearEquation, solveLinearInequality, syntheticDivide } from "./algebraEnhancementEngine";
+import { polynomialFromRoots, syntheticDivide } from "./algebraEnhancementEngine";
+import {
+  addPolynomials,
+  answersMatchChallenge,
+  classifyProofReason,
+  combination,
+  describeLinearSolution,
+  evaluateAlgebraExpression,
+  expressionsEquivalent,
+  factorQuadraticFromTiles,
+  factorial,
+  formatAlgebraNumber,
+  geometricSeriesSum,
+  geometricInfiniteSum,
+  inverseExpression,
+  inverseFamilyStatus,
+  inverseOfTransformedFamily,
+  logWithBase,
+  multiplyPolynomials,
+  dividePolynomialStrings,
+  nthRoot,
+  polynomialCoefficients,
+  reasonMatchesStep,
+  reduceMatrix,
+  slopeInterceptSystem,
+  snapNearZero,
+  simplifySquareRadical,
+  solveExponentialEquation,
+} from "./algebraStudioMath";
+import { useAlgebraHistory } from "./useAlgebraHistory";
 
-const fmt = (n: number) => Number.isFinite(n) ? String(Math.round(n * 1e6) / 1e6) : "Undefined";
+const fmt = (n: number) => formatAlgebraNumber(n);
 function Card({ title, children }: { title: string; children: ReactNode }) { return <section className="alg-card"><h2>{title}</h2>{children}</section>; }
-function Numeric({ label, value, onChange, min = -20, max = 20, step = 1 }: { label: string; value: number; onChange: (n: number) => void; min?: number; max?: number; step?: number }) {
+function Numeric({ label, value, onChange, min = -20, max = 20, step = 1, onCommit }: { label: string; value: number; onChange: (n: number) => void; min?: number; max?: number; step?: number; onCommit?: (n: number) => void }) {
   const [draft, setDraft] = useState(String(value));
   useEffect(() => setDraft(String(value)), [value]);
-  return <label className="alg-field">{label}<input type="number" min={min} max={max} step={step} value={draft} onChange={(e) => { setDraft(e.target.value); if (e.target.value !== "" && Number.isFinite(e.target.valueAsNumber)) onChange(Math.max(min, Math.min(max, e.target.valueAsNumber))); }} onBlur={() => setDraft(String(value))} /></label>;
+  const apply = (raw: string, commit = false) => {
+    setDraft(raw);
+    if (raw === "" || !Number.isFinite(Number(raw))) return;
+    const next = Math.max(min, Math.min(max, Number(raw)));
+    onChange(next);
+    if (commit) onCommit?.(next);
+  };
+  return <label className="alg-field">{label}<input type="number" min={min} max={max} step={step} value={draft} onChange={(e) => apply(e.target.value)} onBlur={() => { if (draft === "" || !Number.isFinite(Number(draft))) setDraft(String(value)); else onCommit?.(Number(draft)); }} /></label>;
 }
 function Result({ children }: { children: ReactNode }) { return <output className="alg-live-expression" aria-live="polite">{children}</output>; }
-function Plot({ expressions }: { expressions: string[] }) {
-  const paths = useMemo(() => expressions.map((expression) => {
+function Plot({ expressions, shade = [], dashed = [] }: { expressions: string[]; shade?: Array<"above" | "below" | null>; dashed?: boolean[] }) {
+  const paths = useMemo(() => expressions.map((expression, index) => {
     const points = sampleFunction(expression, -6, 6, 240).points;
     let drawing = false;
-    return points.map((p) => { if (!p.valid || p.y === null || !Number.isFinite(p.y) || Math.abs(p.y) > 15) { drawing = false; return ""; } const command = drawing ? "L" : "M"; drawing = true; return `${command}${350 + p.x * 50},${190 - p.y * 11}`; }).join(" ");
-  }), [expressions]);
-  return <svg className="alg-graph" viewBox="0 0 700 380" aria-label="Calculated algebra graph" role="img"><path d="M30 190H670M350 25V355" stroke="currentColor" fill="none" />{paths.map((d, i) => <path key={i} d={d} stroke={["#0891b2", "#8b5cf6", "#d97706"][i % 3]} fill="none" strokeWidth="3" />)}</svg>;
+    let lastY: number | null = null;
+    const line: string[] = [];
+    const fill: string[] = [];
+    points.forEach((p) => {
+      if (!p.valid || p.y === null || !Number.isFinite(p.y) || Math.abs(p.y) > 15 || (lastY !== null && Math.abs(p.y - lastY) > 12)) {
+        drawing = false;
+        lastY = null;
+        return;
+      }
+      const x = 350 + p.x * 50;
+      const y = 190 - p.y * 11;
+      line.push(`${drawing ? "L" : "M"}${x},${y}`);
+      const mode = shade[index];
+      if (mode) fill.push(`${drawing ? "L" : "M"}${x},${y} L${x},${mode === "above" ? 25 : 355}`);
+      drawing = true;
+      lastY = p.y;
+    });
+    return { line: line.join(" "), fill: fill.join(" ") };
+  }), [expressions, shade]);
+  return (
+    <svg className="alg-graph" viewBox="0 0 700 380" aria-label="Calculated algebra graph" role="img">
+      <path d="M30 190H670M350 25V355" stroke="currentColor" fill="none" />
+      {paths.map((d, i) => d.fill ? <path key={`s${i}`} d={d.fill} stroke="none" fill={["#0891b233", "#8b5cf633"][i % 2]} /> : null)}
+      {paths.map((d, i) => <path key={i} d={d.line} stroke={["#0891b2", "#8b5cf6", "#d97706"][i % 3]} fill="none" strokeWidth="3" strokeDasharray={dashed[i] ? "8 6" : undefined} />)}
+    </svg>
+  );
 }
-function Challenge({ expected, prompt }: { expected: number; prompt: string }) {
+function Challenge({ expected, prompt, onNew }: { expected: number | string; prompt: string; onNew?: () => void }) {
   const [answer, setAnswer] = useState("");
-  const [checked, setChecked] = useState<string | null>(null);
-  const key = `${expected}:${answer}`;
-  const correct = answer.trim() !== "" && Number.isFinite(Number(answer)) && Math.abs(Number(answer) - expected) < 0.0001;
-  return <Card title="Prediction Challenge"><p>{prompt}</p><label className="alg-field">Your answer<input value={answer} onChange={(e) => { setAnswer(e.target.value); setChecked(null); }} /></label><button type="button" className="alg-gradient-button" onClick={() => setChecked(key)}>Check answer</button>{checked === key && <p role="status">{correct ? "Correct." : "Not yet. Use the current parameters to calculate the answer."}</p>}</Card>;
+  const [checked, setChecked] = useState(false);
+  const [variant, setVariant] = useState(0);
+  const correct = answersMatchChallenge(answer, expected);
+  return <Card title="Prediction Challenge"><p>{prompt}</p><label className="alg-field">Your answer<input value={answer} onChange={(e) => { setAnswer(e.target.value); setChecked(false); }} onKeyDown={(e) => { if (e.key === "Enter") setChecked(true); }} /></label><div className="alg-tile-actions"><button type="button" className="alg-gradient-button" onClick={() => setChecked(true)}>Check answer</button><button type="button" onClick={() => { setAnswer(""); setChecked(false); setVariant((n) => n + 1); onNew?.(); }}>New Challenge</button></div>{checked && <p role="status">{correct ? "Correct." : "Not yet. Use the current parameters to calculate the answer."}</p>}<span className="sr-only">{variant}</span></Card>;
 }
 
-function LabStrip({ items }: { items: [string, string][] }) {
+function LabStrip({ items, onSelect }: { items: [string, string][]; onSelect?: (title: string) => void }) {
   const icons = [Lightbulb, Target, Sparkles, FlaskConical, Trophy];
   return (
     <section className="alg-learning-strip" aria-label="Learning loop">
       {items.map(([title, copy], index) => {
         const Icon = icons[index] ?? Lightbulb;
-        return <div key={title}><Icon /><span><b>{title}</b><small>{copy}</small></span></div>;
+        return (
+          <div key={title} role="button" tabIndex={0} onClick={() => onSelect?.(title)} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onSelect?.(title); } }}>
+            <Icon /><span><b>{title}</b><small>{copy}</small></span>
+          </div>
+        );
       })}
     </section>
   );
@@ -69,16 +132,44 @@ function prettyQuadratic(a: number, b: number, c: number) {
   return parts.join(" ").replace(/^\+/, "");
 }
 
+const help = {
+  expressions: {
+    Simplify: "Drag tiles to build ax²+bx+c. Simplify combines like terms. Equivalent forms are checked with the CAS, not hardcoded examples.",
+    Expand: "Type a product such as (x-1)*(x+2). Expand distributes and the area model updates from the resulting coefficients.",
+    Factor: "Factoring uses integer binomial search and the CAS. Grouping trays collect tile signs so you can factor by grouping.",
+    "Combine Terms": "Each tile changes one coefficient. Zero pairs cancel. The live expression is the combined polynomial.",
+  },
+  equations: {
+    Linear: "Operations always apply to both sides. 0x=0 is all real values; 0x=nonzero has no solution. Auto-balance isolates x.",
+    Quadratic: "Solves ax²+bx+c=0, including complex roots. The number line marks real roots only.",
+    "Absolute Value": "|ax+b|=c has no solution when c<0. If a=0, it is all reals only when |b|=c.",
+    Inequalities: "Multiplying or dividing by a negative flips the inequality. The number line shows the solution ray.",
+  },
+  functions: {
+    Families: "y = a f(x-h)+k. Change a, h, and k to stretch, shift, and reflect the chosen family.",
+    Transformations: "The same a, h, k rewrite the parent graph. The machine evaluates the live rule at the probe x.",
+    Composition: "First evaluate g(x)=ax+k, then apply the selected family f.",
+    Inverse: "Linear maps invert when a≠0. Quadratics invert only on a one-sided domain.",
+    Piecewise: "The left branch is ax+k for x<h and the family applies for x≥h. Graphs break at discontinuities.",
+  },
+};
+
 export function ExpressionsLab() {
   const modes = ["Simplify", "Expand", "Factor", "Combine Terms"];
   const [mode, setMode] = useStudioMode("mode", modes, "Simplify");
-  const [tiles, setTiles] = useState([1, 1, -2]);
+  const tiles = useAlgebraHistory([1, 1, -2]);
   const [draft, setDraft] = useState("(x-1)*(x+2)");
+  const [subX, setSubX] = useState(2);
+  const [subY, setSubY] = useState(5);
   const [groups, setGroups] = useState<{ a: number[]; b: number[] }>({ a: [], b: [] });
-  const expression = `${tiles[0]}*x^2+(${tiles[1]})*x+(${tiles[2]})`;
-  const pretty = prettyQuadratic(tiles[0], tiles[1], tiles[2]);
-  const result = runCasOperation(mode === "Expand" ? draft : expression, mode === "Factor" ? "factor" : mode === "Expand" ? "expand" : "simplify");
-  const add = (index: number, sign: number) => setTiles((current) => current.map((v, i) => i === index ? Math.max(-20, Math.min(20, v + sign)) : v));
+  const [focus, setFocus] = useState("Observe tiles, the area model, and equivalent forms.");
+  const [a, b, c] = tiles.state;
+  const expression = `${a}*x^2+(${b})*x+(${c})`;
+  const pretty = prettyQuadratic(a, b, c);
+  const expandedDraft = runCasOperation(draft, "expand");
+  const simplified = runCasOperation(mode === "Expand" && expandedDraft.ok ? expandedDraft.output : expression, "simplify");
+  const factored = factorQuadraticFromTiles(a, b, c);
+  const add = (index: number, sign: number) => tiles.commit(tiles.state.map((v, i) => i === index ? Math.max(-20, Math.min(20, v + sign)) : v));
   const drop = (e: DragEvent, tray?: "a" | "b") => {
     e.preventDefault();
     const [i, sign] = e.dataTransfer.getData("text/plain").split(",").map(Number);
@@ -86,15 +177,15 @@ export function ExpressionsLab() {
     add(i, sign);
     if (tray) setGroups((g) => ({ ...g, [tray]: [...g[tray], sign] }));
   };
-  const forms = [
-    pretty,
-    result.output,
-    tiles[0] === 1 && tiles[1] === 1 && tiles[2] === -2 ? "(x − 1)(x + 2)" : result.output,
-    tiles[0] === 1 ? `x(x ${tiles[1] >= 0 ? "+" : "−"} ${Math.abs(tiles[1])}) ${tiles[2] >= 0 ? "+" : "−"} ${Math.abs(tiles[2])}` : pretty,
-  ];
+  const forms = [pretty, simplified.ok ? simplified.output : pretty, factored.ok ? factored.output : pretty];
+  const grouped = groups.a.length || groups.b.length
+    ? `${groups.a.reduce((s, n) => s + n, 0)}x from A and ${groups.b.reduce((s, n) => s + n, 0)} units from B`
+    : "Drop tiles to group factors.";
+  const factoredMatch = factored.ok && expressionsEquivalent(expression, factored.output);
   return (
     <div className="alg-page">
-      <AlgebraLabHeading subtitle="Build, transform and factor algebraic expressions with interactive tiles and visual models." modes={modes} mode={mode} onMode={setMode}>Expressions &amp; Algebra Tiles Lab</AlgebraLabHeading>
+      <AlgebraLabHeading subtitle="Build, transform and factor algebraic expressions with interactive tiles and visual models." modes={modes} mode={mode} onMode={setMode} onUndo={tiles.undo} onRedo={tiles.redo} canUndo={tiles.canUndo} canRedo={tiles.canRedo} onReset={() => { tiles.reset([1, 1, -2]); setDraft("(x-1)*(x+2)"); setGroups({ a: [], b: [] }); }} helpTitle={`${mode} help`} helpBody={help.expressions[mode as keyof typeof help.expressions]}>{`Expressions & Algebra Tiles Lab`}</AlgebraLabHeading>
+      <p role="status">{focus}</p>
       <div className="alg-expr-dash">
         <Card title="1. Drag tiles to build your expression">
           <div className="alg-tile-cols">
@@ -104,37 +195,52 @@ export function ExpressionsLab() {
             <button type="button" draggable key={tile.label} onDragStart={(e) => e.dataTransfer.setData("text/plain", `${tile.index},${tile.sign}`)} onClick={() => add(tile.index, tile.sign)}>{tile.label}</button>
           ))}</div>
           <div className="alg-tile-actions">
-            <button type="button" onClick={() => { setTiles([1, 1, -2]); setDraft("(x-1)*(x+2)"); setGroups({ a: [], b: [] }); }}>Clear all</button>
-            <button type="button" onClick={() => setTiles([1, Math.floor(Math.random() * 5) - 2, Math.floor(Math.random() * 7) - 3])}>Random</button>
+            <button type="button" onClick={() => { tiles.reset([1, 1, -2]); setDraft("(x-1)*(x+2)"); setGroups({ a: [], b: [] }); }}>Clear all</button>
+            <button type="button" onClick={() => tiles.commit([1, Math.floor(Math.random() * 5) - 2, Math.floor(Math.random() * 7) - 3])}>Random</button>
           </div>
         </Card>
         <Card title="2. Expression builder">
           <div className="alg-built-tiles" onDragOver={(e) => e.preventDefault()} onDrop={(e) => drop(e)}>
-            <i>{tiles[0] || 0}x²</i>
-            <i>{tiles[1] >= 0 ? "+" : ""}{tiles[1]}x</i>
-            <i>{tiles[2] >= 0 ? "+" : ""}{tiles[2]}</i>
-            <button type="button" aria-label="Add empty slot" onClick={() => add(2, 0)}>+</button>
-            <button type="button" aria-label="Add empty slot" onClick={() => add(1, 0)}>+</button>
+            <i>{a || 0}x²</i>
+            <i>{b >= 0 ? "+" : ""}{b}x</i>
+            <i>{c >= 0 ? "+" : ""}{c}</i>
+            <button type="button" aria-label="Add empty slot" onClick={() => add(2, 1)}>+</button>
+            <button type="button" aria-label="Add empty slot" onClick={() => add(1, 1)}>+</button>
           </div>
           <Result><small>Live expression</small><strong>{pretty}</strong></Result>
           {mode === "Expand" && <label className="alg-field">Expression to expand<input value={draft} onChange={(e) => setDraft(e.target.value)} /></label>}
+          {mode === "Simplify" && (
+            <>
+              <label className="alg-field">Expression<input value={draft} onChange={(e) => setDraft(e.target.value)} placeholder="3x+4-x+2" /></label>
+              <button type="button" className="alg-gradient-button" onClick={() => {
+                const result = runCasOperation(draft, "simplify");
+                setFocus(result.ok ? `Simplified: ${result.output}` : result.output);
+              }}>Simplify</button>
+              <Numeric label="x" value={subX} onChange={setSubX} />
+              <Numeric label="y" value={subY} onChange={setSubY} />
+              <Result>{(() => { const v = evaluateAlgebraExpression(draft.includes("x") || draft.includes("y") ? draft : pretty, { x: subX, y: subY }); return v.ok ? `Substitute x=${subX}, y=${subY}: ${fmt(v.value)}` : v.error; })()}</Result>
+            </>
+          )}
+          {mode === "Factor" && <button type="button" className="alg-gradient-button" onClick={() => setFocus(factored.ok ? `Factored: ${factored.output}` : "No integer factorization")}>Factor</button>}
+          {mode === "Expand" && <button type="button" className="alg-gradient-button" onClick={() => { const result = runCasOperation(draft, "expand"); setFocus(result.ok ? `Expanded: ${result.output}` : result.output); }}>Expand</button>}
         </Card>
         <Card title="6. Equivalent forms">
-          <div className="alg-validation-rows">{forms.map((form) => <div key={form}><span>{form}</span><b>✓</b></div>)}</div>
+          <div className="alg-validation-rows">{forms.map((form) => <div key={form}><span>{form}</span><b>{expressionsEquivalent(form, expression) || expressionsEquivalent(form, draft) ? "✓" : "•"}</b></div>)}</div>
         </Card>
         <Card title="3. Grouping trays (factor by grouping)">
           <div className="alg-drop-trays">
-            <div onDragOver={(e) => e.preventDefault()} onDrop={(e) => drop(e, "a")}><b>Group A</b><small>{groups.a.length ? `${groups.a.length} tiles` : "Drop tiles here"}</small></div>
-            <div onDragOver={(e) => e.preventDefault()} onDrop={(e) => drop(e, "b")}><b>Group B</b><small>{groups.b.length ? `${groups.b.length} tiles` : "Drop tiles here"}</small></div>
+            <div onDragOver={(e) => e.preventDefault()} onDrop={(e) => drop(e, "a")}><b>Group A</b><small>{groups.a.length ? `${groups.a.reduce((s, n) => s + n, 0)} x-tiles` : "Drop tiles here"}</small></div>
+            <div onDragOver={(e) => e.preventDefault()} onDrop={(e) => drop(e, "b")}><b>Group B</b><small>{groups.b.length ? `${groups.b.reduce((s, n) => s + n, 0)} units` : "Drop tiles here"}</small></div>
           </div>
+          <p>{grouped}</p>
         </Card>
         <Card title="5. Visual model">
           <div className="alg-area-wrap">
-            <small>x</small><small>+2</small><small>x</small><small>−1</small>
+            <small>x</small><small>{b >= 0 ? `+${b}` : b}</small><small>x</small><small>{c >= 0 ? `+${c}` : c}</small>
             <div className="alg-area-model large" aria-label="Area model">
-              <span>x²</span><span>{tiles[1] >= 0 ? `+${tiles[1]}x` : `${tiles[1]}x`}</span>
-              <span>{tiles[1] >= 0 ? "−x" : "+x"}</span>
-              <span>{tiles[2]}</span>
+              <span>x²</span><span>{b >= 0 ? `+${b}x` : `${b}x`}</span>
+              <span>{factored.ok ? factored.output : pretty}</span>
+              <span>{c}</span>
             </div>
           </div>
           <ul className="alg-legend"><li>Positive</li><li>Negative</li><li>Selected</li><li>Zero</li></ul>
@@ -142,22 +248,23 @@ export function ExpressionsLab() {
         <Card title="7. Step validation">
           <div className="alg-validation-rows">
             <div><span>Combine like terms: {pretty}</span><b>✓</b></div>
-            <div><span>Rewrite: {result.output}</span><b>✓</b></div>
-            <div><span>Factor: {result.output}</span><b>✓</b></div>
+            <div><span>Rewrite: {simplified.ok ? simplified.output : "Check the expression."}</span><b>{simplified.ok ? "✓" : "✗"}</b></div>
+            <div><span>Factor: {factored.ok ? factored.output : "No integer factorization"}</span><b>{factoredMatch ? "✓" : "•"}</b></div>
           </div>
         </Card>
         <Card title="4. Factor rectangle (area model)">
           <div className="alg-area-model" aria-label="Factor rectangle">
-            <span>x²</span><span>{Math.abs(tiles[1]) || 1}x</span>
-            <span>−x</span><span>{tiles[2]}</span>
+            <span>x²</span><span>{Math.abs(b) || 1}x</span>
+            <span>{b >= 0 ? "+x" : "−x"}</span><span>{c}</span>
           </div>
         </Card>
         <Card title="8. Explanation">
-          <p>You built {pretty}. The area model shows the expression as the sum of four parts. Factoring matches the model dimensions.</p>
-          <div className="alg-success">Factored form: {result.output}<span>✓</span></div>
+          <p>You built {pretty}. The area model shows the expression as the sum of its terms. Factoring matches the model when the CAS or integer search finds binomials.</p>
+          <div className="alg-success">Factored form: {factored.ok ? factored.output : "Not factorable over the integers"}<span>{factoredMatch ? "✓" : ""}</span></div>
         </Card>
       </div>
-      <LabStrip items={[
+      <Challenge expected={pretty} prompt={`Write an expression equivalent to ${pretty}.`} onNew={() => tiles.commit([1, Math.floor(Math.random() * 5) - 2, Math.floor(Math.random() * 7) - 3])} />
+      <LabStrip onSelect={(title) => setFocus(title === "Try" ? "Change tiles or expand a product, then read the equivalent forms." : title === "Challenge" ? `Write a form equivalent to ${pretty}.` : title === "Why" ? "Factoring undoes expansion: the area pieces multiply back to the polynomial." : title === "Understand" ? "Like terms share the same power of x, so their coefficients add." : "Watch coefficients update as tiles are added or cancelled.")} items={[
         ["Observe", "See how tiles combine and form areas and expressions."],
         ["Understand", "Use the area model to connect terms, factors, and geometry."],
         ["Why", "Why does factoring work? Explore patterns and structure."],
@@ -168,188 +275,154 @@ export function ExpressionsLab() {
   );
 }
 
-export function EquationsLab() {
-  const modes = ["Linear", "Quadratic", "Absolute Value", "Inequalities"];
-  const [mode, setMode] = useStudioMode("mode", modes, "Linear");
-  const [a, setA] = useState(3), [b, setB] = useState(5), [c, setC] = useState(2), [d, setD] = useState(-1);
-  const [operand, setOperand] = useState(-2), [notice, setNotice] = useState("");
-  const [relation, setRelation] = useState<"<" | "<=" | ">" | ">=">("<");
-  const [history, setHistory] = useState<string[]>([]);
-  const linear = solveLinearEquation(a, b, c, d);
-  const linearText = linear.kind === "one" ? `x = ${fmt(linear.value)}` : linear.kind === "all" ? "All real values" : "No solution";
-  const left = `${a}x ${b >= 0 ? "+" : "−"} ${Math.abs(b)}`;
-  const right = `${c}x ${d >= 0 ? "+" : "−"} ${Math.abs(d)}`;
-  const equation = mode === "Quadratic" ? `${a}x² + (${b})x + (${c}) = 0` : mode === "Absolute Value" ? `|${a}x + (${b})| = ${d}` : mode === "Inequalities" ? `${a}x + (${b}) ${relation} ${d}` : `${left} = ${right}`;
-  let result = linearText;
-  if (mode === "Quadratic") result = a === 0 && b === 0 ? (c === 0 ? "All real values" : "No solution") : quadraticRoots(a, b, c).map((r) => `x = ${fmt(r.real)}${r.imaginary ? ` + (${fmt(r.imaginary)})i` : ""}`).join("; ");
-  if (mode === "Absolute Value") result = d < 0 ? "No solution" : a === 0 ? Math.abs(b) === d ? "All real values" : "No solution" : [...new Set([(-b - d) / a, (-b + d) / a])].map((x) => `x = ${fmt(x)}`).join("; ");
-  if (mode === "Inequalities") { const solution = solveLinearInequality(a, b, relation, d); result = solution.kind === "constant" ? solution.truth ? "All real values" : "No solution" : `x ${solution.relation} ${fmt(solution.boundary)}${solution.reversed ? " (sign reversed)" : ""}`; }
-  const operate = (operation: string) => {
-    if ((operation === "Divide" || operation === "Multiply") && operand === 0) { setNotice("Use a nonzero operand to preserve the solution set."); return; }
-    const before = equation;
-    if (operation === "Add" || operation === "Subtract") { const delta = operand * (operation === "Add" ? 1 : -1); setB(b + delta); setD(d + delta); }
-    else { const scale = operation === "Multiply" ? operand : 1 / operand; setA(a * scale); setB(b * scale); setC(c * scale); setD(d * scale); }
-    setNotice(`${operation} ${operand} on both sides. The solution set is preserved.`);
-    setHistory((h) => [...h, `${operation} ${operand}: ${before}`].slice(-6));
-  };
-  const checkLeft = linear.kind === "one" ? a * linear.value + b : NaN;
-  const checkRight = linear.kind === "one" ? c * linear.value + d : NaN;
-  return (
-    <div className="alg-page">
-      <AlgebraLabHeading subtitle="Solve equations and inequalities using the balance model. Explore operations, preserve equality, and check solutions." modes={modes} mode={mode} onMode={setMode}>Equations &amp; Inequalities Lab</AlgebraLabHeading>
-      <div className="alg-eq-dash">
-        <Card title="Equation">
-          <label className="alg-field">Current equation<input value={equation} readOnly /></label>
-          <label className="alg-field">Goal<select defaultValue="Solve for x"><option>Solve for x</option></select></label>
-          <Numeric label="Left x coeff" value={a} onChange={setA} />
-          <Numeric label="Left constant" value={b} onChange={setB} />
-          {(mode === "Linear" || mode === "Quadratic") && <Numeric label="Right x / c" value={c} onChange={setC} />}
-          {mode !== "Quadratic" && <Numeric label="Right constant" value={d} onChange={setD} />}
-          {mode === "Inequalities" && <label className="alg-field">Relation<select value={relation} onChange={(e) => setRelation(e.target.value as typeof relation)}>{["<", "<=", ">", ">="].map((r) => <option key={r}>{r}</option>)}</select></label>}
-        </Card>
-        <Card title="Balance model">
-          <svg className="alg-balance-svg" viewBox="0 0 420 200" role="img" aria-label="Balance scale">
-            <line x1="40" y1="62" x2="380" y2="62" stroke="#94a3b8" strokeWidth="6" strokeLinecap="round" />
-            <line x1="210" y1="28" x2="210" y2="62" stroke="#64748b" strokeWidth="3" />
-            <circle cx="210" cy="28" r="10" fill="none" stroke="#94a3b8" strokeWidth="3" />
-            <line x1="210" y1="28" x2="210" y2="14" stroke="#64748b" strokeWidth="2" />
-            <polygon points="210,62 188,168 232,168" fill="#e2e8f0" stroke="#94a3b8" />
-            <rect x="48" y="70" width="130" height="8" rx="2" fill="#cbd5e1" />
-            <rect x="242" y="70" width="130" height="8" rx="2" fill="#cbd5e1" />
-            {Array.from({ length: Math.min(4, Math.max(1, Math.abs(Math.round(a)))) }, (_, i) => <rect key={`lx${i}`} x={56 + i * 28} y="82" width="24" height="24" rx="4" fill="#08b9dd" />)}
-            <rect x={56 + Math.min(4, Math.max(1, Math.abs(Math.round(a)))) * 28} y="82" width="28" height="24" rx="4" fill="#8b45f4" />
-            <text x="60" y="99" fill="#fff" fontSize="12">x</text>
-            <text x={64 + Math.min(4, Math.max(1, Math.abs(Math.round(a)))) * 28} y="99" fill="#fff" fontSize="11">{b >= 0 ? `+${b}` : b}</text>
-            {Array.from({ length: Math.min(3, Math.max(1, Math.abs(Math.round(c)))) }, (_, i) => <rect key={`rx${i}`} x={250 + i * 28} y="82" width="24" height="24" rx="4" fill="#08b9dd" />)}
-            <rect x={250 + Math.min(3, Math.max(1, Math.abs(Math.round(c)))) * 28} y="82" width="28" height="24" rx="4" fill="#8b45f4" />
-            <text x="254" y="99" fill="#fff" fontSize="12">x</text>
-            <text x={258 + Math.min(3, Math.max(1, Math.abs(Math.round(c)))) * 28} y="99" fill="#fff" fontSize="11">{d >= 0 ? `+${d}` : d}</text>
-            <text x="70" y="54" fill="#334155" fontSize="12">{left}</text>
-            <text x="270" y="54" fill="#334155" fontSize="12">{right}</text>
-          </svg>
-          <b className="alg-balanced">Balanced ✓</b>
-        </Card>
-        <Card title="Steps">
-          <ol className="alg-steps">
-            <li>Start: {equation}</li>
-            {history.map((step) => <li key={step}>{step}</li>)}
-            <li>{result}</li>
-          </ol>
-          <p className="alg-success">All operations applied to both sides. Equality preserved.</p>
-        </Card>
-        <Card title="Operations">
-          <Numeric label="Operand" value={operand} onChange={setOperand} />
-          <div className="alg-operation-grid">
-            {[["Add", "+"], ["Subtract", "−"], ["Multiply", "×"], ["Divide", "÷"]].map(([operation, mark]) => (
-              <button type="button" key={operation} onClick={() => operate(operation)}>{mark} {operation}</button>
-            ))}
-            <button type="button" onClick={() => { setA(3); setB(5); setC(2); setD(-1); setOperand(-2); setNotice(""); setHistory([]); }}>↩ Undo</button>
-          </div>
-          <p role="status">{notice || "Apply the same operation to both sides."}</p>
-          <div className="alg-apply-row">
-            <span>Applying the same operation to both sides</span>
-            <output>{operand}x</output>
-            <i>→</i>
-            <output>{fmt(operand * (linear.kind === "one" ? linear.value : 0))}</output>
-            <i>=</i>
-            <output>{fmt(operand * (linear.kind === "one" ? linear.value : 0))}</output>
-            <label className="alg-toggle"><input type="checkbox" defaultChecked /> Auto-balance</label>
-          </div>
-        </Card>
-        <Card title="Solution on number line">
-          <div className="alg-number-line" aria-label="Number line">
-            {[-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5].map((n) => <span key={n}>{n}</span>)}
-            {linear.kind === "one" && <i style={{ left: `${((linear.value + 5) / 10) * 100}%` }} />}
-          </div>
-          <p>Solution (interval notation) {linear.kind === "one" ? `{${fmt(linear.value)}}` : result}</p>
-        </Card>
-        <Card title="Solution & Validation">
-          <Result>{result}</Result>
-          {linear.kind === "one" && <p>Check: {fmt(checkLeft)} ≟ {fmt(checkRight)} {Math.abs(checkLeft - checkRight) < 1e-6 ? "Valid solution" : "Check arithmetic"}</p>}
-          <p>Extraneous check: no restrictions detected.</p>
-          <p>We applied the same operations to both sides of the equality, which preserves equality at every step. Substituting back confirms the solution.</p>
-        </Card>
-      </div>
-      <LabStrip items={[
-        ["Observe", "Watch how the scale stays balanced at every step."],
-        ["Understand", "Operations done to one side must be done to the other."],
-        ["Why", "Equality is preserved by applying inverse operations to isolate x."],
-        ["Try", "Create your own equation and solve it step by step."],
-        ["Challenge", "Solve and check: 2x − 7 = 5x + 2"],
-      ]} />
-    </div>
-  );
-}
-
 export function FunctionsLab() {
   const modes = ["Families", "Transformations", "Composition", "Inverse", "Piecewise"];
   const [mode, setMode] = useStudioMode("mode", modes, "Families");
-  const [family, setFamily] = useState("x^2"), [a, setA] = useState(1.5), [h, setH] = useState(2), [k, setK] = useState(-1);
-  const [probe, setProbe] = useState(2);
-  const base = (x: number) => family === "x" ? x : family === "abs(x)" ? Math.abs(x) : family === "sin(x)" ? Math.sin(x) : x * x;
+  const history = useAlgebraHistory({ family: "x^2", a: 1.5, h: 2, k: -1, probe: 2, composeFg: true });
+  const { family, a, h, k, probe, composeFg } = history.state;
+  const [focus, setFocus] = useState("Watch the graph stretch, shift, and flip.");
+  const base = (x: number) => {
+    if (family === "x") return x;
+    if (family === "abs(x)") return Math.abs(x);
+    if (family === "sin(x)") return Math.sin(x);
+    if (family === "sqrt(x)") return x < 0 ? Number.NaN : Math.sqrt(x);
+    if (family === "1/x") return snapNearZero(x) === 0 ? Number.NaN : 1 / x;
+    if (family === "log(x)") return x <= 0 ? Number.NaN : Math.log(x) / Math.LN10;
+    if (family === "2^x") return 2 ** x;
+    return x * x;
+  };
   const transformed = `${a}*(${family.replaceAll("x", `(x-(${h}))`)})+(${k})`;
-  const fn = (x: number) => mode === "Composition" ? base(a * x + k) : mode === "Inverse" ? (x - k) / a : mode === "Piecewise" ? x < h ? a * x + k : base(x) : a * base(x - h) + k;
-  const expression = mode === "Composition" ? family.replaceAll("x", `(${a}*x+(${k}))`) : mode === "Inverse" ? `(x-(${k}))/${a}` : transformed;
-  const range = a === 0 ? `{${k}}` : family === "x^2" || family === "abs(x)" ? a > 0 ? `[${k}, ∞)` : `(−∞, ${k}]` : family === "sin(x)" ? `[${k - Math.abs(a)}, ${k + Math.abs(a)}]` : "All real values";
-  return <div className="alg-page"><AlgebraLabHeading subtitle="Explore families, transformations, composition, inverses, and piecewise graphs." modes={modes} mode={mode} onMode={setMode}>Functions &amp; Transformations Lab</AlgebraLabHeading><div className="alg-three-column"><Card title="Function controls"><label className="alg-field">Base function<select value={family} onChange={(e) => setFamily(e.target.value)}>{["x^2", "x", "abs(x)", "sin(x)"].map((f) => <option key={f}>{f}</option>)}</select></label><Numeric label="a (stretch / slope)" value={a} step={0.5} onChange={setA} /><Numeric label="h (shift / boundary)" value={h} onChange={setH} /><Numeric label="k (vertical offset)" value={k} onChange={setK} /><Numeric label="Input x" value={probe} onChange={setProbe} /><div className="alg-machine" aria-label="Function machine"><span>x = {probe}</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h12M13 7l7 5-7 5" fill="none" stroke="currentColor" strokeWidth="1.8" /></svg><em>f</em><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h12M13 7l7 5-7 5" fill="none" stroke="currentColor" strokeWidth="1.8" /></svg><b>{fmt(fn(probe))}</b></div></Card><Card title={`${mode} model`}>{mode === "Piecewise" ? <><p>x &lt; {h}: {a}x + {k}; x ≥ {h}: {family}</p><Plot expressions={[`${a}*x+(${k})`, family]} /><p>Both branch curves are shown; the boundary selects the active branch in the table.</p></> : <><p>{mode === "Inverse" ? `Inverse of f(x) = ${a}x + ${k}` : expression}</p><Plot expressions={[mode === "Inverse" ? `${a}*x+(${k})` : family, expression]} /></>}<Result>{mode === "Inverse" && a === 0 ? "No inverse: a constant function is not one-to-one." : `Output at x=${probe}: ${fmt(fn(probe))}`}</Result></Card><Card title="Mapping & domain"><table className="alg-table"><thead><tr><th>x</th><th>Output</th></tr></thead><tbody>{[-2, -1, 0, 1, 2, 3].map((x) => <tr key={x}><td>{x}</td><td>{fmt(fn(x))}</td></tr>)}</tbody></table>{(mode === "Families" || mode === "Transformations") && <p>Domain: all real values. Range: {range}</p>}{mode === "Composition" && <p>First evaluate g(x) = {a}x + {k}, then apply f(x) = {family}.</p>}</Card></div><LabStrip items={[["Observe", "Watch the graph stretch, shift, and flip."], ["Understand", "a, h, and k rewrite the same family."], ["Why", "A transformation is a composition of maps."], ["Try", "Match a target graph with a, h, and k."], ["Challenge", "Find the inverse and check f(f⁻¹(x)) = x."]]} /></div>;
+  const inverseStatus = inverseFamilyStatus(family, a);
+  const fn = (x: number) => {
+    if (mode === "Composition") return composeFg ? base(a * x + k) : a * base(x) + k;
+    if (mode === "Inverse") return inverseOfTransformedFamily(family, a, h, k, x);
+    if (mode === "Piecewise") return x < h ? a * x + k : x === h ? base(x) : base(x);
+    return a * base(x - h) + k;
+  };
+  const expression = mode === "Composition"
+    ? (composeFg ? family.replaceAll("x", `(${a}*x+(${k}))`) : `${a}*(${family})+(${k})`)
+    : mode === "Inverse" ? inverseExpression(family, a, h, k)
+    : transformed;
+  const domain = family === "sqrt(x)" ? `[${fmt(h)}, ∞)` : family === "1/x" ? `x ≠ ${fmt(h)}` : family === "log(x)" ? `(${fmt(h)}, ∞)` : "all real values";
+  const range = a === 0 ? `{${k}}` : family === "x^2" || family === "abs(x)" || family === "sqrt(x)" ? a > 0 ? `[${k}, ∞)` : `(−∞, ${k}]` : family === "sin(x)" ? `[${fmt(k - Math.abs(a))}, ${fmt(k + Math.abs(a))}]` : "All real values";
+  const setLive = (patch: Partial<typeof history.state>) => history.replace({ ...history.state, ...patch });
+  return <div className="alg-page"><AlgebraLabHeading subtitle="Explore families, transformations, composition, inverses, and piecewise graphs." modes={modes} mode={mode} onMode={setMode} onUndo={history.undo} onRedo={history.redo} canUndo={history.canUndo} canRedo={history.canRedo} onReset={() => history.reset()} helpTitle={`${mode} help`} helpBody={help.functions[mode as keyof typeof help.functions]}>Functions &amp; Transformations Lab</AlgebraLabHeading><p role="status">{focus}</p><div className="alg-three-column"><Card title="Function controls"><label className="alg-field">Base function<select value={family} onChange={(e) => history.commit({ ...history.state, family: e.target.value })}>{["x", "x^2", "sqrt(x)", "abs(x)", "1/x", "2^x", "log(x)", "sin(x)"].map((f) => <option key={f}>{f}</option>)}</select></label><Numeric label="a (stretch / slope)" value={a} step={0.5} onChange={(value) => setLive({ a: value })} onCommit={(value) => history.commit({ ...history.state, a: value })} /><Numeric label="h (shift / boundary)" value={h} onChange={(value) => setLive({ h: value })} onCommit={(value) => history.commit({ ...history.state, h: value })} /><Numeric label="k (vertical offset)" value={k} onChange={(value) => setLive({ k: value })} onCommit={(value) => history.commit({ ...history.state, k: value })} /><Numeric label="Input x" value={probe} onChange={(value) => setLive({ probe: value })} />{mode === "Composition" && <div className="alg-segmented"><button type="button" aria-pressed={composeFg} className={composeFg ? "active" : ""} onClick={() => history.commit({ ...history.state, composeFg: true })}>f∘g</button><button type="button" aria-pressed={!composeFg} className={!composeFg ? "active" : ""} onClick={() => history.commit({ ...history.state, composeFg: false })}>g∘f</button></div>}{mode === "Transformations" && <p>1. Shift {h >= 0 ? `right ${h}` : `left ${fmt(-h)}`}. 2. {a < 0 ? "Reflect across the x-axis and " : ""}stretch vertically ×{fmt(Math.abs(a))}. 3. Shift {k >= 0 ? `up ${fmt(k)}` : `down ${fmt(-k)}`}.</p>}<div className="alg-machine" aria-label="Function machine"><span>x = {probe}</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h12M13 7l7 5-7 5" fill="none" stroke="currentColor" strokeWidth="1.8" /></svg><em>f</em><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h12M13 7l7 5-7 5" fill="none" stroke="currentColor" strokeWidth="1.8" /></svg><b>{fmt(fn(probe))}</b></div></Card><Card title={`${mode} model`}>{mode === "Piecewise" ? <><p>x &lt; {h}: {a}x + {k}; x ≥ {h}: {family} (closed at x = {h})</p><Plot expressions={[`${a}*x+(${k})`, family]} /><p>Both branch curves are shown; the table uses the closed right branch at the boundary.</p></> : <><p>{mode === "Inverse" ? (inverseStatus.invertible ? expression : inverseStatus.note) : expression}</p><Plot expressions={mode === "Inverse" ? (inverseStatus.invertible ? [transformed, expression, "x"] : [transformed, "x"]) : [family, expression]} /></>}<Result>{mode === "Inverse" ? (inverseStatus.invertible ? `f⁻¹(${probe}) = ${fmt(fn(probe))}. ${inverseStatus.note}` : inverseStatus.note) : `Output at x=${probe}: ${fmt(fn(probe))}`}</Result></Card><Card title="Mapping & domain"><table className="alg-table"><thead><tr><th>x</th><th>Output</th></tr></thead><tbody>{[-2, -1, 0, 1, 2, 3].map((x) => <tr key={x}><td>{x}</td><td>{fmt(fn(x))}</td></tr>)}</tbody></table>{(mode === "Families" || mode === "Transformations") && <p>Domain: {domain}. Range: {range}</p>}{mode === "Composition" && <p>{composeFg ? `f(g(x)): first g(x)=${a}x+${k}, then f(x)=${family}.` : `g(f(x)): first f(x)=${family}, then g(t)=${a}t+${k}.`}</p>}{mode === "Inverse" && <p>{inverseStatus.note || "The graph shows f, f⁻¹, and y = x."}</p>}</Card></div><Challenge expected={fn(probe)} prompt={`What is the current output at x = ${probe}?`} onNew={() => history.commit({ ...history.state, probe: probe === 2 ? 0 : 2 })} /><LabStrip onSelect={(title) => { if (title === "Try") history.commit({ ...history.state, a: 2, h: 3, k: 1, family: "x^2" }); setFocus(title === "Challenge" ? "Find the inverse and check f(f⁻¹(x)) = x." : title === "Try" ? "Loaded g(x)=2(x-3)²+1." : title === "Why" ? "A transformation is a composition of maps." : title === "Understand" ? "a, h, and k rewrite the same family." : "Watch the graph stretch, shift, and flip."); }} items={[["Observe", "Watch the graph stretch, shift, and flip."], ["Understand", "a, h, and k rewrite the same family."], ["Why", "A transformation is a composition of maps."], ["Try", "Match a target graph with a, h, and k."], ["Challenge", "Find the inverse and check f(f⁻¹(x)) = x."]]} /></div>;
 }
 
 export function PolynomialsLab() {
   const modes = ["Roots", "Factors", "Division", "End Behavior", "Multiplicity"];
   const [mode, setMode] = useStudioMode("mode", modes, "Roots");
-  const [roots, setRoots] = useState([-3, -1, 2, 4, 0]), [degree, setDegree] = useState(4), [scale, setScale] = useState(0.08), [divisor, setDivisor] = useState(-1);
-  const selected = roots.slice(0, degree), coefficients = polynomialFromRoots(selected).map((c) => c * scale);
+  const history = useAlgebraHistory({ roots: [-3, -1, 2, 4, 0], degree: 4, scale: 0.08, divisor: -1, extra: "x-1" });
+  const { roots, degree, scale, divisor, extra } = history.state;
+  const [focus, setFocus] = useState("Roots pin the graph to the axis.");
+  const selected = roots.slice(0, degree);
+  const coefficients = polynomialFromRoots(selected).map((c) => c * scale);
   const expression = `${scale}*${selected.map((r) => `(x-(${r}))`).join("*")}`;
+  const parsedExtra = polynomialCoefficients(extra);
+  const typedPlot = parsedExtra.ok && parsedExtra.degree >= 2;
+  const plotExpression = typedPlot ? extra : expression;
   const division = syntheticDivide(coefficients, divisor);
-  return <div className="alg-page"><AlgebraLabHeading subtitle="Build polynomials from roots, watch multiplicity, and divide synthetically." modes={modes} mode={mode} onMode={setMode}>Polynomials Lab</AlgebraLabHeading><div className="alg-three-column"><Card title="Polynomial Builder"><p>Degree</p><div className="alg-segmented">{[1, 2, 3, 4, 5].map((n) => <button type="button" aria-pressed={n === degree} className={n === degree ? "active" : ""} key={n} onClick={() => setDegree(n)}>{n}</button>)}</div>{selected.map((r, i) => <Numeric key={i} label={`Root ${i + 1}`} value={r} onChange={(value) => setRoots((current) => current.map((v, j) => i === j ? value : v))} />)}<Numeric label="Leading coefficient" value={scale} step={0.01} min={-2} max={2} onChange={setScale} />{mode === "Division" && <Numeric label="Divisor root" value={divisor} onChange={setDivisor} />}</Card><Card title="Interactive polynomial graph"><Plot expressions={[expression]} /><Result>{expression}</Result></Card><Card title={`${mode} analysis`}>{mode === "Division" ? <Result>Quotient coefficients: {division.quotient.map(fmt).join(", ")}; remainder: {fmt(division.remainder)}</Result> : mode === "End Behavior" ? <Result>{scale === 0 ? "Zero polynomial" : degree % 2 === 0 ? scale > 0 ? "Both ends rise." : "Both ends fall." : scale > 0 ? "Left falls; right rises." : "Left rises; right falls."}</Result> : <table className="alg-table"><thead><tr><th>Root</th><th>Multiplicity</th><th>Behavior</th></tr></thead><tbody>{[...new Set(selected)].map((r) => { const count = selected.filter((value) => value === r).length; return <tr key={r}><td>{r}</td><td>{count}</td><td>{scale === 0 ? "Zero polynomial" : count % 2 === 0 ? "Touches" : "Crosses"}</td></tr>; })}</tbody></table>}<p>Coefficients, highest degree first: {coefficients.map(fmt).join(", ")}</p>{mode === "Multiplicity" && <p>Set two roots equal to make a repeated factor and watch the crossing change.</p>}</Card></div><LabStrip items={[["Observe", "Roots pin the graph to the axis."], ["Understand", "Multiplicity decides cross vs touch."], ["Why", "Factors multiply to the polynomial."], ["Try", "Set two equal roots and watch the bounce."], ["Challenge", "Predict end behavior from degree and sign."]]} /></div>;
+  const extraDivision = dividePolynomialStrings(expression, extra);
+  const solvedTyped = typedPlot ? runCasOperation(`${extra}=0`, "solve") : null;
+  const setLive = (patch: Partial<typeof history.state>) => history.replace({ ...history.state, ...patch });
+  return <div className="alg-page"><AlgebraLabHeading subtitle="Build polynomials from roots, watch multiplicity, and divide synthetically." modes={modes} mode={mode} onMode={setMode} onUndo={history.undo} onRedo={history.redo} canUndo={history.canUndo} canRedo={history.canRedo} onReset={() => history.reset()} helpTitle={`${mode} help`} helpBody="Roots determine factors. Multiplicity decides whether the graph crosses or touches. Synthetic division uses the current divisor root.">Polynomials Lab</AlgebraLabHeading><p role="status">{focus}</p><div className="alg-three-column"><Card title="Polynomial Builder"><p>Degree</p><div className="alg-segmented">{[1, 2, 3, 4, 5].map((n) => <button type="button" aria-pressed={n === degree} className={n === degree ? "active" : ""} key={n} onClick={() => history.commit({ ...history.state, degree: n })}>{n}</button>)}</div>{selected.map((r, i) => <Numeric key={i} label={`Root ${i + 1}`} value={r} onChange={(value) => setLive({ roots: roots.map((v, j) => i === j ? value : v) })} onCommit={(value) => history.commit({ ...history.state, roots: roots.map((v, j) => i === j ? value : v) })} />)}<Numeric label="Leading coefficient" value={scale} step={0.01} min={-2} max={2} onChange={(value) => setLive({ scale: value })} onCommit={(value) => history.commit({ ...history.state, scale: value })} />{mode === "Division" && <Numeric label="Divisor root" value={divisor} onChange={(value) => setLive({ divisor: value })} onCommit={(value) => history.commit({ ...history.state, divisor: value })} />}<label className="alg-field">Polynomial<input value={extra} onChange={(e) => setLive({ extra: e.target.value })} onBlur={() => { const parsed = polynomialCoefficients(extra); if (parsed.ok) { history.commit({ ...history.state, extra }); setFocus(`Degree ${parsed.degree}, leading ${fmt(parsed.leading)}, constant ${fmt(parsed.constant)}.`); } }} placeholder="x^3-4x^2+x+6" /></label></Card><Card title="Interactive polynomial graph"><Plot expressions={[plotExpression]} /><Result>{plotExpression}</Result></Card><Card title={`${mode} analysis`}>{mode === "Division" ? <Result>Quotient coefficients: {division.quotient.map(fmt).join(", ")}; remainder: {fmt(division.remainder)}. {extra} into the builder: {extraDivision.ok ? extraDivision.output : extraDivision.output}</Result> : mode === "End Behavior" ? <Result>{scale === 0 ? "Zero polynomial" : degree % 2 === 0 ? scale > 0 ? "Both ends rise." : "Both ends fall." : scale > 0 ? "Left falls; right rises." : "Left rises; right falls."}</Result> : mode === "Factors" ? <Result>{expression}</Result> : <table className="alg-table"><thead><tr><th>Root</th><th>Multiplicity</th><th>Behavior</th></tr></thead><tbody>{[...new Set(selected)].map((r) => { const count = selected.filter((value) => value === r).length; return <tr key={r}><td>{r}</td><td>{count}</td><td>{scale === 0 ? "Zero polynomial" : count % 2 === 0 ? "Touches" : "Crosses"}</td></tr>; })}</tbody></table>}<p>Coefficients, highest degree first: {coefficients.map(fmt).join(", ")}</p>
+          {typedPlot && solvedTyped && <p>Typed polynomial roots: {solvedTyped.output}</p>}
+          {mode === "Factors" && <p>Times (x−1): {multiplyPolynomials(coefficients, [1, -1]).map(fmt).join(", ")}. Minus that polynomial: {addPolynomials(coefficients, multiplyPolynomials(polynomialFromRoots([1]), [-1])).map(fmt).join(", ")}. Plus x: {addPolynomials(coefficients, [1, 0]).map(fmt).join(", ")}.</p>}
+          {mode === "Multiplicity" && <p>Set two roots equal to make a repeated factor and watch the crossing change.</p>}</Card></div><Challenge expected={degree % 2 === 0 ? 1 : -1} prompt="Enter 1 if both ends go the same direction for an even degree, or -1 for opposite ends." onNew={() => history.commit({ ...history.state, degree: degree === 4 ? 3 : 4 })} /><LabStrip onSelect={(title) => { if (title === "Try") history.commit({ ...history.state, roots: [-1, -1, 2, 4, 0], degree: 3 }); setFocus(title === "Challenge" ? "Predict end behavior from degree and sign." : title === "Try" ? "Set two equal roots and watch the bounce." : title === "Why" ? "Factors multiply to the polynomial." : title === "Understand" ? "Multiplicity decides cross vs touch." : "Roots pin the graph to the axis."); }} items={[["Observe", "Roots pin the graph to the axis."], ["Understand", "Multiplicity decides cross vs touch."], ["Why", "Factors multiply to the polynomial."], ["Try", "Set two equal roots and watch the bounce."], ["Challenge", "Predict end behavior from degree and sign."]]} /></div>;
 }
 
 export function SystemsLab() {
   const modes = ["Graphing", "Substitution", "Elimination", "Matrices", "Inequalities"];
   const [mode, setMode] = useStudioMode("mode", modes, "Graphing");
-  const [m1, setM1] = useState(2), [b1, setB1] = useState(1), [m2, setM2] = useState(-1), [b2, setB2] = useState(4), [xProbe, setXProbe] = useState(0), [yProbe, setYProbe] = useState(0);
-  const solution = solveLinearEquation(m1, b1, m2, b2);
-  return <div className="alg-page"><AlgebraLabHeading subtitle="Solve systems graphically, by substitution, elimination, and matrices." modes={modes} mode={mode} onMode={setMode}>Systems of Equations Lab</AlgebraLabHeading><div className="alg-three-column"><Card title="Equations"><Numeric label="First slope" value={m1} onChange={setM1} /><Numeric label="First intercept" value={b1} onChange={setB1} /><Numeric label="Second slope" value={m2} onChange={setM2} /><Numeric label="Second intercept" value={b2} onChange={setB2} /><div className="alg-segmented">{["Unique", "None", "Infinite"].map((preset) => <button type="button" key={preset} onClick={() => { setM1(2); setB1(1); setM2(preset === "Unique" ? -1 : 2); setB2(preset === "Infinite" ? 1 : 4); }}>{preset}</button>)}</div></Card><Card title={`${mode} view`}><p>y = {m1}x + {b1}; y = {m2}x + {b2}</p><Plot expressions={[`${m1}*x+(${b1})`, `${m2}*x+(${b2})`]} />{mode === "Matrices" && <p>Augmented matrix: [{m1}, −1 | {-b1}]; [{m2}, −1 | {-b2}]. Determinant: {m2 - m1}.</p>}{mode === "Substitution" && <p>Substitute y: {m1}x + {b1} = {m2}x + {b2}.</p>}{mode === "Elimination" && <p>Subtract the equations: ({m1 - m2})x = {b2 - b1}.</p>}</Card><Card title="Solution classification">{mode === "Inequalities" ? <><p>Test y ≥ {m1}x + {b1} and y ≤ {m2}x + {b2}.</p><Numeric label="Test x" value={xProbe} onChange={setXProbe} /><Numeric label="Test y" value={yProbe} onChange={setYProbe} /><Result>{yProbe >= m1 * xProbe + b1 && yProbe <= m2 * xProbe + b2 ? "Inside both half-planes" : "Outside the feasible region"}</Result></> : <Result>{solution.kind === "one" ? `Unique solution: (${fmt(solution.value)}, ${fmt(m1 * solution.value + b1)})` : solution.kind === "all" ? "Infinite solutions: coincident lines" : "No solution: parallel lines"}</Result>}</Card></div><LabStrip items={[["Observe", "Two lines meet, miss, or coincide."], ["Understand", "Intersection is the shared (x, y)."], ["Why", "Algebra and the graph solve the same system."], ["Try", "Switch Unique / None / Infinite."], ["Challenge", "Build a system with no solution."]]} /></div>;
+  const history = useAlgebraHistory({ m1: 2, b1: 1, m2: -1, b2: 4, xProbe: 0, yProbe: 0 });
+  const { m1, b1, m2, b2, xProbe, yProbe } = history.state;
+  const [focus, setFocus] = useState("Two lines meet, miss, or coincide.");
+  const [matrix, setMatrix] = useState([[m1, -1, -b1], [m2, -1, -b2]]);
+  useEffect(() => { setMatrix([[m1, -1, -b1], [m2, -1, -b2]]); }, [m1, b1, m2, b2]);
+  const solution = slopeInterceptSystem(m1, b1, m2, b2);
+  const setLive = (patch: Partial<typeof history.state>) => history.replace({ ...history.state, ...patch });
+  const preset = (kind: "Unique" | "None" | "Infinite") => history.commit({ ...history.state, m1: 2, b1: 1, m2: kind === "Unique" ? -1 : 2, b2: kind === "Infinite" ? 1 : 4 });
+  const swapRows = () => setMatrix(([r1, r2]) => [r2 ?? r1 ?? [0, 0, 0], r1 ?? r2 ?? [0, 0, 0]]);
+  const scaleRow1 = () => setMatrix((rows) => rows.map((row, i) => i === 0 ? row.map((v) => v * 2) : row));
+  const addRows = () => setMatrix((rows) => rows.map((row, i) => i === 1 ? row.map((v, j) => v + (rows[0]?.[j] ?? 0)) : row));
+  const reduced = reduceMatrix(matrix);
+  return <div className="alg-page"><AlgebraLabHeading subtitle="Solve systems graphically, by substitution, elimination, and matrices." modes={modes} mode={mode} onMode={setMode} onUndo={history.undo} onRedo={history.redo} canUndo={history.canUndo} canRedo={history.canRedo} onReset={() => history.reset()} helpTitle={`${mode} help`} helpBody="Unique, none, and infinite are classified from the same 2×2 system. Matrices show the RREF of the augmented matrix. Inequalities test and shade half-planes.">Systems of Equations Lab</AlgebraLabHeading><p role="status">{focus}</p><div className="alg-three-column"><Card title="Equations"><Numeric label="First slope" value={m1} onChange={(value) => setLive({ m1: value })} onCommit={(value) => history.commit({ ...history.state, m1: value })} /><Numeric label="First intercept" value={b1} onChange={(value) => setLive({ b1: value })} onCommit={(value) => history.commit({ ...history.state, b1: value })} /><Numeric label="Second slope" value={m2} onChange={(value) => setLive({ m2: value })} onCommit={(value) => history.commit({ ...history.state, m2: value })} /><Numeric label="Second intercept" value={b2} onChange={(value) => setLive({ b2: value })} onCommit={(value) => history.commit({ ...history.state, b2: value })} /><div className="alg-segmented">{(["Unique", "None", "Infinite"] as const).map((item) => <button type="button" key={item} onClick={() => preset(item)}>{item}</button>)}</div>{mode === "Matrices" && <div className="alg-tile-actions"><button type="button" onClick={swapRows}>Swap rows</button><button type="button" onClick={scaleRow1}>Scale row 1 ×2</button><button type="button" onClick={addRows}>Add row 1 to row 2</button></div>}</Card><Card title={`${mode} view`}><p>y = {m1}x + {b1}; y = {m2}x + {b2}</p><Plot expressions={[`${m1}*x+(${b1})`, `${m2}*x+(${b2})`]} shade={mode === "Inequalities" ? ["above", "below"] : []} dashed={mode === "Inequalities" ? [false, true] : []} />{mode === "Matrices" && <p>Augmented: {JSON.stringify(matrix)}. RREF: {JSON.stringify(reduced.result)}. {solution.kind === "one" ? `Unique (${fmt(solution.x)}, ${fmt(solution.y)})` : solution.kind === "all" ? "Infinite solutions" : "No solution"}</p>}{mode === "Substitution" && <p>y = {m1}x + {b1} into the second: {m1}x + {b1} = {m2}x + {b2} ⇒ {(fmt(m1 - m2))}x = {fmt(b2 - b1)} ⇒ {solution.kind === "one" ? `x = ${fmt(solution.x)}, y = ${fmt(solution.y)}` : solution.kind === "all" ? "identity (infinite solutions)" : "contradiction (no solution)"}.</p>}{mode === "Elimination" && <p>Write {m1}x − y = {-b1} and {m2}x − y = {-b2}. Subtract: ({fmt(m1 - m2)})x = {fmt(b2 - b1)}. {solution.kind === "one" ? `x = ${fmt(solution.x)}, then y = ${fmt(solution.y)}.` : solution.kind === "all" ? "Rows are dependent." : "Rows are inconsistent."}</p>}</Card><Card title="Solution classification">{mode === "Inequalities" ? <><p>Test y ≥ {m1}x + {b1} and y &lt; {m2}x + {b2} (solid first boundary, dashed second).</p><Numeric label="Test x" value={xProbe} onChange={(value) => setLive({ xProbe: value })} /><Numeric label="Test y" value={yProbe} onChange={(value) => setLive({ yProbe: value })} /><Result>{yProbe >= m1 * xProbe + b1 && yProbe < m2 * xProbe + b2 ? "Inside both half-planes" : "Outside the feasible region"}</Result></> : <Result>{solution.kind === "one" ? `Unique solution: (${fmt(solution.x)}, ${fmt(solution.y)})` : solution.kind === "all" ? "Infinite solutions: coincident lines" : "No solution: parallel lines"}</Result>}</Card></div><Challenge expected={solution.kind === "one" ? solution.x : 0} prompt="If the system has a unique solution, enter its x-value. Enter 0 if there is no unique x." onNew={() => preset(solution.kind === "one" ? "None" : "Unique")} /><LabStrip onSelect={(title) => { if (title === "Try") preset("None"); setFocus(title === "Challenge" ? "Build a system with no solution." : title === "Why" ? "Algebra and the graph solve the same system." : title === "Understand" ? "Intersection is the shared (x, y)." : "Two lines meet, miss, or coincide."); }} items={[["Observe", "Two lines meet, miss, or coincide."], ["Understand", "Intersection is the shared (x, y)."], ["Why", "Algebra and the graph solve the same system."], ["Try", "Switch Unique / None / Infinite."], ["Challenge", "Build a system with no solution."]]} /></div>;
 }
 
 export function ExponentsLab() {
   const modes = ["Exponent Laws", "Radicals", "Exponential & Logs", "Equations"];
   const [mode, setMode] = useStudioMode("mode", modes, "Exponential & Logs");
-  const [base, setBase] = useState(2), [point, setPoint] = useState(2), [n, setN] = useState(3), [radicand, setRadicand] = useState(72), [target, setTarget] = useState(64), [law, setLaw] = useState("Product");
+  const history = useAlgebraHistory({ base: 2, point: 2, n: 2, radicand: 72, target: 64, law: "Product" });
+  const { base, point, n, radicand, target, law } = history.state;
+  const [focus, setFocus] = useState("Exponential and log are reflections.");
   const valid = base > 0 && base !== 1;
-  const laws: Record<string, [number, number, string]> = { Product: [base ** point * base ** n, base ** (point + n), "aᵐ · aⁿ = aᵐ⁺ⁿ"], Quotient: [base ** point / base ** n, base ** (point - n), "aᵐ / aⁿ = aᵐ⁻ⁿ"], Power: [(base ** point) ** n, base ** (point * n), "(aᵐ)ⁿ = aᵐⁿ"], Negative: [base ** -n, 1 / base ** n, "a⁻ⁿ = 1/aⁿ"], Zero: [base ** 0, 1, "a⁰ = 1"] };
-  return <div className="alg-page"><AlgebraLabHeading subtitle="Connect exponent laws, radicals, and logarithms on one live graph." modes={modes} mode={mode} onMode={setMode}>Exponents Radicals &amp; Logarithms Lab</AlgebraLabHeading><div className="alg-three-column"><Card title="Parameters"><Numeric label="Base a" min={0.1} max={5} step={0.1} value={base} onChange={setBase} /><Numeric label="Exponent m" value={point} onChange={setPoint} />{mode === "Exponent Laws" && <Numeric label="Exponent n" value={n} onChange={setN} />}{mode === "Radicals" && <Numeric label="Radicand" min={0} max={1000} value={radicand} onChange={setRadicand} />}{mode === "Equations" && <Numeric label="Target" min={-100} max={1000} value={target} onChange={setTarget} />}</Card><Card title={`${mode} model`}>{mode === "Radicals" ? <Result>{runCasOperation(`sqrt(${radicand})`, "simplify").output} ≈ {fmt(Math.sqrt(radicand))}</Result> : mode === "Exponent Laws" ? <><div className="alg-law-grid">{Object.keys(laws).map((name) => <button type="button" aria-pressed={law === name} key={name} onClick={() => setLaw(name)}>{name}</button>)}</div><Result>{laws[law][2]}: {fmt(laws[law][0])} = {fmt(laws[law][1])}</Result></> : <Plot expressions={valid ? [`${base}^x`, `log(x)/log(${base})`, "x"] : ["1"]} />}</Card><Card title="Live Algebra & Validation"><Result>{mode === "Equations" ? `${base}^x = ${target}: ${base === 1 ? target === 1 ? "All real values" : "No solution" : target <= 0 ? "No real solution" : `x = ${fmt(Math.log(target) / Math.log(base))}`}` : mode === "Radicals" ? `Square check: (√${radicand})² = ${radicand}` : valid ? `f(${point}) = ${fmt(base ** point)}; log base ${base} of ${fmt(base ** point)} = ${point}` : "Base 1 has no logarithmic inverse."}</Result></Card></div><LabStrip items={[["Observe", "Exponential and log are reflections."], ["Understand", "Laws keep the same base."], ["Why", "Log undoes the exponential."], ["Try", "Solve a^x = target."], ["Challenge", "Rewrite a radical as a rational exponent."]]} /></div>;
+  const laws: Record<string, [number, number, string]> = { Product: [base ** point * base ** n, base ** (point + n), "aᵐ · aⁿ = aᵐ⁺ⁿ"], Quotient: [snapNearZero(base ** n) === 0 ? Number.NaN : base ** point / base ** n, base ** (point - n), "aᵐ / aⁿ = aᵐ⁻ⁿ"], Power: [(base ** point) ** n, base ** (point * n), "(aᵐ)ⁿ = aᵐⁿ"], Negative: [base ** -n, snapNearZero(base ** n) === 0 ? Number.NaN : 1 / base ** n, "a⁻ⁿ = 1/aⁿ"], Zero: [base ** 0, 1, "a⁰ = 1"] };
+  const squareForm = n === 2 ? simplifySquareRadical(radicand) : null;
+  const radical = nthRoot(radicand, n);
+  const exponential = solveExponentialEquation(base, target);
+  const logarithm = logWithBase(Math.max(target, Number.MIN_VALUE), base);
+  const setLive = (patch: Partial<typeof history.state>) => history.replace({ ...history.state, ...patch });
+  return <div className="alg-page"><AlgebraLabHeading subtitle="Connect exponent laws, radicals, and logarithms on one live graph." modes={modes} mode={mode} onMode={setMode} onUndo={history.undo} onRedo={history.redo} canUndo={history.canUndo} canRedo={history.canRedo} onReset={() => history.reset()} helpTitle={`${mode} help`} helpBody="Laws compare both sides numerically. Radicals use the current index n. Equations solve a^x = target and report the matching log.">Exponents Radicals &amp; Logarithms Lab</AlgebraLabHeading><p role="status">{focus}</p><div className="alg-three-column"><Card title="Parameters"><Numeric label="Base a" min={0.1} max={5} step={0.1} value={base} onChange={(value) => setLive({ base: value })} onCommit={(value) => history.commit({ ...history.state, base: value })} /><Numeric label="Exponent m" value={point} onChange={(value) => setLive({ point: value })} onCommit={(value) => history.commit({ ...history.state, point: value })} />{(mode === "Exponent Laws" || mode === "Radicals") && <Numeric label={mode === "Radicals" ? "Root index n" : "Exponent n"} value={n} min={mode === "Radicals" ? 1 : -10} onChange={(value) => setLive({ n: value })} onCommit={(value) => history.commit({ ...history.state, n: value })} />}{mode === "Radicals" && <Numeric label="Radicand" min={-100} max={1000} value={radicand} onChange={(value) => setLive({ radicand: value })} onCommit={(value) => history.commit({ ...history.state, radicand: value })} />}{mode === "Equations" && <Numeric label="Target" min={-100} max={1000} value={target} onChange={(value) => setLive({ target: value })} onCommit={(value) => history.commit({ ...history.state, target: value })} />}</Card><Card title={`${mode} model`}>{mode === "Radicals" ? <Result>{radical.ok ? `${fmt(radical.value)}${squareForm?.ok ? ` = ${squareForm.text}` : ""} ; CAS ${runCasOperation(`(${radicand})^(1/${n})`, "simplify").output}` : radical.error}</Result> : mode === "Exponent Laws" ? <><div className="alg-law-grid">{Object.keys(laws).map((name) => <button type="button" aria-pressed={law === name} key={name} onClick={() => history.commit({ ...history.state, law: name })}>{name}</button>)}</div><Result>{laws[law][2]}: {fmt(laws[law][0])} = {fmt(laws[law][1])}</Result></> : <Plot expressions={valid ? [`${base}^x`, `log(x)/log(${base})`, "x"] : ["1"]} />}</Card><Card title="Live Algebra & Validation"><Result>{mode === "Equations" ? `${base}^x = ${target}: ${exponential.kind === "one" ? `x = ${fmt(exponential.value)}; log_${fmt(base)}(${target}) = ${fmt(logarithm ?? Number.NaN)}` : exponential.kind === "all" ? "All real values" : "No real solution"}` : mode === "Radicals" ? radical.ok ? `Power check: (${fmt(radical.value)})^${n} ≈ ${fmt(radical.value ** n)}` : radical.error : valid ? `f(${point}) = ${fmt(base ** point)}; log base ${base} of ${fmt(base ** point)} = ${point}` : "Base 1 has no logarithmic inverse."}</Result></Card></div><Challenge expected={mode === "Equations" && exponential.kind === "one" ? exponential.value : n} prompt={mode === "Equations" ? `Solve ${base}^x = ${target}.` : `Rewrite the current radical as a rational exponent and enter the index n.`} onNew={() => history.commit({ ...history.state, n: n === 3 ? 2 : 3, target: target === 64 ? 8 : 64 })} /><LabStrip onSelect={(title) => { if (title === "Try") history.commit({ ...history.state, base: base === 2 ? 0.5 : 2 }); setFocus(title === "Challenge" ? "Rewrite a radical as a rational exponent." : title === "Try" ? "Compare bases 2 and 1/2 on the inverse graphs." : title === "Why" ? "Log undoes the exponential." : title === "Understand" ? "Laws keep the same base." : "Exponential and log are reflections."); }} items={[["Observe", "Exponential and log are reflections."], ["Understand", "Laws keep the same base."], ["Why", "Log undoes the exponential."], ["Try", "Solve a^x = target."], ["Challenge", "Rewrite a radical as a rational exponent."]]} /></div>;
 }
 
 export function SequencesLab() {
   const modes = ["Arithmetic", "Geometric", "Recursive", "Sigma", "Patterns"];
   const [mode, setMode] = useStudioMode("mode", modes, "Arithmetic");
-  const [first, setFirst] = useState(3), [parameter, setParameter] = useState(4), [count, setCount] = useState(10);
-  const term = (i: number) => mode === "Geometric" ? first * parameter ** i : mode === "Patterns" ? first + parameter * i * i : first + parameter * i;
-  const terms = Array.from({ length: count }, (_, i) => term(i)), sum = terms.reduce((a, b) => a + b, 0);
-  return <div className="alg-page"><AlgebraLabHeading subtitle="Arithmetic, geometric, recursive, sigma, and visual patterns." modes={modes} mode={mode} onMode={setMode}>Sequences &amp; Progressions Lab</AlgebraLabHeading><div className="alg-three-column"><Card title="Sequence Controls"><Numeric label="First term" value={first} onChange={setFirst} /><Numeric label={mode === "Geometric" ? "Common ratio" : mode === "Patterns" ? "Quadratic coefficient" : "Common difference"} value={parameter} min={-10} max={10} onChange={setParameter} /><Numeric label="Number of terms" min={1} max={20} value={count} onChange={(n) => setCount(Math.round(n))} /><Result>{mode === "Geometric" ? `aₙ = ${first} × ${parameter}^(n−1)` : mode === "Recursive" ? `a₁ = ${first}; aₙ = aₙ₋₁ + (${parameter})` : mode === "Patterns" ? `aₙ = ${first} + ${parameter}(n−1)²` : `aₙ = ${first} + (n−1) × ${parameter}`}</Result></Card><Card title={mode === "Sigma" ? "Partial sums" : "Term Table"}><div className="alg-term-table">{terms.map((value, i) => <span key={i}><small>n = {i + 1}</small><b>{fmt(mode === "Sigma" ? terms.slice(0, i + 1).reduce((a, b) => a + b, 0) : value)}</b></span>)}</div><svg viewBox="0 0 600 260" role="img" aria-label="Sequence plot">{terms.map((v, i) => { const min = Math.min(0, ...terms), max = Math.max(1, ...terms); return <circle key={i} cx={30 + i * 540 / Math.max(1, count - 1)} cy={230 - 200 * (v - min) / (max - min)} r="5" fill="#0891b2" />; })}</svg><Result>Sum: {fmt(sum)}; next term: {fmt(term(count))}</Result></Card><Challenge expected={term(19)} prompt="What is the 20th term?" /></div><LabStrip items={[["Observe", "Terms step by a fixed difference or ratio."], ["Understand", "Closed form names the nth term."], ["Why", "Sigma just adds the same rule."], ["Try", "Change d or r and watch the plot."], ["Challenge", "What is the 20th term?"]]} /></div>;
+  const history = useAlgebraHistory({ first: 3, parameter: 4, count: 10 });
+  const { first, parameter, count } = history.state;
+  const [focus, setFocus] = useState("Terms step by a fixed difference or ratio.");
+  const term = (i: number): number => {
+    if (mode === "Geometric") return first * parameter ** i;
+    if (mode === "Patterns") return first + parameter * i * i;
+    if (mode === "Recursive") {
+      if (i === 0) return first;
+      if (i === 1) return parameter;
+      let older = first, newer = parameter;
+      for (let step = 2; step <= i; step += 1) { const next = older + newer; older = newer; newer = next; }
+      return newer;
+    }
+    return first + parameter * i;
+  };
+  const terms = Array.from({ length: count }, (_, i) => term(i));
+  const sum = mode === "Geometric" ? geometricSeriesSum(first, parameter, count) : mode === "Arithmetic" || mode === "Sigma" ? count * (first + term(count - 1)) / 2 : terms.reduce((a, b) => a + b, 0);
+  const infinite = mode === "Geometric" ? geometricInfiniteSum(first, parameter) : null;
+  const setLive = (patch: Partial<typeof history.state>) => history.replace({ ...history.state, ...patch });
+  return <div className="alg-page"><AlgebraLabHeading subtitle="Arithmetic, geometric, recursive, sigma, and visual patterns." modes={modes} mode={mode} onMode={setMode} onUndo={history.undo} onRedo={history.redo} canUndo={history.canUndo} canRedo={history.canRedo} onReset={() => history.reset()} helpTitle={`${mode} help`} helpBody="Arithmetic uses a common difference. Geometric uses a common ratio. Recursive here is Fibonacci-like: a1, a2, then each term is the sum of the previous two. Sigma adds the displayed family.">Sequences &amp; Progressions Lab</AlgebraLabHeading><p role="status">{focus}</p><div className="alg-three-column"><Card title="Sequence Controls"><Numeric label="First term" value={first} onChange={(value) => setLive({ first: value })} onCommit={(value) => history.commit({ ...history.state, first: value })} /><Numeric label={mode === "Geometric" ? "Common ratio" : mode === "Recursive" ? "Second term" : mode === "Patterns" ? "Quadratic coefficient" : "Common difference"} value={parameter} min={-10} max={10} onChange={(value) => setLive({ parameter: value })} onCommit={(value) => history.commit({ ...history.state, parameter: value })} /><Numeric label="Number of terms" min={1} max={20} value={count} onChange={(n) => setLive({ count: Math.round(n) })} onCommit={(n) => history.commit({ ...history.state, count: Math.round(n) })} /><Result>{mode === "Geometric" ? `aₙ = ${first} × ${parameter}^(n−1)` : mode === "Recursive" ? `a₁ = ${first}; a₂ = ${parameter}; aₙ = aₙ₋₁ + aₙ₋₂` : mode === "Patterns" ? `aₙ = ${first} + ${parameter}(n−1)²` : `aₙ = ${first} + (n−1) × ${parameter}`}</Result><p>n! = {factorial(Math.max(0, Math.round(count))) ?? "undefined"}; C(n,2) = {combination(Math.max(0, Math.round(count)), 2) ?? "undefined"}</p></Card><Card title={mode === "Sigma" ? "Partial sums" : "Term Table"}><div className="alg-term-table">{terms.map((value, i) => <span key={i}><small>n = {i + 1}</small><b>{fmt(mode === "Sigma" ? terms.slice(0, i + 1).reduce((a, b) => a + b, 0) : value)}</b></span>)}</div><svg viewBox="0 0 600 260" role="img" aria-label="Sequence plot">{terms.map((v, i) => { const min = Math.min(0, ...terms), max = Math.max(1, ...terms); return <circle key={i} cx={30 + i * 540 / Math.max(1, count - 1)} cy={230 - 200 * (v - min) / (max - min)} r="5" fill="#0891b2" />; })}</svg><Result>Sum: {fmt(sum)}; next term: {fmt(term(count))}{infinite ? `; S∞ ${infinite.ok ? `= ${infinite.text}` : infinite.text}` : ""}</Result></Card><Challenge expected={term(19)} prompt="What is the 20th term?" onNew={() => history.commit({ ...history.state, first: first === 3 ? 5 : 3 })} /></div><LabStrip onSelect={(title) => setFocus(title === "Challenge" ? "What is the 20th term?" : title === "Try" ? "Change d or r and watch the plot." : title === "Why" ? "Sigma just adds the same rule." : title === "Understand" ? "Closed form names the nth term." : "Terms step by a fixed difference or ratio.")} items={[["Observe", "Terms step by a fixed difference or ratio."], ["Understand", "Closed form names the nth term."], ["Why", "Sigma just adds the same rule."], ["Try", "Change d or r and watch the plot."], ["Challenge", "What is the 20th term?"]]} /></div>;
 }
 
 export function ProofLab() {
   const modes = ["Identities", "Equation Proof", "Induction", "Inequality", "Counterexample"];
   const [mode, setMode] = useStudioMode("mode", modes, "Identities");
-  const [statement, setStatement] = useState(""), [reason, setReason] = useState("Distributive property"), [steps, setSteps] = useState<string[]>([]), [feedback, setFeedback] = useState("");
-  const [n, setN] = useState(5), [a, setA] = useState(2), [b, setB] = useState(3);
+  const history = useAlgebraHistory({ statement: "", reason: "Distributive property", steps: [] as string[], feedback: "", n: 5, a: 2, b: 3 });
+  const { statement, reason, steps, feedback, n, a, b } = history.state;
+  const [focus, setFocus] = useState("Each line must stay equivalent.");
   const add = () => {
-    if (!statement.trim()) { setFeedback("Enter a statement first."); return; }
-    const normalized = statement.replaceAll("²", "^2").replaceAll("−", "-");
-    const expanded = runCasOperation(`(${normalized})-((a+b)^2)`, "expand");
-    const difference = expanded.ok ? runCasOperation(expanded.output, "simplify") : expanded;
-    if (!difference.ok || difference.output !== "0") { setFeedback("This statement is not equivalent to (a+b)². Check the cross terms."); return; }
-    setSteps((current) => [...current, `${statement} — ${reason}`]); setStatement(""); setFeedback("Equivalent expression verified symbolically. The selected reason is recorded for review.");
+    if (!statement.trim()) { history.replace({ ...history.state, feedback: "Enter a statement first." }); return; }
+    const previous = steps.at(-1)?.split(" — ")[0]?.trim() || "(a+b)^2";
+    const fromPrevious = classifyProofReason(statement, previous);
+    const fromGoal = classifyProofReason(statement, "(a+b)^2");
+    const classification = fromPrevious.valid ? fromPrevious : fromGoal;
+    if (!classification.valid) { history.replace({ ...history.state, feedback: "This statement is not equivalent to the previous line or to (a+b)²." }); return; }
+    if (!reasonMatchesStep(reason, classification)) { history.replace({ ...history.state, feedback: `The algebra is equivalent, but the reason should be: ${classification.suggested}.` }); return; }
+    const proven = expressionsEquivalent(statement, "a^2+2*a*b+b^2") || expressionsEquivalent(statement, "(a+b)^2");
+    history.commit({ ...history.state, steps: [...steps, `${statement} — ${reason}`], statement: "", feedback: proven ? "PROVEN: the line is equivalent to the identity." : "Equivalent expression verified symbolically. The selected reason matches the transformation." });
   };
-  return <div className="alg-page"><AlgebraLabHeading subtitle="Construct identities, induction steps, inequalities, and counterexamples." modes={modes} mode={mode} onMode={(next) => { setMode(next); setFeedback(""); }}>Algebraic Proof Lab</AlgebraLabHeading><div className="alg-three-column"><Card title="Proof controls">{mode === "Identities" ? <><label className="alg-field">Statement<input value={statement} onChange={(e) => { setStatement(e.target.value); setFeedback(""); }} placeholder="a^2 + 2*a*b + b^2" /></label><label className="alg-field">Reason<select value={reason} onChange={(e) => setReason(e.target.value)}>{["Distributive property", "Combine like terms", "Definition of square"].map((r) => <option key={r}>{r}</option>)}</select></label><button type="button" onClick={add}>Add to proof</button><div className="alg-symbols">{["a", "b", "a²", "b²", "+", "−", "*", "(", ")"].map((symbol) => <button type="button" key={symbol} onClick={() => setStatement((s) => s + symbol)}>{symbol}</button>)}</div></> : <><Numeric label="a" value={a} onChange={setA} /><Numeric label="b" value={b} onChange={setB} />{mode === "Induction" && <Numeric label="n" min={1} max={100} value={n} onChange={(v) => setN(Math.round(v))} />}</>}<button type="button" onClick={() => { setSteps([]); setStatement(""); setFeedback(""); setA(2); setB(3); setN(5); }}>Reset proof</button></Card><Card title={`${mode} reasoning`}>{mode === "Identities" ? <><p>Goal: (a+b)² = a²+2ab+b²</p><ol>{steps.map((step, i) => <li key={i}>{step}</li>)}</ol><p role="status">{feedback}</p></> : mode === "Equation Proof" ? <Result>For {a}x + {b} = 0: {a === 0 ? b === 0 ? "all real values" : "no solution" : `subtract ${b}, divide by ${a}: x = ${fmt(-b / a)}. Substitution gives ${fmt(a * (-b / a) + b)}.`}</Result> : mode === "Induction" ? <><p>Base case: 1 = 1(1+1)/2. Assume Sₖ = k(k+1)/2.</p><p>Sₖ₊₁ = k(k+1)/2 + (k+1) = (k+1)(k+2)/2. Therefore the formula holds for every positive integer.</p><Result>Check n={n}: {Array.from({ length: n }, (_, i) => i + 1).reduce((s, v) => s + v, 0)} = {n * (n + 1) / 2}</Result></> : mode === "Inequality" ? <Result>(a−b)² ≥ 0 implies a²+b² ≥ 2ab. Here {a * a + b * b} ≥ {2 * a * b}; difference {(a - b) ** 2}.</Result> : <Result>Claim: (a+b)² = a²+b². At a={a}, b={b}: {(a + b) ** 2} versus {a * a + b * b}. {a * b !== 0 ? "Counterexample found: the claim is false." : "Equal at this point; one example does not prove an identity."}</Result>}</Card></div><LabStrip items={[["Observe", "Each line must stay equivalent."], ["Understand", "Reasons name the algebra law."], ["Why", "A proof is a chain of identities."], ["Try", "Add a²+2ab+b² as a step."], ["Challenge", "Find a counterexample to (a+b)² = a²+b²."]]} /></div>;
+  return <div className="alg-page"><AlgebraLabHeading subtitle="Construct identities, induction steps, inequalities, and counterexamples." modes={modes} mode={mode} onMode={(next) => { setMode(next); history.replace({ ...history.state, feedback: "" }); }} onUndo={history.undo} onRedo={history.redo} canUndo={history.canUndo} canRedo={history.canRedo} onReset={() => history.reset()} helpTitle={`${mode} help`} helpBody="Identity steps must be equivalent to (a+b)² and use a matching reason. Equation, induction, inequality, and counterexample modes compute from the current a, b, and n.">Algebraic Proof Lab</AlgebraLabHeading><p role="status">{focus}</p><div className="alg-three-column"><Card title="Proof controls">{mode === "Identities" ? <><label className="alg-field">Statement<input value={statement} onChange={(e) => history.replace({ ...history.state, statement: e.target.value, feedback: "" })} placeholder="a^2 + 2*a*b + b^2" /></label><label className="alg-field">Reason<select value={reason} onChange={(e) => history.replace({ ...history.state, reason: e.target.value })}>{["Distributive property", "Combine like terms", "Definition of square"].map((r) => <option key={r}>{r}</option>)}</select></label><button type="button" onClick={add}>Add to proof</button><div className="alg-symbols">{["a", "b", "a²", "b²", "+", "−", "*", "(", ")"].map((symbol) => <button type="button" key={symbol} onClick={() => history.replace({ ...history.state, statement: statement + symbol })}>{symbol}</button>)}</div></> : <><Numeric label="a" value={a} onChange={(value) => history.replace({ ...history.state, a: value })} onCommit={(value) => history.commit({ ...history.state, a: value })} /><Numeric label="b" value={b} onChange={(value) => history.replace({ ...history.state, b: value })} onCommit={(value) => history.commit({ ...history.state, b: value })} />{mode === "Induction" && <Numeric label="n" min={1} max={100} value={n} onChange={(v) => history.replace({ ...history.state, n: Math.round(v) })} onCommit={(v) => history.commit({ ...history.state, n: Math.round(v) })} />}</>}<button type="button" onClick={() => history.reset()}>Reset proof</button></Card><Card title={`${mode} reasoning`}>{mode === "Identities" ? <><p>Goal: (a+b)² = a²+2ab+b²</p><ol>{steps.map((step, i) => <li key={i}>{step}</li>)}</ol><p role="status">{feedback}</p></> : mode === "Equation Proof" ? <Result>For {a}x + {b} = 0: {describeLinearSolution(a, b, 0, 0).text}. {snapNearZero(a) === 0 ? "" : `Subtract ${b}, divide by ${a}: x = ${fmt(-b / a)}. Substitution gives ${fmt(a * (-b / a) + b)}.`}</Result> : mode === "Induction" ? <><p>Base case: 1 = 1(1+1)/2. Assume Sₖ = k(k+1)/2.</p><p>Sₖ₊₁ = k(k+1)/2 + (k+1) = (k+1)(k+2)/2. Therefore the formula holds for every positive integer.</p><Result>Check n={n}: {Array.from({ length: n }, (_, i) => i + 1).reduce((s, v) => s + v, 0)} = {n * (n + 1) / 2}</Result></> : mode === "Inequality" ? <Result>(a−b)² ≥ 0 implies a²+b² ≥ 2ab. Here {a * a + b * b} ≥ {2 * a * b}; difference {(a - b) ** 2}.</Result> : <Result>Claim: (a+b)² = a²+b². At a={a}, b={b}: {(a + b) ** 2} versus {a * a + b * b}. {a * b !== 0 ? "Counterexample found: the claim is false." : "Equal at this point; one example does not prove an identity."}</Result>}</Card></div><LabStrip onSelect={(title) => { if (title === "Try") history.replace({ ...history.state, statement: "a^2+2*a*b+b^2", reason: "Distributive property" }); setFocus(title === "Challenge" ? "Find a counterexample to (a+b)² = a²+b²." : title === "Try" ? "Add a²+2ab+b² as a step." : title === "Why" ? "A proof is a chain of identities." : title === "Understand" ? "Reasons name the algebra law." : "Each line must stay equivalent."); }} items={[["Observe", "Each line must stay equivalent."], ["Understand", "Reasons name the algebra law."], ["Why", "A proof is a chain of identities."], ["Try", "Add a²+2ab+b² as a step."], ["Challenge", "Find a counterexample to (a+b)² = a²+b²."]]} /></div>;
 }
 
 export function CasGateway() {
-  const modes = ["Solve", "Simplify", "Factor", "Expand", "Substitute"];
+  const modes = ["Solve", "Simplify", "Factor", "Expand", "Substitute", "Differentiate"];
   const [mode, setMode] = useStudioMode("mode", modes, "Solve");
-  const [draft, setDraft] = useState("2*x^2-8*x-10"), [x, setX] = useState(2), [result, setResult] = useState("");
-  const compute = () => { const input = mode === "Substitute" ? draft.replace(/\bx\b/g, `(${x})`) : draft; const answer = runCasOperation(input, mode === "Substitute" ? "simplify" : mode.toLowerCase() as CasOperation); setResult(answer.ok ? answer.output : `Check input: ${answer.output}`); };
-  return <div className="alg-page"><AlgebraLabHeading subtitle="Solve, simplify, factor, expand, and substitute with the connected CAS." modes={modes} mode={mode} onMode={(next) => { setMode(next); setResult(""); }}>CAS Step Explorer</AlgebraLabHeading><div className="alg-cas-notice"><b>Connected to the existing CAS workspace</b><Link to="/workspace/data/cas">Open CAS Workspace</Link></div><div className="alg-three-column"><Card title="Expression"><label className="alg-field">CAS expression<input value={draft} onChange={(e) => { setDraft(e.target.value); setResult(""); }} onKeyDown={(e) => { if (e.key === "Enter") compute(); }} /></label>{mode === "Substitute" && <Numeric label="Substitute x" value={x} onChange={(v) => { setX(v); setResult(""); }} />}<button type="button" className="alg-gradient-button" onClick={compute}>Compute {mode}</button></Card><Card title={`${mode} result`}><Result>{result || "Enter an expression and compute."}</Result></Card><Card title="Expression graph"><Plot expressions={[draft.split("=")[0]]} /></Card></div><LabStrip items={[["Observe", "Each operation rewrites the expression."], ["Understand", "CAS applies the same algebra laws."], ["Why", "Equivalent forms share values."], ["Try", "Factor 2x²−8x−10."], ["Challenge", "Check a candidate by substituting."]]} /></div>;
+  const history = useAlgebraHistory({ draft: "2*x^2-8*x-10", x: 2, result: "", entries: [] as string[] });
+  const { draft, x, result, entries } = history.state;
+  const [focus, setFocus] = useState("Each operation rewrites the expression.");
+  const compute = () => {
+    const substituted = mode === "Substitute" ? evaluateAlgebraExpression(draft, { x }) : null;
+    const answer = mode === "Substitute"
+      ? substituted && substituted.ok ? { ok: true as const, output: formatAlgebraNumber(substituted.value) } : { ok: false as const, output: substituted?.error ?? "Invalid expression." }
+      : runCasOperation(draft, (mode === "Differentiate" ? "differentiate" : mode.toLowerCase()) as CasOperation);
+    const output = answer.ok ? answer.output : `Check input: ${answer.output}`;
+    history.commit({ ...history.state, result: output, entries: [...entries, `${mode}: ${draft} → ${output}`].slice(-8) });
+  };
+  return <div className="alg-page"><AlgebraLabHeading subtitle="Solve, simplify, factor, expand, and substitute with the connected CAS." modes={modes} mode={mode} onMode={(next) => { setMode(next); history.replace({ ...history.state, result: "" }); }} onUndo={history.undo} onRedo={history.redo} canUndo={history.canUndo} canRedo={history.canRedo} onReset={() => history.reset()} helpTitle={`${mode} help`} helpBody="The CAS never uses eval(). Invalid expressions return an error. History stores each successful or failed compute.">CAS Step Explorer</AlgebraLabHeading><p role="status">{focus}</p><div className="alg-cas-notice"><b>Connected to the existing CAS workspace</b><Link to="/workspace/data/cas">Open CAS Workspace</Link></div><div className="alg-three-column"><Card title="Expression"><label className="alg-field">CAS expression<input value={draft} onChange={(e) => history.replace({ ...history.state, draft: e.target.value, result: "" })} onKeyDown={(e) => { if (e.key === "Enter") compute(); }} /></label>{mode === "Substitute" && <Numeric label="Substitute x" value={x} onChange={(v) => history.replace({ ...history.state, x: v, result: "" })} />}<button type="button" className="alg-gradient-button" onClick={compute}>Compute {mode}</button></Card><Card title={`${mode} result`}><Result>{result || "Enter an expression and compute."}</Result><ol className="alg-cas-steps">{entries.map((entry) => <li key={entry}><button type="button" onClick={() => { const parts = entry.split(" → "); const left = parts[0] ?? ""; const expr = left.slice(left.indexOf(":") + 1).trim(); history.replace({ ...history.state, draft: expr || draft, result: parts[1] ?? result }); }}>{entry}</button></li>)}</ol><button type="button" onClick={() => history.commit({ ...history.state, entries: [], result: "" })}>Clear history</button></Card><Card title="Expression graph"><Plot expressions={[draft.split("=")[0] || "0"]} /></Card></div><Challenge expected="2*(x-5)*(x+1)" prompt="Factor 2x²−8x−10, or enter an equivalent factored form." onNew={() => history.commit({ ...history.state, draft: "x^2-5*x+6" })} /><LabStrip onSelect={(title) => { if (title === "Try") { const answer = runCasOperation("2*x^2-8*x-10", "factor"); history.commit({ ...history.state, draft: "2*x^2-8*x-10", result: answer.ok ? answer.output : answer.output }); } setFocus(title === "Challenge" ? "Check a candidate by substituting." : title === "Try" ? "Factor 2x²−8x−10." : title === "Why" ? "Equivalent forms share values." : title === "Understand" ? "CAS applies the same algebra laws." : "Each operation rewrites the expression."); }} items={[["Observe", "Each operation rewrites the expression."], ["Understand", "CAS applies the same algebra laws."], ["Why", "Equivalent forms share values."], ["Try", "Factor 2x²−8x−10."], ["Challenge", "Check a candidate by substituting."]]} /></div>;
 }

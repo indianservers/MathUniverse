@@ -13,12 +13,14 @@ export function ComboWorkspace({
   insights,
   collapsed,
   onToggle,
+  theme = "arr",
 }: {
   controls: ReactNode;
   viz: ReactNode;
   insights: ReactNode;
   collapsed: boolean;
   onToggle: () => void;
+  theme?: "arr" | "sel" | "pig" | "ie" | "tree";
 }) {
   return (
     <div className="combo-workspace">
@@ -26,7 +28,7 @@ export function ComboWorkspace({
         <button type="button" className="combo-mobile-toggle" onClick={onToggle}>{collapsed ? "Show controls" : "Hide controls"}</button>
         {controls}
       </section>
-      <section className="combo-col combo-viz">{viz}</section>
+      <section className={`combo-col combo-viz theme-${theme}`}>{viz}</section>
       <aside className="combo-col combo-insights">{insights}</aside>
     </div>
   );
@@ -133,23 +135,27 @@ export function Slot({
   index,
   value,
   color,
+  choices,
   onDrop,
 }: {
   index: number;
   value: string | null;
   color?: string;
+  choices?: number;
   onDrop: () => void;
 }) {
   return (
     <div
       className={`combo-slot${value ? " is-filled" : ""}`}
+      onClick={onDrop}
       onDragOver={(e) => e.preventDefault()}
       onDrop={(e) => {
         e.preventDefault();
         onDrop();
       }}
     >
-      <small>{index + 1}</small>
+      <small>{`Slot ${index + 1}`}</small>
+      {choices != null ? <em>{`${choices} choices`}</em> : null}
       <b style={value ? { background: color } : undefined}>{value ?? "—"}</b>
     </div>
   );

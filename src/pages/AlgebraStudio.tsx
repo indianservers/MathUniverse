@@ -18,10 +18,12 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
-import { ExpressionsLab, EquationsLab, FunctionsLab, PolynomialsLab, SystemsLab, ExponentsLab, SequencesLab, ProofLab, CasGateway } from "../studios/algebra/AlgebraInteractiveLabs";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import { ExpressionsLab, FunctionsLab, PolynomialsLab, SystemsLab, ExponentsLab, SequencesLab, ProofLab, CasGateway } from "../studios/algebra/AlgebraInteractiveLabs";
+import EquationsLab from "../studios/algebra/EquationsLab";
 import { useProgress } from "../hooks/useProgress";
 import AlgebraEnhancementWorkbench from "../studios/algebra/AlgebraEnhancementWorkbench";
+import { answersMatchChallenge } from "../studios/algebra/algebraStudioMath";
 import StudioBreadcrumb, { mathStudioCrumbs } from "../components/ui/StudioBreadcrumb";
 import "./AlgebraStudio.css";
 
@@ -69,7 +71,7 @@ const topicStudios: TopicStudio[] = [
   { id: "exponents", label: "Exponents & Logs", route: "/algebra/exponents-logs", description: "Work with exponential and logarithmic functions.", iconSrc: "/assets/algebra-studio/algebra-icon-exponents.png", tabs: ["Exponent Laws", "Radicals", "Exponential & Logs", "Equations"] },
   { id: "sequences", label: "Sequences", route: "/algebra/sequences", description: "Find patterns and general terms.", iconSrc: "/assets/algebra-studio/algebra-icon-sequences.png", tabs: ["Arithmetic", "Geometric", "Recursive", "Sigma", "Patterns"] },
   { id: "proof", label: "Algebraic Proof", route: "/algebra/proof", description: "Construct and validate proofs.", iconSrc: "/assets/algebra-studio/algebra-icon-proof.png", tabs: ["Identities", "Equation Proof", "Induction", "Inequality", "Counterexample"] },
-  { id: "cas", label: "CAS Explorer", route: "/algebra/cas", description: "Opens the connected CAS workspace.", iconSrc: "/assets/algebra-studio/algebra-icon-cas.png", tabs: ["Solve", "Simplify", "Factor", "Expand", "Substitute"] },
+  { id: "cas", label: "CAS Explorer", route: "/algebra/cas", description: "Opens the connected CAS workspace.", iconSrc: "/assets/algebra-studio/algebra-icon-cas.png", tabs: ["Solve", "Simplify", "Factor", "Expand", "Substitute", "Differentiate"] },
   { id: "advanced", label: "Advanced Workbench", route: "/algebra/advanced", description: "Twenty-five linked algebra tools in one workbench.", iconSrc: "/assets/algebra-studio/algebra-studio-mark.png", tabs: [] },
 ];
 
@@ -137,13 +139,16 @@ function AlgebraMark() {
 
 function StudioHome() {
   const { getTopicProgress, markTopicVisited } = useProgress();
+  const navigate = useNavigate();
   const [query, setQuery] = useState("");
   const [answer, setAnswer] = useState("");
   const [checked, setChecked] = useState(false);
   const [visited, setVisited] = useState<string[]>([]);
   const searchRef = useRef<HTMLInputElement>(null);
   const resumeRoute = typeof window === "undefined" ? "/algebra/functions" : (localStorage.getItem(LAST_ROUTE_KEY) || "/algebra/functions");
+  const resumeLabel = studioNav.find((item) => item.route === resumeRoute)?.label ?? "Functions";
   const progress = getTopicProgress("algebra");
+  const challengeExpression = "2*(x+3)-(x-1)";
 
   useEffect(() => {
     markTopicVisited("algebra");
@@ -223,7 +228,7 @@ function StudioHome() {
         <aside className="alg-home-aside">
           <section className="alg-card">
             <h2><Play /> Continue experiment</h2>
-            <strong>Quadratic Functions</strong>
+            <strong>{resumeLabel}</strong>
             <p>Resume {visited.length ? `${visited.length} topics started` : "your last lab"} · {progress}%</p>
             <Link className="alg-gradient-button" to={resumeRoute}>Resume</Link>
           </section>
@@ -234,16 +239,16 @@ function StudioHome() {
               <button type="button" key={choice} aria-pressed={answer === choice} onClick={() => { setAnswer(choice); setChecked(false); }}>{choice}</button>
             ))}</div>
             <button className="alg-gradient-button" type="button" onClick={() => setChecked(true)}>Check answer</button>
-            {checked && <p role="status">{answer === "x + 7" ? "Correct: 2x + 6 − x + 1 = x + 7." : "Distribute the minus sign, then combine like terms."}</p>}
+            {checked && <p role="status">{answersMatchChallenge(answer, challengeExpression) ? "Correct: the choice is equivalent to 2(x + 3) − (x − 1)." : "Distribute the minus sign, then combine like terms."}</p>}
           </section>
         </aside>
       </div>
       <section className="alg-learning-strip" aria-label="Learning loop">
-        <div><Lightbulb /><span><b>Observe</b><small>Visualize concepts with interactive diagrams.</small></span></div>
-        <div><Target /><span><b>Understand</b><small>Build intuition with clear explanations.</small></span></div>
-        <div><Sparkles /><span><b>Why</b><small>Discover the ideas and connections behind.</small></span></div>
-        <div><FlaskConical /><span><b>Try</b><small>Experiment, manipulate, and see results live.</small></span></div>
-        <div><Trophy /><span><b>Challenge</b><small>Solve problems and test your mastery.</small></span></div>
+        <div role="button" tabIndex={0} onClick={() => document.querySelector(".alg-concept-map")?.scrollIntoView({ behavior: "smooth" })} onKeyDown={(event) => { if (event.key === "Enter") document.querySelector(".alg-concept-map")?.scrollIntoView({ behavior: "smooth" }); }}><Lightbulb /><span><b>Observe</b><small>Visualize concepts with interactive diagrams.</small></span></div>
+        <div role="button" tabIndex={0} onClick={() => document.getElementById("algebra-topics")?.scrollIntoView({ behavior: "smooth" })} onKeyDown={(event) => { if (event.key === "Enter") document.getElementById("algebra-topics")?.scrollIntoView({ behavior: "smooth" }); }}><Target /><span><b>Understand</b><small>Build intuition with clear explanations.</small></span></div>
+        <div role="button" tabIndex={0} onClick={() => navigate("/algebra/proof")} onKeyDown={(event) => { if (event.key === "Enter") navigate("/algebra/proof"); }}><Sparkles /><span><b>Why</b><small>Discover the ideas and connections behind.</small></span></div>
+        <div role="button" tabIndex={0} onClick={() => navigate("/algebra/expressions")} onKeyDown={(event) => { if (event.key === "Enter") navigate("/algebra/expressions"); }}><FlaskConical /><span><b>Try</b><small>Experiment, manipulate, and see results live.</small></span></div>
+        <div role="button" tabIndex={0} onClick={() => document.getElementById("algebra-challenge")?.scrollIntoView({ behavior: "smooth" })} onKeyDown={(event) => { if (event.key === "Enter") document.getElementById("algebra-challenge")?.scrollIntoView({ behavior: "smooth" }); }}><Trophy /><span><b>Challenge</b><small>Solve problems and test your mastery.</small></span></div>
       </section>
     </div>
   );

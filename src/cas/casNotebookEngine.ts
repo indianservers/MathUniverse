@@ -70,7 +70,8 @@ export type NotebookOperation =
   | "matrix-rank"
   | "eigenvalues"
   | "eigenvectors"
-  | "list";
+  | "list"
+  | "plot";
 
 export type NotebookStructuredStep = {
   id: string;
@@ -165,6 +166,7 @@ export const operationOptions: Array<{
   { value: "eigenvalues", label: "Eigenvalues" },
   { value: "eigenvectors", label: "Eigenvectors" },
   { value: "list", label: "List" },
+  { value: "plot", label: "Plot" },
 ];
 
 export const casNotebookExamples: Array<{
@@ -190,6 +192,7 @@ export const casNotebookExamples: Array<{
     input: "tan(x), sin(x)/cos(x), x",
     operation: "verify-identity",
   },
+  { label: "Plot quadratic", input: "x^2-4", operation: "plot" },
 ];
 
 export const starterNotebookCells: NotebookCell[] = [
@@ -726,6 +729,7 @@ function runNotebookOperation(
       assumptions,
     );
   if (operation === "list") return listResult(input);
+  if (operation === "plot") return plotResult(input);
   return null;
 }
 
@@ -822,6 +826,20 @@ function matrixResult(input: string): SymbolicResult | null {
         : "Inverse preview is currently shown for 2x2 matrices only.",
       `Transpose: ${JSON.stringify(transpose)}.`,
       `RREF: ${JSON.stringify(rref)}.`,
+    ],
+  };
+}
+
+function plotResult(input: string): SymbolicResult {
+  const expression = input.replace(/^y\s*=\s*/i, "").trim() || "x";
+  return {
+    result: expression,
+    exact: expression,
+    detail: "Expression is ready to graph in 2D Graph Studio.",
+    steps: [
+      "Read the expression as a graphable function of x.",
+      "Keep the exact form for the plotter.",
+      "Open 2D Graph with this expression to inspect intercepts, extrema, and intersections.",
     ],
   };
 }

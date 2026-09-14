@@ -3,7 +3,6 @@ import { Field, Panel, Segmented, SliderRow } from "../../mockup/studioLabKit";
 import {
   EXPLORER_PRESETS,
   clampPoint,
-  constructSSS,
   defaultPlane,
   fromSvg,
   measureTriangle,
@@ -25,7 +24,7 @@ import {
 
 type Mode = "inequality" | "sides" | "exterior";
 
-export default function TriangleInequalitiesLab() {
+export default function TriangleInequalitiesLab({ pulse = "observe" }: { pulse?: string }) {
   const plane = defaultPlane();
   const svgRef = useRef<SVGSVGElement>(null);
   const drag = useRef<"A" | "B" | "C" | null>(null);
@@ -33,12 +32,11 @@ export default function TriangleInequalitiesLab() {
   const [a, setA] = useState(5);
   const [b, setB] = useState(6);
   const [c, setC] = useState(7);
-  const [hinge, setHinge] = useState(0.72);
+  const [hinge, setHinge] = useState(0.27);
   const [animate, setAnimate] = useState(false);
   const [tri, setTri] = useState(EXPLORER_PRESETS.scalene);
 
   const tests = triangleInequality(a, b, c);
-  const built = constructSSS(a, b, c, { x: 3.2, y: 1.8 });
   const m = measureTriangle(tri.A, tri.B, tri.C);
   const rank = ranking(tri.A, tri.B, tri.C);
 
@@ -56,16 +54,43 @@ export default function TriangleInequalitiesLab() {
   }, [animate]);
 
   const hingeGeom = useMemo(() => {
-    const origin = { x: 3.4, y: 2.2 };
+    const origin = { x: 2.6, y: 2.2 };
     const P = origin;
     const Q = { x: origin.x + c, y: origin.y };
     const maxOpen = Math.PI * 0.92;
-    const t = hinge;
-    const ang = t * maxOpen;
+    const ang = hinge * maxOpen;
     const R = { x: origin.x + b * Math.cos(ang), y: origin.y + b * Math.sin(ang) };
     const gap = Math.hypot(R.x - Q.x, R.y - Q.y);
-    return { P, Q, R, gap, ang };
-  }, [b, c, hinge]);
+    const closeCos = (b * b + c * c - a * a) / (2 * b * c);
+    const closeAng = Number.isFinite(closeCos) ? Math.acos(Math.max(-1, Math.min(1, closeCos))) : null;
+    return { P, Q, R, gap, ang, closeAng, meets: Math.abs(gap - a) < 0.12 };
+  }, [a, b, c, hinge]);
+
+  useEffect(() => {
+    if (animate) return;
+    const maxOpen = Math.PI * 0.92;
+    const closeCos = (b * b + c * c - a * a) / (2 * b * c);
+    if (!Number.isFinite(closeCos)) {
+      setHinge(0.05);
+      return;
+    }
+    const closeAng = Math.acos(Math.max(-1, Math.min(1, closeCos)));
+    if (tests.valid) setHinge(Math.min(0.98, Math.max(0.05, closeAng / maxOpen)));
+    else if (tests.degenerate) setHinge(0.02);
+  }, [a, b, c, animate, tests.degenerate, tests.valid]);
+
+  useEffect(() => {
+    if (pulse === "observe") setMode("inequality");
+    if (pulse === "understand") setMode("inequality");
+    if (pulse === "why") setMode("sides");
+    if (pulse === "try" || pulse === "challenge") {
+      setMode("inequality");
+      setA(3);
+      setB(4);
+      setC(7);
+      setHinge(0.02);
+    }
+  }, [pulse]);
 
   const startDrag = (who: "A" | "B" | "C") => (event: React.PointerEvent) => {
     event.preventDefault();
@@ -82,7 +107,7 @@ export default function TriangleInequalitiesLab() {
     }, () => { drag.current = null; });
   };
 
-  const reset = () => { setA(5); setB(6); setC(7); setHinge(0.72); setTri(EXPLORER_PRESETS.scalene); setMode("inequality"); };
+  const reset = () => { setA(5); setB(6); setC(7); setHinge(0.27); setTri(EXPLORER_PRESETS.scalene); setMode("inequality"); };
 
   const p = toSvg(plane, hingeGeom.P);
   const q = toSvg(plane, hingeGeom.Q);
@@ -90,6 +115,7 @@ export default function TriangleInequalitiesLab() {
 
   return (
     <LabFrame
+      theme="inequalities"
       ariaLabel="Triangle inequalities laboratory"
       controls={
         <Panel title="Inequality controls">
@@ -114,20 +140,25 @@ export default function TriangleInequalitiesLab() {
       }
       canvas={
         <svg ref={svgRef} viewBox={`0 0 ${plane.width} ${plane.height}`} role="img" aria-label="Triangle inequality construction">
-          <rect width={plane.width} height={plane.height} fill="#f8fbff" />
           {mode === "inequality" ? (
-            tests.valid && hinge > 0.55 ? (
-              <polygon points={polyPoints(plane, [built.A, built.B, built.C])} fill="rgba(16,185,129,.12)" stroke="#059669" strokeWidth="2.1" />
-            ) : (
-              <g>
-                <line x1={p.x} y1={p.y} x2={q.x} y2={q.y} stroke="#147df2" strokeWidth="3" />
-                <line x1={p.x} y1={p.y} x2={r.x} y2={r.y} stroke="#8b45f4" strokeWidth="3" />
-                <line x1={r.x} y1={r.y} x2={q.x} y2={q.y} stroke={tests.degenerate ? "#f59e0b" : "#ef4444"} strokeWidth="2.2" strokeDasharray={tests.valid ? "0" : "7 5"} />
-                <circle cx={p.x} cy={p.y} r="5" fill="#147df2" />
-                <circle cx={q.x} cy={q.y} r="5" fill="#147df2" />
-                <circle cx={r.x} cy={r.y} r="5" fill="#8b45f4" />
-              </g>
-            )
+            <g>
+              {tests.valid && hingeGeom.meets ? (
+                <polygon points={polyPoints(plane, [hingeGeom.P, hingeGeom.Q, hingeGeom.R])} fill="rgba(16,185,129,.14)" stroke="#059669" strokeWidth="2.1" />
+              ) : null}
+              <line x1={p.x} y1={p.y} x2={q.x} y2={q.y} stroke="#147df2" strokeWidth="3" />
+              <line x1={p.x} y1={p.y} x2={r.x} y2={r.y} stroke="#8b45f4" strokeWidth="3" />
+              <line x1={r.x} y1={r.y} x2={q.x} y2={q.y} stroke={tests.degenerate ? "#f59e0b" : tests.valid && hingeGeom.meets ? "#059669" : "#ef4444"} strokeWidth="2.2" strokeDasharray={hingeGeom.meets && tests.valid ? "0" : "7 5"} />
+              <circle cx={q.x} cy={q.y} r={a * plane.unit} fill="none" stroke="#ef444466" strokeDasharray="4 5" />
+              <path d={`M ${p.x + b * plane.unit} ${p.y} A ${b * plane.unit} ${b * plane.unit} 0 0 0 ${r.x} ${r.y}`} fill="none" stroke="#8b45f433" strokeWidth="1.4" />
+              <circle cx={p.x} cy={p.y} r="5" fill="#147df2" />
+              <circle cx={q.x} cy={q.y} r="5" fill="#147df2" />
+              <circle cx={r.x} cy={r.y} r="5" fill="#8b45f4" />
+              <text x={(p.x + q.x) / 2} y={p.y + 18} fill="#147df2" fontSize="12" fontWeight="700">c={okNum(c)}</text>
+              <text x={(p.x + r.x) / 2 - 18} y={(p.y + r.y) / 2} fill="#8b45f4" fontSize="12" fontWeight="700">b={okNum(b)}</text>
+              <text x={(r.x + q.x) / 2 + 8} y={(r.y + q.y) / 2} fill={hingeGeom.meets && tests.valid ? "#059669" : "#ef4444"} fontSize="12" fontWeight="700">
+                {hingeGeom.meets && tests.valid ? `a=${okNum(a)}` : tests.degenerate ? "degenerate" : `need a=${okNum(a)}`}
+              </text>
+            </g>
           ) : (
             <>
               <polygon points={polyPoints(plane, [tri.A, tri.B, tri.C])} fill="rgba(20,125,242,.10)" stroke="#147df2" strokeWidth="2.1" />

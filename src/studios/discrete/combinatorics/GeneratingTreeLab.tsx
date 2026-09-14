@@ -53,7 +53,7 @@ export default function GeneratingTreeLab({
     if (kind === "dice") { setN(2); setDepth(2); }
     if (kind === "paths") { setN(2); setR(2); }
     setPlaying(false);
-    setVisible(8);
+    setVisible(1);
   }, [kind]);
 
   useEffect(() => {
@@ -91,6 +91,7 @@ export default function GeneratingTreeLab({
 
   return (
     <ComboWorkspace
+      theme="tree"
       collapsed={collapsed}
       onToggle={() => setCollapsed((v) => !v)}
       controls={

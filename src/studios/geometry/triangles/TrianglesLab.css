@@ -1,13 +1,20 @@
-.tri-tabs{position:sticky;top:0;z-index:4;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin:0 0 12px;padding:8px 0;border:0;background:#f9fcffee;overflow:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
-.tri-tab{display:flex;align-items:flex-start;gap:10px;min-height:72px;padding:10px 12px;border:1px solid #dce7f4;border-radius:14px;background:#fff;box-shadow:0 6px 16px #3a5b7f0a;color:#071641;text-align:left;cursor:pointer;scroll-snap-align:start;flex:1}
-.tri-tab svg{width:28px;height:28px;flex:none;stroke:#147df2}
-.tri-tab b{display:block;font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;line-height:1.2}
+.tri-tabs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin:0 0 12px;padding:0;border:0;background:transparent;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;max-width:100%}
+.tri-lab{display:grid;grid-template-columns:minmax(260px,270px) minmax(0,1fr) minmax(300px,310px);gap:12px;align-items:stretch;min-height:min(68vh,720px);min-width:0;max-width:100%}
+.tri-tab{position:relative;display:grid;grid-template-columns:46px 1fr;gap:8px;align-items:center;min-height:82px;padding:10px 12px 14px;border:1px solid #dce7f4;border-radius:16px;background:#fff;box-shadow:0 8px 18px #3a5b7f0c;color:#071641;text-align:left;cursor:pointer;scroll-snap-align:start}
+.tri-tab:hover{border-color:#9fd8ee;transform:translateY(-1px)}
+.tri-tab svg{width:46px;height:46px;flex:none;stroke:#147df2}
+.tri-tab b{display:block;font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;line-height:1.2}
 .tri-tab small{display:block;margin-top:3px;color:#536381;font-size:11px;font-weight:600;line-height:1.35;text-transform:none;letter-spacing:0}
-.tri-tab.active{border-color:#7ec8ea;background:#f3fbff;box-shadow:inset 0 0 0 1px #bfe8f7,0 8px 18px #147df214;color:#0b4f8a}
+.tri-tab.active{border-color:#08b9dd;background:#f3fbff;box-shadow:0 0 0 1px #08b9dd inset,0 10px 20px #147df214;color:#0b4f8a}
+.tri-tab.active::after{content:"";position:absolute;left:16px;right:16px;bottom:8px;height:3px;border-radius:99px;background:#08b9dd}
 .tri-tab.active svg{stroke:#0ea5c6}
-.tri-lab{display:grid;grid-template-columns:270px minmax(0,1fr) 310px;gap:12px;align-items:start}
 .tri-canvas{padding:10px;min-width:0}
-.tri-canvas svg{width:100%;height:auto;max-height:none;border-radius:14px;background:#f8fbff;touch-action:none;border:1px solid #e4eef8;overflow:visible}
+.tri-canvas svg{width:100%;height:auto;max-height:none;min-height:min(58vh,520px);border-radius:14px;touch-action:none;border:1px solid #e4eef8;overflow:visible}
+.tri-lab--explorer .tri-canvas svg{background:radial-gradient(90% 70% at 12% 0,#dbeafe 0%,transparent 46%),linear-gradient(#fff,#f8fbff)}
+.tri-lab--congruence .tri-canvas svg{background:radial-gradient(70% 60% at 22% 20%,#dbeafe 0%,transparent 42%),radial-gradient(70% 60% at 78% 20%,#ede9fe 0%,transparent 42%),linear-gradient(#fff,#f8fbff)}
+.tri-lab--similarity .tri-canvas svg{background:radial-gradient(90% 70% at 88% 0,#ede9fe 0%,transparent 46%),linear-gradient(#fff,#faf8ff)}
+.tri-lab--centers .tri-canvas svg{background:radial-gradient(90% 70% at 50% 0,#ecfdf5 0%,transparent 48%),linear-gradient(#fff,#f6fffb)}
+.tri-lab--inequalities .tri-canvas svg{background:radial-gradient(90% 70% at 20% 0,#fff7ed 0%,transparent 48%),linear-gradient(#fff,#fffaf5)}
 .tri-metric{display:grid;grid-template-columns:10px 1fr auto;align-items:center;gap:8px;padding:8px 10px;margin:0 0 6px;border:1px solid #dce7f4;border-radius:10px;background:#fff}
 .tri-metric i{width:8px;height:8px;border-radius:50%}
 .tri-metric span{color:#536381;font-size:11px;font-weight:700}
@@ -30,19 +37,27 @@
 .tri-note{margin:6px 0;color:#40516d;font-size:12px;line-height:1.45}
 .tri-warn{margin:8px 0 0;padding:8px 10px;border-radius:10px;background:#fff7ed;color:#9a3412;font-size:12px;font-weight:800}
 .tri-ok{margin:8px 0 0;padding:8px 10px;border-radius:10px;background:#effcf2;color:#07893d;font-size:12px;font-weight:800}
+.tri-vertex{cursor:grab}
+.tri-vertex:active{cursor:grabbing}
 .tri-vertex:hover circle:last-of-type{stroke:#0ea5c6}
+.tri-strip{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-top:12px}
+.tri-strip button{padding:10px;border:1px solid #dce7f4;border-radius:14px;background:#fff;text-align:left}
+.tri-strip button.is-on{border-color:#08b9dd;background:#f3fbff}
+.tri-strip b{display:block;font-size:11px;letter-spacing:.04em;text-transform:uppercase}
+.tri-strip small{display:block;margin-top:4px;color:#536381;font-size:11px;line-height:1.35}
 @media (max-width:1180px){
-  .tri-lab{grid-template-columns:240px minmax(0,1fr)}
+  .tri-lab{grid-template-columns:minmax(230px,260px) minmax(0,1fr)}
   .tri-insights{grid-column:1/-1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
   .tri-tabs{display:flex}
-  .tri-tab{flex:0 0 210px}
+  .tri-tab{flex:0 0 min(240px,70vw)}
 }
 @media (max-width:720px){
-  .tri-lab{grid-template-columns:1fr}
+  .tri-lab{grid-template-columns:1fr;min-height:0}
   .tri-canvas{order:-1}
   .tri-insights{grid-template-columns:1fr}
   .tri-fold>summary{display:block;margin-bottom:8px}
   .tri-tab{flex:0 0 78vw}
+  .tri-strip{grid-template-columns:1fr}
 }
 @media (min-width:1181px){
   .tri-lab{grid-template-columns:270px minmax(0,1fr) 310px}

@@ -1,0 +1,64 @@
+.clab{min-width:0}
+.clab-inline-head{display:flex;gap:8px;justify-content:flex-end;margin-bottom:8px}
+.msk-lab-tools .clab-head-field select,.clab-head-field select{min-height:36px;padding:0 10px;border:1px solid #dce7f4;border-radius:999px;background:#fff;font-size:12px;font-weight:800;color:#334155}
+.clab-tabs{display:flex;gap:2px;overflow:auto;margin:0 0 12px;padding:0 2px;border-bottom:1px solid #dce7f4}
+.clab-tabs button{flex:0 0 auto;min-height:42px;padding:0 16px;border:0;background:transparent;color:#5b6b88;font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+.clab-tabs button.is-on{color:#0891b2;box-shadow:inset 0 -3px 0 #08b9dd}
+.clab-workspace{display:grid;grid-template-columns:236px minmax(0,1fr) 348px;gap:12px;align-items:start}
+.clab-card{padding:14px;border:1px solid #dce7f4;border-radius:18px;background:#fff;min-width:0}
+.clab-card h2{margin:10px 0 6px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#64748b}
+.clab-card h2:first-child{margin-top:0}
+.clab-kicker{margin:10px 0 6px;color:#64748b;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.clab-group{border:0;padding:0;margin:0 0 8px}
+.clab-group>button{width:100%;display:flex;justify-content:space-between;align-items:center;min-height:30px;border:0;background:transparent;color:#64748b;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.clab-icon-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.clab-icon-grid button{min-height:52px;padding:6px 4px;border:1px solid #dce7f4;border-radius:12px;background:#fff;color:#334155;font-size:10px;font-weight:800;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}
+.clab-icon-grid button svg{width:18px;height:18px}
+.clab-icon-grid button.is-on,.clab-seg button.is-on,.clab-tree button.is-on{background:#e8f7ff;color:#0891b2;border-color:#7dd3ea}
+.clab-toggle,.clab-check{display:flex;align-items:center;justify-content:space-between;margin:8px 0;font-size:12px;font-weight:700;color:#334155}
+.clab-check{justify-content:flex-start;gap:8px}
+.clab-toggle input{appearance:none;width:42px;height:24px;border:0;border-radius:999px;background:#dbe7f3;position:relative;cursor:pointer}
+.clab-toggle input::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 1px 4px #0f172a33}
+.clab-toggle input:checked{background:#22d3ee}
+.clab-toggle input:checked::after{left:21px}
+.clab-check input{accent-color:#22d3ee}
+.clab-seg{display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;padding:3px;border-radius:999px;background:#f1f5f9;border:1px solid #e2e8f0}
+.clab-seg button{min-height:30px;font-size:10px;font-weight:800;border:1px solid transparent;border-radius:999px;background:transparent}
+.clab-primary,.clab-ghost{width:100%;min-height:38px;margin-top:8px;border-radius:999px;font-weight:800;font-size:12px}
+.clab-primary{border:0;background:linear-gradient(100deg,#22d3ee,#3b82f6);color:#fff}
+.clab-ghost{border:1px solid #dce7f4;background:#fff;color:#64748b}
+.clab-stage{position:relative;padding:8px;border:1px solid #dce7f4;border-radius:18px;background:#fff;overflow:hidden}
+.clab-svg{width:100%;height:min(64vh,580px);touch-action:none;cursor:crosshair}
+.clab-svg.is-pan{cursor:grab}
+.clab-zoom{position:absolute;right:14px;bottom:14px;display:flex;gap:6px}
+.clab-zoom button{width:34px;height:34px;display:grid;place-items:center;border:1px solid #dce7f4;border-radius:12px;background:#fff}
+.clab-toast{position:absolute;left:16px;bottom:16px;max-width:280px;padding:10px 12px;border-radius:12px;background:#0f172aee;color:#fff;font-size:12px;line-height:1.45}
+.clab-hint{margin:0 0 8px;color:#0369a1;font-size:12px;font-weight:700}
+.clab-inspector{max-height:min(74vh,760px);overflow:auto}
+.clab-tree{list-style:none;margin:0;padding:0}
+.clab-tree li{margin:0}
+.clab-tree button{width:100%;display:flex;align-items:center;gap:8px;min-height:32px;padding:0 8px;border:1px solid transparent;border-radius:10px;background:transparent;text-align:left;font-size:12px;font-weight:700;color:#334155}
+.clab-tree ul{list-style:none;margin:0;padding-left:16px;border-left:1px dashed #dbe7f3}
+.clab-muted{opacity:.45}
+.clab-row{display:flex;justify-content:space-between;gap:8px;padding:7px 4px;border-top:1px solid #eef3f8;font-size:12px;font-weight:700}
+.clab-row span{color:#64748b}
+.clab-row b{color:#0f766e;font-variant-numeric:tabular-nums}
+.clab-obs{color:#b45309!important}
+.clab-ok{color:#059669;font-size:12px;font-weight:800}
+.clab-note,.clab-goal{color:#475569;font-size:12px;line-height:1.5}
+.clab-steps{margin:8px 0 0;padding-left:18px;color:#334155;font-size:12px;line-height:1.55}
+.clab-steps li.is-on{color:#0891b2;font-weight:800}
+.clab-history{margin:8px 0 0;padding-left:18px;color:#334155;font-size:12px;line-height:1.7}
+.clab-props{display:grid;gap:6px;padding:10px;border:1px solid #e6eef8;border-radius:14px;background:#f8fbff;font-size:12px}
+.clab-props input{min-height:32px;border:1px solid #dce7f4;border-radius:8px;padding:0 8px}
+.clab-graph{width:100%;height:auto}
+.clab-select{width:100%;min-height:34px;border:1px solid #dce7f4;border-radius:10px;background:#fff;font-size:12px;font-weight:700}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+@media (max-width:1100px){
+  .clab-workspace{grid-template-columns:1fr}
+  .clab-inspector{order:3}
+}
+@media (max-width:720px){
+  .clab-svg{height:min(52vh,420px)}
+  .clab-icon-grid{grid-template-columns:repeat(4,1fr)}
+}

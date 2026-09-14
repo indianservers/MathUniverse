@@ -30,6 +30,8 @@ describe("Combinatorics Lab", () => {
 
     expect(arrangements).toContain("Arrangement stage");
     expect(arrangements).toContain("P(n,r)");
+    expect(arrangements).toContain("Ordered slots");
+    expect(arrangements).toContain("4 choices");
     expect(selections).toContain("Selection tray");
     expect(selections).toContain("C(n,r)");
     expect(pigeon).toContain("Containers");

@@ -1,6 +1,8 @@
 import { useMemo, useState, type ReactNode } from "react";
 import CombinatoricsLab from "../../discrete/combinatorics/CombinatoricsLab";
 import CoordinateLab from "../../geometry/coordinate/CoordinateLab";
+import ConstructionLab from "../../geometry/construction/ConstructionLab";
+import MeasurementLab from "../../geometry/measurement/MeasurementLab";
 import { MockupLearningStrip } from "../MockupStudioChrome";
 import type { StudioMockupPage } from "../studioMockupCatalog";
 import { ChallengeBox, Field, LiveRow, Panel, Segmented, SliderRow, StatusOk, StepList, clamp, fmt, useLabMode } from "../studioLabKit";
@@ -133,80 +135,6 @@ export default function RemainingStudioLab({ page, extra }: { page: StudioMockup
   }
 }
 
-function ConstructionLab({ page }: { page: StudioMockupPage }) {
-  const [ax] = useState(-2);
-  const [bx] = useState(2);
-  const [tool, setTool] = useState("bisector");
-  const [labels, setLabels] = useState(true);
-  const [snap, setSnap] = useState(true);
-  const mid = (ax + bx) / 2;
-  const r = Math.abs(bx - ax) / 2;
-  const tools = ["Select", "Point", "Line", "Segment", "Circle", "Arc", "Perpendicular", "Parallel", "Bisector", "Angle", "Polygon", "Text"];
-  return (
-    <Chrome page={page} layout="quad">
-      <Panel title="Construct">
-        <div className="msk-tool-grid is-icons">
-          {tools.map((id) => (
-            <button key={id} type="button" className={tool === id.toLowerCase() ? "active" : ""} onClick={() => setTool(id.toLowerCase())} aria-label={id}>
-              <ToolGlyph kind={id} />
-              {id}
-            </button>
-          ))}
-        </div>
-        <p className="msk-note">Properties · Point C · label C</p>
-        <label className="msk-toggle"><input type="checkbox" checked={labels} onChange={(e) => setLabels(e.target.checked)} /> Show labels</label>
-        <label className="msk-toggle"><input type="checkbox" defaultChecked /> Show trace</label>
-        <label className="msk-toggle"><input type="checkbox" checked={snap} onChange={(e) => setSnap(e.target.checked)} /> Snap to grid</label>
-      </Panel>
-      <section className="msk-panel msk-canvas">
-        <div className="msk-canvas-tools" aria-label="Construction tools">
-          <button type="button" className="active">Select</button>
-          <button type="button">Zoom</button>
-          <button type="button">Grid</button>
-          <span className="msk-note">Grid · Snap {snap ? "on" : "off"}</span>
-        </div>
-        <svg className="msk-graph" viewBox="0 0 420 320" role="img" aria-label="Perpendicular bisector">
-          <rect width="420" height="320" fill="#f8fbff" />
-          {Array.from({ length: 21 }, (_, i) => <line key={`v${i}`} x1={10 + i * 20} y1="10" x2={10 + i * 20} y2="310" stroke="#e8eef6" />)}
-          {Array.from({ length: 16 }, (_, i) => <line key={`h${i}`} x1="10" y1={10 + i * 20} x2="410" y2={10 + i * 20} stroke="#e8eef6" />)}
-          <circle cx="210" cy="160" r={r * 40} fill="none" stroke="#08b9dd" />
-          <line x1={210 + ax * 40} y1="160" x2={210 + bx * 40} y2="160" stroke="#147df2" strokeWidth="2" />
-          <line x1="210" y1="40" x2="210" y2="280" stroke="#8b45f4" strokeDasharray="4 4" />
-          <circle cx={210 + ax * 40} cy="160" r="6" fill="#147df2" /><circle cx={210 + bx * 40} cy="160" r="6" fill="#147df2" />
-          <circle cx="210" cy={160 - r * 40} r="6" fill="#f59e0b" />
-          <text x="186" y="152" fill="#147df2" fontSize="11">{fmt(bx - ax, 2)}</text>
-          {labels && <><text x={210 + ax * 40 - 8} y="148" fontSize="12">A</text><text x={210 + bx * 40 + 4} y="148" fontSize="12">B</text><text x="218" y={160 - r * 40} fontSize="12">C</text><text x="218" y="176" fontSize="11">O</text></>}
-        </svg>
-        <ol className="msk-history">
-          <li>Point A</li><li>Point B</li><li>Segment AB</li><li>Perp. bisector of AB</li><li>Circle center O</li><li>Intersection C</li>
-        </ol>
-      </section>
-      <aside className="msk-panel msk-live">
-        <h2>Live object tree</h2>
-        <LiveRow color="#147df2" label="A" value={`(${fmt(ax)}, 0)`} />
-        <LiveRow color="#147df2" label="B" value={`(${fmt(bx)}, 0)`} />
-        <LiveRow color="#f59e0b" label="C" value={`(${fmt(mid)}, ${fmt(r)})`} />
-        <h2>Dependencies</h2>
-        <LiveRow color="#08b9dd" label="AB" value="segment" />
-        <LiveRow color="#8b45f4" label="Perp. bisector of AB" value="line" />
-        <LiveRow color="#08b9dd" label="Circle O" value={`r = ${fmt(r)}`} />
-        <p className="msk-note">C is the intersection of the bisector and the circle.</p>
-      </aside>
-      <aside className="msk-panel msk-live">
-        <h2>Measurements</h2>
-        <LiveRow color="#08b9dd" label="AB" value={`${fmt(bx - ax)}.00`} />
-        <LiveRow color="#8b45f4" label="AC = BC" value={fmt(Math.hypot(r, r))} />
-        <LiveRow color="#f59e0b" label="OA = OB" value={fmt(r)} />
-        <h2>Proof explanation</h2>
-        <p className="msk-note">C lies on the perpendicular bisector of AB. Therefore CA = CB.</p>
-        <StatusOk>Proven · CA = CB</StatusOk>
-        <StepList items={["Perpendicular bisector constructed of AB.", "C is the intersection of the bisector and the circle.", "Any point on the bisector is equidistant from A and B."]} />
-        <ChallengeBox {...page.challenge} />
-      </aside>
-    </Chrome>
-  );
-}
-
 function TransformsLab({ page }: { page: StudioMockupPage }) {
   const [tx, setTx] = useState(2);
   const [rot, setRot] = useState(30);
@@ -244,35 +172,6 @@ function TransformsLab({ page }: { page: StudioMockupPage }) {
         <LiveRow color="#8b45f4" label="Image" value={`T${tx} ∘ R${rot} ∘ D${fmt(k, 2)}`} />
         <LiveRow color="#08b9dd" label="Isometry?" value={Math.abs(k - 1) < 0.05 ? "Yes · distances kept" : "No · dilation"} />
         <StepList items={["Translate by tx along x.", `Rotate ${fmt(rot, 0)}° about the centroid.`, `Dilate by k = ${fmt(k, 2)}.`, "Composition is applied right to left."]} />
-        <ChallengeBox {...page.challenge} />
-      </aside>
-    </Chrome>
-  );
-}
-
-function MeasurementLab({ page }: { page: StudioMockupPage }) {
-  const [w, setW] = useState(6);
-  const [h, setH] = useState(4);
-  const [scale, setScale] = useState(1);
-  return (
-    <Chrome page={page}>
-      <Panel title="Measure">
-        <SliderRow label="Length" value={w} min={1} max={12} step={0.1} onChange={setW} />
-        <SliderRow label="Width" value={h} min={1} max={12} step={0.1} onChange={setH} />
-        <SliderRow label="Scale" value={scale} min={0.25} max={3} step={0.05} onChange={setScale} />
-      </Panel>
-      <section className="msk-panel msk-canvas">
-        <svg className="msk-graph" viewBox="0 0 420 240" role="img" aria-label="Rectangle">
-          <rect width="420" height="240" fill="#f8fbff" />
-          <rect x="80" y="50" width={w * 22} height={h * 22} fill="rgba(8,185,221,.12)" stroke="#08b9dd" />
-          <text x="90" y="40" fontSize="12">{fmt(w * scale, 2)} scaled</text>
-        </svg>
-      </section>
-      <aside className="msk-panel msk-live">
-        <LiveRow color="#08b9dd" label="Area" value={`${fmt(w)} × ${fmt(h)} × ${fmt(scale)}² = ${fmt(w * h * scale * scale)}`} />
-        <LiveRow color="#147df2" label="Perimeter" value={fmt(2 * (w + h) * scale)} />
-        <LiveRow color="#f59e0b" label="Scale factor" value={fmt(scale, 2)} />
-        <p className="msk-note">Lengths scale by k. Area scales by k².</p>
         <ChallengeBox {...page.challenge} />
       </aside>
     </Chrome>

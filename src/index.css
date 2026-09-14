@@ -9720,6 +9720,22 @@ body {
   isolation: isolate;
 }
 
+.math-workspace-layout[data-workspace] .math-workspace-stage {
+  background:
+    radial-gradient(1200px 640px at 12% 0%, rgb(34 211 238 / 0.07), transparent 52%),
+    radial-gradient(900px 520px at 100% 100%, rgb(99 102 241 / 0.08), transparent 48%);
+}
+
+.math-workspace-stage polyline,
+.math-workspace-stage path {
+  vector-effect: non-scaling-stroke;
+}
+
+.cas-notebook-workspace,
+.cas-notebook-block {
+  font-feature-settings: "ss01" on, "kern" on;
+}
+
 .math-workspace-stage > .h-dvh,
 .math-workspace-stage > .shapes-studio-shell,
 .math-workspace-stage > .graph-studio-3d-shell {
@@ -10669,23 +10685,27 @@ body {
 
 /* Shared workspace focus and input adaptation */
 .math-workspace-layout[data-workspace="geometry"],
-.math-workspace-layout[data-workspace="graphs-3d"] {
+.math-workspace-layout[data-workspace="graphs-3d"],
+.math-workspace-layout[data-workspace="shapes"] {
   grid-template-rows: minmax(0, 1fr) calc(var(--workspace-dock-height) + env(safe-area-inset-bottom));
 }
 
 .math-workspace-layout[data-workspace="geometry"] > .math-workspace-stage,
-.math-workspace-layout[data-workspace="graphs-3d"] > .math-workspace-stage {
+.math-workspace-layout[data-workspace="graphs-3d"] > .math-workspace-stage,
+.math-workspace-layout[data-workspace="shapes"] > .math-workspace-stage {
   grid-row: 1;
 }
 
 .math-workspace-layout[data-workspace="geometry"] > .math-workspace-mobile-dock,
-.math-workspace-layout[data-workspace="graphs-3d"] > .math-workspace-mobile-dock {
+.math-workspace-layout[data-workspace="graphs-3d"] > .math-workspace-mobile-dock,
+.math-workspace-layout[data-workspace="shapes"] > .math-workspace-mobile-dock {
   grid-row: 2;
 }
 
 @media (min-width: 1024px) {
   .math-workspace-layout[data-workspace="geometry"],
-  .math-workspace-layout[data-workspace="graphs-3d"] {
+  .math-workspace-layout[data-workspace="graphs-3d"],
+  .math-workspace-layout[data-workspace="shapes"] {
     grid-template-rows: minmax(0, 1fr);
   }
 }
@@ -10849,10 +10869,8 @@ body {
 }
 .math-workspace-layout.is-focus-mode[data-workspace="shapes"]
   :is(
-    .shapes-studio-rail,
     .shapes-library-panel,
-    .shapes-inspector-panel,
-    .shapes-bottom-dock
+    .shapes-inspector-panel
   ) {
   display: none;
 }
@@ -16836,7 +16854,7 @@ body {
     height: 100dvh;
     overflow: hidden;
     display: grid;
-    grid-template-columns: 88px minmax(270px, 300px) minmax(0, 1fr) minmax(
+    grid-template-columns: minmax(270px, 300px) minmax(0, 1fr) minmax(
         310px,
         360px
       );
@@ -16856,29 +16874,8 @@ body {
     color: #eef7ff;
   }
 
-  .shapes-studio-rail {
-    grid-row: 1 / 4;
-    @apply flex min-h-0 flex-col items-center gap-2 border-r border-cyan-300/10 bg-black/45 p-2;
-  }
-
-  .shapes-studio-logo {
-    @apply grid h-[68px] w-[68px] place-items-center text-center text-[10px] font-black leading-none text-cyan-300;
-  }
-
-  .shapes-rail-links {
-    @apply flex min-h-0 w-full flex-1 flex-col items-center gap-2 overflow-y-auto overflow-x-hidden;
-  }
-
-  .shapes-rail-button {
-    @apply grid min-h-16 w-[70px] place-items-center gap-1 rounded-lg border border-transparent text-[11px] font-bold text-slate-300 transition hover:border-cyan-300/40 hover:bg-cyan-300/10 hover:text-cyan-100;
-  }
-
-  .shapes-rail-button.is-active {
-    @apply border-cyan-300/50 bg-cyan-300/15 text-cyan-200;
-  }
-
   .shapes-studio-topbar {
-    grid-column: 2 / 5;
+    grid-column: 1 / 4;
     @apply grid min-w-0 items-center gap-3 border-b border-cyan-300/10 bg-slate-950/90 px-4;
     grid-template-columns: minmax(250px, 1fr) minmax(420px, 560px) minmax(
         360px,
@@ -16943,7 +16940,7 @@ body {
   }
 
   .shapes-library-panel {
-    grid-column: 2;
+    grid-column: 1;
     grid-row: 2;
     @apply m-2 ml-3 flex min-h-0 min-w-0 flex-col gap-3 overflow-hidden rounded-lg border border-cyan-300/10 bg-slate-950/75 p-3;
   }
@@ -17203,14 +17200,14 @@ body {
   }
 
   .shapes-workbench {
-    grid-column: 3;
+    grid-column: 2;
     grid-row: 2;
     @apply grid min-h-0 min-w-0 gap-2 overflow-hidden p-2 px-1;
-    grid-template-rows: minmax(0, 1fr) minmax(150px, 190px);
+    grid-template-rows: minmax(0, 1fr);
   }
 
   .shapes-library-panel.is-collapsed + .shapes-workbench {
-    grid-column: 2 / 4;
+    grid-column: 1 / 3;
   }
 
   .shapes-viewport-card,
@@ -17419,7 +17416,7 @@ body {
   }
 
   .shapes-dock-tabs {
-    @apply mb-3 flex min-w-0 items-center gap-2;
+    @apply mb-3 flex min-w-0 flex-wrap items-center gap-2;
   }
 
   .shapes-dock-tabs button {
@@ -17436,7 +17433,7 @@ body {
 
   .shapes-dock-grid {
     @apply grid gap-2;
-    grid-template-columns: repeat(6, minmax(110px, 1fr));
+    grid-template-columns: repeat(2, minmax(110px, 1fr));
   }
 
   .shapes-bottom-dock .rounded-2xl,
@@ -17451,7 +17448,7 @@ body {
 
   .shapes-net-strip {
     @apply mt-3 grid items-center gap-3;
-    grid-template-columns: minmax(220px, 1fr) minmax(220px, 0.8fr);
+    grid-template-columns: minmax(0, 1fr);
   }
   .shapes-net-controls {
     display: grid;
@@ -17585,10 +17582,15 @@ body {
   }
 
   .shapes-inspector-panel {
-    grid-column: 4;
+    grid-column: 3;
     grid-row: 2;
     @apply m-2 mr-3 grid min-h-0 min-w-0 gap-2 overflow-hidden;
-    grid-template-rows: minmax(0, 1.35fr) auto auto;
+    grid-template-rows: minmax(160px, 0.85fr) minmax(0, 1.2fr) auto auto;
+  }
+
+  .shapes-inspector-panel .shapes-bottom-dock {
+    min-height: 0;
+    overflow: auto;
   }
 
   .shapes-inspector-card {
@@ -17657,7 +17659,7 @@ body {
   }
 
   .shapes-status-bar {
-    grid-column: 2 / 5;
+    grid-column: 1 / 4;
     grid-row: 3;
     @apply flex items-center justify-end gap-8 border-t border-cyan-300/10 bg-slate-950 px-5 text-xs font-bold text-slate-400;
   }
@@ -18018,16 +18020,15 @@ body {
 
   @media (max-width: 1280px) {
     .shapes-studio-shell {
-      grid-template-columns: 78px minmax(240px, 280px) minmax(0, 1fr);
+      grid-template-columns: minmax(220px, 260px) minmax(0, 1fr) minmax(
+          280px,
+          320px
+        );
     }
 
     .shapes-studio-topbar,
     .shapes-status-bar {
-      grid-column: 2 / 4;
-    }
-
-    .shapes-inspector-panel {
-      display: none;
+      grid-column: 1 / 4;
     }
 
     .shapes-studio-topbar {
@@ -18047,10 +18048,6 @@ body {
     .shapes-studio-shell {
       grid-template-columns: minmax(0, 1fr);
       grid-template-rows: 58px minmax(0, 1fr) 30px;
-    }
-
-    .shapes-studio-rail {
-      display: none;
     }
 
     .shapes-library-panel {
@@ -18257,20 +18254,24 @@ body {
 
   @media (min-width: 901px) and (max-width: 1200px) {
     .shapes-studio-shell {
-      grid-template-columns: minmax(220px, 260px) minmax(0, 1fr);
-    }
-    .shapes-studio-rail {
-      display: none;
+      grid-template-columns: minmax(200px, 240px) minmax(0, 1fr) minmax(
+          260px,
+          300px
+        );
     }
     .shapes-studio-topbar,
     .shapes-status-bar {
-      grid-column: 1 / 3;
+      grid-column: 1 / 4;
     }
     .shapes-library-panel {
       grid-column: 1;
     }
     .shapes-workbench {
       grid-column: 2;
+    }
+    .shapes-inspector-panel {
+      grid-column: 3;
+      display: grid;
     }
     .shapes-studio-topbar {
       grid-template-columns: minmax(200px, 1fr) minmax(420px, 1.5fr) auto;
@@ -18326,12 +18327,17 @@ body {
     }
   }
 
-  @media (min-width: 1281px) {
-    .shapes-mobile-properties,
-    .shapes-mobile-quick-actions,
+  @media (min-width: 901px) {
     .shapes-mobile-sheet-close,
     .shapes-mobile-sheet-drag,
     .shapes-mobile-sheet-backdrop {
+      display: none;
+    }
+  }
+
+  @media (min-width: 1281px) {
+    .shapes-mobile-properties,
+    .shapes-mobile-quick-actions {
       display: none;
     }
   }

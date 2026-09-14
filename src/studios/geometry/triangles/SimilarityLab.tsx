@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { ChipRow, Field, Panel, Segmented, SliderRow } from "../../mockup/studioLabKit";
 import {
   clampPoint,
@@ -24,7 +24,7 @@ import {
 
 type Crit = "AA" | "SAS" | "SSS";
 
-export default function SimilarityLab() {
+export default function SimilarityLab({ pulse = "observe" }: { pulse?: string }) {
   const plane = defaultPlane();
   const svgRef = useRef<SVGSVGElement>(null);
   const drag = useRef<"A" | "B" | "C" | null>(null);
@@ -66,8 +66,16 @@ export default function SimilarityLab() {
     setBase({ A: { x: 3.4, y: 5.4 }, B: { x: 1.5, y: 1.5 }, C: { x: 6.6, y: 1.7 } }); setK(1.5); setRot(12); setShiftX(8.4); setShiftY(0.15); setCrit("AA");
   };
 
+  useEffect(() => {
+    if (pulse === "observe") setCrit("AA");
+    if (pulse === "understand") setCrit("SSS");
+    if (pulse === "why") { setShowRatios(true); setK(2); }
+    if (pulse === "try" || pulse === "challenge") setK(1.5);
+  }, [pulse]);
+
   return (
     <LabFrame
+      theme="similarity"
       ariaLabel="Similarity laboratory"
       controls={
         <Panel title="Similarity controls">
@@ -90,7 +98,6 @@ export default function SimilarityLab() {
       }
       canvas={
         <svg ref={svgRef} viewBox={`0 0 ${plane.width} ${plane.height}`} role="img" aria-label="Similar triangles ABC and DEF">
-          <rect width={plane.width} height={plane.height} fill="#f8fbff" />
           <polygon points={polyPoints(plane, [base.A, base.B, base.C])} fill="rgba(20,125,242,.10)" stroke="#147df2" strokeWidth="2.1" />
           <polygon points={polyPoints(plane, [def.A, def.B, def.C])} fill="rgba(139,69,244,.10)" stroke="#8b45f4" strokeWidth="2.1" />
           <SideTickMark plane={plane} a={base.A} b={base.B} count={1} />

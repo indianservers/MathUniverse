@@ -9,7 +9,7 @@ type Token =
   | { type: "leftParen" }
   | { type: "rightParen" };
 
-const functions = new Set(["sin", "cos", "tan", "asin", "acos", "atan", "sinh", "cosh", "tanh", "ln", "log", "exp", "sqrt", "cbrt", "abs", "floor", "ceil", "round"]);
+const functions = new Set(["sin", "cos", "tan", "asin", "acos", "atan", "sinh", "cosh", "tanh", "sec", "csc", "cot", "ln", "log", "exp", "sqrt", "cbrt", "abs", "floor", "ceil", "round", "sign", "sinc"]);
 const precedence: Record<string, number> = { "+": 1, "-": 1, "*": 2, "/": 2, "^": 3, "u-": 4 };
 const rightAssociative = new Set(["^", "u-"]);
 
@@ -102,7 +102,7 @@ function normalize(input: string, allowZ = false) {
     .replace(/\u00b3/g, "^3")
     .replace(/\s+/g, "")
     .toLowerCase()
-    .replace(new RegExp(`(\\d|\\)|x|y${allowZ ? "|z" : ""}|pi|e)(?=(x|y${allowZ ? "|z" : ""}|pi|e|sin|cos|tan|asin|acos|atan|sinh|cosh|tanh|ln|log|exp|sqrt|cbrt|abs|floor|ceil|round|\\())`, "g"), "$1*");
+    .replace(new RegExp(`(\\d|\\)|x|y${allowZ ? "|z" : ""}|pi|e)(?=(x|y${allowZ ? "|z" : ""}|pi|e|sin|cos|tan|asin|acos|atan|sinh|cosh|tanh|sec|csc|cot|ln|log|exp|sqrt|cbrt|abs|floor|ceil|round|sign|sinc|\\())`, "g"), "$1*");
   const forbidden = /(window|document|globalthis|process|fetch|eval|function|constructor|import|=>|;|=|\{|\}|\[|\])/i;
   if (!expression) throw new Error("Enter a function of x");
   if (forbidden.test(expression)) throw new Error("Unsupported expression");
@@ -228,5 +228,10 @@ function applyFunction(name: string, value: number) {
   if (name === "floor") return Math.floor(value);
   if (name === "ceil") return Math.ceil(value);
   if (name === "round") return Math.round(value);
+  if (name === "sign") return Math.sign(value);
+  if (name === "sinc") return value === 0 ? 1 : Math.sin(value) / value;
+  if (name === "sec") return 1 / Math.cos(value);
+  if (name === "csc") return 1 / Math.sin(value);
+  if (name === "cot") return 1 / Math.tan(value);
   throw new Error("Unsupported function");
 }

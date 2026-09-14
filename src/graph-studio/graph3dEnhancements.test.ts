@@ -21,6 +21,8 @@ describe("Graph Studio 3D enhancements", () => {
   it("evaluates disk domain predicates and mesh export", () => {
     expect(evaluateDomainPredicate("x^2+y^2<=4", 0, 0)).toBe(true);
     expect(evaluateDomainPredicate("x^2+y^2<=4", 3, 0)).toBe(false);
+    expect(evaluateDomainPredicate("x>0, y>=0", 1, 2)).toBe(true);
+    expect(evaluateDomainPredicate("x>0, y>=0", -1, 2)).toBe(false);
     const mesh = { positions: [0, 0, 0, 1, 0, 0, 0, 1, 0], indices: [0, 1, 2], minZ: 0, maxZ: 0 };
     expect(meshToStl(mesh)).toContain("facet normal");
     expect(meshToObj(mesh)).toContain("f 1 2 3");

@@ -101,18 +101,39 @@ export function evaluateDomainPredicate(predicate: string, x: number, y: number,
   const source = predicate.trim().replace(/≤/g, "<=").replace(/≥/g, ">=");
   if (!source) return true;
   try {
-    if (source.includes("<=")) {
-      const [left, right] = source.split("<=");
-      return compileThreeVariableExpression(`(${left})-(${right || "0"})`)(x, y, z) <= 1e-9;
-    }
-    if (source.includes(">=")) {
-      const [left, right] = source.split(">=");
-      return compileThreeVariableExpression(`(${left})-(${right || "0"})`)(x, y, z) >= -1e-9;
-    }
-    return compileThreeVariableExpression(source)(x, y, z) > 0.5;
+    return splitTopLevelCommas(source).every((clause) => evaluateClause(clause, x, y, z));
   } catch {
     return true;
   }
+}
+
+function splitTopLevelCommas(source: string) {
+  const parts: string[] = [];
+  let depth = 0;
+  let start = 0;
+  for (let index = 0; index < source.length; index += 1) {
+    const char = source[index];
+    if (char === "(") depth += 1;
+    if (char === ")") depth -= 1;
+    if (char === "," && depth === 0) {
+      parts.push(source.slice(start, index).trim());
+      start = index + 1;
+    }
+  }
+  parts.push(source.slice(start).trim());
+  return parts.filter(Boolean);
+}
+
+function evaluateClause(clause: string, x: number, y: number, z: number) {
+  const match = clause.match(/^(.+?)(<=|>=|<|>)(.+)$/);
+  if (!match) return compileThreeVariableExpression(clause)(x, y, z) > 0.5;
+  const left = compileThreeVariableExpression(match[1].trim())(x, y, z);
+  const right = compileThreeVariableExpression(match[3].trim() || "0")(x, y, z);
+  const delta = left - right;
+  if (match[2] === "<") return delta < -1e-9;
+  if (match[2] === "<=") return delta <= 1e-9;
+  if (match[2] === ">") return delta > 1e-9;
+  return delta >= -1e-9;
 }
 
 export function meshToStl(mesh: Graph3DMesh) {

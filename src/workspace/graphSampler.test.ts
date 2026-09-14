@@ -16,6 +16,9 @@ describe("robust graph sampler", () => {
 
     expect(sample.kind).toBe("explicit");
     expect("segments" in sample && sample.segments.length).toBeGreaterThan(1);
+    const abs = sampleGraph("abs(x)", { xMin: -2, xMax: 2, yMin: -1, yMax: 4 }, 80);
+    expect(abs.kind).toBe("explicit");
+    expect("segments" in abs && abs.segments[0].points.length).toBeGreaterThan(40);
   });
 
   it("samples implicit and polar graphs into drawable structures", () => {
