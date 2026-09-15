@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../types";
 import { LessonCartesianGraph } from "../graphs/LessonCartesianGraph";
 import "./NumericSlidersTargetLesson21.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+
 
 const PATTERN_VALUES = [-2, 0, 2, 4];
 const STEPS = [0.1, 0.5, 1];
@@ -64,7 +66,8 @@ export default function NumericSlidersTargetLesson21({ resetToken, onInteraction
         <header className="numeric-header"><div><h1>Numeric Sliders</h1><p>Explore parameter changes dynamically.</p><span>Move <i>x</i> and watch every linked value update.</span></div><nav><button type="button" onClick={reset}><RotateCcw />Reset</button><button type="button" onClick={() => void share()}><Share2 />{shareState}</button></nav></header>
         <main className="numeric-main">
           <div className="numeric-left">
-            <section className="numeric-slider-stage"><h2><i>1.</i> Move the slider</h2><div className="numeric-range-wrap"><output style={{ left: `${((x-minimum)/(maximum-minimum))*100}%` }}>x = {displayX}</output><input aria-label="Numeric slider x drag control" type="range" min={minimum} max={maximum} step={step} value={x} onChange={(event)=>setValue(Number(event.target.value))}/><div><span>{minimum}</span><span>-2</span><span>0</span><span>2</span><span>{maximum}</span></div></div><footer><span>Range: {minimum} to {maximum}</span><span>Step: {step}</span></footer></section>
+            <section className="numeric-slider-stage"><h2><i>1.</i> Move the slider</h2><div className="numeric-range-wrap"><output style={{ left: `${((x-minimum)/(maximum-minimum))*100}%` }}>x = {displayX}</output><input aria-label="Numeric slider x drag control" type="range" min={minimum} max={maximum} step={step} value={x} onChange={(event)=>setValue(Number(event.target.value))}/><div><span>{minimum}</span><span>-2</span><span>0</span><span>2</span><span>{maximum}</span></div></div>
+<footer><span>Range: {minimum} to {maximum}</span><span>Step: {step}</span></footer></section>
             <section className="numeric-linked"><h2><i>2.</i> Linked outputs update live</h2><div className="numeric-link-row"><b>f(x)</b><span><small>Expression</small><strong>y = 2x + 3</strong></span></div><em>↓</em><div className="numeric-link-row"><b>=</b><span><small>Substitution</small><strong>y = 2(<mark>{displayX}</mark>) + 3</strong></span></div><em>↓</em><div className="numeric-link-row result"><b>{displayY}</b><span><small>Result</small><strong>y = {displayY}</strong></span></div></section>
             <section className="numeric-pattern"><h2><i>3.</i> See the pattern</h2><div><small>Try different values</small><nav>{PATTERN_VALUES.map((value)=><button type="button" className={Math.abs(x-value)<0.0001?"active":""} key={value} onClick={()=>setValue(value)}><b>x = {value}</b><span>→ {2*value+3}</span></button>)}</nav></div><p>As <i>x</i> increases by 1, <i>y</i> increases by 2.</p></section>
           </div>
@@ -84,6 +87,7 @@ export default function NumericSlidersTargetLesson21({ resetToken, onInteraction
         <nav className="numeric-neighbors"><a href="/lessons/core-workspaces/20-variable-explorer">←<span><small>Previous</small><b>Variable Explorer</b></span></a><a href="/lessons/core-workspaces/22-integer-sliders"><span><small>Next</small><b>Integer Sliders</b></span>→</a></nav>
       </section>
       <footer className="numeric-footer"><b><Sparkles />Math Universe</b><p>Interactive math labs, visual proofs, NCERT explorations, graphing, CAS-style tools, and classroom-ready activities.</p><nav><button type="button" onClick={touch}>Sitemap</button><button type="button" onClick={touch}>Docs</button><button type="button" onClick={touch}>About</button></nav></footer>
+      <LessonTopicStudyBoard lessonId={21} alwaysVisible onInteraction={onInteraction} />
     </div>
   );
 }

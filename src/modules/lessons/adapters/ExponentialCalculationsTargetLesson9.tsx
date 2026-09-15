@@ -12,6 +12,8 @@ import type { LessonAdapterProps } from "../types";
 import { LessonGraphWorkspace } from "../graphs/LessonGraphWorkspace";
 import { LessonBarGraph } from "../graphs/LessonBarGraph";
 import "./ExponentialCalculationsTargetLesson9.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+
 const VIEWS = [
   "Interaction + visualization",
   "Explain",
@@ -393,6 +395,7 @@ export default function ExponentialCalculationsTargetLesson9({
           </section>
         </aside>
       </div>
+      <LessonTopicStudyBoard lessonId={9} alwaysVisible onInteraction={onInteraction} />
     </div>
   );
 }
@@ -425,7 +428,7 @@ function Control({
         <button type="button" aria-label={`Increase ${label}`} onClick={onPlus}>
           +
         </button>
-      </div>
+    </div>
     </section>
   );
 }

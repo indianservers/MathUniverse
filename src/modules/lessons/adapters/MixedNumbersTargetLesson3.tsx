@@ -13,6 +13,8 @@ import {
 } from "../../../components/ncert/grade7/grade7MathUtils";
 import type { LessonAdapterProps } from "../types";
 import "./MixedNumbersTargetLesson3.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+
 
 type MixedNumber = { whole: number; numerator: number; denominator: number };
 type Side = "first" | "second";
@@ -425,7 +427,7 @@ export default function MixedNumbersTargetLesson3({
           </ProofCard>
         </aside>
       </div>
-      <nav className="target-mixed-nav">
+<nav className="target-mixed-nav">
         <a href="/lessons/core-workspaces/2-fraction-calculator">
           <ArrowLeft />
           <span>
@@ -439,6 +441,7 @@ export default function MixedNumbersTargetLesson3({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={3} view={activeView} onInteraction={onInteraction} />
     </div>
   );
 }

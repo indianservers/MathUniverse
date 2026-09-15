@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../types";
 import { LessonCartesianGraph } from "../graphs/LessonCartesianGraph";
 import "./IntegerSlidersTargetLesson22.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+
 
 const VIEWS = ["Interaction + visualization", "Explain", "Examples", "Formulas", "Know more"];
 const INTEGER_VALUES = Array.from({ length: 11 }, (_, index) => index - 5);
@@ -51,7 +53,8 @@ export default function IntegerSlidersTargetLesson22({ resetToken, onInteraction
         <aside className="integer-side"><section><h2>Integer slider controls</h2><div className="integer-control-card"><h3>Integer slider</h3><p>Move between whole numbers only.</p><b><LockKeyhole />Snap to whole numbers</b><hr/><label>Current value</label><output>x = {x}</output><hr/><label>Step size</label><output>1</output></div><div className="integer-move"><h3>Move slider</h3><nav><button type="button" onClick={()=>setInteger(x-1)} disabled={x<=-5}>‹ <span>Previous<small>x = {Math.max(-5,x-1)}</small></span></button><button type="button" onClick={()=>setInteger(x+1)} disabled={x>=5}><span>Next<small>x = {Math.min(5,x+1)}</small></span> ›</button></nav></div><p className="integer-note"><Info />Only integer values<br/>are allowed.</p></section></aside>
       </main>
       <nav className="integer-neighbors"><a href="/lessons/core-workspaces/21-numeric-sliders">←<span><small>PREVIOUS</small><b>Numeric Sliders</b></span></a><a href="/lessons/core-workspaces/23-angle-sliders"><span><small>NEXT</small><b>Angle Sliders</b></span>→</a></nav>
-      <footer className="integer-footer"><b><Sparkles />Math Universe</b><p>Interactive math labs, visual proofs, NCERT explorations, graphing, CAS-style tools, and classroom-ready activities.</p><nav><button type="button" onClick={()=>selectView(0)}>Sitemap</button><button type="button" onClick={()=>selectView(1)}>Docs</button><button type="button" onClick={()=>selectView(2)}>About</button></nav></footer>
+<footer className="integer-footer"><b><Sparkles />Math Universe</b><p>Interactive math labs, visual proofs, NCERT explorations, graphing, CAS-style tools, and classroom-ready activities.</p><nav><button type="button" onClick={()=>selectView(0)}>Sitemap</button><button type="button" onClick={()=>selectView(1)}>Docs</button><button type="button" onClick={()=>selectView(2)}>About</button></nav></footer>
+      <LessonTopicStudyBoard lessonId={22} view={view} onInteraction={onInteraction} />
     </div>
   );
 }

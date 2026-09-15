@@ -2,6 +2,8 @@ import { ArrowRight, Eye, Info, RotateCcw } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./LogarithmsTargetLesson8.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+
 const VIEWS = [
   "Interaction + visualization",
   "Explain",
@@ -288,6 +290,7 @@ export default function LogarithmsTargetLesson8({
           )}
         </aside>
       </section>
+      <LessonTopicStudyBoard lessonId={8} alwaysVisible onInteraction={onInteraction} />
     </div>
   );
 }

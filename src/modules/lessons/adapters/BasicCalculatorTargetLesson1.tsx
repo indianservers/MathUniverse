@@ -9,6 +9,8 @@ import { useEffect, useMemo, useState } from "react";
 import { evaluateExpressionDetailed } from "../../../utils/calculator";
 import type { LessonAdapterProps } from "../types";
 import "./BasicCalculatorTargetLesson1.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+
 
 type Grade = "idle" | "correct" | "incorrect";
 type KeyMode =
@@ -514,6 +516,7 @@ export default function BasicCalculatorTargetLesson1({
           </section>
         </aside>
       </div>
+      <LessonTopicStudyBoard lessonId={1} view={activeView} onInteraction={onInteraction} />
     </div>
   );
 }

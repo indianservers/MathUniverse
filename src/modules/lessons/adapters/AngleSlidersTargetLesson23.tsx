@@ -8,6 +8,8 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./AngleSlidersTargetLesson23.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+
 
 const VIEWS = [
   "Interaction + visualization",
@@ -268,7 +270,7 @@ export default function AngleSlidersTargetLesson23({
             value={angle}
             onChange={(event) => updateAngle(Number(event.target.value))}
           />
-          <footer>
+<footer>
             <span>0°</span>
             <span>360°</span>
           </footer>
@@ -311,6 +313,7 @@ export default function AngleSlidersTargetLesson23({
           </button>
         </nav>
       </footer>
+      <LessonTopicStudyBoard lessonId={23} view={view} onInteraction={onInteraction} />
     </div>
   );
 }

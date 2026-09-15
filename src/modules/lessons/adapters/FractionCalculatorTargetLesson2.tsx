@@ -15,6 +15,8 @@ import {
 } from "../../../components/ncert/grade7/grade7MathUtils";
 import type { LessonAdapterProps } from "../types";
 import "./FractionCalculatorTargetLesson2.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+
 
 type Field = "aNumerator" | "aDenominator" | "bNumerator" | "bDenominator";
 const VIEWS = [
@@ -443,7 +445,7 @@ export default function FractionCalculatorTargetLesson2({
           Solve it <ArrowRight />
         </button>
       </section>
-      <nav className="target-fraction-nav">
+<nav className="target-fraction-nav">
         <a href="/lessons/core-workspaces/1-basic-calculator">
           <ArrowLeft />
           <span>
@@ -460,6 +462,7 @@ export default function FractionCalculatorTargetLesson2({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={2} view={activeView} onInteraction={onInteraction} />
     </div>
   );
 }

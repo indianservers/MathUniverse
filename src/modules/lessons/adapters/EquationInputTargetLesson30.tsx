@@ -6,6 +6,8 @@ import type { LessonAdapterProps } from "../types";
 import { LessonCartesianGraph } from "../graphs/LessonCartesianGraph";
 import { LessonBalanceGraph } from "../graphs/LessonBalanceGraph";
 import "./EquationInputTargetLesson30.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+
 
 type EquationModel = {
   left: string;
@@ -244,7 +246,7 @@ export default function EquationInputTargetLesson30({
               <h2>GRAPH VIEW</h2>
               <p>The lines intersect at the solution.</p>
               <EquationGraph key={resetToken} model={model} />
-              <footer>
+<footer>
                 Intersection: ({format(model.solution)}, {format(model.solvedY)}
                 )
               </footer>
@@ -351,6 +353,7 @@ export default function EquationInputTargetLesson30({
           </a>
         </nav>
       </section>
+      <LessonTopicStudyBoard lessonId={30} alwaysVisible onInteraction={onInteraction} />
     </div>
   );
 }

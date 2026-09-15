@@ -11,6 +11,8 @@ import { LessonGraphWorkspace } from "../graphs/LessonGraphWorkspace";
 import { LessonNumberLineGraph } from "../graphs/LessonNumberLineGraph";
 import { LessonVisibilityGraph } from "../graphs/LessonVisibilityGraph";
 import "./ConditionalVisibilityTargetLesson26.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+
 
 const VIEWS = ["Explore", "Explain", "Examples", "Formulas", "Know more"];
 const OPERATORS = [">=", ">", "<=", "<", "=", "!="];
@@ -359,7 +361,7 @@ export default function ConditionalVisibilityTargetLesson26({
           </section>
         </aside>
       </main>
-      <nav className="visibility-neighbors">
+<nav className="visibility-neighbors">
         <a href="/lessons/core-workspaces/25-dependent-and-independent-objects">
           ←
           <span>
@@ -375,6 +377,7 @@ export default function ConditionalVisibilityTargetLesson26({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={26} alwaysVisible onInteraction={onInteraction} />
     </div>
   );
 }

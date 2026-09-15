@@ -15,6 +15,8 @@ import {
 import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./ExactDecimalModesTargetLesson18.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+
 
 type DisplayMode = "exact" | "decimal";
 const TABS = [
@@ -497,7 +499,7 @@ export default function ExactDecimalModesTargetLesson18({
           →
         </a>
       </nav>
-      <footer className="exact-footer">
+<footer className="exact-footer">
         <b>✣ Math Universe</b>
         <p>
           Interactive math labs, visual proofs, NCERT explorations, graphing,
@@ -515,6 +517,7 @@ export default function ExactDecimalModesTargetLesson18({
           </button>
         </nav>
       </footer>
+      <LessonTopicStudyBoard lessonId={18} view={view} onInteraction={onInteraction} />
     </div>
   );
 }

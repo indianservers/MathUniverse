@@ -5,6 +5,8 @@ import { LessonCartesianGraph } from "../graphs/LessonCartesianGraph";
 import { LessonGraphWorkspace } from "../graphs/LessonGraphWorkspace";
 import { LessonDependencyTree } from "../graphs/LessonDependencyTree";
 import "./DependentObjectsTargetLesson25.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+
 
 type Point = { x: number; y: number };
 const GRAPH_VIEW = {
@@ -54,6 +56,7 @@ export default function DependentObjectsTargetLesson25({
   return (
     <div
       className="dependency-page"
+      aria-label="Draggable independent points A and B with dependent midpoint"
       data-testid="algebra-mockup-0025"
       data-dedicated-lesson="25"
       data-object-model="two-draggable-parent-points-derived-segment-midpoint-length-label-hierarchy-model"
@@ -267,7 +270,7 @@ export default function DependentObjectsTargetLesson25({
           </p>
         </aside>
       </main>
-      <nav className="dependency-neighbors">
+<nav className="dependency-neighbors">
         <a href="/lessons/core-workspaces/24-animation-controls">
           ←
           <span>
@@ -283,6 +286,7 @@ export default function DependentObjectsTargetLesson25({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={25} alwaysVisible onInteraction={onInteraction} />
     </div>
   );
 }

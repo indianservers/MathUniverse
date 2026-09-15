@@ -2,6 +2,8 @@ import { Check, Lightbulb, Maximize2, RotateCcw } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./AbsoluteValueTargetLesson14.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+
 
 const TABS = [
   "Interaction + visualization",
@@ -336,7 +338,7 @@ export default function AbsoluteValueTargetLesson14({
               Check
             </button>
           </header>
-          <footer onClick={() => setRevealed((v) => !v)}>
+<footer onClick={() => setRevealed((v) => !v)}>
             <b>★ &nbsp; {revealed ? "Reveal: both are 7." : "Reveal answer"}</b>
             {revealed ? (
               <p>
@@ -368,6 +370,7 @@ export default function AbsoluteValueTargetLesson14({
           CAS-style tools, and classroom-ready activities.
         </p>
       </footer>
+      <LessonTopicStudyBoard lessonId={14} alwaysVisible onInteraction={onInteraction} />
     </div>
   );
 }
