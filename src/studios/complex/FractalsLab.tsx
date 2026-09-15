@@ -61,7 +61,11 @@ export default function FractalsLab({ page }: { page: StudioMockupPage }) {
             <button type="button" className="msk-soft" onClick={() => fig.commit({ ...fig.state, cx: -0.75, cy: 0.11 })}>Dendrite</button>
             <p className="msk-note">Click the Mandelbrot plot to choose c. The Julia set and orbit update together.</p>
           </Panel>
-          <section className="msk-panel msk-canvas" data-mode-canvas={mode}>
+          <section className="msk-panel msk-canvas" data-studio="complex-numbers" data-mode-canvas={mode} data-cx-mode={mode}>
+            <header className="cx-canvas-head">
+              <h2>MANDELBROT &amp; JULIA</h2>
+              <small>{mode}</small>
+            </header>
             <div className="msk-dual-dark">
               <div className="is-interactive" onPointerDown={pickC}>
                 <p className="msk-note">Mandelbrot set · {bulb}</p>

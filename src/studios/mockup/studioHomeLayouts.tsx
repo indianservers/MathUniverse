@@ -7,6 +7,12 @@ import { parseChallengeAnswer } from "./studioLabKit";
 import { studioLabMeta } from "./studioLabMeta";
 import { useTrigSession, writeTrigSession } from "./trigStudioSession";
 import { listSnapshots } from "../phase1/studioClassroom";
+import ArgandFigure from "../complex/ArgandFigure";
+import {
+  COMPLEX_SEARCH_ALIASES,
+  continueComplexHref,
+  useComplexSession,
+} from "../complex/complexStudioSession";
 
 type HomeProps = {
   studio: StudioMockupDefinition;
@@ -97,8 +103,8 @@ export function StudioLabCard({
     <Link
       className={`msk-card msk-card-premium${studioId === "modelling" ? " msk-model-card" : ""}${studioId === "trigonometry" ? " msk-trig-topic-card" : ""}`}
       to={item.route}
-      data-lab-id={studioId === "trigonometry" ? item.id : undefined}
-      data-card-index={studioId === "trigonometry" ? index + 1 : undefined}
+      data-lab-id={studioId === "trigonometry" || studioId === "complex-numbers" ? item.id : undefined}
+      data-card-index={studioId === "trigonometry" || studioId === "complex-numbers" ? index + 1 : undefined}
     >
       <span className="msk-num">{numbered ? String(index + 1).padStart(2, "0") : index + 1}</span>
       {art ?? <TopicIllustration pageId={item.id} />}
@@ -124,13 +130,10 @@ function LiveStudioHero({ studioId }: { studioId: string }) {
   }
   if (studioId === "complex-numbers") {
     return (
-      <svg className="msk-graph" viewBox="0 0 360 88" role="img" aria-label="Argand point z">
-        <rect width="360" height="88" fill="#f8fbff" />
-        <line x1="24" y1="44" x2="200" y2="44" stroke="#cbd5e1" />
-        <line x1="110" y1="12" x2="110" y2="76" stroke="#cbd5e1" />
-        <circle cx="150" cy="28" r="6" fill="#8b45f4" />
-        <text x="214" y="50" fill="#334155" fontSize="12">Drag z on Argand Plane</text>
-      </svg>
+      <div className="cx-hero">
+        <ArgandFigure re={3} im={2} showModulus showArgument width={360} height={96} scale={12} label="Argand point z" />
+        <p>Drag z on Argand Plane</p>
+      </div>
     );
   }
   if (studioId === "discrete") {
@@ -391,8 +394,132 @@ export function GeometryStudioHome(props: HomeProps) {
   );
 }
 
+const COMPLEX_FLOW = [
+  { label: "Argand", to: "/complex-numbers/argand-plane", id: "argand-plane" },
+  { label: "Arithmetic", to: "/complex-numbers/arithmetic", id: "arithmetic" },
+  { label: "Polar", to: "/complex-numbers/polar-forms", id: "polar-forms" },
+  { label: "Rotation", to: "/complex-numbers/rotation", id: "rotation" },
+  { label: "Roots", to: "/complex-numbers/roots", id: "roots" },
+  { label: "Euler", to: "/complex-numbers/euler", id: "euler" },
+  { label: "Loci", to: "/complex-numbers/loci", id: "loci" },
+  { label: "Fractals", to: "/complex-numbers/fractals", id: "fractals" },
+  { label: "Waves", to: "/complex-numbers/waves-circuits", id: "waves-circuits" },
+];
+
+function ComplexNumbersHomeAside(props: HomeProps) {
+  const session = useComplexSession();
+  const [answer, setAnswer] = useState("");
+  const [status, setStatus] = useState("");
+  const [query, setQuery] = useState("");
+  const challenge = props.challenge;
+  const continueTo = continueComplexHref(session);
+  const needle = query.trim().toLowerCase();
+  const alias = Object.entries(COMPLEX_SEARCH_ALIASES).find(([key]) => needle && key.includes(needle));
+  const hits = props.labs.filter((item) => `${item.label} ${item.description}`.toLowerCase().includes(needle));
+  return (
+    <aside className="msk-aside cx-home-rail" data-home-rail="complex-numbers">
+      <section className="msk-panel msk-continue" data-rail-card="continue">
+        <h2><Play /> Continue Experiment</h2>
+        <div className="msk-continue-art"><TopicIllustration pageId={props.labs.find((item) => item.label === session.lastLabel)?.id ?? "argand-plane"} /></div>
+        <p><strong>{session.lastLabel}</strong></p>
+        <div className="msk-progress" aria-label={`${props.progress}% completed`}><i style={{ width: `${props.progress}%` }} /></div>
+        <small>{props.progress}% completed</small>
+        <Link className="msk-cta" to={continueTo}>Continue Experiment →</Link>
+      </section>
+      <section className="msk-panel">
+        <h2><Search /> Search</h2>
+        <input className="msk-home-search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder={props.studio.searchPlaceholder} aria-label="Search complex labs" />
+        {query ? (
+          <ul className="msk-search-hits is-inline">
+            {hits.slice(0, 5).map((item) => <li key={item.id}><Link to={item.route}>{item.label}</Link></li>)}
+          </ul>
+        ) : null}
+        {alias ? <p><Link to={`/complex-numbers/${alias[1].id}${alias[1].mode ? `?mode=${encodeURIComponent(alias[1].mode)}` : ""}`}>Open {alias[1].id}{alias[1].mode ? ` · ${alias[1].mode}` : ""}</Link></p> : null}
+      </section>
+      <section className="msk-panel" data-rail-card="journey">
+        <h2>Your Learning Journey</h2>
+        <ol className="msk-journey-list">
+          {props.labs.slice(0, 6).map((item, index) => {
+            const complete = session.completed.includes(item.id);
+            return (
+              <li key={item.id} data-journey-status={complete ? "completed" : index === 0 ? "in-progress" : "locked"}>
+                <i className={complete ? "done" : index === 0 ? "now" : ""} />
+                <Link to={item.route}>{item.label}</Link>
+              </li>
+            );
+          })}
+        </ol>
+        <div className="msk-progress"><i style={{ width: `${props.progress}%` }} /></div>
+        <small>Overall Progress {props.progress}%</small>
+      </section>
+      {challenge ? (
+        <section className="msk-panel msk-challenge" data-rail-card="challenge">
+          <h2>Daily Visual Challenge</h2>
+          <div className="msk-continue-art"><TopicIllustration pageId={challenge.id} /></div>
+          <p>{challenge.challenge.prompt}</p>
+          <input value={answer} onChange={(event) => { setAnswer(event.target.value); setStatus(""); }} aria-label="Challenge answer" />
+          <button className="msk-cta" type="button" onClick={() => setStatus(Math.abs(parseChallengeAnswer(answer) - challenge.challenge.expected) < 0.02 ? "Correct." : challenge.challenge.hint)}>Try Challenge →</button>
+          {status ? <p role="status">{status}</p> : null}
+          <Link className="msk-teach" to={challenge.route}>Open {challenge.label}</Link>
+        </section>
+      ) : null}
+    </aside>
+  );
+}
+
+function ComplexNumbersStudioHome(props: HomeProps & { title: string; cta?: string }) {
+  const labs = props.labs;
+  const [left, right] = [labs.slice(0, 4), labs.slice(4)];
+  return (
+    <div className="msk-home cx-home" data-studio-home="complex-numbers" data-home-layout="target-01">
+      <section>
+        <nav className="cx-map" aria-label="Complex numbers concept map">
+          <div className="cx-map-group">
+            {left.map((item) => (
+              <Link key={item.id} to={item.route}>
+                <TopicIllustration pageId={item.id} />
+                <b>{item.label}</b>
+              </Link>
+            ))}
+          </div>
+          <div className="cx-map-core"><span className="msk-mark">{props.studio.mark}</span><span>COMPLEX</span></div>
+          <div className="cx-map-group">
+            {right.map((item) => (
+              <Link key={item.id} to={item.route}>
+                <TopicIllustration pageId={item.id} />
+                <b>{item.label}</b>
+              </Link>
+            ))}
+          </div>
+        </nav>
+        <ol className="msk-trig-flow" aria-label="Studio journey">
+          {COMPLEX_FLOW.slice(0, 5).map((step, index) => (
+            <li key={step.to}>
+              <Link to={step.to}>
+                <span>{index + 1}</span>
+                <b>{step.label}</b>
+              </Link>
+              {index < 4 ? <i aria-hidden="true">→</i> : null}
+            </li>
+          ))}
+        </ol>
+        <LiveStudioHero studioId="complex-numbers" />
+        <header className="msk-launch-head">
+          <h2>{props.title}</h2>
+          <Link to="/complex-numbers/argand-plane" data-topics-link="all">View all topics →</Link>
+        </header>
+        <div data-lab-grid="complex-numbers">
+          <LaunchGrid labs={labs} studioId="complex-numbers" cta={props.cta} />
+        </div>
+      </section>
+      <ComplexNumbersHomeAside {...props} />
+    </div>
+  );
+}
+
 export function IllustratedStudioHome(props: HomeProps & { title: string; cta?: string }) {
   if (props.studio.id === "trigonometry") return <TrigonometryStudioHome {...props} />;
+  if (props.studio.id === "complex-numbers") return <ComplexNumbersStudioHome {...props} />;
 
   const flow = props.studio.id === "trigonometry"
     ? [

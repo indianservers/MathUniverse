@@ -29,6 +29,10 @@ describe("MockupStudioApp", () => {
     const cx = renderToString(<MemoryRouter initialEntries={["/complex-numbers"]}><MockupStudioApp studioId="complex-numbers" /></MemoryRouter>);
     expect(cx).toContain("Start here");
     expect(cx).toContain("Plot · Modulus · Argument");
+    expect(cx).toContain('data-studio-home="complex-numbers"');
+    expect(cx).toContain("Continue Experiment");
+    expect(cx).toContain("View all topics");
+    expect(cx).toContain("COMPLEX");
     const disc = renderToString(<MemoryRouter initialEntries={["/discrete-world"]}><MockupStudioApp studioId="discrete" /></MemoryRouter>);
     expect(disc).toContain("Start here");
     expect(disc).toContain("Integers · Fractions · Decimals");
@@ -75,9 +79,15 @@ describe("MockupStudioApp", () => {
     expect(ar).toContain("Pyramid volume");
     const trigAr = renderToString(<MemoryRouter initialEntries={["/trigonometry/ar"]}><MockupStudioApp studioId="trigonometry" /></MemoryRouter>);
     expect(trigAr).toContain("Height h = d tan θ");
+    const argand = renderToString(<MemoryRouter initialEntries={["/complex-numbers/argand-plane"]}><MockupStudioApp studioId="complex-numbers" /></MemoryRouter>);
+    expect(argand).toContain("ARGAND PLANE");
+    expect(argand).toContain(">Re</text>");
+    expect(argand).toContain(">Im</text>");
+    expect(argand).toContain('data-cx-mode="Plot"');
     const fractals = renderToString(<MemoryRouter initialEntries={["/complex-numbers/fractals"]}><MockupStudioApp studioId="complex-numbers" /></MemoryRouter>);
     expect(fractals).toContain("Mandelbrot set");
     expect(fractals).toContain("Julia set for c");
+    expect(fractals).toContain("MANDELBROT");
     const algo = renderToString(<MemoryRouter initialEntries={["/discrete-world/algorithms"]}><MockupStudioApp studioId="discrete" /></MemoryRouter>);
     expect(algo).toContain("MergeSort");
     expect(algo).toContain("O(n log n)");
