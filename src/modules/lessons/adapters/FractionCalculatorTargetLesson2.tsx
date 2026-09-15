@@ -462,7 +462,12 @@ export default function FractionCalculatorTargetLesson2({
           <ArrowRight />
         </a>
       </nav>
-      <LessonTopicStudyBoard lessonId={2} view={activeView} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard
+        lessonId={2}
+        view={activeView}
+        onInteraction={onInteraction}
+        boundLive={model.resultText}
+      />
     </div>
   );
 }

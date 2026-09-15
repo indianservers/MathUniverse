@@ -674,7 +674,12 @@ export default function SimultaneousLinearEquationsTargetLesson112({
         <p>© 2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.</p>
         <small>www.IndianServers.com · info@IndianServers.com</small>
       </footer>
-      <LessonTopicStudyBoard lessonId={112} view={activeTab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard
+        lessonId={112}
+        view={activeTab}
+        onInteraction={onInteraction}
+        boundLive={`(${solution.x}, ${solution.y})`}
+      />
 
     </div>
   );

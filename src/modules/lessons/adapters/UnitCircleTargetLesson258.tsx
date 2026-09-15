@@ -153,7 +153,12 @@ export default function UnitCircleTargetLesson258({
       </section>
 
       <nav className="target-unit-circle-nav"><a href="/lessons/trigonometry/257-angle-measurement"><ArrowLeft /><span><b>Previous</b>Angle Measurement</span></a><a href="/lessons/trigonometry/259-right-triangle-ratios"><span><b>Next</b>Right-Triangle Ratios</span><ArrowRight /></a></nav>
-      <LessonTopicStudyBoard lessonId={258} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard
+        lessonId={258}
+        view={tab}
+        onInteraction={onInteraction}
+        boundLive={`${angle}° → (${format(model.cos)}, ${format(model.sin)})`}
+      />
 
     </section>
   );

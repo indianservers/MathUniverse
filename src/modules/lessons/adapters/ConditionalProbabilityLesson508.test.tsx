@@ -17,5 +17,8 @@ describe("Conditional Probability dedicated surface", () => {
     expect(html).toContain("Population grid (sample space)");
     expect(html).toContain("Two-way table");
     expect(html).toContain("1/6");
+    expect(html).toContain('data-testid="lesson-gateway-508"');
+    expect(html).toContain("P(A|B) =");
+    expect(html).toContain("Named misconception");
   });
 });

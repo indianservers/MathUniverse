@@ -6,6 +6,8 @@ import { batch4StudySpecs } from "../strengthening/catalogBatch4StudySpecs";
 import { batch5StudySpecs } from "../strengthening/catalogBatch5StudySpecs";
 import { batch6StudySpecs } from "../strengthening/catalogBatch6StudySpecs";
 import { expandedWorkedExamples } from "./LessonSectionJourney";
+import { LessonGatewayEnhancement } from "./LessonGatewayEnhancement";
+import { gatewayEnhancements } from "../strengthening/catalogGatewayEnhancements";
 import "./LessonTopicStudyBoard.css";
 
 type ChartKind = "bars" | "line" | "number-line" | "circle" | "fraction";
@@ -219,22 +221,29 @@ export function LessonTopicStudyBoard({
   view,
   onInteraction,
   alwaysVisible = false,
+  boundLive,
 }: {
   lessonId: number;
   view?: string | number;
   onInteraction?: () => void;
   alwaysVisible?: boolean;
+  boundLive?: string;
 }) {
   const [probe, setProbe] = useState(0.35);
   const lesson = getStrengthenedFoundationLesson(lessonId);
   const specData = SPECS[lessonId];
+  const gateway = gatewayEnhancements[lessonId];
   const examples = useMemo(
     () => (lesson ? expandedWorkedExamples(lesson) : []),
     [lesson],
   );
-  if (!lesson || !specData || (!alwaysVisible && !isStudyView(view))) return null;
-  const maxBar = Math.max(...specData.bars.map((bar) => Math.abs(bar.value)), 1);
+  const showStudy = Boolean(lesson && specData && (alwaysVisible || isStudyView(view)));
+  if (!showStudy && !gateway) return null;
+  const maxBar = specData ? Math.max(...specData.bars.map((bar) => Math.abs(bar.value)), 1) : 1;
   return (
+    <>
+      {gateway ? <LessonGatewayEnhancement lessonId={lessonId} boundLive={boundLive} onInteraction={onInteraction} /> : null}
+      {showStudy ? (
     <section
       className="lesson-topic-study-board"
       data-testid={`lesson-study-board-${lessonId}`}
@@ -324,6 +333,8 @@ export function LessonTopicStudyBoard({
         </article>
       </div>
     </section>
+      ) : null}
+    </>
   );
 }
 

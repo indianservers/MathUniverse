@@ -395,7 +395,11 @@ export default function ProofStructureTargetLesson10057({
           Vertically Opposite Angles <ArrowRight />
         </Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10057} view={tab} />
+      <LessonTopicStudyBoard
+        lessonId={10057}
+        view={tab}
+        boundLive={`${proof.length} reasons · ${valid ? "valid order" : "incomplete"}`}
+      />
 
     </section>
   );

@@ -606,7 +606,12 @@ export default function DomainRangeTargetLesson130({
         </small>
         <small>www.IndianServers.com info@IndianServers.com</small>
       </footer>
-      <LessonTopicStudyBoard lessonId={130} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard
+        lessonId={130}
+        view={tab}
+        onInteraction={onInteraction}
+        boundLive={`x ≥ ${clean(-domainShift)}; y ≥ ${clean(rangeShift)}`}
+      />
 
     </div>
   );

@@ -655,7 +655,12 @@ export default function LinearFunctionsTargetLesson133({
         </small>
         <small>www.IndianServers.com · info@IndianServers.com</small>
       </footer>
-      <LessonTopicStudyBoard lessonId={133} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard
+        lessonId={133}
+        view={tab}
+        onInteraction={onInteraction}
+        boundLive={`m=${clean(m)}, b=${clean(b)}`}
+      />
 
     </div>
   );
