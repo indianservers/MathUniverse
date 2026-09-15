@@ -1,5 +1,5 @@
-import MockupStudioApp from "../studios/mockup/MockupStudioApp";
+import ComplexNumbersStudio from "./ComplexNumbersStudio";
 
 export default function ComplexNumbers() {
-  return <MockupStudioApp studioId="complex-numbers" />;
+  return <ComplexNumbersStudio />;
 }

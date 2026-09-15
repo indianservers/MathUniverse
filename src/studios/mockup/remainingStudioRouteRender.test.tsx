@@ -3,6 +3,7 @@ import { MemoryRouter } from "react-router-dom";
 import { describe, expect, it } from "vitest";
 import AlgebraStudio from "../../pages/AlgebraStudio";
 import CalculusStudio, { type CalculusStudioPage } from "../../pages/CalculusStudio";
+import ComplexNumbersStudio from "../../pages/ComplexNumbersStudio";
 import MockupStudioApp from "./MockupStudioApp";
 import {
   PROTECTED_HOME_ROUTES,
@@ -25,6 +26,9 @@ function htmlFor(route: string) {
   if (pathname === "/calculus" || pathname.startsWith("/calculus/")) {
     const page = (pathname === "/calculus" ? "home" : pathname.slice("/calculus/".length)) as CalculusStudioPage;
     return renderToString(<MemoryRouter initialEntries={[route]}><CalculusStudio page={page} /></MemoryRouter>);
+  }
+  if (pathname === "/complex-numbers" || pathname.startsWith("/complex-numbers/")) {
+    return renderToString(<MemoryRouter initialEntries={[route]}><ComplexNumbersStudio /></MemoryRouter>);
   }
   const studioId = route.startsWith("/linear-algebra")
     ? "linear-algebra"
