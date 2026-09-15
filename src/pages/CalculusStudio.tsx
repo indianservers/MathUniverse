@@ -250,7 +250,7 @@ function StudioHeader({ page, mode, settings, onSettings, onMenu, onDialog }: {
     <header className="cs-header">
       <button className="cs-menu" type="button" onClick={onMenu} aria-label="Open Calculus Studio menu"><Menu /></button>
       <div className="cs-title">
-        <StudioHomeButtons studioTo="/calculus" />
+        {page === "home" ? null : <StudioHomeButtons studioTo="/calculus" />}
         {page === "home" ? null : (
           <StudioBreadcrumb crumbs={mathStudioCrumbs(
             { label: "Calculus", to: "/calculus" },
