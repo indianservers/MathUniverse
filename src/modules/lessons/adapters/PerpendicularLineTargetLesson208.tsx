@@ -26,6 +26,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./PerpendicularLineTargetLesson208.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type Tool = "select" | "point" | "line" | "perpendicular";
@@ -475,6 +476,8 @@ export default function PerpendicularLineTargetLesson208({
         </a>
       </nav>
       <span className="sr-only">Live Verification. Check Construction.</span>
+      <LessonTopicStudyBoard lessonId={208} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 

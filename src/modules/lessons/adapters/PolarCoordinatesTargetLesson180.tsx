@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import type { KeyboardEvent, PointerEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./PolarCoordinatesTargetLesson180.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 type Point = { x: number; y: number };
 const rad = (d: number) => (d * Math.PI) / 180,
   deg = (r: number) => (r * 180) / Math.PI,
@@ -600,6 +601,8 @@ export default function PolarCoordinatesTargetLesson180({
           </button>
         </div>
       </footer>
+      <LessonTopicStudyBoard lessonId={180} view={tab} onInteraction={onInteraction} />
+
     </main>
   );
 }

@@ -17,6 +17,7 @@ import {
   type PointerEvent as ReactPointerEvent,
 } from "react";
 import type { LessonAdapterProps } from "../types";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type Drag = "center" | "focus-left" | "focus-right" | "point" | null;
@@ -73,6 +74,8 @@ export default function HyperbolaTargetLesson228({ resetToken, onInteraction }: 
 
     <section className="target-hyper-practice"><h2>Try It Yourself</h2><p>Keep F₁(−4, 0) and F₂(4, 0). Adjust a to 2 and explore.</p><div><article><label><input type="checkbox" checked={Math.abs(practiceA - 2) < 0.01} onChange={() => setPracticeA(2)} /> Set a = 2.0</label><div><input type="range" aria-label="Practice hyperbola semi-axis slider" min="1" max="3.9" step="0.1" value={practiceA} onChange={(event) => { setPracticeA(Number(event.target.value)); setFeedback("idle"); }} /><input type="number" aria-label="Practice hyperbola semi-axis" min="1" max="3.9" step="0.1" value={practiceA.toFixed(1)} onChange={(event) => { setPracticeA(Number(event.target.value)); setFeedback("idle"); }} /></div><label><input type="checkbox" checked={practiceMoved} onChange={movePracticePoint} /> Move P toward x ≈ 6 on the right branch.</label><label><input type="checkbox" checked={feedback === "correct"} readOnly /> What is |PF₁ − PF₂|?</label><div><input aria-label="Practice focal difference" value={answer} onChange={(event) => { setAnswer(event.target.value); setFeedback("idle"); }} placeholder="Your answer" /><button type="button" onClick={checkPractice}>Check</button></div><output role="status" className={`is-${feedback}`}>{feedback === "correct" ? "Correct: the difference is 2a." : feedback === "incorrect" ? "Use the constant 2a." : ""}</output></article><article><h3>Prompts</h3><ul><li>How does the shape change as a decreases?</li><li>What happens when a → c?</li></ul><div><b>Hint</b>The constant difference equals 2a.</div></article><article><h3>Expected result</h3><ul><li>|PF₁ − PF₂| ≈ {(2 * practiceA).toFixed(3)}</li><li>e = c/a = {(4 / practiceA).toFixed(3)} (&gt; 1)</li><li>Asymptotes: y = ± (b/a)x, where b = √(c² − a²) ≈ {Math.sqrt(16 - practiceA ** 2).toFixed(3)}</li></ul></article></div></section>
     <nav className="target-hyper-nav" aria-label="Adjacent lessons"><a href="/lessons/geometry/227-ellipse"><ArrowLeft /><span><b>Previous</b>Ellipse</span></a><a href="/lessons">Back to Lesson Overview</a><a href="/lessons/geometry/229-parabola"><span><b>Next</b>Parabola</span><ArrowRight /></a></nav>
+      <LessonTopicStudyBoard lessonId={228} alwaysVisible onInteraction={onInteraction} />
+
   </section>;
 }
 

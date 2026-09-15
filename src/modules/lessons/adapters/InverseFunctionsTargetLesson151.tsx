@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type PointerEvent } from "react";
 import { ArrowLeft, ArrowRight, RefreshCcw, Share2 } from "lucide-react";
 import type { LessonAdapterProps } from "../types";
 import "./InverseFunctionsTargetLesson151.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type DomainMode = "all" | "positive" | "negative" | "interval";
 
@@ -562,6 +563,8 @@ export default function InverseFunctionsTargetLesson151({
           <ArrowRight size={16} />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={151} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

@@ -10,6 +10,7 @@ import { useEffect, useRef, useState } from "react";
 import type { KeyboardEvent, PointerEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./AngleBetweenLinesTargetLesson176.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 type LineId = 1 | 2;
 const angleFor = (m1: number, m2: number) => {
   const denominator = 1 + m1 * m2;
@@ -484,6 +485,8 @@ export default function AngleBetweenLinesTargetLesson176({
         <a href="#docs">Docs</a>
         <a href="#about">About</a>
       </footer>
+      <LessonTopicStudyBoard lessonId={176} view={tab} onInteraction={onInteraction} />
+
     </main>
   );
 }

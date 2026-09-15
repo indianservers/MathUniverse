@@ -9,6 +9,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./ReflectionXAxisTargetLesson160.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const SAMPLES = [-2, 0, 2];
 const clamp = (value: number, min: number, max: number) =>
@@ -519,6 +520,8 @@ export default function ReflectionXAxisTargetLesson160({
           </article>
         </section>
       </section>
+      <LessonTopicStudyBoard lessonId={160} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

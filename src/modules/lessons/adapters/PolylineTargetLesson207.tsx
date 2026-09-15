@@ -30,6 +30,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./PolylineTargetLesson207.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type Tool = "select" | "point";
@@ -593,6 +594,8 @@ export default function PolylineTargetLesson207({
         </a>
       </nav>
       <span className="sr-only">Live Verification. Check Construction.</span>
+      <LessonTopicStudyBoard lessonId={207} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

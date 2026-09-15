@@ -86,6 +86,7 @@ import CollinearityTestTargetLesson254 from "./CollinearityTestTargetLesson254";
 import ConcurrencyTestTargetLesson255 from "./ConcurrencyTestTargetLesson255";
 import ConcyclicityTestTargetLesson256 from "./ConcyclicityTestTargetLesson256";
 import TranslationVectorTargetLesson236 from "./TranslationVectorTargetLesson236";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type GeometryTool =
   | "point"
@@ -4204,6 +4205,7 @@ function IntersectionPointTargetLesson({
           </span>
         </a>
       </footer>
+      <LessonTopicStudyBoard lessonId={200} view={activeTab} onInteraction={onInteraction} />
     </section>
   );
 }
@@ -4887,6 +4889,7 @@ function MidpointCentreTargetLesson({
         <nav><a href="/sitemap">Sitemap</a><a href="/docs">Docs</a><a href="/about">About</a></nav>
         <small>© 2026 INDIAN SERVERS PRIVATE LIMITED.</small>
       </footer>
+      <LessonTopicStudyBoard lessonId={201} view={activeMidpointTab} onInteraction={onInteraction} />
     </section>
   );
 }

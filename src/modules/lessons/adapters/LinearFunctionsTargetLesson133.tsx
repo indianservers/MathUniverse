@@ -17,6 +17,7 @@ import {
 import type { LessonAdapterProps } from "../types";
 import "./LinearFunctionsTargetLesson133.css";
 import "./LinearFunctionsTargetLesson133Tuning.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 /* eslint-disable no-irregular-whitespace */
 
@@ -654,6 +655,8 @@ export default function LinearFunctionsTargetLesson133({
         </small>
         <small>www.IndianServers.com · info@IndianServers.com</small>
       </footer>
+      <LessonTopicStudyBoard lessonId={133} view={tab} onInteraction={onInteraction} />
+
     </div>
   );
 }

@@ -20,6 +20,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./TangentTargetLesson212.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type Stage = "Observe" | "Manipulate" | "Notice" | "Understand" | "Try";
@@ -631,6 +632,8 @@ export default function TangentTargetLesson212({
         Live Verification. Check Construction. Contact angle and Radius are
         calculated from the draggable circle model.
       </span>
+      <LessonTopicStudyBoard lessonId={212} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

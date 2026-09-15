@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import type { LessonAdapterProps } from "../types";
 import "./ExponentialFunctionsTargetLesson142.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Mode = "growth" | "decay";
 
@@ -634,6 +635,8 @@ export default function ExponentialFunctionsTargetLesson142({
           </article>
         </section>
       </section>
+      <LessonTopicStudyBoard lessonId={142} view={tab} onInteraction={onInteraction} />
+
     </div>
   );
 }

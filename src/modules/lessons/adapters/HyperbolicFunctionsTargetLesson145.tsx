@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import type { LessonAdapterProps } from "../types";
 import "./HyperbolicFunctionsTargetLesson145.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type CurveKey = "sinh" | "cosh" | "tanh" | "exp" | "inverseExp";
 const clean = (value: number, digits = 4) =>
@@ -683,6 +684,8 @@ export default function HyperbolicFunctionsTargetLesson145({
           </section>
         </aside>
       </section>
+      <LessonTopicStudyBoard lessonId={145} view={tab} onInteraction={onInteraction} />
+
     </div>
   );
 }

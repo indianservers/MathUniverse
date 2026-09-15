@@ -14,6 +14,7 @@ import { useEffect, useRef, useState } from "react";
 import type { KeyboardEvent, PointerEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./PerpendicularLinesTargetLesson175.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type LineId = 1 | 2;
 const normalize = (angle: number) => ((angle % 180) + 180) % 180;
@@ -535,6 +536,8 @@ export default function PerpendicularLinesTargetLesson175({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={175} view={tab} onInteraction={onInteraction} />
+
     </main>
   );
 }

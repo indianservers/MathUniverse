@@ -3,6 +3,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import type { PointerEvent, ReactNode } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./SegmentTargetLesson204.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type Pair = { A: Point; B: Point };
@@ -74,5 +75,7 @@ export default function SegmentTargetLesson204({ lesson, resetToken, onInteracti
     <section className="sg204-practice"><header><h2>Try it yourself</h2><p>Construct a segment with the given endpoints and verify its length.</p></header><div><article><b>Your task</b><p>Set A (-2, -1) and B (3, 4). Construct AB and find its length.</p><small>Hint: Drag points or enter coordinates.</small><button type="button" onClick={()=>{const ok=points.A.x===TASK.A.x&&points.A.y===TASK.A.y&&points.B.x===TASK.B.x&&points.B.y===TASK.B.y;setAnswer(ok?"correct":"incorrect");onInteraction();}}><Check/>Check Answer</button>{answer!=="idle"&&<strong role="status" className={answer}>{answer==="correct"?"Correct. AB = sqrt(50) = 7.07 units.":"Set both endpoints to the requested coordinates."}</strong>}</article><MiniGraph show={solution}/><aside><b>Answer preview</b><p>A (-2, -1)<br/>B (3, 4)</p><p>Expected length</p><strong>AB = 7.07 units</strong><button type="button" onClick={()=>{setSolution(v=>!v);onInteraction();}}><Eye/>{solution?"Hide Solution":"Show Solution"}</button></aside></div></section>
     <nav className="sg204-nav" aria-label="Adjacent lessons"><a href="/lessons/geometry/203-line-through-two-points"><ArrowLeft/><span><small>Previous</small>Line Through Two Points</span></a><a href="/lessons/geometry/205-segment-with-given-length"><span><small>Next</small>Segment with Given Length</span><ArrowRight/></a></nav>
     <footer className="sg204-footer"><b>Math Universe</b><span>Interactive math labs, visual proofs, NCERT explorations, graphing, CAS-style tools, and classroom-ready activities.</span><nav><a href="/">Sitemap</a><a href="/docs">Docs</a><a href="/about">About</a></nav><small>© 2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.<br/>www.IndianServers.com info@IndianServers.com</small></footer>
+      <LessonTopicStudyBoard lessonId={204} alwaysVisible onInteraction={onInteraction} />
+
   </section>;
 }

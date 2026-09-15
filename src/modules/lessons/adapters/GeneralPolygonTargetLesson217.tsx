@@ -17,6 +17,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./GeneralPolygonTargetLesson217.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type Tool = "point" | "polygon" | "move" | "measure";
@@ -98,6 +99,8 @@ export default function GeneralPolygonTargetLesson217({ resetToken, onInteractio
     </section>
 
     <nav className="grid grid-cols-[1fr_auto_1fr] items-center rounded-xl border border-slate-200 bg-white px-4 py-2 text-[8px] shadow-sm" style={{marginTop:10}} aria-label="Adjacent lessons"><a className="flex items-center gap-3" href="/lessons/geometry/216-rigid-polygon"><ArrowLeft className="h-4 w-4"/><span><b className="block">Previous</b>Rigid Polygon</span></a><span className="text-slate-500">Lesson 217 of Geometry</span><a className="flex items-center justify-end gap-3 text-right" href="/lessons/geometry/218-circle-centre-and-point"><span><b className="block">Next</b>Circle: Centre and Point</span><ArrowRight className="h-4 w-4"/></a></nav>
+      <LessonTopicStudyBoard lessonId={217} alwaysVisible onInteraction={onInteraction} />
+
   </section>;
 }
 

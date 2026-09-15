@@ -18,6 +18,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./CombinedTransformationsTargetLesson162.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type TransformKey = "h" | "a" | "k";
 type Tab = "Explore" | "Explain" | "Examples" | "Practice" | "Summary";
@@ -844,6 +845,8 @@ export default function CombinedTransformationsTargetLesson162({
           © 2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.
         </small>
       </footer>
+      <LessonTopicStudyBoard lessonId={162} view={tab} onInteraction={onInteraction} />
+
     </div>
   );
 }

@@ -26,6 +26,7 @@ import {
   type ReactNode,
 } from "react";
 import type { LessonAdapterProps } from "../types";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type ArcType = "minor" | "major";
@@ -541,6 +542,8 @@ export default function CircularArcTargetLesson223({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={223} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

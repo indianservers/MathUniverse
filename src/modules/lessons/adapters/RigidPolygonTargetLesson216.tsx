@@ -15,6 +15,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./RigidPolygonTargetLesson216.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type Mode = "move" | "rotate";
@@ -143,6 +144,8 @@ export default function RigidPolygonTargetLesson216({ resetToken, onInteraction 
 
     <section className="rounded-xl border border-slate-200 bg-white px-4 py-3 shadow-sm" style={{ marginTop: 10 }}><h2 className="text-[11px] font-black">Rigid motions</h2><div className="mt-2 grid grid-cols-4 gap-3 text-[8px]"><Motion name="Translation" hint="Slide" mark="->"/><Motion name="Rotation" hint="Turn" mark="O"/><Motion name="Reflection" hint="Flip" mark="|"/><Motion name="Glide reflection" hint="Slide + flip" mark="->|"/></div></section>
     <nav className="grid grid-cols-2 gap-3" style={{ marginTop: 10 }} aria-label="Adjacent lessons"><a className="target-rigid-nav" href="/lessons/geometry/215-regular-polygon"><ArrowLeft /> <span><b>Previous</b>Regular Polygon</span></a><a className="target-rigid-nav is-next justify-end text-right" href="/lessons/geometry/217-general-polygon"><span><b>Next</b>General Polygon</span><ArrowRight /></a></nav>
+      <LessonTopicStudyBoard lessonId={216} alwaysVisible onInteraction={onInteraction} />
+
   </section>;
 }
 

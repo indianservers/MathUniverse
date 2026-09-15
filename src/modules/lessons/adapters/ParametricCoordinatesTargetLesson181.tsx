@@ -13,6 +13,7 @@ import { useEffect, useRef, useState } from "react";
 import type { KeyboardEvent, PointerEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./ParametricCoordinatesTargetLesson181.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 const PI = Math.PI,
   fmt = (v: number) => (Math.abs(v) < 0.005 ? "0.00" : v.toFixed(2)),
   pointAt = (t: number) => ({ x: 2 + Math.cos(t), y: 1 + Math.sin(t) });
@@ -498,6 +499,8 @@ export default function ParametricCoordinatesTargetLesson181({
         <a>Docs</a>
         <a>About</a>
       </footer>
+      <LessonTopicStudyBoard lessonId={181} alwaysVisible onInteraction={onInteraction} />
+
     </main>
   );
 }

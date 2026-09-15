@@ -24,6 +24,7 @@ import {
   type ReactNode,
 } from "react";
 import type { LessonAdapterProps } from "../types";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type Drag = "focus" | "directrix" | "point" | null;
@@ -559,6 +560,8 @@ export default function ParabolaTargetLesson229({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={229} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

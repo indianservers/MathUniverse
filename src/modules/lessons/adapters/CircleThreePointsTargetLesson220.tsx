@@ -20,6 +20,7 @@ import {
   type PointerEvent as ReactPointerEvent,
 } from "react";
 import type { LessonAdapterProps } from "../types";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type Visibility = {
@@ -543,6 +544,8 @@ export default function CircleThreePointsTargetLesson220({
           Back to Lessons
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={220} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

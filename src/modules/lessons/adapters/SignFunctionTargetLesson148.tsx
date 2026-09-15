@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type PointerEvent } from "react";
 import { ExternalLink, Languages, RefreshCcw, Share2 } from "lucide-react";
 import type { LessonAdapterProps } from "../types";
 import "./SignFunctionTargetLesson148.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const clamp = (value: number, min: number, max: number, step: number) =>
   Math.max(min, Math.min(max, Math.round(value / step) * step));
@@ -473,6 +474,8 @@ export default function SignFunctionTargetLesson148({
           {notice}
         </button>
       )}
+      <LessonTopicStudyBoard lessonId={148} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

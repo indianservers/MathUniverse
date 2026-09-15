@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import type { KeyboardEvent, PointerEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./BarycentricCoordinatesTargetLesson182.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 type Point = { x: number; y: number };
 type Weights = { a: number; b: number; c: number };
 const A = { x: 0, y: 6 },
@@ -556,6 +557,8 @@ export default function BarycentricCoordinatesTargetLesson182({
         <a>About</a>
         <p>© 2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.</p>
       </footer>
+      <LessonTopicStudyBoard lessonId={182} alwaysVisible onInteraction={onInteraction} />
+
     </main>
   );
 }

@@ -16,6 +16,7 @@ import type { CSSProperties, PointerEvent } from "react";
 import * as THREE from "three";
 import type { LessonAdapterProps } from "../types";
 import "./CrossProductTargetLesson191.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Vector3 = { x: number; y: number; z: number };
 type DragMode = "rotate" | "pan" | "zoom";
@@ -734,6 +735,8 @@ export default function CrossProductTargetLesson191({
         </nav>
         <small>© 2026 INDIAN SERVERS PRIVATE LIMITED.</small>
       </footer>
+      <LessonTopicStudyBoard lessonId={191} alwaysVisible onInteraction={onInteraction} />
+
     </main>
   );
 }

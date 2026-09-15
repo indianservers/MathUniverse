@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import type { PointerEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./RelativeMotionTargetLesson196.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 type P = { x: number; y: number };
 const A0 = { x: 6, y: 4 },
   B0 = { x: 2, y: 1 },
@@ -566,6 +567,8 @@ export default function RelativeMotionTargetLesson196({
           <a href="/about">About</a>
         </nav>
       </footer>
+      <LessonTopicStudyBoard lessonId={196} view={tab} onInteraction={onInteraction} />
+
     </main>
   );
 }
