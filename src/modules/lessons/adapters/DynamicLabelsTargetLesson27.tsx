@@ -4,6 +4,8 @@ import type { LessonAdapterProps } from "../types";
 import { LessonCartesianGraph } from "../graphs/LessonCartesianGraph";
 import { LessonPointPreview } from "../graphs/LessonPointPreview";
 import "./DynamicLabelsTargetLesson27.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+
 
 type Point = { x: number; y: number };
 const GRAPH_VIEW = {
@@ -95,6 +97,7 @@ export default function DynamicLabelsTargetLesson27({
   return (
     <div
       className="labels-page"
+      aria-label="Draggable point P with dynamic label"
       data-testid="algebra-mockup-0027"
       data-dedicated-lesson="27"
       data-object-model="draggable-point-token-template-coordinate-distance-projection-live-label-model"
@@ -339,7 +342,7 @@ export default function DynamicLabelsTargetLesson27({
           </a>
         </nav>
       </section>
-      <footer className="labels-footer">
+<footer className="labels-footer">
         <b>
           <Sparkles />
           Math Universe
@@ -360,6 +363,7 @@ export default function DynamicLabelsTargetLesson27({
           </button>
         </nav>
       </footer>
+      <LessonTopicStudyBoard lessonId={27} alwaysVisible onInteraction={onInteraction} />
     </div>
   );
 }

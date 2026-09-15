@@ -2,6 +2,8 @@ import { CheckCircle2, Eye, RotateCcw, Star } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./ConstantsLibraryTargetLesson16.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+
 
 type ConstantId = "pi" | "e" | "tau" | "phi";
 const TABS = [
@@ -252,7 +254,7 @@ export default function ConstantsLibraryTargetLesson16({
                 </span>
                 <output>{precision} digits</output>
               </label>
-              <footer>
+<footer>
                 ⓘ Calculations use the full stored value above. Rounding is
                 applied only when you choose to display the result.
               </footer>
@@ -343,6 +345,7 @@ export default function ConstantsLibraryTargetLesson16({
           CAS-style tools, and classroom-ready activities.
         </p>
       </footer>
+      <LessonTopicStudyBoard lessonId={16} alwaysVisible onInteraction={onInteraction} />
     </div>
   );
 }

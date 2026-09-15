@@ -3,6 +3,8 @@ import { useEffect, useRef, useState } from "react";
 import type { PointerEvent as ReactPointerEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./InverseTrigonometryTargetLesson11.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+
 
 const TABS = [
   "Interaction + visualization",
@@ -209,7 +211,7 @@ export default function InverseTrigonometryTargetLesson11({
                   <small>Current ratio</small>
                   <b>y = {ratio}</b>
                 </article>
-                <footer>
+<footer>
                   On the unit circle, <i>y</i> is the vertical coordinate (sine
                   value).
                 </footer>
@@ -473,6 +475,7 @@ export default function InverseTrigonometryTargetLesson11({
           CAS-style tools, and classroom-ready activities.
         </p>
       </footer>
+      <LessonTopicStudyBoard lessonId={11} view={view} onInteraction={onInteraction} />
     </div>
   );
 }

@@ -3,6 +3,8 @@ import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./HyperbolicFunctionsTargetLesson12.css";
 import { LessonCartesianGraph } from "../graphs/LessonCartesianGraph";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+
 
 const TABS = [
   "Interaction + visualization",
@@ -303,13 +305,14 @@ export default function HyperbolicFunctionsTargetLesson12({
           →
         </a>
       </nav>
-      <footer className="hyper-footer">
+<footer className="hyper-footer">
         <b>⚒ Math Universe</b>
         <p>
           Interactive math labs, visual proofs, NCERT explorations, graphing,
           CAS-style tools, and classroom-ready activities.
         </p>
       </footer>
+      <LessonTopicStudyBoard lessonId={12} alwaysVisible onInteraction={onInteraction} />
     </div>
   );
 }

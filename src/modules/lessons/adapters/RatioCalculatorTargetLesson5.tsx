@@ -9,6 +9,8 @@ import {
 import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./RatioCalculatorTargetLesson5.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+
 
 const VIEWS = [
   "Interaction + visualization",
@@ -308,7 +310,7 @@ export default function RatioCalculatorTargetLesson5({
           </button>
         </aside>
       </section>
-      <nav className="target-ratio-nav">
+<nav className="target-ratio-nav">
         <a href="/lessons/core-workspaces/4-percentage-calculator">
           <ArrowLeft />
           <span>
@@ -322,6 +324,7 @@ export default function RatioCalculatorTargetLesson5({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={5} view={view} onInteraction={onInteraction} />
     </div>
   );
 }

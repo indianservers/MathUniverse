@@ -20,6 +20,8 @@ import {
 import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./CalculationHistoryTargetLesson17.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+
 
 type HistoryAction = "reuse" | "copy" | "pin" | "inspect";
 
@@ -507,8 +509,7 @@ export default function CalculationHistoryTargetLesson17({
           </span>
         </div>
       </section>
-
-      <nav className="history-neighbors">
+<nav className="history-neighbors">
         <a href="/lessons/foundational-advanced/16-constants-library">
           ←{" "}
           <span>
@@ -524,6 +525,7 @@ export default function CalculationHistoryTargetLesson17({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={17} view={view} onInteraction={onInteraction} />
     </div>
   );
 }
