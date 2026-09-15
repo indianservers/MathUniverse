@@ -188,7 +188,7 @@ export function ApplicationsLab({ page }: { page: StudioMockupPage }) {
                   <text x="108" y="70" fill="#334155" fontSize="11" textAnchor="middle">Calculated height</text>
                   <text x="108" y="90" fill="#0f172a" fontSize="16" fontWeight="800" textAnchor="middle">{fmt(buildingHeight, 2)} m</text>
                 </g>
-                {animateMeasurement ? <Compass bearing={bearing} /> : null}
+                {mode === "Bearings" || mode === "Navigation" ? <Compass bearing={bearing} /> : null}
               </>
             )}
           </svg>
