@@ -8,6 +8,7 @@ import {
   fQuantile,
 } from "./fDistributionLessonModel";
 import "./FDistributionLesson531.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const numeratorRows = [3, 4, 5, 6, 8, 10, 15];
 const denominatorColumns = [10, 15, 20, 30, 40, 60, 120];
@@ -427,6 +428,8 @@ function FDistributionActivity({
           Distribution
         </span>
       </footer>
+      <LessonTopicStudyBoard lessonId={531} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

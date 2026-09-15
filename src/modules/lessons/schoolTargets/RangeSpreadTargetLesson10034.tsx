@@ -9,6 +9,7 @@ import {
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./RangeSpreadTargetLesson10034.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const initial = [3, 5, 6, 8, 11];
 const tabs = ["Interact", "Learn", "Example", "Formula", "Practice"];
@@ -343,6 +344,8 @@ export default function RangeSpreadTargetLesson10034({
           <b>Mean, Median and Mode</b>
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10034} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

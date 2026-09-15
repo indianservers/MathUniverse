@@ -11,6 +11,7 @@ import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./PolynomialDivisionTargetLesson10047.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Problem = { dividend: number[]; divisor: number[] };
 const targetProblem: Problem = { dividend: [1, 0, 0, -1], divisor: [1, -1] };
@@ -420,6 +421,8 @@ export default function PolynomialDivisionTargetLesson10047({
           <ArrowRight />
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10047} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

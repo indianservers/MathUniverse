@@ -4,6 +4,7 @@ import type { PointerEvent } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "../geometry3d/CoordinateSystemTargetLesson378.css";
 import "./AdjacencyMatrixTargetLesson581.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Point = { id: string; x: number; y: number };
 const ids = ["A", "B", "C", "D", "E"];
@@ -436,6 +437,8 @@ export default function AdjacencyMatrixTargetLesson581({
           -&gt;
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={581} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

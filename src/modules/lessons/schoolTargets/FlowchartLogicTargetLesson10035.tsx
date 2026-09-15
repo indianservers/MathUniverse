@@ -15,6 +15,7 @@ import { type PointerEvent, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./FlowchartLogicTargetLesson10035.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const tabs = ["Interact", "Learn", "Example", "Formula", "Practice"];
 const traceLabels = ["Start", "Read n", "n mod 2 = 0 ?", "Output", "End"];
@@ -405,6 +406,8 @@ export default function FlowchartLogicTargetLesson10035({
           Next: Practice <ArrowRight size={13} />
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10035} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

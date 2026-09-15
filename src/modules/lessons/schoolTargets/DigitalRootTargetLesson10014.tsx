@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { schoolLessonCatalog } from "../catalog/school/schoolSyllabusCatalog";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./DigitalRootTargetLesson10014.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const sumDigits = (value: number) =>
   String(value)
@@ -476,6 +477,8 @@ export default function DigitalRootTargetLesson10014({
           Next lesson →<b>{next.title}</b>
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10014} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

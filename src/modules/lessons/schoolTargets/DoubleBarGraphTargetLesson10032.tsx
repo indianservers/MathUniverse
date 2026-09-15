@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./DoubleBarGraphTargetLesson10032.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Row = { day: string; boys: number; girls: number };
 const initialRows: Row[] = [
@@ -423,6 +424,8 @@ export default function DoubleBarGraphTargetLesson10032({
           <b>Data Handling Projects</b>
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10032} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

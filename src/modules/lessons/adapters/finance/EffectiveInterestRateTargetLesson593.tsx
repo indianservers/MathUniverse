@@ -2,6 +2,7 @@ import { Check, RotateCcw } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./EffectiveInterestRateTargetLesson593.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const frequencies = [1, 2, 4, 12, 52, 365] as const;
 const frequencyNames: Record<number, string> = {
@@ -380,6 +381,8 @@ export default function EffectiveInterestRateTargetLesson593({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={593} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

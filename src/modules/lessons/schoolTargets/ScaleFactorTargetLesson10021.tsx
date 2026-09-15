@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { schoolLessonCatalog } from "../catalog/school/schoolSyllabusCatalog";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./ScaleFactorTargetLesson10021.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const ingredients = [
   ["Flour", 2, "cups"],
@@ -456,6 +457,8 @@ export default function ScaleFactorTargetLesson10021({
           →
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10021} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

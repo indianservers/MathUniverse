@@ -2,6 +2,7 @@ import { Check, RotateCcw } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./BreakEvenTargetLesson603.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const cash = (value: number) =>
   new Intl.NumberFormat("en-IN", { maximumFractionDigits: 0 }).format(value);
@@ -444,6 +445,8 @@ export default function BreakEvenTargetLesson603({
           &rarr;
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={603} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

@@ -6,6 +6,7 @@ import {
   standardisationTable,
 } from "./standardisationLessonModel";
 import "./StandardisationLesson535.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 export default function StandardisationLesson535({
   resetToken,
   onInteraction,
@@ -307,6 +308,8 @@ function StandardisationActivity({
           Previous: Weibull Distribution &nbsp; Next: Distribution Simulation
         </span>
       </footer>
+      <LessonTopicStudyBoard lessonId={535} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

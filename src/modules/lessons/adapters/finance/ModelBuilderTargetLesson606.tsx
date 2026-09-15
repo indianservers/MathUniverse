@@ -2,6 +2,7 @@ import { Plus, Trash2 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./ModelBuilderTargetLesson606.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 const defaults: Point[] = Array.from({ length: 6 }, (_, x) => ({
@@ -617,6 +618,8 @@ export default function ModelBuilderTargetLesson606({
           &rarr;
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={606} view={view} onInteraction={onInteraction} />
+
     </section>
   );
 }

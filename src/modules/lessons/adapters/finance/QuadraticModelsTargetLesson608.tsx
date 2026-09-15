@@ -2,6 +2,7 @@ import { Check, RotateCcw } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./QuadraticModelsTargetLesson608.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const round = (value: number, digits = 2) => Number(value.toFixed(digits));
 export default function QuadraticModelsTargetLesson608({
@@ -534,6 +535,8 @@ export default function QuadraticModelsTargetLesson608({
           &rarr;
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={608} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

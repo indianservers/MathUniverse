@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "../geometry3d/CoordinateSystemTargetLesson378.css";
 import "./PascalTriangleTargetLesson562.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const factorial = (n: number) =>
   Array.from({ length: n }, (_, i) => i + 1).reduce((a, b) => a * b, 1);
@@ -376,6 +377,8 @@ export default function PascalTriangleTargetLesson562({
           <b>Inclusion-Exclusion</b>
         </button>
       </nav>
+      <LessonTopicStudyBoard lessonId={562} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

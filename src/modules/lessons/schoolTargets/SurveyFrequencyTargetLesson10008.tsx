@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { schoolLessonCatalog } from "../catalog/school/schoolSyllabusCatalog";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./SurveyFrequencyTargetLesson10008.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 const sports = ["Cricket", "Football", "Badminton", "Basketball", "Tennis"],
   sportIcons = ["🏏", "⚽", "🏸", "🏀", "🎾"],
   initial = [
@@ -447,6 +448,8 @@ export default function SurveyFrequencyTargetLesson10008({
           Next lesson →<b>{next.title}</b>
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10008} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

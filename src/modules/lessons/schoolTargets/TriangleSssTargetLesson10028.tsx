@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { schoolLessonCatalog } from "../catalog/school/schoolSyllabusCatalog";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./TriangleSssTargetLesson10028.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Sides = { ab: number; ac: number; bc: number };
 const mainInitial: Sides = { ab: 7, ac: 5, bc: 6 };
@@ -337,6 +338,8 @@ export default function TriangleSssTargetLesson10028({
         <Link to={prev.route}>← Previous lesson</Link>
         <Link to={next.route}>Next lesson →</Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10028} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { schoolLessonCatalog } from "../catalog/school/schoolSyllabusCatalog";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./RatioTableTargetLesson10017.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const gcd = (a: number, b: number): number => (b ? gcd(b, a % b) : Math.abs(a));
 const tidy = (n: number) =>
@@ -397,6 +398,8 @@ export default function RatioTableTargetLesson10017({
           Next Lesson →<b>{next.title}</b>
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10017} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

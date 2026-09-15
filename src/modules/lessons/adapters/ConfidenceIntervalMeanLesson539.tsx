@@ -9,6 +9,7 @@ import {
   targetMeanSample,
 } from "./confidenceMeanLessonModel";
 import "./ConfidenceIntervalMeanLesson539.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 export default function ConfidenceIntervalMeanLesson539({
   resetToken,
   onInteraction,
@@ -391,6 +392,8 @@ function MeanIntervalActivity({
           Proportion
         </span>
       </footer>
+      <LessonTopicStudyBoard lessonId={539} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

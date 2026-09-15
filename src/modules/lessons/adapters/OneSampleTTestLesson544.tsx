@@ -3,6 +3,7 @@ import { useState, type PointerEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import { oneSampleTTest, type TAlternative } from "./oneSampleTTestLessonModel";
 import "./OneSampleTTestLesson544.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const defaults = [69, 72, 71, 75, 68, 74, 70, 73, 69, 76];
 
@@ -404,6 +405,8 @@ function TTestActivity({
         <span>Previous &nbsp; z-Test (One Sample)</span>
         <span>Next &nbsp; Two-Sample t-Test</span>
       </footer>
+      <LessonTopicStudyBoard lessonId={544} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

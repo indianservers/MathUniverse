@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { schoolLessonCatalog } from "../catalog/school/schoolSyllabusCatalog";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./ProfitLossTargetLesson10019.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const rupees = (value: number) =>
   value.toLocaleString("en-IN", { maximumFractionDigits: 2 });
@@ -456,6 +457,8 @@ export default function ProfitLossTargetLesson10019({
           →
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10019} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

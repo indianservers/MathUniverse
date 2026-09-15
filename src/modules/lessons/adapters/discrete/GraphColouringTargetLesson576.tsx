@@ -4,6 +4,7 @@ import type { PointerEvent } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "../geometry3d/CoordinateSystemTargetLesson378.css";
 import "./GraphColouringTargetLesson576.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Vertex = { id: string; x: number; y: number };
 type Edge = [string, string];
@@ -630,6 +631,8 @@ export default function GraphColouringTargetLesson576({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={576} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

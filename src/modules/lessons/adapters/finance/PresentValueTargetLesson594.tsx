@@ -2,6 +2,7 @@ import { Check, RotateCcw } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./PresentValueTargetLesson594.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const cash = (value: number) =>
   new Intl.NumberFormat("en-IN", {
@@ -322,6 +323,8 @@ export default function PresentValueTargetLesson594({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={594} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

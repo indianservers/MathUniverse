@@ -3,6 +3,7 @@ import { useState, type PointerEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import { typeErrorsAnalysis } from "./typeErrorsLessonModel";
 import "./TypeErrorsLesson554.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 export default function TypeErrorsLesson554({
   resetToken,
@@ -345,6 +346,8 @@ function Activity({
             : "Try again. Think about increasing separation between the distributions."}
         </aside>
       </section>
+      <LessonTopicStudyBoard lessonId={554} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

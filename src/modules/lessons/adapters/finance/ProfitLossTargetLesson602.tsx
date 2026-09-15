@@ -2,6 +2,7 @@ import { Check } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./ProfitLossTargetLesson602.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 const cash = (v: number, d = 0) =>
     new Intl.NumberFormat("en-IN", {
       minimumFractionDigits: d,
@@ -393,6 +394,8 @@ export default function ProfitLossTargetLesson602({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={602} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

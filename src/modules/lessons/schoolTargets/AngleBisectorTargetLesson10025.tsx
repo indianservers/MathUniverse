@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { schoolLessonCatalog } from "../catalog/school/schoolSyllabusCatalog";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./AngleBisectorTargetLesson10025.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const clamp = (value: number) => Math.min(140, Math.max(20, Math.round(value)));
 
@@ -402,6 +403,8 @@ export default function AngleBisectorTargetLesson10025({
           Next: Perpendicular Through a Point &nbsp; →
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10025} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

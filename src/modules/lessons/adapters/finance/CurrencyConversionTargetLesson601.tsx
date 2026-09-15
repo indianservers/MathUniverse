@@ -2,6 +2,7 @@ import { ArrowLeftRight, Check, RotateCcw } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./CurrencyConversionTargetLesson601.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Code = "USD" | "INR" | "EUR" | "JPY" | "GBP";
 const currencies: Record<Code, { name: string; flag: string; inr: number }> = {
@@ -409,6 +410,8 @@ export default function CurrencyConversionTargetLesson601({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={601} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

@@ -9,6 +9,7 @@ import { useEffect, useRef, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "../geometry3d/CoordinateSystemTargetLesson378.css";
 import "./ComplementTargetLesson584.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const complement = (u: number[], a: number[]) =>
   u.filter((value) => !a.includes(value));
@@ -429,6 +430,8 @@ export default function ComplementTargetLesson584({
           -&gt;
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={584} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

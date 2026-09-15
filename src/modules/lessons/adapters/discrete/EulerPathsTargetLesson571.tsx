@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "../geometry3d/CoordinateSystemTargetLesson378.css";
 import "./EulerPathsTargetLesson571.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Vertex = { id: string; x: number; y: number };
 type Edge = { a: string; b: string; weight: number };
@@ -499,6 +500,8 @@ export default function EulerPathsTargetLesson571({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={571} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

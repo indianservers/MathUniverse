@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { adjacentSchoolLessons } from "../catalog/school/schoolSyllabusCatalog";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./PlaceValueTargetLesson10001.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const places = [
   ["THOUSANDS", 1000, "purple"],
@@ -493,6 +494,8 @@ export default function PlaceValueTargetLesson10001({
           <span />
         )}
       </nav>
+      <LessonTopicStudyBoard lessonId={10001} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

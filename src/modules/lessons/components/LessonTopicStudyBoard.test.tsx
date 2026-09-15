@@ -4,6 +4,7 @@ import { getStrengthenedFoundationLesson } from "../strengthening/foundationNumb
 import { batch2HandAuthoredLessonIds } from "../strengthening/catalogBatch2HandAuthoredOverlay";
 import { batch3HandAuthoredLessonIds } from "../strengthening/catalogBatch3HandAuthoredOverlay";
 import { batch4HandAuthoredLessonIds } from "../strengthening/catalogBatch4HandAuthoredOverlay";
+import { batch5HandAuthoredLessonIds } from "../strengthening/catalogBatch5HandAuthoredOverlay";
 import { coreWorkspaceHandAuthoredLessonIds } from "../strengthening/coreWorkspaceHandAuthoredOverlay";
 import { LessonTopicStudyBoard } from "./LessonTopicStudyBoard";
 
@@ -93,6 +94,30 @@ describe("LessonTopicStudyBoard", () => {
     );
     const introductions = new Set<string>();
     for (const id of batch4HandAuthoredLessonIds) {
+      const lesson = getStrengthenedFoundationLesson(id);
+      expect(lesson, `lesson ${id}`).not.toBeNull();
+      expect(lesson!.introduction.length).toBeGreaterThanOrEqual(220);
+      expect(lesson!.definitions[0]?.statement.length).toBeGreaterThanOrEqual(120);
+      expect(lesson!.workedExamples.length).toBeGreaterThanOrEqual(3);
+      expect(introductions.has(lesson!.introduction), `duplicate intro ${id}`).toBe(false);
+      introductions.add(lesson!.introduction);
+
+      const html = renderToStaticMarkup(
+        <LessonTopicStudyBoard lessonId={id} alwaysVisible />,
+      );
+      expect(html, `study board ${id}`).toContain(`data-testid="lesson-study-board-${id}"`);
+      expect(html, `chart labels ${id}`).toContain("x:");
+      expect(html, `probe ${id}`).toContain("study probe");
+    }
+  });
+
+  it("covers lessons 531-674 and school 10001-10056 with unique introductions, charts, and three numerical examples", () => {
+    expect(batch5HandAuthoredLessonIds).toEqual([
+      ...Array.from({ length: 144 }, (_, index) => index + 531),
+      ...Array.from({ length: 56 }, (_, index) => index + 10001),
+    ]);
+    const introductions = new Set<string>();
+    for (const id of batch5HandAuthoredLessonIds) {
       const lesson = getStrengthenedFoundationLesson(id);
       expect(lesson, `lesson ${id}`).not.toBeNull();
       expect(lesson!.introduction.length).toBeGreaterThanOrEqual(220);
