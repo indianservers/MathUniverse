@@ -48,3 +48,25 @@
 .cs-lab-page .cs-light-graph {
   touch-action: none;
 }
+.cs-title {
+  min-width: 16rem;
+}
+.cs-title h1 {
+  overflow-wrap: anywhere;
+}
+.cs-header {
+  grid-template-columns: minmax(16rem, 1fr) auto;
+}
+.cs-header:has(.cs-search-wrap) {
+  grid-template-columns: minmax(16rem, 1.15fr) minmax(14rem, 22rem) minmax(12rem, auto);
+}
+.cs-header-actions {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  max-width: min(36rem, 100%);
+}
+@media (max-width: 1180px) {
+  .cs-header {
+    grid-template-columns: auto minmax(16rem, 1fr) auto;
+  }
+}

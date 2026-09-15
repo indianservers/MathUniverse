@@ -107,10 +107,16 @@ function MotionLab({ page }: { page: StudioMockupPage }) {
                 <>
                   <rect x="0" y="176" width="640" height="44" fill="#8fbf4a" />
                   <line x1="24" y1="176" x2="610" y2="176" stroke="#d9f0b2" strokeWidth="2" />
-                  <circle cx="46" cy="168" r="10" fill="#1d4ed8" />
-                  <rect x="42" y="150" width="8" height="18" fill="#1d4ed8" />
+                  <circle cx="52" cy="132" r="8" fill="#1e3a5f" />
+                  <path d="M52 140 v22" stroke="#1d4ed8" strokeWidth="5" strokeLinecap="round" />
+                  <path d="M52 148 L38 160" stroke="#1d4ed8" strokeWidth="4" strokeLinecap="round" />
+                  <path d="M52 148 L68 156" stroke="#1d4ed8" strokeWidth="4" strokeLinecap="round" />
+                  <path d="M52 162 L44 176" stroke="#0f172a" strokeWidth="4" strokeLinecap="round" />
+                  <path d="M52 162 L78 168" stroke="#0f172a" strokeWidth="4" strokeLinecap="round" />
+                  <circle cx="86" cy="170" r="5" fill="#f8fafc" stroke="#0f172a" />
                   <rect x="560" y="132" width="56" height="44" fill="none" stroke="#64748b" strokeWidth="3" />
                   <line x1="560" y1="132" x2="616" y2="132" stroke="#64748b" strokeWidth="3" />
+                  <line x1="588" y1="132" x2="588" y2="176" stroke="#94a3b8" strokeWidth="2" />
                 </>
               )}
               {mode === "Pursuit" ? (

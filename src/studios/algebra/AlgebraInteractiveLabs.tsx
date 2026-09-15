@@ -382,7 +382,7 @@ export function SystemsLab() {
 
 export function ExponentsLab() {
   const modes = ["Exponent Laws", "Radicals", "Exponential & Logs", "Equations"];
-  const [mode, setMode] = useStudioMode("mode", modes, "Exponential & Logs");
+  const [mode, setMode] = useStudioMode("mode", modes, "Exponent Laws");
   const history = useAlgebraHistory({ base: 2, point: 2, n: 2, radicand: 72, target: 64, law: "Product" });
   const { base, point, n, radicand, target, law } = history.state;
   const [focus, setFocus] = useState("Exponential and log are reflections.");
