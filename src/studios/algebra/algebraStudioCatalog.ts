@@ -32,7 +32,7 @@ export const curriculumByLab: Record<string, CurriculumTag[]> = {
 };
 
 export const dailyChallenges: DailyChallenge[] = [
-  { prompt: "Simplify 2(x + 3) − (x − 1)", choices: ["x + 7", "2x + 5", "3x + 7", "x + 5"], expected: "2*(x+3)-(x-1)", lab: "Expressions", route: "/algebra/expressions" },
+  { prompt: "Which expressions are equivalent to 2(x + 3) − (x − 1)?", choices: ["x + 7", "2x + 5", "3x + 7", "x + 5", "2x + 6", "x + 6"], expected: "2*(x+3)-(x-1)", lab: "Expressions", route: "/algebra/expressions" },
   { prompt: "Solve 3x + 5 = 2x − 1", choices: ["x = −6", "x = 6", "x = −4", "no solution"], expected: "-6", lab: "Equations", route: "/algebra/equations" },
   { prompt: "If f(x)=x², what is a, h, k for 2(x−3)²+1?", choices: ["2, 3, 1", "2, −3, 1", "1, 3, 2", "2, 3, −1"], expected: "2, 3, 1", lab: "Functions", route: "/algebra/functions?mode=Transformations" },
   { prompt: "Even degree and positive leading coefficient: ends?", choices: ["both rise", "both fall", "left up right down", "left down right up"], expected: "both rise", lab: "Polynomials", route: "/algebra/polynomials?mode=End+Behavior" },

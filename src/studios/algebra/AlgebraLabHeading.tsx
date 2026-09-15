@@ -3,9 +3,7 @@ import { useEffect, useState, type ReactNode } from "react";
 import { useLocation } from "react-router-dom";
 import { useTheme } from "../../hooks/useTheme";
 import MathExpression from "../../components/ui/MathExpression";
-import StudioHomeButtons from "../../components/ui/StudioHomeButtons";
-import { StudioCanvasToolbar } from "../../components/ui/StudioCanvasToolbar";
-import { curriculumByLab, firstTryHelp, glossary, misconceptions, vignettes } from "./algebraStudioCatalog";
+import { firstTryHelp, glossary, misconceptions, vignettes } from "./algebraStudioCatalog";
 import {
   exactModeEnabled,
   recordLabMode,
@@ -55,7 +53,6 @@ export default function AlgebraLabHeading({
   const [freeze, setFreeze] = useState(false);
   const [exact, setExact] = useState(true);
   const { fontScale, setFontScale, reducedMotion, setReducedMotion } = useTheme();
-  const tags = labId ? curriculumByLab[labId] ?? [] : [];
   const tryFirst = (mode && firstTryHelp[mode]) || "";
 
   useEffect(() => {
@@ -100,13 +97,9 @@ export default function AlgebraLabHeading({
     <>
       <header className="alg-header alg-header-sticky" data-lab-mode={mode ?? ""} data-mode-canvas={mode ?? ""}>
         <div>
-          <StudioHomeButtons studioTo="/algebra" />
           <a className="alg-skip" href="#algebra-graph">Skip to graph</a>
           <h1>{children}</h1>
           {subtitle ? <p>{subtitle}</p> : null}
-          {tags.length ? (
-            <p className="alg-curric">{tags.map((tag) => <span key={tag.code}>{tag.board} · {tag.code} · {tag.label}</span>)}</p>
-          ) : null}
         </div>
         {modes && onMode ? (
           <nav className="alg-header-modes" aria-label="Lab modes">
@@ -117,7 +110,6 @@ export default function AlgebraLabHeading({
           </nav>
         ) : null}
         <div className="alg-header-actions">
-          <StudioCanvasToolbar />
           <button type="button" aria-label="Undo" disabled={!onUndo || !canUndo} onClick={() => { onUndo?.(); const caption = undoCaption || "Undid the last lab change."; setLastUndo(caption); recordUndoCaption(caption); }}><RotateCcw /></button>
           <button type="button" aria-label="Redo" disabled={!onRedo || !canRedo} onClick={onRedo}><RotateCw /></button>
           <button type="button" aria-expanded={panel === "Help"} onClick={() => setPanel(panel === "Help" ? null : "Help")} aria-label="Help"><HelpCircle /></button>

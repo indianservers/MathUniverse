@@ -21,7 +21,7 @@ const routes = [
   ["/algebra/exponents-logs", "Exponents Radicals &amp; Logarithms Lab"],
   ["/algebra/sequences", "Sequences &amp; Progressions Lab"],
   ["/algebra/proof", "Algebraic Proof Lab"],
-  ["/algebra/cas", "Candidate checker"],
+  ["/algebra/cas", "CAS Step Explorer"],
   ["/algebra/advanced", "Advanced Algebra Workbench"],
 ] as const;
 
@@ -60,24 +60,21 @@ describe("Algebra Studio reference routes", () => {
 
   it("links home topic studios to the existing algebra lab routes", () => {
     const html = renderToString(<MemoryRouter initialEntries={["/algebra"]}><AlgebraStudio /></MemoryRouter>);
-    for (const route of ["/algebra/expressions", "/algebra/equations", "/algebra/functions", "/algebra/polynomials", "/algebra/systems", "/algebra/exponents-logs", "/algebra/sequences", "/algebra/proof", "/algebra/cas", "/algebra/advanced"]) {
+    for (const route of ["/algebra/expressions", "/algebra/equations", "/algebra/functions", "/algebra/polynomials", "/algebra/systems", "/algebra/exponents-logs", "/algebra/sequences", "/algebra/proof", "/algebra/cas"]) {
       expect(html).toContain(`href="${route}"`);
     }
+    expect(html).not.toContain('href="/algebra/advanced"');
   });
 
-  it("lists every studio page with its lab tabs", () => {
+  it("lists the nine mockup topic studios on home", () => {
     const html = renderToString(<MemoryRouter initialEntries={["/algebra"]}><AlgebraStudio /></MemoryRouter>);
-    expect(html).toContain("Combine Terms");
-    expect(html).toContain("Absolute Value");
-    expect(html).toContain("Piecewise");
-    expect(html).toContain("End Behavior");
-    expect(html).toContain("Elimination");
-    expect(html).toContain("Exponent Laws");
-    expect(html).toContain("Geometric");
-    expect(html).toContain("Counterexample");
-    expect(html).toContain("Substitute");
-    expect(html).toContain("Advanced Workbench");
-    expect(html).toContain("mode=Piecewise");
+    expect(html).toContain("Launch a topic");
+    expect(html).toContain("Choose a topic to explore with interactive visual models.");
+    expect(html).toContain("Expressions");
+    expect(html).toContain("CAS Explorer");
+    expect(html).toContain("Visual challenge");
+    expect(html).toContain("Topics explored");
+    expect(html).toContain("class=\"alg-launch-n\"");
   });
 
   it("renders remaining algebra labs as unique dashboards, not generic three-column shells", () => {
@@ -118,9 +115,10 @@ describe("Algebra Studio reference routes", () => {
     const home = renderToString(<MemoryRouter initialEntries={["/algebra"]}><AlgebraStudio /></MemoryRouter>);
     expect(home).toContain("x + 7");
     expect(home).toContain("2(x + 3)");
-    expect(home).toContain("First 60 seconds");
-    expect(home).toContain("/algebra/classic");
-    expect(home).toContain("Advanced Workbench");
+    expect(home).toContain("2x + 6");
+    expect(home).toContain("Last active: 2m ago");
+    expect(home).not.toContain("First 60 seconds");
+    expect(home).not.toContain("/algebra/classic");
   });
 
   it("renders all 25 functional Algebra enhancement tools", () => {
