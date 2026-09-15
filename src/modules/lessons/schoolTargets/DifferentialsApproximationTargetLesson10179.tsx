@@ -11,6 +11,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { KeyboardEvent, PointerEvent as ReactPointerEvent } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./DifferentialsApproximationTargetLesson10179.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const fmt = (value: number, digits = 5) => Number(value.toFixed(digits));
 export default function DifferentialsApproximationTargetLesson10179({
@@ -424,6 +425,8 @@ export default function DifferentialsApproximationTargetLesson10179({
           © 2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.
         </small>
       </footer>
+      <LessonTopicStudyBoard lessonId={10179} alwaysVisible />
+
     </main>
   );
 }

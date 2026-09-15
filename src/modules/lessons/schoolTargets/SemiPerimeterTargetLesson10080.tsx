@@ -9,6 +9,7 @@ import { type PointerEvent, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./SemiPerimeterTargetLesson10080.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Sides = { a: number; b: number; c: number };
 type Point = { x: number; y: number };
@@ -373,6 +374,8 @@ export default function SemiPerimeterTargetLesson10080({
           Next <ArrowRight />
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10080} view={tab} />
+
     </section>
   );
 }

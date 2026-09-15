@@ -2,6 +2,7 @@ import { CheckCircle2, Info, Lightbulb, RotateCcw, Zap } from "lucide-react";
 import { useMemo, useState } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./TransitiveRelationsTargetLesson10115.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Node = "a" | "b" | "c";
 type Pair = `${Node},${Node}`;
@@ -349,6 +350,8 @@ export default function TransitiveRelationsTargetLesson10115({
         transitivity.
         <span>⟳ &nbsp; All changes sync across the graph and matrix.</span>
       </aside>
+      <LessonTopicStudyBoard lessonId={10115} alwaysVisible />
+
     </section>
   );
 }

@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import type { KeyboardEvent, PointerEvent as ReactPointerEvent } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./RemovableDiscontinuityTargetLesson10168.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const LIMIT = 4,
   f = (x: number) => x + 2,
@@ -487,6 +488,8 @@ export default function RemovableDiscontinuityTargetLesson10168({
           © 2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.
         </small>
       </footer>
+      <LessonTopicStudyBoard lessonId={10168} view={view} />
+
     </main>
   );
 }

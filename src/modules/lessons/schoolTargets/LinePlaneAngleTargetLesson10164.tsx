@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import type { KeyboardEvent, PointerEvent as ReactPointerEvent } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./LinePlaneAngleTargetLesson10164.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type V = { x: number; y: number; z: number };
 type Preset = "general" | "parallel" | "perpendicular";
@@ -451,6 +452,8 @@ export default function LinePlaneAngleTargetLesson10164({
           </span>
         </section>
       </main>
+      <LessonTopicStudyBoard lessonId={10164} alwaysVisible />
+
     </section>
   );
 }

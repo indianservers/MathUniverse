@@ -4,6 +4,7 @@ import type { KeyboardEvent, PointerEvent as ReactPointerEvent } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./GeneralParticularSolutionsTargetLesson10191.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const constants = [-2, -1, 0, 1, 2];
 const colors = ["#c4a7ff", "#8f66df", "#7b8088", "#72d3bd", "#14942a"];
@@ -350,6 +351,8 @@ export default function GeneralParticularSolutionsTargetLesson10191({
       <div className="gps-complete">
         Family explored · initial value applied · residual verified
       </div>
+      <LessonTopicStudyBoard lessonId={10191} alwaysVisible />
+
     </main>
   );
 }

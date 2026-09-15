@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import type { DragEvent } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./ManyOneFunctionsTargetLesson10118.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const domain = [-2, -1, 0, 1, 2];
 const codomain = [0, 1, 2, 3, 4];
@@ -276,6 +277,8 @@ export default function ManyOneFunctionsTargetLesson10118({
           </article>
         </aside>
       </main>
+      <LessonTopicStudyBoard lessonId={10118} alwaysVisible />
+
     </section>
   );
 }

@@ -14,6 +14,7 @@ import { DoubleSide, type Group } from "three";
 import ThreeSceneWrapper from "../../../components/three/ThreeSceneWrapper";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./FrustumConeTargetLesson10110.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const f2 = (value: number) => Number(value.toFixed(2));
 type Preset = "perspective" | "front" | "top" | "side";
@@ -352,6 +353,8 @@ export default function FrustumConeTargetLesson10110({
         <Info /> All values update live as you move the sliders. Formulas use
         exact π and precise calculations.
       </footer>
+      <LessonTopicStudyBoard lessonId={10110} view={tab} />
+
     </section>
   );
 }

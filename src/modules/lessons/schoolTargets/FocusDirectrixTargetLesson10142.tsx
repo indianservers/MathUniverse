@@ -10,6 +10,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import type { PointerEvent as ReactPointerEvent } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./FocusDirectrixTargetLesson10142.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 const round = (value: number) => Math.round(value * 100) / 100;
@@ -385,6 +386,8 @@ export default function FocusDirectrixTargetLesson10142({
           </footer>
         </section>
       </main>
+      <LessonTopicStudyBoard lessonId={10142} alwaysVisible />
+
     </section>
   );
 }

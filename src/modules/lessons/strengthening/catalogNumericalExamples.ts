@@ -4,6 +4,7 @@ import { batch2NumericalExamples } from "./catalogBatch2NumericalExamples";
 import { batch3NumericalExamples } from "./catalogBatch3NumericalExamples";
 import { batch4NumericalExamples } from "./catalogBatch4NumericalExamples";
 import { batch5NumericalExamples } from "./catalogBatch5NumericalExamples";
+import { batch6NumericalExamples } from "./catalogBatch6NumericalExamples";
 
 type NumericalExampleSeed = readonly [prompt: string, steps: readonly string[], answer: string];
 
@@ -2682,14 +2683,17 @@ function mergeNumericalExampleMaps(
 }
 
 const numericalExamplesByLesson = mergeNumericalExampleMaps(
-  batch5NumericalExamples,
+  batch6NumericalExamples,
   mergeNumericalExampleMaps(
-    batch4NumericalExamples,
+    batch5NumericalExamples,
     mergeNumericalExampleMaps(
-      batch3NumericalExamples,
+      batch4NumericalExamples,
       mergeNumericalExampleMaps(
-        batch2NumericalExamples,
-        mergeNumericalExampleMaps(coreWorkspaceBatch1NumericalExamples, authoredNumericalExamples),
+        batch3NumericalExamples,
+        mergeNumericalExampleMaps(
+          batch2NumericalExamples,
+          mergeNumericalExampleMaps(coreWorkspaceBatch1NumericalExamples, authoredNumericalExamples),
+        ),
       ),
     ),
   ),

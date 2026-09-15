@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import type { DragEvent } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./OntoFunctionsTargetLesson10120.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const domain = [-1, 0, 1, 2],
   codomain = [-2, -1, 0, 1],
@@ -271,6 +272,8 @@ export default function OntoFunctionsTargetLesson10120({
           </footer>
         </section>
       </main>
+      <LessonTopicStudyBoard lessonId={10120} alwaysVisible />
+
     </section>
   );
 }

@@ -12,6 +12,7 @@ import { type PointerEvent, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./GroupedMeanAssumedTargetLesson10103.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type MeanRow = { id: number; lower: number; upper: number; frequency: number };
 const defaults: MeanRow[] = [
@@ -393,6 +394,8 @@ export default function GroupedMeanAssumedTargetLesson10103({
         </div>
         <p>© 2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.</p>
       </footer>
+      <LessonTopicStudyBoard lessonId={10103} alwaysVisible />
+
     </section>
   );
 }

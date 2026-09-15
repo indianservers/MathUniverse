@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import type { KeyboardEvent, PointerEvent as ReactPointerEvent } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./RollesTheoremTargetLesson10172.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const f = (x: number) => x * x - 4 * x + 3,
   fmt = (n: number) => Number(n.toFixed(3));
@@ -449,6 +450,8 @@ export default function RollesTheoremTargetLesson10172({
           © 2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.
         </small>
       </footer>
+      <LessonTopicStudyBoard lessonId={10172} alwaysVisible />
+
     </main>
   );
 }

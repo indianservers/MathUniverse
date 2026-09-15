@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./InverseAdjointTargetLesson10195.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type M3 = number[][];
 type M2 = [[number, number], [number, number]];
@@ -438,6 +439,8 @@ export default function InverseAdjointTargetLesson10195({
         <b>Key takeaway:</b> For any non-singular matrix A, the inverse is A⁻¹ =
         adj(A)/det(A).
       </footer>
+      <LessonTopicStudyBoard lessonId={10195} alwaysVisible />
+
     </main>
   );
 }

@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./PartialFractionsTargetLesson10182.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const fmt = (value: number) => Number(value.toFixed(2));
 
@@ -358,6 +359,8 @@ export default function PartialFractionsTargetLesson10182({
           <Link to="/about">About</Link>
         </div>
       </footer>
+      <LessonTopicStudyBoard lessonId={10182} alwaysVisible />
+
     </main>
   );
 }

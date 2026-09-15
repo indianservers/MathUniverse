@@ -3,6 +3,7 @@ import { type PointerEvent, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./DistanceFormulaTargetLesson10083.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type PointKey = "a" | "b";
@@ -342,6 +343,8 @@ export default function DistanceFormulaTargetLesson10083({
           Next lesson <ArrowRight />
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10083} view={tab} />
+
     </section>
   );
 }

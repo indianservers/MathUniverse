@@ -11,6 +11,7 @@ import {
 import { useState } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./InductionLogicTargetLesson10128.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const labels = ["P(1)", "P(2)", "P(3)", "…", "P(k)", "P(k+1)", "…"];
 const substantive = [0, 1, 2, 4, 5];
@@ -302,6 +303,8 @@ export default function InductionLogicTargetLesson10128({
           </article>
         </aside>
       </main>
+      <LessonTopicStudyBoard lessonId={10128} alwaysVisible />
+
     </section>
   );
 }

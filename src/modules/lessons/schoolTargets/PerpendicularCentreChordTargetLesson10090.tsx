@@ -10,6 +10,7 @@ import { type PointerEvent, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./PerpendicularCentreChordTargetLesson10090.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const round = (n: number, p = 2) => Math.round(n * 10 ** p) / 10 ** p;
 export default function PerpendicularCentreChordTargetLesson10090({
@@ -338,6 +339,8 @@ export default function PerpendicularCentreChordTargetLesson10090({
           Angle Subtended by an Arc <ArrowRight />
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10090} view={tab} />
+
     </section>
   );
 }

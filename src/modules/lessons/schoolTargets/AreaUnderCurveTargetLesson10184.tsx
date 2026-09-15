@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./AreaUnderCurveTargetLesson10184.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Method = "left" | "right" | "mid";
 const counts = [1, 4, 8, 16, 32, 64];
@@ -423,6 +424,8 @@ export default function AreaUnderCurveTargetLesson10184({
           <Link to="/about">About</Link>
         </div>
       </footer>
+      <LessonTopicStudyBoard lessonId={10184} alwaysVisible />
+
     </main>
   );
 }

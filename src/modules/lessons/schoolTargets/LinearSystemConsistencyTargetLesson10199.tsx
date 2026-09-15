@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import { analyzeConsistency as analyze, reduceConsistency, equationGeometry, consistencyGeometryMessage } from "./linearSystemConsistencyModel";
 import "./LinearSystemConsistencyTargetLesson10199.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type LinearSystem = [number, number, number, number, number, number];
 type SolutionCase = "unique" | "none" | "infinite";
@@ -275,6 +276,8 @@ export default function LinearSystemConsistencyTargetLesson10199({ lesson }: { l
     {(["unique", "none", "infinite"] as SolutionCase[]).map(type => <button type="button" key={type}
       className={`${type} ${result.type === type ? "active" : ""}`}
       aria-pressed={result.type === type} onClick={() => applyPreset(type)}>{CASE_LABELS[type]}</button>)}
+      <LessonTopicStudyBoard lessonId={10199} alwaysVisible />
+
   </div>;
   const fallback = PRESETS.none;
   const fallbackResult = analyze(fallback);

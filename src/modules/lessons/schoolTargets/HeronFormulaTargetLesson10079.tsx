@@ -12,6 +12,7 @@ import { type PointerEvent, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./HeronFormulaTargetLesson10079.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type Vertex = "a" | "b" | "c";
@@ -447,6 +448,8 @@ export default function HeronFormulaTargetLesson10079({
           Next lesson: Semi-Perimeter Lab <ArrowRight />
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10079} view={tab} />
+
     </section>
   );
 }

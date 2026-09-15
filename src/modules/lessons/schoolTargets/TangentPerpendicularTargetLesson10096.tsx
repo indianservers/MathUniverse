@@ -10,6 +10,7 @@ import { type PointerEvent, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./TangentPerpendicularTargetLesson10096.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type DragTarget = "point" | "line" | null;
 const RADIUS = 6;
@@ -573,6 +574,8 @@ export default function TangentPerpendicularTargetLesson10096({
           </Link>
         </nav>
       </main>
+      <LessonTopicStudyBoard lessonId={10096} view={tab} />
+
     </section>
   );
 }

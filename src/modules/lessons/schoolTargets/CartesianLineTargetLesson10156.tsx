@@ -2,6 +2,7 @@ import { Check, CircleHelp, RotateCcw, X } from "lucide-react";
 import { useMemo, useState } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./CartesianLineTargetLesson10156.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 type V = { x: number; y: number; z: number };
 const P0 = { x: 1, y: 2, z: -1 },
   D0 = { x: 2, y: -1, z: 3 };
@@ -380,6 +381,8 @@ export default function CartesianLineTargetLesson10156({
           </article>
         </section>
       </main>
+      <LessonTopicStudyBoard lessonId={10156} alwaysVisible />
+
     </section>
   );
 }

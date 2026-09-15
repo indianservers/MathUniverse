@@ -2,6 +2,7 @@ import { Check, Pencil, Plus, RotateCcw, TriangleAlert } from "lucide-react";
 import { useMemo, useState } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./BinaryOperationsTargetLesson10123.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Preset = "add" | "multiply" | "subtract" | "custom";
 
@@ -327,6 +328,8 @@ export default function BinaryOperationsTargetLesson10123({
           </p>
         </div>
       </aside>
+      <LessonTopicStudyBoard lessonId={10123} alwaysVisible />
+
     </section>
   );
 }

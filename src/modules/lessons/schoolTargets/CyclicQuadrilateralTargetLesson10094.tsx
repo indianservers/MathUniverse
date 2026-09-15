@@ -13,6 +13,7 @@ import { type PointerEvent, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./CyclicQuadrilateralTargetLesson10094.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Name = "A" | "B" | "C" | "D";
 type Vertex = { angle: number; radius: number };
@@ -591,6 +592,8 @@ export default function CyclicQuadrilateralTargetLesson10094({
           </Link>
         </nav>
       </main>
+      <LessonTopicStudyBoard lessonId={10094} view={tab} />
+
     </section>
   );
 }

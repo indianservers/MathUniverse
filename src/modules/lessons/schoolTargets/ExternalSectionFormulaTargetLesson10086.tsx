@@ -9,6 +9,7 @@ import {
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./ExternalSectionFormulaTargetLesson10086.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type Side = "left" | "right";
@@ -491,6 +492,8 @@ export default function ExternalSectionFormulaTargetLesson10086({
           Area of Triangle Using Coordinates <ArrowRight />
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10086} view={tab} />
+
     </section>
   );
 }

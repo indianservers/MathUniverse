@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import type { KeyboardEvent, PointerEvent as ReactPointerEvent } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./ContinuityPointTargetLesson10166.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const C = 1,
   LIMIT = 2;
@@ -442,6 +443,8 @@ export default function ContinuityPointTargetLesson10166({
           © 2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.
         </small>
       </footer>
+      <LessonTopicStudyBoard lessonId={10166} alwaysVisible />
+
     </main>
   );
 }
