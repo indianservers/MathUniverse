@@ -22,12 +22,8 @@ import type { StudioMockupPage } from "../studioMockupCatalog";
 import { ChallengeBox, LiveRow, Panel, SliderRow, StepList, fmt, useLabMode } from "../studioLabKit";
 import { useTrigSession } from "../trigStudioSession";
 import ModellingStudioLab from "./ModellingLabs";
-import {
-  InverseTrigLab as TargetInverseTrigLab,
-} from "./TrigonometryConceptLabs";
-import {
-  ApplicationsLab as TargetApplicationsLab,
-} from "./TrigonometryAppliedLabs";
+import { InverseTrigLab as TargetInverseTrigLab } from "./InverseTrigLab";
+import { ApplicationsLab as TargetApplicationsLab } from "./ApplicationsLab";
 
 function Chrome({ page, children, layout, toolbar }: { page: StudioMockupPage; children: ReactNode | ((mode: string) => ReactNode); layout?: "quad"; toolbar?: ReactNode }) {
   return (

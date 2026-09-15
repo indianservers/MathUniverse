@@ -20,14 +20,10 @@ import CoordinateLab from "../../geometry/coordinate/CoordinateLab";
 import PolygonsLab from "../../geometry/polygons/PolygonsLab";
 import TrianglesLab from "../../geometry/triangles/TrianglesLab";
 import { crtTwo, gcd, hopCycle, inverseMod, solveLinear } from "../../discrete/modular/modularMath";
-import {
-  IdentitiesLab as TargetIdentitiesLab,
-  TrigGraphsLab as TargetTrigGraphsLab,
-} from "./TrigonometryConceptLabs";
-import {
-  ObliqueTriangleLab as TargetObliqueTriangleLab,
-  WavesHarmonicsLab as TargetWavesHarmonicsLab,
-} from "./TrigonometryAppliedLabs";
+import { IdentitiesLab as TargetIdentitiesLab } from "./IdentitiesLab";
+import { TrigGraphsLab as TargetTrigGraphsLab } from "./TrigonometryConceptLabs";
+import { ObliqueTriangleLab as TargetObliqueTriangleLab } from "./ObliqueTriangleLab";
+import { WavesHarmonicsLab as TargetWavesHarmonicsLab } from "./WavesHarmonicsLab";
 
 export default function DedicatedStudioLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNode }) {
   if (page.route.includes("mathematical-modelling") && page.id !== "home") return <ModellingStudioLab page={page} />;

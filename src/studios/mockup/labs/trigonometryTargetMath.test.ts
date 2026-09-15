@@ -3,6 +3,7 @@ import {
   composeWaves,
   inversePrincipal,
   solveObliqueSas,
+  solveSsaAmbiguous,
   transformedTrig,
 } from "./trigonometryTargetMath";
 
@@ -26,6 +27,22 @@ describe("trigonometry target math", () => {
   it("evaluates ABCD transformations using phase shift form", () => {
     expect(transformedTrig("Sine", Math.PI / 6, 2, 1.5, Math.PI / 6, 0.5)).toBeCloseTo(0.5, 10);
     expect(transformedTrig("Cosine", 0, 3, 1, 0, -1)).toBeCloseTo(2, 10);
+  });
+
+  it("classifies the SSA ambiguous case and returns both triangles when they exist", () => {
+    const two = solveSsaAmbiguous(8, 12, 30);
+    expect(two.count).toBe(2);
+    expect(two.acute).not.toBeNull();
+    expect(two.obtuse).not.toBeNull();
+    expect((two.acute?.B ?? 0) + (two.acute?.C ?? 0) + 30).toBeCloseTo(180, 6);
+    expect((two.obtuse?.B ?? 0) + (two.obtuse?.C ?? 0) + 30).toBeCloseTo(180, 6);
+
+    const none = solveSsaAmbiguous(4, 12, 30);
+    expect(none.count).toBe(0);
+
+    const right = solveSsaAmbiguous(6, 12, 30);
+    expect(right.count).toBe(1);
+    expect(right.acute?.B).toBeCloseTo(90, 5);
   });
 
   it("returns source values, resultant, and beat frequency", () => {

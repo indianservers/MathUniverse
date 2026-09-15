@@ -633,3 +633,184 @@
     grid-template-columns: 1fr;
   }
 }
+
+.msk-trigonometry :is(.id-target-lab, .inv-target-lab, .ob-target-lab, .wv-target-lab, .app-target-lab) {
+  margin-top: 4px;
+}
+
+.msk-trigonometry .id-target-lab {
+  grid-template-columns: minmax(250px, 0.84fr) minmax(540px, 1.78fr) minmax(285px, 0.86fr);
+}
+
+.msk-trigonometry .inv-target-lab {
+  grid-template-columns: minmax(250px, 0.88fr) minmax(520px, 1.72fr) minmax(280px, 0.94fr);
+}
+
+.msk-trigonometry .ob-target-lab {
+  grid-template-columns: minmax(250px, 0.84fr) minmax(500px, 1.98fr) minmax(280px, 0.96fr);
+}
+
+.msk-trigonometry .wv-target-lab {
+  grid-template-columns: minmax(230px, 0.64fr) minmax(560px, 1.82fr) minmax(280px, 0.78fr);
+}
+
+.msk-trigonometry .app-target-lab {
+  grid-template-columns: minmax(205px, 0.5fr) minmax(600px, 1.82fr) minmax(270px, 0.7fr);
+}
+
+.msk-trigonometry :is(.id-target-angle-readout, .inv-target-input-readout) {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin: 6px 0 8px;
+  color: var(--trig-orange);
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.msk-trigonometry .id-target-identity-list {
+  display: grid;
+  gap: 4px;
+  margin: 6px 0 10px;
+}
+
+.msk-trigonometry .id-target-identity-list button {
+  width: 100%;
+  min-height: 34px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  padding: 6px 8px;
+  color: #24324b;
+  text-align: left;
+}
+
+.msk-trigonometry .id-target-identity-list button.active {
+  border-color: #c4b5fd;
+  background: #f5f3ff;
+  color: #6d28d9;
+  font-weight: 800;
+}
+
+.msk-trigonometry .id-target-canvas,
+.msk-trigonometry .inv-target-canvas,
+.msk-trigonometry .ob-target-canvas,
+.msk-trigonometry .app-target-canvas {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  background: #f9fcff;
+}
+
+.msk-trigonometry .id-target-figure,
+.msk-trigonometry .ob-target-triangle {
+  width: 100%;
+  max-height: none;
+  background: #f9fcff;
+}
+
+.msk-trigonometry .id-target-algebra {
+  display: grid;
+  gap: 8px;
+  min-height: 320px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+}
+
+.msk-trigonometry .id-target-algebra p {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin: 0;
+  color: #94a3b8;
+}
+
+.msk-trigonometry .id-target-algebra p.is-on {
+  color: #0f172a;
+}
+
+.msk-trigonometry .id-target-algebra b {
+  display: grid;
+  width: 22px;
+  height: 22px;
+  place-items: center;
+  border-radius: 50%;
+  background: #ede9fe;
+  color: #6d28d9;
+}
+
+.msk-trigonometry .inv-target-lower > figure {
+  min-height: 0;
+}
+
+.msk-trigonometry .inv-target-lower > figure > svg {
+  min-height: 0;
+  width: 100%;
+}
+
+.msk-trigonometry .inv-target-compose-grid {
+  display: grid;
+  gap: 10px;
+}
+
+.msk-trigonometry .inv-target-compose-grid figure,
+.msk-trigonometry .inv-target-graph {
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 8px;
+  background: #fff;
+}
+
+.msk-trigonometry .wv-target-canvas {
+  background: #041426;
+  color: #e2e8f0;
+}
+
+.msk-trigonometry .wv-target-subpanels.is-simple {
+  grid-template-columns: 1fr;
+}
+
+.msk-trigonometry .trig-target-standing-modes {
+  display: flex;
+  gap: 5px;
+  margin-top: 6px;
+}
+
+.msk-trigonometry .trig-target-standing-modes button {
+  width: 28px;
+  height: 28px;
+  border: 1px solid #284969;
+  border-radius: 6px;
+  background: #0a2039;
+  color: #dbeafe;
+}
+
+.msk-trigonometry .trig-target-standing-modes button.active {
+  background: #f59e0b;
+  color: #061428;
+  font-weight: 800;
+}
+
+.msk-trigonometry .ob-target-controls .msk-num-row input {
+  width: 100%;
+  min-height: 34px;
+}
+
+.msk-trigonometry .trig-target-solve {
+  width: 100%;
+  margin: 8px 0 6px;
+}
+
+@media (max-width: 1180px) {
+  .msk-trigonometry :is(.id-target-lab, .inv-target-lab, .ob-target-lab, .wv-target-lab, .app-target-lab) {
+    grid-template-columns: minmax(180px, 0.72fr) minmax(360px, 1.55fr) minmax(210px, 0.85fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .msk-trigonometry :is(.id-target-lab, .inv-target-lab, .ob-target-lab, .wv-target-lab, .app-target-lab) {
+    grid-template-columns: 1fr;
+  }
+}

@@ -62,6 +62,66 @@ export function solveObliqueSas(a: number, b: number, angleCDegrees: number): Ob
   return { a: safeA, b: safeB, c, A, B, C, area, semiperimeter, circumradius, valid };
 }
 
+export type SsaTriangle = {
+  B: number;
+  C: number;
+  c: number;
+};
+
+export type SsaSolution = {
+  height: number;
+  count: 0 | 1 | 2;
+  acute: SsaTriangle | null;
+  obtuse: SsaTriangle | null;
+};
+
+export function solveSsaAmbiguous(a: number, b: number, angleADegrees: number): SsaSolution {
+  const A = Math.min(179.999, Math.max(0.001, angleADegrees));
+  const radA = toRadians(A);
+  const height = b * Math.sin(radA);
+  const empty: SsaSolution = { height, count: 0, acute: null, obtuse: null };
+  if (a <= 0 || b <= 0) return empty;
+
+  const sinB = (b * Math.sin(radA)) / a;
+  if (A >= 90) {
+    if (a <= b || sinB > 1) return empty;
+    const B = toDegrees(Math.asin(Math.min(1, sinB)));
+    const C = 180 - A - B;
+    return {
+      height,
+      count: 1,
+      acute: { B, C, c: sideFromCosine(a, b, C) },
+      obtuse: null,
+    };
+  }
+
+  if (a < height - 1e-8 || sinB > 1 + 1e-9) return empty;
+  if (Math.abs(a - height) <= 1e-6) {
+    return {
+      height,
+      count: 1,
+      acute: { B: 90, C: 90 - A, c: b * Math.cos(radA) },
+      obtuse: null,
+    };
+  }
+
+  const B1 = toDegrees(Math.asin(Math.min(1, sinB)));
+  const C1 = 180 - A - B1;
+  const acute = { B: B1, C: C1, c: sideFromCosine(a, b, C1) };
+  if (a < b) {
+    const B2 = 180 - B1;
+    const C2 = 180 - A - B2;
+    if (C2 > 0.001) {
+      return { height, count: 2, acute, obtuse: { B: B2, C: C2, c: sideFromCosine(a, b, C2) } };
+    }
+  }
+  return { height, count: 1, acute, obtuse: null };
+}
+
+function sideFromCosine(a: number, b: number, angleCDegrees: number) {
+  return Math.sqrt(Math.max(0, a ** 2 + b ** 2 - 2 * a * b * Math.cos(toRadians(angleCDegrees))));
+}
+
 export function composeWaves(
   time: number,
   wave1: { amplitude: number; frequency: number; phase: number; shift: number },
