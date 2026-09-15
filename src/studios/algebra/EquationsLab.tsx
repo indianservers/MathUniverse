@@ -146,11 +146,14 @@ export default function EquationsLab() {
   const challengeOk = challengeTarget.kind === "one" && answersMatchChallenge(challengeAnswer, challengeTarget.value);
   return (
     <div className="alg-page alg-eq-page" data-mode-canvas={mode}>
-      <AlgebraLabHeading subtitle="Solve equations and inequalities using the balance model. Explore operations, preserve equality, and check solutions." modes={modes} mode={mode} onMode={setMode} onUndo={history.undo} onRedo={history.redo} canUndo={history.canUndo} canRedo={history.canRedo} onReset={() => history.reset()} helpTitle={`${mode} help`} helpBody="Operations always apply to both sides. Enter 2x then Subtract to remove x terms. Auto-balance does not skip steps. 0x=0 is all reals; 0x=nonzero has no solution.">Equations &amp; Inequalities Lab</AlgebraLabHeading>
+      <AlgebraLabHeading labId="equations" subtitle="Solve equations and inequalities using the balance model. Explore operations, preserve equality, and check solutions." modes={modes} mode={mode} onMode={setMode} onUndo={history.undo} onRedo={history.redo} canUndo={history.canUndo} canRedo={history.canRedo} onReset={() => history.reset()} helpTitle={`${mode} help`} helpBody="Operations always apply to both sides. Enter 2x then Subtract to remove x terms. Auto-balance does not skip steps. 0x=0 is all reals; 0x=nonzero has no solution.">Equations &amp; Inequalities Lab</AlgebraLabHeading>
       <p className="sr-only" role="status">{notice || "Watch how the scale stays balanced at every step."}</p>
       <div className="alg-eq-layout">
-        <section className="alg-card alg-eq-equation">
+        <section className="alg-card alg-eq-equation" id="algebra-lab-main">
           <h2>Equation</h2>
+          <p>Original: {startEquation}</p>
+          <p>Current: {equation}</p>
+          <p className="alg-kind-badge">{mode === "Linear" ? linear.kind === "one" ? "one solution" : linear.kind === "all" ? "all real numbers" : "no solution" : mode === "Quadratic" ? (quadratic.roots.some((root) => snapNearZero(root.imaginary) !== 0) ? "complex roots — not on the real line" : "real roots") : result}</p>
           <label className="alg-field">Equation
             <span className="alg-eq-input">
               <input value={mode === "Linear" ? draft : equation} readOnly={mode !== "Linear"} onChange={(e) => setCoeff({ draft: e.target.value })} onKeyDown={(e) => { if (e.key === "Enter") applyDraft(); }} />
@@ -219,7 +222,7 @@ export default function EquationsLab() {
             </div>
           </div>
           <strong className={balanced ? "alg-balanced" : "alg-balanced is-off"}>{balanced ? "Balanced ✓" : "Not balanced"}</strong>
-          {notice.includes("flipped") ? <p className="alg-eq-flip" role="status">Inequality sign reversed because both sides were multiplied or divided by a negative number.</p> : null}
+          {notice.includes("flipped") ? <p className="alg-eq-flip" role="status">Inequality sign reversed because both sides were multiplied or divided by a negative number. Check: 2 &gt; 1, but −2 &lt; −1.</p> : mode === "Inequalities" ? <p className="alg-eq-flip">Multiplying 2 &gt; 1 by −1 yields −2 &lt; −1 — the inequality flips.</p> : null}
           {infoOpen ? <p>Adding, subtracting, multiplying, or dividing both sides by the same nonzero value preserves equality. 0x = 0 is all reals; 0x = nonzero has no solution.</p> : null}
         </section>
 
@@ -308,6 +311,8 @@ export default function EquationsLab() {
             </div>
           )}
           <p className="alg-eq-extra">Extraneous check {mode === "Absolute Value" && d < 0 ? "Right side is negative, so there is no real solution." : "No restrictions detected. ✓"}</p>
+          {mode === "Quadratic" ? <p>Discriminant D = {fmt(b * b - 4 * a * c)}{b * b - 4 * a * c > 0 ? " (two real roots)" : b * b - 4 * a * c === 0 ? " (one real root)" : " (complex roots — use Argand, not this number line)"}</p> : null}
+          {mode === "Linear" && linear.kind === "one" ? <p>Check candidate in the original {formatLinearSide(origA, origB)} = {formatLinearSide(origC, origD)} at x = {fmt(linear.value)}.</p> : null}
         </section>
 
         <section className="alg-card alg-eq-why">

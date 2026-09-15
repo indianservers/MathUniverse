@@ -245,6 +245,7 @@ export default function ProofLab() {
     <div className="alg-page alg-proof-page" data-mode-canvas={mode}>
       <AlgebraLabHeading
         subtitle="Build and validate algebraic proofs with interactive visual models."
+        labId="proof"
         modes={modes}
         mode={mode}
         onMode={switchMode}
@@ -299,6 +300,9 @@ export default function ProofLab() {
                         <span>{index + 1}</span>
                         {step.reason || <i>Drop a reason</i>}
                         {status.ok ? <Check aria-label="Valid step" /> : <AlertTriangle aria-label={status.note} />}
+                        {!status.ok ? <small>{status.note}</small> : null}
+                        <button type="button" aria-label="Move step up" disabled={index === 0} onClick={(event) => { event.stopPropagation(); if (index === 0) return; const next = [...steps]; const swap = next[index - 1]!; next[index - 1] = next[index]!; next[index] = swap; patch({ steps: next, selected: index - 1 }); }}>↑</button>
+                        <button type="button" aria-label="Move step down" disabled={index === steps.length - 1} onClick={(event) => { event.stopPropagation(); if (index >= steps.length - 1) return; const next = [...steps]; const swap = next[index + 1]!; next[index + 1] = next[index]!; next[index] = swap; patch({ steps: next, selected: index + 1 }); }}>↓</button>
                       </td>
                     </tr>
                   );
@@ -318,7 +322,7 @@ export default function ProofLab() {
                 Drag a statement here
               </button>
               {selectedStatus && !selectedStatus.ok ? (
-                <p role="status"><AlertTriangle /> Invalid or missing reason</p>
+                <p role="status"><AlertTriangle /> Invalid or missing reason: {selectedStatus.note}</p>
               ) : null}
             </div>
             <div className="alg-proof-chips">
@@ -394,6 +398,14 @@ export default function ProofLab() {
               <h2>{mode === "Identities" ? "Visual Model: Area Model" : mode === "Equation Proof" ? "Visual Model: Balance" : mode === "Induction" ? "Visual Model: Staircase" : mode === "Inequality" ? "Visual Model: Nonnegative Square" : "Visual Model: Missing 2ab"}</h2>
               <button type="button" aria-label="Expand visual" onClick={() => setExpanded((value) => !value)}><Maximize2 /></button>
             </header>
+            {mode === "Induction" ? (
+              <div className="alg-proof-regions">
+                <p><b>P(n)</b> {goal.math}</p>
+                <p><b>Base</b> n = 1</p>
+                <p><b>Hypothesis</b> assume P(k)</p>
+                <p><b>Step</b> prove P(k+1)</p>
+              </div>
+            ) : null}
             <p>
               {mode === "Identities" && "(a+b)² as the area of a square."}
               {mode === "Equation Proof" && "Same operation on both pans keeps the scale level."}

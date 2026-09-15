@@ -93,17 +93,19 @@ export default function Algebra() {
   return (
     <StudioPageShell
       guide={<div className="algebra-guide-card">
+            <span>Classic models</span>
+            <p><Link to="/algebra">Open the full Algebra Studio labs</Link> for tiles, graphs, proof, and the 25-tool workbench. This page keeps the original coefficient visualizers.</p>
             <span>Studio guide</span>
             <h2>{currentTab.label}</h2>
             <p>{currentTab.summary}</p>
             <div className="algebra-guide-meter"><i style={{ width: `${Math.max(4, Math.min(100, progress))}%` }} /></div>
           </div>}
       className="algebra-studio"
-      title="Algebra Studio"
+      title="Classic Algebra Models"
       subtitle={topic.description}
       breadcrumbs={mathStudioCrumbs(
-        { label: "Algebra", to: "/algebra" },
-        { label: currentTab.label, to: currentTab.id === "linear" ? "/algebra" : `/algebra?tab=${currentTab.id}` },
+        { label: "Algebra Studio", to: "/algebra" },
+        { label: "Classic models", to: "/algebra/classic" },
       )}
       difficulty={topic.difficulty}
       estimatedMinutes={topic.estimatedMinutes}

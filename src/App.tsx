@@ -99,6 +99,7 @@ const AdvancedConceptStudios = lazyRoute(
   () => import("./pages/AdvancedConceptStudios"),
 );
 const AlgebraStudio = lazyRoute(() => import("./pages/AlgebraStudio"));
+const AlgebraClassic = lazyRoute(() => import("./pages/Algebra"));
 const AlgebraicStructuresStudio = lazyRoute(
   () => import("./pages/AlgebraicStructuresStudio"),
 );
@@ -417,6 +418,7 @@ export default function App() {
             <Route path="algebra/proof" element={<AlgebraStudio />} />
             <Route path="algebra/cas" element={<AlgebraStudio />} />
             <Route path="algebra/advanced" element={<AlgebraStudio />} />
+            <Route path="algebra/classic" element={<AlgebraClassic />} />
             <Route path="algebraic-structures" element={<AlgebraicStructuresStudio page="home" />} />
             <Route path="algebraic-structures/structure-test" element={<AlgebraicStructuresStudio page="structure-test" />} />
             <Route path="algebraic-structures/cayley-tables" element={<AlgebraicStructuresStudio page="cayley-tables" />} />
