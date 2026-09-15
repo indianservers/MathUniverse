@@ -9,6 +9,7 @@ import {
 import { type PointerEvent, useRef, useState } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./LessThanOgiveTargetLesson10107.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { id: number; x: number; cf: number };
 const defaults: Point[] = [
@@ -393,6 +394,8 @@ export default function LessThanOgiveTargetLesson10107({
           </div>
         </div>
       </main>
+      <LessonTopicStudyBoard lessonId={10107} alwaysVisible />
+
     </section>
   );
 }

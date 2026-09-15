@@ -12,6 +12,7 @@ import { type PointerEvent, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./MidpointTheoremTargetLesson10077.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 type P = { x: number; y: number };
 type V = "a" | "b" | "c";
 const START = {
@@ -363,6 +364,8 @@ export default function MidpointTheoremTargetLesson10077({
           Next: Converse of Midpoint Theorem <ArrowRight />
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10077} view={tab} />
+
     </section>
   );
 }

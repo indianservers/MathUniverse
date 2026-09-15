@@ -12,6 +12,7 @@ import { type PointerEvent, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./MidpointConverseTargetLesson10078.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 type P = { x: number; y: number };
 type V = "a" | "b" | "c";
 const START = {
@@ -353,6 +354,8 @@ export default function MidpointConverseTargetLesson10078({
           Next: Pythagoras Theorem <ArrowRight />
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10078} view={tab} />
+
     </section>
   );
 }

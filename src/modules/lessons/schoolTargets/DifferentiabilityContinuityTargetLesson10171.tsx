@@ -3,6 +3,7 @@ import { useState } from "react";
 import type { KeyboardEvent, PointerEvent as ReactPointerEvent } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./DifferentiabilityContinuityTargetLesson10171.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Case = "smooth" | "corner" | "step";
 const info = {
@@ -558,6 +559,8 @@ export default function DifferentiabilityContinuityTargetLesson10171({
           © 2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.
         </small>
       </footer>
+      <LessonTopicStudyBoard lessonId={10171} alwaysVisible />
+
     </main>
   );
 }

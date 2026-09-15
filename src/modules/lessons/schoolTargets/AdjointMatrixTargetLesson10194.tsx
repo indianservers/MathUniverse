@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./AdjointMatrixTargetLesson10194.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Matrix3 = [
   [number, number, number],
@@ -430,6 +431,8 @@ export default function AdjointMatrixTargetLesson10194({
           Inverse by Adjoint →
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10194} alwaysVisible />
+
     </main>
   );
 }

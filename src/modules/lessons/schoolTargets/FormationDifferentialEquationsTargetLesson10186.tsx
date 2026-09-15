@@ -3,6 +3,7 @@ import { useCallback, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./FormationDifferentialEquationsTargetLesson10186.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const fmt = (value: number) => Number(value.toFixed(2));
 const clean = (value: string) =>
@@ -457,6 +458,8 @@ export default function FormationDifferentialEquationsTargetLesson10186({
         Formation complete · two constants eliminated · second-order equation
         obtained
       </div>
+      <LessonTopicStudyBoard lessonId={10186} alwaysVisible />
+
     </main>
   );
 }

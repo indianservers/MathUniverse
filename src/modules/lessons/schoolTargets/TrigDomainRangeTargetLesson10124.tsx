@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import type { PointerEvent } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./TrigDomainRangeTargetLesson10124.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type TrigKey = "sin" | "cos" | "tan" | "csc" | "sec" | "cot";
 type SpanKey = "two" | "one" | "positive";
@@ -435,6 +436,8 @@ export default function TrigDomainRangeTargetLesson10124({
           </button>
         ))}
       </section>
+      <LessonTopicStudyBoard lessonId={10124} view={tab} />
+
     </section>
   );
 }

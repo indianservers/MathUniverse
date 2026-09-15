@@ -2,6 +2,7 @@ import { Check, RotateCcw, Target, Trophy } from "lucide-react";
 import { useState } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./BinomialIndependentTermTargetLesson10137.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const factorial = (value: number) =>
   Array.from({ length: value }, (_, i) => i + 1).reduce((p, v) => p * v, 1);
@@ -341,6 +342,8 @@ export default function BinomialIndependentTermTargetLesson10137({
           </p>
         </article>
       </section>
+      <LessonTopicStudyBoard lessonId={10137} alwaysVisible />
+
     </section>
   );
 }

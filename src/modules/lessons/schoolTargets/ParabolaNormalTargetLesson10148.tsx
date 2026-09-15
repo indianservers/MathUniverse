@@ -12,6 +12,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import type { PointerEvent as ReactPointerEvent } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./ParabolaNormalTargetLesson10148.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Tool = "point" | "pan";
 export default function ParabolaNormalTargetLesson10148({
@@ -392,6 +393,8 @@ export default function ParabolaNormalTargetLesson10148({
           </article>
         </aside>
       </main>
+      <LessonTopicStudyBoard lessonId={10148} alwaysVisible />
+
     </section>
   );
 }

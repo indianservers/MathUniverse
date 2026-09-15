@@ -4,6 +4,7 @@ import { batch2StudySpecs } from "../strengthening/catalogBatch2StudySpecs";
 import { batch3StudySpecs } from "../strengthening/catalogBatch3StudySpecs";
 import { batch4StudySpecs } from "../strengthening/catalogBatch4StudySpecs";
 import { batch5StudySpecs } from "../strengthening/catalogBatch5StudySpecs";
+import { batch6StudySpecs } from "../strengthening/catalogBatch6StudySpecs";
 import { expandedWorkedExamples } from "./LessonSectionJourney";
 import "./LessonTopicStudyBoard.css";
 
@@ -176,6 +177,7 @@ const SPECS: Record<number, StudySpec> = {
   ...batch3StudySpecs,
   ...batch4StudySpecs,
   ...batch5StudySpecs,
+  ...batch6StudySpecs,
 };
 
 function spec(

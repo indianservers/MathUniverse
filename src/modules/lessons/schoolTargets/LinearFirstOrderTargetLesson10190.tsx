@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./LinearFirstOrderTargetLesson10190.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const stages = [
   [
@@ -350,6 +351,8 @@ export default function LinearFirstOrderTargetLesson10190({
       <div className="lfo-complete">
         Pipeline complete · integrating factor applied · residual verified
       </div>
+      <LessonTopicStudyBoard lessonId={10190} alwaysVisible />
+
     </main>
   );
 }

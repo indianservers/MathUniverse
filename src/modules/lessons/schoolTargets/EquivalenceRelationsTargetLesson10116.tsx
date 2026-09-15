@@ -2,6 +2,7 @@ import { Check, Info, RotateCcw, Star, Trash2, X } from "lucide-react";
 import { useMemo, useState } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./EquivalenceRelationsTargetLesson10116.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Node = "a" | "b" | "c" | "d" | "e" | "f";
 type Pair = `${Node},${Node}`;
@@ -343,6 +344,8 @@ export default function EquivalenceRelationsTargetLesson10116({
           <p>× FAIL &nbsp; Property fails</p>
         </section>
       </footer>
+      <LessonTopicStudyBoard lessonId={10116} alwaysVisible />
+
     </section>
   );
 }

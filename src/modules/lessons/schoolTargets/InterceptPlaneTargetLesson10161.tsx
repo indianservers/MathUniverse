@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import type { KeyboardEvent, PointerEvent as ReactPointerEvent } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./InterceptPlaneTargetLesson10161.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Axis = "a" | "b" | "c";
 type I = { a: number; b: number; c: number };
@@ -531,6 +532,8 @@ export default function InterceptPlaneTargetLesson10161({
           <span>© 2026 INDIAN SERVERS PRIVATE LIMITED.</span>
         </footer>
       </main>
+      <LessonTopicStudyBoard lessonId={10161} alwaysVisible />
+
     </section>
   );
 }

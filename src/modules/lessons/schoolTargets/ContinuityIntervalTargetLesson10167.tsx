@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import type { KeyboardEvent, PointerEvent as ReactPointerEvent } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./ContinuityIntervalTargetLesson10167.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const value = (x: number) => Math.sqrt(Math.max(0, 4 - x * x));
 const f2 = (n: number) => n.toFixed(2);
@@ -462,6 +463,8 @@ export default function ContinuityIntervalTargetLesson10167({
           © 2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.
         </small>
       </footer>
+      <LessonTopicStudyBoard lessonId={10167} alwaysVisible />
+
     </main>
   );
 }

@@ -13,6 +13,7 @@ import { type PointerEvent, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./TwoObserverHeightTargetLesson10101.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const round = (value: number, places = 2) =>
   Math.round(value * 10 ** places) / 10 ** places;
@@ -556,6 +557,8 @@ export default function TwoObserverHeightTargetLesson10101({
           </Link>
         </nav>
       </main>
+      <LessonTopicStudyBoard lessonId={10101} view={tab} />
+
     </section>
   );
 }

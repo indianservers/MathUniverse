@@ -10,6 +10,7 @@ import {
 import { useState } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./TrigTransformTargetLesson10125.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const pathFor = (fn: (x: number) => number, zoom: number) => {
   let path = "";
@@ -363,6 +364,8 @@ export default function TrigTransformTargetLesson10125({
           General Solutions of Trigonometric Equations <ArrowRight />
         </button>
       </nav>
+      <LessonTopicStudyBoard lessonId={10125} alwaysVisible />
+
     </section>
   );
 }

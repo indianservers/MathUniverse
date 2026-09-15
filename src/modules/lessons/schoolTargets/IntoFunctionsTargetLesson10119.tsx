@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import type { DragEvent } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./IntoFunctionsTargetLesson10119.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const domain = ["a", "b", "c", "d"];
 const codomain = [1, 2, 3, 4, 5];
@@ -266,6 +267,8 @@ export default function IntoFunctionsTargetLesson10119({
           </article>
         </aside>
       </main>
+      <LessonTopicStudyBoard lessonId={10119} alwaysVisible />
+
     </section>
   );
 }

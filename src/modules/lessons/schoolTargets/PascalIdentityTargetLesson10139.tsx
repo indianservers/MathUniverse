@@ -2,6 +2,7 @@ import { BadgeCheck, RotateCcw, Star } from "lucide-react";
 import { useMemo, useState } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./PascalIdentityTargetLesson10139.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const choose = (n: number, r: number) => {
   if (r < 0 || r > n) return 0;
@@ -284,6 +285,8 @@ export default function PascalIdentityTargetLesson10139({
         <Star /> Pascal Identity: <em>C(n,r) = C(n-1,r-1) + C(n-1,r)</em> -
         verified numerically and explained combinatorially.
       </footer>
+      <LessonTopicStudyBoard lessonId={10139} alwaysVisible />
+
     </section>
   );
 }

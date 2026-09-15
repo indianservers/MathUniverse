@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./MinorsCofactorsTargetLesson10193.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Matrix = [
   [number, number, number],
@@ -412,6 +413,8 @@ export default function MinorsCofactorsTargetLesson10193({
           cofactors instantly.
         </footer>
       </section>
+      <LessonTopicStudyBoard lessonId={10193} alwaysVisible />
+
     </main>
   );
 }

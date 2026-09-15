@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import type { KeyboardEvent, PointerEvent as ReactPointerEvent } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./LagrangeMvtTargetLesson10173.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const f = (x: number) => x * x;
 const fmt = (n: number) => Number(n.toFixed(3));
@@ -433,6 +434,8 @@ export default function LagrangeMvtTargetLesson10173({
           © 2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.
         </small>
       </footer>
+      <LessonTopicStudyBoard lessonId={10173} alwaysVisible />
+
     </main>
   );
 }

@@ -11,6 +11,7 @@ import { type DragEventHandler, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./SasCongruenceTargetLesson10066.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Measures = { base: number; side: number; angle: number };
 const START: Measures = { base: 5, side: 7, angle: 60 };
@@ -272,6 +273,8 @@ export default function SasCongruenceTargetLesson10066({
           <ArrowRight />
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10066} view={tab} />
+
     </section>
   );
 }

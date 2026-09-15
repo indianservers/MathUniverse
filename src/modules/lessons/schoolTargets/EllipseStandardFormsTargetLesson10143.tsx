@@ -3,6 +3,7 @@ import { useMemo, useRef, useState } from "react";
 import type { PointerEvent as ReactPointerEvent } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./EllipseStandardFormsTargetLesson10143.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Orientation = "horizontal" | "vertical";
 type Point = { x: number; y: number };
@@ -410,6 +411,8 @@ export default function EllipseStandardFormsTargetLesson10143({
           </footer>
         </section>
       </main>
+      <LessonTopicStudyBoard lessonId={10143} alwaysVisible />
+
     </section>
   );
 }

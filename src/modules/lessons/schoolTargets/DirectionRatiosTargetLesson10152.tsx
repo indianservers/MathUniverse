@@ -3,6 +3,7 @@ import { useMemo, useRef, useState } from "react";
 import type { PointerEvent as ReactPointerEvent } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./DirectionRatiosTargetLesson10152.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point3 = { x: number; y: number; z: number };
 const START = { a: { x: 1, y: 2, z: 3 }, b: { x: 4, y: 6, z: 3 } };
@@ -544,6 +545,8 @@ export default function DirectionRatiosTargetLesson10152({
           </article>
         </section>
       </main>
+      <LessonTopicStudyBoard lessonId={10152} alwaysVisible />
+
     </section>
   );
 }

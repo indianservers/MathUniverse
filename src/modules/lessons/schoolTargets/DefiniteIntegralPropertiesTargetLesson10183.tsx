@@ -4,6 +4,7 @@ import type { KeyboardEvent, PointerEvent as ReactPointerEvent } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./DefiniteIntegralPropertiesTargetLesson10183.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const names = [
   "Zero-width interval",
@@ -269,6 +270,8 @@ export default function DefiniteIntegralPropertiesTargetLesson10183({
           <Link to="/about">About</Link>
         </div>
       </footer>
+      <LessonTopicStudyBoard lessonId={10183} alwaysVisible />
+
     </main>
   );
 }

@@ -9,6 +9,7 @@ import { type PointerEvent, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./EqualChordsAnglesTargetLesson10089.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Handle = "a" | "b" | "c" | "d";
 const RADIUS = 6 / (2 * Math.sin((27 * Math.PI) / 180));
@@ -472,6 +473,8 @@ export default function EqualChordsAnglesTargetLesson10089({
           Cyclic Quadrilateral Theorem <ArrowRight />
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10089} view={tab} />
+
     </section>
   );
 }

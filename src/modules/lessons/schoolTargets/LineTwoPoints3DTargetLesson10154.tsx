@@ -3,6 +3,7 @@ import { useMemo, useRef, useState } from "react";
 import type { PointerEvent as ReactPointerEvent } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./LineTwoPoints3DTargetLesson10154.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 type V = { x: number; y: number; z: number };
 type Key = "a" | "b";
 const START = { a: { x: 1, y: 2, z: 3 }, b: { x: 4, y: 6, z: 5 } };
@@ -510,6 +511,8 @@ export default function LineTwoPoints3DTargetLesson10154({
           </div>
         </section>
       </main>
+      <LessonTopicStudyBoard lessonId={10154} alwaysVisible />
+
     </section>
   );
 }

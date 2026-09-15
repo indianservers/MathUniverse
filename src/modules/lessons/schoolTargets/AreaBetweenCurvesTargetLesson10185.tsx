@@ -4,6 +4,7 @@ import type { KeyboardEvent, PointerEvent as ReactPointerEvent } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./AreaBetweenCurvesTargetLesson10185.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const fmt = (v: number) => Number(v.toFixed(2));
 export default function AreaBetweenCurvesTargetLesson10185({
@@ -357,6 +358,8 @@ export default function AreaBetweenCurvesTargetLesson10185({
         integral, and saw why order matters. Keep practising to master Area
         Between Curves.
       </aside>
+      <LessonTopicStudyBoard lessonId={10185} alwaysVisible />
+
     </main>
   );
 }

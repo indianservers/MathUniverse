@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight, Play, Pause, Plus, Minus, RotateCcw } from "luci
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import { DEFAULT_REGION, analyzeRegion, visibleRegion, satisfiesRegion, type RegionConstraint, type RegionPoint } from "./feasibleRegionModel";
 import "./FeasibleRegionTargetLesson10201.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 const number=(n:number)=>Number(n.toFixed(2));
 function VertexPractice() {
   const vertices=analyzeRegion(DEFAULT_REGION).vertices;
@@ -65,5 +66,7 @@ export default function FeasibleRegionTargetLesson10201({lesson}:{lesson:SchoolS
       <aside className="fr-reminder"><h2>IMPORTANT REMINDER</h2><p>Always test a point (like (0, 0)) to verify the inequality direction.</p><strong>Wrong direction → wrong region!</strong><button type="button" onClick={()=>setPoint([0,0])}>Test point (0, 0)</button></aside></div>
     <div className="fr-practice-row"><VertexPractice/><section className="fr-quiz"><h2>QUICK CHECK (DEFAULT SYSTEM)</h2>{["How many vertices?","Maximum value of Z?","At which point is the maximum achieved?"].map((question,i)=><label key={question}>{question}<input aria-label={question} value={answers[i]} onChange={e=>{setAnswers(previous=>previous.map((a,j)=>j===i?e.target.value:a));setGraded(false);}}/>{graded&&<strong>{(i===0?answers[i].trim()==="4":i===1?answers[i].trim()==="1100":answers[i].replace(/[()\s]/g,"")==="10,15")?"✓":"Try again"}</strong>}</label>)}<button onClick={()=>setGraded(true)}>Check answers</button></section></div>
     <nav className="fr-lesson-nav" aria-label="Adjacent lessons"><Link to="/lessons/school/class-12/class-12-linear-programming-formulating-linear-programming-problems"><ArrowLeft size={14}/>Formulating Linear Programming Problems</Link><Link to="/lessons/school/class-12/class-12-linear-programming-corner-point-method">Corner-Point Method<ArrowRight size={14}/></Link></nav>
+      <LessonTopicStudyBoard lessonId={10201} alwaysVisible />
+
   </main>;
 }

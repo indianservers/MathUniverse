@@ -9,6 +9,7 @@ import {
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./MidpointFormulaTargetLesson10084.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 type Point = { x: number; y: number };
 type Key = "a" | "b";
 const START = { a: { x: -2, y: 4 }, b: { x: 6, y: -2 } },
@@ -400,6 +401,8 @@ export default function MidpointFormulaTargetLesson10084({
           Internal Section Formula <ArrowRight />
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10084} view={tab} />
+
     </section>
   );
 }

@@ -12,6 +12,7 @@ import {
 import { useEffect, useMemo, useState } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./ConicIdentificationTargetLesson10151.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Coefficients = {
   A: number;
@@ -422,6 +423,8 @@ export default function ConicIdentificationTargetLesson10151({
           <small>(Center (2, −3), radius 4)</small>
         </article>
       </section>
+      <LessonTopicStudyBoard lessonId={10151} view={view} />
+
     </section>
   );
 }

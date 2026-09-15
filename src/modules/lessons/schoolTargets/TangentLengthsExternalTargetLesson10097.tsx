@@ -9,6 +9,7 @@ import { type PointerEvent, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./TangentLengthsExternalTargetLesson10097.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Handle = "P" | "A" | "B" | null;
 type Point = { x: number; y: number };
@@ -477,6 +478,8 @@ export default function TangentLengthsExternalTargetLesson10097({
           </Link>
         </nav>
       </main>
+      <LessonTopicStudyBoard lessonId={10097} view={tab} />
+
     </section>
   );
 }

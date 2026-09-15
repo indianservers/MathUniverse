@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import type { PointerEvent as ReactPointerEvent } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./ShortestDistanceLinesTargetLesson10158.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type V = { x: number; y: number; z: number };
 type Model = { a: V; u: V; b: V; v: V };
@@ -476,6 +477,8 @@ export default function ShortestDistanceLinesTargetLesson10158({
           </a>
         </nav>
       </main>
+      <LessonTopicStudyBoard lessonId={10158} alwaysVisible />
+
     </section>
   );
 }

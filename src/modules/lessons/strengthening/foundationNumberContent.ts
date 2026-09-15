@@ -12,6 +12,8 @@ import { applyBatch2HandOverlay } from "./catalogBatch2HandAuthoredOverlay";
 import { applyBatch3HandOverlay } from "./catalogBatch3HandAuthoredOverlay";
 import { applyBatch4HandOverlay } from "./catalogBatch4HandAuthoredOverlay";
 import { applyBatch5HandOverlay } from "./catalogBatch5HandAuthoredOverlay";
+import { applyBatch6HandOverlay } from "./catalogBatch6HandAuthoredOverlay";
+import { catalogBatch6AdvancedLessons } from "./catalogBatch6AdvancedLessons";
 import { coreWorkspaceStrengthenedChallenges, coreWorkspaceStrengthenedLessons } from "./coreWorkspaceStrengtheningContent";
 import { dynamicGeometryStrengthenedChallenges, dynamicGeometryStrengthenedLessons } from "./dynamicGeometryStrengtheningContent";
 import { distributionInferenceBatchStrengthenedChallenges, distributionInferenceBatchStrengthenedLessons } from "./distributionInferenceBatchStrengtheningContent";
@@ -1016,6 +1018,7 @@ const rawStrengthenedLessons: Record<number, StrengthenedLesson> = {
   ...schoolSyllabusAdvancedBatchStrengthenedLessons,
   ...schoolSyllabusClass12BatchStrengthenedLessons,
   ...schoolSyllabusFinalBatchStrengthenedLessons,
+  ...catalogBatch6AdvancedLessons,
 };
 
 const repeatedHowItWorks = repeatedValues(rawStrengthenedLessons, "howItWorks");
@@ -1024,7 +1027,7 @@ const repeatedWhyItWorks = repeatedValues(rawStrengthenedLessons, "whyItWorks");
 const allStrengthenedLessons: Record<number, StrengthenedLesson> = Object.fromEntries(
   Object.entries(rawStrengthenedLessons).map(([id, lesson]) => [
     Number(id),
-    applyBatch5HandOverlay(applyBatch4HandOverlay(applyBatch3HandOverlay(applyBatch2HandOverlay(personalizeLessonNarrative(lesson))))),
+    applyBatch6HandOverlay(applyBatch5HandOverlay(applyBatch4HandOverlay(applyBatch3HandOverlay(applyBatch2HandOverlay(personalizeLessonNarrative(lesson)))))),
   ]),
 );
 

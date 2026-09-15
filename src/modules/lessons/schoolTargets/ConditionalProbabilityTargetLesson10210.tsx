@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight, Bookmark, CheckCircle2, ClipboardList, Lightbulb
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import { conditionalCounts, INITIAL_STUDENTS, probabilityFraction, REGION_COLORS, REGION_NAMES, STUDENT_REGIONS, studentPositions, studentRegionAt, type StudentRegion } from "./conditionalProbabilityModel";
 import "./ConditionalProbabilityTargetLesson10210.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const decimal = (value: number | null) => value === null ? "Undefined" : Number(value.toFixed(3)).toString();
 const saveKey = "math-universe-lesson-10210-saved";
@@ -44,5 +45,7 @@ export default function ConditionalProbabilityTargetLesson10210({ lesson }: { le
     <section id="cp-LEARN" className="cp-learn"><article><h2><Lightbulb size={18} />KEY TAKEAWAY</h2><p>Conditioning restricts the sample space. We measure the event only within the chosen condition.</p><p className="cp-equation">P(A | B) = P(A ∩ B) / P(B)</p><small>Provided P(B) &gt; 0.</small></article><article><h2><ClipboardList size={18} />WORKED EXAMPLE</h2><p>In a club of 40 students: A = chess (18), B = music (16), A ∩ B = 8. Find P(A | B).</p><h3>Solution:</h3><p className="cp-equation">P(A | B) = 8/16 = 1/2 = 0.5</p></article><article><h2><Target size={18} />Why this matters</h2><p>Conditional probability answers questions like “Among those who play music, how likely is it that a student plays chess?”</p></article></section>
     <section id="cp-PRACTICE" className="cp-practice"><h2><ClipboardList size={20} />PRACTICE CHALLENGE</h2><p>In a classroom of 50 students, 20 play football (A), 15 play guitar (B), and 7 play both. Find P(A | B) and P(B | A).</p><div><fieldset><legend>Choose both conditional probabilities</legend>{["P(A | B) = 7/15; P(B | A) = 7/20", "P(A | B) = 7/20; P(B | A) = 7/15", "P(A | B) = 15/50; P(B | A) = 20/50"].map((option, i) => <label key={option}><input type="radio" name="cp-answer" checked={answer === i} onChange={() => { setAnswer(i); setChecked(false); }} /><b>{String.fromCharCode(65 + i)}</b>{option}</label>)}</fieldset><button onClick={() => setChecked(true)}><CheckCircle2 size={15} />Check answer</button></div>{checked && <p role="status">{answer === null ? "Select an answer first." : answer === 0 ? "Correct: restrict to the 15 guitar players for P(A | B), and the 20 football players for P(B | A)." : "Use the overlap 7 in both numerators. Each denominator is the size of the given event."}</p>}</section>
     <nav className="cp-next"><Link to="/lessons/school/class-12/class-12-linear-programming-transportation-style-lpp-introduction"><ArrowLeft size={14} />Transportation-Style LPP Introduction</Link><Link to="/lessons/school/class-12/class-12-probability-multiplication-rule">Multiplication Rule<ArrowRight size={14} /></Link></nav>
+      <LessonTopicStudyBoard lessonId={10210} view={tab} />
+
   </main>;
 }

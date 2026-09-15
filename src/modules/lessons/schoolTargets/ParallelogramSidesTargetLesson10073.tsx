@@ -18,6 +18,7 @@ import { type PointerEvent, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./ParallelogramSidesTargetLesson10073.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type Vertex = "a" | "b" | "d";
@@ -479,6 +480,8 @@ export default function ParallelogramSidesTargetLesson10073({
           Next lesson: Parallelogram Opposite Angles <ArrowRight />
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10073} view={tab} />
+
     </section>
   );
 }

@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import type { KeyboardEvent, PointerEvent as ReactPointerEvent } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./PlaneAngleTargetLesson10163.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type V = { x: number; y: number; z: number };
 type Plane = { n: V; d: number };
@@ -571,6 +572,8 @@ export default function PlaneAngleTargetLesson10163({
           <span>© 2026 INDIAN SERVERS PRIVATE LIMITED.</span>
         </footer>
       </main>
+      <LessonTopicStudyBoard lessonId={10163} view={view} />
+
     </section>
   );
 }

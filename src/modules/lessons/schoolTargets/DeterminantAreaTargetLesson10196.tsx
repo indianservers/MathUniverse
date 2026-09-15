@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import type { PointerEvent as ReactPointerEvent, KeyboardEvent } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./DeterminantAreaTargetLesson10196.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Matrix2 = [[number, number], [number, number]];
 const DEFAULT: Matrix2 = [
@@ -462,6 +463,8 @@ export default function DeterminantAreaTargetLesson10196({
           CAS-style tools, and classroom-ready activities.
         </p>
       </footer>
+      <LessonTopicStudyBoard lessonId={10196} alwaysVisible />
+
     </main>
   );
 }

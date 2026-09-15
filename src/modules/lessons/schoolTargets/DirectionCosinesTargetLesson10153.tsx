@@ -2,6 +2,7 @@ import { Check, RefreshCw, Share2 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./DirectionCosinesTargetLesson10153.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 type V = { x: number; y: number; z: number };
 const START = { x: 2, y: 3, z: 6 };
 const f = (n: number, d = 5) => Number(n.toFixed(d));
@@ -458,6 +459,8 @@ export default function DirectionCosinesTargetLesson10153({
           </aside>
         </section>
       </main>
+      <LessonTopicStudyBoard lessonId={10153} view={view} />
+
     </section>
   );
 }

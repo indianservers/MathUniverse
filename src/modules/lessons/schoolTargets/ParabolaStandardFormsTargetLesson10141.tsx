@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import type { PointerEvent as ReactPointerEvent } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./ParabolaStandardFormsTargetLesson10141.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Form = "right" | "left" | "up" | "down";
 const forms: Array<{ id: Form; formula: string }> = [
@@ -385,6 +386,8 @@ export default function ParabolaStandardFormsTargetLesson10141({
           </div>
         </footer>
       </main>
+      <LessonTopicStudyBoard lessonId={10141} alwaysVisible />
+
     </section>
   );
 }

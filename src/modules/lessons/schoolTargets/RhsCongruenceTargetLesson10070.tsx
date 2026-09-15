@@ -12,6 +12,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./RhsCongruenceTargetLesson10070.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type RhsModel = { hypotenuse: number; leg: number };
 const START: RhsModel = { hypotenuse: 10, leg: 6 };
@@ -364,6 +365,8 @@ export default function RhsCongruenceTargetLesson10070({
           Next: AAS Congruence <ArrowRight />
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10070} view={view} />
+
     </section>
   );
 }

@@ -2,6 +2,7 @@ import { Check, RotateCcw } from "lucide-react";
 import { useState } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./DivisibilityInductionTargetLesson10131.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type ProofStep = 1 | 2 | 3 | 4;
 type Hypothesis = "1" | "2" | "k" | "k+1";
@@ -312,6 +313,8 @@ export default function DivisibilityInductionTargetLesson10131({
           <span>Next: Inequality by Induction →</span>
         </footer>
       </main>
+      <LessonTopicStudyBoard lessonId={10131} alwaysVisible />
+
     </section>
   );
 }

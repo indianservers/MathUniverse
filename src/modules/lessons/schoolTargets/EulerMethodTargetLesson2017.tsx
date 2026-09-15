@@ -5,6 +5,7 @@ import type { AdvancedConceptLesson } from "../catalog/advanced/advancedConceptL
 import MathExpression from "../../../components/ui/MathExpression";
 import { checkEulerPractice, eulerStepSizes, eulerWalk, type EulerStepSize } from "./eulerWalkerModel";
 import "./EulerMethodTargetLesson2017.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 function EulerPlot({ h, step, small = false }: { h: EulerStepSize; step: number; small?: boolean }) {
   const rows = eulerWalk(h), marker = useId();
@@ -37,5 +38,7 @@ export default function EulerMethodTargetLesson2017({ lesson }: { lesson: Advanc
     <section className="ew-practice"><h2>Quick Practice</h2><p>Use Euler’s method with h = 0.25 for y′ = y, y(0) = 1.</p><div className="ew-practice-grid">{[{label:"First step (x₀ = 0 to x₁ = 0.25)",value:first,set:setFirst},{label:"Second step (x₁ = 0.25 to x₂ = 0.50)",value:second,set:setSecond}].map((a,i)=><label key={a.label}>{i+1}. {a.label}<span>y{i+1} = <input type="number" step="any" aria-label={i===0?"First Euler value":"Second Euler value"} value={a.value} onChange={e=>{a.set(e.target.value);setChecked(false);}}/>{checked && <strong>{answers[i]?"Correct":"Try again"}</strong>}</span></label>)}<div><button className="primary" onClick={()=>setChecked(true)}><Check size={14}/>Check answers</button><button onClick={()=>{setFirst("");setSecond("");setChecked(false);}}><RotateCcw size={14}/>Try again</button></div></div>{checked && <p role="status">{answers.every(Boolean)?"Correct: 1 + 0.25(1) = 1.25, then 1.25 + 0.25(1.25) = 1.5625.":"Each step adds h times the slope at the previous point. Use the first result to calculate the second."}</p>}</section>
     <section className="ew-comparison"><h2>See the Effect of Step Size</h2><p>For this equation, smaller h gives a closer approximation on [0,1].</p><div>{eulerStepSizes.map(size=>{const end=eulerWalk(size).at(-1)!;return <button key={size} className="ew-mini" aria-pressed={size===h} onClick={()=>selectSize(size)}><b>h = {size}</b><small>{size===h?"(current)":"\u00a0"}</small><EulerPlot small h={size} step={Math.round(1/size)}/><span>Euler at x = 1: <b>{end.y.toFixed(4)}</b></span><span>Error: <b className="error">{end.error.toFixed(4)}</b></span></button>})}<aside><h3><Lightbulb size={17}/>Insight</h3><p>As h decreases, the Euler polygon follows the exact curve more closely.</p><p>In the limit h → 0, this approximation converges to eˣ on [0,1].</p></aside></div></section>
     <section className="ew-next"><div><h2>What’s Next?</h2><p>Apply differential equations to growth and decay initial-value problems.</p></div><Link to="/lessons/advanced-concepts/2018-growth-decay-ivps">Go to next lesson<ArrowRight size={16}/></Link></section><nav><Link to="/lessons/advanced-concepts/2016-slope-fields"><ArrowLeft size={14}/>Slope Fields</Link><Link to="/lessons/advanced-concepts/2018-growth-decay-ivps">Growth and Decay IVPs<ArrowRight size={14}/></Link></nav>
+      <LessonTopicStudyBoard lessonId={2017} alwaysVisible />
+
   </main>;
 }

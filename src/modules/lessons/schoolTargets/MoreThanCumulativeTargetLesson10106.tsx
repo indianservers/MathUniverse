@@ -8,6 +8,7 @@ import {
 import { type PointerEvent, useState } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./MoreThanCumulativeTargetLesson10106.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const defaultFrequencies = [6, 9, 12, 8, 5];
 const boundaries = [9.5, 19.5, 29.5, 39.5, 49.5];
@@ -318,6 +319,8 @@ export default function MoreThanCumulativeTargetLesson10106({
           Less-Than Ogive <ArrowRight />
         </button>
       </nav>
+      <LessonTopicStudyBoard lessonId={10106} alwaysVisible />
+
     </section>
   );
 }

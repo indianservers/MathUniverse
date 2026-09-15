@@ -2,6 +2,7 @@ import { CheckCircle2, GripVertical, RotateCcw } from "lucide-react";
 import { type PointerEvent, useState } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./MedianOgiveTargetLesson10109.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const defaults = [5, 9, 12, 15, 7, 2];
 const bounds = [0, 10, 20, 30, 40, 50, 60];
@@ -364,6 +365,8 @@ export default function MedianOgiveTargetLesson10109({
           </section>
         </div>
       </main>
+      <LessonTopicStudyBoard lessonId={10109} alwaysVisible />
+
     </section>
   );
 }

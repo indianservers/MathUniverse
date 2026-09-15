@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight, CheckCircle2, Dice5, Eye, Info, Pencil, RotateCc
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import { COIN_OUTCOMES, RANDOM_VARIABLE_RULES, randomVariableGroups, tossMappedCoins, type CoinOutcome, type OutcomeScores } from "./randomVariablesModel";
 import "./RandomVariablesTargetLesson10215.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type RuleName = keyof typeof RANDOM_VARIABLE_RULES | "custom";
 export default function RandomVariablesTargetLesson10215({ lesson }: { lesson: SchoolSyllabusLesson }) {
@@ -26,5 +27,7 @@ export default function RandomVariablesTargetLesson10215({ lesson }: { lesson: S
     <section className="rv-definition"><article id="rv-DEFINITION"><h2>Key idea</h2><p>A random variable is a function that assigns a real number to each outcome.</p><p className="rv-help">Random variable: A function X: Ω → ℝ maps every outcome ω ∈ Ω to exactly one real number X(ω).</p><p>The same value can be assigned to multiple outcomes.</p></article><article id="rv-EXAMPLES"><h2>Worked example</h2><p>One die: Let X = face².</p><table><thead><tr><th>Face</th>{[1, 2, 3, 4, 5, 6].map(n => <th key={n}>{n}</th>)}</tr></thead><tbody><tr><th>X = face²</th>{[1, 2, 3, 4, 5, 6].map(n => <td key={n}>{n * n}</td>)}</tr></tbody></table><p>Domain Ω = {"{1, 2, 3, 4, 5, 6}"}<br />Range X(Ω) = {"{1, 4, 9, 16, 25, 36}"}</p></article></section>
     <section id="rv-PRACTICE" className="rv-practice"><div><h2>Try it yourself</h2><p>Two coins again. Let Y = number of tails.<br />What is Y(HH) + Y(HT) + Y(TH) + Y(TT)?</p><fieldset><legend>Select the sum</legend>{[0, 1, 2, 4].map(value => <label key={value}><input type="radio" name="rv-answer" checked={answer === value} onChange={() => { setAnswer(value); setChecked(false); }} />{value}</label>)}</fieldset></div><div><button onClick={() => setChecked(true)}><CheckCircle2 size={14} />Check answer</button><button aria-expanded={explanation} onClick={() => setExplanation(v => !v)}><Eye size={14} />{explanation ? "Hide" : "Show"} explanation</button></div>{checked && <p role="status">{answer === null ? "Select an answer first." : answer === 4 ? "Correct: 0 + 1 + 1 + 2 = 4." : "Count tails separately in HH, HT, TH and TT, then add those four values."}</p>}{explanation && <p>Y(HH) = 0, Y(HT) = 1, Y(TH) = 1, Y(TT) = 2. Their sum is 4; this is not the expected value, which is 1.</p>}</section>
     <nav className="rv-next"><Link to="/lessons/school/class-12/class-12-probability-bayes-theorem"><ArrowLeft size={14} />Bayes’ Theorem</Link><Link to="/lessons/school/class-12/class-12-probability-probability-distribution-of-a-random-variable">Probability Distribution of a Random Variable<ArrowRight size={14} /></Link></nav>
+      <LessonTopicStudyBoard lessonId={10215} view={tab} />
+
   </main>;
 }
