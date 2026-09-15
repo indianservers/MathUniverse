@@ -265,6 +265,22 @@ describe("MockupStudioApp", () => {
     }
   });
 
+  it("renders linear algebra labs with mockup control copy", () => {
+    const matrices = renderToString(<MemoryRouter initialEntries={["/linear-algebra/matrices"]}><MockupStudioApp studioId="linear-algebra" /></MemoryRouter>);
+    expect(matrices).toContain("Result C = A × B");
+    expect(matrices).toContain("Geometric preview");
+    expect(matrices).toContain("Dimensions &amp; Compatibility");
+    const vectors = renderToString(<MemoryRouter initialEntries={["/linear-algebra/vectors"]}><MockupStudioApp studioId="linear-algebra" /></MemoryRouter>);
+    expect(vectors).toContain("Quick facts");
+    expect(vectors).toContain("Dot product");
+    const rref = renderToString(<MemoryRouter initialEntries={["/linear-algebra/row-reduction"]}><MockupStudioApp studioId="linear-algebra" /></MemoryRouter>);
+    expect(rref).toContain("Augmented matrix");
+    expect(rref).toContain("System summary");
+    const play = renderToString(<MemoryRouter initialEntries={["/linear-algebra/playground"]}><MockupStudioApp studioId="linear-algebra" /></MemoryRouter>);
+    expect(play).toContain("2D transformation");
+    expect(play).toContain("3D transformation");
+  });
+
   it("marks every mockup lab mode on the banner and canvas", () => {
     const samples: Array<[string, string, string]> = [
       ["linear-algebra", "/linear-algebra/determinants?mode=3D+Volume", "3D Volume"],

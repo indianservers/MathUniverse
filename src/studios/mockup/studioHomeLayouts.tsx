@@ -1,6 +1,6 @@
 import { useState, type PointerEvent, type ReactNode } from "react";
 import { Link } from "react-router-dom";
-import { FlaskConical, Play, Search, Trophy } from "lucide-react";
+import { Compass, FlaskConical, Play, Search, Trophy } from "lucide-react";
 import { TopicIllustration } from "./labs/TopicIllustrations";
 import type { StudioMockupDefinition, StudioMockupPage } from "./studioMockupCatalog";
 import { parseChallengeAnswer } from "./studioLabKit";
@@ -458,7 +458,7 @@ function LinearAlgebraStudioHome(props: HomeProps) {
               <b>{card.title}</b>
               <small>{studioLabMeta("linear-algebra", card.id)?.outcome ?? lab.description}</small>
               <TopicIllustration pageId={card.id} />
-              <em>{card.cta}</em>
+              <span className="la-topic-cta">{card.cta}</span>
             </Link>
           );
         })}
@@ -473,9 +473,12 @@ function LinearAlgebraStudioHome(props: HomeProps) {
           <Link className="msk-cta" to={continueTo}><Play /> Resume Experiment</Link>
         </section>
         <section className="la-dock-journey">
-          <strong>Your learning journey</strong>
-          <p>{`${done.length} of ${props.labs.length} studios explored`}</p>
-          <div className="msk-progress" aria-label={`${progress} percent`}><i style={{ width: `${progress}%` }} /></div>
+          <Compass />
+          <div>
+            <strong>Your learning journey</strong>
+            <p>{`${done.length} of ${props.labs.length} studios explored`}</p>
+            <div className="msk-progress" aria-label={`${progress} percent`}><i style={{ width: `${progress}%` }} /></div>
+          </div>
           <b>{progress}%</b>
         </section>
         <section className="la-dock-challenge">
