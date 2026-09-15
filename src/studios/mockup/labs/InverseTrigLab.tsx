@@ -34,6 +34,8 @@ function inverseRange(family: InverseFamily) {
   return family === "Arcsin" ? "−π/2 ≤ θ ≤ π/2" : family === "Arccos" ? "0 ≤ θ ≤ π" : "−π/2 < θ < π/2";
 }
 
+const GRAPH_SCALE = 70;
+
 function parentCurve(family: InverseFamily) {
   const points: string[] = [];
   const min = family === "Arccos" ? 0 : -Math.PI / 2;
@@ -41,7 +43,7 @@ function parentCurve(family: InverseFamily) {
   for (let index = 0; index <= 160; index += 1) {
     const x = min + (index / 160) * (max - min);
     const y = family === "Arcsin" ? Math.sin(x) : family === "Arccos" ? Math.cos(x) : Math.tan(x);
-    if (Math.abs(y) <= 3.2) points.push(`${250 + x * 68},${168 - y * 48}`);
+    if (Math.abs(y) <= 3.2) points.push(`${250 + x * GRAPH_SCALE},${168 - y * GRAPH_SCALE}`);
   }
   return points.join(" ");
 }
@@ -53,7 +55,7 @@ function inverseCurve(family: InverseFamily) {
   for (let index = 0; index <= 160; index += 1) {
     const x = min + (index / 160) * (max - min);
     const y = inversePrincipal(family, x);
-    points.push(`${250 + x * (family === "Arctan" ? 48 : 110)},${168 - y * 48}`);
+    points.push(`${250 + x * GRAPH_SCALE},${168 - y * GRAPH_SCALE}`);
   }
   return points.join(" ");
 }
@@ -65,7 +67,7 @@ function ghostBranch(family: InverseFamily, shift: number) {
   for (let index = 0; index <= 80; index += 1) {
     const x = min + (index / 80) * (max - min);
     const y = inversePrincipal(family, x) + shift;
-    points.push(`${250 + x * (family === "Arctan" ? 48 : 110)},${168 - y * 48}`);
+    points.push(`${250 + x * GRAPH_SCALE},${168 - y * GRAPH_SCALE}`);
   }
   return points.join(" ");
 }
@@ -107,8 +109,8 @@ export function InverseTrigLab({ page }: { page: StudioMockupPage }) {
   const unitY = Math.sin(angle);
   const pointX = 120 + unitX * 72;
   const pointY = 118 - unitY * 72;
-  const graphX = 250 + boundedInput * (active === "Arctan" ? 48 : 110);
-  const graphY = 168 - angle * 48;
+  const graphX = 250 + boundedInput * GRAPH_SCALE;
+  const graphY = 168 - angle * GRAPH_SCALE;
   const rangeMin = active === "Arccos" ? 0 : -Math.PI / 2;
   const rangeMax = active === "Arccos" ? Math.PI : Math.PI / 2;
 
@@ -180,6 +182,7 @@ export function InverseTrigLab({ page }: { page: StudioMockupPage }) {
                   <line x1="20" y1="110" x2="470" y2="110" stroke="#475569" />
                   <line x1="245" y1="16" x2="245" y2="204" stroke="#475569" />
                   <line x1="80" y1="190" x2="410" y2="30" stroke="#94a3b8" strokeDasharray="5 4" />
+                  <line x1={140} y1={110 + 80} x2={350} y2={110 - 80} stroke={COLORS.success} strokeWidth="2.4" />
                   <line x1={245 + boundedInput * 110} y1="16" x2={245 + boundedInput * 110} y2="204" stroke={COLORS.angle} strokeDasharray="4 3" />
                   <circle cx={245 + boundedInput * 110} cy={110 - boundedInput * 80} r="6" fill={COLORS.angle} />
                   <text x="28" y="28" fill={COLORS.success} fontSize="12">y = x on [−1, 1]</text>
@@ -204,10 +207,11 @@ export function InverseTrigLab({ page }: { page: StudioMockupPage }) {
                 <b>A. Graphs: f(x) and f⁻¹(x)</b>
                 <svg className="msk-graph trig-target-inverse-plot" viewBox="0 0 500 250" role="img" aria-label={`${active} inverse graph`}>
                   <rect width="500" height="250" rx="10" fill={COLORS.paper} />
-                  <rect x="20" y={168 - rangeMax * 48} width="460" height={Math.max(8, (rangeMax - rangeMin) * 48)} fill={principal ? "rgba(16,185,129,.10)" : "transparent"} />
+                  <rect x="20" y={clamp(168 - rangeMax * GRAPH_SCALE, 16, 234)} width="460" height={clamp((rangeMax - rangeMin) * GRAPH_SCALE, 12, 200)} fill={mode === "Principal Values" ? "rgba(16,185,129,.14)" : "transparent"} />
                   <line x1="20" y1="168" x2="480" y2="168" stroke="#475569" />
                   <line x1="250" y1="16" x2="250" y2="234" stroke="#475569" />
                   <line x1="70" y1="248" x2="430" y2="8" stroke="#94a3b8" strokeDasharray="5 4" />
+                  <text x="434" y="22" fill="#94a3b8" fontSize="10">y = x</text>
                   <polyline points={parentCurve(active)} fill="none" stroke={COLORS.sine} strokeWidth="2.1" />
                   {!principal ? (
                     <>
