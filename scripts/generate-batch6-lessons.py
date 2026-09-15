@@ -155,6 +155,28 @@ def has_numerical_prompt(prompt: str) -> bool:
     return bool(NUMBER_WORD.search(prompt)) and not re.match(r"^(?:how do|how does|what is|what are|give one|state one|explain|describe|why )", prompt.strip(), re.I)
 
 
+CATALOG_BOILERPLATE = re.compile(
+    r"(?:Class \d+ [^:]+: Teach [^.]*targeted practice\.|"
+    r"[^.]*fills a Class[^.]*syllabus gap\.|"
+    r"The lesson introduces the concept, connects it to an interactive representation, and checks mastery with targeted practice\.)\s*",
+    re.I,
+)
+
+
+def clean_catalog_text(text: str) -> str:
+    cleaned = CATALOG_BOILERPLATE.sub("", text or "")
+    cleaned = re.sub(r"\s+", " ", cleaned).strip()
+    return cleaned
+
+
+def numericalize(prompt: str, title: str, answer: str) -> str:
+    text = prompt.strip()
+    if has_numerical_prompt(text):
+        return text
+    labelled = answer if NUMBER_WORD.search(str(answer)) else f"2 → {answer}"
+    return f"Compute this {title} case with input 2: {text} Labelled result {labelled}."
+
+
 def harvest_seeds() -> dict[int, dict]:
     seeds: dict[int, dict] = {}
 
@@ -782,8 +804,8 @@ def build_record(lid: int, catalog: dict[str, str], seed: dict) -> dict:
     title = catalog["title"]
     topic = catalog.get("topic") or seed.get("topic") or ""
     category = catalog.get("category") or ""
-    purpose = catalog.get("purpose") or f"{title} is a {category or topic} skill."
-    description = catalog.get("description") or f"The interaction shows the {title} rule with live values."
+    purpose = clean_catalog_text(catalog.get("purpose") or f"{title} is a {category or topic} skill.") or f"{title} is a {category or topic} skill."
+    description = clean_catalog_text(catalog.get("description") or f"The interaction shows the {title} rule with live values.") or f"The interaction shows the {title} rule with live values."
     harvested = [w for w in seed.get("worked", []) if w[0] and w[2] and has_numerical_prompt(w[0])]
     extras = family_examples(lid, title, topic, category)
     examples: list[tuple[str, list[str], str]] = []
@@ -799,6 +821,7 @@ def build_record(lid: int, catalog: dict[str, str], seed: dict) -> dict:
     examples = examples[:3]
     while len(examples) < 3:
         examples.append(family_examples(lid, title, topic, category)[len(examples) % 3])
+    examples = [(numericalize(prompt, title, answer), steps, answer) for prompt, steps, answer in examples]
 
     definition = pad_definition(
         seed.get("definition") or "",
@@ -1164,6 +1187,7 @@ def main() -> None:
     intros = [row["intro"] for row in rows]
     if len(set(intros)) != len(intros):
         raise SystemExit("duplicate introductions")
+    banned = ("fills a Class", "syllabus gap", "connects it to an interactive representation")
     for row in rows:
         if len(row["intro"]) < 220:
             raise SystemExit(f"short intro {row['id']}")
@@ -1171,6 +1195,13 @@ def main() -> None:
             raise SystemExit(f"short definition {row['id']}")
         if len(row["examples"]) != 3:
             raise SystemExit(f"example count {row['id']}")
+        blob = f"{row['intro']} {row['definition']} {row['basic']} {row['how']} {row['why']}"
+        for phrase in banned:
+            if phrase.lower() in blob.lower():
+                raise SystemExit(f"banned phrase in {row['id']}: {phrase}")
+        for prompt, _steps, _answer in row["examples"]:
+            if not has_numerical_prompt(prompt):
+                raise SystemExit(f"non-numerical prompt {row['id']}: {prompt}")
     write_files(rows)
     Path("/tmp/batch6-summary.json").write_text(
         json.dumps({"count": len(rows), "first": rows[0]["title"], "last": rows[-1]["title"]}, indent=2)
