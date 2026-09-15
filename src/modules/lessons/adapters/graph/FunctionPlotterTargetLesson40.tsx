@@ -20,6 +20,7 @@ import {
   type PlotterFunction,
 } from "./functionPlotterLesson40Model";
 import "./FunctionPlotterTargetLesson40.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const expressionCycle = ["x^2 - 2", "0.8x + 1", "sin(x)", "cos(x)", "x"];
 
@@ -376,6 +377,8 @@ export default function FunctionPlotterTargetLesson40({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={40} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

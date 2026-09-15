@@ -2,6 +2,7 @@ import { Check, ExternalLink, RotateCcw, Share2 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./SequencesTargetLesson34.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 const presets: [[number, number], [number, number], [number, number]] = [
   [2, 3],
   [3, 4],
@@ -359,6 +360,8 @@ export default function SequencesTargetLesson34({
           </section>
         </aside>
       </main>
+      <LessonTopicStudyBoard lessonId={34} view={tab} onInteraction={onInteraction} />
+
     </div>
   );
 }

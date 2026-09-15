@@ -8,6 +8,7 @@ import {
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./DynamicTextTargetLesson37.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const INITIAL_TEMPLATE = "When x = {x}, the output 2x + 3 is {y}.";
 
@@ -371,6 +372,8 @@ export default function DynamicTextTargetLesson37({
           www.IndianServers.com info@IndianServers.com
         </small>
       </footer>
+      <LessonTopicStudyBoard lessonId={37} view={tab} onInteraction={onInteraction} />
+
     </div>
   );
 }

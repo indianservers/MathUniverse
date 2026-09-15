@@ -32,6 +32,7 @@ import {
   type OneStepEquation107 as Equation,
 } from "./oneStepEquationsLesson107Model";
 import "./OneStepEquationsTargetLesson107.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type OneStepTab107 =
   "Interact" | "Explain" | "Examples" | "Formulas" | "Practice" | "Know more";
@@ -571,6 +572,8 @@ export default function OneStepEquationsTargetLesson107({
         </small>
         <p>www.IndianServers.com&nbsp;&nbsp; info@IndianServers.com</p>
       </footer>
+      <LessonTopicStudyBoard lessonId={107} view={tab} onInteraction={onInteraction} />
+
     </div>
   );
 }

@@ -28,6 +28,7 @@ import {
   type RemainderDivision104,
 } from "./remainderTheoremLesson104Model";
 import "./RemainderTheoremTargetLesson104.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type RemainderTab104 =
   "Interact" | "Explain" | "Examples" | "Practice" | "Know more";
@@ -645,6 +646,8 @@ export default function RemainderTheoremTargetLesson104({
         </small>
         <p>www.IndianServers.com info@IndianServers.com</p>
       </footer>
+      <LessonTopicStudyBoard lessonId={104} view={tab} onInteraction={onInteraction} />
+
     </div>
   );
 }

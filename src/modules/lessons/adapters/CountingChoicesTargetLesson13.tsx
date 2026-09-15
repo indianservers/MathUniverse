@@ -3,6 +3,8 @@ import { useEffect, useMemo, useState } from "react";
 import type { DragEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./CountingChoicesTargetLesson13.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+
 
 type Mode = "factorial" | "permutation" | "combination";
 const TABS = [
@@ -445,13 +447,14 @@ export default function CountingChoicesTargetLesson13({
           →
         </a>
       </nav>
-      <footer className="counting-footer">
+<footer className="counting-footer">
         <b>⚒ Math Universe</b>
         <p>
           Interactive math labs, visual proofs, NCERT explorations, graphing,
           CAS-style tools, and classroom-ready activities.
         </p>
       </footer>
+      <LessonTopicStudyBoard lessonId={13} alwaysVisible onInteraction={onInteraction} />
     </div>
   );
 }

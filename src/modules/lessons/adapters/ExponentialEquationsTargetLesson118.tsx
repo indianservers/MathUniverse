@@ -29,6 +29,7 @@ import {
   type ExponentialProblem118 as ExponentialProblem,
 } from "./exponentialEquationsLesson118Model";
 import "./ExponentialEquationsTargetLesson118.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 function Power({
   base,
@@ -806,6 +807,8 @@ export default function ExponentialEquationsTargetLesson118({
         </small>
         <small>www.IndianServers.com info@IndianServers.com</small>
       </footer>
+      <LessonTopicStudyBoard lessonId={118} view={activeTab} onInteraction={onInteraction} />
+
     </div>
   );
 }

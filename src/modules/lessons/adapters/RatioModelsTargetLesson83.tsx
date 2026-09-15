@@ -2,6 +2,7 @@ import { ArrowLeft, ArrowRight, Check, Info, Lightbulb, RotateCcw, Share2, Spark
 import { useEffect, useState, type DragEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./RatioModelsTargetLesson83.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 function clamp(value: number, minimum = 1, maximum = 8) {
   return Math.max(minimum, Math.min(maximum, Math.round(Number.isFinite(value) ? value : minimum)));
@@ -58,6 +59,8 @@ export default function RatioModelsTargetLesson83({ resetToken, onInteraction }:
       </main>
       <nav className="ratio83-navigation"><a href="/lessons/numbers-and-arithmetic/82-recurring-decimals"><ArrowLeft /><span>PREVIOUS<b>Recurring Decimals</b></span></a><a href="/lessons/numbers-and-arithmetic/84-proportion"><span>NEXT<b>Proportion</b></span><ArrowRight /></a></nav>
       <footer className="ratio83-footer"><h3><Sparkles /> Math Universe</h3><p>Interactive math labs, visual proofs, NCERT explorations, graphing, CAS-style tools, and classroom-ready activities.</p><nav><a href="/sitemap">▥ Sitemap</a><a href="/docs">⚑ Docs</a><a href="/about">✉ About</a></nav><hr /><small>© 2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.</small><small>www.IndianServers.com info@IndianServers.com</small></footer>
+      <LessonTopicStudyBoard lessonId={83} view={tab} onInteraction={onInteraction} />
+
     </div>
   );
 }

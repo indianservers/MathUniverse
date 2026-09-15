@@ -23,6 +23,7 @@ import {
   type CompoundMode123 as Mode,
 } from "./compoundInequalitiesLesson123Model";
 import "./CompoundInequalitiesTargetLesson123.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 function CompoundLine({
   lower,
@@ -695,6 +696,8 @@ export default function CompoundInequalitiesTargetLesson123({
         </small>
         <small>www.IndianServers.com info@IndianServers.com</small>
       </footer>
+      <LessonTopicStudyBoard lessonId={123} view={activeTab} onInteraction={onInteraction} />
+
     </div>
   );
 }

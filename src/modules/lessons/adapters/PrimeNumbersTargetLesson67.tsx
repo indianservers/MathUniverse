@@ -11,6 +11,7 @@ import {
 import { useEffect, useMemo, useState, type DragEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./PrimeNumbersTargetLesson67.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const INITIAL_NUMBER = 17;
 const INITIAL_DIVISOR = 17;
@@ -366,6 +367,8 @@ export default function PrimeNumbersTargetLesson67({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={67} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

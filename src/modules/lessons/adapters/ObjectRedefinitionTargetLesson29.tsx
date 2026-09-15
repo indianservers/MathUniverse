@@ -8,6 +8,8 @@ import { LessonDependencyTree } from "../graphs/LessonDependencyTree";
 import { LessonGraphWorkspace } from "../graphs/LessonGraphWorkspace";
 import { lessonGraphZeroCrossingConverges } from "../graphs/lessonGraphGeometry";
 import "./ObjectRedefinitionTargetLesson29.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+
 
 type Point = { x: number; y: number };
 const engine = nerdamer as unknown as (
@@ -361,7 +363,7 @@ export default function ObjectRedefinitionTargetLesson29({
                   </span>
                 </p>
               ))}
-              <footer>
+<footer>
                 All linked objects update
                 <br />
                 after redefining {name || "f"}.
@@ -414,6 +416,7 @@ export default function ObjectRedefinitionTargetLesson29({
           www.IndianServers.com&nbsp; info@IndianServers.com
         </small>
       </footer>
+      <LessonTopicStudyBoard lessonId={29} alwaysVisible onInteraction={onInteraction} />
     </div>
   );
 }

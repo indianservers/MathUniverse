@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState, type CSSProperties } from "react";
 import type { LessonAdapterProps } from "../types";
 import { LessonCartesianGraph } from "../graphs/LessonCartesianGraph";
 import "./MatricesTargetLesson33.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 type Matrix = number[][];
 const determinant = (matrix: Matrix): number =>
   matrix.length === 1
@@ -434,6 +435,8 @@ export default function MatricesTargetLesson33({
           </aside>
         </main>
       </section>
+      <LessonTopicStudyBoard lessonId={33} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

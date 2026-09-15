@@ -23,6 +23,7 @@ import {
   syntheticExpansionMatches103 as expandedMatches,
 } from "./syntheticDivisionLesson103Model";
 import "./SyntheticDivisionTargetLesson103.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type SyntheticTab103 =
   | "Interaction + Visualization"
@@ -605,6 +606,8 @@ export default function SyntheticDivisionTargetLesson103({
         </small>
         <p>www.IndianServers.com info@IndianServers.com</p>
       </footer>
+      <LessonTopicStudyBoard lessonId={103} view={tab} onInteraction={onInteraction} />
+
     </div>
   );
 }

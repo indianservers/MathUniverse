@@ -9,6 +9,7 @@ import {
 import { useEffect, useMemo, useState, type ReactNode } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./PrimeFactorisationTargetLesson68.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type FactorNode = {
   value: number;
@@ -426,6 +427,8 @@ export default function PrimeFactorisationTargetLesson68({
       >
         Reset factor tree
       </button>
+      <LessonTopicStudyBoard lessonId={68} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

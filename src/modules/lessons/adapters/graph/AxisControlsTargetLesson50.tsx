@@ -17,6 +17,7 @@ import {
   type AxisScale,
 } from "./axisControlsLesson50Model";
 import "./AxisControlsTargetLesson50.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Handle = "topLeft" | "topRight" | "bottomLeft" | "bottomRight";
 
@@ -419,6 +420,8 @@ export default function AxisControlsTargetLesson50({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={50} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

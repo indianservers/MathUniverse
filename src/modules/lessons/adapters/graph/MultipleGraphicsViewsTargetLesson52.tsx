@@ -28,6 +28,7 @@ import {
   type MultipleViewId,
 } from "./multipleViewsLesson52Model";
 import "./MultipleGraphicsViewsTargetLesson52.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 function LinkedGraph({
   view,
@@ -423,6 +424,8 @@ export default function MultipleGraphicsViewsTargetLesson52({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={52} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

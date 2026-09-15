@@ -11,6 +11,7 @@ import {
 import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./WholeNumbersTargetLesson58.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const PRACTICE = [-1, 0, 1.5, 2, 3];
 const isWhole = (value: number) => Number.isInteger(value) && value >= 0;
@@ -363,6 +364,8 @@ export default function WholeNumbersTargetLesson58({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={58} view={view} onInteraction={onInteraction} />
+
     </div>
   );
 }

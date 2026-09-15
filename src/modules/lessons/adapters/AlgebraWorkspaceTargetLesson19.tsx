@@ -14,6 +14,8 @@ import {
 import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./AlgebraWorkspaceTargetLesson19.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+
 
 const TABS = [
   "Interaction + visualization",
@@ -509,7 +511,7 @@ export default function AlgebraWorkspaceTargetLesson19({
           →
         </a>
       </nav>
-      <footer className="algebra-footer">
+<footer className="algebra-footer">
         <b>✣ Math Universe</b>
         <p>
           Interactive math labs, visual proofs, NCERT explorations, graphing,
@@ -527,6 +529,7 @@ export default function AlgebraWorkspaceTargetLesson19({
           </button>
         </nav>
       </footer>
+      <LessonTopicStudyBoard lessonId={19} view={view} onInteraction={onInteraction} />
     </div>
   );
 }

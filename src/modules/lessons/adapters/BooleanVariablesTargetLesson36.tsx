@@ -8,6 +8,7 @@ import {
 import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./BooleanVariablesTargetLesson36.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Operation = "AND" | "OR" | "NOT";
 
@@ -236,6 +237,8 @@ export default function BooleanVariablesTargetLesson36({
           </a>
         </nav>
       </section>
+      <LessonTopicStudyBoard lessonId={36} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

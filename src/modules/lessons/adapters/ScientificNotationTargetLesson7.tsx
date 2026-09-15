@@ -2,6 +2,8 @@ import { ArrowRight, Check, Info, RotateCcw } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./ScientificNotationTargetLesson7.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+
 
 const VIEWS = [
   "Interaction + visualization",
@@ -255,6 +257,7 @@ export default function ScientificNotationTargetLesson7({
           </section>
         </aside>
       </div>
+      <LessonTopicStudyBoard lessonId={7} alwaysVisible onInteraction={onInteraction} />
     </div>
   );
 }

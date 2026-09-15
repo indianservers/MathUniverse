@@ -18,6 +18,7 @@ import {
   timeFromGraphPosition,
 } from "./parametricCurvesLesson43Model";
 import "./ParametricCurvesTargetLesson43.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const tabs = ["Interactive", "Explain", "Examples", "Formulas", "Know more"];
 
@@ -403,6 +404,8 @@ export default function ParametricCurvesTargetLesson43({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={43} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }
