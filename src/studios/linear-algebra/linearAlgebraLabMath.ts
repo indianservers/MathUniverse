@@ -168,6 +168,65 @@ export function resizeMatrix(matrix: number[][], rows: number, cols: number) {
   return Array.from({ length: rows }, (_, r) => Array.from({ length: cols }, (_, c) => matrix[r]?.[c] ?? 0));
 }
 
+export function det3(M: number[][]) {
+  const a = M[0]?.[0] ?? 0, b = M[0]?.[1] ?? 0, c = M[0]?.[2] ?? 0;
+  const d = M[1]?.[0] ?? 0, e = M[1]?.[1] ?? 0, f = M[1]?.[2] ?? 0;
+  const g = M[2]?.[0] ?? 0, h = M[2]?.[1] ?? 0, i = M[2]?.[2] ?? 0;
+  return a * (e * i - f * h) - b * (d * i - f * g) + c * (d * h - e * g);
+}
+
+export function apply3(M: number[][], x: number, y: number, z: number): Vec3 {
+  return [
+    (M[0]?.[0] ?? 0) * x + (M[0]?.[1] ?? 0) * y + (M[0]?.[2] ?? 0) * z,
+    (M[1]?.[0] ?? 0) * x + (M[1]?.[1] ?? 0) * y + (M[1]?.[2] ?? 0) * z,
+    (M[2]?.[0] ?? 0) * x + (M[2]?.[1] ?? 0) * y + (M[2]?.[2] ?? 0) * z,
+  ];
+}
+
+export function rrefAugmented(A: number[][], b: number[]) {
+  const M = A.map((row, i) => [...row, b[i] ?? 0]);
+  const rows = M.length;
+  const cols = (M[0]?.length ?? 1) - 1;
+  const steps: { label: string; matrix: number[][] }[] = [{ label: "Initial", matrix: M.map((row) => row.slice()) }];
+  let lead = 0;
+  let step = 1;
+  for (let r = 0; r < rows && lead <= cols; r += 1) {
+    let i = r;
+    while (i < rows && Math.abs(M[i]?.[lead] ?? 0) < 1e-8) i += 1;
+    if (i === rows) {
+      lead += 1;
+      r -= 1;
+      continue;
+    }
+    if (i !== r) {
+      const swap = M[r]!;
+      M[r] = M[i]!;
+      M[i] = swap;
+      steps.push({ label: `R${r + 1} ↔ R${i + 1}`, matrix: M.map((row) => row.slice()) });
+      step += 1;
+    }
+    const pivot = M[r]![lead]!;
+    if (Math.abs(pivot - 1) > 1e-8) {
+      M[r] = M[r]!.map((v) => v / pivot);
+      steps.push({ label: `R${r + 1} ← (1/${fmtShort(pivot)}) R${r + 1}`, matrix: M.map((row) => row.slice()) });
+    }
+    for (let j = 0; j < rows; j += 1) {
+      if (j === r) continue;
+      const f = M[j]![lead]!;
+      if (Math.abs(f) < 1e-8) continue;
+      M[j] = M[j]!.map((v, k) => v - f * (M[r]![k] ?? 0));
+      steps.push({ label: `R${j + 1} ← R${j + 1} + (${fmtShort(-f)})R${r + 1}`, matrix: M.map((row) => row.slice()) });
+    }
+    lead += 1;
+    if (step > 12) break;
+  }
+  return steps;
+}
+
+function fmtShort(n: number) {
+  return String(Math.round(n * 100) / 100);
+}
+
 export function phaseTrajectories(M: Mat2, count = 12, steps = 40, h = 0.08) {
   return Array.from({ length: count }, (_, i) => {
     const ang = (i / count) * Math.PI * 2;

@@ -10,7 +10,7 @@ import {
 
 export default function Header() {
   const location = useLocation();
-  const studioHasOwnTeacher = /^\/(?:discrete-world|geometry|trigonometry)(?:\/|$)/.test(location.pathname);
+  const studioHasOwnTeacher = /^\/(?:discrete-world|geometry|trigonometry|linear-algebra)(?:\/|$)/.test(location.pathname);
   return (
     <header className="sticky top-0 z-30 border-b border-white/25 bg-[linear-gradient(105deg,rgba(3,105,161,0.94),rgba(67,56,202,0.92)_52%,rgba(147,51,234,0.9))] px-4 py-2 text-white shadow-xl shadow-indigo-950/20 backdrop-blur-2xl dark:border-white/10 md:px-8">
       <div className="flex items-center justify-between">

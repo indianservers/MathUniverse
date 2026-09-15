@@ -117,6 +117,9 @@ export default function AppLayout() {
   const isAlgebraStudioRoute =
     location.pathname === "/algebra" ||
     location.pathname.startsWith("/algebra/");
+  const isLinearAlgebraStudioRoute =
+    location.pathname === "/linear-algebra" ||
+    location.pathname.startsWith("/linear-algebra/");
   const currentMathWorkspace = findMathWorkspace(location.pathname);
   const isCompassTarget = location.pathname === "/lessons/geometry/221-compass";
   const isSemicircleTarget =
@@ -246,7 +249,7 @@ export default function AppLayout() {
     );
   }
 
-  if (isCalculusLabRoute || isModellingStudioRoute || isGeometryStudioRoute || isTrigonometryStudioRoute || isAlgebraStudioRoute) {
+  if (isCalculusLabRoute || isModellingStudioRoute || isGeometryStudioRoute || isTrigonometryStudioRoute || isAlgebraStudioRoute || isLinearAlgebraStudioRoute) {
     return (
       <main id="main-content" className="h-dvh overflow-auto bg-slate-50">
         <Outlet />

@@ -1,13 +1,13 @@
 import { useState, type PointerEvent, type ReactNode } from "react";
 import { Link } from "react-router-dom";
-import { Play, Search } from "lucide-react";
+import { Compass, FlaskConical, Play, Search, Trophy } from "lucide-react";
 import { TopicIllustration } from "./labs/TopicIllustrations";
 import type { StudioMockupDefinition, StudioMockupPage } from "./studioMockupCatalog";
 import { parseChallengeAnswer } from "./studioLabKit";
 import { studioLabMeta } from "./studioLabMeta";
 import { useTrigSession, writeTrigSession } from "./trigStudioSession";
 import { listSnapshots } from "../phase1/studioClassroom";
-import { continueLinearHref, LINEAR_SEARCH_ALIASES, useLinearSession, writeLinearSession } from "../linear-algebra/linearAlgebraStudioSession";
+import { continueLinearHref, useLinearSession } from "../linear-algebra/linearAlgebraStudioSession";
 import ArgandFigure from "../complex/ArgandFigure";
 import {
   COMPLEX_SEARCH_ALIASES,
@@ -422,116 +422,74 @@ export function GeometryStudioHome(props: HomeProps) {
   );
 }
 
-const LINEAR_FLOW_PRIMARY = [
-  { label: "Vectors", to: "/linear-algebra/vectors", id: "vectors" },
-  { label: "Matrices", to: "/linear-algebra/matrices", id: "matrices" },
-  { label: "Transforms", to: "/linear-algebra/linear-transforms", id: "linear-transforms" },
-  { label: "Eigen", to: "/linear-algebra/eigenvectors", id: "eigenvectors" },
-  { label: "Least squares", to: "/linear-algebra/least-squares", id: "least-squares" },
+const LINEAR_HOME_CARDS = [
+  { id: "vectors", title: "Vectors", cta: "Open Vectors", tone: "blue" },
+  { id: "matrices", title: "Matrices", cta: "Open Matrices", tone: "violet" },
+  { id: "row-reduction", title: "Linear Systems", cta: "Open Systems", tone: "cyan" },
+  { id: "linear-transforms", title: "Transformations", cta: "Open Transforms", tone: "lilac" },
+  { id: "determinants", title: "Determinants", cta: "Open Determinants", tone: "amber" },
+  { id: "vector-spaces", title: "Vector Spaces", cta: "Open Spaces", tone: "mint" },
+  { id: "eigenvectors", title: "Eigenvectors", cta: "Open Eigenvectors", tone: "blue" },
+  { id: "orthogonality", title: "Orthogonality", cta: "Open Orthogonality", tone: "cyan" },
+  { id: "least-squares", title: "Least Squares", cta: "Open Least Squares", tone: "mint" },
+  { id: "playground", title: "2D/3D Playground", cta: "Open Playground", tone: "amber" },
 ] as const;
 
-const LINEAR_FLOW_BRANCHES = [
-  { label: "Row reduction", to: "/linear-algebra/row-reduction", id: "row-reduction" },
-  { label: "Determinants", to: "/linear-algebra/determinants", id: "determinants" },
-  { label: "Spaces", to: "/linear-algebra/vector-spaces", id: "vector-spaces" },
-  { label: "Orthogonality", to: "/linear-algebra/orthogonality", id: "orthogonality" },
-  { label: "Playground", to: "/linear-algebra/playground", id: "playground" },
-] as const;
-
-function LinearAlgebraStudioHome(props: HomeProps & { title: string; cta?: string }) {
+function LinearAlgebraStudioHome(props: HomeProps) {
   const session = useLinearSession();
-  const levels = ["All", "Start here", "Core", "Next", "Apply", "Extend"];
-  const filtered = props.labs.filter((item) => {
-    if (session.levelFilter === "All") return true;
-    return studioLabMeta("linear-algebra", item.id)?.level === session.levelFilter;
-  });
-  const continueTo = continueLinearHref(session);
+  const continueTo = session.completed.length || session.lastRoute !== "/linear-algebra/vectors"
+    ? continueLinearHref(session)
+    : "/linear-algebra/linear-transforms";
   const done = session.completed.filter((id) => props.labs.some((lab) => lab.id === id));
   const progress = props.labs.length ? Math.round((done.length / props.labs.length) * 100) : 0;
-  const [query, setQuery] = useState("");
-  const [answer, setAnswer] = useState("");
-  const [status, setStatus] = useState("");
-  const alias = LINEAR_SEARCH_ALIASES[query.trim().toLowerCase()];
-  const hits = query
-    ? props.labs.filter((item) => `${item.label} ${item.description} ${item.modes.join(" ")} λ RREF proj det A×B`.toLowerCase().includes(query.trim().toLowerCase()))
-    : [];
-  const challengeHref = props.challenge
-    ? `${props.challenge.route}?mode=${encodeURIComponent(props.challenge.modes[0] ?? "")}&from=challenge`
-    : "/linear-algebra/vectors";
+  const continueCopy = session.completed.length || session.lastLabel !== "Vectors"
+    ? `You were exploring ${session.lastLabel}.`
+    : "You were exploring a 3D linear transformation.";
 
   return (
-    <div className="msk-home la-home">
-      <section>
-        <header className="msk-launch-head">
-          <h2>{props.title}</h2>
-          <p>Choose a topic. Each card opens that lab.</p>
-        </header>
-        <nav className="la-flow-map" aria-label="Linear algebra concept flow">
-          <ol className="msk-trig-flow" aria-label="Studio journey">
-            {LINEAR_FLOW_PRIMARY.map((step, index) => (
-              <li key={step.to}>
-                <Link to={step.to} data-flow-node={step.id}>
-                  <span>{index + 1}</span>
-                  <b>{step.label}</b>
-                </Link>
-                {index < LINEAR_FLOW_PRIMARY.length - 1 ? <i aria-hidden="true">→</i> : null}
-              </li>
-            ))}
-          </ol>
-          <ul className="la-flow-branches">
-            {LINEAR_FLOW_BRANCHES.map((item) => (
-              <li key={item.id}><Link to={item.to}>{item.label}</Link></li>
-            ))}
-          </ul>
-        </nav>
-        <LinearAlgebraHomeHero />
-        <div className="la-filters" role="group" aria-label="Difficulty filter">
-          {levels.map((level) => (
-            <button key={level} type="button" className={session.levelFilter === level ? "active" : ""} onClick={() => writeLinearSession({ levelFilter: level })}>{level}</button>
-          ))}
-        </div>
-        <LaunchGrid labs={filtered} studioId="linear-algebra" cta={props.cta} />
-      </section>
-      <aside className="msk-aside">
-        <section className="msk-panel msk-continue">
-          <h2>Continue</h2>
-          <p><strong>{session.lastLabel}</strong></p>
-          <Link className="msk-cta" to={continueTo}>Continue →</Link>
+    <div className="msk-home la-home la-home-target" data-studio-home="linear-algebra">
+      <div className="la-topic-grid">
+        {LINEAR_HOME_CARDS.map((card, index) => {
+          const lab = props.labs.find((item) => item.id === card.id);
+          if (!lab) return null;
+          return (
+            <Link key={card.id} className={`la-topic-card is-${card.tone}`} to={lab.route} data-lab-id={card.id}>
+              <span className="la-topic-n">{index + 1}</span>
+              <b>{card.title}</b>
+              <small>{studioLabMeta("linear-algebra", card.id)?.outcome ?? lab.description}</small>
+              <TopicIllustration pageId={card.id} />
+              <span className="la-topic-cta">{card.cta}</span>
+            </Link>
+          );
+        })}
+      </div>
+      <div className="la-home-dock" id="la-journey">
+        <section className="la-dock-continue">
+          <FlaskConical />
+          <div>
+            <strong>Continue your last experiment</strong>
+            <p>{continueCopy}</p>
+          </div>
+          <Link className="msk-cta" to={continueTo}><Play /> Resume Experiment</Link>
         </section>
-        <section className="msk-panel">
-          <h2>Search</h2>
-          <input className="msk-home-search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder={props.studio.searchPlaceholder} aria-label="Search labs" />
-              {alias ? <p><Link to={`/linear-algebra/${alias.id}${alias.mode ? `?mode=${encodeURIComponent(alias.mode)}` : ""}`}>Open {alias.id}{alias.mode ? ` · ${alias.mode}` : ""}</Link></p> : null}
-          {query ? (
-            <ul className="msk-search-hits is-inline">
-              {hits.slice(0, 5).map((item) => <li key={item.id}><Link to={item.route}>{item.label}</Link></li>)}
-            </ul>
-          ) : null}
+        <section className="la-dock-journey">
+          <Compass />
+          <div>
+            <strong>Your learning journey</strong>
+            <p>{`${done.length} of ${props.labs.length} studios explored`}</p>
+            <div className="msk-progress" aria-label={`${progress} percent`}><i style={{ width: `${progress}%` }} /></div>
+          </div>
+          <b>{progress}%</b>
         </section>
-        <section className="msk-panel">
-          <h2>Your learning journey</h2>
-          <ol className="msk-journey-list">
-            {props.labs.map((item) => (
-              <li key={item.id}>
-                <i className={done.includes(item.id) ? "done" : session.lastLabel === item.label ? "now" : ""} />
-                <Link to={item.route}>{item.label}</Link>
-              </li>
-            ))}
-          </ol>
-          <div className="msk-progress"><i style={{ width: `${progress}%` }} /></div>
-          <small>Overall progress {progress}%</small>
+        <section className="la-dock-challenge">
+          <Trophy />
+          <div>
+            <strong>Challenge yourself</strong>
+            <p>Complete studios to earn XP and unlock new challenges.</p>
+          </div>
+          <Link className="la-dock-link" to={props.challenge?.route ?? "/linear-algebra/vectors"}>View Challenges</Link>
         </section>
-        {props.challenge ? (
-          <section className="msk-panel msk-challenge">
-            <h2>Daily visual challenge</h2>
-            <p>{props.challenge.challenge.prompt}</p>
-            <input value={answer} onChange={(event) => { setAnswer(event.target.value); setStatus(""); }} aria-label="Challenge answer" />
-            <button className="msk-cta" type="button" onClick={() => setStatus(Math.abs(parseChallengeAnswer(answer) - props.challenge!.challenge.expected) < 0.02 ? "Correct." : props.challenge!.challenge.hint)}>Check</button>
-            {status ? <p role="status">{status}</p> : null}
-            <Link className="msk-teach" to={challengeHref}>Open {props.challenge.label} with this setup</Link>
-          </section>
-        ) : null}
-      </aside>
+      </div>
     </div>
   );
 }

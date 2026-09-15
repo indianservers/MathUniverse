@@ -55,25 +55,95 @@ export function TopicIllustration({ pageId }: { pageId: string }) {
     case "solids":
       return <Frame><path d="M80 28 L140 28 L160 48 L160 72 L100 72 L80 52 Z" fill="none" stroke="#147df2" /><path d="M80 28 L100 48 L160 48" stroke="#8b45f4" /></Frame>;
     case "vectors":
-      return <Frame><line x1="40" y1="70" x2="150" y2="24" stroke="#147df2" strokeWidth="2.4" /><line x1="40" y1="70" x2="170" y2="70" stroke="#8b45f4" strokeWidth="2.4" /></Frame>;
+      return (
+        <Frame bg="#eef7ff">
+          <line x1="36" y1="78" x2="196" y2="78" stroke="#94a3b8" strokeWidth="1.2" />
+          <line x1="36" y1="78" x2="36" y2="14" stroke="#94a3b8" strokeWidth="1.2" />
+          <polygon points="36,78 118,22 118,78" fill="rgba(20,125,242,.12)" stroke="#147df2" strokeWidth="1.4" />
+          <line x1="36" y1="78" x2="118" y2="22" stroke="#147df2" strokeWidth="2.4" markerEnd="url(#la-arr)" />
+          <line x1="36" y1="78" x2="168" y2="58" stroke="#8b45f4" strokeWidth="2.4" />
+          <text x="122" y="20" fill="#147df2" fontSize="11" fontWeight="800">u</text>
+          <text x="174" y="56" fill="#8b45f4" fontSize="11" fontWeight="800">v</text>
+        </Frame>
+      );
     case "matrices":
-      return <Frame><text x="110" y="54" textAnchor="middle" fill="#147df2" fontSize="22" fontFamily="Georgia">[ a b ; c d ]</text></Frame>;
+      return (
+        <Frame bg="#f6f0ff">
+          <text x="52" y="28" fill="#8b45f4" fontSize="11" fontFamily="Georgia">⎡</text>
+          <text x="64" y="26" fill="#334155" fontSize="11">a₁₁  a₁₂  ⋯  a₁ₙ</text>
+          <text x="64" y="46" fill="#334155" fontSize="11">a₂₁  a₂₂  ⋯  a₂ₙ</text>
+          <text x="76" y="64" fill="#94a3b8" fontSize="12">⋮     ⋮      ⋱   ⋮</text>
+          <text x="64" y="82" fill="#334155" fontSize="11">aₘ₁  aₘ₂  ⋯  aₘₙ</text>
+        </Frame>
+      );
     case "row-reduction":
-      return <Frame><line x1="30" y1="30" x2="190" y2="70" stroke="#147df2" /><line x1="30" y1="70" x2="190" y2="28" stroke="#8b45f4" /><circle cx="110" cy="48" r="4" fill="#f59e0b" /></Frame>;
+      return (
+        <Frame bg="#e8fbff">
+          <polygon points="30,70 190,58 160,18 50,28" fill="rgba(8,185,221,.22)" stroke="#08b9dd" />
+          <polygon points="40,78 200,70 170,32 70,40" fill="rgba(139,69,244,.18)" stroke="#8b45f4" />
+          <line x1="40" y1="74" x2="176" y2="36" stroke="#f59e0b" strokeWidth="2" />
+          <text x="118" y="16" fill="#0e7490" fontSize="10" fontWeight="800">Ax = b</text>
+        </Frame>
+      );
     case "linear-transforms":
-      return <Frame><rect x="40" y="30" width="50" height="40" fill="#d9f6ff" stroke="#147df2" /><polygon points="110,70 190,70 170,24 130,24" fill="#efe4ff" stroke="#8b45f4" /></Frame>;
+      return (
+        <Frame bg="#f4f0ff">
+          <rect x="28" y="34" width="48" height="40" fill="#d9f6ff" stroke="#147df2" />
+          <polygon points="108,74 188,74 168,24 128,24" fill="#efe4ff" stroke="#8b45f4" />
+          <path d="M80 54h24" stroke="#64748b" strokeWidth="1.6" markerEnd="url(#la-arr)" />
+          <text x="92" y="48" fill="#8b45f4" fontSize="11" fontWeight="800">T</text>
+        </Frame>
+      );
     case "determinants":
-      return <Frame><polygon points="70,70 150,70 180,24 40,40" fill="rgba(245,158,11,.18)" stroke="#f59e0b" /><text x="96" y="54" fontSize="11" fill="#b45309">det</text></Frame>;
+      return (
+        <Frame bg="#fff7ed">
+          <path d="M70 70 L150 70 L178 28 L98 22 Z" fill="rgba(245,158,11,.2)" stroke="#f59e0b" />
+          <path d="M70 70 L98 22 L98 52 Z" fill="none" stroke="#fb923c" />
+          <text x="108" y="56" fill="#c2410c" fontSize="11" fontWeight="800">det(A)=2.50</text>
+        </Frame>
+      );
     case "vector-spaces":
-      return <Frame><polygon points="40,70 190,70 150,22 70,30" fill="#eef6ff" stroke="#147df2" /><line x1="70" y1="70" x2="130" y2="28" stroke="#8b45f4" /></Frame>;
+      return (
+        <Frame bg="#ecfdf5">
+          <polygon points="36,74 196,74 156,22 70,30" fill="rgba(20,125,242,.16)" stroke="#147df2" />
+          <polygon points="70,74 170,70 130,28" fill="rgba(16,185,129,.2)" stroke="#10b981" />
+          <line x1="40" y1="74" x2="40" y2="18" stroke="#94a3b8" />
+        </Frame>
+      );
     case "eigenvectors":
-      return <Frame><ellipse cx="110" cy="46" rx="60" ry="28" fill="none" stroke="#94a3b8" /><line x1="50" y1="70" x2="170" y2="22" stroke="#8b45f4" strokeWidth="2" /></Frame>;
+      return (
+        <Frame bg="#eef4ff">
+          <ellipse cx="110" cy="48" rx="62" ry="28" fill="none" stroke="#94a3b8" />
+          <line x1="48" y1="70" x2="172" y2="22" stroke="#8b45f4" strokeWidth="2.2" />
+          <line x1="70" y1="22" x2="150" y2="74" stroke="#147df2" strokeWidth="2" />
+          <text x="176" y="24" fill="#8b45f4" fontSize="11" fontWeight="800">λ₁</text>
+          <text x="154" y="80" fill="#147df2" fontSize="11" fontWeight="800">λ₂</text>
+        </Frame>
+      );
     case "orthogonality":
-      return <Frame><line x1="40" y1="70" x2="180" y2="70" stroke="#147df2" /><line x1="110" y1="70" x2="110" y2="20" stroke="#8b45f4" /></Frame>;
+      return (
+        <Frame bg="#eefbff">
+          <line x1="40" y1="74" x2="190" y2="74" stroke="#147df2" strokeWidth="2.2" />
+          <line x1="110" y1="74" x2="110" y2="18" stroke="#8b45f4" strokeWidth="2.2" />
+          <rect x="110" y="62" width="12" height="12" fill="none" stroke="#0f172a" />
+        </Frame>
+      );
     case "least-squares":
-      return <Frame><circle cx="50" cy="60" r="3" fill="#147df2" /><circle cx="90" cy="40" r="3" fill="#147df2" /><circle cx="140" cy="52" r="3" fill="#147df2" /><circle cx="180" cy="28" r="3" fill="#147df2" /><line x1="30" y1="70" x2="200" y2="22" stroke="#8b45f4" /></Frame>;
+      return (
+        <Frame bg="#ecfdf5">
+          <circle cx="48" cy="64" r="3.2" fill="#147df2" /><circle cx="86" cy="48" r="3.2" fill="#147df2" />
+          <circle cx="124" cy="42" r="3.2" fill="#147df2" /><circle cx="162" cy="28" r="3.2" fill="#147df2" />
+          <circle cx="92" cy="62" r="3.2" fill="#10b981" />
+          <line x1="30" y1="72" x2="196" y2="18" stroke="#8b45f4" strokeWidth="2" />
+        </Frame>
+      );
     case "playground":
-      return <Frame><path d="M30 70 C 70 20, 120 80, 190 30" fill="none" stroke="#08b9dd" strokeWidth="2" /></Frame>;
+      return (
+        <Frame bg="#f5f0ff">
+          <path d="M28 70 C 70 18, 120 82, 196 28" fill="none" stroke="#8b45f4" strokeWidth="2" />
+          <path d="M40 78 C 80 40, 130 70, 190 36" fill="rgba(139,69,244,.18)" stroke="#08b9dd" />
+        </Frame>
+      );
     case "argand-plane":
       return <Frame><line x1="24" y1="70" x2="200" y2="70" stroke="#94a3b8" /><line x1="40" y1="16" x2="40" y2="80" stroke="#94a3b8" /><line x1="40" y1="70" x2="150" y2="28" stroke="#147df2" /><circle cx="150" cy="28" r="4" fill="#147df2" /></Frame>;
     case "arithmetic":
