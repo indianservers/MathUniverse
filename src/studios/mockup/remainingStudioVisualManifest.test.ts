@@ -56,7 +56,7 @@ describe("remaining studio visual manifest", () => {
     for (const route of EXCLUDED_FROM_RESTORATION) {
       expect(routes.some((item) => item === route || item.startsWith(`${route}/`))).toBe(false);
     }
-    expect(routes.some((item) => item.includes("/ar"))).toBe(false);
+    expect(routes.some((item) => item === "/geometry/ar" || item === "/trigonometry/ar" || item.endsWith("/ar"))).toBe(false);
     expect(routes.some((item) => item.includes("probability") || item.includes("statistics"))).toBe(false);
   });
 

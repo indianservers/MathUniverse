@@ -10,12 +10,20 @@ import {
   remainingStudioTargets,
 } from "./remainingStudioVisualManifest";
 
+function encodedTitle(title: string) {
+  return title
+    .replace(/&/g, "&amp;")
+    .replace(/'/g, "&#x27;")
+    .replace(/"/g, "&quot;");
+}
+
 function htmlFor(route: string) {
-  if (route === "/algebra" || route.startsWith("/algebra/")) {
+  const pathname = route.split("?")[0] ?? route;
+  if (pathname === "/algebra" || pathname.startsWith("/algebra/")) {
     return renderToString(<MemoryRouter initialEntries={[route]}><AlgebraStudio /></MemoryRouter>);
   }
-  if (route === "/calculus" || route.startsWith("/calculus/")) {
-    const page = (route === "/calculus" ? "home" : route.slice("/calculus/".length)) as CalculusStudioPage;
+  if (pathname === "/calculus" || pathname.startsWith("/calculus/")) {
+    const page = (pathname === "/calculus" ? "home" : pathname.slice("/calculus/".length)) as CalculusStudioPage;
     return renderToString(<MemoryRouter initialEntries={[route]}><CalculusStudio page={page} /></MemoryRouter>);
   }
   const studioId = route.startsWith("/linear-algebra")
@@ -37,11 +45,15 @@ describe("remaining studio route restoration", () => {
     expect(remainingStudioTargets).toHaveLength(63);
     for (const target of remainingStudioTargets) {
       const html = htmlFor(target.route);
-      expect(html, target.route).toContain(target.title.replace(/&/g, "&amp;"));
+      expect(
+        html.includes(target.title) || html.includes(encodedTitle(target.title)),
+        target.route,
+      ).toBe(true);
       if (target.modes.length) {
+        const mode = encodedTitle(target.modes[0]!);
         const withMode = htmlFor(`${target.route}?mode=${encodeURIComponent(target.modes[0]!)}`);
-        expect(withMode, `${target.route} mode`).toContain(`data-lab-mode="${target.modes[0]}"`);
-        expect(withMode, `${target.route} canvas`).toContain(`data-mode-canvas="${target.modes[0]}"`);
+        expect(withMode, `${target.route} mode`).toContain(`data-lab-mode="${mode}"`);
+        expect(withMode, `${target.route} canvas`).toContain(`data-mode-canvas="${mode}"`);
       }
     }
   });

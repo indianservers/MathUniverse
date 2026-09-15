@@ -238,7 +238,7 @@ export default function CalculusMultivariableStudio() {
   };
 
   return (
-    <div className="mvc-studio" data-mode={mode}>
+    <div className="mvc-studio" data-mode={mode} data-lab-mode={mode} data-mode-canvas={mode}>
       <nav
         className="mvc-major-tabs"
         role="tablist"
