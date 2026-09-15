@@ -9,6 +9,7 @@ import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./CombinedSolidsTargetLesson10082.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 type Kind = "cylinder" | "cone" | "hemisphere";
 const labels: Record<Kind, string> = {
   cylinder: "Cylinder",
@@ -422,6 +423,8 @@ export default function CombinedSolidsTargetLesson10082({
           Next: Truncated Cone (Frustum) <ArrowRight />
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10082} view={tab} />
+
     </section>
   );
 }

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./ExteriorAngleTargetLesson10065.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 export default function ExteriorAngleTargetLesson10065({
   lesson: _lesson,
@@ -286,6 +287,8 @@ export default function ExteriorAngleTargetLesson10065({
           <ArrowRight />
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10065} view={tab} />
+
     </section>
   );
 }

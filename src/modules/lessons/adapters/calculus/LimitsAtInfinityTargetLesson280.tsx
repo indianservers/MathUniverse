@@ -15,6 +15,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./LimitsAtInfinityTargetLesson280.css";
 import "./LimitsAtInfinityTargetLesson280Fit.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const rational = (x: number, height: number) => (height * x * x) / (1 + x * x),
   initialAnswers = ["", "", ""];
@@ -319,6 +320,8 @@ export default function LimitsAtInfinityTargetLesson280({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={280} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

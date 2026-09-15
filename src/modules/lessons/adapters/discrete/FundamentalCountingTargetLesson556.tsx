@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "../geometry3d/CoordinateSystemTargetLesson378.css";
 import "./FundamentalCountingTargetLesson556.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const colors = ["#1677d2", "#20a46b", "#e9483e", "#8c53d6", "#e5a52c"],
   fix = (n: number) => Math.max(1, Math.min(5, n));
@@ -288,6 +289,8 @@ export default function FundamentalCountingTargetLesson556({
           <b>557 Factorials</b>
         </button>
       </nav>
+      <LessonTopicStudyBoard lessonId={556} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

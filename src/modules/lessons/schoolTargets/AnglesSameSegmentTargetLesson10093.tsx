@@ -12,6 +12,7 @@ import { type PointerEvent, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./AnglesSameSegmentTargetLesson10093.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type PointName = "C" | "D";
 type Point = { x: number; y: number };
@@ -423,6 +424,8 @@ export default function AnglesSameSegmentTargetLesson10093({
           </Link>
         </nav>
       </main>
+      <LessonTopicStudyBoard lessonId={10093} view={tab} />
+
     </section>
   );
 }

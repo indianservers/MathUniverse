@@ -10,6 +10,7 @@ import { useEffect, useRef, useState } from "react";
 import type { KeyboardEvent, PointerEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./CoordinateTransformationsTargetLesson179.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 type Point = { x: number; y: number };
 type Kind =
   "translation" | "reflectX" | "reflectY" | "rotate90" | "rotate180" | "scale";
@@ -634,6 +635,8 @@ export default function CoordinateTransformationsTargetLesson179({
         <a>Docs</a>
         <a>About</a>
       </footer>
+      <LessonTopicStudyBoard lessonId={179} alwaysVisible onInteraction={onInteraction} />
+
     </main>
   );
 }

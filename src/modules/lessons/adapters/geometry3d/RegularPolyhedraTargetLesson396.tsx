@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./CoordinateSystemTargetLesson378.css";
 import "./RegularPolyhedraTargetLesson396.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type SolidName =
   "Tetrahedron" | "Cube" | "Octahedron" | "Dodecahedron" | "Icosahedron";
@@ -430,6 +431,8 @@ export default function RegularPolyhedraTargetLesson396({
         ✣ Tip: Hover over a face, edge, or vertex in the 3D view to highlight
         it.
       </p>
+      <LessonTopicStudyBoard lessonId={396} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

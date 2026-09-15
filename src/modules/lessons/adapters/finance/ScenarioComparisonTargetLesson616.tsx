@@ -8,6 +8,7 @@ import {
 import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./ScenarioComparisonTargetLesson616.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 const amount = (p: number, r: number, t: number) => p * (1 + r / 100) ** t,
   fmt = (n: number) =>
     new Intl.NumberFormat("en-IN", {
@@ -427,6 +428,8 @@ export default function ScenarioComparisonTargetLesson616({
           <ChevronRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={616} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

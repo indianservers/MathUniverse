@@ -11,6 +11,7 @@ import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./SuccessiveMagnificationTargetLesson10043.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const targetOptions = {
   sqrt2: { label: "√2 ≈ 1.41421356…", value: Math.SQRT2 },
@@ -353,6 +354,8 @@ export default function SuccessiveMagnificationTargetLesson10043({
           <ArrowRight />
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10043} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

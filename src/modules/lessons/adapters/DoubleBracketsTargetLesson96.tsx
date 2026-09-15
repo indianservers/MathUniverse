@@ -20,6 +20,7 @@ import {
   uncombinedExpression96,
 } from "./doubleBracketsLesson96Model";
 import "./DoubleBracketsTargetLesson96.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type DoubleBracketsTab96 =
   "Interact" | "Learn" | "Examples" | "Formula" | "Practice";
@@ -628,6 +629,8 @@ export default function DoubleBracketsTargetLesson96({
           </nav>
         </footer>
       </main>
+      <LessonTopicStudyBoard lessonId={96} view={tab} onInteraction={onInteraction} />
+
     </div>
   );
 }

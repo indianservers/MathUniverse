@@ -15,6 +15,7 @@ import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./InfiniteLimitsTargetLesson279.css";
 import "./InfiniteLimitsTargetLesson279Fit.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Side = "left" | "right";
 const fn = (x: number) => -2 / (x - 1) ** 3;
@@ -331,6 +332,8 @@ export default function InfiniteLimitsTargetLesson279({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={279} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

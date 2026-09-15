@@ -21,6 +21,7 @@ import {
   xFromPixel54,
 } from "./graphInspectorLesson54Model";
 import "./GraphInspectorTargetLesson54.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 export default function GraphInspectorTargetLesson54({
   resetToken,
@@ -379,6 +380,8 @@ export default function GraphInspectorTargetLesson54({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={54} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { schoolLessonCatalog } from "../catalog/school/schoolSyllabusCatalog";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./HouseholdBudgetTargetLesson10020.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Envelope = { id: number; name: string; amount: number; color: string };
 const defaults: Envelope[] = [
@@ -434,6 +435,8 @@ export default function HouseholdBudgetTargetLesson10020({
         <Link to={prev.route}>← Previous: Profit, Loss and Marked Price</Link>
         <Link to={next.route}>Next: Scale Factor in Maps and Recipes →</Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10020} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

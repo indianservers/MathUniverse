@@ -6,6 +6,7 @@ import {
   goodnessOfFitTest,
 } from "./goodnessOfFitLessonModel";
 import "./ChiSquareGoodnessOfFitLesson549.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 export default function ChiSquareGoodnessOfFitLesson549({
   resetToken,
@@ -437,6 +438,8 @@ function GoodnessActivity({
         <span>Previous &nbsp; Two-Proportion Test</span>
         <span>Next &nbsp; Chi-Square Test of Independence</span>
       </footer>
+      <LessonTopicStudyBoard lessonId={549} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

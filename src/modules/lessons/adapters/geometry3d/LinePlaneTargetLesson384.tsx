@@ -6,6 +6,7 @@ import { DoubleSide, Quaternion, Vector3 } from "three";
 import type { LessonAdapterProps } from "../../types";
 import "./CoordinateSystemTargetLesson378.css";
 import "./LinePlaneTargetLesson384.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Point = [number, number, number];
 type Plane = [number, number, number, number];
@@ -387,6 +388,8 @@ export default function LinePlaneTargetLesson384({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={384} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

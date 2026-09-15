@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import type { PointerEvent as ReactPointerEvent } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./DeterminantTargetLesson353.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 type Matrix=[[number,number],[number,number]];const initial:Matrix=[[3,1],[2,4]],tabs=["Interact","Learn","Examples","Formula","Practice"];
 const determinant=(m:Matrix)=>m[0][0]*m[1][1]-m[0][1]*m[1][0],clean=(n:number)=>Number(n.toFixed(2));
 export default function DeterminantTargetLesson353({resetToken,onInteraction}:LessonAdapterProps){
@@ -19,6 +20,8 @@ export default function DeterminantTargetLesson353({resetToken,onInteraction}:Le
   </section>
   <section className="mat353-bottom"><article><h3>✓ WORKED EXAMPLE</h3><p>Compute det(A) for A = [{matrix[0].join(" ")}; {matrix[1].join(" ")}]</p><code>ad = {matrix[0][0]} x {matrix[1][1]} = {ad}</code><code>bc = {matrix[0][1]} x {matrix[1][0]} = {bc}</code><code>det(A) = ad - bc = {ad} - {bc} = {det}</code><strong>det(A) = {det}</strong></article><article><h3>☆ CHALLENGE</h3><h2>Make det(A) = 0</h2><p>Adjust the entries to make the determinant zero (the two vectors should be collinear).</p><div><MatrixInputs matrix={challenge} onEdit={(r,c,v)=>edit("challenge",r,c,v)}/><aside><code>det(A) = ad - bc<br/>= {challenge[0][0]*challenge[1][1]} - {challenge[0][1]*challenge[1][0]} = {challengeDet}</code><button onClick={()=>act(()=>setChallengeResult(challengeDet===0?"correct":"incorrect"))}>Check</button><output>{challengeResult==="correct"?"Correct: the columns are linearly dependent.":challengeResult==="incorrect"?"Not zero yet. Make one column a scalar multiple of the other.":""}</output></aside></div></article></section>
   <p className="mat353-tip">Tip: det(A) measures signed area scale and orientation of the linear map. Positive preserves orientation; negative flips orientation.</p>
+      <LessonTopicStudyBoard lessonId={353} view={view} onInteraction={onInteraction} />
+
  </section>
 }
 function MatrixInputs({matrix,onEdit}:{matrix:Matrix;onEdit:(r:number,c:number,v:number)=>void}){return <div className="mat353-inputs"><span/><b>Column 1</b><b>Column 2</b>{matrix.flatMap((row,r)=>[<b key={`r${r}`}>Row {r+1}</b>,...row.map((v,c)=><label key={`${r}-${c}`}><i>{["a","b","c","d"][r*2+c]}</i><input aria-label={`Determinant matrix row ${r+1} column ${c+1}`} type="number" value={v} onChange={e=>onEdit(r,c,Number(e.target.value))}/></label>)])}</div>}

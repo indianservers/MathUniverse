@@ -12,6 +12,7 @@ import {
 import { useEffect, useMemo, useState, type DragEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./CompoundChangeTargetLesson90.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const clamp = (value: number, minimum: number, maximum: number) =>
   Math.max(
@@ -361,6 +362,8 @@ export default function CompoundChangeTargetLesson90({
           </section>
         </aside>
       </main>
+      <LessonTopicStudyBoard lessonId={90} view={tab} onInteraction={onInteraction} />
+
     </div>
   );
 }

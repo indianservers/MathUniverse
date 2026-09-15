@@ -23,6 +23,7 @@ import {
   type LogarithmicProblem119 as LogProblem,
 } from "./logarithmicEquationsLesson119Model";
 import "./LogarithmicEquationsTargetLesson119.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 function LogTerm({ base, value }: { base: number; value: string | number }) {
   return (
@@ -602,6 +603,8 @@ export default function LogarithmicEquationsTargetLesson119({
         </small>
         <small>www.IndianServers.com · info@IndianServers.com</small>
       </footer>
+      <LessonTopicStudyBoard lessonId={119} view={activeTab} onInteraction={onInteraction} />
+
     </div>
   );
 }

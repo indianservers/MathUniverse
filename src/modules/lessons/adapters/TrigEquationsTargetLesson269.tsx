@@ -25,6 +25,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./TrigEquationsTargetLesson269.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type UnitMode = "radian" | "degree";
 type Result = "idle" | "correct" | "incorrect";
@@ -555,6 +556,8 @@ export default function TrigEquationsTargetLesson269({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={269} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

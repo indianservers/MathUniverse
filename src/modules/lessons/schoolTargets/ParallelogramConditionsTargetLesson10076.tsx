@@ -12,6 +12,7 @@ import { type PointerEvent, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./ParallelogramConditionsTargetLesson10076.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 type P = { x: number; y: number };
 type V = "a" | "b" | "c" | "d";
 const START = {
@@ -440,6 +441,8 @@ export default function ParallelogramConditionsTargetLesson10076({
           Next: Midpoint Theorem <ArrowRight />
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10076} view={tab} />
+
     </section>
   );
 }

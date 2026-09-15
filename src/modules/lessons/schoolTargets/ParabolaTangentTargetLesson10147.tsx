@@ -13,6 +13,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import type { PointerEvent as ReactPointerEvent } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./ParabolaTangentTargetLesson10147.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 export default function ParabolaTangentTargetLesson10147({
   lesson: _lesson,
@@ -392,6 +393,8 @@ export default function ParabolaTangentTargetLesson10147({
           </article>
         </section>
       </main>
+      <LessonTopicStudyBoard lessonId={10147} alwaysVisible />
+
     </section>
   );
 }

@@ -5,6 +5,7 @@ import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import { analyzeRegion,visibleRegion,satisfiesRegion,type RegionConstraint,type RegionPoint } from "./feasibleRegionModel";
 import { boundedConstraints,boundedPractice } from "./boundedRegionModel";
 import "./BoundedRegionTargetLesson10203.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 const fmt=(n:number)=>Number(n.toFixed(2));
 function BoundedGraph({constraints,onLimit,onK,compact=false}:{constraints:RegionConstraint[];onLimit?:(v:number)=>void;onK?:(v:number)=>void;compact?:boolean}) {
   const dragging=useRef<"limit"|"k"|null>(null);
@@ -43,5 +44,7 @@ export default function BoundedRegionTargetLesson10203({lesson}:{lesson:SchoolSy
     <section id="br-Learn" className="br-notes"><article><h2>WHAT IS A BOUNDED FEASIBLE REGION?</h2><p>A feasible region is bounded when all of its points fit inside a finite disk. It can be a polygon, a single point or a line segment.</p></article><article><h2><TriangleAlert size={20}/>COMMON MISCONCEPTION</h2><p>Removing a constraint does not always make a region unbounded. Other constraints may still provide finite limits.</p></article></section>
     <section id="br-Practice" className="br-practice"><h2>TRY IT: LESSON PRACTICE</h2><p>Determine whether the system has a bounded feasible region, then list its corner points.</p><p>x ≥ 0, y ≥ 0, x + 2y ≤ 8, 3x + y ≤ 12</p><button onClick={()=>setPractice(v=>!v)} aria-expanded={practice}><CheckCircle2 size={15}/>{practice?"Hide answer":"Check my answer"}</button>{practice&&<div role="status"><strong>{example.kind}</strong><p>Vertices: {example.vertices.map(p=>`(${p.map(fmt).join(", ")})`).join(" → ")}</p><p>Area: {fmt(example.area??0)} square units</p></div>}</section>
     <nav className="br-next"><Link to="/lessons/school/class-12/class-12-linear-programming-corner-point-method"><ArrowLeft size={14}/>Previous: Corner-Point Method</Link><Link to="/lessons/school/class-12/class-12-linear-programming-unbounded-feasible-region">Next: Unbounded Feasible Region<ArrowRight size={14}/></Link></nav>
+      <LessonTopicStudyBoard lessonId={10203} view={tab} />
+
   </main>;
 }

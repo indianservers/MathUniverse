@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./OrderDegreeDifferentialEquationTargetLesson10187.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Term = "third" | "first" | "y";
 const examples = [
@@ -442,6 +443,8 @@ export default function OrderDegreeDifferentialEquationTargetLesson10187({
       <div className="ode-complete">
         Classification complete · order identified · degree verified
       </div>
+      <LessonTopicStudyBoard lessonId={10187} alwaysVisible />
+
     </main>
   );
 }

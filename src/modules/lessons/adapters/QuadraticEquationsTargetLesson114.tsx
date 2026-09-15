@@ -27,6 +27,7 @@ import {
   type QuadraticRoots114 as Roots,
 } from "./quadraticEquationsLesson114Model";
 import "./QuadraticEquationsTargetLesson114.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 function QuadraticGraph({
   quadratic,
@@ -603,6 +604,8 @@ export default function QuadraticEquationsTargetLesson114({
           © 2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.
         </small>
       </footer>
+      <LessonTopicStudyBoard lessonId={114} view={activeTab} onInteraction={onInteraction} />
+
     </div>
   );
 }

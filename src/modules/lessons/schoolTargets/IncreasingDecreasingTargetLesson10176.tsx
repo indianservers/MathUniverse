@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import type { KeyboardEvent, PointerEvent as ReactPointerEvent } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./IncreasingDecreasingTargetLesson10176.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const f = (x: number) => x * x * x - 3 * x,
   df = (x: number) => 3 * x * x - 3,
@@ -456,6 +457,8 @@ export default function IncreasingDecreasingTargetLesson10176({
           © 2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.
         </small>
       </footer>
+      <LessonTopicStudyBoard lessonId={10176} alwaysVisible />
+
     </main>
   );
 }

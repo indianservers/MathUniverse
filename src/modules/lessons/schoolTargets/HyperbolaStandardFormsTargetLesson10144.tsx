@@ -3,6 +3,7 @@ import { useMemo, useRef, useState } from "react";
 import type { PointerEvent as ReactPointerEvent } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./HyperbolaStandardFormsTargetLesson10144.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Orientation = "horizontal" | "vertical";
 type Branch = 1 | -1;
@@ -386,6 +387,8 @@ export default function HyperbolaStandardFormsTargetLesson10144({
           </div>
         </section>
       </main>
+      <LessonTopicStudyBoard lessonId={10144} alwaysVisible />
+
     </section>
   );
 }

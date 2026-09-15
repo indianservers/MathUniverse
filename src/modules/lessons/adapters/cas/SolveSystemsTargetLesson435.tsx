@@ -22,6 +22,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./SolveSystemsTargetLesson435.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Equation = { a: number; b: number; c: number };
 type Kind = "unique" | "none" | "infinite";
@@ -519,6 +520,8 @@ export default function SolveSystemsTargetLesson435({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={435} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

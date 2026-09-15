@@ -8,6 +8,7 @@ import {
 import { type PointerEvent, useRef, useState } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./GroupedMeanStepTargetLesson10104.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type StepRow = {
   id: number;
@@ -372,6 +373,8 @@ export default function GroupedMeanStepTargetLesson10104({
           </article>
         </section>
       </main>
+      <LessonTopicStudyBoard lessonId={10104} alwaysVisible />
+
     </section>
   );
 }

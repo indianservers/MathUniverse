@@ -3,6 +3,7 @@ import { Fragment, useState } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import { LessonStudioFrame, LessonStudioGrid, LessonStudioPanel } from "../components/LessonStudio";
 import "./CramersRuleTargetLesson10198.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Sys = [number, number, number, number, number, number];
 const DEFAULT: Sys = [2, 1, 5, 1, -1, 1],
@@ -34,6 +35,8 @@ function Matrix({ m, replacedColumn }: { m: number[][]; replacedColumn?: number 
       {m.flat().map((v, i) => (
         <span key={i}>{v}</span>
       ))}
+      <LessonTopicStudyBoard lessonId={10198} alwaysVisible />
+
     </div>
   );
 }

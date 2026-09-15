@@ -11,6 +11,7 @@ import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./EuclidPostulatesTargetLesson10054.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const postulates = [
   "A straight line can be drawn from any one point to any other point.",
@@ -391,6 +392,8 @@ export default function EuclidPostulatesTargetLesson10054({
           <ArrowRight />
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10054} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

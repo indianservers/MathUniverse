@@ -8,6 +8,7 @@ import {
 import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./SensitivityAnalysisTargetLesson614.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 type Key = "principal" | "rate" | "delta";
 const base = { principal: 20000, rate: 8, delta: 1 };
 const value = (p: number, r: number, d: number) => p * (1 + (r + d) / 100) ** 5;
@@ -448,6 +449,8 @@ export default function SensitivityAnalysisTargetLesson614({
           <ChevronRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={614} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

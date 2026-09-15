@@ -15,6 +15,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./NumericalIntegrationTargetLesson316.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type FunctionName = "wave" | "quadratic" | "decay";
 type IntervalName = "zero-pi" | "zero-one" | "minus-one-one";
@@ -544,6 +545,8 @@ export default function NumericalIntegrationTargetLesson316({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={316} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

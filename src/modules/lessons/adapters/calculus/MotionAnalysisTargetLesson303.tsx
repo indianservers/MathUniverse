@@ -15,6 +15,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./MotionAnalysisTargetLesson303.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const position = (t: number) => -(t ** 3) + 3 * t * t + 2 * t + 1;
 const velocity = (t: number) => -3 * t * t + 6 * t + 2;
@@ -331,6 +332,8 @@ export default function MotionAnalysisTargetLesson303({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={303} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

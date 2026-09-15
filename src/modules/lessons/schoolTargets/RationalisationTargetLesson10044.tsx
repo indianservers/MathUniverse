@@ -11,6 +11,7 @@ import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./RationalisationTargetLesson10044.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const tiles = ["1", "√3", "−1", "√5", "2", "√3 − 1", "√5 − 2", "2√3", "2√5"];
 const tabs = ["Interact", "Learn", "Example", "Formula", "Practice"];
@@ -383,6 +384,8 @@ export default function RationalisationTargetLesson10044({
           <ArrowRight />
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10044} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

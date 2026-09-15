@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { schoolLessonCatalog } from "../catalog/school/schoolSyllabusCatalog";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./DivisibilityTargetLesson10013.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const divisors = [2, 4, 5, 6, 8, 10, 11] as const;
 type Divisor = (typeof divisors)[number];
@@ -313,6 +314,8 @@ export default function DivisibilityTargetLesson10013({
         <Link to={next.route}>Next lesson →</Link>
         <span>Lesson progress 1 of 7 completed</span>
       </nav>
+      <LessonTopicStudyBoard lessonId={10013} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

@@ -15,6 +15,7 @@ import {
 import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./SymbolicEvaluationTargetLesson428.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Linear = {
   coefficient: number;
@@ -497,6 +498,8 @@ export default function SymbolicEvaluationTargetLesson428({
         <span>expression</span>
         <span>CAS result</span>
       </section>
+      <LessonTopicStudyBoard lessonId={428} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

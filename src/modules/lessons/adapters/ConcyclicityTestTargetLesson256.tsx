@@ -19,6 +19,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./ConcyclicityTestTargetLesson256.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type Key = "a" | "b" | "c" | "d";
@@ -442,6 +443,8 @@ export default function ConcyclicityTestTargetLesson256({
           </button>
         ))}
       </section>
+      <LessonTopicStudyBoard lessonId={256} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

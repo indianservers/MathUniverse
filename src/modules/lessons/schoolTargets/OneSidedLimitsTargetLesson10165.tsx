@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import type { KeyboardEvent, PointerEvent as ReactPointerEvent } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./OneSidedLimitsTargetLesson10165.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Scenario = "continuous" | "jump";
 const f = (x: number) => x + 1;
@@ -426,6 +427,8 @@ export default function OneSidedLimitsTargetLesson10165({
           © 2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.
         </div>
       </footer>
+      <LessonTopicStudyBoard lessonId={10165} alwaysVisible />
+
     </main>
   );
 }

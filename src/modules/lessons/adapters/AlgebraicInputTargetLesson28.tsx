@@ -15,6 +15,8 @@ import type { LessonAdapterProps } from "../types";
 import { LessonCartesianGraph } from "../graphs/LessonCartesianGraph";
 import { lessonGraphZeroCrossingConverges } from "../graphs/lessonGraphGeometry";
 import "./AlgebraicInputTargetLesson28.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+
 
 type Parsed = {
   name: string;
@@ -384,7 +386,7 @@ export default function AlgebraicInputTargetLesson28({
                     : []
                 }
               />
-              <footer>
+<footer>
                 <span>
                   Roots:&nbsp;{" "}
                   {roots.length ? roots.map(format).join(" and ") : "none"}
@@ -505,6 +507,7 @@ export default function AlgebraicInputTargetLesson28({
           </button>
         </nav>
       </footer>
+      <LessonTopicStudyBoard lessonId={28} alwaysVisible onInteraction={onInteraction} />
     </div>
   );
 }

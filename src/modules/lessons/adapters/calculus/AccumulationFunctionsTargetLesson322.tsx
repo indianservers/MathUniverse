@@ -13,6 +13,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./AccumulationFunctionsTargetLesson322.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const clamp = (v: number, min: number, max: number) =>
     Math.min(max, Math.max(min, v)),
@@ -299,6 +300,8 @@ export default function AccumulationFunctionsTargetLesson322({
           </output>
         </article>
       </section>
+      <LessonTopicStudyBoard lessonId={322} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

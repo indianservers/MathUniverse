@@ -10,6 +10,7 @@ import { useEffect, useRef, useState } from "react";
 import type { KeyboardEvent, PointerEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./PointLineDistanceTargetLesson177.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 type Point = { x: number; y: number };
 const fmt = (v: number) =>
   Math.abs(v - Math.round(v)) < 0.005 ? String(Math.round(v)) : v.toFixed(2);
@@ -525,6 +526,8 @@ export default function PointLineDistanceTargetLesson177({
         <a href="#docs">▤ Docs</a>
         <a href="#about">✉ About</a>
       </footer>
+      <LessonTopicStudyBoard lessonId={177} view={tab} onInteraction={onInteraction} />
+
     </main>
   );
 }

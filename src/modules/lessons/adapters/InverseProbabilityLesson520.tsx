@@ -3,6 +3,7 @@ import { useMemo, useState, type PointerEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import { clampProbability, inverseCdf, inverseDensity, inverseQuantile, standardQuantile, type InverseDistribution } from "./inverseProbabilityLessonModel";
 import "./InverseProbabilityLesson520.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const distributionNames: Record<InverseDistribution, string> = { normal: "Normal", logistic: "Logistic", uniform: "Uniform" };
 const presets = [0.8, 0.9, 0.95, 0.975, 0.99, 0.999];
@@ -40,6 +41,8 @@ function InverseActivity({ onInteraction }: Pick<LessonAdapterProps, "onInteract
     <section className="ip520-insights"><article><h3>Key Insight</h3><p>Inverse probability asks what value x gives a cumulative area p. Use x = F^-1(p) to move from probability to value.</p></article><article><h3>Common Misconception</h3><p>For continuous distributions, P(X = x) = 0. Inverse probability uses areas such as P(X &lt;= x) = p.</p></article><article><h3>When to Use</h3><p>Find cutoffs, hypothesis-test critical values, confidence intervals, and risk thresholds.</p></article></section>
     <section className="ip520-quiz"><header><h3>Quick Knowledge Check</h3><b>Score: {checked && answer === 2 ? "1 / 1" : "0 / 1"}</b></header><p>For a standard normal distribution, what is z such that P(Z &lt;= z) = 0.975?</p><div>{[1.2816, 1.6449, 1.96, 2.3263].map((option, index) => <label key={option} className={answer === index ? "selected" : ""}><input type="radio" checked={answer === index} onChange={() => { setAnswer(index); setChecked(false); onInteraction(); }} />{String.fromCharCode(65 + index)}. {option.toFixed(4)}</label>)}</div><button type="button" onClick={() => setChecked(true)}>Check answer</button>{checked && <strong className={answer === 2 ? "correct" : "incorrect"}>{answer === 2 ? <Check size={15} /> : <X size={15} />}{answer === 2 ? "Correct! z = 1.9600 is the 97.5th percentile." : "Use the inverse standard normal CDF at 0.975."}</strong>}</section>
     <footer><button type="button" onClick={reset}><RotateCcw size={14} />Reset lesson</button><span>Previous: Interval / Tail Probability &nbsp; Next: Bernoulli Distribution</span></footer>
+      <LessonTopicStudyBoard lessonId={520} alwaysVisible onInteraction={onInteraction} />
+
   </div>;
 }
 

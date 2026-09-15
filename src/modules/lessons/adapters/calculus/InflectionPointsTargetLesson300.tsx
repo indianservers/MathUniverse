@@ -14,6 +14,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./InflectionPointsTargetLesson300.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const poly = (x: number, c: number, k: number, m: number, d: number) =>
   c * x ** 3 + k * x * x + m * x + d;
@@ -364,6 +365,8 @@ export default function InflectionPointsTargetLesson300({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={300} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

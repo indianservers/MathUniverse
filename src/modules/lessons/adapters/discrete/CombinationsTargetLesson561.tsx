@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "../geometry3d/CoordinateSystemTargetLesson378.css";
 import "./CombinationsTargetLesson561.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const colors = [
   "#d9efff",
@@ -447,6 +448,8 @@ export default function CombinationsTargetLesson561({
           <b>Pascal's Triangle</b>
         </button>
       </nav>
+      <LessonTopicStudyBoard lessonId={561} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

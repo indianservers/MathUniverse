@@ -2,6 +2,7 @@ import { ChevronLeft, ChevronRight, RotateCcw } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./ResidualErrorTargetLesson615.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 type Point = { x: number; y: number };
 type Model = "linear" | "quadratic";
 const initial: Point[] = [
@@ -487,6 +488,8 @@ export default function ResidualErrorTargetLesson615({
           <ChevronRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={615} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

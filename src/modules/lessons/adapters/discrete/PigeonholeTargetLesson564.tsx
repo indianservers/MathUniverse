@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "../geometry3d/CoordinateSystemTargetLesson378.css";
 import "./PigeonholeTargetLesson564.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const pigeonAsset = "/assets/lessons/564-pigeonhole-principle/pigeon.png",
   holeAsset = "/assets/lessons/564-pigeonhole-principle/hole.png";
@@ -412,6 +413,8 @@ export default function PigeonholeTargetLesson564({
           <b>Vertex and Edge Builder</b>
         </button>
       </nav>
+      <LessonTopicStudyBoard lessonId={564} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

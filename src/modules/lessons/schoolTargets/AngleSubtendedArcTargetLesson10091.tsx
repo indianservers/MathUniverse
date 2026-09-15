@@ -3,6 +3,7 @@ import { type PointerEvent, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./AngleSubtendedArcTargetLesson10091.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 const A_ANGLE = 210.8,
@@ -402,6 +403,8 @@ export default function AngleSubtendedArcTargetLesson10091({
           Angle in a Semicircle <ArrowRight />
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10091} view={tab} />
+
     </section>
   );
 }

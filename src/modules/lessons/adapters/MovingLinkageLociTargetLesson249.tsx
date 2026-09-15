@@ -2,6 +2,7 @@ import { ArrowLeft, ArrowRight, Check, Eye, Lightbulb, MousePointer2, Pause, Pla
 import { useEffect, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./MovingLinkageLociTargetLesson249.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point={x:number;y:number};type Params={left:number;right:number;d:number;tx:number;ty:number;scale:number;rotation:number};const INITIAL:Params={left:4,right:5,d:7,tx:0,ty:0,scale:1,rotation:0};
 
@@ -14,6 +15,8 @@ export default function MovingLinkageLociTargetLesson249({resetToken,onInteracti
   <section className="target-linkage-learning"><article><h2>Formula &amp; Rule</h2><p>With fixed A and C and total flexible-link length L, the locus of P is an ellipse.</p><div><b>Ellipse rule</b><p>Let d = AC and L = AP + PC.</p><p>Center at the midpoint of AC.</p><p>Major semi-axis: a = L/2</p><p>Minor semi-axis: b = √(a² − (d/2)²)</p><small>Valid when L &gt; d.</small></div></article><article><h2>Worked Example</h2><p>Given: AP + PC = 9, AC = 7.<br/>Find the locus of P.</p><b>Solution:</b><p>a = 9/2 = 4.5<br/>c = 7/2 = 3.5<br/>b = √(4.5² − 3.5²) = √8 ≈ 2.83</p><strong>Locus: ellipse centered at the midpoint of AC, with semi-axes 4.5 and 2.83.</strong></article><article><h2><TriangleAlert/>Common Misconception</h2><b>Thinking the locus is a circle.</b><p>It is a circle only when the two foci coincide. With distinct fixed pivots and a constant distance sum, the locus is an ellipse.</p><MiniEllipse/></article></section>
   <section className="target-linkage-practice"><header><h2>♙ Practice Challenge</h2><p>A flexible linkage has AP + PC = 10 and AC = 8. Find the type of locus and semi-axis lengths.</p></header><div>{[["A","Circle (r = 5)"],["B","Ellipse (a = 5, b = 3)"],["C","Ellipse (a = 4, b = 2)"],["D","Parabola"]].map(([key,text])=><label key={key} className={answer===key?"selected":""}><input aria-label={`Linkage practice ${key}`} type="radio" name="linkage-answer" checked={answer===key} onChange={()=>setAnswer(key)}/>{key} {text}{key==="B"&&answer===key&&<Check/>}</label>)}<button type="button" onClick={check}>Check</button></div><p role="status" className={feedback.startsWith("Correct")?"correct":"incorrect"}><b>Answer: {answer}</b>{feedback}</p></section>
   <nav className="target-linkage-nav"><a href="/lessons/geometry/248-equidistant-loci"><ArrowLeft/><span><b>Previous</b>Equidistant Loci</span></a><a href="/lessons/geometry/250-envelope-of-lines"><span><b>Next</b>Envelope of Lines</span><ArrowRight/></a></nav>
+      <LessonTopicStudyBoard lessonId={249} view={tab} onInteraction={onInteraction} />
+
   </section>}
 
 function Control({label,min,max,step,value,onChange}:{label:string;min:number;max:number;step:number;value:number;onChange:(v:number)=>void}){return <label className="target-linkage-control"><span>{label}</span><small>{min}</small><input aria-label={label} type="range" min={min} max={max} step={step} value={value} onChange={e=>onChange(Number(e.target.value))}/><small>{max}</small><input aria-label={`${label} exact value`} type="number" step={step} value={value} onChange={e=>onChange(Number(e.target.value))}/></label>}

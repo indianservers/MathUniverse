@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import type { KeyboardEvent, PointerEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./ComponentFormTargetLesson184.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 const INITIAL = { x: 3, y: 2 };
@@ -526,6 +527,8 @@ export default function ComponentFormTargetLesson184({
           © 2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.
         </small>
       </footer>
+      <LessonTopicStudyBoard lessonId={184} alwaysVisible onInteraction={onInteraction} />
+
     </main>
   );
 }

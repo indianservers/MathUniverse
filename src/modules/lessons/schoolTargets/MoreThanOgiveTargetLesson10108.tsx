@@ -2,6 +2,7 @@ import { Eye, Grip, Lightbulb, RotateCcw } from "lucide-react";
 import { type PointerEvent, useRef, useState } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./MoreThanOgiveTargetLesson10108.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Row = { id: number; boundary: number; frequency: number };
 const defaults: Row[] = [
@@ -338,6 +339,8 @@ export default function MoreThanOgiveTargetLesson10108({
           </p>
         </section>
       </main>
+      <LessonTopicStudyBoard lessonId={10108} alwaysVisible />
+
     </section>
   );
 }

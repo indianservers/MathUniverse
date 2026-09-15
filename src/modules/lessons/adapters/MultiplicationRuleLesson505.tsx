@@ -9,6 +9,7 @@ import {
   type StageTwoKind,
 } from "./multiplicationRuleLessonModel";
 import "./MultiplicationRuleLesson505.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 export default function MultiplicationRuleLesson505({ resetToken, onInteraction }: LessonAdapterProps) {
   return <MultiplicationRuleActivity key={resetToken} onInteraction={onInteraction} />;
@@ -98,6 +99,8 @@ function MultiplicationRuleActivity({ onInteraction }: Pick<LessonAdapterProps, 
       ].map(([question, answer], index) => <article key={question}><b><i>{index + 1}</i>{question}</b><p>{answer}</p><button type="button" onClick={() => { setCheckedPractice((current) => current.includes(index) ? current : [...current, index]); onInteraction(); }}>Check answer</button>{checkedPractice.includes(index) && <span><Check size={13} /> Correct</span>}</article>)}</div></section>
 
       <footer><button type="button" onClick={reset}><RotateCcw size={14} /> Reset lesson</button><span>Previous: Addition Rule &nbsp; Next: Independent Events →</span></footer>
+      <LessonTopicStudyBoard lessonId={505} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

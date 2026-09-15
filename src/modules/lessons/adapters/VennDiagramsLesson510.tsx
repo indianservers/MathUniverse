@@ -3,6 +3,7 @@ import { useMemo, useState, type DragEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import { expectedPlacements, shadeIncludes, universe, vennSummary, type VennPlacements, type VennRegion, type VennShade } from "./vennDiagramsLessonModel";
 import "./VennDiagramsLesson510.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const labels: Record<VennRegion,string> = { aOnly:"A-only", intersection:"A ∩ B", bOnly:"B-only", outside:"Outside" };
 
@@ -30,6 +31,8 @@ function VennActivity({onInteraction}:Pick<LessonAdapterProps,"onInteraction">){
     <section className="vd510-rules"><article><h3>Correct Rule</h3><b>Inclusion–Exclusion Principle</b><p>P(A ∪ B) = P(A) + P(B) − P(A ∩ B)</p></article><article><h3>Worked check</h3><p>{(summary.a.length/20).toFixed(3)} + {(summary.b.length/20).toFixed(3)} − {(summary.intersection.length/20).toFixed(3)} = {(summary.union.length/20).toFixed(3)}</p></article><article><h3>Misconception Guard</h3><p>Do not add P(A) and P(B) directly. The overlap would be counted twice.</p></article></section>
     <section className="vd510-practice"><h3>Practice – Check your understanding</h3><div><article><b>1. Which outcomes are in A-only?</b>{[3,9,10,15].map(value=><label key={value}><input type="checkbox" checked={practice.only.includes(value)} onChange={event=>setPractice(current=>({...current,only:event.target.checked?[...current.only,value]:current.only.filter(item=>item!==value)}))}/>{value}</label>)}</article><PracticeRadio title="2. What is P(A ∩ B)?" value={practice.intersection} options={["0.15","0.20","0.25","0.30"]} onChange={value=>setPractice(current=>({...current,intersection:value}))}/><PracticeRadio title="3. What is P(A ∪ B)?" value={practice.union} options={["0.65","0.70","0.85","0.90"]} onChange={value=>setPractice(current=>({...current,union:value}))}/><PracticeRadio title="4. True or False? P(Aᶜ) = 1 − P(A)" value={practice.complement} options={["true","false"]} onChange={value=>setPractice(current=>({...current,complement:value}))}/></div>{checked&&<p className="vd510-feedback">{summary.correct===20?"All 20 outcomes are correctly classified.":`${summary.correct} of 20 outcomes are correct. Keep adjusting the regions.`}</p>}</section>
     <footer><button type="button" onClick={reset}><RotateCcw size={14}/>Reset lesson</button><span>Previous: Tree Diagrams &nbsp; Next: Two-Way Tables →</span></footer>
+      <LessonTopicStudyBoard lessonId={510} alwaysVisible onInteraction={onInteraction} />
+
   </div>;
 }
 

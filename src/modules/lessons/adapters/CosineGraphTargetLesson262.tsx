@@ -22,6 +22,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./CosineGraphTargetLesson262.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Parameters = { a: number; b: number; c: number; d: number };
 type Choice = "a" | "b" | "c" | "d";
@@ -421,6 +422,8 @@ export default function CosineGraphTargetLesson262({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={262} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

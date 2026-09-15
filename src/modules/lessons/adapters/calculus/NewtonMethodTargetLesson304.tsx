@@ -15,6 +15,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./NewtonMethodTargetLesson304.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const fn = (x: number) => x ** 3 - x - 2,
   df = (x: number) => 3 * x * x - 1,
@@ -401,6 +402,8 @@ export default function NewtonMethodTargetLesson304({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={304} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

@@ -6,6 +6,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./ParametricDifferentiationTargetLesson295.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const px = (t: number) => 0.25 + Math.cos(t);
 const py = (t: number) => 0.125 * t * t - Math.cos(t) + 1;
@@ -327,6 +328,8 @@ export default function ParametricDifferentiationTargetLesson295({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={295} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

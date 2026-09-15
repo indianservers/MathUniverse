@@ -19,6 +19,7 @@ import {
   traceXFromPixel,
 } from "./traceModeLesson48Model";
 import "./TraceModeTargetLesson48.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const tabs = [
   "Interaction + visualization",
@@ -354,6 +355,8 @@ export default function TraceModeTargetLesson48({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={48} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

@@ -33,6 +33,7 @@ import {
   type RationalMultiplier101 as Multiplier,
 } from "./rationalisationLesson101Model";
 import "./RationalisationTargetLesson101.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type RationalisationTab101 =
   | "Interact"
@@ -715,6 +716,8 @@ export default function RationalisationTargetLesson101({
           <a href="/report">Report an issue</a>
         </nav>
       </footer>
+      <LessonTopicStudyBoard lessonId={101} view={tab} onInteraction={onInteraction} />
+
     </div>
   );
 }

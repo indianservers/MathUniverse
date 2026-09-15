@@ -10,6 +10,7 @@ import { type PointerEvent, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./OppositeCyclicAnglesTargetLesson10095.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Name = "A" | "B" | "C" | "D";
 type Point = { x: number; y: number };
@@ -543,6 +544,8 @@ export default function OppositeCyclicAnglesTargetLesson10095({
           </Link>
         </nav>
       </main>
+      <LessonTopicStudyBoard lessonId={10095} view={tab} />
+
     </section>
   );
 }

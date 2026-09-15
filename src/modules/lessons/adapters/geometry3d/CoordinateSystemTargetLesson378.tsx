@@ -4,6 +4,7 @@ import { Box, ExternalLink, Maximize2, RotateCcw, Share2 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./CoordinateSystemTargetLesson378.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Point = [number, number, number];
 const clean = (value: number) => Number(value.toFixed(1));
@@ -348,6 +349,8 @@ export default function CoordinateSystemTargetLesson378({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={378} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

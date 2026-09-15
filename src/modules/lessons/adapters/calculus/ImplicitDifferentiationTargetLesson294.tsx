@@ -16,6 +16,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./ImplicitDifferentiationTargetLesson294.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 const radius = 3,
   fmt = (n: number, p = 3) => (Math.abs(n) < 1e-10 ? 0 : Number(n.toFixed(p))),
   circleY = (x: number) => Math.sqrt(Math.max(0, radius * radius - x * x));
@@ -400,6 +401,8 @@ export default function ImplicitDifferentiationTargetLesson294({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={294} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

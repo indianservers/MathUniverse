@@ -9,6 +9,7 @@ import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./MeanMedianModePathTargetLesson10033.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const source = [5, 3, 7, 2, 3];
 const target = [2, 3, 3, 5, 7];
@@ -376,6 +377,8 @@ export default function MeanMedianModePathTargetLesson10033({
           Next: Explore each measure →
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10033} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import { adjacentSchoolLessons } from "../catalog/school/schoolSyllabusCatalog";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./NumberNamingTargetLesson10002.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const small = [
     "zero",
@@ -553,6 +554,8 @@ export default function NumberNamingTargetLesson10002({
           <span />
         )}
       </nav>
+      <LessonTopicStudyBoard lessonId={10002} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

@@ -9,6 +9,7 @@ import { useEffect, useRef, useState } from "react";
 import type { KeyboardEvent, PointerEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./ParallelLinesTargetLesson174.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 type Line = { m: number; b: number };
 const initial1 = { m: 2, b: 2 },
   initial2 = { m: 2, b: -2 };
@@ -449,6 +450,8 @@ export default function ParallelLinesTargetLesson174({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={174} view={tab} onInteraction={onInteraction} />
+
     </main>
   );
 }

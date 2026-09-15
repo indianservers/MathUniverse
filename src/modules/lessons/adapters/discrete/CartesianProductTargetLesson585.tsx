@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "../geometry3d/CoordinateSystemTargetLesson378.css";
 import "./CartesianProductTargetLesson585.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Pair = [number, number];
 const product = (a: number[], b: number[]): Pair[] =>
@@ -465,6 +466,8 @@ export default function CartesianProductTargetLesson585({
           -&gt;
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={585} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

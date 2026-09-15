@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import type { LessonAdapterProps } from "../types";
 import "./CubicFunctionsTargetLesson135.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const clean = (value: number) =>
   Math.abs(value) < 0.0001
@@ -675,6 +676,8 @@ export default function CubicFunctionsTargetLesson135({
         </small>
         <small>www.IndianServers.com · info@IndianServers.com</small>
       </footer>
+      <LessonTopicStudyBoard lessonId={135} view={tab} onInteraction={onInteraction} />
+
     </div>
   );
 }

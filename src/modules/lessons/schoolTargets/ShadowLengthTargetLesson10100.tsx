@@ -13,6 +13,7 @@ import { type PointerEvent, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./ShadowLengthTargetLesson10100.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const round = (value: number, places = 2) =>
   Math.round(value * 10 ** places) / 10 ** places;
@@ -420,6 +421,8 @@ export default function ShadowLengthTargetLesson10100({
           </Link>
         </nav>
       </main>
+      <LessonTopicStudyBoard lessonId={10100} view={tab} />
+
     </section>
   );
 }

@@ -21,6 +21,7 @@ import {
   type DynamicParameters55,
 } from "./dynamicParametersLesson55Model";
 import "./DynamicParametersTargetLesson55.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Tab55 =
   | "Interaction + visualization"
@@ -467,6 +468,8 @@ export default function DynamicParametersTargetLesson55({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={55} view={activeTab} onInteraction={onInteraction} />
+
     </section>
   );
 }

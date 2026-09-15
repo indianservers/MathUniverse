@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import type { DragEvent } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./RowOperationsTargetLesson355.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 type Matrix = number[][];
 type Operation = "swap" | "scale" | "replace";
 const initial: Matrix = [
@@ -424,6 +425,8 @@ export default function RowOperationsTargetLesson355({
           </output>
         </aside>
       </section>
+      <LessonTopicStudyBoard lessonId={355} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

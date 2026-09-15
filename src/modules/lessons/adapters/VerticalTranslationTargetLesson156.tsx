@@ -10,6 +10,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { KeyboardEvent, PointerEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./VerticalTranslationTargetLesson156.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const SAMPLES = [-2, -1, 0, 1, 2];
 const X_MIN = -5.5;
@@ -572,6 +573,8 @@ export default function VerticalTranslationTargetLesson156({
           </footer>
         </section>
       </main>
+      <LessonTopicStudyBoard lessonId={156} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

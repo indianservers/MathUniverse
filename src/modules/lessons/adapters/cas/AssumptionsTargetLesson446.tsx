@@ -12,6 +12,7 @@ import {
 import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./AssumptionsTargetLesson446.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type AssumptionKey =
   "real" | "notMinus2" | "notZero" | "positive" | "negative" | "integer";
@@ -378,6 +379,8 @@ export default function AssumptionsTargetLesson446({
               : ""}
         </footer>
       </section>
+      <LessonTopicStudyBoard lessonId={446} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

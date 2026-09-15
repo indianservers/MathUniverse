@@ -9,6 +9,7 @@ import {
 import { useEffect, useMemo, useState, type DragEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./HcfGcdTargetLesson69.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 function clampInteger(value: number) {
   if (!Number.isFinite(value)) return 2;
@@ -374,6 +375,8 @@ export default function HcfGcdTargetLesson69({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={69} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

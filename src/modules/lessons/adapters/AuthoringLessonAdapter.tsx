@@ -4,6 +4,7 @@ import SliderControl from "../../../components/ui/SliderControl";
 import AdapterFrame from "../components/AdapterFrame";
 import type { LessonAdapterProps } from "../types";
 import SliderComponentTargetLesson618 from "./SliderComponentTargetLesson618";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 function authoringGuidanceFor(title: string) {
   const name = title.toLowerCase();
@@ -398,6 +399,7 @@ function LegacyAuthoringLesson({
           )}
         </div>
       </div>
+      <LessonTopicStudyBoard lessonId={lesson.id} alwaysVisible onInteraction={onInteraction} />
     </AdapterFrame>
   );
 }
@@ -592,6 +594,7 @@ function RedesignedAuthoringLesson({
           </div>
         </aside>
       </section>
+      <LessonTopicStudyBoard lessonId={lesson.id} alwaysVisible onInteraction={onInteraction} />
     </AdapterFrame>
   );
 }

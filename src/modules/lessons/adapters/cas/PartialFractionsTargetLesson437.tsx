@@ -22,6 +22,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./PartialFractionsTargetLesson437.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const INITIAL = [1, 2];
 type Feedback = "idle" | "correct" | "incorrect";
@@ -388,6 +389,8 @@ export default function PartialFractionsTargetLesson437({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={437} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

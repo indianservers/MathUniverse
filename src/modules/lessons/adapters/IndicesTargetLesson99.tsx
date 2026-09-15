@@ -21,6 +21,7 @@ import {
   superscript99 as superscript,
 } from "./indicesLesson99Model";
 import "./IndicesTargetLesson99.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type IndicesTab99 =
   "Interact" | "Explain" | "Examples" | "Practice" | "Formulas" | "Know more";
@@ -548,6 +549,8 @@ export default function IndicesTargetLesson99({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={99} view={tab} onInteraction={onInteraction} />
+
     </div>
   );
 }

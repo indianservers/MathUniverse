@@ -9,6 +9,7 @@ import {
 import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./AugmentedMatricesTargetLesson357.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Row = [number, number, number];
 type Status = "one" | "none" | "infinite";
@@ -501,6 +502,8 @@ export default function AugmentedMatricesTargetLesson357({
           </button>
         ))}
       </section>
+      <LessonTopicStudyBoard lessonId={357} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

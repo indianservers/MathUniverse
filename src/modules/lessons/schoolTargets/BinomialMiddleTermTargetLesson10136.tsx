@@ -2,6 +2,7 @@ import { Check, RotateCcw, Star } from "lucide-react";
 import { useState } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./BinomialMiddleTermTargetLesson10136.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const factorial = (value: number) =>
   Array.from({ length: value }, (_, i) => i + 1).reduce((p, v) => p * v, 1);
@@ -243,6 +244,8 @@ export default function BinomialMiddleTermTargetLesson10136({
           </button>
         </footer>
       </main>
+      <LessonTopicStudyBoard lessonId={10136} alwaysVisible />
+
     </section>
   );
 }

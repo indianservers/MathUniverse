@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./LinearSystemsMatricesTargetLesson10197.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type System = [number, number, number, number, number, number];
 const DEFAULT: System = [2, 1, 5, 1, -1, 1],
@@ -438,6 +439,8 @@ export default function LinearSystemsMatricesTargetLesson10197({
           Inverses and Rank →
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10197} alwaysVisible />
+
     </main>
   );
 }

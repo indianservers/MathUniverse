@@ -2,6 +2,7 @@ import { AlertTriangle, Check, Eye, Lightbulb } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./PowerSetsTargetLesson586.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const allValues = [1, 2, 3, 4];
 const subsetsOf = (values: number[]) =>
@@ -413,6 +414,8 @@ export default function PowerSetsTargetLesson586({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={586} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

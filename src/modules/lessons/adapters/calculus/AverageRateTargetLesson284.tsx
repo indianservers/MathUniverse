@@ -18,6 +18,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./AverageRateTargetLesson284.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const f = (x: number) => 0.3 * x * x + 0.5 * x + 0.8;
 const fixed = (value: number, places = 3) => Number(value.toFixed(places));
@@ -362,6 +363,8 @@ export default function AverageRateTargetLesson284({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={284} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

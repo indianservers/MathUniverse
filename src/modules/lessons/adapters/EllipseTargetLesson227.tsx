@@ -21,6 +21,7 @@ import {
   type ReactNode,
 } from "react";
 import type { LessonAdapterProps } from "../types";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type Drag = "center" | "focus-left" | "focus-right" | "point" | null;
@@ -499,6 +500,8 @@ export default function EllipseTargetLesson227({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={227} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

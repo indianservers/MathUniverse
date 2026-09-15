@@ -11,6 +11,7 @@ import type { PointerEvent } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "../geometry3d/CoordinateSystemTargetLesson378.css";
 import "./NetworkFlowTargetLesson579.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Vertex = { id: string; x: number; y: number };
 type Edge = { id: string; a: string; b: string; capacity: number };
@@ -669,6 +670,8 @@ export default function NetworkFlowTargetLesson579({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={579} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

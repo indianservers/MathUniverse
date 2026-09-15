@@ -10,6 +10,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./EuclideanFoundationsTargetLesson10053.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Category =
   "Definitions" | "Common Notions (Axioms)" | "Geometric Postulates";
@@ -399,6 +400,8 @@ export default function EuclideanFoundationsTargetLesson10053({
           <ArrowRight />
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10053} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

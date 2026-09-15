@@ -29,6 +29,7 @@ import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
 import type { LessonAdapterProps } from "../../types";
 import "./CoordinateSystemTargetLesson378.css";
 import "./CameraControlsTargetLesson410.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Tool = "orbit" | "pan" | "zoom";
 type Projection = "perspective" | "orthographic";
@@ -576,6 +577,8 @@ export default function CameraControlsTargetLesson410({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={410} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

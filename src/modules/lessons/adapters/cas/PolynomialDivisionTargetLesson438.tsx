@@ -12,6 +12,7 @@ import {
 import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./PolynomialDivisionTargetLesson438.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const INITIAL_DIVIDEND = [2, 3, -1, 4, -2];
 const INITIAL_DIVISOR = [2, -4];
@@ -369,6 +370,8 @@ export default function PolynomialDivisionTargetLesson438({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={438} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

@@ -1,0 +1,172 @@
+import { renderToStaticMarkup } from "react-dom/server";
+import { describe, expect, it } from "vitest";
+import { getStrengthenedFoundationLesson } from "../strengthening/foundationNumberContent";
+import { batch2HandAuthoredLessonIds } from "../strengthening/catalogBatch2HandAuthoredOverlay";
+import { batch3HandAuthoredLessonIds } from "../strengthening/catalogBatch3HandAuthoredOverlay";
+import { batch4HandAuthoredLessonIds } from "../strengthening/catalogBatch4HandAuthoredOverlay";
+import { batch5HandAuthoredLessonIds } from "../strengthening/catalogBatch5HandAuthoredOverlay";
+import { batch6HandAuthoredLessonIds } from "../strengthening/catalogBatch6HandAuthoredOverlay";
+import { coreWorkspaceHandAuthoredLessonIds } from "../strengthening/coreWorkspaceHandAuthoredOverlay";
+import { LessonTopicStudyBoard } from "./LessonTopicStudyBoard";
+
+describe("LessonTopicStudyBoard", () => {
+  it("hides the study board on the interaction canvas and still shows gateway panels", () => {
+    const hidden = renderToStaticMarkup(
+      <LessonTopicStudyBoard lessonId={3} view="interaction" />,
+    );
+    expect(hidden).toBe("");
+
+    const gatewayOnInteract = renderToStaticMarkup(
+      <LessonTopicStudyBoard lessonId={2} view="interaction" />,
+    );
+    expect(gatewayOnInteract).toContain('data-testid="lesson-gateway-2"');
+    expect(gatewayOnInteract).not.toContain('data-testid="lesson-study-board-2"');
+    expect(gatewayOnInteract).toContain("Named misconception");
+    expect(gatewayOnInteract).toContain("Exam exit ticket");
+    expect(gatewayOnInteract).toContain("Next: Equivalent Fractions");
+
+    const html = renderToStaticMarkup(
+      <LessonTopicStudyBoard lessonId={2} view="examples" />,
+    );
+    expect(html).toContain('data-testid="lesson-study-board-2"');
+    expect(html).toContain('data-testid="lesson-gateway-2"');
+    expect(html).toContain("Fraction Calculator labelled charts");
+    expect(html).toContain("x: Part");
+    expect(html).toContain("Add 1/2 + 3/4");
+    expect(html).toContain("5/4");
+    expect(html).toContain('aria-label="Fraction Calculator study probe"');
+  });
+
+  it("covers lessons 1-30 with unique hand-authored introductions and three numerical examples", () => {
+    expect(coreWorkspaceHandAuthoredLessonIds).toEqual(
+      Array.from({ length: 30 }, (_, index) => index + 1),
+    );
+    const introductions = new Set<string>();
+    for (const id of coreWorkspaceHandAuthoredLessonIds) {
+      const lesson = getStrengthenedFoundationLesson(id);
+      expect(lesson, `lesson ${id}`).not.toBeNull();
+      expect(lesson!.introduction.length).toBeGreaterThanOrEqual(220);
+      expect(lesson!.definitions[0]?.statement.length).toBeGreaterThanOrEqual(120);
+      expect(lesson!.workedExamples.length).toBeGreaterThanOrEqual(3);
+      expect(introductions.has(lesson!.introduction), `duplicate intro ${id}`).toBe(false);
+      introductions.add(lesson!.introduction);
+    }
+  });
+
+  it("covers lessons 31-130 with unique hand-authored introductions, charts, and three numerical examples", () => {
+    expect(batch2HandAuthoredLessonIds).toEqual(
+      Array.from({ length: 100 }, (_, index) => index + 31),
+    );
+    const introductions = new Set<string>();
+    for (const id of batch2HandAuthoredLessonIds) {
+      const lesson = getStrengthenedFoundationLesson(id);
+      expect(lesson, `lesson ${id}`).not.toBeNull();
+      expect(lesson!.introduction.length).toBeGreaterThanOrEqual(220);
+      expect(lesson!.definitions[0]?.statement.length).toBeGreaterThanOrEqual(120);
+      expect(lesson!.workedExamples.length).toBeGreaterThanOrEqual(3);
+      expect(introductions.has(lesson!.introduction), `duplicate intro ${id}`).toBe(false);
+      introductions.add(lesson!.introduction);
+
+      const html = renderToStaticMarkup(
+        <LessonTopicStudyBoard lessonId={id} alwaysVisible />,
+      );
+      expect(html, `study board ${id}`).toContain(`data-testid="lesson-study-board-${id}"`);
+      expect(html, `chart labels ${id}`).toContain("x:");
+      expect(html, `probe ${id}`).toContain("study probe");
+    }
+  });
+
+  it("covers lessons 131-230 with unique hand-authored introductions, charts, and three numerical examples", () => {
+    expect(batch3HandAuthoredLessonIds).toEqual(
+      Array.from({ length: 100 }, (_, index) => index + 131),
+    );
+    const introductions = new Set<string>();
+    for (const id of batch3HandAuthoredLessonIds) {
+      const lesson = getStrengthenedFoundationLesson(id);
+      expect(lesson, `lesson ${id}`).not.toBeNull();
+      expect(lesson!.introduction.length).toBeGreaterThanOrEqual(220);
+      expect(lesson!.definitions[0]?.statement.length).toBeGreaterThanOrEqual(120);
+      expect(lesson!.workedExamples.length).toBeGreaterThanOrEqual(3);
+      expect(introductions.has(lesson!.introduction), `duplicate intro ${id}`).toBe(false);
+      introductions.add(lesson!.introduction);
+
+      const html = renderToStaticMarkup(
+        <LessonTopicStudyBoard lessonId={id} alwaysVisible />,
+      );
+      expect(html, `study board ${id}`).toContain(`data-testid="lesson-study-board-${id}"`);
+      expect(html, `chart labels ${id}`).toContain("x:");
+      expect(html, `probe ${id}`).toContain("study probe");
+    }
+  });
+
+  it("covers lessons 231-530 with unique hand-authored introductions, charts, and three numerical examples", () => {
+    expect(batch4HandAuthoredLessonIds).toEqual(
+      Array.from({ length: 300 }, (_, index) => index + 231),
+    );
+    const introductions = new Set<string>();
+    for (const id of batch4HandAuthoredLessonIds) {
+      const lesson = getStrengthenedFoundationLesson(id);
+      expect(lesson, `lesson ${id}`).not.toBeNull();
+      expect(lesson!.introduction.length).toBeGreaterThanOrEqual(220);
+      expect(lesson!.definitions[0]?.statement.length).toBeGreaterThanOrEqual(120);
+      expect(lesson!.workedExamples.length).toBeGreaterThanOrEqual(3);
+      expect(introductions.has(lesson!.introduction), `duplicate intro ${id}`).toBe(false);
+      introductions.add(lesson!.introduction);
+
+      const html = renderToStaticMarkup(
+        <LessonTopicStudyBoard lessonId={id} alwaysVisible />,
+      );
+      expect(html, `study board ${id}`).toContain(`data-testid="lesson-study-board-${id}"`);
+      expect(html, `chart labels ${id}`).toContain("x:");
+      expect(html, `probe ${id}`).toContain("study probe");
+    }
+  });
+
+  it("covers lessons 531-674 and school 10001-10056 with unique introductions, charts, and three numerical examples", () => {
+    expect(batch5HandAuthoredLessonIds).toEqual([
+      ...Array.from({ length: 144 }, (_, index) => index + 531),
+      ...Array.from({ length: 56 }, (_, index) => index + 10001),
+    ]);
+    const introductions = new Set<string>();
+    for (const id of batch5HandAuthoredLessonIds) {
+      const lesson = getStrengthenedFoundationLesson(id);
+      expect(lesson, `lesson ${id}`).not.toBeNull();
+      expect(lesson!.introduction.length).toBeGreaterThanOrEqual(220);
+      expect(lesson!.definitions[0]?.statement.length).toBeGreaterThanOrEqual(120);
+      expect(lesson!.workedExamples.length).toBeGreaterThanOrEqual(3);
+      expect(introductions.has(lesson!.introduction), `duplicate intro ${id}`).toBe(false);
+      introductions.add(lesson!.introduction);
+
+      const html = renderToStaticMarkup(
+        <LessonTopicStudyBoard lessonId={id} alwaysVisible />,
+      );
+      expect(html, `study board ${id}`).toContain(`data-testid="lesson-study-board-${id}"`);
+      expect(html, `chart labels ${id}`).toContain("x:");
+      expect(html, `probe ${id}`).toContain("study probe");
+    }
+  });
+
+  it("covers remaining school 10057-10220 and advanced 2001-2025 with unique introductions, charts, and three numerical examples", () => {
+    expect(batch6HandAuthoredLessonIds).toEqual([
+      ...Array.from({ length: 25 }, (_, index) => index + 2001),
+      ...Array.from({ length: 164 }, (_, index) => index + 10057),
+    ]);
+    const introductions = new Set<string>();
+    for (const id of batch6HandAuthoredLessonIds) {
+      const lesson = getStrengthenedFoundationLesson(id);
+      expect(lesson, `lesson ${id}`).not.toBeNull();
+      expect(lesson!.introduction.length).toBeGreaterThanOrEqual(220);
+      expect(lesson!.definitions[0]?.statement.length).toBeGreaterThanOrEqual(120);
+      expect(lesson!.workedExamples.length).toBeGreaterThanOrEqual(3);
+      expect(introductions.has(lesson!.introduction), `duplicate intro ${id}`).toBe(false);
+      introductions.add(lesson!.introduction);
+
+      const html = renderToStaticMarkup(
+        <LessonTopicStudyBoard lessonId={id} alwaysVisible />,
+      );
+      expect(html, `study board ${id}`).toContain(`data-testid="lesson-study-board-${id}"`);
+      expect(html, `chart labels ${id}`).toContain("x:");
+      expect(html, `probe ${id}`).toContain("study probe");
+    }
+  });
+});

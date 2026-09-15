@@ -8,6 +8,7 @@ import {
 } from "./convergenceDivergenceLessonModel";
 import type { ConvergenceSeriesType } from "./convergenceDivergenceLessonModel";
 import "./ConvergenceDivergenceTargetLesson342.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const types: ConvergenceSeriesType[] = [
   "Geometric",
@@ -683,6 +684,8 @@ export default function ConvergenceDivergenceTargetLesson342({
           )}
         </aside>
       </section>
+      <LessonTopicStudyBoard lessonId={342} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

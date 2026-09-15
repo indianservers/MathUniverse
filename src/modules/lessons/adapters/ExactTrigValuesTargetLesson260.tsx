@@ -21,6 +21,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./ExactTrigValuesTargetLesson260.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type SpecialAngle = 0 | 30 | 45 | 60 | 90;
 type ExactValue = { display: string; numeric: number | null };
@@ -461,6 +462,8 @@ export default function ExactTrigValuesTargetLesson260({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={260} view={view} onInteraction={onInteraction} />
+
     </section>
   );
 }

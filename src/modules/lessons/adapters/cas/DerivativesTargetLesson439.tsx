@@ -13,6 +13,7 @@ import {
 import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./DerivativesTargetLesson439.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Feedback = "idle" | "correct" | "incorrect";
 export default function DerivativesTargetLesson439({
@@ -313,6 +314,8 @@ export default function DerivativesTargetLesson439({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={439} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

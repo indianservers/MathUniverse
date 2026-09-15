@@ -13,6 +13,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./HigherDerivativesTargetLesson290.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 type Model = {
   name: string;
   f: (x: number) => number;
@@ -432,6 +433,8 @@ export default function HigherDerivativesTargetLesson290({
           © 2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.
         </small>
       </footer>
+      <LessonTopicStudyBoard lessonId={290} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

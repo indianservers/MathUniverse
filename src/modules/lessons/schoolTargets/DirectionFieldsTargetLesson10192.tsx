@@ -12,6 +12,7 @@ import type { KeyboardEvent, PointerEvent as ReactPointerEvent } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./DirectionFieldsTargetLesson10192.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Method = "Euler" | "RK4";
 const fmt = (n: number, d = 4) => Number(n.toFixed(d));
@@ -622,6 +623,8 @@ export default function DirectionFieldsTargetLesson10192({
       <div className="df-complete">
         Field sampled · trajectory traced · numerical error measured
       </div>
+      <LessonTopicStudyBoard lessonId={10192} alwaysVisible />
+
     </main>
   );
 }

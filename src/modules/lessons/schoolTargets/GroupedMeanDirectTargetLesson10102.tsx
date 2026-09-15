@@ -8,6 +8,7 @@ import {
 import { type PointerEvent, useRef, useState } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./GroupedMeanDirectTargetLesson10102.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type GroupRow = { id: number; lower: number; upper: number; frequency: number };
 const initialRows: GroupRow[] = [
@@ -406,6 +407,8 @@ export default function GroupedMeanDirectTargetLesson10102({
         ⓘ Edit any frequency or interval to see all values update live.{" "}
         {selectedRow && `Selected midpoint: ${selectedRow.midpoint}.`}
       </footer>
+      <LessonTopicStudyBoard lessonId={10102} alwaysVisible />
+
     </section>
   );
 }

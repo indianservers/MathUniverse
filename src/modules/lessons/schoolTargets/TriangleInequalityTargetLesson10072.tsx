@@ -10,6 +10,7 @@ import { type DragEventHandler, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./TriangleInequalityTargetLesson10072.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Sides = { a: number; b: number; c: number };
 const START: Sides = { a: 4, b: 5, c: 8 };
@@ -394,6 +395,8 @@ export default function TriangleInequalityTargetLesson10072({
           Next: Exterior Angle Theorem <ArrowRight />
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10072} view={view} />
+
     </section>
   );
 }

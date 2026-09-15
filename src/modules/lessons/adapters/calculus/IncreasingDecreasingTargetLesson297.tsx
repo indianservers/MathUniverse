@@ -17,6 +17,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./IncreasingDecreasingTargetLesson297.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const cubic = (a: number) => (-2 * a) / 3;
 const linear = (b: number) => (-8 * b) / 3;
@@ -452,6 +453,8 @@ export default function IncreasingDecreasingTargetLesson297({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={297} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

@@ -8,6 +8,7 @@ import {
   infiniteGeometricSeriesSum,
 } from "./geometricSeriesLessonModel";
 import "./GeometricSeriesTargetLesson341.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 const clean = (v: number) => Number(v.toFixed(6)),
   tabs = [
     "Interaction + visualisation",
@@ -515,6 +516,8 @@ export default function GeometricSeriesTargetLesson341({
           )}
         </output>
       </section>
+      <LessonTopicStudyBoard lessonId={341} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

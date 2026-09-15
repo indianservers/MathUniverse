@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./CoordinateSystemTargetLesson378.css";
 import "./PartialDerivativesTargetLesson422.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 type Point = { x: number; y: number };
 const initial: Point = { x: 1.5, y: -1 },
   fix = (n: number) => Number(n.toFixed(2)),
@@ -332,6 +333,8 @@ export default function PartialDerivativesTargetLesson422({
           CAS-style tools, and classroom-ready activities.
         </p>
       </footer>
+      <LessonTopicStudyBoard lessonId={422} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

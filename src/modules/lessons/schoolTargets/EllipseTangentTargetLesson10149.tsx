@@ -3,6 +3,7 @@ import { useMemo, useRef, useState } from "react";
 import type { PointerEvent as ReactPointerEvent } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./EllipseTangentTargetLesson10149.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 export default function EllipseTangentTargetLesson10149({
   lesson: _lesson,
@@ -369,6 +370,8 @@ export default function EllipseTangentTargetLesson10149({
           </article>
         </div>
       </section>
+      <LessonTopicStudyBoard lessonId={10149} alwaysVisible />
+
     </section>
   );
 }

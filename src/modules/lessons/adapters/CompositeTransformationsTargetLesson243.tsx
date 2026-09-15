@@ -16,6 +16,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./CompositeTransformationsTargetLesson243.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type Key = "A" | "B" | "C";
@@ -453,6 +454,8 @@ export default function CompositeTransformationsTargetLesson243({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={243} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

@@ -4,6 +4,7 @@ import type { PointerEvent as ReactPointerEvent } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./VariableSeparableEquationsTargetLesson10188.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Side = "pool" | "left" | "right";
 const fmt = (n: number, d = 4) => Number(n.toFixed(d));
@@ -450,6 +451,8 @@ export default function VariableSeparableEquationsTargetLesson10188({
           Homogeneous Equations →
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10188} alwaysVisible />
+
     </main>
   );
 }

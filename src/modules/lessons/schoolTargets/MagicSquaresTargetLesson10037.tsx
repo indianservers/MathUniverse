@@ -10,6 +10,7 @@ import { type DragEvent, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./MagicSquaresTargetLesson10037.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const solved = [8, 1, 6, 3, 5, 7, 4, 9, 2];
 const tabs = ["Interact", "Learn", "Example", "Formula", "Practice"];
@@ -305,6 +306,8 @@ export default function MagicSquaresTargetLesson10037({
           Next: Route Map Reasoning <ArrowRight />
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10037} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

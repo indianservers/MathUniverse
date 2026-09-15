@@ -10,6 +10,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./TabularPatternTargetLesson10039.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const tabs = ["Interact", "Learn", "Example", "Formula", "Practice"];
 const rules = [
@@ -366,6 +367,8 @@ export default function TabularPatternTargetLesson10039({
           Next lesson <ArrowRight />
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10039} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

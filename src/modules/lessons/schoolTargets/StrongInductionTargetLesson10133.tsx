@@ -2,6 +2,7 @@ import { Boxes, Check, RotateCcw, Trophy } from "lucide-react";
 import { useState } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./StrongInductionTargetLesson10133.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type BaseValue = 8 | 9 | 10;
 const baseModels: Record<BaseValue, number[]> = {
@@ -234,6 +235,8 @@ export default function StrongInductionTargetLesson10133({
         <span>← Inequality by Induction</span>
         <span>Strong Induction Applications →</span>
       </footer>
+      <LessonTopicStudyBoard lessonId={10133} alwaysVisible />
+
     </section>
   );
 }

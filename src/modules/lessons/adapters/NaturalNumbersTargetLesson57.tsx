@@ -8,6 +8,7 @@ import {
 import { useEffect, useMemo, useState, type DragEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./NaturalNumbersTargetLesson57.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Candidate = { id: string; label: string; natural: boolean };
 const CANDIDATES: Candidate[] = [
@@ -322,6 +323,8 @@ export default function NaturalNumbersTargetLesson57({
           </aside>
         </main>
       </section>
+      <LessonTopicStudyBoard lessonId={57} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

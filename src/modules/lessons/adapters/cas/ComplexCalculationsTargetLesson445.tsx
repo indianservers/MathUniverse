@@ -9,6 +9,7 @@ import {
 import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./ComplexCalculationsTargetLesson445.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Complex = { re: number; im: number };
 type Operation = "multiply" | "add" | "subtract" | "divide";
@@ -326,6 +327,8 @@ export default function ComplexCalculationsTargetLesson445({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={445} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

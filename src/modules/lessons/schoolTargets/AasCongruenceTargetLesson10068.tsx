@@ -11,6 +11,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./AasCongruenceTargetLesson10068.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type AasModel = { angleA: number; angleB: number; sideAC: number };
 const START: AasModel = { angleA: 45, angleB: 70, sideAC: 6 };
@@ -328,6 +329,8 @@ export default function AasCongruenceTargetLesson10068({
           <ArrowRight />
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10068} view={tab} />
+
     </section>
   );
 }

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./CorrespondingAnglesTargetLesson10060.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const pairs = [
   [1, 5],
@@ -320,6 +321,8 @@ export default function CorrespondingAnglesTargetLesson10060({
           Next: Alternate Interior Angles <ArrowRight />
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10060} view={tab} />
+
     </section>
   );
 }

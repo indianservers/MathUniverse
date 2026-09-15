@@ -16,6 +16,7 @@ import {
   logisticValue56,
 } from "./exportGraphLesson56Model";
 import "./ExportGraphTargetLesson56.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type ExportFormat56 = "PNG" | "SVG" | "PDF";
 
@@ -451,6 +452,8 @@ export default function ExportGraphTargetLesson56({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={56} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

@@ -2,6 +2,7 @@ import { Info, Lightbulb, RotateCcw } from "lucide-react";
 import { useMemo, useState } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./BinomialApproximationTargetLesson10138.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const fixed = (value: number, digits = 5) => value.toFixed(digits);
 
@@ -326,6 +327,8 @@ export default function BinomialApproximationTargetLesson10138({
         <span>← Independent Term</span>
         <span>Pascal Identity →</span>
       </footer>
+      <LessonTopicStudyBoard lessonId={10138} alwaysVisible />
+
     </section>
   );
 }

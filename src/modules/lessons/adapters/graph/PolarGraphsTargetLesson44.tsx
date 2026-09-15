@@ -17,6 +17,7 @@ import {
   polarRosePoint,
 } from "./polarGraphsLesson44Model";
 import "./PolarGraphsTargetLesson44.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 export default function PolarGraphsTargetLesson44({
   resetToken,
@@ -345,6 +346,8 @@ export default function PolarGraphsTargetLesson44({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={44} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

@@ -2,6 +2,7 @@ import { ExternalLink, RotateCcw, Share2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./PolarFormTargetLesson371.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Pair = [number, number];
 type AngleUnit = "Degrees" | "Radians";
@@ -465,6 +466,8 @@ export default function PolarFormTargetLesson371({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={371} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

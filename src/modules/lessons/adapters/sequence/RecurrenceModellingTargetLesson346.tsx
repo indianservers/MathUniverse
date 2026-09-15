@@ -9,6 +9,7 @@ import {
 } from "./recurrenceModellingLessonModel";
 import type { RecurrenceScenario } from "./recurrenceModellingLessonModel";
 import "./RecurrenceModellingTargetLesson346.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 const tabs = [
     "Interaction + visualization",
     "Explain",
@@ -528,6 +529,8 @@ export default function RecurrenceModellingTargetLesson346({
           )}
         </aside>
       </section>
+      <LessonTopicStudyBoard lessonId={346} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

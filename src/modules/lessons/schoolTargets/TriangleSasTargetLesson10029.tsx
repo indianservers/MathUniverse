@@ -20,6 +20,7 @@ import { Link } from "react-router-dom";
 import { schoolLessonCatalog } from "../catalog/school/schoolSyllabusCatalog";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./TriangleSasTargetLesson10029.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Measures = { ab: number; ac: number; angle: number };
 type Tool = "Select" | "Ray at A" | "Arc from A" | "Arc from B" | "Point C";
@@ -399,6 +400,8 @@ export default function TriangleSasTargetLesson10029({
         <Link to={previous.route}>← Triangle Construction by SSS</Link>
         <Link to={next.route}>Triangle Construction by ASA →</Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10029} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

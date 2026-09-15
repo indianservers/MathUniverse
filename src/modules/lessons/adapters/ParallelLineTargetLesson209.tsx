@@ -21,6 +21,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./ParallelLineTargetLesson209.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 const initialP = { x: 0, y: -2.5 };
@@ -431,6 +432,8 @@ export default function ParallelLineTargetLesson209({
         </a>
       </nav>
       <span className="sr-only">Live Verification. Check Construction.</span>
+      <LessonTopicStudyBoard lessonId={209} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

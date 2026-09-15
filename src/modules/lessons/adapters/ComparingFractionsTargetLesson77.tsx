@@ -16,6 +16,7 @@ import { useEffect, useState, type DragEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./ComparingFractionsTargetLesson77.css";
 import "./ComparingFractionsTargetLesson77Tuning.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type FractionState = { numerator: number; denominator: number };
 
@@ -474,6 +475,8 @@ export default function ComparingFractionsTargetLesson77({
         </small>
         <small>www.IndianServers.com info@IndianServers.com</small>
       </footer>
+      <LessonTopicStudyBoard lessonId={77} view={tab} onInteraction={onInteraction} />
+
     </div>
   );
 }

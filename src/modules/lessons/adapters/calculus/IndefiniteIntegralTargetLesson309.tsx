@@ -15,6 +15,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./IndefiniteIntegralTargetLesson309.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const family = [-3, -1.5, 0, 1.5, 3];
 const normalize = (value: string) =>
@@ -338,6 +339,8 @@ export default function IndefiniteIntegralTargetLesson309({
           <a href="/about">✉ About</a>
         </nav>
       </footer>
+      <LessonTopicStudyBoard lessonId={309} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

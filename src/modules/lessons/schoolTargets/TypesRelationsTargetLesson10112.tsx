@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import type { PointerEvent as ReactPointerEvent } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./TypesRelationsTargetLesson10112.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Element = 1 | 2 | 3 | 4;
 type Pair = `${Element},${Element}`;
@@ -376,6 +377,8 @@ export default function TypesRelationsTargetLesson10112({
           <p>Clears all arrows and resets to ∅.</p>
         </aside>
       </footer>
+      <LessonTopicStudyBoard lessonId={10112} alwaysVisible />
+
     </section>
   );
 }

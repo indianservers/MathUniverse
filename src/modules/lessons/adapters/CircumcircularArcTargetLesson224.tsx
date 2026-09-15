@@ -23,6 +23,7 @@ import {
   type ReactNode,
 } from "react";
 import type { LessonAdapterProps } from "../types";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type PointName = "A" | "B" | "C";
@@ -618,6 +619,8 @@ export default function CircumcircularArcTargetLesson224({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={224} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

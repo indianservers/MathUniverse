@@ -10,6 +10,7 @@ import { useEffect, useRef, useState } from "react";
 import type { PointerEvent as ReactPointerEvent } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./PhasePlaneTargetLesson329.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const clamp = (value: number, min: number, max: number) =>
   Math.min(max, Math.max(min, value));
@@ -390,6 +391,8 @@ export default function PhasePlaneTargetLesson329({
           </output>
         </article>
       </section>
+      <LessonTopicStudyBoard lessonId={329} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

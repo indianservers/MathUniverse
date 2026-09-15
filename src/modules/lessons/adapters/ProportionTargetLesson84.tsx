@@ -2,6 +2,7 @@ import { ArrowLeft, ArrowRight, Check, Copy, Lightbulb, Pencil } from "lucide-re
 import { useEffect, useState, type DragEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./ProportionTargetLesson84.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 function clamp(value: number, maximum = 30) {
   return Math.max(1, Math.min(maximum, Math.round(Number.isFinite(value) ? value : 1)));
@@ -67,6 +68,8 @@ export default function ProportionTargetLesson84({ resetToken, onInteraction }: 
         <aside className="proportion84-side"><section className="proportion84-summary"><h3>Problem summary<button type="button" aria-label="Copy proportion" onClick={() => void copy()}><Copy />{copyState === "Copy" ? "" : copyState}</button></h3><p><span>Known ratio</span><b><input aria-label="Known ratio first term" type="number" min="1" max="12" value={knownFirst} onChange={(event) => change("knownFirst", Number(event.target.value))} /> : <input aria-label="Known ratio second term" type="number" min="1" max="30" value={knownSecond} onChange={(event) => change("knownSecond", Number(event.target.value))} /></b></p><p><span>Target ratio</span><b><input aria-label="Target ratio first term" type="number" min="1" max="30" value={targetFirst} onChange={(event) => change("targetFirst", Number(event.target.value))} /> : x</b></p><p><span>Find</span><strong>x</strong></p></section><section className="proportion84-steps"><h3>Step-by-step summary</h3><p><i>1</i><span><b>Scale factor: {display(scale)}</b>{knownFirst} × {display(scale)} = {targetFirst}</span></p><p><i>2</i><span><b>Apply same factor to {knownSecond}</b>{knownSecond} × {display(scale)} = {display(targetSecond)}</span></p><p><i>3</i><span><b>x = {display(targetSecond)}</b></span></p></section><section className="proportion84-answer"><h3>Answer</h3><b>x = {display(targetSecond)} <Check /></b></section><section className="proportion84-misconception"><h3><Lightbulb />Common misconception</h3><p>Students sometimes multiply both parts by different numbers.<br />Remember: <b>both parts must scale by the same factor.</b></p></section><button type="button" className="proportion84-practice" onClick={loadPractice}><Pencil /><span><b>{practiceLoaded ? `Solved: x = ${display(targetSecond)}` : "Try this next!"}</b>Try: Solve 4/7 = 12/x.</span><ArrowRight /></button></aside>
       </main>
       <nav className="proportion84-navigation"><a href="/lessons/numbers-and-arithmetic/83-ratio-models"><ArrowLeft /><span>Previous<b>Ratio Models</b></span></a><a href="/lessons/numbers-and-arithmetic/85-direct-proportion"><span>Next<b>Direct Proportion</b></span><ArrowRight /></a></nav>
+      <LessonTopicStudyBoard lessonId={84} view={tab} onInteraction={onInteraction} />
+
     </div>
   );
 }

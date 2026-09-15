@@ -13,6 +13,7 @@ import { useEffect, useRef, useState } from "react";
 import type { PointerEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./AttachDetachTargetLesson202.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Name = "P" | "Q";
 type Point = { x: number; y: number };
@@ -528,6 +529,8 @@ export default function AttachDetachTargetLesson202({
         </nav>
         <small>© 2026 INDIAN SERVERS PRIVATE LIMITED.</small>
       </footer>
+      <LessonTopicStudyBoard lessonId={202} view={tab} onInteraction={onInteraction} />
+
     </main>
   );
 }

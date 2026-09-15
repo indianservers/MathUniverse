@@ -22,6 +22,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./ExactProofTargetLesson253.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type Drag = "a" | "b" | "t";
@@ -585,6 +586,8 @@ export default function ExactProofTargetLesson253({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={253} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

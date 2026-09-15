@@ -14,6 +14,7 @@ import { useEffect, useRef, useState } from "react";
 import type { KeyboardEvent, PointerEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./CoordinateLociTargetLesson178.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 const INITIAL_RADIUS = 3;
@@ -620,6 +621,8 @@ export default function CoordinateLociTargetLesson178({
         <a href="#docs">▤ Docs</a>
         <a href="#about">✉ About</a>
       </footer>
+      <LessonTopicStudyBoard lessonId={178} view={tab} onInteraction={onInteraction} />
+
     </main>
   );
 }

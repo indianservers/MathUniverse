@@ -2,6 +2,7 @@ import { Check, CircleHelp, Play, RotateCcw } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./VectorEquationLineTargetLesson10155.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 type V = { x: number; y: number; z: number };
 const A0 = { x: 1, y: -1, z: 2 },
   B0 = { x: 2, y: 1, z: 3 };
@@ -533,6 +534,8 @@ export default function VectorEquationLineTargetLesson10155({
           <a href="/lessons/vectors">Cross Product</a>
         </nav>
       </main>
+      <LessonTopicStudyBoard lessonId={10155} alwaysVisible />
+
     </section>
   );
 }

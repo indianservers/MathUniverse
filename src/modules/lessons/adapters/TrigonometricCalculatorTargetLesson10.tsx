@@ -3,6 +3,8 @@ import { useEffect, useRef, useState } from "react";
 import type { PointerEvent as ReactPointerEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./TrigonometricCalculatorTargetLesson10.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+
 
 const ANGLES = [0, 30, 45, 60, 90] as const;
 const TABS = [
@@ -466,13 +468,14 @@ export default function TrigonometricCalculatorTargetLesson10({
           →
         </a>
       </nav>
-      <footer className="trigcalc-footer">
+<footer className="trigcalc-footer">
         <b>⚒ Math Universe</b>
         <p>
           Interactive math labs, visual proofs, NCERT explorations, graphing,
           CAS-style tools, and classroom-ready activities.
         </p>
       </footer>
+      <LessonTopicStudyBoard lessonId={10} view={view} onInteraction={onInteraction} />
     </div>
   );
 }

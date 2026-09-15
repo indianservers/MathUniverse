@@ -12,6 +12,7 @@ import type { ThreeEvent } from "@react-three/fiber";
 import type { LessonAdapterProps } from "../../types";
 import "./CoordinateSystemTargetLesson378.css";
 import "./SurfaceFunctionTargetLesson413.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Preset = "plane" | "paraboloid" | "saddle" | "ripple";
 type Point = { x: number; y: number; z: number };
@@ -467,6 +468,8 @@ export default function SurfaceFunctionTargetLesson413({
         ⓘ Interactive tip: Drag on the 3D surface to rotate, scroll to zoom,
         Shift + drag to pan. Hover anywhere to see (x, y, z).
       </footer>
+      <LessonTopicStudyBoard lessonId={413} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

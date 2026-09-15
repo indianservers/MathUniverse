@@ -16,6 +16,7 @@ import { useEffect, useState, type DragEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./DecimalPlaceValueTargetLesson79.css";
 import "./DecimalPlaceValueTargetLesson79Tuning.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 function clampHundredths(value: number) {
   if (!Number.isFinite(value)) return 0;
@@ -453,6 +454,8 @@ export default function DecimalPlaceValueTargetLesson79({
         </small>
         <small>www.IndianServers.com info@IndianServers.com</small>
       </footer>
+      <LessonTopicStudyBoard lessonId={79} view={tab} onInteraction={onInteraction} />
+
     </div>
   );
 }

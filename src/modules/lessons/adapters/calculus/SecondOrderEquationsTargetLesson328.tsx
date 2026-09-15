@@ -2,6 +2,7 @@ import { Check, RotateCcw, Share2 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./SecondOrderEquationsTargetLesson328.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type ResponsePoint = { t: number; x: number; v: number; a: number };
 const clamp = (value: number, min: number, max: number) =>
@@ -454,6 +455,8 @@ export default function SecondOrderEquationsTargetLesson328({
           </output>
         </article>
       </section>
+      <LessonTopicStudyBoard lessonId={328} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

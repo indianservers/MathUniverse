@@ -18,6 +18,7 @@ import {
   solveAbsoluteValueEquation121,
 } from "./absoluteValueEquationsLesson121Model";
 import "./AbsoluteValueEquationsTargetLesson121.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type DragPoint = "left" | "center" | "right" | null;
 
@@ -690,6 +691,8 @@ export default function AbsoluteValueEquationsTargetLesson121({
         </small>
         <small>www.IndianServers.com info@IndianServers.com</small>
       </footer>
+      <LessonTopicStudyBoard lessonId={121} view={activeTab} onInteraction={onInteraction} />
+
     </div>
   );
 }

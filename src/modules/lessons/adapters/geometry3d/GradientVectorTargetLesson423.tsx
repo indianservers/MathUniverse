@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./CoordinateSystemTargetLesson378.css";
 import "./GradientVectorTargetLesson423.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 type Point = { x: number; y: number };
 const initial = { point: { x: 1, y: 0.5 }, opacity: 0.7, tool: "select" },
   f = ({ x, y }: Point) => x * x - x * y + y * y,
@@ -375,6 +376,8 @@ export default function GradientVectorTargetLesson423({
           <b>Tangent Plane</b> →
         </button>
       </nav>
+      <LessonTopicStudyBoard lessonId={423} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

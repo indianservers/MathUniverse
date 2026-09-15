@@ -13,6 +13,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./CasToGraphTargetLesson449.css";
 import "./CasToGraphTargetLesson449Practice.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Series = {
   id: number;
@@ -392,6 +393,8 @@ export default function CasToGraphTargetLesson449({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={449} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

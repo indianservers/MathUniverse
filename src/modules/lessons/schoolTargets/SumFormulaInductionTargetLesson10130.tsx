@@ -9,6 +9,7 @@ import { useMemo, useState } from "react";
 import type { DragEvent } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./SumFormulaInductionTargetLesson10130.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type StepId = "A" | "B" | "C" | "D" | "E";
 
@@ -326,6 +327,8 @@ export default function SumFormulaInductionTargetLesson10130({
           </button>
         </footer>
       </main>
+      <LessonTopicStudyBoard lessonId={10130} alwaysVisible />
+
     </section>
   );
 }

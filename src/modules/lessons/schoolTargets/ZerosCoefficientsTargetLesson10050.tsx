@@ -9,6 +9,7 @@ import { useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./ZerosCoefficientsTargetLesson10050.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const tabs = ["INTERACT", "LEARN", "EXAMPLE", "FORMULA", "PRACTICE"];
 const tidy = (n: number) => Math.round(n * 10) / 10;
@@ -348,6 +349,8 @@ export default function ZerosCoefficientsTargetLesson10050({
           <ArrowRight />
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10050} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

@@ -9,6 +9,7 @@ import {
   dotMode,
 } from "./dotPlotLessonModel";
 import "./DotPlotLesson481.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 export default function DotPlotLesson481({
   resetToken,
   onInteraction,
@@ -227,6 +228,8 @@ function DotActivity({
         </button>
         <span>Next: Stem-and-Leaf Plot →</span>
       </footer>
+      <LessonTopicStudyBoard lessonId={481} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

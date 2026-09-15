@@ -4,6 +4,7 @@ import type { LessonAdapterProps } from "../types";
 import { normalPdf } from "./normalDistributionLessonModel";
 import { studentTAnalysis, studentTCdf, studentTDensity, studentTQuantile } from "./studentTLessonModel";
 import "./StudentTDistributionLesson529.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const alphaOptions = [0.1, 0.05, 0.02, 0.01];
 
@@ -37,5 +38,7 @@ function StudentTActivity({ onInteraction }: Pick<LessonAdapterProps, "onInterac
     </section>
     <section className="st529-quiz"><h3>Quick Knowledge Check</h3><div>{questions.map((question,index)=><article key={question.text}><b>{index+1}. {question.text}</b>{question.options.map((option,optionIndex)=><label key={String(option)} className={answers[index]===optionIndex?"selected":""}><input type="radio" checked={answers[index]===optionIndex} onChange={()=>{const next=[...answers];next[index]=optionIndex;setAnswers(next);const nextChecked=[...checked];nextChecked[index]=false;setChecked(nextChecked);onInteraction();}}/>{String.fromCharCode(65+optionIndex)}. {option}</label>)}<button type="button" onClick={()=>{const next=[...checked];next[index]=true;setChecked(next);}}>Check</button>{checked[index]&&<p className={answers[index]===question.correct?"correct":"incorrect"}>{answers[index]===question.correct?<Check size={13}/>:<X size={13}/>} {answers[index]===question.correct?"Correct":"Try again"}</p>}</article>)}</div><strong>Score: {questions.reduce((score,question,index)=>score+Number(checked[index]&&answers[index]===question.correct),0)} / 4</strong></section>
     <footer><button type="button" onClick={reset}><RotateCcw size={14} />Reset lesson</button><span>Previous: Normal Distribution &nbsp; Next: Chi-Square Distribution</span></footer>
+      <LessonTopicStudyBoard lessonId={529} alwaysVisible onInteraction={onInteraction} />
+
   </div>;
 }

@@ -6,6 +6,7 @@ import type { LessonAdapterProps } from "../types";
 import { LessonCartesianGraph, type LessonGraphSeries } from "../graphs/LessonCartesianGraph";
 import { LessonNumberLineGraph } from "../graphs/LessonNumberLineGraph";
 import "./InequalityInputTargetLesson31.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Operator = "<" | "<=" | ">" | ">=" | "=";
 type Model = {
@@ -432,6 +433,8 @@ export default function InequalityInputTargetLesson31({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={31} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

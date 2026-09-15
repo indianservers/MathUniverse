@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "../geometry3d/CoordinateSystemTargetLesson378.css";
 import "./SetBuilderTargetLesson582.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Preset = "even" | "positive" | "nonpositive" | "odd" | "custom";
 const range = (from: number, to: number) =>
@@ -436,6 +437,8 @@ export default function SetBuilderTargetLesson582({
           -&gt;
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={582} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

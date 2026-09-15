@@ -11,6 +11,7 @@ import { type PointerEvent, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./AngleSemicircleTargetLesson10092.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const RADIUS = 6.31;
 const round = (value: number, places = 2) =>
@@ -416,6 +417,8 @@ export default function AngleSemicircleTargetLesson10092({
           </Link>
         </nav>
       </main>
+      <LessonTopicStudyBoard lessonId={10092} view={tab} />
+
     </section>
   );
 }

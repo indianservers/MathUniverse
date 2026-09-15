@@ -2,6 +2,7 @@ import { CheckCircle2, Info, RotateCcw, Shuffle } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./BasisDimensionTargetLesson360.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 type Vector = [number, number];
 const defaults = {
     v1: [1, 1] as Vector,
@@ -442,6 +443,8 @@ export default function BasisDimensionTargetLesson360({
           )}
         </footer>
       </section>
+      <LessonTopicStudyBoard lessonId={360} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

@@ -2,6 +2,8 @@ import { Check, Eye, Lightbulb, RotateCcw } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./RoundingPrecisionTargetLesson15.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+
 
 const TABS = [
   "Interaction + visualization",
@@ -378,7 +380,7 @@ export default function RoundingPrecisionTargetLesson15({
           </button>
         </section>
       </section>
-      <nav className="rounding-neighbors">
+<nav className="rounding-neighbors">
         <a href="/lessons/core-workspaces/14-absolute-value">
           ←{" "}
           <span>
@@ -392,6 +394,7 @@ export default function RoundingPrecisionTargetLesson15({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={15} alwaysVisible onInteraction={onInteraction} />
     </div>
   );
 }

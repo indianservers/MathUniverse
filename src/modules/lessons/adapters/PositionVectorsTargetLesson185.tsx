@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import type { KeyboardEvent, PointerEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./PositionVectorsTargetLesson185.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type Key = "a" | "b" | "c";
@@ -627,6 +628,8 @@ export default function PositionVectorsTargetLesson185({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={185} alwaysVisible onInteraction={onInteraction} />
+
     </main>
   );
 }

@@ -12,6 +12,7 @@ import type { DragEvent } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./RationalIrrationalTargetLesson10042.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Kind = "rational" | "irrational";
 type Evidence = "fraction" | "recurring" | "nonrepeating";
@@ -407,6 +408,8 @@ export default function RationalIrrationalTargetLesson10042({
           Next: Practice Problems <ArrowRight />
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10042} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

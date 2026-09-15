@@ -12,6 +12,7 @@ import type { KeyboardEvent, PointerEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./DistanceBetweenPointsTargetLesson169.css";
 import "./DistanceBetweenPointsTargetLesson169.icons.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 const clamp = (value: number) => Math.max(-8, Math.min(8, value));
@@ -656,6 +657,8 @@ export default function DistanceBetweenPointsTargetLesson169({
           www.IndianServers.com &nbsp; info@IndianServers.com
         </small>
       </footer>
+      <LessonTopicStudyBoard lessonId={169} view={tab} onInteraction={onInteraction} />
+
     </main>
   );
 }

@@ -2,6 +2,7 @@ import { ExternalLink, Maximize2, RotateCcw, Share2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./ComplexConjugateTargetLesson369.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 type Pair = [number, number];
 const clean = (n: number) => Number(n.toFixed(2));
 const text = ([a, b]: Pair) => a + (b < 0 ? " - " : " + ") + Math.abs(b) + "i";
@@ -407,6 +408,8 @@ export default function ComplexConjugateTargetLesson369({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={369} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

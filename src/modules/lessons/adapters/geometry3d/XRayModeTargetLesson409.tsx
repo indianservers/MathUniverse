@@ -12,6 +12,7 @@ import { DoubleSide } from "three";
 import type { LessonAdapterProps } from "../../types";
 import "./CoordinateSystemTargetLesson378.css";
 import "./XRayModeTargetLesson409.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Mode = "opaque" | "transparent" | "xray";
 type Layer =
@@ -441,6 +442,8 @@ export default function XRayModeTargetLesson409({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={409} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

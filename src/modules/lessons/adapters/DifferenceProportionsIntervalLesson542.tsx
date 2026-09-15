@@ -6,6 +6,7 @@ import {
   generateProportionSamples,
 } from "./differenceProportionsLessonModel";
 import "./DifferenceProportionsIntervalLesson542.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const clampCount = (value: number, total: number) =>
   Math.max(0, Math.min(total, Math.round(value || 0)));
@@ -478,6 +479,8 @@ function DifferenceProportionsActivity({
         <span>Previous &nbsp; Difference of Means Interval</span>
         <span>Next &nbsp; One-Sample z-Test</span>
       </footer>
+      <LessonTopicStudyBoard lessonId={542} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

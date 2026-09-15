@@ -2,6 +2,7 @@ import { CheckCircle2, RotateCcw, Shuffle } from "lucide-react";
 import { useMemo, useState } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./CombinatorialInterpretationTargetLesson10140.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const combinations = (n: number, r: number) => {
   const result: number[][] = [];
@@ -308,6 +309,8 @@ export default function CombinatorialInterpretationTargetLesson10140({
           Try another (n, r)
         </button>
       </footer>
+      <LessonTopicStudyBoard lessonId={10140} view={view} />
+
     </section>
   );
 }

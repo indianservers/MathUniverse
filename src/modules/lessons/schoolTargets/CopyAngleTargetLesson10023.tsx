@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { schoolLessonCatalog } from "../catalog/school/schoolSyllabusCatalog";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./CopyAngleTargetLesson10023.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const clampAngle = (angle: number) =>
   Math.min(150, Math.max(15, Math.round(angle)));
@@ -484,6 +485,8 @@ export default function CopyAngleTargetLesson10023({
           →
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10023} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

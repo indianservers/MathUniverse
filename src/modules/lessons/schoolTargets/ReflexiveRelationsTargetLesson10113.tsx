@@ -2,6 +2,7 @@ import { Check, Info, Pencil, Play, Plus, X } from "lucide-react";
 import { useState } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./ReflexiveRelationsTargetLesson10113.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type N = 1 | 2 | 3 | 4;
 type Pair = `${N},${N}`;
@@ -321,6 +322,8 @@ export default function ReflexiveRelationsTargetLesson10113({
           <p>Non-reflexive relation: at least one self-pair is missing.</p>
         </section>
       </footer>
+      <LessonTopicStudyBoard lessonId={10113} view={view} />
+
     </section>
   );
 }

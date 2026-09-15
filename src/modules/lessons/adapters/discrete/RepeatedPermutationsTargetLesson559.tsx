@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./PermutationsTargetLesson558.css";
 import "./RepeatedPermutationsTargetLesson559.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const palette: Record<string, string> = {
   A: "#f59a9d",
@@ -411,6 +412,8 @@ export default function RepeatedPermutationsTargetLesson559({
           <b>Circular Permutations</b>
         </button>
       </nav>
+      <LessonTopicStudyBoard lessonId={559} view={view} onInteraction={onInteraction} />
+
     </section>
   );
 }

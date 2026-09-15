@@ -9,6 +9,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { PointerEvent as ReactPointerEvent } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./EquilibriumStabilityTargetLesson330.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const clamp = (v: number, a: number, b: number) => Math.min(b, Math.max(a, v));
 const clean = (v: number) => Number(v.toFixed(8));
@@ -317,6 +318,8 @@ export default function EquilibriumStabilityTargetLesson330({
           {hint ? "Roots: 0, 1, 3" : "Need a hint?"}
         </button>
       </section>
+      <LessonTopicStudyBoard lessonId={330} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

@@ -3,6 +3,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import type { PointerEvent as ReactPointerEvent } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./ChaosBifurcationTargetLesson333.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const clean = (v: number) => Number(v.toFixed(8)),
   next = (x: number, r: number) => r * x * (1 - x);
@@ -333,6 +334,8 @@ export default function ChaosBifurcationTargetLesson333({
           </output>
         </article>
       </section>
+      <LessonTopicStudyBoard lessonId={333} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

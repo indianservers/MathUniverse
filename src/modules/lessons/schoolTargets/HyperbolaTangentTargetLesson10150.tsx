@@ -3,6 +3,7 @@ import { useMemo, useRef, useState } from "react";
 import type { PointerEvent as ReactPointerEvent } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./HyperbolaTangentTargetLesson10150.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const clampTheta = (value: number) => {
   const v = Math.max(-2.6, Math.min(2.6, value));
@@ -357,6 +358,8 @@ export default function HyperbolaTangentTargetLesson10150({
           </button>
         ))}
       </section>
+      <LessonTopicStudyBoard lessonId={10150} alwaysVisible />
+
     </section>
   );
 }

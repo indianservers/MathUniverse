@@ -10,6 +10,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./SssCongruenceTargetLesson10069.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Sides = { red: number; blue: number; green: number };
 const START: Sides = { red: 5, blue: 6, green: 7 };
@@ -415,6 +416,8 @@ export default function SssCongruenceTargetLesson10069({
           <ArrowRight />
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10069} view={tab} />
+
     </section>
   );
 }

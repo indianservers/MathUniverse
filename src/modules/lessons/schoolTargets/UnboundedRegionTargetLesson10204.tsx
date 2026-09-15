@@ -5,6 +5,7 @@ import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import { visibleRegion,satisfiesRegion,type RegionPoint } from "./feasibleRegionModel";
 import { unboundedConstraints,unboundedObjective,isRecessionDirection } from "./unboundedRegionModel";
 import "./UnboundedRegionTargetLesson10204.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 const fmt=(n:number)=>Number(n.toFixed(2));
 export default function UnboundedRegionTargetLesson10204({lesson}:{lesson:SchoolSyllabusLesson}) {
   const [offsets,setOffsets]=useState([0,0,-2,4]),[enabled,setEnabled]=useState([true,true,true,true]);
@@ -39,5 +40,7 @@ export default function UnboundedRegionTargetLesson10204({lesson}:{lesson:School
     <section id="ur-Example" className="ur-worked"><div><h2>WORKED CHECKS</h2><table><thead><tr><th>Constraint</th><th>P = (4, 3)</th><th>Direction d</th></tr></thead><tbody>{constraints.filter(c=>c.enabled).map(c=><tr key={c.label}><td>{c.label}</td><td>{c.a*4+c.b*3} ≤ {c.c} {satisfiesRegion(point,c)?"✓":"×"}</td><td>{fmt(c.a*direction[0]+c.b*direction[1])} ≤ 0 {c.a*direction[0]+c.b*direction[1]<=1e-8?"✓":"×"}</td></tr>)}</tbody></table></div><article><h2><TriangleAlert size={18}/>COMMON MISCONCEPTION</h2><p>Unbounded region does not mean there is no finite optimum. Test the objective along feasible recession directions.</p></article></section>
     <section id="ur-Practice" className="ur-practice"><h2>TRY YOURSELF<button onClick={()=>setHints(v=>!v)} aria-expanded={hints}>Show hints</button></h2><div>{practiceModels.map((m,i)=><article key={i}><h3>{i+1}. {i===1?"Maximize":"Minimize"} Z = x + y</h3><p>{i===2?"x ≥ 0, y ≥ 0, y ≥ x − 3, 2x + y ≥ 9":"x ≥ 0, y ≥ 0, y ≥ x − 1, x + y ≥ 5"}</p>{hints&&<p>Compare corner values and check the objective along a feasible direction.</p>}<button onClick={()=>setReveals(previous=>previous.map((v,j)=>i===j?!v:v))} aria-expanded={reveals[i]}>Check answer {i+1}</button>{reveals[i]&&<p role="status">{m.unbounded?"No finite maximum":`Minimum ${fmt(m.value!)}; optimal points ${m.best.map(p=>`(${p.map(fmt).join(", ")})`).join(", ")}`}</p>}</article>)}</div></section>
     <nav className="ur-next"><Link to="/lessons/school/class-12/class-12-linear-programming-bounded-feasible-region"><ArrowLeft size={14}/>Previous: Bounded Feasible Region</Link><Link to="/lessons/school/class-12/class-12-linear-programming-multiple-optimal-solutions">Next: Multiple Optimal Solutions<ArrowRight size={14}/></Link></nav>
+      <LessonTopicStudyBoard lessonId={10204} view={tab} />
+
   </main>;
 }

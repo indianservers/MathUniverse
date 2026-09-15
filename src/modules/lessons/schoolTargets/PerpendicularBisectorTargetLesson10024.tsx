@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { schoolLessonCatalog } from "../catalog/school/schoolSyllabusCatalog";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./PerpendicularBisectorTargetLesson10024.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const clamp = (value: number, min: number, max: number) =>
   Math.min(max, Math.max(min, value));
@@ -444,6 +445,8 @@ export default function PerpendicularBisectorTargetLesson10024({
         <Link to={prev.route}>← &nbsp; Previous: Copying an Angle</Link>
         <Link to={next.route}>Next: Angle Bisector Construction &nbsp; →</Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10024} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

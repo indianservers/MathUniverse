@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./FutureValueTargetLesson595.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const cash = (value: number) =>
   new Intl.NumberFormat("en-IN", {
@@ -353,6 +354,8 @@ export default function FutureValueTargetLesson595({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={595} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

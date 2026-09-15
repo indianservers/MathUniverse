@@ -2,6 +2,7 @@ import { AlertTriangle, ArrowLeft, ArrowRight, Check, FlaskConical } from "lucid
 import { useEffect, useState, type DragEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./FractionDecimalConversionTargetLesson81.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 function gcd(a: number, b: number): number {
   return b === 0 ? Math.abs(a) : gcd(b, a % b);
@@ -117,6 +118,8 @@ export default function FractionDecimalConversionTargetLesson81({ resetToken, on
         </div>
       </main>
       <nav className="conversion81-navigation"><a href="/lessons/numbers-and-arithmetic/80-decimal-operations"><ArrowLeft /><span>Previous<b>Decimal Operations</b></span></a><a href="/lessons/numbers-and-arithmetic/82-recurring-decimals"><span>Next<b>Recurring Decimals</b></span><ArrowRight /></a></nav>
+      <LessonTopicStudyBoard lessonId={81} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

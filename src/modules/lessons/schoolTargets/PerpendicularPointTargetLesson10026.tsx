@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { schoolLessonCatalog } from "../catalog/school/schoolSyllabusCatalog";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./PerpendicularPointTargetLesson10026.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Model = { mode: "On-line" | "Off-line"; radius: number; offset: number };
 const initial: Model = { mode: "On-line", radius: 3.5, offset: 0 };
@@ -500,6 +501,8 @@ export default function PerpendicularPointTargetLesson10026({
           →
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10026} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

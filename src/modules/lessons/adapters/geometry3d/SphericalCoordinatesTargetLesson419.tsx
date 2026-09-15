@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./CoordinateSystemTargetLesson378.css";
 import "./SphericalCoordinatesTargetLesson419.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Spherical = { rho: number; theta: number; phi: number };
 const initial: Spherical = { rho: 3, theta: 45, phi: 60 },
@@ -288,6 +289,8 @@ export default function SphericalCoordinatesTargetLesson419({
           <b>Contour Curves</b> →
         </button>
       </nav>
+      <LessonTopicStudyBoard lessonId={419} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

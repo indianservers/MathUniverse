@@ -32,6 +32,7 @@ import {
   type FactorPair97 as Pair,
 } from "./factorisationLesson97Model";
 import "./FactorisationTargetLesson97.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type FactorisationTab97 =
   "Interact" | "Learn" | "Examples" | "Formula" | "Practice";
@@ -659,6 +660,8 @@ export default function FactorisationTargetLesson97({
           www.IndianServers.com&nbsp;&nbsp; info@IndianServers.com
         </small>
       </footer>
+      <LessonTopicStudyBoard lessonId={97} view={tab} onInteraction={onInteraction} />
+
     </div>
   );
 }

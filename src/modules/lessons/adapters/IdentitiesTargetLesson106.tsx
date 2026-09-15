@@ -27,6 +27,7 @@ import {
   type IdentityTile106 as Tile,
 } from "./identitiesLesson106Model";
 import "./IdentitiesTargetLesson106.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type IdentityTab106 =
   | "Interaction + visualization"
@@ -642,6 +643,8 @@ export default function IdentitiesTargetLesson106({
         </small>
         <p>www.IndianServers.com info@IndianServers.com</p>
       </footer>
+      <LessonTopicStudyBoard lessonId={106} view={tab} onInteraction={onInteraction} />
+
     </div>
   );
 }

@@ -10,6 +10,7 @@ import {
   type RecursiveRule,
 } from "./recursiveSequenceLessonModel";
 import "./RecursiveSequencesTargetLesson337.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const presets = {
   "Linear growth": {
@@ -505,6 +506,8 @@ export default function RecursiveSequencesTargetLesson337({
           )}
         </output>
       </section>
+      <LessonTopicStudyBoard lessonId={337} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

@@ -26,6 +26,7 @@ import {
   type ReactNode,
 } from "react";
 import type { LessonAdapterProps } from "../types";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type Mode = "move" | "polygon";
@@ -567,6 +568,8 @@ export default function AreaTargetLesson231({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={231} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

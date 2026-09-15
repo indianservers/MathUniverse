@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./AlternateInteriorTargetLesson10061.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const tabs = ["◉ Interact", "▣ Learn", "▱ Example", "∑ Formula", "⌁ Practice"];
 
@@ -330,6 +331,8 @@ export default function AlternateInteriorTargetLesson10061({
           Next: Interior Angles on the Same Side <ArrowRight />
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10061} view={tab} />
+
     </section>
   );
 }

@@ -12,6 +12,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./EqualSidesAnglesTargetLesson10071.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type Measures = {
@@ -388,6 +389,8 @@ export default function EqualSidesAnglesTargetLesson10071({
           <ArrowRight />
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10071} view={tab} />
+
     </section>
   );
 }

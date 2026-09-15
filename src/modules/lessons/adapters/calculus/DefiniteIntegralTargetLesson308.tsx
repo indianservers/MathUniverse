@@ -18,6 +18,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./DefiniteIntegralTargetLesson308.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const fn = (x: number) => -(x - 1) * (x + 3);
 const primitive = (x: number) => -(x ** 3) / 3 - x ** 2 + 3 * x;
@@ -431,6 +432,8 @@ export default function DefiniteIntegralTargetLesson308({
               : ""}
         </output>
       </section>
+      <LessonTopicStudyBoard lessonId={308} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

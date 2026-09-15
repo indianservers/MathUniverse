@@ -15,6 +15,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./SliderComponentTargetLesson618.css";
 import "./SliderComponentTargetLesson618.fidelity.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const initial = { label: "a", minimum: 0, maximum: 2, step: 0.1, defaultValue: 1.2 };
 const tidy = (value: number) => Number(value.toFixed(2));
@@ -68,6 +69,8 @@ export default function SliderComponentTargetLesson618({ resetToken, onInteracti
         "Keyboard supported",
       ].map((item) => <p key={item}><Check />{item}{item === "Keyboard supported" && <span className="key-badge">Tab / ← →</span>}</p>)}<p className={meaningfulRange ? "" : "warning"}><Check />Meaningful range required<span>!</span></p></section></aside>
     </main>
+      <LessonTopicStudyBoard lessonId={618} view={tab} onInteraction={onInteraction} />
+
   </div>;
 }
 

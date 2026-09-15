@@ -17,6 +17,7 @@ import { MOUSE } from "three";
 import type { LessonAdapterProps } from "../../types";
 import "./CoordinateSystemTargetLesson378.css";
 import "./OrthographicViewsTargetLesson411.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Block = readonly [number, number, number];
 type View = "front" | "top" | "right";
@@ -578,6 +579,8 @@ export default function OrthographicViewsTargetLesson411({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={411} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

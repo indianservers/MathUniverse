@@ -2,6 +2,7 @@ import { CheckCircle2, RotateCcw } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./LinearIndependenceTargetLesson361.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 type Vector = [number, number];
 const initial = { v1: [2, 1] as Vector, v2: [1, 3] as Vector },
   clean = (n: number) => Number(n.toFixed(3)),
@@ -357,6 +358,8 @@ export default function LinearIndependenceTargetLesson361({
           </output>
         )}
       </section>
+      <LessonTopicStudyBoard lessonId={361} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

@@ -25,6 +25,7 @@ import {
   type ReactNode,
 } from "react";
 import type { LessonAdapterProps } from "../types";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type Coefficients = [number, number, number, number, number, number];
@@ -532,6 +533,8 @@ export default function ConicFivePointsTargetLesson226({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={226} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

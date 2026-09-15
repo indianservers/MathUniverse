@@ -15,6 +15,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./ImproperIntegralsTargetLesson315.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type ModelName = "cauchy" | "laplace" | "gaussian";
 const MODELS = {
@@ -456,6 +457,8 @@ export default function ImproperIntegralsTargetLesson315({
         </small>
         <span>www.IndianServers.com &nbsp;&nbsp; info@IndianServers.com</span>
       </footer>
+      <LessonTopicStudyBoard lessonId={315} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import type { KeyboardEvent, PointerEvent as ReactPointerEvent } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./TangentsNormalsTargetLesson10175.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const f = (x: number) => x * x,
   fmt = (x: number) => Number(x.toFixed(4));
@@ -423,6 +424,8 @@ export default function TangentsNormalsTargetLesson10175({
           © 2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.
         </small>
       </footer>
+      <LessonTopicStudyBoard lessonId={10175} alwaysVisible />
+
     </main>
   );
 }

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./CoordinateSystemTargetLesson378.css";
 import "./PointsTargetLesson379.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Point = { id: string; color: string; value: [number, number, number] };
 const defaults: Point[] = [
@@ -433,6 +434,8 @@ export default function PointsTargetLesson379({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={379} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

@@ -9,6 +9,7 @@ import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./FactorTheoremTargetLesson10049.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const tabs = ["Interact", "Learn", "Example", "Formula", "Practice"],
   candidates = [-3, -2, -1, 0, 1, 2, 3];
@@ -339,6 +340,8 @@ export default function FactorTheoremTargetLesson10049({
           <ArrowRight />
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10049} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

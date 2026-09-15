@@ -3,6 +3,8 @@ import { useEffect, useState, type CSSProperties } from "react";
 import type { LessonAdapterProps } from "../types";
 import { LessonCartesianGraph } from "../graphs/LessonCartesianGraph";
 import "./AnimationControlsTargetLesson24.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+
 
 const FRAMES = [0, 0.5, 1, 1.5, 2, 2];
 const SPEEDS = { "0.5x": 2800, "1x": 1800, "2x": 900 } as const;
@@ -230,7 +232,7 @@ export default function AnimationControlsTargetLesson24({
           </section>
         </aside>
       </main>
-      <nav className="animation-neighbors">
+<nav className="animation-neighbors">
         <a href="/lessons/core-workspaces/23-angle-sliders">
           ←
           <span>
@@ -246,6 +248,7 @@ export default function AnimationControlsTargetLesson24({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={24} alwaysVisible onInteraction={onInteraction} />
     </div>
   );
 }

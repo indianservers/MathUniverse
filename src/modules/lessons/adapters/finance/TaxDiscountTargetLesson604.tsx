@@ -2,6 +2,7 @@ import { Plus, RotateCcw } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./TaxDiscountTargetLesson604.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const products = [
   ["Backpack", 2450],
@@ -362,6 +363,8 @@ export default function TaxDiscountTargetLesson604({
           &rarr;
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={604} view={view} onInteraction={onInteraction} />
+
     </section>
   );
 }

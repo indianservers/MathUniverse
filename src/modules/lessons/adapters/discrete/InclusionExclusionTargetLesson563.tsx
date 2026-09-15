@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "../geometry3d/CoordinateSystemTargetLesson378.css";
 import "./InclusionExclusionTargetLesson563.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Zone = "a" | "i" | "b" | "c" | "pool";
 const initial: Record<number, Zone> = {
@@ -466,6 +467,8 @@ export default function InclusionExclusionTargetLesson563({
           <b>Pigeonhole Principle</b>
         </button>
       </nav>
+      <LessonTopicStudyBoard lessonId={563} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

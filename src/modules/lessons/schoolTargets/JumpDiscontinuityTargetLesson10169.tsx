@@ -10,6 +10,7 @@ import { useMemo, useState } from "react";
 import type { KeyboardEvent, PointerEvent as ReactPointerEvent } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./JumpDiscontinuityTargetLesson10169.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Scenario = "jump" | "removable" | "infinite";
 const fmt = (n: number) =>
@@ -490,6 +491,8 @@ export default function JumpDiscontinuityTargetLesson10169({
         <button>← Removable Discontinuity</button>
         <button>Infinite Discontinuity →</button>
       </nav>
+      <LessonTopicStudyBoard lessonId={10169} alwaysVisible />
+
     </main>
   );
 }

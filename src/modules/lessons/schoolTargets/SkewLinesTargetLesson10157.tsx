@@ -2,6 +2,7 @@ import { Check, Eye, RotateCcw } from "lucide-react";
 import { useMemo, useState } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./SkewLinesTargetLesson10157.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type V = { x: number; y: number; z: number };
 type Kind = "Intersecting" | "Parallel" | "Coincident" | "Skew";
@@ -448,6 +449,8 @@ export default function SkewLinesTargetLesson10157({
           <span>© 2026 INDIAN SERVERS PRIVATE LIMITED.</span>
         </footer>
       </main>
+      <LessonTopicStudyBoard lessonId={10157} alwaysVisible />
+
     </section>
   );
 }

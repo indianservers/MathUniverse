@@ -9,6 +9,7 @@ import {
   type SequenceCoefficients,
 } from "./sequenceGeneratorLessonModel";
 import "./SequenceGeneratorTargetLesson334.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const clean = (v: number) => Number(v.toFixed(8));
 
@@ -608,6 +609,8 @@ export default function SequenceGeneratorTargetLesson334({
           </output>
         </article>
       </section>
+      <LessonTopicStudyBoard lessonId={334} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

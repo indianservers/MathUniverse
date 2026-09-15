@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./ParallelConverseTargetLesson10063.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const tests = [
   {
@@ -340,6 +341,8 @@ export default function ParallelConverseTargetLesson10063({
           Next: Triangle Angle Sum Theorem <ArrowRight />
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10063} view={tab} />
+
     </section>
   );
 }

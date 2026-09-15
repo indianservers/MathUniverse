@@ -3,6 +3,7 @@ import { useEffect, useState, type DragEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./FractionOperationsTargetLesson78.css";
 import "./FractionOperationsTargetLesson78Tuning.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type FractionValue = { numerator: number; denominator: number };
 type Operation = "Add" | "Subtract" | "Multiply" | "Divide";
@@ -129,6 +130,8 @@ export default function FractionOperationsTargetLesson78({ resetToken, onInterac
       </main>
       <footer className="operations78-footer"><h3><Sparkles /> Math Universe</h3><p>Interactive math labs, visual proofs, NCERT explorations, graphing, CAS-style tools, and classroom-ready activities.</p><nav><a href="/sitemap"><BookOpen /> Sitemap</a><a href="/docs"><Calculator /> Docs</a><a href="/about">✉ About</a></nav><hr /><small>© 2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.</small><small>www.IndianServers.com info@IndianServers.com</small></footer>
       <button type="button" className="operations78-reset" onClick={reset}>Reset model</button>
+      <LessonTopicStudyBoard lessonId={78} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }
