@@ -560,7 +560,7 @@ export function MockupStudioChrome({
             {isModel ? <button type="button" className="msk-avatar" aria-label="Account"><User /></button> : null}
           </div>
         </header>
-        {(isTrig || isGeo || isDiscrete || isLinear) && page.id !== "home" ? (
+        {(isTrig || isGeo || isDiscrete) && page.id !== "home" ? (
           <nav className="msk-topic-strip" aria-label="Topics" ref={stripRef}>
             {labs.map((item) => (
               <NavLink key={item.id} to={item.route} className={({ isActive }) => isActive ? "active" : ""}>{item.label}</NavLink>

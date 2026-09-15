@@ -125,7 +125,7 @@ function LinearAlgebraHomeHero() {
     <div className="la-home-hero">
       <svg
         className="msk-graph is-interactive"
-        viewBox="0 0 360 88"
+        viewBox="0 0 360 96"
         role="img"
         aria-label="Drag to shear the unit square"
         onPointerDown={(event: PointerEvent<SVGSVGElement>) => {
@@ -141,10 +141,10 @@ function LinearAlgebraHomeHero() {
           setK(Math.max(0, Math.min(1.4, (x - 0.2) * 2)));
         }}
       >
-        <rect width="360" height="88" fill="#f8fbff" />
-        <polygon points={`40,72 ${100 + k * 40},72 ${124 + k * 40},28 64,28`} fill="rgba(20,125,242,.16)" stroke="#147df2" />
-        <text x="150" y="38" fill="#334155" fontSize="12">Unit square under a shear</text>
-        <text x="150" y="56" fill="#147df2" fontSize="11">A = [[1, {k.toFixed(2)}], [0, 1]]</text>
+        <rect width="360" height="96" fill="#f8fbff" />
+        <polygon points={`40,78 ${100 + k * 40},78 ${128 + k * 40},28 68,28`} fill="rgba(20,125,242,.16)" stroke="#147df2" />
+        <text x="150" y="42" fill="#334155" fontSize="12">Unit square under a shear</text>
+        <text x="150" y="62" fill="#147df2" fontSize="11">A = [[1, {k.toFixed(2)}], [0, 1]]</text>
       </svg>
       <Link className="msk-cta" to="/linear-algebra/linear-transforms?mode=Shear">Open Transforms</Link>
     </div>
@@ -430,13 +430,67 @@ const LINEAR_FLOW_PRIMARY = [
   { label: "Least squares", to: "/linear-algebra/least-squares", id: "least-squares" },
 ] as const;
 
-const LINEAR_FLOW_BRANCHES = [
-  { label: "Row reduction", to: "/linear-algebra/row-reduction", id: "row-reduction" },
-  { label: "Determinants", to: "/linear-algebra/determinants", id: "determinants" },
-  { label: "Spaces", to: "/linear-algebra/vector-spaces", id: "vector-spaces" },
-  { label: "Orthogonality", to: "/linear-algebra/orthogonality", id: "orthogonality" },
-  { label: "Playground", to: "/linear-algebra/playground", id: "playground" },
-] as const;
+function LinearAlgebraHomeAside(props: HomeProps) {
+  const session = useLinearSession();
+  const [answer, setAnswer] = useState("");
+  const [status, setStatus] = useState("");
+  const [query, setQuery] = useState("");
+  const challenge = props.challenge;
+  const continueTo = continueLinearHref(session);
+  const needle = query.trim().toLowerCase();
+  const alias = LINEAR_SEARCH_ALIASES[needle];
+  const hits = props.labs.filter((item) => `${item.label} ${item.description} ${item.modes.join(" ")} λ RREF proj det A×B`.toLowerCase().includes(needle));
+  const artId = props.labs.find((item) => item.label === session.lastLabel)?.id ?? "vectors";
+  return (
+    <aside className="msk-aside la-home-rail" data-home-rail="linear-algebra">
+      <section className="msk-panel msk-continue" data-rail-card="continue">
+        <h2><Play /> Continue Experiment</h2>
+        <div className="msk-continue-art"><TopicIllustration pageId={artId} /></div>
+        <p><strong>{session.lastLabel}</strong></p>
+        <div className="msk-progress" aria-label={`${props.progress}% completed`}><i style={{ width: `${props.progress}%` }} /></div>
+        <small>{props.progress}% completed</small>
+        <Link className="msk-cta" to={continueTo}>Continue Experiment →</Link>
+      </section>
+      <section className="msk-panel">
+        <h2><Search /> Search</h2>
+        <input className="msk-home-search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder={props.studio.searchPlaceholder} aria-label="Search linear algebra labs" />
+        {query ? (
+          <ul className="msk-search-hits is-inline">
+            {hits.slice(0, 5).map((item) => <li key={item.id}><Link to={item.route}>{item.label}</Link></li>)}
+          </ul>
+        ) : null}
+        {alias ? <p><Link to={`/linear-algebra/${alias.id}${alias.mode ? `?mode=${encodeURIComponent(alias.mode)}` : ""}`}>Open {alias.id}{alias.mode ? ` · ${alias.mode}` : ""}</Link></p> : null}
+      </section>
+      <section className="msk-panel" data-rail-card="journey">
+        <h2>Your Learning Journey</h2>
+        <ol className="msk-journey-list">
+          {props.labs.slice(0, 6).map((item, index) => {
+            const complete = session.completed.includes(item.id);
+            return (
+              <li key={item.id} data-journey-status={complete ? "completed" : index === 0 ? "in-progress" : "locked"}>
+                <i className={complete ? "done" : index === 0 ? "now" : ""} />
+                <Link to={item.route}>{item.label}</Link>
+              </li>
+            );
+          })}
+        </ol>
+        <div className="msk-progress"><i style={{ width: `${props.progress}%` }} /></div>
+        <small>Overall Progress {props.progress}%</small>
+      </section>
+      {challenge ? (
+        <section className="msk-panel msk-challenge" data-rail-card="challenge">
+          <h2>Daily Visual Challenge</h2>
+          <div className="msk-continue-art"><TopicIllustration pageId={challenge.id} /></div>
+          <p>{challenge.challenge.prompt}</p>
+          <input value={answer} onChange={(event) => { setAnswer(event.target.value); setStatus(""); }} aria-label="Challenge answer" />
+          <button className="msk-cta" type="button" onClick={() => setStatus(Math.abs(parseChallengeAnswer(answer) - challenge.challenge.expected) < 0.02 ? "Correct." : challenge.challenge.hint)}>Try Challenge →</button>
+          {status ? <p role="status">{status}</p> : null}
+          <Link className="msk-teach" to={challenge.route}>Open {challenge.label}</Link>
+        </section>
+      ) : null}
+    </aside>
+  );
+}
 
 function LinearAlgebraStudioHome(props: HomeProps & { title: string; cta?: string }) {
   const session = useLinearSession();
@@ -445,93 +499,56 @@ function LinearAlgebraStudioHome(props: HomeProps & { title: string; cta?: strin
     if (session.levelFilter === "All") return true;
     return studioLabMeta("linear-algebra", item.id)?.level === session.levelFilter;
   });
-  const continueTo = continueLinearHref(session);
-  const done = session.completed.filter((id) => props.labs.some((lab) => lab.id === id));
-  const progress = props.labs.length ? Math.round((done.length / props.labs.length) * 100) : 0;
-  const [query, setQuery] = useState("");
-  const [answer, setAnswer] = useState("");
-  const [status, setStatus] = useState("");
-  const alias = LINEAR_SEARCH_ALIASES[query.trim().toLowerCase()];
-  const hits = query
-    ? props.labs.filter((item) => `${item.label} ${item.description} ${item.modes.join(" ")} λ RREF proj det A×B`.toLowerCase().includes(query.trim().toLowerCase()))
-    : [];
-  const challengeHref = props.challenge
-    ? `${props.challenge.route}?mode=${encodeURIComponent(props.challenge.modes[0] ?? "")}&from=challenge`
-    : "/linear-algebra/vectors";
+  const [left, right] = [props.labs.slice(0, 5), props.labs.slice(5)];
 
   return (
-    <div className="msk-home la-home">
+    <div className="msk-home la-home" data-studio-home="linear-algebra" data-home-layout="target-01">
       <section>
+        <nav className="la-map" aria-label="Linear algebra concept map">
+          <div className="la-map-group">
+            {left.map((item) => (
+              <Link key={item.id} to={item.route}>
+                <TopicIllustration pageId={item.id} />
+                <b>{item.label}</b>
+              </Link>
+            ))}
+          </div>
+          <div className="la-map-core"><span className="msk-mark">{props.studio.mark}</span><span>LINEAR</span></div>
+          <div className="la-map-group">
+            {right.map((item) => (
+              <Link key={item.id} to={item.route}>
+                <TopicIllustration pageId={item.id} />
+                <b>{item.label}</b>
+              </Link>
+            ))}
+          </div>
+        </nav>
+        <ol className="msk-trig-flow" aria-label="Studio journey">
+          {LINEAR_FLOW_PRIMARY.map((step, index) => (
+            <li key={step.to}>
+              <Link to={step.to} data-flow-node={step.id}>
+                <span>{index + 1}</span>
+                <b>{step.label}</b>
+              </Link>
+              {index < LINEAR_FLOW_PRIMARY.length - 1 ? <i aria-hidden="true">→</i> : null}
+            </li>
+          ))}
+        </ol>
+        <LinearAlgebraHomeHero />
         <header className="msk-launch-head">
           <h2>{props.title}</h2>
-          <p>Choose a topic. Each card opens that lab.</p>
+          <Link to="/linear-algebra/vectors" data-topics-link="all">View all topics →</Link>
         </header>
-        <nav className="la-flow-map" aria-label="Linear algebra concept flow">
-          <ol className="msk-trig-flow" aria-label="Studio journey">
-            {LINEAR_FLOW_PRIMARY.map((step, index) => (
-              <li key={step.to}>
-                <Link to={step.to} data-flow-node={step.id}>
-                  <span>{index + 1}</span>
-                  <b>{step.label}</b>
-                </Link>
-                {index < LINEAR_FLOW_PRIMARY.length - 1 ? <i aria-hidden="true">→</i> : null}
-              </li>
-            ))}
-          </ol>
-          <ul className="la-flow-branches">
-            {LINEAR_FLOW_BRANCHES.map((item) => (
-              <li key={item.id}><Link to={item.to}>{item.label}</Link></li>
-            ))}
-          </ul>
-        </nav>
-        <LinearAlgebraHomeHero />
         <div className="la-filters" role="group" aria-label="Difficulty filter">
           {levels.map((level) => (
             <button key={level} type="button" className={session.levelFilter === level ? "active" : ""} onClick={() => writeLinearSession({ levelFilter: level })}>{level}</button>
           ))}
         </div>
-        <LaunchGrid labs={filtered} studioId="linear-algebra" cta={props.cta} />
+        <div data-lab-grid="linear-algebra">
+          <LaunchGrid labs={filtered} studioId="linear-algebra" cta={props.cta} />
+        </div>
       </section>
-      <aside className="msk-aside">
-        <section className="msk-panel msk-continue">
-          <h2>Continue</h2>
-          <p><strong>{session.lastLabel}</strong></p>
-          <Link className="msk-cta" to={continueTo}>Continue →</Link>
-        </section>
-        <section className="msk-panel">
-          <h2>Search</h2>
-          <input className="msk-home-search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder={props.studio.searchPlaceholder} aria-label="Search labs" />
-              {alias ? <p><Link to={`/linear-algebra/${alias.id}${alias.mode ? `?mode=${encodeURIComponent(alias.mode)}` : ""}`}>Open {alias.id}{alias.mode ? ` · ${alias.mode}` : ""}</Link></p> : null}
-          {query ? (
-            <ul className="msk-search-hits is-inline">
-              {hits.slice(0, 5).map((item) => <li key={item.id}><Link to={item.route}>{item.label}</Link></li>)}
-            </ul>
-          ) : null}
-        </section>
-        <section className="msk-panel">
-          <h2>Your learning journey</h2>
-          <ol className="msk-journey-list">
-            {props.labs.map((item) => (
-              <li key={item.id}>
-                <i className={done.includes(item.id) ? "done" : session.lastLabel === item.label ? "now" : ""} />
-                <Link to={item.route}>{item.label}</Link>
-              </li>
-            ))}
-          </ol>
-          <div className="msk-progress"><i style={{ width: `${progress}%` }} /></div>
-          <small>Overall progress {progress}%</small>
-        </section>
-        {props.challenge ? (
-          <section className="msk-panel msk-challenge">
-            <h2>Daily visual challenge</h2>
-            <p>{props.challenge.challenge.prompt}</p>
-            <input value={answer} onChange={(event) => { setAnswer(event.target.value); setStatus(""); }} aria-label="Challenge answer" />
-            <button className="msk-cta" type="button" onClick={() => setStatus(Math.abs(parseChallengeAnswer(answer) - props.challenge!.challenge.expected) < 0.02 ? "Correct." : props.challenge!.challenge.hint)}>Check</button>
-            {status ? <p role="status">{status}</p> : null}
-            <Link className="msk-teach" to={challengeHref}>Open {props.challenge.label} with this setup</Link>
-          </section>
-        ) : null}
-      </aside>
+      <LinearAlgebraHomeAside {...props} />
     </div>
   );
 }

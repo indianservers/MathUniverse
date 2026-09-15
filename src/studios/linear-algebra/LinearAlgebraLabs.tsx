@@ -26,6 +26,18 @@ function Chrome({
   return <Phase1LabChrome page={page} toolbar={toolbar}>{children}</Phase1LabChrome>;
 }
 
+function Canvas({ mode, title = "SIMULATION VIEW", children }: { mode: string; title?: string; children: ReactNode }) {
+  return (
+    <section className="msk-panel msk-canvas" data-studio="linear-algebra" data-mode-canvas={mode}>
+      <header className="la-canvas-head">
+        <h2>{title}</h2>
+        <small>{mode}</small>
+      </header>
+      {children}
+    </section>
+  );
+}
+
 function FigureBar<T extends object>({ fig }: { fig: ReturnType<typeof useStudioFigure<T>> }) {
   return (
     <FigureToolbar
@@ -123,7 +135,7 @@ function VectorsLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNode
             {mode === "Add" ? <button type="button" className={assoc ? "msk-soft active" : "msk-soft"} onClick={() => setAssoc((v) => !v)}>Associativity sandbox</button> : null}
             <p className="msk-note">Drag handles or use WASD / arrows on the canvas. Tick marks are the i, j{view === "3D" ? ", k" : ""} components.</p>
           </Panel>
-          <section className="msk-panel msk-canvas" data-studio="linear-algebra" data-mode-canvas={mode}>
+          <Canvas mode={mode}>
             <ExtraFrame
               mode={mode}
               extra={extra}
@@ -194,7 +206,7 @@ function VectorsLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNode
               { color: LA_B, label: "b (square)", shape: "square" },
               { color: LA_C, label: mode === "Projections" ? "proj (dashed)" : "result", shape: "dashed" },
             ]} />
-          </section>
+          </Canvas>
           <aside className="msk-panel msk-live">
             <LiveRegion text={`theta ${fmt(angle, 1)} degrees, dot ${fmt(dot)}`} />
             <LiveRow color={LA_A} label="|a|" value={fmt(mag(a))} />
@@ -327,7 +339,7 @@ function MatricesLab({ page }: { page: StudioMockupPage }) {
               </label>
               <button type="button" className="msk-soft" onClick={() => fig.commit({ ...fig.state, reveal: true })}>Reveal</button>
             </Panel>
-            <section className="msk-panel msk-canvas" data-studio="linear-algebra" data-mode-canvas={mode}>
+            <Canvas mode={mode}>
               {!compatible && mode === "Multiply" ? <p className="msk-warn" role="alert">Incompatible: A is {rowsA}×{colsA} and B is {rowsB}×{colsB}. Inner sizes must match.</p> : null}
               {mode === "Inverse" && !invA ? <p className="msk-warn" role="alert">Singular — no inverse. The 2×2 block of A has det ≈ 0.</p> : null}
               <p className="msk-note">{mode === "Multiply" ? "Product = composition: unit square → A then B" : mode === "Inverse" ? "AA⁻¹ → I animation (2×2 block of A)" : mode === "Transpose" ? "Geometric transpose: columns become rows" : mode === "Block" ? "Block multiply on 2×2 tiles" : `A + B · ${view}`}</p>
@@ -359,7 +371,7 @@ function MatricesLab({ page }: { page: StudioMockupPage }) {
                 )}
               </svg>
               <FormulaBridge>{mode === "Multiply" ? `C${hi + 1}${hj + 1} is row ${hi + 1} of A dotted with column ${hj + 1} of B.` : `det(A) · det(B) = det(AB) when both are square.`}</FormulaBridge>
-            </section>
+            </Canvas>
             <aside className="msk-panel msk-live">
               <h2>Dimensions &amp; compatibility</h2>
               <p className="msk-note">{compatible ? `A: ${rowsA} × ${colsA} · B: ${rowsB} × ${colsB} → A × B: ${rowsA} × ${colsB} · Compatible` : "Not compatible for multiply"}</p>
@@ -432,7 +444,7 @@ function RowReductionLab({ page }: { page: StudioMockupPage }) {
             <p className="msk-eq">{fmt(a)}x + {fmt(b)}y = {fmt(rhs1)}</p>
             <p className="msk-eq">{fmt(c)}x + {fmt(d)}y = {fmt(rhs2)}</p>
           </Panel>
-          <section className="msk-panel msk-canvas" data-studio="linear-algebra" data-mode-canvas={mode}>
+          <Canvas mode={mode}>
             <h2>{mode === "Pivot Map" ? "Pivot map" : mode === "3D View" ? "Planes in R³" : "Lines in R²"}</h2>
             <table className="msk-rref">
               <thead><tr><th>R1</th><th>x</th><th>y</th><th>|</th><th>b</th></tr></thead>
@@ -464,7 +476,7 @@ function RowReductionLab({ page }: { page: StudioMockupPage }) {
               )}
             </svg>
             <FormulaBridge>Elementary ops morph the same solution set. The gold marker is the intersection (or a point on the free line).</FormulaBridge>
-          </section>
+          </Canvas>
           <aside className="msk-panel msk-live">
             <span className={`la-badge is-${cls.kind}`}>{cls.kind === "unique" ? "Unique solution" : cls.kind === "infinite" ? "Infinitely many" : "Inconsistent"}</span>
             <LiveRow color={LA_A} label="Pivots" value={String(cls.rankA)} />
@@ -535,14 +547,14 @@ function LinearTransformsLab({ page, extra }: { page: StudioMockupPage; extra?: 
               <NudgeSlider label="Scale / shear" value={fig.state.k} min={0.2} max={2.5} step={0.05} onChange={(k) => fig.commit({ ...fig.state, k })} />
               <p className="msk-note">Columns of A are the images of e₁ and e₂. Drag the tips.</p>
             </Panel>
-            <section className="msk-panel msk-canvas" data-studio="linear-algebra" data-mode-canvas={mode}>
+            <Canvas mode={mode}>
               <ExtraFrame
                 mode={mode}
                 extra={extra}
                 fallback={<TransformCanvas mode={mode} M={M} k={fig.state.k} dark={dark} onDrag={(which, x, y) => fig.commit(which === "e1" ? { ...fig.state, e1x: x, e1y: y } : { ...fig.state, e2x: x, e2y: y })} />}
               />
               <FormulaBridge>The dashed square is the original; the filled parallelogram is A times that square.</FormulaBridge>
-            </section>
+            </Canvas>
             <aside className="msk-panel msk-live">
               <LiveRow color={LA_A} label="Image of e1" value={`(${fmt(M[0][0])}, ${fmt(M[1][0])})`} />
               <LiveRow color={LA_B} label="Image of e2" value={`(${fmt(M[0][1])}, ${fmt(M[1][1])})`} />
@@ -572,7 +584,7 @@ function DeterminantsLab({ page }: { page: StudioMockupPage }) {
             <NudgeSlider label="a₂₁" value={fig.state.c} min={-3} max={3} step={0.1} onChange={(c) => fig.commit({ ...fig.state, c })} />
             <NudgeSlider label="a₂₂" value={fig.state.d} min={-3} max={4} step={0.1} onChange={(d) => fig.commit({ ...fig.state, d })} />
           </Panel>
-          <section className="msk-panel msk-canvas" data-studio="linear-algebra" data-mode-canvas={mode}>
+          <Canvas mode={mode}>
             <svg className="msk-graph" viewBox="0 0 420 240" role="img" aria-label={mode}>
               <rect width="420" height="240" fill={canvasFill(dark, mode === "3D Volume")} />
               <ArrowDefs />
@@ -597,7 +609,7 @@ function DeterminantsLab({ page }: { page: StudioMockupPage }) {
               <text x="24" y="28" fill={ink(dark || mode === "3D Volume")} fontSize="13">{mode === "Singularity" ? "Shear toward det → 0" : mode === "Orientation" ? (det >= 0 ? "color: preserved" : "flip") : mode}</text>
             </svg>
             <FormulaBridge>Signed area of the parallelogram spanned by the columns is det A = {fmt(det)}. The boundary arrow reverses when det is negative.</FormulaBridge>
-          </section>
+          </Canvas>
           <aside className="msk-panel msk-live">
             <LiveRow color={LA_C} label={mode === "3D Volume" ? "signed volume" : "det (signed area)"} value={fmt(det)} />
             <StatusOk>{Math.abs(det) < 0.15 ? "Singular · collapse" : det < 0 ? "Orientation reversed" : "Orientation preserved"}</StatusOk>
@@ -632,7 +644,7 @@ function EigenLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNode }
             <NudgeSlider label="Angle" value={fig.state.t} min={0} max={180} step={1} onChange={(t) => fig.commit({ ...fig.state, t })} unit="°" />
             <p className="msk-note">{mode === "Phase Portrait" ? "Trajectories come from x' = Ax for this matrix." : "Glow on the eigenline when Av ∥ v."}</p>
           </Panel>
-          <section className="msk-panel msk-canvas" data-studio="linear-algebra" data-mode-canvas={mode}>
+          <Canvas mode={mode}>
             <ExtraFrame
               mode={mode}
               extra={extra}
@@ -667,7 +679,7 @@ function EigenLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNode }
               )}
             />
             <FormulaBridge>Av = λv exactly on an eigenline. Gold is Av; blue is v.</FormulaBridge>
-          </section>
+          </Canvas>
           <aside className="msk-panel msk-live">
             <LiveRow color={LA_B} label="Aligned when" value="Av ∥ v" />
             <LiveRow color={LA_D} label="λ estimate" value={fmt(lambda, 3)} />
@@ -709,7 +721,7 @@ function OrthoLab({ page }: { page: StudioMockupPage }) {
             </div>
             <button type="button" className="msk-soft" onClick={() => fig.commit({ ...fig.state, playing: !fig.state.playing })}>{fig.state.playing ? "Pause" : "Play steps"}</button>
           </Panel>
-          <section className="msk-panel msk-canvas" data-studio="linear-algebra" data-mode-canvas={mode}>
+          <Canvas mode={mode}>
             <svg className="msk-graph" viewBox="0 0 420 240" role="img" aria-label={mode}>
               <rect width="420" height="240" fill={canvasFill(dark, mode === "3D View")} />
               <ArrowDefs />
@@ -720,7 +732,7 @@ function OrthoLab({ page }: { page: StudioMockupPage }) {
               {fig.state.gsStep >= 3 ? <VectorRay x1={60} y1={180} x2={60 + gs.u1[0] * 80} y2={180 - gs.u1[1] * 80} color={LA_D} marker="la-d" /> : null}
             </svg>
             <FormulaBridge>Project onto v, subtract, then normalize. Residual · u1 stays 0.</FormulaBridge>
-          </section>
+          </Canvas>
           <aside className="msk-panel msk-live">
             <LiveRow color={LA_C} label="residual ⊥ v" value={fmt(gs.residual[0] * gs.u1[0] + gs.residual[1] * gs.u1[1], 3)} />
             <LiveRow color={LA_D} label="u1 · u2" value={fmt(gs.u1[0] * gs.u2[0] + gs.u1[1] * gs.u2[1], 3)} />
@@ -764,7 +776,7 @@ function LeastSquaresLab({ page }: { page: StudioMockupPage }) {
             <p className="msk-note">Drag points. Residual is orthogonal to the columns.</p>
             <button type="button" className="msk-soft" onClick={() => fig.commit({ pts: [...pts.slice(0, 3), [4.6, 7.8]] })}>Add outlier</button>
           </Panel>
-          <section className="msk-panel msk-canvas" data-studio="linear-algebra" data-mode-canvas={mode}>
+          <Canvas mode={mode}>
             <svg
               className="msk-graph is-interactive"
               viewBox="0 0 420 240"
@@ -800,7 +812,7 @@ function LeastSquaresLab({ page }: { page: StudioMockupPage }) {
               ) : null}
             </svg>
             <FormulaBridge>The residual vector is orthogonal to the columns of the design matrix [1 x]. Gold squares are squared error.</FormulaBridge>
-          </section>
+          </Canvas>
           <aside className="msk-panel msk-live">
             <LiveRow color={LA_B} label="RMSE" value={fmt(rmse, 3)} />
             <LiveRow color={LA_D} label="R²" value={fmt(r2, 3)} />
@@ -852,10 +864,10 @@ function PlaygroundLab({ page, extra }: { page: StudioMockupPage; extra?: ReactN
             </ol>
             <p className="msk-note">Stack: {fig.state.stack.join(" ∘ ")} — left is applied last.</p>
           </Panel>
-          <section className="msk-panel msk-canvas" data-studio="linear-algebra" data-mode-canvas={mode}>
+          <Canvas mode={mode}>
             <ExtraFrame mode={mode} extra={extra} fallback={<TransformCanvas mode={mode} M={M} k={fig.state.k} dark={dark || mode.includes("3D")} />} />
             <FormulaBridge>Composition is matrix product. det(stack) = {fmt(det2(M))}.</FormulaBridge>
-          </section>
+          </Canvas>
           <aside className="msk-panel msk-live">
             <LiveRow color={LA_E} label="det I" value="1" />
             <LiveRow color={LA_A} label="det composed" value={fmt(det2(M))} />

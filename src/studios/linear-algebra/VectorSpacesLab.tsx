@@ -55,7 +55,11 @@ export default function VectorSpacesLab({ page }: { page: StudioMockupPage }) {
               <NudgeSlider label="Vectors in the set" value={fig.state.n} min={1} max={3} step={1} onChange={(n) => fig.commit({ ...fig.state, n })} />
               <p className="msk-note">Drag a, b, and probe p. Grey b means it lies in span(a).</p>
             </Panel>
-            <section className="msk-panel msk-canvas">
+            <section className="msk-panel msk-canvas" data-studio="linear-algebra" data-mode-canvas={mode}>
+              <header className="la-canvas-head">
+                <h2>SIMULATION VIEW</h2>
+                <small>{mode}</small>
+              </header>
               <svg
                 className="msk-graph is-interactive"
                 viewBox="0 0 420 240"

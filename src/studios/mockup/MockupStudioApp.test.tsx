@@ -26,6 +26,10 @@ describe("MockupStudioApp", () => {
     expect(lin).toContain("Eigen");
     expect(lin).toContain("Start here");
     expect(lin).toContain("Dot · Cross · Projections");
+    expect(lin).toContain('data-studio-home="linear-algebra"');
+    expect(lin).toContain("Continue Experiment");
+    expect(lin).toContain("View all topics");
+    expect(lin).toContain("LINEAR");
     const cx = renderToString(<MemoryRouter initialEntries={["/complex-numbers"]}><MockupStudioApp studioId="complex-numbers" /></MemoryRouter>);
     expect(cx).toContain("Start here");
     expect(cx).toContain("Plot · Modulus · Argument");
@@ -57,6 +61,8 @@ describe("MockupStudioApp", () => {
     expect(matrices).toContain("Matrices Lab");
     expect(matrices).toContain("Replay row×column");
     expect(matrices).toContain("Result C = A × B");
+    expect(matrices).toContain("SIMULATION VIEW");
+    expect(matrices).not.toContain("msk-topic-strip");
   });
 
   it("renders unit circle, AR, fractals, algorithms, and crypto chrome", () => {
