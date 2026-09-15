@@ -21,7 +21,7 @@ const routes = [
   ["/algebra/exponents-logs", "Exponents Radicals &amp; Logarithms Lab"],
   ["/algebra/sequences", "Sequences &amp; Progressions Lab"],
   ["/algebra/proof", "Algebraic Proof Lab"],
-  ["/algebra/cas", "CAS Step Explorer"],
+  ["/algebra/cas", "Candidate checker"],
   ["/algebra/advanced", "Advanced Algebra Workbench"],
 ] as const;
 
@@ -54,7 +54,8 @@ describe("Algebra Studio reference routes", () => {
   it("links the CAS explorer to the existing CAS workspace", () => {
     const html = renderToString(<MemoryRouter initialEntries={["/algebra/cas"]}><AlgebraStudio /></MemoryRouter>);
     expect(html).toContain("/workspace/data/cas");
-    expect(html).toContain("Connected to the existing CAS workspace");
+    expect(html).toContain("CAS Step Explorer");
+    expect(html).toContain("not a Wolfram");
   });
 
   it("links home topic studios to the existing algebra lab routes", () => {
@@ -95,7 +96,7 @@ describe("Algebra Studio reference routes", () => {
     const sequences = renderToString(<MemoryRouter initialEntries={["/algebra/sequences"]}><AlgebraStudio /></MemoryRouter>);
     expect(sequences).toContain("aₙ closed form");
     const cas = renderToString(<MemoryRouter initialEntries={["/algebra/cas"]}><AlgebraStudio /></MemoryRouter>);
-    expect(cas).toContain("Step explorer");
+     expect(cas).toContain("CAS Step Explorer");
   });
 
   it("renders the algebraic proof two-column builder and area model", () => {
@@ -117,6 +118,9 @@ describe("Algebra Studio reference routes", () => {
     const home = renderToString(<MemoryRouter initialEntries={["/algebra"]}><AlgebraStudio /></MemoryRouter>);
     expect(home).toContain("x + 7");
     expect(home).toContain("2(x + 3)");
+    expect(home).toContain("First 60 seconds");
+    expect(home).toContain("/algebra/classic");
+    expect(home).toContain("Advanced Workbench");
   });
 
   it("renders all 25 functional Algebra enhancement tools", () => {
@@ -124,7 +128,6 @@ describe("Algebra Studio reference routes", () => {
     expect(html.match(/data-enhancement-id="ALG-/g)).toHaveLength(25);
     expect(html).toContain("Inequality sign reversal");
     expect(html).toContain("3×3 row elimination");
-    expect(html).toContain("CAS candidate verification");
     expect(html.match(/type="number"/g)).toHaveLength(4);
   });
 });

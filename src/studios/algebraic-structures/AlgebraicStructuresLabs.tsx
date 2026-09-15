@@ -1,5 +1,5 @@
 import { Check, GitFork, GitMerge, Grid3X3, HelpCircle, Share2, ToggleLeft, Trophy } from "lucide-react";
-import { useMemo, useRef, useState, type PointerEvent } from "react";
+import { useMemo, useRef, useState, type KeyboardEvent, type PointerEvent } from "react";
 import { Link } from "react-router-dom";
 import {
   booleanCircuitLayers,
@@ -179,6 +179,7 @@ function PropertyList({ info }: { info: StructureClassification }) {
         </div>
       ))}
       <div className="as-ok"><Check /><span>{info.abelian ? "(S, *) is an abelian group. This structure is isomorphic to Zₙ (addition modulo n)." : info.group ? "(S, *) is a group." : info.monoid ? "This is a monoid." : info.semigroup ? "This is a semigroup." : info.magma ? "This is a magma (closed)." : "Not closed."}</span></div>
+      {info.failures[0] ? <p className="as-note">Not a group because {info.failures[0]}</p> : null}
     </div>
   );
 }
@@ -223,7 +224,23 @@ function CayleyGrid({
               const latin = new Set(rowValues).size === elements.length;
               return (
               <td key={col} className={`${hot && hot[0] === row && hot[1] === col ? "is-hot" : hot && (hot[0] === row || hot[1] === col) ? "is-soft" : ""} ${latin ? "is-latin" : ""}`}>
-                <input value={table[row]?.[col] ?? ""} aria-label={`${row} * ${col}`} onChange={(event) => onChange({ ...table, [row]: { ...table[row], [col]: event.target.value } })} />
+                <input
+                  value={table[row]?.[col] ?? ""}
+                  aria-label={`${row} * ${col}`}
+                  onChange={(event) => onChange({ ...table, [row]: { ...table[row], [col]: event.target.value } })}
+                  onKeyDown={(event: KeyboardEvent<HTMLInputElement>) => {
+                    const rowIndex = elements.indexOf(row);
+                    const colIndex = elements.indexOf(col);
+                    const move = (nextRow: number, nextCol: number) => {
+                      const target = event.currentTarget.closest("table")?.querySelector<HTMLInputElement>(`input[aria-label="${elements[nextRow]} * ${elements[nextCol]}"]`);
+                      target?.focus();
+                    };
+                    if (event.key === "ArrowRight" && colIndex < elements.length - 1) { event.preventDefault(); move(rowIndex, colIndex + 1); }
+                    if (event.key === "ArrowLeft" && colIndex > 0) { event.preventDefault(); move(rowIndex, colIndex - 1); }
+                    if (event.key === "ArrowDown" && rowIndex < elements.length - 1) { event.preventDefault(); move(rowIndex + 1, colIndex); }
+                    if (event.key === "ArrowUp" && rowIndex > 0) { event.preventDefault(); move(rowIndex - 1, colIndex); }
+                  }}
+                />
               </td>
               );
             })}
