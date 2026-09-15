@@ -9,6 +9,7 @@ import {
   type DifferenceMeansMethod,
 } from "./differenceMeansLessonModel";
 import "./DifferenceMeansIntervalLesson541.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 const parseValues = (text: string) =>
   text
     .split(/[\s,]+/)
@@ -399,6 +400,8 @@ function DifferenceMeansActivity({
           of Proportions Interval
         </span>
       </footer>
+      <LessonTopicStudyBoard lessonId={541} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

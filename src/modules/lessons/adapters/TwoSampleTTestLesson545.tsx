@@ -7,6 +7,7 @@ import {
   type TwoSampleMethod,
 } from "./twoSampleTTestLessonModel";
 import "./TwoSampleTTestLesson545.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const sample1 = [12, 15, 14, 13, 16, 17, 11, 14, 16, 15],
   sample2 = [10, 9, 11, 10, 12, 9, 8, 11, 10, 9, 8, 10];
@@ -442,6 +443,8 @@ function TwoSampleActivity({
         <span>Previous &nbsp; One-Sample t Test</span>
         <span>Next &nbsp; Paired t Test</span>
       </footer>
+      <LessonTopicStudyBoard lessonId={545} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

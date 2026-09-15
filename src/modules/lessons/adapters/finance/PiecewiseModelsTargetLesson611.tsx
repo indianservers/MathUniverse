@@ -8,6 +8,7 @@ import {
 import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./PiecewiseModelsTargetLesson611.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Rule = { slope: number; intercept: number; text: string };
 type DragKey = "left" | "right" | null;
@@ -685,6 +686,8 @@ export default function PiecewiseModelsTargetLesson611({
           <ChevronRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={611} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

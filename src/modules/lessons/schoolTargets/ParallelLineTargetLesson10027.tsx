@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { schoolLessonCatalog } from "../catalog/school/schoolSyllabusCatalog";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./ParallelLineTargetLesson10027.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const constructionSteps = [
   "Draw given line & point",
@@ -493,6 +494,8 @@ export default function ParallelLineTargetLesson10027({
           →
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10027} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

@@ -7,6 +7,7 @@ import {
   type CltPopulation,
 } from "./centralLimitLessonModel";
 import "./CentralLimitTheoremLesson538.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 export default function CentralLimitTheoremLesson538({
   resetToken,
   onInteraction,
@@ -370,6 +371,8 @@ function CltActivity({
           Mean
         </span>
       </footer>
+      <LessonTopicStudyBoard lessonId={538} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

@@ -8,6 +8,7 @@ import {
 } from "../decimalExpansion/decimalExpansionEngine";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./TerminatingDecimalsTargetLesson10041.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const tabs = ["Interact", "Learn", "Example", "Formula", "Practice"];
 const previous =
@@ -300,6 +301,8 @@ export default function TerminatingDecimalsTargetLesson10041({
           <ArrowRight />
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10041} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

@@ -4,6 +4,7 @@ import type { PointerEvent } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "../geometry3d/CoordinateSystemTargetLesson378.css";
 import "./VertexDegreeTargetLesson568.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Vertex = { id: string; x: number; y: number; color: string };
 type Edge = { a: string; b: string; count: number };
@@ -484,6 +485,8 @@ export default function VertexDegreeTargetLesson568({
           <b>Paths and Cycles</b>
         </button>
       </nav>
+      <LessonTopicStudyBoard lessonId={568} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

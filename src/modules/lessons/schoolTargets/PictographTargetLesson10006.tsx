@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { schoolLessonCatalog } from "../catalog/school/schoolSyllabusCatalog";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./PictographTargetLesson10006.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const categories = ["Apples", "Bananas", "Mangoes", "Oranges"] as const;
 const icons = ["🍎", "🍌", "🥭", "🍊"];
@@ -531,6 +532,8 @@ export default function PictographTargetLesson10006({
           </Link>
         )}
       </nav>
+      <LessonTopicStudyBoard lessonId={10006} view={activeTab} onInteraction={onInteraction} />
+
     </section>
   );
 }

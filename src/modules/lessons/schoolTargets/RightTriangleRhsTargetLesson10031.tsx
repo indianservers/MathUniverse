@@ -18,6 +18,7 @@ import {
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./RightTriangleRhsTargetLesson10031.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type RhsMeasures = { hypotenuse: number; leg: number };
 type Tool = "Select / Move" | "Compass (center A)";
@@ -349,6 +350,8 @@ export default function RightTriangleRhsTargetLesson10031({
           <b>Right Triangle Construction by ASA</b>
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10031} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

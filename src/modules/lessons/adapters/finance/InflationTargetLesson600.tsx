@@ -2,6 +2,7 @@ import { RotateCcw, ShoppingCart } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./InflationTargetLesson600.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 const cash = (v: number) =>
   new Intl.NumberFormat("en-IN", {
     minimumFractionDigits: 2,
@@ -332,6 +333,8 @@ export default function InflationTargetLesson600({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={600} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

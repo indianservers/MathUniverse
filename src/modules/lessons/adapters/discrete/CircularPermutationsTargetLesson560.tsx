@@ -10,6 +10,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "../geometry3d/CoordinateSystemTargetLesson378.css";
 import "./CircularPermutationsTargetLesson560.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const names = ["Ava", "Ben", "Cara", "Dev", "Eli", "Finn", "Gia", "Hari"];
 const colors = [
@@ -464,6 +465,8 @@ export default function CircularPermutationsTargetLesson560({
           <b>Combinations</b>
         </button>
       </nav>
+      <LessonTopicStudyBoard lessonId={560} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

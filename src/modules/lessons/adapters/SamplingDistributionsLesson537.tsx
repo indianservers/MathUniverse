@@ -7,6 +7,7 @@ import {
   type PopulationShape,
 } from "./samplingDistributionsLessonModel";
 import "./SamplingDistributionsLesson537.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 const shapes: [PopulationShape, string][] = [
   ["normal", "Normal"],
   ["uniform", "Uniform"],
@@ -419,6 +420,8 @@ function SamplingActivity({
           Previous: Distribution Simulation &nbsp; Next: Central Limit Theorem
         </span>
       </footer>
+      <LessonTopicStudyBoard lessonId={537} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

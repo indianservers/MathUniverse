@@ -10,6 +10,7 @@ import { useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./RemainderTheoremTargetLesson10048.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const presets = [
   { label: "x² + 3x + 2", coefficients: [1, 3, 2] },
@@ -365,6 +366,8 @@ export default function RemainderTheoremTargetLesson10048({
           <ArrowRight />
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10048} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

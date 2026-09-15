@@ -9,6 +9,7 @@ import {
 import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./DimensionalAnalysisTargetLesson613.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 type Unit = "km" | "m" | "h" | "min" | "s";
 type Factor = { id: string; n: number; num: Unit; d: number; den: Unit };
 const factors: Factor[] = [
@@ -414,6 +415,8 @@ export default function DimensionalAnalysisTargetLesson613({
           <ChevronRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={613} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

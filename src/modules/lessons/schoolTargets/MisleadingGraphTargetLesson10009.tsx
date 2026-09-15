@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { schoolLessonCatalog } from "../catalog/school/schoolSyllabusCatalog";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./MisleadingGraphTargetLesson10009.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 const months = ["Jan", "Feb", "Mar", "Apr", "May"],
   values = [100, 150, 200, 250, 300];
 function Graph({
@@ -459,6 +460,8 @@ export default function MisleadingGraphTargetLesson10009({
         <Link to={prev.route}>← Previous Lesson</Link>
         <Link to={next.route}>Next Lesson →</Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10009} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

@@ -2,6 +2,7 @@ import { Plus, RotateCcw } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./LinearModelsTargetLesson607.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const fmt = (value: number) =>
   new Intl.NumberFormat("en-IN", { maximumFractionDigits: 0 }).format(value);
@@ -447,6 +448,8 @@ export default function LinearModelsTargetLesson607({
       <button className="lm607-reset" onClick={() => act(reset)}>
         <RotateCcw /> Reset lesson
       </button>
+      <LessonTopicStudyBoard lessonId={607} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

@@ -7,6 +7,7 @@ import {
   type ProportionTestMethod,
 } from "./oneProportionTestLessonModel";
 import "./OneProportionTestLesson547.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 export default function OneProportionTestLesson547({
   resetToken,
@@ -441,6 +442,8 @@ function ProportionActivity({
         <span>Previous &nbsp; Paired t-Test</span>
         <span>Next &nbsp; Two-Proportion Test</span>
       </footer>
+      <LessonTopicStudyBoard lessonId={547} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

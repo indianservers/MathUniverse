@@ -8,6 +8,7 @@ import {
   type PValueTail,
 } from "./pValueVisualiserLessonModel";
 import "./PValueVisualiserLesson553.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 export default function PValueVisualiserLesson553({
   resetToken,
@@ -362,6 +363,8 @@ function Activity({
           </label>
         ))}
       </section>
+      <LessonTopicStudyBoard lessonId={553} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

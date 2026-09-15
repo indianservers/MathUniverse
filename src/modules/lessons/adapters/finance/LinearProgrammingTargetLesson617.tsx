@@ -10,6 +10,7 @@ import {
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./LinearProgrammingTargetLesson617.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number; label: string };
 const clean = (n: number) => Math.round(n * 100) / 100;
@@ -550,6 +551,8 @@ export default function LinearProgrammingTargetLesson617({
           <ChevronRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={617} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

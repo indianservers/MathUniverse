@@ -4,6 +4,7 @@ import type { PointerEvent } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "../geometry3d/CoordinateSystemTargetLesson378.css";
 import "./MinimumSpanningTreeTargetLesson574.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Vertex = { id: string; x: number; y: number };
 type Edge = { a: string; b: string; weight: number };
@@ -638,6 +639,8 @@ export default function MinimumSpanningTreeTargetLesson574({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={574} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

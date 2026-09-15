@@ -3,6 +3,7 @@ import { getStrengthenedFoundationLesson } from "../strengthening/foundationNumb
 import { batch2StudySpecs } from "../strengthening/catalogBatch2StudySpecs";
 import { batch3StudySpecs } from "../strengthening/catalogBatch3StudySpecs";
 import { batch4StudySpecs } from "../strengthening/catalogBatch4StudySpecs";
+import { batch5StudySpecs } from "../strengthening/catalogBatch5StudySpecs";
 import { expandedWorkedExamples } from "./LessonSectionJourney";
 import "./LessonTopicStudyBoard.css";
 
@@ -174,6 +175,7 @@ const SPECS: Record<number, StudySpec> = {
   ...batch2StudySpecs,
   ...batch3StudySpecs,
   ...batch4StudySpecs,
+  ...batch5StudySpecs,
 };
 
 function spec(

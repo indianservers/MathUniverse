@@ -11,6 +11,7 @@ import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./GraphicalZerosTargetLesson10046.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const tabs = ["INTERACT", "LEARN", "EXAMPLE", "FORMULA", "PRACTICE"];
 const clean = (value: number) =>
@@ -397,6 +398,8 @@ export default function GraphicalZerosTargetLesson10046({
           <ArrowRight />
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10046} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

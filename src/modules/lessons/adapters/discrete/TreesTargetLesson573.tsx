@@ -12,6 +12,7 @@ import type { PointerEvent } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "../geometry3d/CoordinateSystemTargetLesson378.css";
 import "./TreesTargetLesson573.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Node = { id: string; x: number; y: number };
 type Edge = { a: string; b: string };
@@ -696,6 +697,8 @@ export default function TreesTargetLesson573({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={573} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

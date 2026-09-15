@@ -4,6 +4,7 @@ import type { LessonAdapterProps } from "../types";
 import { fDensity } from "./fDistributionLessonModel";
 import { oneWayAnova, randomAnovaGroups } from "./anovaLessonModel";
 import "./AnovaLesson552.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const INITIAL_GROUPS = [
   [8, 7, 6, 10, 8, 9],
@@ -378,6 +379,8 @@ function AnovaActivity({
           </aside>
         )}
       </section>
+      <LessonTopicStudyBoard lessonId={552} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

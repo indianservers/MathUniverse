@@ -7,6 +7,7 @@ import {
   twoProportionTest,
 } from "./twoProportionTestLessonModel";
 import "./TwoProportionTestLesson548.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 export default function TwoProportionTestLesson548({
   resetToken,
@@ -432,6 +433,8 @@ function TwoProportionActivity({
         <span>Previous &nbsp; One-Proportion Test</span>
         <span>Next &nbsp; Chi-Square Goodness-of-Fit</span>
       </footer>
+      <LessonTopicStudyBoard lessonId={548} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

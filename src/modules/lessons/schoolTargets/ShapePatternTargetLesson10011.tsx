@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { schoolLessonCatalog } from "../catalog/school/schoolSyllabusCatalog";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./ShapePatternTargetLesson10011.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 const total = (n: number) => 2 * n - 1;
 function Tiles({ n, showAdded = true }: { n: number; showAdded?: boolean }) {
   return (
@@ -269,6 +270,8 @@ export default function ShapePatternTargetLesson10011({
           Next lesson →<b>{next.title}</b>
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10011} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

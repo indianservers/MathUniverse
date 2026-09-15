@@ -7,6 +7,7 @@ import {
   type PairedObservation,
 } from "./pairedTTestLessonModel";
 import "./PairedTTestLesson546.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 export default function PairedTTestLesson546({
   resetToken,
@@ -475,6 +476,8 @@ function PairedActivity({
         <span>Previous &nbsp; 545 Two-Sample t Test</span>
         <span>Next &nbsp; 547 One-Proportion Test</span>
       </footer>
+      <LessonTopicStudyBoard lessonId={546} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

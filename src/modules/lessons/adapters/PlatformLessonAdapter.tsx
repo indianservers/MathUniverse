@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import AdapterFrame from "../components/AdapterFrame";
 import type { LessonAdapterProps } from "../types";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type PlatformSpec = {
   title: string;
@@ -62,6 +63,7 @@ export default function PlatformLessonAdapter({ lesson, resetToken, onInteractio
           <div className="rounded-3xl border border-amber-200 bg-amber-50 p-4 text-sm font-black leading-6 text-amber-900">{spec.warning}</div>
         </aside>
       </section>
+      <LessonTopicStudyBoard lessonId={lesson.id} alwaysVisible onInteraction={onInteraction} />
     </AdapterFrame>
   );
 }

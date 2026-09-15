@@ -4,6 +4,7 @@ import type { PointerEvent } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "../geometry3d/CoordinateSystemTargetLesson378.css";
 import "./ConnectedComponentsTargetLesson570.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Vertex = { id: string; x: number; y: number };
 type Edge = { a: string; b: string; weight: number };
@@ -469,6 +470,8 @@ export default function ConnectedComponentsTargetLesson570({
           <b>Euler Paths and Circuits</b>
         </button>
       </nav>
+      <LessonTopicStudyBoard lessonId={570} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

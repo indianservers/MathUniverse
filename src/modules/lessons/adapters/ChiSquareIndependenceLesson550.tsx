@@ -3,6 +3,7 @@ import { useState } from "react";
 import type { LessonAdapterProps } from "../types";
 import { chiSquareIndependence } from "./chiSquareIndependenceLessonModel";
 import "./ChiSquareIndependenceLesson550.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const defaults = [
     [45, 35],
@@ -371,6 +372,8 @@ function IndependenceActivity({
         <span>Previous &nbsp; Chi-Square Goodness-of-Fit</span>
         <span>Next &nbsp; Fisher&apos;s Exact Test</span>
       </footer>
+      <LessonTopicStudyBoard lessonId={550} view={view} onInteraction={onInteraction} />
+
     </div>
   );
 }

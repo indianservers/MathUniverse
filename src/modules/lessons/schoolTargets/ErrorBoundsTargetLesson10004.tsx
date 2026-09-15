@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { adjacentSchoolLessons } from "../catalog/school/schoolSyllabusCatalog";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./ErrorBoundsTargetLesson10004.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const decimals = (step: number) => Math.max(0, Math.round(-Math.log10(step))),
   show = (n: number, d = 4) =>
@@ -393,6 +394,8 @@ export default function ErrorBoundsTargetLesson10004({
           <span />
         )}
       </nav>
+      <LessonTopicStudyBoard lessonId={10004} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

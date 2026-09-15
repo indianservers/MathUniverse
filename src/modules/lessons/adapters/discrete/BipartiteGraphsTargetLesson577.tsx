@@ -4,6 +4,7 @@ import type { PointerEvent } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "../geometry3d/CoordinateSystemTargetLesson378.css";
 import "./BipartiteGraphsTargetLesson577.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Vertex = { id: string; x: number; y: number };
 type Edge = { a: string; b: string; label: number };
@@ -718,6 +719,8 @@ export default function BipartiteGraphsTargetLesson577({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={577} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

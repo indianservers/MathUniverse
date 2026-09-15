@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { schoolLessonCatalog } from "../catalog/school/schoolSyllabusCatalog";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./UnitRateTargetLesson10016.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const contexts = {
   apples: {
@@ -504,6 +505,8 @@ export default function UnitRateTargetLesson10016({
           Next lesson →<b>{next.title}</b>
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10016} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

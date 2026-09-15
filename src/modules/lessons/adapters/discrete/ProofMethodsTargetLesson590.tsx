@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import type { DragEvent } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./ProofMethodsTargetLesson590.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 type Strategy = "direct" | "contrapositive" | "contradiction" | "induction";
 type Step = { id: string; text: string; reason: string };
 const correct: Step[] = [
@@ -333,6 +334,8 @@ export default function ProofMethodsTargetLesson590({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={590} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

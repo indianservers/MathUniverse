@@ -9,6 +9,7 @@ import {
   twoVarianceFTest,
 } from "./varianceTestsLessonModel";
 import "./VarianceTestsLesson551.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Mode = "one" | "two";
 export default function VarianceTestsLesson551({
@@ -457,6 +458,8 @@ function VarianceActivity({
         <span>Previous &nbsp; Chi-Square Independence</span>
         <span>Next &nbsp; ANOVA</span>
       </footer>
+      <LessonTopicStudyBoard lessonId={551} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

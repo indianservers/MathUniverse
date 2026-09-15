@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { schoolLessonCatalog } from "../catalog/school/schoolSyllabusCatalog";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./NumberPatternTargetLesson10010.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 const arithmetic = (first: number, d: number, n: number) => first + (n - 1) * d,
   geometric = (first: number, r: number, n: number) => first * r ** (n - 1);
 export default function NumberPatternTargetLesson10010({
@@ -445,6 +446,8 @@ export default function NumberPatternTargetLesson10010({
           Next Lesson →<b>{next.title}</b>
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10010} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

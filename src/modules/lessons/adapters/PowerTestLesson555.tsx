@@ -8,6 +8,7 @@ import {
   type PowerTail,
 } from "./powerTestLessonModel";
 import "./PowerTestLesson555.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 export default function PowerTestLesson555({
   resetToken,
@@ -323,6 +324,8 @@ function Activity({
             : `Current answer: ${r.power.toFixed(4)}`}
         </b>
       </section>
+      <LessonTopicStudyBoard lessonId={555} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

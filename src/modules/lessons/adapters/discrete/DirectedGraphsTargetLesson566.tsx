@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "../geometry3d/CoordinateSystemTargetLesson378.css";
 import "./DirectedGraphsTargetLesson566.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Vertex = { id: string; x: number; y: number; color: string };
 type Edge = { from: string; to: string; weight: number };
@@ -476,6 +477,8 @@ export default function DirectedGraphsTargetLesson566({
           <b>Weighted Graphs</b>
         </button>
       </nav>
+      <LessonTopicStudyBoard lessonId={566} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

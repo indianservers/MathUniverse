@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "../geometry3d/CoordinateSystemTargetLesson378.css";
 import "./PermutationsTargetLesson558.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const colors = [
   "#337be0",
@@ -427,6 +428,8 @@ export default function PermutationsTargetLesson558({
           <b>Permutations with Repetition</b>
         </button>
       </nav>
+      <LessonTopicStudyBoard lessonId={558} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

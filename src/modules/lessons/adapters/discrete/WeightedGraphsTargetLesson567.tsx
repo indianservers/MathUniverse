@@ -11,6 +11,7 @@ import type { PointerEvent } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "../geometry3d/CoordinateSystemTargetLesson378.css";
 import "./WeightedGraphsTargetLesson567.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Vertex = { id: string; x: number; y: number; color: string };
 type Edge = { a: string; b: string; weight: number };
@@ -563,6 +564,8 @@ export default function WeightedGraphsTargetLesson567({
           <b>Degree of a Vertex</b>
         </button>
       </nav>
+      <LessonTopicStudyBoard lessonId={567} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }
