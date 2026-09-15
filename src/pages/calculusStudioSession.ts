@@ -127,6 +127,10 @@ export const searchCatalog: SearchHit[] = [
   { page: "multivariable-vector", label: "Gradients", route: "/calculus/multivariable-vector?mode=gradient", mode: "gradient", keywords: "partial surface vector field", formula: "∇f" },
   { page: "multivariable-vector", label: "Theorems", route: "/calculus/multivariable-vector?mode=theorems", mode: "theorems", keywords: "green stokes divergence flux", formula: "∬∇·F" },
   { page: "advanced", label: "Advanced Calculus", route: "/calculus/advanced", keywords: "workbench epsilon delta remainder flux", formula: "ε-δ" },
+  { page: "limits", label: "Limits enhancements", route: "/calculus/limits", keywords: "epsilon delta hole jump squeeze continuity ui ux content", formula: "ε-δ" },
+  { page: "derivatives", label: "Derivative enhancements", route: "/calculus/derivatives", keywords: "secant tangent chain rule linearization d/dx", formula: "d/dx" },
+  { page: "integration", label: "Integration enhancements", route: "/calculus/integration", keywords: "riemann signed area ftc accumulation", formula: "∫" },
+  { page: "series-parametric-polar", label: "Series enhancements", route: "/calculus/series-parametric-polar", keywords: "taylor polar parametric remainder", formula: "Σ" },
 ];
 
 const defaultSettings = (): StudioSettings => ({

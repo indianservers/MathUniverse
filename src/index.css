@@ -39634,6 +39634,9 @@ html { overflow-y: auto; scrollbar-gutter: stable; }
   overflow-x: hidden;
   overflow-y: auto;
 }
+#main-content.h-dvh:has(.cs-shell) {
+  overflow: hidden;
+}
 #main-content.h-dvh .cs-shell,
 #main-content.h-dvh .alg-studio {
   height: 100%;

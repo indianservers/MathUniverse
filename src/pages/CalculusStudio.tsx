@@ -40,6 +40,7 @@ import CalculusLimitsStudio from "./CalculusLimitsStudio";
 import CalculusMultivariableStudio from "./CalculusMultivariableStudio";
 import CalculusConceptStudio, { type ConceptPage } from "./CalculusConceptStudio";
 import CalculusEnhancementWorkbench from "../studios/calculus/CalculusEnhancementWorkbench";
+import CalculusEnhancementIdeas from "./CalculusEnhancementIdeas";
 import StudioBreadcrumb, { mathStudioCrumbs } from "../components/ui/StudioBreadcrumb";
 import StudioHomeButtons from "../components/ui/StudioHomeButtons";
 import { StudioCanvasToolbar } from "../components/ui/StudioCanvasToolbar";
@@ -76,13 +77,13 @@ type LabMode = {
 const navItems = [
   { page: "home", label: "Studio Home" },
   { page: "limits", label: "Limits" },
-  { page: "derivatives", label: "Derivatives" },
+  { page: "derivatives", label: "d⁄dx Derivatives" },
   { page: "derivative-applications", label: "Derivative Applications" },
-  { page: "integration", label: "Integration" },
+  { page: "integration", label: "∫ Integration" },
   { page: "integration-techniques", label: "Integration Techniques" },
   { page: "integral-applications", label: "Integral Applications" },
   { page: "differential-equations", label: "Differential Equations" },
-  { page: "series-parametric-polar", label: "Series / Parametric / Polar" },
+  { page: "series-parametric-polar", label: "Σ Series / Parametric / Polar" },
   { page: "multivariable-vector", label: "Multivariable / Vector" },
   { page: "advanced", label: "Advanced Calculus" },
 ] satisfies Array<{ page: CalculusStudioPage; label: string }>;
@@ -157,6 +158,7 @@ export default function CalculusStudio({ page = "home" }: { page?: CalculusStudi
           onDialog={setDialog}
         />
         {activePage === "home" ? <StudioHome /> : <StudioLab page={activePage} reduced={prefersReducedMotion(settings)} />}
+        <CalculusEnhancementIdeas page={activePage} />
       </section>
       {dialog ? (
         <StudioDialog title={dialog === "help" ? "Help" : dialog === "shortcuts" ? "Shortcuts" : "Studio settings"} onClose={() => setDialog(null)}>
@@ -177,7 +179,7 @@ function StudioSidebar({ page, collapsed, open, onCollapse, onClose }: { page: C
         <span>Calculus<br />Studio</span>
       </Link>
       <button className="cs-drawer-close" type="button" onClick={onClose} aria-label="Close menu"><X /></button>
-      <nav>
+      <nav className="cs-sidebar-nav">
         {page !== "home" ? (
           <Link className="cs-nav-link" to="/" title="Leave Calculus Studio and return to the main Math Universe app" onClick={onClose}>
             <CalculusNavIcon page="main" /><span>Main app</span>

@@ -27,6 +27,9 @@ describe("Calculus studio mockup chrome", () => {
     expect(html).toContain("Save this studio");
     expect(html).toContain("Check answer");
     expect(html).toContain("Your answer");
+    expect(html).toContain("50+ UI, UX, and content upgrades");
+    expect(html).toContain("d⁄dx Derivatives");
+    expect(html).toContain("cs-sidebar-nav");
   });
 
   it("keeps dedicated lab routes interactive", () => {
@@ -37,6 +40,8 @@ describe("Calculus studio mockup chrome", () => {
     );
     expect(limits).toContain("Limits");
     expect(limits).toContain("Live Results");
+    expect(limits).toContain("ε–δ rectangle overlay");
+    expect(limits).toContain("UI, UX, and content upgrades");
 
     const de = renderToStaticMarkup(
       <MemoryRouter initialEntries={["/calculus/differential-equations"]}>
