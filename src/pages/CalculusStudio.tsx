@@ -488,9 +488,8 @@ function InteractiveLab({ page, mode, reduced }: { page: Exclude<CalculusStudioP
     setShowAux(true);
   };
   useEffect(() => {
-    const onReset = () => reset();
     window.addEventListener("calculus-lab-reset", reset);
-    return () => window.removeEventListener("calculus-lab-reset", onReset);
+    return () => window.removeEventListener("calculus-lab-reset", reset);
   });
   const plot = () => {
     setExpression(draft);
