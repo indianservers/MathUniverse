@@ -89,6 +89,13 @@ import {
   useLinearSession,
   writeLinearSession,
 } from "../linear-algebra/linearAlgebraStudioSession";
+import {
+  continueComplexHref,
+  markComplexComplete,
+  markComplexVisit,
+  useComplexSession,
+  COMPLEX_SEARCH_ALIASES,
+} from "../complex/complexStudioSession";
 
 const pageIcons: Record<string, LucideIcon> = {
   home: Home,
@@ -261,7 +268,7 @@ export function MockupStudioChrome({
   const isNumberSense = isDiscrete && page.id === "number-sense";
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
-  const [searchOpen, setSearchOpen] = useState(isTrig || isModel || isGeo || isDiscrete || isLinear);
+  const [searchOpen, setSearchOpen] = useState(isTrig || isModel || isGeo || isDiscrete || isLinear || isComplex);
   const [helpOpen, setHelpOpen] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const stripRef = useRef<HTMLElement | null>(null);
@@ -272,6 +279,7 @@ export function MockupStudioChrome({
   const session = useTrigSession();
   const linearSession = useLinearSession();
   const geoSession = useGeoSession();
+  const complexSession = useComplexSession();
   const primesSession = usePrimesSession();
   const numberSenseSession = useNumberSenseSession();
   const discreteTeacher = isNumberSense ? numberSenseSession.teacherMode : primesSession.teacherMode;
@@ -290,6 +298,10 @@ export function MockupStudioChrome({
     if (!isGeo || page.id === "home") return;
     markGeoVisit(page.id, page.route, page.label, mode);
   }, [isGeo, page.id, page.route, page.label, mode]);
+  useEffect(() => {
+    if (!isComplex || page.id === "home") return;
+    markComplexVisit(page.id, page.route, page.label, mode);
+  }, [isComplex, page.id, page.route, page.label, mode]);
   useEffect(() => {
     if (!isGeo && !isNumberSense) return;
     if (isGeo) document.title = `${page.id === "home" ? "Geometry Studio" : page.title} | Math Universe`;
@@ -334,6 +346,17 @@ export function MockupStudioChrome({
 
   const filtered = useMemo(() => {
     if (isGeo) return geometrySearchHits(labs, query);
+    if (isComplex) {
+      const needle = query.trim().toLowerCase();
+      const alias = needle ? COMPLEX_SEARCH_ALIASES[needle] : undefined;
+      const labsHits = !needle
+        ? labs.map((lab) => ({ key: lab.id, label: lab.label, to: lab.route, detail: "Lab" }))
+        : searchHits(labs, query);
+      if (alias) {
+        return [{ key: alias.id, label: alias.mode ? `${alias.id} · ${alias.mode}` : alias.id, to: `/complex-numbers/${alias.id}${alias.mode ? `?mode=${encodeURIComponent(alias.mode)}` : ""}`, detail: "Symbol" }, ...labsHits];
+      }
+      return labsHits;
+    }
     if (!query.trim()) return labs.map((lab) => ({ key: lab.id, label: lab.label, to: lab.route, detail: "Lab" }));
     if (isLinear) {
       const alias = LINEAR_SEARCH_ALIASES[query.trim().toLowerCase()];
@@ -348,7 +371,7 @@ export function MockupStudioChrome({
       return [...extra, ...searchHits(labs, query)];
     }
     return searchHits(labs, query);
-  }, [isGeo, isLinear, labs, query]);
+  }, [isComplex, isGeo, isLinear, labs, query]);
   const pathId = isTrig ? trigPathId(page.id, mode) : "";
 
   useEffect(() => {
@@ -415,6 +438,17 @@ export function MockupStudioChrome({
                 <CheckCircle2 />
               </button>
             ) : null}
+            {isComplex && page.id !== "home" ? (
+              <button
+                type="button"
+                className={`msk-complete-icon${complexSession.completed.includes(page.id) ? " is-complete" : ""}`}
+                aria-label={complexSession.completed.includes(page.id) ? `${page.label} complete` : `Mark ${page.label} complete`}
+                title={complexSession.completed.includes(page.id) ? `${page.label} complete` : `Mark ${page.label} complete`}
+                onClick={() => markComplexComplete(page.id)}
+              >
+                <CheckCircle2 />
+              </button>
+            ) : null}
             {isGeo && page.id !== "home" ? (
               <button
                 type="button"
@@ -452,15 +486,15 @@ export function MockupStudioChrome({
                 <button type="button" className={`msk-units-rad${session.units === "rad" ? " active" : ""}`} aria-pressed={session.units === "rad"} onClick={() => writeTrigSession({ units: "rad" })}>Rad</button>
               </div>
             ) : null}
-            <label className={`msk-search${searchOpen || query || isTrig || isModel || isGeo || isDiscrete || isLinear ? " is-open" : ""}`}>
+            <label className={`msk-search${searchOpen || query || isTrig || isModel || isGeo || isDiscrete || isLinear || isComplex ? " is-open" : ""}`}>
               <button type="button" aria-label="Search" onClick={() => setSearchOpen((value) => !value)}><Search /></button>
-              {searchOpen || query || isTrig || isModel || isGeo || isDiscrete || isLinear ? (
+              {searchOpen || query || isTrig || isModel || isGeo || isDiscrete || isLinear || isComplex ? (
                 <input
-                  autoFocus={!isTrig && !isModel && !isGeo && !isDiscrete && !isLinear}
+                  autoFocus={!isTrig && !isModel && !isGeo && !isDiscrete && !isLinear && !isComplex}
                   value={query}
                   onChange={(event) => setQuery(event.target.value)}
                   onKeyDown={(event) => { if (event.key === "Enter" && filtered[0]) navigate(filtered[0].to); }}
-                  onBlur={() => { if (!query && !isTrig && !isModel && !isGeo && !isDiscrete && !isLinear) setSearchOpen(false); }}
+                  onBlur={() => { if (!query && !isTrig && !isModel && !isGeo && !isDiscrete && !isLinear && !isComplex) setSearchOpen(false); }}
                   placeholder={isTrig ? "Search θ or waves" : studio.searchPlaceholder}
                   aria-label={`Search ${studio.name}`}
                 />
@@ -614,15 +648,34 @@ export function MockupStudioHome({ studio }: { studio: StudioMockupDefinition })
   const isModel = studio.id === "modelling";
   const session = useTrigSession();
   const linearSession = useLinearSession();
+  const complexSession = useComplexSession();
   const pool = labs.filter((item) => item.challenge.prompt !== "0");
   const challengePage = isModel ? labs.find((item) => item.id === "networks") ?? pool[0] : pool[dailyChallengeIndex(pool.length)] ?? pool[0];
   const next = nextTrigLab(labs, session.completed);
 const launchTitle = isModel ? "Explore modelling domains" : isTrig ? "Explore Key Topics" : studio.id === "geometry" || studio.id === "complex-numbers" || studio.id === "linear-algebra" || studio.id === "discrete" || studio.id === "statistics" ? "Explore by Topic" : "Launch a topic";
-  const continueTo = isTrig ? continueHref(session) : studio.id === "linear-algebra" ? continueLinearHref(linearSession) : studio.continueRoute;
-  const continueLabel = isModel ? "Epidemic Spread in Campus" : isTrig ? session.lastLabel : studio.id === "linear-algebra" ? linearSession.lastLabel : studio.continueLabel;
-  const progress = studio.id === "linear-algebra"
-    ? (labs.length ? Math.round((linearSession.completed.filter((id) => labs.some((lab) => lab.id === id)).length / labs.length) * 100) : 0)
-    : labs.length ? Math.round((session.completed.filter((id) => labs.some((lab) => lab.id === id)).length / labs.length) * 100) : 0;
+  const continueTo = isTrig
+    ? continueHref(session)
+    : studio.id === "linear-algebra"
+      ? continueLinearHref(linearSession)
+      : studio.id === "complex-numbers"
+        ? continueComplexHref(complexSession)
+        : studio.continueRoute;
+  const continueLabel = isModel
+    ? "Epidemic Spread in Campus"
+    : isTrig
+      ? session.lastLabel
+      : studio.id === "linear-algebra"
+        ? linearSession.lastLabel
+        : studio.id === "complex-numbers"
+          ? complexSession.lastLabel
+          : studio.continueLabel;
+  const progress = labs.length
+    ? Math.round((((studio.id === "linear-algebra"
+      ? linearSession.completed
+      : studio.id === "complex-numbers"
+        ? complexSession.completed
+        : session.completed).filter((id) => labs.some((lab) => lab.id === id)).length) / labs.length) * 100)
+    : 0;
 
   if (studio.id === "geometry") return <GeometryStudioHome studio={studio} />;
 

@@ -77,7 +77,7 @@ describe("remaining studio visual manifest", () => {
     const modelling = readFileSync(join(here, "ModellingTarget.css"), "utf8");
     const discrete = readFileSync(join(here, "DiscreteTarget.css"), "utf8");
     expect(linear).toContain(".msk-linear-algebra");
-    expect(complex).toContain(".msk-complex-numbers");
+    expect(complex).toContain(".cx-home");
     expect(modelling).toContain(".msk-modelling");
     expect(discrete).toContain(".msk-discrete");
     expect(linear).not.toMatch(/^\.msk-shell\s*\{/m);

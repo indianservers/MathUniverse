@@ -2,10 +2,41 @@ import { useState, type PointerEvent, type ReactNode } from "react";
 import { Phase1LabChrome } from "../phase1/Phase1LabChrome";
 import type { StudioMockupPage } from "../mockup/studioMockupCatalog";
 import { ChallengeBox, ExtraFrame, LiveRow, Panel, SliderRow, clamp, fmt } from "../mockup/studioLabKit";
+import ArgandFigure from "./ArgandFigure";
 import FractalsLab from "./FractalsLab";
 
 function Chrome({ page, children }: { page: StudioMockupPage; children: ReactNode | ((mode: string) => ReactNode) }) {
   return <Phase1LabChrome page={page}>{children}</Phase1LabChrome>;
+}
+
+function Legend({ items }: { items: Array<[string, string]> }) {
+  return (
+    <ul className="cx-legend">
+      {items.map(([color, label]) => (
+        <li key={label}><i style={{ background: color }} />{label}</li>
+      ))}
+    </ul>
+  );
+}
+
+function Canvas({
+  title,
+  mode,
+  children,
+}: {
+  title: string;
+  mode: string;
+  children: ReactNode;
+}) {
+  return (
+    <section className="msk-panel msk-canvas" data-studio="complex-numbers" data-mode-canvas={mode} data-cx-mode={mode}>
+      <header className="cx-canvas-head">
+        <h2>{title}</h2>
+        <small>{mode}</small>
+      </header>
+      {children}
+    </section>
+  );
 }
 
 export default function ComplexNumbersLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNode }) {
@@ -37,36 +68,28 @@ function ArgandLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNode 
             <SliderRow label="Imag b" value={im} min={-6} max={6} step={0.1} onChange={setIm} />
             <p className="msk-note">{mode}: |z| = r = {fmt(r, 2)}. Drag the blue point; conjugate folds across the real axis.</p>
           </Panel>
-          <section className="msk-panel msk-canvas" data-studio="complex-numbers" data-mode-canvas={mode}>
+          <Canvas title="ARGAND PLANE" mode={mode}>
             <ExtraFrame
               mode={mode}
               extra={extra}
               fallback={(
-                <svg
-                  className="msk-graph is-interactive"
-                  viewBox="0 0 420 360"
-                  role="img"
-                  aria-label="Argand plane"
-                  onPointerDown={(event: PointerEvent<SVGSVGElement>) => {
-                    const box = event.currentTarget.getBoundingClientRect();
-                    setRe(clamp(((event.clientX - box.left) / box.width) * 420 / 28 - 7.5, -6, 6));
-                    setIm(clamp(6.4 - ((event.clientY - box.top) / box.height) * 360 / 28, -6, 6));
+                <ArgandFigure
+                  re={re}
+                  im={im}
+                  showModulus={mode === "Modulus" || mode === "Locus" || mode === "Distance"}
+                  showArgument={mode === "Argument"}
+                  showConjugate={mode === "Conjugate"}
+                  showUnit={mode === "Locus"}
+                  onPick={(nextRe, nextIm) => {
+                    setRe(clamp(nextRe, -6, 6));
+                    setIm(clamp(nextIm, -6, 6));
                   }}
-                >
-                  <rect width="420" height="360" fill="#f8fbff" />
-                  <line x1="30" y1="180" x2="390" y2="180" stroke="#94a3b8" />
-                  <line x1="210" y1="20" x2="210" y2="340" stroke="#94a3b8" />
-                  {mode === "Modulus" || mode === "Locus" ? <circle cx="210" cy="180" r={r * 28} fill="none" stroke="#08b9dd" /> : null}
-                  {mode === "Argument" ? <line x1="210" y1="180" x2={210 + 120} y2="180" stroke="#cbd5e1" /> : null}
-                  <line x1="210" y1="180" x2={210 + re * 28} y2={180 - im * 28} stroke="#147df2" strokeWidth="2.4" />
-                  {mode === "Conjugate" ? <line x1="210" y1="180" x2={210 + re * 28} y2={180 + im * 28} stroke="#f59e0b" strokeDasharray="4 3" /> : null}
-                  {mode === "Distance" ? <line x1="210" y1="180" x2={210 + re * 28} y2={180 - im * 28} stroke="#10b981" strokeWidth="6" opacity="0.25" /> : null}
-                  <circle cx={210 + re * 28} cy={180 - im * 28} r="6" fill="#147df2" />
-                  <text x={220 + re * 28} y={176 - im * 28} fontSize="12">z = {fmt(re, 1)} + {fmt(im, 1)}i</text>
-                </svg>
+                  label="Argand plane"
+                />
               )}
             />
-          </section>
+            <Legend items={[["#08a8cf", "z"], ["#08b9dd", "|z|"], ["#f59e0b", "conjugate"]]} />
+          </Canvas>
           <aside className="msk-panel msk-live">
             <div className="cx-form-rail">
               <output>rectangular {fmt(re, 2)} + {fmt(im, 2)}i</output>
@@ -75,6 +98,7 @@ function ArgandLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNode 
             <LiveRow color="#147df2" label="|z|" value={fmt(r)} />
             <LiveRow color="#8b45f4" label="arg z" value={`${fmt(arg, 1)}°`} />
             <LiveRow color="#f59e0b" label="conjugate" value={`${fmt(re, 1)} − ${fmt(im, 1)}i`} />
+            <p className="msk-formula">z = a + bi · |z| = √(a² + b²)</p>
             <ChallengeBox {...page.challenge} />
           </aside>
         </>
@@ -105,33 +129,34 @@ function ComplexArithmeticLab({ page }: { page: StudioMockupPage }) {
               <SliderRow label="Re z2" value={c} min={-4} max={4} step={0.1} onChange={setC} />
               <SliderRow label="Im z2" value={d} min={-4} max={4} step={0.1} onChange={setD} />
             </Panel>
-            <section className="msk-panel msk-canvas" data-studio="complex-numbers" data-mode-canvas={mode}>
-              <svg
-                className="msk-graph is-interactive"
-                viewBox="0 0 420 320"
-                role="img"
-                aria-label="Parallelogram"
-                onPointerDown={(event: PointerEvent<SVGSVGElement>) => {
-                  const box = event.currentTarget.getBoundingClientRect();
-                  const x = clamp(((event.clientX - box.left) / box.width) * 420 / 28 - 7.5, -4, 4);
-                  const y = clamp(5.7 - ((event.clientY - box.top) / box.height) * 320 / 28, -4, 4);
-                  if (Math.hypot(x - a, y - b) <= Math.hypot(x - c, y - d)) {
-                    setA(x);
-                    setB(y);
+            <Canvas title="PARALLELOGRAM LAW" mode={mode}>
+              <ArgandFigure
+                re={a}
+                im={b}
+                wRe={mode === "Conjugate" ? undefined : c}
+                wIm={mode === "Conjugate" ? undefined : d}
+                resRe={res[0]}
+                resIm={res[1]}
+                showParallelogram={mode === "Add" || mode === "Subtract"}
+                showConjugate={mode === "Conjugate"}
+                scale={36}
+                width={420}
+                height={320}
+                onPick={(x, y) => {
+                  const nx = clamp(x, -4, 4);
+                  const ny = clamp(y, -4, 4);
+                  if (Math.hypot(nx - a, ny - b) <= Math.hypot(nx - c, ny - d)) {
+                    setA(nx);
+                    setB(ny);
                   } else {
-                    setC(x);
-                    setD(y);
+                    setC(nx);
+                    setD(ny);
                   }
                 }}
-              >
-                <rect width="420" height="320" fill="#f8fbff" />
-                <line x1="30" y1="160" x2="390" y2="160" stroke="#94a3b8" /><line x1="210" y1="20" x2="210" y2="300" stroke="#94a3b8" />
-                <line x1="210" y1="160" x2={210 + a * 28} y2={160 - b * 28} stroke="#147df2" strokeWidth="2" />
-                {mode !== "Conjugate" ? <line x1="210" y1="160" x2={210 + c * 28} y2={160 - d * 28} stroke="#8b45f4" strokeWidth="2" /> : null}
-                <line x1="210" y1="160" x2={210 + res[0] * 28} y2={160 - res[1] * 28} stroke="#f59e0b" strokeWidth="2" />
-                {mode === "Add" || mode === "Subtract" ? <polygon points={`210,160 ${210 + a * 28},${160 - b * 28} ${210 + res[0] * 28},${160 - res[1] * 28} ${210 + c * 28},${160 - d * 28}`} fill="rgba(245,158,11,.08)" stroke="#f59e0b" strokeDasharray="4 3" /> : null}
-              </svg>
-            </section>
+                label="Parallelogram"
+              />
+              <Legend items={[["#08a8cf", "z₁"], ["#8b45f4", "z₂"], ["#f59e0b", "result"]]} />
+            </Canvas>
             <aside className="msk-panel msk-live">
               <LiveRow color="#f59e0b" label="result" value={`${fmt(res[0], 2)} + ${fmt(res[1], 2)}i`} />
               <LiveRow color="#147df2" label="|z1|" value={fmt(Math.hypot(a, b))} />
@@ -171,7 +196,7 @@ function PolarLab({ page }: { page: StudioMockupPage }) {
             <SliderRow label="Branch cut" value={branch} min={-180} max={0} step={1} onChange={setBranch} />
             <p className="msk-note">{mode}: rectangular, polar, and exponential stay linked.</p>
           </Panel>
-          <section className="msk-panel msk-canvas" data-studio="complex-numbers" data-mode-canvas={mode}>
+          <Canvas title="POLAR & EXPONENTIAL" mode={mode}>
             <svg
               className="msk-graph is-interactive"
               viewBox="0 0 360 280"
@@ -186,15 +211,18 @@ function PolarLab({ page }: { page: StudioMockupPage }) {
               }}
             >
               <rect width="360" height="280" fill="#f8fbff" />
+              <line className="cx-axis" x1="40" y1="140" x2="320" y2="140" />
+              <line className="cx-axis" x1="180" y1="20" x2="180" y2="260" />
+              <text x="312" y="132" fontSize="11">Re</text>
+              <text x="188" y="28" fontSize="11">Im</text>
               <circle cx="180" cy="140" r={r * 28} fill="none" stroke={mode === "Polar" ? "#8b45f4" : "#94a3b8"} />
-              <line x1="40" y1="140" x2="320" y2="140" stroke="#94a3b8" />
-              <line x1="180" y1="20" x2="180" y2="260" stroke="#94a3b8" />
               {mode === "Exponential" ? <path d={`M180,140 ${Array.from({ length: 24 }, (_, i) => `L${180 + (i / 8) * re * 28},${140 - (i / 8) * im * 28}`).join(" ")}`} fill="none" stroke="#08b9dd" /> : null}
               <line x1="180" y1="140" x2={180 + re * 28} y2={140 - im * 28} stroke="#8b45f4" strokeWidth="2" />
               <circle cx={180 + re * 28} cy={140 - im * 28} r="6" fill="#f59e0b" />
               <text x="16" y="24" fontSize="12" fill="#334155">{mode === "Rectangular" ? "drag Re, Im" : mode === "Polar" ? "r cis θ" : "r e^{iθ}"}</text>
             </svg>
-          </section>
+            <Legend items={[["#8b45f4", "z"], ["#08b9dd", "e^{iθ} path"]]} />
+          </Canvas>
           <aside className="msk-panel msk-live">
             <LiveRow color="#147df2" label="rectangular" value={`${fmt(re, 2)} + ${fmt(im, 2)}i`} />
             <LiveRow color="#8b45f4" label="polar" value={`${fmt(r, 2)} cis ${fmt(th, 0)}°`} />
@@ -219,13 +247,17 @@ function RotationLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNod
             <SliderRow label="θ" value={th} min={-180} max={180} step={1} onChange={setTh} unit="°" />
             <p className="msk-note">{mode === "Scale" ? "Radius grows when |z| ≠ 1." : mode === "Sequence" ? "Powers of z spiral." : "× i = +90°."}</p>
           </Panel>
-          <section className="msk-panel msk-canvas" data-studio="complex-numbers" data-mode-canvas={mode}>
+          <Canvas title="MULTIPLICATION AS ROTATION" mode={mode}>
             <ExtraFrame
               mode={mode}
               extra={extra}
               fallback={(
                 <svg className="msk-graph" viewBox="0 0 320 240" role="img" aria-label={mode}>
                   <rect width="320" height="240" fill="#f8fbff" />
+                  <line className="cx-axis" x1="16" y1="120" x2="304" y2="120" />
+                  <line className="cx-axis" x1="160" y1="16" x2="160" y2="224" />
+                  <text x="292" y="112" fontSize="11">Re</text>
+                  <text x="168" y="24" fontSize="11">Im</text>
                   <circle cx="160" cy="120" r="70" fill="none" stroke="#94a3b8" />
                   {powers.map((angle, i) => (
                     <circle key={i} cx={160 + (mode === "Scale" ? 40 + i * 8 : 50 + i * 4) * Math.cos(angle * Math.PI / 180)} cy={120 - (mode === "Scale" ? 40 + i * 8 : 50 + i * 4) * Math.sin(angle * Math.PI / 180)} r="3" fill="#147df2" />
@@ -233,8 +265,9 @@ function RotationLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNod
                 </svg>
               )}
             />
-          </section>
-          <aside className="msk-panel msk-live"><LiveRow color="#147df2" label="arg(w)" value={`${fmt(th, 0)}°`} /><ChallengeBox {...page.challenge} /></aside>
+            <Legend items={[["#147df2", "z · wⁿ"], ["#94a3b8", "unit circle"]]} />
+          </Canvas>
+          <aside className="msk-panel msk-live"><LiveRow color="#147df2" label="arg(w)" value={`${fmt(th, 0)}°`} /><p className="msk-formula">arg(zw) = arg z + arg w</p><ChallengeBox {...page.challenge} /></aside>
         </>
       )}
     </Chrome>
@@ -246,7 +279,7 @@ function RootsLab({ page }: { page: StudioMockupPage }) {
   return (
     <Chrome page={page}>
       {(mode) => {
-        const sides = mode === "Square Roots" ? 2 : mode === "Roots of Unity" ? n : n;
+        const sides = mode === "Square Roots" ? 2 : n;
         const vertices = Array.from({ length: sides }, (_, i) => {
           const a = (i / sides) * Math.PI * 2 - Math.PI / 2;
           return `${180 + Math.cos(a) * 80},${140 + Math.sin(a) * 80}`;
@@ -257,15 +290,20 @@ function RootsLab({ page }: { page: StudioMockupPage }) {
               <SliderRow label="n" value={n} min={2} max={10} step={1} onChange={setN} />
               <p className="msk-note">{mode}: De Moivre places roots on a regular polygon.</p>
             </Panel>
-            <section className="msk-panel msk-canvas" data-studio="complex-numbers" data-mode-canvas={mode}>
+            <Canvas title="ROOTS OF UNITY" mode={mode}>
               <svg className="msk-graph" viewBox="0 0 360 280" role="img" aria-label="Roots">
                 <rect width="360" height="280" fill="#f8fbff" />
+                <line className="cx-axis" x1="24" y1="140" x2="336" y2="140" />
+                <line className="cx-axis" x1="180" y1="20" x2="180" y2="260" />
+                <text x="328" y="132" fontSize="11">Re</text>
+                <text x="188" y="28" fontSize="11">Im</text>
                 <circle cx="180" cy="140" r="80" fill="none" stroke="#94a3b8" />
                 <polygon points={vertices.join(" ")} fill="rgba(20,125,242,.08)" stroke="#147df2" />
                 {(mode === "Square Roots" ? vertices.slice(0, 2) : vertices).map((p, i) => <circle key={i} cx={p.split(",")[0]} cy={p.split(",")[1]} r="5" fill="#147df2" />)}
               </svg>
-            </section>
-            <aside className="msk-panel msk-live"><LiveRow color="#147df2" label="roots" value={String(mode === "Square Roots" ? 2 : n)} /><ChallengeBox {...page.challenge} /></aside>
+              <Legend items={[["#147df2", "roots"], ["#94a3b8", "|z|^{1/n} circle"]]} />
+            </Canvas>
+            <aside className="msk-panel msk-live"><LiveRow color="#147df2" label="roots" value={String(mode === "Square Roots" ? 2 : n)} /><p className="msk-formula">zⁿ = rⁿ (cos nθ + i sin nθ)</p><ChallengeBox {...page.challenge} /></aside>
           </>
         );
       }}
@@ -291,7 +329,7 @@ function EulerLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNode }
             <SliderRow label="θ" value={th} min={0} max={360} step={1} onChange={setTh} unit="°" />
             <p className="msk-note">{mode}: plane, helix, projections, and Taylor stay linked.</p>
           </Panel>
-          <section className="msk-panel msk-canvas" data-studio="complex-numbers" data-mode-canvas={mode}>
+          <Canvas title="EULER'S FORMULA" mode={mode}>
             <ExtraFrame
               mode={mode}
               extra={extra}
@@ -313,8 +351,8 @@ function EulerLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNode }
                 </svg>
               )}
             />
-          </section>
-          <aside className="msk-panel msk-live"><LiveRow color="#22d3ee" label="cos θ + i sin θ" value={`${fmt(Math.cos(rad), 3)} + ${fmt(Math.sin(rad), 3)}i`} /><ChallengeBox {...page.challenge} /></aside>
+          </Canvas>
+          <aside className="msk-panel msk-live"><LiveRow color="#22d3ee" label="cos θ + i sin θ" value={`${fmt(Math.cos(rad), 3)} + ${fmt(Math.sin(rad), 3)}i`} /><p className="msk-formula">e^{"{iθ}"} = cos θ + i sin θ</p><ChallengeBox {...page.challenge} /></aside>
         </>
       )}
     </Chrome>
@@ -336,7 +374,7 @@ function LociLab({ page }: { page: StudioMockupPage }) {
             <SliderRow label="r" value={r} min={0.5} max={4} step={0.1} onChange={setR} />
             <p className="msk-note">Möbius maps send generalized circles to circles.</p>
           </Panel>
-          <section className="msk-panel msk-canvas" data-studio="complex-numbers" data-mode-canvas={mode}>
+          <Canvas title="LOCI & TRANSFORMS" mode={mode}>
             <svg
               className="msk-graph is-interactive"
               viewBox="0 0 360 240"
@@ -351,8 +389,10 @@ function LociLab({ page }: { page: StudioMockupPage }) {
               }}
             >
               <rect width="360" height="240" fill="#f8fbff" />
-              <line x1="20" y1="120" x2="340" y2="120" stroke="#cbd5e1" />
-              <line x1="180" y1="20" x2="180" y2="220" stroke="#cbd5e1" />
+              <line className="cx-axis" x1="20" y1="120" x2="340" y2="120" />
+              <line className="cx-axis" x1="180" y1="20" x2="180" y2="220" />
+              <text x="328" y="112" fontSize="11">Re</text>
+              <text x="188" y="28" fontSize="11">Im</text>
               {mode === "Möbius" || mode === "Affine Map" ? grid.map((x) => {
                 const pts = Array.from({ length: 24 }, (_, k) => {
                   const y = -1.8 + k * 0.15;
@@ -365,7 +405,7 @@ function LociLab({ page }: { page: StudioMockupPage }) {
               {mode === "Inversion" ? <circle cx="180" cy="120" r={80 / r} fill="none" stroke="#08b9dd" /> : mode === "Line Loci" ? null : <circle cx="180" cy="120" r={r * 28} fill="none" stroke="#147df2" />}
               {mode === "Möbius" ? <circle cx={180 + 50} cy="120" r="4" fill="#f59e0b" /> : null}
             </svg>
-          </section>
+          </Canvas>
           <aside className="msk-panel msk-live"><LiveRow color="#147df2" label="locus" value={mode === "Möbius" ? "fixed pts ±1" : `|z|=${fmt(r)}`} /><ChallengeBox {...page.challenge} /></aside>
         </>
       )}
@@ -395,17 +435,18 @@ function CircuitsLab({ page }: { page: StudioMockupPage }) {
             <SliderRow label="R" value={R} min={5} max={120} step={1} onChange={setR} />
             <p className="msk-note">{mode}: impedance is a phasor.</p>
           </Panel>
-          <section className="msk-panel msk-canvas" data-studio="complex-numbers" data-mode-canvas={mode}>
+          <Canvas title="PHASOR DIAGRAM" mode={mode}>
             <svg className="msk-graph" viewBox="0 0 360 220" role="img" aria-label="Phasor">
               <rect width="360" height="220" fill="#f8fbff" />
-              <line x1="40" y1="180" x2="330" y2="180" stroke="#94a3b8" />
-              <line x1="60" y1="20" x2="60" y2="200" stroke="#94a3b8" />
+              <line className="cx-axis" x1="40" y1="180" x2="330" y2="180" />
+              <line className="cx-axis" x1="60" y1="20" x2="60" y2="200" />
               <line x1="60" y1="180" x2={60 + R * 1.4} y2="180" stroke="#147df2" strokeWidth="3" />
               <line x1={60 + R * 1.4} y1="180" x2={60 + R * 1.4} y2={180 - X * 0.8} stroke="#8b45f4" strokeWidth="3" />
               <line x1="60" y1="180" x2={60 + R * 1.4} y2={180 - X * 0.8} stroke="#f59e0b" strokeWidth="2.4" />
               <text x="24" y="28" fontSize="12">{mode === "Impedance" ? "Z = R + j(XL − XC)" : mode === "AC Circuits" ? "Current lags when X>0" : "Phasor diagram"}</text>
             </svg>
-          </section>
+            <Legend items={[["#147df2", "R"], ["#8b45f4", "jX"], ["#f59e0b", "Z"]]} />
+          </Canvas>
           <aside className="msk-panel msk-live">
             <LiveRow color="#147df2" label="|Z|" value={fmt(zMag, 2)} />
             <LiveRow color="#8b45f4" label="power factor" value={fmt(pf, 3)} />
