@@ -24,7 +24,6 @@ import {
   Save,
   Search,
   Settings,
-  Settings,
   Sun,
   Trophy,
   Upload,
