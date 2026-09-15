@@ -22,6 +22,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./TriangleConstructorTargetLesson214.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type Vertices = { a: Point; b: Point; c: Point };
@@ -612,6 +613,8 @@ export default function TriangleConstructorTargetLesson214({
         Live Verification. Check Construction. Apex x and Apex y placeholders
         have been replaced by a dedicated triangle object model.
       </span>
+      <LessonTopicStudyBoard lessonId={214} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

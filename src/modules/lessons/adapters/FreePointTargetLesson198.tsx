@@ -19,6 +19,7 @@ import { useEffect, useRef, useState } from "react";
 import type { PointerEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./FreePointTargetLesson198.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type Tool = "point" | "select" | "pan" | "zoom" | "delete";
@@ -803,6 +804,8 @@ export default function FreePointTargetLesson198({
         </nav>
         <small>© 2026 INDIAN SERVERS PRIVATE LIMITED.</small>
       </footer>
+      <LessonTopicStudyBoard lessonId={198} view={tab} onInteraction={onInteraction} />
+
     </main>
   );
 }

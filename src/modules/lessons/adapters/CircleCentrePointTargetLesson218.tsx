@@ -18,6 +18,7 @@ import {
   type PointerEvent as ReactPointerEvent,
 } from "react";
 import type { LessonAdapterProps } from "../types";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type Drag = "centre" | "point" | null;
@@ -450,6 +451,8 @@ export default function CircleCentrePointTargetLesson218({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={218} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

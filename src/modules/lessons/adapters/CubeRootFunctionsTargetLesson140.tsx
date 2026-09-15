@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import type { LessonAdapterProps } from "../types";
 import "./CubeRootFunctionsTargetLesson140.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const clean = (value: number) =>
   Math.abs(value) < 0.0001
@@ -577,6 +578,8 @@ export default function CubeRootFunctionsTargetLesson140({
         </small>
         <small>www.IndianServers.com · info@IndianServers.com</small>
       </footer>
+      <LessonTopicStudyBoard lessonId={140} view={tab} onInteraction={onInteraction} />
+
     </div>
   );
 }

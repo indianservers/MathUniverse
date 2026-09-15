@@ -24,6 +24,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./BestFitLineTargetLesson213.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type DataPoint = { x: number; y: number };
 type Visibility = { line: boolean; residuals: boolean; equation: boolean };
@@ -650,6 +651,8 @@ export default function BestFitLineTargetLesson213({
         Live Verification. Check Construction. Slope m and Intercept b are real
         least-squares controls.
       </span>
+      <LessonTopicStudyBoard lessonId={213} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

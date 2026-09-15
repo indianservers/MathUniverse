@@ -3,6 +3,7 @@ import { Eye, Lightbulb, RotateCcw } from "lucide-react";
 import type { LessonAdapterProps } from "../types";
 import "./ExponentialFunctionsTargetLesson142.css";
 import "./LogarithmicFunctionsTargetLesson143.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const clean = (value: number) =>
   Math.abs(value) < 0.0001
@@ -498,6 +499,8 @@ export default function LogarithmicFunctionsTargetLesson143({
           {solution && <em>Solution loaded into the live graph.</em>}
         </section>
       </section>
+      <LessonTopicStudyBoard lessonId={143} view={tab} onInteraction={onInteraction} />
+
     </div>
   );
 }

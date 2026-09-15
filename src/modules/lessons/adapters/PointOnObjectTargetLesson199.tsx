@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import type { PointerEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./PointOnObjectTargetLesson199.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type ObjectType = "line" | "circle";
 type Point = { x: number; y: number };
@@ -653,6 +654,8 @@ export default function PointOnObjectTargetLesson199({
         </nav>
         <small>© 2026 INDIAN SERVERS PRIVATE LIMITED.</small>
       </footer>
+      <LessonTopicStudyBoard lessonId={199} view={tab} onInteraction={onInteraction} />
+
     </main>
   );
 }

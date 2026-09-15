@@ -4,6 +4,7 @@ import type { DragEvent, KeyboardEvent } from "react";
 import type React from "react";
 import type { LessonAdapterProps } from "../types";
 import "./GraphMatchingTargetLesson166.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type CardId = "rightUp" | "parent" | "leftDown" | "reflect" | "stretch" | "rightReflect";
 type Card = { id: CardId; equation: string; hint: string; color: string; a: number; h: number; k: number; target: [number,number] };
@@ -36,5 +37,7 @@ export default function GraphMatchingTargetLesson166({resetToken,onInteraction}:
     {checked?<output className={score===6?"gm166-result success":"gm166-result"}>{score===6?<><Check/>All six matches are correct.</>:<>Score: {score}/6. Recheck vertex, direction, and width.</>}</output>:null}
     <section className="gm166-actions"><article><h3>Try It Yourself</h3><p>Practice with new equations.</p><button onClick={()=>{reset();setStage(4)}}>Start Practice <ArrowRight/></button></article><article><h3>Next Up</h3><p>Match more transformations.</p><a href="/lessons/graphs-and-functions/167-cartesian-plane">Next Lesson <ArrowRight/></a></article></section>
     <nav className="gm166-nav"><a href="/lessons/graphs-and-functions/165-parent-function-library"><ArrowLeft/><span><small>Previous Lesson</small><b>Parent-Function Library</b></span></a><a href="/lessons/graphs-and-functions/167-cartesian-plane"><span><small>Next Lesson</small><b>Shifts & Reflections</b></span><ArrowRight/></a></nav>
+      <LessonTopicStudyBoard lessonId={166} alwaysVisible onInteraction={onInteraction} />
+
   </main>
 }

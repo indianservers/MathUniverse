@@ -18,6 +18,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./RegularPolygonTargetLesson215.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type Visibility = {
@@ -453,6 +454,8 @@ export default function RegularPolygonTargetLesson215({
         Live Verification. Check Construction. Sides n and Radius are generated
         through a dedicated regular-polygon vertex model.
       </span>
+      <LessonTopicStudyBoard lessonId={215} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

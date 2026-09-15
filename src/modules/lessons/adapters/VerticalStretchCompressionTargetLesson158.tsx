@@ -11,6 +11,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { KeyboardEvent, PointerEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./VerticalStretchCompressionTargetLesson158.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const SAMPLE_X = [-2, -1, 1, 2];
 const TABLE_X = [-2, -1, 0, 1, 2];
@@ -557,6 +558,8 @@ export default function VerticalStretchCompressionTargetLesson158({
           </p>
         </article>
       </section>
+      <LessonTopicStudyBoard lessonId={158} view={tab} onInteraction={onInteraction} />
+
     </div>
   );
 }

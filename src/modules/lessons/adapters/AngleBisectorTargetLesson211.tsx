@@ -22,6 +22,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./AngleBisectorTargetLesson211.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type DragPoint = "a" | "b" | "c" | null;
@@ -632,6 +633,8 @@ export default function AngleBisectorTargetLesson211({
         Full angle controls are derived from draggable rays; no fixed Ray length
         control is used. Live Verification. Check Construction.
       </span>
+      <LessonTopicStudyBoard lessonId={211} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { useEffect, useMemo, useRef, useState, type PointerEvent } from "react";
 import type { LessonAdapterProps } from "../types";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type DragPoint = "a" | "b" | null;
@@ -517,6 +518,8 @@ export default function RayTargetLesson206({
         Live Verification: dedicated interactive geometry model. Check
         Construction.
       </span>
+      <LessonTopicStudyBoard lessonId={206} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

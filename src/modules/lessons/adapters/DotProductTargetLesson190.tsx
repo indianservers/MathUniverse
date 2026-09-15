@@ -11,6 +11,7 @@ import { useEffect, useRef, useState } from "react";
 import type { CSSProperties, KeyboardEvent, PointerEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./DotProductTargetLesson190.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type Drag = "u" | "v";
@@ -651,6 +652,8 @@ export default function DotProductTargetLesson190({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={190} view={tab} onInteraction={onInteraction} />
+
     </main>
   );
 }

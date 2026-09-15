@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import type { PointerEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./ForceVectorsTargetLesson197.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 type Force = { m: number; a: number };
 type P = { x: number; y: number };
 const F10 = { m: 40, a: 0 },
@@ -534,6 +535,8 @@ export default function ForceVectorsTargetLesson197({
         </nav>
         <small>© 2026 INDIAN SERVERS PRIVATE LIMITED.</small>
       </footer>
+      <LessonTopicStudyBoard lessonId={197} view={tab} onInteraction={onInteraction} />
+
     </main>
   );
 }

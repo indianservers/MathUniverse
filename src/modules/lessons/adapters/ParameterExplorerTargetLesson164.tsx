@@ -12,6 +12,7 @@ import {
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./ParameterExplorerTargetLesson164.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const clamp = (n: number, min: number, max: number) =>
   Math.min(max, Math.max(min, n));
@@ -643,6 +644,8 @@ export default function ParameterExplorerTargetLesson164({
           <span>www.IndianServers.com&nbsp;&nbsp; info@IndianServers.com</span>
         </aside>
       </footer>
+      <LessonTopicStudyBoard lessonId={164} alwaysVisible onInteraction={onInteraction} />
+
     </main>
   );
 }

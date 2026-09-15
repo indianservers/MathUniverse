@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import type { PointerEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./LinearCombinationsTargetLesson193.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 const INITIAL_U={x:3,y:2},INITIAL_V={x:-1,y:3};
@@ -38,5 +39,7 @@ export default function LinearCombinationsTargetLesson193({resetToken,onInteract
     <section className="lc193-status"><article><h3>Determinant</h3><output>det[u v] = {fmt(d)}</output><p>Determinant ≠ 0</p></article><article><h3>Span</h3><b>{independent?"Independent vectors":"Dependent vectors"}<br/>{independent?"span the plane":"span a line"}</b></article><article><h3>Status</h3><b>{independent?"Independent vectors span R²":"Dependent vectors do not span R²"}</b></article></section>
     <nav className="lc193-nav"><a href="/lessons/geometry/192-vector-projection"><ArrowLeft/><span>PREVIOUS LESSON<b>Vector Projection</b></span></a><b>193 of 250</b><a href="/lessons/geometry/194-vector-equation-of-a-line"><span>NEXT LESSON<b>Vector Equation of a Line</b></span><ArrowRight/></a></nav>
     <footer className="lc193-footer"><b>Math Universe</b><span>Interactive math labs, visual proofs, NCERT explorations, graphing, CAS-style tools, and classroom-ready activities.</span><small>© 2026 INDIAN SERVERS PRIVATE LIMITED.</small><nav><a href="/sitemap">Sitemap</a><a href="/docs">Docs</a><a href="/about">About</a></nav></footer>
+      <LessonTopicStudyBoard lessonId={193} view={tab} onInteraction={onInteraction} />
+
   </main>;
 }

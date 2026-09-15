@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type PointerEvent } from "react";
 import { Check, Info, RotateCcw } from "lucide-react";
 import type { LessonAdapterProps } from "../types";
 import "./IncreasingDecreasingTargetLesson153.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Motion = "increasing" | "decreasing" | "stationary";
 const clamp = (value: number, min: number, max: number, step = 0.1) =>
@@ -523,6 +524,8 @@ export default function IncreasingDecreasingTargetLesson153({
           </article>
         </section>
       </main>
+      <LessonTopicStudyBoard lessonId={153} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

@@ -4,6 +4,7 @@ import type { KeyboardEvent, PointerEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./MidpointTargetLesson170.css";
 import "./MidpointTargetLesson170.layout.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 const clamp = (value: number) => Math.max(-7, Math.min(7, value));
@@ -34,5 +35,7 @@ export default function MidpointTargetLesson170({ resetToken, onInteraction }: L
     <section className="mp170-learn"><article><h2>⌁ &nbsp; Construction Steps</h2><ol><li>Plot two points A(x₁,y₁) and B(x₂,y₂).</li><li>Draw segment AB.</li><li>Find the average of x-coordinates: xM=(x₁+x₂)/2</li><li>Find the average of y-coordinates: yM=(y₁+y₂)/2</li><li>Plot midpoint M(xM,yM) on the segment.</li></ol></article><article><h2>▣ &nbsp; Worked Example</h2><p>Given A(−4, 1) and B(4, 5)</p><strong>xM = (−4+4)/2 = 0</strong><strong>yM = (1+5)/2 = 3</strong><b>Midpoint M(0, 3)</b></article><article><h2>☼ &nbsp; Key Insight</h2><p>Midpoint Formula</p><strong>M ((x₁+x₂)/2, (y₁+y₂)/2)</strong><p>The midpoint is found by averaging the x-coordinates and the y-coordinates.</p></article></section>
     <section className="mp170-practice"><header><h2>⌁ &nbsp; Try It Yourself</h2><p>Find the midpoint of the segment.</p></header><aside><b>Challenge</b><h3>Reverse the endpoints</h3><p>Drag A and B across each other.<br/>What happens to the midpoint?</p></aside><PracticeSegment a={pa} b={pb} onPoint={(which,p)=>{if(which==="a"){setPa(p)}else{setPb(p)}setStatus("");onInteraction()}}/><article><p>Enter midpoint M:</p><div><label>x<input aria-label="Practice midpoint x" value={answer.x} placeholder="?" onChange={e=>setAnswer({...answer,x:e.target.value})}/></label><label>y<input aria-label="Practice midpoint y" value={answer.y} placeholder="?" onChange={e=>setAnswer({...answer,y:e.target.value})}/></label></div><button onClick={()=>setStatus(Number(answer.x)===pm.x&&Number(answer.y)===pm.y?"Correct midpoint":"Check the coordinate averages")}>Check Answer</button><output className={status.startsWith("Correct")?"correct":""}>{status}</output></article></section>
     <nav className="mp170-nav"><a href="/lessons/geometry/169-distance-between-points"><ArrowLeft/><span><small>Previous</small><b>Distance Between Points</b></span></a><a href="/lessons/geometry/171-section-formula"><span><small>Next</small><b>Section Formula</b></span><ArrowRight/></a></nav><footer className="mp170-footer"><div><b>⌁ &nbsp; Math Universe</b><p>Interactive math labs, visual proofs, NCERT explorations, graphing, CAS-style tools, and classroom-ready activities.</p></div><a href="#sitemap">▥ Sitemap</a><a href="#docs">▤ Docs</a><a href="#about">✉ About</a><small>© 2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.<br/>www.IndianServers.com &nbsp; info@IndianServers.com</small></footer>
+      <LessonTopicStudyBoard lessonId={170} alwaysVisible onInteraction={onInteraction} />
+
   </main>;
 }

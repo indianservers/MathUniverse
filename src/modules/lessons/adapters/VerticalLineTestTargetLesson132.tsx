@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowRight, Check, ChevronDown, CircleX, Expand, Info, Langu
 import type { LessonAdapterProps } from "../types";
 import "./VerticalLineTestTargetLesson132.css";
 import "./VerticalLineTestTargetLesson132Tuning.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Relation = "circle" | "parabola" | "sideways";
 
@@ -71,5 +72,7 @@ export default function VerticalLineTestTargetLesson132({ resetToken, onInteract
         <section className="vlt132-try"><Sparkles/><div><h3>Try it!</h3><p>Move the slider to different x-values and see how the number of hits changes.</p><button onClick={()=>{const values=[0,2,3,4,-4],next=(tryIndex+1)%values.length;setTryIndex(next);setTestX(values[next]);act();}}>Next x-value</button></div></section>
       </aside></div></section>
     <nav className="vlt132-adjacent"><a href="/lessons/graphs-and-functions/131-function-notation"><ArrowLeft/><span><small>PREVIOUS</small>Function Notation</span></a><a href="/lessons/graphs-and-functions/133-linear-functions"><span><small>NEXT</small>Linear Functions</span><ArrowRight/></a></nav><footer className="vlt132-footer"><b><Sparkles/>Math Universe</b><span>Interactive math labs, visual proofs, NCERT explorations, graphing, CAS-style tools, and classroom-ready activities.</span><nav><a href="/sitemap">Sitemap</a><a href="/docs">Docs</a><a href="/about">About</a></nav><hr/><small>© 2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.</small><small>www.IndianServers.com · info@IndianServers.com</small></footer>
+      <LessonTopicStudyBoard lessonId={132} view={tab} onInteraction={onInteraction} />
+
   </div>;
 }

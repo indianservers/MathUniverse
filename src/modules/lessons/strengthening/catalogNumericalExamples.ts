@@ -1,6 +1,7 @@
 import type { LessonWorkedExample } from "../components/LessonSectionJourney";
 import { coreWorkspaceBatch1NumericalExamples } from "./coreWorkspaceBatch1NumericalExamples";
 import { batch2NumericalExamples } from "./catalogBatch2NumericalExamples";
+import { batch3NumericalExamples } from "./catalogBatch3NumericalExamples";
 
 type NumericalExampleSeed = readonly [prompt: string, steps: readonly string[], answer: string];
 
@@ -2679,8 +2680,11 @@ function mergeNumericalExampleMaps(
 }
 
 const numericalExamplesByLesson = mergeNumericalExampleMaps(
-  batch2NumericalExamples,
-  mergeNumericalExampleMaps(coreWorkspaceBatch1NumericalExamples, authoredNumericalExamples),
+  batch3NumericalExamples,
+  mergeNumericalExampleMaps(
+    batch2NumericalExamples,
+    mergeNumericalExampleMaps(coreWorkspaceBatch1NumericalExamples, authoredNumericalExamples),
+  ),
 );
 
 export function getSupplementalNumericalExamples(lessonId: number): LessonWorkedExample[] {
