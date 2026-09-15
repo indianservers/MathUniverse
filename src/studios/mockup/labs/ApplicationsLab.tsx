@@ -32,9 +32,9 @@ function Compass({ bearing }: { bearing: number }) {
 
 export function ApplicationsLab({ page }: { page: StudioMockupPage }) {
   const { tabs, mode, setMode } = useLabMode(page);
-  const [distanceValue, setDistanceValue] = useState(80);
+  const [distanceValue, setDistanceValue] = useState(90);
   const [eyeHeight, setEyeHeight] = useState(1.7);
-  const [elevation, setElevation] = useState(36.5);
+  const [elevation, setElevation] = useState(45);
   const [baseElevation, setBaseElevation] = useState(0);
   const [bearing, setBearing] = useState(58.2);
   const [observerX, setObserverX] = useState(104);
@@ -88,7 +88,7 @@ export function ApplicationsLab({ page }: { page: StudioMockupPage }) {
           <label className="msk-field"><span>Units</span><select aria-label="Measurement units"><option>Metric (m)</option><option>Imperial (ft)</option></select></label>
           <label className="msk-field"><span>Instrument mode</span><select aria-label="Instrument mode"><option>Theodolite</option><option>Clinometer</option></select></label>
           <Toggle checked={animateMeasurement} onChange={setAnimateMeasurement}>Animate measurement</Toggle>
-          <button type="button" className="msk-soft" onClick={() => { setDistanceValue(80); setEyeHeight(1.7); setElevation(36.5); setBaseElevation(0); setBearing(58.2); setObserverX(104); setSecondStation(240); }}>↻ Reset measurement</button>
+          <button type="button" className="msk-soft" onClick={() => { setDistanceValue(90); setEyeHeight(1.7); setElevation(45); setBaseElevation(0); setBearing(64); setObserverX(104); setSecondStation(240); }}>↻ Reset measurement</button>
         </Panel>
 
         <section className="msk-panel msk-canvas trig-target-application-scene app-target-canvas" data-trig-target-mode={mode} data-app-mode={mode}>
@@ -122,10 +122,23 @@ export function ApplicationsLab({ page }: { page: StudioMockupPage }) {
               </>
             ) : mode === "Bearings" ? (
               <>
-                <circle cx="300" cy="214" r="108" fill="rgba(255,255,255,.2)" stroke="#e0f2fe" strokeWidth="2" />
-                <line x1="300" y1="214" x2="300" y2="96" stroke="#ef4444" strokeDasharray="4 3" />
-                <line x1="300" y1="214" x2={300 + 108 * Math.sin(bearing * DEG)} y2={214 - 108 * Math.cos(bearing * DEG)} stroke="#fbbf24" strokeWidth="5" />
-                <text x="318" y="200" fill="#fff" fontSize="16">{fmt(bearing, 1)}° clockwise from N</text>
+                <rect width="590" height="390" fill="#f8fbff" />
+                <line x1="40" y1="200" x2="550" y2="200" stroke="#94a3b8" />
+                <line x1="220" y1="28" x2="220" y2="360" stroke="#94a3b8" />
+                <text x="214" y="24" fill="#ef4444" fontSize="14" fontWeight="700">N</text>
+                <text x="556" y="206" fill="#334155" fontSize="13">E</text>
+                <text x="214" y="378" fill="#334155" fontSize="13">S</text>
+                <text x="18" y="206" fill="#334155" fontSize="13">W</text>
+                <line x1="220" y1="200" x2={220 + 210 * Math.sin(bearing * DEG)} y2={200 - 210 * Math.cos(bearing * DEG)} stroke="#0ea5e9" strokeWidth="3" />
+                <circle cx="220" cy="200" r="7" fill="#0ea5e9" />
+                <circle cx={220 + 210 * Math.sin(bearing * DEG)} cy={200 - 210 * Math.cos(bearing * DEG)} r="7" fill="#0ea5e9" />
+                <text x="206" y="222" fill="#0f172a" fontSize="13" fontWeight="700">A</text>
+                <text x={220 + 210 * Math.sin(bearing * DEG) + 10} y={200 - 210 * Math.cos(bearing * DEG) - 8} fill="#0f172a" fontSize="13" fontWeight="700">B</text>
+                <text x="248" y="188" fill="#0ea5e9" fontSize="16" fontWeight="700">{String(Math.round(bearing)).padStart(3, "0")}°</text>
+                <text x="400" y="48" fill="#0f172a" fontSize="14">A → B bearing</text>
+                <text x="400" y="72" fill="#0ea5e9" fontSize="22" fontWeight="800">{String(Math.round(bearing)).padStart(3, "0")}°</text>
+                <text x="400" y="108" fill="#0f172a" fontSize="14">Reverse B → A</text>
+                <text x="400" y="132" fill="#64748b" fontSize="22" fontWeight="800">{String(Math.round((bearing + 180) % 360)).padStart(3, "0")}°</text>
                 <Compass bearing={bearing} />
               </>
             ) : mode === "Navigation" ? (
@@ -151,23 +164,29 @@ export function ApplicationsLab({ page }: { page: StudioMockupPage }) {
               </>
             ) : (
               <>
-                <rect x="458" y={topY} width="76" height={groundY - topY} fill="url(#trig-app-glass)" stroke="#334155" />
-                {Array.from({ length: 5 }, (_, column) => <line key={`c${column}`} x1={466 + column * 14} y1={topY + 8} x2={466 + column * 14} y2={groundY - 4} stroke="#b8d1df" opacity=".65" />)}
-                {Array.from({ length: 9 }, (_, row) => <line key={`r${row}`} x1="460" y1={topY + 14 + row * ((groundY - topY - 18) / 9)} x2="532" y2={topY + 14 + row * ((groundY - topY - 18) / 9)} stroke="#b8d1df" opacity=".55" />)}
-                <line x1={observerX} y1={groundY} x2={targetX} y2={groundY} stroke="#22d3ee" strokeWidth="3" />
-                <line x1={observerX} y1={groundY - eyeHeight * 3.25} x2={targetX} y2={topY} stroke="#fff" strokeWidth="2" strokeDasharray="7 5" />
-                <line x1={targetX} y1={groundY} x2={targetX} y2={topY} stroke="#c084fc" strokeWidth="4" />
-                <path d={`M ${targetX - 12} ${groundY} v-12 h12`} fill="none" stroke="#fff" strokeWidth="2" />
-                <path d={`M ${observerX + 42} ${groundY - eyeHeight * 3.25} A 42 42 0 0 0 ${observerX + 42 * Math.cos(elevation * DEG)} ${groundY - eyeHeight * 3.25 - 42 * Math.sin(elevation * DEG)}`} fill="none" stroke="#f59e0b" strokeWidth="2" />
-                <circle cx={observerX} cy={groundY - 18} r="9" fill="#fbbf24" onPointerDown={(event) => { event.preventDefault(); setDragging("observer"); }} />
-                <line x1={observerX} y1={groundY - 9} x2={observerX} y2={groundY} stroke="#334155" strokeWidth="5" />
-                <circle cx={targetX} cy={topY} r="8" fill="#f97316" stroke="#fff" strokeWidth="2" onPointerDown={(event) => { event.preventDefault(); setDragging("target"); }} />
-                <text x={(observerX + targetX) / 2} y={groundY - 9} fill="#e0f2fe" fontSize="13" textAnchor="middle">{fmt(distanceValue, 2)} m</text>
-                <text x={observerX + 52} y={groundY - 22} fill="#fff" fontSize="13">{fmt(elevation, 1)}° {baseElevation < 0 ? "depression" : "elevation"}</text>
+                <rect width="590" height="390" fill="#f8fbff" />
+                <line x1="36" y1={groundY} x2="560" y2={groundY} stroke="#64748b" strokeWidth="2" />
+                <line x1={observerX} y1={groundY - eyeHeight * 18} x2={targetX + 20} y2={groundY - eyeHeight * 18} stroke="#94a3b8" strokeDasharray="6 4" />
+                <rect x="458" y={topY} width="86" height={groundY - topY} fill="#e2e8f0" stroke="#334155" />
+                {Array.from({ length: 4 }, (_, column) => <line key={`c${column}`} x1={470 + column * 16} y1={topY + 10} x2={470 + column * 16} y2={groundY - 4} stroke="#94a3b8" opacity=".7" />)}
+                {Array.from({ length: 8 }, (_, row) => <line key={`r${row}`} x1="460" y1={topY + 16 + row * ((groundY - topY - 20) / 8)} x2="542" y2={topY + 16 + row * ((groundY - topY - 20) / 8)} stroke="#94a3b8" opacity=".55" />)}
+                <line x1={observerX} y1={groundY} x2={targetX} y2={groundY} stroke="#0ea5e9" strokeWidth="3" />
+                <line x1={observerX} y1={groundY - eyeHeight * 18} x2={targetX} y2={topY} stroke="#0ea5e9" strokeWidth="2.4" />
+                <line x1={targetX} y1={groundY} x2={targetX} y2={topY} stroke="#ef4444" strokeWidth="3" />
+                <path d={`M ${observerX + 46} ${groundY - eyeHeight * 18} A 46 46 0 0 0 ${observerX + 46 * Math.cos(elevation * DEG)} ${groundY - eyeHeight * 18 - 46 * Math.sin(elevation * DEG)}`} fill="none" stroke="#0ea5e9" strokeWidth="2" />
+                <circle cx={observerX} cy={groundY - 28} r="8" fill="#0f172a" onPointerDown={(event) => { event.preventDefault(); setDragging("observer"); }} />
+                <line x1={observerX} y1={groundY - 20} x2={observerX} y2={groundY} stroke="#0f172a" strokeWidth="4" />
+                <line x1={observerX} y1={groundY} x2={observerX - 10} y2={groundY} stroke="#0f172a" strokeWidth="4" />
+                <line x1={observerX} y1={groundY} x2={observerX + 10} y2={groundY} stroke="#0f172a" strokeWidth="4" />
+                <circle cx={targetX} cy={topY} r="9" fill="#fff" stroke="#0ea5e9" strokeWidth="3" onPointerDown={(event) => { event.preventDefault(); setDragging("target"); }} />
+                <text x={(observerX + targetX) / 2} y={groundY + 22} fill="#0f172a" fontSize="13" textAnchor="middle">Distance (adjacent) = {fmt(distanceValue, 2)} m</text>
+                <text x={targetX + 12} y={(topY + groundY) / 2} fill="#ef4444" fontSize="13">Height = {fmt(buildingHeight, 2)} m</text>
+                <text x={observerX + 56} y={groundY - eyeHeight * 18 - 10} fill="#0ea5e9" fontSize="14">{fmt(elevation, 1)}°</text>
+                <text x="24" y="36" fill="#475569" fontSize="12">Line of sight · {baseElevation < 0 ? "depression" : "elevation"}</text>
                 <g className="trig-target-calculated-height">
-                  <rect x="480" y={(topY + groundY) / 2 - 24} width="90" height="52" rx="7" fill="#7c3aed" opacity=".92" />
-                  <text x="525" y={(topY + groundY) / 2 - 5} fill="#fff" fontSize="10" textAnchor="middle">Calculated height</text>
-                  <text x="525" y={(topY + groundY) / 2 + 15} fill="#fff" fontSize="15" fontWeight="700" textAnchor="middle">{fmt(buildingHeight, 2)} m</text>
+                  <rect x="24" y="48" width="168" height="52" rx="8" fill="#fff" stroke="#dbeafe" />
+                  <text x="108" y="70" fill="#334155" fontSize="11" textAnchor="middle">Calculated height</text>
+                  <text x="108" y="90" fill="#0f172a" fontSize="16" fontWeight="800" textAnchor="middle">{fmt(buildingHeight, 2)} m</text>
                 </g>
                 {animateMeasurement ? <Compass bearing={bearing} /> : null}
               </>

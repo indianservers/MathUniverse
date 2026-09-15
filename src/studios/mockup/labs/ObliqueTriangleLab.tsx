@@ -270,6 +270,30 @@ export function ObliqueTriangleLab({ page }: { page: StudioMockupPage }) {
             })}
           </svg>
           <p className="msk-note trig-target-canvas-hint">Drag vertices (A, B, C) to explore. All values update in real time.</p>
+          {mode === "SSA Ambiguous Case" ? (
+            <div className="ob-target-ssa" aria-label="SSA ambiguous case explorer">
+              <article data-state={ssa.count === 0 ? "on" : "off"}>
+                <b>No triangle</b>
+                <small>a &lt; h = {fmt(ssa.height, 2)}</small>
+              </article>
+              <article data-state={ssa.count === 1 ? "on" : "off"}>
+                <b>One triangle</b>
+                <small>a = h or a ≥ b</small>
+              </article>
+              <article data-state={ssa.count === 2 ? "on" : "off"}>
+                <b>Two triangles</b>
+                <small>{ssa.acute ? `B = ${fmt(ssa.acute.B, 1)}°` : "—"}{ssa.obtuse ? ` or ${fmt(ssa.obtuse.B, 1)}°` : ""}</small>
+              </article>
+            </div>
+          ) : null}
+          {mode === "Cosine Law" ? (
+            <div className="ob-target-squares" aria-label="Cosine-rule square decomposition">
+              <span>a² = {fmt(a * a, 2)}</span>
+              <span>b² = {fmt(b * b, 2)}</span>
+              <span>c² = {fmt(c * c, 2)}</span>
+              <span>2ab cos C = {fmt(2 * a * b * Math.cos(angleC * DEG), 2)}</span>
+            </div>
+          ) : null}
         </section>
 
         <aside className="msk-panel msk-live trig-target-card trig-target-law-panel ob-target-rail">

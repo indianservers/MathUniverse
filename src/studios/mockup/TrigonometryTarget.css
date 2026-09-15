@@ -803,6 +803,81 @@
   font-weight: 800;
 }
 
+.msk-trigonometry .inv-target-dual {
+  display: grid;
+  grid-template-columns: 1fr 54px 1fr;
+  gap: 8px;
+  align-items: stretch;
+}
+
+.msk-trigonometry .inv-target-dual figure,
+.msk-trigonometry .wv-target-shm figure,
+.msk-trigonometry .id-target-numeric article {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  padding: 8px;
+}
+
+.msk-trigonometry .inv-target-dual figure > svg,
+.msk-trigonometry .wv-target-shm figure > svg {
+  width: 100%;
+  min-height: 0;
+}
+
+.msk-trigonometry .inv-target-reflect-link {
+  display: grid;
+  place-items: center;
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 800;
+  border-left: 1px dashed #94a3b8;
+  border-right: 1px dashed #94a3b8;
+}
+
+.msk-trigonometry .wv-target-canvas[data-simple="true"] {
+  background: #f9fcff;
+  color: #0f172a;
+}
+
+.msk-trigonometry .wv-target-shm {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+}
+
+.msk-trigonometry .id-target-numeric,
+.msk-trigonometry .ob-target-ssa,
+.msk-trigonometry .ob-target-squares {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.msk-trigonometry .ob-target-squares {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.msk-trigonometry .id-target-numeric article,
+.msk-trigonometry .ob-target-ssa article,
+.msk-trigonometry .ob-target-squares span {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  padding: 8px 10px;
+}
+
+.msk-trigonometry .id-target-numeric small,
+.msk-trigonometry .ob-target-ssa small {
+  display: block;
+  color: #64748b;
+}
+
+.msk-trigonometry .ob-target-ssa article[data-state="on"] {
+  border-color: #86efac;
+  background: #f0fdf4;
+}
+
 .msk-trigonometry .ob-target-controls .msk-num-row input {
   width: 100%;
   min-height: 34px;
@@ -821,6 +896,14 @@
 
 @media (max-width: 900px) {
   .msk-trigonometry :is(.id-target-lab, .inv-target-lab, .ob-target-lab, .wv-target-lab, .app-target-lab) {
+    grid-template-columns: 1fr;
+  }
+
+  .msk-trigonometry .inv-target-dual,
+  .msk-trigonometry .wv-target-shm,
+  .msk-trigonometry .id-target-numeric,
+  .msk-trigonometry .ob-target-ssa,
+  .msk-trigonometry .ob-target-squares {
     grid-template-columns: 1fr;
   }
 }

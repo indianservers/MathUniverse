@@ -107,8 +107,6 @@ export function InverseTrigLab({ page }: { page: StudioMockupPage }) {
   const composition = active === "Arcsin" ? Math.sin(angle) : active === "Arccos" ? Math.cos(angle) : Math.tan(angle);
   const unitX = Math.cos(angle);
   const unitY = Math.sin(angle);
-  const pointX = 120 + unitX * 72;
-  const pointY = 118 - unitY * 72;
   const graphX = 250 + boundedInput * GRAPH_SCALE;
   const graphY = 168 - angle * GRAPH_SCALE;
   const rangeMin = active === "Arccos" ? 0 : -Math.PI / 2;
@@ -203,6 +201,44 @@ export function InverseTrigLab({ page }: { page: StudioMockupPage }) {
             </div>
           ) : (
             <>
+              <div className="inv-target-dual" aria-label="Restricted branches reflected across y = x">
+                <figure>
+                  <b>B. Unit Circle Mapping</b>
+                  <svg viewBox="0 0 260 250" role="img" aria-label="Restricted unit-circle branch">
+                    <rect width="260" height="250" rx="10" fill={COLORS.paper} />
+                    <line x1="18" y1="125" x2="242" y2="125" stroke="#94a3b8" />
+                    <line x1="130" y1="18" x2="130" y2="232" stroke="#94a3b8" />
+                    <text x="236" y="140" fill="#64748b" fontSize="11">x</text>
+                    <text x="138" y="22" fill="#64748b" fontSize="11">y</text>
+                    {mode === "Principal Values" ? <path d={`M ${130 + 86} 125 A 86 86 0 ${rangeMax - rangeMin > Math.PI ? 1 : 0} 0 ${130 + 86 * Math.cos(rangeMax)} ${125 - 86 * Math.sin(rangeMax)}`} fill="rgba(16,185,129,.12)" stroke="none" /> : null}
+                    <circle cx="130" cy="125" r="86" fill="none" stroke="#64748b" strokeWidth="1.6" />
+                    <path d={`M 166 125 A 36 36 0 ${Math.abs(angle) > Math.PI ? 1 : 0} ${angle >= 0 ? 0 : 1} ${130 + 36 * unitX} ${125 - 36 * unitY}`} fill="none" stroke={COLORS.sine} strokeWidth="3" />
+                    <line x1="130" y1="125" x2={130 + 86 * unitX} y2={125 - 86 * unitY} stroke={COLORS.sine} strokeWidth="2.4" />
+                    <circle cx={130 + 86 * unitX} cy={125 - 86 * unitY} r="6" fill={COLORS.sine} />
+                    <text x={130 + 86 * unitX + 8} y={125 - 86 * unitY - 8} fill="#0f172a" fontSize="11">({fmt(unitX, 3)}, {fmt(unitY, 3)})</text>
+                    <text x="148" y="118" fill={COLORS.sine} fontSize="12">θ = {fmt(degrees, 1)}°</text>
+                    <text x="20" y="244" fill="#475569" fontSize="11">sin {fmt(unitY, 3)} · cos {fmt(unitX, 3)} · tan {fmt(composition, 3)}</text>
+                  </svg>
+                </figure>
+                <div className="inv-target-reflect-link" aria-hidden="true">
+                  <span>y = x</span>
+                </div>
+                <figure>
+                  <b>Inverse output / reflection</b>
+                  <svg viewBox="0 0 260 250" role="img" aria-label="Inverse value reflected across y = x">
+                    <rect width="260" height="250" rx="10" fill={COLORS.paper} />
+                    <line x1="18" y1="125" x2="242" y2="125" stroke="#94a3b8" />
+                    <line x1="130" y1="18" x2="130" y2="232" stroke="#94a3b8" />
+                    <circle cx="130" cy="125" r="86" fill="none" stroke="#64748b" strokeWidth="1.6" />
+                    <path d={`M 166 125 A 36 36 0 ${Math.abs(angle) > Math.PI ? 1 : 0} ${angle >= 0 ? 0 : 1} ${130 + 36 * unitY} ${125 - 36 * unitX}`} fill="none" stroke={COLORS.cosine} strokeWidth="3" />
+                    <line x1="130" y1="125" x2={130 + 86 * unitY} y2={125 - 86 * unitX} stroke={COLORS.cosine} strokeWidth="2.4" />
+                    <circle cx={130 + 86 * unitY} cy={125 - 86 * unitX} r="6" fill={COLORS.cosine} />
+                    <text x={130 + 86 * unitY + 8} y={125 - 86 * unitX - 8} fill="#0f172a" fontSize="11">({fmt(unitY, 3)}, {fmt(unitX, 3)})</text>
+                    <text x="148" y="118" fill={COLORS.cosine} fontSize="12">θ = {fmt(degrees, 1)}°</text>
+                    <text x="20" y="244" fill="#475569" fontSize="11">{active.toLowerCase()}({fmt(boundedInput, 3)}) = {display}</text>
+                  </svg>
+                </figure>
+              </div>
               <div className="trig-target-inverse-graph inv-target-graph">
                 <b>A. Graphs: f(x) and f⁻¹(x)</b>
                 <svg className="msk-graph trig-target-inverse-plot" viewBox="0 0 500 250" role="img" aria-label={`${active} inverse graph`}>
@@ -226,35 +262,6 @@ export function InverseTrigLab({ page }: { page: StudioMockupPage }) {
                   <text x="150" y="28" fill={COLORS.cosine} fontSize="11">f⁻¹(x) = {active.toLowerCase()} x</text>
                   {mode === "Principal Values" ? <text x="24" y="46" fill={COLORS.success} fontSize="11">shaded band = principal range</text> : null}
                 </svg>
-              </div>
-              <div className="trig-target-inverse-lower inv-target-lower">
-                <figure>
-                  <b>B. Unit Circle Mapping</b>
-                  <svg viewBox="0 0 240 220" role="img" aria-label="Unit circle mapping">
-                    <rect width="240" height="220" rx="10" fill={COLORS.paper} />
-                    <line x1="28" y1="118" x2="212" y2="118" stroke="#64748b" />
-                    <line x1="120" y1="24" x2="120" y2="206" stroke="#64748b" />
-                    <circle cx="120" cy="118" r="72" fill="none" stroke="#38bdf8" strokeWidth="1.8" />
-                    <path d={`M 148 118 A 28 28 0 ${Math.abs(angle) > Math.PI ? 1 : 0} ${angle >= 0 ? 0 : 1} ${120 + 28 * unitX} ${118 - 28 * unitY}`} fill="none" stroke={COLORS.angle} strokeWidth="2" />
-                    <polygon points={`120,118 ${pointX},118 ${pointX},${pointY}`} fill="rgba(139,92,246,.12)" stroke={COLORS.cosine} />
-                    <line x1="120" y1="118" x2={pointX} y2={pointY} stroke={COLORS.angle} strokeWidth="2.3" />
-                    <circle cx={pointX} cy={pointY} r="6" fill={COLORS.angle} />
-                    <text x="128" y="156" fill={COLORS.angle} fontSize="12">θ = {fmt(angle, 3)} rad</text>
-                  </svg>
-                </figure>
-                <figure>
-                  <b>C. Geometric Interpretation</b>
-                  <svg viewBox="0 0 240 220" role="img" aria-label="Right triangle interpretation">
-                    <rect width="240" height="220" rx="10" fill={COLORS.paper} />
-                    <polygon points="36,176 204,176 36,48" fill="rgba(139,92,246,.10)" stroke="#334155" />
-                    <rect x="36" y="164" width="12" height="12" fill="none" stroke="#334155" />
-                    <text x="108" y="196" fill="#0891b2" fontSize="12">{fmt(Math.abs(unitX), 3)}</text>
-                    <text x="8" y="118" fill="#7c3aed" fontSize="12">{fmt(Math.abs(unitY), 3)}</text>
-                    <text x="118" y="108" fill="#334155" fontSize="12">1</text>
-                    <text x="56" y="164" fill={COLORS.angle} fontSize="16">θ</text>
-                    <text x="18" y="214" fill="#c2410c" fontSize="11">{active.toLowerCase()}({fmt(boundedInput, 2)}) = {fmt(angle, 4)} rad</text>
-                  </svg>
-                </figure>
               </div>
             </>
           )}

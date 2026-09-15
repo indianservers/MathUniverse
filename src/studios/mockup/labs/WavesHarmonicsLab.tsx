@@ -105,7 +105,55 @@ export function WavesHarmonicsLab({ page }: { page: StudioMockupPage }) {
           </div>
         </Panel>
 
-        <section className="msk-panel msk-canvas trig-target-wave-canvas wv-target-canvas" data-trig-target-mode={mode} data-wv-mode={mode}>
+        <section className="msk-panel msk-canvas trig-target-wave-canvas wv-target-canvas" data-trig-target-mode={mode} data-wv-mode={mode} data-simple={mode === "Simple Wave"}>
+          {mode === "Simple Wave" ? (
+            <div className="wv-target-shm" aria-label="Unit circle driving simple harmonic motion">
+              <figure>
+                <b>Unit Circle Oscillator</b>
+                <svg viewBox="0 0 260 250" role="img" aria-label="Driving unit circle">
+                  <rect width="260" height="250" rx="10" fill="#f9fcff" />
+                  <line x1="18" y1="125" x2="242" y2="125" stroke="#94a3b8" />
+                  <line x1="130" y1="18" x2="130" y2="232" stroke="#94a3b8" />
+                  <circle cx="130" cy="125" r="86" fill="none" stroke="#64748b" />
+                  <line x1="130" y1="125" x2={130 + 86 * Math.cos(oscillatorAngle)} y2={125} stroke="#06b6d4" strokeDasharray="5 4" />
+                  <line x1={130 + 86 * Math.cos(oscillatorAngle)} y1="125" x2={130 + 86 * Math.cos(oscillatorAngle)} y2={125 - 86 * Math.sin(oscillatorAngle)} stroke="#f97316" strokeDasharray="5 4" />
+                  <line x1="130" y1="125" x2={130 + 86 * Math.cos(oscillatorAngle)} y2={125 - 86 * Math.sin(oscillatorAngle)} stroke="#0ea5e9" strokeWidth="2.6" />
+                  <circle cx={130 + 86 * Math.cos(oscillatorAngle)} cy={125 - 86 * Math.sin(oscillatorAngle)} r="6" fill="#0ea5e9" />
+                  <text x="20" y="22" fill="#0f172a" fontSize="12">P(cos θ, sin θ)</text>
+                  <text x="148" y="118" fill="#0ea5e9" fontSize="12">θ = {fmt(oscillatorAngle * 180 / Math.PI, 1)}°</text>
+                  <text x="20" y="242" fill="#475569" fontSize="11">x = {fmt(Math.cos(oscillatorAngle), 3)} · θ = {fmt(oscillatorAngle, 3)} rad</text>
+                </svg>
+              </figure>
+              <figure>
+                <b>Projection (SHM output)</b>
+                <svg viewBox="0 0 260 250" role="img" aria-label="Horizontal projection">
+                  <rect width="260" height="250" rx="10" fill="#f9fcff" />
+                  <line x1="24" y1="125" x2="236" y2="125" stroke="#94a3b8" />
+                  <line x1="130" y1="18" x2="130" y2="232" stroke="#94a3b8" />
+                  <circle cx="130" cy="125" r="86" fill="none" stroke="#e2e8f0" />
+                  <line x1="130" y1="125" x2={130 + 86 * Math.cos(oscillatorAngle)} y2="125" stroke="#06b6d4" strokeWidth="8" strokeLinecap="round" />
+                  <circle cx={130 + 86 * Math.cos(oscillatorAngle)} cy="125" r="7" fill="#06b6d4" />
+                  <text x="20" y="36" fill="#0f172a" fontSize="12">x = cos θ</text>
+                  <text x="20" y="242" fill="#475569" fontSize="11">horizontal projection of the rotating point</text>
+                </svg>
+              </figure>
+              <figure className="wv-target-shm-graphs">
+                <b>Displacement x(t) &amp; velocity v(t)</b>
+                <svg viewBox="0 0 260 250" role="img" aria-label="Displacement and velocity">
+                  <rect width="260" height="250" rx="10" fill="#f9fcff" />
+                  <text x="16" y="22" fill="#0f172a" fontSize="11">Displacement x(t) = cos θ</text>
+                  <line x1="20" y1="70" x2="244" y2="70" stroke="#94a3b8" />
+                  <polyline points={Array.from({ length: 80 }, (_, index) => `${20 + index * 2.8},${70 - Math.cos(index / 12) * 28}`).join(" ")} fill="none" stroke="#0ea5e9" strokeWidth="2" />
+                  <circle cx={20 + ((oscillatorAngle % (2 * Math.PI) + 2 * Math.PI) % (2 * Math.PI)) / (2 * Math.PI) * 224} cy={70 - Math.cos(oscillatorAngle) * 28} r="5" fill="#0ea5e9" />
+                  <text x="16" y="132" fill="#0f172a" fontSize="11">Velocity v(t) = −sin θ</text>
+                  <line x1="20" y1="180" x2="244" y2="180" stroke="#94a3b8" />
+                  <polyline points={Array.from({ length: 80 }, (_, index) => `${20 + index * 2.8},${180 + Math.sin(index / 12) * 28}`).join(" ")} fill="none" stroke="#8b5cf6" strokeWidth="2" />
+                  <circle cx={20 + ((oscillatorAngle % (2 * Math.PI) + 2 * Math.PI) % (2 * Math.PI)) / (2 * Math.PI) * 224} cy={180 + Math.sin(oscillatorAngle) * 28} r="5" fill="#8b5cf6" />
+                </svg>
+              </figure>
+            </div>
+          ) : (
+          <>
           <svg className="msk-graph is-dark trig-target-wave-plot" viewBox={`0 0 540 ${plotHeight}`} role="img" aria-label={`${mode} source and resultant waves`}>
             <rect width="540" height={plotHeight} rx="10" fill="#041426" />
             {Array.from({ length: 9 }, (_, index) => <line key={`v${index}`} x1={24 + index * 60} y1="22" x2={24 + index * 60} y2={plotHeight - 22} stroke="#15314b" />)}
@@ -188,6 +236,8 @@ export function WavesHarmonicsLab({ page }: { page: StudioMockupPage }) {
               </section>
             ) : null}
           </div>
+          </>
+          )}
         </section>
 
         <aside className="msk-panel msk-live trig-target-card trig-target-wave-values wv-target-rail">

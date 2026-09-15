@@ -242,7 +242,7 @@ export function IdentitiesLab({ page }: { page: StudioMockupPage }) {
                 <>
                   <line x1={cx} y1={cy} x2={doubleX} y2={doubleY} stroke={COLORS.sine} strokeWidth="2.6" />
                   <text x={doubleX + 8} y={doubleY - 6} fill={COLORS.sine} fontSize="12">2θ</text>
-                  <text x="28" y="36" fill={COLORS.angle} fontSize="12">gold ray = θ · purple = 2θ</text>
+                  <text x="28" y="36" fill={COLORS.angle} fontSize="12">θ is gold · gold ray is 2θ in purple</text>
                 </>
               ) : null}
 
@@ -265,6 +265,20 @@ export function IdentitiesLab({ page }: { page: StudioMockupPage }) {
           <div className="trig-target-symbolic-proof id-target-symbolic">
             <b>Symbolic derivation</b>
             <div className="msk-formula">{steps.slice(0, step + 1).join("  →  ")}</div>
+          </div>
+          <div className="id-target-numeric" aria-label="Numerical verification">
+            <article>
+              <small>LHS</small>
+              <strong>{fmt(lhs, 5)}</strong>
+            </article>
+            <article>
+              <small>RHS</small>
+              <strong>{fmt(rhs, 5)}</strong>
+            </article>
+            <article>
+              <small>|LHS − RHS|</small>
+              <strong>{fmt(Math.abs(lhs - rhs), 6)}</strong>
+            </article>
           </div>
         </section>
 
