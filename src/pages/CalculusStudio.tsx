@@ -7,7 +7,6 @@ import {
   CheckCircle2,
   ChevronRight,
   CircleHelp,
-  Copy,
   Download,
   Expand,
   Eye,
@@ -25,7 +24,7 @@ import {
   Save,
   Search,
   Settings,
-  Sparkles,
+  Settings,
   Sun,
   Trophy,
   Upload,
@@ -47,7 +46,6 @@ import { CalculusLaunchArt, CalculusNavIcon } from "./calculusStudioIcons";
 import {
   dailyChallenge,
   exportSession,
-  gradeChallenge,
   helpFor,
   importSession,
   loadChallenge,
@@ -84,12 +82,13 @@ const navItems = [
   { page: "differential-equations", label: "Differential Equations" },
   { page: "series-parametric-polar", label: "Series / Parametric / Polar" },
   { page: "multivariable-vector", label: "Multivariable / Vector" },
-  { page: "advanced", label: "Advanced Calculus" },
 ] satisfies Array<{ page: CalculusStudioPage; label: string }>;
+
+const darkNavPages: CalculusStudioPage[] = ["integration", "integration-techniques", "multivariable-vector"];
 
 const pageMeta: Record<CalculusStudioPage, { title: string; subtitle: string; modes: LabMode[] }> = {
   home: { title: "Calculus Studio", subtitle: "Explore change, motion and accumulation.", modes: [] },
-  limits: { title: "Limits & Continuity Studio", subtitle: "Explore limits, one-sided behavior, and continuity of functions.", modes: modeList("limits", "Limits", "continuity", "Continuity", "discontinuities", "Discontinuities", "asymptotes", "Asymptotes", "lhopital", "L'Hopital") },
+  limits: { title: "Limits & Continuity Studio", subtitle: "Explore limits, one-sided behavior, and continuity of functions.", modes: modeList("limits", "Limits", "continuity", "Continuity", "discontinuities", "Discontinuities", "asymptotes", "Asymptotes", "lhopital", "L'Hôpital") },
   derivatives: { title: "Derivatives Studio", subtitle: "Connect secants, tangents, derivative rules, and local approximation.", modes: modeList("tangent", "Tangent", "rules", "Rules", "chain", "Chain Rule", "implicit", "Implicit", "higher", "Higher Order", "linearization", "Linearization") },
   "derivative-applications": { title: "Derivative Applications Studio", subtitle: "Use derivatives to solve real-world problems and make best decisions.", modes: modeList("motion", "Motion", "related", "Related Rates", "curve", "Curve Analysis", "optimization", "Optimization", "mvt", "Mean Value") },
   integration: { title: "Integration & Accumulation Studio", subtitle: "Visualize area accumulation and the Fundamental Theorem of Calculus.", modes: modeList("antiderivative", "Antiderivative", "definite", "Definite Integral", "ftc", "FTC", "riemann", "Riemann Sums", "numerical", "Numerical") },
@@ -144,7 +143,7 @@ export default function CalculusStudio({ page = "home" }: { page?: CalculusStudi
   };
 
   return (
-    <main className={`cs-shell ${settings.theme === "dark" ? "cs-dark" : ""} ${settings.graphLight ? "cs-graph-light" : ""} ${settings.collapseControls ? "cs-hide-controls" : ""} ${settings.collapseResults ? "cs-hide-results" : ""}`}>
+    <main className={`cs-shell ${settings.theme === "dark" ? "cs-dark" : ""} ${darkNavPages.includes(activePage) ? "cs-nav-dark" : ""} ${settings.graphLight ? "cs-graph-light" : ""} ${settings.collapseControls ? "cs-hide-controls" : ""} ${settings.collapseResults ? "cs-hide-results" : ""}`}>
       {drawerOpen && <button className="cs-backdrop" aria-label="Close Calculus Studio menu" onClick={() => setDrawerOpen(false)} />}
       <StudioSidebar page={activePage} collapsed={collapsed} open={drawerOpen} onCollapse={() => setCollapsed((value) => !value)} onClose={() => setDrawerOpen(false)} />
       <section className="cs-page">
@@ -178,9 +177,10 @@ function StudioSidebar({ page, collapsed, open, onCollapse, onClose }: { page: C
       </Link>
       <button className="cs-drawer-close" type="button" onClick={onClose} aria-label="Close menu"><X /></button>
       <nav>
+        {page !== "home" ? <p className="cs-nav-kicker">Main</p> : null}
         {page !== "home" ? (
           <Link className="cs-nav-link" to="/" title="Leave Calculus Studio and return to the main Math Universe app" onClick={onClose}>
-            <CalculusNavIcon page="main" /><span>Main app</span>
+            <CalculusNavIcon page="main" /><span>Main</span>
           </Link>
         ) : null}
         {navItems.map(({ page: itemPage, label }) => (
@@ -196,30 +196,13 @@ function StudioSidebar({ page, collapsed, open, onCollapse, onClose }: { page: C
           </Link>
         ))}
       </nav>
-      <div className="cs-pro">
-        <b>Save this studio</b>
-        <p>Store progress, last experiment, and settings on this device. Export to move between browsers.</p>
-        <div className="cs-save-actions">
-          <button type="button" onClick={() => { persistSavedSnapshot(); window.alert("Studio session saved on this device."); }}><Save /> Save</button>
-          <button type="button" onClick={() => {
-            const blob = new Blob([exportSession()], { type: "application/json" });
-            const url = URL.createObjectURL(blob);
-            const link = document.createElement("a");
-            link.href = url;
-            link.download = "calculus-studio-session.json";
-            link.click();
-            URL.revokeObjectURL(url);
-          }}><Download /> Export</button>
-          <label className="cs-import">
-            <Upload /> Import
-            <input type="file" accept="application/json" aria-label="Import saved studio session" onChange={async (event) => {
-              const file = event.target.files?.[0];
-              if (!file) return;
-              importSession(await file.text());
-            }} />
-          </label>
+      {page === "home" ? (
+        <div className="cs-pro">
+          <b>Unlock Pro</b>
+          <p>Save your work, access advanced tools and more.</p>
+          <Link to="/calculus/advanced">Upgrade</Link>
         </div>
-      </div>
+      ) : null}
       <button className="cs-collapse" type="button" onClick={onCollapse} aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"} title={collapsed ? "Expand" : "Collapse"}>
         <ArrowLeft />
       </button>
@@ -278,27 +261,26 @@ function StudioHeader({ page, mode, settings, onSettings, onMenu, onDialog }: {
         <h1>{meta.title}</h1>
         <p>{meta.subtitle}</p>
       </div>
-      <div className="cs-search-wrap">
-        <label className="cs-search">
-          <Search />
-          <input ref={searchRef} value={query} onChange={(event) => setQuery(event.target.value)} onKeyDown={(event) => event.key === "Enter" && submit()} placeholder="Search formulas, topics, or experiments..." aria-label="Search Calculus Studio" />
-          <kbd>Ctrl+K</kbd>
-        </label>
-        {query.trim() && (
-          <div className="cs-search-results" role="listbox">
-            {results.map((item) => <button key={item.route} type="button" onClick={() => navigate(item.route)}>{item.label}{item.formula ? <small>{item.formula}</small> : null}</button>)}
-            {!results.length && <span>No calculus studio result</span>}
-          </div>
-        )}
-      </div>
+      {page === "home" ? (
+        <div className="cs-search-wrap">
+          <label className="cs-search">
+            <Search />
+            <input ref={searchRef} value={query} onChange={(event) => setQuery(event.target.value)} onKeyDown={(event) => event.key === "Enter" && submit()} placeholder="Search formulas, topics, or experiments..." aria-label="Search Calculus Studio" />
+            <kbd>Ctrl+K</kbd>
+          </label>
+          {query.trim() && (
+            <div className="cs-search-results" role="listbox">
+              {results.map((item) => <button key={item.route} type="button" onClick={() => navigate(item.route)}>{item.label}{item.formula ? <small>{item.formula}</small> : null}</button>)}
+              {!results.length && <span>No calculus studio result</span>}
+            </div>
+          )}
+        </div>
+      ) : null}
       <div className="cs-header-actions">
         {page !== "home" ? <StudioCanvasToolbar /> : null}
         <button type="button" onClick={() => onSettings({ ...settings, theme: settings.theme === "light" ? "dark" : "light" })} title="Theme" aria-label="Toggle theme">{settings.theme === "light" ? <Sun /> : <Moon />}</button>
-        <button type="button" onClick={() => onDialog("shortcuts")} title="Shortcuts" aria-label="Shortcuts"><Keyboard /> Shortcuts</button>
+        {page === "home" || page === "limits" ? <button type="button" onClick={() => onDialog("shortcuts")} title="Shortcuts" aria-label="Shortcuts"><Keyboard /> Shortcuts</button> : null}
         <button type="button" onClick={() => onDialog("help")} title="Help" aria-label="Help"><HelpCircle /></button>
-        {page !== "home" ? (
-          <button type="button" onClick={async () => { await navigator.clipboard.writeText(window.location.href); }} title="Copy experiment link" aria-label="Copy link"><Copy /> Copy link</button>
-        ) : null}
         {page !== "home" ? (
           <button type="button" onClick={() => window.dispatchEvent(new Event("calculus-lab-reset"))} title="Reset all" aria-label="Reset all"><RotateCcw /> Reset</button>
         ) : null}
@@ -312,20 +294,15 @@ function StudioHome() {
   const navigate = useNavigate();
   const last = loadLastExperiment();
   const progress = progressSummary();
-  const [challenge, setChallenge] = useState(loadChallenge);
-  const [guess, setGuess] = useState(challenge.guess);
+  const [challenge] = useState(loadChallenge);
   const cards = [
-    { page: "limits", title: "Limits", note: "Explore behavior near a point.", tag: "ε-δ & One-Sided", minutes: 10, level: "Start here", modes: ["ε-δ", "One-sided", "Infinity"] },
-    { page: "derivatives", title: "Derivatives", note: "Visualize slopes and tangents.", tag: "Instantaneous Change", minutes: 12, level: "Core", modes: ["Tangent", "Definition", "Rules"] },
-    { page: "derivative-applications", title: "Derivative Applications", note: "Motion, related rates, optimization.", tag: "Related Rates", minutes: 10, level: "Core", modes: ["Motion", "Related rates", "Optimize"] },
-    { page: "integration", title: "Integrals", note: "Accumulate area under curves.", tag: "Area & Accumulation", minutes: 12, level: "Core", modes: ["Riemann", "FTC", "Net change"] },
-    { page: "integration-techniques", title: "Integration Techniques", note: "Substitution, parts, partial fractions.", tag: "By Parts", minutes: 10, level: "Next", modes: ["Substitution", "Parts", "Partial fractions"] },
-    { page: "integral-applications", title: "Integral Applications", note: "Area, volume, work, and arc length.", tag: "Volumes", minutes: 10, level: "Next", modes: ["Area", "Volume", "Work"] },
-    { page: "differential-equations", title: "Differential Equations", note: "Slope fields & solution curves.", tag: "dy/dx = f(x, y)", minutes: 12, level: "Next", modes: ["Slope field", "Euler", "Separable"] },
-    { page: "series-parametric-polar", title: "Series & Polar", note: "Taylor, parametric, and polar graphs.", tag: "Taylor", minutes: 10, level: "Extend", modes: ["Taylor", "Parametric", "Polar"] },
-    { page: "multivariable-vector", title: "Multivariable", note: "Surfaces, gradients & vector fields.", tag: "∇f & Vector Fields", minutes: 12, level: "Extend", modes: ["Surfaces", "Gradient", "Fields"] },
-  ] satisfies Array<{ page: CalculusStudioPage; title: string; note: string; tag: string; minutes: number; level: string; modes: string[] }>;
-  const submitGuess = () => setChallenge(gradeChallenge(guess));
+    { page: "limits", title: "Limits", note: "Explore behavior near a point.", tag: "ε-δ & One-Sided" },
+    { page: "derivatives", title: "Derivatives", note: "Visualize slopes and tangents.", tag: "Instantaneous Change" },
+    { page: "integration", title: "Integrals", note: "Accumulate area under curves.", tag: "Area & Accumulation" },
+    { page: "differential-equations", title: "Differential Equations", note: "Slope fields & solution curves.", tag: "dy/dx = f(x, y)" },
+    { page: "series-parametric-polar", title: "Approximations", note: "Taylor polynomials & local models.", tag: "Series & Approximations" },
+    { page: "multivariable-vector", title: "Multivariable", note: "Surfaces, gradients & vector fields.", tag: "∇f & Vector Fields" },
+  ] satisfies Array<{ page: CalculusStudioPage; title: string; note: string; tag: string }>;
   return (
     <div className="cs-home">
       <section className="cs-card cs-journey" id="journey" aria-labelledby="journey-title">
@@ -374,22 +351,17 @@ function StudioHome() {
           <div className="cs-limit-formula" aria-label="limit as x approaches 2 of (x squared minus 4) over (x minus 2)">
             lim<sub>x→2</sub> (x² − 4) / (x − 2)
           </div>
-          <label className="cs-guess">
-            Your answer
-            <input inputMode="decimal" value={guess} onChange={(event) => setGuess(event.target.value)} aria-label="Challenge guess" />
-          </label>
-          {challenge.solved ? <p className="cs-feedback">Correct: the limit equals 4.</p> : challenge.guess ? <p className="cs-error">Not yet. Factor first, or open the hint.</p> : null}
+          {challenge.solved ? <p className="cs-feedback">Correct: the limit equals 4.</p> : null}
           <div className="cs-challenge-actions">
             <button type="button" onClick={() => window.alert(dailyChallenge.hint)}>View hint</button>
-            <button className="cs-primary" type="button" onClick={submitGuess}>Check answer</button>
+            <button className="cs-primary" type="button" onClick={() => navigate("/calculus/limits")}>Try it now</button>
           </div>
-          <button className="cs-linkish" type="button" onClick={() => navigate("/calculus/limits")}>Try it now</button>
           <p className="cs-streak"><Flame /> Streak: {challenge.streak} days</p>
         </section>
       </aside>
       <section className="cs-card cs-launch">
         <h2>Launch an experiment</h2>
-        <p>Interactive visual labs to build intuition and master calculus. Press 1–9 to jump.</p>
+        <p>Interactive visual labs to build intuition and master calculus. Press 1–6 to jump.</p>
         <div className="cs-launch-grid">
           {cards.map((card, index) => (
             <button key={card.page} type="button" className="cs-launch-card" onClick={() => navigate(studioRoutes[card.page])} aria-describedby={`launch-tag-${card.page}`}>
@@ -397,10 +369,7 @@ function StudioHome() {
               <strong>{card.title}</strong>
               <small>{card.note}</small>
               <CalculusLaunchArt kind={card.page} />
-              <em className="cs-card-meta">{`${card.level} · ${card.minutes} min`}</em>
-              <small className="cs-card-modes">{card.modes.join(" · ")}</small>
               <b id={`launch-tag-${card.page}`}>{card.tag}</b>
-              <i>Open {card.title}</i>
             </button>
           ))}
         </div>
@@ -408,11 +377,9 @@ function StudioHome() {
       <section className="cs-card cs-why">
         <h2>Why visualize?</h2>
         <div>
-        <InfoPill icon={<Eye />} title="Observe" text="Watch limits, slopes, and area change as you drag." />
-        <InfoPill icon={<Lightbulb />} title="Understand" text="Connect the picture to the formula in live results." />
-        <InfoPill icon={<Sparkles />} title="Why" text="See why the theorem holds, not only that it holds." />
-        <InfoPill icon={<FlaskConical />} title="Try" text="Change parameters, inspect patterns, and test ideas." />
-        <InfoPill icon={<Trophy />} title="Challenge" text="Solve the daily visual problem and keep a streak." />
+        <InfoPill icon={<Eye />} title="See the math" text="Build intuition through dynamic visual representations." />
+        <InfoPill icon={<FlaskConical />} title="Explore freely" text="Adjust parameters, inspect patterns, and test ideas." />
+        <InfoPill icon={<Trophy />} title="Master concepts" text="Connect visuals with theory and solve with confidence." />
         </div>
       </section>
     </div>
@@ -430,11 +397,10 @@ function JourneyNode({ title, page, compact }: { title: string; page: CalculusSt
 
 function StudioLab({ page, reduced }: { page: Exclude<CalculusStudioPage, "home">; reduced: boolean }) {
   const [params, setParams] = useSearchParams();
-  const settings = loadSettings();
   if (page === "advanced") return <CalculusEnhancementWorkbench />;
   if (page === "multivariable-vector") return <CalculusMultivariableStudio />;
   const meta = pageMeta[page];
-  const defaultMode = page === "integration" ? "definite" : meta.modes[0].id;
+  const defaultMode = page === "integration" ? "definite" : page === "derivative-applications" ? "optimization" : page === "series-parametric-polar" ? "taylor" : meta.modes[0].id;
   const requestedMode = params.get("mode") ?? defaultMode;
   const mode = meta.modes.some((item) => item.id === requestedMode) ? requestedMode : defaultMode;
   const chooseMode = (next: string) => {
@@ -449,17 +415,11 @@ function StudioLab({ page, reduced }: { page: Exclude<CalculusStudioPage, "home"
   };
   return (
     <div className={`cs-lab-page cs-lab-${page}`} data-lab-mode={mode} data-mode-canvas={mode}>
-      <div className="cs-lab-toolbar">
-        <nav className="cs-tabs" role="tablist" aria-label={`${meta.title} modes`} onKeyDown={onTabKey}>
-          {meta.modes.map((item) => (
-            <button key={item.id} type="button" role="tab" id={`cs-tab-${item.id}`} aria-controls={`cs-panel-${item.id}`} className={mode === item.id ? "active" : ""} aria-selected={mode === item.id} tabIndex={mode === item.id ? 0 : -1} onClick={() => chooseMode(item.id)}>{item.label}</button>
-          ))}
-        </nav>
-        <div className="cs-panel-toggles">
-          <button type="button" onClick={() => saveSettings({ ...settings, collapseControls: !settings.collapseControls })}>{settings.collapseControls ? "Show controls" : "Hide controls"}</button>
-          <button type="button" onClick={() => saveSettings({ ...settings, collapseResults: !settings.collapseResults })}>{settings.collapseResults ? "Show results" : "Hide results"}</button>
-        </div>
-      </div>
+      <nav className="cs-tabs" role="tablist" aria-label={`${meta.title} modes`} onKeyDown={onTabKey}>
+        {meta.modes.map((item) => (
+          <button key={item.id} type="button" role="tab" id={`cs-tab-${item.id}`} aria-controls={`cs-panel-${item.id}`} className={mode === item.id ? "active" : ""} aria-selected={mode === item.id} tabIndex={mode === item.id ? 0 : -1} onClick={() => chooseMode(item.id)}>{item.label}</button>
+        ))}
+      </nav>
       <div id={`cs-panel-${mode}`} role="tabpanel" aria-labelledby={`cs-tab-${mode}`}>
         {page === "integration"
           ? <CalculusIntegrationStudio mode={mode} />
@@ -480,8 +440,8 @@ function StudioLab({ page, reduced }: { page: Exclude<CalculusStudioPage, "home"
 function InteractiveLab({ page, mode, reduced }: { page: Exclude<CalculusStudioPage, "home">; mode: string; reduced: boolean }) {
   const [expression, setExpression] = useState(defaultExpression(page, mode));
   const [draft, setDraft] = useState(defaultExpression(page, mode));
-  const [a, setA] = useState(page === "integration" || page === "integral-applications" ? -2 : page === "derivatives" ? 1 : 0);
-  const [b, setB] = useState(page === "integration" || page === "integral-applications" ? 3 : 2);
+  const [a, setA] = useState(page === "integration" || page === "integral-applications" ? -2 : page === "derivatives" ? 1 : page === "series-parametric-polar" ? Math.PI / 4 : 0);
+  const [b, setB] = useState(page === "integration" || page === "integral-applications" ? 3 : page === "differential-equations" ? 1 : 2);
   const [delta, setDelta] = useState(page === "derivatives" ? 0.5 : 0.1);
   const [n, setN] = useState(page === "series-parametric-polar" ? 7 : 12);
   const [playing, setPlaying] = useState(false);
@@ -520,8 +480,8 @@ function InteractiveLab({ page, mode, reduced }: { page: Exclude<CalculusStudioP
   const stats = useMemo(() => calculateStats(page, mode, compiled.fn, a, b, delta, n, field.fn), [page, mode, compiled.fn, a, b, delta, n, field.fn]);
   if (usesConceptStudio(page)) return <CalculusConceptStudio page={page as ConceptPage} mode={mode} />;
   const reset = () => {
-    setA(page === "integration" || page === "integral-applications" ? -2 : page === "derivatives" ? 1 : 0);
-    setB(page === "integration" || page === "integral-applications" ? 3 : 2);
+    setA(page === "integration" || page === "integral-applications" ? -2 : page === "derivatives" ? 1 : page === "series-parametric-polar" ? Math.PI / 4 : 0);
+    setB(page === "integration" || page === "integral-applications" ? 3 : page === "differential-equations" ? 1 : 2);
     setDelta(page === "derivatives" ? 0.5 : 0.1);
     setN(page === "series-parametric-polar" ? 7 : 12);
     setPlaying(false);
@@ -541,28 +501,39 @@ function InteractiveLab({ page, mode, reduced }: { page: Exclude<CalculusStudioP
 
   return (
     <>
-      <div className="cs-workspace">
+      <div className={`cs-workspace ${page === "differential-equations" ? "cs-de-lab" : ""} ${page === "series-parametric-polar" ? "cs-series-lab" : ""} ${page === "integral-applications" ? "cs-volumes-lab" : ""}`}>
         <aside className="cs-card cs-controls">
           <h2><span>1</span> Controls</h2>
-          <label>Function or model<input value={draft} onChange={(event) => setDraft(event.target.value)} onKeyDown={(event) => event.key === "Enter" && plot()} /></label>
-          <button className="cs-primary" type="button" onClick={plot}>Plot</button>
+          <label>{page === "differential-equations" ? "Differential equation" : page === "series-parametric-polar" ? "Target function" : "Function or model"}<input value={draft} onChange={(event) => setDraft(event.target.value)} onKeyDown={(event) => event.key === "Enter" && plot()} /></label>
+          {page === "differential-equations" ? <p className="cs-feedback">dy/dx = {pretty(expression)}</p> : <button className="cs-primary" type="button" onClick={plot}>Plot</button>}
           {toast ? <p className={toast === "Plotted." ? "cs-feedback" : "cs-error"}>{toast}</p> : null}
           {(compiled.error && page !== "multivariable-vector" && page !== "differential-equations") && <p className="cs-error">{compiled.error}</p>}
           {(surface.error && page === "multivariable-vector") && <p className="cs-error">{surface.error}</p>}
-          {page === "differential-equations" ? <p className="cs-feedback">Model dy/dx = f(x, y). Click the slope field to set (x₀, y₀). Euler, RK4, and the exact curve overlay when f(x,y)=x−y.</p> : <ExampleChips page={page} mode={mode} onPick={(value) => { setDraft(value); setExpression(value); }} />}
+          {page === "differential-equations" ? <p className="cs-hint">Click the slope field to set (x₀, y₀). Euler, RK4, and the exact curve overlay when f(x,y)=x−y.</p> : <ExampleChips page={page} mode={mode} onPick={(value) => { setDraft(value); setExpression(value); }} />}
           <Range label={axisLabel(page, mode, "a")} value={a} min={-5} max={5} step={0.05} onChange={setA} />
           {(page === "integration" || page === "integral-applications" || page === "differential-equations" || page === "multivariable-vector") && <Range label={axisLabel(page, mode, "b")} value={b} min={-5} max={5} step={0.05} onChange={setB} />}
           {(page === "derivatives" || page === "limits" || page === "differential-equations") && <Range label={page === "derivatives" ? "Secant distance h" : page === "differential-equations" ? "Step size h" : "Approach / step size"} value={delta} min={0.02} max={2} step={0.02} onChange={setDelta} />}
-          {(page === "integration" || page === "integral-applications" || page === "series-parametric-polar") && <Range label={page === "series-parametric-polar" ? "Degree n" : "Partitions / slices n"} value={n} min={2} max={page === "series-parametric-polar" ? 12 : 80} step={1} onChange={(value) => setN(Math.round(value))} />}
-          {page === "integral-applications" && mode === "area" ? null : null}
-          {(page === "integration" || page === "integral-applications") && (
+          {(page === "integration" || page === "integral-applications" || page === "series-parametric-polar") && <Range label={page === "series-parametric-polar" ? "Degree n" : "Slices n"} value={n} min={2} max={page === "series-parametric-polar" ? 12 : 80} step={1} onChange={(value) => setN(Math.round(value))} />}
+          {(page === "integration" || page === "integral-applications") && mode !== "volumes" && (
             <div className="cs-chips">{(["left", "mid", "right", "trap"] as const).map((item) => <button key={item} type="button" className={riemann === item ? "active" : ""} onClick={() => setRiemann(item)}>{item}</button>)}</div>
           )}
-          <div className="cs-toggle-row"><label><input type="checkbox" checked={trace} onChange={(event) => setTrace(event.target.checked)} /> Trace</label><label><input type="checkbox" checked={showAux} onChange={(event) => setShowAux(event.target.checked)} /> Guides</label></div>
+          {page === "integral-applications" && mode === "volumes" ? (
+            <div className="cs-method-pills">
+              <button type="button" className="active">Washer</button>
+              <button type="button" disabled>Disk</button>
+              <button type="button" disabled>Shell</button>
+            </div>
+          ) : null}
+          {page === "series-parametric-polar" ? (
+            <label className="cs-toggle-row"><span>Animate terms</span><input type="checkbox" checked={playing} onChange={(event) => setPlaying(event.target.checked)} /></label>
+          ) : (
+            <div className="cs-toggle-row"><label><input type="checkbox" checked={trace} onChange={(event) => setTrace(event.target.checked)} /> Trace</label><label><input type="checkbox" checked={showAux} onChange={(event) => setShowAux(event.target.checked)} /> Guides</label></div>
+          )}
           <div className="cs-player">
-            <button type="button" onClick={reset}><RotateCcw /></button>
-            <button className="cs-primary" type="button" onClick={() => setPlaying((value) => !value)} disabled={reduced}>{playing ? <Pause /> : <Play />}</button>
-            <button type="button" onClick={() => page === "derivatives" ? setDelta((value) => Math.max(0.02, value - 0.05)) : setA((value) => Math.min(5, value + 0.1))}>Step</button>
+            {page === "differential-equations" ? <button className="cs-primary" type="button" onClick={plot}>Plot</button> : null}
+            <button type="button" onClick={reset}><RotateCcw /> Reset</button>
+            {page !== "differential-equations" ? <button className="cs-primary" type="button" onClick={() => setPlaying((value) => !value)} disabled={reduced}>{playing ? <Pause /> : <Play />}</button> : null}
+            {page === "differential-equations" ? <button type="button" onClick={() => setA((value) => Number((value + delta).toFixed(2)))}>Step</button> : <button type="button" onClick={() => page === "derivatives" ? setDelta((value) => Math.max(0.02, value - 0.05)) : setA((value) => Math.min(5, value + 0.1))}>Step</button>}
             <select value={speed} onChange={(event) => setSpeed(Number(event.target.value))} aria-label="Animation speed"><option value={0.5}>0.5x</option><option value={1}>1x</option><option value={2}>2x</option></select>
           </div>
         </aside>
@@ -573,7 +544,7 @@ function InteractiveLab({ page, mode, reduced }: { page: Exclude<CalculusStudioP
             : page === "differential-equations"
               ? <SlopeFieldLab a={a} b={b} h={delta} showAux={showAux} field={field.fn} onPick={(x, y) => { setA(x); setB(y); }} />
               : page === "series-parametric-polar"
-                ? <SeriesLab mode={mode} n={n} a={a} trace={trace} showAux={showAux} />
+                ? <><SeriesLab mode={mode} n={n} a={a} trace={trace} showAux={showAux} /><SeriesTermStrip n={n} x={a} /></>
                 : page === "derivative-applications"
                   ? <ApplicationsLab mode={mode} width={24} length={36} x={Math.max(0.1, Math.min(11.9, Math.abs(a) + 4.2))} />
                   : page === "integration-techniques"
@@ -583,9 +554,10 @@ function InteractiveLab({ page, mode, reduced }: { page: Exclude<CalculusStudioP
                     : <FunctionLab page={page} mode={mode} expression={expression} fn={compiled.fn} a={a} b={b} delta={delta} n={n} trace={trace} showAux={showAux} />}
         </section>
         <aside className="cs-card cs-results">
-          <h2><span>2</span> Live results</h2>
+          <h2><span>{page === "integral-applications" ? "3" : "2"}</span> Live results</h2>
           <ResultGrid stats={stats} />
           {page === "differential-equations" ? <Rk4Table x0={a} y0={b || 1} h={delta} field={field.fn} /> : null}
+          {page === "differential-equations" ? <DeAccuracy x0={a} y0={b || 1} h={delta} /> : null}
           {page === "series-parametric-polar" ? <TaylorTerms n={n} x={a} mode={mode} /> : null}
           <section className="cs-mini-card">
             <h3>{statusTitle(page, mode, stats)}</h3>
@@ -772,35 +744,124 @@ function TechniqueLab({ mode }: { mode: string }) {
 }
 
 function IntegralApplicationLab({ mode, fn, a, b, n }: { mode: string; fn: ((x: number) => number) | null; a: number; b: number; n: number }) {
-  const width = 900, height = 560, pad = 54, xMin = -4, xMax = 4, yMin = -1, yMax = 8;
+  const width = 430, height = 420, pad = 42, xMin = -3, xMax = 3, yMin = -4.5, yMax = 5;
   const sx = (x: number) => pad + (x - xMin) / (xMax - xMin) * (width - pad * 2);
   const sy = (y: number) => height - pad - (y - yMin) / (yMax - yMin) * (height - pad * 2);
   const f = fn ?? ((x: number) => x * x);
-  const g = (x: number) => 0.4 * x + 1;
-  const samples = sample(f, xMin, xMax, 320);
-  const washers = Array.from({ length: Math.max(4, Math.min(24, n)) }, (_, i) => {
-    const x = Math.min(a, b) + i / n * Math.abs(b - a);
-    return { x, r: Math.abs(safe(f, x)) };
-  });
+  const g = () => 4;
+  const samples = sample(f, xMin, xMax, 280);
+  const lo = Math.min(a, b), hi = Math.max(a, b);
+  const sliceX = lo + (hi - lo) * 0.65;
+  if (mode === "volumes") {
+    const exact = washerVolume(lo, hi);
+    const slices = Math.max(8, Math.min(40, n));
+    return (
+      <div className="cs-volume-split">
+        <svg className="cs-graph cs-light-graph" viewBox={`0 0 ${width} ${height}`} role="img" aria-label="2D region in the xy-plane">
+          <rect width={width} height={height} rx="16" fill="#f8fbff" />
+          <text x="24" y="28" className="cs-light-title">2D Region (in the xy-plane)</text>
+          <Grid width={width} height={height} pad={pad} light />
+          <line x1={pad} x2={width - pad} y1={sy(0)} y2={sy(0)} className="cs-axis light" /><line x1={sx(0)} x2={sx(0)} y1={pad} y2={height - pad} className="cs-axis light" />
+          <path d={`${pathFor(samples.filter((p) => p.x >= lo && p.x <= hi), sx, sy, yMin, yMax)} L${sx(hi)},${sy(g())} L${sx(lo)},${sy(g())} Z`} fill="rgba(251, 191, 36, .35)" />
+          <path d={pathFor(samples, sx, sy, yMin, yMax)} fill="none" stroke="#0ea5e9" strokeWidth="3" />
+          <line x1={sx(lo)} x2={sx(hi)} y1={sy(4)} y2={sy(4)} stroke="#8b5cf6" strokeWidth="3" />
+          <line x1={sx(lo)} x2={sx(lo)} y1={sy(f(lo))} y2={sy(4)} stroke="#f59e0b" strokeDasharray="6 5" />
+          <line x1={sx(hi)} x2={sx(hi)} y1={sy(f(hi))} y2={sy(4)} stroke="#f59e0b" strokeDasharray="6 5" />
+          <text x={sx(0) + 8} y={sy(4) - 8} className="cs-light-text">y = 4</text>
+          <text x={sx(1.1)} y={sy(1.4)} className="cs-light-text">y = x²</text>
+        </svg>
+        <svg className="cs-graph cs-light-graph" viewBox={`0 0 ${width} ${height}`} role="img" aria-label="3D solid of revolution washer method">
+          <rect width={width} height={height} rx="16" fill="#f8fbff" />
+          <text x="24" y="28" className="cs-light-title">3D Solid of Revolution (Washer Method)</text>
+          {Array.from({ length: slices }, (_, i) => {
+            const x = lo + i / (slices - 1) * (hi - lo);
+            const outer = 4, inner = Math.abs(f(x));
+            const cx = sx(x * 0.85), cy = sy(0);
+            return (
+              <g key={i} opacity={0.18 + 0.55 * (1 - Math.abs(x) / 2)}>
+                <ellipse cx={cx} cy={cy} rx={18} ry={Math.min(88, outer * 16)} fill="#fde68a" stroke="#d97706" />
+                <ellipse cx={cx} cy={cy} rx={10} ry={Math.min(40, inner * 16)} fill="#fff" stroke="#0ea5e9" />
+              </g>
+            );
+          })}
+          <rect x={sx(sliceX) - 16} y={sy(4) - 6} width="32" height={Math.abs(sy(4) - sy(-4))} fill="rgba(251,146,60,.35)" stroke="#f97316" />
+          <text x="24" y={height - 18} className="cs-light-text">Washer volume {fmt(exact, 4)} · n = {n}</text>
+        </svg>
+      </div>
+    );
+  }
+  const gLine = (x: number) => 0.4 * x + 1;
+  const aw = 900, ah = 560, ap = 54, axMin = -4, axMax = 4, ayMin = -1, ayMax = 8;
+  const asx = (x: number) => ap + (x - axMin) / (axMax - axMin) * (aw - ap * 2);
+  const asy = (y: number) => ah - ap - (y - ayMin) / (ayMax - ayMin) * (ah - ap * 2);
+  const areaSamples = sample(f, axMin, axMax, 320);
   return (
-    <svg className="cs-graph" viewBox={`0 0 ${width} ${height}`} role="img" aria-label="Integral application">
-      <rect width={width} height={height} rx="16" fill="#ffffff" />
-      <Grid width={width} height={height} pad={pad} light />
+    <svg className="cs-graph" viewBox={`0 0 ${aw} ${ah}`} role="img" aria-label="Integral application">
+      <rect width={aw} height={ah} rx="16" fill="#ffffff" />
+      <Grid width={aw} height={ah} pad={ap} light />
       {mode === "area" ? <>
-        <path d={`${pathFor(samples, sx, sy, yMin, yMax)} L${sx(xMax)},${sy(g(xMax))} ${sample(g, xMax, xMin, 80).map((p) => `L${sx(p.x)},${sy(p.y)}`).join(" ")} Z`} fill="rgba(14,165,233,.28)" />
-        <path d={pathFor(samples, sx, sy, yMin, yMax)} fill="none" stroke="#0ea5e9" strokeWidth="3" />
-        <path d={pathFor(sample(g, xMin, xMax, 200), sx, sy, yMin, yMax)} fill="none" stroke="#8b5cf6" strokeWidth="3" />
+        <path d={`${pathFor(areaSamples, asx, asy, ayMin, ayMax)} L${asx(axMax)},${asy(gLine(axMax))} ${sample(gLine, axMax, axMin, 80).map((p) => `L${asx(p.x)},${asy(p.y)}`).join(" ")} Z`} fill="rgba(14,165,233,.28)" />
+        <path d={pathFor(areaSamples, asx, asy, ayMin, ayMax)} fill="none" stroke="#0ea5e9" strokeWidth="3" />
+        <path d={pathFor(sample(gLine, axMin, axMax, 200), asx, asy, ayMin, ayMax)} fill="none" stroke="#8b5cf6" strokeWidth="3" />
         <text x="70" y="48" className="cs-light-title">Area between f and g</text>
-      </> : mode === "volumes" ? <>
-        {washers.map((slice, i) => <ellipse key={i} cx={sx(slice.x)} cy={sy(0)} rx="18" ry={Math.min(90, slice.r * 18)} fill="none" stroke="#0ea5e9" opacity=".55" />)}
-        <path d={pathFor(samples, sx, sy, yMin, yMax)} fill="none" stroke="#0ea5e9" strokeWidth="3" />
-        <text x="70" y="48" className="cs-light-title">Washer stack about the x-axis</text>
       </> : <>
-        <path d={pathFor(samples, sx, sy, yMin, yMax)} fill="none" stroke="#0ea5e9" strokeWidth="3" />
-        <path d={`M${sx(a)},${sy(safe(f, a))} L${sx(b)},${sy(safe(f, b))}`} stroke="#f59e0b" strokeDasharray="6 4" />
+        <path d={pathFor(areaSamples, asx, asy, ayMin, ayMax)} fill="none" stroke="#0ea5e9" strokeWidth="3" />
+        <path d={`M${asx(a)},${asy(safe(f, a))} L${asx(b)},${asy(safe(f, b))}`} stroke="#f59e0b" strokeDasharray="6 4" />
         <text x="70" y="48" className="cs-light-title">{mode === "arc" ? "Arc-length polyline" : mode === "work" ? "Work as area under F(x)" : "Surface of revolution silhouette"}</text>
       </>}
     </svg>
+  );
+}
+
+function washerVolume(a: number, b: number) {
+  const F = (x: number) => 16 * x - (x ** 5) / 5;
+  return Math.PI * (F(b) - F(a));
+}
+
+function washerVolumeApprox(a: number, b: number, n: number) {
+  const dx = (b - a) / n;
+  let sum = 0;
+  for (let i = 0; i < n; i += 1) {
+    const x = a + (i + 0.5) * dx;
+    sum += (16 - x ** 4) * dx;
+  }
+  return Math.PI * sum;
+}
+
+function SeriesTermStrip({ n, x }: { n: number; x: number }) {
+  const terms = [1, 3, 5, 7, 9, 11].filter((p) => p <= Math.max(1, n));
+  return (
+    <div className="cs-term-strip">
+      <h3>Build the Taylor polynomial term by term</h3>
+      <p>
+        {terms.map((p, k) => (
+          <span key={p} className={p === terms[terms.length - 1] ? "cs-new-term" : undefined}>
+            {k === 0 ? "x" : `${k % 2 ? " − " : " + "}x^${p}/${p}!`}
+          </span>
+        ))}
+      </p>
+      <ol>
+        {Array.from({ length: Math.max(1, n) }, (_, k) => (
+          <li key={k} className={k === n - 1 ? "active" : undefined}>{fmt(taylorSin(x, 2 * k + 1), 6)}</li>
+        ))}
+      </ol>
+    </div>
+  );
+}
+
+function DeAccuracy({ x0, y0, h }: { x0: number; y0: number; h: number }) {
+  const target = 2;
+  const steps = Math.max(1, Math.round((target - x0) / Math.max(0.02, h)));
+  const rows = integrate((x, y) => x - y, x0, y0, Math.max(0.02, h), steps, "rk4");
+  const rk = rows[rows.length - 1];
+  const exact = target - 1 + (y0 - x0 + 1) * Math.exp(x0 - target);
+  const error = rk ? Math.abs(rk.y - exact) : NaN;
+  return (
+    <section className="cs-mini-card cs-de-accuracy">
+      <h3>Exact vs. Approximate (at x = 2.00)</h3>
+      <p>Exact {fmt(exact, 5)} · RK4 {fmt(rk?.y ?? NaN, 5)} · Abs. error {error < 1e-3 ? error.toExponential(2) : fmt(error, 5)}</p>
+      <p className="cs-feedback">{error < 0.01 ? "Highly accurate. Error is within tolerance." : "Shrink h to reduce RK4 error."}</p>
+    </section>
   );
 }
 
@@ -899,6 +960,26 @@ function SettingsForm({ settings, onChange }: { settings: StudioSettings; onChan
       <label><input type="checkbox" checked={settings.reducedMotion} onChange={() => toggle("reducedMotion")} /> Reduce animation</label>
       <label><input type="checkbox" checked={settings.collapseControls} onChange={() => toggle("collapseControls")} /> Collapse control column</label>
       <label><input type="checkbox" checked={settings.collapseResults} onChange={() => toggle("collapseResults")} /> Collapse results column</label>
+      <div className="cs-save-actions">
+        <button type="button" onClick={() => { persistSavedSnapshot(); window.alert("Studio session saved on this device."); }}><Save /> Save session</button>
+        <button type="button" onClick={() => {
+          const blob = new Blob([exportSession()], { type: "application/json" });
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement("a");
+          link.href = url;
+          link.download = "calculus-studio-session.json";
+          link.click();
+          URL.revokeObjectURL(url);
+        }}><Download /> Export</button>
+        <label className="cs-import">
+          <Upload /> Import
+          <input type="file" accept="application/json" aria-label="Import saved studio session" onChange={async (event) => {
+            const file = event.target.files?.[0];
+            if (!file) return;
+            importSession(await file.text());
+          }} />
+        </label>
+      </div>
     </div>
   );
 }
@@ -921,6 +1002,11 @@ function calculateStats(page: CalculusStudioPage, mode: string, fn: ((x: number)
   if (page === "derivatives" && fn) {
     const sec = (safe(fn, a + delta) - safe(fn, a)) / delta, tan = derivativeAt(fn, a);
     return [["Secant slope", fmt(sec, 4), "plain"], ["Tangent slope", fmt(tan, 4), "good"], ["Difference", fmt(Math.abs(sec - tan), 4), Math.abs(sec - tan) < 0.1 ? "good" : "warn"], ["h", fmt(delta, 3), "plain"]];
+  }
+  if (page === "integral-applications" && mode === "volumes") {
+    const exact = washerVolume(Math.min(a, b), Math.max(a, b));
+    const approx = washerVolumeApprox(Math.min(a, b), Math.max(a, b), Math.max(4, n));
+    return [["Washer volume", fmt(approx, 4), "good"], ["Exact π∫(16−x⁴)dx", fmt(exact, 4), "good"], ["Abs. error", fmt(Math.abs(approx - exact), 4), Math.abs(approx - exact) < 0.5 ? "good" : "warn"], ["n", String(n), "plain"]];
   }
   if ((page === "integration" || page === "integral-applications") && fn) {
     const approx = midpointIntegral(fn, a, b, Math.max(2, n)), reference = midpointIntegral(fn, a, b, 800);

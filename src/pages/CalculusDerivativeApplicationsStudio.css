@@ -465,3 +465,11 @@
   .da-learning button svg { display: none; }
   .da-player button span { display: none; }
 }
+.da-sheet{width:100%;height:auto;border:1px solid #d7e4f0;border-radius:10px;background:#fff}
+.da-guide-row{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:12px}
+.da-guide-row article{border:1px solid #d7e4f0;border-radius:12px;background:#fff;padding:14px;box-shadow:0 8px 18px rgba(26,75,116,.06)}
+.da-guide-row h3{display:flex;gap:8px;align-items:center;margin:0 0 8px;font-size:14px}
+.da-guide-row p,.da-guide-row li{color:#516584;font-size:12px;line-height:1.5}
+.da-guide-row ol{margin:0;padding-left:18px}
+.da-guide-row .da-find{margin-top:10px}
+@media(max-width:900px){.da-guide-row{grid-template-columns:1fr}}

@@ -229,7 +229,7 @@ function IntegrationVisual({ mode, fn, result, lower, upper, probe, constant, sh
       </div>
     );
   }
-  const width = 860, height = mode === "ftc" ? 610 : 530, pad = 52, xMin = -4, xMax = 5, yMin = -3, yMax = 12;
+  const width = 860, height = mode === "definite" || mode === "riemann" ? 360 : 530, pad = 52, xMin = -4, xMax = 5, yMin = -3, yMax = 12;
   const sx = (x: number) => pad + (x - xMin) / (xMax - xMin) * (width - pad * 2);
   const sy = (y: number) => height - pad - (y - yMin) / (yMax - yMin) * (height - pad * 2);
   const curve = fn ? sample(fn, xMin, xMax, 440) : [];
@@ -237,17 +237,28 @@ function IntegrationVisual({ mode, fn, result, lower, upper, probe, constant, sh
   const showSlices = mode === "definite" || mode === "riemann";
   const family = mode === "antiderivative" && fn ? [-2, 0, 2].map((shift) => sample((x) => primitive(fn, x) + constant + shift, xMin, xMax, 260)) : [];
   const accumulation = mode === "ftc" && fn ? sample((x) => x <= lower ? 0 : safeIntegral(fn, lower, Math.min(x, upper), 240), lower + 0.001, upper, 170) : [];
-  return <svg className="ci-graph" viewBox={`0 0 ${width} ${height}`} role="img" aria-label={`${modeCopy[mode]?.title ?? "Integration"} graph`}>
-    <rect width={width} height={height} rx="10" fill="#071d35" />
-    {showGrid && <GraphGrid width={width} height={height} pad={pad} />}
-    <line className="axis" x1={pad} x2={width - pad} y1={sy(0)} y2={sy(0)} /><line className="axis" x1={sx(0)} x2={sx(0)} y1={pad} y2={height - pad} />
-    {fn && mode !== "antiderivative" && intervalPath(fn, lower, activeUpper, sx, sy)}
-    {showSlices && result?.partitions.map((part) => <rect key={part.index} x={sx(part.x0)} y={sy(Math.max(0, part.sampleY))} width={Math.max(1, sx(part.x1) - sx(part.x0) - 1)} height={Math.abs(sy(part.sampleY) - sy(0))} className="slice" onClick={onSlice} />)}
-    {mode === "antiderivative" ? family.map((points, index) => <path key={index} d={path(points, sx, sy, yMin, yMax)} className={index === 1 ? "family active" : "family"} />) : <path d={path(curve, sx, sy, yMin, yMax)} className="curve" />}
-    {mode === "ftc" && <><path d={path(accumulation, sx, sy, yMin, yMax)} className="accumulation" /><line x1={sx(activeUpper)} x2={sx(activeUpper)} y1={pad} y2={height - pad} className="probe" /><circle cx={sx(activeUpper)} cy={sy(fn ? safeValue(fn, activeUpper) : 0)} r="7" className="probe-dot" /></>}
-    {mode !== "antiderivative" && <><line x1={sx(lower)} x2={sx(lower)} y1={pad} y2={height - pad} className="bound lower" /><line x1={sx(activeUpper)} x2={sx(activeUpper)} y1={pad} y2={height - pad} className="bound upper" /><text x={sx(lower) - 20} y={sy(0) + 30}>a = {tidy(lower)}</text><text x={sx(activeUpper) - 18} y={sy(0) + 30}>{mode === "ftc" ? "x" : "b"} = {tidy(activeUpper)}</text></>}
-    <text x="68" y="38" className="formula">{mode === "antiderivative" ? `F(x) + C, C = ${tidy(constant)}` : "f(x) and accumulated area"}</text>
-  </svg>;
+  const mainGraph = (
+    <svg className="ci-graph" viewBox={`0 0 ${width} ${height}`} role="img" aria-label={`${modeCopy[mode]?.title ?? "Integration"} graph`}>
+      <rect width={width} height={height} rx="10" fill="#071d35" />
+      {showGrid && <GraphGrid width={width} height={height} pad={pad} />}
+      <line className="axis" x1={pad} x2={width - pad} y1={sy(0)} y2={sy(0)} /><line className="axis" x1={sx(0)} x2={sx(0)} y1={pad} y2={height - pad} />
+      {fn && mode !== "antiderivative" && intervalPath(fn, lower, activeUpper, sx, sy)}
+      {showSlices && result?.partitions.map((part) => <rect key={part.index} x={sx(part.x0)} y={sy(Math.max(0, part.sampleY))} width={Math.max(1, sx(part.x1) - sx(part.x0) - 1)} height={Math.abs(sy(part.sampleY) - sy(0))} className="slice" onClick={onSlice} />)}
+      {mode === "antiderivative" ? family.map((points, index) => <path key={index} d={path(points, sx, sy, yMin, yMax)} className={index === 1 ? "family active" : "family"} />) : <path d={path(curve, sx, sy, yMin, yMax)} className="curve" />}
+      {mode === "ftc" && <><path d={path(accumulation, sx, sy, yMin, yMax)} className="accumulation" /><line x1={sx(activeUpper)} x2={sx(activeUpper)} y1={pad} y2={height - pad} className="probe" /><circle cx={sx(activeUpper)} cy={sy(fn ? safeValue(fn, activeUpper) : 0)} r="7" className="probe-dot" /></>}
+      {mode !== "antiderivative" && <><line x1={sx(lower)} x2={sx(lower)} y1={pad} y2={height - pad} className="bound lower" /><line x1={sx(activeUpper)} x2={sx(activeUpper)} y1={pad} y2={height - pad} className="bound upper" /><text x={sx(lower) - 20} y={sy(0) + 30}>a = {tidy(lower)}</text><text x={sx(activeUpper) - 18} y={sy(0) + 30}>{mode === "ftc" ? "x" : "b"} = {tidy(activeUpper)}</text></>}
+      <text x="68" y="38" className="formula">{mode === "antiderivative" ? `F(x) + C, C = ${tidy(constant)}` : "f(x) and accumulated area"}</text>
+    </svg>
+  );
+  if (mode === "definite" || mode === "riemann") {
+    return (
+      <div className="ci-definite-split">
+        {mainGraph}
+        <GraphPane title="Accumulation function F(x)" fn={fn} lower={lower} upper={upper} probe={upper} showGrid={showGrid} accumulation />
+      </div>
+    );
+  }
+  return mainGraph;
 }
 
 function GraphPane({ title, fn, lower, upper, probe, showGrid, accumulation }: { title: string; fn: ((x: number) => number) | null; lower: number; upper: number; probe: number; showGrid: boolean; accumulation: boolean }) {
