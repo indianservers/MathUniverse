@@ -86,7 +86,7 @@ export const deepFifteenSchoolAdvanced: Record<number, DeepFifteen> = Object.fro
   ),
   d(
     10028,
-    { title: "Two-arc SSS vertex", layers: ["base", "arc from A", "arc from B"], forbidden: "1+2≯3" },
+    { title: "Two-arc SSS vertex", layers: ["base", "arc from A", "arc from B"], forbidden: "sides 1+2 do not beat 3" },
     { wrong: "Three segments in a line labelled SSS", right: "The third vertex is an arc intersection. 1,2,3 cannot close." },
     "two arcs meet or inequality fails · live {live}",
     { wrong: "A measured drawing counts as the construction.", correction: "SSS copies three lengths with a compass, then joins." },

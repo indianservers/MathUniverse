@@ -374,7 +374,7 @@ export const deepFifteenCore: Record<number, DeepFifteen> = Object.fromEntries([
   ),
   d(
     133,
-    { title: "Slope triangle with run≠0", layers: ["rise Δy", "run Δx", "m=Δy/Δx"], forbidden: "run=0" },
+    { title: "Slope triangle with run≠0", layers: ["rise Δy", "run Δx", "m=Δy/Δx"], forbidden: "run equals zero" },
     { wrong: "Vertical x=2 given a finite slope", right: "Run 0 is undefined. Not y=f(x)." },
     "m={live} from the live triangle",
     { wrong: "Parallel and the same line treated as identical cases.", correction: "Same m and different b are parallel distinct lines." },
@@ -428,7 +428,7 @@ export const deepFifteenCore: Record<number, DeepFifteen> = Object.fromEntries([
   ),
   d(
     214,
-    { title: "SSS compass close", layers: ["side 3", "side 4", "side 5 meet"], forbidden: "2+3≯6" },
+    { title: "SSS compass close", layers: ["side 3", "side 4", "side 5 meet"], forbidden: "sides 2+3 do not beat 6" },
     { wrong: "Three segments in a line labelled SSS", right: "Arcs must meet. 3-4-5 closes. 2-3-6 does not." },
     "3-4-5 yes · 2-3-6 no · live {live}",
     { wrong: "SAS drawn as three sides.", correction: "SSS is three sides. SAS needs an included angle." },
