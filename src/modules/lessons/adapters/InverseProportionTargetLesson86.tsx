@@ -2,6 +2,7 @@ import { ArrowLeft, ArrowRight, BriefcaseBusiness, CalendarDays, FlaskConical, L
 import { useEffect, useState, type DragEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./InverseProportionTargetLesson86.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const clamp = (value: number, minimum: number, maximum: number) => Math.max(minimum, Math.min(maximum, Math.round(Number.isFinite(value) ? value : minimum)));
 const display = (value: number) => Number.isInteger(value) ? String(value) : value.toFixed(2).replace(/0+$/, "").replace(/\.$/, "");
@@ -39,6 +40,8 @@ export default function InverseProportionTargetLesson86({ resetToken, onInteract
         <aside className="inverse86-side"><section className="inverse86-quick"><h2>Quick check</h2><label>Product (x x y)<input aria-label="Constant product" type="number" min="6" max="72" value={product} onChange={(event) => changeProduct(Number(event.target.value))} /></label><label><Users />Workers (x)<input aria-label="Current workers x" type="number" min="1" max="12" value={workers} onChange={(event) => changeWorkers(Number(event.target.value))} /></label><label><CalendarDays />Days (y)<input aria-label="Current days y" type="number" min="1" max="24" value={display(days)} onChange={(event) => changeDays(Number(event.target.value))} /></label></section><section className="inverse86-formula"><h2>Formula</h2><b>y = <span>{product}<i />x</span></b></section><p className="inverse86-idea"><BriefcaseBusiness /><span><b>Constant product: {product}</b>As one value increases,<br />the other decreases.</span></p><p className="inverse86-idea"><Users /><span><b>Inverse proportion</b>keeps xy constant.</span></p><button type="button" className="inverse86-try" onClick={loadPractice}><Lightbulb /><span><b>{practiceLoaded ? `Solved: y = ${display(days)}` : "Try this"}</b>Try: If xy = 36,<br />find y when x = 9.</span></button></aside>
       </main>
       <nav className="inverse86-navigation"><a href="/lessons/numbers-and-arithmetic/85-direct-proportion"><ArrowLeft /><span>Previous<b>Direct Proportion</b></span></a><button type="button" onClick={loadPractice}><FlaskConical />{practiceLoaded ? `Practice solved: ${display(days)}` : "Practice Lab"}</button><a href="/lessons/numbers-and-arithmetic/87-unit-rates"><span>Next<b>Unit Rates</b></span><ArrowRight /></a></nav>
+      <LessonTopicStudyBoard lessonId={86} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

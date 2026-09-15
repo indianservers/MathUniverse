@@ -11,6 +11,7 @@ import type { LessonAdapterProps } from "../types";
 import { LessonBarGraph } from "../graphs/LessonBarGraph";
 import { LessonGraphWorkspace } from "../graphs/LessonGraphWorkspace";
 import "./ListsTargetLesson32.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const colors = ["blue", "green", "orange", "purple"];
 const stats = (values: number[]) => ({
@@ -415,6 +416,8 @@ export default function ListsTargetLesson32({
           </article>
         ))}
       </section>
+      <LessonTopicStudyBoard lessonId={32} view={view} onInteraction={onInteraction} />
+
     </div>
   );
 }

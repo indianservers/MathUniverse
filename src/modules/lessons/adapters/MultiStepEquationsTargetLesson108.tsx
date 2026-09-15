@@ -27,6 +27,7 @@ import {
   type MultiStepProblem108 as Problem,
 } from "./multiStepEquationsLesson108Model";
 import "./MultiStepEquationsTargetLesson108.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 export default function MultiStepEquationsTargetLesson108({
   resetToken,
@@ -596,6 +597,8 @@ export default function MultiStepEquationsTargetLesson108({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={108} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

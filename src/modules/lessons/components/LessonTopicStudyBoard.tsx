@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { getStrengthenedFoundationLesson } from "../strengthening/foundationNumberContent";
+import { batch2StudySpecs } from "../strengthening/catalogBatch2StudySpecs";
 import { expandedWorkedExamples } from "./LessonSectionJourney";
 import "./LessonTopicStudyBoard.css";
 
@@ -168,6 +169,7 @@ const SPECS: Record<number, StudySpec> = {
     ["Right", 11, "#23b56e"],
     ["x", 4, "#eaa711"],
   ], [[0, 3], [4, 11], [6, 15]]),
+  ...batch2StudySpecs,
 };
 
 function spec(
@@ -201,7 +203,7 @@ function isStudyView(view: string | number | undefined) {
   if (view === undefined) return false;
   if (typeof view === "number") return view > 0;
   const label = String(view).toLowerCase();
-  return !/^(interaction|interact|0)$/.test(label);
+  return !/^(interaction|interact|interactive|0)\b/.test(label);
 }
 
 export function LessonTopicStudyBoard({

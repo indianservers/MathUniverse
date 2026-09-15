@@ -27,6 +27,7 @@ import {
   type PolynomialRoots115 as Triple,
 } from "./polynomialEquationsLesson115Model";
 import "./PolynomialEquationsTargetLesson115.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const colors = ["#08a5bd", "#9a43e8", "#ff8319"];
 
@@ -725,6 +726,8 @@ export default function PolynomialEquationsTargetLesson115({
         </small>
         <small>www.IndianServers.com info@IndianServers.com</small>
       </footer>
+      <LessonTopicStudyBoard lessonId={115} view={activeTab} onInteraction={onInteraction} />
+
     </div>
   );
 }

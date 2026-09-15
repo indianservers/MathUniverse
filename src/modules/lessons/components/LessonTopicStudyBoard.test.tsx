@@ -1,6 +1,7 @@
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import { getStrengthenedFoundationLesson } from "../strengthening/foundationNumberContent";
+import { batch2HandAuthoredLessonIds } from "../strengthening/catalogBatch2HandAuthoredOverlay";
 import { coreWorkspaceHandAuthoredLessonIds } from "../strengthening/coreWorkspaceHandAuthoredOverlay";
 import { LessonTopicStudyBoard } from "./LessonTopicStudyBoard";
 
@@ -35,6 +36,29 @@ describe("LessonTopicStudyBoard", () => {
       expect(lesson!.workedExamples.length).toBeGreaterThanOrEqual(3);
       expect(introductions.has(lesson!.introduction), `duplicate intro ${id}`).toBe(false);
       introductions.add(lesson!.introduction);
+    }
+  });
+
+  it("covers lessons 31-130 with unique hand-authored introductions, charts, and three numerical examples", () => {
+    expect(batch2HandAuthoredLessonIds).toEqual(
+      Array.from({ length: 100 }, (_, index) => index + 31),
+    );
+    const introductions = new Set<string>();
+    for (const id of batch2HandAuthoredLessonIds) {
+      const lesson = getStrengthenedFoundationLesson(id);
+      expect(lesson, `lesson ${id}`).not.toBeNull();
+      expect(lesson!.introduction.length).toBeGreaterThanOrEqual(220);
+      expect(lesson!.definitions[0]?.statement.length).toBeGreaterThanOrEqual(120);
+      expect(lesson!.workedExamples.length).toBeGreaterThanOrEqual(3);
+      expect(introductions.has(lesson!.introduction), `duplicate intro ${id}`).toBe(false);
+      introductions.add(lesson!.introduction);
+
+      const html = renderToStaticMarkup(
+        <LessonTopicStudyBoard lessonId={id} alwaysVisible />,
+      );
+      expect(html, `study board ${id}`).toContain(`data-testid="lesson-study-board-${id}"`);
+      expect(html, `chart labels ${id}`).toContain("x:");
+      expect(html, `probe ${id}`).toContain("study probe");
     }
   });
 });

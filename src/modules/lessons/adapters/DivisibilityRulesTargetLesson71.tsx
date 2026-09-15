@@ -11,6 +11,7 @@ import {
 import { useEffect, useMemo, useState, type DragEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./DivisibilityRulesTargetLesson71.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const RULES = [
   { divisor: 2, label: "Even" },
@@ -397,6 +398,8 @@ export default function DivisibilityRulesTargetLesson71({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={71} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

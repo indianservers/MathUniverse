@@ -2,6 +2,7 @@ import { AlertCircle, ArrowLeft, ArrowRight, FlaskConical, Info, RotateCw } from
 import { useEffect, useMemo, useState, type DragEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./RecurringDecimalsTargetLesson82.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 function clamp(value: number, minimum: number, maximum: number) {
   return Math.max(minimum, Math.min(maximum, Math.round(Number.isFinite(value) ? value : minimum)));
@@ -87,6 +88,8 @@ export default function RecurringDecimalsTargetLesson82({ resetToken, onInteract
         </div>
       </main>
       <nav className="recurring82-navigation"><a href="/lessons/numbers-and-arithmetic/81-fractiondecimal-conversion"><ArrowLeft /><span>Previous<b>Fraction–Decimal Conversion</b></span></a><a href="/lessons/numbers-and-arithmetic/83-ratio-models"><span>Next<b>Ratio Models</b></span><ArrowRight /></a></nav>
+      <LessonTopicStudyBoard lessonId={82} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

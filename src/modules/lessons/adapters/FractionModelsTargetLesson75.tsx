@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./FractionModelsTargetLesson75.css";
 import "./FractionModelsTargetLesson75Tuning.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const DENOMINATOR_PRESETS = [2, 3, 4, 6, 8, 12];
 
@@ -148,6 +149,8 @@ export default function FractionModelsTargetLesson75({ resetToken, onInteraction
       </aside>
       <button type="button" className="fraction75-practice" onClick={loadPractice}><Rocket /><b>{practiceLoaded ? `2/5 = ${decimalText} = ${percentText}` : "Try: Model 2/5 in three ways."}</b><ArrowRight /></button>
       <footer className="fraction75-linked"><span>🔗</span> All models are linked and show the same fraction.</footer>
+      <LessonTopicStudyBoard lessonId={75} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

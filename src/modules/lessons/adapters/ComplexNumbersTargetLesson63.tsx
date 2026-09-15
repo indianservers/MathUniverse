@@ -19,6 +19,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./ComplexNumbersTargetLesson63.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const INITIAL_REAL = 3;
 const INITIAL_IMAGINARY = 2;
@@ -650,6 +651,8 @@ export default function ComplexNumbersTargetLesson63({
         </small>
         <small>www.IndianServers.com info@IndianServers.com</small>
       </footer>
+      <LessonTopicStudyBoard lessonId={63} view={tab} onInteraction={onInteraction} />
+
     </div>
   );
 }

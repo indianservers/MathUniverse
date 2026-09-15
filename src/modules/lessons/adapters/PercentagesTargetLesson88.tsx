@@ -2,6 +2,7 @@ import { ArrowLeft, ArrowRight, Check, Languages, Lightbulb, MapPin, PanelsTopLe
 import { useEffect, useState, type DragEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./PercentagesTargetLesson88.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const clamp = (value: number, minimum: number, maximum: number) => Math.max(minimum, Math.min(maximum, Math.round(Number.isFinite(value) ? value : minimum)));
 const gcd = (a: number, b: number): number => b ? gcd(b, a % b) : Math.abs(a);
@@ -41,6 +42,8 @@ export default function PercentagesTargetLesson88({ resetToken, onInteraction }:
       </main>
       <nav className="percent88-navigation"><a href="/lessons/numbers-and-arithmetic/87-unit-rates"><ArrowLeft /><span>PREVIOUS<b>Unit Rates</b></span></a><a href="/lessons/numbers-and-arithmetic/89-percentage-change"><span>NEXT<b>Percentage Change</b></span><ArrowRight /></a></nav>
       <footer className="percent88-footer"><h3><Sparkles /> Math Universe</h3><p>Interactive math labs, visual proofs, NCERT explorations, graphing, CAS-style tools, and classroom-ready activities.</p><nav><a href="/sitemap">Sitemap</a><a href="/docs">Docs</a><a href="/about">About</a></nav><hr /><small>© 2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.</small><small>www.IndianServers.com info@IndianServers.com</small></footer>
+      <LessonTopicStudyBoard lessonId={88} view={tab} onInteraction={onInteraction} />
+
     </div>
   );
 }

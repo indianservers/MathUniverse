@@ -12,6 +12,7 @@ import {
   pointFromGraphPosition,
 } from "./cartesianGraphingLesson39Model";
 import "./CartesianGraphingTargetLesson39.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const tabs = [
   "Interaction + visualization",
@@ -498,6 +499,8 @@ export default function CartesianGraphingTargetLesson39({
           </section>
         </aside>
       </section>
+      <LessonTopicStudyBoard lessonId={39} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

@@ -15,6 +15,7 @@ import {
 import { useEffect, useMemo, useState, type DragEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./LcmTargetLesson70.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 function clampInteger(value: number) {
   if (!Number.isFinite(value)) return 2;
@@ -466,6 +467,8 @@ export default function LcmTargetLesson70({
         </small>
         <small>www.IndianServers.com info@IndianServers.com</small>
       </footer>
+      <LessonTopicStudyBoard lessonId={70} view={tab} onInteraction={onInteraction} />
+
     </div>
   );
 }

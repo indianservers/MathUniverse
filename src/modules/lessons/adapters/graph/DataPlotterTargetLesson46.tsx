@@ -22,6 +22,7 @@ import {
   type RegressionKind,
 } from "./dataPlotterLesson46Model";
 import "./DataPlotterTargetLesson46.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type ChartKind = "scatter" | "line" | "bar";
 
@@ -450,6 +451,8 @@ export default function DataPlotterTargetLesson46({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={46} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

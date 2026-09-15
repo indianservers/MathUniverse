@@ -25,6 +25,7 @@ import {
   type FactorDivision105,
 } from "./factorTheoremLesson105Model";
 import "./FactorTheoremTargetLesson105.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type FactorTab105 =
   "Interact" | "Explain" | "Examples" | "Formulas" | "Know more";
@@ -565,6 +566,8 @@ export default function FactorTheoremTargetLesson105({
         </small>
         <p>www.IndianServers.com info@IndianServers.com</p>
       </footer>
+      <LessonTopicStudyBoard lessonId={105} view={tab} onInteraction={onInteraction} />
+
     </div>
   );
 }

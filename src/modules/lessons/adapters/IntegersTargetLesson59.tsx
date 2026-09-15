@@ -10,6 +10,7 @@ import {
 import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./IntegersTargetLesson59.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 export default function IntegersTargetLesson59({
   resetToken,
@@ -379,6 +380,8 @@ export default function IntegersTargetLesson59({
         </small>
         <small>www.IndianServers.com info@IndianServers.com</small>
       </footer>
+      <LessonTopicStudyBoard lessonId={59} view={tab} onInteraction={onInteraction} />
+
     </div>
   );
 }

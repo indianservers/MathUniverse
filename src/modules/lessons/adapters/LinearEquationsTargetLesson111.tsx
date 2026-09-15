@@ -35,6 +35,7 @@ import {
   type LinearProblem111 as LinearProblem,
 } from "./linearEquationsLesson111Model";
 import "./LinearEquationsTargetLesson111.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 const round = (value: number) => Math.round(value * 100) / 100;
 
 export default function LinearEquationsTargetLesson111({
@@ -723,6 +724,8 @@ export default function LinearEquationsTargetLesson111({
         <p>© 2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.</p>
         <small>www.IndianServers.com · info@IndianServers.com</small>
       </footer>
+      <LessonTopicStudyBoard lessonId={111} view={activeTab} onInteraction={onInteraction} />
+
     </div>
   );
 }

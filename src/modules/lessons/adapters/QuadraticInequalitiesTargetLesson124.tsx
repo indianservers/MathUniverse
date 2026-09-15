@@ -23,6 +23,7 @@ import {
   type QuadraticRelation124 as Relation,
 } from "./quadraticInequalitiesLesson124Model";
 import "./QuadraticInequalitiesTargetLesson124.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 type RootName = "first" | "second";
 
 const prettyRelation = (relation: Relation) =>
@@ -718,6 +719,8 @@ export default function QuadraticInequalitiesTargetLesson124({
         </small>
         <small>www.IndianServers.com info@IndianServers.com</small>
       </footer>
+      <LessonTopicStudyBoard lessonId={124} view={tab} onInteraction={onInteraction} />
+
     </div>
   );
 }

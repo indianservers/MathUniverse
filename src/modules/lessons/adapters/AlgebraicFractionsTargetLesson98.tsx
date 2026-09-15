@@ -24,6 +24,7 @@ import {
   simplifiedFractionAnswer98 as answerLabel,
 } from "./algebraicFractionsLesson98Model";
 import "./AlgebraicFractionsTargetLesson98.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const minus = "−";
 type AlgebraicFractionsTab98 =
@@ -579,6 +580,8 @@ export default function AlgebraicFractionsTargetLesson98({
           www.IndianServers.com&nbsp;&nbsp;&nbsp; info@IndianServers.com
         </small>
       </footer>
+      <LessonTopicStudyBoard lessonId={98} view={tab} onInteraction={onInteraction} />
+
     </div>
   );
 }

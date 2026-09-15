@@ -18,6 +18,7 @@ import {
   type GridControlState,
 } from "./gridControlsLesson51Model";
 import "./GridControlsTargetLesson51.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 function ControlledGrid({
   state,
@@ -391,6 +392,8 @@ export default function GridControlsTargetLesson51({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={51} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

@@ -24,6 +24,7 @@ import {
   type EquationId,
 } from "./equationGrapherLesson41Model";
 import "./EquationGrapherTargetLesson41.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Tool = "point" | "trace" | "intersections";
 
@@ -475,6 +476,8 @@ export default function EquationGrapherTargetLesson41({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={41} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

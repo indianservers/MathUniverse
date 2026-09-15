@@ -8,6 +8,7 @@ import { catalogGapStrengthenedChallenges, catalogGapStrengthenedLessons } from 
 import { complexAdvancedBatchStrengthenedChallenges, complexAdvancedBatchStrengthenedLessons } from "./complexAdvancedBatchStrengtheningContent";
 import { complexBatchStrengthenedChallenges, complexBatchStrengthenedLessons } from "./complexBatchStrengtheningContent";
 import { coordinateStrengthenedChallenges, coordinateStrengthenedLessons } from "./coordinateGeometryStrengtheningContent";
+import { applyBatch2HandOverlay } from "./catalogBatch2HandAuthoredOverlay";
 import { coreWorkspaceStrengthenedChallenges, coreWorkspaceStrengthenedLessons } from "./coreWorkspaceStrengtheningContent";
 import { dynamicGeometryStrengthenedChallenges, dynamicGeometryStrengthenedLessons } from "./dynamicGeometryStrengtheningContent";
 import { distributionInferenceBatchStrengthenedChallenges, distributionInferenceBatchStrengthenedLessons } from "./distributionInferenceBatchStrengtheningContent";
@@ -1018,7 +1019,10 @@ const repeatedHowItWorks = repeatedValues(rawStrengthenedLessons, "howItWorks");
 const repeatedWhyItWorks = repeatedValues(rawStrengthenedLessons, "whyItWorks");
 
 const allStrengthenedLessons: Record<number, StrengthenedLesson> = Object.fromEntries(
-  Object.entries(rawStrengthenedLessons).map(([id, lesson]) => [Number(id), personalizeLessonNarrative(lesson)]),
+  Object.entries(rawStrengthenedLessons).map(([id, lesson]) => [
+    Number(id),
+    applyBatch2HandOverlay(personalizeLessonNarrative(lesson)),
+  ]),
 );
 
 export const strengthenedFoundationLessonIds = Object.keys(allStrengthenedLessons).map(Number).sort((left, right) => left - right);

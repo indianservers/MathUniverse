@@ -25,6 +25,7 @@ import {
   type LinearInequalityRelation122 as Relation,
 } from "./linearInequalitiesLesson122Model";
 import "./LinearInequalitiesTargetLesson122.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 const formatTerm = (value: number) =>
   value >= 0 ? ` + ${value}` : ` − ${Math.abs(value)}`;
 
@@ -645,6 +646,8 @@ export default function LinearInequalitiesTargetLesson122({
         </small>
         <small>www.IndianServers.com info@IndianServers.com</small>
       </footer>
+      <LessonTopicStudyBoard lessonId={122} view={activeTab} onInteraction={onInteraction} />
+
     </div>
   );
 }

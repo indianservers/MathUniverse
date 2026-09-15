@@ -10,6 +10,7 @@ import {
 import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./RationalNumbersTargetLesson60.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 function gcd(a: number, b: number) {
   let x = Math.abs(a),
@@ -434,6 +435,8 @@ export default function RationalNumbersTargetLesson60({
         </small>
         <small>www.IndianServers.com info@IndianServers.com</small>
       </footer>
+      <LessonTopicStudyBoard lessonId={60} view={tab} onInteraction={onInteraction} />
+
     </div>
   );
 }

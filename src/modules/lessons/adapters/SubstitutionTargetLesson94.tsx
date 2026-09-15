@@ -19,6 +19,7 @@ import {
   type SubstitutionExpression94 as ExpressionModel,
 } from "./substitutionLesson94Model";
 import "./SubstitutionTargetLesson94.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const expressions = SUBSTITUTION_EXPRESSIONS_94;
 const practiceProblems = SUBSTITUTION_PRACTICE_94;
@@ -522,6 +523,8 @@ export default function SubstitutionTargetLesson94({
           </nav>
         </footer>
       </main>
+      <LessonTopicStudyBoard lessonId={94} view={tab} onInteraction={onInteraction} />
+
     </div>
   );
 }

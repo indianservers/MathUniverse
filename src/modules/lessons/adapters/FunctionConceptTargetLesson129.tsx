@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import type { LessonAdapterProps } from "../types";
 import "./FunctionConceptTargetLesson129.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type SampleIndex = 0 | 1 | 2;
 
@@ -96,6 +97,8 @@ export default function FunctionConceptTargetLesson129({ resetToken, onInteracti
       </section>
       <nav className="fun129-adjacent"><a href="/lessons/graphs-and-functions/130-domain-and-range"><span><small>NEXT</small>Domain and Range</span><ArrowRight /></a></nav>
       <footer className="fun129-footer"><b><Sparkles />Math Universe</b><span>Interactive math labs, visual proofs, NCERT explorations, graphing, CAS-style tools, and classroom-ready activities.</span><nav><button>Sitemap</button><button>Docs</button><button>About</button></nav><hr /><small>© 2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.</small><small>www.IndianServers.com info@IndianServers.com</small></footer>
+      <LessonTopicStudyBoard lessonId={129} view={tab} onInteraction={onInteraction} />
+
     </div>
   );
 }

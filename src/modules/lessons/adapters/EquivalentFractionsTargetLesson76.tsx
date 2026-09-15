@@ -12,6 +12,7 @@ import { useEffect, useState, type DragEvent, type ReactNode } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./EquivalentFractionsTargetLesson76.css";
 import "./EquivalentFractionsTargetLesson76Tuning.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const FACTORS = [1, 2, 3, 4];
 
@@ -371,6 +372,8 @@ export default function EquivalentFractionsTargetLesson76({
       <button type="button" className="equivalent76-reset" onClick={reset}>
         Reset model
       </button>
+      <LessonTopicStudyBoard lessonId={76} view={tab} onInteraction={onInteraction} />
+
     </div>
   );
 }
