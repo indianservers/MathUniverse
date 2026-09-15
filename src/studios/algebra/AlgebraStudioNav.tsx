@@ -14,7 +14,6 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { Link, NavLink } from "react-router-dom";
-import { navGroups } from "./algebraStudioCatalog";
 import { readLabProgress } from "./algebraStudioProgress";
 
 export type AlgebraPage =
@@ -47,10 +46,23 @@ export const studioNav: StudioNavItem[] = [
   { id: "systems", label: "Systems", route: "/algebra/systems", icon: Braces },
   { id: "exponents", label: "Exponents & Logs", route: "/algebra/exponents-logs", icon: Sparkles },
   { id: "sequences", label: "Sequences", route: "/algebra/sequences", icon: BarChart3 },
-  { id: "structures", label: "Algebraic Structures", route: "/algebraic-structures", icon: GitFork },
   { id: "proof", label: "Algebraic Proof", route: "/algebra/proof", icon: BookOpenCheck },
-  { id: "cas", label: "Candidate checker", route: "/algebra/cas", icon: Calculator },
+  { id: "cas", label: "CAS Explorer", route: "/algebra/cas", icon: Calculator },
+  { id: "structures", label: "Algebraic Structures", route: "/algebraic-structures", icon: GitFork },
   { id: "advanced", label: "Advanced Workbench", route: "/algebra/advanced", icon: FlaskConical },
+];
+
+const MOCKUP_NAV_IDS: AlgebraPage[] = [
+  "home",
+  "expressions",
+  "equations",
+  "functions",
+  "polynomials",
+  "systems",
+  "exponents",
+  "sequences",
+  "proof",
+  "cas",
 ];
 
 export const routePage: Record<string, AlgebraPage> = Object.fromEntries(
@@ -73,30 +85,25 @@ export function AlgebraStudioNav({ page, pathname }: { page: AlgebraPage; pathna
       <Link className="alg-main-link" to="/"><Home /> <span>Main</span></Link>
       <a className="alg-skip" href="#algebra-lab-main">Skip to lab</a>
       <nav aria-label="Algebra Studio navigation">
-        {navGroups.map((group) => (
-          <div key={group.id} className="alg-nav-group">
-            <p className="as-sidebar-group">{group.label}</p>
-            {group.ids.map((id) => {
-              const item = studioNav.find((entry) => entry.id === id);
-              if (!item) return null;
-              const Icon = item.icon;
-              return (
-                <NavLink
-                  key={item.id}
-                  to={item.route}
-                  end={item.id === "home"}
-                  title={item.label}
-                  aria-label={item.label}
-                  className={navClass(item.id, page, pathname)}
-                >
-                  <Icon />
-                  <span>{item.label}</span>
-                  {visited.includes(item.id) ? <i className="alg-nav-dot" aria-label={`${item.label} started`} /> : null}
-                </NavLink>
-              );
-            })}
-          </div>
-        ))}
+        {MOCKUP_NAV_IDS.map((id) => {
+          const item = studioNav.find((entry) => entry.id === id);
+          if (!item) return null;
+          const Icon = item.icon;
+          return (
+            <NavLink
+              key={item.id}
+              to={item.route}
+              end={item.id === "home"}
+              title={item.label}
+              aria-label={item.label}
+              className={navClass(item.id, page, pathname)}
+            >
+              <Icon />
+              <span>{item.label}</span>
+              {visited.includes(item.id) ? <i className="alg-nav-dot" aria-label={`${item.label} started`} /> : null}
+            </NavLink>
+          );
+        })}
       </nav>
     </aside>
   );
