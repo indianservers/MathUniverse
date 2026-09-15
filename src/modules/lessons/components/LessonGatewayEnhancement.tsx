@@ -5,6 +5,7 @@ import {
   gatewayEnhancements,
   type GatewayEnhancement,
 } from "../strengthening/catalogGatewayEnhancements";
+import { LessonGatewayDeepFifteen } from "./LessonGatewayDeepFifteen";
 import "./LessonGatewayEnhancement.css";
 
 export function LessonGatewayEnhancement({
@@ -18,7 +19,12 @@ export function LessonGatewayEnhancement({
 }) {
   const spec = gatewayEnhancements[lessonId];
   if (!spec) return null;
-  return <GatewayPanel spec={spec} boundLive={boundLive} onInteraction={onInteraction} />;
+  return (
+    <>
+      <GatewayPanel spec={spec} boundLive={boundLive} onInteraction={onInteraction} />
+      <LessonGatewayDeepFifteen lessonId={lessonId} boundLive={boundLive} onInteraction={onInteraction} />
+    </>
+  );
 }
 
 function GatewayPanel({
