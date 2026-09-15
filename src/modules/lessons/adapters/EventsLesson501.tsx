@@ -9,6 +9,7 @@ import {
   type DiceOutcome,
 } from "./eventsLessonModel";
 import "./EventsLesson501.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 export default function EventsLesson501({
   resetToken,
   onInteraction,
@@ -206,6 +207,8 @@ function EventsActivity({
         </button>
         <span>Previous: Sample Spaces &nbsp; Next: Probability Scale →</span>
       </footer>
+      <LessonTopicStudyBoard lessonId={501} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

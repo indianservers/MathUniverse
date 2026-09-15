@@ -9,6 +9,7 @@ import {
   standardBinet,
 } from "./fibonacciSequenceLessonModel";
 import "./FibonacciSequenceTargetLesson338.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const clean = (v: number, d = 6) => Number(v.toFixed(d));
 const tabs = [
@@ -489,6 +490,8 @@ export default function FibonacciSequenceTargetLesson338({
           </output>
         </article>
       </section>
+      <LessonTopicStudyBoard lessonId={338} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

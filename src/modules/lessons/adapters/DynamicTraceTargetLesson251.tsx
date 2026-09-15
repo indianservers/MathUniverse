@@ -26,6 +26,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./DynamicTraceTargetLesson251.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 const initialPoint = { x: 1, y: 1 };
@@ -551,6 +552,8 @@ export default function DynamicTraceTargetLesson251({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={251} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

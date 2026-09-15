@@ -20,6 +20,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./FactorTargetLesson431.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type FactorModel = {
   valid: boolean;
@@ -415,6 +416,8 @@ export default function FactorTargetLesson431({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={431} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

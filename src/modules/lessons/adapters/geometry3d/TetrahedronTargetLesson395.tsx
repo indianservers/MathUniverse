@@ -6,6 +6,7 @@ import { BufferGeometry, DoubleSide, Vector3 } from "three";
 import type { LessonAdapterProps } from "../../types";
 import "./CoordinateSystemTargetLesson378.css";
 import "./TetrahedronTargetLesson395.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type V3 = [number, number, number];
 type BaseName = "ABC" | "ABD" | "ACD" | "BCD";
@@ -425,6 +426,8 @@ export default function TetrahedronTargetLesson395({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={395} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

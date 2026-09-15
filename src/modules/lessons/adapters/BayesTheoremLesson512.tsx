@@ -9,6 +9,7 @@ import {
   type DiagnosticParameters,
 } from "./bayesTheoremLessonModel";
 import "./BayesTheoremLesson512.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 export default function BayesTheoremLesson512({
   resetToken,
   onInteraction,
@@ -381,6 +382,8 @@ function BayesActivity({
         </button>
         <span>Previous: Two-Way Tables &nbsp; Next: Expected Value →</span>
       </footer>
+      <LessonTopicStudyBoard lessonId={512} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

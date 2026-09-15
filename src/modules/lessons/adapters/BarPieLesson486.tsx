@@ -3,6 +3,7 @@ import { RotateCcw } from "lucide-react";
 import type { LessonAdapterProps } from "../types";
 import { barPieDefault, chartStats } from "./barPieLessonModel";
 import "./BarPieLesson486.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 export default function BarPieLesson486({
   resetToken,
   onInteraction,
@@ -236,6 +237,8 @@ function BarPieActivity({
           Previous: Cumulative Frequency Curve &nbsp; Next: Scatter Plot →
         </span>
       </footer>
+      <LessonTopicStudyBoard lessonId={486} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

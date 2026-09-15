@@ -2,6 +2,7 @@ import { RotateCcw, Share2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./MatrixAdditionTargetLesson348.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 type Matrix = number[][];
 type Operation = "add" | "subtract";
 const startA: Matrix = [[1, -2, 3], [4, 0, 2]], startB: Matrix = [[3, 5, -1], [-2, 1, 4]];
@@ -29,6 +30,8 @@ export default function MatrixAdditionTargetLesson348({ resetToken, onInteractio
     </section>
     <section className="mat348-notes"><article><h3>Guided explanation</h3><ol><li>Matrices A and B must have the same dimensions.</li><li>Addition/subtraction are defined element-wise.</li><li>The result has the same order.</li><li>Geometrically, each row vector adds/subtracts as vectors in R<sup>3</sup>.</li></ol></article><article><h3>Key insight</h3><p>Matrix addition/subtraction preserves dimensions and structure, ideal for comparing systems, updating states, and forming linear combinations.</p></article><article><h3>Assumptions & constraints</h3><p>✓ Entries are real numbers.</p><p>✓ Matrices must be finite and rectangular.</p><p>✓ Operations are element-wise.</p></article><article className="misconception"><h3>Common misconception</h3><p>You cannot add/subtract matrices just because they look similar. The orders must match exactly.</p><code>[1 2; 3 4] + [1 2 3; 4 5 6] is not defined.</code></article></section>
     <section className="mat348-check"><header><h3>Quick check</h3><p>Attempt a similar problem. Compute A - B.</p></header><article><p>A = [2 1 0; -1 3 4] &nbsp; B = [-1 2 3; 0 1 -2]</p>{["[3,-1,-3;-1,2,6]","[1,-1,-3;-1,2,6]","[3,3,3;-1,2,2]","[1,-1,-3;1,2,2]"].map((answer,i) => <button className={quick === (i === 0 ? "correct" : "incorrect") ? quick : ""} key={answer} onClick={() => act(() => setQuick(i === 0 ? "correct" : "incorrect"))}>{String.fromCharCode(65+i)}. {answer}</button>)}</article><aside><h3>{quick === "correct" ? "Correct!" : "Try again"}</h3><p>A - B = [3,-1,-3; -1,2,6]</p><p>Well done! You subtracted element-wise.</p><button onClick={() => act(() => setQuick(""))}>Try another</button></aside></section>
+      <LessonTopicStudyBoard lessonId={348} view={tab} onInteraction={onInteraction} />
+
   </section>;
 }
 function MatrixEditor({ label, tone, matrix, onChange }: { label:string; tone:string; matrix:Matrix; onChange:(r:number,c:number,v:number)=>void }) { return <div className={`mat348-matrix ${tone}`}><h3>{label} (2 x 3)</h3><div>{matrix.flatMap((row,r) => row.map((v,c) => <input key={`${r}-${c}`} aria-label={`${label} row ${r+1} column ${c+1}`} type="number" value={v} onChange={(e) => onChange(r,c,Number(e.target.value))}/>))}</div><code>{label.at(-1)} = [ {matrix[0].join("  ")} | {matrix[1].join("  ")} ]</code></div>; }

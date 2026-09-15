@@ -17,6 +17,7 @@ import {
 import { useEffect, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./SineGraphTargetLesson261.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Parameters = { a: number; b: number; c: number; d: number };
 type PracticeFields = { a: string; b: string; c: string; d: string };
@@ -111,6 +112,8 @@ export default function SineGraphTargetLesson261({ resetToken, onInteraction }: 
     <section className="target-sine-practice"><article><h2><Target />Practice Challenge</h2><p>Set parameters to graph &nbsp; y = 1.5 sin (2x + π/2) − 0.5.</p><h3>Your settings</h3><div>{(["a","b","c","d"] as const).map((key) => <label key={key}><b>{key.toUpperCase()}</b><input aria-label={`Practice ${key.toUpperCase()}`} value={practice[key]} placeholder="?" onChange={(event) => { setPractice((currentPractice) => ({...currentPractice,[key]:event.target.value})); setPracticeResult("idle"); onInteraction(); }} /></label>)}<button type="button" onClick={gradePractice}>Check</button></div><footer><b>What to expect:</b> Amplitude = 1.5 &nbsp; • &nbsp; Period = π &nbsp; • &nbsp; Shift left by π/4 &nbsp; • &nbsp; Range [−2, 1]</footer>{practiceResult === "incorrect" ? <p role="status">Check A, B, C and D. Use −π/4 for the phase shift.</p> : null}</article><aside className={practiceResult === "correct" ? "correct" : ""}><h3><Check />{practiceResult === "correct" ? "Great! Your graph matches." : "Preview updates from your settings"}</h3><SinePlot parameters={practiceParameters(practice)} compact /><p>y = {practiceParameters(practice).d.toFixed(1)}</p></aside></section>
 
     <nav className="target-sine-nav"><a href="/lessons/trigonometry/260-exact-trig-values"><ArrowLeft /><span><b>Previous</b>Exact Trig Values</span></a><a href="/lessons/trigonometry/262-cosine-graph"><span><b>Next</b>Cosine Graph</span><ArrowRight /></a></nav>
+      <LessonTopicStudyBoard lessonId={261} alwaysVisible onInteraction={onInteraction} />
+
   </section>;
 }
 

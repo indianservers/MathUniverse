@@ -15,6 +15,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./AngleMeasurementTargetLesson257.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Unit = "degrees" | "radians";
 type Choice = "A" | "B" | "C" | "D";
@@ -444,6 +445,8 @@ export default function AngleMeasurementTargetLesson257({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={257} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

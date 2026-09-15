@@ -2,6 +2,7 @@ import { Check, Lightbulb, RotateCcw, Share2 } from "lucide-react";
 import { useEffect, useState, type DragEvent } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./SeparableEquationsTargetLesson325.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Term = "x" | "y";
 const clamp = (value: number, min: number, max: number) =>
@@ -365,6 +366,8 @@ export default function SeparableEquationsTargetLesson325({
           </button>
         </aside>
       </section>
+      <LessonTopicStudyBoard lessonId={325} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

@@ -12,6 +12,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import type { PointerEvent as ReactPointerEvent } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./DiscreteDynamicalSystemsTargetLesson331.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Rule = "quadratic" | "logistic" | "linear";
 const clean = (v: number) => Number(v.toFixed(8));
@@ -455,6 +456,8 @@ export default function DiscreteDynamicalSystemsTargetLesson331({
           <output>{checked ? "Correct" : ""}</output>
         </article>
       </section>
+      <LessonTopicStudyBoard lessonId={331} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

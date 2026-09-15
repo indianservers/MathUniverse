@@ -4,6 +4,7 @@ import type { PointerEvent as ReactPointerEvent } from "react";
 import type { LessonAdapterProps } from "../../types";
 import { binomialSeriesAnalysis } from "./binomialSeriesLessonModel";
 import "./BinomialSeriesTargetLesson345.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 const tabs = [
     "Interaction + visualization",
     "Explain",
@@ -524,6 +525,8 @@ export default function BinomialSeriesTargetLesson345({
           </output>
         </article>
       </section>
+      <LessonTopicStudyBoard lessonId={345} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

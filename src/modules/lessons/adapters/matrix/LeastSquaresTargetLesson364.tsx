@@ -2,6 +2,7 @@ import { Eye, RotateCcw, Share2 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./LeastSquaresTargetLesson364.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 type Point = { x: number; y: number };
 const initial: Point[] = [
     { x: -2, y: -1 },
@@ -545,6 +546,8 @@ export default function LeastSquaresTargetLesson364({
           </small>
         </article>
       </section>
+      <LessonTopicStudyBoard lessonId={364} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

@@ -2,6 +2,7 @@ import { Eye, Play, RotateCcw, Share2, Shuffle } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./MatrixInverseTargetLesson354.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 type Matrix = [[number, number], [number, number]];
 type Aug = [number, number, number, number][];
 const initial: Matrix = [
@@ -433,6 +434,8 @@ export default function MatrixInverseTargetLesson354({
           </output>
         </article>
       </section>
+      <LessonTopicStudyBoard lessonId={354} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

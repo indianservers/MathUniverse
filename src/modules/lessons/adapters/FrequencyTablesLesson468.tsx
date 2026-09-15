@@ -3,6 +3,7 @@ import { BarChart3, CheckCircle2, Eraser, RotateCcw, Shuffle, SortAsc, Trophy } 
 import type { LessonAdapterProps } from "../types";
 import { challengeData, defaultFrequencyData, frequencyRows, meanOf, medianOf, modeOf, rangeOf, relativeTotal, repairedChallenge, type FrequencyRow } from "./frequencyTablesModel";
 import "./FrequencyTablesLesson468.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 export default function FrequencyTablesLesson468({ resetToken, onInteraction }: LessonAdapterProps) {
   return <FrequencyTablesActivity key={resetToken} onInteraction={onInteraction} />;
@@ -38,5 +39,7 @@ function FrequencyTablesActivity({ onInteraction }: Pick<LessonAdapterProps, "on
     <section className="ft468-example"><div><span className="ft468-eyebrow">Worked example</span><h3>A survey of 15 students</h3><p>How many hours of sleep did the students report?</p><p className="ft468-chip">5, 6, 6, 7, 7, 7, 8, 8, 8, 9, 9, 9, 10, 11, 11</p><p>Which sleep duration is most common?</p></div><FrequencyTable rows={frequencyRows([5, 6, 6, 7, 7, 7, 8, 8, 8, 8, 9, 9, 9, 10, 11])} total={15} /><aside><CheckCircle2 size={16} /><b>Answer</b><p>Most common (mode):<br /><strong>8 hours</strong></p><p>Σf = 15 ✓<br />Σ(f/15) = 1.000 ✓</p></aside></section>
     <section className="ft468-challenge"><header><div><span className="ft468-eyebrow ft468-warning">Challenge: Spot and repair the miscount</span><h3>The table below contains mistakes. Find and fix them so that totals are correct.</h3><p className="ft468-chip">2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 5, 6, 7</p><p>(n = 15)</p></div><button type="button" className="ft468-check" onClick={() => { setChallengeChecked(true); onInteraction(); }}><Trophy size={16} /> Check my fix</button></header><div className="ft468-repair"><div><h4>Incorrect table</h4><FrequencyTable rows={challengeRows} total={15} /></div><div><h4>Repair the frequencies</h4><FrequencyTable rows={challengeRows} total={Object.values(challenge).reduce((sum, value) => sum + value, 0)} editable values={challenge} onChange={(value, count) => { setChallenge(state => ({ ...state, [value]: count })); setChallengeChecked(false); onInteraction(); }} /></div></div><div className={challengeChecked && repairedChallenge(challengeData, challenge) ? "ft468-repair-success" : "ft468-repair-status"}>{challengeChecked ? repairedChallenge(challengeData, challenge) ? "All tallies correct. Σf = 15 and Σ(f/n) = 1.000." : "Review the counts: each frequency must match the raw observations." : "Enter every frequency, then check your fix."}</div></section>
     <div className="ft468-bottom"><button type="button" onClick={() => { setData(defaultFrequencyData); setChallenge({}); setChallengeChecked(false); onInteraction(); }}><RotateCcw size={15} /> Reset lesson</button><span>Next: Grouped Frequency Tables →</span></div>
+      <LessonTopicStudyBoard lessonId={468} alwaysVisible onInteraction={onInteraction} />
+
   </div>;
 }

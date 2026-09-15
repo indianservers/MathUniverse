@@ -6,6 +6,7 @@ import { BufferGeometry, DoubleSide, Vector3 } from "three";
 import type { LessonAdapterProps } from "../../types";
 import "./CoordinateSystemTargetLesson378.css";
 import "./PlanesTargetLesson382.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Coefficients = [number, number, number, number];
 type Point = [number, number, number];
@@ -392,6 +393,8 @@ export default function PlanesTargetLesson382({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={382} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

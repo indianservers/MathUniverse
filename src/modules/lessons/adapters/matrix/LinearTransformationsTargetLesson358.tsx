@@ -2,6 +2,7 @@ import { RotateCcw, Share2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./LinearTransformationsTargetLesson358.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 type Matrix = [number, number, number, number];
 const initial: Matrix = [2, 1, 1, 2],
   tabs = [
@@ -286,6 +287,8 @@ export default function LinearTransformationsTargetLesson358({
         same matrix. The unit square becomes a parallelogram whose area is
         scaled by |det(A)|.
       </aside>
+      <LessonTopicStudyBoard lessonId={358} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

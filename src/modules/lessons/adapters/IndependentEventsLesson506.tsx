@@ -11,6 +11,7 @@ import {
   type SpinnerWeights,
 } from "./independentEventsLessonModel";
 import "./IndependentEventsLesson506.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const colors: SpinnerColor[] = ["blue", "red", "green"];
 
@@ -65,6 +66,8 @@ function IndependentEventsActivity({ onInteraction }: Pick<LessonAdapterProps, "
       ["Spinner P(Blue)=0.6 and fair coin", "A: Spinner shows Blue; B: Coin shows Heads", "yes"],
     ].map(([title, text, correct], index) => <article key={title}><b><i>{index + 1}</i>{title}</b><p>{text}</p><fieldset><legend>Independent?</legend>{(["yes", "no"] as const).map((answer) => <label key={answer}><input type="radio" name={`independence-${index}`} checked={answers[index] === answer} onChange={() => { setAnswers((current) => ({ ...current, [index]: answer })); setChecked((current) => current.filter((value) => value !== index)); onInteraction(); }} /> {answer === "yes" ? "Yes" : "No"}</label>)}</fieldset><button type="button" onClick={() => { setChecked((current) => current.includes(index) ? current : [...current, index]); onInteraction(); }}>Check</button>{checked.includes(index) && <span className={answers[index] === correct ? "correct" : "incorrect"}>{answers[index] === correct ? "Correct" : "Review the conditional probabilities"}</span>}</article>)}</div><button type="button" onClick={() => { setAnswers({ 0: "yes", 1: "no", 2: "yes" }); setChecked([0, 1, 2]); onInteraction(); }}><Trophy size={15} /> Reveal All Solutions</button></section>
     <footer><button type="button" onClick={reset}><RotateCcw size={14} /> Reset lesson</button><span>Previous: Multiplication Rule &nbsp; Next: Mutually Exclusive Events →</span></footer>
+      <LessonTopicStudyBoard lessonId={506} alwaysVisible onInteraction={onInteraction} />
+
   </div>;
 }
 

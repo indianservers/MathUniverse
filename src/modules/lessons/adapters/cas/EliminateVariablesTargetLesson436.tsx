@@ -13,6 +13,7 @@ import {
 import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./EliminateVariablesTargetLesson436.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Equation = { a: number; b: number; c: number };
 const ROWS: [Equation, Equation] = [
@@ -348,6 +349,8 @@ export default function EliminateVariablesTargetLesson436({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={436} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

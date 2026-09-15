@@ -16,6 +16,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./DilationPointTargetLesson241.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type VertexKey = "A" | "B" | "D";
@@ -430,6 +431,8 @@ export default function DilationPointTargetLesson241({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={241} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

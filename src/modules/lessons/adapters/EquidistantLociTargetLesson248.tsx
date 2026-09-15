@@ -21,6 +21,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./EquidistantLociTargetLesson248.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type Which = "A" | "B";
@@ -457,6 +458,8 @@ export default function EquidistantLociTargetLesson248({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={248} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

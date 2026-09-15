@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./CoordinateSystemTargetLesson378.css";
 import "./LinesTargetLesson381.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Point = [number, number, number];
 const initialP: Point = [1, 2, 1],
@@ -326,6 +327,8 @@ export default function LinesTargetLesson381({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={381} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

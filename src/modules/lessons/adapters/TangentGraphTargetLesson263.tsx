@@ -2,6 +2,7 @@ import { ArrowLeft, ArrowRight, Eye, Hand, Languages, Lightbulb, RotateCcw, Shar
 import { useEffect, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./TangentGraphTargetLesson263.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Tab="interaction"|"explain"|"examples"|"formulas"|"more";
 type PracticeRow={answer:string;sign:string;quadrant:string};
@@ -29,7 +30,9 @@ export default function TangentGraphTargetLesson263({resetToken,onInteraction}:L
 
   <section className="target-tangent-practice"><header><div><h2>YOUR TURN: PRACTICE CHALLENGE</h2><p>Use the interactive above to find the exact value, sign, and quadrant for each angle.</p></div><button type="button" onClick={grade}>Check Answers</button></header><table><thead><tr><th>Angle x</th><th>Find tan x (exact)</th><th>Sign</th><th>Quadrant</th><th>Your Answer</th><th>Feedback</th></tr></thead><tbody>{[["π/6","30°"],["2π/3","120°"],["5π/4","225°"],["7π/6","210°"]].map(([angle,label],index)=><tr key={angle}><td>{index+1}. &nbsp; <b>{angle}</b> &nbsp; ({label})</td><td>{INITIAL_ROWS[index].answer}</td><td>{EXPECTED[index].sign}</td><td>{EXPECTED[index].quadrant}</td><td><input aria-label={`Tangent answer ${index+1}`} value={rows[index].answer} onChange={(event)=>updateRow(index,"answer",event.target.value)}/><select aria-label={`Tangent sign ${index+1}`} value={rows[index].sign} onChange={(event)=>updateRow(index,"sign",event.target.value)}><option>+</option><option>−</option></select><select aria-label={`Tangent quadrant ${index+1}`} value={rows[index].quadrant} onChange={(event)=>updateRow(index,"quadrant",event.target.value)}>{["I","II","III","IV"].map((value)=><option key={value}>{value}</option>)}</select></td><td><span className={practiceResult==="correct"?"correct":""}>{practiceResult==="correct"?"Correct! ✓":practiceResult==="incorrect"?"Check row":"Ready"}</span></td></tr>)}</tbody></table></section>
   <nav className="target-tangent-nav"><a href="/lessons/trigonometry/262-cosine-graph"><ArrowLeft/><span><b>Previous</b>Cosine Graph</span></a><a href="/lessons/trigonometry/264-reciprocal-trig-functions"><span><b>Next</b>Reciprocal Trig Functions</span><ArrowRight/></a></nav>
- </section>;
+ 
+      <LessonTopicStudyBoard lessonId={263} view={tab} onInteraction={onInteraction} />
+</section>;
 }
 
 function TangentCircle({theta,model,onTheta}:{theta:number;model:ReturnType<typeof tangentModel>;onTheta:(value:number)=>void}){

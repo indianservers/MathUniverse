@@ -17,6 +17,7 @@ import {
 } from "./taylorMaclaurinLessonModel";
 import type { TaylorFunction } from "./taylorMaclaurinLessonModel";
 import "./TaylorMaclaurinTargetLesson344.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 const tabs = [
   "Interactive Lab",
   "Guided Explanation",
@@ -570,6 +571,8 @@ export default function TaylorMaclaurinTargetLesson344({
           )}
         </aside>
       </section>
+      <LessonTopicStudyBoard lessonId={344} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

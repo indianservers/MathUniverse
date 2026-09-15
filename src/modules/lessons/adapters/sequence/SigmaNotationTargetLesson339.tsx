@@ -9,6 +9,7 @@ import {
   type SigmaCoefficients,
 } from "./sigmaNotationLessonModel";
 import "./SigmaNotationTargetLesson339.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const clean = (v: number) => Number(v.toFixed(8));
 const tabs = [
@@ -496,6 +497,8 @@ export default function SigmaNotationTargetLesson339({
           <strong>General formula: Σ(2i−1) = n²</strong>
         </article>
       </section>
+      <LessonTopicStudyBoard lessonId={339} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

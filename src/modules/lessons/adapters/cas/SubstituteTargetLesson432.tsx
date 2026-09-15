@@ -18,6 +18,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./SubstituteTargetLesson432.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Slot = number | null;
 type Chip = { label: string; value: number; tone: string };
@@ -301,6 +302,8 @@ export default function SubstituteTargetLesson432({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={432} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

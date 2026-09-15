@@ -20,6 +20,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./LimitsTargetLesson441.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Direction = "both" | "left" | "right";
 type Feedback = "idle" | "correct" | "incorrect";
@@ -414,6 +415,8 @@ export default function LimitsTargetLesson441({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={441} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

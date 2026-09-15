@@ -15,6 +15,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./PartialFractionsTargetLesson314.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const original = (x: number) => 1 / ((x + 2) * (x + 4)),
   split = (x: number) => -0.5 / (x + 4) + 0.5 / (x + 2),
@@ -394,6 +395,8 @@ export default function PartialFractionsTargetLesson314({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={314} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

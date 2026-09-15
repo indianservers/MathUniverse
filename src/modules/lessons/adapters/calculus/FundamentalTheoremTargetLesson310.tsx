@@ -15,6 +15,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./FundamentalTheoremTargetLesson310.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type FnKey = "cubic" | "quadratic" | "sine";
 const defs = {
@@ -422,6 +423,8 @@ export default function FundamentalTheoremTargetLesson310({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={310} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

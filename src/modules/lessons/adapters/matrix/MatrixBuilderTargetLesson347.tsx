@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import type { PointerEvent as ReactPointerEvent } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./MatrixBuilderTargetLesson347.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Matrix = number[][];
 const initial: Matrix = [[2, -1, 3], [4, 0, 5]];
@@ -67,5 +68,7 @@ export default function MatrixBuilderTargetLesson347({ resetToken, onInteraction
     </section>
     <section className="mat347-notes"><article><h3>Learning Objective</h3><p>Create and manipulate matrices, understand their order, and represent them in standard notation.</p></article><article><h3>Key Insight</h3><p>The order (m x n) tells us how many rows and columns a matrix has.</p></article><article><h3>Common Misconception</h3><p>Mixing up rows and columns when finding a<sub>ij</sub>. The row index comes first.</p></article><article className="guided"><h3>Guided Explanation</h3><p>A matrix is a <b>rectangular array</b> of numbers arranged in m rows and n columns.</p><ul><li>The order is written as m x n.</li><li>Each number is called an entry.</li><li>Element a<sub>ij</sub> is in row i and column j.</li></ul><h4>Example (From the lab):</h4><p>Order: {rows} x {cols}</p><p>Notation: A = [ {notation} ]</p></article><article className="assumptions"><h3>Relevant Assumptions / Constraints</h3><p>All entries must be real numbers.</p><p>All rows must have the same number of columns.</p><p>Order must be positive integers.</p><p>Operations follow matrix rules.</p></article><article className="worked"><h3>Worked Solution (Using the matrix A)</h3><p>Find (i) A<sup>T</sup> and (ii) the matrix after augmenting A with b = [7, -2]<sup>T</sup>.</p><div><b>(i) Transpose A</b><code>[ 2  4 | -1  0 | 3  5 ]</code><b>(ii) Augment A with b</b><code>[ 2 -1 3 7 | 4 0 5 -2 ]</code></div></article></section>
     <section className="mat347-check"><article><h3>Quick Check</h3><p>What is the order of B = [ 1 2 -3 | 4 0 5 ]?</p>{["2 x 3", "3 x 2", "1 x 3", "3 x 3"].map((v) => <button className={quickOrder === (v === "2 x 3" ? "correct" : "incorrect") ? quickOrder : ""} key={v} onClick={() => act(() => setQuickOrder(v === "2 x 3" ? "correct" : "incorrect"))}>{v}</button>)}<output>Correct! The matrix has 2 rows and 3 columns.</output></article><article><h3>Try Another</h3><p>What is the element in row 2, column 3 of matrix A?</p>{[-1, 3, 4, 5].map((v) => <button className={quickEntry === (v === 5 ? "correct" : "incorrect") ? quickEntry : ""} key={v} onClick={() => act(() => setQuickEntry(v === 5 ? "correct" : "incorrect"))}>{v}</button>)}<output>Correct! a<sub>23</sub> = 5.</output></article></section>
+      <LessonTopicStudyBoard lessonId={347} view={tab} onInteraction={onInteraction} />
+
   </section>;
 }

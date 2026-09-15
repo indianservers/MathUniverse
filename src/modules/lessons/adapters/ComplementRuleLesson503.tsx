@@ -8,6 +8,7 @@ import {
   type ComplementEvent,
 } from "./complementRuleLessonModel";
 import "./ComplementRuleLesson503.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 export default function ComplementRuleLesson503({
   resetToken,
   onInteraction,
@@ -242,6 +243,8 @@ function ComplementActivity({
         </button>
         <span>Previous: Probability Scale &nbsp; Next: Addition Rule →</span>
       </footer>
+      <LessonTopicStudyBoard lessonId={503} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

@@ -8,6 +8,7 @@ import {
   arithmeticSeriesSum,
 } from "./arithmeticSeriesLessonModel";
 import "./ArithmeticSeriesTargetLesson340.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 const clean = (v: number) => Number(v.toFixed(6)),
   tabs = [
     "Interaction + Visualisation",
@@ -419,6 +420,8 @@ export default function ArithmeticSeriesTargetLesson340({
           )}
         </output>
       </section>
+      <LessonTopicStudyBoard lessonId={340} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

@@ -16,6 +16,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./DerivativeGraphTargetLesson289.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 const k = Math.SQRT1_2,
   c = 0.1644,
   fp = (x: number) => k * (x * x + x - 1),
@@ -356,6 +357,8 @@ export default function DerivativeGraphTargetLesson289({
           © 2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.
         </small>
       </footer>
+      <LessonTopicStudyBoard lessonId={289} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

@@ -6,6 +6,7 @@ import { ConeGeometry, Quaternion, Vector3 } from "three";
 import type { LessonAdapterProps } from "../../types";
 import "./CoordinateSystemTargetLesson378.css";
 import "./VectorsTargetLesson390.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type V3 = [number, number, number];
 type Mode = "Add" | "Dot" | "Cross";
@@ -332,6 +333,8 @@ export default function VectorsTargetLesson390({
           {checked ? "Correct" : "Check my work"}
         </button>
       </section>
+      <LessonTopicStudyBoard lessonId={390} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

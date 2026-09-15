@@ -11,6 +11,7 @@ import {
   type EventBKind,
 } from "./conditionalProbabilityLessonModel";
 import "./ConditionalProbabilityLesson508.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const answers = ["1/36", "1/6", "5/36", "5/6"];
 
@@ -343,6 +344,8 @@ function ConditionalProbabilityActivity({
           Previous: Mutually Exclusive Events &nbsp; Next: Tree Diagrams →
         </span>
       </footer>
+      <LessonTopicStudyBoard lessonId={508} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

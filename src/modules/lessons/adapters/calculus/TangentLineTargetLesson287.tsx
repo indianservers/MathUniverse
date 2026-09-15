@@ -13,6 +13,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./TangentLineTargetLesson287.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const fmt = (n: number) => Number(n.toFixed(2));
 const signed = (n: number) => `${n < 0 ? "−" : "+"} ${Math.abs(fmt(n))}`;
@@ -335,6 +336,8 @@ export default function TangentLineTargetLesson287({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={287} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

@@ -2,6 +2,7 @@ import { Maximize2, RotateCcw, Search } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./ComplexPlaneTargetLesson365.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const clean = (value: number) => Number(value.toFixed(4));
 const signed = (value: number) =>
@@ -517,6 +518,8 @@ export default function ComplexPlaneTargetLesson365({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={365} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

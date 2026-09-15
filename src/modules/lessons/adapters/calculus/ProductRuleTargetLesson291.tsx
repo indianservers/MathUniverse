@@ -16,6 +16,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./ProductRuleTargetLesson291.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 type Expression = {
   key: string;
   label: string;
@@ -499,6 +500,8 @@ export default function ProductRuleTargetLesson291({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={291} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

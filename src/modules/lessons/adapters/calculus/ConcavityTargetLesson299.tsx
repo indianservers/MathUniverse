@@ -15,6 +15,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./ConcavityTargetLesson299.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Model = {
   name: string;
@@ -386,6 +387,8 @@ export default function ConcavityTargetLesson299({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={299} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

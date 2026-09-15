@@ -15,6 +15,7 @@ import {
 import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./NumericalSolveTargetLesson434.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Method = "bisection" | "newton";
 type Row = { k: number; a: number; b: number; c: number; fc: number };
@@ -481,6 +482,8 @@ export default function NumericalSolveTargetLesson434({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={434} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

@@ -6,6 +6,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./QuotientRuleTargetLesson292.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 type Expr = {
   key: string;
   label: string;
@@ -469,6 +470,8 @@ export default function QuotientRuleTargetLesson292({
         </small>
         <nav>▣ Sitemap &nbsp; ♧ Docs &nbsp; ✉ About</nav>
       </footer>
+      <LessonTopicStudyBoard lessonId={292} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

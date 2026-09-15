@@ -10,6 +10,7 @@ import type { Group } from "three";
 import type { LessonAdapterProps } from "../../types";
 import "./CoordinateSystemTargetLesson378.css";
 import "./SphereTargetLesson399.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Projection = "Orthographic" | "Perspective";
 export default function SphereTargetLesson399({
@@ -478,6 +479,8 @@ export default function SphereTargetLesson399({
           Hemisphere
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={399} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

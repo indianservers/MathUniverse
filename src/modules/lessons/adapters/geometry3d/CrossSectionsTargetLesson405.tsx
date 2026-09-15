@@ -17,6 +17,7 @@ import { DoubleSide, Quaternion, Vector3 } from "three";
 import type { LessonAdapterProps } from "../../types";
 import "./CoordinateSystemTargetLesson378.css";
 import "./CrossSectionsTargetLesson405.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Solid = "cube" | "cone" | "cylinder";
 type Prediction =
@@ -487,6 +488,8 @@ export default function CrossSectionsTargetLesson405({
         </a>
         <a href="/lessons/3d-mathematics/406-volume">Next · Volume →</a>
       </nav>
+      <LessonTopicStudyBoard lessonId={405} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

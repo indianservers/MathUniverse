@@ -3,6 +3,7 @@ import { describe, expect, it } from "vitest";
 import { getStrengthenedFoundationLesson } from "../strengthening/foundationNumberContent";
 import { batch2HandAuthoredLessonIds } from "../strengthening/catalogBatch2HandAuthoredOverlay";
 import { batch3HandAuthoredLessonIds } from "../strengthening/catalogBatch3HandAuthoredOverlay";
+import { batch4HandAuthoredLessonIds } from "../strengthening/catalogBatch4HandAuthoredOverlay";
 import { coreWorkspaceHandAuthoredLessonIds } from "../strengthening/coreWorkspaceHandAuthoredOverlay";
 import { LessonTopicStudyBoard } from "./LessonTopicStudyBoard";
 
@@ -69,6 +70,29 @@ describe("LessonTopicStudyBoard", () => {
     );
     const introductions = new Set<string>();
     for (const id of batch3HandAuthoredLessonIds) {
+      const lesson = getStrengthenedFoundationLesson(id);
+      expect(lesson, `lesson ${id}`).not.toBeNull();
+      expect(lesson!.introduction.length).toBeGreaterThanOrEqual(220);
+      expect(lesson!.definitions[0]?.statement.length).toBeGreaterThanOrEqual(120);
+      expect(lesson!.workedExamples.length).toBeGreaterThanOrEqual(3);
+      expect(introductions.has(lesson!.introduction), `duplicate intro ${id}`).toBe(false);
+      introductions.add(lesson!.introduction);
+
+      const html = renderToStaticMarkup(
+        <LessonTopicStudyBoard lessonId={id} alwaysVisible />,
+      );
+      expect(html, `study board ${id}`).toContain(`data-testid="lesson-study-board-${id}"`);
+      expect(html, `chart labels ${id}`).toContain("x:");
+      expect(html, `probe ${id}`).toContain("study probe");
+    }
+  });
+
+  it("covers lessons 231-530 with unique hand-authored introductions, charts, and three numerical examples", () => {
+    expect(batch4HandAuthoredLessonIds).toEqual(
+      Array.from({ length: 300 }, (_, index) => index + 231),
+    );
+    const introductions = new Set<string>();
+    for (const id of batch4HandAuthoredLessonIds) {
       const lesson = getStrengthenedFoundationLesson(id);
       expect(lesson, `lesson ${id}`).not.toBeNull();
       expect(lesson!.introduction.length).toBeGreaterThanOrEqual(220);

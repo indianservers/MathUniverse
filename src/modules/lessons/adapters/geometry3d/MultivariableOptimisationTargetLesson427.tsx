@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./CoordinateSystemTargetLesson378.css";
 import "./MultivariableOptimisationTargetLesson427.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 const initial: Point = { x: 1.2, y: -0.8 };
@@ -387,6 +388,8 @@ export default function MultivariableOptimisationTargetLesson427({
           <b>428 Lagrange Multipliers</b>
         </button>
       </nav>
+      <LessonTopicStudyBoard lessonId={427} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

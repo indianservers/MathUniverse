@@ -10,6 +10,7 @@ import { complexBatchStrengthenedChallenges, complexBatchStrengthenedLessons } f
 import { coordinateStrengthenedChallenges, coordinateStrengthenedLessons } from "./coordinateGeometryStrengtheningContent";
 import { applyBatch2HandOverlay } from "./catalogBatch2HandAuthoredOverlay";
 import { applyBatch3HandOverlay } from "./catalogBatch3HandAuthoredOverlay";
+import { applyBatch4HandOverlay } from "./catalogBatch4HandAuthoredOverlay";
 import { coreWorkspaceStrengthenedChallenges, coreWorkspaceStrengthenedLessons } from "./coreWorkspaceStrengtheningContent";
 import { dynamicGeometryStrengthenedChallenges, dynamicGeometryStrengthenedLessons } from "./dynamicGeometryStrengtheningContent";
 import { distributionInferenceBatchStrengthenedChallenges, distributionInferenceBatchStrengthenedLessons } from "./distributionInferenceBatchStrengtheningContent";
@@ -1022,7 +1023,7 @@ const repeatedWhyItWorks = repeatedValues(rawStrengthenedLessons, "whyItWorks");
 const allStrengthenedLessons: Record<number, StrengthenedLesson> = Object.fromEntries(
   Object.entries(rawStrengthenedLessons).map(([id, lesson]) => [
     Number(id),
-    applyBatch3HandOverlay(applyBatch2HandOverlay(personalizeLessonNarrative(lesson))),
+    applyBatch4HandOverlay(applyBatch3HandOverlay(applyBatch2HandOverlay(personalizeLessonNarrative(lesson)))),
   ]),
 );
 

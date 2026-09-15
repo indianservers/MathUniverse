@@ -21,6 +21,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./ElevationDepressionTargetLesson274.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type Vertex = "observer" | "target";
@@ -446,6 +447,8 @@ export default function ElevationDepressionTargetLesson274({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={274} view={activeView} onInteraction={onInteraction} />
+
     </section>
   );
 }

@@ -23,6 +23,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./ConcurrencyTestTargetLesson255.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type Drag = "a" | "b" | "c" | "d" | "e" | "f";
@@ -458,6 +459,8 @@ export default function ConcurrencyTestTargetLesson255({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={255} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

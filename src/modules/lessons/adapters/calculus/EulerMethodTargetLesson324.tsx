@@ -7,6 +7,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./EulerMethodTargetLesson324.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Equation = "growth" | "decay" | "forced";
 type Row = {
@@ -519,6 +520,8 @@ export default function EulerMethodTargetLesson324({
           </output>
         </aside>
       </section>
+      <LessonTopicStudyBoard lessonId={324} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

@@ -7,6 +7,7 @@ import {
   type GeometricSolver,
 } from "./geometricSequenceLessonModel";
 import "./GeometricSequencesTargetLesson336.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const clean = (value: number) => Number(value.toFixed(6));
 const nav = [
@@ -490,6 +491,8 @@ export default function GeometricSequencesTargetLesson336({
           <p>a₁₀ = 3 · 2⁹ = 1536</p>
         </output>
       </section>
+      <LessonTopicStudyBoard lessonId={336} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

@@ -15,6 +15,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./CriticalPointsTargetLesson296.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const f = (x: number) => (x < 0 ? 2 - 2 * (x + 1) ** 2 : (x - 1) ** 2 - 1);
 const fp = (x: number) =>
@@ -400,6 +401,8 @@ export default function CriticalPointsTargetLesson296({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={296} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

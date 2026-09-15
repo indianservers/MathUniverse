@@ -6,6 +6,7 @@ import type { LessonAdapterProps } from "../../types";
 import "./CoordinateSystemTargetLesson378.css";
 import "./SpaceCurvesTargetLesson416.css";
 import "./SpaceCurvesTargetLesson416.layout.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const TAU=Math.PI*2, initialT=2.5;
 const helix=(t:number,a=1,b=.25)=>({x:a*Math.cos(t),y:a*Math.sin(t),z:b*t});
@@ -23,6 +24,8 @@ export default function SpaceCurvesTargetLesson416({resetToken,onInteraction}:Le
   <section className="sc416-rule"><h2><i>3</i> Understand the Rule</h2><p>A helix of radius a and pitch 2πb is</p><output>r(t) = ⟨ a cos t, a sin t, bt ⟩</output><ul><li>● Radius = a</li><li>● Pitch (rise per 2π) = 2πb</li><li>● Curvature κ = a/(a²+b²) (constant)</li></ul></section>
   <section className="sc416-bottom"><article><h2><i>4</i> Worked Example (Correct Solution)</h2><p>Find κ(t) for r(t)=⟨cos t, sin t, t/4⟩.</p><div>r′(t)=⟨-sin t, cos t, 1/4⟩, r″(t)=⟨-cos t,-sin t,0⟩</div><div>||r′×r″|| = √17/4 and ||r′|| = √17/4</div><output>κ(t) = ||r′×r″|| / ||r′||³ = <b>16/17</b> (constant)</output></article><article><h2><i>5</i> Try Independently</h2><p><b>Challenge</b><br/>For r(t)=⟨2 cos t, 2 sin t, t⟩:</p><p>a) Find the radius and pitch.<br/>b) Compute |r′(t)| and κ.</p><button onClick={()=>act(()=>setSolved(true))}>{solved?"Checked":"Check my answer"}</button>{solved&&<output><b>Solution</b><span>a) Radius = 2, pitch = 2π.</span><span>b) |r′(t)| = √5, κ = 2/5 (constant).</span></output>}</article></section>
   <nav className="sc416-adjacent"><button>← <small>Previous Lesson</small><b>Parametric Surfaces</b></button><button><small>Next Lesson</small><b>Quadric Surfaces</b> →</button></nav><footer className="sc416-footer"><b>Math Universe</b><p>Interactive math labs, visual proofs, NCERT explorations, graphing, CAS-style tools, and classroom-ready activities.</p><nav><button>Sitemap</button><button>Docs</button><button>About</button></nav><hr/><small>© 2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.</small></footer>
+      <LessonTopicStudyBoard lessonId={416} view={tab} onInteraction={onInteraction} />
+
  </section>
 }
 function HelixCanvas({t,grid,axes,onInteraction}:{t:number;grid:boolean;axes:boolean;onInteraction:()=>void}){const path=useMemo(()=>new CatmullRomCurve3(Array.from({length:241},(_,i)=>{const p=helix(4*Math.PI*i/240);return new Vector3(p.x,p.z,p.y)})),[]),tube=useMemo(()=>new TubeGeometry(path,240,.025,10,false),[path]),p=helix(t),d=tangent(t),dir=new Vector3(d.x,d.z,d.y).normalize();return <Canvas camera={{position:[4,3.5,5],fov:42}}><color attach="background" args={["#061a3b"]}/><ambientLight intensity={1.7}/><pointLight position={[3,5,4]} intensity={2}/><mesh geometry={tube}><meshStandardMaterial color="#0ddcff" emissive="#006bd8" emissiveIntensity={1.8}/></mesh><mesh position={[p.x,p.z,p.y]}><sphereGeometry args={[.09,20,16]}/><meshBasicMaterial color="#fff"/></mesh><primitive object={new ArrowHelper(dir,new Vector3(p.x,p.z,p.y),.75,0xffef00,.18,.1)}/>{grid&&<gridHelper args={[4,8,"#187997","#12385d"]}/>} {axes&&<axesHelper args={[2.6]}/>}<Line points={[[p.x,0,p.y],[p.x,p.z,p.y]]} color="#24bfee" dashed dashSize={.07} gapSize={.05}/><OrbitControls target={[0,1.5,0]} onStart={onInteraction}/></Canvas>}

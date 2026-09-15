@@ -14,6 +14,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./ShellMethodTargetLesson319.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const clamp = (value: number, min: number, max: number) =>
   Math.min(max, Math.max(min, value));
@@ -406,6 +407,8 @@ export default function ShellMethodTargetLesson319({
                 : ""}
         </output>
       </section>
+      <LessonTopicStudyBoard lessonId={319} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }
