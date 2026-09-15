@@ -344,7 +344,12 @@ function ConditionalProbabilityActivity({
           Previous: Mutually Exclusive Events &nbsp; Next: Tree Diagrams →
         </span>
       </footer>
-      <LessonTopicStudyBoard lessonId={508} alwaysVisible onInteraction={onInteraction} />
+      <LessonTopicStudyBoard
+        lessonId={508}
+        alwaysVisible
+        onInteraction={onInteraction}
+        boundLive={`P(A|B) = ${summary.intersection.length}/${summary.b.length || 1}`}
+      />
 
     </div>
   );

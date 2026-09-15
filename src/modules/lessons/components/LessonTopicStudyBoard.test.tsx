@@ -10,16 +10,26 @@ import { coreWorkspaceHandAuthoredLessonIds } from "../strengthening/coreWorkspa
 import { LessonTopicStudyBoard } from "./LessonTopicStudyBoard";
 
 describe("LessonTopicStudyBoard", () => {
-  it("hides on the interaction canvas and shows labelled charts on a study view", () => {
+  it("hides the study board on the interaction canvas and still shows gateway panels", () => {
     const hidden = renderToStaticMarkup(
-      <LessonTopicStudyBoard lessonId={2} view="interaction" />,
+      <LessonTopicStudyBoard lessonId={3} view="interaction" />,
     );
     expect(hidden).toBe("");
+
+    const gatewayOnInteract = renderToStaticMarkup(
+      <LessonTopicStudyBoard lessonId={2} view="interaction" />,
+    );
+    expect(gatewayOnInteract).toContain('data-testid="lesson-gateway-2"');
+    expect(gatewayOnInteract).not.toContain('data-testid="lesson-study-board-2"');
+    expect(gatewayOnInteract).toContain("Named misconception");
+    expect(gatewayOnInteract).toContain("Exam exit ticket");
+    expect(gatewayOnInteract).toContain("Next: Equivalent Fractions");
 
     const html = renderToStaticMarkup(
       <LessonTopicStudyBoard lessonId={2} view="examples" />,
     );
     expect(html).toContain('data-testid="lesson-study-board-2"');
+    expect(html).toContain('data-testid="lesson-gateway-2"');
     expect(html).toContain("Fraction Calculator labelled charts");
     expect(html).toContain("x: Part");
     expect(html).toContain("Add 1/2 + 3/4");

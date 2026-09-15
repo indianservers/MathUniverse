@@ -428,7 +428,12 @@ export default function InformalLimitsTargetLesson277({
           <ArrowRight />
         </a>
       </nav>
-      <LessonTopicStudyBoard lessonId={277} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard
+        lessonId={277}
+        view={tab}
+        onInteraction={onInteraction}
+        boundLive={`left ${fmt(f(markers.left), 3)} · right ${fmt(f(markers.right), 3)}`}
+      />
 
     </section>
   );
