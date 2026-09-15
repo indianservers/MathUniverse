@@ -271,7 +271,7 @@ export function persistSavedSnapshot() {
 export function helpFor(page: CalculusStudioPage, mode: string) {
   const key = `${page}:${mode || "home"}`;
   const copy: Record<string, string> = {
-    "home:home": "Use search, the journey map, or numbered launch cards (keys 1–6) to open a lab. Progress and Continue remember the last experiment on this device.",
+    "home:home": "Search topics, tap a numbered card, or press 1–9 to open a lab. Continue, journey stats, and Challenge of the day remember progress on this device.",
     "limits:limits": "Compare left and right approaches. Lock δ to keep both sides equal, and watch the ε–δ bands on the graph.",
     "limits:continuity": "A function is continuous at a only if it is defined, the two-sided limit exists, and those values agree.",
     "limits:discontinuities": "Holes, jumps, and vertical blow-ups are drawn differently so the classification matches the picture.",
