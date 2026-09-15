@@ -4,6 +4,8 @@
   --la-violet: #8b45f4;
   --la-amber: #f59e0b;
   --la-ink: #0b1b3f;
+  height: 100%;
+  min-height: 100dvh;
 }
 
 .msk-linear-algebra .msk-home {
