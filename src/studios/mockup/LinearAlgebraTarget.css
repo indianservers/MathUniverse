@@ -78,8 +78,200 @@
   }
 }
 
-@media (max-width: 760px) {
-  .msk-linear-algebra .msk-launch-linear-algebra {
-    grid-template-columns: 1fr;
+.msk-linear-algebra .la-legend i.is-square {
+  border-radius: 2px;
+}
+
+.msk-linear-algebra .la-legend i.is-diamond {
+  transform: rotate(45deg);
+  border-radius: 1px;
+}
+
+.msk-linear-algebra .la-legend i.is-dashed {
+  height: 3px;
+  width: 16px;
+  border-radius: 0;
+  background: repeating-linear-gradient(90deg, currentColor 0 6px, transparent 6px 10px);
+}
+
+.msk-linear-algebra .la-formula-bridge {
+  margin: 8px 0 0;
+  font-size: 13px;
+  font-weight: 700;
+  color: #1e3a5f;
+}
+
+.msk-linear-algebra .la-nudge input[type="number"],
+.msk-linear-algebra .msk-slider-row input[type="range"] {
+  min-height: 44px;
+}
+
+.msk-linear-algebra .la-nudge input[type="number"] {
+  width: 72px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 0 8px;
+}
+
+.msk-linear-algebra .la-handle {
+  cursor: grab;
+}
+
+.msk-linear-algebra .msk-warn {
+  margin: 8px 0;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: #fef3c7;
+  color: #92400e;
+  font-weight: 700;
+}
+
+.msk-linear-algebra .la-badge {
+  display: inline-flex;
+  margin-bottom: 8px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.msk-linear-algebra .la-badge.is-unique { background: #dcfce7; color: #166534; }
+.msk-linear-algebra .la-badge.is-infinite { background: #fef3c7; color: #92400e; }
+.msk-linear-algebra .la-badge.is-inconsistent { background: #fee2e2; color: #991b1b; }
+
+.msk-linear-algebra .msk-sheet td.is-hot input {
+  background: #fef3c7;
+}
+
+.msk-linear-algebra .la-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 0;
+  list-style: none;
+}
+
+.msk-linear-algebra .la-stack button {
+  min-height: 36px;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: 1px solid #cbd5e1;
+  font-weight: 800;
+}
+
+.msk-linear-algebra .la-home-hero {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.msk-linear-algebra .la-flow-branches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 8px 0 12px;
+  padding: 0;
+  list-style: none;
+}
+
+.msk-linear-algebra .la-flow-branches a,
+.msk-linear-algebra .la-filters button {
+  display: inline-flex;
+  min-height: 36px;
+  align-items: center;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: 1px solid #cbd5e1;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.msk-linear-algebra .la-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 8px 0 12px;
+}
+
+.msk-linear-algebra .la-filters button.active {
+  background: #147df2;
+  color: #fff;
+  border-color: #147df2;
+}
+
+.msk-linear-algebra .msk-prereq {
+  display: block;
+  margin-top: 4px;
+  color: #7c3aed;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 800;
+}
+
+.msk-linear-algebra .msk-card[data-lab-id]:hover .msk-card-modes {
+  font-weight: 900;
+}
+
+.msk-linear-algebra .msk-tools button.la-chrome-toggle {
+  width: auto;
+  min-width: 44px;
+  height: 40px;
+  padding: 0 12px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+  white-space: nowrap;
+  place-items: center;
+}
+
+.msk-linear-algebra .msk-tools button.la-chrome-toggle.active {
+  background: #147df2;
+  color: #fff;
+  border-color: #147df2;
+}
+
+.msk-linear-algebra.is-board .msk-aside,
+.msk-linear-algebra.is-board .msk-live,
+.msk-linear-algebra.is-board .msk-strip,
+.msk-linear-algebra.is-board .msk-search,
+.msk-linear-algebra.is-board .msk-path-row {
+  display: none;
+}
+
+.msk-linear-algebra.is-lab.is-board .msk-lab {
+  grid-template-columns: minmax(200px, 0.7fr) minmax(0, 1.6fr);
+}
+
+.msk-linear-algebra.is-board .msk-graph {
+  min-height: 480px;
+}
+
+.msk-linear-algebra .msk-eq {
+  margin: 4px 0;
+  font-family: ui-monospace, monospace;
+  font-weight: 700;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .msk-linear-algebra * {
+    animation: none !important;
+    transition: none !important;
   }
 }
+
+@media (max-width: 760px) {
+  .msk-linear-algebra .msk-lab {
+    grid-template-columns: 1fr;
+  }
+  .msk-linear-algebra .msk-live {
+    position: sticky;
+    bottom: 0;
+    z-index: 2;
+  }
+  .msk-linear-algebra .msk-soft,
+  .msk-linear-algebra .msk-cta,
+  .msk-linear-algebra .msk-primary {
+    min-height: 44px;
+  }
+}
+

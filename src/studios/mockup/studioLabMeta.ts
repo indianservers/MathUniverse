@@ -4,19 +4,20 @@ export type StudioLabMeta = {
   outcome: string;
   minutes: number;
   level: string;
+  prereq?: string;
 };
 
 export const LINEAR_LAB_META: Record<string, StudioLabMeta> = {
   vectors: { outcome: "Drag vectors and read dot, cross, and projection live.", minutes: 10, level: "Start here" },
-  matrices: { outcome: "Multiply and invert matrices as maps on the plane.", minutes: 10, level: "Core" },
-  "row-reduction": { outcome: "Watch pivots turn a system into RREF.", minutes: 10, level: "Core" },
-  "linear-transforms": { outcome: "See a matrix stretch, rotate, and shear the unit square.", minutes: 10, level: "Core" },
-  determinants: { outcome: "Read signed area as the determinant of a map.", minutes: 8, level: "Next" },
-  "vector-spaces": { outcome: "Grow a spanning set until it becomes a basis.", minutes: 10, level: "Next" },
-  eigenvectors: { outcome: "Find directions a linear map only scales.", minutes: 12, level: "Next" },
-  orthogonality: { outcome: "Split a vector into parallel and perpendicular parts.", minutes: 8, level: "Next" },
-  "least-squares": { outcome: "Fit a line whose residual is orthogonal to the columns.", minutes: 10, level: "Apply" },
-  playground: { outcome: "Compose 2D and 3D maps on a shared transform stack.", minutes: 8, level: "Extend" },
+  matrices: { outcome: "Multiply and invert matrices as maps on the plane.", minutes: 10, level: "Core", prereq: "Needs Vectors" },
+  "row-reduction": { outcome: "Watch pivots turn a system into RREF.", minutes: 10, level: "Core", prereq: "Needs Matrices" },
+  "linear-transforms": { outcome: "See a matrix stretch, rotate, and shear the unit square.", minutes: 10, level: "Core", prereq: "Needs Matrices" },
+  determinants: { outcome: "Read signed area as the determinant of a map.", minutes: 8, level: "Next", prereq: "Needs Transforms" },
+  "vector-spaces": { outcome: "Grow a spanning set until it becomes a basis.", minutes: 10, level: "Next", prereq: "Needs Vectors" },
+  eigenvectors: { outcome: "Find directions a linear map only scales.", minutes: 12, level: "Next", prereq: "Needs Transforms" },
+  orthogonality: { outcome: "Split a vector into parallel and perpendicular parts.", minutes: 8, level: "Next", prereq: "Needs Vector Spaces" },
+  "least-squares": { outcome: "Fit a line whose residual is orthogonal to the columns.", minutes: 10, level: "Apply", prereq: "Needs Orthogonality" },
+  playground: { outcome: "Compose 2D and 3D maps on a shared transform stack.", minutes: 8, level: "Extend", prereq: "Needs Transforms" },
 };
 
 export const MODEL_LAB_META: Record<string, StudioLabMeta> = {
