@@ -153,7 +153,8 @@ function StudioHome() {
     return labs.filter((item) => `${item.label} ${item.title} ${item.description} ${item.modes.join(" ")}`.toLowerCase().includes(needle));
   }, [needle]);
 
-  const [left, right] = [labs.slice(0, 4), labs.slice(4)];
+  const [left, right] = [labs.slice(0, 4), labs.slice(4, 8)];
+  const overflow = labs.slice(8);
 
   return (
     <div className="cxs-page cxs-home" data-studio-home="complex-numbers" data-home-layout="target-01">
@@ -201,6 +202,16 @@ function StudioHome() {
               ))}
             </div>
           </section>
+          {overflow.length ? (
+            <nav className="cxs-map-overflow" aria-label="More complex labs">
+              {overflow.map((item) => (
+                <Link key={item.id} to={item.route} className="cxs-map-node">
+                  <TopicPreview id={item.id} />
+                  <b>{item.label}</b>
+                </Link>
+              ))}
+            </nav>
+          ) : null}
           <ol className="cxs-flow" aria-label="Studio journey">
             {FLOW.map((step, index) => (
               <li key={step.to}>

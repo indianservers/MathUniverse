@@ -66,12 +66,9 @@ function LabFrame({
         </div>
       </header>
       <p className="sr-only" role="status">{page.title} mode {mode}</p>
-      <div className="msk-dash-banner" data-lab-mode={mode} data-studio-kernel="1">
+      <div className="cxs-dash-banner" data-lab-mode={mode} data-studio-kernel="1">
         <b>{page.title} · {mode}</b>
         <small>{page.subtitle}</small>
-      </div>
-      <div className="p1-toolbar" role="toolbar" aria-label="Figure tools">
-        <button type="button" onClick={() => markComplexComplete(page.id)}>Mark complete</button>
       </div>
       <div className="cxs-three-column">
         <div className="cxs-stack cxs-card">{controls(mode)}</div>
