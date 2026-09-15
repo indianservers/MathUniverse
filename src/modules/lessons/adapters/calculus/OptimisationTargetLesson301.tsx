@@ -15,6 +15,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./OptimisationTargetLesson301.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const f = (x: number) => -x * x + 6 * x;
 const fp = (x: number) => -2 * x + 6;
@@ -341,6 +342,8 @@ export default function OptimisationTargetLesson301({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={301} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

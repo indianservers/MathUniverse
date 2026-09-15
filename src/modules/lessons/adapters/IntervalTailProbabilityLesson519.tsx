@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../types";
 import { normalDensity, normalIntervalQuery, type IntervalMode } from "./intervalTailLessonModel";
 import "./IntervalTailProbabilityLesson519.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const modes: Array<{ value: IntervalMode; label: string }> = [{ value: "left", label: "Left Tail" }, { value: "right", label: "Right Tail" }, { value: "between", label: "Between" }, { value: "outside", label: "Outside" }];
 
@@ -39,5 +40,7 @@ function IntervalTailActivity({ onInteraction }: Pick<LessonAdapterProps, "onInt
     <section className="it519-insights"><article><h3>Learning Objective</h3><p>Find left-tail, right-tail, between, and outside probabilities, convert bounds to z-scores, and verify results with complements.</p></article><article><h3>Key Insight</h3><p>For X ~ N(mu, sigma^2), standardize with z = (x - mu)/sigma. Area plus its complement is always 1.</p></article><article><h3>Common Misconception</h3><p>Always subtract the lower CDF value from the higher CDF value. Reversing them gives a negative area.</p></article></section>
     <section className="it519-quiz"><h3>Quick Knowledge Check</h3><p>Let X ~ N(0,1). What is P(-1.00 &lt;= X &lt;= 1.50)?</p><div>{options.map((option, index) => <label key={option} className={answer === index ? "selected" : ""}><input type="radio" checked={answer === index} onChange={() => { setAnswer(index); setChecked(false); onInteraction(); }} />{String.fromCharCode(65 + index)}. {option.toFixed(5)}</label>)}</div><button type="button" onClick={() => setChecked(true)}>Check answer</button>{checked && <strong className={answer === 1 ? "correct" : "incorrect"}>{answer === 1 ? <Check size={15} /> : <X size={15} />}{answer === 1 ? "Correct! Phi(1.50) - Phi(-1.00) = 0.77454" : "Try subtracting the lower CDF from the upper CDF."}</strong>}</section>
     <footer><button type="button" onClick={reset}><RotateCcw size={14} />Reset lesson</button><span>Previous: Cumulative Distribution &nbsp; Next: Inverse Probability</span></footer>
+      <LessonTopicStudyBoard lessonId={519} alwaysVisible onInteraction={onInteraction} />
+
   </div>;
 }

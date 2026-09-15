@@ -16,6 +16,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./BearingsTargetLesson273.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type Vertex = "A" | "B";
@@ -427,6 +428,8 @@ export default function BearingsTargetLesson273({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={273} view={activeView} onInteraction={onInteraction} />
+
     </section>
   );
 }

@@ -15,6 +15,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./IntegrationByPartsTargetLesson313.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type UKey = "x" | "x2" | "one";
 type DvKey = "exp" | "cos" | "one";
@@ -411,6 +412,8 @@ export default function IntegrationByPartsTargetLesson313({
         <nav>▥ Sitemap | ⚑ Docs | ✉ About</nav>
         <small>© 2026 INDIAN SERVERS PRIVATE LIMITED.</small>
       </footer>
+      <LessonTopicStudyBoard lessonId={313} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

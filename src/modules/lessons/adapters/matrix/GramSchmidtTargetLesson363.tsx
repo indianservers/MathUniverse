@@ -2,6 +2,7 @@ import { Info, RotateCcw, Share2 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./GramSchmidtTargetLesson363.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 type Vector = [number, number];
 const initial = { v1: [1, 1] as Vector, v2: [1, 0] as Vector },
   clean = (n: number) => Number(n.toFixed(4)),
@@ -384,6 +385,8 @@ export default function GramSchmidtTargetLesson363({
           Remove the projection
         </button>
       </section>
+      <LessonTopicStudyBoard lessonId={363} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

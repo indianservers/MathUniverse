@@ -12,6 +12,7 @@ import { Vector3 } from "three";
 import type { LessonAdapterProps } from "../../types";
 import "./CoordinateSystemTargetLesson378.css";
 import "./AngleLinesTargetLesson386.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type V3 = [number, number, number];
 type AngleResult = {
@@ -432,6 +433,8 @@ export default function AngleLinesTargetLesson386({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={386} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

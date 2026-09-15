@@ -15,6 +15,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./SubstitutionTargetLesson312.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type UKey = "square" | "linear" | "sine";
 type ScaleKey = "exact" | "half" | "double";
@@ -429,6 +430,8 @@ export default function SubstitutionTargetLesson312({
         <nav>▥ Sitemap | ⚑ Docs | ✉ About</nav>
         <small>© 2026 INDIAN SERVERS PRIVATE LIMITED.</small>
       </footer>
+      <LessonTopicStudyBoard lessonId={312} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

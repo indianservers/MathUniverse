@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./CoordinateSystemTargetLesson378.css";
 import "./QuadricSurfacesTargetLesson417.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Coeff = {
   A: number;
@@ -453,6 +454,8 @@ export default function QuadricSurfacesTargetLesson417({
           <b>Cylindrical Coordinates</b> →
         </button>
       </nav>
+      <LessonTopicStudyBoard lessonId={417} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

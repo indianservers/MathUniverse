@@ -15,6 +15,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./RiemannSumsTargetLesson307.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type SampleMode = "left" | "midpoint" | "right" | "custom";
 const a = -Math.PI,
@@ -403,6 +404,8 @@ export default function RiemannSumsTargetLesson307({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={307} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

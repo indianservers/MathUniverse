@@ -3,6 +3,7 @@ import { useMemo, useState, type PointerEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import { uniformAnalysis } from "./uniformLessonModel";
 import "./UniformDistributionLesson527.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Endpoint = "a" | "b" | "c" | "d";
 
@@ -40,6 +41,8 @@ function UniformActivity({ onInteraction }: Pick<LessonAdapterProps, "onInteract
     <section className="un527-info"><article><h3>Properties</h3><p>Support: [a,b]</p><p>PDF: f(x)=1/(b-a)</p><p>CDF: 0 below a; (x-a)/(b-a) on [a,b]; 1 above b</p><p>Mean: (a+b)/2</p><p>Variance: (b-a)^2/12</p></article><article><h3>Common Misconception</h3><p>Constant density does not make unequal intervals equally probable. Probability is proportional to interval length.</p></article><article><h3>Example</h3><p>Let X~U(2,8). Then P(4&lt;=X&lt;=7)=(7-4)/(8-2)=1/2.</p></article></section>
     <section className="un527-quiz"><h3>Quick Knowledge Check</h3>{questions.map((question, index) => <article key={question.text}><div><b>{index + 1}. {question.text}</b>{question.options.map((option, optionIndex) => <label key={option} className={answers[index] === optionIndex ? "selected" : ""}><input type="radio" checked={answers[index] === optionIndex} onChange={() => { const next = [...answers]; next[index] = optionIndex; setAnswers(next); const nextChecked = [...checked]; nextChecked[index] = false; setChecked(nextChecked); onInteraction(); }} />{String.fromCharCode(65 + optionIndex)}. {option}</label>)}</div><aside className={checked[index] && answers[index] === question.correct ? "correct" : "incorrect"}>{checked[index] && answers[index] === question.correct ? <Check size={14} /> : <X size={14} />} {checked[index] ? answers[index] === question.correct ? "Correct!" : "Try again" : "Select an answer"}<button type="button" onClick={() => { const next = [...checked]; next[index] = true; setChecked(next); }}>Check</button></aside></article>)}</section>
     <footer><button type="button" onClick={reset}><RotateCcw size={14} />Reset lesson</button><span>Previous: Negative Binomial Distribution &nbsp; Next: Normal Distribution</span></footer>
+      <LessonTopicStudyBoard lessonId={527} alwaysVisible onInteraction={onInteraction} />
+
   </div>;
 }
 

@@ -22,6 +22,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./SineRuleTargetLesson270.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type Vertex = "A" | "B" | "C";
@@ -459,6 +460,8 @@ export default function SineRuleTargetLesson270({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={270} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

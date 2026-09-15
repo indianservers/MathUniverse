@@ -7,6 +7,7 @@ import {
   simulateBinomial,
 } from "./binomialLessonModel";
 import "./BinomialDistributionLesson522.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 export default function BinomialDistributionLesson522({
   resetToken,
@@ -436,6 +437,8 @@ function BinomialActivity({
           Distribution
         </span>
       </footer>
+      <LessonTopicStudyBoard lessonId={522} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

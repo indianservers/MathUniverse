@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./CoordinateSystemTargetLesson378.css";
 import "./CuboidTargetLesson392.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Dims = [number, number, number];
 const initial: Dims = [5, 3, 2],
@@ -304,6 +305,8 @@ export default function CuboidTargetLesson392({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={392} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

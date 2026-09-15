@@ -7,6 +7,7 @@ import {
   percentile,
 } from "./cumulativeFrequencyLessonModel";
 import "./CumulativeFrequencyLesson485.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 export default function CumulativeFrequencyLesson485({
   resetToken,
   onInteraction,
@@ -289,6 +290,8 @@ function CumulativeActivity({
           Previous: Frequency Polygon &nbsp; Next: Bar and Pie Charts →
         </span>
       </footer>
+      <LessonTopicStudyBoard lessonId={485} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

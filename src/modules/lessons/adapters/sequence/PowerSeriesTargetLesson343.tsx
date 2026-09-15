@@ -11,6 +11,7 @@ import {
 } from "./powerSeriesLessonModel";
 import type { PowerSeriesTarget } from "./powerSeriesLessonModel";
 import "./PowerSeriesTargetLesson343.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const tabs = [
   "Interaction + visualization",
@@ -629,6 +630,8 @@ export default function PowerSeriesTargetLesson343({
           )}
         </aside>
       </section>
+      <LessonTopicStudyBoard lessonId={343} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

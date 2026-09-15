@@ -22,6 +22,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./DoubleHalfAngleTargetLesson268.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type FormulaMode = "sin" | "cos" | "tan";
 type PracticeResult = "idle" | "correct" | "incorrect";
@@ -478,6 +479,8 @@ export default function DoubleHalfAngleTargetLesson268({
           </aside>
         </div>
       </section>
+      <LessonTopicStudyBoard lessonId={268} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

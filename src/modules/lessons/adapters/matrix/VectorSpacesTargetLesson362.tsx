@@ -2,6 +2,7 @@ import { CheckCircle2, Info, RotateCcw, XCircle } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./VectorSpacesTargetLesson362.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 type Vector = [number, number, number];
 type Candidate = "plane" | "shifted" | "line" | "curved";
 const defaults = {
@@ -354,6 +355,8 @@ export default function VectorSpacesTargetLesson362({
           )}
         </article>
       </section>
+      <LessonTopicStudyBoard lessonId={362} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

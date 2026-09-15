@@ -6,6 +6,7 @@ import { DoubleSide, ExtrudeGeometry, Shape } from "three";
 import type { LessonAdapterProps } from "../../types";
 import "./CoordinateSystemTargetLesson378.css";
 import "./PrismTargetLesson393.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type BaseShape = "Triangle" | "Rectangle" | "Hexagon";
 const clean = (value: number) => Number(value.toFixed(2));
@@ -325,6 +326,8 @@ export default function PrismTargetLesson393({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={393} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

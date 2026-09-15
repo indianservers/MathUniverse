@@ -19,6 +19,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./UnitCircleTargetLesson258.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Unit = "degrees" | "radians";
 type Choice = "A" | "B" | "C" | "D";
@@ -152,6 +153,8 @@ export default function UnitCircleTargetLesson258({
       </section>
 
       <nav className="target-unit-circle-nav"><a href="/lessons/trigonometry/257-angle-measurement"><ArrowLeft /><span><b>Previous</b>Angle Measurement</span></a><a href="/lessons/trigonometry/259-right-triangle-ratios"><span><b>Next</b>Right-Triangle Ratios</span><ArrowRight /></a></nav>
+      <LessonTopicStudyBoard lessonId={258} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

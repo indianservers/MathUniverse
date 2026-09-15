@@ -28,6 +28,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./RelationCheckerTargetLesson234.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type LineModel = { id: "l" | "m"; a: Point; b: Point; color: string };
@@ -243,6 +244,8 @@ export default function RelationCheckerTargetLesson234({ resetToken, onInteracti
         <a href="/lessons"><ListChecks /> Back to lesson list</a>
         <a href="/lessons/geometry/235-construction-steps"><span><b>Next</b>235 Construction Steps</span><ArrowRight /></a>
       </nav>
+      <LessonTopicStudyBoard lessonId={234} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

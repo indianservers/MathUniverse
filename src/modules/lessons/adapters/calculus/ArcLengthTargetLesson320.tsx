@@ -14,6 +14,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./ArcLengthTargetLesson320.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const clamp = (v: number, min: number, max: number) =>
   Math.min(max, Math.max(min, v));
@@ -384,6 +385,8 @@ export default function ArcLengthTargetLesson320({
                 : ""}
         </output>
       </section>
+      <LessonTopicStudyBoard lessonId={320} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

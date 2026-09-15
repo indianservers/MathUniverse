@@ -7,6 +7,7 @@ import {
   simulateExpectedValue,
 } from "./expectedValueLessonModel";
 import "./ExpectedValueLesson513.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 export default function ExpectedValueLesson513({
   resetToken,
   onInteraction,
@@ -396,6 +397,8 @@ function ExpectedValueActivity({
         </button>
         <span>Previous: Bayes’ Theorem &nbsp; Next: Simulation →</span>
       </footer>
+      <LessonTopicStudyBoard lessonId={513} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

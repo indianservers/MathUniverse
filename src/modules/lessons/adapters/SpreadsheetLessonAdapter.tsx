@@ -3,6 +3,7 @@ import { evaluateSpreadsheetGrid, fillDownFormula, type SpreadsheetGrid } from "
 import { createSpreadsheetWorkspaceObjects } from "../../../workspace/dataWorkspaceIntegration";
 import AdapterFrame from "../components/AdapterFrame";
 import type { LessonAdapterProps } from "../types";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const initialGrid: SpreadsheetGrid = [
   ["x", "y", "change"],
@@ -103,6 +104,7 @@ export default function SpreadsheetLessonAdapter({ lesson, resetToken, onInterac
           </div>
         </div>
       </div>
+      <LessonTopicStudyBoard lessonId={lesson.id} alwaysVisible onInteraction={onInteraction} />
     </AdapterFrame>
   );
 }

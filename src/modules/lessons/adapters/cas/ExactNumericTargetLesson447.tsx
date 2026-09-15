@@ -12,6 +12,7 @@ import {
 import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./ExactNumericTargetLesson447.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Mode = "exact" | "numeric";
 const initialExpression = "2 × 3² × 5 − 7/4 + √2";
@@ -398,6 +399,8 @@ export default function ExactNumericTargetLesson447({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={447} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

@@ -18,6 +18,7 @@ import {
   type PointerEvent as ReactPointerEvent,
 } from "react";
 import type { LessonAdapterProps } from "../types";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type Drag = "a" | "b" | "c" | null;
@@ -526,6 +527,8 @@ export default function AngleTargetLesson232({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={232} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

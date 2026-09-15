@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../types";
 import { bernoulliStats, simulateBernoulli } from "./bernoulliLessonModel";
 import "./BernoulliDistributionLesson521.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 export default function BernoulliDistributionLesson521({
   resetToken,
@@ -333,6 +334,8 @@ function BernoulliActivity({
           Previous: Inverse Probability &nbsp; Next: Binomial Distribution
         </span>
       </footer>
+      <LessonTopicStudyBoard lessonId={521} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

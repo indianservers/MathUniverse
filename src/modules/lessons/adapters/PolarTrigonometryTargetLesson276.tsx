@@ -2,6 +2,7 @@ import { ArrowLeft, ArrowRight, CheckCircle2, Eye, ExternalLink, RotateCcw, Shar
 import { useEffect, useMemo, useState, type PointerEvent as ReactPointerEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./PolarTrigonometryTargetLesson276.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type View = "polar" | "cartesian" | "trace";
 type Curve = "cos" | "sin" | "double";
@@ -78,6 +79,8 @@ export default function PolarTrigonometryTargetLesson276({ resetToken, onInterac
 
     <section id="polar-practice" className="polar276-practice"><div><h2>Your Turn: Practice Challenge</h2><p>Convert the given polar coordinate to Cartesian coordinate.</p><strong>(r, theta) = (3, -60 degrees)</strong><p>Hint: x = r cos theta, &nbsp; y = r sin theta</p></div><div><h3>Your Answer</h3><label>x = <input aria-label="Practice x coordinate" value={answers[0]} onChange={(event) => { setAnswers([event.target.value, answers[1]]); setFeedback("idle"); }}/></label><label>y = <input aria-label="Practice y coordinate" value={answers[1]} onChange={(event) => { setAnswers([answers[0], event.target.value]); setFeedback("idle"); }}/></label><button type="button" onClick={check}>Check Answer</button>{feedback !== "idle" && <p role="status" className={feedback}>{feedback === "correct" ? "Correct Cartesian coordinates." : "Recalculate both coordinates."}</p>}</div><aside><h3>Quick Check / Solution</h3><p>x = 3 cos(-60 degrees) = 1.5</p><p>y = 3 sin(-60 degrees) = -3sqrt(3)/2</p><b>Answer: (x, y) = (1.5, -3sqrt(3)/2)</b></aside></section>
     <nav className="polar276-adjacent" aria-label="Adjacent lessons"><a href="/lessons/trigonometry/275-harmonic-motion"><ArrowLeft/><span><small>Previous</small>Harmonic Motion</span></a><a href="/lessons/trigonometry/277-trigonometric-identities"><span><small>Next Lesson</small>Trigonometric Identities</span><ArrowRight/></a></nav>
+      <LessonTopicStudyBoard lessonId={276} view={view} onInteraction={onInteraction} />
+
   </section>;
 }
 

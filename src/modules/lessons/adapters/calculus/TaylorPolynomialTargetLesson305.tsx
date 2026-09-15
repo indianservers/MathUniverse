@@ -16,6 +16,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./TaylorPolynomialTargetLesson305.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const factorial = (n: number) => {
   let value = 1;
@@ -419,6 +420,8 @@ export default function TaylorPolynomialTargetLesson305({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={305} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

@@ -17,6 +17,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./InstantaneousRateTargetLesson285.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const fmt = (value: number, places = 5) => Number(value.toFixed(places));
 const samples = [0.5, 0.1, 0.05, 0.01, 0.001, 0.0001];
@@ -341,6 +342,8 @@ export default function InstantaneousRateTargetLesson285({
           </h2>
         </aside>
       </section>
+      <LessonTopicStudyBoard lessonId={285} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

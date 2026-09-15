@@ -23,6 +23,7 @@ import type { PointerEvent as ReactPointerEvent } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./CoordinateSystemTargetLesson378.css";
 import "./ARPlacementTargetLesson412.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Tool = "move" | "rotate" | "scale";
 type Drag = {
@@ -456,6 +457,8 @@ export default function ARPlacementTargetLesson412({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={412} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

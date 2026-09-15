@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { getStrengthenedFoundationLesson } from "../strengthening/foundationNumberContent";
 import { batch2StudySpecs } from "../strengthening/catalogBatch2StudySpecs";
 import { batch3StudySpecs } from "../strengthening/catalogBatch3StudySpecs";
+import { batch4StudySpecs } from "../strengthening/catalogBatch4StudySpecs";
 import { expandedWorkedExamples } from "./LessonSectionJourney";
 import "./LessonTopicStudyBoard.css";
 
@@ -172,6 +173,7 @@ const SPECS: Record<number, StudySpec> = {
   ], [[0, 3], [4, 11], [6, 15]]),
   ...batch2StudySpecs,
   ...batch3StudySpecs,
+  ...batch4StudySpecs,
 };
 
 function spec(

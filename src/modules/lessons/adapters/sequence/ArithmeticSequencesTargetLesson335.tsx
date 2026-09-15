@@ -17,6 +17,7 @@ import {
   arithmeticSequenceAnalysis,
 } from "./arithmeticSequenceLessonModel";
 import "./ArithmeticSequencesTargetLesson335.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const clean = (value: number) => Number(value.toFixed(6));
 const tabs = [
@@ -627,6 +628,8 @@ export default function ArithmeticSequencesTargetLesson335({
           </button>
         </article>
       </section>
+      <LessonTopicStudyBoard lessonId={335} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

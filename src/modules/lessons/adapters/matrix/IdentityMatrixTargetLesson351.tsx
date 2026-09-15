@@ -2,6 +2,7 @@ import { Lightbulb, RotateCcw } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./IdentityMatrixTargetLesson351.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 type Matrix2=[[number,number],[number,number]];
 const initial:Matrix2=[[2,1],[1,2]],identity:Matrix2=[[1,0],[0,1]],tabs=["Interact","Learn","Example","Formula","Practice"];
 const multiply=(a:Matrix2,b:Matrix2):Matrix2=>[[a[0][0]*b[0][0]+a[0][1]*b[1][0],a[0][0]*b[0][1]+a[0][1]*b[1][1]],[a[1][0]*b[0][0]+a[1][1]*b[1][0],a[1][0]*b[0][1]+a[1][1]*b[1][1]]];
@@ -18,6 +19,8 @@ export default function IdentityMatrixTargetLesson351({resetToken,onInteraction}
    <section className="mat351-geometry"><h3>Geometric view (basis vectors are unchanged)</h3><p>The identity matrix leaves the standard basis vectors unchanged.</p><div><BasisVector axis="vertical" label="e1 = [1,0]"/><BasisVector axis="horizontal" label="e2 = [0,1]"/></div></section>
    <section className="mat351-bottom"><article><h3>Worked Example</h3><p>Using A = [2 1; 1 2] and I2 = [1 0; 0 1]</p><code>A x I2 = [2 1; 1 2] x [1 0; 0 1] = [2 1; 1 2] = A</code><code>I2 x A = [1 0; 0 1] x [2 1; 1 2] = [2 1; 1 2] = A</code><p>Both products return A. Hence, A x I = I x A = A.</p></article><article className="mat351-practice"><h3>Practice Challenge</h3><h4>Build I3</h4><p>Enter the 3x3 identity matrix.</p><div>{practice.map((v,i)=><input aria-label={`Identity practice row ${Math.floor(i/3)+1} column ${i%3+1}`} key={i} type="number" value={v} onChange={e=>act(()=>{setPractice(p=>p.map((x,j)=>j===i?e.target.value:x));setChecked("")})}/>)}</div><button onClick={check}>Check answer</button><output>{checked==="correct"?"Correct: diagonal 1s and zeros elsewhere.":checked==="incorrect"?"Not yet. Check every diagonal and off-diagonal entry.":""}</output></article></section>
   </section>
+      <LessonTopicStudyBoard lessonId={351} view={tab} onInteraction={onInteraction} />
+
  </section>
 }
 function MatrixCard({title,matrix,editable=false,onEdit=()=>{},reset}:{title:string;matrix:Matrix2;editable?:boolean;onEdit?:(r:number,c:number,v:number)=>void;reset?:()=>void}){return <article className="mat351-matrix"><header><h3>{title}</h3>{reset&&<button aria-label={`Reset ${title}`} onClick={reset}><RotateCcw/></button>}</header><div>{matrix.flatMap((row,r)=>row.map((v,c)=>editable?<input aria-label={`Matrix A row ${r+1} column ${c+1}`} key={`${r}-${c}`} type="number" value={v} onChange={e=>onEdit(r,c,Number(e.target.value))}/>:<b key={`${r}-${c}`}>{v}</b>))}</div><code>[ {matrix[0].join("  ")} | {matrix[1].join("  ")} ]</code></article>}

@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./CoordinateSystemTargetLesson378.css";
 import "./TangentPlaneTargetLesson424.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 type Point = { a: number; b: number };
 const initial: Point = { a: 0.6, b: 0.3 },
   fn = (x: number, y: number) => Math.sin(x) * Math.cos(y),
@@ -387,6 +388,8 @@ export default function TangentPlaneTargetLesson424({
           <b>Normal Vector</b> →
         </button>
       </nav>
+      <LessonTopicStudyBoard lessonId={424} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

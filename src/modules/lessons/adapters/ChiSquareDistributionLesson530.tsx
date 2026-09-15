@@ -9,6 +9,7 @@ import {
   chiSquareQuantile,
 } from "./chiSquareLessonModel";
 import "./ChiSquareDistributionLesson530.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const alphaOptions = [0.1, 0.05, 0.025, 0.01, 0.001];
 
@@ -527,6 +528,8 @@ function ChiSquareActivity({
           Previous: Student t Distribution &nbsp; Next: F Distribution
         </span>
       </footer>
+      <LessonTopicStudyBoard lessonId={530} view={view} onInteraction={onInteraction} />
+
     </div>
   );
 }

@@ -17,6 +17,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./NormalLineTargetLesson288.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const f = (x: number) => -2 * x * x + x,
   fp = (x: number) => -4 * x + 1,
@@ -384,6 +385,8 @@ export default function NormalLineTargetLesson288({
           © 2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.
         </small>
       </footer>
+      <LessonTopicStudyBoard lessonId={288} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

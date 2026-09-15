@@ -10,6 +10,7 @@ import {
   type CumulativeMode,
 } from "./cumulativeDistributionLessonModel";
 import "./CumulativeDistributionLesson518.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 export default function CumulativeDistributionLesson518({
   resetToken,
@@ -330,6 +331,8 @@ function CumulativeActivity({
           Probability
         </span>
       </footer>
+      <LessonTopicStudyBoard lessonId={518} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

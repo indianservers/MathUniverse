@@ -18,6 +18,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./EpsilonDeltaTargetLesson283.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const round = (value: number) => Number(value.toFixed(2));
 export default function EpsilonDeltaTargetLesson283({
@@ -371,6 +372,8 @@ export default function EpsilonDeltaTargetLesson283({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={283} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

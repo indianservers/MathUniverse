@@ -9,6 +9,7 @@ import {
 import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./FirstOrderLinearTargetLesson326.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Preset = "reference" | "gentle" | "decay";
 const clamp = (value: number, min: number, max: number) =>
@@ -452,6 +453,8 @@ export default function FirstOrderLinearTargetLesson326({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={326} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

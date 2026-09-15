@@ -14,6 +14,7 @@ import {
 import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./SimplifyTargetLesson429.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Factor = { root: number; label: string };
 type RationalModel = {
@@ -357,6 +358,8 @@ export default function SimplifyTargetLesson429({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={429} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

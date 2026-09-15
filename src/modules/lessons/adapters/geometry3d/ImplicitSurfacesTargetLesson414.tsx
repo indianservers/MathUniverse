@@ -7,6 +7,7 @@ import type { LessonAdapterProps } from "../../types";
 import "./CoordinateSystemTargetLesson378.css";
 import "./ImplicitSurfacesTargetLesson414.css";
 import "./ImplicitSurfacesTargetLesson414.layout.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Preset = "sphere" | "ellipsoid" | "hyperboloid" | "torus" | "gyroid";
 type Axis = "xy" | "xz" | "yz";
@@ -47,6 +48,8 @@ export default function ImplicitSurfacesTargetLesson414({ resetToken, onInteract
     <section className="is414-bottom"><article><h2>Why level sets?</h2><p>Implicit surfaces generalize explicit graphs.</p><div className="is414-compare"><span><b>Explicit surface</b><i>z = f(x, y)</i><small>One output for each (x,y). May fail for vertical surfaces or closed shapes.</small></span><span><b>Implicit surface (level set)</b><i>F(x, y, z) = c</i><small>All points satisfying the equation. Handles closed surfaces, voids, and multiple sheets.</small></span></div><p>Points <b>on the surface</b> satisfy F(x,y,z) = c exactly.</p></article><article><h2>Inside / Outside</h2><p>The sign of F(x,y,z) - c tells on which side a point lies.</p><ul><li><i/>F - c &lt; 0 <b>Inside</b></li><li><i/>F - c &gt; 0 <b>Outside</b></li><li><i/>F - c = 0 <b>On surface</b></li></ul></article><article><h2>Challenge</h2><p>Turn the level set into two sheets.</p><b>Try: x² + y² - z² = c</b><p>Adjust c &gt; 0 to see a hyperboloid of two sheets.</p><button onClick={() => choose("hyperboloid")}>{challenge && <Check/>} Try it</button><small>or explore other presets like torus or gyroid.</small></article></section>
     <nav className="is414-adjacent"><button><small>PREVIOUS</small><b>← Surface z = f(x,y)</b></button><button><small>NEXT</small><b>Parametric Surfaces →</b></button></nav>
     <footer className="is414-footer"><b>Math Universe</b><p>Interactive math labs, visual proofs, NCERT explorations, graphing, CAS-style tools, and classroom-ready activities.</p><nav><button>Sitemap</button><button>Docs</button><button>About</button></nav><hr/><small>© 2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.</small></footer>
+      <LessonTopicStudyBoard lessonId={414} alwaysVisible onInteraction={onInteraction} />
+
   </section>;
 }
 

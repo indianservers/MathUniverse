@@ -15,6 +15,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./DiscWasherTargetLesson318.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type AxisName = "x-axis" | "y=1";
 type Layers = {
@@ -491,6 +492,8 @@ export default function DiscWasherTargetLesson318({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={318} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

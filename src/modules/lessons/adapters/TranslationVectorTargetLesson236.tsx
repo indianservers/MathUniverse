@@ -24,6 +24,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./TranslationVectorTargetLesson236.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type Triangle = { a: Point; b: Point; c: Point };
@@ -199,6 +200,8 @@ export default function TranslationVectorTargetLesson236({
 
       <nav className="target-translation-nav" aria-label="Adjacent lessons"><a href="/lessons/geometry"><ArrowLeft /><span><b>Previous</b>Transformations and Loci</span></a><div><button type="button" className={stage === 1 ? "is-active" : ""} onClick={() => setStage(1)}>★</button>{[2, 3, 4, 5].map((value) => <button type="button" key={value} className={stage === value ? "is-active" : ""} onClick={() => setStage(value)}>★</button>)}<b>Step {stage} of 5</b></div><a href="/lessons/geometry/237-reflection-in-line"><span><b>Next</b>Reflection in Line</span><ArrowRight /></a></nav>
       <span className="sr-only" role="status">{status}</span>
+      <LessonTopicStudyBoard lessonId={236} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

@@ -25,6 +25,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./TriangleAreaTargetLesson272.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type Vertex = "A" | "B" | "C";
@@ -466,6 +467,8 @@ export default function TriangleAreaTargetLesson272({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={272} view={activeTab} onInteraction={onInteraction} />
+
     </section>
   );
 }

@@ -22,6 +22,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./CompoundAngleTargetLesson267.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type ProjectionSettings = {
   projections: boolean;
@@ -416,6 +417,8 @@ export default function CompoundAngleTargetLesson267({
       <span className="sr-only">
         Compound-angle identities combine two rotations.
       </span>
+      <LessonTopicStudyBoard lessonId={267} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

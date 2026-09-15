@@ -6,6 +6,7 @@ import { DoubleSide } from "three";
 import type { LessonAdapterProps } from "../../types";
 import "./CoordinateSystemTargetLesson378.css";
 import "./PyramidTargetLesson394.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type BaseShape = "Square" | "Triangle" | "Pentagon";
 const clean = (value: number) => Number(value.toFixed(2));
@@ -307,6 +308,8 @@ export default function PyramidTargetLesson394({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={394} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

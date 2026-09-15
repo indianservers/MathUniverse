@@ -2,6 +2,7 @@ import { ExternalLink, RotateCcw, Share2 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./PolynomialRootsTargetLesson375.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Coefficients = [number, number, number];
 const clean = (value: number, digits = 2) => Number(value.toFixed(digits));
@@ -496,6 +497,8 @@ export default function PolynomialRootsTargetLesson375({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={375} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

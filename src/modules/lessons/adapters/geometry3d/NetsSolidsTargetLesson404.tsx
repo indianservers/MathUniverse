@@ -14,6 +14,7 @@ import { DoubleSide, ExtrudeGeometry, Shape } from "three";
 import type { LessonAdapterProps } from "../../types";
 import "./CoordinateSystemTargetLesson378.css";
 import "./NetsSolidsTargetLesson404.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Solid = "cube" | "prism" | "pyramid";
 type Face = { id: string; x: number; y: number; color: string };
@@ -533,6 +534,8 @@ export default function NetsSolidsTargetLesson404({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={404} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

@@ -2,6 +2,7 @@ import { Play, RotateCcw, Shuffle, TableProperties } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./TransposeTargetLesson352.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 type Matrix=number[][];
 const initial:Matrix=[[1,2,3],[4,5,6]],tabs=["Interaction + visualization","Explain","Examples","Formulas","Know more"];
 const transpose=(m:Matrix)=>Array.from({length:m[0].length},(_,c)=>m.map(row=>row[c]));
@@ -16,6 +17,8 @@ export default function TransposeTargetLesson352({resetToken,onInteraction}:Less
    <section className="mat352-rule"><div><h3>Entry mapping rule</h3><p>Each entry a<sub>ij</sub> in A moves to position (j, i) in A<sup>T</sup>.</p></div><code>(A<sup>T</sup>)<sub>ij</sub> = A<sub>ji</sub></code><span><b>● a<sub>12</sub> moves to a<sub>21</sub></b><b>● a<sub>21</sub> moves to a<sub>12</sub></b></span></section>
    <footer><button onClick={reset}><RotateCcw/>Reset</button><button onClick={()=>act(()=>{setMatrix(matrix.map(row=>row.map(()=>Math.floor(Math.random()*19)-9)));setNumeric(true)})}><Shuffle/>Randomize</button><button onClick={()=>act(()=>setNumeric(true))}><TableProperties/>Fill with numbers</button><label><Play/>Animate mapping <input aria-label="Animate mapping" type="checkbox" checked={animating} onChange={()=>act(()=>setAnimating(v=>!v))}/></label></footer>
   </main><aside className="mat352-inspector"><article><h3>Inspect entry</h3><strong>{label(r,c)}</strong><h4>Original position in A</h4><p>row {r+1}, column {c+1} ({r+1}, {c+1})</p><h4>Transposed position in A<sup>T</sup></h4><p>row {c+1}, column {r+1} ({c+1}, {r+1})</p><h4>Entry mapping</h4><code>a<sub>{r+1}{c+1}</sub> ↔ a<sub>{c+1}{r+1}</sub></code><h4>Dimensions</h4><code>m x n → n x m<br/>2 x 3 → 3 x 2</code></article><article><h3>Key properties</h3><p>✓ (A<sup>T</sup>)<sup>T</sup> = A</p><p>✓ (A + B)<sup>T</sup> = A<sup>T</sup> + B<sup>T</sup></p></article><article><h3>Why it matters</h3><b>Transpose changes the shape by swapping rows and columns, but preserves the relationships between entries.</b></article></aside></div>
+      <LessonTopicStudyBoard lessonId={352} view={tab} onInteraction={onInteraction} />
+
  </section>
 }
 function MatrixGrid({matrix,selected,numeric,transposeView,onChoose}:{matrix:Matrix;selected:[number,number];numeric:boolean;transposeView:boolean;onChoose:(r:number,c:number)=>void}){return <div className="mat352-grid-wrap"><div className="mat352-col-labels" style={{gridTemplateColumns:`repeat(${matrix[0].length},82px)`}}>{matrix[0].map((_,c)=><b key={c}>col {c+1}</b>)}</div><div className="mat352-grid" style={{gridTemplateColumns:`42px repeat(${matrix[0].length},82px)`}}>{matrix.flatMap((row,r)=>[<b key={`r${r}`}>row {r+1}</b>,...row.map((v,c)=><button className={selected[0]===r&&selected[1]===c?selected[0]===0&&selected[1]===1?"orange":"violet":""} key={`${r}-${c}`} onClick={()=>onChoose(r,c)}>{numeric?v:<em>a<sub>{transposeView?c+1:r+1}{transposeView?r+1:c+1}</sub></em>}</button>)])}</div></div>}

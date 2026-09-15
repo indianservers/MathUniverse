@@ -24,6 +24,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./TrigIdentitiesTargetLesson266.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Stage = "explore" | "explain" | "examples" | "practice" | "formulas" | "know";
 type PracticeResult = "idle" | "correct" | "incorrect";
@@ -94,6 +95,8 @@ export default function TrigIdentitiesTargetLesson266({ resetToken, onInteractio
     </section>
 
     <nav className="target-identities-nav"><a href="/lessons/trigonometry/265-inverse-trig-functions"><ArrowLeft/><span><b>Previous</b>Inverse Trig Functions</span></a><a href="/lessons/trigonometry/267-compound-angle-formulae"><span><b>Next</b>Compound-Angle Formulae</span><ArrowRight/></a></nav>
+      <LessonTopicStudyBoard lessonId={266} alwaysVisible onInteraction={onInteraction} />
+
   </section>;
 }
 

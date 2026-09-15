@@ -24,6 +24,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./CollinearityTestTargetLesson254.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type Key = "a" | "b" | "c";
@@ -443,6 +444,8 @@ export default function CollinearityTestTargetLesson254({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={254} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

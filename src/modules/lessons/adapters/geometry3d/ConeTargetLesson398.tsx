@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./CoordinateSystemTargetLesson378.css";
 import "./ConeTargetLesson398.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 export default function ConeTargetLesson398({
   resetToken,
@@ -399,6 +400,8 @@ export default function ConeTargetLesson398({
           <button onClick={() => act(() => setTab("About"))}>About</button>
         </nav>
       </footer>
+      <LessonTopicStudyBoard lessonId={398} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

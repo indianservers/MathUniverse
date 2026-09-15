@@ -21,6 +21,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./ConjectureTestingTargetLesson252.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type DragKey = "a" | "b" | "vector";
@@ -525,6 +526,8 @@ export default function ConjectureTestingTargetLesson252({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={252} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

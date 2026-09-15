@@ -8,6 +8,7 @@ import {
   type AdditionRegion,
 } from "./additionRuleLessonModel";
 import "./AdditionRuleLesson504.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const practiceOptions = ["1/6", "5/12", "7/12", "2/3"];
 
@@ -356,6 +357,8 @@ function AdditionRuleActivity({
           Previous: Complement Rule &nbsp; Next: Multiplication Rule →
         </span>
       </footer>
+      <LessonTopicStudyBoard lessonId={504} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

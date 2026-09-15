@@ -12,6 +12,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./ChainRuleTargetLesson293.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 const fmt = (n: number, p = 4) =>
     Math.abs(n) < 1e-10 ? 0 : Number(n.toFixed(p)),
   inner = (x: number) => Math.sin(x),
@@ -421,6 +422,8 @@ export default function ChainRuleTargetLesson293({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={293} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

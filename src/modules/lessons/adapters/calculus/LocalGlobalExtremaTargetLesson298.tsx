@@ -17,6 +17,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./LocalGlobalExtremaTargetLesson298.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const fn = (x: number) => -2 * x * x + 4 * x + 1,
   vertexX = 1,
@@ -404,6 +405,8 @@ export default function LocalGlobalExtremaTargetLesson298({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={298} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

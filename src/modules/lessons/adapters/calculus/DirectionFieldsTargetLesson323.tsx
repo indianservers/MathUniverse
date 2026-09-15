@@ -14,6 +14,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./DirectionFieldsTargetLesson323.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Point = { id: number; x: number; y: number; color: string };
 const initialSeeds: Point[] = [
@@ -402,6 +403,8 @@ export default function DirectionFieldsTargetLesson323({
               : ""}
         </output>
       </section>
+      <LessonTopicStudyBoard lessonId={323} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }
