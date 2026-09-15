@@ -7,6 +7,7 @@ import { parseChallengeAnswer } from "./studioLabKit";
 import { studioLabMeta } from "./studioLabMeta";
 import { useTrigSession, writeTrigSession } from "./trigStudioSession";
 import { listSnapshots } from "../phase1/studioClassroom";
+import { continueLinearHref, LINEAR_SEARCH_ALIASES, useLinearSession, writeLinearSession } from "../linear-algebra/linearAlgebraStudioSession";
 
 type HomeProps = {
   studio: StudioMockupDefinition;
@@ -97,7 +98,7 @@ export function StudioLabCard({
     <Link
       className={`msk-card msk-card-premium${studioId === "modelling" ? " msk-model-card" : ""}${studioId === "trigonometry" ? " msk-trig-topic-card" : ""}`}
       to={item.route}
-      data-lab-id={studioId === "trigonometry" ? item.id : undefined}
+      data-lab-id={studioId === "trigonometry" || studioId === "linear-algebra" ? item.id : undefined}
       data-card-index={studioId === "trigonometry" ? index + 1 : undefined}
     >
       <span className="msk-num">{numbered ? String(index + 1).padStart(2, "0") : index + 1}</span>
@@ -105,22 +106,49 @@ export function StudioLabCard({
       <b>{item.label}</b>
       <small>{meta?.outcome ?? item.description}</small>
       {meta ? <em className="msk-meta">{`${meta.level} · ${meta.minutes} min`}</em> : null}
+      {meta?.prereq ? <em className="msk-prereq">{meta.prereq}</em> : null}
       {item.modes.length ? <span className="msk-card-modes">{item.modes.slice(0, 3).join(" · ")}</span> : null}
       <em>{cta ?? `Open ${item.label}`}</em>
     </Link>
   );
 }
 
+function LinearAlgebraHomeHero() {
+  const [k, setK] = useState(0.6);
+  return (
+    <div className="la-home-hero">
+      <svg
+        className="msk-graph is-interactive"
+        viewBox="0 0 360 88"
+        role="img"
+        aria-label="Drag to shear the unit square"
+        onPointerDown={(event: PointerEvent<SVGSVGElement>) => {
+          const box = event.currentTarget.getBoundingClientRect();
+          const x = (event.clientX - box.left) / box.width;
+          setK(Math.max(0, Math.min(1.4, (x - 0.2) * 2)));
+          event.currentTarget.setPointerCapture(event.pointerId);
+        }}
+        onPointerMove={(event) => {
+          if (!event.currentTarget.hasPointerCapture(event.pointerId)) return;
+          const box = event.currentTarget.getBoundingClientRect();
+          const x = (event.clientX - box.left) / box.width;
+          setK(Math.max(0, Math.min(1.4, (x - 0.2) * 2)));
+        }}
+      >
+        <rect width="360" height="88" fill="#f8fbff" />
+        <polygon points={`40,72 ${100 + k * 40},72 ${124 + k * 40},28 64,28`} fill="rgba(20,125,242,.16)" stroke="#147df2" />
+        <text x="150" y="38" fill="#334155" fontSize="12">Unit square under a shear</text>
+        <text x="150" y="56" fill="#147df2" fontSize="11">A = [[1, {k.toFixed(2)}], [0, 1]]</text>
+      </svg>
+      <Link className="msk-cta" to="/linear-algebra/linear-transforms?mode=Shear">Open Transforms</Link>
+    </div>
+  );
+}
+
 function LiveStudioHero({ studioId }: { studioId: string }) {
   if (studioId === "trigonometry") return <TrigHomeHero />;
   if (studioId === "linear-algebra") {
-    return (
-      <svg className="msk-graph" viewBox="0 0 360 88" role="img" aria-label="Shear of the unit square">
-        <rect width="360" height="88" fill="#f8fbff" />
-        <polygon points="40,72 100,72 124,28 64,28" fill="rgba(20,125,242,.16)" stroke="#147df2" />
-        <text x="140" y="50" fill="#334155" fontSize="12">Unit square under a shear — open Vectors or Transforms</text>
-      </svg>
-    );
+    return <LinearAlgebraHomeHero />;
   }
   if (studioId === "complex-numbers") {
     return (
@@ -391,8 +419,123 @@ export function GeometryStudioHome(props: HomeProps) {
   );
 }
 
+const LINEAR_FLOW_PRIMARY = [
+  { label: "Vectors", to: "/linear-algebra/vectors", id: "vectors" },
+  { label: "Matrices", to: "/linear-algebra/matrices", id: "matrices" },
+  { label: "Transforms", to: "/linear-algebra/linear-transforms", id: "linear-transforms" },
+  { label: "Eigen", to: "/linear-algebra/eigenvectors", id: "eigenvectors" },
+  { label: "Least squares", to: "/linear-algebra/least-squares", id: "least-squares" },
+] as const;
+
+const LINEAR_FLOW_BRANCHES = [
+  { label: "Row reduction", to: "/linear-algebra/row-reduction", id: "row-reduction" },
+  { label: "Determinants", to: "/linear-algebra/determinants", id: "determinants" },
+  { label: "Spaces", to: "/linear-algebra/vector-spaces", id: "vector-spaces" },
+  { label: "Orthogonality", to: "/linear-algebra/orthogonality", id: "orthogonality" },
+  { label: "Playground", to: "/linear-algebra/playground", id: "playground" },
+] as const;
+
+function LinearAlgebraStudioHome(props: HomeProps & { title: string; cta?: string }) {
+  const session = useLinearSession();
+  const levels = ["All", "Start here", "Core", "Next", "Apply", "Extend"];
+  const filtered = props.labs.filter((item) => {
+    if (session.levelFilter === "All") return true;
+    return studioLabMeta("linear-algebra", item.id)?.level === session.levelFilter;
+  });
+  const continueTo = continueLinearHref(session);
+  const done = session.completed.filter((id) => props.labs.some((lab) => lab.id === id));
+  const progress = props.labs.length ? Math.round((done.length / props.labs.length) * 100) : 0;
+  const [query, setQuery] = useState("");
+  const [answer, setAnswer] = useState("");
+  const [status, setStatus] = useState("");
+  const alias = LINEAR_SEARCH_ALIASES[query.trim().toLowerCase()];
+  const hits = query
+    ? props.labs.filter((item) => `${item.label} ${item.description} ${item.modes.join(" ")} λ RREF proj det A×B`.toLowerCase().includes(query.trim().toLowerCase()))
+    : [];
+  const challengeHref = props.challenge
+    ? `${props.challenge.route}?mode=${encodeURIComponent(props.challenge.modes[0] ?? "")}&from=challenge`
+    : "/linear-algebra/vectors";
+
+  return (
+    <div className="msk-home la-home">
+      <section>
+        <header className="msk-launch-head">
+          <h2>{props.title}</h2>
+          <p>Choose a topic. Each card opens that lab.</p>
+        </header>
+        <nav className="la-flow-map" aria-label="Linear algebra concept flow">
+          <ol className="msk-trig-flow" aria-label="Studio journey">
+            {LINEAR_FLOW_PRIMARY.map((step, index) => (
+              <li key={step.to}>
+                <Link to={step.to} data-flow-node={step.id}>
+                  <span>{index + 1}</span>
+                  <b>{step.label}</b>
+                </Link>
+                {index < LINEAR_FLOW_PRIMARY.length - 1 ? <i aria-hidden="true">→</i> : null}
+              </li>
+            ))}
+          </ol>
+          <ul className="la-flow-branches">
+            {LINEAR_FLOW_BRANCHES.map((item) => (
+              <li key={item.id}><Link to={item.to}>{item.label}</Link></li>
+            ))}
+          </ul>
+        </nav>
+        <LinearAlgebraHomeHero />
+        <div className="la-filters" role="group" aria-label="Difficulty filter">
+          {levels.map((level) => (
+            <button key={level} type="button" className={session.levelFilter === level ? "active" : ""} onClick={() => writeLinearSession({ levelFilter: level })}>{level}</button>
+          ))}
+        </div>
+        <LaunchGrid labs={filtered} studioId="linear-algebra" cta={props.cta} />
+      </section>
+      <aside className="msk-aside">
+        <section className="msk-panel msk-continue">
+          <h2>Continue</h2>
+          <p><strong>{session.lastLabel}</strong></p>
+          <Link className="msk-cta" to={continueTo}>Continue →</Link>
+        </section>
+        <section className="msk-panel">
+          <h2>Search</h2>
+          <input className="msk-home-search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder={props.studio.searchPlaceholder} aria-label="Search labs" />
+              {alias ? <p><Link to={`/linear-algebra/${alias.id}${alias.mode ? `?mode=${encodeURIComponent(alias.mode)}` : ""}`}>Open {alias.id}{alias.mode ? ` · ${alias.mode}` : ""}</Link></p> : null}
+          {query ? (
+            <ul className="msk-search-hits is-inline">
+              {hits.slice(0, 5).map((item) => <li key={item.id}><Link to={item.route}>{item.label}</Link></li>)}
+            </ul>
+          ) : null}
+        </section>
+        <section className="msk-panel">
+          <h2>Your learning journey</h2>
+          <ol className="msk-journey-list">
+            {props.labs.map((item) => (
+              <li key={item.id}>
+                <i className={done.includes(item.id) ? "done" : session.lastLabel === item.label ? "now" : ""} />
+                <Link to={item.route}>{item.label}</Link>
+              </li>
+            ))}
+          </ol>
+          <div className="msk-progress"><i style={{ width: `${progress}%` }} /></div>
+          <small>Overall progress {progress}%</small>
+        </section>
+        {props.challenge ? (
+          <section className="msk-panel msk-challenge">
+            <h2>Daily visual challenge</h2>
+            <p>{props.challenge.challenge.prompt}</p>
+            <input value={answer} onChange={(event) => { setAnswer(event.target.value); setStatus(""); }} aria-label="Challenge answer" />
+            <button className="msk-cta" type="button" onClick={() => setStatus(Math.abs(parseChallengeAnswer(answer) - props.challenge!.challenge.expected) < 0.02 ? "Correct." : props.challenge!.challenge.hint)}>Check</button>
+            {status ? <p role="status">{status}</p> : null}
+            <Link className="msk-teach" to={challengeHref}>Open {props.challenge.label} with this setup</Link>
+          </section>
+        ) : null}
+      </aside>
+    </div>
+  );
+}
+
 export function IllustratedStudioHome(props: HomeProps & { title: string; cta?: string }) {
   if (props.studio.id === "trigonometry") return <TrigonometryStudioHome {...props} />;
+  if (props.studio.id === "linear-algebra") return <LinearAlgebraStudioHome {...props} />;
 
   const flow = props.studio.id === "trigonometry"
     ? [

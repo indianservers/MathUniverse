@@ -51,7 +51,7 @@ describe("MockupStudioApp", () => {
     expect(polygons).toContain("Apothem");
     const matrices = renderToString(<MemoryRouter initialEntries={["/linear-algebra/matrices"]}><MockupStudioApp studioId="linear-algebra" /></MemoryRouter>);
     expect(matrices).toContain("Matrices Lab");
-    expect(matrices).toContain("Compute A × B");
+    expect(matrices).toContain("Replay row×column");
     expect(matrices).toContain("Result C = A × B");
   });
 

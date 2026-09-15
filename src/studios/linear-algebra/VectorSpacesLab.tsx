@@ -1,9 +1,11 @@
 import { useState, type PointerEvent } from "react";
 import type { StudioMockupPage } from "../mockup/studioMockupCatalog";
-import { ChallengeBox, LiveRow, Panel, SliderRow, StatusOk, StepList } from "../mockup/studioLabKit";
+import { ChallengeBox, LiveRow, Panel, StatusOk, StepList } from "../mockup/studioLabKit";
 import { FigureToolbar, Phase1LabChrome } from "../phase1/Phase1LabChrome";
 import { useStudioFigure } from "../phase1/useStudioFigure";
 import { areIndependent, coordinates, gramSchmidt, spanDimension } from "./vectorSpaceMath";
+import { ArrowDefs, DragHandle, FormulaBridge, NudgeSlider, VectorRay, LA_A, LA_B, LA_C, LA_D } from "./linearAlgebraCanvas";
+import { markLinearComplete } from "./linearAlgebraStudioSession";
 
 type Fig = { ax: number; ay: number; bx: number; by: number; n: number; px: number; py: number };
 const initial: Fig = { ax: 2, ay: 0.4, bx: 0.4, by: 1.6, n: 2, px: 1.2, py: 1 };
@@ -50,7 +52,7 @@ export default function VectorSpacesLab({ page }: { page: StudioMockupPage }) {
         return (
           <>
             <Panel title={mode}>
-              <SliderRow label="Vectors in the set" value={fig.state.n} min={1} max={3} step={1} onChange={(n) => fig.commit({ ...fig.state, n })} />
+              <NudgeSlider label="Vectors in the set" value={fig.state.n} min={1} max={3} step={1} onChange={(n) => fig.commit({ ...fig.state, n })} />
               <p className="msk-note">Drag a, b, and probe p. Grey b means it lies in span(a).</p>
             </Panel>
             <section className="msk-panel msk-canvas">
@@ -77,6 +79,7 @@ export default function VectorSpacesLab({ page }: { page: StudioMockupPage }) {
                 onPointerUp={() => setDrag(null)}
               >
                 <rect width="420" height="240" fill="#f8fbff" />
+                <ArrowDefs />
                 <line x1="210" y1="12" x2="210" y2="228" stroke="#cbd5e1" />
                 <line x1="16" y1="180" x2="404" y2="180" stroke="#cbd5e1" />
                 {n >= 2 && independent ? (
@@ -85,17 +88,22 @@ export default function VectorSpacesLab({ page }: { page: StudioMockupPage }) {
                     fill="rgba(20,125,242,.12)"
                     stroke="#147df2"
                   />
+                ) : n >= 2 ? (
+                  <line x1={svgX(-3 * fig.state.ax)} y1={svgY(-3 * fig.state.ay)} x2={svgX(3 * fig.state.ax)} y2={svgY(3 * fig.state.ay)} stroke="#94a3b8" strokeWidth="6" opacity="0.35" />
                 ) : null}
-                <line x1={svgX(0)} y1={svgY(0)} x2={svgX(fig.state.ax)} y2={svgY(fig.state.ay)} stroke="#147df2" strokeWidth="3" />
-                {n >= 2 ? <line x1={svgX(0)} y1={svgY(0)} x2={svgX(fig.state.bx)} y2={svgY(fig.state.by)} stroke={independent ? "#8b45f4" : "#94a3b8"} strokeWidth="3" /> : null}
+                <VectorRay x1={svgX(0)} y1={svgY(0)} x2={svgX(fig.state.ax)} y2={svgY(fig.state.ay)} color={LA_A} marker="la-a" />
+                {n >= 2 ? <VectorRay x1={svgX(0)} y1={svgY(0)} x2={svgX(fig.state.bx)} y2={svgY(fig.state.by)} color={independent ? LA_B : "#94a3b8"} dashed={!independent} marker="la-b" /> : null}
                 {mode === "Basis" || mode === "Gram-Schmidt" || n >= 2 ? (
                   <>
-                    <line x1={svgX(0)} y1={svgY(0)} x2={svgX(gs.u1[0] * 2)} y2={svgY(gs.u1[1] * 2)} stroke="#10b981" strokeWidth="2" />
-                    <line x1={svgX(0)} y1={svgY(0)} x2={svgX(gs.u2[0] * 2)} y2={svgY(gs.u2[1] * 2)} stroke="#f59e0b" strokeWidth="2" />
+                    <VectorRay x1={svgX(0)} y1={svgY(0)} x2={svgX(gs.u1[0] * 2)} y2={svgY(gs.u1[1] * 2)} color={LA_D} marker="la-d" />
+                    <VectorRay x1={svgX(0)} y1={svgY(0)} x2={svgX(gs.u2[0] * 2)} y2={svgY(gs.u2[1] * 2)} color={LA_C} marker="la-c" />
                   </>
                 ) : null}
-                <circle cx={svgX(fig.state.px)} cy={svgY(fig.state.py)} r="6" fill="#f59e0b" />
+                <DragHandle x={svgX(fig.state.ax)} y={svgY(fig.state.ay)} fill={LA_A} label="a" />
+                {n >= 2 ? <DragHandle x={svgX(fig.state.bx)} y={svgY(fig.state.by)} fill={independent ? LA_B : "#94a3b8"} label="b" shape="square" /> : null}
+                <DragHandle x={svgX(fig.state.px)} y={svgY(fig.state.py)} fill={LA_C} label={coords ? `(${fig.format(coords.s, 1)}, ${fig.format(coords.t, 1)})` : "p"} shape="diamond" />
               </svg>
+              <FormulaBridge>{independent ? "The parallelogram is span{a, b}." : "b lies on the line of a, so the span collapses to a line."}</FormulaBridge>
             </section>
             <aside className="msk-panel msk-live">
               <LiveRow color="#147df2" label="dim span" value={String(dim)} />
@@ -104,7 +112,7 @@ export default function VectorSpacesLab({ page }: { page: StudioMockupPage }) {
               <LiveRow color="#10b981" label="Gram–Schmidt u1·u2" value={fig.format(gs.u1[0] * gs.u2[0] + gs.u1[1] * gs.u2[1], 3)} />
               <StatusOk>{mode === "Coordinates" ? "Coordinates are the weights on the current basis." : "A basis is independent and spanning. Green/amber are the orthonormal preview in R² (lift to R³ by adding a third independent direction)."}</StatusOk>
               <StepList items={["Drag vectors to fill or collapse the span.", "Dependence greys the second vector.", "Read coordinates of p in that basis."]} />
-              <ChallengeBox prompt="Dimension of R²?" expected={2} hint="Two independent directions." />
+              <ChallengeBox prompt="Dimension of R²?" expected={2} hint="Two independent directions." page={page} onCorrect={() => markLinearComplete(page.id)} />
             </aside>
           </>
         );

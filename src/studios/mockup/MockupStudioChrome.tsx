@@ -81,6 +81,14 @@ import {
   useTrigSession,
   writeTrigSession,
 } from "./trigStudioSession";
+import {
+  continueLinearHref,
+  LINEAR_SEARCH_ALIASES,
+  markLinearComplete,
+  markLinearVisit,
+  useLinearSession,
+  writeLinearSession,
+} from "../linear-algebra/linearAlgebraStudioSession";
 
 const pageIcons: Record<string, LucideIcon> = {
   home: Home,
@@ -253,7 +261,7 @@ export function MockupStudioChrome({
   const isNumberSense = isDiscrete && page.id === "number-sense";
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
-  const [searchOpen, setSearchOpen] = useState(isTrig || isModel || isGeo || isDiscrete);
+  const [searchOpen, setSearchOpen] = useState(isTrig || isModel || isGeo || isDiscrete || isLinear);
   const [helpOpen, setHelpOpen] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const stripRef = useRef<HTMLElement | null>(null);
@@ -262,6 +270,7 @@ export function MockupStudioChrome({
   const [params] = useSearchParams();
   const labs = studioSidebarPages(studio).filter((item) => item.id !== "home");
   const session = useTrigSession();
+  const linearSession = useLinearSession();
   const geoSession = useGeoSession();
   const primesSession = usePrimesSession();
   const numberSenseSession = useNumberSenseSession();
@@ -273,6 +282,10 @@ export function MockupStudioChrome({
     if (!isTrig || page.id === "home") return;
     markTrigVisit(page.id, page.route, page.label, mode);
   }, [isTrig, page.id, page.route, page.label, mode]);
+  useEffect(() => {
+    if (!isLinear || page.id === "home") return;
+    markLinearVisit(page.id, page.route, page.label, mode);
+  }, [isLinear, page.id, page.route, page.label, mode]);
   useEffect(() => {
     if (!isGeo || page.id === "home") return;
     markGeoVisit(page.id, page.route, page.label, mode);
@@ -322,8 +335,20 @@ export function MockupStudioChrome({
   const filtered = useMemo(() => {
     if (isGeo) return geometrySearchHits(labs, query);
     if (!query.trim()) return labs.map((lab) => ({ key: lab.id, label: lab.label, to: lab.route, detail: "Lab" }));
+    if (isLinear) {
+      const alias = LINEAR_SEARCH_ALIASES[query.trim().toLowerCase()];
+      const extra = alias
+        ? [{
+            key: `alias-${alias.id}`,
+            label: alias.mode ? `${alias.id} · ${alias.mode}` : alias.id,
+            to: `/linear-algebra/${alias.id}${alias.mode ? `?mode=${encodeURIComponent(alias.mode)}` : ""}`,
+            detail: "Symbol match",
+          }]
+        : [];
+      return [...extra, ...searchHits(labs, query)];
+    }
     return searchHits(labs, query);
-  }, [isGeo, labs, query]);
+  }, [isGeo, isLinear, labs, query]);
   const pathId = isTrig ? trigPathId(page.id, mode) : "";
 
   useEffect(() => {
@@ -337,7 +362,7 @@ export function MockupStudioChrome({
   }, [page.id]);
 
   return (
-    <main className={`msk-shell msk-${studio.id}${open ? " is-open" : ""}${(isTrig && session.theme === "dark") || (isGeo && geoSession.theme === "dark") ? " is-dark" : ""}${(isTrig && session.teacherMode) || (isGeo && geoSession.teacherMode) || (isDiscrete && discreteTeacher) ? " is-teacher" : ""}${(isTrig || isModel || isGeo || isDiscrete || isLinear || isComplex) && page.id !== "home" ? " is-lab" : ""}`}>
+    <main className={`msk-shell msk-${studio.id}${open ? " is-open" : ""}${(isTrig && session.theme === "dark") || (isGeo && geoSession.theme === "dark") || (isLinear && linearSession.theme === "dark") ? " is-dark" : ""}${(isTrig && session.teacherMode) || (isGeo && geoSession.teacherMode) || (isDiscrete && discreteTeacher) || (isLinear && linearSession.teacherMode) ? " is-teacher" : ""}${isLinear && linearSession.boardMode ? " is-board" : ""}${(isTrig || isModel || isGeo || isDiscrete || isLinear || isComplex) && page.id !== "home" ? " is-lab" : ""}`}>
       {open ? <button className="msk-backdrop" type="button" aria-label="Close menu" onClick={() => setOpen(false)} /> : null}
       <aside className="msk-sidebar">
         <Link className="msk-brand" to={studio.basePath}>
@@ -402,21 +427,40 @@ export function MockupStudioChrome({
               </button>
             ) : null}
             {page.id !== "home" ? <StudioCanvasToolbar /> : null}
+            {isLinear && page.id !== "home" ? (
+              <button
+                type="button"
+                className={`msk-complete-icon${linearSession.completed.includes(page.id) ? " is-complete" : ""}`}
+                aria-label={linearSession.completed.includes(page.id) ? `${page.label} complete` : `Mark ${page.label} complete`}
+                onClick={() => markLinearComplete(page.id)}
+              >
+                <CheckCircle2 />
+              </button>
+            ) : null}
+            {isLinear ? (
+              <>
+                <button type="button" aria-pressed={linearSession.darkCanvas} className={linearSession.darkCanvas ? "active" : ""} onClick={() => writeLinearSession({ darkCanvas: !linearSession.darkCanvas })}>Dark canvas</button>
+                <button type="button" aria-pressed={linearSession.boardMode} className={linearSession.boardMode ? "active" : ""} onClick={() => writeLinearSession({ boardMode: !linearSession.boardMode })}>Board mode</button>
+                <button type="button" aria-label={linearSession.theme === "dark" ? "Switch to light theme" : "Switch to dark theme"} onClick={() => writeLinearSession({ theme: linearSession.theme === "dark" ? "light" : "dark" })}>
+                  {linearSession.theme === "dark" ? <Sun /> : <Moon />}
+                </button>
+              </>
+            ) : null}
             {isTrig ? (
               <div className="msk-units" role="group" aria-label="Angle units">
                 <button type="button" className={`msk-units-deg${session.units === "deg" ? " active" : ""}`} aria-pressed={session.units === "deg"} onClick={() => writeTrigSession({ units: "deg" })}>Deg</button>
                 <button type="button" className={`msk-units-rad${session.units === "rad" ? " active" : ""}`} aria-pressed={session.units === "rad"} onClick={() => writeTrigSession({ units: "rad" })}>Rad</button>
               </div>
             ) : null}
-            <label className={`msk-search${searchOpen || query || isTrig || isModel || isGeo || isDiscrete ? " is-open" : ""}`}>
+            <label className={`msk-search${searchOpen || query || isTrig || isModel || isGeo || isDiscrete || isLinear ? " is-open" : ""}`}>
               <button type="button" aria-label="Search" onClick={() => setSearchOpen((value) => !value)}><Search /></button>
-              {searchOpen || query || isTrig || isModel || isGeo || isDiscrete ? (
+              {searchOpen || query || isTrig || isModel || isGeo || isDiscrete || isLinear ? (
                 <input
-                  autoFocus={!isTrig && !isModel && !isGeo && !isDiscrete}
+                  autoFocus={!isTrig && !isModel && !isGeo && !isDiscrete && !isLinear}
                   value={query}
                   onChange={(event) => setQuery(event.target.value)}
                   onKeyDown={(event) => { if (event.key === "Enter" && filtered[0]) navigate(filtered[0].to); }}
-                  onBlur={() => { if (!query && !isTrig && !isModel && !isGeo && !isDiscrete) setSearchOpen(false); }}
+                  onBlur={() => { if (!query && !isTrig && !isModel && !isGeo && !isDiscrete && !isLinear) setSearchOpen(false); }}
                   placeholder={isTrig ? "Search θ or waves" : studio.searchPlaceholder}
                   aria-label={`Search ${studio.name}`}
                 />
@@ -454,6 +498,10 @@ export function MockupStudioChrome({
               <button type="button" className={`msk-teacher${geoSession.teacherMode ? " active" : ""}`} aria-pressed={geoSession.teacherMode} onClick={() => writeGeoSession({ teacherMode: !geoSession.teacherMode })}>
                 Teacher mode
               </button>
+            ) : isLinear ? (
+              <button type="button" className={`msk-teacher${linearSession.teacherMode ? " active" : ""}`} aria-pressed={linearSession.teacherMode} onClick={() => writeLinearSession({ teacherMode: !linearSession.teacherMode })}>
+                Teacher mode
+              </button>
             ) : isNumberSense ? (
               <button type="button" className={`msk-teacher${numberSenseSession.teacherMode ? " active" : ""}`} aria-pressed={numberSenseSession.teacherMode} aria-label="Teacher mode" onClick={() => writeNumberSenseSession({ teacherMode: !numberSenseSession.teacherMode })}>
                 Teacher mode
@@ -478,7 +526,7 @@ export function MockupStudioChrome({
             {isModel ? <button type="button" className="msk-avatar" aria-label="Account"><User /></button> : null}
           </div>
         </header>
-        {(isTrig || isGeo || isDiscrete) && page.id !== "home" ? (
+        {(isTrig || isGeo || isDiscrete || isLinear) && page.id !== "home" ? (
           <nav className="msk-topic-strip" aria-label="Topics" ref={stripRef}>
             {labs.map((item) => (
               <NavLink key={item.id} to={item.route} className={({ isActive }) => isActive ? "active" : ""}>{item.label}</NavLink>
@@ -500,7 +548,7 @@ export function MockupStudioChrome({
             <button type="button" onClick={() => writeNumberSenseSession({ hintDismissed: true })}>Dismiss</button>
           </p>
         ) : null}
-        {(isTrig && session.teacherMode) || (isGeo && geoSession.teacherMode) || (isDiscrete && discreteTeacher) ? <p className="msk-teacher-banner">Teacher view: exact values and answers stay visible. Students do not see this banner.</p> : null}
+        {(isTrig && session.teacherMode) || (isGeo && geoSession.teacherMode) || (isDiscrete && discreteTeacher) || (isLinear && linearSession.teacherMode) ? <p className="msk-teacher-banner">Teacher view: exact values and answers stay visible. Students do not see this banner.</p> : null}
         {children}
         {helpOpen ? (
           <div className="msk-help" role="dialog" aria-label="Keyboard shortcuts">
@@ -565,13 +613,16 @@ export function MockupStudioHome({ studio }: { studio: StudioMockupDefinition })
   const isTrig = studio.id === "trigonometry";
   const isModel = studio.id === "modelling";
   const session = useTrigSession();
+  const linearSession = useLinearSession();
   const pool = labs.filter((item) => item.challenge.prompt !== "0");
   const challengePage = isModel ? labs.find((item) => item.id === "networks") ?? pool[0] : pool[dailyChallengeIndex(pool.length)] ?? pool[0];
   const next = nextTrigLab(labs, session.completed);
 const launchTitle = isModel ? "Explore modelling domains" : isTrig ? "Explore Key Topics" : studio.id === "geometry" || studio.id === "complex-numbers" || studio.id === "linear-algebra" || studio.id === "discrete" || studio.id === "statistics" ? "Explore by Topic" : "Launch a topic";
-  const continueTo = isTrig ? continueHref(session) : studio.continueRoute;
-  const continueLabel = isModel ? "Epidemic Spread in Campus" : isTrig ? session.lastLabel : studio.continueLabel;
-  const progress = labs.length ? Math.round((session.completed.filter((id) => labs.some((lab) => lab.id === id)).length / labs.length) * 100) : 0;
+  const continueTo = isTrig ? continueHref(session) : studio.id === "linear-algebra" ? continueLinearHref(linearSession) : studio.continueRoute;
+  const continueLabel = isModel ? "Epidemic Spread in Campus" : isTrig ? session.lastLabel : studio.id === "linear-algebra" ? linearSession.lastLabel : studio.continueLabel;
+  const progress = studio.id === "linear-algebra"
+    ? (labs.length ? Math.round((linearSession.completed.filter((id) => labs.some((lab) => lab.id === id)).length / labs.length) * 100) : 0)
+    : labs.length ? Math.round((session.completed.filter((id) => labs.some((lab) => lab.id === id)).length / labs.length) * 100) : 0;
 
   if (studio.id === "geometry") return <GeometryStudioHome studio={studio} />;
 
