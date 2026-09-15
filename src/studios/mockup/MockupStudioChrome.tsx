@@ -439,8 +439,8 @@ export function MockupStudioChrome({
             ) : null}
             {isLinear ? (
               <>
-                <button type="button" aria-pressed={linearSession.darkCanvas} className={linearSession.darkCanvas ? "active" : ""} onClick={() => writeLinearSession({ darkCanvas: !linearSession.darkCanvas })}>Dark canvas</button>
-                <button type="button" aria-pressed={linearSession.boardMode} className={linearSession.boardMode ? "active" : ""} onClick={() => writeLinearSession({ boardMode: !linearSession.boardMode })}>Board mode</button>
+                <button type="button" aria-pressed={linearSession.darkCanvas} className={`la-chrome-toggle${linearSession.darkCanvas ? " active" : ""}`} onClick={() => writeLinearSession({ darkCanvas: !linearSession.darkCanvas })}>Dark canvas</button>
+                <button type="button" aria-pressed={linearSession.boardMode} className={`la-chrome-toggle${linearSession.boardMode ? " active" : ""}`} onClick={() => writeLinearSession({ boardMode: !linearSession.boardMode })}>Board mode</button>
                 <button type="button" aria-label={linearSession.theme === "dark" ? "Switch to light theme" : "Switch to dark theme"} onClick={() => writeLinearSession({ theme: linearSession.theme === "dark" ? "light" : "dark" })}>
                   {linearSession.theme === "dark" ? <Sun /> : <Moon />}
                 </button>
