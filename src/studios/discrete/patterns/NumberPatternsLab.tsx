@@ -69,7 +69,7 @@ export default function NumberPatternsLab({ page }: { page: StudioMockupPage }) 
   ]), [learning]);
 
   return (
-    <div className={`np-lab${teacher.presentation ? " is-present" : ""}`} onKeyDown={onKey}>
+    <div className={`np-lab${teacher.presentation ? " is-present" : ""}`} data-lab-mode={mode} data-mode-canvas={mode} onKeyDown={onKey}>
       <p className="np-quote">
         “Patterns are the language in which mathematics writes its beauty.”
         <b>— Godfrey H. Hardy</b>

@@ -66,6 +66,10 @@ import { primesModeLearning } from "../discrete/primes/primesCopy";
 import { usePrimesSession, writePrimesSession } from "../discrete/primes/primesSession";
 import "./MockupStudioChrome.css";
 import "./TrigonometryTarget.css";
+import "./LinearAlgebraTarget.css";
+import "./ComplexNumbersTarget.css";
+import "./ModellingTarget.css";
+import "./DiscreteTarget.css";
 import {
   TRIG_PATH,
   continueHref,
@@ -244,6 +248,8 @@ export function MockupStudioChrome({
   const isModel = studio.id === "modelling";
   const isGeo = studio.id === "geometry";
   const isDiscrete = studio.id === "discrete";
+  const isLinear = studio.id === "linear-algebra";
+  const isComplex = studio.id === "complex-numbers";
   const isNumberSense = isDiscrete && page.id === "number-sense";
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
@@ -331,7 +337,7 @@ export function MockupStudioChrome({
   }, [page.id]);
 
   return (
-    <main className={`msk-shell msk-${studio.id}${open ? " is-open" : ""}${(isTrig && session.theme === "dark") || (isGeo && geoSession.theme === "dark") ? " is-dark" : ""}${(isTrig && session.teacherMode) || (isGeo && geoSession.teacherMode) || (isDiscrete && discreteTeacher) ? " is-teacher" : ""}${(isTrig || isModel || isGeo || isDiscrete) && page.id !== "home" ? " is-lab" : ""}`}>
+    <main className={`msk-shell msk-${studio.id}${open ? " is-open" : ""}${(isTrig && session.theme === "dark") || (isGeo && geoSession.theme === "dark") ? " is-dark" : ""}${(isTrig && session.teacherMode) || (isGeo && geoSession.teacherMode) || (isDiscrete && discreteTeacher) ? " is-teacher" : ""}${(isTrig || isModel || isGeo || isDiscrete || isLinear || isComplex) && page.id !== "home" ? " is-lab" : ""}`}>
       {open ? <button className="msk-backdrop" type="button" aria-label="Close menu" onClick={() => setOpen(false)} /> : null}
       <aside className="msk-sidebar">
         <Link className="msk-brand" to={studio.basePath}>

@@ -1,0 +1,56 @@
+.msk-discrete {
+  --ds-blue: #147df2;
+  --ds-violet: #8b45f4;
+  --ds-ink: #0b1b3f;
+}
+
+.msk-discrete .msk-launch-discrete {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.msk-discrete .ds-hero {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.msk-discrete .ds-hero svg {
+  width: 100%;
+  height: 88px;
+  border-radius: 14px;
+  background: #f8fbff;
+}
+
+.msk-discrete .msk-lab,
+.msk-discrete .msk-graph.is-interactive {
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+}
+
+.msk-discrete.is-lab .msk-topic-strip {
+  margin-bottom: 8px;
+}
+
+.msk-discrete .combo-lab,
+.msk-discrete .primes-lab,
+.msk-discrete .np-lab {
+  user-select: none;
+}
+
+@media (max-width: 1100px) {
+  .msk-discrete .msk-launch-discrete,
+  .msk-discrete .ds-hero {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .msk-discrete .msk-launch-discrete,
+  .msk-discrete .ds-hero {
+    grid-template-columns: 1fr;
+  }
+}

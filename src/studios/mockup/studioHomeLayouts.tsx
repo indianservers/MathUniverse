@@ -342,10 +342,11 @@ function TrigonometryStudioHome(props: HomeProps & { title: string; cta?: string
 }
 
 function LaunchGrid({ labs, studioId, cta }: { labs: StudioMockupPage[]; studioId: string; cta?: string }) {
+  const numbered = studioId === "linear-algebra" || studioId === "complex-numbers" || studioId === "discrete" || studioId === "modelling";
   return (
     <div className={`msk-launch msk-launch-${studioId} msk-launch-premium`}>
       {labs.map((item, index) => (
-        <StudioLabCard key={item.id} item={item} index={index} studioId={studioId} cta={cta} />
+        <StudioLabCard key={item.id} item={item} index={index} studioId={studioId} cta={cta} numbered={numbered} />
       ))}
     </div>
   );

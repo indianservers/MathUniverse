@@ -242,7 +242,7 @@ export default function ProofLab() {
   };
 
   return (
-    <div className="alg-page alg-proof-page">
+    <div className="alg-page alg-proof-page" data-mode-canvas={mode}>
       <AlgebraLabHeading
         subtitle="Build and validate algebraic proofs with interactive visual models."
         modes={modes}

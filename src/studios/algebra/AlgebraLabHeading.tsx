@@ -52,7 +52,7 @@ export default function AlgebraLabHeading({
   }, [onRedo, onUndo]);
   return (
     <>
-      <header className="alg-header" data-lab-mode={mode ?? ""}>
+      <header className="alg-header" data-lab-mode={mode ?? ""} data-mode-canvas={mode ?? ""}>
         <div>
           <StudioHomeButtons studioTo="/algebra" />
           <h1>{children}</h1>

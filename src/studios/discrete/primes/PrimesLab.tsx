@@ -41,7 +41,7 @@ export default function PrimesLab({ page }: { page: StudioMockupPage }) {
   const pageForStrip = useMemo(() => ({ ...page, learning }), [page, learning]);
 
   return (
-    <div className={`primes-lab${teacher.presentation ? " is-present" : ""}`} onKeyDown={onKey}>
+    <div className={`primes-lab${teacher.presentation ? " is-present" : ""}`} data-lab-mode={mode} data-mode-canvas={mode} onKeyDown={onKey}>
       <nav className="msk-tabs" aria-label={`${page.title} modes`}>
         {tabs.map((item) => (
           <button key={item} type="button" className={item === mode ? "active" : ""} aria-pressed={item === mode} onClick={() => setMode(item)}>

@@ -145,7 +145,7 @@ export default function EquationsLab() {
   const challengeTarget = describeLinearSolution(origA, origB, origC, origD);
   const challengeOk = challengeTarget.kind === "one" && answersMatchChallenge(challengeAnswer, challengeTarget.value);
   return (
-    <div className="alg-page alg-eq-page">
+    <div className="alg-page alg-eq-page" data-mode-canvas={mode}>
       <AlgebraLabHeading subtitle="Solve equations and inequalities using the balance model. Explore operations, preserve equality, and check solutions." modes={modes} mode={mode} onMode={setMode} onUndo={history.undo} onRedo={history.redo} canUndo={history.canUndo} canRedo={history.canRedo} onReset={() => history.reset()} helpTitle={`${mode} help`} helpBody="Operations always apply to both sides. Enter 2x then Subtract to remove x terms. Auto-balance does not skip steps. 0x=0 is all reals; 0x=nonzero has no solution.">Equations &amp; Inequalities Lab</AlgebraLabHeading>
       <p className="sr-only" role="status">{notice || "Watch how the scale stays balanced at every step."}</p>
       <div className="alg-eq-layout">

@@ -38,3 +38,13 @@
 .cs-dark .cs-controls label,.cs-dark .cs-result-grid strong{color:#e8eef8}@media(max-width:1100px){.calc-enhancement-controls{grid-template-columns:repeat(3,1fr)}.calc-enhancement-grid{grid-template-columns:repeat(2,minmax(220px,1fr))}}@media(max-width:700px){.calc-enhancement-controls,.calc-enhancement-grid{grid-template-columns:1fr}}
 .cs-light-graph{cursor:grab}
 .cs-light-graph:active{cursor:grabbing}
+.cs-lab-page,
+.cs-lab-page .cs-graph,
+.cs-lab-page .cs-light-graph {
+  user-select: none;
+  -webkit-user-select: none;
+}
+.cs-lab-page .cs-graph,
+.cs-lab-page .cs-light-graph {
+  touch-action: none;
+}

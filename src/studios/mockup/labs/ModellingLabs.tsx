@@ -5,7 +5,6 @@ import { ChallengeBox, Field, LiveRow, Panel, SliderRow, StatusOk, clamp, fmt } 
 import { aic, fitMetrics, formatComparisonReport, parseCsvPairs, sampleGrowth } from "../../modelling/comparisonMath";
 import { astarRoute, shortestRoute, trafficGraph } from "../../modelling/networkMath";
 import { Phase1LabChrome } from "../../phase1/Phase1LabChrome";
-import StudioGraphWidget from "../../phase1/StudioGraphWidget";
 
 function Chrome({ page, children }: { page: StudioMockupPage; children: React.ReactNode | ((mode: string) => React.ReactNode) }) {
   return <Phase1LabChrome page={page}>{children}</Phase1LabChrome>;
@@ -72,7 +71,7 @@ function MotionLab({ page }: { page: StudioMockupPage }) {
   const rangeB = b.at(-1)?.x ?? 0;
   const apexA = Math.max(...a.map((p) => p.y));
   const apexB = Math.max(...b.map((p) => p.y));
-  const scaleX = 380 / Math.max(rangeA, 40);
+  const scaleX = 560 / Math.max(rangeA, 40);
   const path = (pts: typeof a) => pts.map((p) => `${24 + p.x * scaleX},${168 - p.y * 4.6}`).join(" ");
   return (
     <Chrome page={page}>
@@ -89,40 +88,73 @@ function MotionLab({ page }: { page: StudioMockupPage }) {
             <SliderRow label="Launch height, y₀" value={y0} min={0} max={10} step={0.1} onChange={setY0} unit="m" />
             <p className="msk-note">Mode {mode}: Model A ignores drag; Model B uses quadratic drag.</p>
           </Panel>
-          <section className="msk-panel msk-canvas">
-            <div className="msk-card-top"><h2>Simulation view</h2><span>2D · 3D</span></div>
-            <svg className="msk-graph" viewBox="0 0 420 190" role="img" aria-label="Projectile comparison">
-              <rect width="420" height="190" fill="#e8f7d8" />
-              <rect x="0" y="168" width="420" height="22" fill="#9ccc65" />
-              <polyline points={path(a)} fill="none" stroke="#147df2" strokeDasharray="6 4" strokeWidth="2.2" />
-              <polyline points={path(b)} fill="none" stroke="#8b45f4" strokeWidth="2.4" />
-              <rect x="330" y="118" width="70" height="50" fill="#fff" stroke="#64748b" />
-              <path d="M330 118 365 96 400 118" fill="#fff" stroke="#64748b" />
-              <circle cx={24 + at.x * scaleX} cy={168 - at.y * 4.6} r="6" fill="#147df2" />
-              <circle cx={24 + bt.x * scaleX} cy={168 - bt.y * 4.6} r="6" fill="#8b45f4" />
-              <text x="12" y="16" fill="#64748b" fontSize="10">y</text>
-              <text x="400" y="186" fill="#64748b" fontSize="10">x</text>
+          <section className="msk-panel msk-canvas" data-mode-canvas={mode} data-studio="modelling">
+            <div className="msk-card-top"><h2>Simulation view</h2><span>{mode === "Vehicle" ? "Road" : mode === "Pursuit" ? "Chase" : "2D · 3D"}</span></div>
+            <svg className="msk-graph is-interactive msk-model-field" viewBox="0 0 640 220" role="img" aria-label={`${mode} motion comparison`}>
+              <defs>
+                <linearGradient id="md-pitch" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stopColor="#d7f0b8" />
+                  <stop offset="1" stopColor="#b7de86" />
+                </linearGradient>
+              </defs>
+              <rect width="640" height="220" fill={mode === "Vehicle" ? "#e8eef4" : mode === "Pursuit" ? "#f4efe6" : "url(#md-pitch)"} />
+              {mode === "Vehicle" ? (
+                <>
+                  <rect x="0" y="150" width="640" height="70" fill="#94a3b8" />
+                  <line x1="20" y1="185" x2="620" y2="185" stroke="#fff" strokeDasharray="14 10" />
+                </>
+              ) : (
+                <>
+                  <rect x="0" y="176" width="640" height="44" fill="#8fbf4a" />
+                  <line x1="24" y1="176" x2="610" y2="176" stroke="#d9f0b2" strokeWidth="2" />
+                  <circle cx="46" cy="168" r="10" fill="#1d4ed8" />
+                  <rect x="42" y="150" width="8" height="18" fill="#1d4ed8" />
+                  <rect x="560" y="132" width="56" height="44" fill="none" stroke="#64748b" strokeWidth="3" />
+                  <line x1="560" y1="132" x2="616" y2="132" stroke="#64748b" strokeWidth="3" />
+                </>
+              )}
+              {mode === "Pursuit" ? (
+                <polyline points={a.map((p, i) => `${40 + i * 2.2},${150 - Math.sin(i / 6) * 28}`).join(" ")} fill="none" stroke="#f59e0b" strokeWidth="2" />
+              ) : null}
+              <polyline points={path(a)} fill="none" stroke="#147df2" strokeDasharray="7 5" strokeWidth="2.4" />
+              <polyline points={path(b)} fill="none" stroke="#8b45f4" strokeWidth="2.6" />
+              {a.filter((_, i) => i % 18 === 0).map((p) => <circle key={`a-${p.t}`} cx={24 + p.x * scaleX} cy={168 - p.y * 4.6} r="3" fill="#147df2" />)}
+              {b.filter((_, i) => i % 18 === 0).map((p) => <circle key={`b-${p.t}`} cx={24 + p.x * scaleX} cy={168 - p.y * 4.6} r="3" fill="#8b45f4" />)}
+              <circle cx={24 + at.x * scaleX} cy={168 - at.y * 4.6} r="7" fill="#147df2" />
+              <circle cx={24 + bt.x * scaleX} cy={168 - bt.y * 4.6} r="7" fill="#8b45f4" />
+              <text x="16" y="18" fill="#475569" fontSize="11">y (m)</text>
+              <text x="590" y="214" fill="#475569" fontSize="11">x (m)</text>
             </svg>
-            <StudioGraphWidget expressions={[`${v0}*cos(${th}*pi/180)*x`, `${y0}+${v0}*sin(${th}*pi/180)*x-0.5*${g}*x^2`]} labels={["x(t)", "y(t) vacuum"]} view={{ xMin: 0, xMax: Math.max(tMax, 1), yMin: -2, yMax: Math.max(apexA, 4) }} traceX={tPlay} onTraceChange={setTPlay} />
             <SliderRow label="t" value={tPlay} min={0} max={tMax} step={0.02} onChange={setTPlay} unit="s" />
             <div className="msk-model-minis">
               <MiniPlot points={a.map((p) => p.x)} color="#147df2" yMax={Math.max(rangeA, 1)} label="Position" />
               <MiniPlot points={a.map((p) => p.y)} color="#08b9dd" yMax={Math.max(apexA, 1)} label="Height" />
               <MiniPlot points={a.map((p) => p.vy)} color="#f59e0b" yMax={Math.max(v0, 1)} label="Velocity" />
             </div>
-            <p className="msk-note">RMSE (x): {fmt(Math.abs(rangeA - rangeB) * 0.02, 2)} m · Best fit: Model B (With Drag)</p>
+            <div className="msk-model-compare" aria-label="Model comparison">
+              <div><b>RMSE (x)</b>{fmt(Math.abs(rangeA - rangeB) * 0.02, 2)} m</div>
+              <div><b>Max error</b>{fmt(Math.abs(apexA - apexB), 2)} m</div>
+              <div><b>Overall R²</b>0.97</div>
+              <div><b>Best fit</b>Model B (With Drag)</div>
+            </div>
           </section>
           <aside className="msk-panel msk-live">
             <h2>Equations</h2>
             <p className="msk-formula">x(t) = v₀ cos θ · t</p>
             <p className="msk-formula">y(t) = y₀ + v₀ sin θ · t − ½ g t²</p>
+            {mode === "Drag" || mode === "Projectile" ? <p className="msk-formula">m dv/dt = −mg ĵ − k |v| v</p> : null}
             <h2>Live metrics</h2>
             <LiveRow color="#147df2" label="Current time" value={`${fmt(tPlay, 2)} s`} />
             <LiveRow color="#08b9dd" label="Range A / B" value={`${fmt(rangeA, 1)} / ${fmt(rangeB, 1)} m`} />
             <LiveRow color="#8b45f4" label="Max height A / B" value={`${fmt(apexA, 1)} / ${fmt(apexB, 1)} m`} />
             <LiveRow color="#f59e0b" label="Flight time" value={`${fmt(tMax, 2)} s`} />
             <LiveRow color="#10b981" label="Impact velocity" value={`${fmt(Math.hypot(bt.vx, bt.vy), 1)} m/s`} />
-            <StatusOk>Model B matches observed data better. Drag reduces range by {fmt(rangeA - rangeB, 1)} m.</StatusOk>
+            <ul className="msk-assumptions">
+              <li data-ok="true">Uniform gravity</li>
+              <li data-ok="true">Launched from a fixed point</li>
+              <li data-ok={mode === "Drag" || mode === "Vehicle" ? "true" : "false"}>{mode === "Drag" || mode === "Vehicle" ? "Air resistance in Model B" : "No wind in Model A"}</li>
+            </ul>
+            <StatusOk>Model B matches the observed data better. Drag reduces range by {fmt(rangeA - rangeB, 1)} m.</StatusOk>
             <ChallengeBox {...page.challenge} />
           </aside>
         </>
@@ -158,15 +190,31 @@ function PopulationLab({ page }: { page: StudioMockupPage }) {
             <SliderRow label="Time horizon T" value={T} min={10} max={80} step={1} onChange={setT} />
             <p className="msk-note">{mode}: exponential vs logistic{h > 0 ? " with harvesting" : ""}.</p>
           </Panel>
-          <section className="msk-panel msk-canvas">
+          <section className="msk-panel msk-canvas" data-mode-canvas={mode} data-studio="modelling">
             <h2>Population over time</h2>
             <svg className="msk-graph" viewBox="0 0 420 230" role="img" aria-label="Population models">
               <rect width="420" height="230" fill="#f8fbff" />
               {path(exp, "#08b9dd")}
               {path(log, "#8b45f4")}
               <line x1="24" y1={210 - 170 / 1.2} x2="400" y2={210 - 170 / 1.2} stroke="#94a3b8" strokeDasharray="4 3" />
+              <text x="300" y={206 - 170 / 1.2} fill="#64748b" fontSize="11">K = {fmt(k, 0)}</text>
             </svg>
-            <StudioGraphWidget expressions={[`${p0}*e^(${r}*x)`, `${k}/(1+((${k}/${p0})-1)*e^(-${r}*x))`]} labels={["exponential", "logistic"]} view={{ xMin: 0, xMax: T, yMin: 0, yMax: Math.max(k * 1.1, 100) }} />
+            <svg className="msk-graph" viewBox="0 0 420 140" role="img" aria-label={`${mode} phase plot`}>
+              <rect width="420" height="140" fill="#f8fbff" />
+              {mode === "Age Structured" ? (
+                <>
+                  <rect x="40" y="40" width="70" height="60" fill="rgba(20,125,242,.2)" stroke="#147df2" />
+                  <rect x="170" y="40" width="70" height="60" fill="rgba(139,69,244,.2)" stroke="#8b45f4" />
+                  <rect x="300" y="40" width="70" height="60" fill="rgba(16,185,129,.2)" stroke="#10b981" />
+                  <text x="52" y="75" fontSize="11">Youth</text>
+                  <text x="180" y="75" fontSize="11">Adult</text>
+                  <text x="314" y="75" fontSize="11">Elder</text>
+                </>
+              ) : (
+                <path d={`M30 110 Q 140 ${mode === "Harvesting" ? 40 : 20} 390 90`} fill="none" stroke={mode === "Exponential" ? "#08b9dd" : "#8b45f4"} strokeWidth="2.2" />
+              )}
+              <text x="16" y="20" fill="#475569" fontSize="11">{mode === "Exponential" ? "dP/dt vs P is a ray" : mode === "Harvesting" ? "Harvest shifts equilibrium" : "Logistic parabola"}</text>
+            </svg>
           </section>
           <aside className="msk-panel msk-live">
             <h2>Equations & models</h2>
@@ -229,7 +277,7 @@ function EpidemicLab({ page }: { page: StudioMockupPage }) {
             <SliderRow label="Population N" value={n} min={1000} max={1000000} step={1000} onChange={setN} />
             <p className="msk-note">{mode} scenario. S₀ = {fmt(n - i0, 0)}</p>
           </Panel>
-          <section className="msk-panel msk-canvas">
+          <section className="msk-panel msk-canvas" data-mode-canvas={mode} data-studio="modelling">
             <h2>Compartment flow (live)</h2>
             <div className="msk-sir-flow" aria-label="Compartment flow animation">
               <b className="is-s">S {fmt(last.s, 0)}</b>
@@ -297,7 +345,7 @@ function FinanceLab({ page }: { page: StudioMockupPage }) {
             <SliderRow label="Time horizon" value={years} min={1} max={50} step={1} onChange={setYears} unit="years" />
             <p className="msk-note">{mode}: monthly compounding (12×).</p>
           </Panel>
-          <section className="msk-panel msk-canvas">
+          <section className="msk-panel msk-canvas" data-mode-canvas={mode} data-studio="modelling">
             <h2>Account growth over time</h2>
             <svg className="msk-graph" viewBox="0 0 440 220" role="img" aria-label="Nominal vs real value">
               <rect width="440" height="220" fill="#f8fbff" />
@@ -340,7 +388,7 @@ function OptimizationLab({ page }: { page: StudioMockupPage }) {
             <SliderRow label="Machine (hrs)" value={machine} min={40} max={140} step={1} onChange={setMachine} />
             <p className="msk-note">{mode}: feasible region updates with resources.</p>
           </Panel>
-          <section className="msk-panel msk-canvas">
+          <section className="msk-panel msk-canvas" data-mode-canvas={mode} data-studio="modelling">
             <h2>Feasible region & objective</h2>
             <svg className="msk-graph" viewBox="0 0 420 260" role="img" aria-label="LP feasible region">
               <rect width="420" height="260" fill="#f8fbff" />
@@ -388,7 +436,7 @@ function NetworksLab({ page }: { page: StudioMockupPage }) {
         <SliderRow label="Traffic" value={traffic} min={0} max={1} step={0.01} onChange={setTraffic} />
         <SliderRow label="Road closures" value={closed} min={0} max={0.5} step={0.01} onChange={setClosed} />
       </Panel>
-      <section className="msk-panel msk-canvas">
+      <section className="msk-panel msk-canvas" data-mode-canvas={mode} data-studio="modelling">
         <h2>City network</h2>
         <svg className="msk-graph" viewBox="0 0 420 280" role="img" aria-label="Routing map">
           <rect width="420" height="280" fill="#eef4f0" />
@@ -438,7 +486,7 @@ function RegressionLab({ page }: { page: StudioMockupPage }) {
             <SliderRow label="Predict at x" value={xPred} min={-5} max={40} step={1} onChange={setXPred} />
             <p className="msk-note">{mode}: Bike Sharing (Hourly).</p>
           </Panel>
-          <section className="msk-panel msk-canvas">
+          <section className="msk-panel msk-canvas" data-mode-canvas={mode} data-studio="modelling">
             <h2>Scatter & fit</h2>
             <svg className="msk-graph" viewBox="0 0 440 240" role="img" aria-label="Regression fit">
               <rect width="440" height="240" fill="#f8fbff" />
@@ -484,7 +532,7 @@ function PeriodicLab({ page }: { page: StudioMockupPage }) {
             <SliderRow label="A₂ harmonic" value={a2} min={0} max={0.8} step={0.01} onChange={setA2} />
             <p className="msk-note">{mode}: sinusoidal vs 2-term harmonic.</p>
           </Panel>
-          <section className="msk-panel msk-canvas">
+          <section className="msk-panel msk-canvas" data-mode-canvas={mode} data-studio="modelling">
             <h2>Tide time series & model comparison</h2>
             <svg className="msk-graph" viewBox="0 0 440 200" role="img" aria-label="Tide models">
               <rect width="440" height="200" fill="#f8fbff" />
@@ -535,7 +583,7 @@ function NumericalLab({ page }: { page: StudioMockupPage }) {
             <SliderRow label="Sample size N" value={n} min={50} max={2000} step={50} onChange={setN} />
             <SliderRow label="Random seed" value={seed} min={1} max={99999} step={1} onChange={setSeed} />
           </Panel>
-          <section className="msk-panel msk-canvas">
+          <section className="msk-panel msk-canvas" data-mode-canvas={mode} data-studio="modelling">
             <h2>Monte Carlo simulation</h2>
             <svg className="msk-graph" viewBox="0 0 240 240" role="img" aria-label="Pi darts">
               <rect width="240" height="240" fill="#f8fbff" />

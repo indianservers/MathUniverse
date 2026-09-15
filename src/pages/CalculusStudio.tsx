@@ -448,7 +448,7 @@ function StudioLab({ page, reduced }: { page: Exclude<CalculusStudioPage, "home"
     if (event.key === "ArrowLeft") chooseMode(meta.modes[(index - 1 + meta.modes.length) % meta.modes.length].id);
   };
   return (
-    <div className={`cs-lab-page cs-lab-${page}`} data-lab-mode={mode}>
+    <div className={`cs-lab-page cs-lab-${page}`} data-lab-mode={mode} data-mode-canvas={mode}>
       <div className="cs-lab-toolbar">
         <nav className="cs-tabs" role="tablist" aria-label={`${meta.title} modes`} onKeyDown={onTabKey}>
           {meta.modes.map((item) => (

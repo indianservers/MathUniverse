@@ -132,7 +132,7 @@ export default function CombinatoricsLab({ page }: { page: StudioMockupPage }) {
   };
 
   return (
-    <div className="combo-lab">
+    <div className="combo-lab" data-lab-mode={meta.label} data-mode-canvas={meta.label}>
       <div className="combo-tabs" role="tablist" aria-label="Combinatorics Lab topics" onKeyDown={onKey}>
         {COMBO_MODES.map((item) => (
           <button
