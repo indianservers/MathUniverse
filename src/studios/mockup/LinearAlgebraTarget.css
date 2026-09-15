@@ -6,6 +6,33 @@
   --la-ink: #0b1b3f;
   height: 100%;
   min-height: 100dvh;
+  color-scheme: light;
+}
+
+.msk-linear-algebra input,
+.msk-linear-algebra select,
+.msk-linear-algebra textarea,
+.msk-linear-algebra output {
+  color-scheme: light;
+  color: #071641;
+  background: #fff;
+  -webkit-text-fill-color: #071641;
+}
+
+.msk-linear-algebra input[type="number"] {
+  background: #f8fbff;
+  border: 1px solid #dce7f4;
+  border-radius: 8px;
+}
+
+.msk-linear-algebra input[type="range"] {
+  accent-color: #147df2;
+}
+
+.msk-linear-algebra input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #147df2;
 }
 
 .msk-linear-algebra .msk-home {
@@ -542,11 +569,12 @@
 
 .msk-linear-algebra .la-step {
   display: grid;
-  grid-template-columns: 16px 28px 1fr 28px;
+  grid-template-columns: 22px 32px minmax(0, 1fr) 32px;
   align-items: center;
   gap: 6px;
   font-size: 12px;
   font-weight: 800;
+  color: #334155;
 }
 
 .msk-linear-algebra .la-step button {

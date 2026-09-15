@@ -360,13 +360,15 @@ function MatricesLab({ page }: { page: StudioMockupPage }) {
               <svg className="msk-graph" viewBox="0 0 520 360" role="img" aria-label="Unit square through A then B">
                 <rect width="520" height="360" fill="#f7fbff" />
                 <ArrowDefs />
-                <AxisGrid ox={160} oy={240} unit={46} dark={false} />
-                <polygon points={`${80},${240} ${126},${240} ${126},${194} ${80},${194}`} fill="none" stroke="#94a3b8" strokeDasharray="4 3" />
-                <text x="70" y="184" fontSize="11" fill="#64748b">Unit square before</text>
-                <polygon points={poly(MA, 220, 240, 40)} fill="rgba(16,185,129,.18)" stroke={LA_D} />
-                <polygon points={poly(MC ?? MA, 340, 240, 36)} fill="rgba(139,69,244,.2)" stroke={LA_B} />
-                <text x="210" y="120" fontSize="12" fill={LA_D}>After A</text>
-                <text x="330" y="88" fontSize="12" fill={LA_B}>After A × B</text>
+                <AxisGrid ox={280} oy={250} unit={38} dark={false} />
+                <polygon points="48,250 96,250 96,202 48,202" fill="none" stroke="#38bdf8" strokeDasharray="5 4" />
+                <text x="40" y="190" fontSize="11" fill="#64748b">Unit square before</text>
+                <polygon points={poly([[1, 0.2], [0.15, 1.1]], 150, 250, 42)} fill="rgba(16,185,129,.2)" stroke={LA_D} />
+                <text x="158" y="148" fontSize="12" fill={LA_D}>After A</text>
+                <polygon points={poly(MC ?? MA, 290, 250, 48)} fill="rgba(139,69,244,.22)" stroke={LA_B} />
+                <text x="340" y="118" fontSize="12" fill={LA_B}>After A × B</text>
+                <path d="M102 226 L142 226" stroke="#94a3b8" markerEnd="url(#la-c)" />
+                <path d="M232 226 L278 226" stroke="#94a3b8" markerEnd="url(#la-c)" />
               </svg>
               <p className="la-eq">Det(A) = {da == null ? "—" : fmt(da, 2)} · Det(B) = {db == null ? "—" : fmt(db, 2)} · Det(A × B) = {MC ? fmt(det2(MC), 2) : "—"}</p>
             </Canvas>
@@ -628,12 +630,17 @@ function DeterminantsLab({ page }: { page: StudioMockupPage }) {
             <svg className="msk-graph is-interactive" viewBox="0 0 640 360" role="img" aria-label="Determinant area">
               <rect width="640" height="360" fill="#f7fbff" />
               <ArrowDefs />
-              <AxisGrid ox={320} oy={200} unit={42} dark={false} />
-              {showUnit ? <polygon points={poly(identity2(), 320, 200, 42)} fill="rgba(20,125,242,.16)" stroke={LA_A} /> : null}
-              <polygon points={poly(A, 320, 200, 42)} fill={det >= 0 ? "rgba(139,69,244,.2)" : "rgba(239,68,68,.2)"} stroke={LA_B} />
-              <VectorRay x1={320} y1={200} x2={320 + v1[0] * 42} y2={200 - v1[1] * 42} color={LA_B} marker="la-b" />
-              <VectorRay x1={320} y1={200} x2={320 + v2[0] * 42} y2={200 - v2[1] * 42} color={LA_C} marker="la-c" />
-              <text x="340" y="90" fontSize="13" fill={LA_B}>Area = {fmt(Math.abs(det), 3)}</text>
+              <AxisGrid ox={180} oy={210} unit={36} dark={false} />
+              <AxisGrid ox={430} oy={210} unit={36} dark={false} />
+              {showUnit ? <polygon points={poly(identity2(), 180, 210, 36)} fill="rgba(20,125,242,.18)" stroke={LA_A} /> : null}
+              <polygon points={poly(A, 430, 210, 36)} fill={det >= 0 ? "rgba(139,69,244,.2)" : "rgba(239,68,68,.2)"} stroke={LA_B} />
+              <VectorRay x1={180} y1={210} x2={180 + 36} y2={210} color={LA_A} marker="la-a" />
+              <VectorRay x1={180} y1={210} x2={180} y2={210 - 36} color={LA_C} marker="la-c" />
+              <VectorRay x1={430} y1={210} x2={430 + v1[0] * 36} y2={210 - v1[1] * 36} color={LA_B} marker="la-b" />
+              <VectorRay x1={430} y1={210} x2={430 + v2[0] * 36} y2={210 - v2[1] * 36} color={LA_C} marker="la-c" />
+              <text x="150" y="44" fontSize="12" fill={LA_A}>Original basis B · det(B) = 1.000</text>
+              <text x="390" y="44" fontSize="12" fill={LA_D}>Transformed basis AB · det(AB) = {fmt(det, 3)}</text>
+              <text x="448" y="88" fontSize="13" fill={LA_B}>Area = {fmt(Math.abs(det), 3)}</text>
             </svg>
             <div className="la-kpis" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 8, marginTop: 10 }}>
               <div><small>Area (det B)</small><b>1.000</b></div>
@@ -706,9 +713,10 @@ function EigenLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNode }
                     const [dx, dy] = apply2(M, x * 0.12, y * 0.12);
                     return <line key={`${i}-${j}`} x1={280 + x * 28} y1={200 - y * 28} x2={280 + x * 28 + dx * 18} y2={200 - y * 28 - dy * 18} stroke="#7dd3fc" />;
                   }))}
+                  <circle cx="280" cy="200" r="70" fill="none" stroke="#38bdf8" />
                   {mode === "Phase Portrait" ? paths.map((pts, i) => (
                     <polyline key={i} fill="none" stroke={LA_B} opacity="0.45" points={pts.map(([x, y]) => `${280 + x * 36},${200 - y * 36}`).join(" ")} />
-                  )) : <ellipse cx="280" cy="200" rx={42 * Math.abs(spec.values[0] ?? 1)} ry={42 * Math.abs(spec.values[1] ?? 1)} fill="rgba(139,69,244,.12)" stroke={LA_B} />}
+                  )) : <ellipse cx="280" cy="200" rx={70 * Math.abs(spec.values[0] ?? 1) / 2} ry={70 * Math.abs(spec.values[1] ?? 1) / 2} fill="rgba(139,69,244,.14)" stroke={LA_B} strokeDasharray="6 4" />}
                   <line x1={280 - e1[0] / n1 * 160} y1={200 + e1[1] / n1 * 160} x2={280 + e1[0] / n1 * 160} y2={200 - e1[1] / n1 * 160} stroke={LA_A} strokeDasharray="5 4" />
                   <line x1={280 - e2[0] / n2 * 160} y1={200 + e2[1] / n2 * 160} x2={280 + e2[0] / n2 * 160} y2={200 - e2[1] / n2 * 160} stroke={LA_C} />
                 </svg>
