@@ -8,16 +8,16 @@ export type StudioLabMeta = {
 };
 
 export const LINEAR_LAB_META: Record<string, StudioLabMeta> = {
-  vectors: { outcome: "Drag vectors and read dot, cross, and projection live.", minutes: 10, level: "Start here" },
-  matrices: { outcome: "Multiply and invert matrices as maps on the plane.", minutes: 10, level: "Core", prereq: "Needs Vectors" },
-  "row-reduction": { outcome: "Watch pivots turn a system into RREF.", minutes: 10, level: "Core", prereq: "Needs Matrices" },
-  "linear-transforms": { outcome: "See a matrix stretch, rotate, and shear the unit square.", minutes: 10, level: "Core", prereq: "Needs Matrices" },
-  determinants: { outcome: "Read signed area as the determinant of a map.", minutes: 8, level: "Next", prereq: "Needs Transforms" },
-  "vector-spaces": { outcome: "Grow a spanning set until it becomes a basis.", minutes: 10, level: "Next", prereq: "Needs Vectors" },
-  eigenvectors: { outcome: "Find directions a linear map only scales.", minutes: 12, level: "Next", prereq: "Needs Transforms" },
-  orthogonality: { outcome: "Split a vector into parallel and perpendicular parts.", minutes: 8, level: "Next", prereq: "Needs Vector Spaces" },
-  "least-squares": { outcome: "Fit a line whose residual is orthogonal to the columns.", minutes: 10, level: "Apply", prereq: "Needs Orthogonality" },
-  playground: { outcome: "Compose 2D and 3D maps on a shared transform stack.", minutes: 8, level: "Extend", prereq: "Needs Transforms" },
+  vectors: { outcome: "Add, scale, and explore vector operations.", minutes: 10, level: "Start here" },
+  matrices: { outcome: "Work with matrices and their properties.", minutes: 10, level: "Core" },
+  "row-reduction": { outcome: "Solve Ax = b and explore solution sets.", minutes: 10, level: "Core" },
+  "linear-transforms": { outcome: "Visualize linear maps in 2D and 3D.", minutes: 10, level: "Core" },
+  determinants: { outcome: "Compute determinants and understand scaling.", minutes: 8, level: "Next" },
+  "vector-spaces": { outcome: "Explore subspaces, bases, and dimension.", minutes: 10, level: "Next" },
+  eigenvectors: { outcome: "Find eigenvalues and visualize eigenvectors.", minutes: 12, level: "Next" },
+  orthogonality: { outcome: "Orthogonal bases, projections, and more.", minutes: 8, level: "Next" },
+  "least-squares": { outcome: "Best-fit solutions to overdetermined systems.", minutes: 10, level: "Apply" },
+  playground: { outcome: "Experiment freely in 2D and 3D space.", minutes: 8, level: "Extend" },
 };
 
 export const MODEL_LAB_META: Record<string, StudioLabMeta> = {

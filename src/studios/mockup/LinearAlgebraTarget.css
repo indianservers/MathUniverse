@@ -252,6 +252,256 @@
   font-weight: 700;
 }
 
+.msk-linear-algebra .la-home-target {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.msk-linear-algebra .la-topic-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.msk-linear-algebra .la-topic-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 248px;
+  padding: 14px 14px 12px;
+  border: 1px solid #dce7f4;
+  border-radius: 18px;
+  background: #fff;
+  text-decoration: none;
+  color: #071641;
+  box-shadow: 0 10px 24px #3a5b7f0c;
+}
+
+.msk-linear-algebra .la-topic-card:hover {
+  transform: translateY(-2px);
+  border-color: #a8dff2;
+}
+
+.msk-linear-algebra .la-topic-n {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: #147df2;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.msk-linear-algebra .la-topic-card.is-violet .la-topic-n { background: #8b45f4; }
+.msk-linear-algebra .la-topic-card.is-cyan .la-topic-n { background: #08b9dd; }
+.msk-linear-algebra .la-topic-card.is-lilac .la-topic-n { background: #a78bfa; }
+.msk-linear-algebra .la-topic-card.is-amber .la-topic-n { background: #f59e0b; }
+.msk-linear-algebra .la-topic-card.is-mint .la-topic-n { background: #10b981; }
+
+.msk-linear-algebra .la-topic-card b {
+  margin-top: 8px;
+  font-size: 15px;
+}
+
+.msk-linear-algebra .la-topic-card small {
+  margin-top: 4px;
+  color: #536381;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.msk-linear-algebra .la-topic-card .msk-art {
+  width: 100%;
+  height: 92px;
+  margin: 10px 0 8px;
+}
+
+.msk-linear-algebra .la-topic-card em {
+  margin-top: auto;
+  font-style: normal;
+  font-size: 12px;
+  font-weight: 800;
+  color: #147df2;
+}
+
+.msk-linear-algebra .la-topic-card.is-violet em { color: #8b45f4; }
+.msk-linear-algebra .la-topic-card.is-cyan em { color: #08b9dd; }
+.msk-linear-algebra .la-topic-card.is-lilac em { color: #7c3aed; }
+.msk-linear-algebra .la-topic-card.is-amber em { color: #d97706; }
+.msk-linear-algebra .la-topic-card.is-mint em { color: #059669; }
+
+.msk-linear-algebra .la-home-dock {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1.15fr;
+  gap: 12px;
+}
+
+.msk-linear-algebra .la-home-dock > section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 88px;
+  padding: 14px 16px;
+  border: 1px solid #dce7f4;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 8px 22px #3a5b7f0c;
+}
+
+.msk-linear-algebra .la-home-dock svg {
+  width: 28px;
+  height: 28px;
+  flex: none;
+  color: #147df2;
+}
+
+.msk-linear-algebra .la-dock-challenge svg { color: #7c3aed; }
+
+.msk-linear-algebra .la-home-dock strong {
+  display: block;
+  font-size: 14px;
+}
+
+.msk-linear-algebra .la-home-dock p {
+  margin: 4px 0 0;
+  color: #536381;
+  font-size: 12px;
+}
+
+.msk-linear-algebra .la-dock-continue .msk-cta {
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+.msk-linear-algebra .la-dock-journey {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto auto;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.msk-linear-algebra .la-dock-journey strong,
+.msk-linear-algebra .la-dock-journey p,
+.msk-linear-algebra .la-dock-journey .msk-progress {
+  grid-column: 1;
+}
+
+.msk-linear-algebra .la-dock-journey b {
+  grid-column: 2;
+  grid-row: 3;
+  color: #147df2;
+  font-size: 18px;
+}
+
+.msk-linear-algebra .la-dock-link {
+  margin-left: auto;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: #f3e8ff;
+  color: #6d28d9;
+  font-size: 12px;
+  font-weight: 800;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.msk-linear-algebra .la-stat-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 36px;
+  padding: 0 12px;
+  border: 1px solid #dce7f4;
+  border-radius: 999px;
+  background: #fff;
+  color: #163056;
+  font-size: 12px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.msk-linear-algebra .la-stat-chip svg {
+  width: 15px;
+  height: 15px;
+  color: #f59e0b;
+}
+
+.msk-linear-algebra.is-lab .msk-dash-banner,
+.msk-linear-algebra.is-lab .p1-toolbar {
+  display: none;
+}
+
+.msk-linear-algebra.is-lab .msk-tabs {
+  width: fit-content;
+  margin: 0 auto 14px;
+  padding: 4px;
+  border: 1px solid #dce7f4;
+  border-radius: 999px;
+  border-bottom: 1px solid #dce7f4;
+  background: #fff;
+}
+
+.msk-linear-algebra.is-lab .msk-tabs button {
+  min-height: 34px;
+  padding: 0 14px;
+  border-radius: 999px;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.msk-linear-algebra.is-lab .msk-tabs button.active {
+  color: #fff;
+  background: linear-gradient(100deg, #22c5ea, #3b82f6);
+  box-shadow: none;
+}
+
+.msk-linear-algebra .msk-panel,
+.msk-linear-algebra .msk-graph {
+  border-radius: 16px;
+}
+
+.msk-linear-algebra .msk-strip-cards > div:nth-child(1) svg { color: #147df2; }
+.msk-linear-algebra .msk-strip-cards > div:nth-child(2) svg { color: #a855f7; }
+.msk-linear-algebra .msk-strip-cards > div:nth-child(3) svg { color: #f97316; }
+.msk-linear-algebra .msk-strip-cards > div:nth-child(4) svg { color: #0ea5e9; }
+.msk-linear-algebra .msk-strip-cards > div:nth-child(5) svg { color: #ec4899; }
+
+.msk-linear-algebra,
+.msk-linear-algebra.is-teacher {
+  --ink: #071641;
+  --muted: #536381;
+  --line: #dce7f4;
+  background:
+    radial-gradient(circle at 58% -10%, #ddfbff 0, transparent 31%),
+    radial-gradient(circle at 91% 0, #f3e5ff 0, transparent 31%),
+    #f9fcff;
+  color: #071641;
+}
+
+:is(.dark, .high-contrast) .msk-linear-algebra {
+  --ink: #071641;
+  --muted: #536381;
+  --line: #dce7f4;
+  background:
+    radial-gradient(circle at 58% -10%, #ddfbff 0, transparent 31%),
+    radial-gradient(circle at 91% 0, #f3e5ff 0, transparent 31%),
+    #f9fcff;
+  color: #071641;
+}
+
+@media (max-width: 1180px) {
+  .msk-linear-algebra .la-topic-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .msk-linear-algebra .la-home-dock {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .msk-linear-algebra * {
     animation: none !important;

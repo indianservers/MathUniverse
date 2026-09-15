@@ -84,7 +84,6 @@ import {
 import {
   continueLinearHref,
   LINEAR_SEARCH_ALIASES,
-  markLinearComplete,
   markLinearVisit,
   useLinearSession,
   writeLinearSession,
@@ -204,8 +203,27 @@ export function MockupLearningStrip({ page, mode }: { page: StudioMockupPage; mo
   );
 }
 
+function LinearAlgebraNavIcon({ id }: { id: string }) {
+  const glyphs: Record<string, ReactNode> = {
+    home: <path d="M4 11.2 12 4l8 7.2V20h-6v-6H10v6H4Z" />,
+    vectors: <path d="M3.2 11.2 20.6 3.4 12.8 20.8l-2.2-6.6Z" />,
+    matrices: <path d="M5 5h6v6H5Zm8 0h6v6h-6ZM5 13h6v6H5Zm8 0h6v6h-6Z" />,
+    "row-reduction": <><path d="M4 6h16v12H4Z" fillOpacity=".18" /><path d="M4 10h16M4 14h16M9 6v12" fill="none" /></>,
+    "linear-transforms": <><path d="M4 15h7v5H4Z" /><path d="M13 8h7v5h-7Z" fillOpacity=".55" /><path d="M11 16.5 14.5 11" fill="none" /></>,
+    determinants: <path d="M12 4 20 19H4Z" />,
+    "vector-spaces": <path d="M12 3 20 7.5v9L12 21 4 16.5v-9Z" />,
+    eigenvectors: <path d="M8 20 12 4l4 16M9.2 13h5.6" fill="none" strokeWidth="2.2" />,
+    orthogonality: <path d="M5 19V5h3v11h11v3Z" />,
+    "least-squares": <><path d="M4 18 9 12l4 3 7-9" fill="none" strokeWidth="2" /><circle cx="9" cy="12" r="1.4" /><circle cx="13" cy="15" r="1.4" /><circle cx="20" cy="6" r="1.4" /></>,
+    playground: <><path d="M7 8h10v10H7Z" fillOpacity=".2" /><path d="M7 8 12 4l5 4v10l-5 4-5-4Z" /></>,
+  };
+  const glyph = glyphs[id] ?? glyphs.playground;
+  return <svg viewBox="0 0 24 24" aria-hidden="true"><g fill="currentColor" fillOpacity=".92" stroke="currentColor" strokeWidth="1.15" strokeLinejoin="round">{glyph}</g></svg>;
+}
+
 function NavIcon({ id, studio }: { id: string; studio?: string }) {
   if (studio === "modelling") return <ModellingNavIcon id={id} />;
+  if (studio === "linear-algebra") return <LinearAlgebraNavIcon id={id} />;
   const glyphId = studio === "discrete" && id === "graphs" ? "network-graph" : id;
   const filled: Record<string, ReactNode> = {
     home: <path d="M4 11.2 12 4l8 7.2V20h-6v-6H10v6H4Z" />,
@@ -385,7 +403,7 @@ export function MockupStudioChrome({
   }, [page.id]);
 
   return (
-    <main className={`msk-shell msk-${studio.id}${open ? " is-open" : ""}${(isTrig && session.theme === "dark") || (isGeo && geoSession.theme === "dark") || (isLinear && linearSession.theme === "dark") ? " is-dark" : ""}${(isTrig && session.teacherMode) || (isGeo && geoSession.teacherMode) || (isDiscrete && discreteTeacher) || (isLinear && linearSession.teacherMode) ? " is-teacher" : ""}${isLinear && linearSession.boardMode ? " is-board" : ""}${(isTrig || isModel || isGeo || isDiscrete || isLinear || isComplex) && page.id !== "home" ? " is-lab" : ""}`}>
+    <main className={`msk-shell msk-${studio.id}${open ? " is-open" : ""}${(isTrig && session.theme === "dark") || (isGeo && geoSession.theme === "dark") ? " is-dark" : ""}${(isTrig && session.teacherMode) || (isGeo && geoSession.teacherMode) || (isDiscrete && discreteTeacher) || (isLinear && linearSession.teacherMode && page.id !== "home") ? " is-teacher" : ""}${(isTrig || isModel || isGeo || isDiscrete || isLinear || isComplex) && page.id !== "home" ? " is-lab" : ""}`}>
       {open ? <button className="msk-backdrop" type="button" aria-label="Close menu" onClick={() => setOpen(false)} /> : null}
       <aside className="msk-sidebar">
         <Link className="msk-brand" to={studio.basePath}>
@@ -405,8 +423,8 @@ export function MockupStudioChrome({
         <header className="msk-top">
           <button className="msk-menu" type="button" aria-label="Open studio menu" onClick={() => setOpen(true)}><Menu /></button>
           <div className="msk-title-block">
-            <StudioHomeButtons studioTo={studio.basePath} />
-            {(isModel || isGeo) && page.id === "home" ? null : (
+            {isLinear ? null : <StudioHomeButtons studioTo={studio.basePath} />}
+            {(isModel || isGeo || isLinear) && page.id === "home" ? null : isLinear ? null : (
               <StudioBreadcrumb crumbs={mathStudioCrumbs(
                 { label: studio.name.replace(" Studio", ""), to: studio.basePath },
                 page.id === "home" ? undefined : { label: page.label, to: page.route },
@@ -460,26 +478,7 @@ export function MockupStudioChrome({
                 <CheckCircle2 />
               </button>
             ) : null}
-            {page.id !== "home" ? <StudioCanvasToolbar /> : null}
-            {isLinear && page.id !== "home" ? (
-              <button
-                type="button"
-                className={`msk-complete-icon${linearSession.completed.includes(page.id) ? " is-complete" : ""}`}
-                aria-label={linearSession.completed.includes(page.id) ? `${page.label} complete` : `Mark ${page.label} complete`}
-                onClick={() => markLinearComplete(page.id)}
-              >
-                <CheckCircle2 />
-              </button>
-            ) : null}
-            {isLinear ? (
-              <>
-                <button type="button" aria-pressed={linearSession.darkCanvas} className={`la-chrome-toggle${linearSession.darkCanvas ? " active" : ""}`} onClick={() => writeLinearSession({ darkCanvas: !linearSession.darkCanvas })}>Dark canvas</button>
-                <button type="button" aria-pressed={linearSession.boardMode} className={`la-chrome-toggle${linearSession.boardMode ? " active" : ""}`} onClick={() => writeLinearSession({ boardMode: !linearSession.boardMode })}>Board mode</button>
-                <button type="button" aria-label={linearSession.theme === "dark" ? "Switch to light theme" : "Switch to dark theme"} onClick={() => writeLinearSession({ theme: linearSession.theme === "dark" ? "light" : "dark" })}>
-                  {linearSession.theme === "dark" ? <Sun /> : <Moon />}
-                </button>
-              </>
-            ) : null}
+            {page.id !== "home" && !isLinear ? <StudioCanvasToolbar /> : null}
             {isTrig ? (
               <div className="msk-units" role="group" aria-label="Angle units">
                 <button type="button" className={`msk-units-deg${session.units === "deg" ? " active" : ""}`} aria-pressed={session.units === "deg"} onClick={() => writeTrigSession({ units: "deg" })}>Deg</button>
@@ -508,7 +507,15 @@ export function MockupStudioChrome({
                 ))}
               </ul>
             ) : null}
-            {isNumberSense ? (
+            {isLinear ? (
+              <>
+                <span className="la-stat-chip" aria-label="Streak 0"><Flame />0</span>
+                <span className="la-stat-chip" aria-label="0 XP"><Star />0 XP</span>
+                {page.id === "home"
+                  ? <a className="la-stat-chip" href="#la-journey"><Compass />Journey</a>
+                  : <Link className="la-stat-chip" to="/linear-algebra#la-journey"><Compass />Journey</Link>}
+              </>
+            ) : isNumberSense ? (
               <>
                 <button type="button" aria-label="Streak"><Flame /></button>
                 <span><Star />{numberSenseSession.xp} XP</span>
@@ -533,9 +540,11 @@ export function MockupStudioChrome({
                 Teacher mode
               </button>
             ) : isLinear ? (
-              <button type="button" className={`msk-teacher${linearSession.teacherMode ? " active" : ""}`} aria-pressed={linearSession.teacherMode} onClick={() => writeLinearSession({ teacherMode: !linearSession.teacherMode })}>
-                Teacher mode
-              </button>
+              page.id === "home" ? null : (
+                <button type="button" className={`msk-teacher${linearSession.teacherMode ? " active" : ""}`} aria-pressed={linearSession.teacherMode} onClick={() => writeLinearSession({ teacherMode: !linearSession.teacherMode })}>
+                  Teacher mode
+                </button>
+              )
             ) : isNumberSense ? (
               <button type="button" className={`msk-teacher${numberSenseSession.teacherMode ? " active" : ""}`} aria-pressed={numberSenseSession.teacherMode} aria-label="Teacher mode" onClick={() => writeNumberSenseSession({ teacherMode: !numberSenseSession.teacherMode })}>
                 Teacher mode
@@ -560,7 +569,7 @@ export function MockupStudioChrome({
             {isModel ? <button type="button" className="msk-avatar" aria-label="Account"><User /></button> : null}
           </div>
         </header>
-        {(isTrig || isGeo || isDiscrete || isLinear) && page.id !== "home" ? (
+        {(isTrig || isGeo || isDiscrete) && page.id !== "home" ? (
           <nav className="msk-topic-strip" aria-label="Topics" ref={stripRef}>
             {labs.map((item) => (
               <NavLink key={item.id} to={item.route} className={({ isActive }) => isActive ? "active" : ""}>{item.label}</NavLink>
@@ -582,7 +591,7 @@ export function MockupStudioChrome({
             <button type="button" onClick={() => writeNumberSenseSession({ hintDismissed: true })}>Dismiss</button>
           </p>
         ) : null}
-        {(isTrig && session.teacherMode) || (isGeo && geoSession.teacherMode) || (isDiscrete && discreteTeacher) || (isLinear && linearSession.teacherMode) ? <p className="msk-teacher-banner">Teacher view: exact values and answers stay visible. Students do not see this banner.</p> : null}
+        {(isTrig && session.teacherMode) || (isGeo && geoSession.teacherMode) || (isDiscrete && discreteTeacher) || (isLinear && page.id !== "home" && linearSession.teacherMode) ? <p className="msk-teacher-banner">Teacher view: exact values and answers stay visible. Students do not see this banner.</p> : null}
         {children}
         {helpOpen ? (
           <div className="msk-help" role="dialog" aria-label="Keyboard shortcuts">

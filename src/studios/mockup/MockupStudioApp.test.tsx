@@ -22,10 +22,14 @@ describe("MockupStudioApp", () => {
     expect(trig).toContain("Open unit circle");
     expect(trig).toContain("Drag the ray");
     const lin = renderToString(<MemoryRouter initialEntries={["/linear-algebra"]}><MockupStudioApp studioId="linear-algebra" /></MemoryRouter>);
-    expect(lin).toContain("Open lab");
-    expect(lin).toContain("Eigen");
-    expect(lin).toContain("Start here");
-    expect(lin).toContain("Dot · Cross · Projections");
+    expect(lin).toContain("Open Vectors");
+    expect(lin).toContain("Open Eigenvectors");
+    expect(lin).toContain("Open Playground");
+    expect(lin).toContain("Continue your last experiment");
+    expect(lin).toContain("0 of 10 studios explored");
+    expect(lin).not.toContain("Open lab");
+    expect(lin).not.toContain("Start here");
+    expect(lin).not.toContain("Teacher mode");
     const cx = renderToString(<MemoryRouter initialEntries={["/complex-numbers"]}><MockupStudioApp studioId="complex-numbers" /></MemoryRouter>);
     expect(cx).toContain("Start here");
     expect(cx).toContain("Plot · Modulus · Argument");
@@ -54,8 +58,8 @@ describe("MockupStudioApp", () => {
     expect(polygons).toContain("Build &amp; explore regular n-gons");
     expect(polygons).toContain("Apothem");
     const matrices = renderToString(<MemoryRouter initialEntries={["/linear-algebra/matrices"]}><MockupStudioApp studioId="linear-algebra" /></MemoryRouter>);
-    expect(matrices).toContain("Matrices Lab");
-    expect(matrices).toContain("Replay row×column");
+    expect(matrices).toContain("Matrices &amp; Operations Lab");
+    expect(matrices).toContain("Teacher mode");
     expect(matrices).toContain("Result C = A × B");
   });
 
@@ -239,6 +243,26 @@ describe("MockupStudioApp", () => {
     expect(html).toContain("Triangles Lab");
     expect(html).toContain("Triangle Explorer");
     expect(html).toContain("Draggable triangle ABC");
+  });
+
+  it("renders every linear algebra lab with the mockup title", () => {
+    const labs: Array<[string, string]> = [
+      ["/linear-algebra/vectors", "Vectors Lab"],
+      ["/linear-algebra/matrices", "Matrices &amp; Operations Lab"],
+      ["/linear-algebra/row-reduction", "Systems &amp; Row Reduction Lab"],
+      ["/linear-algebra/linear-transforms", "Linear Transformations Lab"],
+      ["/linear-algebra/determinants", "Determinants Lab"],
+      ["/linear-algebra/vector-spaces", "Vector Spaces &amp; Basis Lab"],
+      ["/linear-algebra/eigenvectors", "Eigenvalues &amp; Eigenvectors Lab"],
+      ["/linear-algebra/orthogonality", "Orthogonality &amp; Projections Lab"],
+      ["/linear-algebra/least-squares", "Least Squares Lab"],
+      ["/linear-algebra/playground", "2D &amp; 3D Transformation Playground"],
+    ];
+    for (const [path, title] of labs) {
+      const html = renderToString(<MemoryRouter initialEntries={[path]}><MockupStudioApp studioId="linear-algebra" /></MemoryRouter>);
+      expect(html).toContain(title);
+      expect(html).toContain("Observe");
+    }
   });
 
   it("marks every mockup lab mode on the banner and canvas", () => {

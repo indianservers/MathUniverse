@@ -196,6 +196,7 @@ function VectorsLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNode
             ]} />
           </section>
           <aside className="msk-panel msk-live">
+            <h2>Quick facts</h2>
             <LiveRegion text={`theta ${fmt(angle, 1)} degrees, dot ${fmt(dot)}`} />
             <LiveRow color={LA_A} label="|a|" value={fmt(mag(a))} />
             <LiveRow color={LA_B} label="|b|" value={fmt(mag(b))} />
