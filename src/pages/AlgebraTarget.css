@@ -1,4 +1,5 @@
-.alg-studio-target .alg-page{padding:18px 22px 22px}
+.alg-studio-target .alg-page{padding:18px 22px 28px;background:transparent}
+.alg-home-target{min-height:100%}
 .alg-home-hero{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:8px}
 .alg-home-hero h1{margin:0;font-size:clamp(28px,2.6vw,40px);letter-spacing:-.045em;font-weight:900;color:#081433}
 .alg-home-hero p{margin:8px 0 0;color:#536381;font-size:15px}
@@ -61,4 +62,26 @@
 }
 @media (max-width:580px){
   .alg-launch-grid,.alg-learn-row{grid-template-columns:1fr}
+}
+:is(.dark,.high-contrast) .alg-studio.alg-studio-target{
+  --ink:#071641;
+  --muted:#536381;
+  --line:#dce7f4;
+  background:radial-gradient(circle at 58% -10%,#ddfbff 0,transparent 31%),radial-gradient(circle at 91% 0,#f3e5ff 0,transparent 31%),#f9fcff;
+  color:#071641;
+}
+:is(.dark,.high-contrast) .alg-studio.alg-studio-target :is(.alg-card,.alg-sidebar,.alg-panel,.alg-home-card,.alg-launch-card,.alg-concept-map,.alg-field input,.alg-field select,.alg-live-expression,.alg-learn-row){
+  background:#fff;
+  color:#071641;
+  border-color:#dce7f4;
+}
+:is(.dark,.high-contrast) .alg-studio.alg-studio-target :is(.alg-header h1,.alg-card h2,.alg-card p,.alg-home-hero h1,.alg-launch-main>h2,.alg-home-card h3){
+  color:#081433;
+}
+:is(.dark,.high-contrast) .alg-studio.alg-studio-target .alg-sidebar nav a,
+:is(.dark,.high-contrast) .alg-studio.alg-studio-target .alg-main-link{
+  color:#071641;
+}
+:is(.dark,.high-contrast) .alg-studio.alg-studio-target .alg-header-sticky{
+  background:linear-gradient(#f9fcff,#f9fcffe6);
 }
