@@ -3831,6 +3831,1304 @@ const additionalVisualDictionaryTerms: EnrichedVisualDictionaryTerm[] = [
     representation:
       "Draw rectangles above a curve touching high points in each interval.",
   },
+  {
+    term: "Euclidean algorithm",
+    category: "Number Theory",
+    kind: "number-line",
+    description:
+      "A repeated-division method for finding the greatest common divisor of two integers.",
+    explanation:
+      "Replace the larger number by its remainder on division by the smaller one until the remainder is zero; the last nonzero remainder is the gcd.",
+    representation:
+      "Show successive division steps shrinking toward the final remainder.",
+    example:
+      "gcd(48, 18): 48 = 2(18) + 12, 18 = 1(12) + 6, 12 = 2(6) + 0, so gcd = 6.",
+    extra: "gcd hcf division algorithm",
+  },
+  {
+    term: "Fundamental theorem of arithmetic",
+    category: "Number Theory",
+    kind: "number-line",
+    description:
+      "Every integer greater than 1 factors into primes in exactly one way.",
+    explanation:
+      "The order of the prime factors can change, but the collection of primes is unique, which makes prime factorization a fingerprint for a number.",
+    representation:
+      "Draw a factor tree breaking a number down into prime leaves.",
+    example: "360 = 2^3 x 3^2 x 5, and no other prime factorization exists.",
+    extra: "prime factorization unique factorisation factor tree",
+  },
+  {
+    term: "Euler totient function",
+    category: "Number Theory",
+    kind: "set",
+    description:
+      "A count of how many integers below n share no common factor with n.",
+    explanation:
+      "Written phi(n), it counts the numbers coprime to n and appears in modular arithmetic and RSA encryption.",
+    representation:
+      "Show the numbers 1 to n with the coprime ones highlighted as a set.",
+    example: "phi(12) = 4 because only 1, 5, 7, and 11 are coprime to 12.",
+    extra: "phi coprime totient rsa",
+  },
+  {
+    term: "Chinese remainder theorem",
+    category: "Number Theory",
+    kind: "number-line",
+    description:
+      "A rule that solves several remainder conditions with coprime moduli at once.",
+    explanation:
+      "If the moduli are pairwise coprime, there is exactly one solution modulo their product.",
+    representation:
+      "Show overlapping repeating step patterns meeting at one shared position.",
+    example: "x = 2 (mod 3) and x = 3 (mod 5) together give x = 8 (mod 15).",
+    extra: "crt simultaneous congruence modulus",
+  },
+  {
+    term: "Bezout identity",
+    category: "Number Theory",
+    kind: "number-line",
+    description:
+      "Every gcd of two integers can be written as an integer combination of them.",
+    explanation:
+      "There are integers x and y with ax + by = gcd(a, b), found by reversing the steps of the Euclidean algorithm.",
+    representation:
+      "Show two step sizes combining forward and backward to land on the gcd.",
+    example: "For 48 and 18: 48(-1) + 18(3) = 6 = gcd(48, 18).",
+    extra: "bezout coefficients extended euclidean",
+  },
+  {
+    term: "Diophantine equation",
+    category: "Number Theory",
+    kind: "coordinate",
+    description: "An equation whose solutions are restricted to integers.",
+    explanation:
+      "Only lattice points count, so a line or curve may pass through infinitely many, finitely many, or no valid solutions.",
+    representation:
+      "Draw a line on a grid with the integer lattice points on it circled.",
+    example:
+      "3x + 6y = 9 has integer solutions such as (3, 0) and (1, 1), while 2x + 4y = 5 has none.",
+    extra: "integer solutions lattice linear diophantine",
+  },
+  {
+    term: "Perfect number",
+    category: "Number Theory",
+    kind: "number-line",
+    description: "A number equal to the sum of its proper divisors.",
+    explanation:
+      "Perfect numbers are rare; 6, 28, 496, and 8128 are the first four.",
+    representation:
+      "Show divisor blocks stacking up to exactly the original number.",
+    example: "6 is perfect because 1 + 2 + 3 = 6.",
+    extra: "divisor sum abundant deficient",
+  },
+  {
+    term: "Twin primes",
+    category: "Number Theory",
+    kind: "number-line",
+    description: "A pair of primes that differ by two.",
+    explanation:
+      "They are the closest primes can be after 2 and 3, and it is still unknown whether infinitely many pairs exist.",
+    representation:
+      "Mark prime positions on a number line and join the pairs two units apart.",
+    example: "(11, 13) and (17, 19) are twin prime pairs.",
+    extra: "prime pair gap conjecture",
+  },
+  {
+    term: "Sieve of Eratosthenes",
+    category: "Number Theory",
+    kind: "number-line",
+    description: "A crossing-out method that lists all primes up to a limit.",
+    explanation:
+      "Starting at 2, remove every multiple of each surviving number; whatever is left is prime.",
+    representation:
+      "Show a number grid with multiples crossed out and primes left standing.",
+    example: "Sieving 1 to 20 leaves 2, 3, 5, 7, 11, 13, 17, and 19.",
+    extra: "prime sieve multiples crossing out",
+  },
+  {
+    term: "Pythagorean triple",
+    category: "Number Theory",
+    kind: "triangle",
+    description: "Three whole numbers that fit the Pythagorean theorem.",
+    explanation:
+      "They give right triangles with every side an integer, and any multiple of a triple is also a triple.",
+    representation:
+      "Draw a right triangle with integer side labels and squares on each side.",
+    example: "3, 4, 5 works because 9 + 16 = 25, and so does 6, 8, 10.",
+    extra: "right triangle integer sides 3 4 5",
+  },
+  {
+    term: "Continued fraction",
+    category: "Number Theory",
+    kind: "fraction",
+    description:
+      "A number written as a nested chain of fractions with integer parts.",
+    explanation:
+      "Cutting the chain early gives the best rational approximation available for that size of denominator.",
+    representation:
+      "Show a stacked fraction nesting inside its own denominator.",
+    example: "415/93 = 4 + 1/(2 + 1/(6 + 1/7)).",
+    extra: "convergent approximation nested fraction",
+  },
+  {
+    term: "Order of operations",
+    category: "Arithmetic",
+    kind: "text",
+    description: "The agreed sequence for evaluating a mixed expression.",
+    explanation:
+      "Brackets first, then powers and roots, then multiplication and division left to right, and finally addition and subtraction.",
+    representation:
+      "Show the expression evaluated one layer at a time with each step circled.",
+    example: "2 + 3 x 4^2 = 2 + 3 x 16 = 2 + 48 = 50.",
+    extra: "bodmas bidmas pemdas bracket precedence",
+  },
+  {
+    term: "Scientific notation",
+    category: "Arithmetic",
+    kind: "text",
+    description: "A way of writing numbers as a digit times a power of ten.",
+    explanation:
+      "The form a x 10^n with 1 <= |a| < 10 keeps very large and very small numbers readable and easy to compare.",
+    representation:
+      "Show the decimal point sliding while the exponent counts the shift.",
+    example: "0.00042 = 4.2 x 10^-4 and 93,000,000 = 9.3 x 10^7.",
+    extra: "standard form powers of ten exponent",
+  },
+  {
+    term: "Significant figures",
+    category: "Arithmetic",
+    kind: "number-line",
+    description: "The digits in a measurement that carry real precision.",
+    explanation:
+      "Leading zeros do not count, and a calculated answer should not claim more significant figures than the data it came from.",
+    representation:
+      "Show a measured value on a scale with the reliable digits boxed.",
+    example: "0.004560 has four significant figures: 4, 5, 6, and the final 0.",
+    extra: "precision accuracy digits rounding",
+  },
+  {
+    term: "Rounding",
+    category: "Arithmetic",
+    kind: "number-line",
+    description:
+      "Replacing a number by a nearby simpler value at a chosen place.",
+    explanation:
+      "Look at the digit just after the rounding place: 5 or more rounds up, less than 5 rounds down.",
+    representation:
+      "Show the number between two tick marks with the nearer one highlighted.",
+    example:
+      "3.473 rounds to 3.5 to one decimal place and to 3 to the nearest whole number.",
+    extra: "round off nearest estimate decimal place",
+  },
+  {
+    term: "Percentage change",
+    category: "Arithmetic",
+    kind: "fraction",
+    description:
+      "The change in a quantity expressed as a percent of its original value.",
+    explanation:
+      "Divide the increase or decrease by the starting amount, never the final amount, then multiply by 100.",
+    representation:
+      "Show two bars with the difference between them compared against the first bar.",
+    example:
+      "A price rising from 80 to 100 is a change of 20/80 = 25% increase.",
+    extra: "increase decrease percent growth",
+  },
+  {
+    term: "Reciprocal",
+    category: "Arithmetic",
+    kind: "fraction",
+    description: "The number that multiplies with a given number to make 1.",
+    explanation:
+      "Flip a fraction to get its reciprocal; dividing by a number is the same as multiplying by its reciprocal, and zero has none.",
+    representation: "Show a fraction flipped upside down beside its original.",
+    example: "The reciprocal of 3/4 is 4/3, and 3/4 x 4/3 = 1.",
+    extra: "multiplicative inverse flip one over",
+  },
+  {
+    term: "Completing the square",
+    category: "Algebra",
+    kind: "graph",
+    description: "Rewriting a quadratic as a perfect square plus a constant.",
+    explanation:
+      "It exposes the vertex directly and is the derivation behind the quadratic formula.",
+    representation:
+      "Show an area square being completed with a small missing corner block.",
+    example: "x^2 + 6x + 5 = (x + 3)^2 - 4, so the vertex is (-3, -4).",
+    extra: "vertex form quadratic perfect square",
+  },
+  {
+    term: "Difference of squares",
+    category: "Algebra",
+    kind: "text",
+    description: "A factoring pattern for one square subtracted from another.",
+    explanation:
+      "a^2 - b^2 always factors as (a - b)(a + b), which makes many products and simplifications instant.",
+    representation:
+      "Show a large square with a smaller square removed and rearranged into a rectangle.",
+    example: "x^2 - 49 = (x - 7)(x + 7), and 51 x 49 = 50^2 - 1 = 2499.",
+    extra: "factoring identity a2 minus b2",
+  },
+  {
+    term: "Polynomial long division",
+    category: "Algebra",
+    kind: "text",
+    description:
+      "Dividing one polynomial by another using the long-division layout.",
+    explanation:
+      "It produces a quotient and a remainder of lower degree than the divisor, just like integer division.",
+    representation:
+      "Show the division bracket with each subtraction step aligned by degree.",
+    example: "(x^2 + 5x + 6) / (x + 2) = x + 3 with remainder 0.",
+    extra: "divide quotient remainder synthetic division",
+  },
+  {
+    term: "Remainder theorem",
+    category: "Algebra",
+    kind: "graph",
+    description: "Dividing a polynomial by x - a leaves the remainder p(a).",
+    explanation:
+      "It turns a division question into a single substitution, and a zero remainder means x - a is a factor.",
+    representation:
+      "Show a curve with the value at x = a marked as the leftover amount.",
+    example: "For p(x) = x^3 - 2x + 1, dividing by x - 2 leaves p(2) = 5.",
+    extra: "factor theorem substitution divide",
+  },
+  {
+    term: "Rationalizing the denominator",
+    category: "Algebra",
+    kind: "fraction",
+    description: "Rewriting a fraction so no root remains on the bottom.",
+    explanation:
+      "Multiply top and bottom by a matching factor or conjugate; the value stays the same while the form becomes easier to compare.",
+    representation:
+      "Show the fraction multiplied by a shaded factor equal to one.",
+    example: "1/sqrt(2) = sqrt(2)/2 and 1/(sqrt(3) - 1) = (sqrt(3) + 1)/2.",
+    extra: "surd conjugate radical denominator",
+  },
+  {
+    term: "Absolute value equation",
+    category: "Algebra",
+    kind: "number-line",
+    description: "An equation containing a distance-from-zero expression.",
+    explanation:
+      "Because distance ignores sign, |x| = k with k > 0 splits into two cases, and there is no solution when k < 0.",
+    representation:
+      "Show two points equally far from a center on a number line.",
+    example: "|x - 3| = 5 gives x = 8 or x = -2.",
+    extra: "modulus distance two cases",
+  },
+  {
+    term: "System of inequalities",
+    category: "Algebra",
+    kind: "coordinate",
+    description: "Several inequalities that must hold at the same time.",
+    explanation:
+      "Each inequality shades a half-plane, and the solution is the overlap, which becomes the feasible region in linear programming.",
+    representation:
+      "Draw shaded half-planes on a grid with the overlap region darkest.",
+    example: "y >= x and y <= 4 - x overlap in a wedge with corner at (2, 2).",
+    extra: "feasible region shading half plane",
+  },
+  {
+    term: "Roots of unity",
+    category: "Algebra",
+    kind: "coordinate",
+    description: "The complex solutions of z^n = 1.",
+    explanation:
+      "They sit evenly spaced on the unit circle, 360/n degrees apart, and for n > 1 they always sum to zero.",
+    representation:
+      "Show n points evenly spaced around the unit circle in the complex plane.",
+    example:
+      "The cube roots of unity are 1, -1/2 + (sqrt(3)/2)i, and -1/2 - (sqrt(3)/2)i.",
+    extra: "complex unit circle de moivre",
+  },
+  {
+    term: "Modulus of a complex number",
+    category: "Algebra",
+    kind: "coordinate",
+    description: "The distance of a complex number from the origin.",
+    explanation:
+      "For z = a + bi the modulus |z| = sqrt(a^2 + b^2), which is the length of the arrow in the Argand plane.",
+    representation:
+      "Show an arrow from the origin to a + bi with its length labelled.",
+    example: "|3 + 4i| = sqrt(9 + 16) = 5.",
+    extra: "absolute value argand magnitude",
+  },
+  {
+    term: "Argument of a complex number",
+    category: "Algebra",
+    kind: "coordinate",
+    description:
+      "The angle a complex number makes with the positive real axis.",
+    explanation:
+      "Together with the modulus it gives polar form, and arguments add when complex numbers are multiplied.",
+    representation:
+      "Show an arrow to a + bi with the angle from the real axis arced.",
+    example:
+      "arg(1 + i) = 45 degrees, so 1 + i = sqrt(2)(cos 45 degrees + i sin 45 degrees).",
+    extra: "polar form angle theta argand",
+  },
+  {
+    term: "Group",
+    category: "Algebra",
+    kind: "set",
+    description:
+      "A set with one operation that is closed, associative, has an identity, and has inverses.",
+    explanation:
+      "Groups capture symmetry and reversible moves, from integer addition to the rotations of a square.",
+    representation:
+      "Show a set of elements with its operation table beside it.",
+    example:
+      "The integers under addition form a group with identity 0 and inverse -n.",
+    extra: "abstract algebra symmetry axioms",
+  },
+  {
+    term: "Ring",
+    category: "Algebra",
+    kind: "set",
+    description:
+      "A set with addition and multiplication that behave like the integers.",
+    explanation:
+      "Addition forms a group and multiplication distributes over it, but division by every nonzero element need not exist.",
+    representation: "Show one set carrying two operation tables side by side.",
+    example:
+      "The integers form a ring, and so do polynomials with real coefficients.",
+    extra: "abstract algebra field integers",
+  },
+  {
+    term: "Subgroup",
+    category: "Algebra",
+    kind: "set",
+    description:
+      "A subset of a group that is itself a group under the same operation.",
+    explanation:
+      "It must contain the identity and stay closed under the operation and under inverses.",
+    representation:
+      "Show a smaller closed circle drawn inside a larger group circle.",
+    example:
+      "The even integers form a subgroup of the integers under addition.",
+    extra: "closure identity coset lagrange",
+  },
+  {
+    term: "Isomorphism",
+    category: "Algebra",
+    kind: "set",
+    description:
+      "A structure-preserving one-to-one correspondence between two objects.",
+    explanation:
+      "If an isomorphism exists, the two objects are mathematically the same apart from the names of their elements.",
+    representation: "Show two labelled structures joined by matching arrows.",
+    example:
+      "The map x -> 2^x is an isomorphism from the reals under addition to the positive reals under multiplication.",
+    extra: "bijective structure preserving equivalent",
+  },
+  {
+    term: "Homomorphism",
+    category: "Algebra",
+    kind: "set",
+    description: "A map between structures that respects their operations.",
+    explanation:
+      "It satisfies f(a * b) = f(a) * f(b) but may collapse different elements together, unlike an isomorphism.",
+    representation:
+      "Show arrows from one operation table into another, with some arrows merging.",
+    example:
+      "The map f(n) = n mod 3 is a homomorphism from the integers onto {0, 1, 2}.",
+    extra: "kernel image structure map",
+  },
+  {
+    term: "Fundamental theorem of calculus",
+    category: "Calculus",
+    kind: "graph",
+    description:
+      "The theorem tying differentiation and integration together as inverse processes.",
+    explanation:
+      "The derivative of an accumulated area is the original function, and a definite integral equals the change in any antiderivative.",
+    representation:
+      "Show an area under a curve with its total changing as the right edge moves.",
+    example:
+      "The integral of 2x from 1 to 3 equals [x^2] from 1 to 3 = 9 - 1 = 8.",
+    extra: "antiderivative area evaluation theorem",
+  },
+  {
+    term: "Quotient rule",
+    category: "Calculus",
+    kind: "graph",
+    description:
+      "The rule for differentiating one function divided by another.",
+    explanation:
+      "(u/v)' = (u'v - uv')/v^2, and the order of the numerator terms matters.",
+    representation:
+      "Show a ratio curve with the numerator and denominator rates labelled.",
+    example: "d/dx (x^2 / (x + 1)) = (2x(x + 1) - x^2)/(x + 1)^2.",
+    extra: "derivative fraction differentiate ratio",
+  },
+  {
+    term: "Integration by parts",
+    category: "Calculus",
+    kind: "graph",
+    description: "An integration rule built by reversing the product rule.",
+    explanation:
+      "The integral of u dv equals uv minus the integral of v du, which helps when one factor gets simpler after differentiating.",
+    representation:
+      "Show two shaded regions whose areas combine into a rectangle.",
+    example: "The integral of x e^x dx equals x e^x - e^x + C.",
+    extra: "product rule reverse udv",
+  },
+  {
+    term: "Trigonometric substitution",
+    category: "Calculus",
+    kind: "graph",
+    description:
+      "Replacing a variable by a trigonometric expression to simplify a root.",
+    explanation:
+      "Substitutions such as x = a sin(theta) turn sqrt(a^2 - x^2) into a cosine, removing the square root.",
+    representation:
+      "Show a right triangle linking x, a, and the substituted angle.",
+    example:
+      "For the integral of dx/sqrt(1 - x^2), setting x = sin(theta) gives arcsin(x) + C.",
+    extra: "substitution root integral sine",
+  },
+  {
+    term: "L'Hopital rule",
+    category: "Calculus",
+    kind: "graph",
+    description:
+      "A limit rule that differentiates the top and bottom of an indeterminate ratio.",
+    explanation:
+      "When a limit gives 0/0 or infinity/infinity, the limit of f'/g' gives the same answer whenever it exists.",
+    representation:
+      "Show two curves approaching the same point with their slopes compared.",
+    example: "lim x->0 sin(x)/x = lim x->0 cos(x)/1 = 1.",
+    extra: "indeterminate form limit ratio derivative",
+  },
+  {
+    term: "Inflection point",
+    category: "Calculus",
+    kind: "graph",
+    description: "A point where a curve changes its direction of bending.",
+    explanation:
+      "Concavity flips from up to down or back, so the second derivative changes sign there.",
+    representation:
+      "Show a curve with the bend switching sides at a marked point.",
+    example:
+      "For y = x^3 the inflection point is (0, 0) because y'' = 6x changes sign at 0.",
+    extra: "concavity second derivative bend",
+  },
+  {
+    term: "Extreme value theorem",
+    category: "Calculus",
+    kind: "graph",
+    description:
+      "A continuous function on a closed interval attains a highest and a lowest value.",
+    explanation:
+      "The guarantee fails if the interval is open or the function has a break, which is why endpoints are always checked.",
+    representation:
+      "Show a continuous curve over a closed interval with its top and bottom points marked.",
+    example:
+      "On [0, 3], f(x) = x^2 - 2x has minimum -1 at x = 1 and maximum 3 at x = 3.",
+    extra: "maximum minimum closed interval continuous",
+  },
+  {
+    term: "Intermediate value theorem",
+    category: "Calculus",
+    kind: "graph",
+    description:
+      "A continuous function takes every value between two of its outputs.",
+    explanation:
+      "If f changes sign across an interval there must be a root inside, which justifies bisection searches.",
+    representation:
+      "Show a continuous curve crossing a horizontal target line.",
+    example:
+      "For f(x) = x^3 - x - 1, f(1) = -1 and f(2) = 5, so a root lies between 1 and 2.",
+    extra: "root existence continuity bisection",
+  },
+  {
+    term: "Rolle theorem",
+    category: "Calculus",
+    kind: "graph",
+    description:
+      "A differentiable curve with equal endpoint values has a flat point between them.",
+    explanation:
+      "It is the special case of the mean value theorem where the connecting line is horizontal.",
+    representation:
+      "Show a curve returning to the same height with a horizontal tangent marked.",
+    example: "For f(x) = x^2 - 4x on [0, 4], f(0) = f(4) = 0 and f'(2) = 0.",
+    extra: "mean value horizontal tangent stationary",
+  },
+  {
+    term: "Related rates",
+    category: "Calculus",
+    kind: "graph",
+    description:
+      "Linking the rates of change of quantities tied together by an equation.",
+    explanation:
+      "Differentiate the relationship with respect to time, then substitute the known rate to find the unknown one.",
+    representation:
+      "Show a changing figure with arrows labelling each changing measurement.",
+    example:
+      "If a circle radius grows at 2 cm/s, then dA/dt = 2 pi r (2) = 40 pi cm^2/s when r = 10 cm.",
+    extra: "chain rule time derivative word problem",
+  },
+  {
+    term: "Radius of convergence",
+    category: "Calculus",
+    kind: "sequence",
+    description:
+      "The distance from the center within which a power series converges.",
+    explanation:
+      "Inside the radius the series adds to a finite value, outside it diverges, and the endpoints must be tested separately.",
+    representation:
+      "Show an interval centered on a point with converging terms inside it.",
+    example:
+      "The series sum of x^n has radius of convergence 1, converging for |x| < 1.",
+    extra: "power series interval ratio test",
+  },
+  {
+    term: "Ratio test",
+    category: "Calculus",
+    kind: "sequence",
+    description:
+      "A convergence test comparing each term with the one before it.",
+    explanation:
+      "If the limit of |a_(n+1)/a_n| is below 1 the series converges absolutely, above 1 it diverges, and exactly 1 is inconclusive.",
+    representation: "Show successive terms shrinking by a steady factor.",
+    example:
+      "For the sum of 1/n!, the ratio 1/(n + 1) tends to 0, so the series converges.",
+    extra: "series convergence limit test",
+  },
+  {
+    term: "Solid of revolution",
+    category: "Calculus",
+    kind: "solid",
+    description:
+      "A three-dimensional shape formed by spinning a region about an axis.",
+    explanation:
+      "Slices perpendicular to the axis are circles or washers whose areas integrate into the volume.",
+    representation: "Show a flat region sweeping a full turn around a line.",
+    example:
+      "Revolving y = x from x = 0 to 1 about the x-axis gives a cone of volume pi/3.",
+    extra: "revolution volume rotate axis",
+  },
+  {
+    term: "Disk method",
+    category: "Calculus",
+    kind: "solid",
+    description: "A volume formula that stacks circular slices along an axis.",
+    explanation:
+      "Each slice has area pi [f(x)]^2, so the volume is the integral of pi [f(x)]^2 dx.",
+    representation:
+      "Show thin circular slices stacked along the axis of rotation.",
+    example:
+      "Revolving y = sqrt(x) on [0, 4] about the x-axis gives volume 8 pi.",
+    extra: "washer volume slice revolution",
+  },
+  {
+    term: "Slope field",
+    category: "Calculus",
+    kind: "coordinate",
+    description:
+      "A grid of short segments showing the slopes a differential equation predicts.",
+    explanation:
+      "Following the segments traces solution curves without solving the equation algebraically.",
+    representation:
+      "Show a grid of small tilted dashes with one curve threading through them.",
+    example:
+      "For dy/dx = x the segments are flat along the y-axis and steepen as x grows.",
+    extra: "direction field differential equation solution curve",
+  },
+  {
+    term: "Euler method",
+    category: "Calculus",
+    kind: "coordinate",
+    description:
+      "A step-by-step numerical way to approximate a differential equation solution.",
+    explanation:
+      "Each step follows the current slope a short distance: y_(n+1) = y_n + h f(x_n, y_n), and smaller h reduces the error.",
+    representation:
+      "Show a chain of short straight steps tracking a smooth curve.",
+    example:
+      "For dy/dx = y with y(0) = 1 and h = 0.5, the first step gives y(0.5) about 1.5.",
+    extra: "numerical step size approximation ode",
+  },
+  {
+    term: "Separable differential equation",
+    category: "Calculus",
+    kind: "graph",
+    description:
+      "An equation that can be split so each variable sits with its own differential.",
+    explanation:
+      "Write it as g(y) dy = f(x) dx, integrate both sides, then use the initial condition to fix the constant.",
+    representation:
+      "Show the equation split into two integrals on opposite sides.",
+    example: "dy/dx = xy gives dy/y = x dx, so ln|y| = x^2/2 + C.",
+    extra: "ode integrate both sides variables separable",
+  },
+  {
+    term: "Partial differential equation",
+    category: "Calculus",
+    kind: "graph",
+    description:
+      "An equation relating a multivariable function to its partial derivatives.",
+    explanation:
+      "Solutions describe fields changing across space and time, such as heat spreading or waves travelling.",
+    representation:
+      "Show a surface with slope arrows in two independent directions.",
+    example:
+      "The heat equation u_t = k u_xx models temperature spreading along a rod.",
+    extra: "pde heat wave laplace multivariable",
+  },
+  {
+    term: "Line integral",
+    category: "Calculus",
+    kind: "vector",
+    description:
+      "An integral taken along a curve rather than a straight interval.",
+    explanation:
+      "It accumulates a value along a path, giving quantities such as the work done by a force.",
+    representation:
+      "Show a curve through a field with arrows sampled along it.",
+    example:
+      "The work done by F = <1, 0> along the path from (0, 0) to (3, 0) is 3.",
+    extra: "work path curve vector field",
+  },
+  {
+    term: "Divergence theorem",
+    category: "Calculus",
+    kind: "vector",
+    description:
+      "A theorem equating outward flux through a closed surface with divergence inside.",
+    explanation:
+      "It converts a surface integral into a volume integral, so local spreading explains total outflow.",
+    representation:
+      "Show a closed surface with arrows leaving it and sources marked inside.",
+    example:
+      "For F = <x, y, z>, div F = 3, so the flux out of a unit ball is 4 pi.",
+    extra: "gauss flux surface volume integral",
+  },
+  {
+    term: "Stokes theorem",
+    category: "Calculus",
+    kind: "vector",
+    description:
+      "A theorem equating circulation around a boundary with curl across the surface.",
+    explanation:
+      "It generalizes Green's theorem from flat regions to curved surfaces in three dimensions.",
+    representation:
+      "Show a surface with a looping boundary arrow and spin arrows inside.",
+    example:
+      "If curl F = <0, 0, 2>, the circulation around a unit circle equals 2 pi.",
+    extra: "curl circulation boundary surface",
+  },
+  {
+    term: "Vector field",
+    category: "Calculus",
+    kind: "vector",
+    description: "An assignment of a vector to every point of a region.",
+    explanation:
+      "Wind maps, fluid flow, and force fields are vector fields, and divergence and curl describe their spreading and spinning.",
+    representation:
+      "Show a grid of arrows whose lengths and directions vary by position.",
+    example:
+      "F(x, y) = <-y, x> gives arrows that circle counterclockwise around the origin.",
+    extra: "field arrows flow divergence curl",
+  },
+  {
+    term: "Hyperbolic function",
+    category: "Calculus",
+    kind: "graph",
+    description:
+      "A function built from exponential combinations that mirrors trigonometric structure.",
+    explanation:
+      "cosh(x) = (e^x + e^-x)/2 and sinh(x) = (e^x - e^-x)/2, and they satisfy cosh^2 - sinh^2 = 1.",
+    representation:
+      "Show two exponential curves averaging into a hanging-chain shape.",
+    example:
+      "cosh(0) = 1 and sinh(0) = 0, and a hanging cable follows y = cosh(x).",
+    extra: "sinh cosh tanh catenary exponential",
+  },
+  {
+    term: "Fourier series",
+    category: "Calculus",
+    kind: "graph",
+    description:
+      "A representation of a periodic function as a sum of sines and cosines.",
+    explanation:
+      "Each term adds one harmonic, so partial sums approximate the wave more closely as more terms are included.",
+    representation:
+      "Show a square wave with sine harmonics adding toward its shape.",
+    example: "A square wave equals (4/pi)(sin x + sin 3x/3 + sin 5x/5 + ...).",
+    extra: "harmonic periodic sine cosine expansion",
+  },
+  {
+    term: "Parallelogram",
+    category: "Geometry",
+    kind: "solid",
+    description: "A quadrilateral with both pairs of opposite sides parallel.",
+    explanation:
+      "Opposite sides and angles are equal, the diagonals bisect each other, and area is base times perpendicular height.",
+    representation:
+      "Show a slanted four-sided figure with matching arrows on parallel sides.",
+    example: "A parallelogram with base 8 cm and height 5 cm has area 40 cm^2.",
+    extra: "quadrilateral rhombus opposite sides area",
+  },
+  {
+    term: "Regular polygon",
+    category: "Geometry",
+    kind: "solid",
+    description: "A polygon with all sides and all angles equal.",
+    explanation:
+      "Its interior angles each measure (n - 2)180/n degrees and its exterior angles each measure 360/n degrees.",
+    representation:
+      "Show equal side ticks and equal angle arcs around one figure.",
+    example:
+      "A regular hexagon has interior angles of 120 degrees and exterior angles of 60 degrees.",
+    extra: "equilateral equiangular hexagon pentagon octagon",
+  },
+  {
+    term: "Polyhedron",
+    category: "Geometry",
+    kind: "solid",
+    description: "A solid bounded entirely by flat polygon faces.",
+    explanation:
+      "For a convex polyhedron the counts satisfy Euler's relation V - E + F = 2.",
+    representation: "Show a solid with its faces, edges, and corners labelled.",
+    example:
+      "A cube has 8 vertices, 12 edges, and 6 faces, and 8 - 12 + 6 = 2.",
+    extra: "faces edges vertices solid euler",
+  },
+  {
+    term: "Platonic solid",
+    category: "Geometry",
+    kind: "solid",
+    description: "One of the five convex solids with identical regular faces.",
+    explanation:
+      "Only the tetrahedron, cube, octahedron, dodecahedron, and icosahedron are possible.",
+    representation: "Show the five regular solids arranged side by side.",
+    example:
+      "The octahedron has 8 equilateral triangular faces meeting four to a vertex.",
+    extra: "regular solid tetrahedron icosahedron dodecahedron",
+  },
+  {
+    term: "Torus",
+    category: "Geometry",
+    kind: "solid",
+    description:
+      "A doughnut-shaped surface made by revolving a circle about an outside line.",
+    explanation:
+      "With path radius R and tube radius r, the volume is 2 pi^2 R r^2 and the surface area is 4 pi^2 R r.",
+    representation:
+      "Show a small circle sweeping a full turn around a distant axis.",
+    example: "A torus with R = 3 and r = 1 has volume 6 pi^2.",
+    extra: "doughnut ring revolution genus",
+  },
+  {
+    term: "Hemisphere",
+    category: "Geometry",
+    kind: "solid",
+    description: "Half of a sphere cut by a plane through its centre.",
+    explanation:
+      "Its curved surface is 2 pi r^2, its total surface with the flat disc is 3 pi r^2, and its volume is (2/3) pi r^3.",
+    representation:
+      "Show a sphere sliced through the centre with one half shaded.",
+    example: "A hemisphere of radius 3 cm has volume 18 pi cm^3.",
+    extra: "half sphere dome curved surface",
+  },
+  {
+    term: "Slant height",
+    category: "Geometry",
+    kind: "solid",
+    description:
+      "The distance measured along the sloping surface of a cone or pyramid.",
+    explanation:
+      "For a right cone it satisfies l^2 = r^2 + h^2, and the curved surface area is pi r l.",
+    representation:
+      "Show a cone with the sloping edge marked separately from the vertical height.",
+    example:
+      "A cone with r = 3 and h = 4 has slant height 5 and curved surface 15 pi.",
+    extra: "cone pyramid lateral surface",
+  },
+  {
+    term: "Heron formula",
+    category: "Geometry",
+    kind: "triangle",
+    description:
+      "A formula for the area of a triangle from its three side lengths alone.",
+    explanation:
+      "With s = (a + b + c)/2, the area is sqrt(s(s - a)(s - b)(s - c)), so no height is needed.",
+    representation:
+      "Show a triangle labelled only with side lengths and its shaded area.",
+    example:
+      "For sides 13, 14, 15, s = 21 and the area is sqrt(21 x 8 x 7 x 6) = 84.",
+    extra: "semi perimeter area three sides",
+  },
+  {
+    term: "Triangle angle sum",
+    category: "Geometry",
+    kind: "triangle",
+    description: "The interior angles of any triangle add to 180 degrees.",
+    explanation:
+      "It follows from a parallel line drawn through one vertex, and it forces each exterior angle to equal the two remote interior angles.",
+    representation:
+      "Show the three corners torn off and laid together on a straight line.",
+    example:
+      "If two angles measure 50 and 60 degrees, the third must be 70 degrees.",
+    extra: "interior angles 180 degrees exterior",
+  },
+  {
+    term: "Thales theorem",
+    category: "Geometry",
+    kind: "circle",
+    description: "An angle inscribed in a semicircle is a right angle.",
+    explanation:
+      "Any point on the circle sees the diameter at exactly 90 degrees, the inscribed angle theorem applied to a half-circle arc.",
+    representation:
+      "Show a diameter with a triangle drawn out to a point on the circle.",
+    example:
+      "If AB is a diameter and C lies on the circle, then angle ACB = 90 degrees.",
+    extra: "semicircle right angle inscribed diameter",
+  },
+  {
+    term: "Circumcircle",
+    category: "Geometry",
+    kind: "circle",
+    description: "The circle passing through every vertex of a polygon.",
+    explanation:
+      "For a triangle its centre is the circumcenter where the perpendicular bisectors meet, and its radius is abc/(4 x area).",
+    representation:
+      "Show a triangle with a circle touching all three of its corners.",
+    example:
+      "A right triangle with hypotenuse 10 has a circumcircle of radius 5 centred at the hypotenuse midpoint.",
+    extra: "circumscribed circle circumradius triangle",
+  },
+  {
+    term: "Rotational symmetry",
+    category: "Geometry",
+    kind: "solid",
+    description:
+      "A figure looking unchanged after a turn of less than a full circle.",
+    explanation:
+      "The order of symmetry counts how many positions within one full turn look identical.",
+    representation:
+      "Show a figure turning about its centre with the matching positions marked.",
+    example:
+      "A regular pentagon has rotational symmetry of order 5, matching every 72 degrees.",
+    extra: "order of symmetry turn centre invariant",
+  },
+  {
+    term: "Pythagorean identity",
+    category: "Trigonometry",
+    kind: "triangle",
+    description: "The identity sin^2 + cos^2 = 1 holding for every angle.",
+    explanation:
+      "It comes from the unit circle, where a point has coordinates (cos theta, sin theta), and it generates the tangent and secant versions.",
+    representation:
+      "Show a unit circle right triangle with legs cos theta and sin theta.",
+    example:
+      "If sin theta = 3/5, then cos theta = 4/5 or -4/5 because 9/25 + 16/25 = 1.",
+    extra: "unit circle identity sec tan sin cos",
+  },
+  {
+    term: "Sum and difference identity",
+    category: "Trigonometry",
+    kind: "angle",
+    description:
+      "Formulas expanding the sine or cosine of two angles combined.",
+    explanation:
+      "sin(A + B) = sin A cos B + cos A sin B and cos(A + B) = cos A cos B - sin A sin B, which give the double-angle rules when A = B.",
+    representation:
+      "Show two angles stacked at one vertex with the combined opening marked.",
+    example: "cos 75 degrees = cos(45 + 30) = (sqrt(6) - sqrt(2))/4.",
+    extra: "addition formula compound angle sine cosine",
+  },
+  {
+    term: "Cofunction identity",
+    category: "Trigonometry",
+    kind: "angle",
+    description: "A rule swapping a function with its complement partner.",
+    explanation:
+      "sin(90 degrees - theta) = cos theta, and the same pairing links tangent with cotangent and secant with cosecant.",
+    representation:
+      "Show a right triangle where the two acute angles swap roles.",
+    example: "sin 70 degrees = cos 20 degrees because 70 + 20 = 90.",
+    extra: "complementary angle sine cosine swap",
+  },
+  {
+    term: "Radian measure",
+    category: "Trigonometry",
+    kind: "angle",
+    description: "An angle measured by arc length divided by radius.",
+    explanation:
+      "One full turn is 2 pi radians, so 180 degrees equals pi radians, and calculus formulas for sine and cosine assume radians.",
+    representation:
+      "Show an arc equal in length to the radius spanning one radian.",
+    example:
+      "90 degrees = pi/2 radians, and an arc of 2 radians on radius 5 has length 10.",
+    extra: "arc length pi conversion degrees",
+  },
+  {
+    term: "Alternative hypothesis",
+    category: "Statistics",
+    kind: "probability",
+    description: "The claim a significance test looks for evidence to support.",
+    explanation:
+      "Written H1, it is accepted only when the data make the null hypothesis implausible, and it can be one-tailed or two-tailed.",
+    representation:
+      "Show a sampling distribution with the rejection tail shaded.",
+    example:
+      "Testing whether a coin favours heads uses H0: p = 0.5 against H1: p > 0.5.",
+    extra: "h1 null hypothesis testing tail",
+  },
+  {
+    term: "Significance level",
+    category: "Statistics",
+    kind: "probability",
+    description:
+      "The probability of rejecting a true null hypothesis that a test allows.",
+    explanation:
+      "Called alpha and often set at 0.05, it fixes the size of the rejection region before the data are seen.",
+    representation:
+      "Show a distribution with a small shaded tail area labelled alpha.",
+    example:
+      "At alpha = 0.05, a p-value of 0.03 leads to rejecting the null hypothesis.",
+    extra: "alpha p-value rejection region confidence",
+  },
+  {
+    term: "Type I error",
+    category: "Statistics",
+    kind: "probability",
+    description: "Rejecting a null hypothesis that is actually true.",
+    explanation:
+      "It is a false positive, and its probability equals the chosen significance level alpha.",
+    representation:
+      "Show the true-null distribution with the wrongly rejected tail shaded.",
+    example:
+      "Declaring a medicine effective when it truly has no effect is a Type I error.",
+    extra: "false positive alpha error testing",
+  },
+  {
+    term: "Type II error",
+    category: "Statistics",
+    kind: "probability",
+    description: "Failing to reject a null hypothesis that is actually false.",
+    explanation:
+      "It is a false negative with probability beta, and it shrinks as the sample size or the true effect grows.",
+    representation:
+      "Show two overlapping distributions with the missed region shaded.",
+    example:
+      "Concluding a medicine does not work when it truly does is a Type II error.",
+    extra: "false negative beta power sample size",
+  },
+  {
+    term: "Degrees of freedom",
+    category: "Statistics",
+    kind: "probability",
+    description:
+      "The number of values in a calculation that can vary independently.",
+    explanation:
+      "Each estimated parameter uses one up, which is why a sample variance divides by n - 1.",
+    representation:
+      "Show a set of data values with one position fixed by the others.",
+    example:
+      "A sample of 10 values has 9 degrees of freedom once the mean is estimated.",
+    extra: "df t distribution chi square n minus one",
+  },
+  {
+    term: "Sampling distribution",
+    category: "Statistics",
+    kind: "probability",
+    description: "The distribution of a statistic across all possible samples.",
+    explanation:
+      "Sample means cluster far more tightly than raw data, with standard error sigma/sqrt(n), and that is what makes inference possible.",
+    representation:
+      "Show many sample means collecting into a narrow bell shape.",
+    example:
+      "For a population with sigma = 20 and n = 25, sample means have standard error 4.",
+    extra: "standard error central limit theorem statistic",
+  },
+  {
+    term: "Margin of error",
+    category: "Statistics",
+    kind: "probability",
+    description: "The half-width of a confidence interval around an estimate.",
+    explanation:
+      "It equals a critical value times the standard error, so quadrupling the sample size halves it.",
+    representation: "Show an estimate with equal error bars on each side.",
+    example:
+      "A poll reporting 52% with a 3% margin of error covers 49% to 55%.",
+    extra: "confidence interval error bar polling",
+  },
+  {
+    term: "Coefficient of determination",
+    category: "Statistics",
+    kind: "graph",
+    description:
+      "The share of variation in the response explained by a fitted model.",
+    explanation:
+      "Written r^2, it runs from 0 to 1 and is the square of the correlation coefficient in simple linear regression.",
+    representation:
+      "Show scatter points with a fitted line and shrinking residual gaps.",
+    example: "An r of 0.9 gives r^2 = 0.81, so 81% of variation is explained.",
+    extra: "r squared regression fit variance explained",
+  },
+  {
+    term: "Stratified sample",
+    category: "Statistics",
+    kind: "probability",
+    description: "A sample drawn proportionally from distinct subgroups.",
+    explanation:
+      "Splitting the population into strata first and sampling each one guarantees every group is represented.",
+    representation:
+      "Show a population divided into bands with equal proportions drawn from each.",
+    example:
+      "From 600 boys and 400 girls, a stratified sample of 100 takes 60 boys and 40 girls.",
+    extra: "strata proportional sampling representative",
+  },
+  {
+    term: "Five number summary",
+    category: "Statistics",
+    kind: "probability",
+    description:
+      "The minimum, lower quartile, median, upper quartile, and maximum of a data set.",
+    explanation:
+      "These five values describe centre and spread, and they are exactly what a box plot draws.",
+    representation: "Show a box plot with each of the five markers labelled.",
+    example: "For 2, 4, 6, 8, 10 the summary is 2, 3, 6, 9, 10.",
+    extra: "box plot quartile median range spread",
+  },
+  {
+    term: "Uniform distribution",
+    category: "Probability",
+    kind: "probability",
+    description:
+      "A distribution where every outcome in a range is equally likely.",
+    explanation:
+      "The discrete version gives each of n outcomes probability 1/n, while the continuous version on [a, b] has constant density 1/(b - a) and mean (a + b)/2.",
+    representation:
+      "Show a flat rectangle of equal-height bars across a range.",
+    example:
+      "A fair die is uniform with each face at probability 1/6 and mean 3.5.",
+    extra: "equally likely flat rectangular density",
+  },
+  {
+    term: "Exponential distribution",
+    category: "Probability",
+    kind: "probability",
+    description: "A distribution of waiting times between random events.",
+    explanation:
+      "With rate lambda it has density lambda e^(-lambda t), mean 1/lambda, and no memory of how long you have already waited.",
+    representation: "Show a decaying curve with area crowded near zero.",
+    example:
+      "If calls arrive at 2 per hour, the mean wait is half an hour and P(T > 1) = e^-2.",
+    extra: "waiting time memoryless poisson lambda",
+  },
+  {
+    term: "Odds",
+    category: "Probability",
+    kind: "probability",
+    description: "A comparison of favourable outcomes with unfavourable ones.",
+    explanation:
+      "Odds of a to b correspond to probability a/(a + b), which is why odds and probability are different numbers.",
+    representation:
+      "Show two bars comparing favourable and unfavourable counts.",
+    example:
+      "Drawing a heart has probability 1/4 and odds of 1 to 3 in favour.",
+    extra: "odds in favour against ratio",
+  },
+  {
+    term: "Pigeonhole principle",
+    category: "Probability",
+    kind: "set",
+    description:
+      "If more items than containers are placed, some container holds at least two.",
+    explanation:
+      "The general form says n items in k boxes force some box to hold at least n/k items rounded up.",
+    representation:
+      "Show more dots than boxes with one box receiving two dots.",
+    example:
+      "Among 13 people at least two share a birth month, because 13 is more than 12.",
+    extra: "counting argument dirichlet boxes combinatorics",
+  },
+  {
+    term: "Relation",
+    category: "Set Theory",
+    kind: "set",
+    description: "Any set of ordered pairs linking elements of two sets.",
+    explanation:
+      "Every function is a relation, but a relation may pair one input with several outputs, and reflexive, symmetric, and transitive properties classify it.",
+    representation:
+      "Show two element columns with arrows joining the related pairs.",
+    example: "On {1, 2, 3} the relation is-less-than is {(1,2), (1,3), (2,3)}.",
+    extra: "ordered pairs function reflexive symmetric transitive",
+  },
+  {
+    term: "Countable set",
+    category: "Set Theory",
+    kind: "set",
+    description:
+      "A set whose elements can be listed in a one-to-one match with the counting numbers.",
+    explanation:
+      "Finite sets and sets such as the integers and rationals are countable, while the real numbers are not.",
+    representation: "Show elements paired one by one with 1, 2, 3 and onward.",
+    example: "The integers are countable using the order 0, 1, -1, 2, -2, ...",
+    extra: "denumerable enumerable cardinality bijection",
+  },
+  {
+    term: "Set builder notation",
+    category: "Set Theory",
+    kind: "set",
+    description: "A way of defining a set by a rule its members satisfy.",
+    explanation:
+      "The form {x : condition} reads as the set of all x such that the condition holds, replacing long or infinite lists.",
+    representation: "Show a rule inside braces beside the elements it selects.",
+    example: "{x in Z : x^2 < 10} = {-3, -2, -1, 0, 1, 2, 3}.",
+    extra: "such that braces condition define",
+  },
+  {
+    term: "Metric space",
+    category: "Set Theory",
+    kind: "coordinate",
+    description:
+      "A set together with a distance rule satisfying the usual distance properties.",
+    explanation:
+      "The metric must be non-negative, zero only between identical points, symmetric, and obedient to the triangle inequality.",
+    representation:
+      "Show points with distance labels and a triangle inequality check.",
+    example:
+      "The plane with d = sqrt((x1 - x2)^2 + (y1 - y2)^2) is a metric space.",
+    extra: "distance function triangle inequality topology",
+  },
+  {
+    term: "Tautology",
+    category: "Logic",
+    kind: "logic",
+    description:
+      "A statement that is true for every assignment of truth values.",
+    explanation:
+      "Its truth table column is entirely true, so it says nothing about the world but is essential in proof rules.",
+    representation:
+      "Show a truth table whose final column is true in every row.",
+    example: "p or not p is a tautology, true whether p is true or false.",
+    extra: "truth table always true valid contradiction",
+  },
+  {
+    term: "Modus ponens",
+    category: "Logic",
+    kind: "logic",
+    description: "The rule that concludes q from p and from p implies q.",
+    explanation:
+      "It is the core forward step of deductive proof, and it becomes invalid if the implication is used backwards.",
+    representation:
+      "Show two premise boxes feeding an arrow into the conclusion.",
+    example:
+      "From if it rains the ground is wet, and it is raining, conclude the ground is wet.",
+    extra: "deduction implication inference rule",
+  },
+  {
+    term: "Counterexample",
+    category: "Logic",
+    kind: "logic",
+    description: "A single case that disproves a general claim.",
+    explanation:
+      "One counterexample is enough to refute a universal statement, though no number of examples can prove one.",
+    representation: "Show a general claim with one failing case circled.",
+    example:
+      "The claim all primes are odd fails at 2, which is prime and even.",
+    extra: "disproof refute universal claim exception",
+  },
+  {
+    term: "Corollary",
+    category: "Logic",
+    kind: "logic",
+    description: "A result that follows quickly from a theorem already proved.",
+    explanation:
+      "It needs little extra work, unlike a lemma, which is proved first as a stepping stone toward a larger theorem.",
+    representation:
+      "Show a theorem box with a short arrow to a smaller result.",
+    example:
+      "From the triangle angle sum it follows that each angle of an equilateral triangle is 60 degrees.",
+    extra: "lemma theorem consequence proof",
+  },
+  {
+    term: "Singular value decomposition",
+    category: "Linear Algebra",
+    kind: "matrix",
+    description:
+      "A factorization of any matrix into a rotation, a scaling, and another rotation.",
+    explanation:
+      "Writing A = U S V^T exposes the strongest directions of the matrix and underpins data compression and least squares.",
+    representation: "Show a matrix split into three labelled factor blocks.",
+    example:
+      "Keeping only the largest singular values of an image matrix gives a compressed approximation.",
+    extra: "svd factorization rank compression pca",
+  },
+  {
+    term: "LU decomposition",
+    category: "Linear Algebra",
+    kind: "matrix",
+    description:
+      "A factorization of a matrix into lower and upper triangular factors.",
+    explanation:
+      "Once A = LU is known, many systems Ax = b are solved quickly by forward then backward substitution.",
+    representation:
+      "Show a square matrix split into a lower and an upper triangle.",
+    example: "[[2, 1], [4, 3]] = [[1, 0], [2, 1]] x [[2, 1], [0, 1]].",
+    extra: "triangular gaussian elimination solve pivot",
+  },
+  {
+    term: "QR decomposition",
+    category: "Linear Algebra",
+    kind: "matrix",
+    description:
+      "A factorization into an orthogonal matrix times an upper triangular matrix.",
+    explanation:
+      "Because Q has orthonormal columns, A = QR gives numerically stable least squares solutions.",
+    representation:
+      "Show a matrix split into orthonormal columns and a triangular factor.",
+    example: "For a full-rank A, solving Ax = b reduces to Rx = Q^T b.",
+    extra: "orthogonal gram schmidt least squares stable",
+  },
+  {
+    term: "Gram-Schmidt process",
+    category: "Linear Algebra",
+    kind: "vector",
+    description: "A method turning any basis into an orthonormal one.",
+    explanation:
+      "Each new vector has its projections onto the earlier ones subtracted off, then is scaled to unit length.",
+    representation:
+      "Show an arrow with its projection removed to leave a perpendicular part.",
+    example:
+      "From (1, 1) and (1, 0) the process gives (1, 1)/sqrt(2) and (1, -1)/sqrt(2).",
+    extra: "orthonormal basis projection orthogonalize qr",
+  },
+  {
+    term: "Cayley-Hamilton theorem",
+    category: "Linear Algebra",
+    kind: "matrix",
+    description:
+      "Every square matrix satisfies its own characteristic polynomial.",
+    explanation:
+      "Substituting the matrix into that polynomial gives the zero matrix, which yields shortcuts for powers and inverses.",
+    representation:
+      "Show a characteristic polynomial with the matrix substituted for lambda.",
+    example:
+      "For A = [[1, 1], [0, 1]], the polynomial (lambda - 1)^2 gives (A - I)^2 = 0.",
+    extra: "characteristic polynomial eigenvalue matrix power",
+  },
+  {
+    term: "Rank-nullity theorem",
+    category: "Linear Algebra",
+    kind: "matrix",
+    description:
+      "The rank plus the nullity of a matrix equals its number of columns.",
+    explanation:
+      "Every input dimension is either stretched into the image or collapsed into the kernel, so the two counts always add up.",
+    representation:
+      "Show input dimensions splitting into an image part and a kernel part.",
+    example: "A 3 by 4 matrix of rank 3 has nullity 4 - 3 = 1.",
+    extra: "rank nullity kernel image dimension",
+  },
 ];
 
 const symbolDictionaryTerms: EnrichedVisualDictionaryTerm[] = [
