@@ -150,7 +150,7 @@ export default function SliderControl({
         className="grid min-w-0 gap-2 py-2 first:pt-0 last:pb-0 md:grid-cols-[minmax(72px,0.7fr)_minmax(120px,1.6fr)] md:items-center"
       >
         <div className="min-w-0">
-          <span className="block truncate text-sm font-semibold text-slate-900 dark:text-white">
+          <span className="block text-sm font-semibold text-slate-900 dark:text-white">
             {label}
           </span>
           {description && (
@@ -189,16 +189,18 @@ export default function SliderControl({
             onChange={(event) => commit(Number(event.target.value))}
             aria-label={`${label} exact value`}
           />
-          <span className="rounded-lg bg-slate-100 px-2 py-1 text-center text-sm font-semibold text-slate-700 dark:bg-white/10 dark:text-cyan-100">
-            {formatFormulaValue(value, unit)}
-          </span>
+          {unit ? (
+            <span className="rounded-lg bg-slate-100 px-2 py-1 text-center text-sm font-semibold text-slate-700 dark:bg-white/10 dark:text-cyan-100">
+              {formatFormulaValue(value, unit)}
+            </span>
+          ) : null}
         </div>
         <button
           type="button"
           className={
             locked
-              ? "mini-chip h-8 w-full justify-center bg-cyan-100 p-0 text-cyan-700 dark:bg-cyan-400/15 dark:text-cyan-100 md:col-span-2"
-              : "mini-chip h-8 w-full justify-center p-0 md:col-span-2"
+              ? "slider-lock-toggle mini-chip h-8 w-full justify-center bg-cyan-100 p-0 text-cyan-700 dark:bg-cyan-400/15 dark:text-cyan-100 md:col-span-2"
+              : "slider-lock-toggle mini-chip h-8 w-full justify-center p-0 md:col-span-2"
           }
           onClick={() => setLocked((value) => !value)}
           title={locked ? "Unlock this value" : "Lock this value"}
@@ -266,8 +268,8 @@ export default function SliderControl({
           type="button"
           className={
             locked
-              ? "mini-chip bg-cyan-100 text-cyan-700 dark:bg-cyan-400/15 dark:text-cyan-100"
-              : "mini-chip"
+              ? "slider-lock-toggle mini-chip bg-cyan-100 text-cyan-700 dark:bg-cyan-400/15 dark:text-cyan-100"
+              : "slider-lock-toggle mini-chip"
           }
           onClick={() => setLocked((value) => !value)}
           title={locked ? "Unlock this value" : "Lock this value"}

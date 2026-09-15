@@ -1,4 +1,4 @@
-import { MoreHorizontal, MousePointer2, Pencil, RotateCcw, Spline } from "lucide-react";
+import { Expand, Grid3X3, Maximize2, MoreHorizontal, MousePointer2, Pencil, RotateCcw, Spline, Type, ZoomIn, ZoomOut } from "lucide-react";
 import { useEffect, useMemo, useRef, useState, type PointerEvent } from "react";
 import { MockupLearningStrip } from "../MockupStudioChrome";
 import type { StudioMockupPage } from "../studioMockupCatalog";
@@ -9,8 +9,16 @@ type Units = "deg" | "rad" | "grad";
 type Ori = "std" | "flipx" | "flipy";
 type Example = "345" | "306090" | "454590" | "custom";
 type Tool = "select" | "measure" | "labels" | "trace";
+type CanvasCommand = "in" | "out" | "fit";
 
 const MODES = ["Solve Triangle", "Ratios", "Pythagoras", "Similarity", "Special Triangles"];
+const FIT_ZOOM = 1;
+const MAX_ZOOM = 2.4;
+const ZOOM_STEP = 0.15;
+
+function clampCanvasZoom(value: number) {
+  return clamp(Math.round(value * 100) / 100, FIT_ZOOM, MAX_ZOOM);
+}
 
 function toDeg(value: number, units: Units) {
   if (units === "rad") return value * 180 / Math.PI;
@@ -81,8 +89,32 @@ export default function RightTriangleLab({ page }: { page: StudioMockupPage }) {
   const [labels, setLabels] = useState(true);
   const [measure, setMeasure] = useState(true);
   const [trace, setTrace] = useState(false);
+  const [canvasZoom, setCanvasZoom] = useState(FIT_ZOOM);
   const drag = useRef<"A" | "B" | null>(null);
   const svgRef = useRef<SVGSVGElement>(null);
+  const geometryRef = useRef<SVGGElement>(null);
+
+  useEffect(() => {
+    const onCanvasView = (event: Event) => {
+      const detail = (event as CustomEvent<{ zoom?: number }>).detail;
+      if (typeof detail?.zoom !== "number") return;
+      const nextZoom = clampCanvasZoom(detail.zoom);
+      setCanvasZoom(nextZoom);
+      if (detail.zoom < FIT_ZOOM) {
+        window.dispatchEvent(new CustomEvent<CanvasCommand>("studio-canvas-cmd", { detail: "fit" }));
+      }
+    };
+    window.addEventListener("studio-canvas-view", onCanvasView);
+    return () => window.removeEventListener("studio-canvas-view", onCanvasView);
+  }, []);
+
+  const changeCanvasZoom = (command: CanvasCommand) => {
+    setCanvasZoom((current) => {
+      if (command === "fit") return FIT_ZOOM;
+      return clampCanvasZoom(current + (command === "in" ? ZOOM_STEP : -ZOOM_STEP));
+    });
+    window.dispatchEvent(new CustomEvent<CanvasCommand>("studio-canvas-cmd", { detail: command }));
+  };
 
   const solved = useMemo(() => {
     let A = clamp(angleA, 1, 89);
@@ -127,11 +159,18 @@ export default function RightTriangleLab({ page }: { page: StudioMockupPage }) {
 
   const pointer = (event: PointerEvent<SVGSVGElement>) => {
     const svg = svgRef.current;
-    if (!svg) return { x: 0, y: 0 };
-    const rect = svg.getBoundingClientRect();
-    const x = ((event.clientX - rect.left) / rect.width) * 640;
-    const y = ((event.clientY - rect.top) / rect.height) * 360;
-    return { x: clamp((x - 48) / 28, 0.5, 14), y: clamp((320 - y) / 28, 0.5, 10) };
+    const geometry = geometryRef.current;
+    if (!svg || !geometry) return { x: 0, y: 0 };
+    const matrix = geometry.getScreenCTM();
+    if (!matrix) return { x: 0, y: 0 };
+    const screenPoint = svg.createSVGPoint();
+    screenPoint.x = event.clientX;
+    screenPoint.y = event.clientY;
+    const { x, y } = screenPoint.matrixTransform(matrix.inverse());
+    return {
+      x: clamp(Math.abs(x - ox) / uX, 0.5, 14),
+      y: clamp(Math.abs(y - oy) / uY, 0.5, 10),
+    };
   };
 
   const onMove = (event: PointerEvent<SVGSVGElement>) => {
@@ -142,13 +181,21 @@ export default function RightTriangleLab({ page }: { page: StudioMockupPage }) {
     setExample("custom");
   };
 
-  const ox = 48;
-  const oy = 320;
-  const u = 28;
-  const Ax = ox + (ori === "flipx" ? 0 : solved.a * u);
+  const uX = 44;
+  const uY = 50;
+  const ox = ori === "flipx" ? 570 : 95;
+  const oy = ori === "flipy" ? 30 : 470;
+  const xDirection = ori === "flipx" ? -1 : 1;
+  const yDirection = ori === "flipy" ? 1 : -1;
+  const Ax = ox + xDirection * solved.a * uX;
   const Ay = oy;
   const Bx = ox;
-  const By = oy - (ori === "flipy" ? 0 : solved.b * u);
+  const By = oy + yDirection * solved.b * uY;
+  const triangleCenter = {
+    x: (ox + Ax + Bx) / 3,
+    y: (oy + Ay + By) / 3,
+  };
+  const zoomTransform = `translate(${triangleCenter.x} ${triangleCenter.y}) scale(${canvasZoom}) translate(${-triangleCenter.x} ${-triangleCenter.y})`;
   const similar = { a: solved.a * scale, b: solved.b * scale, c: solved.c * scale };
   const pickTool = (next: Tool) => {
     setTool(next);
@@ -159,13 +206,13 @@ export default function RightTriangleLab({ page }: { page: StudioMockupPage }) {
 
   return (
     <>
-      <nav className="msk-tabs" aria-label="Right Triangle Studio modes">
+      <nav className="msk-tabs rt-target-tabs" aria-label="Right Triangle Studio modes">
         {tabs.map((item) => (
           <button key={item} type="button" className={item === mode ? "active" : ""} aria-pressed={item === mode} onClick={() => setMode(item)}>{item}</button>
         ))}
       </nav>
-      <div className="msk-lab msk-rt" data-rt-mode={mode}>
-        <section className="msk-panel">
+      <div className="msk-lab msk-rt rt-target-lab" data-rt-mode={mode}>
+        <section className="msk-panel rt-target-controls">
           <h2>
             {mode === "Ratios" ? "Ratio inputs"
               : mode === "Pythagoras" ? "Side lengths"
@@ -240,26 +287,57 @@ export default function RightTriangleLab({ page }: { page: StudioMockupPage }) {
           </div>
         </section>
 
-        <section className="msk-panel msk-canvas msk-rt-stage">
-          <div className="msk-icon-tools" role="toolbar" aria-label="Canvas tools">
+        <section className="msk-panel msk-canvas msk-rt-stage rt-target-stage">
+          <div className="msk-icon-tools rt-target-inline-toolbar" role="toolbar" aria-label="Canvas tools">
             <button type="button" className={tool === "select" ? "active" : ""} aria-pressed={tool === "select"} onClick={() => setTool("select")} title="Select / Drag"><MousePointer2 /><span>Select / Drag</span></button>
             <button type="button" className={measure ? "active" : ""} aria-pressed={measure} onClick={() => pickTool("measure")} title="Measure"><Pencil /><span>Measure</span></button>
             <button type="button" className={labels ? "active" : ""} aria-pressed={labels} onClick={() => pickTool("labels")} title="Labels"><span className="msk-tool-a">A</span><span>Labels</span></button>
             <button type="button" className={trace ? "active" : ""} aria-pressed={trace} onClick={() => pickTool("trace")} title="Trace"><Spline /><span>Trace</span></button>
-            <button type="button" onClick={reset} title="Reset view"><RotateCcw /></button>
+            <button type="button" title="Zoom in" aria-label="Zoom in" onClick={() => changeCanvasZoom("in")}><ZoomIn /></button>
+            <button type="button" title="Zoom out" aria-label="Zoom out" disabled={canvasZoom <= FIT_ZOOM} onClick={() => changeCanvasZoom("out")}><ZoomOut /></button>
+            <button type="button" title="Fit canvas" aria-label="Fit canvas" aria-pressed={canvasZoom === FIT_ZOOM} onClick={() => changeCanvasZoom("fit")}><Maximize2 /></button>
+            <button type="button" title="Toggle grid" aria-label="Toggle grid" onClick={() => document.documentElement.dataset.canvasGrid = document.documentElement.dataset.canvasGrid === "off" ? "on" : "off"}><Grid3X3 /></button>
+            <button type="button" title="Toggle labels" aria-label="Toggle labels" onClick={() => document.documentElement.dataset.canvasLabels = document.documentElement.dataset.canvasLabels === "off" ? "on" : "off"}><Type /></button>
+            <button type="button" title="Fullscreen canvas" aria-label="Fullscreen canvas" onClick={() => void document.querySelector(".msk-rt-stage")?.requestFullscreen()}><Expand /></button>
+            <button type="button" onClick={() => { reset(); changeCanvasZoom("fit"); }} title="Reset view"><RotateCcw /></button>
             <button type="button" title="More"><MoreHorizontal /></button>
           </div>
-          <svg ref={svgRef} className="msk-graph" viewBox="0 0 640 360" role="img" aria-label="Interactive right triangle" onPointerMove={onMove} onPointerUp={() => { drag.current = null; }} onPointerLeave={() => { drag.current = null; }}>
-            <rect width="640" height="360" fill="#f7fbff" />
-            {Array.from({ length: 16 }, (_, i) => <line key={`vx${i}`} x1={ox + i * u} y1="12" x2={ox + i * u} y2={oy} stroke="#e8eef6" />)}
-            {Array.from({ length: 11 }, (_, i) => <line key={`hy${i}`} x1={ox} y1={oy - i * u} x2="620" y2={oy - i * u} stroke="#e8eef6" />)}
-            <line x1={ox} y1="12" x2={ox} y2={oy} stroke="#1e293b" />
-            <line x1={ox} y1={oy} x2="620" y2={oy} stroke="#1e293b" />
+          <svg
+            ref={svgRef}
+            className="msk-graph is-interactive rt-target-frame"
+            viewBox="0 0 640 500"
+            preserveAspectRatio="xMidYMid meet"
+            style={{ display: "block", overflow: "hidden" }}
+            role="img"
+            aria-label="Interactive right triangle"
+            onPointerMove={onMove}
+            onPointerUp={() => { drag.current = null; }}
+            onPointerLeave={() => { drag.current = null; }}
+          >
+            <defs>
+              <clipPath id="rt-target-viewport">
+                <rect width="640" height="500" rx="12" />
+              </clipPath>
+              <pattern id="rt-target-minor-grid" width="10" height="10" patternUnits="userSpaceOnUse">
+                <line x1="0" y1="0" x2="10" y2="0" stroke="#e8eef6" strokeWidth="0.7" />
+                <line x1="0" y1="0" x2="0" y2="10" stroke="#e8eef6" strokeWidth="0.7" />
+              </pattern>
+              <pattern id="rt-target-major-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                <rect width="40" height="40" fill="url(#rt-target-minor-grid)" />
+                <line x1="0" y1="0" x2="40" y2="0" stroke="#e8eef6" strokeWidth="1" />
+                <line x1="0" y1="0" x2="0" y2="40" stroke="#e8eef6" strokeWidth="1" />
+              </pattern>
+            </defs>
+            <rect width="640" height="500" rx="12" fill="#f9fcff" />
+            <g ref={geometryRef} className="rt-target-geometry" clipPath="url(#rt-target-viewport)" transform={zoomTransform}>
+            <rect width="640" height="500" fill="url(#rt-target-major-grid)" className="rt-target-grid" />
+            <line x1={ox} y1="12" x2={ox} y2="488" stroke="#334155" strokeWidth="1.1" />
+            <line x1="12" y1={oy} x2="628" y2={oy} stroke="#334155" strokeWidth="1.1" />
             <text x="628" y={oy + 4} fill="#64748b" fontSize="11">x</text>
             <text x={ox - 10} y="16" fill="#64748b" fontSize="11">y</text>
-            {Array.from({ length: 8 }, (_, i) => <text key={`tx${i}`} x={ox + i * 2 * u} y={oy + 14} fill="#94a3b8" fontSize="10" textAnchor="middle">{i * 2}</text>)}
-            {Array.from({ length: 5 }, (_, i) => <text key={`ty${i}`} x={ox - 8} y={oy - (i + 1) * 2 * u + 4} fill="#94a3b8" fontSize="10" textAnchor="end">{(i + 1) * 2}</text>)}
-            {trace ? <polyline points={Array.from({ length: 12 }, (_, i) => `${ox + (solved.a * i / 11) * u},${oy - (solved.b * i / 11) * u}`).join(" ")} fill="none" stroke="#94a3b8" strokeDasharray="4 4" /> : null}
+            {Array.from({ length: 8 }, (_, i) => <text key={`tx${i}`} x={ox + xDirection * i * 2 * uX} y={oy + (yDirection < 0 ? 16 : -8)} fill="#7f8da3" fontSize="10" textAnchor="middle">{i * 2}</text>)}
+            {Array.from({ length: 5 }, (_, i) => <text key={`ty${i}`} x={ox - 9} y={oy + yDirection * (i + 1) * 2 * uY + 4} fill="#7f8da3" fontSize="10" textAnchor="end">{(i + 1) * 2}</text>)}
+            {trace ? <polyline points={Array.from({ length: 12 }, (_, i) => `${ox + (solved.a * i / 11) * uX},${oy - (solved.b * i / 11) * uY}`).join(" ")} fill="none" stroke="#94a3b8" strokeDasharray="4 4" /> : null}
             {mode === "Pythagoras" ? (
               <>
                 <polygon points={squarePoints(ox, oy, Ax, Ay, 1)} fill="rgba(20,125,242,.12)" stroke="#147df2" strokeWidth="1.4" />
@@ -269,16 +347,16 @@ export default function RightTriangleLab({ page }: { page: StudioMockupPage }) {
             ) : null}
             {mode === "Similarity" ? (
               <polygon
-                points={`${ox},${oy} ${ox + similar.a * u},${oy} ${ox},${oy - similar.b * u}`}
+                points={`${ox},${oy} ${ox + similar.a * uX},${oy} ${ox},${oy - similar.b * uY}`}
                 fill="rgba(8,185,221,.08)"
                 stroke="#08b9dd"
                 strokeWidth="1.8"
                 strokeDasharray="6 4"
               />
             ) : null}
-            <line x1={ox} y1={oy} x2={Ax} y2={Ay} stroke="#147df2" strokeWidth={mode === "Ratios" ? 3.2 : 2.2} />
-            <line x1={ox} y1={oy} x2={Bx} y2={By} stroke="#8b45f4" strokeWidth={mode === "Ratios" ? 3.2 : 2.2} />
-            <line x1={Ax} y1={Ay} x2={Bx} y2={By} stroke="#08b9dd" strokeWidth={mode === "Ratios" ? 3.2 : 2.2} />
+            <line className="rt-target-side-b" x1={ox} y1={oy} x2={Ax} y2={Ay} stroke="#147df2" strokeWidth={mode === "Ratios" ? 3.2 : 2.4} />
+            <line className="rt-target-side-a" x1={ox} y1={oy} x2={Bx} y2={By} stroke="#8b45f4" strokeWidth={mode === "Ratios" ? 3.2 : 2.4} />
+            <line className="rt-target-side-c" x1={Ax} y1={Ay} x2={Bx} y2={By} stroke="#08b9dd" strokeWidth={mode === "Ratios" ? 3.2 : 2.4} />
             {mode === "Ratios" ? (
               <>
                 <text x={(Ax + ox) / 2} y={Ay + 36} fill="#147df2" fontSize="12" fontWeight="800">opp</text>
@@ -293,6 +371,12 @@ export default function RightTriangleLab({ page }: { page: StudioMockupPage }) {
             ) : null}
             <rect x={ox + 6} y={oy - 18} width="12" height="12" fill="none" stroke="#1e293b" />
             <path d={`M ${Ax - 30} ${Ay} A 30 30 0 0 0 ${Ax - 30 * Math.cos(solved.A * Math.PI / 180)} ${Ay - 30 * Math.sin(solved.A * Math.PI / 180)}`} fill="rgba(245,158,11,.16)" stroke="#f59e0b" />
+            <path
+              className="rt-target-angle-b"
+              d={`M ${Bx} ${By - yDirection * 30} A 30 30 0 0 ${xDirection < 0 ? 1 : 0} ${Bx + xDirection * 30 * Math.sin(solved.B * Math.PI / 180)} ${By - yDirection * 30 * Math.cos(solved.B * Math.PI / 180)}`}
+              fill="rgba(139,69,244,.12)"
+              stroke="#8b45f4"
+            />
             {measure ? (
               <>
                 <text x={(Ax + ox) / 2} y={Ay + 18} fill="#147df2" fontSize="13" fontWeight="700">b = {fmt(solved.b, 2)} cm</text>
@@ -309,15 +393,16 @@ export default function RightTriangleLab({ page }: { page: StudioMockupPage }) {
                 <text x={ox + 10} y={oy + 28} fill="#0f172a" fontSize="12" fontWeight="800">C (0, 0)</text>
               </>
             ) : null}
-            <circle cx={Ax} cy={Ay} r="8" fill="#f59e0b" stroke="#fff" strokeWidth="2" style={{ cursor: "grab" }} onPointerDown={(event) => { event.currentTarget.setPointerCapture(event.pointerId); drag.current = "A"; }} />
-            <circle cx={Bx} cy={By} r="8" fill="#8b45f4" stroke="#fff" strokeWidth="2" style={{ cursor: "grab" }} onPointerDown={(event) => { event.currentTarget.setPointerCapture(event.pointerId); drag.current = "B"; }} />
+            <circle className="rt-target-point-a" cx={Ax} cy={Ay} r="8" fill="#f59e0b" stroke="#fff" strokeWidth="2" style={{ cursor: "grab" }} onPointerDown={(event) => { event.currentTarget.setPointerCapture(event.pointerId); drag.current = "A"; }} />
+            <circle className="rt-target-point-b" cx={Bx} cy={By} r="8" fill="#8b45f4" stroke="#fff" strokeWidth="2" style={{ cursor: "grab" }} onPointerDown={(event) => { event.currentTarget.setPointerCapture(event.pointerId); drag.current = "B"; }} />
             <text x={ox - 18} y={(By + oy) / 2} fill="#8b45f4" fontSize="14" fontStyle="italic" fontWeight="700">a</text>
             <text x={(Ax + ox) / 2} y={oy + 32} fill="#147df2" fontSize="14" fontStyle="italic" fontWeight="700">b</text>
             <text x={(Ax + Bx) / 2 + 18} y={(Ay + By) / 2 - 14} fill="#08b9dd" fontSize="14" fontStyle="italic" fontWeight="700">c</text>
-            <circle cx={ox} cy={oy} r="7" fill="#147df2" stroke="#fff" strokeWidth="2" />
+            <circle className="rt-target-point-c" cx={ox} cy={oy} r="7" fill="#147df2" stroke="#fff" strokeWidth="2" />
+            </g>
           </svg>
           {mode === "Similarity" || mode === "Solve Triangle" ? (
-          <aside className="msk-similar">
+          <aside className="msk-similar rt-target-similarity">
             <h3>Similar Triangle (Scale: {fmt(scale, 1)}×)</h3>
             <input className="msk-similar-scale" type="range" min={0.5} max={3} step={0.1} value={scale} onChange={(event) => setScale(Number(event.target.value))} aria-label="Similar triangle scale" />
             <svg viewBox="0 0 248 132" aria-hidden="true">
@@ -336,7 +421,7 @@ export default function RightTriangleLab({ page }: { page: StudioMockupPage }) {
           ) : null}
         </section>
 
-        <aside className="msk-panel msk-live">
+        <aside className="msk-panel msk-live rt-target-results">
           {mode === "Ratios" || mode === "Solve Triangle" ? (
             <>
               <h2>{mode === "Ratios" ? "SOH-CAH-TOA" : `Trigonometric Ratios (at ∠A = ${fmt(fromDeg(solved.A, units), 1)}${unitLabel(units)})`}</h2>
@@ -424,10 +509,10 @@ export default function RightTriangleLab({ page }: { page: StudioMockupPage }) {
             ]
           } />
           {mode === "Solve Triangle" ? <StatusOk>Solution status: all values are consistent.</StatusOk> : null}
-          <ChallengeBox prompt={page.challenge.prompt} expected={page.challenge.expected} hint={page.challenge.hint} />
+          <ChallengeBox page={page} mode={mode} />
         </aside>
       </div>
-      <MockupLearningStrip page={page} />
+      <MockupLearningStrip page={page} mode={mode} />
     </>
   );
 }

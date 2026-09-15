@@ -11,7 +11,7 @@ describe("Number & Discrete Mathematics Studio", () => {
       </MemoryRouter>,
     );
     expect(html).toContain("Number &amp; Discrete Mathematics Studio");
-    expect(html).toContain("Launch a topic");
+    expect(html).toContain("Explore by Topic");
     expect(html).toContain("/discrete-world/number-sense");
     expect(html).toContain("/discrete-world/logic");
     expect(html).toContain("/discrete-world/sets");

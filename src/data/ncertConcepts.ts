@@ -697,9 +697,10 @@ export const ncertConcepts: NCERTConcept[] = [
     unit: "Number System",
     summary:
       "Classify natural, whole, integer, rational, irrational, and real numbers; place roots on the line.",
-    formula: "R = Q union (R minus Q), N subset W subset Z subset Q subset R",
+    formula:
+      "\\mathbb{R}=\\mathbb{Q}\\cup(\\mathbb{R}\\setminus\\mathbb{Q}),\\ \\mathbb{N}\\subset W\\subset\\mathbb{Z}\\subset\\mathbb{Q}\\subset\\mathbb{R}",
     visual: "number-system",
-    sliderA: "Number selector",
+    sliderA: "Set highlight (1=N … 6=R)",
     sliderB: "Root value",
     minA: 1,
     maxA: 6,
@@ -792,7 +793,7 @@ export const ncertConcepts: NCERTConcept[] = [
     unit: "Number System",
     summary:
       "Visualize Euclid's division algorithm, HCF, LCM, and prime factorization in one number-theory lab.",
-    formula: "a=bq+r, HCF(a,b)=HCF(b,r), HCF(a,b)*LCM(a,b)=a*b",
+    formula: "a=bq+r,\\ \\operatorname{HCF}(a,b)=\\operatorname{HCF}(b,r),\\ \\operatorname{HCF}(a,b)\\cdot\\operatorname{LCM}(a,b)=ab",
     visual: "euclid-algorithm",
     sliderA: "Number a",
     sliderB: "Number b",

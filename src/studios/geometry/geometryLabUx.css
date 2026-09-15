@@ -1,4 +1,6 @@
 .geo-lab-ux{--geo-zoom:1;display:grid;gap:10px}
+.vis-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+.geo-lab-toolbar--figure{position:sticky;top:8px;z-index:3}
 .geo-skip{position:absolute;left:-999px;top:8px;z-index:20;padding:8px 12px;border-radius:999px;background:#071641;color:#fff;font-weight:800}
 .geo-skip:focus{left:12px}
 .geo-lab-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:8px 10px;border:1px solid #dce7f4;border-radius:14px;background:#fff}
@@ -21,7 +23,8 @@
 .geo-help ul{margin:0;padding:0;list-style:none}
 .geo-help li{display:flex;gap:8px;margin:6px 0;font-size:12px}
 .geo-help kbd{flex:none;min-width:52px;padding:2px 6px;border:1px solid #dce7f4;border-radius:6px;font-size:10px;font-weight:800}
-.geo-lab-ux .tri-canvas svg,.geo-lab-ux .poly-svg{transform:scale(var(--geo-zoom));transform-origin:center center}
+.geo-lab-ux--polygons .poly-svg{transform:scale(var(--geo-zoom));transform-origin:center center}
+.geo-lab-ux--triangles .tri-canvas svg{transform:none}
 .geo-lab-ux.has-large-labels .tri-metric strong,.geo-lab-ux.has-large-labels .poly-measure strong,.geo-lab-ux.has-large-labels text{font-size:15px}
 .geo-lab-ux.is-contrast{--ink:#000;--muted:#111}
 .geo-lab-ux.is-contrast .tri-canvas svg,.geo-lab-ux.is-contrast .poly-svg{background:#fff;border:2px solid #000}
@@ -35,7 +38,11 @@
   .geo-inspector-toggle{display:inline-flex}
   .geo-lab-ux:not(.is-inspector-open) .tri-insights,.geo-lab-ux:not(.is-inspector-open) .poly-live{display:none}
 }
+.geo-print-prompt{display:none}
 @media print{
-  .msk-sidebar,.msk-top,.geo-lab-toolbar,.geo-related,.msk-strip,.tri-tabs,.poly-tabs{display:none!important}
+  .msk-sidebar,.msk-top,.geo-lab-toolbar,.geo-related,.msk-strip,.tri-tabs,.poly-tabs,.tri-fold,.msk-complete-row,.msk-hint{display:none!important}
   .geo-lab-ux{background:#fff}
+  .tri-canvas{order:-1}
+  .geo-print-prompt{display:block!important;padding:16px;border:1px dashed #94a3b8;font-size:16px;font-weight:800}
+  html.geo-print-worksheet .tri-print-hide,html.geo-print-worksheet .tri-canvas text{display:none!important}
 }

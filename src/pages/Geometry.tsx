@@ -40,6 +40,8 @@ import { rightTriangleMetrics } from "../utils/coreAccuracyOracles";
 import { geometryWorkspaceModule } from "./geometryStudioModules";
 import GeometryEnhancementWorkbench from "../studios/geometry/GeometryEnhancementWorkbench";
 import StudioBreadcrumb, { mathStudioCrumbs } from "../components/ui/StudioBreadcrumb";
+import StudioHomeButtons from "../components/ui/StudioHomeButtons";
+import { StudioCanvasToolbar } from "../components/ui/StudioCanvasToolbar";
 import MockupStudioApp from "../studios/mockup/MockupStudioApp";
 
 type GeometryTab = "triangles" | "pythagoras" | "theorems" | "circles" | "solids" | "accuracy" | "advanced";
@@ -128,6 +130,7 @@ export function GeometryLegacyWorkspace() {
     <main className="geometry-universe" onPointerDown={() => markTopicInteracted(topic.id)}>
       <header className="gu-header">
         <div>
+          <StudioHomeButtons studioTo="/geometry" />
           <StudioBreadcrumb crumbs={mathStudioCrumbs(
             { label: "Geometry", to: "/geometry" },
             { label: geometryTabs.find((item) => item.id === tab)?.label ?? "Triangles", to: tab === "triangles" ? "/geometry" : `/geometry?tab=${tab}` },
@@ -136,6 +139,7 @@ export function GeometryLegacyWorkspace() {
           <p>Measure shapes, angles, areas, circles, and spatial relationships visually.</p>
         </div>
         <div className="gu-header-actions">
+          <StudioCanvasToolbar />
           <span className="gu-progress"><i />In progress - {progress}%</span>
           <span><Sparkles />Foundational</span>
           <span><Clock3 />40 min</span>

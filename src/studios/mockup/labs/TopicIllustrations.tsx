@@ -12,23 +12,30 @@ function Frame({ children, bg = "#f8fbff" }: { children: ReactNode; bg?: string 
 export function TopicIllustration({ pageId }: { pageId: string }) {
   switch (pageId) {
     case "unit-circle":
-      return <Frame><circle cx="110" cy="46" r="28" fill="none" stroke="#08b9dd" strokeWidth="2" /><line x1="110" y1="46" x2="132" y2="28" stroke="#8b45f4" /><circle cx="132" cy="28" r="3.5" fill="#f59e0b" /><line x1="78" y1="46" x2="142" y2="46" stroke="#94a3b8" /><line x1="110" y1="18" x2="110" y2="74" stroke="#94a3b8" /></Frame>;
+      return <Frame bg="#0b1220"><circle cx="110" cy="46" r="28" fill="none" stroke="#22d3ee" strokeWidth="2.4" /><line x1="110" y1="46" x2="132" y2="28" stroke="#c4b5fd" strokeWidth="2" /><circle cx="132" cy="28" r="4" fill="#fbbf24" /><line x1="78" y1="46" x2="142" y2="46" stroke="#64748b" /><line x1="110" y1="18" x2="110" y2="74" stroke="#64748b" /></Frame>;
     case "right-triangle":
       return <Frame><polygon points="48,72 168,72 48,24" fill="none" stroke="#147df2" strokeWidth="2" /><rect x="48" y="60" width="10" height="10" fill="none" stroke="#1e293b" /></Frame>;
     case "graphs":
       return <Frame><path d="M20 46 C 50 12, 80 80, 110 46 S 170 12, 200 46" fill="none" stroke="#08b9dd" strokeWidth="2" /><path d="M20 46 C 50 80, 80 12, 110 46 S 170 80, 200 46" fill="none" stroke="#8b45f4" strokeWidth="2" /></Frame>;
     case "identities":
-      return <Frame><text x="110" y="52" textAnchor="middle" fill="#147df2" fontSize="18" fontWeight="800">sin²θ+cos²θ=1</text></Frame>;
+      return (
+        <Frame bg="#0b1220">
+          <circle cx="58" cy="46" r="26" fill="none" stroke="#22d3ee" strokeWidth="2.2" />
+          <line x1="58" y1="46" x2="78" y2="28" stroke="#c4b5fd" strokeWidth="2" />
+          <text x="128" y="42" textAnchor="middle" fill="#fde68a" fontSize="13" fontWeight="800">sin²θ+cos²θ</text>
+          <text x="128" y="62" textAnchor="middle" fill="#67e8f9" fontSize="16" fontWeight="800">= 1</text>
+        </Frame>
+      );
     case "inverse":
-      return <Frame><path d="M30 70 C 70 70, 90 20, 190 20" fill="none" stroke="#8b45f4" strokeWidth="2.2" /><circle cx="110" cy="46" r="3" fill="#f59e0b" /></Frame>;
+      return <Frame bg="#0b1220"><path d="M30 70 C 70 70, 90 20, 190 20" fill="none" stroke="#c4b5fd" strokeWidth="2.4" /><circle cx="110" cy="46" r="4" fill="#fbbf24" /><text x="168" y="28" fill="#67e8f9" fontSize="11">arcsin</text></Frame>;
+    case "waves":
+      return <Frame bg="#0b1220"><path d="M16 46 C 36 16, 56 76, 76 46 S 116 16, 136 46 S 176 76, 204 46" fill="none" stroke="#22d3ee" strokeWidth="2.4" /><path d="M16 46 C 36 76, 56 16, 76 46 S 116 76, 136 46" fill="none" stroke="#fbbf24" strokeWidth="1.8" /></Frame>;
+    case "ar":
+      return <Frame bg="#0b1220"><rect x="80" y="22" width="36" height="52" rx="6" fill="none" stroke="#22d3ee" strokeWidth="2" /><polygon points="50,70 110,28 150,70" fill="none" stroke="#fbbf24" strokeWidth="2" /></Frame>;
     case "oblique":
       return <Frame><polygon points="40,70 170,70 120,22" fill="none" stroke="#147df2" strokeWidth="2" /><text x="96" y="82" fill="#64748b" fontSize="10">SAS / SSS</text></Frame>;
-    case "waves":
-      return <Frame><path d="M16 46 C 36 16, 56 76, 76 46 S 116 16, 136 46 S 176 76, 204 46" fill="none" stroke="#8b45f4" strokeWidth="2" /></Frame>;
     case "applications":
       return <Frame><polygon points="40,70 150,70 150,28" fill="#e0f7ff" stroke="#147df2" /><circle cx="150" cy="28" r="3" fill="#f59e0b" /><text x="168" y="32" fontSize="10" fill="#334155">h</text></Frame>;
-    case "ar":
-      return <Frame><rect x="80" y="22" width="36" height="52" rx="6" fill="none" stroke="#8b45f4" /><polygon points="50,70 110,28 150,70" fill="none" stroke="#08b9dd" /></Frame>;
     case "construction":
       return <Frame><line x1="30" y1="70" x2="190" y2="24" stroke="#147df2" /><circle cx="110" cy="46" r="26" fill="none" stroke="#8b45f4" /><circle cx="70" cy="58" r="3" fill="#f59e0b" /></Frame>;
     case "triangles":
@@ -78,7 +85,7 @@ export function TopicIllustration({ pageId }: { pageId: string }) {
     case "roots":
       return <Frame><circle cx="110" cy="46" r="28" fill="none" stroke="#94a3b8" /><circle cx="110" cy="18" r="3" fill="#147df2" /><circle cx="138" cy="58" r="3" fill="#8b45f4" /><circle cx="82" cy="58" r="3" fill="#f59e0b" /></Frame>;
     case "euler":
-      return <Frame><text x="110" y="54" textAnchor="middle" fill="#147df2" fontSize="18">e^{iθ}</text></Frame>;
+      return <Frame><text x="110" y="54" textAnchor="middle" fill="#147df2" fontSize="18">{`e^{iθ}`}</text></Frame>;
     case "loci":
       return <Frame><circle cx="70" cy="46" r="22" fill="none" stroke="#147df2" /><path d="M120 46 C 140 20, 170 20, 190 46" fill="none" stroke="#8b45f4" /></Frame>;
     case "fractals":

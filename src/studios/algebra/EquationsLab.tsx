@@ -219,6 +219,7 @@ export default function EquationsLab() {
             </div>
           </div>
           <strong className={balanced ? "alg-balanced" : "alg-balanced is-off"}>{balanced ? "Balanced ✓" : "Not balanced"}</strong>
+          {notice.includes("flipped") ? <p className="alg-eq-flip" role="status">Inequality sign reversed because both sides were multiplied or divided by a negative number.</p> : null}
           {infoOpen ? <p>Adding, subtracting, multiplying, or dividing both sides by the same nonzero value preserves equality. 0x = 0 is all reals; 0x = nonzero has no solution.</p> : null}
         </section>
 

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { allRequestedEnhancements, enhancementCoverage, platformEnhancements, studioEnhancements } from "./studioEnhancementManifest";
+import { allRequestedEnhancements, enhancementCoverage, platformEnhancements, shippedEnhancements, studioEnhancements } from "./studioEnhancementManifest";
 
 describe("studio enhancement implementation ledger", () => {
   it("tracks exactly 25 requirements for each of the nine studios and 10 platform requirements", () => {
@@ -17,6 +17,8 @@ describe("studio enhancement implementation ledger", () => {
   it("only marks requirements implemented when route and evidence are recorded", () => {
     const implemented = allRequestedEnhancements.filter((item) => item.status === "implemented");
     expect(implemented.every((item) => item.route && item.evidence && item.evidence.length >= 3)).toBe(true);
-    expect(enhancementCoverage()).toEqual({ implemented: 235, missing: 0, total: 235 });
+    expect(enhancementCoverage()).toEqual({ implemented: 210, missing: 25, total: 235 });
+    expect(studioEnhancements.filter((item) => item.id.startsWith("STAT-")).every((item) => item.status === "missing")).toBe(true);
+    expect(shippedEnhancements().some((item) => item.id.startsWith("STAT-"))).toBe(false);
   });
 });

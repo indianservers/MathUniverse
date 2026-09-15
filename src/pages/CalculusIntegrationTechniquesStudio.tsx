@@ -12,6 +12,7 @@ import {
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import MathExpression from "../components/ui/MathExpression";
+import StudioGraphWidget from "../studios/phase1/StudioGraphWidget";
 import "./CalculusIntegrationTechniquesStudio.css";
 
 type Props = { mode: string };
@@ -463,6 +464,7 @@ export default function CalculusIntegrationTechniquesStudio({ mode }: Props) {
           <section className="its-panel its-geometry">
             <h2>Geometric View: Region Before and After {config.title}</h2>
             <div className="its-graphs">
+              <StudioGraphWidget expressions={[config.xLabel.includes("x") ? "x*sqrt(x^2+1)" : "sin(x)^2"]} labels={[config.xLabel]} />
               <TechniqueGraph
                 title="x-space (original)"
                 label={config.xLabel}
@@ -581,6 +583,18 @@ export default function CalculusIntegrationTechniquesStudio({ mode }: Props) {
           </Panel>
           <Panel title="Why this works">
             <p>{config.insight}</p>
+            <p><strong>Challenge.</strong> {technique === "substitution" ? "Watch the interval map from x to u and match the transformed bounds." : technique === "parts" ? "Highlight u and dv, then complete one tabular step." : technique === "partial" ? "Use cover-up constants and check them on the integrand graph." : technique === "trig" || technique === "trig-sub" ? "Build the reference triangle from the radical, then substitute." : "Raise the cutoff b until the tail looks converged."}</p>
+            <p>
+              {technique === "substitution"
+                ? "Challenge: map the x-interval onto the u-interval and match the transformed area."
+                : technique === "parts"
+                  ? "Challenge: choose u and dv so the tabular highlight matches the remaining integral."
+                  : technique === "partial"
+                    ? "Challenge: cover-up constants until the graph of the sum matches the integrand."
+                    : technique === "trig" || technique === "trig-sub"
+                      ? "Challenge: build the reference triangle from the radical and check the substitution."
+                      : "Challenge: raise the cutoff b until the improper integral visibly converges or diverges."}
+            </p>
           </Panel>
           <Panel title="Resolution">
             <label className="its-resolution">

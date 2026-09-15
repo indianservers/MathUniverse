@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { defaultConstruction, descendantsOf, evaluate } from "./constructionEngine";
+import { defaultConstruction, descendantsOf, evaluate, type GeomObject } from "./constructionEngine";
 
 describe("constructionEngine", () => {
   it("builds a Thales circle from a diameter", () => {
@@ -45,5 +45,19 @@ describe("constructionEngine", () => {
   it("lists descendants so deleting a parent can warn", () => {
     expect(descendantsOf(defaultConstruction(), "AB")).toEqual(expect.arrayContaining([]));
     expect(descendantsOf(defaultConstruction(), "A").length).toBeGreaterThan(0);
+  });
+
+  it("traces a midpoint as a point on a circle travels", () => {
+    const objects: GeomObject[] = [
+      { id: "O", kind: "freePoint", label: "O", parents: [], visible: true, locked: false, constructed: true, params: { x: 0, y: 0 } },
+      { id: "A", kind: "freePoint", label: "A", parents: [], visible: true, locked: false, constructed: true, params: { x: 2, y: 0 } },
+      { id: "c", kind: "circleCP", label: "c", parents: ["O", "A"], visible: true, locked: false, constructed: true },
+      { id: "P", kind: "pointOnObject", label: "P", parents: ["c"], visible: true, locked: false, constructed: true, params: { t: 0 } },
+      { id: "M", kind: "midpoint", label: "M", parents: ["O", "P"], visible: true, locked: false, constructed: true },
+      { id: "L", kind: "locus", label: "loc1", parents: ["P", "M"], visible: true, locked: false, constructed: true },
+    ];
+    const world = evaluate(objects);
+    expect(world.L.polygon?.length).toBeGreaterThan(8);
+    expect(world.L.polygon?.every((p) => Math.abs(Math.hypot(p.x, p.y) - 1) < 0.05)).toBe(true);
   });
 });

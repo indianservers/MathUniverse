@@ -23,6 +23,23 @@ function isRouteChunkLoadError(error: unknown) {
   );
 }
 
+function NavigatePreserve({ to }: { to: string }) {
+  const location = useLocation();
+  const dest = new URL(to, "https://math.local");
+  const merged = new URLSearchParams(dest.search);
+  const incoming = new URLSearchParams(location.search);
+  incoming.forEach((value, key) => {
+    if (!merged.has(key)) merged.set(key, value);
+  });
+  const search = merged.toString();
+  return (
+    <Navigate
+      to={`${dest.pathname}${search ? `?${search}` : ""}${location.hash}`}
+      replace
+    />
+  );
+}
+
 function lazyRoute<Props>(
   loader: () => Promise<{ default: ComponentType<Props> }>,
 ) {
@@ -82,8 +99,8 @@ const AdvancedConceptStudios = lazyRoute(
   () => import("./pages/AdvancedConceptStudios"),
 );
 const AlgebraStudio = lazyRoute(() => import("./pages/AlgebraStudio"));
-const AlgebraicStructures = lazyRoute(
-  () => import("./pages/AlgebraicStructures"),
+const AlgebraicStructuresStudio = lazyRoute(
+  () => import("./pages/AlgebraicStructuresStudio"),
 );
 const AIApplications = lazyRoute(() => import("./pages/AIApplications"));
 const ARMathLab = lazyRoute(() => import("./pages/ARMathLab"));
@@ -95,7 +112,6 @@ const CalculusStudio = lazyRoute(() => import("./pages/CalculusStudio"));
 const CircleToTriangleVisualization = lazyRoute(
   () => import("./pages/CircleToTriangleVisualization"),
 );
-const Combinatorics = lazyRoute(() => import("./pages/Combinatorics"));
 const ComplexNumbers = lazyRoute(() => import("./pages/ComplexNumbers"));
 const ConceptDependencyGraph = lazyRoute(
   () => import("./pages/ConceptDependencyGraph"),
@@ -193,6 +209,7 @@ const MathVisualDictionary = lazyRoute(
   () => import("./pages/MathVisualDictionary"),
 );
 const WorkspaceHome = lazyRoute(() => import("./pages/WorkspaceHome"));
+const WorkspaceTeach = lazyRoute(() => import("./pages/WorkspaceTeach"));
 const MagicMaths = lazyRoute(() => import("./pages/MagicMaths"));
 const MatrixOperationPage = lazyRoute(
   () => import("./pages/MatrixOperationPage"),
@@ -214,12 +231,6 @@ const OlympyardMockTest = lazyRoute(() => import("./pages/OlympyardMockTest"));
 const OlympyardPractice = lazyRoute(() => import("./pages/OlympyardPractice"));
 const ParametricCurveExplorer = lazyRoute(
   () => import("./pages/ParametricCurveExplorer"),
-);
-const PermutationsCombinationsVisualizer = lazyRoute(
-  () => import("./pages/PermutationsCombinationsVisualizer"),
-);
-const PolarCoordinatesVisualizer = lazyRoute(
-  () => import("./pages/PolarCoordinatesVisualizer"),
 );
 const ProbabilityStatistics = lazyRoute(
   () => import("./pages/ProbabilityStatistics"),
@@ -272,9 +283,6 @@ const TrigonometryConceptPage = lazyRoute(
 );
 const TrigFormulaVisualizerPage = lazyRoute(
   () => import("./trigonometry/pages/TrigFormulaVisualizerPage"),
-);
-const TruthTableGenerator = lazyRoute(
-  () => import("./pages/TruthTableGenerator"),
 );
 const UnitConverter = lazyRoute(() => import("./pages/UnitConverter"));
 const UniversalMathDocumentPage = lazyRoute(
@@ -409,10 +417,13 @@ export default function App() {
             <Route path="algebra/proof" element={<AlgebraStudio />} />
             <Route path="algebra/cas" element={<AlgebraStudio />} />
             <Route path="algebra/advanced" element={<AlgebraStudio />} />
-            <Route
-              path="algebraic-structures"
-              element={<AlgebraicStructures />}
-            />
+            <Route path="algebraic-structures" element={<AlgebraicStructuresStudio page="home" />} />
+            <Route path="algebraic-structures/structure-test" element={<AlgebraicStructuresStudio page="structure-test" />} />
+            <Route path="algebraic-structures/cayley-tables" element={<AlgebraicStructuresStudio page="cayley-tables" />} />
+            <Route path="algebraic-structures/semigroups-monoids" element={<AlgebraicStructuresStudio page="semigroups-monoids" />} />
+            <Route path="algebraic-structures/posets-lattices" element={<AlgebraicStructuresStudio page="posets-lattices" />} />
+            <Route path="algebraic-structures/boolean-algebra" element={<AlgebraicStructuresStudio page="boolean-algebra" />} />
+            <Route path="algebra/algebraic-structures" element={<Navigate to="/algebraic-structures" replace />} />
             <Route path="math-lab" element={<MathLab />} />
             <Route path="engineering-math" element={<EngineeringMath />} />
             <Route
@@ -509,8 +520,9 @@ export default function App() {
             />
             <Route
               path="workspace/teach"
-              element={<Navigate to="/workspace" replace />}
+              element={<WorkspaceTeach />}
             />
+            <Route path="math-workspaces/:group" element={<WorkspaceHome />} />
             <Route path="formulas" element={<Formulas />} />
             <Route path="formulas/:categorySlug" element={<Formulas />} />
             <Route path="visual-formulas" element={<VisualFormulasHub />} />
@@ -573,6 +585,14 @@ export default function App() {
             />
             <Route path="shapes" element={<ShapesExplorer />} />
             <Route path="number-systems" element={<NumberSystems />} />
+            <Route path="number-systems/rational" element={<NumberSystems />} />
+            <Route path="number-systems/irrational" element={<NumberSystems />} />
+            <Route path="number-systems/real-line" element={<NumberSystems />} />
+            <Route path="number-systems/hierarchy" element={<NumberSystems />} />
+            <Route path="number-systems/concepts" element={<NumberSystems />} />
+            <Route path="number-systems/practice" element={<NumberSystems />} />
+            <Route path="number-systems/accuracy" element={<Navigate to="/number-systems/practice" replace />} />
+            <Route path="number-systems/space" element={<Navigate to="/number-systems/hierarchy" replace />} />
             <Route path="trigonometry" element={<Trigonometry />} />
             {["unit-circle", "right-triangle", "graphs", "identities", "inverse", "oblique", "waves", "applications", "ar"].map((slug) => (
               <Route key={`trig-${slug}`} path={`trigonometry/${slug}`} element={<Trigonometry />} />
@@ -669,7 +689,7 @@ export default function App() {
                 <Navigate to="/calculus/derivative-applications" replace />
               }
             />
-            <Route path="combinatorics" element={<Combinatorics />} />
+            <Route path="combinatorics" element={<Navigate to="/discrete-world/combinatorics" replace />} />
             <Route path="complex-numbers" element={<ComplexNumbers />} />
             {["argand-plane", "arithmetic", "polar-forms", "rotation", "roots", "euler", "loci", "fractals", "waves-circuits"].map((slug) => (
               <Route key={`complex-${slug}`} path={`complex-numbers/${slug}`} element={<ComplexNumbers />} />
@@ -771,7 +791,9 @@ export default function App() {
             />
             <Route
               path="polar-visualizer"
-              element={<PolarCoordinatesVisualizer />}
+              element={
+                <NavigatePreserve to="/calculus/series-parametric-polar?mode=polar" />
+              }
             />
             <Route path="unit-converter" element={<UnitConverter />} />
             <Route
@@ -901,9 +923,9 @@ export default function App() {
             />
             <Route
               path="mathematical-logic"
-              element={<TruthTableGenerator />}
+              element={<Navigate to="/discrete-world/logic?mode=Truth+Table" replace />}
             />
-            <Route path="truth-table" element={<TruthTableGenerator />} />
+            <Route path="truth-table" element={<Navigate to="/discrete-world/logic?mode=Truth+Table" replace />} />
             <Route
               path="math/algebra"
               element={<Navigate to="/algebra" replace />}
@@ -926,15 +948,15 @@ export default function App() {
             />
             <Route
               path="math/limits-continuity"
-              element={<CalculusStudio page="limits" />}
+              element={<NavigatePreserve to="/calculus/limits" />}
             />
             <Route
               path="math/derivatives"
-              element={<CalculusStudio page="derivatives" />}
+              element={<NavigatePreserve to="/calculus/derivatives" />}
             />
             <Route
               path="math/integration"
-              element={<CalculusStudio page="integration" />}
+              element={<NavigatePreserve to="/calculus/integration" />}
             />
             <Route
               path="math/matrix-transformations"
@@ -946,7 +968,7 @@ export default function App() {
             />
             <Route
               path="math/slope-fields"
-              element={<CalculusStudio page="differential-equations" />}
+              element={<NavigatePreserve to="/calculus/differential-equations?mode=slope" />}
             />
             <Route
               path="math/fourier-series"
@@ -954,7 +976,7 @@ export default function App() {
             />
             <Route
               path="math/permutations-combinations"
-              element={<PermutationsCombinationsVisualizer />}
+              element={<Navigate to="/discrete-world/combinatorics" replace />}
             />
             <Route
               path="math/:visualizationId"

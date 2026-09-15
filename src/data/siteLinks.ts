@@ -402,7 +402,7 @@ const topicLinks: SiteLink[] = topics
   }));
 
 const geometryLinks: SiteLink[] = geometryConcepts.map((concept) => ({
-  title: concept.title,
+  title: concept.id === "triangles" ? "Triangles Lab" : concept.title,
   path: `/geometry/${concept.id}`,
   description: concept.summary,
   category: `Geometry: ${concept.category}`,

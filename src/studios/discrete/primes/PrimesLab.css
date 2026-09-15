@@ -1,0 +1,63 @@
+.primes-play{margin-top:8px;align-items:center}
+.primes-speed{min-width:120px}
+.primes-speed input{accent-color:#08b9dd}
+.primes-tip{border-bottom:1px dotted #64748b;cursor:help;font-weight:800}
+.primes-legend{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0;font-size:11px;font-weight:700;color:#475569}
+.primes-legend i{display:inline-block;width:12px;height:12px;border-radius:4px;margin-right:4px;vertical-align:middle}
+.primes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(36px,1fr));gap:6px;padding:10px}
+.primes-cell{min-height:36px;border:0;border-radius:8px;font-weight:800;cursor:pointer;transition:transform .28s ease,background .28s ease,color .28s ease}
+.primes-cell:focus-visible{outline:2px solid #147df2;outline-offset:2px}
+.primes-cell.is-unprocessed{background:#f1f5f9;color:#334155}
+.primes-cell.is-current{background:#147df2;color:#fff;transform:scale(1.08)}
+.primes-cell.is-eliminating{background:#f59e0b;color:#fff;animation:primes-hit .4s ease}
+.primes-cell.is-composite{background:#e2e8f0;color:#64748b}
+.primes-cell.is-prime{background:#dbeafe;color:#1d4ed8}
+.primes-cell.is-focus{box-shadow:0 0 0 2px #8b45f4}
+@keyframes primes-hit{0%{transform:scale(.86)}100%{transform:scale(1)}}
+.primes-pills{display:flex;flex-wrap:wrap;gap:6px}
+.primes-pills button{min-height:28px;padding:0 8px;border:0;border-radius:8px;background:#dbeafe;color:#1d4ed8;font-weight:800;cursor:pointer}
+.primes-digits{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0;justify-content:center}
+.primes-digit{min-width:42px;min-height:52px;display:grid;place-items:center;border-radius:12px;background:#eef6ff;font-size:22px;font-weight:800;color:#071641;position:relative}
+.primes-digit.is-on{background:#147df2;color:#fff}
+.primes-digit small{position:absolute;bottom:-16px;font-size:10px;color:#f59e0b}
+.primes-tree-wrap{border-radius:12px;background:#f8fbff;padding:8px 8px 16px}
+.primes-tree{width:min(100%,520px);height:auto;display:block;margin:0 auto;overflow:visible}
+.primes-tree-wrap.is-compare{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.primes-tree-pane{overflow:auto;border-radius:12px;background:#f8fbff}
+.primes-split-dock{margin:8px 0 12px;padding:10px;border-radius:12px;background:#fff7ed;border:1px solid #fdba74}
+.primes-split-dock .primes-pair{margin-top:8px}
+.primes-pair{display:flex;flex-wrap:wrap;gap:6px}
+.primes-pair button,.primes-ghost{min-height:32px;padding:0 10px;border:1px solid #dce7f4;border-radius:10px;background:#fff;font-weight:800}
+.primes-gcd-graph{width:100%;height:auto;display:block;margin:0 0 10px;background:#f8fbff;border-radius:12px}
+.primes-venn{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;min-height:160px}
+.primes-venn div{border:1px dashed #b7d4ea;border-radius:14px;padding:8px;background:#fff}
+.primes-token{display:inline-grid;place-items:center;width:36px;height:36px;margin:4px;border-radius:10px;background:#147df2;color:#fff;font-weight:800;cursor:grab}
+.primes-ulam{width:100%;height:min(58vh,520px);background:#f8fbff;border-radius:12px;touch-action:none}
+.primes-lanes{display:grid;gap:8px}
+.primes-lane{display:flex;flex-wrap:wrap;gap:4px;padding:8px;border-radius:12px;background:#f8fbff;border:1px solid #e2e8f0}
+.primes-lane b{min-width:72px;font-size:11px;color:#64748b}
+.primes-gap-plot{width:100%;height:220px}
+.primes-inspect{margin-top:8px;padding:10px;border-radius:12px;background:#f8fbff;border:1px solid #dce7f4;font-size:12px;line-height:1.45}
+.primes-euclid-bars{display:grid;gap:8px}
+.primes-euclid-bars span{display:block;height:18px;border-radius:6px;background:#147df2}
+.primes-teacher{padding:10px;border:1px dashed #8b45f4;border-radius:12px;background:#faf5ff;font-size:12px}
+.primes-teacher label{display:flex;gap:6px;align-items:center;margin:4px 0}
+.primes-cell.is-neither{background:#f8fafc;color:#94a3b8;border:1px dashed #cbd5e1}
+.primes-cell.is-candidate{background:#c7d2fe;color:#312e81}
+.primes-cell.is-eq{box-shadow:0 0 0 2px #f59e0b}
+.primes-strike{text-decoration:line-through;text-decoration-thickness:2px}
+.primes-cell sup{font-size:9px;margin-left:1px;color:#b45309}
+.primes-eq{font-weight:800;color:#b45309}
+.primes-sqrt{display:flex;justify-content:space-between;gap:8px;font-size:11px;font-weight:700;color:#64748b;margin:6px 0}
+.primes-math{display:block;margin:6px 0}
+.primes-euclid-fit{display:flex;height:22px;gap:3px;margin:10px 0;align-items:stretch}
+.primes-euclid-fit i{background:#147df2;border-radius:4px;min-width:4px}
+.primes-euclid-fit i.is-rem{background:#f59e0b}
+.primes-venn.is-gcd [class]{transition:opacity .2s ease}
+.primes-venn .is-drop{outline:2px dashed #10b981}
+.primes-venn-3{grid-template-columns:repeat(auto-fit,minmax(120px,1fr))}
+.primes-build{display:flex;gap:8px;justify-content:center;flex-wrap:nowrap}
+.primes-build .primes-digit{width:48px;flex:0 0 48px}
+.primes-lane.is-forbidden{background:#f8fafc;opacity:.85;border-style:dashed}
+.primes-ulam text{pointer-events:none}
+.msk-discrete .msk-lab.is-present .primes-cell{min-height:44px;font-size:15px}

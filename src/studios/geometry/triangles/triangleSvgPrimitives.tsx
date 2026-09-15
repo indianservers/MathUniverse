@@ -86,8 +86,8 @@ export function DraggableVertex({
   const s = toSvg(plane, p);
   return (
     <g className="tri-vertex" style={{ cursor: active ? "grabbing" : "grab" }}>
-      <circle cx={s.x} cy={s.y} r="16" fill="transparent" />
-      <circle cx={s.x} cy={s.y} r={active ? 7 : 6} fill="#fff" stroke={color} strokeWidth="2.4" />
+      <circle cx={s.x} cy={s.y} r="22" fill="transparent" />
+      <circle cx={s.x} cy={s.y} r={active ? 8 : 7} fill="#fff" stroke={color} strokeWidth="2.4" />
       <text x={s.x + 10} y={s.y - 10} fill={color} fontSize="13" fontWeight="800">{label}</text>
     </g>
   );

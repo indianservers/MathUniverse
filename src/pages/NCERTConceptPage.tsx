@@ -77,7 +77,9 @@ function StandardNCERTConceptDetail({ concept }: { concept: NCERTConcept }) {
           <NCERTSvg visual={concept.visual} a={a} b={b} c={c} title={concept.title} />
         </div>
         <div className="grid gap-3 md:grid-cols-3">
-          {concept.outcomes.map((item) => <Info key={item} label="Outcome" value={item} />)}
+          {concept.outcomes.map((item, index) => (
+            <Info key={item} label={metrics[index]?.label ?? "Outcome"} value={metrics[index]?.value ?? item} />
+          ))}
         </div>
       </div>
       {controlsAndValues}
@@ -863,7 +865,7 @@ function NumberSystem({ selector, root }: { selector: number; root: number }) {
       <rect x="175" y="212" width="115" height="34" rx="14" fill="#dcfce7" opacity="0.96" stroke={strokeFor(selected === 1)} strokeWidth={widthFor(selected === 1)} />
       <Label x="190" y="236" text="Natural N" />
 
-      <text x="113" y="342" fill="#0f172a" fontSize="15" fontWeight="900">N subset W subset Z subset Q subset R</text>
+      <text x="113" y="342" fill="#0f172a" fontSize="15" fontWeight="900">N ⊂ W ⊂ Z ⊂ Q ⊂ R</text>
       <text x="486" y="342" fill="#9a3412" fontSize="15" fontWeight="900">Irrationals are in R, not in Q</text>
 
       <line x1="95" x2="665" y1="392" y2="392" stroke="#0f172a" strokeWidth="4" strokeLinecap="round" />
@@ -875,10 +877,10 @@ function NumberSystem({ selector, root }: { selector: number; root: number }) {
       ))}
       <circle cx={rootX} cy="392" r="9" fill={perfectSquare ? "#06b6d4" : "#f59e0b"} stroke="#0f172a" strokeWidth="3" />
       <text x={Math.min(590, rootX + 14)} y="382" fill="#0f172a" fontSize="14" fontWeight="900">
-        sqrt({roundedRoot}) = {roundTo(rootValue, 4)}
+        √{roundedRoot} = {roundTo(rootValue, 4)}
       </text>
       <text x="95" y="452" fill="#0f172a" fontSize="16" fontWeight="900">
-        sqrt({roundedRoot}) {perfectSquare ? "is rational because the root is an integer." : "is irrational because "}{!perfectSquare ? `${roundedRoot} is not a perfect square.` : ""}
+        √{roundedRoot} {perfectSquare ? "is rational because the root is an integer." : "is irrational because "}{!perfectSquare ? `${roundedRoot} is not a perfect square.` : ""}
       </text>
     </g>
   );
@@ -908,20 +910,25 @@ function EuclidAlgorithm({ a, b }: { a: number; b: number }) {
   const factorsA = primeFactors(a);
   const factorsB = primeFactors(b);
   const common = commonPrimeFactors(factorsA, factorsB);
+  const [playIndex, setPlayIndex] = useState(0);
+  const shown = steps.slice(0, Math.min(steps.length, playIndex + 1));
   return (
     <g>
       <Label x="80" y="60" text={`Euclid algorithm for ${a} and ${b}: HCF=${hcf}, LCM=${lcm}`} />
-      {steps.slice(0, 5).map((step, i) => (
+      {shown.slice(0, 5).map((step, i) => (
         <g key={i}>
-          <rect x="95" y={92 + i * 42} width={390 - i * 24} height="30" rx="10" fill={i % 2 ? "#8b5cf6" : "#06b6d4"} opacity="0.22" stroke="#0f172a" />
+          <rect x="95" y={92 + i * 42} width={390 - i * 24} height="30" rx="10" fill={i === shown.length - 1 ? "#f59e0b" : i % 2 ? "#8b5cf6" : "#06b6d4"} opacity="0.32" stroke="#0f172a" />
           <Label x="110" y={114 + i * 42} text={step} />
         </g>
       ))}
+      <foreignObject x="95" y="310" width="220" height="40">
+        <button type="button" className="mini-chip" onClick={() => setPlayIndex((value) => (value + 1) % Math.max(1, steps.length))}>Next remainder step</button>
+      </foreignObject>
       <FactorRow x={505} y={105} label={`${a}`} factors={factorsA} common={common} />
       <FactorRow x={505} y={190} label={`${b}`} factors={factorsB} common={common} />
       <rect x="500" y="275" width="180" height="78" rx="18" fill="#ecfeff" stroke="#06b6d4" strokeWidth="2" />
-      <Label x="520" y="305" text={`Common product = ${hcf}`} />
-      <Label x="520" y="332" text={`a x b = HCF x LCM`} />
+      <Label x="520" y="305" text={`HCF = ${hcf}`} />
+      <Label x="520" y="332" text={`a·b = HCF·LCM`} />
       <Label x="80" y="420" text={`Prime factors connect both methods: common factors multiply to HCF; all factors combine to LCM.`} />
     </g>
   );

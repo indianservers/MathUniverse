@@ -1,9 +1,11 @@
 import {
+  Bell,
   Binary,
   BookOpenCheck,
   Box,
   BrainCircuit,
   Calculator,
+  CheckCircle2,
   Circle as CircleIcon,
   Compass,
   Cuboid,
@@ -22,6 +24,7 @@ import {
   Lightbulb,
   LineChart,
   Menu,
+  Moon,
   Move,
   Network,
   Pencil,
@@ -34,19 +37,46 @@ import {
   Sigma,
   Sparkles,
   Star,
+  Sun,
   Target,
   Triangle,
   Trophy,
+  User,
   Waves,
   X,
   type LucideIcon,
 } from "lucide-react";
-import { useEffect, useMemo, useState, type ReactNode } from "react";
-import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { Link, NavLink, useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import StudioBreadcrumb, { mathStudioCrumbs } from "../../components/ui/StudioBreadcrumb";
+import StudioHomeButtons from "../../components/ui/StudioHomeButtons";
+import { StudioCanvasToolbar } from "../../components/ui/StudioCanvasToolbar";
 import { TopicIllustration } from "./labs/TopicIllustrations";
-import { studioPagesWithoutHome, type StudioMockupDefinition, type StudioMockupPage } from "./studioMockupCatalog";
+import { studioNavPages, studioSidebarPages, type StudioMockupDefinition, type StudioMockupPage } from "./studioMockupCatalog";
+import { ModellingLaunchArt, ModellingNavIcon, modellingDatasets, modellingJourney } from "./modellingStudioIcons";
+import { IllustratedStudioHome, StudioLabCard } from "./studioHomeLayouts";
+import GeometryStudioHome from "../geometry/GeometryStudioHome";
+import { GEO_SHORTCUTS, geometrySearchHits } from "../geometry/geometryStudioCopy";
+import { markGeoComplete, markGeoVisit, useGeoSession, writeGeoSession } from "../geometry/geometryStudioSession";
+import { searchHits, trigModeLearning, trigPathId } from "./trigStudioCopy";
+import { MODE_HEADING, MODE_HINTS, NUMBER_SENSE_MODES, numberSenseModeLearning, SHORTCUTS as NUMBER_SENSE_SHORTCUTS, type NumberSenseMode } from "../discrete/number-sense/numberSenseCopy";
+import { useNumberSenseSession, writeNumberSenseSession } from "../discrete/number-sense/numberSenseSession";
+import { patternsModeLearning } from "../discrete/patterns/patternsCopy";
+import { primesModeLearning } from "../discrete/primes/primesCopy";
+import { usePrimesSession, writePrimesSession } from "../discrete/primes/primesSession";
 import "./MockupStudioChrome.css";
+import "./TrigonometryTarget.css";
+import {
+  TRIG_PATH,
+  continueHref,
+  dailyChallengeIndex,
+  markTrigComplete,
+  markTrigVisit,
+  nextTrigLab,
+  readTrigSession,
+  useTrigSession,
+  writeTrigSession,
+} from "./trigStudioSession";
 
 const pageIcons: Record<string, LucideIcon> = {
   home: Home,
@@ -122,21 +152,33 @@ export function MockupTopicArt({ pageId }: { pageId: string }) {
   return <TopicIllustration pageId={pageId} />;
 }
 
-export function MockupLearningStrip({ page }: { page: StudioMockupPage }) {
+export function MockupLearningStrip({ page, mode }: { page: StudioMockupPage; mode?: string }) {
+  const copy = page.route.includes("/trigonometry") || page.route === "/trigonometry"
+    ? trigModeLearning(page, mode)
+    : page.id === "primes"
+      ? primesModeLearning(page, mode)
+      : page.id === "number-sense"
+        ? numberSenseModeLearning(page, mode)
+      : page.id === "number-patterns"
+        ? patternsModeLearning(page, mode)
+        : page.learning;
+  const topic = mode ? `${page.label} · ${mode}` : page.label;
   const items = [
-    { icon: <Eye />, title: "Observe", text: page.learning.observe },
-    { icon: <Lightbulb />, title: "Understand", text: page.learning.understand },
-    { icon: <HelpCircle />, title: "Why", text: page.learning.why },
-    { icon: <Pencil />, title: "Try", text: page.learning.try },
-    { icon: <Trophy />, title: "Challenge", text: page.learning.challenge },
+    { icon: <Eye />, title: "Observe", text: copy.observe },
+    { icon: <Lightbulb />, title: "Understand", text: copy.understand },
+    { icon: <HelpCircle />, title: "Why", text: copy.why },
+    { icon: <Pencil />, title: "Try", text: copy.try },
+    { icon: <Trophy />, title: "Challenge", text: copy.challenge },
   ];
   return (
-    <section className="msk-strip" aria-label="Learning loop">
+    <section className="msk-strip msk-strip-cards" aria-label={`Learning loop for ${topic}`}>
       {items.map((item) => (
         <div key={item.title}>
           {item.icon}
-          <b>{item.title}</b>
-          <small>{item.text}</small>
+          <span>
+            <b>{item.title}</b>
+            <small>{item.text}</small>
+          </span>
         </div>
       ))}
     </section>
@@ -144,6 +186,7 @@ export function MockupLearningStrip({ page }: { page: StudioMockupPage }) {
 }
 
 function NavIcon({ id, studio }: { id: string; studio?: string }) {
+  if (studio === "modelling") return <ModellingNavIcon id={id} />;
   const glyphId = studio === "discrete" && id === "graphs" ? "network-graph" : id;
   const filled: Record<string, ReactNode> = {
     home: <path d="M4 11.2 12 4l8 7.2V20h-6v-6H10v6H4Z" />,
@@ -197,42 +240,107 @@ export function MockupStudioChrome({
   page: StudioMockupPage;
   children: ReactNode;
 }) {
+  const isTrig = studio.id === "trigonometry";
+  const isModel = studio.id === "modelling";
+  const isGeo = studio.id === "geometry";
+  const isDiscrete = studio.id === "discrete";
+  const isNumberSense = isDiscrete && page.id === "number-sense";
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
-  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(isTrig || isModel || isGeo || isDiscrete);
+  const [helpOpen, setHelpOpen] = useState(false);
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const stripRef = useRef<HTMLElement | null>(null);
   const navigate = useNavigate();
   const location = useLocation();
-  const labs = studioPagesWithoutHome(studio);
+  const [params] = useSearchParams();
+  const labs = studioSidebarPages(studio).filter((item) => item.id !== "home");
+  const session = useTrigSession();
+  const geoSession = useGeoSession();
+  const primesSession = usePrimesSession();
+  const numberSenseSession = useNumberSenseSession();
+  const discreteTeacher = isNumberSense ? numberSenseSession.teacherMode : primesSession.teacherMode;
+  const mode = params.get("mode");
 
   useEffect(() => setOpen(false), [location.pathname]);
   useEffect(() => {
+    if (!isTrig || page.id === "home") return;
+    markTrigVisit(page.id, page.route, page.label, mode);
+  }, [isTrig, page.id, page.route, page.label, mode]);
+  useEffect(() => {
+    if (!isGeo || page.id === "home") return;
+    markGeoVisit(page.id, page.route, page.label, mode);
+  }, [isGeo, page.id, page.route, page.label, mode]);
+  useEffect(() => {
+    if (!isGeo && !isNumberSense) return;
+    if (isGeo) document.title = `${page.id === "home" ? "Geometry Studio" : page.title} | Math Universe`;
+    if (isNumberSense) document.title = `Number Sense · ${mode ?? "Integers"} | Number & Discrete`;
+  }, [isGeo, isNumberSense, page.id, page.title, mode]);
+
+  useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
+      const target = event.target as HTMLElement | null;
+      const typing = target && (target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.isContentEditable);
       if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k") {
         event.preventDefault();
         setSearchOpen(true);
+        return;
+      }
+      if (isGeo && event.key === "?" && !typing) {
+        event.preventDefault();
+        setHelpOpen((value) => !value);
+        return;
+      }
+      if (!isTrig || typing) return;
+      if (event.key === "?") {
+        event.preventDefault();
+        setHelpOpen((value) => !value);
+        return;
+      }
+      if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+        event.preventDefault();
+        const step = session.units === "deg" ? 1 : 180 / Math.PI;
+        writeTrigSession({ theta: session.theta + (event.key === "ArrowRight" ? step : -step) });
+        return;
+      }
+      const snaps: Record<string, number> = { "0": 0, "1": 30, "2": 45, "3": 60, "4": 90 };
+      if (snaps[event.key] !== undefined) {
+        event.preventDefault();
+        writeTrigSession({ theta: snaps[event.key]! });
       }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, []);
+  }, [isGeo, isTrig, session.theta, session.units]);
 
   const filtered = useMemo(() => {
-    const needle = query.trim().toLowerCase();
-    if (!needle) return labs;
-    return labs.filter((item) => `${item.label} ${item.title} ${item.modes.join(" ")}`.toLowerCase().includes(needle));
-  }, [labs, query]);
+    if (isGeo) return geometrySearchHits(labs, query);
+    if (!query.trim()) return labs.map((lab) => ({ key: lab.id, label: lab.label, to: lab.route, detail: "Lab" }));
+    return searchHits(labs, query);
+  }, [isGeo, labs, query]);
+  const pathId = isTrig ? trigPathId(page.id, mode) : "";
+
+  useEffect(() => {
+    const el = stripRef.current;
+    if (!el) return;
+    el.scrollLeft = readTrigSession().stripScroll;
+    el.querySelector(".active")?.scrollIntoView({ inline: "center", block: "nearest", behavior: "instant" as ScrollBehavior });
+    const onScroll = () => writeTrigSession({ stripScroll: el.scrollLeft });
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => el.removeEventListener("scroll", onScroll);
+  }, [page.id]);
 
   return (
-    <main className={`msk-shell msk-${studio.id}${open ? " is-open" : ""}`}>
+    <main className={`msk-shell msk-${studio.id}${open ? " is-open" : ""}${(isTrig && session.theme === "dark") || (isGeo && geoSession.theme === "dark") ? " is-dark" : ""}${(isTrig && session.teacherMode) || (isGeo && geoSession.teacherMode) || (isDiscrete && discreteTeacher) ? " is-teacher" : ""}${(isTrig || isModel || isGeo || isDiscrete) && page.id !== "home" ? " is-lab" : ""}`}>
       {open ? <button className="msk-backdrop" type="button" aria-label="Close menu" onClick={() => setOpen(false)} /> : null}
       <aside className="msk-sidebar">
         <Link className="msk-brand" to={studio.basePath}>
           <span className="msk-mark">{studio.mark}</span>
           <span>{studio.name.replace(" Studio", "")}<b>STUDIO</b></span>
         </Link>
-        <Link className="msk-main" to="/"><Home /><span>Main</span></Link>
+        <Link className="msk-main" to="/">{isModel ? <ModellingNavIcon id="main" /> : <Home />}<span>{isTrig || isGeo || isDiscrete ? "Site home" : "Main"}</span></Link>
         <nav aria-label={`${studio.name} navigation`}>
-          {studio.pages.map((item) => (
+          {studioSidebarPages(studio).map((item) => (
             <NavLink key={item.id} to={item.route} end={item.id === "home"} className={({ isActive }) => (isActive || (page.id === item.id && item.route.startsWith(studio.basePath)) ? "active" : "")} onClick={() => setOpen(false)}>
               <NavIcon id={item.id} studio={studio.id} /><span>{item.label}</span>
             </NavLink>
@@ -242,123 +350,297 @@ export function MockupStudioChrome({
       <section className="msk-stage">
         <header className="msk-top">
           <button className="msk-menu" type="button" aria-label="Open studio menu" onClick={() => setOpen(true)}><Menu /></button>
-          <div>
-            <StudioBreadcrumb crumbs={mathStudioCrumbs(
-              { label: studio.name.replace(" Studio", ""), to: studio.basePath },
-              page.id === "home" ? undefined : { label: page.label, to: page.route },
-            )} />
-            <h1>{page.id === "home" ? studio.homeTitle : page.title}</h1>
+          <div className="msk-title-block">
+            <StudioHomeButtons studioTo={studio.basePath} />
+            {(isModel || isGeo) && page.id === "home" ? null : (
+              <StudioBreadcrumb crumbs={mathStudioCrumbs(
+                { label: studio.name.replace(" Studio", ""), to: studio.basePath },
+                page.id === "home" ? undefined : { label: page.label, to: page.route },
+              )} />
+            )}
+            <h1>{page.id === "home" ? studio.homeTitle : isNumberSense && mode && NUMBER_SENSE_MODES.includes(mode as NumberSenseMode) ? MODE_HEADING[mode as NumberSenseMode] : page.title}</h1>
             <p>{page.id === "home" ? studio.homeSubtitle : page.subtitle}</p>
+            {isTrig ? (
+              <nav className="msk-path-row" aria-label="Trigonometry path">
+                {TRIG_PATH.map((item, index) => (
+                  <span key={item.id} className={`msk-journey-node${pathId === item.id ? " is-on" : ""}`}>
+                    <Link to={item.to} aria-current={pathId === item.id ? "page" : undefined}><i>{item.glyph}</i><b>{item.label}</b></Link>
+                    {index < TRIG_PATH.length - 1 ? <span /> : null}
+                  </span>
+                ))}
+              </nav>
+            ) : null}
           </div>
           <div className="msk-tools">
             <div id="msk-lab-tools" className="msk-lab-tools" />
-            <label className={`msk-search${searchOpen || query ? " is-open" : ""}`}>
+            {isTrig && page.id !== "home" ? (
+              <button
+                type="button"
+                className={`msk-complete-icon${session.completed.includes(page.id) ? " is-complete" : ""}`}
+                aria-label={session.completed.includes(page.id) ? `${page.label} complete` : `Mark ${page.label} complete`}
+                title={session.completed.includes(page.id) ? `${page.label} complete` : `Mark ${page.label} complete`}
+                onClick={() => markTrigComplete(page.id)}
+              >
+                <CheckCircle2 />
+              </button>
+            ) : null}
+            {isGeo && page.id !== "home" ? (
+              <button
+                type="button"
+                className={`msk-complete-icon${geoSession.completed.includes(page.id) ? " is-complete" : ""}`}
+                aria-label={geoSession.completed.includes(page.id) ? `${page.label} complete` : `Mark ${page.label} complete`}
+                title={geoSession.completed.includes(page.id) ? `${page.label} complete` : `Mark ${page.label} complete`}
+                onClick={() => markGeoComplete(page.id)}
+              >
+                <CheckCircle2 />
+              </button>
+            ) : null}
+            {page.id !== "home" ? <StudioCanvasToolbar /> : null}
+            {isTrig ? (
+              <div className="msk-units" role="group" aria-label="Angle units">
+                <button type="button" className={`msk-units-deg${session.units === "deg" ? " active" : ""}`} aria-pressed={session.units === "deg"} onClick={() => writeTrigSession({ units: "deg" })}>Deg</button>
+                <button type="button" className={`msk-units-rad${session.units === "rad" ? " active" : ""}`} aria-pressed={session.units === "rad"} onClick={() => writeTrigSession({ units: "rad" })}>Rad</button>
+              </div>
+            ) : null}
+            <label className={`msk-search${searchOpen || query || isTrig || isModel || isGeo || isDiscrete ? " is-open" : ""}`}>
               <button type="button" aria-label="Search" onClick={() => setSearchOpen((value) => !value)}><Search /></button>
-              {searchOpen || query ? (
+              {searchOpen || query || isTrig || isModel || isGeo || isDiscrete ? (
                 <input
-                  autoFocus
+                  autoFocus={!isTrig && !isModel && !isGeo && !isDiscrete}
                   value={query}
                   onChange={(event) => setQuery(event.target.value)}
-                  onKeyDown={(event) => { if (event.key === "Enter" && filtered[0]) navigate(filtered[0].route); }}
-                  onBlur={() => { if (!query) setSearchOpen(false); }}
-                  placeholder={studio.searchPlaceholder}
+                  onKeyDown={(event) => { if (event.key === "Enter" && filtered[0]) navigate(filtered[0].to); }}
+                  onBlur={() => { if (!query && !isTrig && !isModel && !isGeo && !isDiscrete) setSearchOpen(false); }}
+                  placeholder={isTrig ? "Search θ or waves" : studio.searchPlaceholder}
                   aria-label={`Search ${studio.name}`}
                 />
               ) : null}
               {query ? <button type="button" aria-label="Clear search" onClick={() => setQuery("")}><X /></button> : null}
             </label>
-            <button type="button" aria-label="Streak"><Flame /></button>
-            <span><Star />0 XP</span>
-            <button type="button" className="msk-teacher" aria-label="Teacher mode">Teacher mode</button>
-            <button type="button" aria-label="Help"><HelpCircle /></button>
-            <button type="button" aria-label="Settings"><Settings /></button>
+            {query ? (
+              <ul className="msk-search-hits">
+                {filtered.map((item) => (
+                  <li key={item.key}><Link to={item.to} onClick={() => setQuery("")}>{item.label}<small>{item.detail}</small></Link></li>
+                ))}
+              </ul>
+            ) : null}
+            {isNumberSense ? (
+              <>
+                <button type="button" aria-label="Streak"><Flame /></button>
+                <span><Star />{numberSenseSession.xp} XP</span>
+              </>
+            ) : session.xp > 0 ? (
+              <>
+                <button type="button" aria-label="Streak"><Flame /></button>
+                <span><Star />{session.xp} XP</span>
+              </>
+            ) : null}
+            {isTrig || isGeo ? (
+              <button type="button" aria-label={(isGeo ? geoSession.theme : session.theme) === "dark" ? "Switch to light theme" : "Switch to dark theme"} onClick={() => (isGeo ? writeGeoSession({ theme: geoSession.theme === "dark" ? "light" : "dark" }) : writeTrigSession({ theme: session.theme === "dark" ? "light" : "dark" }))}>
+                {(isGeo ? geoSession.theme : session.theme) === "dark" ? <Sun /> : <Moon />}
+              </button>
+            ) : null}
+            {isTrig ? (
+              <button type="button" className={`msk-teacher${session.teacherMode ? " active" : ""}`} aria-pressed={session.teacherMode} onClick={() => writeTrigSession({ teacherMode: !session.teacherMode })}>
+                Teacher mode
+              </button>
+            ) : isGeo ? (
+              <button type="button" className={`msk-teacher${geoSession.teacherMode ? " active" : ""}`} aria-pressed={geoSession.teacherMode} onClick={() => writeGeoSession({ teacherMode: !geoSession.teacherMode })}>
+                Teacher mode
+              </button>
+            ) : isNumberSense ? (
+              <button type="button" className={`msk-teacher${numberSenseSession.teacherMode ? " active" : ""}`} aria-pressed={numberSenseSession.teacherMode} aria-label="Teacher mode" onClick={() => writeNumberSenseSession({ teacherMode: !numberSenseSession.teacherMode })}>
+                Teacher mode
+              </button>
+            ) : isModel ? null : (
+              <button type="button" className={`msk-teacher${primesSession.teacherMode ? " active" : ""}`} aria-pressed={primesSession.teacherMode} aria-label="Teacher mode" onClick={() => writePrimesSession({ teacherMode: !primesSession.teacherMode })}>
+                Teacher mode
+              </button>
+            )}
+            {isGeo && page.id !== "home" ? null : (
+              <button type="button" aria-label="Keyboard shortcuts" onClick={() => setHelpOpen(true)}><HelpCircle /></button>
+            )}
+            {isModel ? (
+              <button type="button" className="msk-bell" aria-label="3 notifications">
+                <Bell />
+                <span>3</span>
+              </button>
+            ) : null}
+            {isModel ? null : (
+              <button type="button" aria-label="Settings" onClick={() => setSettingsOpen(true)}><Settings /></button>
+            )}
+            {isModel ? <button type="button" className="msk-avatar" aria-label="Account"><User /></button> : null}
           </div>
         </header>
+        {(isTrig || isGeo || isDiscrete) && page.id !== "home" ? (
+          <nav className="msk-topic-strip" aria-label="Topics" ref={stripRef}>
+            {labs.map((item) => (
+              <NavLink key={item.id} to={item.route} className={({ isActive }) => isActive ? "active" : ""}>{item.label}</NavLink>
+            ))}
+          </nav>
+        ) : null}
+        {isTrig && !session.hintDismissed ? (
+          <p className="msk-hint">← → nudge θ · 0–4 snap 0°/30°/45°/60°/90° · ? help
+            <button type="button" onClick={() => writeTrigSession({ hintDismissed: true })}>Dismiss</button>
+          </p>
+        ) : null}
+        {isGeo && !geoSession.hintDismissed && page.id === "home" ? (
+          <p className="msk-hint">Ctrl/⌘ K search · 2D / 3D / Proof / AR filters · Start with Triangles
+            <button type="button" onClick={() => writeGeoSession({ hintDismissed: true })}>Dismiss</button>
+          </p>
+        ) : null}
+        {isNumberSense && !numberSenseSession.hintDismissed ? (
+          <p className="msk-hint">{MODE_HINTS[(NUMBER_SENSE_MODES.includes(mode as NumberSenseMode) ? mode : "Integers") as NumberSenseMode]}
+            <button type="button" onClick={() => writeNumberSenseSession({ hintDismissed: true })}>Dismiss</button>
+          </p>
+        ) : null}
+        {(isTrig && session.teacherMode) || (isGeo && geoSession.teacherMode) || (isDiscrete && discreteTeacher) ? <p className="msk-teacher-banner">Teacher view: exact values and answers stay visible. Students do not see this banner.</p> : null}
         {children}
+        {helpOpen ? (
+          <div className="msk-help" role="dialog" aria-label="Keyboard shortcuts">
+            <button type="button" className="msk-backdrop" aria-label="Close shortcuts" onClick={() => setHelpOpen(false)} />
+            <div className="msk-help-card">
+              <h2>Shortcuts</h2>
+              {isGeo ? (
+                <ul>
+                  {GEO_SHORTCUTS.map((item) => (
+                    <li key={item.keys}><kbd>{item.keys}</kbd> {item.action}</li>
+                  ))}
+                </ul>
+              ) : isNumberSense ? (
+                <ul>
+                  {NUMBER_SENSE_SHORTCUTS.map((item) => (
+                    <li key={item.keys}><kbd>{item.keys}</kbd> {item.action}</li>
+                  ))}
+                </ul>
+              ) : isTrig ? (
+                <p>← → nudge θ · 0 / 1 / 2 / 3 / 4 snap to 0°, 30°, 45°, 60°, 90° · Ctrl/⌘ K search · ? this panel</p>
+              ) : (
+                <ul>
+                  <li><kbd>1–9</kbd> Switch lab modes</li>
+                  <li><kbd>?</kbd> This shortcuts panel</li>
+                  <li><kbd>LMS</kbd> Restore a figure with ?mode= and ?fig=</li>
+                  <li><kbd>Room</kbd> Start activity then share the URL</li>
+                </ul>
+              )}
+              <button className="msk-cta" type="button" onClick={() => setHelpOpen(false)}>Close</button>
+            </div>
+          </div>
+        ) : null}
+        {settingsOpen ? (
+          <div className="msk-help" role="dialog" aria-label="Studio settings">
+            <button type="button" className="msk-backdrop" aria-label="Close settings" onClick={() => setSettingsOpen(false)} />
+            <div className="msk-help-card">
+              <h2>Settings</h2>
+              <p>{isGeo ? "Theme, labels, and progress for Geometry Studio." : "Theme, units, and progress for Trigonometry Studio."}</p>
+              <div className="msk-units" role="group" aria-label="Theme">
+                <button type="button" className={(isGeo ? geoSession.theme : session.theme) === "dark" ? "active" : ""} onClick={() => (isGeo ? writeGeoSession({ theme: "dark" }) : writeTrigSession({ theme: "dark" }))}>Dark</button>
+                <button type="button" className={(isGeo ? geoSession.theme : session.theme) === "light" ? "active" : ""} onClick={() => (isGeo ? writeGeoSession({ theme: "light" }) : writeTrigSession({ theme: "light" }))}>Light</button>
+              </div>
+              {isGeo ? (
+                <>
+                  <button className="msk-soft" type="button" aria-pressed={geoSession.largeLabels} onClick={() => writeGeoSession({ largeLabels: !geoSession.largeLabels })}>Large labels</button>
+                  <button className="msk-soft" type="button" onClick={() => writeGeoSession({ completed: [], warmups: [], lastRoute: "/geometry/triangles", lastMode: null, lastLabel: "Triangles Lab", lastOpenedAt: 0 })}>Reset progress</button>
+                </>
+              ) : (
+                <button className="msk-soft" type="button" onClick={() => writeTrigSession({ completed: [], xp: 0, lastRoute: "/trigonometry/unit-circle", lastMode: null, lastLabel: "Unit Circle" })}>Reset progress</button>
+              )}
+              <button className="msk-cta" type="button" onClick={() => setSettingsOpen(false)}>Done</button>
+            </div>
+          </div>
+        ) : null}
       </section>
     </main>
   );
 }
 
 export function MockupStudioHome({ studio }: { studio: StudioMockupDefinition }) {
-  const labs = studioPagesWithoutHome(studio);
-  const [answer, setAnswer] = useState("");
-  const [status, setStatus] = useState("");
-  const challenge = labs.find((item) => item.challenge.prompt !== "0")?.challenge ?? labs[0]?.challenge;
-  const journey = labs.slice(0, 6);
-  const launchTitle = studio.id === "trigonometry" ? "Explore Key Topics" : studio.id === "geometry" || studio.id === "complex-numbers" ? "Explore by Topic" : "Launch a topic";
+  const labs = studioNavPages(studio);
+  const isTrig = studio.id === "trigonometry";
+  const isModel = studio.id === "modelling";
+  const session = useTrigSession();
+  const pool = labs.filter((item) => item.challenge.prompt !== "0");
+  const challengePage = isModel ? labs.find((item) => item.id === "networks") ?? pool[0] : pool[dailyChallengeIndex(pool.length)] ?? pool[0];
+  const next = nextTrigLab(labs, session.completed);
+const launchTitle = isModel ? "Explore modelling domains" : isTrig ? "Explore Key Topics" : studio.id === "geometry" || studio.id === "complex-numbers" || studio.id === "linear-algebra" || studio.id === "discrete" || studio.id === "statistics" ? "Explore by Topic" : "Launch a topic";
+  const continueTo = isTrig ? continueHref(session) : studio.continueRoute;
+  const continueLabel = isModel ? "Epidemic Spread in Campus" : isTrig ? session.lastLabel : studio.continueLabel;
+  const progress = labs.length ? Math.round((session.completed.filter((id) => labs.some((lab) => lab.id === id)).length / labs.length) * 100) : 0;
 
+  if (studio.id === "geometry") return <GeometryStudioHome studio={studio} />;
+
+  if (isModel) {
+    return (
+      <>
+        <div className="msk-home msk-model-home">
+          <section>
+            <header className="msk-launch-head">
+              <h2>{launchTitle}</h2>
+            </header>
+            <div className="msk-launch msk-launch-modelling">
+              {labs.map((item, index) => (
+                <StudioLabCard
+                  key={item.id}
+                  item={item}
+                  index={index}
+                  studioId="modelling"
+                  art={<ModellingLaunchArt id={item.id} />}
+                  cta="Launch →"
+                  numbered
+                />
+              ))}
+            </div>
+            <section className="msk-datasets">
+              <header><h2>Popular scenarios & datasets</h2><Link to="/mathematical-modelling">View all datasets →</Link></header>
+              <div>
+                {modellingDatasets.map((item) => (
+                  <Link key={item.title} to={item.route}>
+                    <ModellingLaunchArt id={item.id} />
+                    <b>{item.title}</b>
+                    <small>{item.tag}</small>
+                  </Link>
+                ))}
+              </div>
+            </section>
+          </section>
+          <aside className="msk-aside">
+            <section className="msk-panel msk-continue">
+              <h2>Continue model</h2>
+              <div className="msk-continue-art"><ModellingLaunchArt id="epidemics" /></div>
+              <p><strong>{continueLabel}</strong><span>Last edited 2h ago</span></p>
+              <Link className="msk-cta" to={continueTo}>Continue →</Link>
+            </section>
+            <section className="msk-panel">
+              <h2>Recent journey</h2>
+              <ol className="msk-journey-list">
+                {modellingJourney.map((item) => (
+                  <li key={item.id}>
+                    <i className={item.done ? "done" : item.now ? "now" : ""} />
+                    <Link to={`/mathematical-modelling/${item.id}`}>{item.label}<small>{item.note}</small></Link>
+                  </li>
+                ))}
+              </ol>
+              <Link className="msk-teach" to="/mathematical-modelling">View all journey →</Link>
+            </section>
+            <section className="msk-panel msk-challenge">
+              <h2>Today's challenge</h2>
+              <div className="msk-continue-art"><ModellingLaunchArt id="networks" /></div>
+              <p>Optimize the Route</p>
+              <small>Find the fastest path with traffic constraints and road closures.</small>
+              <Link className="msk-cta" to="/mathematical-modelling/networks">Start Challenge →</Link>
+            </section>
+          </aside>
+        </div>
+        <MockupLearningStrip page={studio.pages[0]} />
+      </>
+    );
+  }
+
+  const homeProps = { studio, labs, continueTo, continueLabel, progress, challenge: challengePage };
   return (
     <>
-      {studio.id === "trigonometry" ? (
-        <section className="msk-journey-row" aria-label="Trigonometry path">
-          {[{ t: "Angles", d: "θ" }, { t: "Unit Circle", d: "○" }, { t: "Functions", d: "∿" }, { t: "Waves", d: "≈" }].map((item, index) => (
-            <div key={item.t} className="msk-journey-node">
-              <i>{item.d}</i>
-              <b>{item.t}</b>
-              {index < 3 ? <span /> : null}
-            </div>
-          ))}
-        </section>
-      ) : null}
-      {studio.id === "geometry" ? (
-        <section className="msk-concept-orbit" aria-label="Geometry concept map">
-          <div className="msk-orbit-core"><span className="msk-mark">G</span><b>GEOMETRY</b></div>
-          {labs.slice(0, 8).map((item) => (
-            <Link key={item.id} to={item.route}>{item.label}</Link>
-          ))}
-        </section>
-      ) : null}
-      <div className="msk-home">
-        <section>
-          <header className="msk-launch-head">
-            <h2>{launchTitle}</h2>
-            <p>Choose a topic to explore with interactive visual models.</p>
-          </header>
-          <div className={`msk-launch msk-launch-${studio.id}`}>
-            {labs.map((item, index) => (
-              <Link key={item.id} className="msk-card" to={item.route}>
-                <span className="msk-num">{index + 1}</span>
-                <TopicIllustration pageId={item.id} />
-                <b>{item.label}</b>
-                <small>{item.description}</small>
-                <em>Open {item.label}</em>
-              </Link>
-            ))}
-          </div>
-        </section>
-        <aside className="msk-aside">
-          <section className="msk-panel">
-            <h2><Play /> Continue experiment</h2>
-            <div className="msk-continue-art"><TopicIllustration pageId={labs[0]?.id ?? "home"} /></div>
-            <p>{studio.continueLabel}</p>
-            <Link className="msk-cta" to={studio.continueRoute}>Continue experiment</Link>
-          </section>
-          <section className="msk-panel">
-            <h2>Your learning journey</h2>
-            <ol className="msk-journey-list">
-              {journey.map((item, index) => (
-                <li key={item.id}>
-                  <i className={index < 2 ? "done" : index === 2 ? "now" : ""} />
-                  <Link to={item.route}>{item.label}</Link>
-                </li>
-              ))}
-            </ol>
-            <div className="msk-progress"><i style={{ width: "42%" }} /></div>
-            <small>Overall progress 42%</small>
-          </section>
-          {challenge && challenge.prompt !== "0" ? (
-            <section className="msk-panel msk-challenge">
-              <h2>Daily visual challenge</h2>
-              <p>{challenge.prompt}</p>
-              <input value={answer} onChange={(event) => { setAnswer(event.target.value); setStatus(""); }} aria-label="Challenge answer" />
-              <button className="msk-cta" type="button" onClick={() => setStatus(Math.abs(Number(answer) - challenge.expected) < 0.02 ? "Correct." : challenge.hint)}>Check</button>
-              {status ? <p role="status">{status}</p> : null}
-            </section>
-          ) : null}
-        </aside>
-      </div>
-      <MockupLearningStrip page={studio.pages[0]} />
+      <IllustratedStudioHome {...homeProps} title={launchTitle} cta={studio.id === "linear-algebra" ? "Open lab" : undefined} />
+      <MockupLearningStrip page={isTrig ? (labs.find((item) => item.id === next?.id) ?? studio.pages[0]) : studio.pages[0]} />
     </>
   );
 }

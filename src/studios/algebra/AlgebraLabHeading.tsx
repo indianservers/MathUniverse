@@ -1,6 +1,8 @@
 import { HelpCircle, RotateCcw, RotateCw, Settings } from "lucide-react";
 import { useEffect, useState, type ReactNode } from "react";
 import { useTheme } from "../../hooks/useTheme";
+import StudioHomeButtons from "../../components/ui/StudioHomeButtons";
+import { StudioCanvasToolbar } from "../../components/ui/StudioCanvasToolbar";
 
 export default function AlgebraLabHeading({
   children,
@@ -50,8 +52,9 @@ export default function AlgebraLabHeading({
   }, [onRedo, onUndo]);
   return (
     <>
-      <header className="alg-header">
+      <header className="alg-header" data-lab-mode={mode ?? ""}>
         <div>
+          <StudioHomeButtons studioTo="/algebra" />
           <h1>{children}</h1>
           {subtitle ? <p>{subtitle}</p> : null}
         </div>
@@ -64,6 +67,7 @@ export default function AlgebraLabHeading({
           </nav>
         ) : null}
         <div className="alg-header-actions">
+          <StudioCanvasToolbar />
           <button type="button" aria-label="Undo" disabled={!onUndo || !canUndo} onClick={onUndo}><RotateCcw /></button>
           <button type="button" aria-label="Redo" disabled={!onRedo || !canRedo} onClick={onRedo}><RotateCw /></button>
           <button type="button" aria-expanded={panel === "Help"} onClick={() => setPanel(panel === "Help" ? null : "Help")} aria-label="Help"><HelpCircle /></button>

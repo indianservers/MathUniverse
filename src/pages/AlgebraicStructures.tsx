@@ -1,3 +1,3 @@
-import AlgebraicStructuresModule from "../modules/algebraic-structures/AlgebraicStructuresModule";
+import AlgebraicStructuresStudio from "./AlgebraicStructuresStudio";
 
-export default AlgebraicStructuresModule;
+export default AlgebraicStructuresStudio;

@@ -11,6 +11,7 @@ import {
   triangleArea,
   triangleInequality,
 } from "./triangleGeometry";
+import { useGeoLabUi } from "../geometryLabUx";
 import { ChallengeCard, FormulaCard, InsightStack, LabFrame, MeasureRow, Toggle, okNum } from "./triangleLabKit";
 import {
   AngleArc,
@@ -25,6 +26,7 @@ import {
 type Mode = "inequality" | "sides" | "exterior";
 
 export default function TriangleInequalitiesLab({ pulse = "observe" }: { pulse?: string }) {
+  const ui = useGeoLabUi();
   const plane = defaultPlane();
   const svgRef = useRef<SVGSVGElement>(null);
   const drag = useRef<"A" | "B" | "C" | null>(null);
@@ -39,6 +41,10 @@ export default function TriangleInequalitiesLab({ pulse = "observe" }: { pulse?:
   const tests = triangleInequality(a, b, c);
   const m = measureTriangle(tri.A, tri.B, tri.C);
   const rank = ranking(tri.A, tri.B, tri.C);
+
+  useEffect(() => {
+    if (tests.degenerate) ui?.announce("Degenerate: the three sides lie on a straight line.");
+  }, [tests.degenerate, ui]);
 
   useEffect(() => {
     if (!animate) return;
@@ -139,7 +145,7 @@ export default function TriangleInequalitiesLab({ pulse = "observe" }: { pulse?:
         </Panel>
       }
       canvas={
-        <svg ref={svgRef} viewBox={`0 0 ${plane.width} ${plane.height}`} role="img" aria-label="Triangle inequality construction">
+        <svg ref={svgRef} viewBox={`0 0 ${plane.width} ${plane.height}`} role="img" aria-label={`Triangle inequality construction. ${tests.valid ? "Valid triangle." : tests.degenerate ? "Degenerate: sides form a line." : "Cannot form a triangle."}`}>
           {mode === "inequality" ? (
             <g>
               {tests.valid && hingeGeom.meets ? (

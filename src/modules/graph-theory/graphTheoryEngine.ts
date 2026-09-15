@@ -1010,3 +1010,29 @@ export function cytoscapeMetrics(project: GraphProject) {
 export function serializeGraph(project: GraphProject) {
   return JSON.stringify(project, null, 2);
 }
+
+export function encodeGraphShare(project: GraphProject) {
+  const payload = JSON.stringify({
+    n: project.nodes,
+    e: project.edges,
+    d: project.directed,
+  });
+  return btoa(payload).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+}
+
+export function decodeGraphShare(raw: string): GraphProject | null {
+  try {
+    const padded = raw.replace(/-/g, "+").replace(/_/g, "/");
+    const pad = padded.length % 4 === 0 ? "" : "=".repeat(4 - (padded.length % 4));
+    const parsed = JSON.parse(atob(padded + pad)) as { n?: GraphNode[]; e?: GraphEdge[]; d?: boolean };
+    if (!Array.isArray(parsed.n) || !Array.isArray(parsed.e) || !parsed.n.length) return null;
+    const project: GraphProject = { nodes: parsed.n, edges: parsed.e, directed: Boolean(parsed.d) };
+    const ids = new Set(project.nodes.map((node) => node.id));
+    const ok =
+      project.nodes.every((node) => node.id && node.label && Number.isFinite(node.x) && Number.isFinite(node.y)) &&
+      project.edges.every((edge) => edge.id && ids.has(edge.source) && ids.has(edge.target) && Number.isFinite(edge.weight));
+    return ok ? project : null;
+  } catch {
+    return null;
+  }
+}

@@ -1,5 +1,5 @@
 import { Line, OrbitControls, Text } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import {
   BookOpen,
   Check,
@@ -20,7 +20,7 @@ import {
   Trash2,
   ZoomIn,
 } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import * as THREE from "three";
 import MathExpression from "../components/ui/MathExpression";
@@ -1181,6 +1181,23 @@ function VectorField({
       />
     );
   });
+  return (
+    <>
+      {arrows}
+      {theorem ? <MovingTheoremRegion /> : null}
+    </>
+  );
+}
+
+function MovingTheoremRegion() {
+  const group = useRef<THREE.Group>(null);
+  useFrame((_, delta) => {
+    if (!group.current) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    group.current.rotation.y += delta * 0.35;
+    const s = 1.05 + 0.12 * Math.sin(performance.now() / 700);
+    group.current.scale.set(s, 1, s);
+  });
   const circle = Array.from(
     { length: 65 },
     (_, index): [number, number, number] => {
@@ -1189,10 +1206,15 @@ function VectorField({
     },
   );
   return (
-    <>
-      {arrows}
-      {theorem && <Line points={circle} color="#f59e0b" lineWidth={4} />}
-    </>
+    <group ref={group}>
+      <Line points={circle} color="#f59e0b" lineWidth={4} />
+      {Array.from({ length: 12 }, (_, index) => {
+        const t = (index / 12) * Math.PI * 2;
+        const x = 1.1 * Math.cos(t);
+        const z = 1.1 * Math.sin(t);
+        return <Line key={index} points={[[x, -0.2, z], [x * 1.35, 0.2, z * 1.35]]} color="#22c55e" lineWidth={2} />;
+      })}
+    </group>
   );
 }
 

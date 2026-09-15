@@ -891,6 +891,11 @@ function FormulaVisualizerShell({ config }: { config: FormulaVisualizerRouteConf
                 <Link to="/formulas" className="action-secondary">
                   All formulas
                 </Link>
+                {config.id === "number-systems" ? (
+                  <Link to="/number-systems" className="action-secondary">
+                    Number Systems Studio
+                  </Link>
+                ) : null}
                 <Link to={config.formulaLibraryRoute} className="action-secondary">
                   Reference sheet
                 </Link>
@@ -1106,6 +1111,19 @@ const variableControlAliases: Record<string, keyof FormulaParameters> = {
 };
 
 export function getFormulaControlSpecs(formula: FormulaVisualizerEntry): FormulaControlSpec[] {
+  if (formula.visualizerType === "number-system") {
+    return formula.variables.map((variable) => {
+      const lower = variable.trim().toLowerCase();
+      if (formula.id === "irrational-root" && lower === "p") return { key: "n" as const, label: "p", min: 2, max: 50, step: 1 };
+      if (lower === "n") return { key: "n" as const, label: variable, min: 2, max: 120, step: 1 };
+      if (lower === "q" && formula.id === "decimal-terminating") return { key: "n" as const, label: "q", min: 2, max: 120, step: 1 };
+      if (lower === "a") return { key: "a" as const, label: "a", min: 2, max: 96, step: 1 };
+      if (lower === "b") return { key: "b" as const, label: "b", min: 2, max: 96, step: 1 };
+      if (lower === "p") return { key: "a" as const, label: "p", min: -24, max: 24, step: 1 };
+      if (lower === "q") return { key: "b" as const, label: "q", min: 1, max: 24, step: 1 };
+      return { key: "n" as const, label: variable, min: 2, max: 48, step: 1 };
+    });
+  }
   const used = new Set<keyof FormulaParameters>();
 
   return formula.variables.slice(0, controlKeyOrder.length).map((variable) => {
@@ -1915,7 +1933,7 @@ function isDeepenedPhaseOneFormula(id: string) {
 function Phase2Visual({ formula, params }: { formula: FormulaVisualizerEntry; params: FormulaParameters }) {
   switch (formula.visualizerType) {
     case "number-system":
-      return <NumberSystemVisual params={params} />;
+      return <NumberSystemVisual formula={formula} params={params} />;
     case "complex":
       return <ComplexVisual params={params} />;
     case "sequence":
@@ -1938,38 +1956,116 @@ function Phase2Visual({ formula, params }: { formula: FormulaVisualizerEntry; pa
   }
 }
 
-function NumberSystemVisual({ params }: { params: FormulaParameters }) {
+function NumberSystemVisual({ formula, params }: { formula: FormulaVisualizerEntry; params: FormulaParameters }) {
   const n = Math.max(2, Math.round(Math.abs(params.n)));
-  const a = Math.round(Math.abs(params.a) + 6);
-  const b = Math.round(Math.abs(params.b) + 8);
+  const a = Math.max(2, Math.round(Math.abs(params.a)));
+  const b = Math.max(1, Math.round(Math.abs(params.b)));
   const gcd = gcdInt(a, b);
-  return (
-    <g>
-      <line x1="110" y1="240" x2="650" y2="240" stroke="#e0f2fe" strokeWidth="4" />
-      {Array.from({ length: 13 }, (_, index) => {
-        const value = index - 6;
-        return (
-          <g key={value}>
-            <line x1={110 + index * 45} y1="226" x2={110 + index * 45} y2="254" stroke="#94a3b8" />
-            <text x={110 + index * 45} y="278" fill="#cbd5e1" fontSize="13" textAnchor="middle">{value}</text>
-          </g>
-        );
-      })}
-      <circle cx={110 + (params.a + 6) * 45} cy="240" r="13" fill="#facc15" stroke="#fff7ed" strokeWidth="4" />
-      <g transform="translate(160 86)">
-        {[2, 3, 5, 7].map((prime, index) => (
-          <g key={prime} transform={`translate(${index * 92} 0)`}>
-            <circle cx="0" cy="0" r="28" fill="#22d3ee" opacity="0.32" stroke="#67e8f9" strokeWidth="3" />
+  if (formula.id === "prime-factorization") {
+    const factors = primeFactorList(n);
+    return (
+      <g>
+        <Text x="380" y="70" value={`${n} = ${factorLabel(n)}`} />
+        {factors.map((prime, index) => (
+          <g key={`${prime}-${index}`} transform={`translate(${160 + index * 70} 170)`}>
+            <circle cx="0" cy="0" r="26" fill="#22d3ee" opacity="0.4" stroke="#67e8f9" strokeWidth="3" />
             <Text x="0" y="0" value={String(prime)} />
-            <line x1="0" y1="30" x2="0" y2="78" stroke="#67e8f9" strokeDasharray="6 6" />
+            {index < factors.length - 1 ? <line x1="28" y1="0" x2="42" y2="0" stroke="#67e8f9" /> : null}
           </g>
         ))}
+        <Text x="380" y="280" value="Factor tree stops only at primes" />
       </g>
-      <Text x="520" y="104" value={`gcd(${a},${b})=${gcd}`} />
-      <Text x="520" y="140" value={`lcm=${(a * b) / gcd}`} />
-      <Text x="520" y="176" value={`n=${n}`} />
+    );
+  }
+  if (formula.id === "hcf-gcd" || formula.id === "lcm") {
+    return (
+      <g>
+        <Text x="380" y="80" value={formula.id === "lcm" ? `lcm(${a},${b})=${(a * b) / gcd}` : `gcd(${a},${b})=${gcd}`} />
+        <rect x="140" y="130" width={Math.min(420, a * 4)} height="36" rx="10" fill="#22d3ee" opacity="0.35" />
+        <rect x="140" y="190" width={Math.min(420, b * 4)} height="36" rx="10" fill="#f59e0b" opacity="0.35" />
+        <Text x="150" y="154" value={`a=${a}`} />
+        <Text x="150" y="214" value={`b=${b}`} />
+        <Text x="380" y="280" value={`overlap gcd=${gcd}`} />
+      </g>
+    );
+  }
+  if (formula.id === "euclid-division") {
+    const q = Math.floor(a / b);
+    const r = a % b;
+    return (
+      <g>
+        <Text x="380" y="80" value={`${a} = ${b}·${q} + ${r}`} />
+        <rect x="140" y="150" width={Math.min(480, a * 3)} height="40" rx="10" fill="#22d3ee" opacity="0.3" />
+        <rect x="140" y="150" width={Math.min(480, q * b * 3)} height="40" rx="10" fill="#8b5cf6" opacity="0.45" />
+        <Text x="380" y="260" value={`0 ≤ r=${r} < ${b}`} />
+      </g>
+    );
+  }
+  if (formula.id === "decimal-terminating") {
+    let remaining = n;
+    while (remaining % 2 === 0) remaining /= 2;
+    while (remaining % 5 === 0) remaining /= 5;
+    const ok = remaining === 1;
+    return (
+      <g>
+        <Text x="380" y="90" value={`q=${n}`} />
+        <Text x="380" y="140" value={ok ? "Only 2s and 5s → terminating" : "Other prime factors → repeating"} />
+        <Text x="380" y="200" value={factorLabel(n)} />
+      </g>
+    );
+  }
+  if (formula.id === "rational-form") {
+    const x = a / Math.max(1, b);
+    const map = 110 + ((Math.max(-6, Math.min(6, x)) + 6) / 12) * 540;
+    return (
+      <g>
+        <line x1="110" y1="240" x2="650" y2="240" stroke="#e0f2fe" strokeWidth="4" />
+        <circle cx={map} cy="240" r="13" fill="#22d3ee" />
+        <Text x="380" y="80" value={`${a}/${b} = ${x.toFixed(4)}`} />
+      </g>
+    );
+  }
+  if (formula.id === "irrational-root") {
+    const value = Math.sqrt(n);
+    const square = Number.isInteger(value);
+    return (
+      <g>
+        <Text x="380" y="90" value={`√${n} ≈ ${value.toFixed(5)}`} />
+        <Text x="380" y="150" value={square ? "Perfect square → rational" : "Not a square → irrational"} />
+        <line x1="110" y1="240" x2="650" y2="240" stroke="#e0f2fe" strokeWidth="4" />
+        <circle cx={110 + Math.min(12, value) * 40} cy="240" r="12" fill={square ? "#10b981" : "#f59e0b"} />
+      </g>
+    );
+  }
+  const sum = String(n).split("").reduce((total, digit) => total + Number(digit), 0);
+  return (
+    <g>
+      <Text x="380" y="90" value={`n=${n}, digit sum=${sum}`} />
+      <Text x="380" y="150" value={sum % 9 === 0 && n % 9 === 0 ? "9 divides n" : "9 does not divide n"} />
+      <Text x="380" y="220" value={`${n} ≡ ${n % 9} (mod 9)`} />
     </g>
   );
+}
+
+function primeFactorList(n: number) {
+  const factors: number[] = [];
+  let remaining = Math.max(1, Math.round(Math.abs(n)));
+  for (let prime = 2; prime * prime <= remaining; prime += 1) {
+    while (remaining % prime === 0) {
+      factors.push(prime);
+      remaining /= prime;
+    }
+  }
+  if (remaining > 1) factors.push(remaining);
+  return factors;
+}
+
+function factorLabel(n: number) {
+  const factors = primeFactorList(n);
+  if (!factors.length) return "1";
+  const counts = new Map<number, number>();
+  for (const factor of factors) counts.set(factor, (counts.get(factor) ?? 0) + 1);
+  return [...counts.entries()].map(([prime, power]) => (power === 1 ? `${prime}` : `${prime}^${power}`)).join(" × ");
 }
 
 function ComplexVisual({ params }: { params: FormulaParameters }) {
@@ -2808,9 +2904,21 @@ function computeResult(formula: FormulaVisualizerEntry, params: FormulaParameter
     case "mensuration":
       return formula.id.includes("volume") ? Math.abs(a * b * Math.max(1, c)) : Math.abs(a * b);
     case "number-system": {
-      const x = Math.round(Math.abs(a) + 6);
-      const y = Math.round(Math.abs(b) + 8);
-      return formula.id.includes("lcm") ? (x * y) / gcdInt(x, y) : gcdInt(x, y);
+      const n = Math.max(1, Math.round(Math.abs(params.n)));
+      const a = Math.round(params.a);
+      const b = Math.max(1, Math.round(Math.abs(params.b)));
+      if (formula.id === "prime-factorization" || formula.id === "divisibility-9") return n;
+      if (formula.id === "lcm") return (Math.abs(a) * b) / gcdInt(a, b);
+      if (formula.id === "euclid-division") return a % b;
+      if (formula.id === "decimal-terminating") {
+        let remaining = n;
+        while (remaining % 2 === 0) remaining /= 2;
+        while (remaining % 5 === 0) remaining /= 5;
+        return remaining === 1 ? 1 : 0;
+      }
+      if (formula.id === "rational-form") return a / b;
+      if (formula.id === "irrational-root") return Math.sqrt(n);
+      return gcdInt(a, b);
     }
     case "complex":
       return Math.sqrt(a ** 2 + b ** 2);
@@ -2897,6 +3005,10 @@ function computeResult(formula: FormulaVisualizerEntry, params: FormulaParameter
 }
 
 function buildSubstitution(formula: FormulaVisualizerEntry, params: FormulaParameters) {
+  if (formula.visualizerType === "number-system" && formula.id === "prime-factorization") {
+    const n = Math.max(1, Math.round(Math.abs(params.n)));
+    return `n=${n} factors as ${factorLabel(n)}.`;
+  }
   const values = getFormulaControlSpecs(formula)
     .map((control) => `${control.label}=${formatNumber(params[control.key])}${control.unit ?? ""}`)
     .join(", ");

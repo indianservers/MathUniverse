@@ -2,6 +2,8 @@ import { useState, type PointerEventHandler, type ReactNode } from "react";
 import { useStudioMode } from "../../hooks/useStudioMode";
 import { MockupLearningStrip } from "./MockupStudioChrome";
 import type { StudioMockupPage } from "./studioMockupCatalog";
+import { trigModeChallenge } from "./trigStudioCopy";
+import { awardTrigXp, markTrigComplete } from "./trigStudioSession";
 
 export function fmt(n: number, digits = 4) {
   if (!Number.isFinite(n)) return "—";
@@ -13,6 +15,8 @@ export function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
 }
 
+export type LabChildren = ReactNode | ((mode: string) => ReactNode);
+
 export function LabShell({
   page,
   modes,
@@ -20,7 +24,7 @@ export function LabShell({
 }: {
   page: StudioMockupPage;
   modes?: string[];
-  children: ReactNode;
+  children: LabChildren;
 }) {
   const tabs = modes?.length ? modes : page.modes.length ? page.modes : ["Explore"];
   const [mode, setMode] = useStudioMode("mode", tabs, tabs[0]);
@@ -33,15 +37,15 @@ export function LabShell({
           </button>
         ))}
       </nav>
-      <div className="msk-lab">{children}</div>
-      <MockupLearningStrip page={page} />
+      <div className="msk-lab">{typeof children === "function" ? children(mode) : children}</div>
+      <MockupLearningStrip page={page} mode={mode} />
     </>
   );
 }
 
-export function useLabMode(page: StudioMockupPage, extraModes?: string[]) {
+export function useLabMode(page: StudioMockupPage, extraModes?: string[], options?: { keepFallback?: boolean }) {
   const tabs = extraModes?.length ? extraModes : page.modes.length ? page.modes : ["Explore"];
-  const [mode, setMode] = useStudioMode("mode", tabs, tabs[0]);
+  const [mode, setMode] = useStudioMode("mode", tabs, tabs[0], options);
   return { tabs, mode, setMode };
 }
 
@@ -157,25 +161,61 @@ export function StepList({ items }: { items: string[] }) {
   );
 }
 
+export function parseChallengeAnswer(raw: string) {
+  const text = raw.trim().replace(/−/g, "-").replace(/\s/g, "").toLowerCase();
+  if (!text) return Number.NaN;
+  if (text === "sqrt2/2" || text === "√2/2") return Math.SQRT1_2;
+  if (text === "sqrt3/2" || text === "√3/2") return Math.sqrt(3) / 2;
+  if (text.includes("/")) {
+    const [num, den] = text.split("/");
+    if (num && den && Number(den) !== 0) return Number(num) / Number(den);
+  }
+  return Number(text);
+}
+
 export function ChallengeBox({
   prompt,
   expected,
   hint,
+  placeholder = "1 or √2/2",
+  teach,
+  onCorrect,
+  page,
+  mode,
 }: {
-  prompt: string;
-  expected: number;
-  hint: string;
+  prompt?: string;
+  expected?: number;
+  hint?: string;
+  placeholder?: string;
+  teach?: { label: string; href: string };
+  onCorrect?: () => void;
+  page?: StudioMockupPage;
+  mode?: string;
 }) {
+  const resolved = page ? trigModeChallenge(page, mode) : { prompt: prompt ?? "", expected: expected ?? 0, hint: hint ?? "" };
   const [answer, setAnswer] = useState("");
   const [status, setStatus] = useState("");
-  if (!prompt || prompt === "0") return null;
+  const [ok, setOk] = useState(false);
+  if (!resolved.prompt || resolved.prompt === "0") return null;
   return (
     <div className="msk-challenge">
       <span>Challenge</span>
-      <p>{prompt}</p>
-      <input value={answer} onChange={(event) => { setAnswer(event.target.value); setStatus(""); }} aria-label="Challenge answer" />
-      <button className="msk-cta" type="button" onClick={() => setStatus(Math.abs(Number(answer) - expected) < 0.03 ? "Correct." : hint)}>Check</button>
+      <p>{resolved.prompt}</p>
+      <input value={answer} placeholder={placeholder} onChange={(event) => { setAnswer(event.target.value); setStatus(""); }} aria-label="Challenge answer" />
+      <button className="msk-cta" type="button" onClick={() => {
+        const correct = Math.abs(parseChallengeAnswer(answer) - resolved.expected) < 0.03;
+        setOk(correct);
+        setStatus(correct ? "Correct — that matches the live model." : resolved.hint);
+        if (correct) {
+          if (page?.route.includes("/trigonometry/")) {
+            awardTrigXp(10);
+            markTrigComplete(page.id);
+          }
+          onCorrect?.();
+        }
+      }}>Check</button>
       {status ? <p role="status">{status}</p> : null}
+      {!ok && teach ? <a className="msk-teach" href={teach.href}>{teach.label}</a> : null}
     </div>
   );
 }
@@ -226,7 +266,7 @@ export function GridSvg({
   const ymax = yMax ?? 10;
   return (
     <svg
-      className={`msk-graph ${dark ? "is-dark" : ""}`}
+      className={`msk-graph ${dark ? "is-dark" : ""}${onPointerDown || onPointerMove ? " is-interactive" : ""}`}
       viewBox={`0 0 ${w} ${h}`}
       role="img"
       aria-label={ariaLabel}
@@ -257,4 +297,20 @@ export function GridSvg({
 
 export function toSvg(x: number, y: number, origin = { x: 48, y: 372 }, unit = 28) {
   return { x: origin.x + x * unit, y: origin.y - y * unit };
+}
+
+export function ExtraFrame({
+  mode,
+  extra,
+  fallback,
+}: {
+  mode: string;
+  extra?: ReactNode;
+  fallback: ReactNode;
+}) {
+  return (
+    <div className="msk-extra-frame" data-mode-canvas={mode}>
+      {extra ?? fallback}
+    </div>
+  );
 }

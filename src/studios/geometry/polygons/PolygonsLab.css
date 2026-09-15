@@ -17,7 +17,8 @@
 .poly-lab--angles .poly-svg{background:radial-gradient(90% 70% at 88% 0,#ede9fe 0%,transparent 46%),linear-gradient(#fff,#faf8ff)}
 .poly-lab--area .poly-svg{background:radial-gradient(90% 70% at 50% 0,#ecfdf5 0%,transparent 48%),linear-gradient(#fff,#f6fffb)}
 .poly-lab--diagonals .poly-svg{background:radial-gradient(90% 70% at 20% 0,#fff7ed 0%,transparent 48%),linear-gradient(#fff,#fffaf5)}
-.poly-svg{max-height:none;height:min(62vh,560px);background:#fbfdff;border:1px solid #e6eef8;border-radius:14px}
+.poly-svg{max-height:none;height:min(62vh,560px);background:#fbfdff;border:1px solid #e6eef8;border-radius:14px;cursor:grab}
+.poly-svg:active{cursor:grabbing}
 .poly-toggle{display:flex;align-items:center;gap:8px;margin:7px 0;font-size:12px;font-weight:700;color:#334155}
 .poly-presets{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin:8px 0}
 .poly-presets button,.poly-ghost{min-height:34px;padding:0 8px;border:1px solid #dce7f4;border-radius:10px;background:#fff;color:#1d2d50;font-size:11px;font-weight:800}

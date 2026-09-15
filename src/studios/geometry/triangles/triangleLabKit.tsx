@@ -1,11 +1,19 @@
 import { useState, type ReactNode } from "react";
 import { Panel, Segmented, StatusOk, StepList, fmt } from "../../mockup/studioLabKit";
+import { useGeoLabUi } from "../geometryLabUx";
 
 export { fmt };
 
-export function MeasureRow({ label, value, color = "#147df2" }: { label: string; value: ReactNode; color?: string }) {
+export function MeasureRow({ label, value, color = "#147df2", metric }: { label: string; value: ReactNode; color?: string; metric?: string }) {
+  const ui = useGeoLabUi();
+  const id = metric ?? label;
   return (
-    <div className="tri-metric">
+    <div
+      className="tri-metric"
+      data-metric={id}
+      onMouseEnter={() => ui?.setHighlight(id)}
+      onMouseLeave={() => ui?.setHighlight(null)}
+    >
       <i style={{ background: color }} />
       <span>{label}</span>
       <strong>{value}</strong>
@@ -26,21 +34,26 @@ export function FormulaCard({ title, formula, why, tryThis }: { title: string; f
 }
 
 export function ChallengeCard({
-  prompt, check, hint, onReset,
+  prompt, check, hint, onReset, onSuccess,
 }: {
   prompt: string;
   check: () => boolean;
   hint: string;
   onReset: () => void;
+  onSuccess?: () => void;
 }) {
   const [status, setStatus] = useState("");
   const [seed, setSeed] = useState(0);
   return (
-    <div className="tri-challenge" data-seed={seed}>
+    <div className="tri-challenge" id="tri-challenge" data-seed={seed}>
       <span>Challenge</span>
       <p>{prompt}</p>
       <div className="tri-btn-row">
-        <button type="button" className="msk-cta" onClick={() => setStatus(check() ? "Correct — the live figure matches the goal." : hint)}>Check</button>
+        <button type="button" className="msk-cta" onClick={() => {
+          const ok = check();
+          setStatus(ok ? "Correct — the live figure matches the goal." : hint);
+          if (ok) onSuccess?.();
+        }}>Check</button>
         <button type="button" className="msk-soft" onClick={() => { onReset(); setStatus(""); }}>Reset</button>
         <button type="button" className="msk-soft" onClick={() => { onReset(); setSeed((n) => n + 1); setStatus("New challenge loaded. Same goal — rebuild it from scratch."); }}>New Challenge</button>
       </div>
@@ -68,18 +81,22 @@ export function Fold({ title, children, open = true }: { title: string; children
 }
 
 export function LabFrame({
-  controls, canvas, insights, ariaLabel, theme = "explorer",
+  controls, canvas, insights, ariaLabel, theme = "explorer", tools,
 }: {
   controls: ReactNode;
   canvas: ReactNode;
   insights: ReactNode;
   ariaLabel: string;
   theme?: "explorer" | "congruence" | "similarity" | "centers" | "inequalities";
+  tools?: ReactNode;
 }) {
   return (
     <div className={`tri-lab tri-lab--${theme}`} aria-label={ariaLabel}>
+      <section className="msk-panel tri-canvas" id="lab-canvas">
+        {tools ? <div className="tri-canvas-tools">{tools}</div> : null}
+        {canvas}
+      </section>
       <Fold title="Controls">{controls}</Fold>
-      <section className="msk-panel tri-canvas" id="lab-canvas">{canvas}</section>
       <aside className="tri-insights">
         <Fold title="Measurements">{insights}</Fold>
       </aside>

@@ -146,7 +146,7 @@ export default function TriangleCentersLab({ pulse = "observe" }: { pulse?: stri
         </Panel>
       }
       canvas={
-        <svg ref={svgRef} viewBox={`0 0 ${plane.width} ${plane.height}`} role="img" aria-label="Triangle centers construction">
+        <svg ref={svgRef} viewBox={`0 0 ${plane.width} ${plane.height}`} role="img" aria-label={`Triangle centers construction. Circumcenter O is ${circLoc}.`}>
           {grid ? <GridLayer plane={plane} /> : null}
           <polygon points={polyPoints(plane, [geo.A, geo.B, geo.C])} fill="rgba(20,125,242,.08)" stroke="#147df2" strokeWidth="2.1" />
           {show("centroid") ? (

@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { useEffect, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent, type ReactNode } from "react";
 import { createPortal } from "react-dom";
+import { Link } from "react-router-dom";
 import { MockupLearningStrip } from "../../mockup/MockupStudioChrome";
 import type { StudioMockupPage } from "../../mockup/studioMockupCatalog";
 import {
@@ -56,7 +57,8 @@ type ToolId =
   | "angle"
   | "distance"
   | "text"
-  | "delete";
+  | "delete"
+  | "locus";
 
 const TOOLS: { group: string; id: ToolId; label: string; hint: string; kind?: ObjKind; picks: number; compass?: boolean }[] = [
   { group: "Select", id: "select", label: "Select", hint: "V · Select / Move", picks: 0, compass: true },
@@ -77,11 +79,12 @@ const TOOLS: { group: string; id: ToolId; label: string; hint: string; kind?: Ob
   { group: "Polygons", id: "triangle", label: "Triangle", hint: "Three vertices", kind: "triangle", picks: 3 },
   { group: "Measure", id: "angle", label: "Angle", hint: "Three points", kind: "angle", picks: 3 },
   { group: "Measure", id: "distance", label: "Distance", hint: "Two points", kind: "distance", picks: 2 },
+  { group: "Locus", id: "locus", label: "Locus", hint: "Driver on object, then tracer", kind: "locus", picks: 2, compass: true },
   { group: "Annotate", id: "text", label: "Text", hint: "Label", kind: "text", picks: 0 },
 ];
 
 const VIEW = { w: 720, h: 540 };
-const GROUPS = ["Select", "Points", "Lines", "Special", "Circles", "Polygons", "Measure", "Annotate"];
+const GROUPS = ["Select", "Points", "Lines", "Special", "Circles", "Polygons", "Measure", "Locus", "Annotate"];
 
 function displayName(obj: GeomObject, objects: GeomObject[]) {
   const parentLabels = obj.parents.map((id) => objects.find((o) => o.id === id)?.label ?? id).join("");
@@ -118,6 +121,8 @@ export default function ConstructionLab({ page }: { page: StudioMockupPage }) {
   const [snap, setSnap] = useState(true);
   const [labels, setLabels] = useState(true);
   const [compassOnly, setCompassOnly] = useState(false);
+  const [radiusLock, setRadiusLock] = useState(false);
+  const [lockedR, setLockedR] = useState(2);
   const [measureMode, setMeasureMode] = useState<"decimal" | "exact" | "both">("both");
   const [angleUnit, setAngleUnit] = useState<"deg" | "rad">("deg");
   const [fullChain, setFullChain] = useState(true);
@@ -248,7 +253,11 @@ export default function ConstructionLab({ page }: { page: StudioMockupPage }) {
       return;
     }
     if (tool === "circleCR" && ids[0]) {
-      addObject({ id: nextId(objects, "c"), kind: "circleCR", label: nextLabel(objects, "circleCR"), parents: [ids[0]], visible: true, locked: false, constructed: true, params: { r: 2 } });
+      addObject({ id: nextId(objects, "c"), kind: "circleCR", label: nextLabel(objects, "circleCR"), parents: [ids[0]], visible: true, locked: false, constructed: true, params: { r: radiusLock ? lockedR : 2 } });
+      return;
+    }
+    if (tool === "circleCP" && radiusLock && ids[0]) {
+      addObject({ id: nextId(objects, "c"), kind: "circleCR", label: nextLabel(objects, "circleCR"), parents: [ids[0]], visible: true, locked: false, constructed: true, params: { r: lockedR } });
       return;
     }
     if (!spec.kind || ids.length < spec.picks) return;
@@ -407,6 +416,14 @@ export default function ConstructionLab({ page }: { page: StudioMockupPage }) {
           <button key={item.id} type="button" className={panel === item.id ? "is-on active" : ""} aria-pressed={panel === item.id} aria-selected={panel === item.id} onClick={() => setPanel(item.id)}>{item.label}</button>
         ))}
       </nav>
+      <div className="msk-dash-banner" data-lab-mode={panel}>
+        <b>Construction Workspace · {CONSTRUCTION_PANELS.find((item) => item.id === panel)?.label ?? panel}</b>
+        <small>{page.subtitle}</small>
+      </div>
+      <p className="msk-note clab-workspace-link">
+        Compass-straightedge here. For a full object tree with CAS, open{" "}
+        <Link to="/workspace/geometry">pro construction in Math Workspace</Link>.
+      </p>
 
       <div className="clab-workspace">
         <aside className="clab-card" aria-label="Construction tools">
@@ -421,7 +438,7 @@ export default function ConstructionLab({ page }: { page: StudioMockupPage }) {
                 {open ? (
                   <div className="clab-icon-grid">
                     {items.map((t) => (
-                      <button key={t.id} type="button" className={tool === t.id ? "is-on" : ""} title={t.hint} aria-label={t.label} onClick={() => { setTool(t.id); setPicks([]); }}>
+                      <button key={t.id} type="button" className={tool === t.id ? "is-on" : ""} title={t.hint} aria-label={t.label} data-construction-tool={t.id} onClick={() => { setTool(t.id); setPicks([]); }}>
                         {t.id === "select" ? <MousePointer2 size={16} /> : t.id.includes("circle") ? <CircleIcon size={16} /> : t.id === "delete" ? <Trash2 size={16} /> : <span>•</span>}
                         {t.label}
                       </button>
@@ -435,6 +452,7 @@ export default function ConstructionLab({ page }: { page: StudioMockupPage }) {
           <label className="clab-toggle"><span>Show labels</span><input type="checkbox" checked={labels} onChange={(e) => setLabels(e.target.checked)} /></label>
           <label className="clab-toggle"><span>Snap to grid</span><input type="checkbox" checked={snap} onChange={(e) => setSnap(e.target.checked)} /></label>
           <label className="clab-toggle"><span>Compass & straightedge only</span><input type="checkbox" checked={compassOnly} onChange={(e) => { setCompassOnly(e.target.checked); setTool("select"); }} /></label>
+          <label className="clab-toggle"><span>Lock compass radius ({fmtMeasure(lockedR, "both")})</span><input type="checkbox" checked={radiusLock} onChange={(e) => setRadiusLock(e.target.checked)} /></label>
           <p className="clab-kicker">Grid</p>
           <div className="clab-seg">
             {(["off", "cartesian", "dots"] as const).map((g) => (
@@ -495,6 +513,10 @@ export default function ConstructionLab({ page }: { page: StudioMockupPage }) {
                 const clip = clipLineToBox({ origin: toScreen(ev.line.origin), dir: { x: ev.line.dir.x * cam.s, y: -ev.line.dir.y * cam.s } }, box);
                 if (!clip) return null;
                 return <line key={obj.id} x1={clip[0].x} y1={clip[0].y} x2={clip[1].x} y2={clip[1].y} stroke={stroke} strokeWidth={width} strokeDasharray={dash} opacity={muted ? 0.3 : 1} />;
+              }
+              if (ev.polygon && obj.kind === "locus" && ev.polygon.length >= 2) {
+                const pts = ev.polygon.map(toScreen);
+                return <polyline key={obj.id} points={pts.map((p) => `${p.x},${p.y}`).join(" ")} fill="none" stroke="#f59e0b" strokeWidth={on ? 3 : 2} strokeDasharray="4 3" opacity={muted ? 0.3 : 1} />;
               }
               if (ev.polygon && ev.polygon.length >= 2 && (obj.kind === "segment" || obj.kind === "distance" || obj.kind === "vector" || obj.kind === "triangle" || obj.kind === "polygon")) {
                 const pts = ev.polygon.map(toScreen);

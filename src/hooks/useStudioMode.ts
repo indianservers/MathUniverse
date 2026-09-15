@@ -33,13 +33,14 @@ export function useStudioMode<T extends string>(
   key: string,
   allowed: readonly T[],
   fallback: T,
+  options?: { keepFallback?: boolean },
 ) {
   const [params, setParams] = useSearchParams();
   const mode = resolveStudioMode(params.get(key), allowed, fallback);
   const select = (next: T) => {
     setParams((current) => {
       const updated = new URLSearchParams(current);
-      if (next === fallback) updated.delete(key);
+      if (next === fallback && !options?.keepFallback) updated.delete(key);
       else updated.set(key, next);
       return updated;
     });

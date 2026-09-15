@@ -1,353 +1,178 @@
-import { Line, OrbitControls, Text } from "@react-three/drei";
+import { Hash, Home, Search } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
-import { Link } from "react-router-dom";
-import * as THREE from "three";
-import ThreeSceneWrapper from "../components/three/ThreeSceneWrapper";
-import SectionCard from "../components/ui/SectionCard";
-import ConceptAccuracyPanel from "../components/ui/ConceptAccuracyPanel";
-import SliderControl, { SliderGroup } from "../components/ui/SliderControl";
-import StudioPageShell from "../components/ui/StudioPageShell";
-import { topics } from "../data/topics";
-import { useProgress } from "../hooks/useProgress";
-import { roundTo } from "../utils/math";
-import { isPerfectSquareInteger, normalizeRational } from "../utils/coreAccuracyOracles";
+import { Link, NavLink, useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import StudioBreadcrumb, { mathStudioCrumbs } from "../components/ui/StudioBreadcrumb";
+import StudioHomeButtons from "../components/ui/StudioHomeButtons";
+import { StudioCanvasToolbar } from "../components/ui/StudioCanvasToolbar";
+import { StudioLessonLinks } from "../components/lessons/StudioLessonLinks";
+import { shareStudio } from "../utils/shareStudio";
+import {
+  ConceptsLab,
+  HierarchyLab,
+  IrrationalLab,
+  NUMBER_LABS,
+  NestedSetsHero,
+  PracticeLab,
+  RationalLab,
+  RealLineLab,
+} from "../studios/number-systems/NumberSystemsLabs";
+import {
+  NUMBER_SYSTEMS_ROUTES,
+  NUMBER_TAB_REDIRECTS,
+  coachDismissed,
+  completedLabs,
+  lastNumberSystemsRoute,
+  pageFromPath,
+  readClassBand,
+  rememberLastRoute,
+  saveClassBand,
+  studioProgressPercent,
+  type NumberClassBand,
+  type NumberSystemsPage,
+} from "./numberSystemsStudioSession";
+import "./NumberSystemsStudio.css";
 
-const numberConcepts = [
-  { title: "Natural Numbers", set: "N", note: "Counting numbers: 1, 2, 3, ...", example: "5" },
-  { title: "Whole Numbers", set: "W", note: "Natural numbers plus 0.", example: "0" },
-  { title: "Integers", set: "Z", note: "Positive, negative, and zero values.", example: "-7" },
-  { title: "Rational Numbers", set: "Q", note: "Numbers expressible as p/q where q is not 0.", example: "-5/8" },
-  { title: "Terminating Decimals", set: "Q", note: "Rationals whose reduced denominator has only factors 2 and 5.", example: "0.125" },
-  { title: "Repeating Decimals", set: "Q", note: "Rationals with a repeating decimal block.", example: "0.333..." },
-  { title: "Irrational Numbers", set: "R\\Q", note: "Non-terminating, non-repeating decimals.", example: "sqrt(2), pi" },
-  { title: "Real Numbers", set: "R", note: "All rational and irrational points on the number line.", example: "every point" },
-  { title: "Density", set: "R", note: "Between any two real numbers, more rationals and irrationals exist.", example: "(a+b)/2" },
-  { title: "Surds", set: "R\\Q", note: "Roots that cannot simplify to rational numbers.", example: "sqrt(18)=3sqrt(2)" },
-  { title: "Decimal Expansion Test", set: "Q or R\\Q", note: "Terminating/repeating means rational; non-repeating means irrational.", example: "0.101001..." },
-  { title: "Real Number Hierarchy", set: "N subset W subset Z subset Q subset R", note: "Number sets nest, while irrationals share the real line outside Q.", example: "sqrt(3) in R, not Q" },
+const nav: Array<{ id: NumberSystemsPage; label: string; route: string }> = [
+  { id: "home", label: "Studio Home", route: NUMBER_SYSTEMS_ROUTES.home },
+  { id: "rational", label: "Rational", route: NUMBER_SYSTEMS_ROUTES.rational },
+  { id: "irrational", label: "Irrational", route: NUMBER_SYSTEMS_ROUTES.irrational },
+  { id: "real-line", label: "Real line", route: NUMBER_SYSTEMS_ROUTES["real-line"] },
+  { id: "hierarchy", label: "Hierarchy", route: NUMBER_SYSTEMS_ROUTES.hierarchy },
+  { id: "concepts", label: "Concepts", route: NUMBER_SYSTEMS_ROUTES.concepts },
+  { id: "practice", label: "Practice", route: NUMBER_SYSTEMS_ROUTES.practice },
 ];
 
-type NumberTabId = "rational" | "irrational" | "real-line" | "space" | "concepts" | "accuracy";
-
 export default function NumberSystems() {
-  const topic = topics.find((item) => item.id === "number-systems")!;
-  const { getTopicProgress, markTopicVisited, markTopicInteracted } = useProgress();
-  const [p, setP] = useState(5);
-  const [q, setQ] = useState(8);
-  const [root, setRoot] = useState(2);
-  const [digits, setDigits] = useState(8);
-  const [activeTab, setActiveTab] = useState<NumberTabId>(() => readNumberTabFromUrl());
-
-  useEffect(() => markTopicVisited(topic.id), [markTopicVisited, topic.id]);
-
-  const rational = p / Math.max(1, q);
-  const irrational = Math.sqrt(root);
-  const decimal = useMemo(() => rational.toFixed(Math.round(digits)), [rational, digits]);
-  const progress = normalizeProgress(getTopicProgress(topic.id));
-  const normalized = normalizeRational(p, q);
-  const tabs = useMemo(() => [
-    {
-      id: "rational" as const,
-      label: "Rational",
-      lessonId: "60",
-      lessonRoute: "/lessons/numbers-and-arithmetic/60-rational-numbers",
-      summary: "Move p and q to connect fractions, reduced form, decimals, and points on a number line.",
-      focus: `${p}/${q}`,
-      content: <RationalLab p={p} q={q} setP={setP} setQ={setQ} decimal={decimal} />,
-    },
-    {
-      id: "irrational" as const,
-      label: "Irrational",
-      lessonId: "61",
-      lessonRoute: "/lessons/numbers-and-arithmetic/61-irrational-numbers",
-      summary: "Use roots and decimal precision to separate perfect-square rationals from irrational surds.",
-      focus: `sqrt(${root})`,
-      content: <IrrationalLab root={root} setRoot={setRoot} digits={digits} setDigits={setDigits} />,
-    },
-    {
-      id: "real-line" as const,
-      label: "Real Line",
-      lessonId: "62",
-      lessonRoute: "/lessons/numbers-and-arithmetic/62-real-numbers",
-      summary: "Place rational, irrational, and between-values on one continuous real number rail.",
-      focus: "Q and R\\Q",
-      content: <RealLineLab rational={rational} irrational={irrational} />,
-    },
-    {
-      id: "space" as const,
-      label: "3D View",
-      lessonId: "60–62",
-      lessonRoute: "/lessons/numbers-and-arithmetic/62-real-numbers",
-      summary: "Explore nested number-set rings and a 3D real-number rail.",
-      focus: "N subset W subset Z subset Q subset R",
-      content: <NumberSystem3D rational={rational} irrational={irrational} />,
-    },
-    {
-      id: "concepts" as const,
-      label: "Concepts",
-      lessonId: "60–62",
-      lessonRoute: "/lessons/numbers-and-arithmetic/60-rational-numbers",
-      summary: "Review the full hierarchy from natural numbers through reals and density.",
-      focus: `${numberConcepts.length} ideas`,
-      content: <ConceptGrid />,
-    },
-    {
-      id: "accuracy" as const,
-      label: "Accuracy",
-      lessonId: "60–62",
-      lessonRoute: "/lessons/numbers-and-arithmetic/60-rational-numbers",
-      summary: "Practice classification and catch decimal-expansion mistakes.",
-      focus: "validation",
-      content: <ConceptAccuracyPanel domain="number-systems" />,
-    },
-  ], [decimal, digits, irrational, p, q, rational, root]);
-  const currentTab = tabs.find((tab) => tab.id === activeTab) ?? tabs[0];
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [params] = useSearchParams();
+  const page = pageFromPath(location.pathname);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    const onPopState = () => setActiveTab(readNumberTabFromUrl());
-    window.addEventListener("popstate", onPopState);
-    return () => window.removeEventListener("popstate", onPopState);
-  }, []);
+    const tab = params.get("tab");
+    if (page === "home" && tab && NUMBER_TAB_REDIRECTS[tab]) {
+      navigate(NUMBER_SYSTEMS_ROUTES[NUMBER_TAB_REDIRECTS[tab]], { replace: true });
+    }
+  }, [navigate, page, params]);
 
-  const selectTab = (tabId: NumberTabId) => {
-    setActiveTab(tabId);
-    const url = new URL(window.location.href);
-    if (tabId === "rational") url.searchParams.delete("tab");
-    else url.searchParams.set("tab", tabId);
-    window.history.pushState(null, "", `${url.pathname}${url.search}${url.hash}`);
-  };
+  useEffect(() => {
+    document.title = `${page === "home" ? "Number Systems Studio" : nav.find((item) => item.id === page)?.label ?? "Number Systems"} | Math Universe`;
+    if (page !== "home") rememberLastRoute(location.pathname);
+    setProgress(studioProgressPercent());
+  }, [location.pathname, page]);
+
+  const refresh = () => setProgress(studioProgressPercent());
 
   return (
-    <StudioPageShell
-      guide={<div className="number-guide-card">
-            <span>Live classification</span>
-            <h2>{currentTab.label}</h2>
-            <p>{currentTab.summary}</p>
-            <div className="number-mini-grid">
-              <Metric label="fraction" value={`${p}/${q}`} />
-              <Metric label="reduced" value={`${normalized.numerator}/${normalized.denominator}`} />
-              <Metric label="rational" value={roundTo(rational, 5).toString()} />
-              <Metric label="surd" value={roundTo(irrational, 5).toString()} />
-            </div>
-          </div>}
-      className="number-studio"
-      title="Number Systems Studio"
-      titleBadge={(
-        <Link className="studio-lesson-id" to={currentTab.lessonRoute} aria-label={`Open lesson ${currentTab.lessonId}: ${currentTab.label}`}>
-          {currentTab.lessonId.includes("–") ? "Lessons" : "Lesson"} {currentTab.lessonId}
+    <main className="ns-studio">
+      <aside className="ns-sidebar">
+        <Link className="ns-brand" to="/number-systems" aria-label="Number Systems Studio home">
+          <Hash />
+          <span><b>NUMBER</b><b>SYSTEMS</b></span>
         </Link>
-      )}
-      subtitle={topic.description}
-      breadcrumbs={["Home", "Studio", "Number & Discrete Mathematics", "Number Systems"]}
-      difficulty={topic.difficulty}
-      estimatedMinutes={topic.estimatedMinutes}
-      progress={progress}
-      status={[
-        { id: "lesson", label: "Lesson", value: currentTab.lessonId, tone: "green" },
-        { id: "concepts", label: "Concepts", value: numberConcepts.length, tone: "cyan" },
-        { id: "classification", label: "Current", value: currentTab.label, tone: "violet" },
-      ]}
-    >
-      <div className="number-workspace" onPointerDown={() => markTopicInteracted(topic.id)}>
-        <section className="number-main-panel" aria-label="Number systems workspace">
-          <div className="number-tabs" role="tablist" aria-label="Number systems studio sections">
-            {tabs.map((tab) => (
-              <button key={tab.id} type="button" role="tab" aria-selected={tab.id === currentTab.id} className={tab.id === currentTab.id ? "active" : ""} onClick={() => selectTab(tab.id)}>
-                {tab.label}
-              </button>
+        <Link className="ns-main-link" to="/"><Home /><span>Main</span></Link>
+        <nav aria-label="Number Systems Studio navigation">
+          {nav.map((item) => (
+            <NavLink key={item.id} to={item.route} end={item.id === "home"} className={page === item.id ? "active" : ""}>
+              <span>{item.label}</span>
+            </NavLink>
+          ))}
+        </nav>
+        <Link className="ns-side-extra" to="/number-systems/formula-visualizer">Formulas</Link>
+      </aside>
+      <section className="ns-stage" data-testid="number-systems-scroll-pane">
+        {page !== "home" ? <StudioCanvasToolbar /> : null}
+        {page === "home" ? <StudioHome progress={progress} /> : null}
+        {page === "rational" ? <RationalLab onComplete={refresh} /> : null}
+        {page === "irrational" ? <IrrationalLab onComplete={refresh} /> : null}
+        {page === "real-line" ? <RealLineLab onComplete={refresh} /> : null}
+        {page === "hierarchy" ? <HierarchyLab onComplete={refresh} /> : null}
+        {page === "concepts" ? <ConceptsLab onComplete={refresh} /> : null}
+        {page === "practice" ? <PracticeLab onComplete={refresh} /> : null}
+        {page !== "home" ? <StudioLessonLinks pathname="/number-systems" /> : null}
+      </section>
+    </main>
+  );
+}
+
+function StudioHome({ progress }: { progress: number }) {
+  const [query, setQuery] = useState("");
+  const [band, setBand] = useState<NumberClassBand>(readClassBand);
+  const [shareStatus, setShareStatus] = useState("");
+  const done = completedLabs();
+  const resume = lastNumberSystemsRoute();
+  const resumeLabel = nav.find((item) => item.route === resume)?.label ?? "Rational";
+  const filtered = useMemo(() => {
+    const needle = query.trim().toLowerCase();
+    return NUMBER_LABS.filter((item) => {
+      if (band !== "all" && !item.grade.includes(band)) return false;
+      if (!needle) return true;
+      return `${item.label} ${item.description} ${item.modes.join(" ")}`.toLowerCase().includes(needle);
+    });
+  }, [band, query]);
+
+  return (
+    <div className="ns-page">
+      <header className="ns-header">
+        <div>
+          <StudioHomeButtons studioTo="/number-systems" />
+          <StudioBreadcrumb crumbs={mathStudioCrumbs({ label: "Number Systems", to: "/number-systems" })} />
+          <h1>Welcome to Number Systems Studio</h1>
+          <p>See fractions, surds, and nested number sets. Progress counts only completed checks, not clicks.</p>
+        </div>
+        <label className="ns-search">
+          <Search />
+          <input type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search labs…" aria-label="Search Number Systems labs" />
+        </label>
+      </header>
+      <NestedSetsHero progress={progress} />
+      <div className="ns-home-grid">
+        <section>
+          {!coachDismissed() ? <p className="ns-coach">Start with Rational numbers. Use a preset, then answer the yes/no check to earn progress.</p> : null}
+          <div className="ns-bands" role="group" aria-label="Who this is for">
+            {([["all", "All classes"], ["6-7", "Classes 6–7"], ["8-10", "Classes 8–10"], ["jee", "JEE / degree"]] as const).map(([id, label]) => (
+              <button key={id} type="button" className={band === id ? "active" : ""} onClick={() => { setBand(id); saveClassBand(id); }}>{label}</button>
             ))}
           </div>
-          <div className="number-context-strip">
-            <div>
-              <Link className="mb-1 inline-flex rounded-full bg-emerald-100 px-2.5 py-1 text-xs font-black text-emerald-800 hover:bg-emerald-200 dark:bg-emerald-400/15 dark:text-emerald-100" to={currentTab.lessonRoute}>Lesson {currentTab.lessonId}</Link>
-              <span>Current focus</span>
-              <strong>{currentTab.focus}</strong>
-            </div>
-            <p>{currentTab.summary}</p>
+          <div className="ns-topic-grid">
+            {filtered.map((item, index) => (
+              <article key={item.id} className={`ns-topic ${done.includes(item.id) ? "is-done" : ""}`}>
+                <span>{done.includes(item.id) ? "✓" : index + 1}</span>
+                <Link to={NUMBER_SYSTEMS_ROUTES[item.id]}>
+                  <b>{item.label}</b>
+                  <p>{item.description}</p>
+                  <em>{item.level} · {item.minutes} min</em>
+                  <small>{item.modes.join(" · ")}</small>
+                </Link>
+              </article>
+            ))}
           </div>
-          <div className="number-tab-content thin-scrollbar">{currentTab.content}</div>
         </section>
-        <aside className="number-inspector thin-scrollbar" aria-label="Number systems inspector">
-
-          <SectionCard title="Fast NCERT Links" compact>
-            <div className="grid gap-2">
-              <Link className="tool-button justify-start" to="/ncert/class-7-rational-numbers">Class 7 rational lab</Link>
-              <Link className="tool-button justify-start" to="/ncert/class-8-rational-numbers">Class 8 rational properties</Link>
-              <Link className="tool-button justify-start" to="/ncert/class-9-number-systems">Class 9 number systems</Link>
-              <Link className="tool-button justify-start" to="/ncert/class-10-real-numbers">Class 10 real numbers</Link>
-            </div>
-          </SectionCard>
-          <SectionCard title="Coverage" compact>
-            <div className="flex flex-wrap gap-2">
-              {["JEE", "NCERT", "Degree bridge", "Real analysis base"].map((item) => <span key={item} className="mini-chip">{item}</span>)}
-            </div>
-          </SectionCard>
+        <aside className="ns-home-aside">
+          <section className="ns-panel">
+            <h2>Continue</h2>
+            <strong>{resumeLabel}</strong>
+            <p>{done.length} labs completed · {progress}%</p>
+            <Link className="ns-cta" to={resume}>Resume</Link>
+            <button type="button" onClick={async () => setShareStatus(await shareStudio("Number Systems Studio"))}>Share setup</button>
+            {shareStatus ? <p role="status">{shareStatus}</p> : null}
+          </section>
+          <section className="ns-panel">
+            <h2>Pinned lessons</h2>
+            <Link to="/lessons/numbers-and-arithmetic/60-rational-numbers">Lesson 60 · Rational numbers</Link>
+            <Link to="/lessons/numbers-and-arithmetic/61-irrational-numbers">Lesson 61 · Irrational numbers</Link>
+            <Link to="/lessons/numbers-and-arithmetic/62-real-numbers">Lesson 62 · Real numbers</Link>
+          </section>
+          <section className="ns-panel">
+            <h2>Connected labs</h2>
+            <Link to="/ncert/class-7-rational-numbers">Class 7 rational</Link>
+            <Link to="/ncert/class-9-number-systems">Class 9 number systems</Link>
+            <Link to="/ncert/class-10-real-numbers">Class 10 real numbers</Link>
+            <Link to="/number-systems/formula-visualizer">Formula visualizer</Link>
+          </section>
         </aside>
       </div>
-    </StudioPageShell>
+    </div>
   );
-}
-
-function RationalLab({ p, q, setP, setQ, decimal }: { p: number; q: number; setP: (value: number) => void; setQ: (value: number) => void; decimal: string }) {
-  const value = p / Math.max(1, q);
-  const normalized = normalizeRational(p, q);
-  return (
-    <SectionCard title="Rational Numbers" description="Move p and q to see p/q as a point, fraction, and decimal." compact>
-      <div className="grid gap-3 xl:grid-cols-[280px_minmax(0,1fr)]">
-        <div className="space-y-3">
-          <SliderGroup title="Fraction controls">
-            <SliderControl density="compact" label="numerator p" value={p} min={-24} max={24} step={1} onChange={setP} />
-            <SliderControl density="compact" label="denominator q" value={q} min={1} max={24} step={1} onChange={setQ} />
-          </SliderGroup>
-          <Metric label="fraction" value={`${p}/${q}`} />
-          <Metric label="exact reduced form" value={`${normalized.numerator}/${normalized.denominator}`} />
-          <Metric label="decimal" value={decimal} />
-          <Metric label="value" value={roundTo(value, 5).toString()} />
-        </div>
-        <NumberLine values={[{ label: `${p}/${q}`, value, color: "#06b6d4" }]} />
-      </div>
-    </SectionCard>
-  );
-}
-
-function IrrationalLab({ root, setRoot, digits, setDigits }: { root: number; setRoot: (value: number) => void; digits: number; setDigits: (value: number) => void }) {
-  const value = Math.sqrt(root);
-  const rational = isPerfectSquareInteger(root);
-  return (
-    <SectionCard title="Irrational Numbers" description="Roots of non-perfect squares produce decimal values that do not terminate or repeat." compact>
-      <div className="grid gap-3 xl:grid-cols-[280px_minmax(0,1fr)]">
-        <div className="space-y-3">
-          <SliderGroup title="Root controls">
-            <SliderControl density="compact" label="root n in sqrt(n)" value={root} min={2} max={50} step={1} onChange={setRoot} />
-            <SliderControl density="compact" label="decimal digits" value={digits} min={2} max={14} step={1} onChange={setDigits} />
-          </SliderGroup>
-          <Metric label="sqrt(n)" value={value.toFixed(Math.round(digits))} />
-          <Metric label="classification" value={rational ? "rational perfect square" : "irrational surd"} />
-        </div>
-        <NumberLine values={[{ label: `sqrt(${root})`, value, color: rational ? "#10b981" : "#f59e0b" }]} />
-      </div>
-    </SectionCard>
-  );
-}
-
-function RealLineLab({ rational, irrational }: { rational: number; irrational: number }) {
-  const midpoint = (rational + irrational) / 2;
-  return (
-    <SectionCard title="Real Number Line" description="Rational and irrational values share one continuous line; between any two, more values exist." compact>
-      <NumberLine values={[{ label: "rational", value: rational, color: "#06b6d4" }, { label: "irrational", value: irrational, color: "#f59e0b" }, { label: "between", value: midpoint, color: "#ec4899" }]} />
-      <div className="mt-3 grid gap-2 md:grid-cols-3">
-        <Metric label="rational" value={roundTo(rational, 4).toString()} />
-        <Metric label="irrational" value={roundTo(irrational, 4).toString()} />
-        <Metric label="one point between" value={roundTo(midpoint, 4).toString()} />
-      </div>
-    </SectionCard>
-  );
-}
-
-function NumberSystem3D({ rational, irrational }: { rational: number; irrational: number }) {
-  const min = -4;
-  const max = 8;
-  const clamp = (value: number) => Math.max(min, Math.min(max, value));
-  const map = (value: number) => -4.2 + ((clamp(value) - min) / (max - min)) * 8.4;
-  const rationalX = map(rational);
-  const irrationalX = map(irrational);
-  const midpointX = map((rational + irrational) / 2);
-  const linePoints = Array.from({ length: 160 }, (_, index) => {
-    const x = -4.2 + (index / 159) * 8.4;
-    return new THREE.Vector3(x, -1.15, 0);
-  });
-
-  return (
-    <SectionCard title="3D Number Systems" description="Nested set rings and a real-number rail show where rationals, irrationals, and real numbers sit together." compact>
-      <ThreeSceneWrapper height="520px" mobileHeight="420px" cameraPosition={[5, 3.4, 6.5]} fov={43} quality="high" chrome="cinematic" sceneLabel="number systems 3D" interactionLabel="Drag rotate - scroll zoom">
-        <OrbitControls enableDamping makeDefault />
-        <gridHelper args={[9, 18, "#38bdf8", "#334155"]} position={[0, -1.35, 0]} />
-        <Line points={linePoints} color="#e0f2fe" lineWidth={4} />
-        <NumberPoint x={rationalX} z={-0.55} color="#22d3ee" label="rational Q" value={rational} />
-        <NumberPoint x={irrationalX} z={0.55} color="#f59e0b" label="irrational R\\Q" value={irrational} />
-        <NumberPoint x={midpointX} z={0} color="#ec4899" label="between" value={(rational + irrational) / 2} />
-        <SetRing radius={1.05} y={0.05} color="#22d3ee" label="N" />
-        <SetRing radius={1.45} y={0.42} color="#10b981" label="W" />
-        <SetRing radius={1.86} y={0.79} color="#f59e0b" label="Z" />
-        <SetRing radius={2.28} y={1.16} color="#8b5cf6" label="Q" />
-        <SetRing radius={2.72} y={1.53} color="#ec4899" label="R" />
-        <Text position={[-4.1, 2.65, 0]} fontSize={0.22} color="#e0f2fe" anchorX="left">N subset W subset Z subset Q subset R, with irrationals also inside R</Text>
-      </ThreeSceneWrapper>
-    </SectionCard>
-  );
-}
-
-function NumberPoint({ x, z, color, label, value }: { x: number; z: number; color: string; label: string; value: number }) {
-  return (
-    <group position={[x, -1.02, z]}>
-      <mesh castShadow>
-        <sphereGeometry args={[0.13, 24, 16]} />
-        <meshStandardMaterial color={color} />
-      </mesh>
-      <Line points={[new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 0.85, 0)]} color={color} lineWidth={2} />
-      <Text position={[0, 1.05, 0]} fontSize={0.16} color="#f8fafc" anchorX="center">{`${label}: ${roundTo(value, 3)}`}</Text>
-    </group>
-  );
-}
-
-function SetRing({ radius, y, color, label }: { radius: number; y: number; color: string; label: string }) {
-  return (
-    <group position={[0, y, 0]}>
-      <mesh rotation={[Math.PI / 2, 0, 0]}>
-        <torusGeometry args={[radius, 0.025, 12, 96]} />
-        <meshStandardMaterial color={color} emissive={color} emissiveIntensity={0.25} />
-      </mesh>
-      <Text position={[radius + 0.22, 0, 0]} fontSize={0.18} color={color}>{label}</Text>
-    </group>
-  );
-}
-
-function ConceptGrid() {
-  return (
-    <SectionCard title="Number System Concepts" description="Compact coverage of rational, irrational, and real-number ideas." compact>
-      <div className="grid gap-2 md:grid-cols-2 xl:grid-cols-3">
-        {numberConcepts.map((item) => (
-          <article key={item.title} className="rounded-lg border border-slate-200 bg-white/75 p-3 dark:border-white/10 dark:bg-white/5">
-            <div className="flex items-start justify-between gap-2">
-              <h3 className="text-sm font-black">{item.title}</h3>
-              <span className="mini-chip">{item.set}</span>
-            </div>
-            <p className="mt-2 text-xs leading-5 text-slate-600 dark:text-slate-300">{item.note}</p>
-            <p className="mt-2 font-mono text-[12px] text-cyan-700 dark:text-cyan-200">{item.example}</p>
-          </article>
-        ))}
-      </div>
-    </SectionCard>
-  );
-}
-
-function NumberLine({ values }: { values: { label: string; value: number; color: string }[] }) {
-  const min = -4;
-  const max = 8;
-  const map = (value: number) => 70 + ((Math.max(min, Math.min(max, value)) - min) / (max - min)) * 620;
-  return (
-    <svg viewBox="0 0 760 280" className="h-[280px] w-full rounded-lg">
-      <rect width="760" height="280" rx="14" className="fill-slate-50 dark:fill-slate-900" />
-      <line x1="70" x2="690" y1="145" y2="145" stroke="#64748b" strokeWidth="3" />
-      {Array.from({ length: max - min + 1 }, (_, i) => min + i).map((tick) => <g key={tick}><line x1={map(tick)} x2={map(tick)} y1="132" y2="158" stroke="#94a3b8" /><text x={map(tick) - 6} y="180" className="fill-slate-500 dark:fill-slate-400" fontSize="12" fontWeight="700">{tick}</text></g>)}
-      {values.map((item, index) => <g key={`${item.label}-${index}`}><line x1={map(item.value)} x2={map(item.value)} y1="75" y2="145" stroke={item.color} strokeWidth="4" /><circle cx={map(item.value)} cy="145" r="8" fill={item.color} className="stroke-slate-900 dark:stroke-slate-100" strokeWidth="2" /><text x={map(item.value) + 10} y={74 + index * 24} className="fill-slate-900 dark:fill-white" fontSize="13" fontWeight="800">{item.label}: {roundTo(item.value, 4)}</text></g>)}
-    </svg>
-  );
-}
-
-function Metric({ label, value }: { label: string; value: string }) {
-  return <div className="rounded-lg bg-slate-100 p-2 dark:bg-white/10"><p className="text-[10px] font-black uppercase text-slate-500">{label}</p><p className="break-words font-mono text-sm font-bold">{value}</p></div>;
-}
-
-function readNumberTabFromUrl(): NumberTabId {
-  if (typeof window === "undefined") return "rational";
-  const tab = new URLSearchParams(window.location.search).get("tab");
-  if (tab === "irrational" || tab === "real-line" || tab === "space" || tab === "concepts" || tab === "accuracy") return tab;
-  return "rational";
-}
-
-function normalizeProgress(value: number) {
-  if (!Number.isFinite(value)) return 0;
-  const percent = value <= 1 ? value * 100 : value;
-  return Math.max(0, Math.min(100, Math.round(percent)));
 }

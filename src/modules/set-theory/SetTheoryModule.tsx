@@ -5,7 +5,8 @@ import { Binary, BrainCircuit, Check, Dices, FunctionSquare, GitFork, Grid3X3, M
 import { useEffect, useMemo, useRef, useState, type KeyboardEvent, type PointerEvent } from "react";
 import { Link, NavLink, Navigate, useParams } from "react-router-dom";
 import ReactFlow, { Background, Controls, MarkerType, type Edge, type Node } from "reactflow";
-import SectionCard from "../../components/ui/SectionCard";
+import { StudioCanvasToolbar } from "../../components/ui/StudioCanvasToolbar";
+import StudioHomeButtons from "../../components/ui/StudioHomeButtons";
 import {
   applySetOperation,
   cartesianProduct,
@@ -264,11 +265,15 @@ export default function SetTheoryModule({ showLauncher = true }: { showLauncher?
   if (pageSlug && !activePage) return <Navigate to="/set-theory" replace />;
 
   return (
-    <div className="set-theory-module-shell">
+    <div className="set-theory-module-shell msk-shell">
+      <header className="msk-top" style={{ position: "relative" }}>
+        <StudioHomeButtons studioTo="/set-theory" />
+        <StudioCanvasToolbar />
+      </header>
       {activePage ? (
         <div className="set-theory-page-context">
           <span>{activePage.title}</span>
-          <p>{activePage.description}</p>
+          <p>Same element tokens as the Venn engine: drag chips, then click a region or pair.</p>
         </div>
       ) : (
         <div className="set-theory-page-context">
@@ -351,7 +356,7 @@ function SetTheoryOverview({
         <RelationSummaryCard properties={relationProps} matrix={matrix} />
         <RepresentationSummaryCard setA={store.setA} setB={store.setB} classes={classes} />
       </div>
-      <ChallengePanel challenge={challenge} onRandom={store.randomizeChallenge} />
+      <ChallengePanel challenge={challenge} onRandom={store.randomizeChallenge} onMiss={store.setOperation} />
     </div>
   );
 }
@@ -379,7 +384,7 @@ function FocusedSetTheoryPage({
   if (page === "hasse-diagram") return <OrderingVisualizer domain={store.universe} pairs={store.relationPairs} />;
   if (page === "functions") return <FunctionMappingStudio domain={store.setA} codomain={store.setB} pairs={store.functionPairs} onCodomain={store.setSetB} onPairs={store.setFunctionPairs} />;
   if (page === "representations") return <DiscreteRepresentations domain={store.universe} setA={store.setA} setB={store.setB} pairs={store.relationPairs} classes={classes} />;
-  return <ChallengePanel challenge={challenge} onRandom={store.randomizeChallenge} />;
+  return <ChallengePanel challenge={challenge} onRandom={store.randomizeChallenge} onMiss={store.setOperation} />;
 }
 
 function LearningPathCard({ body, route, title }: { body: string; route: string; title: string }) {
@@ -864,6 +869,16 @@ function VennEngine({
             onMouseLeave={() => setActiveRegionKey(null)}
             onFocus={() => setActiveRegionKey(key)}
             onBlur={() => setActiveRegionKey(null)}
+            onClick={() => {
+              const leftSet = key[0] ?? "A";
+              const rightSet = key[1] ?? "B";
+              saveExpression([
+                { id: Date.now(), kind: "set", value: leftSet },
+                { id: Date.now() + 1, kind: "operator", value: "intersection" },
+                { id: Date.now() + 2, kind: "set", value: rightSet },
+              ]);
+              setOperation("intersection");
+            }}
           >
             <title>{vennOverlapStyle[key].label}: count {regionCount(key)}, probability {regionProbability(regionCount(key))}</title>
           </circle>
@@ -884,6 +899,16 @@ function VennEngine({
             onMouseLeave={() => setActiveRegionKey(null)}
             onFocus={() => setActiveRegionKey("ABC")}
             onBlur={() => setActiveRegionKey(null)}
+            onClick={() => {
+              saveExpression([
+                { id: Date.now(), kind: "set", value: "A" },
+                { id: Date.now() + 1, kind: "operator", value: "intersection" },
+                { id: Date.now() + 2, kind: "set", value: "B" },
+                { id: Date.now() + 3, kind: "operator", value: "intersection" },
+                { id: Date.now() + 4, kind: "set", value: "C" },
+              ]);
+              setOperation("intersection");
+            }}
           >
             <title>{vennOverlapStyle.ABC.label}: count {regionCount("ABC")}, probability {regionProbability(regionCount("ABC"))}</title>
           </circle>
@@ -1317,15 +1342,33 @@ function DiscreteRepresentations({ domain, setA, setB, pairs, classes }: { domai
   );
 }
 
-function ChallengePanel({ challenge, onRandom }: { challenge: ReturnType<typeof randomProblem>; onRandom: () => void }) {
+function ChallengePanel({ challenge, onRandom, onMiss }: { challenge: ReturnType<typeof randomProblem>; onRandom: () => void; onMiss?: (operation: ReturnType<typeof randomProblem>["operation"]) => void }) {
   const [revealed, setRevealed] = useState(false);
+  const [guess, setGuess] = useState("");
+  const [missed, setMissed] = useState(false);
   return (
     <SectionCard title="Interactive Challenges and AI Hint Engine" description="Random problem generation with local rule-based hints.">
       <div className="flex flex-wrap items-center gap-2">
-        <button className="action-primary" type="button" onClick={() => { setRevealed(false); onRandom(); }}><Dices className="h-4 w-4" /> Random problem</button>
+        <button className="action-primary" type="button" onClick={() => { setRevealed(false); setMissed(false); setGuess(""); onRandom(); }}><Dices className="h-4 w-4" /> Random problem</button>
         <button className="tool-button" type="button" onClick={() => setRevealed(true)}><BrainCircuit className="h-4 w-4" /> Hint</button>
       </div>
       <div className="mt-3 rounded-xl bg-slate-100 p-4 font-mono text-sm dark:bg-white/10">Given A = {"{"}{challenge.a.join(", ")}{"}"} and B = {"{"}{challenge.b.join(", ")}{"}"}, compute {challenge.operation}.</div>
+      <form className="mt-3 flex flex-wrap gap-2" onSubmit={(event) => {
+        event.preventDefault();
+        const parsed = guess.split(/[\s,]+/).map((item) => item.trim()).filter(Boolean).sort().join(",");
+        const expected = [...challenge.answer].sort().join(",");
+        if (parsed === expected) {
+          setMissed(false);
+          setRevealed(true);
+          return;
+        }
+        setMissed(true);
+        onMiss?.(challenge.operation);
+      }}>
+        <input value={guess} onChange={(e) => setGuess(e.target.value)} aria-label="Your set answer" placeholder="elements, comma separated" />
+        <button className="action-primary" type="submit">Check</button>
+      </form>
+      {missed ? <div className="mt-3 rounded-xl bg-amber-100 p-3 text-sm font-semibold text-amber-900">Wrong — the Venn engine now highlights {challenge.operation}. Open the Venn page and read the glowing region.</div> : null}
       {revealed && <div className="mt-3 rounded-xl bg-cyan-100 p-3 text-sm font-semibold text-cyan-800 dark:bg-cyan-400/15 dark:text-cyan-100"><Check className="mr-2 inline h-4 w-4" />Think element by element. Answer: {"{"}{challenge.answer.join(", ")}{"}"}</div>}
     </SectionCard>
   );

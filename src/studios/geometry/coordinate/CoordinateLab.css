@@ -29,9 +29,11 @@
 .coord-view button{width:36px;height:36px;border:1px solid #dce7f4;border-radius:10px;background:#fff}
 .coord-view button.is-on{background:#e8f7ff;border-color:#7dd3ea;color:#0891b2}
 .coord-stage{position:relative;padding:8px 8px 8px;border:1px solid #dce7f4;border-radius:16px;background:#fff;min-height:520px}
-.coord-svg{width:100%;height:min(62vh,600px);background:#f7fbff;touch-action:none}
+.coord-svg{width:100%;height:min(62vh,600px);background:#f7fbff;touch-action:none;cursor:grab}
+.coord-svg:active{cursor:grabbing}
 .coord-svg.is-place{cursor:crosshair}
 .coord-svg.is-pan{cursor:grab}
+.coord-svg.is-pan:active{cursor:grabbing}
 .coord-banner{display:flex;align-items:center;gap:8px;margin-bottom:8px;padding:8px 10px;border-radius:12px;background:#e8f7ff;color:#0e7490;font-size:12px;font-weight:700}
 .coord-banner button{min-height:28px;padding:0 8px}
 .coord-float{position:absolute;padding:10px 12px;border:1px solid #d7e7f3;border-radius:14px;background:#fff;box-shadow:0 8px 20px #3a5b7f12;font-size:12px;pointer-events:none}

@@ -1,0 +1,635 @@
+.msk-trigonometry {
+  --trig-orange: #f59e0b;
+  --trig-purple: #8b5cf6;
+  --trig-cyan: #06b6d4;
+  --trig-blue: #147df2;
+  --trig-green: #10b981;
+  --trig-navy: #061428;
+  grid-template-columns: 260px minmax(0, 1fr);
+}
+
+.msk-trigonometry .msk-sidebar {
+  padding: 18px 14px;
+}
+
+.msk-trigonometry .msk-brand {
+  gap: 8px;
+  padding: 0 8px 14px;
+  font-size: 15px;
+}
+
+.msk-trigonometry .msk-mark {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+}
+
+.msk-trigonometry .msk-main,
+.msk-trigonometry .msk-sidebar nav a {
+  min-height: 44px;
+  gap: 10px;
+  padding: 8px 11px;
+  font-size: 11px;
+}
+
+.msk-trigonometry .msk-sidebar nav svg {
+  width: 17px;
+  height: 17px;
+}
+
+.msk-trigonometry .msk-stage {
+  padding: 15px 18px 18px;
+}
+
+.msk-trigonometry .msk-top {
+  align-items: flex-start;
+  margin-bottom: 9px;
+}
+
+.msk-trigonometry .msk-top h1 {
+  font-size: clamp(20px, 1.65vw, 27px);
+}
+
+.msk-trigonometry .msk-top p {
+  margin-top: 2px;
+  font-size: 11px;
+}
+
+.msk-trigonometry .msk-tools {
+  gap: 6px;
+}
+
+.msk-trigonometry .studio-home-btns,
+.msk-trigonometry .msk-title-block > nav[aria-label="Breadcrumb"] {
+  display: none;
+}
+
+.msk-trigonometry.is-lab .msk-tools > .studio-canvas-tools {
+  display: none;
+}
+
+.msk-trigonometry .msk-tools > button,
+.msk-trigonometry .msk-tools .studio-canvas-tools button {
+  width: 34px;
+  min-width: 34px;
+  height: 34px;
+}
+
+.msk-trigonometry .msk-path-row {
+  gap: 6px;
+  margin-top: 7px;
+  scrollbar-width: thin;
+}
+
+.msk-trigonometry .msk-path-row i {
+  width: 22px;
+  height: 22px;
+  font-size: 11px;
+}
+
+.msk-trigonometry .msk-tabs {
+  margin-bottom: 8px;
+}
+
+.msk-trigonometry .msk-dash-banner,
+.msk-trigonometry .p1-toolbar,
+.msk-trigonometry.is-lab .msk-hint {
+  display: none;
+}
+
+.msk-trigonometry .msk-tabs button {
+  min-height: 52px;
+  padding: 0 13px;
+  font-size: 12px;
+}
+
+.msk-trigonometry .msk-strip-cards > div {
+  min-height: 100px;
+}
+
+.msk-trigonometry .msk-lab {
+  grid-template-columns: minmax(250px, 0.68fr) minmax(520px, 1.8fr) minmax(250px, 0.68fr);
+  gap: 10px;
+}
+
+.msk-trigonometry .msk-panel {
+  padding: 11px;
+  border-radius: 12px;
+}
+
+.msk-trigonometry .msk-panel h2 {
+  margin-bottom: 7px;
+  font-size: 12px;
+}
+
+.msk-trigonometry .msk-note,
+.msk-trigonometry .msk-ratio,
+.msk-trigonometry .msk-live-row {
+  font-size: 12px;
+}
+
+.msk-trigonometry .msk-canvas {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.msk-trigonometry .msk-canvas > .msk-graph {
+  display: block;
+  width: 100%;
+}
+
+.msk-trigonometry .msk-rt-stage {
+  align-content: start;
+  min-height: 0;
+  background: #f8fbff;
+}
+
+.msk-trigonometry .msk-rt-stage > .msk-graph {
+  width: 100%;
+  max-height: none;
+  aspect-ratio: 640 / 500;
+  background: #f8fbff;
+}
+
+.msk-trigonometry .msk-uc-stage {
+  align-content: start;
+  background: var(--trig-navy);
+}
+
+.msk-trigonometry :is(
+  .trig-target-canvas,
+  .uc-target-canvas,
+  .rt-target-canvas,
+  .tg-target-canvas,
+  .id-target-canvas,
+  .inv-target-canvas,
+  .ob-target-canvas,
+  .wv-target-canvas,
+  .app-target-canvas
+) {
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.msk-trigonometry :is(
+  .trig-target-canvas,
+  .uc-target-canvas,
+  .rt-target-canvas,
+  .tg-target-canvas,
+  .id-target-canvas,
+  .inv-target-canvas,
+  .ob-target-canvas,
+  .wv-target-canvas,
+  .app-target-canvas
+) svg {
+  display: block;
+  width: 100%;
+  -webkit-user-select: none;
+  user-select: none;
+  touch-action: none;
+}
+
+.msk-trigonometry :is(
+  .trig-target-canvas,
+  .uc-target-canvas,
+  .rt-target-canvas,
+  .tg-target-canvas,
+  .id-target-canvas,
+  .inv-target-canvas,
+  .ob-target-canvas,
+  .wv-target-canvas,
+  .app-target-canvas
+) svg text {
+  pointer-events: none;
+}
+
+.msk-trigonometry .trig-target-dark {
+  color: #e5eefb;
+  background: var(--trig-navy);
+}
+
+.msk-trigonometry .trig-target-footer {
+  grid-column: 1 / -1;
+}
+
+.msk-trigonometry .msk-trig-home {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 390px;
+  gap: 12px;
+}
+
+.msk-trigonometry .msk-trig-home-main {
+  min-width: 0;
+}
+
+.msk-trigonometry .msk-trig-flow-map {
+  display: grid;
+  gap: 7px;
+  margin: 0 0 12px;
+  padding: 10px;
+}
+
+.msk-trigonometry .msk-trig-flow-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.msk-trigonometry .msk-trig-flow-step {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 6px;
+}
+
+.msk-trigonometry .msk-trig-flow-node {
+  display: grid;
+  min-width: 0;
+  min-height: 138px;
+  flex: 1;
+  gap: 3px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  padding: 6px;
+  color: var(--ink);
+  text-align: center;
+  text-decoration: none;
+  max-width: 180px;
+}
+
+.msk-trigonometry .msk-trig-flow-node .msk-art {
+  height: 90px;
+}
+
+.msk-trigonometry .msk-trig-flow-arrow {
+  color: #5b7cfa;
+  font-style: normal;
+}
+
+.msk-trigonometry .msk-trig-flow-connectors {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  color: #8b5cf6;
+  text-align: center;
+}
+
+.msk-trigonometry .msk-trig-home-rail {
+  gap: 8px;
+}
+
+.msk-trigonometry .msk-trig-home-rail .msk-panel {
+  padding: 10px;
+}
+
+.msk-trigonometry .msk-trig-topic-card {
+  display: grid;
+  grid-template-columns: 160px minmax(0, 1fr);
+  grid-template-rows: auto auto 1fr;
+  min-height: 170px;
+  max-height: 170px;
+  padding: 12px;
+  column-gap: 12px;
+  overflow: hidden;
+}
+
+.msk-trigonometry .msk-trig-topic-card > .msk-art {
+  grid-column: 1;
+  grid-row: 1 / 4;
+  width: 160px;
+  height: 118px;
+  align-self: center;
+}
+
+.msk-trigonometry .msk-trig-topic-card > :is(b, small) {
+  grid-column: 2;
+}
+
+.msk-trigonometry .msk-trig-topic-card > .msk-num {
+  inset: 8px auto auto 8px;
+}
+
+.msk-trigonometry .msk-trig-topic-card > :is(.msk-meta, .msk-card-modes, em:last-child) {
+  display: none;
+}
+
+.msk-trigonometry .msk-trig-topic-card::after {
+  content: "›";
+  position: absolute;
+  right: 10px;
+  bottom: 8px;
+  color: #334155;
+  font-size: 20px;
+}
+
+.msk-trigonometry .msk-trig-continue p,
+.msk-trigonometry .msk-trig-journey a,
+.msk-trigonometry .msk-trig-journey span {
+  display: grid;
+  gap: 2px;
+}
+
+.msk-trigonometry .trig-target-dark-graph,
+.msk-trigonometry .trig-target-wave-plot {
+  background: var(--trig-navy);
+}
+
+.msk-trigonometry .trig-target-graphs-canvas {
+  position: relative;
+  min-height: 710px;
+  background: #07182d;
+}
+
+.msk-trigonometry .trig-target-graphs-canvas > .msk-graph {
+  margin-top: 42px;
+  max-height: none;
+}
+
+.msk-trigonometry .trig-target-graphs-controls :is(.msk-field > span, .msk-slider-row > span),
+.msk-trigonometry .trig-target-graphs-rail {
+  font-size: 12px;
+}
+
+.msk-trigonometry .trig-control-amplitude input { accent-color: #06b6d4; }
+.msk-trigonometry .trig-control-period input { accent-color: #8b5cf6; }
+.msk-trigonometry .trig-control-phase input { accent-color: #f59e0b; }
+.msk-trigonometry .trig-control-vertical input { accent-color: #10b981; }
+
+.msk-trigonometry .trig-target-graph-tools,
+.msk-trigonometry .trig-target-canvas-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 7px;
+}
+
+.msk-trigonometry .trig-target-graph-tools {
+  position: absolute;
+  z-index: 3;
+  top: 12px;
+  right: 12px;
+  margin: 0;
+}
+
+.msk-trigonometry .trig-target-graph-tools button {
+  border-color: #284969;
+  background: #0a2039;
+  color: #dbeafe;
+}
+
+.msk-trigonometry .trig-target-proof-heading,
+.msk-trigonometry .trig-target-known-heading,
+.msk-trigonometry .trig-target-section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 7px;
+  color: #24324b;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.msk-trigonometry .trig-target-symbolic-proof,
+.msk-trigonometry .trig-target-inverse-lower,
+.msk-trigonometry .trig-target-wave-subpanels {
+  display: grid;
+  gap: 7px;
+  margin-top: 8px;
+}
+
+.msk-trigonometry .trig-target-wave-subpanels,
+.msk-trigonometry .trig-target-inverse-lower {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.msk-trigonometry .trig-target-inverse-lower {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.msk-trigonometry .msk-lab:has(> .trig-target-inverse-canvas) {
+  grid-template-columns: minmax(250px, 0.88fr) minmax(520px, 1.72fr) minmax(280px, 0.94fr);
+  margin-top: 12px;
+}
+
+.msk-trigonometry .trig-target-inverse-plot {
+  max-height: none;
+  background: #fbfdff;
+}
+
+.msk-trigonometry .trig-target-inverse-lower > figure {
+  min-height: 430px;
+}
+
+.msk-trigonometry .trig-target-inverse-lower > figure > svg {
+  min-height: 380px;
+}
+
+.msk-trigonometry .msk-lab:has(> .trig-target-identities-canvas) {
+  grid-template-columns: minmax(250px, 0.84fr) minmax(540px, 1.78fr) minmax(285px, 0.86fr);
+}
+
+.msk-trigonometry .trig-target-identities-canvas {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  background: #fbfdff;
+}
+
+.msk-trigonometry .trig-target-proof-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 38px;
+  padding: 0 8px;
+  color: #0f172a;
+}
+
+.msk-trigonometry .trig-target-proof-figure {
+  width: 100%;
+  max-height: none;
+  border: 0;
+  background: #fbfdff;
+}
+
+.msk-trigonometry .trig-target-symbolic-proof {
+  min-height: 150px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: #fff;
+}
+
+.msk-trigonometry .trig-target-wave-subpanel,
+.msk-trigonometry .trig-target-inverse-lower > * {
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 7px;
+}
+
+.msk-trigonometry .trig-target-known-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+}
+
+.msk-trigonometry .trig-target-oblique-canvas,
+.msk-trigonometry .trig-target-application-scene {
+  background: #fbfdff;
+}
+
+.msk-trigonometry .msk-lab:has(> .trig-target-application-scene) {
+  grid-template-columns: minmax(205px, 0.5fr) minmax(600px, 1.82fr) minmax(270px, 0.7fr);
+}
+
+.msk-trigonometry .trig-target-application-scene > .msk-graph {
+  width: 100%;
+  max-height: none;
+}
+
+.msk-trigonometry .msk-lab:has(> .trig-target-oblique-canvas) {
+  grid-template-columns: minmax(250px, 0.84fr) minmax(500px, 1.98fr) minmax(280px, 0.96fr);
+}
+
+.msk-trigonometry .trig-target-triangle {
+  max-height: none;
+}
+
+.msk-trigonometry .trig-target-law-badge {
+  display: inline-flex;
+  width: fit-content;
+  margin: 2px 0 8px;
+  padding: 4px 9px;
+  border-radius: 6px;
+  background: #ede9fe;
+  color: #7c3aed;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+}
+
+.msk-trigonometry .trig-target-area-pill {
+  margin-top: 10px;
+  padding: 12px;
+  border: 1px solid #a7f3d0;
+  border-radius: 9px;
+  background: #ecfdf5;
+  color: #059669;
+  font-size: 14px;
+  font-weight: 900;
+  text-align: center;
+}
+
+.msk-trigonometry .msk-lab:has(> .trig-target-wave-canvas) {
+  grid-template-columns: minmax(230px, 0.64fr) minmax(560px, 1.82fr) minmax(280px, 0.78fr);
+}
+
+.msk-trigonometry .trig-target-result {
+  display: grid;
+  gap: 3px;
+  margin: 8px 0;
+  border-radius: 9px;
+  background: #ecfdf5;
+  padding: 9px;
+  color: #047857;
+}
+
+.msk-trigonometry .uc-target-rail {
+  display: grid;
+  gap: 7px;
+}
+
+.msk-trigonometry .uc-target-lab {
+  grid-template-columns: minmax(260px, 0.82fr) minmax(500px, 1.74fr) minmax(310px, 1fr);
+}
+
+.msk-trigonometry .uc-target-circle-figure {
+  max-height: none;
+}
+
+.msk-trigonometry .uc-target-rail-section {
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 7px;
+}
+
+.msk-trigonometry .uc-target-signs-card .is-active {
+  background: #ecfdf5;
+  color: #047857;
+  font-weight: 900;
+}
+
+.msk-trigonometry .uc-target-angle-input {
+  margin: 7px 0;
+  color: var(--trig-orange);
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.msk-trigonometry .rt-target-stage {
+  position: relative;
+  isolation: isolate;
+}
+
+.msk-trigonometry .rt-target-frame {
+  overflow: hidden;
+  background: #f9fcff;
+}
+
+.msk-trigonometry .rt-target-inline-toolbar {
+  max-width: calc(100% - 28px);
+}
+
+.msk-trigonometry .rt-target-lab {
+  grid-template-columns: minmax(230px, 0.7fr) minmax(560px, 1.86fr) minmax(270px, 0.88fr);
+}
+
+.msk-trigonometry .rt-target-similarity {
+  position: absolute;
+  z-index: 2;
+  left: 18px;
+  bottom: 18px;
+  width: min(340px, 44%);
+  background: rgba(255, 255, 255, 0.96);
+}
+
+@media (max-width: 1180px) {
+  .msk-trigonometry .msk-lab {
+    display: grid;
+    grid-template-columns: minmax(180px, 0.72fr) minmax(360px, 1.55fr) minmax(210px, 0.85fr);
+  }
+
+  .msk-trigonometry .msk-lab .msk-canvas {
+    order: initial;
+  }
+
+  .msk-trigonometry .msk-trig-home {
+    grid-template-columns: minmax(0, 1fr) 320px;
+  }
+}
+
+@media (max-width: 900px) {
+  .msk-trigonometry {
+    grid-template-columns: 76px minmax(0, 1fr);
+  }
+
+  .msk-trigonometry .msk-brand span,
+  .msk-trigonometry .msk-sidebar nav a span {
+    display: none;
+  }
+
+  .msk-trigonometry .msk-lab {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .msk-trigonometry .msk-lab .msk-canvas {
+    order: -1;
+  }
+
+  .msk-trigonometry .msk-trig-home {
+    grid-template-columns: 1fr;
+  }
+}

@@ -18,6 +18,16 @@ export type AlgebraicValidation = {
   failures: string[];
 };
 
+export type StructureClassification = AlgebraicValidation & {
+  commutative: boolean;
+  inverses: boolean;
+  latinSquare: boolean;
+  group: boolean;
+  abelian: boolean;
+  magma: boolean;
+  inverseOf: Record<string, string | null>;
+};
+
 type Token = { type: "var" | "op" | "left" | "right"; value: string };
 
 const precedence: Record<string, number> = { "!": 3, "&": 2, "^": 1, "|": 0 };
@@ -111,6 +121,81 @@ export function validateOperation(
     monoid: semigroup && identity !== null,
     failures,
   };
+}
+
+export function classifyOperation(
+  elements: string[],
+  table: OperationTable,
+): StructureClassification {
+  const base = validateOperation(elements, table);
+  const commutative = elements.every((a) =>
+    elements.every((b) => table[a]?.[b] === table[b]?.[a]),
+  );
+  const inverseOf: Record<string, string | null> = Object.fromEntries(
+    elements.map((a) => [a, null]),
+  );
+  if (base.identity) {
+    for (const a of elements) {
+      inverseOf[a] =
+        elements.find(
+          (b) =>
+            table[a]?.[b] === base.identity && table[b]?.[a] === base.identity,
+        ) ?? null;
+    }
+  }
+  const inverses = Boolean(base.identity) && elements.every((a) => inverseOf[a]);
+  const latinSquare =
+    base.closed &&
+    elements.every((row) => new Set(elements.map((col) => table[row]?.[col])).size === elements.length) &&
+    elements.every((col) => new Set(elements.map((row) => table[row]?.[col])).size === elements.length);
+  const group = base.monoid && inverses;
+  return {
+    ...base,
+    commutative,
+    inverses,
+    latinSquare,
+    group,
+    abelian: group && commutative,
+    magma: base.closed,
+    inverseOf,
+  };
+}
+
+export function randomOperationTable(elements: string[]): OperationTable {
+  return Object.fromEntries(
+    elements.map((row) => [
+      row,
+      Object.fromEntries(
+        elements.map((col) => [
+          col,
+            elements[Math.floor(Math.random() * elements.length)] ?? elements[0] ?? "",
+        ]),
+      ),
+    ]),
+  ) as OperationTable;
+}
+
+export function parseCarrierSet(input: string) {
+  const elements = input
+    .split(/[,;\s]+/)
+    .map((item) => item.trim())
+    .filter(Boolean);
+  return [...new Set(elements)];
+}
+
+export function booleanPosForm(
+  variables: string[],
+  rows: Array<{ values: Record<string, boolean>; result: boolean }>,
+) {
+  const falseRows = rows.filter((row) => !row.result);
+  if (!falseRows.length) return "1";
+  if (falseRows.length === rows.length) return "0";
+  return falseRows
+    .map((row) => {
+      const clause = variables.map((name) => (row.values[name] ? `!${name}` : name));
+      return `(${clause.join(" | ")})`;
+    })
+    .join(" & ");
 }
 
 export function operationAnimation(

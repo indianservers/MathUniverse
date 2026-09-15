@@ -79,6 +79,35 @@ describe("Algebra Studio reference routes", () => {
     expect(html).toContain("mode=Piecewise");
   });
 
+  it("renders remaining algebra labs as unique dashboards, not generic three-column shells", () => {
+    const functions = renderToString(<MemoryRouter initialEntries={["/algebra/functions"]}><AlgebraStudio /></MemoryRouter>);
+    expect(functions).toContain("Parent vs transformed graph");
+    expect(functions).toContain("y = a · f(x − h) + k");
+    expect(functions).toContain("Function machine");
+    const polynomials = renderToString(<MemoryRouter initialEntries={["/algebra/polynomials"]}><AlgebraStudio /></MemoryRouter>);
+    expect(polynomials).toContain("Root &amp; degree builder");
+    expect(polynomials).toContain("Interactive polynomial graph");
+    const systems = renderToString(<MemoryRouter initialEntries={["/algebra/systems"]}><AlgebraStudio /></MemoryRouter>);
+    expect(systems).toContain("Intersection graph");
+    expect(systems).toContain("Unique / none / infinite");
+    const exponents = renderToString(<MemoryRouter initialEntries={["/algebra/exponents-logs"]}><AlgebraStudio /></MemoryRouter>);
+    expect(exponents).toContain("y = aˣ and y = log_a x");
+    const sequences = renderToString(<MemoryRouter initialEntries={["/algebra/sequences"]}><AlgebraStudio /></MemoryRouter>);
+    expect(sequences).toContain("aₙ closed form");
+    const cas = renderToString(<MemoryRouter initialEntries={["/algebra/cas"]}><AlgebraStudio /></MemoryRouter>);
+    expect(cas).toContain("Step explorer");
+  });
+
+  it("renders the algebraic proof two-column builder and area model", () => {
+    const html = renderToString(<MemoryRouter initialEntries={["/algebra/proof"]}><AlgebraStudio /></MemoryRouter>);
+    expect(html).toContain("Two-Column Proof Builder");
+    expect(html).toContain("Visual Model: Area Model");
+    expect(html).toContain("Proof progress");
+    expect(html).toContain("Invalid or missing reason");
+    expect(html).toContain("Equivalence Check");
+    expect(html).toContain("Add to proof");
+  });
+
   it("exposes working lab chrome: modes, undo, help, and challenges", () => {
     const equations = renderToString(<MemoryRouter initialEntries={["/algebra/equations"]}><AlgebraStudio /></MemoryRouter>);
     expect(equations).toContain("aria-label=\"Undo\"");

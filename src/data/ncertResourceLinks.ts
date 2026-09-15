@@ -456,6 +456,21 @@ export const ncertConceptResourceLinks: NCERTConceptResourceLinks[] = [
     ],
   },
   {
+    conceptId: "class-9-number-systems",
+    resources: [
+      formula("Number system formulas", "number-systems"),
+      tool("Number Systems Studio", "/number-systems", "related", [
+        "rational",
+        "irrational",
+        "real numbers",
+      ]),
+      tool("Rational lab", "/number-systems/rational", "related", ["p/q"]),
+      tool("Formula visualizer", "/number-systems/formula-visualizer", "related", [
+        "decimal expansion",
+      ]),
+    ],
+  },
+  {
     conceptId: "class-9-euclid-geometry",
     resources: [
       theorem("Geometry theorems", "geometry"),
@@ -475,6 +490,15 @@ export const ncertConceptResourceLinks: NCERTConceptResourceLinks[] = [
     conceptId: "class-10-real-numbers",
     resources: [
       formula("Number system formulas", "number-systems"),
+      tool("Number Systems Studio", "/number-systems", "related", [
+        "euclid",
+        "hcf",
+        "lcm",
+      ]),
+      tool("Formula visualizer", "/number-systems/formula-visualizer", "related", [
+        "prime factorization",
+        "hcf",
+      ]),
       proof(
         "Euclidean algorithm proof",
         "number-theory",

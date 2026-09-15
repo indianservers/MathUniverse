@@ -28,7 +28,8 @@
 .mlab-scale{display:grid;gap:6px;margin-top:8px;font-size:12px;font-weight:800}
 .mlab-scale input{accent-color:#22d3ee}
 .mlab-stage{position:relative;padding:8px;border:1px solid #dce7f4;border-radius:18px;background:#fff;overflow:hidden}
-.mlab-svg{width:100%;height:min(62vh,560px);touch-action:none;transform-origin:center center}
+.mlab-svg{width:100%;height:min(62vh,560px);touch-action:none;transform-origin:center center;cursor:grab}
+.mlab-svg:active{cursor:grabbing}
 .mlab-ruler text{fill:#94a3b8;font-size:10px;font-weight:700}
 .mlab-dim line{stroke:#f59e0b;stroke-width:1.2}
 .mlab-dim text{font-size:10px;font-weight:800;fill:#d97706}

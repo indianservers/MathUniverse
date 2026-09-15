@@ -188,7 +188,7 @@ export default function CongruenceLab({ pulse = "observe" }: { pulse?: string })
         </Panel>
       }
       canvas={
-        <svg ref={svgRef} viewBox={`0 0 ${plane.width} ${plane.height}`} role="img" aria-label="Two corresponding triangles">
+        <svg ref={svgRef} viewBox={`0 0 ${plane.width} ${plane.height}`} role="img" aria-label={`Two corresponding triangles. ${test}${test === "SSA" ? " is not a congruence test." : congruent ? ` match.` : " parts not yet equal."}`}>
           <polygon points={polyPoints(plane, [L.A, L.B, L.C])} fill="rgba(20,125,242,.10)" stroke="#147df2" strokeWidth="2.1" />
           <polygon points={polyPoints(plane, [R.A, R.B, R.C])} fill="rgba(139,69,244,.10)" stroke="#8b45f4" strokeWidth="2.1" />
           <SideTickMark plane={plane} a={L.A} b={L.B} count={1} color="#147df2" />

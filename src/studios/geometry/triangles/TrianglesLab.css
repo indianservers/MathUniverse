@@ -1,5 +1,8 @@
 .tri-tabs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin:0 0 12px;padding:0;border:0;background:transparent;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;max-width:100%}
-.tri-lab{display:grid;grid-template-columns:minmax(260px,270px) minmax(0,1fr) minmax(300px,310px);gap:12px;align-items:stretch;min-height:min(68vh,720px);min-width:0;max-width:100%}
+.tri-lab{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,320px);grid-template-rows:auto auto;gap:12px;align-items:stretch;min-height:min(68vh,720px);min-width:0;max-width:100%}
+.tri-lab .tri-canvas{grid-column:1;order:1}
+.tri-lab .tri-fold{grid-column:1;order:2}
+.tri-lab .tri-insights{grid-column:2;grid-row:1 / span 2;order:3}
 .tri-tab{position:relative;display:grid;grid-template-columns:46px 1fr;gap:8px;align-items:center;min-height:82px;padding:10px 12px 14px;border:1px solid #dce7f4;border-radius:16px;background:#fff;box-shadow:0 8px 18px #3a5b7f0c;color:#071641;text-align:left;cursor:pointer;scroll-snap-align:start}
 .tri-tab:hover{border-color:#9fd8ee;transform:translateY(-1px)}
 .tri-tab svg{width:46px;height:46px;flex:none;stroke:#147df2}
@@ -8,7 +11,22 @@
 .tri-tab.active{border-color:#08b9dd;background:#f3fbff;box-shadow:0 0 0 1px #08b9dd inset,0 10px 20px #147df214;color:#0b4f8a}
 .tri-tab.active::after{content:"";position:absolute;left:16px;right:16px;bottom:8px;height:3px;border-radius:99px;background:#08b9dd}
 .tri-tab.active svg{stroke:#0ea5c6}
-.tri-canvas{padding:10px;min-width:0}
+.tri-canvas{padding:10px;min-width:0;position:relative}
+.tri-canvas svg{cursor:grab}
+.tri-canvas svg:active{cursor:grabbing}
+.tri-canvas-tools{position:absolute;top:16px;right:16px;z-index:2;display:flex;gap:6px}
+.tri-stage{position:relative}
+.tri-coach{position:absolute;left:16px;top:16px;z-index:3;max-width:260px;padding:12px;border:1px solid #dce7f4;border-radius:14px;background:#fff;box-shadow:0 12px 24px #0f172a14}
+.tri-goal{margin:0 0 10px;padding:8px 12px;border-radius:12px;background:#eef8ff;color:#0b4f8a;font-size:13px;font-weight:700}
+.tri-preset-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.tri-preset-row button{min-height:64px;padding:6px;border:1px solid #dce7f4;border-radius:12px;background:#fff}
+.tri-preset-row button.active{border-color:#08b9dd;background:#f3fbff}
+.tri-preset-thumb{display:grid;gap:4px;justify-items:center;font-size:10px;font-weight:800}
+.tri-preset-thumb svg{width:42px;height:36px}
+.tri-coord-row{display:grid;grid-template-columns:18px 1fr 1fr;gap:6px;align-items:center;margin:4px 0}
+.tri-coord-row input{min-height:34px;border:1px solid #dce7f4;border-radius:8px;text-align:center}
+.tri-canvas svg.is-success{outline:3px solid #10b981}
+.tri-canvas svg .is-hot text{font-weight:900;fill:#0369a1}
 .tri-canvas svg{width:100%;height:auto;max-height:none;min-height:min(58vh,520px);border-radius:14px;touch-action:none;border:1px solid #e4eef8;overflow:visible}
 .tri-lab--explorer .tri-canvas svg{background:radial-gradient(90% 70% at 12% 0,#dbeafe 0%,transparent 46%),linear-gradient(#fff,#f8fbff)}
 .tri-lab--congruence .tri-canvas svg{background:radial-gradient(70% 60% at 22% 20%,#dbeafe 0%,transparent 42%),radial-gradient(70% 60% at 78% 20%,#ede9fe 0%,transparent 42%),linear-gradient(#fff,#f8fbff)}
@@ -46,8 +64,9 @@
 .tri-strip b{display:block;font-size:11px;letter-spacing:.04em;text-transform:uppercase}
 .tri-strip small{display:block;margin-top:4px;color:#536381;font-size:11px;line-height:1.35}
 @media (max-width:1180px){
-  .tri-lab{grid-template-columns:minmax(230px,260px) minmax(0,1fr)}
-  .tri-insights{grid-column:1/-1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .tri-lab{grid-template-columns:1fr}
+  .tri-lab .tri-canvas,.tri-lab .tri-fold,.tri-lab .tri-insights{grid-column:1;grid-row:auto}
+  .tri-insights{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
   .tri-tabs{display:flex}
   .tri-tab{flex:0 0 min(240px,70vw)}
 }
@@ -60,5 +79,5 @@
   .tri-strip{grid-template-columns:1fr}
 }
 @media (min-width:1181px){
-  .tri-lab{grid-template-columns:270px minmax(0,1fr) 310px}
+  .tri-lab{grid-template-columns:minmax(0,1fr) 310px}
 }

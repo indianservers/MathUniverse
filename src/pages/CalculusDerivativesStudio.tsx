@@ -360,8 +360,7 @@ export default function CalculusDerivativesStudio({ mode }: { mode: string }) {
           <div className="cds-tip">
             <Lightbulb />
             <p>
-              Drag point a or adjust h. Watch the secant converge to the tangent
-              as h approaches 0.
+              {activeMode === "tangent" ? "Challenge: shrink h until the secant and tangent look identical." : activeMode === "rules" ? "Challenge: match the expression tree of f′ with the live slope at a." : activeMode === "chain" ? "Challenge: separate inner and outer slopes, then check their product equals f′(a)." : activeMode === "implicit" ? "Challenge: place a on the circle and confirm the tangent is perpendicular to the radius." : activeMode === "higher" ? "Challenge: overlay s, v, and a (f, f′, f″) and stop where velocity is zero." : "Challenge: shrink the error band between f and the linearization L(x)."}
             </p>
           </div>
         </aside>
@@ -436,6 +435,9 @@ export default function CalculusDerivativesStudio({ mode }: { mode: string }) {
                 )}
               </strong>
             </div>
+            {activeMode === "chain" ? <p>Outer cosine slope times inner 2x at a.</p> : null}
+            {activeMode === "implicit" ? <p>Circle constraint x² + y² = 25, so y′ = −x/y.</p> : null}
+            {activeMode === "higher" ? <p>Compare f, f′, and the selected higher derivative on the graph.</p> : null}
           </AnalysisSection>
           <AnalysisSection title="Slope comparison">
             <div className="cds-comparison">
@@ -633,14 +635,19 @@ function DerivativeGraph({
         viewBox={`0 0 ${width} ${height}`}
         role="img"
         aria-label="Interactive derivative graph"
+        className="is-interactive"
         onPointerMove={move}
         onPointerUp={() => setDragging(null)}
         onPointerLeave={() => setDragging(null)}
         onPointerDown={(event) => {
-          if (!panMode) return;
           const point = pointFromEvent(event);
-          panStart.current = { ...point, view: viewport };
-          setDragging("pan");
+          if (panMode) {
+            panStart.current = { ...point, view: viewport };
+            setDragging("pan");
+            return;
+          }
+          onA(clamp(point.x, viewport.xMin, viewport.xMax));
+          setDragging("a");
         }}
       >
         <rect width={width} height={height} rx="12" fill="#071d35" />

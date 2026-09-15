@@ -49,6 +49,14 @@ const STRIPS: Record<TriangleModeId, Array<{ title: string; text: string; action
   ],
 };
 
+const GOALS: Record<TriangleModeId, string> = {
+  explorer: "Goal: drag ABC until you can name it by sides and by angles, then keep the angle sum at 180°.",
+  congruence: "Goal: pick a congruence test and build a matching pair △ABC ≅ △DEF.",
+  similarity: "Goal: keep equal angles while you change the scale factor k.",
+  centers: "Goal: move the triangle until a chosen center sits inside, on a side, or outside.",
+  inequalities: "Goal: see a + b > c fail as the three sides flatten to a line.",
+};
+
 export default function TrianglesLab({ page }: { page: StudioMockupPage }) {
   const { mode, setMode, modes } = useTriangleLabMode();
   const [pulse, setPulse] = useState("observe");
@@ -61,9 +69,10 @@ export default function TrianglesLab({ page }: { page: StudioMockupPage }) {
       modes={modes}
       mode={mode}
       onChange={(id) => setMode(id as typeof mode)}
-      liveSummary={`${current.label}: ${current.subtitle}. Drag a vertex, read live sides and angles, then check the challenge.`}
+      liveSummary={`${page.title}. ${current.label}: ${current.subtitle}. Drag a vertex, read live sides and angles, then check the challenge.`}
     >
       <TriangleModeTabs modes={modes} mode={mode} onChange={setMode} />
+      <p className="tri-goal">{GOALS[mode]}</p>
       {mode === "explorer" ? <TriangleExplorerLab pulse={pulse} /> : null}
       {mode === "congruence" ? <CongruenceLab pulse={pulse} /> : null}
       {mode === "similarity" ? <SimilarityLab pulse={pulse} /> : null}
@@ -77,7 +86,6 @@ export default function TrianglesLab({ page }: { page: StudioMockupPage }) {
           onClick: () => setPulse(item.action),
         }))}
       />
-      <p className="tri-note">{page.title} · {current.subtitle}</p>
     </GeometryLabShell>
   );
 }

@@ -23,6 +23,9 @@ describe("Construction Workspace", () => {
     expect(html).toContain("Construction Workspace");
     expect(html).toContain("Live object tree");
     expect(html).toContain("Perp. bisector of AB");
+    expect(html).toContain("Locus");
+    expect(html).toContain("Lock compass radius");
+    expect(html).toContain("/workspace/geometry");
     expect(html).toContain("Construct");
     expect(html).toContain("Perpendicular bisector construction canvas");
     expect(html).not.toContain("workspace-suite-bar");

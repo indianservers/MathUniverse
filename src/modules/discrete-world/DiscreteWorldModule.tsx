@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { useProgress } from "../../hooks/useProgress";
 import StudioBreadcrumb, { mathStudioCrumbs } from "../../components/ui/StudioBreadcrumb";
+import StudioHomeButtons from "../../components/ui/StudioHomeButtons";
 import SectionCard from "../../components/ui/SectionCard";
 import {
   balancedParenthesesPda,
@@ -186,7 +187,7 @@ const studioNav: Array<{
   { id: "number-theory", label: "Number Theory", caption: "Primes, divisibility, congruence", iconSrc: `${ASSET}/discrete-nav-theory.png`, workbench: "foundations" },
   { id: "logic", label: "Logic & Proofs", caption: "Propositional & predicate logic", iconSrc: `${ASSET}/discrete-nav-logic.png`, to: "/mathematical-logic" },
   { id: "sets", label: "Sets & Relations", caption: "Sets, relations, functions", iconSrc: `${ASSET}/discrete-nav-sets.png`, to: "/set-theory" },
-  { id: "combinatorics", label: "Combinatorics", caption: "Counting, permutations", iconSrc: `${ASSET}/discrete-nav-combinatorics.png`, to: "/combinatorics" },
+  { id: "combinatorics", label: "Combinatorics", caption: "Counting, permutations", iconSrc: `${ASSET}/discrete-nav-combinatorics.png`, to: "/discrete-world/combinatorics" },
   { id: "graph-theory", label: "Graph Theory", caption: "Graphs, trees, traversal", iconSrc: `${ASSET}/discrete-nav-graphs.png`, to: "/graph-theory" },
   { id: "automata", label: "Automata", caption: "DFA, NFA, epsilon-NFA", iconSrc: `${ASSET}/discrete-nav-automata.png`, workbench: "automata" },
   { id: "languages", label: "Formal Languages", caption: "CFG, regular languages", iconSrc: `${ASSET}/discrete-nav-languages.png`, workbench: "grammar" },
@@ -328,6 +329,7 @@ export function DiscreteWorldLegacy() {
       </aside>
 
       <div className="nd-main">
+        <StudioHomeButtons studioTo="/discrete-world" />
         <StudioBreadcrumb
           className="nd-crumbs"
           crumbs={mathStudioCrumbs(
@@ -386,7 +388,7 @@ export function DiscreteWorldLegacy() {
             <button type="button" onClick={() => setActiveWorkbench("turing")}><b>Turing Machines</b><small>Tape, head, and halt traces</small></button>
             <button type="button" onClick={() => setActiveWorkbench("grammar")}><b>Context-Free Grammars</b><small>Derivations and parse trees</small></button>
             <Link to="/graph-theory"><b>Graph Algorithms</b><small>Traversal, shortest paths, MST</small></Link>
-            <Link to="/combinatorics"><b>Combinatorics Lab</b><small>Counting, permutations, combinations</small></Link>
+            <Link to="/discrete-world/combinatorics"><b>Combinatorics Lab</b><small>Counting, permutations, combinations</small></Link>
           </div>
         </section>
       </div>
@@ -415,7 +417,7 @@ export function DiscreteWorldLegacy() {
             <button type="button" onClick={() => setActiveWorkbench("regex-pda")}>Regular Languages</button>
             <button type="button" onClick={() => setActiveWorkbench("grammar")}>CFG</button>
             <button type="button" onClick={() => setActiveWorkbench("foundations")}>Number Theory</button>
-            <Link to="/combinatorics">Combinatorics</Link>
+            <Link to="/discrete-world/combinatorics">Combinatorics</Link>
             <Link to="/graph-theory">Graph Traversal</Link>
             <button type="button" onClick={() => setActiveWorkbench("foundations")}>Induction</button>
             <button type="button" onClick={() => setActiveWorkbench("graphs")}>P vs NP</button>

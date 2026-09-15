@@ -62,7 +62,8 @@ export type ObjKind =
   | "reflect"
   | "rotate"
   | "translate"
-  | "dilate";
+  | "dilate"
+  | "locus";
 
 export type GeomObject = {
   id: string;
@@ -131,7 +132,8 @@ export function nextLabel(objects: GeomObject[], kind: ObjKind) {
     kind === "line" || kind === "perp" || kind === "parallel" || kind === "perpBisector" ? "l" :
     kind.startsWith("circle") ? "c" :
     kind === "angle" ? "∠" :
-    kind === "distance" ? "d" : "obj";
+    kind === "distance" ? "d" :
+    kind === "locus" ? "loc" : "obj";
   let n = 1;
   while (objects.some((o) => o.label === `${prefix}${n}` || o.label === `${prefix}₁` && n === 1)) n += 1;
   return `${prefix}${n}`;
@@ -197,6 +199,21 @@ function topo(objects: GeomObject[]) {
     }
   }
   return order.length === objects.length ? order : objects.map((o) => o.id);
+}
+
+export function sampleLocus(objects: GeomObject[], driverId: string, tracerId: string, steps = 48) {
+  const driver = objects.find((item) => item.id === driverId);
+  if (!driver) return [];
+  const pts: Vec[] = [];
+  const circleLike = driver.kind === "pointOnObject";
+  for (let i = 0; i < steps; i += 1) {
+    const t = circleLike ? (i / steps) * Math.PI * 2 : i / Math.max(1, steps - 1);
+    const next = objects.map((item) => item.id === driverId ? { ...item, params: { ...item.params, t } } : item);
+    const world = evaluate(next);
+    const point = world[tracerId]?.point;
+    if (point) pts.push({ x: point.x, y: point.y });
+  }
+  return pts;
 }
 
 function emptyEval(reason?: string): Evaluated {
@@ -457,6 +474,15 @@ function evalOne(obj: GeomObject, world: World, map: Map<string, GeomObject>): E
         const center = p(1);
         if (!src || !center) return emptyEval("Dilation needs a point and a center.");
         return { point: dilate(src, center, Number(obj.params?.k ?? 2)), line: null, circle: null, polygon: null };
+      }
+      case "locus": {
+        const driverId = obj.parents[0];
+        const tracerId = obj.parents[1];
+        if (!driverId || !tracerId) return emptyEval("Locus needs a driver and a tracer point.");
+        const rest = [...map.values()].filter((item) => item.kind !== "locus");
+        const samples = sampleLocus(rest, driverId, tracerId);
+        if (samples.length < 2) return emptyEval("Locus needs a moving driver (point on object).");
+        return { point: samples[0] ?? null, line: null, circle: null, polygon: samples };
       }
       default:
         return emptyEval("Unknown object type.");

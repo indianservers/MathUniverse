@@ -26,7 +26,8 @@ describe("Triangles Lab", () => {
     expect(html).toContain("/shapes?shape=triangle");
     expect(html).toContain("Copy measurements");
     expect(html).toContain("Keyboard shortcuts");
-    expect(html).toContain("role=\"tablist\"");
+    expect(html).toContain("Goal:");
+    expect(html).toContain("Next lab: Circles");
   });
 
   it("renders five distinct mode environments from canonical URLs and aliases", () => {

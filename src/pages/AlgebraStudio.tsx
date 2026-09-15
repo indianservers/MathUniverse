@@ -5,6 +5,7 @@ import {
   Calculator,
   FlaskConical,
   FunctionSquare,
+  GitFork,
   Home,
   Lightbulb,
   LineChart,
@@ -25,9 +26,10 @@ import { useProgress } from "../hooks/useProgress";
 import AlgebraEnhancementWorkbench from "../studios/algebra/AlgebraEnhancementWorkbench";
 import { answersMatchChallenge } from "../studios/algebra/algebraStudioMath";
 import StudioBreadcrumb, { mathStudioCrumbs } from "../components/ui/StudioBreadcrumb";
+import StudioHomeButtons from "../components/ui/StudioHomeButtons";
 import "./AlgebraStudio.css";
 
-type AlgebraPage = "home" | "expressions" | "equations" | "functions" | "polynomials" | "systems" | "exponents" | "sequences" | "proof" | "cas" | "advanced";
+type AlgebraPage = "home" | "expressions" | "equations" | "functions" | "polynomials" | "systems" | "exponents" | "sequences" | "structures" | "proof" | "cas" | "advanced";
 
 type StudioNavItem = {
   id: AlgebraPage;
@@ -43,6 +45,8 @@ type TopicStudio = {
   description: string;
   iconSrc: string;
   tabs: string[];
+  minutes: number;
+  level: string;
 };
 
 const LAST_ROUTE_KEY = "algebra-studio:last-route";
@@ -57,22 +61,23 @@ const studioNav: StudioNavItem[] = [
   { id: "systems", label: "Systems", route: "/algebra/systems", icon: Braces },
   { id: "exponents", label: "Exponents & Logs", route: "/algebra/exponents-logs", icon: Sparkles },
   { id: "sequences", label: "Sequences", route: "/algebra/sequences", icon: BarChart3 },
+  { id: "structures", label: "Algebraic Structures", route: "/algebraic-structures", icon: GitFork },
   { id: "proof", label: "Algebraic Proof", route: "/algebra/proof", icon: BookOpenCheck },
-  { id: "cas", label: "CAS Explorer", route: "/algebra/cas", icon: Calculator },
+  { id: "cas", label: "Candidate checker", route: "/algebra/cas", icon: Calculator },
   { id: "advanced", label: "Advanced Workbench", route: "/algebra/advanced", icon: FlaskConical },
 ];
 
 const topicStudios: TopicStudio[] = [
-  { id: "expressions", label: "Expressions", route: "/algebra/expressions", description: "Build and simplify algebraic expressions.", iconSrc: "/assets/algebra-studio/algebra-icon-expressions.png", tabs: ["Simplify", "Expand", "Factor", "Combine Terms"] },
-  { id: "equations", label: "Equations", route: "/algebra/equations", description: "Solve and balance equations visually.", iconSrc: "/assets/algebra-studio/algebra-icon-equations.png", tabs: ["Linear", "Quadratic", "Absolute Value", "Inequalities"] },
-  { id: "functions", label: "Functions", route: "/algebra/functions", description: "Explore functions and transformations.", iconSrc: "/assets/algebra-studio/algebra-icon-functions.png", tabs: ["Families", "Transformations", "Composition", "Inverse", "Piecewise"] },
-  { id: "polynomials", label: "Polynomials", route: "/algebra/polynomials", description: "Analyze polynomials and their roots.", iconSrc: "/assets/algebra-studio/algebra-icon-polynomials.png", tabs: ["Roots", "Factors", "Division", "End Behavior", "Multiplicity"] },
-  { id: "systems", label: "Systems", route: "/algebra/systems", description: "Solve systems graphically.", iconSrc: "/assets/algebra-studio/algebra-icon-systems.png", tabs: ["Graphing", "Substitution", "Elimination", "Matrices", "Inequalities"] },
-  { id: "exponents", label: "Exponents & Logs", route: "/algebra/exponents-logs", description: "Work with exponential and logarithmic functions.", iconSrc: "/assets/algebra-studio/algebra-icon-exponents.png", tabs: ["Exponent Laws", "Radicals", "Exponential & Logs", "Equations"] },
-  { id: "sequences", label: "Sequences", route: "/algebra/sequences", description: "Find patterns and general terms.", iconSrc: "/assets/algebra-studio/algebra-icon-sequences.png", tabs: ["Arithmetic", "Geometric", "Recursive", "Sigma", "Patterns"] },
-  { id: "proof", label: "Algebraic Proof", route: "/algebra/proof", description: "Construct and validate proofs.", iconSrc: "/assets/algebra-studio/algebra-icon-proof.png", tabs: ["Identities", "Equation Proof", "Induction", "Inequality", "Counterexample"] },
-  { id: "cas", label: "CAS Explorer", route: "/algebra/cas", description: "Opens the connected CAS workspace.", iconSrc: "/assets/algebra-studio/algebra-icon-cas.png", tabs: ["Solve", "Simplify", "Factor", "Expand", "Substitute", "Differentiate"] },
-  { id: "advanced", label: "Advanced Workbench", route: "/algebra/advanced", description: "Twenty-five linked algebra tools in one workbench.", iconSrc: "/assets/algebra-studio/algebra-studio-mark.png", tabs: [] },
+  { id: "expressions", label: "Expressions", route: "/algebra/expressions", description: "Build and simplify algebraic expressions.", iconSrc: "/assets/algebra-studio/algebra-icon-expressions.png", tabs: ["Simplify", "Expand", "Factor", "Combine Terms"], minutes: 8, level: "Start here" },
+  { id: "equations", label: "Equations", route: "/algebra/equations", description: "Solve and balance equations visually.", iconSrc: "/assets/algebra-studio/algebra-icon-equations.png", tabs: ["Linear", "Quadratic", "Absolute Value", "Inequalities"], minutes: 10, level: "Core" },
+  { id: "functions", label: "Functions", route: "/algebra/functions", description: "Explore functions and transformations.", iconSrc: "/assets/algebra-studio/algebra-icon-functions.png", tabs: ["Families", "Transformations", "Composition", "Inverse", "Piecewise"], minutes: 10, level: "Core" },
+  { id: "polynomials", label: "Polynomials", route: "/algebra/polynomials", description: "Analyze polynomials and their roots.", iconSrc: "/assets/algebra-studio/algebra-icon-polynomials.png", tabs: ["Roots", "Factors", "Division", "End Behavior", "Multiplicity"], minutes: 10, level: "Core" },
+  { id: "systems", label: "Systems", route: "/algebra/systems", description: "Solve systems graphically.", iconSrc: "/assets/algebra-studio/algebra-icon-systems.png", tabs: ["Graphing", "Substitution", "Elimination", "Matrices", "Inequalities"], minutes: 10, level: "Next" },
+  { id: "exponents", label: "Exponents & Logs", route: "/algebra/exponents-logs", description: "Work with exponential and logarithmic functions.", iconSrc: "/assets/algebra-studio/algebra-icon-exponents.png", tabs: ["Exponent Laws", "Radicals", "Exponential & Logs", "Equations"], minutes: 10, level: "Next" },
+  { id: "sequences", label: "Sequences", route: "/algebra/sequences", description: "Find patterns and general terms.", iconSrc: "/assets/algebra-studio/algebra-icon-sequences.png", tabs: ["Arithmetic", "Geometric", "Recursive", "Sigma", "Patterns"], minutes: 8, level: "Next" },
+  { id: "proof", label: "Algebraic Proof", route: "/algebra/proof", description: "Construct and validate proofs.", iconSrc: "/assets/algebra-studio/algebra-icon-proof.png", tabs: ["Identities", "Equation Proof", "Induction", "Inequality", "Counterexample"], minutes: 12, level: "Apply" },
+  { id: "cas", label: "Candidate checker", route: "/algebra/cas", description: "Check candidate roots and identities against the live graph — not a Wolfram language.", iconSrc: "/assets/algebra-studio/algebra-icon-cas.png", tabs: ["Solve", "Simplify", "Factor", "Expand", "Substitute", "Differentiate"], minutes: 8, level: "Extend" },
+  { id: "advanced", label: "Advanced Workbench", route: "/algebra/advanced", description: "Twenty-five linked algebra tools in one workbench.", iconSrc: "/assets/algebra-studio/algebra-studio-mark.png", tabs: [], minutes: 12, level: "Extend" },
 ];
 
 const routePage: Record<string, AlgebraPage> = Object.fromEntries(studioNav.map((item) => [item.route, item.id])) as Record<string, AlgebraPage>;
@@ -177,6 +182,7 @@ function StudioHome() {
     <div className="alg-page">
       <header className="alg-header">
         <div>
+          <StudioHomeButtons studioTo="/algebra" />
           <StudioBreadcrumb crumbs={mathStudioCrumbs({ label: "Algebra", to: "/algebra" })} />
           <h1>Welcome to Algebra Studio</h1>
           <p>See the pattern. Shape the equation. Launch any lab from the map or the numbered cards.</p>
@@ -192,13 +198,19 @@ function StudioHome() {
           <section className="alg-concept-map" aria-label="Algebra concept map">
             <div className="alg-map-group">
               {topicStudios.filter((item) => item.id !== "advanced").slice(0, 4).map((item) => (
-                <Link key={item.id} to={item.route}>{item.label}</Link>
+                <Link key={item.id} to={item.route} className="alg-map-node">
+                  <TopicPreview id={item.id} />
+                  <b>{item.label}</b>
+                </Link>
               ))}
             </div>
             <div className="alg-map-core"><AlgebraMark /><span>ALGEBRA</span></div>
             <div className="alg-map-group">
               {topicStudios.filter((item) => item.id !== "advanced").slice(4).map((item) => (
-                <Link key={item.id} to={item.route}>{item.label}</Link>
+                <Link key={item.id} to={item.route} className="alg-map-node">
+                  <TopicPreview id={item.id} />
+                  <b>{item.label}</b>
+                </Link>
               ))}
             </div>
           </section>
@@ -212,7 +224,11 @@ function StudioHome() {
                     <span className="alg-topic-number">{index + 1}</span>
                     <Link to={item.route}>
                       <header><img src={item.iconSrc} alt="" width={56} height={56} /><b>{item.label}</b></header>
+                      <TopicPreview id={item.id} />
                       <p>{item.description}</p>
+                      <em className="alg-topic-meta">{`${item.level} · ${item.minutes} min`}</em>
+                      <span className="alg-topic-modes">{item.tabs.slice(0, 3).join(" · ")}</span>
+                      <em className="alg-topic-open">Open {item.label}</em>
                     </Link>
                     <nav className="alg-topic-tabs" aria-label={`${item.label} tabs`}>
                       {item.tabs.map((tab) => (
@@ -230,7 +246,17 @@ function StudioHome() {
             <h2><Play /> Continue experiment</h2>
             <strong>{resumeLabel}</strong>
             <p>Resume {visited.length ? `${visited.length} topics started` : "your last lab"} · {progress}%</p>
+            <div className="alg-mini-parabola" aria-hidden="true" />
             <Link className="alg-gradient-button" to={resumeRoute}>Resume</Link>
+          </section>
+          <section className="alg-card alg-journey-card">
+            <h2>Your learning journey</h2>
+            <div className="alg-progress" style={{ ["--pct" as string]: String(progress) }} aria-label={`${progress} percent`}><strong>{progress}%</strong></div>
+            <dl>
+              <div><dt>Topics explored</dt><dd>{visited.length} / 9</dd></div>
+              <div><dt>Skills in motion</dt><dd>{Math.min(68, visited.length * 8)} / 68</dd></div>
+              <div><dt>Challenges</dt><dd>{progress > 0 ? "Started" : "0 / 32"}</dd></div>
+            </dl>
           </section>
           <section className="alg-card" id="algebra-challenge">
             <h2>Challenge of the day</h2>
@@ -252,4 +278,17 @@ function StudioHome() {
       </section>
     </div>
   );
+}
+
+function TopicPreview({ id }: { id: TopicStudio["id"] }) {
+  if (id === "expressions") return <div className="alg-mini-tiles" aria-hidden="true"><i>x</i><i>x</i><i>+</i><i>3</i></div>;
+  if (id === "equations") return <div className="alg-mini-balance" aria-hidden="true"><span>2x+3</span><b>=</b><span>7</span></div>;
+  if (id === "functions") return <svg className="alg-mini-parabola" viewBox="0 0 160 62" aria-hidden="true"><path d="M8 50 Q 40 8 80 40 T 152 18" fill="none" stroke="#8b5cf6" strokeWidth="3" /><path d="M8 50 Q 50 20 90 48 T 152 30" fill="none" stroke="#22d3ee" strokeWidth="2" strokeDasharray="4 3" /></svg>;
+  if (id === "polynomials") return <svg className="alg-mini-parabola" viewBox="0 0 160 62" aria-hidden="true"><path d="M6 40 C 30 8, 50 70, 80 28 S 130 8, 154 44" fill="none" stroke="#8b5cf6" strokeWidth="3" /></svg>;
+  if (id === "systems") return <div className="alg-mini-system" aria-hidden="true"><i /><i /></div>;
+  if (id === "exponents") return <div className="alg-mini-formula" aria-hidden="true">y = 2ˣ · log x</div>;
+  if (id === "sequences") return <div className="alg-mini-sequence" aria-hidden="true">2 5 10 17 26</div>;
+  if (id === "proof") return <div className="alg-mini-proof" aria-hidden="true"><span>Given</span><span>Show</span><span>∴</span></div>;
+  if (id === "cas") return <div className="alg-mini-formula" aria-hidden="true">expand (x+2)³</div>;
+  return null;
 }

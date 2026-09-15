@@ -26,6 +26,10 @@ export const studioCrumbRoutes: Record<string, string> = {
   Matrices: "/matrices",
   Operations: "/matrices",
   "Number Systems": "/number-systems",
+  Rational: "/number-systems/rational",
+  Irrational: "/number-systems/irrational",
+  "Real Line": "/number-systems/real-line",
+  Hierarchy: "/number-systems/hierarchy",
   Statistics: "/statistics",
   "Probability & Statistics": "/probability-statistics",
   "Set Theory": "/set-theory",
@@ -88,7 +92,7 @@ export default function StudioBreadcrumb({
     <nav aria-label="Breadcrumb" className={className}>
       {crumbs.map((crumb, index) => (
         <span key={`${crumb.to}-${crumb.label}-${index}`}>
-          {index > 0 && <b aria-hidden="true">&gt;</b>}
+          {index > 0 && <b aria-hidden="true"> › </b>}
           <Link to={crumb.to} aria-current={index === crumbs.length - 1 ? "page" : undefined}>{crumb.label}</Link>
         </span>
       ))}

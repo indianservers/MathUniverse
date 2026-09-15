@@ -24,6 +24,8 @@ describe("Trigonometric Formula Visualizer page", () => {
 
     expect(html).toContain("Trigonometric Formula Visualizer");
     expect(html).toContain("Back to Trigonometry");
+    expect(html).toContain("trig-formula-matching-lab");
+    expect(html).toContain("/trigonometry/graphs?mode=Sine");
     expect(html).toContain("formula-unit-circle-svg");
   });
 

@@ -13,6 +13,8 @@
 .clab-col h2,.clab-card h3{margin:0 0 8px;font-size:13px;letter-spacing:.04em;text-transform:uppercase}
 .clab-viz{padding:10px}
 .clab-svg{width:100%;height:auto;min-height:min(58vh,520px);border-radius:16px;touch-action:none;background:#f7fbff}
+.clab-svg.is-interactive{cursor:grab}
+.clab-svg.is-interactive:active{cursor:grabbing}
 .clab-card{padding:12px;border:1px solid #dce7f4;border-radius:14px;background:#fbfdff}
 .clab-formula{font-family:Georgia,"Times New Roman",serif;font-size:14px;line-height:1.45;color:#0f2747}
 .clab-props{margin:0;padding-left:18px;color:#40516d;font-size:12px;line-height:1.45}

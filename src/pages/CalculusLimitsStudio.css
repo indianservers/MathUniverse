@@ -10,16 +10,7 @@
   min-width: 0;
   color: var(--cls-ink);
 }
-.cls-context {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  min-height: 34px;
-  padding: 0 4px;
-  color: #526b8c;
-  font-size: 12px;
-}
+.cls-context { display: none; }
 .cls-context button {
   display: inline-flex;
   align-items: center;
@@ -195,7 +186,8 @@
 .cls-graph-toolbar button:first-child { border-radius: 7px 0 0 7px; }
 .cls-graph-toolbar button:last-child { border-right: 1px solid #315475; border-radius: 0 7px 7px 0; }
 .cls-graph-toolbar svg { width: 14px; }
-.cls-graph { display: block; width: 100%; aspect-ratio: 820/650; min-height: 560px; max-height: 720px; padding: 8px 10px 0; touch-action: none; }
+.cls-graph { display: block; width: 100%; aspect-ratio: 820/650; min-height: 560px; max-height: 720px; padding: 8px 10px 0; touch-action: none; cursor: grab; }
+.cls-graph:active { cursor: grabbing; }
 .cls-grid line { stroke: #285071; stroke-width: 1; stroke-dasharray: 4 5; opacity: .75; }
 .cls-axes line { stroke: #d8ecf8; stroke-width: 1.4; }
 .cls-tick-labels text { fill: #e2eff8; font: 14px system-ui,sans-serif; text-anchor: middle; }

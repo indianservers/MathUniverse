@@ -78,7 +78,7 @@ export function CircleSvg({
   return (
     <svg
       ref={svgRef}
-      className="clab-svg"
+      className="clab-svg is-interactive"
       viewBox={`0 0 ${w} ${h}`}
       role="application"
       aria-label={ariaLabel}

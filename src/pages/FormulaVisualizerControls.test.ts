@@ -40,6 +40,13 @@ describe("formula-specific visualizer controls", () => {
     ]);
   });
 
+  it("uses whole-number controls for number-system formulas", () => {
+    const config = getFormulaVisualizerConfig("number-systems");
+    const prime = config?.formulas.find((formula) => formula.id === "prime-factorization");
+    expect(prime && getFormulaControlSpecs(prime).map((control) => control.label)).toEqual(["n"]);
+    expect(prime && getFormulaControlSpecs(prime)[0]?.min).toBe(2);
+  });
+
   it("maps theta to the angle control with degree units", () => {
     expect(getFormulaControlSpecs(entry("sector-area", ["theta", "r"]))).toMatchObject([
       { key: "p", label: "θ", min: 5, max: 85, unit: "°" },
