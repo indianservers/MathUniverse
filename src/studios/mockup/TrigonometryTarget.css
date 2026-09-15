@@ -646,6 +646,20 @@
   grid-template-columns: minmax(250px, 0.88fr) minmax(520px, 1.72fr) minmax(280px, 0.94fr);
 }
 
+.msk-trigonometry .inv-target-lab.is-git-target {
+  display: block;
+  background: #fff;
+  padding: 0;
+}
+
+.msk-trigonometry .inv-target-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
 .msk-trigonometry .ob-target-lab {
   grid-template-columns: minmax(250px, 0.84fr) minmax(500px, 1.98fr) minmax(280px, 0.96fr);
 }

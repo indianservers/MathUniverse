@@ -21,6 +21,7 @@ import PolygonsLab from "../../geometry/polygons/PolygonsLab";
 import TrianglesLab from "../../geometry/triangles/TrianglesLab";
 import { crtTwo, gcd, hopCycle, inverseMod, solveLinear } from "../../discrete/modular/modularMath";
 import { IdentitiesLab as TargetIdentitiesLab } from "./IdentitiesLab";
+import { InverseTrigLab as TargetInverseTrigLab } from "./InverseTrigLab";
 import { TrigGraphsLab as TargetTrigGraphsLab } from "./TrigonometryConceptLabs";
 import { ObliqueTriangleLab as TargetObliqueTriangleLab } from "./ObliqueTriangleLab";
 import { WavesHarmonicsLab as TargetWavesHarmonicsLab } from "./WavesHarmonicsLab";
@@ -39,6 +40,7 @@ export default function DedicatedStudioLab({ page, extra }: { page: StudioMockup
   if (page.id === "modular-arithmetic") return <ModularLab page={page} />;
   if (page.id === "interactive-distributions") return <DistributionsLab page={page} />;
   if (page.id === "identities") return <TargetIdentitiesLab page={page} />;
+  if (page.id === "inverse") return <TargetInverseTrigLab page={page} />;
   if (page.id === "oblique") return <TargetObliqueTriangleLab page={page} />;
   if (page.id === "waves") return <TargetWavesHarmonicsLab page={page} />;
   const remaining = RemainingStudioLab({ page, extra });
