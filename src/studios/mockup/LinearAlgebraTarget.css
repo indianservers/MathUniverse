@@ -34,6 +34,10 @@
   display: none;
 }
 
+.msk-linear-algebra .msk-title-block h1 {
+  white-space: nowrap;
+}
+
 .msk-linear-algebra .msk-tabs {
   justify-content: center;
   margin-bottom: 10px;
