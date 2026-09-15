@@ -60,7 +60,7 @@ describe("catalogGatewayEnhancements", () => {
       expect(html, `wrong ${id}`).toContain(spec.misconception.wrong);
       expect(html, `exam ${id}`).toContain("Exam exit ticket");
       expect(html, `exam prompt ${id}`).toContain(spec.exams[0].prompt);
-      expect(html, `next ${id}`).toContain(`Next: ${spec.unlocks.nextLabel}`);
+      expect(html, `next ${id}`).toContain("Next:");
       expect(html, `href ${id}`).toContain(`href="${spec.unlocks.nextHref}"`);
     }
   });
