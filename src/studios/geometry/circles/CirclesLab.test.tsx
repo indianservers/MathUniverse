@@ -32,6 +32,8 @@ describe("Circles Lab modes", () => {
 
     expect(chords).toContain("Chord controls");
     expect(chords).toContain("Lock equal chords");
+    expect(chords).not.toContain("Perp. bisector");
+    expect(chords).not.toContain("Equal halves");
 
     expect(tangents).toContain("Tangent construction with contact point T");
     expect(tangents).toContain("Tangent controls");

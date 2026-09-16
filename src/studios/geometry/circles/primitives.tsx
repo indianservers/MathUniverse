@@ -2,7 +2,7 @@ import { useCallback, useRef, useState, type KeyboardEvent, type PointerEvent, t
 import MathExpression from "../../../components/ui/MathExpression";
 import { dist, fmt, midpoint, type Vec } from "./circleMath";
 
-export const CIRCLE_VB = { w: 560, h: 480, cx: 280, cy: 246, scale: 28 };
+export const CIRCLE_VB = { w: 560, h: 500, cx: 280, cy: 252, scale: 34 };
 
 export function mathToSvg(p: Vec, frame = CIRCLE_VB) {
   return { x: frame.cx + p.x * frame.scale, y: frame.cy - p.y * frame.scale };
@@ -185,11 +185,10 @@ export function LengthBadge({ a, b, text, color = "#0f2747" }: { a: Vec; b: Vec;
   );
 }
 
-export function GhostChord({ a, b, label }: { a: Vec; b: Vec; label: string }) {
+export function GhostChord({ a, b }: { a: Vec; b: Vec; label?: string }) {
   return (
     <g>
       <ChordLine a={a} b={b} color="#94a3b8" dashed />
-      <LengthBadge a={a} b={b} text={label} color="#64748b" />
     </g>
   );
 }

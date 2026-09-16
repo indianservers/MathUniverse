@@ -4,7 +4,7 @@ import {
 } from "./circleMath";
 import { useCircleSession, usePersisted } from "./CircleSession";
 import {
-  AngleMarker, ChallengeCard, ChordLine, CircleOutline, CircleSvg, DraggablePoint, FormulaCard, LengthBadge, LiveRow, MathLine, PresetButton, PropertyCard, RadiusLine, RightAngleMarker, Slider, StepDot, TangentLine, Toggle, WorkedCard, useSvgDrag,
+  AngleMarker, ChallengeCard, ChordLine, CircleOutline, CircleSvg, DraggablePoint, FormulaCard, LiveRow, MathLine, PresetButton, PropertyCard, RadiusLine, RightAngleMarker, Slider, TangentLine, Toggle, WorkedCard, useSvgDrag,
 } from "./primitives";
 
 export default function TangentsLab() {
@@ -106,14 +106,12 @@ export default function TangentsLab() {
           {altSeg ? <ChordLine a={T} b={chordPt} color="#8b45f4" /> : null}
           {altSeg ? <AngleMarker vertex={T} from={P} to={chordPt} color="#f59e0b" /> : null}
           {altSeg ? <AngleMarker vertex={chordPt} from={T} to={pointOnCircle(origin, r, toRad(tDeg + 200))} color="#8b45f4" /> : null}
-          {showLen && external && A ? <LengthBadge a={P} b={A} text={`PA ${fmt(pa)}`} color="#f59e0b" /> : null}
           <DraggablePoint point={origin} label="O" color="#0f2747" dragId="O" />
           <DraggablePoint point={T} label="T" color="#f59e0b" dragId="T" />
           {external ? <DraggablePoint point={P} label="P" color="#8b45f4" dragId="P" /> : null}
           {external && A ? <DraggablePoint point={A} label="A" color="#147df2" dragId="A" /> : null}
           {external && showSecond && B ? <DraggablePoint point={B} label="B" color="#147df2" dragId="B" /> : null}
-          <DraggablePoint point={{ x: origin.x + r, y: origin.y }} label="r" color="#08b9dd" dragId="R" />
-          {showSteps ? <><StepDot origin={origin} n={1} label="Radius" /><StepDot origin={origin} n={2} label="Right angle" /><StepDot origin={origin} n={3} label="Equal tangents" /></> : null}
+          <DraggablePoint point={{ x: origin.x + r, y: origin.y }} dragId="R" color="#08b9dd" title="Radius handle" />
         </CircleSvg>
       </section>
       <aside className="clab-col clab-insights">
