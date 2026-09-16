@@ -29,7 +29,7 @@ describe("lesson graph ink", () => {
   it("is never imported from studio workspaces", () => {
     const hits = execSync(
       "grep -R --include='*.ts' --include='*.tsx' 'LessonGraphInk' src/studios || true",
-      { encoding: "utf8", cwd: join(__dirname, "../../..") },
+      { encoding: "utf8", cwd: join(__dirname, "../../../..") },
     );
     expect(hits.trim()).toBe("");
   });
