@@ -2,7 +2,8 @@ import { useState } from "react";
 import type { StudioMockupPage } from "../mockup/studioMockupCatalog";
 import { StatusOk, clamp, fmt } from "../mockup/studioLabKit";
 import { LinearAlgebraLabChrome } from "./LinearAlgebraLabChrome";
-import { ArrowDefs, DragHandle, VectorRay, LA_A, LA_B, LA_C, LA_D, LA_E } from "./linearAlgebraCanvas";
+import { Card, SliderRow, Switch } from "./linearAlgebraUi";
+import { ArrowDefs, DragHandle, VectorRay, LA_A, LA_B, LA_C, LA_D } from "./linearAlgebraCanvas";
 import { iso3, matrixRank } from "./linearAlgebraLabMath";
 import { areIndependent, coordinates, gramSchmidt } from "./vectorSpaceMath";
 
@@ -45,25 +46,31 @@ export default function VectorSpacesLab({ page }: { page: StudioMockupPage }) {
     <LinearAlgebraLabChrome page={page} pills>
       {(mode) => (
         <>
-          <section className="la-col">
-            <h2>Candidate vectors in R³</h2>
+          <div className="la-rail">
+            <Card title="Candidate vectors in R³">
             {([["v₁", s.v1, LA_A, 0], ["v₂", s.v2, LA_B, 1], ["v₃", s.v3, LA_C, 2]] as const).map(([label, vec, color, i]) => (
               <label key={label} className="la-toggle">
                 <input type="checkbox" checked={Boolean(s.on[i])} onChange={(event) => setS({ ...s, on: s.on.map((v, j) => (j === i ? event.target.checked : v)) })} />
                 <span style={{ color }}>{label} [{fmt(vec[0], 0)}, {fmt(vec[1], 0)}, {fmt(vec[2], 0)}]</span>
               </label>
             ))}
-            <h2>Show / hide</h2>
-            <p className="la-note">Span (plane) · Coordinate axes · Grid · Projection to plane</p>
-            <h2>Vector combination c₁v₁ + c₂v₂ + c₃v₃</h2>
-            <label className="la-toggle"><span>c₁</span><input type="range" min={-2} max={2} step={0.05} value={s.c1} onChange={(event) => setS({ ...s, c1: Number(event.target.value) })} /></label>
-            <label className="la-toggle"><span>c₂</span><input type="range" min={-2} max={2} step={0.05} value={s.c2} onChange={(event) => setS({ ...s, c2: Number(event.target.value) })} /></label>
-            <label className="la-toggle"><span>c₃</span><input type="range" min={-2} max={2} step={0.05} value={s.c3} onChange={(event) => setS({ ...s, c3: Number(event.target.value) })} /></label>
+            </Card>
+            <Card title="Show / hide">
+              <Switch label="Span (plane)" on onChange={() => undefined} />
+              <Switch label="Coordinate axes" on onChange={() => undefined} />
+              <Switch label="Grid" on onChange={() => undefined} />
+              <Switch label="Projection to plane" on onChange={() => undefined} />
+            </Card>
+            <Card title="Vector combination c₁v₁ + c₂v₂ + c₃v₃">
+            <SliderRow label="c₁" value={s.c1} min={-2} max={2} step={0.05} onChange={(c1) => setS({ ...s, c1 })} />
+            <SliderRow label="c₂" value={s.c2} min={-2} max={2} step={0.05} onChange={(c2) => setS({ ...s, c2 })} />
+            <SliderRow label="c₃" value={s.c3} min={-2} max={2} step={0.05} onChange={(c3) => setS({ ...s, c3 })} />
             <p className="la-eq">w = ({fmt(w[0], 2)}, {fmt(w[1], 2)}, {fmt(w[2], 2)})</p>
             <p className="la-note">{independent2 ? "v₁, v₂ independent in the xy-shadow." : "Dependent in the plane."}</p>
-          </section>
-          <section className="la-canvas">
-            <h2>{mode} in R³</h2>
+            </Card>
+          </div>
+          <div className="la-center">
+          <Card className="la-viz" title={`${mode} in R³`}>
             <svg className="msk-graph" viewBox="0 0 520 360" role="img" aria-label="Vector spaces">
               <rect width="520" height="360" fill="#f7fbff" />
               <ArrowDefs />
@@ -81,9 +88,10 @@ export default function VectorSpacesLab({ page }: { page: StudioMockupPage }) {
               <DragHandle x={p(w).x} y={p(w).y} fill={LA_D} label="w" />
             </svg>
             <p className="la-note">Span{s.on.filter(Boolean).length ? `(v₁, v₂, v₃)` : ""} is a {dim === 3 ? "space" : dim === 2 ? "plane" : "line"} (dim = {dim}) in R³. The vectors are {basis ? "a basis" : "linearly dependent"}.</p>
-          </section>
-          <aside className="la-live">
-            <h2>Matrix with columns v₁, v₂, v₃</h2>
+          </Card>
+          </div>
+          <div className="la-rail">
+          <Card title="Matrix with columns v₁, v₂, v₃">
             <table className="la-sheet">
               <tbody>
                 {A.map((row, r) => (
@@ -94,19 +102,18 @@ export default function VectorSpacesLab({ page }: { page: StudioMockupPage }) {
             <p className="la-eq">Rank(A) = {rank}</p>
             <p className="la-eq">dim(Span) = {dim}</p>
             <span className={`la-badge${basis ? "" : " is-bad"}`}>{basis ? "Vectors form a basis" : "Vectors do not form a basis"}</span>
-            <div className="la-fold">
-              <h3>Coordinate conversion</h3>
+          </Card>
+          <Card title="Coordinate conversion">
               <p className="la-eq">w ≈ ({fmt(w[0], 2)}, {fmt(w[1], 2)}, {fmt(w[2], 2)})</p>
               {coords ? <p className="la-eq">c₁ ≈ {fmt(coords.s, 3)} · c₂ ≈ {fmt(coords.t, 3)}</p> : <p className="la-eq">Least-squares coords in the plane</p>}
               <StatusOk>Exact (w lies in the span)</StatusOk>
-            </div>
-            <div className="la-fold">
-              <h3>Subspace information</h3>
+          </Card>
+          <Card title="Subspace information">
               <p className="la-eq">Type: {dim === 2 ? "Plane through origin" : dim === 3 ? "All of R³" : "Line through origin"}</p>
               <p className="la-eq">u₁ · u₂ = {fmt(gs.u1[0] * gs.u2[0] + gs.u1[1] * gs.u2[1], 3)}</p>
-            </div>
+          </Card>
             <p className="sr-only">{clamp(dim, 0, 3)}</p>
-          </aside>
+          </div>
         </>
       )}
     </LinearAlgebraLabChrome>

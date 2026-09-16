@@ -403,7 +403,7 @@ export function MockupStudioChrome({
   }, [page.id]);
 
   return (
-    <main className={`msk-shell msk-${studio.id}${open ? " is-open" : ""}${(isTrig && session.theme === "dark") || (isGeo && geoSession.theme === "dark") ? " is-dark" : ""}${(isTrig && session.teacherMode) || (isGeo && geoSession.teacherMode) || (isDiscrete && discreteTeacher) || (isLinear && linearSession.teacherMode && page.id !== "home") ? " is-teacher" : ""}${(isTrig || isModel || isGeo || isDiscrete || isLinear || isComplex) && page.id !== "home" ? " is-lab" : ""}`}>
+    <main data-lab-id={page.id} className={`msk-shell msk-${studio.id}${open ? " is-open" : ""}${(isTrig && session.theme === "dark") || (isGeo && geoSession.theme === "dark") ? " is-dark" : ""}${(isTrig && session.teacherMode) || (isGeo && geoSession.teacherMode) || (isDiscrete && discreteTeacher) || (isLinear && linearSession.teacherMode && page.id !== "home") ? " is-teacher" : ""}${(isTrig || isModel || isGeo || isDiscrete || isLinear || isComplex) && page.id !== "home" ? " is-lab" : ""}`}>
       {open ? <button className="msk-backdrop" type="button" aria-label="Close menu" onClick={() => setOpen(false)} /> : null}
       <aside className="msk-sidebar">
         <Link className="msk-brand" to={studio.basePath}>
@@ -485,6 +485,7 @@ export function MockupStudioChrome({
                 <button type="button" className={`msk-units-rad${session.units === "rad" ? " active" : ""}`} aria-pressed={session.units === "rad"} onClick={() => writeTrigSession({ units: "rad" })}>Rad</button>
               </div>
             ) : null}
+            {isLinear && page.id !== "home" ? null : (
             <label className={`msk-search${searchOpen || query || isTrig || isModel || isGeo || isDiscrete || isLinear || isComplex ? " is-open" : ""}`}>
               <button type="button" aria-label="Search" onClick={() => setSearchOpen((value) => !value)}><Search /></button>
               {searchOpen || query || isTrig || isModel || isGeo || isDiscrete || isLinear || isComplex ? (
@@ -500,7 +501,8 @@ export function MockupStudioChrome({
               ) : null}
               {query ? <button type="button" aria-label="Clear search" onClick={() => setQuery("")}><X /></button> : null}
             </label>
-            {query ? (
+            )}
+            {query && !(isLinear && page.id !== "home") ? (
               <ul className="msk-search-hits">
                 {filtered.map((item) => (
                   <li key={item.key}><Link to={item.to} onClick={() => setQuery("")}>{item.label}<small>{item.detail}</small></Link></li>
@@ -508,13 +510,13 @@ export function MockupStudioChrome({
               </ul>
             ) : null}
             {isLinear ? (
+              page.id === "home" ? (
               <>
                 <span className="la-stat-chip" aria-label="Streak 0"><Flame />0</span>
                 <span className="la-stat-chip" aria-label="0 XP"><Star />0 XP</span>
-                {page.id === "home"
-                  ? <a className="la-stat-chip" href="#la-journey"><Compass />Journey</a>
-                  : <Link className="la-stat-chip" to="/linear-algebra#la-journey"><Compass />Journey</Link>}
+                <a className="la-stat-chip" href="#la-journey"><Compass />Journey</a>
               </>
+              ) : null
             ) : isNumberSense ? (
               <>
                 <button type="button" aria-label="Streak"><Flame /></button>
@@ -539,13 +541,7 @@ export function MockupStudioChrome({
               <button type="button" className={`msk-teacher${geoSession.teacherMode ? " active" : ""}`} aria-pressed={geoSession.teacherMode} onClick={() => writeGeoSession({ teacherMode: !geoSession.teacherMode })}>
                 Teacher mode
               </button>
-            ) : isLinear ? (
-              page.id === "home" ? null : (
-                <button type="button" className={`msk-teacher${linearSession.teacherMode ? " active" : ""}`} aria-pressed={linearSession.teacherMode} onClick={() => writeLinearSession({ teacherMode: !linearSession.teacherMode })}>
-                  Teacher mode
-                </button>
-              )
-            ) : isNumberSense ? (
+            ) : isLinear ? null : isNumberSense ? (
               <button type="button" className={`msk-teacher${numberSenseSession.teacherMode ? " active" : ""}`} aria-pressed={numberSenseSession.teacherMode} aria-label="Teacher mode" onClick={() => writeNumberSenseSession({ teacherMode: !numberSenseSession.teacherMode })}>
                 Teacher mode
               </button>
@@ -554,7 +550,7 @@ export function MockupStudioChrome({
                 Teacher mode
               </button>
             )}
-            {isGeo && page.id !== "home" ? null : (
+            {isLinear && page.id !== "home" ? null : isGeo && page.id !== "home" ? null : (
               <button type="button" aria-label="Keyboard shortcuts" onClick={() => setHelpOpen(true)}><HelpCircle /></button>
             )}
             {isModel ? (
@@ -563,7 +559,7 @@ export function MockupStudioChrome({
                 <span>3</span>
               </button>
             ) : null}
-            {isModel ? null : (
+            {isModel || (isLinear && page.id !== "home") ? null : (
               <button type="button" aria-label="Settings" onClick={() => setSettingsOpen(true)}><Settings /></button>
             )}
             {isModel ? <button type="button" className="msk-avatar" aria-label="Account"><User /></button> : null}

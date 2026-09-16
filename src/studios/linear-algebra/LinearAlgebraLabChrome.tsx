@@ -2,23 +2,27 @@ import type { ReactNode } from "react";
 import { MockupLearningStrip } from "../mockup/MockupStudioChrome";
 import type { StudioMockupPage } from "../mockup/studioMockupCatalog";
 import { useLabMode } from "../mockup/studioLabKit";
+import { LinearLabHeader } from "./linearAlgebraUi";
 
 export function LinearAlgebraLabChrome({
   page,
   pills = false,
   wide = false,
   play = false,
+  header,
   children,
 }: {
   page: StudioMockupPage;
   pills?: boolean;
   wide?: boolean;
   play?: boolean;
+  header?: ReactNode;
   children: (mode: string, setMode: (mode: string) => void) => ReactNode;
 }) {
   const { tabs, mode, setMode } = useLabMode(page);
   return (
     <div className={`la-lab-root${wide ? " is-wide" : ""}${play ? " is-play" : ""}`}>
+      {header ?? <LinearLabHeader page={page} />}
       <div className="msk-dash-banner la-mode-flag" data-lab-mode={mode} data-studio-kernel="1">
         <b>{page.title} · {mode}</b>
         <small>{page.subtitle}</small>

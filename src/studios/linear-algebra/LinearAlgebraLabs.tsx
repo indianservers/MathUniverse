@@ -1,8 +1,9 @@
-import { useMemo, useState, type PointerEvent, type ReactNode } from "react";
+import { useEffect, useMemo, useState, type PointerEvent, type ReactNode } from "react";
 import type { StudioMockupPage } from "../mockup/studioMockupCatalog";
 import { ExtraFrame, StatusOk, clamp, fmt } from "../mockup/studioLabKit";
 import { LinearAlgebraLabChrome } from "./LinearAlgebraLabChrome";
 import VectorSpacesLab from "./VectorSpacesLab";
+import { BracketMatrix, Card, LinearLabHeader, SliderRow, Switch } from "./linearAlgebraUi";
 import {
   ArrowDefs, AxisGrid, DragHandle, VectorRay, canvasKeyNudge, LA_A, LA_B, LA_C, LA_D, LA_E,
 } from "./linearAlgebraCanvas";
@@ -27,34 +28,6 @@ export default function LinearAlgebraLab({ page, extra }: { page: StudioMockupPa
     case "playground": return <PlaygroundLab page={page} extra={extra} />;
     default: return null;
   }
-}
-
-function Col({ title, children, kicker }: { title?: string; children: ReactNode; kicker?: string }) {
-  return (
-    <section className="la-col">
-      {kicker ? <div className="la-kicker">{kicker}</div> : null}
-      {title ? <h2>{title}</h2> : null}
-      {children}
-    </section>
-  );
-}
-
-function Canvas({ title, children, tools }: { title: string; children: ReactNode; tools?: ReactNode }) {
-  return (
-    <section className="la-canvas">
-      <h2>{title}{tools}</h2>
-      {children}
-    </section>
-  );
-}
-
-function Live({ title, children, badge }: { title: string; children: ReactNode; badge?: ReactNode }) {
-  return (
-    <aside className="la-live">
-      <h2>{title}{badge}</h2>
-      {children}
-    </aside>
-  );
 }
 
 function Stepper({
@@ -192,48 +165,50 @@ function VectorsLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNode
     <LinearAlgebraLabChrome page={page}>
       {(mode) => (
         <>
-          <Col kicker="Vectors">
-            <div className="la-vec">
-              <strong style={{ color: LA_A }}>a = ({fmt(s.ax, 0)}, {fmt(s.ay, 0)}, {fmt(s.az, 0)})</strong>
-              <div className="la-steppers">
-                <Stepper label="x" value={s.ax} min={-4} max={4} onChange={(ax) => setS({ ...s, ax })} />
-                <Stepper label="y" value={s.ay} min={-4} max={4} onChange={(ay) => setS({ ...s, ay })} />
-                <Stepper label="z" value={s.az} min={-4} max={4} onChange={(az) => setS({ ...s, az })} />
+          <div className="la-rail">
+            <Card title="Vectors">
+              <div className="la-vec">
+                <strong style={{ color: LA_A }}>a = ({fmt(s.ax, 0)}, {fmt(s.ay, 0)}, {fmt(s.az, 0)})</strong>
+                <div className="la-steppers">
+                  <Stepper label="x" value={s.ax} min={-4} max={4} onChange={(ax) => setS({ ...s, ax })} />
+                  <Stepper label="y" value={s.ay} min={-4} max={4} onChange={(ay) => setS({ ...s, ay })} />
+                  <Stepper label="z" value={s.az} min={-4} max={4} onChange={(az) => setS({ ...s, az })} />
+                </div>
               </div>
-            </div>
-            <div className="la-vec">
-              <strong style={{ color: LA_B }}>b = ({fmt(s.bx, 0)}, {fmt(s.by, 0)}, {fmt(s.bz, 0)})</strong>
-              <div className="la-steppers">
-                <Stepper label="x" value={s.bx} min={-4} max={4} onChange={(bx) => setS({ ...s, bx })} />
-                <Stepper label="y" value={s.by} min={-4} max={4} onChange={(by) => setS({ ...s, by })} />
-                <Stepper label="z" value={s.bz} min={-4} max={4} onChange={(bz) => setS({ ...s, bz })} />
+              <div className="la-vec">
+                <strong style={{ color: LA_B }}>b = ({fmt(s.bx, 0)}, {fmt(s.by, 0)}, {fmt(s.bz, 0)})</strong>
+                <div className="la-steppers">
+                  <Stepper label="x" value={s.bx} min={-4} max={4} onChange={(bx) => setS({ ...s, bx })} />
+                  <Stepper label="y" value={s.by} min={-4} max={4} onChange={(by) => setS({ ...s, by })} />
+                  <Stepper label="z" value={s.bz} min={-4} max={4} onChange={(bz) => setS({ ...s, bz })} />
+                </div>
               </div>
-            </div>
-            <h2>Operations</h2>
-            <div className="la-ops">
-              {["Dot", "Cross", "Projections", "Add", "Subtract", "Scale"].map((item) => (
-                <button key={item} type="button" className={item === op || item === mode ? "active" : ""} onClick={() => setOp(item)}>{item}</button>
-              ))}
-            </div>
-            <p className="la-eq">r = a + b = ({fmt(r[0] ?? 0, 0)}, {fmt(r[1] ?? 0, 0)}, {fmt(r[2] ?? 0, 0)})</p>
-            <h2>Display options</h2>
-            <div className="la-checks">
+              <Switch label="Show components" on={show.components} onChange={(components) => setShow({ ...show, components })} />
+            </Card>
+            <Card title="Operations">
+              <div className="la-ops">
+                {["Dot", "Cross", "Projections", "Add", "Subtract", "Scale"].map((item) => (
+                  <button key={item} type="button" className={item === op || item === mode ? "active" : ""} onClick={() => setOp(item)}>{item}</button>
+                ))}
+              </div>
+            </Card>
+            <Card title="Resultant">
+              <p className="la-eq">r = a + b = ({fmt(r[0] ?? 0, 0)}, {fmt(r[1] ?? 0, 0)}, {fmt(r[2] ?? 0, 0)})</p>
+            </Card>
+            <Card title="Display options">
               <Toggle label="Parallelogram (a, b)" on={show.para} onChange={(para) => setShow({ ...show, para })} />
               <Toggle label="Resultant vector r" on={show.result} onChange={(result) => setShow({ ...show, result })} />
               <Toggle label="Component projections" on={show.components} onChange={(components) => setShow({ ...show, components })} />
               <Toggle label="Angle between a and b" on={show.angle} onChange={(angleOn) => setShow({ ...show, angle: angleOn })} />
-            </div>
-            <button type="button" className="la-soft" onClick={() => setS(vecInit)}>Reset all</button>
-          </Col>
-          <Canvas
-            title={`${view} vector space`}
-            tools={(
+              <button type="button" className="la-soft" onClick={() => setS(vecInit)}>Reset all</button>
+            </Card>
+          </div>
+          <div className="la-center">
+          <Card className="la-viz" title={`${view} vector space`}>
               <div className="la-canvas-tools">
                 <button type="button" className={view === "3D" ? "active" : ""} onClick={() => setView("3D")}>3D</button>
                 <button type="button" className={view === "2D" ? "active" : ""} onClick={() => setView("2D")}>2D</button>
               </div>
-            )}
-          >
             <ExtraFrame
               mode={mode}
               extra={extra}
@@ -286,34 +261,38 @@ function VectorsLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNode
                 </svg>
               )}
             />
-          </Canvas>
-          <Live title="Quick facts">
-            <Bar color={LA_A} label="|a|" value={mag3(a)} />
-            <Bar color={LA_B} label="|b|" value={mag3(b)} />
-            <Bar color={LA_C} label="|r|" value={mag3(r)} />
-            <Bar color={LA_E} label="θ" value={angle} max={180} />
-            <div className="la-fold">
-              <h3>Dot product</h3>
+            <div className="la-legend-row">
+              <span>a</span><span>b</span><span>r = a + b</span><span>a proj</span><span>b proj</span>
+            </div>
+          </Card>
+          </div>
+          <div className="la-rail">
+            <Card title="Quick facts">
+              <Bar color={LA_A} label="|a|" value={mag3(a)} />
+              <Bar color={LA_B} label="|b|" value={mag3(b)} />
+              <Bar color={LA_C} label="|r|" value={mag3(r)} />
+              <Bar color={LA_E} label="θ" value={angle} max={180} />
+            </Card>
+            <Card title="Dot product">
               <p className="la-eq">a · b = {fmt(dot, 3)}</p>
               <p className="la-note">= |a||b| cos θ</p>
-            </div>
-            <div className="la-fold">
-              <h3>Cross product</h3>
+            </Card>
+            <Card title="Cross product">
               <p className="la-eq">a × b = [{fmt(cross[0], 0)}, {fmt(cross[1], 0)}, {fmt(cross[2], 0)}]</p>
               <p className="la-eq">|a × b| = {fmt(mag3(cross), 3)}</p>
-            </div>
-            <div className="la-fold">
-              <h3>Projections</h3>
+            </Card>
+            <Card title="Projections">
               <p className="la-eq">proj<sub>a</sub> b = ({fmt(projBonA[0], 3)}, {fmt(projBonA[1], 3)}, {fmt(projBonA[2], 3)})</p>
               <p className="la-eq">proj<sub>b</sub> a = ({fmt(projAonB[0], 3)}, {fmt(projAonB[1], 3)}, {fmt(projAonB[2], 3)})</p>
-            </div>
-            <div className="la-fold">
-              <h3>Geometry</h3>
+            </Card>
+            <Card title="Geometry">
               <p className="la-eq">Parallelogram area |a × b| = {fmt(mag3(cross), 3)}</p>
-              <p className="la-eq">Volume with i, j, k = {fmt(dot3(a, b) === 0 ? mag3(cross) : mag3(cross), 3)}</p>
-            </div>
-            <StatusOk>All computations are consistent. Vectors are in R³.</StatusOk>
-          </Live>
+              <p className="la-eq">Volume with i, j, k = {fmt(mag3(cross), 3)}</p>
+            </Card>
+            <Card title="Validation">
+              <StatusOk>All computations are consistent. Vectors are in R³.</StatusOk>
+            </Card>
+          </div>
         </>
       )}
     </LinearAlgebraLabChrome>
@@ -342,21 +321,24 @@ function MatricesLab({ page }: { page: StudioMockupPage }) {
         const shown = mode === "Add" ? sum : mode === "Transpose" ? At : mode === "Inverse" ? inv : C;
         return (
           <>
-            <Col>
-              <nav className="la-opbar" aria-label="Matrix operations">
-                {ops.map((item) => (
-                  <button key={item} type="button" className={item === mode ? "active" : ""} onClick={() => setMode(item)}>{item}</button>
-                ))}
-              </nav>
-              <p className="la-kicker">Operation: A × B</p>
-              <h2>Matrix A (m × n) <small>{A.length} × {A[0]?.length ?? 0}</small></h2>
-              <Sheet matrix={A} onChange={(r, c, v) => setA(setCell(A, r, c, v))} />
-              <h2>Matrix B (n × p) <small>{B.length} × {B[0]?.length ?? 0}</small></h2>
-              <Sheet matrix={B} onChange={(r, c, v) => setB(setCell(B, r, c, v))} />
-              <button type="button" className="la-compute" onClick={() => markLinearComplete(page.id)}>Compute A × B</button>
-              <Toggle label="Animate computation" on={false} onChange={() => undefined} />
-            </Col>
-            <Canvas title={`Geometric preview: A × B`}>
+            <div className="la-rail">
+              <Card>
+                <nav className="la-opbar" aria-label="Matrix operations">
+                  {ops.map((item) => (
+                    <button key={item} type="button" className={item === mode ? "active" : ""} onClick={() => setMode(item)}>{item}</button>
+                  ))}
+                </nav>
+                <p className="la-kicker">Operation: A × B</p>
+                <h2>Matrix A (m × n) <small>{A.length} × {A[0]?.length ?? 0}</small></h2>
+                <Sheet matrix={A} onChange={(r, c, v) => setA(setCell(A, r, c, v))} />
+                <h2>Matrix B (n × p) <small>{B.length} × {B[0]?.length ?? 0}</small></h2>
+                <Sheet matrix={B} onChange={(r, c, v) => setB(setCell(B, r, c, v))} />
+                <button type="button" className="la-compute" onClick={() => markLinearComplete(page.id)}>Compute A × B</button>
+                <Switch label="Animate computation" on={false} onChange={() => undefined} />
+              </Card>
+            </div>
+            <div className="la-center">
+            <Card className="la-viz" title="Geometric preview: A × B">
               <svg className="msk-graph" viewBox="0 0 520 360" role="img" aria-label="Unit square through A then B">
                 <rect width="520" height="360" fill="#f7fbff" />
                 <ArrowDefs />
@@ -371,23 +353,24 @@ function MatricesLab({ page }: { page: StudioMockupPage }) {
                 <path d="M232 226 L278 226" stroke="#94a3b8" markerEnd="url(#la-c)" />
               </svg>
               <p className="la-eq">Det(A) = {da == null ? "—" : fmt(da, 2)} · Det(B) = {db == null ? "—" : fmt(db, 2)} · Det(A × B) = {MC ? fmt(det2(MC), 2) : "—"}</p>
-            </Canvas>
-            <Live title="Dimensions & Compatibility" badge={<span className={`la-badge${compatible ? "" : " is-bad"}`}>{compatible ? "Compatible" : "Incompatible"}</span>}>
+            </Card>
+            </div>
+            <div className="la-rail">
+            <Card title="Dimensions & Compatibility" kicker={compatible ? "Compatible" : "Incompatible"}>
               <p className="la-eq">A: {A.length} × {A[0]?.length ?? 0} · B: {B.length} × {B[0]?.length ?? 0} → A × B: {product ? `${product.length} × ${product[0]?.length ?? 0}` : "—"}</p>
               <h2>Result C = A × B <small>{shown ? `${shown.length} × ${shown[0]?.length ?? 0}` : ""}</small></h2>
               {shown ? <Sheet matrix={shown} /> : <p className="la-note">Resize so inner dimensions match.</p>}
-              <div className="la-fold">
-                <h3>Computation (dot-product view)</h3>
-                {(product?.[0] ?? []).map((cell, j) => (
-                  <p key={j} className="la-eq">c<sub>1{j + 1}</sub> = A × b<sub>{j + 1}</sub> = {fmt(cell, 2)}</p>
-                ))}
-              </div>
-              <div className="la-fold">
-                <h3>Operation Explanation</h3>
-                <p className="la-note">Matrix multiplication transforms the columns of B through the linear transformation defined by A. Each entry c<sub>ij</sub> is the dot product of row i of A and column j of B.</p>
-                <StatusOk>Result verified</StatusOk>
-              </div>
-            </Live>
+            </Card>
+            <Card title="Computation (dot-product view)">
+              {(product?.[0] ?? []).map((cell, j) => (
+                <p key={j} className="la-eq">c<sub>1{j + 1}</sub> = A × b<sub>{j + 1}</sub> = {fmt(cell, 2)}</p>
+              ))}
+            </Card>
+            <Card title="Operation Explanation">
+              <p className="la-note">Matrix multiplication transforms the columns of B through the linear transformation defined by A. Each entry c<sub>ij</sub> is the dot product of row i of A and column j of B.</p>
+              <StatusOk>Result verified</StatusOk>
+            </Card>
+            </div>
           </>
         );
       }}
@@ -411,7 +394,8 @@ function RowReductionLab({ page }: { page: StudioMockupPage }) {
     <LinearAlgebraLabChrome page={page} wide>
       {(mode, setMode) => (
         <>
-          <Col title="Augmented matrix [A | b]">
+          <div className="la-rail">
+          <Card title="Augmented matrix [A | b]">
             <table className="la-sheet">
               <tbody>
                 {A.map((row, r) => (
@@ -428,7 +412,7 @@ function RowReductionLab({ page }: { page: StudioMockupPage }) {
                 ))}
               </tbody>
             </table>
-            <Toggle label="Exact" on={exact} onChange={setExact} />
+            <Switch label="Exact" on={exact} onChange={setExact} />
             <h2>Row operations</h2>
             <div className="la-ops">
               <button type="button" onClick={() => { const next = A.map((row) => row.slice()); const swap = next[0]!; next[0] = next[1]!; next[1] = swap; setA(next); const nb = [...b]; const t = nb[0]!; nb[0] = nb[1]!; nb[1] = t; setB(nb); }}>Swap</button>
@@ -437,17 +421,15 @@ function RowReductionLab({ page }: { page: StudioMockupPage }) {
               <button type="button" onClick={() => setA(setCell(A, 2, 0, 0))}>Zero</button>
             </div>
             <button type="button" className="la-compute" onClick={() => setCursor(steps.length - 1)}>Apply operation</button>
-          </Col>
-          <Canvas
-            title={viewMode(mode) === "2D View" ? "2D View" : viewMode(mode) === "Pivot Map" ? "Pivot Map" : "3D Visualization"}
-            tools={(
+          </Card>
+          </div>
+          <div className="la-center">
+          <Card className="la-viz" title={viewMode(mode) === "2D View" ? "2D View" : viewMode(mode) === "Pivot Map" ? "Pivot Map" : "3D Visualization"}>
               <div className="la-canvas-tools">
                 {["3D View", "2D View", "Pivot Map"].map((item) => (
                   <button key={item} type="button" className={item === mode ? "active" : ""} onClick={() => setMode(item)}>{item}</button>
                 ))}
               </div>
-            )}
-          >
             <svg className="msk-graph" viewBox="0 0 560 340" role="img" aria-label="Planes">
               <rect width="560" height="340" fill="#f7fbff" />
               {mode === "Pivot Map" ? (
@@ -479,8 +461,10 @@ function RowReductionLab({ page }: { page: StudioMockupPage }) {
               <button type="button" onClick={() => setCursor((v) => Math.max(0, v - 1))}>Previous</button>
               <button type="button" className="active" onClick={() => setCursor((v) => Math.min(steps.length - 1, v + 1))}>Next</button>
             </div>
-          </Canvas>
-          <Live title="System summary">
+          </Card>
+          </div>
+          <div className="la-rail">
+          <Card title="System summary">
             <p className="la-eq">Rank(A) = {cls.rankA}</p>
             <p className="la-eq">Rank([A|b]) = {cls.rankAb}</p>
             <p className="la-eq"># Variables = {A[0]?.length ?? 0}</p>
@@ -504,7 +488,8 @@ function RowReductionLab({ page }: { page: StudioMockupPage }) {
                 ))}
               </div>
             </div>
-          </Live>
+          </Card>
+          </div>
           <section className="la-band">
             <h2>Auto-solve</h2>
             <button type="button" className="la-soft" onClick={() => setCursor(steps.length - 1)}>Run elimination</button>
@@ -542,7 +527,8 @@ function LinearTransformsLab({ page, extra }: { page: StudioMockupPage; extra?: 
     <LinearAlgebraLabChrome page={page}>
       {(mode, setMode) => (
         <>
-          <Col title="Transformation" kicker="2×2 Matrix A">
+          <div className="la-rail">
+          <Card title="Transformation" kicker="2×2 Matrix A">
             <Sheet matrix={M} onChange={(r, c, v) => setM(setCell(M, r, c, v) as Mat2)} />
             <div className="la-ops">
               {presets.map(([name, mat]) => (
@@ -556,16 +542,14 @@ function LinearTransformsLab({ page, extra }: { page: StudioMockupPage; extra?: 
             <input type="range" min={0} max={1} step={0.01} value={t} aria-label="Interpolation" onChange={(event) => setT(Number(event.target.value))} />
             <h2>Composition</h2>
             <button type="button" className="la-soft" onClick={() => setM(namedTransform(mode.includes("R90") ? "R90" : "Shear"))}>Apply {mode}</button>
-          </Col>
-          <Canvas
-            title="2D transformation view"
-            tools={(
+          </Card>
+          </div>
+          <div className="la-center">
+          <Card className="la-viz" title="2D transformation view">
               <div className="la-canvas-tools">
                 <button type="button" className={!mode.includes("3D") ? "active" : ""} onClick={() => setMode("2D")}>2D</button>
                 <button type="button" className={mode.includes("3D") ? "active" : ""} onClick={() => setMode("3D")}>3D</button>
               </div>
-            )}
-          >
             <ExtraFrame
               mode={mode}
               extra={extra}
@@ -582,25 +566,28 @@ function LinearTransformsLab({ page, extra }: { page: StudioMockupPage; extra?: 
                 </svg>
               )}
             />
-          </Canvas>
-          <Live title="Matrix A" badge={<span className={`la-badge${Math.abs(det) < 1e-6 ? " is-bad" : ""}`}>{Math.abs(det) < 1e-6 ? "Singular" : "Invertible"}</span>}>
+            <div className="la-legend-row">
+              <span>Original (t = 0)</span><span>Transformed (t = 1)</span><span>Current (t = {fmt(t, 2)})</span>
+            </div>
+          </Card>
+          </div>
+          <div className="la-rail">
+          <Card title="Matrix A" kicker={Math.abs(det) < 1e-6 ? "Singular" : "Invertible"}>
             <p className="la-eq">det(A) = {fmt(det, 2)}</p>
             <p className="la-eq">Area scale = |det(A)| = {fmt(Math.abs(det), 2)}</p>
-            <div className="la-fold">
-              <h3>Mapped basis</h3>
-              <p className="la-eq">A e₁ = ({fmt(M[0][0], 2)}, {fmt(M[1][0], 2)})</p>
-              <p className="la-eq">A e₂ = ({fmt(M[0][1], 2)}, {fmt(M[1][1], 2)})</p>
-            </div>
-            <div className="la-fold">
-              <h3>Eigen information</h3>
-              <p className="la-eq">λ₁ ≈ {spec.values[0] == null ? "complex" : fmt(spec.values[0], 3)} · λ₂ ≈ {spec.values[1] == null ? "complex" : fmt(spec.values[1], 3)}</p>
-              <span className="la-badge is-info">{spec.complex ? "Not diagonalizable over R" : "Diagonalizable"}</span>
-            </div>
-            <div className="la-fold">
-              <h3>Geometric interpretation</h3>
-              <p className="la-note">A maps any vector x to Ax. Lengths change by stretching factors. The origin is fixed.</p>
-            </div>
-          </Live>
+          </Card>
+          <Card title="Mapped basis">
+            <p className="la-eq">A e₁ = ({fmt(M[0][0], 2)}, {fmt(M[1][0], 2)})</p>
+            <p className="la-eq">A e₂ = ({fmt(M[0][1], 2)}, {fmt(M[1][1], 2)})</p>
+          </Card>
+          <Card title="Eigen information">
+            <p className="la-eq">λ₁ ≈ {spec.values[0] == null ? "complex" : fmt(spec.values[0], 3)} · λ₂ ≈ {spec.values[1] == null ? "complex" : fmt(spec.values[1], 3)}</p>
+            <span className="la-badge is-info">{spec.complex ? "Not diagonalizable over R" : "Diagonalizable"}</span>
+          </Card>
+          <Card title="Geometric interpretation">
+            <p className="la-note">A maps any vector x to Ax. Lengths change by stretching factors. The origin is fixed.</p>
+          </Card>
+          </div>
         </>
       )}
     </LinearAlgebraLabChrome>
@@ -618,15 +605,18 @@ function DeterminantsLab({ page }: { page: StudioMockupPage }) {
     <LinearAlgebraLabChrome page={page} pills>
       {(mode) => (
         <>
-          <Col title="Matrix A" kicker="2 × 2">
+          <div className="la-rail">
+          <Card title="Matrix A" kicker="2 × 2">
             <Sheet matrix={A} onChange={(r, c, v) => setA(setCell(A, r, c, v) as Mat2)} />
             <h2>Basis vectors (columns of B)</h2>
             <p className="la-eq">v₁ = (1, 0) · v₂ = (0, 1)</p>
-            <Toggle label="Show unit square" on={showUnit} onChange={setShowUnit} />
-            <Toggle label="Grid" on onChange={() => undefined} />
+            <Switch label="Show unit square" on={showUnit} onChange={setShowUnit} />
+            <Switch label="Grid" on onChange={() => undefined} />
             <button type="button" className="la-soft" onClick={() => setA([[1, 2], [-1, 3]])}>Reset</button>
-          </Col>
-          <Canvas title={mode === "3D Volume" ? "Transformed volume" : "Original basis B → Transformed basis AB"}>
+          </Card>
+          </div>
+          <div className="la-center">
+          <Card className="la-viz" title={mode === "3D Volume" ? "Transformed volume" : "Original basis B → Transformed basis AB"}>
             <svg className="msk-graph is-interactive" viewBox="0 0 640 360" role="img" aria-label="Determinant area">
               <rect width="640" height="360" fill="#f7fbff" />
               <ArrowDefs />
@@ -647,15 +637,17 @@ function DeterminantsLab({ page }: { page: StudioMockupPage }) {
               <div><small>Area scaling</small><b>× {fmt(Math.abs(det), 3)}</b></div>
               <div><small>Area (det AB)</small><b>{fmt(Math.abs(det), 3)}</b></div>
             </div>
-          </Canvas>
-          <Live title="Live calculations">
+          </Card>
+          </div>
+          <div className="la-rail">
+          <Card title="Live calculations">
             <p className="la-eq">det(A) = ({fmt(A[0][0], 0)})({fmt(A[1][1], 0)}) − ({fmt(A[0][1], 0)})({fmt(A[1][0], 0)}) = {fmt(det, 3)}</p>
             <p className="la-eq">A v₁ = ({fmt(v1[0], 0)}, {fmt(v1[1], 0)}) · A v₂ = ({fmt(v2[0], 0)}, {fmt(v2[1], 0)})</p>
-            <div className="la-fold">
-              <h3>Geometric interpretation</h3>
-              <p className="la-note">|det(A)| = {fmt(Math.abs(det), 3)}. {det > 0 ? "Orientation is preserved (no flip)." : det < 0 ? "Orientation is reversed." : "The parallelogram collapses."}</p>
-            </div>
-          </Live>
+          </Card>
+          <Card title="Geometric interpretation">
+            <p className="la-note">|det(A)| = {fmt(Math.abs(det), 3)}. {det > 0 ? "Orientation is preserved (no flip)." : det < 0 ? "Orientation is reversed." : "The parallelogram collapses."}</p>
+          </Card>
+          </div>
         </>
       )}
     </LinearAlgebraLabChrome>
@@ -663,7 +655,13 @@ function DeterminantsLab({ page }: { page: StudioMockupPage }) {
 }
 
 function EigenLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNode }) {
-  const [M, setM] = useState<Mat2>([[2, 0], [0, 3]]);
+  const init: Mat2 = [[2, 1], [0, 3]];
+  const [M, setM] = useState<Mat2>(init);
+  const [show, setShow] = useState({ field: true, circle: true, eigen: true, axis: true, grid: true });
+  const [steps, setSteps] = useState(2);
+  const [k, setK] = useState(0);
+  const [speed, setSpeed] = useState("1.0x");
+  const [playing, setPlaying] = useState(false);
   const spec = eigen2(M);
   const det = det2(M);
   const trace = M[0][0] + M[1][1];
@@ -672,78 +670,155 @@ function EigenLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNode }
   const e2 = spec.vectors[1] ?? [0, 1];
   const n1 = mag3([e1[0], e1[1], 0]) || 1;
   const n2 = mag3([e2[0], e2[1], 0]) || 1;
+  const u1: [number, number] = [e1[0] / n1, e1[1] / n1];
+  const u2: [number, number] = [e2[0] / n2, e2[1] / n2];
+  const mappedCircle = Array.from({ length: 72 }, (_, i) => {
+    const t = (i / 72) * Math.PI * 2;
+    return apply2(M, Math.cos(t), Math.sin(t));
+  });
+  useEffect(() => {
+    if (!playing) return;
+    const ms = speed === "2.0x" ? 80 : speed === "0.5x" ? 280 : 140;
+    const id = window.setInterval(() => setK((v) => (v >= 6 ? 0 : v + 1)), ms);
+    return () => window.clearInterval(id);
+  }, [playing, speed]);
+
+  const ox = 280, oy = 210, u = 48;
 
   return (
-    <LinearAlgebraLabChrome page={page}>
+    <LinearAlgebraLabChrome
+      page={page}
+      header={<LinearLabHeader page={page} onReset={() => { setM(init); setK(0); setPlaying(false); }} onAnimate={() => setPlaying((v) => !v)} speed={speed} onSpeed={setSpeed} />}
+    >
       {(mode, setMode) => (
         <>
-          <Col title="Matrix A" kicker="Edit the 2×2 matrix">
-            <p className="la-eq">A = [[{fmt(M[0][0], 2)}, {fmt(M[0][1], 2)}], [{fmt(M[1][0], 2)}, {fmt(M[1][1], 2)}]]</p>
-            <Stepper label="a (1,1)" value={M[0][0]} min={-4} max={5} onChange={(v) => setM([[v, M[0][1]], M[1]])} />
-            <Stepper label="b (1,2)" value={M[0][1]} min={-4} max={5} onChange={(v) => setM([[M[0][0], v], M[1]])} />
-            <Stepper label="c (2,1)" value={M[1][0]} min={-4} max={5} onChange={(v) => setM([M[0], [v, M[1][1]]])} />
-            <Stepper label="d (2,2)" value={M[1][1]} min={-4} max={5} onChange={(v) => setM([M[0], [M[1][0], v]])} />
-            <h2>Display options</h2>
-            <Toggle label="Vector field" on onChange={() => undefined} />
-            <Toggle label="Unit circle / ellipse" on onChange={() => undefined} />
-            <Toggle label="Eigenvectors" on onChange={() => undefined} />
-            <button type="button" className="la-compute">Start animation</button>
-          </Col>
-          <Canvas
-            title={mode}
-            tools={(
-              <div className="la-canvas-tools">
+          <div className="la-rail">
+            <Card title="Matrix A" kicker="Edit the 2×2 matrix">
+              <p className="la-eq">A = </p>
+              <BracketMatrix matrix={M} />
+              <SliderRow label="a (1,1)" value={M[0][0]} min={-5} max={5} onChange={(v) => setM([[v, M[0][1]], M[1]])} />
+              <SliderRow label="b (1,2)" value={M[0][1]} min={-5} max={5} onChange={(v) => setM([[M[0][0], v], M[1]])} />
+              <SliderRow label="c (2,1)" value={M[1][0]} min={-5} max={5} onChange={(v) => setM([M[0], [v, M[1][1]]])} />
+              <SliderRow label="d (2,2)" value={M[1][1]} min={-5} max={5} onChange={(v) => setM([M[0], [M[1][0], v]])} />
+            </Card>
+            <Card title="Display options">
+              <Switch label="Vector field" on={show.field} onChange={(field) => setShow({ ...show, field })} />
+              <Switch label="Unit circle / ellipse" on={show.circle} onChange={(circle) => setShow({ ...show, circle })} />
+              <Switch label="Eigenvectors" on={show.eigen} onChange={(eigen) => setShow({ ...show, eigen })} />
+              <Switch label="Axis" on={show.axis} onChange={(axis) => setShow({ ...show, axis })} />
+              <Switch label="Grid" on={show.grid} onChange={(grid) => setShow({ ...show, grid })} />
+            </Card>
+            <Card title="Transformation" kicker="Steps per cycle">
+              <div className="la-seg">
+                {[1, 2, 5, 10].map((n) => (
+                  <button key={n} type="button" className={steps === n ? "active" : ""} onClick={() => setSteps(n)}>{n}</button>
+                ))}
+              </div>
+              <button type="button" className="la-compute" onClick={() => setPlaying((v) => !v)}>{playing ? "Pause animation" : "Start animation"}</button>
+            </Card>
+          </div>
+          <div className="la-center">
+            <Card className="la-viz">
+              <div className="la-canvas-tools" style={{ justifyContent: "center", marginBottom: 8 }}>
                 {["2D View", "3D View", "Phase Portrait"].map((item) => (
                   <button key={item} type="button" className={item === mode ? "active" : ""} onClick={() => setMode(item)}>{item}</button>
                 ))}
               </div>
-            )}
-          >
-            <ExtraFrame
-              mode={mode}
-              extra={extra}
-              fallback={(
-                <svg className="msk-graph" viewBox="0 0 560 400" role="img" aria-label="Eigen view">
-                  <rect width="560" height="400" fill="#f7fbff" />
-                  <ArrowDefs />
-                  <AxisGrid ox={280} oy={200} unit={42} dark={false} />
-                  {Array.from({ length: 12 }, (_, i) => Array.from({ length: 8 }, (_, j) => {
-                    const x = -5 + i;
-                    const y = -3 + j;
-                    const [dx, dy] = apply2(M, x * 0.12, y * 0.12);
-                    return <line key={`${i}-${j}`} x1={280 + x * 28} y1={200 - y * 28} x2={280 + x * 28 + dx * 18} y2={200 - y * 28 - dy * 18} stroke="#7dd3fc" />;
-                  }))}
-                  <circle cx="280" cy="200" r="70" fill="none" stroke="#38bdf8" />
-                  {mode === "Phase Portrait" ? paths.map((pts, i) => (
-                    <polyline key={i} fill="none" stroke={LA_B} opacity="0.45" points={pts.map(([x, y]) => `${280 + x * 36},${200 - y * 36}`).join(" ")} />
-                  )) : <ellipse cx="280" cy="200" rx={70 * Math.abs(spec.values[0] ?? 1) / 2} ry={70 * Math.abs(spec.values[1] ?? 1) / 2} fill="rgba(139,69,244,.14)" stroke={LA_B} strokeDasharray="6 4" />}
-                  <line x1={280 - e1[0] / n1 * 160} y1={200 + e1[1] / n1 * 160} x2={280 + e1[0] / n1 * 160} y2={200 - e1[1] / n1 * 160} stroke={LA_A} strokeDasharray="5 4" />
-                  <line x1={280 - e2[0] / n2 * 160} y1={200 + e2[1] / n2 * 160} x2={280 + e2[0] / n2 * 160} y2={200 - e2[1] / n2 * 160} stroke={LA_C} />
-                </svg>
-              )}
-            />
-          </Canvas>
-          <Live title="Eigenvalues">
-            <p className="la-eq" style={{ color: LA_D }}>λ₁ = {spec.values[0] == null ? "complex" : fmt(spec.values[0], 4)} (real)</p>
-            <p className="la-eq" style={{ color: LA_C }}>λ₂ = {spec.values[1] == null ? "complex" : fmt(spec.values[1], 4)} (real)</p>
-            <div className="la-fold">
-              <h3>Eigenvectors (normalized)</h3>
-              <p className="la-eq">v₁ = ({fmt(e1[0] / n1, 4)}, {fmt(e1[1] / n1, 4)})</p>
-              <p className="la-eq">v₂ = ({fmt(e2[0] / n2, 4)}, {fmt(e2[1] / n2, 4)})</p>
-            </div>
-            <div className="la-fold">
-              <h3>Characteristic polynomial</h3>
+              <ExtraFrame
+                mode={mode}
+                extra={extra}
+                fallback={(
+                  <svg className="msk-graph" viewBox="0 0 560 420" role="img" aria-label="Eigen view">
+                    <rect width="560" height="420" fill="#f7fbff" />
+                    <ArrowDefs />
+                    {show.grid ? <AxisGrid ox={ox} oy={oy} unit={u} dark={false} /> : null}
+                    {show.axis ? (
+                      <>
+                        <line x1="40" y1={oy} x2="520" y2={oy} stroke="#94a3b8" />
+                        <line x1={ox} y1="20" x2={ox} y2="400" stroke="#94a3b8" />
+                        <text x="528" y={oy + 4} fontSize="12" fill="#64748b">x</text>
+                        <text x={ox + 6} y="16" fontSize="12" fill="#64748b">y</text>
+                      </>
+                    ) : null}
+                    {show.field ? Array.from({ length: 17 }, (_, i) => Array.from({ length: 13 }, (_, j) => {
+                      const x = -4 + i * 0.5;
+                      const y = -3 + j * 0.5;
+                      const [dx, dy] = apply2(M, x, y);
+                      const L = Math.hypot(dx, dy) || 1;
+                      const s = 10;
+                      return <line key={`${i}-${j}`} x1={ox + x * u} y1={oy - y * u} x2={ox + x * u + (dx / L) * s} y2={oy - y * u - (dy / L) * s} stroke="#7dd3fc" strokeWidth="1.4" />;
+                    })) : null}
+                    {show.circle ? <circle cx={ox} cy={oy} r={u} fill="none" stroke="#38bdf8" strokeWidth="2" /> : null}
+                    {mode === "Phase Portrait" ? paths.map((pts, i) => (
+                      <polyline key={i} fill="none" stroke={LA_B} opacity="0.45" points={pts.map(([x, y]) => `${ox + x * 36},${oy - y * 36}`).join(" ")} />
+                    )) : show.circle ? (
+                      <polygon points={mappedCircle.map(([x, y]) => `${ox + x * u},${oy - y * u}`).join(" ")} fill="rgba(139,69,244,.16)" stroke={LA_B} strokeDasharray="6 4" />
+                    ) : null}
+                    {show.eigen ? (
+                      <>
+                        <line x1={ox - u1[0] * 180} y1={oy + u1[1] * 180} x2={ox + u1[0] * 180} y2={oy - u1[1] * 180} stroke={LA_D} strokeWidth="3" />
+                        <line x1={ox - u2[0] * 180} y1={oy + u2[1] * 180} x2={ox + u2[0] * 180} y2={oy - u2[1] * 180} stroke={LA_C} strokeWidth="3" />
+                        <circle cx={ox + u1[0] * u} cy={oy - u1[1] * u} r="5" fill={LA_D} />
+                        <circle cx={ox + u2[0] * u * (spec.values[1] ?? 1)} cy={oy - u2[1] * u * (spec.values[1] ?? 1)} r="5" fill={LA_C} />
+                        <text x={ox + u1[0] * 160} y={oy - u1[1] * 160 - 8} fill={LA_D} fontSize="12" fontWeight={800}>v₁</text>
+                        <text x={ox + u2[0] * 150} y={oy - u2[1] * 150 - 8} fill={LA_C} fontSize="12" fontWeight={800}>v₂</text>
+                      </>
+                    ) : null}
+                  </svg>
+                )}
+              />
+              <div className="la-legend-row">
+                <span>Unit circle</span>
+                <span>Image of circle</span>
+                <span>Eigenvector v₁</span>
+                <span>Eigenvector v₂</span>
+              </div>
+            </Card>
+            <Card title="Repeated transformation (Aᵏ)">
+              <div className="la-ak">
+                <span>k = {k}</span>
+                <input type="range" min={0} max={6} step={1} value={k} aria-label="k" onChange={(event) => setK(Number(event.target.value))} />
+              </div>
+              <div className="la-thumbs">
+                {[0, 1, 2, 3, 4, 5, 6].map((power) => {
+                  const pts = Array.from({ length: 36 }, (_, i) => {
+                    const t = (i / 36) * Math.PI * 2;
+                    let x = Math.cos(t), y = Math.sin(t);
+                    for (let p = 0; p < power; p += 1) {
+                      const n = apply2(M, x, y);
+                      x = n[0]; y = n[1];
+                    }
+                    return `${28 + x * 10},${28 - y * 10}`;
+                  });
+                  return <svg key={power} viewBox="0 0 56 56" aria-label={`A^${power}`}><polygon points={pts.join(" ")} fill="rgba(139,69,244,.15)" stroke={LA_B} /></svg>;
+                })}
+              </div>
+            </Card>
+          </div>
+          <div className="la-rail">
+            <Card title="Eigenvalues">
+              <p className="la-eq" style={{ color: LA_D }}>λ₁ = {spec.values[0] == null ? "complex" : fmt(spec.values[0], 4)} (real)</p>
+              <p className="la-eq" style={{ color: LA_C }}>λ₂ = {spec.values[1] == null ? "complex" : fmt(spec.values[1], 4)} (real)</p>
+            </Card>
+            <Card title="Eigenvectors (normalized)">
+              <p className="la-eq">v₁ = ({fmt(u1[0], 4)}, {fmt(u1[1], 4)})</p>
+              <p className="la-eq">v₂ = ({fmt(u2[0], 4)}, {fmt(u2[1], 4)})</p>
+            </Card>
+            <Card title="Characteristic polynomial">
               <p className="la-eq">p(λ) = det(A − λI) = λ² − {fmt(trace, 0)}λ + {fmt(det, 0)}</p>
-            </div>
-            <div className="la-fold">
-              <h3>Stability classification</h3>
+              <p className="la-eq">= (λ − {fmt(spec.values[0] ?? 0, 0)})(λ − {fmt(spec.values[1] ?? 0, 0)})</p>
+            </Card>
+            <Card title="Stability classification">
               <span className={`la-badge${(spec.values[0] ?? 0) > 0 && (spec.values[1] ?? 0) > 0 ? " is-warn" : ""}`}>{(spec.values[0] ?? 0) > 0 && (spec.values[1] ?? 0) > 0 ? "UNSTABLE (NODE)" : "Check signs"}</span>
-            </div>
-            <div className="la-fold">
-              <h3>Quick checks</h3>
+              <p className="la-note">All eigenvalues are real and positive. Trajectories diverge from the origin along invariant directions.</p>
+            </Card>
+            <Card title="Geometric interpretation">
+              <p className="la-note">Eigenvectors are invariant directions. A v₁ = {fmt(spec.values[0] ?? 0, 0)} v₁. Vectors not on eigenvectors are sheared toward v₂ and stretched.</p>
+            </Card>
+            <Card title="Quick checks">
               <p className="la-eq">det(A) = {fmt(det, 4)} · trace(A) = {fmt(trace, 4)}</p>
-            </div>
-          </Live>
+            </Card>
+          </div>
         </>
       )}
     </LinearAlgebraLabChrome>
@@ -772,7 +847,8 @@ function OrthoLab({ page }: { page: StudioMockupPage }) {
     <LinearAlgebraLabChrome page={page}>
       {(mode, setMode) => (
         <>
-          <Col title="Inputs">
+          <div className="la-rail">
+          <Card title="Inputs">
             <p className="la-eq">v ({fmt(v[0], 0)}, {fmt(v[1], 0)}, {fmt(v[2], 0)})</p>
             <Stepper label="vx" value={v[0]} min={-4} max={4} onChange={(x) => setV([x, v[1], v[2]])} />
             <p className="la-eq">u ({fmt(u[0], 0)}, {fmt(u[1], 0)}, {fmt(u[2], 0)})</p>
@@ -781,17 +857,15 @@ function OrthoLab({ page }: { page: StudioMockupPage }) {
             <Stepper label="nx" value={n[0]} min={-4} max={4} onChange={(x) => setN([x, n[1], n[2]])} />
             <h2>Gram–Schmidt (from v, u, n)</h2>
             <Stepper label="Step" value={step} min={1} max={3} step={1} onChange={setStep} />
-          </Col>
-          <Canvas
-            title="Orthogonal projection of v onto line span(u) and plane n · x = 0"
-            tools={(
+          </Card>
+          </div>
+          <div className="la-center">
+          <Card className="la-viz" title="Orthogonal projection of v onto line span(u) and plane n · x = 0">
               <div className="la-canvas-tools">
                 {["3D View", "Vector Decomp", "2D Projections"].map((item) => (
                   <button key={item} type="button" className={item === mode ? "active" : ""} onClick={() => setMode(item)}>{item}</button>
                 ))}
               </div>
-            )}
-          >
             <svg className="msk-graph" viewBox="0 0 520 360" role="img" aria-label="Orthogonality">
               <rect width="520" height="360" fill="#f7fbff" />
               <ArrowDefs />
@@ -805,26 +879,26 @@ function OrthoLab({ page }: { page: StudioMockupPage }) {
               <DragHandle x={p(u).x} y={p(u).y} fill={LA_E} label="u" />
               <DragHandle x={p(n).x} y={p(n).y} fill={LA_B} label="n" />
             </svg>
-          </Canvas>
-          <Live title="Projection onto Line (span(u))">
+          </Card>
+          </div>
+          <div className="la-rail">
+          <Card title="Projection onto Line (span(u))">
             <p className="la-eq">proj<sub>u</sub> v = ({fmt(pu[0], 2)}, {fmt(pu[1], 2)}, {fmt(pu[2], 2)})</p>
             <p className="la-eq">r<sub>u</sub> = v − proj = ({fmt(ru[0], 2)}, {fmt(ru[1], 2)}, {fmt(ru[2], 2)})</p>
             <p className="la-eq">u · r<sub>u</sub> = {fmt(dot3(u, ru), 3)}</p>
-            <div className="la-fold">
-              <h3>Projection onto Plane (n · x = 0)</h3>
-              <p className="la-eq">proj<sub>n</sub> v = ({fmt(pn[0], 2)}, {fmt(pn[1], 2)}, {fmt(pn[2], 2)})</p>
-            </div>
-            <div className="la-fold">
-              <h3>Gram–Schmidt building ON basis</h3>
-              <p className="la-eq">u₁ = ({fmt(u1[0], 3)}, {fmt(u1[1], 3)}, {fmt(u1[2], 3)})</p>
-              {step >= 2 ? <p className="la-eq">u₂ = ({fmt(u2[0], 3)}, {fmt(u2[1], 3)}, {fmt(u2[2], 3)})</p> : null}
-              {step >= 3 ? <p className="la-eq">u₃ = ({fmt(u3[0], 3)}, {fmt(u3[1], 3)}, {fmt(u3[2], 3)})</p> : null}
-            </div>
-            <div className="la-fold">
-              <h3>Lengths & Angles</h3>
-              <p className="la-eq">||v|| = {fmt(mag3(v), 3)} · ∠(v, u) = {fmt(Math.acos(clamp(dot3(v, u) / ((mag3(v) * mag3(u)) || 1), -1, 1)) * 180 / Math.PI, 1)}°</p>
-            </div>
-          </Live>
+          </Card>
+          <Card title="Projection onto Plane (n · x = 0)">
+            <p className="la-eq">proj<sub>n</sub> v = ({fmt(pn[0], 2)}, {fmt(pn[1], 2)}, {fmt(pn[2], 2)})</p>
+          </Card>
+          <Card title="Gram–Schmidt building ON basis">
+            <p className="la-eq">u₁ = ({fmt(u1[0], 3)}, {fmt(u1[1], 3)}, {fmt(u1[2], 3)})</p>
+            {step >= 2 ? <p className="la-eq">u₂ = ({fmt(u2[0], 3)}, {fmt(u2[1], 3)}, {fmt(u2[2], 3)})</p> : null}
+            {step >= 3 ? <p className="la-eq">u₃ = ({fmt(u3[0], 3)}, {fmt(u3[1], 3)}, {fmt(u3[2], 3)})</p> : null}
+          </Card>
+          <Card title="Lengths & Angles">
+            <p className="la-eq">||v|| = {fmt(mag3(v), 3)} · ∠(v, u) = {fmt(Math.acos(clamp(dot3(v, u) / ((mag3(v) * mag3(u)) || 1), -1, 1)) * 180 / Math.PI, 1)}°</p>
+          </Card>
+          </div>
         </>
       )}
     </LinearAlgebraLabChrome>
@@ -859,16 +933,19 @@ function LeastSquaresLab({ page }: { page: StudioMockupPage }) {
     <LinearAlgebraLabChrome page={page}>
       {(mode) => (
         <>
-          <Col title="Data & Model" kicker="Model">
+          <div className="la-rail">
+          <Card title="Data & Model" kicker="Model">
             <p className="la-eq">y = β₀ + β₁ x</p>
             <p className="la-note">n = {n}</p>
             <button type="button" className="la-soft" onClick={() => setPts(seedPoints().map(([x, y]) => [x ?? 0, (y ?? 0) + (Math.random() - 0.5)]))}>Randomize</button>
-            <Toggle label="Best-fit line" on onChange={() => undefined} />
-            <Toggle label="Residuals" on onChange={() => undefined} />
+            <Switch label="Best-fit line" on onChange={() => undefined} />
+            <Switch label="Residuals" on onChange={() => undefined} />
             <Toggle label="Squared-error tiles" on onChange={() => undefined} />
             <button type="button" className="la-soft" onClick={() => setPts([...pts, [2.4, -2]])}>Add outlier</button>
-          </Col>
-          <Canvas title="Data with best-fit line">
+          </Card>
+          </div>
+          <div className="la-center">
+          <Card className="la-viz" title="Data with best-fit line">
             <svg
               className="msk-graph is-interactive"
               viewBox="0 0 520 280"
@@ -909,23 +986,23 @@ function LeastSquaresLab({ page }: { page: StudioMockupPage }) {
               <text x="248" y="32" fontSize="12" fill={LA_A}>b</text>
               <text x="308" y="104" fontSize="12" fill={LA_D}>b̂ = A x̂</text>
             </svg>
-          </Canvas>
-          <Live title="Design matrix A and vector b">
+          </Card>
+          </div>
+          <div className="la-rail">
+          <Card title="Design matrix A and vector b">
             <p className="la-eq">A = [1 x] · b = y</p>
             <Sheet matrix={pts.slice(0, 6).map(([x = 0, y = 0]) => [1, x, y])} />
-            <div className="la-fold">
-              <h3>Normal equations Aᵀ A x̂ = Aᵀ b</h3>
-              <p className="la-eq">β₀ = {fmt(fit?.x ?? intercept, 3)} · β₁ = {fmt(fit?.y ?? slope, 3)}</p>
-            </div>
-            <div className="la-fold">
-              <h3>Solution x̂</h3>
-              <p className="la-eq">ŷ = {fmt(intercept, 3)} + {fmt(slope, 3)} x</p>
-            </div>
-            <div className="la-fold">
-              <h3>Fit quality</h3>
-              <p className="la-eq">SSE = {fmt(sse, 3)} · R² = {fmt(r2, 4)} · SE = {fmt(se, 4)}</p>
-            </div>
-          </Live>
+          </Card>
+          <Card title="Normal equations Aᵀ A x̂ = Aᵀ b">
+            <p className="la-eq">β₀ = {fmt(fit?.x ?? intercept, 3)} · β₁ = {fmt(fit?.y ?? slope, 3)}</p>
+          </Card>
+          <Card title="Solution x̂">
+            <p className="la-eq">ŷ = {fmt(intercept, 3)} + {fmt(slope, 3)} x</p>
+          </Card>
+          <Card title="Fit quality">
+            <p className="la-eq">SSE = {fmt(sse, 3)} · R² = {fmt(r2, 4)} · SE = {fmt(se, 4)}</p>
+          </Card>
+          </div>
         </>
       )}
     </LinearAlgebraLabChrome>
@@ -950,7 +1027,8 @@ function PlaygroundLab({ page, extra }: { page: StudioMockupPage; extra?: ReactN
     <LinearAlgebraLabChrome page={page} play>
       {(mode) => (
         <div className="la-play">
-          <Col title="Transformation matrix" kicker="Edit the 3×3 matrix A">
+          <div className="la-rail">
+          <Card title="Transformation matrix" kicker="Edit the 3×3 matrix A">
             <Sheet matrix={A} onChange={(r, c, v) => setA(setCell(A, r, c, v))} />
             <h2>Quick presets</h2>
             <div className="la-presets">
@@ -962,13 +1040,13 @@ function PlaygroundLab({ page, extra }: { page: StudioMockupPage; extra?: ReactN
               <button type="button" onClick={() => setA([[1, 0, 0], [0, 1, 0], [0, 0, -1]])}>Reflect Z</button>
             </div>
             <h2>Object & basis controls</h2>
-            <Toggle label="Show grid" on onChange={() => undefined} />
-            <Toggle label="Snap to axes" on={false} onChange={() => undefined} />
-          </Col>
+            <Switch label="Show grid" on onChange={() => undefined} />
+            <Switch label="Snap to axes" on={false} onChange={() => undefined} />
+          </Card>
+          </div>
           <div>
             <div className="la-play-canvases">
-              <section className="la-canvas">
-                <h2>2D transformation</h2>
+              <Card className="la-viz" title="2D transformation">
                 <ExtraFrame
                   mode={mode}
                   extra={extra}
@@ -988,9 +1066,8 @@ function PlaygroundLab({ page, extra }: { page: StudioMockupPage; extra?: ReactN
                   <div><small>Orientation</small><b>{det >= 0 ? "Preserved" : "Flipped"}</b></div>
                   <div><small>Invertible</small><b>{Math.abs(det) > 1e-6 ? "Yes" : "No"}</b></div>
                 </div>
-              </section>
-              <section className="la-canvas">
-                <h2>3D transformation</h2>
+              </Card>
+              <Card className="la-viz" title="3D transformation">
                 <svg className="msk-graph" viewBox="0 0 360 280" role="img" aria-label="3D playground">
                   <rect width="360" height="280" fill="#f7fbff" />
                   <polygon points={mapped.slice(0, 4).map((v) => `${p3(v).x},${p3(v).y}`).join(" ")} fill="rgba(139,69,244,.25)" stroke={LA_B} />
@@ -1002,31 +1079,30 @@ function PlaygroundLab({ page, extra }: { page: StudioMockupPage; extra?: ReactN
                   <div><small>Condition #</small><b>{fmt(Math.abs(det) > 1e-6 ? 1 / Math.abs(det) : 99, 2)}</b></div>
                   <div><small>Rank</small><b>{Math.abs(det) > 1e-6 ? "3" : " < 3"}</b></div>
                 </div>
-              </section>
+              </Card>
             </div>
-            <section className="la-band" style={{ marginTop: 10 }}>
-              <h2>Slider scrub interpolate between identity and A</h2>
+            <Card title="Slider scrub interpolate between identity and A">
               <input type="range" min={0} max={1} step={0.01} value={t} aria-label="Interpolate" onChange={(event) => setT(Number(event.target.value))} />
-            </section>
+            </Card>
           </div>
-          <Live title="Matrix analysis">
+          <div className="la-rail">
+          <Card title="Matrix analysis">
             <p className="la-eq">det(A) = {fmt(det, 3)}</p>
             <p className="la-eq">Rank = {Math.abs(det) > 1e-6 ? 3 : 2}</p>
             <p className="la-eq">Trace = {fmt((A[0]?.[0] ?? 0) + (A[1]?.[1] ?? 0) + (A[2]?.[2] ?? 0), 3)}</p>
             <span className={`la-badge${Math.abs(det) > 1e-6 ? "" : " is-bad"}`}>{Math.abs(det) > 1e-6 ? "Invertible" : "Singular"}</span>
-            <div className="la-fold">
-              <h3>Composition stack</h3>
-              <ol className="la-history">
-                {stack.map((item) => <li key={item}>{item}</li>)}
-              </ol>
-              <button type="button" className="la-soft" onClick={() => setStack([...stack, "Scale (1.5, 1, 1)"])}>Add transform</button>
-            </div>
-            <div className="la-fold">
-              <h3>Composed matrix</h3>
-              <p className="la-eq">A ≈ T₄ T₃ T₂ T₁</p>
-              <p className="la-eq">Determinant {fmt(det, 3)}</p>
-            </div>
-          </Live>
+          </Card>
+          <Card title="Composition stack">
+            <ol className="la-history">
+              {stack.map((item) => <li key={item}>{item}</li>)}
+            </ol>
+            <button type="button" className="la-soft" onClick={() => setStack([...stack, "Scale (1.5, 1, 1)"])}>Add transform</button>
+          </Card>
+          <Card title="Composed matrix">
+            <p className="la-eq">A ≈ T₄ T₃ T₂ T₁</p>
+            <p className="la-eq">Determinant {fmt(det, 3)}</p>
+          </Card>
+          </div>
         </div>
       )}
     </LinearAlgebraLabChrome>
