@@ -24,7 +24,7 @@ import { useTrigSession } from "../trigStudioSession";
 import ModellingStudioLab from "./ModellingLabs";
 import { InverseTrigLab as TargetInverseTrigLab } from "./InverseTrigLab";
 import { ApplicationsLab as TargetApplicationsLab } from "./ApplicationsLab";
-import { ArRoomScene, StudioMath3D } from "../../shared/studioMath3D";
+import { ArRoomScene, ElevationTriangle, StudioMath3D } from "../../shared/studioMath3D";
 
 function Chrome({ page, children, layout, toolbar }: { page: StudioMockupPage; children: ReactNode | ((mode: string) => ReactNode); layout?: "quad"; toolbar?: ReactNode }) {
   return (
@@ -160,7 +160,7 @@ function ArLab({ page, kind }: { page: StudioMockupPage; kind: "geometry" | "tri
           <span className="msk-cam-hud">{kind === "trig" ? (mode === "Wave Projection" ? "WAVE OVERLAY" : mode === "Unit Circle" ? "UNIT CIRCLE AR" : mode === "Distance" ? "DISTANCE TAPE" : mode === "Angle" ? "ANGLE HUD" : mode === "Triangle Overlay" ? "TRIANGLE OVERLAY" : "HEIGHT MEASURE") : "AR CAMERA"}</span>
           <i className="msk-cam-rec" />
           <div className="msk-cam-frame" />
-        {kind === "trig" ? (
+        {kind === "trig" && (mode === "Unit Circle" || mode === "Wave Projection") ? (
           <svg className="msk-graph" viewBox="0 0 560 360" role="img" aria-label={mode}>
             <rect width="560" height="360" fill="#9ec9f0" />
             <rect x="0" y="230" width="560" height="130" fill="#c4b8a4" />
@@ -172,22 +172,16 @@ function ArLab({ page, kind }: { page: StudioMockupPage; kind: "geometry" | "tri
                 <circle cx="280" cy="180" r="70" fill="none" stroke="#22d3ee" strokeWidth="2" />
                 <line x1="280" y1="180" x2={280 + 70 * Math.cos(session.theta * Math.PI / 180)} y2={180 - 70 * Math.sin(session.theta * Math.PI / 180)} stroke="#fbbf24" strokeWidth="2" />
               </>
-            ) : mode === "Wave Projection" ? (
-              <polyline points={Array.from({ length: 40 }, (_, i) => `${20 + i * 13},${200 - Math.sin(i / 4 + session.theta * Math.PI / 180) * 28}`).join(" ")} fill="none" stroke="#fbbf24" strokeWidth="2.4" />
-            ) : mode === "Distance" ? (
-              <line x1="90" y1="250" x2="440" y2="250" stroke="#22d3ee" strokeWidth="4" />
-            ) : mode === "Angle" ? (
-              <path d="M90 250 L440 250 L440 120" fill="none" stroke="#f59e0b" strokeWidth="2" />
             ) : (
-              <>
-                <line x1="90" y1="250" x2="440" y2="250" stroke="#22d3ee" strokeDasharray="4 3" />
-                <line x1="440" y1="250" x2="440" y2={250 - height * 4.2} stroke="#8b45f4" strokeDasharray="4 3" />
-                <line x1="90" y1="250" x2="440" y2={250 - height * 4.2} stroke="#f59e0b" />
-              </>
+              <polyline points={Array.from({ length: 40 }, (_, i) => `${20 + i * 13},${200 - Math.sin(i / 4 + session.theta * Math.PI / 180) * 28}`).join(" ")} fill="none" stroke="#fbbf24" strokeWidth="2.4" />
             )}
             <text x="240" y="244" fill="#0f172a" fontSize="12">{fmt(dist, 2)} m</text>
             <text x="150" y="220" fill="#f59e0b" fontSize="12">{fmt(elev, 1)}°</text>
           </svg>
+        ) : kind === "trig" ? (
+          <StudioMath3D label={`${mode} elevation`}>
+            <ElevationTriangle dist={dist} height={height} />
+          </StudioMath3D>
         ) : (
           <StudioMath3D label="Room AR overlay">
             <ArRoomScene dist={dist} elev={elev} scale={scale} />

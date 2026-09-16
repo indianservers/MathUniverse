@@ -38,6 +38,7 @@ import CalculusLimitsStudio from "./CalculusLimitsStudio";
 import CalculusMultivariableStudio from "./CalculusMultivariableStudio";
 import CalculusConceptStudio, { type ConceptPage } from "./CalculusConceptStudio";
 import CalculusEnhancementWorkbench from "../studios/calculus/CalculusEnhancementWorkbench";
+import { StudioMath3D, WasherSolid } from "../studios/shared/studioMath3D";
 import StudioBreadcrumb, { mathStudioCrumbs } from "../components/ui/StudioBreadcrumb";
 import StudioHomeButtons from "../components/ui/StudioHomeButtons";
 import { StudioCanvasToolbar } from "../components/ui/StudioCanvasToolbar";
@@ -749,7 +750,6 @@ function IntegralApplicationLab({ mode, fn, a, b, n }: { mode: string; fn: ((x: 
   const g = () => 4;
   const samples = sample(f, xMin, xMax, 280);
   const lo = Math.min(a, b), hi = Math.max(a, b);
-  const sliceX = lo + (hi - lo) * 0.65;
   if (mode === "volumes") {
     const exact = washerVolume(lo, hi);
     const slices = Math.max(8, Math.min(40, n));
@@ -768,23 +768,10 @@ function IntegralApplicationLab({ mode, fn, a, b, n }: { mode: string; fn: ((x: 
           <text x={sx(0) + 8} y={sy(4) - 8} className="cs-light-text">y = 4</text>
           <text x={sx(1.1)} y={sy(1.4)} className="cs-light-text">y = x²</text>
         </svg>
-        <svg className="cs-graph cs-light-graph" viewBox={`0 0 ${width} ${height}`} role="img" aria-label="3D solid of revolution washer method">
-          <rect width={width} height={height} rx="16" fill="#f8fbff" />
-          <text x="24" y="28" className="cs-light-title">3D Solid of Revolution (Washer Method)</text>
-          {Array.from({ length: slices }, (_, i) => {
-            const x = lo + i / (slices - 1) * (hi - lo);
-            const outer = 4, inner = Math.abs(f(x));
-            const cx = sx(x * 0.85), cy = sy(0);
-            return (
-              <g key={i} opacity={0.18 + 0.55 * (1 - Math.abs(x) / 2)}>
-                <ellipse cx={cx} cy={cy} rx={18} ry={Math.min(88, outer * 16)} fill="#fde68a" stroke="#d97706" />
-                <ellipse cx={cx} cy={cy} rx={10} ry={Math.min(40, inner * 16)} fill="#fff" stroke="#0ea5e9" />
-              </g>
-            );
-          })}
-          <rect x={sx(sliceX) - 16} y={sy(4) - 6} width="32" height={Math.abs(sy(4) - sy(-4))} fill="rgba(251,146,60,.35)" stroke="#f97316" />
-          <text x="24" y={height - 18} className="cs-light-text">Washer volume {fmt(exact, 4)} · n = {n}</text>
-        </svg>
+        <StudioMath3D label="3D solid of revolution washer method">
+          <WasherSolid lo={lo} hi={hi} inner={f} slices={slices} />
+        </StudioMath3D>
+        <p className="cs-light-text">Washer volume {fmt(exact, 4)} · n = {n}</p>
       </div>
     );
   }

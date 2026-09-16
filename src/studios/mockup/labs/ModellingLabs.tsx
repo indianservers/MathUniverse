@@ -5,6 +5,7 @@ import { ChallengeBox, Field, LiveRow, Panel, SliderRow, StatusOk, clamp, fmt } 
 import { aic, fitMetrics, formatComparisonReport, parseCsvPairs, sampleGrowth } from "../../modelling/comparisonMath";
 import { astarRoute, shortestRoute, trafficGraph } from "../../modelling/networkMath";
 import { Phase1LabChrome } from "../../phase1/Phase1LabChrome";
+import { ProjectilePaths, StudioMath3D } from "../../shared/studioMath3D";
 
 function Chrome({ page, children }: { page: StudioMockupPage; children: React.ReactNode | ((mode: string) => React.ReactNode) }) {
   return <Phase1LabChrome page={page}>{children}</Phase1LabChrome>;
@@ -89,7 +90,8 @@ function MotionLab({ page }: { page: StudioMockupPage }) {
             <p className="msk-note">Mode {mode}: Model A ignores drag; Model B uses quadratic drag.</p>
           </Panel>
           <section className="msk-panel msk-canvas" data-mode-canvas={mode} data-studio="modelling">
-            <div className="msk-card-top"><h2>Simulation view</h2><span>{mode === "Vehicle" ? "Road" : mode === "Pursuit" ? "Chase" : "2D · 3D"}</span></div>
+            <div className="msk-card-top"><h2>Simulation view</h2><span>{mode === "Vehicle" ? "Road" : mode === "Pursuit" ? "Chase" : "3D trajectory"}</span></div>
+            {mode === "Vehicle" || mode === "Pursuit" ? (
             <svg className="msk-graph is-interactive msk-model-field" viewBox="0 0 640 220" role="img" aria-label={`${mode} motion comparison`}>
               <defs>
                 <linearGradient id="md-pitch" x1="0" y1="0" x2="0" y2="1">
@@ -131,6 +133,11 @@ function MotionLab({ page }: { page: StudioMockupPage }) {
               <text x="16" y="18" fill="#475569" fontSize="11">y (m)</text>
               <text x="590" y="214" fill="#475569" fontSize="11">x (m)</text>
             </svg>
+            ) : (
+              <StudioMath3D label="Projectile 3D trajectory">
+                <ProjectilePaths a={a} b={b} play={bt} />
+              </StudioMath3D>
+            )}
             <SliderRow label="t" value={tPlay} min={0} max={tMax} step={0.02} onChange={setTPlay} unit="s" />
             <div className="msk-model-minis">
               <MiniPlot points={a.map((p) => p.x)} color="#147df2" yMax={Math.max(rangeA, 1)} label="Position" />

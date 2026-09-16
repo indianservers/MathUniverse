@@ -275,3 +275,143 @@ export function lift2(M: number[][]): number[][] {
     [0, 0, 1],
   ];
 }
+
+export function MathPolyline({ points, color }: { points: Vec3[]; color: string }) {
+  const geom = useMemo(() => new THREE.BufferGeometry().setFromPoints(points.map((p) => v3(p))), [points]);
+  return (
+    <line geometry={geom}>
+      <lineBasicMaterial color={color} />
+    </line>
+  );
+}
+
+export function EulerHelix({ theta }: { theta: number }) {
+  const tmax = Math.max(theta, 0.04);
+  const pts = useMemo((): Vec3[] => {
+    const n = 180;
+    return Array.from({ length: n }, (_, i) => {
+      const t = (i / (n - 1)) * tmax;
+      return [Math.cos(t), t * 0.28, Math.sin(t)];
+    });
+  }, [tmax]);
+  const tip: Vec3 = [Math.cos(tmax), tmax * 0.28, Math.sin(tmax)];
+  return (
+    <group>
+      <MathPolyline points={pts} color="#0891b2" />
+      <mesh position={tip}>
+        <sphereGeometry args={[0.1, 16, 12]} />
+        <meshStandardMaterial color="#f59e0b" />
+      </mesh>
+    </group>
+  );
+}
+
+export function ElevationTriangle({ dist, height }: { dist: number; height: number }) {
+  const d = Math.max(0.4, dist * 0.08);
+  const h = Math.max(0.2, height * 0.08);
+  return (
+    <group>
+      <MathArrow to={[d, 0, 0]} color="#22d3ee" />
+      <MathArrow from={[d, 0, 0]} to={[d, h, 0]} color="#8b45f4" />
+      <MathArrow to={[d, h, 0]} color="#f59e0b" />
+    </group>
+  );
+}
+
+export function ProjectilePaths({
+  a,
+  b,
+  play,
+}: {
+  a: Array<{ x: number; y: number }>;
+  b: Array<{ x: number; y: number }>;
+  play: { x: number; y: number };
+}) {
+  const scale = 0.12;
+  const toPts = (pts: Array<{ x: number; y: number }>): Vec3[] => pts.map((p) => [p.x * scale, p.y * scale, 0]);
+  return (
+    <group>
+      <MathPolyline points={toPts(a)} color="#147df2" />
+      <MathPolyline points={toPts(b)} color="#8b45f4" />
+      <mesh position={[play.x * scale, play.y * scale, 0]}>
+        <sphereGeometry args={[0.12, 12, 10]} />
+        <meshStandardMaterial color="#f59e0b" />
+      </mesh>
+    </group>
+  );
+}
+
+export function WasherSolid({
+  lo,
+  hi,
+  inner,
+  slices,
+}: {
+  lo: number;
+  hi: number;
+  inner: (x: number) => number;
+  slices: number;
+}) {
+  const count = Math.max(8, slices);
+  return (
+    <group>
+      {Array.from({ length: count }, (_, i) => {
+        const x = lo + (i / (count - 1)) * (hi - lo);
+        const rIn = Math.min(1.45, Math.abs(inner(x)) * 0.35);
+        return (
+          <group key={i} position={[x * 1.35, 0, 0]} rotation={[0, 0, Math.PI / 2]}>
+            <mesh>
+              <cylinderGeometry args={[1.55, 1.55, 0.14, 28]} />
+              <meshStandardMaterial color="#f59e0b" transparent opacity={0.28} />
+            </mesh>
+            <mesh>
+              <cylinderGeometry args={[rIn, rIn, 0.16, 24]} />
+              <meshStandardMaterial color="#e0f2fe" />
+            </mesh>
+          </group>
+        );
+      })}
+    </group>
+  );
+}
+
+export function OpenBox({ width, depth, height }: { width: number; depth: number; height: number }) {
+  const w = Math.max(0.5, width * 0.06);
+  const d = Math.max(0.4, depth * 0.06);
+  const h = Math.max(0.25, height * 0.12);
+  const t = 0.04;
+  return (
+    <group>
+      <mesh position={[0, t / 2, 0]}>
+        <boxGeometry args={[w, t, d]} />
+        <meshStandardMaterial color="#7dd3fc" />
+      </mesh>
+      <mesh position={[0, h / 2, d / 2]}>
+        <boxGeometry args={[w, h, t]} />
+        <meshStandardMaterial color="#38bdf8" />
+      </mesh>
+      <mesh position={[0, h / 2, -d / 2]}>
+        <boxGeometry args={[w, h, t]} />
+        <meshStandardMaterial color="#0ea5e9" />
+      </mesh>
+      <mesh position={[w / 2, h / 2, 0]}>
+        <boxGeometry args={[t, h, d]} />
+        <meshStandardMaterial color="#0284c7" />
+      </mesh>
+      <mesh position={[-w / 2, h / 2, 0]}>
+        <boxGeometry args={[t, h, d]} />
+        <meshStandardMaterial color="#0369a1" />
+      </mesh>
+    </group>
+  );
+}
+
+export function ExpandingSphere({ radius }: { radius: number }) {
+  const r = Math.max(0.35, radius * 0.32);
+  return (
+    <mesh>
+      <sphereGeometry args={[r, 36, 28]} />
+      <meshStandardMaterial color="#38c9ef" transparent opacity={0.82} />
+    </mesh>
+  );
+}

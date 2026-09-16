@@ -4,6 +4,7 @@ import type { StudioMockupPage } from "../mockup/studioMockupCatalog";
 import { ChallengeBox, ExtraFrame, LiveRow, Panel, SliderRow, clamp, fmt } from "../mockup/studioLabKit";
 import ArgandFigure from "./ArgandFigure";
 import FractalsLab from "./FractalsLab";
+import { EulerHelix, StudioMath3D } from "../shared/studioMath3D";
 
 function Chrome({ page, children }: { page: StudioMockupPage; children: ReactNode | ((mode: string) => ReactNode) }) {
   return <Phase1LabChrome page={page}>{children}</Phase1LabChrome>;
@@ -333,12 +334,14 @@ function EulerLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNode }
             <ExtraFrame
               mode={mode}
               extra={extra}
-              fallback={(
+              fallback={mode === "Helix" ? (
+                <StudioMath3D label="Euler helix">
+                  <EulerHelix theta={rad} />
+                </StudioMath3D>
+              ) : (
                 <svg className="msk-graph is-dark" viewBox="0 0 360 240" role="img" aria-label={mode}>
                   <rect width="360" height="240" fill="#061428" />
-                  {mode === "Helix" ? (
-                    <polyline points={Array.from({ length: 40 }, (_, i) => `${40 + i * 7},${120 - Math.sin(i / 6 + rad) * 40 + i * 0.4}`).join(" ")} fill="none" stroke="#22d3ee" />
-                  ) : mode === "Projections" ? (
+                  {mode === "Projections" ? (
                     <>
                       <line x1="40" y1="180" x2={40 + Math.cos(rad) * 120} y2="180" stroke="#38bdf8" strokeWidth="3" />
                       <line x1="40" y1="180" x2="40" y2={180 - Math.sin(rad) * 80} stroke="#fde68a" strokeWidth="3" />
