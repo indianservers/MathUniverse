@@ -205,22 +205,87 @@ export function MockupLearningStrip({ page, mode }: { page: StudioMockupPage; mo
 
 function LinearAlgebraNavIcon({ id }: { id: string }) {
   const glyphs: Record<string, ReactNode> = {
-    home: <><path d="M4 11.2 12 4l8 7.2" /><path d="M6.2 10.4V20h11.6v-9.6" /><path d="M10 20v-6h4v6" /></>,
-    vectors: <><path d="M4.2 13.8 20.2 4.2 13 20.2l-2.1-6.4Z" /><path d="M10.9 13.8 20.2 4.2" /></>,
-    matrices: <><rect x="3.6" y="3.6" width="7.4" height="7.4" rx="1.4" /><rect x="13" y="3.6" width="7.4" height="7.4" rx="1.4" /><rect x="3.6" y="13" width="7.4" height="7.4" rx="1.4" /><rect x="13" y="13" width="7.4" height="7.4" rx="1.4" /></>,
-    "row-reduction": <><path d="M4 6.5h16M4 12h12M4 17.5h8" /><path d="M20 6.5v3.2M16 12v3.2M12 17.5V21" /></>,
-    "linear-transforms": <><rect x="3.4" y="12.2" width="7.2" height="7.2" rx="1.1" /><path d="M11.2 15.8h3.2" /><path d="M15.2 6.4h6.6l-1.8 8.2h-6.6Z" /></>,
-    determinants: <><path d="M12 3.6 20.4 19.4H3.6Z" /><path d="M12 10.2v4.2M12 16.8h.01" /></>,
-    "vector-spaces": <><path d="M4 14.2 12 10l8 4.2-8 4.2Z" /><path d="M4 10.2 12 6l8 4.2" /><path d="M4 18.2 12 14l8 4.2" /></>,
-    eigenvectors: <><path d="M8.2 20c.2-6.6 1.6-15.2 3.8-15.2S15.6 13.4 15.8 20" /><path d="M7.4 13.2h9.2" /></>,
-    orthogonality: <><path d="M5 19.4V4.8" /><path d="M5 19.4h14.4" /><path d="M5 13.4h6.2V19.4" /></>,
-    "least-squares": <><path d="M4 18.2 20 6.4" /><circle cx="8.2" cy="14.8" r="1.5" fill="currentColor" /><circle cx="12.2" cy="11.4" r="1.5" fill="currentColor" /><circle cx="16.4" cy="8.6" r="1.5" fill="currentColor" /></>,
-    playground: <><path d="M7.2 8.2h9.6l-1.1 10.2H8.3Z" /><path d="M7.2 8.2 12 4.2l4.8 4" /><path d="M10.4 13.2 14.2 11v4.6Z" fill="currentColor" /></>,
+    home: (
+      <>
+        <rect x="4.2" y="4.2" width="6.6" height="6.6" rx="1.5" />
+        <rect x="13.2" y="4.2" width="6.6" height="6.6" rx="1.5" />
+        <rect x="4.2" y="13.2" width="6.6" height="6.6" rx="1.5" />
+        <rect x="13.2" y="13.2" width="6.6" height="6.6" rx="1.5" />
+      </>
+    ),
+    vectors: (
+      <>
+        <path d="M3.8 12.6 20.4 4.6 13.1 20.2 10.8 13.4Z" />
+        <path d="M10.8 13.4 20.4 4.6" />
+        <path d="M10.8 13.4 13.1 20.2" />
+      </>
+    ),
+    matrices: (
+      <>
+        <rect x="4" y="4.4" width="16" height="15.2" rx="2" />
+        <path d="M4 9.4h16M4 14.6h16M9.4 4.4v15.2M14.6 4.4v15.2" />
+      </>
+    ),
+    "row-reduction": (
+      <>
+        <path d="M4.4 6.2h15.2" />
+        <path d="M4.4 12h10.4" />
+        <path d="M4.4 17.8h6.2" />
+        <path d="M19.6 6.2v4.2M14.8 12v4.2M10.6 17.8V21" />
+      </>
+    ),
+    "linear-transforms": (
+      <>
+        <rect x="3.6" y="11.8" width="7.4" height="7.4" rx="1.2" />
+        <path d="M12 15.4h2.6" />
+        <path d="M15.4 5.6 21 8.2l-2.4 9.2-5.6-2.6Z" />
+      </>
+    ),
+    determinants: (
+      <>
+        <path d="M12 3.4 20.8 19.6H3.2Z" />
+        <path d="M12 9.6v4.6M12 16.8h.01" />
+      </>
+    ),
+    "vector-spaces": (
+      <>
+        <path d="M4.2 15.4 12 11.2l7.8 4.2L12 19.6Z" />
+        <path d="M4.2 11.2 12 7l7.8 4.2" />
+        <path d="M4.2 8.2 12 4l7.8 4.2" />
+      </>
+    ),
+    eigenvectors: (
+      <>
+        <path d="M8.4 20.2C8.6 12.4 10.2 3.8 12.4 3.8c2.2 0 3.6 8.4 3.8 16.4" />
+        <path d="M7.2 13h9.6" />
+      </>
+    ),
+    orthogonality: (
+      <>
+        <path d="M5.2 4.4v15.2H20" />
+        <path d="M5.2 13.4h6.2v6.2" />
+      </>
+    ),
+    "least-squares": (
+      <>
+        <path d="M4.2 18.4 19.8 6.2" />
+        <circle cx="8" cy="15.2" r="1.45" fill="currentColor" stroke="none" />
+        <circle cx="12.2" cy="11.6" r="1.45" fill="currentColor" stroke="none" />
+        <circle cx="16.6" cy="8.4" r="1.45" fill="currentColor" stroke="none" />
+      </>
+    ),
+    playground: (
+      <>
+        <path d="M7 8.2h10l-1.2 10.4H8.2Z" />
+        <path d="M7 8.2 12 3.8 17 8.2" />
+        <path d="M10.4 12.2 14.6 14.4 10.4 16.6Z" fill="currentColor" stroke="none" />
+      </>
+    ),
   };
   const glyph = glyphs[id] ?? glyphs.playground;
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true">
-      <g fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">{glyph}</g>
+      <g fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">{glyph}</g>
     </svg>
   );
 }

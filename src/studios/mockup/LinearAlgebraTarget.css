@@ -1,12 +1,17 @@
-.msk-linear-algebra {
-  --la-blue: #147df2;
-  --la-cyan: #08b9dd;
-  --la-violet: #8b45f4;
-  --la-amber: #f59e0b;
-  --la-ink: #0b1b3f;
-  height: 100%;
-  min-height: 100dvh;
-  color-scheme: light;
+.msk-linear-algebra .msk-mark {
+  width: 40px;
+  height: 40px;
+  border-radius: 13px;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  background: linear-gradient(145deg, #22c5ea, #3b82f6 48%, #7c3aed);
+  box-shadow: 0 8px 18px #477cf230;
+}
+
+.msk-linear-algebra .msk-sidebar nav svg {
+  width: 20px;
+  height: 20px;
 }
 
 .msk-linear-algebra input,
