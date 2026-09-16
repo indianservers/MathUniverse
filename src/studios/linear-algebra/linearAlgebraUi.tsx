@@ -1,7 +1,7 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import {
-  Download, Grid3X3, HelpCircle, Moon, Play, Redo2, RotateCcw, Settings, Share2, Sun,
+  Download, Bookmark, Grid3X3, HelpCircle, Moon, Play, Redo2, RotateCcw, Settings, Share2, Sun,
 } from "lucide-react";
 import type { StudioMockupPage } from "../mockup/studioMockupCatalog";
 import { clamp, fmt } from "../mockup/studioLabKit";
@@ -67,8 +67,8 @@ export function LinearLabHeader({
   const [host, setHost] = useState<HTMLElement | null>(null);
   useEffect(() => { setHost(document.getElementById("msk-lab-tools")); }, []);
   const id = page.id;
-  const chip = (label: string, icon: ReactNode, onClick?: () => void) => (
-    <button type="button" className="la-tool" onClick={onClick}>{icon}<span>{label}</span></button>
+  const chip = (label: string, icon: ReactNode, onClick?: () => void, className = "la-tool") => (
+    <button type="button" className={className} onClick={onClick}>{icon}<span>{label}</span></button>
   );
   let tools: ReactNode = null;
   if (id === "eigenvectors") {
@@ -101,8 +101,8 @@ export function LinearLabHeader({
     tools = (
       <>
         {chip("Help", <HelpCircle />)}
-        {chip("Saved", <Download />)}
-        {chip("Share", <Share2 />)}
+        {chip("Saved", <Bookmark />)}
+        {chip("Share", <Share2 />, undefined, "la-tool is-share")}
         <button type="button" className="la-tool" aria-label="Light"><Sun /></button>
         <button type="button" className="la-tool" aria-label="Dark"><Moon /></button>
       </>

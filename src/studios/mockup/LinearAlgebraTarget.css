@@ -1276,3 +1276,82 @@
   }
 }
 
+.msk-linear-algebra .la-xyz {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 6px;
+}
+
+.msk-linear-algebra .la-xyz .la-step {
+  grid-template-columns: 12px 22px minmax(0, 1fr) 22px;
+  gap: 3px;
+  font-size: 11px;
+}
+
+.msk-linear-algebra .la-xyz .la-step button,
+.msk-linear-algebra .la-xyz .la-step input {
+  width: 100%;
+  min-height: 26px;
+  height: 26px;
+  font-size: 11px;
+}
+
+.msk-linear-algebra .la-vec-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.msk-linear-algebra .la-vec-head i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.msk-linear-algebra .la-vec-head b {
+  width: 16px;
+  height: 16px;
+  margin-left: auto;
+  border-radius: 4px;
+}
+
+.msk-linear-algebra .la-result-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.msk-linear-algebra .la-result-row select {
+  min-height: 32px;
+  border: 1px solid #dce7f4;
+  border-radius: 8px;
+  font-weight: 800;
+}
+
+.msk-linear-algebra .la-result-row .la-soft {
+  width: auto;
+  margin-top: 0;
+  padding: 0 12px;
+}
+
+.msk-linear-algebra .la-legend-row span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.msk-linear-algebra .la-legend-row i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.msk-linear-algebra .msk-tools .msk-lab-tools button.la-tool.is-share {
+  background: linear-gradient(100deg, #7c3aed, #6366f1);
+  color: #fff;
+  border: 0;
+}
+

@@ -5,7 +5,7 @@ import { LinearAlgebraLabChrome } from "./LinearAlgebraLabChrome";
 import VectorSpacesLab from "./VectorSpacesLab";
 import { BracketMatrix, Card, LinearLabHeader, SliderRow, Switch } from "./linearAlgebraUi";
 import {
-  ArrowDefs, AxisGrid, DragHandle, VectorRay, canvasKeyNudge, LA_A, LA_B, LA_C, LA_D, LA_E,
+  ArrowDefs, AxisGrid, DragHandle, IsoFloor, VectorRay, canvasKeyNudge, LA_A, LA_B, LA_C, LA_D, LA_E,
 } from "./linearAlgebraCanvas";
 import {
   addMatrices, apply2, apply3, classifySystem, det2, det3, eigen2, identity2, inv2, iso3, lerp,
@@ -149,7 +149,7 @@ function VectorsLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNode
   const angle = Math.acos(clamp(dot / (mag3(a) * mag3(b) || 1), -1, 1)) * 180 / Math.PI;
   const projAonB = scale3(b, mag3(b) ? dot / mag3(b) ** 2 : 0);
   const projBonA = scale3(a, mag3(a) ? dot / mag3(a) ** 2 : 0);
-  const ox = 210, oy = 250, u = 42;
+  const ox = 250, oy = 255, u = 46;
   const p = (x: number, y: number, z: number) => view === "3D" ? iso3(x, y, z, ox, oy, u, s.yaw) : { x: ox + x * u, y: oy - y * u };
   const o = p(0, 0, 0);
   const pa = p(s.ax, s.ay, s.az);
@@ -168,16 +168,24 @@ function VectorsLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNode
           <div className="la-rail">
             <Card title="Vectors">
               <div className="la-vec">
-                <strong style={{ color: LA_A }}>a = ({fmt(s.ax, 0)}, {fmt(s.ay, 0)}, {fmt(s.az, 0)})</strong>
-                <div className="la-steppers">
+                <div className="la-vec-head">
+                  <i style={{ background: LA_A }} />
+                  <strong style={{ color: LA_A }}>a = ({fmt(s.ax, 0)}, {fmt(s.ay, 0)}, {fmt(s.az, 0)})</strong>
+                  <b style={{ background: LA_A }} />
+                </div>
+                <div className="la-xyz">
                   <Stepper label="x" value={s.ax} min={-4} max={4} onChange={(ax) => setS({ ...s, ax })} />
                   <Stepper label="y" value={s.ay} min={-4} max={4} onChange={(ay) => setS({ ...s, ay })} />
                   <Stepper label="z" value={s.az} min={-4} max={4} onChange={(az) => setS({ ...s, az })} />
                 </div>
               </div>
               <div className="la-vec">
-                <strong style={{ color: LA_B }}>b = ({fmt(s.bx, 0)}, {fmt(s.by, 0)}, {fmt(s.bz, 0)})</strong>
-                <div className="la-steppers">
+                <div className="la-vec-head">
+                  <i style={{ background: LA_B }} />
+                  <strong style={{ color: LA_B }}>b = ({fmt(s.bx, 0)}, {fmt(s.by, 0)}, {fmt(s.bz, 0)})</strong>
+                  <b style={{ background: LA_B }} />
+                </div>
+                <div className="la-xyz">
                   <Stepper label="x" value={s.bx} min={-4} max={4} onChange={(bx) => setS({ ...s, bx })} />
                   <Stepper label="y" value={s.by} min={-4} max={4} onChange={(by) => setS({ ...s, by })} />
                   <Stepper label="z" value={s.bz} min={-4} max={4} onChange={(bz) => setS({ ...s, bz })} />
@@ -193,7 +201,16 @@ function VectorsLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNode
               </div>
             </Card>
             <Card title="Resultant">
-              <p className="la-eq">r = a + b = ({fmt(r[0] ?? 0, 0)}, {fmt(r[1] ?? 0, 0)}, {fmt(r[2] ?? 0, 0)})</p>
+              <p className="la-eq">r = <span style={{ color: LA_A }}>a</span> + <span style={{ color: LA_B }}>b</span> = ({fmt(r[0] ?? 0, 0)}, {fmt(r[1] ?? 0, 0)}, {fmt(r[2] ?? 0, 0)})</p>
+              <div className="la-result-row">
+                <select aria-label="Resultant operation" value={op} onChange={(event) => setOp(event.target.value)}>
+                  <option>Add</option>
+                  <option>Subtract</option>
+                  <option>Dot</option>
+                  <option>Cross</option>
+                </select>
+                <button type="button" className="la-soft" onClick={() => setS({ ...s })}>Recompute</button>
+              </div>
             </Card>
             <Card title="Display options">
               <Toggle label="Parallelogram (a, b)" on={show.para} onChange={(para) => setShow({ ...show, para })} />
@@ -215,39 +232,40 @@ function VectorsLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNode
               fallback={(
                 <svg
                   className="msk-graph is-interactive"
-                  viewBox="0 0 520 360"
+                  viewBox="0 0 560 400"
                   tabIndex={0}
                   role="img"
                   aria-label="Vectors canvas"
                   onKeyDown={(event) => canvasKeyNudge(event, commitSel)}
                   onPointerDown={(event: PointerEvent<SVGSVGElement>) => {
                     const box = event.currentTarget.getBoundingClientRect();
-                    const x = ((event.clientX - box.left) / box.width) * 520;
-                    const y = ((event.clientY - box.top) / box.height) * 360;
+                    const x = ((event.clientX - box.left) / box.width) * 560;
+                    const y = ((event.clientY - box.top) / box.height) * 400;
                     setSelected(Math.hypot(x - pa.x, y - pa.y) < Math.hypot(x - pb.x, y - pb.y) ? "a" : "b");
                     event.currentTarget.setPointerCapture(event.pointerId);
                   }}
                   onPointerMove={(event) => {
                     if (event.buttons === 0) return;
                     const box = event.currentTarget.getBoundingClientRect();
-                    const x = ((event.clientX - box.left) / box.width) * 520;
-                    const y = ((event.clientY - box.top) / box.height) * 360;
+                    const x = ((event.clientX - box.left) / box.width) * 560;
+                    const y = ((event.clientY - box.top) / box.height) * 400;
                     const dx = (x - o.x) / u;
                     const dy = (o.y - y) / u;
                     if (selected === "a") setS((prev) => ({ ...prev, ax: clamp(dx, -4, 4), ay: clamp(dy, -4, 4) }));
                     else setS((prev) => ({ ...prev, bx: clamp(dx, -4, 4), by: clamp(dy, -4, 4) }));
                   }}
                 >
-                  <rect width="520" height="360" fill="#f7fbff" />
+                  <rect width="560" height="400" fill="#f7fbff" />
                   <ArrowDefs />
                   {view === "3D" ? (
                     <>
-                      <VectorRay x1={o.x} y1={o.y} x2={p(3.2, 0, 0).x} y2={p(3.2, 0, 0).y} color="#94a3b8" marker="la-c" />
-                      <VectorRay x1={o.x} y1={o.y} x2={p(0, 4, 0).x} y2={p(0, 4, 0).y} color="#94a3b8" marker="la-c" />
-                      <VectorRay x1={o.x} y1={o.y} x2={p(0, 0, 3).x} y2={p(0, 0, 3).y} color="#94a3b8" marker="la-c" />
-                      <text x={p(3.2, 0, 0).x} y={p(3.2, 0, 0).y + 12} fontSize="11" fill="#64748b">x</text>
-                      <text x={p(0, 4, 0).x - 8} y={p(0, 4, 0).y - 6} fontSize="11" fill="#64748b">z</text>
-                      <text x={p(0, 0, 3).x + 8} y={p(0, 0, 3).y + 12} fontSize="11" fill="#64748b">y</text>
+                      <IsoFloor ox={ox} oy={oy} unit={u} yaw={s.yaw} />
+                      <VectorRay x1={o.x} y1={o.y} x2={p(3.4, 0, 0).x} y2={p(3.4, 0, 0).y} color="#94a3b8" marker="la-c" />
+                      <VectorRay x1={o.x} y1={o.y} x2={p(0, 4.2, 0).x} y2={p(0, 4.2, 0).y} color="#94a3b8" marker="la-c" />
+                      <VectorRay x1={o.x} y1={o.y} x2={p(0, 0, 3.2).x} y2={p(0, 0, 3.2).y} color="#94a3b8" marker="la-c" />
+                      <text x={p(3.4, 0, 0).x} y={p(3.4, 0, 0).y + 14} fontSize="12" fill="#64748b">x</text>
+                      <text x={p(0, 4.2, 0).x - 8} y={p(0, 4.2, 0).y - 6} fontSize="12" fill="#64748b">z</text>
+                      <text x={p(0, 0, 3.2).x + 8} y={p(0, 0, 3.2).y + 14} fontSize="12" fill="#64748b">y</text>
                     </>
                   ) : <AxisGrid ox={ox} oy={oy} unit={u} dark={false} />}
                   {show.para ? <polygon points={`${o.x},${o.y} ${pa.x},${pa.y} ${pr.x},${pr.y} ${pb.x},${pb.y}`} fill="rgba(245,158,11,.18)" stroke={LA_C} /> : null}
@@ -262,7 +280,11 @@ function VectorsLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNode
               )}
             />
             <div className="la-legend-row">
-              <span>a</span><span>b</span><span>r = a + b</span><span>a proj</span><span>b proj</span>
+              <span><i style={{ background: LA_A }} />a</span>
+              <span><i style={{ background: LA_B }} />b</span>
+              <span><i style={{ background: LA_C }} />r = a + b</span>
+              <span><i style={{ background: LA_E }} />a proj</span>
+              <span><i style={{ background: LA_B }} />b proj</span>
             </div>
           </Card>
           </div>
@@ -278,7 +300,8 @@ function VectorsLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNode
               <p className="la-note">= |a||b| cos θ</p>
             </Card>
             <Card title="Cross product">
-              <p className="la-eq">a × b = [{fmt(cross[0], 0)}, {fmt(cross[1], 0)}, {fmt(cross[2], 0)}]</p>
+              <p className="la-eq">a × b =</p>
+              <BracketMatrix matrix={[[cross[0]], [cross[1]], [cross[2]]]} />
               <p className="la-eq">|a × b| = {fmt(mag3(cross), 3)}</p>
             </Card>
             <Card title="Projections">
@@ -325,7 +348,9 @@ function MatricesLab({ page }: { page: StudioMockupPage }) {
               <Card>
                 <nav className="la-opbar" aria-label="Matrix operations">
                   {ops.map((item) => (
-                    <button key={item} type="button" className={item === mode ? "active" : ""} onClick={() => setMode(item)}>{item}</button>
+                    <button key={item} type="button" className={item === mode ? "active" : ""} onClick={() => setMode(item)}>
+                      {item === "Add" ? "+ Add" : item === "Multiply" ? "× Multiply" : item === "Inverse" ? "x⁻¹ Inverse" : item === "Transpose" ? "T Transpose" : "▣ Block"}
+                    </button>
                   ))}
                 </nav>
                 <p className="la-kicker">Operation: A × B</p>
@@ -878,7 +903,14 @@ function OrthoLab({ page }: { page: StudioMockupPage }) {
             <svg className="msk-graph" viewBox="0 0 520 360" role="img" aria-label="Orthogonality">
               <rect width="520" height="360" fill="#f7fbff" />
               <ArrowDefs />
-              <polygon points={`${p([-2, 0, -2]).x},${p([-2, 0, -2]).y} ${p([2, 0, -2]).x},${p([2, 0, -2]).y} ${p([2, 0, 2]).x},${p([2, 0, 2]).y} ${p([-2, 0, 2]).x},${p([-2, 0, 2]).y}`} fill="rgba(139,69,244,.12)" />
+              <IsoFloor ox={ox} oy={oy} unit={un} yaw={0.45} span={2} />
+              <polygon points={`${p([-2, 0, -2]).x},${p([-2, 0, -2]).y} ${p([2, 0, -2]).x},${p([2, 0, -2]).y} ${p([2, 0, 2]).x},${p([2, 0, 2]).y} ${p([-2, 0, 2]).x},${p([-2, 0, 2]).y}`} fill="rgba(139,69,244,.18)" />
+              <VectorRay x1={o.x} y1={o.y} x2={p([3, 0, 0]).x} y2={p([3, 0, 0]).y} color="#94a3b8" marker="la-c" />
+              <VectorRay x1={o.x} y1={o.y} x2={p([0, 3, 0]).x} y2={p([0, 3, 0]).y} color="#94a3b8" marker="la-c" />
+              <VectorRay x1={o.x} y1={o.y} x2={p([0, 0, 3]).x} y2={p([0, 0, 3]).y} color="#94a3b8" marker="la-c" />
+              <text x={p([3, 0, 0]).x} y={p([3, 0, 0]).y + 12} fontSize="11" fill="#64748b">x</text>
+              <text x={p([0, 0, 3]).x + 8} y={p([0, 0, 3]).y + 12} fontSize="11" fill="#64748b">y</text>
+              <text x={p([0, 3, 0]).x - 6} y={p([0, 3, 0]).y - 6} fontSize="11" fill="#64748b">z</text>
               <VectorRay x1={o.x} y1={o.y} x2={p(v).x} y2={p(v).y} color={LA_A} marker="la-a" />
               <VectorRay x1={o.x} y1={o.y} x2={p(u).x} y2={p(u).y} color={LA_E} marker="la-e" />
               <VectorRay x1={o.x} y1={o.y} x2={p(n).x} y2={p(n).y} color={LA_B} marker="la-b" />

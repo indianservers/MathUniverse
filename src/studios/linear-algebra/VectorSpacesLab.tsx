@@ -3,7 +3,7 @@ import type { StudioMockupPage } from "../mockup/studioMockupCatalog";
 import { StatusOk, clamp, fmt } from "../mockup/studioLabKit";
 import { LinearAlgebraLabChrome } from "./LinearAlgebraLabChrome";
 import { Card, SliderRow, Switch } from "./linearAlgebraUi";
-import { ArrowDefs, DragHandle, VectorRay, LA_A, LA_B, LA_C, LA_D } from "./linearAlgebraCanvas";
+import { ArrowDefs, DragHandle, IsoFloor, VectorRay, LA_A, LA_B, LA_C, LA_D } from "./linearAlgebraCanvas";
 import { iso3, matrixRank } from "./linearAlgebraLabMath";
 import { areIndependent, coordinates, gramSchmidt } from "./vectorSpaceMath";
 
@@ -74,7 +74,8 @@ export default function VectorSpacesLab({ page }: { page: StudioMockupPage }) {
             <svg className="msk-graph" viewBox="0 0 520 360" role="img" aria-label="Vector spaces">
               <rect width="520" height="360" fill="#f7fbff" />
               <ArrowDefs />
-              <polygon points={plane.map((pt) => `${pt.x},${pt.y}`).join(" ")} fill="rgba(20,125,242,.12)" stroke="#93c5fd" />
+              <IsoFloor ox={ox} oy={oy} unit={u} yaw={0.5} />
+              <polygon points={plane.map((pt) => `${pt.x},${pt.y}`).join(" ")} fill="rgba(20,125,242,.16)" stroke="#93c5fd" />
               <VectorRay x1={o.x} y1={o.y} x2={p([3, 0, 0]).x} y2={p([3, 0, 0]).y} color="#94a3b8" marker="la-c" />
               <VectorRay x1={o.x} y1={o.y} x2={p([0, 3, 0]).x} y2={p([0, 3, 0]).y} color="#94a3b8" marker="la-c" />
               <VectorRay x1={o.x} y1={o.y} x2={p([0, 0, 3]).x} y2={p([0, 0, 3]).y} color="#94a3b8" marker="la-c" />
