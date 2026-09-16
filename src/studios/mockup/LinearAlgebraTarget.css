@@ -1360,3 +1360,8 @@
   border: 0;
 }
 
+.msk-linear-algebra .la-viz .studio-math-3d,
+.msk-canvas .studio-math-3d {
+  min-height: 320px;
+}
+

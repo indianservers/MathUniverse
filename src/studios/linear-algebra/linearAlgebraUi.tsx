@@ -1,10 +1,11 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import {
-  Download, Bookmark, Grid3X3, HelpCircle, Moon, Play, Redo2, RotateCcw, Settings, Share2, Sun,
+  Download, Bookmark, Flame, Grid3X3, HelpCircle, Moon, Play, Redo2, RotateCcw, Settings, Share2, Star, Sun,
 } from "lucide-react";
 import type { StudioMockupPage } from "../mockup/studioMockupCatalog";
 import { clamp, fmt } from "../mockup/studioLabKit";
+import { useLinearSession, writeLinearSession } from "./linearAlgebraStudioSession";
 
 export function Card({ title, kicker, children, className = "" }: { title?: string; kicker?: string; children: ReactNode; className?: string }) {
   return (
@@ -65,10 +66,27 @@ export function LinearLabHeader({
   onSpeed?: (s: string) => void;
 }) {
   const [host, setHost] = useState<HTMLElement | null>(null);
+  const session = useLinearSession();
   useEffect(() => { setHost(document.getElementById("msk-lab-tools")); }, []);
   const id = page.id;
   const chip = (label: string, icon: ReactNode, onClick?: () => void, className = "la-tool") => (
     <button type="button" className={className} onClick={onClick}>{icon}<span>{label}</span></button>
+  );
+  const teacher = (
+    <button
+      type="button"
+      className={`la-tool${session.teacherMode ? " is-on" : ""}`}
+      aria-pressed={session.teacherMode}
+      onClick={() => writeLinearSession({ teacherMode: !session.teacherMode })}
+    >
+      Teacher mode
+    </button>
+  );
+  const themePair = (
+    <>
+      <button type="button" className="la-tool" aria-label="Light" onClick={() => writeLinearSession({ theme: "light" })}><Sun /></button>
+      <button type="button" className="la-tool" aria-label="Dark" onClick={() => writeLinearSession({ theme: "dark" })}><Moon /></button>
+    </>
   );
   let tools: ReactNode = null;
   if (id === "eigenvectors") {
@@ -93,8 +111,7 @@ export function LinearLabHeader({
         <button type="button" className="la-tool" aria-label="Help"><HelpCircle /></button>
         {chip("Share", <Share2 />)}
         {chip("Reset", <RotateCcw />, onReset)}
-        <button type="button" className="la-tool" aria-label="Light"><Sun /></button>
-        <button type="button" className="la-tool" aria-label="Dark"><Moon /></button>
+        {themePair}
       </>
     );
   } else if (id === "vectors") {
@@ -103,8 +120,7 @@ export function LinearLabHeader({
         {chip("Help", <HelpCircle />)}
         {chip("Saved", <Bookmark />)}
         {chip("Share", <Share2 />, undefined, "la-tool is-share")}
-        <button type="button" className="la-tool" aria-label="Light"><Sun /></button>
-        <button type="button" className="la-tool" aria-label="Dark"><Moon /></button>
+        {themePair}
       </>
     );
   } else if (id === "least-squares") {
@@ -122,7 +138,7 @@ export function LinearLabHeader({
         {chip("Share", <Share2 />)}
         {chip("PNG", <Download />)}
         {chip("3D", <Grid3X3 />)}
-        <span className="la-tool">Teacher mode</span>
+        {teacher}
         <button type="button" className="la-tool" aria-label="Help"><HelpCircle /></button>
       </>
     );
@@ -130,12 +146,16 @@ export function LinearLabHeader({
     tools = (
       <>
         {id === "row-reduction" ? <span className="la-tool">Quick start</span> : null}
-        <span className="la-stat-chip">0</span>
-        <span className="la-stat-chip">0 XP</span>
-        <span className="la-tool">Teacher mode</span>
-        {id === "playground" || id === "orthogonality" ? <button type="button" className="la-tool" aria-label="Grid"><Grid3X3 /></button> : null}
+        <span className="la-stat-chip" aria-label={`Streak ${session.completed.length}`}><Flame />{session.completed.length}</span>
+        <span className="la-stat-chip" aria-label={`${session.xp} XP`}><Star />{session.xp} XP</span>
+        {teacher}
+        {id === "playground" || id === "orthogonality" || id === "matrices" ? <button type="button" className="la-tool" aria-label="Grid"><Grid3X3 /></button> : null}
         <button type="button" className="la-tool" aria-label="Settings"><Settings /></button>
-        {id === "determinants" || id === "row-reduction" || id === "playground" ? <button type="button" className="la-tool" aria-label="Theme"><Moon /></button> : <button type="button" className="la-tool" aria-label="Help"><HelpCircle /></button>}
+        {id === "determinants" || id === "row-reduction" || id === "playground" || id === "matrices" ? (
+          <button type="button" className="la-tool" aria-label="Theme" onClick={() => writeLinearSession({ theme: session.theme === "dark" ? "light" : "dark" })}><Moon /></button>
+        ) : (
+          <button type="button" className="la-tool" aria-label="Help"><HelpCircle /></button>
+        )}
       </>
     );
   }

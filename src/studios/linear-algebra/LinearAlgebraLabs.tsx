@@ -5,13 +5,16 @@ import { LinearAlgebraLabChrome } from "./LinearAlgebraLabChrome";
 import VectorSpacesLab from "./VectorSpacesLab";
 import { BracketMatrix, Card, LinearLabHeader, SliderRow, Switch } from "./linearAlgebraUi";
 import {
-  ArrowDefs, AxisGrid, DragHandle, IsoFloor, VectorRay, canvasKeyNudge, LA_A, LA_B, LA_C, LA_D, LA_E,
+  ArrowDefs, AxisGrid, DragHandle, VectorRay, canvasKeyNudge, LA_A, LA_B, LA_C, LA_D, LA_E,
 } from "./linearAlgebraCanvas";
 import {
-  addMatrices, apply2, apply3, classifySystem, det2, det3, eigen2, identity2, inv2, iso3, lerp,
+  addMatrices, apply2, classifySystem, det2, det3, eigen2, identity2, inv2, lerp,
   multiply, namedTransform, phaseTrajectories, resizeMatrix, setCell, solve2,
   rrefAugmented, type Mat2,
 } from "./linearAlgebraLabMath";
+import {
+  EquationPlane, MathArrow, MathParallelogram, StudioMath3D, TransformedCube, lift2,
+} from "../shared/studioMath3D";
 import { markLinearComplete } from "./linearAlgebraStudioSession";
 
 export default function LinearAlgebraLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNode }) {
@@ -133,7 +136,7 @@ function sub3(a: number[], b: number[]): [number, number, number] {
   return [(a[0] ?? 0) - (b[0] ?? 0), (a[1] ?? 0) - (b[1] ?? 0), (a[2] ?? 0) - (b[2] ?? 0)];
 }
 
-const vecInit = { ax: 2, ay: 1, az: 3, bx: -1, by: 2, bz: 1, yaw: 0.42 };
+const vecInit = { ax: 2, ay: 1, az: 3, bx: -1, by: 2, bz: 1 };
 
 function VectorsLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNode }) {
   const [s, setS] = useState(vecInit);
@@ -150,7 +153,7 @@ function VectorsLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNode
   const projAonB = scale3(b, mag3(b) ? dot / mag3(b) ** 2 : 0);
   const projBonA = scale3(a, mag3(a) ? dot / mag3(a) ** 2 : 0);
   const ox = 250, oy = 255, u = 46;
-  const p = (x: number, y: number, z: number) => view === "3D" ? iso3(x, y, z, ox, oy, u, s.yaw) : { x: ox + x * u, y: oy - y * u };
+  const p = (x: number, y: number, _z: number) => ({ x: ox + x * u, y: oy - y * u });
   const o = p(0, 0, 0);
   const pa = p(s.ax, s.ay, s.az);
   const pb = p(s.bx, s.by, s.bz);
@@ -229,7 +232,15 @@ function VectorsLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNode
             <ExtraFrame
               mode={mode}
               extra={extra}
-              fallback={(
+              fallback={view === "3D" ? (
+                <StudioMath3D label="3D vectors">
+                  {show.para ? <MathParallelogram a={[s.ax, s.ay, s.az]} b={[s.bx, s.by, s.bz]} color={LA_C} /> : null}
+                  <MathArrow to={[s.ax, s.ay, s.az]} color={LA_A} />
+                  <MathArrow to={[s.bx, s.by, s.bz]} color={LA_B} />
+                  {show.result ? <MathArrow to={[r[0] ?? 0, r[1] ?? 0, r[2] ?? 0]} color={LA_C} /> : null}
+                  {op === "Cross" ? <MathArrow to={cross} color={LA_D} /> : null}
+                </StudioMath3D>
+              ) : (
                 <svg
                   className="msk-graph is-interactive"
                   viewBox="0 0 560 400"
@@ -257,17 +268,7 @@ function VectorsLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNode
                 >
                   <rect width="560" height="400" fill="#f7fbff" />
                   <ArrowDefs />
-                  {view === "3D" ? (
-                    <>
-                      <IsoFloor ox={ox} oy={oy} unit={u} yaw={s.yaw} />
-                      <VectorRay x1={o.x} y1={o.y} x2={p(3.4, 0, 0).x} y2={p(3.4, 0, 0).y} color="#94a3b8" marker="la-c" />
-                      <VectorRay x1={o.x} y1={o.y} x2={p(0, 4.2, 0).x} y2={p(0, 4.2, 0).y} color="#94a3b8" marker="la-c" />
-                      <VectorRay x1={o.x} y1={o.y} x2={p(0, 0, 3.2).x} y2={p(0, 0, 3.2).y} color="#94a3b8" marker="la-c" />
-                      <text x={p(3.4, 0, 0).x} y={p(3.4, 0, 0).y + 14} fontSize="12" fill="#64748b">x</text>
-                      <text x={p(0, 4.2, 0).x - 8} y={p(0, 4.2, 0).y - 6} fontSize="12" fill="#64748b">z</text>
-                      <text x={p(0, 0, 3.2).x + 8} y={p(0, 0, 3.2).y + 14} fontSize="12" fill="#64748b">y</text>
-                    </>
-                  ) : <AxisGrid ox={ox} oy={oy} unit={u} dark={false} />}
+                  <AxisGrid ox={ox} oy={oy} unit={u} dark={false} />
                   {show.para ? <polygon points={`${o.x},${o.y} ${pa.x},${pa.y} ${pr.x},${pr.y} ${pb.x},${pb.y}`} fill="rgba(245,158,11,.18)" stroke={LA_C} /> : null}
                   <VectorRay x1={o.x} y1={o.y} x2={pa.x} y2={pa.y} color={LA_A} marker="la-a" />
                   <VectorRay x1={o.x} y1={o.y} x2={pb.x} y2={pb.y} color={LA_B} marker="la-b" />
@@ -455,32 +456,43 @@ function RowReductionLab({ page }: { page: StudioMockupPage }) {
                   <button key={item} type="button" className={item === mode ? "active" : ""} onClick={() => setMode(item)}>{item}</button>
                 ))}
               </div>
-            <svg className="msk-graph" viewBox="0 0 560 340" role="img" aria-label="Planes">
-              <rect width="560" height="340" fill="#f7fbff" />
-              {mode === "Pivot Map" ? (
-                <>
-                  <rect x="80" y="70" width="90" height="60" fill="#fde68a" />
-                  <rect x="190" y="150" width="90" height="60" fill="#bbf7d0" />
-                  <rect x="300" y="230" width="90" height="60" fill="#ddd6fe" />
-                  <text x="90" y="105">pivot 1</text>
-                  <text x="200" y="185">pivot 2</text>
-                  <text x="310" y="265">pivot 3</text>
-                </>
-              ) : mode === "2D View" ? (
-                <>
-                  <line x1="40" y1="80" x2="520" y2="240" stroke={LA_A} />
-                  <line x1="40" y1="220" x2="520" y2="90" stroke={LA_B} />
-                  <circle cx="280" cy="160" r="6" fill={LA_C} />
-                </>
-              ) : (
-                <>
-                  <polygon points="80,240 280,80 500,160 300,300" fill="rgba(20,125,242,.28)" stroke={LA_A} />
-                  <polygon points="90,80 470,70 480,250 120,270" fill="rgba(139,69,244,.22)" stroke={LA_B} />
-                  <line x1="140" y1="250" x2="430" y2="90" stroke={LA_C} strokeWidth="3" />
-                  <circle cx="280" cy="170" r="7" fill={LA_C} />
-                </>
-              )}
-            </svg>
+            {mode === "Pivot Map" ? (
+              <svg className="msk-graph" viewBox="0 0 560 340" role="img" aria-label="Pivot map">
+                <rect width="560" height="340" fill="#f7fbff" />
+                <rect x="80" y="70" width="90" height="60" fill="#fde68a" />
+                <rect x="190" y="150" width="90" height="60" fill="#bbf7d0" />
+                <rect x="300" y="230" width="90" height="60" fill="#ddd6fe" />
+                <text x="90" y="105">pivot 1</text>
+                <text x="200" y="185">pivot 2</text>
+                <text x="310" y="265">pivot 3</text>
+              </svg>
+            ) : mode === "2D View" ? (
+              <svg className="msk-graph" viewBox="0 0 560 340" role="img" aria-label="2D planes">
+                <rect width="560" height="340" fill="#f7fbff" />
+                <line x1="40" y1="80" x2="520" y2="240" stroke={LA_A} />
+                <line x1="40" y1="220" x2="520" y2="90" stroke={LA_B} />
+                <circle cx="280" cy="160" r="6" fill={LA_C} />
+              </svg>
+            ) : (
+              <StudioMath3D label="Row reduction planes">
+                {A.map((row, i) => (
+                  <EquationPlane
+                    key={i}
+                    a={row[0] ?? 0}
+                    b={row[1] ?? 0}
+                    c={row[2] ?? 0}
+                    d={b[i] ?? 0}
+                    color={i === 0 ? LA_A : i === 1 ? LA_B : LA_C}
+                  />
+                ))}
+                {cls.kind === "unique" ? (
+                  <mesh position={[sol[0] ?? 0, sol[1] ?? 0, sol[2] ?? 0]}>
+                    <sphereGeometry args={[0.12, 16, 12]} />
+                    <meshStandardMaterial color={LA_C} />
+                  </mesh>
+                ) : null}
+              </StudioMath3D>
+            )}
             <p className="la-eq">Step {clamp(cursor + 1, 1, steps.length)} of {steps.length} · {shown.label}</p>
             <div className="la-canvas-tools">
               <button type="button" onClick={() => setCursor((v) => Math.max(0, v - 1))}>Previous</button>
@@ -578,7 +590,11 @@ function LinearTransformsLab({ page, extra }: { page: StudioMockupPage; extra?: 
             <ExtraFrame
               mode={mode}
               extra={extra}
-              fallback={(
+              fallback={mode.includes("3D") ? (
+                <StudioMath3D label="3D linear transform">
+                  <TransformedCube matrix={lift2(Mt)} />
+                </StudioMath3D>
+              ) : (
                 <svg className="msk-graph is-interactive" viewBox="0 0 560 420" role="img" aria-label="Linear transform">
                   <rect width="560" height="420" fill="#f7fbff" />
                   <ArrowDefs />
@@ -651,6 +667,11 @@ function DeterminantsLab({ page }: { page: StudioMockupPage }) {
           </div>
           <div className="la-center">
           <Card className="la-viz" title={mode === "3D Volume" ? "Transformed volume" : "Original basis B → Transformed basis AB"}>
+            {mode === "3D Volume" ? (
+              <StudioMath3D label="Determinant volume">
+                <TransformedCube matrix={lift2(A)} />
+              </StudioMath3D>
+            ) : (
             <svg className="msk-graph is-interactive" viewBox="0 0 640 360" role="img" aria-label="Determinant area">
               <rect width="640" height="360" fill="#f7fbff" />
               <ArrowDefs />
@@ -666,6 +687,7 @@ function DeterminantsLab({ page }: { page: StudioMockupPage }) {
               <text x="390" y="44" fontSize="12" fill={LA_D}>Transformed basis AB · det(AB) = {fmt(det, 3)}</text>
               <text x="448" y="88" fontSize="13" fill={LA_B}>Area = {fmt(Math.abs(det), 3)}</text>
             </svg>
+            )}
             <div className="la-kpis" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 8, marginTop: 10 }}>
               <div><small>Area (det B)</small><b>1.000</b></div>
               <div><small>Area scaling</small><b>× {fmt(Math.abs(det), 3)}</b></div>
@@ -761,7 +783,13 @@ function EigenLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNode }
               <ExtraFrame
                 mode={mode}
                 extra={extra}
-                fallback={(
+                fallback={mode === "3D View" ? (
+                  <StudioMath3D label="Eigenvectors in 3D">
+                    <MathArrow to={[u1[0] * (spec.values[0] ?? 1), u1[1] * (spec.values[0] ?? 1), 0]} color={LA_D} />
+                    <MathArrow to={[u2[0] * (spec.values[1] ?? 1), u2[1] * (spec.values[1] ?? 1), 0]} color={LA_C} />
+                    <TransformedCube matrix={lift2(M)} />
+                  </StudioMath3D>
+                ) : (
                   <svg className="msk-graph" viewBox="0 0 560 420" role="img" aria-label="Eigen view">
                     <rect width="560" height="420" fill="#f7fbff" />
                     <ArrowDefs />
@@ -867,9 +895,6 @@ function OrthoLab({ page }: { page: StudioMockupPage }) {
   const pu = mag3(u) ? scale3(u, dot3(v, u) / mag3(u) ** 2) : [0, 0, 0];
   const ru = sub3(v, pu);
   const pn = mag3(n) ? sub3(v, scale3(n, dot3(v, n) / mag3(n) ** 2)) : v;
-  const ox = 250, oy = 230, un = 48;
-  const p = (vec: number[]) => iso3(vec[0] ?? 0, vec[1] ?? 0, vec[2] ?? 0, ox, oy, un, 0.45);
-  const o = p([0, 0, 0]);
   const u1m = mag3(v) || 1;
   const u1 = scale3(v, 1 / u1m);
   const w2 = sub3(u, scale3(u1, dot3(u, u1)));
@@ -900,26 +925,13 @@ function OrthoLab({ page }: { page: StudioMockupPage }) {
                   <button key={item} type="button" className={item === mode ? "active" : ""} onClick={() => setMode(item)}>{item}</button>
                 ))}
               </div>
-            <svg className="msk-graph" viewBox="0 0 520 360" role="img" aria-label="Orthogonality">
-              <rect width="520" height="360" fill="#f7fbff" />
-              <ArrowDefs />
-              <IsoFloor ox={ox} oy={oy} unit={un} yaw={0.45} span={2} />
-              <polygon points={`${p([-2, 0, -2]).x},${p([-2, 0, -2]).y} ${p([2, 0, -2]).x},${p([2, 0, -2]).y} ${p([2, 0, 2]).x},${p([2, 0, 2]).y} ${p([-2, 0, 2]).x},${p([-2, 0, 2]).y}`} fill="rgba(139,69,244,.18)" />
-              <VectorRay x1={o.x} y1={o.y} x2={p([3, 0, 0]).x} y2={p([3, 0, 0]).y} color="#94a3b8" marker="la-c" />
-              <VectorRay x1={o.x} y1={o.y} x2={p([0, 3, 0]).x} y2={p([0, 3, 0]).y} color="#94a3b8" marker="la-c" />
-              <VectorRay x1={o.x} y1={o.y} x2={p([0, 0, 3]).x} y2={p([0, 0, 3]).y} color="#94a3b8" marker="la-c" />
-              <text x={p([3, 0, 0]).x} y={p([3, 0, 0]).y + 12} fontSize="11" fill="#64748b">x</text>
-              <text x={p([0, 0, 3]).x + 8} y={p([0, 0, 3]).y + 12} fontSize="11" fill="#64748b">y</text>
-              <text x={p([0, 3, 0]).x - 6} y={p([0, 3, 0]).y - 6} fontSize="11" fill="#64748b">z</text>
-              <VectorRay x1={o.x} y1={o.y} x2={p(v).x} y2={p(v).y} color={LA_A} marker="la-a" />
-              <VectorRay x1={o.x} y1={o.y} x2={p(u).x} y2={p(u).y} color={LA_E} marker="la-e" />
-              <VectorRay x1={o.x} y1={o.y} x2={p(n).x} y2={p(n).y} color={LA_B} marker="la-b" />
-              <VectorRay x1={o.x} y1={o.y} x2={p(pu).x} y2={p(pu).y} color={LA_C} marker="la-c" />
-              <VectorRay x1={p(pu).x} y1={p(pu).y} x2={p(v).x} y2={p(v).y} color={LA_C} dashed marker="la-c" />
-              <DragHandle x={p(v).x} y={p(v).y} fill={LA_A} label="v" />
-              <DragHandle x={p(u).x} y={p(u).y} fill={LA_E} label="u" />
-              <DragHandle x={p(n).x} y={p(n).y} fill={LA_B} label="n" />
-            </svg>
+            <StudioMath3D label="Orthogonality 3D">
+              <EquationPlane a={n[0]} b={n[1]} c={n[2]} d={0} color="#8b45f4" />
+              <MathArrow to={v} color={LA_A} />
+              <MathArrow to={u} color={LA_E} />
+              <MathArrow to={n} color={LA_B} />
+              <MathArrow to={[pu[0] ?? 0, pu[1] ?? 0, pu[2] ?? 0]} color={LA_C} />
+            </StudioMath3D>
           </Card>
           </div>
           <div className="la-rail">
@@ -1060,9 +1072,6 @@ function PlaygroundLab({ page, extra }: { page: StudioMockupPage; extra?: ReactN
   const [stack, setStack] = useState(["Rotate Z (30°)", "Shear X (0.6)"]);
   const det = det3(A);
   const M2: Mat2 = [[lerp(1, A[0]?.[0] ?? 1, t), lerp(0, A[0]?.[1] ?? 0, t)], [lerp(0, A[1]?.[0] ?? 0, t), lerp(1, A[1]?.[1] ?? 1, t)]];
-  const cube = [[0, 0, 0], [1, 0, 0], [1, 1, 0], [0, 1, 0], [0, 0, 1], [1, 0, 1], [1, 1, 1], [0, 1, 1]];
-  const mapped = cube.map(([x, y, z]) => apply3(A, x, y, z));
-  const p3 = (v: number[]) => iso3(v[0] ?? 0, v[1] ?? 0, v[2] ?? 0, 160, 150, 52, 0.5);
 
   return (
     <LinearAlgebraLabChrome page={page} play>
@@ -1109,11 +1118,9 @@ function PlaygroundLab({ page, extra }: { page: StudioMockupPage; extra?: ReactN
                 </div>
               </Card>
               <Card className="la-viz" title="3D transformation">
-                <svg className="msk-graph" viewBox="0 0 360 280" role="img" aria-label="3D playground">
-                  <rect width="360" height="280" fill="#f7fbff" />
-                  <polygon points={mapped.slice(0, 4).map((v) => `${p3(v).x},${p3(v).y}`).join(" ")} fill="rgba(139,69,244,.25)" stroke={LA_B} />
-                  <polygon points={`${p3([0, 0, 0]).x},${p3([0, 0, 0]).y} ${p3([1, 0, 0]).x},${p3([1, 0, 0]).y} ${p3([1, 1, 0]).x},${p3([1, 1, 0]).y} ${p3([0, 1, 0]).x},${p3([0, 1, 0]).y}`} fill="rgba(20,125,242,.2)" stroke={LA_A} />
-                </svg>
+                <StudioMath3D label="3D playground" compact>
+                  <TransformedCube matrix={A} />
+                </StudioMath3D>
                 <div className="la-metrics">
                   <div><small>Volume scale</small><b>{fmt(Math.abs(det), 3)}×</b></div>
                   <div><small>Orientation</small><b>{det >= 0 ? "Preserved" : "Flipped"}</b></div>

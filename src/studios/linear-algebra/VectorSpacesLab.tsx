@@ -3,8 +3,9 @@ import type { StudioMockupPage } from "../mockup/studioMockupCatalog";
 import { StatusOk, clamp, fmt } from "../mockup/studioLabKit";
 import { LinearAlgebraLabChrome } from "./LinearAlgebraLabChrome";
 import { Card, SliderRow, Switch } from "./linearAlgebraUi";
-import { ArrowDefs, DragHandle, IsoFloor, VectorRay, LA_A, LA_B, LA_C, LA_D } from "./linearAlgebraCanvas";
-import { iso3, matrixRank } from "./linearAlgebraLabMath";
+import { LA_A, LA_B, LA_C, LA_D } from "./linearAlgebraCanvas";
+import { matrixRank } from "./linearAlgebraLabMath";
+import { MathArrow, MathParallelogram, StudioMath3D } from "../shared/studioMath3D";
 import { areIndependent, coordinates, gramSchmidt } from "./vectorSpaceMath";
 
 const initial = {
@@ -37,10 +38,6 @@ export default function VectorSpacesLab({ page }: { page: StudioMockupPage }) {
   const coords = coordinates(w[0], w[1], s.v1[0], s.v1[1], s.v2[0], s.v2[1]);
   const gs = gramSchmidt(s.v1[0], s.v1[1], s.v2[0], s.v2[1]);
   const basis = dim === cols.length && cols.length > 0;
-  const ox = 250, oy = 220, u = 52;
-  const p = (v: number[]) => iso3(v[0] ?? 0, v[1] ?? 0, v[2] ?? 0, ox, oy, u, 0.5);
-  const o = p([0, 0, 0]);
-  const plane = [p([-2, 0, -2]), p([2, 0, -2]), p([2, 2, 2]), p([-2, 2, 2])];
 
   return (
     <LinearAlgebraLabChrome page={page} pills>
@@ -71,23 +68,13 @@ export default function VectorSpacesLab({ page }: { page: StudioMockupPage }) {
           </div>
           <div className="la-center">
           <Card className="la-viz" title={`${mode} in R³`}>
-            <svg className="msk-graph" viewBox="0 0 520 360" role="img" aria-label="Vector spaces">
-              <rect width="520" height="360" fill="#f7fbff" />
-              <ArrowDefs />
-              <IsoFloor ox={ox} oy={oy} unit={u} yaw={0.5} />
-              <polygon points={plane.map((pt) => `${pt.x},${pt.y}`).join(" ")} fill="rgba(20,125,242,.16)" stroke="#93c5fd" />
-              <VectorRay x1={o.x} y1={o.y} x2={p([3, 0, 0]).x} y2={p([3, 0, 0]).y} color="#94a3b8" marker="la-c" />
-              <VectorRay x1={o.x} y1={o.y} x2={p([0, 3, 0]).x} y2={p([0, 3, 0]).y} color="#94a3b8" marker="la-c" />
-              <VectorRay x1={o.x} y1={o.y} x2={p([0, 0, 3]).x} y2={p([0, 0, 3]).y} color="#94a3b8" marker="la-c" />
-              {s.on[0] ? <VectorRay x1={o.x} y1={o.y} x2={p(s.v1).x} y2={p(s.v1).y} color={LA_A} marker="la-a" /> : null}
-              {s.on[1] ? <VectorRay x1={o.x} y1={o.y} x2={p(s.v2).x} y2={p(s.v2).y} color={LA_B} marker="la-b" /> : null}
-              {s.on[2] ? <VectorRay x1={o.x} y1={o.y} x2={p(s.v3).x} y2={p(s.v3).y} color={LA_C} marker="la-c" /> : null}
-              <VectorRay x1={o.x} y1={o.y} x2={p(w).x} y2={p(w).y} color={LA_D} marker="la-d" />
-              <DragHandle x={p(s.v1).x} y={p(s.v1).y} fill={LA_A} label="v₁" />
-              <DragHandle x={p(s.v2).x} y={p(s.v2).y} fill={LA_B} label="v₂" />
-              <DragHandle x={p(s.v3).x} y={p(s.v3).y} fill={LA_C} label="v₃" />
-              <DragHandle x={p(w).x} y={p(w).y} fill={LA_D} label="w" />
-            </svg>
+            <StudioMath3D label="Vector spaces in R3">
+              <MathParallelogram a={s.v1} b={s.v2} color="#147df2" />
+              {s.on[0] ? <MathArrow to={s.v1} color={LA_A} /> : null}
+              {s.on[1] ? <MathArrow to={s.v2} color={LA_B} /> : null}
+              {s.on[2] ? <MathArrow to={s.v3} color={LA_C} /> : null}
+              <MathArrow to={w} color={LA_D} />
+            </StudioMath3D>
             <p className="la-note">Span{s.on.filter(Boolean).length ? `(v₁, v₂, v₃)` : ""} is a {dim === 3 ? "space" : dim === 2 ? "plane" : "line"} (dim = {dim}) in R³. The vectors are {basis ? "a basis" : "linearly dependent"}.</p>
           </Card>
           </div>

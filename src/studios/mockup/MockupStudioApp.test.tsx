@@ -276,9 +276,17 @@ describe("MockupStudioApp", () => {
     const rref = renderToString(<MemoryRouter initialEntries={["/linear-algebra/row-reduction"]}><MockupStudioApp studioId="linear-algebra" /></MemoryRouter>);
     expect(rref).toContain("Augmented matrix");
     expect(rref).toContain("System summary");
+    expect(rref).toContain('data-engine="three"');
     const play = renderToString(<MemoryRouter initialEntries={["/linear-algebra/playground"]}><MockupStudioApp studioId="linear-algebra" /></MemoryRouter>);
     expect(play).toContain("2D transformation");
     expect(play).toContain("3D transformation");
+    expect(vectors).toContain('data-engine="three"');
+    expect(play).toContain('data-engine="three"');
+    const spaces = renderToString(<MemoryRouter initialEntries={["/linear-algebra/vector-spaces"]}><MockupStudioApp studioId="linear-algebra" /></MemoryRouter>);
+    expect(spaces).toContain('data-engine="three"');
+    const solids = renderToString(<MemoryRouter initialEntries={["/geometry/solids"]}><MockupStudioApp studioId="geometry" /></MemoryRouter>);
+    expect(solids).toContain('data-engine="three"');
+    expect(solids).toContain("Three.js");
   });
 
   it("marks every mockup lab mode on the banner and canvas", () => {

@@ -24,6 +24,7 @@ import { useTrigSession } from "../trigStudioSession";
 import ModellingStudioLab from "./ModellingLabs";
 import { InverseTrigLab as TargetInverseTrigLab } from "./InverseTrigLab";
 import { ApplicationsLab as TargetApplicationsLab } from "./ApplicationsLab";
+import { ArRoomScene, StudioMath3D } from "../../shared/studioMath3D";
 
 function Chrome({ page, children, layout, toolbar }: { page: StudioMockupPage; children: ReactNode | ((mode: string) => ReactNode); layout?: "quad"; toolbar?: ReactNode }) {
   return (
@@ -188,20 +189,9 @@ function ArLab({ page, kind }: { page: StudioMockupPage; kind: "geometry" | "tri
             <text x="150" y="220" fill="#f59e0b" fontSize="12">{fmt(elev, 1)}°</text>
           </svg>
         ) : (
-          <svg className="msk-graph" viewBox="0 0 560 360" role="img" aria-label="Room AR overlay">
-            <rect width="560" height="360" fill="#e8eef4" />
-            <rect x="0" y="210" width="560" height="150" fill="#d6cfc4" />
-            <line x1="40" y1="210" x2="520" y2="210" stroke="#94a3b8" />
-            <polygon points="80,200 260,40 440,200" fill="none" stroke="#22d3ee" />
-            <circle cx="80" cy="200" r="5" fill="#f59e0b" /><circle cx="260" cy="40" r="5" fill="#08b9dd" /><circle cx="440" cy="200" r="5" fill="#f59e0b" />
-            <text x="70" y="216" fontSize="11">B</text><text x="266" y="36" fontSize="11">A</text><text x="444" y="216" fontSize="11">C</text>
-            <text x="240" y="28" fill="#8b45f4" fontSize="11">{fmt(elev, 1)}°</text>
-            <text x="240" y="130" fill="#147df2" fontSize="11">{fmt(dist * scale, 2)} m</text>
-            <circle cx="400" cy="90" r="36" fill="none" stroke="#8b45f4" />
-            <polygon points="160,300 220,220 280,300" fill="rgba(139,69,244,.35)" stroke="#8b45f4" />
-            <polygon points="320,300 360,230 400,300" fill="rgba(139,69,244,.35)" stroke="#8b45f4" />
-            <text x="188" y="318" fontSize="11">Pyramid</text>
-          </svg>
+          <StudioMath3D label="Room AR overlay">
+            <ArRoomScene dist={dist} elev={elev} scale={scale} />
+          </StudioMath3D>
         )}
         </div>
       </section>

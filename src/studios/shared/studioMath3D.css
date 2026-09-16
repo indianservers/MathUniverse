@@ -1,0 +1,29 @@
+.studio-math-3d {
+  position: relative;
+  width: 100%;
+  min-height: 320px;
+  height: 360px;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #f7fbff;
+  border: 1px solid #e4edf7;
+}
+
+.studio-math-3d.is-compact {
+  min-height: 260px;
+  height: 280px;
+}
+
+.studio-math-3d canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.studio-math-3d-ssr {
+  margin: 0;
+  padding: 28px 18px;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 700;
+}
