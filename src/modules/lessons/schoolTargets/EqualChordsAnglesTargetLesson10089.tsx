@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./EqualChordsAnglesTargetLesson10089.css";
 import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+import { LessonGraphInkLegend, lessonGraphInkProps } from "../graphs/LessonGraphInk";
 
 type Handle = "a" | "b" | "c" | "d";
 const RADIUS = 6 / (2 * Math.sin((27 * Math.PI) / 180));
@@ -253,6 +254,7 @@ export default function EqualChordsAnglesTargetLesson10089({
             <article>
               <svg
                 ref={svgRef}
+                {...lessonGraphInkProps}
                 viewBox="0 0 600 410"
                 aria-label="Draggable equal chords circle"
                 onPointerMove={(e) => {
@@ -261,6 +263,7 @@ export default function EqualChordsAnglesTargetLesson10089({
                 onPointerUp={() => dragging && act(() => setDragging(null))}
                 onPointerLeave={() => dragging && act(() => setDragging(null))}
               >
+                <LessonGraphInkLegend />
                 <line className="axis" x1={cx} y1="20" x2={cx} y2="390" />
                 <line className="axis" x1="110" y1={cy} x2="490" y2={cy} />
                 <circle className="circle" cx={cx} cy={cy} r={r} />

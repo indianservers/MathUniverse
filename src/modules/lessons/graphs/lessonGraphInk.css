@@ -1,0 +1,98 @@
+/* Lesson figures only. Never import this from studio workspaces. */
+svg[data-lesson-graph-ink] {
+  --lesson-ink-chord: #2563eb;
+  --lesson-ink-chord-2: #7c3aed;
+  --lesson-ink-tangent: #f59e0b;
+  --lesson-ink-angle: #ec4899;
+  --lesson-ink-inscribed: #8b5cf6;
+}
+
+svg[data-lesson-graph-ink] .chord,
+svg[data-lesson-graph-ink] .diameter,
+svg[data-lesson-graph-ink] .diagonal,
+svg[data-lesson-graph-ink] line.triangle,
+svg[data-lesson-graph-ink] polygon.quad {
+  stroke: var(--lesson-ink-chord) !important;
+  stroke-width: 3;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 2.4px var(--lesson-ink-chord)) drop-shadow(0 0 7px #60a5fa99);
+  animation: lesson-ink-pulse 2.6s ease-in-out infinite;
+}
+
+svg[data-lesson-graph-ink] .chord.cd {
+  stroke: var(--lesson-ink-chord-2) !important;
+  filter: drop-shadow(0 0 2.4px var(--lesson-ink-chord-2)) drop-shadow(0 0 7px #c4b5fd99);
+}
+
+svg[data-lesson-graph-ink] .tangent,
+svg[data-lesson-graph-ink] .line.tangent {
+  stroke: var(--lesson-ink-tangent) !important;
+  stroke-width: 3.1;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 2.8px var(--lesson-ink-tangent)) drop-shadow(0 0 8px #fbbf2499);
+  animation: lesson-ink-pulse 2.4s ease-in-out infinite;
+}
+
+svg[data-lesson-graph-ink] .angle,
+svg[data-lesson-graph-ink] .central,
+svg[data-lesson-graph-ink] .inscribed,
+svg[data-lesson-graph-ink] .right-mark,
+svg[data-lesson-graph-ink] .right,
+svg[data-lesson-graph-ink] path.arc,
+svg[data-lesson-graph-ink] line.side {
+  stroke: var(--lesson-ink-angle) !important;
+  fill: none;
+  filter: drop-shadow(0 0 2.2px var(--lesson-ink-angle)) drop-shadow(0 0 6px #f9a8d499);
+  animation: lesson-ink-pulse 2.8s ease-in-out infinite;
+}
+
+svg[data-lesson-graph-ink] .inscribed,
+svg[data-lesson-graph-ink] .angle.cd,
+svg[data-lesson-graph-ink] .angle.n1 {
+  stroke: var(--lesson-ink-inscribed) !important;
+  filter: drop-shadow(0 0 2.2px var(--lesson-ink-inscribed)) drop-shadow(0 0 6px #c4b5fd99);
+}
+
+svg[data-lesson-graph-ink] .angle.ab,
+svg[data-lesson-graph-ink] .measure.ab {
+  fill: var(--lesson-ink-chord) !important;
+}
+
+svg[data-lesson-graph-ink] .angle.cd,
+svg[data-lesson-graph-ink] .measure.cd {
+  fill: var(--lesson-ink-chord-2) !important;
+}
+
+svg[data-lesson-graph-ink] [data-lesson-ink-legend] line {
+  animation: none;
+}
+
+@keyframes lesson-ink-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.78;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  svg[data-lesson-graph-ink] .chord,
+  svg[data-lesson-graph-ink] .diameter,
+  svg[data-lesson-graph-ink] .diagonal,
+  svg[data-lesson-graph-ink] line.triangle,
+  svg[data-lesson-graph-ink] polygon.quad,
+  svg[data-lesson-graph-ink] .tangent,
+  svg[data-lesson-graph-ink] .line.tangent,
+  svg[data-lesson-graph-ink] .angle,
+  svg[data-lesson-graph-ink] .central,
+  svg[data-lesson-graph-ink] .inscribed,
+  svg[data-lesson-graph-ink] .right-mark,
+  svg[data-lesson-graph-ink] .right,
+  svg[data-lesson-graph-ink] path.arc,
+  svg[data-lesson-graph-ink] line.side {
+    animation: none;
+    filter: none;
+  }
+}

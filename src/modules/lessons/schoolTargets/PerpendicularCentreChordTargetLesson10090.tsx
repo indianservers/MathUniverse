@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./PerpendicularCentreChordTargetLesson10090.css";
 import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+import { LessonGraphInkLegend, lessonGraphInkProps } from "../graphs/LessonGraphInk";
 
 const round = (n: number, p = 2) => Math.round(n * 10 ** p) / 10 ** p;
 export default function PerpendicularCentreChordTargetLesson10090({
@@ -120,6 +121,7 @@ export default function PerpendicularCentreChordTargetLesson10090({
             </header>
             <svg
               ref={svgRef}
+              {...lessonGraphInkProps}
               viewBox="0 0 570 430"
               aria-label="Draggable centre perpendicular chord construction"
               onPointerMove={(e) => {
@@ -128,6 +130,7 @@ export default function PerpendicularCentreChordTargetLesson10090({
               onPointerUp={() => dragging && act(() => setDragging(false))}
               onPointerLeave={() => dragging && act(() => setDragging(false))}
             >
+              <LessonGraphInkLegend />
               <circle className="circle" cx={cx} cy={cy} r={rr} />
               {construction && (
                 <>

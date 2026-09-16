@@ -4,6 +4,7 @@ import type { PointerEvent as ReactPointerEvent } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./EllipseTangentTargetLesson10149.css";
 import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+import { LessonGraphInkLegend, lessonGraphInkProps } from "../graphs/LessonGraphInk";
 
 export default function EllipseTangentTargetLesson10149({
   lesson: _lesson,
@@ -181,6 +182,7 @@ export default function EllipseTangentTargetLesson10149({
           <svg
             viewBox={`0 0 ${graph.W} ${graph.H}`}
             aria-label="Interactive ellipse tangent graph"
+            {...lessonGraphInkProps}
             onPointerDown={(e) => {
               dragging.current = true;
               e.currentTarget.setPointerCapture(e.pointerId);
@@ -194,6 +196,7 @@ export default function EllipseTangentTargetLesson10149({
               e.currentTarget.releasePointerCapture(e.pointerId);
             }}
           >
+            <LessonGraphInkLegend />
             {Array.from({ length: 21 }, (_, i) => i - 8).map((n) => (
               <g key={n}>
                 <line

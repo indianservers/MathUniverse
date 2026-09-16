@@ -13,6 +13,7 @@ import type { PointerEvent as ReactPointerEvent } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./ParabolaNormalTargetLesson10148.css";
 import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+import { LessonGraphInkLegend, lessonGraphInkProps } from "../graphs/LessonGraphInk";
 
 type Tool = "point" | "pan";
 export default function ParabolaNormalTargetLesson10148({
@@ -155,6 +156,7 @@ export default function ParabolaNormalTargetLesson10148({
             <svg
               viewBox={`0 0 ${graph.W} ${graph.H}`}
               aria-label="Interactive parabola normal graph"
+              {...lessonGraphInkProps}
               onPointerDown={(e) => {
                 dragging.current = true;
                 previous.current = pointer(e);
@@ -169,6 +171,7 @@ export default function ParabolaNormalTargetLesson10148({
                 e.currentTarget.releasePointerCapture(e.pointerId);
               }}
             >
+              <LessonGraphInkLegend />
               {grid &&
                 Array.from({ length: 19 }, (_, i) => i - 7).map((n) => (
                   <g key={n}>

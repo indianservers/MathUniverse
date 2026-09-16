@@ -20,6 +20,7 @@ import {
 import type { LessonAdapterProps } from "../types";
 import "./UnitCircleTargetLesson258.css";
 import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+import { LessonGraphInkLegend, lessonGraphInkProps } from "../graphs/LessonGraphInk";
 
 type Unit = "degrees" | "radians";
 type Choice = "A" | "B" | "C" | "D";
@@ -173,10 +174,11 @@ function LinkedCircle({ angle, model, onAngle }: { angle: number; model: ReturnT
     const normalized = normalize(Math.atan2(c.y - q.y, q.x - c.x) * 180 / Math.PI), candidates = [normalized - 360, normalized, normalized + 360];
     onAngle(candidates.reduce((best, value) => Math.abs(value - angle) < Math.abs(best - angle) ? value : best));
   };
-  return <svg ref={svg} className="target-unit-circle-graph" viewBox="0 0 450 390" role="img" aria-label="Linked draggable point on the unit circle" onPointerMove={(e) => { if (dragging.current) update(e); }} onPointerUp={() => { dragging.current = false; }}>
+  return <svg ref={svg} className="target-unit-circle-graph" viewBox="0 0 450 390" role="img" aria-label="Linked draggable point on the unit circle" {...lessonGraphInkProps} onPointerMove={(e) => { if (dragging.current) update(e); }} onPointerUp={() => { dragging.current = false; }}>
+    <LessonGraphInkLegend />
     <line x1="32" x2="423" y1={c.y} y2={c.y} stroke="#334155" /><line x1={c.x} x2={c.x} y1="17" y2="363" stroke="#334155" /><circle cx={c.x} cy={c.y} r={r} fill="#fbfdff" stroke="#64748b" strokeWidth="1.4" />
-    <line x1={c.x} y1={c.y} x2={p.x} y2={p.y} stroke="#7446d8" strokeWidth="2.2" /><line x1={p.x} y1={p.y} x2={p.x} y2={c.y} stroke="#18a7aa" strokeDasharray="5 3" /><line x1={c.x} y1={p.y} x2={p.x} y2={p.y} stroke="#2563eb" strokeDasharray="5 3" />
-    <path d={arcPath(c.x, c.y, 39, model.normalized)} fill="none" stroke="#0891b2" strokeWidth="2" /><text x={c.x + 45} y={c.y - 12} fontSize="13">θ</text>
+    <line className="chord" x1={c.x} y1={c.y} x2={p.x} y2={p.y} stroke="#7446d8" strokeWidth="2.2" /><line x1={p.x} y1={p.y} x2={p.x} y2={c.y} stroke="#18a7aa" strokeDasharray="5 3" /><line x1={c.x} y1={p.y} x2={p.x} y2={p.y} stroke="#2563eb" strokeDasharray="5 3" />
+    <path className="angle" d={arcPath(c.x, c.y, 39, model.normalized)} fill="none" stroke="#0891b2" strokeWidth="2" /><text x={c.x + 45} y={c.y - 12} fontSize="13">θ</text>
     <circle data-testid="unit-circle-point" data-angle={angle.toFixed(1)} cx={p.x} cy={p.y} r="7" fill="#7446d8" onPointerDown={(e) => { dragging.current = true; e.currentTarget.setPointerCapture(e.pointerId); }} />
     <circle cx={c.x} cy={p.y} r="4" fill="#2563eb" /><circle cx={p.x} cy={c.y} r="4" fill="#18a7aa" />
     <text x={p.x + 8} y={p.y - 8} fontSize="12" fontWeight="800">P (cos θ, sin θ)</text><text x={c.x - 40} y={p.y + 4} fontSize="12" fill="#2563eb">sin θ</text><text x={p.x - 16} y={c.y + 20} fontSize="12" fill="#07989d">cos θ</text><text x={(c.x + p.x) / 2} y={(c.y + p.y) / 2 - 7} fontSize="12">1</text>
