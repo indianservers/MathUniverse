@@ -558,8 +558,17 @@ function LinearTransformsLab({ page, extra }: { page: StudioMockupPage; extra?: 
                   <rect width="560" height="420" fill="#f7fbff" />
                   <ArrowDefs />
                   <AxisGrid ox={280} oy={220} unit={48} dark={false} />
-                  <polygon points={poly(identity2(), 280, 220, 48)} fill="rgba(20,125,242,.16)" stroke={LA_A} />
-                  <polygon points={poly(Mt, 280, 220, 48)} fill="rgba(139,69,244,.2)" stroke={LA_B} />
+                  {shape === "unit" ? (
+                    <>
+                      <polygon points={poly(identity2(), 280, 220, 48)} fill="rgba(20,125,242,.16)" stroke={LA_A} />
+                      <polygon points={poly(Mt, 280, 220, 48)} fill="rgba(139,69,244,.2)" stroke={LA_B} />
+                    </>
+                  ) : (
+                    <>
+                      <polygon points={[[-1.2, 0.4], [-0.4, 2.1], [0.9, 2.6], [1.4, 0.9], [-0.2, -0.6]].map(([x, y]) => `${280 + x * 48},${220 - y * 48}`).join(" ")} fill="rgba(20,125,242,.16)" stroke={LA_A} />
+                      <polygon points={[[-1.2, 0.4], [-0.4, 2.1], [0.9, 2.6], [1.4, 0.9], [-0.2, -0.6]].map(([x, y]) => { const [nx, ny] = apply2(Mt, x, y); return `${280 + nx * 48},${220 - ny * 48}`; }).join(" ")} fill="rgba(139,69,244,.2)" stroke={LA_B} />
+                    </>
+                  )}
                   <VectorRay x1={280} y1={220} x2={280 + Mt[0][0] * 48} y2={220 - Mt[1][0] * 48} color={LA_A} marker="la-a" />
                   <VectorRay x1={280} y1={220} x2={280 + Mt[0][1] * 48} y2={220 - Mt[1][1] * 48} color={LA_C} marker="la-c" />
                   <text x="40" y="400" fontSize="11">Original (t = 0) · Transformed (t = 1) · Current (t = {fmt(t, 2)})</text>

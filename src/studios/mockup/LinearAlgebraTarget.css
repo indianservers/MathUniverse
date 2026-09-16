@@ -1004,18 +1004,33 @@
   gap: 8px;
 }
 
+.msk-linear-algebra .msk-tools .msk-lab-tools button.la-tool,
 .msk-linear-algebra .la-tool {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  min-height: 34px;
-  padding: 0 10px;
+  width: auto;
+  min-width: 36px;
+  height: 36px;
+  min-height: 36px;
+  padding: 0 12px;
   border: 1px solid #dce7f4;
   border-radius: 999px;
   background: #fff;
   color: #163056;
   font-size: 12px;
   font-weight: 800;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px #415f8b10;
+}
+
+.msk-linear-algebra .msk-tools .msk-lab-tools .la-tool span {
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  box-shadow: none;
 }
 
 .msk-linear-algebra .la-tool svg {
