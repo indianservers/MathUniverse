@@ -1,5 +1,6 @@
 import type { KeyboardEvent } from "react";
 import { useEffect } from "react";
+import { Download, Link2, RotateCcw } from "lucide-react";
 import { MockupLearningStrip } from "../../mockup/MockupStudioChrome";
 import type { StudioMockupPage } from "../../mockup/studioMockupCatalog";
 import ArcsSectorsLab from "./ArcsSectorsLab";
@@ -72,9 +73,11 @@ function CirclesToolbar() {
         <button type="button" className={units === "units" ? "is-on" : ""} onClick={() => setUnits("units")}>Units</button>
         <button type="button" className={units === "cm" ? "is-on" : ""} onClick={() => setUnits("cm")}>Centimetres</button>
       </div>
-      <button type="button" className="clab-ghost" onClick={undo}>Undo</button>
-      <button type="button" className="clab-ghost" onClick={() => void share()}>Copy share URL</button>
-      <button type="button" className="clab-ghost" onClick={exportSvg}>Download SVG</button>
+      <div className="clab-figure-tools" role="group" aria-label="Figure actions">
+        <button type="button" className="clab-icon" onClick={undo} aria-label="Undo" title="Undo"><RotateCcw size={15} /></button>
+        <button type="button" className="clab-icon" onClick={() => void share()} aria-label="Copy share URL" title="Copy share URL"><Link2 size={15} /></button>
+        <button type="button" className="clab-icon" onClick={exportSvg} aria-label="Download SVG" title="Download SVG"><Download size={15} /></button>
+      </div>
       <p className="clab-live-region" role="status" aria-live="polite">{announce}</p>
     </div>
   );

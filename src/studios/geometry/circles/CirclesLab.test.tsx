@@ -58,6 +58,8 @@ describe("Circles Lab modes", () => {
     expect(renderCircles("/geometry/circles?mode=power&kind=radical")).toContain("Radical Axis");
     expect(renderCircles("/geometry/circles?mode=Chords")).toContain("Teacher mode");
     expect(renderCircles("/geometry/circles?mode=Chords")).toContain("Snap to 30");
-    expect(renderCircles("/geometry/circles?mode=Chords")).toContain("Copy share URL");
+    expect(renderCircles("/geometry/circles?mode=Chords")).toContain('aria-label="Copy share URL"');
+    expect(renderCircles("/geometry/circles?mode=Chords")).toContain("clab-figure-tools");
+    expect(renderCircles("/geometry/circles?mode=Chords")).not.toContain(">Download SVG</button>");
   });
 });

@@ -409,7 +409,7 @@ export default function ConstructionLab({ page }: { page: StudioMockupPage }) {
   const roots = objects.filter((o) => !o.parents[0] || !objects.some((x) => x.id === o.parents[0]));
 
   return (
-    <div className="clab">
+    <div className="clab clab-construction">
       {headerHost ? createPortal(header, headerHost) : <div className="clab-inline-head">{header}</div>}
       <nav className="clab-tabs msk-tabs" aria-label="Construction Workspace modes">
         {CONSTRUCTION_PANELS.map((item) => (

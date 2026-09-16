@@ -8,9 +8,9 @@ export const LESSON_GRAPH_INK = {
 } as const;
 
 const SWATCHES = [
-  { id: "chord", label: "Chord", color: LESSON_GRAPH_INK.chord, glow: true },
-  { id: "tangent", label: "Tangent", color: LESSON_GRAPH_INK.tangent, glow: true },
-  { id: "angle", label: "Angle", color: LESSON_GRAPH_INK.angle, glow: true },
+  { id: "chord", label: "Chord", color: LESSON_GRAPH_INK.chord },
+  { id: "tangent", label: "Tangent", color: LESSON_GRAPH_INK.tangent },
+  { id: "angle", label: "Angle", color: LESSON_GRAPH_INK.angle },
 ] as const;
 
 /** Color key for lesson figures. Studios / workspaces must not import this. */
@@ -28,11 +28,9 @@ export function LessonGraphInkLegend({ x = 16, y = 16 }: { x?: number; y?: numbe
             stroke={item.color}
             strokeWidth="4"
             strokeLinecap="round"
-            data-glow="true"
           />
-          <text x="32" y="4" fontSize="11" fontWeight="800" fill="#334155">
+          <text x="32" y="4" fontSize="11" fontWeight="800" fill="#1e293b">
             {item.label}
-            {item.glow ? " · glow" : ""}
           </text>
         </g>
       ))}

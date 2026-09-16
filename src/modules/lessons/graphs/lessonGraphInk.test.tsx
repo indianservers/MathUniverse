@@ -6,13 +6,13 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 
 describe("lesson graph ink", () => {
-  it("keeps chord, tangent, and angle as distinct glowing colors", () => {
+  it("keeps chord, tangent, and angle as distinct colors without glowing labels", () => {
     const html = renderToString(<svg {...lessonGraphInkProps}><LessonGraphInkLegend /></svg>);
     expect(html).toContain("data-lesson-graph-ink");
     expect(html).toContain("Chord");
     expect(html).toContain("Tangent");
     expect(html).toContain("Angle");
-    expect(html).toContain("glow");
+    expect(html).not.toContain("glow");
     expect(html).toContain("#2563eb");
     expect(html).toContain("#f59e0b");
     expect(html).toContain("#ec4899");
@@ -22,6 +22,8 @@ describe("lesson graph ink", () => {
     const css = readFileSync(join(__dirname, "lessonGraphInk.css"), "utf8");
     expect(css).toContain("svg[data-lesson-graph-ink]");
     expect(css).toContain("Lesson figures only");
+    expect(css).toContain("svg[data-lesson-graph-ink] text");
+    expect(css).toContain("text-shadow: none");
     expect(css).not.toContain(".msk-");
     expect(css).not.toContain(".clab-");
   });
