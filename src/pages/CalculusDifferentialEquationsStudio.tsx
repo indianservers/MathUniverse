@@ -64,11 +64,11 @@ export default function CalculusDifferentialEquationsStudio({ mode }: { mode: st
   const [draft, setDraft] = useState(info.expression);
   const [x0, setX0] = useState(0);
   const [y0, setY0] = useState(1);
-  const [h, setH] = useState(0.2);
+  const [h, setH] = useState(active === "euler" || active === "rk4" ? 0.25 : 0.2);
   const [k, setK] = useState(0.6);
   const [rate, setRate] = useState(0.8);
   const [capacity, setCapacity] = useState(10);
-  const [time, setTime] = useState(3);
+  const [time, setTime] = useState(active === "growth" ? 4 : 3);
   const [target, setTarget] = useState(2);
   const [showGrid, setShowGrid] = useState(true);
   const [playing, setPlaying] = useState(false);
