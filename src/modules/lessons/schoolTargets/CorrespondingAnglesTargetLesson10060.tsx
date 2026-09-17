@@ -477,9 +477,9 @@ function CorrespondenceLegend() {
   return (
     <aside className="ca10060-legend">
       <h3>
-        CORRESPONDING
+        Corresponding
         <br />
-        ANGLE PAIRS
+        angle pairs
       </h3>
       {pairs.map(([a, b], i) => (
         <p key={a}>
@@ -526,15 +526,16 @@ function TransversalDiagram({
   const lineRight = skew;
   const lineMLeft = skewM + 180;
   const bottomAngles = fourAngles(skewM, transUp);
+  const transDown = transUp + 180;
   const wedges = [
     piePath(top.x, top.y, lineLeft, transUp, WEDGE_R, 1),
     piePath(top.x, top.y, transUp, lineRight, WEDGE_R, 1),
-    piePath(top.x, top.y, lineLeft, transUp + 180, WEDGE_R, 0),
-    piePath(top.x, top.y, transUp + 180, lineRight, WEDGE_R, 1),
+    piePath(top.x, top.y, transDown, lineLeft, WEDGE_R, 1),
+    piePath(top.x, top.y, lineRight, transDown, WEDGE_R, 1),
     piePath(bottom.x, bottom.y, lineMLeft, transUp, WEDGE_R, 1),
     piePath(bottom.x, bottom.y, transUp, skewM, WEDGE_R, 1),
-    piePath(bottom.x, bottom.y, lineMLeft, transUp + 180, WEDGE_R, 0),
-    piePath(bottom.x, bottom.y, transUp + 180, skewM, WEDGE_R, 1),
+    piePath(bottom.x, bottom.y, transDown, lineMLeft, WEDGE_R, 1),
+    piePath(bottom.x, bottom.y, skewM, transDown, WEDGE_R, 1),
   ];
   const labelAt = (
     cx: number,
@@ -549,12 +550,12 @@ function TransversalDiagram({
   const numberPts = [
     labelAt(top.x, top.y, lineLeft, angle, true),
     labelAt(top.x, top.y, transUp, 180 - angle, true),
-    labelAt(top.x, top.y, lineLeft, 180 - angle, false),
-    labelAt(top.x, top.y, transUp + 180, angle, true),
+    labelAt(top.x, top.y, transDown, 180 - angle, true),
+    labelAt(top.x, top.y, lineRight, angle, true),
     labelAt(bottom.x, bottom.y, lineMLeft, bottomAngles[0], true),
     labelAt(bottom.x, bottom.y, transUp, bottomAngles[1], true),
-    labelAt(bottom.x, bottom.y, lineMLeft, bottomAngles[1], false),
-    labelAt(bottom.x, bottom.y, transUp + 180, bottomAngles[0], true),
+    labelAt(bottom.x, bottom.y, transDown, bottomAngles[1], true),
+    labelAt(bottom.x, bottom.y, skewM, bottomAngles[0], true),
   ];
   const measure1 = polar(top.x, top.y, lineLeft - angle / 2, 92);
   const measure2 = polar(top.x, top.y, transUp - (180 - angle) / 2, 92);
