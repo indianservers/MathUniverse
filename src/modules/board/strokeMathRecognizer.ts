@@ -175,7 +175,13 @@ export function classifyDigit(points: Point[]): ClassifiedGlyph["alternatives"] 
   const aspect = calculateBounds(points).height / Math.max(calculateBounds(points).width, 1);
 
   const scores: Record<string, number> = {
-    "0": (closed ? 1.4 : 0) + fullHole * 2.4 + (aspect < 1.7 ? 0.3 : 0) - (bothEndsLeft ? 0.8 : 0),
+    "0":
+      (closed ? 1.6 : 0) +
+      fullHole * 2.6 +
+      (Math.abs(topHole - bottomHole) < 0.15 ? 1.3 : 0) +
+      (aspect < 1.7 ? 0.3 : 0) -
+      (bothEndsLeft ? 0.8 : 0) -
+      Math.max(0, bottomHole - topHole) * 0.4,
     "1": (aspect > 2.2 ? 1.6 : 0) + (calculateBounds(points).width < 18 ? 0.6 : 0),
     "3": bothEndsLeft
       ? openLeft * 2.2 +
@@ -187,11 +193,12 @@ export function classifyDigit(points: Point[]): ClassifiedGlyph["alternatives"] 
         1.8
       : -2,
     "6":
-      bottomHole * 3.2 +
-      (startTop ? 0.7 : 0) +
-      (closed || bottomHole > 0.12 ? 0.8 : 0) -
+      Math.max(0, bottomHole - topHole) * 3.4 +
+      (startTop && !closed ? 0.7 : 0) +
+      (bottomHole > 0.12 && topHole < 0.08 ? 1.1 : 0) -
       (bothEndsLeft ? 1.6 : 0) -
-      openLeft * 1.1,
+      openLeft * 1.1 -
+      (closed && Math.abs(topHole - bottomHole) < 0.15 ? 1.8 : 0),
     "8": (fullHole > 0.08 ? 0.6 : 0) + topHole * 1.4 + bottomHole * 1.4 - (bothEndsLeft ? 0.7 : 0),
     "9": topHole * 2.6 + (end.y > 0.7 ? 0.5 : 0) - bottomHole * 1.2,
     "5": (openLeft > 0.4 && startTop ? 0.8 : 0) + (lobes === 1 ? 0.4 : 0),

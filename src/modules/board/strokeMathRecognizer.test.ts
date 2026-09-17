@@ -60,12 +60,13 @@ function digitSix(originX: number) {
   return strokeFrom("six", [...tail, ...loop], originX);
 }
 
-function digitZero(originX: number) {
+function digitZero(originX: number, startAtTop = false) {
   const loop: Array<[number, number]> = [];
-  for (let angle = 0; angle <= Math.PI * 2.02; angle += 0.12) {
+  const start = startAtTop ? -Math.PI / 2 : 0;
+  for (let angle = start; angle <= start + Math.PI * 2.02; angle += 0.12) {
     loop.push([0.5 + 0.42 * Math.cos(angle), 0.5 + 0.46 * Math.sin(angle)]);
   }
-  return strokeFrom("zero", loop, originX);
+  return strokeFrom(startAtTop ? "zero-top" : "zero", loop, originX);
 }
 
 function letterS(originX: number) {
@@ -127,6 +128,10 @@ describe("stroke digit intelligence", () => {
     const sixty = recognizeHandwrittenMath([digitSix(0), digitZero(50)]);
     expect(sixty.digits).toBe("60");
     expect(replaceConfusedAngle("\\sin 60^\\circ", "60")).toBe("\\sin 60^\\circ");
+  });
+
+  it("reads a closed oval as 0 even when the stroke starts at the top", () => {
+    expect(classifyDigit(digitZero(0, true).points)[0]?.symbol).toBe("0");
   });
 
   it("reads SIN(30) instead of inventing sin 60", () => {
