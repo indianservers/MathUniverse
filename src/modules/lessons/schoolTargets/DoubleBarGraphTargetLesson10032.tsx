@@ -424,7 +424,7 @@ export default function DoubleBarGraphTargetLesson10032({
           <b>Data Handling Projects</b>
         </Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10032} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10032} view={tab} />
 
     </section>
   );

@@ -448,7 +448,7 @@ export default function CopyLineSegmentTargetLesson10022({
           →
         </Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10022} alwaysVisible onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10022} alwaysVisible />
 
     </section>
   );

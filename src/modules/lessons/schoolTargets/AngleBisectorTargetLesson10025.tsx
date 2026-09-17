@@ -403,7 +403,7 @@ export default function AngleBisectorTargetLesson10025({
           Next: Perpendicular Through a Point &nbsp; →
         </Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10025} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10025} view={tab} />
 
     </section>
   );

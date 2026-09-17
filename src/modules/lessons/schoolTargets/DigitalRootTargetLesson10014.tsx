@@ -477,7 +477,7 @@ export default function DigitalRootTargetLesson10014({
           Next lesson →<b>{next.title}</b>
         </Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10014} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10014} view={tab} />
 
     </section>
   );

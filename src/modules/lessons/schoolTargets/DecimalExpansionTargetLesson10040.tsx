@@ -283,7 +283,7 @@ export default function DecimalExpansionTargetLesson10040({
           <ArrowRight />
         </Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10040} view={activeTab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10040} view={activeTab} />
 
     </div>
   );

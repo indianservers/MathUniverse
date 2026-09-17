@@ -430,7 +430,7 @@ export default function EstimationRoundingTargetLesson10003({
           <span />
         )}
       </nav>
-      <LessonTopicStudyBoard lessonId={10003} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10003} view={tab} />
 
     </section>
   );

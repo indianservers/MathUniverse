@@ -419,7 +419,7 @@ export default function BillsTaxTargetLesson10018({
           Next Lesson →<b>{next.title}</b>
         </Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10018} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10018} view={tab} />
 
     </section>
   );

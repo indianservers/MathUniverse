@@ -340,7 +340,7 @@ export default function FactorTheoremTargetLesson10049({
           <ArrowRight />
         </Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10049} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10049} view={tab} />
 
     </section>
   );

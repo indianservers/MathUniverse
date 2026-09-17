@@ -333,7 +333,7 @@ export default function NthRootsTargetLesson10045({
           <ArrowRight />
         </Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10045} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10045} view={tab} />
 
     </section>
   );

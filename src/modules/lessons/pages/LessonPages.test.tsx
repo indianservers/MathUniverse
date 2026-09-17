@@ -7,7 +7,10 @@ import LessonPage from "./LessonPage";
 import AdvancedConceptLessonPage from "./AdvancedConceptLessonPage";
 import SchoolLessonsPage from "./SchoolLessonsPage";
 import SchoolLessonPage from "./SchoolLessonPage";
-import { schoolLessonsFor } from "../catalog/school/schoolSyllabusCatalog";
+import {
+  schoolLessonCatalog,
+  schoolLessonsFor,
+} from "../catalog/school/schoolSyllabusCatalog";
 import type { AcademicLevel } from "../syllabus/lessonSyllabusTypes";
 
 const schoolLevels: AcademicLevel[] = [
@@ -1817,6 +1820,45 @@ describe("lesson pages", () => {
     expect(html).toContain('data-challenge=""');
     expect(html).toContain('aria-label="Whole value"');
     expect(html).toContain('aria-label="Part value"');
+  });
+
+  it("renders school targets 10001-10056 and every Class 9 lesson without crashing", () => {
+    const crashCopy = "Reload the app to restore the latest lesson shell";
+    const lessons = schoolLessonCatalog.filter(
+      (lesson) =>
+        (lesson.numericId >= 10001 && lesson.numericId <= 10056) ||
+        lesson.metadata.academicLevel === "CLASS_9",
+    );
+    expect(lessons.length).toBeGreaterThanOrEqual(56);
+
+    const failures: string[] = [];
+    for (const lesson of lessons) {
+      try {
+        const html = renderToStaticMarkup(
+          <MemoryRouter initialEntries={[lesson.route]}>
+            <Routes>
+              <Route
+                path="/lessons/school/:levelSlug/:lessonSlug"
+                element={<SchoolLessonPage />}
+              />
+            </Routes>
+          </MemoryRouter>,
+        );
+        if (
+          html.includes(crashCopy) ||
+          html.includes("School lesson not found") ||
+          html.includes("Something went wrong")
+        ) {
+          failures.push(lesson.route);
+        }
+      } catch (error) {
+        const message =
+          error instanceof Error ? error.message : String(error);
+        failures.push(`${lesson.route}: ${message}`);
+      }
+    }
+
+    expect(failures).toEqual([]);
   });
 
   it("renders the dedicated proof-structure target for lesson 10057", () => {

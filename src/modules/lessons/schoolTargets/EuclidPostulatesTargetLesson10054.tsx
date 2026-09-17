@@ -392,7 +392,7 @@ export default function EuclidPostulatesTargetLesson10054({
           <ArrowRight />
         </Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10054} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10054} view={tab} />
 
     </section>
   );

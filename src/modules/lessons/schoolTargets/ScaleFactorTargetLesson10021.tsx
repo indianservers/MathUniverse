@@ -457,7 +457,7 @@ export default function ScaleFactorTargetLesson10021({
           →
         </Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10021} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10021} view={tab} />
 
     </section>
   );

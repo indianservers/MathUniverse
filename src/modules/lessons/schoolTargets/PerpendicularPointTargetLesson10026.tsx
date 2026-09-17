@@ -501,7 +501,7 @@ export default function PerpendicularPointTargetLesson10026({
           →
         </Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10026} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10026} view={tab} />
 
     </section>
   );

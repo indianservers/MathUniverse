@@ -543,7 +543,7 @@ export default function RouteMapTargetLesson10038({
           Next: Tabular Pattern Completion <ArrowRight />
         </Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10038} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10038} view={tab} />
 
     </section>
   );

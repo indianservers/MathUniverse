@@ -408,7 +408,7 @@ export default function RationalIrrationalTargetLesson10042({
           Next: Practice Problems <ArrowRight />
         </Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10042} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10042} view={tab} />
 
     </section>
   );

@@ -367,7 +367,7 @@ export default function TabularPatternTargetLesson10039({
           Next lesson <ArrowRight />
         </Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10039} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10039} view={tab} />
 
     </section>
   );

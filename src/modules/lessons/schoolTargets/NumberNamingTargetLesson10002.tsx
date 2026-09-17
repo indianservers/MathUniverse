@@ -554,7 +554,7 @@ export default function NumberNamingTargetLesson10002({
           <span />
         )}
       </nav>
-      <LessonTopicStudyBoard lessonId={10002} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10002} view={tab} />
 
     </section>
   );

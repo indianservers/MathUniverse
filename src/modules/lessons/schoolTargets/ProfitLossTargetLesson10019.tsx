@@ -457,7 +457,7 @@ export default function ProfitLossTargetLesson10019({
           →
         </Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10019} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10019} view={tab} />
 
     </section>
   );
