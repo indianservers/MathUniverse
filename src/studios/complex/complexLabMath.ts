@@ -63,3 +63,54 @@ export function fmtC(z: C, digits = 2): string {
   const sign = im < 0 ? "−" : "+";
   return `${z.re.toFixed(digits)} ${sign} ${Math.abs(im).toFixed(digits)}i`;
 }
+
+export function fact(n: number): number {
+  let f = 1;
+  for (let i = 2; i <= n; i += 1) f *= i;
+  return f;
+}
+
+export function iPower(n: number): C {
+  const k = ((n % 4) + 4) % 4;
+  if (k === 0) return { re: 1, im: 0 };
+  if (k === 1) return { re: 0, im: 1 };
+  if (k === 2) return { re: -1, im: 0 };
+  return { re: 0, im: -1 };
+}
+
+export function taylorExpITheta(theta: number, terms: number): C {
+  let sum: C = { re: 0, im: 0 };
+  for (let n = 0; n < terms; n += 1) {
+    const coeff = (theta ** n) / fact(n);
+    const iN = iPower(n);
+    sum = addC(sum, { re: iN.re * coeff, im: iN.im * coeff });
+  }
+  return sum;
+}
+
+export function mobius(z: C, a: C, b: C, c: C, d: C): C {
+  return divC(addC(mulC(a, z), b), addC(mulC(c, z), d));
+}
+
+export function invertC(z: C): C {
+  return divC({ re: 1, im: 0 }, z);
+}
+
+export function quadraticRoots(A: C, B: C, C0: C): C[] {
+  const disc = subC(mulC(B, B), mulC({ re: 4, im: 0 }, mulC(A, C0)));
+  const r = Math.sqrt(Math.max(0, modC(disc)));
+  const half = argC(disc) / 2;
+  const sqrtD = { re: r * Math.cos(half), im: r * Math.sin(half) };
+  const den = mulC({ re: 2, im: 0 }, A);
+  return [divC(addC(mulC({ re: -1, im: 0 }, B), sqrtD), den), divC(subC(mulC({ re: -1, im: 0 }, B), sqrtD), den)];
+}
+
+export function seriesRLC(f: number, R: number, L: number, Ccap: number) {
+  const w = 2 * Math.PI * f;
+  const xl = w * L;
+  const xc = 1 / (w * Ccap);
+  const X = xl - xc;
+  const zMag = Math.hypot(R, X);
+  const phi = Math.atan2(X, R);
+  return { w, xl, xc, X, zMag, phi, pf: Math.cos(phi) };
+}

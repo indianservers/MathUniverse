@@ -6,15 +6,17 @@ import { useLabMode } from "../mockup/studioLabKit";
 export function ComplexLabChrome({
   page,
   pills = false,
+  className = "",
   children,
 }: {
   page: StudioMockupPage;
   pills?: boolean;
+  className?: string;
   children: (mode: string, setMode: (mode: string) => void) => ReactNode;
 }) {
   const { tabs, mode, setMode } = useLabMode(page);
   return (
-    <div className={`cx-lab-root${pills ? " is-pills" : ""}`} data-cx-lab={page.id} data-lab-mode={mode} data-mode-canvas={mode} data-studio-kernel="1">
+    <div className={`cx-lab-root${pills ? " is-pills" : ""}${className ? ` ${className}` : ""}`} data-cx-lab={page.id} data-lab-mode={mode} data-mode-canvas={mode} data-studio-kernel="1">
       <p className="sr-only" role="status" aria-live="polite">{page.title} mode {mode}</p>
       {pills ? (
         <nav className="cx-pills" aria-label={`${page.title} modes`}>

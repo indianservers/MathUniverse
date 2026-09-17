@@ -270,7 +270,10 @@
 }
 
 .msk-complex-numbers.is-lab[data-cx-page="arithmetic"] .msk-search,
-.msk-complex-numbers.is-lab[data-cx-page="polar-forms"] .msk-search {
+.msk-complex-numbers.is-lab[data-cx-page="polar-forms"] .msk-search,
+.msk-complex-numbers.is-lab[data-cx-page="euler"] .msk-search,
+.msk-complex-numbers.is-lab[data-cx-page="loci"] .msk-search,
+.msk-complex-numbers.is-lab[data-cx-page="waves-circuits"] .msk-search {
   display: none;
 }
 
@@ -633,13 +636,231 @@
   background: linear-gradient(110deg, #22d3ee, #6366f1);
 }
 
+.msk-complex-numbers .msk-tools .cx-pills.is-header {
+  margin: 0;
+  padding: 4px;
+}
+
+.msk-complex-numbers .cx-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.msk-complex-numbers .cx-pi-marks {
+  display: flex;
+  justify-content: space-between;
+  color: #94a3b8;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.msk-complex-numbers .cx-mini {
+  margin: 0;
+  padding: 10px;
+  border: 1px solid #e2eaf3;
+  border-radius: 16px;
+  background: #fff;
+}
+
+.msk-complex-numbers .cx-mini figcaption {
+  margin: 0 0 6px;
+  color: #334155;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.msk-complex-numbers .cx-euler-grid,
+.msk-complex-numbers .cx-loci-planes,
+.msk-complex-numbers .cx-frac-pair,
+.msk-complex-numbers .cx-frac-aux {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.msk-complex-numbers .is-euler .cx-lab {
+  grid-template-columns: minmax(240px, 0.72fr) minmax(0, 1.7fr) minmax(260px, 0.86fr);
+}
+
+.msk-complex-numbers .is-loci .cx-lab {
+  grid-template-columns: minmax(240px, 0.7fr) minmax(0, 1.6fr) minmax(260px, 0.88fr);
+}
+
+.msk-complex-numbers .is-loci .cx-loci-planes {
+  grid-template-columns: 1fr 1fr;
+}
+
+.msk-complex-numbers .is-loci .cx-map-grid {
+  grid-column: 1 / -1;
+  width: 100%;
+  height: auto;
+  background: #f8fbff;
+  border: 1px solid #e2eaf3;
+  border-radius: 14px;
+}
+
+.msk-complex-numbers .is-loci .cx-xform {
+  grid-column: 1 / -1;
+  padding: 14px;
+  border: 1px solid #dbe7f3;
+  border-radius: 18px;
+  background: #fff;
+}
+
+.msk-complex-numbers .cx-coeff {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.msk-complex-numbers .is-waves .cx-lab {
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr) minmax(250px, 0.9fr);
+  grid-template-areas:
+    "top top top"
+    "phasor waves live"
+    "rlc tri live"
+    "inst inst inst";
+}
+
+.msk-complex-numbers .cx-waves-top { grid-area: top; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; padding: 12px 14px; border: 1px solid #dbe7f3; border-radius: 18px; background: #fff; }
+.msk-complex-numbers .cx-waves-phasor { grid-area: phasor; padding: 12px; border: 1px solid #dbe7f3; border-radius: 18px; background: #fff; }
+.msk-complex-numbers .cx-waves-time { grid-area: waves; padding: 12px; border: 1px solid #dbe7f3; border-radius: 18px; background: #fff; }
+.msk-complex-numbers .is-waves .cx-live { grid-area: live; }
+.msk-complex-numbers .cx-waves-rlc { grid-area: rlc; padding: 12px; border: 1px solid #dbe7f3; border-radius: 18px; background: #fff; }
+.msk-complex-numbers .cx-waves-tri { grid-area: tri; padding: 12px; border: 1px solid #dbe7f3; border-radius: 18px; background: #fff; }
+.msk-complex-numbers .cx-waves-inst { grid-area: inst; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; padding: 12px 14px; border: 1px solid #dbe7f3; border-radius: 18px; background: #fff; }
+.msk-complex-numbers .cx-waves-inst h2 { grid-column: 1 / -1; margin: 0; font-size: 13px; }
+
+.msk-complex-numbers .is-fractal .cx-lab {
+  grid-template-columns: minmax(230px, 0.68fr) minmax(0, 1.7fr) minmax(250px, 0.82fr);
+}
+
+.msk-complex-numbers .cx-frac-bar {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  border: 1px solid #dbe7f3;
+  border-radius: 999px;
+  background: #fff;
+}
+
+.msk-complex-numbers .cx-frac-stage {
+  display: grid;
+  gap: 10px;
+}
+
+.msk-complex-numbers .cx-frac-pair figure,
+.msk-complex-numbers .cx-frac-aux figure {
+  margin: 0;
+  padding: 8px;
+  border-radius: 16px;
+  background: #07111f;
+  color: #e2e8f0;
+}
+
+.msk-complex-numbers .cx-frac-pair figcaption,
+.msk-complex-numbers .cx-frac-aux figcaption {
+  margin: 0 0 6px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.msk-complex-numbers .cx-frac-view {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #020617;
+}
+
+.msk-complex-numbers .cx-frac-view canvas,
+.msk-complex-numbers .cx-frac-view svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.msk-complex-numbers .cx-frac-view svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.msk-complex-numbers .cx-frac-view.is-interactive { cursor: crosshair; }
+
+.msk-complex-numbers .cx-plane.is-dark { background: #07111f; border-color: #1e293b; }
+
+.msk-complex-numbers .cx-frac-recurrence {
+  padding: 10px;
+  border-radius: 16px;
+  background: #07111f;
+  color: #e2e8f0;
+}
+
+.msk-complex-numbers .cx-frac-recurrence h3 {
+  margin: 0 0 6px;
+  font-size: 12px;
+}
+
+.msk-complex-numbers .cx-frac-aux {
+  grid-template-columns: 1fr 1fr 0.9fr;
+}
+
+.msk-complex-numbers .cx-orbit-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.msk-complex-numbers .cx-orbit-dots i {
+  width: 10px;
+  height: 10px;
+  border-radius: 99px;
+}
+
+.msk-complex-numbers .cx-presets {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+
+.msk-complex-numbers .cx-presets button,
+.msk-complex-numbers .cx-random {
+  min-height: 40px;
+  border: 1px solid #dbe7f3;
+  border-radius: 12px;
+  background: #0f172a;
+  color: #e2e8f0;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.msk-complex-numbers .cx-random { width: 100%; margin-top: 8px; background: #0ea5e9; color: #fff; border: 0; }
+
+.msk-complex-numbers .cx-frac-recurrence .cx-eq,
+.msk-complex-numbers .cx-frac-recurrence .cx-meta { color: #cbd5e1; }
+
 @media (max-width: 1180px) {
   .msk-complex-numbers .msk-lab,
   .msk-complex-numbers .msk-home.cx-home,
   .msk-complex-numbers .cx-hero,
   .msk-complex-numbers .cx-map,
-  .msk-complex-numbers .cx-lab {
+  .msk-complex-numbers .cx-lab,
+  .msk-complex-numbers .is-waves .cx-lab,
+  .msk-complex-numbers .cx-euler-grid,
+  .msk-complex-numbers .cx-frac-aux,
+  .msk-complex-numbers .cx-frac-pair,
+  .msk-complex-numbers .cx-loci-planes,
+  .msk-complex-numbers .cx-waves-top,
+  .msk-complex-numbers .cx-waves-inst,
+  .msk-complex-numbers .cx-coeff {
     grid-template-columns: 1fr;
+    grid-template-areas: none;
   }
 
   .msk-complex-numbers .msk-launch-complex-numbers {

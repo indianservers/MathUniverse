@@ -53,6 +53,7 @@ import StudioHomeButtons from "../../components/ui/StudioHomeButtons";
 import { StudioCanvasToolbar } from "../../components/ui/StudioCanvasToolbar";
 import { TopicIllustration } from "./labs/TopicIllustrations";
 import { studioNavPages, studioSidebarPages, type StudioMockupDefinition, type StudioMockupPage } from "./studioMockupCatalog";
+import { useLabMode } from "./studioLabKit";
 import { ModellingLaunchArt, ModellingNavIcon, modellingDatasets, modellingJourney } from "./modellingStudioIcons";
 import { IllustratedStudioHome, StudioLabCard } from "./studioHomeLayouts";
 import GeometryStudioHome from "../geometry/GeometryStudioHome";
@@ -169,6 +170,19 @@ const pageIcons: Record<string, LucideIcon> = {
 
 export function MockupTopicArt({ pageId }: { pageId: string }) {
   return <TopicIllustration pageId={pageId} />;
+}
+
+function ComplexHeaderPills({ page }: { page: StudioMockupPage }) {
+  const { tabs, mode, setMode } = useLabMode(page);
+  return (
+    <nav className="cx-pills is-header" aria-label={`${page.title} modes`}>
+      {tabs.map((item) => (
+        <button key={item} type="button" className={item === mode ? "active" : ""} aria-pressed={item === mode} onClick={() => setMode(item)}>
+          {item}
+        </button>
+      ))}
+    </nav>
+  );
 }
 
 export function MockupLearningStrip({ page, mode }: { page: StudioMockupPage; mode?: string }) {
@@ -536,14 +550,24 @@ export function MockupStudioChrome({
               </>
             ) : isComplex && page.id !== "home" ? (
               <>
+                {page.id === "waves-circuits" ? <ComplexHeaderPills page={page} /> : null}
                 {page.id === "polar-forms" ? <button type="button" className="cx-chip" onClick={() => setHelpOpen(true)}>Quick tour</button> : null}
+                {page.id === "euler" ? (
+                  <button type="button" className="cx-chip" onClick={() => window.dispatchEvent(new Event("cx-lab-reset"))}>Reset</button>
+                ) : null}
+                {page.id === "loci" ? (
+                  <>
+                    <button type="button" className="cx-chip" onClick={() => window.dispatchEvent(new Event("cx-lab-animate"))}>Animate</button>
+                    <span className="cx-chip">1.0×</span>
+                  </>
+                ) : null}
                 {page.id === "arithmetic" ? (
                   <>
                     <button type="button" className="cx-chip" onClick={() => void navigator.clipboard?.writeText(window.location.href)}>Share</button>
                     <span className="cx-chip is-saved"><CheckCircle2 />Saved</span>
                     <button type="button" className="cx-chip is-reset" onClick={() => window.location.reload()}>Reset</button>
                   </>
-                ) : (
+                ) : page.id === "euler" || page.id === "waves-circuits" ? null : (
                   <>
                     <span className="cx-chip" aria-label="Streak 0"><Flame />0</span>
                     <span className="cx-chip" aria-label={`${complexSession.xp} XP`}><Star />{complexSession.xp} XP</span>
@@ -581,7 +605,7 @@ export function MockupStudioChrome({
                 </button>
               )
             ) : isComplex ? (
-              page.id === "home" || page.id === "arithmetic" || page.id === "polar-forms" ? null : (
+              page.id === "home" || page.id === "arithmetic" || page.id === "polar-forms" || page.id === "euler" || page.id === "waves-circuits" ? null : (
                 <button type="button" className={`msk-teacher${complexSession.teacherMode ? " active" : ""}`} aria-pressed={complexSession.teacherMode} onClick={() => writeComplexSession({ teacherMode: !complexSession.teacherMode })}>
                   Teacher mode
                 </button>
@@ -604,7 +628,7 @@ export function MockupStudioChrome({
                 <span>3</span>
               </button>
             ) : null}
-            {isModel || (isComplex && (page.id === "arithmetic" || page.id === "polar-forms")) ? null : (
+            {isModel || (isComplex && (page.id === "arithmetic" || page.id === "polar-forms" || page.id === "euler" || page.id === "waves-circuits" || page.id === "fractals")) ? null : (
               <button type="button" aria-label="Settings" onClick={() => setSettingsOpen(true)}><Settings /></button>
             )}
             {isModel ? <button type="button" className="msk-avatar" aria-label="Account"><User /></button> : null}
