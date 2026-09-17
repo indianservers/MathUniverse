@@ -36,7 +36,7 @@ describe("trigonometry studio target pages", () => {
     expect(html).toContain('data-id-mode="Double Angle"');
     expect(html).toContain('data-double-form="sin"');
     expect(html).toContain("Purple ray is 2θ");
-    expect(html).toContain("Two gold wedges stack as θ + θ");
+    expect(html).toContain("Two wedges stack as θ + θ");
     expect(html).toContain("2θ is θ stacked on θ, not “twice the sine”");
     expect(html).toContain("area 2 sinθ cosθ");
     expect(html).toContain("Common trap");

@@ -368,7 +368,7 @@ export function IdentitiesLab({ page }: { page: StudioMockupPage }) {
             <p className="id-double-legend" data-testid="double-angle-legend">
               <i style={{ background: COLORS.angle }} /> Gold ray is θ
               <i style={{ background: COLORS.double }} /> Purple ray is 2θ
-              <i style={{ background: COLORS.sine }} /> Two gold wedges stack as θ + θ
+              <i style={{ background: COLORS.sine }} /> Two wedges stack as θ + θ
             </p>
           ) : null}
           {mode === "Double Angle" ? (
