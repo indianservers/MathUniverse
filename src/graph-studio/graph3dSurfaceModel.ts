@@ -34,6 +34,18 @@ export type Graph3DSurface = {
   tMax: number;
   adaptive: boolean;
   streamlines: boolean;
+  xMin: number;
+  xMax: number;
+  yMin: number;
+  yMax: number;
+  zMin: number;
+  zMax: number;
+  domainPredicate: string;
+  fillBelow: boolean;
+  twoSided: boolean;
+  lod: 1 | 2 | 3;
+  showContours: boolean;
+  contourCount: number;
 };
 
 const colors = [
@@ -72,6 +84,18 @@ export function createGraph3DSurface(
     tMax: Math.PI * 6,
     adaptive: true,
     streamlines: true,
+    xMin: -3,
+    xMax: 3,
+    yMin: -3,
+    yMax: 3,
+    zMin: -3,
+    zMax: 3,
+    domainPredicate: "",
+    fillBelow: false,
+    twoSided: true,
+    lod: 2,
+    showContours: false,
+    contourCount: 5,
   };
 }
 

@@ -84,6 +84,12 @@ const iconByFamily: Record<ConceptFamily, LucideIcon> = {
 export function conceptFamilyForText(value: string): ConceptFamily {
   const lower = value.toLowerCase();
   if (
+    /(number system|number-system|hcf|lcm|\bgcd\b|prime factor|rational|irrational|real number|natural number|whole number|euclid.?s division|digit sum|divisibility)/.test(
+      lower,
+    )
+  )
+    return "numbers";
+  if (
     /(fourier|laplace|z-transform|signal|wave|heat|pde|ode|control|differential equation|engineering)/.test(
       lower,
     )

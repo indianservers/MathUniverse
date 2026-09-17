@@ -11,6 +11,7 @@ import {
 import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./MatrixOperationsTargetLesson444.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Matrix = [number, number, number, number];
 type Point = [number, number];
@@ -354,6 +355,8 @@ export default function MatrixOperationsTargetLesson444({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={444} view={view} onInteraction={onInteraction} />
+
     </section>
   );
 }

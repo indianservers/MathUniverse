@@ -9,6 +9,7 @@ import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./NthRootsTargetLesson10045.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const tabs = ["Interact", "Learn", "Example", "Formula", "Practice"];
 const matchRows = [
@@ -332,6 +333,8 @@ export default function NthRootsTargetLesson10045({
           <ArrowRight />
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10045} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

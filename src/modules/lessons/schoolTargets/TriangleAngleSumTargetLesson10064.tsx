@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./TriangleAngleSumTargetLesson10064.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 const initial = {
@@ -281,6 +282,8 @@ export default function TriangleAngleSumTargetLesson10064({
           Exterior Angle Theorem <ArrowRight />
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10064} view={tab} />
+
     </section>
   );
 }

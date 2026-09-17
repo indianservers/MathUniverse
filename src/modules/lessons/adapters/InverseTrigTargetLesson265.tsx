@@ -23,6 +23,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./InverseTrigTargetLesson265.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type InverseKey = "asin" | "acos" | "atan";
 type Stage = "explore" | "explain" | "examples" | "practice" | "know";
@@ -235,6 +236,8 @@ export default function InverseTrigTargetLesson265({
       </section>
 
       <nav className="target-inverse-nav"><a href="/lessons/trigonometry/264-reciprocal-trig-functions"><ArrowLeft /><span><b>Previous</b>Reciprocal Trig Functions</span></a><a href="/lessons/trigonometry/266-trig-identities"><span><b>Next</b>Trig Identities</span><ArrowRight /></a></nav>
+      <LessonTopicStudyBoard lessonId={265} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

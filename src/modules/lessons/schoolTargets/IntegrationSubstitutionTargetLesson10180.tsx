@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./IntegrationSubstitutionTargetLesson10180.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 const norm = (value: string) =>
   value
     .toLowerCase()
@@ -318,6 +319,8 @@ export default function IntegrationSubstitutionTargetLesson10180({
           © 2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.
         </small>
       </footer>
+      <LessonTopicStudyBoard lessonId={10180} alwaysVisible />
+
     </main>
   );
 }

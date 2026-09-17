@@ -12,6 +12,7 @@ import {
   type QueryMode,
 } from "./distributionCalculatorLessonModel";
 import "./DistributionCalculatorLesson516.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 const names: Record<DistributionKind, string> = {
   normal: "Normal (Gaussian)",
   binomial: "Binomial",
@@ -473,6 +474,8 @@ function CalculatorActivity({
           Previous: Law of Large Numbers &nbsp; Next: Probability Plot →
         </span>
       </footer>
+      <LessonTopicStudyBoard lessonId={516} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

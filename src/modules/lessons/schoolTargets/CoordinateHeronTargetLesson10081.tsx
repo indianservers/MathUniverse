@@ -3,6 +3,7 @@ import { type PointerEvent, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./CoordinateHeronTargetLesson10081.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 const A: Point = { x: 0, y: 0 };
@@ -380,6 +381,8 @@ export default function CoordinateHeronTargetLesson10081({
           <ArrowRight />
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10081} view={tab} />
+
     </section>
   );
 }

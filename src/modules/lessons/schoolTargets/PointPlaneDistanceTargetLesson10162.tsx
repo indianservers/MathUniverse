@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import type { KeyboardEvent, PointerEvent as ReactPointerEvent } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./PointPlaneDistanceTargetLesson10162.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type V = { x: number; y: number; z: number };
 const Q0: V = { x: 1, y: 2, z: 4 },
@@ -423,6 +424,8 @@ export default function PointPlaneDistanceTargetLesson10162({
           <span>© 2026 INDIAN SERVERS PRIVATE LIMITED.</span>
         </footer>
       </main>
+      <LessonTopicStudyBoard lessonId={10162} view={view} />
+
     </section>
   );
 }

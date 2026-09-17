@@ -14,6 +14,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./AxiomTheoremTargetLesson10056.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Lane = "assumed" | "proved";
 type Statement = { id: string; text: string; type: string; lane: Lane };
@@ -412,6 +413,8 @@ export default function AxiomTheoremTargetLesson10056({
           <ArrowRight />
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10056} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

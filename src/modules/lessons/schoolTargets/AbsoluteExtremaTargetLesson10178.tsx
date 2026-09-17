@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import type { KeyboardEvent, PointerEvent as ReactPointerEvent } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./AbsoluteExtremaTargetLesson10178.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 const f = (x: number) => x * x * x - 3 * x + 1,
   fmt = (x: number) => Number(x.toFixed(2));
 type Candidate = { x: number; kind: string; value: number };
@@ -438,6 +439,8 @@ export default function AbsoluteExtremaTargetLesson10178({
         <button>← Local Maxima and Minima</button>
         <button>Approximation Using Differentials →</button>
       </nav>
+      <LessonTopicStudyBoard lessonId={10178} alwaysVisible />
+
     </main>
   );
 }

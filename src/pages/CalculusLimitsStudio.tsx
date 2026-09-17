@@ -26,6 +26,7 @@ import {
 import { useSearchParams } from "react-router-dom";
 import MathExpression from "../components/ui/MathExpression";
 import { compileFunctionExpression } from "../utils/functionParser";
+import { repairedLimitExpression } from "./calculusStudioSession";
 import "./CalculusLimitsStudio.css";
 
 export type LimitMode =
@@ -35,7 +36,6 @@ export type LimitMode =
   | "asymptotes"
   | "lhopital";
 
-type LearningView = "observe" | "understand" | "why" | "try" | "challenge";
 type Viewport = { xMin: number; xMax: number; yMin: number; yMax: number };
 type LimitAnalysis = {
   left: number;
@@ -115,17 +115,16 @@ const examples = [
 ];
 
 const learningTabs: Array<{
-  id: LearningView;
+  id: string;
   label: string;
   subtitle: string;
   icon: typeof Eye;
-  content: string;
 }> = [
-  { id: "observe", label: "Observe", subtitle: "What happens?", icon: Eye, content: "Move the approach points and compare the values reached from each side." },
-  { id: "understand", label: "Understand", subtitle: "Key idea", icon: Lightbulb, content: "The value at a point and the value approached near it are separate ideas." },
-  { id: "why", label: "Why", subtitle: "The reasoning", icon: CircleAlert, content: "Agreement between both sides is what makes a two-sided limit possible." },
-  { id: "try", label: "Try", subtitle: "Practice it", icon: Target, content: "Choose an example, move a, and predict the result before reading the live analysis." },
-  { id: "challenge", label: "Challenge", subtitle: "Take it further", icon: Trophy, content: "Find a function whose left and right limits exist but do not agree." },
+  { id: "observe", label: "Observe", subtitle: "What happens?", icon: Eye },
+  { id: "understand", label: "Understand", subtitle: "Key idea", icon: Lightbulb },
+  { id: "why", label: "Why", subtitle: "The reasoning", icon: CircleAlert },
+  { id: "try", label: "Try", subtitle: "Practice it", icon: Target },
+  { id: "challenge", label: "Challenge", subtitle: "Take it further", icon: Trophy },
 ];
 
 export default function CalculusLimitsStudio({ mode }: { mode: string }) {
@@ -148,7 +147,8 @@ export default function CalculusLimitsStudio({ mode }: { mode: string }) {
     const value = params.get("v_defined");
     return value === null ? null : numberParam(value, 0);
   });
-  const [learning, setLearning] = useState<LearningView>("observe");
+  const [lockDelta, setLockDelta] = useState(true);
+  const [epsilon, setEpsilon] = useState(0.25);
   const [viewport, setViewport] = useState(config.viewport);
   const [trace, setTrace] = useState<{ x: number; y: number } | null>(null);
   const previousMode = useRef(activeMode);
@@ -226,6 +226,10 @@ export default function CalculusLimitsStudio({ mode }: { mode: string }) {
     setPlaying(false);
     setTrace(null);
   };
+  useEffect(() => {
+    window.addEventListener("calculus-lab-reset", reset);
+    return () => window.removeEventListener("calculus-lab-reset", reset);
+  });
   const step = () => {
     setLeftDistance((value) => Math.max(0.01, value * 0.72));
     setRightDistance((value) => Math.max(0.01, value * 0.72));
@@ -267,8 +271,19 @@ export default function CalculusLimitsStudio({ mode }: { mode: string }) {
           </NumberedPanel>
 
           <NumberedPanel number={3} title="Approach distance δ">
-            <DistanceControl side="Left" color="orange" value={leftDistance} onChange={setLeftDistance} />
-            <DistanceControl side="Right" color="violet" value={rightDistance} onChange={setRightDistance} />
+            <CheckControl label="Lock left and right δ" checked={lockDelta} onChange={(value) => {
+              setLockDelta(value);
+              if (value) setRightDistance(leftDistance);
+            }} />
+            <DistanceControl side="Left" color="orange" value={leftDistance} onChange={(value) => {
+              setLeftDistance(value);
+              if (lockDelta) setRightDistance(value);
+            }} />
+            <DistanceControl side="Right" color="violet" value={rightDistance} onChange={(value) => {
+              setRightDistance(value);
+              if (lockDelta) setLeftDistance(value);
+            }} />
+            <label className="cls-distance orange"><span>ε band</span><div><input aria-label="Epsilon" type="range" min="0.05" max="1.5" step="0.01" value={epsilon} onChange={(event) => setEpsilon(Number(event.target.value))} /><output>{epsilon.toFixed(2)}</output></div></label>
           </NumberedPanel>
 
           <NumberedPanel number={4} title="Animate">
@@ -298,6 +313,9 @@ export default function CalculusLimitsStudio({ mode }: { mode: string }) {
           onTrace={setTrace}
           onZoom={zoom}
           onResetView={() => setViewport(config.viewport)}
+          epsilon={epsilon}
+          onEpsilon={setEpsilon}
+          mode={activeMode}
         />
 
         <aside className="cls-results" aria-label="Live limit analysis">
@@ -317,6 +335,7 @@ export default function CalculusLimitsStudio({ mode }: { mode: string }) {
             <p className={analysis.continuous ? "cls-conclusion pass" : "cls-conclusion"}>
               Conclusion: {analysis.continuous ? "Continuous" : analysis.classification} at x = {trim(a)}
             </p>
+            {!analysis.defined && analysis.limitExists ? <p className="cls-explanation">Undefined at a, but the two-sided limit exists. This is a removable discontinuity if we define f(a) = {formatLimit(analysis.limit)}.</p> : null}
           </NumberedPanel>
 
           <NumberedPanel number={7} title="Explanation">
@@ -332,7 +351,12 @@ export default function CalculusLimitsStudio({ mode }: { mode: string }) {
             {analysis.limitExists && Number.isFinite(analysis.limit) && !analysis.continuous ? (
               <>
                 <p>Define <MathExpression value={`f(${trim(a)})=${formatLimit(analysis.limit)}`} /> to remove the hole.</p>
-                <button className="cls-repair" type="button" onClick={() => setDefinedValue(analysis.limit)}>Set <MathExpression value={`f(${trim(a)})=${formatLimit(analysis.limit)}`} /></button>
+                <button className="cls-repair" type="button" onClick={() => {
+                  const repaired = repairedLimitExpression(expression, a, analysis.limit);
+                  setDefinedValue(analysis.limit);
+                  setExpression(repaired);
+                  setDraft(repaired);
+                }}>Set <MathExpression value={`f(${trim(a)})=${formatLimit(analysis.limit)}`} /></button>
               </>
             ) : (
               <p>{analysis.continuous ? "All three continuity conditions now pass." : "A point value cannot repair this type of discontinuity."}</p>
@@ -341,15 +365,14 @@ export default function CalculusLimitsStudio({ mode }: { mode: string }) {
         </aside>
       </div>
 
-      <section className="cls-learning" aria-label="Learning views">
+      <section className="cls-learning" aria-label="Learning loop">
         <div className="cls-learning-tabs">
           {learningTabs.map(({ id, label, subtitle, icon: Icon }) => (
-            <button key={id} type="button" className={learning === id ? "active" : ""} onClick={() => setLearning(id)} aria-selected={learning === id}>
-              <Icon /><span><b>{label}</b><small>{subtitle}</small></span>
-            </button>
+            <div key={id}>
+              <Icon /><span><b>{label}</b><small>{id === "challenge" ? limitChallenge(activeMode) : subtitle}</small></span>
+            </div>
           ))}
         </div>
-        <p>{learningTabs.find((item) => item.id === learning)?.content}</p>
       </section>
     </div>
   );
@@ -375,7 +398,7 @@ function CheckRow({ passed, label }: { passed: boolean; label: string }) {
   return <div className={`cls-check-row ${passed ? "pass" : "fail"}`}>{passed ? <Check /> : <X />}<span>{label}</span>{passed ? <Check /> : <X />}</div>;
 }
 
-function LimitGraph({ fn, expression, a, leftDistance, rightDistance, analysis, viewport, samples, showArrows, tracePath, trace, onTrace, onZoom, onResetView }: {
+function LimitGraph({ fn, expression, a, leftDistance, rightDistance, analysis, viewport, samples, showArrows, tracePath, trace, onTrace, onZoom, onResetView, epsilon, onEpsilon, mode }: {
   fn: ((x: number) => number) | null;
   expression: string;
   a: number;
@@ -390,8 +413,11 @@ function LimitGraph({ fn, expression, a, leftDistance, rightDistance, analysis, 
   onTrace: (value: { x: number; y: number } | null) => void;
   onZoom: (factor: number) => void;
   onResetView: () => void;
+  epsilon: number;
+  onEpsilon: (value: number) => void;
+  mode: LimitMode;
 }) {
-  const width = 820, height = 650, pad = 34;
+  const width = 820, height = 650, pad = 56;
   const sx = (x: number) => pad + (x - viewport.xMin) / (viewport.xMax - viewport.xMin) * (width - pad * 2);
   const sy = (y: number) => height - pad - (y - viewport.yMin) / (viewport.yMax - viewport.yMin) * (height - pad * 2);
   const points = fn ? sampleFunction(fn, viewport.xMin, viewport.xMax, Math.max(420, samples * 22)) : [];
@@ -414,7 +440,7 @@ function LimitGraph({ fn, expression, a, leftDistance, rightDistance, analysis, 
         <strong><i /> <MathExpression value={`f(x)=${toLatex(expression)}`} /></strong>
         <div><button type="button" onClick={() => onZoom(0.82)}><ZoomIn /> Zoom</button><button type="button" aria-label="Zoom out" onClick={() => onZoom(1.22)}><Minus /></button><button type="button" aria-label="Zoom in" onClick={() => onZoom(0.82)}><Plus /></button><button type="button" aria-label="Reset graph view" onClick={onResetView}><Maximize2 /></button></div>
       </div>
-      <svg className="cls-graph" viewBox={`0 0 ${width} ${height}`} role="img" aria-label={`Graph of ${expression} near x equals ${trim(a)}`} onPointerMove={pointerMove} onPointerLeave={() => onTrace(null)}>
+      <svg className="cls-graph is-interactive" viewBox={`0 0 ${width} ${height}`} role="img" aria-label={`Graph of ${expression} near x equals ${trim(a)}`} onPointerMove={pointerMove} onPointerLeave={() => onTrace(null)}>
         <defs><clipPath id="cls-plot-clip"><rect x={pad} y={pad} width={width-pad*2} height={height-pad*2} /></clipPath></defs>
         <g className="cls-grid">
           {xTicks.map((value) => <line key={`x${value}`} x1={sx(value)} x2={sx(value)} y1={pad} y2={height-pad} />)}
@@ -429,8 +455,34 @@ function LimitGraph({ fn, expression, a, leftDistance, rightDistance, analysis, 
           {yTicks.filter((value) => Math.abs(value) > 1e-9).map((value) => <text key={`yt${value}`} x={clamp(sx(0)-10,18,width-18)} y={sy(value)+4} textAnchor="end">{trim(value)}</text>)}
         </g>
         <g clipPath="url(#cls-plot-clip)">
+          {analysis.limitExists && Number.isFinite(analysis.limit) && <rect
+            x={sx(a - Math.max(leftDistance, rightDistance))}
+            y={sy(analysis.limit + epsilon)}
+            width={sx(a + Math.max(leftDistance, rightDistance)) - sx(a - Math.max(leftDistance, rightDistance))}
+            height={Math.max(2, sy(analysis.limit - epsilon) - sy(analysis.limit + epsilon))}
+            fill="rgba(8,182,220,.12)"
+            className="is-interactive"
+            onPointerDown={(event) => {
+              event.stopPropagation();
+              const rect = event.currentTarget.ownerSVGElement?.getBoundingClientRect();
+              if (!rect || !Number.isFinite(analysis.limit)) return;
+              const y = viewport.yMax - ((event.clientY - rect.top - pad) / (height - pad * 2)) * (viewport.yMax - viewport.yMin);
+              onEpsilon(Math.max(0.05, Math.min(1.5, Math.abs(y - analysis.limit))));
+            }}
+          />}
+          <rect x={sx(a - leftDistance)} y={pad} width={Math.max(2, sx(a + rightDistance) - sx(a - leftDistance))} height={height - pad * 2} fill="rgba(249,115,22,.08)" />
+          <line x1={sx(a - leftDistance)} x2={sx(a - leftDistance)} y1={sy(0) - 12} y2={sy(0) + 12} stroke="#f97316" strokeWidth="3" />
+          <line x1={sx(a + rightDistance)} x2={sx(a + rightDistance)} y1={sy(0) - 12} y2={sy(0) + 12} stroke="#8b5cf6" strokeWidth="3" />
+          <text x={sx(a - leftDistance)} y={sy(0) + 28} fill="#f97316" fontSize="12">δ⁻</text>
+          <text x={sx(a + rightDistance)} y={sy(0) + 28} fill="#8b5cf6" fontSize="12">δ⁺</text>
           {analysis.limitExists && Number.isFinite(analysis.limit) && <line className="cls-limit-guide" x1={pad} x2={width-pad} y1={sy(analysis.limit)} y2={sy(analysis.limit)} />}
           <line className="cls-point-guide" x1={sx(a)} x2={sx(a)} y1={pad} y2={height-pad} />
+          {mode === "asymptotes" && <line x1={sx(a)} x2={sx(a)} y1={pad} y2={height-pad} stroke="#ef4444" strokeDasharray="8 6" strokeWidth="3" />}
+          {mode === "lhopital" && <path className="cls-function-path" d={pointsToPath(fn ? sampleFunction((x) => {
+            const h = 1e-4;
+            const num = (Math.cos(x + h) - Math.cos(x - h)) / (2 * h);
+            return num;
+          }, viewport.xMin, viewport.xMax, 200) : [], sx, sy, viewport)} stroke="#22c55e" fill="none" />}
           <path className="cls-function-path" d={path} />
           {Number.isFinite(leftY) && <circle className="cls-left-point" cx={sx(leftX)} cy={sy(leftY)} r="8" />}
           {Number.isFinite(rightY) && <circle className="cls-right-point" cx={sx(rightX)} cy={sy(rightY)} r="8" />}
@@ -441,7 +493,12 @@ function LimitGraph({ fn, expression, a, leftDistance, rightDistance, analysis, 
           {trace && <g className="cls-trace"><line x1={sx(trace.x)} x2={sx(trace.x)} y1={pad} y2={height-pad} /><circle cx={sx(trace.x)} cy={sy(trace.y)} r="6" /><text x={sx(trace.x)+10} y={sy(trace.y)-10}>({trim(trace.x)}, {trim(trace.y)})</text></g>}
         </g>
       </svg>
-      <div className="cls-graph-legend"><span><i className="cyan" />f(x)</span><span><i className="orange dot" />Left approach</span><span><i className="violet dot" />Right approach</span><span><i className="hole" />f(a) {analysis.defined ? "defined" : "undefined"}</span></div>
+      <div className="cls-graph-legend">
+        <span><i className="cyan" />f(x) = {expression}</span>
+        <span><i className="orange dot" />Left approach (x → a⁻)</span>
+        <span><i className="violet dot" />Right approach (x → a⁺)</span>
+        <span><i className="hole" />f({trim(a)}) {analysis.defined ? "defined" : "undefined"}</span>
+      </div>
     </section>
   );
 }
@@ -486,6 +543,13 @@ function compileExpression(expression: string): { fn: ((x: number) => number) | 
   catch (error) { return { fn: null, error: error instanceof Error ? error.message : "Invalid expression" }; }
 }
 function isLimitMode(value: string): value is LimitMode { return value in modeConfigs; }
+function limitChallenge(mode: LimitMode) {
+  if (mode === "limits") return "Shrink both δ marks until the sample points stay inside the ε band.";
+  if (mode === "continuity") return "Repair the hole so all three continuity checks turn green.";
+  if (mode === "discontinuities") return "Switch examples until you can name removable vs jump vs infinite from the graph alone.";
+  if (mode === "asymptotes") return "Place a so the vertical dashed line sits on the blow-up and ε cannot contain both sides.";
+  return "Confirm the 0/0 form, then compare the green derivative overlay with the original quotient.";
+}
 function numberParam(value: string | null, fallback: number) { if (value === null || value.trim() === "") return fallback; const parsed = Number(value); return Number.isFinite(parsed) ? parsed : fallback; }
 function clamp(value: number, min: number, max: number) { return Math.min(max, Math.max(min, value)); }
 function trim(value: number) { return Number.isFinite(value) ? Number(value.toFixed(3)).toString() : "—"; }

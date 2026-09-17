@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import type { LessonAdapterProps } from "../types";
 import "./PiecewiseFunctionsTargetLesson149.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Branch = "left" | "middle" | "right";
 const clamp = (value: number, min: number, max: number, step = 0.1) =>
@@ -621,6 +622,8 @@ export default function PiecewiseFunctionsTargetLesson149({
           {notice}
         </button>
       )}
+      <LessonTopicStudyBoard lessonId={149} view={activeTab} onInteraction={onInteraction} />
+
     </section>
   );
 }

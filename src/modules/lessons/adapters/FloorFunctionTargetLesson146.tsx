@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import type { LessonAdapterProps } from "../types";
 import "./FloorFunctionTargetLesson146.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const clamp = (value: number, min: number, max: number, step: number) =>
   Math.max(min, Math.min(max, Math.round(value / step) * step));
@@ -494,6 +495,8 @@ export default function FloorFunctionTargetLesson146({
           </button>
         )}
       </div>
+      <LessonTopicStudyBoard lessonId={146} view={activeTab} onInteraction={onInteraction} />
+
     </section>
   );
 }

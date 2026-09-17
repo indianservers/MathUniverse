@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight, Check, ClipboardList, Info, Lightbulb, RotateCcw
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import { boundFromPosition, INFEASIBLE_PRACTICE, overlapModel, OVERLAP_EXAMPLES } from "./infeasibleProblemsModel";
 import "./InfeasibleProblemsTargetLesson10206.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const px = (value: number) => 35 + (value + 10) * 30.5;
 const tabs = ["Interact", "Learn", "Worked Check", "Rule", "Practice"];
@@ -104,5 +105,7 @@ export default function InfeasibleProblemsTargetLesson10206({ lesson }: { lesson
     <section id="ip-Learn" className="ip-notes"><article><h2>WHAT IS AN INFEASIBLE PROBLEM?</h2><p>A system of linear inequalities is infeasible if the intersection of all solution regions is empty. No point satisfies all constraints at the same time.</p><p><b>Symbols:</b> <span className="ip-count-empty">Feasible set = ∅</span></p></article><article><h2><Lightbulb size={16} />COMMON MISCONCEPTION</h2><p>Thinking that because each inequality has solutions, the system must too. <b>Wrong!</b> The solution sets can be disjoint.</p><strong>Always check overlap.</strong></article></section>
 <section id="ip-Practice" className="ip-practice"><h2><ClipboardList size={14} />TRY IT YOURSELF <small>Practice</small></h2><fieldset><legend>Which of the following systems is infeasible?</legend><div>{INFEASIBLE_PRACTICE.map(([l, u], i) => <label key={i} className={checked && answer === i ? (overlapModel(l, u).kind === "empty" ? "ip-correct" : "ip-incorrect") : ""}><input type="radio" name="ip-answer" checked={answer === i} onChange={() => { setAnswer(i); setChecked(false); }} /><b>{String.fromCharCode(65 + i)}</b><span>x ≥ {l}<br />x ≤ {u}</span></label>)}</div></fieldset>{checked && <p role="status">{answer === null ? "Select a system first." : overlapModel(INFEASIBLE_PRACTICE[answer][0], INFEASIBLE_PRACTICE[answer][1]).kind === "empty" ? "Correct. Option C requires 2 ≤ x ≤ 0, which is impossible." : "This system has an overlap. Look for a lower bound greater than the upper bound."}</p>}<button onClick={() => setChecked(true)}>Check answer<Check size={14} /></button></section>
     <nav className="ip-next"><Link to="/lessons/school/class-12/class-12-linear-programming-multiple-optimal-solutions"><ArrowLeft size={14} />Previous: Multiple Optimal Solutions</Link><Link to="/lessons/school/class-12/class-12-linear-programming-diet-problem">Next: Diet Problem<ArrowRight size={14} /></Link></nav>
+      <LessonTopicStudyBoard lessonId={10206} view={tab} />
+
   </main>;
 }

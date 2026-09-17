@@ -14,6 +14,7 @@ import {
 import { useEffect, useMemo, useState, type DragEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./FactorsTargetLesson65.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const INITIAL_NUMBER = 42;
 const INITIAL_CANDIDATE = 6;
@@ -445,6 +446,8 @@ export default function FactorsTargetLesson65({
         </small>
         <small>www.IndianServers.com info@IndianServers.com</small>
       </footer>
+      <LessonTopicStudyBoard lessonId={65} view={tab} onInteraction={onInteraction} />
+
     </div>
   );
 }

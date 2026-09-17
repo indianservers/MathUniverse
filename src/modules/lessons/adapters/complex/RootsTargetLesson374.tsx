@@ -2,6 +2,7 @@ import { ExternalLink, RotateCcw, Share2 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./RootsTargetLesson374.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Unit = "Degrees" | "Radians";
 const clean = (value: number, digits = 3) => Number(value.toFixed(digits));
@@ -472,6 +473,8 @@ export default function RootsTargetLesson374({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={374} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

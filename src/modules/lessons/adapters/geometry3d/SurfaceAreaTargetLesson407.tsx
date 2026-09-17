@@ -16,6 +16,7 @@ import { DoubleSide } from "three";
 import type { LessonAdapterProps } from "../../types";
 import "./CoordinateSystemTargetLesson378.css";
 import "./SurfaceAreaTargetLesson407.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Solid =
   "cuboid" | "cube" | "cylinder" | "cone" | "triPrism" | "pyramid" | "sphere";
@@ -605,6 +606,8 @@ export default function SurfaceAreaTargetLesson407({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={407} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

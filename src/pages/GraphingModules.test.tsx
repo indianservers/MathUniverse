@@ -65,6 +65,8 @@ describe("graphing workspaces", () => {
     expect(html).toContain("Visible range");
     expect(html).toContain("Find intersections");
     expect(html).toContain("Graph Studio 2D");
+    expect(html).not.toContain("gs3d-dock");
+    expect(html).toContain("Function Inspector");
     expect(html).not.toContain(">Build<");
     expect(html).not.toContain(">Analyze<");
     expect(html).toContain("Help");
@@ -86,12 +88,16 @@ describe("graphing workspaces", () => {
     expect(html).toContain("Expressions &amp; Layers");
     expect(html).toContain("Surface Inspector");
     expect(html).toContain("Cross-section");
-    expect(html).toContain("Timeline");
+    expect(html).not.toContain("gs3d-dock");
+    expect(html).not.toContain(">timeline<");
+    expect(html).not.toContain("workspace-suite-bar");
     expect(html).not.toContain(">Build<");
     expect(html).not.toContain(">Analyze<");
     expect(html).not.toContain(">Animate<");
     expect(html).toContain("Help");
     expect(html).toContain("Export");
+    expect(html).toContain("Open project file");
+    expect(html).toContain("Paraboloid");
     expect(html).toContain("Offline ready");
   });
 });

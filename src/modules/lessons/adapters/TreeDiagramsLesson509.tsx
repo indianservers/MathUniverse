@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../types";
 import { buildProbabilityTree, clampProbability, targetProbability, type TargetEvent, type TreeParameters } from "./treeDiagramsLessonModel";
 import "./TreeDiagramsLesson509.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const initial: TreeParameters = { pA: 0.6, pBGivenA: 0.3, pBGivenNotA: 0.8 };
 const targetLabels: Record<TargetEvent,string> = { b: "B (event B occurs)", aAndB: "A ∩ B", notAAndB: "Aᶜ ∩ B", c: "C (third-stage event)" };
@@ -31,6 +32,8 @@ function TreeActivity({ onInteraction }: Pick<LessonAdapterProps,"onInteraction"
     <section className="td509-notes"><article><h3>Correct rule</h3><p>Multiply along each path and add relevant paths.</p><strong>P(ω) = ∏ P(branch)<br/>P(E) = Σ P(ω)</strong></article><article><h3>Worked example</h3><p>Find P(B).</p><strong>P(B)=P(A∩B)+P(Aᶜ∩B)<br/>= ({parameters.pA.toFixed(2)})({parameters.pBGivenA.toFixed(2)}) + ({(1-parameters.pA).toFixed(2)})({parameters.pBGivenNotA.toFixed(2)})<br/>= {targetProbability(paths,"b").toFixed(2)}</strong></article><article className="wrong"><h3>Common misconception</h3><p>Incorrect: Adding probabilities along a path.</p><p><X size={14}/>P(A∩B)=P(A)+P(B|A)</p><p><Check size={14}/>Correct: Multiply along a path.</p></article><article><h3>Probability checks</h3><p>✓ Stage sums = 1 at every node.</p><p>✓ All path probabilities ≥ 0.</p><p>✓ Terminal outcomes sum to 1.</p></article></section>
     <section className="td509-practice"><header><div><h3><i>5</i> Practice</h3><p>Solve using the tree values above.</p></div><button type="button" onClick={()=>{setChecked(true);onInteraction();}}>Check answers</button><button type="button" onClick={randomize}>New set</button></header><div>{[["Find P(B).",targetProbability(paths,"b")],["Find P(A ∩ Bᶜ).",parameters.pA*(1-parameters.pBGivenA)],["Find P(Aᶜ ∩ B).",(1-parameters.pA)*parameters.pBGivenNotA]].map(([label,value],index)=><label key={String(label)}>{label}<input value={practice[index]} onChange={event=>{const next=[...practice];next[index]=event.target.value;setPractice(next);setChecked(false);}}/>{checked&&<span className={Math.abs(Number(practice[index])-Number(value))<.005?"correct":"incorrect"}>{Math.abs(Number(practice[index])-Number(value))<.005?<Check size={14}/>:<X size={14}/>}</span>}</label>)}</div></section>
     <footer><button type="button" onClick={reset}><RotateCcw size={14}/>Reset lesson</button><span>Previous: Conditional Probability &nbsp; Next: Venn Diagrams →</span></footer>
+      <LessonTopicStudyBoard lessonId={509} alwaysVisible onInteraction={onInteraction} />
+
   </div>;
 }
 

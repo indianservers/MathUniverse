@@ -37,6 +37,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./ConstructionStepsTargetLesson235.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type Snapshot = { a: Point; b: Point; step: number };
@@ -770,6 +771,8 @@ export default function ConstructionStepsTargetLesson235({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={235} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

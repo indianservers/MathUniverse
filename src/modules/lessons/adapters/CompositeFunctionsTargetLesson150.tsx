@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type PointerEvent } from "react";
 import { ExternalLink, RefreshCcw, Share2 } from "lucide-react";
 import type { LessonAdapterProps } from "../types";
 import "./CompositeFunctionsTargetLesson150.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Order = "fog" | "gof";
 const clamp = (v: number, min: number, max: number, step = 0.1) =>
@@ -476,6 +477,8 @@ export default function CompositeFunctionsTargetLesson150({
           {notice}
         </button>
       )}
+      <LessonTopicStudyBoard lessonId={150} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

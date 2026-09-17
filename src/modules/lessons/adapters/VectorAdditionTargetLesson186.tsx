@@ -10,6 +10,7 @@ import { useEffect, useRef, useState } from "react";
 import type { KeyboardEvent, PointerEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./VectorAdditionTargetLesson186.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type Drag = "u" | "v" | "origin";
@@ -842,6 +843,8 @@ export default function VectorAdditionTargetLesson186({
           © 2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.
         </small>
       </footer>
+      <LessonTopicStudyBoard lessonId={186} view={tab} onInteraction={onInteraction} />
+
     </main>
   );
 }

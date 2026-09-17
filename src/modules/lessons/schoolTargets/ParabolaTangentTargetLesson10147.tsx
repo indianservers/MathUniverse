@@ -13,6 +13,8 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import type { PointerEvent as ReactPointerEvent } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./ParabolaTangentTargetLesson10147.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+import { LessonGraphInkLegend, lessonGraphInkProps } from "../graphs/LessonGraphInk";
 
 export default function ParabolaTangentTargetLesson10147({
   lesson: _lesson,
@@ -182,6 +184,7 @@ export default function ParabolaTangentTargetLesson10147({
             <svg
               viewBox={`0 0 ${graph.W} ${graph.H}`}
               aria-label="Interactive parabola tangent graph"
+              {...lessonGraphInkProps}
               onPointerDown={(e) => {
                 dragging.current = true;
                 e.currentTarget.setPointerCapture(e.pointerId);
@@ -195,6 +198,7 @@ export default function ParabolaTangentTargetLesson10147({
                 e.currentTarget.releasePointerCapture(e.pointerId);
               }}
             >
+              <LessonGraphInkLegend />
               {Array.from({ length: 19 }, (_, i) => i - 6).map((n) => (
                 <g key={n}>
                   <line
@@ -392,6 +396,8 @@ export default function ParabolaTangentTargetLesson10147({
           </article>
         </section>
       </main>
+      <LessonTopicStudyBoard lessonId={10147} alwaysVisible />
+
     </section>
   );
 }

@@ -13,6 +13,7 @@ import { useEffect, useRef, useState } from "react";
 import type { KeyboardEvent, PointerEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./GradientSlopeTargetLesson172.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type Tool = "move" | "select" | "pan";
@@ -666,6 +667,8 @@ export default function GradientSlopeTargetLesson172({
         <a href="#docs">▤ Docs</a>
         <a href="#about">✉ About</a>
       </footer>
+      <LessonTopicStudyBoard lessonId={172} view={tab} onInteraction={onInteraction} />
+
     </main>
   );
 }

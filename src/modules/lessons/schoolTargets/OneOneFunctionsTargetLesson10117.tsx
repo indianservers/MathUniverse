@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import type { DragEvent } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./OneOneFunctionsTargetLesson10117.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const domain = [-2, -1, 0, 1, 2];
 const codomain = [-3, -1, 1, 3, 5];
@@ -342,6 +343,8 @@ export default function OneOneFunctionsTargetLesson10117({
           Onto (surjective) is a different property.
         </p>
       </footer>
+      <LessonTopicStudyBoard lessonId={10117} alwaysVisible />
+
     </section>
   );
 }

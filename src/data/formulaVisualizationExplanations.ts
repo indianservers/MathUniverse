@@ -62,6 +62,12 @@ function controlEffectsFor(type: FormulaVisualizerType, variables: string[]) {
   const variableText = variables.length
     ? `The formula symbols are ${variables.join(", ")}.`
     : "Read the formula labels to identify the active quantities.";
+  if (type === "number-system") {
+    return [
+      ...variables.map((symbol) => `${symbol} is a whole-number input for this number-system rule. ${variableText}`),
+      "Only the symbols listed on this formula appear as sliders.",
+    ];
+  }
   const discrete = [
     "sequence",
     "combinatorics",

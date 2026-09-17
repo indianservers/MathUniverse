@@ -4,6 +4,7 @@ import type { DragEvent } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./IntegrationByPartsTargetLesson10181.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Example = {
   integral: string;
@@ -523,6 +524,8 @@ export default function IntegrationByPartsTargetLesson10181({
           Next: Integration by Partial Fractions →
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10181} alwaysVisible />
+
     </main>
   );
 }

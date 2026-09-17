@@ -27,6 +27,7 @@ import {
   valueDifferences,
 } from "./tableValuesLesson47Model";
 import "./TableValuesTargetLesson47.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 export default function TableValuesTargetLesson47({
   resetToken,
@@ -428,6 +429,8 @@ export default function TableValuesTargetLesson47({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={47} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

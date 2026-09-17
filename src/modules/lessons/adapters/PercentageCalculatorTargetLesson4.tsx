@@ -8,6 +8,8 @@ import {
 import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./PercentageCalculatorTargetLesson4.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+
 
 const VIEWS = [
   "Interaction + visualization",
@@ -333,7 +335,7 @@ export default function PercentageCalculatorTargetLesson4({
           </section>
         </aside>
       </div>
-      <nav className="target-percent-nav">
+<nav className="target-percent-nav">
         <a href="/lessons/core-workspaces/3-mixed-numbers">
           <ArrowLeft />
           <span>
@@ -347,6 +349,7 @@ export default function PercentageCalculatorTargetLesson4({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={4} view={view} onInteraction={onInteraction} />
     </div>
   );
 }

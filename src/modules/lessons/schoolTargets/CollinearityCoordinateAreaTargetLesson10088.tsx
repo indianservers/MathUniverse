@@ -12,6 +12,7 @@ import { type PointerEvent, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./CollinearityCoordinateAreaTargetLesson10088.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type Key = "a" | "b" | "c";
@@ -505,6 +506,8 @@ export default function CollinearityCoordinateAreaTargetLesson10088({
         ✦ <b>Tip:</b> Drag points to explore. Use zero-area snap for exact
         collinearity.
       </aside>
+      <LessonTopicStudyBoard lessonId={10088} view={tab} />
+
     </section>
   );
 }

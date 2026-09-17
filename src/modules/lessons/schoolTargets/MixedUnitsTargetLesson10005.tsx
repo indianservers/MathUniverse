@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { schoolLessonCatalog } from "../catalog/school/schoolSyllabusCatalog";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./MixedUnitsTargetLesson10005.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Unit = "km" | "m" | "cm" | "mm";
 const factors: Record<Unit, number> = { km: 1000, m: 1, cm: 0.01, mm: 0.001 },
@@ -539,6 +540,8 @@ export default function MixedUnitsTargetLesson10005({
           <span />
         )}
       </nav>
+      <LessonTopicStudyBoard lessonId={10005} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

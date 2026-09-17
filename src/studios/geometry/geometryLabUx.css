@@ -1,0 +1,48 @@
+.geo-lab-ux{--geo-zoom:1;display:grid;gap:10px}
+.vis-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+.geo-lab-toolbar--figure{position:sticky;top:8px;z-index:3}
+.geo-skip{position:absolute;left:-999px;top:8px;z-index:20;padding:8px 12px;border-radius:999px;background:#071641;color:#fff;font-weight:800}
+.geo-skip:focus{left:12px}
+.geo-lab-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:8px 10px;border:1px solid #dce7f4;border-radius:14px;background:#fff}
+.geo-lab-progress{display:flex;flex-wrap:wrap;align-items:center;gap:4px}
+.geo-progress-label{padding:0!important;background:transparent!important;color:#536381;text-transform:uppercase;font-size:10px;font-weight:800}
+.geo-lab-progress span{width:22px;height:22px;padding:0;display:grid;place-items:center;border-radius:50%;background:#eef4fb;color:#536381;font-size:10px;font-weight:800}
+.geo-lab-progress span{padding:3px 8px;border-radius:999px;background:#eef4fb;color:#536381;font-size:10px;font-weight:800;text-transform:uppercase}
+.geo-lab-progress span.is-done{background:#e7fbf3;color:#047857}
+.geo-lab-tools{display:flex;flex-wrap:wrap;gap:6px;margin-left:auto}
+.geo-lab-tools button{min-height:34px;min-width:34px;padding:0 9px;border:1px solid #dce7f4;border-radius:10px;background:#fff;color:#1d2d50;font-size:11px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;gap:4px}
+.geo-lab-tools button[aria-pressed="true"]{background:#e7f6ff;color:#0369a1;border-color:#7dd3ea}
+.geo-lab-tools svg{width:15px;height:15px}
+.geo-unit-hint,.geo-live-summary,.geo-legend,.geo-status{margin:0;color:#40516d;font-size:12px;line-height:1.45}
+.geo-live-summary{padding:8px 10px;border-radius:10px;background:#f4fbff}
+.geo-related{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.geo-related a{display:flex;flex-direction:column;gap:4px;padding:10px;border:1px solid #dce7f4;border-radius:12px;background:#fff;text-decoration:none;color:#071641}
+.geo-related b{font-size:13px}.geo-related small{color:#536381;font-size:11px;line-height:1.35}
+.geo-help{position:fixed;inset:auto 16px 16px auto;z-index:30;width:min(360px,92vw);padding:14px;border:1px solid #dce7f4;border-radius:16px;background:#fff;box-shadow:0 16px 40px #0f172a22}
+.geo-help h2{margin:0 0 8px;font-size:15px}
+.geo-help ul{margin:0;padding:0;list-style:none}
+.geo-help li{display:flex;gap:8px;margin:6px 0;font-size:12px}
+.geo-help kbd{flex:none;min-width:52px;padding:2px 6px;border:1px solid #dce7f4;border-radius:6px;font-size:10px;font-weight:800}
+.geo-lab-ux--polygons .poly-svg{transform:scale(var(--geo-zoom));transform-origin:center center}
+.geo-lab-ux--triangles .tri-canvas svg{transform:none}
+.geo-lab-ux.has-large-labels .tri-metric strong,.geo-lab-ux.has-large-labels .poly-measure strong,.geo-lab-ux.has-large-labels text{font-size:15px}
+.geo-lab-ux.is-contrast{--ink:#000;--muted:#111}
+.geo-lab-ux.is-contrast .tri-canvas svg,.geo-lab-ux.is-contrast .poly-svg{background:#fff;border:2px solid #000}
+.geo-lab-ux.is-contrast .tri-tab,.geo-lab-ux.is-contrast .poly-tab{border-color:#000;color:#000}
+.geo-lab-ux.is-compact .msk-panel,.geo-lab-ux.is-compact .tri-formula,.geo-lab-ux.is-compact .poly-formula{padding:8px}
+.geo-lab-ux .tri-tab:focus-visible,.geo-lab-ux .poly-tab:focus-visible,.geo-lab-ux .geo-lab-tools button:focus-visible,.geo-lab-ux .geo-related a:focus-visible{outline:3px solid #08b9dd;outline-offset:2px}
+.geo-inspector-toggle{display:none}
+.geo-lab-ux.is-reduced-motion *{animation:none!important;transition:none!important}
+@media (max-width:720px){
+  .geo-related{grid-template-columns:1fr}
+  .geo-inspector-toggle{display:inline-flex}
+  .geo-lab-ux:not(.is-inspector-open) .tri-insights,.geo-lab-ux:not(.is-inspector-open) .poly-live{display:none}
+}
+.geo-print-prompt{display:none}
+@media print{
+  .msk-sidebar,.msk-top,.geo-lab-toolbar,.geo-related,.msk-strip,.tri-tabs,.poly-tabs,.tri-fold,.msk-complete-row,.msk-hint{display:none!important}
+  .geo-lab-ux{background:#fff}
+  .tri-canvas{order:-1}
+  .geo-print-prompt{display:block!important;padding:16px;border:1px dashed #94a3b8;font-size:16px;font-weight:800}
+  html.geo-print-worksheet .tri-print-hide,html.geo-print-worksheet .tri-canvas text{display:none!important}
+}

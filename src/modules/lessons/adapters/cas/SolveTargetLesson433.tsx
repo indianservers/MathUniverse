@@ -19,6 +19,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./SolveTargetLesson433.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Quadratic = {
   valid: boolean;
@@ -364,6 +365,8 @@ export default function SolveTargetLesson433({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={433} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

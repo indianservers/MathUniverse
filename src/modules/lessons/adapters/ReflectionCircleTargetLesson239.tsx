@@ -2,6 +2,7 @@ import { ArrowLeft, ArrowRight, Check, Eye, Grid3X3, Info, Lightbulb, RotateCcw 
 import { useEffect, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./ReflectionCircleTargetLesson239.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type Drag = "point" | "centre" | "radius" | null;
@@ -37,6 +38,8 @@ export default function ReflectionCircleTargetLesson239({ resetToken, onInteract
     <section className="target-circle-reflection-learning"><article><h2>Worked Example</h2><p>Given <i>P(3, 4)</i> and circle <i>x² + y² = 9</i> (<i>r = 3</i>).</p><ol><li><b>Distance OP</b><br/><i>OP = √(3² + 4²) = 5</i></li><li><b>Inverse distance</b><br/><i>OP' = r² / OP = 9 / 5 = 1.8</i></li><li><b>Inverse point</b><br/><i>P' = −r²/OP² P<br/>= −9/25 (3, 4)<br/>= (−1.08, −1.44)</i></li></ol></article><article><h2>Construction</h2><ol><li>Draw circle with center <i>O</i> and radius <i>r</i>.</li><li>Place point <i>P</i> anywhere.</li><li>Join <i>OP</i>.</li><li>Locate <i>P'</i> on the opposite ray so that</li></ol><strong>OP · OP' = r²</strong><p>Equivalently,</p><b>P' = O − r²/OP² (P−O)</b></article><article><h2><Lightbulb/> Key Insight</h2><p>For any point <i>P ≠ O</i>, its reflected point <i>P'</i> with respect to circle</p><strong>(x−h)² + (y−k)² = r²</strong><p>lies on line <i>OP</i> (opposite side) and satisfies</p><b>OP · OP' = r²</b><p>If <i>P</i> lies inside the circle, then <i>P'</i> lies outside. If <i>P</i> lies outside, then <i>P'</i> lies inside.</p></article></section>
     <section className="target-circle-reflection-practice"><h2>Try It Yourself</h2><p>Find the inverse point <i>P'</i>.</p><div><b>1</b><span>Circle<br/><i>x² + y² = 25 &nbsp; (r = 5)</i></span><span>Given point P<br/><i>P(−2, 1)</i></span><span>Your answer P' <small>(rounded to 2 d.p.)</small><label>x' = <input aria-label="Practice inverse x coordinate" value={answer[0]} onChange={e=>setAnswer([e.target.value,answer[1]])} placeholder="e.g., 4.62"/></label><label>y' = <input aria-label="Practice inverse y coordinate" value={answer[1]} onChange={e=>setAnswer([answer[0],e.target.value])} placeholder="e.g., −2.31"/></label><button type="button" onClick={check}>Check</button></span><aside>Hint<br/><i>P' = O − r²/OP²(P−O)</i></aside></div><footer><button type="button" onClick={()=>{setAnswer(["",""]);setFeedback("");onInteraction();}}><RotateCcw/> Reset</button><button type="button" onClick={()=>{setShowSolution(v=>!v);onInteraction();}}><Eye/> {showSolution?"Hide solution":"Show solution"}</button></footer>{(feedback||showSolution)&&<p role="status">{showSolution?"OP² = 5, so P' = −5(−2,1) = (10,−5).":feedback}</p>}</section>
     <nav className="target-circle-reflection-nav" aria-label="Adjacent lessons"><a href="/lessons/geometry/238-reflection-in-point"><ArrowLeft/><span><b>Previous</b>Reflection in Point</span></a><span>Lesson 239 of Coordinate Geometry<i/></span><a href="/lessons/geometry/240-rotation-around-point"><span><b>Next</b>Rotation Around Point</span><ArrowRight/></a></nav>
+      <LessonTopicStudyBoard lessonId={239} alwaysVisible onInteraction={onInteraction} />
+
   </section>;
 }
 

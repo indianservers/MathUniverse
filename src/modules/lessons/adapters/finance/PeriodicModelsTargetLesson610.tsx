@@ -2,6 +2,7 @@ import { Lock, LockOpen, RotateCcw } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./PeriodicModelsTargetLesson610.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Key = "amplitude" | "period" | "phase" | "midline";
 const format = (value: number) =>
@@ -486,6 +487,8 @@ export default function PeriodicModelsTargetLesson610({
           &rarr;
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={610} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

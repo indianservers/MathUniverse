@@ -3,6 +3,8 @@ import { useMemo, useRef, useState } from "react";
 import type { PointerEvent as ReactPointerEvent } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./HyperbolaTangentTargetLesson10150.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+import { LessonGraphInkLegend, lessonGraphInkProps } from "../graphs/LessonGraphInk";
 
 const clampTheta = (value: number) => {
   const v = Math.max(-2.6, Math.min(2.6, value));
@@ -210,6 +212,7 @@ export default function HyperbolaTangentTargetLesson10150({
           <svg
             viewBox={`0 0 ${graph.W} ${graph.H}`}
             aria-label="Interactive hyperbola tangent graph"
+            {...lessonGraphInkProps}
             onPointerDown={(e) => {
               dragging.current = true;
               e.currentTarget.setPointerCapture(e.pointerId);
@@ -223,6 +226,7 @@ export default function HyperbolaTangentTargetLesson10150({
               e.currentTarget.releasePointerCapture(e.pointerId);
             }}
           >
+            <LessonGraphInkLegend />
             {Array.from({ length: 23 }, (_, i) => i - 11).map((n) => (
               <g key={n}>
                 <line
@@ -357,6 +361,8 @@ export default function HyperbolaTangentTargetLesson10150({
           </button>
         ))}
       </section>
+      <LessonTopicStudyBoard lessonId={10150} alwaysVisible />
+
     </section>
   );
 }

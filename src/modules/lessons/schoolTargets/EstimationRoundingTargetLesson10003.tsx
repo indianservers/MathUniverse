@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { adjacentSchoolLessons } from "../catalog/school/schoolSyllabusCatalog";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./EstimationRoundingTargetLesson10003.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const roundTo = (n: number, step: number) => Math.round(n / step) * step;
 const palette = ["purple", "blue", "green", "orange", "pink"];
@@ -429,6 +430,8 @@ export default function EstimationRoundingTargetLesson10003({
           <span />
         )}
       </nav>
+      <LessonTopicStudyBoard lessonId={10003} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

@@ -3,6 +3,7 @@ import { RotateCcw } from "lucide-react";
 import type { LessonAdapterProps } from "../types";
 import { correlationDefault, correlationStats } from "./correlationLessonModel";
 import "./CorrelationLesson489.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 export default function CorrelationLesson489({
   resetToken,
   onInteraction,
@@ -269,6 +270,8 @@ function CorrelationActivity({
         </button>
         <span>Previous: Time-Series Plot &nbsp; Next: Linear Regression →</span>
       </footer>
+      <LessonTopicStudyBoard lessonId={489} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

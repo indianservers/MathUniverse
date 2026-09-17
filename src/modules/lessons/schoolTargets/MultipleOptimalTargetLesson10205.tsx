@@ -4,6 +4,7 @@ import { ArrowLeft,ArrowRight,RotateCcw,Scan,CheckCircle2,Eye,Lightbulb,Triangle
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import { multipleOptimalModel,EDGE_SAMPLES } from "./multipleOptimalModel";
 import "./MultipleOptimalTargetLesson10205.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 const fmt=(n:number)=>Number(n.toFixed(2));
 export default function MultipleOptimalTargetLesson10205({lesson}:{lesson:SchoolSyllabusLesson}) {
   const [a,setA]=useState(1),[b,setB]=useState(1),[c,setC]=useState(4),[mode,setMode]=useState<"max"|"min">("max");
@@ -33,5 +34,7 @@ export default function MultipleOptimalTargetLesson10205({lesson}:{lesson:School
     <section id="mo-Learn" className="mo-notes"><article id="mo-Rule"><h2><Lightbulb size={18}/>KEY RULE</h2><p>When an objective attains its optimum at both ends of an edge, every point on that edge is optimal. Parallel slopes alone do not tell you which side is optimal.</p></article><article><h2><TriangleAlert size={18}/>COMMON MISCONCEPTION</h2><p>Not only corner points can be optimal. For a zero objective, the entire feasible region is optimal.</p></article></section>
     <section id="mo-Practice" className="mo-practice"><h2>CHECK YOUR UNDERSTANDING</h2><p>Maximize each objective over x ≥ 0, y ≥ 0, x + y ≤ 4.</p>{["x + y","2x + y","−x + 2y"].map((expression,i)=><fieldset key={i}><legend>Z = {expression}</legend>{["Whole edge AB","Single point"].map(option=><label key={option}><input type="radio" name={`multiple-practice-${i}`} checked={answers[i]===option} onChange={()=>setAnswers(previous=>previous.map((v,j)=>i===j?option:v))}/>{option}</label>)}{answers[i]&&<strong>{answers[i]===(i===0?"Whole edge AB":"Single point")?"✓":"Try again"}</strong>}</fieldset>)}<button onClick={()=>setSolution(v=>!v)} aria-expanded={solution}><Eye size={14}/>Show Solution</button>{solution&&<p role="status">1: Edge AB, Z = 4. 2: A(4,0), Z = 8. 3: B(0,4), Z = 8.</p>}</section>
     <nav className="mo-next"><Link to="/lessons/school/class-12/class-12-linear-programming-unbounded-feasible-region"><ArrowLeft size={14}/>Previous: Unbounded Feasible Region</Link><Link to="/lessons/school/class-12/class-12-linear-programming-infeasible-problems">Next: Infeasible Problems<ArrowRight size={14}/></Link></nav>
+      <LessonTopicStudyBoard lessonId={10205} view={tab} />
+
   </main>;
 }

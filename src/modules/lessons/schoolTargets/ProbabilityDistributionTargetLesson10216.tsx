@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight, CheckCircle2, Eye, LockKeyhole, Play, RotateCcw,
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import { DISTRIBUTION_OUTCOMES, distributionModel, FAIR_COIN_MASSES, headCount, probabilityFromChartY, simulateDistribution, type ThreeMasses } from "./probabilityDistributionModel";
 import "./ProbabilityDistributionTargetLesson10216.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const fmt = (n: number) => Number(n.toFixed(3));
 export default function ProbabilityDistributionTargetLesson10216({ lesson }: { lesson: SchoolSyllabusLesson }) {
@@ -21,5 +22,7 @@ export default function ProbabilityDistributionTargetLesson10216({ lesson }: { l
     <section id="pd-Examples" className="pd-notes"><article><h2>Definition</h2><p>A probability mass function p(x) for a discrete random variable X satisfies:</p><p>p(x) ≥ 0 for every value x.</p><p>∑ p(x) = 1 (total probability is 1).</p><p>p(x) is the probability that X takes the value x.</p></article><article><h2><TriangleAlert size={17} />Common misconception</h2><b>The bars need not be equal.</b><p>They can be different heights, but their values must add up to 1.</p><div className="pd-mini-bars">{[[.5, .3, .2], [.2, .1, .1]].map((list, i) => <div key={i}><svg viewBox="0 0 100 80" role="img" aria-label={i ? "Invalid example, sum 0.4" : "Valid unequal example, sum 1"}>{list.map((p, j) => <rect key={j} x={12 + j * 25} y={70 - p * 100} width="10" height={p * 100} fill="#70c9ee" stroke="#2074a3" />)}<path d="M6 8V70H94" fill="none" stroke="#415b72" /></svg><strong>{i ? "Invalid: sum 0.4" : "Valid: sum 1"}</strong></div>)}</div></article><article><h2>Worked example</h2><p>Two fair coin tosses. X = number of heads.</p><p>Outcomes: TT, HT, TH, HH (each 1/4)</p><p>X values: 0, 1, 2</p><p>PMF: P(X = 0) = 1/4, P(X = 1) = 1/2, P(X = 2) = 1/4</p><p>P(0 ≤ X ≤ 1) = 3/4 = 0.75</p></article></section>
     <section id="pd-Practice" className="pd-practice"><h2>Quick practice</h2><p>A bag contains 2 red and 1 blue ball. One ball is drawn at random. Let Y = 1 if red, 0 if blue. Choose the correct PMF.</p><div><fieldset><legend>Options:</legend>{["P(Y=1)=2/3, P(Y=0)=1/3", "P(Y=1)=1/3, P(Y=0)=2/3", "P(Y=1)=1/2, P(Y=0)=1/2", "P(Y=1)=3/4, P(Y=0)=1/4"].map((option, i) => <label key={option}><input type="radio" name="pd-practice" checked={answer === i} onChange={() => { setAnswer(i); setShowAnswer(false); }} />{option}</label>)}</fieldset><button onClick={() => setShowAnswer(v => !v)} aria-expanded={showAnswer}><Eye size={14} />{showAnswer ? "Hide" : "Show"} answer</button></div>{showAnswer && <p role="status">{answer === 0 ? "Correct. " : ""}Two of three balls are red, so P(Y=1)=2/3 and P(Y=0)=1/3. Both are nonnegative and sum to 1.</p>}</section>
     <nav className="pd-next"><Link to="/lessons/school/class-12/class-12-probability-random-variables"><ArrowLeft size={14} />Random Variables</Link><Link to="/lessons/school/class-12/class-12-probability-expected-value">Expected Value<ArrowRight size={14} /></Link></nav>
+      <LessonTopicStudyBoard lessonId={10216} view={tab} />
+
   </main>;
 }

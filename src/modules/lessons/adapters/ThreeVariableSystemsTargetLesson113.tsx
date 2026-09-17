@@ -36,6 +36,7 @@ import {
   type VariableThree113 as Variable,
 } from "./threeVariableSystemsLesson113Model";
 import "./ThreeVariableSystemsTargetLesson113.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 export default function ThreeVariableSystemsTargetLesson113({
   resetToken,
@@ -798,6 +799,8 @@ export default function ThreeVariableSystemsTargetLesson113({
         <p>© 2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.</p>
         <small>www.IndianServers.com · info@IndianServers.com</small>
       </footer>
+      <LessonTopicStudyBoard lessonId={113} view={activeTab} onInteraction={onInteraction} />
+
     </div>
   );
 }

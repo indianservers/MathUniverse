@@ -4,6 +4,7 @@ import { ArrowLeft, Lightbulb, RotateCcw, Check, AlertTriangle, X } from "lucide
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import { WORKSHOP, FACTORY, formulationSlots, checkFormulation, formulationTokens, placeFormulationToken, formulationSources, type FormulationScenario } from "./linearProgrammingFormulationModel";
 import "./FormulatingLinearProgrammingTargetLesson10200.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 function ModelBuilder({ scenario, practice = false }: { scenario: FormulationScenario; practice?: boolean }) {
   const [values, setValues] = useState<string[]>(Array(10).fill(""));
@@ -75,5 +76,7 @@ export default function FormulatingLinearProgrammingTargetLesson10200({ lesson }
     <section className="lp-guide"><h2>WHAT CHANGES? (INEQUALITY GUIDE)</h2><div>{[{sign:"≤", title:"AT MOST", sentence:"The total cannot exceed the limit.", expression:"2x + 4y ≤ 80"},{sign:"≥",title:"AT LEAST",sentence:"The total must meet the requirement.",expression:"3x + 2y ≥ 60"},{sign:"=",title:"EQUAL TO",sentence:"The total must be exactly the value.",expression:"x + y = 50"}].map(item => <article key={item.sign}><h3>{item.title} ({item.sign})</h3><p>{item.sentence}</p><p>{item.expression}</p><button type="button" aria-pressed={guide===item.sign} onClick={() => setGuide(item.sign)}>Use: {item.sign}</button></article>)}</div><p aria-live="polite">{guide === "≤" ? "At most 80 units: 2x + 4y ≤ 80" : guide === "≥" ? "At least 60 hours: 3x + 2y ≥ 60" : "Exactly 50 items: x + y = 50"}</p></section>
     <section className="lp-reference"><article><h2>COMPLETE MODEL (REFERENCE)</h2><p>Maximize Z = 50x + 40y</p><p>Subject to 2x + 4y ≤ 80</p><p>3x + 2y ≤ 60</p><p>x ≥ 0, y ≥ 0</p></article><article><h3><Check size={14} />All checks</h3><p>Variables: x, y</p><p>Profit objective: Maximize</p><p>Resources: at-most constraints</p><p>Non-negativity included</p></article><article><h3>Quick recap</h3><p>Profit drives the objective.</p><p>Resources create limits.</p><p>Coefficients come from usage per unit.</p></article></section>
     <ModelBuilder scenario={FACTORY} practice />
+      <LessonTopicStudyBoard lessonId={10200} alwaysVisible />
+
   </main>;
 }

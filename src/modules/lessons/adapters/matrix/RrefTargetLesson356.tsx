@@ -2,6 +2,7 @@ import { Lightbulb, RotateCcw, Share2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./RrefTargetLesson356.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 type Matrix = number[][];
 type Step = { label: string; matrix: Matrix };
 const initial: Matrix = [
@@ -343,6 +344,8 @@ export default function RrefTargetLesson356({
           </output>
         </aside>
       </section>
+      <LessonTopicStudyBoard lessonId={356} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

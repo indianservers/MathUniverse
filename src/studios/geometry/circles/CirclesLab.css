@@ -1,0 +1,74 @@
+.clab{display:grid;gap:12px}
+.clab>[hidden]{display:none!important}
+.clab-tabs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-bottom:2px}
+.clab-tab{display:grid;grid-template-columns:46px 1fr;gap:8px;align-items:center;min-height:78px;padding:10px 12px;border:1px solid #dce7f4;border-radius:16px;background:#fff;text-align:left;color:#071641;box-shadow:0 8px 18px #3a5b7f0c;cursor:pointer}
+.clab-tab:hover{border-color:#9fd8ee;transform:translateY(-1px)}
+.clab-tab[aria-selected="true"]{border-color:#08b9dd;background:#f3fbff;box-shadow:0 0 0 1px #08b9dd inset,0 10px 20px #147df214}
+.clab-tab:focus-visible,.clab-preset:focus-visible,.clab-primary:focus-visible,.clab-ghost:focus-visible,.clab-slider input:focus-visible{outline:2px solid #147df2;outline-offset:2px}
+.clab-tab b{display:block;font-size:12px;letter-spacing:.04em;text-transform:uppercase}
+.clab-tab small{display:block;margin-top:2px;color:#536381;font-size:11px;font-weight:600;line-height:1.35;text-transform:none}
+.clab-mini{width:46px;height:46px}
+.clab-workspace{display:grid;grid-template-columns:minmax(250px,280px) minmax(0,1fr) minmax(300px,330px);gap:12px;align-items:stretch}
+.clab-col{display:flex;flex-direction:column;gap:10px;padding:14px;border:1px solid #dce7f4;border-radius:16px;background:#fff;min-width:0}
+.clab-col h2,.clab-card h3{margin:0 0 8px;font-size:13px;letter-spacing:.04em;text-transform:uppercase}
+.clab-viz{padding:10px}
+.clab-svg{width:100%;height:auto;min-height:min(70vh,620px);border-radius:16px;touch-action:none;background:#f7fbff}
+.clab-svg.is-interactive{cursor:grab}
+.clab-svg.is-interactive:active{cursor:grabbing}
+.clab-card{padding:12px;border:1px solid #dce7f4;border-radius:14px;background:#fbfdff}
+.clab-formula{font-family:Georgia,"Times New Roman",serif;font-size:14px;line-height:1.45;color:#0f2747}
+.clab-props{margin:0;padding-left:18px;color:#40516d;font-size:12px;line-height:1.45}
+.clab-live{display:grid;grid-template-columns:10px 1fr auto;align-items:center;gap:8px;padding:8px 10px;border:1px solid #dce7f4;border-radius:10px}
+.clab-live i{width:8px;height:8px;border-radius:50%}
+.clab-live span{color:#536381;font-size:11px;font-weight:700}
+.clab-live strong{font-size:13px}
+.clab-slider{display:grid;gap:6px;margin:8px 0;font-size:12px;font-weight:800}
+.clab-slider>div{display:grid;grid-template-columns:1fr 58px;gap:8px;align-items:center}
+.clab-slider input[type=range]{width:100%;accent-color:#08b9dd}
+.clab-slider output{min-height:34px;border:1px solid #dce7f4;border-radius:8px;display:grid;place-items:center;font-size:12px}
+.clab-toggle{display:flex;align-items:center;gap:8px;margin:7px 0;font-size:12px;font-weight:700}
+.clab-preset,.clab-ghost{min-height:34px;padding:0 10px;border:1px solid #dce7f4;border-radius:10px;background:#fff;font-size:11px;font-weight:800}
+.clab-preset.is-on,.clab-seg button.is-on{color:#fff;background:linear-gradient(100deg,#08b9dd,#147df2);border-color:transparent}
+.clab-presets,.clab-btn-row,.clab-seg{display:flex;flex-wrap:wrap;gap:6px}
+.clab-seg button{min-height:32px;padding:0 10px;border:1px solid #dce7f4;border-radius:10px;background:#fff;font-size:11px;font-weight:800}
+.clab-primary{min-height:36px;padding:0 12px;border:0;border-radius:10px;background:linear-gradient(100deg,#08b9dd,#147df2,#8b45f4);color:#fff;font-weight:800}
+.clab-ok{margin:8px 0 0;color:#07893d;font-size:12px;font-weight:800}
+.clab-fail{margin:8px 0 0;color:#b45309;font-size:12px;font-weight:800}
+.clab-why{margin:0;color:#40516d;font-size:12px;line-height:1.5}
+.clab-world{margin:0;color:#536381;font-size:12px;line-height:1.45}
+.clab-note{margin:6px 0 0;color:#536381;font-size:12px}
+.clab-mobile-toggle{display:none}
+.clab-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;padding:2px 0 4px;border:0;background:transparent}
+.clab-figure-tools{display:inline-flex;align-items:center;gap:4px;margin-left:auto;flex:0 0 auto}
+.clab-toolbar .clab-icon{
+  width:30px;height:30px;min-width:30px;min-height:30px;margin:0;padding:0;
+  border:1px solid #dce7f4;border-radius:8px;background:#fff;color:#334155;
+  display:grid;place-items:center;box-shadow:none;
+}
+.clab-toolbar .clab-icon svg{width:15px;height:15px}
+.clab-toolbar .clab-ghost,.clab-toolbar .clab-primary{width:auto;min-width:0;margin:0}
+.clab-live-region{margin:0;max-width:180px;color:#536381;font-size:11px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.clab-math{margin:6px 0}
+.clab-work{margin:4px 0;font-size:12px;font-family:Georgia,"Times New Roman",serif;color:#0f2747}
+.clab-teacher-hide{opacity:.7}
+@media print{
+  .msk-sidebar,.msk-tools,.clab-toolbar,.clab-mobile-toggle{display:none!important}
+  .clab-workspace{grid-template-columns:1fr}
+}
+@media (max-width:1279px){
+  .clab-workspace{grid-template-columns:minmax(220px,260px) minmax(0,1fr)}
+  .clab-insights{grid-column:1 / -1}
+}
+@media (max-width:900px){
+  .clab-tabs{display:flex;overflow:auto;scroll-snap-type:x mandatory;padding-bottom:4px}
+  .clab-tab{flex:0 0 min(240px,78vw);scroll-snap-align:start}
+  .clab-workspace{grid-template-columns:1fr}
+  .clab-controls{order:2}
+  .clab-viz{order:1}
+  .clab-insights{order:3}
+  .clab-mobile-toggle{display:block;width:100%;min-height:40px;border:1px solid #dce7f4;border-radius:12px;background:#fff;font-weight:800}
+  .clab-controls.is-collapsed > *:not(.clab-mobile-toggle):not(h2){display:none}
+}
+@media (max-width:360px){
+  .clab-tab{flex-basis:min(220px,86vw)}
+}

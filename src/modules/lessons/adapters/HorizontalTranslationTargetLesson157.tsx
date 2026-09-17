@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { KeyboardEvent, PointerEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./HorizontalTranslationTargetLesson157.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const LEVELS = [4, 2, 1, 0];
 const X_MIN = -4;
@@ -520,6 +521,8 @@ export default function HorizontalTranslationTargetLesson157({
           <footer>Right in formula → right on graph</footer>
         </article>
       </section>
+      <LessonTopicStudyBoard lessonId={157} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

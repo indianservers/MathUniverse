@@ -77,7 +77,7 @@ export default function AppLayout() {
   const showBack = location.pathname.split("/").filter(Boolean).length > 1;
   // StudioPageShell renders its own breadcrumb. Keep the shared trail for
   // ordinary pages, but avoid showing two trails on shell based pages.
-  const hasOwnStudioBreadcrumb = /^\/(?:algebra|combinatorics|complex-numbers|set-theory|statistics|linear-algebra|matrices|number-systems|trigonometry|truth-table|mathematical-modelling|studio-projects|daily-challenge|worked-examples)(?:\/|$)/.test(location.pathname) || ["/probability-statistics", "/mathematical-logic"].includes(location.pathname);
+  const hasOwnStudioBreadcrumb = /^\/(?:algebra|algebraic-structures|calculus|geometry|combinatorics|complex-numbers|set-theory|statistics|linear-algebra|matrices|number-systems|trigonometry|truth-table|mathematical-modelling|studio-projects|daily-challenge|worked-examples|discrete-world)(?:\/|$)/.test(location.pathname) || ["/probability-statistics", "/mathematical-logic"].includes(location.pathname);
   const isWorkspaceRoute =
     location.pathname === "/workspace" ||
     location.pathname.startsWith("/workspace/");
@@ -87,6 +87,8 @@ export default function AppLayout() {
   const isStudioRoute =
     location.pathname === "/algebra" ||
     location.pathname.startsWith("/algebra/") ||
+    location.pathname === "/algebraic-structures" ||
+    location.pathname.startsWith("/algebraic-structures/") ||
     location.pathname === "/math-lab/3d-graphing" ||
     location.pathname === "/math-lab/graphing-calculator" ||
     location.pathname === "/workspace/graph" ||
@@ -94,6 +96,7 @@ export default function AppLayout() {
     location.pathname === "/workspace/geometry" ||
     location.pathname.startsWith("/workspace/data") ||
     location.pathname === "/shapes";
+  const isMatrixLauncher = location.pathname === "/matrices";
   const isCalculusLabRoute =
     location.pathname === "/calculus" ||
     location.pathname.startsWith("/calculus/") ||
@@ -102,6 +105,21 @@ export default function AppLayout() {
     location.pathname === "/math/derivatives/formula-visualizer" ||
     location.pathname === "/math/integration" ||
     location.pathname === "/math/integration/formula-visualizer";
+  const isModellingStudioRoute =
+    location.pathname === "/mathematical-modelling" ||
+    location.pathname.startsWith("/mathematical-modelling/");
+  const isGeometryStudioRoute =
+    location.pathname === "/geometry" ||
+    location.pathname.startsWith("/geometry/");
+  const isTrigonometryStudioRoute =
+    location.pathname === "/trigonometry" ||
+    location.pathname.startsWith("/trigonometry/");
+  const isAlgebraStudioRoute =
+    location.pathname === "/algebra" ||
+    location.pathname.startsWith("/algebra/");
+  const isLinearAlgebraStudioRoute =
+    location.pathname === "/linear-algebra" ||
+    location.pathname.startsWith("/linear-algebra/");
   const currentMathWorkspace = findMathWorkspace(location.pathname);
   const isCompassTarget = location.pathname === "/lessons/geometry/221-compass";
   const isSemicircleTarget =
@@ -231,7 +249,7 @@ export default function AppLayout() {
     );
   }
 
-  if (isCalculusLabRoute) {
+  if (isCalculusLabRoute || isModellingStudioRoute || isGeometryStudioRoute || isTrigonometryStudioRoute || isAlgebraStudioRoute || isLinearAlgebraStudioRoute) {
     return (
       <main id="main-content" className="h-dvh overflow-auto bg-slate-50">
         <Outlet />
@@ -251,7 +269,7 @@ export default function AppLayout() {
             <Outlet />
           </MathWorkspaceLayout>
         ) : (
-          <div className="math-workspace-page h-full min-h-0">
+          <div className="math-workspace-page h-full min-h-0 overflow-hidden">
             <Outlet />
           </div>
         )}
@@ -294,7 +312,7 @@ export default function AppLayout() {
 
   return (
     <div
-      className={`min-h-screen bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.16),transparent_34%),radial-gradient(circle_at_top_right,rgba(139,92,246,0.14),transparent_30%)] dark:bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.12),transparent_32%),radial-gradient(circle_at_top_right,rgba(139,92,246,0.12),transparent_34%)] ${isDistanceTarget ? "target-distance-app" : isAreaTarget ? "target-area-app" : isAngleTarget ? "target-angle-app" : isFixedAngleTarget ? "target-fixed-angle-app" : isRelationTarget ? "target-relation-app" : isStepsTarget ? "target-steps-app" : isTranslationTarget ? "target-translation-app" : isReflectionTarget ? "target-reflection-app" : isPointReflectionTarget ? "target-point-reflection-app" : isCircleReflectionTarget ? "target-circle-reflection-app" : isRotationPointTarget ? "target-rotation-app" : isDilationPointTarget ? "target-dilation-app" : isMatrixTransformationTarget ? "target-matrix-app" : isCompositeTransformationTarget ? "target-composite-app" : isTransformationMappingTarget ? "target-mapping-app" : isInvariantsTarget ? "target-invariants-app" : isSymmetryExplorerTarget ? "target-symmetry-app" : isLocusGeneratorTarget ? "target-locus-app" : isEquidistantLociTarget ? "target-equidistant-app" : isMovingLinkageTarget ? "target-linkage-app" : isEnvelopeLinesTarget ? "target-envelope-app" : isDynamicTraceTarget ? "target-trace-app" : isConjectureTestingTarget ? "target-conjecture-app" : isExactProofTarget ? "target-proof-app" : isCollinearityTestTarget ? "target-collinear-app" : isConcurrencyTestTarget ? "target-concurrency-app" : isConcyclicityTestTarget ? "target-concyclic-app" : isAngleMeasurementTarget ? "target-angle-measurement-app" : ""}`}
+      className={`h-dvh overflow-hidden bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.16),transparent_34%),radial-gradient(circle_at_top_right,rgba(139,92,246,0.14),transparent_30%)] dark:bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.12),transparent_32%),radial-gradient(circle_at_top_right,rgba(139,92,246,0.12),transparent_34%)] ${isDistanceTarget ? "target-distance-app" : isAreaTarget ? "target-area-app" : isAngleTarget ? "target-angle-app" : isFixedAngleTarget ? "target-fixed-angle-app" : isRelationTarget ? "target-relation-app" : isStepsTarget ? "target-steps-app" : isTranslationTarget ? "target-translation-app" : isReflectionTarget ? "target-reflection-app" : isPointReflectionTarget ? "target-point-reflection-app" : isCircleReflectionTarget ? "target-circle-reflection-app" : isRotationPointTarget ? "target-rotation-app" : isDilationPointTarget ? "target-dilation-app" : isMatrixTransformationTarget ? "target-matrix-app" : isCompositeTransformationTarget ? "target-composite-app" : isTransformationMappingTarget ? "target-mapping-app" : isInvariantsTarget ? "target-invariants-app" : isSymmetryExplorerTarget ? "target-symmetry-app" : isLocusGeneratorTarget ? "target-locus-app" : isEquidistantLociTarget ? "target-equidistant-app" : isMovingLinkageTarget ? "target-linkage-app" : isEnvelopeLinesTarget ? "target-envelope-app" : isDynamicTraceTarget ? "target-trace-app" : isConjectureTestingTarget ? "target-conjecture-app" : isExactProofTarget ? "target-proof-app" : isCollinearityTestTarget ? "target-collinear-app" : isConcurrencyTestTarget ? "target-concurrency-app" : isConcyclicityTestTarget ? "target-concyclic-app" : isAngleMeasurementTarget ? "target-angle-measurement-app" : ""}`}
     >
       <a
         href="#main-content"
@@ -302,13 +320,13 @@ export default function AppLayout() {
       >
         Skip to content
       </a>
-      <div className="app-layout-rail flex min-h-screen min-w-0">
-        <div className="flex min-w-0 flex-1 flex-col">
-          <Header />
+      <div className="app-layout-rail flex h-full min-h-0 min-w-0">
+        <div className="flex h-full min-h-0 min-w-0 flex-1 flex-col overflow-hidden">
+          {isMatrixLauncher ? null : <Header />}
           <main
             ref={mainContentRef}
             id="main-content"
-            className={`app-fullscreen-target w-full max-w-none flex-1 pb-24 pt-2 md:pb-0 md:pt-4 ${isCompassTarget || isSemicircleTarget || isRigidPolygonTarget ? "px-3" : isGeneralPolygonTarget || isCircleCentreRadiusTarget ? "px-4" : isCircularArcTarget ? "pl-[23px] pr-4" : isCircumcircularArcTarget ? "pl-[6px] pr-3" : isCircularSectorTarget ? "pl-[6px] pr-4" : isConicFiveTarget ? "px-[14px]" : isEllipseTarget ? "pl-[13px] pr-[14px]" : isHyperbolaTarget ? "pl-[9px] pr-4" : isParabolaTarget ? "pl-[23px] pr-[19px]" : isDistanceTarget ? "pl-[17px] pr-4" : isAreaTarget ? "pl-[18px] pr-[11px]" : isAngleTarget ? "pl-[11px] pr-[3px]" : isFixedAngleTarget ? "pl-[12px] pr-[13px]" : isRelationTarget ? "pl-[18px] pr-[17px]" : isStepsTarget ? "pl-[14px] pr-[16px]" : isTranslationTarget ? "pl-[25px] pr-[34px]" : isReflectionTarget ? "px-[19px]" : isPointReflectionTarget ? "pl-[24px] pr-[19px]" : isCircleReflectionTarget ? "pl-[10px] pr-[13px]" : isRotationPointTarget ? "px-[20px]" : isDilationPointTarget ? "pl-[20px] pr-[16px]" : isMatrixTransformationTarget ? "px-[16px]" : isCompositeTransformationTarget ? "px-[12px]" : isTransformationMappingTarget ? "px-[12px]" : isInvariantsTarget || isSymmetryExplorerTarget || isLocusGeneratorTarget || isEquidistantLociTarget || isMovingLinkageTarget || isEnvelopeLinesTarget || isDynamicTraceTarget || isConjectureTestingTarget || isExactProofTarget || isCollinearityTestTarget || isConcurrencyTestTarget || isConcyclicityTestTarget || isAngleMeasurementTarget ? "px-[10px]" : isCircleThreePointsTarget ? "px-6" : "px-2 sm:px-4 md:px-5"}`}
+            className={`app-fullscreen-target w-full max-w-none min-h-0 flex-1 overflow-y-auto ${isMatrixLauncher ? "pb-24 pt-0 md:pb-0 md:pt-0 px-0" : `pb-24 pt-2 md:pb-0 md:pt-4 ${isCompassTarget || isSemicircleTarget || isRigidPolygonTarget ? "px-3" : isGeneralPolygonTarget || isCircleCentreRadiusTarget ? "px-4" : isCircularArcTarget ? "pl-[23px] pr-4" : isCircumcircularArcTarget ? "pl-[6px] pr-3" : isCircularSectorTarget ? "pl-[6px] pr-4" : isConicFiveTarget ? "px-[14px]" : isEllipseTarget ? "pl-[13px] pr-[14px]" : isHyperbolaTarget ? "pl-[9px] pr-4" : isParabolaTarget ? "pl-[23px] pr-[19px]" : isDistanceTarget ? "pl-[17px] pr-4" : isAreaTarget ? "pl-[18px] pr-[11px]" : isAngleTarget ? "pl-[11px] pr-[3px]" : isFixedAngleTarget ? "pl-[12px] pr-[13px]" : isRelationTarget ? "pl-[18px] pr-[17px]" : isStepsTarget ? "pl-[14px] pr-[16px]" : isTranslationTarget ? "pl-[25px] pr-[34px]" : isReflectionTarget ? "px-[19px]" : isPointReflectionTarget ? "pl-[24px] pr-[19px]" : isCircleReflectionTarget ? "pl-[10px] pr-[13px]" : isRotationPointTarget ? "px-[20px]" : isDilationPointTarget ? "pl-[20px] pr-[16px]" : isMatrixTransformationTarget ? "px-[16px]" : isCompositeTransformationTarget ? "px-[12px]" : isTransformationMappingTarget ? "px-[12px]" : isInvariantsTarget || isSymmetryExplorerTarget || isLocusGeneratorTarget || isEquidistantLociTarget || isMovingLinkageTarget || isEnvelopeLinesTarget || isDynamicTraceTarget || isConjectureTestingTarget || isExactProofTarget || isCollinearityTestTarget || isConcurrencyTestTarget || isConcyclicityTestTarget || isAngleMeasurementTarget ? "px-[10px]" : isCircleThreePointsTarget ? "px-6" : "px-2 sm:px-4 md:px-5"}`}`}
           >
             <button
               type="button"

@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./ContinuityAtPointTargetLesson281.css";
 import "./ContinuityAtPointTargetLesson281Fit.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const curve = (x: number) => 2 * x * x;
 export default function ContinuityAtPointTargetLesson281({
@@ -361,6 +362,8 @@ export default function ContinuityAtPointTargetLesson281({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={281} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

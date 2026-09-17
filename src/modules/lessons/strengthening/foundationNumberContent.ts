@@ -8,6 +8,12 @@ import { catalogGapStrengthenedChallenges, catalogGapStrengthenedLessons } from 
 import { complexAdvancedBatchStrengthenedChallenges, complexAdvancedBatchStrengthenedLessons } from "./complexAdvancedBatchStrengtheningContent";
 import { complexBatchStrengthenedChallenges, complexBatchStrengthenedLessons } from "./complexBatchStrengtheningContent";
 import { coordinateStrengthenedChallenges, coordinateStrengthenedLessons } from "./coordinateGeometryStrengtheningContent";
+import { applyBatch2HandOverlay } from "./catalogBatch2HandAuthoredOverlay";
+import { applyBatch3HandOverlay } from "./catalogBatch3HandAuthoredOverlay";
+import { applyBatch4HandOverlay } from "./catalogBatch4HandAuthoredOverlay";
+import { applyBatch5HandOverlay } from "./catalogBatch5HandAuthoredOverlay";
+import { applyBatch6HandOverlay } from "./catalogBatch6HandAuthoredOverlay";
+import { catalogBatch6AdvancedLessons } from "./catalogBatch6AdvancedLessons";
 import { coreWorkspaceStrengthenedChallenges, coreWorkspaceStrengthenedLessons } from "./coreWorkspaceStrengtheningContent";
 import { dynamicGeometryStrengthenedChallenges, dynamicGeometryStrengthenedLessons } from "./dynamicGeometryStrengtheningContent";
 import { distributionInferenceBatchStrengthenedChallenges, distributionInferenceBatchStrengthenedLessons } from "./distributionInferenceBatchStrengtheningContent";
@@ -1012,13 +1018,41 @@ const rawStrengthenedLessons: Record<number, StrengthenedLesson> = {
   ...schoolSyllabusAdvancedBatchStrengthenedLessons,
   ...schoolSyllabusClass12BatchStrengthenedLessons,
   ...schoolSyllabusFinalBatchStrengthenedLessons,
+  ...catalogBatch6AdvancedLessons,
 };
 
 const repeatedHowItWorks = repeatedValues(rawStrengthenedLessons, "howItWorks");
 const repeatedWhyItWorks = repeatedValues(rawStrengthenedLessons, "whyItWorks");
 
+const bannedLessonPhrasePattern =
+  /(?:[^.]*fills a Class[^.]*\.|The lesson introduces the concept, connects it to an interactive representation, and checks mastery with targeted practice\.)\s*/gi;
+
+function sanitizeBannedLessonPhrases(lesson: StrengthenedLesson): StrengthenedLesson {
+  const clean = (text: string) => text.replace(bannedLessonPhrasePattern, "").replace(/\s+/g, " ").trim();
+  return {
+    ...lesson,
+    introduction: clean(lesson.introduction),
+    basicIdea: clean(lesson.basicIdea),
+    howItWorks: clean(lesson.howItWorks),
+    whyItWorks: clean(lesson.whyItWorks),
+    definitions: lesson.definitions.map((item) => ({ ...item, statement: clean(item.statement) })),
+    challenge: { ...lesson.challenge, prompt: clean(lesson.challenge.prompt) },
+    learningObjectives: lesson.learningObjectives.map(clean),
+    realLifeExamples: lesson.realLifeExamples.map((item) => ({
+      ...item,
+      context: clean(item.context),
+      connection: clean(item.connection),
+    })),
+  };
+}
+
 const allStrengthenedLessons: Record<number, StrengthenedLesson> = Object.fromEntries(
-  Object.entries(rawStrengthenedLessons).map(([id, lesson]) => [Number(id), personalizeLessonNarrative(lesson)]),
+  Object.entries(rawStrengthenedLessons).map(([id, lesson]) => [
+    Number(id),
+    sanitizeBannedLessonPhrases(
+      applyBatch6HandOverlay(applyBatch5HandOverlay(applyBatch4HandOverlay(applyBatch3HandOverlay(applyBatch2HandOverlay(personalizeLessonNarrative(lesson)))))),
+    ),
+  ]),
 );
 
 export const strengthenedFoundationLessonIds = Object.keys(allStrengthenedLessons).map(Number).sort((left, right) => left - right);

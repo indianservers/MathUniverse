@@ -21,6 +21,7 @@ import {
   type ReactNode,
 } from "react";
 import type { LessonAdapterProps } from "../types";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type Drag = "center" | "radius" | "angle" | null;
@@ -437,6 +438,8 @@ export default function CircularSectorTargetLesson225({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={225} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

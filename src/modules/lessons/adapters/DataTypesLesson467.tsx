@@ -25,6 +25,7 @@ import {
   type VariableType,
 } from "./dataTypesModel";
 import "./DataTypesLesson467.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 export default function DataTypesLesson467(props: LessonAdapterProps) {
   return (
@@ -527,6 +528,8 @@ function DataTypesActivity({
           </div>
         </section>
       </div>
+      <LessonTopicStudyBoard lessonId={467} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

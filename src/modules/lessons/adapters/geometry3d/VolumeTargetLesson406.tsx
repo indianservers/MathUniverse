@@ -12,6 +12,7 @@ import { DoubleSide } from "three";
 import type { LessonAdapterProps } from "../../types";
 import "./CoordinateSystemTargetLesson378.css";
 import "./VolumeTargetLesson406.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Solid = "prism" | "cylinder" | "pyramid" | "cone" | "sphere";
 type Unit = "u³" | "m³" | "cm³" | "mL" | "L" | "ft³" | "in³";
@@ -506,6 +507,8 @@ export default function VolumeTargetLesson406({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={406} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

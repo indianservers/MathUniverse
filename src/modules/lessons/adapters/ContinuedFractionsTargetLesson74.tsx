@@ -17,6 +17,7 @@ import {
 import type { LessonAdapterProps } from "../types";
 import "./ContinuedFractionsTargetLesson74.css";
 import "./ContinuedFractionsTargetLesson74Tuning.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Rational = { numerator: number; denominator: number };
 
@@ -441,6 +442,8 @@ export default function ContinuedFractionsTargetLesson74({
         </small>
         <small>www.IndianServers.com info@IndianServers.com</small>
       </footer>
+      <LessonTopicStudyBoard lessonId={74} view={tab} onInteraction={onInteraction} />
+
     </div>
   );
 }

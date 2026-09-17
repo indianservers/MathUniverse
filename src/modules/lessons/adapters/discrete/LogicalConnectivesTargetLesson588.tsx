@@ -2,6 +2,7 @@ import { AlertTriangle, Check } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./LogicalConnectivesTargetLesson588.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 type Op = "not" | "and" | "or" | "xor" | "implies" | "iff";
 const rows = [
   [true, true],
@@ -375,6 +376,8 @@ export default function LogicalConnectivesTargetLesson588({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={588} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

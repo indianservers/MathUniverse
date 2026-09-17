@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import type { KeyboardEvent, PointerEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./PlottingPointsTargetLesson168.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type Mode = "point" | "pan";
@@ -70,5 +71,7 @@ export default function PlottingPointsTargetLesson168({ resetToken, onInteractio
       <section className="pp168-insight"><h2>Insight</h2><p>The ordered pair <i>(x, y)</i> tells us exactly where a point is located.</p><div><b>Write → <i>(x, y)</i></b><b>Read → <i>x</i> first (horizontal), <i>y</i> second (vertical).</b></div></section></section>
     <section className="pp168-challenge"><div className="chest">▣</div><div><h2>Treasure Challenge</h2><p>Plot the treasure at <i>T(2, −1)</i> and collect 20 XP!</p></div><span><b>{treasure ? "20" : "0"} / 20 XP</b><i className={treasure ? "done" : ""} /></span><button onClick={() => { setTreasure(true); onInteraction(); }}>Plot T(2, −1) <b>◉ 20 XP</b></button></section>
     <nav className="pp168-nav"><a href="/lessons/geometry/167-cartesian-plane"><ArrowLeft /><span><small>Previous</small><b>Cartesian Plane</b></span></a><div><small>Lesson Progress</small><span>{[0,1,2,3,4,5,6,7].map((item) => <i key={item} className={item === stage ? "active" : ""} />)}</span></div><a href="/lessons/geometry/169-distance-between-points"><span><small>Next</small><b>Distance Between Points</b></span><ArrowRight /></a></nav>
+      <LessonTopicStudyBoard lessonId={168} alwaysVisible onInteraction={onInteraction} />
+
   </main>;
 }

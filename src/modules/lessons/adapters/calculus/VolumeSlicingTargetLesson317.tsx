@@ -14,6 +14,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./VolumeSlicingTargetLesson317.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const radius = 3;
 const clamp = (value: number, min: number, max: number) =>
@@ -460,6 +461,8 @@ export default function VolumeSlicingTargetLesson317({
         </small>
         <span>www.IndianServers.com &nbsp; info@IndianServers.com</span>
       </footer>
+      <LessonTopicStudyBoard lessonId={317} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

@@ -10,6 +10,7 @@ import { DoubleSide, type Group } from "three";
 import type { LessonAdapterProps } from "../../types";
 import "./CoordinateSystemTargetLesson378.css";
 import "./HemisphereTargetLesson400.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Half = "Top half" | "Bottom half";
 type Display = "Solid" | "Open bowl";
@@ -664,6 +665,8 @@ export default function HemisphereTargetLesson400({
           </button>
         </nav>
       </footer>
+      <LessonTopicStudyBoard lessonId={400} view={view} onInteraction={onInteraction} />
+
     </section>
   );
 }

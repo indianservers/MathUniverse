@@ -9,6 +9,7 @@ import {
   weibullSurvival,
 } from "./weibullLessonModel";
 import "./WeibullDistributionLesson534.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 export default function WeibullDistributionLesson534({
   resetToken,
@@ -358,6 +359,8 @@ function WeibullActivity({
         </button>
         <span>Previous: Gamma Distribution &nbsp; Next: Standardisation</span>
       </footer>
+      <LessonTopicStudyBoard lessonId={534} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

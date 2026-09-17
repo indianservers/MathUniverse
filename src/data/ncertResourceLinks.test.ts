@@ -11,7 +11,7 @@ const knownDynamicRoutes = new Set([
   "/concept-map",
   "/linear-algebra",
   "/math/derivatives",
-  "/math/functions",
+  "/math-lab/function-explorer",
   "/math/integration",
   "/math/slope-fields",
   "/trigonometry",

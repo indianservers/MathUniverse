@@ -12,6 +12,7 @@ import { Fragment, useState } from "react";
 import type { DragEvent } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./InvertibleFunctionsTargetLesson10122.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const letters = ["a", "b", "c", "d"];
 export default function InvertibleFunctionsTargetLesson10122({
@@ -417,6 +418,8 @@ export default function InvertibleFunctionsTargetLesson10122({
           Binary Operations <ArrowRight />
         </button>
       </nav>
+      <LessonTopicStudyBoard lessonId={10122} alwaysVisible />
+
     </section>
   );
 }

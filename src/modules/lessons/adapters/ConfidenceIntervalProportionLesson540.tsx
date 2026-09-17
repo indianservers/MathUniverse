@@ -7,6 +7,7 @@ import {
   type ProportionIntervalMethod,
 } from "./confidenceProportionLessonModel";
 import "./ConfidenceIntervalProportionLesson540.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 export default function ConfidenceIntervalProportionLesson540({
   resetToken,
   onInteraction,
@@ -429,6 +430,8 @@ function ProportionIntervalActivity({
           Means Interval
         </span>
       </footer>
+      <LessonTopicStudyBoard lessonId={540} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

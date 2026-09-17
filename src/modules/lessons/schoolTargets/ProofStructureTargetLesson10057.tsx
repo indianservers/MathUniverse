@@ -10,6 +10,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./ProofStructureTargetLesson10057.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 type Fact = {
   id: string;
   statement: string;
@@ -394,6 +395,12 @@ export default function ProofStructureTargetLesson10057({
           Vertically Opposite Angles <ArrowRight />
         </Link>
       </nav>
+      <LessonTopicStudyBoard
+        lessonId={10057}
+        view={tab}
+        boundLive={`${proof.length} reasons · ${valid ? "valid order" : "incomplete"}`}
+      />
+
     </section>
   );
 }

@@ -20,6 +20,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./EnvelopeLinesTargetLesson250.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 const initialTraces = Array.from({ length: 23 }, (_, i) => -5.5 + i * 0.5);
@@ -383,6 +384,8 @@ export default function EnvelopeLinesTargetLesson250({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={250} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

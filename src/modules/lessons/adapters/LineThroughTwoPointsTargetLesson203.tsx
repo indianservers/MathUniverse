@@ -18,6 +18,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import type { PointerEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./LineThroughTwoPointsTargetLesson203.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type PointName = "A" | "B";
@@ -246,6 +247,8 @@ export default function LineThroughTwoPointsTargetLesson203({ lesson, resetToken
       </div>
       <nav className="lt203-nav" aria-label="Adjacent lessons"><a href="/lessons/geometry/202-attach-detach-point"><ArrowLeft /><span><small>Previous</small>Attach / Detach Point</span></a><div><i /><i className="active" /><i /><i /><i /><span>Step 2 of 5</span></div><a href="/lessons/geometry/204-segment"><span><small>Next</small>Segment</span><ArrowRight /></a></nav>
       <footer className="lt203-footer"><span><Grid3X3 />Coordinate Geometry</span><b><Crosshair />Two points determine exactly one line</b><button type="button" onClick={() => { setPoints(INITIAL); setZoom(1); setPan({ x: 0, y: 0 }); setStepsVisible([true, true, true, true]); onInteraction(); }}><RotateCcw />Reset lesson</button></footer>
+      <LessonTopicStudyBoard lessonId={203} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

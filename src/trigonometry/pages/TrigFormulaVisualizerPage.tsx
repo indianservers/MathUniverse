@@ -61,6 +61,22 @@ const lowerTabs: Array<{ id: LowerTab; label: string }> = [
   { id: "gallery", label: "Formula Gallery" },
 ];
 
+export function trigFormulaMatchingLab(formula: TrigFormulaDefinition): { href: string; label: string } {
+  const group = formula.groupId;
+  if (group === "pythagorean-identities") return { href: "/trigonometry/identities?mode=Pythagorean", label: "Open Identities lab" };
+  if (group === "sum-difference-identities") return { href: "/trigonometry/identities?mode=Angle+Sum", label: "Open Identities lab" };
+  if (group === "double-angle-identities") return { href: "/trigonometry/identities?mode=Double+Angle", label: "Open Identities lab" };
+  if (formula.id === "sin" || formula.id === "cos" || formula.id === "tan") {
+    const mode = formula.id === "sin" ? "Sine" : formula.id === "cos" ? "Cosine" : "Tangent";
+    return { href: `/trigonometry/graphs?mode=${encodeURIComponent(mode)}`, label: `Open ${mode} graph` };
+  }
+  if (group === "basic-ratios" || group === "reciprocal-identities" || group === "quotient-identities") {
+    return { href: "/trigonometry/unit-circle?mode=Unit+Circle", label: "Open Unit Circle lab" };
+  }
+  if (group === "complementary-angle-identities") return { href: "/trigonometry/right-triangle?mode=Solve+Triangle", label: "Open Right Triangle lab" };
+  return { href: "/trigonometry/unit-circle?mode=Unit+Circle", label: "Open Unit Circle lab" };
+}
+
 export default function TrigFormulaVisualizerPage() {
   const [degrees, setDegrees] = useState(45);
   const [selectedFormulaId, setSelectedFormulaId] = useState<TrigFormulaId>("sin");
@@ -85,6 +101,7 @@ export default function TrigFormulaVisualizerPage() {
   const [fullscreen, setFullscreen] = useState(false);
   const values = useMemo(() => computeTrigFormulaValues(degrees), [degrees]);
   const selectedFormula = getFormulaDefinition(selectedFormulaId);
+  const matching = trigFormulaMatchingLab(selectedFormula);
   const filteredFormulas = useMemo(
     () =>
       trigFormulaDefinitions.filter((formula) => {
@@ -174,9 +191,14 @@ export default function TrigFormulaVisualizerPage() {
               Drag theta on the unit circle and watch sine, cosine, tangent, squared ratios, and the core identity change as geometry.
             </p>
           </div>
-          <Link to="/trigonometry" className="action-secondary w-fit">
-            Back to Trigonometry
-          </Link>
+          <div className="flex flex-col gap-2">
+            <Link to="/trigonometry" className="action-secondary w-fit">
+              Back to Trigonometry
+            </Link>
+            <Link to={matching.href} className="action-primary w-fit" data-testid="trig-formula-matching-lab">
+              {matching.label}
+            </Link>
+          </div>
         </div>
       </div>
 

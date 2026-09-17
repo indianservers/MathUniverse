@@ -41,6 +41,9 @@ import {
   type ReactNode,
 } from "react";
 import SectionCard from "../../components/ui/SectionCard";
+import StudioBreadcrumb, { mathStudioCrumbs } from "../../components/ui/StudioBreadcrumb";
+import { StudioCanvasToolbar } from "../../components/ui/StudioCanvasToolbar";
+import StudioHomeButtons from "../../components/ui/StudioHomeButtons";
 import TopicHeader from "../../components/ui/TopicHeader";
 import {
   adjacencyList,
@@ -76,6 +79,8 @@ import {
   planarityObstructionHint,
   prim,
   serializeGraph,
+  encodeGraphShare,
+  decodeGraphShare,
   treeModel,
   topologicalSort,
   type AlgorithmStep,
@@ -189,8 +194,11 @@ function GraphTheoryStudio() {
   const fileRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    if (!isUsableGraphProject(project)) store.resetProject();
-  }, [project, store]);
+    const packed = new URLSearchParams(window.location.search).get("g");
+    if (!packed) return;
+    const loaded = decodeGraphShare(packed);
+    if (loaded) useGraphTheoryStore.getState().loadProject(loaded);
+  }, []);
   useEffect(() => {
     const onPop = () => setActiveTab(readStudioTab());
     window.addEventListener("popstate", onPop);
@@ -358,9 +366,14 @@ function GraphTheoryStudio() {
     <main className="gt-studio">
       <header className="gt-header">
         <div>
-          <div className="gt-breadcrumb">
-            <Link to="/">Home</Link> <span aria-hidden="true">&gt;</span> <Link to="/math-lab">Studio</Link> <span aria-hidden="true">&gt;</span> <Link to="/discrete-world">Number &amp; Discrete Mathematics</Link> <span aria-hidden="true">&gt;</span> <Link to="/graph-theory" aria-current="page">Graph Theory</Link>
-          </div>
+          <StudioHomeButtons studioTo="/graph-theory" />
+          <StudioBreadcrumb
+            className="gt-breadcrumb"
+            crumbs={[
+              ...mathStudioCrumbs({ label: "Number & Discrete Mathematics", to: "/discrete-world" }),
+              { label: "Graph Theory", to: "/graph-theory" },
+            ]}
+          />
           <h1>Graph Theory Studio</h1>
           <p>Build, analyze, and understand networks visually.</p>
         </div>
@@ -383,6 +396,17 @@ function GraphTheoryStudio() {
           </span>
           <button
             type="button"
+            onClick={() => {
+              const url = new URL(window.location.href);
+              url.searchParams.set("g", encodeGraphShare(project));
+              void navigator.clipboard.writeText(url.toString());
+            }}
+          >
+            <Copy />
+            Copy graph URL
+          </button>
+          <button
+            type="button"
             onClick={() =>
               download("graph-theory-setup.json", serializeGraph(project))
             }
@@ -390,6 +414,7 @@ function GraphTheoryStudio() {
             <Save />
             Share setup
           </button>
+          <StudioCanvasToolbar />
         </div>
       </header>
       <nav
@@ -662,12 +687,23 @@ function GraphTheoryStudio() {
             <svg
               ref={svgRef}
               viewBox="0 0 900 520"
+              className={draggingNode ? "is-dragging-vertex" : undefined}
               onPointerMove={(event) =>
                 draggingNode &&
                 updateNodePosition(draggingNode, toGraphPoint(event))
               }
-              onPointerUp={() => setDraggingNode(null)}
-              onPointerLeave={() => setDraggingNode(null)}
+              onPointerUp={(event) => {
+                if (draggingNode) {
+                  event.currentTarget.releasePointerCapture(event.pointerId);
+                }
+                setDraggingNode(null);
+              }}
+              onPointerCancel={(event) => {
+                if (draggingNode) {
+                  event.currentTarget.releasePointerCapture(event.pointerId);
+                }
+                setDraggingNode(null);
+              }}
             >
               <defs>
                 <pattern
@@ -702,7 +738,11 @@ function GraphTheoryStudio() {
                   const active = activeEdges.includes(edge.id);
                   const selected = selectedEdge?.id === edge.id;
                   return (
-                    <g key={edge.id} onClick={() => setSelectedEdgeId(edge.id)}>
+                    <g
+                      key={edge.id}
+                      className="gt-edge"
+                      onClick={() => setSelectedEdgeId(edge.id)}
+                    >
                       <line
                         x1={source.x}
                         y1={source.y}
@@ -748,6 +788,10 @@ function GraphTheoryStudio() {
                   return (
                     <g
                       key={node.id}
+                      className="gt-vertex"
+                      role="button"
+                      tabIndex={0}
+                      aria-label={`Vertex ${node.label}`}
                       transform={`translate(${node.x} ${node.y})`}
                       onPointerDown={(event) => {
                         event.stopPropagation();
@@ -758,13 +802,18 @@ function GraphTheoryStudio() {
                             addEdge(connectSource, node.id);
                             setConnectSource(null);
                           }
-                        } else if (tool === "move") {
+                        } else if (tool === "move" || tool === "select") {
                           pushHistory();
+                          event.currentTarget.ownerSVGElement?.setPointerCapture(
+                            event.pointerId,
+                          );
                           setDraggingNode(node.id);
                         }
                       }}
                     >
+                      <circle className="gt-vertex-hit" r="40" />
                       <circle
+                        className="gt-vertex-body"
                         r="27"
                         fill={colors[index % colors.length]}
                         stroke={
@@ -776,6 +825,7 @@ function GraphTheoryStudio() {
                       />
                       {labels && (
                         <text
+                          className="gt-vertex-label"
                           y="6"
                           textAnchor="middle"
                           fontSize="18"
@@ -1453,7 +1503,7 @@ function AlgorithmPanel({
         </label>
         <div className="gt-runner-actions">
           <button type="button" onClick={() => onStep(0)}>
-            Restart
+            Rewind
           </button>
           <button
             type="button"
@@ -1469,6 +1519,17 @@ function AlgorithmPanel({
             Run
           </button>
         </div>
+        <ul className="gt-legend" aria-label="Color legend">
+          <li><i style={{ background: "#147df2" }} /> current</li>
+          <li><i style={{ background: "#10b981" }} /> visited</li>
+          <li><i style={{ background: "#f59e0b" }} /> frontier / tree</li>
+          <li><i style={{ background: "#8b45f4" }} /> path</li>
+        </ul>
+        <ol className="gt-step-tape" aria-label="Algorithm explanation">
+          {steps.slice(Math.max(0, stepIndex - 3), stepIndex + 4).map((item, i) => (
+            <li key={`${item.note}-${i}`} className={item === steps[stepIndex] ? "is-hot" : undefined}>{item.note}</li>
+          ))}
+        </ol>
         <p>
           Step {Math.min(stepIndex + 1, steps.length)} / {steps.length || 0}
         </p>
@@ -2468,7 +2529,7 @@ function GraphEditor({
                   role="button"
                   tabIndex={0}
                   aria-label={`Node ${node.label}`}
-                  className="cursor-grab outline-none"
+                  className="gt-vertex outline-none"
                   transform={`translate(${node.x} ${node.y})`}
                   onMouseEnter={() => setHoveredNodeId(node.id)}
                   onMouseLeave={() => setHoveredNodeId(null)}
@@ -2518,7 +2579,9 @@ function GraphEditor({
                     setDraggingNode(node.id);
                   }}
                 >
+                  <circle className="gt-vertex-hit" r={nodeSize + 14} />
                   <circle
+                    className="gt-vertex-body"
                     r={nodeSize}
                     fill={fill}
                     stroke={
@@ -2528,6 +2591,7 @@ function GraphEditor({
                   />
                   {showNodeLabels ? (
                     <text
+                      className="gt-vertex-label"
                       y="6"
                       textAnchor="middle"
                       fill="#0f172a"

@@ -13,6 +13,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./LinearPairTargetLesson10059.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const tabs = ["Interact", "Learn", "Example", "Formula", "Practice"];
 const clamp = (value: number) => Math.max(5, Math.min(175, Math.round(value)));
@@ -324,6 +325,8 @@ export default function LinearPairTargetLesson10059({
           Next: Corresponding Angles <ArrowRight />
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10059} view={tab} />
+
     </section>
   );
 }

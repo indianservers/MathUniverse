@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { schoolLessonCatalog } from "../catalog/school/schoolSyllabusCatalog";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./RuleMachineTargetLesson10012.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 type Op = { kind: "add" | "multiply"; value: number };
 const palette: Op[] = [1, 2, 3, 5]
   .map((value) => ({ kind: "add", value }) as Op)
@@ -430,6 +431,8 @@ export default function RuleMachineTargetLesson10012({
           Next Lesson →<b>{next.title}</b>
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10012} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { schoolLessonCatalog } from "../catalog/school/schoolSyllabusCatalog";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./CopyLineSegmentTargetLesson10022.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const clamp = (value: number) =>
   Math.min(8, Math.max(1, Math.round(value * 20) / 20));
@@ -447,6 +448,8 @@ export default function CopyLineSegmentTargetLesson10022({
           →
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10022} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

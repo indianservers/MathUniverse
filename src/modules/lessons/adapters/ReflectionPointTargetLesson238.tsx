@@ -24,6 +24,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./ReflectionPointTargetLesson238.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type Tool = "select" | "move" | "centre";
@@ -102,6 +103,8 @@ export default function ReflectionPointTargetLesson238({ resetToken, onInteracti
     <section className="target-point-reflection-practice"><article><header><h2>Try it yourself</h2><b>1 of 1</b><button type="button" aria-label="Previous challenge">‹</button><button type="button" aria-label="Next challenge">›</button></header><p>Reflect A in the given centre P.</p><strong>P(2, -1), &nbsp; A(5, 3)</strong><p>Find A' = (x', y').</p><footer><label>x' = <input aria-label="Practice reflected x coordinate" inputMode="decimal" value={answer[0]} onChange={(event)=>setAnswer([event.target.value,answer[1]])}/></label><label>y' = <input aria-label="Practice reflected y coordinate" inputMode="decimal" value={answer[1]} onChange={(event)=>setAnswer([answer[0],event.target.value])}/></label><button type="button" onClick={checkAnswer}><Check/> Check answer</button></footer></article><article><h2><Lightbulb/> Need a hint?</h2><p>Use the rule A' = (2h - x, 2k - y) with P(h,k) = (2,-1).</p><button type="button" onClick={()=>{setWorked((value)=>!value);onInteraction();}}><BookOpen/> {worked?"Hide worked steps":"Show worked steps"}</button>{worked&&<aside>2(2)-5=-1<br/>2(-1)-3=-5</aside>}</article><article><h2>Your result <Lightbulb/></h2><strong>{practiceStatus.startsWith("Correct")?"A'(-1, -5)":"-"}</strong><p role="status">{practiceStatus}</p></article></section>
 
     <nav className="target-point-reflection-nav" aria-label="Adjacent lessons"><a href="/lessons/geometry/237-reflection-in-line"><ArrowLeft/><span><b>Previous</b>Reflection in Line</span></a><a href="/lessons/geometry/239-reflection-in-circle"><span><b>Next</b>Reflection in Circle</span><ArrowRight/></a></nav><span className="sr-only" role="status">{status}</span>
+      <LessonTopicStudyBoard lessonId={238} alwaysVisible onInteraction={onInteraction} />
+
   </section>;
 }
 

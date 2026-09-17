@@ -11,6 +11,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./CubicIdentitiesTargetLesson10051.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type TileKind = "a3" | "a2b" | "ab2" | "b3";
 const tiles: { kind: TileKind; label: string; count: number }[] = [
@@ -450,6 +451,8 @@ export default function CubicIdentitiesTargetLesson10051({
           <ArrowRight />
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10051} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

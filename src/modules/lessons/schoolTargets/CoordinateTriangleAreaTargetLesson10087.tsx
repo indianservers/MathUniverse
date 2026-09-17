@@ -9,6 +9,7 @@ import {
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./CoordinateTriangleAreaTargetLesson10087.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type Key = "a" | "b" | "c";
@@ -414,6 +415,8 @@ export default function CoordinateTriangleAreaTargetLesson10087({
           Next: Collinearity Using Coordinate Area <ArrowRight />
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10087} view={tab} />
+
     </section>
   );
 }

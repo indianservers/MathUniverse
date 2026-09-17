@@ -2,6 +2,7 @@ import { Check, Lightbulb, Target, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./QuantifiersTargetLesson589.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 type Predicate =
   "positive" | "nonnegative" | "negative" | "zero" | "square4" | "even";
 const predicates: Record<
@@ -390,6 +391,8 @@ export default function QuantifiersTargetLesson589({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={589} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

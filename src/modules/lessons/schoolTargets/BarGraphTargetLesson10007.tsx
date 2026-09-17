@@ -17,6 +17,7 @@ import { Link } from "react-router-dom";
 import { schoolLessonCatalog } from "../catalog/school/schoolSyllabusCatalog";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./BarGraphTargetLesson10007.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 type Row = { name: string; value: number };
 const colors = ["#18aab0", "#8b4fc9", "#f6a21d", "#287dca", "#e85a73"];
 export default function BarGraphTargetLesson10007({
@@ -495,6 +496,8 @@ export default function BarGraphTargetLesson10007({
           Next →<b>{next.title}</b>
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10007} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

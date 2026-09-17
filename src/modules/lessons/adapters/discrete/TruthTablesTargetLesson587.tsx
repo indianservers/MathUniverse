@@ -2,6 +2,7 @@ import { AlertTriangle, Check, Info, Lightbulb, Target } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./TruthTablesTargetLesson587.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Op = "implies" | "and" | "or" | "iff";
 const rows = [
@@ -397,6 +398,8 @@ export default function TruthTablesTargetLesson587({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={587} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

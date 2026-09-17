@@ -18,4 +18,9 @@ describe("studio lesson relevance", () => {
       expect(configForPath(route), route).not.toBeNull();
     }
   });
+
+  it("uses a tighter number-systems matcher", () => {
+    expect(configForPath("/number-systems")?.terms).toContain("rational number");
+    expect(configForPath("/number-systems")?.exclude).toContain("complex");
+  });
 });

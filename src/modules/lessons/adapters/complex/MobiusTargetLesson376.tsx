@@ -2,6 +2,7 @@ import { ExternalLink, RotateCcw, Share2 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./MobiusTargetLesson376.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Pair = [number, number];
 type Quad = [number, number, number, number];
@@ -440,6 +441,8 @@ export default function MobiusTargetLesson376({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={376} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

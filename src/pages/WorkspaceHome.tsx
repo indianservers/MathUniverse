@@ -1,8 +1,10 @@
 import { ArrowRight, Box, Braces, ChartSpline, Cuboid, Grid3X3, Orbit, Shapes, Sigma, Sparkles } from "lucide-react";
 import type { CSSProperties } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { WorkspaceSuiteBar } from "../components/workspace/MathWorkspaceNavigation";
-import { mathWorkspaces, type MathWorkspaceDefinition } from "../workspace/mathWorkspaces";
+import { mathWorkspaces, type MathWorkspaceDefinition, type MathWorkspaceGroup } from "../workspace/mathWorkspaces";
+
+const workspaceGroups: MathWorkspaceGroup[] = ["calculate", "construct-graph", "explore"];
 
 const iconByWorkspace = {
   cas: Sigma,
@@ -14,6 +16,10 @@ const iconByWorkspace = {
 };
 
 export default function WorkspaceHome() {
+  const { group } = useParams();
+  const tools = group && workspaceGroups.includes(group as MathWorkspaceGroup)
+    ? mathWorkspaces.filter((workspace) => workspace.group === group)
+    : mathWorkspaces;
   return (
     <main className="workspace-home-shell" data-testid="workspace-suite-home">
       <WorkspaceSuiteBar />
@@ -46,7 +52,7 @@ export default function WorkspaceHome() {
           <p>2D Geometry, 3D Geometry, 2D Graph, 3D Graph, CAS, and Solver share the same compact navigation, focused canvas, and connected mathematical objects.</p>
         </header>
         <div className="workspace-home-grid">
-          {mathWorkspaces.map((workspace) => <WorkspaceCard workspace={workspace} key={workspace.id} />)}
+          {tools.map((workspace) => <WorkspaceCard workspace={workspace} key={workspace.id} />)}
         </div>
       </section>
     </main>

@@ -26,6 +26,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./FixedAngleTargetLesson233.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type DragTarget = "origin" | "point" | null;
@@ -387,6 +388,8 @@ export default function FixedAngleTargetLesson233({
         <section><b>233 of 420</b><i><span /></i></section>
         <a href="/lessons/geometry/234-relation-checker"><span><b>Next</b>Relation Checker</span><ArrowRight /></a>
       </nav>
+      <LessonTopicStudyBoard lessonId={233} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

@@ -3,6 +3,8 @@ import { type PointerEvent, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./AngleSubtendedArcTargetLesson10091.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+import { LessonGraphInkLegend, lessonGraphInkProps } from "../graphs/LessonGraphInk";
 
 type Point = { x: number; y: number };
 const A_ANGLE = 210.8,
@@ -218,6 +220,7 @@ export default function AngleSubtendedArcTargetLesson10091({
             </button>
             <svg
               ref={svgRef}
+              {...lessonGraphInkProps}
               viewBox="0 0 620 470"
               aria-label="Draggable central and inscribed angle circle"
               onPointerMove={(e) => {
@@ -226,6 +229,7 @@ export default function AngleSubtendedArcTargetLesson10091({
               onPointerUp={() => dragging && act(() => setDragging(false))}
               onPointerLeave={() => dragging && act(() => setDragging(false))}
             >
+              <LessonGraphInkLegend />
               <circle className="circle" cx={cx} cy={cy} r={r} />
               <path className="fixed-arc" d={arcPath(A_ANGLE, B_ANGLE, r)} />
               <line className="chord" x1={pc.x} y1={pc.y} x2={pa.x} y2={pa.y} />
@@ -402,6 +406,8 @@ export default function AngleSubtendedArcTargetLesson10091({
           Angle in a Semicircle <ArrowRight />
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10091} view={tab} />
+
     </section>
   );
 }

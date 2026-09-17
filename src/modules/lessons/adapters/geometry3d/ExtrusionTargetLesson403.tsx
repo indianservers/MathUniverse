@@ -22,6 +22,7 @@ import { ExtrudeGeometry, Shape } from "three";
 import type { LessonAdapterProps } from "../../types";
 import "./CoordinateSystemTargetLesson378.css";
 import "./ExtrusionTargetLesson403.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Profile = "triangle" | "circle" | "lshape";
 type Path = "straight" | "oblique";
@@ -542,6 +543,8 @@ export default function ExtrusionTargetLesson403({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={403} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

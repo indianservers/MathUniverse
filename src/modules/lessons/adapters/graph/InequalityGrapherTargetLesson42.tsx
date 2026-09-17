@@ -26,6 +26,7 @@ import {
   type ShadeDirection,
 } from "./inequalityGrapherLesson42Model";
 import "./InequalityGrapherTargetLesson42.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 export default function InequalityGrapherTargetLesson42({
   resetToken,
@@ -384,6 +385,8 @@ export default function InequalityGrapherTargetLesson42({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={42} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

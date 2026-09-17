@@ -1,0 +1,82 @@
+/* Lesson figures only. Never import this from studio workspaces. */
+svg[data-lesson-graph-ink] {
+  --lesson-ink-chord: #2563eb;
+  --lesson-ink-chord-2: #7c3aed;
+  --lesson-ink-tangent: #f59e0b;
+  --lesson-ink-angle: #ec4899;
+  --lesson-ink-inscribed: #8b5cf6;
+}
+
+svg[data-lesson-graph-ink] :is(line, path, polyline, polygon).chord,
+svg[data-lesson-graph-ink] :is(line, path).diameter,
+svg[data-lesson-graph-ink] :is(line, path).diagonal,
+svg[data-lesson-graph-ink] line.triangle,
+svg[data-lesson-graph-ink] polygon.quad {
+  stroke: var(--lesson-ink-chord) !important;
+  stroke-width: 3;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 1.4px var(--lesson-ink-chord));
+}
+
+svg[data-lesson-graph-ink] :is(line, path).chord.cd {
+  stroke: var(--lesson-ink-chord-2) !important;
+  filter: drop-shadow(0 0 1.4px var(--lesson-ink-chord-2));
+}
+
+svg[data-lesson-graph-ink] :is(line, path).tangent,
+svg[data-lesson-graph-ink] line.line.tangent {
+  stroke: var(--lesson-ink-tangent) !important;
+  stroke-width: 3.1;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 1.5px var(--lesson-ink-tangent));
+}
+
+svg[data-lesson-graph-ink] :is(line, path, polyline, circle).angle,
+svg[data-lesson-graph-ink] :is(line, path).central,
+svg[data-lesson-graph-ink] :is(line, path).inscribed,
+svg[data-lesson-graph-ink] :is(line, path, polyline).right-mark,
+svg[data-lesson-graph-ink] :is(line, path, polyline).right,
+svg[data-lesson-graph-ink] path.arc,
+svg[data-lesson-graph-ink] line.side {
+  stroke: var(--lesson-ink-angle) !important;
+  fill: none;
+  filter: drop-shadow(0 0 1.3px var(--lesson-ink-angle));
+}
+
+svg[data-lesson-graph-ink] :is(line, path).inscribed,
+svg[data-lesson-graph-ink] :is(line, path, circle).angle.cd,
+svg[data-lesson-graph-ink] :is(line, path, circle).angle.n1 {
+  stroke: var(--lesson-ink-inscribed) !important;
+  filter: drop-shadow(0 0 1.3px var(--lesson-ink-inscribed));
+}
+
+svg[data-lesson-graph-ink] .angle.ab,
+svg[data-lesson-graph-ink] .measure.ab {
+  fill: var(--lesson-ink-chord) !important;
+}
+
+svg[data-lesson-graph-ink] .angle.cd,
+svg[data-lesson-graph-ink] .measure.cd {
+  fill: var(--lesson-ink-chord-2) !important;
+}
+
+svg[data-lesson-graph-ink] text,
+svg[data-lesson-graph-ink] tspan,
+svg[data-lesson-graph-ink] [data-lesson-ink-legend] text {
+  filter: none !important;
+  animation: none !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+  fill: #1e293b;
+}
+
+svg[data-lesson-graph-ink] [data-lesson-ink-legend] line {
+  animation: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  svg[data-lesson-graph-ink] :is(line, path, polyline, polygon, circle) {
+    animation: none;
+    filter: none;
+  }
+}

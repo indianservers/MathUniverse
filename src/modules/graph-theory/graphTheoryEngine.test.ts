@@ -6,6 +6,8 @@ import {
   maxFlowMinCut,
   planarityObstructionHint,
   sampleGraph,
+  decodeGraphShare,
+  encodeGraphShare,
   type GraphProject,
 } from "./graphTheoryEngine";
 
@@ -20,6 +22,11 @@ describe("graph theory advanced utilities", () => {
     expect(clustering.average).toBeGreaterThanOrEqual(0);
     expect(clustering.average).toBeLessThanOrEqual(1);
     expect(graphGirth(sampleGraph)).toBe(3);
+  });
+
+  it("round-trips a compact share payload", () => {
+    const packed = encodeGraphShare(sampleGraph);
+    expect(decodeGraphShare(packed)).toEqual(sampleGraph);
   });
 
   it("finds max-flow value and cut for a small directed network", () => {

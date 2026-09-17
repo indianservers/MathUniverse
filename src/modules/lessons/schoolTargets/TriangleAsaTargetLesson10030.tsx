@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import { schoolLessonCatalog } from "../catalog/school/schoolSyllabusCatalog";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./TriangleAsaTargetLesson10030.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type AsaMeasures = { a: number; b: number; side: number };
 type AsaTool = "Select" | "Move" | "Measure" | "Labels";
@@ -353,6 +354,8 @@ export default function TriangleAsaTargetLesson10030({
           Right Triangle Construction by RHS →
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10030} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

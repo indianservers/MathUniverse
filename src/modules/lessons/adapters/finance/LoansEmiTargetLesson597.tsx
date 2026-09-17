@@ -2,6 +2,7 @@ import { Check } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./LoansEmiTargetLesson597.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const cash = (value: number) =>
   new Intl.NumberFormat("en-IN", {
@@ -460,6 +461,8 @@ export default function LoansEmiTargetLesson597({
       <p className="loan597-tags">
         Tags: Loans | EMI | Annuity | Finance | Applications
       </p>
+      <LessonTopicStudyBoard lessonId={597} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

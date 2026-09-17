@@ -3,6 +3,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import type { PointerEvent as ReactPointerEvent } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./CobwebDiagramsTargetLesson332.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type FunctionKey = "cos" | "affine" | "logistic";
 const clean = (v: number) => Number(v.toFixed(8));
@@ -420,6 +421,8 @@ export default function CobwebDiagramsTargetLesson332({
           {challenge ? "Diverges; fixed point x*=1 is unstable." : ""}
         </output>
       </section>
+      <LessonTopicStudyBoard lessonId={332} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

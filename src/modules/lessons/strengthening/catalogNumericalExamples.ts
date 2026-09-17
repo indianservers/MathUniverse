@@ -1,4 +1,10 @@
 import type { LessonWorkedExample } from "../components/LessonSectionJourney";
+import { coreWorkspaceBatch1NumericalExamples } from "./coreWorkspaceBatch1NumericalExamples";
+import { batch2NumericalExamples } from "./catalogBatch2NumericalExamples";
+import { batch3NumericalExamples } from "./catalogBatch3NumericalExamples";
+import { batch4NumericalExamples } from "./catalogBatch4NumericalExamples";
+import { batch5NumericalExamples } from "./catalogBatch5NumericalExamples";
+import { batch6NumericalExamples } from "./catalogBatch6NumericalExamples";
 
 type NumericalExampleSeed = readonly [prompt: string, steps: readonly string[], answer: string];
 
@@ -15,7 +21,7 @@ function calculation(
   ];
 }
 
-const numericalExamplesByLesson: Readonly<Record<number, readonly NumericalExampleSeed[]>> = {
+const authoredNumericalExamples: Readonly<Record<number, readonly NumericalExampleSeed[]>> = {
   7: [[
     "Write 0.00045 in scientific notation.",
     [String.raw`\displaystyle 0.00045 = 4.5 \times 0.0001`, String.raw`\displaystyle 0.0001 = 10^{-4}`, String.raw`\displaystyle 0.00045 = 4.5 \times 10^{-4}`],
@@ -2655,6 +2661,43 @@ const numericalExamplesByLesson: Readonly<Record<number, readonly NumericalExamp
     calculation("For X~Bin(12,0.25), find the mean.", String.raw`E(X)=np=12(0.25)`, String.raw`E(X)=3`, "3"),
   ],
 };
+
+function mergeNumericalExampleMaps(
+  primary: Readonly<Record<number, readonly NumericalExampleSeed[]>>,
+  secondary: Readonly<Record<number, readonly NumericalExampleSeed[]>>,
+): Readonly<Record<number, readonly NumericalExampleSeed[]>> {
+  const ids = new Set([...Object.keys(primary), ...Object.keys(secondary)].map(Number));
+  const merged: Record<number, NumericalExampleSeed[]> = {};
+  for (const id of ids) {
+    const seen = new Set<string>();
+    const rows: NumericalExampleSeed[] = [];
+    for (const row of [...(primary[id] ?? []), ...(secondary[id] ?? [])]) {
+      const key = row[0].trim().toLowerCase();
+      if (seen.has(key)) continue;
+      seen.add(key);
+      rows.push(row);
+    }
+    merged[id] = rows;
+  }
+  return merged;
+}
+
+const numericalExamplesByLesson = mergeNumericalExampleMaps(
+  batch6NumericalExamples,
+  mergeNumericalExampleMaps(
+    batch5NumericalExamples,
+    mergeNumericalExampleMaps(
+      batch4NumericalExamples,
+      mergeNumericalExampleMaps(
+        batch3NumericalExamples,
+        mergeNumericalExampleMaps(
+          batch2NumericalExamples,
+          mergeNumericalExampleMaps(coreWorkspaceBatch1NumericalExamples, authoredNumericalExamples),
+        ),
+      ),
+    ),
+  ),
+);
 
 export function getSupplementalNumericalExamples(lessonId: number): LessonWorkedExample[] {
   return (numericalExamplesByLesson[lessonId] ?? []).map(([prompt, steps, answer], index) => ({

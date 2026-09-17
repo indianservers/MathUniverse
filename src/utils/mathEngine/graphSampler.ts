@@ -1,4 +1,5 @@
 import { compileFunctionExpression, compileTwoVariableExpression } from "../functionParser";
+import { sampleExplicitAdaptive } from "./adaptiveSampler";
 
 export type GraphSample = {
   x: number;
@@ -48,16 +49,14 @@ export function sampleFunction(input: string, xMin = -10, xMax = 10, samples = 3
   const compiled = compileFunction(input);
   if (!compiled.fn) return { points: [] as GraphSample[], error: compiled.error, normalized: compiled.normalized };
 
-  const count = Math.max(2, Math.min(5000, Math.round(samples)));
-  const points = Array.from({ length: count }, (_, index) => {
-    const x = xMin + (index / (count - 1)) * (xMax - xMin);
-    try {
-      const y = compiled.fn!(x);
-      return Number.isFinite(y) ? { x, y, valid: true } : { x, y: null, valid: false };
-    } catch {
-      return { x, y: null, valid: false };
-    }
-  });
+  const ySpan = Math.max(8, Math.abs(xMax - xMin));
+  const points = sampleExplicitAdaptive(
+    compiled.fn,
+    xMin,
+    xMax,
+    ySpan,
+    Math.max(80, Math.min(360, Math.round(samples / 4))),
+  );
 
   return { points, normalized: compiled.normalized };
 }

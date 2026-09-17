@@ -14,6 +14,7 @@ import type { MouseEvent, PointerEvent } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "../geometry3d/CoordinateSystemTargetLesson378.css";
 import "./VertexEdgeBuilderTargetLesson565.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Vertex = { id: string; x: number; y: number };
 type Edge = { a: string; b: string; weight: number };
@@ -479,6 +480,8 @@ export default function VertexEdgeBuilderTargetLesson565({
           <b>Directed Graphs</b>
         </button>
       </nav>
+      <LessonTopicStudyBoard lessonId={565} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

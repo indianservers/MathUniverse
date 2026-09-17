@@ -9,6 +9,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./ReflectionYAxisTargetLesson161.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type View = "Graph View" | "Table View" | "Step View";
 const clamp = (value: number, min: number, max: number) =>
@@ -518,6 +519,8 @@ export default function ReflectionYAxisTargetLesson161({
           </div>
         </section>
       </section>
+      <LessonTopicStudyBoard lessonId={161} view={view} onInteraction={onInteraction} />
+
     </div>
   );
 }

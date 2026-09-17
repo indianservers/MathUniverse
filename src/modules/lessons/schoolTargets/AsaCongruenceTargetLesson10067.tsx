@@ -11,6 +11,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./AsaCongruenceTargetLesson10067.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Asa = { left: number; right: number; side: number };
 const INITIAL: Asa = { left: 50, right: 70, side: 6 };
@@ -283,6 +284,8 @@ export default function AsaCongruenceTargetLesson10067({
           <ArrowRight />
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10067} view={tab} />
+
     </section>
   );
 }

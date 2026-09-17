@@ -3,6 +3,7 @@ import { useState, type PointerEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import { oneSampleZTest, type ZAlternative } from "./oneSampleZTestLessonModel";
 import "./OneSampleZTestLesson543.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 export default function OneSampleZTestLesson543({
   resetToken,
@@ -406,6 +407,8 @@ function ZTestActivity({
         <span>Previous &nbsp; Difference of Proportions Interval</span>
         <span>Next &nbsp; Two-Sample z-Test</span>
       </footer>
+      <LessonTopicStudyBoard lessonId={543} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

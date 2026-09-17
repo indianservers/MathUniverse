@@ -15,6 +15,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./TypesOfDiscontinuityTargetLesson282.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type BreakType = "removable" | "jump" | "infinite";
 type MarkerState = Record<BreakType, { left: number; right: number }>;
@@ -199,6 +200,8 @@ export default function TypesOfDiscontinuityTargetLesson282({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={282} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

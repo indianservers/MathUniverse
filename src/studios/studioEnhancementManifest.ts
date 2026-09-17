@@ -16,7 +16,7 @@ const definitions: Record<string, string[]> = {
 const studioNames: Record<string, string> = { ALG:"Algebra", CALC:"Calculus", TRIG:"Trigonometry", GEO:"Geometry", STAT:"Statistics & Probability", LINALG:"Linear Algebra", DISC:"Number & Discrete Mathematics", CPLX:"Complex Numbers", MODEL:"Mathematical Modelling" };
 
 export const studioEnhancements: StudioEnhancement[] = Object.entries(definitions).flatMap(([prefix, titles]) => titles.map((title, index) => {
-  const implementedPrefixes = ["ALG","CALC","TRIG","GEO","STAT","LINALG","DISC","CPLX","MODEL"];
+  const implementedPrefixes = ["ALG","CALC","TRIG","GEO","LINALG","DISC","CPLX","MODEL"];
   const implemented = implementedPrefixes.includes(prefix);
   const routeMap:Record<string,string>={ALG:"/algebra/advanced",CALC:"/calculus/advanced",TRIG:"/trigonometry?tab=advanced",GEO:"/geometry?tab=advanced",STAT:"/probability-statistics?tab=advanced",LINALG:"/linear-algebra?mode=advanced",DISC:"/discrete-world?workbench=advanced",CPLX:"/complex-numbers?tab=advanced",MODEL:"/mathematical-modelling/advanced"};
   const nameMap:Record<string,string>={ALG:"Algebra",CALC:"Calculus",TRIG:"Trigonometry",GEO:"Geometry",STAT:"Statistics",LINALG:"LinearAlgebra",DISC:"Discrete",CPLX:"Complex",MODEL:"Modelling"};
@@ -44,4 +44,9 @@ export const allRequestedEnhancements = [...studioEnhancements, ...platformEnhan
 export function enhancementCoverage() {
   const implemented = allRequestedEnhancements.filter((item) => item.status === "implemented").length;
   return { implemented, missing: allRequestedEnhancements.length - implemented, total: allRequestedEnhancements.length };
+}
+
+/** Student-facing lists skip missing IDs (Statistics is not claimed as shipped). */
+export function shippedEnhancements() {
+  return allRequestedEnhancements.filter((item) => item.status === "implemented");
 }

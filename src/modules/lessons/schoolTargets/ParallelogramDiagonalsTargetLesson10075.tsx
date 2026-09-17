@@ -14,6 +14,7 @@ import { type PointerEvent, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./ParallelogramDiagonalsTargetLesson10075.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type Handle = "a" | "b" | "c" | "d" | "o";
@@ -407,6 +408,8 @@ export default function ParallelogramDiagonalsTargetLesson10075({
           Conditions for a Quadrilateral To Be a Parallelogram <ArrowRight />
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10075} view={tab} />
+
     </section>
   );
 }

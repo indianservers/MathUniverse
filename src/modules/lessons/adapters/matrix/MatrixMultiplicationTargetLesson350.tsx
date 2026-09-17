@@ -2,6 +2,7 @@ import { Pause, Play, RotateCcw, Share2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./MatrixMultiplicationTargetLesson350.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 type Matrix = number[][];
 const startA:Matrix=[[1,2,3],[0,-1,4]],startB:Matrix=[[2,1],[-1,0],[3,2]],tabs=["Interaction + visualization","Explain","Examples","Formulas","Know more"];
 const resize=(m:Matrix,r:number,c:number)=>Array.from({length:r},(_,i)=>Array.from({length:c},(_,j)=>m[i]?.[j]??0));
@@ -25,6 +26,8 @@ export default function MatrixMultiplicationTargetLesson350({resetToken,onIntera
   </section>
   <section className="mat350-notes"><article><h3>Learning Objective</h3><p>Understand how matrices are multiplied using row-by-column dot products.</p></article><article><h3>Key Insight</h3><p>Matrix multiplication composes linear transformations. Inner dimensions must match.</p></article><article><h3>Common Misconception</h3><p>Matrix multiplication is not commutative; in general, A x B is not B x A.</p></article><article><h3>Key Notation</h3><p>A(m x n) B(n x p) = C(m x p)</p></article><article className="wide"><h3>Assumptions / Constraints</h3><p>✓ If A is m x n and B is n x p, then A x B is defined and has size m x p.</p><p>✓ Inner dimensions must match. Entries can be any real numbers.</p></article></section>
   <section className="mat350-check"><header><h3>Quick Check</h3><p>Given A=[2 -1 0; 1 3 4], B=[1 2; 0 -1; 3 1], what is the (2,2) entry of A x B?</p></header><div>{[-2,3,7,10].map((v,i)=><button className={quick===(v===3?"correct":"incorrect")?quick:""} key={v} onClick={()=>act(()=>setQuick(v===3?"correct":"incorrect"))}>{String.fromCharCode(65+i)}. {v}</button>)}</div><aside><h3>{quick==="correct"?"Correct!":"Try again"}</h3><p>Row 2 dot column 2: 1x2 + 3x(-1) + 4x1 = 3.</p><p>The dot product uses every matching row and column entry.</p></aside></section>
+      <LessonTopicStudyBoard lessonId={350} view={tab} onInteraction={onInteraction} />
+
  </section>
 }
 function MatrixEditor({name,matrix,activeRow=-1,activeColumn=-1,onChange,onDimensions}:{name:string;matrix:Matrix;activeRow?:number;activeColumn?:number;onChange:(r:number,c:number,v:number)=>void;onDimensions:(r:number,c:number)=>void}){return <article className={`mat350-matrix ${name==="B"?"violet":""}`}><h3>Matrix {name} ({matrix.length} x {matrix[0].length})</h3><label><select aria-label={`Matrix ${name} rows`} value={matrix.length} onChange={e=>onDimensions(Number(e.target.value),matrix[0].length)}>{[1,2,3,4].map(n=><option key={n}>{n}</option>)}</select> x <select aria-label={`Matrix ${name} columns`} value={matrix[0].length} onChange={e=>onDimensions(matrix.length,Number(e.target.value))}>{[1,2,3,4].map(n=><option key={n}>{n}</option>)}</select></label><div style={{gridTemplateColumns:`repeat(${matrix[0].length},1fr)`}}>{matrix.flatMap((row,r)=>row.map((v,c)=><input className={r===activeRow||c===activeColumn?"active":""} aria-label={`Matrix ${name} row ${r+1} column ${c+1}`} key={`${r}-${c}`} type="number" value={v} onChange={e=>onChange(r,c,Number(e.target.value))}/>))}</div><p>Edit {name}</p></article>}

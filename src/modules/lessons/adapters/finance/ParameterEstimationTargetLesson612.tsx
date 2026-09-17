@@ -8,6 +8,7 @@ import {
 import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./ParameterEstimationTargetLesson612.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 const noise = [
@@ -481,6 +482,8 @@ export default function ParameterEstimationTargetLesson612({
           <ChevronRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={612} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

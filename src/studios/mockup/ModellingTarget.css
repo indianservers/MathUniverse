@@ -1,0 +1,89 @@
+.msk-modelling {
+  --md-cyan: #08b9dd;
+  --md-blue: #147df2;
+  --md-violet: #8b45f4;
+  --md-green: #10b981;
+}
+
+.msk-modelling.is-lab .msk-tabs {
+  justify-content: center;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.msk-modelling .msk-model-field,
+.msk-modelling .msk-graph.is-interactive,
+.msk-modelling .msk-lab {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.msk-modelling .msk-model-field {
+  width: 100%;
+  max-height: 280px;
+  touch-action: none;
+}
+
+.msk-modelling .msk-model-minis {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.msk-modelling .msk-model-compare {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #dce7f4;
+  border-radius: 12px;
+  background: #f8fbff;
+  font-size: 12px;
+}
+
+.msk-modelling .msk-model-compare b {
+  display: block;
+  color: #64748b;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
+.msk-modelling .msk-assumptions {
+  display: grid;
+  gap: 6px;
+  margin: 8px 0;
+  padding: 0;
+  list-style: none;
+  font-size: 12px;
+}
+
+.msk-modelling .msk-assumptions li[data-ok="true"] {
+  color: #047857;
+}
+
+.msk-modelling .msk-assumptions li[data-ok="false"] {
+  color: #b45309;
+}
+
+.msk-modelling .msk-launch-modelling {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+}
+
+@media (max-width: 1280px) {
+  .msk-modelling .msk-launch-modelling,
+  .msk-modelling .msk-model-compare {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .msk-modelling .msk-launch-modelling,
+  .msk-modelling .msk-model-minis,
+  .msk-modelling .msk-model-compare {
+    grid-template-columns: 1fr;
+  }
+}

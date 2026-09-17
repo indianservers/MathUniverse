@@ -14,6 +14,7 @@ import { Quaternion, Vector3 } from "three";
 import type { LessonAdapterProps } from "../../types";
 import "./CoordinateSystemTargetLesson378.css";
 import "./EulerFormulaTargetLesson408.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Solid = "tetra" | "cube" | "octa" | "irregular";
 type Kind = "v" | "e" | "f";
@@ -462,6 +463,8 @@ export default function EulerFormulaTargetLesson408({
         </div>
         <footer>Answer is not shown. Try first, then check!</footer>
       </section>
+      <LessonTopicStudyBoard lessonId={408} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

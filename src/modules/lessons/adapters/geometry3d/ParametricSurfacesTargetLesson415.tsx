@@ -8,6 +8,7 @@ import type { LessonAdapterProps } from "../../types";
 import "./CoordinateSystemTargetLesson378.css";
 import "./ParametricSurfacesTargetLesson415.css";
 import "./ParametricSurfacesTargetLesson415.layout.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Domain = { uMin: number; uMax: number; vMin: number; vMax: number };
 const initialDomain: Domain = { uMin: 0, uMax: 3, vMin: -Math.PI, vMax: Math.PI };
@@ -33,6 +34,8 @@ export default function ParametricSurfacesTargetLesson415({ resetToken, onIntera
     </section>
     <section className="ps415-bottom"><article><h2>⌁ Worked point evaluation</h2><p>Evaluate r(1.6, 1.2).</p><div>x = 1.6 cos(1.2) = <b>0.580</b></div><div>y = 1.6 sin(1.2) = <b>1.499</b></div><div>z = 0.35(1.6)² = <b>0.896</b></div><output><Check/> Point: ({pointFor(1.6, 1.2).x.toFixed(3)}, {pointFor(1.6, 1.2).y.toFixed(3)}, {pointFor(1.6, 1.2).z.toFixed(3)})</output></article><article><h2>Notice the pattern</h2><p>For each fixed v, letting u vary from 0 to 3 traces a parabola in the plane through the z-axis at angle v.</p><p>As v sweeps from -π to π, that parabola rotates around the z-axis, forming a smooth bowl.</p><Pattern/></article><article><h2>Challenge</h2><p>What happens if you narrow the v-domain?</p><b>Predict: If v ranges from -π/4 to π/4 instead of -π to π, how will the surface change?</b>{[["A","The surface becomes a full sphere."],["B","The bowl becomes a quarter slice."],["C","The height (z values) increase."],["D","The surface flips upside down."]].map(([key,text]) => <button key={key} className={answer === key ? (key === "B" ? "correct" : "wrong") : ""} onClick={() => act(() => { setAnswer(key); if(key === "B") setDomain((d) => ({...d,vMin:-Math.PI/4,vMax:Math.PI/4})); })}><i>{key}</i>{text}</button>)}<small>{answer ? answer === "B" ? "Correct: narrowing v limits the rotational sweep." : "Try again: z depends on u, while v controls the sweep." : "Select an answer to reveal feedback."}</small></article></section>
     <nav className="ps415-adjacent"><button>← <small>Previous</small><b>Implicit Surfaces</b></button><button><small>Next</small><b>Space Curves</b> →</button></nav>
+      <LessonTopicStudyBoard lessonId={415} alwaysVisible onInteraction={onInteraction} />
+
   </section>;
 }
 

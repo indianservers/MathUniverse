@@ -17,6 +17,7 @@ import {
   type PlotPoint,
 } from "./pointPlotterLesson45Model";
 import "./PointPlotterTargetLesson45.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 export default function PointPlotterTargetLesson45({
   resetToken,
@@ -407,6 +408,8 @@ export default function PointPlotterTargetLesson45({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={45} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

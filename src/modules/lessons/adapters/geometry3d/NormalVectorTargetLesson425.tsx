@@ -11,6 +11,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./CoordinateSystemTargetLesson378.css";
 import "./NormalVectorTargetLesson425.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Vec = { x: number; y: number; z: number };
 const startP: Vec = { x: 1, y: 2, z: 1 };
@@ -294,6 +295,8 @@ export default function NormalVectorTargetLesson425({
           <b>Double Integrals</b>
         </button>
       </nav>
+      <LessonTopicStudyBoard lessonId={425} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

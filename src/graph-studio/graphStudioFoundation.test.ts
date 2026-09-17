@@ -55,6 +55,8 @@ describe("Graph Studio expression foundation", () => {
     expect(absolute(4)).toBe(4);
     expect(restricted(0)).toBe(0);
     expect(restricted(4)).toBeNaN();
+    expect(compileFunctionExpression("sec(0)")(0)).toBeCloseTo(1);
+    expect(compileFunctionExpression("sign(-4)")(-1)).toBe(-1);
     expect(detectGraphVariables(["a*x {-b <= x <= b}"])).toEqual(["a", "b"]);
   });
 

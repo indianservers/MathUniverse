@@ -12,6 +12,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./FifthPostulateEquivalenceTargetLesson10055.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const scenarios = [
   "Playfair's Axiom",
@@ -389,6 +390,8 @@ export default function FifthPostulateEquivalenceTargetLesson10055({
           Axiom versus Theorem <ArrowRight />
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10055} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

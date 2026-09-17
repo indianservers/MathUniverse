@@ -13,6 +13,7 @@ import { DoubleSide, type Group } from "three";
 import type { LessonAdapterProps } from "../../types";
 import "./CoordinateSystemTargetLesson378.css";
 import "./FrustumTargetLesson401.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Dimension = "top" | "bottom" | "height";
 
@@ -459,6 +460,8 @@ export default function FrustumTargetLesson401({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={401} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

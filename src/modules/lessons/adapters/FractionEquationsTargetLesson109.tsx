@@ -27,6 +27,7 @@ import {
   type FractionEquationProblem109 as FractionProblem,
 } from "./fractionEquationsLesson109Model";
 import "./FractionEquationsTargetLesson109.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type FractionTab109 =
   "Interact" | "Learn" | "Examples" | "Practice" | "Formula" | "Know more";
@@ -682,6 +683,8 @@ export default function FractionEquationsTargetLesson109({
         <p>© 2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.</p>
         <small>www.IndianServers.com · info@IndianServers.com</small>
       </footer>
+      <LessonTopicStudyBoard lessonId={109} view={activeTab} onInteraction={onInteraction} />
+
     </div>
   );
 }

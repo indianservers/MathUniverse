@@ -8,6 +8,7 @@ import {
 import { type PointerEvent, useState } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./LessThanCumulativeTargetLesson10105.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type FrequencyRow = {
   id: number;
@@ -383,6 +384,8 @@ export default function LessThanCumulativeTargetLesson10105({
           © 2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.
         </small>
       </footer>
+      <LessonTopicStudyBoard lessonId={10105} alwaysVisible />
+
     </section>
   );
 }

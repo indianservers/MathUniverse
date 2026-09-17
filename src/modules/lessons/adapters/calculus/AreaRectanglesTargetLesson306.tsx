@@ -16,6 +16,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./AreaRectanglesTargetLesson306.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type SampleType = "left" | "midpoint" | "right";
 const fn = (x: number) => x ** 3 / 4 - x + 1;
@@ -405,6 +406,8 @@ export default function AreaRectanglesTargetLesson306({
           </output>
         </article>
       </section>
+      <LessonTopicStudyBoard lessonId={306} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

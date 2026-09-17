@@ -47,7 +47,7 @@ export function sampleImplicitSurface(
   } catch (error) {
     return emptyMesh(errorMessage(error, "Invalid implicit equation"));
   }
-  const size = clampInt(resolution, 12, 34);
+  const size = clampInt(resolution, 12, 56);
   const step = (range * 2) / (size - 1);
   const positions: number[] = [];
   const indices: number[] = [];

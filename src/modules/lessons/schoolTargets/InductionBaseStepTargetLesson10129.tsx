@@ -2,6 +2,7 @@ import { Check, Lightbulb, Lock, RotateCcw } from "lucide-react";
 import { useState } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./InductionBaseStepTargetLesson10129.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const normalize = (value: string) =>
   value.toLowerCase().replace(/[\s*^{}()]/g, "");
@@ -319,6 +320,8 @@ export default function InductionBaseStepTargetLesson10129({
           </footer>
         </section>
       </main>
+      <LessonTopicStudyBoard lessonId={10129} alwaysVisible />
+
     </section>
   );
 }

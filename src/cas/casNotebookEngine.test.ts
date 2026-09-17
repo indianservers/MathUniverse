@@ -62,6 +62,18 @@ describe("casNotebookEngine", () => {
     expect(target?.output).toBe("10");
   });
 
+  it("plots an expression as a graphable CAS result", () => {
+    const [evaluated] = evaluateNotebookCells(
+      [cell("plot", "x^2-4", "plot")],
+      "",
+      "exact",
+    );
+
+    expect(evaluated.ok).toBe(true);
+    expect(evaluated.output).toBe("x^2-4");
+    expect(operationOptions.map((item) => item.value)).toContain("plot");
+  });
+
   it("keeps numeric mode separate from exact mode", () => {
     const [evaluated] = evaluateNotebookCells(
       [cell("c1", "sqrt(34)", "simplify")],

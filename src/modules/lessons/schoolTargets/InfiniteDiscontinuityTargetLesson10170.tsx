@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import type { KeyboardEvent, PointerEvent as ReactPointerEvent } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./InfiniteDiscontinuityTargetLesson10170.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const fmt = (n: number, d = 3) => n.toFixed(d),
   clamp = (n: number, l: number, h: number) => Math.max(l, Math.min(h, n));
@@ -414,6 +415,8 @@ export default function InfiniteDiscontinuityTargetLesson10170({
           © 2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.
         </small>
       </footer>
+      <LessonTopicStudyBoard lessonId={10170} alwaysVisible />
+
     </main>
   );
 }

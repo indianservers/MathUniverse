@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type PointerEvent } from "react";
 import { RefreshCcw } from "lucide-react";
 import type { LessonAdapterProps } from "../types";
 import "./RecursiveFunctionsTargetLesson155.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const clamp = (value: number, min: number, max: number, step = 0.1) =>
   Math.max(min, Math.min(max, Math.round(value / step) * step));
@@ -498,6 +499,8 @@ export default function RecursiveFunctionsTargetLesson155({
           </article>
         </section>
       </main>
+      <LessonTopicStudyBoard lessonId={155} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

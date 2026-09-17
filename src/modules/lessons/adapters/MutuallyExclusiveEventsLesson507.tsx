@@ -3,6 +3,7 @@ import { useMemo, useState, type DragEvent, type PointerEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import { clampCenter, defaultCenters, eventRadiusX, eventRadiusY, exclusiveSummary, outcomePoints, type Point, type SetKey } from "./mutuallyExclusiveLessonModel";
 import "./MutuallyExclusiveEventsLesson507.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type DisplaySet = SetKey | "ac" | "bc";
 const presets: Array<Record<SetKey, Point>> = [
@@ -55,6 +56,8 @@ function MutuallyExclusiveActivity({ onInteraction }: Pick<LessonAdapterProps, "
     <div className="me507-lessons"><section><h3><i>2</i> What just happened?</h3><p>When A and B do not overlap, they are disjoint (mutually exclusive). So the probability of either event is the sum of their individual probabilities.</p><article><b>Key rule — Mutually Exclusive Events</b><strong>If A ∩ B = ∅, then P(A ∪ B) = P(A) + P(B)</strong></article><aside><b>Common misconception</b><p>Mutually exclusive does not mean independent. If both have positive probability, mutually exclusive events are dependent.</p></aside></section><section><h3><i>3</i> Calculation</h3><table><tbody><tr><th>Total outcomes in Ω</th><td>12</td></tr><tr><th>Outcomes in A</th><td>{summary.a.length} &nbsp; {`{${summary.a.join(", ")}}`}</td></tr><tr><th>Outcomes in B</th><td>{summary.b.length} &nbsp; {`{${summary.b.join(", ")}}`}</td></tr><tr><th>Outcomes in A ∩ B</th><td>{summary.intersection.length} &nbsp; {summary.intersection.length ? `{${summary.intersection.join(", ")}}` : "∅"}</td></tr></tbody></table><article><b>Compute union</b><strong>P(A ∪ B) = ({summary.a.length} + {summary.b.length} − {summary.intersection.length})/12 = {summary.union.length}/12</strong><Check size={18} /></article></section></div>
     <section className="me507-practice"><header><div><h3><i>4</i> Try it yourself</h3><p>Create other mutually exclusive events in Ω.</p></div><button type="button" onClick={() => setChecked(true)}>Check my answer</button></header><div><PracticeChoice title="Create A = {2,3,6} and B = {7,10,11}. Are they mutually exclusive?" value={answers.first} options={["yes","no"]} onChange={(value) => setAnswers((current) => ({ ...current, first: value }))} result={checked ? "Correct! A ∩ B = ∅." : undefined} correct={answers.first === "yes"} /><PracticeChoice title="What is P(A ∪ B) for these sets?" value={answers.union} options={["1/2","1/3","2/3"]} onChange={(value) => setAnswers((current) => ({ ...current, union: value }))} result={checked ? "Correct! P(A ∪ B) = 1/2." : undefined} correct={answers.union === "1/2"} /><PracticeChoice title="A = {1,2,3}, B = {3,4,5}. Are they mutually exclusive?" value={answers.third} options={["yes","no"]} onChange={(value) => setAnswers((current) => ({ ...current, third: value }))} result={checked ? "Not mutually exclusive because 3 ∈ A ∩ B." : undefined} correct={answers.third === "no"} /></div></section>
     <footer><button type="button" onClick={reset}><RotateCcw size={14} /> Reset lesson</button><span>Previous: Independent Events &nbsp; Next: Conditional Probability →</span></footer>
+      <LessonTopicStudyBoard lessonId={507} alwaysVisible onInteraction={onInteraction} />
+
   </div>;
 }
 

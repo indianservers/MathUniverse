@@ -2,6 +2,7 @@ import { Check, Info, Plus, RotateCcw, Trash2, X } from "lucide-react";
 import { useState } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./CompositionFunctionsTargetLesson10121.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Row = { input: number; output: number };
 const initialF: Row[] = [
@@ -323,6 +324,8 @@ export default function CompositionFunctionsTargetLesson10121({
           </strong>
         </footer>
       </main>
+      <LessonTopicStudyBoard lessonId={10121} alwaysVisible />
+
     </section>
   );
 }

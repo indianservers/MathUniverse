@@ -1,11 +1,12 @@
 import { forwardRef, useCallback, useEffect, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent, type ReactNode } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import {
-  BookOpen, Check, ChevronDown, ChevronRight, CircleHelp, Download, Expand,
+  BookOpen, Check, ChevronDown, CircleHelp, Download, Expand,
   Grid3X3, Menu, Moon, Pause, Play, RotateCcw, Search, Settings, Sparkles,
   Star, StepBack, StepForward, X, XCircle,
 } from "lucide-react";
 import CalculusSidebar from "../components/calculus/CalculusSidebar";
+import StudioBreadcrumb, { mathStudioCrumbs } from "../components/ui/StudioBreadcrumb";
 import { compileFunctionExpression } from "../utils/functionParser";
 import { roundTo } from "../utils/math";
 import "./LimitsContinuityVisualizer.css";
@@ -92,7 +93,7 @@ export default function LimitsContinuityVisualizer() {
         <div className="limits-content">
           <section className="limits-titlebar" aria-labelledby="limits-page-title">
             <div>
-              <nav aria-label="Breadcrumb"><Link to="/">Home</Link><ChevronRight /><Link to="/calculus">Math</Link><ChevronRight /><span>Limits</span></nav>
+              <StudioBreadcrumb crumbs={mathStudioCrumbs({ label: "Calculus", to: "/calculus" }, { label: "Limits", to: "/calculus/limits" })} />
               <h1 id="limits-page-title">Limits &amp; Continuity</h1>
               <p>Explore limits from the left and right, test continuity, and identify discontinuities.</p>
             </div>

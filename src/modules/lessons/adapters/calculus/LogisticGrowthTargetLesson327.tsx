@@ -6,6 +6,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./LogisticGrowthTargetLesson327.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const clamp = (value: number, min: number, max: number) =>
   Math.min(max, Math.max(min, value));
@@ -364,6 +365,8 @@ export default function LogisticGrowthTargetLesson327({
           )}
         </aside>
       </section>
+      <LessonTopicStudyBoard lessonId={327} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

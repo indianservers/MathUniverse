@@ -13,6 +13,7 @@ import { useEffect, useRef, useState } from "react";
 import type { CSSProperties, KeyboardEvent, PointerEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./VectorSubtractionTargetLesson187.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type Drag = "a" | "b";
@@ -779,6 +780,8 @@ export default function VectorSubtractionTargetLesson187({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={187} view={tab} onInteraction={onInteraction} />
+
     </main>
   );
 }

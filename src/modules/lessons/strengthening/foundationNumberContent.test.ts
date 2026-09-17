@@ -6,6 +6,7 @@ describe("Phase 2 foundation number lessons", () => {
   it("provides valid structured content for the first controlled batch", () => {
     expect(strengthenedFoundationLessonIds).toEqual([
       ...Array.from({ length: 674 }, (_, index) => index + 1),
+      ...Array.from({ length: 25 }, (_, index) => index + 2001),
       ...Array.from({ length: 220 }, (_, index) => index + 10_001),
     ]);
     for (const id of strengthenedFoundationLessonIds) {

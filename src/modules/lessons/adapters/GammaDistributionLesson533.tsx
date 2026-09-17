@@ -8,6 +8,7 @@ import {
   simulateGammaArrival,
 } from "./gammaLessonModel";
 import "./GammaDistributionLesson533.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 export default function GammaDistributionLesson533({
   resetToken,
   onInteraction,
@@ -310,6 +311,8 @@ function GammaActivity({
           Previous: Exponential Distribution &nbsp; Next: Weibull Distribution
         </span>
       </footer>
+      <LessonTopicStudyBoard lessonId={533} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

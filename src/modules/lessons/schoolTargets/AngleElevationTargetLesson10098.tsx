@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import elevationScene from "../../../assets/lessons/angle-elevation-scene-v2.png";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./AngleElevationTargetLesson10098.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const round = (value: number, places = 2) =>
   Math.round(value * 10 ** places) / 10 ** places;
@@ -453,6 +454,8 @@ export default function AngleElevationTargetLesson10098({
           </Link>
         </nav>
       </main>
+      <LessonTopicStudyBoard lessonId={10098} view={tab} />
+
     </section>
   );
 }

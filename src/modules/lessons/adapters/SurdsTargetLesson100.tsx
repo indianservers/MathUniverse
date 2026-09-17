@@ -28,6 +28,7 @@ import {
   squareFactorCandidates100 as candidateFactors,
 } from "./surdsLesson100Model";
 import "./SurdsTargetLesson100.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Stage = "input" | "factor" | "extracted" | "decimal";
 
@@ -631,6 +632,8 @@ export default function SurdsTargetLesson100({
         </small>
         <p>www.IndianServers.com info@IndianServers.com</p>
       </footer>
+      <LessonTopicStudyBoard lessonId={100} view={tab} onInteraction={onInteraction} />
+
     </div>
   );
 }

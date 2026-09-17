@@ -2,6 +2,7 @@ import { ArrowLeft, ArrowRight, Lightbulb, RotateCcw, Share2 } from "lucide-reac
 import { useEffect, useRef, useState } from "react";
 import type { PointerEvent } from "react";
 import type { LessonAdapterProps } from "../types";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 import "./VectorLineTargetLesson194.css";
 
 type Point={x:number;y:number};
@@ -26,5 +27,6 @@ export default function VectorLineTargetLesson194({resetToken,onInteraction}:Les
   <section className="vl194-tip"><Lightbulb/><span><b>Move t to travel along the same line</b><small>Changing t moves point R(t) along the line in the direction of v.</small></span><button onClick={()=>{setT(2);setChallenge(true);interact()}}>Try: find t when r = (7, 4) <ArrowRight/></button></section>
   <nav className="vl194-nav"><a href="/lessons/geometry/193-linear-combinations"><ArrowLeft/><span>PREVIOUS<b>Linear Combinations</b></span></a><a href="/lessons/geometry/195-vector-equation-of-a-plane"><span>NEXT<b>Vector Equation of a Plane</b></span><ArrowRight/></a></nav>
   <footer className="vl194-footer"><b>Math Universe</b><span>Interactive math labs, visual proofs, NCERT explorations, graphing, CAS-style tools, and classroom-ready activities.</span><small>© 2026 INDIAN SERVERS PRIVATE LIMITED.</small><nav><a href="/sitemap">Sitemap</a><a href="/docs">Docs</a><a href="/about">About</a></nav></footer>
+  <LessonTopicStudyBoard lessonId={194} view={tab} onInteraction={onInteraction} />
  </main>
 }

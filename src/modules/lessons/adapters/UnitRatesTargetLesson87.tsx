@@ -2,6 +2,7 @@ import { ArrowLeft, ArrowRight, Check, Info, Lightbulb, Scale, Sparkles, Star, T
 import { useEffect, useState, type DragEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./UnitRatesTargetLesson87.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const clamp = (value: number, minimum: number, maximum: number) => Math.max(minimum, Math.min(maximum, Math.round(Number.isFinite(value) ? value : minimum)));
 const display = (value: number) => Number.isInteger(value) ? String(value) : value.toFixed(2).replace(/0+$/, "").replace(/\.$/, "");
@@ -34,6 +35,8 @@ export default function UnitRatesTargetLesson87({ resetToken, onInteraction }: L
       </main>
       <nav className="unit87-navigation"><a href="/lessons/numbers-and-arithmetic/86-inverse-proportion"><ArrowLeft /><span>PREVIOUS<b>Inverse Proportion</b></span></a><a href="/lessons/numbers-and-arithmetic/88-percentages"><span>NEXT<b>Percentages</b></span><ArrowRight /></a></nav>
       <footer className="unit87-footer"><h3><Sparkles /> Math Universe</h3><p>Interactive math labs, visual proofs, NCERT explorations, graphing, CAS-style tools, and classroom-ready activities.</p><nav><a href="/sitemap">Sitemap</a><a href="/docs">Docs</a><a href="/about">About</a></nav><hr /><small>© 2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.</small><small>www.IndianServers.com info@IndianServers.com</small></footer>
+      <LessonTopicStudyBoard lessonId={87} view={tab} onInteraction={onInteraction} />
+
     </div>
   );
 }

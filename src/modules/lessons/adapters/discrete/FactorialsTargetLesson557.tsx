@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "../geometry3d/CoordinateSystemTargetLesson378.css";
 import "./FactorialsTargetLesson557.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const palette = [
   "#3284eb",
@@ -380,6 +381,8 @@ export default function FactorialsTargetLesson557({
           <b>Permutations</b>
         </button>
       </nav>
+      <LessonTopicStudyBoard lessonId={557} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

@@ -16,6 +16,8 @@ import type { LessonAdapterProps } from "../types";
 import { LessonGraphWorkspace } from "../graphs/LessonGraphWorkspace";
 import { LessonDependencyGraph } from "../graphs/LessonDependencyGraph";
 import "./VariableExplorerTargetLesson20.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+
 
 const TABS = ["Interact", "Explore", "Explain", "Examples", "Formulas", "Know more"];
 const PRESETS = [-1, 0, 1, 2, 3];
@@ -82,7 +84,8 @@ export default function VariableExplorerTargetLesson20({ resetToken, onInteracti
         </aside>
       </main>
       <nav className="variable-neighbors"><a href="/lessons/core-workspaces/19-algebra-workspace">←<span><small>Previous</small><b>Algebra Workspace</b></span></a><a href="/lessons/core-workspaces/21-numeric-sliders"><span><small>Next</small><b>Numeric Sliders</b></span>→</a></nav>
-      <footer className="variable-footer"><b><Sparkles />Math Universe</b><p>Interactive math labs, visual proofs, NCERT explorations, graphing, CAS-style tools, and classroom-ready activities.</p><nav><button type="button" onClick={touch}>Sitemap</button><button type="button" onClick={touch}>Docs</button><button type="button" onClick={touch}>About</button></nav></footer>
+<footer className="variable-footer"><b><Sparkles />Math Universe</b><p>Interactive math labs, visual proofs, NCERT explorations, graphing, CAS-style tools, and classroom-ready activities.</p><nav><button type="button" onClick={touch}>Sitemap</button><button type="button" onClick={touch}>Docs</button><button type="button" onClick={touch}>About</button></nav></footer>
+      <LessonTopicStudyBoard lessonId={20} view={view} onInteraction={onInteraction} />
     </div>
   );
 }

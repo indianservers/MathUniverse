@@ -28,6 +28,7 @@ import {
   type ZoomViewport,
 } from "./zoomPanLesson49Model";
 import "./ZoomPanTargetLesson49.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 function GraphPane({
   bounds,
@@ -327,6 +328,8 @@ export default function ZoomPanTargetLesson49({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={49} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

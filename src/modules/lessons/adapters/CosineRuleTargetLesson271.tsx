@@ -20,6 +20,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./CosineRuleTargetLesson271.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type Vertex = "A" | "B";
@@ -459,6 +460,8 @@ export default function CosineRuleTargetLesson271({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={271} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

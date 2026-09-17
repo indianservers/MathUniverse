@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./CoordinateSystemTargetLesson378.css";
 import "./LevelSurfacesTargetLesson421.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 type Style = "solid" | "wire" | "points" | "dotted";
 const levels = [0.5, 1, 2, 4, 6],
   initial = {
@@ -348,6 +349,8 @@ export default function LevelSurfacesTargetLesson421({
           CAS-style tools, and classroom-ready activities.
         </p>
       </footer>
+      <LessonTopicStudyBoard lessonId={421} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

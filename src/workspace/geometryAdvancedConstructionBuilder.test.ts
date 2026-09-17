@@ -199,10 +199,13 @@ describe("geometry advanced construction builder", () => {
     const translated = buildSelectedPointsTransform(construction, ["A", "B"], "translate");
     const rotated = buildSelectedPointsTransform(construction, ["A", "B"], "rotate");
     const dilated = buildSelectedPointsTransform(construction, ["A", "B"], "dilate");
+    const mirrored = buildSelectedPointsTransform(construction, ["A", "B"], "mirror");
 
     expect(translated.construction.points.find((point) => point.id === "A")).toMatchObject({ x: 24, y: -18 });
-    expect(rotated.construction.points.find((point) => point.id === "B")?.y).toBeGreaterThan(0);
-    expect(dilated.construction.points.find((point) => point.id === "B")?.x).toBeGreaterThan(100);
+    expect(rotated.construction.points.find((point) => point.id === "B")?.y).toBeCloseTo(50 * Math.SQRT1_2, 5);
+    expect(dilated.construction.points.find((point) => point.id === "B")?.x).toBeCloseTo(125);
+    expect(mirrored.construction.points.find((point) => point.id === "A")).toMatchObject({ x: 100, y: 0 });
+    expect(mirrored.construction.points.find((point) => point.id === "B")).toMatchObject({ x: 0, y: 0 });
     expect(construction.points.find((point) => point.id === "A")).toMatchObject({ x: 0, y: 0 });
   });
 

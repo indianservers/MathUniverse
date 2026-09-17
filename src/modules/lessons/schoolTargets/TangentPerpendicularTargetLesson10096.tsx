@@ -10,6 +10,8 @@ import { type PointerEvent, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./TangentPerpendicularTargetLesson10096.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+import { LessonGraphInkLegend, lessonGraphInkProps } from "../graphs/LessonGraphInk";
 
 type DragTarget = "point" | "line" | null;
 const RADIUS = 6;
@@ -330,10 +332,12 @@ export default function TangentPerpendicularTargetLesson10096({
                 ref={svgRef}
                 viewBox="0 0 684 500"
                 aria-label="Tangent line and radius interactive diagram"
+                {...lessonGraphInkProps}
                 onPointerMove={pointer}
                 onPointerUp={() => dragging && act(() => setDragging(null))}
                 onPointerLeave={() => dragging && act(() => setDragging(null))}
               >
+                <LessonGraphInkLegend />
                 <circle className="circle" cx={cx} cy={cy} r={RADIUS * scale} />
                 {showRadius && (
                   <line
@@ -573,6 +577,8 @@ export default function TangentPerpendicularTargetLesson10096({
           </Link>
         </nav>
       </main>
+      <LessonTopicStudyBoard lessonId={10096} view={tab} />
+
     </section>
   );
 }

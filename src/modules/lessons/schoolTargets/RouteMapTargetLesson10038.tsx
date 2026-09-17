@@ -10,6 +10,7 @@ import { type PointerEvent, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./RouteMapTargetLesson10038.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 const tabs = ["Interact", "Learn", "Example", "Formula", "Practice"];
@@ -542,6 +543,8 @@ export default function RouteMapTargetLesson10038({
           Next: Tabular Pattern Completion <ArrowRight />
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10038} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

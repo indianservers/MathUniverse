@@ -17,6 +17,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./DerivativeFirstPrinciplesTargetLesson286.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Quadratic = { label: string; a: number; b: number; c: number };
 const functions: Quadratic[] = [
@@ -444,6 +445,8 @@ export default function DerivativeFirstPrinciplesTargetLesson286({
           www.IndianServers.com &nbsp; info@IndianServers.com
         </small>
       </footer>
+      <LessonTopicStudyBoard lessonId={286} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

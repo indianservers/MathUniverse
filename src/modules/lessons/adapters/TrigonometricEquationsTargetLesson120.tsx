@@ -25,6 +25,7 @@ import {
   type TrigPreset120 as TrigPreset,
 } from "./trigonometricEquationsLesson120Model";
 import "./TrigonometricEquationsTargetLesson120.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 const prettyValue = (preset: TrigPreset, custom: boolean) =>
   custom ? trigValue(preset.fn, preset.angle).toFixed(3) : preset.value;
 
@@ -748,6 +749,8 @@ export default function TrigonometricEquationsTargetLesson120({
         </small>
         <small>www.IndianServers.com | info@IndianServers.com</small>
       </footer>
+      <LessonTopicStudyBoard lessonId={120} view={activeTab} onInteraction={onInteraction} />
+
     </div>
   );
 }

@@ -21,6 +21,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./RightTriangleRatiosTargetLesson259.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type DragKey = "o" | "b" | "c";
@@ -164,6 +165,8 @@ export default function RightTriangleRatiosTargetLesson259({ resetToken, onInter
       <section className="target-right-practice"><article><h2>◎ Practice Challenge</h2><p>Set θ = 60°. If the adjacent side is 6 units, find the opposite side, hypotenuse and all three ratios.<br />Round to 4 decimal places.</p><div><PracticeInput label="Opposite" value={answers.opposite} onChange={(value) => setAnswer("opposite", value)} suffix="units" /><PracticeInput label="sin 60°" value={answers.sin} onChange={(value) => setAnswer("sin", value)} /><PracticeInput label="Hypotenuse" value={answers.hypotenuse} onChange={(value) => setAnswer("hypotenuse", value)} suffix="units" /><PracticeInput label="cos 60°" value={answers.cos} onChange={(value) => setAnswer("cos", value)} /><span /><PracticeInput label="tan 60°" value={answers.tan} onChange={(value) => setAnswer("tan", value)} /></div><button type="button" onClick={grade}>⌁ Check Answer</button>{result !== "idle" ? <p role="status" className={result}>{result === "correct" ? "Correct. Every side and ratio matches." : "Check each value and round to four decimal places."}</p> : null}</article><aside><h3>☼ Need a hint?</h3><p>Use cos 60° = adjacent/hypotenuse to find hypotenuse first, then use sin 60° and tan 60°.</p><button type="button" onClick={showSolution}><Eye />Show Solution</button></aside></section>
 
       <nav className="target-right-triangle-nav"><a href="/lessons/trigonometry/258-unit-circle"><ArrowLeft /><span><b>Previous</b>Unit Circle</span></a><a href="/lessons/trigonometry/260-exact-trig-values"><span><b>Next</b>Exact Trig Values</span><ArrowRight /></a></nav>
+      <LessonTopicStudyBoard lessonId={259} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

@@ -2,6 +2,7 @@ import { ExternalLink, RotateCcw, Share2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./RealImaginaryTargetLesson366.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const clean = (value: number) => Number(value.toFixed(2));
 function quadrant(a: number, b: number) {
@@ -410,6 +411,8 @@ export default function RealImaginaryTargetLesson366({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={366} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

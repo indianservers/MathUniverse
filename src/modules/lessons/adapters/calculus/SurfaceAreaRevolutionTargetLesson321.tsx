@@ -17,6 +17,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./SurfaceAreaRevolutionTargetLesson321.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type CurveKey = "sqrt" | "log" | "linear";
 const clamp = (value: number, min: number, max: number) =>
@@ -435,6 +436,8 @@ export default function SurfaceAreaRevolutionTargetLesson321({
                 : ""}
         </output>
       </section>
+      <LessonTopicStudyBoard lessonId={321} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

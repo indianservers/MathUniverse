@@ -12,6 +12,7 @@ import { useMemo, useRef, useState } from "react";
 import type { PointerEvent as ReactPointerEvent } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./EccentricityTargetLesson10145.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Mode = "point" | "pan";
 const classify = (e: number) =>
@@ -434,6 +435,8 @@ export default function EccentricityTargetLesson10145({
           <strong>PF/PD = e</strong> is a conic section.
         </p>
       </footer>
+      <LessonTopicStudyBoard lessonId={10145} alwaysVisible />
+
     </section>
   );
 }

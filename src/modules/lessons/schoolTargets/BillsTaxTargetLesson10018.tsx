@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { schoolLessonCatalog } from "../catalog/school/schoolSyllabusCatalog";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./BillsTaxTargetLesson10018.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Item = {
   id: number;
@@ -418,6 +419,8 @@ export default function BillsTaxTargetLesson10018({
           Next Lesson →<b>{next.title}</b>
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10018} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

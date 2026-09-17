@@ -2,6 +2,7 @@ import { Info, RotateCcw, Shuffle } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./EigenTargetLesson359.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Matrix = [number, number, number, number];
 type Vector = [number, number];
@@ -437,6 +438,8 @@ export default function EigenTargetLesson359({
           )}
         </aside>
       </section>
+      <LessonTopicStudyBoard lessonId={359} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

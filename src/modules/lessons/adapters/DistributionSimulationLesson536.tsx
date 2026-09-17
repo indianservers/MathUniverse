@@ -7,6 +7,7 @@ import {
   simulateBinomial,
 } from "./distributionSimulationLessonModel";
 import "./DistributionSimulationLesson536.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 export default function DistributionSimulationLesson536({
   resetToken,
   onInteraction,
@@ -388,6 +389,8 @@ function DistributionSimulationActivity({
         </button>
         <span>Previous: Standardisation &nbsp; Next: Normal Approximation</span>
       </footer>
+      <LessonTopicStudyBoard lessonId={536} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

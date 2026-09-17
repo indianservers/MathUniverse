@@ -2,6 +2,7 @@ import { ExternalLink, RotateCcw, Share2 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./ComplexFunctionsTargetLesson377.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Pair = [number, number];
 type FunctionKind = "square" | "cube" | "reciprocal" | "conjugate";
@@ -505,6 +506,8 @@ export default function ComplexFunctionsTargetLesson377({
           </span>
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={377} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

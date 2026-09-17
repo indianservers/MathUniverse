@@ -2,6 +2,7 @@ import { ExternalLink, RotateCcw, Share2 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./PowersTargetLesson373.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Pair = [number, number];
 const clean = (value: number, digits = 3) => Number(value.toFixed(digits));
@@ -492,6 +493,8 @@ export default function PowersTargetLesson373({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={373} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

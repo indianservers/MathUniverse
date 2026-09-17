@@ -2,6 +2,7 @@ import { Check, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./SimpleInterestTargetLesson591.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 const money = (value: number) =>
   new Intl.NumberFormat("en-IN", { maximumFractionDigits: 2 }).format(value);
 export default function SimpleInterestTargetLesson591({
@@ -444,6 +445,8 @@ export default function SimpleInterestTargetLesson591({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={591} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

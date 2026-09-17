@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import type { LessonAdapterProps } from "../types";
 import "./HigherDegreePolynomialsTargetLesson136.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const clean = (value: number, places = 2) =>
   Math.abs(value) < 0.0005
@@ -642,6 +643,8 @@ export default function HigherDegreePolynomialsTargetLesson136({
         </small>
         <small>www.IndianServers.com · info@IndianServers.com</small>
       </footer>
+      <LessonTopicStudyBoard lessonId={136} view={tab} onInteraction={onInteraction} />
+
     </div>
   );
 }

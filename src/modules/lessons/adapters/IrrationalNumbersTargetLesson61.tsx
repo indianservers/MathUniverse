@@ -10,6 +10,7 @@ import {
 import { useEffect, useMemo, useState, type DragEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./IrrationalNumbersTargetLesson61.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type SortItem = { id: string; label: string; irrational: boolean };
 const BASE_ITEMS: SortItem[] = [
@@ -536,6 +537,8 @@ export default function IrrationalNumbersTargetLesson61({
         </small>
         <small>www.IndianServers.com info@IndianServers.com</small>
       </footer>
+      <LessonTopicStudyBoard lessonId={61} view={tab} onInteraction={onInteraction} />
+
     </div>
   );
 }

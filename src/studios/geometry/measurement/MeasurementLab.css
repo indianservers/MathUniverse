@@ -1,0 +1,67 @@
+.mlab{min-width:0}
+.mlab-inline-head{display:flex;gap:8px;justify-content:flex-end;margin-bottom:8px}
+.mlab-head-field select{min-height:36px;padding:0 10px;border:1px solid #dce7f4;border-radius:999px;background:#fff;font-size:12px;font-weight:800;color:#334155}
+.msk-lab-tools .mlab-head-field select{min-height:36px}
+.mlab-modes{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px}
+.mlab-modes button{display:inline-flex;align-items:center;gap:7px;min-height:40px;padding:0 14px;border:1px solid #dce7f4;border-radius:999px;background:#fff;color:#475569;font-size:12px;font-weight:800}
+.mlab-modes button.is-on{color:#fff;background:linear-gradient(100deg,#22d3ee,#3b82f6);border-color:transparent;box-shadow:0 8px 18px #3b82f633}
+.mlab-workspace{display:grid;grid-template-columns:240px minmax(0,1fr) 340px;gap:12px;align-items:start}
+.mlab-card{padding:14px;border:1px solid #dce7f4;border-radius:18px;background:#fff;min-width:0}
+.mlab-card h2{margin:10px 0 6px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#64748b}
+.mlab-card h2:first-child{margin-top:0}
+.mlab-kicker{margin:10px 0 6px;color:#64748b;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.mlab-icon-row{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.mlab-icon-row button,.mlab-seg button,.mlab-ghost,.mlab-zoom button,.mlab-tree button{border:1px solid #dce7f4;border-radius:12px;background:#fff;color:#334155}
+.mlab-icon-row button{height:40px;display:grid;place-items:center}
+.mlab-icon-row button.is-on,.mlab-seg button.is-on,.mlab-tree button.is-on{background:#e8f7ff;color:#0891b2;border-color:#7dd3ea}
+.mlab-toggle{display:flex;align-items:center;justify-content:space-between;margin:10px 0;font-size:12px;font-weight:700}
+.mlab-toggle input{appearance:none;width:42px;height:24px;border:0;border-radius:999px;background:#dbe7f3;position:relative;cursor:pointer}
+.mlab-toggle input::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 1px 4px #0f172a33}
+.mlab-toggle input:checked{background:#22d3ee}
+.mlab-toggle input:checked::after{left:21px}
+.mlab-check{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px;font-weight:700}
+.mlab-check input{accent-color:#22d3ee;width:14px;height:14px}
+.mlab-seg{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:3px;border-radius:999px;background:#f1f5f9;border:1px solid #e2e8f0}
+.mlab-seg button{min-height:32px;font-size:11px;font-weight:800;border-radius:999px}
+.mlab-primary{width:100%;min-height:42px;margin-top:12px;border:0;border-radius:999px;background:linear-gradient(100deg,#22d3ee,#3b82f6);color:#fff;font-weight:800}
+.mlab-ghost{width:100%;min-height:38px;margin-top:8px;display:inline-flex;align-items:center;justify-content:center;gap:6px;font-size:12px;font-weight:800;color:#64748b}
+.mlab-scale{display:grid;gap:6px;margin-top:8px;font-size:12px;font-weight:800}
+.mlab-scale input{accent-color:#22d3ee}
+.mlab-stage{position:relative;padding:8px;border:1px solid #dce7f4;border-radius:18px;background:#fff;overflow:hidden}
+.mlab-svg{width:100%;height:min(62vh,560px);touch-action:none;transform-origin:center center;cursor:grab}
+.mlab-svg:active{cursor:grabbing}
+.mlab-ruler text{fill:#94a3b8;font-size:10px;font-weight:700}
+.mlab-dim line{stroke:#f59e0b;stroke-width:1.2}
+.mlab-dim text{font-size:10px;font-weight:800;fill:#d97706}
+.mlab-inspector{max-height:min(72vh,720px);overflow:auto}
+.mlab-kicker select{margin-left:0;min-height:32px;padding:0 10px;border:1px solid #dce7f4;border-radius:10px;background:#fff;font-size:12px;font-weight:800}
+.mlab-handle{cursor:grab}
+.mlab-zoom{position:absolute;right:14px;bottom:14px;display:flex;gap:6px}
+.mlab-zoom button{width:34px;height:34px;display:grid;place-items:center;background:#fff}
+.mlab-panels{display:flex;gap:0;margin:-6px -14px 10px;padding:0 8px;border-bottom:1px solid #e6eef8;overflow:auto}
+.mlab-panels button{flex:1 0 auto;min-height:40px;padding:0 8px;border:0;background:transparent;color:#94a3b8;font-size:9px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap}
+.mlab-panels button.is-on{color:#0891b2;box-shadow:inset 0 -2px 0 #22d3ee}
+.mlab-summary{display:grid;grid-template-columns:1fr auto;gap:8px 12px;padding:10px;border:1px solid #e6eef8;border-radius:14px;background:#f8fbff;font-size:12px}
+.mlab-summary span{color:#64748b;font-weight:700}
+.mlab-summary strong{color:#0f766e;font-variant-numeric:tabular-nums}
+.mlab-summary.is-error strong{color:#047857}
+.mlab-table{width:100%;border-collapse:collapse;font-size:11px}
+.mlab-table th{color:#64748b;font-size:10px;text-align:left;padding:6px 4px}
+.mlab-table td{padding:7px 4px;border-top:1px solid #eef3f8;font-weight:700}
+.mlab-table tr.is-on{background:#e8f7ff}
+.mlab-table i{display:inline-block;width:8px;height:8px;margin-right:6px;border-radius:50%}
+.mlab-conv,.mlab-note,.mlab-goal{color:#475569;font-size:12px;line-height:1.5}
+.mlab-tree{margin:0;padding-left:16px;font-size:12px;color:#334155}
+.mlab-tree button{margin:3px 0;min-height:28px;padding:0 8px;font-size:12px;font-weight:700}
+.mlab-graph{width:100%;height:auto}
+.mlab-ok{color:#059669;font-size:12px;font-weight:800;line-height:1.45}
+.mlab-steps{margin:8px 0 0;padding-left:18px;color:#334155;font-size:12px;line-height:1.5}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+@media (max-width:1100px){
+  .mlab-workspace{grid-template-columns:1fr}
+  .mlab-inspector{order:3}
+}
+@media (max-width:720px){
+  .mlab-modes{flex-wrap:nowrap;overflow:auto}
+  .mlab-svg{height:min(52vh,420px)}
+}

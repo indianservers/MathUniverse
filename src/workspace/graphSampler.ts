@@ -1,4 +1,5 @@
 import { compileFunctionExpression, compileTwoVariableExpression } from "../utils/functionParser";
+import { sampleExplicitAdaptive } from "../utils/mathEngine/adaptiveSampler";
 
 export type GraphKind = "explicit" | "implicit" | "parametric" | "polar" | "piecewise" | "inequality";
 
@@ -68,17 +69,17 @@ export function sampleGraph(input: string | GraphDescriptor, viewport: Partial<G
 
 function sampleExplicit(expression: string, viewport: GraphViewport, samples: number) {
   const fn = compileFunctionExpression(expression);
+  const ySpan = Math.abs(viewport.yMax - viewport.yMin);
+  const sampled = sampleExplicitAdaptive(fn, viewport.xMin, viewport.xMax, ySpan, Math.max(80, Math.min(280, Math.round(samples / 3))));
   const points: SamplePoint[] = [];
   let previous: SamplePoint | null = null;
-  for (let index = 0; index <= samples; index += 1) {
-    const x = viewport.xMin + ((viewport.xMax - viewport.xMin) * index) / samples;
-    const y = fn(x);
-    if (!Number.isFinite(y) || Math.abs(y) > Math.max(1e6, Math.abs(viewport.yMax - viewport.yMin) * 1e4)) {
+  for (const sample of sampled) {
+    if (!sample.valid || sample.y === null || Math.abs(sample.y) > Math.max(1e6, ySpan * 1e4)) {
       previous = null;
       continue;
     }
-    const move: boolean = !previous || Math.abs(y - previous.y) > Math.max(8, (viewport.yMax - viewport.yMin) * 0.5);
-    const point: SamplePoint = { x, y, move };
+    const move = !previous || Math.abs(sample.y - previous.y) > Math.max(8, ySpan * 0.5);
+    const point: SamplePoint = { x: sample.x, y: sample.y, move };
     points.push(point);
     previous = point;
   }
@@ -141,16 +142,31 @@ function samplePolar(descriptor: Extract<GraphDescriptor, { kind: "polar" }>, vi
   return splitSegments(points);
 }
 
-function sampleImplicit(left: string, right: string, viewport: GraphViewport, grid = 96) {
+function sampleImplicit(left: string, right: string, viewport: GraphViewport, grid = 56) {
   const fn = compileTwoVariableExpression(`(${left})-(${right})`);
   const cells: ImplicitCell[] = [];
   const segments: SegmentSample[] = [];
-  const dx = (viewport.xMax - viewport.xMin) / grid;
-  const dy = (viewport.yMax - viewport.yMin) / grid;
+  marchImplicit(fn, viewport.xMin, viewport.yMin, viewport.xMax - viewport.xMin, viewport.yMax - viewport.yMin, grid, 2, cells, segments);
+  return { cells, segments };
+}
+
+function marchImplicit(
+  fn: (x: number, y: number) => number,
+  originX: number,
+  originY: number,
+  width: number,
+  height: number,
+  grid: number,
+  refine: number,
+  cells: ImplicitCell[],
+  segments: SegmentSample[],
+) {
+  const dx = width / grid;
+  const dy = height / grid;
   for (let ix = 0; ix < grid; ix += 1) {
     for (let iy = 0; iy < grid; iy += 1) {
-      const x = viewport.xMin + ix * dx;
-      const y = viewport.yMin + iy * dy;
+      const x = originX + ix * dx;
+      const y = originY + iy * dy;
       const corners = [
         { x, y, value: fn(x, y) },
         { x: x + dx, y, value: fn(x + dx, y) },
@@ -158,13 +174,15 @@ function sampleImplicit(left: string, right: string, viewport: GraphViewport, gr
         { x, y: y + dy, value: fn(x, y + dy) },
       ];
       const values = corners.map((corner) => corner.value).filter(Number.isFinite);
-      if (values.length >= 2 && Math.min(...values) <= 0 && Math.max(...values) >= 0) {
-        cells.push({ x, y, width: dx, height: dy });
-        segments.push(...contourSegmentsForCell(corners));
+      if (values.length < 2 || Math.min(...values) > 0 || Math.max(...values) < 0) continue;
+      if (refine > 0 && (dx > 1e-4 || dy > 1e-4)) {
+        marchImplicit(fn, x, y, dx, dy, 2, refine - 1, cells, segments);
+        continue;
       }
+      cells.push({ x, y, width: dx, height: dy });
+      segments.push(...contourSegmentsForCell(corners));
     }
   }
-  return { cells, segments };
 }
 
 function sampleInequality(descriptor: Extract<GraphDescriptor, { kind: "inequality" }>, viewport: GraphViewport, grid = 80) {

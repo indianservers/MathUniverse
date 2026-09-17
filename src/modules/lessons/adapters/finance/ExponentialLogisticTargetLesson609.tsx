@@ -2,6 +2,7 @@ import { RotateCcw } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./ExponentialLogisticTargetLesson609.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Kind = "growth" | "decay" | "logistic";
 const cash = (value: number) =>
@@ -405,6 +406,8 @@ export default function ExponentialLogisticTargetLesson609({
           &rarr;
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={609} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

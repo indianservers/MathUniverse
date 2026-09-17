@@ -13,6 +13,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./StepByStepAlgebraTargetLesson448.css";
 import "./StepByStepAlgebraTargetLesson448Footer.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Move = "distribute" | "combine" | "constants";
 
@@ -420,6 +421,8 @@ export default function StepByStepAlgebraTargetLesson448({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={448} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

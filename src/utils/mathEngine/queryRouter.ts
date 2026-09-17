@@ -33,7 +33,7 @@ const routes: Record<QueryIntent, Pick<RoutedQuery, "route" | "label">> = {
   logic: { route: "/mathematical-logic", label: "Mathematical Logic Lab" },
   sets: { route: "/set-theory", label: "Set Theory Lab" },
   graphTheory: { route: "/graph-theory", label: "Graph Theory Lab" },
-  combinatorics: { route: "/combinatorics", label: "Combinatorics Lab" },
+  combinatorics: { route: "/discrete-world/combinatorics", label: "Combinatorics Lab" },
   engineering: { route: "/engineering-math", label: "Engineering Mathematics" },
   unknown: { route: "/math-lab", label: "Math Lab" },
 };

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../types";
 import { LessonCartesianGraph } from "../graphs/LessonCartesianGraph";
 import "./PiecewiseDefinitionsTargetLesson35.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const clamp = (value: number) => Math.max(-5, Math.min(5, Math.round(value)));
 
@@ -193,6 +194,8 @@ export default function PiecewiseDefinitionsTargetLesson35({
         <hr />
         <small>© 2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.<br /><br />www.IndianServers.com info@IndianServers.com</small>
       </footer>
+      <LessonTopicStudyBoard lessonId={35} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

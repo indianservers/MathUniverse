@@ -6,6 +6,7 @@ import {
   exponentialFit,
 } from "./exponentialRegressionLessonModel";
 import "./ExponentialRegressionLesson492.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 export default function ExponentialRegressionLesson492({
   resetToken,
   onInteraction,
@@ -230,6 +231,8 @@ function ExponentialActivity({
           Previous: Polynomial Regression &nbsp; Next: Logarithmic Regression →
         </span>
       </footer>
+      <LessonTopicStudyBoard lessonId={492} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

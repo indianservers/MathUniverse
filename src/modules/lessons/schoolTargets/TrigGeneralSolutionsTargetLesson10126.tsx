@@ -2,6 +2,7 @@ import { Info, Minus, Plus, RotateCcw } from "lucide-react";
 import { useMemo, useState } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./TrigGeneralSolutionsTargetLesson10126.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type EquationKey =
   "sin-half" | "cos-half" | "sin-zero" | "cos-zero" | "tan-one";
@@ -378,6 +379,8 @@ export default function TrigGeneralSolutionsTargetLesson10126({
           <p>equivalently, {equation.compact}</p>
         </article>
       </section>
+      <LessonTopicStudyBoard lessonId={10126} alwaysVisible />
+
     </section>
   );
 }

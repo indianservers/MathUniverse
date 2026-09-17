@@ -12,6 +12,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import type { PointerEvent as ReactPointerEvent } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./ParametricCoordinatesTargetLesson10146.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Curve = "parabola" | "ellipse" | "hyperbola";
 const limits: Record<Curve, [number, number]> = {
@@ -415,6 +416,8 @@ export default function ParametricCoordinatesTargetLesson10146({
         </p>
         <button onClick={reset}>Reset all</button>
       </footer>
+      <LessonTopicStudyBoard lessonId={10146} alwaysVisible />
+
     </section>
   );
 }

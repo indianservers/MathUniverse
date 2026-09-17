@@ -639,7 +639,7 @@ function HomeMathStudioHero({ labs, topicCount, progress, onTour }: HomeMathStud
           </p>
           <div className="home-studio-actions">
             <Link to="/math-lab" className="home-studio-primary"><Sparkles /> Explore Math Lab</Link>
-            <Link to="/learning-paths" className="home-studio-secondary"><BookOpen /> View Learning Paths</Link>
+            <Link to="/learn" className="home-studio-secondary"><BookOpen /> View Learning Paths</Link>
             <button type="button" className="home-studio-icon-action" onClick={onTour} aria-label="Open guided tour"><HelpCircle /></button>
           </div>
         </div>
@@ -862,9 +862,9 @@ function HomeUnderstandingSection() {
     },
   ];
   const worlds = [
-    { title: "Algebra", text: "Master expressions, equations, and patterns visually.", route: "/math/algebra", className: "algebra" },
-    { title: "Geometry", text: "Explore shapes, theorems, and spatial reasoning.", route: "/math/geometry", className: "geometry" },
-    { title: "Trigonometry", text: "Understand angles, identities, and wave functions.", route: "/math/trigonometry", className: "trig" },
+    { title: "Algebra", text: "Master expressions, equations, and patterns visually.", route: "/algebra", className: "algebra" },
+    { title: "Geometry", text: "Explore shapes, theorems, and spatial reasoning.", route: "/geometry", className: "geometry" },
+    { title: "Trigonometry", text: "Understand angles, identities, and wave functions.", route: "/trigonometry", className: "trig" },
     { title: "Calculus Studio", text: "Visualize change, limits, and area under curves.", route: "/calculus", className: "calculus" },
   ];
 

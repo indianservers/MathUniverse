@@ -3,13 +3,16 @@ import {
   circle,
   conic,
   intersectObjects,
+  invertPointInCircle,
   line,
   parseConicEquation,
   point,
   polygonArea,
   polygonPerimeter,
+  projectPointToLine,
   proofHintsForRelation,
   ray,
+  reflectPointOverLine,
   relationBetween,
   segment,
 } from "./geometry2dKernel";
@@ -59,5 +62,17 @@ describe("geometry 2D kernel", () => {
     expect(hits.length).toBeGreaterThanOrEqual(1);
     expect(polygonArea([point(0, 0), point(4, 0), point(4, 3)])).toBe(6);
     expect(polygonPerimeter([point(0, 0), point(4, 0), point(4, 3)])).toBe(12);
+  });
+
+  it("projects, reflects, and inverts points like a construction calculator", () => {
+    const host = line(point(0, 0), point(4, 0));
+    const foot = projectPointToLine(point(1, 3), host);
+    const image = reflectPointOverLine(point(1, 3), host);
+    const inverted = invertPointInCircle(point(4, 0), circle(point(0, 0), 2));
+
+    expect(foot.x).toBeCloseTo(1);
+    expect(foot.y).toBeCloseTo(0);
+    expect(image.y).toBeCloseTo(-3);
+    expect(inverted?.x).toBeCloseTo(1);
   });
 });

@@ -156,7 +156,13 @@ export default function MathWorkspaceLayout({
       data-input={coarsePointer ? "coarse" : "fine"}
       data-viewport={viewportMode}
     >
-      {workspace.id !== "geometry" && <WorkspaceSuiteBar workspace={workspace} />}
+      {workspace.id !== "geometry" &&
+        workspace.id !== "geometry-3d" &&
+        workspace.id !== "graphs" &&
+        workspace.id !== "graphs-3d" &&
+        workspace.id !== "shapes" && (
+        <WorkspaceSuiteBar workspace={workspace} />
+      )}
       <div
         className="math-workspace-stage"
         tabIndex={workspace.id === "graphs" ? 0 : undefined}

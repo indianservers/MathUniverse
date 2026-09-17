@@ -16,6 +16,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./AreaBetweenCurvesTargetLesson311.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type CurveKey =
   "parabola" | "semicircle" | "tent" | "zero" | "line" | "negative";
@@ -484,6 +485,8 @@ export default function AreaBetweenCurvesTargetLesson311({
         <nav>⌘ Sitemap | ⚑ Docs | ⌁ About</nav>
         <small>© 2026 INDIAN SERVERS PRIVATE LIMITED.</small>
       </footer>
+      <LessonTopicStudyBoard lessonId={311} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

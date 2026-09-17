@@ -31,20 +31,20 @@ type CalculusNavigationItem = {
 };
 
 const calculusLessons: CalculusNavigationItem[] = [
-  { label: "Limits", href: "/math/limits-continuity", icon: Sigma },
-  { label: "Derivatives", href: "/math/derivatives", icon: Sigma },
+  { label: "Limits", href: "/calculus/limits", icon: Sigma },
+  { label: "Derivatives", href: "/calculus/derivatives", icon: Sigma },
   {
     label: "Derivative Formula Atlas",
     href: "/math/derivatives/formula-visualizer",
     icon: Sparkles,
   },
-  { label: "Integration", href: "/math/integration", icon: Sigma },
+  { label: "Integration", href: "/calculus/integration", icon: Sigma },
   {
     label: "Integration Formula Atlas",
     href: "/math/integration/formula-visualizer",
     icon: Sparkles,
   },
-  { label: "Slope Fields", href: "/math/slope-fields", icon: Sigma },
+  { label: "Slope Fields", href: "/calculus/differential-equations?mode=slope", icon: Sigma },
 ];
 
 const mainNavigation: CalculusNavigationItem[] = [
@@ -69,7 +69,13 @@ export default function CalculusSidebar({
   onClose,
   variant = "calculus",
 }: CalculusSidebarProps) {
-  const { pathname } = useLocation();
+  const { pathname, search } = useLocation();
+  const lessonIsCurrent = (href: string) => {
+    const [path, query] = href.split("?");
+    if (pathname !== path) return false;
+    if (!query) return true;
+    return search.includes(query);
+  };
 
   return (
     <>
@@ -175,7 +181,7 @@ export default function CalculusSidebar({
           </div>
           <div className="limits-lesson-list">
             {calculusLessons.map(({ label, href, icon: Icon }) => {
-              const selected = pathname === href;
+              const selected = lessonIsCurrent(href);
               return (
                 <Link
                   key={href}

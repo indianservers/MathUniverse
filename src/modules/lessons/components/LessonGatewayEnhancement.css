@@ -1,0 +1,112 @@
+.lesson-gateway-enhancement {
+  margin: 12px 24px 8px;
+  padding: 16px 18px 14px;
+  border: 1px solid #f0d4a8;
+  border-radius: 18px;
+  background: #fff8ee;
+  color: #1f2937;
+}
+
+.lesson-gateway-enhancement header p:first-child {
+  margin: 0 0 4px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #b45309;
+}
+
+.lesson-gateway-enhancement h2,
+.lesson-gateway-enhancement h3 {
+  margin: 0 0 8px;
+}
+
+.lesson-gateway-grid {
+  display: grid;
+  grid-template-columns: minmax(200px, 0.9fr) minmax(220px, 1.1fr) minmax(240px, 1.2fr);
+  gap: 12px;
+}
+
+.lesson-gateway-enhancement article {
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: inset 0 0 0 1px #f3e2c6;
+}
+
+.lesson-gateway-live {
+  font-size: 18px;
+  margin: 0 0 8px;
+}
+
+.lesson-gateway-misconception b {
+  color: #9a3412;
+}
+
+.lesson-gateway-enhancement ol {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.lesson-gateway-enhancement li + li {
+  margin-top: 8px;
+}
+
+.lesson-gateway-enhancement li p {
+  margin: 0 0 4px;
+}
+
+.lesson-gateway-enhancement li div {
+  display: flex;
+  gap: 6px;
+}
+
+.lesson-gateway-enhancement input {
+  flex: 1;
+  min-width: 0;
+  border: 1px solid #e7d3b0;
+  border-radius: 8px;
+  padding: 4px 8px;
+}
+
+.lesson-gateway-enhancement button,
+.lesson-gateway-enhancement a {
+  border: 0;
+  border-radius: 8px;
+  padding: 5px 10px;
+  background: #f59e0b;
+  color: #1c1917;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.lesson-gateway-enhancement .ok {
+  color: #047857;
+}
+
+.lesson-gateway-enhancement .bad {
+  color: #b45309;
+}
+
+.lesson-gateway-enhancement footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.lesson-gateway-enhancement footer p {
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .lesson-gateway-grid,
+  .lesson-gateway-enhancement footer {
+    display: block;
+  }
+
+  .lesson-gateway-enhancement article + article,
+  .lesson-gateway-enhancement footer a {
+    margin-top: 10px;
+  }
+}

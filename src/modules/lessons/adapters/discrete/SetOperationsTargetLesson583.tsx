@@ -10,6 +10,7 @@ import type { DragEvent } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "../geometry3d/CoordinateSystemTargetLesson378.css";
 import "./SetOperationsTargetLesson583.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const universe = Array.from({ length: 12 }, (_, index) => index + 1);
 const normalize = (values: number[]) =>
@@ -494,6 +495,8 @@ export default function SetOperationsTargetLesson583({
           -&gt;
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={583} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

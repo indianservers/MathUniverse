@@ -34,6 +34,7 @@ import {
   type PolynomialTile102 as Tile,
 } from "./polynomialOperationsLesson102Model";
 import "./PolynomialOperationsTargetLesson102.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type PolynomialTab102 =
   "Interact" | "Explain" | "Examples" | "Rules" | "Practice" | "Know more";
@@ -644,6 +645,8 @@ export default function PolynomialOperationsTargetLesson102({
         </small>
         <p>www.IndianServers.com info@IndianServers.com</p>
       </footer>
+      <LessonTopicStudyBoard lessonId={102} view={tab} onInteraction={onInteraction} />
+
     </div>
   );
 }

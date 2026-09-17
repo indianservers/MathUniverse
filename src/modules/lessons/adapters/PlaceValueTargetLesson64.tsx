@@ -13,6 +13,7 @@ import {
 import { useEffect, useState, type DragEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./PlaceValueTargetLesson64.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Place = {
   key: "thousands" | "hundreds" | "tens" | "ones";
@@ -406,6 +407,8 @@ export default function PlaceValueTargetLesson64({
         </small>
         <small>www.IndianServers.com info@IndianServers.com</small>
       </footer>
+      <LessonTopicStudyBoard lessonId={64} view={tab} onInteraction={onInteraction} />
+
     </div>
   );
 }

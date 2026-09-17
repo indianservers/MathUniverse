@@ -9,6 +9,7 @@ import {
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./InternalSectionFormulaTargetLesson10085.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type Endpoint = "a" | "b";
@@ -467,6 +468,8 @@ export default function InternalSectionFormulaTargetLesson10085({
           External Section Formula <ArrowRight />
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10085} view={tab} />
+
     </section>
   );
 }

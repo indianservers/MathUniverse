@@ -12,6 +12,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { KeyboardEvent, PointerEvent as ReactPointerEvent } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./RateOfChangeTargetLesson10174.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const position = (t: number) => t * t + 2 * t;
 const velocity = (t: number) => 2 * t + 2;
@@ -549,6 +550,8 @@ export default function RateOfChangeTargetLesson10174({
           © 2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.
         </small>
       </footer>
+      <LessonTopicStudyBoard lessonId={10174} alwaysVisible />
+
     </main>
   );
 }

@@ -11,6 +11,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./FactorisationPracticeTargetLesson10052.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Method =
   "Common Factor" | "Difference of Squares" | "Grouping" | "Zero Factor";
@@ -360,6 +361,8 @@ export default function FactorisationPracticeTargetLesson10052({
           Next Lesson <ArrowRight />
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10052} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

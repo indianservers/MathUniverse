@@ -2,6 +2,7 @@ import { ExternalLink, RotateCcw, Share2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./ModulusArgumentTargetLesson370.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 type Pair = [number, number];
 const clean = (n: number) => Number(n.toFixed(2));
 const q = (a: number, b: number) =>
@@ -342,6 +343,8 @@ export default function ModulusArgumentTargetLesson370({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={370} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

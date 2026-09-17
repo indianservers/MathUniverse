@@ -1,6 +1,7 @@
 import { ArrowLeft, ArrowRight, Check, Clock3, ExternalLink, Languages, RotateCcw, Share2, TrendingDown, TrendingUp, TriangleAlert } from "lucide-react";
 import { useEffect, useState, type DragEvent } from "react";
 import type { LessonAdapterProps } from "../types";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 import "./PercentageChangeTargetLesson89.css";
 
 const clamp = (value: number) => Math.max(1, Math.min(300, Math.round(Number.isFinite(value) ? value : 1)));
@@ -39,6 +40,7 @@ export default function PercentageChangeTargetLesson89({ resetToken, onInteracti
       <aside className="change89-side"><ValueEditor className="original" label="Original amount" value={original} note="This is the base (100%)." ariaLabel="Original amount" onChange={changeOriginal} /><ValueEditor className="new" label="New amount" value={next} note={`New value after the ${direction}.`} ariaLabel="New amount" onChange={changeNext} /><section className="change89-change"><h3>Change: <b>{change}</b></h3><p>{next} - {original} = {display(signedChange)}</p></section><section className="change89-formula"><h3>Percentage change</h3><p><span><b>{change}</b><b>{original}</b></span><i>×</i><strong>100</strong><i>=</i><em>{display(percent)}%</em></p></section><section className="change89-warning"><TriangleAlert /><p><b>Use the original amount as the base.</b><span>Do not divide by the new amount.</span></p></section><button type="button" className="change89-try" onClick={loadPractice}><span><b>{practiceLoaded ? `Solved: ${display(percent)}% increase` : "Try: From 50 to 65."}</b><small>What is the percentage change?</small><strong>{practiceLoaded ? "30% increase" : "Try it now"}<ArrowRight /></strong></span></button></aside>
     </main>
     <nav className="change89-navigation"><a href="/lessons/numbers-and-arithmetic/88-percentages"><ArrowLeft /><span>PREVIOUS<b>Percentages</b></span></a><a href="/lessons/numbers-and-arithmetic/90-compound-change"><span>NEXT<b>Compound Change</b></span><ArrowRight /></a></nav>
+      <LessonTopicStudyBoard lessonId={89} view={tab} onInteraction={onInteraction} />
   </div>;
 }
 

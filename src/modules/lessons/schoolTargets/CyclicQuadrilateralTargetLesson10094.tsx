@@ -13,6 +13,8 @@ import { type PointerEvent, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./CyclicQuadrilateralTargetLesson10094.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+import { LessonGraphInkLegend, lessonGraphInkProps } from "../graphs/LessonGraphInk";
 
 type Name = "A" | "B" | "C" | "D";
 type Vertex = { angle: number; radius: number };
@@ -287,10 +289,12 @@ export default function CyclicQuadrilateralTargetLesson10094({
               ref={svgRef}
               viewBox="0 0 684 520"
               aria-label="Interactive cyclic quadrilateral construction"
+              {...lessonGraphInkProps}
               onPointerMove={updateFromPointer}
               onPointerUp={() => dragging && act(() => setDragging(null))}
               onPointerLeave={() => dragging && act(() => setDragging(null))}
             >
+              <LessonGraphInkLegend />
               {showCircle && (
                 <circle className="fit-circle" cx={cx} cy={cy} r={radius} />
               )}
@@ -591,6 +595,8 @@ export default function CyclicQuadrilateralTargetLesson10094({
           </Link>
         </nav>
       </main>
+      <LessonTopicStudyBoard lessonId={10094} view={tab} />
+
     </section>
   );
 }

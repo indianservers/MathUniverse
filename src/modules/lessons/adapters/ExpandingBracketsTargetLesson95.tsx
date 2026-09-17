@@ -19,6 +19,7 @@ import {
   isExpansionAnswer95,
 } from "./expandingBracketsLesson95Model";
 import "./ExpandingBracketsTargetLesson95.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const practices = EXPANSION_PRACTICES_95;
 const sign = expansionSign95;
@@ -635,6 +636,8 @@ export default function ExpandingBracketsTargetLesson95({
           </nav>
         </footer>
       </main>
+      <LessonTopicStudyBoard lessonId={95} view={tab} onInteraction={onInteraction} />
+
     </div>
   );
 }

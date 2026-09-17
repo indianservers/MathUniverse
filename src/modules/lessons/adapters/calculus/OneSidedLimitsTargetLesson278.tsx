@@ -10,6 +10,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./OneSidedLimitsTargetLesson278.css";
 import "./OneSidedLimitsTargetLesson278Fit.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Scenario = "jump" | "match" | "removable";
 type ScenarioSpec = {
@@ -333,6 +334,8 @@ export default function OneSidedLimitsTargetLesson278({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={278} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

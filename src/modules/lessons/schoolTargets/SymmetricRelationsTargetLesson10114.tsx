@@ -2,6 +2,7 @@ import { Check, RotateCcw, Sparkles, X } from "lucide-react";
 import { useMemo, useState } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./SymmetricRelationsTargetLesson10114.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type N = 1 | 2 | 3 | 4;
 type Pair = `${N},${N}`;
@@ -299,6 +300,8 @@ export default function SymmetricRelationsTargetLesson10114({
           </article>
         </section>
       </main>
+      <LessonTopicStudyBoard lessonId={10114} alwaysVisible />
+
     </section>
   );
 }

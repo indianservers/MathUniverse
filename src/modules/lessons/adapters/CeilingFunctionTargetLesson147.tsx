@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import type { LessonAdapterProps } from "../types";
 import "./CeilingFunctionTargetLesson147.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const round = (value: number, step: number) => Math.round(value / step) * step;
 const clamp = (value: number, min: number, max: number, step: number) =>
@@ -490,6 +491,8 @@ export default function CeilingFunctionTargetLesson147({
           {notice}
         </button>
       )}
+      <LessonTopicStudyBoard lessonId={147} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

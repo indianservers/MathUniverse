@@ -11,6 +11,7 @@ import { DoubleSide, LatheGeometry, Vector2 } from "three";
 import type { LessonAdapterProps } from "../../types";
 import "./CoordinateSystemTargetLesson378.css";
 import "./SurfaceRevolutionTargetLesson402.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type CurveKind = "sqrt" | "line" | "semicircle";
 type Axis = "x" | "y";
@@ -531,6 +532,8 @@ export default function SurfaceRevolutionTargetLesson402({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={402} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

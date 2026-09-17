@@ -9,6 +9,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./TransformationOrderTargetLesson163.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Stage = "Observe" | "Manipulate" | "Notice" | "Understand" | "Try";
 type Operation = { kind: "reflect" } | { kind: "shift"; amount: number };
@@ -715,6 +716,8 @@ export default function TransformationOrderTargetLesson163({
           <span>→</span>
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={163} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

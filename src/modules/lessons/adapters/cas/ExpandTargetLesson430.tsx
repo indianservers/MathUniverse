@@ -21,6 +21,7 @@ import {
 import { createPortal } from "react-dom";
 import type { LessonAdapterProps } from "../../types";
 import "./ExpandTargetLesson430.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Binomial = { x: number; constant: number; label: string };
 type ExpansionModel = {
@@ -403,6 +404,8 @@ export default function ExpandTargetLesson430({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={430} view={view} onInteraction={onInteraction} />
+
     </section>
   );
 }

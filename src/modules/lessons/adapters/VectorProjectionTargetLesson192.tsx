@@ -10,6 +10,7 @@ import { useEffect, useRef, useState } from "react";
 import type { KeyboardEvent, PointerEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./VectorProjectionTargetLesson192.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type Tool = "select" | "v" | "u" | "angle";
@@ -162,6 +163,8 @@ export default function VectorProjectionTargetLesson192({ resetToken, onInteract
       <section className="vp192-practice" id="vp192-practice"><header><h2>Your turn: <b>Practice</b></h2><nav><span>{problem + 1} of {problems.length}</span><button aria-label="Previous problem" onClick={() => { setProblem((problem + problems.length - 1) % problems.length); setAnswer({ x: "", y: "" }); setFeedback(""); interact(); }}><ArrowLeft /></button><button aria-label="Next problem" onClick={() => { setProblem((problem + 1) % problems.length); setAnswer({ x: "", y: "" }); setFeedback(""); interact(); }}><ArrowRight /></button></nav></header><p>Find the projection of v onto u. Enter the vector projection (a, b).</p><main><div><b>u = ({current.u.x}, {current.u.y})</b><b>v = ({current.v.x}, {current.v.y})</b></div><span>Answer: (</span>{(["x","y"] as const).map((axis) => <input key={axis} aria-label={`Projection practice ${axis}`} type="number" value={answer[axis]} onChange={(event) => { setAnswer({ ...answer, [axis]: event.target.value }); setFeedback(""); interact(); }} />)}<span>)</span><button onClick={() => { setFeedback(correct ? "Correct projection." : "Not yet. Use the dot-product scale first."); interact(); }}>Check</button><button onClick={() => { setHint((x) => !x); interact(); }}>Show hint</button><aside><b>Need a hint?</b><p>{hint ? `projᵤ v = (${fmt(expected.x)}, ${fmt(expected.y)})` : "Compute ((u · v) / |u|²) u"}</p></aside></main><strong>{feedback}</strong></section>
       <nav className="vp192-nav"><a href="/lessons/geometry/191-cross-product"><ArrowLeft /><span>Previous<b>Cross Product</b></span></a><a href="/lessons/geometry/193-linear-combinations"><span>Next<b>Linear Combinations</b></span><ArrowRight /></a></nav>
       <footer className="vp192-footer"><small>© 2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.</small><span>www.IndianServers.com &nbsp; info@IndianServers.com</span><nav><a href="/sitemap">Sitemap</a><a href="/docs">Docs</a><a href="/about">About</a></nav></footer>
+      <LessonTopicStudyBoard lessonId={192} alwaysVisible onInteraction={onInteraction} />
+
     </main>
   );
 }

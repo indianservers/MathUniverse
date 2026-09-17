@@ -15,6 +15,7 @@ import {
 import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./IntegralsTargetLesson440.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Term = { coefficient: number; power: number };
 type Feedback = "idle" | "correct" | "incorrect";
@@ -339,6 +340,8 @@ export default function IntegralsTargetLesson440({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={440} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

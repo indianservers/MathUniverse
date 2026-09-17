@@ -2,6 +2,8 @@ import { ArrowLeft, ArrowRight, Eye, RotateCcw } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./PowersRootsTargetLesson6.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+
 const VIEWS = [
   "Interaction + visualization",
   "Explain",
@@ -309,7 +311,7 @@ export default function PowersRootsTargetLesson6({
           </section>
         </div>
       </section>
-      <nav className="target-powers-nav">
+<nav className="target-powers-nav">
         <a href="/lessons/core-workspaces/5-ratio-calculator">
           <ArrowLeft />
           <span>
@@ -323,6 +325,7 @@ export default function PowersRootsTargetLesson6({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={6} alwaysVisible onInteraction={onInteraction} />
     </div>
   );
 }

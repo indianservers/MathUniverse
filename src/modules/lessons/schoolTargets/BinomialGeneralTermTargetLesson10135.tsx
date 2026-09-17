@@ -10,6 +10,7 @@ import {
 import { useState } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./BinomialGeneralTermTargetLesson10135.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const factorial = (value: number) =>
   Array.from({ length: value }, (_, index) => index + 1).reduce(
@@ -284,6 +285,8 @@ export default function BinomialGeneralTermTargetLesson10135({
         <span>← Binomial Expansion</span>
         <span>Middle Term →</span>
       </footer>
+      <LessonTopicStudyBoard lessonId={10135} alwaysVisible />
+
     </section>
   );
 }

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type PointerEvent } from "react";
 import { Expand, Lightbulb } from "lucide-react";
 import type { LessonAdapterProps } from "../types";
 import "./AbsoluteValueFunctionsTargetLesson141.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Reflection = "none" | "x" | "y";
 
@@ -736,6 +737,8 @@ export default function AbsoluteValueFunctionsTargetLesson141({
           </b>
         </footer>
       </section>
+      <LessonTopicStudyBoard lessonId={141} view={tab} onInteraction={onInteraction} />
+
     </div>
   );
 }

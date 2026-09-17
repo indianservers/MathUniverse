@@ -225,6 +225,10 @@
   width: 100%;
   height: 100%;
   touch-action: none;
+  cursor: grab;
+}
+.cds-graph-wrap svg:active {
+  cursor: grabbing;
 }
 .cds-graph-wrap .grid {
   stroke: #31506a;

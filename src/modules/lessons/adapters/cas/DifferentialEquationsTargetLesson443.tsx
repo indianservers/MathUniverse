@@ -18,6 +18,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./DifferentialEquationsTargetLesson443.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 type Equation = "x-y" | "x+y" | "y";
 type Point = { x: number; y: number };
 export default function DifferentialEquationsTargetLesson443({
@@ -308,6 +309,8 @@ export default function DifferentialEquationsTargetLesson443({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={443} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

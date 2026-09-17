@@ -2,6 +2,7 @@ import { Check, RotateCcw, ShieldCheck, X } from "lucide-react";
 import { useMemo, useState } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./BinomialExpansionTargetLesson10134.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type View = "studio" | "triangle" | "table";
 const choose = (n: number, r: number) => {
@@ -333,6 +334,8 @@ export default function BinomialExpansionTargetLesson10134({
           </section>
         </aside>
       </main>
+      <LessonTopicStudyBoard lessonId={10134} view={view} />
+
     </section>
   );
 }

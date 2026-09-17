@@ -17,6 +17,7 @@ import {
 } from "../decimalExpansion/decimalExpansionEngine";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./DecimalExpansionTargetLesson10040.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const tabs = ["Interact", "Learn", "Example", "Formula", "Practice"];
 const fractionOptions = [
@@ -282,6 +283,8 @@ export default function DecimalExpansionTargetLesson10040({
           <ArrowRight />
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10040} view={activeTab} onInteraction={onInteraction} />
+
     </div>
   );
 }

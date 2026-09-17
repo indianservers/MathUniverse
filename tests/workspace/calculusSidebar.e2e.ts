@@ -2,16 +2,18 @@ import { expect, test } from "@playwright/test";
 
 const expectedLinks = [
   ["Overview + Formula Atlas", "/calculus"],
-  ["Limits", "/math/limits-continuity"],
-  ["Derivatives", "/math/derivatives"],
+  ["Limits", "/calculus/limits"],
+  ["Derivatives", "/calculus/derivatives"],
   ["Derivative Formula Atlas", "/math/derivatives/formula-visualizer"],
-  ["Integration", "/math/integration"],
+  ["Integration", "/calculus/integration"],
   ["Integration Formula Atlas", "/math/integration/formula-visualizer"],
-  ["Slope Fields", "/math/slope-fields"],
+  ["Slope Fields", "/calculus/differential-equations?mode=slope"],
 ] as const;
 
 test("limits uses the exact calculus-only navigation with working routes", async ({ page }) => {
   await page.goto("/math/limits-continuity?v_limit_point_a=0&v_approach_distance=1.2");
+
+  await expect(page).toHaveURL(/\/calculus\/limits/);
 
   const sidebar = page.getByRole("complementary", { name: "Calculus navigation" });
   await expect(sidebar).toBeVisible();
@@ -28,7 +30,7 @@ test("limits uses the exact calculus-only navigation with working routes", async
   await expect(sidebar).not.toContainText("Engineering Mathematics");
 
   await sidebar.getByRole("link", { name: "Derivatives", exact: true }).click();
-  await expect(page).toHaveURL(/\/math\/derivatives(?:\?|$)/);
+  await expect(page).toHaveURL(/\/calculus\/derivatives(?:\?|$)/);
   await expect(page.getByRole("complementary", { name: "Calculus navigation" }).getByRole("link", { name: "Derivatives", exact: true })).toHaveAttribute("aria-current", "page");
 });
 

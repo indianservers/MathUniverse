@@ -1,8 +1,7 @@
-import { Award, Box, Calculator, Camera, Check, ChevronDown, Cuboid, Download, Eye, Filter, Grid3X3, Heart, History, Home, Layers3, LineChart, Mic, Orbit, PanelLeftClose, PanelLeftOpen, Palette, Pause, Play, Printer, RefreshCw, Redo2, RotateCcw, RotateCw, Ruler, Search, Settings, Shapes, Sigma, SlidersHorizontal, Sparkles, Star, Triangle, Undo2, Volume2, Wand2, X, ZoomIn, ZoomOut } from "lucide-react";
+import { Award, Box, Camera, Check, ChevronDown, Cuboid, Download, Eye, Filter, Grid3X3, Heart, History, Mic, PanelLeftClose, PanelLeftOpen, Palette, Pause, Play, Printer, RefreshCw, Redo2, RotateCcw, RotateCw, Ruler, Search, Settings, Shapes, SlidersHorizontal, Sparkles, Star, Undo2, Volume2, Wand2, X, ZoomIn, ZoomOut } from "lucide-react";
 import { OrbitControls, Text } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { ReactNode, useEffect, useMemo, useRef, useState, type PointerEvent } from "react";
-import { NavLink } from "react-router-dom";
 import * as THREE from "three";
 import ThreeSceneWrapper from "../components/three/ThreeSceneWrapper";
 import MathExpression from "../components/ui/MathExpression";
@@ -12,7 +11,7 @@ import TopicHeader from "../components/ui/TopicHeader";
 import { useProgress } from "../hooks/useProgress";
 import { roundTo } from "../utils/math";
 import { ContextualWorkspaceLink } from "../components/workspace/MathWorkspaceNavigation";
-import { createMathWorkspacePayload, workspaceRoute } from "../workspace/mathWorkspaces";
+import { createMathWorkspacePayload } from "../workspace/mathWorkspaces";
 import { useDialogFocus } from "../hooks/useDialogFocus";
 import { useReducedMotion } from "../hooks/useReducedMotion";
 import ShapeThumbnail from "../components/shapes/ShapeThumbnail";
@@ -65,17 +64,7 @@ type ShapeHistorySnapshot = {
 const SHAPES_PREFERENCES_KEY = "math-universe-shapes-preferences-v2";
 const unitScale: Record<ShapeUnit, number> = { units: 1, mm: 10, cm: 1, m: 0.01, in: 0.3937008 };
 
-const studioRailItems = [
-  { label: "Home", route: "/", icon: Home },
-  { label: "Workspace", route: "/workspace", icon: Layers3 },
-  { label: "Shapes", route: workspaceRoute("shapes"), icon: Cuboid },
-  { label: "Geometry", route: workspaceRoute("geometry"), icon: Triangle },
-  { label: "2D Graphs", route: workspaceRoute("graphs"), icon: LineChart },
-  { label: "3D Studio", route: workspaceRoute("geometry-3d"), icon: Box },
-  { label: "3D Graphs", route: workspaceRoute("graphs-3d"), icon: Orbit },
-  { label: "CAS", route: workspaceRoute("cas"), icon: Sigma },
-  { label: "Calculator", route: "/calculator", icon: Calculator },
-] as const;
+type DockPaneTab = "Live Values" | "Net & Cross-Sections" | "Formula Map";
 
 type ShapeFormulaEntry = {
   title: string;
@@ -174,6 +163,7 @@ export default function ShapesExplorer() {
   const reducedMotion = useReducedMotion();
   useDialogFocus(mobileInspectorOpen, inspectorRef, inspectorTriggerRef);
   const [studioTab, setStudioTab] = useState<"Explore" | "Properties" | "Formulas" | "Compare" | "Learn">("Explore");
+  const [dockTab, setDockTab] = useState<DockPaneTab>("Live Values");
   const [inspectorTab, setInspectorTab] = useState<"Dimensions" | "Formulas" | "Properties">("Dimensions");
   const [libraryFilter, setLibraryFilter] = useState<"All" | ShapeKind>("All");
   const [shapeSearch, setShapeSearch] = useState("");
@@ -367,18 +357,6 @@ export default function ShapesExplorer() {
 
   return (
     <div className={`shapes-studio-shell ${mobileInspectorOpen ? "has-mobile-inspector" : ""} ${highContrast ? "is-high-contrast" : ""} ${largeLabels ? "has-large-labels" : ""}`} onPointerDown={() => markTopicInteracted("shapes")}>
-      <aside className="shapes-studio-rail" aria-label="Math Universe navigation">
-        <div className="shapes-studio-logo"><Shapes className="h-7 w-7" /><span>Math<br />Universe</span></div>
-        <div className="shapes-rail-links thin-scrollbar">
-          {studioRailItems.map(({ label, route, icon: Icon }) => (
-            <NavLink key={label} to={route} end className={({ isActive }) => `shapes-rail-button ${isActive ? "is-active" : ""}`} title={`Open ${label}`}>
-              <Icon className="h-5 w-5" />
-              <span>{label}</span>
-            </NavLink>
-          ))}
-        </div>
-      </aside>
-
       <header className="shapes-studio-topbar">
         <div className="shapes-title-lockup">
           <button type="button" className="shapes-icon-button" onClick={() => setShapeMenuCollapsed((value) => !value)} title="Toggle shape library">
@@ -388,7 +366,12 @@ export default function ShapesExplorer() {
         </div>
         <nav className="shapes-mode-tabs" aria-label="Explorer modes">
           {(["Explore", "Properties", "Formulas", "Compare", "Learn"] as const).map((tab) => (
-            <button key={tab} type="button" className={studioTab === tab ? "is-active" : ""} onClick={() => setStudioTab(tab)}>{tab}</button>
+            <button key={tab} type="button" className={studioTab === tab ? "is-active" : ""} onClick={() => {
+              setStudioTab(tab);
+              if (tab === "Properties") setDockTab("Net & Cross-Sections");
+              else if (tab === "Formulas") setDockTab("Formula Map");
+              else if (tab === "Explore") setDockTab("Live Values");
+            }}>{tab}</button>
           ))}
         </nav>
         <div className="shapes-mobile-quick-actions"><button type="button" className="shapes-icon-button" onClick={() => setExportOpen(true)} aria-label="Export shape"><Download className="h-4 w-4" /></button><button type="button" className="shapes-icon-button" onClick={() => setSettingsOpen(true)} aria-label="Workspace settings"><Settings className="h-4 w-4" /></button><button ref={inspectorTriggerRef} type="button" className="shapes-mobile-properties shapes-icon-button" onClick={openMobileInspector} aria-haspopup="dialog" aria-expanded={mobileInspectorOpen}><SlidersHorizontal className="h-4 w-4" /><span>Properties</span></button></div>
@@ -487,16 +470,6 @@ export default function ShapesExplorer() {
           </div>
           <div role="separator" aria-label="Resize visualization height" onPointerDown={(event) => startHeightResize(event, stageHeight, setStageHeight)} className="shapes-resize-handle"><span /></div>
         </section>
-
-        <section className="shapes-bottom-dock">
-          <div className="shapes-dock-tabs">
-            {(["Live Values", "Net & Cross-Sections", "Formula Map"] as const).map((tab) => <button key={tab} type="button" className={(studioTab === "Explore" && tab === "Live Values") || (studioTab === "Properties" && tab.startsWith("Net")) || (studioTab === "Formulas" && tab === "Formula Map") ? "is-active" : ""}>{tab}</button>)}
-            <span className="shapes-live-status">Updates live</span>
-          </div>
-          <div className="shapes-dock-grid">{Object.entries(metrics).slice(0, 6).map(([label, value]) => <Metric key={label} label={label} value={converted(value, label)} suffix={metricUnit(label)} />)}</div>
-          {studioTab === "Properties" && <div className="shapes-net-strip"><NetExplorer shape={selected.id} paint={surfacePaint} progress={netProgress} /><div className="shapes-net-controls"><SliderControl density="compact" label="Fold / unfold" value={netProgress} min={0} max={100} step={5} onChange={setNetProgress} unit="%" /><SliderControl density="compact" label="Surface paint" value={surfacePaint} min={0} max={100} step={5} onChange={setSurfacePaint} unit="%" /><button type="button" onClick={() => setNetProgress(0)}>Reset net</button></div><ShapeCrossSectionControls shape={selected} axis={sliceAxis} position={slicePosition} angle={sliceAngle} onAxis={setSliceAxis} onPosition={setSlicePosition} onAngle={setSliceAngle} /></div>}
-          {studioTab === "Formulas" && <FormulaDependencyPanel shape={selected} entries={formulaEntries} highlighted={highlightedSymbol} onHighlight={setHighlightedSymbol} />}
-        </section>
         </>
         )}
       </main>
@@ -505,6 +478,17 @@ export default function ShapesExplorer() {
       <aside ref={inspectorRef} tabIndex={mobileInspectorOpen ? -1 : undefined} role={mobileInspectorOpen ? "dialog" : undefined} aria-modal={mobileInspectorOpen ? true : undefined} aria-label={mobileInspectorOpen ? `${selected.name} properties` : undefined} className={`shapes-inspector-panel mobile-sheet-${mobileInspectorSize}`}>
         <button type="button" className="shapes-mobile-sheet-drag" aria-label={`${mobileInspectorSize === "half" ? "Expand" : "Collapse"} properties sheet`} onClick={() => setMobileInspectorSize((size) => size === "half" ? "full" : "half")} onPointerDown={(event) => { inspectorDragRef.current = { y: event.clientY, size: mobileInspectorSize }; event.currentTarget.setPointerCapture(event.pointerId); }} onPointerUp={finishInspectorDrag}><span /></button>
         <button type="button" className="shapes-mobile-sheet-close" onClick={closeMobileInspector}>Close properties</button>
+        <section className="shapes-bottom-dock">
+          <div className="shapes-dock-tabs">
+            {(["Live Values", "Net & Cross-Sections", "Formula Map"] as const).map((tab) => (
+              <button key={tab} type="button" className={dockTab === tab ? "is-active" : ""} onClick={() => setDockTab(tab)}>{tab}</button>
+            ))}
+            <span className="shapes-live-status">Updates live</span>
+          </div>
+          {dockTab === "Live Values" && <div className="shapes-dock-grid">{Object.entries(metrics).slice(0, 6).map(([label, value]) => <Metric key={label} label={label} value={converted(value, label)} suffix={metricUnit(label)} />)}</div>}
+          {dockTab === "Net & Cross-Sections" && <div className="shapes-net-strip"><NetExplorer shape={selected.id} paint={surfacePaint} progress={netProgress} /><div className="shapes-net-controls"><SliderControl density="compact" label="Fold / unfold" value={netProgress} min={0} max={100} step={5} onChange={setNetProgress} unit="%" /><SliderControl density="compact" label="Surface paint" value={surfacePaint} min={0} max={100} step={5} onChange={setSurfacePaint} unit="%" /><button type="button" onClick={() => setNetProgress(0)}>Reset net</button></div><ShapeCrossSectionControls shape={selected} axis={sliceAxis} position={slicePosition} angle={sliceAngle} onAxis={setSliceAxis} onPosition={setSlicePosition} onAngle={setSliceAngle} /></div>}
+          {dockTab === "Formula Map" && <FormulaDependencyPanel shape={selected} entries={formulaEntries} highlighted={highlightedSymbol} onHighlight={setHighlightedSymbol} />}
+        </section>
         <section className="shapes-inspector-card is-primary">
           <div className="shapes-panel-heading"><h2>Shape Inspector</h2><span>i</span></div>
           <div className="shapes-inspector-tabs">{(["Dimensions", "Formulas", "Properties"] as const).map((tab) => <button key={tab} type="button" className={inspectorTab === tab ? "is-active" : ""} onClick={() => setInspectorTab(tab)}>{tab}</button>)}</div>

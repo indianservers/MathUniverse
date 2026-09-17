@@ -12,6 +12,7 @@ import {
   type AlgebraTileProblem92 as Problem,
 } from "./algebraTilesLesson92Model";
 import "./AlgebraTilesTargetLesson92.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const problems = ALGEBRA_TILE_PROBLEMS_92;
 
@@ -299,6 +300,8 @@ export default function AlgebraTilesTargetLesson92({
           simplified={simplified}
         />
       </main>
+      <LessonTopicStudyBoard lessonId={92} view={tab} onInteraction={onInteraction} />
+
     </div>
   );
 }

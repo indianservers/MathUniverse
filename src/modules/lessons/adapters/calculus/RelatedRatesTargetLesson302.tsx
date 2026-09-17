@@ -14,6 +14,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./RelatedRatesTargetLesson302.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const distance = (t: number) => 2 + (4 / 9) * (t - 0.5) ** 2;
 const rate = (t: number) => (8 / 9) * (t - 0.5);
@@ -311,6 +312,8 @@ export default function RelatedRatesTargetLesson302({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={302} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

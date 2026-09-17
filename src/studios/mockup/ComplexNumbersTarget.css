@@ -1,0 +1,256 @@
+.msk-complex-numbers {
+  --cx-blue: #147df2;
+  --cx-cyan: #08b9dd;
+  --cx-violet: #8b45f4;
+  --cx-gold: #f59e0b;
+  --cx-ink: #0b1b3f;
+  grid-template-columns: 220px minmax(0, 1fr);
+}
+
+.msk-complex-numbers .msk-sidebar {
+  padding: 18px 12px;
+}
+
+.msk-complex-numbers .msk-brand {
+  font-size: 14px;
+}
+
+.msk-complex-numbers .msk-mark {
+  width: 44px;
+  height: 44px;
+  font-family: Georgia, serif;
+  font-style: italic;
+}
+
+.msk-complex-numbers .studio-home-btns,
+.msk-complex-numbers .msk-title-block > nav[aria-label="Breadcrumb"] {
+  display: none;
+}
+
+.msk-complex-numbers.is-lab .msk-dash-banner,
+.msk-complex-numbers.is-lab .p1-toolbar,
+.msk-complex-numbers.is-lab .msk-hint {
+  display: none;
+}
+
+.msk-complex-numbers .msk-tabs {
+  justify-content: flex-start;
+  margin-bottom: 10px;
+}
+
+.msk-complex-numbers .msk-tabs button {
+  min-height: 48px;
+  font-size: 11px;
+}
+
+.msk-complex-numbers .msk-lab {
+  grid-template-columns: minmax(240px, 0.72fr) minmax(480px, 1.8fr) minmax(250px, 0.88fr);
+  gap: 12px;
+}
+
+.msk-complex-numbers .msk-canvas {
+  min-width: 0;
+  overflow: hidden;
+  padding: 12px;
+}
+
+.msk-complex-numbers .cx-canvas-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.msk-complex-numbers .cx-canvas-head h2 {
+  margin: 0;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+}
+
+.msk-complex-numbers .cx-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+  color: #475569;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.msk-complex-numbers .cx-legend i {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 6px;
+  border-radius: 99px;
+}
+
+.msk-complex-numbers .cx-axis {
+  fill: none;
+  stroke: #25334a;
+  stroke-width: 1.4;
+}
+
+.msk-complex-numbers .msk-graph,
+.msk-complex-numbers .cx-mini-art {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.msk-complex-numbers .msk-graph.is-interactive,
+.msk-complex-numbers .cx-mini-art.is-interactive {
+  touch-action: none;
+  cursor: crosshair;
+}
+
+.msk-complex-numbers .cx-form-rail {
+  display: grid;
+  gap: 8px;
+}
+
+.msk-complex-numbers .cx-form-rail output {
+  display: block;
+  padding: 8px 10px;
+  border: 1px solid #dce7f4;
+  border-radius: 10px;
+  background: #fff;
+  font-family: Georgia, serif;
+}
+
+.msk-complex-numbers .msk-formula {
+  margin: 8px 0 0;
+  padding: 10px;
+  border-radius: 10px;
+  background: #eef9ff;
+  color: #0b4a6f;
+  font-family: Georgia, serif;
+  text-align: center;
+}
+
+.msk-complex-numbers .msk-home.cx-home {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 330px;
+  gap: 14px;
+}
+
+.msk-complex-numbers .cx-map {
+  min-height: 168px;
+  margin-bottom: 14px;
+  padding: 12px 28px;
+  display: grid;
+  grid-template-columns: 1fr 140px 1fr;
+  align-items: center;
+  gap: 16px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: linear-gradient(90deg, #fff, #f8fbff, #fff);
+}
+
+.msk-complex-numbers .cx-map-core {
+  width: 128px;
+  height: 128px;
+  margin: auto;
+  border: 1px solid #d9e7f6;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  box-shadow: 0 12px 30px #5074aa1a;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  font-weight: 900;
+}
+
+.msk-complex-numbers .cx-map-core .msk-mark {
+  margin-bottom: 4px;
+}
+
+.msk-complex-numbers .cx-map-group {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(110px, 1fr));
+  gap: 8px;
+}
+
+.msk-complex-numbers .cx-map-group a {
+  min-height: 40px;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: var(--ink);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.msk-complex-numbers .cx-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 220px;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.msk-complex-numbers .cx-hero svg {
+  width: 100%;
+  height: 96px;
+  border-radius: 16px;
+  background: #f8fbff;
+}
+
+.msk-complex-numbers .msk-launch-complex-numbers {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.msk-complex-numbers .msk-card[data-lab-id] {
+  min-height: 188px;
+}
+
+.msk-complex-numbers .msk-card-premium em {
+  color: var(--cx-blue);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 800;
+}
+
+.msk-complex-numbers .msk-dual-dark {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.msk-complex-numbers .msk-dual-dark .msk-graph {
+  max-height: 220px;
+}
+
+@media (max-width: 1180px) {
+  .msk-complex-numbers .msk-lab,
+  .msk-complex-numbers .msk-home.cx-home,
+  .msk-complex-numbers .cx-hero,
+  .msk-complex-numbers .cx-map {
+    grid-template-columns: 1fr;
+  }
+
+  .msk-complex-numbers .msk-launch-complex-numbers {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .msk-complex-numbers .msk-launch-complex-numbers,
+  .msk-complex-numbers .cx-map-group {
+    grid-template-columns: 1fr;
+  }
+}

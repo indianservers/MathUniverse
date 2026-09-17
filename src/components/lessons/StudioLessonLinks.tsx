@@ -8,7 +8,7 @@ import type { LessonDefinition } from "../../modules/lessons/types";
 
 const totalLessonCount = lessonCatalog.length + schoolLessonCatalog.length + advancedConceptLessons.length;
 
-type StudioConfig = { name: string; description: string; terms: string[] };
+type StudioConfig = { name: string; description: string; terms: string[]; exclude?: string[]; pinRoutes?: string[]; maxVisible?: number };
 const studioConfigs: Record<string, StudioConfig> = {
   all: { name: "Math Universe", description: "Jump from any interactive studio into a connected lesson, school pathway, or advanced concept.", terms: [""] },
   algebra: { name: "Algebra Studio", description: "Expressions, equations, functions, polynomials, systems, and sequences.", terms: ["algebra", "expression", "equation", "polynomial", "quadratic", "sequence", "exponent", "logarithm"] },
@@ -18,7 +18,18 @@ const studioConfigs: Record<string, StudioConfig> = {
   statistics: { name: "Probability & Statistics Studio", description: "Data, distributions, probability, sampling, and inference.", terms: ["statistics", "probability", "data", "distribution", "sampling", "inference", "regression", "bayesian"] },
   vectors: { name: "Vectors & 3D Studio", description: "Vectors, matrices, transformations, planes, and three-dimensional geometry.", terms: ["vector", "matrix", "matrices", "linear algebra", "three dimensional", "3d", "determinant", "plane"] },
   sets: { name: "Set Theory & Relations Studio", description: "Sets, relations, functions, logic, and finite structures.", terms: ["set", "relation", "function", "logic", "discrete", "mapping", "proof"] },
-  numbers: { name: "Number Systems Studio", description: "Integers, rationals, real numbers, powers, roots, and arithmetic.", terms: ["number", "integer", "rational", "fraction", "decimal", "percentage", "power", "root", "arithmetic"] },
+  numbers: {
+    name: "Number Systems Studio",
+    description: "Integers, rationals, real numbers, surds, and decimal expansion.",
+    terms: ["rational number", "irrational", "real number", "number system", "natural number", "whole number", "integer", "surd", "decimal expansion", "place value", "hcf", "gcd", "lcm", "prime factor", "terminating"],
+    exclude: ["complex", "calculus", "integral", "derivative", "type i", "type ii", "newton", "box plot", "regression", "partial fraction", "power series", "power of a test"],
+    pinRoutes: [
+      "/lessons/numbers-and-arithmetic/60-rational-numbers",
+      "/lessons/numbers-and-arithmetic/61-irrational-numbers",
+      "/lessons/numbers-and-arithmetic/62-real-numbers",
+    ],
+    maxVisible: 12,
+  },
   discrete: { name: "Discrete Mathematics Studio", description: "Combinatorics, graph theory, logic, algorithms, and applied mathematics.", terms: ["discrete", "combinatorics", "permutation", "combination", "graph theory", "logic", "set", "algorithm"] },
   complex: { name: "Complex Numbers Studio", description: "Complex-plane geometry, polar form, roots, and transformations.", terms: ["complex", "imaginary", "polar", "root", "number"] },
 };
@@ -126,13 +137,26 @@ export function StudioLessonLinks({ pathname }: { pathname: string }) {
     const interactive = lessonCatalog.filter((lesson) => matchesStudioTerms(searchable(lesson), terms) || matchesStudioTerms(`${taxonomyForInteractiveLesson(lesson).category} ${taxonomyForInteractiveLesson(lesson).subcategory} ${taxonomyForInteractiveLesson(lesson).tags.join(" ")}`, terms)).map((lesson) => ({ key: `i-${lesson.id}`, title: lesson.title, route: lesson.route, track: lesson.category, description: lesson.topic }));
     const school = schoolLessonCatalog.filter((lesson) => { const taxonomy = taxonomyForSchoolLesson(lesson); return matchesStudioTerms(`${taxonomy.category} ${taxonomy.subcategory} ${taxonomy.tags.join(" ")}`, terms); }).map((lesson) => ({ key: `s-${lesson.id}`, title: lesson.title, route: lesson.route, track: `${lesson.metadata.academicLevel.replace("_", " ")} · School`, description: lesson.metadata.conceptFamily }));
     const advanced = advancedConceptLessons.filter((lesson) => { const taxonomy = taxonomyForAdvancedLesson(lesson); return matchesStudioTerms(`${taxonomy.category} ${taxonomy.subcategory} ${taxonomy.tags.join(" ")}`, terms); }).map((lesson) => ({ key: `a-${lesson.id}`, title: lesson.title, route: lesson.route, track: `Advanced · ${lesson.strand}`, description: lesson.summary }));
-    return [...interactive, ...school, ...advanced].sort((a, b) => a.title.localeCompare(b.title));
+    const ranked = [...interactive, ...school, ...advanced].filter((lesson) => {
+      const hay = `${lesson.title} ${lesson.track} ${lesson.description}`.toLowerCase();
+      if (config.exclude?.some((term) => hay.includes(term))) return false;
+      return true;
+    });
+    const pin = config.pinRoutes ?? [];
+    ranked.sort((a, b) => {
+      const pinA = pin.findIndex((route) => a.route === route);
+      const pinB = pin.findIndex((route) => b.route === route);
+      if (pinA !== -1 || pinB !== -1) return (pinA === -1 ? 99 : pinA) - (pinB === -1 ? 99 : pinB);
+      return a.title.localeCompare(b.title);
+    });
+    return ranked;
   }, [config]);
   if (!config) return null;
   const filtered = lessons.filter((lesson) => `${lesson.title} ${lesson.track} ${lesson.description}`.toLowerCase().includes(query.trim().toLowerCase()));
+  const visible = query.trim() ? filtered : filtered.slice(0, config.maxVisible ?? filtered.length);
   return <section className="studio-lesson-links" aria-label={`${config.name} lessons`}>
     <div className="studio-lesson-links-header"><div><p className="studio-eyebrow"><BookOpen /> Lesson path</p><h2>Lessons for this studio</h2><p>{config.description}</p></div><Link className="action-secondary" to="/lessons">Browse all {totalLessonCount} lessons <ArrowUpRight /></Link></div>
-    <div className="studio-lesson-links-tools"><span>{lessons.length} relevant lessons</span><label><Search /><span className="sr-only">Search studio lessons</span><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Filter lessons…" /></label></div>
-    <div className="studio-lesson-links-list">{filtered.map((lesson) => <Link key={lesson.key} to={lesson.route} className="studio-lesson-link"><span><strong>{lesson.title}</strong><small>{lesson.track} · {lesson.description}</small></span><ArrowUpRight /></Link>)}{!filtered.length && <p className="studio-lesson-empty">No lessons match that filter.</p>}</div>
+    <div className="studio-lesson-links-tools"><span>{lessons.length} relevant lessons{visible.length < filtered.length ? ` · showing ${visible.length}` : ""}</span><label><Search /><span className="sr-only">Search studio lessons</span><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Filter lessons…" /></label></div>
+    <div className="studio-lesson-links-list">{visible.map((lesson) => <Link key={lesson.key} to={lesson.route} className="studio-lesson-link"><span><strong>{lesson.title}</strong><small>{lesson.track} · {lesson.description}</small></span><ArrowUpRight /></Link>)}{!visible.length && <p className="studio-lesson-empty">No lessons match that filter.</p>}</div>
   </section>;
 }

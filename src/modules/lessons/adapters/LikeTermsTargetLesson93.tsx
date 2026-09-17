@@ -22,6 +22,7 @@ import {
   type LikeTermsProblem93 as LikeProblem,
 } from "./likeTermsLesson93Model";
 import "./LikeTermsTargetLesson93.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const signed = signedLikeConstant93;
 const originalExpression = originalLikeExpression93;
@@ -531,6 +532,8 @@ export default function LikeTermsTargetLesson93({
           M&nbsp;&nbsp;&nbsp;&nbsp;T&nbsp;&nbsp;&nbsp;&nbsp;W&nbsp;&nbsp;&nbsp;&nbsp;T&nbsp;&nbsp;&nbsp;&nbsp;F&nbsp;&nbsp;&nbsp;&nbsp;S&nbsp;&nbsp;&nbsp;&nbsp;S
         </small>
       </aside>
+      <LessonTopicStudyBoard lessonId={93} view={tab} onInteraction={onInteraction} />
+
     </div>
   );
 }

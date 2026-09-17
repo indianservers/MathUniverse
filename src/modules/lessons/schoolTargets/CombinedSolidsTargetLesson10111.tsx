@@ -12,6 +12,7 @@ import { DoubleSide } from "three";
 import ThreeSceneWrapper from "../../../components/three/ThreeSceneWrapper";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./CombinedSolidsTargetLesson10111.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const f2 = (value: number) => Number(value.toFixed(2));
 function SolidScene({
@@ -423,6 +424,8 @@ export default function CombinedSolidsTargetLesson10111({
         <b>Best classroom move:</b> Ask learners to change a dimension and
         predict how volume and exposed surface area change.
       </footer>
+      <LessonTopicStudyBoard lessonId={10111} alwaysVisible />
+
     </section>
   );
 }

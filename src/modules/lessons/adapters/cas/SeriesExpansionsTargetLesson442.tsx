@@ -11,6 +11,7 @@ import {
 import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./SeriesExpansionsTargetLesson442.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 type Fn = "exp" | "sin" | "cos";
 type Feedback = "idle" | "correct" | "incorrect";
 export default function SeriesExpansionsTargetLesson442({
@@ -308,6 +309,8 @@ export default function SeriesExpansionsTargetLesson442({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={442} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

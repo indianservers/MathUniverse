@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import type { LessonAdapterProps } from "../types";
 import "./TrigonometricFunctionsTargetLesson144.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const TAU = Math.PI * 2;
 const clean = (value: number) =>
@@ -826,6 +827,8 @@ export default function TrigonometricFunctionsTargetLesson144({
           Tips
         </button>
       </footer>
+      <LessonTopicStudyBoard lessonId={144} view={tab} onInteraction={onInteraction} />
+
     </div>
   );
 }

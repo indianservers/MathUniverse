@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./VerticalAnglesTargetLesson10058.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const tabs = ["Interact", "Learn", "Example", "Formula", "Practice"];
 
@@ -200,6 +201,8 @@ export default function VerticalAnglesTargetLesson10058({
           <span>Linear pairs sum to 180°</span>
         </div>
       </section>
+      <LessonTopicStudyBoard lessonId={10058} view={tab} />
+
     </section>
   );
 }

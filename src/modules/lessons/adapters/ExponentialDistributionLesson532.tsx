@@ -17,6 +17,7 @@ import {
   simulateExponentialArrivals,
 } from "./exponentialLessonModel";
 import "./ExponentialDistributionLesson532.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 export default function ExponentialDistributionLesson532({
   resetToken,
@@ -414,6 +415,8 @@ function ExponentialActivity({
         </button>
         <span>Previous: F Distribution &nbsp; Next: Gamma Distribution</span>
       </footer>
+      <LessonTopicStudyBoard lessonId={532} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

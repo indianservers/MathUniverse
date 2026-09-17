@@ -10,6 +10,8 @@ import { type PointerEvent, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./OppositeCyclicAnglesTargetLesson10095.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+import { LessonGraphInkLegend, lessonGraphInkProps } from "../graphs/LessonGraphInk";
 
 type Name = "A" | "B" | "C" | "D";
 type Point = { x: number; y: number };
@@ -234,12 +236,14 @@ export default function OppositeCyclicAnglesTargetLesson10095({
               ref={svgRef}
               viewBox="0 0 684 500"
               aria-label="Draggable cyclic quadrilateral and opposite angles"
+              {...lessonGraphInkProps}
               onPointerMove={(event) =>
                 dragging && setPoint(dragging, pointerAngle(event))
               }
               onPointerUp={() => dragging && act(() => setDragging(null))}
               onPointerLeave={() => dragging && act(() => setDragging(null))}
             >
+              <LessonGraphInkLegend />
               <circle className="circle" cx={cx} cy={cy} r={radius} />
               <polygon className="quad" points={polygon} />
               {showCenter && (
@@ -543,6 +547,8 @@ export default function OppositeCyclicAnglesTargetLesson10095({
           </Link>
         </nav>
       </main>
+      <LessonTopicStudyBoard lessonId={10095} view={tab} />
+
     </section>
   );
 }

@@ -1,22 +1,9 @@
 import { Clock3, Gauge, Share2 } from "lucide-react";
 import { ReactNode, useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { shareStudio } from "../../utils/shareStudio";
 import { StudioLessonLinks } from "../lessons/StudioLessonLinks";
-
-const breadcrumbRoutes: Record<string, string> = {
-  Home: "/", "Math Topics": "/learn", Studio: "/math-lab",
-  "Number & Discrete Mathematics": "/discrete-world",
-  "Discrete Mathematics": "/discrete-world",
-  Practice: "/quiz", Algebra: "/algebra",
-  "Complex Numbers": "/complex-numbers", Combinatorics: "/combinatorics",
-  "Daily Challenge": "/daily-challenge", Matrices: "/matrices", Operations: "/matrices",
-  "Number Systems": "/number-systems", "Probability & Statistics": "/statistics",
-  "Set Theory": "/set-theory", "Set Theory and Relations": "/set-theory",
-  "Mathematical Logic": "/mathematical-logic", Logic: "/mathematical-logic",
-  "Worked Examples": "/worked-examples", "Mathematical Modelling": "/mathematical-modelling",
-  "Advanced Workbench": "/mathematical-modelling/advanced", "Project Center": "/studio-projects",
-};
+import StudioBreadcrumb, { resolveStudioCrumbs, type StudioCrumb } from "./StudioBreadcrumb";
 
 export type StudioStatusChip = {
   id: string;
@@ -29,7 +16,7 @@ export type StudioPageShellProps = {
   title: string;
   titleBadge?: ReactNode;
   subtitle: string;
-  breadcrumbs?: string[];
+  breadcrumbs?: Array<string | StudioCrumb>;
   difficulty?: string;
   estimatedMinutes?: number;
   progress?: number;
@@ -81,19 +68,7 @@ export default function StudioPageShell({
       {showHeader ? (
         <header className="studio-shell-header">
           <div className="studio-shell-title">
-            {breadcrumbs.length ? (
-              <nav aria-label="Breadcrumb">
-                {breadcrumbs.map((item, index) => (
-                  <span key={`${item}-${index}`}>
-                    {index > 0 && <b aria-hidden="true">&gt;</b>}
-                    <Link to={breadcrumbRoutes[item] ?? pathname}
-                      aria-current={(breadcrumbRoutes[item] ?? pathname) === pathname ? "page" : undefined}>
-                      {item}
-                    </Link>
-                  </span>
-                ))}
-              </nav>
-            ) : null}
+            {breadcrumbs.length ? <StudioBreadcrumb crumbs={resolveStudioCrumbs(breadcrumbs, pathname)} /> : null}
             <div className="studio-shell-heading">
               <h1>{title}</h1>
               {titleBadge}

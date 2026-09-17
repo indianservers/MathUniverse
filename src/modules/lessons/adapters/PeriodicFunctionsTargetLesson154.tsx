@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import type { LessonAdapterProps } from "../types";
 import "./PeriodicFunctionsTargetLesson154.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type LessonTab = "explore" | "understand" | "examples" | "practice" | "summary";
 const clamp = (value: number, min: number, max: number, step = 0.01) =>
@@ -696,6 +697,8 @@ export default function PeriodicFunctionsTargetLesson154({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={154} view={tab} onInteraction={onInteraction} />
+
     </div>
   );
 }

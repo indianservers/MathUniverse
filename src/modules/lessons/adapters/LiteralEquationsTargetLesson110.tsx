@@ -25,6 +25,7 @@ import {
   type LiteralFormula110 as FormulaDefinition,
 } from "./literalEquationsLesson110Model";
 import "./LiteralEquationsTargetLesson110.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const formatNumber = (value: number) =>
   Number.isInteger(value)
@@ -646,6 +647,8 @@ export default function LiteralEquationsTargetLesson110({
         <p>© 2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.</p>
         <small>www.IndianServers.com · info@IndianServers.com</small>
       </footer>
+      <LessonTopicStudyBoard lessonId={110} view={activeTab} onInteraction={onInteraction} />
+
     </div>
   );
 }

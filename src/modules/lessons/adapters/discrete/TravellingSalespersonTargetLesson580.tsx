@@ -4,6 +4,7 @@ import type { PointerEvent } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "../geometry3d/CoordinateSystemTargetLesson378.css";
 import "./TravellingSalespersonTargetLesson580.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type City = { id: string; x: number; y: number };
 const cities: City[] = [
@@ -470,6 +471,8 @@ export default function TravellingSalespersonTargetLesson580({
           -&gt;
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={580} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

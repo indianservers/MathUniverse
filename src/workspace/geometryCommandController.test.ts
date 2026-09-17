@@ -1,10 +1,12 @@
 import { describe, expect, it } from "vitest";
 import {
   createGeometryTransformRequest,
+  createdGeometryFromDelta,
   createNoSelectionDeleteAction,
   deleteGeometryObjectFromConstruction,
   deleteGeometrySelection,
   geometryObjectBySelection,
+  geometryObjectForPointIds,
   patchGeometryObject,
   pointById,
   pointIdsForObject,
@@ -112,6 +114,15 @@ describe("geometry command controller", () => {
     }
     expect(shortcut.actionName).toBe("Delete selection");
     expect(shortcut.preservesState).toBe(true);
+  });
+
+  it("resolves a polygon from its vertex ids and created objects from construction deltas", () => {
+    const construction = cloneFixture();
+    const empty: Construction = { ...construction, points: [], lines: [], circles: [], polygons: [], arcs: [], loci: [], constraints: [] };
+    const created = createdGeometryFromDelta(empty, construction);
+
+    expect(geometryObjectForPointIds(construction, ["B", "C"])).toEqual({ type: "polygon", id: "poly-abcd" });
+    expect(created).toEqual({ object: { type: "polygon", id: "poly-abcd" }, pointIds: ["A", "B", "C", "D"] });
   });
 
   it("creates transform requests from selected points or selected objects", () => {

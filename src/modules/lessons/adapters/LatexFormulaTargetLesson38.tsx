@@ -10,6 +10,7 @@ import {
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./LatexFormulaTargetLesson38.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const sourceFor = (exponent: number) => `x^{${exponent}}+3x+2`;
 const INITIAL = sourceFor(2);
@@ -412,6 +413,8 @@ export default function LatexFormulaTargetLesson38({
           www.IndianServers.com info@IndianServers.com
         </small>
       </footer>
+      <LessonTopicStudyBoard lessonId={38} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

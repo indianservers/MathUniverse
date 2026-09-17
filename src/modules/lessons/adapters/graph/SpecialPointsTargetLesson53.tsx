@@ -18,6 +18,7 @@ import {
   type Point53,
 } from "./specialPointsLesson53Model";
 import "./SpecialPointsTargetLesson53.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Layer53 = "roots" | "yIntercept" | "vertex" | "intersections" | "turning";
 type LayerState53 = Record<Layer53, boolean>;
@@ -391,6 +392,8 @@ export default function SpecialPointsTargetLesson53({
           →
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={53} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

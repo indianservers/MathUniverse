@@ -106,10 +106,12 @@ import {
 } from "../workspace/portableWorkspace";
 import {
   createGeometryTransformRequest,
+  createdGeometryFromDelta,
   createNoSelectionDeleteAction,
   deleteGeometryObjectFromConstruction,
   deleteGeometrySelection,
   geometryObjectBySelection,
+  geometryObjectForPointIds,
   patchGeometryObject,
   pointById,
   pointIdsForObject,
@@ -119,6 +121,7 @@ import {
   type GeoPoint,
   type GeoStyle,
   type GeometryObjectType,
+  type GeometryTransformMode,
   type SelectedGeometryObject,
 } from "../workspace/geometryCommandController";
 import {
@@ -719,11 +722,45 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   };
 
   const selectGeometryTool = (nextTool: GeometryTool) => {
+    const transformMode = geometryTransformToolMode(nextTool);
+    if (transformMode) {
+      const applied = applyGeometryFigureTransform(transformMode);
+      if (applied) {
+        setTool("select");
+        return;
+      }
+      setTool(nextTool);
+      setSelectedPointIds([]);
+      setPolygonDraft([]);
+      setGeometryObjectPicks([]);
+      setProjectStatus(`${geometryToolLabel(nextTool)} ready. Click a shape, or pick points on the board.`);
+      return;
+    }
     setTool(nextTool);
     setSelectedPointIds([]);
     setPolygonDraft([]);
     setGeometryObjectPicks([]);
     if (nextTool !== "select") setProjectStatus(`${geometryToolLabel(nextTool)} ready.`);
+  };
+
+  const applyGeometryFigureTransform = (mode: GeometryTransformMode, explicitPointIds?: string[]) => {
+    const request = createGeometryTransformRequest(construction, selectedGeometry, selectedPointIds, mode);
+    const uniqueIds = explicitPointIds?.length
+      ? Array.from(new Set(explicitPointIds))
+      : request.ok
+        ? request.value.pointIds
+        : construction.points.map((point) => point.id);
+    if (!uniqueIds.length) {
+      setProjectStatus("Create or select a shape first, then use Rotate 45, Mirror, Dilate, or Translate.");
+      return false;
+    }
+    recordWorkspaceStep(`Transform selected ${mode}`, `${uniqueIds.length} point${uniqueIds.length === 1 ? "" : "s"} updated.`);
+    setConstruction((current) => solveConstruction(buildSelectedPointsTransform(current, uniqueIds, mode).construction));
+    setSelectedPointIds(uniqueIds);
+    const transformedObject = selectedGeometry ?? geometryObjectForPointIds(construction, uniqueIds);
+    if (transformedObject) setSelectedGeometry(transformedObject);
+    setProjectStatus(`${geometryToolLabel(mode === "mirror" ? "mirror" : mode)} applied to ${uniqueIds.length} point${uniqueIds.length === 1 ? "" : "s"}.`);
+    return true;
   };
 
   const handleImageUpload = (fileList: FileList | null) => {
@@ -831,7 +868,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
       return;
     }
     if (["image", "delete", "redo", "reset", "save", "load"].includes(tool)) return;
-    const quickCreateTools: GeometryTool[] = ["text", "rectangle", "square", "pentagon-shape", "hexagon", "parallelogram", "trapezoid", "rhombus", "kite", "shape-circle", "semicircle", "parabola", "ellipse", "hyperbola"];
+    const quickCreateTools: GeometryTool[] = ["text", "triangle", "rectangle", "square", "pentagon-shape", "hexagon", "parallelogram", "trapezoid", "rhombus", "kite", "shape-circle", "semicircle", "parabola", "ellipse", "hyperbola"];
     if (quickCreateTools.includes(tool)) {
       const point = clientToBoard(event);
       if (point) createQuickGeometryObject(tool, point.x, point.y);
@@ -937,6 +974,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   const createQuickGeometryObject = (shapeTool: GeometryTool, x: number, y: number) => {
     recordWorkspaceStep("Create geometry tool object", `${shapeTool} added from tool plate.`);
     setConstruction((current) => {
+      const next = ((): Construction => {
       const base = current.points.length;
       const makePoint = (px: number, py: number, offset: number, style?: GeoStyle): GeoPoint => ({
         id: crypto.randomUUID(),
@@ -1010,6 +1048,13 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
         return { x: x + t * 125, y: y + (t === 0 ? 0 : 42 / t) };
       });
       return solveConstruction({ ...current, loci: [...current.loci, { id: crypto.randomUUID(), label: shapeTool, points: curvePoints, style: { color: shapeTool === "ellipse" ? "#22d3ee" : shapeTool === "hyperbola" ? "#f97316" : shapeTool === "semicircle" ? "#10b981" : "#a78bfa", strokeWidth: 4 } }] });
+      })();
+      const created = createdGeometryFromDelta(current, next);
+      Promise.resolve().then(() => {
+        if (created.object) setSelectedGeometry(created.object);
+        if (created.pointIds.length) setSelectedPointIds(created.pointIds);
+      });
+      return next;
     });
     setTool("select");
   };
@@ -1066,6 +1111,14 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
 
   const consumeGeometryToolObject = (activeTool: GeometryTool, object: SelectedGeometryObject, constructionContext: Construction) => {
     setSelectedGeometry(object);
+    const transformMode = geometryTransformToolMode(activeTool);
+    if (transformMode) {
+      const ids = pointIdsForObject(constructionContext, object);
+      if (ids.length && applyGeometryFigureTransform(transformMode, ids)) {
+        setTool("select");
+        return;
+      }
+    }
     if (activeTool === "intersect" && (object.type === "line" || object.type === "circle")) {
       const next = [...geometryObjectPicks.filter((item) => !(item.type === object.type && item.id === object.id)), object].slice(-2);
       setGeometryObjectPicks(next);
@@ -1401,7 +1454,10 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
     });
   };
 
-  const deleteGeometryObject = (object = selectedGeometry) => {
+  const resolveSelectedGeometryObject = (object = selectedGeometry) =>
+    object ?? geometryObjectForPointIds(construction, selectedPointIds);
+
+  const deleteGeometryObject = (object = resolveSelectedGeometryObject()) => {
     if (!object) return;
     recordWorkspaceStep("Delete geometry object", `${object.type} removed.`);
     setConstruction((current) => {
@@ -1487,7 +1543,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
     setContextMenu(null);
   };
 
-  const toggleGeometryLock = (object = selectedGeometry) => {
+  const toggleGeometryLock = (object = resolveSelectedGeometryObject()) => {
     if (!object) return;
     recordWorkspaceStep("Toggle geometry lock", `${object.type} lock changed.`);
     setLockedGeometryIds((current) => current.includes(object.id) ? current.filter((id) => id !== object.id) : [...current, object.id]);
@@ -1495,8 +1551,10 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   };
 
   const toggleSelectedGeometryVisibility = () => {
-    if (!selectedGeometry) return;
-    const object = geometryObjectBySelection(construction, selectedGeometry);
+    const selection = resolveSelectedGeometryObject();
+    if (!selection) return;
+    const object = geometryObjectBySelection(construction, selection);
+    setSelectedGeometry(selection);
     updateSelectedGeometryStyle({ ...(object?.style ?? {}), visible: object?.style?.visible === false });
   };
 
@@ -1509,9 +1567,11 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   };
 
   const setSelectedGeometryTrace = (enabled: boolean) => {
-    if (!selectedGeometry) return;
-    recordWorkspaceStep(enabled ? "Start geometry trace" : "Stop geometry trace", `${selectedGeometry.type} trace ${enabled ? "enabled" : "stopped"}.`);
-    setConstruction((current) => setGeometryTrace(current, selectedGeometry, enabled));
+    const selection = resolveSelectedGeometryObject();
+    if (!selection) return;
+    setSelectedGeometry(selection);
+    recordWorkspaceStep(enabled ? "Start geometry trace" : "Stop geometry trace", `${selection.type} trace ${enabled ? "enabled" : "stopped"}.`);
+    setConstruction((current) => setGeometryTrace(current, selection, enabled));
   };
 
   const clearGeometryTrace = () => {
@@ -2233,19 +2293,8 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
     return () => document.removeEventListener("keydown", onDocumentKeyDown);
   }, [runWorkspaceShortcut]);
 
-  const transformSelectedGeometryPoints = (mode: "translate" | "rotate" | "dilate") => {
-    const request = createGeometryTransformRequest(construction, selectedGeometry, selectedPointIds, mode);
-    if (!request.ok) {
-      const { unsupported } = request;
-      setProjectStatus(unsupported.message);
-      return;
-    }
-    const transformRequest = request.value;
-    const uniqueIds = transformRequest.pointIds;
-    recordWorkspaceStep(`Transform selected ${mode}`, `${uniqueIds.length} point${uniqueIds.length === 1 ? "" : "s"} updated.`);
-    setConstruction((current) => solveConstruction(buildSelectedPointsTransform(current, uniqueIds, mode).construction));
-    setSelectedPointIds(uniqueIds);
-    setProjectStatus(`${geometryToolLabel(mode)} applied to ${uniqueIds.length} point${uniqueIds.length === 1 ? "" : "s"}.`);
+  const transformSelectedGeometryPoints = (mode: GeometryTransformMode) => {
+    applyGeometryFigureTransform(mode);
   };
 
   const activeFunctionPlot = plots.find((plot) => plot.visible !== false && (plot.kind ?? inferPlotKind(plot.expression)) === "function") ?? plots[0];
@@ -2306,25 +2355,27 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   };
 
   const resizeSelectedGeometry = (direction: "increase" | "decrease") => {
-    if (!selectedGeometry) {
+    const selection = resolveSelectedGeometryObject();
+    if (!selection) {
       setProjectStatus("Select a 2D geometry object before resizing.");
       return;
     }
-    if (lockedGeometryIds.includes(selectedGeometry.id)) {
+    if (lockedGeometryIds.includes(selection.id)) {
       setProjectStatus("Selected geometry object is locked.");
       return;
     }
+    setSelectedGeometry(selection);
     const factor = direction === "increase" ? 1.12 : 0.88;
-    recordWorkspaceStep("Resize geometry object", `${geometryObjectLabel(construction, selectedGeometry)} ${direction === "increase" ? "enlarged" : "reduced"}.`);
-    if (selectedGeometry.type === "point") {
-      const point = pointById(construction.points, selectedGeometry.id);
+    recordWorkspaceStep("Resize geometry object", `${geometryObjectLabel(construction, selection)} ${direction === "increase" ? "enlarged" : "reduced"}.`);
+    if (selection.type === "point") {
+      const point = pointById(construction.points, selection.id);
       const currentSize = point?.style?.size ?? 1;
       updateSelectedGeometryStyle({ ...(point?.style ?? {}), size: roundTo(Math.max(0.4, Math.min(3.5, currentSize * factor)), 2) });
       setProjectStatus(`${point?.label ?? "Point"} marker resized.`);
       return;
     }
-    setConstruction((current) => resizeGeometryObjectInConstruction(current, selectedGeometry, factor));
-    setProjectStatus(`${geometryObjectLabel(construction, selectedGeometry)} resized.`);
+    setConstruction((current) => resizeGeometryObjectInConstruction(current, selection, factor));
+    setProjectStatus(`${geometryObjectLabel(construction, selection)} resized.`);
   };
   const exportCasNotebook = () => {
     const blob = new Blob([casNotebookExport], { type: "text/markdown;charset=utf-8" });
@@ -3004,14 +3055,6 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
                   onDelete={deleteSelectedImage}
                 />
                 <ConstructionProtocolPanel protocol={protocol} onReplay={restoreProtocolSnapshot} />
-                <UnifiedWorkspacePanel
-                  objects={unifiedWorkspaceObjects}
-                  selectedObject={unifiedSelectedObject}
-                  selectedObjectId={unifiedSelectedObjectId}
-                  selectedObjectIds={unifiedSelectedObjectIds}
-                  onObjectAction={handleUnifiedObjectAction}
-                  onObjectChange={handleUnifiedObjectChange}
-                />
                 <Measurements construction={construction} />
                 <ConstraintPanel construction={construction} />
               </>
@@ -8397,7 +8440,7 @@ function ConstructionHelp({ tool }: { tool: GeometryTool }) {
     image: "Opens the image picker and places the image on the geometry board.",
     "move-canvas": "Move-canvas mode keeps construction objects unchanged while you inspect the board.",
     zoom: "Use the dedicated plus and minus controls or the mouse wheel to zoom without changing the construction.",
-    triangle: "Click three vertices to draw an editable triangle.",
+    triangle: "Click the board to insert an editable triangle.",
     rectangle: "Click the board to insert an editable rectangle.",
     square: "Click the board to insert an editable square.",
     "pentagon-shape": "Click the board to insert an editable regular pentagon.",
@@ -8428,11 +8471,11 @@ function ConstructionHelp({ tool }: { tool: GeometryTool }) {
     arc: "Click center, start, and end points to create an arc.",
     sector: "Click center, start, and end points to create a sector.",
     compass: "Click two points for radius, then a center point for a compass circle.",
-    mirror: "Click the point to mirror, then two points defining the mirror line.",
-    reflect: "Click the point to reflect, then two points defining the mirror line.",
-    rotate: "Click the point to rotate, then the center point. A 45 degree rotated point is created.",
-    dilate: "Click the point to dilate, then the center point. A 1.5x dilated point is created.",
-    translate: "Click the point to translate, then the vector start and vector end points.",
+    mirror: "Click Mirror to flip the selected shape across a vertical axis through its center. With no selection, the whole figure is mirrored. Or pick a point and two axis points to copy one mirrored point.",
+    reflect: "Click Reflect to flip the selected shape across a vertical axis through its center.",
+    rotate: "Click Rotate 45 to rotate the selected shape 45° around its center. With no selection, the whole figure rotates. Or pick a point, then a center, to copy one rotated point.",
+    dilate: "Click Dilate 1.5x to enlarge the selected shape from its center. With no selection, the whole figure scales. Or pick a point, then a center, to copy one dilated point.",
+    translate: "Click Translate to nudge the selected shape. With no selection, the whole figure moves. Or pick a point and a vector to copy one translated point.",
     trace: "Turns trace on for the selected object and records point motion as a locus.",
     "stop-trace": "Stops recording while keeping the visible trace path.",
     "clear-trace": "Removes generated trace paths and clears trace flags.",
@@ -8458,6 +8501,14 @@ function ConstructionHelp({ tool }: { tool: GeometryTool }) {
 
 function geometryToolLabel(tool: GeometryTool) {
   return geometryPaletteGroups.flatMap((group) => group.tools).find((item) => item.id === tool)?.label ?? tool.replace(/-/g, " ");
+}
+
+function geometryTransformToolMode(tool: GeometryTool): GeometryTransformMode | null {
+  if (tool === "rotate") return "rotate";
+  if (tool === "dilate") return "dilate";
+  if (tool === "translate") return "translate";
+  if (tool === "mirror" || tool === "reflect") return "mirror";
+  return null;
 }
 
 function geometryToolExpectedPick(tool: GeometryTool) {

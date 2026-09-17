@@ -2,6 +2,7 @@ import { EyeOff, Lightbulb, TriangleAlert } from "lucide-react";
 import { useMemo, useState } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./PrincipalSolutionsTargetLesson10127.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type EqKey = "cos-neg-root" | "sin-half" | "cos-zero" | "tan-one";
 type IntervalKey = "zero-two" | "neg-pos" | "zero-pi";
@@ -318,6 +319,8 @@ export default function PrincipalSolutionsTargetLesson10127({
           to report only principal solutions.
         </p>
       </aside>
+      <LessonTopicStudyBoard lessonId={10127} alwaysVisible />
+
     </section>
   );
 }

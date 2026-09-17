@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./CoordinateSystemTargetLesson378.css";
 import "./ContourCurvesTargetLesson420.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 const PI = Math.PI,
   fn = (x: number, y: number) => Math.sin(x) * Math.cos(y),
@@ -300,6 +301,8 @@ export default function ContourCurvesTargetLesson420({
           CAS-style tools, and classroom-ready activities.
         </p>
       </footer>
+      <LessonTopicStudyBoard lessonId={420} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

@@ -4,6 +4,7 @@ import { ArrowLeft,ArrowRight,RotateCcw,Expand,Shrink,LocateFixed,Trophy,Lightbu
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import { cornerPointModel } from "./cornerPointModel";
 import "./CornerPointTargetLesson10202.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 const display=(n:number)=>Number(n.toFixed(2));
 export default function CornerPointTargetLesson10202({lesson}:{lesson:SchoolSyllabusLesson}) {
   const [c1,setC1]=useState(6),[c2,setC2]=useState(8),[cx,setCx]=useState(3),[cy,setCy]=useState(2),[z,setZ]=useState(12);
@@ -44,5 +45,7 @@ export default function CornerPointTargetLesson10202({lesson}:{lesson:SchoolSyll
     <section id="cp-Learn" className="cp-learning"><article><h2><Lightbulb size={20}/>WHY VERTICES?</h2><p>A linear objective over a nonempty bounded convex polygon reaches an optimum at a vertex.</p></article><article id="cp-Rule"><h2><List size={20}/>CORNER-POINT METHOD (3 STEPS)</h2><ol><li>Graph the constraints and identify the feasible region.</li><li>Find the vertices.</li><li>Evaluate Z at each vertex and compare the values.</li></ol></article><article><h2><Star size={20}/>KEY INSIGHT</h2><p>Move the objective line outward until it last touches the feasible region. An entire edge can be optimal when the objective is parallel to it.</p></article></section>
     <section id="cp-Practice" className="cp-practice"><h2>QUICK PRACTICE</h2><p>For the default feasible region, maximize Z = 2x + y.</p><div role="radiogroup" aria-label="Practice optimum">{practiceOrder.map((id,i)=><label key={id}><input type="radio" name="corner-practice" checked={answer===id} onChange={()=>{setAnswer(id);setGraded(false);}}/>{String.fromCharCode(65+i)} At {practice.vertices[id].label} ({practice.vertices[id].point.join(", ")})</label>)}<button onClick={()=>setGraded(true)}>Check answer</button></div>{graded&&<p role="status">{answer!==null&&practice.best.includes(practice.vertices[answer])?"Correct: maximum Z = 12 at (6, 0).":"Try evaluating 2x + y at all four vertices."}</p>}</section>
     <nav className="cp-next"><Link to="/lessons/school/class-12/class-12-linear-programming-feasible-region"><ArrowLeft size={14}/>Previous: Feasible Region</Link><Link to="/lessons/school/class-12/class-12-linear-programming-bounded-feasible-region">Next: Bounded Feasible Region<ArrowRight size={14}/></Link></nav>
+      <LessonTopicStudyBoard lessonId={10202} view={tab} />
+
   </main>;
 }

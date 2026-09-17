@@ -2,6 +2,7 @@ import { RotateCcw, Share2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./ScalarMultiplicationTargetLesson349.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 type Matrix = [[number, number], [number, number]];
 const start: Matrix = [[2, -1], [3, 4]], tabs = ["Interaction + visualization", "Explain", "Examples", "Formulas", "Know more"];
 const clean = (n:number) => Number(n.toFixed(4));
@@ -21,6 +22,8 @@ export default function ScalarMultiplicationTargetLesson349({resetToken,onIntera
     <section className="mat349-worked"><article><h3>Worked example</h3><p>Let A = [2 -1; 3 4] and k = 2.5.</p><p><b>Step 1:</b> Multiply each entry by k.</p><code>kA = 2.5[2 -1; 3 4] = [5 -2.5; 7.5 10]</code><p><b>Step 2:</b> Determinant check.</p><code>det(A) = 11; det(kA) = 2.5² x 11 = 68.75 ✓</code></article><article><h3>Key insight</h3><p>Scalar multiplication preserves the shape and direction of vectors and scales their length by |k|. Areas scale by k².</p></article></section>
     <section className="mat349-notes"><article><h3>Common misconception</h3><p>Multiplying a matrix by k multiplies every single entry, not only rows or columns.</p></article><article><h3>Assumptions / constraints</h3><p>k is a real scalar.</p><p>Matrix size is preserved.</p><p>For determinant scaling A must be square.</p></article><article><h3>Notation & summary</h3><p>Scalar multiplication: kA</p><p>Entrywise rule: (kA)<sub>ij</sub> = k a<sub>ij</sub></p><p>Determinant rule: det(kA)=kⁿdet(A)</p></article></section>
     <section className="mat349-check"><header><h3>Quick check</h3><p>If A = [1 2; -1 3] and k = -2, what is kA?</p></header><div>{["[-2,-4;2,-6]","[-2,-4;-2,-6]","[-1,-2;1,-3]","[2,4;-2,-6]"].map((v,i)=><button className={quick===(i===0?"correct":"incorrect")?quick:""} key={v} onClick={()=>act(()=>setQuick(i===0?"correct":"incorrect"))}>{String.fromCharCode(65+i)}. {v}</button>)}</div><output>{quick==="correct"?"Correct! Each entry is multiplied by -2.":quick==="incorrect"?"Check every sign and try again.":"Choose an answer."}</output></section>
+      <LessonTopicStudyBoard lessonId={349} view={tab} onInteraction={onInteraction} />
+
   </section>
 }
 function VectorScale({k}:{k:number}){const x=130+k*35,y=120-k*18;return <svg viewBox="0 0 280 175" role="img" aria-label="Scalar vector scaling"><path d="M20 120H260M130 160V15"/><line x1="130" y1="120" x2="200" y2="84" className="original"/><line x1="130" y1="120" x2={x} y2={y} className="scaled"/><circle cx={x} cy={y} r="4"/><text x={x+5} y={y-5}>k v</text></svg>}

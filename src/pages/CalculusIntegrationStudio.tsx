@@ -197,7 +197,7 @@ export default function CalculusIntegrationStudio({ mode }: Props) {
             <div><span>{info.eyebrow}</span><h2>{info.title}</h2></div>
             <div className="ci-visual-actions"><button type="button" className={showGrid ? "active" : ""} onClick={() => setShowGrid((value) => !value)} title="Toggle grid"><Grid3X3 /></button><button type="button" className={expanded ? "active" : ""} aria-pressed={expanded} onClick={() => setExpanded((value) => !value)} title={expanded ? "Exit full screen" : "Full screen"}><Expand /></button></div>
           </header>
-          <IntegrationVisual mode={mode} fn={compiled.fn} result={result} lower={lower} upper={upper} probe={probe} constant={constant} showGrid={showGrid} />
+          <IntegrationVisual mode={mode} fn={compiled.fn} result={result} lower={lower} upper={upper} probe={probe} constant={constant} showGrid={showGrid} onSlice={() => changePartitions(Math.min(100, partitions + 1))} />
           <p className="ci-visual-note">{info.explanation}</p>
         </section>
 
@@ -220,8 +220,16 @@ function RangeControl({ label, value, min, max, step, onChange, integer = false 
   return <label className="ci-range"><span>{label}<b>{integer ? Math.round(value) : tidy(value)}</b></span><div><button type="button" onClick={() => update(Math.max(min, value - step))} aria-label={`Decrease ${label}`}><Minus /></button><input aria-label={label} type="range" min={min} max={max} step={step} value={Math.min(max, Math.max(min, value))} onChange={(event) => update(Number(event.target.value))} /><button type="button" onClick={() => update(Math.min(max, value + step))} aria-label={`Increase ${label}`}><Plus /></button></div></label>;
 }
 
-function IntegrationVisual({ mode, fn, result, lower, upper, probe, constant, showGrid }: { mode: string; fn: ((x: number) => number) | null; result: IntegrationResult | null; lower: number; upper: number; probe: number; constant: number; showGrid: boolean }) {
-  const width = 860, height = mode === "ftc" ? 610 : 530, pad = 52, xMin = -4, xMax = 5, yMin = -3, yMax = 12;
+function IntegrationVisual({ mode, fn, result, lower, upper, probe, constant, showGrid, onSlice }: { mode: string; fn: ((x: number) => number) | null; result: IntegrationResult | null; lower: number; upper: number; probe: number; constant: number; showGrid: boolean; onSlice?: () => void }) {
+  if (mode === "ftc") {
+    return (
+      <div className="ci-ftc-split">
+        <GraphPane title="f(x)" fn={fn} lower={lower} upper={upper} probe={probe} showGrid={showGrid} accumulation={false} />
+        <GraphPane title="F(x)=∫_a^x f" fn={fn} lower={lower} upper={upper} probe={probe} showGrid={showGrid} accumulation />
+      </div>
+    );
+  }
+  const width = 860, height = mode === "definite" || mode === "riemann" ? 360 : 530, pad = 52, xMin = -4, xMax = 5, yMin = -3, yMax = 12;
   const sx = (x: number) => pad + (x - xMin) / (xMax - xMin) * (width - pad * 2);
   const sy = (y: number) => height - pad - (y - yMin) / (yMax - yMin) * (height - pad * 2);
   const curve = fn ? sample(fn, xMin, xMax, 440) : [];
@@ -229,16 +237,44 @@ function IntegrationVisual({ mode, fn, result, lower, upper, probe, constant, sh
   const showSlices = mode === "definite" || mode === "riemann";
   const family = mode === "antiderivative" && fn ? [-2, 0, 2].map((shift) => sample((x) => primitive(fn, x) + constant + shift, xMin, xMax, 260)) : [];
   const accumulation = mode === "ftc" && fn ? sample((x) => x <= lower ? 0 : safeIntegral(fn, lower, Math.min(x, upper), 240), lower + 0.001, upper, 170) : [];
-  return <svg className="ci-graph" viewBox={`0 0 ${width} ${height}`} role="img" aria-label={`${modeCopy[mode]?.title ?? "Integration"} graph`}>
+  const mainGraph = (
+    <svg className="ci-graph" viewBox={`0 0 ${width} ${height}`} role="img" aria-label={`${modeCopy[mode]?.title ?? "Integration"} graph`}>
+      <rect width={width} height={height} rx="10" fill="#071d35" />
+      {showGrid && <GraphGrid width={width} height={height} pad={pad} />}
+      <line className="axis" x1={pad} x2={width - pad} y1={sy(0)} y2={sy(0)} /><line className="axis" x1={sx(0)} x2={sx(0)} y1={pad} y2={height - pad} />
+      {fn && mode !== "antiderivative" && intervalPath(fn, lower, activeUpper, sx, sy)}
+      {showSlices && result?.partitions.map((part) => <rect key={part.index} x={sx(part.x0)} y={sy(Math.max(0, part.sampleY))} width={Math.max(1, sx(part.x1) - sx(part.x0) - 1)} height={Math.abs(sy(part.sampleY) - sy(0))} className="slice" onClick={onSlice} />)}
+      {mode === "antiderivative" ? family.map((points, index) => <path key={index} d={path(points, sx, sy, yMin, yMax)} className={index === 1 ? "family active" : "family"} />) : <path d={path(curve, sx, sy, yMin, yMax)} className="curve" />}
+      {mode === "ftc" && <><path d={path(accumulation, sx, sy, yMin, yMax)} className="accumulation" /><line x1={sx(activeUpper)} x2={sx(activeUpper)} y1={pad} y2={height - pad} className="probe" /><circle cx={sx(activeUpper)} cy={sy(fn ? safeValue(fn, activeUpper) : 0)} r="7" className="probe-dot" /></>}
+      {mode !== "antiderivative" && <><line x1={sx(lower)} x2={sx(lower)} y1={pad} y2={height - pad} className="bound lower" /><line x1={sx(activeUpper)} x2={sx(activeUpper)} y1={pad} y2={height - pad} className="bound upper" /><text x={sx(lower) - 20} y={sy(0) + 30}>a = {tidy(lower)}</text><text x={sx(activeUpper) - 18} y={sy(0) + 30}>{mode === "ftc" ? "x" : "b"} = {tidy(activeUpper)}</text></>}
+      <text x="68" y="38" className="formula">{mode === "antiderivative" ? `F(x) + C, C = ${tidy(constant)}` : "f(x) and accumulated area"}</text>
+    </svg>
+  );
+  if (mode === "definite" || mode === "riemann") {
+    return (
+      <div className="ci-definite-split">
+        {mainGraph}
+        <GraphPane title="Accumulation function F(x)" fn={fn} lower={lower} upper={upper} probe={upper} showGrid={showGrid} accumulation />
+      </div>
+    );
+  }
+  return mainGraph;
+}
+
+function GraphPane({ title, fn, lower, upper, probe, showGrid, accumulation }: { title: string; fn: ((x: number) => number) | null; lower: number; upper: number; probe: number; showGrid: boolean; accumulation: boolean }) {
+  const width = 860, height = 260, pad = 42, xMin = -4, xMax = 5, yMin = -3, yMax = 12;
+  const sx = (x: number) => pad + (x - xMin) / (xMax - xMin) * (width - pad * 2);
+  const sy = (y: number) => height - pad - (y - yMin) / (yMax - yMin) * (height - pad * 2);
+  const activeUpper = Math.min(upper, Math.max(lower, probe));
+  const curve = fn ? sample(accumulation ? (x) => x <= lower ? 0 : safeIntegral(fn, lower, Math.min(x, upper), 160) : fn, xMin, xMax, 280) : [];
+  return <svg className="ci-graph" viewBox={`0 0 ${width} ${height}`} role="img" aria-label={title}>
     <rect width={width} height={height} rx="10" fill="#071d35" />
     {showGrid && <GraphGrid width={width} height={height} pad={pad} />}
     <line className="axis" x1={pad} x2={width - pad} y1={sy(0)} y2={sy(0)} /><line className="axis" x1={sx(0)} x2={sx(0)} y1={pad} y2={height - pad} />
-    {fn && mode !== "antiderivative" && intervalPath(fn, lower, activeUpper, sx, sy)}
-    {showSlices && result?.partitions.map((part) => <rect key={part.index} x={sx(part.x0)} y={sy(Math.max(0, part.sampleY))} width={Math.max(1, sx(part.x1) - sx(part.x0) - 1)} height={Math.abs(sy(part.sampleY) - sy(0))} className="slice" />)}
-    {mode === "antiderivative" ? family.map((points, index) => <path key={index} d={path(points, sx, sy, yMin, yMax)} className={index === 1 ? "family active" : "family"} />) : <path d={path(curve, sx, sy, yMin, yMax)} className="curve" />}
-    {mode === "ftc" && <><path d={path(accumulation, sx, sy, yMin, yMax)} className="accumulation" /><line x1={sx(activeUpper)} x2={sx(activeUpper)} y1={pad} y2={height - pad} className="probe" /><circle cx={sx(activeUpper)} cy={sy(fn ? safeValue(fn, activeUpper) : 0)} r="7" className="probe-dot" /></>}
-    {mode !== "antiderivative" && <><line x1={sx(lower)} x2={sx(lower)} y1={pad} y2={height - pad} className="bound lower" /><line x1={sx(activeUpper)} x2={sx(activeUpper)} y1={pad} y2={height - pad} className="bound upper" /><text x={sx(lower) - 20} y={sy(0) + 30}>a = {tidy(lower)}</text><text x={sx(activeUpper) - 18} y={sy(0) + 30}>{mode === "ftc" ? "x" : "b"} = {tidy(activeUpper)}</text></>}
-    <text x="68" y="38" className="formula">{mode === "antiderivative" ? `F(x) + C, C = ${tidy(constant)}` : "f(x) and accumulated area"}</text>
+    {fn && !accumulation && intervalPath(fn, lower, activeUpper, sx, sy)}
+    <path d={path(curve, sx, sy, yMin, yMax)} className={accumulation ? "accumulation" : "curve"} />
+    <line x1={sx(activeUpper)} x2={sx(activeUpper)} y1={pad} y2={height - pad} className="probe" />
+    <text x="68" y="32" className="formula">{title}</text>
   </svg>;
 }
 
@@ -273,7 +309,18 @@ function LearningBar({ active, onChange, mode, result }: { active: LearningMode;
     Understand: "The integral combines many small signed contributions over an interval.",
     Why: "As slice width approaches zero, the numerical sum approaches the definite integral.",
     Try: "Change the function, bounds, method, and partition count. Every result uses the current state.",
-    Challenge: result ? `Can you make the absolute error smaller than ${format(Math.max(result.absoluteError / 2, 0.00001), 5)}?` : "Choose a valid function and interval to begin.",
+    Challenge:
+      mode === "antiderivative"
+        ? "Challenge: slide C and confirm the derivative of every family member is still f."
+        : mode === "ftc"
+          ? "Challenge: move the accumulation point until F'(x) visibly matches f(x)."
+          : mode === "riemann"
+            ? "Challenge: raise n until left, right, mid, and trap agree to two decimals."
+            : mode === "numerical"
+              ? "Challenge: compare methods at the same n and pick the smallest error."
+              : result
+                ? `Challenge: make the signed-area error smaller than ${format(Math.max(result.absoluteError / 2, 0.00001), 5)}.`
+                : "Challenge: choose a valid function and interval to begin.",
   };
   return <section className="ci-learning"><nav>{tabs.map((tab) => <button type="button" key={tab} className={active === tab ? "active" : ""} onClick={() => onChange(tab)}>{tab}</button>)}</nav><p>{copy[active]}</p></section>;
 }

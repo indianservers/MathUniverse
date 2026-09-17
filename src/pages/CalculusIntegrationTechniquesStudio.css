@@ -11,12 +11,16 @@
   padding-bottom: 10px;
   color: var(--its-ink);
 }
-.cs-lab-integration-techniques > .cs-tabs {
-  gap: 0;
-  padding: 5px 8px;
+.cs-lab-integration-techniques .cs-tabs {
+  gap: 6px;
+  padding: 6px;
+  border: 1px solid #d7e4f2;
+  border-radius: 18px;
+  background: #fff;
 }
-.cs-lab-integration-techniques > .cs-tabs button {
-  border-right: 1px solid #dce7f0;
+.cs-lab-integration-techniques .cs-tabs button {
+  border-right: 0;
+  font-size: 13px;
 }
 .cs-lab-integration-techniques > .cs-tabs button:last-child {
   border-right: 0;
@@ -37,7 +41,7 @@
   background: #fff;
   padding: 7px 15px;
   color: #6d36cf;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 850;
 }
 .its-layout {
@@ -81,7 +85,7 @@
   gap: 9px;
   margin: 0;
   color: var(--its-ink);
-  font-size: 13px;
+  font-size: 16px;
 }
 .its-panel h2 i {
   width: 6px;
@@ -92,12 +96,17 @@
 .its-panel p {
   margin: 0;
   color: var(--its-copy);
-  font-size: 11px;
+  font-size: 14px;
   line-height: 1.55;
 }
+.its-small-panel .katex,
 .its-small-panel .katex-display {
   margin: 4px 0;
-  font-size: 0.94em;
+  font-size: 1.12em;
+}
+.its-small-panel .math-expression {
+  width: 100%;
+  max-width: 100%;
 }
 .its-small-panel.success {
   background: linear-gradient(135deg, #fff 0, #f4fff9 100%);
@@ -107,7 +116,7 @@
   align-items: center;
   gap: 5px;
   color: #16944a;
-  font-size: 10px;
+  font-size: 13px;
   font-weight: 850;
 }
 .its-valid svg {
@@ -140,16 +149,16 @@
   box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.12);
 }
 .its-parts button .math-expression {
-  overflow: hidden;
-  font-size: .82em;
+  overflow: visible;
+  font-size: 1.12em;
 }
 .its-part-key {
   display: grid;
   grid-template-columns: 9px 1fr 9px 1fr;
   gap: 5px;
   align-items: center;
-  color: #62738d;
-  font-size: 8px;
+  color: #4a5f7a;
+  font-size: 12px;
 }
 .its-part-key i,
 .its-graph-meta i {
@@ -212,7 +221,7 @@
 }
 .its-bound-table span {
   font-family: Georgia, serif;
-  font-size: 11px;
+  font-size: 15px;
   font-weight: 800;
 }
 .its-bound-table input {
@@ -229,13 +238,14 @@
 }
 .its-bound-table b {
   color: #e67d15;
-  font-size: 10px;
+  font-size: 14px;
 }
 .its-muted {
   padding: 10px;
   border: 1px dashed #d6e1ed;
   border-radius: 6px;
   text-align: center;
+  font-size: 14px;
 }
 .its-stepper {
   display: grid;
@@ -266,7 +276,7 @@
 .its-stepper strong {
   display: grid;
   place-items: center;
-  font-size: 10px;
+  font-size: 13px;
 }
 .its-outline-command {
   width: 100%;
@@ -274,7 +284,7 @@
   gap: 7px;
   border-color: #2699ef;
   color: #1471c9;
-  font-size: 10px;
+  font-size: 13px;
   font-weight: 850;
 }
 .its-outline-command svg {
@@ -315,17 +325,17 @@
 }
 .its-formula-stage {
   display: grid;
-  min-height: 98px;
+  min-height: 118px;
   place-content: center;
   gap: 8px;
   border: 1px solid #d6e2ee;
   border-radius: 8px;
-  padding: 8px;
+  padding: 10px 8px;
   text-align: center;
 }
 .its-formula-stage strong {
-  color: #3f536f;
-  font-size: 9px;
+  color: #2a4668;
+  font-size: 13px;
 }
 .its-formula-stage.active {
   border-color: #08afe0;
@@ -342,14 +352,15 @@
   color: #6c35c0;
 }
 .its-formula-stage .katex {
-  font-size: 0.78em;
+  font-size: 1.18em;
 }
 .its-formula-stage .math-expression {
   display: block;
-  overflow-x: hidden !important;
+  overflow-x: auto !important;
+  overflow-y: hidden;
 }
 .its-flow .its-formula-stage:nth-child(3) .katex {
-  font-size: .68em;
+  font-size: 1.08em;
 }
 .its-geometry {
   padding: 13px;
@@ -385,12 +396,15 @@
 .its-graph-card figcaption {
   padding: 9px 8px 3px;
   color: #008eb9;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 900;
 }
 .its-graph-card > span {
-  min-height: 25px;
+  min-height: 28px;
   color: #0b8db6;
+}
+.its-graph-card .katex {
+  font-size: 1.15em;
 }
 .its-graph-card svg {
   display: block;
@@ -411,13 +425,13 @@
   stroke-dasharray: 5 4;
 }
 .its-graph-card .tick-label {
-  fill: #344c6b;
-  font: 10px system-ui, sans-serif;
+  fill: #243a58;
+  font: 13px system-ui, sans-serif;
   text-anchor: middle;
 }
 .its-graph-card .axis-label {
   fill: #152d4f;
-  font: italic 11px Georgia, serif;
+  font: italic 14px Georgia, serif;
 }
 .its-graph-meta {
   display: grid;
@@ -425,8 +439,8 @@
   gap: 6px;
   align-items: center;
   padding: 10px 4px 2px;
-  color: #475c79;
-  font-size: 9px;
+  color: #334b68;
+  font-size: 13px;
 }
 .its-graph-meta span {
   display: flex;
@@ -454,7 +468,7 @@
 }
 .its-insight p {
   color: #442b72;
-  font-size: 11px;
+  font-size: 14px;
   line-height: 1.6;
 }
 .its-live-bounds {
@@ -464,8 +478,8 @@
   border: 1px solid #e2e9f0;
   border-radius: 7px;
   overflow: hidden;
-  color: #344b69;
-  font-size: 10px;
+  color: #243a58;
+  font-size: 13px;
 }
 .its-live-bounds > * {
   padding: 8px;
@@ -481,6 +495,10 @@
   padding: 10px;
   color: #39206e;
 }
+.its-result-formula .katex,
+.its-result-formula .katex-display {
+  font-size: 1.22em;
+}
 .its-numeric {
   display: flex;
   align-items: center;
@@ -490,7 +508,7 @@
   background: #f1fff5;
   padding: 7px 10px;
   color: #15904a;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 900;
 }
 .its-numeric svg {
@@ -504,14 +522,14 @@
 }
 .its-validation button {
   display: grid;
-  width: 23px;
-  height: 23px;
+  width: 28px;
+  height: 28px;
   place-items: center;
   border: 1px solid #b8e2cf;
   border-radius: 50%;
   background: #fff;
-  color: #587069;
-  font-size: 9px;
+  color: #3f5c54;
+  font-size: 12px;
   cursor: pointer;
 }
 .its-validation button.done {
@@ -523,8 +541,8 @@
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 6px;
-  color: #47617e;
-  font-size: 10px;
+  color: #334b68;
+  font-size: 13px;
   font-weight: 800;
 }
 .its-resolution input {
@@ -548,7 +566,7 @@
   gap: 8px;
   align-items: center;
   color: #0875cf;
-  font-size: 11px;
+  font-size: 14px;
 }
 .its-guided > strong svg {
   width: 17px;
@@ -563,8 +581,8 @@
   border-radius: 22px;
   background: #fff;
   padding: 0 12px;
-  color: #304767;
-  font-size: 9px;
+  color: #243a58;
+  font-size: 12px;
   cursor: pointer;
 }
 .its-guided button span {
@@ -599,7 +617,7 @@
   justify-content: center;
   border-radius: 7px;
   color: #0873ca;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 850;
 }
 .its-guided button:last-child svg {
@@ -611,7 +629,7 @@
   background: #effcff;
   padding: 11px 16px;
   color: #176a83;
-  font-size: 11px;
+  font-size: 14px;
 }
 .its-reset {
   justify-self: end;
@@ -620,8 +638,8 @@
   gap: 7px;
   border: 0;
   background: transparent;
-  color: #64748b;
-  font-size: 10px;
+  color: #475569;
+  font-size: 13px;
   cursor: pointer;
 }
 .its-reset svg {

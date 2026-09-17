@@ -5,6 +5,7 @@ import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
 import type { LessonAdapterProps } from "../../types";
 import "./CoordinateSystemTargetLesson378.css";
 import "./CylinderTargetLesson397.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type View = "Rotate" | "Top" | "Front" | "Right";
 type Mode = "Fill" | "Unfold net" | "Cross-section";
@@ -460,6 +461,8 @@ export default function CylinderTargetLesson397({
           Cone
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={397} view={view} onInteraction={onInteraction} />
+
     </section>
   );
 }

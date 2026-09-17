@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type PointerEvent } from "react";
 import { ArrowLeft, ArrowRight, Check, Info, RefreshCw } from "lucide-react";
 import type { LessonAdapterProps } from "../types";
 import "./EvenOddFunctionsTargetLesson152.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Family = "even" | "odd" | "neither";
 
@@ -578,6 +579,8 @@ export default function EvenOddFunctionsTargetLesson152({
           <ArrowRight size={16} />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={152} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

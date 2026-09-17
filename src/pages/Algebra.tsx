@@ -7,6 +7,7 @@ import ApplicationVisualCard from "../components/ui/ApplicationVisualCard";
 import ContinueCard from "../components/ui/ContinueCard";
 import ConceptAccuracyPanel from "../components/ui/ConceptAccuracyPanel";
 import StudioPageShell from "../components/ui/StudioPageShell";
+import { mathStudioCrumbs } from "../components/ui/StudioBreadcrumb";
 import { topics } from "../data/topics";
 import { useProgress } from "../hooks/useProgress";
 import FormulaVisualizationAtlas from "../visualizations/formulas/FormulaVisualizationAtlas";
@@ -92,15 +93,20 @@ export default function Algebra() {
   return (
     <StudioPageShell
       guide={<div className="algebra-guide-card">
+            <span>Classic models</span>
+            <p><Link to="/algebra">Open the full Algebra Studio labs</Link> for tiles, graphs, proof, and the 25-tool workbench. This page keeps the original coefficient visualizers.</p>
             <span>Studio guide</span>
             <h2>{currentTab.label}</h2>
             <p>{currentTab.summary}</p>
             <div className="algebra-guide-meter"><i style={{ width: `${Math.max(4, Math.min(100, progress))}%` }} /></div>
           </div>}
       className="algebra-studio"
-      title="Algebra Studio"
+      title="Classic Algebra Models"
       subtitle={topic.description}
-      breadcrumbs={["Home", "Math Topics", "Algebra"]}
+      breadcrumbs={mathStudioCrumbs(
+        { label: "Algebra Studio", to: "/algebra" },
+        { label: "Classic models", to: "/algebra/classic" },
+      )}
       difficulty={topic.difficulty}
       estimatedMinutes={topic.estimatedMinutes}
       progress={progress}

@@ -24,6 +24,7 @@ import {
   type ReactNode,
 } from "react";
 import type { LessonAdapterProps } from "../types";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type MainDrag = "a" | "b" | null;
@@ -490,6 +491,8 @@ export default function DistanceLengthTargetLesson230({
           ? "Estimate reflection consistent."
           : "Reconsider how close the estimate is."}
       </output>
+      <LessonTopicStudyBoard lessonId={230} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

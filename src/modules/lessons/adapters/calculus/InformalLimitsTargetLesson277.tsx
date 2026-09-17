@@ -15,6 +15,7 @@ import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./InformalLimitsTargetLesson277.css";
 import "./InformalLimitsTargetLesson277Fit.css";
+import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
 type Marker = "left" | "right";
 const initial = { left: -0.5, right: 0.5 };
@@ -427,6 +428,13 @@ export default function InformalLimitsTargetLesson277({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard
+        lessonId={277}
+        view={tab}
+        onInteraction={onInteraction}
+        boundLive={`left ${fmt(f(markers.left), 3)} · right ${fmt(f(markers.right), 3)}`}
+      />
+
     </section>
   );
 }

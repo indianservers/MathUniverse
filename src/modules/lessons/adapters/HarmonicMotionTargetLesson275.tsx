@@ -18,6 +18,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./HarmonicMotionTargetLesson275.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type PracticeState = "idle" | "correct" | "incorrect";
 
@@ -575,6 +576,8 @@ export default function HarmonicMotionTargetLesson275({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={275} view={activeView} onInteraction={onInteraction} />
+
     </div>
   );
 }

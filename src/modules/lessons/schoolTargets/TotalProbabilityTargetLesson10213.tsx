@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight, CheckCircle2, Factory, RotateCcw, SlidersHorizon
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import { probabilityControl, TOTAL_PRACTICE, totalProbability } from "./totalProbabilityModel";
 import "./TotalProbabilityTargetLesson10213.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const fmt = (n: number) => Number(n.toFixed(4));
 const pct = (n: number) => `${fmt(n * 100)}%`;
@@ -22,5 +23,7 @@ export default function TotalProbabilityTargetLesson10213({ lesson }: { lesson: 
     <section className="tp-notes"><article id="tp-Proof"><h2>WHY THE THEOREM WORKS (4-STEP DERIVATION)</h2><ol><li>Since {"{Aᵢ}"} is a partition, B = ⋃ᵢ (B ∩ Aᵢ), a disjoint union.</li><li>The events B ∩ Aᵢ are mutually exclusive.</li><li>Therefore P(B) = ∑ᵢ P(B ∩ Aᵢ).</li><li>By conditional probability, P(B ∩ Aᵢ) = P(Aᵢ)P(B | Aᵢ).</li></ol><p className="tp-equation">Thus P(B) = ∑ᵢ P(Aᵢ)P(B | Aᵢ).</p></article><article id="tp-Example"><h2>WORKED EXAMPLE <small>(Factory scenario)</small></h2><p>A factory’s items come from two machines:</p><p>P(M₁) = 0.60, P(D | M₁) = 0.02<br />P(M₂) = 0.40, P(D | M₂) = 0.05</p><p>Find P(D).</p><p className="tp-equation">P(D) = 0.60 × 0.02 + 0.40 × 0.05<br />= 0.012 + 0.020<br />= 0.032 = 3.2%</p><p className="tp-valid">On average, 3.2 out of every 100 items are defective.</p></article><article className="tp-mistake"><h2><TriangleAlert size={15} />COMMON MISTAKE</h2><p>Do not add raw conditional rates:</p><p className="tp-wrong">P(D | M₁) + P(D | M₂)<br />= 2% + 5% = 7% ×</p><p>These rates apply to different groups. Total probability requires weighting by how often each source occurs.</p><b>Correct approach:</b><p className="tp-equation">P(D) = ∑ P(source) × P(D | source)</p></article></section>
     <section id="tp-Practice" className="tp-practice"><div><h2>QUICK PRACTICE</h2><div className="tp-questions">{TOTAL_PRACTICE.map((item, i) => <article key={item.title}><h3>{i + 1}. {item.title}</h3><p>{item.text}</p><p>Find P({item.event}).</p><button aria-expanded={answers[i]} onClick={() => setAnswers(previous => previous.map((v, j) => j === i ? !v : v))}>{answers[i] ? "Hide" : "Show"} answer</button>{answers[i] && <p role="status">{item.weight} × {item.rate1} + {fmt(1 - item.weight)} × {item.rate2} = {fmt(totalProbability(item.weight, item.rate1, item.rate2).total)} = {pct(totalProbability(item.weight, item.rate1, item.rate2).total)}</p>}</article>)}</div></div><aside><h2>TRY IT YOURSELF</h2><p>Adjust the source mix and defect rates to see P(D) change in real time.</p><SlidersHorizontal size={32} /><button onClick={resetSliders}>Reset sliders</button></aside></section>
     <nav className="tp-next"><Link to="/lessons/school/class-12/class-12-probability-independent-events"><ArrowLeft size={14} />Independent Events</Link><Link to="/lessons/school/class-12/class-12-probability-bayes-theorem">Bayes’ Theorem<ArrowRight size={14} /></Link></nav>
+      <LessonTopicStudyBoard lessonId={10213} view={tab} />
+
   </main>;
 }

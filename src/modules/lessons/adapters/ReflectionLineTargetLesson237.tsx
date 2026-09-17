@@ -22,6 +22,7 @@ import {
 } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./ReflectionLineTargetLesson237.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type Orientation = "vertical" | "horizontal";
@@ -138,6 +139,8 @@ export default function ReflectionLineTargetLesson237({ resetToken, onInteractio
 
     <nav className="target-reflection-nav" aria-label="Adjacent lessons"><a href="/lessons/geometry/236-translation-by-vector"><ArrowLeft /><span><b>Previous</b>Translation by Vector</span></a><div><span>Lesson progress</span>{[1,2,3,4,5].map((value) => <button type="button" key={value} className={stage === value ? "is-active" : ""} onClick={() => setStage(value)}>{value}</button>)}</div><a href="/lessons/geometry/238-reflection-in-point"><span><b>Next</b>Reflection in Point</span><ArrowRight /></a></nav>
     <span className="sr-only" role="status">{status}</span>
+      <LessonTopicStudyBoard lessonId={237} alwaysVisible onInteraction={onInteraction} />
+
   </section>;
 }
 

@@ -19,6 +19,7 @@ import {
   type PointerEvent as ReactPointerEvent,
 } from "react";
 import type { LessonAdapterProps } from "../types";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 type Point = { x: number; y: number };
 type Tool = "select" | "point" | "circle" | "copy";
@@ -510,6 +511,8 @@ export default function CompassTargetLesson221({
           <ArrowRight className="h-4 w-4" />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={221} alwaysVisible onInteraction={onInteraction} />
+
     </section>
   );
 }

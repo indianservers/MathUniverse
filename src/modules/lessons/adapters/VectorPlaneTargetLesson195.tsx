@@ -6,6 +6,7 @@ import type { PointerEvent } from "react";
 import * as THREE from "three";
 import type { LessonAdapterProps } from "../types";
 import "./VectorPlaneTargetLesson195.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 type P = { x: number; y: number; z: number };
 const A0 = { x: 1, y: 1, z: 1 },
   U0 = { x: 2, y: 0, z: 1 },
@@ -560,6 +561,8 @@ export default function VectorPlaneTargetLesson195({
           <a href="/about">About</a>
         </nav>
       </footer>
+      <LessonTopicStudyBoard lessonId={195} view={view} onInteraction={onInteraction} />
+
     </main>
   );
 }

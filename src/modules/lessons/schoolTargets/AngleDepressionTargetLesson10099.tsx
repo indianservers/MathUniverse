@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import depressionScene from "../../../assets/lessons/angle-depression-lighthouse.png";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./AngleDepressionTargetLesson10099.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const round = (value: number, places = 2) =>
   Math.round(value * 10 ** places) / 10 ** places;
@@ -410,6 +411,8 @@ export default function AngleDepressionTargetLesson10099({
           </Link>
         </nav>
       </main>
+      <LessonTopicStudyBoard lessonId={10099} view={tab} />
+
     </section>
   );
 }

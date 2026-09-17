@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { schoolLessonCatalog } from "../catalog/school/schoolSyllabusCatalog";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./RemainderTargetLesson10015.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const examples = [
   [17, 4],
@@ -461,6 +462,8 @@ export default function RemainderTargetLesson10015({
           Next lesson →<b>{next.title}</b>
         </Link>
       </nav>
+      <LessonTopicStudyBoard lessonId={10015} view={tab} onInteraction={onInteraction} />
+
     </section>
   );
 }

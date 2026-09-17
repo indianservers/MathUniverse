@@ -10,6 +10,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { KeyboardEvent, PointerEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./HorizontalStretchCompressionTargetLesson159.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const LEVELS = [1, 2, 4, 6];
 const TABLE_LEVELS = [1, 4, 6];
@@ -671,6 +672,8 @@ export default function HorizontalStretchCompressionTargetLesson159({
           </p>
         </article>
       </section>
+      <LessonTopicStudyBoard lessonId={159} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

@@ -3,6 +3,7 @@ import { CheckCircle2, RotateCcw, Shuffle } from "lucide-react";
 import type { LessonAdapterProps } from "../types";
 import { quartiles, quartilesDefault } from "./quartilesLessonModel";
 import "./BoxPlotLesson480.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 export default function BoxPlotLesson480({
   resetToken,
   onInteraction,
@@ -262,6 +263,8 @@ function BoxPlotActivity({
         </button>
         <span>Next: Dot Plot →</span>
       </footer>
+      <LessonTopicStudyBoard lessonId={480} alwaysVisible onInteraction={onInteraction} />
+
     </div>
   );
 }

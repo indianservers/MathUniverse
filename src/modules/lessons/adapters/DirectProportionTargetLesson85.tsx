@@ -9,6 +9,7 @@ import {
 import { useEffect, useState, type DragEvent } from "react";
 import type { LessonAdapterProps } from "../types";
 import "./DirectProportionTargetLesson85.css";
+import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const clamp = (value: number, minimum: number, maximum: number) =>
   Math.max(
@@ -273,6 +274,8 @@ export default function DirectProportionTargetLesson85({
           <ArrowRight />
         </a>
       </nav>
+      <LessonTopicStudyBoard lessonId={85} view={tab} onInteraction={onInteraction} />
+
     </div>
   );
 }
