@@ -242,7 +242,8 @@
 }
 .ca10060-work > article {
   position: relative;
-  min-height: 560px;
+  height: min(68vh, 640px);
+  min-height: 480px;
   overflow: hidden;
   border: 1px solid #dce6eb;
   border-radius: 10px;
@@ -251,9 +252,10 @@
 .ca10060-diagram {
   width: 100% !important;
   height: 100% !important;
-  min-height: 560px;
+  min-height: 0;
   touch-action: none;
   cursor: crosshair;
+  user-select: none;
 }
 .ca10060-diagram rect {
   fill: #fff;
@@ -329,7 +331,7 @@
   right: 16px;
   top: 18px;
   z-index: 2;
-  width: 148px;
+  width: 168px;
   padding: 12px 14px;
   border: 1px solid #cdb9ef;
   border-radius: 8px;
@@ -340,6 +342,8 @@
 .ca10060-legend h3 {
   color: #6631ca;
   text-align: center;
+  font-size: 11px;
+  line-height: 1.35;
 }
 .ca10060-legend p {
   display: flex;

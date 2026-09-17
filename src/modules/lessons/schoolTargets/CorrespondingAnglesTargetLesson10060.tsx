@@ -93,7 +93,8 @@ function piePath(
 ) {
   const start = polar(cx, cy, fromDeg, radius);
   const end = polar(cx, cy, toDeg, radius);
-  const delta = Math.abs(((toDeg - fromDeg) % 360 + 360) % 360);
+  const raw = sweep === 1 ? fromDeg - toDeg : toDeg - fromDeg;
+  const delta = ((raw % 360) + 360) % 360;
   const large = delta > 180 ? 1 : 0;
   return `M${cx} ${cy} L${start.x} ${start.y} A${radius} ${radius} 0 ${large} ${sweep} ${end.x} ${end.y} Z`;
 }
@@ -543,7 +544,7 @@ function TransversalDiagram({
     sweepCW: boolean,
   ) => {
     const bisect = fromDeg + (sweepCW ? -span / 2 : span / 2);
-    return polar(cx, cy, bisect, 58);
+    return polar(cx, cy, bisect, 72);
   };
   const numberPts = [
     labelAt(top.x, top.y, lineLeft, angle, true),
