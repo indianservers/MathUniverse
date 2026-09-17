@@ -171,7 +171,10 @@ describe("MockupStudioApp", () => {
     const identities = renderToString(<MemoryRouter initialEntries={["/trigonometry/identities?mode=Double+Angle"]}><MockupStudioApp studioId="trigonometry" /></MemoryRouter>);
     expect(identities).toContain('data-id-mode="Double Angle"');
     expect(identities).toContain("sin 2θ");
-    expect(identities).toContain("gold ray is 2θ");
+    expect(identities).toContain("Gold ray is θ · purple ray is 2θ");
+    expect(identities).toContain("sin 2θ is not 2 sin θ");
+    expect(identities).toContain("Play doubling: θ → 2θ");
+    expect(identities).toContain("Period doubling");
     expect(identities).toContain("sin(2×45°)");
     const inverse = renderToString(<MemoryRouter initialEntries={["/trigonometry/inverse?mode=Compositions"]}><MockupStudioApp studioId="trigonometry" /></MemoryRouter>);
     expect(inverse).toContain('data-inv-mode="Compositions"');
