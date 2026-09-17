@@ -216,7 +216,7 @@ export function ApplicationsLab({ page }: { page: StudioMockupPage }) {
     <>
       <nav className="msk-tabs trig-target-tabs app-target-tabs" aria-label="Applications modes">
         {tabs.map((item) => (
-          <button key={item} type="button" className={item === mode ? "active" : ""} aria-pressed={item === mode} onClick={() => setMode(item)}>{item}</button>
+          <button key={item} type="button" className={item === mode ? "active" : ""} aria-pressed={item === mode} onClick={() => { setCopied(false); setMode(item); }}>{item}</button>
         ))}
       </nav>
       <div className="msk-lab trig-target-lab app-target-lab" data-lab-mode={mode} data-mode-canvas={mode} data-app-mode={mode} data-app-units={units} data-app-instrument={instrument} data-app-sight={isHeights ? sightKind : undefined}>
@@ -434,7 +434,9 @@ export function ApplicationsLab({ page }: { page: StudioMockupPage }) {
                   <circle cx="16" cy="42" r="5" fill="#a78bfa" /><text x="28" y="46" fill="#0f172a" fontSize="12">Wind {fmt(elevation, 1)}°</text>
                   <circle cx="16" cy="64" r="5" fill="#22d3ee" /><text x="28" y="68" fill="#0f172a" fontSize="12">Ground track</text>
                 </g>
-                <Compass bearing={bearing} />
+                <g transform="translate(8 248)">
+                  <Compass bearing={bearing} />
+                </g>
               </>
             ) : isSurvey ? (
               <>
@@ -526,10 +528,10 @@ export function ApplicationsLab({ page }: { page: StudioMockupPage }) {
 
         <aside className="msk-panel msk-live trig-target-card trig-target-application-values app-target-rail">
           <h2>Live values</h2>
-          <LiveRow color="#06b6d4" label={isBearings || isNav ? "Bearing" : isPeriodic ? "Cycle offset" : "Horizontal distance (d)"} value={isBearings || isNav ? formatBearing(bearing) : isPeriodic ? `${fmt(bearing, 1)}°` : length(distanceValue)} />
-          <LiveRow color="#f59e0b" label={isPeriodic ? "Phase" : isNav ? "Wind angle" : isBearings ? "From north" : `Angle of ${sightKind} (θ)`} value={isBearings ? formatBearing(bearing) : `${fmt(elevation, 1)}°`} />
           {isHeights ? (
             <>
+              <LiveRow color="#06b6d4" label="Horizontal distance (d)" value={length(distanceValue)} />
+              <LiveRow color="#f59e0b" label={`Angle of ${sightKind} (θ)`} value={`${fmt(elevation, 1)}°`} />
               <LiveRow color="#7c3aed" label="Observer eye height" value={length(eyeHeight)} />
               <LiveRow color="#8b5cf6" label="Target base elevation" value={length(baseElevation)} />
               <LiveRow color="#a78bfa" label="Line of sight length" value={length(lineOfSight)} />
@@ -547,8 +549,13 @@ export function ApplicationsLab({ page }: { page: StudioMockupPage }) {
               <LiveRow color="#f97316" label={`${instrument} uncertainty`} value={`± ${length(heightUncertainty)} (${instrumentError}°)`} />
             </>
           ) : null}
+          {isBearings || isNav ? (
+            <>
+              <LiveRow color="#06b6d4" label="Bearing" value={formatBearing(bearing)} />
+              <LiveRow color="#f59e0b" label={isBearings ? "From north" : "Wind angle"} value={isBearings ? formatBearing(bearing) : `${fmt(elevation, 1)}°`} />
+            </>
+          ) : null}
           {isBearings ? <p className="msk-formula">bearing = clockwise angle measured from north</p> : null}
-          {isNav ? <LiveRow color="#7c3aed" label="Wind angle" value={`${fmt(elevation, 1)}°`} /> : null}
           {isSurvey ? (
             <>
               <LiveRow color="#10b981" label="Baseline" value={length(Math.abs(secondStation - observerX) / 4.62)} />
@@ -558,6 +565,8 @@ export function ApplicationsLab({ page }: { page: StudioMockupPage }) {
           ) : null}
           {isPeriodic ? (
             <>
+              <LiveRow color="#06b6d4" label="Cycle offset" value={`${fmt(bearing, 1)}°`} />
+              <LiveRow color="#f59e0b" label="Phase" value={`${fmt(elevation, 1)}°`} />
               <LiveRow color="#10b981" label="Predicted tide height" value={`${fmt(tide, 2)} m`} />
               <LiveRow color="#fbbf24" label="Daylight hours" value={`${fmt(daylight, 1)} h`} />
               <LiveRow color="#0ea5e9" label="Midline" value="2.4 m" />

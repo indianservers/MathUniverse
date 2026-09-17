@@ -943,16 +943,10 @@
 }
 
 .msk-trigonometry .app-scene-hud {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  z-index: 2;
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-end;
   gap: 6px;
-  max-width: min(280px, 48%);
-  pointer-events: none;
+  margin: 0 2px;
 }
 
 .msk-trigonometry .app-scene-hud span {
@@ -1021,4 +1015,8 @@
 
 .msk-trigonometry .app-target-canvas .trig-target-scene-hint {
   color: #334155;
+}
+
+.msk-trigonometry .app-target-canvas[data-app-mode="Periodic Models"] .trig-target-scene-hint {
+  color: #e2e8f0;
 }
