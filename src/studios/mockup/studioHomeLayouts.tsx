@@ -7,8 +7,12 @@ import { parseChallengeAnswer } from "./studioLabKit";
 import { studioLabMeta } from "./studioLabMeta";
 import { useTrigSession, writeTrigSession } from "./trigStudioSession";
 import { listSnapshots } from "../phase1/studioClassroom";
-import { continueLinearHref, useLinearSession } from "../linear-algebra/linearAlgebraStudioSession";
+import { continueLinearHref, useLinearSession, writeLinearSession } from "../linear-algebra/linearAlgebraStudioSession";
 import ArgandFigure from "../complex/ArgandFigure";
+import { LandingTeaser, UnitsHomeSwitch, hasLandingTeaser } from "../landing/StudioLandingTeasers";
+import { DiscreteAlsoIn } from "../landing/StudioLandingExtras";
+import { honestProgressLabel } from "../landing/studioLandingSession";
+import "../landing/studioLanding.css";
 import {
   COMPLEX_SEARCH_ALIASES,
   continueComplexHref,
@@ -66,8 +70,8 @@ function Aside({
             </li>
           ))}
         </ol>
-        <div className="msk-progress"><i style={{ width: `${progress || 42}%` }} /></div>
-        <small>Overall progress {progress || 42}%</small>
+        <div className="msk-progress"><i style={{ width: `${progress}%` }} /></div>
+        <small>Overall progress {honestProgressLabel(progress, progress > 0)}</small>
       </section>
       {challenge ? (
         <section className="msk-panel msk-challenge">
@@ -100,22 +104,23 @@ export function StudioLabCard({
   numbered?: boolean;
 }) {
   const meta = studioLabMeta(studioId, item.id);
+  const figure = art ?? (hasLandingTeaser(studioId, item.id) ? <LandingTeaser studioId={studioId} labId={item.id} /> : <TopicIllustration pageId={item.id} />);
   return (
-    <Link
-      className={`msk-card msk-card-premium${studioId === "modelling" ? " msk-model-card" : ""}${studioId === "trigonometry" ? " msk-trig-topic-card" : ""}`}
-      to={item.route}
+    <article
+      className={`msk-card msk-card-premium msk-card-article${studioId === "modelling" ? " msk-model-card" : ""}${studioId === "trigonometry" ? " msk-trig-topic-card" : ""}`}
       data-lab-id={studioId === "trigonometry" || studioId === "linear-algebra" || studioId === "complex-numbers" ? item.id : undefined}
       data-card-index={studioId === "trigonometry" || studioId === "complex-numbers" ? index + 1 : undefined}
     >
+      <Link className="msk-card-hit" to={item.route} aria-label={`Open ${item.label}`} />
       <span className="msk-num">{numbered ? String(index + 1).padStart(2, "0") : index + 1}</span>
-      {art ?? <TopicIllustration pageId={item.id} />}
+      {figure}
       <b>{item.label}</b>
       <small>{meta?.outcome ?? item.description}</small>
       {meta ? <em className="msk-meta">{`${meta.level} · ${meta.minutes} min`}</em> : null}
       {meta?.prereq ? <em className="msk-prereq">{meta.prereq}</em> : null}
       {item.modes.length ? <span className="msk-card-modes">{item.modes.slice(0, 3).join(" · ")}</span> : null}
-      <em>{cta ?? `Open ${item.label}`}</em>
-    </Link>
+      <Link to={item.route}><em>{cta ?? `Open ${item.label}`}</em></Link>
+    </article>
   );
 }
 
@@ -358,13 +363,22 @@ function TrigonometryStudioHome(props: HomeProps & { title: string; cta?: string
   return (
     <div className="msk-home msk-trig-home" data-studio-home="trigonometry" data-home-layout="target-01">
       <section className="msk-trig-home-main">
+        <UnitsHomeSwitch />
         <TrigHomeFlowMap />
+        <div className="sl-chips" aria-label="Height and distance stories">
+          <Link className="sl-mini-link" to="/trigonometry/applications?story=lighthouse">Lighthouse</Link>
+          <Link className="sl-mini-link" to="/trigonometry/applications?story=ramp">Ramp</Link>
+          <Link className="sl-mini-link" to="/trigonometry/applications?story=kite">Kite</Link>
+          <Link className="sl-mini-link" to="/trigonometry/right-triangle?mode=Special+Triangles">30-60-90 / 45-45-90</Link>
+          <Link className="sl-mini-link" to="/trigonometry/inverse">Principal branch</Link>
+          <Link className="sl-mini-link" to="/trigonometry/waves?mode=Beats">Beats preview</Link>
+        </div>
         <header className="msk-launch-head msk-trig-topics-head">
           <h2>{props.title}</h2>
           <Link to="/trigonometry/unit-circle" data-topics-link="all">View all topics →</Link>
         </header>
         <div data-lab-grid="trigonometry">
-          <LaunchGrid labs={props.labs} studioId={props.studio.id} cta={props.cta} />
+          <LaunchGrid labs={props.labs.filter((item) => item.id !== "ar" || props.progress > 0)} studioId={props.studio.id} cta={props.cta} />
         </div>
       </section>
       <TrigonometryHomeAside {...props} />
@@ -445,24 +459,31 @@ function LinearAlgebraStudioHome(props: HomeProps) {
   const continueCopy = session.completed.length || session.lastLabel !== "Vectors"
     ? `You were exploring ${session.lastLabel}.`
     : "You were exploring a 3D linear transformation.";
+  const view3d = session.darkCanvas;
 
   return (
     <div className="msk-home la-home la-home-target" data-studio-home="linear-algebra">
+      <div className="la-view-switch" role="group" aria-label="Default view">
+        <button type="button" className={!view3d ? "sl-chip is-on" : "sl-chip"} onClick={() => writeLinearSession({ darkCanvas: false })}>2D default</button>
+        <button type="button" className={view3d ? "sl-chip is-on" : "sl-chip"} onClick={() => writeLinearSession({ darkCanvas: true })}>3D default</button>
+      </div>
       <div className="la-topic-grid">
         {LINEAR_HOME_CARDS.map((card, index) => {
           const lab = props.labs.find((item) => item.id === card.id);
           if (!lab) return null;
           return (
-            <Link key={card.id} className={`la-topic-card is-${card.tone}`} to={lab.route} data-lab-id={card.id}>
+            <article key={card.id} className={`la-topic-card is-${card.tone} msk-card-article`} data-lab-id={card.id}>
+              <Link className="msk-card-hit" to={lab.route} aria-label={card.cta} />
               <span className="la-topic-n">{index + 1}</span>
               <b>{card.title}</b>
               <small>{studioLabMeta("linear-algebra", card.id)?.outcome ?? lab.description}</small>
-              <TopicIllustration pageId={card.id} />
-              <span className="la-topic-cta">{card.cta}</span>
-            </Link>
+              {hasLandingTeaser("linear-algebra", card.id) ? <LandingTeaser studioId="linear-algebra" labId={card.id} /> : <TopicIllustration pageId={card.id} />}
+              <Link className="la-topic-cta" to={lab.route}>{card.cta}</Link>
+            </article>
           );
         })}
       </div>
+      <p className="sl-kicker">Compose stack: open Playground to see A then B. Singular warning lives on Determinants when area is 0.</p>
       <div className="la-home-dock" id="la-journey">
         <section className="la-dock-continue">
           <FlaskConical />
@@ -485,9 +506,9 @@ function LinearAlgebraStudioHome(props: HomeProps) {
           <Trophy />
           <div>
             <strong>Challenge yourself</strong>
-            <p>Complete studios to earn XP and unlock new challenges.</p>
+            <p>Make det(A) = −1, then open Determinants.</p>
           </div>
-          <Link className="la-dock-link" to={props.challenge?.route ?? "/linear-algebra/vectors"}>View Challenges</Link>
+          <Link className="la-dock-link" to="/linear-algebra/determinants?challenge=det-minus-1">Make det = −1</Link>
         </section>
       </div>
     </div>
@@ -604,6 +625,14 @@ function ComplexNumbersStudioHome(props: HomeProps & { title: string; cta?: stri
           ))}
         </ol>
         <LiveStudioHero studioId="complex-numbers" />
+        <div className="cx-branch" role="group" aria-label="Argument branch">
+          <Link className="sl-mini-link" to="/complex-numbers/polar-forms?branch=principal">arg ∈ (−π, π]</Link>
+          <Link className="sl-mini-link" to="/complex-numbers/polar-forms?branch=two-pi">arg ∈ [0, 2π)</Link>
+          <Link className="sl-mini-link" to="/complex-numbers/euler?theta=pi">Euler identity θ=π</Link>
+          <Link className="sl-mini-link" to="/complex-numbers/argand-plane?mode=Conjugate">Conjugate fold</Link>
+          <Link className="sl-mini-link" to="/complex-numbers/rotation?spiral=1">Spiral of powers</Link>
+          <Link className="sl-mini-link" to="/complex-numbers/loci?mode=M%C3%B6bius">Circle to line</Link>
+        </div>
         <header className="msk-launch-head">
           <h2>{props.title}</h2>
           <Link to="/complex-numbers/argand-plane" data-topics-link="all">View all topics →</Link>
@@ -676,7 +705,31 @@ export function IllustratedStudioHome(props: HomeProps & { title: string; cta?: 
           </ol>
         ) : null}
         <LiveStudioHero studioId={props.studio.id} />
-        {props.studio.id === "discrete" ? <SnapshotGallery /> : null}
+        {props.studio.id === "discrete" ? (
+          <>
+            <SnapshotGallery />
+            <DiscreteAlsoIn />
+            <div className="sl-chips" aria-label="Discrete toys">
+              <span className="sl-kicker">Pascal n=5: 1 5 10 10 5 1</span>
+              <span className="sl-kicker">AND: 1∧0=0</span>
+              <span className="sl-kicker">Caesar MATH → NBUI (shift 1, educational)</span>
+              <span className="sl-kicker">Figurate n=4 triangle = 10</span>
+            </div>
+          </>
+        ) : null}
+        {props.studio.id === "statistics" ? (
+          <div className="sl-datasets" aria-label="Toy datasets">
+            <Link to="/probability-statistics/data-explorer?set=heights">Heights</Link>
+            <Link to="/probability-statistics/experiments?set=dice">Dice</Link>
+            <Link to="/probability-statistics/descriptive?set=exams">Exams</Link>
+            <Link to="/probability-statistics/clt">Sampling-dot strip</Link>
+            <Link to="/probability-statistics/confidence-intervals">Capture-rate</Link>
+            <Link to="/probability-statistics/hypothesis">p vs α</Link>
+            <Link to="/probability-statistics/correlation">Influential point</Link>
+            <Link to="/probability-statistics/anova">Between vs within</Link>
+            <Link to="/probability-statistics/experiments">Law of large numbers</Link>
+          </div>
+        ) : null}
         <LaunchGrid labs={props.labs} studioId={props.studio.id} cta={props.cta} />
       </section>
       <Aside {...props} continueId={props.labs[0]?.id} searchPlaceholder={props.studio.searchPlaceholder} />
@@ -699,7 +752,10 @@ function SnapshotGallery() {
       <h2>Recent figures</h2>
       <ul>
         {snaps.map((item) => (
-          <li key={item.href}><Link to={item.href}>{item.label}</Link></li>
+          <li key={item.href}>
+            <svg viewBox="0 0 72 40" className="sl-svg" aria-hidden="true"><rect width="72" height="40" fill="#e0f2fe" /><circle cx="24" cy="20" r="8" fill="#147df2" /><circle cx="48" cy="20" r="8" fill="#8b45f4" /></svg>
+            <Link to={item.href}>{item.label}</Link>
+          </li>
         ))}
       </ul>
     </section>

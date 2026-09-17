@@ -43,7 +43,7 @@ import StudioHomeButtons from "../components/ui/StudioHomeButtons";
 import { StudioCanvasToolbar } from "../components/ui/StudioCanvasToolbar";
 import { CalculusLaunchArt, CalculusNavIcon } from "./calculusStudioIcons";
 import {
-  dailyChallenge,
+  getDailyChallenge,
   exportSession,
   helpFor,
   importSession,
@@ -61,7 +61,8 @@ import {
   type CalculusStudioPage,
   type StudioSettings,
 } from "./calculusStudioSession";
-import "./CalculusStudio.css";
+import { LandingTeaser, RiemannChipsTeaser, SecantTangentTeaser } from "../studios/landing/StudioLandingTeasers";
+import "../studios/landing/studioLanding.css";
 
 export type { CalculusStudioPage };
 
@@ -294,6 +295,7 @@ function StudioHome() {
   const last = loadLastExperiment();
   const progress = progressSummary();
   const [challenge] = useState(loadChallenge);
+  const today = getDailyChallenge();
   const cards = [
     { page: "limits", title: "Limits", note: "Explore behavior near a point.", tag: "ε-δ & One-Sided" },
     { page: "derivatives", title: "Derivatives", note: "Visualize slopes and tangents.", tag: "Instantaneous Change" },
@@ -346,13 +348,13 @@ function StudioHome() {
         </section>
         <section className="cs-card cs-challenge">
           <h2>Daily visual challenge</h2>
-          <p>{dailyChallenge.prompt}</p>
-          <div className="cs-limit-formula" aria-label="limit as x approaches 2 of (x squared minus 4) over (x minus 2)">
-            lim<sub>x→2</sub> (x² − 4) / (x − 2)
+          <p>{today.prompt}</p>
+          <div className="cs-limit-formula" aria-label={today.html}>
+            {today.formula}
           </div>
-          {challenge.solved ? <p className="cs-feedback">Correct: the limit equals 4.</p> : null}
+          {challenge.solved ? <p className="cs-feedback">Solved for today.</p> : null}
           <div className="cs-challenge-actions">
-            <button type="button" onClick={() => window.alert(dailyChallenge.hint)}>View hint</button>
+            <button type="button" onClick={() => window.alert(today.hint)}>View hint</button>
             <button className="cs-primary" type="button" onClick={() => navigate("/calculus/limits")}>Try it now</button>
           </div>
           <p className="cs-streak"><Flame /> Streak: {challenge.streak} days</p>
@@ -360,17 +362,26 @@ function StudioHome() {
       </aside>
       <section className="cs-card cs-launch">
         <h2>Launch an experiment</h2>
-        <p>Interactive visual labs to build intuition and master calculus. Press 1–6 to jump.</p>
+        <p className="cs-key-legend">Interactive visual labs. Press 1–6 to jump (1 Limits, 2 Derivatives, 3 Integrals, 4 DE, 5 Approximations, 6 Multivariable).</p>
         <div className="cs-launch-grid">
           {cards.map((card, index) => (
             <button key={card.page} type="button" className="cs-launch-card" onClick={() => navigate(studioRoutes[card.page])} aria-describedby={`launch-tag-${card.page}`}>
               <span>{index + 1}</span>
               <strong>{card.title}</strong>
               <small>{card.note}</small>
-              <CalculusLaunchArt kind={card.page} />
+              {card.page === "derivatives" ? <SecantTangentTeaser /> : card.page === "integration" ? <RiemannChipsTeaser /> : card.page === "limits" ? <LandingTeaser studioId="calculus" labId="limits" /> : <CalculusLaunchArt kind={card.page} />}
               <b id={`launch-tag-${card.page}`}>{card.tag}</b>
             </button>
           ))}
+        </div>
+        <div className="sl-chips">
+          <Link className="sl-mini-link" to="/calculus/limits">ε–δ window</Link>
+          <Link className="sl-mini-link" to="/calculus/differential-equations">Slope field</Link>
+          <Link className="sl-mini-link" to="/calculus/series-parametric-polar?mode=taylor">Taylor order</Link>
+          <Link className="sl-mini-link" to="/calculus/series-parametric-polar?mode=polar">Polar</Link>
+          <Link className="sl-mini-link" to="/calculus/series-parametric-polar?mode=parametric">Parametric</Link>
+          <Link className="sl-mini-link" to="/calculus/multivariable-vector?mode=gradient">Gradient</Link>
+          <Link className="sl-mini-link" to="/calculus/integration?mode=ftc">FTC pair</Link>
         </div>
       </section>
       <section className="cs-card cs-why">

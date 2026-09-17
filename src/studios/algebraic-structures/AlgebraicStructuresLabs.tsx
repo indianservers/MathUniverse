@@ -1,6 +1,10 @@
 import { Check, GitFork, GitMerge, Grid3X3, HelpCircle, Share2, ToggleLeft, Trophy } from "lucide-react";
 import { useMemo, useRef, useState, type KeyboardEvent, type PointerEvent } from "react";
 import { Link } from "react-router-dom";
+import { CayleyMiniTeaser } from "../landing/StudioLandingTeasers";
+import { ObserveStrip } from "../landing/StudioLandingExtras";
+import { markLandingVisit, relativeOpened, useLandingSession } from "../landing/studioLandingSession";
+import "../landing/studioLanding.css";
 import {
   booleanCircuitLayers,
   booleanLawSteps,
@@ -44,18 +48,36 @@ export function StructureTabs({ page }: { page: AlgebraicStructuresPage }) {
 }
 
 export function StructuresHome() {
+  const session = useLandingSession("structures");
   return (
     <div className="as-home" data-testid="algebraic-structures-home">
       <p className="msk-note">Eight-minute win: test whether a table is a group, then open Cayley tables.</p>
+      <ObserveStrip items={[
+        { title: "Observe", text: "Watch identity cells light up." },
+        { title: "Understand", text: "Axioms are checks on a table." },
+        { title: "Why", text: "Groups need inverses; monoids do not." },
+        { title: "Try", text: "Load Z₄ and classify it." },
+        { title: "Challenge", text: "Find a magma that is not associative." },
+      ]} />
+      <div className="sl-chips">
+        <Link className="sl-mini-link" to="/algebraic-structures/structure-test?op=z4">Add mod n</Link>
+        <Link className="sl-mini-link" to="/algebraic-structures/boolean-algebra">AND</Link>
+        <Link className="sl-mini-link" to="/algebraic-structures/cayley-tables">Composition</Link>
+        <Link className="sl-mini-link" to="/discrete-world/logic">Nearby: Logic</Link>
+        <Link className="sl-mini-link" to="/set-theory">Nearby: Set Theory</Link>
+      </div>
+      <p className="sl-kicker">Continue {session.lastLabel} · {relativeOpened(session.lastOpenedAt)}</p>
       <div className="as-home-grid">
         {structureTabs.filter((tab) => tab.id !== "home").map((tab) => (
-          <Link key={tab.id} className="as-card as-home-card" to={tab.to}>
+          <Link key={tab.id} className="as-card as-home-card" to={tab.to} onClick={() => markLandingVisit("structures", tab.id, tab.to, tab.label)}>
             <b>{tab.label}</b>
             <small>{tab.hint}</small>
+            {tab.id === "cayley-tables" ? <CayleyMiniTeaser /> : tab.id === "structure-test" ? <p className="sl-kicker">closure · assoc · identity · inverse</p> : tab.id === "posets-lattices" ? <p className="sl-kicker">Hasse: cover edges only</p> : tab.id === "boolean-algebra" ? <p className="sl-kicker">2-variable K-map</p> : <p className="sl-kicker">Group vs monoid vs semigroup</p>}
             <em>Launch →</em>
           </Link>
         ))}
       </div>
+      <p className="sl-banner">Counterexample of the day: subtraction on integers is not associative.</p>
     </div>
   );
 }

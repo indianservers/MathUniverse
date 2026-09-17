@@ -53,7 +53,7 @@ import StudioHomeButtons from "../../components/ui/StudioHomeButtons";
 import { StudioCanvasToolbar } from "../../components/ui/StudioCanvasToolbar";
 import { TopicIllustration } from "./labs/TopicIllustrations";
 import { studioNavPages, studioSidebarPages, type StudioMockupDefinition, type StudioMockupPage } from "./studioMockupCatalog";
-import { ModellingLaunchArt, ModellingNavIcon, modellingDatasets, modellingJourney } from "./modellingStudioIcons";
+import { ModellingLaunchArt, ModellingNavIcon, modellingDatasets } from "./modellingStudioIcons";
 import { IllustratedStudioHome, StudioLabCard } from "./studioHomeLayouts";
 import GeometryStudioHome from "../geometry/GeometryStudioHome";
 import { GEO_SHORTCUTS, geometrySearchHits } from "../geometry/geometryStudioCopy";
@@ -95,6 +95,9 @@ import {
   useComplexSession,
   COMPLEX_SEARCH_ALIASES,
 } from "../complex/complexStudioSession";
+import { markLandingVisit, relativeOpened, useLandingSession } from "../landing/studioLandingSession";
+import { LandingTeaser, hasLandingTeaser } from "../landing/StudioLandingTeasers";
+import { ModellingDatasetsMeta } from "../landing/StudioLandingExtras";
 
 const pageIcons: Record<string, LucideIcon> = {
   home: Home,
@@ -283,6 +286,7 @@ export function MockupStudioChrome({
   const isDiscrete = studio.id === "discrete";
   const isLinear = studio.id === "linear-algebra";
   const isComplex = studio.id === "complex-numbers";
+  const isStats = studio.id === "statistics";
   const isNumberSense = isDiscrete && page.id === "number-sense";
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
@@ -320,6 +324,10 @@ export function MockupStudioChrome({
     if (!isComplex || page.id === "home") return;
     markComplexVisit(page.id, page.route, page.label, mode);
   }, [isComplex, page.id, page.route, page.label, mode]);
+  useEffect(() => {
+    if (!(isModel || isDiscrete || isStats) || page.id === "home") return;
+    markLandingVisit(studio.id, page.id, page.route, page.label);
+  }, [isModel, isDiscrete, isStats, studio.id, page.id, page.route, page.label]);
   useEffect(() => {
     if (!isGeo && !isNumberSense) return;
     if (isGeo) document.title = `${page.id === "home" ? "Geometry Studio" : page.title} | Math Universe`;
@@ -658,6 +666,7 @@ export function MockupStudioHome({ studio }: { studio: StudioMockupDefinition })
   const session = useTrigSession();
   const linearSession = useLinearSession();
   const complexSession = useComplexSession();
+  const landing = useLandingSession(studio.id);
   const pool = labs.filter((item) => item.challenge.prompt !== "0");
   const challengePage = isModel ? labs.find((item) => item.id === "networks") ?? pool[0] : pool[dailyChallengeIndex(pool.length)] ?? pool[0];
   const next = nextTrigLab(labs, session.completed);
@@ -668,9 +677,11 @@ const launchTitle = isModel ? "Explore modelling domains" : isTrig ? "Explore Ke
       ? continueLinearHref(linearSession)
       : studio.id === "complex-numbers"
         ? continueComplexHref(complexSession)
+        : isModel
+          ? landing.lastRoute
         : studio.continueRoute;
   const continueLabel = isModel
-    ? "Epidemic Spread in Campus"
+    ? landing.lastLabel
     : isTrig
       ? session.lastLabel
       : studio.id === "linear-algebra"
@@ -678,12 +689,15 @@ const launchTitle = isModel ? "Explore modelling domains" : isTrig ? "Explore Ke
         : studio.id === "complex-numbers"
           ? complexSession.lastLabel
           : studio.continueLabel;
+  const completedIds = studio.id === "linear-algebra"
+    ? linearSession.completed
+    : studio.id === "complex-numbers"
+      ? complexSession.completed
+      : studio.id === "modelling" || studio.id === "discrete" || studio.id === "statistics"
+        ? landing.completed
+        : session.completed;
   const progress = labs.length
-    ? Math.round((((studio.id === "linear-algebra"
-      ? linearSession.completed
-      : studio.id === "complex-numbers"
-        ? complexSession.completed
-        : session.completed).filter((id) => labs.some((lab) => lab.id === id)).length) / labs.length) * 100)
+    ? Math.round((completedIds.filter((id) => labs.some((lab) => lab.id === id)).length / labs.length) * 100)
     : 0;
 
   if (studio.id === "geometry") return <GeometryStudioHome studio={studio} />;
@@ -703,7 +717,7 @@ const launchTitle = isModel ? "Explore modelling domains" : isTrig ? "Explore Ke
                   item={item}
                   index={index}
                   studioId="modelling"
-                  art={<ModellingLaunchArt id={item.id} />}
+                  art={hasLandingTeaser("modelling", item.id) ? <LandingTeaser studioId="modelling" labId={item.id} /> : <ModellingLaunchArt id={item.id} />}
                   cta="Launch →"
                   numbered
                 />
@@ -717,6 +731,12 @@ const launchTitle = isModel ? "Explore modelling domains" : isTrig ? "Explore Ke
                     <ModellingLaunchArt id={item.id} />
                     <b>{item.title}</b>
                     <small>{item.tag}</small>
+                    <ModellingDatasetsMeta
+                      title={item.tag}
+                      n={item.id === "epidemics" ? 180 : item.id === "finance" ? 252 : 48}
+                      units={item.id === "finance" ? "USD" : item.id === "epidemics" ? "cases" : "units"}
+                      kind={item.id === "epidemics" ? "measured" : "fictional"}
+                    />
                   </Link>
                 ))}
               </div>
@@ -725,19 +745,22 @@ const launchTitle = isModel ? "Explore modelling domains" : isTrig ? "Explore Ke
           <aside className="msk-aside">
             <section className="msk-panel msk-continue">
               <h2>Continue model</h2>
-              <div className="msk-continue-art"><ModellingLaunchArt id="epidemics" /></div>
-              <p><strong>{continueLabel}</strong><span>Last edited 2h ago</span></p>
+              <div className="msk-continue-art"><ModellingLaunchArt id={landing.lastId || "epidemics"} /></div>
+              <p><strong>{continueLabel}</strong><span>{relativeOpened(landing.lastOpenedAt)}</span></p>
               <Link className="msk-cta" to={continueTo}>Continue →</Link>
             </section>
             <section className="msk-panel">
               <h2>Recent journey</h2>
               <ol className="msk-journey-list">
-                {modellingJourney.map((item) => (
-                  <li key={item.id}>
-                    <i className={item.done ? "done" : item.now ? "now" : ""} />
-                    <Link to={`/mathematical-modelling/${item.id}`}>{item.label}<small>{item.note}</small></Link>
-                  </li>
-                ))}
+                {labs.slice(0, 6).map((item, index) => {
+                  const done = landing.completed.includes(item.id);
+                  return (
+                    <li key={item.id}>
+                      <i className={done ? "done" : index === 0 ? "now" : ""} />
+                      <Link to={item.route}>{item.label}</Link>
+                    </li>
+                  );
+                })}
               </ol>
               <Link className="msk-teach" to="/mathematical-modelling">View all journey →</Link>
             </section>
@@ -748,6 +771,7 @@ const launchTitle = isModel ? "Explore modelling domains" : isTrig ? "Explore Ke
               <small>Find the fastest path with traffic constraints and road closures.</small>
               <Link className="msk-cta" to="/mathematical-modelling/networks">Start Challenge →</Link>
             </section>
+            <p className="sl-kicker">SIR/SEIR overlay, inflation switch, and train/validation live on the lab cards.</p>
           </aside>
         </div>
         <MockupLearningStrip page={studio.pages[0]} />

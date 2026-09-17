@@ -1,13 +1,17 @@
+import { useParams } from "react-router-dom";
 import SetTheoryModule, { getSetTheoryPageTitle, SetTheoryTopicLauncher } from "../modules/set-theory/SetTheoryModule";
 import PhaseTwoDomainPanel from "../components/ui/PhaseTwoDomainPanel";
 import FormulaBlock from "../components/ui/FormulaBlock";
 import SectionCard from "../components/ui/SectionCard";
 import StudioPageShell from "../components/ui/StudioPageShell";
-import { useParams } from "react-router-dom";
+import SetTheoryLanding from "../studios/landing/SetTheoryLanding";
+import { landingProgressPercent, useLandingSession } from "../studios/landing/studioLandingSession";
 
 export default function SetTheory() {
   const { pageSlug } = useParams();
   const pageTitle = getSetTheoryPageTitle(pageSlug);
+  const session = useLandingSession("set-theory");
+  const progress = landingProgressPercent(7, session.completed);
   return (
     <StudioPageShell
       className="set-theory-studio"
@@ -16,7 +20,7 @@ export default function SetTheory() {
       breadcrumbs={["Home", "Studio", "Number & Discrete Mathematics", "Set Theory and Relations", ...(pageTitle ? [pageTitle] : [])]}
       difficulty="Discrete Structures"
       estimatedMinutes={60}
-      progress={72}
+      progress={progress}
       status={[
         { id: "pages", label: "Focused pages", value: 7, tone: "cyan" },
         { id: "engine", label: "Engine", value: "live", tone: "green" },
@@ -25,6 +29,7 @@ export default function SetTheory() {
       <div className="set-theory-top-links">
         <SetTheoryTopicLauncher />
       </div>
+      {!pageSlug ? <SetTheoryLanding /> : null}
       <div className="set-theory-workspace">
         <section className="set-theory-main-panel" aria-label="Set theory workspace">
           <SetTheoryModule showLauncher={false} />

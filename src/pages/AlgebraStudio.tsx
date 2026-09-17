@@ -16,7 +16,10 @@ import AlgebraEnhancementWorkbench from "../studios/algebra/AlgebraEnhancementWo
 import { answersMatchChallenge } from "../studios/algebra/algebraStudioMath";
 import { AlgebraStudioNav, routePage, type AlgebraPage } from "../studios/algebra/AlgebraStudioNav";
 import { dailyChallenges } from "../studios/algebra/algebraStudioCatalog";
-import { namedExperiments } from "../studios/algebra/algebraStudioProgress";
+import { namedExperiments, readLabProgress } from "../studios/algebra/algebraStudioProgress";
+import { BalanceScaleTeaser, CasExpandTeaser, FactorTilesTeaser } from "../studios/landing/StudioLandingTeasers";
+import { relativeOpened } from "../studios/landing/studioLandingSession";
+import "../studios/landing/studioLanding.css";
 import "./AlgebraStudio.css";
 import "./AlgebraTarget.css";
 
@@ -62,7 +65,8 @@ export default function AlgebraStudio() {
 
   useEffect(() => {
     if (page === "home") return;
-    localStorage.setItem(LAST_ROUTE_KEY, location.pathname);
+        localStorage.setItem(LAST_ROUTE_KEY, location.pathname);
+    localStorage.setItem("algebra-studio:last-at", String(Date.now()));
     const seen = new Set(readStringList(VISITED_KEY));
     seen.add(page);
     localStorage.setItem(VISITED_KEY, JSON.stringify([...seen]));
@@ -93,8 +97,16 @@ function StudioHome() {
   const navigate = useNavigate();
   const [answer, setAnswer] = useState("");
   const [checked, setChecked] = useState(false);
+  const [query, setQuery] = useState("");
   const featured = dailyChallenges[0]!;
   const saved = namedExperiments();
+  const lastRoute = typeof window === "undefined" ? "/algebra/functions" : (localStorage.getItem(LAST_ROUTE_KEY) || "/algebra/functions");
+  const lastAt = typeof window === "undefined" ? 0 : Number(localStorage.getItem("algebra-studio:last-at") || 0);
+  const lastTopic = topicStudios.find((item) => item.route === lastRoute) ?? topicStudios.find((item) => item.id === "functions")!;
+  const progress = readLabProgress();
+  const visited = new Set([...progress.visited, ...readStringList(VISITED_KEY)]);
+  const percent = Math.round((visited.size / topicStudios.length) * 100);
+  const filtered = topicStudios.filter((item) => `${item.label} ${item.description} ${item.tabs.join(" ")}`.toLowerCase().includes(query.trim().toLowerCase()));
 
   useEffect(() => {
     markTopicVisited("algebra");
@@ -108,9 +120,10 @@ function StudioHome() {
           <p>Explore, connect, and master algebra through interactive visual models.</p>
         </div>
         <div className="alg-home-hero-tools">
-          <button type="button" className="alg-icon-btn" aria-label="Search">
+          <label>
             <Search size={16} />
-          </button>
+            <input className="alg-search-live" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search labs" aria-label="Search algebra labs" />
+          </label>
           <button type="button" className="alg-icon-btn" aria-label="Help">
             <HelpCircle size={16} />
           </button>
@@ -158,37 +171,41 @@ function StudioHome() {
           <h2>Launch a topic</h2>
           <p>Choose a topic to explore with interactive visual models.</p>
           <div className="alg-launch-grid">
-            {topicStudios.map((item, index) => (
-              <Link key={item.id} to={item.route} className="alg-launch-card">
-                <span className="alg-launch-n">{`${index + 1} ${item.label}`}</span>
-                <TopicPreview id={item.id} />
+            {filtered.map((item, index) => (
+              <article key={item.id} className="alg-launch-card">
+                <Link to={item.route} className="alg-launch-n">{`${index + 1} ${item.label}`}</Link>
+                {item.id === "equations" ? <BalanceScaleTeaser /> : item.id === "expressions" ? <FactorTilesTeaser /> : item.id === "cas" ? <CasExpandTeaser /> : <TopicPreview id={item.id} />}
                 <p>{item.description}</p>
-              </Link>
+                {item.id === "systems" ? <p className="sl-kicker">Move a line in the lab to see the intersection.</p> : null}
+                {item.id === "exponents" ? <p className="sl-kicker">Log vs exponential overlay in the lab.</p> : null}
+                {item.id === "sequences" ? <p className="sl-kicker">Next term: 2, 5, 10, 17, ?</p> : null}
+                {item.id === "proof" ? <p className="sl-kicker">Given → Show → Therefore</p> : null}
+              </article>
             ))}
           </div>
         </section>
         <aside className="alg-home-rail">
           <section className="alg-home-card">
             <h3>Continue experiment</h3>
-            <strong>Quadratic Functions</strong>
-            <p className="alg-mono">y = (x − 2)² + 1</p>
+            <strong>{lastTopic.label}</strong>
+            <p className="alg-mono">{lastTopic.description}</p>
             <svg className="alg-mini-parabola" viewBox="0 0 160 62" aria-hidden="true">
               <path d="M8 50 Q 70 4 152 42" fill="none" stroke="#2563eb" strokeWidth="3" />
             </svg>
-            <p className="alg-muted">Last active: 2m ago</p>
-            <button type="button" className="alg-continue" onClick={() => navigate("/algebra/functions")}>
+            <p className="alg-muted">{relativeOpened(lastAt)}</p>
+            <button type="button" className="alg-continue" onClick={() => navigate(lastTopic.route)}>
               Continue
             </button>
           </section>
           <section className="alg-home-card alg-journey-card">
             <h3>Your learning journey</h3>
-            <div className="alg-donut" aria-label="68 percent">
-              <strong>68%</strong>
+            <div className="alg-donut" aria-label={`${percent} percent`}>
+              <strong>{percent}%</strong>
             </div>
             <dl>
-              <div><dt>Topics explored</dt><dd>18 / 26</dd></div>
-              <div><dt>Skills mastered</dt><dd>42 / 68</dd></div>
-              <div><dt>Challenges solved</dt><dd>24 / 32</dd></div>
+              <div><dt>Topics explored</dt><dd>{visited.size} / {topicStudios.length}</dd></div>
+              <div><dt>Skills mastered</dt><dd>{Object.values(progress.modes).reduce((sum, modes) => sum + modes.length, 0)}</dd></div>
+              <div><dt>Challenges solved</dt><dd>{progress.challengesPassed}</dd></div>
             </dl>
             <Link className="alg-soft" to="/algebra/expressions">View full progress</Link>
           </section>

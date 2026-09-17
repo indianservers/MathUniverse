@@ -44,6 +44,7 @@ import SectionCard from "../../components/ui/SectionCard";
 import StudioBreadcrumb, { mathStudioCrumbs } from "../../components/ui/StudioBreadcrumb";
 import { StudioCanvasToolbar } from "../../components/ui/StudioCanvasToolbar";
 import StudioHomeButtons from "../../components/ui/StudioHomeButtons";
+import GraphTheoryLanding from "../../studios/landing/GraphTheoryLanding";
 import TopicHeader from "../../components/ui/TopicHeader";
 import {
   adjacencyList,
@@ -417,6 +418,7 @@ function GraphTheoryStudio() {
           <StudioCanvasToolbar />
         </div>
       </header>
+      <GraphTheoryLanding />
       <nav
         className="gt-tabs"
         role="tablist"

@@ -97,9 +97,11 @@ export default function NumberSystems() {
 }
 
 function StudioHome({ progress }: { progress: number }) {
+  const navigate = useNavigate();
   const [query, setQuery] = useState("");
   const [band, setBand] = useState<NumberClassBand>(readClassBand);
   const [shareStatus, setShareStatus] = useState("");
+  const [coachStep, setCoachStep] = useState(0);
   const done = completedLabs();
   const resume = lastNumberSystemsRoute();
   const resumeLabel = nav.find((item) => item.route === resume)?.label ?? "Rational";
@@ -126,10 +128,20 @@ function StudioHome({ progress }: { progress: number }) {
           <input type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search labs…" aria-label="Search Number Systems labs" />
         </label>
       </header>
-      <NestedSetsHero progress={progress} />
+      <NestedSetsHero progress={progress} onSelect={(id) => {
+        if (id === "rational") { setQuery("rational"); navigate("/number-systems/rational"); }
+        if (id === "irrational") navigate("/number-systems/irrational");
+        if (id === "hierarchy") navigate("/number-systems/hierarchy");
+      }} />
       <div className="ns-home-grid">
         <section>
-          {!coachDismissed() ? <p className="ns-coach">Start with Rational numbers. Use a preset, then answer the yes/no check to earn progress.</p> : null}
+          {!coachDismissed() ? (
+            <p className="ns-coach">
+              {coachStep === 0 ? "Start with Rational numbers. Use a preset, then answer the yes/no check to earn progress." : coachStep === 1 ? "Next: place a fraction and a surd on the real line." : "Then open Hierarchy to see ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ."}
+              <button type="button" onClick={() => setCoachStep((step) => Math.min(2, step + 1))}>Next tip</button>
+            </p>
+          ) : null}
+          <p className="sl-kicker">{band === "jee" ? "JEE example: prove √2 is irrational." : band === "6-7" ? "Class 6–7 example: write 3/4 as a decimal." : "Class 8–10 example: locate √9 and √2."}</p>
           <div className="ns-bands" role="group" aria-label="Who this is for">
             {([["all", "All classes"], ["6-7", "Classes 6–7"], ["8-10", "Classes 8–10"], ["jee", "JEE / degree"]] as const).map(([id, label]) => (
               <button key={id} type="button" className={band === id ? "active" : ""} onClick={() => { setBand(id); saveClassBand(id); }}>{label}</button>
@@ -143,10 +155,21 @@ function StudioHome({ progress }: { progress: number }) {
                   <b>{item.label}</b>
                   <p>{item.description}</p>
                   <em>{item.level} · {item.minutes} min</em>
-                  <small>{item.modes.join(" · ")}</small>
+            {item.id === "rational" ? <small>Decimal vs fraction in the lab. Insert another rational between a and b on the line.</small> : null}
+            {item.id === "irrational" ? <small>Surd simplify chips live in the lab.</small> : null}
+            {item.id === "real-line" ? <small>Completeness hole: zoom between rationals.</small> : null}
                 </Link>
               </article>
             ))}
+            <article className="ns-topic">
+              <span>ƒ</span>
+              <Link to="/number-systems/formula-visualizer">
+                <b>Formula visualizer</b>
+                <p>See the nested-set formulas in motion.</p>
+                <em>Extend · 6 min</em>
+                <small>Identities · nested sets</small>
+              </Link>
+            </article>
           </div>
         </section>
         <aside className="ns-home-aside">
@@ -155,7 +178,12 @@ function StudioHome({ progress }: { progress: number }) {
             <strong>{resumeLabel}</strong>
             <p>{done.length} labs completed · {progress}%</p>
             <Link className="ns-cta" to={resume}>Resume</Link>
-            <button type="button" onClick={async () => setShareStatus(await shareStudio("Number Systems Studio"))}>Share setup</button>
+            <button type="button" onClick={async () => {
+              const url = new URL(window.location.href);
+              url.searchParams.set("band", band);
+              url.searchParams.set("lab", resume);
+              setShareStatus(await shareStudio("Number Systems Studio", url.toString()));
+            }}>Share setup</button>
             {shareStatus ? <p role="status">{shareStatus}</p> : null}
           </section>
           <section className="ns-panel">
