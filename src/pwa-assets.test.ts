@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
 
 describe("PWA assets", () => {
@@ -8,7 +8,13 @@ describe("PWA assets", () => {
 
     expect(manifest.name).toBe("Math Universe");
     expect(manifest.display).toBe("standalone");
+    expect(manifest.icons.some((icon) => icon.src === "/math-universe-icon-192.png")).toBe(true);
+    expect(manifest.icons.some((icon) => icon.src === "/math-universe-icon-512.png")).toBe(true);
     expect(manifest.icons.some((icon) => icon.src === "/math-universe-icon.svg")).toBe(true);
+    expect(existsSync(resolve("public/math-universe-icon-192.png"))).toBe(true);
+    expect(existsSync(resolve("public/math-universe-icon-512.png"))).toBe(true);
+    expect(existsSync(resolve("public/apple-touch-icon.png"))).toBe(true);
+    expect(existsSync(resolve("android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png"))).toBe(true);
   });
 
   it("keeps the temporary no-cache service worker contract", () => {
