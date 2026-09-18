@@ -4,7 +4,7 @@ import {
 } from "./circleMath";
 import { useCircleSession, usePersisted } from "./CircleSession";
 import {
-  ChallengeCard, ChordLine, CircleOutline, CircleSvg, DraggablePoint, FilledTriangle, FormulaCard, GhostChord, LengthBadge, LiveRow, MathLine, PresetButton, PropertyCard, RadiusLine, Slider, StepDot, Toggle, WorkedCard, useSvgDrag,
+  ChallengeCard, ChordLine, CircleOutline, CircleSvg, DraggablePoint, FilledTriangle, FormulaCard, GhostChord, LiveRow, MathLine, PresetButton, PropertyCard, RadiusLine, Slider, Toggle, WorkedCard, useSvgDrag,
 } from "./primitives";
 
 type Live = { r: number; ab: number; cd: number; om: number; on: number; arc: number; showSecond: boolean };
@@ -125,7 +125,7 @@ export default function ChordsLab() {
         }}>
           <CircleOutline origin={origin} radius={r} />
           {showLocus ? <CircleOutline origin={origin} radius={om} dashed color="#10b981" /> : null}
-          {challenge === 0 ? <GhostChord a={gA} b={gB} label="8" /> : null}
+          {challenge === 0 ? <GhostChord a={gA} b={gB} /> : null}
           {showPy ? <FilledTriangle a={origin} b={A} c={M} color="rgba(16,185,129,.14)" /> : null}
           <RadiusLine origin={origin} point={A} />
           <RadiusLine origin={origin} point={B} />
@@ -133,15 +133,12 @@ export default function ChordsLab() {
           {showPerp ? <ChordLine a={origin} b={M} color="#10b981" dashed /> : null}
           {showSecond ? <ChordLine a={C} b={D} color="#8b45f4" /> : null}
           {showSecond && showPerp ? <ChordLine a={origin} b={N} color="#94a3b8" dashed /> : null}
-          {showMeas ? <LengthBadge a={A} b={B} text={`AB ${fmt(ab)}`} /> : null}
-          {showMeas ? <LengthBadge a={origin} b={M} text={`OM ${fmt(om)}`} color="#10b981" /> : null}
           <DraggablePoint point={origin} label="O" color="#0f2747" dragId="O" title="Centre O" />
           <DraggablePoint point={A} label="A" dragId="A" />
           <DraggablePoint point={B} label="B" color="#f59e0b" dragId="B" />
           {showM ? <DraggablePoint point={M} label="M" color="#10b981" dragId="M" title="Midpoint M — drag along the perpendicular" /> : null}
           {showSecond ? <><DraggablePoint point={C} label="C" color="#8b45f4" dragId="C" /><DraggablePoint point={D} label="D" color="#8b45f4" dragId="D" /></> : null}
-          <DraggablePoint point={{ x: origin.x + r, y: origin.y }} label="r" color="#08b9dd" dragId="R" />
-          {showSteps ? <><StepDot origin={origin} n={1} label="Radii" /><StepDot origin={origin} n={2} label="Perp. bisector" /><StepDot origin={origin} n={3} label="Equal halves" /></> : null}
+          <DraggablePoint point={{ x: origin.x + r, y: origin.y }} dragId="R" color="#08b9dd" title="Radius handle" />
         </CircleSvg>
       </section>
       <aside className="clab-col clab-insights">

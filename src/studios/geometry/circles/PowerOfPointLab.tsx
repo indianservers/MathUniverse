@@ -5,7 +5,7 @@ import {
 import { parsePowerKind, type PowerKind } from "./circleMode";
 import { useCircleSession, usePersisted } from "./CircleSession";
 import {
-  ChallengeCard, ChordLine, CircleOutline, CircleSvg, DraggablePoint, FilledTriangle, FormulaCard, LengthBadge, LiveRow, MathLine, PresetButton, PropertyCard, Slider, Toggle, WorkedCard, useSvgDrag,
+  ChallengeCard, ChordLine, CircleOutline, CircleSvg, DraggablePoint, FilledTriangle, FormulaCard, LiveRow, MathLine, PresetButton, PropertyCard, Slider, Toggle, WorkedCard, useSvgDrag,
 } from "./primitives";
 
 const SUB: Array<{ id: PowerKind; label: string }> = [
@@ -112,7 +112,6 @@ export default function PowerOfPointLab() {
               <FilledTriangle a={P} b={chord1.b} c={chord2.b} color="rgba(139,69,244,.16)" />
             </>
           ) : null}
-          {Math.abs(left - 30) < 1.2 && sub !== "tangent" ? <LengthBadge a={P} b={chord1?.a ?? P} text="product 30" color="#10b981" /> : null}
           {chord1 && sub !== "radical" ? <DraggablePoint point={chord1.a} label={labels ? "A" : undefined} dragId="A" /> : null}
           {chord1 && sub !== "radical" ? <DraggablePoint point={chord1.b} label={labels ? "B" : undefined} color="#f59e0b" dragId="B" /> : null}
           {chord2 && sub !== "tangent" && sub !== "radical" ? <DraggablePoint point={chord2.a} label={labels ? "C" : undefined} color="#8b45f4" dragId="C" /> : null}
@@ -121,7 +120,7 @@ export default function PowerOfPointLab() {
           <DraggablePoint point={origin} label="O" color="#0f2747" dragId="O" />
           {sub === "radical" ? <DraggablePoint point={O2} label="O₂" color="#8b45f4" dragId="O2" /> : null}
           <DraggablePoint point={P} label="P" color="#10b981" dragId="P" />
-          <DraggablePoint point={{ x: origin.x + r, y: origin.y }} label="r" color="#08b9dd" dragId="R" />
+          <DraggablePoint point={{ x: origin.x + r, y: origin.y }} dragId="R" color="#08b9dd" title="Radius handle" />
         </CircleSvg>
       </section>
       <aside className="clab-col clab-insights">

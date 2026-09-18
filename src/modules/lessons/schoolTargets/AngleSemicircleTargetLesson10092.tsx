@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./AngleSemicircleTargetLesson10092.css";
 import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+import { LessonGraphInkLegend, lessonGraphInkProps } from "../graphs/LessonGraphInk";
 
 const RADIUS = 6.31;
 const round = (value: number, places = 2) =>
@@ -189,6 +190,7 @@ export default function AngleSemicircleTargetLesson10092({
               ref={svgRef}
               viewBox="0 0 688 535"
               aria-label="Angle in a semicircle interactive diagram"
+              {...lessonGraphInkProps}
               onPointerMove={(event) => dragging && updateFromPointer(event)}
               onPointerUp={() => dragging && act(() => setDragging(false))}
               onPointerLeave={() => dragging && act(() => setDragging(false))}
@@ -209,6 +211,7 @@ export default function AngleSemicircleTargetLesson10092({
                 height="535"
                 fill="url(#ais-grid)"
               />
+              <LessonGraphInkLegend />
               <line className="axis" x1="35" y1={cy} x2="655" y2={cy} />
               <circle className="circle" cx={cx} cy={cy} r={rr} />
               <line className="triangle" x1={a.x} y1={a.y} x2={c.x} y2={c.y} />

@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./AnglesSameSegmentTargetLesson10093.css";
 import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+import { LessonGraphInkLegend, lessonGraphInkProps } from "../graphs/LessonGraphInk";
 
 type PointName = "C" | "D";
 type Point = { x: number; y: number };
@@ -211,6 +212,7 @@ export default function AnglesSameSegmentTargetLesson10093({
               ref={svgRef}
               viewBox="0 0 710 520"
               aria-label="Two draggable angles standing on chord AB"
+              {...lessonGraphInkProps}
               onPointerMove={(event) =>
                 dragging && setPoint(dragging, pointerAngle(event))
               }
@@ -233,6 +235,7 @@ export default function AnglesSameSegmentTargetLesson10093({
                 height="520"
                 fill="url(#ass-dots)"
               />
+              <LessonGraphInkLegend />
               <circle className="circle" cx={cx} cy={cy} r={radius} />
               <line className="radius" x1={cx} y1={cy} x2={pa.x} y2={pa.y} />
               <line className="radius" x1={cx} y1={cy} x2={pb.x} y2={pb.y} />

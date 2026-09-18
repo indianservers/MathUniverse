@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./TangentLengthsExternalTargetLesson10097.css";
 import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+import { LessonGraphInkLegend, lessonGraphInkProps } from "../graphs/LessonGraphInk";
 
 type Handle = "P" | "A" | "B" | null;
 type Point = { x: number; y: number };
@@ -217,10 +218,12 @@ export default function TangentLengthsExternalTargetLesson10097({
                 ref={svgRef}
                 viewBox="0 0 650 500"
                 aria-label="Two tangent segments from external point P"
+                {...lessonGraphInkProps}
                 onPointerMove={updatePointer}
                 onPointerUp={() => dragging && act(() => setDragging(null))}
                 onPointerLeave={() => dragging && act(() => setDragging(null))}
               >
+                <LessonGraphInkLegend />
                 <circle className="circle" cx={cx} cy={cy} r={RADIUS * scale} />
                 {showCongruent && (
                   <>

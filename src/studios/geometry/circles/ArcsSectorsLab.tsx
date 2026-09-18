@@ -4,7 +4,7 @@ import {
 } from "./circleMath";
 import { useCircleSession, usePersisted } from "./CircleSession";
 import {
-  ArcPath, ChallengeCard, ChordLine, CircleOutline, CircleSvg, DraggablePoint, FormulaCard, LengthBadge, LiveRow, MathLine, PresetButton, PropertyCard, RadiusLine, Slider, Toggle, WorkedCard, useSvgDrag,
+  ArcPath, ChallengeCard, ChordLine, CircleOutline, CircleSvg, DraggablePoint, FormulaCard, LiveRow, MathLine, PresetButton, PropertyCard, RadiusLine, Slider, Toggle, WorkedCard, useSvgDrag,
 } from "./primitives";
 
 export default function ArcsSectorsLab({ active }: { active: boolean }) {
@@ -117,12 +117,10 @@ export default function ArcsSectorsLab({ active }: { active: boolean }) {
           <RadiusLine origin={origin} point={A} />
           <RadiusLine origin={origin} point={B} />
           <ChordLine a={A} b={B} color="#147df2" />
-          <LengthBadge a={A} b={B} text={`c ${fmt(chord)}`} />
-          {nearlyEqual(shown, 120, 2) ? <LengthBadge a={origin} b={A} text="120°" color="#8b45f4" /> : null}
           <DraggablePoint point={origin} label="O" color="#0f2747" dragId="O" />
           <DraggablePoint point={A} label={labels ? "A" : undefined} dragId="A" />
           <DraggablePoint point={B} label={labels ? "B" : undefined} color="#f59e0b" dragId="B" />
-          <DraggablePoint point={{ x: origin.x + r, y: origin.y }} label="r" color="#08b9dd" dragId="R" />
+          <DraggablePoint point={{ x: origin.x + r, y: origin.y }} dragId="R" color="#08b9dd" title="Radius handle" />
         </CircleSvg>
       </section>
       <aside className="clab-col clab-insights">

@@ -5,7 +5,7 @@ import {
 import { parseAngleKind, type AngleKind } from "./circleMode";
 import { useCircleSession, usePersisted } from "./CircleSession";
 import {
-  AngleMarker, ArcPath, ChallengeCard, ChordLine, CircleOutline, CircleSvg, DraggablePoint, FormulaCard, LengthBadge, LiveRow, MathLine, PresetButton, PropertyCard, RadiusLine, Slider, TangentLine, Toggle, WorkedCard, useSvgDrag,
+  AngleMarker, ArcPath, ChallengeCard, ChordLine, CircleOutline, CircleSvg, DraggablePoint, FormulaCard, LiveRow, MathLine, PresetButton, PropertyCard, RadiusLine, Slider, TangentLine, Toggle, WorkedCard, useSvgDrag,
 } from "./primitives";
 
 const SUB: Array<{ id: AngleKind; label: string }> = [
@@ -172,13 +172,12 @@ export default function AnglesLab({ active }: { active: boolean }) {
               <AngleMarker vertex={C} from={B} to={D} color="#8b45f4" />
             </>
           ) : null}
-          {nearlyEqual(inscribed, 35, 1.5) ? <LengthBadge a={A} b={C} text="35°" color="#10b981" /> : null}
           <DraggablePoint point={origin} label="O" color="#0f2747" dragId="O" />
           <DraggablePoint point={A} label="A" dragId="A" />
           <DraggablePoint point={B} label="B" color="#f59e0b" dragId="B" />
           <DraggablePoint point={C} label="C" color="#8b45f4" dragId="C" />
           {sub === "chords" || sub === "cyclic" || sub === "secants" ? <DraggablePoint point={D} label="D" color="#10b981" dragId="D" /> : null}
-          <DraggablePoint point={{ x: origin.x + r, y: origin.y }} label="r" color="#08b9dd" dragId="R" />
+          <DraggablePoint point={{ x: origin.x + r, y: origin.y }} dragId="R" color="#08b9dd" title="Radius handle" />
         </CircleSvg>
       </section>
       <aside className="clab-col clab-insights">
