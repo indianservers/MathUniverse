@@ -366,7 +366,7 @@ export default function RemainderTheoremTargetLesson10048({
           <ArrowRight />
         </Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10048} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10048} view={tab} />
 
     </section>
   );

@@ -1,5 +1,6 @@
 import { lazy, Suspense, type ComponentType, type LazyExoticComponent } from "react";
 import type { LessonAdapter, LessonAdapterProps } from "../types";
+import DedicatedLessonTabHost from "./DedicatedLessonTabHost";
 
 const adapters: Record<LessonAdapter, LazyExoticComponent<ComponentType<LessonAdapterProps>>> = {
   calculator: lazy(() => import("../adapters/CalculatorLessonAdapter")),
@@ -30,8 +31,10 @@ const adapters: Record<LessonAdapter, LazyExoticComponent<ComponentType<LessonAd
 export default function LessonSurface(props: LessonAdapterProps) {
   const Adapter = adapters[props.lesson.adapter];
   return (
-    <Suspense fallback={<div className="flex min-h-[360px] items-center justify-center rounded-2xl border border-slate-200 bg-white dark:border-white/10 dark:bg-slate-950"><div className="h-9 w-9 animate-spin rounded-full border-4 border-cyan-200 border-t-cyan-600" aria-label="Loading lesson interaction" /></div>}>
-      <Adapter {...props} />
-    </Suspense>
+    <DedicatedLessonTabHost>
+      <Suspense fallback={<div className="flex min-h-[360px] items-center justify-center rounded-2xl border border-slate-200 bg-white dark:border-white/10 dark:bg-slate-950"><div className="h-9 w-9 animate-spin rounded-full border-4 border-cyan-200 border-t-cyan-600" aria-label="Loading lesson interaction" /></div>}>
+        <Adapter {...props} />
+      </Suspense>
+    </DedicatedLessonTabHost>
   );
 }

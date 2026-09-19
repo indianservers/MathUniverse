@@ -12,6 +12,7 @@
 }
 .zc10050-page * {
   box-sizing: border-box;
+  letter-spacing: 0;
 }
 .zc10050-page h1,
 .zc10050-page h2,
@@ -165,7 +166,7 @@
 }
 .zc-slider {
   display: grid;
-  grid-template-columns: 82px 1fr 40px;
+  grid-template-columns: max-content minmax(0, 1fr) 40px;
   align-items: center;
   gap: 8px;
   margin: 16px 0;
@@ -235,7 +236,7 @@
 }
 .zc-balance > div {
   display: grid;
-  grid-template-columns: 74px 12px 62px 12px 46px 20px;
+  grid-template-columns: minmax(74px, 1fr) auto minmax(62px, 1fr) auto minmax(46px, auto) auto;
   align-items: center;
   gap: 6px;
 }
@@ -256,13 +257,16 @@
   left: 12px;
   right: 12px;
   bottom: 12px;
-  height: 40px;
+  min-height: 40px;
+  height: auto;
   border: 1px solid #a6ddc0;
   border-radius: 7px;
   background: #effbf4;
   color: #167c4a;
-  padding: 11px;
+  padding: 10px 12px;
   font-weight: 700;
+  line-height: 1.4;
+  overflow: visible;
 }
 .zc-lab > footer svg {
   vertical-align: middle;

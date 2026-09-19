@@ -13483,19 +13483,14 @@ html[data-geometry-workspace-theme="light"]
   white-space: nowrap;
 }
 
-/* Dedicated visual lessons often own their hero instead of using LessonShell. */
+/* Dedicated visual lessons own their mockup hero. Do not crush it. */
 .lesson-page-shell [data-dedicated-lesson] > [class$="-hero"],
 .lesson-school-shell [data-dedicated-lesson] > [class$="-hero"] {
-  display: flex !important;
+  display: block !important;
   width: 100% !important;
-  height: 68px !important;
-  min-height: 68px !important;
-  align-items: center !important;
-  gap: 10px !important;
-  overflow-x: auto !important;
-  overflow-y: hidden !important;
-  padding: 8px 10px !important;
-  scrollbar-width: thin;
+  height: auto !important;
+  min-height: 0 !important;
+  overflow: visible !important;
 }
 
 .lesson-page-shell [data-dedicated-lesson] > [class$="-hero"] > div:first-child,
@@ -13539,7 +13534,7 @@ html[data-geometry-workspace-theme="light"]
   > [class$="-hero"]
   > div:first-child
   > :is(p, span:first-child) {
-  display: none !important;
+  display: revert !important;
 }
 
 .lesson-page-shell
@@ -13568,16 +13563,11 @@ html[data-geometry-workspace-theme="light"]
   #lesson-section-interaction
   [class$="-page"]
   > [class$="-hero"] {
-  display: flex !important;
+  display: block !important;
   width: 100% !important;
-  height: 68px !important;
-  min-height: 68px !important;
-  align-items: center !important;
-  gap: 10px !important;
-  overflow-x: auto !important;
-  overflow-y: hidden !important;
-  padding: 8px 10px !important;
-  scrollbar-width: thin;
+  height: auto !important;
+  min-height: 0 !important;
+  overflow: visible !important;
 }
 
 .lesson-school-shell
@@ -13614,7 +13604,7 @@ html[data-geometry-workspace-theme="light"]
   > [class$="-hero"]
   > div:first-child
   > :is(p, span:first-child) {
-  display: none !important;
+  display: revert !important;
 }
 
 .lesson-school-shell
@@ -38940,8 +38930,7 @@ body:has([data-testid="advanced-concept-lesson-page"]) #main-content {
   display: none !important;
 }
 
-/* The shell owns one stable tab bar. Hide legacy duplicate tab rows inside
-   dedicated visual adapters so navigation remains visible after panels switch. */
+/* Dedicated lessons own Interact / Learn / Example / Formula / Practice. */
 .lesson-page-shell
   #lesson-section-interaction
   [data-dedicated-lesson]
@@ -38950,7 +38939,7 @@ body:has([data-testid="advanced-concept-lesson-page"]) #main-content {
   #lesson-section-interaction
   [data-dedicated-lesson]
   > nav:has(> button) {
-  display: none !important;
+  display: revert !important;
 }
 
 /* AppLayout already renders the canonical lesson breadcrumb above the shared
@@ -38964,8 +38953,7 @@ body:has([data-testid="advanced-concept-lesson-page"]) #main-content {
   display: none !important;
 }
 
-/* Older dedicated lessons sometimes ship a second five-tab lesson header.
-   The shared tab bar is the authoritative controller for lesson content. */
+/* Dedicated lessons keep their mockup five-tab header. */
 :is(.lesson-page-shell, .lesson-school-shell)
   #lesson-section-interaction
   > *
@@ -38974,7 +38962,7 @@ body:has([data-testid="advanced-concept-lesson-page"]) #main-content {
   #lesson-section-interaction
   > *
   > nav:has(> b:first-child + span:nth-child(2) + span:nth-child(3) + span:nth-child(4)) {
-  display: none !important;
+  display: grid !important;
 }
 
 /* Several screenshot-matched lesson styles hid the shell tab bar. Keep the
@@ -40104,3 +40092,160 @@ html { overflow-y: auto; scrollbar-gutter: stable; }
 .dynamic-membership-row span:first-child { text-align:left; }
 .dynamic-membership-head { border-top:0; color:#67e8f9; font-weight:900; }
 @media (max-width: 760px) { .dynamic-venn-show-heading .action-primary { width:100%; justify-content:center; } .dynamic-show-buttons { justify-content:flex-start; } }
+
+/* Dedicated mockups are drawn in px at ~8–13px. Forcing 16px type onto those
+   tracks clips labels and glues words. Scale the whole mockup instead. */
+.lesson-school-target,
+.lesson-page-target {
+  --lesson-mockup-zoom: 1.45;
+  width: 100%;
+  max-width: none;
+}
+
+.lesson-school-target > [class*="-page"],
+.lesson-page-target > [class*="-page"],
+.lesson-school-target > [data-dedicated-lesson],
+.lesson-page-target > [data-dedicated-lesson],
+.lesson-page-target > [data-advanced-target-shell] {
+  position: relative !important;
+  left: auto !important;
+  top: auto !important;
+  zoom: var(--lesson-mockup-zoom);
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  letter-spacing: 0 !important;
+  word-spacing: normal !important;
+}
+
+.lesson-school-target > [class*="-page"] *,
+.lesson-page-target > [class*="-page"] *,
+.lesson-school-target > [data-dedicated-lesson] *,
+.lesson-page-target > [data-dedicated-lesson] *,
+.lesson-page-target > [data-advanced-target-shell] * {
+  letter-spacing: 0;
+  word-spacing: normal;
+}
+
+.lesson-school-target [class$="-hero"],
+.lesson-page-target [class$="-hero"] {
+  height: auto !important;
+  min-height: 0;
+  overflow: visible !important;
+}
+
+.lesson-school-target [class$="-hero"] h1,
+.lesson-page-target [class$="-hero"] h1 {
+  white-space: normal !important;
+}
+
+.lesson-school-target [class*="-tabs"],
+.lesson-page-target [class*="-tabs"] {
+  height: auto !important;
+  min-height: 36px;
+}
+
+.lesson-school-target :is(footer, [class$="-hero"]),
+.lesson-page-target :is(footer, [class$="-hero"]) {
+  height: auto !important;
+  overflow: visible !important;
+  line-height: 1.45;
+}
+
+@media (max-width: 899px) {
+  .lesson-school-target,
+  .lesson-page-target {
+    --lesson-mockup-zoom: 1;
+  }
+
+  .lesson-school-target > [class*="-page"],
+  .lesson-page-target > [class*="-page"],
+  .lesson-school-target > [data-dedicated-lesson],
+  .lesson-page-target > [data-dedicated-lesson],
+  .lesson-page-target > [data-advanced-target-shell] {
+    width: 100% !important;
+  }
+}
+
+/* When a dedicated mockup page is mounted, hide the extra shared chrome. */
+.lesson-page-shell:has([data-dedicated-lesson], [class$="-page"])
+  > .lesson-section-toolbar,
+.lesson-page-shell:has([data-dedicated-lesson], [class$="-page"])
+  > .lesson-section-nav,
+.lesson-page-shell:has([data-dedicated-lesson], [class$="-page"])
+  > .lesson-shell-header,
+.lesson-page-shell:has([data-dedicated-lesson], [class$="-page"])
+  > nav[role="tablist"],
+.lesson-page-shell:has([data-dedicated-lesson], [class$="-page"])
+  [data-testid="lesson-specific-sections"],
+.lesson-page-shell:has([data-dedicated-lesson], [class$="-page"])
+  .lesson-workbench-heading {
+  display: none !important;
+}
+
+.lesson-page-shell:has([data-dedicated-lesson], [class$="-page"])
+  .lesson-workbench {
+  border: 0 !important;
+  background: transparent !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+}
+
+[data-tab-hidden="true"] {
+  display: none !important;
+}
+
+/* Shared AppLayout breadcrumb stays readable and wraps on every page.
+   Mockup CSS often shrinks it to 7–9px and clips the last crumb. */
+html body #main-content .flex.items-center:has(> nav[aria-label="Breadcrumb"]) {
+  max-width: 100% !important;
+  flex-wrap: wrap !important;
+  align-items: flex-start !important;
+}
+
+html body #main-content nav[aria-label="Breadcrumb"] {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 0.35rem 0.5rem !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  margin-bottom: 0.45rem !important;
+  overflow: visible !important;
+  white-space: normal !important;
+  font-size: 14px !important;
+  line-height: 1.4 !important;
+  letter-spacing: 0 !important;
+}
+
+html body #main-content nav[aria-label="Breadcrumb"] :is(a, span) {
+  font-size: inherit !important;
+  line-height: inherit !important;
+  white-space: normal !important;
+}
+
+html body #main-content .lesson-simple-english {
+  display: block !important;
+  width: min(760px, 100%) !important;
+  max-width: 100% !important;
+  font-size: 16px !important;
+  line-height: 1.55 !important;
+  letter-spacing: 0 !important;
+  word-spacing: normal !important;
+}
+
+html body #main-content .lesson-simple-english :is(h2, p, b, strong) {
+  font-size: inherit !important;
+  line-height: inherit !important;
+  letter-spacing: 0 !important;
+  word-spacing: normal !important;
+  white-space: normal !important;
+}
+
+html body #main-content .lesson-simple-english h2 {
+  font-size: 1.25rem !important;
+  line-height: 1.25 !important;
+}

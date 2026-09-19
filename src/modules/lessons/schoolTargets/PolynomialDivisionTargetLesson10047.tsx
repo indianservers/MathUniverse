@@ -421,7 +421,7 @@ export default function PolynomialDivisionTargetLesson10047({
           <ArrowRight />
         </Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10047} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10047} view={tab} />
 
     </section>
   );

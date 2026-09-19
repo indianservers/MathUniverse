@@ -394,7 +394,7 @@ export default function ErrorBoundsTargetLesson10004({
           <span />
         )}
       </nav>
-      <LessonTopicStudyBoard lessonId={10004} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10004} view={tab} />
 
     </section>
   );

@@ -104,7 +104,7 @@ export function schoolSyllabusClass12Lesson(seed: SchoolSyllabusClass12Seed): St
     learningObjectives: [`Define ${seed.title} correctly.`, seed.action, `Avoid this mistake: ${seed.misconception[1]}`],
     prerequisites: prerequisitesFor(seed.topic),
     keyVocabulary: [{ term: seed.title, meaning: seed.definition }, vocabularyFor(seed.topic)],
-    introduction: `${seed.title} is a Class 12 idea in ${seed.topic}. It helps students model space, change, equations, matrices, and optimisation. These ideas appear in engineering, economics, motion, and data decisions.`,
+    introduction: `${seed.definition} A simple way to use it: ${seed.action} Then check that the result matches the original condition.`,
     basicIdea: `${seed.definition} The basic idea is to check the exact condition before applying a formula. ${seed.reason} A common mistake is ${seed.misconception[1]}`,
     howItWorks: `${seed.action} Then check that the result satisfies the original condition.`,
     whyItWorks: whyFor(seed.topic),

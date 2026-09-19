@@ -270,7 +270,7 @@ export default function ShapePatternTargetLesson10011({
           Next lesson →<b>{next.title}</b>
         </Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10011} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10011} view={tab} />
 
     </section>
   );

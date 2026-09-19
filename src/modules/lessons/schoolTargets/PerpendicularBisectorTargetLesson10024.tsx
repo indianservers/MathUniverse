@@ -445,7 +445,7 @@ export default function PerpendicularBisectorTargetLesson10024({
         <Link to={prev.route}>← &nbsp; Previous: Copying an Angle</Link>
         <Link to={next.route}>Next: Angle Bisector Construction &nbsp; →</Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10024} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10024} view={tab} />
 
     </section>
   );

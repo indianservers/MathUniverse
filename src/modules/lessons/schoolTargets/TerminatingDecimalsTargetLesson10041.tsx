@@ -301,7 +301,7 @@ export default function TerminatingDecimalsTargetLesson10041({
           <ArrowRight />
         </Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10041} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10041} view={tab} />
 
     </section>
   );

@@ -98,7 +98,7 @@ export function schoolSyllabusFinalLesson(seed: SchoolSyllabusFinalSeed): Streng
     learningObjectives: [`Define ${seed.title} accurately.`, seed.action, `Correct this mistake: ${seed.misconception[1]}`],
     prerequisites: prerequisitesFor(seed.topic),
     keyVocabulary: seed.vocabulary,
-    introduction: `${seed.title} is a Class 12 idea in ${seed.topic}. It gives a careful way to model choices or chance. We use it in ${introUse}.`,
+    introduction: `${seed.definition} A simple way to use it: ${seed.action} We use it in ${introUse}.`,
     basicIdea: `${seed.definition} The basic idea is to name the given information first. ${seed.reason} A common mistake is ${seed.misconception[1]}`,
     howItWorks: `${seed.action} Then check the final answer against the original conditions.`,
     whyItWorks: seed.reason,

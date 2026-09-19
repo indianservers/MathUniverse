@@ -338,7 +338,7 @@ export default function TriangleSssTargetLesson10028({
         <Link to={prev.route}>← Previous lesson</Link>
         <Link to={next.route}>Next lesson →</Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10028} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10028} view={tab} />
 
     </section>
   );

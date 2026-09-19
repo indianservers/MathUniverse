@@ -98,7 +98,7 @@ export function schoolSyllabusLesson(seed: SchoolSyllabusSeed): StrengthenedLess
     learningObjectives: [`Define ${seed.title} correctly.`, seed.action, `Avoid this mistake: ${seed.misconception[1]}`],
     prerequisites: prerequisitesFor(seed.topic),
     keyVocabulary: [{ term: seed.title, meaning: seed.definition }, vocabularyFor(seed.topic)],
-    introduction: `${seed.title} is a school mathematics idea in ${seed.topic}. It helps learners solve classwork and daily problems with a clear rule. We use it in measurements, data, patterns, geometry, and algebra decisions.`,
+    introduction: `${seed.definition} A simple way to use it: ${seed.action} For example, ${seed.examples[0][1]}`,
     basicIdea: `${seed.definition} The basic idea is to identify the correct rule before calculating or drawing. ${seed.reason} A common mistake is ${seed.misconception[1]}`,
     howItWorks: `${seed.action} Then check the answer against the condition in the question.`,
     whyItWorks: whyFor(seed.topic),

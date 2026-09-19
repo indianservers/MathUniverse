@@ -494,7 +494,7 @@ export default function PlaceValueTargetLesson10001({
           <span />
         )}
       </nav>
-      <LessonTopicStudyBoard lessonId={10001} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10001} view={tab} />
 
     </section>
   );

@@ -349,7 +349,7 @@ export default function ZerosCoefficientsTargetLesson10050({
           <ArrowRight />
         </Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10050} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10050} view={tab} />
 
     </section>
   );

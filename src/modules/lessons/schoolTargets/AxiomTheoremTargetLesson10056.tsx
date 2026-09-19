@@ -413,7 +413,7 @@ export default function AxiomTheoremTargetLesson10056({
           <ArrowRight />
         </Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10056} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10056} view={tab} />
 
     </section>
   );

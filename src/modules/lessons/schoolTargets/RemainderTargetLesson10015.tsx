@@ -462,7 +462,7 @@ export default function RemainderTargetLesson10015({
           Next lesson →<b>{next.title}</b>
         </Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10015} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10015} view={tab} />
 
     </section>
   );

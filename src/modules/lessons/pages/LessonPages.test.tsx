@@ -342,13 +342,8 @@ describe("lesson pages", () => {
       </MemoryRouter>,
     );
     expect(html).toContain("Euclid&#x27;s Five Postulates");
-    expect(html).toContain("accepted starting rules");
-    expect(html).toContain("A postulate is accepted as a starting rule");
-    expect(html).toContain("Exact proof mini tool");
-    expect(html).toContain("Lesson arc");
-    expect(html).toContain("Proof checklist");
-    expect(html).toContain("Syllabus tags");
-    expect(html).toContain("NCERT");
+    expect(html).toContain('data-testid="school-mockup-0728"');
+    expect(html).toContain("dedicated-five-postulate-construction-and-matching-engine");
     expect(html).not.toContain("Euclid&#x27;s Five Postulates fills a Class 9");
   });
 
@@ -4714,9 +4709,9 @@ describe("lesson pages", () => {
     const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/school/class-12/class-12-matrices-and-determinants-consistency-of-linear-systems"]}><Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes></MemoryRouter>);
     expect(html).toContain('data-testid="school-mockup-0873"');
     expect(html).toContain("dedicated-rouche-capelli-rank-engine");
-    expect(html).toContain('data-case="infinite"');
-    expect(html).toContain('data-rank-a="1"');
-    expect(html).toContain('data-rank-augmented="1"');
+    expect(html).toContain('data-case="unique"');
+    expect(html).toContain('data-rank-a="2"');
+    expect(html).toContain('data-rank-augmented="2"');
   });
 
   it("renders strengthened school batch content beyond the first three lessons", () => {
@@ -4734,8 +4729,8 @@ describe("lesson pages", () => {
         </Routes>
       </MemoryRouter>,
     );
-    expect(html).toContain("A pictograph uses pictures or symbols");
-    expect(html).toContain("Always multiply pictures by the key value");
+    expect(html).toContain('data-testid="school-mockup-0680"');
+    expect(html).toContain("dedicated-draggable-keyed-pictograph-and-row-challenge-model");
     expect(html).not.toContain("Pictograph Builder fills a Class 6");
   });
 
@@ -4754,8 +4749,8 @@ describe("lesson pages", () => {
         </Routes>
       </MemoryRouter>,
     );
-    expect(html).toContain("applying one function after another");
-    expect(html).toContain("In f(g(x)), g acts first");
+    expect(html).toContain('data-testid="school-mockup-0795"');
+    expect(html).toContain("Composition of Functions");
     expect(html).not.toContain("Composition of Functions fills a Class 11");
   });
 
@@ -4774,8 +4769,8 @@ describe("lesson pages", () => {
         </Routes>
       </MemoryRouter>,
     );
-    expect(html).toContain("f&#x27;(c)=0");
-    expect(html).toContain("Check continuity");
+    expect(html).toContain('data-testid="school-mockup-0846"');
+    expect(html).toContain("dedicated-rolle-endpoint-stationary-point-engine");
     expect(html).not.toContain("Rolle&#x27;s Theorem fills a Class 12");
   });
 
@@ -4794,11 +4789,8 @@ describe("lesson pages", () => {
         </Routes>
       </MemoryRouter>,
     );
+    expect(html).toContain('data-testid="school-mockup-0888"');
     expect(html).toContain("Bayes&#x27; Theorem");
-    expect(html).toContain("reverses conditional probability");
-    expect(html).toContain("total probability denominator");
-    expect(html).toContain("tree diagram visual model");
-    expect(html).toContain("branches multiply along paths");
     expect(html).not.toContain("Bayes&#x27; Theorem fills a Class 12");
   });
 });

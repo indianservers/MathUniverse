@@ -175,7 +175,7 @@ export function schoolSyllabusProofLesson(seed: SchoolSyllabusProofSeed): Streng
     learningObjectives: [`Define ${seed.title} correctly.`, seed.action, `Avoid this mistake: ${seed.misconception[1]}`],
     prerequisites: prerequisitesFor(seed.topic),
     keyVocabulary: [{ term: seed.title, meaning: seed.definition }, vocabularyFor(seed.topic)],
-    introduction: `${seed.title} is a school mathematics idea in ${seed.topic}. It helps students solve drawings, measurements, data tables, and proof questions. The idea also appears in maps, buildings, designs, and daily comparisons.`,
+    introduction: `${seed.definition} A simple way to use it: ${seed.action} For example, ${seed.examples[0]?.[1] ?? seed.prompt}`,
     basicIdea: `${seed.definition} The basic idea is to identify the exact condition first. ${seed.reason} A common mistake is ${seed.misconception[1]}`,
     howItWorks: `${seed.action} Then check that the result matches the condition in the question.`,
     whyItWorks: whyFor(seed.topic),

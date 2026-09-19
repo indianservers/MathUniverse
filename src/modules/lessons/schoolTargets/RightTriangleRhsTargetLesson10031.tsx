@@ -350,7 +350,7 @@ export default function RightTriangleRhsTargetLesson10031({
           <b>Right Triangle Construction by ASA</b>
         </Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10031} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10031} view={tab} />
 
     </section>
   );

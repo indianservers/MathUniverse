@@ -264,8 +264,7 @@ export default function LessonShell({ lesson }: { lesson: LessonDefinition }) {
         className="lesson-page-shell space-y-3"
         data-testid="lesson-page"
         data-lesson-id={lesson.id}
-        data-lesson-view={journeyTab}
-        onClickCapture={(event) => captureLessonTabClick(event, selectJourneyTab)}
+        data-lesson-view="interaction"
       >
         <LessonSectionNav active={journeyTab} onChange={selectJourneyTab} lessonId={lesson.id} />
         <section
@@ -353,8 +352,7 @@ export default function LessonShell({ lesson }: { lesson: LessonDefinition }) {
       className="lesson-page-shell space-y-3"
       data-testid="lesson-page"
       data-lesson-id={lesson.id}
-      data-lesson-view={journeyTab}
-      onClickCapture={(event) => captureLessonTabClick(event, selectJourneyTab)}
+      data-lesson-view="interaction"
     >
       <header className="lesson-shell-header overflow-hidden rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80">
         <div className="p-4 sm:p-5">

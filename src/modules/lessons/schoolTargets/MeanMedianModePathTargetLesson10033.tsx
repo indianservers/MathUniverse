@@ -377,7 +377,7 @@ export default function MeanMedianModePathTargetLesson10033({
           Next: Explore each measure →
         </Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10033} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10033} view={tab} />
 
     </section>
   );

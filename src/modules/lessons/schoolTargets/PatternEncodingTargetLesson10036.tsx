@@ -414,7 +414,7 @@ export default function PatternEncodingTargetLesson10036({
           Magic Squares <ArrowRight size={13} />
         </Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10036} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10036} view={tab} />
 
     </section>
   );

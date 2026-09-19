@@ -344,7 +344,7 @@ export default function RangeSpreadTargetLesson10034({
           <b>Mean, Median and Mode</b>
         </Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10034} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10034} view={tab} />
 
     </section>
   );

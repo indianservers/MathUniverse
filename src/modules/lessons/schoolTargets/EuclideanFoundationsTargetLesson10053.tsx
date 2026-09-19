@@ -400,7 +400,7 @@ export default function EuclideanFoundationsTargetLesson10053({
           <ArrowRight />
         </Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10053} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10053} view={tab} />
 
     </section>
   );
