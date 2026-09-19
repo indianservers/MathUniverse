@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import type { StudioMockupPage } from "../studioMockupCatalog";
-import { ChallengeBox, Field, LiveRow, Panel, SliderRow, StatusOk, clamp, fmt } from "../studioLabKit";
+import { ChallengeBox, Field, LiveRow, Panel, SliderRow, StatusOk, clamp, fmt, useLabMode } from "../studioLabKit";
 import { aic, fitMetrics, formatComparisonReport, parseCsvPairs, sampleGrowth } from "../../modelling/comparisonMath";
 import { astarRoute, shortestRoute, trafficGraph } from "../../modelling/networkMath";
 import { Phase1LabChrome } from "../../phase1/Phase1LabChrome";
@@ -56,6 +56,86 @@ function projectile(v0: number, th: number, g: number, k: number, y0: number) {
   return pts;
 }
 
+function pathRmse(a: Array<{ x: number; y: number }>, b: Array<{ x: number; y: number }>) {
+  const n = Math.min(a.length, b.length);
+  if (!n) return 0;
+  let sum = 0;
+  for (let i = 0; i < n; i += 1) {
+    const dx = (a[i]?.x ?? 0) - (b[i]?.x ?? 0);
+    const dy = (a[i]?.y ?? 0) - (b[i]?.y ?? 0);
+    sum += dx * dx + dy * dy;
+  }
+  return Math.sqrt(sum / n);
+}
+
+function pathR2(a: Array<{ x: number; y: number }>, b: Array<{ x: number; y: number }>) {
+  const n = Math.min(a.length, b.length);
+  if (!n) return 0;
+  const observed = a.slice(0, n).flatMap((p) => [p.x, p.y]);
+  const predicted = b.slice(0, n).flatMap((p) => [p.x, p.y]);
+  const mean = observed.reduce((s, v) => s + v, 0) / observed.length;
+  const sst = observed.reduce((s, v) => s + (v - mean) ** 2, 0) || 1;
+  const sse = observed.reduce((s, v, i) => s + (v - (predicted[i] ?? 0)) ** 2, 0);
+  return 1 - sse / sst;
+}
+
+function fitPoly(pts: Array<{ x: number; y: number }>, degree: number) {
+  const d = degree >= 2 ? 2 : 1;
+  const m = d + 1;
+  const A = Array.from({ length: m }, () => Array(m + 1).fill(0));
+  for (const p of pts) {
+    const row = Array.from({ length: m }, (_, k) => p.x ** k);
+    for (let i = 0; i < m; i += 1) {
+      for (let j = 0; j < m; j += 1) A[i]![j] += row[i]! * row[j]!;
+      A[i]![m] += row[i]! * p.y;
+    }
+  }
+  for (let col = 0; col < m; col += 1) {
+    let pivot = col;
+    for (let row = col + 1; row < m; row += 1) {
+      if (Math.abs(A[row]![col]!) > Math.abs(A[pivot]![col]!)) pivot = row;
+    }
+    [A[col], A[pivot]] = [A[pivot]!, A[col]!];
+    const div = A[col]![col] || 1;
+    for (let j = col; j <= m; j += 1) A[col]![j] /= div;
+    for (let row = 0; row < m; row += 1) {
+      if (row === col) continue;
+      const f = A[row]![col]!;
+      for (let j = col; j <= m; j += 1) A[row]![j] -= f * A[col]![j]!;
+    }
+  }
+  return A.map((row) => row[m] ?? 0);
+}
+
+function polyAt(c: number[], x: number) {
+  return c.reduce((s, v, k) => s + v * x ** k, 0);
+}
+
+function randomWalk(n: number, seed: number) {
+  const pts: Array<{ x: number; y: number }> = [{ x: 0.5, y: 0.5 }];
+  let s = seed;
+  let x = 0.5;
+  let y = 0.5;
+  for (let i = 0; i < n; i += 1) {
+    s = (s * 1664525 + 1013904223) % 4294967296;
+    const dir = s % 4;
+    x = clamp(x + (dir === 0 ? 0.04 : dir === 1 ? -0.04 : 0), 0, 1);
+    y = clamp(y + (dir === 2 ? 0.04 : dir === 3 ? -0.04 : 0), 0, 1);
+    pts.push({ x, y });
+  }
+  return pts;
+}
+
+function iterateMap(n: number, seed: number) {
+  let x = ((seed % 9000) / 10000) + 0.05;
+  const pts: Array<{ i: number; x: number }> = [];
+  for (let i = 0; i < Math.min(n, 120); i += 1) {
+    pts.push({ i, x });
+    x = 3.7 * x * (1 - x);
+  }
+  return pts;
+}
+
 function MotionLab({ page }: { page: StudioMockupPage }) {
   const [v0, setV0] = useState(22);
   const [th, setTh] = useState(45);
@@ -63,6 +143,7 @@ function MotionLab({ page }: { page: StudioMockupPage }) {
   const [k, setK] = useState(0.02);
   const [y0, setY0] = useState(1.5);
   const [tPlay, setTPlay] = useState(1.23);
+  const [scenario, setScenario] = useState("Soccer Kick");
   const a = useMemo(() => projectile(v0, th, g, 0, y0), [v0, th, g, y0]);
   const b = useMemo(() => projectile(v0, th, g, k, y0), [v0, th, g, k, y0]);
   const tMax = Math.max(a.at(-1)?.t ?? 1, b.at(-1)?.t ?? 1);
@@ -73,17 +154,25 @@ function MotionLab({ page }: { page: StudioMockupPage }) {
   const apexA = Math.max(...a.map((p) => p.y));
   const apexB = Math.max(...b.map((p) => p.y));
   const scaleX = 560 / Math.max(rangeA, 40);
+  const rmse = pathRmse(a, b);
+  const r2 = pathR2(a, b);
   const path = (pts: typeof a) => pts.map((p) => `${24 + p.x * scaleX},${168 - p.y * 4.6}`).join(" ");
+  const speedLabel = scenario === "Vehicle" ? "Speed, v₀" : scenario === "Pursuit" ? "Pursuer speed, v₀" : "Initial speed, v₀";
+  const angleLabel = scenario === "Vehicle" ? "Incline angle, θ" : scenario === "Pursuit" ? "Heading angle, θ" : "Launch angle, θ";
   return (
     <Chrome page={page}>
       {(mode) => (
         <>
           <Panel title="Scenario">
             <Field label="Example">
-              <select defaultValue="Soccer Kick" aria-label="Scenario"><option>Soccer Kick</option><option>Vehicle</option><option>Pursuit</option></select>
+              <select value={scenario} aria-label="Scenario" onChange={(e) => setScenario(e.target.value)}>
+                <option>Soccer Kick</option>
+                <option>Vehicle</option>
+                <option>Pursuit</option>
+              </select>
             </Field>
-            <SliderRow label="Initial speed, v₀" value={v0} min={5} max={50} step={0.5} onChange={setV0} unit="m/s" />
-            <SliderRow label="Launch angle, θ" value={th} min={5} max={80} step={1} onChange={setTh} unit="°" />
+            <SliderRow label={speedLabel} value={v0} min={5} max={50} step={0.5} onChange={setV0} unit="m/s" />
+            <SliderRow label={angleLabel} value={th} min={5} max={80} step={1} onChange={setTh} unit="°" />
             <SliderRow label="Gravity, g" value={g} min={1} max={20} step={0.01} onChange={setG} unit="m/s²" />
             <SliderRow label="Drag coefficient, k" value={k} min={0} max={0.12} step={0.005} onChange={setK} />
             <SliderRow label="Launch height, y₀" value={y0} min={0} max={10} step={0.1} onChange={setY0} unit="m" />
@@ -145,9 +234,9 @@ function MotionLab({ page }: { page: StudioMockupPage }) {
               <MiniPlot points={a.map((p) => p.vy)} color="#f59e0b" yMax={Math.max(v0, 1)} label="Velocity" />
             </div>
             <div className="msk-model-compare" aria-label="Model comparison">
-              <div><b>RMSE (x)</b>{fmt(Math.abs(rangeA - rangeB) * 0.02, 2)} m</div>
+              <div><b>RMSE (x)</b>{fmt(rmse, 2)} m</div>
               <div><b>Max error</b>{fmt(Math.abs(apexA - apexB), 2)} m</div>
-              <div><b>Overall R²</b>0.97</div>
+              <div><b>Overall R²</b>{fmt(clamp(r2, 0, 1), 2)}</div>
               <div><b>Best fit</b>Model B (With Drag)</div>
             </div>
           </section>
@@ -185,8 +274,22 @@ function PopulationLab({ page }: { page: StudioMockupPage }) {
   const exp = useMemo(() => Array.from({ length: 81 }, (_, i) => p0 * Math.exp(r * (i * T / 80))), [p0, r, T]);
   const log = useMemo(() => Array.from({ length: 81 }, (_, i) => {
     const t = i * T / 80;
-    return k / (1 + ((k - p0) / p0) * Math.exp(-(r - h) * t));
-  }), [p0, r, k, h, T]);
+    return k / (1 + ((k - p0) / p0) * Math.exp(-r * t));
+  }), [p0, r, k, T]);
+  const harvested = useMemo(() => {
+    const out: number[] = [];
+    let p = p0;
+    const dt = T / 80;
+    for (let i = 0; i <= 80; i += 1) {
+      out.push(p);
+      p = Math.max(0, p * Math.exp(r * dt) - h * p);
+    }
+    return out;
+  }, [p0, r, h, T]);
+  const pT = log.at(-1) ?? 0;
+  const youth = Math.round(pT * 0.28);
+  const adult = Math.round(pT * 0.54);
+  const elder = Math.round(pT) - youth - adult;
   const path = (vals: number[], color: string) => {
     const max = Math.max(k * 1.2, ...vals);
     return <polyline points={vals.map((y, i) => `${24 + i * 4.6},${210 - (y / max) * 170}`).join(" ")} fill="none" stroke={color} strokeWidth="2.2" />;
@@ -209,6 +312,7 @@ function PopulationLab({ page }: { page: StudioMockupPage }) {
               <rect width="420" height="230" fill="#f8fbff" />
               {path(exp, "#08b9dd")}
               {path(log, "#8b45f4")}
+              {mode === "Harvesting" || h > 0 ? path(harvested, "#f59e0b") : null}
               <line x1="24" y1={210 - 170 / 1.2} x2="400" y2={210 - 170 / 1.2} stroke="#94a3b8" strokeDasharray="4 3" />
               <text x="300" y={206 - 170 / 1.2} fill="#64748b" fontSize="11">K = {fmt(k, 0)}</text>
             </svg>
@@ -219,9 +323,9 @@ function PopulationLab({ page }: { page: StudioMockupPage }) {
                   <rect x="40" y="40" width="70" height="60" fill="rgba(20,125,242,.2)" stroke="#147df2" />
                   <rect x="170" y="40" width="70" height="60" fill="rgba(139,69,244,.2)" stroke="#8b45f4" />
                   <rect x="300" y="40" width="70" height="60" fill="rgba(16,185,129,.2)" stroke="#10b981" />
-                  <text x="52" y="75" fontSize="11">Youth</text>
-                  <text x="180" y="75" fontSize="11">Adult</text>
-                  <text x="314" y="75" fontSize="11">Elder</text>
+                  <text x="52" y="75" fontSize="11">Youth {fmt(youth, 0)}</text>
+                  <text x="180" y="75" fontSize="11">Adult {fmt(adult, 0)}</text>
+                  <text x="314" y="75" fontSize="11">Elder {fmt(elder, 0)}</text>
                 </>
               ) : (
                 <path d={`M30 110 Q 140 ${mode === "Harvesting" ? 40 : 20} 390 90`} fill="none" stroke={mode === "Exponential" ? "#08b9dd" : "#8b45f4"} strokeWidth="2.2" />
@@ -235,7 +339,9 @@ function PopulationLab({ page }: { page: StudioMockupPage }) {
             <p className="msk-formula">dP/dt = rP(1−P/K)</p>
             <LiveRow color="#08b9dd" label="P(T) exp" value={fmt(exp.at(-1) ?? 0, 0)} />
             <LiveRow color="#8b45f4" label="P(T) logistic" value={fmt(log.at(-1) ?? 0, 0)} />
+            <LiveRow color="#f59e0b" label="P(T) harvested" value={fmt(harvested.at(-1) ?? 0, 0)} />
             <LiveRow color="#10b981" label="Equilibrium" value={fmt(k, 0)} />
+            {mode === "Age Structured" ? <LiveRow color="#147df2" label="Youth+Adult+Elder" value={`${youth}+${adult}+${elder}=${youth + adult + elder}`} /> : null}
             <StatusOk>The logistic model levels off at K while exponential does not.</StatusOk>
             <ChallengeBox {...page.challenge} />
           </aside>
@@ -246,27 +352,43 @@ function PopulationLab({ page }: { page: StudioMockupPage }) {
 }
 
 function EpidemicLab({ page }: { page: StudioMockupPage }) {
+  const { mode } = useLabMode(page);
   const [beta, setBeta] = useState(0.45);
   const [gamma, setGamma] = useState(0.15);
   const [vax, setVax] = useState(0.02);
   const [i0, setI0] = useState(50);
   const [n, setN] = useState(100000);
+  const [day, setDay] = useState(200);
   const r0 = beta / gamma;
+  const seir = mode === "SEIR";
+  const sigma = 0.25;
   const pts = useMemo(() => {
-    let s = n - i0 - vax * n, i = i0, r = vax * n;
-    const out = [{ s, i, r }];
+    let s = n - i0 - vax * n;
+    let e = seir ? Math.min(i0, n * 0.01) : 0;
+    let i = seir ? Math.max(1, i0 - e) : i0;
+    let r = vax * n;
+    const out = [{ s, e, i, r }];
     for (let t = 0; t < 200; t += 1) {
-      const ds = -beta * s * i / n;
-      const di = beta * s * i / n - gamma * i;
-      const dr = gamma * i;
-      s = clamp(s + ds, 0, n); i = clamp(i + di, 0, n); r = clamp(r + dr, 0, n);
-      out.push({ s, i, r });
+      const inf = beta * s * i / n;
+      if (seir) {
+        const ds = -inf;
+        const de = inf - sigma * e;
+        const di = sigma * e - gamma * i;
+        const dr = gamma * i;
+        s = clamp(s + ds, 0, n); e = clamp(e + de, 0, n); i = clamp(i + di, 0, n); r = clamp(r + dr, 0, n);
+      } else {
+        const ds = -inf;
+        const di = inf - gamma * i;
+        const dr = gamma * i;
+        s = clamp(s + ds, 0, n); i = clamp(i + di, 0, n); r = clamp(r + dr, 0, n); e = 0;
+      }
+      out.push({ s, e, i, r });
     }
     return out;
-  }, [beta, gamma, vax, i0, n]);
+  }, [beta, gamma, vax, i0, n, seir]);
   const peakI = Math.max(...pts.map((p) => p.i));
-  const path = (key: "s" | "i" | "r", color: string) => <polyline points={pts.map((p, idx) => `${20 + idx * 1.9},${210 - (p[key] / n) * 170}`).join(" ")} fill="none" stroke={color} strokeWidth="2.2" />;
-  const last = pts[75] ?? pts.at(-1)!;
+  const path = (key: "s" | "i" | "r" | "e", color: string) => <polyline points={pts.map((p, idx) => `${20 + idx * 1.9},${210 - (p[key] / n) * 170}`).join(" ")} fill="none" stroke={color} strokeWidth="2.2" />;
+  const last = pts[Math.min(day, pts.length - 1)] ?? pts.at(-1)!;
   const [tick, setTick] = useState(0);
   useEffect(() => {
     const id = window.setInterval(() => setTick((t) => t + 1), 80);
@@ -297,6 +419,7 @@ function EpidemicLab({ page }: { page: StudioMockupPage }) {
               <svg width="160" height="36" aria-hidden="true">
                 {dots.map((d, i) => <circle key={i} cx={d.x} cy={d.y} r="3" fill={i % 2 ? "#8b45f4" : "#147df2"} />)}
               </svg>
+              {seir ? <b className="is-e">E {fmt(last.e, 0)}</b> : null}
               <b className="is-i">I {fmt(last.i, 0)}</b>
               <span>→</span>
               <b className="is-r">R {fmt(last.r, 0)}</b>
@@ -304,15 +427,18 @@ function EpidemicLab({ page }: { page: StudioMockupPage }) {
             <svg className="msk-graph" viewBox="0 0 420 230" role="img" aria-label="Epidemic curves">
               <rect width="420" height="230" fill="#f8fbff" />
               {path("s", "#147df2")}
+              {seir ? path("e", "#f59e0b") : null}
               {path("i", "#8b45f4")}
               {path("r", "#10b981")}
             </svg>
+            <SliderRow label="Day" value={Math.min(day, pts.length - 1)} min={0} max={pts.length - 1} step={1} onChange={setDay} />
           </section>
           <aside className="msk-panel msk-live">
-            <h2>Live metrics (Day 75)</h2>
+            <h2>Live metrics (Day {Math.min(day, pts.length - 1)})</h2>
             <LiveRow color="#ef4444" label="R₀" value={fmt(r0, 2)} />
             <LiveRow color="#f59e0b" label="Rₑ" value={fmt(re, 2)} />
             <LiveRow color="#8b45f4" label="Peak infections" value={fmt(peakI, 0)} />
+            {seir ? <LiveRow color="#f59e0b" label="Exposed E" value={fmt(last.e, 0)} /> : null}
             <LiveRow color="#10b981" label="Hospital capacity" value={fmt(hosp, 0)} />
             <StatusOk>{peakI > hosp ? "Peak exceeds hospital capacity." : re < 1 ? "Outbreak under control (Rₑ < 1)." : "Rₑ > 1 until susceptibles fall."}</StatusOk>
             <ChallengeBox {...page.challenge} />
@@ -345,6 +471,11 @@ function FinanceLab({ page }: { page: StudioMockupPage }) {
   }, [p0, contrib, rate, fee, inf, years]);
   const last = series.at(-1)!;
   const max = last.nom;
+  const periods = n * years;
+  const iRate = rate / n;
+  const fv = Math.abs(iRate) < 1e-12
+    ? p0 + contrib * periods
+    : p0 * (1 + iRate) ** periods + contrib * ((1 + iRate) ** periods - 1) / iRate;
   return (
     <Chrome page={page}>
       {(mode) => (
@@ -369,11 +500,15 @@ function FinanceLab({ page }: { page: StudioMockupPage }) {
           <aside className="msk-panel msk-live">
             <h2>Live equations</h2>
             <p className="msk-formula">FV = P₀(1+r/n)ⁿᵗ + PMT · ((1+r/n)ⁿᵗ−1)/(r/n)</p>
-            <LiveRow color="#08b9dd" label="Future value (nominal)" value={`$${fmt(last.nom, 0)}`} />
+            <LiveRow color="#08b9dd" label="Future value (nominal)" value={`$${fmt(fv, 0)}`} />
             <LiveRow color="#8b45f4" label="Future value (real)" value={`$${fmt(last.real, 0)}`} />
             <LiveRow color="#10b981" label="Total contributions" value={`$${fmt(last.paid, 0)}`} />
             <StatusOk>Most growth comes from interest. Inflation cuts real value.</StatusOk>
-            <ChallengeBox {...page.challenge} />
+            <ChallengeBox
+              prompt={rate === 0 ? `Live FV at 0% interest is? Round to dollars.` : page.challenge.prompt}
+              expected={rate === 0 ? Math.round(fv) : page.challenge.expected}
+              hint={rate === 0 ? "No interest: principal plus deposits." : page.challenge.hint}
+            />
           </aside>
         </>
       )}
@@ -389,6 +524,9 @@ function OptimizationLab({ page }: { page: StudioMockupPage }) {
   const yMax = Math.min((labor - 2 * x) / 1, machine - x, 50, material);
   const y = clamp(30, 0, Math.max(0, yMax));
   const z = 50 * x + 40 * y;
+  const peakX = clamp(180 + (labor - 100) * 1.2, 80, 300);
+  const peakY = clamp(40 + (120 - material) * 0.5, 20, 160);
+  const rightX = clamp(300 + (machine - 90) * 0.7, 180, 380);
   return (
     <Chrome page={page}>
       {(mode) => (
@@ -405,7 +543,7 @@ function OptimizationLab({ page }: { page: StudioMockupPage }) {
             <h2>Feasible region & objective</h2>
             <svg className="msk-graph" viewBox="0 0 420 260" role="img" aria-label="LP feasible region">
               <rect width="420" height="260" fill="#f8fbff" />
-              <polygon points="40,220 40,80 180,40 300,90 300,220" fill="rgba(8,185,221,.18)" stroke="#08b9dd" />
+              <polygon points={`40,220 40,80 ${peakX},${peakY} ${rightX},90 ${rightX},220`} fill="rgba(8,185,221,.18)" stroke="#08b9dd" />
               <circle cx={40 + x * 4.2} cy={220 - y * 3.4} r="7" fill="#f59e0b" />
               <text x="220" y="36" fill="#b45309" fontSize="12">Optimal ({fmt(x, 0)}, {fmt(y, 0)}) · Max Z = {fmt(z, 0)}</text>
             </svg>
@@ -487,7 +625,22 @@ function RegressionLab({ page }: { page: StudioMockupPage }) {
     const y = -0.04 * x * x + 18 * x + 80 + Math.sin(i) * 40;
     return { x, y };
   }), []);
-  const yHat = -1.24 * xPred * xPred + 68.77 * xPred + 120.4;
+  const coeff = useMemo(() => fitPoly(pts.slice(0, Math.max(3, Math.floor(pts.length * split))), deg), [pts, split, deg]);
+  const yHat = polyAt(coeff, xPred);
+  const cut = Math.max(3, Math.floor(pts.length * split));
+  const xs = pts.slice(0, cut).map((p) => p.x);
+  const ys = pts.slice(0, cut).map((p) => p.y);
+  const metrics = fitMetrics(xs, ys, (x) => polyAt(coeff, x));
+  const xMin = Math.min(...pts.map((p) => p.x));
+  const xMax = Math.max(...pts.map((p) => p.x));
+  const fitPath = Array.from({ length: 40 }, (_, i) => {
+    const x = xMin + (i / 39) * (xMax - xMin);
+    const y = polyAt(coeff, x);
+    return `${40 + (x + 10) * 8},${210 - y * 0.08}`;
+  }).join(" ");
+  const eq = deg >= 2
+    ? `ŷ = ${fmt(coeff[2] ?? 0, 2)}x² + ${fmt(coeff[1] ?? 0, 2)}x + ${fmt(coeff[0] ?? 0, 1)}`
+    : `ŷ = ${fmt(coeff[1] ?? 0, 2)}x + ${fmt(coeff[0] ?? 0, 1)}`;
   return (
     <Chrome page={page}>
       {(mode) => (
@@ -504,13 +657,13 @@ function RegressionLab({ page }: { page: StudioMockupPage }) {
             <svg className="msk-graph" viewBox="0 0 440 240" role="img" aria-label="Regression fit">
               <rect width="440" height="240" fill="#f8fbff" />
               {pts.map((p, i) => <circle key={i} cx={40 + (p.x + 10) * 8} cy={210 - p.y * 0.08} r="3" fill={i / pts.length < split ? "#147df2" : "#8b45f4"} />)}
-              <path d={deg === 1 ? "M30 170 L 410 70" : "M30 180 Q 220 40 410 90"} fill="none" stroke="#8b45f4" strokeWidth="2.4" />
+              <path d={`M${fitPath}`} fill="none" stroke="#8b45f4" strokeWidth="2.4" />
             </svg>
           </section>
           <aside className="msk-panel msk-live">
             <h2>Live equation (best fit)</h2>
-            <p className="msk-formula">ŷ = −1.24x² + 68.77x + 120.4</p>
-            <LiveRow color="#10b981" label="R² (train)" value={deg === 1 ? "0.72" : "0.864"} />
+            <p className="msk-formula">{eq}</p>
+            <LiveRow color="#10b981" label="R² (train)" value={fmt(metrics.r2, 3)} />
             <LiveRow color="#8b45f4" label={`Prediction at x=${xPred}`} value={fmt(yHat, 0)} />
             <StatusOk>Polynomial captures the curve better than the linear model.</StatusOk>
             <ChallengeBox {...page.challenge} />
@@ -584,6 +737,8 @@ function NumericalLab({ page }: { page: StudioMockupPage }) {
   const [n, setN] = useState(400);
   const [seed, setSeed] = useState(12345);
   const sample = useMemo(() => seeded(Math.min(n, 900), seed), [n, seed]);
+  const walk = useMemo(() => randomWalk(Math.min(n, 400), seed), [n, seed]);
+  const iterates = useMemo(() => iterateMap(n, seed), [n, seed]);
   const inside = sample.filter((p) => p.inside).length;
   const est = 4 * inside / sample.length;
   const err = Math.abs(est - Math.PI);
@@ -592,20 +747,36 @@ function NumericalLab({ page }: { page: StudioMockupPage }) {
       {(mode) => (
         <>
           <Panel title="Experiment">
-            <p className="msk-note">Monte Carlo estimation of π. {mode}</p>
+            <p className="msk-note">{mode === "Random Walk" ? "Random walk on the unit square." : mode === "Iteration" ? "Iterated logistic map xₙ₊₁ = 3.7 x(1−x)." : "Monte Carlo estimation of π."} {mode}</p>
             <SliderRow label="Sample size N" value={n} min={50} max={2000} step={50} onChange={setN} />
             <SliderRow label="Random seed" value={seed} min={1} max={99999} step={1} onChange={setSeed} />
           </Panel>
           <section className="msk-panel msk-canvas" data-mode-canvas={mode} data-studio="modelling">
-            <h2>Monte Carlo simulation</h2>
+            <h2>{mode === "Random Walk" ? "Random walk" : mode === "Iteration" ? "Iteration orbit" : "Monte Carlo simulation"}</h2>
+            {mode === "Random Walk" ? (
+              <svg className="msk-graph" viewBox="0 0 240 240" role="img" aria-label="Random walk">
+                <rect width="240" height="240" fill="#f8fbff" />
+                <polyline points={walk.map((p) => `${20 + p.x * 200},${20 + p.y * 200}`).join(" ")} fill="none" stroke="#08b9dd" strokeWidth="1.6" />
+                <circle cx={20 + (walk.at(-1)?.x ?? 0.5) * 200} cy={20 + (walk.at(-1)?.y ?? 0.5) * 200} r="5" fill="#f59e0b" />
+              </svg>
+            ) : mode === "Iteration" ? (
+              <svg className="msk-graph" viewBox="0 0 240 240" role="img" aria-label="Iteration">
+                <rect width="240" height="240" fill="#f8fbff" />
+                <polyline points={iterates.map((p) => `${16 + p.i * (208 / Math.max(1, iterates.length - 1))},${220 - p.x * 180}`).join(" ")} fill="none" stroke="#8b45f4" strokeWidth="2" />
+                {iterates.filter((_, i) => i % 4 === 0).map((p) => <circle key={p.i} cx={16 + p.i * (208 / Math.max(1, iterates.length - 1))} cy={220 - p.x * 180} r="3" fill="#08b9dd" />)}
+              </svg>
+            ) : (
             <svg className="msk-graph" viewBox="0 0 240 240" role="img" aria-label="Pi darts">
               <rect width="240" height="240" fill="#f8fbff" />
               <circle cx="120" cy="120" r="100" fill="none" stroke="#8b45f4" />
               {sample.slice(0, 400).map((p, i) => <circle key={i} cx={20 + p.x * 200} cy={20 + p.y * 200} r="2" fill={p.inside ? "#08b9dd" : "#8b45f4"} />)}
             </svg>
+            )}
           </section>
           <aside className="msk-panel msk-live">
             <h2>Live results</h2>
+            {mode === "Random Walk" ? <LiveRow color="#08b9dd" label="Walk steps" value={String(walk.length - 1)} /> : null}
+            {mode === "Iteration" ? <LiveRow color="#8b45f4" label="xₙ" value={fmt(iterates.at(-1)?.x ?? 0, 4)} /> : null}
             <LiveRow color="#10b981" label="π estimate" value={fmt(est, 5)} />
             <LiveRow color="#64748b" label="True π" value="3.14159" />
             <LiveRow color="#f59e0b" label="Absolute error" value={fmt(err, 5)} />

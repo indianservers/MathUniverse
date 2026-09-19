@@ -3,7 +3,7 @@ import { forceCenter, forceLink, forceManyBody, forceSimulation } from "d3";
 import { motion } from "framer-motion";
 import { Binary, BrainCircuit, Check, Dices, FunctionSquare, GitFork, Grid3X3, Maximize2, Minimize2, Network, Pause, Play, Plus, Redo2, RotateCcw, Table2, Trash2, Undo2 } from "lucide-react";
 import { useEffect, useMemo, useRef, useState, type KeyboardEvent, type PointerEvent } from "react";
-import { Link, NavLink, Navigate, useParams } from "react-router-dom";
+import { Link, NavLink, Navigate, useParams, useSearchParams } from "react-router-dom";
 import ReactFlow, { Background, Controls, MarkerType, type Edge, type Node } from "reactflow";
 import { StudioCanvasToolbar } from "../../components/ui/StudioCanvasToolbar";
 import StudioHomeButtons from "../../components/ui/StudioHomeButtons";
@@ -254,6 +254,7 @@ function getSetRelationshipSummary(circles: VennSetCircle[]) {
 
 export default function SetTheoryModule({ showLauncher = true }: { showLauncher?: boolean } = {}) {
   const { pageSlug } = useParams();
+  const [params] = useSearchParams();
   const store = useSetTheoryStore();
   const result = useMemo(() => applySetOperation(store.operation, store.universe, store.setA, store.setB), [store.operation, store.universe, store.setA, store.setB]);
   const relationProps = useMemo(() => relationProperties(store.universe, store.relationPairs), [store.universe, store.relationPairs]);
@@ -261,6 +262,14 @@ export default function SetTheoryModule({ showLauncher = true }: { showLauncher?
   const classes = useMemo(() => equivalenceClasses(store.universe, store.relationPairs), [store.universe, store.relationPairs]);
   const challenge = useMemo(() => randomProblem(store.challengeSeed), [store.challengeSeed]);
   const activePage = getSetTheoryPage(pageSlug);
+  const setOperation = store.setOperation;
+
+  useEffect(() => {
+    if (pageSlug !== "venn-diagram-engine") return;
+    const op = params.get("op");
+    const allowed: SetOperation[] = ["union", "intersection", "difference", "complement", "symmetric-difference"];
+    if (op && allowed.includes(op as SetOperation)) setOperation(op as SetOperation);
+  }, [pageSlug, params, setOperation]);
 
   if (pageSlug && !activePage) return <Navigate to="/set-theory" replace />;
 
@@ -451,7 +460,7 @@ function SetBuilder({ operation, universe, setA, setB, setC, result, setUniverse
           </div>
         </div>
         <p className="mt-3 text-sm font-semibold leading-6 text-slate-600 dark:text-slate-300">
-          Result means the answer set for the currently selected operation. It is recalculated from the sets above. For example, if the selected operation is A - B, the result keeps only the elements that are in A and not in B.
+          Result means the answer set for the currently selected operation. It is recalculated from A and B (and U for complement). Set C is not in this two-set result; C is included in the three-set combinations grid below.
         </p>
       </div>
       <div className="mt-4 rounded-2xl border border-slate-200 bg-white/75 p-4 dark:border-white/10 dark:bg-white/5">
@@ -1368,7 +1377,7 @@ function ChallengePanel({ challenge, onRandom, onMiss }: { challenge: ReturnType
         <input value={guess} onChange={(e) => setGuess(e.target.value)} aria-label="Your set answer" placeholder="elements, comma separated" />
         <button className="action-primary" type="submit">Check</button>
       </form>
-      {missed ? <div className="mt-3 rounded-xl bg-amber-100 p-3 text-sm font-semibold text-amber-900">Wrong — the Venn engine now highlights {challenge.operation}. Open the Venn page and read the glowing region.</div> : null}
+      {missed ? <div className="mt-3 rounded-xl bg-amber-100 p-3 text-sm font-semibold text-amber-900">Wrong — the Venn engine now highlights {challenge.operation}. <Link className="underline" to={`/set-theory/venn-diagram-engine?op=${challenge.operation}`}>Open the Venn diagram engine</Link> and read the glowing region.</div> : null}
       {revealed && <div className="mt-3 rounded-xl bg-cyan-100 p-3 text-sm font-semibold text-cyan-800 dark:bg-cyan-400/15 dark:text-cyan-100"><Check className="mr-2 inline h-4 w-4" />Think element by element. Answer: {"{"}{challenge.answer.join(", ")}{"}"}</div>}
     </SectionCard>
   );

@@ -275,7 +275,7 @@ export function RationalLab({ onComplete }: LabProps) {
         </div>
         {mode !== "Fraction" ? <NumberLine values={[{ label: `${p}/${q}`, value, color: "#06b6d4" }]} zoomAround /> : <FractionBars p={Math.abs(reduced.numerator)} q={reduced.denominator} />}
       </div>
-      <CompleteCheck prompt="Is 0.625 a rational number?" answer="yes" onPass={() => { markLabComplete("rational"); onComplete?.(); }} />
+      <CompleteCheck prompt={`Is 0.625 a rational number? (live p/q is ${p}/${q})`} answer="yes" onPass={() => { markLabComplete("rational"); onComplete?.(); }} />
     </LabChrome>
   );
 }
@@ -542,6 +542,7 @@ export function PracticeLab({ onComplete }: LabProps) {
   const item = QUIZ[index];
   return (
     <LabChrome title="Practice & accuracy" summary="Classify the current number, then read the short definition. This is a check, not a wall of validation notes." lesson={LESSONS.rational} page="practice">
+      <p className="ns-note">A rational is a live p/q: 0.125 = 1/8, 0.5 = 1/2. Answers stay yes or no.</p>
       {item ? (
         <CompleteCheck
           key={index}
