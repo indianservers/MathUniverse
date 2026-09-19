@@ -144,7 +144,7 @@ function UnitCirclePanel({ theta, c, s, showCircle, showPoint, showAxes, grid }:
   );
 }
 
-function HelixPanel({ theta, cycles, show }: { theta: number; cycles: number; show: boolean }) {
+function HelixPanel({ theta, show }: { theta: number; cycles?: number; show: boolean }) {
   return (
     <StudioMath3D label="Complex exponential helix" compact camera={[3.4, 2.6, 4.6]}>
       {show ? <EulerHelix theta={theta} /> : null}
