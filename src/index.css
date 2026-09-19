@@ -19964,6 +19964,24 @@ html[data-geometry-workspace-theme="glow"]
     width: 17px;
     height: 17px;
   }
+  .cas-header-actions .cas-header-share {
+    display: inline-flex;
+  }
+  .cas-header-actions .cas-header-share .portable-share-trigger {
+    min-height: 34px;
+    border: 1px solid #dbe5f0;
+    border-radius: 7px;
+    background: #f8fafc;
+    padding: 0 8px;
+    color: #334155;
+    box-shadow: none;
+    backdrop-filter: none;
+  }
+  .cas-header-actions .cas-header-share .portable-share-trigger:hover {
+    border-color: #cbd5e1;
+    background: #f8fafc;
+    color: #0e7490;
+  }
   .cas-header-actions .cas-avatar {
     width: 32px;
     min-width: 32px;
