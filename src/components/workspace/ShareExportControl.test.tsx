@@ -26,6 +26,8 @@ describe("ShareExportControl", () => {
       expect(markup).toContain('aria-label="Share or export"');
       expect(markup).toContain('title="Share or export"');
       expect(markup).toContain("portable-share-trigger");
+      const embeddable = workspaceType !== "cas";
+      expect(markup).toContain(`data-can-embed="${embeddable}"`);
     },
   );
 });

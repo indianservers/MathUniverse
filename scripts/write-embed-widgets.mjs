@@ -47,7 +47,8 @@ function el(name, attrs, parent){
 }
 function map2d(scene,x,y){
   var v=scene.view,w=v.width||640,h=v.height||400,xmin=v.xmin||-6,xmax=v.xmax||6,ymin=v.ymin||-4,ymax=v.ymax||4;
-  return {x:((x-xmin)/(xmax-xmin))*w, y:h-((y-ymin)/(ymax-ymin))*h};
+  var px=((x-xmin)/(xmax-xmin))*w, py=((y-ymin)/(ymax-ymin))*h;
+  return {x:px, y:scene.kind==="twodgeometry"?py:h-py};
 }
 function project(scene,x,y,z){
   var v=scene.view,yaw=v.yaw||.7,pitch=v.pitch||.4,dist=v.distance||8;

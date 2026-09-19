@@ -2425,6 +2425,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
     title: () => portableWorkspaceType === "cas" ? "Computer Algebra Studio" : portableWorkspaceType === "2d-graph" ? "2D Graph Workspace" : portableWorkspaceType === "3d-geometry" ? "3D Geometry Workspace" : "2D Geometry Workspace",
     serializeScene: () => ({
       workspaceSnapshot: snapshot(),
+      geometryCamera,
       ...(portableWorkspaceType === "2d-graph" ? { linkedParameters: readLinkedParameters() } : {}),
       ...(portableWorkspaceType === "cas" ? { casNotebookState, selectedCasCellId, composerInput: casComposerInput, composerOperation: casComposerOperation } : {}),
       workspaceType: portableWorkspaceType,

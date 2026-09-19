@@ -8,6 +8,9 @@ import { deleteGraphWorkspace, readSavedGraphWorkspaces, saveGraphWorkspace, typ
 import type { GraphSample } from "../utils/mathEngine/graphSampler";
 import { compileFunctionExpression, compileTwoVariableExpression } from "../utils/functionParser";
 import GraphStudio2DWorkspace, { type GraphTransform, type PiecewiseSegment } from "../graph-studio/GraphStudio2DWorkspace";
+import EmbedCodePanel from "../embed/EmbedCodePanel";
+import { iframeSnippet } from "../embed/engine";
+import { embedSceneFromGraphFunctions } from "../embed/fromWorkspace";
 import { sampleAdvancedGraphExpression } from "../graph-studio/advancedGraphLayers";
 import { createBlankGraphDataRows, numericGraphData, parseGraphData, regressionModel, type GraphDataRow, type RegressionKind } from "../graph-studio/dataAnalysis";
 import { buildTransformationExpression, detectGraphAsymptotes, precisionSnapX, sampleTaylorPolynomial } from "../graph-studio/graph2dAdvanced";
@@ -118,6 +121,7 @@ export default function MathLabGraphingCalculator() {
   const [showTaylor, setShowTaylor] = useState(false);
   const [taylorCenter, setTaylorCenter] = useState(0);
   const [taylorDegree, setTaylorDegree] = useState(4);
+  const [embedOpen, setEmbedOpen] = useState(false);
 
   const graphStudioState = useMemo<Graph2DWorkspaceState>(() => ({ functions, view, showGrid, showAxes, traceMode, integralStart, integralEnd, variables: graphVariables, dataRows, showData, showRegression, showResiduals, logX, logY, regressionKind, showTaylor, taylorCenter, taylorDegree }), [dataRows, functions, graphVariables, integralEnd, integralStart, logX, logY, regressionKind, showAxes, showData, showGrid, showRegression, showResiduals, showTaylor, taylorCenter, taylorDegree, traceMode, view]);
   const graphStudio = useGraphStudioProject({
@@ -233,6 +237,7 @@ export default function MathLabGraphingCalculator() {
   useUniversalObjectGraphPublisher("graphing-calculator", workspaceObjects);
 
   return (
+    <>
     <GraphStudio2DWorkspace
       projectName={graphStudio.project.name}
       onProjectNameChange={(name) => graphStudio.updateProject({ name })}
@@ -246,7 +251,11 @@ export default function MathLabGraphingCalculator() {
       onExportSvg={exportSelectedSvg}
       onExportPdf={exportGraphPdf}
       onCopyShareLink={() => void navigator.clipboard?.writeText(buildShareUrl(functions, view))}
-      onCopyEmbed={() => void navigator.clipboard?.writeText(`<iframe src="${escapeHtmlAttribute(buildShareUrl(functions, view))}" width="960" height="640" loading="lazy" title="${escapeHtmlAttribute(graphStudio.project.name)}"></iframe>`)}
+      onCopyEmbed={() => {
+        const scene = embedSceneFromGraphFunctions(functions, view, graphStudio.project.name);
+        void navigator.clipboard?.writeText(iframeSnippet(window.location.origin, scene));
+        setEmbedOpen(true);
+      }}
       onCopyEquation={() => void navigator.clipboard?.writeText(selectedFunction?.input ?? "")}
       functions={functions}
       plotted={plotted}
@@ -331,6 +340,13 @@ export default function MathLabGraphingCalculator() {
       onRegressionKindChange={setRegressionKind}
       savedLibrary={<SavedGraphList saved={savedGraphs} onLoad={loadSavedGraph} onDelete={removeSavedGraph} />}
     />
+    {embedOpen && (
+      <EmbedCodePanel
+        scene={embedSceneFromGraphFunctions(functions, view, graphStudio.project.name)}
+        onClose={() => setEmbedOpen(false)}
+      />
+    )}
+    </>
   );
 
 

@@ -226,9 +226,11 @@ function map2d(scene: EmbedScene, x: number, y: number) {
   const xmax = v.xmax ?? 6;
   const ymin = v.ymin ?? -4;
   const ymax = v.ymax ?? 4;
+  const px = ((x - xmin) / (xmax - xmin)) * w;
+  const py = ((y - ymin) / (ymax - ymin)) * h;
   return {
-    x: ((x - xmin) / (xmax - xmin)) * w,
-    y: h - ((y - ymin) / (ymax - ymin)) * h,
+    x: px,
+    y: scene.kind === "twodgeometry" ? py : h - py,
   };
 }
 

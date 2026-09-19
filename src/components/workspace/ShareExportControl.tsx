@@ -1,6 +1,7 @@
 import {
   BookOpen,
   Check,
+  Code2,
   Copy,
   Download,
   FileDown,
@@ -43,6 +44,9 @@ import {
   type ImageExportScope,
   type PreparedWorkspaceImage,
 } from "../../workspace/workspaceImageExport";
+import EmbedCodePanel from "../../embed/EmbedCodePanel";
+import { EMBED_KIND_FOR_WORKSPACE, embedSceneFromPortable } from "../../embed/fromWorkspace";
+import type { EmbedScene } from "../../embed/engine";
 
 const PENDING_IMPORT_KEY = "math-universe-portable-import";
 
@@ -53,6 +57,8 @@ export default function ShareExportControl({ adapter, className = "" }: Props) {
   const [open, setOpen] = useState(false);
   const [view, setView] = useState<PanelView>("menu");
   const [status, setStatus] = useState("Ready");
+  const [embedScene, setEmbedScene] = useState<EmbedScene | null>(null);
+  const canEmbed = Boolean(EMBED_KIND_FOR_WORKSPACE[adapter.workspaceType]);
   const [busy, setBusy] = useState(false);
   const [prepared, setPrepared] = useState<PreparedWorkspaceImage | null>(null);
   const [scope, setScope] = useState<ImageExportScope>(
@@ -328,10 +334,14 @@ export default function ShareExportControl({ adapter, className = "" }: Props) {
         onClick={() => setOpen(true)}
         title="Share or export"
         aria-label="Share or export"
+        data-can-embed={canEmbed ? "true" : "false"}
       >
         <Share2 />
         <span>Share</span>
       </button>
+      {embedScene && (
+        <EmbedCodePanel scene={embedScene} onClose={() => setEmbedScene(null)} />
+      )}
       {open && (
         <div
           className="portable-modal-backdrop"
@@ -405,6 +415,27 @@ export default function ShareExportControl({ adapter, className = "" }: Props) {
                   note="Starting scene, hints, checkpoints and solution"
                   onClick={() => show("lesson")}
                 />
+                {canEmbed && (
+                  <Action
+                    icon={<Code2 />}
+                    title="Embed on a website"
+                    note="iframe, script tag, and live preview"
+                    onClick={() => {
+                      const scene = embedSceneFromPortable(
+                        adapter.workspaceType,
+                        adapter.serializeScene(),
+                        adapter.title(),
+                      );
+                      if (!scene) {
+                        setStatus("This workspace cannot be embedded.");
+                        return;
+                      }
+                      setOpen(false);
+                      setView("menu");
+                      setEmbedScene(scene);
+                    }}
+                  />
+                )}
                 <Action
                   icon={<Smartphone />}
                   title="Native Share"

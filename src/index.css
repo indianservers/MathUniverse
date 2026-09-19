@@ -28517,6 +28517,16 @@ html[data-geometry-workspace-theme="light"]
   min-height: 70px;
   resize: vertical;
 }
+.embed-code-dialog {
+  max-width: 42rem;
+}
+.embed-preview-frame {
+  width: 100%;
+  min-height: 240px;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-radius: 0.7rem;
+  background: #fff;
+}
 .portable-primary {
   display: inline-flex;
   min-height: 40px;

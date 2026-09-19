@@ -5,6 +5,7 @@ import {
   ChevronLeft,
   ChevronRight,
   CircleHelp,
+  Code2,
   Copy,
   Crosshair,
   Download,
@@ -1949,7 +1950,7 @@ function ExportMenu({
           close();
         }}
       >
-        <Copy />
+        <Code2 />
         Copy embed code
       </button>
       <button
