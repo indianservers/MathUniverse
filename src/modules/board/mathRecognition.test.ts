@@ -35,6 +35,18 @@ describe("math recognition pipeline", () => {
     expect(input.strokes.map((stroke) => stroke.id)).toEqual(["a", "b"]);
   });
 
+  it("does not invent sin 60 for unrelated wide handwriting", async () => {
+    const provider = new DevelopmentMathRecognitionProvider();
+    const input = createRecognitionInput([
+      makeStroke("a"),
+      makeStroke("b", 40),
+      makeStroke("c", 80),
+    ]);
+    const result = await provider.recognize(input);
+    expect(result.latex).not.toBe("\\sin 60^\\circ");
+    expect(result.plainText).not.toMatch(/sixty/i);
+  });
+
   it("does not return canned circle equations in development recognition", async () => {
     const provider = new DevelopmentMathRecognitionProvider();
     const input = createRecognitionInput([makeStroke("a")]);

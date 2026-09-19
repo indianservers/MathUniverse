@@ -1,4 +1,5 @@
 import { expandBounds, unionBounds } from "./boardGeometry";
+import { recognizeHandwrittenMath, reconcileRecognition } from "./strokeMathRecognizer";
 import type {
   BoundingBox,
   MathRecognitionResult,
@@ -106,23 +107,20 @@ export class DevelopmentMathRecognitionProvider implements MathRecognitionProvid
         { once: true },
       );
     });
-    const likelyTrig =
+    const local = recognizeHandwrittenMath(input.strokes);
+    const likelyTrig = Boolean(local.latex) || (
       input.strokes.length >= 3 &&
-      input.bounds.width > input.bounds.height * 1.35;
+      input.bounds.width > input.bounds.height * 1.35
+    );
     return {
-      latex: likelyTrig ? "\\sin 60^\\circ" : "",
-      normalizedExpression: likelyTrig ? "sin(60 deg)" : undefined,
-      plainText: likelyTrig ? "sine sixty degrees" : "Manual review required",
-      confidence: likelyTrig ? 0.38 : 0,
-      alternatives: likelyTrig
-        ? [
-            { latex: "\\sin 60^\\circ", confidence: 0.38 },
-            { latex: "\\sin 6\\theta", confidence: 0.24 },
-          ]
-        : [],
-      detectedType: likelyTrig ? "function" : "unknown",
+      latex: local.latex,
+      normalizedExpression: local.normalizedExpression,
+      plainText: local.plainText ?? (likelyTrig ? "handwritten mathematics" : "Manual review required"),
+      confidence: local.confidence,
+      alternatives: local.alternatives,
+      detectedType: local.detectedType,
       warnings: [
-        "No production handwriting AI model is configured. Set VITE_BOARD_RECOGNITION_ENDPOINT to a secure OCR/vision backend.",
+        "No production handwriting AI model is configured. Local stroke geometry is used to distinguish digits such as 3 and 6. Set VITE_BOARD_RECOGNITION_ENDPOINT for a vision backend.",
       ],
     };
   }
@@ -165,17 +163,21 @@ export class HttpMathRecognitionProvider implements MathRecognitionProvider {
           })),
         })),
         instructions: [
-          "Recognize handwritten mathematics from the image.",
+          "Recognize handwritten mathematics from the image and vector strokes.",
           "Return concise LaTeX only for the best candidate.",
-          "Prefer trigonometric notation such as \\sin 60^\\circ when the handwriting resembles sin 60.",
+          "Read digits from the ink: a 3 is open on the left with two lobes; a 6 has a closed lower loop. Never default to 60 when the writing is 30.",
+          "Do not prefer a canned trigonometric example such as \\sin 60^\\circ.",
           "Include alternatives with confidence values when uncertain.",
         ],
       }),
     });
     if (!response.ok)
       throw new Error(`Recognition model failed with HTTP ${response.status}.`);
-    return normalizeRecognitionResponse(
-      (await response.json()) as RecognitionServiceResponse,
+    return reconcileRecognition(
+      normalizeRecognitionResponse(
+        (await response.json()) as RecognitionServiceResponse,
+      ),
+      input.strokes,
     );
   }
 }
