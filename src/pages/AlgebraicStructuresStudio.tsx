@@ -49,7 +49,9 @@ const titles: Record<AlgebraicStructuresPage, { title: string; subtitle: string;
 export default function AlgebraicStructuresStudio({ page = "home" }: { page?: AlgebraicStructuresPage }) {
   const location = useLocation();
   const meta = titles[page];
-  const load = () => undefined;
+  const load = (kind: string) => {
+    window.dispatchEvent(new CustomEvent("as-lab-load", { detail: kind }));
+  };
   const share = async () => {
     try {
       await navigator.clipboard.writeText(window.location.href);
@@ -64,7 +66,7 @@ export default function AlgebraicStructuresStudio({ page = "home" }: { page?: Al
       <section className="alg-stage" data-testid="algebraic-structures-stage">
         <div className="as-lab">
           <StudioHomeButtons studioTo="/algebraic-structures" />
-          <AlgebraLabHeading labId="structures" subtitle={meta.subtitle} onReset={() => window.location.reload()}>{meta.title}</AlgebraLabHeading>
+          <AlgebraLabHeading labId="structures" subtitle={meta.subtitle} onReset={() => window.dispatchEvent(new Event("as-lab-reset"))}>{meta.title}</AlgebraLabHeading>
           <header className="as-head">
             <div>
               <p className="as-crumb">
@@ -72,7 +74,7 @@ export default function AlgebraicStructuresStudio({ page = "home" }: { page?: Al
                 {meta.crumb ? <> &gt; <b>{meta.crumb}</b></> : null}
               </p>
             </div>
-            {page !== "home" ? <><StudioCanvasToolbar /><LabToolbar onLoad={load} onReset={() => window.location.reload()} onShare={() => void share()} /></> : null}
+            {page !== "home" ? <><StudioCanvasToolbar /><LabToolbar onLoad={load} onReset={() => window.dispatchEvent(new Event("as-lab-reset"))} onShare={() => void share()} /></> : null}
           </header>
           <StructureTabs page={page} />
           <div className="msk-dash-banner" data-lab-mode={page}>

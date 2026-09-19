@@ -63,6 +63,8 @@ const MOCKUP_NAV_IDS: AlgebraPage[] = [
   "sequences",
   "proof",
   "cas",
+  "structures",
+  "advanced",
 ];
 
 export const routePage: Record<string, AlgebraPage> = Object.fromEntries(

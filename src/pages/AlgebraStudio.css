@@ -373,4 +373,8 @@
   .alg-header-modes{overflow-x:auto;flex-wrap:nowrap}
   .alg-header-modes button{flex:0 0 auto}
 }
+.alg-dialog{position:fixed;inset:0;z-index:40;display:grid;place-items:center;background:#0f172a66}
+.alg-dialog-card{width:min(440px,92vw);padding:18px;border-radius:16px;background:#fff;box-shadow:0 20px 50px #0f172a33}
+.alg-dialog-card header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.alg-dialog-card p{margin:0;color:#334155;line-height:1.5}
 

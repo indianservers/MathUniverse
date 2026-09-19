@@ -63,7 +63,8 @@ describe("Algebra Studio reference routes", () => {
     for (const route of ["/algebra/expressions", "/algebra/equations", "/algebra/functions", "/algebra/polynomials", "/algebra/systems", "/algebra/exponents-logs", "/algebra/sequences", "/algebra/proof", "/algebra/cas"]) {
       expect(html).toContain(`href="${route}"`);
     }
-    expect(html).not.toContain('href="/algebra/advanced"');
+    expect(html).toContain('href="/algebra/advanced"');
+    expect(html).toContain('href="/algebraic-structures"');
   });
 
   it("lists the nine mockup topic studios on home", () => {

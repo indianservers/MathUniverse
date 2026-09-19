@@ -1,7 +1,7 @@
 import { renderToString } from "react-dom/server";
 import { MemoryRouter } from "react-router-dom";
 import { describe, expect, it } from "vitest";
-import { classifyOperation, modularTable } from "../modules/algebraic-structures/algebraicStructuresEngine";
+import { classifyOperation, modularTable, posetProperties } from "../modules/algebraic-structures/algebraicStructuresEngine";
 import AlgebraicStructuresStudio from "./AlgebraicStructuresStudio";
 
 const routes = [
@@ -47,5 +47,15 @@ describe("Algebraic Structures studio", () => {
     expect(info.abelian).toBe(true);
     expect(info.identity).toBe("0");
     expect(info.inverseOf["3"]).toBe("1");
+  });
+
+  it("detects the diamond poset as a bounded lattice", () => {
+    const props = posetProperties(
+      ["0", "a", "b", "1"],
+      [["0", "a"], ["0", "b"], ["a", "1"], ["b", "1"]],
+    );
+    expect(props.partialOrder).toBe(true);
+    expect(props.lattice).toBe(true);
+    expect(props.bounded).toBe(true);
   });
 });
