@@ -5,6 +5,9 @@ export type ComplexSession = {
   lastMode: string | null;
   lastLabel: string;
   completed: string[];
+  teacherMode: boolean;
+  theme: "light" | "dark";
+  xp: number;
 };
 
 const KEY = "math-universe-complex-numbers-studio";
@@ -15,6 +18,9 @@ const fallback: ComplexSession = {
   lastMode: null,
   lastLabel: "Argand Plane",
   completed: [],
+  teacherMode: false,
+  theme: "light",
+  xp: 0,
 };
 
 export const COMPLEX_SEARCH_ALIASES: Record<string, { id: string; mode?: string }> = {
@@ -46,6 +52,9 @@ export function readComplexSession(): ComplexSession {
       ...fallback,
       ...parsed,
       completed: Array.isArray(parsed.completed) ? parsed.completed.filter((item) => typeof item === "string") : [],
+      teacherMode: Boolean(parsed.teacherMode),
+      theme: parsed.theme === "dark" ? "dark" : "light",
+      xp: typeof parsed.xp === "number" ? parsed.xp : 0,
     };
   } catch {
     return { ...fallback, completed: [] };

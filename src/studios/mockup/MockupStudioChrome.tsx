@@ -53,6 +53,7 @@ import StudioHomeButtons from "../../components/ui/StudioHomeButtons";
 import { StudioCanvasToolbar } from "../../components/ui/StudioCanvasToolbar";
 import { TopicIllustration } from "./labs/TopicIllustrations";
 import { studioNavPages, studioSidebarPages, type StudioMockupDefinition, type StudioMockupPage } from "./studioMockupCatalog";
+import { useLabMode } from "./studioLabKit";
 import { ModellingLaunchArt, ModellingNavIcon, modellingDatasets, modellingJourney } from "./modellingStudioIcons";
 import { IllustratedStudioHome, StudioLabCard } from "./studioHomeLayouts";
 import GeometryStudioHome from "../geometry/GeometryStudioHome";
@@ -93,6 +94,7 @@ import {
   markComplexComplete,
   markComplexVisit,
   useComplexSession,
+  writeComplexSession,
   COMPLEX_SEARCH_ALIASES,
 } from "../complex/complexStudioSession";
 
@@ -170,6 +172,19 @@ export function MockupTopicArt({ pageId }: { pageId: string }) {
   return <TopicIllustration pageId={pageId} />;
 }
 
+function ComplexHeaderPills({ page }: { page: StudioMockupPage }) {
+  const { tabs, mode, setMode } = useLabMode(page);
+  return (
+    <nav className="cx-pills is-header" aria-label={`${page.title} modes`}>
+      {tabs.map((item) => (
+        <button key={item} type="button" className={item === mode ? "active" : ""} aria-pressed={item === mode} onClick={() => setMode(item)}>
+          {item}
+        </button>
+      ))}
+    </nav>
+  );
+}
+
 export function MockupLearningStrip({ page, mode }: { page: StudioMockupPage; mode?: string }) {
   const copy = page.route.includes("/trigonometry") || page.route === "/trigonometry"
     ? trigModeLearning(page, mode)
@@ -221,9 +236,27 @@ function LinearAlgebraNavIcon({ id }: { id: string }) {
   return <svg viewBox="0 0 24 24" aria-hidden="true"><g fill="currentColor" fillOpacity=".92" stroke="currentColor" strokeWidth="1.15" strokeLinejoin="round">{glyph}</g></svg>;
 }
 
+function ComplexNavIcon({ id }: { id: string }) {
+  const glyphs: Record<string, ReactNode> = {
+    home: <path d="M4 11.2 12 4l8 7.2V20h-6v-6H10v6H4Z" />,
+    "argand-plane": <><circle cx="12" cy="12" r="7.2" fill="none" /><path d="M12 5v14M5 12h14" fill="none" /></>,
+    arithmetic: <path d="M7 7h4v4H7Zm6 0h4v4h-4ZM7 13h4v4H7Zm6 2h4M8 15h2" fill="none" />,
+    "polar-forms": <><circle cx="12" cy="12" r="7" fill="none" /><path d="M12 12 17 8" fill="none" /></>,
+    rotation: <><path d="M5 12a7 7 0 0 1 12-4" fill="none" /><path d="M16 5v4h4" fill="none" /></>,
+    roots: <path d="M12 4 19 8.5v7L12 20 5 15.5v-7Z" />,
+    euler: <path d="M6 8c4-4 8 8 12 0M6 16c4-4 8 8 12 0" fill="none" />,
+    loci: <><circle cx="9" cy="12" r="5" fill="none" /><circle cx="15" cy="12" r="5" fill="none" /></>,
+    fractals: <path d="M12 4v7l5 9H7l5-9" />,
+    "waves-circuits": <path d="M3 12c2-6 4 6 6 0s4 6 6 0 4 6 6 0" fill="none" />,
+  };
+  const glyph = glyphs[id] ?? glyphs.home;
+  return <svg viewBox="0 0 24 24" aria-hidden="true"><g fill="currentColor" fillOpacity=".2" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round">{glyph}</g></svg>;
+}
+
 function NavIcon({ id, studio }: { id: string; studio?: string }) {
   if (studio === "modelling") return <ModellingNavIcon id={id} />;
   if (studio === "linear-algebra") return <LinearAlgebraNavIcon id={id} />;
+  if (studio === "complex-numbers") return <ComplexNavIcon id={id} />;
   const glyphId = studio === "discrete" && id === "graphs" ? "network-graph" : id;
   const filled: Record<string, ReactNode> = {
     home: <path d="M4 11.2 12 4l8 7.2V20h-6v-6H10v6H4Z" />,
@@ -403,7 +436,7 @@ export function MockupStudioChrome({
   }, [page.id]);
 
   return (
-    <main className={`msk-shell msk-${studio.id}${open ? " is-open" : ""}${(isTrig && session.theme === "dark") || (isGeo && geoSession.theme === "dark") ? " is-dark" : ""}${(isTrig && session.teacherMode) || (isGeo && geoSession.teacherMode) || (isDiscrete && discreteTeacher) || (isLinear && linearSession.teacherMode && page.id !== "home") ? " is-teacher" : ""}${(isTrig || isModel || isGeo || isDiscrete || isLinear || isComplex) && page.id !== "home" ? " is-lab" : ""}`}>
+    <main className={`msk-shell msk-${studio.id}${open ? " is-open" : ""}${(isTrig && session.theme === "dark") || (isGeo && geoSession.theme === "dark") || (isComplex && complexSession.theme === "dark") ? " is-dark" : ""}${(isTrig && session.teacherMode) || (isGeo && geoSession.teacherMode) || (isDiscrete && discreteTeacher) || (isLinear && linearSession.teacherMode && page.id !== "home") || (isComplex && complexSession.teacherMode && page.id !== "home") ? " is-teacher" : ""}${(isTrig || isModel || isGeo || isDiscrete || isLinear || isComplex) && page.id !== "home" ? " is-lab" : ""}`} data-cx-page={isComplex ? page.id : undefined}>
       {open ? <button className="msk-backdrop" type="button" aria-label="Close menu" onClick={() => setOpen(false)} /> : null}
       <aside className="msk-sidebar">
         <Link className="msk-brand" to={studio.basePath}>
@@ -478,7 +511,7 @@ export function MockupStudioChrome({
                 <CheckCircle2 />
               </button>
             ) : null}
-            {page.id !== "home" && !isLinear ? <StudioCanvasToolbar /> : null}
+            {page.id !== "home" && !isLinear && !isComplex ? <StudioCanvasToolbar /> : null}
             {isTrig ? (
               <div className="msk-units" role="group" aria-label="Angle units">
                 <button type="button" className={`msk-units-deg${session.units === "deg" ? " active" : ""}`} aria-pressed={session.units === "deg"} onClick={() => writeTrigSession({ units: "deg" })}>Deg</button>
@@ -515,6 +548,32 @@ export function MockupStudioChrome({
                   ? <a className="la-stat-chip" href="#la-journey"><Compass />Journey</a>
                   : <Link className="la-stat-chip" to="/linear-algebra#la-journey"><Compass />Journey</Link>}
               </>
+            ) : isComplex && page.id !== "home" ? (
+              <>
+                {page.id === "waves-circuits" ? <ComplexHeaderPills page={page} /> : null}
+                {page.id === "polar-forms" ? <button type="button" className="cx-chip" onClick={() => setHelpOpen(true)}>Quick tour</button> : null}
+                {page.id === "euler" ? (
+                  <button type="button" className="cx-chip" onClick={() => window.dispatchEvent(new Event("cx-lab-reset"))}>Reset</button>
+                ) : null}
+                {page.id === "loci" ? (
+                  <>
+                    <button type="button" className="cx-chip" onClick={() => window.dispatchEvent(new Event("cx-lab-animate"))}>Animate</button>
+                    <span className="cx-chip">1.0×</span>
+                  </>
+                ) : null}
+                {page.id === "arithmetic" ? (
+                  <>
+                    <button type="button" className="cx-chip" onClick={() => void navigator.clipboard?.writeText(window.location.href)}>Share</button>
+                    <span className="cx-chip is-saved"><CheckCircle2 />Saved</span>
+                    <button type="button" className="cx-chip is-reset" onClick={() => window.location.reload()}>Reset</button>
+                  </>
+                ) : page.id === "euler" || page.id === "waves-circuits" ? null : (
+                  <>
+                    <span className="cx-chip" aria-label="Streak 0"><Flame />0</span>
+                    <span className="cx-chip" aria-label={`${complexSession.xp} XP`}><Star />{complexSession.xp} XP</span>
+                  </>
+                )}
+              </>
             ) : isNumberSense ? (
               <>
                 <button type="button" aria-label="Streak"><Flame /></button>
@@ -526,9 +585,9 @@ export function MockupStudioChrome({
                 <span><Star />{session.xp} XP</span>
               </>
             ) : null}
-            {isTrig || isGeo ? (
-              <button type="button" aria-label={(isGeo ? geoSession.theme : session.theme) === "dark" ? "Switch to light theme" : "Switch to dark theme"} onClick={() => (isGeo ? writeGeoSession({ theme: geoSession.theme === "dark" ? "light" : "dark" }) : writeTrigSession({ theme: session.theme === "dark" ? "light" : "dark" }))}>
-                {(isGeo ? geoSession.theme : session.theme) === "dark" ? <Sun /> : <Moon />}
+            {isTrig || isGeo || isComplex ? (
+              <button type="button" aria-label={(isComplex ? complexSession.theme : isGeo ? geoSession.theme : session.theme) === "dark" ? "Switch to light theme" : "Switch to dark theme"} onClick={() => (isComplex ? writeComplexSession({ theme: complexSession.theme === "dark" ? "light" : "dark" }) : isGeo ? writeGeoSession({ theme: geoSession.theme === "dark" ? "light" : "dark" }) : writeTrigSession({ theme: session.theme === "dark" ? "light" : "dark" }))}>
+                {(isComplex ? complexSession.theme : isGeo ? geoSession.theme : session.theme) === "dark" ? <Sun /> : <Moon />}
               </button>
             ) : null}
             {isTrig ? (
@@ -542,6 +601,12 @@ export function MockupStudioChrome({
             ) : isLinear ? (
               page.id === "home" ? null : (
                 <button type="button" className={`msk-teacher${linearSession.teacherMode ? " active" : ""}`} aria-pressed={linearSession.teacherMode} onClick={() => writeLinearSession({ teacherMode: !linearSession.teacherMode })}>
+                  Teacher mode
+                </button>
+              )
+            ) : isComplex ? (
+              page.id === "home" || page.id === "arithmetic" || page.id === "polar-forms" || page.id === "euler" || page.id === "waves-circuits" ? null : (
+                <button type="button" className={`msk-teacher${complexSession.teacherMode ? " active" : ""}`} aria-pressed={complexSession.teacherMode} onClick={() => writeComplexSession({ teacherMode: !complexSession.teacherMode })}>
                   Teacher mode
                 </button>
               )
@@ -563,7 +628,7 @@ export function MockupStudioChrome({
                 <span>3</span>
               </button>
             ) : null}
-            {isModel ? null : (
+            {isModel || (isComplex && (page.id === "arithmetic" || page.id === "polar-forms" || page.id === "euler" || page.id === "waves-circuits" || page.id === "fractals")) ? null : (
               <button type="button" aria-label="Settings" onClick={() => setSettingsOpen(true)}><Settings /></button>
             )}
             {isModel ? <button type="button" className="msk-avatar" aria-label="Account"><User /></button> : null}

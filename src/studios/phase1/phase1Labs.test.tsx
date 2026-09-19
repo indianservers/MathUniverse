@@ -49,8 +49,8 @@ describe("phase 1 studio labs", () => {
         <MockupStudioApp studioId="linear-algebra" />
       </MemoryRouter>,
     );
-    expect(span).toContain("dim span");
-    expect(span).toContain("Independent?");
+    expect(span).toContain("dim(Span)");
+    expect(span).toContain("independent");
     const fractals = renderToString(
       <MemoryRouter initialEntries={["/complex-numbers/fractals"]}>
         <MockupStudioApp studioId="complex-numbers" />
