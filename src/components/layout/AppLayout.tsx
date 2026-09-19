@@ -32,14 +32,24 @@ function InlinePageNav({ showBack, hidden = false }: { showBack: boolean; hidden
 
 const recentToolsKey = "math-universe-recent-tools";
 
-function AppFooter() {
+export const HOME_APP_VERSION = "1.001";
+
+export function AppFooter() {
   const year = new Date().getFullYear();
+  const { pathname } = useLocation();
+  const isHome = pathname === "/";
   return (
     <footer className="w-full px-3 py-0.5" aria-label="Site footer">
       <div className="mx-auto flex min-h-6 max-w-[1440px] items-center justify-between gap-4 overflow-x-auto whitespace-nowrap border-t border-slate-200 px-1 text-[9px] font-semibold text-slate-500 dark:border-white/10 dark:text-slate-400">
         <p className="shrink-0">
           &copy; {year} Indian Servers Private Limited · Math Universe ·
           www.IndianServers.com · info@IndianServers.com
+          {isHome ? (
+            <>
+              {" "}
+              · <span data-testid="home-app-version">Version {HOME_APP_VERSION}</span>
+            </>
+          ) : null}
         </p>
         <nav
           className="flex shrink-0 items-center gap-2"
