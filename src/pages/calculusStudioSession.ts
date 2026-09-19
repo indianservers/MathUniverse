@@ -212,12 +212,37 @@ export function todayKey(now = new Date()) {
   return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
 }
 
-export const dailyChallenge = {
-  prompt: "Predict the behavior of the limit.",
-  formula: "lim_{x→2} (x² − 4) / (x − 2)",
-  answer: 4,
-  hint: "Factor the numerator: (x − 2)(x + 2) / (x − 2) → 4.",
-};
+export const dailyChallengeBank = [
+  {
+    prompt: "Predict the behavior of the limit.",
+    formula: "lim_{x→2} (x² − 4) / (x − 2)",
+    html: "lim x→2 (x² − 4) / (x − 2)",
+    answer: 4,
+    hint: "Factor the numerator: (x − 2)(x + 2) / (x − 2) → 4.",
+  },
+  {
+    prompt: "What is the derivative of x² at x = 3?",
+    formula: "d/dx x² |_{x=3}",
+    html: "d/dx x² at x = 3",
+    answer: 6,
+    hint: "2x at 3 is 6.",
+  },
+  {
+    prompt: "∫₀¹ 2x dx = ?",
+    formula: "∫_0^1 2x dx",
+    html: "∫ from 0 to 1 of 2x dx",
+    answer: 1,
+    hint: "Antiderivative x² from 0 to 1.",
+  },
+] as const;
+
+export function getDailyChallenge(now = new Date()) {
+  const start = Date.UTC(2026, 0, 1);
+  const days = Math.floor((now.getTime() - start) / 86400000);
+  return dailyChallengeBank[((days % dailyChallengeBank.length) + dailyChallengeBank.length) % dailyChallengeBank.length]!;
+}
+
+export const dailyChallenge = getDailyChallenge();
 
 export function loadChallenge(): ChallengeState {
   const stored = readJson<ChallengeState>(CHALLENGE_KEY, { day: todayKey(), streak: 0, solved: false, guess: "" });
@@ -230,7 +255,7 @@ export function loadChallenge(): ChallengeState {
 export function gradeChallenge(guess: string): ChallengeState {
   const current = loadChallenge();
   const numeric = Number(guess.trim());
-  const solved = Number.isFinite(numeric) && Math.abs(numeric - dailyChallenge.answer) < 1e-6;
+  const solved = Number.isFinite(numeric) && Math.abs(numeric - getDailyChallenge().answer) < 1e-6;
   const next: ChallengeState = {
     day: todayKey(),
     guess,

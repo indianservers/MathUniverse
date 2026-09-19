@@ -52,22 +52,33 @@ export const NUMBER_LABS: Array<{
   { id: "practice", label: "Practice & accuracy", description: "Classify numbers, then check the precise definitions.", minutes: 10, level: "Apply", grade: ["8-10", "jee"], modes: ["Quiz", "Accuracy"] },
 ];
 
-export function NestedSetsHero({ progress }: { progress?: number }) {
+export function NestedSetsHero({ progress, onSelect }: { progress?: number; onSelect?: (id: string) => void }) {
   return (
     <section className="ns-hero" aria-label="Nested number sets">
-      <svg viewBox="0 0 640 160" className="ns-hero-sets" role="img" aria-label="N subset W subset Z subset Q subset R">
-        <rect x="12" y="16" width="616" height="128" rx="22" fill="#e0f2fe" stroke="#0f172a" />
-        <text x="520" y="40" fontWeight="800" fontSize="13">ℝ</text>
-        <rect x="28" y="44" width="360" height="84" rx="16" fill="#ecfeff" stroke="#0f172a" />
-        <text x="320" y="64" fontWeight="800" fontSize="13">ℚ</text>
-        <rect x="410" y="44" width="200" height="84" rx="16" fill="#fff7ed" stroke="#0f172a" />
-        <text x="430" y="64" fontWeight="800" fontSize="12">ℝ \\ ℚ</text>
-        <rect x="48" y="68" width="250" height="48" rx="12" fill="#f8fafc" stroke="#0f172a" />
-        <text x="220" y="88" fontWeight="800" fontSize="12">ℤ</text>
-        <rect x="64" y="82" width="140" height="26" rx="8" fill="#fefce8" stroke="#0f172a" />
-        <text x="78" y="100" fontWeight="800" fontSize="12">ℕ ⊂ W</text>
+      <svg viewBox="0 0 640 160" className="ns-hero-sets" role="img" aria-label="N subset W subset Z subset Q subset R. Click a set to filter labs.">
+        <a href="/number-systems/hierarchy" onClick={(event) => { event.preventDefault(); onSelect?.("hierarchy"); }}>
+          <rect x="12" y="16" width="616" height="128" rx="22" fill="#e0f2fe" stroke="#0f172a" />
+          <text x="520" y="40" fontWeight="800" fontSize="13">ℝ</text>
+        </a>
+        <a href="/number-systems/rational" onClick={(event) => { event.preventDefault(); onSelect?.("rational"); }}>
+          <rect x="28" y="44" width="360" height="84" rx="16" fill="#ecfeff" stroke="#0f172a" />
+          <text x="320" y="64" fontWeight="800" fontSize="13">ℚ</text>
+        </a>
+        <a href="/number-systems/irrational" onClick={(event) => { event.preventDefault(); onSelect?.("irrational"); }}>
+          <rect x="410" y="44" width="200" height="84" rx="16" fill="#fff7ed" stroke="#0f172a" />
+          <text x="430" y="64" fontWeight="800" fontSize="12">ℝ \\ ℚ</text>
+        </a>
+        <a href="/number-systems/hierarchy" onClick={(event) => { event.preventDefault(); onSelect?.("hierarchy"); }}>
+          <rect x="48" y="68" width="250" height="48" rx="12" fill="#f8fafc" stroke="#0f172a" />
+          <text x="220" y="88" fontWeight="800" fontSize="12">ℤ</text>
+        </a>
+        <a href="/number-systems/rational" onClick={(event) => { event.preventDefault(); onSelect?.("rational"); }}>
+          <rect x="64" y="82" width="140" height="26" rx="8" fill="#fefce8" stroke="#0f172a" />
+          <text x="78" y="100" fontWeight="800" fontSize="12">ℕ ⊂ W</text>
+        </a>
+        <text x="560" y="130" fontWeight="800" fontSize="12">ℂ</text>
       </svg>
-      {progress != null ? <p>Studio progress {progress}% · ℕ ⊂ W ⊂ ℤ ⊂ ℚ ⊂ ℝ</p> : null}
+      {progress != null ? <p>Studio progress {progress}% · ℕ ⊂ W ⊂ ℤ ⊂ ℚ ⊂ ℝ ⊂ ℂ</p> : null}
     </section>
   );
 }

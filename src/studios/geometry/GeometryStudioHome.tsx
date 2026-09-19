@@ -19,6 +19,10 @@ import {
   useGeoSession,
   writeGeoSession,
 } from "./geometryStudioSession";
+import { BisectorTeaser, LandingTeaser, hasLandingTeaser } from "../landing/StudioLandingTeasers";
+import { ClassPinPanel, FirstHourNote, GeometryWeekStrip } from "../landing/StudioLandingExtras";
+import { firstHourReady } from "../landing/studioLandingSession";
+import "../landing/studioLanding.css";
 
 const TRACKS: Array<{ id: "all" | GeoTrack; label: string }> = [
   { id: "all", label: "All" },
@@ -88,6 +92,8 @@ export default function GeometryStudioHome({ studio }: { studio: StudioMockupDef
           <div className="msk-geo-hero-actions">
             <Link className="msk-cta" to="/geometry/construction">Construct a perpendicular bisector</Link>
             <Link className="msk-soft" to="/geometry/triangles">Start with Triangles</Link>
+            <Link className="msk-soft" to="/geometry/construction?intent=prove">Prove this</Link>
+            <Link className="msk-soft" to="/geometry/construction?intent=build">Build this</Link>
             <button type="button" className="msk-soft" onClick={() => writeGeoSession({ teacherMode: !session.teacherMode })}>
               {session.teacherMode ? "Exit teacher" : "Teacher mode"}
             </button>
@@ -104,15 +110,7 @@ export default function GeometryStudioHome({ studio }: { studio: StudioMockupDef
           </div>
         </div>
         <div>
-        <svg className="msk-graph" viewBox="0 0 280 88" role="img" aria-label="Perpendicular bisector of AB">
-          <rect width="280" height="88" fill="#f8fbff" />
-          <line x1="40" y1="64" x2="240" y2="64" stroke="#147df2" />
-          <line x1="140" y1="12" x2="140" y2="80" stroke="#8b45f4" strokeDasharray="4 3" />
-          <circle cx="40" cy="64" r="5" fill="#147df2" />
-          <circle cx="240" cy="64" r="5" fill="#147df2" />
-          <circle cx="140" cy="64" r="4" fill="#08b9dd" />
-          <text x="36" y="20" fill="#334155" fontSize="11">A · O · B and ℓ ⊥ AB</text>
-        </svg>
+        <BisectorTeaser />
         <ol className="msk-geo-path" aria-label="Suggested sequence">
           {GEO_PATH.map((item, index) => (
             <li key={item.id}>
@@ -126,6 +124,9 @@ export default function GeometryStudioHome({ studio }: { studio: StudioMockupDef
         </ol>
         </div>
       </section>
+      <GeometryWeekStrip />
+      <FirstHourNote completed={session.completed} lastOpenedAt={session.lastOpenedAt} lockedLabel="Proofs and AR" unlockHint="a 2D lab" />
+      <p className="sl-banner">Figure of the day: drag the live bisector above, then open Construction. Chord / tangent / angle colors live in <Link to="/lessons">geometry lessons</Link>, not the workspace.</p>
       <div className="msk-concept-orbit msk-geo-orbit" aria-label="Filter labs by kind">
         <div className="msk-orbit-core"><span className="msk-mark">G</span><b>GEOMETRY</b></div>
         {TRACKS.map((item) => (
@@ -158,18 +159,23 @@ export default function GeometryStudioHome({ studio }: { studio: StudioMockupDef
               const meta = GEO_LAB_META[item.id];
               const done = session.completed.includes(item.id);
               const pathNo = pathIndex.get(item.id);
+              const lockedProof = item.id === "proofs" && !firstHourReady(session.completed, session.lastOpenedAt);
               return (
-                <Link key={item.id} className={`msk-card${done ? " is-done" : ""}${item.id === "ar" ? " is-ar" : ""}`} to={item.route}>
+                <article key={item.id} className={`msk-card msk-card-article${done ? " is-done" : ""}${item.id === "ar" ? " is-ar" : ""}`}>
+                  <Link className="msk-card-hit" to={item.route} aria-label={`Open ${item.label}`} />
                   <span className="msk-num">{done ? "✓" : pathNo ?? "•"}</span>
-                  <TopicIllustration pageId={item.id} />
+                  {hasLandingTeaser("geometry", item.id) ? <LandingTeaser studioId="geometry" labId={item.id} /> : <TopicIllustration pageId={item.id} />}
                   <b>{item.label}</b>
                   <small>{meta?.outcome ?? item.description}</small>
                   {meta ? <em className="msk-meta">{meta.level} · {meta.minutes} min · {meta.grade}</em> : null}
                   {item.modes.length ? <span className="msk-card-modes">{item.modes.slice(0, 3).join(" · ")}</span> : null}
                   {meta?.leavesStudio ? <span className="msk-card-badge">Opens 2D/3D explorer</span> : null}
                   {meta?.camera ? <span className="msk-card-badge">Needs camera</span> : null}
+                  {lockedProof ? <span className="msk-card-badge">After a 2D lab</span> : null}
+                  <Link to={`${item.route}?intent=prove`} className="sl-mini-link">Prove this</Link>
+                  <Link to={`${item.route}?intent=build`} className="sl-mini-link">Build this</Link>
                   <em>Open {item.label}</em>
-                </Link>
+                </article>
               );
             })}
           </div>
@@ -185,6 +191,7 @@ export default function GeometryStudioHome({ studio }: { studio: StudioMockupDef
             <Link className="msk-cta" to={continueTo}>{started ? "Continue experiment" : "Start experiment"}</Link>
             {next && next.id !== continueId ? <p className="msk-note">Next: <Link to={next.route}>{next.label}</Link></p> : null}
           </section>
+          <ClassPinPanel onPush={(route) => writeGeoSession({ lastRoute: route, lastLabel: "Construction Workspace", lastOpenedAt: Date.now() })} />
           <section className="msk-panel">
             <h2>Your learning journey</h2>
             <p className="msk-note">{`${session.completed.filter((id) => labs.some((lab) => lab.id === id)).length} of ${labs.length} labs started.`}</p>

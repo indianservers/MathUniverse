@@ -116,7 +116,7 @@ describe("Algebra Studio reference routes", () => {
     expect(home).toContain("x + 7");
     expect(home).toContain("2(x + 3)");
     expect(home).toContain("2x + 6");
-    expect(home).toContain("Last active: 2m ago");
+    expect(home).toContain("Not started yet");
     expect(home).not.toContain("First 60 seconds");
     expect(home).not.toContain("/algebra/classic");
   });

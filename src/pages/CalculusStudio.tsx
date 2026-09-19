@@ -63,7 +63,6 @@ import {
   type CalculusStudioPage,
   type StudioSettings,
 } from "./calculusStudioSession";
-import "./CalculusStudio.css";
 
 export type { CalculusStudioPage };
 
