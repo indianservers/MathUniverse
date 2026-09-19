@@ -124,6 +124,9 @@ export default function AppLayout() {
   const isTrigonometryStudioRoute =
     location.pathname === "/trigonometry" ||
     location.pathname.startsWith("/trigonometry/");
+  const isComplexNumbersStudioRoute =
+    location.pathname === "/complex-numbers" ||
+    location.pathname.startsWith("/complex-numbers/");
   const isAlgebraStudioRoute =
     location.pathname === "/algebra" ||
     location.pathname.startsWith("/algebra/");
@@ -259,7 +262,7 @@ export default function AppLayout() {
     );
   }
 
-  if (isCalculusLabRoute || isModellingStudioRoute || isGeometryStudioRoute || isTrigonometryStudioRoute || isAlgebraStudioRoute || isLinearAlgebraStudioRoute) {
+  if (isCalculusLabRoute || isModellingStudioRoute || isGeometryStudioRoute || isTrigonometryStudioRoute || isAlgebraStudioRoute || isLinearAlgebraStudioRoute || isComplexNumbersStudioRoute) {
     return (
       <main id="main-content" className="h-dvh overflow-auto bg-slate-50">
         <Outlet />
