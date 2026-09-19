@@ -235,12 +235,632 @@
   max-height: 220px;
 }
 
+.msk-complex-numbers,
+.msk-complex-numbers.is-teacher {
+  --ink: #0f1b33;
+  --muted: #64748b;
+  --line: #dbe7f3;
+  background:
+    radial-gradient(circle at 78% -8%, #efe7ff 0, transparent 32%),
+    radial-gradient(circle at 12% 0, #d9fbff 0, transparent 28%),
+    #f5f8fc;
+  color: #0f1b33;
+}
+
+.msk-complex-numbers.is-lab .msk-dash-banner,
+.msk-complex-numbers.is-lab .p1-toolbar,
+.msk-complex-numbers.is-lab .msk-hint,
+.msk-complex-numbers.is-lab .msk-tabs,
+.msk-complex-numbers.is-lab .msk-complete-icon {
+  display: none;
+}
+
+.msk-complex-numbers.is-lab .msk-title-block h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+}
+
+.msk-complex-numbers.is-lab .msk-title-block p {
+  margin: 4px 0 0;
+  color: #64748b;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.msk-complex-numbers.is-lab[data-cx-page="arithmetic"] .msk-search,
+.msk-complex-numbers.is-lab[data-cx-page="polar-forms"] .msk-search,
+.msk-complex-numbers.is-lab[data-cx-page="euler"] .msk-search,
+.msk-complex-numbers.is-lab[data-cx-page="loci"] .msk-search,
+.msk-complex-numbers.is-lab[data-cx-page="waves-circuits"] .msk-search {
+  display: none;
+}
+
+.msk-complex-numbers.is-lab .msk-search input {
+  display: none;
+}
+
+.msk-complex-numbers .cx-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 36px;
+  padding: 0 14px;
+  border: 1px solid #dbe7f3;
+  border-radius: 999px;
+  background: #fff;
+  color: #163056;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.msk-complex-numbers .cx-chip svg {
+  width: 15px;
+  height: 15px;
+  color: #f59e0b;
+}
+
+.msk-complex-numbers .cx-chip.is-saved {
+  border-color: #86efac;
+  background: #ecfdf5;
+  color: #047857;
+}
+
+.msk-complex-numbers .cx-chip.is-saved svg { color: #10b981; }
+
+.msk-complex-numbers .cx-chip.is-reset {
+  border: 0;
+  background: #7c3aed;
+  color: #fff;
+}
+
+.msk-complex-numbers .cx-lab-root {
+  position: relative;
+}
+
+.msk-complex-numbers .cx-pills {
+  display: flex;
+  gap: 6px;
+  width: fit-content;
+  margin: 0 auto 12px;
+  padding: 5px;
+  border: 1px solid #dbe7f3;
+  border-radius: 999px;
+  background: #fff;
+}
+
+.msk-complex-numbers .cx-pills button {
+  min-height: 34px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.msk-complex-numbers .cx-pills button.active {
+  color: #fff;
+  background: linear-gradient(100deg, #22c5ea, #6366f1);
+}
+
+.msk-complex-numbers .cx-lab {
+  display: grid;
+  grid-template-columns: minmax(250px, 0.78fr) minmax(0, 1.55fr) minmax(280px, 0.92fr);
+  gap: 12px;
+  align-items: start;
+}
+
+.msk-complex-numbers .cx-col,
+.msk-complex-numbers .cx-canvas,
+.msk-complex-numbers .cx-live {
+  padding: 14px;
+  border: 1px solid #dbe7f3;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 10px 24px #3a5b7f0a;
+}
+
+.msk-complex-numbers .cx-canvas h2,
+.msk-complex-numbers .cx-live h2,
+.msk-complex-numbers .cx-col > h2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 0 0 10px;
+  font-size: 15px;
+}
+
+.msk-complex-numbers .cx-live h3 {
+  margin: 14px 0 6px;
+  color: #475569;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.msk-complex-numbers .cx-card {
+  margin-bottom: 10px;
+  padding: 12px;
+  border: 1px solid #e2eaf3;
+  border-radius: 16px;
+  background: #f8fbff;
+}
+
+.msk-complex-numbers .cx-kicker,
+.msk-complex-numbers .cx-step-title {
+  margin-bottom: 8px;
+  color: #475569;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.msk-complex-numbers .cx-ops {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.msk-complex-numbers .cx-ops button,
+.msk-complex-numbers .cx-snaps button,
+.msk-complex-numbers .cx-canvas-tools button {
+  min-height: 32px;
+  padding: 0 10px;
+  border: 1px solid #dbe7f3;
+  border-radius: 999px;
+  background: #fff;
+  color: #334155;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.msk-complex-numbers .cx-ops button.active,
+.msk-complex-numbers .cx-snaps button.active,
+.msk-complex-numbers .cx-canvas-tools button.active {
+  border-color: #67e8f9;
+  background: #ecfeff;
+  color: #0e7490;
+}
+
+.msk-complex-numbers .cx-vec {
+  margin-top: 8px;
+  padding: 10px;
+  border-radius: 14px;
+  background: #fff;
+}
+
+.msk-complex-numbers .cx-vec[data-tone="z"] { box-shadow: inset 3px 0 0 #2aa7e0; }
+.msk-complex-numbers .cx-vec[data-tone="w"] { box-shadow: inset 3px 0 0 #8b5cf6; }
+
+.msk-complex-numbers .cx-dot-title::before {
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 8px;
+  border-radius: 99px;
+  background: #2aa7e0;
+}
+
+.msk-complex-numbers .cx-dot-title[data-tone="w"]::before { background: #8b5cf6; }
+
+.msk-complex-numbers .cx-step,
+.msk-complex-numbers .cx-slider,
+.msk-complex-numbers .cx-toggle {
+  display: grid;
+  gap: 6px;
+  margin: 8px 0;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.msk-complex-numbers .cx-step {
+  grid-template-columns: 22px 32px minmax(0, 1fr) 32px;
+  align-items: center;
+}
+
+.msk-complex-numbers .cx-step input,
+.msk-complex-numbers .cx-card select {
+  min-height: 36px;
+  width: 100%;
+  border: 1px solid #dbe7f3;
+  border-radius: 10px;
+  background: #fff;
+  color: #0f1b33;
+  text-align: center;
+  font-weight: 800;
+}
+
+.msk-complex-numbers .cx-step button {
+  min-height: 32px;
+  border: 1px solid #dbe7f3;
+  border-radius: 10px;
+  background: #fff;
+  font-weight: 900;
+}
+
+.msk-complex-numbers .cx-slider span,
+.msk-complex-numbers .cx-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.msk-complex-numbers .cx-slider input[type="range"] {
+  width: 100%;
+  accent-color: #0ea5e9;
+}
+
+.msk-complex-numbers .cx-toggle input {
+  width: 42px;
+  height: 22px;
+  accent-color: #22c55e;
+}
+
+.msk-complex-numbers .cx-form-pill,
+.msk-complex-numbers .cx-eq {
+  display: block;
+  margin: 8px 0 0;
+  font-family: "Iowan Old Style", Georgia, serif;
+  font-size: 14px;
+}
+
+.msk-complex-numbers .cx-eq.is-ans {
+  color: #0f766e;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.msk-complex-numbers .cx-meta,
+.msk-complex-numbers .cx-note {
+  margin: 6px 0 0;
+  color: #64748b;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.msk-complex-numbers .cx-ok { color: #047857; font-size: 12px; font-weight: 800; }
+.msk-complex-numbers .cx-warn { color: #c2410c; font-size: 12px; font-weight: 700; }
+
+.msk-complex-numbers .cx-badge {
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: #ecfdf5;
+  color: #047857;
+  font-size: 11px;
+}
+
+.msk-complex-numbers .cx-play {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.msk-complex-numbers .cx-play button {
+  min-height: 34px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 999px;
+  background: #0ea5e9;
+  color: #fff;
+  font-weight: 800;
+}
+
+.msk-complex-numbers .cx-play input { flex: 1; accent-color: #0ea5e9; }
+
+.msk-complex-numbers .cx-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+  color: #475569;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.msk-complex-numbers .cx-legend i {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 6px;
+  border-radius: 99px;
+}
+
+.msk-complex-numbers .cx-legend i.is-dash {
+  width: 16px;
+  height: 3px;
+  border-radius: 0;
+  background: repeating-linear-gradient(90deg, #f59e0b 0 6px, transparent 6px 10px);
+}
+
+.msk-complex-numbers .cx-plane {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid #e2eaf3;
+  border-radius: 18px;
+  background: #f7fbff;
+}
+
+.msk-complex-numbers .cx-mini-sum {
+  display: block;
+  width: 100%;
+  height: 90px;
+  margin-top: 8px;
+}
+
+.msk-complex-numbers .cx-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.msk-complex-numbers .cx-table th,
+.msk-complex-numbers .cx-table td {
+  padding: 6px 8px;
+  border-bottom: 1px solid #e2eaf3;
+  text-align: left;
+}
+
+.msk-complex-numbers .cx-steps {
+  margin: 6px 0 0;
+  padding-left: 18px;
+  color: #334155;
+  font-size: 12px;
+}
+
+.msk-complex-numbers .cx-select {
+  display: grid;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.msk-complex-numbers .msk-strip-cards > div:nth-child(1) svg { color: #147df2; }
+.msk-complex-numbers .msk-strip-cards > div:nth-child(2) svg { color: #a855f7; }
+.msk-complex-numbers .msk-strip-cards > div:nth-child(3) svg { color: #f97316; }
+.msk-complex-numbers .msk-strip-cards > div:nth-child(4) svg { color: #0ea5e9; }
+.msk-complex-numbers .msk-strip-cards > div:nth-child(5) svg { color: #ec4899; }
+
+.msk-complex-numbers .msk-sidebar nav a.active {
+  background: linear-gradient(110deg, #22d3ee, #6366f1);
+}
+
+.msk-complex-numbers .msk-tools .cx-pills.is-header {
+  margin: 0;
+  padding: 4px;
+}
+
+.msk-complex-numbers .cx-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.msk-complex-numbers .cx-pi-marks {
+  display: flex;
+  justify-content: space-between;
+  color: #94a3b8;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.msk-complex-numbers .cx-mini {
+  margin: 0;
+  padding: 10px;
+  border: 1px solid #e2eaf3;
+  border-radius: 16px;
+  background: #fff;
+}
+
+.msk-complex-numbers .cx-mini figcaption {
+  margin: 0 0 6px;
+  color: #334155;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.msk-complex-numbers .cx-euler-grid,
+.msk-complex-numbers .cx-loci-planes,
+.msk-complex-numbers .cx-frac-pair,
+.msk-complex-numbers .cx-frac-aux {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.msk-complex-numbers .is-euler .cx-lab {
+  grid-template-columns: minmax(240px, 0.72fr) minmax(0, 1.7fr) minmax(260px, 0.86fr);
+}
+
+.msk-complex-numbers .is-loci .cx-lab {
+  grid-template-columns: minmax(240px, 0.7fr) minmax(0, 1.6fr) minmax(260px, 0.88fr);
+}
+
+.msk-complex-numbers .is-loci .cx-loci-planes {
+  grid-template-columns: 1fr 1fr;
+}
+
+.msk-complex-numbers .is-loci .cx-map-grid {
+  grid-column: 1 / -1;
+  width: 100%;
+  height: auto;
+  background: #f8fbff;
+  border: 1px solid #e2eaf3;
+  border-radius: 14px;
+}
+
+.msk-complex-numbers .is-loci .cx-xform {
+  grid-column: 1 / -1;
+  padding: 14px;
+  border: 1px solid #dbe7f3;
+  border-radius: 18px;
+  background: #fff;
+}
+
+.msk-complex-numbers .cx-coeff {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.msk-complex-numbers .is-waves .cx-lab {
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr) minmax(250px, 0.9fr);
+  grid-template-areas:
+    "top top top"
+    "phasor waves live"
+    "rlc tri live"
+    "inst inst inst";
+}
+
+.msk-complex-numbers .cx-waves-top { grid-area: top; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; padding: 12px 14px; border: 1px solid #dbe7f3; border-radius: 18px; background: #fff; }
+.msk-complex-numbers .cx-waves-phasor { grid-area: phasor; padding: 12px; border: 1px solid #dbe7f3; border-radius: 18px; background: #fff; }
+.msk-complex-numbers .cx-waves-time { grid-area: waves; padding: 12px; border: 1px solid #dbe7f3; border-radius: 18px; background: #fff; }
+.msk-complex-numbers .is-waves .cx-live { grid-area: live; }
+.msk-complex-numbers .cx-waves-rlc { grid-area: rlc; padding: 12px; border: 1px solid #dbe7f3; border-radius: 18px; background: #fff; }
+.msk-complex-numbers .cx-waves-tri { grid-area: tri; padding: 12px; border: 1px solid #dbe7f3; border-radius: 18px; background: #fff; }
+.msk-complex-numbers .cx-waves-inst { grid-area: inst; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; padding: 12px 14px; border: 1px solid #dbe7f3; border-radius: 18px; background: #fff; }
+.msk-complex-numbers .cx-waves-inst h2 { grid-column: 1 / -1; margin: 0; font-size: 13px; }
+
+.msk-complex-numbers .is-fractal .cx-lab {
+  grid-template-columns: minmax(230px, 0.68fr) minmax(0, 1.7fr) minmax(250px, 0.82fr);
+}
+
+.msk-complex-numbers .cx-frac-bar {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  border: 1px solid #dbe7f3;
+  border-radius: 999px;
+  background: #fff;
+}
+
+.msk-complex-numbers .cx-frac-stage {
+  display: grid;
+  gap: 10px;
+}
+
+.msk-complex-numbers .cx-frac-pair figure,
+.msk-complex-numbers .cx-frac-aux figure {
+  margin: 0;
+  padding: 8px;
+  border-radius: 16px;
+  background: #07111f;
+  color: #e2e8f0;
+}
+
+.msk-complex-numbers .cx-frac-pair figcaption,
+.msk-complex-numbers .cx-frac-aux figcaption {
+  margin: 0 0 6px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.msk-complex-numbers .cx-frac-view {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #020617;
+}
+
+.msk-complex-numbers .cx-frac-view canvas,
+.msk-complex-numbers .cx-frac-view svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.msk-complex-numbers .cx-frac-view svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.msk-complex-numbers .cx-frac-view.is-interactive { cursor: crosshair; }
+
+.msk-complex-numbers .cx-plane.is-dark { background: #07111f; border-color: #1e293b; }
+
+.msk-complex-numbers .cx-frac-recurrence {
+  padding: 10px;
+  border-radius: 16px;
+  background: #07111f;
+  color: #e2e8f0;
+}
+
+.msk-complex-numbers .cx-frac-recurrence h3 {
+  margin: 0 0 6px;
+  font-size: 12px;
+}
+
+.msk-complex-numbers .cx-frac-aux {
+  grid-template-columns: 1fr 1fr 0.9fr;
+}
+
+.msk-complex-numbers .cx-orbit-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.msk-complex-numbers .cx-orbit-dots i {
+  width: 10px;
+  height: 10px;
+  border-radius: 99px;
+}
+
+.msk-complex-numbers .cx-presets {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+
+.msk-complex-numbers .cx-presets button,
+.msk-complex-numbers .cx-random {
+  min-height: 40px;
+  border: 1px solid #dbe7f3;
+  border-radius: 12px;
+  background: #0f172a;
+  color: #e2e8f0;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.msk-complex-numbers .cx-random { width: 100%; margin-top: 8px; background: #0ea5e9; color: #fff; border: 0; }
+
+.msk-complex-numbers .cx-frac-recurrence .cx-eq,
+.msk-complex-numbers .cx-frac-recurrence .cx-meta { color: #cbd5e1; }
+
 @media (max-width: 1180px) {
   .msk-complex-numbers .msk-lab,
   .msk-complex-numbers .msk-home.cx-home,
   .msk-complex-numbers .cx-hero,
-  .msk-complex-numbers .cx-map {
+  .msk-complex-numbers .cx-map,
+  .msk-complex-numbers .cx-lab,
+  .msk-complex-numbers .is-waves .cx-lab,
+  .msk-complex-numbers .cx-euler-grid,
+  .msk-complex-numbers .cx-frac-aux,
+  .msk-complex-numbers .cx-frac-pair,
+  .msk-complex-numbers .cx-loci-planes,
+  .msk-complex-numbers .cx-waves-top,
+  .msk-complex-numbers .cx-waves-inst,
+  .msk-complex-numbers .cx-coeff {
     grid-template-columns: 1fr;
+    grid-template-areas: none;
   }
 
   .msk-complex-numbers .msk-launch-complex-numbers {
@@ -254,3 +874,4 @@
     grid-template-columns: 1fr;
   }
 }
+

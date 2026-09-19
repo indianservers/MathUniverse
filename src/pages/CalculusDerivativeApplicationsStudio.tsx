@@ -11,6 +11,7 @@ import {
   Trophy,
 } from "lucide-react";
 import { useSearchParams } from "react-router-dom";
+import { ExpandingSphere, OpenBox, StudioMath3D } from "../studios/shared/studioMath3D";
 import "./CalculusDerivativeApplicationsStudio.css";
 
 type Props = { mode: string };
@@ -136,15 +137,13 @@ function MotionVisual({ time }: { time: number }) {
 }
 
 function RelatedRatesVisual({ radius, radiusRate }: { radius: number; radiusRate: number }) {
-  const displayRadius = 38 + radius * 12;
-  return <div className="da-visual-stack"><article className="da-panel da-scene"><header><h2>Linked rates in an expanding sphere</h2><span>dr/dt = {tidy(radiusRate)} cm/s</span></header><svg viewBox="0 0 820 360" role="img" aria-label="Expanding sphere with radius and volume rate"><defs><radialGradient id="sphereFill" cx="35%" cy="28%"><stop stopColor="#dff9ff" /><stop offset=".48" stopColor="#38c9ef" /><stop offset="1" stopColor="#4f46e5" /></radialGradient></defs><circle cx="365" cy="185" r={displayRadius} fill="url(#sphereFill)" opacity=".82" stroke="#174e9c" strokeWidth="3" /><ellipse cx="365" cy="185" rx={displayRadius} ry={displayRadius * .3} fill="none" stroke="#dff8ff" strokeWidth="2" opacity=".8" /><line x1="365" x2={365 + displayRadius} y1="185" y2="185" stroke="#ff8a1f" strokeWidth="4" /><circle cx="365" cy="185" r="5" fill="#0a2147" /><text x={375 + displayRadius / 2} y="174">r = {tidy(radius)} cm</text><path d={`M${365 + displayRadius + 12} 185 l35 0 l-12 -9 m12 9 l-12 9`} fill="none" stroke="#8b4df5" strokeWidth="4" /><text x="55" y="55" className="title">dV/dt = 4 pi r^2 dr/dt</text><text x="55" y="88" className="note">A small radial change affects the entire spherical surface.</text></svg></article><GraphCard title="Volume as radius changes" curves={[{ fn: (r) => 4 / 3 * Math.PI * r ** 3, color: "#09b9df" }]} xMin={0} xMax={8} marker={radius} /></div>;
+  return <div className="da-visual-stack"><article className="da-panel da-scene"><header><h2>Linked rates in an expanding sphere</h2><span>dr/dt = {tidy(radiusRate)} cm/s</span></header><StudioMath3D label="Expanding sphere"><ExpandingSphere radius={radius} /></StudioMath3D></article><GraphCard title="Volume as radius changes" curves={[{ fn: (r) => 4 / 3 * Math.PI * r ** 3, color: "#09b9df" }]} xMin={0} xMax={8} marker={radius} /></div>;
 }
 
 function CurveVisual({ x }: { x: number }) { return <div className="da-visual-stack"><GraphCard title="Function, tangent, and critical behavior" curves={[{ fn: curveFunction, color: "#09b9df" }, { fn: curveDerivative, color: "#8b4df5" }]} xMin={-3} xMax={3} marker={x} tangent /><article className="da-panel da-band"><div><span>Increasing</span><b>x &lt; -1 and x &gt; 1</b></div><div><span>Decreasing</span><b>-1 &lt; x &lt; 1</b></div><div><span>Inflection</span><b>x = 0</b></div></article></div>; }
 
 function OptimizationVisual({ width, length, cut, optimum }: { width: number; length: number; cut: number; optimum: number }) {
-  const boxW = Math.max(120, 400 - cut * 12), boxD = Math.max(65, 155 - cut * 5), boxH = 42 + cut * 10;
-  return <div className="da-visual-stack"><article className="da-panel da-box-scene"><header><h2>3D box model</h2><span>x = {tidy(cut)} in</span></header><svg viewBox="0 0 820 310" role="img" aria-label="Open top box model"><defs><linearGradient id="boxFront" x1="0" x2="1"><stop stopColor="#60c8f4" stopOpacity=".72" /><stop offset="1" stopColor="#178ac6" stopOpacity=".56" /></linearGradient></defs><polygon points={`190,${220-boxH} ${190+boxW},${220-boxH} ${190+boxW+boxD},${220-boxH-boxD*.48} ${190+boxD},${220-boxH-boxD*.48}`} fill="#bfe5fb" stroke="#113f78" strokeWidth="3" /><polygon points={`190,${220-boxH} ${190+boxW},${220-boxH} ${190+boxW},220 ${190},220`} fill="url(#boxFront)" stroke="#113f78" strokeWidth="3" /><polygon points={`${190+boxW},${220-boxH} ${190+boxW+boxD},${220-boxH-boxD*.48} ${190+boxW+boxD},${220-boxD*.48} ${190+boxW},220`} fill="#1ca8df" fillOpacity=".45" stroke="#113f78" strokeWidth="3" /><text x="80" y="55" className="title">V(x) = x(W - 2x)(L - 2x)</text><text x="210" y="260">L - 2x = {format(length - 2 * cut, 2)} in</text><text x="595" y="232">W - 2x = {format(width - 2 * cut, 2)} in</text><text x="115" y={210-boxH/2}>x = {format(cut, 2)}</text></svg></article><VolumeGraph width={width} length={length} cut={cut} optimum={optimum} /></div>;
+  return <div className="da-visual-stack"><article className="da-panel da-box-scene"><header><h2>3D box model</h2><span>x = {tidy(cut)} in</span></header><StudioMath3D label="Open top box model"><OpenBox width={Math.max(0.5, length - 2 * cut)} depth={Math.max(0.5, width - 2 * cut)} height={cut} /></StudioMath3D></article><VolumeGraph width={width} length={length} cut={cut} optimum={optimum} /></div>;
 }
 
 function MvtVisual({ a, b }: { a: number; b: number }) {

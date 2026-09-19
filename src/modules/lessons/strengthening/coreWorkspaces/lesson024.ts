@@ -1,3 +1,53 @@
 import { formula, seed } from "./coreWorkspaceLessonFactory";
 
-export const coreWorkspaceLesson024 = seed(24, "Animation Controls", "animation-controls", "Algebra and Dynamic Variables", "algebra", "text_table", "Animation controls change a parameter automatically over time.", [["Animation", "A changing model shown step by step."], ["Frame", "One moment in an animation."]], formula("Position update", "new value = old value + step", [["step", "change per frame"]]), "Animation controls show change over time. They matter in motion, waves, growth, and simulations.", "Animation repeatedly updates a parameter. Play starts the updates. Pause freezes the current state. A common mistake is watching motion without reading what variable is changing.", "Press play. Identify the changing variable. Pause at a frame. Compare the before and after values.", "Repeated small updates create visible motion or changing patterns.", [["Ball motion", "Position changes each frame."], ["Growing graph", "A parameter changes with time."], ["Wave motion", "Phase changes repeatedly."]], ["NO_VARIABLE_TRACK", "Watching the picture but not the changing value.", "Name the parameter that animation updates."], ["If a value starts at 2 and adds 3, what is next?", ["Start at 2.", "Add 3.", "The next value is 5."], "5"], { prompt: "If a value starts at 2 and adds 3, what is next?", expected: "5", hint: "Use old value plus step.", kind: "numeric", factoryId: "algebra.animation-controls" });
+export const coreWorkspaceLesson024 = seed(
+  24,
+  "Animation Controls",
+  "animation-controls",
+  "Algebra and Dynamic Variables",
+  "algebra",
+  "text_table",
+  "Animation controls move through a sequence of exact parameter values; each frame recalculates every object that depends on that parameter.",
+  [
+    ["Animation", "An ordered sequence of mathematical states shown over time."],
+    ["Frame", "One exact state of all values and objects in an animation."],
+    ["Parameter", "A value such as a that controls a family of related equations or graphs."],
+    ["Loop", "A playback rule that returns to the first frame after the final frame."],
+  ],
+  formula(
+    "Animated linear model",
+    "y = ax + 1",
+    [
+      ["a", "the animated slope parameter"],
+      ["x", "the chosen input"],
+      ["1", "the fixed y-intercept"],
+    ],
+    ["This lesson animates 0 <= a <= 2.", "At x = 2, the exact output is y(2) = 2a + 1."],
+  ),
+  "Animation turns a parameter slider into a time sequence. In this lesson, a moves from 0 to 2 while the existing 2D graph engine redraws y = ax + 1.",
+  "Every frame stores an exact value of a. Changing a changes the slope, but the constant term stays 1, so all lines pass through the invariant point (0, 1).",
+  "Play advances through the frame values. Pause freezes one state. Step back and step forward compare neighboring values, speed changes the time between frames, and loop decides what happens at the end.",
+  "For each frame, substitute its value of a into y = ax + 1. At x = 2, y(2) = 2a + 1. This is why the graph, live output, and frame table always agree.",
+  [
+    ["Motion model", "Animate a rate parameter and pause to inspect the position at an exact time."],
+    ["Growth comparison", "Animate a coefficient to compare how quickly related linear models increase."],
+    ["Dynamic geometry", "Animate one parameter while watching which measurements change and which remain invariant."],
+  ],
+  [
+    "NO_VARIABLE_TRACK",
+    "Watching the line move without identifying the changing value or the quantity that stays fixed.",
+    "Read a and y(2) at each frame, and notice that the y-intercept remains 1.",
+  ],
+  [
+    "At frame 3, a = 1.5. Find y(2) for y = ax + 1.",
+    ["Substitute a = 1.5 and x = 2.", "Calculate y(2) = 1.5(2) + 1.", "The exact output is 4."],
+    "4",
+  ],
+  {
+    prompt: "Pause when a = 1.5. What is y(2)?",
+    expected: "4",
+    hint: "Use y(2) = 2a + 1.",
+    kind: "numeric",
+    factoryId: "algebra.animation-controls",
+  },
+);

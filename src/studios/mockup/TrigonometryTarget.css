@@ -902,6 +902,99 @@
   margin: 8px 0 6px;
 }
 
+.msk-trigonometry .id-double-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  margin: 0;
+  color: #334155;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.msk-trigonometry .id-double-legend i {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 6px;
+  border-radius: 99px;
+  vertical-align: -1px;
+}
+
+.msk-trigonometry .id-double-formula {
+  margin: 0;
+  padding: 8px 10px;
+  border: 1px solid #ddd6fe;
+  border-radius: 10px;
+  background: #f5f3ff;
+  color: #1e293b;
+  font-size: 15px;
+}
+
+.msk-trigonometry .id-double-snaps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 0 0 8px;
+}
+
+.msk-trigonometry .id-double-snaps button {
+  min-width: 44px;
+  min-height: 30px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  color: #334155;
+  font-weight: 700;
+}
+
+.msk-trigonometry .id-double-snaps button.active {
+  border-color: #f59e0b;
+  background: #fffbeb;
+  color: #b45309;
+}
+
+.msk-trigonometry .id-double-play {
+  width: 100%;
+  margin: 4px 0 8px;
+}
+
+.msk-trigonometry .id-double-arrow {
+  color: #94a3b8;
+  font-weight: 800;
+}
+
+.msk-trigonometry .id-double-graph {
+  width: 100%;
+  height: 92px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+}
+
+.msk-trigonometry .id-double-mismatch {
+  margin: 6px 0 0;
+  color: #b91c1c;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.msk-trigonometry .id-double-check input {
+  width: 100%;
+  min-height: 34px;
+  margin: 6px 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 6px 10px;
+}
+
+.msk-trigonometry .id-target-numeric em {
+  display: block;
+  color: #64748b;
+  font-size: 11px;
+  font-style: normal;
+}
+
 @media (max-width: 1180px) {
   .msk-trigonometry :is(.id-target-lab, .inv-target-lab, .ob-target-lab, .wv-target-lab, .app-target-lab) {
     grid-template-columns: minmax(180px, 0.72fr) minmax(360px, 1.55fr) minmax(210px, 0.85fr);
@@ -920,4 +1013,103 @@
   .msk-trigonometry .ob-target-squares {
     grid-template-columns: 1fr;
   }
+}
+
+.msk-trigonometry .app-target-canvas {
+  position: relative;
+}
+
+.msk-trigonometry .app-target-canvas svg:focus-visible {
+  outline: 2px solid #38bdf8;
+  outline-offset: -3px;
+}
+
+@keyframes app-sight-dash {
+  to {
+    stroke-dashoffset: -36;
+  }
+}
+
+.msk-trigonometry .app-sight-line {
+  stroke-dasharray: 11 8;
+  animation: app-sight-dash 1.05s linear infinite;
+}
+
+.msk-trigonometry .app-scene-hud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0 2px;
+}
+
+.msk-trigonometry .app-scene-hud span {
+  border: 1px solid #dbeafe;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.96);
+  padding: 4px 9px;
+  color: #0f172a;
+  font-size: 11px;
+  font-weight: 800;
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
+}
+
+.msk-trigonometry .app-compass-chips,
+.msk-trigonometry .app-angle-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 2px 0 8px;
+}
+
+.msk-trigonometry .app-compass-chips button,
+.msk-trigonometry .app-angle-chips button {
+  min-width: 38px;
+  min-height: 32px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  color: #1d2d50;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.msk-trigonometry .app-compass-chips button.active,
+.msk-trigonometry .app-angle-chips button.active {
+  border-color: transparent;
+  background: linear-gradient(100deg, var(--cyan), var(--blue));
+  color: #fff;
+}
+
+.msk-trigonometry .app-setup-actions {
+  margin-top: 8px;
+}
+
+.msk-trigonometry .app-live-formula {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: baseline;
+  margin: 0 0 8px;
+  padding: 8px 10px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  background: #f8fafc;
+  color: #0f172a;
+  font-size: 14px;
+}
+
+.msk-trigonometry .app-target-rail .trig-target-result {
+  border: 1px solid #a7f3d0;
+}
+
+.msk-trigonometry .app-target-canvas[data-app-mode="Periodic Models"] {
+  background: #0b4f6c;
+}
+
+.msk-trigonometry .app-target-canvas .trig-target-scene-hint {
+  color: #334155;
+}
+
+.msk-trigonometry .app-target-canvas[data-app-mode="Periodic Models"] .trig-target-scene-hint {
+  color: #e2e8f0;
 }

@@ -367,8 +367,10 @@ describe("GeometryWorkspacePanel", () => {
     expect(html).toContain('data-geometry-studio-mode="Construct"');
     expect(html).not.toContain("Pinned measurements");
     expect(html).toContain('data-geometry-theme="dark"');
-    expect(html).toContain("Dark theme");
+    expect(html).toContain('data-chrome-theme="default"');
+    expect(html).toContain("Default theme");
+    expect(html).toContain("Glow theme");
     expect(html).toContain("Light theme");
-    expect(html).toContain('aria-label="Color theme"');
+    expect(html).toContain('aria-label="Workspace color theme"');
   });
 });

@@ -5,6 +5,9 @@ export type ComplexSession = {
   lastMode: string | null;
   lastLabel: string;
   completed: string[];
+  teacherMode: boolean;
+  theme: "light" | "dark";
+  xp: number;
 };
 
 const KEY = "math-universe-complex-numbers-studio";
@@ -15,6 +18,9 @@ const fallback: ComplexSession = {
   lastMode: null,
   lastLabel: "Argand Plane",
   completed: [],
+  teacherMode: false,
+  theme: "light",
+  xp: 0,
 };
 
 export const COMPLEX_SEARCH_ALIASES: Record<string, { id: string; mode?: string }> = {
@@ -23,11 +29,15 @@ export const COMPLEX_SEARCH_ALIASES: Record<string, { id: string; mode?: string 
   argument: { id: "argand-plane", mode: "Argument" },
   conjugate: { id: "argand-plane", mode: "Conjugate" },
   argand: { id: "argand-plane" },
-  cis: { id: "polar-forms", mode: "Polar" },
-  polar: { id: "polar-forms" },
   "e^{iθ}": { id: "euler" },
   euler: { id: "euler" },
   "e^{ipi}": { id: "euler" },
+  "z^2": { id: "rotation" },
+  z2: { id: "rotation" },
+  omega: { id: "roots", mode: "Roots of Unity" },
+  ω: { id: "roots", mode: "Roots of Unity" },
+  cis: { id: "polar-forms", mode: "Polar" },
+  polar: { id: "polar-forms" },
   roots: { id: "roots" },
   "nth roots": { id: "roots", mode: "nth Roots" },
   julia: { id: "fractals", mode: "Julia Set" },
@@ -46,6 +56,9 @@ export function readComplexSession(): ComplexSession {
       ...fallback,
       ...parsed,
       completed: Array.isArray(parsed.completed) ? parsed.completed.filter((item) => typeof item === "string") : [],
+      teacherMode: Boolean(parsed.teacherMode),
+      theme: parsed.theme === "dark" ? "dark" : "light",
+      xp: typeof parsed.xp === "number" ? parsed.xp : 0,
     };
   } catch {
     return { ...fallback, completed: [] };

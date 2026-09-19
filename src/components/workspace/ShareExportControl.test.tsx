@@ -26,6 +26,27 @@ describe("ShareExportControl", () => {
       expect(markup).toContain('aria-label="Share or export"');
       expect(markup).toContain('title="Share or export"');
       expect(markup).toContain("portable-share-trigger");
+      const embeddable = workspaceType !== "cas";
+      expect(markup).toContain(`data-can-embed="${embeddable}"`);
+      expect(markup).not.toContain("Share &amp; Export");
     },
   );
+
+  it("keeps CAS Share without an embed action in the closed trigger", () => {
+    const adapter: PortableWorkspaceAdapter = {
+      workspaceType: "cas",
+      engine: "test",
+      engineVersion: "1",
+      title: () => "Computer Algebra Studio",
+      serializeScene: () => ({ casNotebookState: { cells: [], assumptions: "", mode: "exact" } }),
+      deserializeScene: () => undefined,
+      getImageTarget: () => null,
+      getSceneSummary: () => ({ objectCount: 2, expressionCount: 2, description: "2 CAS calculations" }),
+    };
+    const markup = renderToStaticMarkup(<ShareExportControl adapter={adapter} />);
+    expect(markup).toContain("Share");
+    expect(markup).toContain('data-can-embed="false"');
+    expect(markup).not.toContain("Embed on a website");
+    expect(markup).not.toContain("twodgraph.js");
+  });
 });

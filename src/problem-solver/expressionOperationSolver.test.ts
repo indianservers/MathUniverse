@@ -47,6 +47,13 @@ describe("expression operation solver", () => {
     ["abs(-5)", "5"],
     ["sin(30)", "0.5"],
     ["cos(60)", "0.5"],
+    ["sum(15+98)", "113"],
+    ["sum(15, 98)", "113"],
+    ["add 15 and 98", "113"],
+    ["15 plus 98", "113"],
+    ["product of 3 and 4", "12"],
+    ["subtract 4 from 10", "6"],
+    ["divide 10 by 2", "5"],
   ])("evaluates %s", (input, expected) => {
     expect(solve(input).result).toBe(expected);
   });

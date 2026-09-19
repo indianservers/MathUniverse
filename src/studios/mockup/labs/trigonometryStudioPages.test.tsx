@@ -31,6 +31,51 @@ describe("trigonometry studio target pages", () => {
     }
   });
 
+  it("renders Applications Heights helpers and mode-specific overlays", () => {
+    const heights = htmlFor("/trigonometry/applications");
+    expect(heights).toContain('data-app-mode="Heights &amp; Distances"');
+    expect(heights).toContain('data-app-units="m"');
+    expect(heights).toContain('data-app-instrument="Theodolite"');
+    expect(heights).toContain('data-app-sight="elevation"');
+    expect(heights).toContain("SOH CAH TOA");
+    expect(heights).toContain("Calculated height");
+    expect(heights).toContain("Tower");
+    expect(heights).toContain("Cliff");
+    expect(heights).toContain("Tree");
+    expect(heights).toContain("Lighthouse");
+    expect(heights).toContain("Copy reading");
+    expect(heights).toContain("15°");
+    expect(heights).toContain("Imperial (ft)");
+    expect(heights).toContain("Clinometer");
+    expect(heights).toContain("adjacent d");
+    const bearings = htmlFor("/trigonometry/applications?mode=Bearings");
+    expect(bearings).toContain("from north");
+    expect(bearings).toContain("Reverse B → A");
+    expect(bearings).toContain(">NE<");
+    const survey = htmlFor("/trigonometry/applications?mode=Surveying");
+    expect(survey).toContain("Two-station survey");
+    expect(survey).toContain("baseline");
+    const periodic = htmlFor("/trigonometry/applications?mode=Periodic+Models");
+    expect(periodic).toContain("midline 2.4 m");
+    expect(periodic).toContain("predicted tide");
+  });
+
+  it("teaches double-angle identities with stacked angles, forms, and the 2sinθ trap", () => {
+    const html = htmlFor("/trigonometry/identities?mode=Double+Angle");
+    expect(html).toContain('data-id-mode="Double Angle"');
+    expect(html).toContain('data-double-form="sin"');
+    expect(html).toContain("Purple ray is 2θ");
+    expect(html).toContain("Two wedges stack as θ + θ");
+    expect(html).toContain("2θ is θ stacked on θ, not “twice the sine”");
+    expect(html).toContain("area 2 sinθ cosθ");
+    expect(html).toContain("Common trap");
+    expect(html).toContain("Why the 2 appears");
+    expect(html).toContain("Check this θ");
+    expect(html).toContain("Where tan 2θ breaks");
+    expect(html).toContain(">cos 2θ<");
+    expect(html).toContain(">tan 2θ<");
+  });
+
   it("keeps unit circle and right triangle baselines untouched", () => {
     const unit = htmlFor("/trigonometry/unit-circle");
     expect(unit).toContain("Show reference triangle");

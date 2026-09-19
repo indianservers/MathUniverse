@@ -24,6 +24,7 @@ import {
   Save,
   Search,
   Settings,
+  Star,
   Sun,
   Trophy,
   Upload,
@@ -37,7 +38,10 @@ import CalculusDerivativesStudio from "./CalculusDerivativesStudio";
 import CalculusLimitsStudio from "./CalculusLimitsStudio";
 import CalculusMultivariableStudio from "./CalculusMultivariableStudio";
 import CalculusConceptStudio, { type ConceptPage } from "./CalculusConceptStudio";
+import CalculusDifferentialEquationsStudio from "./CalculusDifferentialEquationsStudio";
 import CalculusEnhancementWorkbench from "../studios/calculus/CalculusEnhancementWorkbench";
+import CalculusEnhancementIdeas from "./CalculusEnhancementIdeas";
+import { StudioMath3D, WasherSolid } from "../studios/shared/studioMath3D";
 import StudioBreadcrumb, { mathStudioCrumbs } from "../components/ui/StudioBreadcrumb";
 import StudioHomeButtons from "../components/ui/StudioHomeButtons";
 import { StudioCanvasToolbar } from "../components/ui/StudioCanvasToolbar";
@@ -61,7 +65,6 @@ import {
   type CalculusStudioPage,
   type StudioSettings,
 } from "./calculusStudioSession";
-import "./CalculusStudio.css";
 
 export type { CalculusStudioPage };
 
@@ -73,20 +76,20 @@ type LabMode = {
 const navItems = [
   { page: "home", label: "Studio Home" },
   { page: "limits", label: "Limits" },
-  { page: "derivatives", label: "Derivatives" },
+  { page: "derivatives", label: "d⁄dx Derivatives" },
   { page: "derivative-applications", label: "Derivative Applications" },
-  { page: "integration", label: "Integration" },
+  { page: "integration", label: "∫ Integration" },
   { page: "integration-techniques", label: "Integration Techniques" },
   { page: "integral-applications", label: "Integral Applications" },
   { page: "differential-equations", label: "Differential Equations" },
-  { page: "series-parametric-polar", label: "Series / Parametric / Polar" },
+  { page: "series-parametric-polar", label: "Σ Series / Parametric / Polar" },
   { page: "multivariable-vector", label: "Multivariable / Vector" },
 ] satisfies Array<{ page: CalculusStudioPage; label: string }>;
 
 const darkNavPages: CalculusStudioPage[] = ["integration", "integration-techniques", "multivariable-vector"];
 
 const pageMeta: Record<CalculusStudioPage, { title: string; subtitle: string; modes: LabMode[] }> = {
-  home: { title: "Calculus Studio", subtitle: "Explore change, motion and accumulation.", modes: [] },
+  home: { title: "Welcome to Calculus Studio", subtitle: "Explore, visualize, and master calculus through interactive experiments.", modes: [] },
   limits: { title: "Limits & Continuity Studio", subtitle: "Explore limits, one-sided behavior, and continuity of functions.", modes: modeList("limits", "Limits", "continuity", "Continuity", "discontinuities", "Discontinuities", "asymptotes", "Asymptotes", "lhopital", "L'Hôpital") },
   derivatives: { title: "Derivatives Studio", subtitle: "Connect secants, tangents, derivative rules, and local approximation.", modes: modeList("tangent", "Tangent", "rules", "Rules", "chain", "Chain Rule", "implicit", "Implicit", "higher", "Higher Order", "linearization", "Linearization") },
   "derivative-applications": { title: "Derivative Applications Studio", subtitle: "Use derivatives to solve real-world problems and make best decisions.", modes: modeList("motion", "Motion", "related", "Related Rates", "curve", "Curve Analysis", "optimization", "Optimization", "mvt", "Mean Value") },
@@ -155,6 +158,7 @@ export default function CalculusStudio({ page = "home" }: { page?: CalculusStudi
           onDialog={setDialog}
         />
         {activePage === "home" ? <StudioHome /> : <StudioLab page={activePage} reduced={prefersReducedMotion(settings)} />}
+        <CalculusEnhancementIdeas page={activePage} />
       </section>
       {dialog ? (
         <StudioDialog title={dialog === "help" ? "Help" : dialog === "shortcuts" ? "Shortcuts" : "Studio settings"} onClose={() => setDialog(null)}>
@@ -175,13 +179,10 @@ function StudioSidebar({ page, collapsed, open, onCollapse, onClose }: { page: C
         <span>Calculus<br />Studio</span>
       </Link>
       <button className="cs-drawer-close" type="button" onClick={onClose} aria-label="Close menu"><X /></button>
-      <nav>
-        {page !== "home" ? <p className="cs-nav-kicker">Main</p> : null}
-        {page !== "home" ? (
-          <Link className="cs-nav-link" to="/" title="Leave Calculus Studio and return to the main Math Universe app" onClick={onClose}>
-            <CalculusNavIcon page="main" /><span>Main</span>
-          </Link>
-        ) : null}
+      <nav className="cs-sidebar-nav">
+        <Link className="cs-nav-link cs-nav-main-pill" to="/" title="Leave Calculus Studio and return to the main Math Universe app" onClick={onClose}>
+          <CalculusNavIcon page="main" /><span>Main</span>
+        </Link>
         {navItems.map(({ page: itemPage, label }) => (
           <Link
             className={`cs-nav-link ${page === itemPage ? "active" : ""}`}
@@ -195,13 +196,13 @@ function StudioSidebar({ page, collapsed, open, onCollapse, onClose }: { page: C
           </Link>
         ))}
       </nav>
-      {page === "home" ? (
+      {page === "home" ? null : (
         <div className="cs-pro">
           <b>Unlock Pro</b>
           <p>Save your work, access advanced tools and more.</p>
           <Link to="/calculus/advanced">Upgrade</Link>
         </div>
-      ) : null}
+      )}
       <button className="cs-collapse" type="button" onClick={onCollapse} aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"} title={collapsed ? "Expand" : "Collapse"}>
         <ArrowLeft />
       </button>
@@ -209,7 +210,7 @@ function StudioSidebar({ page, collapsed, open, onCollapse, onClose }: { page: C
   );
 }
 
-function StudioHeader({ page, mode, settings, onSettings, onMenu, onDialog }: {
+function StudioHeader({ page, settings, onSettings, onMenu, onDialog }: {
   page: CalculusStudioPage;
   mode: string;
   settings: StudioSettings;
@@ -218,36 +219,18 @@ function StudioHeader({ page, mode, settings, onSettings, onMenu, onDialog }: {
   onDialog: (value: "help" | "shortcuts" | "settings") => void;
 }) {
   const meta = pageMeta[page];
-  const [query, setQuery] = useState("");
-  const navigate = useNavigate();
-  const searchRef = useRef<HTMLInputElement>(null);
-  const results = useMemo(() => searchStudio(query), [query]);
-  const submit = () => {
-    const target = results[0];
-    if (target) navigate(target.route);
-  };
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
-      const target = event.target as HTMLElement | null;
-      const typing = target && (target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.isContentEditable);
-      if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k") {
-        event.preventDefault();
-        searchRef.current?.focus();
-      }
       if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "l") {
         event.preventDefault();
         void navigator.clipboard.writeText(window.location.href);
       }
-      if (!typing && page === "home" && /^[1-6]$/.test(event.key)) {
-        const cards = ["limits", "derivatives", "integration", "differential-equations", "series-parametric-polar", "multivariable-vector"] as const;
-        navigate(studioRoutes[cards[Number(event.key) - 1]]);
-      }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [navigate, page]);
+  }, []);
   return (
-    <header className="cs-header">
+    <header className={`cs-header${page === "home" ? " cs-header-home" : ""}`}>
       <button className="cs-menu" type="button" onClick={onMenu} aria-label="Open Calculus Studio menu"><Menu /></button>
       <div className="cs-title">
         {page === "home" ? null : <StudioHomeButtons studioTo="/calculus" />}
@@ -260,25 +243,17 @@ function StudioHeader({ page, mode, settings, onSettings, onMenu, onDialog }: {
         <h1>{meta.title}</h1>
         <p>{meta.subtitle}</p>
       </div>
-      {page === "home" ? (
-        <div className="cs-search-wrap">
-          <label className="cs-search">
-            <Search />
-            <input ref={searchRef} value={query} onChange={(event) => setQuery(event.target.value)} onKeyDown={(event) => event.key === "Enter" && submit()} placeholder="Search formulas, topics, or experiments..." aria-label="Search Calculus Studio" />
-            <kbd>Ctrl+K</kbd>
-          </label>
-          {query.trim() && (
-            <div className="cs-search-results" role="listbox">
-              {results.map((item) => <button key={item.route} type="button" onClick={() => navigate(item.route)}>{item.label}{item.formula ? <small>{item.formula}</small> : null}</button>)}
-              {!results.length && <span>No calculus studio result</span>}
-            </div>
-          )}
-        </div>
-      ) : null}
       <div className="cs-header-actions">
         {page !== "home" ? <StudioCanvasToolbar /> : null}
-        <button type="button" onClick={() => onSettings({ ...settings, theme: settings.theme === "light" ? "dark" : "light" })} title="Theme" aria-label="Toggle theme">{settings.theme === "light" ? <Sun /> : <Moon />}</button>
-        {page === "home" || page === "limits" ? <button type="button" onClick={() => onDialog("shortcuts")} title="Shortcuts" aria-label="Shortcuts"><Keyboard /> Shortcuts</button> : null}
+        {page === "home" ? (
+          <>
+            <span className="cs-xp-chip" title="Daily streak"><Flame /> {loadChallenge().streak}</span>
+            <span className="cs-xp-chip" title="Experience points"><Star /> {progressSummary().completed * 10} XP</span>
+          </>
+        ) : (
+          <button type="button" onClick={() => onSettings({ ...settings, theme: settings.theme === "light" ? "dark" : "light" })} title="Theme" aria-label="Toggle theme">{settings.theme === "light" ? <Sun /> : <Moon />}</button>
+        )}
+        {page === "limits" ? <button type="button" onClick={() => onDialog("shortcuts")} title="Shortcuts" aria-label="Shortcuts"><Keyboard /> Shortcuts</button> : null}
         <button type="button" onClick={() => onDialog("help")} title="Help" aria-label="Help"><HelpCircle /></button>
         {page !== "home" ? (
           <button type="button" onClick={() => window.dispatchEvent(new Event("calculus-lab-reset"))} title="Reset all" aria-label="Reset all"><RotateCcw /> Reset</button>
@@ -289,108 +264,138 @@ function StudioHeader({ page, mode, settings, onSettings, onMenu, onDialog }: {
   );
 }
 
+const HOME_TOPIC_CARDS = [
+  { page: "limits", title: "Limits", note: "Plot, explore, and understand behavior near a point." },
+  { page: "derivatives", title: "Derivatives", note: "Visualize slopes, tangents, and instantaneous change." },
+  { page: "derivative-applications", title: "Applications", note: "Use derivatives for motion, related rates, and optimization." },
+  { page: "integration", title: "Integrals", note: "Accumulate area and connect to the Fundamental Theorem." },
+  { page: "integration-techniques", title: "Techniques", note: "Transform integrals with substitution, parts, and more." },
+  { page: "integral-applications", title: "Volumes", note: "Apply integrals to area, volume, work, and arc length." },
+  { page: "differential-equations", title: "Diff. Equations", note: "Read slope fields and compare Euler with RK4." },
+  { page: "series-parametric-polar", title: "Series & Polar", note: "Build Taylor polynomials, parametric, and polar graphs." },
+  { page: "multivariable-vector", title: "Multivariable", note: "Explore surfaces, gradients, and vector fields." },
+] as const satisfies ReadonlyArray<{ page: CalculusStudioPage; title: string; note: string }>;
+
+function lastUsedLabel(visitedAt?: number) {
+  if (!visitedAt) return "2 min ago";
+  const minutes = Math.max(1, Math.round((Date.now() - visitedAt) / 60000));
+  if (minutes < 60) return `${minutes} min ago`;
+  const hours = Math.round(minutes / 60);
+  if (hours < 24) return `${hours} hr ago`;
+  return `${Math.max(1, Math.round(hours / 24))} days ago`;
+}
+
 function StudioHome() {
   const navigate = useNavigate();
   const last = loadLastExperiment();
   const progress = progressSummary();
   const [challenge] = useState(loadChallenge);
-  const cards = [
-    { page: "limits", title: "Limits", note: "Explore behavior near a point.", tag: "ε-δ & One-Sided" },
-    { page: "derivatives", title: "Derivatives", note: "Visualize slopes and tangents.", tag: "Instantaneous Change" },
-    { page: "integration", title: "Integrals", note: "Accumulate area under curves.", tag: "Area & Accumulation" },
-    { page: "differential-equations", title: "Differential Equations", note: "Slope fields & solution curves.", tag: "dy/dx = f(x, y)" },
-    { page: "series-parametric-polar", title: "Approximations", note: "Taylor polynomials & local models.", tag: "Series & Approximations" },
-    { page: "multivariable-vector", title: "Multivariable", note: "Surfaces, gradients & vector fields.", tag: "∇f & Vector Fields" },
-  ] satisfies Array<{ page: CalculusStudioPage; title: string; note: string; tag: string }>;
+  const labsExplored = new Set(progress.done.map((id) => id.split(":")[0])).size;
+  useEffect(() => {
+    const onKey = (event: KeyboardEvent) => {
+      const target = event.target as HTMLElement | null;
+      const typing = target && (target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.isContentEditable);
+      if (typing) return;
+      if (!/^[1-9]$/.test(event.key)) return;
+      const card = HOME_TOPIC_CARDS[Number(event.key) - 1];
+      if (card) navigate(studioRoutes[card.page]);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [navigate]);
   return (
-    <div className="cs-home">
-      <section className="cs-card cs-journey" id="journey" aria-labelledby="journey-title">
-        <h2 id="journey-title">The Calculus Journey</h2>
-        <div className="cs-map">
-          <JourneyNode title="Limits" page="limits" />
-          <span className="cs-arrow">Instantaneous<br />change <b>→</b></span>
-          <JourneyNode title="Derivatives" page="derivatives" />
-          <span className="cs-arrow">Accumulation<br />of change <b>→</b></span>
-          <JourneyNode title="Integrals" page="integration" />
-          <span className="cs-fork" aria-hidden="true" />
-          <JourneyNode title="Differential Equations" page="differential-equations" compact />
-          <JourneyNode title="Advanced Calculus" page="advanced" compact />
-        </div>
-      </section>
+    <div className="cs-home cs-home-v2">
+      <div className="cs-home-main">
+        <HomeSearch />
+        <section className="cs-explore" id="journey" aria-labelledby="explore-title">
+          <h2 id="explore-title">Explore by topic</h2>
+          <div className="cs-topic-grid">
+            {HOME_TOPIC_CARDS.map((card, index) => (
+              <button key={card.page} type="button" className={`cs-topic-card tone-${index + 1}`} onClick={() => navigate(studioRoutes[card.page])}>
+                <span className="cs-topic-n">{index + 1}</span>
+                <strong>{card.title}</strong>
+                <small>{card.note}</small>
+                <CalculusLaunchArt kind={card.page} />
+                <i className="cs-topic-go" aria-hidden="true"><ChevronRight /></i>
+              </button>
+            ))}
+          </div>
+        </section>
+        <section className="cs-loop" aria-label="Learning loop">
+          <InfoPill icon={<Eye />} title="Observe" text="Visualize concepts with interactive diagrams." onClick={() => document.getElementById("journey")?.scrollIntoView({ behavior: "smooth" })} />
+          <InfoPill icon={<Lightbulb />} title="Understand" text="Build intuition with clear explanations." onClick={() => navigate("/calculus/limits")} />
+          <InfoPill icon={<CircleHelp />} title="Why" text="Discover the ideas and connections behind." onClick={() => navigate("/calculus/integration?mode=ftc")} />
+          <InfoPill icon={<FlaskConical />} title="Try" text="Experiment, manipulate, and see results live." onClick={() => navigate(last?.route ?? "/calculus/derivatives")} />
+          <InfoPill icon={<Trophy />} title="Challenge" text="Solve problems and test your mastery." onClick={() => document.getElementById("daily-challenge")?.scrollIntoView({ behavior: "smooth" })} />
+        </section>
+      </div>
       <aside className="cs-home-side">
         <section className="cs-card cs-continue">
-          <h2><Play /> Continue experiment</h2>
-          <p><strong>{last?.title ?? "Differential Equation Slope Fields"}</strong><span>{last?.note ?? "dy/dx = x − y"}</span></p>
+          <h2><FlaskConical /> Continue experiment</h2>
           <CalculusLaunchArt kind={last?.kind ?? "slope"} />
-          <button className="cs-primary" type="button" onClick={() => navigate(last?.route ?? "/calculus/differential-equations")}>Resume</button>
+          <p><strong>{last?.title ?? "Plot & Explore"}</strong><span>{last?.note ?? "dy/dx = x − y"}</span></p>
+          <small className="cs-last-used">Last used {lastUsedLabel(last?.visitedAt)}</small>
+          <button className="cs-primary" type="button" onClick={() => navigate(last?.route ?? "/calculus/differential-equations")}>Resume <ChevronRight /></button>
         </section>
         <section className="cs-card cs-progress-card">
-          <h2>Learning journey</h2>
-          <div className="cs-progress-row">
-            <span className="cs-ring" aria-label={`${progress.percent} percent complete`}><b>{progress.percent}%</b></span>
-            <div>
-              <small>Progress</small>
-              <strong>{progress.rank}</strong>
-              <em>{progress.completed} / {progress.total} topics completed</em>
-              <i className="cs-progress-bar"><i style={{ width: `${progress.percent}%` }} /></i>
-            </div>
-          </div>
-          <ol>
-            {[{ id: "limits", label: "Limits" }, { id: "derivatives", label: "Derivatives" }, { id: "integration", label: "Integrals" }, { id: "de:slope", label: "Differential Equations" }, { id: "advanced:workbench", label: "Advanced Calculus" }].map((item, index, list) => {
-              const done = progress.done.includes(item.id) || progress.done.some((value) => value.startsWith(`${item.id.split(":")[0]}`));
-              const current = !done && list.slice(0, index).every((prior) => progress.done.includes(prior.id) || progress.done.some((value) => value.startsWith(prior.id.split(":")[0])));
-              return <li key={item.id} className={current ? "now" : undefined}>{done ? <CheckCircle2 /> : null}{item.label}</li>;
-            })}
-          </ol>
-          <Link to="/calculus#journey">View journey →</Link>
+          <h2>Your learning journey</h2>
+          <ul className="cs-journey-stats">
+            <li><CheckCircle2 /> Topics explored <b>{Math.min(labsExplored, 9)} / 9</b></li>
+            <li><FlaskConical /> Experiments run <b>{progress.completed}</b></li>
+            <li><Trophy /> Challenges solved <b>{challenge.solved ? 1 : 0} / 18</b></li>
+            <li><Flame /> Streak <b>{challenge.streak} days</b></li>
+            <li><Star /> XP earned <b>{progress.completed * 10} XP</b></li>
+          </ul>
+          <Link to="/calculus#journey">View progress</Link>
         </section>
-        <section className="cs-card cs-challenge">
-          <h2>Daily visual challenge</h2>
-          <p>{dailyChallenge.prompt}</p>
+        <section className="cs-card cs-challenge" id="daily-challenge">
+          <h2>Challenge of the day <em>New</em></h2>
+          <p>{dailyChallenge.prompt} Factor, cancel, and read the remaining line.</p>
           <div className="cs-limit-formula" aria-label="limit as x approaches 2 of (x squared minus 4) over (x minus 2)">
             lim<sub>x→2</sub> (x² − 4) / (x − 2)
           </div>
           {challenge.solved ? <p className="cs-feedback">Correct: the limit equals 4.</p> : null}
-          <div className="cs-challenge-actions">
-            <button type="button" onClick={() => window.alert(dailyChallenge.hint)}>View hint</button>
-            <button className="cs-primary" type="button" onClick={() => navigate("/calculus/limits")}>Try it now</button>
-          </div>
-          <p className="cs-streak"><Flame /> Streak: {challenge.streak} days</p>
+          <p className="cs-xp-row"><span>+ 50 XP</span> <span>+ 1</span></p>
+          <button className="cs-primary" type="button" onClick={() => navigate("/calculus/limits")}>Take challenge <ChevronRight /></button>
         </section>
       </aside>
-      <section className="cs-card cs-launch">
-        <h2>Launch an experiment</h2>
-        <p>Interactive visual labs to build intuition and master calculus. Press 1–6 to jump.</p>
-        <div className="cs-launch-grid">
-          {cards.map((card, index) => (
-            <button key={card.page} type="button" className="cs-launch-card" onClick={() => navigate(studioRoutes[card.page])} aria-describedby={`launch-tag-${card.page}`}>
-              <span>{index + 1}</span>
-              <strong>{card.title}</strong>
-              <small>{card.note}</small>
-              <CalculusLaunchArt kind={card.page} />
-              <b id={`launch-tag-${card.page}`}>{card.tag}</b>
-            </button>
-          ))}
-        </div>
-      </section>
-      <section className="cs-card cs-why">
-        <h2>Why visualize?</h2>
-        <div>
-        <InfoPill icon={<Eye />} title="See the math" text="Build intuition through dynamic visual representations." />
-        <InfoPill icon={<FlaskConical />} title="Explore freely" text="Adjust parameters, inspect patterns, and test ideas." />
-        <InfoPill icon={<Trophy />} title="Master concepts" text="Connect visuals with theory and solve with confidence." />
-        </div>
-      </section>
     </div>
   );
 }
 
-function JourneyNode({ title, page, compact }: { title: string; page: CalculusStudioPage; compact?: boolean }) {
+function HomeSearch() {
+  const [query, setQuery] = useState("");
+  const navigate = useNavigate();
+  const searchRef = useRef<HTMLInputElement>(null);
+  const results = useMemo(() => searchStudio(query), [query]);
+  const submit = () => {
+    const target = results[0];
+    if (target) navigate(target.route);
+  };
+  useEffect(() => {
+    const onKey = (event: KeyboardEvent) => {
+      if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k") {
+        event.preventDefault();
+        searchRef.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
   return (
-    <Link className={`cs-journey-node${compact ? " is-compact" : ""}`} to={studioRoutes[page]}>
-      <strong>{title}</strong>
-      <CalculusLaunchArt kind={page} />
-    </Link>
+    <div className="cs-search-wrap cs-home-search">
+      <label className="cs-search">
+        <Search />
+        <input ref={searchRef} value={query} onChange={(event) => setQuery(event.target.value)} onKeyDown={(event) => event.key === "Enter" && submit()} placeholder="Search topics, e.g. limits, FTC, Taylor series..." aria-label="Search Calculus Studio" />
+        <kbd>Ctrl + K</kbd>
+      </label>
+      {query.trim() ? (
+        <div className="cs-search-results" role="listbox">
+          {results.map((item) => <button key={item.route} type="button" onClick={() => navigate(item.route)}>{item.label}{item.formula ? <small>{item.formula}</small> : null}</button>)}
+          {!results.length ? <span>No calculus studio result</span> : null}
+        </div>
+      ) : null}
+    </div>
   );
 }
 
@@ -403,20 +408,41 @@ function StudioLab({ page, reduced }: { page: Exclude<CalculusStudioPage, "home"
   const requestedMode = params.get("mode") ?? defaultMode;
   const mode = meta.modes.some((item) => item.id === requestedMode) ? requestedMode : defaultMode;
   const chooseMode = (next: string) => {
-    const sp = new URLSearchParams(params);
-    sp.set("mode", next);
-    setParams(sp, { replace: true });
+    setParams((current) => {
+      const sp = new URLSearchParams(current);
+      sp.set("mode", next);
+      return sp;
+    }, { replace: true });
   };
   const onTabKey = (event: KeyboardEvent<HTMLDivElement>) => {
     const index = meta.modes.findIndex((item) => item.id === mode);
-    if (event.key === "ArrowRight") chooseMode(meta.modes[(index + 1) % meta.modes.length].id);
-    if (event.key === "ArrowLeft") chooseMode(meta.modes[(index - 1 + meta.modes.length) % meta.modes.length].id);
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      chooseMode(meta.modes[(index + 1) % meta.modes.length].id);
+    }
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      chooseMode(meta.modes[(index - 1 + meta.modes.length) % meta.modes.length].id);
+    }
   };
   return (
     <div className={`cs-lab-page cs-lab-${page}`} data-lab-mode={mode} data-mode-canvas={mode}>
       <nav className="cs-tabs" role="tablist" aria-label={`${meta.title} modes`} onKeyDown={onTabKey}>
         {meta.modes.map((item) => (
-          <button key={item.id} type="button" role="tab" id={`cs-tab-${item.id}`} aria-controls={`cs-panel-${item.id}`} className={mode === item.id ? "active" : ""} aria-selected={mode === item.id} tabIndex={mode === item.id ? 0 : -1} onClick={() => chooseMode(item.id)}>{item.label}</button>
+          <button
+            key={item.id}
+            type="button"
+            role="tab"
+            id={`cs-tab-${item.id}`}
+            aria-controls={`cs-panel-${item.id}`}
+            className={mode === item.id ? "active" : ""}
+            aria-selected={mode === item.id}
+            tabIndex={0}
+            data-mode={item.id}
+            onClick={() => chooseMode(item.id)}
+          >
+            {item.label}
+          </button>
         ))}
       </nav>
       <div id={`cs-panel-${mode}`} role="tabpanel" aria-labelledby={`cs-tab-${mode}`}>
@@ -430,6 +456,8 @@ function StudioLab({ page, reduced }: { page: Exclude<CalculusStudioPage, "home"
             ? <CalculusIntegrationTechniquesStudio mode={mode} />
           : page === "derivative-applications"
             ? <CalculusDerivativeApplicationsStudio mode={mode} />
+          : page === "differential-equations"
+            ? <CalculusDifferentialEquationsStudio mode={mode} />
             : <InteractiveLab page={page} mode={mode} reduced={reduced} />}
       </div>
     </div>
@@ -463,6 +491,7 @@ function InteractiveLab({ page, mode, reduced }: { page: Exclude<CalculusStudioP
   useEffect(() => {
     setDraft(defaultExpression(page, mode));
     setExpression(defaultExpression(page, mode));
+    setLearning("Observe");
   }, [page, mode]);
 
   useEffect(() => {
@@ -671,7 +700,9 @@ function SeriesLab({ mode, n, a, trace, showAux }: { mode: string; n: number; a:
   const remainder = sample((x) => Math.abs(Math.sin(x) - taylorSin(x, Math.max(1, n))), xMin, xMax, 200);
   const polar = mode === "polar";
   const parametric = mode === "parametric";
-  const sequences = mode === "sequences" || mode === "convergence";
+  const sequences = mode === "sequences";
+  const convergence = mode === "convergence";
+  const power = mode === "power";
   const [theta, setTheta] = useState(a);
   useEffect(() => {
     if (!polar && !parametric) return;
@@ -686,26 +717,36 @@ function SeriesLab({ mode, n, a, trace, showAux }: { mode: string; n: number; a:
     return () => window.cancelAnimationFrame(id);
   }, [polar, parametric, a]);
   const sweep = polar ? theta : a;
+  const ratio = Math.max(-0.95, Math.min(0.95, a / Math.PI));
+  const powerX = Math.max(-0.95, Math.min(0.95, a / 4));
   return (
-    <svg className="cs-graph" viewBox={`0 0 ${width} ${height}`} role="img" aria-label="Series parametric or polar graph">
+    <svg className="cs-graph" viewBox={`0 0 ${width} ${height}`} role="img" aria-label={visualTitle("series-parametric-polar", mode)}>
       <rect width={width} height={height} rx="16" fill="#071d35" />
       {showAux && <Grid width={width} height={height} pad={pad} />}
       <line x1={pad} x2={width - pad} y1={sy(0)} y2={sy(0)} className="cs-axis" /><line x1={sx(0)} x2={sx(0)} y1={pad} y2={height - pad} className="cs-axis" />
       {polar ? <path d={polarPath(sx, sy)} fill="none" stroke="#10c7e8" strokeWidth="4" /> : sequences ? Array.from({ length: Math.max(4, n) }, (_, k) => {
         const x = (k + 1) * 0.45 - 3, y = 1 / (k + 1);
         return <circle key={k} cx={sx(x)} cy={sy(y)} r={k === n - 1 ? 8 : 5} fill={k === n - 1 ? "#f97316" : "#8b5cf6"} />;
+      }) : convergence ? Array.from({ length: Math.max(2, n) }, (_, k) => {
+        const sum = geometricPartial(ratio, k + 1);
+        const x = -5.8 + (k + 1) * (11 / Math.max(2, n));
+        return <rect key={k} x={sx(x) - 8} y={sy(Math.max(0, sum))} width="16" height={Math.abs(sy(sum) - sy(0))} fill={k === n - 1 ? "#f97316" : "#8b5cf6"} opacity=".85" />;
       }) : parametric ? <path d={Array.from({ length: 240 }, (_, i) => {
         const t = i / 239 * Math.PI * 2, x = Math.cos(t), y = Math.sin(2 * t);
         return `${i ? "L" : "M"}${sx(x * 2)},${sy(y)}`;
-      }).join(" ")} fill="none" stroke="#10c7e8" strokeWidth="4" /> : <>
+      }).join(" ")} fill="none" stroke="#10c7e8" strokeWidth="4" /> : power ? <>
+        <path d={pathFor(sample((x) => 1 / (1 - Math.max(-0.95, Math.min(0.95, x / 4))), xMin, xMax, 280), sx, sy, yMin, yMax)} fill="none" stroke="#10c7e8" strokeWidth="4" />
+        <path d={pathFor(sample((x) => powerPartial(Math.max(-0.95, Math.min(0.95, x / 4)), n), xMin, xMax, 280), sx, sy, yMin, yMax)} fill="none" stroke="#8b5cf6" strokeWidth="3" strokeDasharray="8 6" />
+      </> : <>
         <path d={pathFor(actual, sx, sy, yMin, yMax)} fill="none" stroke="#10c7e8" strokeWidth="4" />
         <path d={pathFor(approx, sx, sy, yMin, yMax)} fill="none" stroke="#8b5cf6" strokeWidth="3" strokeDasharray="8 6" />
         <path d={`${pathFor(remainder.map((p) => ({ x: p.x, y: Math.sin(p.x) + p.y, ok: p.ok })), sx, sy, yMin, yMax)} ${pathFor([...remainder].reverse().map((p) => ({ x: p.x, y: Math.sin(p.x) - p.y, ok: p.ok })), sx, sy, yMin, yMax)}`} fill="rgba(139,92,246,.18)" stroke="none" />
       </>}
-      {trace && !polar && !sequences && <><line x1={sx(a)} x2={sx(a)} y1={pad} y2={height - pad} stroke="#8b5cf6" strokeDasharray="7 6" /><circle cx={sx(a)} cy={sy(taylorSin(a, n))} r="8" fill="#8b5cf6" /></>}
+      {trace && !polar && !sequences && !convergence && <><line x1={sx(a)} x2={sx(a)} y1={pad} y2={height - pad} stroke="#8b5cf6" strokeDasharray="7 6" /><circle cx={sx(a)} cy={sy(power ? powerPartial(powerX, n) : taylorSin(a, n))} r="8" fill="#8b5cf6" /></>}
       {polar && <circle cx={sx((1 + Math.cos(sweep)) * Math.cos(sweep) * 2)} cy={sy((1 + Math.cos(sweep)) * Math.sin(sweep) * 2)} r="8" fill="#f97316" />}
       {parametric && <circle cx={sx(Math.cos(sweep) * 2)} cy={sy(Math.sin(2 * sweep))} r="8" fill="#f97316" />}
-      <text x="72" y="42" className="cs-svg-title">{polar ? "Polar trace r = 1 + cos(theta)" : parametric ? "Parametric (cos t, sin 2t)" : sequences ? `Sequence a_n = 1/n` : `Taylor polynomial T_${n}(x) with remainder band`}</text>
+      {convergence && <line x1={pad} x2={width - pad} y1={sy(1 / (1 - ratio))} y2={sy(1 / (1 - ratio))} stroke="#22c55e" strokeDasharray="7 6" />}
+      <text x="72" y="42" className="cs-svg-title">{polar ? "Polar trace r = 1 + cos(theta)" : parametric ? "Parametric (cos t, sin 2t)" : sequences ? `Sequence a_n = 1/n` : convergence ? `Geometric partial sums r = ${fmt(ratio, 2)}` : power ? `Power series for 1/(1 − x), n = ${n}` : `Taylor polynomial T_${n}(x) with remainder band`}</text>
     </svg>
   );
 }
@@ -749,7 +790,6 @@ function IntegralApplicationLab({ mode, fn, a, b, n }: { mode: string; fn: ((x: 
   const g = () => 4;
   const samples = sample(f, xMin, xMax, 280);
   const lo = Math.min(a, b), hi = Math.max(a, b);
-  const sliceX = lo + (hi - lo) * 0.65;
   if (mode === "volumes") {
     const exact = washerVolume(lo, hi);
     const slices = Math.max(8, Math.min(40, n));
@@ -768,23 +808,10 @@ function IntegralApplicationLab({ mode, fn, a, b, n }: { mode: string; fn: ((x: 
           <text x={sx(0) + 8} y={sy(4) - 8} className="cs-light-text">y = 4</text>
           <text x={sx(1.1)} y={sy(1.4)} className="cs-light-text">y = x²</text>
         </svg>
-        <svg className="cs-graph cs-light-graph" viewBox={`0 0 ${width} ${height}`} role="img" aria-label="3D solid of revolution washer method">
-          <rect width={width} height={height} rx="16" fill="#f8fbff" />
-          <text x="24" y="28" className="cs-light-title">3D Solid of Revolution (Washer Method)</text>
-          {Array.from({ length: slices }, (_, i) => {
-            const x = lo + i / (slices - 1) * (hi - lo);
-            const outer = 4, inner = Math.abs(f(x));
-            const cx = sx(x * 0.85), cy = sy(0);
-            return (
-              <g key={i} opacity={0.18 + 0.55 * (1 - Math.abs(x) / 2)}>
-                <ellipse cx={cx} cy={cy} rx={18} ry={Math.min(88, outer * 16)} fill="#fde68a" stroke="#d97706" />
-                <ellipse cx={cx} cy={cy} rx={10} ry={Math.min(40, inner * 16)} fill="#fff" stroke="#0ea5e9" />
-              </g>
-            );
-          })}
-          <rect x={sx(sliceX) - 16} y={sy(4) - 6} width="32" height={Math.abs(sy(4) - sy(-4))} fill="rgba(251,146,60,.35)" stroke="#f97316" />
-          <text x="24" y={height - 18} className="cs-light-text">Washer volume {fmt(exact, 4)} · n = {n}</text>
-        </svg>
+        <StudioMath3D label="3D solid of revolution washer method">
+          <WasherSolid lo={lo} hi={hi} inner={f} slices={slices} />
+        </StudioMath3D>
+        <p className="cs-light-text">Washer volume {fmt(exact, 4)} · n = {n}</p>
       </div>
     );
   }
@@ -793,8 +820,34 @@ function IntegralApplicationLab({ mode, fn, a, b, n }: { mode: string; fn: ((x: 
   const asx = (x: number) => ap + (x - axMin) / (axMax - axMin) * (aw - ap * 2);
   const asy = (y: number) => ah - ap - (y - ayMin) / (ayMax - ayMin) * (ah - ap * 2);
   const areaSamples = sample(f, axMin, axMax, 320);
+  if (mode === "work") {
+    const kSpring = Math.max(1, Math.abs(a) + 4);
+    const stretch = Math.max(0.2, Math.abs(b));
+    return (
+      <svg className="cs-graph cs-light-graph" viewBox={`0 0 ${aw} ${ah}`} role="img" aria-label="Spring work as area under F(x)">
+        <rect width={aw} height={ah} rx="16" fill="#ffffff" />
+        <text x="70" y="48" className="cs-light-title">Work W = ∫ F(x) dx = ½ k x²</text>
+        <path d="M80 280 h90 l18-40 28 80 28-80 28 80 28-80 28 80 18-40 h260" fill="none" stroke="#0ea5e9" strokeWidth="6" />
+        <line x1="170" x2={170 + stretch * 140} y1="360" y2="360" stroke="#8b5cf6" strokeWidth="6" />
+        <text x="70" y="110" className="cs-light-text">k = {fmt(kSpring, 1)} · stretch x = {fmt(stretch, 2)} · W = {fmt(0.5 * kSpring * stretch * stretch, 3)}</text>
+      </svg>
+    );
+  }
+  if (mode === "fluid") {
+    const depth = Math.max(0.5, Math.abs(b) + 2);
+    const plate = Math.max(0.8, Math.abs(a) + 1.5);
+    return (
+      <svg className="cs-graph cs-light-graph" viewBox={`0 0 ${aw} ${ah}`} role="img" aria-label="Hydrostatic force on a plate">
+        <rect width={aw} height={ah} rx="16" fill="#ffffff" />
+        <rect x="190" y="90" width="480" height={depth * 42} fill="#38bdf8" opacity=".42" />
+        <rect x="320" y="120" width={plate * 70} height={depth * 34} fill="#f8c55b" opacity=".5" stroke="#d97706" />
+        <text x="70" y="48" className="cs-light-title">Fluid force F = ρg ∫ depth(y) width(y) dy</text>
+        <text x="70" y="90" className="cs-light-text">depth = {fmt(depth, 2)} · width = {fmt(plate, 2)}</text>
+      </svg>
+    );
+  }
   return (
-    <svg className="cs-graph" viewBox={`0 0 ${aw} ${ah}`} role="img" aria-label="Integral application">
+    <svg className="cs-graph" viewBox={`0 0 ${aw} ${ah}`} role="img" aria-label={visualTitle("integral-applications", mode)}>
       <rect width={aw} height={ah} rx="16" fill="#ffffff" />
       <Grid width={aw} height={ah} pad={ap} light />
       {mode === "area" ? <>
@@ -805,7 +858,7 @@ function IntegralApplicationLab({ mode, fn, a, b, n }: { mode: string; fn: ((x: 
       </> : <>
         <path d={pathFor(areaSamples, asx, asy, ayMin, ayMax)} fill="none" stroke="#0ea5e9" strokeWidth="3" />
         <path d={`M${asx(a)},${asy(safe(f, a))} L${asx(b)},${asy(safe(f, b))}`} stroke="#f59e0b" strokeDasharray="6 4" />
-        <text x="70" y="48" className="cs-light-title">{mode === "arc" ? "Arc-length polyline" : mode === "work" ? "Work as area under F(x)" : "Surface of revolution silhouette"}</text>
+        <text x="70" y="48" className="cs-light-title">{mode === "arc" ? "Arc-length polyline" : "Surface of revolution silhouette"}</text>
       </>}
     </svg>
   );
@@ -925,14 +978,34 @@ function LearningBar({ active, onChange, page, mode, stats }: { active: string; 
   const tabs = ["Observe", "Understand", "Why", "Try", "Challenge"];
   return (
     <section className="cs-learning">
-      <nav>{tabs.map((tab) => <button key={tab} type="button" className={active === tab ? "active" : ""} onClick={() => onChange(tab)}>{tabIcon(tab)}<span>{tab}</span></button>)}</nav>
-      <p>{learningCopy(active, page, mode, stats)}</p>
+      <nav role="tablist" aria-label="Learning stages">
+        {tabs.map((tab) => (
+          <button
+            key={tab}
+            type="button"
+            role="tab"
+            aria-selected={active === tab}
+            tabIndex={0}
+            className={active === tab ? "active" : ""}
+            onClick={() => onChange(tab)}
+          >
+            {tabIcon(tab)}<span>{tab}</span>
+          </button>
+        ))}
+      </nav>
+      <p data-testid="cs-learning-copy">{learningCopy(active, page, mode, stats)}</p>
     </section>
   );
 }
 
-function InfoPill({ icon, title, text }: { icon: ReactNode; title: string; text: string }) {
-  return <div><span>{icon}</span><strong>{title}</strong><p>{text}</p></div>;
+function InfoPill({ icon, title, text, onClick }: { icon: ReactNode; title: string; text: string; onClick: () => void }) {
+  return (
+    <button type="button" className="cs-loop-pill" onClick={onClick}>
+      <span>{icon}</span>
+      <strong>{title}</strong>
+      <p>{text}</p>
+    </button>
+  );
 }
 
 function StudioDialog({ title, onClose, children }: { title: string; onClose: () => void; children: ReactNode }) {
@@ -1001,6 +1074,17 @@ function calculateStats(page: CalculusStudioPage, mode: string, fn: ((x: number)
     const sec = (safe(fn, a + delta) - safe(fn, a)) / delta, tan = derivativeAt(fn, a);
     return [["Secant slope", fmt(sec, 4), "plain"], ["Tangent slope", fmt(tan, 4), "good"], ["Difference", fmt(Math.abs(sec - tan), 4), Math.abs(sec - tan) < 0.1 ? "good" : "warn"], ["h", fmt(delta, 3), "plain"]];
   }
+  if (page === "integral-applications" && mode === "work") {
+    const kSpring = Math.max(1, Math.abs(a) + 4);
+    const stretch = Math.max(0.2, Math.abs(b));
+    return [["Spring k", fmt(kSpring, 2), "plain"], ["Stretch x", fmt(stretch, 2), "plain"], ["Work ½kx²", fmt(0.5 * kSpring * stretch * stretch, 4), "good"], ["Mode", "work", "plain"]];
+  }
+  if (page === "integral-applications" && mode === "fluid") {
+    const depth = Math.max(0.5, Math.abs(b) + 2);
+    const plate = Math.max(0.8, Math.abs(a) + 1.5);
+    const force = 1000 * 9.81 * plate * depth * depth / 2;
+    return [["Depth", fmt(depth, 2), "plain"], ["Width", fmt(plate, 2), "plain"], ["Force", fmt(force, 1), "good"], ["Mode", "fluid", "plain"]];
+  }
   if (page === "integral-applications" && mode === "volumes") {
     const exact = washerVolume(Math.min(a, b), Math.max(a, b));
     const approx = washerVolumeApprox(Math.min(a, b), Math.max(a, b), Math.max(4, n));
@@ -1019,6 +1103,29 @@ function calculateStats(page: CalculusStudioPage, mode: string, fn: ((x: number)
     return [["x", fmt(a, 2), "plain"], ["y", fmt(b || 1, 2), "plain"], ["dy/dx", fmt(slope, 3), "good"], ["Step h", fmt(delta, 2), "plain"]];
   }
   if (page === "series-parametric-polar") {
+    if (mode === "sequences") {
+      const term = 1 / Math.max(1, n);
+      return [["aₙ", fmt(term, 6), "plain"], ["n", String(n), "plain"], ["Limit", "0", "good"], ["|aₙ|", fmt(term, 6), term < 0.1 ? "good" : "warn"]];
+    }
+    if (mode === "convergence") {
+      const r = Math.max(-0.95, Math.min(0.95, a / Math.PI));
+      const partial = geometricPartial(r, n);
+      const exact = 1 / (1 - r);
+      return [["Ratio r", fmt(r, 3), "plain"], ["Sₙ", fmt(partial, 5), "plain"], ["1/(1−r)", fmt(exact, 5), "good"], ["Error", fmt(Math.abs(partial - exact), 6), Math.abs(partial - exact) < 0.05 ? "good" : "warn"]];
+    }
+    if (mode === "power") {
+      const x = Math.max(-0.95, Math.min(0.95, a / 4));
+      const partial = powerPartial(x, n);
+      const exact = 1 / (1 - x);
+      return [["x", fmt(x, 3), "plain"], ["Partial sum", fmt(partial, 5), "plain"], ["1/(1−x)", fmt(exact, 5), "good"], ["Error", fmt(Math.abs(partial - exact), 6), Math.abs(partial - exact) < 0.05 ? "good" : "warn"]];
+    }
+    if (mode === "parametric") {
+      return [["x(t)", fmt(Math.cos(a) * 2, 4), "plain"], ["y(t)", fmt(Math.sin(2 * a), 4), "plain"], ["t", fmt(a, 3), "good"], ["Speed", fmt(Math.hypot(-2 * Math.sin(a), 2 * Math.cos(2 * a)), 4), "plain"]];
+    }
+    if (mode === "polar") {
+      const r = 1 + Math.cos(a);
+      return [["r(θ)", fmt(r, 4), "good"], ["x", fmt(r * Math.cos(a), 4), "plain"], ["y", fmt(r * Math.sin(a), 4), "plain"], ["θ", fmt(a, 3), "plain"]];
+    }
     const actual = Math.sin(a), approx = taylorSin(a, n);
     return [["Polynomial", `T_${n}(x)`, "plain"], ["Approx", fmt(approx, 6), "plain"], ["Actual", fmt(actual, 6), "good"], ["Error", fmt(Math.abs(approx - actual), 6), Math.abs(approx - actual) < 0.01 ? "good" : "warn"]];
   }
@@ -1033,7 +1140,7 @@ function defaultExpression(page: CalculusStudioPage, mode: string) {
   if (page === "derivatives") return mode === "implicit" ? "x^2" : "x^2";
   if (page === "integration") return "x^2";
   if (page === "integral-applications") return "x^2";
-  if (page === "series-parametric-polar") return mode === "polar" ? "1+cos(x)" : "sin(x)";
+  if (page === "series-parametric-polar") return mode === "polar" ? "1+cos(x)" : mode === "power" ? "1/(1-x)" : "sin(x)";
   if (page === "differential-equations") return "x - y";
   if (page === "multivariable-vector") return "x^2-y^2";
   return "x^2";
@@ -1041,7 +1148,7 @@ function defaultExpression(page: CalculusStudioPage, mode: string) {
 
 function axisLabel(page: CalculusStudioPage, mode: string, axis: "a" | "b") {
   if (page === "differential-equations") return axis === "a" ? "Initial x₀" : "Initial y₀";
-  if (page === "series-parametric-polar") return axis === "a" ? "Evaluation x" : "Degree n";
+  if (page === "series-parametric-polar") return axis === "a" ? (mode === "convergence" ? "Ratio probe" : mode === "parametric" || mode === "polar" ? "Parameter t / θ" : "Evaluation x") : "Degree n";
   if (page === "integration" || page === "integral-applications") return axis === "a" ? "Lower bound a" : "Upper bound b";
   if (page === "derivatives") return axis === "a" ? "Tangent point a" : "Secant h";
   if (page === "multivariable-vector") return axis === "a" ? "x coordinate" : "y coordinate";
@@ -1053,9 +1160,31 @@ function visualTitle(page: CalculusStudioPage, mode: string) {
   if (page === "limits") return "Function, approach points, and continuity check";
   if (page === "derivatives") return "Tangent, secant, and derivative comparison";
   if (page === "integration") return "Accumulated area and Riemann partitions";
-  if (page === "integral-applications") return mode === "volumes" ? "2D region and volume slices" : "Integral application diagram";
-  if (page === "differential-equations") return "Slope field and RK4 solution";
-  if (page === "series-parametric-polar") return "Taylor approximation and selected curve";
+  if (page === "integral-applications") {
+    if (mode === "volumes") return "2D region and volume slices";
+    if (mode === "area") return "Area between curves";
+    if (mode === "arc") return "Arc-length polyline";
+    if (mode === "surface") return "Surface of revolution silhouette";
+    if (mode === "work") return "Work as area under F(x)";
+    if (mode === "fluid") return "Hydrostatic force on a plate";
+    return "Integral application diagram";
+  }
+  if (page === "differential-equations") {
+    if (mode === "separable") return "Separated solution y = y₀ e^{kt}";
+    if (mode === "growth") return "Logistic curve approaching K";
+    if (mode === "euler") return "Euler polygonal steps";
+    if (mode === "rk4") return "RK4 versus Euler and exact";
+    if (mode === "ivp") return "Unique IVP solution on the field";
+    return "Slope field with Euler, RK4, and exact";
+  }
+  if (page === "series-parametric-polar") {
+    if (mode === "sequences") return "Sequence terms a_n = 1/n";
+    if (mode === "convergence") return "Geometric series partial sums";
+    if (mode === "power") return "Power series for 1/(1 − x)";
+    if (mode === "parametric") return "Parametric curve (cos t, sin 2t)";
+    if (mode === "polar") return "Polar cardioid r = 1 + cos θ";
+    return "Taylor approximation for sin x";
+  }
   if (page === "multivariable-vector") return "3D surface, gradient, and contour map";
   if (page === "integration-techniques") return "Symbolic transformation workflow";
   return "Interactive model";
@@ -1072,8 +1201,8 @@ function stateAwareCopy(page: CalculusStudioPage, mode: string, stats: Array<[st
   if (page === "limits") return `Left and right samples are ${fmt(delta, 2)} units from a = ${fmt(a, 2)}. The checklist updates from those real samples.`;
   if (page === "derivatives") return `The secant uses h = ${fmt(delta, 2)}. As h shrinks, the secant slope should approach the tangent slope.`;
   if (page === "integration") return `${n} partitions approximate the signed area from ${fmt(a, 2)} to ${fmt(b, 2)}.`;
-  if (page === "differential-equations") return `The slope field uses dy/dx = x - y, with the highlighted solution beginning at (${fmt(a, 2)}, ${fmt(b || 1, 2)}).`;
-  if (page === "series-parametric-polar") return `The current degree is ${n}; error is computed against sin(x) at the selected x value.`;
+  if (page === "differential-equations") return `Mode ${mode}: ${visualTitle(page, mode).toLowerCase()} starting at (${fmt(a, 2)}, ${fmt(b || 1, 2)}).`;
+  if (page === "series-parametric-polar") return `Mode ${mode}: ${visualTitle(page, mode).toLowerCase()} with n = ${n}.`;
   return `${mode} mode is selected. Controls update the visible model and live values.`;
 }
 
@@ -1197,6 +1326,17 @@ function taylorSin(x: number, degree: number) {
     if (p > degree) break;
     sum += ((k % 2 ? -1 : 1) * Math.pow(x, p)) / factorial(p);
   }
+  return sum;
+}
+
+function geometricPartial(r: number, n: number) {
+  if (Math.abs(1 - r) < 1e-9) return n;
+  return (1 - r ** Math.max(1, n)) / (1 - r);
+}
+
+function powerPartial(x: number, n: number) {
+  let sum = 0;
+  for (let i = 0; i < Math.max(1, n); i += 1) sum += x ** i;
   return sum;
 }
 

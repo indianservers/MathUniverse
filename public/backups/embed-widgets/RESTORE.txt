@@ -1,0 +1,16 @@
+Widget backups (four files each: twodgraph.js, twodgeometry.js, threedgraph.js, threedgeometry.js)
+
+Restore original v1:
+  cp public/backups/embed-widgets/v1-original/*.js public/
+
+Alternate v1 copies:
+  cp public/backups/embed-widgets/v1-restore-a/*.js public/
+  cp public/backups/embed-widgets/v1-restore-b/*.js public/
+
+Restore generated v2 (Share→Embed workspace conversion):
+  cp public/backups/embed-widgets/v2-generated/*.js public/
+  cp public/backups/embed-widgets/v2-restore-a/*.js public/
+  cp public/backups/embed-widgets/v2-restore-b/*.js public/
+
+Regenerate from source:
+  node scripts/write-embed-widgets.mjs

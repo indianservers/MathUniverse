@@ -540,6 +540,26 @@ export const navSections: NavSection[] = [
             icon: "Cuboid",
           },
           {
+            title: "Embed 2D Graph",
+            route: "/design/twodgraph",
+            icon: "ChartSpline",
+          },
+          {
+            title: "Embed 2D Geometry",
+            route: "/design/twodgeometry",
+            icon: "Ruler",
+          },
+          {
+            title: "Embed 3D Graph",
+            route: "/design/threedgraph",
+            icon: "Cuboid",
+          },
+          {
+            title: "Embed 3D Geometry",
+            route: "/design/threedgeometry",
+            icon: "Shapes",
+          },
+          {
             title: "Function Explorer",
             route: "/math-lab/function-explorer",
             icon: "Waves",

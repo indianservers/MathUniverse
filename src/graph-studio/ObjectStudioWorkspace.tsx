@@ -42,6 +42,12 @@ import {
   type DragEvent,
   type ReactNode,
 } from "react";
+import WorkspaceChromeThemeToggle from "../components/workspace/WorkspaceChromeThemeToggle";
+import {
+  CHROME_THEME_STORAGE_KEYS,
+  readWorkspaceChromeTheme,
+  type WorkspaceChromeTheme,
+} from "../workspace/workspaceChromeTheme";
 
 export type ObjectStudioMode = "create" | "transform" | "measure" | "learn";
 export type ObjectStudioTool =
@@ -151,6 +157,9 @@ export default function ObjectStudioWorkspace(props: Props) {
   const [viewOpen, setViewOpen] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [fps, setFps] = useState(60);
+  const [chromeTheme, setChromeTheme] = useState<WorkspaceChromeTheme>(() =>
+    readWorkspaceChromeTheme(CHROME_THEME_STORAGE_KEYS.geometry3d),
+  );
 
   useEffect(() => {
     const media = window.matchMedia("(max-width: 1100px)");
@@ -226,6 +235,7 @@ export default function ObjectStudioWorkspace(props: Props) {
       id="object-studio-root"
       className={`graph-studio-3d-shell object-studio-shell ${leftOpen ? "has-left" : ""} ${rightOpen ? "has-right" : ""} ${dockOpen ? "has-dock" : ""}`}
       data-testid="workspace-3d-surface"
+      data-chrome-theme={chromeTheme}
     >
       <header className="gs3d-topbar">
         <div className="gs3d-brand">
@@ -319,6 +329,11 @@ export default function ObjectStudioWorkspace(props: Props) {
               </div>
             )}
           </div>
+          <WorkspaceChromeThemeToggle
+            theme={chromeTheme}
+            storageKey={CHROME_THEME_STORAGE_KEYS.geometry3d}
+            onChange={setChromeTheme}
+          />
         </div>
         <button
           type="button"

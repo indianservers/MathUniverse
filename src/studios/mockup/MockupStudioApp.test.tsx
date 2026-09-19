@@ -83,6 +83,7 @@ describe("MockupStudioApp", () => {
     expect(ar).toContain("Pyramid volume");
     const trigAr = renderToString(<MemoryRouter initialEntries={["/trigonometry/ar"]}><MockupStudioApp studioId="trigonometry" /></MemoryRouter>);
     expect(trigAr).toContain("Height h = d tan θ");
+    expect(trigAr).toContain('data-engine="three"');
     const argand = renderToString(<MemoryRouter initialEntries={["/complex-numbers/argand-plane"]}><MockupStudioApp studioId="complex-numbers" /></MemoryRouter>);
     expect(argand).toContain("ARGAND PLANE");
     expect(argand).toContain(">Re</text>");
@@ -171,7 +172,10 @@ describe("MockupStudioApp", () => {
     const identities = renderToString(<MemoryRouter initialEntries={["/trigonometry/identities?mode=Double+Angle"]}><MockupStudioApp studioId="trigonometry" /></MemoryRouter>);
     expect(identities).toContain('data-id-mode="Double Angle"');
     expect(identities).toContain("sin 2θ");
-    expect(identities).toContain("gold ray is 2θ");
+    expect(identities).toContain("Gold ray is θ · purple ray is 2θ");
+    expect(identities).toContain("sin 2θ is not 2 sin θ");
+    expect(identities).toContain("Play doubling: θ → 2θ");
+    expect(identities).toContain("Period doubling");
     expect(identities).toContain("sin(2×45°)");
     const inverse = renderToString(<MemoryRouter initialEntries={["/trigonometry/inverse?mode=Compositions"]}><MockupStudioApp studioId="trigonometry" /></MemoryRouter>);
     expect(inverse).toContain('data-inv-mode="Compositions"');
@@ -180,6 +184,7 @@ describe("MockupStudioApp", () => {
     const apps = renderToString(<MemoryRouter initialEntries={["/trigonometry/applications?mode=Bearings"]}><MockupStudioApp studioId="trigonometry" /></MemoryRouter>);
     expect(apps).toContain('data-app-mode="Bearings"');
     expect(apps).toContain("from north");
+    expect(apps).toContain("058°");
     const ar = renderToString(<MemoryRouter initialEntries={["/trigonometry/ar?mode=Wave+Projection"]}><MockupStudioApp studioId="trigonometry" /></MemoryRouter>);
     expect(ar).toContain('data-ar-mode="Wave Projection"');
     expect(ar).toContain("WAVE OVERLAY");
@@ -201,6 +206,7 @@ describe("MockupStudioApp", () => {
     const motion = renderToString(<MemoryRouter initialEntries={["/mathematical-modelling/motion"]}><MockupStudioApp studioId="modelling" /></MemoryRouter>);
     expect(motion).toContain("Motion Modelling Lab");
     expect(motion).toContain("Model A ignores drag");
+    expect(motion).toContain('data-engine="three"');
     const epidemics = renderToString(<MemoryRouter initialEntries={["/mathematical-modelling/epidemics"]}><MockupStudioApp studioId="modelling" /></MemoryRouter>);
     expect(epidemics).toContain("Compartment flow");
     const networks = renderToString(<MemoryRouter initialEntries={["/mathematical-modelling/networks"]}><MockupStudioApp studioId="modelling" /></MemoryRouter>);
@@ -276,9 +282,21 @@ describe("MockupStudioApp", () => {
     const rref = renderToString(<MemoryRouter initialEntries={["/linear-algebra/row-reduction"]}><MockupStudioApp studioId="linear-algebra" /></MemoryRouter>);
     expect(rref).toContain("Augmented matrix");
     expect(rref).toContain("System summary");
+    expect(rref).toContain('data-engine="three"');
     const play = renderToString(<MemoryRouter initialEntries={["/linear-algebra/playground"]}><MockupStudioApp studioId="linear-algebra" /></MemoryRouter>);
     expect(play).toContain("2D transformation");
     expect(play).toContain("3D transformation");
+    expect(vectors).toContain('data-engine="three"');
+    expect(play).toContain('data-engine="three"');
+    const spaces = renderToString(<MemoryRouter initialEntries={["/linear-algebra/vector-spaces"]}><MockupStudioApp studioId="linear-algebra" /></MemoryRouter>);
+    expect(spaces).toContain('data-engine="three"');
+    const solids = renderToString(<MemoryRouter initialEntries={["/geometry/solids"]}><MockupStudioApp studioId="geometry" /></MemoryRouter>);
+    expect(solids).toContain('data-engine="three"');
+    expect(solids).toContain("Three.js");
+    const helix = renderToString(<MemoryRouter initialEntries={["/complex-numbers/euler?mode=Helix"]}><MockupStudioApp studioId="complex-numbers" /></MemoryRouter>);
+    expect(helix).toContain('data-engine="three"');
+    const geoAr = renderToString(<MemoryRouter initialEntries={["/geometry/ar"]}><MockupStudioApp studioId="geometry" /></MemoryRouter>);
+    expect(geoAr).toContain('data-engine="three"');
   });
 
   it("marks every mockup lab mode on the banner and canvas", () => {

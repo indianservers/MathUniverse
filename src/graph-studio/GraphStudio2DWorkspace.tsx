@@ -5,6 +5,7 @@ import {
   ChevronLeft,
   ChevronRight,
   CircleHelp,
+  Code2,
   Copy,
   Crosshair,
   Download,
@@ -53,6 +54,12 @@ import type {
 import type { ExactGraphAnalysis } from "./exactGraphAnalysis";
 import { zoomGraphView } from "./graphViewUtils";
 import type { GraphStudioStylePreset, GraphStudioVariable } from "./types";
+import WorkspaceChromeThemeToggle from "../components/workspace/WorkspaceChromeThemeToggle";
+import {
+  CHROME_THEME_STORAGE_KEYS,
+  readWorkspaceChromeTheme,
+  type WorkspaceChromeTheme,
+} from "../workspace/workspaceChromeTheme";
 
 export type PiecewiseSegment = {
   id: string;
@@ -211,6 +218,9 @@ export default function GraphStudio2DWorkspace(
   const [helpOpen, setHelpOpen] = useState(false);
   const [renaming, setRenaming] = useState(false);
   const [fps, setFps] = useState(60);
+  const [chromeTheme, setChromeTheme] = useState<WorkspaceChromeTheme>(() =>
+    readWorkspaceChromeTheme(CHROME_THEME_STORAGE_KEYS.graph2d),
+  );
 
   useEffect(() => {
     let frames = 0;
@@ -253,6 +263,7 @@ export default function GraphStudio2DWorkspace(
   return (
     <div
       className={`graph-studio-3d-shell graph-studio-surface-shell graph-studio-2d-shell ${leftOpen ? "has-left" : ""} ${rightOpen ? "has-right" : ""}`}
+      data-chrome-theme={chromeTheme}
     >
       <header className="gs3d-topbar">
         <div className="gs3d-brand">
@@ -359,6 +370,11 @@ export default function GraphStudio2DWorkspace(
             />
             {settingsOpen && <SettingsMenu props={props} />}
           </div>
+          <WorkspaceChromeThemeToggle
+            theme={chromeTheme}
+            storageKey={CHROME_THEME_STORAGE_KEYS.graph2d}
+            onChange={setChromeTheme}
+          />
           <div className="relative gs3d-help-control">
             <TopAction
               label="Help"
@@ -1949,7 +1965,7 @@ function ExportMenu({
           close();
         }}
       >
-        <Copy />
+        <Code2 />
         Copy embed code
       </button>
       <button

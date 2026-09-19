@@ -8,6 +8,7 @@ import {
   type PlotItem,
 } from "../../../components/workspace/panels/graphPanelUtils";
 import AdapterFrame from "../components/AdapterFrame";
+import AnimationControlsLessonAdapter from "./AnimationControlsLessonAdapter";
 import { createLessonInteractionEvent } from "../engine/lessonInteraction";
 import { getStrengthenedFoundationLesson } from "../strengthening/foundationNumberContent";
 import type { StrengthenedLesson } from "../strengthening/strengthenedLessonSchema";
@@ -47,6 +48,9 @@ export default function AlgebraLessonAdapter({
   resetToken,
   onInteraction,
 }: LessonAdapterProps) {
+  if (lesson.categorySlug === "core-workspaces" && lesson.id === 24) {
+    return <AnimationControlsLessonAdapter lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
   if (lesson.id === 19) {
     return (
       <AlgebraWorkspaceTargetLesson19

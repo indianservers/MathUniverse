@@ -126,9 +126,9 @@ function checkKeyboardAccessibilityContract(): WorkspaceQaCheck {
 }
 
 function checkOfflineAssetContract(): WorkspaceQaCheck {
-  const shellAssets = ["/", "/manifest.webmanifest", "/math-universe-icon.svg", "/sitemap.xml", "/robots.txt"];
+  const shellAssets = ["/", "/manifest.webmanifest", "/math-universe-icon.svg", "/math-universe-icon-512.png", "/sitemap.xml", "/robots.txt"];
   const hasManifest = shellAssets.includes("/manifest.webmanifest");
-  const hasIcon = shellAssets.includes("/math-universe-icon.svg");
+  const hasIcon = shellAssets.includes("/math-universe-icon.svg") && shellAssets.includes("/math-universe-icon-512.png");
   const hasShell = shellAssets.includes("/");
   return {
     id: "offline-app-shell-contract",

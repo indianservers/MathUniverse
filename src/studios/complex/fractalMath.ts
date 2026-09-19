@@ -1,8 +1,9 @@
-export function escapeTime(x0: number, y0: number, cx: number, cy: number, max: number) {
+export function escapeTime(x0: number, y0: number, cx: number, cy: number, max: number, escapeR = 2) {
   let zx = x0;
   let zy = y0;
   let k = 0;
-  while (zx * zx + zy * zy < 4 && k < max) {
+  const lim = escapeR * escapeR;
+  while (zx * zx + zy * zy < lim && k < max) {
     const nx = zx * zx - zy * zy + cx;
     zy = 2 * zx * zy + cy;
     zx = nx;

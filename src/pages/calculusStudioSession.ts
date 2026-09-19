@@ -127,6 +127,10 @@ export const searchCatalog: SearchHit[] = [
   { page: "multivariable-vector", label: "Gradients", route: "/calculus/multivariable-vector?mode=gradient", mode: "gradient", keywords: "partial surface vector field", formula: "∇f" },
   { page: "multivariable-vector", label: "Theorems", route: "/calculus/multivariable-vector?mode=theorems", mode: "theorems", keywords: "green stokes divergence flux", formula: "∬∇·F" },
   { page: "advanced", label: "Advanced Calculus", route: "/calculus/advanced", keywords: "workbench epsilon delta remainder flux", formula: "ε-δ" },
+  { page: "limits", label: "Limits enhancements", route: "/calculus/limits", keywords: "epsilon delta hole jump squeeze continuity ui ux content", formula: "ε-δ" },
+  { page: "derivatives", label: "Derivative enhancements", route: "/calculus/derivatives", keywords: "secant tangent chain rule linearization d/dx", formula: "d/dx" },
+  { page: "integration", label: "Integration enhancements", route: "/calculus/integration", keywords: "riemann signed area ftc accumulation", formula: "∫" },
+  { page: "series-parametric-polar", label: "Series enhancements", route: "/calculus/series-parametric-polar", keywords: "taylor polar parametric remainder", formula: "Σ" },
 ];
 
 const defaultSettings = (): StudioSettings => ({
@@ -212,12 +216,37 @@ export function todayKey(now = new Date()) {
   return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
 }
 
-export const dailyChallenge = {
-  prompt: "Predict the behavior of the limit.",
-  formula: "lim_{x→2} (x² − 4) / (x − 2)",
-  answer: 4,
-  hint: "Factor the numerator: (x − 2)(x + 2) / (x − 2) → 4.",
-};
+export const dailyChallengeBank = [
+  {
+    prompt: "Predict the behavior of the limit.",
+    formula: "lim_{x→2} (x² − 4) / (x − 2)",
+    html: "lim x→2 (x² − 4) / (x − 2)",
+    answer: 4,
+    hint: "Factor the numerator: (x − 2)(x + 2) / (x − 2) → 4.",
+  },
+  {
+    prompt: "What is the derivative of x² at x = 3?",
+    formula: "d/dx x² |_{x=3}",
+    html: "d/dx x² at x = 3",
+    answer: 6,
+    hint: "2x at 3 is 6.",
+  },
+  {
+    prompt: "∫₀¹ 2x dx = ?",
+    formula: "∫_0^1 2x dx",
+    html: "∫ from 0 to 1 of 2x dx",
+    answer: 1,
+    hint: "Antiderivative x² from 0 to 1.",
+  },
+] as const;
+
+export function getDailyChallenge(now = new Date()) {
+  const start = Date.UTC(2026, 0, 1);
+  const days = Math.floor((now.getTime() - start) / 86400000);
+  return dailyChallengeBank[((days % dailyChallengeBank.length) + dailyChallengeBank.length) % dailyChallengeBank.length]!;
+}
+
+export const dailyChallenge = getDailyChallenge();
 
 export function loadChallenge(): ChallengeState {
   const stored = readJson<ChallengeState>(CHALLENGE_KEY, { day: todayKey(), streak: 0, solved: false, guess: "" });
@@ -230,7 +259,7 @@ export function loadChallenge(): ChallengeState {
 export function gradeChallenge(guess: string): ChallengeState {
   const current = loadChallenge();
   const numeric = Number(guess.trim());
-  const solved = Number.isFinite(numeric) && Math.abs(numeric - dailyChallenge.answer) < 1e-6;
+  const solved = Number.isFinite(numeric) && Math.abs(numeric - getDailyChallenge().answer) < 1e-6;
   const next: ChallengeState = {
     day: todayKey(),
     guess,
@@ -271,7 +300,7 @@ export function persistSavedSnapshot() {
 export function helpFor(page: CalculusStudioPage, mode: string) {
   const key = `${page}:${mode || "home"}`;
   const copy: Record<string, string> = {
-    "home:home": "Use search, the journey map, or numbered launch cards (keys 1–6) to open a lab. Progress and Continue remember the last experiment on this device.",
+    "home:home": "Search topics, tap a numbered card, or press 1–9 to open a lab. Continue, journey stats, and Challenge of the day remember progress on this device.",
     "limits:limits": "Compare left and right approaches. Lock δ to keep both sides equal, and watch the ε–δ bands on the graph.",
     "limits:continuity": "A function is continuous at a only if it is defined, the two-sided limit exists, and those values agree.",
     "limits:discontinuities": "Holes, jumps, and vertical blow-ups are drawn differently so the classification matches the picture.",

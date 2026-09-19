@@ -44,7 +44,7 @@ const ALGEBRA_TARGETS: RemainingStudioTarget[] = [
 ];
 
 const CALCULUS_TARGETS: RemainingStudioTarget[] = [
-  { studio: "calculus", pageId: "home", route: "/calculus", title: "Calculus Studio", modes: [] },
+  { studio: "calculus", pageId: "home", route: "/calculus", title: "Welcome to Calculus Studio", modes: [] },
   { studio: "calculus", pageId: "limits", route: "/calculus/limits", title: "Limits & Continuity Studio", modes: ["limits", "continuity", "discontinuities", "asymptotes", "lhopital"] },
   { studio: "calculus", pageId: "derivatives", route: "/calculus/derivatives", title: "Derivatives Studio", modes: ["tangent", "rules", "chain", "implicit", "higher", "linearization"] },
   { studio: "calculus", pageId: "derivative-applications", route: "/calculus/derivative-applications", title: "Derivative Applications Studio", modes: ["motion", "related", "curve", "optimization", "mvt"] },

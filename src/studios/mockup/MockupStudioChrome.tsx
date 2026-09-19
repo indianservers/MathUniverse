@@ -53,6 +53,7 @@ import StudioHomeButtons from "../../components/ui/StudioHomeButtons";
 import { StudioCanvasToolbar } from "../../components/ui/StudioCanvasToolbar";
 import { TopicIllustration } from "./labs/TopicIllustrations";
 import { studioNavPages, studioSidebarPages, type StudioMockupDefinition, type StudioMockupPage } from "./studioMockupCatalog";
+import { useLabMode } from "./studioLabKit";
 import { ModellingLaunchArt, ModellingNavIcon, modellingDatasets, modellingJourney } from "./modellingStudioIcons";
 import { IllustratedStudioHome, StudioLabCard } from "./studioHomeLayouts";
 import GeometryStudioHome from "../geometry/GeometryStudioHome";
@@ -93,8 +94,12 @@ import {
   markComplexComplete,
   markComplexVisit,
   useComplexSession,
+  writeComplexSession,
   COMPLEX_SEARCH_ALIASES,
 } from "../complex/complexStudioSession";
+import { markLandingVisit, relativeOpened, useLandingSession } from "../landing/studioLandingSession";
+import { LandingTeaser, hasLandingTeaser } from "../landing/StudioLandingTeasers";
+import { ModellingDatasetsMeta } from "../landing/StudioLandingExtras";
 
 const pageIcons: Record<string, LucideIcon> = {
   home: Home,
@@ -170,6 +175,19 @@ export function MockupTopicArt({ pageId }: { pageId: string }) {
   return <TopicIllustration pageId={pageId} />;
 }
 
+function ComplexHeaderPills({ page }: { page: StudioMockupPage }) {
+  const { tabs, mode, setMode } = useLabMode(page);
+  return (
+    <nav className="cx-pills is-header" aria-label={`${page.title} modes`}>
+      {tabs.map((item) => (
+        <button key={item} type="button" className={item === mode ? "active" : ""} aria-pressed={item === mode} onClick={() => setMode(item)}>
+          {item}
+        </button>
+      ))}
+    </nav>
+  );
+}
+
 export function MockupLearningStrip({ page, mode }: { page: StudioMockupPage; mode?: string }) {
   const copy = page.route.includes("/trigonometry") || page.route === "/trigonometry"
     ? trigModeLearning(page, mode)
@@ -205,25 +223,112 @@ export function MockupLearningStrip({ page, mode }: { page: StudioMockupPage; mo
 
 function LinearAlgebraNavIcon({ id }: { id: string }) {
   const glyphs: Record<string, ReactNode> = {
-    home: <path d="M4 11.2 12 4l8 7.2V20h-6v-6H10v6H4Z" />,
-    vectors: <path d="M3.2 11.2 20.6 3.4 12.8 20.8l-2.2-6.6Z" />,
-    matrices: <path d="M5 5h6v6H5Zm8 0h6v6h-6ZM5 13h6v6H5Zm8 0h6v6h-6Z" />,
-    "row-reduction": <><path d="M4 6h16v12H4Z" fillOpacity=".18" /><path d="M4 10h16M4 14h16M9 6v12" fill="none" /></>,
-    "linear-transforms": <><path d="M4 15h7v5H4Z" /><path d="M13 8h7v5h-7Z" fillOpacity=".55" /><path d="M11 16.5 14.5 11" fill="none" /></>,
-    determinants: <path d="M12 4 20 19H4Z" />,
-    "vector-spaces": <path d="M12 3 20 7.5v9L12 21 4 16.5v-9Z" />,
-    eigenvectors: <path d="M8 20 12 4l4 16M9.2 13h5.6" fill="none" strokeWidth="2.2" />,
-    orthogonality: <path d="M5 19V5h3v11h11v3Z" />,
-    "least-squares": <><path d="M4 18 9 12l4 3 7-9" fill="none" strokeWidth="2" /><circle cx="9" cy="12" r="1.4" /><circle cx="13" cy="15" r="1.4" /><circle cx="20" cy="6" r="1.4" /></>,
-    playground: <><path d="M7 8h10v10H7Z" fillOpacity=".2" /><path d="M7 8 12 4l5 4v10l-5 4-5-4Z" /></>,
+    home: (
+      <>
+        <rect x="4.2" y="4.2" width="6.6" height="6.6" rx="1.5" />
+        <rect x="13.2" y="4.2" width="6.6" height="6.6" rx="1.5" />
+        <rect x="4.2" y="13.2" width="6.6" height="6.6" rx="1.5" />
+        <rect x="13.2" y="13.2" width="6.6" height="6.6" rx="1.5" />
+      </>
+    ),
+    vectors: (
+      <>
+        <path d="M3.8 12.6 20.4 4.6 13.1 20.2 10.8 13.4Z" />
+        <path d="M10.8 13.4 20.4 4.6" />
+        <path d="M10.8 13.4 13.1 20.2" />
+      </>
+    ),
+    matrices: (
+      <>
+        <rect x="4" y="4.4" width="16" height="15.2" rx="2" />
+        <path d="M4 9.4h16M4 14.6h16M9.4 4.4v15.2M14.6 4.4v15.2" />
+      </>
+    ),
+    "row-reduction": (
+      <>
+        <path d="M4.4 6.2h15.2" />
+        <path d="M4.4 12h10.4" />
+        <path d="M4.4 17.8h6.2" />
+        <path d="M19.6 6.2v4.2M14.8 12v4.2M10.6 17.8V21" />
+      </>
+    ),
+    "linear-transforms": (
+      <>
+        <rect x="3.6" y="11.8" width="7.4" height="7.4" rx="1.2" />
+        <path d="M12 15.4h2.6" />
+        <path d="M15.4 5.6 21 8.2l-2.4 9.2-5.6-2.6Z" />
+      </>
+    ),
+    determinants: (
+      <>
+        <path d="M12 3.4 20.8 19.6H3.2Z" />
+        <path d="M12 9.6v4.6M12 16.8h.01" />
+      </>
+    ),
+    "vector-spaces": (
+      <>
+        <path d="M4.2 15.4 12 11.2l7.8 4.2L12 19.6Z" />
+        <path d="M4.2 11.2 12 7l7.8 4.2" />
+        <path d="M4.2 8.2 12 4l7.8 4.2" />
+      </>
+    ),
+    eigenvectors: (
+      <>
+        <path d="M8.4 20.2C8.6 12.4 10.2 3.8 12.4 3.8c2.2 0 3.6 8.4 3.8 16.4" />
+        <path d="M7.2 13h9.6" />
+      </>
+    ),
+    orthogonality: (
+      <>
+        <path d="M5.2 4.4v15.2H20" />
+        <path d="M5.2 13.4h6.2v6.2" />
+      </>
+    ),
+    "least-squares": (
+      <>
+        <path d="M4.2 18.4 19.8 6.2" />
+        <circle cx="8" cy="15.2" r="1.45" fill="currentColor" stroke="none" />
+        <circle cx="12.2" cy="11.6" r="1.45" fill="currentColor" stroke="none" />
+        <circle cx="16.6" cy="8.4" r="1.45" fill="currentColor" stroke="none" />
+      </>
+    ),
+    playground: (
+      <>
+        <path d="M7 8.2h10l-1.2 10.4H8.2Z" />
+        <path d="M7 8.2 12 3.8 17 8.2" />
+        <path d="M10.4 12.2 14.6 14.4 10.4 16.6Z" fill="currentColor" stroke="none" />
+      </>
+    ),
   };
   const glyph = glyphs[id] ?? glyphs.playground;
-  return <svg viewBox="0 0 24 24" aria-hidden="true"><g fill="currentColor" fillOpacity=".92" stroke="currentColor" strokeWidth="1.15" strokeLinejoin="round">{glyph}</g></svg>;
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <g fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">{glyph}</g>
+    </svg>
+  );
+}
+
+function ComplexNavIcon({ id }: { id: string }) {
+  const glyphs: Record<string, ReactNode> = {
+    home: <path d="M4 11.2 12 4l8 7.2V20h-6v-6H10v6H4Z" />,
+    "argand-plane": <><circle cx="12" cy="12" r="7.2" fill="none" /><path d="M12 5v14M5 12h14" fill="none" /></>,
+    arithmetic: <path d="M7 7h4v4H7Zm6 0h4v4h-4ZM7 13h4v4H7Zm6 2h4M8 15h2" fill="none" />,
+    "polar-forms": <><circle cx="12" cy="12" r="7" fill="none" /><path d="M12 12 17 8" fill="none" /></>,
+    rotation: <><path d="M5 12a7 7 0 0 1 12-4" fill="none" /><path d="M16 5v4h4" fill="none" /></>,
+    roots: <path d="M12 4 19 8.5v7L12 20 5 15.5v-7Z" />,
+    euler: <path d="M6 8c4-4 8 8 12 0M6 16c4-4 8 8 12 0" fill="none" />,
+    loci: <><circle cx="9" cy="12" r="5" fill="none" /><circle cx="15" cy="12" r="5" fill="none" /></>,
+    fractals: <path d="M12 4v7l5 9H7l5-9" />,
+    "waves-circuits": <path d="M3 12c2-6 4 6 6 0s4 6 6 0 4 6 6 0" fill="none" />,
+  };
+  const glyph = glyphs[id] ?? glyphs.home;
+  return <svg viewBox="0 0 24 24" aria-hidden="true"><g fill="currentColor" fillOpacity=".2" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round">{glyph}</g></svg>;
 }
 
 function NavIcon({ id, studio }: { id: string; studio?: string }) {
   if (studio === "modelling") return <ModellingNavIcon id={id} />;
   if (studio === "linear-algebra") return <LinearAlgebraNavIcon id={id} />;
+  if (studio === "complex-numbers") return <ComplexNavIcon id={id} />;
   const glyphId = studio === "discrete" && id === "graphs" ? "network-graph" : id;
   const filled: Record<string, ReactNode> = {
     home: <path d="M4 11.2 12 4l8 7.2V20h-6v-6H10v6H4Z" />,
@@ -283,6 +388,7 @@ export function MockupStudioChrome({
   const isDiscrete = studio.id === "discrete";
   const isLinear = studio.id === "linear-algebra";
   const isComplex = studio.id === "complex-numbers";
+  const isStats = studio.id === "statistics";
   const isNumberSense = isDiscrete && page.id === "number-sense";
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
@@ -320,6 +426,10 @@ export function MockupStudioChrome({
     if (!isComplex || page.id === "home") return;
     markComplexVisit(page.id, page.route, page.label, mode);
   }, [isComplex, page.id, page.route, page.label, mode]);
+  useEffect(() => {
+    if (!(isModel || isDiscrete || isStats) || page.id === "home") return;
+    markLandingVisit(studio.id, page.id, page.route, page.label);
+  }, [isModel, isDiscrete, isStats, studio.id, page.id, page.route, page.label]);
   useEffect(() => {
     if (!isGeo && !isNumberSense) return;
     if (isGeo) document.title = `${page.id === "home" ? "Geometry Studio" : page.title} | Math Universe`;
@@ -403,7 +513,7 @@ export function MockupStudioChrome({
   }, [page.id]);
 
   return (
-    <main className={`msk-shell msk-${studio.id}${open ? " is-open" : ""}${(isTrig && session.theme === "dark") || (isGeo && geoSession.theme === "dark") ? " is-dark" : ""}${(isTrig && session.teacherMode) || (isGeo && geoSession.teacherMode) || (isDiscrete && discreteTeacher) || (isLinear && linearSession.teacherMode && page.id !== "home") ? " is-teacher" : ""}${(isTrig || isModel || isGeo || isDiscrete || isLinear || isComplex) && page.id !== "home" ? " is-lab" : ""}`}>
+    <main data-lab-id={page.id} className={`msk-shell msk-${studio.id}${open ? " is-open" : ""}${(isTrig && session.theme === "dark") || (isGeo && geoSession.theme === "dark") || (isComplex && complexSession.theme === "dark") ? " is-dark" : ""}${(isTrig && session.teacherMode) || (isGeo && geoSession.teacherMode) || (isDiscrete && discreteTeacher) || (isLinear && linearSession.teacherMode && page.id !== "home") || (isComplex && complexSession.teacherMode && page.id !== "home") ? " is-teacher" : ""}${(isTrig || isModel || isGeo || isDiscrete || isLinear || isComplex) && page.id !== "home" ? " is-lab" : ""}`} data-cx-page={isComplex ? page.id : undefined}>
       {open ? <button className="msk-backdrop" type="button" aria-label="Close menu" onClick={() => setOpen(false)} /> : null}
       <aside className="msk-sidebar">
         <Link className="msk-brand" to={studio.basePath}>
@@ -478,13 +588,14 @@ export function MockupStudioChrome({
                 <CheckCircle2 />
               </button>
             ) : null}
-            {page.id !== "home" && !isLinear ? <StudioCanvasToolbar /> : null}
+            {page.id !== "home" && !isLinear && !isComplex ? <StudioCanvasToolbar /> : null}
             {isTrig ? (
               <div className="msk-units" role="group" aria-label="Angle units">
                 <button type="button" className={`msk-units-deg${session.units === "deg" ? " active" : ""}`} aria-pressed={session.units === "deg"} onClick={() => writeTrigSession({ units: "deg" })}>Deg</button>
                 <button type="button" className={`msk-units-rad${session.units === "rad" ? " active" : ""}`} aria-pressed={session.units === "rad"} onClick={() => writeTrigSession({ units: "rad" })}>Rad</button>
               </div>
             ) : null}
+            {isLinear && page.id !== "home" ? null : (
             <label className={`msk-search${searchOpen || query || isTrig || isModel || isGeo || isDiscrete || isLinear || isComplex ? " is-open" : ""}`}>
               <button type="button" aria-label="Search" onClick={() => setSearchOpen((value) => !value)}><Search /></button>
               {searchOpen || query || isTrig || isModel || isGeo || isDiscrete || isLinear || isComplex ? (
@@ -500,7 +611,8 @@ export function MockupStudioChrome({
               ) : null}
               {query ? <button type="button" aria-label="Clear search" onClick={() => setQuery("")}><X /></button> : null}
             </label>
-            {query ? (
+            )}
+            {query && !(isLinear && page.id !== "home") ? (
               <ul className="msk-search-hits">
                 {filtered.map((item) => (
                   <li key={item.key}><Link to={item.to} onClick={() => setQuery("")}>{item.label}<small>{item.detail}</small></Link></li>
@@ -508,12 +620,38 @@ export function MockupStudioChrome({
               </ul>
             ) : null}
             {isLinear ? (
+              page.id === "home" ? (
               <>
                 <span className="la-stat-chip" aria-label="Streak 0"><Flame />0</span>
                 <span className="la-stat-chip" aria-label="0 XP"><Star />0 XP</span>
-                {page.id === "home"
-                  ? <a className="la-stat-chip" href="#la-journey"><Compass />Journey</a>
-                  : <Link className="la-stat-chip" to="/linear-algebra#la-journey"><Compass />Journey</Link>}
+                <a className="la-stat-chip" href="#la-journey"><Compass />Journey</a>
+              </>
+              ) : null
+            ) : isComplex && page.id !== "home" ? (
+              <>
+                {page.id === "waves-circuits" ? <ComplexHeaderPills page={page} /> : null}
+                {page.id === "polar-forms" ? <button type="button" className="cx-chip" onClick={() => setHelpOpen(true)}>Quick tour</button> : null}
+                {page.id === "euler" ? (
+                  <button type="button" className="cx-chip" onClick={() => window.dispatchEvent(new Event("cx-lab-reset"))}>Reset</button>
+                ) : null}
+                {page.id === "loci" ? (
+                  <>
+                    <button type="button" className="cx-chip" onClick={() => window.dispatchEvent(new Event("cx-lab-animate"))}>Animate</button>
+                    <span className="cx-chip">1.0×</span>
+                  </>
+                ) : null}
+                {page.id === "arithmetic" ? (
+                  <>
+                    <button type="button" className="cx-chip" onClick={() => void navigator.clipboard?.writeText(window.location.href)}>Share</button>
+                    <span className="cx-chip is-saved"><CheckCircle2 />Saved</span>
+                    <button type="button" className="cx-chip is-reset" onClick={() => window.location.reload()}>Reset</button>
+                  </>
+                ) : page.id === "euler" || page.id === "waves-circuits" ? null : (
+                  <>
+                    <span className="cx-chip" aria-label="Streak 0"><Flame />0</span>
+                    <span className="cx-chip" aria-label={`${complexSession.xp} XP`}><Star />{complexSession.xp} XP</span>
+                  </>
+                )}
               </>
             ) : isNumberSense ? (
               <>
@@ -526,9 +664,9 @@ export function MockupStudioChrome({
                 <span><Star />{session.xp} XP</span>
               </>
             ) : null}
-            {isTrig || isGeo ? (
-              <button type="button" aria-label={(isGeo ? geoSession.theme : session.theme) === "dark" ? "Switch to light theme" : "Switch to dark theme"} onClick={() => (isGeo ? writeGeoSession({ theme: geoSession.theme === "dark" ? "light" : "dark" }) : writeTrigSession({ theme: session.theme === "dark" ? "light" : "dark" }))}>
-                {(isGeo ? geoSession.theme : session.theme) === "dark" ? <Sun /> : <Moon />}
+            {isTrig || isGeo || isComplex ? (
+              <button type="button" aria-label={(isComplex ? complexSession.theme : isGeo ? geoSession.theme : session.theme) === "dark" ? "Switch to light theme" : "Switch to dark theme"} onClick={() => (isComplex ? writeComplexSession({ theme: complexSession.theme === "dark" ? "light" : "dark" }) : isGeo ? writeGeoSession({ theme: geoSession.theme === "dark" ? "light" : "dark" }) : writeTrigSession({ theme: session.theme === "dark" ? "light" : "dark" }))}>
+                {(isComplex ? complexSession.theme : isGeo ? geoSession.theme : session.theme) === "dark" ? <Sun /> : <Moon />}
               </button>
             ) : null}
             {isTrig ? (
@@ -545,6 +683,12 @@ export function MockupStudioChrome({
                   Teacher mode
                 </button>
               )
+            ) : isComplex ? (
+              page.id === "home" || page.id === "arithmetic" || page.id === "polar-forms" || page.id === "euler" || page.id === "waves-circuits" ? null : (
+                <button type="button" className={`msk-teacher${complexSession.teacherMode ? " active" : ""}`} aria-pressed={complexSession.teacherMode} onClick={() => writeComplexSession({ teacherMode: !complexSession.teacherMode })}>
+                  Teacher mode
+                </button>
+              )
             ) : isNumberSense ? (
               <button type="button" className={`msk-teacher${numberSenseSession.teacherMode ? " active" : ""}`} aria-pressed={numberSenseSession.teacherMode} aria-label="Teacher mode" onClick={() => writeNumberSenseSession({ teacherMode: !numberSenseSession.teacherMode })}>
                 Teacher mode
@@ -554,7 +698,7 @@ export function MockupStudioChrome({
                 Teacher mode
               </button>
             )}
-            {isGeo && page.id !== "home" ? null : (
+            {isLinear && page.id !== "home" ? null : isGeo && page.id !== "home" ? null : (
               <button type="button" aria-label="Keyboard shortcuts" onClick={() => setHelpOpen(true)}><HelpCircle /></button>
             )}
             {isModel ? (
@@ -563,7 +707,7 @@ export function MockupStudioChrome({
                 <span>3</span>
               </button>
             ) : null}
-            {isModel ? null : (
+            {isModel || (isLinear && page.id !== "home") || (isComplex && (page.id === "arithmetic" || page.id === "polar-forms" || page.id === "euler" || page.id === "waves-circuits" || page.id === "fractals")) ? null : (
               <button type="button" aria-label="Settings" onClick={() => setSettingsOpen(true)}><Settings /></button>
             )}
             {isModel ? <button type="button" className="msk-avatar" aria-label="Account"><User /></button> : null}
@@ -658,6 +802,7 @@ export function MockupStudioHome({ studio }: { studio: StudioMockupDefinition })
   const session = useTrigSession();
   const linearSession = useLinearSession();
   const complexSession = useComplexSession();
+  const landing = useLandingSession(studio.id);
   const pool = labs.filter((item) => item.challenge.prompt !== "0");
   const challengePage = isModel ? labs.find((item) => item.id === "networks") ?? pool[0] : pool[dailyChallengeIndex(pool.length)] ?? pool[0];
   const next = nextTrigLab(labs, session.completed);
@@ -668,9 +813,11 @@ const launchTitle = isModel ? "Explore modelling domains" : isTrig ? "Explore Ke
       ? continueLinearHref(linearSession)
       : studio.id === "complex-numbers"
         ? continueComplexHref(complexSession)
+        : isModel
+          ? landing.lastRoute
         : studio.continueRoute;
   const continueLabel = isModel
-    ? "Epidemic Spread in Campus"
+    ? landing.lastLabel
     : isTrig
       ? session.lastLabel
       : studio.id === "linear-algebra"
@@ -678,12 +825,15 @@ const launchTitle = isModel ? "Explore modelling domains" : isTrig ? "Explore Ke
         : studio.id === "complex-numbers"
           ? complexSession.lastLabel
           : studio.continueLabel;
+  const completedIds = studio.id === "linear-algebra"
+    ? linearSession.completed
+    : studio.id === "complex-numbers"
+      ? complexSession.completed
+      : studio.id === "modelling" || studio.id === "discrete" || studio.id === "statistics"
+        ? landing.completed
+        : session.completed;
   const progress = labs.length
-    ? Math.round((((studio.id === "linear-algebra"
-      ? linearSession.completed
-      : studio.id === "complex-numbers"
-        ? complexSession.completed
-        : session.completed).filter((id) => labs.some((lab) => lab.id === id)).length) / labs.length) * 100)
+    ? Math.round((completedIds.filter((id) => labs.some((lab) => lab.id === id)).length / labs.length) * 100)
     : 0;
 
   if (studio.id === "geometry") return <GeometryStudioHome studio={studio} />;
@@ -703,7 +853,7 @@ const launchTitle = isModel ? "Explore modelling domains" : isTrig ? "Explore Ke
                   item={item}
                   index={index}
                   studioId="modelling"
-                  art={<ModellingLaunchArt id={item.id} />}
+                  art={hasLandingTeaser("modelling", item.id) ? <LandingTeaser studioId="modelling" labId={item.id} /> : <ModellingLaunchArt id={item.id} />}
                   cta="Launch →"
                   numbered
                 />
@@ -717,6 +867,12 @@ const launchTitle = isModel ? "Explore modelling domains" : isTrig ? "Explore Ke
                     <ModellingLaunchArt id={item.id} />
                     <b>{item.title}</b>
                     <small>{item.tag}</small>
+                    <ModellingDatasetsMeta
+                      title={item.tag}
+                      n={item.id === "epidemics" ? 180 : item.id === "finance" ? 252 : 48}
+                      units={item.id === "finance" ? "USD" : item.id === "epidemics" ? "cases" : "units"}
+                      kind={item.id === "epidemics" ? "measured" : "fictional"}
+                    />
                   </Link>
                 ))}
               </div>
@@ -725,19 +881,22 @@ const launchTitle = isModel ? "Explore modelling domains" : isTrig ? "Explore Ke
           <aside className="msk-aside">
             <section className="msk-panel msk-continue">
               <h2>Continue model</h2>
-              <div className="msk-continue-art"><ModellingLaunchArt id="epidemics" /></div>
-              <p><strong>{continueLabel}</strong><span>Last edited 2h ago</span></p>
+              <div className="msk-continue-art"><ModellingLaunchArt id={landing.lastId || "epidemics"} /></div>
+              <p><strong>{continueLabel}</strong><span>{relativeOpened(landing.lastOpenedAt)}</span></p>
               <Link className="msk-cta" to={continueTo}>Continue →</Link>
             </section>
             <section className="msk-panel">
               <h2>Recent journey</h2>
               <ol className="msk-journey-list">
-                {modellingJourney.map((item) => (
-                  <li key={item.id}>
-                    <i className={item.done ? "done" : item.now ? "now" : ""} />
-                    <Link to={`/mathematical-modelling/${item.id}`}>{item.label}<small>{item.note}</small></Link>
-                  </li>
-                ))}
+                {labs.slice(0, 6).map((item, index) => {
+                  const done = landing.completed.includes(item.id);
+                  return (
+                    <li key={item.id}>
+                      <i className={done ? "done" : index === 0 ? "now" : ""} />
+                      <Link to={item.route}>{item.label}</Link>
+                    </li>
+                  );
+                })}
               </ol>
               <Link className="msk-teach" to="/mathematical-modelling">View all journey →</Link>
             </section>
@@ -748,6 +907,7 @@ const launchTitle = isModel ? "Explore modelling domains" : isTrig ? "Explore Ke
               <small>Find the fastest path with traffic constraints and road closures.</small>
               <Link className="msk-cta" to="/mathematical-modelling/networks">Start Challenge →</Link>
             </section>
+            <p className="sl-kicker">SIR/SEIR overlay, inflation switch, and train/validation live on the lab cards.</p>
           </aside>
         </div>
         <MockupLearningStrip page={studio.pages[0]} />

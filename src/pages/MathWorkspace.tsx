@@ -2425,6 +2425,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
     title: () => portableWorkspaceType === "cas" ? "Computer Algebra Studio" : portableWorkspaceType === "2d-graph" ? "2D Graph Workspace" : portableWorkspaceType === "3d-geometry" ? "3D Geometry Workspace" : "2D Geometry Workspace",
     serializeScene: () => ({
       workspaceSnapshot: snapshot(),
+      ...(portableWorkspaceType === "2d-geometry" ? { geometryCamera } : {}),
       ...(portableWorkspaceType === "2d-graph" ? { linkedParameters: readLinkedParameters() } : {}),
       ...(portableWorkspaceType === "cas" ? { casNotebookState, selectedCasCellId, composerInput: casComposerInput, composerOperation: casComposerOperation } : {}),
       workspaceType: portableWorkspaceType,
@@ -2514,7 +2515,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
         aria-label="Import workspace file"
         onChange={(event) => void importPortableWorkspaceFile(event.target.files?.[0] ?? null)}
       />
-      {singleViewStudio && <ShareExportControl adapter={portableAdapter} />}
+      {singleViewStudio && !singleViewCasStudio && <ShareExportControl adapter={portableAdapter} />}
       {!singleViewStudio && <WorkspaceMainMenu active={workspaceView} onChange={setWorkspaceView} docked={singleView} />}
       {!singleView && <TopicHeader title="Math Workspace" subtitle="A unified workspace for graphing, commands, results, and dynamic geometric construction." difficulty="All levels" estimatedMinutes={45} />}
 
@@ -2748,6 +2749,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
           onUndo={undoWorkspace}
           onRedo={redoWorkspace}
           onShare={exportShareUrl}
+          shareControl={<ShareExportControl adapter={portableAdapter} className="portable-share-inline cas-header-share" />}
         />
       )}
 
@@ -5011,6 +5013,7 @@ type CasStudioWorkspaceProps = {
   onUndo: () => void;
   onRedo: () => void;
   onShare: () => void;
+  shareControl?: ReactNode;
 };
 
 function LegacyCasStudioWorkspace({
@@ -5266,7 +5269,7 @@ function CasStudioWorkspaceV2(props: CasStudioWorkspaceProps) {
   const {
     state, selectedCell, composerInput, composerOperation, onSelectCell, onUpdateCell, onRunCell, onAddCell,
     onDuplicateCell, onDeleteCell, onReorderCells, onReset, onModeChange, onAssumptionsChange,
-    onComposerInputChange, onComposerOperationChange, onSendToGraph, onExport, onUndo, onRedo, onShare,
+    onComposerInputChange, onComposerOperationChange, onSendToGraph, onExport, onUndo, onRedo, onShare, shareControl,
   } = props;
   const navigate = useNavigate();
   const [workspaceQuery, setWorkspaceQuery] = useState("");
@@ -5440,7 +5443,9 @@ function CasStudioWorkspaceV2(props: CasStudioWorkspaceProps) {
         <button type="button" className="cas-pane-toggle" onClick={toggleRightPane} aria-expanded={rightPaneOpen || mobilePanel === "result"} aria-controls="cas-result-inspector" title={rightPaneOpen ? "Collapse result inspector" : "Open result inspector"}>{rightPaneOpen ? <PanelRightClose /> : <PanelRightOpen />}<span>Results</span></button>
         <button type="button" className="cas-pane-toggle cas-pane-toggle-history" onClick={() => setHistoryPaneOpen((open) => !open)} aria-expanded={historyPaneOpen} aria-controls="cas-history-workbench" title={historyPaneOpen ? "Collapse history and spreadsheet" : "Open history and spreadsheet"}><ChevronDown className={historyPaneOpen ? "" : "rotate-180"} /><span>History</span></button>
         <label className="cas-global-search"><Search /><input value={workspaceQuery} onChange={(event) => setWorkspaceQuery(event.target.value)} placeholder="Search" /></label>
-        <button type="button" onClick={() => { void onShare(); setStatusMessage("Share link copied"); }}><Share2 /><span>Share</span></button>
+        {shareControl ?? (
+          <button type="button" onClick={() => { void onShare(); setStatusMessage("Share link copied"); }}><Share2 /><span>Share</span></button>
+        )}
         <button type="button" onClick={onExport}><Download /><span>Export</span></button>
         <button type="button" onClick={() => { setInspectorTab("assumptions"); setRightPaneOpen(true); setMobilePanel("result"); }} aria-label="Settings"><Settings /></button>
         <button type="button" className="cas-avatar" onClick={() => setStatusMessage("Signed in workspace profile")} aria-label="User profile"><User /></button>

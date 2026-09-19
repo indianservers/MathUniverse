@@ -19,7 +19,6 @@ import {
   Magnet,
   Maximize2,
   Menu,
-  Moon,
   MousePointer2,
   Move,
   Minus,
@@ -34,7 +33,6 @@ import {
   Share2,
   SlidersHorizontal,
   Star,
-  Sun,
   Slash,
   Trash2,
   Unlock,
@@ -57,6 +55,13 @@ import {
 } from "react";
 import { roundTo } from "../../../utils/math";
 import type { GeometryCertificationReport } from "../../../workspace/geometryConstructionCertification";
+import WorkspaceChromeThemeToggle from "../WorkspaceChromeThemeToggle";
+import {
+  CHROME_THEME_STORAGE_KEYS,
+  persistWorkspaceChromeTheme,
+  readWorkspaceChromeTheme,
+  type WorkspaceChromeTheme,
+} from "../../../workspace/workspaceChromeTheme";
 
 export type GeometryTool =
   | "select"
@@ -237,28 +242,15 @@ export type GeometryCamera = { x: number; y: number; width: number; height: numb
 // both construction objects and their coordinate labels impractical to inspect.
 export const MAX_GEOMETRY_CAMERA_WIDTH = 163_840;
 export const MAX_GEOMETRY_CAMERA_HEIGHT = 107_520;
-export type GeometryStudioTheme = "dark" | "light";
-const GEOMETRY_THEME_STORAGE_KEY = "math-universe-geometry-theme";
+export type GeometryStudioTheme = WorkspaceChromeTheme;
+const GEOMETRY_THEME_STORAGE_KEY = CHROME_THEME_STORAGE_KEYS.geometry;
 
 function readGeometryStudioTheme(): GeometryStudioTheme {
-  if (typeof window === "undefined") {
-    return "dark";
-  }
-  try {
-    return window.localStorage.getItem(GEOMETRY_THEME_STORAGE_KEY) === "light"
-      ? "light"
-      : "dark";
-  } catch {
-    return "dark";
-  }
+  return readWorkspaceChromeTheme(GEOMETRY_THEME_STORAGE_KEY);
 }
 
 function persistGeometryStudioTheme(theme: GeometryStudioTheme) {
-  try {
-    window.localStorage.setItem(GEOMETRY_THEME_STORAGE_KEY, theme);
-  } catch {
-    /* ignore quota / private-mode failures */
-  }
+  persistWorkspaceChromeTheme(GEOMETRY_THEME_STORAGE_KEY, theme);
 }
 export type GeometryProtocolEntry = {
   id: string;
@@ -675,7 +667,7 @@ export default function GeometryWorkspacePanel({
   useEffect(() => {
     document.documentElement.setAttribute(
       "data-geometry-workspace-theme",
-      studioTheme,
+      studioTheme === "default" ? "dark" : studioTheme,
     );
     return () => {
       document.documentElement.removeAttribute("data-geometry-workspace-theme");
@@ -687,7 +679,8 @@ export default function GeometryWorkspacePanel({
       data-active-pane={activePane}
       data-expanded-pane={expandedPane ?? undefined}
       data-geometry-studio-mode={studioMode}
-      data-geometry-theme={studioTheme}
+      data-geometry-theme={studioTheme === "default" ? "dark" : studioTheme}
+      data-chrome-theme={studioTheme}
       style={paneStyle}
     >
       <header className="geometry-studio-topbar">
@@ -769,32 +762,14 @@ export default function GeometryWorkspacePanel({
           >
             <Settings className="h-4 w-4" />
           </button>
-          <div className="geometry-theme-toggle" role="group" aria-label="Color theme">
-            <button
-              type="button"
-              aria-pressed={studioTheme === "dark"}
-              title="Dark theme"
-              aria-label="Dark theme"
-              onClick={() => {
-                setStudioTheme("dark");
-                persistGeometryStudioTheme("dark");
-              }}
-            >
-              <Moon className="h-4 w-4" />
-            </button>
-            <button
-              type="button"
-              aria-pressed={studioTheme === "light"}
-              title="Light theme"
-              aria-label="Light theme"
-              onClick={() => {
-                setStudioTheme("light");
-                persistGeometryStudioTheme("light");
-              }}
-            >
-              <Sun className="h-4 w-4" />
-            </button>
-          </div>
+          <WorkspaceChromeThemeToggle
+            theme={studioTheme}
+            storageKey={GEOMETRY_THEME_STORAGE_KEY}
+            onChange={(next) => {
+              setStudioTheme(next);
+              persistGeometryStudioTheme(next);
+            }}
+          />
           <button
             type="button"
             className="geometry-mobile-overflow"
