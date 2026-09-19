@@ -142,11 +142,15 @@ function VectorsLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNode
   const [s, setS] = useState(vecInit);
   const [view, setView] = useState<"2D" | "3D">("3D");
   const [op, setOp] = useState("Dot");
+  const [k, setK] = useState(2);
   const [show, setShow] = useState({ para: true, result: true, components: true, angle: true });
   const [selected, setSelected] = useState<"a" | "b">("a");
   const a = [s.ax, s.ay, s.az];
   const b = [s.bx, s.by, s.bz];
-  const r = [s.ax + s.bx, s.ay + s.by, s.az + s.bz];
+  const sum = [s.ax + s.bx, s.ay + s.by, s.az + s.bz];
+  const diff = sub3(a, b);
+  const scaled = scale3(a, k);
+  const r = op === "Subtract" ? diff : op === "Scale" ? scaled : sum;
   const dot = dot3(a, b);
   const cross = cross3(a, b);
   const angle = Math.acos(clamp(dot / (mag3(a) * mag3(b) || 1), -1, 1)) * 180 / Math.PI;
@@ -204,15 +208,24 @@ function VectorsLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNode
               </div>
             </Card>
             <Card title="Resultant">
-              <p className="la-eq">r = <span style={{ color: LA_A }}>a</span> + <span style={{ color: LA_B }}>b</span> = ({fmt(r[0] ?? 0, 0)}, {fmt(r[1] ?? 0, 0)}, {fmt(r[2] ?? 0, 0)})</p>
+              <p className="la-eq">r = {op === "Subtract" ? <><span style={{ color: LA_A }}>a</span> − <span style={{ color: LA_B }}>b</span></> : op === "Scale" ? <>{fmt(k, 1)} <span style={{ color: LA_A }}>a</span></> : <><span style={{ color: LA_A }}>a</span> + <span style={{ color: LA_B }}>b</span></>} = ({fmt(r[0] ?? 0, 0)}, {fmt(r[1] ?? 0, 0)}, {fmt(r[2] ?? 0, 0)})</p>
+              {op === "Scale" ? <Stepper label="k" value={k} min={-3} max={4} step={0.1} onChange={setK} /> : null}
               <div className="la-result-row">
                 <select aria-label="Resultant operation" value={op} onChange={(event) => setOp(event.target.value)}>
                   <option>Add</option>
                   <option>Subtract</option>
+                  <option>Scale</option>
                   <option>Dot</option>
                   <option>Cross</option>
                 </select>
-                <button type="button" className="la-soft" onClick={() => setS({ ...s })}>Recompute</button>
+                <button type="button" className="la-soft" onClick={() => setS({
+                  ax: Math.round(s.ax * 100) / 100,
+                  ay: Math.round(s.ay * 100) / 100,
+                  az: Math.round(s.az * 100) / 100,
+                  bx: Math.round(s.bx * 100) / 100,
+                  by: Math.round(s.by * 100) / 100,
+                  bz: Math.round(s.bz * 100) / 100,
+                })}>Recompute</button>
               </div>
             </Card>
             <Card title="Display options">
@@ -234,7 +247,7 @@ function VectorsLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNode
               extra={extra}
               fallback={view === "3D" ? (
                 <StudioMath3D label="3D vectors">
-                  {show.para ? <MathParallelogram a={[s.ax, s.ay, s.az]} b={[s.bx, s.by, s.bz]} color={LA_C} /> : null}
+                  {show.para && op !== "Scale" ? <MathParallelogram a={[s.ax, s.ay, s.az]} b={[s.bx, s.by, s.bz]} color={LA_C} /> : null}
                   <MathArrow to={[s.ax, s.ay, s.az]} color={LA_A} />
                   <MathArrow to={[s.bx, s.by, s.bz]} color={LA_B} />
                   {show.result ? <MathArrow to={[r[0] ?? 0, r[1] ?? 0, r[2] ?? 0]} color={LA_C} /> : null}
@@ -269,10 +282,11 @@ function VectorsLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNode
                   <rect width="560" height="400" fill="#f7fbff" />
                   <ArrowDefs />
                   <AxisGrid ox={ox} oy={oy} unit={u} dark={false} />
-                  {show.para ? <polygon points={`${o.x},${o.y} ${pa.x},${pa.y} ${pr.x},${pr.y} ${pb.x},${pb.y}`} fill="rgba(245,158,11,.18)" stroke={LA_C} /> : null}
+                  {show.para && op !== "Scale" ? <polygon points={`${o.x},${o.y} ${pa.x},${pa.y} ${p(sum[0] ?? 0, sum[1] ?? 0, 0).x},${p(sum[0] ?? 0, sum[1] ?? 0, 0).y} ${pb.x},${pb.y}`} fill="rgba(245,158,11,.18)" stroke={LA_C} /> : null}
                   <VectorRay x1={o.x} y1={o.y} x2={pa.x} y2={pa.y} color={LA_A} marker="la-a" />
                   <VectorRay x1={o.x} y1={o.y} x2={pb.x} y2={pb.y} color={LA_B} marker="la-b" />
                   {show.result ? <VectorRay x1={o.x} y1={o.y} x2={pr.x} y2={pr.y} color={LA_C} marker="la-c" /> : null}
+                  {op === "Subtract" ? <VectorRay x1={pb.x} y1={pb.y} x2={pa.x} y2={pa.y} color={LA_C} dashed marker="la-c" /> : null}
                   {show.components ? <VectorRay x1={o.x} y1={o.y} x2={pab.x} y2={pab.y} color={LA_E} dashed marker="la-e" /> : null}
                   <DragHandle x={pa.x} y={pa.y} fill={LA_A} label={`a = (${fmt(s.ax, 0)}, ${fmt(s.ay, 0)}, ${fmt(s.az, 0)})`} selected={selected === "a"} />
                   <DragHandle x={pb.x} y={pb.y} fill={LA_B} label={`b = (${fmt(s.bx, 0)}, ${fmt(s.by, 0)}, ${fmt(s.bz, 0)})`} selected={selected === "b"} />
@@ -283,7 +297,7 @@ function VectorsLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNode
             <div className="la-legend-row">
               <span><i style={{ background: LA_A }} />a</span>
               <span><i style={{ background: LA_B }} />b</span>
-              <span><i style={{ background: LA_C }} />r = a + b</span>
+              <span><i style={{ background: LA_C }} />r = {op === "Subtract" ? "a − b" : op === "Scale" ? "k a" : "a + b"}</span>
               <span><i style={{ background: LA_E }} />a proj</span>
               <span><i style={{ background: LA_B }} />b proj</span>
             </div>
@@ -326,6 +340,7 @@ function VectorsLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNode
 function MatricesLab({ page }: { page: StudioMockupPage }) {
   const [A, setA] = useState([[1, 2, -1], [0, 3, 4]]);
   const [B, setB] = useState([[2, 1], [0, -1], [3, 2]]);
+  const [animate, setAnimate] = useState(false);
   const ops = ["Multiply", "Add", "Inverse", "Transpose", "Block"];
   const product = multiply(A, B);
   const sum = addMatrices(A, resizeMatrix(B, A.length, A[0]?.length ?? 0));
@@ -336,13 +351,16 @@ function MatricesLab({ page }: { page: StudioMockupPage }) {
   const MA: Mat2 = [[A[0]?.[0] ?? 1, A[0]?.[1] ?? 0], [A[1]?.[0] ?? 0, A[1]?.[1] ?? 1]];
   const MB: Mat2 = [[B[0]?.[0] ?? 1, B[0]?.[1] ?? 0], [B[1]?.[0] ?? 0, B[1]?.[1] ?? 1]];
   const MC = multiply(MA, MB) as Mat2 | null;
+  const block = A.length === B.length
+    ? A.map((row, i) => [...row, ...(B[i] ?? [])])
+    : ((A[0]?.length ?? 0) === (B[0]?.length ?? 0) ? [...A, ...B] : null);
   const C = product ?? sum ?? At;
   const compatible = Boolean(product);
 
   return (
     <LinearAlgebraLabChrome page={page}>
       {(mode, setMode) => {
-        const shown = mode === "Add" ? sum : mode === "Transpose" ? At : mode === "Inverse" ? inv : C;
+        const shown = mode === "Add" ? sum : mode === "Transpose" ? At : mode === "Inverse" ? inv : mode === "Block" ? block : C;
         return (
           <>
             <div className="la-rail">
@@ -354,13 +372,14 @@ function MatricesLab({ page }: { page: StudioMockupPage }) {
                     </button>
                   ))}
                 </nav>
-                <p className="la-kicker">Operation: A × B</p>
+                <p className="la-kicker">Operation: {mode === "Block" ? "[A | B] concatenation" : "A × B"}</p>
                 <h2>Matrix A (m × n) <small>{A.length} × {A[0]?.length ?? 0}</small></h2>
                 <Sheet matrix={A} onChange={(r, c, v) => setA(setCell(A, r, c, v))} />
                 <h2>Matrix B (n × p) <small>{B.length} × {B[0]?.length ?? 0}</small></h2>
                 <Sheet matrix={B} onChange={(r, c, v) => setB(setCell(B, r, c, v))} />
                 <button type="button" className="la-compute" onClick={() => markLinearComplete(page.id)}>Compute A × B</button>
-                <Switch label="Animate computation" on={false} onChange={() => undefined} />
+                <Switch label="Animate computation" on={animate} onChange={setAnimate} />
+                {animate ? <p className="la-note">Animating column-by-column multiply. Multiply stays the default; Block shows concatenation.</p> : null}
               </Card>
             </div>
             <div className="la-center">
@@ -384,8 +403,8 @@ function MatricesLab({ page }: { page: StudioMockupPage }) {
             <div className="la-rail">
             <Card title="Dimensions & Compatibility" kicker={compatible ? "Compatible" : "Incompatible"}>
               <p className="la-eq">A: {A.length} × {A[0]?.length ?? 0} · B: {B.length} × {B[0]?.length ?? 0} → A × B: {product ? `${product.length} × ${product[0]?.length ?? 0}` : "—"}</p>
-              <h2>Result C = A × B <small>{shown ? `${shown.length} × ${shown[0]?.length ?? 0}` : ""}</small></h2>
-              {shown ? <Sheet matrix={shown} /> : <p className="la-note">Resize so inner dimensions match.</p>}
+              <h2>Result C = {mode === "Block" ? "[A | B]" : "A × B"} <small>{shown ? `${shown.length} × ${shown[0]?.length ?? 0}` : ""}</small></h2>
+              {shown ? <Sheet matrix={shown} /> : <p className="la-note">{mode === "Block" ? "Block concatenation needs matching rows (horizontal) or matching columns (vertical)." : "Resize so inner dimensions match."}</p>}
             </Card>
             <Card title="Computation (dot-product view)">
               {(product?.[0] ?? []).map((cell, j) => (
@@ -393,7 +412,7 @@ function MatricesLab({ page }: { page: StudioMockupPage }) {
               ))}
             </Card>
             <Card title="Operation Explanation">
-              <p className="la-note">Matrix multiplication transforms the columns of B through the linear transformation defined by A. Each entry c<sub>ij</sub> is the dot product of row i of A and column j of B.</p>
+              <p className="la-note">{mode === "Block" ? "Block mode concatenates A and B when shapes allow. Multiply remains the default operation and still maps columns of B through A." : "Matrix multiplication transforms the columns of B through the linear transformation defined by A. Each entry c<sub>ij</sub> is the dot product of row i of A and column j of B."}</p>
               <StatusOk>Result verified</StatusOk>
             </Card>
             </div>
@@ -409,6 +428,7 @@ function RowReductionLab({ page }: { page: StudioMockupPage }) {
   const [b, setB] = useState([3, 2, 1]);
   const [cursor, setCursor] = useState(3);
   const [exact, setExact] = useState(true);
+  const [rowOps, setRowOps] = useState<string[]>([]);
   const steps = useMemo(() => rrefAugmented(A, b), [A, b]);
   const cls = classifySystem(A, b);
   const shown = steps[clamp(cursor, 0, steps.length - 1)] ?? steps[0]!;
@@ -443,7 +463,11 @@ function RowReductionLab({ page }: { page: StudioMockupPage }) {
             <div className="la-ops">
               <button type="button" onClick={() => { const next = A.map((row) => row.slice()); const swap = next[0]!; next[0] = next[1]!; next[1] = swap; setA(next); const nb = [...b]; const t = nb[0]!; nb[0] = nb[1]!; nb[1] = t; setB(nb); }}>Swap</button>
               <button type="button" onClick={() => setA(A.map((row, i) => i === 0 ? row.map((v) => v * 0.5) : row))}>Scale</button>
-              <button type="button" className="active">Add</button>
+              <button type="button" className="active" onClick={() => {
+                setA(A.map((row, i) => i === 1 ? row.map((v, j) => v + (A[0]?.[j] ?? 0)) : row));
+                setB(b.map((v, i) => (i === 1 ? v + (b[0] ?? 0) : v)));
+                setRowOps((prev) => [...prev, "R2 ← R2 + R1"]);
+              }}>Add</button>
               <button type="button" onClick={() => setA(setCell(A, 2, 0, 0))}>Zero</button>
             </div>
             <button type="button" className="la-compute" onClick={() => setCursor(steps.length - 1)}>Apply operation</button>
@@ -509,7 +533,10 @@ function RowReductionLab({ page }: { page: StudioMockupPage }) {
             <span className={`la-badge${cls.kind === "unique" ? "" : " is-warn"}`}>{cls.kind === "unique" ? "Unique solution" : cls.kind === "infinite" ? "Infinitely many" : "Inconsistent"}</span>
             <div className="la-fold">
               <h3>Solution</h3>
-              {sol.map((v, i) => <p key={i} className="la-eq">x{i + 1} = {exact ? fmt(v, 3) : fmt(v, 2)}</p>)}
+              {cls.kind === "inconsistent"
+                ? <p className="la-note">No solution — the system is inconsistent.</p>
+                : sol.map((v, i) => <p key={i} className="la-eq">x{i + 1} = {exact ? fmt(v, 3) : fmt(v, 2)}</p>)}
+              {rowOps.length ? <p className="la-note">{rowOps.join(" · ")}</p> : null}
             </div>
             <div className="la-fold">
               <h3>Geometric interpretation</h3>
@@ -647,6 +674,7 @@ function LinearTransformsLab({ page, extra }: { page: StudioMockupPage; extra?: 
 function DeterminantsLab({ page }: { page: StudioMockupPage }) {
   const [A, setA] = useState<Mat2>([[1, 2], [-1, 3]]);
   const [showUnit, setShowUnit] = useState(true);
+  const [showGrid, setShowGrid] = useState(true);
   const det = det2(A);
   const v1 = apply2(A, 1, 0);
   const v2 = apply2(A, 0, 1);
@@ -658,10 +686,10 @@ function DeterminantsLab({ page }: { page: StudioMockupPage }) {
           <div className="la-rail">
           <Card title="Matrix A" kicker="2 × 2">
             <Sheet matrix={A} onChange={(r, c, v) => setA(setCell(A, r, c, v) as Mat2)} />
-            <h2>Basis vectors (columns of B)</h2>
-            <p className="la-eq">v₁ = (1, 0) · v₂ = (0, 1)</p>
+            <h2>Basis vectors (columns of A)</h2>
+            <p className="la-eq">v₁ = ({fmt(A[0][0], 2)}, {fmt(A[1][0], 2)}) · v₂ = ({fmt(A[0][1], 2)}, {fmt(A[1][1], 2)})</p>
             <Switch label="Show unit square" on={showUnit} onChange={setShowUnit} />
-            <Switch label="Grid" on onChange={() => undefined} />
+            <Switch label="Grid" on={showGrid} onChange={setShowGrid} />
             <button type="button" className="la-soft" onClick={() => setA([[1, 2], [-1, 3]])}>Reset</button>
           </Card>
           </div>
@@ -675,8 +703,8 @@ function DeterminantsLab({ page }: { page: StudioMockupPage }) {
             <svg className="msk-graph is-interactive" viewBox="0 0 640 360" role="img" aria-label="Determinant area">
               <rect width="640" height="360" fill="#f7fbff" />
               <ArrowDefs />
-              <AxisGrid ox={180} oy={210} unit={36} dark={false} />
-              <AxisGrid ox={430} oy={210} unit={36} dark={false} />
+              {showGrid ? <AxisGrid ox={180} oy={210} unit={36} dark={false} /> : null}
+              {showGrid ? <AxisGrid ox={430} oy={210} unit={36} dark={false} /> : null}
               {showUnit ? <polygon points={poly(identity2(), 180, 210, 36)} fill="rgba(20,125,242,.18)" stroke={LA_A} /> : null}
               <polygon points={poly(A, 430, 210, 36)} fill={det >= 0 ? "rgba(139,69,244,.2)" : "rgba(239,68,68,.2)"} stroke={LA_B} />
               <VectorRay x1={180} y1={210} x2={180 + 36} y2={210} color={LA_A} marker="la-a" />
@@ -968,6 +996,9 @@ function seedPoints() {
 function LeastSquaresLab({ page }: { page: StudioMockupPage }) {
   const [pts, setPts] = useState(seedPoints);
   const [drag, setDrag] = useState<number | null>(null);
+  const [showFit, setShowFit] = useState(true);
+  const [showResiduals, setShowResiduals] = useState(true);
+  const [showTiles, setShowTiles] = useState(true);
   const n = pts.length;
   const sx = pts.reduce((s, p) => s + (p[0] ?? 0), 0);
   const sy = pts.reduce((s, p) => s + (p[1] ?? 0), 0);
@@ -991,9 +1022,9 @@ function LeastSquaresLab({ page }: { page: StudioMockupPage }) {
             <p className="la-eq">y = β₀ + β₁ x</p>
             <p className="la-note">n = {n}</p>
             <button type="button" className="la-soft" onClick={() => setPts(seedPoints().map(([x, y]) => [x ?? 0, (y ?? 0) + (Math.random() - 0.5)]))}>Randomize</button>
-            <Switch label="Best-fit line" on onChange={() => undefined} />
-            <Switch label="Residuals" on onChange={() => undefined} />
-            <Toggle label="Squared-error tiles" on onChange={() => undefined} />
+            <Switch label="Best-fit line" on={showFit} onChange={setShowFit} />
+            <Switch label="Residuals" on={showResiduals} onChange={setShowResiduals} />
+            <Toggle label="Squared-error tiles" on={showTiles} onChange={setShowTiles} />
             <button type="button" className="la-soft" onClick={() => setPts([...pts, [2.4, -2]])}>Add outlier</button>
           </Card>
           </div>
@@ -1014,7 +1045,7 @@ function LeastSquaresLab({ page }: { page: StudioMockupPage }) {
               onPointerUp={() => setDrag(null)}
             >
               <rect width="520" height="280" fill="#f7fbff" />
-              <line x1="40" y1={160 - intercept * 22} x2="500" y2={160 - (slope * 4 + intercept) * 22} stroke={LA_A} strokeWidth="3" />
+              {showFit ? <line x1="40" y1={160 - intercept * 22} x2="500" y2={160 - (slope * 4 + intercept) * 22} stroke={LA_A} strokeWidth="3" /> : null}
               {pts.map(([x = 0, y = 0], i) => {
                 const px = 260 + x * 55;
                 const py = 160 - y * 22;
@@ -1022,8 +1053,8 @@ function LeastSquaresLab({ page }: { page: StudioMockupPage }) {
                 const h = Math.abs(py - fy);
                 return (
                   <g key={i}>
-                    <rect x={px} y={Math.min(py, fy)} width={Math.max(8, h * 0.4)} height={h} fill="rgba(245,158,11,.22)" />
-                    <line x1={px} y1={py} x2={px} y2={fy} stroke={LA_B} />
+                    {showTiles ? <rect x={px} y={Math.min(py, fy)} width={Math.max(8, h * 0.4)} height={h} fill="rgba(245,158,11,.22)" /> : null}
+                    {showResiduals ? <line x1={px} y1={py} x2={px} y2={fy} stroke={LA_B} /> : null}
                     <circle cx={px} cy={py} r="6" fill={LA_A} onPointerDown={() => setDrag(i)} />
                   </g>
                 );
@@ -1070,6 +1101,8 @@ function PlaygroundLab({ page, extra }: { page: StudioMockupPage; extra?: ReactN
   const [A, setA] = useState([[1.2, 0.6, 0.2], [-0.4, 1.1, 0.3], [0.1, -0.2, 0.9]]);
   const [t, setT] = useState(0.65);
   const [stack, setStack] = useState(["Rotate Z (30°)", "Shear X (0.6)"]);
+  const [showGrid, setShowGrid] = useState(true);
+  const [snapAxes, setSnapAxes] = useState(false);
   const det = det3(A);
   const M2: Mat2 = [[lerp(1, A[0]?.[0] ?? 1, t), lerp(0, A[0]?.[1] ?? 0, t)], [lerp(0, A[1]?.[0] ?? 0, t), lerp(1, A[1]?.[1] ?? 1, t)]];
 
@@ -1090,8 +1123,13 @@ function PlaygroundLab({ page, extra }: { page: StudioMockupPage; extra?: ReactN
               <button type="button" onClick={() => setA([[1, 0, 0], [0, 1, 0], [0, 0, -1]])}>Reflect Z</button>
             </div>
             <h2>Object & basis controls</h2>
-            <Switch label="Show grid" on onChange={() => undefined} />
-            <Switch label="Snap to axes" on={false} onChange={() => undefined} />
+            <Switch label="Show grid" on={showGrid} onChange={setShowGrid} />
+            <Switch label="Snap to axes" on={snapAxes} onChange={(on) => {
+              setSnapAxes(on);
+              if (on) {
+                setA(A.map((row) => row.map((v) => Math.round(v))));
+              }
+            }} />
           </Card>
           </div>
           <div>
@@ -1104,7 +1142,7 @@ function PlaygroundLab({ page, extra }: { page: StudioMockupPage; extra?: ReactN
                     <svg className="msk-graph" viewBox="0 0 360 280" role="img" aria-label="2D playground">
                       <rect width="360" height="280" fill="#f7fbff" />
                       <ArrowDefs />
-                      <AxisGrid ox={120} oy={180} unit={40} dark={false} />
+                      {showGrid ? <AxisGrid ox={120} oy={180} unit={40} dark={false} /> : null}
                       <polygon points={poly(identity2(), 120, 180, 40)} fill="rgba(20,125,242,.16)" stroke={LA_A} />
                       <polygon points={poly(M2, 120, 180, 40)} fill="rgba(139,69,244,.22)" stroke={LA_B} />
                     </svg>
@@ -1142,9 +1180,14 @@ function PlaygroundLab({ page, extra }: { page: StudioMockupPage; extra?: ReactN
           </Card>
           <Card title="Composition stack">
             <ol className="la-history">
-              {stack.map((item) => <li key={item}>{item}</li>)}
+              {stack.map((item, i) => <li key={`${item}-${i}`}>{item}</li>)}
             </ol>
-            <button type="button" className="la-soft" onClick={() => setStack([...stack, "Scale (1.5, 1, 1)"])}>Add transform</button>
+            <button type="button" className="la-soft" onClick={() => {
+              const scale = [[1.5, 0, 0], [0, 1, 0], [0, 0, 1]];
+              const next = multiply(scale, A);
+              if (next) setA(next);
+              setStack([...stack, "Scale (1.5, 1, 1)"]);
+            }}>Add transform</button>
           </Card>
           <Card title="Composed matrix">
             <p className="la-eq">A ≈ T₄ T₃ T₂ T₁</p>

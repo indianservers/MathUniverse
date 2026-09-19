@@ -1,3 +1,4 @@
+import { useState } from "react";
 import type { StudioMockupPage } from "../../mockup/studioMockupCatalog";
 import { ChallengeBox, LiveRow, Panel, SliderRow, StatusOk, StepList, clamp } from "../../mockup/studioLabKit";
 import { FigureToolbar, Phase1LabChrome } from "../../phase1/Phase1LabChrome";
@@ -9,6 +10,7 @@ const initial: Fig = { a: 3, b: 4, tear: 0.4, arc: 80, k: 2 };
 
 export default function ProofsLab({ page }: { page: StudioMockupPage }) {
   const fig = useStudioFigure(initial);
+  const [checked, setChecked] = useState<Record<string, boolean>>({});
   return (
     <Phase1LabChrome
       page={page}
@@ -105,14 +107,22 @@ export default function ProofsLab({ page }: { page: StudioMockupPage }) {
               </StatusOk>
               <StepList items={["Watch the figure respond.", "Name the invariant.", "Tick the two-column step that matches this figure."]} />
               <ol className="msk-mini-table" aria-label="Two-column proof from this figure">
-                {twoColumnClaims(mode, fig.state).map((row) => (
-                  <li key={row.conclude}>
-                    <label>
-                      <input type="checkbox" defaultChecked={mode === "Pythagoras" ? tiles.holds : true} />
-                      {" "}Given {row.given} → {row.conclude} (live {row.live})
-                    </label>
-                  </li>
-                ))}
+                {twoColumnClaims(mode, fig.state).map((row) => {
+                  const key = `${mode}:${row.conclude}`;
+                  const on = checked[key] ?? (mode === "Pythagoras" ? tiles.holds : false);
+                  return (
+                    <li key={row.conclude}>
+                      <label>
+                        <input
+                          type="checkbox"
+                          checked={on}
+                          onChange={(event) => setChecked((prev) => ({ ...prev, [key]: event.target.checked }))}
+                        />
+                        {" "}Given {row.given} → {row.conclude} (live {row.live})
+                      </label>
+                    </li>
+                  );
+                })}
               </ol>
               <ChallengeBox
                 prompt={mode === "Pythagoras" ? "In a 3-4-5 triangle, hypotenuse is?" : mode === "Angle Sum" ? "Angle sum of a triangle (degrees)?" : "Read the live value for this proof."}

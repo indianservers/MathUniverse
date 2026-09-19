@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { MockupLearningStrip } from "../MockupStudioChrome";
 import type { StudioMockupPage } from "../studioMockupCatalog";
 import { useLabMode } from "../studioLabKit";
@@ -5,6 +6,7 @@ import InverseTrigTargetLesson265 from "../../../modules/lessons/adapters/Invers
 
 export function InverseTrigLab({ page }: { page: StudioMockupPage }) {
   const { tabs, mode, setMode } = useLabMode(page);
+  const [resetToken, setResetToken] = useState(0);
 
   return (
     <>
@@ -16,7 +18,7 @@ export function InverseTrigLab({ page }: { page: StudioMockupPage }) {
         ))}
       </nav>
       <div className="msk-lab trig-target-lab inv-target-lab is-git-target" data-lab-mode={mode} data-mode-canvas={mode} data-inv-mode={mode}>
-        <InverseTrigTargetLesson265 resetToken={0} onInteraction={() => undefined} />
+        <InverseTrigTargetLesson265 resetToken={resetToken} onInteraction={() => setResetToken((n) => n + 1)} />
         <p className="inv-target-sr">Unit Circle Mapping · arcsin(sin θ) is not the identity</p>
       </div>
       <div className="trig-target-footer inv-target-footer">

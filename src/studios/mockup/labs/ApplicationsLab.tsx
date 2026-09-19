@@ -1,4 +1,5 @@
-import { useMemo, useState, type KeyboardEvent, type PointerEvent, type ReactNode } from "react";
+import { useEffect, useMemo, useState, type KeyboardEvent, type PointerEvent, type ReactNode } from "react";
+import { useSearchParams } from "react-router-dom";
 import { MockupLearningStrip } from "../MockupStudioChrome";
 import type { StudioMockupPage } from "../studioMockupCatalog";
 import { ChallengeBox, Field, LiveRow, Panel, Segmented, SliderRow, StepList, clamp, fmt, useLabMode } from "../studioLabKit";
@@ -11,6 +12,8 @@ const PRESETS = [
   { id: "cliff", label: "Cliff", distance: 42, eye: 1.6, elevation: 62, base: 0 },
   { id: "tree", label: "Tree", distance: 24, eye: 1.5, elevation: 28, base: 0 },
   { id: "lighthouse", label: "Lighthouse", distance: 120, eye: 2, elevation: 18, base: 4 },
+  { id: "ramp", label: "Ramp", distance: 18, eye: 1.6, elevation: 22, base: 0 },
+  { id: "kite", label: "Kite", distance: 30, eye: 1.5, elevation: 50, base: 0 },
 ] as const;
 
 const SPECIAL_ANGLES = [15, 30, 45, 60];
@@ -95,6 +98,7 @@ function Compass({ bearing }: { bearing: number }) {
 
 export function ApplicationsLab({ page }: { page: StudioMockupPage }) {
   const { tabs, mode, setMode } = useLabMode(page);
+  const [params] = useSearchParams();
   const [distanceValue, setDistanceValue] = useState(90);
   const [eyeHeight, setEyeHeight] = useState(1.7);
   const [elevation, setElevation] = useState(45);
@@ -164,6 +168,11 @@ export function ApplicationsLab({ page }: { page: StudioMockupPage }) {
     setAnimateMeasurement(true);
     setCopied(false);
   };
+
+  useEffect(() => {
+    const story = params.get("story");
+    if (story && PRESETS.some((item) => item.id === story)) applyPreset(story);
+  }, [params]);
 
   const copySummary = async () => {
     try {

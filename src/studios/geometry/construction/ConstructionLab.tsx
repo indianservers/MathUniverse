@@ -135,6 +135,7 @@ export default function ConstructionLab({ page }: { page: StudioMockupPage }) {
   const pan = useRef<{ x: number; y: number; ox: number; oy: number } | null>(null);
   const space = useRef(false);
   const svgRef = useRef<SVGSVGElement>(null);
+  const fileRef = useRef<HTMLInputElement>(null);
   const snapshot = useRef<GeomObject[] | null>(null);
 
   const world = useMemo(() => evaluate(objects), [objects]);
@@ -463,6 +464,7 @@ export default function ConstructionLab({ page }: { page: StudioMockupPage }) {
           <button type="button" className="clab-ghost" onClick={redo} disabled={!future.length}>Redo</button>
           <button type="button" className="clab-primary" onClick={() => { commit(defaultConstruction()); setSelected("C"); }}>Reset construction</button>
           <button type="button" className="clab-ghost" onClick={exportJson}>Export JSON</button>
+          <button type="button" className="clab-ghost" onClick={() => fileRef.current?.click()}>Load JSON</button>
         </aside>
 
         <section className="clab-stage">
@@ -695,13 +697,21 @@ export default function ConstructionLab({ page }: { page: StudioMockupPage }) {
         </aside>
       </div>
       <MockupLearningStrip page={page} />
-      <input className="sr-only" aria-hidden tabIndex={-1} onChange={(e) => {
+      <input
+        ref={fileRef}
+        className="sr-only"
+        type="file"
+        accept="application/json,.json"
+        aria-hidden
+        tabIndex={-1}
+        onChange={(e) => {
         const file = e.target.files?.[0];
         if (!file) return;
         void file.text().then((raw) => {
           const parsed = parseScene(raw);
           if (parsed) commit(parsed.objects);
         });
+        e.target.value = "";
       }} />
     </div>
   );

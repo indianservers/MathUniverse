@@ -13,6 +13,7 @@ type ArgandFigureProps = {
   showModulus?: boolean;
   showArgument?: boolean;
   showUnit?: boolean;
+  unitRadius?: number;
   showParallelogram?: boolean;
   roots?: ArgandPoint[];
   width?: number;
@@ -38,6 +39,7 @@ export default function ArgandFigure({
   showModulus = false,
   showArgument = false,
   showUnit = false,
+  unitRadius = 1,
   showParallelogram = false,
   roots,
   width = 420,
@@ -78,7 +80,7 @@ export default function ArgandFigure({
       <line className="cx-axis" x1={ox} y1="16" x2={ox} y2={height - 16} />
       <text x={width - 28} y={oy - 8} fontSize="11" fill="#334155">Re</text>
       <text x={ox + 8} y="22" fontSize="11" fill="#334155">Im</text>
-      {showUnit ? <circle cx={ox} cy={oy} r={scale} fill="none" stroke="#94a3b8" strokeDasharray="4 3" /> : null}
+      {showUnit ? <circle cx={ox} cy={oy} r={unitRadius * scale} fill="none" stroke="#94a3b8" strokeDasharray="4 3" /> : null}
       {showModulus ? <circle cx={ox} cy={oy} r={r * scale} fill="none" stroke="#08b9dd" strokeDasharray="5 4" /> : null}
       {showArgument ? (
         <path

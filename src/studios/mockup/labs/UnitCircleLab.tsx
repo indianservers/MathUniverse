@@ -89,6 +89,34 @@ function wrap180(deg: number) {
   return value;
 }
 
+function wrap360(deg: number) {
+  return ((deg % 360) + 360) % 360;
+}
+
+function referenceAngle(deg: number) {
+  const t = wrap360(deg);
+  if (t <= 90) return t;
+  if (t <= 180) return 180 - t;
+  if (t < 360) return t <= 270 ? Math.abs(t - 180) : 360 - t;
+  return 0;
+}
+
+const EXACT_DEGS = [0, 30, 45, 60, 90, 120, 135, 150, 180, 210, 225, 240, 270, 300, 315, 330];
+
+function nearestExact(deg: number) {
+  const t = wrap360(deg);
+  return EXACT_DEGS.reduce((best, item) => {
+    const dist = Math.min(Math.abs(item - t), 360 - Math.abs(item - t));
+    const bestDist = Math.min(Math.abs(best - t), 360 - Math.abs(best - t));
+    return dist < bestDist ? item : best;
+  }, EXACT_DEGS[0]!);
+}
+
+function toSignedAngle(deg: number) {
+  const t = wrap360(deg);
+  return t > 180 ? t - 360 : t;
+}
+
 export default function UnitCircleLab({ page }: { page: StudioMockupPage }) {
   const { tabs, mode, setMode } = useLabMode(page, MODES);
   const session = useTrigSession();
@@ -108,10 +136,7 @@ export default function UnitCircleLab({ page }: { page: StudioMockupPage }) {
 
   useEffect(() => {
     if (mode !== "Exact Values") return;
-    const nearest = ANGLE_CHIPS.reduce((best, item) =>
-      Math.abs(item.d - angle) < Math.abs(best - angle) ? item.d : best,
-    ANGLE_CHIPS[0]!.d);
-    if (nearest !== angle) setAngle(nearest);
+    setAngle((current) => toSignedAngle(nearestExact(current)));
   }, [mode]);
 
   useEffect(() => {
@@ -138,9 +163,10 @@ export default function UnitCircleLab({ page }: { page: StudioMockupPage }) {
     const csc = Math.abs(sin) < 1e-6 ? Infinity : 1 / sin;
     const sec = Math.abs(cos) < 1e-6 ? Infinity : 1 / cos;
     const cot = Math.abs(sin) < 1e-6 ? Infinity : cos / sin;
-    const q = angle >= 0 && angle <= 90 ? 1 : angle > 90 ? 2 : angle >= -90 ? 4 : 3;
-    const ref = Math.min(Math.abs(angle % 180), 180 - Math.abs(angle % 180));
-    return { rad, cos, sin, tan, csc, sec, cot, q, ref: Math.abs(angle) > 90 ? 180 - Math.abs(angle) : Math.abs(angle) || ref };
+    const t = wrap360(angle);
+    const q = t === 0 ? 1 : Math.ceil(t / 90);
+    const ref = referenceAngle(angle);
+    return { rad, cos, sin, tan, csc, sec, cot, q, ref };
   }, [angle]);
 
   const cx = 250;
@@ -160,7 +186,8 @@ export default function UnitCircleLab({ page }: { page: StudioMockupPage }) {
 
   const updateAngleFromPointer = (event: ReactPointerEvent<SVGSVGElement>) => {
     const point = pointerInUnitCircle(event);
-    const next = Math.atan2(cy - point.y, point.x - cx) * 180 / Math.PI;
+    const raw = Math.atan2(cy - point.y, point.x - cx) * 180 / Math.PI;
+    const next = mode === "Exact Values" ? toSignedAngle(nearestExact(raw)) : raw;
     setAngle(next);
     writeTrigSession({ theta: next });
   };
@@ -195,7 +222,7 @@ export default function UnitCircleLab({ page }: { page: StudioMockupPage }) {
             <span>θ =</span>
             <strong>{units === "deg" ? `${fmt(angle, 0)}°` : `${fmt(live.rad, 4)} rad`}</strong>
           </div>
-          <SliderRow label="θ" value={angle} min={-180} max={180} step={1} onChange={(n) => { setAngle(n); writeTrigSession({ theta: n }); }} unit="°" />
+          <SliderRow label="θ" value={angle} min={-180} max={180} step={1} onChange={(n) => { const next = mode === "Exact Values" ? toSignedAngle(nearestExact(n)) : n; setAngle(next); writeTrigSession({ theta: next }); }} unit="°" />
           <div className="msk-preset-grid uc-target-presets">
             {ANGLE_CHIPS.map((item) => (
               <button key={item.d} type="button" className={`msk-angle-chip${angle === item.d ? " active" : ""}`} onClick={() => { setAngle(item.d); writeTrigSession({ theta: item.d }); }}>
