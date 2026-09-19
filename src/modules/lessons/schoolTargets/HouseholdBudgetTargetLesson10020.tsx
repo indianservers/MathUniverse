@@ -435,7 +435,7 @@ export default function HouseholdBudgetTargetLesson10020({
         <Link to={prev.route}>← Previous: Profit, Loss and Marked Price</Link>
         <Link to={next.route}>Next: Scale Factor in Maps and Recipes →</Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10020} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10020} view={tab} />
 
     </section>
   );

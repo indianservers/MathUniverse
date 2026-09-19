@@ -460,7 +460,7 @@ export default function MisleadingGraphTargetLesson10009({
         <Link to={prev.route}>← Previous Lesson</Link>
         <Link to={next.route}>Next Lesson →</Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10009} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10009} view={tab} />
 
     </section>
   );

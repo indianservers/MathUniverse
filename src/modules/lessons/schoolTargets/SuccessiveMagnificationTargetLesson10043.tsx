@@ -354,7 +354,7 @@ export default function SuccessiveMagnificationTargetLesson10043({
           <ArrowRight />
         </Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10043} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10043} view={tab} />
 
     </section>
   );

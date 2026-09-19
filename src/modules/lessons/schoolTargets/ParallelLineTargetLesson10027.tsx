@@ -494,7 +494,7 @@ export default function ParallelLineTargetLesson10027({
           →
         </Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10027} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10027} view={tab} />
 
     </section>
   );

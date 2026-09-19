@@ -505,7 +505,7 @@ export default function UnitRateTargetLesson10016({
           Next lesson →<b>{next.title}</b>
         </Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10016} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10016} view={tab} />
 
     </section>
   );

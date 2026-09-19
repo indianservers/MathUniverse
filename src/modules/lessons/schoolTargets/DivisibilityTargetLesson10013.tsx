@@ -314,7 +314,7 @@ export default function DivisibilityTargetLesson10013({
         <Link to={next.route}>Next lesson →</Link>
         <span>Lesson progress 1 of 7 completed</span>
       </nav>
-      <LessonTopicStudyBoard lessonId={10013} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10013} view={tab} />
 
     </section>
   );

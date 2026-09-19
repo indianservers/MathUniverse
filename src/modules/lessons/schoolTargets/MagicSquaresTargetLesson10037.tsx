@@ -306,7 +306,7 @@ export default function MagicSquaresTargetLesson10037({
           Next: Route Map Reasoning <ArrowRight />
         </Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10037} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10037} view={tab} />
 
     </section>
   );

@@ -485,7 +485,7 @@ export default function CopyAngleTargetLesson10023({
           →
         </Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10023} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10023} view={tab} />
 
     </section>
   );

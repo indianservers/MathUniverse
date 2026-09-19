@@ -398,7 +398,7 @@ export default function GraphicalZerosTargetLesson10046({
           <ArrowRight />
         </Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10046} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10046} view={tab} />
 
     </section>
   );

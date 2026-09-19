@@ -354,7 +354,7 @@ export default function TriangleAsaTargetLesson10030({
           Right Triangle Construction by RHS →
         </Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10030} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10030} view={tab} />
 
     </section>
   );

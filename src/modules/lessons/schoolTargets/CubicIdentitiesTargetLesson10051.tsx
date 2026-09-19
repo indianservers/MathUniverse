@@ -451,7 +451,7 @@ export default function CubicIdentitiesTargetLesson10051({
           <ArrowRight />
         </Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10051} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10051} view={tab} />
 
     </section>
   );

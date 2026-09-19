@@ -496,7 +496,7 @@ export default function BarGraphTargetLesson10007({
           Next →<b>{next.title}</b>
         </Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10007} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10007} view={tab} />
 
     </section>
   );

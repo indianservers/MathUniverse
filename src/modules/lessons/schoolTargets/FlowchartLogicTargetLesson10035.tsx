@@ -406,7 +406,7 @@ export default function FlowchartLogicTargetLesson10035({
           Next: Practice <ArrowRight size={13} />
         </Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10035} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10035} view={tab} />
 
     </section>
   );

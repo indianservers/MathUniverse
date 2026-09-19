@@ -390,7 +390,7 @@ export default function FifthPostulateEquivalenceTargetLesson10055({
           Axiom versus Theorem <ArrowRight />
         </Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10055} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10055} view={tab} />
 
     </section>
   );

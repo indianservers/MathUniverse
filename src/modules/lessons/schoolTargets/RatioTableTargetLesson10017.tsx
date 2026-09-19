@@ -398,7 +398,7 @@ export default function RatioTableTargetLesson10017({
           Next Lesson →<b>{next.title}</b>
         </Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10017} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10017} view={tab} />
 
     </section>
   );

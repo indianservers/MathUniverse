@@ -448,7 +448,7 @@ export default function SurveyFrequencyTargetLesson10008({
           Next lesson →<b>{next.title}</b>
         </Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10008} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10008} view={tab} />
 
     </section>
   );

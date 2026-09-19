@@ -532,7 +532,7 @@ export default function PictographTargetLesson10006({
           </Link>
         )}
       </nav>
-      <LessonTopicStudyBoard lessonId={10006} view={activeTab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10006} view={activeTab} />
 
     </section>
   );

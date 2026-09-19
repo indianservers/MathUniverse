@@ -384,7 +384,7 @@ export default function RationalisationTargetLesson10044({
           <ArrowRight />
         </Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10044} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10044} view={tab} />
 
     </section>
   );

@@ -361,7 +361,7 @@ export default function FactorisationPracticeTargetLesson10052({
           Next Lesson <ArrowRight />
         </Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10052} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10052} view={tab} />
 
     </section>
   );

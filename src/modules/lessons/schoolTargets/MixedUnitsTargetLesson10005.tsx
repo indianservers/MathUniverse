@@ -540,7 +540,7 @@ export default function MixedUnitsTargetLesson10005({
           <span />
         )}
       </nav>
-      <LessonTopicStudyBoard lessonId={10005} view={tab} onInteraction={onInteraction} />
+      <LessonTopicStudyBoard lessonId={10005} view={tab} />
 
     </section>
   );
