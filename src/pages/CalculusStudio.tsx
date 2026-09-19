@@ -24,6 +24,7 @@ import {
   Save,
   Search,
   Settings,
+  Star,
   Sun,
   Trophy,
   Upload,
@@ -87,7 +88,7 @@ const navItems = [
 const darkNavPages: CalculusStudioPage[] = ["integration", "integration-techniques", "multivariable-vector"];
 
 const pageMeta: Record<CalculusStudioPage, { title: string; subtitle: string; modes: LabMode[] }> = {
-  home: { title: "Calculus Studio", subtitle: "Explore change, motion and accumulation.", modes: [] },
+  home: { title: "Welcome to Calculus Studio", subtitle: "Explore, visualize, and master calculus through interactive experiments.", modes: [] },
   limits: { title: "Limits & Continuity Studio", subtitle: "Explore limits, one-sided behavior, and continuity of functions.", modes: modeList("limits", "Limits", "continuity", "Continuity", "discontinuities", "Discontinuities", "asymptotes", "Asymptotes", "lhopital", "L'Hôpital") },
   derivatives: { title: "Derivatives Studio", subtitle: "Connect secants, tangents, derivative rules, and local approximation.", modes: modeList("tangent", "Tangent", "rules", "Rules", "chain", "Chain Rule", "implicit", "Implicit", "higher", "Higher Order", "linearization", "Linearization") },
   "derivative-applications": { title: "Derivative Applications Studio", subtitle: "Use derivatives to solve real-world problems and make best decisions.", modes: modeList("motion", "Motion", "related", "Related Rates", "curve", "Curve Analysis", "optimization", "Optimization", "mvt", "Mean Value") },
@@ -177,12 +178,9 @@ function StudioSidebar({ page, collapsed, open, onCollapse, onClose }: { page: C
       </Link>
       <button className="cs-drawer-close" type="button" onClick={onClose} aria-label="Close menu"><X /></button>
       <nav>
-        {page !== "home" ? <p className="cs-nav-kicker">Main</p> : null}
-        {page !== "home" ? (
-          <Link className="cs-nav-link" to="/" title="Leave Calculus Studio and return to the main Math Universe app" onClick={onClose}>
-            <CalculusNavIcon page="main" /><span>Main</span>
-          </Link>
-        ) : null}
+        <Link className="cs-nav-link cs-nav-main-pill" to="/" title="Leave Calculus Studio and return to the main Math Universe app" onClick={onClose}>
+          <CalculusNavIcon page="main" /><span>Main</span>
+        </Link>
         {navItems.map(({ page: itemPage, label }) => (
           <Link
             className={`cs-nav-link ${page === itemPage ? "active" : ""}`}
@@ -196,13 +194,13 @@ function StudioSidebar({ page, collapsed, open, onCollapse, onClose }: { page: C
           </Link>
         ))}
       </nav>
-      {page === "home" ? (
+      {page === "home" ? null : (
         <div className="cs-pro">
           <b>Unlock Pro</b>
           <p>Save your work, access advanced tools and more.</p>
           <Link to="/calculus/advanced">Upgrade</Link>
         </div>
-      ) : null}
+      )}
       <button className="cs-collapse" type="button" onClick={onCollapse} aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"} title={collapsed ? "Expand" : "Collapse"}>
         <ArrowLeft />
       </button>
@@ -210,7 +208,7 @@ function StudioSidebar({ page, collapsed, open, onCollapse, onClose }: { page: C
   );
 }
 
-function StudioHeader({ page, mode, settings, onSettings, onMenu, onDialog }: {
+function StudioHeader({ page, settings, onSettings, onMenu, onDialog }: {
   page: CalculusStudioPage;
   mode: string;
   settings: StudioSettings;
@@ -219,36 +217,18 @@ function StudioHeader({ page, mode, settings, onSettings, onMenu, onDialog }: {
   onDialog: (value: "help" | "shortcuts" | "settings") => void;
 }) {
   const meta = pageMeta[page];
-  const [query, setQuery] = useState("");
-  const navigate = useNavigate();
-  const searchRef = useRef<HTMLInputElement>(null);
-  const results = useMemo(() => searchStudio(query), [query]);
-  const submit = () => {
-    const target = results[0];
-    if (target) navigate(target.route);
-  };
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
-      const target = event.target as HTMLElement | null;
-      const typing = target && (target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.isContentEditable);
-      if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k") {
-        event.preventDefault();
-        searchRef.current?.focus();
-      }
       if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "l") {
         event.preventDefault();
         void navigator.clipboard.writeText(window.location.href);
       }
-      if (!typing && page === "home" && /^[1-6]$/.test(event.key)) {
-        const cards = ["limits", "derivatives", "integration", "differential-equations", "series-parametric-polar", "multivariable-vector"] as const;
-        navigate(studioRoutes[cards[Number(event.key) - 1]]);
-      }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [navigate, page]);
+  }, []);
   return (
-    <header className="cs-header">
+    <header className={`cs-header${page === "home" ? " cs-header-home" : ""}`}>
       <button className="cs-menu" type="button" onClick={onMenu} aria-label="Open Calculus Studio menu"><Menu /></button>
       <div className="cs-title">
         {page === "home" ? null : <StudioHomeButtons studioTo="/calculus" />}
@@ -261,25 +241,17 @@ function StudioHeader({ page, mode, settings, onSettings, onMenu, onDialog }: {
         <h1>{meta.title}</h1>
         <p>{meta.subtitle}</p>
       </div>
-      {page === "home" ? (
-        <div className="cs-search-wrap">
-          <label className="cs-search">
-            <Search />
-            <input ref={searchRef} value={query} onChange={(event) => setQuery(event.target.value)} onKeyDown={(event) => event.key === "Enter" && submit()} placeholder="Search formulas, topics, or experiments..." aria-label="Search Calculus Studio" />
-            <kbd>Ctrl+K</kbd>
-          </label>
-          {query.trim() && (
-            <div className="cs-search-results" role="listbox">
-              {results.map((item) => <button key={item.route} type="button" onClick={() => navigate(item.route)}>{item.label}{item.formula ? <small>{item.formula}</small> : null}</button>)}
-              {!results.length && <span>No calculus studio result</span>}
-            </div>
-          )}
-        </div>
-      ) : null}
       <div className="cs-header-actions">
         {page !== "home" ? <StudioCanvasToolbar /> : null}
-        <button type="button" onClick={() => onSettings({ ...settings, theme: settings.theme === "light" ? "dark" : "light" })} title="Theme" aria-label="Toggle theme">{settings.theme === "light" ? <Sun /> : <Moon />}</button>
-        {page === "home" || page === "limits" ? <button type="button" onClick={() => onDialog("shortcuts")} title="Shortcuts" aria-label="Shortcuts"><Keyboard /> Shortcuts</button> : null}
+        {page === "home" ? (
+          <>
+            <span className="cs-xp-chip" title="Daily streak"><Flame /> {loadChallenge().streak}</span>
+            <span className="cs-xp-chip" title="Experience points"><Star /> {progressSummary().completed * 10} XP</span>
+          </>
+        ) : (
+          <button type="button" onClick={() => onSettings({ ...settings, theme: settings.theme === "light" ? "dark" : "light" })} title="Theme" aria-label="Toggle theme">{settings.theme === "light" ? <Sun /> : <Moon />}</button>
+        )}
+        {page === "limits" ? <button type="button" onClick={() => onDialog("shortcuts")} title="Shortcuts" aria-label="Shortcuts"><Keyboard /> Shortcuts</button> : null}
         <button type="button" onClick={() => onDialog("help")} title="Help" aria-label="Help"><HelpCircle /></button>
         {page !== "home" ? (
           <button type="button" onClick={() => window.dispatchEvent(new Event("calculus-lab-reset"))} title="Reset all" aria-label="Reset all"><RotateCcw /> Reset</button>
@@ -290,108 +262,138 @@ function StudioHeader({ page, mode, settings, onSettings, onMenu, onDialog }: {
   );
 }
 
+const HOME_TOPIC_CARDS = [
+  { page: "limits", title: "Limits", note: "Plot, explore, and understand behavior near a point." },
+  { page: "derivatives", title: "Derivatives", note: "Visualize slopes, tangents, and instantaneous change." },
+  { page: "derivative-applications", title: "Applications", note: "Use derivatives for motion, related rates, and optimization." },
+  { page: "integration", title: "Integrals", note: "Accumulate area and connect to the Fundamental Theorem." },
+  { page: "integration-techniques", title: "Techniques", note: "Transform integrals with substitution, parts, and more." },
+  { page: "integral-applications", title: "Volumes", note: "Apply integrals to area, volume, work, and arc length." },
+  { page: "differential-equations", title: "Diff. Equations", note: "Read slope fields and compare Euler with RK4." },
+  { page: "series-parametric-polar", title: "Series & Polar", note: "Build Taylor polynomials, parametric, and polar graphs." },
+  { page: "multivariable-vector", title: "Multivariable", note: "Explore surfaces, gradients, and vector fields." },
+] as const satisfies ReadonlyArray<{ page: CalculusStudioPage; title: string; note: string }>;
+
+function lastUsedLabel(visitedAt?: number) {
+  if (!visitedAt) return "2 min ago";
+  const minutes = Math.max(1, Math.round((Date.now() - visitedAt) / 60000));
+  if (minutes < 60) return `${minutes} min ago`;
+  const hours = Math.round(minutes / 60);
+  if (hours < 24) return `${hours} hr ago`;
+  return `${Math.max(1, Math.round(hours / 24))} days ago`;
+}
+
 function StudioHome() {
   const navigate = useNavigate();
   const last = loadLastExperiment();
   const progress = progressSummary();
   const [challenge] = useState(loadChallenge);
-  const cards = [
-    { page: "limits", title: "Limits", note: "Explore behavior near a point.", tag: "ε-δ & One-Sided" },
-    { page: "derivatives", title: "Derivatives", note: "Visualize slopes and tangents.", tag: "Instantaneous Change" },
-    { page: "integration", title: "Integrals", note: "Accumulate area under curves.", tag: "Area & Accumulation" },
-    { page: "differential-equations", title: "Differential Equations", note: "Slope fields & solution curves.", tag: "dy/dx = f(x, y)" },
-    { page: "series-parametric-polar", title: "Approximations", note: "Taylor polynomials & local models.", tag: "Series & Approximations" },
-    { page: "multivariable-vector", title: "Multivariable", note: "Surfaces, gradients & vector fields.", tag: "∇f & Vector Fields" },
-  ] satisfies Array<{ page: CalculusStudioPage; title: string; note: string; tag: string }>;
+  const labsExplored = new Set(progress.done.map((id) => id.split(":")[0])).size;
+  useEffect(() => {
+    const onKey = (event: KeyboardEvent) => {
+      const target = event.target as HTMLElement | null;
+      const typing = target && (target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.isContentEditable);
+      if (typing) return;
+      if (!/^[1-9]$/.test(event.key)) return;
+      const card = HOME_TOPIC_CARDS[Number(event.key) - 1];
+      if (card) navigate(studioRoutes[card.page]);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [navigate]);
   return (
-    <div className="cs-home">
-      <section className="cs-card cs-journey" id="journey" aria-labelledby="journey-title">
-        <h2 id="journey-title">The Calculus Journey</h2>
-        <div className="cs-map">
-          <JourneyNode title="Limits" page="limits" />
-          <span className="cs-arrow">Instantaneous<br />change <b>→</b></span>
-          <JourneyNode title="Derivatives" page="derivatives" />
-          <span className="cs-arrow">Accumulation<br />of change <b>→</b></span>
-          <JourneyNode title="Integrals" page="integration" />
-          <span className="cs-fork" aria-hidden="true" />
-          <JourneyNode title="Differential Equations" page="differential-equations" compact />
-          <JourneyNode title="Advanced Calculus" page="advanced" compact />
-        </div>
-      </section>
+    <div className="cs-home cs-home-v2">
+      <div className="cs-home-main">
+        <HomeSearch />
+        <section className="cs-explore" id="journey" aria-labelledby="explore-title">
+          <h2 id="explore-title">Explore by topic</h2>
+          <div className="cs-topic-grid">
+            {HOME_TOPIC_CARDS.map((card, index) => (
+              <button key={card.page} type="button" className={`cs-topic-card tone-${index + 1}`} onClick={() => navigate(studioRoutes[card.page])}>
+                <span className="cs-topic-n">{index + 1}</span>
+                <strong>{card.title}</strong>
+                <small>{card.note}</small>
+                <CalculusLaunchArt kind={card.page} />
+                <i className="cs-topic-go" aria-hidden="true"><ChevronRight /></i>
+              </button>
+            ))}
+          </div>
+        </section>
+        <section className="cs-loop" aria-label="Learning loop">
+          <InfoPill icon={<Eye />} title="Observe" text="Visualize concepts with interactive diagrams." onClick={() => document.getElementById("journey")?.scrollIntoView({ behavior: "smooth" })} />
+          <InfoPill icon={<Lightbulb />} title="Understand" text="Build intuition with clear explanations." onClick={() => navigate("/calculus/limits")} />
+          <InfoPill icon={<CircleHelp />} title="Why" text="Discover the ideas and connections behind." onClick={() => navigate("/calculus/integration?mode=ftc")} />
+          <InfoPill icon={<FlaskConical />} title="Try" text="Experiment, manipulate, and see results live." onClick={() => navigate(last?.route ?? "/calculus/derivatives")} />
+          <InfoPill icon={<Trophy />} title="Challenge" text="Solve problems and test your mastery." onClick={() => document.getElementById("daily-challenge")?.scrollIntoView({ behavior: "smooth" })} />
+        </section>
+      </div>
       <aside className="cs-home-side">
         <section className="cs-card cs-continue">
-          <h2><Play /> Continue experiment</h2>
-          <p><strong>{last?.title ?? "Differential Equation Slope Fields"}</strong><span>{last?.note ?? "dy/dx = x − y"}</span></p>
+          <h2><FlaskConical /> Continue experiment</h2>
           <CalculusLaunchArt kind={last?.kind ?? "slope"} />
-          <button className="cs-primary" type="button" onClick={() => navigate(last?.route ?? "/calculus/differential-equations")}>Resume</button>
+          <p><strong>{last?.title ?? "Plot & Explore"}</strong><span>{last?.note ?? "dy/dx = x − y"}</span></p>
+          <small className="cs-last-used">Last used {lastUsedLabel(last?.visitedAt)}</small>
+          <button className="cs-primary" type="button" onClick={() => navigate(last?.route ?? "/calculus/differential-equations")}>Resume <ChevronRight /></button>
         </section>
         <section className="cs-card cs-progress-card">
-          <h2>Learning journey</h2>
-          <div className="cs-progress-row">
-            <span className="cs-ring" aria-label={`${progress.percent} percent complete`}><b>{progress.percent}%</b></span>
-            <div>
-              <small>Progress</small>
-              <strong>{progress.rank}</strong>
-              <em>{progress.completed} / {progress.total} topics completed</em>
-              <i className="cs-progress-bar"><i style={{ width: `${progress.percent}%` }} /></i>
-            </div>
-          </div>
-          <ol>
-            {[{ id: "limits", label: "Limits" }, { id: "derivatives", label: "Derivatives" }, { id: "integration", label: "Integrals" }, { id: "de:slope", label: "Differential Equations" }, { id: "advanced:workbench", label: "Advanced Calculus" }].map((item, index, list) => {
-              const done = progress.done.includes(item.id) || progress.done.some((value) => value.startsWith(`${item.id.split(":")[0]}`));
-              const current = !done && list.slice(0, index).every((prior) => progress.done.includes(prior.id) || progress.done.some((value) => value.startsWith(prior.id.split(":")[0])));
-              return <li key={item.id} className={current ? "now" : undefined}>{done ? <CheckCircle2 /> : null}{item.label}</li>;
-            })}
-          </ol>
-          <Link to="/calculus#journey">View journey →</Link>
+          <h2>Your learning journey</h2>
+          <ul className="cs-journey-stats">
+            <li><CheckCircle2 /> Topics explored <b>{Math.min(labsExplored, 9)} / 9</b></li>
+            <li><FlaskConical /> Experiments run <b>{progress.completed}</b></li>
+            <li><Trophy /> Challenges solved <b>{challenge.solved ? 1 : 0} / 18</b></li>
+            <li><Flame /> Streak <b>{challenge.streak} days</b></li>
+            <li><Star /> XP earned <b>{progress.completed * 10} XP</b></li>
+          </ul>
+          <Link to="/calculus#journey">View progress</Link>
         </section>
-        <section className="cs-card cs-challenge">
-          <h2>Daily visual challenge</h2>
-          <p>{dailyChallenge.prompt}</p>
+        <section className="cs-card cs-challenge" id="daily-challenge">
+          <h2>Challenge of the day <em>New</em></h2>
+          <p>{dailyChallenge.prompt} Factor, cancel, and read the remaining line.</p>
           <div className="cs-limit-formula" aria-label="limit as x approaches 2 of (x squared minus 4) over (x minus 2)">
             lim<sub>x→2</sub> (x² − 4) / (x − 2)
           </div>
           {challenge.solved ? <p className="cs-feedback">Correct: the limit equals 4.</p> : null}
-          <div className="cs-challenge-actions">
-            <button type="button" onClick={() => window.alert(dailyChallenge.hint)}>View hint</button>
-            <button className="cs-primary" type="button" onClick={() => navigate("/calculus/limits")}>Try it now</button>
-          </div>
-          <p className="cs-streak"><Flame /> Streak: {challenge.streak} days</p>
+          <p className="cs-xp-row"><span>+ 50 XP</span> <span>+ 1</span></p>
+          <button className="cs-primary" type="button" onClick={() => navigate("/calculus/limits")}>Take challenge <ChevronRight /></button>
         </section>
       </aside>
-      <section className="cs-card cs-launch">
-        <h2>Launch an experiment</h2>
-        <p>Interactive visual labs to build intuition and master calculus. Press 1–6 to jump.</p>
-        <div className="cs-launch-grid">
-          {cards.map((card, index) => (
-            <button key={card.page} type="button" className="cs-launch-card" onClick={() => navigate(studioRoutes[card.page])} aria-describedby={`launch-tag-${card.page}`}>
-              <span>{index + 1}</span>
-              <strong>{card.title}</strong>
-              <small>{card.note}</small>
-              <CalculusLaunchArt kind={card.page} />
-              <b id={`launch-tag-${card.page}`}>{card.tag}</b>
-            </button>
-          ))}
-        </div>
-      </section>
-      <section className="cs-card cs-why">
-        <h2>Why visualize?</h2>
-        <div>
-        <InfoPill icon={<Eye />} title="See the math" text="Build intuition through dynamic visual representations." />
-        <InfoPill icon={<FlaskConical />} title="Explore freely" text="Adjust parameters, inspect patterns, and test ideas." />
-        <InfoPill icon={<Trophy />} title="Master concepts" text="Connect visuals with theory and solve with confidence." />
-        </div>
-      </section>
     </div>
   );
 }
 
-function JourneyNode({ title, page, compact }: { title: string; page: CalculusStudioPage; compact?: boolean }) {
+function HomeSearch() {
+  const [query, setQuery] = useState("");
+  const navigate = useNavigate();
+  const searchRef = useRef<HTMLInputElement>(null);
+  const results = useMemo(() => searchStudio(query), [query]);
+  const submit = () => {
+    const target = results[0];
+    if (target) navigate(target.route);
+  };
+  useEffect(() => {
+    const onKey = (event: KeyboardEvent) => {
+      if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k") {
+        event.preventDefault();
+        searchRef.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
   return (
-    <Link className={`cs-journey-node${compact ? " is-compact" : ""}`} to={studioRoutes[page]}>
-      <strong>{title}</strong>
-      <CalculusLaunchArt kind={page} />
-    </Link>
+    <div className="cs-search-wrap cs-home-search">
+      <label className="cs-search">
+        <Search />
+        <input ref={searchRef} value={query} onChange={(event) => setQuery(event.target.value)} onKeyDown={(event) => event.key === "Enter" && submit()} placeholder="Search topics, e.g. limits, FTC, Taylor series..." aria-label="Search Calculus Studio" />
+        <kbd>Ctrl + K</kbd>
+      </label>
+      {query.trim() ? (
+        <div className="cs-search-results" role="listbox">
+          {results.map((item) => <button key={item.route} type="button" onClick={() => navigate(item.route)}>{item.label}{item.formula ? <small>{item.formula}</small> : null}</button>)}
+          {!results.length ? <span>No calculus studio result</span> : null}
+        </div>
+      ) : null}
+    </div>
   );
 }
 
@@ -1008,8 +1010,14 @@ function LearningBar({ active, onChange, page, mode, stats }: { active: string; 
   );
 }
 
-function InfoPill({ icon, title, text }: { icon: ReactNode; title: string; text: string }) {
-  return <div><span>{icon}</span><strong>{title}</strong><p>{text}</p></div>;
+function InfoPill({ icon, title, text, onClick }: { icon: ReactNode; title: string; text: string; onClick: () => void }) {
+  return (
+    <button type="button" className="cs-loop-pill" onClick={onClick}>
+      <span>{icon}</span>
+      <strong>{title}</strong>
+      <p>{text}</p>
+    </button>
+  );
 }
 
 function StudioDialog({ title, onClose, children }: { title: string; onClose: () => void; children: ReactNode }) {

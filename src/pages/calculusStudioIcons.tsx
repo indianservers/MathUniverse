@@ -134,12 +134,39 @@ export function CalculusLaunchArt({ kind }: { kind: string }) {
       </Mini>
     );
   }
+  if (kind === "derivative-applications" || kind === "Applications") {
+    return (
+      <Mini label="Motion, related rates, and optimization">
+        <path d="M18 58 Q 70 10 120 42 T 168 28" fill="none" stroke="#22c5ea" strokeWidth="2.2" />
+        <rect x="118" y="28" width="36" height="32" fill="#ede9fe" stroke="#7c3aed" />
+        <circle cx="70" cy="28" r="5" fill="#f97316" />
+      </Mini>
+    );
+  }
   if (kind === "integration" || kind === "Integrals") {
     return (
       <Mini label="Integral area under a curve">
         <path d="M24 62 C 70 12, 118 18, 156 62" fill="#bae6fd" stroke="#22c5ea" strokeWidth="2.2" />
         <line x1="58" y1="62" x2="58" y2="34" stroke="#f59e0b" />
         <line x1="132" y1="62" x2="132" y2="28" stroke="#8b45f4" />
+      </Mini>
+    );
+  }
+  if (kind === "integration-techniques" || kind === "Techniques") {
+    return (
+      <Mini label="Substitution and parts transform">
+        <text x="28" y="48" fontSize="28" fill="#22c5ea" fontFamily="Georgia,serif">∫</text>
+        <path d="M52 40 L92 40 L84 32 M92 40 L84 48" fill="none" stroke="#7c3aed" strokeWidth="2.4" />
+        <text x="104" y="48" fontSize="22" fill="#0f766e" fontFamily="Georgia,serif">u</text>
+      </Mini>
+    );
+  }
+  if (kind === "integral-applications" || kind === "Volumes") {
+    return (
+      <Mini label="Solid of revolution">
+        <ellipse cx="96" cy="40" rx="58" ry="22" fill="#bae6fd" stroke="#22c5ea" />
+        <ellipse cx="96" cy="40" rx="18" ry="8" fill="#fff" stroke="#8b45f4" />
+        <line x1="38" y1="40" x2="154" y2="40" stroke="#0f172a" strokeWidth="1.2" />
       </Mini>
     );
   }
