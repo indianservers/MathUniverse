@@ -26,6 +26,8 @@ describe("Calculus studio mockup chrome", () => {
     expect(html).toContain("Limits");
     expect(html).toContain("Multivariable");
     expect(html).toContain("/calculus/multivariable-vector");
+    expect(html).toContain("50+ UI, UX, and content upgrades");
+    expect(html).toContain("cs-sidebar-nav");
     expect(html).not.toContain("Unlock Pro");
     expect(html).not.toContain("The Calculus Journey");
     expect(html).not.toContain("Launch an experiment");
@@ -42,6 +44,8 @@ describe("Calculus studio mockup chrome", () => {
     expect(limits).toContain("Live Results");
     expect(limits).toContain("Main");
     expect(limits).toContain("Unlock Pro");
+    expect(limits).toContain("ε–δ rectangle overlay");
+    expect(limits).toContain("UI, UX, and content upgrades");
 
     const de = renderToStaticMarkup(
       <MemoryRouter initialEntries={["/calculus/differential-equations"]}>

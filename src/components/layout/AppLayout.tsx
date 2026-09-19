@@ -264,7 +264,7 @@ export default function AppLayout() {
 
   if (isCalculusLabRoute || isModellingStudioRoute || isGeometryStudioRoute || isTrigonometryStudioRoute || isAlgebraStudioRoute || isLinearAlgebraStudioRoute || isComplexNumbersStudioRoute) {
     return (
-      <main id="main-content" className="h-dvh overflow-auto bg-slate-50">
+      <main id="main-content" className="h-dvh min-h-0 overflow-hidden bg-slate-50">
         <Outlet />
         <UndoToastHost />
       </main>
