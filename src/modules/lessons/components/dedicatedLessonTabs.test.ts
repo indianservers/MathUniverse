@@ -17,5 +17,7 @@ describe("dedicated lesson tabs", () => {
     expect(classifyLessonPanel("WORKED EXAMPLE")).toEqual(["example"]);
     expect(classifyLessonPanel("KEY RULES")).toEqual(["formula"]);
     expect(classifyLessonPanel("MINI CHALLENGE")).toEqual(["practice"]);
+    expect(classifyLessonPanel("FACTOR-DENOMINATOR MACHINE")).toEqual(["interact"]);
+    expect(classifyLessonPanel("Rule in words", "td10041-rule")).toEqual(["formula"]);
   });
 });

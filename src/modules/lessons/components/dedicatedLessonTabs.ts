@@ -23,14 +23,18 @@ export function normalizeLessonTab(label: string): DedicatedTab | null {
 export function classifyLessonPanel(heading: string, className = ""): DedicatedTab[] {
   const text = `${heading} ${className}`.toLowerCase();
   if (
-    /workbench|builder|lab\b|observe|manipulat|place grid|statement cards|assumed|proved|explore board/.test(
+    /workbench|builder|lab\b|machine|observe|manipulat|place grid|statement cards|assumed|proved|explore board/.test(
       text,
     )
   ) {
     return ["interact"];
   }
   if (/worked example|\bexample\b/.test(text)) return ["example"];
-  if (/key rules|\bformula|formulae|\brules\b/.test(text)) return ["formula"];
+  if (
+    /key rules|\bformula|formulae|\brules\b|[-_]rule\b|rule in words/.test(text)
+  ) {
+    return ["formula"];
+  }
   if (/practice|mini challenge|your challenge|try independently|counterexample/.test(text)) {
     return ["practice"];
   }
@@ -61,7 +65,7 @@ function isChrome(element: HTMLElement) {
 function collectBlocks(page: Element) {
   const nodes = [
     ...page.querySelectorAll<HTMLElement>(
-      ":scope > main, :scope > section, :scope > article, :scope > aside, main > *, main article, main section, main aside",
+      ":scope > main, :scope > section, :scope > article, :scope > aside, main > *, main article, main section, main aside, main footer, [class$='-rule']",
     ),
   ].filter((element) => !isChrome(element));
   return nodes.filter(
@@ -70,9 +74,26 @@ function collectBlocks(page: Element) {
         (other) =>
           other !== element &&
           element.contains(other) &&
-          Boolean(other.querySelector("h2, h3")),
+          Boolean(other.querySelector("h2, h3, footer, [class$='-rule']")),
       ),
   );
+}
+
+function hideEmptyAncestors(page: HTMLElement, blocks: HTMLElement[]) {
+  const sections = [
+    ...page.querySelectorAll<HTMLElement>(":scope > main, :scope > section, main > section, main > article"),
+  ].filter((element) => !isChrome(element));
+  for (const section of sections) {
+    const descendants = blocks.filter(
+      (block) => block !== section && section.contains(block),
+    );
+    if (!descendants.length) continue;
+    if (descendants.every((block) => block.getAttribute(HIDDEN_ATTR) === "true")) {
+      section.setAttribute(HIDDEN_ATTR, "true");
+    } else {
+      section.removeAttribute(HIDDEN_ATTR);
+    }
+  }
 }
 
 function findPage(root: HTMLElement) {
@@ -95,8 +116,11 @@ export function applyDedicatedTabVisibility(root: HTMLElement, rawTab: string) {
     if (show) block.removeAttribute(HIDDEN_ATTR);
     else block.setAttribute(HIDDEN_ATTR, "true");
   }
+  hideEmptyAncestors(page, blocks);
   if (tab !== "interact") {
-    const firstVisible = blocks.find((block) => block.getAttribute(HIDDEN_ATTR) !== "true");
+    const firstVisible = [...page.querySelectorAll<HTMLElement>("main > *, :scope > section")].find(
+      (block) => block.getAttribute(HIDDEN_ATTR) !== "true" && !isChrome(block),
+    );
     firstVisible?.scrollIntoView({ block: "nearest" });
   }
 }
