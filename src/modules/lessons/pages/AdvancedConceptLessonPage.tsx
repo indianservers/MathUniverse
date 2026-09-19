@@ -188,7 +188,7 @@ function AdvancedTargetLessonShell({ lesson, children }: { lesson: NonNullable<R
   return (
     <DedicatedLessonTabHost
       className="lesson-page-target"
-      testId="advanced-concept-lesson-page"
+      testId="advanced-dedicated-target"
     >
       <div data-advanced-target-shell={lesson.numericId}>{children}</div>
     </DedicatedLessonTabHost>

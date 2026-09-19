@@ -39146,7 +39146,11 @@ body:has([data-testid="advanced-concept-lesson-page"]) #main-content {
   #lesson-section-interaction
   > *
   > nav:has(> b:first-child + span:nth-child(2) + span:nth-child(3) + span:nth-child(4)) {
-  display: grid !important;
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: stretch;
+  overflow-x: auto;
 }
 
 /* Several screenshot-matched lesson styles hid the shell tab bar. Keep the
@@ -40280,30 +40284,33 @@ html { overflow-y: auto; scrollbar-gutter: stable; }
 .dynamic-membership-head { border-top:0; color:#67e8f9; font-weight:900; }
 @media (max-width: 760px) { .dynamic-venn-show-heading .action-primary { width:100%; justify-content:center; } .dynamic-show-buttons { justify-content:flex-start; } }
 
-/* Dedicated mockups are drawn in px at ~8–13px. Forcing 16px type onto those
-   tracks clips labels and glues words. Scale the whole mockup instead. */
+/* Dedicated mockups are pixel artboards. Shared shell/readability rules used
+   to stretch them to 100% width, zoom them, and force auto heights on heroes
+   and footers. That stacked five-tab bars and spilled machine footers onto
+   the theory cards. Keep the authored layout; only undo screenshot offsets. */
 .lesson-school-target,
 .lesson-page-target {
-  --lesson-mockup-zoom: 1.45;
   width: 100%;
-  max-width: none;
+  max-width: 100%;
 }
 
 .lesson-school-target > [class*="-page"],
 .lesson-page-target > [class*="-page"],
 .lesson-school-target > [data-dedicated-lesson],
 .lesson-page-target > [data-dedicated-lesson],
-.lesson-page-target > [data-advanced-target-shell] {
+.lesson-page-target > [data-advanced-target-shell],
+.lesson-page-target [data-lesson-viewport],
+.lesson-school-target [data-lesson-viewport] {
   position: relative !important;
   left: auto !important;
   top: auto !important;
-  zoom: var(--lesson-mockup-zoom);
-  width: 100% !important;
-  max-width: 100% !important;
   margin-left: auto !important;
   margin-right: auto !important;
+  max-width: 100% !important;
+  zoom: 1;
   letter-spacing: 0 !important;
   word-spacing: normal !important;
+  container-type: normal;
 }
 
 .lesson-school-target > [class*="-page"] *,
@@ -40315,44 +40322,59 @@ html { overflow-y: auto; scrollbar-gutter: stable; }
   word-spacing: normal;
 }
 
-.lesson-school-target [class$="-hero"],
-.lesson-page-target [class$="-hero"] {
-  height: auto !important;
-  min-height: 0;
-  overflow: visible !important;
-}
-
 .lesson-school-target [class$="-hero"] h1,
 .lesson-page-target [class$="-hero"] h1 {
   white-space: normal !important;
 }
 
-.lesson-school-target [class*="-tabs"],
-.lesson-page-target [class*="-tabs"] {
-  height: auto !important;
+/* Five-tab bars must stay one horizontal row on every dedicated lesson. */
+.lesson-school-target nav[class*="-tabs"],
+.lesson-page-target nav[class*="-tabs"],
+.lesson-school-target nav[aria-label*="section" i],
+.lesson-page-target nav[aria-label*="section" i] {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: stretch;
+  justify-content: flex-start;
+  overflow-x: auto;
+  overflow-y: hidden;
+  height: auto;
   min-height: 36px;
+  max-height: none;
 }
 
-.lesson-school-target :is(footer, [class$="-hero"]),
-.lesson-page-target :is(footer, [class$="-hero"]) {
+.lesson-school-target nav[class*="-tabs"] > :is(button, a, span),
+.lesson-page-target nav[class*="-tabs"] > :is(button, a, span),
+.lesson-school-target nav[aria-label*="section" i] > :is(button, a, span),
+.lesson-page-target nav[aria-label*="section" i] > :is(button, a, span) {
+  flex: 1 1 auto;
+  min-width: max-content;
+  white-space: nowrap;
+}
+
+/* Fixed-height machines/footers overflow onto the next section when type
+   wraps. Let those bands grow instead of painting over theory cards. */
+.lesson-school-target
+  :is(
+    [class$="-machine"],
+    [class$="-builder"],
+    [class$="-lab"],
+    [class$="-workbench"]
+  ),
+.lesson-page-target
+  :is(
+    [class$="-machine"],
+    [class$="-builder"],
+    [class$="-lab"],
+    [class$="-workbench"]
+  ),
+.lesson-school-target :is(footer, [class$="-rule"]),
+.lesson-page-target :is(footer, [class$="-rule"]),
+.lesson-school-target [class$="-theory"] > article,
+.lesson-page-target [class$="-theory"] > article {
   height: auto !important;
   overflow: visible !important;
-  line-height: 1.45;
-}
-
-@media (max-width: 899px) {
-  .lesson-school-target,
-  .lesson-page-target {
-    --lesson-mockup-zoom: 1;
-  }
-
-  .lesson-school-target > [class*="-page"],
-  .lesson-page-target > [class*="-page"],
-  .lesson-school-target > [data-dedicated-lesson],
-  .lesson-page-target > [data-dedicated-lesson],
-  .lesson-page-target > [data-advanced-target-shell] {
-    width: 100% !important;
-  }
 }
 
 /* When a dedicated mockup page is mounted, hide the extra shared chrome. */

@@ -1,0 +1,13 @@
+---
+description: Always work on main only; never use feature branches
+alwaysApply: true
+---
+
+# Main branch only
+
+Always stay on `main`. Do not create, check out, or push `cursor/*` or other feature branches.
+
+- Fetch and pull `origin/main` only.
+- Keep local work on `main`.
+- Do not merge or rebase other branches unless Sai explicitly asks.
+- Feature branches cause repeated conflict storms in this repo; avoid them.
