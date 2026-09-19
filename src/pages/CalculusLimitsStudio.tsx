@@ -151,6 +151,7 @@ export default function CalculusLimitsStudio({ mode }: { mode: string }) {
   const [epsilon, setEpsilon] = useState(0.25);
   const [viewport, setViewport] = useState(config.viewport);
   const [trace, setTrace] = useState<{ x: number; y: number } | null>(null);
+  const [challengeNote, setChallengeNote] = useState("");
   const previousMode = useRef(activeMode);
 
   const compiled = useMemo(() => compileExpression(expression), [expression]);
@@ -373,6 +374,11 @@ export default function CalculusLimitsStudio({ mode }: { mode: string }) {
             </div>
           ))}
         </div>
+        <button className="cls-repair" type="button" onClick={() => {
+          const pass = activeMode === "continuity" ? analysis.continuous : activeMode === "discontinuities" ? !analysis.continuous : analysis.limitExists;
+          setChallengeNote(pass ? "Challenge complete: the live limit checklist matches the graph." : "Not yet. Adjust δ, repair the hole, or switch examples, then check again.");
+        }}>Check challenge</button>
+        {challengeNote ? <p className="cls-explanation" role="status">{challengeNote}</p> : null}
       </section>
     </div>
   );

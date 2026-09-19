@@ -164,6 +164,7 @@ export default function CalculusDerivativesStudio({ mode }: { mode: string }) {
   const [bottomView, setBottomView] = useState<BottomView>("graph");
   const [viewport, setViewport] = useState(config.range);
   const [panMode, setPanMode] = useState(false);
+  const [challengeNote, setChallengeNote] = useState("");
   const previousMode = useRef(activeMode);
 
   const compiled = useMemo(
@@ -362,6 +363,8 @@ export default function CalculusDerivativesStudio({ mode }: { mode: string }) {
             <p>
               {activeMode === "tangent" ? "Challenge: shrink h until the secant and tangent look identical." : activeMode === "rules" ? "Challenge: match the expression tree of f′ with the live slope at a." : activeMode === "chain" ? "Challenge: separate inner and outer slopes, then check their product equals f′(a)." : activeMode === "implicit" ? "Challenge: place a on the circle and confirm the tangent is perpendicular to the radius." : activeMode === "higher" ? "Challenge: overlay s, v, and a (f, f′, f″) and stop where velocity is zero." : "Challenge: shrink the error band between f and the linearization L(x)."}
             </p>
+            <button type="button" onClick={() => setChallengeNote(analysis.difference < 0.08 ? "Challenge complete: secant and tangent slopes agree." : "Not yet. Shrink h until the live difference is under 0.08.")}>Check challenge</button>
+            {challengeNote ? <p role="status">{challengeNote}</p> : null}
           </div>
         </aside>
 

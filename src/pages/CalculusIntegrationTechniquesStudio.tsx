@@ -231,6 +231,7 @@ export default function CalculusIntegrationTechniquesStudio({ mode }: Props) {
   const [showBounds, setShowBounds] = useState(true);
   const [selectedPart, setSelectedPart] = useState(0);
   const [tipsOpen, setTipsOpen] = useState(false);
+  const [challengeNote, setChallengeNote] = useState("");
   const previousTechnique = useRef(technique);
 
   useEffect(() => {
@@ -595,6 +596,8 @@ export default function CalculusIntegrationTechniquesStudio({ mode }: Props) {
                       ? "Challenge: build the reference triangle from the radical and check the substitution."
                       : "Challenge: raise the cutoff b until the improper integral visibly converges or diverges."}
             </p>
+            <button type="button" onClick={() => setChallengeNote(step >= 4 ? "Challenge complete: the transformation steps are far enough to check the graph." : "Not yet. Advance the step cards, then check again.")}>Check challenge</button>
+            {challengeNote ? <p role="status">{challengeNote}</p> : null}
           </Panel>
           <Panel title="Resolution">
             <label className="its-resolution">

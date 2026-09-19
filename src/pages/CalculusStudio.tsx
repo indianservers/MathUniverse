@@ -48,7 +48,9 @@ import { StudioCanvasToolbar } from "../components/ui/StudioCanvasToolbar";
 import { CalculusLaunchArt, CalculusNavIcon } from "./calculusStudioIcons";
 import {
   dailyChallenge,
+  dailyChallengeBank,
   exportSession,
+  gradeChallenge,
   helpFor,
   importSession,
   loadChallenge,
@@ -84,6 +86,7 @@ const navItems = [
   { page: "differential-equations", label: "Differential Equations" },
   { page: "series-parametric-polar", label: "Σ Series / Parametric / Polar" },
   { page: "multivariable-vector", label: "Multivariable / Vector" },
+  { page: "advanced", label: "Advanced" },
 ] satisfies Array<{ page: CalculusStudioPage; label: string }>;
 
 const darkNavPages: CalculusStudioPage[] = ["integration", "integration-techniques", "multivariable-vector"];
@@ -277,7 +280,7 @@ const HOME_TOPIC_CARDS = [
 ] as const satisfies ReadonlyArray<{ page: CalculusStudioPage; title: string; note: string }>;
 
 function lastUsedLabel(visitedAt?: number) {
-  if (!visitedAt) return "2 min ago";
+  if (!visitedAt) return "Not started yet";
   const minutes = Math.max(1, Math.round((Date.now() - visitedAt) / 60000));
   if (minutes < 60) return `${minutes} min ago`;
   const hours = Math.round(minutes / 60);
@@ -289,7 +292,9 @@ function StudioHome() {
   const navigate = useNavigate();
   const last = loadLastExperiment();
   const progress = progressSummary();
-  const [challenge] = useState(loadChallenge);
+  const [challenge, setChallenge] = useState(loadChallenge);
+  const [guess, setGuess] = useState(challenge.guess);
+  const [checked, setChecked] = useState(challenge.solved);
   const labsExplored = new Set(progress.done.map((id) => id.split(":")[0])).size;
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
@@ -342,7 +347,7 @@ function StudioHome() {
           <ul className="cs-journey-stats">
             <li><CheckCircle2 /> Topics explored <b>{Math.min(labsExplored, 9)} / 9</b></li>
             <li><FlaskConical /> Experiments run <b>{progress.completed}</b></li>
-            <li><Trophy /> Challenges solved <b>{challenge.solved ? 1 : 0} / 18</b></li>
+            <li><Trophy /> Challenges solved <b>{challenge.solved ? 1 : 0} / {dailyChallengeBank.length}</b></li>
             <li><Flame /> Streak <b>{challenge.streak} days</b></li>
             <li><Star /> XP earned <b>{progress.completed * 10} XP</b></li>
           </ul>
@@ -350,13 +355,34 @@ function StudioHome() {
         </section>
         <section className="cs-card cs-challenge" id="daily-challenge">
           <h2>Challenge of the day <em>New</em></h2>
-          <p>{dailyChallenge.prompt} Factor, cancel, and read the remaining line.</p>
-          <div className="cs-limit-formula" aria-label="limit as x approaches 2 of (x squared minus 4) over (x minus 2)">
-            lim<sub>x→2</sub> (x² − 4) / (x − 2)
+          <p>{dailyChallenge.prompt} {dailyChallenge.hint}</p>
+          <div className="cs-limit-formula" aria-label={dailyChallenge.html}>
+            {dailyChallenge.html}
           </div>
-          {challenge.solved ? <p className="cs-feedback">Correct: the limit equals 4.</p> : null}
+          <label className="cs-guess">
+            Your answer
+            <input
+              value={guess}
+              onChange={(event) => { setGuess(event.target.value); setChecked(false); }}
+              onKeyDown={(event) => {
+                if (event.key !== "Enter") return;
+                const next = gradeChallenge(guess);
+                setChallenge(next);
+                setChecked(true);
+              }}
+              aria-label="Daily challenge answer"
+            />
+          </label>
+          <div className="cs-challenge-actions">
+            <button className="cs-primary" type="button" onClick={() => {
+              const next = gradeChallenge(guess);
+              setChallenge(next);
+              setChecked(true);
+            }}>Check</button>
+            <button className="cs-primary" type="button" onClick={() => navigate("/calculus/limits")}>Take challenge <ChevronRight /></button>
+          </div>
+          {checked ? <p className={challenge.solved ? "cs-feedback" : "cs-error"} role="status">{challenge.solved ? `Correct: ${dailyChallenge.answer}.` : dailyChallenge.hint}</p> : null}
           <p className="cs-xp-row"><span>+ 50 XP</span> <span>+ 1</span></p>
-          <button className="cs-primary" type="button" onClick={() => navigate("/calculus/limits")}>Take challenge <ChevronRight /></button>
         </section>
       </aside>
     </div>
@@ -477,6 +503,7 @@ function InteractiveLab({ page, mode, reduced }: { page: Exclude<CalculusStudioP
   const [showAux, setShowAux] = useState(true);
   const [learning, setLearning] = useState("Observe");
   const [toast, setToast] = useState("");
+  const [challengeNote, setChallengeNote] = useState("");
   const [riemann, setRiemann] = useState<"left" | "mid" | "right" | "trap">("mid");
   const compiled = useMemo(() => compileOne(expression), [expression]);
   const field = useMemo(() => {
@@ -492,6 +519,7 @@ function InteractiveLab({ page, mode, reduced }: { page: Exclude<CalculusStudioP
     setDraft(defaultExpression(page, mode));
     setExpression(defaultExpression(page, mode));
     setLearning("Observe");
+    setChallengeNote("");
   }, [page, mode]);
 
   useEffect(() => {
@@ -590,7 +618,8 @@ function InteractiveLab({ page, mode, reduced }: { page: Exclude<CalculusStudioP
             <h3>{statusTitle(page, mode, stats)}</h3>
             <p>{stateAwareCopy(page, mode, stats, a, b, delta, n)}</p>
           </section>
-          <button className="cs-primary" type="button" onClick={() => runChallenge(page, stats)}>Check challenge</button>
+          <button className="cs-primary" type="button" onClick={() => setChallengeNote(checkChallenge(page, stats))}>Check challenge</button>
+          {challengeNote ? <p className="cs-feedback" role="status">{challengeNote}</p> : null}
         </aside>
       </div>
       <LearningBar active={learning} onChange={setLearning} page={page} mode={mode} stats={stats} />
@@ -1249,9 +1278,9 @@ function tabIcon(tab: string) {
   return <Trophy />;
 }
 
-function runChallenge(page: CalculusStudioPage, stats: Array<[string, string, "good" | "warn" | "plain"]>) {
+function checkChallenge(page: CalculusStudioPage, stats: Array<[string, string, "good" | "warn" | "plain"]>) {
   const warnings = stats.filter((item) => item[2] === "warn").length;
-  alert(warnings ? `Challenge feedback: ${warnings} warning result remains. Adjust controls and try again.` : `Challenge complete for ${page}.`);
+  return warnings ? `Challenge feedback: ${warnings} warning result remains. Adjust controls and try again.` : `Challenge complete for ${page}.`;
 }
 
 async function toggleStudioFullscreen() {

@@ -14,11 +14,13 @@ import {
   formatLinearSide,
   parseBalanceOperand,
   parseLinearEquation,
+  polynomialCoefficients,
   quadraticVertex,
   snapNearZero,
   solveAbsoluteEquation,
   solveQuadraticEquation,
 } from "./algebraStudioMath";
+import { factorIntegerQuadratic } from "./algebraEnhancementEngine";
 import { useAlgebraHistory } from "./useAlgebraHistory";
 
 const fmt = (n: number) => formatAlgebraNumber(n);
@@ -107,6 +109,38 @@ export default function EquationsLab() {
     });
   };
   const applyDraft = () => {
+    if (mode === "Quadratic") {
+      const left = draft.split("=")[0] ?? draft;
+      const parsed = polynomialCoefficients(left);
+      if (!parsed.ok) { setCoeff({ notice: parsed.error }); return; }
+      const coeffs = parsed.coeffs;
+      const nextA = parsed.degree >= 2 ? coeffs[coeffs.length - 3] ?? 0 : 0;
+      const nextB = parsed.degree >= 1 ? coeffs[coeffs.length - 2] ?? 0 : 0;
+      const nextC = coeffs[coeffs.length - 1] ?? 0;
+      history.reset({ ...history.state, a: nextA, b: nextB, c: nextC, draft, steps: [], notice: "Loaded quadratic." });
+      return;
+    }
+    if (mode === "Absolute Value") {
+      const normalized = draft.replace(/abs\(([^)]+)\)/i, "|$1|");
+      const match = normalized.match(/^\s*\|(.+)\|\s*=\s*(.+)\s*$/);
+      if (!match) { setCoeff({ notice: "Enter an equation like |2x+1| = 5." }); return; }
+      const inside = parseBalanceOperand(match[1] ?? "");
+      const right = parseBalanceOperand(match[2] ?? "");
+      if (!inside.ok) { setCoeff({ notice: inside.error }); return; }
+      if (!right.ok || right.term.x !== 0) { setCoeff({ notice: "The right side of an absolute-value equation must be a constant." }); return; }
+      history.reset({ ...history.state, a: inside.term.x, b: inside.term.n, d: right.term.n, draft, steps: [], notice: "Loaded absolute-value equation." });
+      return;
+    }
+    if (mode === "Inequalities") {
+      const match = draft.match(/^(.*)(<=|>=|<|>)(.*)$/);
+      if (!match) { setCoeff({ notice: "Enter an inequality such as 2x+1 > 5." }); return; }
+      const left = parseBalanceOperand(match[1] ?? "");
+      const right = parseBalanceOperand(match[3] ?? "");
+      if (!left.ok) { setCoeff({ notice: left.error }); return; }
+      if (!right.ok || right.term.x !== 0) { setCoeff({ notice: "Keep the right side a constant." }); return; }
+      history.reset({ ...history.state, a: left.term.x, b: left.term.n, d: right.term.n, relation: match[2] as typeof relation, draft, steps: [], notice: "Loaded inequality." });
+      return;
+    }
     const parsed = parseLinearEquation(draft);
     if (!parsed.ok) { setCoeff({ notice: parsed.error }); return; }
     history.reset({ ...history.state, ...parsed.state, origA: parsed.state.a, origB: parsed.state.b, origC: parsed.state.c, origD: parsed.state.d, draft, steps: [], notice: "Loaded equation." });
@@ -143,10 +177,40 @@ export default function EquationsLab() {
     <i key={`${label}${i}`} className="alg-eq-x">{showValues ? label : ""}</i>
   ));
   const challengeTarget = describeLinearSolution(origA, origB, origC, origD);
-  const challengeOk = challengeTarget.kind === "one" && answersMatchChallenge(challengeAnswer, challengeTarget.value);
+  const realQuadraticRoot = quadratic.roots.find((root) => snapNearZero(root.imaginary) === 0)?.real;
+  const challengeExpected = mode === "Quadratic"
+    ? (typeof realQuadraticRoot === "number" ? realQuadraticRoot : quadratic.text)
+    : mode === "Absolute Value"
+      ? (absolute.values[0] ?? absolute.text)
+      : mode === "Inequalities"
+        ? inequality.text
+        : challengeTarget.kind === "one" ? challengeTarget.value : linear.text;
+  const challengeOk = answersMatchChallenge(challengeAnswer, challengeExpected);
+  const challengePrompt = mode === "Quadratic"
+    ? `Solve ${equation}. Enter a real root.`
+    : mode === "Absolute Value"
+      ? `Solve ${equation}. Enter one real solution.`
+      : mode === "Inequalities"
+        ? `Describe the live inequality solution.`
+        : `Solve and check: ${formatLinearSide(origA, origB)} = ${formatLinearSide(origC, origD)}`;
+  const factoredQuad = factorIntegerQuadratic(Math.round(a), Math.round(b), Math.round(c));
+  const quadraticRewrite = quadraticMethod === "Completing the square"
+    ? completeSquareText(a, b, c)
+    : quadraticMethod === "Factoring"
+      ? (factoredQuad
+        ? `(${factoredQuad.left[0] === 1 ? "" : factoredQuad.left[0]}x ${factoredQuad.left[1] >= 0 ? "+" : "−"} ${Math.abs(factoredQuad.left[1])})(${factoredQuad.right[0] === 1 ? "" : factoredQuad.right[0]}x ${factoredQuad.right[1] >= 0 ? "+" : "−"} ${Math.abs(factoredQuad.right[1])}) = 0`
+        : "No integer factorization; the quadratic formula still applies.")
+      : `x = (−b ± √D) / 2a → ${quadratic.text}`;
   return (
     <div className="alg-page alg-eq-page" data-mode-canvas={mode}>
-      <AlgebraLabHeading labId="equations" subtitle="Solve equations and inequalities using the balance model. Explore operations, preserve equality, and check solutions." modes={modes} mode={mode} onMode={setMode} onUndo={history.undo} onRedo={history.redo} canUndo={history.canUndo} canRedo={history.canRedo} onReset={() => history.reset()} helpTitle={`${mode} help`} helpBody="Operations always apply to both sides. Enter 2x then Subtract to remove x terms. Auto-balance does not skip steps. 0x=0 is all reals; 0x=nonzero has no solution.">Equations &amp; Inequalities Lab</AlgebraLabHeading>
+      <AlgebraLabHeading labId="equations" subtitle="Solve equations and inequalities using the balance model. Explore operations, preserve equality, and check solutions." modes={modes} mode={mode} onMode={(next) => {
+        setMode(next);
+        const nextEquation = next === "Quadratic" ? `${fmt(a)}x² + (${fmt(b)})x + (${fmt(c)}) = 0`
+          : next === "Absolute Value" ? `|${formatLinearSide(a, b)}| = ${fmt(d)}`
+          : next === "Inequalities" ? `${formatLinearSide(a, b)} ${relation} ${fmt(d)}`
+          : `${formatLinearSide(a, b)} = ${formatLinearSide(c, d)}`;
+        history.replace({ ...history.state, draft: nextEquation, challengeChecked: false });
+      }} onUndo={history.undo} onRedo={history.redo} canUndo={history.canUndo} canRedo={history.canRedo} onReset={() => history.reset()} helpTitle={`${mode} help`} helpBody="Operations always apply to both sides. Enter 2x then Subtract to remove x terms. Auto-balance does not skip steps. 0x=0 is all reals; 0x=nonzero has no solution.">Equations &amp; Inequalities Lab</AlgebraLabHeading>
       <p className="sr-only" role="status">{notice || "Watch how the scale stays balanced at every step."}</p>
       <div className="alg-eq-layout">
         <section className="alg-card alg-eq-equation" id="algebra-lab-main">
@@ -156,8 +220,8 @@ export default function EquationsLab() {
           <p className="alg-kind-badge">{mode === "Linear" ? linear.kind === "one" ? "one solution" : linear.kind === "all" ? "all real numbers" : "no solution" : mode === "Quadratic" ? (quadratic.roots.some((root) => snapNearZero(root.imaginary) !== 0) ? "complex roots — not on the real line" : "real roots") : result}</p>
           <label className="alg-field">Equation
             <span className="alg-eq-input">
-              <input value={mode === "Linear" ? draft : equation} readOnly={mode !== "Linear"} onChange={(e) => setCoeff({ draft: e.target.value })} onKeyDown={(e) => { if (e.key === "Enter") applyDraft(); }} />
-              <button type="button" aria-label="Load equation" onClick={mode === "Linear" ? applyDraft : applyGoal}>▶</button>
+              <input value={draft} onChange={(e) => setCoeff({ draft: e.target.value })} onKeyDown={(e) => { if (e.key === "Enter") applyDraft(); }} />
+              <button type="button" aria-label="Load equation" onClick={applyDraft}>▶</button>
             </span>
           </label>
           <label className="alg-field">Goal
@@ -175,9 +239,9 @@ export default function EquationsLab() {
             <Numeric label="Right constant" value={d} onChange={(value) => setCoeff({ d: value, draft: `${formatLinearSide(a, b)} = ${formatLinearSide(c, value)}` })} onCommit={(value) => history.commit({ ...history.state, d: value, origD: value, draft: `${formatLinearSide(a, b)} = ${formatLinearSide(c, value)}` })} />
           </>}
           {mode === "Quadratic" && <>
-            <Numeric label="a" value={a} onChange={(value) => setCoeff({ a: value })} onCommit={(value) => history.commit({ ...history.state, a: value })} />
-            <Numeric label="b" value={b} onChange={(value) => setCoeff({ b: value })} onCommit={(value) => history.commit({ ...history.state, b: value })} />
-            <Numeric label="c" value={c} onChange={(value) => setCoeff({ c: value })} onCommit={(value) => history.commit({ ...history.state, c: value })} />
+            <Numeric label="a" value={a} onChange={(value) => setCoeff({ a: value, draft: `${fmt(value)}x² + (${fmt(b)})x + (${fmt(c)}) = 0` })} onCommit={(value) => history.commit({ ...history.state, a: value, draft: `${fmt(value)}x² + (${fmt(b)})x + (${fmt(c)}) = 0` })} />
+            <Numeric label="b" value={b} onChange={(value) => setCoeff({ b: value, draft: `${fmt(a)}x² + (${fmt(value)})x + (${fmt(c)}) = 0` })} onCommit={(value) => history.commit({ ...history.state, b: value, draft: `${fmt(a)}x² + (${fmt(value)})x + (${fmt(c)}) = 0` })} />
+            <Numeric label="c" value={c} onChange={(value) => setCoeff({ c: value, draft: `${fmt(a)}x² + (${fmt(b)})x + (${fmt(value)}) = 0` })} onCommit={(value) => history.commit({ ...history.state, c: value, draft: `${fmt(a)}x² + (${fmt(b)})x + (${fmt(value)}) = 0` })} />
             <label className="alg-field">Method<select value={quadraticMethod} onChange={(e) => setCoeff({ quadraticMethod: e.target.value })}>
               <option>Quadratic formula</option>
               <option>Factoring</option>
@@ -290,7 +354,7 @@ export default function EquationsLab() {
           {mode === "Quadratic" && vertex && (
             <div className="alg-eq-check">
               <p>D = {fmt(b * b - 4 * a * c)}. Vertex ({fmt(vertex.x)}, {fmt(vertex.y)}). Axis x = {fmt(vertex.x)}. y-intercept {fmt(c)}.</p>
-              <p>{quadraticMethod === "Completing the square" ? completeSquareText(a, b, c) : quadraticMethod === "Factoring" ? quadratic.text : `x = (−b ± √D) / 2a → ${quadratic.text}`}</p>
+              <p>{quadraticRewrite}</p>
               <svg className="alg-graph" viewBox="0 0 700 220" role="img" aria-label="Quadratic graph">
                 <path d="M30 110H670M350 10V210" stroke="currentColor" fill="none" />
                 <path d={Array.from({ length: 80 }, (_, i) => {
@@ -337,13 +401,13 @@ export default function EquationsLab() {
           <Sparkles />
           <div>
             <b>Challenge</b>
-            <small>Solve and check: {formatLinearSide(origA, origB)} = {formatLinearSide(origC, origD)}</small>
+            <small>{challengePrompt}</small>
             <button type="button" className="alg-eq-challenge" onClick={() => newEquation(true)}>Challenge Me</button>
           {challengeOn && (
             <label className="alg-field">Your answer
               <input value={challengeAnswer} onChange={(e) => setCoeff({ challengeAnswer: e.target.value, challengeChecked: false })} />
               <button type="button" className="alg-gradient-button" onClick={() => setCoeff({ challengeChecked: true })}>Check answer</button>
-              {challengeChecked && <p role="status">{challengeOk ? "Correct." : "Not yet. Isolate x; watch the sign."}</p>}
+              {challengeChecked && <p role="status">{challengeOk ? "Correct." : `Not yet. Current ${mode.toLowerCase()} solution: ${typeof challengeExpected === "number" ? fmt(challengeExpected) : challengeExpected}.`}</p>}
             </label>
           )}
           </div>

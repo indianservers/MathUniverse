@@ -667,6 +667,12 @@ export default function CalculusMultivariableStudio() {
             <CheckCircle2 />
             Quick check
           </button>
+          <button
+            type="button"
+            onClick={() => setCheckVisible(true)}
+          >
+            Check challenge
+          </button>
         </div>
         {checkVisible && (
           <p className="mvc-check">

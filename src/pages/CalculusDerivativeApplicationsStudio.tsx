@@ -195,14 +195,24 @@ function LearningPanel({ active, onChange, mode, cut: _cut, optimum, onFindOptim
           <h3><Trophy /> Challenge</h3>
           <p>Use a different sheet size and find the optimal box.</p>
           <button className="da-find" type="button" onClick={onFindOptimum}><Trophy /> Find optimum</button>
+          <CheckChallenge pass={Math.abs(_cut - optimum) < 0.15} />
         </article>
       </section>
     );
   }
   const copy: Record<LearningMode,string> = { Experiment: modeInfo[mode]?.subtitle ?? "Explore the derivative model.", Reasoning: "Identify the changing quantity, write its relationship, differentiate, and only then substitute the current values.", Challenge: mode === "motion" ? "Challenge: stop the particle where v and a have opposite signs." : mode === "related" ? "Challenge: label the similar-triangle diagram so dV/dt matches 4πr² dr/dt." : mode === "curve" ? "Challenge: generate a sign chart from zeros of f′ and f″ on the graph." : "Challenge: place Rolle/MVT points so the tangent matches the secant slope." };
-  return <section className="da-learning"><nav>{(["Experiment","Reasoning","Challenge"] as LearningMode[]).map((tab)=><button type="button" key={tab} className={active===tab?"active":""} onClick={()=>onChange(tab)}>{tab==="Experiment"?<Lightbulb />:tab==="Reasoning"?<Target />:<Trophy />}{tab}</button>)}</nav><p>{copy[active]}</p></section>;
+  return <section className="da-learning"><nav>{(["Experiment","Reasoning","Challenge"] as LearningMode[]).map((tab)=><button type="button" key={tab} className={active===tab?"active":""} onClick={()=>onChange(tab)}>{tab==="Experiment"?<Lightbulb />:tab==="Reasoning"?<Target />:<Trophy />}{tab}</button>)}</nav><p>{copy[active]}</p><CheckChallenge pass={mode === "mvt"} /></section>;
 }
 
+function CheckChallenge({ pass }: { pass: boolean }) {
+  const [note, setNote] = useState("");
+  return (
+    <>
+      <button className="da-find" type="button" onClick={() => setNote(pass ? "Challenge complete: the live model matches the target." : "Not yet. Adjust the controls toward the live target, then check again.")}>Check challenge</button>
+      {note ? <p role="status">{note}</p> : null}
+    </>
+  );
+}
 function Slider({ label, value, min, max, step, onChange, unit = "" }: { label: string; value: number; min: number; max: number; step: number; onChange: (value: number) => void; unit?: string }) { return <label className="da-slider"><span>{label}<b>{tidy(value)} {unit}</b></span><input aria-label={label} type="range" min={min} max={max} step={step} value={clamp(value,min,max)} onChange={(event)=>onChange(Number(event.target.value))} /><small><span>{tidy(min)}</span><span>{tidy(max)}</span></small></label>; }
 function Formula({ label, value }: { label: string; value: string }) { return <div className="da-formula"><span>{label}</span><strong>{value}</strong></div>; }
 function Metric({ label, value, tone="plain" }: { label: string; value: string; tone?: string }) { return <div className={`da-metric ${tone}`}><span>{label}</span><strong>{value}</strong></div>; }
