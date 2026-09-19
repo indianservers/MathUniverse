@@ -11228,21 +11228,29 @@ html[data-geometry-workspace-theme="light"]
 }
 
 .graph-studio-3d-shell[data-chrome-theme="glow"] {
+  --gs-panel: #041525;
+  --gs-panel-2: #062033;
   --gs-cyan: #67f8ff;
   --gs-violet: #d8b4fe;
-  --gs-border: rgba(103, 248, 255, 0.3);
+  --gs-border: rgba(103, 248, 255, 0.32);
+  --gs-muted: #9eefff;
+  color: #e8fbff;
   background: #01050e;
 }
 .graph-studio-3d-shell[data-chrome-theme="glow"] .gs3d-topbar,
 .graph-studio-3d-shell[data-chrome-theme="glow"] .gs3d-navrail,
 .graph-studio-3d-shell[data-chrome-theme="glow"] .gs3d-left-panel,
 .graph-studio-3d-shell[data-chrome-theme="glow"] .gs3d-right-panel,
-.graph-studio-3d-shell[data-chrome-theme="glow"] .gs3d-status {
+.graph-studio-3d-shell[data-chrome-theme="glow"] .gs3d-status,
+.graph-studio-3d-shell[data-chrome-theme="glow"] .gs3d-dock,
+.graph-studio-3d-shell[data-chrome-theme="glow"] .gs3d-popover {
   background: #03111f;
-  box-shadow: inset 0 0 42px rgba(34, 211, 238, 0.1);
+  box-shadow: inset 0 0 42px rgba(34, 211, 238, 0.14);
 }
-.graph-studio-3d-shell[data-chrome-theme="glow"] .gs3d-mark {
-  box-shadow: 0 0 18px rgba(103, 248, 255, 0.45);
+.graph-studio-3d-shell[data-chrome-theme="glow"] .gs3d-mark,
+.graph-studio-3d-shell[data-chrome-theme="glow"] .gs3d-expression.active,
+.graph-studio-3d-shell[data-chrome-theme="glow"] .workspace-chrome-theme-toggle button[aria-pressed="true"] {
+  box-shadow: 0 0 18px rgba(103, 248, 255, 0.4);
 }
 
 .graph-studio-3d-shell[data-chrome-theme="light"] {
@@ -11260,14 +11268,42 @@ html[data-geometry-workspace-theme="light"]
 .graph-studio-3d-shell[data-chrome-theme="light"] .gs3d-left-panel,
 .graph-studio-3d-shell[data-chrome-theme="light"] .gs3d-right-panel,
 .graph-studio-3d-shell[data-chrome-theme="light"] .gs3d-status,
-.graph-studio-3d-shell[data-chrome-theme="light"] .gs3d-modes {
+.graph-studio-3d-shell[data-chrome-theme="light"] .gs3d-modes,
+.graph-studio-3d-shell[data-chrome-theme="light"] .gs3d-dock,
+.graph-studio-3d-shell[data-chrome-theme="light"] .gs3d-popover,
+.graph-studio-3d-shell[data-chrome-theme="light"] .gs3d-scene-host,
+.graph-studio-3d-shell[data-chrome-theme="light"] .gs2d-scene-host {
   background: #f8fafc;
   color: #0f172a;
+  box-shadow: none;
 }
 .graph-studio-3d-shell[data-chrome-theme="light"] .gs3d-top-action,
 .graph-studio-3d-shell[data-chrome-theme="light"] .gs3d-mobile-menu,
-.graph-studio-3d-shell[data-chrome-theme="light"] .gs3d-modes button {
+.graph-studio-3d-shell[data-chrome-theme="light"] .gs3d-modes button,
+.graph-studio-3d-shell[data-chrome-theme="light"] .gs3d-panel-header button,
+.graph-studio-3d-shell[data-chrome-theme="light"] .gs3d-inspector-tabs button,
+.graph-studio-3d-shell[data-chrome-theme="light"] .gs3d-popover button,
+.graph-studio-3d-shell[data-chrome-theme="light"] .gs3d-layer-summary,
+.graph-studio-3d-shell[data-chrome-theme="light"] .gs3d-inspector-group p,
+.graph-studio-3d-shell[data-chrome-theme="light"] .gs2d-expression .expression-main span {
   color: #334155;
+}
+.graph-studio-3d-shell[data-chrome-theme="light"] .gs3d-inspector-tabs button.active,
+.graph-studio-3d-shell[data-chrome-theme="light"] .gs3d-modes button.active {
+  color: #0e7490;
+  background: rgba(14, 116, 144, 0.08);
+}
+.graph-studio-3d-shell[data-chrome-theme="light"] .gs3d-expression .expression-main input,
+.graph-studio-3d-shell[data-chrome-theme="light"] .gs2d-expression .expression-main input,
+.graph-studio-3d-shell[data-chrome-theme="light"] input:not([type="color"]):not([type="range"]),
+.graph-studio-3d-shell[data-chrome-theme="light"] textarea,
+.graph-studio-3d-shell[data-chrome-theme="light"] select {
+  color: #0f172a;
+}
+.graph-studio-3d-shell[data-chrome-theme="light"] .gs3d-layer-summary span,
+.graph-studio-3d-shell[data-chrome-theme="light"] .gs3d-inspector-group code {
+  background: #eef4f8;
+  color: #0e7490;
 }
 .graph-studio-3d-shell[data-chrome-theme="light"] .workspace-chrome-theme-toggle {
   background: #fff;
@@ -11276,11 +11312,27 @@ html[data-geometry-workspace-theme="light"]
   background: rgba(14, 116, 144, 0.14);
   color: #0f172a;
 }
+.graph-studio-3d-shell[data-chrome-theme="light"] .gs3d-top-action:hover,
+.graph-studio-3d-shell[data-chrome-theme="light"] .gs3d-popover button:hover {
+  background: rgba(14, 116, 144, 0.1);
+  color: #0f172a;
+}
 
 .geometry-studio-shell[data-chrome-theme="glow"],
 .geometry-studio-shell[data-geometry-theme="glow"] {
-  background: #061018;
-  box-shadow: inset 0 0 80px rgba(34, 211, 238, 0.12);
+  background: #041018;
+  color: #e8fbff;
+  box-shadow: inset 0 0 80px rgba(34, 211, 238, 0.16);
+}
+.geometry-studio-shell[data-chrome-theme="glow"] .geometry-studio-topbar,
+.geometry-studio-shell[data-geometry-theme="glow"] .geometry-studio-topbar,
+.geometry-studio-shell[data-chrome-theme="glow"] .geometry-studio-toolbox,
+.geometry-studio-shell[data-geometry-theme="glow"] .geometry-studio-toolbox,
+.geometry-studio-shell[data-chrome-theme="glow"] .geometry-studio-right,
+.geometry-studio-shell[data-geometry-theme="glow"] .geometry-studio-right {
+  background: #071a28;
+  border-color: rgba(103, 248, 255, 0.28);
+  box-shadow: 0 0 28px rgba(34, 211, 238, 0.16);
 }
 html[data-geometry-workspace-theme="glow"]
   .math-workspace-layout[data-workspace="geometry"] {
