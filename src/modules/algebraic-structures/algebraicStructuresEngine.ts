@@ -427,6 +427,56 @@ export function meetJoin(
   return { meet, join, lower, upper };
 }
 
+export function posetProperties(
+  elements: string[],
+  relationPairs: Array<[string, string]>,
+) {
+  const relates = new Set(relationPairs.map(([x, y]) => `${x}->${y}`));
+  for (const x of elements) relates.add(`${x}->${x}`);
+  let changed = true;
+  while (changed) {
+    changed = false;
+    for (const a of elements) {
+      for (const b of elements) {
+        for (const c of elements) {
+          if (relates.has(`${a}->${b}`) && relates.has(`${b}->${c}`) && !relates.has(`${a}->${c}`)) {
+            relates.add(`${a}->${c}`);
+            changed = true;
+          }
+        }
+      }
+    }
+  }
+  const leq = (x: string, y: string) => relates.has(`${x}->${y}`);
+  const reflexive = elements.every((x) => leq(x, x));
+  const antisymmetric = elements.every((a) =>
+    elements.every((b) => !(leq(a, b) && leq(b, a)) || a === b),
+  );
+  const transitive = elements.every((a) =>
+    elements.every((b) =>
+      elements.every((c) => !(leq(a, b) && leq(b, c)) || leq(a, c)),
+    ),
+  );
+  const partialOrder = reflexive && antisymmetric && transitive;
+  const lattice =
+    partialOrder &&
+    elements.every((a) =>
+      elements.every((b) => {
+        const result = meetJoin(elements, relationPairs.concat(
+          [...relates].map((key) => key.split("->") as [string, string]),
+        ), a, b);
+        return result.meet != null && result.join != null;
+      }),
+    );
+  const bounded =
+    lattice &&
+    Boolean(
+      elements.find((bottom) => elements.every((x) => leq(bottom, x))) &&
+        elements.find((top) => elements.every((x) => leq(x, top))),
+    );
+  return { reflexive, antisymmetric, transitive, partialOrder, lattice, bounded };
+}
+
 export function coverRelations(
   elements: string[],
   relationPairs: Array<[string, string]>,

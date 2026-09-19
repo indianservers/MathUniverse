@@ -121,14 +121,15 @@ export default function RightTriangleLab({ page }: { page: StudioMockupPage }) {
     let b = Math.max(0.25, opp);
     let c = Math.max(0.5, hyp);
     let a = Math.max(0.25, adj);
+    const impossible = b >= c;
     if (known === "angle-side") {
       const rad = A * Math.PI / 180;
       if (mode === "Pythagoras") {
-        c = Math.max(b + 0.1, c);
-        a = Math.sqrt(Math.max(0, c * c - b * b));
-        A = Math.asin(clamp(b / c, 0, 1)) * 180 / Math.PI;
-      } else {
-        c = Math.max(b + 0.05, c);
+        if (!impossible) {
+          a = Math.sqrt(Math.max(0, c * c - b * b));
+          A = Math.asin(clamp(b / c, 0, 1)) * 180 / Math.PI;
+        }
+      } else if (!impossible) {
         b = c * Math.sin(rad);
         a = c * Math.cos(rad);
       }
@@ -137,7 +138,7 @@ export default function RightTriangleLab({ page }: { page: StudioMockupPage }) {
       A = Math.atan2(b, a) * 180 / Math.PI;
     }
     const B = 90 - A;
-    return { A, B, a, b, c, sinA: b / c, cosA: a / c, tanA: b / a, py: a * a + b * b, cc: c * c, ok: Math.abs(a * a + b * b - c * c) < 0.05 };
+    return { A, B, a, b, c, sinA: c ? b / c : 0, cosA: c ? a / c : 0, tanA: a ? b / a : 0, py: a * a + b * b, cc: c * c, ok: !impossible && Math.abs(a * a + b * b - c * c) < 0.05, impossible };
   }, [adj, angleA, hyp, known, mode, opp]);
 
   const applyExample = (id: Example) => {
@@ -447,10 +448,10 @@ export default function RightTriangleLab({ page }: { page: StudioMockupPage }) {
               <p className="msk-formula">a² + b² = c²</p>
               <p className="msk-formula">({fmt(solved.a, 4)})² + ({fmt(solved.b, 4)})² = ({fmt(solved.c, 4)})²</p>
               <p className="msk-formula">{fmt(solved.a * solved.a, 2)} + {fmt(solved.b * solved.b, 2)} = {fmt(solved.cc, 2)}</p>
-              <StatusOk>{solved.ok ? "Valid — all values are consistent." : "Sides are being reconciled."}</StatusOk>
+              <StatusOk>{solved.impossible ? "Impossible — opposite is ≥ hypotenuse." : solved.ok ? "Valid — all values are consistent." : "Sides are being reconciled."}</StatusOk>
               <ValueRow color="#8b45f4" label="a²" value={fmt(solved.a * solved.a, 4)} />
               <ValueRow color="#147df2" label="b²" value={fmt(solved.b * solved.b, 4)} />
-              <ValueRow color="#08b9dd" label="c²" value={fmt(solved.cc, 4)} ok={solved.ok} />
+              <ValueRow color="#08b9dd" label="c²" value={fmt(solved.cc, 4)} ok={!solved.impossible && solved.ok} />
             </>
           ) : null}
           {mode === "Similarity" ? (
@@ -475,7 +476,7 @@ export default function RightTriangleLab({ page }: { page: StudioMockupPage }) {
               <p className="msk-formula">a² + b² = c²</p>
               <p className="msk-formula">({fmt(solved.a, 4)})² + ({fmt(solved.b, 4)})² = ({fmt(solved.c, 4)})²</p>
               <p className="msk-formula">{fmt(solved.a * solved.a, 2)} + {fmt(solved.b * solved.b, 2)} = {fmt(solved.cc, 2)}</p>
-              <StatusOk>{solved.ok ? "Valid — all values are consistent." : "Sides are being reconciled."}</StatusOk>
+              <StatusOk>{solved.impossible ? "Impossible — opposite is ≥ hypotenuse." : solved.ok ? "Valid — all values are consistent." : "Sides are being reconciled."}</StatusOk>
             </>
           ) : null}
           <h2>Steps & Reasoning</h2>
@@ -489,7 +490,7 @@ export default function RightTriangleLab({ page }: { page: StudioMockupPage }) {
               "The right angle is at C.",
               "Square each side length.",
               "a² + b² should equal c².",
-              solved.ok ? "The squares add exactly." : "Adjust a side until the check holds.",
+              solved.impossible ? "Impossible: opposite ≥ hypotenuse." : solved.ok ? "The squares add exactly." : "Adjust a side until the check holds.",
             ] : mode === "Similarity" ? [
               "Corresponding angles are equal (AA).",
               `Scale factor k = ${fmt(scale, 1)}.`,
@@ -508,7 +509,7 @@ export default function RightTriangleLab({ page }: { page: StudioMockupPage }) {
               "All values validated.",
             ]
           } />
-          {mode === "Solve Triangle" ? <StatusOk>Solution status: all values are consistent.</StatusOk> : null}
+          {mode === "Solve Triangle" ? <StatusOk>{solved.impossible ? "Impossible triangle: opposite ≥ hypotenuse." : "Solution status: all values are consistent."}</StatusOk> : null}
           <ChallengeBox page={page} mode={mode} />
         </aside>
       </div>

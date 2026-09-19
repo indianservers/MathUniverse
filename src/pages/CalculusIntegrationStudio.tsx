@@ -303,6 +303,7 @@ function ResultCard({ label, value, tone = "plain" }: { label: string; value: st
 function EmptyResults() { return <p className="ci-empty">Results appear when the function and interval are valid.</p>; }
 
 function LearningBar({ active, onChange, mode, result }: { active: LearningMode; onChange: (value: LearningMode) => void; mode: string; result: IntegrationResult | null }) {
+  const [challengeNote, setChallengeNote] = useState("");
   const tabs: LearningMode[] = ["Observe", "Understand", "Why", "Try", "Challenge"];
   const copy: Record<LearningMode, string> = {
     Observe: modeCopy[mode]?.explanation ?? modeCopy.definite.explanation,
@@ -322,7 +323,7 @@ function LearningBar({ active, onChange, mode, result }: { active: LearningMode;
                 ? `Challenge: make the signed-area error smaller than ${format(Math.max(result.absoluteError / 2, 0.00001), 5)}.`
                 : "Challenge: choose a valid function and interval to begin.",
   };
-  return <section className="ci-learning"><nav>{tabs.map((tab) => <button type="button" key={tab} className={active === tab ? "active" : ""} onClick={() => onChange(tab)}>{tab}</button>)}</nav><p>{copy[active]}</p></section>;
+  return <section className="ci-learning"><nav>{tabs.map((tab) => <button type="button" key={tab} className={active === tab ? "active" : ""} onClick={() => onChange(tab)}>{tab}</button>)}</nav><p>{copy[active]}</p><button type="button" className="primary" onClick={() => setChallengeNote(result && result.absoluteError < 0.05 ? "Challenge complete: the signed-area error is small enough." : "Not yet. Raise n or switch methods until the live error drops.")}>Check challenge</button>{challengeNote ? <p role="status">{challengeNote}</p> : null}</section>;
 }
 
 function GraphGrid({ width, height, pad }: { width: number; height: number; pad: number }) { return <g>{Array.from({ length: 10 }, (_, index) => <line key={`v-${index}`} x1={pad + index * ((width - pad * 2) / 9)} x2={pad + index * ((width - pad * 2) / 9)} y1={pad} y2={height - pad} className="grid" />)}{Array.from({ length: 8 }, (_, index) => <line key={`h-${index}`} x1={pad} x2={width - pad} y1={pad + index * ((height - pad * 2) / 7)} y2={pad + index * ((height - pad * 2) / 7)} className="grid" />)}</g>; }

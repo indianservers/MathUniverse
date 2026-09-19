@@ -1,9 +1,11 @@
 import { useState, type PointerEventHandler, type ReactNode } from "react";
+import { useLocation } from "react-router-dom";
 import { useStudioMode } from "../../hooks/useStudioMode";
 import { MockupLearningStrip } from "./MockupStudioChrome";
 import type { StudioMockupPage } from "./studioMockupCatalog";
 import { trigModeChallenge } from "./trigStudioCopy";
 import { awardTrigXp, markTrigComplete } from "./trigStudioSession";
+import { markComplexComplete } from "../complex/complexStudioSession";
 
 export function fmt(n: number, digits = 4) {
   if (!Number.isFinite(n)) return "—";
@@ -196,6 +198,7 @@ export function ChallengeBox({
   const [answer, setAnswer] = useState("");
   const [status, setStatus] = useState("");
   const [ok, setOk] = useState(false);
+  const location = useLocation();
   if (!resolved.prompt || resolved.prompt === "0") return null;
   return (
     <div className="msk-challenge">
@@ -207,9 +210,15 @@ export function ChallengeBox({
         setOk(correct);
         setStatus(correct ? "Correct — that matches the live model." : resolved.hint);
         if (correct) {
-          if (page?.route.includes("/trigonometry/")) {
+          const route = page?.route ?? location.pathname;
+          if (route.includes("/trigonometry/") && page) {
             awardTrigXp(10);
             markTrigComplete(page.id);
+          } else if (route.includes("/complex-numbers/")) {
+            const id = page?.id ?? location.pathname.split("/").filter(Boolean).at(-1) ?? "";
+            if (id) markComplexComplete(id);
+          } else if (route.includes("/discrete-world/")) {
+            // Discrete World tracks completion on its own engine pages.
           }
           onCorrect?.();
         }

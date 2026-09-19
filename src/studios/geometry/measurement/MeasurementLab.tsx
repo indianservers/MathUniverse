@@ -95,7 +95,7 @@ export default function MeasurementLab({ page }: { page: StudioMockupPage }) {
   const [headerHost, setHeaderHost] = useState<HTMLElement | null>(null);
   const [hoverId, setHoverId] = useState<string | null>(null);
   const [convKind, setConvKind] = useState<"area" | "length">("area");
-  const drag = useRef<Handle | null>(null);
+  const drag = useRef<Handle | { type: "move"; rectId: string; x0: number; y0: number; rx: number; ry: number } | null>(null);
 
   useEffect(() => { setHeaderHost(document.getElementById("msk-lab-tools")); }, []);
 
@@ -120,7 +120,7 @@ export default function MeasurementLab({ page }: { page: StudioMockupPage }) {
     const p = pt.matrixTransform(ctm.inverse());
     const { x, y } = worldFromSvg(p.x, p.y);
     const handle = handlesFor(display).find((h) => Math.hypot(h.x - x, h.y - y) < 0.28);
-    if (handle && tool === "select") {
+    if (handle && tool !== "text") {
       drag.current = handle;
       setSelected(handle.rectId);
       svg.setPointerCapture(event.pointerId);
@@ -128,6 +128,10 @@ export default function MeasurementLab({ page }: { page: StudioMockupPage }) {
     }
     const hit = hitRect(display, x, y);
     setSelected(hit?.id ?? "");
+    if (hit && (tool === "select" || tool === "measure")) {
+      drag.current = { type: "move", rectId: hit.id, x0: x, y0: y, rx: hit.x, ry: hit.y };
+      svg.setPointerCapture(event.pointerId);
+    }
   };
 
   const onMove = (event: ReactPointerEvent<SVGSVGElement>) => {
@@ -144,9 +148,18 @@ export default function MeasurementLab({ page }: { page: StudioMockupPage }) {
     if (!drag.current) return;
     const k = scaleK || 1;
     const origin = { x: 2, y: 1.8 };
+    const session = drag.current;
     setRects((prev) => prev.map((r) => {
-      if (r.id !== drag.current?.rectId) return r;
-      return resizeRect(r, drag.current.corner, origin.x + (x - origin.x) / k, origin.y + (y - origin.y) / k, snapStep);
+      if (r.id !== session.rectId) return r;
+      if ("type" in session && session.type === "move") {
+        const nx = session.rx + (x - session.x0) / k;
+        const ny = session.ry + (y - session.y0) / k;
+        const sx = snapStep > 0 ? Math.round(nx / snapStep) * snapStep : nx;
+        const sy = snapStep > 0 ? Math.round(ny / snapStep) * snapStep : ny;
+        return { ...r, x: sx, y: sy };
+      }
+      if (!("corner" in session)) return r;
+      return resizeRect(r, session.corner, origin.x + (x - origin.x) / k, origin.y + (y - origin.y) / k, snapStep);
     }));
   };
 
@@ -278,7 +291,13 @@ export default function MeasurementLab({ page }: { page: StudioMockupPage }) {
               <input type="range" min={0.5} max={1.8} step={0.01} value={scaleK} onChange={(e) => setScaleK(Number(e.target.value))} />
             </label>
           ) : null}
-          <button type="button" className="mlab-primary" onClick={() => setRects((prev) => [...prev])}>Recalculate</button>
+          <button type="button" className="mlab-primary" onClick={() => {
+            const step = snap === "grid" ? 0.2 : snap === "point" ? 0.1 : 0.01;
+            setRects((prev) => prev.map((r) => {
+              const snapN = (n: number) => Math.round(n / step) * step;
+              return { ...r, x: snapN(r.x), y: snapN(r.y), w: Math.max(0.4, snapN(r.w)), h: Math.max(0.4, snapN(r.h)) };
+            }));
+          }}>Recalculate</button>
           <button type="button" className="mlab-ghost" onClick={() => { setRects(defaultRects()); setScaleK(1); setSelected("r1"); }}><Trash2 size={14} /> Clear All</button>
         </aside>
 

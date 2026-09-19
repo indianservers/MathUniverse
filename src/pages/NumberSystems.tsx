@@ -53,6 +53,11 @@ export default function NumberSystems() {
     const tab = params.get("tab");
     if (page === "home" && tab && NUMBER_TAB_REDIRECTS[tab]) {
       navigate(NUMBER_SYSTEMS_ROUTES[NUMBER_TAB_REDIRECTS[tab]], { replace: true });
+      return;
+    }
+    const lab = params.get("lab");
+    if (page === "home" && lab === "resume") {
+      navigate(lastNumberSystemsRoute(), { replace: true });
     }
   }, [navigate, page, params]);
 
@@ -181,7 +186,7 @@ function StudioHome({ progress }: { progress: number }) {
             <button type="button" onClick={async () => {
               const url = new URL(window.location.href);
               url.searchParams.set("band", band);
-              url.searchParams.set("lab", resume);
+              url.searchParams.set("lab", "resume");
               setShareStatus(await shareStudio("Number Systems Studio", url.toString()));
             }}>Share setup</button>
             {shareStatus ? <p role="status">{shareStatus}</p> : null}

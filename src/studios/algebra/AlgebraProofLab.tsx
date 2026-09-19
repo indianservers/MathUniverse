@@ -3,6 +3,7 @@ import { useMemo, useState, type CSSProperties } from "react";
 import AlgebraLabHeading from "./AlgebraLabHeading";
 import { useStudioMode } from "../../hooks/useStudioMode";
 import {
+  answersMatchChallenge,
   classifyProofReason,
   evaluateAlgebraExpression,
   expressionsEquivalent,
@@ -195,7 +196,8 @@ export default function ProofLab() {
   const counterRight = a * a + b * b;
   const sumCheck = n * (n + 1) / 2;
   const sumDirect = (n * (n + 1)) / 2;
-  const challengeOk = challengeAnswer.trim() === "25" || expressionsEquivalent(challengeAnswer, "25");
+  const challengeExpected = (a + b) ** 2;
+  const challengeOk = answersMatchChallenge(challengeAnswer, challengeExpected);
 
   const explanation = useMemo(() => {
     if (mode === "Equation Proof") return "The same operation on both sides preserves equality. Subtracting 6 isolates 2x; dividing by 2 isolates x. Substituting x = −3 recovers 0 = 0.";
@@ -515,12 +517,12 @@ export default function ProofLab() {
           <div>
             <b>Challenge</b>
             <small>Attempt variations and strengthen your skills.</small>
-            <button type="button" className="alg-eq-challenge" onClick={() => patch({ challengeOn: true, a: 2, b: 3 })}>If a=2, b=3, (a+b)² = ?</button>
+            <button type="button" className="alg-eq-challenge" onClick={() => patch({ challengeOn: true })}>If a={fmt(a)}, b={fmt(b)}, (a+b)² = ?</button>
             {challengeOn && (
               <label className="alg-field">Your answer
                 <input value={challengeAnswer} onChange={(event) => patch({ challengeAnswer: event.target.value, challengeChecked: false }, false)} />
                 <button type="button" className="alg-gradient-button" onClick={() => patch({ challengeChecked: true }, false)}>Check</button>
-                {challengeChecked && <p role="status">{challengeOk ? "Correct: 25." : "Expand: 4 + 12 + 9."}</p>}
+                {challengeChecked && <p role="status">{challengeOk ? `Correct: ${fmt(challengeExpected)}.` : `Expand: ${fmt(a * a)} + ${fmt(2 * a * b)} + ${fmt(b * b)}.`}</p>}
               </label>
             )}
           </div>

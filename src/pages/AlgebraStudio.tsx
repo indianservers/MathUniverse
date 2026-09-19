@@ -15,7 +15,7 @@ import { useProgress } from "../hooks/useProgress";
 import AlgebraEnhancementWorkbench from "../studios/algebra/AlgebraEnhancementWorkbench";
 import { answersMatchChallenge } from "../studios/algebra/algebraStudioMath";
 import { AlgebraStudioNav, routePage, type AlgebraPage } from "../studios/algebra/AlgebraStudioNav";
-import { dailyChallenges } from "../studios/algebra/algebraStudioCatalog";
+import { challengeOfTheDay, dailyChallenges } from "../studios/algebra/algebraStudioCatalog";
 import { namedExperiments, readLabProgress } from "../studios/algebra/algebraStudioProgress";
 import { BalanceScaleTeaser, CasExpandTeaser, FactorTilesTeaser } from "../studios/landing/StudioLandingTeasers";
 import { relativeOpened } from "../studios/landing/studioLandingSession";
@@ -98,7 +98,8 @@ function StudioHome() {
   const [answer, setAnswer] = useState("");
   const [checked, setChecked] = useState(false);
   const [query, setQuery] = useState("");
-  const featured = dailyChallenges[0]!;
+  const [dialog, setDialog] = useState<"help" | "settings" | null>(null);
+  const featured = dailyChallenges[0] ?? challengeOfTheDay();
   const saved = namedExperiments();
   const lastRoute = typeof window === "undefined" ? "/algebra/functions" : (localStorage.getItem(LAST_ROUTE_KEY) || "/algebra/functions");
   const lastAt = typeof window === "undefined" ? 0 : Number(localStorage.getItem("algebra-studio:last-at") || 0);
@@ -124,10 +125,10 @@ function StudioHome() {
             <Search size={16} />
             <input className="alg-search-live" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search labs" aria-label="Search algebra labs" />
           </label>
-          <button type="button" className="alg-icon-btn" aria-label="Help">
+          <button type="button" className="alg-icon-btn" aria-label="Help" onClick={() => setDialog("help")}>
             <HelpCircle size={16} />
           </button>
-          <button type="button" className="alg-icon-btn" aria-label="Settings">
+          <button type="button" className="alg-icon-btn" aria-label="Settings" onClick={() => setDialog("settings")}>
             <Settings size={16} />
           </button>
         </div>
@@ -207,7 +208,7 @@ function StudioHome() {
               <div><dt>Skills mastered</dt><dd>{Object.values(progress.modes).reduce((sum, modes) => sum + modes.length, 0)}</dd></div>
               <div><dt>Challenges solved</dt><dd>{progress.challengesPassed}</dd></div>
             </dl>
-            <Link className="alg-soft" to="/algebra/expressions">View full progress</Link>
+            <a className="alg-soft" href="#algebra-topics">View full progress</a>
           </section>
           <section className="alg-home-card" id="algebra-challenge">
             <h3>Visual challenge</h3>
@@ -218,7 +219,8 @@ function StudioHome() {
               ))}
             </div>
             <button className="alg-gradient-button" type="button" onClick={() => setChecked(true)}>Check answer</button>
-            {checked && <p role="status">{answersMatchChallenge(answer, featured.expected) ? "Correct: x + 7 is equivalent." : "Distribute, then combine like terms."}</p>}
+            {checked && <p role="status">{answersMatchChallenge(answer, featured.expected) ? `Correct. Open ${featured.lab} to see the live model.` : "Try another choice, then open the linked lab."}</p>}
+            <Link className="alg-soft" to={featured.route}>Open {featured.lab}</Link>
             {saved.length ? <ul>{saved.map((item) => <li key={item.at}><Link to={item.route}>{item.name}</Link></li>)}</ul> : null}
           </section>
         </aside>
@@ -241,6 +243,21 @@ function StudioHome() {
           <Trophy /><span><b>CHALLENGE</b><small>Solve problems and level up your skills.</small></span>
         </div>
       </section>
+      {dialog ? (
+        <div className="alg-dialog" role="dialog" aria-modal="true" aria-label={dialog === "help" ? "Help" : "Settings"}>
+          <div className="alg-dialog-card">
+            <header>
+              <strong>{dialog === "help" ? "Algebra Studio help" : "Studio settings"}</strong>
+              <button type="button" onClick={() => setDialog(null)} aria-label="Close">Close</button>
+            </header>
+            {dialog === "help" ? (
+              <p>Search labs, press a topic card, then use mode tabs. Challenges accept equivalent forms. Algebraic Structures and Advanced live in the sidebar.</p>
+            ) : (
+              <p>Theme and graph chrome follow the site appearance toggle. Lab state is stored in this browser (last route, visited topics, named experiments).</p>
+            )}
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }

@@ -82,6 +82,7 @@ function ArgandLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNode 
                   showArgument={mode === "Argument"}
                   showConjugate={mode === "Conjugate"}
                   showUnit={mode === "Locus"}
+                  unitRadius={2}
                   onPick={(nextRe, nextIm) => {
                     setRe(clamp(nextRe, -6, 6));
                     setIm(clamp(nextIm, -6, 6));

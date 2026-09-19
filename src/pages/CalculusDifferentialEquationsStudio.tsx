@@ -74,6 +74,7 @@ export default function CalculusDifferentialEquationsStudio({ mode }: { mode: st
   const [playing, setPlaying] = useState(false);
   const [speed, setSpeed] = useState(1);
   const [learning, setLearning] = useState<LearningTab>("Observe");
+  const [challengeNote, setChallengeNote] = useState("");
   const previousMode = useRef(active);
 
   useEffect(() => {
@@ -298,6 +299,8 @@ export default function CalculusDifferentialEquationsStudio({ mode }: { mode: st
         <p role="tabpanel" aria-labelledby={`de-learn-${learning}`} data-testid="de-learning-copy">
           {learningCopy(learning, active, analysis)}
         </p>
+        <button type="button" onClick={() => setChallengeNote(analysis.metrics.some((item) => item[2] === "warn") ? "Not yet. Shrink h or move the IVP until warning cards clear." : "Challenge complete: Euler/RK4 stay close to the live model.")}>Check challenge</button>
+        {challengeNote ? <p role="status">{challengeNote}</p> : null}
       </section>
     </div>
   );

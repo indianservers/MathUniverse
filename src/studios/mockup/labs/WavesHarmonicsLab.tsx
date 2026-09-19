@@ -53,7 +53,7 @@ export function WavesHarmonicsLab({ page }: { page: StudioMockupPage }) {
     return () => window.clearInterval(timer);
   }, [playing]);
 
-  const effectiveF2 = mode === "Harmonics" ? frequency1 * 2 : mode === "Beats" ? frequency1 + 0.4 : frequency2;
+  const effectiveF2 = frequency2;
   const effectivePhase2 = mode === "Phase" || mode === "Superposition" ? phase2 : 0;
   const useSecond = mode === "Simple Wave" ? false : secondWave;
   const y1 = (t: number) => amplitude1 * Math.sin(2 * Math.PI * frequency1 * t + phase1) + vertical1;
@@ -91,7 +91,7 @@ export function WavesHarmonicsLab({ page }: { page: StudioMockupPage }) {
               <div className="trig-target-section-title">Wave 2</div>
               <Toggle checked={secondWave} onChange={setSecondWave}>Add second wave</Toggle>
               <SliderRow label="Amplitude A₂" value={amplitude2} min={0} max={2} step={0.05} onChange={setAmplitude2} />
-              <SliderRow label={mode === "Harmonics" ? "Harmonic f₂ = 2f₁" : mode === "Beats" ? "Nearby f₂" : "Frequency f₂ (Hz)"} value={effectiveF2} min={0.5} max={8} step={0.1} onChange={setFrequency2} />
+              <SliderRow label={mode === "Harmonics" ? "Harmonic f₂ (Hz)" : mode === "Beats" ? "Nearby f₂ (Hz)" : "Frequency f₂ (Hz)"} value={frequency2} min={0.5} max={8} step={0.1} onChange={setFrequency2} />
               {mode === "Phase" || mode === "Superposition" ? <SliderRow label="Phase φ₂ (rad)" value={phase2} min={-Math.PI} max={Math.PI} step={0.05} onChange={setPhase2} /> : null}
               <SliderRow label="Vertical shift d₂" value={vertical2} min={-1} max={1} step={0.05} onChange={setVertical2} />
             </>
@@ -141,13 +141,19 @@ export function WavesHarmonicsLab({ page }: { page: StudioMockupPage }) {
                 <b>Displacement x(t) &amp; velocity v(t)</b>
                 <svg viewBox="0 0 260 250" role="img" aria-label="Displacement and velocity">
                   <rect width="260" height="250" rx="10" fill="#f9fcff" />
-                  <text x="16" y="22" fill="#0f172a" fontSize="11">Displacement x(t) = cos θ</text>
+                  <text x="16" y="22" fill="#0f172a" fontSize="11">Displacement x(t) = A₁ cos(2πf₁t + φ₁)</text>
                   <line x1="20" y1="70" x2="244" y2="70" stroke="#94a3b8" />
-                  <polyline points={Array.from({ length: 80 }, (_, index) => `${20 + index * 2.8},${70 - Math.cos(index / 12) * 28}`).join(" ")} fill="none" stroke="#0ea5e9" strokeWidth="2" />
-                  <circle cx={20 + ((oscillatorAngle % (2 * Math.PI) + 2 * Math.PI) % (2 * Math.PI)) / (2 * Math.PI) * 224} cy={70 - Math.cos(oscillatorAngle) * 28} r="5" fill="#0ea5e9" />
-                  <text x="16" y="132" fill="#0f172a" fontSize="11">Velocity v(t) = −sin θ</text>
+                  <polyline points={Array.from({ length: 80 }, (_, index) => {
+                    const t = index / 16;
+                    return `${20 + index * 2.8},${70 - amplitude1 * Math.cos(2 * Math.PI * frequency1 * t + phase1) * 28}`;
+                  }).join(" ")} fill="none" stroke="#0ea5e9" strokeWidth="2" />
+                  <circle cx={20 + ((oscillatorAngle % (2 * Math.PI) + 2 * Math.PI) % (2 * Math.PI)) / (2 * Math.PI) * 224} cy={70 - amplitude1 * Math.cos(oscillatorAngle) * 28} r="5" fill="#0ea5e9" />
+                  <text x="16" y="132" fill="#0f172a" fontSize="11">Velocity v(t) = −A₁ ω₁ sin(2πf₁t + φ₁)</text>
                   <line x1="20" y1="180" x2="244" y2="180" stroke="#94a3b8" />
-                  <polyline points={Array.from({ length: 80 }, (_, index) => `${20 + index * 2.8},${180 + Math.sin(index / 12) * 28}`).join(" ")} fill="none" stroke="#8b5cf6" strokeWidth="2" />
+                  <polyline points={Array.from({ length: 80 }, (_, index) => {
+                    const t = index / 16;
+                    return `${20 + index * 2.8},${180 + amplitude1 * Math.sin(2 * Math.PI * frequency1 * t + phase1) * 28}`;
+                  }).join(" ")} fill="none" stroke="#8b5cf6" strokeWidth="2" />
                   <circle cx={20 + ((oscillatorAngle % (2 * Math.PI) + 2 * Math.PI) % (2 * Math.PI)) / (2 * Math.PI) * 224} cy={180 + Math.sin(oscillatorAngle) * 28} r="5" fill="#8b5cf6" />
                 </svg>
               </figure>

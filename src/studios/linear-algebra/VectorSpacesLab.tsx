@@ -20,6 +20,7 @@ const initial = {
 
 export default function VectorSpacesLab({ page }: { page: StudioMockupPage }) {
   const [s, setS] = useState(initial);
+  const [show, setShow] = useState({ span: true, axes: true, grid: true, proj: true });
   const cols = [s.v1, s.v2, s.v3].filter((_, i) => s.on[i]);
   const A = [
     [s.v1[0], s.v2[0], s.v3[0]],
@@ -34,6 +35,13 @@ export default function VectorSpacesLab({ page }: { page: StudioMockupPage }) {
     s.c1 * s.v1[1] + s.c2 * s.v2[1] + s.c3 * s.v3[1],
     s.c1 * s.v1[2] + s.c2 * s.v2[2] + s.c3 * s.v3[2],
   ];
+  const wEnabled: [number, number, number] = [
+    (s.on[0] ? s.c1 : 0) * s.v1[0] + (s.on[1] ? s.c2 : 0) * s.v2[0] + (s.on[2] ? s.c3 : 0) * s.v3[0],
+    (s.on[0] ? s.c1 : 0) * s.v1[1] + (s.on[1] ? s.c2 : 0) * s.v2[1] + (s.on[2] ? s.c3 : 0) * s.v3[1],
+    (s.on[0] ? s.c1 : 0) * s.v1[2] + (s.on[1] ? s.c2 : 0) * s.v2[2] + (s.on[2] ? s.c3 : 0) * s.v3[2],
+  ];
+  const leftover = Math.hypot(w[0] - wEnabled[0], w[1] - wEnabled[1], w[2] - wEnabled[2]);
+  const inSpan = leftover < 1e-6;
   const independent2 = areIndependent(s.v1[0], s.v1[1], s.v2[0], s.v2[1]);
   const coords = coordinates(w[0], w[1], s.v1[0], s.v1[1], s.v2[0], s.v2[1]);
   const gs = gramSchmidt(s.v1[0], s.v1[1], s.v2[0], s.v2[1]);
@@ -51,12 +59,16 @@ export default function VectorSpacesLab({ page }: { page: StudioMockupPage }) {
                 <span style={{ color }}>{label} [{fmt(vec[0], 0)}, {fmt(vec[1], 0)}, {fmt(vec[2], 0)}]</span>
               </label>
             ))}
+            <label className="la-slider">
+              <span>v₁ x</span>
+              <input type="number" step={0.1} value={s.v1[0]} aria-label="v1 x" onChange={(event) => setS({ ...s, v1: [Number(event.target.value), s.v1[1], s.v1[2]] })} />
+            </label>
             </Card>
             <Card title="Show / hide">
-              <Switch label="Span (plane)" on onChange={() => undefined} />
-              <Switch label="Coordinate axes" on onChange={() => undefined} />
-              <Switch label="Grid" on onChange={() => undefined} />
-              <Switch label="Projection to plane" on onChange={() => undefined} />
+              <Switch label="Span (plane)" on={show.span} onChange={(span) => setShow({ ...show, span })} />
+              <Switch label="Coordinate axes" on={show.axes} onChange={(axes) => setShow({ ...show, axes })} />
+              <Switch label="Grid" on={show.grid} onChange={(grid) => setShow({ ...show, grid })} />
+              <Switch label="Projection to plane" on={show.proj} onChange={(proj) => setShow({ ...show, proj })} />
             </Card>
             <Card title="Vector combination c₁v₁ + c₂v₂ + c₃v₃">
             <SliderRow label="c₁" value={s.c1} min={-2} max={2} step={0.05} onChange={(c1) => setS({ ...s, c1 })} />
@@ -69,11 +81,12 @@ export default function VectorSpacesLab({ page }: { page: StudioMockupPage }) {
           <div className="la-center">
           <Card className="la-viz" title={`${mode} in R³`}>
             <StudioMath3D label="Vector spaces in R3">
-              <MathParallelogram a={s.v1} b={s.v2} color="#147df2" />
+              {show.span ? <MathParallelogram a={s.v1} b={s.v2} color="#147df2" /> : null}
               {s.on[0] ? <MathArrow to={s.v1} color={LA_A} /> : null}
               {s.on[1] ? <MathArrow to={s.v2} color={LA_B} /> : null}
               {s.on[2] ? <MathArrow to={s.v3} color={LA_C} /> : null}
               <MathArrow to={w} color={LA_D} />
+              {show.proj && !inSpan ? <MathArrow to={wEnabled} color="#94a3b8" /> : null}
             </StudioMath3D>
             <p className="la-note">Span{s.on.filter(Boolean).length ? `(v₁, v₂, v₃)` : ""} is a {dim === 3 ? "space" : dim === 2 ? "plane" : "line"} (dim = {dim}) in R³. The vectors are {basis ? "a basis" : "linearly dependent"}.</p>
           </Card>
@@ -94,7 +107,7 @@ export default function VectorSpacesLab({ page }: { page: StudioMockupPage }) {
           <Card title="Coordinate conversion">
               <p className="la-eq">w ≈ ({fmt(w[0], 2)}, {fmt(w[1], 2)}, {fmt(w[2], 2)})</p>
               {coords ? <p className="la-eq">c₁ ≈ {fmt(coords.s, 3)} · c₂ ≈ {fmt(coords.t, 3)}</p> : <p className="la-eq">Least-squares coords in the plane</p>}
-              <StatusOk>Exact (w lies in the span)</StatusOk>
+              {inSpan ? <StatusOk>Exact (w lies in the span)</StatusOk> : <p className="la-note">w is not in the span of the selected vectors (residual {fmt(leftover, 3)}).</p>}
           </Card>
           <Card title="Subspace information">
               <p className="la-eq">Type: {dim === 2 ? "Plane through origin" : dim === 3 ? "All of R³" : "Line through origin"}</p>

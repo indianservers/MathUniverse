@@ -1,6 +1,6 @@
 import { Check, GitFork, GitMerge, Grid3X3, HelpCircle, Share2, ToggleLeft, Trophy } from "lucide-react";
-import { useMemo, useRef, useState, type KeyboardEvent, type PointerEvent } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useMemo, useRef, useState, type KeyboardEvent, type PointerEvent } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import { CayleyMiniTeaser } from "../landing/StudioLandingTeasers";
 import { ObserveStrip } from "../landing/StudioLandingExtras";
 import { markLandingVisit, relativeOpened, useLandingSession } from "../landing/studioLandingSession";
@@ -11,9 +11,12 @@ import {
   booleanPosForm,
   classifyOperation,
   coverRelations,
+  evaluateBoolean,
   meetJoin,
   modularTable,
+  parseBooleanExpression,
   parseCarrierSet,
+  posetProperties,
   randomOperationTable,
   rebuildOperationTable,
   simplifyBooleanExpression,
@@ -77,7 +80,7 @@ export function StructuresHome() {
           </Link>
         ))}
       </div>
-      <p className="sl-banner">Counterexample of the day: subtraction on integers is not associative.</p>
+      <p className="sl-banner">Counterexample of the day: subtraction on integers is not associative. <Link to="/algebraic-structures/structure-test?op=random">Load a random table</Link> and hunt for a failed (ab)c vs a(bc).</p>
     </div>
   );
 }
@@ -98,9 +101,11 @@ export function LabToolbar({
         <option value="z4">Cyclic group Z₄</option>
         <option value="z5">Cyclic group Z₅</option>
         <option value="and">Boolean AND</option>
+        <option value="max">Max on {0,1,2,3}</option>
+        <option value="random">Random magma</option>
       </select>
       <button className="as-ghost" type="button" onClick={onReset}>Reset</button>
-      <button className="as-icon-btn" type="button" aria-label="Help" title="Explore the current operation and axioms."><HelpCircle /></button>
+      <button className="as-icon-btn" type="button" aria-label="Help" title="Explore the current operation and axioms." onClick={() => window.dispatchEvent(new Event("as-lab-help"))}><HelpCircle /></button>
       <button className="as-icon-btn" type="button" aria-label="Share" onClick={onShare}><Share2 /></button>
     </div>
   );
@@ -215,7 +220,10 @@ function Challenge({ prompt, expected, hint }: { prompt: string; expected: strin
       <p>{prompt}</p>
       <input className="as-answer" value={answer} onChange={(event) => { setAnswer(event.target.value); setStatus(""); }} aria-label="Challenge answer" placeholder="Your answer..." />
       <div className="as-check-row">
-        <button className="as-cta" type="button" onClick={() => setStatus(answer.replace(/\s/g, "") === expected.replace(/\s/g, "") ? "Correct." : hint)}>Check</button>
+        <button className="as-cta" type="button" onClick={() => {
+          const normalize = (value: string) => value.replace(/\s/g, "").replace(/∧/g, ",").toLowerCase();
+          setStatus(normalize(answer) === normalize(expected) ? "Correct — that matches the live model." : hint);
+        }}>Check</button>
         <button className="as-ghost" type="button" onClick={() => setStatus(hint)}>Hint</button>
       </div>
       {status ? <p role="status">{status}</p> : null}
@@ -273,13 +281,25 @@ function CayleyGrid({
   );
 }
 
+function maxTable(size: number) {
+  const elements = Array.from({ length: size }, (_, index) => String(index));
+  const table: OperationTable = {};
+  for (const a of elements) {
+    table[a] = {};
+    for (const b of elements) table[a][b] = String(Math.max(Number(a), Number(b)));
+  }
+  return { elements, table };
+}
+
 function useZ4() {
   const seed = modularTable(4, "add");
+  const [params] = useSearchParams();
   const [setText, setSetText] = useState(seed.elements.join(", "));
   const [table, setTable] = useState<OperationTable>(seed.table);
   const [left, setLeft] = useState("1");
   const [right, setRight] = useState("3");
   const [result, setResult] = useState(seed.table["1"]?.["3"] ?? "0");
+  const [help, setHelp] = useState("");
   const elements = parseSet(setText, seed.elements);
   const info = useMemo(() => classifyOperation(elements, rebuildOperationTable(elements, table)), [elements, table]);
   const load = (kind: string) => {
@@ -294,16 +314,45 @@ function useZ4() {
       setTable({ "0": { "0": "0", "1": "0" }, "1": { "0": "0", "1": "1" } });
       return;
     }
+    if (kind === "max") {
+      const next = maxTable(4);
+      setSetText(next.elements.join(", "));
+      setTable(next.table);
+      return;
+    }
+    if (kind === "random") {
+      setTable(randomOperationTable(seed.elements));
+      return;
+    }
     const next = modularTable(4, "add");
     setSetText(next.elements.join(", "));
     setTable(next.table);
   };
-  return { setText, setSetText, elements, table, setTable, left, setLeft, right, setRight, result, setResult, info, load, reset: () => load("z4") };
+  useEffect(() => {
+    const op = params.get("op");
+    if (op) load(op);
+  }, [params]);
+  useEffect(() => {
+    const onLoad = (event: Event) => load(String((event as CustomEvent).detail ?? "z4"));
+    const onReset = () => load("z4");
+    const onHelp = () => setHelp("Edit the Cayley table, then read closure, associativity, identity, and inverses. Random tables often fail associativity.");
+    window.addEventListener("as-lab-load", onLoad);
+    window.addEventListener("as-lab-reset", onReset);
+    window.addEventListener("as-lab-help", onHelp);
+    return () => {
+      window.removeEventListener("as-lab-load", onLoad);
+      window.removeEventListener("as-lab-reset", onReset);
+      window.removeEventListener("as-lab-help", onHelp);
+    };
+  });
+  return { setText, setSetText, elements, table, setTable, left, setLeft, right, setRight, result, setResult, info, load, reset: () => load("z4"), help, likeZn: info.abelian && info.group };
 }
 
 export function StructureTestLab() {
   const state = useZ4();
   const [view, setView] = useState<"graph" | "cayley" | "diagram">("graph");
+  const [auto, setAuto] = useState(true);
+  const product = state.table["2"]?.["3"] ?? state.table[state.left]?.[state.right] ?? "";
   return (
     <div>
       <div className="as-grid-3">
@@ -317,7 +366,7 @@ export function StructureTestLab() {
           <div className="as-row">
             <button type="button" onClick={() => state.setTable(randomOperationTable(state.elements))}>Random</button>
             <button type="button" onClick={() => state.reset()}>Clear</button>
-            <label className="as-toggle"><input type="checkbox" defaultChecked /> Auto-validate</label>
+            <label className="as-toggle"><input type="checkbox" checked={auto} onChange={(event) => setAuto(event.target.checked)} /> Auto-validate</label>
           </div>
         </section>
         <section className="as-card">
@@ -339,12 +388,13 @@ export function StructureTestLab() {
             </ol>
           ) : null}
           {state.info.failures.length ? <p className="as-note">Counterexample: {state.info.failures[0]}</p> : null}
-          <div className="as-note">This operation behaves like addition modulo {state.elements.length} (Zₙ).</div>
+          <div className="as-note">{state.likeZn ? `This abelian group matches addition modulo ${state.elements.length} (Zₙ).` : "This table is not forced to be Zₙ addition — read the live axioms."}</div>
+          {state.help ? <p className="as-note">{state.help}</p> : null}
         </section>
         <section className="as-card">
           <h2>Structure Properties</h2>
           <p>Check the algebraic properties for the current operation.</p>
-          <PropertyList info={state.info} />
+          {auto ? <PropertyList info={state.info} /> : <p className="as-note">Auto-validate is off. Turn it on to classify the table.</p>}
         </section>
       </div>
       <div className="as-bottom">
@@ -364,7 +414,7 @@ export function StructureTestLab() {
             <tbody>{state.elements.map((el) => <tr key={el}><td>{el}</td><td>{state.info.inverseOf[el] ?? "—"}</td><td>{state.info.identity ? `${el} * ${state.info.inverseOf[el] ?? "?"} = ${state.info.identity}` : "—"}</td></tr>)}</tbody>
           </table>
         </section>
-        <Challenge prompt="Using the current operation table, what is 2 * 3?" expected="1" hint="Try using the Cayley table or the operation pattern." />
+        <Challenge prompt={`Using the current operation table, what is 2 * 3?`} expected={product} hint="Read the Cayley cell at row 2, column 3 (or pick another pair if 2 and 3 are missing)." />
       </div>
     </div>
   );
@@ -399,7 +449,7 @@ export function CayleyTablesLab() {
           <CayleyGrid elements={state.elements} table={state.table} onChange={state.setTable} hot={[cellA, cellB]} />
           <h2>Structure visualization</h2>
           <CycleGraph elements={state.elements} table={state.table} identity={state.info.identity} />
-          <div className="as-note">This operation behaves like addition modulo 4 (Z₄).</div>
+          <div className="as-note">{state.likeZn ? "This table matches addition modulo 4 (Z₄)." : "Custom table — homomorphism to Z₂ only holds for mod-4 addition."}</div>
         </section>
         <div>
           <section className="as-card">
@@ -435,7 +485,7 @@ export function CayleyTablesLab() {
             <label className="as-field">Column<select value={cellB} onChange={(event) => setCellB(event.target.value)}>{state.elements.map((el) => <option key={el}>{el}</option>)}</select></label>
           </div>
         </section>
-        <Challenge prompt="Using the current Cayley table, what is 3 * 2?" expected="1" hint="Read the cell at row 3, column 2." />
+        <Challenge prompt="Using the current Cayley table, what is 3 * 2?" expected={state.table["3"]?.["2"] ?? entry} hint="Read the cell at row 3, column 2." />
       </div>
     </div>
   );
@@ -458,12 +508,13 @@ export function SemigroupsMonoidsLab() {
             <select value={example} onChange={(event) => { setExample(event.target.value); state.load(event.target.value); }}>
               <option value="z4">Addition modulo n (a + b mod n)</option>
               <option value="and">Boolean (AND)</option>
+              <option value="max">Max (join on a chain)</option>
             </select>
           </label>
           <label className="as-field">Modulus n<input type="number" value={state.elements.length} readOnly /></label>
           <p>Quick examples</p>
           <div className="as-examples">
-            {[["z4", "Z₄ (addition)"], ["z5", "Z₅ (addition)"], ["and", "Boolean (AND)"]].map(([id, label]) => (
+            {[["z4", "Z₄ (addition)"], ["z5", "Z₅ (addition)"], ["and", "Boolean (AND)"], ["max", "Max"]].map(([id, label]) => (
               <button key={id} type="button" className={example === id ? "active" : ""} onClick={() => { setExample(id); state.load(id); }}>{label}</button>
             ))}
           </div>
@@ -479,8 +530,8 @@ export function SemigroupsMonoidsLab() {
           {view === "cayley" ? <CayleyGrid elements={state.elements} table={state.table} onChange={state.setTable} hot={[state.left, state.right]} /> : null}
           {view === "assoc" ? <AssocPlay elements={state.elements} table={state.table} /> : null}
           {state.info.failures.length ? <p className="as-note">Counterexample: {state.info.failures[0]}</p> : null}
-          <p>Set: S = {"{"}{state.elements.join(", ")}{"}"} · Identity: {state.info.identity ?? "none"} · Type: {state.info.abelian ? "finite abelian group" : "magma"}</p>
-          <div className="as-note">This operation behaves like addition modulo {state.elements.length} (Zₙ).</div>
+          <p>Set: S = {"{"}{state.elements.join(", ")}{"}"} · Identity: {state.info.identity ?? "none"} · Type: {state.info.abelian ? "finite abelian group" : state.info.group ? "group" : state.info.monoid ? "monoid" : state.info.semigroup ? "semigroup" : state.info.magma ? "magma" : "not closed"}</p>
+          <div className="as-note">{state.likeZn ? `This operation behaves like addition modulo ${state.elements.length} (Zₙ).` : "Not Zₙ addition — use the ladder for the live type."}</div>
         </section>
         <section className="as-card">
           <h2>Structure properties</h2>
@@ -517,7 +568,7 @@ export function SemigroupsMonoidsLab() {
         </section>
       </div>
       <div style={{ marginTop: 12 }}>
-        <Challenge prompt="Using the current structure, find the inverse of 3." expected="1" hint="Find b such that 3 * b is the identity." />
+        <Challenge prompt="Using the current structure, find the inverse of 3." expected={state.info.inverseOf["3"] ?? "none"} hint="Find b such that 3 * b is the identity, or write none." />
       </div>
     </div>
   );
@@ -538,6 +589,7 @@ export function PosetsLatticesLab() {
     .map(([a, b]) => [a, b] as [string, string]);
   const covers = coverRelations(elements, pairs);
   const lattice = meetJoin(elements, pairs, meetA, meetB);
+  const props = posetProperties(elements, pairs);
   return (
     <div>
       <div className="as-poset">
@@ -557,8 +609,9 @@ export function PosetsLatticesLab() {
                 const [x2, y2] = nodes[b] ?? [180, 80];
                 return <line key={`${a}-${b}`} x1={x1} y1={y1} x2={x2} y2={y2} stroke={a === meetA || b === meetA || a === meetB || b === meetB ? "#0891b2" : "#64748b"} strokeWidth="3" />;
               })}
-              {([["1", "#8b5cf6"], ["a", "#f59e0b"], ["b", "#14b8a6"], ["0", "#3b82f6"]] as const).map(([label, fill]) => {
-                const [x, y] = nodes[label] ?? [180, 140];
+              {elements.map((label, index) => {
+                const [x, y] = nodes[label] ?? [60 + (index % 3) * 100, 60 + Math.floor(index / 3) * 90];
+                const fill = nodeColors[index % nodeColors.length];
                 return (
                   <g key={label} style={{ cursor: "grab" }} onPointerDown={(event) => { drag.current = label; event.currentTarget.setPointerCapture(event.pointerId); }}>
                     <circle cx={x} cy={y} r="20" fill={fill} stroke={label === meetA || label === meetB ? "#0f172a" : "none"} strokeWidth="3" />
@@ -580,13 +633,20 @@ export function PosetsLatticesLab() {
           <div className="as-info">
             <div><span>Elements</span><b>{elements.length}</b></div>
             <div><span>Relations (edges)</span><b>{covers.length}</b></div>
-            <div><span>Type</span><b>Bounded lattice</b></div>
+            <div><span>Type</span><b>{props.bounded ? "Bounded lattice" : props.lattice ? "Lattice" : props.partialOrder ? "Poset" : "Not a poset"}</b></div>
           </div>
         </section>
         <section className="as-card">
           <h2>Properties</h2>
-          {["Reflexive", "Antisymmetric", "Transitive", "Partial order", "Bounded lattice", "Distributive lattice"].map((title) => (
-            <div className="as-prop" key={title}><Check /><div><b>{title}</b></div></div>
+          {[
+            ["Reflexive", props.reflexive],
+            ["Antisymmetric", props.antisymmetric],
+            ["Transitive", props.transitive],
+            ["Partial order", props.partialOrder],
+            ["Lattice", props.lattice],
+            ["Bounded lattice", props.bounded],
+          ].map(([title, on]) => (
+            <div className={`as-prop ${on ? "" : "is-off"}`} key={String(title)}><Check /><div><b>{title}</b></div></div>
           ))}
         </section>
       </div>
@@ -608,8 +668,8 @@ export function PosetsLatticesLab() {
           <button className="as-cta" type="button" onClick={() => { setSetText("0, a, b, 1"); setRelText("0 ≤ a, 0 ≤ b, a ≤ 1, b ≤ 1"); }}>Load example</button>
         </section>
       </div>
-      <div className="as-footer-ok">Valid lattice! This poset is a bounded distributive lattice (isomorphic to the diamond lattice M₃).</div>
-      <div style={{ marginTop: 12 }}><Challenge prompt="Using the current poset, find a ∧ b and a ∨ b." expected="0,1" hint="Use the Hasse diagram or the relation matrix." /></div>
+      <div className="as-footer-ok">{props.bounded ? "This poset is a bounded lattice on the live relation." : props.partialOrder ? "Partial order, but not every pair has a meet and join." : "The live relation is not a partial order yet."}</div>
+      <div style={{ marginTop: 12 }}><Challenge prompt="Using the current poset, find a ∧ b and a ∨ b." expected={`${lattice.meet ?? "?"},${lattice.join ?? "?"}`} hint="Use the Hasse diagram or the relation matrix." /></div>
     </div>
   );
 }
@@ -630,7 +690,12 @@ export function BooleanAlgebraLab() {
     }
   }, [expr]);
   const pos = analysis.rows ? booleanPosForm(analysis.variables, analysis.rows) : "—";
-  const y = a && (!b || c);
+  let y = false;
+  try {
+    y = evaluateBoolean(parseBooleanExpression(expr), { A: a, B: b, C: c, a, b, c });
+  } catch {
+    y = a && (!b || c);
+  }
   const steps = booleanLawSteps(law);
   const layers = analysis.circuit?.length ? analysis.circuit : booleanCircuitLayers({ type: "var", name: "A" });
   return (
@@ -642,7 +707,7 @@ export function BooleanAlgebraLab() {
           <label className="as-field"><input value={expr} onChange={(event) => setExpr(event.target.value)} aria-label="Boolean expression" /></label>
           <p>Input helpers</p>
           <div className="as-helpers">{["!", "&", "|", "^", "(", ")"].map((token) => <button type="button" key={token} onClick={() => setExpr((value) => `${value}${token}`)}>{token}</button>)}</div>
-          <button className="as-cta" type="button">Generate Analysis</button>
+          <button className="as-cta" type="button" onClick={() => setView("truth")}>Generate Analysis</button>
           <h2>Quick examples</h2>
           <div className="as-examples">
             <button type="button" onClick={() => setExpr("A & C")}>A & C</button>
@@ -664,7 +729,7 @@ export function BooleanAlgebraLab() {
               <p style={{ fontFamily: "Georgia, serif" }}>{expr}</p>
               <div className="as-sop">Simplified expression (SOP)<br />{analysis.simplified || analysis.error}</div>
               <div className="as-pos">Simplified expression (POS)<br />{pos}</div>
-              <div className="as-ok"><Check /> Expressions are equivalent.</div>
+              <div className={analysis.error ? "as-note" : "as-ok"}>{analysis.error ? analysis.error : <><Check /> Expressions are equivalent on the truth table.</>}</div>
             </>
           ) : null}
           {view === "truth" ? (
@@ -729,7 +794,7 @@ export function BooleanAlgebraLab() {
           <h2>Generated Circuit Layers</h2>
           <div className="as-layers">{layers.map((layer, index) => <span key={index}>Layer {index + 1}: {layer.map((item) => item.label).join(", ")}</span>)}</div>
         </section>
-        <Challenge prompt="Simplify the following Boolean expression to minimal form: !(A | B) & (A | !C)" expected="!A&!B" hint="De Morgan: !(A | B) = !A & !B, then absorb with (A | !C)." />
+        <Challenge prompt="Simplify the following Boolean expression to minimal form: !(A | B) & (A | !C)" expected={(() => { try { return simplifyBooleanExpression("!(A | B) & (A | !C)").simplified.replace(/\s/g, ""); } catch { return "!A&!B"; } })()} hint="De Morgan: !(A | B) = !A & !B, then absorb with (A | !C)." />
       </div>
     </div>
   );

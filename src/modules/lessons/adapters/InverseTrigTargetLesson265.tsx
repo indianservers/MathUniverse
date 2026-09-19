@@ -40,7 +40,7 @@ export default function InverseTrigTargetLesson265({
   const [stage, setStage] = useState<Stage>("explore");
   const [practiceRatio, setPracticeRatio] = useState(INITIAL_PRACTICE_RATIO);
   const [practiceAnswer, setPracticeAnswer] = useState("48.59");
-  const [practiceResult, setPracticeResult] = useState<"idle" | "correct" | "incorrect">("correct");
+  const [practiceResult, setPracticeResult] = useState<"idle" | "correct" | "incorrect">("idle");
   const [hintShown, setHintShown] = useState(false);
   const model = useMemo(() => inverseModel(inverseKey, angle), [inverseKey, angle]);
   const practiceExpected = toDegrees(Math.asin(practiceRatio));
@@ -51,19 +51,14 @@ export default function InverseTrigTargetLesson265({
     setStage("explore");
     setPracticeRatio(INITIAL_PRACTICE_RATIO);
     setPracticeAnswer("48.59");
-    setPracticeResult("correct");
+    setPracticeResult("idle");
     setHintShown(false);
     if (notify) onInteraction();
   };
 
   useEffect(() => {
-    setInverseKey("asin");
-    setAngle(INITIAL_ANGLE);
-    setStage("explore");
-    setPracticeRatio(INITIAL_PRACTICE_RATIO);
-    setPracticeAnswer("48.59");
-    setPracticeResult("correct");
-    setHintShown(false);
+    if (resetToken === 0) return;
+    setPracticeResult("idle");
   }, [resetToken]);
 
   const updateAngle = (next: number) => {

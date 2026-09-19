@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import type { StudioMockupPage } from "../mockup/studioMockupCatalog";
-import { LiveRow, Panel, StatusOk, StepList } from "../mockup/studioLabKit";
+import { ChallengeBox, LiveRow, Panel, StatusOk, StepList } from "../mockup/studioLabKit";
 import { Phase1LabChrome } from "../phase1/Phase1LabChrome";
 
 export function DiscreteSetsLinkLab({ page }: { page: StudioMockupPage }) {
@@ -25,6 +25,7 @@ export function DiscreteSetsLinkLab({ page }: { page: StudioMockupPage }) {
           <aside className="msk-panel msk-live">
             <LiveRow color="#08b9dd" label="Engine" value="Set Theory Studio" />
             <StatusOk>|A ∪ B| = |A| + |B| − |A ∩ B| is proved by dragging regions, not by a static picture.</StatusOk>
+            <ChallengeBox prompt="|A ∪ B| for A={1,2,3} and B={3,4}?" expected={4} hint="Union counts 3 only once: {1,2,3,4}." />
             <StepList items={["Open the linked lab.", "Drag circles A, B, C.", "Come back here only as a discrete-world shortcut."]} />
           </aside>
         </>
@@ -34,11 +35,20 @@ export function DiscreteSetsLinkLab({ page }: { page: StudioMockupPage }) {
 }
 
 export function DiscreteGraphsLinkLab({ page }: { page: StudioMockupPage }) {
+  const GRAPH_TABS = ["build", "representations", "algorithms", "properties", "learn"] as const;
   const tab = (mode: string) => {
-    if (mode === "Coloring") return "algorithms";
-    if (mode === "Spanning Trees" || mode === "Flows" || mode === "Paths") return "algorithms";
-    if (mode === "Connectivity") return "properties";
-    return "build";
+    const preferred = mode === "Paths"
+      ? "algorithms"
+      : mode === "Connectivity"
+        ? "properties"
+        : mode === "Coloring"
+          ? "coloring"
+          : mode === "Spanning Trees"
+            ? "trees"
+            : mode === "Flows"
+              ? "flow"
+              : "build";
+    return (GRAPH_TABS as readonly string[]).includes(preferred) ? preferred : "algorithms";
   };
   return (
     <Phase1LabChrome page={page}>

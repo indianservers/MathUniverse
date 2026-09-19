@@ -9,6 +9,8 @@ import ArgandFigure from "./ArgandFigure";
 import { juliaConnected, orbit, periodBulbLabel } from "./fractalMath";
 import { computeFractalGrid } from "./fractalWorker";
 import { markComplexComplete } from "./complexStudioSession";
+import { nthRoots, taylorExpITheta } from "./complexLabMath";
+import { EulerHelix, StudioMath3D } from "../shared/studioMath3D";
 
 const catalog = studioMockups["complex-numbers"];
 
@@ -43,6 +45,8 @@ function LabFrame({
   insight: (mode: string) => ReactNode;
 }) {
   const { tabs, mode, setMode } = useLabMode(page);
+  const [helpOpen, setHelpOpen] = useState(false);
+  const [settingsOpen, setSettingsOpen] = useState(false);
   return (
     <div className="cxs-page cxs-lab" data-lab-mode={mode} data-mode-canvas={mode} data-cx-mode={mode} data-studio-kernel="1">
       <header className="cxs-header" data-lab-mode={mode} data-mode-canvas={mode}>
@@ -61,10 +65,27 @@ function LabFrame({
           <StudioCanvasToolbar />
           <button type="button" aria-label="Undo" disabled><RotateCcw /></button>
           <button type="button" aria-label="Redo" disabled><RotateCw /></button>
-          <button type="button" aria-label="Help"><HelpCircle /></button>
-          <button type="button" aria-label="Settings"><Settings /></button>
+          <button type="button" aria-label="Help" aria-expanded={helpOpen} onClick={() => { setHelpOpen((open) => !open); setSettingsOpen(false); }}><HelpCircle /></button>
+          <button type="button" aria-label="Settings" aria-expanded={settingsOpen} onClick={() => { setSettingsOpen((open) => !open); setHelpOpen(false); }}><Settings /></button>
         </div>
       </header>
+      {helpOpen ? (
+        <div className="cxs-card cxs-dialog" role="dialog" aria-label="Help">
+          <h2>Help · {page.title}</h2>
+          <p>{page.subtitle}</p>
+          <p>{page.description}</p>
+          <p className="cxs-note">{page.learning.understand}</p>
+          <button type="button" className="cxs-soft-button" onClick={() => setHelpOpen(false)}>Close</button>
+        </div>
+      ) : null}
+      {settingsOpen ? (
+        <div className="cxs-card cxs-dialog" role="dialog" aria-label="Settings">
+          <h2>Settings</h2>
+          <p className="cxs-note">Grid, snap, and figure history live on the canvas toolbar. Undo/Redo stay disabled until a history stack is added.</p>
+          <p className="cxs-note">Current mode: {mode}</p>
+          <button type="button" className="cxs-soft-button" onClick={() => setSettingsOpen(false)}>Close</button>
+        </div>
+      ) : null}
       <p className="sr-only" role="status">{page.title} mode {mode}</p>
       <div className="cxs-dash-banner" data-lab-mode={mode} data-studio-kernel="1">
         <b>{page.title} · {mode}</b>
@@ -154,6 +175,7 @@ function ArgandLab({ page }: { page: StudioMockupPage }) {
             showArgument={mode === "Argument"}
             showConjugate={mode === "Conjugate"}
             showUnit={mode === "Locus"}
+            unitRadius={2}
             onPick={(nextRe, nextIm) => {
               setRe(clamp(nextRe, -6, 6));
               setIm(clamp(nextIm, -6, 6));
@@ -173,7 +195,7 @@ function ArgandLab({ page }: { page: StudioMockupPage }) {
           <Live color="#8b45f4" label="arg z" value={`${fmt(arg, 1)}°`} />
           <Live color="#f59e0b" label="conjugate" value={`${fmt(re, 1)} − ${fmt(im, 1)}i`} />
           <p className="cxs-formula">z = a + bi · |z| = √(a² + b²)</p>
-          <ChallengeBox {...page.challenge} />
+          <ChallengeBox {...page.challenge} onCorrect={() => markComplexComplete(page.id)} />
         </>
       )}
     />
@@ -187,8 +209,9 @@ function ArithmeticLab({ page }: { page: StudioMockupPage }) {
   const [d, setD] = useState(2);
   const sum = [a + c, b + d];
   const prod = [a * c - b * d, a * d + b * c];
-  const quotDen = c * c + d * d || 1;
-  const quot = [(a * c + b * d) / quotDen, (b * c - a * d) / quotDen];
+  const quotDen = c * c + d * d;
+  const divideError = Math.abs(quotDen) < 1e-9;
+  const quot = divideError ? [Number.NaN, Number.NaN] : [(a * c + b * d) / quotDen, (b * c - a * d) / quotDen];
   return (
     <LabFrame
       page={page}
@@ -199,8 +222,12 @@ function ArithmeticLab({ page }: { page: StudioMockupPage }) {
           <p className="cxs-note">Operation {mode} uses the live figure, not a copy-only switch.</p>
           <Slider label="Re z1" value={a} min={-4} max={4} step={0.1} onChange={setA} />
           <Slider label="Im z1" value={b} min={-4} max={4} step={0.1} onChange={setB} />
-          <Slider label="Re z2" value={c} min={-4} max={4} step={0.1} onChange={setC} />
-          <Slider label="Im z2" value={d} min={-4} max={4} step={0.1} onChange={setD} />
+          {mode !== "Conjugate" ? (
+            <>
+              <Slider label="Re z2" value={c} min={-4} max={4} step={0.1} onChange={setC} />
+              <Slider label="Im z2" value={d} min={-4} max={4} step={0.1} onChange={setD} />
+            </>
+          ) : <p className="cxs-note">z₂ is hidden in Conjugate mode so only z and z̄ remain.</p>}
         </>
       )}
       canvas={(mode) => {
@@ -212,8 +239,8 @@ function ArithmeticLab({ page }: { page: StudioMockupPage }) {
               im={b}
               wRe={mode === "Conjugate" ? undefined : c}
               wIm={mode === "Conjugate" ? undefined : d}
-              resRe={res[0]}
-              resIm={res[1]}
+              resRe={mode === "Divide" && divideError ? undefined : res[0]}
+              resIm={mode === "Divide" && divideError ? undefined : res[1]}
               showParallelogram={mode === "Add" || mode === "Subtract"}
               showConjugate={mode === "Conjugate"}
               scale={36}
@@ -222,7 +249,7 @@ function ArithmeticLab({ page }: { page: StudioMockupPage }) {
               onPick={(x, y) => {
                 const nx = clamp(x, -4, 4);
                 const ny = clamp(y, -4, 4);
-                if (Math.hypot(nx - a, ny - b) <= Math.hypot(nx - c, ny - d)) {
+                if (mode === "Conjugate" || Math.hypot(nx - a, ny - b) <= Math.hypot(nx - c, ny - d)) {
                   setA(nx);
                   setB(ny);
                 } else {
@@ -240,10 +267,10 @@ function ArithmeticLab({ page }: { page: StudioMockupPage }) {
         const res = mode === "Multiply" ? prod : mode === "Subtract" ? [a - c, b - d] : mode === "Divide" ? quot : mode === "Conjugate" ? [a, -b] : sum;
         return (
           <>
-            <Live color="#f59e0b" label="result" value={`${fmt(res[0], 2)} + ${fmt(res[1], 2)}i`} />
+            <Live color="#f59e0b" label="result" value={mode === "Divide" && divideError ? "undefined (divide by 0)" : `${fmt(res[0], 2)} + ${fmt(res[1], 2)}i`} />
             <Live color="#147df2" label="|z1|" value={fmt(Math.hypot(a, b))} />
-            <p className="cxs-note">{mode === "Multiply" ? "Multiply adds arguments and multiplies moduli." : mode === "Divide" ? "Divide subtracts arguments." : "Addition is the parallelogram diagonal."}</p>
-            <ChallengeBox {...page.challenge} />
+            <p className="cxs-note">{mode === "Multiply" ? "Multiply adds arguments and multiplies moduli." : mode === "Divide" ? (divideError ? "Cannot divide: |z₂| ≈ 0." : "Divide subtracts arguments.") : mode === "Conjugate" ? "z₂ is hidden; the dashed ray is the conjugate." : "Addition is the parallelogram diagonal."}</p>
+            <ChallengeBox {...page.challenge} onCorrect={() => markComplexComplete(page.id)} />
           </>
         );
       }}
@@ -315,7 +342,7 @@ function PolarLab({ page }: { page: StudioMockupPage }) {
           <Live color="#8b45f4" label="polar" value={`${fmt(r, 2)} cis ${fmt(th, 0)}°`} />
           <Live color="#08b9dd" label="exp" value={`${fmt(r, 2)} e^{i${fmt(th, 0)}°}`} />
           <p className="cxs-formula">{"z = r (cos θ + i sin θ) = r e^{iθ}"}</p>
-          <ChallengeBox {...page.challenge} />
+          <ChallengeBox {...page.challenge} onCorrect={() => markComplexComplete(page.id)} />
         </>
       )}
     />
@@ -324,6 +351,7 @@ function PolarLab({ page }: { page: StudioMockupPage }) {
 
 function RotationLab({ page }: { page: StudioMockupPage }) {
   const [th, setTh] = useState(90);
+  const [mag, setMag] = useState(1);
   const powers = Array.from({ length: 8 }, (_, i) => (i * th) % 360);
   return (
     <LabFrame
@@ -333,7 +361,8 @@ function RotationLab({ page }: { page: StudioMockupPage }) {
         <>
           <h2>Multiply by e^{"{iθ}"}</h2>
           <Slider label="θ" value={th} min={-180} max={180} step={1} onChange={setTh} unit="°" />
-          <p className="cxs-note">{mode === "Scale" ? "Radius grows when |z| ≠ 1." : mode === "Sequence" ? "Powers of z spiral." : "× i = +90°."}</p>
+          <Slider label="|w|" value={mag} min={0.2} max={2.4} step={0.05} onChange={setMag} />
+          <p className="cxs-note">{mode === "Scale" ? "Radius grows when |w| ≠ 1." : mode === "Sequence" ? "Powers of z spiral." : "× i = +90°."}</p>
         </>
       )}
       canvas={(mode) => (
@@ -346,7 +375,7 @@ function RotationLab({ page }: { page: StudioMockupPage }) {
             <text x="168" y="24" fontSize="11">Im</text>
             <circle cx="160" cy="120" r="70" fill="none" stroke="#94a3b8" />
             {powers.map((angle, i) => (
-              <circle key={i} cx={160 + (mode === "Scale" ? 40 + i * 8 : 50 + i * 4) * Math.cos(angle * Math.PI / 180)} cy={120 - (mode === "Scale" ? 40 + i * 8 : 50 + i * 4) * Math.sin(angle * Math.PI / 180)} r="3" fill="#147df2" />
+              <circle key={i} cx={160 + mag * (mode === "Scale" ? 40 + i * 8 : 50 + i * 4) * Math.cos(angle * Math.PI / 180)} cy={120 - mag * (mode === "Scale" ? 40 + i * 8 : 50 + i * 4) * Math.sin(angle * Math.PI / 180)} r="3" fill="#147df2" />
             ))}
           </svg>
           <Legend items={[["#147df2", "z · wⁿ"], ["#94a3b8", "unit circle"]]} />
@@ -355,8 +384,9 @@ function RotationLab({ page }: { page: StudioMockupPage }) {
       insight={() => (
         <>
           <Live color="#147df2" label="arg(w)" value={`${fmt(th, 0)}°`} />
+          <Live color="#8b45f4" label="|w|" value={fmt(mag, 2)} />
           <p className="cxs-formula">arg(zw) = arg z + arg w</p>
-          <ChallengeBox {...page.challenge} />
+          <ChallengeBox {...page.challenge} onCorrect={() => markComplexComplete(page.id)} />
         </>
       )}
     />
@@ -365,44 +395,49 @@ function RotationLab({ page }: { page: StudioMockupPage }) {
 
 function RootsLab({ page }: { page: StudioMockupPage }) {
   const [n, setN] = useState(6);
+  const [re, setRe] = useState(1);
+  const [im, setIm] = useState(0);
   return (
     <LabFrame
       page={page}
       canvasTitle="ROOTS OF UNITY"
       controls={(mode) => (
         <>
-          <h2>nth roots</h2>
+          <h2>nth roots of z</h2>
           <Slider label="n" value={n} min={2} max={10} step={1} onChange={setN} />
-          <p className="cxs-note">{mode}: De Moivre places roots on a regular polygon.</p>
+          <Slider label="Re z" value={re} min={-3} max={3} step={0.05} onChange={setRe} />
+          <Slider label="Im z" value={im} min={-3} max={3} step={0.05} onChange={setIm} />
+          <p className="cxs-note">{mode}: De Moivre places roots of z, not only of 1.</p>
         </>
       )}
       canvas={(mode) => {
         const sides = mode === "Square Roots" ? 2 : n;
-        const vertices = Array.from({ length: sides }, (_, i) => {
-          const a = (i / sides) * Math.PI * 2 - Math.PI / 2;
-          return `${180 + Math.cos(a) * 80},${140 + Math.sin(a) * 80}`;
-        });
+        const roots = nthRoots({ re, im }, sides);
+        const vertices = roots.map((root) => `${180 + root.re * 40},${140 - root.im * 40}`);
+        const rad = Math.hypot(re, im) ** (1 / sides) * 40;
         return (
           <>
-            <svg className="cxs-graph" viewBox="0 0 360 280" role="img" aria-label="Roots">
+            <svg className="cxs-graph is-interactive" viewBox="0 0 360 280" role="img" aria-label="Roots">
               <rect width="360" height="280" fill="#f8fbff" />
               <line className="cxs-axis" x1="24" y1="140" x2="336" y2="140" />
               <line className="cxs-axis" x1="180" y1="20" x2="180" y2="260" />
               <text x="328" y="132" fontSize="11">Re</text>
               <text x="188" y="28" fontSize="11">Im</text>
-              <circle cx="180" cy="140" r="80" fill="none" stroke="#94a3b8" />
+              <circle cx="180" cy="140" r={rad || 80} fill="none" stroke="#94a3b8" />
               <polygon points={vertices.join(" ")} fill="rgba(20,125,242,.08)" stroke="#147df2" />
-              {(mode === "Square Roots" ? vertices.slice(0, 2) : vertices).map((p, i) => <circle key={i} cx={p.split(",")[0]} cy={p.split(",")[1]} r="5" fill="#147df2" />)}
+              {vertices.map((p, i) => <circle key={i} cx={p.split(",")[0]} cy={p.split(",")[1]} r="5" fill="#147df2" />)}
+              <circle cx={180 + re * 40} cy={140 - im * 40} r="4" fill="#f59e0b" />
             </svg>
-            <Legend items={[["#147df2", "roots"], ["#94a3b8", "|z|^{1/n} circle"]]} />
+            <Legend items={[["#147df2", "roots"], ["#f59e0b", "z"], ["#94a3b8", "|z|^{1/n} circle"]]} />
           </>
         );
       }}
       insight={(mode) => (
         <>
           <Live color="#147df2" label="roots" value={String(mode === "Square Roots" ? 2 : n)} />
+          <Live color="#f59e0b" label="z" value={`${fmt(re, 2)} + ${fmt(im, 2)}i`} />
           <p className="cxs-formula">zⁿ = rⁿ (cos nθ + i sin nθ)</p>
-          <ChallengeBox {...page.challenge} />
+          <ChallengeBox {...page.challenge} onCorrect={() => markComplexComplete(page.id)} />
         </>
       )}
     />
@@ -411,8 +446,9 @@ function RootsLab({ page }: { page: StudioMockupPage }) {
 
 function EulerLab({ page }: { page: StudioMockupPage }) {
   const [th, setTh] = useState(180);
-  const terms = 6;
+  const [terms, setTerms] = useState(6);
   const rad = th * Math.PI / 180;
+  const approx = taylorExpITheta(rad, terms);
   const taylor = Array.from({ length: terms }, (_, k) => {
     const n = k;
     let f = 1;
@@ -427,31 +463,37 @@ function EulerLab({ page }: { page: StudioMockupPage }) {
         <>
           <h2>e^{"{iθ}"}</h2>
           <Slider label="θ" value={th} min={0} max={360} step={1} onChange={setTh} unit="°" />
+          <Slider label="Taylor terms" value={terms} min={1} max={16} step={1} onChange={setTerms} />
           <p className="cxs-note">{mode}: plane, helix, projections, and Taylor stay linked.</p>
         </>
       )}
       canvas={(mode) => (
-        <svg className="cxs-graph is-dark" viewBox="0 0 360 240" role="img" aria-label={mode}>
-          <rect width="360" height="240" fill="#061428" />
-          {mode === "Helix" ? (
-            <polyline points={Array.from({ length: 40 }, (_, i) => `${40 + i * 7},${120 - Math.sin(i / 6 + rad) * 40 + i * 0.4}`).join(" ")} fill="none" stroke="#22d3ee" />
-          ) : mode === "Projections" ? (
-            <>
-              <line x1="40" y1="180" x2={40 + Math.cos(rad) * 120} y2="180" stroke="#38bdf8" strokeWidth="3" />
-              <line x1="40" y1="180" x2="40" y2={180 - Math.sin(rad) * 80} stroke="#fde68a" strokeWidth="3" />
-            </>
-          ) : (
-            <circle cx="180" cy="120" r="70" fill="none" stroke="#22d3ee" />
-          )}
-          {taylor.map((_, i) => <circle key={i} cx={180 + 70 * Math.cos(rad * (i / terms))} cy={120 - 70 * Math.sin(rad * (i / terms))} r="3" fill="#fde68a" />)}
-          <text x="40" y="36" fill="#fde68a" fontSize="14">{`e^{iπ}+1 = ${fmt(Math.cos(Math.PI) + 1, 4)}`}</text>
-        </svg>
+        mode === "Helix" ? (
+          <StudioMath3D label="Euler helix" compact camera={[3.4, 2.6, 4.6]}>
+            <EulerHelix theta={rad} />
+          </StudioMath3D>
+        ) : (
+          <svg className="cxs-graph is-dark" viewBox="0 0 360 240" role="img" aria-label={mode}>
+            <rect width="360" height="240" fill="#061428" />
+            {mode === "Projections" ? (
+              <>
+                <line x1="40" y1="180" x2={40 + Math.cos(rad) * 120} y2="180" stroke="#38bdf8" strokeWidth="3" />
+                <line x1="40" y1="180" x2="40" y2={180 - Math.sin(rad) * 80} stroke="#fde68a" strokeWidth="3" />
+              </>
+            ) : (
+              <circle cx="180" cy="120" r="70" fill="none" stroke="#22d3ee" />
+            )}
+            {taylor.map((_, i) => <circle key={i} cx={180 + 70 * Math.cos(rad * (i / terms))} cy={120 - 70 * Math.sin(rad * (i / terms))} r="3" fill="#fde68a" />)}
+            <text x="40" y="36" fill="#fde68a" fontSize="14">{`e^{iπ}+1 = ${fmt(Math.cos(Math.PI) + 1, 4)}`}</text>
+          </svg>
+        )
       )}
       insight={() => (
         <>
           <Live color="#22d3ee" label="cos θ + i sin θ" value={`${fmt(Math.cos(rad), 3)} + ${fmt(Math.sin(rad), 3)}i`} />
+          <Live color="#fde68a" label={`Taylor (${terms})`} value={`${fmt(approx.re, 3)} + ${fmt(approx.im, 3)}i`} />
           <p className="cxs-formula">e^{"{iθ}"} = cos θ + i sin θ</p>
-          <ChallengeBox {...page.challenge} />
+          <ChallengeBox {...page.challenge} onCorrect={() => markComplexComplete(page.id)} />
         </>
       )}
     />
@@ -511,7 +553,7 @@ function LociLab({ page }: { page: StudioMockupPage }) {
       insight={(mode) => (
         <>
           <Live color="#147df2" label="locus" value={mode === "Möbius" ? "fixed pts ±1" : `|z|=${fmt(r)}`} />
-          <ChallengeBox {...page.challenge} />
+          <ChallengeBox {...page.challenge} onCorrect={() => markComplexComplete(page.id)} />
         </>
       )}
     />
@@ -556,7 +598,7 @@ function FractalsLab({ page }: { page: StudioMockupPage }) {
             </div>
             <div>
               <p className="cxs-note">Julia set for c · {inside ? "connected" : "dust (challenge: is it connected?)"}</p>
-              <FractalGrid kind="julia" cx={cx} cy={cy} iter={iter} />
+              <FractalGrid kind="julia" cx={cx} cy={cy} iter={iter} orbitPts={pts} />
             </div>
           </div>
         </>
@@ -565,14 +607,14 @@ function FractalsLab({ page }: { page: StudioMockupPage }) {
         <>
           <Live color="#8b45f4" label="c" value={`${fmt(cx, 3)} + ${fmt(cy, 3)}i`} />
           <Live color="#147df2" label="orbit steps" value={String(pts.length)} />
-          <ChallengeBox {...page.challenge} />
+          <ChallengeBox {...page.challenge} onCorrect={() => markComplexComplete(page.id)} />
         </>
       )}
     />
   );
 }
 
-function FractalGrid({ kind, cx, cy, iter }: { kind: "mandel" | "julia"; cx: number; cy: number; iter: number }) {
+function FractalGrid({ kind, cx, cy, iter, orbitPts }: { kind: "mandel" | "julia"; cx: number; cy: number; iter: number; orbitPts?: Array<{ x: number; y: number }> }) {
   const cols = 72;
   const rows = 48;
   const cells = useMemo(() => computeFractalGrid({ kind, cx, cy, iter, cols, rows }), [cols, rows, cx, cy, iter, kind]);
@@ -581,6 +623,11 @@ function FractalGrid({ kind, cx, cy, iter }: { kind: "mandel" | "julia"; cx: num
       {cells.map((cell) => (
         <rect key={`${cell.col}-${cell.row}`} x={cell.col} y={cell.row} width="1" height="1" fill={cell.k >= iter ? "#020617" : `hsl(${260 + cell.k * 8} 80% ${30 + cell.k * 2}%)`} />
       ))}
+      {orbitPts?.map((p, i) => {
+        const col = ((p.x + 2.2) / 3.2) * (cols - 1);
+        const row = ((1.4 - p.y) / 2.8) * (rows - 1);
+        return <circle key={`orb-${i}`} cx={col} cy={row} r="0.7" fill={i === 0 ? "#fde68a" : "#fb7185"} />;
+      })}
     </svg>
   );
 }
@@ -629,7 +676,7 @@ function CircuitsLab({ page }: { page: StudioMockupPage }) {
           <Live color="#147df2" label="|Z|" value={fmt(zMag, 2)} />
           <Live color="#8b45f4" label="power factor" value={fmt(pf, 3)} />
           <Live color="#f59e0b" label="φ" value={`${fmt(phi * 180 / Math.PI, 1)}°`} />
-          <ChallengeBox {...page.challenge} />
+          <ChallengeBox {...page.challenge} onCorrect={() => markComplexComplete(page.id)} />
         </>
       )}
     />

@@ -6,6 +6,7 @@ import { ComplexPlane, CxDot, CxRay, CX_R, CX_W, CX_Z } from "./complexArgandCan
 import {
   addC, argC, divC, fmtC, fromPolar, invertC, mobius, modC, mulC, quadraticRoots, seriesRLC, subC, taylorExpITheta, type C,
 } from "./complexLabMath";
+import { EulerHelix, StudioMath3D } from "../shared/studioMath3D";
 
 export function EulerLab({ page }: { page: StudioMockupPage }) {
   const [theta, setTheta] = useState(Math.PI);
@@ -143,34 +144,11 @@ function UnitCirclePanel({ theta, c, s, showCircle, showPoint, showAxes, grid }:
   );
 }
 
-function HelixPanel({ theta, cycles, show }: { theta: number; cycles: number; show: boolean }) {
-  const pts = Array.from({ length: 120 }, (_, i) => {
-    const t = (i / 119) * cycles * Math.PI * 2;
-    const X = 150 + (Math.cos(t) - t / 8) * 36;
-    const Y = 150 - Math.sin(t) * 34 - t * 8 + cycles * 12;
-    return `${X},${Y}`;
-  });
-  const hx = 150 + (Math.cos(theta) - theta / 8) * 36;
-  const hy = 150 - Math.sin(theta) * 34 - theta * 8 + cycles * 12;
+function HelixPanel({ theta, show }: { theta: number; cycles?: number; show: boolean }) {
   return (
-    <svg className="cx-plane" viewBox="0 0 320 280" role="img" aria-label="Complex exponential helix">
-      <rect width="320" height="280" fill="#f7fbff" rx="18" />
-      <line x1="40" y1="240" x2="280" y2="240" stroke="#94a3b8" />
-      <line x1="40" y1="240" x2="40" y2="30" stroke="#94a3b8" />
-      <line x1="40" y1="240" x2="250" y2="90" stroke="#cbd5e1" />
-      <text x="270" y="236" fontSize="11" fill="#64748b">θ</text>
-      <text x="48" y="28" fontSize="11" fill="#64748b">Im</text>
-      <text x="248" y="104" fontSize="11" fill="#64748b">Re</text>
-      {show ? <polyline points={pts.join(" ")} fill="none" stroke="url(#hx)" strokeWidth="2.6" /> : null}
-      <defs>
-        <linearGradient id="hx" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#22d3ee" />
-          <stop offset="1" stopColor="#8b5cf6" />
-        </linearGradient>
-      </defs>
-      <circle cx={hx} cy={hy} r="6" fill="#8b5cf6" stroke="#fff" />
-      <text x="16" y="18" fontSize="11" fill="#64748b">{`Helix (e^{iθ} = cos θ + i sin θ)`}</text>
-    </svg>
+    <StudioMath3D label="Complex exponential helix" compact camera={[3.4, 2.6, 4.6]}>
+      {show ? <EulerHelix theta={theta} /> : null}
+    </StudioMath3D>
   );
 }
 

@@ -133,10 +133,10 @@ export function TrigGraphsLab({ page }: { page: StudioMockupPage }) {
         const selected: TrigFamily = mode === "Sine" || mode === "Cosine" || mode === "Tangent" ? mode : family;
         const comparison = mode === "Comparison";
         const transforming = mode === "Transformations";
-        const a = comparison ? 1 : amplitude;
-        const b = comparison ? 1 : frequency;
-        const c = comparison ? 0 : phase;
-        const d = comparison ? 0 : vertical;
+        const a = amplitude;
+        const b = frequency;
+        const c = phase;
+        const d = vertical;
         const y = a * trigValue(selected, b * (time - c)) + d;
         const period = (selected === "Tangent" ? Math.PI : 2 * Math.PI) / Math.abs(b || 1);
         const lineColor = selected === "Sine" ? COLORS.sine : selected === "Cosine" ? COLORS.cosine : COLORS.tangent;
@@ -165,12 +165,12 @@ export function TrigGraphsLab({ page }: { page: StudioMockupPage }) {
                 </Field>
               ) : null}
               <p className="msk-formula trig-target-formula">
-                {comparison ? "y = sin x, cos x, tan x" : `y = ${fmt(a, 1)} ${trigName(selected)}(${fmt(b, 2)}(x − ${fmt(c, 2)})) + ${fmt(d, 1)}`}
+                {comparison ? `Parents y = sin x, cos x, tan x · overlay y = ${fmt(a, 1)} ${trigName(selected)}(${fmt(b, 2)}(x − ${fmt(c, 2)})) + ${fmt(d, 1)}` : `y = ${fmt(a, 1)} ${trigName(selected)}(${fmt(b, 2)}(x − ${fmt(c, 2)})) + ${fmt(d, 1)}`}
               </p>
-              {!comparison ? <div className="trig-control-amplitude"><SliderRow label="Amplitude A" value={amplitude} min={0.2} max={3} step={0.1} onChange={setAmplitude} /></div> : null}
-              {!comparison ? <div className="trig-control-period"><SliderRow label="Period parameter B" value={frequency} min={0.25} max={5} step={0.05} onChange={setFrequency} /></div> : null}
-              {!comparison ? <div className="trig-control-phase"><SliderRow label="Phase shift C" value={phase} min={-2 * Math.PI} max={2 * Math.PI} step={0.05} onChange={setPhase} /></div> : null}
-              {!comparison ? <div className="trig-control-vertical"><SliderRow label="Vertical shift D" value={vertical} min={-2} max={2} step={0.1} onChange={setVertical} /></div> : null}
+              <div className="trig-control-amplitude"><SliderRow label="Amplitude A" value={amplitude} min={0.2} max={3} step={0.1} onChange={setAmplitude} /></div>
+              <div className="trig-control-period"><SliderRow label="Period parameter B" value={frequency} min={0.25} max={5} step={0.05} onChange={setFrequency} /></div>
+              <div className="trig-control-phase"><SliderRow label="Phase shift C" value={phase} min={-2 * Math.PI} max={2 * Math.PI} step={0.05} onChange={setPhase} /></div>
+              <div className="trig-control-vertical"><SliderRow label="Vertical shift D" value={vertical} min={-2} max={2} step={0.1} onChange={setVertical} /></div>
               {!comparison ? (
                 <>
                   <Segmented value={angleUnit} onChange={(value) => setAngleUnit(value as "Radians" | "Degrees")} options={[{ id: "Radians", label: "Radians" }, { id: "Degrees", label: "Degrees" }]} />
@@ -231,6 +231,7 @@ export function TrigGraphsLab({ page }: { page: StudioMockupPage }) {
                     {waveSegments("Sine", 1, 1, 0, 0).map((points) => <polyline key={`s-${points.slice(0, 16)}`} points={points} fill="none" stroke={COLORS.sine} strokeWidth="2.2" />)}
                     {waveSegments("Cosine", 1, 1, 0, 0).map((points) => <polyline key={`c-${points.slice(0, 16)}`} points={points} fill="none" stroke={COLORS.cosine} strokeWidth="2.2" />)}
                     {waveSegments("Tangent", 1, 1, 0, 0).map((points) => <polyline key={`t-${points.slice(0, 16)}`} points={points} fill="none" stroke={COLORS.tangent} strokeWidth="1.8" />)}
+                    {waveSegments(selected, a, b, c, d).map((points) => <polyline key={`xf-${points.slice(0, 16)}`} points={points} fill="none" stroke={lineColor} strokeWidth="2.8" strokeDasharray="6 4" />)}
                   </>
                 ) : (
                   <>

@@ -13,9 +13,9 @@ const PRE = [
 
 const ORIGIN = { x: 0, y: 0 };
 
-type Fig = { tx: number; ty: number; rot: number; k: number; ax: number; ay: number };
+type Fig = { tx: number; ty: number; rot: number; k: number; ax: number; ay: number; bx: number; by: number; cx: number; cy: number };
 
-const initial: Fig = { tx: 1.2, ty: 0.4, rot: 30, k: 1.2, ax: 1, ay: 0.2 };
+const initial: Fig = { tx: 1.2, ty: 0.4, rot: 30, k: 1.2, ax: PRE[0]!.x, ay: PRE[0]!.y, bx: PRE[1]!.x, by: PRE[1]!.y, cx: PRE[2]!.x, cy: PRE[2]!.y };
 
 function toSvg(p: Point) {
   return { x: 210 + p.x * 70, y: 200 - p.y * 70 };
@@ -24,7 +24,11 @@ function toSvg(p: Point) {
 export default function TransformationsLab({ page }: { page: StudioMockupPage }) {
   const fig = useStudioFigure(initial);
   const [drag, setDrag] = useState<string | null>(null);
-  const pre = useMemo(() => [{ ...PRE[0]!, x: fig.state.ax, y: fig.state.ay }, PRE[1]!, PRE[2]!], [fig.state.ax, fig.state.ay]);
+  const pre = useMemo(() => [
+    { id: "A", x: fig.state.ax, y: fig.state.ay },
+    { id: "B", x: fig.state.bx, y: fig.state.by },
+    { id: "C", x: fig.state.cx, y: fig.state.cy },
+  ], [fig.state.ax, fig.state.ay, fig.state.bx, fig.state.by, fig.state.cx, fig.state.cy]);
 
   const onPointer = (event: PointerEvent<SVGSVGElement>) => {
     if (!drag) return;
@@ -32,6 +36,7 @@ export default function TransformationsLab({ page }: { page: StudioMockupPage })
     const x = (event.clientX - rect.left) / rect.width * 8 - 3;
     const y = 2.4 - (event.clientY - rect.top) / rect.height * 4.8;
     if (drag === "A") fig.commit({ ...fig.state, ax: x, ay: y });
+    if (drag === "B") fig.commit({ ...fig.state, bx: x, by: y });
     if (drag === "T") fig.commit({ ...fig.state, tx: x, ty: y });
   };
 
@@ -73,8 +78,12 @@ export default function TransformationsLab({ page }: { page: StudioMockupPage })
               {mode === "Dilate" || mode === "Compose" ? (
                 <SliderRow label="Dilate k" value={fig.state.k} min={-1.6} max={2.4} step={0.05} onChange={(k) => fig.commit({ ...fig.state, k })} />
               ) : null}
-              {mode === "Reflect" ? <p className="msk-note">The mirror is the y-axis. Drag A; distances to the line stay equal.</p> : null}
-              <p className="msk-note">Drag vertex A or the translation handle T. Undo, share, and exact labels stay on the figure.</p>
+              <SliderRow label="B x" value={fig.state.bx} min={-2} max={4} step={0.1} onChange={(bx) => fig.commit({ ...fig.state, bx })} />
+              <SliderRow label="B y" value={fig.state.by} min={-2} max={3} step={0.1} onChange={(by) => fig.commit({ ...fig.state, by })} />
+              <SliderRow label="C x" value={fig.state.cx} min={-2} max={4} step={0.1} onChange={(cx) => fig.commit({ ...fig.state, cx })} />
+              <SliderRow label="C y" value={fig.state.cy} min={-2} max={3} step={0.1} onChange={(cy) => fig.commit({ ...fig.state, cy })} />
+              {mode === "Reflect" ? <p className="msk-note">The mirror is the y-axis. Drag A or B; distances to the line stay equal.</p> : null}
+              <p className="msk-note">Drag vertex A or B, or the translation handle T. B and C are also editable numbers. Undo, share, and exact labels stay on the figure.</p>
             </Panel>
             <section className="msk-panel msk-canvas">
               <svg
@@ -88,8 +97,12 @@ export default function TransformationsLab({ page }: { page: StudioMockupPage })
                   const sx = event.clientX - rect.left;
                   const sy = event.clientY - rect.top;
                   const a = toSvg(pre[0]!);
+                  const b = toSvg(pre[1]!);
                   const th = toSvg(t);
-                  setDrag(Math.hypot(sx - th.x, sy - th.y) < 16 ? "T" : "A");
+                  const hitT = Math.hypot(sx - th.x, sy - th.y) < 16;
+                  const hitB = Math.hypot(sx - b.x, sy - b.y) < 14;
+                  const hitA = Math.hypot(sx - a.x, sy - a.y) < 14;
+                  setDrag(hitT ? "T" : hitB ? "B" : hitA ? "A" : "A");
                   event.currentTarget.setPointerCapture(event.pointerId);
                 }}
                 onPointerMove={onPointer}
@@ -102,7 +115,7 @@ export default function TransformationsLab({ page }: { page: StudioMockupPage })
                 <polygon points={image.map((p) => `${toSvg(p).x},${toSvg(p).y}`).join(" ")} fill="rgba(139,69,244,.12)" stroke="#8b45f4" />
                 {pre.map((p, i) => {
                   const s = toSvg(p);
-                  return <circle key={p.id} cx={s.x} cy={s.y} r={i === 0 ? 7 : 4} fill="#147df2" />;
+                  return <circle key={p.id} cx={s.x} cy={s.y} r={i <= 1 ? 7 : 4} fill="#147df2" />;
                 })}
                 {image.map((p, i) => {
                   const s = toSvg(p);
