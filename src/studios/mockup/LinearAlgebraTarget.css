@@ -1,3 +1,41 @@
+.msk-linear-algebra {
+  --la-blue: #147df2;
+  --la-cyan: #08b9dd;
+  --la-violet: #8b45f4;
+  --la-amber: #f59e0b;
+  --la-ink: #0b1b3f;
+  grid-template-columns: 220px minmax(0, 1fr);
+}
+
+.msk-linear-algebra .studio-home-btns,
+.msk-linear-algebra .msk-title-block > nav[aria-label="Breadcrumb"] {
+  display: none;
+}
+
+.msk-linear-algebra.is-lab .studio-canvas-tools,
+.msk-linear-algebra.is-lab .msk-hint,
+.msk-linear-algebra.is-lab .msk-topic-strip {
+  display: none;
+}
+
+.msk-linear-algebra .msk-title-block h1 {
+  white-space: nowrap;
+}
+
+.msk-linear-algebra .la-canvas-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.msk-linear-algebra .la-canvas-head h2 {
+  margin: 0;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .msk-linear-algebra .msk-mark {
   width: 40px;
   height: 40px;
