@@ -11203,6 +11203,107 @@ html[data-geometry-workspace-theme="light"]
   letter-spacing: 0;
 }
 
+.workspace-chrome-theme-toggle {
+  display: inline-flex;
+  flex-shrink: 0;
+  overflow: hidden;
+  border: 1px solid var(--gs-border, rgba(125, 165, 205, 0.22));
+  border-radius: 999px;
+  background: rgba(7, 19, 34, 0.55);
+}
+.workspace-chrome-theme-toggle button {
+  min-height: 28px;
+  border: 0;
+  background: transparent;
+  padding: 0.22rem 0.55rem;
+  color: var(--gs-muted, #8fa6bd);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.workspace-chrome-theme-toggle button[aria-pressed="true"] {
+  background: rgba(34, 211, 238, 0.18);
+  color: #ecfeff;
+}
+
+.graph-studio-3d-shell[data-chrome-theme="glow"] {
+  --gs-cyan: #67f8ff;
+  --gs-violet: #d8b4fe;
+  --gs-border: rgba(103, 248, 255, 0.3);
+  background: #01050e;
+}
+.graph-studio-3d-shell[data-chrome-theme="glow"] .gs3d-topbar,
+.graph-studio-3d-shell[data-chrome-theme="glow"] .gs3d-navrail,
+.graph-studio-3d-shell[data-chrome-theme="glow"] .gs3d-left-panel,
+.graph-studio-3d-shell[data-chrome-theme="glow"] .gs3d-right-panel,
+.graph-studio-3d-shell[data-chrome-theme="glow"] .gs3d-status {
+  background: #03111f;
+  box-shadow: inset 0 0 42px rgba(34, 211, 238, 0.1);
+}
+.graph-studio-3d-shell[data-chrome-theme="glow"] .gs3d-mark {
+  box-shadow: 0 0 18px rgba(103, 248, 255, 0.45);
+}
+
+.graph-studio-3d-shell[data-chrome-theme="light"] {
+  --gs-panel: #f4f7fb;
+  --gs-panel-2: #ffffff;
+  --gs-border: rgba(15, 23, 42, 0.12);
+  --gs-muted: #475569;
+  --gs-cyan: #0e7490;
+  --gs-violet: #6d28d9;
+  color: #0f172a;
+  background: #dbe7f3;
+}
+.graph-studio-3d-shell[data-chrome-theme="light"] .gs3d-topbar,
+.graph-studio-3d-shell[data-chrome-theme="light"] .gs3d-navrail,
+.graph-studio-3d-shell[data-chrome-theme="light"] .gs3d-left-panel,
+.graph-studio-3d-shell[data-chrome-theme="light"] .gs3d-right-panel,
+.graph-studio-3d-shell[data-chrome-theme="light"] .gs3d-status,
+.graph-studio-3d-shell[data-chrome-theme="light"] .gs3d-modes {
+  background: #f8fafc;
+  color: #0f172a;
+}
+.graph-studio-3d-shell[data-chrome-theme="light"] .gs3d-top-action,
+.graph-studio-3d-shell[data-chrome-theme="light"] .gs3d-mobile-menu,
+.graph-studio-3d-shell[data-chrome-theme="light"] .gs3d-modes button {
+  color: #334155;
+}
+.graph-studio-3d-shell[data-chrome-theme="light"] .workspace-chrome-theme-toggle {
+  background: #fff;
+}
+.graph-studio-3d-shell[data-chrome-theme="light"] .workspace-chrome-theme-toggle button[aria-pressed="true"] {
+  background: rgba(14, 116, 144, 0.14);
+  color: #0f172a;
+}
+
+.geometry-studio-shell[data-chrome-theme="glow"],
+.geometry-studio-shell[data-geometry-theme="glow"] {
+  background: #061018;
+  box-shadow: inset 0 0 80px rgba(34, 211, 238, 0.12);
+}
+html[data-geometry-workspace-theme="glow"]
+  .math-workspace-layout[data-workspace="geometry"] {
+  background: #041018;
+}
+.geometry-studio-shell .workspace-chrome-theme-toggle {
+  background: rgba(15, 23, 42, 0.45);
+}
+.geometry-studio-shell[data-chrome-theme="light"] .workspace-chrome-theme-toggle,
+.geometry-studio-shell[data-geometry-theme="light"] .workspace-chrome-theme-toggle {
+  background: #fff;
+  border-color: rgba(14, 116, 144, 0.28);
+}
+.geometry-studio-shell[data-chrome-theme="light"] .workspace-chrome-theme-toggle button,
+.geometry-studio-shell[data-geometry-theme="light"] .workspace-chrome-theme-toggle button {
+  color: #475569;
+}
+.geometry-studio-shell[data-chrome-theme="light"] .workspace-chrome-theme-toggle button[aria-pressed="true"],
+.geometry-studio-shell[data-geometry-theme="light"] .workspace-chrome-theme-toggle button[aria-pressed="true"] {
+  background: rgba(14, 116, 144, 0.14);
+  color: #0f172a;
+}
+
 .graph-studio-surface-shell .gs3d-topbar {
   grid-template-columns: auto minmax(150px, 1fr) auto;
 }

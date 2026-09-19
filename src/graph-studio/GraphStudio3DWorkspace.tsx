@@ -48,6 +48,12 @@ import {
 } from "./graph3dEnhancements";
 import type { SurfaceSampleResult } from "../utils/mathEngine/graph3dUtils";
 import type { GraphStudioStylePreset, GraphStudioVariable } from "./types";
+import WorkspaceChromeThemeToggle from "../components/workspace/WorkspaceChromeThemeToggle";
+import {
+  CHROME_THEME_STORAGE_KEYS,
+  readWorkspaceChromeTheme,
+  type WorkspaceChromeTheme,
+} from "../workspace/workspaceChromeTheme";
 import type { SurfaceDifferential } from "./graphIntelligence";
 import type { Graph3DCriticalPoint } from "./graph3dAdvanced";
 import type {
@@ -212,6 +218,9 @@ export default function GraphStudio3DWorkspace(
   const [viewOpen, setViewOpen] = useState(false);
   const [renaming, setRenaming] = useState(false);
   const [fps, setFps] = useState(60);
+  const [chromeTheme, setChromeTheme] = useState<WorkspaceChromeTheme>(() =>
+    readWorkspaceChromeTheme(CHROME_THEME_STORAGE_KEYS.graph3d),
+  );
   const [viewLabel, setViewLabel] = useState("Perspective");
   const projectInput = useRef<HTMLInputElement>(null);
   const tool = props.tool;
@@ -286,6 +295,7 @@ export default function GraphStudio3DWorkspace(
     <div
       id="graph-studio-3d-root"
       className={`graph-studio-3d-shell graph-studio-surface-shell ${leftOpen ? "has-left" : ""} ${rightOpen ? "has-right" : ""} ${props.presentationMode ? "is-presenting" : ""}`}
+      data-chrome-theme={chromeTheme}
     >
       <header className="gs3d-topbar">
         <div className="gs3d-brand">
@@ -385,6 +395,11 @@ export default function GraphStudio3DWorkspace(
             />
             {settingsOpen && <SettingsMenu props={props} />}
           </div>
+          <WorkspaceChromeThemeToggle
+            theme={chromeTheme}
+            storageKey={CHROME_THEME_STORAGE_KEYS.graph3d}
+            onChange={setChromeTheme}
+          />
           <div className="relative gs3d-help-control">
             <TopAction
               label="Help"
