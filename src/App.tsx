@@ -272,6 +272,9 @@ const SpacedRepetitionQuiz = lazyRoute(
 const StepByStepProblemSolver = lazyRoute(
   () => import("./pages/StepByStepProblemSolver"),
 );
+const ProblemSolverDocumentation = lazyRoute(
+  () => import("./pages/ProblemSolverDocumentation"),
+);
 const SurfacePlotter3D = lazyRoute(() => import("./pages/SurfacePlotter3D"));
 const Syllabus = lazyRoute(() => import("./pages/Syllabus"));
 const SyllabusVisualPage = lazyRoute(
@@ -771,6 +774,10 @@ export default function App() {
             <Route
               path="problem-solver"
               element={<StepByStepProblemSolver />}
+            />
+            <Route
+              path="problem-solver/docs"
+              element={<ProblemSolverDocumentation />}
             />
             <Route path="concept-map" element={<ConceptMapPage />} />
             <Route path="concept-graph" element={<ConceptDependencyGraph />} />
