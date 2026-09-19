@@ -15,6 +15,7 @@
     "mobile:open:android": "cap open android",
     "mobile:open:ios": "cap open ios",
     "test": "vitest run --maxWorkers=1 --reporter=dot",
+    "embed:widgets": "node scripts/write-embed-widgets.mjs",
     "test:math-core": "vitest run src/math-foundation --maxWorkers=1 --reporter=dot",
     "test:curriculum": "vitest run src/truth-layer --maxWorkers=1 --reporter=dot",
     "validate:coverage": "npm run test:curriculum",

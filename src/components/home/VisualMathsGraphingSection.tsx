@@ -66,6 +66,15 @@ export const visualMathsGraphingModules: VisualMathsGraphingModule[] = [
     accent: "border-t-sky-500 text-sky-600 dark:text-sky-300",
   },
   {
+    title: "Embed graphs & geometry",
+    description:
+      "Design a scene as an object list, then paste an iframe on any website.",
+    route: "/design/twodgraph",
+    action: "Open",
+    icon: ChartSpline,
+    accent: "border-t-indigo-500 text-indigo-600 dark:text-indigo-300",
+  },
+  {
     title: "CAS - Computer Algebra System",
     description:
       "Simplify, solve, differentiate, integrate, and inspect symbolic results.",

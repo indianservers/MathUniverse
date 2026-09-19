@@ -310,6 +310,7 @@ const Workspace3D = lazyRoute(() => import("./pages/Workspace3D"));
 const WorkspaceData = lazyRoute(() => import("./pages/WorkspaceData"));
 const WorkspaceGeometry = lazyRoute(() => import("./pages/WorkspaceGeometry"));
 const WorkspaceGraph = lazyRoute(() => import("./pages/WorkspaceGraph"));
+const EmbedDesigner = lazyRoute(() => import("./pages/EmbedDesigner"));
 
 type AppErrorBoundaryProps = { children: ReactNode; resetKey: string };
 type AppErrorBoundaryState = { hasError: boolean };
@@ -498,6 +499,8 @@ export default function App() {
             <Route path="workspace/graph" element={<WorkspaceGraph />} />
             <Route path="workspace/geometry" element={<WorkspaceGeometry />} />
             <Route path="workspace/3d" element={<Workspace3D />} />
+            <Route path="design" element={<Navigate to="/design/twodgraph" replace />} />
+            <Route path="design/:kind" element={<EmbedDesigner />} />
             <Route path="workspace/data" element={<WorkspaceData />} />
             <Route
               path="workspace/data/overview"
