@@ -403,7 +403,7 @@ function MatricesLab({ page }: { page: StudioMockupPage }) {
             <div className="la-rail">
             <Card title="Dimensions & Compatibility" kicker={compatible ? "Compatible" : "Incompatible"}>
               <p className="la-eq">A: {A.length} × {A[0]?.length ?? 0} · B: {B.length} × {B[0]?.length ?? 0} → A × B: {product ? `${product.length} × ${product[0]?.length ?? 0}` : "—"}</p>
-              <h2>Result C = {mode === "Block" ? "[A | B]" : "A × B"} <small>{shown ? `${shown.length} × ${shown[0]?.length ?? 0}` : ""}</small></h2>
+              <h2>{mode === "Block" ? "Result C = [A | B]" : "Result C = A × B"} <small>{shown ? `${shown.length} × ${shown[0]?.length ?? 0}` : ""}</small></h2>
               {shown ? <Sheet matrix={shown} /> : <p className="la-note">{mode === "Block" ? "Block concatenation needs matching rows (horizontal) or matching columns (vertical)." : "Resize so inner dimensions match."}</p>}
             </Card>
             <Card title="Computation (dot-product view)">
@@ -412,7 +412,9 @@ function MatricesLab({ page }: { page: StudioMockupPage }) {
               ))}
             </Card>
             <Card title="Operation Explanation">
-              <p className="la-note">{mode === "Block" ? "Block mode concatenates A and B when shapes allow. Multiply remains the default operation and still maps columns of B through A." : "Matrix multiplication transforms the columns of B through the linear transformation defined by A. Each entry c<sub>ij</sub> is the dot product of row i of A and column j of B."}</p>
+              {mode === "Block"
+                ? <p className="la-note">Block mode concatenates A and B when shapes allow. Multiply remains the default operation and still maps columns of B through A.</p>
+                : <p className="la-note">Matrix multiplication transforms the columns of B through the linear transformation defined by A. Each entry c<sub>ij</sub> is the dot product of row i of A and column j of B.</p>}
               <StatusOk>Result verified</StatusOk>
             </Card>
             </div>

@@ -15,6 +15,10 @@ function resultOf(mode: string, z1: C, z2: C): C {
   return addC(z1, z2);
 }
 
+function nearZero(z: C) {
+  return modC(z) < 1e-9;
+}
+
 export function ComplexArithmeticLab({ page }: { page: StudioMockupPage }) {
   const [z1, setZ1] = useState<C>({ re: 2.5, im: 1.5 });
   const [z2, setZ2] = useState<C>({ re: -1, im: 2 });
@@ -30,7 +34,8 @@ export function ComplexArithmeticLab({ page }: { page: StudioMockupPage }) {
     <ComplexLabChrome page={page}>
       {(mode, setMode) => {
         const op = OPS.includes(mode as typeof OPS[number]) || mode === "Conjugate" ? mode : "Add";
-        const res = resultOf(op, z1, z2);
+        const divideError = op === "Divide" && nearZero(z2);
+        const res = divideError ? { re: Number.NaN, im: Number.NaN } : resultOf(op, z1, z2);
         const showPara = para && (op === "Add" || op === "Subtract");
         return (
           <>
@@ -56,11 +61,15 @@ export function ComplexArithmeticLab({ page }: { page: StudioMockupPage }) {
                   <CxStepper label="a" value={z1.re} min={-4} max={4} onChange={(re) => setZ1({ ...z1, re })} />
                   <CxStepper label="b" value={z1.im} min={-4} max={4} onChange={(im) => setZ1({ ...z1, im })} />
                 </div>
-                <div className="cx-vec" data-tone="w">
-                  <strong>z₂ = c + di</strong>
-                  <CxStepper label="c" value={z2.re} min={-4} max={4} onChange={(re) => setZ2({ ...z2, re })} />
-                  <CxStepper label="d" value={z2.im} min={-4} max={4} onChange={(im) => setZ2({ ...z2, im })} />
-                </div>
+                {op === "Conjugate" ? (
+                  <p className="cx-note">z₂ is hidden in conjugate mode; the result is conj(z₁).</p>
+                ) : (
+                  <div className="cx-vec" data-tone="w">
+                    <strong>z₂ = c + di</strong>
+                    <CxStepper label="c" value={z2.re} min={-4} max={4} onChange={(re) => setZ2({ ...z2, re })} />
+                    <CxStepper label="d" value={z2.im} min={-4} max={4} onChange={(im) => setZ2({ ...z2, im })} />
+                  </div>
+                )}
               </div>
               <div className="cx-card">
                 <div className="cx-kicker">Visual options</div>
@@ -93,21 +102,29 @@ export function ComplexArithmeticLab({ page }: { page: StudioMockupPage }) {
               <ArithmeticFigure z1={z1} z2={z2} res={res} op={op} showGrid={grid} showAxes={axes} showTicks={ticks} showPara={showPara} showProj={proj} onZ1={setZ1} onZ2={setZ2} />
               <ul className="cx-legend">
                 <li><i style={{ background: CX_Z }} />z₁</li>
-                <li><i style={{ background: CX_W }} />z₂</li>
+                {op === "Conjugate" ? null : <li><i style={{ background: CX_W }} />z₂</li>}
                 <li><i style={{ background: CX_R }} />{op === "Add" ? "z₁ + z₂" : op === "Subtract" ? "z₁ − z₂" : op === "Multiply" ? "z₁ × z₂" : op === "Divide" ? "z₁ ÷ z₂" : "conjugate"}</li>
                 <li><i className="is-dash" />Parallelogram</li>
               </ul>
             </CxCanvas>
             <CxLive title={`Result (${op === "Conjugate" ? "conjugate" : op.toLowerCase()})`} badge={<span className="cx-badge">Exact</span>}>
               <p className="cx-eq">{op === "Add" ? "z₁ + z₂" : op === "Subtract" ? "z₁ − z₂" : op === "Multiply" ? "z₁ × z₂" : op === "Divide" ? "z₁ ÷ z₂" : "conj(z₁)"} = ({fmt(z1.re, 2)} + {fmt(z1.im, 2)}i) {op === "Add" ? "+" : op === "Subtract" ? "−" : op === "Multiply" ? "×" : op === "Divide" ? "÷" : ""} {op === "Conjugate" ? "" : `(${fmt(z2.re, 2)} + ${fmt(z2.im, 2)}i)`}</p>
-              <p className="cx-eq is-ans">= {fmtC(res)}</p>
+              {divideError
+                ? <p className="cx-eq is-ans">undefined (divide by 0)</p>
+                : <p className="cx-eq is-ans">= {fmtC(res)}</p>}
               <h3>Polar form</h3>
-              <p className="cx-eq">r = √({fmt(res.re, 2)}² + {fmt(res.im, 2)}²) = {fmt(modC(res), 4)}</p>
-              <p className="cx-eq">θ = atan2({fmt(res.im, 2)}, {fmt(res.re, 2)}) = {fmt(wrapDeg(argC(res) * 180 / Math.PI), 4)}°</p>
-              <p className="cx-eq">{fmt(argC(res), 4)} rad</p>
+              {divideError ? (
+                <p className="cx-note">Cannot divide: |z₂| ≈ 0.</p>
+              ) : (
+                <>
+                  <p className="cx-eq">r = √({fmt(res.re, 2)}² + {fmt(res.im, 2)}²) = {fmt(modC(res), 4)}</p>
+                  <p className="cx-eq">θ = atan2({fmt(res.im, 2)}, {fmt(res.re, 2)}) = {fmt(wrapDeg(argC(res) * 180 / Math.PI), 4)}°</p>
+                  <p className="cx-eq">{fmt(argC(res), 4)} rad</p>
+                </>
+              )}
               <h3>Interpretation</h3>
-              <p className="cx-note">{op === "Add" ? "The sum is the diagonal of the parallelogram formed by z₁ and z₂." : op === "Multiply" ? "Multiply moduli and add arguments." : op === "Divide" ? "Divide moduli and subtract arguments." : op === "Subtract" ? "Subtraction is the vector from z₂ to z₁." : "Conjugation reflects across the real axis."}</p>
-              <MiniSum z1={z1} z2={z2} res={res} />
+              <p className="cx-note">{op === "Add" ? "The sum is the diagonal of the parallelogram formed by z₁ and z₂." : op === "Multiply" ? "Multiply moduli and add arguments." : op === "Divide" ? (divideError ? "Cannot divide: |z₂| ≈ 0." : "Divide moduli and subtract arguments.") : op === "Subtract" ? "Subtraction is the vector from z₂ to z₁." : "Conjugation reflects across the real axis."}</p>
+              {op === "Conjugate" || divideError ? null : <MiniSum z1={z1} z2={z2} res={res} />}
               <h3>Algebra (component form)</h3>
               <p className="cx-eq">(a + bi) + (c + di) = (a + c) + (b + d)i</p>
               <p className="cx-eq">= ({fmt(z1.re, 2)} + ({fmt(z2.re, 2)})) + ({fmt(z1.im, 2)} + {fmt(z2.im, 2)})i</p>
@@ -149,7 +166,7 @@ function ArithmeticFigure({
       showTicks={showTicks}
       onPick={(re, im) => {
         const p = { re: clamp(re, -4, 4), im: clamp(im, -4, 4) };
-        if (Math.hypot(p.re - z1.re, p.im - z1.im) <= Math.hypot(p.re - z2.re, p.im - z2.im)) onZ1(p);
+        if (op === "Conjugate" || Math.hypot(p.re - z1.re, p.im - z1.im) <= Math.hypot(p.re - z2.re, p.im - z2.im)) onZ1(p);
         else onZ2(p);
       }}
     >
@@ -179,10 +196,14 @@ function ArithmeticFigure({
           ) : null}
           <CxRay x1={x(0)} y1={y(0)} x2={x(z1.re)} y2={y(z1.im)} color={CX_Z} marker="cx-z" width={3} />
           {op !== "Conjugate" ? <CxRay x1={x(0)} y1={y(0)} x2={x(z2.re)} y2={y(z2.im)} color={CX_W} marker="cx-w" width={3} /> : null}
-          <CxRay x1={x(0)} y1={y(0)} x2={x(res.re)} y2={y(res.im)} color={CX_R} marker="cx-r" width={2.8} />
+          {Number.isFinite(res.re) && Number.isFinite(res.im) ? (
+            <>
+              <CxRay x1={x(0)} y1={y(0)} x2={x(res.re)} y2={y(res.im)} color={CX_R} marker="cx-r" width={2.8} />
+              <CxDot x={x(res.re)} y={y(res.im)} fill={CX_R} label={`R = ${op === "Add" ? "z₁ + z₂" : "result"}`} sub={fmtC(res)} />
+            </>
+          ) : null}
           <CxDot x={x(z1.re)} y={y(z1.im)} fill={CX_Z} label={`P  z₁ = ${fmtC(z1)}`} />
           {op !== "Conjugate" ? <CxDot x={x(z2.re)} y={y(z2.im)} fill={CX_W} label={`Q  z₂ = ${fmtC(z2)}`} /> : null}
-          <CxDot x={x(res.re)} y={y(res.im)} fill={CX_R} label={`R = ${op === "Add" ? "z₁ + z₂" : "result"}`} sub={fmtC(res)} />
         </>
       )}
     </ComplexPlane>

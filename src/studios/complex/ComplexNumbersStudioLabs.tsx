@@ -10,6 +10,7 @@ import { juliaConnected, orbit, periodBulbLabel } from "./fractalMath";
 import { computeFractalGrid } from "./fractalWorker";
 import { markComplexComplete } from "./complexStudioSession";
 import { nthRoots, taylorExpITheta } from "./complexLabMath";
+import { EulerHelix, StudioMath3D } from "../shared/studioMath3D";
 
 const catalog = studioMockups["complex-numbers"];
 
@@ -467,21 +468,25 @@ function EulerLab({ page }: { page: StudioMockupPage }) {
         </>
       )}
       canvas={(mode) => (
-        <svg className="cxs-graph is-dark" viewBox="0 0 360 240" role="img" aria-label={mode}>
-          <rect width="360" height="240" fill="#061428" />
-          {mode === "Helix" ? (
-            <polyline points={Array.from({ length: 40 }, (_, i) => `${40 + i * 7},${120 - Math.sin(i / 6 + rad) * 40 + i * 0.4}`).join(" ")} fill="none" stroke="#22d3ee" />
-          ) : mode === "Projections" ? (
-            <>
-              <line x1="40" y1="180" x2={40 + Math.cos(rad) * 120} y2="180" stroke="#38bdf8" strokeWidth="3" />
-              <line x1="40" y1="180" x2="40" y2={180 - Math.sin(rad) * 80} stroke="#fde68a" strokeWidth="3" />
-            </>
-          ) : (
-            <circle cx="180" cy="120" r="70" fill="none" stroke="#22d3ee" />
-          )}
-          {taylor.map((_, i) => <circle key={i} cx={180 + 70 * Math.cos(rad * (i / terms))} cy={120 - 70 * Math.sin(rad * (i / terms))} r="3" fill="#fde68a" />)}
-          <text x="40" y="36" fill="#fde68a" fontSize="14">{`e^{iπ}+1 = ${fmt(Math.cos(Math.PI) + 1, 4)}`}</text>
-        </svg>
+        mode === "Helix" ? (
+          <StudioMath3D label="Euler helix" compact camera={[3.4, 2.6, 4.6]}>
+            <EulerHelix theta={rad} />
+          </StudioMath3D>
+        ) : (
+          <svg className="cxs-graph is-dark" viewBox="0 0 360 240" role="img" aria-label={mode}>
+            <rect width="360" height="240" fill="#061428" />
+            {mode === "Projections" ? (
+              <>
+                <line x1="40" y1="180" x2={40 + Math.cos(rad) * 120} y2="180" stroke="#38bdf8" strokeWidth="3" />
+                <line x1="40" y1="180" x2="40" y2={180 - Math.sin(rad) * 80} stroke="#fde68a" strokeWidth="3" />
+              </>
+            ) : (
+              <circle cx="180" cy="120" r="70" fill="none" stroke="#22d3ee" />
+            )}
+            {taylor.map((_, i) => <circle key={i} cx={180 + 70 * Math.cos(rad * (i / terms))} cy={120 - 70 * Math.sin(rad * (i / terms))} r="3" fill="#fde68a" />)}
+            <text x="40" y="36" fill="#fde68a" fontSize="14">{`e^{iπ}+1 = ${fmt(Math.cos(Math.PI) + 1, 4)}`}</text>
+          </svg>
+        )
       )}
       insight={() => (
         <>
