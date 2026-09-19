@@ -1963,13 +1963,17 @@ describe("lesson pages", () => {
       "dedicated-two-line-transversal-correspondence-parallel-test-engine",
     );
     expect(html).toContain('data-angle="64"');
-    expect(html).toContain('data-values="64,116,64,116,64,116,64,116"');
+    expect(html).toContain('data-values="64,116,116,64,64,116,116,64"');
     expect(html).toContain('data-parallel="true"');
+    expect(html).toContain('data-tool="drag"');
     expect(html).toContain('data-selected-pairs="0,1,2,3"');
     expect(html).toContain('data-valid="true"');
     expect(html).toContain(
       'aria-label="Interactive corresponding angles diagram"',
     );
+    expect(html).toContain('aria-label="Rotate transversal"');
+    expect(html).toContain('aria-label="Move line ℓ"');
+    expect(html).toContain('aria-label="Move line m"');
   });
 
   it("renders the dedicated alternate-interior target for lesson 10061", () => {
