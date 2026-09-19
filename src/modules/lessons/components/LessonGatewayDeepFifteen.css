@@ -1,0 +1,127 @@
+.lesson-gateway-deep {
+  margin: 8px 24px 16px;
+  padding: 16px 18px 14px;
+  border: 1px solid #c7d2fe;
+  border-radius: 18px;
+  background: #f5f7ff;
+  color: #1f2937;
+}
+
+.lesson-gateway-deep header p:first-child {
+  margin: 0 0 4px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #4338ca;
+}
+
+.lesson-gateway-deep h2,
+.lesson-gateway-deep h3 {
+  margin: 0 0 8px;
+}
+
+.lesson-gateway-deep-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.lesson-gateway-deep article {
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: inset 0 0 0 1px #d9e0fb;
+}
+
+.lesson-gateway-deep article.is-trap {
+  box-shadow: inset 0 0 0 1px #f0c4a8;
+  background: #fff7ed;
+}
+
+.lesson-gateway-deep article.is-hatch {
+  box-shadow: inset 0 0 0 1px #f0b4b4;
+  background: #fff1f2;
+}
+
+.lesson-gateway-deep article.is-open {
+  box-shadow: inset 0 0 0 1px #86efac;
+  background: #f0fdf4;
+}
+
+.lesson-gateway-deep-kicker,
+.lesson-gateway-deep-forbidden {
+  margin: 0 0 8px;
+  font-size: 13px;
+}
+
+.lesson-gateway-deep-forbidden {
+  color: #9a3412;
+}
+
+.lesson-gateway-deep-layers {
+  margin: 0 0 8px;
+  padding-left: 18px;
+}
+
+.lesson-gateway-deep-live {
+  font-size: 16px;
+  margin: 0;
+}
+
+.lesson-gateway-deep button,
+.lesson-gateway-deep a {
+  border: 0;
+  border-radius: 8px;
+  padding: 5px 10px;
+  background: #4f46e5;
+  color: #eef2ff;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.lesson-gateway-deep input[type="text"],
+.lesson-gateway-deep input:not([type]),
+.lesson-gateway-deep input[type="search"] {
+  border: 1px solid #c7d2fe;
+  border-radius: 8px;
+  padding: 4px 8px;
+  margin-right: 6px;
+}
+
+.lesson-gateway-deep article div {
+  display: flex;
+  gap: 6px;
+}
+
+.lesson-gateway-deep label {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.lesson-gateway-deep pre {
+  margin: 0 0 8px;
+  white-space: pre-wrap;
+  font-size: 13px;
+}
+
+.lesson-gateway-deep .ok {
+  color: #047857;
+}
+
+.lesson-gateway-deep .bad {
+  color: #b45309;
+}
+
+@media (max-width: 900px) {
+  .lesson-gateway-deep-grid {
+    display: block;
+  }
+
+  .lesson-gateway-deep article + article {
+    margin-top: 10px;
+  }
+}
