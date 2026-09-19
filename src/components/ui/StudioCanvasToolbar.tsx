@@ -28,7 +28,7 @@ function applyCanvasView(zoom: number, grid: boolean, labels: boolean, large = f
 
 function canvasRoot(): HTMLElement | null {
   return document.querySelector<HTMLElement>(
-    ".msk-canvas, .msk-rt-stage, .msk-uc-stage, .tri-canvas, .clab-viz, .coord-stage, .mlab-stage, .tlab-viz, .cs-visual-card, .alg-wide, .ns-lab-main, .as-lab, .gt-canvas, .cxs-canvas",
+    ".msk-canvas, .msk-rt-stage, .msk-uc-stage, .tri-canvas, .clab-viz, .coord-stage, .mlab-stage, .tlab-viz, .cs-visual-card, .alg-wide, .ns-lab-main, .as-lab, .gt-canvas, .cxs-canvas, .studio-math-3d, .la-viz",
   );
 }
 

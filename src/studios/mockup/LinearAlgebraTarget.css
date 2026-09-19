@@ -1,12 +1,17 @@
-.msk-linear-algebra {
-  --la-blue: #147df2;
-  --la-cyan: #08b9dd;
-  --la-violet: #8b45f4;
-  --la-amber: #f59e0b;
-  --la-ink: #0b1b3f;
-  height: 100%;
-  min-height: 100dvh;
-  color-scheme: light;
+.msk-linear-algebra .msk-mark {
+  width: 40px;
+  height: 40px;
+  border-radius: 13px;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  background: linear-gradient(145deg, #22c5ea, #3b82f6 48%, #7c3aed);
+  box-shadow: 0 8px 18px #477cf230;
+}
+
+.msk-linear-algebra .msk-sidebar nav svg {
+  width: 20px;
+  height: 20px;
 }
 
 .msk-linear-algebra input,
@@ -998,6 +1003,268 @@
   }
 }
 
+.msk-linear-algebra .msk-lab-tools {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.msk-linear-algebra .msk-tools .msk-lab-tools button.la-tool,
+.msk-linear-algebra .la-tool {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: auto;
+  min-width: 36px;
+  height: 36px;
+  min-height: 36px;
+  padding: 0 12px;
+  border: 1px solid #dce7f4;
+  border-radius: 999px;
+  background: #fff;
+  color: #163056;
+  font-size: 12px;
+  font-weight: 800;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px #415f8b10;
+}
+
+.msk-linear-algebra .msk-tools .msk-lab-tools .la-tool span {
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  box-shadow: none;
+}
+
+.msk-linear-algebra .la-tool svg {
+  width: 14px;
+  height: 14px;
+}
+
+.msk-linear-algebra .la-tool select {
+  border: 0;
+  background: transparent;
+  font-weight: 800;
+}
+
+.msk-linear-algebra[data-lab-id="eigenvectors"] .msk-top h1,
+.msk-linear-algebra[data-lab-id="playground"] .msk-top h1 {
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.msk-linear-algebra .la-lab {
+  grid-template-columns: 252px minmax(0, 1.7fr) 268px;
+  gap: 10px;
+}
+
+.msk-linear-algebra .la-rail,
+.msk-linear-algebra .la-center {
+  display: grid;
+  gap: 10px;
+  align-content: start;
+}
+
+.msk-linear-algebra .la-card {
+  padding: 12px 14px;
+  border: 1px solid #e3edf6;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 8px 18px #3a5b7f0a;
+}
+
+.msk-linear-algebra .la-card h2 {
+  margin: 0 0 8px;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.msk-linear-algebra .la-switch {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 28px;
+  margin: 4px 0;
+  border: 0;
+  background: transparent;
+  color: #334155;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.msk-linear-algebra .la-switch i {
+  position: relative;
+  width: 36px;
+  height: 20px;
+  flex: none;
+  border-radius: 99px;
+  background: #d7e4f0;
+}
+
+.msk-linear-algebra .la-switch i::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px #0f172a22;
+}
+
+.msk-linear-algebra .la-switch.is-on i {
+  background: linear-gradient(90deg, #22c5ea, #3b82f6);
+}
+
+.msk-linear-algebra .la-switch.is-on i::after {
+  left: 18px;
+}
+
+.msk-linear-algebra .la-slider {
+  display: grid;
+  grid-template-columns: 70px 1fr 48px;
+  gap: 8px;
+  align-items: center;
+  margin: 6px 0;
+  font-size: 12px;
+  font-weight: 700;
+  color: #334155;
+}
+
+.msk-linear-algebra .la-slider output {
+  text-align: right;
+  background: transparent;
+  font-variant-numeric: tabular-nums;
+}
+
+.msk-linear-algebra .la-brackets {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 6px;
+  margin: 8px 0 12px;
+}
+
+.msk-linear-algebra .la-brackets b {
+  width: 8px;
+  border: 2px solid #64748b;
+}
+
+.msk-linear-algebra .la-brackets b:first-child {
+  border-right: 0;
+  border-radius: 6px 0 0 6px;
+}
+
+.msk-linear-algebra .la-brackets b:last-child {
+  border-left: 0;
+  border-radius: 0 6px 6px 0;
+}
+
+.msk-linear-algebra .la-brackets td {
+  padding: 2px 10px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.msk-linear-algebra .la-seg {
+  display: flex;
+  gap: 6px;
+  margin: 8px 0 10px;
+}
+
+.msk-linear-algebra .la-seg button {
+  width: 36px;
+  height: 28px;
+  border: 1px solid #dce7f4;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.msk-linear-algebra .la-seg button.active {
+  color: #fff;
+  background: #147df2;
+  border-color: #147df2;
+}
+
+.msk-linear-algebra .la-legend-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: center;
+  margin-top: 8px;
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.msk-linear-algebra .la-ak {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px;
+  align-items: center;
+}
+
+.msk-linear-algebra .la-thumbs {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(64px, 1fr);
+  gap: 8px;
+}
+
+.msk-linear-algebra .la-thumbs svg {
+  width: 100%;
+  height: 56px;
+  border: 1px solid #e8eef7;
+  border-radius: 10px;
+  background: #f8fbff;
+}
+
+.msk-linear-algebra .la-card.la-viz .msk-graph {
+  min-height: 320px;
+  border-radius: 14px;
+}
+
+.msk-linear-algebra .la-lab-root.is-play .la-lab {
+  display: block;
+}
+
+.msk-linear-algebra .la-lab-root.is-wide .la-lab {
+  grid-template-columns: 252px minmax(0, 1.7fr) 268px;
+}
+
+.msk-linear-algebra .la-compute {
+  width: 100%;
+  min-height: 42px;
+  margin-top: 10px;
+  border: 0;
+  border-radius: 12px;
+  color: #fff;
+  font-weight: 800;
+  background: linear-gradient(100deg, #22c5ea, #7c3aed);
+}
+
+.msk-linear-algebra .la-soft {
+  width: 100%;
+  min-height: 34px;
+  margin-top: 8px;
+  border: 1px solid #dce7f4;
+  border-radius: 10px;
+  background: #f8fbff;
+  font-weight: 800;
+}
+
+.msk-linear-algebra.is-lab .msk-strip-cards > div {
+  min-height: 88px;
+  padding: 12px 12px 10px;
+  border-radius: 16px;
+}
+
 @media (max-width: 760px) {
   .msk-linear-algebra .msk-lab {
     grid-template-columns: 1fr;
@@ -1012,5 +1279,89 @@
   .msk-linear-algebra .msk-primary {
     min-height: 44px;
   }
+}
+
+.msk-linear-algebra .la-xyz {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 6px;
+}
+
+.msk-linear-algebra .la-xyz .la-step {
+  grid-template-columns: 12px 22px minmax(0, 1fr) 22px;
+  gap: 3px;
+  font-size: 11px;
+}
+
+.msk-linear-algebra .la-xyz .la-step button,
+.msk-linear-algebra .la-xyz .la-step input {
+  width: 100%;
+  min-height: 26px;
+  height: 26px;
+  font-size: 11px;
+}
+
+.msk-linear-algebra .la-vec-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.msk-linear-algebra .la-vec-head i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.msk-linear-algebra .la-vec-head b {
+  width: 16px;
+  height: 16px;
+  margin-left: auto;
+  border-radius: 4px;
+}
+
+.msk-linear-algebra .la-result-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.msk-linear-algebra .la-result-row select {
+  min-height: 32px;
+  border: 1px solid #dce7f4;
+  border-radius: 8px;
+  font-weight: 800;
+}
+
+.msk-linear-algebra .la-result-row .la-soft {
+  width: auto;
+  margin-top: 0;
+  padding: 0 12px;
+}
+
+.msk-linear-algebra .la-legend-row span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.msk-linear-algebra .la-legend-row i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.msk-linear-algebra .msk-tools .msk-lab-tools button.la-tool.is-share {
+  background: linear-gradient(100deg, #7c3aed, #6366f1);
+  color: #fff;
+  border: 0;
+}
+
+.msk-linear-algebra .la-viz .studio-math-3d,
+.msk-canvas .studio-math-3d {
+  min-height: 320px;
 }
 

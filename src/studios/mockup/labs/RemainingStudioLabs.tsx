@@ -24,6 +24,7 @@ import { useTrigSession } from "../trigStudioSession";
 import ModellingStudioLab from "./ModellingLabs";
 import { InverseTrigLab as TargetInverseTrigLab } from "./InverseTrigLab";
 import { ApplicationsLab as TargetApplicationsLab } from "./ApplicationsLab";
+import { ArRoomScene, ElevationTriangle, StudioMath3D } from "../../shared/studioMath3D";
 
 function Chrome({ page, children, layout, toolbar }: { page: StudioMockupPage; children: ReactNode | ((mode: string) => ReactNode); layout?: "quad"; toolbar?: ReactNode }) {
   return (
@@ -159,7 +160,7 @@ function ArLab({ page, kind }: { page: StudioMockupPage; kind: "geometry" | "tri
           <span className="msk-cam-hud">{kind === "trig" ? (mode === "Wave Projection" ? "WAVE OVERLAY" : mode === "Unit Circle" ? "UNIT CIRCLE AR" : mode === "Distance" ? "DISTANCE TAPE" : mode === "Angle" ? "ANGLE HUD" : mode === "Triangle Overlay" ? "TRIANGLE OVERLAY" : "HEIGHT MEASURE") : "AR CAMERA"}</span>
           <i className="msk-cam-rec" />
           <div className="msk-cam-frame" />
-        {kind === "trig" ? (
+        {kind === "trig" && (mode === "Unit Circle" || mode === "Wave Projection") ? (
           <svg className="msk-graph" viewBox="0 0 560 360" role="img" aria-label={mode}>
             <rect width="560" height="360" fill="#9ec9f0" />
             <rect x="0" y="230" width="560" height="130" fill="#c4b8a4" />
@@ -171,37 +172,20 @@ function ArLab({ page, kind }: { page: StudioMockupPage; kind: "geometry" | "tri
                 <circle cx="280" cy="180" r="70" fill="none" stroke="#22d3ee" strokeWidth="2" />
                 <line x1="280" y1="180" x2={280 + 70 * Math.cos(session.theta * Math.PI / 180)} y2={180 - 70 * Math.sin(session.theta * Math.PI / 180)} stroke="#fbbf24" strokeWidth="2" />
               </>
-            ) : mode === "Wave Projection" ? (
-              <polyline points={Array.from({ length: 40 }, (_, i) => `${20 + i * 13},${200 - Math.sin(i / 4 + session.theta * Math.PI / 180) * 28}`).join(" ")} fill="none" stroke="#fbbf24" strokeWidth="2.4" />
-            ) : mode === "Distance" ? (
-              <line x1="90" y1="250" x2="440" y2="250" stroke="#22d3ee" strokeWidth="4" />
-            ) : mode === "Angle" ? (
-              <path d="M90 250 L440 250 L440 120" fill="none" stroke="#f59e0b" strokeWidth="2" />
             ) : (
-              <>
-                <line x1="90" y1="250" x2="440" y2="250" stroke="#22d3ee" strokeDasharray="4 3" />
-                <line x1="440" y1="250" x2="440" y2={250 - height * 4.2} stroke="#8b45f4" strokeDasharray="4 3" />
-                <line x1="90" y1="250" x2="440" y2={250 - height * 4.2} stroke="#f59e0b" />
-              </>
+              <polyline points={Array.from({ length: 40 }, (_, i) => `${20 + i * 13},${200 - Math.sin(i / 4 + session.theta * Math.PI / 180) * 28}`).join(" ")} fill="none" stroke="#fbbf24" strokeWidth="2.4" />
             )}
             <text x="240" y="244" fill="#0f172a" fontSize="12">{fmt(dist, 2)} m</text>
             <text x="150" y="220" fill="#f59e0b" fontSize="12">{fmt(elev, 1)}°</text>
           </svg>
+        ) : kind === "trig" ? (
+          <StudioMath3D label={`${mode} elevation`}>
+            <ElevationTriangle dist={dist} height={height} />
+          </StudioMath3D>
         ) : (
-          <svg className="msk-graph" viewBox="0 0 560 360" role="img" aria-label="Room AR overlay">
-            <rect width="560" height="360" fill="#e8eef4" />
-            <rect x="0" y="210" width="560" height="150" fill="#d6cfc4" />
-            <line x1="40" y1="210" x2="520" y2="210" stroke="#94a3b8" />
-            <polygon points="80,200 260,40 440,200" fill="none" stroke="#22d3ee" />
-            <circle cx="80" cy="200" r="5" fill="#f59e0b" /><circle cx="260" cy="40" r="5" fill="#08b9dd" /><circle cx="440" cy="200" r="5" fill="#f59e0b" />
-            <text x="70" y="216" fontSize="11">B</text><text x="266" y="36" fontSize="11">A</text><text x="444" y="216" fontSize="11">C</text>
-            <text x="240" y="28" fill="#8b45f4" fontSize="11">{fmt(elev, 1)}°</text>
-            <text x="240" y="130" fill="#147df2" fontSize="11">{fmt(dist * scale, 2)} m</text>
-            <circle cx="400" cy="90" r="36" fill="none" stroke="#8b45f4" />
-            <polygon points="160,300 220,220 280,300" fill="rgba(139,69,244,.35)" stroke="#8b45f4" />
-            <polygon points="320,300 360,230 400,300" fill="rgba(139,69,244,.35)" stroke="#8b45f4" />
-            <text x="188" y="318" fontSize="11">Pyramid</text>
-          </svg>
+          <StudioMath3D label="Room AR overlay">
+            <ArRoomScene dist={dist} elev={elev} scale={scale} />
+          </StudioMath3D>
         )}
         </div>
       </section>

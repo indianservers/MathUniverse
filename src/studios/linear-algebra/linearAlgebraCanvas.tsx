@@ -1,5 +1,6 @@
 import { type KeyboardEvent, type ReactNode } from "react";
 import { clamp, fmt } from "../mockup/studioLabKit";
+import { iso3 } from "./linearAlgebraLabMath";
 import { useLinearSession } from "./linearAlgebraStudioSession";
 
 export const LA_A = "#147df2";
@@ -93,6 +94,30 @@ export function AxisGrid({
     lines.push(<line key={`h${i}`} x1={c.x} y1={c.y} x2={d.x} y2={d.y} stroke={dark ? "#1e3a5f" : "#e2e8f0"} />);
   }
   return <g>{lines}</g>;
+}
+
+export function IsoFloor({
+  ox, oy, unit, yaw, span = 3,
+}: {
+  ox: number; oy: number; unit: number; yaw: number; span?: number;
+}) {
+  const p = (x: number, z: number) => iso3(x, 0, z, ox, oy, unit, yaw);
+  const lines: ReactNode[] = [];
+  for (let i = -span; i <= span; i += 1) {
+    const a = p(i, -span);
+    const b = p(i, span);
+    const c = p(-span, i);
+    const d = p(span, i);
+    lines.push(<line key={`x${i}`} x1={a.x} y1={a.y} x2={b.x} y2={b.y} stroke="#d7e6f5" />);
+    lines.push(<line key={`z${i}`} x1={c.x} y1={c.y} x2={d.x} y2={d.y} stroke="#d7e6f5" />);
+  }
+  const corners = [p(-span, -span), p(span, -span), p(span, span), p(-span, span)];
+  return (
+    <g>
+      <polygon points={corners.map((pt) => `${pt.x},${pt.y}`).join(" ")} fill="#eef7ff" opacity="0.7" />
+      {lines}
+    </g>
+  );
 }
 
 export function FormulaBridge({ children }: { children: ReactNode }) {

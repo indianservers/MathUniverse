@@ -223,20 +223,89 @@ export function MockupLearningStrip({ page, mode }: { page: StudioMockupPage; mo
 
 function LinearAlgebraNavIcon({ id }: { id: string }) {
   const glyphs: Record<string, ReactNode> = {
-    home: <path d="M4 11.2 12 4l8 7.2V20h-6v-6H10v6H4Z" />,
-    vectors: <path d="M3.2 11.2 20.6 3.4 12.8 20.8l-2.2-6.6Z" />,
-    matrices: <path d="M5 5h6v6H5Zm8 0h6v6h-6ZM5 13h6v6H5Zm8 0h6v6h-6Z" />,
-    "row-reduction": <><path d="M4 6h16v12H4Z" fillOpacity=".18" /><path d="M4 10h16M4 14h16M9 6v12" fill="none" /></>,
-    "linear-transforms": <><path d="M4 15h7v5H4Z" /><path d="M13 8h7v5h-7Z" fillOpacity=".55" /><path d="M11 16.5 14.5 11" fill="none" /></>,
-    determinants: <path d="M12 4 20 19H4Z" />,
-    "vector-spaces": <path d="M12 3 20 7.5v9L12 21 4 16.5v-9Z" />,
-    eigenvectors: <path d="M8 20 12 4l4 16M9.2 13h5.6" fill="none" strokeWidth="2.2" />,
-    orthogonality: <path d="M5 19V5h3v11h11v3Z" />,
-    "least-squares": <><path d="M4 18 9 12l4 3 7-9" fill="none" strokeWidth="2" /><circle cx="9" cy="12" r="1.4" /><circle cx="13" cy="15" r="1.4" /><circle cx="20" cy="6" r="1.4" /></>,
-    playground: <><path d="M7 8h10v10H7Z" fillOpacity=".2" /><path d="M7 8 12 4l5 4v10l-5 4-5-4Z" /></>,
+    home: (
+      <>
+        <rect x="4.2" y="4.2" width="6.6" height="6.6" rx="1.5" />
+        <rect x="13.2" y="4.2" width="6.6" height="6.6" rx="1.5" />
+        <rect x="4.2" y="13.2" width="6.6" height="6.6" rx="1.5" />
+        <rect x="13.2" y="13.2" width="6.6" height="6.6" rx="1.5" />
+      </>
+    ),
+    vectors: (
+      <>
+        <path d="M3.8 12.6 20.4 4.6 13.1 20.2 10.8 13.4Z" />
+        <path d="M10.8 13.4 20.4 4.6" />
+        <path d="M10.8 13.4 13.1 20.2" />
+      </>
+    ),
+    matrices: (
+      <>
+        <rect x="4" y="4.4" width="16" height="15.2" rx="2" />
+        <path d="M4 9.4h16M4 14.6h16M9.4 4.4v15.2M14.6 4.4v15.2" />
+      </>
+    ),
+    "row-reduction": (
+      <>
+        <path d="M4.4 6.2h15.2" />
+        <path d="M4.4 12h10.4" />
+        <path d="M4.4 17.8h6.2" />
+        <path d="M19.6 6.2v4.2M14.8 12v4.2M10.6 17.8V21" />
+      </>
+    ),
+    "linear-transforms": (
+      <>
+        <rect x="3.6" y="11.8" width="7.4" height="7.4" rx="1.2" />
+        <path d="M12 15.4h2.6" />
+        <path d="M15.4 5.6 21 8.2l-2.4 9.2-5.6-2.6Z" />
+      </>
+    ),
+    determinants: (
+      <>
+        <path d="M12 3.4 20.8 19.6H3.2Z" />
+        <path d="M12 9.6v4.6M12 16.8h.01" />
+      </>
+    ),
+    "vector-spaces": (
+      <>
+        <path d="M4.2 15.4 12 11.2l7.8 4.2L12 19.6Z" />
+        <path d="M4.2 11.2 12 7l7.8 4.2" />
+        <path d="M4.2 8.2 12 4l7.8 4.2" />
+      </>
+    ),
+    eigenvectors: (
+      <>
+        <path d="M8.4 20.2C8.6 12.4 10.2 3.8 12.4 3.8c2.2 0 3.6 8.4 3.8 16.4" />
+        <path d="M7.2 13h9.6" />
+      </>
+    ),
+    orthogonality: (
+      <>
+        <path d="M5.2 4.4v15.2H20" />
+        <path d="M5.2 13.4h6.2v6.2" />
+      </>
+    ),
+    "least-squares": (
+      <>
+        <path d="M4.2 18.4 19.8 6.2" />
+        <circle cx="8" cy="15.2" r="1.45" fill="currentColor" stroke="none" />
+        <circle cx="12.2" cy="11.6" r="1.45" fill="currentColor" stroke="none" />
+        <circle cx="16.6" cy="8.4" r="1.45" fill="currentColor" stroke="none" />
+      </>
+    ),
+    playground: (
+      <>
+        <path d="M7 8.2h10l-1.2 10.4H8.2Z" />
+        <path d="M7 8.2 12 3.8 17 8.2" />
+        <path d="M10.4 12.2 14.6 14.4 10.4 16.6Z" fill="currentColor" stroke="none" />
+      </>
+    ),
   };
   const glyph = glyphs[id] ?? glyphs.playground;
-  return <svg viewBox="0 0 24 24" aria-hidden="true"><g fill="currentColor" fillOpacity=".92" stroke="currentColor" strokeWidth="1.15" strokeLinejoin="round">{glyph}</g></svg>;
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <g fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">{glyph}</g>
+    </svg>
+  );
 }
 
 function ComplexNavIcon({ id }: { id: string }) {
@@ -444,7 +513,7 @@ export function MockupStudioChrome({
   }, [page.id]);
 
   return (
-    <main className={`msk-shell msk-${studio.id}${open ? " is-open" : ""}${(isTrig && session.theme === "dark") || (isGeo && geoSession.theme === "dark") || (isComplex && complexSession.theme === "dark") ? " is-dark" : ""}${(isTrig && session.teacherMode) || (isGeo && geoSession.teacherMode) || (isDiscrete && discreteTeacher) || (isLinear && linearSession.teacherMode && page.id !== "home") || (isComplex && complexSession.teacherMode && page.id !== "home") ? " is-teacher" : ""}${(isTrig || isModel || isGeo || isDiscrete || isLinear || isComplex) && page.id !== "home" ? " is-lab" : ""}`} data-cx-page={isComplex ? page.id : undefined}>
+    <main data-lab-id={page.id} className={`msk-shell msk-${studio.id}${open ? " is-open" : ""}${(isTrig && session.theme === "dark") || (isGeo && geoSession.theme === "dark") || (isComplex && complexSession.theme === "dark") ? " is-dark" : ""}${(isTrig && session.teacherMode) || (isGeo && geoSession.teacherMode) || (isDiscrete && discreteTeacher) || (isLinear && linearSession.teacherMode && page.id !== "home") || (isComplex && complexSession.teacherMode && page.id !== "home") ? " is-teacher" : ""}${(isTrig || isModel || isGeo || isDiscrete || isLinear || isComplex) && page.id !== "home" ? " is-lab" : ""}`} data-cx-page={isComplex ? page.id : undefined}>
       {open ? <button className="msk-backdrop" type="button" aria-label="Close menu" onClick={() => setOpen(false)} /> : null}
       <aside className="msk-sidebar">
         <Link className="msk-brand" to={studio.basePath}>
@@ -526,6 +595,7 @@ export function MockupStudioChrome({
                 <button type="button" className={`msk-units-rad${session.units === "rad" ? " active" : ""}`} aria-pressed={session.units === "rad"} onClick={() => writeTrigSession({ units: "rad" })}>Rad</button>
               </div>
             ) : null}
+            {isLinear && page.id !== "home" ? null : (
             <label className={`msk-search${searchOpen || query || isTrig || isModel || isGeo || isDiscrete || isLinear || isComplex ? " is-open" : ""}`}>
               <button type="button" aria-label="Search" onClick={() => setSearchOpen((value) => !value)}><Search /></button>
               {searchOpen || query || isTrig || isModel || isGeo || isDiscrete || isLinear || isComplex ? (
@@ -541,7 +611,8 @@ export function MockupStudioChrome({
               ) : null}
               {query ? <button type="button" aria-label="Clear search" onClick={() => setQuery("")}><X /></button> : null}
             </label>
-            {query ? (
+            )}
+            {query && !(isLinear && page.id !== "home") ? (
               <ul className="msk-search-hits">
                 {filtered.map((item) => (
                   <li key={item.key}><Link to={item.to} onClick={() => setQuery("")}>{item.label}<small>{item.detail}</small></Link></li>
@@ -549,13 +620,13 @@ export function MockupStudioChrome({
               </ul>
             ) : null}
             {isLinear ? (
+              page.id === "home" ? (
               <>
                 <span className="la-stat-chip" aria-label="Streak 0"><Flame />0</span>
                 <span className="la-stat-chip" aria-label="0 XP"><Star />0 XP</span>
-                {page.id === "home"
-                  ? <a className="la-stat-chip" href="#la-journey"><Compass />Journey</a>
-                  : <Link className="la-stat-chip" to="/linear-algebra#la-journey"><Compass />Journey</Link>}
+                <a className="la-stat-chip" href="#la-journey"><Compass />Journey</a>
               </>
+              ) : null
             ) : isComplex && page.id !== "home" ? (
               <>
                 {page.id === "waves-circuits" ? <ComplexHeaderPills page={page} /> : null}
@@ -627,7 +698,7 @@ export function MockupStudioChrome({
                 Teacher mode
               </button>
             )}
-            {isGeo && page.id !== "home" ? null : (
+            {isLinear && page.id !== "home" ? null : isGeo && page.id !== "home" ? null : (
               <button type="button" aria-label="Keyboard shortcuts" onClick={() => setHelpOpen(true)}><HelpCircle /></button>
             )}
             {isModel ? (
@@ -636,7 +707,7 @@ export function MockupStudioChrome({
                 <span>3</span>
               </button>
             ) : null}
-            {isModel || (isComplex && (page.id === "arithmetic" || page.id === "polar-forms" || page.id === "euler" || page.id === "waves-circuits" || page.id === "fractals")) ? null : (
+            {isModel || (isLinear && page.id !== "home") || (isComplex && (page.id === "arithmetic" || page.id === "polar-forms" || page.id === "euler" || page.id === "waves-circuits" || page.id === "fractals")) ? null : (
               <button type="button" aria-label="Settings" onClick={() => setSettingsOpen(true)}><Settings /></button>
             )}
             {isModel ? <button type="button" className="msk-avatar" aria-label="Account"><User /></button> : null}

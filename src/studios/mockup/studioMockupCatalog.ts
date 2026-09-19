@@ -88,7 +88,7 @@ export const studioMockups: Record<string, StudioMockupDefinition> = {
     ],
   },
   "linear-algebra": {
-    id: "linear-algebra", name: "Linear Algebra Studio", mark: "A", homeTitle: "Linear Algebra Studio",
+    id: "linear-algebra", name: "Linear Algebra Studio", mark: "LA", homeTitle: "Linear Algebra Studio",
     homeSubtitle: "Explore vectors, matrices, transformations, and the geometry of linear systems.",
     searchPlaceholder: "Search topics, tools, or examples...",
     basePath: "/linear-algebra", continueLabel: "Eigenvectors", continueRoute: "/linear-algebra/eigenvectors",
