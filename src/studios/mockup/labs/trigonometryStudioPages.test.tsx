@@ -31,6 +31,35 @@ describe("trigonometry studio target pages", () => {
     }
   });
 
+  it("renders Applications Heights helpers and mode-specific overlays", () => {
+    const heights = htmlFor("/trigonometry/applications");
+    expect(heights).toContain('data-app-mode="Heights &amp; Distances"');
+    expect(heights).toContain('data-app-units="m"');
+    expect(heights).toContain('data-app-instrument="Theodolite"');
+    expect(heights).toContain('data-app-sight="elevation"');
+    expect(heights).toContain("SOH CAH TOA");
+    expect(heights).toContain("Calculated height");
+    expect(heights).toContain("Tower");
+    expect(heights).toContain("Cliff");
+    expect(heights).toContain("Tree");
+    expect(heights).toContain("Lighthouse");
+    expect(heights).toContain("Copy reading");
+    expect(heights).toContain("15°");
+    expect(heights).toContain("Imperial (ft)");
+    expect(heights).toContain("Clinometer");
+    expect(heights).toContain("adjacent d");
+    const bearings = htmlFor("/trigonometry/applications?mode=Bearings");
+    expect(bearings).toContain("from north");
+    expect(bearings).toContain("Reverse B → A");
+    expect(bearings).toContain(">NE<");
+    const survey = htmlFor("/trigonometry/applications?mode=Surveying");
+    expect(survey).toContain("Two-station survey");
+    expect(survey).toContain("baseline");
+    const periodic = htmlFor("/trigonometry/applications?mode=Periodic+Models");
+    expect(periodic).toContain("midline 2.4 m");
+    expect(periodic).toContain("predicted tide");
+  });
+
   it("keeps unit circle and right triangle baselines untouched", () => {
     const unit = htmlFor("/trigonometry/unit-circle");
     expect(unit).toContain("Show reference triangle");

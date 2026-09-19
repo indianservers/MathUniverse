@@ -180,6 +180,7 @@ describe("MockupStudioApp", () => {
     const apps = renderToString(<MemoryRouter initialEntries={["/trigonometry/applications?mode=Bearings"]}><MockupStudioApp studioId="trigonometry" /></MemoryRouter>);
     expect(apps).toContain('data-app-mode="Bearings"');
     expect(apps).toContain("from north");
+    expect(apps).toContain("058°");
     const ar = renderToString(<MemoryRouter initialEntries={["/trigonometry/ar?mode=Wave+Projection"]}><MockupStudioApp studioId="trigonometry" /></MemoryRouter>);
     expect(ar).toContain('data-ar-mode="Wave Projection"');
     expect(ar).toContain("WAVE OVERLAY");
