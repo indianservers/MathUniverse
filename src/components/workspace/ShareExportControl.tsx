@@ -12,7 +12,8 @@ import {
   Upload,
   X,
 } from "lucide-react";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { createPortal } from "react-dom";
 import {
   LESSON_EXTENSION,
   LESSON_MIME,
@@ -339,12 +340,15 @@ export default function ShareExportControl({ adapter, className = "" }: Props) {
         <Share2 />
         <span>Share</span>
       </button>
-      {embedScene && (
-        <EmbedCodePanel scene={embedScene} onClose={() => setEmbedScene(null)} />
-      )}
-      {open && (
+      {embedScene &&
+        overlay(
+          <EmbedCodePanel scene={embedScene} onClose={() => setEmbedScene(null)} />,
+        )}
+      {open &&
+        overlay(
         <div
           className="portable-modal-backdrop"
+          data-share-export-dialog="true"
           onMouseDown={(event) =>
             event.target === event.currentTarget && close()
           }
@@ -970,10 +974,15 @@ export default function ShareExportControl({ adapter, className = "" }: Props) {
               </small>
             </footer>
           </section>
-        </div>
-      )}
+        </div>,
+        )}
     </div>
   );
+}
+
+function overlay(node: ReactNode) {
+  if (typeof document === "undefined") return node;
+  return createPortal(node, document.body);
 }
 
 function Action({

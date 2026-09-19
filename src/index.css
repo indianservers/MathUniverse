@@ -20018,6 +20018,9 @@ html[data-geometry-workspace-theme="glow"]
   }
   .cas-header-actions .cas-header-share {
     display: inline-flex;
+    position: relative;
+    z-index: 9;
+    overflow: visible;
   }
   .cas-header-actions .cas-header-share .portable-share-trigger {
     min-height: 34px;
@@ -28560,7 +28563,7 @@ html[data-geometry-workspace-theme="glow"]
 }
 .portable-modal-backdrop {
   position: fixed;
-  z-index: 9999;
+  z-index: 2147483000;
   inset: 0;
   display: grid;
   place-items: center;
