@@ -158,7 +158,7 @@ export default function CalculusStudio({ page = "home" }: { page?: CalculusStudi
           settings={settings}
           onSettings={updateSettings}
           onMenu={() => setDrawerOpen(true)}
-          onDialog={setDialog}
+          onDialog={(value) => setDialog((current) => current === value ? null : value)}
         />
         {activePage === "home" ? <StudioHome /> : <StudioLab page={activePage} reduced={prefersReducedMotion(settings)} />}
         <CalculusEnhancementIdeas page={activePage} />
@@ -1039,7 +1039,12 @@ function InfoPill({ icon, title, text, onClick }: { icon: ReactNode; title: stri
 
 function StudioDialog({ title, onClose, children }: { title: string; onClose: () => void; children: ReactNode }) {
   return (
-    <div className="cs-dialog-backdrop">
+    <div
+      className="cs-dialog-backdrop"
+      onMouseDown={(event) => {
+        if (event.target === event.currentTarget) onClose();
+      }}
+    >
       <div className="cs-dialog" role="dialog" aria-modal="true" aria-labelledby="cs-dialog-title">
         <header><h2 id="cs-dialog-title">{title}</h2><button type="button" onClick={onClose} aria-label="Close"><X /></button></header>
         {children}

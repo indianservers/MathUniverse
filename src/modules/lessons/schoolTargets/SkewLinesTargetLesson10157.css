@@ -1,11 +1,11 @@
 .sk10157-page {
   position: relative;
-  top: -18px;
-  width: min(718px, calc(100% + 14px));
-  margin: auto auto auto 0;
+  top: 0;
+  width: min(1100px, 100%);
+  margin: 0 auto;
   color: #29364d;
   font:
-    8px/1.5 Inter,
+    14px/1.5 Inter,
     Arial,
     sans-serif;
   letter-spacing: 0;
@@ -32,10 +32,17 @@
   color: inherit;
 }
 .sk10157-page > header {
-  height: 121px;
-  padding: 13px;
+  min-height: 0;
+  height: auto;
+  padding: 16px 18px;
   border-radius: 14px;
   background: #fff;
+}
+.sk10157-page > header > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
 }
 .sk10157-page > header small,
 .sk10157-page h3 {
@@ -43,14 +50,9 @@
   font-weight: 900;
 }
 .sk10157-page > header h1 {
-  margin: 5px 0 3px;
+  margin: 8px 0 6px;
   color: #101827;
-  font-size: 21px;
-}
-.sk10157-page > header > div {
-  display: flex;
-  gap: 6px;
-  margin-top: 7px;
+  font-size: 28px;
 }
 .sk10157-page > header span {
   padding: 3px 8px;
@@ -67,10 +69,12 @@
 }
 .sk-lab > nav {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 19px;
-  height: 34px;
-  padding: 0 11px;
+  gap: 12px;
+  min-height: 44px;
+  height: auto;
+  padding: 8px 12px;
   border-bottom: 1px solid #d8e3ea;
   font-weight: 900;
 }
@@ -87,9 +91,9 @@
 }
 .sk-explorer {
   display: grid;
-  grid-template-columns: 190px 1fr;
-  gap: 8px;
-  padding: 9px;
+  grid-template-columns: minmax(220px, 240px) minmax(0, 1fr);
+  gap: 12px;
+  padding: 12px;
 }
 .sk-explorer > aside {
   padding: 8px;
@@ -110,17 +114,21 @@
 }
 .sk-explorer fieldset {
   display: flex;
-  gap: 3px;
-  margin: 5px 0 0;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 8px 0 0;
   padding: 0;
   border: 0;
 }
 .sk-explorer fieldset input {
   min-width: 0;
-  width: 33%;
-  padding: 5px;
+  flex: 1 1 4.5rem;
+  width: auto;
+  min-height: 36px;
+  padding: 6px 8px;
   border: 1px solid #d6e1e8;
-  border-radius: 5px;
+  border-radius: 8px;
+  background: #fff;
 }
 .sk-explorer article > div {
   display: grid;

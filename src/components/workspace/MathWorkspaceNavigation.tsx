@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import type { CSSProperties, ReactNode } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { iconMap } from "../layout/navItems";
+import MathWorkspaceCard from "./MathWorkspaceCard";
 import {
   findMathWorkspace,
   mathWorkspaceGroupLabels,
@@ -231,35 +232,9 @@ export function MathWorkspacesHomeSection() {
         <span className="math-workspaces-suite-count">6 workspaces</span>
       </div>
       <div className="math-workspaces-card-grid">
-        {mathWorkspaces.map((workspace) => {
-          return (
-            <Link
-              key={workspace.id}
-              to={workspace.route}
-              className="math-workspace-card"
-              style={
-                { "--workspace-accent": workspace.accent } as CSSProperties
-              }
-            >
-              <span className="math-workspace-card-formula" aria-hidden="true">
-                {workspace.formula}
-              </span>
-              <span className="math-workspace-card-icon">
-                <img src={workspace.artwork} alt="" />
-              </span>
-              <span className="math-workspace-card-copy">
-                <span className="math-workspace-card-title">
-                  <strong>{workspace.name}</strong>
-                  <em>{workspace.badge}</em>
-                </span>
-                <small>{workspace.description}</small>
-              </span>
-              <span className="math-workspace-card-action">
-                Open Workspace <ChevronRight className="h-4 w-4" />
-              </span>
-            </Link>
-          );
-        })}
+        {mathWorkspaces.map((workspace) => (
+          <MathWorkspaceCard key={workspace.id} workspace={workspace} />
+        ))}
       </div>
     </section>
   );

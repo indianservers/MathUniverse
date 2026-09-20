@@ -21,6 +21,12 @@ describe("Math Workspaces discovery", () => {
       expect(html).toContain(title);
       expect(navigationItems?.some((item) => item.title === title)).toBe(true);
     }
+    expect(html).toContain("Open Workspace");
+    expect(html).toContain("Simplify");
+    expect(html).toContain("Surfaces");
+    expect(html).toContain("Cross-sections");
+    expect(html).toContain("/workspace/geometry");
+    expect(html).toContain("/math-lab/3d-graphing");
   });
 });
 

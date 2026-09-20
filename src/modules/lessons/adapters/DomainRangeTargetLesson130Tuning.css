@@ -1,42 +1,50 @@
 .dom130-page {
-  top: -43px;
+  top: 0;
 }
 .dom130-intro {
-  height: 215px;
+  height: auto;
 }
 .dom130-tabs {
   margin-top: 10px;
 }
 .dom130-layout > main {
   position: relative;
-  top: 13px;
+  top: 0;
 }
 .dom130-graph {
-  height: 621px;
+  height: auto;
+  min-height: 420px;
 }
 .dom130-rail {
   position: relative;
-  top: -71px;
-  grid-template-rows: 250px 345px 128px 210px;
+  top: 0;
+  grid-template-rows: auto;
+  gap: 12px;
 }
 .dom130-footer {
-  height: 126px;
+  height: auto;
 }
 .dom130-layout > main > footer {
   margin-top: 18px;
 }
 .dom130-lab > header {
   position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 .dom130-lab > header nav {
-  position: absolute;
-  right: 225px;
-  z-index: 2;
+  position: static;
+  margin-left: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 @media (max-width: 799px) {
   .dom130-layout > main,
   .dom130-rail {
     position: static;
+    top: 0;
   }
 }

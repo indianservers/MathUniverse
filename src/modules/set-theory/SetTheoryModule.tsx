@@ -7,6 +7,7 @@ import { Link, NavLink, Navigate, useParams, useSearchParams } from "react-route
 import ReactFlow, { Background, Controls, MarkerType, type Edge, type Node } from "reactflow";
 import { StudioCanvasToolbar } from "../../components/ui/StudioCanvasToolbar";
 import StudioHomeButtons from "../../components/ui/StudioHomeButtons";
+import SectionCard from "../../components/ui/SectionCard";
 import {
   applySetOperation,
   cartesianProduct,

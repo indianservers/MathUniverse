@@ -35,8 +35,9 @@ import {
   Trash2,
   Undo2,
   Video,
+  MoreHorizontal,
 } from "lucide-react";
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import MathExpression from "../components/ui/MathExpression";
 import {
   SURFACE_TEMPLATES,
@@ -54,6 +55,17 @@ import {
   readWorkspaceChromeTheme,
   type WorkspaceChromeTheme,
 } from "../workspace/workspaceChromeTheme";
+import {
+  ContextInspector,
+  MobileWorkspaceShell,
+  WorkspaceBottomSheet,
+  WorkspaceToolbar,
+  useMobileWorkspaceGestures,
+  useWorkspaceOverlay,
+  useOutsideDismiss,
+  guardCanvasPointer,
+} from "../workspace/mobile";
+import { useCanvasZoomLock } from "../hooks/useCanvasZoomLock";
 import type { SurfaceDifferential } from "./graphIntelligence";
 import type { Graph3DCriticalPoint } from "./graph3dAdvanced";
 import type {
@@ -209,8 +221,16 @@ export default function GraphStudio3DWorkspace(
   const { onRedo, onSave, onUndo } = props;
   const [inspectorTab, setInspectorTab] =
     useState<Studio3DInspectorTab>("analysis");
-  const [leftOpen, setLeftOpen] = useState(true);
-  const [rightOpen, setRightOpen] = useState(true);
+  const [leftOpen, setLeftOpen] = useState(
+    () =>
+      typeof window === "undefined" ||
+      !window.matchMedia("(max-width: 1100px)").matches,
+  );
+  const [rightOpen, setRightOpen] = useState(
+    () =>
+      typeof window === "undefined" ||
+      !window.matchMedia("(max-width: 1100px)").matches,
+  );
   const [exportOpen, setExportOpen] = useState(false);
   const [fileOpen, setFileOpen] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
@@ -223,6 +243,33 @@ export default function GraphStudio3DWorkspace(
   );
   const [viewLabel, setViewLabel] = useState("Perspective");
   const projectInput = useRef<HTMLInputElement>(null);
+  const overlay = useWorkspaceOverlay();
+  const leftPanelRef = useRef<HTMLElement>(null);
+  const rightPanelRef = useRef<HTMLElement>(null);
+  const sceneHostRef = useRef<HTMLDivElement>(null);
+  const closeTopPopovers = useCallback(() => {
+    setExportOpen(false);
+    setFileOpen(false);
+    setSettingsOpen(false);
+    setHelpOpen(false);
+    setViewOpen(false);
+  }, []);
+  useCanvasZoomLock(sceneHostRef);
+  useOutsideDismiss({
+    enabled: exportOpen || fileOpen || settingsOpen || helpOpen || viewOpen,
+    keepOpenSelector: "[data-workspace-popover]",
+    onDismiss: closeTopPopovers,
+  });
+  useMobileWorkspaceGestures(leftPanelRef, {
+    enabled: overlay.isMobile && overlay.isOpen("expressions"),
+    edge: "left",
+    onClose: overlay.close,
+  });
+  useMobileWorkspaceGestures(rightPanelRef, {
+    enabled: overlay.isMobile && overlay.isOpen("inspector"),
+    edge: "right",
+    onClose: overlay.close,
+  });
   const tool = props.tool;
   const selectedSurface =
     props.surfaces.find((surface) => surface.id === props.selectedSurfaceId) ??
@@ -250,21 +297,13 @@ export default function GraphStudio3DWorkspace(
   }, []);
 
   useEffect(() => {
-    const media = window.matchMedia("(max-width: 1100px)");
-    const syncPanels = () => {
-      if (!media.matches) return;
-      setLeftOpen(false);
-      setRightOpen(false);
-    };
-    syncPanels();
-    media.addEventListener("change", syncPanels);
-    return () => media.removeEventListener("change", syncPanels);
-  }, []);
-
-  useEffect(() => {
     const handleShortcut = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setHelpOpen(false);
+        setSettingsOpen(false);
+        setExportOpen(false);
+        setFileOpen(false);
+        setViewOpen(false);
         return;
       }
       if (!event.ctrlKey && !event.metaKey) return;
@@ -285,6 +324,17 @@ export default function GraphStudio3DWorkspace(
     return () => window.removeEventListener("keydown", handleShortcut);
   }, [onRedo, onSave, onUndo]);
 
+  useEffect(() => {
+    if (!overlay.isMobile) return;
+    setLeftOpen(overlay.active === "expressions");
+    setRightOpen(overlay.active === "inspector");
+    setExportOpen(overlay.active === "export");
+    setFileOpen(overlay.active === "file");
+    setSettingsOpen(overlay.active === "settings");
+    setHelpOpen(overlay.active === "help");
+    setViewOpen(overlay.active === "camera");
+  }, [overlay.active, overlay.isMobile]);
+
   const chooseTool = (next: Studio3DTool) => props.onToolChange(next);
   const openCrossSection = () => {
     chooseTool("slice");
@@ -292,7 +342,8 @@ export default function GraphStudio3DWorkspace(
   };
 
   return (
-    <div
+    <MobileWorkspaceShell
+      overlay={overlay}
       id="graph-studio-3d-root"
       className={`graph-studio-3d-shell graph-studio-surface-shell ${leftOpen ? "has-left" : ""} ${rightOpen ? "has-right" : ""} ${props.presentationMode ? "is-presenting" : ""}`}
       data-chrome-theme={chromeTheme}
@@ -346,11 +397,17 @@ export default function GraphStudio3DWorkspace(
             onClick={props.onSave}
             shortcut="Ctrl+S"
           />
-          <div className="relative">
+          <div className="relative" data-workspace-popover>
             <TopAction
               label="File"
               icon={<FolderOpen />}
-              onClick={() => setFileOpen((value) => !value)}
+              onClick={() => {
+                setExportOpen(false);
+                setSettingsOpen(false);
+                setHelpOpen(false);
+                setViewOpen(false);
+                setFileOpen((value) => !value);
+              }}
             />
             {fileOpen && (
               <FileMenu
@@ -377,21 +434,33 @@ export default function GraphStudio3DWorkspace(
               setFileOpen(false);
             }}
           />
-          <div className="relative">
+          <div className="relative" data-workspace-popover>
             <TopAction
               label="Export"
               icon={<Download />}
-              onClick={() => setExportOpen((value) => !value)}
+              onClick={() => {
+                setSettingsOpen(false);
+                setHelpOpen(false);
+                setFileOpen(false);
+                setViewOpen(false);
+                setExportOpen((value) => !value);
+              }}
             />
             {exportOpen && (
               <ExportMenu props={props} close={() => setExportOpen(false)} />
             )}
           </div>
-          <div className="relative">
+          <div className="relative" data-workspace-popover>
             <TopAction
               label="Settings"
               icon={<Settings />}
-              onClick={() => setSettingsOpen((value) => !value)}
+              onClick={() => {
+                setExportOpen(false);
+                setHelpOpen(false);
+                setFileOpen(false);
+                setViewOpen(false);
+                setSettingsOpen((value) => !value);
+              }}
             />
             {settingsOpen && <SettingsMenu props={props} />}
           </div>
@@ -400,11 +469,17 @@ export default function GraphStudio3DWorkspace(
             storageKey={CHROME_THEME_STORAGE_KEYS.graph3d}
             onChange={setChromeTheme}
           />
-          <div className="relative gs3d-help-control">
+          <div className="relative gs3d-help-control" data-workspace-popover>
             <TopAction
               label="Help"
               icon={<CircleHelp />}
-              onClick={() => setHelpOpen((value) => !value)}
+              onClick={() => {
+                setExportOpen(false);
+                setSettingsOpen(false);
+                setFileOpen(false);
+                setViewOpen(false);
+                setHelpOpen((value) => !value);
+              }}
             />
             {helpOpen && (
               <HelpPopover
@@ -419,15 +494,20 @@ export default function GraphStudio3DWorkspace(
         <button
           type="button"
           className="gs3d-mobile-menu"
-          onClick={() => setLeftOpen((value) => !value)}
-          aria-label="Open expressions"
+          data-mws-menu="true"
+          aria-pressed={overlay.isOpen("expressions")}
+          aria-expanded={overlay.isOpen("expressions")}
+          aria-label="Expressions menu"
+          onClick={() => overlay.toggle("expressions")}
         >
           <Menu />
         </button>
       </header>
 
       <aside
+        ref={leftPanelRef}
         className={`gs3d-left-panel ${leftOpen ? "open" : ""}`}
+        data-mws-panel={leftOpen ? "expressions" : undefined}
         aria-label="Expressions and layers"
         aria-hidden={!leftOpen}
       >
@@ -628,7 +708,7 @@ export default function GraphStudio3DWorkspace(
             <ChevronLeft />
           </button>
         )}
-        <div className="gs3d-view-menu">
+        <div className="gs3d-view-menu" data-workspace-popover>
           <button type="button" onClick={() => setViewOpen((value) => !value)}>
             {viewLabel} <ChevronDown />
           </button>
@@ -725,7 +805,14 @@ export default function GraphStudio3DWorkspace(
             <Maximize2 />
           </button>
         </div>
-        <div id="surface-3d-panel" className="gs3d-scene-host">
+        <div
+          id="surface-3d-panel"
+          ref={sceneHostRef}
+          className="gs3d-scene-host"
+          onPointerDownCapture={(event) => {
+            if (guardCanvasPointer(overlay, event)) return;
+          }}
+        >
           {props.scene}
           <DomainMiniMap
             analysisPoint={props.analysisPoint}
@@ -752,7 +839,9 @@ export default function GraphStudio3DWorkspace(
       </main>
 
       <aside
+        ref={rightPanelRef}
         className={`gs3d-right-panel ${rightOpen ? "open" : ""}`}
+        data-mws-panel={rightOpen ? "inspector" : undefined}
         aria-label="Surface Inspector"
         aria-hidden={!rightOpen}
       >
@@ -820,17 +909,142 @@ export default function GraphStudio3DWorkspace(
       </footer>
 
       <nav className="gs3d-mobile-nav" aria-label="Mobile workspace panels">
-        <button type="button" onClick={() => setLeftOpen(true)}>
+        <button type="button" onClick={() => overlay.toggle("expressions")}>
           <Layers3 />
           Expressions
         </button>
-        <button type="button" onClick={() => setRightOpen(true)}>
+        <button type="button" onClick={() => overlay.toggle("inspector")}>
           <SlidersHorizontal />
           Inspector
         </button>
         {props.shareControl}
       </nav>
-    </div>
+      {overlay.isMobile && selectedSurface && !overlay.active ? (
+        <ContextInspector
+          title={`${selectedSurface.name ?? "Surface"} • 3D`}
+          subtitle={selectedSurface.expression}
+          actions={
+            <>
+              <button type="button" onClick={() => overlay.open("inspector")}>
+                Style
+              </button>
+              <button type="button" onClick={() => overlay.open("more")}>
+                More
+              </button>
+            </>
+          }
+        />
+      ) : null}
+      <WorkspaceToolbar
+        label="3D graph tools"
+        items={[
+          {
+            id: "add",
+            label: "Add",
+            icon: <Plus />,
+            pressed: overlay.isOpen("expressions"),
+            onSelect: () => overlay.toggle("expressions"),
+          },
+          {
+            id: "orbit",
+            label: "Orbit",
+            icon: <RotateCcw />,
+            active: tool === "select",
+            onSelect: () => {
+              chooseTool("select");
+              overlay.close();
+            },
+          },
+          {
+            id: "slice",
+            label: "Slice",
+            icon: <SlidersHorizontal />,
+            active: tool === "slice",
+            onSelect: () => {
+              openCrossSection();
+              overlay.close();
+            },
+          },
+          {
+            id: "camera",
+            label: "Camera",
+            icon: <Focus />,
+            pressed: overlay.isOpen("camera"),
+            onSelect: () => overlay.toggle("camera"),
+          },
+          {
+            id: "more",
+            label: "More",
+            icon: <MoreHorizontal />,
+            pressed: overlay.isOpen("more"),
+            onSelect: () => overlay.toggle("more"),
+          },
+        ]}
+      />
+      <WorkspaceBottomSheet
+        open={overlay.isOpen("more")}
+        title="3D graph tools"
+        onClose={overlay.close}
+      >
+        <button type="button" onClick={() => overlay.open("inspector")}>
+          Inspector
+        </button>
+        <button type="button" onClick={() => overlay.open("expressions")}>
+          Expressions
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            chooseTool("point");
+            overlay.open("inspector");
+            setInspectorTab("analysis");
+          }}
+        >
+          Point
+        </button>
+        <button type="button" onClick={() => overlay.open("export")}>
+          Export
+        </button>
+        {props.shareControl}
+      </WorkspaceBottomSheet>
+      <WorkspaceBottomSheet
+        open={overlay.isOpen("camera")}
+        title="Camera"
+        onClose={overlay.close}
+      >
+        {(["Top", "Front", "Side", "Isometric"] as const).map((label) => (
+          <button
+            key={label}
+            type="button"
+            onClick={() => {
+              const position =
+                label === "Top"
+                  ? ([0.01, 8, 0.01] as [number, number, number])
+                  : label === "Front"
+                    ? ([0.01, 1.8, 8] as [number, number, number])
+                    : label === "Side"
+                      ? ([8, 1.8, 0.01] as [number, number, number])
+                      : ([4, 3.2, 6] as [number, number, number]);
+              props.onCameraView(position);
+              setViewLabel(label);
+              overlay.close();
+            }}
+          >
+            {label}
+          </button>
+        ))}
+        <button
+          type="button"
+          onClick={() => {
+            props.onResetCamera();
+            setViewLabel("Perspective");
+            overlay.close();
+          }}
+        >
+          Reset view
+        </button>
+      </WorkspaceBottomSheet>
+    </MobileWorkspaceShell>
   );
 }
 

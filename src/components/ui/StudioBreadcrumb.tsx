@@ -89,7 +89,7 @@ export default function StudioBreadcrumb({
   className?: string;
 }) {
   return (
-    <nav aria-label="Breadcrumb" className={className}>
+    <nav aria-label="Breadcrumb" className={className ?? "studio-breadcrumb"}>
       {crumbs.map((crumb, index) => (
         <span key={`${crumb.to}-${crumb.label}-${index}`}>
           {index > 0 && <b aria-hidden="true"> › </b>}

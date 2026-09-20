@@ -26387,10 +26387,10 @@ html[data-geometry-workspace-theme="glow"]
 .studio-shell-title nav {
   display: flex;
   flex-wrap: wrap;
-  gap: 7px;
+  gap: 8px;
   margin-bottom: 6px;
-  color: #64748b;
-  font-size: 12px;
+  color: #475569;
+  font-size: 14px;
   font-weight: 800;
 }
 .studio-shell-title nav b {
@@ -27438,6 +27438,9 @@ html[data-geometry-workspace-theme="glow"]
 }
 .set-theory-top-links {
   min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 .set-theory-top-links .glass-card,
 .set-theory-top-links .spotlight-card {
@@ -27509,6 +27512,11 @@ html[data-geometry-workspace-theme="glow"]
 .set-theory-inspector .glass-card,
 .set-theory-inspector .spotlight-card {
   border-radius: 12px;
+}
+.dark .set-theory-main-panel,
+.dark .set-theory-inspector {
+  border-color: rgba(255, 255, 255, 0.12);
+  background: rgb(8 18 36 / 0.92);
 }
 @media (max-width: 1180px) {
   .set-theory-studio {
@@ -29896,9 +29904,9 @@ html[data-geometry-workspace-theme="glow"]
   padding: 12px;
 }
 .lesson-adjacent-nav .action-secondary {
-  min-height: 66px;
-  border-radius: 18px !important;
-  padding: 14px 18px !important;
+  min-height: 48px;
+  border-radius: 14px !important;
+  padding: 8px 14px !important;
 }
 .lesson-adjacent-nav .action-secondary:hover {
   border-color: #93c5fd !important;
@@ -29910,11 +29918,11 @@ html[data-geometry-workspace-theme="glow"]
 :is(.lesson-page-shell, .lesson-school-shell, [data-testid="advanced-concept-lesson-page"])
   nav:is(.lesson-adjacent-nav, [class*="adjacent"], [class$="-next"], :has(> a[href*="/lessons/"]:nth-of-type(2)))
   > a[href*="/lessons/"] {
-  min-height: 64px !important;
+  min-height: 48px !important;
   border-width: 1px !important;
   border-style: solid !important;
-  border-radius: 16px !important;
-  padding: 12px 16px !important;
+  border-radius: 14px !important;
+  padding: 8px 14px !important;
   font-weight: 800 !important;
   text-decoration: none !important;
   transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease !important;
@@ -31640,8 +31648,8 @@ html[data-geometry-workspace-theme="glow"]
   flex-wrap: wrap;
   align-items: center;
   gap: 11px;
-  color: #566783;
-  font-size: 13px;
+  color: #334155;
+  font-size: 14px;
   font-weight: 850;
 }
 .learn-breadcrumbs a {
@@ -40425,9 +40433,18 @@ html body #main-content nav[aria-label="Breadcrumb"] {
   margin-bottom: 0.45rem !important;
   overflow: visible !important;
   white-space: normal !important;
-  font-size: 14px !important;
-  line-height: 1.4 !important;
+  font-size: 15px !important;
+  line-height: 1.45 !important;
   letter-spacing: 0 !important;
+  font-weight: 700 !important;
+}
+
+html body #main-content nav[aria-label="Breadcrumb"] a {
+  display: inline-flex !important;
+  min-height: 32px !important;
+  align-items: center !important;
+  padding: 2px 4px !important;
+  color: inherit !important;
 }
 
 html body #main-content nav[aria-label="Breadcrumb"] :is(a, span) {
@@ -40457,4 +40474,65 @@ html body #main-content .lesson-simple-english :is(h2, p, b, strong) {
 html body #main-content .lesson-simple-english h2 {
   font-size: 1.25rem !important;
   line-height: 1.25 !important;
+}
+
+.lesson-topic-pills,
+.lesson-shell-meta,
+.lesson-shell-actions {
+  max-width: 100%;
+}
+
+.dark .lesson-page-shell {
+  --lesson-page-ink: #f8fbff;
+  --lesson-page-muted: #cbd5e1;
+  --lesson-page-line: rgba(255, 255, 255, 0.14);
+  color: var(--lesson-page-ink);
+}
+
+.dark .lesson-shell-header,
+.dark .lesson-workbench,
+.dark .lesson-adjacent-nav .action-secondary {
+  background: linear-gradient(
+    135deg,
+    rgba(8, 18, 36, 0.96),
+    rgba(12, 24, 46, 0.88)
+  ) !important;
+}
+
+.dark .sk10157-page,
+.dark .tn10175-page,
+.dark .dom130-page {
+  color: #e2e8f0;
+}
+
+.dark .sk10157-page:before,
+.dark .tn10175-page:before {
+  background: #071221;
+}
+
+.dark .sk10157-page > header,
+.dark .sk-lab,
+.dark .tn10175-page > header,
+.dark .tn-lab,
+.dark .tn-pair article,
+.dark .tn-explain article,
+.dark .tn-practice article,
+.dark .dom130-intro {
+  background: #0f1b2e;
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #e2e8f0;
+}
+
+@media (max-width: 1100px) {
+  .tn-lab {
+    grid-template-columns: 1fr !important;
+    height: auto !important;
+  }
+}
+
+.studio-shell-title nav a,
+.cs-title nav a {
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
 }

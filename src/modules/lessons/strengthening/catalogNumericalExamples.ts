@@ -1,4 +1,5 @@
 import type { LessonWorkedExample } from "../components/LessonSectionJourney";
+import { asWorkedMathStep } from "./workedMathStep";
 import { coreWorkspaceBatch1NumericalExamples } from "./coreWorkspaceBatch1NumericalExamples";
 import { batch2NumericalExamples } from "./catalogBatch2NumericalExamples";
 import { batch3NumericalExamples } from "./catalogBatch3NumericalExamples";
@@ -16,7 +17,7 @@ function calculation(
 ): NumericalExampleSeed {
   return [
     prompt,
-    [String.raw`\displaystyle ${working}`, String.raw`\displaystyle ${result}`, String.raw`\displaystyle \boxed{${result}}`],
+    [asWorkedMathStep(working), asWorkedMathStep(result), asWorkedMathStep(String.raw`\boxed{${result}}`)],
     answer,
   ];
 }

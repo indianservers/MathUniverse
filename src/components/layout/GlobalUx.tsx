@@ -33,6 +33,7 @@ import {
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { navItems } from "./navItems";
 import { useTheme } from "../../hooks/useTheme";
+import { useOutsideDismiss } from "../../workspace/mobile/useOutsideDismiss";
 
 type UndoToastPayload = { message: string; onUndo: () => void };
 const undoListeners = new Set<(p: UndoToastPayload) => void>();
@@ -733,37 +734,58 @@ export function AccessibilitySettings() {
     setColorBlindPalette,
   } = useTheme();
   const [open, setOpen] = useState(false);
+  const close = useCallback(() => setOpen(false), []);
+  useOutsideDismiss({
+    enabled: open,
+    keepOpenSelector: "[data-accessibility-settings]",
+    onDismiss: close,
+  });
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") close();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [close, open]);
   return (
-    <div className="relative">
+    <div className="relative" data-accessibility-settings>
       <button
         type="button"
         className="tooltip-icon inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white/80 text-slate-700 shadow-sm dark:border-white/10 dark:bg-white/10 dark:text-slate-100"
         data-tooltip="Accessibility settings"
         aria-label="Accessibility settings"
+        aria-expanded={open}
         onClick={() => setOpen((value) => !value)}
       >
         <Settings className="h-5 w-5" />
       </button>
       {open && (
-        <div className="absolute right-0 top-12 z-50 w-72 rounded-2xl border border-slate-200 bg-white p-4 shadow-2xl dark:border-white/10 dark:bg-slate-950">
-          <p className="text-sm font-black">Display</p>
-          <div className="mt-3 flex gap-2">
-            {(["base", "large", "xlarge"] as const).map((size, index) => (
-              <button
-                key={size}
-                type="button"
-                className={
-                  fontScale === size
-                    ? "action-primary min-h-9 px-3 py-1"
-                    : "action-secondary min-h-9 px-3 py-1"
-                }
-                onClick={() => setFontScale(size)}
-              >
-                A{index === 1 ? "+" : index === 2 ? "++" : ""}
-              </button>
-            ))}
+        <div className="absolute right-0 top-12 z-50 w-72 rounded-2xl border border-slate-200 bg-white p-4 text-slate-900 shadow-2xl dark:border-white/15 dark:bg-slate-900 dark:text-slate-100">
+          <p className="text-sm font-black text-slate-950 dark:text-white">Display</p>
+          <div className="mt-3 flex gap-2" role="group" aria-label="Text size">
+            {(["base", "large", "xlarge"] as const).map((size, index) => {
+              const selected = fontScale === size;
+              const label = index === 1 ? "A+" : index === 2 ? "A++" : "A";
+              return (
+                <button
+                  key={size}
+                  type="button"
+                  aria-pressed={selected}
+                  className={
+                    selected
+                      ? "inline-flex min-h-10 min-w-12 items-center justify-center gap-1 rounded-xl border-2 border-cyan-600 bg-cyan-50 px-3 text-sm font-black text-cyan-950 dark:border-cyan-300 dark:bg-cyan-300/20 dark:text-cyan-50"
+                      : "inline-flex min-h-10 min-w-12 items-center justify-center rounded-xl border border-slate-300 bg-white px-3 text-sm font-bold text-slate-700 dark:border-white/20 dark:bg-white/10 dark:text-slate-100"
+                  }
+                  onClick={() => setFontScale(size)}
+                >
+                  {selected ? <CheckCircle2 className="h-3.5 w-3.5" aria-hidden="true" /> : null}
+                  {label}
+                </button>
+              );
+            })}
           </div>
-          <label className="mt-4 flex items-center justify-between gap-3 text-sm font-bold">
+          <label className="mt-4 flex min-h-10 items-center justify-between gap-3 text-sm font-bold text-slate-800 dark:text-slate-100">
             Reduced motion
             <input
               type="checkbox"
@@ -771,7 +793,7 @@ export function AccessibilitySettings() {
               onChange={(event) => setReducedMotion(event.target.checked)}
             />
           </label>
-          <label className="mt-3 flex items-center justify-between gap-3 text-sm font-bold">
+          <label className="mt-3 flex min-h-10 items-center justify-between gap-3 text-sm font-bold text-slate-800 dark:text-slate-100">
             Color-blind palette
             <input
               type="checkbox"

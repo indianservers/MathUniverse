@@ -43,4 +43,33 @@ describe("lesson math rendering", () => {
     expect(html).not.toContain("x²/25");
     expect(html).not.toContain("1/√x");
   });
+
+  it("never prints raw displaystyle commands in prose numerical steps", () => {
+    const html = renderToStaticMarkup(
+      <MathText value={String.raw`\displaystyle Substitute 5 into the Line Through Two Points in 3D rule.`} />,
+    );
+    expect(html).not.toContain("\\displaystyle");
+    expect(html).toContain("Substitute 5");
+  });
+
+  it("keeps short English prompts as prose and only mathifies embedded formulas", () => {
+    const html = renderToStaticMarkup(<MathText value="Domain of 1/(x-2)." />);
+    expect(html).toContain("Domain of");
+    expect(html).toContain("katex");
+    expect(html).not.toMatch(/D<\/span>\s*o<\/span>/);
+  });
+
+  it("does not mathify the rest of a labelled English sentence after a colon", () => {
+    const html = renderToStaticMarkup(
+      <MathText value="Compute this Tangents and Normals case with input 2: Find sin 30°. Labelled result 1/2." />,
+    );
+    expect(html).toContain("Find");
+    expect(html).toContain("katex");
+    expect(html).not.toMatch(/>F<\/span>/);
+  });
+
+  it("leaves yes/no answers as ordinary text", () => {
+    const html = renderToStaticMarkup(<MathText value="no" />);
+    expect(html).toBe('<span class="">no</span>');
+  });
 });

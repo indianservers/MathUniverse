@@ -222,27 +222,42 @@ export function StepByStepExamples({ lessonTitle, examples }: { lessonTitle: str
   return (
     <div className="grid gap-3 lg:grid-cols-3" data-testid="step-by-step-examples">
       {examples.map((example, index) => (
-        <article key={example.id} className="overflow-hidden rounded-xl border border-amber-200 bg-amber-50/70 dark:border-amber-300/20 dark:bg-amber-300/10">
+        <article key={example.id} className="worked-example-card overflow-hidden rounded-xl border border-amber-200 bg-amber-50/70 dark:border-amber-300/20 dark:bg-amber-300/10">
           <div className="border-b border-amber-200 bg-amber-100/70 px-4 py-3 dark:border-amber-300/20 dark:bg-amber-300/10">
-            <p className="text-[10px] font-black uppercase tracking-[0.16em] text-amber-700 dark:text-amber-200">{lessonTitle} · Example {index + 1}</p>
+            <p className="text-[11px] font-black uppercase tracking-[0.16em] text-amber-700 dark:text-amber-200">Worked example {index + 1}</p>
             <h3 className="mt-1 font-black leading-6 text-slate-900 dark:text-white"><MathText value={example.prompt} /></h3>
           </div>
-          <ol className="space-y-3 p-4 text-sm leading-6 text-slate-700 dark:text-slate-200">
-            {example.steps.map((step, stepIndex) => (
-              <li key={`${stepIndex}-${step}`} className="flex gap-2">
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-amber-500 text-xs font-black text-white">{stepIndex + 1}</span>
-                <MathText value={step} mathClassName="text-base" />
-              </li>
-            ))}
+          <ol className="space-y-2.5 p-4 text-sm leading-6 text-slate-700 dark:text-slate-200">
+            {example.steps.map((step, stepIndex) => {
+              const kind = workedStepKind(step, stepIndex, example.steps.length);
+              return (
+                <li key={`${stepIndex}-${step}`} className="flex gap-2">
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-amber-500 text-xs font-black text-white">{stepIndex + 1}</span>
+                  <span>
+                    <strong className="mr-1 text-[11px] uppercase tracking-wide text-amber-800 dark:text-amber-200">{kind}</strong>
+                    <MathText value={step} mathClassName="text-base" display={kind !== "Given"} />
+                  </span>
+                </li>
+              );
+            })}
           </ol>
           <p className="m-4 mt-0 flex items-start gap-2 rounded-lg bg-white/80 p-3 text-sm font-black text-amber-900 dark:bg-slate-950/50 dark:text-amber-100">
             <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
-            <span>Answer: <MathText value={example.answer} /></span>
+            <span>Result: <MathText value={example.answer} display /></span>
           </p>
         </article>
       ))}
     </div>
   );
+}
+
+function workedStepKind(step: string, index: number, total: number) {
+  const text = step.replace(/^\\displaystyle\s+/, "");
+  if (/substitute/i.test(text)) return "Substitute";
+  if (index === total - 1 || /\\boxed/.test(step)) return "Result";
+  if (index === 0 && /given|let |p\s*=|points?/i.test(text)) return "Given";
+  if (index === 0) return "Formula";
+  return "Working";
 }
 
 export function TryThese({ lessonTitle, items }: { lessonTitle: string; items: LessonTryItem[] }) {

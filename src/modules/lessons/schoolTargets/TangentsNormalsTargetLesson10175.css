@@ -1,11 +1,11 @@
 .tn10175-page {
   position: relative;
-  top: -22px;
-  width: min(722px, 100%);
-  margin: 0;
+  top: 0;
+  width: min(1180px, 100%);
+  margin: 0 auto;
   color: #29374b;
   font:
-    8px/1.45 Inter,
+    14px/1.5 Inter,
     Arial,
     sans-serif;
   letter-spacing: 0;
@@ -47,10 +47,17 @@
   height: 11px;
 }
 .tn10175-page > header {
-  height: 127px;
-  padding: 15px;
+  height: auto;
+  min-height: 0;
+  padding: 16px 18px;
   border-radius: 14px;
   background: #fff;
+}
+.tn10175-page > header > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
 }
 .tn10175-page > header small,
 .tn10175-page h3 {
@@ -58,14 +65,9 @@
   font-weight: 900;
 }
 .tn10175-page > header h1 {
-  margin: 5px 0;
+  margin: 8px 0 6px;
   color: #111827;
-  font-size: 20px;
-}
-.tn10175-page > header > div {
-  display: flex;
-  gap: 6px;
-  margin-top: 10px;
+  font-size: 26px;
 }
 .tn10175-page > header span {
   padding: 3px 8px;
@@ -85,11 +87,12 @@
 }
 .tn-lab {
   display: grid;
-  height: 407px;
-  grid-template-columns: 122px 1fr 242px;
-  gap: 7px;
-  margin-top: 9px;
-  padding: 8px;
+  height: auto;
+  min-height: 0;
+  grid-template-columns: minmax(200px, 240px) minmax(0, 1fr) minmax(220px, 280px);
+  gap: 14px;
+  margin-top: 12px;
+  padding: 12px;
 }
 .tn-lab > aside section {
   padding: 9px;

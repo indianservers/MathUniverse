@@ -21,6 +21,7 @@ export type MathWorkspaceDefinition = {
   badge: string;
   formula: string;
   artwork: string;
+  features: string[];
   supportedContextualActions: MathWorkspaceActionId[];
 };
 
@@ -43,6 +44,7 @@ export const mathWorkspaces: MathWorkspaceDefinition[] = [
     badge: "Symbolic",
     formula: "f(x) · ∑ · ∫",
     artwork: "/workspace-icons/cas.webp",
+    features: ["Simplify", "Solve", "Expand", "Factor", "Integrate"],
     supportedContextualActions: ["open-in-graphs", "open-in-3d-graphs", "open-in-geometry"],
   },
   {
@@ -57,6 +59,7 @@ export const mathWorkspaces: MathWorkspaceDefinition[] = [
     badge: "2D",
     formula: "∠A + ∠B + ∠C = 180°",
     artwork: "/workspace-icons/geometry.webp",
+    features: ["Points", "Lines", "Angles", "Shapes", "Measure"],
     supportedContextualActions: ["analyse-in-cas"],
   },
   {
@@ -71,6 +74,7 @@ export const mathWorkspaces: MathWorkspaceDefinition[] = [
     badge: "3D",
     formula: "V = lwh",
     artwork: "/workspace-icons/geometry-3d.webp",
+    features: ["Points", "Planes", "Solids", "Measure", "Transform"],
     supportedContextualActions: ["analyse-in-cas"],
   },
   {
@@ -85,6 +89,7 @@ export const mathWorkspaces: MathWorkspaceDefinition[] = [
     badge: "Plot",
     formula: "y = f(x)",
     artwork: "/workspace-icons/graphs.webp",
+    features: ["Functions", "Equations", "Inequalities", "Data", "Analysis"],
     supportedContextualActions: ["analyse-in-cas", "open-in-geometry"],
   },
   {
@@ -99,6 +104,7 @@ export const mathWorkspaces: MathWorkspaceDefinition[] = [
     badge: "Surface",
     formula: "z = f(x, y)",
     artwork: "/workspace-icons/graphs-3d.webp",
+    features: ["Surfaces", "Curves", "Parametric", "Implicit", "3D Plots"],
     supportedContextualActions: ["open-in-3d-geometry"],
   },
   {
@@ -113,6 +119,7 @@ export const mathWorkspaces: MathWorkspaceDefinition[] = [
     badge: "Library",
     formula: "A · V · nets",
     artwork: "/workspace-icons/shapes.webp",
+    features: ["2D Shapes", "3D Solids", "Formulas", "Nets", "Cross-sections"],
     supportedContextualActions: ["analyse-in-cas", "open-in-geometry", "open-in-3d-geometry"],
   },
 ];

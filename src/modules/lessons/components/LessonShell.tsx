@@ -304,20 +304,20 @@ export default function LessonShell({ lesson }: { lesson: LessonDefinition }) {
         lesson.id === 275 ||
         lesson.id === 276 ? null : (
           <nav
-            className="lesson-adjacent-nav grid gap-3 sm:grid-cols-2"
+            className="lesson-adjacent-nav grid gap-2 sm:grid-cols-2"
             aria-label="Adjacent lessons"
           >
             {adjacent.previous ? (
               <Link
-                className="action-secondary justify-start"
+                className="action-secondary !min-h-12 justify-start !px-3 !py-2"
                 to={adjacent.previous.route}
               >
-                <ArrowLeft className="h-4 w-4" />
-                <span>
-                  <span className="block text-[10px] font-black uppercase text-slate-500 dark:text-slate-300">
+                <ArrowLeft className="h-4 w-4 shrink-0" />
+                <span className="min-w-0">
+                  <span className="block text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-300">
                     Previous
                   </span>
-                  <span className="line-clamp-1">
+                  <span className="line-clamp-2 text-sm font-bold leading-5">
                     {adjacent.previous.title}
                   </span>
                 </span>
@@ -327,16 +327,16 @@ export default function LessonShell({ lesson }: { lesson: LessonDefinition }) {
             )}
             {adjacent.next ? (
               <Link
-                className="action-secondary justify-end text-right"
+                className="action-secondary !min-h-12 justify-end text-right !px-3 !py-2"
                 to={adjacent.next.route}
               >
-                <span>
-                  <span className="block text-[10px] font-black uppercase text-slate-500 dark:text-slate-300">
+                <span className="min-w-0">
+                  <span className="block text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-300">
                     Next
                   </span>
-                  <span className="line-clamp-1">{adjacent.next.title}</span>
+                  <span className="line-clamp-2 text-sm font-bold leading-5">{adjacent.next.title}</span>
                 </span>
-                <ArrowRight className="h-4 w-4" />
+                <ArrowRight className="h-4 w-4 shrink-0" />
               </Link>
             ) : (
               <span />
@@ -354,7 +354,7 @@ export default function LessonShell({ lesson }: { lesson: LessonDefinition }) {
       data-lesson-id={lesson.id}
       data-lesson-view="interaction"
     >
-      <header className="lesson-shell-header overflow-hidden rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80">
+      <header className="lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80">
         <div className="p-4 sm:p-5">
           <div className="flex flex-wrap items-start justify-between gap-3">
             <div className="min-w-0">
@@ -563,20 +563,20 @@ export default function LessonShell({ lesson }: { lesson: LessonDefinition }) {
       </div>
 
       <nav
-        className="lesson-adjacent-nav grid gap-3 sm:grid-cols-2"
+        className="lesson-adjacent-nav grid gap-2 sm:grid-cols-2"
         aria-label="Adjacent lessons"
       >
         {adjacent.previous ? (
           <Link
-            className="action-secondary justify-start"
+            className="action-secondary !min-h-12 justify-start !px-3 !py-2"
             to={adjacent.previous.route}
           >
-            <ArrowLeft className="h-4 w-4" />
-            <span>
-              <span className="block text-[10px] font-black uppercase text-slate-500 dark:text-slate-300">
+            <ArrowLeft className="h-4 w-4 shrink-0" />
+            <span className="min-w-0">
+              <span className="block text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-300">
                 Previous
               </span>
-              <span className="line-clamp-1">{adjacent.previous.title}</span>
+              <span className="line-clamp-2 text-sm font-bold leading-5">{adjacent.previous.title}</span>
             </span>
           </Link>
         ) : (
@@ -584,16 +584,16 @@ export default function LessonShell({ lesson }: { lesson: LessonDefinition }) {
         )}
         {adjacent.next ? (
           <Link
-            className="action-secondary justify-end text-right"
+            className="action-secondary !min-h-12 justify-end text-right !px-3 !py-2"
             to={adjacent.next.route}
           >
-            <span>
-              <span className="block text-[10px] font-black uppercase text-slate-500 dark:text-slate-300">
+            <span className="min-w-0">
+              <span className="block text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-300">
                 Next
               </span>
-              <span className="line-clamp-1">{adjacent.next.title}</span>
+              <span className="line-clamp-2 text-sm font-bold leading-5">{adjacent.next.title}</span>
             </span>
-            <ArrowRight className="h-4 w-4" />
+            <ArrowRight className="h-4 w-4 shrink-0" />
           </Link>
         ) : (
           <span />

@@ -34,10 +34,14 @@ import {
   Unlock,
   ZoomIn,
   ZoomOut,
+  MoreHorizontal,
+  Ruler,
 } from "lucide-react";
 import {
+  useCallback,
   useEffect,
   useMemo,
+  useRef,
   useState,
   type DragEvent,
   type ReactNode,
@@ -48,6 +52,17 @@ import {
   readWorkspaceChromeTheme,
   type WorkspaceChromeTheme,
 } from "../workspace/workspaceChromeTheme";
+import {
+  ContextInspector,
+  MobileWorkspaceShell,
+  WorkspaceBottomSheet,
+  WorkspaceToolbar,
+  useMobileWorkspaceGestures,
+  useWorkspaceOverlay,
+  useOutsideDismiss,
+  guardCanvasPointer,
+} from "../workspace/mobile";
+import { useCanvasZoomLock } from "../hooks/useCanvasZoomLock";
 
 export type ObjectStudioMode = "create" | "transform" | "measure" | "learn";
 export type ObjectStudioTool =
@@ -148,9 +163,21 @@ export default function ObjectStudioWorkspace(props: Props) {
   const [inspectorTab, setInspectorTab] =
     useState<ObjectStudioInspectorTab>("transform");
   const [dockTab, setDockTab] = useState<ObjectStudioDockTab>("measurements");
-  const [leftOpen, setLeftOpen] = useState(true);
-  const [rightOpen, setRightOpen] = useState(true);
-  const [dockOpen, setDockOpen] = useState(true);
+  const [leftOpen, setLeftOpen] = useState(
+    () =>
+      typeof window === "undefined" ||
+      !window.matchMedia("(max-width: 1100px)").matches,
+  );
+  const [rightOpen, setRightOpen] = useState(
+    () =>
+      typeof window === "undefined" ||
+      !window.matchMedia("(max-width: 1100px)").matches,
+  );
+  const [dockOpen, setDockOpen] = useState(
+    () =>
+      typeof window === "undefined" ||
+      !window.matchMedia("(max-width: 1100px)").matches,
+  );
   const [search, setSearch] = useState("");
   const [category, setCategory] =
     useState<ObjectStudioShape["category"]>("primitives");
@@ -160,20 +187,41 @@ export default function ObjectStudioWorkspace(props: Props) {
   const [chromeTheme, setChromeTheme] = useState<WorkspaceChromeTheme>(() =>
     readWorkspaceChromeTheme(CHROME_THEME_STORAGE_KEYS.geometry3d),
   );
+  const overlay = useWorkspaceOverlay();
+  const leftPanelRef = useRef<HTMLElement>(null);
+  const rightPanelRef = useRef<HTMLElement>(null);
+  const sceneHostRef = useRef<HTMLDivElement>(null);
+  const closeTopPopovers = useCallback(() => {
+    setViewOpen(false);
+    setSettingsOpen(false);
+  }, []);
+  useCanvasZoomLock(sceneHostRef);
+  useOutsideDismiss({
+    enabled: viewOpen || settingsOpen,
+    keepOpenSelector: "[data-workspace-popover]",
+    onDismiss: closeTopPopovers,
+  });
+  useMobileWorkspaceGestures(leftPanelRef, {
+    enabled: overlay.isMobile && overlay.isOpen("shapes"),
+    edge: "left",
+    onClose: overlay.close,
+  });
+  useMobileWorkspaceGestures(rightPanelRef, {
+    enabled: overlay.isMobile && overlay.isOpen("inspector"),
+    edge: "right",
+    onClose: overlay.close,
+  });
 
   useEffect(() => {
-    const media = window.matchMedia("(max-width: 1100px)");
-    const sync = () => {
-      if (media.matches) {
-        setLeftOpen(false);
-        setRightOpen(false);
-        setDockOpen(false);
-      }
+    const closePopovers = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return;
+      setViewOpen(false);
+      setSettingsOpen(false);
     };
-    sync();
-    media.addEventListener("change", sync);
-    return () => media.removeEventListener("change", sync);
+    window.addEventListener("keydown", closePopovers);
+    return () => window.removeEventListener("keydown", closePopovers);
   }, []);
+
   useEffect(() => {
     let frames = 0;
     let previous = performance.now();
@@ -190,6 +238,16 @@ export default function ObjectStudioWorkspace(props: Props) {
     animation = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(animation);
   }, []);
+
+  useEffect(() => {
+    if (!overlay.isMobile) return;
+    setLeftOpen(overlay.active === "shapes");
+    setRightOpen(overlay.active === "inspector");
+    setDockOpen(overlay.active === "measure");
+    setViewOpen(overlay.active === "view");
+    setSettingsOpen(overlay.active === "settings");
+    if (overlay.active === "measure") setDockTab("measurements");
+  }, [overlay.active, overlay.isMobile]);
 
   const filteredShapes = useMemo(
     () =>
@@ -216,7 +274,8 @@ export default function ObjectStudioWorkspace(props: Props) {
     props.onAdd(id);
     setMode("transform");
     props.onTool("move");
-    setRightOpen(true);
+    if (overlay.isMobile) overlay.open("inspector");
+    else setRightOpen(true);
   };
   const dropShape = (event: DragEvent) => {
     event.preventDefault();
@@ -231,7 +290,8 @@ export default function ObjectStudioWorkspace(props: Props) {
         : "position";
 
   return (
-    <div
+    <MobileWorkspaceShell
+      overlay={overlay}
       id="object-studio-root"
       className={`graph-studio-3d-shell object-studio-shell ${leftOpen ? "has-left" : ""} ${rightOpen ? "has-right" : ""} ${dockOpen ? "has-dock" : ""}`}
       data-testid="workspace-3d-surface"
@@ -287,11 +347,14 @@ export default function ObjectStudioWorkspace(props: Props) {
             icon={props.autoRotate ? <Pause /> : <Play />}
             onClick={() => props.onAutoRotate(!props.autoRotate)}
           />
-          <div className="relative">
+          <div className="relative" data-workspace-popover>
             <TopAction
               label="Settings"
               icon={<Settings />}
-              onClick={() => setSettingsOpen((value) => !value)}
+              onClick={() => {
+                setViewOpen(false);
+                setSettingsOpen((value) => !value);
+              }}
             />
             {settingsOpen && (
               <div className="gs3d-popover">
@@ -338,15 +401,20 @@ export default function ObjectStudioWorkspace(props: Props) {
         <button
           type="button"
           className="gs3d-mobile-menu"
-          onClick={() => setLeftOpen((value) => !value)}
-          aria-label="Open shape library"
+          data-mws-menu="true"
+          aria-pressed={overlay.isOpen("shapes")}
+          aria-expanded={overlay.isOpen("shapes")}
+          aria-label="Shape library menu"
+          onClick={() => overlay.toggle("shapes")}
         >
           <Menu />
         </button>
       </header>
 
       <aside
+        ref={leftPanelRef}
         className={`gs3d-left-panel os-left-panel ${leftOpen ? "open" : ""}`}
+        data-mws-panel={leftOpen ? "shapes" : undefined}
         aria-label="Shape Library"
       >
         <PanelHeader
@@ -468,7 +536,7 @@ export default function ObjectStudioWorkspace(props: Props) {
           </button>
         )}
         <div className="os-view-controls">
-          <div className="gs3d-view-menu">
+          <div className="gs3d-view-menu" data-workspace-popover>
             <button
               type="button"
               onClick={() => setViewOpen((value) => !value)}
@@ -559,7 +627,14 @@ export default function ObjectStudioWorkspace(props: Props) {
             <Fullscreen />
           </button>
         </div>
-        <div className="gs3d-scene-host" data-testid="workspace-3d-canvas">
+        <div
+          ref={sceneHostRef}
+          className="gs3d-scene-host"
+          data-testid="workspace-3d-canvas"
+          onPointerDownCapture={(event) => {
+            if (guardCanvasPointer(overlay, event)) return;
+          }}
+        >
           {props.scene}
         </div>
         {selected && mode !== "create" && <TransformGizmo tool={props.tool} />}
@@ -699,7 +774,9 @@ export default function ObjectStudioWorkspace(props: Props) {
       </main>
 
       <aside
+        ref={rightPanelRef}
         className={`gs3d-right-panel os-right-panel ${rightOpen ? "open" : ""}`}
+        data-mws-panel={rightOpen ? "inspector" : undefined}
         aria-label="Scene Objects and Object Inspector"
       >
         <section className="os-hierarchy">
@@ -903,35 +980,151 @@ export default function ObjectStudioWorkspace(props: Props) {
         )}
       </section>
       <nav className="gs3d-mobile-nav" aria-label="Mobile Object Studio panels">
-        <button type="button" onClick={() => setLeftOpen(true)}>
+        <button type="button" onClick={() => overlay.toggle("shapes")}>
           <Shapes />
           Shapes
         </button>
-        <button
-          type="button"
-          onClick={() => {
-            setRightOpen(true);
-            setInspectorTab("transform");
-          }}
-        >
+        <button type="button" onClick={() => overlay.toggle("inspector")}>
           <Move3D />
           Transform
         </button>
-        <button type="button" onClick={() => setRightOpen(true)}>
+        <button type="button" onClick={() => overlay.toggle("inspector")}>
           <Network />
           Scene
         </button>
-        <button
-          type="button"
-          onClick={() => {
-            setDockOpen(true);
-            setDockTab("measurements");
-          }}
-        >
+        <button type="button" onClick={() => overlay.toggle("measure")}>
           <SlidersHorizontal />
           Measure
         </button>
       </nav>
+      {overlay.isMobile && selected && !overlay.active ? (
+        <ContextInspector
+          title={`${selected.label} • ${selected.kind}`}
+          values={[
+            {
+              label: "x",
+              value: props.selectedTransform.position[0].toFixed(2),
+            },
+            {
+              label: "y",
+              value: props.selectedTransform.position[1].toFixed(2),
+            },
+            {
+              label: "z",
+              value: props.selectedTransform.position[2].toFixed(2),
+            },
+          ]}
+          actions={
+            <>
+              <button type="button" onClick={() => overlay.open("inspector")}>
+                Style
+              </button>
+              <button
+                type="button"
+                onClick={() =>
+                  props.onTransform(selected.id, {
+                    locked: !selected.transform.locked,
+                  })
+                }
+              >
+                {selected.transform.locked ? "Unlock" : "Lock"}
+              </button>
+              <button type="button" onClick={() => overlay.open("more")}>
+                More
+              </button>
+            </>
+          }
+        />
+      ) : null}
+      <WorkspaceToolbar
+        label="3D geometry tools"
+        items={[
+          {
+            id: "select",
+            label: "Select",
+            icon: <MousePointer2 />,
+            active: props.tool === "select",
+            onSelect: () => {
+              props.onTool("select");
+              overlay.close();
+            },
+          },
+          {
+            id: "construct",
+            label: "Construct",
+            icon: <Shapes />,
+            pressed: overlay.isOpen("shapes"),
+            onSelect: () => overlay.toggle("shapes"),
+          },
+          {
+            id: "measure",
+            label: "Measure",
+            icon: <Ruler />,
+            pressed: overlay.isOpen("measure"),
+            onSelect: () => overlay.toggle("measure"),
+          },
+          {
+            id: "view",
+            label: "View",
+            icon: <Orbit />,
+            active: props.tool === "orbit",
+            pressed: overlay.isOpen("view"),
+            onSelect: () => overlay.toggle("view"),
+          },
+          {
+            id: "more",
+            label: "More",
+            icon: <MoreHorizontal />,
+            pressed: overlay.isOpen("more"),
+            onSelect: () => overlay.toggle("more"),
+          },
+        ]}
+      />
+      <WorkspaceBottomSheet
+        open={overlay.isOpen("more")}
+        title="Object tools"
+        onClose={overlay.close}
+      >
+        <button type="button" onClick={() => overlay.open("inspector")}>
+          Inspector
+        </button>
+        <button type="button" onClick={() => overlay.open("shapes")}>
+          Shape library
+        </button>
+        <button type="button" onClick={() => overlay.open("measure")}>
+          Measurements
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            props.onTool("orbit");
+            overlay.close();
+          }}
+        >
+          Orbit
+        </button>
+      </WorkspaceBottomSheet>
+      <WorkspaceBottomSheet
+        open={overlay.isOpen("view")}
+        title="View"
+        onClose={overlay.close}
+      >
+        {(["isometric", "top", "front", "right", "free"] as const).map(
+          (preset) => (
+            <button
+              key={preset}
+              type="button"
+              onClick={() => {
+                props.onCamera(preset);
+                props.onTool("orbit");
+                overlay.close();
+              }}
+            >
+              {cameraLabel(preset)}
+            </button>
+          ),
+        )}
+      </WorkspaceBottomSheet>
       <footer className="gs3d-status">
         <span className="online-dot" />
         Offline ready<span>{fps} FPS</span>
@@ -941,7 +1134,7 @@ export default function ObjectStudioWorkspace(props: Props) {
         </span>
         <span className="saved">{props.projectStatus}</span>
       </footer>
-    </div>
+    </MobileWorkspaceShell>
   );
 }
 

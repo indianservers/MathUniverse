@@ -1,0 +1,423 @@
+.mws-root {
+  --mws-open: 220ms;
+  --mws-close: 170ms;
+  --mws-ease: cubic-bezier(0.22, 0.78, 0.24, 1);
+  position: relative;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mws-root,
+  .mws-root * {
+    --mws-open: 1ms;
+    --mws-close: 1ms;
+  }
+}
+
+.mws-toolbar,
+.mws-sheet,
+.mws-inspector {
+  display: none;
+}
+
+@media (max-width: 1100px) {
+  .mws-root[data-mws-mobile="true"].graph-studio-3d-shell,
+  .mws-root[data-mws-mobile="true"].object-studio-shell {
+    height: var(--mws-vvh, 100dvh);
+    min-height: var(--mws-vvh, 100dvh);
+    padding-bottom: env(safe-area-inset-bottom);
+    grid-template-rows: 48px minmax(0, 1fr) 22px 64px;
+  }
+
+  .mws-root[data-mws-mobile="true"] .gs3d-topbar {
+    min-height: 48px;
+    padding: 4px 8px 4px max(8px, env(safe-area-inset-left));
+  }
+
+  .mws-root[data-mws-mobile="true"] .gs3d-panel-reveal,
+  .mws-root[data-mws-mobile="true"] .gs3d-status,
+  .mws-root[data-mws-mobile="true"] .gs3d-mobile-nav {
+    display: none !important;
+  }
+
+  .mws-root[data-mws-mobile="true"] .gs3d-mobile-menu {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    border-radius: 10px;
+  }
+
+  .mws-root[data-mws-mobile="true"] .gs3d-mobile-menu[aria-pressed="true"] {
+    background: #22d3ee;
+    color: #082f49;
+    box-shadow: inset 0 0 0 1px #67e8f9;
+  }
+
+  .mws-root[data-mws-mobile="true"] .gs3d-left-panel,
+  .mws-root[data-mws-mobile="true"] .gs3d-right-panel {
+    top: auto;
+    right: 8px;
+    bottom: calc(72px + env(safe-area-inset-bottom));
+    left: 8px;
+    width: auto;
+    max-height: min(52dvh, 420px);
+    border-radius: 16px 16px 8px 8px;
+    transition:
+      transform var(--mws-open) var(--mws-ease),
+      opacity var(--mws-open) var(--mws-ease);
+  }
+
+  .mws-root[data-mws-mobile="true"] .gs3d-left-panel:not(.open),
+  .mws-root[data-mws-mobile="true"] .gs3d-right-panel:not(.open) {
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  .mws-root[data-mws-mobile="true"] .gs3d-left-panel.open,
+  .mws-root[data-mws-mobile="true"] .gs3d-right-panel.open {
+    opacity: 1;
+    transform: none;
+  }
+
+  .mws-root[data-mws-mobile="true"] .gs3d-dock {
+    right: 8px;
+    left: 8px;
+    bottom: calc(72px + env(safe-area-inset-bottom));
+    border-radius: 16px 16px 8px 8px;
+    max-height: min(42dvh, 320px);
+  }
+
+  .mws-toolbar {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    position: sticky;
+    z-index: 120;
+    grid-area: mobile;
+    gap: 4px;
+    margin: 0 8px calc(6px + env(safe-area-inset-bottom));
+    border: 1px solid rgba(34, 211, 238, 0.28);
+    border-radius: 16px;
+    background: rgba(3, 10, 22, 0.94);
+    padding: 4px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(16px);
+  }
+
+  .mws-toolbar button {
+    display: flex;
+    min-height: 48px;
+    min-width: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    border-radius: 12px;
+    color: #9eb6c9;
+    font-size: 10px;
+    font-weight: 800;
+  }
+
+  .mws-toolbar button.is-active {
+    background: rgba(34, 211, 238, 0.16);
+    color: #ecfeff;
+    box-shadow: inset 0 0 0 1px #67e8f9;
+  }
+
+  .mws-toolbar button.is-open {
+    color: #ecfeff;
+    box-shadow: inset 0 -3px 0 #22d3ee;
+  }
+
+  .mws-toolbar button.is-active .mws-toolbar-icon {
+    transform: translateY(-1px);
+  }
+
+  .mws-toolbar button.is-active .mws-toolbar-icon svg {
+    stroke-width: 2.6;
+  }
+
+  .mws-toolbar svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .mws-sheet {
+    display: grid;
+    position: fixed;
+    z-index: 130;
+    right: 8px;
+    bottom: calc(72px + env(safe-area-inset-bottom));
+    left: 8px;
+    max-height: min(58dvh, 460px);
+    grid-template-rows: 18px auto minmax(0, 1fr);
+    overflow: hidden;
+    border: 1px solid rgba(34, 211, 238, 0.28);
+    border-radius: 18px 18px 10px 10px;
+    background: rgba(4, 12, 24, 0.97);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+  }
+
+  .mws-sheet-handle,
+  .mws-root[data-mws-mobile="true"] .gs3d-left-panel.open::before,
+  .mws-root[data-mws-mobile="true"] .gs3d-right-panel.open::before {
+    content: "";
+    display: block;
+    width: 42px;
+    height: 4px;
+    margin: 8px auto 0;
+    border-radius: 99px;
+    background: rgba(148, 163, 184, 0.55);
+  }
+
+  .mws-sheet-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 12px 8px;
+  }
+
+  .mws-sheet-header h2 {
+    color: #f8fafc;
+    font-size: 13px;
+    font-weight: 800;
+  }
+
+  .mws-sheet-header button,
+  .mws-inspector-actions button {
+    min-height: 40px;
+    min-width: 44px;
+    padding: 0 10px;
+    border-radius: 10px;
+    color: #67e8f9;
+    font-size: 11px;
+    font-weight: 800;
+  }
+
+  .mws-sheet-body {
+    overflow: auto;
+    padding: 0 12px 12px;
+  }
+
+  .mws-sheet-body button {
+    display: flex;
+    width: 100%;
+    min-height: 44px;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+    border: 1px solid rgba(148, 163, 184, 0.16);
+    border-radius: 12px;
+    background: rgba(15, 23, 42, 0.65);
+    padding: 0 12px;
+    color: #e2e8f0;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .mws-inspector {
+    display: flex;
+    position: absolute;
+    z-index: 80;
+    right: 10px;
+    bottom: calc(78px + env(safe-area-inset-bottom));
+    left: 10px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    border: 1px solid rgba(34, 211, 238, 0.22);
+    border-radius: 14px;
+    background: rgba(2, 8, 19, 0.9);
+    padding: 8px 10px;
+    pointer-events: auto;
+  }
+
+  .mws-inspector-copy {
+    min-width: 0;
+  }
+
+  .mws-inspector-copy strong {
+    display: block;
+    color: #f8fafc;
+    font-size: 12px;
+  }
+
+  .mws-inspector-copy span,
+  .mws-inspector-copy dt {
+    color: #94a3b8;
+    font-size: 10px;
+    font-weight: 700;
+  }
+
+  .mws-inspector-copy dl {
+    display: flex;
+    gap: 12px;
+    margin: 2px 0 0;
+  }
+
+  .mws-inspector-copy dd {
+    margin: 0;
+    color: #e2e8f0;
+    font-size: 12px;
+    font-weight: 800;
+  }
+
+  .mws-root[data-mws-mobile="true"] input:focus,
+  .mws-root[data-mws-mobile="true"] textarea:focus {
+    scroll-margin-bottom: calc(var(--mws-keyboard, 0px) + 88px);
+  }
+}
+
+@media (max-width: 1100px) and (orientation: landscape) {
+  .mws-root[data-mws-mobile="true"] .gs3d-left-panel,
+  .mws-root[data-mws-mobile="true"] .gs3d-right-panel {
+    top: 52px;
+    bottom: 12px;
+    max-height: none;
+    width: min(42vw, 340px);
+  }
+
+  .mws-root[data-mws-mobile="true"] .gs3d-left-panel {
+    right: auto;
+    left: 8px;
+  }
+
+  .mws-root[data-mws-mobile="true"] .gs3d-right-panel {
+    left: auto;
+    right: 8px;
+  }
+
+  .mws-inspector {
+    right: auto;
+    left: 12px;
+    bottom: 12px;
+    max-width: min(46vw, 360px);
+  }
+}
+
+@media (max-width: 1180px) {
+  .geometry-studio-shell.mws-root {
+    height: var(--mws-vvh, 100dvh);
+    min-height: var(--mws-vvh, 100dvh);
+  }
+
+  .geometry-studio-shell.mws-root .geometry-mobile-overflow {
+    display: grid;
+    width: 44px;
+    height: 44px;
+    place-items: center;
+    border-radius: 10px;
+  }
+
+  .geometry-studio-shell.mws-root .geometry-mobile-overflow[aria-pressed="true"] {
+    background: #22d3ee;
+    color: #082f49;
+  }
+
+  .geometry-studio-shell.mws-root .geometry-drawer-backdrop {
+    display: none !important;
+  }
+
+  .geometry-studio-shell.mws-root .geometry-mobile-drawer {
+    display: grid;
+    position: fixed;
+    z-index: 140;
+    right: 8px;
+    bottom: calc(86px + env(safe-area-inset-bottom));
+    left: 8px;
+    max-height: min(56dvh, 460px);
+    grid-template-rows: 18px auto minmax(0, 1fr);
+    overflow: hidden;
+    border: 1px solid rgba(34, 211, 238, 0.28);
+    border-radius: 18px 18px 10px 10px;
+    background: rgba(4, 12, 24, 0.97);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+  }
+
+  .geometry-drawer-handle {
+    width: 42px;
+    height: 4px;
+    margin: 8px auto 0;
+    border-radius: 99px;
+    background: rgba(148, 163, 184, 0.55);
+  }
+
+  .geometry-mobile-drawer header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 4px 10px 8px;
+  }
+
+  .geometry-mobile-drawer header nav {
+    display: flex;
+    gap: 4px;
+  }
+
+  .geometry-mobile-drawer header nav button,
+  .geometry-mobile-drawer header > button {
+    min-height: 40px;
+    min-width: 44px;
+    padding: 0 10px;
+    border-radius: 10px;
+    color: #9eb6c9;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: capitalize;
+  }
+
+  .geometry-mobile-drawer header nav button.active {
+    background: rgba(34, 211, 238, 0.16);
+    color: #ecfeff;
+    box-shadow: inset 0 0 0 1px #67e8f9;
+  }
+
+  .geometry-drawer-content {
+    overflow: auto;
+    padding: 0 10px 12px;
+  }
+
+  .geometry-studio-shell.mws-root .geometry-mobile-tools {
+    bottom: calc(12px + env(safe-area-inset-bottom));
+    padding: 4px;
+    border-radius: 16px;
+  }
+
+  .geometry-studio-shell.mws-root .geometry-mobile-tools button.active {
+    background: rgba(34, 211, 238, 0.16);
+    color: #ecfeff;
+    box-shadow: inset 0 0 0 1px #67e8f9;
+  }
+
+  .geometry-studio-shell.mws-root .geometry-context-toolbar {
+    left: 8px;
+    right: 8px;
+    bottom: calc(78px + env(safe-area-inset-bottom));
+    max-width: none;
+  }
+}
+
+@media (max-width: 1180px) {
+  body:has(.mws-root[data-mws-mobile="true"]) .math-workspace-mobile-dock,
+  body:has(.mws-root[data-mws-mobile="true"]) nav[aria-label="Mobile learning shortcuts"] {
+    display: none !important;
+  }
+}
+
+@media (min-width: 1101px) {
+  .mws-toolbar,
+  .mws-sheet,
+  .mws-inspector,
+  .mws-sheet-handle {
+    display: none !important;
+  }
+}
+
+@media (min-width: 1181px) {
+  .geometry-studio-shell.mws-root .geometry-mobile-drawer,
+  .geometry-studio-shell.mws-root .geometry-drawer-backdrop,
+  .geometry-studio-shell.mws-root .geometry-mobile-overflow,
+  .geometry-studio-shell.mws-root .geometry-mobile-tools {
+    display: none !important;
+  }
+}

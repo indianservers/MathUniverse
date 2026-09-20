@@ -19,6 +19,7 @@ import {
   LineChart,
   Maximize2,
   Menu,
+  MoreHorizontal,
   MoreVertical,
   Lock,
   PanelLeftClose,
@@ -42,7 +43,7 @@ import {
   ZoomIn,
   ZoomOut,
 } from "lucide-react";
-import { useEffect, useState, type ReactNode } from "react";
+import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import type { FunctionGraphView } from "../components/math-lab/FunctionGraphCanvas";
 import { ExportImageButton } from "../components/ui/UiFeedback";
 import type { GraphSample } from "../utils/mathEngine/graphSampler";
@@ -60,6 +61,17 @@ import {
   readWorkspaceChromeTheme,
   type WorkspaceChromeTheme,
 } from "../workspace/workspaceChromeTheme";
+import {
+  ContextInspector,
+  MobileWorkspaceShell,
+  WorkspaceBottomSheet,
+  WorkspaceToolbar,
+  useMobileWorkspaceGestures,
+  useWorkspaceOverlay,
+  useOutsideDismiss,
+  guardCanvasPointer,
+} from "../workspace/mobile";
+import { useCanvasZoomLock } from "../hooks/useCanvasZoomLock";
 
 export type PiecewiseSegment = {
   id: string;
@@ -211,13 +223,48 @@ export default function GraphStudio2DWorkspace(
   props: GraphStudio2DWorkspaceProps,
 ) {
   const [tab, setTab] = useState<InspectorTab>("analysis");
-  const [leftOpen, setLeftOpen] = useState(true);
-  const [rightOpen, setRightOpen] = useState(true);
+  const [leftOpen, setLeftOpen] = useState(
+    () =>
+      typeof window === "undefined" ||
+      !window.matchMedia("(max-width: 1100px)").matches,
+  );
+  const [rightOpen, setRightOpen] = useState(
+    () =>
+      typeof window === "undefined" ||
+      !window.matchMedia("(max-width: 1100px)").matches,
+  );
   const [exportOpen, setExportOpen] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [helpOpen, setHelpOpen] = useState(false);
   const [renaming, setRenaming] = useState(false);
   const [fps, setFps] = useState(60);
+  const overlay = useWorkspaceOverlay();
+  const leftPanelRef = useRef<HTMLElement>(null);
+  const rightPanelRef = useRef<HTMLElement>(null);
+  const sceneHostRef = useRef<HTMLDivElement>(null);
+  const closeTopPopovers = useCallback(() => {
+    setExportOpen(false);
+    setSettingsOpen(false);
+    setHelpOpen(false);
+  }, []);
+  useCanvasZoomLock(sceneHostRef);
+  useOutsideDismiss({
+    enabled: exportOpen || settingsOpen || helpOpen,
+    keepOpenSelector: "[data-workspace-popover]",
+    onDismiss: closeTopPopovers,
+  });
+  useMobileWorkspaceGestures(leftPanelRef, {
+    enabled: overlay.isMobile && overlay.isOpen("expressions"),
+    edge: "left",
+    onClose: overlay.close,
+  });
+  useMobileWorkspaceGestures(rightPanelRef, {
+    enabled:
+      overlay.isMobile &&
+      (overlay.isOpen("inspector") || overlay.isOpen("table")),
+    edge: "right",
+    onClose: overlay.close,
+  });
   const [chromeTheme, setChromeTheme] = useState<WorkspaceChromeTheme>(() =>
     readWorkspaceChromeTheme(CHROME_THEME_STORAGE_KEYS.graph2d),
   );
@@ -239,29 +286,38 @@ export default function GraphStudio2DWorkspace(
     return () => cancelAnimationFrame(request);
   }, []);
   useEffect(() => {
-    const media = window.matchMedia("(max-width: 1100px)");
-    const sync = () => {
-      if (media.matches) {
-        setLeftOpen(false);
-        setRightOpen(false);
-      }
+    const closePopovers = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return;
+      setHelpOpen(false);
+      setSettingsOpen(false);
+      setExportOpen(false);
     };
-    sync();
-    media.addEventListener("change", sync);
-    return () => media.removeEventListener("change", sync);
+    window.addEventListener("keydown", closePopovers);
+    return () => window.removeEventListener("keydown", closePopovers);
   }, []);
   useEffect(() => {
-    const closeHelp = (event: KeyboardEvent) =>
-      event.key === "Escape" && setHelpOpen(false);
-    window.addEventListener("keydown", closeHelp);
-    return () => window.removeEventListener("keydown", closeHelp);
-  }, []);
+    if (!overlay.isMobile) return;
+    setLeftOpen(overlay.active === "expressions");
+    setRightOpen(overlay.active === "inspector" || overlay.active === "table");
+    if (overlay.active === "table") setTab("table");
+    setExportOpen(overlay.active === "export");
+    setSettingsOpen(overlay.active === "settings");
+    setHelpOpen(overlay.active === "help");
+  }, [overlay.active, overlay.isMobile]);
+  useEffect(() => {
+    if (!overlay.isMobile || overlay.active !== "expressions") return;
+    const input = leftPanelRef.current?.querySelector<HTMLInputElement>(
+      "input:not([type=color]):not([readonly])",
+    );
+    input?.focus();
+  }, [overlay.active, overlay.isMobile]);
   const selected =
     props.functions.find((item) => item.id === props.selectedId) ??
     props.functions[0];
 
   return (
-    <div
+    <MobileWorkspaceShell
+      overlay={overlay}
       className={`graph-studio-3d-shell graph-studio-surface-shell graph-studio-2d-shell ${leftOpen ? "has-left" : ""} ${rightOpen ? "has-right" : ""}`}
       data-chrome-theme={chromeTheme}
     >
@@ -352,21 +408,29 @@ export default function GraphStudio2DWorkspace(
             disabled={!props.canRedo}
           />
           <TopAction label="Save" icon={<Save />} onClick={props.onSave} />
-          <div className="relative">
+          <div className="relative" data-workspace-popover>
             <TopAction
               label="Export"
               icon={<Download />}
-              onClick={() => setExportOpen((value) => !value)}
+              onClick={() => {
+                setSettingsOpen(false);
+                setHelpOpen(false);
+                setExportOpen((value) => !value);
+              }}
             />
             {exportOpen && (
               <ExportMenu props={props} close={() => setExportOpen(false)} />
             )}
           </div>
-          <div className="relative">
+          <div className="relative" data-workspace-popover>
             <TopAction
               label="Settings"
               icon={<Settings />}
-              onClick={() => setSettingsOpen((value) => !value)}
+              onClick={() => {
+                setExportOpen(false);
+                setHelpOpen(false);
+                setSettingsOpen((value) => !value);
+              }}
             />
             {settingsOpen && <SettingsMenu props={props} />}
           </div>
@@ -375,11 +439,15 @@ export default function GraphStudio2DWorkspace(
             storageKey={CHROME_THEME_STORAGE_KEYS.graph2d}
             onChange={setChromeTheme}
           />
-          <div className="relative gs3d-help-control">
+          <div className="relative gs3d-help-control" data-workspace-popover>
             <TopAction
               label="Help"
               icon={<CircleHelp />}
-              onClick={() => setHelpOpen((value) => !value)}
+              onClick={() => {
+                setExportOpen(false);
+                setSettingsOpen(false);
+                setHelpOpen((value) => !value);
+              }}
             />
             {helpOpen && (
               <GraphHelpPopover
@@ -401,17 +469,24 @@ export default function GraphStudio2DWorkspace(
         <button
           type="button"
           className="gs3d-mobile-menu"
-          onClick={() => setLeftOpen((value) => !value)}
-          aria-label="Open expressions"
+          data-mws-menu="true"
+          aria-pressed={overlay.isOpen("expressions")}
+          aria-expanded={overlay.isOpen("expressions")}
+          aria-label="Expressions menu"
+          onClick={() => overlay.toggle("expressions")}
         >
           <Menu />
         </button>
       </header>
 
       <aside
+        ref={leftPanelRef}
         className={`gs3d-left-panel ${leftOpen ? "open" : ""}`}
+        data-mws-panel={leftOpen ? "expressions" : undefined}
         aria-label="Expressions and layers"
+        aria-hidden={!leftOpen}
       >
+        <div className="mws-sheet-handle" data-mws-handle="true" />
         <PanelHeader
           title="Expressions & Layers"
           onCollapse={() => setLeftOpen(false)}
@@ -568,17 +643,52 @@ export default function GraphStudio2DWorkspace(
         )}
         <div
           id="graphing-canvas-panel"
+          ref={sceneHostRef}
           className="gs3d-scene-host gs2d-scene-host"
           data-graph-preset={props.stylePreset}
+          onPointerDownCapture={(event) => {
+            if (guardCanvasPointer(overlay, event)) return;
+          }}
         >
           {props.canvas}
         </div>
+        {overlay.isMobile && selected && !overlay.active ? (
+          <ContextInspector
+            title={`${selected.name ?? selected.label ?? "f"} • Function`}
+            subtitle={selected.input}
+            values={[
+              { label: "x min", value: String(props.view.xMin) },
+              { label: "x max", value: String(props.view.xMax) },
+            ]}
+            actions={
+              <>
+                <button type="button" onClick={() => overlay.open("inspector")}>
+                  Style
+                </button>
+                <button
+                  type="button"
+                  onClick={() =>
+                    props.onUpdate(selected.id, { locked: !selected.locked })
+                  }
+                >
+                  {selected.locked ? "Unlock" : "Lock"}
+                </button>
+                <button type="button" onClick={() => overlay.open("more")}>
+                  More
+                </button>
+              </>
+            }
+          />
+        ) : null}
       </main>
 
       <aside
+        ref={rightPanelRef}
         className={`gs3d-right-panel ${rightOpen ? "open" : ""}`}
+        data-mws-panel={rightOpen ? "inspector" : undefined}
         aria-label="Function Inspector"
       >
+        <div className="mws-sheet-handle" data-mws-handle="true" />
         <PanelHeader
           title="Function Inspector"
           onCollapse={() => setRightOpen(false)}
@@ -645,26 +755,127 @@ export default function GraphStudio2DWorkspace(
         <span className="saved">Saved locally</span>
       </footer>
       <nav className="gs3d-mobile-nav" aria-label="Mobile workspace panels">
-        <button type="button" onClick={() => setLeftOpen(true)}>
+        <button type="button" onClick={() => overlay.toggle("expressions")}>
           <Layers3 />
           Expressions
         </button>
-        <button type="button" onClick={() => setRightOpen(true)}>
+        <button type="button" onClick={() => overlay.toggle("inspector")}>
           <SlidersHorizontal />
           Inspector
         </button>
-        <button
-          type="button"
-          onClick={() => {
-            setRightOpen(true);
-            setTab("table");
-          }}
-        >
+        <button type="button" onClick={() => overlay.toggle("table")}>
           <Table2 />
           Table
         </button>
       </nav>
-    </div>
+      <WorkspaceToolbar
+        label="Graph workspace tools"
+        items={[
+          {
+            id: "expression",
+            label: "Expression",
+            icon: <Plus />,
+            pressed: overlay.isOpen("expressions"),
+            onSelect: () => overlay.toggle("expressions"),
+          },
+          {
+            id: "point",
+            label: "Point",
+            icon: <Crosshair />,
+            onSelect: () => {
+              props.onAddConstruction("point");
+              overlay.close();
+            },
+          },
+          {
+            id: "trace",
+            label: "Trace",
+            icon: <Activity />,
+            active: props.traceMode,
+            onSelect: () => props.onTraceModeChange(!props.traceMode),
+          },
+          {
+            id: "zoom",
+            label: "Zoom",
+            icon: <ZoomIn />,
+            pressed: overlay.isOpen("zoom"),
+            onSelect: () => overlay.toggle("zoom"),
+          },
+          {
+            id: "more",
+            label: "More",
+            icon: <MoreHorizontal />,
+            pressed: overlay.isOpen("more"),
+            onSelect: () => overlay.toggle("more"),
+          },
+        ]}
+      />
+      <WorkspaceBottomSheet
+        open={overlay.isOpen("more")}
+        title="Graph tools"
+        onClose={overlay.close}
+      >
+        <button type="button" onClick={() => overlay.open("inspector")}>
+          Inspector
+        </button>
+        <button type="button" onClick={() => overlay.open("table")}>
+          Table
+        </button>
+        <button type="button" onClick={() => overlay.open("settings")}>
+          Settings
+        </button>
+        <button type="button" onClick={() => overlay.open("export")}>
+          Export
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            props.onAdd();
+            overlay.open("expressions");
+          }}
+        >
+          Add expression
+        </button>
+      </WorkspaceBottomSheet>
+      <WorkspaceBottomSheet
+        open={overlay.isOpen("zoom")}
+        title="View"
+        onClose={overlay.close}
+      >
+        <button
+          type="button"
+          onClick={() => props.onViewChange(zoomGraphView(props.view, 0.85))}
+        >
+          Zoom in
+        </button>
+        <button
+          type="button"
+          onClick={() => props.onViewChange(zoomGraphView(props.view, 1.15))}
+        >
+          Zoom out
+        </button>
+        <button type="button" onClick={props.onFitView}>
+          Fit
+        </button>
+        <button type="button" onClick={props.onResetView}>
+          Reset view
+        </button>
+      </WorkspaceBottomSheet>
+      <WorkspaceBottomSheet
+        open={overlay.isOpen("settings")}
+        title="Settings"
+        onClose={overlay.close}
+      >
+        <SettingsMenu props={props} />
+      </WorkspaceBottomSheet>
+      <WorkspaceBottomSheet
+        open={overlay.isOpen("export")}
+        title="Export"
+        onClose={overlay.close}
+      >
+        <ExportMenu props={props} close={overlay.close} />
+      </WorkspaceBottomSheet>
+    </MobileWorkspaceShell>
   );
 }
 
@@ -741,10 +952,25 @@ function ExpressionCard({
   const [menu, setMenu] = useState(false);
   const errorId = `function-${item.id}-error`;
   return (
-    <div
-      className={`gs3d-expression gs2d-expression ${active ? "active" : ""} ${error ? "has-error" : ""}`}
-      onClick={onSelect}
-    >
+      <div
+        className={`gs3d-expression gs2d-expression ${active ? "active" : ""} ${error ? "has-error" : ""}`}
+        onClick={onSelect}
+        onContextMenu={(event) => {
+          event.preventDefault();
+          setMenu(true);
+        }}
+        onPointerDown={(event) => {
+          if (event.pointerType !== "touch") return;
+          const timer = window.setTimeout(() => setMenu(true), 480);
+          const release = () => {
+            window.clearTimeout(timer);
+            event.currentTarget.removeEventListener("pointerup", release);
+            event.currentTarget.removeEventListener("pointercancel", release);
+          };
+          event.currentTarget.addEventListener("pointerup", release);
+          event.currentTarget.addEventListener("pointercancel", release);
+        }}
+      >
       <GripVertical />
       <input
         type="color"

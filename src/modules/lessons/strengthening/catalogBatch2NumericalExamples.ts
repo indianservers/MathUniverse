@@ -1,3 +1,5 @@
+import { asWorkedMathStep } from "./workedMathStep";
+
 type NumericalExampleSeed = readonly [prompt: string, steps: readonly string[], answer: string];
 
 function calculation(
@@ -8,7 +10,7 @@ function calculation(
 ): NumericalExampleSeed {
   return [
     prompt,
-    [String.raw`\displaystyle ${working}`, String.raw`\displaystyle ${result}`, String.raw`\displaystyle \boxed{${result}}`],
+    [asWorkedMathStep(working), asWorkedMathStep(result), asWorkedMathStep(String.raw`\boxed{${result}}`)],
     answer,
   ];
 }

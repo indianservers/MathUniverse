@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import { HandshakeTeaser, VennCountTeaser } from "../studios/landing/StudioLandingTeasers";
-import { ObserveStrip } from "../studios/landing/StudioLandingExtras";
-import { markLandingVisit, useLandingSession } from "../studios/landing/studioLandingSession";
-import "../studios/landing/studioLanding.css";
+import { VennCountTeaser } from "./StudioLandingTeasers";
+import { ObserveStrip } from "./StudioLandingExtras";
+import { markLandingVisit, useLandingSession } from "./studioLandingSession";
+import "./studioLanding.css";
 
 export default function SetTheoryLanding() {
   const session = useLandingSession("set-theory");

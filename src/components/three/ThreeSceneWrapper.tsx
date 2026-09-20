@@ -10,6 +10,7 @@ import {
 } from "react";
 import * as THREE from "three";
 import { LoadingSkeleton } from "../ui/UiFeedback";
+import { useCanvasZoomLock } from "../../hooks/useCanvasZoomLock";
 
 type ThreeSceneWrapperProps = {
   children: ReactNode;
@@ -71,6 +72,7 @@ export default function ThreeSceneWrapper({
   sceneOverlay,
 }: ThreeSceneWrapperProps) {
   const hostRef = useRef<HTMLDivElement | null>(null);
+  useCanvasZoomLock(hostRef);
   const style = {
     "--scene-height": height,
     "--scene-mobile-height": mobileHeight,

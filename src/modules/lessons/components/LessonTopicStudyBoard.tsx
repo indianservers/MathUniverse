@@ -8,6 +8,7 @@ import { batch6StudySpecs } from "../strengthening/catalogBatch6StudySpecs";
 import { expandedWorkedExamples } from "./LessonSectionJourney";
 import { LessonGatewayEnhancement } from "./LessonGatewayEnhancement";
 import { gatewayEnhancements } from "../strengthening/catalogGatewayEnhancements";
+import { MathText } from "../../../components/ui/MathExpression";
 import "./LessonTopicStudyBoard.css";
 
 type ChartKind = "bars" | "line" | "number-line" | "circle" | "fraction";
@@ -302,14 +303,21 @@ export function LessonTopicStudyBoard({
           <ol>
             {examples.map((example) => (
               <li key={example.id}>
-                <strong>{example.prompt}</strong>
+                <strong>
+                  <MathText value={example.prompt} />
+                </strong>
                 <ol>
                   {example.steps.map((step) => (
-                    <li key={step}>{step}</li>
+                    <li key={step}>
+                      <MathText value={step} />
+                    </li>
                   ))}
                 </ol>
                 <p>
-                  Answer: <b>{example.answer}</b>
+                  Answer:{" "}
+                  <b>
+                    <MathText value={example.answer} />
+                  </b>
                 </p>
               </li>
             ))}
@@ -318,17 +326,20 @@ export function LessonTopicStudyBoard({
         <article>
           <h3>Labels and formulas</h3>
           <p>
-            <b>Definition.</b> {lesson.definitions[0]?.statement}
+            <b>Definition.</b> <MathText value={lesson.definitions[0]?.statement ?? ""} />
           </p>
           <ul>
             {lesson.formulas.slice(0, 2).map((formula) => (
               <li key={formula.id}>
-                <b>{formula.label}:</b> {formula.expression}
+                <b>
+                  <MathText value={formula.label} />:
+                </b>{" "}
+                <MathText value={formula.expression} />
               </li>
             ))}
           </ul>
           <p>
-            <b>How it works.</b> {lesson.howItWorks}
+            <b>How it works.</b> <MathText value={lesson.howItWorks} />
           </p>
         </article>
       </div>

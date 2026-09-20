@@ -39,6 +39,7 @@ import {
   X,
   ZoomIn,
   ZoomOut,
+  Ruler,
   type LucideIcon,
 } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -62,6 +63,14 @@ import {
   readWorkspaceChromeTheme,
   type WorkspaceChromeTheme,
 } from "../../../workspace/workspaceChromeTheme";
+import {
+  GEOMETRY_MOBILE_QUERY,
+  MobileWorkspaceShell,
+  useMobileWorkspaceGestures,
+  useWorkspaceOverlay,
+  guardCanvasPointer,
+} from "../../../workspace/mobile";
+import { useCanvasZoomLock } from "../../../hooks/useCanvasZoomLock";
 
 export type GeometryTool =
   | "select"
@@ -533,6 +542,13 @@ export default function GeometryWorkspacePanel({
   >("Properties");
   const [projectName, setProjectName] = useState("Circle Theorem Exploration");
   const [mobilePanel, setMobilePanel] = useState<GeometryMobilePanel>(null);
+  const overlay = useWorkspaceOverlay({ query: GEOMETRY_MOBILE_QUERY });
+  const drawerRef = useRef<HTMLElement>(null);
+  useMobileWorkspaceGestures(drawerRef, {
+    enabled: overlay.isMobile && Boolean(mobilePanel),
+    edge: "bottom",
+    onClose: overlay.close,
+  });
   const [toolSearch, setToolSearch] = useState("");
   const [favoriteTools, setFavoriteTools] = useState<GeometryTool[]>([
     "select",
@@ -556,6 +572,16 @@ export default function GeometryWorkspacePanel({
     readGeometryStudioTheme,
   );
   const [exportOpen, setExportOpen] = useState(false);
+  useEffect(() => {
+    if (!settingsOpen && !exportOpen) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return;
+      setSettingsOpen(false);
+      setExportOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [exportOpen, settingsOpen]);
   const [unit, setUnit] = useState<GeometryUnit>("units");
   const [precision, setPrecision] = useState(2);
   const [snapMenuOpen, setSnapMenuOpen] = useState(false);
@@ -633,7 +659,7 @@ export default function GeometryWorkspacePanel({
     setRecentTools((current) =>
       [nextTool, ...current.filter((tool) => tool !== nextTool)].slice(0, 6),
     );
-    if (window.innerWidth <= 1180) setMobilePanel(null);
+    if (window.innerWidth <= 1180) overlay.close();
   };
   const applyStudioMode = (mode: typeof studioMode) => {
     setStudioMode(mode);
@@ -673,8 +699,27 @@ export default function GeometryWorkspacePanel({
       document.documentElement.removeAttribute("data-geometry-workspace-theme");
     };
   }, [studioTheme]);
+  useEffect(() => {
+    if (!overlay.isMobile) return;
+    const mapped =
+      overlay.active === "objects"
+        ? "objects"
+        : overlay.active === "inspector"
+          ? "inspector"
+          : overlay.active === "protocol"
+            ? "protocol"
+            : overlay.active === "tools" ||
+                overlay.active === "menu" ||
+                overlay.active === "more"
+              ? "tools"
+              : null;
+    setMobilePanel(mapped);
+    setSettingsOpen(overlay.active === "settings");
+    setExportOpen(overlay.active === "export");
+  }, [overlay.active, overlay.isMobile]);
   return (
-    <div
+    <MobileWorkspaceShell
+      overlay={overlay}
       className="geometry-studio-shell"
       data-active-pane={activePane}
       data-expanded-pane={expandedPane ?? undefined}
@@ -747,7 +792,9 @@ export default function GeometryWorkspacePanel({
           </button>
           <button
             type="button"
-            onClick={() => setExportOpen(true)}
+            onClick={() =>
+              overlay.isMobile ? overlay.toggle("export") : setExportOpen(true)
+            }
             title="Export"
             aria-label="Export"
           >
@@ -756,7 +803,11 @@ export default function GeometryWorkspacePanel({
           </button>
           <button
             type="button"
-            onClick={() => setSettingsOpen(true)}
+            onClick={() =>
+              overlay.isMobile
+                ? overlay.toggle("settings")
+                : setSettingsOpen((value) => !value)
+            }
             title="Workspace settings"
             aria-label="Workspace settings"
           >
@@ -773,7 +824,10 @@ export default function GeometryWorkspacePanel({
           <button
             type="button"
             className="geometry-mobile-overflow"
-            onClick={() => setMobilePanel("tools")}
+            data-mws-menu="true"
+            aria-pressed={overlay.isOpen("tools")}
+            aria-expanded={overlay.isOpen("tools")}
+            onClick={() => overlay.toggle("tools")}
             title="Open workspace panels"
             aria-label="Open workspace panels"
           >
@@ -861,7 +915,10 @@ export default function GeometryWorkspacePanel({
               graphSettings={graphSettings}
               onWheel={onBoardWheel}
               onKeyDown={onBoardKeyDown}
-              onPointerDown={onBoardPointerDown}
+              onPointerDown={(event) => {
+                if (guardCanvasPointer(overlay, event)) return;
+                onBoardPointerDown(event);
+              }}
               onPointerMove={handleBoardMove}
               onPointerUp={onBoardPointerUp}
               onPointerLeave={onBoardPointerLeave}
@@ -992,22 +1049,45 @@ export default function GeometryWorkspacePanel({
             ["select", "Select", MousePointer2],
             ["point", "Point", Plus],
             ["line", "Line", Slash],
-            ["circle", "Circle", Circle],
             ["polygon", "Shape", Pentagon],
+            ["segment", "Measure", Ruler],
           ] as Array<[GeometryTool, string, LucideIcon]>
         ).map(([id, label, Icon]) => (
           <button
             key={id}
             type="button"
-            className={activeTool === id ? "active" : ""}
-            onClick={() => chooseTool(id)}
-            aria-pressed={activeTool === id}
+            className={
+              id === "segment" && studioMode === "Measure"
+                ? "active"
+                : activeTool === id
+                  ? "active"
+                  : ""
+            }
+            onClick={() => {
+              if (id === "segment") {
+                applyStudioMode("Measure");
+                chooseTool("segment");
+                return;
+              }
+              applyStudioMode("Construct");
+              chooseTool(id);
+            }}
+            aria-pressed={
+              id === "segment"
+                ? studioMode === "Measure"
+                : activeTool === id
+            }
           >
             <Icon />
             <span>{label}</span>
           </button>
         ))}
-        <button type="button" onClick={() => setMobilePanel("tools")}>
+        <button
+          type="button"
+          className={overlay.isOpen("tools") ? "active" : ""}
+          aria-pressed={overlay.isOpen("tools")}
+          onClick={() => overlay.toggle("tools")}
+        >
           <Menu />
           <span>More</span>
         </button>
@@ -1059,8 +1139,15 @@ export default function GeometryWorkspacePanel({
               selectedGeometry={selectedGeometry}
               search={objectSearch}
               filter={objectFilter}
-              onSelect={onSelectGeometry}
+              onSelect={(selection) => {
+                onSelectGeometry?.(selection);
+                if (objectSearch) setObjectSearch("");
+              }}
               onToggleVisibility={onToggleGeometryVisibility}
+              onLongPress={(selection) => {
+                onSelectGeometry?.(selection);
+                overlay.open("inspector");
+              }}
             />
           )}
           {registryTab === "Algebra" && (
@@ -1070,8 +1157,15 @@ export default function GeometryWorkspacePanel({
                 selectedGeometry={selectedGeometry}
                 search={objectSearch}
                 filter={objectFilter}
-                onSelect={onSelectGeometry}
+                onSelect={(selection) => {
+                  onSelectGeometry?.(selection);
+                  if (objectSearch) setObjectSearch("");
+                }}
                 onToggleVisibility={onToggleGeometryVisibility}
+                onLongPress={(selection) => {
+                  onSelectGeometry?.(selection);
+                  overlay.open("inspector");
+                }}
               />
               {measurementsPanel}
             </>
@@ -1165,8 +1259,9 @@ export default function GeometryWorkspacePanel({
       {mobilePanel && (
         <GeometryMobileDrawer
           panel={mobilePanel}
-          onPanel={setMobilePanel}
-          onClose={() => setMobilePanel(null)}
+          panelRef={drawerRef}
+          onPanel={(next) => overlay.open(next)}
+          onClose={overlay.close}
           tools={
             <>
               <label className="geometry-tool-search">
@@ -1223,8 +1318,16 @@ export default function GeometryWorkspacePanel({
                 selectedGeometry={selectedGeometry}
                 search={objectSearch}
                 filter={objectFilter}
-                onSelect={onSelectGeometry}
+                onSelect={(selection) => {
+                  onSelectGeometry?.(selection);
+                  if (objectSearch) setObjectSearch("");
+                  overlay.close();
+                }}
                 onToggleVisibility={onToggleGeometryVisibility}
+                onLongPress={(selection) => {
+                  onSelectGeometry?.(selection);
+                  overlay.open("inspector");
+                }}
               />
             </>
           }
@@ -1258,18 +1361,22 @@ export default function GeometryWorkspacePanel({
           onUnit={setUnit}
           onPrecision={setPrecision}
           onContrast={toggleContrast}
-          onClose={() => setSettingsOpen(false)}
+          onClose={() =>
+            overlay.isMobile ? overlay.close() : setSettingsOpen(false)
+          }
         />
       )}
       {exportOpen && (
         <GeometryExportDialog
           projectName={projectName}
           onPng={onExport}
-          onClose={() => setExportOpen(false)}
+          onClose={() =>
+            overlay.isMobile ? overlay.close() : setExportOpen(false)
+          }
           construction={construction}
         />
       )}
-    </div>
+    </MobileWorkspaceShell>
   );
 }
 
@@ -1574,6 +1681,7 @@ function GeometryObjectRegistry({
   filter = "all",
   onSelect,
   onToggleVisibility,
+  onLongPress,
 }: {
   construction: Construction;
   selectedGeometry: SelectedGeometryObject | null;
@@ -1581,6 +1689,7 @@ function GeometryObjectRegistry({
   filter?: "all" | GeometryObjectType | "visible" | "hidden";
   onSelect?: (selection: SelectedGeometryObject) => void;
   onToggleVisibility?: (selection: SelectedGeometryObject) => void;
+  onLongPress?: (selection: SelectedGeometryObject) => void;
 }) {
   const rows: Array<{
     type: GeometryObjectType;
@@ -1693,6 +1802,34 @@ function GeometryObjectRegistry({
                   <button
                     type="button"
                     onClick={() => onSelect?.({ type: row.type, id: row.id })}
+                    onContextMenu={(event) => {
+                      event.preventDefault();
+                      onLongPress?.({ type: row.type, id: row.id });
+                    }}
+                    onPointerDown={(event) => {
+                      if (event.pointerType !== "touch" || !onLongPress) return;
+                      const selection = { type: row.type, id: row.id };
+                      const timer = window.setTimeout(
+                        () => onLongPress(selection),
+                        480,
+                      );
+                      const release = () => {
+                        window.clearTimeout(timer);
+                        event.currentTarget.removeEventListener(
+                          "pointerup",
+                          release,
+                        );
+                        event.currentTarget.removeEventListener(
+                          "pointercancel",
+                          release,
+                        );
+                      };
+                      event.currentTarget.addEventListener("pointerup", release);
+                      event.currentTarget.addEventListener(
+                        "pointercancel",
+                        release,
+                      );
+                    }}
                     className="geometry-object-row-main"
                   >
                     <Icon className="h-5 w-5" strokeWidth={2.4} />
@@ -2103,6 +2240,7 @@ function GeometryPinnedMeasurements({
 
 function GeometryMobileDrawer({
   panel,
+  panelRef,
   onPanel,
   onClose,
   tools,
@@ -2111,6 +2249,7 @@ function GeometryMobileDrawer({
   protocol,
 }: {
   panel: Exclude<GeometryMobilePanel, null>;
+  panelRef: RefObject<HTMLElement | null>;
   onPanel: (panel: Exclude<GeometryMobilePanel, null>) => void;
   onClose: () => void;
   tools: ReactNode;
@@ -2120,20 +2259,15 @@ function GeometryMobileDrawer({
 }) {
   const content = { tools, objects, inspector, protocol }[panel];
   return (
-    <>
-      <button
-        type="button"
-        className="geometry-drawer-backdrop"
-        onClick={onClose}
-        aria-label="Close geometry panel"
-      />
-      <aside
-        className="geometry-mobile-drawer"
-        role="dialog"
-        aria-modal="true"
-        aria-label={`${panel} panel`}
-      >
-        <div className="geometry-drawer-handle" />
+    <aside
+      ref={panelRef}
+      className="geometry-mobile-drawer"
+      data-mws-panel={panel}
+      role="dialog"
+      aria-modal="true"
+      aria-label={`${panel} panel`}
+    >
+      <div className="geometry-drawer-handle" data-mws-handle="true" />
         <header>
           <nav>
             {(["tools", "objects", "inspector", "protocol"] as const).map(
@@ -2155,7 +2289,6 @@ function GeometryMobileDrawer({
         </header>
         <div className="geometry-drawer-content thin-scrollbar">{content}</div>
       </aside>
-    </>
   );
 }
 
@@ -2545,6 +2678,9 @@ function GeometryBoard({
   onPointerLeave: () => void;
   onContextMenu: (event: PointerEvent<SVGSVGElement>) => void;
 }) {
+  useCanvasZoomLock(boardRef, (event) => {
+    onWheel(event as unknown as WheelEvent<SVGSVGElement>);
+  });
   return (
     <svg
       ref={boardRef}
@@ -2559,7 +2695,6 @@ function GeometryBoard({
       onContextMenu={onContextMenu}
       onPointerUp={onPointerUp}
       onPointerLeave={onPointerLeave}
-      onWheel={onWheel}
       onKeyDown={onKeyDown}
       data-active-tool={activeTool}
       className="geometry-board-svg w-full touch-none rounded-2xl border border-slate-200 bg-white dark:border-white/10 dark:bg-slate-950"

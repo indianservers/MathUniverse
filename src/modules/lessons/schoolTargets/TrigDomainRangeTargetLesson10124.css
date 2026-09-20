@@ -1,12 +1,12 @@
 .tr10124-page {
   position: relative;
-  top: -8px;
-  width: min(1360px, calc(100vw - 320px));
+  top: 0;
+  width: min(1360px, 100%);
   margin: auto;
   color: #e8eef8;
   background: #031328;
   font:
-    11px/1.4 Inter,
+    14px/1.5 Inter,
     Arial,
     sans-serif;
   letter-spacing: 0;
@@ -14,7 +14,7 @@
 .tr10124-page:before {
   position: fixed;
   z-index: -1;
-  inset: 58px 0 0 283px;
+  inset: 58px 0 0 0;
   background: #031328;
   content: "";
 }
@@ -34,8 +34,33 @@
 }
 .tr10124-page > header {
   position: relative;
-  min-height: 120px;
-  padding: 15px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(180px, 240px) auto;
+  gap: 12px 16px;
+  min-height: 0;
+  padding: 16px 18px;
+}
+.tr10124-page > header h1 {
+  margin: 6px 0;
+  max-width: none;
+  grid-column: 1;
+  font-size: 23px;
+}
+.tr10124-page > header > p {
+  max-width: none;
+  grid-column: 1;
+}
+.tr10124-page > header > label {
+  position: static;
+  display: grid;
+  gap: 4px;
+  width: auto;
+  align-self: start;
+}
+.tr10124-page > header fieldset {
+  position: static;
+  align-self: start;
+  border: 0;
 }
 .tr10124-page > header small,
 .tr10124-page h2 {
@@ -43,33 +68,11 @@
   font-weight: 900;
   letter-spacing: 0.7px;
 }
-.tr10124-page > header h1 {
-  margin: 6px 0;
-  max-width: calc(100% - 550px);
-  font-size: 23px;
-}
-.tr10124-page > header > p {
-  max-width: calc(100% - 550px);
-}
-.tr10124-page > header > label {
-  position: absolute;
-  right: 290px;
-  top: 18px;
-  display: grid;
-  gap: 4px;
-  width: 250px;
-}
 .tr10124-page select {
   padding: 8px;
   border: 1px solid #304961;
   border-radius: 6px;
   background: #091b31;
-}
-.tr10124-page > header fieldset {
-  position: absolute;
-  right: 120px;
-  top: 13px;
-  border: 0;
 }
 .tr10124-page > header fieldset button {
   padding: 7px 16px;
@@ -289,6 +292,14 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+@media (max-width: 1024px) {
+  .tr10124-page > header {
+    grid-template-columns: 1fr;
+  }
+  .tr10124-gallery {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
 @media (max-width: 800px) {
   .tr10124-page {
     top: 0;
@@ -297,6 +308,9 @@
   }
   .tr10124-page:before {
     inset: 0;
+  }
+  .tr10124-page > header {
+    grid-template-columns: 1fr;
   }
   .tr10124-page > header > label,
   .tr10124-page > header fieldset {

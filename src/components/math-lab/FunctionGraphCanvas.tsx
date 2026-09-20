@@ -1,7 +1,8 @@
 import type { GraphSample } from "../../utils/mathEngine/graphSampler";
-import { useRef, type PointerEvent, type WheelEvent } from "react";
+import { useCallback, useRef, type PointerEvent } from "react";
 import type { KeyboardEvent as ReactKeyboardEvent } from "react";
 import { zoomGraphView } from "../../graph-studio/graphViewUtils";
+import { useCanvasZoomLock } from "../../hooks/useCanvasZoomLock";
 
 export type FunctionGraphSeries = {
   id: string;
@@ -92,6 +93,7 @@ export default function FunctionGraphCanvas({
   precisionCrosshair = false,
   imageLayers = [],
 }: FunctionGraphCanvasProps) {
+  const svgRef = useRef<SVGSVGElement>(null);
   const dragRef = useRef<{
     clientX: number;
     clientY: number;
@@ -167,30 +169,35 @@ export default function FunctionGraphCanvas({
     handlePointerMove(event);
   }
 
-  function handleWheel(event: WheelEvent<SVGSVGElement>) {
-    if (!onViewChange) return;
-    event.preventDefault();
-    const rect = event.currentTarget.getBoundingClientRect();
-    const xRatio = Math.min(
-      1,
-      Math.max(0, (event.clientX - rect.left) / rect.width),
-    );
-    const yRatio = Math.min(
-      1,
-      Math.max(0, (event.clientY - rect.top) / rect.height),
-    );
-    const anchorX = view.xMin + xRatio * (view.xMax - view.xMin);
-    const anchorY = view.yMax - yRatio * (view.yMax - view.yMin);
-    const factor = event.deltaY > 0 ? 1.14 : 0.86;
-    const width = (view.xMax - view.xMin) * factor;
-    const height = (view.yMax - view.yMin) * factor;
-    onViewChange({
-      xMin: anchorX - width * xRatio,
-      xMax: anchorX + width * (1 - xRatio),
-      yMin: anchorY - height * (1 - yRatio),
-      yMax: anchorY + height * yRatio,
-    });
-  }
+  const handleWheel = useCallback(
+    (event: WheelEvent) => {
+      if (!onViewChange) return;
+      const node = svgRef.current;
+      if (!node) return;
+      const rect = node.getBoundingClientRect();
+      const xRatio = Math.min(
+        1,
+        Math.max(0, (event.clientX - rect.left) / rect.width),
+      );
+      const yRatio = Math.min(
+        1,
+        Math.max(0, (event.clientY - rect.top) / rect.height),
+      );
+      const anchorX = view.xMin + xRatio * (view.xMax - view.xMin);
+      const anchorY = view.yMax - yRatio * (view.yMax - view.yMin);
+      const factor = event.deltaY > 0 ? 1.14 : 0.86;
+      const width = (view.xMax - view.xMin) * factor;
+      const height = (view.yMax - view.yMin) * factor;
+      onViewChange({
+        xMin: anchorX - width * xRatio,
+        xMax: anchorX + width * (1 - xRatio),
+        yMin: anchorY - height * (1 - yRatio),
+        yMax: anchorY + height * yRatio,
+      });
+    },
+    [onViewChange, view],
+  );
+  useCanvasZoomLock(svgRef, handleWheel);
 
   function handleKeyDown(event: ReactKeyboardEvent<SVGSVGElement>) {
     if (
@@ -253,6 +260,7 @@ export default function FunctionGraphCanvas({
 
   return (
     <svg
+      ref={svgRef}
       className="h-full min-h-[360px] w-full touch-none rounded-2xl border border-slate-200 bg-white shadow-inner dark:border-white/10 dark:bg-slate-950"
       viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
       role="img"
@@ -271,7 +279,6 @@ export default function FunctionGraphCanvas({
       onPointerCancel={() => {
         dragRef.current = null;
       }}
-      onWheel={handleWheel}
       onKeyDown={handleKeyDown}
     >
       <desc id="function-graph-keyboard-help">
