@@ -175,6 +175,7 @@ const Phase5MathEnvironmentPage = lazyRoute(
   () => import("./pages/Phase5MathEnvironmentPage"),
 );
 const LinearAlgebra = lazyRoute(() => import("./pages/LinearAlgebra"));
+const DifferentialEquations = lazyRoute(() => import("./pages/DifferentialEquations"));
 const MathLab = lazyRoute(() => import("./pages/MathLab"));
 const MathLab3DGraphing = lazyRoute(() => import("./pages/MathLab3DGraphing"));
 const MathLabConicSolver = lazyRoute(
@@ -651,6 +652,22 @@ export default function App() {
               element={<CalculusStudio page="multivariable-vector" />}
             />
             <Route
+              path="calculus/jacobians-coordinate-transformations"
+              element={<CalculusStudio page="jacobians" />}
+            />
+            <Route
+              path="calculus/beta-gamma"
+              element={<CalculusStudio page="beta-gamma" />}
+            />
+            <Route path="calculus/series-tests" element={<CalculusStudio page="series-tests" />} />
+            <Route path="calculus/curve-tracing" element={<CalculusStudio page="curve-tracing" />} />
+            <Route path="calculus/taylor-two-variables" element={<CalculusStudio page="taylor-two-variables" />} />
+            <Route path="calculus/lagrange-multipliers" element={<CalculusStudio page="lagrange-multipliers" />} />
+            <Route path="calculus/change-order-integration" element={<CalculusStudio page="change-order" />} />
+            <Route path="calculus/centroid-center-of-mass" element={<CalculusStudio page="centroid" />} />
+            <Route path="calculus/moments-of-inertia" element={<CalculusStudio page="moments-of-inertia" />} />
+            <Route path="calculus/multiple-integral-applications" element={<CalculusStudio page="integral-engineering" />} />
+            <Route
               path="calculus/advanced"
               element={<CalculusStudio page="advanced" />}
             />
@@ -706,8 +723,12 @@ export default function App() {
             <Route path="set-theory/:pageSlug" element={<SetTheory />} />
             <Route path="statistics" element={<ProbabilityStatistics />} />
             <Route path="linear-algebra" element={<LinearAlgebra />} />
-            {["vectors", "matrices", "row-reduction", "linear-transforms", "determinants", "vector-spaces", "eigenvectors", "orthogonality", "least-squares", "playground"].map((slug) => (
+            {["vectors", "matrices", "row-reduction", "linear-transforms", "determinants", "vector-spaces", "eigenvectors", "orthogonality", "least-squares", "playground", "cayley-hamilton", "diagonalization", "quadratic-forms", "principal-axes", "matrix-factorizations", "similarity", "jordan-form"].map((slug) => (
               <Route key={`la-${slug}`} path={`linear-algebra/${slug}`} element={<LinearAlgebra />} />
+            ))}
+            <Route path="differential-equations" element={<DifferentialEquations />} />
+            {["explorer", "method-selector", "slope-fields", "initial-value", "separable", "homogeneous-first-order", "exact", "linear-first-order", "bernoulli", "growth-models", "euler", "heun", "rk4", "higher-order-linear", "undetermined-coefficients", "variation-of-parameters", "cauchy-euler", "systems", "phase-plane", "mechanical-oscillations", "lcr-circuit", "newton-cooling"].map((slug) => (
+              <Route key={`de-${slug}`} path={`differential-equations/${slug}`} element={<DifferentialEquations />} />
             ))}
             <Route path="matrices" element={<MatrixOperations />} />
             <Route

@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState, type KeyboardEvent } from "react";
+import { Link } from "react-router-dom";
 import {
   BookOpen,
   CircleHelp,
@@ -175,6 +176,7 @@ export default function CalculusDifferentialEquationsStudio({ mode }: { mode: st
           {draftField.error && active !== "separable" && active !== "growth" ? <p className="de-error">{draftField.error}</p> : null}
           {active !== "separable" && active !== "growth" ? <p className="de-feedback" data-testid="de-equation">dy/dx = {expression}</p> : null}
           {active === "slope" || active === "ivp" ? <p className="de-hint">Click the slope field to set (x₀, y₀).</p> : null}
+          <p className="de-hint"><Link to="/differential-equations">Open the full Differential Equations Studio.</Link></p>
           {active === "separable" ? (
             <>
               <Slider label="Rate k" value={k} min={-1.5} max={1.5} step={0.05} onChange={setK} />

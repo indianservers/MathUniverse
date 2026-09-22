@@ -121,4 +121,40 @@ describe("Calculus studio mockup chrome", () => {
     expect(work).toContain("Work W = ∫ F(x) dx");
     expect(work).toContain("data-lab-mode=\"work\"");
   });
+
+  it("renders the Jacobian and Beta Gamma labs inside Calculus Studio", () => {
+    const jacobians = renderToStaticMarkup(
+      <MemoryRouter initialEntries={["/calculus/jacobians-coordinate-transformations"]}>
+        <CalculusStudio page="jacobians" />
+      </MemoryRouter>,
+    );
+    expect(jacobians).toContain("Jacobians");
+    expect(jacobians).toContain("Grid and its image");
+    expect(jacobians).toContain("data-lab-mode=\"grid\"");
+
+    const gamma = renderToStaticMarkup(
+      <MemoryRouter initialEntries={["/calculus/beta-gamma?mode=gamma"]}>
+        <CalculusStudio page="beta-gamma" />
+      </MemoryRouter>,
+    );
+    expect(gamma).toContain("Gamma integrand");
+    expect(gamma).toContain("data-lab-mode=\"gamma\"");
+  });
+
+  it("renders the new calculus engineering labs", () => {
+    const series = renderToStaticMarkup(
+      <MemoryRouter initialEntries={["/calculus/series-tests"]}>
+        <CalculusStudio page="series-tests" />
+      </MemoryRouter>,
+    );
+    expect(series).toContain("Named Convergence Tests");
+    expect(series).toContain("inconclusive");
+
+    const lagrange = renderToStaticMarkup(
+      <MemoryRouter initialEntries={["/calculus/lagrange-multipliers"]}>
+        <CalculusStudio page="lagrange-multipliers" />
+      </MemoryRouter>,
+    );
+    expect(lagrange).toContain("Constraint circle");
+  });
 });

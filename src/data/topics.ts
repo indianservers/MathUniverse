@@ -78,7 +78,20 @@ export const topics: Topic[] = [
     difficulty: "Advanced",
     estimatedMinutes: 55,
     colorGradient: "from-orange-400 to-rose-600",
-    labCount: 8,
+    labCount: 18,
+  },
+  {
+    id: "differential-equations",
+    title: "Differential Equations",
+    route: "/differential-equations",
+    iconName: "Waves",
+    description:
+      "Model change, solve equations, visualize solution families, and connect mathematics to engineering systems.",
+    concepts: ["Slope fields", "Exact equations", "Integrating factors", "Numerical methods"],
+    difficulty: "Advanced",
+    estimatedMinutes: 50,
+    colorGradient: "from-teal-500 to-cyan-600",
+    labCount: 22,
   },
   {
     id: "complex",
@@ -205,7 +218,7 @@ export const topics: Topic[] = [
     difficulty: "Advanced",
     estimatedMinutes: 60,
     colorGradient: "from-sky-500 to-violet-600",
-    labCount: 8,
+    labCount: 17,
   },
   {
     id: "matrices",

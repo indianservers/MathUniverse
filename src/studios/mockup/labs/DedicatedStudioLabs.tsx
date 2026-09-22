@@ -15,6 +15,7 @@ import UnitCircleLab from "./UnitCircleLab";
 import RemainingStudioLab from "./RemainingStudioLabs";
 import ModellingStudioLab from "./ModellingLabs";
 import LinearAlgebraLab from "../../linear-algebra/LinearAlgebraLabs";
+import DifferentialEquationsLab from "../../differential-equations/DifferentialEquationsLabs";
 import ComplexNumbersLab from "../../complex/ComplexNumbersLabs";
 import CoordinateLab from "../../geometry/coordinate/CoordinateLab";
 import PolygonsLab from "../../geometry/polygons/PolygonsLab";
@@ -29,6 +30,7 @@ import { WavesHarmonicsLab as TargetWavesHarmonicsLab } from "./WavesHarmonicsLa
 export default function DedicatedStudioLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNode }) {
   if (page.route.includes("mathematical-modelling") && page.id !== "home") return <ModellingStudioLab page={page} />;
   if (page.route.includes("linear-algebra") && page.id !== "home") return <LinearAlgebraLab page={page} extra={extra} />;
+  if (page.route.startsWith("/differential-equations") && page.id !== "home") return <DifferentialEquationsLab page={page} />;
   if (page.route.includes("complex-numbers") && page.id !== "home") return <ComplexNumbersLab page={page} extra={extra} />;
   if (page.id === "right-triangle") return <RightTriangleLab page={page} />;
   if (page.id === "unit-circle") return <UnitCircleLab page={page} />;

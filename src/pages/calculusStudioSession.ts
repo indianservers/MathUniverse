@@ -9,6 +9,16 @@ export type CalculusStudioPage =
   | "differential-equations"
   | "series-parametric-polar"
   | "multivariable-vector"
+  | "jacobians"
+  | "beta-gamma"
+  | "series-tests"
+  | "curve-tracing"
+  | "taylor-two-variables"
+  | "lagrange-multipliers"
+  | "change-order"
+  | "centroid"
+  | "moments-of-inertia"
+  | "integral-engineering"
   | "advanced";
 
 export type StudioSettings = {
@@ -61,6 +71,16 @@ export const studioRoutes: Record<CalculusStudioPage, string> = {
   "differential-equations": "/calculus/differential-equations",
   "series-parametric-polar": "/calculus/series-parametric-polar",
   "multivariable-vector": "/calculus/multivariable-vector",
+  jacobians: "/calculus/jacobians-coordinate-transformations",
+  "beta-gamma": "/calculus/beta-gamma",
+  "series-tests": "/calculus/series-tests",
+  "curve-tracing": "/calculus/curve-tracing",
+  "taylor-two-variables": "/calculus/taylor-two-variables",
+  "lagrange-multipliers": "/calculus/lagrange-multipliers",
+  "change-order": "/calculus/change-order-integration",
+  centroid: "/calculus/centroid-center-of-mass",
+  "moments-of-inertia": "/calculus/moments-of-inertia",
+  "integral-engineering": "/calculus/multiple-integral-applications",
   advanced: "/calculus/advanced",
 };
 

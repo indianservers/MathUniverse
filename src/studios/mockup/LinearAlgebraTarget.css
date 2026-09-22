@@ -1403,3 +1403,34 @@
   min-height: 320px;
 }
 
+.la-matrix-edit {
+  display: grid;
+  gap: 6px;
+  margin: 8px 0;
+}
+.la-matrix-edit div {
+  display: flex;
+  gap: 6px;
+}
+.la-matrix-edit input {
+  width: 4.5rem;
+  min-height: 36px;
+}
+.la-theory-groups {
+  display: grid;
+  gap: 12px;
+  margin: 16px 0;
+}
+.la-theory-groups h2 {
+  margin: 0;
+  font-size: 1rem;
+}
+.la-theory-groups ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+

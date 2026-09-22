@@ -18,6 +18,13 @@ export const LINEAR_LAB_META: Record<string, StudioLabMeta> = {
   orthogonality: { outcome: "Orthogonal bases, projections, and more.", minutes: 8, level: "Next" },
   "least-squares": { outcome: "Best-fit solutions to overdetermined systems.", minutes: 10, level: "Apply" },
   playground: { outcome: "Experiment freely in 2D and 3D space.", minutes: 8, level: "Extend" },
+  "cayley-hamilton": { outcome: "Substitute a matrix into its characteristic polynomial.", minutes: 12, level: "Next" },
+  diagonalization: { outcome: "Build P and D when an eigenbasis exists.", minutes: 12, level: "Next" },
+  "quadratic-forms": { outcome: "Classify a symmetric form and read its level curves.", minutes: 10, level: "Apply" },
+  "principal-axes": { outcome: "Rotate a conic onto orthonormal axes.", minutes: 10, level: "Apply" },
+  "matrix-factorizations": { outcome: "Factor a matrix with LU, QR, or SVD.", minutes: 12, level: "Apply" },
+  similarity: { outcome: "Change basis and keep the invariants.", minutes: 8, level: "Next" },
+  "jordan-form": { outcome: "See a Jordan block when an eigenvector is missing.", minutes: 10, level: "Extend" },
 };
 
 export const MODEL_LAB_META: Record<string, StudioLabMeta> = {
@@ -71,9 +78,35 @@ export const STATS_LAB_META: Record<string, StudioLabMeta> = {
   anova: { outcome: "Compare between-group and within-group variation.", minutes: 10, level: "Extend" },
 };
 
+export const DE_LAB_META: Record<string, StudioLabMeta> = {
+  explorer: { outcome: "Classify order, linearity, and what a solution means.", minutes: 8, level: "Start here" },
+  "slope-fields": { outcome: "Read a family of curves from local slopes.", minutes: 10, level: "Core" },
+  "initial-value": { outcome: "Use one point to select a solution.", minutes: 8, level: "Core" },
+  separable: { outcome: "Separate variables and integrate both sides.", minutes: 10, level: "Core" },
+  "homogeneous-first-order": { outcome: "Reduce a scale-invariant equation with y = vx.", minutes: 12, level: "Next" },
+  exact: { outcome: "Test exactness and draw potential contours.", minutes: 12, level: "Next" },
+  "linear-first-order": { outcome: "Build an integrating factor and solve for y.", minutes: 12, level: "Next" },
+  bernoulli: { outcome: "Transform y^n into a linear equation.", minutes: 10, level: "Next" },
+  "method-selector": { outcome: "Match a first-order equation to a method.", minutes: 10, level: "Apply" },
+  euler: { outcome: "Step along tangents and watch the error.", minutes: 8, level: "Core" },
+  heun: { outcome: "Average a predicted slope with the starting slope.", minutes: 8, level: "Next" },
+  rk4: { outcome: "Compare four-slope steps with Euler.", minutes: 8, level: "Next" },
+  "growth-models": { outcome: "See exponential growth level off.", minutes: 8, level: "Apply" },
+  "higher-order-linear": { outcome: "Classify roots and the matching solution family.", minutes: 12, level: "Next" },
+  "undetermined-coefficients": { outcome: "Choose a trial and correct it for resonance.", minutes: 12, level: "Next" },
+  "variation-of-parameters": { outcome: "Use the Wronskian to build a particular solution.", minutes: 12, level: "Next" },
+  "cauchy-euler": { outcome: "Solve the indicial equation for x^m.", minutes: 12, level: "Next" },
+  systems: { outcome: "Classify the origin from eigenvalues.", minutes: 12, level: "Apply" },
+  "phase-plane": { outcome: "Click an initial condition on the vector field.", minutes: 10, level: "Apply" },
+  "mechanical-oscillations": { outcome: "Compare damping ratios on a spring.", minutes: 10, level: "Apply" },
+  "lcr-circuit": { outcome: "Match a series circuit to the spring equation.", minutes: 10, level: "Apply" },
+  "newton-cooling": { outcome: "Watch a temperature gap decay.", minutes: 8, level: "Apply" },
+};
+
 const BY_STUDIO: Record<string, Record<string, StudioLabMeta>> = {
   trigonometry: TRIG_LAB_META,
   "linear-algebra": LINEAR_LAB_META,
+  "differential-equations": DE_LAB_META,
   modelling: MODEL_LAB_META,
   "complex-numbers": COMPLEX_LAB_META,
   discrete: DISCRETE_LAB_META,

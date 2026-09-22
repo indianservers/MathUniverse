@@ -16,6 +16,7 @@ import {
   EquationPlane, MathArrow, MathParallelogram, StudioMath3D, TransformedCube, lift2,
 } from "../shared/studioMath3D";
 import { markLinearComplete } from "./linearAlgebraStudioSession";
+import { CayleyHamiltonLab, DiagonalizationLab, FactorizationLab, JordanLab, QuadraticFormsLab, SimilarityLab } from "./AdvancedLinearLabs";
 
 export default function LinearAlgebraLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNode }) {
   switch (page.id) {
@@ -29,6 +30,13 @@ export default function LinearAlgebraLab({ page, extra }: { page: StudioMockupPa
     case "orthogonality": return <OrthoLab page={page} />;
     case "least-squares": return <LeastSquaresLab page={page} />;
     case "playground": return <PlaygroundLab page={page} extra={extra} />;
+    case "cayley-hamilton": return <CayleyHamiltonLab page={page} />;
+    case "diagonalization": return <DiagonalizationLab page={page} />;
+    case "quadratic-forms": return <QuadraticFormsLab page={page} />;
+    case "principal-axes": return <QuadraticFormsLab page={page} />;
+    case "matrix-factorizations": return <FactorizationLab page={page} />;
+    case "similarity": return <SimilarityLab page={page} />;
+    case "jordan-form": return <JordanLab page={page} />;
     default: return null;
   }
 }

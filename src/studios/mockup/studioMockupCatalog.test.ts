@@ -11,6 +11,7 @@ describe("studio mockup catalog", () => {
       "modelling",
       "discrete",
       "statistics",
+      "differential-equations",
     ]);
     expect(studioRouteTable.length).toBeGreaterThan(70);
   });

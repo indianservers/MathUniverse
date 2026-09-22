@@ -57,6 +57,7 @@ import { useLabMode } from "./studioLabKit";
 import { ModellingLaunchArt, ModellingNavIcon, modellingDatasets, modellingJourney } from "./modellingStudioIcons";
 import { IllustratedStudioHome, StudioLabCard } from "./studioHomeLayouts";
 import GeometryStudioHome from "../geometry/GeometryStudioHome";
+import DifferentialEquationsHome from "../differential-equations/DifferentialEquationsHome";
 import { GEO_SHORTCUTS, geometrySearchHits } from "../geometry/geometryStudioCopy";
 import { markGeoComplete, markGeoVisit, useGeoSession, writeGeoSession } from "../geometry/geometryStudioSession";
 import { searchHits, trigModeLearning, trigPathId } from "./trigStudioCopy";
@@ -837,6 +838,7 @@ const launchTitle = isModel ? "Explore modelling domains" : isTrig ? "Explore Ke
     : 0;
 
   if (studio.id === "geometry") return <GeometryStudioHome studio={studio} />;
+  if (studio.id === "differential-equations") return <DifferentialEquationsHome studio={studio} />;
 
   if (isModel) {
     return (

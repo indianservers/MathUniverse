@@ -39,6 +39,8 @@ import CalculusLimitsStudio from "./CalculusLimitsStudio";
 import CalculusMultivariableStudio from "./CalculusMultivariableStudio";
 import CalculusConceptStudio, { type ConceptPage } from "./CalculusConceptStudio";
 import CalculusDifferentialEquationsStudio from "./CalculusDifferentialEquationsStudio";
+import { BetaGammaLab, JacobianLab } from "../studios/calculus/CalculusSpecialLabs";
+import { CentroidLab, ChangeOrderLab, CurveTracingLab, InertiaLab, IntegralApplicationsLab, LagrangeLab, SeriesTestsLab, TaylorTwoLab } from "../studios/calculus/EngineeringCalculusLabs";
 import CalculusEnhancementWorkbench from "../studios/calculus/CalculusEnhancementWorkbench";
 import CalculusEnhancementIdeas from "./CalculusEnhancementIdeas";
 import { StudioMath3D, WasherSolid } from "../studios/shared/studioMath3D";
@@ -85,7 +87,17 @@ const navItems = [
   { page: "integral-applications", label: "Integral Applications" },
   { page: "differential-equations", label: "Differential Equations" },
   { page: "series-parametric-polar", label: "Σ Series / Parametric / Polar" },
+  { page: "series-tests", label: "Series Tests" },
+  { page: "curve-tracing", label: "Curve Tracing" },
   { page: "multivariable-vector", label: "Multivariable / Vector" },
+  { page: "taylor-two-variables", label: "Taylor in Two Variables" },
+  { page: "lagrange-multipliers", label: "Lagrange Multipliers" },
+  { page: "jacobians", label: "Jacobians" },
+  { page: "change-order", label: "Change of Order" },
+  { page: "integral-engineering", label: "Integral Applications" },
+  { page: "centroid", label: "Centroid" },
+  { page: "moments-of-inertia", label: "Moments of Inertia" },
+  { page: "beta-gamma", label: "Beta & Gamma" },
   { page: "advanced", label: "Advanced" },
 ] satisfies Array<{ page: CalculusStudioPage; label: string }>;
 
@@ -102,6 +114,16 @@ const pageMeta: Record<CalculusStudioPage, { title: string; subtitle: string; mo
   "differential-equations": { title: "Differential Equations Studio", subtitle: "Read slope fields, trace solution curves, and compare numerical methods.", modes: modeList("slope", "Slope Fields", "ivp", "Initial Value", "separable", "Separable", "growth", "Growth Models", "euler", "Euler", "rk4", "RK4") },
   "series-parametric-polar": { title: "Series, Parametric & Polar Studio", subtitle: "Explore series expansions, parametric curves, and polar graphs interactively.", modes: modeList("sequences", "Sequences", "convergence", "Convergence", "power", "Power Series", "taylor", "Taylor", "parametric", "Parametric", "polar", "Polar") },
   "multivariable-vector": { title: "Multivariable & Vector Calculus Studio", subtitle: "Explore surfaces, gradients, tangent planes, multiple integrals, and fields.", modes: modeList("partial", "Partial Derivatives", "gradient", "Gradient", "plane", "Tangent Plane", "optimization", "Optimization", "multiple", "Multiple Integrals", "fields", "Vector Fields", "theorems", "Theorems") },
+  jacobians: { title: "Jacobians & Coordinate Transformations", subtitle: "See how a map scales area and volume.", modes: modeList("grid", "Grid", "polar", "Polar", "cylindrical", "Cylindrical", "spherical", "Spherical", "change", "Change of Variables", "singular", "Singular") },
+  "beta-gamma": { title: "Beta & Gamma Functions", subtitle: "Compare integral definitions with recurrence and identities.", modes: modeList("gamma", "Gamma", "beta", "Beta", "engineering", "Engineering Integrals") },
+  "series-tests": { title: "Named Convergence Tests", subtitle: "Choose a test, including the ones that stay inconclusive.", modes: modeList("selector", "Selector", "ratio", "Ratio and Root", "comparison", "Comparison", "alternating", "Alternating", "raabe", "Raabe and Log") },
+  "curve-tracing": { title: "Engineering Curve Tracing", subtitle: "Build a curve from domain, symmetry, asymptotes, and turning points.", modes: modeList("cartesian", "Cartesian", "polar", "Polar") },
+  "taylor-two-variables": { title: "Taylor Expansion in Two Variables", subtitle: "Compare a surface with its tangent plane and quadratic approximation.", modes: modeList("linear", "Linear", "quadratic", "Quadratic") },
+  "lagrange-multipliers": { title: "Lagrange Multipliers", subtitle: "Find where the objective gradient is parallel to the constraint.", modes: modeList("circle", "Circle", "line", "Line") },
+  "change-order": { title: "Change of Order", subtitle: "Rewrite a double integral with the opposite slices.", modes: modeList("triangle", "Triangle", "split", "Split region") },
+  centroid: { title: "Centroid and Center of Mass", subtitle: "Balance a lamina, including one with variable density.", modes: modeList("uniform", "Uniform", "density", "Variable density", "triangle", "Triangle") },
+  "moments-of-inertia": { title: "Moments of Inertia", subtitle: "Second moments for rectangles, disks, annuli, and a triangle.", modes: modeList("rectangle", "Rectangle", "disk", "Disk", "annulus", "Annulus", "triangle", "Triangle") },
+  "integral-engineering": { title: "Multiple Integral Applications", subtitle: "Area, volume, average value, and a triple-integral box.", modes: modeList("area", "Area", "volume", "Volume", "average", "Average value", "triple", "Triple integrals") },
   advanced: { title: "Advanced Calculus Workbench", subtitle: "Twenty-five linked limit, derivative, integral, series, ODE, and vector-calculus tools.", modes: [] },
 };
 
@@ -276,8 +298,26 @@ const HOME_TOPIC_CARDS = [
   { page: "integral-applications", title: "Volumes", note: "Apply integrals to area, volume, work, and arc length." },
   { page: "differential-equations", title: "Diff. Equations", note: "Read slope fields and compare Euler with RK4." },
   { page: "series-parametric-polar", title: "Series & Polar", note: "Build Taylor polynomials, parametric, and polar graphs." },
+  { page: "series-tests", title: "Series Tests", note: "Run a named test and keep an inconclusive result inconclusive." },
+  { page: "curve-tracing", title: "Curve Tracing", note: "Assemble a Cartesian or polar curve from its features." },
   { page: "multivariable-vector", title: "Multivariable", note: "Explore surfaces, gradients, and vector fields." },
+  { page: "taylor-two-variables", title: "Taylor in Two Variables", note: "Compare a surface with its tangent plane and Hessian." },
+  { page: "lagrange-multipliers", title: "Lagrange Multipliers", note: "Align an objective gradient with a constraint." },
+  { page: "jacobians", title: "Jacobians", note: "Watch a coordinate change scale area and volume." },
+  { page: "change-order", title: "Change of Order", note: "Swap vertical and horizontal slices on the same region." },
+  { page: "integral-engineering", title: "Integral Applications", note: "Area, volume, averages, and a triple-integral box." },
+  { page: "centroid", title: "Centroid", note: "Balance a lamina with uniform or variable density." },
+  { page: "moments-of-inertia", title: "Moments of Inertia", note: "Second moments of rectangles, disks, and annuli." },
+  { page: "beta-gamma", title: "Beta & Gamma", note: "Compare special-function integrals with their identities." },
 ] as const satisfies ReadonlyArray<{ page: CalculusStudioPage; title: string; note: string }>;
+
+const HOME_GROUPS: Array<{ title: string; pages: Array<(typeof HOME_TOPIC_CARDS)[number]["page"]> }> = [
+  { title: "Foundations", pages: ["limits", "derivatives", "derivative-applications", "integration", "integration-techniques", "integral-applications", "differential-equations"] },
+  { title: "Series and curves", pages: ["series-parametric-polar", "series-tests", "curve-tracing"] },
+  { title: "Multivariable calculus", pages: ["multivariable-vector", "taylor-two-variables", "lagrange-multipliers", "jacobians"] },
+  { title: "Multiple integrals", pages: ["change-order", "integral-engineering", "centroid", "moments-of-inertia"] },
+  { title: "Special functions", pages: ["beta-gamma"] },
+];
 
 function lastUsedLabel(visitedAt?: number) {
   if (!visitedAt) return "Not started yet";
@@ -314,17 +354,27 @@ function StudioHome() {
         <HomeSearch />
         <section className="cs-explore" id="journey" aria-labelledby="explore-title">
           <h2 id="explore-title">Explore by topic</h2>
-          <div className="cs-topic-grid">
-            {HOME_TOPIC_CARDS.map((card, index) => (
-              <button key={card.page} type="button" className={`cs-topic-card tone-${index + 1}`} onClick={() => navigate(studioRoutes[card.page])}>
-                <span className="cs-topic-n">{index + 1}</span>
-                <strong>{card.title}</strong>
-                <small>{card.note}</small>
-                <CalculusLaunchArt kind={card.page} />
-                <i className="cs-topic-go" aria-hidden="true"><ChevronRight /></i>
-              </button>
-            ))}
-          </div>
+          {HOME_GROUPS.map((group) => (
+            <section key={group.title} aria-label={group.title}>
+              <h3>{group.title}</h3>
+              <div className="cs-topic-grid">
+                {group.pages.map((pageId) => {
+                  const card = HOME_TOPIC_CARDS.find((item) => item.page === pageId);
+                  const index = HOME_TOPIC_CARDS.findIndex((item) => item.page === pageId);
+                  if (!card) return null;
+                  return (
+                    <button key={card.page} type="button" className={`cs-topic-card tone-${(index % 9) + 1}`} onClick={() => navigate(studioRoutes[card.page])}>
+                      <span className="cs-topic-n">{index + 1}</span>
+                      <strong>{card.title}</strong>
+                      <small>{card.note}</small>
+                      <CalculusLaunchArt kind={card.page} />
+                      <i className="cs-topic-go" aria-hidden="true"><ChevronRight /></i>
+                    </button>
+                  );
+                })}
+              </div>
+            </section>
+          ))}
         </section>
         <section className="cs-loop" aria-label="Learning loop">
           <InfoPill icon={<Eye />} title="Observe" text="Visualize concepts with interactive diagrams." onClick={() => document.getElementById("journey")?.scrollIntoView({ behavior: "smooth" })} />
@@ -472,7 +522,27 @@ function StudioLab({ page, reduced }: { page: Exclude<CalculusStudioPage, "home"
         ))}
       </nav>
       <div id={`cs-panel-${mode}`} role="tabpanel" aria-labelledby={`cs-tab-${mode}`}>
-        {page === "integration"
+        {page === "jacobians"
+          ? <JacobianLab mode={mode} />
+          : page === "beta-gamma"
+          ? <BetaGammaLab mode={mode} />
+          : page === "series-tests"
+          ? <SeriesTestsLab mode={mode} />
+          : page === "curve-tracing"
+          ? <CurveTracingLab mode={mode} />
+          : page === "taylor-two-variables"
+          ? <TaylorTwoLab mode={mode} />
+          : page === "lagrange-multipliers"
+          ? <LagrangeLab mode={mode} />
+          : page === "change-order"
+          ? <ChangeOrderLab mode={mode} />
+          : page === "centroid"
+          ? <CentroidLab mode={mode} />
+          : page === "moments-of-inertia"
+          ? <InertiaLab mode={mode} />
+          : page === "integral-engineering"
+          ? <IntegralApplicationsLab mode={mode} />
+          : page === "integration"
           ? <CalculusIntegrationStudio mode={mode} />
           : page === "limits"
             ? <CalculusLimitsStudio mode={mode} />
@@ -564,7 +634,7 @@ function InteractiveLab({ page, mode, reduced }: { page: Exclude<CalculusStudioP
           {toast ? <p className={toast === "Plotted." ? "cs-feedback" : "cs-error"}>{toast}</p> : null}
           {(compiled.error && page !== "multivariable-vector" && page !== "differential-equations") && <p className="cs-error">{compiled.error}</p>}
           {(surface.error && page === "multivariable-vector") && <p className="cs-error">{surface.error}</p>}
-          {page === "differential-equations" ? <p className="cs-hint">Click the slope field to set (x₀, y₀). Euler, RK4, and the exact curve overlay when f(x,y)=x−y.</p> : <ExampleChips page={page} mode={mode} onPick={(value) => { setDraft(value); setExpression(value); }} />}
+          {page === "differential-equations" ? <p className="cs-hint">Click the slope field to set (x₀, y₀). Euler, RK4, and the exact curve overlay when f(x,y)=x−y. <Link to="/differential-equations">Open the full Differential Equations Studio.</Link></p> : <ExampleChips page={page} mode={mode} onPick={(value) => { setDraft(value); setExpression(value); }} />}
           <Range label={axisLabel(page, mode, "a")} value={a} min={-5} max={5} step={0.05} onChange={setA} />
           {(page === "integration" || page === "integral-applications" || page === "differential-equations" || page === "multivariable-vector") && <Range label={axisLabel(page, mode, "b")} value={b} min={-5} max={5} step={0.05} onChange={setB} />}
           {(page === "derivatives" || page === "limits" || page === "differential-equations") && <Range label={page === "derivatives" ? "Secant distance h" : page === "differential-equations" ? "Step size h" : "Approach / step size"} value={delta} min={0.02} max={2} step={0.02} onChange={setDelta} />}

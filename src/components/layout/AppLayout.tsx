@@ -87,7 +87,7 @@ export default function AppLayout() {
   const showBack = location.pathname.split("/").filter(Boolean).length > 1;
   // StudioPageShell renders its own breadcrumb. Keep the shared trail for
   // ordinary pages, but avoid showing two trails on shell based pages.
-  const hasOwnStudioBreadcrumb = /^\/(?:algebra|algebraic-structures|calculus|geometry|combinatorics|complex-numbers|set-theory|statistics|linear-algebra|matrices|number-systems|trigonometry|truth-table|mathematical-modelling|studio-projects|daily-challenge|worked-examples|discrete-world)(?:\/|$)/.test(location.pathname) || ["/probability-statistics", "/mathematical-logic"].includes(location.pathname);
+  const hasOwnStudioBreadcrumb = /^\/(?:algebra|algebraic-structures|calculus|differential-equations|geometry|combinatorics|complex-numbers|set-theory|statistics|linear-algebra|matrices|number-systems|trigonometry|truth-table|mathematical-modelling|studio-projects|daily-challenge|worked-examples|discrete-world)(?:\/|$)/.test(location.pathname) || ["/probability-statistics", "/mathematical-logic"].includes(location.pathname);
   const isWorkspaceRoute =
     location.pathname === "/workspace" ||
     location.pathname.startsWith("/workspace/");
@@ -133,6 +133,9 @@ export default function AppLayout() {
   const isLinearAlgebraStudioRoute =
     location.pathname === "/linear-algebra" ||
     location.pathname.startsWith("/linear-algebra/");
+  const isDifferentialEquationsStudioRoute =
+    location.pathname === "/differential-equations" ||
+    location.pathname.startsWith("/differential-equations/");
   const currentMathWorkspace = findMathWorkspace(location.pathname);
   const isCompassTarget = location.pathname === "/lessons/geometry/221-compass";
   const isSemicircleTarget =
@@ -262,7 +265,7 @@ export default function AppLayout() {
     );
   }
 
-  if (isCalculusLabRoute || isModellingStudioRoute || isGeometryStudioRoute || isTrigonometryStudioRoute || isAlgebraStudioRoute || isLinearAlgebraStudioRoute || isComplexNumbersStudioRoute) {
+  if (isCalculusLabRoute || isModellingStudioRoute || isGeometryStudioRoute || isTrigonometryStudioRoute || isAlgebraStudioRoute || isLinearAlgebraStudioRoute || isComplexNumbersStudioRoute || isDifferentialEquationsStudioRoute) {
     return (
       <main id="main-content" className="h-dvh min-h-0 overflow-hidden bg-slate-50">
         <Outlet />

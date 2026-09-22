@@ -484,6 +484,39 @@ function LinearAlgebraStudioHome(props: HomeProps) {
         })}
       </div>
       <p className="sl-kicker">Compose stack: open Playground to see A then B. Singular warning lives on Determinants when area is 0.</p>
+      <div className="la-theory-groups">
+        <section>
+          <h2>Matrix theory</h2>
+          <ul>
+            <li><Link to="/linear-algebra/cayley-hamilton">Cayley–Hamilton</Link></li>
+            <li><Link to="/linear-algebra/matrix-factorizations">Factorizations</Link></li>
+            <li><Link to="/linear-algebra/similarity">Similarity</Link></li>
+          </ul>
+        </section>
+        <section>
+          <h2>Eigenstructure</h2>
+          <ul>
+            <li><Link to="/linear-algebra/eigenvectors">Eigenvalues</Link></li>
+            <li><Link to="/linear-algebra/diagonalization">Diagonalization</Link></li>
+            <li><Link to="/linear-algebra/jordan-form">Jordan form</Link></li>
+          </ul>
+        </section>
+        <section>
+          <h2>Orthogonality</h2>
+          <ul>
+            <li><Link to="/linear-algebra/orthogonality">Orthogonality</Link></li>
+            <li><Link to="/linear-algebra/least-squares">Least squares</Link></li>
+            <li><Link to="/linear-algebra/matrix-factorizations?mode=QR">QR</Link></li>
+          </ul>
+        </section>
+        <section>
+          <h2>Quadratic geometry</h2>
+          <ul>
+            <li><Link to="/linear-algebra/quadratic-forms">Quadratic forms</Link></li>
+            <li><Link to="/linear-algebra/principal-axes">Principal axes</Link></li>
+          </ul>
+        </section>
+      </div>
       <div className="la-home-dock" id="la-journey">
         <section className="la-dock-continue">
           <FlaskConical />

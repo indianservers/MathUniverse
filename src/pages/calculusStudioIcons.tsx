@@ -1,18 +1,7 @@
 import { useId, type ReactNode } from "react";
+import type { CalculusStudioPage } from "./calculusStudioSession";
 
-type IconPage =
-  | "main"
-  | "home"
-  | "limits"
-  | "derivatives"
-  | "derivative-applications"
-  | "integration"
-  | "integration-techniques"
-  | "integral-applications"
-  | "differential-equations"
-  | "series-parametric-polar"
-  | "multivariable-vector"
-  | "advanced";
+type IconPage = CalculusStudioPage | "main";
 
 function Svg({ children, label }: { children: ReactNode; label: string }) {
   return (
@@ -102,6 +91,28 @@ export function CalculusNavIcon({ page }: { page: IconPage }) {
           <path {...stroke} d="M12 5v4" />
         </Svg>
       );
+    case "jacobians":
+      return (
+        <Svg label="Jacobians">
+          <path {...stroke} d="M4 16 12 4l8 12H4Z" />
+          <path {...stroke} d="M8 16h8" />
+        </Svg>
+      );
+    case "beta-gamma":
+      return (
+        <Svg label="Beta and Gamma">
+          <path {...stroke} d="M5 18c2-8 4-8 6 0s4 8 8 0" />
+        </Svg>
+      );
+    case "series-tests":
+    case "curve-tracing":
+    case "taylor-two-variables":
+    case "lagrange-multipliers":
+    case "change-order":
+    case "centroid":
+    case "moments-of-inertia":
+    case "integral-engineering":
+      return <Svg label="Calculus lab"><path {...stroke} d="M4 16c3-8 6 4 8-2s4 6 8 0" /><path {...stroke} d="M5 19h14" /></Svg>;
     default:
       return <Svg label="Studio"><circle cx="12" cy="12" r="7" {...stroke} /></Svg>;
   }
