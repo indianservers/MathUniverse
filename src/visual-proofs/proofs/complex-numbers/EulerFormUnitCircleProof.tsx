@@ -279,7 +279,7 @@ export default function EulerFormUnitCircleProof({
             </div>
 
             <Panel className="euler-reveal p-2.5" title="Live Values">
-              <div className="grid grid-cols-2 gap-1.5 md:grid-cols-3 xl:grid-cols-[0.9fr_0.9fr_0.9fr_1.55fr_0.95fr]">
+              <div className="grid grid-cols-2 gap-1.5 md:grid-cols-[0.9fr_0.8fr_0.8fr_1.55fr_0.95fr]">
                 <ValueCard label="Angle" tint="violet"><FormulaMath value={`\\theta=${formatAngle(theta, unit)}`} />{exact.radians ? <small><FormulaMath value={`${exact.radians}\\,rad`} /></small> : <small>{formatNumber(theta)} rad</small>}</ValueCard>
                 <ValueCard label="cos θ (x)" tint="blue"><strong>{formatNumber(cosTheta)}</strong>{exact.cos ? <small><FormulaMath value={exact.cos} /></small> : null}</ValueCard>
                 <ValueCard label="sin θ (y)" tint="pink"><strong>{formatNumber(sinTheta)}</strong>{exact.sin ? <small><FormulaMath value={exact.sin} /></small> : null}</ValueCard>
@@ -459,7 +459,7 @@ function InfoCard({ title, icon, className = "", children }: { title: string; ic
 
 function ValueCard({ label, tint, children }: { label: string; tint: "violet" | "blue" | "pink" | "green"; children: ReactNode }) {
   const tints = { violet: "bg-violet-50 text-violet-950", blue: "bg-blue-50 text-blue-950", pink: "bg-fuchsia-50 text-fuchsia-950", green: "bg-emerald-50 text-emerald-950" };
-  return <div className={`min-h-[70px] rounded-xl p-2 ${tints[tint]}`}><p className="text-[11px] font-black opacity-75">{label}</p><div className="mt-0.5 flex flex-col gap-0.5 text-base font-black leading-tight">{children}</div></div>;
+  return <div className={`min-h-[64px] min-w-0 rounded-xl p-2 ${tints[tint]}`}><p className="text-[11px] font-black opacity-75">{label}</p><div className="mt-0.5 flex min-w-0 flex-col gap-0.5 text-sm font-black leading-tight md:[&_small]:hidden xl:[&_small]:block">{children}</div></div>;
 }
 
 function OptionToggle({ checked, onChange, label }: { checked: boolean; onChange: () => void; label: string }) {
