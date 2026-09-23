@@ -14,6 +14,8 @@ export type PlotKind =
   | "parametric"
   | "polar"
   | "piecewise";
+export type GraphFillMode = "none" | "solid" | "pattern" | "image";
+export type GraphFillPattern = "stripes" | "dots" | "crosshatch" | "grid";
 export type PlotItem = {
   id: string;
   expression: string;
@@ -24,6 +26,10 @@ export type PlotItem = {
   visible?: boolean;
   locked?: boolean;
   trace?: boolean;
+  fillMode?: GraphFillMode;
+  fillColor?: string;
+  fillPattern?: GraphFillPattern;
+  fillImage?: string;
 };
 export type GraphViewport = {
   xMin: number;
@@ -153,6 +159,28 @@ export function graphSegmentPath(
         `${index === 0 || point.move ? "M" : "L"}${scaleX(point.x, viewport).toFixed(2)},${scaleY(point.y, viewport).toFixed(2)}`,
     )
     .join(" ");
+}
+
+export function areaFillPath(
+  path: string,
+  viewport: GraphViewport,
+  kind: PlotKind | "error",
+) {
+  const commands = [
+    ...path.matchAll(/[ML](-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)/g),
+  ];
+  if (commands.length < 2) return "";
+  if (kind === "polar" || kind === "parametric" || kind === "implicit") {
+    return `${path} Z`;
+  }
+  const startX = commands[0]?.[1];
+  const endX = commands[commands.length - 1]?.[1];
+  if (!startX || !endX) return "";
+  const axis = Math.min(
+    viewport.height,
+    Math.max(0, scaleY(0, viewport)),
+  ).toFixed(2);
+  return `${path} L${endX},${axis} L${startX},${axis} Z`;
 }
 
 export function graphPath(expression: string, viewport: GraphViewport) {

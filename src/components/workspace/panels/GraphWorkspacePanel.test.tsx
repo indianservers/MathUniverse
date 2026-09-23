@@ -2,6 +2,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import GraphWorkspacePanel from "./GraphWorkspacePanel";
 import {
+  areaFillPath,
   buildAddedGraphPlots,
   removeGraphPlotById,
   type PlotItem,
@@ -174,6 +175,35 @@ describe("GraphWorkspacePanel", () => {
     expect(next[0].expression).toBe("x^2");
     expect(next[0].kind).toBe("function");
     expect(existing).toHaveLength(1);
+  });
+
+  it("offers solid, pattern, and image fills for the selected graph", () => {
+    const html = renderPanel([
+      {
+        id: "plot-1",
+        expression: "sin(x)",
+        color: colors[0],
+        kind: "function",
+        visible: true,
+        fillMode: "solid",
+        fillColor: "#16a34a",
+      },
+    ]);
+
+    expect(html).toContain("Outline");
+    expect(html).toContain('aria-label="Graph fill"');
+    expect(html).toContain("Solid color");
+    expect(html).toContain("Pattern");
+    expect(html).toContain("Image");
+    expect(html).toContain('fill="#16a34a"');
+    expect(html).toContain('stroke="#06b6d4"');
+  });
+
+  it("closes a function fill on the x-axis and a polar fill on itself", () => {
+    const viewport = { xMin: -2, xMax: 2, yMin: -2, yMax: 2, width: 100, height: 100 };
+    const curve = "M10.00,20.00 L90.00,20.00";
+    expect(areaFillPath(curve, viewport, "function")).toBe("M10.00,20.00 L90.00,20.00 L90.00,50.00 L10.00,50.00 Z");
+    expect(areaFillPath(curve, viewport, "polar").endsWith("Z")).toBe(true);
   });
 
   it("removes an expression by id", () => {

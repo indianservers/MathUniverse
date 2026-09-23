@@ -25,6 +25,7 @@ import {
   saveLinkedParameter,
 } from "../../../workspace/linkedParameters";
 import {
+  areaFillPath,
   buildAddedGraphPlots,
   graphInputPresets,
   inferPlotKind,
@@ -34,6 +35,7 @@ import {
   sampleTable,
   scaleX,
   scaleY,
+  type GraphFillPattern,
   type GraphViewport,
   type PlotItem,
   type PlotKind,
@@ -83,6 +85,7 @@ export default function GraphWorkspacePanel({
   const [hoveredPlotId, setHoveredPlotId] = useState<string | null>(null);
   const [graphValidation, setGraphValidation] =
     useState<GraphValidationResult | null>(validationMessage);
+  const [fillNotice, setFillNotice] = useState("");
   const [xMin, setXMin] = useState(-10);
   const [xMax, setXMax] = useState(10);
   const [yMin, setYMin] = useState(-10);
@@ -488,9 +491,10 @@ export default function GraphWorkspacePanel({
                 </div>
                 <div className="mt-3 grid grid-cols-[1fr_auto] items-end gap-2">
                   <label className="text-xs font-bold uppercase text-slate-500 dark:text-slate-400">
-                    Color
+                    Outline
                     <input
                       type="color"
+                      aria-label="Outline color"
                       value={selectedPlot.color}
                       disabled={selectedPlot.locked}
                       onChange={(event) =>
@@ -518,6 +522,13 @@ export default function GraphWorkspacePanel({
                     />
                   ))}
                 </div>
+                <GraphFillControls
+                  plot={selectedPlot}
+                  colors={colors}
+                  notice={fillNotice}
+                  onChange={(patch) => updatePlot(selectedPlot.id, patch)}
+                  onNotice={setFillNotice}
+                />
                 <p className="mt-3 rounded-xl bg-slate-100 p-2 text-xs font-bold text-slate-500 dark:bg-white/10 dark:text-slate-300">
                   {selectedPlot.kind ?? inferPlotKind(selectedPlot.expression)}{" "}
                   | {selectedPlot.visible === false ? "hidden" : "visible"} |{" "}
@@ -594,9 +605,35 @@ export default function GraphWorkspacePanel({
             className="graph-workspace-surface h-[240px] w-full rounded-xl bg-slate-50 dark:bg-slate-900 sm:h-[300px] xl:h-[340px]"
             data-testid="workspace-graph-surface"
           >
+            <defs>
+              {visiblePlots.map((plot) => (
+                <GraphFillDefinition key={plot.id} plot={plot} />
+              ))}
+            </defs>
             <GraphGrid viewport={viewport} />
             {sampledLayers.map((layer) =>
-              layer.cells.map((cell, index) => (
+              layer.paths.map((path, index) => {
+                const plot = visiblePlots.find((item) => item.id === layer.id);
+                const area = areaFillPath(path, viewport, layer.kind);
+                const paint = graphFillPaint(plot);
+                if (!area || !paint) return null;
+                return (
+                  <path
+                    key={`${layer.id}-fill-${index}`}
+                    d={area}
+                    fill={paint}
+                    stroke="none"
+                    opacity="0.72"
+                    pointerEvents="none"
+                  />
+                );
+              }),
+            )}
+            {sampledLayers.map((layer) =>
+              layer.cells.map((cell, index) => {
+                const plot = visiblePlots.find((item) => item.id === layer.id);
+                const paint = graphFillPaint(plot);
+                return (
                 <rect
                   key={`${layer.id}-cell-${index}`}
                   x={scaleX(cell.x, viewport)}
@@ -611,9 +648,11 @@ export default function GraphWorkspacePanel({
                     (cell.height / (viewport.yMax - viewport.yMin || 1)) *
                       viewport.height,
                   )}
-                  fill={layer.color}
+                  fill={paint || layer.color}
                   opacity={
-                    layer.id === selectedPlot?.id || layer.id === hoveredPlotId
+                    paint
+                      ? 0.85
+                      : layer.id === selectedPlot?.id || layer.id === hoveredPlotId
                       ? 0.22
                       : layer.kind === "inequality"
                         ? 0.12
@@ -626,7 +665,8 @@ export default function GraphWorkspacePanel({
                   onMouseLeave={() => setHoveredPlotId(null)}
                   className="cursor-pointer transition-opacity"
                 />
-              )),
+                );
+              }),
             )}
             {sampledLayers.map((layer) =>
               layer.paths.map((path, index) => {
@@ -671,8 +711,8 @@ export default function GraphWorkspacePanel({
                       cx={scaleX(point.x, viewport)}
                       cy={scaleY(point.y, viewport)}
                       r={active ? "7" : "5"}
-                      fill={plot.color}
-                      stroke={active ? "#0891b2" : "#0f172a"}
+                      fill={graphFillPaint(plot) || plot.color}
+                      stroke={plot.color}
                       strokeWidth={active ? "3" : "1.5"}
                       onClick={() => setSelectedPlotId(plot.id)}
                       onMouseEnter={() => setHoveredPlotId(plot.id)}
@@ -804,6 +844,227 @@ function GraphPanelTab({
       {icon}
       {label}
     </button>
+  );
+}
+
+const fillPatterns: { id: GraphFillPattern; label: string }[] = [
+  { id: "stripes", label: "Stripes" },
+  { id: "dots", label: "Dots" },
+  { id: "crosshatch", label: "Crosshatch" },
+  { id: "grid", label: "Grid" },
+];
+
+function fillPatternId(id: string) {
+  return `graph-fill-${id.replace(/[^a-zA-Z0-9_-]/g, "")}`;
+}
+
+function safeFillImage(value?: string) {
+  return value && /^data:image\/(?:png|jpeg|jpg|webp|gif);base64,/i.test(value)
+    ? value
+    : "";
+}
+
+function graphFillPaint(plot?: PlotItem) {
+  if (!plot?.fillMode || plot.fillMode === "none") return "";
+  if (plot.fillMode === "solid") return plot.fillColor || plot.color;
+  if (plot.fillMode === "image" && !safeFillImage(plot.fillImage)) return "";
+  return `url(#${fillPatternId(plot.id)})`;
+}
+
+function GraphFillDefinition({ plot }: { plot: PlotItem }) {
+  if (plot.fillMode !== "pattern" && plot.fillMode !== "image") return null;
+  const color = plot.fillColor || plot.color;
+  const image = safeFillImage(plot.fillImage);
+  const pattern = plot.fillPattern ?? "stripes";
+  return (
+    <pattern
+      id={fillPatternId(plot.id)}
+      width={plot.fillMode === "image" ? 640 : 12}
+      height={plot.fillMode === "image" ? 360 : 12}
+      patternUnits="userSpaceOnUse"
+    >
+      {plot.fillMode === "image" && image ? (
+        <image
+          href={image}
+          width="640"
+          height="360"
+          preserveAspectRatio="xMidYMid slice"
+        />
+      ) : null}
+      {plot.fillMode === "pattern" && pattern === "stripes" ? (
+        <path d="M0 12 L12 0" stroke={color} strokeWidth="2" />
+      ) : null}
+      {plot.fillMode === "pattern" && pattern === "dots" ? (
+        <circle cx="3" cy="3" r="1.6" fill={color} />
+      ) : null}
+      {plot.fillMode === "pattern" && pattern === "crosshatch" ? (
+        <>
+          <path d="M0 12 L12 0" stroke={color} strokeWidth="1.2" />
+          <path d="M0 0 L12 12" stroke={color} strokeWidth="1.2" />
+        </>
+      ) : null}
+      {plot.fillMode === "pattern" && pattern === "grid" ? (
+        <path d="M12 0 H0 V12" fill="none" stroke={color} strokeWidth="1" />
+      ) : null}
+    </pattern>
+  );
+}
+
+function GraphFillControls({
+  colors,
+  notice,
+  onChange,
+  onNotice,
+  plot,
+}: {
+  colors: string[];
+  notice: string;
+  onChange: (patch: Partial<PlotItem>) => void;
+  onNotice: (message: string) => void;
+  plot: PlotItem;
+}) {
+  const mode = plot.fillMode ?? "none";
+  const fillColor = plot.fillColor || plot.color;
+  const readImage = (file: File | undefined) => {
+    if (!file) return;
+    if (!file.type.startsWith("image/")) {
+      onNotice("Choose an image file.");
+      return;
+    }
+    if (file.size > 4_000_000) {
+      onNotice("Use an image smaller than 4 MB.");
+      return;
+    }
+    const source = URL.createObjectURL(file);
+    const image = new Image();
+    image.onload = () => {
+      const scale = Math.min(1, 640 / Math.max(image.width, image.height, 1));
+      const canvas = document.createElement("canvas");
+      canvas.width = Math.max(1, Math.round(image.width * scale));
+      canvas.height = Math.max(1, Math.round(image.height * scale));
+      const context = canvas.getContext("2d");
+      if (!context) {
+        onNotice("Could not read that image.");
+        URL.revokeObjectURL(source);
+        return;
+      }
+      context.drawImage(image, 0, 0, canvas.width, canvas.height);
+      URL.revokeObjectURL(source);
+      onChange({ fillMode: "image", fillImage: canvas.toDataURL("image/jpeg", 0.72) });
+      onNotice("");
+    };
+    image.onerror = () => {
+      URL.revokeObjectURL(source);
+      onNotice("Could not read that image.");
+    };
+    image.src = source;
+  };
+  return (
+    <fieldset className="mt-3 space-y-2" disabled={plot.locked}>
+      <label className="block text-xs font-bold uppercase text-slate-500 dark:text-slate-400">
+        Fill
+        <select
+          aria-label="Graph fill"
+          value={mode}
+          onChange={(event) =>
+            onChange({
+              fillMode: event.target.value as PlotItem["fillMode"],
+              fillColor,
+            })
+          }
+          className="mt-1 w-full rounded-lg border border-slate-200 bg-white p-2 text-sm font-bold normal-case text-slate-900 outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-100 disabled:cursor-not-allowed disabled:opacity-60 dark:border-white/10 dark:bg-slate-900 dark:text-slate-100"
+        >
+          <option value="none">Outline only</option>
+          <option value="solid">Solid color</option>
+          <option value="pattern">Pattern</option>
+          <option value="image">Image</option>
+        </select>
+      </label>
+      {mode === "solid" || mode === "pattern" ? (
+        <>
+          <label className="block text-xs font-bold uppercase text-slate-500 dark:text-slate-400">
+            Fill color
+            <input
+              type="color"
+              aria-label="Fill color"
+              value={fillColor}
+              onChange={(event) => onChange({ fillColor: event.target.value })}
+              className="mt-1 h-10 w-full rounded-lg border border-slate-200 bg-white p-1 dark:border-white/10 dark:bg-slate-900"
+            />
+          </label>
+          <div className="grid grid-cols-7 gap-1">
+            {colors.map((color) => (
+              <button
+                key={`fill-${color}`}
+                type="button"
+                aria-label={`Set fill color ${color}`}
+                aria-pressed={fillColor.toLowerCase() === color.toLowerCase()}
+                onClick={() => onChange({ fillColor: color })}
+                className={`h-8 rounded-lg border ${fillColor.toLowerCase() === color.toLowerCase() ? "border-slate-950 ring-2 ring-cyan-300 dark:border-white" : "border-white/80 dark:border-slate-700"}`}
+                style={{ background: color }}
+              />
+            ))}
+          </div>
+        </>
+      ) : null}
+      {mode === "pattern" ? (
+        <div className="flex flex-wrap gap-1">
+          {fillPatterns.map((item) => (
+            <button
+              key={item.id}
+              type="button"
+              aria-pressed={(plot.fillPattern ?? "stripes") === item.id}
+              onClick={() => onChange({ fillPattern: item.id })}
+              className={`min-h-10 rounded-lg border px-2 text-xs font-bold ${(plot.fillPattern ?? "stripes") === item.id ? "border-cyan-500 bg-cyan-50 text-cyan-800 dark:bg-cyan-300/10 dark:text-cyan-100" : "border-slate-200 bg-white text-slate-700 dark:border-white/10 dark:bg-slate-900 dark:text-slate-100"}`}
+            >
+              {item.label}
+            </button>
+          ))}
+        </div>
+      ) : null}
+      {mode === "image" ? (
+        <div className="space-y-2">
+          <label className="block text-xs font-bold uppercase text-slate-500 dark:text-slate-400">
+            Fill image
+            <input
+              type="file"
+              accept="image/png,image/jpeg,image/webp,image/gif"
+              aria-label="Fill image"
+              onChange={(event) => readImage(event.target.files?.[0])}
+              className="mt-1 block w-full text-sm font-semibold normal-case file:mr-2 file:min-h-10 file:rounded-lg file:border-0 file:bg-cyan-100 file:px-3 file:font-bold file:text-cyan-900"
+            />
+          </label>
+          {safeFillImage(plot.fillImage) ? (
+            <div className="flex items-center gap-2">
+              <img
+                src={plot.fillImage}
+                alt="Selected fill"
+                className="h-12 w-16 rounded-md object-cover"
+              />
+              <button
+                type="button"
+                onClick={() => onChange({ fillImage: "" })}
+                className="min-h-10 rounded-lg border border-slate-200 px-2 text-xs font-bold dark:border-white/10"
+              >
+                Remove image
+              </button>
+            </div>
+          ) : (
+            <p className="text-xs font-semibold text-slate-500 dark:text-slate-300">
+              The image fills the region under the curve.
+            </p>
+          )}
+        </div>
+      ) : null}
+      {notice ? (
+        <p role="status" className="text-xs font-bold text-rose-700 dark:text-rose-200">
+          {notice}
+        </p>
+      ) : null}
+      <p className="text-xs leading-5 text-slate-500 dark:text-slate-300">
+        Functions shade down to the x-axis. Closed polar and parametric curves fill their interior. The outline color stays on the curve.
+      </p>
+    </fieldset>
   );
 }
 
