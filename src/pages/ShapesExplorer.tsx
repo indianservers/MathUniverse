@@ -1,4 +1,4 @@
-import { Award, Box, Camera, Check, ChevronDown, Cuboid, Download, Eye, Filter, Grid3X3, Heart, History, Mic, PanelLeftClose, PanelLeftOpen, Palette, Pause, Play, Printer, RefreshCw, Redo2, RotateCcw, RotateCw, Ruler, Search, Settings, Shapes, SlidersHorizontal, Sparkles, Star, Undo2, Volume2, Wand2, X, ZoomIn, ZoomOut } from "lucide-react";
+import { Award, Box, Camera, Check, ChevronDown, Cuboid, Download, Eye, Filter, Grid3X3, Heart, History, Mic, Moon, PanelLeftClose, PanelLeftOpen, Palette, Pause, Play, Printer, RefreshCw, Redo2, RotateCcw, RotateCw, Ruler, Search, Settings, Shapes, SlidersHorizontal, Sparkles, Star, Sun, Undo2, Volume2, Wand2, X, ZoomIn, ZoomOut } from "lucide-react";
 import { OrbitControls, Text } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { ReactNode, useEffect, useMemo, useRef, useState, type PointerEvent } from "react";
@@ -42,6 +42,7 @@ export type ShapeDefinition = {
 type Metrics = Record<string, number>;
 type ShapeToolMode = "rotate" | "pan" | "measure" | "grid";
 type ShapeUnit = "units" | "mm" | "cm" | "m" | "in";
+type ShapesTheme = "dark" | "light";
 type ShapeSort = "name" | "dimension" | "complexity" | "vertices";
 type ShapeHistorySnapshot = {
   a: number;
@@ -62,6 +63,10 @@ type ShapeHistorySnapshot = {
 };
 
 const SHAPES_PREFERENCES_KEY = "math-universe-shapes-preferences-v2";
+const savedShapesTheme = (): ShapesTheme => {
+  try { return JSON.parse(localStorage.getItem(SHAPES_PREFERENCES_KEY) ?? "{}").theme === "light" ? "light" : "dark"; }
+  catch { return "dark"; }
+};
 const unitScale: Record<ShapeUnit, number> = { units: 1, mm: 10, cm: 1, m: 0.01, in: 0.3937008 };
 
 type DockPaneTab = "Live Values" | "Net & Cross-Sections" | "Formula Map";
@@ -183,6 +188,7 @@ export default function ShapesExplorer() {
   const [snapToGrid, setSnapToGrid] = useState(false);
   const [showAxes, setShowAxes] = useState(true);
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const [theme, setTheme] = useState<ShapesTheme>(savedShapesTheme);
   const [exportOpen, setExportOpen] = useState(false);
   const [highContrast, setHighContrast] = useState(false);
   const [largeLabels, setLargeLabels] = useState(false);
@@ -200,7 +206,7 @@ export default function ShapesExplorer() {
 
   useEffect(() => {
     try {
-      const saved = JSON.parse(localStorage.getItem(SHAPES_PREFERENCES_KEY) ?? "{}") as { favorites?: ShapeId[]; recent?: ShapeId[]; unit?: ShapeUnit; precision?: number };
+      const saved = JSON.parse(localStorage.getItem(SHAPES_PREFERENCES_KEY) ?? "{}") as { favorites?: ShapeId[]; recent?: ShapeId[]; unit?: ShapeUnit; precision?: number; theme?: ShapesTheme };
       setFavoriteIds(new Set(saved.favorites ?? []));
       setRecentIds(saved.recent ?? []);
       if (saved.unit) setUnit(saved.unit);
@@ -209,8 +215,8 @@ export default function ShapesExplorer() {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem(SHAPES_PREFERENCES_KEY, JSON.stringify({ favorites: [...favoriteIds], recent: recentIds, unit, precision }));
-  }, [favoriteIds, precision, recentIds, unit]);
+    localStorage.setItem(SHAPES_PREFERENCES_KEY, JSON.stringify({ favorites: [...favoriteIds], recent: recentIds, unit, precision, theme }));
+  }, [favoriteIds, precision, recentIds, unit, theme]);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -356,7 +362,7 @@ export default function ShapesExplorer() {
   };
 
   return (
-    <div className={`shapes-studio-shell ${mobileInspectorOpen ? "has-mobile-inspector" : ""} ${highContrast ? "is-high-contrast" : ""} ${largeLabels ? "has-large-labels" : ""}`} onPointerDown={() => markTopicInteracted("shapes")}>
+    <div data-shapes-theme={theme} className={`shapes-studio-shell ${mobileInspectorOpen ? "has-mobile-inspector" : ""} ${highContrast ? "is-high-contrast" : ""} ${largeLabels ? "has-large-labels" : ""}`} onPointerDown={() => markTopicInteracted("shapes")}>
       <header className="shapes-studio-topbar">
         <div className="shapes-title-lockup">
           <button type="button" className="shapes-icon-button" onClick={() => setShapeMenuCollapsed((value) => !value)} title="Toggle shape library">
@@ -374,13 +380,14 @@ export default function ShapesExplorer() {
             }}>{tab}</button>
           ))}
         </nav>
-        <div className="shapes-mobile-quick-actions"><button type="button" className="shapes-icon-button" onClick={() => setExportOpen(true)} aria-label="Export shape"><Download className="h-4 w-4" /></button><button type="button" className="shapes-icon-button" onClick={() => setSettingsOpen(true)} aria-label="Workspace settings"><Settings className="h-4 w-4" /></button><button ref={inspectorTriggerRef} type="button" className="shapes-mobile-properties shapes-icon-button" onClick={openMobileInspector} aria-haspopup="dialog" aria-expanded={mobileInspectorOpen}><SlidersHorizontal className="h-4 w-4" /><span>Properties</span></button></div>
+        <div className="shapes-mobile-quick-actions"><button type="button" className="shapes-icon-button" onClick={() => setTheme(theme === "dark" ? "light" : "dark")} aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`} title={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}>{theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}</button><button type="button" className="shapes-icon-button" onClick={() => setExportOpen(true)} aria-label="Export shape"><Download className="h-4 w-4" /></button><button type="button" className="shapes-icon-button" onClick={() => setSettingsOpen(true)} aria-label="Workspace settings"><Settings className="h-4 w-4" /></button><button ref={inspectorTriggerRef} type="button" className="shapes-mobile-properties shapes-icon-button" onClick={openMobileInspector} aria-haspopup="dialog" aria-expanded={mobileInspectorOpen}><SlidersHorizontal className="h-4 w-4" /><span>Properties</span></button></div>
         <div className="shapes-top-actions">
           <button type="button" className="shapes-toolbar-button" onClick={undoShape} disabled={!historyStack.length} title="Undo"><Undo2 className="h-4 w-4" /></button>
           <button type="button" className="shapes-toolbar-button" onClick={redoShape} disabled={!redoStack.length} title="Redo"><Redo2 className="h-4 w-4" /></button>
           <button type="button" className={favoriteIds.has(selected.id) ? "shapes-toolbar-button is-active" : "shapes-toolbar-button"} onClick={toggleFavorite}><Star className="h-4 w-4" />Favourite</button>
           <button type="button" className="shapes-toolbar-button" onClick={resetView}><RefreshCw className="h-4 w-4" />Reset</button>
           <button type="button" className="shapes-toolbar-button" onClick={() => setExportOpen(true)}><Download className="h-4 w-4" />Export</button>
+          <button type="button" className="shapes-icon-button" onClick={() => setTheme(theme === "dark" ? "light" : "dark")} aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`} title={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}>{theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}</button>
           <button type="button" className="shapes-toolbar-button" onClick={() => setSettingsOpen(true)}><Settings className="h-4 w-4" />Settings</button>
         </div>
       </header>
@@ -509,16 +516,16 @@ export default function ShapesExplorer() {
               </div>
             </>
           )}
-          {inspectorTab === "Formulas" && <div className="shapes-formula-stack"><div className="shapes-formula-box"><MathExpression value={selected.formula} /></div>{formulaEntries.slice(0, 3).map((entry) => <FormulaMapCard key={entry.title} entry={entry} metrics={metrics} compact />)}</div>}
+          {inspectorTab === "Formulas" && <div className="shapes-formula-stack">{formulaEntries.map((entry) => <FormulaMapCard key={entry.title} entry={entry} metrics={metrics} compact />)}</div>}
           {inspectorTab === "Properties" && <div className="shapes-property-stack"><InfoTile label="Dimensions" value={selected.dimensions.join(", ")} /><InfoTile label="Current symbols" value={symbolSummary(selected.id, a, b, c, sides, angle)} /><InfoTile label="Used in" value={selected.use} /><ShapeLearningGuide shape={selected} /></div>}
           <div className="shapes-structure-grid"><Metric label="Faces" value={structure.faces} /><Metric label="Edges" value={structure.edges} /><Metric label="Vertices" value={structure.vertices} /></div>
         </section>
-        <section className="shapes-inspector-card"><div className="shapes-panel-heading"><h2>Formulas</h2><span>Σ</span></div><p className="shapes-formula-box"><MathExpression value={selected.formula} /></p><p className="shapes-explanation">{formulaExplanation(selected.id, a, b, c, sides, angle)}</p><div className="shapes-open-in-actions"><ContextualWorkspaceLink target="cas" payload={shapePayload}>Open formula in CAS</ContextualWorkspaceLink><ContextualWorkspaceLink target={selected.kind === "3d" ? "geometry-3d" : "geometry"} payload={shapePayload}>Open in {selected.kind === "3d" ? "3D Geometry" : "Geometry"}</ContextualWorkspaceLink></div></section>
+        <section className="shapes-inspector-card shapes-formulas-card"><div className="shapes-panel-heading"><h2>{selected.name} formulas</h2><span>{formulaEntries.length}</span></div><div className="shapes-formulas-list">{formulaEntries.map((entry) => <article key={entry.title} className="shapes-formula-entry"><div><strong>{entry.title}</strong>{entry.valueLabel && Number.isFinite(metrics[entry.valueLabel]) && <span>{converted(metrics[entry.valueLabel], entry.valueLabel)} {metricUnit(entry.valueLabel)}</span>}</div><p>{readableShapeFormula(entry.formula)}</p><small>{entry.note}</small></article>)}</div><p className="shapes-explanation">{formulaExplanation(selected.id, a, b, c, sides, angle)}</p><div className="shapes-open-in-actions"><ContextualWorkspaceLink target="cas" payload={shapePayload}>Open formula in CAS</ContextualWorkspaceLink><ContextualWorkspaceLink target={selected.kind === "3d" ? "geometry-3d" : "geometry"} payload={shapePayload}>Open in {selected.kind === "3d" ? "3D Geometry" : "Geometry"}</ContextualWorkspaceLink></div></section>
         <section className="shapes-inspector-card shapes-related-card"><div className="shapes-panel-heading"><h2>Related Shapes</h2><span>{familyShapes.length}</span></div><div className="shapes-related-grid">{familyShapes.map((shape) => <button key={shape.id} type="button" onClick={() => selectShape(shape)}><ShapeThumbnail src={shape.thumbnail} name={shape.name} size="large" decorative /><span>{shape.name}</span></button>)}</div></section>
       </aside>
 
       <footer className="shapes-status-bar"><span className="is-online">Offline</span><span>{viewTab === "3d" ? "Interactive model" : "Planar model"}</span><span>Exact formulas</span><span>Saved</span></footer>
-      {settingsOpen && <ShapeSettingsDialog unit={unit} precision={precision} highContrast={highContrast} largeLabels={largeLabels} colorblind={colorblindPalette} reducedMotion={reducedMotion} onUnit={setUnit} onPrecision={setPrecision} onHighContrast={setHighContrast} onLargeLabels={setLargeLabels} onColorblind={(value) => { setColorblindPalette(value); if (value) { setColorA("#0072b2"); setColorB("#f0e442"); } }} onClose={() => setSettingsOpen(false)} />}
+      {settingsOpen && <ShapeSettingsDialog theme={theme} unit={unit} precision={precision} highContrast={highContrast} largeLabels={largeLabels} colorblind={colorblindPalette} reducedMotion={reducedMotion} onTheme={setTheme} onUnit={setUnit} onPrecision={setPrecision} onHighContrast={setHighContrast} onLargeLabels={setLargeLabels} onColorblind={(value) => { setColorblindPalette(value); if (value) { setColorA("#0072b2"); setColorB("#f0e442"); } }} onClose={() => setSettingsOpen(false)} />}
       {exportOpen && <ShapeExportDialog shape={selected} metrics={metrics} summary={exportSummary} onClose={() => setExportOpen(false)} />}
     </div>
   );
@@ -1209,8 +1216,8 @@ function FormulaDependencyPanel({ shape, entries, highlighted, onHighlight }: { 
   return <div className="shapes-formula-dependencies"><div><strong>Formula dependencies</strong><span>Select a symbol to highlight its controls.</span></div><div>{symbols.map((symbol) => <button type="button" key={symbol} className={highlighted === symbol ? "is-active" : ""} onClick={() => onHighlight(highlighted === symbol ? null : symbol)}>{symbol}</button>)}</div><section>{entries.map((entry) => <div key={entry.title}><strong>{entry.title}</strong><MathExpression value={entry.formula} /><span>{entry.note}</span></div>)}</section></div>;
 }
 
-function ShapeSettingsDialog({ unit, precision, highContrast, largeLabels, colorblind, reducedMotion, onUnit, onPrecision, onHighContrast, onLargeLabels, onColorblind, onClose }: { unit: ShapeUnit; precision: number; highContrast: boolean; largeLabels: boolean; colorblind: boolean; reducedMotion: boolean; onUnit: (unit: ShapeUnit) => void; onPrecision: (value: number) => void; onHighContrast: (value: boolean) => void; onLargeLabels: (value: boolean) => void; onColorblind: (value: boolean) => void; onClose: () => void }) {
-  return <div className="shapes-modal-backdrop" role="presentation" onMouseDown={(event) => event.target === event.currentTarget && onClose()}><section className="shapes-modal" role="dialog" aria-modal="true" aria-label="Shape Explorer settings"><header><h2>Workspace settings</h2><button type="button" onClick={onClose} aria-label="Close settings"><X /></button></header><label>Measurement unit<select value={unit} onChange={(event) => onUnit(event.target.value as ShapeUnit)}><option value="units">Abstract units</option><option value="mm">Millimetres</option><option value="cm">Centimetres</option><option value="m">Metres</option><option value="in">Inches</option></select></label><label>Decimal precision<select value={precision} onChange={(event) => onPrecision(Number(event.target.value))}>{[0, 1, 2, 3, 4].map((value) => <option key={value} value={value}>{value} places</option>)}</select></label><label className="shapes-setting-toggle"><span>High contrast</span><input type="checkbox" checked={highContrast} onChange={(event) => onHighContrast(event.target.checked)} /></label><label className="shapes-setting-toggle"><span>Larger labels</span><input type="checkbox" checked={largeLabels} onChange={(event) => onLargeLabels(event.target.checked)} /></label><label className="shapes-setting-toggle"><span>Color-blind safe palette</span><input type="checkbox" checked={colorblind} onChange={(event) => onColorblind(event.target.checked)} /></label><p>Reduced motion follows your device setting and is currently {reducedMotion ? "enabled" : "disabled"}.</p></section></div>;
+function ShapeSettingsDialog({ theme, unit, precision, highContrast, largeLabels, colorblind, reducedMotion, onTheme, onUnit, onPrecision, onHighContrast, onLargeLabels, onColorblind, onClose }: { theme: ShapesTheme; unit: ShapeUnit; precision: number; highContrast: boolean; largeLabels: boolean; colorblind: boolean; reducedMotion: boolean; onTheme: (theme: ShapesTheme) => void; onUnit: (unit: ShapeUnit) => void; onPrecision: (value: number) => void; onHighContrast: (value: boolean) => void; onLargeLabels: (value: boolean) => void; onColorblind: (value: boolean) => void; onClose: () => void }) {
+  return <div className="shapes-modal-backdrop" role="presentation" onMouseDown={(event) => event.target === event.currentTarget && onClose()}><section className="shapes-modal" role="dialog" aria-modal="true" aria-label="Shape Explorer settings"><header><h2>Workspace settings</h2><button type="button" onClick={onClose} aria-label="Close settings"><X /></button></header><label>Appearance<select value={theme} onChange={(event) => onTheme(event.target.value as ShapesTheme)}><option value="dark">Dark theme</option><option value="light">Light theme</option></select></label><label>Measurement unit<select value={unit} onChange={(event) => onUnit(event.target.value as ShapeUnit)}><option value="units">Abstract units</option><option value="mm">Millimetres</option><option value="cm">Centimetres</option><option value="m">Metres</option><option value="in">Inches</option></select></label><label>Decimal precision<select value={precision} onChange={(event) => onPrecision(Number(event.target.value))}>{[0, 1, 2, 3, 4].map((value) => <option key={value} value={value}>{value} places</option>)}</select></label><label className="shapes-setting-toggle"><span>High contrast</span><input type="checkbox" checked={highContrast} onChange={(event) => onHighContrast(event.target.checked)} /></label><label className="shapes-setting-toggle"><span>Larger labels</span><input type="checkbox" checked={largeLabels} onChange={(event) => onLargeLabels(event.target.checked)} /></label><label className="shapes-setting-toggle"><span>Color-blind safe palette</span><input type="checkbox" checked={colorblind} onChange={(event) => onColorblind(event.target.checked)} /></label><p>Reduced motion follows your device setting and is currently {reducedMotion ? "enabled" : "disabled"}.</p></section></div>;
 }
 
 function ShapeExportDialog({ shape, metrics, summary, onClose }: { shape: ShapeDefinition; metrics: Metrics; summary: () => void; onClose: () => void }) {
@@ -1340,6 +1347,20 @@ function shapeComplexity(shape: ShapeDefinition) {
 
 function InfoTile({ label, value }: { label: string; value: string }) {
   return <div className="rounded-2xl bg-slate-100 p-4 dark:bg-white/10"><p className="text-xs font-bold uppercase text-slate-500 dark:text-slate-400">{label}</p><p className="mt-2 text-sm leading-6 text-slate-700 dark:text-slate-200">{value}</p></div>;
+}
+
+function readableShapeFormula(formula: string): string {
+  return formula
+    .replace(/\btheta\b/g, "θ")
+    .replace(/(?<![A-Za-z])pi\b/g, "π")
+    .replace(/sqrt/g, "√")
+    .replace(/\bapprox\b/g, "≈")
+    .replace(/\bperpendicular\b/g, "⊥")
+    .replace(/\b x \b/g, " × ")
+    .replace(/sin36/g, "sin 36°")
+    .replace(/\^2/g, "²")
+    .replace(/\^3/g, "³")
+    .replace(/_([0123456789])/g, (_, digit: string) => "₀₁₂₃₄₅₆₇₈₉"[Number(digit)]);
 }
 
 function getShapeFormulaEntries(id: ShapeId): ShapeFormulaEntry[] {
