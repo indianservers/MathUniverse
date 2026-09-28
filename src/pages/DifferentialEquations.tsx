@@ -9,6 +9,7 @@ import {
 import { matchStudioPage, studioMockups, type StudioMockupPage } from "../studios/mockup/studioMockupCatalog";
 import DifferentialEquationsHome from "../studios/differential-equations/DifferentialEquationsHome";
 import DifferentialEquationsLab from "../studios/differential-equations/DifferentialEquationsLabs";
+import { differentialEquationRouteAliases, differentialEquationRouteFor } from "../studios/differential-equations/routes";
 import "../studios/differential-equations/differentialEquations.css";
 
 const studio = studioMockups["differential-equations"];
@@ -44,7 +45,9 @@ function pageById(id: string) {
 export default function DifferentialEquations() {
   const location = useLocation();
   const navigate = useNavigate();
-  const page = matchStudioPage(studio, location.pathname);
+  const slug = location.pathname.slice(studio.basePath.length).replace(/^\//, "");
+  const aliasedId = differentialEquationRouteAliases[slug];
+  const page = (aliasedId && studio.pages.find((item) => item.id === aliasedId)) || matchStudioPage(studio, location.pathname);
   const [query, setQuery] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
   const [teacherMode, setTeacherMode] = useState(false);
@@ -77,7 +80,7 @@ export default function DifferentialEquations() {
 
   const openResult = (item: StudioMockupPage) => {
     setQuery("");
-    navigate(item.route);
+    navigate(differentialEquationRouteFor(item.id));
   };
 
   return (
@@ -96,7 +99,7 @@ export default function DifferentialEquations() {
                 const item = pageById(id);
                 const Icon = icons[id];
                 if (!item) return null;
-                return <NavLink key={id} to={item.route} end={id === "home"} className={({ isActive }) => `de-nav-link${isActive ? " active" : ""}`}>
+                return <NavLink key={id} to={differentialEquationRouteFor(id)} end={id === "home"} className={({ isActive }) => `de-nav-link${isActive || page.id === id ? " active" : ""}`}>
                   <Icon aria-hidden="true" size={17} strokeWidth={2} /><span>{item.label}</span>
                 </NavLink>;
               })}
@@ -135,8 +138,8 @@ export default function DifferentialEquations() {
               {teacherMode && <section className="de-teacher-note" aria-label="Teaching notes"><strong>Teaching notes</strong><p>{page.learning.observe} {page.learning.why}</p></section>}
               <div className="de-lab-body"><DifferentialEquationsLab key={page.id} page={page} /></div>
               <nav className="de-lab-next" aria-label="Adjacent labs">
-                {index > 0 && <Link to={pages[index - 1].route}>← {pages[index - 1].label}</Link>}
-                {index >= 0 && index < pages.length - 1 && <Link to={pages[index + 1].route}>{pages[index + 1].label} →</Link>}
+                {index > 0 && <Link to={differentialEquationRouteFor(pages[index - 1].id)}>← {pages[index - 1].label}</Link>}
+                {index >= 0 && index < pages.length - 1 && <Link to={differentialEquationRouteFor(pages[index + 1].id)}>{pages[index + 1].label} →</Link>}
               </nav>
             </>
           )}
@@ -146,7 +149,7 @@ export default function DifferentialEquations() {
       {dialog && <div className="de-dialog-layer" role="presentation" onMouseDown={() => setDialog(null)}>
         <section className="de-dialog" role="dialog" aria-modal="true" aria-label={dialog === "help" ? "Studio help" : "Display settings"} onMouseDown={(event) => event.stopPropagation()}>
           <button className="de-dialog-close" aria-label="Close" onClick={() => setDialog(null)}><X size={18} /></button>
-          {dialog === "help" ? <><h2>Explore the studio</h2><p>Choose a lab from the sidebar, change its controls, and watch the mathematics respond. Press <kbd>/</kbd> to search for a topic.</p><p>Start with Equation Explorer to classify an equation, then use Method Selector to choose a solution approach.</p><Link to="/differential-equations/explorer" onClick={() => setDialog(null)}>Open Equation Explorer <ChevronRight size={16} /></Link></> : <><h2>Display settings</h2><label className="de-setting-row"><span><strong>Compact layout</strong><small>Show more of the studio at once.</small></span><input type="checkbox" checked={compact} onChange={(event) => setCompact(event.target.checked)} /></label></>}
+          {dialog === "help" ? <><h2>Explore the studio</h2><p>Choose a lab from the sidebar, change its controls, and watch the mathematics respond. Press <kbd>/</kbd> to search for a topic.</p><p>Start with Equation Explorer to classify an equation, then use Method Selector to choose a solution approach.</p><Link to={differentialEquationRouteFor("explorer")} onClick={() => setDialog(null)}>Open Equation Explorer <ChevronRight size={16} /></Link></> : <><h2>Display settings</h2><label className="de-setting-row"><span><strong>Compact layout</strong><small>Show more of the studio at once.</small></span><input type="checkbox" checked={compact} onChange={(event) => setCompact(event.target.checked)} /></label></>}
         </section>
       </div>}
     </main>

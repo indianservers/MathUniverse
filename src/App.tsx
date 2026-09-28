@@ -12,6 +12,7 @@ import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import AppLayout from "./components/layout/AppLayout";
 import SeoMetadata from "./components/seo/SeoMetadata";
 import { formulaVisualizerConfigs } from "./data/formulaVisualizerRoutes";
+import { differentialEquationRouteAliases } from "./studios/differential-equations/routes";
 
 const routeChunkReloadPrefix = "math-universe-route-chunk-reload:";
 const routeChunkReloadWindowMs = 30_000;
@@ -727,7 +728,7 @@ export default function App() {
               <Route key={`la-${slug}`} path={`linear-algebra/${slug}`} element={<LinearAlgebra />} />
             ))}
             <Route path="differential-equations" element={<DifferentialEquations />} />
-            {["explorer", "method-selector", "slope-fields", "initial-value", "separable", "homogeneous-first-order", "exact", "linear-first-order", "bernoulli", "growth-models", "euler", "heun", "rk4", "higher-order-linear", "undetermined-coefficients", "variation-of-parameters", "cauchy-euler", "systems", "phase-plane", "mechanical-oscillations", "lcr-circuit", "newton-cooling"].map((slug) => (
+            {["explorer", "method-selector", "slope-fields", "initial-value", "separable", "homogeneous-first-order", "exact", "linear-first-order", "bernoulli", "growth-models", "euler", "heun", "rk4", "higher-order-linear", "undetermined-coefficients", "variation-of-parameters", "cauchy-euler", "systems", "phase-plane", "mechanical-oscillations", "lcr-circuit", "newton-cooling", ...Object.keys(differentialEquationRouteAliases)].map((slug) => (
               <Route key={`de-${slug}`} path={`differential-equations/${slug}`} element={<DifferentialEquations />} />
             ))}
             <Route path="matrices" element={<MatrixOperations />} />

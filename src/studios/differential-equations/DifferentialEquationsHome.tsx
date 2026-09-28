@@ -8,6 +8,8 @@ import {
 } from "lucide-react";
 import type { StudioMockupDefinition } from "../mockup/studioMockupCatalog";
 import MathExpression from "../../components/ui/MathExpression";
+import DifferentialEquationsArtwork from "./DifferentialEquationsArtwork";
+import { differentialEquationRouteFor } from "./routes";
 import "./differentialEquations.css";
 
 type Feature = {
@@ -16,19 +18,20 @@ type Feature = {
   href?: string;
   action?: "formulas" | "practice";
   icon: LucideIcon;
+  artId?: string;
   tone: string;
 };
 
 const features: Feature[] = [
-  { title: "Equation Explorer", detail: "Classify order, linearity and understand solutions", href: "/differential-equations/explorer", icon: Search, tone: "blue" },
-  { title: "Direction Fields", detail: "Visualize slope fields and solution curves", href: "/differential-equations/slope-fields", icon: Sparkles, tone: "green" },
-  { title: "Initial Value Problems", detail: "Use an initial point to find a solution", href: "/differential-equations/initial-value", icon: Goal, tone: "orange" },
-  { title: "Method Selector", detail: "Find the best method for a given equation", href: "/differential-equations/method-selector", icon: Cog, tone: "purple" },
-  { title: "First-Order Equations", detail: "Separable, Linear, Exact, Bernoulli and more", href: "/differential-equations/separable", icon: Waves, tone: "pink" },
-  { title: "Higher-Order Equations", detail: "Solve and explore advanced equations", href: "/differential-equations/higher-order-linear", icon: Sigma, tone: "mint" },
-  { title: "Systems & Trajectories", detail: "Phase plane, eigenvalues and stability", href: "/differential-equations/systems", icon: GitBranch, tone: "yellow" },
-  { title: "Numerical Methods", detail: "Euler, Improved Euler, Runge–Kutta, and more", href: "/differential-equations/euler", icon: ChartNoAxesCombined, tone: "indigo" },
-  { title: "Engineering Models", detail: "Real-world applications and simulations", href: "/differential-equations/mechanical-oscillations", icon: Cog, tone: "jade" },
+  { title: "Equation Explorer", detail: "Classify order, linearity and understand solutions", href: "/differential-equations/equation-explorer", icon: Search, artId: "explorer", tone: "blue" },
+  { title: "Direction Fields", detail: "Visualize slope fields and solution curves", href: "/differential-equations/direction-fields", icon: Sparkles, artId: "slope-fields", tone: "green" },
+  { title: "Initial Value Problems", detail: "Use an initial point to find a solution", href: "/differential-equations/initial-value", icon: Goal, artId: "initial-value", tone: "orange" },
+  { title: "Method Selector", detail: "Find the best method for a given equation", href: "/differential-equations/method-selector", icon: Cog, artId: "method-selector", tone: "purple" },
+  { title: "First-Order Equations", detail: "Separable, Linear, Exact, Bernoulli and more", href: "/differential-equations/separable", icon: Waves, artId: "separable", tone: "pink" },
+  { title: "Higher-Order Equations", detail: "Solve and explore advanced equations", href: "/differential-equations/higher-order-linear", icon: Sigma, artId: "higher-order-linear", tone: "mint" },
+  { title: "Systems & Trajectories", detail: "Phase plane, eigenvalues and stability", href: "/differential-equations/systems", icon: GitBranch, artId: "systems", tone: "yellow" },
+  { title: "Numerical Methods", detail: "Euler, Improved Euler, Runge–Kutta, and more", href: "/differential-equations/euler", icon: ChartNoAxesCombined, artId: "rk4", tone: "indigo" },
+  { title: "Engineering Models", detail: "Real-world applications and simulations", href: "/differential-equations/oscillations", icon: Cog, artId: "mechanical-oscillations", tone: "jade" },
   { title: "Calculus DE Page", detail: "Original Calculus differential equations", href: "/calculus/differential-equations", icon: BookOpen, tone: "rose" },
   { title: "Formula Sheet", detail: "Key formulas at a glance", action: "formulas", icon: FileText, tone: "sky" },
   { title: "Practice & Quizzes", detail: "Test your understanding", action: "practice", icon: Trophy, tone: "peach" },
@@ -42,6 +45,8 @@ const labGroups = [
   { title: "Systems and trajectories", ids: ["systems", "phase-plane"] },
   { title: "Engineering models", ids: ["mechanical-oscillations", "lcr-circuit", "newton-cooling"] },
 ];
+
+const labTones = ["blue", "green", "orange", "purple", "pink", "mint", "yellow", "indigo", "jade", "rose", "sky", "peach"];
 
 const formulas = [
   { label: "Separable", tex: "\\frac{dy}{dx}=g(x)h(y)\\quad\\Rightarrow\\quad\\int\\frac{dy}{h(y)}=\\int g(x)\\,dx+C" },
@@ -61,7 +66,7 @@ const quiz = [
 function FeatureCard({ feature, number, onAction }: { feature: Feature; number: number; onAction: (action: "formulas" | "practice") => void }) {
   const Icon = feature.icon;
   const content = <>
-    <span className="de-feature-art"><Icon size={58} strokeWidth={1.85} aria-hidden="true" /></span>
+    <span className="de-feature-art">{feature.artId ? <DifferentialEquationsArtwork id={feature.artId} /> : <Icon size={58} strokeWidth={1.85} aria-hidden="true" />}</span>
     <span className="de-feature-copy"><strong>{number <= 10 ? `${number}. ` : ""}{feature.title}</strong><small>{feature.detail}</small></span>
     <span className="de-feature-arrow"><ChevronRight size={17} /></span>
   </>;
@@ -95,7 +100,10 @@ export default function DifferentialEquationsHome({ studio }: { studio: StudioMo
 
     <section className="de-all-labs" aria-label="All interactive labs">
       <div className="de-section-heading"><div><span>DEEPER EXPLORATION</span><h2>All interactive labs</h2><p>Choose a method or model and change its controls to see the result.</p></div><FlaskConical size={28} /></div>
-      <div className="de-lab-groups">{labGroups.map((group) => <section key={group.title}><h3>{group.title}</h3><div>{group.ids.map((id) => { const lab = labs.get(id); return lab ? <Link key={id} to={lab.route}><span>{lab.label}</span><ArrowRight size={15} /></Link> : null; })}</div></section>)}</div>
+      <div className="de-lab-groups">{labGroups.map((group, groupIndex) => <section key={group.title}><h3>{group.title}</h3><div className="de-lab-card-grid">{group.ids.map((id, itemIndex) => { const lab = labs.get(id); if (!lab) return null; const tone = labTones[(groupIndex * 4 + itemIndex) % labTones.length]; return <Link key={id} className={`de-lab-card tone-${tone}`} to={differentialEquationRouteFor(id)} data-lab-id={id}>
+        <span className="de-lab-card-art"><DifferentialEquationsArtwork id={id} /></span>
+        <strong>{lab.label}</strong><small>{lab.description}</small><span className="de-lab-card-cta">Open lab <ArrowRight size={15} /></span>
+      </Link>; })}</div></section>)}</div>
     </section>
 
     {panel === "formulas" && <HomeDialog title="Differential Equations Formula Sheet" onClose={() => setPanel(null)}><p>Keep these structural tests and numerical rules close as you work through the labs.</p><div className="de-formula-list">{formulas.map((item) => <div key={item.label}><strong>{item.label}</strong><MathExpression value={item.tex} /></div>)}</div><Link className="de-dialog-link" to="/differential-equations/method-selector" onClick={() => setPanel(null)}>Choose a method <ArrowRight size={16} /></Link></HomeDialog>}
