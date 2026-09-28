@@ -4,6 +4,9 @@ import {
   Activity, BookOpen, ChevronRight, CircleHelp, CircuitBoard, Compass,
   FlaskConical, FunctionSquare, GitBranch, Home, LineChart, Menu,
   Network, Search, Settings2, Sigma, Sparkles, Waves, X,
+  Binary, ChartSpline, CircleDot, Cpu, Divide, Gauge, Layers3,
+  ListChecks, Magnet, MoveUpRight, Orbit, Route, ScanSearch, Split,
+  Thermometer, TrendingUp, Waypoints, Zap,
   type LucideIcon,
 } from "lucide-react";
 import { matchStudioPage, studioMockups, type StudioMockupPage } from "../studios/mockup/studioMockupCatalog";
@@ -38,6 +41,33 @@ const icons: Record<string, LucideIcon> = {
   "newton-cooling": Activity,
 };
 
+const phase1Icons: Record<string, LucideIcon> = {
+  home: Home, explorer: ScanSearch, "method-selector": Route,
+  "slope-fields": MoveUpRight, "initial-value": CircleDot,
+  separable: Split, "homogeneous-first-order": Layers3,
+  exact: ListChecks, "linear-first-order": ChartSpline,
+  bernoulli: Sigma, "growth-models": TrendingUp,
+  euler: Waypoints, heun: Gauge, rk4: Cpu,
+  "higher-order-linear": Binary, "undetermined-coefficients": Magnet,
+  "variation-of-parameters": Divide, "cauchy-euler": FunctionSquare,
+  systems: Network, "phase-plane": Orbit,
+  "mechanical-oscillations": Waves, "lcr-circuit": Zap,
+  "newton-cooling": Thermometer,
+};
+const phase1Ids = new Set(["explorer", "method-selector", "slope-fields", "initial-value", "separable", "homogeneous-first-order", "exact", "linear-first-order", "bernoulli", "growth-models"]);
+const phase1Headings: Record<string, { title: string; description: string }> = {
+  explorer: { title: "Equation Explorer", description: "Enter a differential equation, explore its solutions, and see how changing parameters affects its behavior." },
+  "method-selector": { title: "Method Selector", description: "Analyze your equation and get personalized solution-method recommendations." },
+  "slope-fields": { title: "Direction Fields", description: "Visualize slope fields and solution curves for first-order differential equations." },
+  "initial-value": { title: "Initial Value", description: "See how a unique solution curve emerges from a differential equation and an initial condition." },
+  separable: { title: "Separable", description: "Solve separable differential equations step by step with interactive guidance." },
+  "homogeneous-first-order": { title: "Homogeneous", description: "Solve homogeneous differential equations using substitution, simplification, and insight." },
+  exact: { title: "Exact", description: "Test for exactness, find potential functions, and solve exact differential equations." },
+  "linear-first-order": { title: "Linear First-Order", description: "Explore, solve, and understand first-order linear differential equations." },
+  bernoulli: { title: "Bernoulli", description: "Transform Bernoulli equations into linear equations and compare their solutions." },
+  "growth-models": { title: "Growth", description: "Model exponential growth, decay, and logistic growth interactively." },
+};
+
 function pageById(id: string) {
   return studio.pages.find((item) => item.id === id);
 }
@@ -50,6 +80,7 @@ export default function DifferentialEquations() {
   const page = (aliasedId && studio.pages.find((item) => item.id === aliasedId)) || matchStudioPage(studio, location.pathname);
   const [query, setQuery] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
+  const [navExpanded, setNavExpanded] = useState(false);
   const [teacherMode, setTeacherMode] = useState(false);
   const [dialog, setDialog] = useState<"help" | "settings" | null>(null);
   const [compact, setCompact] = useState(false);
@@ -60,6 +91,7 @@ export default function DifferentialEquations() {
   }, [query]);
   const index = pages.findIndex((item) => item.id === page.id);
   const HeadingIcon = icons[page.id] ?? FlaskConical;
+  const phase1 = phase1Ids.has(page.id);
 
   useEffect(() => {
     setMenuOpen(false);
@@ -84,7 +116,7 @@ export default function DifferentialEquations() {
   };
 
   return (
-    <main className={`de-studio${compact ? " de-compact" : ""}`}>
+    <main className={`de-studio${compact ? " de-compact" : ""}${phase1 ? ` de-phase1-shell${navExpanded ? " de-phase1-expanded" : ""}` : ""}`}>
       {menuOpen && <button className="de-scrim" aria-label="Close navigation" onClick={() => setMenuOpen(false)} />}
       <aside className={`de-sidebar${menuOpen ? " is-open" : ""}`}>
         <Link className="de-brand" to={studio.basePath} aria-label="Differential Equations Studio home">
@@ -97,22 +129,23 @@ export default function DifferentialEquations() {
               <span className="de-nav-heading">{group.label}</span>
               {group.ids.map((id) => {
                 const item = pageById(id);
-                const Icon = icons[id];
+                const Icon = phase1 ? phase1Icons[id] : icons[id];
                 if (!item) return null;
-                return <NavLink key={id} to={differentialEquationRouteFor(id)} end={id === "home"} className={({ isActive }) => `de-nav-link${isActive || page.id === id ? " active" : ""}`}>
-                  <Icon aria-hidden="true" size={17} strokeWidth={2} /><span>{item.label}</span>
+                return <NavLink key={id} to={differentialEquationRouteFor(id)} end={id === "home"} title={phase1 ? (id === "home" ? "Differential Equations Home" : item.label) : undefined} aria-label={phase1 ? (id === "home" ? "Differential Equations Home" : item.label) : undefined} className={({ isActive }) => `de-nav-link${isActive || page.id === id ? " active" : ""}`}>
+                  <Icon aria-hidden="true" size={17} strokeWidth={2} /><span>{phase1 && id === "home" ? "Differential Equations Home" : item.label}</span>
                 </NavLink>;
               })}
             </div>
           ))}
         </nav>
-        <Link className="de-site-link" to="/"><Home size={16} /> Main site <ChevronRight size={15} /></Link>
+        <Link className="de-site-link" to="/"><Home size={16} /> <span>{phase1 ? "← App Home" : "Main site"}</span> <ChevronRight size={15} /></Link>
         <div className="de-sidebar-quote">“Small changes lead to big insights.”</div>
       </aside>
 
       <div className="de-stage">
         <header className="de-topbar">
-          <button className="de-menu-button" aria-label="Open navigation" onClick={() => setMenuOpen(true)}><Menu size={21} /></button>
+          <button className="de-menu-button" aria-label={phase1 && navExpanded ? "Collapse studio navigation" : "Open navigation"} onClick={() => { if (phase1 && window.innerWidth > 950) setNavExpanded((value) => !value); else setMenuOpen(true); }}><Menu size={21} /></button>
+          {phase1 && <div className="de-phase1-quicklinks"><Link to="/" title="App Home"><Home size={15} /> App Home</Link><Link to="/differential-equations" title="Differential Equations Home"><Activity size={15} /> DE Home</Link></div>}
           <div className="de-search-wrap">
             <Search size={18} aria-hidden="true" />
             <input ref={searchRef} value={query} onChange={(event) => setQuery(event.target.value)} onKeyDown={(event) => { if (event.key === "Enter" && results[0]) openResult(results[0]); }} placeholder="Search topics, equations, methods..." aria-label="Search Differential Equations Studio" />
@@ -132,7 +165,7 @@ export default function DifferentialEquations() {
           {page.id === "home" ? <DifferentialEquationsHome studio={studio} /> : (
             <>
               <div className="de-lab-heading">
-                <div><p className="de-eyebrow"><Link to={studio.basePath}>Studio Home</Link><ChevronRight size={14} />{page.label}</p><h1>{page.title}</h1><p>{page.description}</p></div>
+                <div><p className="de-eyebrow"><Link to={studio.basePath}>Studio Home</Link><ChevronRight size={14} />{phase1 ? phase1Headings[page.id].title : page.label}</p><h1>{phase1 ? phase1Headings[page.id].title : page.title}</h1><p>{phase1 ? phase1Headings[page.id].description : page.description}</p></div>
                 <span className="de-heading-mark"><HeadingIcon size={36} /></span>
               </div>
               {teacherMode && <section className="de-teacher-note" aria-label="Teaching notes"><strong>Teaching notes</strong><p>{page.learning.observe} {page.learning.why}</p></section>}

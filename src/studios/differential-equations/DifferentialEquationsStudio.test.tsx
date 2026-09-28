@@ -37,11 +37,11 @@ describe("Differential Equations Studio", () => {
     expect(home).toContain("Differential Equations Studio");
     expect(home).toContain("First-order equations");
     expect(home).toContain("/differential-equations/exact");
-    expect(html("/differential-equations/explorer")).toContain("Equation explorer");
-    expect(html("/differential-equations/method-selector")).toContain("Choose a method");
-    expect(html("/differential-equations/exact")).toContain("Exactness");
+    expect(html("/differential-equations/explorer")).toContain("Solution Curves and Direction Field");
+    expect(html("/differential-equations/method-selector")).toContain("Analyze Your Equation");
+    expect(html("/differential-equations/exact")).toContain("Exactness Test");
     expect(html("/differential-equations/heun")).toContain("Improved Euler");
-    expect(html("/differential-equations/slope-fields")).toContain("Slope fields");
+    expect(html("/differential-equations/slope-fields")).toContain("Interactive Canvas");
     expect(home).toContain("Higher-order equations");
     expect(html("/differential-equations/higher-order-linear")).toContain("Characteristic roots");
     expect(html("/differential-equations/cauchy-euler")).toContain("Indicial equation");

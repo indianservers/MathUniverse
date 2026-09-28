@@ -29,6 +29,7 @@ import {
   VariationLab,
 } from "./EngineeringLabs";
 import { inspectEquation, normalizeEquation } from "./equationInspection";
+import { BernoulliPhase1, DirectionFieldsPhase1, EquationExplorerPhase1, ExactPhase1, GrowthPhase1, HomogeneousPhase1, InitialValuePhase1, LinearFirstOrderPhase1, MethodSelectorPhase1, SeparablePhase1 } from "./Phase1Labs";
 import "./differentialEquations.css";
 
 const embedded: Record<string, string> = {
@@ -41,6 +42,16 @@ const embedded: Record<string, string> = {
 };
 
 export default function DifferentialEquationsLab({ page }: { page: StudioMockupPage }) {
+  if (page.id === "explorer") return <EquationExplorerPhase1 />;
+  if (page.id === "method-selector") return <MethodSelectorPhase1 />;
+  if (page.id === "slope-fields") return <DirectionFieldsPhase1 />;
+  if (page.id === "initial-value") return <InitialValuePhase1 />;
+  if (page.id === "separable") return <SeparablePhase1 />;
+  if (page.id === "homogeneous-first-order") return <HomogeneousPhase1 />;
+  if (page.id === "exact") return <ExactPhase1 />;
+  if (page.id === "linear-first-order") return <LinearFirstOrderPhase1 />;
+  if (page.id === "bernoulli") return <BernoulliPhase1 />;
+  if (page.id === "growth-models") return <GrowthPhase1 />;
   const mode = embedded[page.id];
   if (mode) return <CalculusDifferentialEquationsStudio mode={mode} />;
   if (page.id === "explorer") return <ExplorerLab />;
