@@ -1,4 +1,5 @@
 import type { ProblemClassification, ProblemSolverResult } from "./problemTypes";
+import { formatInterestValue, parseSimpleInterest } from "./simpleInterest";
 
 type WordProblemMatch = {
   assumptions?: string[];
@@ -7,6 +8,7 @@ type WordProblemMatch = {
   steps: string[];
   title: string;
   warnings?: string[];
+  verification?: string[];
 };
 
 const epsilon = 1e-9;
@@ -18,7 +20,7 @@ export function solveWordProblem(classification: ProblemClassification): Problem
   const match =
     solveDistanceRateTime(input, normalized) ??
     solvePercentChange(input, normalized) ??
-    solveSimpleInterest(input, normalized) ??
+    solveSimpleInterest(input) ??
     solveRectangle(input, normalized) ??
     solveCircle(input, normalized) ??
     solveRatio(input, normalized) ??
@@ -52,6 +54,7 @@ export function solveWordProblem(classification: ProblemClassification): Problem
     steps: match.steps,
     assumptions: [...classification.assumptions, ...(match.assumptions ?? [])],
     warnings: [...classification.warnings, ...(match.warnings ?? [])],
+    verification: match.verification,
     canCopy: true,
   };
 }
@@ -145,21 +148,19 @@ function solvePercentChange(input: string, normalized: string): WordProblemMatch
   };
 }
 
-function solveSimpleInterest(input: string, normalized: string): WordProblemMatch | null {
-  if (!/(simple interest|principal|interest)/i.test(normalized)) return null;
-  const principal = namedNumber(normalized, ["principal", "p"]);
-  const rate = namedNumber(normalized, ["rate", "r"]);
-  const namedTime = namedNumber(normalized, ["time", "years", "year", "t"]);
-  const unitTime = valueWithUnit(normalized, ["year", "years"]);
-  const time = namedTime ?? unitTime?.value;
-  if (!principal || !rate || !time) return null;
-  const interest = (principal * rate * time) / 100;
-  const amount = principal + interest;
+function solveSimpleInterest(input: string): WordProblemMatch | null {
+  const finance = parseSimpleInterest(input);
+  if (!finance) return null;
+  const { principal, rate, time, interest, amount, currency } = finance;
   return {
     title: "Simple Interest",
     method: "Simple interest formula",
-    result: `Interest = ${formatNumber(interest)}, Amount = ${formatNumber(amount)}`,
+    result: `Interest = ${formatInterestValue(interest, currency)}, Amount = ${formatInterestValue(amount, currency)}`,
     assumptions: ["Rate is interpreted as percent per year."],
+    verification: [
+      `Interest check: ${formatNumber(interest)} / ${formatNumber(principal)} × 100 = ${formatNumber(rate * time)}% over ${formatNumber(time)} years.`,
+      `Amount check: ${formatNumber(amount)} - ${formatNumber(principal)} = ${formatNumber(interest)}.`,
+    ],
     steps: [
       `Problem: ${input}.`,
       `Principal P = ${formatNumber(principal)}, rate R = ${formatNumber(rate)}%, time T = ${formatNumber(time)} years.`,
