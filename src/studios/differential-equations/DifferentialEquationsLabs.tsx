@@ -28,6 +28,7 @@ import {
   UndeterminedLab,
   VariationLab,
 } from "./EngineeringLabs";
+import { inspectEquation, normalizeEquation } from "./equationInspection";
 import "./differentialEquations.css";
 
 const embedded: Record<string, string> = {
@@ -96,34 +97,40 @@ function Plot({
 
 function ExplorerLab() {
   const [id, setId] = useState(explorerExamples[0].id);
-  const example = explorerExamples.find((item) => item.id === id) ?? explorerExamples[0];
-  const curves = example.field ? [0.5, 1.5].map((y0) => integrateField(example.field!, 0.2, y0, 2.6)) : [];
+  const [draft, setDraft] = useState(explorerExamples[0].equation);
+  const matched = explorerExamples.find((item) => normalizeEquation(item.equation) === normalizeEquation(draft));
+  const inspection = inspectEquation(draft);
+  const curves = matched?.field ? [0.5, 1.5].map((y0) => integrateField(matched.field!, 0.2, y0, 2.6)) : [];
   return (
     <div className="odes-lab">
       <section className="odes-card">
         <h2>Equation explorer</h2>
         <label>Example
-          <select aria-label="Differential equation example" value={id} onChange={(event) => setId(event.target.value)}>
+          <select aria-label="Differential equation example" value={id} onChange={(event) => { const next = explorerExamples.find((item) => item.id === event.target.value) ?? explorerExamples[0]; setId(next.id); setDraft(next.equation); }}>
             {explorerExamples.map((item) => <option key={item.id} value={item.id}>{item.label}</option>)}
           </select>
         </label>
-        <p><MathExpression value={example.equation} /></p>
-        {example.field ? <Plot curves={curves} label={`Sample solution curves for ${example.equation}`} /> : <p className="odes-note">This equation is second order, so one slope field is not enough. The family needs two constants.</p>}
+        <label>Equation to inspect
+          <input aria-label="Equation to inspect" value={draft} onChange={(event) => setDraft(event.target.value)} placeholder="For example: dy/dx = x + y" />
+        </label>
+        {matched ? <p><MathExpression value={matched.equation} /></p> : <p className="odes-note">{inspection.explanation}</p>}
+        {matched?.field ? <Plot curves={curves} label={`Sample solution curves for ${matched.equation}`} /> : matched ? <p className="odes-note">This equation is second order, so one slope field is not enough. The family needs two constants.</p> : null}
       </section>
       <aside className="odes-side">
         <h2>Classification</h2>
-        <ul>
-          <li>Order {example.order}</li>
-          <li>Degree {example.degree}</li>
-          <li>{example.linear}</li>
-          <li>{example.kind} differential equation</li>
-          <li>{example.autonomous}</li>
-          <li>{example.balance}</li>
+        {matched ? <><ul>
+          <li>Order {matched.order}</li><li>Degree {matched.degree}</li><li>{matched.linear}</li>
+          <li>{matched.kind} differential equation</li><li>{matched.autonomous}</li><li>{matched.balance}</li>
         </ul>
-        <p><strong>Known now.</strong> {example.known}</p>
-        <p><strong>A solution means.</strong> {example.meaning}</p>
-        <p><strong>Family.</strong> {example.family}</p>
-        <p><strong>Particular solution.</strong> {example.particular}</p>
+        <p><strong>Known now.</strong> {matched.known}</p>
+        <p><strong>A solution means.</strong> {matched.meaning}</p>
+        <p><strong>Family.</strong> {matched.family}</p>
+        <p><strong>Particular solution.</strong> {matched.particular}</p></> : <><ul>
+          <li>{inspection.order ? `Order ${inspection.order} detected` : "No derivative detected"}</li>
+          <li>{inspection.kind} notation</li><li>{inspection.linearity}</li>
+          <li>Independent variable: x (if differentiation is with respect to x)</li>
+          <li>Dependent variable: y (if y is differentiated)</li>
+        </ul><p>For a fully verified classification and solution family, select a supported example. Your text remains editable.</p></>}
       </aside>
     </div>
   );
@@ -131,20 +138,24 @@ function ExplorerLab() {
 
 function MethodSelectorLab() {
   const [id, setId] = useState(methodPresets[0].id);
+  const [draft, setDraft] = useState(methodPresets[0].equation);
   const [guess, setGuess] = useState<MethodId | null>(null);
-  const preset = methodPresets.find((item) => item.id === id) ?? methodPresets[0];
-  const applicable = applicableMethods(preset);
+  const matched = methodPresets.find((item) => normalizeEquation(item.equation) === normalizeEquation(draft));
+  const applicable = matched ? applicableMethods(matched) : [];
   const correct = guess != null && applicable.includes(guess);
   return (
     <div className="odes-lab">
       <section className="odes-card">
         <h2>Choose a method</h2>
         <label>Equation
-          <select aria-label="Equation preset" value={id} onChange={(event) => { setId(event.target.value); setGuess(null); }}>
+          <select aria-label="Equation preset" value={id} onChange={(event) => { const next = methodPresets.find((item) => item.id === event.target.value) ?? methodPresets[0]; setId(next.id); setDraft(next.equation); setGuess(null); }}>
             {methodPresets.map((item) => <option key={item.id} value={item.id}>{item.equation}</option>)}
           </select>
         </label>
-        <p><MathExpression value={preset.equation} /></p>
+        <label>Equation to classify
+          <input aria-label="Equation to classify" value={draft} onChange={(event) => { setDraft(event.target.value); setGuess(null); }} placeholder="For example: dy/dx = x y" />
+        </label>
+        {matched ? <p><MathExpression value={matched.equation} /></p> : <p className="odes-note">This expression is outside the verified examples. Compare its structure with the methods below, or choose a preset for a checked recommendation.</p>}
         <div className="odes-choice" role="group" aria-label="Method guess">
           {(Object.keys(methodLabels) as MethodId[]).map((method) => (
             <button key={method} type="button" aria-pressed={guess === method} onClick={() => setGuess(method)}>{methodLabels[method]}</button>
@@ -153,16 +164,16 @@ function MethodSelectorLab() {
       </section>
       <aside className="odes-side">
         <h2>Diagnostic</h2>
-        {guess == null ? <p>Inspect the structure, then choose a method. The test stays hidden until you answer.</p> : (
+        {guess == null ? <p>Inspect the structure, then choose a method. The test stays hidden until you answer.</p> : matched ? (
           <>
             <p className={correct ? "odes-note" : "odes-warn"}>{correct ? "That method applies." : "That method does not fit this structure."}</p>
             <p><strong>Applicable methods.</strong> {applicable.map((method) => methodLabels[method]).join(", ")}.</p>
             {applicable.length > 1 ? <p>More than one method is valid. Either one can start the solution.</p> : null}
-            <p><strong>Test.</strong> {preset.test}</p>
-            <p><strong>Rewrite.</strong> {preset.rewrite}</p>
-            <p><Link to={preset.lab}>Open the {methodLabels[preset.method]} lab</Link></p>
+            <p><strong>Test.</strong> {matched.test}</p>
+            <p><strong>Rewrite.</strong> {matched.rewrite}</p>
+            <p><Link to={matched.lab}>Open the {methodLabels[matched.method]} lab</Link></p>
           </>
-        )}
+        ) : <p>For an unverified expression, a selected method is a hypothesis. Check its defining conditions in the corresponding lab before applying it.</p>}
       </aside>
     </div>
   );
