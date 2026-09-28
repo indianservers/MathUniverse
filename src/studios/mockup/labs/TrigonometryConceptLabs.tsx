@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState, type PointerEvent } from "react";
+import { useEffect, useMemo, useRef, useState, type PointerEvent } from "react";
+import { compileFunctionExpression } from "../../../utils/functionParser";
 import { Phase1LabChrome } from "../../phase1/Phase1LabChrome";
 import type { StudioMockupPage } from "../studioMockupCatalog";
 import {
@@ -9,11 +10,10 @@ import {
   Segmented,
   SliderRow,
   StatusOk,
-  StepList,
   clamp,
   fmt,
 } from "../studioLabKit";
-import { useTrigSession, writeTrigSession } from "../trigStudioSession";
+import { writeTrigSession } from "../trigStudioSession";
 
 export { IdentitiesLab } from "./IdentitiesLab";
 export { InverseTrigLab } from "./InverseTrigLab";
@@ -29,7 +29,6 @@ const COLORS = {
 } as const;
 
 type TrigFamily = "Sine" | "Cosine" | "Tangent";
-type Units = "Degrees" | "Radians";
 
 function trigName(family: TrigFamily) {
   return family === "Sine" ? "sin" : family === "Cosine" ? "cos" : "tan";
@@ -60,6 +59,32 @@ function waveSegments(
     } else {
       current.push(`${32 + (index / samples) * (width - 54)},${height / 2 - y * 42}`);
     }
+  }
+  if (current.length > 1) segments.push(current.join(" "));
+  return segments;
+}
+
+function customWaveSegments(evaluate: (x: number) => number, width = 560, height = 400) {
+  const segments: string[] = [];
+  let current: string[] = [];
+  let previousY: number | null = null;
+  const samples = 720;
+  for (let index = 0; index <= samples; index += 1) {
+    const x = -2 * Math.PI + (index / samples) * 4 * Math.PI;
+    let y: number;
+    try { y = evaluate(x); } catch { y = Number.NaN; }
+    if (!Number.isFinite(y) || Math.abs(y) > 3.8) {
+      if (current.length > 1) segments.push(current.join(" "));
+      current = [];
+      previousY = null;
+      continue;
+    }
+    if (previousY !== null && Math.abs(y - previousY) > 1.5) {
+      if (current.length > 1) segments.push(current.join(" "));
+      current = [];
+    }
+    current.push(`${32 + (index / samples) * (width - 54)},${height / 2 - y * 42}`);
+    previousY = y;
   }
   if (current.length > 1) segments.push(current.join(" "));
   return segments;
@@ -104,7 +129,20 @@ export function TrigGraphsLab({ page }: { page: StudioMockupPage }) {
   const [showGrid, setShowGrid] = useState(true);
   const [angleUnit, setAngleUnit] = useState<"Radians" | "Degrees">("Radians");
   const [time, setTime] = useState(Math.PI / 3);
+  const [graphSource, setGraphSource] = useState<"Preset" | "Custom">("Preset");
+  const [customExpression, setCustomExpression] = useState("");
   const graphHandle = useRef<"A" | "D" | null>(null);
+  const customFunction = useMemo(() => {
+    if (!customExpression.trim()) return { evaluate: null, error: "Enter a function of x." };
+    try {
+      const expression = customExpression.replace(/^\s*f\s*\(\s*x\s*\)\s*=\s*/i, "");
+      const evaluate = compileFunctionExpression(expression);
+      evaluate(0); // Check syntax that the parser can only validate when evaluated.
+      return { evaluate, error: "" };
+    } catch (error) {
+      return { evaluate: null, error: error instanceof Error ? error.message : "Invalid function." };
+    }
+  }, [customExpression]);
 
   useEffect(() => {
     if (!playing) return;
@@ -125,6 +163,8 @@ export function TrigGraphsLab({ page }: { page: StudioMockupPage }) {
     setVertical(0.5);
     setTime(Math.PI / 3);
     setPlaying(false);
+    setGraphSource("Preset");
+    setCustomExpression("");
   };
 
   return (
@@ -137,7 +177,9 @@ export function TrigGraphsLab({ page }: { page: StudioMockupPage }) {
         const b = frequency;
         const c = phase;
         const d = vertical;
-        const y = a * trigValue(selected, b * (time - c)) + d;
+        const custom = graphSource === "Custom";
+        const y = custom ? (customFunction.evaluate?.(time) ?? Number.NaN) : a * trigValue(selected, b * (time - c)) + d;
+        const customSegments = custom && customFunction.evaluate ? customWaveSegments(customFunction.evaluate) : [];
         const period = (selected === "Tangent" ? Math.PI : 2 * Math.PI) / Math.abs(b || 1);
         const lineColor = selected === "Sine" ? COLORS.sine : selected === "Cosine" ? COLORS.cosine : COLORS.tangent;
         const circleAngle = b * (time - c);
@@ -155,6 +197,19 @@ export function TrigGraphsLab({ page }: { page: StudioMockupPage }) {
         return (
           <>
             <Panel title="Function builder" className="trig-target trig-target-controls trig-target-graphs-controls">
+              <Segmented label="Graph source" value={graphSource} onChange={(value) => {
+                setGraphSource(value as "Preset" | "Custom");
+                if (value === "Custom" && !customExpression.trim()) setCustomExpression(`${trigName(selected)}(x)`);
+              }} options={[{ id: "Preset", label: "Preset controls" }, { id: "Custom", label: "Your function" }]} />
+              {custom ? (
+                <>
+                  <Field label="Write your function y =" hint="Use x and radians">
+                    <input type="text" value={customExpression} onChange={(event) => setCustomExpression(event.target.value)} placeholder="e.g. cos(2x) + 0.5sin(x)" spellCheck={false} autoComplete="off" aria-invalid={Boolean(customFunction.error)} aria-describedby="trig-custom-help trig-custom-error" />
+                  </Field>
+                  <p id="trig-custom-help" className="trig-target-custom-help">Try sin(x) + cos(2x), 2cos(x - pi/4), or tan(x). You can also write f(x) =. Supports +, −, ×, ÷, powers, and π.</p>
+                  {customFunction.error ? <p id="trig-custom-error" className="trig-target-custom-error" role="alert">{customFunction.error}</p> : null}
+                </>
+              ) : null}
               {(transforming || comparison) ? (
                 <Field label="Function">
                   <Segmented
@@ -164,14 +219,16 @@ export function TrigGraphsLab({ page }: { page: StudioMockupPage }) {
                   />
                 </Field>
               ) : null}
-              <p className="msk-formula trig-target-formula">
+              {!custom ? <p className="msk-formula trig-target-formula">
                 {comparison ? `Parents y = sin x, cos x, tan x · overlay y = ${fmt(a, 1)} ${trigName(selected)}(${fmt(b, 2)}(x − ${fmt(c, 2)})) + ${fmt(d, 1)}` : `y = ${fmt(a, 1)} ${trigName(selected)}(${fmt(b, 2)}(x − ${fmt(c, 2)})) + ${fmt(d, 1)}`}
-              </p>
+              </p> : <p className="msk-formula trig-target-formula">y = {customExpression}</p>}
+              {!custom ? <>
               <div className="trig-control-amplitude"><SliderRow label="Amplitude A" value={amplitude} min={0.2} max={3} step={0.1} onChange={setAmplitude} /></div>
               <div className="trig-control-period"><SliderRow label="Period parameter B" value={frequency} min={0.25} max={5} step={0.05} onChange={setFrequency} /></div>
               <div className="trig-control-phase"><SliderRow label="Phase shift C" value={phase} min={-2 * Math.PI} max={2 * Math.PI} step={0.05} onChange={setPhase} /></div>
               <div className="trig-control-vertical"><SliderRow label="Vertical shift D" value={vertical} min={-2} max={2} step={0.1} onChange={setVertical} /></div>
-              {!comparison ? (
+              </> : null}
+              {!comparison && !custom ? (
                 <>
                   <Segmented value={angleUnit} onChange={(value) => setAngleUnit(value as "Radians" | "Degrees")} options={[{ id: "Radians", label: "Radians" }, { id: "Degrees", label: "Degrees" }]} />
                   <Field label="Examples">
@@ -205,43 +262,43 @@ export function TrigGraphsLab({ page }: { page: StudioMockupPage }) {
               </div>
             </Panel>
 
-            <section className="msk-panel msk-canvas trig-target trig-target-graphs-canvas" data-trig-target-mode={mode} data-tg-mode={mode} aria-label={`${selected} graph`}>
+            <section className="msk-panel msk-canvas trig-target trig-target-graphs-canvas" data-trig-target-mode={mode} data-tg-mode={mode} data-custom-function={custom ? customExpression : undefined} aria-label={custom ? "Custom function graph" : `${selected} graph`}>
               {comparison ? <span className="sr-only">Compare the three graphs</span> : null}
               <svg
                 className="msk-graph is-dark is-interactive trig-target-dark-graph"
                 viewBox="0 0 560 400"
                 role="img"
-                aria-label={`${mode} trigonometric graph`}
+                aria-label={custom ? `Graph of y = ${customExpression}` : `${mode} trigonometric graph`}
                 onPointerMove={moveGraphHandle}
                 onPointerUp={() => { graphHandle.current = null; }}
                 onPointerLeave={() => { graphHandle.current = null; }}
               >
                 <rect width="560" height="400" rx="12" fill="#061428" />
                 {showGrid ? <Grid /> : null}
-                <g className="trig-target-circle-inset">
+                {!custom ? <g className="trig-target-circle-inset">
                   <circle cx="56" cy="64" r="42" fill="#0b2039" stroke="#7dd3fc" />
                   <line x1="10" y1="64" x2="104" y2="64" stroke="#64748b" />
                   <line x1="56" y1="16" x2="56" y2="112" stroke="#64748b" />
                   <line x1="56" y1="64" x2={circleX} y2={circleY} stroke={COLORS.cosine} strokeWidth="2" />
                   <line x1={circleX} y1={circleY} x2={circleX} y2="64" stroke={COLORS.sine} strokeDasharray="3 2" />
                   <circle cx={circleX} cy={circleY} r="4.5" fill={COLORS.angle} />
-                </g>
+                </g> : null}
                 {comparison ? (
                   <>
                     {waveSegments("Sine", 1, 1, 0, 0).map((points) => <polyline key={`s-${points.slice(0, 16)}`} points={points} fill="none" stroke={COLORS.sine} strokeWidth="2.2" />)}
                     {waveSegments("Cosine", 1, 1, 0, 0).map((points) => <polyline key={`c-${points.slice(0, 16)}`} points={points} fill="none" stroke={COLORS.cosine} strokeWidth="2.2" />)}
                     {waveSegments("Tangent", 1, 1, 0, 0).map((points) => <polyline key={`t-${points.slice(0, 16)}`} points={points} fill="none" stroke={COLORS.tangent} strokeWidth="1.8" />)}
-                    {waveSegments(selected, a, b, c, d).map((points) => <polyline key={`xf-${points.slice(0, 16)}`} points={points} fill="none" stroke={lineColor} strokeWidth="2.8" strokeDasharray="6 4" />)}
+                    {!custom ? waveSegments(selected, a, b, c, d).map((points) => <polyline key={`xf-${points.slice(0, 16)}`} points={points} fill="none" stroke={lineColor} strokeWidth="2.8" strokeDasharray="6 4" />) : null}
                   </>
                 ) : (
                   <>
                     {selected !== "Tangent" ? waveSegments(selected, 1, 1, 0, 0).map((points) => <polyline key={`parent-${points.slice(0, 16)}`} points={points} fill="none" stroke="#64748b" strokeWidth="1.4" strokeDasharray="5 4" />) : null}
-                    {selected === "Tangent"
+                    {!custom && selected === "Tangent"
                       ? Array.from({ length: 8 }, (_, index) => c + (Math.PI / 2 + (index - 4) * Math.PI) / b)
                         .filter((x) => x >= -2 * Math.PI && x <= 2 * Math.PI)
                         .map((x) => <line key={`asymptote-${x}`} x1={graphX(x)} y1="18" x2={graphX(x)} y2="378" stroke="#f59e0b" strokeOpacity=".48" strokeDasharray="5 5" />)
                       : null}
-                    {selected !== "Tangent" ? (
+                    {!custom && selected !== "Tangent" ? (
                       <>
                         <line x1="32" y1={graphY(d)} x2="538" y2={graphY(d)} stroke={COLORS.success} strokeWidth="1.2" strokeDasharray="5 4" />
                         <text x="35" y={graphY(d) - 7} fill={COLORS.success} fontSize="10">y = {fmt(d, 1)}</text>
@@ -254,16 +311,17 @@ export function TrigGraphsLab({ page }: { page: StudioMockupPage }) {
                           .map((x) => <circle key={`key-${x}`} cx={graphX(x)} cy={graphY(0)} r="4.5" fill={COLORS.cosine} />)}
                       </>
                     ) : null}
-                    {waveSegments(selected, a, b, c, d).map((points) => <polyline key={points.slice(0, 18)} points={points} fill="none" stroke={lineColor} strokeWidth="2.6" />)}
+                    {!custom ? waveSegments(selected, a, b, c, d).map((points) => <polyline key={points.slice(0, 18)} points={points} fill="none" stroke={lineColor} strokeWidth="2.6" />) : null}
                   </>
                 )}
+                {customSegments.map((points, index) => <polyline key={`custom-${index}`} data-custom-curve="true" points={points} fill="none" stroke="#f472b6" strokeWidth="3" strokeLinejoin="round" />)}
                 {trace && Number.isFinite(y) && Math.abs(y) <= 3.5 ? (
                   <>
                     <line x1={graphX(time)} y1="18" x2={graphX(time)} y2="378" stroke={COLORS.angle} strokeDasharray="5 4" />
                     <circle cx={graphX(time)} cy={graphY(y)} r="6" fill={COLORS.angle} stroke="#fff" strokeWidth="1.5" />
                   </>
                 ) : null}
-                {transforming ? (
+                {transforming && !custom ? (
                   <>
                     <g className="trig-target-graph-handle" onPointerDown={(event) => { event.currentTarget.setPointerCapture(event.pointerId); graphHandle.current = "A"; }}>
                       <circle cx={graphX(peakX)} cy={graphY(a + d)} r="8" fill={COLORS.sine} stroke="#fff" strokeWidth="2" />
@@ -276,7 +334,7 @@ export function TrigGraphsLab({ page }: { page: StudioMockupPage }) {
                     <text x="124" y="48" fill="#cbd5e1" fontSize="10">Drag the A and D handles on the graph</text>
                   </>
                 ) : null}
-                <text x="124" y="31" fill={lineColor} fontSize="12">{comparison ? "sin x · cos x · tan x" : `y = ${fmt(a, 1)} ${trigName(selected)}(${fmt(b, 2)}(x − ${fmt(c, 2)})) + ${fmt(d, 1)}`}</text>
+                <text x="124" y="31" fill={custom ? "#f472b6" : lineColor} fontSize="12">{custom ? `y = ${customExpression.slice(0, 48)}` : comparison ? "sin x · cos x · tan x" : `y = ${fmt(a, 1)} ${trigName(selected)}(${fmt(b, 2)}(x − ${fmt(c, 2)})) + ${fmt(d, 1)}`}</text>
               </svg>
               <div className="msk-canvas-tools trig-target-graph-tools">
                 <button type="button" className={showGrid ? "active" : ""} onClick={() => setShowGrid((value) => !value)}>Grid</button>
@@ -288,7 +346,13 @@ export function TrigGraphsLab({ page }: { page: StudioMockupPage }) {
 
             <aside className="msk-panel msk-live trig-target trig-target-right-rail trig-target-graphs-rail">
               <h2>Values &amp; Insights</h2>
-              {comparison ? (
+              {custom ? (
+                <>
+                  <LiveRow color="#f472b6" label="Your function" value={`y = ${customExpression}`} />
+                  <LiveRow color={COLORS.angle} label="Current x" value={`${fmt(time, 3)} rad`} />
+                  <LiveRow color="#f472b6" label="Current y" value={Number.isFinite(y) ? fmt(y, 4) : "undefined"} />
+                </>
+              ) : comparison ? (
                 <>
                   <LiveRow color={COLORS.sine} label="sin x" value="period 2π" />
                   <LiveRow color={COLORS.cosine} label="cos x" value="phase lead π/2" />
@@ -306,9 +370,9 @@ export function TrigGraphsLab({ page }: { page: StudioMockupPage }) {
                   <LiveRow color="#64748b" label="Range" value={selected === "Tangent" ? "(−∞, ∞)" : `[${fmt(d - Math.abs(a), 1)}, ${fmt(d + Math.abs(a), 1)}]`} />
                 </>
               )}
-              <h2>Formula substitution</h2>
-              <p className="msk-formula">y = {fmt(a, 2)} {trigName(selected)}({fmt(b, 2)}({fmt(time, 2)} − {fmt(c, 2)})) + {fmt(d, 2)}</p>
-              <StatusOk>{selected === "Tangent" ? "Breaks mark vertical asymptotes." : "The circle projection and graph point agree."}</StatusOk>
+              <h2>{custom ? "Function evaluation" : "Formula substitution"}</h2>
+              <p className="msk-formula">{custom ? `f(${fmt(time, 2)}) = ${Number.isFinite(y) ? fmt(y, 4) : "undefined"}` : `y = ${fmt(a, 2)} ${trigName(selected)}(${fmt(b, 2)}(${fmt(time, 2)} − ${fmt(c, 2)})) + ${fmt(d, 2)}`}</p>
+              {custom ? <StatusOk>The pink curve graphs your function in radians.</StatusOk> : <StatusOk>{selected === "Tangent" ? "Breaks mark vertical asymptotes." : "The circle projection and graph point agree."}</StatusOk>}
               <ChallengeBox page={page} mode={mode} />
             </aside>
           </>

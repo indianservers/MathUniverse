@@ -351,6 +351,25 @@
   font-size: 12px;
 }
 
+.msk-trigonometry .trig-target-custom-help {
+  margin: -3px 0 10px;
+  color: #64748b;
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.msk-trigonometry .trig-target-custom-error {
+  margin: -3px 0 10px;
+  color: #be123c;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.msk-trigonometry .trig-target-graphs-controls input[aria-invalid="true"] {
+  border-color: #fb7185;
+  box-shadow: 0 0 0 2px #ffe4e6;
+}
+
 .msk-trigonometry .trig-control-amplitude input { accent-color: #06b6d4; }
 .msk-trigonometry .trig-control-period input { accent-color: #8b5cf6; }
 .msk-trigonometry .trig-control-phase input { accent-color: #f59e0b; }
