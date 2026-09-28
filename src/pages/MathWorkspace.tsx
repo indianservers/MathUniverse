@@ -370,7 +370,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   const [crossSection, setCrossSection] = useState(0);
   const [showSurface, setShowSurface] = useState(true);
   const [showSolid, setShowSolid] = useState(true);
-  const [autoRotate3d, setAutoRotate3d] = useState(true);
+  const [autoRotate3d, setAutoRotate3d] = useState(false);
   const [sceneAnimationSpeed, setSceneAnimationSpeed] = useState(0.18);
   const [cameraPreset3d, setCameraPreset3d] = useState<CameraPreset3D>("isometric");
   const [zoom3d, setZoom3d] = useState(1);
@@ -2795,7 +2795,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
       {workspaceView === "3d" && (
         <ObjectStudioWorkspace
           scene={(
-            <ThreeSceneWrapper height="100%" mobileHeight="100%" interactionLabel="Drag objects, orbit, pan, and zoom">
+            <ThreeSceneWrapper height="100%" mobileHeight="100%" cameraPosition={typeof window !== "undefined" && window.matchMedia("(max-width: 620px)").matches ? [15, 12, 18] : [10, 8, 12]} showHint={false} interactionLabel="Drag objects, orbit, pan, and zoom">
               <ambientLight intensity={0.75} />
               <directionalLight position={[5, 6, 4]} intensity={1.2} />
               <Workspace3DScene

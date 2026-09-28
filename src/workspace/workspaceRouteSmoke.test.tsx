@@ -80,7 +80,7 @@ describe("workspace route smoke coverage", () => {
   it.each([
     ["graph", <WorkspaceGraph />, ["Graph Studio 2D", "Expressions &amp; Layers", "Function Inspector"]],
     ["geometry", <WorkspaceGeometry />, ["2D Geometry Workspace", "Move tool ready", "Object Properties"]],
-    ["3d", <Workspace3D />, ["3D Object Studio", "Shape Library", "Scene Objects"]],
+    ["3d", <Workspace3D />, ["3d- Geometry", "Shape Library", "Scene Objects"]],
     ["data", <WorkspaceData />, ["Computer Algebra Studio", "Symbolic notebook", "Exact solution"]],
     ["teach", <WorkspaceTeach />, ["Teacher", "Guided", "offline"]],
   ])("renders the %s workspace route without a blank shell", (_name, element, signals) => {

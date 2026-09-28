@@ -10905,6 +10905,14 @@ html[data-geometry-workspace-theme="light"]
   grid-template-rows: minmax(0, 1fr) calc(var(--workspace-dock-height) + env(safe-area-inset-bottom));
 }
 
+.math-workspace-layout[data-workspace="geometry-3d"] {
+  grid-template-rows: minmax(0, 1fr);
+}
+
+.math-workspace-layout[data-workspace="geometry-3d"] > .math-workspace-mobile-dock {
+  display: none;
+}
+
 .math-workspace-layout[data-workspace="geometry"] > .math-workspace-stage,
 .math-workspace-layout[data-workspace="geometry-3d"] > .math-workspace-stage,
 .math-workspace-layout[data-workspace="graphs"] > .math-workspace-stage,
@@ -14227,20 +14235,23 @@ html[data-geometry-workspace-theme="glow"]
 .object-studio-shell {
   --gs-cyan: #19d3f3;
   --gs-violet: #a855f7;
-  grid-template-areas: "top" "canvas" "status" "mobile";
-  grid-template-columns: minmax(0, 1fr);
-  grid-template-rows: 54px minmax(0, 1fr) 26px 58px;
-}
-.object-studio-shell:not(.has-left),
-.object-studio-shell:not(.has-right),
-.object-studio-shell:not(.has-left):not(.has-right) {
-  grid-template-columns: minmax(0, 1fr);
 }
 .object-studio-shell .gs3d-topbar {
   grid-template-columns: auto minmax(180px, 1fr) auto;
 }
 .object-studio-shell .gs3d-brand strong {
   font-size: 16px;
+}
+@media (max-width: 1100px) {
+  .object-studio-shell .gs3d-brand strong {
+    display: block;
+    font-size: 14px;
+  }
+}
+@media (max-width: 620px) {
+  .object-studio-shell .gs3d-project-name {
+    display: none;
+  }
 }
 .object-studio-shell button {
   letter-spacing: 0;
@@ -15096,10 +15107,7 @@ html[data-geometry-workspace-theme="glow"]
     transform: translateY(calc(100% - 38px));
   }
   .os-context-toolbar {
-    right: 8px;
-    bottom: 10px;
-    left: 8px;
-    max-width: calc(100% - 16px);
+    display: none;
   }
   .os-gizmo {
     top: 45%;

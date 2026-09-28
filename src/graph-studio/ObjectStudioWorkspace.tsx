@@ -300,7 +300,7 @@ export default function ObjectStudioWorkspace(props: Props) {
       <header className="gs3d-topbar">
         <div className="gs3d-brand">
           <div className="gs3d-mark">MU</div>
-          <strong>3D Object Studio</strong>
+          <strong>3d- Geometry</strong>
         </div>
         <div className="gs3d-project-name">
           {renaming ? (

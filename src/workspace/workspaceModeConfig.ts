@@ -25,7 +25,7 @@ export const workspaceModeConfigs: Record<WorkspaceMode, WorkspaceModeConfig> = 
   "three-d": {
     mode: "three-d",
     routePath: "/workspace/3d",
-    title: "3D Geometry",
+    title: "3d- Geometry",
     description: "3D graphing, solids, surfaces, camera controls, and object transforms.",
     primarySurfaceTestId: "workspace-3d-surface",
   },
