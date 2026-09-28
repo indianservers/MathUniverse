@@ -14,24 +14,24 @@ const green = "#0ba66a";
 const orange = "#f97316";
 const baseBounds: Bounds = { xMin: -3.5, xMax: 3.5, yMin: -3.5, yMax: 3.5 };
 
-function Card({ title, icon: Icon, children, className = "" }: { title: string; icon?: typeof Search; children: React.ReactNode; className?: string }) {
+export function Card({ title, icon: Icon, children, className = "" }: { title: string; icon?: typeof Search; children: React.ReactNode; className?: string }) {
   return <section className={`de1-card ${className}`}><h2>{Icon ? <Icon size={19} aria-hidden="true" /> : null}{title}</h2>{children}</section>;
 }
-function Formula({ value, display = false }: { value: string; display?: boolean }) { return <MathExpression value={value} display={display} className="de1-formula" />; }
-function Slider({ label, value, min, max, step = 0.1, onChange }: { label: string; value: number; min: number; max: number; step?: number; onChange: (value: number) => void }) {
+export function Formula({ value, display = false }: { value: string; display?: boolean }) { return <MathExpression value={value} display={display} className="de1-formula" />; }
+export function Slider({ label, value, min, max, step = 0.1, onChange }: { label: string; value: number; min: number; max: number; step?: number; onChange: (value: number) => void }) {
   return <label className="de1-slider"><span>{label}<output>{Number(value.toFixed(3))}</output></span><input type="range" min={min} max={max} step={step} value={value} onChange={(event) => onChange(Number(event.target.value))} /></label>;
 }
-function CheckBox({ label, checked, onChange }: { label: string; checked: boolean; onChange: (checked: boolean) => void }) {
+export function CheckBox({ label, checked, onChange }: { label: string; checked: boolean; onChange: (checked: boolean) => void }) {
   return <label className="de1-check"><input type="checkbox" checked={checked} onChange={(event) => onChange(event.target.checked)} />{label}</label>;
 }
-function ExampleChips({ items, onSelect }: { items: Array<{ label: string; value: string }>; onSelect: (value: string) => void }) {
+export function ExampleChips({ items, onSelect }: { items: Array<{ label: string; value: string }>; onSelect: (value: string) => void }) {
   return <div className="de1-chips">{items.map((item) => <button key={item.value} type="button" onClick={() => onSelect(item.value)}>{item.label}</button>)}</div>;
 }
-function Steps({ steps }: { steps: Array<{ title: string; formula?: string; detail?: string }> }) {
+export function Steps({ steps }: { steps: Array<{ title: string; formula?: string; detail?: string }> }) {
   return <div className="de1-steps">{steps.map((step, index) => <details key={`${index}-${step.title}`} open={index === 0}><summary><span>{index + 1}</span><strong>{step.title}</strong><ChevronDown size={15} /></summary><div className="de1-step-content">{step.formula ? <Formula value={step.formula} /> : null}{step.detail ? <p>{step.detail}</p> : null}</div></details>)}</div>;
 }
-function Notice({ children, good = false }: { children: React.ReactNode; good?: boolean }) { return <p className={`de1-notice${good ? " is-good" : ""}`}><Lightbulb size={17} />{children}</p>; }
-function compileSlope(raw: string, parameters: Record<string, number> = {}) {
+export function Notice({ children, good = false }: { children: React.ReactNode; good?: boolean }) { return <p className={`de1-notice${good ? " is-good" : ""}`}><Lightbulb size={17} />{children}</p>; }
+export function compileSlope(raw: string, parameters: Record<string, number> = {}) {
   try {
     let expression = raw.trim().replace(/′/g, "'").replace(/^\s*(?:dy\s*\/\s*dx|y')\s*=\s*/i, "").replace(/[−–]/g, "-");
     for (const [key, value] of Object.entries(parameters)) expression = expression.replace(new RegExp(`\\b${key}\\b`, "g"), `(${value})`);
@@ -40,7 +40,7 @@ function compileSlope(raw: string, parameters: Record<string, number> = {}) {
     return { fn, error: "" };
   } catch (error) { return { fn: null, error: error instanceof Error ? error.message : "Enter a valid slope rule." }; }
 }
-function fmt(value: number, digits = 2) { return Number.isFinite(value) ? Number(value.toFixed(digits)).toLocaleString() : "undefined"; }
+export function fmt(value: number, digits = 2) { return Number.isFinite(value) ? Number(value.toFixed(digits)).toLocaleString() : "undefined"; }
 
 const explorerExamples = [
   { label: "Logistic Growth", value: "y' = r*y*(1-y/K)" },

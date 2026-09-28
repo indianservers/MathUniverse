@@ -30,6 +30,9 @@ import {
 } from "./EngineeringLabs";
 import { inspectEquation, normalizeEquation } from "./equationInspection";
 import { BernoulliPhase1, DirectionFieldsPhase1, EquationExplorerPhase1, ExactPhase1, GrowthPhase1, HomogeneousPhase1, InitialValuePhase1, LinearFirstOrderPhase1, MethodSelectorPhase1, SeparablePhase1 } from "./Phase1Labs";
+import { NumericalPhase2 } from "./Phase2NumericLabs";
+import { CauchyEulerPhase2, HigherOrderPhase2, UndeterminedPhase2, VariationPhase2 } from "./Phase2SymbolicLabs";
+import { LcrPhase2, NewtonCoolingPhase2, OscillationsPhase2, PhasePlanePhase2, SystemsPhase2 } from "./Phase2DynamicsLabs";
 import "./differentialEquations.css";
 
 const embedded: Record<string, string> = {
@@ -52,6 +55,18 @@ export default function DifferentialEquationsLab({ page }: { page: StudioMockupP
   if (page.id === "linear-first-order") return <LinearFirstOrderPhase1 />;
   if (page.id === "bernoulli") return <BernoulliPhase1 />;
   if (page.id === "growth-models") return <GrowthPhase1 />;
+  if (page.id === "euler") return <NumericalPhase2 method="euler" />;
+  if (page.id === "heun") return <NumericalPhase2 method="heun" />;
+  if (page.id === "rk4") return <NumericalPhase2 method="rk4" />;
+  if (page.id === "higher-order-linear") return <HigherOrderPhase2 />;
+  if (page.id === "undetermined-coefficients") return <UndeterminedPhase2 />;
+  if (page.id === "variation-of-parameters") return <VariationPhase2 />;
+  if (page.id === "cauchy-euler") return <CauchyEulerPhase2 />;
+  if (page.id === "systems") return <SystemsPhase2 />;
+  if (page.id === "phase-plane") return <PhasePlanePhase2 />;
+  if (page.id === "mechanical-oscillations") return <OscillationsPhase2 />;
+  if (page.id === "lcr-circuit") return <LcrPhase2 />;
+  if (page.id === "newton-cooling") return <NewtonCoolingPhase2 />;
   const mode = embedded[page.id];
   if (mode) return <CalculusDifferentialEquationsStudio mode={mode} />;
   if (page.id === "explorer") return <ExplorerLab />;

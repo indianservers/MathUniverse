@@ -40,13 +40,13 @@ describe("Differential Equations Studio", () => {
     expect(html("/differential-equations/explorer")).toContain("Solution Curves and Direction Field");
     expect(html("/differential-equations/method-selector")).toContain("Analyze Your Equation");
     expect(html("/differential-equations/exact")).toContain("Exactness Test");
-    expect(html("/differential-equations/heun")).toContain("Improved Euler");
+    expect(html("/differential-equations/heun")).toContain("Heun Approximation");
     expect(html("/differential-equations/slope-fields")).toContain("Interactive Canvas");
     expect(home).toContain("Higher-order equations");
-    expect(html("/differential-equations/higher-order-linear")).toContain("Characteristic roots");
+    expect(html("/differential-equations/higher-order-linear")).toContain("Characteristic Equation");
     expect(html("/differential-equations/cauchy-euler")).toContain("Indicial equation");
-    expect(html("/differential-equations/systems")).toContain("stable node");
-    expect(html("/differential-equations/mechanical-oscillations")).toContain("Spring and mass");
-    expect(html("/differential-equations/newton-cooling")).toContain("Temperature gap");
+    expect(html("/differential-equations/systems")).toContain("stable spiral");
+    expect(html("/differential-equations/mechanical-oscillations")).toContain("Spring–Mass System");
+    expect(html("/differential-equations/newton-cooling")).toContain("Temperature Over Time");
   });
 });

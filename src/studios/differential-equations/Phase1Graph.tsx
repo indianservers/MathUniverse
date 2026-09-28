@@ -3,6 +3,7 @@ import { Maximize2, Minus, Plus, RotateCcw } from "lucide-react";
 
 export type Point = { x: number; y: number };
 export type GraphSeries = { label: string; color: string; points: Point[]; dashed?: boolean };
+export type GraphMarker = Point & { color?: string; label?: string };
 export type Bounds = { xMin: number; xMax: number; yMin: number; yMax: number };
 
 export function rk4Curve(field: (x: number, y: number) => number, initial: Point, bounds: Bounds, steps = 320): Point[] {
@@ -42,7 +43,7 @@ function niceStep(range: number) {
 export function Phase1Graph({
   bounds, series, field, density = 18, points = [], onPointChange, onInspect,
   showField = false, showAxes = true, showGrid = true, showLegend = true,
-  horizontalLines = [], height = 420, label = "Interactive solution graph",
+  horizontalLines = [], markers = [], segments = [], height = 420, label = "Interactive solution graph",
 }: {
   bounds: Bounds;
   series: GraphSeries[];
@@ -56,12 +57,15 @@ export function Phase1Graph({
   showGrid?: boolean;
   showLegend?: boolean;
   horizontalLines?: Array<{ y: number; label: string; color: string }>;
+  markers?: GraphMarker[];
+  segments?: GraphSeries[];
   height?: number;
   label?: string;
 }) {
   const [zoom, setZoom] = useState(1);
   const [offset, setOffset] = useState<Point>({ x: 0, y: 0 });
   const [drag, setDrag] = useState<{ kind: "point"; index: number } | { kind: "pan"; clientX: number; clientY: number; offset: Point } | null>(null);
+  const [hover, setHover] = useState<Point | null>(null);
   const svgRef = useRef<SVGSVGElement>(null);
   const width = 640;
   const pad = 38;
@@ -119,8 +123,8 @@ export function Phase1Graph({
     </div>
     <svg ref={svgRef} className={`de1-graph${drag ? " is-dragging" : ""}`} viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="none" role="img" aria-label={label}
       onPointerDown={(event) => { setDrag({ kind: "pan", clientX: event.clientX, clientY: event.clientY, offset }); event.currentTarget.setPointerCapture(event.pointerId); }}
-      onPointerMove={(event) => { const point = fromEvent(event); onInspect?.(point); if (drag?.kind === "point") onPointChange?.(drag.index, point); else if (drag?.kind === "pan") { const rect = event.currentTarget.getBoundingClientRect(); setOffset({ x: drag.offset.x - (event.clientX - drag.clientX) / rect.width * (visible.xMax - visible.xMin), y: drag.offset.y + (event.clientY - drag.clientY) / rect.height * (visible.yMax - visible.yMin) }); } }}
-      onPointerUp={() => setDrag(null)} onPointerCancel={() => setDrag(null)}>
+      onPointerMove={(event) => { const point = fromEvent(event); setHover(point); onInspect?.(point); if (drag?.kind === "point") onPointChange?.(drag.index, point); else if (drag?.kind === "pan") { const rect = event.currentTarget.getBoundingClientRect(); setOffset({ x: drag.offset.x - (event.clientX - drag.clientX) / rect.width * (visible.xMax - visible.xMin), y: drag.offset.y + (event.clientY - drag.clientY) / rect.height * (visible.yMax - visible.yMin) }); } }}
+      onPointerUp={() => setDrag(null)} onPointerCancel={() => setDrag(null)} onPointerLeave={() => setHover(null)}>
       <rect width={width} height={height} fill="#fff" />
       {showGrid ? <g stroke="#e7effb" strokeWidth="1">{vertical.map((x) => <line key={`x${x}`} x1={px(x)} x2={px(x)} y1={pad} y2={height - pad} />)}{horizontal.map((y) => <line key={`y${y}`} x1={pad} x2={width - pad} y1={py(y)} y2={py(y)} />)}</g> : null}
       {showAxes ? <g stroke="#243858" strokeWidth="1.5"><line x1={pad} x2={width - pad} y1={py(0)} y2={py(0)} /><line x1={px(0)} x2={px(0)} y1={pad} y2={height - pad} /></g> : null}
@@ -129,8 +133,11 @@ export function Phase1Graph({
       {slopeMarks}
       {horizontalLines.map((line) => <g key={line.label}><line x1={pad} x2={width - pad} y1={py(line.y)} y2={py(line.y)} stroke={line.color} strokeWidth="2" strokeDasharray="6 5" /><text x={width - pad - 6} y={py(line.y) - 6} fill={line.color} fontSize="12" textAnchor="end">{line.label}</text></g>)}
       {series.map((item) => <path key={item.label} data-series={item.label} d={path(item.points)} fill="none" stroke={item.color} strokeWidth="2.7" strokeDasharray={item.dashed ? "7 5" : undefined} strokeLinecap="round" strokeLinejoin="round" />)}
+      {segments.map((item) => <path key={item.label} d={path(item.points)} fill="none" stroke={item.color} strokeWidth="2" strokeDasharray={item.dashed ? "5 4" : undefined} />)}
+      {markers.map((point, index) => <g key={`${point.label ?? "marker"}-${index}`}><circle cx={px(point.x)} cy={py(point.y)} r="5" fill={point.color ?? "#1769f5"} stroke="#fff" strokeWidth="2" />{point.label ? <text x={px(point.x) + 9} y={py(point.y) - 8} fill={point.color ?? "#1769f5"} fontSize="12">{point.label}</text> : null}</g>)}
       {points.map((point, index) => <g key={index} data-point="true" className="de1-draggable-point" onPointerDown={(event) => { event.stopPropagation(); setDrag({ kind: "point", index }); event.currentTarget.ownerSVGElement?.setPointerCapture(event.pointerId); }}><circle cx={px(point.x)} cy={py(point.y)} r="14" fill="transparent" /><circle cx={px(point.x)} cy={py(point.y)} r="6.5" fill={series[index]?.color ?? "#1769f5"} stroke="#fff" strokeWidth="2" /></g>)}
     </svg>
+    {hover && !drag ? <div className="de1-graph-inspector">x {hover.x.toFixed(2)} · y {hover.y.toFixed(2)}{field && Number.isFinite(field(hover.x, hover.y)) ? ` · slope ${field(hover.x, hover.y).toFixed(2)}` : ""}</div> : null}
     {showLegend && series.length ? <div className="de1-legend">{series.map((item) => <span key={item.label}><i style={{ background: item.color }} />{item.label}</span>)}</div> : null}
   </div>;
 }

@@ -54,7 +54,6 @@ const phase1Icons: Record<string, LucideIcon> = {
   "mechanical-oscillations": Waves, "lcr-circuit": Zap,
   "newton-cooling": Thermometer,
 };
-const phase1Ids = new Set(["explorer", "method-selector", "slope-fields", "initial-value", "separable", "homogeneous-first-order", "exact", "linear-first-order", "bernoulli", "growth-models"]);
 const phase1Headings: Record<string, { title: string; description: string }> = {
   explorer: { title: "Equation Explorer", description: "Enter a differential equation, explore its solutions, and see how changing parameters affects its behavior." },
   "method-selector": { title: "Method Selector", description: "Analyze your equation and get personalized solution-method recommendations." },
@@ -66,6 +65,33 @@ const phase1Headings: Record<string, { title: string; description: string }> = {
   "linear-first-order": { title: "Linear First-Order", description: "Explore, solve, and understand first-order linear differential equations." },
   bernoulli: { title: "Bernoulli", description: "Transform Bernoulli equations into linear equations and compare their solutions." },
   "growth-models": { title: "Growth", description: "Model exponential growth, decay, and logistic growth interactively." },
+  euler: { title: "Euler", description: "Approximate solutions step by step using Euler’s method." },
+  heun: { title: "Heun", description: "Improve Euler’s method with predictor–corrector averaging." },
+  rk4: { title: "RK4", description: "Use the classical fourth-order Runge–Kutta method for accurate numerical solutions." },
+  "higher-order-linear": { title: "Higher-Order Linear", description: "Solve and understand second-order linear differential equations." },
+  "undetermined-coefficients": { title: "Undetermined Coefficients", description: "Find particular solutions by choosing and testing a trial form." },
+  "variation-of-parameters": { title: "Variation of Parameters", description: "Build particular solutions using fundamental solutions and parameter functions." },
+  "cauchy-euler": { title: "Cauchy–Euler", description: "Solve equidimensional equations with the power-form substitution y = xᵐ." },
+  systems: { title: "Systems", description: "Explore coupled differential equations, matrix form, and multivariable dynamics." },
+  "phase-plane": { title: "Phase Plane", description: "Analyze trajectories, nullclines, equilibria, and stability in two dimensions." },
+  "mechanical-oscillations": { title: "Oscillations", description: "Explore harmonic motion, damping, forcing, and energy interactively." },
+  "lcr-circuit": { title: "LCR Circuit", description: "Model electrical oscillations, damping, and resonance in a series circuit." },
+  "newton-cooling": { title: "Newton Cooling", description: "Explore how temperature approaches the ambient environment over time." },
+};
+const phase2Ids = new Set(["euler", "heun", "rk4", "higher-order-linear", "undetermined-coefficients", "variation-of-parameters", "cauchy-euler", "systems", "phase-plane", "mechanical-oscillations", "lcr-circuit", "newton-cooling"]);
+const phase2Quotes: Record<string, string> = {
+  euler: "Sometimes an approximate solution is the first step to a deeper understanding.",
+  heun: "A simple idea: average the slopes for a better estimate.",
+  rk4: "Numerical methods turn equations into answers.",
+  "higher-order-linear": "Higher-order equations model richer phenomena, from vibrations to electrical circuits.",
+  "undetermined-coefficients": "A smart guess, backed by theory, can solve a complicated equation.",
+  "variation-of-parameters": "When the usual methods do not fit, let the parameters vary.",
+  "cauchy-euler": "Scale invariance turns differential equations into algebra.",
+  systems: "Simple rules can create complex behavior.",
+  "phase-plane": "A picture in the plane can reveal the long-term story of a system.",
+  "mechanical-oscillations": "Oscillations are everywhere, from atoms to skyscrapers.",
+  "lcr-circuit": "Math helps us tune the unseen rhythms of the world.",
+  "newton-cooling": "Simple models can reveal profound insights about the natural world.",
 };
 
 function pageById(id: string) {
@@ -91,7 +117,7 @@ export default function DifferentialEquations() {
   }, [query]);
   const index = pages.findIndex((item) => item.id === page.id);
   const HeadingIcon = icons[page.id] ?? FlaskConical;
-  const phase1 = phase1Ids.has(page.id);
+  const phase1 = page.id !== "home";
 
   useEffect(() => {
     setMenuOpen(false);
@@ -116,7 +142,7 @@ export default function DifferentialEquations() {
   };
 
   return (
-    <main className={`de-studio${compact ? " de-compact" : ""}${phase1 ? ` de-phase1-shell${navExpanded ? " de-phase1-expanded" : ""}` : ""}`}>
+    <main className={`de-studio${compact ? " de-compact" : ""}${phase1 ? ` de-phase1-shell${phase2Ids.has(page.id) ? " de-phase2-shell" : ""}${navExpanded ? " de-phase1-expanded" : ""}` : ""}`}>
       {menuOpen && <button className="de-scrim" aria-label="Close navigation" onClick={() => setMenuOpen(false)} />}
       <aside className={`de-sidebar${menuOpen ? " is-open" : ""}`}>
         <Link className="de-brand" to={studio.basePath} aria-label="Differential Equations Studio home">
@@ -166,6 +192,7 @@ export default function DifferentialEquations() {
             <>
               <div className="de-lab-heading">
                 <div><p className="de-eyebrow"><Link to={studio.basePath}>Studio Home</Link><ChevronRight size={14} />{phase1 ? phase1Headings[page.id].title : page.label}</p><h1>{phase1 ? phase1Headings[page.id].title : page.title}</h1><p>{phase1 ? phase1Headings[page.id].description : page.description}</p></div>
+                {phase2Ids.has(page.id) && <blockquote className="de2-heading-quote">“{phase2Quotes[page.id]}”</blockquote>}
                 <span className="de-heading-mark"><HeadingIcon size={36} /></span>
               </div>
               {teacherMode && <section className="de-teacher-note" aria-label="Teaching notes"><strong>Teaching notes</strong><p>{page.learning.observe} {page.learning.why}</p></section>}
