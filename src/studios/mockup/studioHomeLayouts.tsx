@@ -1,6 +1,6 @@
 import { useState, type PointerEvent, type ReactNode } from "react";
 import { Link } from "react-router-dom";
-import { Compass, FlaskConical, Play, Search, Trophy } from "lucide-react";
+import { Activity, ArrowUpRight, CircleDot, Compass, FlaskConical, Play, Ruler, ScanLine, Search, Sigma, Triangle, Undo2, Waves, Trophy, type LucideIcon } from "lucide-react";
 import { TopicIllustration } from "./labs/TopicIllustrations";
 import type { StudioMockupDefinition, StudioMockupPage } from "./studioMockupCatalog";
 import { parseChallengeAnswer } from "./studioLabKit";
@@ -360,6 +360,18 @@ function TrigonometryHomeAside(props: HomeProps) {
 }
 
 function TrigonometryStudioHome(props: HomeProps & { title: string; cta?: string }) {
+  const topicIcons: Record<string, LucideIcon> = {
+    "unit-circle": CircleDot,
+    "right-triangle": Triangle,
+    graphs: Activity,
+    identities: Sigma,
+    inverse: Undo2,
+    oblique: Compass,
+    waves: Waves,
+    applications: Ruler,
+    ar: ScanLine,
+  };
+  const topics = props.labs.filter((item) => item.id !== "ar" || props.progress > 0);
   return (
     <div className="msk-home msk-trig-home" data-studio-home="trigonometry" data-home-layout="target-01">
       <section className="msk-trig-home-main">
@@ -375,10 +387,29 @@ function TrigonometryStudioHome(props: HomeProps & { title: string; cta?: string
         </div>
         <header className="msk-launch-head msk-trig-topics-head">
           <h2>{props.title}</h2>
-          <Link to="/trigonometry/unit-circle" data-topics-link="all">View all topics →</Link>
+          <a href="#trigonometry-topics" data-topics-link="all">View all topics ↓</a>
         </header>
-        <div data-lab-grid="trigonometry">
-          <LaunchGrid labs={props.labs.filter((item) => item.id !== "ar" || props.progress > 0)} studioId={props.studio.id} cta={props.cta} />
+        <div id="trigonometry-topics" className="msk-trig-topics-grid" data-lab-grid="trigonometry">
+          {topics.map((item, index) => {
+            const Icon = topicIcons[item.id] ?? CircleDot;
+            const meta = studioLabMeta("trigonometry", item.id);
+            return (
+              <Link
+                key={item.id}
+                to={item.route}
+                className="msk-trig-topic-tile"
+                data-lab-id={item.id}
+                data-card-index={index + 1}
+                aria-label={`Open ${item.label}`}
+              >
+                <span className="msk-trig-topic-icon" aria-hidden="true"><Icon size={28} strokeWidth={1.9} /></span>
+                <span className="msk-trig-topic-number">{String(index + 1).padStart(2, "0")}</span>
+                <strong>{item.label}</strong>
+                <small>{meta?.outcome ?? item.description}</small>
+                <span className="msk-trig-topic-action">Explore lab <ArrowUpRight size={16} aria-hidden="true" /></span>
+              </Link>
+            );
+          })}
         </div>
       </section>
       <TrigonometryHomeAside {...props} />
