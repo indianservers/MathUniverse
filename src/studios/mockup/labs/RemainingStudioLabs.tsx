@@ -26,6 +26,7 @@ import ModellingStudioLab from "./ModellingLabs";
 import { InverseTrigLab as TargetInverseTrigLab } from "./InverseTrigLab";
 import { ApplicationsLab as TargetApplicationsLab } from "./ApplicationsLab";
 import { ArRoomScene, ElevationTriangle, StudioMath3D } from "../../shared/studioMath3D";
+import SamplingCltLab from "../../statistics/SamplingCltLab";
 
 function Chrome({ page, children, layout, toolbar }: { page: StudioMockupPage; children: ReactNode | ((mode: string) => ReactNode); layout?: "quad"; toolbar?: ReactNode }) {
   return (
@@ -109,7 +110,7 @@ export default function RemainingStudioLab({ page, extra }: { page: StudioMockup
     case "descriptive": return <DescriptiveLab page={page} />;
     case "experiments": return <ExperimentsLab page={page} />;
     case "counting": return <CountingLab page={page} />;
-    case "clt": return <CltLab page={page} />;
+    case "clt": return <SamplingCltLab page={page} />;
     case "confidence-intervals": return <CiLab page={page} />;
     case "hypothesis": return <HypothesisLab page={page} />;
     case "correlation": return <CorrelationLab page={page} />;
@@ -383,29 +384,6 @@ function ExperimentsLab({ page }: { page: StudioMockupPage }) {
 
 function CountingLab({ page }: { page: StudioMockupPage }) {
   return <CountingPascalLab page={page} />;
-}
-
-function CltLab({ page }: { page: StudioMockupPage }) {
-  const [n, setN] = useState(25);
-  const se = 10 / Math.sqrt(n);
-  const dots = Array.from({ length: n }, (_, i) => {
-    const hash = Math.sin(i * 12.9898 + 78.233) * 43758.5453;
-    const u = hash - Math.floor(hash);
-    return { x: 200 + (u * 2 - 1) * Math.min(160, se * 16), y: 100 + Math.sin(i * 2.15) * 28 };
-  });
-  return (
-    <Chrome page={page}>
-      <Panel title="Sampling"><SliderRow label="n" value={n} min={4} max={100} step={1} onChange={setN} /></Panel>
-      <section className="msk-panel msk-canvas">
-        <svg className="msk-graph" viewBox="0 0 400 180" role="img" aria-label="Sampling distribution of the mean">
-          <rect width="400" height="180" fill="#f8fbff" />
-          <path d="M20 160 C 80 160, 140 30, 200 30 S 320 160 380 160" fill="none" stroke="#8b45f4" strokeWidth="2" />
-          {dots.map((d, i) => <circle key={i} cx={d.x} cy={d.y} r="3.2" fill="#147df2" />)}
-        </svg>
-      </section>
-      <aside className="msk-panel msk-live"><LiveRow color="#8b45f4" label="SE = 10/√n" value={fmt(se, 2)} /><ChallengeBox {...page.challenge} /></aside>
-    </Chrome>
-  );
 }
 
 function CiLab({ page }: { page: StudioMockupPage }) {

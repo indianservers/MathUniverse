@@ -17,6 +17,7 @@ import {
   perpendicularBisector,
   toSvg,
   triangleArea,
+  triangleInequality,
   type TrianglePts,
 } from "./triangleGeometry";
 import {
@@ -46,13 +47,13 @@ import {
   polyPoints,
 } from "./triangleSvgPrimitives";
 
-type Sub = "explore" | "area" | "angles" | "special";
+type Sub = "explore" | "area" | "angles" | "special" | "invariants";
 type Base = "AB" | "BC" | "CA";
 
 const SPECIAL: Record<string, TrianglePts> = {
   "30-60-90": { B: { x: 2, y: 1.6 }, C: { x: 2 + 4 * Math.sqrt(3), y: 1.6 }, A: { x: 2, y: 5.6 } },
   "45-45-90": { B: { x: 2.4, y: 1.6 }, C: { x: 8.4, y: 1.6 }, A: { x: 2.4, y: 7.6 } },
-  "3-4-5": { B: { x: 2, y: 1.5 }, C: { x: 8, y: 1.5 }, A: { x: 2, y: 6.5 } },
+  "3-4-5": { B: { x: 2, y: 1.5 }, C: { x: 6, y: 1.5 }, A: { x: 2, y: 4.5 } },
 };
 
 const PRESET_IDS = ["scalene", "isosceles", "equilateral", "right", "acute", "obtuse"] as const;
@@ -95,6 +96,14 @@ export default function TriangleExplorerLab({ pulse = "observe" }: { pulse?: str
   const [warn, setWarn] = useState("");
 
   const m = useMemo(() => measureTriangle(tri.A, tri.B, tri.C), [tri]);
+  const reference = useMemo(() => measureTriangle(SPECIAL["3-4-5"].A, SPECIAL["3-4-5"].B, SPECIAL["3-4-5"].C), []);
+  const inequality = triangleInequality(m.sides.AB, m.sides.BC, m.sides.CA);
+  const close = (a: number, b: number, tolerance = 0.15) => Math.abs(a - b) <= tolerance;
+  const congruence = {
+    SSS: close(m.sides.AB, reference.sides.AB) && close(m.sides.BC, reference.sides.BC) && close(m.sides.CA, reference.sides.CA),
+    SAS: close(m.sides.AB, reference.sides.AB) && close(m.sides.BC, reference.sides.BC) && close(m.angles.B, reference.angles.B, 2),
+    ASA: close(m.angles.A, reference.angles.A, 2) && close(m.angles.B, reference.angles.B, 2) && close(m.sides.AB, reference.sides.AB),
+  };
   triRef.current = tri;
   const basePts = base === "AB" ? [tri.A, tri.B, tri.C] : base === "BC" ? [tri.B, tri.C, tri.A] : [tri.C, tri.A, tri.B];
   const foot = altitudeFoot(basePts[2], basePts[0], basePts[1]);
@@ -286,8 +295,10 @@ export default function TriangleExplorerLab({ pulse = "observe" }: { pulse?: str
               { id: "area", label: "Area" },
               { id: "angles", label: "Angles" },
               { id: "special", label: "Special" },
+              { id: "invariants", label: "What stays true?" },
             ]} />
           </Field>
+          {sub === "invariants" ? <p className="tri-note">Drag any vertex. Green checks hold for this triangle; congruence compares it with the fixed 3-4-5 reference.</p> : null}
           <Field label="Triangle type">
             <div className="tri-preset-row">
               {PRESET_IDS.map((id) => (
@@ -467,9 +478,7 @@ export default function TriangleExplorerLab({ pulse = "observe" }: { pulse?: str
               <MeasureRow label="Area" value={okNum(m.area)} metric="Area" />
             </>
           }
-          property={
-            <p className="tri-ok">∠A + ∠B + ∠C = {okNum(m.angles.A, 1)}° + {okNum(m.angles.B, 1)}° + {okNum(m.angles.C, 1)}° = {okNum(m.angleSum, 1)}°</p>
-          }
+          property={sub === "invariants" ? <div className="tri-invariants"><strong>What stays true as you drag?</strong><p className={Math.abs(m.angleSum - 180) < 0.2 ? "tri-ok" : "tri-warning"}>Angle sum: {okNum(m.angleSum, 1)}° {Math.abs(m.angleSum - 180) < 0.2 ? "✓" : "Check"}</p>{([ ["AB + BC > CA", inequality.ab], ["BC + CA > AB", inequality.bc], ["CA + AB > BC", inequality.ca] ] as const).map(([label, check]) => <p key={label} className={check.ok ? "tri-ok" : "tri-warning"}>{label}: {okNum(check.left)} &gt; {okNum(check.right)} {check.ok ? "✓" : "Not yet"}</p>)}<strong>Congruent to the 3-4-5 reference?</strong>{Object.entries(congruence).map(([test, holds]) => <p key={test} className={holds ? "tri-ok" : "tri-note"}>{test}: {holds ? "matches ✓" : "does not match yet"}</p>)}<button type="button" className="msk-soft" onClick={() => { commit(SPECIAL["3-4-5"]); setPreset("custom"); }}>Match 3-4-5 reference</button></div> : <p className="tri-ok">∠A + ∠B + ∠C = {okNum(m.angles.A, 1)}° + {okNum(m.angles.B, 1)}° + {okNum(m.angles.C, 1)}° = {okNum(m.angleSum, 1)}°</p>}
           formula={
             <FormulaCard
               title={sub === "area" ? "Area" : "Angle sum"}

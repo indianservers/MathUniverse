@@ -756,6 +756,7 @@ function EigenLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNode }
   const [k, setK] = useState(0);
   const [speed, setSpeed] = useState("1.0x");
   const [playing, setPlaying] = useState(false);
+  const [dragBasis, setDragBasis] = useState<0 | 1 | null>(null);
   const spec = eigen2(M);
   const det = det2(M);
   const trace = M[0][0] + M[1][1];
@@ -778,6 +779,12 @@ function EigenLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNode }
   }, [playing, speed]);
 
   const ox = 280, oy = 210, u = 48;
+  const moveBasis = (column: 0 | 1, clientX: number, clientY: number, element: SVGSVGElement) => {
+    const bounds = element.getBoundingClientRect();
+    const x = clamp(((clientX - bounds.left) / bounds.width * 560 - ox) / u, -5, 5);
+    const y = clamp((oy - (clientY - bounds.top) / bounds.height * 420) / u, -5, 5);
+    setM((old) => column === 0 ? [[x, old[0][1]], [y, old[1][1]]] : [[old[0][0], x], [old[1][0], y]]);
+  };
 
   return (
     <LinearAlgebraLabChrome
@@ -828,10 +835,10 @@ function EigenLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNode }
                     <TransformedCube matrix={lift2(M)} />
                   </StudioMath3D>
                 ) : (
-                  <svg className="msk-graph" viewBox="0 0 560 420" role="img" aria-label="Eigen view">
+                  <svg className="msk-graph is-interactive" viewBox="0 0 560 420" role="img" aria-label="Eigen view with draggable basis arrows" onPointerMove={(event) => { if (dragBasis !== null) moveBasis(dragBasis, event.clientX, event.clientY, event.currentTarget); }} onPointerUp={() => setDragBasis(null)} onPointerCancel={() => setDragBasis(null)}>
                     <rect width="560" height="420" fill="#f7fbff" />
                     <ArrowDefs />
-                    {show.grid ? <AxisGrid ox={ox} oy={oy} unit={u} dark={false} /> : null}
+                    {show.grid ? <><AxisGrid ox={ox} oy={oy} unit={u} dark={false} /><g opacity="0.4"><AxisGrid ox={ox} oy={oy} unit={u} dark={false} transform={(x, y) => { const [tx, ty] = apply2(M, x, y); return { x: ox + tx * u, y: oy - ty * u }; }} /></g></> : null}
                     {show.axis ? (
                       <>
                         <line x1="40" y1={oy} x2="520" y2={oy} stroke="#94a3b8" />
@@ -854,6 +861,10 @@ function EigenLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNode }
                     )) : show.circle ? (
                       <polygon points={mappedCircle.map(([x, y]) => `${ox + x * u},${oy - y * u}`).join(" ")} fill="rgba(139,69,244,.16)" stroke={LA_B} strokeDasharray="6 4" />
                     ) : null}
+                    <VectorRay x1={ox} y1={oy} x2={ox + M[0][0] * u} y2={oy - M[1][0] * u} color={LA_A} marker="la-a" />
+                    <VectorRay x1={ox} y1={oy} x2={ox + M[0][1] * u} y2={oy - M[1][1] * u} color={LA_C} marker="la-c" />
+                    <g onPointerDown={(event) => { event.stopPropagation(); setDragBasis(0); event.currentTarget.ownerSVGElement?.setPointerCapture(event.pointerId); }}><DragHandle x={ox + M[0][0] * u} y={oy - M[1][0] * u} fill={LA_A} label="A e₁" selected={dragBasis === 0} /></g>
+                    <g onPointerDown={(event) => { event.stopPropagation(); setDragBasis(1); event.currentTarget.ownerSVGElement?.setPointerCapture(event.pointerId); }}><DragHandle x={ox + M[0][1] * u} y={oy - M[1][1] * u} fill={LA_C} label="A e₂" selected={dragBasis === 1} /></g>
                     {show.eigen ? (
                       <>
                         <line x1={ox - u1[0] * 180} y1={oy + u1[1] * 180} x2={ox + u1[0] * 180} y2={oy - u1[1] * 180} stroke={LA_D} strokeWidth="3" />
@@ -867,6 +878,7 @@ function EigenLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNode }
                   </svg>
                 )}
               />
+              <p className="la-note">Drag A e₁ or A e₂ to edit the matrix columns directly. The sliders provide precise and keyboard-accessible input.</p>
               <div className="la-legend-row">
                 <span>Unit circle</span>
                 <span>Image of circle</span>
