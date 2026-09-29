@@ -28,4 +28,15 @@ describe("studio theory coverage", () => {
       expect(studioTheoryContent[route.studioId]?.[route.pageId].examples, path).toHaveLength(3);
     }
   });
+
+  it("exposes theory on custom studio routes that bypass the shared chrome", () => {
+    expect(standaloneStudioTheoryRoutes["/shapes"]).toMatchObject({ studioId: "geometry", pageId: "shapes" });
+    expect(studioTheoryContent.geometry.segment.examples).toHaveLength(3);
+    for (const page of studioMockups["complex-numbers"].pages) {
+      expect(standaloneStudioTheoryRoutes[page.route], page.route).toMatchObject({
+        studioId: "complex-numbers",
+        pageId: page.id,
+      });
+    }
+  });
 });

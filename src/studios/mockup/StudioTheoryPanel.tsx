@@ -4,7 +4,7 @@ import "./StudioTheoryPanel.css";
 
 export const studioTheoryId = (studioId: string, pageId: string) => `studio-theory-${studioId}-${pageId}`;
 
-export default function StudioTheoryPanel({ studioId, page, mode }: { studioId: string; page: Pick<StudioMockupPage, "id" | "label" | "modes">; mode?: string | null }) {
+export default function StudioTheoryPanel({ studioId, page, mode }: { studioId: string; page: Pick<StudioMockupPage, "id" | "label" | "modes"> & Partial<Pick<StudioMockupPage, "learning">>; mode?: string | null }) {
   const theory = studioTheoryContent[studioId]?.[page.id];
   if (!theory) return null;
   const activeMode = mode && page.modes.includes(mode) ? mode : page.modes[0];
@@ -30,6 +30,17 @@ export default function StudioTheoryPanel({ studioId, page, mode }: { studioId: 
           </article>
         ))}
       </div>
+      {page.learning && page.id !== "home" ? (
+        <div className="studio-theory-experiment">
+          <div><h3>Test it in the live lab</h3><p>{page.learning.try}</p><strong>{page.learning.why}</strong></div>
+          <button type="button" onClick={(event) => {
+            let scroller: HTMLElement | null = event.currentTarget.parentElement;
+            while (scroller && scroller.scrollHeight <= scroller.clientHeight + 1) scroller = scroller.parentElement;
+            if (scroller) scroller.scrollTo({ top: 0, behavior: "smooth" });
+            else window.scrollTo({ top: 0, behavior: "smooth" });
+          }}>Back to lab controls ↑</button>
+        </div>
+      ) : null}
     </section>
   );
 }

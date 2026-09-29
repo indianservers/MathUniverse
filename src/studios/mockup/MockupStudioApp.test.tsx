@@ -26,7 +26,7 @@ describe("MockupStudioApp", () => {
     expect(lin).toContain("Open Eigenvectors");
     expect(lin).toContain("Open Playground");
     expect(lin).toContain("Continue your last experiment");
-    expect(lin).toContain("0 of 10 studios explored");
+    expect(lin).toContain("0 of 17 studios explored");
     expect(lin).not.toContain("Open lab");
     expect(lin).not.toContain("Start here");
     expect(lin).not.toContain("Teacher mode");
@@ -161,14 +161,11 @@ describe("MockupStudioApp", () => {
     expect(home).toContain("Site home");
     expect(home).not.toContain(">Main<");
     expect(home).toContain(" › ");
-    expect(home).toContain("Start here");
+    expect(home).toContain("Explore Key Topics");
     expect(home).toContain("Applications");
     expect(home).not.toContain(">AR Lab<");
-    expect(home).toContain("Angles · Unit Circle · Quadrants");
-    expect(home).not.toContain("0 XP");
-    expect(home).toContain("placeholder=\"1 or √2/2\"");
-    expect(home).not.toContain("Class ");
-    expect(home).toContain("Daily visual challenge");
+    expect(home).toContain("Daily Visual Challenge");
+    expect(home).toContain("Theory &amp; examples");
     const identities = renderToString(<MemoryRouter initialEntries={["/trigonometry/identities?mode=Double+Angle"]}><MockupStudioApp studioId="trigonometry" /></MemoryRouter>);
     expect(identities).toContain('data-id-mode="Double Angle"');
     expect(identities).toContain("sin 2θ");

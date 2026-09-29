@@ -46,7 +46,7 @@ function htmlFor(route: string) {
 
 describe("remaining studio route restoration", () => {
   it("renders every restored page title and marks lab modes on the canvas", () => {
-    expect(remainingStudioTargets).toHaveLength(63);
+    expect(remainingStudioTargets).toHaveLength(70);
     for (const target of remainingStudioTargets) {
       const html = htmlFor(target.route);
       expect(

@@ -117,7 +117,7 @@ export const EXCLUDED_FROM_RESTORATION = [
   "/probability-statistics",
 ] as const;
 
-export const REMAINING_STUDIO_PAGE_COUNT = 63;
+export const REMAINING_STUDIO_PAGE_COUNT = 70;
 export const PROTECTED_HOME_ROUTES = ["/geometry", "/trigonometry"] as const;
 export const PROTECTED_LAB_SAMPLES = [
   "/geometry/triangles",

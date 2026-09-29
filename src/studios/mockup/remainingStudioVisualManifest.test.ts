@@ -16,7 +16,7 @@ import {
 const here = dirname(fileURLToPath(import.meta.url));
 
 describe("remaining studio visual manifest", () => {
-  it("covers exactly 63 restored pages across the six target studios", () => {
+  it("covers all 70 restored pages across the six target studios", () => {
     expect(remainingStudioTargets).toHaveLength(REMAINING_STUDIO_PAGE_COUNT);
     expect(REMAINING_STUDIO_IDS).toEqual([
       "algebra",
@@ -32,7 +32,7 @@ describe("remaining studio visual manifest", () => {
     expect(byStudio).toEqual({
       algebra: 10,
       calculus: 10,
-      "linear-algebra": 11,
+      "linear-algebra": 18,
       "complex-numbers": 10,
       modelling: 11,
       discrete: 11,

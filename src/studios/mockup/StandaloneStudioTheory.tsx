@@ -9,6 +9,8 @@ import "./StandaloneStudioTheory.css";
 type TheoryRoute = { studioId: string; pageId: string; label: string };
 const names: Record<string, string> = {
   home: "Studio Home", cas: "CAS Explorer", exponents: "Exponents & Logs", "structure-test": "Structure Test",
+  shapes: "Shapes Explorer", segment: "Circular Segment", "argand-plane": "Argand Plane", "polar-forms": "Polar Forms",
+  "waves-circuits": "Waves & Circuits",
   "cayley-tables": "Cayley Tables", "semigroups-monoids": "Semigroups & Monoids", "posets-lattices": "Posets & Lattices",
   rational: "Rational Numbers", irrational: "Irrational Numbers", "real-line": "Real Number Line",
   hierarchy: "Number Hierarchy", concepts: "Number Concepts", practice: "Practice",
@@ -22,6 +24,14 @@ const add = (studioId: string, paths: Record<string, string>): Record<string, Th
 );
 
 export const standaloneStudioTheoryRoutes: Record<string, TheoryRoute> = {
+  ...add("geometry", { "/shapes": "shapes" }),
+  ...add("complex-numbers", {
+    "/complex-numbers": "home", "/complex-numbers/argand-plane": "argand-plane",
+    "/complex-numbers/arithmetic": "arithmetic", "/complex-numbers/polar-forms": "polar-forms",
+    "/complex-numbers/rotation": "rotation", "/complex-numbers/roots": "roots",
+    "/complex-numbers/euler": "euler", "/complex-numbers/loci": "loci",
+    "/complex-numbers/fractals": "fractals", "/complex-numbers/waves-circuits": "waves-circuits",
+  }),
   ...add("algebra", {
     "/algebra": "home", "/algebra/expressions": "expressions", "/algebra/equations": "equations",
     "/algebra/functions": "functions", "/algebra/polynomials": "polynomials", "/algebra/systems": "systems",
@@ -80,7 +90,11 @@ export const standaloneStudioTheoryRoutes: Record<string, TheoryRoute> = {
 
 export default function StandaloneStudioTheory() {
   const location = useLocation();
-  const route = standaloneStudioTheoryRoutes[location.pathname.replace(/\/$/, "") || "/"];
+  const baseRoute = standaloneStudioTheoryRoutes[location.pathname.replace(/\/$/, "") || "/"];
+  const shape = new URLSearchParams(location.search).get("shape");
+  const route = baseRoute?.studioId === "geometry" && shape === "segment"
+    ? { ...baseRoute, pageId: "segment", label: labelFor("segment") }
+    : baseRoute;
   const [open, setOpen] = useState(false);
   const dialogRef = useRef<HTMLElement | null>(null);
   const triggerRef = useRef<HTMLButtonElement | null>(null);
