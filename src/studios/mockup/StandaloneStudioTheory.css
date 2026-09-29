@@ -1,0 +1,11 @@
+.studio-theory-fab { position: fixed; z-index: 80; right: 22px; bottom: 22px; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border: 1px solid #87cfe4; border-radius: 999px; background: #087694; color: #fff; box-shadow: 0 10px 25px #17496740; font-size: 13px; font-weight: 850; }
+.studio-theory-fab svg { width: 18px; height: 18px; }
+.studio-theory-fab:hover, .studio-theory-fab:focus-visible { background: #065975; outline: 3px solid #8ae2fb; outline-offset: 2px; }
+.studio-theory-overlay { position: fixed; z-index: 3000; inset: 0; display: flex; justify-content: flex-end; background: #061a2b99; backdrop-filter: blur(3px); }
+.studio-theory-drawer { width: min(760px, 100vw); height: 100dvh; overflow-y: auto; border-left: 1px solid #b8d6e7; background: #f5faff; box-shadow: -18px 0 50px #061a2b40; }
+.studio-theory-drawer > header { position: sticky; z-index: 2; top: 0; display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 58px; padding: 8px 20px; border-bottom: 1px solid #cfdfeb; background: #fff; color: #17334e; font-size: 14px; font-weight: 850; }
+.studio-theory-drawer > header button { display: grid; width: 36px; height: 36px; place-items: center; border: 1px solid #cfdfeb; border-radius: 9px; background: #f0f7fb; color: #17334e; }
+.studio-theory-drawer > header svg { width: 18px; height: 18px; }
+.studio-theory-drawer .studio-theory { margin: 18px; }
+.studio-theory-drawer .studio-theory-principles, .studio-theory-drawer .studio-theory-examples { grid-template-columns: 1fr; }
+@media (max-width: 640px) { .studio-theory-fab { right: 12px; bottom: 84px; min-height: 40px; padding: 0 12px; font-size: 11px; } .studio-theory-drawer .studio-theory { margin: 10px; } }

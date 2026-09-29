@@ -13,6 +13,7 @@ import { matchStudioPage, studioMockups, type StudioMockupPage } from "../studio
 import DifferentialEquationsHome from "../studios/differential-equations/DifferentialEquationsHome";
 import DifferentialEquationsLab from "../studios/differential-equations/DifferentialEquationsLabs";
 import { differentialEquationRouteAliases, differentialEquationRouteFor } from "../studios/differential-equations/routes";
+import StudioTheoryPanel, { studioTheoryId } from "../studios/mockup/StudioTheoryPanel";
 import "../studios/differential-equations/differentialEquations.css";
 
 const studio = studioMockups["differential-equations"];
@@ -181,6 +182,7 @@ export default function DifferentialEquations() {
             </div>}
           </div>
           <div className="de-top-actions">
+            <button className="de-theory-jump" type="button" onClick={() => document.getElementById(studioTheoryId(studio.id, page.id))?.scrollIntoView({ behavior: "smooth", block: "start" })}><BookOpen size={16} /> Theory &amp; examples</button>
             <button className={`de-teacher-button${teacherMode ? " active" : ""}`} type="button" aria-pressed={teacherMode} onClick={() => setTeacherMode((value) => !value)}><BookOpen size={16} /> Teacher mode</button>
             <button className="de-icon-button" type="button" aria-label="Studio help" onClick={() => setDialog("help")}><CircleHelp size={18} /></button>
             <button className="de-icon-button" type="button" aria-label="Display settings" onClick={() => setDialog("settings")}><Settings2 size={18} /></button>
@@ -203,6 +205,7 @@ export default function DifferentialEquations() {
               </nav>
             </>
           )}
+          <StudioTheoryPanel studioId={studio.id} page={page} />
         </div>
       </div>
 

@@ -28,7 +28,6 @@ import {
   Move,
   Network,
   Pencil,
-  Play,
   Ruler,
   Scan,
   Search,
@@ -54,7 +53,7 @@ import { StudioCanvasToolbar } from "../../components/ui/StudioCanvasToolbar";
 import { TopicIllustration } from "./labs/TopicIllustrations";
 import { studioNavPages, studioSidebarPages, type StudioMockupDefinition, type StudioMockupPage } from "./studioMockupCatalog";
 import { useLabMode } from "./studioLabKit";
-import { ModellingLaunchArt, ModellingNavIcon, modellingDatasets, modellingJourney } from "./modellingStudioIcons";
+import { ModellingLaunchArt, ModellingNavIcon, modellingDatasets } from "./modellingStudioIcons";
 import { IllustratedStudioHome, StudioLabCard } from "./studioHomeLayouts";
 import GeometryStudioHome from "../geometry/GeometryStudioHome";
 import DifferentialEquationsHome from "../differential-equations/DifferentialEquationsHome";
@@ -101,6 +100,7 @@ import {
 import { markLandingVisit, relativeOpened, useLandingSession } from "../landing/studioLandingSession";
 import { LandingTeaser, hasLandingTeaser } from "../landing/StudioLandingTeasers";
 import { ModellingDatasetsMeta } from "../landing/StudioLandingExtras";
+import StudioTheoryPanel, { studioTheoryId } from "./StudioTheoryPanel";
 
 const pageIcons: Record<string, LucideIcon> = {
   home: Home,
@@ -556,6 +556,7 @@ export function MockupStudioChrome({
           </div>
           <div className="msk-tools">
             <div id="msk-lab-tools" className="msk-lab-tools" />
+            <button type="button" className="msk-theory-jump" onClick={() => document.getElementById(studioTheoryId(studio.id, page.id))?.scrollIntoView({ behavior: "smooth", block: "start" })}><BookOpenCheck />Theory &amp; examples</button>
             {isTrig && page.id !== "home" ? (
               <button
                 type="button"
@@ -738,6 +739,7 @@ export function MockupStudioChrome({
         ) : null}
         {(isTrig && session.teacherMode) || (isGeo && geoSession.teacherMode) || (isDiscrete && discreteTeacher) || (isLinear && page.id !== "home" && linearSession.teacherMode) ? <p className="msk-teacher-banner">Teacher view: exact values and answers stay visible. Students do not see this banner.</p> : null}
         {children}
+        <StudioTheoryPanel studioId={studio.id} page={page} mode={mode} />
         {helpOpen ? (
           <div className="msk-help" role="dialog" aria-label="Keyboard shortcuts">
             <button type="button" className="msk-backdrop" aria-label="Close shortcuts" onClick={() => setHelpOpen(false)} />

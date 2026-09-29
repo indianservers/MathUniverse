@@ -1,0 +1,29 @@
+.studio-theory { margin: 26px 0 20px; padding: clamp(18px, 2.4vw, 30px); border: 1px solid #bed9eb; border-radius: 20px; background: linear-gradient(140deg, #f3fbff, #fff 58%, #f7f3ff); color: #142b43; box-shadow: 0 10px 30px #24466a12; scroll-margin-top: 16px; }
+.studio-theory-heading { display: flex; align-items: end; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 18px; }
+.studio-theory-kicker { color: #087494; font-size: 11px; font-weight: 900; letter-spacing: .13em; }
+.studio-theory h2 { margin: 4px 0 0; color: #102943; font-size: clamp(20px, 2vw, 28px); line-height: 1.2; }
+.studio-theory-mode { padding: 7px 11px; border: 1px solid #b7dff0; border-radius: 999px; background: #e8f8ff; color: #075777; font-size: 12px; font-weight: 800; }
+.studio-theory-principles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.studio-theory-principles article, .studio-theory-examples article { min-width: 0; padding: 17px; border: 1px solid #d5e5f0; border-radius: 14px; background: #fff; }
+.studio-theory h3, .studio-theory h4 { margin: 0 0 9px; color: #143452; font-size: 15px; font-weight: 850; }
+.studio-theory p { margin: 0; color: #36526c; font-size: 13px; line-height: 1.65; }
+.studio-theory .studio-theory-caution { border-color: #f4d59e; background: #fffaf0; }
+.studio-theory .studio-theory-caution h3 { color: #86510b; }
+.studio-theory-example-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin: 22px 0 11px; }
+.studio-theory-example-heading h3 { margin: 0; font-size: 18px; }
+.studio-theory-examples { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.studio-theory-examples article { position: relative; padding-top: 19px; }
+.studio-theory-number { display: grid; width: 26px; height: 26px; place-items: center; margin-bottom: 8px; border-radius: 8px; background: #daf4ff; color: #075777; font-size: 12px; font-weight: 900; }
+.studio-theory-examples strong { display: block; margin-top: 12px; padding-top: 10px; border-top: 1px solid #e1ecf4; color: #0b5a73; font-size: 13px; line-height: 1.55; overflow-wrap: anywhere; }
+.msk-theory-jump { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 38px; padding: 0 12px; border: 1px solid #a9d9e9; border-radius: 999px; background: #e8f8ff; color: #075777; font-size: 12px; font-weight: 850; white-space: nowrap; }
+.msk-theory-jump svg { width: 16px; height: 16px; }
+.msk-theory-jump:hover, .msk-theory-jump:focus-visible { background: #d0effa; outline: 2px solid #28a8ca; outline-offset: 2px; }
+.msk-shell.is-dark .studio-theory { border-color: #284668; background: linear-gradient(140deg, #0b1c31, #101c35 65%, #1c1737); color: #e7f3ff; }
+.msk-shell.is-dark .studio-theory h2, .msk-shell.is-dark .studio-theory h3, .msk-shell.is-dark .studio-theory h4 { color: #f1f8ff; }
+.msk-shell.is-dark .studio-theory p { color: #c0d1e1; }
+.msk-shell.is-dark .studio-theory-principles article, .msk-shell.is-dark .studio-theory-examples article { border-color: #314963; background: #10233a; }
+.msk-shell.is-dark .studio-theory .studio-theory-caution { border-color: #83653a; background: #2a261f; }
+.msk-shell.is-dark .studio-theory .studio-theory-caution h3 { color: #ffcf87; }
+.msk-shell.is-dark .studio-theory-examples strong { border-color: #314963; color: #8be0f2; }
+.msk-shell.is-dark .studio-theory-mode, .msk-shell.is-dark .msk-theory-jump { border-color: #315b76; background: #163650; color: #a7e7f4; }
+@media (max-width: 900px) { .studio-theory-principles, .studio-theory-examples { grid-template-columns: 1fr; } }

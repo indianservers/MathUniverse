@@ -215,6 +215,8 @@
 .de-eyebrow a { color: #296bdd; text-decoration: none; }
 .de-heading-mark { display: grid; place-items: center; width: 76px; height: 76px; flex: none; border-radius: 22px; background: linear-gradient(140deg,#d9f1ff,#e9ddff); color: #3871e8; transform: rotate(-6deg); }
 .de-lab-body { min-width: 0; }
+.de-theory-jump { display: inline-flex; align-items: center; gap: 7px; min-height: 36px; padding: 0 12px; border: 1px solid #afd4ed; border-radius: 9px; background: #e7f6ff; color: #07557a; font-size: 12px; font-weight: 800; white-space: nowrap; }
+.de-theory-jump:hover, .de-theory-jump:focus-visible { background: #d1eefd; outline: 2px solid #44a4db; outline-offset: 2px; }
 .de-lab-body .odes-card, .de-lab-body .odes-side { padding: 18px; border-color: #dbe7f7; border-radius: 15px; box-shadow: 0 8px 22px #264d830d; }
 .de-lab-body .odes-card h2, .de-lab-body .odes-side h2 { color: #132c66; font-size: 16px; }
 .de-lab-body .odes-plot { border: 1px solid #e0ecf8; background: #f8fbff; }

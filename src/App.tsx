@@ -13,6 +13,7 @@ import AppLayout from "./components/layout/AppLayout";
 import SeoMetadata from "./components/seo/SeoMetadata";
 import { formulaVisualizerConfigs } from "./data/formulaVisualizerRoutes";
 import { differentialEquationRouteAliases } from "./studios/differential-equations/routes";
+import StandaloneStudioTheory from "./studios/mockup/StandaloneStudioTheory";
 
 const routeChunkReloadPrefix = "math-universe-route-chunk-reload:";
 const routeChunkReloadWindowMs = 30_000;
@@ -1040,6 +1041,7 @@ export default function App() {
             <Route path="*" element={<Navigate to="/" replace />} />
           </Route>
         </Routes>
+        <StandaloneStudioTheory />
       </Suspense>
     </AppErrorBoundary>
   );

@@ -2,7 +2,7 @@ import { Binary, BookOpen, ChartSpline, FunctionSquare, Sigma } from "lucide-rea
 import type { LucideIcon } from "lucide-react";
 import { useMemo, useState } from "react";
 import type { ReactNode } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FormulaBlock, MathLabLayout, ResultCard } from "../components/math-lab/MathLabShared";
 import SectionCard from "../components/ui/SectionCard";
 
@@ -77,7 +77,8 @@ function selectStudioFromPath(pathname: string): StudioId {
 
 export default function AdvancedConceptStudios() {
   const location = useLocation();
-  const [activeStudio, setActiveStudio] = useState<StudioId>(() => selectStudioFromPath(location.pathname));
+  const navigate = useNavigate();
+  const activeStudio = selectStudioFromPath(location.pathname);
   const active = studios.find((studio) => studio.id === activeStudio) ?? studios[0];
 
   return (
@@ -95,7 +96,7 @@ export default function AdvancedConceptStudios() {
               <button
                 key={studio.id}
                 type="button"
-                onClick={() => setActiveStudio(studio.id)}
+                onClick={() => navigate(`/math-lab/${studio.id}`)}
                 className={`rounded-xl border p-3 text-left transition ${
                   selected
                     ? "border-cyan-400 bg-cyan-50 text-cyan-950 shadow-sm dark:border-cyan-300/50 dark:bg-cyan-300/15 dark:text-cyan-50"
