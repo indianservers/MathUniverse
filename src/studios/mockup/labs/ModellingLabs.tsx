@@ -82,7 +82,7 @@ function pathR2(a: Array<{ x: number; y: number }>, b: Array<{ x: number; y: num
 }
 
 function fitPoly(pts: Array<{ x: number; y: number }>, degree: number) {
-  const d = degree >= 2 ? 2 : 1;
+  const d = Math.max(1, Math.min(4, degree));
   const m = d + 1;
   const A = Array.from({ length: m }, () => Array(m + 1).fill(0));
   for (const p of pts) {
@@ -623,17 +623,21 @@ function RegressionLab({ page }: { page: StudioMockupPage }) {
   const [deg, setDeg] = useState(2);
   const [split, setSplit] = useState(0.7);
   const [xPred, setXPred] = useState(28);
-  const pts = useMemo(() => Array.from({ length: 40 }, (_, i) => {
+  const [pts, setPts] = useState(() => Array.from({ length: 40 }, (_, i) => {
     const x = -8 + i * 1.2;
     const y = -0.04 * x * x + 18 * x + 80 + Math.sin(i) * 40;
     return { x, y };
-  }), []);
+  }));
   const coeff = useMemo(() => fitPoly(pts.slice(0, Math.max(3, Math.floor(pts.length * split))), deg), [pts, split, deg]);
   const yHat = polyAt(coeff, xPred);
   const cut = Math.max(3, Math.floor(pts.length * split));
   const xs = pts.slice(0, cut).map((p) => p.x);
   const ys = pts.slice(0, cut).map((p) => p.y);
   const metrics = fitMetrics(xs, ys, (x) => polyAt(coeff, x));
+  const validation = fitMetrics(pts.slice(cut).map((p) => p.x), pts.slice(cut).map((p) => p.y), (x) => polyAt(coeff, x));
+  const linearCoeff = fitPoly(pts.slice(0, cut), 1);
+  const linearTrain = fitMetrics(xs, ys, (x) => polyAt(linearCoeff, x));
+  const linearValidation = fitMetrics(pts.slice(cut).map((p) => p.x), pts.slice(cut).map((p) => p.y), (x) => polyAt(linearCoeff, x));
   const xMin = Math.min(...pts.map((p) => p.x));
   const xMax = Math.max(...pts.map((p) => p.x));
   const fitPath = Array.from({ length: 40 }, (_, i) => {
@@ -641,9 +645,12 @@ function RegressionLab({ page }: { page: StudioMockupPage }) {
     const y = polyAt(coeff, x);
     return `${40 + (x + 10) * 8},${210 - y * 0.08}`;
   }).join(" ");
-  const eq = deg >= 2
-    ? `ŷ = ${fmt(coeff[2] ?? 0, 2)}x² + ${fmt(coeff[1] ?? 0, 2)}x + ${fmt(coeff[0] ?? 0, 1)}`
-    : `ŷ = ${fmt(coeff[1] ?? 0, 2)}x + ${fmt(coeff[0] ?? 0, 1)}`;
+  const dragPoint = (index: number, clientX: number, clientY: number, box: DOMRect) => {
+    const x = clamp(((clientX - box.left) / box.width * 440 - 40) / 8 - 10, -8, 39);
+    const y = clamp((210 - (clientY - box.top) / box.height * 240) / 0.08, -100, 2200);
+    setPts((current) => current.map((point, i) => i === index ? { x, y } : point));
+  };
+  const eq = `ŷ = ${coeff.map((value, index) => `${index ? " + " : ""}${fmt(value, 2)}${index ? `x${index > 1 ? `^${index}` : ""}` : ""}`).join("")}`;
   return (
     <Chrome page={page}>
       {(mode) => (
@@ -653,13 +660,14 @@ function RegressionLab({ page }: { page: StudioMockupPage }) {
             <SliderRow label="Train / validation split" value={split} min={0.5} max={0.9} step={0.05} onChange={setSplit} />
             <SliderRow label="Polynomial degree" value={deg} min={1} max={4} step={1} onChange={setDeg} />
             <SliderRow label="Predict at x" value={xPred} min={-5} max={40} step={1} onChange={setXPred} />
-            <p className="msk-note">{mode}: Bike Sharing (Hourly).</p>
+            <p className="msk-note">{mode}: Bike Sharing (Hourly). Drag a point to test outliers; blue points train the fit and purple points validate it.</p>
+            <button type="button" onClick={() => setPts(Array.from({ length: 40 }, (_, i) => { const x = -8 + i * 1.2; return { x, y: -0.04 * x * x + 18 * x + 80 + Math.sin(i) * 40 }; }))}>Reset points</button>
           </Panel>
           <section className="msk-panel msk-canvas" data-mode-canvas={mode} data-studio="modelling">
             <h2>Scatter & fit</h2>
             <svg className="msk-graph" viewBox="0 0 440 240" role="img" aria-label="Regression fit">
               <rect width="440" height="240" fill="#f8fbff" />
-              {pts.map((p, i) => <circle key={i} cx={40 + (p.x + 10) * 8} cy={210 - p.y * 0.08} r="3" fill={i / pts.length < split ? "#147df2" : "#8b45f4"} />)}
+              {pts.map((p, i) => <g key={i}><line x1={40 + (p.x + 10) * 8} y1={210 - p.y * 0.08} x2={40 + (p.x + 10) * 8} y2={210 - polyAt(coeff, p.x) * 0.08} stroke="#f97316" strokeWidth="1" /><circle cx={40 + (p.x + 10) * 8} cy={210 - p.y * 0.08} r="5" fill={i < cut ? "#147df2" : "#8b45f4"} style={{ cursor: "grab", touchAction: "none" }} aria-label={`Drag observation ${i + 1}`} onPointerDown={(event) => event.currentTarget.setPointerCapture(event.pointerId)} onPointerMove={(event) => { if (event.buttons) dragPoint(i, event.clientX, event.clientY, event.currentTarget.ownerSVGElement!.getBoundingClientRect()); }} /></g>)}
               <path d={`M${fitPath}`} fill="none" stroke="#8b45f4" strokeWidth="2.4" />
             </svg>
           </section>
@@ -667,8 +675,10 @@ function RegressionLab({ page }: { page: StudioMockupPage }) {
             <h2>Live equation (best fit)</h2>
             <p className="msk-formula">{eq}</p>
             <LiveRow color="#10b981" label="R² (train)" value={fmt(metrics.r2, 3)} />
+            <LiveRow color="#147df2" label="Linear train / validation RMSE" value={`${fmt(linearTrain.rmse, 1)} / ${fmt(linearValidation.rmse, 1)}`} />
+            <LiveRow color="#8b45f4" label={`Degree ${deg} train / validation RMSE`} value={`${fmt(metrics.rmse, 1)} / ${fmt(validation.rmse, 1)}`} />
             <LiveRow color="#8b45f4" label={`Prediction at x=${xPred}`} value={fmt(yHat, 0)} />
-            <StatusOk>Polynomial captures the curve better than the linear model.</StatusOk>
+            <StatusOk>{xPred < xMin || xPred > xMax ? "Prediction extrapolates beyond observed x values." : validation.rmse > linearValidation.rmse ? "The higher-degree fit has larger validation error than linear fit: watch for overfitting." : "Compare training and validation error before choosing a model."}</StatusOk>
             <ChallengeBox {...page.challenge} />
           </aside>
         </>

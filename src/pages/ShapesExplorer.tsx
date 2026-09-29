@@ -471,6 +471,11 @@ export default function ShapesExplorer() {
               </ThreeSceneWrapper>
             )}
             {showLabels && <div className="shapes-stage-labels"><span>{symbolSummary(selected.id, a, b, c, sides, angle)}</span><span>{selected.category}</span></div>}
+            <div aria-label="Direct dimension handles" style={{ position: "absolute", top: 72, right: 12, zIndex: 5, display: "grid", gap: 6, padding: 10, maxWidth: 190, borderRadius: 12, background: "rgba(15,23,42,.86)", color: "white", fontSize: 12 }}>
+              <label>{primaryLabel(selected)}: {a.toFixed(1)}<input aria-label={`Drag ${primaryLabel(selected)} dimension`} type="range" min="0.5" max="10" step="0.1" value={a} onChange={(event) => { const value = Number(event.target.value); setDimension("a", value); if (lockProportions && needsSecond(selected.id)) setB(value); }} /></label>
+              {needsSecond(selected.id) && <label>{secondLabel(selected)}: {b.toFixed(1)}<input aria-label={`Drag ${secondLabel(selected)} dimension`} type="range" min={secondRange.min} max={secondRange.max} step="0.1" value={b} onChange={(event) => setDimension("b", Number(event.target.value))} /></label>}
+              {needsThird(selected.id) && <label>{thirdLabel(selected)}: {c.toFixed(1)}<input aria-label={`Drag ${thirdLabel(selected)} dimension`} type="range" min={thirdRange.min} max={thirdRange.max} step="0.1" value={c} onChange={(event) => setDimension("c", Number(event.target.value))} /></label>}
+            </div>
             <div className="shapes-floating-controls">
               <button type="button" className={toolMode === "rotate" ? "is-active" : ""} onClick={() => { setToolMode("rotate"); setAutoRotate((value) => !value); }}><RotateCw className="h-4 w-4" />Rotate</button>
               <button type="button" className={toolMode === "pan" ? "is-active" : ""} onClick={() => setToolMode("pan")}><Eye className="h-4 w-4" />Pan</button>
@@ -499,7 +504,7 @@ export default function ShapesExplorer() {
             <span className="shapes-live-status">Updates live</span>
           </div>
           {dockTab === "Live Values" && <div className="shapes-dock-grid">{Object.entries(metrics).slice(0, 6).map(([label, value]) => <Metric key={label} label={label} value={converted(value, label)} suffix={metricUnit(label)} />)}</div>}
-          {dockTab === "Net & Cross-Sections" && <div className="shapes-net-strip"><NetExplorer shape={selected.id} paint={surfacePaint} progress={netProgress} /><div className="shapes-net-controls"><SliderControl density="compact" label="Fold / unfold" value={netProgress} min={0} max={100} step={5} onChange={setNetProgress} unit="%" /><SliderControl density="compact" label="Surface paint" value={surfacePaint} min={0} max={100} step={5} onChange={setSurfacePaint} unit="%" /><button type="button" onClick={() => setNetProgress(0)}>Reset net</button></div><ShapeCrossSectionControls shape={selected} axis={sliceAxis} position={slicePosition} angle={sliceAngle} onAxis={setSliceAxis} onPosition={setSlicePosition} onAngle={setSliceAngle} /></div>}
+          {dockTab === "Net & Cross-Sections" && <div className="shapes-net-strip"><NetExplorer shape={selected.id} paint={surfacePaint} progress={netProgress} a={a} b={b} c={c} /><div className="shapes-net-controls"><SliderControl density="compact" label="Fold / unfold" value={netProgress} min={0} max={100} step={5} onChange={setNetProgress} unit="%" /><SliderControl density="compact" label="Surface paint" value={surfacePaint} min={0} max={100} step={5} onChange={setSurfacePaint} unit="%" /><button type="button" onClick={() => setNetProgress(0)}>Reset net</button></div><ShapeCrossSectionControls shape={selected} axis={sliceAxis} position={slicePosition} angle={sliceAngle} onAxis={setSliceAxis} onPosition={setSlicePosition} onAngle={setSliceAngle} /></div>}
           {dockTab === "Formula Map" && <FormulaDependencyPanel shape={selected} entries={formulaEntries} highlighted={highlightedSymbol} onHighlight={setHighlightedSymbol} />}
         </section>
         <section className="shapes-inspector-card is-primary">
@@ -1253,19 +1258,29 @@ function MiniShapeGlyph({ id }: { id: ShapeId }) {
   return <rect x="7" y="9" width="36" height="32" rx="4" fill="#22d3ee" opacity="0.7" stroke="#06b6d4" strokeWidth="3" />;
 }
 
-function NetExplorer({ shape, paint, progress = 0 }: { shape: ShapeId; paint: number; progress?: number }) {
+function NetExplorer({ shape, paint, progress = 0, a = 4, b = 3, c = 5 }: { shape: ShapeId; paint: number; progress?: number; a?: number; b?: number; c?: number }) {
   const definition = shapes.find((item) => item.id === shape);
-  const unavailable = definition?.kind === "2d" || ["sphere", "hemisphere", "hollow-cylinder", "capsule", "ellipsoid", "frustum", "torus"].includes(shape);
-  if (unavailable) return <div className="shapes-net-unavailable"><Shapes /><strong>No exact flat net</strong><span>{definition?.kind === "2d" ? "Select a 3D polyhedron or developable solid to unfold its surfaces." : `${definition?.name ?? "This solid"} cannot be represented by one exact, distortion-free flat net.`}</span></div>;
+  const available = ["cube", "cuboid", "cylinder", "square-pyramid"];
+  const unavailable = !available.includes(shape);
+  if (unavailable) return <div className="shapes-net-unavailable"><Shapes /><strong>Net preview unavailable</strong><span>{definition?.kind === "2d" ? "Select a supported 3D solid to unfold its surfaces." : `${definition?.name ?? "This solid"} needs a dedicated dimension-accurate net. Try a cube, cuboid, cylinder, or square pyramid.`}</span></div>;
   const fill = `rgba(34,211,238,${0.12 + paint / 160})`;
+  const scale = 60 / (shape === "cube" ? a : Math.max(a, b, c));
+  const width = a * scale, height = (shape === "cube" ? a : b) * scale, depth = (shape === "cube" ? a : c) * scale;
+  const x = 170, y = 82;
+  const cylinderScale = Math.min(35 / a, 180 / (2 * Math.PI * a), 70 / b);
+  const cylinderRadius = a * cylinderScale, cylinderWidth = 2 * Math.PI * a * cylinderScale, cylinderHeight = b * cylinderScale;
+  const pyramidScale = 60 / Math.max(a, Math.hypot(a / 2, b));
+  const pyramidSide = a * pyramidScale, pyramidSlant = Math.hypot(a / 2, b) * pyramidScale;
+  const pyramidX = 210 - pyramidSide / 2, pyramidY = 110 - pyramidSide / 2;
+  const face = (left: number, top: number, w: number, h: number, key: string) => <rect key={key} x={left} y={top} width={w} height={h} fill={fill} stroke="#06b6d4" strokeWidth="2" />;
   return (
     <svg viewBox="0 0 420 220" className="h-56 w-full rounded-2xl bg-slate-100 dark:bg-slate-950" style={{ transform: `perspective(700px) rotateX(${progress * 0.28}deg)`, transition: "transform .2s ease" }}>
-      {shape === "cylinder" ? <><rect x="110" y="80" width="190" height="70" fill={fill} stroke="#06b6d4" strokeWidth="3" /><circle cx="95" cy="115" r="35" fill={fill} stroke="#f59e0b" strokeWidth="3" /><circle cx="315" cy="115" r="35" fill={fill} stroke="#f59e0b" strokeWidth="3" /></> :
+      {shape === "cylinder" ? <><rect x={210 - cylinderWidth / 2} y={110 - cylinderHeight / 2} width={cylinderWidth} height={cylinderHeight} fill={fill} stroke="#06b6d4" strokeWidth="3" /><circle cx={210 - cylinderWidth / 2 - cylinderRadius} cy="110" r={cylinderRadius} fill={fill} stroke="#f59e0b" strokeWidth="3" /><circle cx={210 + cylinderWidth / 2 + cylinderRadius} cy="110" r={cylinderRadius} fill={fill} stroke="#f59e0b" strokeWidth="3" /></> :
         shape === "cone" ? <><path d="M210 30 L320 170 L100 170 Z" fill={fill} stroke="#06b6d4" strokeWidth="3" /><circle cx="210" cy="170" r="42" fill={fill} stroke="#f59e0b" strokeWidth="3" /></> :
-        shape === "square-pyramid" ? <><rect x="175" y="85" width="70" height="70" fill={fill} stroke="#06b6d4" strokeWidth="3" /><polygon points="175,85 210,25 245,85" fill={fill} stroke="#f59e0b" strokeWidth="3" /><polygon points="245,85 310,120 245,155" fill={fill} stroke="#f59e0b" strokeWidth="3" /><polygon points="245,155 210,215 175,155" fill={fill} stroke="#f59e0b" strokeWidth="3" /><polygon points="175,155 110,120 175,85" fill={fill} stroke="#f59e0b" strokeWidth="3" /></> :
+        shape === "square-pyramid" ? <><rect x={pyramidX} y={pyramidY} width={pyramidSide} height={pyramidSide} fill={fill} stroke="#06b6d4" strokeWidth="3" /><polygon points={`${pyramidX},${pyramidY} ${210},${pyramidY - pyramidSlant} ${pyramidX + pyramidSide},${pyramidY}`} fill={fill} stroke="#f59e0b" strokeWidth="3" /><polygon points={`${pyramidX + pyramidSide},${pyramidY} ${pyramidX + pyramidSide + pyramidSlant},${110} ${pyramidX + pyramidSide},${pyramidY + pyramidSide}`} fill={fill} stroke="#f59e0b" strokeWidth="3" /><polygon points={`${pyramidX + pyramidSide},${pyramidY + pyramidSide} ${210},${pyramidY + pyramidSide + pyramidSlant} ${pyramidX},${pyramidY + pyramidSide}`} fill={fill} stroke="#f59e0b" strokeWidth="3" /><polygon points={`${pyramidX},${pyramidY + pyramidSide} ${pyramidX - pyramidSlant},${110} ${pyramidX},${pyramidY}`} fill={fill} stroke="#f59e0b" strokeWidth="3" /></> :
         shape === "triangular-prism" ? <><polygon points="70,150 125,55 180,150" fill={fill} stroke="#06b6d4" strokeWidth="3" /><rect x="180" y="55" width="90" height="95" fill={fill} stroke="#f59e0b" strokeWidth="3" /><polygon points="270,150 325,55 380,150" fill={fill} stroke="#06b6d4" strokeWidth="3" /></> :
-        <><rect x="175" y="85" width="50" height="50" fill={fill} stroke="#06b6d4" strokeWidth="3" /><rect x="125" y="85" width="50" height="50" fill={fill} stroke="#06b6d4" strokeWidth="3" /><rect x="225" y="85" width="50" height="50" fill={fill} stroke="#06b6d4" strokeWidth="3" /><rect x="275" y="85" width="50" height="50" fill={fill} stroke="#06b6d4" strokeWidth="3" /><rect x="175" y="35" width="50" height="50" fill={fill} stroke="#06b6d4" strokeWidth="3" /><rect x="175" y="135" width="50" height="50" fill={fill} stroke="#06b6d4" strokeWidth="3" /></>}
-      <text x="20" y="205" fill="#64748b" className="text-xs font-bold">{progress ? `Folded ${progress}%` : "Surface-area unfolding net and folding model"}</text>
+        <>{face(x, y, width, height, "front")}{face(x - depth, y, depth, height, "left")}{face(x + width, y, depth, height, "right")}{face(x + width + depth, y, width, height, "back")}{face(x, y - depth, width, depth, "top")}{face(x, y + height, width, depth, "bottom")}</>}
+      <text x="20" y="205" fill="#334155" className="text-xs font-bold">{shape === "cube" ? `side ${a.toFixed(1)}` : shape === "cuboid" ? `length ${a.toFixed(1)} · width ${b.toFixed(1)} · height ${c.toFixed(1)}` : shape === "cylinder" ? `radius ${a.toFixed(1)} · height ${b.toFixed(1)}` : `side ${a.toFixed(1)} · height ${b.toFixed(1)}`} · fold {progress}%</text>
     </svg>
   );
 }

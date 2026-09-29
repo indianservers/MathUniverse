@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { StudioMockupPage } from "../../mockup/studioMockupCatalog";
 import { ChallengeBox, LiveRow, Panel, SliderRow, StatusOk } from "../../mockup/studioLabKit";
 import { FigureToolbar, Phase1LabChrome } from "../../phase1/Phase1LabChrome";
@@ -12,13 +12,28 @@ export default function CryptographyLab({ page }: { page: StudioMockupPage }) {
   const fig = useStudioFigure(initial);
   const [plain, setPlain] = useState("HELLO MATH");
   const [key, setKey] = useState("KEY");
+  const [rsaMessage, setRsaMessage] = useState("MATH");
+  const [rsaStage, setRsaStage] = useState(0);
+  const [rsaPlaying, setRsaPlaying] = useState(false);
+  const [challengeE, setChallengeE] = useState(7);
   const n = fig.state.p * fig.state.q;
   const phi = (fig.state.p - 1) * (fig.state.q - 1);
   const d = modInverse(fig.state.e, phi);
   const pow = modPow(fig.state.m, fig.state.e, n);
   const recovered = modPow(pow.value, d, n).value;
+  const isPrime = (value: number) => Number.isInteger(value) && value > 1 && Array.from({ length: Math.floor(Math.sqrt(value)) - 1 }, (_, i) => i + 2).every((divisor) => value % divisor !== 0);
+  const gcd = (a: number, b: number): number => b ? gcd(b, a % b) : a;
+  const validKeys = isPrime(fig.state.p) && isPrime(fig.state.q) && fig.state.p !== fig.state.q && gcd(fig.state.e, phi) === 1;
+  const codes = [...rsaMessage.toUpperCase().replace(/[^A-Z ]/g, "").slice(0, 8)].map((char) => char.charCodeAt(0));
+  const encrypted = validKeys ? codes.map((code) => modPow(code, fig.state.e, n).value) : [];
+  const decrypted = validKeys ? encrypted.map((code) => modPow(code, d, n).value) : [];
   const freq = letterFreq(plain);
   const mix = dhMix(6, 15, 5, 23);
+  useEffect(() => {
+    if (!rsaPlaying || rsaStage >= 3) return;
+    const timer = window.setTimeout(() => setRsaStage((stage) => stage + 1), 850);
+    return () => window.clearTimeout(timer);
+  }, [rsaPlaying, rsaStage]);
 
   return (
     <Phase1LabChrome
@@ -45,6 +60,8 @@ export default function CryptographyLab({ page }: { page: StudioMockupPage }) {
                 <SliderRow label="Prime q" value={fig.state.q} min={11} max={97} step={2} onChange={(q) => fig.commit({ ...fig.state, q })} />
                 <SliderRow label="Public exponent e" value={fig.state.e} min={3} max={19} step={2} onChange={(e) => fig.commit({ ...fig.state, e })} />
                 <SliderRow label="Plaintext m" value={fig.state.m} min={2} max={200} step={1} onChange={(m) => fig.commit({ ...fig.state, m })} />
+                <label className="msk-note">Short message <input aria-label="RSA short message" maxLength={8} value={rsaMessage} onChange={(event) => { setRsaMessage(event.target.value.toUpperCase()); setRsaStage(0); }} /></label>
+                <p className="msk-note">{validKeys ? `Valid toy keys: gcd(${fig.state.e}, ${phi}) = 1.` : "Choose distinct primes p, q and an exponent coprime to φ(n)."}</p>
                 <p className="msk-note">Educational keys only — no real secrets.</p>
               </>
             ) : mode === "Caesar" || mode === "Affine" || mode === "Vigenère" ? (
@@ -78,6 +95,9 @@ export default function CryptographyLab({ page }: { page: StudioMockupPage }) {
                   <text x="150" y="114" fontSize="12">mᵉ mod n</text>
                 </svg>
                 <p className="msk-formula">plaintext m={fig.state.m} → c = mᵉ mod n = {pow.value} → recovered m = cᵈ mod n = {recovered}</p>
+                <div className="msk-seg"><button type="button" disabled={rsaStage === 0} onClick={() => { setRsaPlaying(false); setRsaStage((stage) => stage - 1); }}>Previous</button><button type="button" disabled={rsaStage === 3 || !validKeys} onClick={() => setRsaStage((stage) => stage + 1)}>Next RSA step</button><button type="button" disabled={!validKeys} onClick={() => { setRsaStage(0); setRsaPlaying(true); }}>{rsaPlaying && rsaStage < 3 ? "Playing…" : "Play message"}</button><button type="button" onClick={() => { setRsaPlaying(false); setRsaStage(0); }}>Restart</button></div>
+                <h3>{["1. Create keys", "2. Encode letters", "3. Encrypt each code", "4. Decrypt and read"][rsaStage]}</h3>
+                <p className="msk-formula">{rsaStage === 0 ? `n = ${fig.state.p} × ${fig.state.q} = ${n}; φ(n) = ${phi}; e × d = ${fig.state.e} × ${d} ≡ 1 (mod ${phi})` : rsaStage === 1 ? `${rsaMessage} → ${codes.join(" · ")} (character codes)` : rsaStage === 2 ? codes.map((code, index) => `${code}^${fig.state.e} mod ${n} = ${encrypted[index]}`).join("; ") : encrypted.map((code, index) => `${code}^${d} mod ${n} = ${decrypted[index]}`).join("; ") + ` → ${String.fromCharCode(...decrypted)}`}</p>
               </>
             ) : mode === "Caesar" || mode === "Affine" || mode === "Vigenère" ? (
               <>
@@ -108,6 +128,8 @@ export default function CryptographyLab({ page }: { page: StudioMockupPage }) {
             <LiveRow color="#f59e0b" label="Ciphertext c" value={String(pow.value)} />
             <LiveRow color="#10b981" label="Decrypt check" value={recovered === fig.state.m ? "m recovered" : "check primes"} />
             <p className="msk-note">RSA security is the difficulty of factoring n = p q. Animate m^e by watching the trail hop around the clock.</p>
+            <label className="msk-note">Key challenge: find a valid public exponent e <input type="number" min="2" max={Math.max(2, phi - 1)} value={challengeE} onChange={(event) => setChallengeE(Number(event.target.value))} /></label>
+            <p className="msk-note" role="status">{challengeE > 1 && challengeE < phi && gcd(challengeE, phi) === 1 ? `Valid: gcd(${challengeE}, ${phi}) = 1; private exponent d = ${modInverse(challengeE, phi)}.` : `Try an e between 2 and ${phi - 1} with gcd(e, ${phi}) = 1.`}</p>
             <StatusOk>{mode === "Hashing" ? "One-bit input change should scramble many hash bits." : "Educational playground only."}</StatusOk>
             <ChallengeBox {...page.challenge} />
           </aside>
