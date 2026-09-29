@@ -25,4 +25,15 @@ describe("studio mockup catalog", () => {
     expect(studioNavPages(studioMockups.discrete).some((item) => item.id === "sets")).toBe(false);
     expect(matchStudioPage(studioMockups["linear-algebra"], "/linear-algebra", "eigenvectors").id).toBe("eigenvectors");
   });
+
+  it("gives every lab a visible description and a topic-specific action", () => {
+    for (const studio of Object.values(studioMockups)) {
+      for (const page of studio.pages.filter((item) => item.id !== "home")) {
+        expect(page.title.trim().length, page.route).toBeGreaterThan(5);
+        expect(page.subtitle.trim().length, page.route).toBeGreaterThan(15);
+        expect(page.description.trim().length, page.route).toBeGreaterThan(10);
+        expect(page.learning.try.trim().length, page.route).toBeGreaterThan(5);
+      }
+    }
+  });
 });

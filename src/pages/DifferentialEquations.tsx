@@ -14,6 +14,7 @@ import DifferentialEquationsHome from "../studios/differential-equations/Differe
 import DifferentialEquationsLab from "../studios/differential-equations/DifferentialEquationsLabs";
 import { differentialEquationRouteAliases, differentialEquationRouteFor } from "../studios/differential-equations/routes";
 import StudioTheoryPanel, { studioTheoryId } from "../studios/mockup/StudioTheoryPanel";
+import StudioLabBrief from "../studios/mockup/StudioLabBrief";
 import "../studios/differential-equations/differentialEquations.css";
 
 const studio = studioMockups["differential-equations"];
@@ -198,6 +199,7 @@ export default function DifferentialEquations() {
                 <span className="de-heading-mark"><HeadingIcon size={36} /></span>
               </div>
               {teacherMode && <section className="de-teacher-note" aria-label="Teaching notes"><strong>Teaching notes</strong><p>{page.learning.observe} {page.learning.why}</p></section>}
+              <StudioLabBrief studioId={studio.id} page={page} />
               <div className="de-lab-body"><DifferentialEquationsLab key={page.id} page={page} /></div>
               <nav className="de-lab-next" aria-label="Adjacent labs">
                 {index > 0 && <Link to={differentialEquationRouteFor(pages[index - 1].id)}>← {pages[index - 1].label}</Link>}

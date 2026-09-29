@@ -53,6 +53,7 @@ describe("studio theory coverage", () => {
     for (const [path, route] of Object.entries(standaloneStudioTheoryRoutes)) {
       expect(studioTheoryContent[route.studioId]?.[route.pageId], path).toBeDefined();
       expect(studioTheoryContent[route.studioId]?.[route.pageId].examples, path).toHaveLength(3);
+      expect(studioSimpleWords[route.studioId]?.[route.pageId], `${path} simple words`).toBeDefined();
     }
   });
 

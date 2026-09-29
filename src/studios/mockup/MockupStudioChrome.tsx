@@ -101,6 +101,7 @@ import { markLandingVisit, relativeOpened, useLandingSession } from "../landing/
 import { LandingTeaser, hasLandingTeaser } from "../landing/StudioLandingTeasers";
 import { ModellingDatasetsMeta } from "../landing/StudioLandingExtras";
 import StudioTheoryPanel, { studioTheoryId } from "./StudioTheoryPanel";
+import StudioLabBrief from "./StudioLabBrief";
 
 const pageIcons: Record<string, LucideIcon> = {
   home: Home,
@@ -738,6 +739,7 @@ export function MockupStudioChrome({
           </p>
         ) : null}
         {(isTrig && session.teacherMode) || (isGeo && geoSession.teacherMode) || (isDiscrete && discreteTeacher) || (isLinear && page.id !== "home" && linearSession.teacherMode) ? <p className="msk-teacher-banner">Teacher view: exact values and answers stay visible. Students do not see this banner.</p> : null}
+        <StudioLabBrief studioId={studio.id} page={page} />
         {children}
         <StudioTheoryPanel studioId={studio.id} page={page} mode={mode} />
         {helpOpen ? (
