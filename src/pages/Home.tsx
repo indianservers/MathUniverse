@@ -333,8 +333,6 @@ export default function Home() {
         </div>
       </Link>
 
-      <HomePageDirectory query={normalizedQuery} />
-
       <Link
         to="/math-lab/3d-graphing"
         className="group grid max-w-md grid-cols-[48px_minmax(0,1fr)_auto] items-center gap-3 rounded-2xl border border-cyan-100 bg-white/85 p-3 shadow-sm transition hover:-translate-y-0.5 hover:border-cyan-300 hover:bg-cyan-50 dark:border-white/10 dark:bg-white/[0.04] dark:hover:border-cyan-300/40 dark:hover:bg-cyan-400/10"
@@ -420,6 +418,7 @@ export default function Home() {
         </section>
       )}
       {homeFilter === "all" && <AITutorPanel />}
+      <HomePageDirectory query={normalizedQuery} />
     </div>
   );
 }
