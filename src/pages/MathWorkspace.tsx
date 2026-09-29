@@ -21,6 +21,7 @@ import {
 } from "../cas/casNotebookEngine";
 import { readCasNotebookState, saveCasNotebookState } from "../cas/casNotebookPersistence";
 import ThreeSceneWrapper from "../components/three/ThreeSceneWrapper";
+import VectorWorkbench3D from "../components/workspace/VectorWorkbench3D";
 import MathKeyboardInput from "../components/math-keyboard/MathKeyboardInput";
 import GeometryWorkspacePanel, { MAX_GEOMETRY_CAMERA_HEIGHT, MAX_GEOMETRY_CAMERA_WIDTH, type GeometryCamera, type GeometryGraphSettings } from "../components/workspace/panels/GeometryWorkspacePanel";
 import GraphWorkspacePanel, { type PlotItem, type PlotKind, type ResultTableRow } from "../components/workspace/panels/GraphWorkspacePanel";
@@ -91,6 +92,7 @@ import { browserSpeechRecognitionConstructor, isBrowserSpeechInputSupported, nor
 import ObjectStudioWorkspace, { type ObjectStudioItem, type ObjectStudioShape, type ObjectStudioTool } from "../graph-studio/ObjectStudioWorkspace";
 import { createUnsupportedWorkspaceAction } from "../workspace/unsupportedWorkspaceAction";
 import { workspaceModeNavigation } from "../workspace/workspaceModeConfig";
+import { vectorMagnitude3, vectorWorkbenchResult, type Vector3Tuple, type VectorView3D } from "../workspace/vectorWorkbench3d";
 import { createMathWorkspacePayload, type MathWorkspacePayload } from "../workspace/mathWorkspaces";
 import { readLinkedParameters, saveLinkedParameter } from "../workspace/linkedParameters";
 import { readWorkspaceTransfer, saveWorkspaceTransfer } from "../workspace/workspaceTransfer";
@@ -375,6 +377,11 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   const [cameraPreset3d, setCameraPreset3d] = useState<CameraPreset3D>("isometric");
   const [zoom3d, setZoom3d] = useState(1);
   const [selected3d, setSelected3d] = useState<string>("solid");
+  const [vectorA3d, setVectorA3d] = useState<Vector3Tuple>([2, 1, 0]);
+  const [vectorB3d, setVectorB3d] = useState<Vector3Tuple>([0, 1, 2]);
+  const [vectorView3d, setVectorView3d] = useState<VectorView3D>("sum");
+  const [vectorWorkbenchVisible, setVectorWorkbenchVisible] = useState(true);
+  const [vectorFocus3d, setVectorFocus3d] = useState(false);
   const [objectStudioTool, setObjectStudioTool] = useState<ObjectStudioTool>("select");
   const [objectStudioSnapEnabled, setObjectStudioSnapEnabled] = useState(true);
   const [objectStudioSnapStep, setObjectStudioSnapStep] = useState(0.25);
@@ -2794,6 +2801,9 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
 
       {workspaceView === "3d" && (
         <ObjectStudioWorkspace
+          vectorWorkbench={<VectorWorkbench3D a={vectorA3d} b={vectorB3d} view={vectorView3d} visible={vectorWorkbenchVisible} focus={vectorFocus3d} onA={setVectorA3d} onB={setVectorB3d} onView={setVectorView3d} onVisible={setVectorWorkbenchVisible} onFocus={setVectorFocus3d} />}
+          vectorFocus={vectorFocus3d}
+          onVectorFocus={setVectorFocus3d}
           scene={(
             <ThreeSceneWrapper height="100%" mobileHeight="100%" cameraPosition={typeof window !== "undefined" && window.matchMedia("(max-width: 620px)").matches ? [15, 12, 18] : [10, 8, 12]} showHint={false} interactionLabel="Drag objects, orbit, pan, and zoom">
               <ambientLight intensity={0.75} />
@@ -2818,6 +2828,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
                 dragging={drag3d}
                 interactionTool={objectStudioTool}
                 snapStep={objectStudioSnapEnabled ? objectStudioSnapStep : 0}
+                vectorWorkbench={{ a: vectorA3d, b: vectorB3d, view: vectorView3d, visible: vectorWorkbenchVisible, focus: vectorFocus3d }}
                 onSelect={setSelected3d}
                 onDrag={setDrag3d}
                 onTransform={update3dTransform}
@@ -7667,7 +7678,7 @@ function workflowTypeForContextTarget(target: ContextMenuState["target"]): Workf
   return target.type;
 }
 
-function Workspace3DScene({ surface, surfaceExpression, solid, surfaceScale, solidSize, crossSection, showSurface, showSolid, autoRotate, animationSpeed, zoom, performanceMode, cameraPreset, selected, transforms, addedObjects, dragging, interactionTool, snapStep, onSelect, onDrag, onTransform, onContextMenu }: { surface: SurfaceKind; surfaceExpression: string; solid: SolidKind; surfaceScale: number; solidSize: number; crossSection: number; showSurface: boolean; showSolid: boolean; autoRotate: boolean; animationSpeed: number; zoom: number; performanceMode: boolean; cameraPreset: CameraPreset3D; selected: string; transforms: Record<ThreeObjectId, Transform3D>; addedObjects: Added3DObject[]; dragging: string | null; interactionTool: ObjectStudioTool; snapStep: number; onSelect: (id: string) => void; onDrag: (id: string | null) => void; onTransform: (id: string, patch: Partial<Transform3D>) => void; onContextMenu: (event: ThreeEvent<MouseEvent>, id: string) => void }) {
+function Workspace3DScene({ surface, surfaceExpression, solid, surfaceScale, solidSize, crossSection, showSurface, showSolid, autoRotate, animationSpeed, zoom, performanceMode, cameraPreset, selected, transforms, addedObjects, dragging, interactionTool, snapStep, vectorWorkbench, onSelect, onDrag, onTransform, onContextMenu }: { surface: SurfaceKind; surfaceExpression: string; solid: SolidKind; surfaceScale: number; solidSize: number; crossSection: number; showSurface: boolean; showSolid: boolean; autoRotate: boolean; animationSpeed: number; zoom: number; performanceMode: boolean; cameraPreset: CameraPreset3D; selected: string; transforms: Record<ThreeObjectId, Transform3D>; addedObjects: Added3DObject[]; dragging: string | null; interactionTool: ObjectStudioTool; snapStep: number; vectorWorkbench: { a: Vector3Tuple; b: Vector3Tuple; view: VectorView3D; visible: boolean; focus: boolean }; onSelect: (id: string) => void; onDrag: (id: string | null) => void; onTransform: (id: string, patch: Partial<Transform3D>) => void; onContextMenu: (event: ThreeEvent<MouseEvent>, id: string) => void }) {
   const groupRef = useRef<THREE.Group>(null);
   const manipulationStart = useRef<{ id: string; point: THREE.Vector3; transform: Transform3D } | null>(null);
   useEffect(() => {
@@ -7742,6 +7753,8 @@ function Workspace3DScene({ surface, surfaceExpression, solid, surfaceScale, sol
     <group ref={groupRef} scale={zoom}>
       <Axes3D />
       <gridHelper args={[10, 10, "#334155", "#1e293b"]} rotation={[0, 0, 0]} />
+      {vectorWorkbench.visible && <VectorWorkbenchOverlay3D a={vectorWorkbench.a} b={vectorWorkbench.b} view={vectorWorkbench.view} focus={vectorWorkbench.focus} />}
+      <group visible={!vectorWorkbench.focus}>
       {showSurface && transforms.surface.visible && <TransformGroup3D transform={transforms.surface} selected={selected === "surface"}><SurfaceMesh surface={surface} expression={surfaceExpression} scaleValue={surfaceScale} transform={transforms.surface} performanceMode={performanceMode} eventProps={selectProps("surface")} /></TransformGroup3D>}
       {showSolid && transforms.solid.visible && <TransformGroup3D transform={transforms.solid} selected={selected === "solid"} yOffset={solidSize / 4}><SolidMesh solid={solid} size={solidSize} transform={transforms.solid} animate={autoRotate} eventProps={selectProps("solid")} /></TransformGroup3D>}
       {transforms.slice.visible && <TransformGroup3D transform={{ ...transforms.slice, position: [transforms.slice.position[0], crossSection + transforms.slice.position[1], transforms.slice.position[2]] }} selected={selected === "slice"}><CrossSectionPlane color={transforms.slice.color} eventProps={selectProps("slice")} /></TransformGroup3D>}
@@ -7758,6 +7771,7 @@ function Workspace3DScene({ surface, surfaceExpression, solid, surfaceScale, sol
       {addedObjects.map((object) => <AddedSceneObject3D key={object.id} object={object} selected={selected === object.id} surfaceScale={surfaceScale} solidSize={solidSize} crossSection={crossSection} performanceMode={performanceMode} eventProps={selectProps(object.id)} />)}
       <IntersectionOverlays3D transforms={transforms} crossSection={crossSection} />
       <MeasurementOverlays3D transforms={transforms} />
+      </group>
     </group>
   );
 }
@@ -7804,6 +7818,28 @@ function TransformGroup3D({ transform, selected, yOffset = 0, children }: { tran
   );
 }
 
+function VectorWorkbenchOverlay3D({ a, b, view, focus }: { a: Vector3Tuple; b: Vector3Tuple; view: VectorView3D; focus: boolean }) {
+  const result = vectorWorkbenchResult(a, b, view);
+  const scale = Math.min(0.7, 3.8 / Math.max(1, vectorMagnitude3(a), vectorMagnitude3(b), result ? vectorMagnitude3(result) : 0));
+  const fit = (vector: Vector3Tuple): Vector3Tuple => {
+    return vector.map((value) => value * scale) as Vector3Tuple;
+  };
+  const av = fit(a);
+  const bv = fit(b);
+  const rv = result ? fit(result) : null;
+  const origin: Vector3Tuple = focus ? [0, 0.25, 0] : [1.8, 0.45, -2.8];
+  const tip = (vector: Vector3Tuple): Vector3Tuple => vector.map((value, index) => value + origin[index]) as Vector3Tuple;
+  return (
+    <group>
+      <mesh position={origin}><sphereGeometry args={[0.105, 16, 12]} /><meshBasicMaterial color="#f8fafc" depthTest={false} /></mesh>
+      <VectorArrow start={origin} end={tip(av)} color="#22d3ee" thickness={0.07} overlay />
+      <VectorArrow start={origin} end={tip(bv)} color="#fb923c" thickness={0.07} overlay />
+      {rv && <VectorArrow start={origin} end={tip(rv)} color="#c084fc" thickness={0.085} overlay />}
+      {view === "sum" && <VectorArrow start={tip(av)} end={tip([av[0] + bv[0], av[1] + bv[1], av[2] + bv[2]])} color="#fb923c" thickness={0.025} overlay />}
+    </group>
+  );
+}
+
 function Axes3D() {
   return (
     <group>
@@ -7814,23 +7850,24 @@ function Axes3D() {
   );
 }
 
-function VectorArrow({ start, end, color, eventProps }: { start: [number, number, number]; end: [number, number, number]; color: string; eventProps?: Record<string, unknown> }) {
+function VectorArrow({ start, end, color, eventProps, thickness = 0.025, overlay = false }: { start: [number, number, number]; end: [number, number, number]; color: string; eventProps?: Record<string, unknown>; thickness?: number; overlay?: boolean }) {
   const startVector = new THREE.Vector3(...start);
   const endVector = new THREE.Vector3(...end);
   const direction = endVector.clone().sub(startVector);
   const length = direction.length();
+  if (length < 1e-8) return null;
   const midpoint = startVector.clone().add(direction.clone().multiplyScalar(0.5));
   const quaternion = new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), direction.clone().normalize());
 
   return (
     <group position={midpoint} quaternion={quaternion} {...eventProps}>
       <mesh>
-        <cylinderGeometry args={[0.025, 0.025, length, 12]} />
-        <meshStandardMaterial color={color} />
+        <cylinderGeometry args={[thickness, thickness, length, 12]} />
+        <meshStandardMaterial color={color} emissive={overlay ? color : "#000000"} emissiveIntensity={overlay ? 0.35 : 0} depthTest={!overlay} />
       </mesh>
       <mesh position={[0, length / 2, 0]}>
-        <coneGeometry args={[0.09, 0.25, 16]} />
-        <meshStandardMaterial color={color} />
+        <coneGeometry args={[Math.max(0.09, thickness * 2), Math.max(0.25, thickness * 3), 16]} />
+        <meshStandardMaterial color={color} emissive={overlay ? color : "#000000"} emissiveIntensity={overlay ? 0.35 : 0} depthTest={!overlay} />
       </mesh>
     </group>
   );

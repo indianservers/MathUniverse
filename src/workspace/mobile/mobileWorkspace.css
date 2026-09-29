@@ -79,6 +79,11 @@
     transform: none;
   }
 
+  .mws-root[data-mws-mobile="true"] .gs3d-right-panel.vector-lab-active {
+    top: 52px;
+    max-height: none;
+  }
+
   .mws-root[data-mws-mobile="true"] .gs3d-dock {
     right: 8px;
     left: 8px;

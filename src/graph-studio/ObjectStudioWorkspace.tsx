@@ -67,7 +67,7 @@ import { useCanvasZoomLock } from "../hooks/useCanvasZoomLock";
 export type ObjectStudioMode = "create" | "transform" | "measure" | "learn";
 export type ObjectStudioTool =
   "select" | "move" | "rotate" | "scale" | "orbit" | "pan" | "zoom";
-export type ObjectStudioInspectorTab = "transform" | "appearance" | "functions";
+export type ObjectStudioInspectorTab = "transform" | "appearance" | "functions" | "vectors";
 export type ObjectStudioDockTab = "properties" | "measurements" | "timeline";
 export type ObjectStudioTransform = {
   position: [number, number, number];
@@ -98,6 +98,9 @@ export type ObjectStudioShape = {
 
 type Props = {
   scene: ReactNode;
+  vectorWorkbench?: ReactNode;
+  vectorFocus?: boolean;
+  onVectorFocus?: (value: boolean) => void;
   objects: ObjectStudioItem[];
   selectedId: string;
   selectedTransform: ObjectStudioTransform;
@@ -626,6 +629,7 @@ export default function ObjectStudioWorkspace(props: Props) {
           >
             <Fullscreen />
           </button>
+          {props.vectorWorkbench && <button type="button" onClick={() => { setInspectorTab("vectors"); setRightOpen(true); setMode("transform"); props.onVectorFocus?.(true); }} title="Open Vector Lab" aria-label="Open Vector Lab"><Network /></button>}
         </div>
         <div
           ref={sceneHostRef}
@@ -637,6 +641,7 @@ export default function ObjectStudioWorkspace(props: Props) {
         >
           {props.scene}
         </div>
+        {props.vectorFocus && <div className="os-vector-legend" aria-label="Vector colors"><span><i className="a" /> A</span><span><i className="b" /> B</span><span><i className="result" /> Result</span></div>}
         {selected && mode !== "create" && <TransformGizmo tool={props.tool} />}
         <div
           className="os-context-toolbar"
@@ -775,7 +780,7 @@ export default function ObjectStudioWorkspace(props: Props) {
 
       <aside
         ref={rightPanelRef}
-        className={`gs3d-right-panel os-right-panel ${rightOpen ? "open" : ""}`}
+        className={`gs3d-right-panel os-right-panel ${rightOpen ? "open" : ""} ${inspectorTab === "vectors" ? "vector-lab-active" : ""}`}
         data-mws-panel={rightOpen ? "inspector" : undefined}
         aria-label="Scene Objects and Object Inspector"
       >
@@ -862,6 +867,7 @@ export default function ObjectStudioWorkspace(props: Props) {
         <section className="os-inspector">
           <div className="os-right-heading">
             <h2>Object Inspector</h2>
+            {inspectorTab === "vectors" && <button type="button" aria-label="Close Vector Lab" title="Close Vector Lab" onClick={() => { setRightOpen(false); props.onVectorFocus?.(false); }}><ChevronRight /></button>}
           </div>
           <div className="gs3d-inspector-tabs">
             {(
@@ -869,20 +875,23 @@ export default function ObjectStudioWorkspace(props: Props) {
                 "transform",
                 "appearance",
                 "functions",
+                ...(props.vectorWorkbench ? ["vectors" as const] : []),
               ] as ObjectStudioInspectorTab[]
             ).map((item) => (
               <button
                 type="button"
                 key={item}
                 className={inspectorTab === item ? "active" : ""}
-                onClick={() => setInspectorTab(item)}
+                onClick={() => { setInspectorTab(item); props.onVectorFocus?.(item === "vectors"); }}
               >
                 {item}
               </button>
             ))}
           </div>
           <div className="os-inspector-scroll">
-            {mode === "learn" ? (
+            {inspectorTab === "vectors" && props.vectorWorkbench ? (
+              props.vectorWorkbench
+            ) : mode === "learn" ? (
               <LearnPanel selected={selected} />
             ) : !selected ? (
               <p className="os-empty">
