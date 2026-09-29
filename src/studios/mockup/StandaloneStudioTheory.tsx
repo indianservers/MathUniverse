@@ -103,9 +103,9 @@ export default function StandaloneStudioTheory() {
   if (!route || !studioTheoryContent[route.studioId]?.[route.pageId]) return null;
   const mode = new URLSearchParams(location.search).get("mode");
   return <>
-    <button ref={triggerRef} type="button" className="studio-theory-fab" onClick={() => setOpen(true)}><BookOpenCheck aria-hidden="true" /> Theory &amp; 3 examples</button>
+    <button ref={triggerRef} type="button" className="studio-theory-fab" onClick={() => setOpen(true)}><BookOpenCheck aria-hidden="true" /> Theory &amp; Simple words</button>
     {open && <div className="studio-theory-overlay" onMouseDown={(event) => { if (event.target === event.currentTarget) setOpen(false); }}>
-      <section ref={dialogRef} className="studio-theory-drawer" role="dialog" aria-modal="true" aria-label={`${route.label} theory and examples`} tabIndex={-1}>
+      <section ref={dialogRef} className="studio-theory-drawer" role="dialog" aria-modal="true" aria-label={`${route.label} theory and simple words`} tabIndex={-1}>
         <header><span>{route.label}</span><button type="button" onClick={() => setOpen(false)} aria-label="Close theory"><X /></button></header>
         <StudioTheoryPanel studioId={route.studioId} page={{ id: route.pageId, label: route.label, modes: mode ? [mode] : [] }} mode={mode} />
       </section>

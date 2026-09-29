@@ -6,6 +6,7 @@ import SliderControl, { SliderGroup } from "../../../components/ui/SliderControl
 import TopicHeader from "../../../components/ui/TopicHeader";
 import { statisticsLearningContent } from "../data/learningContent";
 import LearningExpansion from "./LearningExpansion";
+import { studioSimpleWords } from "../../../studios/mockup/studioSimpleWords";
 
 export type ProbabilityStatisticsPhaseThreePageId = "bayesian" | "stochastic" | "advanced-models";
 
@@ -88,7 +89,7 @@ function BayesianStudio() {
         ["Likelihood", "The likelihood asks how compatible the evidence is with each hypothesis. Strong evidence separates likelihoods."],
         ["Posterior", "The posterior is normalized evidence-weighted belief. Conjugate priors make this update algebraically smooth."],
       ]} />
-      <LearningExpansion content={statisticsLearningContent.bayesian} />
+      <LearningExpansion content={statisticsLearningContent.bayesian} simpleWords={studioSimpleWords["statistics-phase"].bayesian} />
     </>
   );
 }
@@ -141,7 +142,7 @@ function StochasticStudio() {
         ["Queueing", "When lambda approaches or exceeds mu, traffic intensity rises and expected waiting grows quickly."],
         ["Reliability", "For constant failure rate, reliability decays exponentially. Weibull models let the hazard change over time."],
       ]} />
-      <LearningExpansion content={statisticsLearningContent.stochastic} />
+      <LearningExpansion content={statisticsLearningContent.stochastic} simpleWords={studioSimpleWords["statistics-phase"].stochastic} />
     </>
   );
 }
@@ -185,7 +186,7 @@ function AdvancedModelsStudio() {
         ["Information theory", "Entropy measures uncertainty. KL divergence measures how much one probability model differs from another."],
         ["Mixture models", "A mixture combines simpler distributions. It can represent clusters, subpopulations, and hidden regimes."],
       ]} />
-      <LearningExpansion content={statisticsLearningContent["advanced-models"]} />
+      <LearningExpansion content={statisticsLearningContent["advanced-models"]} simpleWords={studioSimpleWords["statistics-phase"]["advanced-models"]} />
     </>
   );
 }

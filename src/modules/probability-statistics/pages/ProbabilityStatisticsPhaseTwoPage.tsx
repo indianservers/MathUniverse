@@ -6,6 +6,7 @@ import SliderControl, { SliderGroup } from "../../../components/ui/SliderControl
 import TopicHeader from "../../../components/ui/TopicHeader";
 import { statisticsLearningContent } from "../data/learningContent";
 import LearningExpansion from "./LearningExpansion";
+import { studioSimpleWords } from "../../../studios/mockup/studioSimpleWords";
 
 export type ProbabilityStatisticsPhaseTwoPageId = "sampling" | "inference" | "regression";
 
@@ -116,7 +117,7 @@ function SamplingStudio() {
           ["Central Limit Theorem", "For many populations, sample means become approximately normal as n grows, even when the population is skewed."],
         ]}
       />
-      <LearningExpansion content={statisticsLearningContent.sampling} />
+      <LearningExpansion content={statisticsLearningContent.sampling} simpleWords={studioSimpleWords["statistics-phase"].sampling} />
     </>
   );
 }
@@ -166,7 +167,7 @@ function InferenceStudio() {
           ["Power", "Power rises when sample size grows, noise falls, alpha rises, or the true effect moves farther from the null."],
         ]}
       />
-      <LearningExpansion content={statisticsLearningContent.inference} />
+      <LearningExpansion content={statisticsLearningContent.inference} simpleWords={studioSimpleWords["statistics-phase"].inference} />
     </>
   );
 }
@@ -219,7 +220,7 @@ function RegressionStudio() {
           ["Prediction vs explanation", "A high R squared can still hide bias, outliers, or non-causal association. Always inspect the graph."],
         ]}
       />
-      <LearningExpansion content={statisticsLearningContent.regression} />
+      <LearningExpansion content={statisticsLearningContent.regression} simpleWords={studioSimpleWords["statistics-phase"].regression} />
     </>
   );
 }

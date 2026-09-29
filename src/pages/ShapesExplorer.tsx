@@ -167,7 +167,7 @@ export default function ShapesExplorer() {
   const inspectorDragRef = useRef<{ y: number; size: "half" | "full" } | null>(null);
   const reducedMotion = useReducedMotion();
   useDialogFocus(mobileInspectorOpen, inspectorRef, inspectorTriggerRef);
-  const [studioTab, setStudioTab] = useState<"Explore" | "Properties" | "Formulas" | "Compare" | "Learn">("Explore");
+  const [studioTab, setStudioTab] = useState<"Explore" | "Properties" | "Formulas" | "Compare" | "Learn" | "In Simple words">("Explore");
   const [dockTab, setDockTab] = useState<DockPaneTab>("Live Values");
   const [inspectorTab, setInspectorTab] = useState<"Dimensions" | "Formulas" | "Properties">("Dimensions");
   const [libraryFilter, setLibraryFilter] = useState<"All" | ShapeKind>("All");
@@ -371,7 +371,7 @@ export default function ShapesExplorer() {
           <h1>2D &amp; 3D Shapes Explorer</h1>
         </div>
         <nav className="shapes-mode-tabs" aria-label="Explorer modes">
-          {(["Explore", "Properties", "Formulas", "Compare", "Learn"] as const).map((tab) => (
+          {(["Explore", "Properties", "Formulas", "Compare", "Learn", "In Simple words"] as const).map((tab) => (
             <button key={tab} type="button" className={studioTab === tab ? "is-active" : ""} onClick={() => {
               setStudioTab(tab);
               if (tab === "Properties") setDockTab("Net & Cross-Sections");
@@ -431,7 +431,13 @@ export default function ShapesExplorer() {
       </aside>
 
       <main className="shapes-workbench">
-        {studioTab === "Compare" ? <ShapeCompareWorkspace shapeIds={compareIds} selectedId={selected.id} onToggle={toggleCompare} onSelect={selectShape} a={a} b={b} c={c} sides={sides} angle={angle} precision={precision} unit={unit} /> : studioTab === "Learn" ? <ShapeLearnWorkspace shape={selected} metrics={metrics} step={learnStep} onStep={setLearnStep} onOpenInspector={() => { setInspectorTab("Properties"); openMobileInspector(); }} /> : (
+        {studioTab === "Compare" ? <ShapeCompareWorkspace shapeIds={compareIds} selectedId={selected.id} onToggle={toggleCompare} onSelect={selectShape} a={a} b={b} c={c} sides={sides} angle={angle} precision={precision} unit={unit} /> : studioTab === "Learn" ? <ShapeLearnWorkspace shape={selected} metrics={metrics} step={learnStep} onStep={setLearnStep} onOpenInspector={() => { setInspectorTab("Properties"); openMobileInspector(); }} /> : studioTab === "In Simple words" ? (
+          <section className="shapes-simple-words" aria-label={`${selected.name} in simple words`}>
+            <span className="shapes-simple-words__eyebrow">IN SIMPLE WORDS</span>
+            <h2>{selected.name}</h2>
+            <p>{selected.description} You can see this shape in {selected.use.charAt(0).toLowerCase() + selected.use.slice(1)}</p>
+          </section>
+        ) : (
         <>
         <section className="shapes-viewport-card">
           <div className="shapes-viewport-toolbar">

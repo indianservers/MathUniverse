@@ -9,6 +9,7 @@ import TopicHeader from "../../../components/ui/TopicHeader";
 import { getDistribution, type DistributionParameter, type DistributionSpec } from "../data/distributionAtlas";
 import { getDistributionLearningContent } from "../data/learningContent";
 import LearningExpansion from "./LearningExpansion";
+import { studioSimpleWords } from "../../../studios/mockup/studioSimpleWords";
 
 export default function DistributionDetailPage() {
   const { distributionId } = useParams();
@@ -120,7 +121,7 @@ export default function DistributionDetailPage() {
         </div>
       </SectionCard>
 
-      <LearningExpansion content={learningContent} />
+      <LearningExpansion content={learningContent} simpleWords={studioSimpleWords["distribution-detail"][spec.id]} />
     </div>
   );
 }

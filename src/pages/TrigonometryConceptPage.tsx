@@ -8,6 +8,7 @@ import SliderControl, { SliderGroup } from "../components/ui/SliderControl";
 import TopicHeader from "../components/ui/TopicHeader";
 import TopicTabs from "../components/ui/TopicTabs";
 import VisualLearningPanel from "../components/ui/VisualLearningPanel";
+import { studioSimpleWords } from "../studios/mockup/studioSimpleWords";
 import { getTrigonometryConcept, type TrigonometryConcept, type TrigonometryVisualType } from "../data/trigonometryConcepts";
 import { degreesToRadians, roundTo } from "../utils/math";
 import AngleSumDifferenceVisualizer, { type AngleSumDifferenceFormulaId } from "../visualizations/trigonometry/AngleSumDifferenceVisualizer";
@@ -105,6 +106,7 @@ function TrigonometryConceptDetail({ concept }: { concept: TrigonometryConcept }
 
       <VisualLearningPanel
         concept={concept.summary}
+        simpleWords={studioSimpleWords["trigonometry-concepts"][concept.id]}
         formula={concept.formula}
         changes={changeText(concept.visual, concept.sliderA, concept.sliderB)}
         realWorldUse={concept.use}

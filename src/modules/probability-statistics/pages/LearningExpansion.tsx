@@ -1,11 +1,20 @@
 import { BookOpen, ChevronDown, Lightbulb, ListChecks } from "lucide-react";
+import { useId, useState } from "react";
 import MathExpression from "../../../components/ui/MathExpression";
 import SectionCard from "../../../components/ui/SectionCard";
 import type { LearningContent } from "../data/learningContent";
 
-export default function LearningExpansion({ content }: { content: LearningContent }) {
+export default function LearningExpansion({ content, simpleWords }: { content: LearningContent; simpleWords?: string }) {
+  const [activeTab, setActiveTab] = useState<"details" | "simple">("details");
+  const tabId = useId();
   return (
     <SectionCard title="Learn More" description="Detailed theory, real-world situations, and worked examples for practice.">
+      {simpleWords ? <div className="mb-4 inline-flex gap-1 rounded-xl border border-cyan-200 bg-cyan-50 p-1 dark:border-cyan-300/20 dark:bg-cyan-400/10" role="tablist" aria-label="Learning explanation">
+        <button id={`${tabId}-details-tab`} type="button" role="tab" aria-selected={activeTab === "details"} aria-controls={`${tabId}-details-panel`} className={`rounded-lg px-3 py-2 text-sm font-bold ${activeTab === "details" ? "bg-white text-cyan-800 shadow-sm dark:bg-slate-800 dark:text-cyan-100" : "text-slate-600 dark:text-slate-300"}`} onClick={() => setActiveTab("details")}>Theory &amp; examples</button>
+        <button id={`${tabId}-simple-tab`} type="button" role="tab" aria-selected={activeTab === "simple"} aria-controls={`${tabId}-simple-panel`} className={`rounded-lg px-3 py-2 text-sm font-bold ${activeTab === "simple" ? "bg-white text-cyan-800 shadow-sm dark:bg-slate-800 dark:text-cyan-100" : "text-slate-600 dark:text-slate-300"}`} onClick={() => setActiveTab("simple")}>In Simple words</button>
+      </div> : null}
+      {simpleWords ? <div id={`${tabId}-simple-panel`} role="tabpanel" aria-labelledby={`${tabId}-simple-tab`} hidden={activeTab !== "simple"} className="rounded-2xl border border-emerald-200 bg-emerald-50 p-5 text-base leading-8 text-emerald-950 dark:border-emerald-300/20 dark:bg-emerald-400/10 dark:text-emerald-100">{simpleWords}</div> : null}
+      <div id={`${tabId}-details-panel`} role={simpleWords ? "tabpanel" : undefined} aria-labelledby={simpleWords ? `${tabId}-details-tab` : undefined} hidden={Boolean(simpleWords && activeTab !== "details")}>
       <div className="space-y-4">
         <p className="rounded-xl border border-cyan-100 bg-cyan-50 p-4 text-sm font-semibold leading-6 text-cyan-950 dark:border-cyan-300/20 dark:bg-cyan-400/10 dark:text-cyan-100">
           <MathRichText value={content.overview} />
@@ -55,6 +64,7 @@ export default function LearningExpansion({ content }: { content: LearningConten
             ))}
           </div>
         </details>
+      </div>
       </div>
     </SectionCard>
   );

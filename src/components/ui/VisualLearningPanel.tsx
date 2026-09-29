@@ -21,6 +21,7 @@ type VisualLearningPanelProps = {
   misconception?: string;
   teacherPrompt?: string;
   warning?: string;
+  simpleWords?: string;
 };
 
 export default function VisualLearningPanel({
@@ -34,8 +35,10 @@ export default function VisualLearningPanel({
   misconception,
   teacherPrompt,
   warning,
+  simpleWords,
 }: VisualLearningPanelProps) {
   const [expanded, setExpanded] = useState(true);
+  const [activeTab, setActiveTab] = useState<"details" | "simple">("details");
   const contentId = useId();
 
   return (
@@ -60,6 +63,12 @@ export default function VisualLearningPanel({
       }
     >
       <div id={contentId} hidden={!expanded}>
+        {simpleWords ? <div className="mb-4 inline-flex gap-1 rounded-xl border border-cyan-200 bg-cyan-50 p-1 dark:border-cyan-300/20 dark:bg-cyan-400/10" role="tablist" aria-label="Concept explanation">
+          <button id={`${contentId}-details-tab`} type="button" role="tab" aria-selected={activeTab === "details"} aria-controls={`${contentId}-details-panel`} className={`rounded-lg px-3 py-2 text-sm font-bold ${activeTab === "details" ? "bg-white text-cyan-800 shadow-sm dark:bg-slate-800 dark:text-cyan-100" : "text-slate-600 dark:text-slate-300"}`} onClick={() => setActiveTab("details")}>Visual learning</button>
+          <button id={`${contentId}-simple-tab`} type="button" role="tab" aria-selected={activeTab === "simple"} aria-controls={`${contentId}-simple-panel`} className={`rounded-lg px-3 py-2 text-sm font-bold ${activeTab === "simple" ? "bg-white text-cyan-800 shadow-sm dark:bg-slate-800 dark:text-cyan-100" : "text-slate-600 dark:text-slate-300"}`} onClick={() => setActiveTab("simple")}>In Simple words</button>
+        </div> : null}
+        {simpleWords ? <div id={`${contentId}-simple-panel`} role="tabpanel" aria-labelledby={`${contentId}-simple-tab`} hidden={activeTab !== "simple"} className="rounded-2xl border border-emerald-200 bg-emerald-50 p-5 text-base leading-8 text-emerald-950 dark:border-emerald-300/20 dark:bg-emerald-400/10 dark:text-emerald-100">{simpleWords}</div> : null}
+        <div id={`${contentId}-details-panel`} role={simpleWords ? "tabpanel" : undefined} aria-labelledby={simpleWords ? `${contentId}-details-tab` : undefined} hidden={Boolean(simpleWords && activeTab !== "details")}>
         <div className="mb-3 grid gap-2 md:grid-cols-3">
           <LearningCue
             icon={<Eye className="h-4 w-4" />}
@@ -135,6 +144,7 @@ export default function VisualLearningPanel({
               </ul>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </SectionCard>

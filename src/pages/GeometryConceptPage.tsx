@@ -6,6 +6,7 @@ import SectionCard from "../components/ui/SectionCard";
 import SliderControl, { SliderGroup } from "../components/ui/SliderControl";
 import TopicHeader from "../components/ui/TopicHeader";
 import VisualLearningPanel from "../components/ui/VisualLearningPanel";
+import { studioSimpleWords } from "../studios/mockup/studioSimpleWords";
 import { getGeometryConcept, type GeometryConcept, type GeometryVisualType } from "../data/geometryConcepts";
 import { degreesToRadians, roundTo } from "../utils/math";
 
@@ -64,6 +65,7 @@ function GeometryConceptDetail({ concept }: { concept: GeometryConcept }) {
 
       <VisualLearningPanel
         concept={concept.summary}
+        simpleWords={studioSimpleWords["geometry-concepts"][concept.id]}
         formula={concept.formula}
         changes={changeText(concept.visual, concept.sliderA, concept.sliderB)}
         realWorldUse={concept.use}

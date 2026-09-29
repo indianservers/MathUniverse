@@ -40646,6 +40646,31 @@ html body #main-content .lesson-simple-english h2 {
 .shapes-studio-shell[data-shapes-theme="light"] .shapes-learn-card p { color: #445f79; }
 .shapes-studio-shell[data-shapes-theme="light"] .shapes-learning-path button { border-color: #cbdce9; color: #344e69; }
 .shapes-studio-shell[data-shapes-theme="light"] .shapes-learning-path button span { background: #dcecf7; }
+.shapes-simple-words {
+  min-height: 260px;
+  align-self: start;
+  border: 1px solid rgba(125, 211, 252, 0.2);
+  border-radius: 12px;
+  background: rgba(10, 24, 41, 0.75);
+  padding: clamp(22px, 4vw, 44px);
+}
+.shapes-simple-words__eyebrow { color: #67e8f9; font-size: 11px; font-weight: 900; letter-spacing: 0.12em; }
+.shapes-simple-words h2 { margin-top: 10px; color: #f8fdff; font-size: clamp(24px, 3vw, 38px); font-weight: 900; }
+.shapes-simple-words p { max-width: 68ch; margin-top: 16px; color: #d5e8f6; font-size: clamp(16px, 1.8vw, 20px); line-height: 1.65; }
+.shapes-studio-shell[data-shapes-theme="light"] .shapes-simple-words { border-color: #cbdce9; background: #fff; }
+.shapes-studio-shell[data-shapes-theme="light"] .shapes-simple-words__eyebrow { color: #07547a; }
+.shapes-studio-shell[data-shapes-theme="light"] .shapes-simple-words h2 { color: #102239; }
+.shapes-studio-shell[data-shapes-theme="light"] .shapes-simple-words p { color: #334b66; }
+@media (min-width: 901px) and (max-width: 1280px) {
+  .shapes-studio-topbar { grid-template-columns: minmax(180px, 1fr) minmax(380px, 560px) auto; }
+}
+@media (max-width: 900px) {
+  .shapes-studio-shell { grid-template-rows: 106px minmax(0, 1fr) 30px; }
+  .shapes-studio-topbar { grid-template-rows: 44px 44px; }
+  .shapes-mobile-quick-actions { grid-column: 2; grid-row: 1; }
+  .shapes-mode-tabs { display: flex; grid-column: 1 / -1; grid-row: 2; overflow-x: auto; }
+  .shapes-mode-tabs button { flex: none; min-width: max-content; }
+}
 .shapes-studio-shell[data-shapes-theme="light"] :is(.shapes-mode-tabs, .shapes-segmented-control, .shapes-inspector-tabs, .shapes-filter-row) button { color: #40536c !important; }
 .shapes-studio-shell[data-shapes-theme="light"] :is(.shapes-mode-tabs, .shapes-segmented-control, .shapes-inspector-tabs, .shapes-filter-row) button:is(:hover, .is-active) { color: #07547a !important; background: #d5eef9 !important; }
 .shapes-studio-shell[data-shapes-theme="light"] :is(.shapes-toolbar-button, .shapes-icon-button, .shapes-floating-controls button) { color: #29445f !important; background: #f4f9fd !important; }
