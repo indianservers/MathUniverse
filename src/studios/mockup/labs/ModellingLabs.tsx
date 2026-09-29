@@ -6,6 +6,8 @@ import { aic, fitMetrics, formatComparisonReport, parseCsvPairs, sampleGrowth } 
 import { astarRoute, shortestRoute, trafficGraph } from "../../modelling/networkMath";
 import { Phase1LabChrome } from "../../phase1/Phase1LabChrome";
 import { ProjectilePaths, StudioMath3D } from "../../shared/studioMath3D";
+import { solveLinearProgram } from "../../modelling/linearProgram";
+import { epidemicScenario } from "../../modelling/epidemicScenario";
 
 function Chrome({ page, children }: { page: StudioMockupPage; children: React.ReactNode | ((mode: string) => React.ReactNode) }) {
   return <Phase1LabChrome page={page}>{children}</Phase1LabChrome>;
@@ -359,33 +361,13 @@ function EpidemicLab({ page }: { page: StudioMockupPage }) {
   const [i0, setI0] = useState(50);
   const [n, setN] = useState(100000);
   const [day, setDay] = useState(200);
+  const [interventionDay, setInterventionDay] = useState(40);
+  const [interventionDuration, setInterventionDuration] = useState(60);
+  const [reduction, setReduction] = useState(0.5);
   const r0 = beta / gamma;
   const seir = mode === "SEIR";
-  const sigma = 0.25;
-  const pts = useMemo(() => {
-    let s = n - i0 - vax * n;
-    let e = seir ? Math.min(i0, n * 0.01) : 0;
-    let i = seir ? Math.max(1, i0 - e) : i0;
-    let r = vax * n;
-    const out = [{ s, e, i, r }];
-    for (let t = 0; t < 200; t += 1) {
-      const inf = beta * s * i / n;
-      if (seir) {
-        const ds = -inf;
-        const de = inf - sigma * e;
-        const di = sigma * e - gamma * i;
-        const dr = gamma * i;
-        s = clamp(s + ds, 0, n); e = clamp(e + de, 0, n); i = clamp(i + di, 0, n); r = clamp(r + dr, 0, n);
-      } else {
-        const ds = -inf;
-        const di = inf - gamma * i;
-        const dr = gamma * i;
-        s = clamp(s + ds, 0, n); i = clamp(i + di, 0, n); r = clamp(r + dr, 0, n); e = 0;
-      }
-      out.push({ s, e, i, r });
-    }
-    return out;
-  }, [beta, gamma, vax, i0, n, seir]);
+  const pts = useMemo(() => epidemicScenario({ beta, gamma, vaccination: vax, infected: i0, population: n, seir, interventionDay, interventionEndDay: interventionDay + interventionDuration, reduction }), [beta, gamma, vax, i0, n, seir, interventionDay, interventionDuration, reduction]);
+  const baseline = useMemo(() => epidemicScenario({ beta, gamma, vaccination: vax, infected: i0, population: n, seir, interventionDay: 201, reduction: 0 }), [beta, gamma, vax, i0, n, seir]);
   const peakI = Math.max(...pts.map((p) => p.i));
   const path = (key: "s" | "i" | "r" | "e", color: string) => <polyline points={pts.map((p, idx) => `${20 + idx * 1.9},${210 - (p[key] / n) * 170}`).join(" ")} fill="none" stroke={color} strokeWidth="2.2" />;
   const last = pts[Math.min(day, pts.length - 1)] ?? pts.at(-1)!;
@@ -394,7 +376,7 @@ function EpidemicLab({ page }: { page: StudioMockupPage }) {
     const id = window.setInterval(() => setTick((t) => t + 1), 80);
     return () => window.clearInterval(id);
   }, []);
-  const re = r0 * (last.s / n);
+  const re = last.re;
   const hosp = n * 0.02;
   const dots = Array.from({ length: 18 }, (_, i) => {
     const t = ((tick + i * 3) % 40) / 40;
@@ -410,6 +392,9 @@ function EpidemicLab({ page }: { page: StudioMockupPage }) {
             <SliderRow label="Vaccination rate ν" value={vax} min={0} max={0.4} step={0.01} onChange={setVax} />
             <SliderRow label="Initial infected I₀" value={i0} min={1} max={2000} step={1} onChange={setI0} />
             <SliderRow label="Population N" value={n} min={1000} max={1000000} step={1000} onChange={setN} />
+            <SliderRow label="Intervention starts (day)" value={interventionDay} min={0} max={180} step={1} onChange={setInterventionDay} />
+            <SliderRow label="Intervention duration (days)" value={interventionDuration} min={5} max={180} step={1} onChange={setInterventionDuration} />
+            <SliderRow label="Contact reduction" value={reduction} min={0} max={0.9} step={0.05} onChange={setReduction} />
             <p className="msk-note">{mode} scenario. S₀ = {fmt(n - i0, 0)}</p>
           </Panel>
           <section className="msk-panel msk-canvas" data-mode-canvas={mode} data-studio="modelling">
@@ -429,14 +414,20 @@ function EpidemicLab({ page }: { page: StudioMockupPage }) {
               {path("s", "#147df2")}
               {seir ? path("e", "#f59e0b") : null}
               {path("i", "#8b45f4")}
+              <polyline points={baseline.map((p, idx) => `${20 + idx * 1.9},${210 - (p.i / n) * 170}`).join(" ")} fill="none" stroke="#ef476f" strokeWidth="2" strokeDasharray="5 4" />
+              <line x1={20 + interventionDay * 1.9} y1="10" x2={20 + interventionDay * 1.9} y2="210" stroke="#f59e0b" strokeDasharray="4 3" />
+              <line x1={20 + Math.min(200, interventionDay + interventionDuration) * 1.9} y1="10" x2={20 + Math.min(200, interventionDay + interventionDuration) * 1.9} y2="210" stroke="#f59e0b" strokeDasharray="4 3" />
               {path("r", "#10b981")}
             </svg>
+            <p className="msk-note">Purple: intervention scenario · dashed red: no intervention · orange marker: intervention day.</p>
+            <svg className="msk-graph" viewBox="0 0 420 120" role="img" aria-label="Effective reproduction number comparison"><rect width="420" height="120" fill="#f8fbff" /><polyline points={baseline.map((point, index) => `${20 + index * 1.9},${105 - Math.min(4, point.re) * 24}`).join(" ")} fill="none" stroke="#ef476f" strokeDasharray="5 4" strokeWidth="2" /><polyline points={pts.map((point, index) => `${20 + index * 1.9},${105 - Math.min(4, point.re) * 24}`).join(" ")} fill="none" stroke="#8b45f4" strokeWidth="2" /><line x1="20" y1="81" x2="400" y2="81" stroke="#64748b" strokeDasharray="3 3" /><text x="24" y="75" fill="#334155" fontSize="11">Rₑ = 1</text></svg>
             <SliderRow label="Day" value={Math.min(day, pts.length - 1)} min={0} max={pts.length - 1} step={1} onChange={setDay} />
           </section>
           <aside className="msk-panel msk-live">
             <h2>Live metrics (Day {Math.min(day, pts.length - 1)})</h2>
             <LiveRow color="#ef4444" label="R₀" value={fmt(r0, 2)} />
             <LiveRow color="#f59e0b" label="Rₑ" value={fmt(re, 2)} />
+            <LiveRow color="#ef476f" label="Baseline Rₑ" value={fmt(baseline[Math.min(day, 200)].re, 2)} />
             <LiveRow color="#8b45f4" label="Peak infections" value={fmt(peakI, 0)} />
             {seir ? <LiveRow color="#f59e0b" label="Exposed E" value={fmt(last.e, 0)} /> : null}
             <LiveRow color="#10b981" label="Hospital capacity" value={fmt(hosp, 0)} />
@@ -517,42 +508,54 @@ function FinanceLab({ page }: { page: StudioMockupPage }) {
 }
 
 function OptimizationLab({ page }: { page: StudioMockupPage }) {
-  const [x, setX] = useState(40);
   const [labor, setLabor] = useState(100);
   const [material, setMaterial] = useState(80);
   const [machine, setMachine] = useState(90);
-  const yMax = Math.min((labor - 2 * x) / 1, machine - x, 50, material);
-  const y = clamp(30, 0, Math.max(0, yMax));
-  const z = 50 * x + 40 * y;
-  const peakX = clamp(180 + (labor - 100) * 1.2, 80, 300);
-  const peakY = clamp(40 + (120 - material) * 0.5, 20, 160);
-  const rightX = clamp(300 + (machine - 90) * 0.7, 180, 380);
+  const [profitA, setProfitA] = useState(50);
+  const [profitB, setProfitB] = useState(40);
+  const constraints = [{ name: "Labor", a: 2, b: 1, limit: labor }, { name: "Machine", a: 1, b: 1, limit: machine }, { name: "Material", a: 0, b: 1, limit: material }];
+  const solution = solveLinearProgram(constraints, { x: profitA, y: profitB });
+  const px = (x: number) => 40 + x * 3;
+  const py = (y: number) => 230 - y * 2;
+  const dragLine = (name: string, clientX: number, clientY: number, box: DOMRect) => {
+    const y = clamp((230 - (clientY - box.top) * (260 / box.height)) / 2, 10, 120);
+    const x = clamp(((clientX - box.left) * (420 / box.width) - 40) / 3, 0, 80);
+    if (name === "Labor") setLabor(clamp(Math.round(2 * x + y), 40, 160));
+    if (name === "Machine") setMachine(clamp(Math.round(x + y), 40, 140));
+    if (name === "Material") setMaterial(clamp(Math.round(y), 20, 120));
+  };
   return (
     <Chrome page={page}>
       {(mode) => (
         <>
           <Panel title="Decision variables">
-            <SliderRow label="x₁ Product A" value={x} min={0} max={60} step={1} onChange={setX} />
-            <p className="msk-formula">Max Z = 50x₁ + 40x₂ · Live Z = {fmt(z, 0)}</p>
+            <p className="msk-formula">Max Z = {profitA}x₁ + {profitB}x₂ · Best Z = {fmt(solution.value ?? 0, 0)}</p>
+            <SliderRow label="Profit per A" value={profitA} min={10} max={100} step={1} onChange={setProfitA} />
+            <SliderRow label="Profit per B" value={profitB} min={10} max={100} step={1} onChange={setProfitB} />
             <SliderRow label="Labor (hrs)" value={labor} min={40} max={160} step={1} onChange={setLabor} />
             <SliderRow label="Material (kg)" value={material} min={20} max={120} step={1} onChange={setMaterial} />
             <SliderRow label="Machine (hrs)" value={machine} min={40} max={140} step={1} onChange={setMachine} />
-            <p className="msk-note">{mode}: feasible region updates with resources.</p>
+            <p className="msk-note">{mode}: drag a colored constraint handle or the orange objective line. Sliders provide precise values.</p>
           </Panel>
           <section className="msk-panel msk-canvas" data-mode-canvas={mode} data-studio="modelling">
             <h2>Feasible region & objective</h2>
             <svg className="msk-graph" viewBox="0 0 420 260" role="img" aria-label="LP feasible region">
               <rect width="420" height="260" fill="#f8fbff" />
-              <polygon points={`40,220 40,80 ${peakX},${peakY} ${rightX},90 ${rightX},220`} fill="rgba(8,185,221,.18)" stroke="#08b9dd" />
-              <circle cx={40 + x * 4.2} cy={220 - y * 3.4} r="7" fill="#f59e0b" />
-              <text x="220" y="36" fill="#b45309" fontSize="12">Optimal ({fmt(x, 0)}, {fmt(y, 0)}) · Max Z = {fmt(z, 0)}</text>
+              <line x1="40" y1="230" x2="400" y2="230" stroke="#64748b" /><line x1="40" y1="230" x2="40" y2="10" stroke="#64748b" />
+              <polygon points={solution.vertices.map((point) => `${px(point.x)},${py(point.y)}`).join(" ")} fill="rgba(8,185,221,.18)" stroke="#08b9dd" strokeWidth="2" />
+              {constraints.map((line, index) => <g key={line.name}>
+                <line x1={px(0)} y1={py(line.limit / line.b)} x2={px(line.a ? line.limit / line.a : 110)} y2={py(line.a ? 0 : line.limit)} stroke={["#ef476f", "#8b45f4", "#10b981"][index]} strokeWidth="2" />
+                <circle cx={px(line.a ? line.limit / (line.a + line.b) : 38)} cy={py(line.a ? line.limit / (line.a + line.b) : line.limit)} r="9" fill={["#ef476f", "#8b45f4", "#10b981"][index]} style={{ cursor: "grab", touchAction: "none" }} aria-label={`Drag ${line.name} constraint`} onPointerDown={(event) => event.currentTarget.setPointerCapture(event.pointerId)} onPointerMove={(event) => { if (event.buttons) dragLine(line.name, event.clientX, event.clientY, event.currentTarget.ownerSVGElement!.getBoundingClientRect()); }} />
+              </g>)}
+              {solution.best && <><line x1={px(0)} y1={py((solution.value ?? 0) / profitB)} x2={px((solution.value ?? 0) / profitA)} y2={py(0)} stroke="#f59e0b" strokeWidth="2" strokeDasharray="6 4" /><line x1={px(0)} y1={py((solution.value ?? 0) / profitB)} x2={px((solution.value ?? 0) / profitA)} y2={py(0)} stroke="transparent" strokeWidth="16" style={{ cursor: "grab", touchAction: "none" }} aria-label="Drag objective line" onPointerDown={(event) => event.currentTarget.setPointerCapture(event.pointerId)} onPointerMove={(event) => { if (event.buttons) { const box = event.currentTarget.ownerSVGElement!.getBoundingClientRect(); setProfitA(clamp(Math.round(100 - (event.clientY - box.top) / box.height * 90), 10, 100)); } }} /><circle cx={px(solution.best.x)} cy={py(solution.best.y)} r="7" fill="#f59e0b" /></>}
+              <text x="170" y="26" fill="#92400e" fontSize="12">Best ({fmt(solution.best?.x ?? 0, 1)}, {fmt(solution.best?.y ?? 0, 1)}) · Z = {fmt(solution.value ?? 0, 0)}</text>
             </svg>
           </section>
           <aside className="msk-panel msk-live">
             <h2>Live summary</h2>
-            <LiveRow color="#f59e0b" label="Max profit Z" value={fmt(z, 0)} />
-            <LiveRow color="#147df2" label="Optimal (x₁, x₂)" value={`(${fmt(x, 0)}, ${fmt(y, 0)})`} />
-            <StatusOk>Increasing labor by 1 hour raises profit if the labor constraint is binding.</StatusOk>
+            <LiveRow color="#f59e0b" label="Max profit Z" value={fmt(solution.value ?? 0, 0)} />
+            <LiveRow color="#147df2" label="Optimal (x₁, x₂)" value={`(${fmt(solution.best?.x ?? 0, 1)}, ${fmt(solution.best?.y ?? 0, 1)})`} />
+            <StatusOk>Binding constraints: {solution.binding.join(", ") || "none"}. These lines meet at the best feasible corner.</StatusOk>
             <ChallengeBox {...page.challenge} />
           </aside>
         </>

@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import type { StudioMockupPage } from "../mockup/studioMockupCatalog";
 import { ChallengeBox, LiveRow, Panel, StatusOk, StepList } from "../mockup/studioLabKit";
 import { Phase1LabChrome } from "../phase1/Phase1LabChrome";
+import { dijkstraSteps, edgeId, kruskalSteps, raceEdges } from "./graphRace";
 
 export function DiscreteSetsLinkLab({ page }: { page: StudioMockupPage }) {
   return (
@@ -35,6 +37,10 @@ export function DiscreteSetsLinkLab({ page }: { page: StudioMockupPage }) {
 }
 
 export function DiscreteGraphsLinkLab({ page }: { page: StudioMockupPage }) {
+  const [step, setStep] = useState(0);
+  const shortest = dijkstraSteps();
+  const spanning = kruskalSteps();
+  const positions: Record<string, [number, number]> = { A: [55, 55], B: [150, 40], C: [105, 140], D: [250, 55], E: [290, 140] };
   const GRAPH_TABS = ["build", "representations", "algorithms", "properties", "learn"] as const;
   const tab = (mode: string) => {
     const preferred = mode === "Paths"
@@ -59,20 +65,21 @@ export function DiscreteGraphsLinkLab({ page }: { page: StudioMockupPage }) {
             <Link className="msk-cta" to={`/graph-theory?tab=${tab(mode)}`}>Open Graph Theory · {mode}</Link>
           </Panel>
           <section className="msk-panel msk-canvas" data-mode-canvas={mode}>
-            <svg className="msk-graph" viewBox="0 0 360 180" role="img" aria-label="Network preview">
+            <h2>Algorithm race: shortest paths and minimum spanning tree</h2>
+            <div className="msk-seg"><button type="button" disabled={step === 0} onClick={() => setStep((n) => n - 1)}>Previous step</button><button type="button" disabled={step >= Math.max(shortest.length, spanning.length) - 1} onClick={() => setStep((n) => n + 1)}>Next step</button><button type="button" onClick={() => setStep(0)}>Restart</button></div>
+            <p className="msk-note">Step {step} of {Math.max(shortest.length, spanning.length) - 1}. Blue = Dijkstra from A; purple = Kruskal spanning tree; dashed = candidate.</p>
+            {([shortest, spanning] as const).map((steps, race) => { const current = steps[Math.min(step, steps.length - 1)]; const color = race ? "#8b45f4" : "#147df2"; return <div key={race}>
+              <h3>{race ? "Kruskal · minimum spanning tree" : "Dijkstra · shortest paths from A"}</h3>
+              <svg className="msk-graph" viewBox="0 0 360 180" role="img" aria-label={race ? "Kruskal spanning tree step" : "Dijkstra shortest path step"}>
               <rect width="360" height="180" fill="#f8fbff" />
-              <line x1="70" y1="50" x2="210" y2="40" stroke="#147df2" />
-              <line x1="70" y1="50" x2="90" y2="150" stroke="#147df2" />
-              <line x1="210" y1="40" x2="310" y2="90" stroke="#8b45f4" />
-              <circle cx="70" cy="50" r="10" fill="#147df2" />
-              <circle cx="210" cy="40" r="10" fill="#8b45f4" />
-              <circle cx="310" cy="90" r="10" fill="#08b9dd" />
-              <circle cx="90" cy="150" r="10" fill="#f59e0b" />
-              <text x="24" y="22" fill="#334155" fontSize="12">Build your own graph in Graph Theory — this is a shortcut, not a second Dijkstra.</text>
-            </svg>
+              {raceEdges.map((edge) => { const [x1, y1] = positions[edge.a], [x2, y2] = positions[edge.b]; const id = edgeId(edge); return <g key={id}><line x1={x1} y1={y1} x2={x2} y2={y2} stroke={current.chosen.includes(id) ? color : "#94a3b8"} strokeWidth={current.chosen.includes(id) ? 4 : 2} strokeDasharray={current.candidates.includes(id) && !current.chosen.includes(id) ? "4 3" : undefined} /><text x={(x1 + x2) / 2} y={(y1 + y2) / 2 - 4} fill="#334155" fontSize="11">{edge.w}</text></g>; })}
+              {Object.entries(positions).map(([node, [x, y]]) => <g key={node}><circle cx={x} cy={y} r="13" fill={current.visited.includes(node) ? color : "#fff"} stroke={color} strokeWidth="2" /><text x={x} y={y + 4} textAnchor="middle" fontSize="12" fill={current.visited.includes(node) ? "#fff" : "#1e293b"}>{node}</text></g>)}
+              </svg><p className="msk-note">{current.reason} Cost: {current.cost}. Visited: {current.visited.join(", ") || "none"}. Candidate edges: {current.candidates.join(", ") || "none"}.</p>
+            </div>; })}
           </section>
           <aside className="msk-panel msk-live">
-            <LiveRow color="#147df2" label="Engine" value="Graph Theory Studio" />
+            <LiveRow color="#147df2" label="Dijkstra current distance" value={String(shortest[Math.min(step, shortest.length - 1)].cost)} />
+            <LiveRow color="#8b45f4" label="Kruskal tree cost" value={String(spanning[Math.min(step, spanning.length - 1)].cost)} />
             <StatusOk>A tree with n vertices has n−1 edges. Prove it on a graph you build.</StatusOk>
             <StepList items={["Open Graph Theory.", "Run Dijkstra on your graph.", "Return via Discrete World when hopping topics."]} />
           </aside>

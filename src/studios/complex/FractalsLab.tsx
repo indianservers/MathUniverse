@@ -100,7 +100,7 @@ function FractalView({
   const py = (im: number) => ((ymax - im) / (ymax - ymin)) * 100;
 
   return (
-    <div className={`cx-frac-view${onPick ? " is-interactive" : ""}`} onPointerDown={pick}>
+    <div className={`cx-frac-view${onPick ? " is-interactive" : ""}`} onPointerDown={(event) => { if (onPick) event.currentTarget.setPointerCapture(event.pointerId); pick(event); }} onPointerMove={(event) => { if (onPick && event.buttons === 1) pick(event); }}>
       <canvas ref={ref} width={260} height={220} aria-hidden="true" />
       <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-label={title}>
         <line x1="0" y1={py(0)} x2="100" y2={py(0)} stroke="rgba(226,232,240,.35)" strokeWidth="0.4" />
@@ -130,12 +130,14 @@ export default function FractalsLab({ page }: { page: StudioMockupPage }) {
   const [linkC, setLinkC] = useState(true);
   const [jx, setJx] = useState(-0.123);
   const [jy, setJy] = useState(0.745);
+  const [orbitStep, setOrbitStep] = useState(7);
   const pts = useMemo(() => orbit(0, 0, cx, cy, 18), [cx, cy]);
+  const visibleOrbit = pts.slice(0, orbitStep + 1);
   const inside = juliaConnected(cx, cy);
   const bulb = periodBulbLabel(cx, cy);
   const cardioid = inMainCardioid(cx, cy);
   const c = { re: cx, im: cy };
-  const last = pts[pts.length - 1] ?? { x: 0, y: 0 };
+  const last = visibleOrbit.at(-1) ?? { x: 0, y: 0 };
   const zn = { re: last.x, im: last.y };
   const escapedAt = pts.findIndex((p) => p.x * p.x + p.y * p.y > escapeR * escapeR);
 
@@ -176,6 +178,7 @@ export default function FractalsLab({ page }: { page: StudioMockupPage }) {
                 </label>
               </div>
               <p className="cx-meta">Drag on Mandelbrot to set c.</p>
+              <CxSlider label="Orbit step" value={orbitStep} min={0} max={Math.max(0, pts.length - 1)} step={1} display={`z${orbitStep}`} onChange={setOrbitStep} />
               <CxSlider label="Max iterations" value={iter} min={10} max={500} step={1} display={String(iter)} onChange={setIter} />
               <CxSlider label="Escape radius" value={escapeR} min={1} max={10} step={0.1} display={fmt(escapeR, 1)} onChange={setEscapeR} />
               <label className="cx-select">Palette
@@ -249,10 +252,10 @@ export default function FractalsLab({ page }: { page: StudioMockupPage }) {
                   <text x="292" y="74" fill="#94a3b8" fontSize="11">Re</text>
                   <text x="166" y="20" fill="#94a3b8" fontSize="11">Im</text>
                   {pts.length > 1 ? (
-                    <polyline fill="none" stroke="#38bdf8" strokeWidth="1.4" points={pts.map((p) => `${160 + p.x * 42},${80 - p.y * 42}`).join(" ")} />
+                    <polyline fill="none" stroke="#38bdf8" strokeWidth="1.4" points={visibleOrbit.map((p) => `${160 + p.x * 42},${80 - p.y * 42}`).join(" ")} />
                   ) : null}
-                  {pts.map((p, i) => (
-                    <circle key={i} cx={160 + p.x * 42} cy={80 - p.y * 42} r="4" fill={i === pts.length - 1 ? "#fbbf24" : "#38bdf8"} />
+                  {visibleOrbit.map((p, i) => (
+                    <circle key={i} cx={160 + p.x * 42} cy={80 - p.y * 42} r="4" fill={i === visibleOrbit.length - 1 ? "#fbbf24" : "#38bdf8"} />
                   ))}
                 </svg>
               </figure>
@@ -267,17 +270,17 @@ export default function FractalsLab({ page }: { page: StudioMockupPage }) {
                     strokeWidth="2"
                     points={pts.map((p, i) => `${28 + i * 16},${132 - Math.min(110, Math.hypot(p.x, p.y) * 40)}`).join(" ")}
                   />
-                  {escapedAt >= 0 ? <text x="40" y="24" fill="#fde68a" fontSize="11">Escapes at n = {escapedAt}</text> : <text x="40" y="24" fill="#86efac" fontSize="11">Orbit stays bounded</text>}
+                  {escapedAt >= 0 ? <text x="40" y="24" fill="#fde68a" fontSize="11">Escapes at n = {escapedAt}</text> : <text x="40" y="24" fill="#86efac" fontSize="11">No escape observed in {pts.length} steps</text>}
                   <text x="28" y="148" fill="#64748b" fontSize="10">Iteration n</text>
                 </svg>
               </figure>
               <div className="cx-frac-recurrence">
                 <h3>Live Recurrence</h3>
                 <p className="cx-eq">z<sub>n+1</sub> = z<sub>n</sub>² + c</p>
-                {pts.slice(0, 8).map((p, i) => (
+                {visibleOrbit.slice(0, 8).map((p, i) => (
                   <p key={i} className="cx-meta">z<sub>{i}</sub> = {fmt(p.x, 5)} + {fmt(p.y, 5)}i</p>
                 ))}
-                <p className="cx-eq is-ans">z<sub>{pts.length - 1}</sub> = {fmtC(zn, 4)}</p>
+                <p className="cx-eq is-ans">z<sub>{visibleOrbit.length - 1}</sub> = {fmtC(zn, 4)}</p>
               </div>
             </div>
           </section>

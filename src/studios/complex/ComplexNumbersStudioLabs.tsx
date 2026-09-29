@@ -564,7 +564,15 @@ function FractalsLab({ page }: { page: StudioMockupPage }) {
   const [cx, setCx] = useState(-0.123);
   const [cy, setCy] = useState(0.745);
   const [iter, setIter] = useState(40);
+  const [orbitStep, setOrbitStep] = useState(7);
   const pts = orbit(0, 0, cx, cy, 18);
+  const visibleOrbit = pts.slice(0, orbitStep + 1);
+  const escapedAt = pts.findIndex((point) => point.x * point.x + point.y * point.y > 4);
+  const pickC = (event: PointerEvent<HTMLDivElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    setCx(clamp(-2.2 + ((event.clientX - rect.left) / rect.width) * 3.2, -2, 1));
+    setCy(clamp(1.4 - ((event.clientY - rect.top) / rect.height) * 2.8, -1.2, 1.2));
+  };
   const inside = juliaConnected(cx, cy);
   const bulb = periodBulbLabel(cx, cy);
   return (
@@ -577,9 +585,10 @@ function FractalsLab({ page }: { page: StudioMockupPage }) {
           <Slider label="Re c" value={cx} min={-2} max={1} step={0.001} onChange={setCx} />
           <Slider label="Im c" value={cy} min={-1.2} max={1.2} step={0.001} onChange={setCy} />
           <Slider label="Max iterations" value={iter} min={12} max={80} step={1} onChange={setIter} />
+          <Slider label="Orbit step" value={orbitStep} min={0} max={Math.max(0, pts.length - 1)} step={1} onChange={setOrbitStep} />
           <button type="button" className="cxs-soft-button" onClick={() => { setCx(-0.123); setCy(0.745); }}>Douady rabbit</button>
           <button type="button" className="cxs-soft-button" onClick={() => { setCx(-0.75); setCy(0.11); }}>Dendrite</button>
-          <p className="cxs-note">Click the Mandelbrot plot to choose c. The Julia set and orbit update together.</p>
+          <p className="cxs-note">Drag on the Mandelbrot plot to choose c. The Julia set and orbit update together.</p>
         </>
       )}
       canvas={(mode) => (
@@ -587,20 +596,19 @@ function FractalsLab({ page }: { page: StudioMockupPage }) {
           <div className="cxs-dual">
             <div
               className="is-interactive"
-              onPointerDown={(event: PointerEvent<HTMLDivElement>) => {
-                const rect = event.currentTarget.getBoundingClientRect();
-                setCx(-2.2 + ((event.clientX - rect.left) / rect.width) * 3.2);
-                setCy(1.4 - ((event.clientY - rect.top) / rect.height) * 2.8);
-              }}
+              onPointerDown={(event: PointerEvent<HTMLDivElement>) => { event.currentTarget.setPointerCapture(event.pointerId); pickC(event); }}
+              onPointerMove={(event: PointerEvent<HTMLDivElement>) => { if (event.buttons === 1) pickC(event); }}
+              style={{ touchAction: "none" }}
             >
               <p className="cxs-note">Mandelbrot set · {bulb} · {mode}</p>
               <FractalGrid kind="mandel" cx={cx} cy={cy} iter={iter} />
             </div>
             <div>
               <p className="cxs-note">Julia set for c · {inside ? "connected" : "dust (challenge: is it connected?)"}</p>
-              <FractalGrid kind="julia" cx={cx} cy={cy} iter={iter} orbitPts={pts} />
+              <FractalGrid kind="julia" cx={cx} cy={cy} iter={iter} orbitPts={visibleOrbit} />
             </div>
           </div>
+          <p className="cxs-note">z₀ = 0; zₙ₊₁ = zₙ² + c. Selected z{visibleOrbit.length - 1} = {fmt(visibleOrbit.at(-1)?.x ?? 0, 3)} + {fmt(visibleOrbit.at(-1)?.y ?? 0, 3)}i. {escapedAt >= 0 ? `Escape observed at step ${escapedAt}.` : `No escape observed in ${pts.length} steps.`}</p>
         </>
       )}
       insight={() => (
@@ -628,6 +636,7 @@ function FractalGrid({ kind, cx, cy, iter, orbitPts }: { kind: "mandel" | "julia
         const row = ((1.4 - p.y) / 2.8) * (rows - 1);
         return <circle key={`orb-${i}`} cx={col} cy={row} r="0.7" fill={i === 0 ? "#fde68a" : "#fb7185"} />;
       })}
+      {kind === "mandel" && <><circle cx={((cx + 2.2) / 3.2) * (cols - 1)} cy={((1.4 - cy) / 2.8) * (rows - 1)} r="1.4" fill="#fbbf24" stroke="#fff" strokeWidth="0.5" /><text x={((cx + 2.2) / 3.2) * (cols - 1) + 2} y={((1.4 - cy) / 2.8) * (rows - 1) - 2} fontSize="3" fill="#fff">c</text></>}
     </svg>
   );
 }
