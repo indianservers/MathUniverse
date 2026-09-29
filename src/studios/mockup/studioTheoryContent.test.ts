@@ -5,9 +5,24 @@ import { trigonometryConcepts } from "../../data/trigonometryConcepts";
 import { studioMockups } from "./studioMockupCatalog";
 import { studioSimpleWords } from "./studioSimpleWords";
 import { studioTheoryContent } from "./studioTheoryContent";
+import { studioFormulaCards } from "./studioLearningTabs";
 import { standaloneStudioTheoryRoutes } from "./StandaloneStudioTheory";
 
 describe("studio theory coverage", () => {
+  it("provides three topic-specific formula relationships for every lab", () => {
+    for (const [studioId, pages] of Object.entries(studioTheoryContent)) {
+      for (const [pageId, theory] of Object.entries(pages)) {
+        const formulas = studioFormulaCards(studioId, pageId, theory);
+        expect(formulas, `${studioId}/${pageId}`).toHaveLength(3);
+        expect(formulas.every((card) => /[=≈≠∝≤≥<>→⇒+−×÷√∫∑^²³%°∈∪∥∧∨¬π]/.test(card.expression)), `${studioId}/${pageId} symbolic relationships`).toBe(true);
+        formulas.forEach((card, index) => {
+          expect(card.title, `${studioId}/${pageId} formula ${index + 1}`).toBe(theory.examples[index].title);
+          expect(card.context.trim().length).toBeGreaterThan(0);
+          expect(card.result.trim().length).toBeGreaterThan(0);
+        });
+      }
+    }
+  });
   it("provides a plain-language explanation of at most 150 words for every topic", () => {
     for (const [studioId, pages] of Object.entries(studioTheoryContent)) {
       for (const pageId of Object.keys(pages)) {
