@@ -138,6 +138,7 @@ type Props = {
   ) => void;
   onDuplicate: (id?: string) => void;
   onDelete: (id?: string) => void;
+  onClear: () => void;
   onRestore: (id?: string) => void;
   onPreset: (
     preset:
@@ -423,7 +424,7 @@ export default function ObjectStudioWorkspace(props: Props) {
         <PanelHeader
           title="Shape Library"
           side="left"
-          onCollapse={() => setLeftOpen(false)}
+          onCollapse={() => { setLeftOpen(false); overlay.close(); }}
         />
         <div className="gs3d-panel-scroll">
           <label className="os-search">
@@ -801,7 +802,7 @@ export default function ObjectStudioWorkspace(props: Props) {
               type="button"
               title="Close panel"
               aria-label="Close inspector"
-              onClick={() => setRightOpen(false)}
+              onClick={() => { setRightOpen(false); overlay.close(); }}
             >
               <ChevronRight />
             </button>
@@ -867,7 +868,7 @@ export default function ObjectStudioWorkspace(props: Props) {
         <section className="os-inspector">
           <div className="os-right-heading">
             <h2>Object Inspector</h2>
-            {inspectorTab === "vectors" && <button type="button" aria-label="Close Vector Lab" title="Close Vector Lab" onClick={() => { setRightOpen(false); props.onVectorFocus?.(false); }}><ChevronRight /></button>}
+            {inspectorTab === "vectors" && <button type="button" aria-label="Close Vector Lab" title="Close Vector Lab" onClick={() => { setRightOpen(false); overlay.close(); props.onVectorFocus?.(false); }}><ChevronRight /></button>}
           </div>
           <div className="gs3d-inspector-tabs">
             {(
@@ -1094,6 +1095,9 @@ export default function ObjectStudioWorkspace(props: Props) {
         title="Object tools"
         onClose={overlay.close}
       >
+        <button type="button" disabled={!props.canUndo} onClick={() => { props.onUndo(); overlay.close(); }}>Undo</button>
+        <button type="button" disabled={!props.canRedo} onClick={() => { props.onRedo(); overlay.close(); }}>Redo</button>
+        <button type="button" onClick={() => { props.onClear(); overlay.close(); }}>Clear all objects</button>
         <button type="button" onClick={() => overlay.open("inspector")}>
           Inspector
         </button>

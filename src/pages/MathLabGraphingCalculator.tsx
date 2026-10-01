@@ -17,6 +17,7 @@ import { buildTransformationExpression, detectGraphAsymptotes, precisionSnapX, s
 import { buildExactGraphAnalysis, buildExactIntersections } from "../graph-studio/exactGraphAnalysis";
 import { reconcileGraphVariables, substituteGraphVariables, advanceGraphVariable } from "../graph-studio/expressionEngine";
 import { fitGraphView } from "../graph-studio/graphViewUtils";
+import { sampledGraphIntersections } from "../graph-studio/sampleIntersections";
 import { downloadGraphStudioFile, exportGraphStudioProject } from "../graph-studio/projectStorage";
 import { useGraphStudioProject } from "../graph-studio/useGraphStudioProject";
 import type { GraphStudioVariable } from "../graph-studio/types";
@@ -129,8 +130,8 @@ export default function MathLabGraphingCalculator() {
     initialName: "My Function Study",
     state: graphStudioState,
     applyState: (state, variables) => {
-      setFunctions(state.functions.length ? state.functions : [{ id: "f1", input: "x^2", color: COLORS[0], visible: true }]);
-      setSelectedId(state.functions[0]?.id ?? "f1");
+      setFunctions(state.functions);
+      setSelectedId(state.functions[0]?.id ?? "");
       setView(state.view);
       setShowGrid(state.showGrid);
       setShowAxes(state.showAxes);
@@ -192,7 +193,7 @@ export default function MathLabGraphingCalculator() {
   const derivativePoints = useMemo(() => selected ? approximateDerivativePoints(selected.points) : [], [selected]);
   const taylor = useMemo(() => selectedFunction ? sampleTaylorPolynomial(selectedResolvedInput, taylorCenter, taylorDegree, view.xMin, view.xMax) : { points: [], coefficients: [] }, [selectedFunction, selectedResolvedInput, taylorCenter, taylorDegree, view.xMax, view.xMin]);
   const extrema = useMemo(() => selected ? approximateExtrema(selected.points) : { minima: [], maxima: [] }, [selected]);
-  const intersections = useMemo(() => approximateIntersections(plotted.filter((item) => item.visible && !item.error)), [plotted]);
+  const intersections = useMemo(() => sampledGraphIntersections(plotted.filter((item) => item.visible && !item.error)), [plotted]);
   const snapCandidates = useMemo(() => [...roots.roots.map((x) => ({ x, y: 0 })), ...intersections, ...extrema.minima, ...extrema.maxima], [extrema.maxima, extrema.minima, intersections, roots.roots]);
   const integralValue = useMemo(() => selected ? approximateIntegral(selected.points, Math.min(integralStart, integralEnd), Math.max(integralStart, integralEnd)) : null, [integralEnd, integralStart, selected]);
   const exactAnalysis = useMemo(() => buildExactGraphAnalysis(selectedResolvedInput, Math.min(integralStart, integralEnd), Math.max(integralStart, integralEnd)), [integralEnd, integralStart, selectedResolvedInput]);
@@ -265,6 +266,7 @@ export default function MathLabGraphingCalculator() {
       onAdd={addFunction}
       onDuplicate={duplicateFunction}
       onRemove={removeFunction}
+      onClear={() => { setFunctions([]); setSelectedId(""); }}
       onMove={moveFunction}
       onRandom={tryRandom}
       onReset={resetExample}
@@ -300,7 +302,7 @@ export default function MathLabGraphingCalculator() {
       onLogYChange={(value) => { setLogY(value); if (value) setView((current) => ({ ...current, yMin: Math.max(0.01, current.yMin), yMax: Math.max(10, current.yMax) })); }}
       onAddConstruction={addConstruction}
       linkedPoint={interactivePoint ? { x: interactivePoint.x, y: interactivePoint.y } : parameterPoint ? { x: parameterPoint.x, y: parameterPoint.y } : null}
-      canvas={graphSeries.some((item) => item.visible && item.points.length) ? <FunctionGraphCanvas series={graphSeries} view={view} onViewChange={setView} onResetView={() => setView(DEFAULT_GRAPH_VIEW)} showGrid={showGrid} showAxes={showAxes} logX={logX} logY={logY} selectedSeriesId={selectedId} traceX={traceMode ? traceX : undefined} onTraceChange={traceMode ? setPrecisionTraceX : undefined} interactivePoints={[...(interactivePoint ? [interactivePoint] : []), ...(parameterPoint ? [parameterPoint] : [])]} onInteractivePointChange={moveInteractivePoint} precisionCrosshair imageLayers={functions.filter((item) => item.visible && isSafeImageUrl(item.imageUrl)).map((item) => ({ id: item.id, href: item.imageUrl!, x: item.imageX ?? -2, y: item.imageY ?? 2, width: item.imageWidth ?? 4, height: item.imageHeight ?? 4, opacity: item.opacity ?? 0.7, label: item.label || item.name || "Graph image" }))} residualSegments={showResiduals && regression ? regression.residuals : []} integralArea={showIntegral && selected ? { points: selected.points, color: selected.color, start: Math.min(integralStart, integralEnd), end: Math.max(integralStart, integralEnd) } : undefined} featurePoints={[...roots.roots.map((x) => ({ x, y: 0, type: "root" as const })), ...(typeof yIntercept.y === "number" ? [{ x: 0, y: yIntercept.y, type: "intercept" as const }] : []), ...extrema.minima.map((point) => ({ ...point, type: "minimum" as const })), ...extrema.maxima.map((point) => ({ ...point, type: "maximum" as const })), ...intersections.map((point) => ({ ...point, type: "intersection" as const }))]} /> : <div className="gs2d-canvas-empty">Enter a valid expression or data points to plot.</div>}
+      canvas={<FunctionGraphCanvas series={graphSeries} view={view} onViewChange={setView} onResetView={() => setView(DEFAULT_GRAPH_VIEW)} showGrid={showGrid} showAxes={showAxes} logX={logX} logY={logY} selectedSeriesId={selectedId} traceX={traceMode ? traceX : undefined} onTraceChange={traceMode ? setPrecisionTraceX : undefined} interactivePoints={[...(interactivePoint ? [interactivePoint] : []), ...(parameterPoint ? [parameterPoint] : [])]} onInteractivePointChange={moveInteractivePoint} precisionCrosshair imageLayers={functions.filter((item) => item.visible && isSafeImageUrl(item.imageUrl)).map((item) => ({ id: item.id, href: item.imageUrl!, x: item.imageX ?? -2, y: item.imageY ?? 2, width: item.imageWidth ?? 4, height: item.imageHeight ?? 4, opacity: item.opacity ?? 0.7, label: item.label || item.name || "Graph image" }))} residualSegments={showResiduals && regression ? regression.residuals : []} integralArea={showIntegral && selected ? { points: selected.points, color: selected.color, start: Math.min(integralStart, integralEnd), end: Math.max(integralStart, integralEnd) } : undefined} featurePoints={[...roots.roots.map((x) => ({ x, y: 0, type: "root" as const })), ...(typeof yIntercept.y === "number" ? [{ x: 0, y: yIntercept.y, type: "intercept" as const }] : []), ...extrema.minima.map((point) => ({ ...point, type: "minimum" as const })), ...extrema.maxima.map((point) => ({ ...point, type: "maximum" as const })), ...intersections.map((point) => ({ ...point, type: "intersection" as const }))]} />}
       roots={roots.roots}
       yIntercept={yIntercept.y}
       visibleRange={visibleRange}
@@ -412,7 +414,7 @@ export default function MathLabGraphingCalculator() {
       : kind === "normal" ? `y=${formatGraphNumber(-1 / (Math.abs(slope) < 1e-9 ? 1e-9 : slope))}*(x-(${formatGraphNumber(x)}))+(${formatGraphNumber(y)})`
       : kind === "line" ? `y=x-(${formatGraphNumber(x)})+(${formatGraphNumber(y)})`
       : `y=${formatGraphNumber(slope)}*(x-(${formatGraphNumber(x)}))+(${formatGraphNumber(y)})`;
-    const id = `f${Date.now()}`;
+    const id = `f${crypto.randomUUID()}`;
     setFunctions((items) => [...items, { id, input: expression, color: COLORS[items.length % COLORS.length], visible: true, name: `${kind[0].toUpperCase()}${kind.slice(1)} construction`, group: "Constructions", label: kind }]);
     setSelectedId(id);
   }
@@ -453,14 +455,14 @@ export default function MathLabGraphingCalculator() {
   }
 
   function addFunction() {
-    const id = `f${Date.now()}`;
+    const id = `f${crypto.randomUUID()}`;
     setFunctions((items) => [...items, { id, input: "cos(x)", color: COLORS[items.length % COLORS.length], visible: true }]);
     setSelectedId(id);
   }
 
   function tryRandom() {
     const example = EXAMPLES[Math.floor(Math.random() * EXAMPLES.length)];
-    const id = `f${Date.now()}`;
+    const id = `f${crypto.randomUUID()}`;
     setFunctions((items) => [...items, { id, input: example, color: COLORS[items.length % COLORS.length], visible: true }]);
     setSelectedId(id);
   }
@@ -469,7 +471,8 @@ export default function MathLabGraphingCalculator() {
     setFunctions((items) => {
       const next = items.filter((item) => item.id !== id);
       if (selectedId === id && next[0]) setSelectedId(next[0].id);
-      return next.length ? next : items;
+      if (!next.length) setSelectedId("");
+      return next;
     });
   }
 
@@ -491,7 +494,7 @@ export default function MathLabGraphingCalculator() {
   function duplicateFunction(id: string) {
     const source = functions.find((item) => item.id === id);
     if (!source) return;
-    const nextId = `f${Date.now()}`;
+    const nextId = `f${crypto.randomUUID()}`;
     setFunctions((items) => [...items, { ...source, id: nextId, color: COLORS[items.length % COLORS.length] }]);
     setSelectedId(nextId);
   }
@@ -508,8 +511,8 @@ export default function MathLabGraphingCalculator() {
   }
 
   function loadSavedGraph(workspace: SavedGraphWorkspace<Graph2DWorkspaceState>) {
-    setFunctions(workspace.state.functions.length ? workspace.state.functions : [{ id: "f1", input: "x^2", color: COLORS[0], visible: true }]);
-    setSelectedId(workspace.state.functions[0]?.id ?? "f1");
+    setFunctions(workspace.state.functions);
+    setSelectedId(workspace.state.functions[0]?.id ?? "");
     setView(workspace.state.view);
     setShowGrid(workspace.state.showGrid);
     setShowAxes(workspace.state.showAxes);
@@ -717,27 +720,6 @@ function approximateExtrema(points: GraphSample[]) {
   return { minima: minima.slice(0, 6), maxima: maxima.slice(0, 6) };
 }
 
-function approximateIntersections(series: Array<{ id: string; points: GraphSample[] }>) {
-  const intersections: Array<{ x: number; y: number }> = [];
-  for (let left = 0; left < series.length; left += 1) {
-    for (let right = left + 1; right < series.length; right += 1) {
-      const rightBuckets = new Map<string, GraphSample[]>();
-      series[right].points.forEach((point) => {
-        if (!point.valid || point.y === null) return;
-        const key = point.x.toFixed(2);
-        rightBuckets.set(key, [...(rightBuckets.get(key) ?? []), point]);
-      });
-      series[left].points.forEach((point) => {
-        if (!point.valid || point.y === null) return;
-        const candidates = rightBuckets.get(point.x.toFixed(2)) ?? [];
-        const match = candidates.find((candidate) => candidate.y !== null && Math.abs(candidate.y - point.y!) < 0.06);
-        if (match?.y !== null && match?.y !== undefined) intersections.push({ x: (point.x + match.x) / 2, y: (point.y + match.y) / 2 });
-      });
-    }
-  }
-  return intersections.filter((point, index, items) => items.findIndex((candidate) => Math.abs(candidate.x - point.x) < 0.08 && Math.abs(candidate.y - point.y) < 0.08) === index).slice(0, 12);
-}
-
 function approximateIntegral(points: GraphSample[], start: number, end: number) {
   const valid = points.filter((point): point is GraphSample & { y: number } => point.valid && point.y !== null && point.x >= start && point.x <= end);
   if (valid.length < 2) return null;
@@ -822,8 +804,6 @@ function formatGraphNumber(value: number) {
 function isSafeImageUrl(value?: string) {
   return Boolean(value && (/^https:\/\//i.test(value) || /^data:image\/(?:png|jpeg|gif|webp|svg\+xml)(?:;[^,]*)?,/i.test(value)));
 }
-
-function escapeHtmlAttribute(value: string) { return value.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;"); }
 
 function sameVariables(current: GraphStudioVariable[], next: GraphStudioVariable[]) {
   return current.length === next.length && current.every((variable, index) => variable.id === next[index]?.id);

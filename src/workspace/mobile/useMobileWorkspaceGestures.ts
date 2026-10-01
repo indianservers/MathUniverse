@@ -48,6 +48,7 @@ export function useMobileWorkspaceGestures(
         "[data-mws-handle], .geometry-drawer-handle, .mws-sheet-handle",
       );
       const fromHandle = Boolean(handle);
+      const interactive = Boolean((event.target as HTMLElement | null)?.closest("button, input, select, textarea, a, [role='button']"));
       const swipeEdge = resolvedEdge();
       const fromEdge =
         swipeEdge === "bottom"
@@ -55,7 +56,7 @@ export function useMobileWorkspaceGestures(
           : swipeEdge === "left"
             ? event.clientX - node.getBoundingClientRect().left < 28
             : node.getBoundingClientRect().right - event.clientX < 28;
-      if (!fromHandle && !fromEdge) return;
+      if (!fromHandle && (!fromEdge || interactive)) return;
       pointerId = event.pointerId;
       startX = lastX = event.clientX;
       startY = lastY = event.clientY;

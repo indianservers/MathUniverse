@@ -1691,6 +1691,16 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
     setContextMenu(null);
   };
 
+  const clear3dObjects = () => {
+    if (deletedBase3dIds.length === threeBaseIds.length && added3dObjects.length === 0) return;
+    recordWorkspaceStep("Clear 3D scene", "Removed all objects from the 3D scene.");
+    setDeletedBase3dIds([...threeBaseIds]);
+    setAdded3dObjects([]);
+    setSelected3d("");
+    setDrag3d(null);
+    setProjectStatus("3D scene cleared. Add a shape to begin again.");
+  };
+
   const duplicate3dObject = (id = selected3d) => {
     const existing = isBase3dId(id) ? { baseId: id, render: addedRenderKindForBase(id), solid: threeObjectSolidMap[id], surface: id === "surface" ? surface : undefined, label: transforms3d[id].name ?? threeObjectLabels[id], transform: transforms3d[id] } : added3dObjects.find((object) => object.id === id);
     if (!existing) return;
@@ -2896,6 +2906,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
           onVector={update3dVector}
           onDuplicate={duplicate3dObject}
           onDelete={delete3dObject}
+          onClear={clear3dObjects}
           onRestore={restore3dObject}
           onPreset={apply3dTransformPreset}
           onCamera={setCameraPreset3d}
@@ -2930,7 +2941,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
           onRotateSelected={() => transformSelectedGeometryPoints("rotate")}
           onDilateSelected={() => transformSelectedGeometryPoints("dilate")}
           onResizeSelected={resizeSelectedGeometry}
-          onUndo={undoConstruction}
+          onUndo={undoWorkspace}
           onRedo={redoWorkspace}
           onDeleteSelected={() => deleteGeometryObject()}
           onShowHide={toggleSelectedGeometryVisibility}
@@ -2938,7 +2949,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
           onTraceSelected={() => setSelectedGeometryTrace(true)}
           onStopTrace={() => setSelectedGeometryTrace(false)}
           onClearTrace={clearGeometryTrace}
-          onReset={() => { setConstruction(initialConstruction); setSelectedPointIds([]); setPolygonDraft([]); setGeometryObjectPicks([]); }}
+          onReset={() => { recordWorkspaceStep("Clear geometry", "Removed all 2D geometry objects."); setConstruction(initialConstruction); setSelectedGeometry(null); setSelectedPointIds([]); setPolygonDraft([]); setGeometryObjectPicks([]); }}
           onSave={saveConstruction}
           onLoad={openPortableWorkspaceImport}
           onExport={exportGeometryPng}
@@ -3018,7 +3029,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
             onRotateSelected={() => transformSelectedGeometryPoints("rotate")}
             onDilateSelected={() => transformSelectedGeometryPoints("dilate")}
             onResizeSelected={resizeSelectedGeometry}
-            onUndo={undoConstruction}
+            onUndo={undoWorkspace}
             onRedo={redoWorkspace}
             onDeleteSelected={() => deleteGeometryObject()}
             onShowHide={toggleSelectedGeometryVisibility}
@@ -3026,7 +3037,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
             onTraceSelected={() => setSelectedGeometryTrace(true)}
             onStopTrace={() => setSelectedGeometryTrace(false)}
             onClearTrace={clearGeometryTrace}
-            onReset={() => { setConstruction(initialConstruction); setSelectedPointIds([]); setPolygonDraft([]); setGeometryObjectPicks([]); }}
+            onReset={() => { recordWorkspaceStep("Clear geometry", "Removed all 2D geometry objects."); setConstruction(initialConstruction); setSelectedGeometry(null); setSelectedPointIds([]); setPolygonDraft([]); setGeometryObjectPicks([]); }}
             onSave={saveConstruction}
             onLoad={openPortableWorkspaceImport}
             onExport={exportGeometryPng}

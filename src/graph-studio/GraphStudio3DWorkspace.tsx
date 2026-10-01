@@ -73,6 +73,7 @@ import type {
   Graph3DLayerKind,
   Graph3DSurface,
 } from "./graph3dSurfaceModel";
+import { createGraph3DSurface } from "./graph3dSurfaceModel";
 import {
   GRAPH_3D_THEMES,
   graph3DThemeGradient,
@@ -82,6 +83,7 @@ import {
 
 export type Studio3DInspectorTab = "properties" | "analysis" | "style";
 export type Studio3DTool = "select" | "point" | "slice" | "annotate";
+const EMPTY_SURFACE = createGraph3DSurface("0");
 
 type Position = { x: number; y: number; z: number };
 
@@ -115,6 +117,7 @@ export type GraphStudio3DWorkspaceProps = {
   onAddLayer: (kind: Graph3DLayerKind) => void;
   onDuplicateExpression: (surfaceId: string) => void;
   onDeleteExpression: (surfaceId: string) => void;
+  onClearExpressions: () => void;
   onSetAllVisibility: (visible: boolean) => void;
   surfaceErrors: Record<string, string | undefined>;
   examples: string[];
@@ -273,7 +276,7 @@ export default function GraphStudio3DWorkspace(
   const tool = props.tool;
   const selectedSurface =
     props.surfaces.find((surface) => surface.id === props.selectedSurfaceId) ??
-    props.surfaces[0];
+    props.surfaces[0] ?? EMPTY_SURFACE;
   const visibleSurfaceCount = props.surfaces.filter(
     (surface) => surface.visible,
   ).length;
@@ -513,7 +516,7 @@ export default function GraphStudio3DWorkspace(
       >
         <PanelHeader
           title={`Expressions & Layers (${props.surfaces.length})`}
-          onCollapse={() => setLeftOpen(false)}
+          onCollapse={() => { setLeftOpen(false); overlay.close(); }}
           side="left"
         />
         <div className="gs3d-panel-scroll">
@@ -541,7 +544,7 @@ export default function GraphStudio3DWorkspace(
                 surface={surface}
                 active={surface.id === props.selectedSurfaceId}
                 error={props.surfaceErrors[surface.id]}
-                canDelete={props.surfaces.length > 1}
+                canDelete={overlay.isMobile || props.surfaces.length > 1}
                 onSelect={() => props.onSelectedSurfaceChange(surface.id)}
                 onChange={(patch) => props.onSurfaceChange(surface.id, patch)}
                 onDuplicate={() => props.onDuplicateExpression(surface.id)}
@@ -557,6 +560,12 @@ export default function GraphStudio3DWorkspace(
             <Plus />
             Add explicit surface
           </button>
+          {overlay.isMobile && (
+            <button type="button" className="gs3d-add-expression" disabled={!props.surfaces.length} onClick={props.onClearExpressions}>
+              <Trash2 />
+              Clear all surfaces
+            </button>
+          )}
           <div className="gs3d-presets" aria-label="Advanced 3D layer types">
             <button type="button" onClick={() => props.onAddLayer("implicit")}>
               Implicit F=0
@@ -853,7 +862,7 @@ export default function GraphStudio3DWorkspace(
                 ? "Point Inspector"
                 : "Surface Inspector"
           }
-          onCollapse={() => setRightOpen(false)}
+          onCollapse={() => { setRightOpen(false); overlay.close(); }}
           side="right"
         />
         <div className="gs3d-inspector-tabs">
@@ -871,7 +880,9 @@ export default function GraphStudio3DWorkspace(
           )}
         </div>
         <div className="gs3d-panel-scroll" aria-live="polite">
-          {inspectorTab === "properties" ? (
+          {!props.surfaces.length ? (
+            <p className="p-4 text-sm text-slate-500">No surface selected. Add a surface to inspect it.</p>
+          ) : inspectorTab === "properties" ? (
             <PropertiesPanel props={props} />
           ) : inspectorTab === "style" ? (
             <StylePanel
@@ -919,7 +930,7 @@ export default function GraphStudio3DWorkspace(
         </button>
         {props.shareControl}
       </nav>
-      {overlay.isMobile && selectedSurface && !overlay.active ? (
+      {overlay.isMobile && props.surfaces.length > 0 && !overlay.active ? (
         <ContextInspector
           title={`${selectedSurface.name ?? "Surface"} • 3D`}
           subtitle={selectedSurface.expression}
@@ -986,6 +997,9 @@ export default function GraphStudio3DWorkspace(
         title="3D graph tools"
         onClose={overlay.close}
       >
+        <button type="button" disabled={!props.canUndo} onClick={() => { props.onUndo(); overlay.close(); }}>Undo</button>
+        <button type="button" disabled={!props.canRedo} onClick={() => { props.onRedo(); overlay.close(); }}>Redo</button>
+        <button type="button" disabled={!props.surfaces.length} onClick={() => { props.onClearExpressions(); overlay.close(); }}>Clear all surfaces</button>
         <button type="button" onClick={() => overlay.open("inspector")}>
           Inspector
         </button>

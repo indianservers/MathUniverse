@@ -36,4 +36,8 @@ describe("3D graph surface model", () => {
     );
     expect(migrateGraph3DSurfaces({ surfaces: source })).toHaveLength(12);
   });
+
+  it("keeps an intentionally cleared scene empty", () => {
+    expect(migrateGraph3DSurfaces({ surfaces: [] })).toEqual([]);
+  });
 });

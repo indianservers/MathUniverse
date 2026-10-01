@@ -141,6 +141,7 @@ export type GraphStudio2DWorkspaceProps = {
   onAdd: () => void;
   onDuplicate: (id: string) => void;
   onRemove: (id: string) => void;
+  onClear: () => void;
   onMove: (id: string, direction: -1 | 1) => void;
   onRandom: () => void;
   onReset: () => void;
@@ -489,7 +490,7 @@ export default function GraphStudio2DWorkspace(
         <div className="mws-sheet-handle" data-mws-handle="true" />
         <PanelHeader
           title="Expressions & Layers"
-          onCollapse={() => setLeftOpen(false)}
+          onCollapse={() => { setLeftOpen(false); overlay.close(); }}
           side="left"
         />
         <div className="gs3d-panel-scroll">
@@ -502,7 +503,7 @@ export default function GraphStudio2DWorkspace(
                 props.plotted.find((plotted) => plotted.id === item.id)?.error
               }
               active={item.id === props.selectedId}
-              canDelete={props.functions.length > 1}
+              canDelete
               onSelect={() => props.onSelect(item.id)}
               onUpdate={(patch) => props.onUpdate(item.id, patch)}
               onDuplicate={() => props.onDuplicate(item.id)}
@@ -518,6 +519,12 @@ export default function GraphStudio2DWorkspace(
             <Plus />
             Add expression
           </button>
+          {props.functions.length > 0 && (
+            <button type="button" className="gs2d-wide-action" onClick={props.onClear}>
+              <Trash2 />
+              Clear all graphs
+            </button>
+          )}
           <div className="gs3d-presets">
             <button type="button" onClick={props.onReset}>
               Reset example
@@ -691,7 +698,7 @@ export default function GraphStudio2DWorkspace(
         <div className="mws-sheet-handle" data-mws-handle="true" />
         <PanelHeader
           title="Function Inspector"
-          onCollapse={() => setRightOpen(false)}
+          onCollapse={() => { setRightOpen(false); overlay.close(); }}
           side="right"
         />
         <div className="gs3d-inspector-tabs">
@@ -815,6 +822,8 @@ export default function GraphStudio2DWorkspace(
         title="Graph tools"
         onClose={overlay.close}
       >
+        <button type="button" disabled={!props.canUndo} onClick={() => { props.onUndo(); overlay.close(); }}>Undo</button>
+        <button type="button" disabled={!props.canRedo} onClick={() => { props.onRedo(); overlay.close(); }}>Redo</button>
         <button type="button" onClick={() => overlay.open("inspector")}>
           Inspector
         </button>
@@ -836,6 +845,11 @@ export default function GraphStudio2DWorkspace(
         >
           Add expression
         </button>
+        {props.functions.length > 0 && (
+          <button type="button" onClick={() => { props.onClear(); overlay.close(); }}>
+            Clear all graphs
+          </button>
+        )}
       </WorkspaceBottomSheet>
       <WorkspaceBottomSheet
         open={overlay.isOpen("zoom")}

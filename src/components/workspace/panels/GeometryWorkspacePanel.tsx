@@ -51,6 +51,7 @@ import {
   type RefObject,
   type CSSProperties,
   useEffect,
+  useLayoutEffect,
   useRef,
   useState,
 } from "react";
@@ -487,10 +488,8 @@ export default function GeometryWorkspacePanel({
   boardRef,
   imageInputRef,
   sidebar,
-  constructionHelp,
   objectInspector,
   imageInspector,
-  constructionProtocol,
   unifiedObjectsPanel: _unifiedObjectsPanel,
   measurementsPanel,
   constraintsPanel,
@@ -1082,6 +1081,14 @@ export default function GeometryWorkspacePanel({
             <span>{label}</span>
           </button>
         ))}
+        <button type="button" onClick={onUndo} aria-label="Undo geometry change">
+          <RotateCcw />
+          <span>Undo</span>
+        </button>
+        <button type="button" onClick={onRedo} aria-label="Redo geometry change">
+          <RotateCcw className="-scale-x-100" />
+          <span>Redo</span>
+        </button>
         <button
           type="button"
           className={overlay.isOpen("tools") ? "active" : ""}
@@ -2678,6 +2685,22 @@ function GeometryBoard({
   onPointerLeave: () => void;
   onContextMenu: (event: PointerEvent<SVGSVGElement>) => void;
 }) {
+  const [boardSize, setBoardSize] = useState({ width: 0, height: 0 });
+  useLayoutEffect(() => {
+    const board = boardRef.current;
+    if (!board) return;
+    const updateSize = () => {
+      const rect = board.getBoundingClientRect();
+      setBoardSize({ width: rect.width, height: rect.height });
+    };
+    updateSize();
+    const observer = new ResizeObserver(updateSize);
+    observer.observe(board);
+    return () => observer.disconnect();
+  }, [boardRef]);
+  const pointHitRadius = boardSize.width && boardSize.height
+    ? 22 * Math.max(camera.width / boardSize.width, camera.height / boardSize.height)
+    : 22;
   useCanvasZoomLock(boardRef, (event) => {
     onWheel(event as unknown as WheelEvent<SVGSVGElement>);
   });
@@ -2783,6 +2806,7 @@ function GeometryBoard({
           line={line}
           points={construction.points}
           selected={isSelectedGeometry(selectedGeometry, "line", line.id)}
+          hitWidth={pointHitRadius * 2}
         />
       ))}
       {construction.circles.map((circle) => (
@@ -2842,6 +2866,14 @@ function GeometryBoard({
               data-point-id={point.id}
               cx={point.x}
               cy={point.y}
+              r={Math.max(point.style?.size ?? 9, pointHitRadius)}
+              fill="transparent"
+              pointerEvents="all"
+              className="cursor-pointer"
+            />
+            <circle
+              cx={point.x}
+              cy={point.y}
               r={point.style?.size ?? 9}
               fill={
                 selectedPointIds.includes(point.id) ||
@@ -2859,6 +2891,7 @@ function GeometryBoard({
               }
               opacity={point.style?.opacity ?? 1}
               className="cursor-pointer"
+              pointerEvents="none"
             />
             {graphSettings.showPointLabels &&
               point.style?.labelMode !== "hidden" && (
@@ -2867,6 +2900,7 @@ function GeometryBoard({
                   y={point.y - 10}
                   fill="#0f172a"
                   className="select-none text-xs font-bold dark:fill-slate-100"
+                  pointerEvents="none"
                 >
                   {pointLabelText(point)}
                 </text>
@@ -3059,10 +3093,12 @@ function GeometryLine({
   line,
   points,
   selected = false,
+  hitWidth,
 }: {
   line: GeoLine;
   points: GeoPoint[];
   selected?: boolean;
+  hitWidth?: number;
 }) {
   const a = pointById(points, line.a),
     b = pointById(points, line.b);
@@ -3082,6 +3118,20 @@ function GeometryLine({
       : null;
   return (
     <g>
+      {hitWidth && (
+        <line
+          data-object-type="line"
+          data-object-id={line.id}
+          x1={endpoints.x1}
+          y1={endpoints.y1}
+          x2={endpoints.x2}
+          y2={endpoints.y2}
+          stroke="transparent"
+          strokeWidth={hitWidth}
+          pointerEvents="stroke"
+          className="cursor-move"
+        />
+      )}
       {selected && (
         <line
           x1={endpoints.x1}
@@ -3113,6 +3163,7 @@ function GeometryLine({
         strokeDasharray={kind === "line" ? "10 8" : undefined}
         opacity={selected ? 0.95 : (line.style?.opacity ?? 1)}
         className="cursor-move"
+        pointerEvents={hitWidth ? "none" : undefined}
       />
       {selected && arrow && (
         <polygon

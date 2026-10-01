@@ -113,7 +113,7 @@ type LegacySurfaceState = {
 export function migrateGraph3DSurfaces(
   state: LegacySurfaceState,
 ): Graph3DSurface[] {
-  if (Array.isArray(state.surfaces) && state.surfaces.length) {
+  if (Array.isArray(state.surfaces)) {
     return state.surfaces.map((surface, index) => ({
       ...createGraph3DSurface(surface.expression, index),
       ...surface,

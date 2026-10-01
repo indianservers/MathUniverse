@@ -102,6 +102,8 @@ type BeautifulSurfacePreset = {
 const initialObjectPosition: ObjectPosition = { x: 0, y: 0, z: 0 };
 const beautifulSurfacePresets = buildBeautifulSurfacePresets();
 const GRAPH_3D_STORAGE_KEY = "math-universe-saved-3d-graphs";
+const EMPTY_SURFACE = createGraph3DSurface("0");
+const EMPTY_SAMPLES: SurfaceSampleResult = { grid: [], minZ: null, maxZ: null };
 
 export default function MathLab3DGraphing() {
   const reducedMotion = useReducedMotion();
@@ -163,7 +165,7 @@ export default function MathLab3DGraphing() {
     applyState: (state, variables) => {
       const nextSurfaces = migrateGraph3DSurfaces(state);
       setSurfaces(nextSurfaces);
-      setSelectedSurfaceId(nextSurfaces.some((surface) => surface.id === state.selectedSurfaceId) ? state.selectedSurfaceId : nextSurfaces[0].id);
+      setSelectedSurfaceId(nextSurfaces.some((surface) => surface.id === state.selectedSurfaceId) ? state.selectedSurfaceId : nextSurfaces[0]?.id ?? "");
       setXRange(state.xRange);
       setYRange(state.yRange);
       setResolution(state.resolution);
@@ -180,7 +182,7 @@ export default function MathLab3DGraphing() {
     },
   });
 
-  const selectedSurface = surfaces.find((item) => item.id === selectedSurfaceId) ?? surfaces[0];
+  const selectedSurface = surfaces.find((item) => item.id === selectedSurfaceId) ?? surfaces[0] ?? EMPTY_SURFACE;
   const expression = selectedSurface.expression;
   const resolvedExpression = substituteGraphVariables(expression, graphVariables);
   const sampledSurfaces = useMemo(() => surfaces.map((item) => {
@@ -197,10 +199,10 @@ export default function MathLab3DGraphing() {
     };
   }), [graphVariables, morphResolution, resolution, surfaces, xRange, yRange]);
   const advancedLayers = useMemo(() => Object.fromEntries(surfaces.map((item) => [item.id, buildAdvancedLayer(item, graphVariables, xRange, yRange, resolution)])) as Record<string, AdvancedLayerResult>, [graphVariables, resolution, surfaces, xRange, yRange]);
-  const surface = sampledSurfaces.find(({ item }) => item.id === selectedSurface.id)?.samples ?? sampledSurfaces[0].samples;
+  const surface = sampledSurfaces.find(({ item }) => item.id === selectedSurface.id)?.samples ?? sampledSurfaces[0]?.samples ?? EMPTY_SAMPLES;
   const layerErrors = useMemo(() => Object.fromEntries(surfaces.map((item) => [item.id, advancedLayers[item.id]?.error ?? sampledSurfaces.find((sampled) => sampled.item.id === item.id)?.samples.error])), [advancedLayers, sampledSurfaces, surfaces]);
   const visibleValidSurfaces = surfaces.filter((item) => item.visible && !layerErrors[item.id]);
-  const supportsDifferential = selectedSurface.kind === "explicit" && selectedSurface.coordinateMode === "cartesian";
+  const supportsDifferential = surfaces.length > 0 && selectedSurface.kind === "explicit" && selectedSurface.coordinateMode === "cartesian";
   const surfaceDifferential = useMemo(() => supportsDifferential ? analyzeSurfaceDifferential(resolvedExpression, analysisPoint.x, analysisPoint.y) : null, [analysisPoint, resolvedExpression, supportsDifferential]);
   const criticalPoints = useMemo(() => supportsDifferential ? findCriticalPoints(resolvedExpression, xRange, yRange) : [], [resolvedExpression, supportsDifferential, xRange, yRange]);
   const volumePartner = useMemo(() => surfaces.find((item) => item.id !== selectedSurface.id && item.visible && item.kind === "explicit" && item.coordinateMode === "cartesian"), [selectedSurface.id, surfaces]);
@@ -302,9 +304,8 @@ export default function MathLab3DGraphing() {
         stylePreset?: typeof graphStudio.project.stylePreset;
       };
       const nextSurfaces = migrateGraph3DSurfaces(state);
-      if (!nextSurfaces.length) throw new Error("The imported file contains no supported 3D surfaces.");
       setSurfaces(nextSurfaces);
-      setSelectedSurfaceId(nextSurfaces.some(surface => surface.id === state.selectedSurfaceId) ? state.selectedSurfaceId! : nextSurfaces[0].id);
+      setSelectedSurfaceId(nextSurfaces.some(surface => surface.id === state.selectedSurfaceId) ? state.selectedSurfaceId! : nextSurfaces[0]?.id ?? "");
       setXRange(clamp(Number(state.xRange ?? 3), 1, 8)); setYRange(clamp(Number(state.yRange ?? 3), 1, 8)); setResolution(clamp(Math.round(Number(state.resolution ?? 44)), 12, 80));
       setShowGrid(state.showGrid !== false); setShowAxes(state.showAxes !== false); setShowInfiniteAxes(Boolean(state.showInfiniteAxes)); setShowBase(state.showBase !== false); setShowLabels(state.showLabels !== false);
       setSliceEnabled(Boolean(state.sliceEnabled)); setSliceX(Number(state.sliceX ?? 0)); setSliceAxis(["x", "y", "z"].includes(state.sliceAxis ?? "") ? state.sliceAxis! : "x");
@@ -371,10 +372,11 @@ export default function MathLab3DGraphing() {
       onAddLayer={addAdvancedLayer}
       onDuplicateExpression={duplicateSurface}
       onDeleteExpression={deleteSurface}
+      onClearExpressions={() => { setSurfaces([]); setSelectedSurfaceId(""); }}
       onSetAllVisibility={(visible) => setSurfaces((current) => current.map((item) => ({ ...item, visible })))}
       surfaceErrors={layerErrors}
       examples={examples}
-      onExample={(next) => updateSurface(selectedSurface.id, { expression: next, kind: "explicit", coordinateMode: "cartesian", adaptive: false })}
+      onExample={(next) => surfaces.length ? updateSurface(selectedSurface.id, { expression: next, kind: "explicit", coordinateMode: "cartesian", adaptive: false }) : addSurface(next)}
       onRandomExample={tryRandom}
       variables={graphVariables}
       onVariablesChange={updateStudioVariables}
@@ -390,7 +392,7 @@ export default function MathLab3DGraphing() {
       onAddKeyframe={captureKeyframe}
       onDeleteKeyframe={(id) => setKeyframes((current) => current.filter((keyframe) => keyframe.id !== id))}
       onPlayKeyframes={() => setKeyframesPlaying((playing) => keyframes.length >= 2 && !playing)}
-      scene={!visibleValidSurfaces.length ? (
+      scene={!visibleValidSurfaces.length && surfaces.length > 0 ? (
         <div className="flex h-full items-center justify-center bg-slate-950 p-6 text-center text-sm font-bold text-amber-200">No visible valid surface. Correct an expression or show a valid layer.</div>
       ) : (
         <ThreeSceneWrapper key={cameraKey} height="100%" mobileHeight="100%" interactionLabel="Drag to orbit - wheel/pinch zoom - shift-drag pan" cameraPosition={cameraPosition} fov={46} quality="high" chrome="cinematic" showHint={false} sceneOverlay={`radial-gradient(circle at 68% 22%, ${graphTheme.backgroundAccent}99, transparent 42%), linear-gradient(180deg, transparent, ${graphTheme.background}cc)`} sceneLabel={autoRotate && !reducedMotion ? "3D graphing - rotating" : undefined} sceneSummary={`${selectedSurface.name}, a ${selectedSurface.kind} 3D layer. Domain scale ${xRange} by ${yRange}.`} className="h-full rounded-none border-0">
@@ -665,7 +667,7 @@ export default function MathLab3DGraphing() {
     const state = workspace.state;
     const nextSurfaces = migrateGraph3DSurfaces(state);
     setSurfaces(nextSurfaces);
-    setSelectedSurfaceId(nextSurfaces.some((item) => item.id === state.selectedSurfaceId) ? state.selectedSurfaceId : nextSurfaces[0].id);
+    setSelectedSurfaceId(nextSurfaces.some((item) => item.id === state.selectedSurfaceId) ? state.selectedSurfaceId : nextSurfaces[0]?.id ?? "");
     setXRange(state.xRange);
     setYRange(state.yRange);
     setResolution(state.resolution);
@@ -743,10 +745,9 @@ export default function MathLab3DGraphing() {
 
   function deleteSurface(surfaceId: string) {
     setSurfaces((current) => {
-      if (current.length === 1) return current;
       const index = current.findIndex((item) => item.id === surfaceId);
       const next = current.filter((item) => item.id !== surfaceId);
-      if (surfaceId === selectedSurfaceId) setSelectedSurfaceId(next[Math.min(Math.max(index, 0), next.length - 1)].id);
+      if (surfaceId === selectedSurfaceId) setSelectedSurfaceId(next[Math.min(Math.max(index, 0), next.length - 1)]?.id ?? "");
       return next;
     });
   }
@@ -806,7 +807,7 @@ function Saved3DGraphList({ saved, onLoad, onDelete }: { saved: SavedGraphWorksp
         <div key={workspace.id} className="flex items-center gap-2 rounded-xl border border-slate-200 p-2 dark:border-white/10">
           <button type="button" className="min-w-0 flex-1 text-left" onClick={() => onLoad(workspace)}>
             <span className="block truncate text-sm font-black">{workspace.name}</span>
-            <span className="block truncate text-xs text-slate-500">{migrateGraph3DSurfaces(workspace.state).length} layers · {describeLayer(migrateGraph3DSurfaces(workspace.state)[0])}</span>
+            <span className="block truncate text-xs text-slate-500">{migrateGraph3DSurfaces(workspace.state).length} layers · {migrateGraph3DSurfaces(workspace.state)[0] ? describeLayer(migrateGraph3DSurfaces(workspace.state)[0]) : "Empty scene"}</span>
           </button>
           <button type="button" className="tooltip-icon rounded-lg p-2 text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-400/10" aria-label={`Delete ${workspace.name}`} data-tooltip="Delete saved graph" onClick={() => onDelete(workspace.id)}><Trash2 className="h-4 w-4" /></button>
         </div>

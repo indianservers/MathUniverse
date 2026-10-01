@@ -1,5 +1,5 @@
 import type { GraphSample } from "../../utils/mathEngine/graphSampler";
-import { useCallback, useRef, type PointerEvent } from "react";
+import { useCallback, useLayoutEffect, useRef, useState, type PointerEvent } from "react";
 import type { KeyboardEvent as ReactKeyboardEvent } from "react";
 import { zoomGraphView } from "../../graph-studio/graphViewUtils";
 import { useCanvasZoomLock } from "../../hooks/useCanvasZoomLock";
@@ -70,8 +70,8 @@ type FunctionGraphCanvasProps = {
   }>;
 };
 
-const WIDTH = 720;
-const HEIGHT = 440;
+const INITIAL_WIDTH = 720;
+const INITIAL_HEIGHT = 440;
 
 export default function FunctionGraphCanvas({
   series,
@@ -94,11 +94,28 @@ export default function FunctionGraphCanvas({
   imageLayers = [],
 }: FunctionGraphCanvasProps) {
   const svgRef = useRef<SVGSVGElement>(null);
+  const [size, setSize] = useState({ width: INITIAL_WIDTH, height: INITIAL_HEIGHT });
+  const [selectedFeatureKey, setSelectedFeatureKey] = useState<string | null>(null);
+  const WIDTH = size.width;
+  const HEIGHT = size.height;
+  useLayoutEffect(() => {
+    const node = svgRef.current;
+    if (!node) return;
+    const observer = new ResizeObserver(([entry]) => {
+      const width = Math.max(1, Math.round(entry.contentRect.width));
+      const height = Math.max(1, Math.round(entry.contentRect.height));
+      setSize((current) => current.width === width && current.height === height ? current : { width, height });
+    });
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
   const dragRef = useRef<{
     clientX: number;
     clientY: number;
     view: FunctionGraphView;
   } | null>(null);
+  const pointersRef = useRef(new Map<number, { x: number; y: number }>());
+  const pinchRef = useRef<{ distance: number; centerX: number; centerY: number; view: FunctionGraphView } | null>(null);
   const axisValue = (value: number, logarithmic: boolean) =>
     logarithmic ? Math.log10(value) : value;
   const xMin = axisValue(view.xMin, logX);
@@ -133,7 +150,35 @@ export default function FunctionGraphCanvas({
       : null;
 
   function handlePointerMove(event: PointerEvent<SVGSVGElement>) {
-    if (dragRef.current && event.buttons === 1 && onViewChange) {
+    if (pointersRef.current.has(event.pointerId)) {
+      pointersRef.current.set(event.pointerId, { x: event.clientX, y: event.clientY });
+    }
+    if (pointersRef.current.size === 2 && pinchRef.current && onViewChange) {
+      const [first, second] = [...pointersRef.current.values()];
+      const distance = Math.hypot(first.x - second.x, first.y - second.y);
+      if (distance < 1) return;
+      const rect = event.currentTarget.getBoundingClientRect();
+      const centerX = (first.x + second.x) / 2;
+      const centerY = (first.y + second.y) / 2;
+      const start = pinchRef.current;
+      const factor = start.distance / distance;
+      const xRatio = (start.centerX - rect.left) / rect.width;
+      const yRatio = (start.centerY - rect.top) / rect.height;
+      const xSpan = (start.view.xMax - start.view.xMin) * factor;
+      const ySpan = (start.view.yMax - start.view.yMin) * factor;
+      const anchorX = start.view.xMin + xRatio * (start.view.xMax - start.view.xMin);
+      const anchorY = start.view.yMax - yRatio * (start.view.yMax - start.view.yMin);
+      const nextXRatio = (centerX - rect.left) / rect.width;
+      const nextYRatio = (centerY - rect.top) / rect.height;
+      onViewChange({
+        xMin: anchorX - xSpan * nextXRatio,
+        xMax: anchorX + xSpan * (1 - nextXRatio),
+        yMin: anchorY - ySpan * (1 - nextYRatio),
+        yMax: anchorY + ySpan * nextYRatio,
+      });
+      return;
+    }
+    if (dragRef.current && pointersRef.current.size === 1 && onViewChange) {
       const rect = event.currentTarget.getBoundingClientRect();
       const dx =
         ((event.clientX - dragRef.current.clientX) / rect.width) *
@@ -164,9 +209,26 @@ export default function FunctionGraphCanvas({
 
   function handlePointerDown(event: PointerEvent<SVGSVGElement>) {
     event.currentTarget.focus();
-    dragRef.current = { clientX: event.clientX, clientY: event.clientY, view };
+    pointersRef.current.set(event.pointerId, { x: event.clientX, y: event.clientY });
     event.currentTarget.setPointerCapture(event.pointerId);
-    handlePointerMove(event);
+    if (pointersRef.current.size === 2) {
+      const [first, second] = [...pointersRef.current.values()];
+      pinchRef.current = {
+        distance: Math.hypot(first.x - second.x, first.y - second.y),
+        centerX: (first.x + second.x) / 2,
+        centerY: (first.y + second.y) / 2,
+        view,
+      };
+      dragRef.current = null;
+    } else if (pointersRef.current.size === 1) {
+      dragRef.current = { clientX: event.clientX, clientY: event.clientY, view };
+    }
+  }
+
+  function handlePointerEnd(event: PointerEvent<SVGSVGElement>) {
+    pointersRef.current.delete(event.pointerId);
+    pinchRef.current = null;
+    dragRef.current = null;
   }
 
   const handleWheel = useCallback(
@@ -273,12 +335,8 @@ export default function FunctionGraphCanvas({
       tabIndex={0}
       onPointerMove={handlePointerMove}
       onPointerDown={handlePointerDown}
-      onPointerUp={() => {
-        dragRef.current = null;
-      }}
-      onPointerCancel={() => {
-        dragRef.current = null;
-      }}
+      onPointerUp={handlePointerEnd}
+      onPointerCancel={handlePointerEnd}
       onKeyDown={handleKeyDown}
     >
       <desc id="function-graph-keyboard-help">
@@ -298,10 +356,10 @@ export default function FunctionGraphCanvas({
         y
       </text>
       {showGrid && (
-        <Grid view={view} toScreen={toScreen} logX={logX} logY={logY} />
+        <Grid view={view} toScreen={toScreen} logX={logX} logY={logY} width={WIDTH} height={HEIGHT} />
       )}
       {showAxes && (
-        <Axes view={view} toScreen={toScreen} logX={logX} logY={logY} />
+        <Axes view={view} toScreen={toScreen} logX={logX} logY={logY} width={WIDTH} height={HEIGHT} />
       )}
       {imageLayers.map((image) => {
         const topLeft = toScreen(image.x, image.y);
@@ -519,11 +577,27 @@ export default function FunctionGraphCanvas({
         )
         .map((point, index) => {
           const screen = toScreen(point.x, point.y);
+          const featureKey = `${point.type}:${point.x.toFixed(5)}:${point.y.toFixed(5)}`;
+          const selected = selectedFeatureKey === featureKey;
+          const labelX = Math.max(8, Math.min(WIDTH - 126, screen.x + 14));
+          const labelY = Math.max(8, Math.min(HEIGHT - 32, screen.y - 34));
           return (
             <g
               key={`${point.type}-${index}`}
+              role="button"
+              tabIndex={0}
               aria-label={`${point.type} at ${formatTick(point.x)}, ${formatTick(point.y)}`}
+              aria-pressed={selected}
+              onPointerDown={(event) => event.stopPropagation()}
+              onClick={() => setSelectedFeatureKey(selected ? null : featureKey)}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault();
+                  setSelectedFeatureKey(selected ? null : featureKey);
+                }
+              }}
             >
+              <circle cx={screen.x} cy={screen.y} r="22" fill="transparent" pointerEvents="all" />
               <circle
                 cx={screen.x}
                 cy={screen.y}
@@ -531,7 +605,16 @@ export default function FunctionGraphCanvas({
                 fill={point.type === "intersection" ? "#f97316" : "#06b6d4"}
                 stroke="#ffffff"
                 strokeWidth="2"
+                pointerEvents="none"
               />
+              {selected && (
+                <g pointerEvents="none">
+                  <rect x={labelX} y={labelY} width="118" height="27" rx="7" fill="#0f172a" opacity="0.93" />
+                  <text x={labelX + 7} y={labelY + 18} fill="#ffffff" fontSize="12" fontWeight="600">
+                    {`(${formatTick(point.x)}, ${formatTick(point.y)})`}
+                  </text>
+                </g>
+              )}
               <title>{`${point.type}: (${formatTick(point.x)}, ${formatTick(point.y)})`}</title>
             </g>
           );
@@ -639,11 +722,15 @@ function Grid({
   toScreen,
   logX,
   logY,
+  width,
+  height,
 }: {
   view: FunctionGraphView;
   toScreen: (x: number, y: number) => { x: number; y: number };
   logX: boolean;
   logY: boolean;
+  width: number;
+  height: number;
 }) {
   const xTicks = graphTicks(view.xMin, view.xMax, 12, logX);
   const yTicks = graphTicks(view.yMin, view.yMax, 8, logY);
@@ -657,7 +744,7 @@ function Grid({
             x1={x}
             x2={x}
             y1="0"
-            y2={HEIGHT}
+            y2={height}
             stroke="#94a3b8"
             opacity="0.28"
           />
@@ -669,7 +756,7 @@ function Grid({
           <line
             key={`y-${tick}`}
             x1="0"
-            x2={WIDTH}
+            x2={width}
             y1={y}
             y2={y}
             stroke="#94a3b8"
@@ -679,7 +766,7 @@ function Grid({
       })}
       {xTicks.map((tick) => {
         const point = toScreen(tick, 0);
-        return tick !== 0 && point.y > 14 && point.y < HEIGHT - 8 ? (
+        return tick !== 0 && point.y > 14 && point.y < height - 8 ? (
           <text
             key={`xl-${tick}`}
             x={point.x + 4}
@@ -693,7 +780,7 @@ function Grid({
       })}
       {yTicks.map((tick) => {
         const point = toScreen(0, tick);
-        return tick !== 0 && point.x > 8 && point.x < WIDTH - 22 ? (
+        return tick !== 0 && point.x > 8 && point.x < width - 22 ? (
           <text
             key={`yl-${tick}`}
             x={point.x + 6}
@@ -714,11 +801,15 @@ function Axes({
   toScreen,
   logX,
   logY,
+  width,
+  height,
 }: {
   view: FunctionGraphView;
   toScreen: (x: number, y: number) => { x: number; y: number };
   logX: boolean;
   logY: boolean;
+  width: number;
+  height: number;
 }) {
   const yAxisX = toScreen(0, 0).x;
   const xAxisY = toScreen(0, 0).y;
@@ -727,7 +818,7 @@ function Axes({
       {!logY && view.yMin <= 0 && view.yMax >= 0 && (
         <line
           x1="0"
-          x2={WIDTH}
+          x2={width}
           y1={xAxisY}
           y2={xAxisY}
           stroke="#0f172a"
@@ -740,7 +831,7 @@ function Axes({
           x1={yAxisX}
           x2={yAxisX}
           y1="0"
-          y2={HEIGHT}
+          y2={height}
           stroke="#0f172a"
           strokeWidth="2"
           opacity="0.65"

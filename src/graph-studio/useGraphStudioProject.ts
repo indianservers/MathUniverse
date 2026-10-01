@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import {
   createGraphStudioProject,
   deleteGraphStudioProject,
@@ -36,22 +36,26 @@ export function useGraphStudioProject<TState>({
   const [redoStack, setRedoStack] = useState<TState[]>([]);
   const previousRef = useRef(state);
   const initialStateRef = useRef(state);
-  const skipHistoryRef = useRef(false);
+  const skipHistoryRef = useRef<string | null>(null);
   const initializedRef = useRef(false);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!initializedRef.current) {
       initializedRef.current = true;
       previousRef.current = state;
       return;
     }
-    if (skipHistoryRef.current) {
-      skipHistoryRef.current = false;
-      previousRef.current = state;
-      return;
+    if (skipHistoryRef.current !== null) {
+      const skip = skipHistoryRef.current === JSON.stringify(state);
+      skipHistoryRef.current = null;
+      if (skip) {
+        previousRef.current = state;
+        return;
+      }
     }
     if (JSON.stringify(previousRef.current) === JSON.stringify(state)) return;
-    setUndoStack((items) => [...items.slice(-39), previousRef.current]);
+    const previous = previousRef.current;
+    setUndoStack((items) => [...items.slice(-39), previous]);
     setRedoStack([]);
     previousRef.current = state;
   }, [state]);
@@ -77,7 +81,7 @@ export function useGraphStudioProject<TState>({
       `Untitled ${dimension.toUpperCase()} project`,
       initialStateRef.current,
     );
-    skipHistoryRef.current = true;
+    skipHistoryRef.current = JSON.stringify(initialStateRef.current);
     applyState(initialStateRef.current, []);
     previousRef.current = initialStateRef.current;
     setProject(next);
@@ -85,7 +89,7 @@ export function useGraphStudioProject<TState>({
     setRedoStack([]);
   };
   const load = (next: GraphStudioProject<TState>) => {
-    skipHistoryRef.current = true;
+    skipHistoryRef.current = JSON.stringify(next.state);
     applyState(next.state, next.variables);
     previousRef.current = next.state;
     setProject(next);
@@ -108,19 +112,23 @@ export function useGraphStudioProject<TState>({
     load(imported);
   };
   const undo = () => {
-    const previous = undoStack.at(-1);
+    const current = JSON.stringify(state);
+    const index = undoStack.findLastIndex((item) => JSON.stringify(item) !== current);
+    const previous = index >= 0 ? undoStack[index] : undefined;
     if (!previous) return;
-    skipHistoryRef.current = true;
-    setUndoStack((items) => items.slice(0, -1));
+    skipHistoryRef.current = JSON.stringify(previous);
+    setUndoStack((items) => items.slice(0, index));
     setRedoStack((items) => [...items, state]);
     previousRef.current = previous;
     applyState(previous, project.variables);
   };
   const redo = () => {
-    const next = redoStack.at(-1);
+    const current = JSON.stringify(state);
+    const index = redoStack.findLastIndex((item) => JSON.stringify(item) !== current);
+    const next = index >= 0 ? redoStack[index] : undefined;
     if (!next) return;
-    skipHistoryRef.current = true;
-    setRedoStack((items) => items.slice(0, -1));
+    skipHistoryRef.current = JSON.stringify(next);
+    setRedoStack((items) => items.slice(0, index));
     setUndoStack((items) => [...items, state]);
     previousRef.current = next;
     applyState(next, project.variables);
