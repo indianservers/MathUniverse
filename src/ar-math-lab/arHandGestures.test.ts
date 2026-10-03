@@ -3,6 +3,9 @@ import { ARHandGestureEngine, landmarkPinch, type HandTransform, type PinchHand 
 const base:HandTransform={position:[0,0,0],rotation:[0,0,0],scale:1};
 const hand=(x:number,y=0,id='Left',ratio=.1):PinchHand=>({id,point:{x,y,z:0},ratio});
 describe('AR hand interactions',()=>{
+ it('ignores camera jitter but accumulates a slow drag',()=>{const e=new ARHandGestureEngine();e.update([hand(.5)],base,true);expect(e.update([hand(.501)],base,true)).toBeNull();expect(e.update([hand(.502)],base,true)).toBeNull();expect(e.update([hand(.504)],base,true)?.position[0]).toBeCloseTo(.032);});
+ it('rejects opposite hand jumps even when their center stays still',()=>{const e=new ARHandGestureEngine();e.update([hand(.1),hand(.9,0,'Right')],base,true);expect(e.update([hand(.55),hand(.45,0,'Right')],base,true)).toBeNull();expect(e.update([hand(.56),hand(.46,0,'Right')],base,true)).toBeNull();});
+ it('releases immediately even during stationary jitter',()=>{const e=new ARHandGestureEngine();e.update([hand(.5)],base,true);e.update([hand(.501)],base,true);e.update([hand(.501,0,'Left',.8)],base,true);expect(e.grabbedCount).toBe(0);});
  it('acquires without jumping then follows a one-hand pinch',()=>{const e=new ARHandGestureEngine();expect(e.update([hand(.3)],base,true)).toBeNull();expect(e.update([hand(.4,.1)],base,true)?.position).toEqual([.8000000000000003,-.8,0]);});
  it('does not grab open fingers',()=>{const e=new ARHandGestureEngine();expect(e.update([hand(0,0,'Left',.6)],base)).toBeNull();expect(e.update([hand(.1,0,'Left',.6)],base)).toBeNull();});
  it('uses pinch hysteresis and releases at open fingers',()=>{const e=new ARHandGestureEngine();e.update([hand(0)],base);expect(e.update([hand(.1,0,'Left',.4)],base)).not.toBeNull();expect(e.update([hand(.2,0,'Left',.6)],base)).toBeNull();expect(e.update([hand(.3)],base)).toBeNull();});
@@ -13,6 +16,11 @@ describe('AR hand interactions',()=>{
  it('sorts hands consistently when detection order changes',()=>{const e=new ARHandGestureEngine();e.update([hand(0),hand(.4,0,'Right')],base);expect(e.update([hand(.5,0,'Right'),hand(.1)],base)?.position[0]).toBeCloseTo(.1);});
  it('rejects sudden tracking jumps',()=>{const e=new ARHandGestureEngine();e.update([hand(0)],base,true);expect(e.update([hand(.9)],base,true)).toBeNull();expect(e.update([hand(.91)],base,true)).toBeNull();});
  it('reset stops a grab',()=>{const e=new ARHandGestureEngine();e.update([hand(0)],base);e.reset();expect(e.update([hand(.1)],base)).toBeNull();});
+ it('reports pinch selection and release for feedback',()=>{const e=new ARHandGestureEngine();e.update([hand(0)],base,true);expect(e.grabbedCount).toBe(1);e.update([hand(.1,0,'Left',.8)],base,true);expect(e.grabbedCount).toBe(0);});
+ it('one hand expands upward in Resize mode without moving the object',()=>{const e=new ARHandGestureEngine();e.update([hand(.5,.5)],base,true,true);const next=e.update([hand(.5,.45)],base,true,true);expect(next?.scale).toBeCloseTo(Math.exp(.2));expect(next?.position).toEqual(base.position);});
+ it('one hand shrinks downward in Resize mode',()=>{const e=new ARHandGestureEngine();e.update([hand(.5,.5)],base,true,true);expect(e.update([hand(.5,.55)],base,true,true)?.scale).toBeCloseTo(Math.exp(-.2));});
+ it('two hand expansion works in Resize mode without translation',()=>{const e=new ARHandGestureEngine();e.update([hand(.2),hand(.6,0,'Right')],base,true,true);const next=e.update([hand(.1),hand(.7,0,'Right')],base,true,true);expect(next?.scale).toBeCloseTo(1.15);expect(next?.position).toEqual(base.position);});
+ it('resize stops when fingers open',()=>{const e=new ARHandGestureEngine();e.update([hand(.5,.5)],base,true,true);expect(e.update([hand(.5,.4,'Left',.8)],base,true,true)).toBeNull();});
  it('preserves camera depth while dragging',()=>{const e=new ARHandGestureEngine();e.update([hand(0)],base,true);expect(e.update([hand(.1)],{...base,position:[0,0,-6]},true)?.position[2]).toBe(-6);});
  it('keeps scale within bounds',()=>{const e=new ARHandGestureEngine();e.update([hand(0),hand(.4,0,'Right')],base);expect(e.update([hand(0),hand(.5,0,'Right')],{...base,scale:5})?.scale).toBe(5);});
  it.each([NaN,Infinity,-Infinity])('rejects nonfinite coordinates %s',value=>{const e=new ARHandGestureEngine();expect(e.update([hand(value)],base)).toBeNull();});

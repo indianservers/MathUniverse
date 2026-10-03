@@ -1567,13 +1567,15 @@ function MobileQuickActions({ sessionState, onActivate3D, onCreateQuickGraph, on
       <div className="mb-2 flex items-center justify-between gap-2 px-1">
         <div className="min-w-0">
           <p className="text-xs font-black uppercase tracking-[0.18em] text-cyan-700">AR controls</p>
-          <p className="truncate text-[11px] font-bold text-slate-500">Camera, function, place.</p>
+          <p className="text-[11px] font-bold text-slate-500">Choose camera interaction or surface AR.</p>
         </div>
         {sessionState.status === "starting" ? <span className="shrink-0 rounded-full bg-amber-50 px-2.5 py-1 text-[10px] font-black text-amber-800">opening</span> : null}
       </div>
-      <div className="grid grid-cols-5 gap-1.5">
-        <MobileActionButton label="AR" icon={<ScanLine className="h-4 w-4" />} onClick={onStartAR} primary />
-        <MobileActionButton label="Overlay" icon={<Camera className="h-4 w-4" />} onClick={onStartCamera} />
+      <div className="grid grid-cols-2 gap-2" aria-label="Hand gesture modes">
+        <MobileActionButton label="Camera + hand gestures" icon={<Camera className="h-4 w-4" />} onClick={onStartCamera} primary />
+        <MobileActionButton label="AR + hand gestures" icon={<ScanLine className="h-4 w-4" />} onClick={onStartAR} primary />
+      </div>
+      <div className="mt-2 grid grid-cols-3 gap-1.5">
         <MobileActionButton label="3D" icon={<Cuboid className="h-4 w-4" />} onClick={onActivate3D} />
         <MobileActionButton label="Graph" icon={<Sparkles className="h-4 w-4" />} onClick={onGenerateGraph} primary />
         <MobileActionButton label="Place" icon={<Move3D className="h-4 w-4" />} onClick={onPlaceObject} primary />
@@ -1692,8 +1694,8 @@ export function ARControlPanel(props: {
       <div data-testid="ar-control-panel" className="space-y-4">
         <ARStatusPanel sessionState={sessionState} support={support} />
         <div className="hidden grid-cols-2 gap-2 xl:grid">
-          <ControlButton label="Start AR" icon={<ScanLine className="h-4 w-4" />} onClick={props.onStartAR} primary disabled={sessionState.status === "starting"} />
-          <ControlButton label="Camera overlay" icon={<Camera className="h-4 w-4" />} onClick={props.onStartCamera} />
+          <ControlButton label="Camera + hand gestures" icon={<Camera className="h-4 w-4" />} onClick={props.onStartCamera} primary disabled={sessionState.status === "starting"} />
+          <ControlButton label="AR + hand gestures" icon={<ScanLine className="h-4 w-4" />} onClick={props.onStartAR} primary disabled={sessionState.status === "starting"} />
           <ControlButton label="3D Preview" icon={<Cuboid className="h-4 w-4" />} onClick={() => props.onActivate3D()} />
           <ControlButton label="Exit" icon={<X className="h-4 w-4" />} onClick={props.onExit} />
           <ControlButton label="Reset Scene" icon={<RotateCcw className="h-4 w-4" />} onClick={props.onResetScene} />
